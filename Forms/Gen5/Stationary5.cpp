@@ -21,7 +21,7 @@
 #include "ui_Stationary5.h"
 #include <Core/Enum/Lead.hpp>
 #include <Core/Gen5/ProfileLoader5.hpp>
-#include <Core/Parents/Frames/StationaryFrame.hpp>
+#include <Core/Parents/States/StationaryState.hpp>
 #include <Core/Util/Translator.hpp>
 #include <Forms/Gen5/Profile/ProfileManager5.hpp>
 #include <QSettings>
@@ -80,14 +80,14 @@ void Stationary5::setupModels()
     // ui->tableViewSearcher->setModel(searcherModel);
 
     ui->textBoxGeneratorSeed->setValues(InputType::Seed32Bit);
-    ui->textBoxGeneratorStartingFrame->setValues(InputType::Frame32Bit);
-    ui->textBoxGeneratorMaxResults->setValues(InputType::Frame32Bit);
-    ui->textBoxGeneratorDelay->setValues(InputType::Frame32Bit);
+    ui->textBoxGeneratorStartingAdvance->setValues(InputType::State32Bit);
+    ui->textBoxGeneratorMaxResults->setValues(InputType::State32Bit);
+    ui->textBoxGeneratorDelay->setValues(InputType::State32Bit);
 
     ui->textBoxSearcherMinDelay->setValues(InputType::Delay);
     ui->textBoxSearcherMaxDelay->setValues(InputType::Delay);
-    ui->textBoxSearcherMinFrame->setValues(InputType::Frame32Bit);
-    ui->textBoxSearcherMaxFrame->setValues(InputType::Frame32Bit);
+    ui->textBoxSearcherMinAdvance->setValues(InputType::State32Bit);
+    ui->textBoxSearcherMaxAdvance->setValues(InputType::State32Bit);
 
     ui->comboBoxSearcherLead->setItemData(0, Lead::Search);
     ui->comboBoxSearcherLead->setItemData(1, Lead::Synchronize);
@@ -141,13 +141,13 @@ void Stationary5::setupModels()
     {
         ui->textBoxSearcherMaxDelay->setText(setting.value("maxDelay").toString());
     }
-    if (setting.contains("minFrame"))
+    if (setting.contains("minAdvance"))
     {
-        ui->textBoxSearcherMinFrame->setText(setting.value("minFrame").toString());
+        ui->textBoxSearcherMinAdvance->setText(setting.value("minAdvance").toString());
     }
-    if (setting.contains("maxFrame"))
+    if (setting.contains("maxAdvance"))
     {
-        ui->textBoxSearcherMaxFrame->setText(setting.value("maxFrame").toString());
+        ui->textBoxSearcherMaxAdvance->setText(setting.value("maxAdvance").toString());
     }
     if (setting.contains("geometry"))
     {
@@ -156,9 +156,9 @@ void Stationary5::setupModels()
     setting.endGroup();
 }
 
-void Stationary5::updateProgress(const QVector<StationaryFrame> &frames, int progress)
+void Stationary5::updateProgress(const QVector<StationaryState> &states, int progress)
 {
-    // searcherModel->addItems(frames);
+    // searcherModel->addItems(states);
     ui->progressBar->setValue(progress);
 }
 
@@ -168,7 +168,7 @@ void Stationary5::generate()
     generatorModel->setMethod(static_cast<Method>(ui->comboBoxGeneratorMethod->currentData().toInt()));
 
     u32 seed = ui->textBoxGeneratorSeed->getUInt();
-    u32 startingFrame = ui->textBoxGeneratorStartingFrame->getUInt();
+    u32 startingAdvance = ui->textBoxGeneratorStartingAdvance->getUInt();
     u32 maxResults = ui->textBoxGeneratorMaxResults->getUInt();
     u16 tid = ui->textBoxGeneratorTID->getUShort();
     u16 sid = ui->textBoxGeneratorSID->getUShort();
@@ -179,9 +179,9 @@ void Stationary5::generate()
     }
 
     u8 genderRatio = ui->comboBoxGeneratorGenderRatio->currentData().toInt();
-    Generator5 generator(maxResults, startingFrame, seed, tid, sid, offset,
+    Generator5 generator(maxResults, startingAdvance, seed, tid, sid, offset,
         static_cast<Method>(ui->comboBoxGeneratorMethod->currentData().toInt()));
-    FrameCompare compare(ui->comboBoxGeneratorAbility->currentIndex(), ui->comboBoxGeneratorAbility->currentIndex(),
+    AdvanceCompare compare(ui->comboBoxGeneratorAbility->currentIndex(), ui->comboBoxGeneratorAbility->currentIndex(),
         ui->checkBoxGeneratorShinyOnly->isChecked(), ui->checkBoxGeneratorDisableFilters->isChecked(),
         ui->ivFilterGenerator->getLower(), ui->ivFilterGenerator->getLower(), ui->comboBoxGeneratorNature->getChecked(),
         ui->comboBoxGeneratorHiddenPower->getChecked(), QVector<bool>());
@@ -206,8 +206,8 @@ void Stationary5::generate()
         }
     }
 
-    QVector<Frame5> frames = generator.generate(compare);
-    generatorModel->setModel(frames);*/
+    QVector<State5> advances = generator.generate(compare);
+    generatorModel->setModel(advances);*/
 }
 
 void Stationary5::search()
@@ -222,13 +222,13 @@ void Stationary5::search()
    u16 sid = ui->textBoxSearcherSID->getUShort();
 
    u8 genderRatio = ui->comboBoxSearcherGenderRatio->currentData().toInt();
-   FrameCompare compare(ui->comboBoxSearcherAbility->currentIndex(), ui->comboBoxSearcherAbility->currentIndex(),
+   AdvanceCompare compare(ui->comboBoxSearcherAbility->currentIndex(), ui->comboBoxSearcherAbility->currentIndex(),
        ui->checkBoxSearcherShinyOnly->isChecked(), false, ui->ivFilterSearcher->getLower(),
        ui->ivFilterSearcher->getLower(), ui->comboBoxSearcherNature->getChecked(),
        ui->comboBoxSearcherHiddenPower->getChecked(), QVector<bool>());
     Searcher5 searcher(tid, sid, static_cast<u32>(genderRatioIndex), ui->textBoxSearcherMinDelay->getUInt(),
     ui->textBoxSearcherMaxDelay->getUInt(),
-                                  ui->textBoxSearcherMinFrame->getUInt(), ui->textBoxSearcherMaxFrame->getUInt(),
+                                  ui->textBoxSearcherMinAdvance->getUInt(), ui->textBoxSearcherMaxAdvance->getUInt(),
                                   compare,
                                   static_cast<Method>(ui->comboBoxSearcherMethod->currentData().toInt()));
 

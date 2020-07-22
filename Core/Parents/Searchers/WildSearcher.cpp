@@ -19,7 +19,7 @@
 
 #include "WildSearcher.hpp"
 
-WildSearcher::WildSearcher(u16 tid, u16 sid, u8 genderRatio, Method method, const FrameFilter &filter) :
+WildSearcher::WildSearcher(u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter) :
     Searcher(tid, sid, genderRatio, method, filter)
 {
 }

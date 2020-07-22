@@ -20,8 +20,8 @@
 #ifndef GAMECUBEGENERATOR_HPP
 #define GAMECUBEGENERATOR_HPP
 
-#include <Core/Gen3/Frames/GameCubeFrame.hpp>
 #include <Core/Gen3/LockInfo.hpp>
+#include <Core/Gen3/States/GameCubeState.hpp>
 #include <Core/Parents/Generators/Generator.hpp>
 #include <Core/RNG/LCRNG.hpp>
 
@@ -29,18 +29,18 @@ class GameCubeGenerator : public Generator
 {
 public:
     GameCubeGenerator() = default;
-    GameCubeGenerator(u32 initialFrame, u32 maxResults, u16 tid, u16 sid, u8 genderRatio, Method method, const FrameFilter &filter);
-    QVector<GameCubeFrame> generate(u32 seed) const;
+    GameCubeGenerator(u32 initialAdvances, u32 maxResults, u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter);
+    QVector<GameCubeState> generate(u32 seed) const;
     void setShadowTeam(u8 index, u8 type);
 
 private:
     ShadowTeam team;
     u8 type;
 
-    QVector<GameCubeFrame> generateXDColo(u32 seed) const;
-    QVector<GameCubeFrame> generateXDShadow(u32 seed) const;
-    QVector<GameCubeFrame> generateColoShadow(u32 seed) const;
-    QVector<GameCubeFrame> generateChannel(u32 seed) const;
+    QVector<GameCubeState> generateXDColo(u32 seed) const;
+    QVector<GameCubeState> generateXDShadow(u32 seed) const;
+    QVector<GameCubeState> generateColoShadow(u32 seed) const;
+    QVector<GameCubeState> generateChannel(u32 seed) const;
 };
 
 #endif // GAMECUBEGENERATOR_HPP

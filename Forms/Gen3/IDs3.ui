@@ -115,14 +115,14 @@
            </widget>
           </item>
           <item row="1" column="0">
-           <widget class="QLabel" name="labelXDColoStartingFrame">
+           <widget class="QLabel" name="labelXDColoStartingAdvance">
             <property name="text">
-             <string>Starting Frame</string>
+             <string>Starting Advance</string>
             </property>
            </widget>
           </item>
           <item row="1" column="1">
-           <widget class="TextBox" name="textBoxXDColoStartingFrame">
+           <widget class="TextBox" name="textBoxXDColoStartingAdvance">
             <property name="text">
              <string notr="true">5000</string>
             </property>
@@ -236,14 +236,14 @@
            </widget>
           </item>
           <item row="1" column="0">
-           <widget class="QLabel" name="labelFRLGEStartingFrame">
+           <widget class="QLabel" name="labelFRLGEStartingAdvance">
             <property name="text">
-             <string>Starting Frame</string>
+             <string>Starting Advance</string>
             </property>
            </widget>
           </item>
           <item row="1" column="1">
-           <widget class="TextBox" name="textBoxFRLGEStartingFrame">
+           <widget class="TextBox" name="textBoxFRLGEStartingAdvance">
             <property name="text">
              <string notr="true">5000</string>
             </property>
@@ -468,7 +468,7 @@
            </widget>
           </item>
           <item row="2" column="2">
-           <widget class="TextBox" name="textBoxRSStartingFrame">
+           <widget class="TextBox" name="textBoxRSStartingAdvance">
             <property name="text">
              <string notr="true">5000</string>
             </property>
@@ -488,14 +488,14 @@
            </widget>
           </item>
           <item row="2" column="0" colspan="2">
-           <widget class="QLabel" name="labelRSStartingFrame">
+           <widget class="QLabel" name="labelRSStartingAdvance">
             <property name="text">
-             <string>Starting Frame</string>
+             <string>Starting Advance</string>
             </property>
            </widget>
           </item>
           <item row="3" column="0" colspan="2">
-           <widget class="QLabel" name="labelRSMaxFrame">
+           <widget class="QLabel" name="labelRSMaxAdvance">
             <property name="text">
              <string>Max Results</string>
             </property>
@@ -539,7 +539,7 @@
   <tabstop>textBoxXDColoSID</tabstop>
   <tabstop>pushButtonXDColoSearch</tabstop>
   <tabstop>textBoxXDColoSeed</tabstop>
-  <tabstop>textBoxXDColoStartingFrame</tabstop>
+  <tabstop>textBoxXDColoStartingAdvance</tabstop>
   <tabstop>textBoxXDColoMaxResults</tabstop>
   <tabstop>tableViewXDColo</tabstop>
   <tabstop>checkBoxFRLGEPID</tabstop>
@@ -548,7 +548,7 @@
   <tabstop>textBoxFRLGESID</tabstop>
   <tabstop>pushButtonFRLGESearch</tabstop>
   <tabstop>textBoxFRLGETID</tabstop>
-  <tabstop>textBoxFRLGEStartingFrame</tabstop>
+  <tabstop>textBoxFRLGEStartingAdvance</tabstop>
   <tabstop>textBoxFRLGEMaxResults</tabstop>
   <tabstop>tableViewFRLGE</tabstop>
   <tabstop>checkBoxRSPID</tabstop>
@@ -563,7 +563,7 @@
   <tabstop>dateTimeEdit</tabstop>
   <tabstop>radioButtonRSInitialSeed</tabstop>
   <tabstop>textBoxRSInitialSeed</tabstop>
-  <tabstop>textBoxRSStartingFrame</tabstop>
+  <tabstop>textBoxRSStartingAdvance</tabstop>
   <tabstop>textBoxRSMaxResults</tabstop>
   <tabstop>tableViewRS</tabstop>
  </tabstops>

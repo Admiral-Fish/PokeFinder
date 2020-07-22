@@ -20,8 +20,8 @@
 #ifndef GENERATOR5_HPP
 #define GENERATOR5_HPP
 
-#include <Core/Parents/Frames/StationaryFrame.hpp>
 #include <Core/Parents/Generators/StationaryGenerator.hpp>
+#include <Core/Parents/States/StationaryState.hpp>
 
 enum Encounter : u8;
 
@@ -29,24 +29,24 @@ class StationaryGenerator5 : public StationaryGenerator
 {
 public:
     StationaryGenerator5() = default;
-    StationaryGenerator5(u32 initialFrame, u32 maxResults, u16 tid, u16 sid, u8 genderRatio, Method method, Encounter encounter,
-                         const FrameFilter &filter);
-    QVector<StationaryFrame> generate(u64 seed) const;
+    StationaryGenerator5(u32 initialAdvances, u32 maxResults, u16 tid, u16 sid, u8 genderRatio, Method method, Encounter encounter,
+                         const StateFilter &filter);
+    QVector<StationaryState> generate(u64 seed) const;
 
 private:
     u8 idBit;
     Encounter encounter;
 
-    QVector<StationaryFrame> generateRoamerIVs(u64 seed) const;
-    QVector<StationaryFrame> generateIVs(u64 seed) const;
-    QVector<StationaryFrame> generateRoamerCGear(u64 seed) const;
-    QVector<StationaryFrame> generateCGear(u64 seed) const;
-    QVector<StationaryFrame> generateStationary(u64 seed) const;
-    QVector<StationaryFrame> generateRoamer(u64 seed);
-    QVector<StationaryFrame> generateGift(u64 seed);
-    QVector<StationaryFrame> generateEntraLink(u64 seed);
-    QVector<StationaryFrame> generateLarvestaEgg(u64 seed);
-    QVector<StationaryFrame> generateHiddenGrotto(u64 seed);
+    QVector<StationaryState> generateRoamerIVs(u64 seed) const;
+    QVector<StationaryState> generateIVs(u64 seed) const;
+    QVector<StationaryState> generateRoamerCGear(u64 seed) const;
+    QVector<StationaryState> generateCGear(u64 seed) const;
+    QVector<StationaryState> generateStationary(u64 seed) const;
+    QVector<StationaryState> generateRoamer(u64 seed);
+    QVector<StationaryState> generateGift(u64 seed);
+    QVector<StationaryState> generateEntraLink(u64 seed);
+    QVector<StationaryState> generateLarvestaEgg(u64 seed);
+    QVector<StationaryState> generateHiddenGrotto(u64 seed);
 };
 
 #endif // GENERATOR5_HPP

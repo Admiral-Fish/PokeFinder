@@ -284,12 +284,12 @@
            </widget>
           </item>
           <item row="6" column="1">
-           <widget class="TextBox" name="textBoxGeneratorStartingFrame">
+           <widget class="TextBox" name="textBoxGeneratorStartingAdvance">
             <property name="inputMask">
              <string/>
             </property>
             <property name="text">
-             <string notr="true">1</string>
+             <string notr="true">0</string>
             </property>
             <property name="maxLength">
              <number>10</number>
@@ -360,9 +360,9 @@
            <widget class="QComboBox" name="comboBoxGeneratorLocation"/>
           </item>
           <item row="6" column="0">
-           <widget class="QLabel" name="labelGeneratorStartingFrame">
+           <widget class="QLabel" name="labelGeneratorStartingAdvance">
             <property name="text">
-             <string>Starting Frame</string>
+             <string>Starting Advance</string>
             </property>
            </widget>
           </item>
@@ -640,14 +640,14 @@
              </widget>
             </item>
             <item row="1" column="0">
-             <widget class="QLabel" name="labelSearcherMinFrame">
+             <widget class="QLabel" name="labelSearcherMinAdvance">
               <property name="text">
-               <string>Min Frame</string>
+               <string>Min Advance</string>
               </property>
              </widget>
             </item>
             <item row="1" column="1">
-             <widget class="TextBox" name="textBoxSearcherMinFrame">
+             <widget class="TextBox" name="textBoxSearcherMinAdvance">
               <property name="inputMask">
                <string/>
               </property>
@@ -660,14 +660,14 @@
              </widget>
             </item>
             <item row="1" column="2">
-             <widget class="QLabel" name="labelSearcherMaxFrame">
+             <widget class="QLabel" name="labelSearcherMaxAdvance">
               <property name="text">
-               <string>Max Frame</string>
+               <string>Max Advance</string>
               </property>
              </widget>
             </item>
             <item row="1" column="3">
-             <widget class="TextBox" name="textBoxSearcherMaxFrame">
+             <widget class="TextBox" name="textBoxSearcherMaxAdvance">
               <property name="inputMask">
                <string/>
               </property>
@@ -779,7 +779,7 @@
   <tabstop>comboBoxGeneratorEncounter</tabstop>
   <tabstop>pushButtonGeneratorLead</tabstop>
   <tabstop>comboBoxGeneratorLead</tabstop>
-  <tabstop>textBoxGeneratorStartingFrame</tabstop>
+  <tabstop>textBoxGeneratorStartingAdvance</tabstop>
   <tabstop>textBoxGeneratorMaxResults</tabstop>
   <tabstop>textBoxGeneratorSeed</tabstop>
   <tabstop>pushButtonGenerate</tabstop>
@@ -792,8 +792,8 @@
   <tabstop>comboBoxSearcherLead</tabstop>
   <tabstop>textBoxSearcherMinDelay</tabstop>
   <tabstop>textBoxSearcherMaxDelay</tabstop>
-  <tabstop>textBoxSearcherMinFrame</tabstop>
-  <tabstop>textBoxSearcherMaxFrame</tabstop>
+  <tabstop>textBoxSearcherMinAdvance</tabstop>
+  <tabstop>textBoxSearcherMaxAdvance</tabstop>
   <tabstop>pushButtonSearch</tabstop>
   <tabstop>pushButtonCancel</tabstop>
   <tabstop>tableViewSearcher</tabstop>

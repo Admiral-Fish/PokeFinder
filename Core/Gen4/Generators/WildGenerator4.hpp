@@ -21,22 +21,22 @@
 #define WILDGENERATOR4_HPP
 
 #include <Core/Gen4/EncounterArea4.hpp>
-#include <Core/Parents/Frames/WildFrame.hpp>
 #include <Core/Parents/Generators/WildGenerator.hpp>
+#include <Core/Parents/States/WildState.hpp>
 #include <QVector>
 
 class WildGenerator4 : public WildGenerator
 {
 public:
     WildGenerator4() = default;
-    WildGenerator4(u32 initialFrame, u32 maxResults, u16 tid, u16 sid, u8 genderRatio, Method method, const FrameFilter &filter);
-    QVector<WildFrame> generate(u32 seed) const;
+    WildGenerator4(u32 initialAdvances, u32 maxResults, u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter);
+    QVector<WildState> generate(u32 seed) const;
     void setEncounterArea(const EncounterArea4 &encounterArea);
 
 private:
-    QVector<WildFrame> generateMethodJ(u32 seed) const;
-    QVector<WildFrame> generateMethodK(u32 seed) const;
-    QVector<WildFrame> generateChainedShiny(u32 seed) const;
+    QVector<WildState> generateMethodJ(u32 seed) const;
+    QVector<WildState> generateMethodK(u32 seed) const;
+    QVector<WildState> generateChainedShiny(u32 seed) const;
 
     EncounterArea4 encounterArea;
 };

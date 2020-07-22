@@ -21,17 +21,17 @@
 #define HIDDENGROTTOGENERATOR_HPP
 
 #include <Core/Gen5/Filters/HiddenGrottoFilter.hpp>
-#include <Core/Gen5/Frames/HiddenGrottoFrame.hpp>
+#include <Core/Gen5/States/HiddenGrottoState.hpp>
 #include <QVector>
 
 class HiddenGrottoGenerator
 {
 public:
-    HiddenGrottoGenerator(u32 initialFrame, u32 maxResults, u8 genderRatio, const HiddenGrottoFilter &filter);
-    QVector<HiddenGrottoFrame> generate(u64 seed);
+    HiddenGrottoGenerator(u32 initialAdvances, u32 maxResults, u8 genderRatio, const HiddenGrottoFilter &filter);
+    QVector<HiddenGrottoState> generate(u64 seed);
 
 private:
-    u32 initialFrame;
+    u32 initialAdvances;
     u32 maxResults;
     u8 genderRatio;
     HiddenGrottoFilter filter;

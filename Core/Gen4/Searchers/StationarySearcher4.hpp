@@ -20,8 +20,8 @@
 #ifndef STATIONARYSEARCHER4_HPP
 #define STATIONARYSEARCHER4_HPP
 
-#include <Core/Parents/Frames/StationaryFrame.hpp>
 #include <Core/Parents/Searchers/StationarySearcher.hpp>
+#include <Core/Parents/States/StationaryState.hpp>
 #include <Core/RNG/RNGCache.hpp>
 #include <mutex>
 
@@ -29,38 +29,38 @@ class StationarySearcher4 : public StationarySearcher
 {
 public:
     StationarySearcher4() = default;
-    StationarySearcher4(u16 tid, u16 sid, u8 genderRatio, Method method, const FrameFilter &filter);
+    StationarySearcher4(u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter);
     void setDelay(u32 minDelay, u32 maxDelay);
-    void setFrame(u32 minFrame, u32 maxFrame);
+    void setState(u32 minAdvance, u32 maxAdvance);
     void startSearch(const QVector<u8> &min, const QVector<u8> &max);
     void cancelSearch();
-    QVector<StationaryFrame> getResults();
+    QVector<StationaryState> getResults();
     int getProgress() const;
 
 private:
     RNGCache cache;
     u32 minDelay;
     u32 maxDelay;
-    u32 minFrame;
-    u32 maxFrame;
+    u32 minAdvance;
+    u32 maxAdvance;
 
     bool searching;
     int progress;
-    QVector<StationaryFrame> results;
+    QVector<StationaryState> results;
     std::mutex mutex;
 
-    QVector<StationaryFrame> search(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const;
-    QVector<StationaryFrame> searchMethod1(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const;
-    QVector<StationaryFrame> searchMethodJ(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const;
-    QVector<StationaryFrame> searchMethodK(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const;
-    QVector<StationaryFrame> searchWondercardIVs(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const;
-    QVector<StationaryFrame> normalMethodJ(StationaryFrame frame, u32 seed) const;
-    QVector<StationaryFrame> synchMethodJ(StationaryFrame frame, u32 seed) const;
-    QVector<StationaryFrame> cuteCharmMethodJ(StationaryFrame frame, u32 seed) const;
-    QVector<StationaryFrame> normalMethodK(StationaryFrame frame, u32 seed) const;
-    QVector<StationaryFrame> synchMethodK(StationaryFrame frame, u32 seed) const;
-    QVector<StationaryFrame> cuteCharmMethodK(StationaryFrame frame, u32 seed) const;
-    QVector<StationaryFrame> searchInitialSeeds(const QVector<StationaryFrame> &results) const;
+    QVector<StationaryState> search(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const;
+    QVector<StationaryState> searchMethod1(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const;
+    QVector<StationaryState> searchMethodJ(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const;
+    QVector<StationaryState> searchMethodK(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const;
+    QVector<StationaryState> searchWondercardIVs(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const;
+    QVector<StationaryState> normalMethodJ(StationaryState currentState, u32 seed) const;
+    QVector<StationaryState> synchMethodJ(StationaryState currentState, u32 seed) const;
+    QVector<StationaryState> cuteCharmMethodJ(StationaryState currentState, u32 seed) const;
+    QVector<StationaryState> normalMethodK(StationaryState currentState, u32 seed) const;
+    QVector<StationaryState> synchMethodK(StationaryState currentState, u32 seed) const;
+    QVector<StationaryState> cuteCharmMethodK(StationaryState currentState, u32 seed) const;
+    QVector<StationaryState> searchInitialSeeds(const QVector<StationaryState> &results) const;
 };
 
 #endif // STATIONARYSEARCHER4_HPP

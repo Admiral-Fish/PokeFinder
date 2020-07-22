@@ -228,19 +228,19 @@
          </property>
          <layout class="QGridLayout" name="gridLayout_7">
           <item row="0" column="0">
-           <widget class="QLabel" name="labelGeneratorInitialFrame">
+           <widget class="QLabel" name="labelGeneratorInitialAdvances">
             <property name="text">
-             <string>Initial Frame</string>
+             <string>Initial Advances</string>
             </property>
            </widget>
           </item>
           <item row="0" column="1">
-           <widget class="TextBox" name="textBoxGeneratorInitialFrame">
+           <widget class="TextBox" name="textBoxGeneratorInitialAdvances">
             <property name="inputMask">
              <string/>
             </property>
             <property name="text">
-             <string notr="true">1</string>
+             <string notr="true">0</string>
             </property>
            </widget>
           </item>
@@ -722,14 +722,14 @@
           <item row="0" column="0">
            <widget class="QLabel" name="label">
             <property name="text">
-             <string>Initial Frame</string>
+             <string>Initial Advances</string>
             </property>
            </widget>
           </item>
           <item row="0" column="1">
-           <widget class="TextBox" name="textBoxSearcherInitialFrame">
+           <widget class="TextBox" name="textBoxSearcherInitialAdvances">
             <property name="text">
-             <string notr="true">1</string>
+             <string notr="true">0</string>
             </property>
            </widget>
           </item>
@@ -764,7 +764,7 @@
   <tabstop>comboBoxProfiles</tabstop>
   <tabstop>pushButtonProfileManager</tabstop>
   <tabstop>tabRNGSelector</tabstop>
-  <tabstop>textBoxGeneratorInitialFrame</tabstop>
+  <tabstop>textBoxGeneratorInitialAdvances</tabstop>
   <tabstop>textBoxGeneratorMaxResults</tabstop>
   <tabstop>textBoxGeneratorSeed</tabstop>
   <tabstop>pushButtonGenerate</tabstop>
@@ -781,7 +781,7 @@
   <tabstop>comboBoxGeneratorSpecies6</tabstop>
   <tabstop>comboBoxGeneratorGender6</tabstop>
   <tabstop>tableViewGenerator</tabstop>
-  <tabstop>textBoxSearcherInitialFrame</tabstop>
+  <tabstop>textBoxSearcherInitialAdvances</tabstop>
   <tabstop>textBoxSearcherMaxAdvances</tabstop>
   <tabstop>dateEditSearcherStartDate</tabstop>
   <tabstop>dateEditSearcherEndDate</tabstop>

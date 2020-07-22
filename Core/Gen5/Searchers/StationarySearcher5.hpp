@@ -20,9 +20,9 @@
 #ifndef STATIONARYSEARCHER5_HPP
 #define STATIONARYSEARCHER5_HPP
 
-#include <Core/Gen5/Frames/StationaryFrame5.hpp>
 #include <Core/Gen5/Generators/StationaryGenerator5.hpp>
 #include <Core/Gen5/Profile5.hpp>
+#include <Core/Gen5/States/StationaryState5.hpp>
 #include <QDate>
 #include <mutex>
 
@@ -34,7 +34,7 @@ public:
                                  const QVector<QHash<u32, u32>> &ivMap, bool includePID);
     void startSearch(int threads, QDate start, const QDate &end);
     void cancelSearch();
-    QVector<StationaryFrame5> getResults();
+    QVector<StationaryState5> getResults();
     int getProgress() const;
 
 private:
@@ -47,7 +47,7 @@ private:
 
     bool searching;
     int progress;
-    QVector<StationaryFrame5> results;
+    QVector<StationaryState5> results;
     std::mutex resultMutex;
     std::mutex progressMutex;
 

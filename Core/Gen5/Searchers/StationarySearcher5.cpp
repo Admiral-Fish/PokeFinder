@@ -79,7 +79,7 @@ void StationarySearcher5::cancelSearch()
     searching = false;
 }
 
-QVector<StationaryFrame5> StationarySearcher5::getResults()
+QVector<StationaryState5> StationarySearcher5::getResults()
 {
     std::lock_guard<std::mutex> lock(resultMutex);
 
@@ -128,7 +128,7 @@ void StationarySearcher5::search(const QDate &start, const QDate &end)
                             sha.setTime(hour, minute, second, profile.getDSType());
                             u64 seed = sha.hashSeed();
 
-                            QVector<StationaryFrame5> frames;
+                            QVector<StationaryState5> states;
                             if (fastSearch)
                             {
                                 for (u8 j = 0; j < ivMap.size(); j++)
@@ -136,53 +136,53 @@ void StationarySearcher5::search(const QDate &start, const QDate &end)
                                     auto it = ivMap.at(j).find(seed >> 32);
                                     if (it != ivMap.at(j).end())
                                     {
-                                        StationaryFrame5 frame;
-                                        frame.setIVs(it.value());
-                                        frame.calculateHiddenPower();
+                                        StationaryState5 currentState;
+                                        currentState.setIVs(it.value());
+                                        currentState.calculateHiddenPower();
 
                                         // Filter here
-                                        if (ivGenerator.getFilter().compareIVs(frame))
+                                        if (ivGenerator.getFilter().compareIVs(currentState))
                                         {
-                                            frame.setIVFrame(j + 1);
-                                            frames.append(frame);
+                                            currentState.setIVCurrentState(j + 1);
+                                            states.append(currentState);
                                         }
                                     }
                                 }
                             }
                             else
                             {
-                                // frames = ivGenerator.generate(seed);
+                                // states = ivGenerator.generate(seed);
                             }
 
-                            for (auto ivFrame : frames)
+                            for (auto ivCurrentState : states)
                             {
-                                // ivFrame.setDateTime(QDateTime(date, QTime(hour, minute, second)));
-                                // ivFrame.setInitialSeed(seed);
-                                // ivFrame.setButtons(buttons.at(i));
-                                // ivFrame.setTimer0(timer0);
+                                // ivCurrentState.setDateTime(QDateTime(date, QTime(hour, minute, second)));
+                                // ivCurrentState.setInitialSeed(seed);
+                                // ivCurrentState.setButtons(buttons.at(i));
+                                // ivCurrentState.setTimer0(timer0);
 
                                 if (includePID)
                                 {
-                                    auto pidFrames = pidGenerator.generate(seed);
+                                    auto pidStates = pidGenerator.generate(seed);
 
-                                    for (const auto &pidFrame : pidFrames)
+                                    for (const auto &pidCurrentState : pidStates)
                                     {
-                                        ivFrame.setPID(pidFrame.getPID());
-                                        ivFrame.setAbility(pidFrame.getAbility());
-                                        ivFrame.setFrame(pidFrame.getFrame());
-                                        ivFrame.setGender(pidFrame.getGender());
-                                        ivFrame.setNature(pidFrame.getNature());
-                                        ivFrame.setShiny(pidFrame.getShiny());
-                                        ivFrame.setSeed(pidFrame.getSeed());
+                                        ivCurrentState.setPID(pidCurrentState.getPID());
+                                        ivCurrentState.setAbility(pidCurrentState.getAbility());
+                                        ivCurrentState.setAdvance(pidCurrentState.getAdvance());
+                                        ivCurrentState.setGender(pidCurrentState.getGender());
+                                        ivCurrentState.setNature(pidCurrentState.getNature());
+                                        ivCurrentState.setShiny(pidCurrentState.getShiny());
+                                        ivCurrentState.setSeed(pidCurrentState.getSeed());
 
                                         std::lock_guard<std::mutex> lock(resultMutex);
-                                        results.append(ivFrame);
+                                        results.append(ivCurrentState);
                                     }
                                 }
                                 else
                                 {
                                     std::lock_guard<std::mutex> lock(resultMutex);
-                                    results.append(ivFrame);
+                                    results.append(ivCurrentState);
                                 }
                             }
 

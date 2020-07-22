@@ -18,26 +18,26 @@
  */
 
 #include "IDFilter.hpp"
-#include <Core/Parents/Frames/IDFrame.hpp>
+#include <Core/Parents/States/IDState.hpp>
 
 IDFilter::IDFilter(const QVector<u16> &tidFilter, const QVector<u16> &sidFilter, const QVector<u16> &tsvFilter) :
     tidFilter(tidFilter), sidFilter(sidFilter), tsvFilter(tsvFilter)
 {
 }
 
-bool IDFilter::compare(const IDFrame &frame) const
+bool IDFilter::compare(const IDState &currentState) const
 {
-    if (!tidFilter.isEmpty() && !tidFilter.contains(frame.getTID()))
+    if (!tidFilter.isEmpty() && !tidFilter.contains(currentState.getTID()))
     {
         return false;
     }
 
-    if (!sidFilter.isEmpty() && !sidFilter.contains(frame.getSID()))
+    if (!sidFilter.isEmpty() && !sidFilter.contains(currentState.getSID()))
     {
         return false;
     }
 
-    if (!tsvFilter.isEmpty() && !tsvFilter.contains(frame.getTSV()))
+    if (!tsvFilter.isEmpty() && !tsvFilter.contains(currentState.getTSV()))
     {
         return false;
     }

@@ -19,8 +19,8 @@
 
 #include "Generator.hpp"
 
-Generator::Generator(u32 initialFrame, u32 maxResults, u16 tid, u16 sid, u8 genderRatio, Method method, const FrameFilter &filter) :
-    initialFrame(initialFrame),
+Generator::Generator(u32 initialAdvances, u32 maxResults, u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter) :
+    initialAdvances(initialAdvances),
     maxResults(maxResults),
     tid(tid),
     sid(sid),
@@ -31,7 +31,7 @@ Generator::Generator(u32 initialFrame, u32 maxResults, u16 tid, u16 sid, u8 gend
 {
 }
 
-FrameFilter Generator::getFilter() const
+StateFilter Generator::getFilter() const
 {
     return filter;
 }
@@ -41,7 +41,7 @@ void Generator::setOffset(u32 offset)
     this->offset = offset;
 }
 
-void Generator::setInitialFrame(u32 initialFrame)
+void Generator::setInitialAdvances(u32 initialAdvances)
 {
-    this->initialFrame = initialFrame;
+    this->initialAdvances = initialAdvances;
 }

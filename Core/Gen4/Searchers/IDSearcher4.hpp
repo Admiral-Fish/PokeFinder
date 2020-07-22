@@ -20,7 +20,7 @@
 #ifndef IDSEARCHER4_HPP
 #define IDSEARCHER4_HPP
 
-#include <Core/Gen4/Frames/IDFrame4.hpp>
+#include <Core/Gen4/States/IDState4.hpp>
 #include <Core/Parents/Filters/IDFilter.hpp>
 #include <QVector>
 #include <mutex>
@@ -32,7 +32,7 @@ public:
     explicit IDSearcher4(const IDFilter &filter);
     void startSearch(bool infinite, u16 year, u32 minDelay, u32 maxDelay);
     void cancelSearch();
-    QVector<IDFrame4> getResults();
+    QVector<IDState4> getResults();
     int getProgress() const;
 
 private:
@@ -40,7 +40,7 @@ private:
 
     bool searching;
     int progress;
-    QVector<IDFrame4> results;
+    QVector<IDState4> results;
     std::mutex mutex;
 };
 

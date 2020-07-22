@@ -21,21 +21,21 @@
 #define EVENTGENERATOR5_HPP
 
 #include <Core/Gen5/PGF.hpp>
-#include <Core/Parents/Frames/Frame.hpp>
 #include <Core/Parents/Generators/Generator.hpp>
+#include <Core/Parents/States/State.hpp>
 
 class EventGenerator5 : public Generator
 {
 public:
     EventGenerator5() = default;
-    EventGenerator5(u32 initialFrame, u32 maxResults, u16 tid, u16 sid, u8 genderRatio, Method method, const FrameFilter &filter,
+    EventGenerator5(u32 initialAdvances, u32 maxResults, u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter,
                     const PGF &parameters);
-    QVector<Frame> generate(u64 seed) const;
+    QVector<State> generate(u64 seed) const;
 
 private:
     PGF parameters;
     u16 xorValue;
-    u8 advances;
+    u8 advanceParameter;
 };
 
 #endif // EVENTGENERATOR5_HPP

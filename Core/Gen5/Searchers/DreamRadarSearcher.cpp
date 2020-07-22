@@ -24,10 +24,7 @@
 #include <QtConcurrent>
 
 DreamRadarSearcher::DreamRadarSearcher(const DreamRadarGenerator &generator, const Profile5 &profile) :
-    generator(generator),
-    profile(profile),
-    searching(false),
-    progress(0)
+    generator(generator), profile(profile), searching(false), progress(0)
 {
 }
 
@@ -71,7 +68,7 @@ void DreamRadarSearcher::cancelSearch()
     searching = false;
 }
 
-QVector<SearcherFrame5<Frame>> DreamRadarSearcher::getResults()
+QVector<SearcherState5<State>> DreamRadarSearcher::getResults()
 {
     std::lock_guard<std::mutex> lock(resultMutex);
 
@@ -118,21 +115,21 @@ void DreamRadarSearcher::search(const QDate &start, const QDate &end)
                             sha.setTime(hour, minute, second, profile.getDSType());
                             u64 seed = sha.hashSeed();
 
-                            auto frames = generator.generate(seed, profile.getMemoryLink());
-                            if (!frames.isEmpty())
+                            auto states = generator.generate(seed, profile.getMemoryLink());
+                            if (!states.isEmpty())
                             {
-                                QVector<SearcherFrame5<Frame>> displayFrames;
-                                displayFrames.reserve(frames.size());
+                                QVector<SearcherState5<State>> displayStates;
+                                displayStates.reserve(states.size());
 
                                 QDateTime dt(date, QTime(hour, minute, second));
-                                for (const auto &frame : frames)
+                                for (const auto &currentState : states)
                                 {
-                                    SearcherFrame5<Frame> display(dt, seed, buttons.at(i), timer0, frame);
-                                    displayFrames.append(display);
+                                    SearcherState5<State> display(dt, seed, buttons.at(i), timer0, currentState);
+                                    displayStates.append(display);
                                 }
 
                                 std::lock_guard<std::mutex> lock(resultMutex);
-                                results.append(displayFrames);
+                                results.append(displayStates);
                             }
 
                             std::lock_guard<std::mutex> lock(progressMutex);

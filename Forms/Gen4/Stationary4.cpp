@@ -24,8 +24,8 @@
 #include <Core/Gen4/Generators/StationaryGenerator4.hpp>
 #include <Core/Gen4/ProfileLoader4.hpp>
 #include <Core/Gen4/Searchers/StationarySearcher4.hpp>
-#include <Core/Parents/Filters/FrameFilter.hpp>
-#include <Core/Parents/Frames/StationaryFrame.hpp>
+#include <Core/Parents/Filters/StateFilter.hpp>
+#include <Core/Parents/States/StationaryState.hpp>
 #include <Core/Util/Translator.hpp>
 #include <Forms/Gen4/Profile/ProfileManager4.hpp>
 #include <Forms/Gen4/Tools/SeedtoTime4.hpp>
@@ -42,7 +42,7 @@ Stationary4::Stationary4(QWidget *parent) : QWidget(parent), ui(new Ui::Stationa
     updateProfiles();
     setupModels();
 
-    qRegisterMetaType<QVector<StationaryFrame>>("QVector<StationaryFrame>");
+    qRegisterMetaType<QVector<StationaryState>>("QVector<StationaryState>");
 }
 
 Stationary4::~Stationary4()
@@ -51,8 +51,8 @@ Stationary4::~Stationary4()
     setting.beginGroup("stationary4");
     setting.setValue("minDelay", ui->textBoxSearcherMinDelay->text());
     setting.setValue("maxDelay", ui->textBoxSearcherMaxDelay->text());
-    setting.setValue("minFrame", ui->textBoxSearcherMinFrame->text());
-    setting.setValue("maxFrame", ui->textBoxSearcherMaxFrame->text());
+    setting.setValue("minAdvance", ui->textBoxSearcherMinAdvance->text());
+    setting.setValue("maxAdvance", ui->textBoxSearcherMaxAdvance->text());
     setting.setValue("profile", ui->comboBoxProfiles->currentIndex());
     setting.setValue("geometry", this->saveGeometry());
     setting.endGroup();
@@ -94,13 +94,13 @@ void Stationary4::setupModels()
     ui->tableViewSearcher->setModel(searcherModel);
 
     ui->textBoxGeneratorSeed->setValues(InputType::Seed32Bit);
-    ui->textBoxGeneratorInitialFrame->setValues(InputType::Frame32Bit);
-    ui->textBoxGeneratorMaxResults->setValues(InputType::Frame32Bit);
+    ui->textBoxGeneratorInitialAdvances->setValues(InputType::State32Bit);
+    ui->textBoxGeneratorMaxResults->setValues(InputType::State32Bit);
 
     ui->textBoxSearcherMinDelay->setValues(InputType::Delay);
     ui->textBoxSearcherMaxDelay->setValues(InputType::Delay);
-    ui->textBoxSearcherMinFrame->setValues(InputType::Frame32Bit);
-    ui->textBoxSearcherMaxFrame->setValues(InputType::Frame32Bit);
+    ui->textBoxSearcherMinAdvance->setValues(InputType::State32Bit);
+    ui->textBoxSearcherMaxAdvance->setValues(InputType::State32Bit);
 
     ui->comboBoxSearcherLead->setup({ Lead::Search, Lead::Synchronize, Lead::CuteCharm, Lead::None });
 
@@ -139,13 +139,13 @@ void Stationary4::setupModels()
     {
         ui->textBoxSearcherMaxDelay->setText(setting.value("maxDelay").toString());
     }
-    if (setting.contains("minFrame"))
+    if (setting.contains("minAdvance"))
     {
-        ui->textBoxSearcherMinFrame->setText(setting.value("minFrame").toString());
+        ui->textBoxSearcherMinAdvance->setText(setting.value("minAdvance").toString());
     }
-    if (setting.contains("maxFrame"))
+    if (setting.contains("maxAdvance"))
     {
-        ui->textBoxSearcherMaxFrame->setText(setting.value("maxFrame").toString());
+        ui->textBoxSearcherMaxAdvance->setText(setting.value("maxAdvance").toString());
     }
     if (setting.contains("geometry"))
     {
@@ -154,9 +154,9 @@ void Stationary4::setupModels()
     setting.endGroup();
 }
 
-void Stationary4::updateProgress(const QVector<StationaryFrame> &frames, int progress)
+void Stationary4::updateProgress(const QVector<StationaryState> &states, int progress)
 {
-    searcherModel->addItems(frames);
+    searcherModel->addItems(states);
     ui->progressBar->setValue(progress);
 }
 
@@ -167,7 +167,7 @@ void Stationary4::generate()
     generatorModel->setMethod(method);
 
     u32 seed = ui->textBoxGeneratorSeed->getUInt();
-    u32 initialFrame = ui->textBoxGeneratorInitialFrame->getUInt();
+    u32 initialAdvances = ui->textBoxGeneratorInitialAdvances->getUInt();
     u32 maxResults = ui->textBoxGeneratorMaxResults->getUInt();
     u16 tid = currentProfile.getTID();
     u16 sid = currentProfile.getSID();
@@ -178,11 +178,11 @@ void Stationary4::generate()
         offset = ui->filterGenerator->getDelay();
     }
 
-    FrameFilter filter(ui->filterGenerator->getGender(), ui->filterGenerator->getAbility(), ui->filterGenerator->getShiny(),
+    StateFilter filter(ui->filterGenerator->getGender(), ui->filterGenerator->getAbility(), ui->filterGenerator->getShiny(),
                        ui->filterGenerator->getDisableFilters(), ui->filterGenerator->getMinIVs(), ui->filterGenerator->getMaxIVs(),
                        ui->filterGenerator->getNatures(), ui->filterGenerator->getHiddenPowers(), {});
 
-    StationaryGenerator4 generator(initialFrame, maxResults, tid, sid, genderRatio, method, filter);
+    StationaryGenerator4 generator(initialAdvances, maxResults, tid, sid, genderRatio, method, filter);
     generator.setOffset(offset);
 
     if (ui->pushButtonGeneratorLead->text() == tr("Cute Charm"))
@@ -203,8 +203,8 @@ void Stationary4::generate()
         }
     }
 
-    auto frames = generator.generate(seed);
-    generatorModel->addItems(frames);
+    auto states = generator.generate(seed);
+    generatorModel->addItems(states);
 }
 
 void Stationary4::search()
@@ -219,7 +219,7 @@ void Stationary4::search()
     QVector<u8> min = ui->filterSearcher->getMinIVs();
     QVector<u8> max = ui->filterSearcher->getMaxIVs();
 
-    FrameFilter filter(ui->filterSearcher->getGender(), ui->filterSearcher->getAbility(), ui->filterSearcher->getShiny(), false, min, max,
+    StateFilter filter(ui->filterSearcher->getGender(), ui->filterSearcher->getAbility(), ui->filterSearcher->getShiny(), false, min, max,
                        ui->filterSearcher->getNatures(), ui->filterSearcher->getHiddenPowers(), {});
 
     u16 tid = currentProfile.getTID();
@@ -228,7 +228,7 @@ void Stationary4::search()
 
     auto *searcher = new StationarySearcher4(tid, sid, genderRatio, method, filter);
     searcher->setDelay(ui->textBoxSearcherMinDelay->getUInt(), ui->textBoxSearcherMaxDelay->getUInt());
-    searcher->setFrame(ui->textBoxSearcherMinFrame->getUInt(), ui->textBoxSearcherMaxFrame->getUInt());
+    searcher->setState(ui->textBoxSearcherMinAdvance->getUInt(), ui->textBoxSearcherMaxAdvance->getUInt());
     searcher->setLead(static_cast<Lead>(ui->comboBoxSearcherLead->getCurrentInt()));
 
     int maxProgress = 1;

@@ -91,10 +91,10 @@ void Eggs5::setupModels()
     ui->tableViewSearcher->setModel(searcherModel);
 
     ui->textBoxGeneratorSeed->setValues(InputType::Seed64Bit);
-    ui->textBoxGeneratorInitialFrame->setValues(InputType::Frame32Bit);
-    ui->textBoxGeneratorMaxResults->setValues(InputType::Frame32Bit);
+    ui->textBoxGeneratorInitialAdvances->setValues(InputType::State32Bit);
+    ui->textBoxGeneratorMaxResults->setValues(InputType::State32Bit);
 
-    ui->textBoxSearcherMaxAdvances->setValues(InputType::Frame32Bit);
+    ui->textBoxSearcherMaxAdvances->setValues(InputType::State32Bit);
 
     ui->filterGenerator->disableControls(Controls::EncounterSlots);
     ui->filterSearcher->disableControls(Controls::EncounterSlots | Controls::DisableFilter | Controls::UseDelay);
@@ -114,7 +114,7 @@ void Eggs5::setupModels()
 
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Eggs5::generate);
     connect(ui->pushButtonSearch, &QPushButton::clicked, this, &Eggs5::search);
-    connect(ui->pushButtonCalculateInitialFrame, &QPushButton::clicked, this, &Eggs5::calculateInitialFrame);
+    connect(ui->pushButtonCalculateInitialAdvances, &QPushButton::clicked, this, &Eggs5::calculateInitialAdvances);
     connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &Eggs5::profileManager);
     connect(ui->tableViewGenerator, &QTableView::customContextMenuRequested, this, &Eggs5::tableViewGeneratorContextMenu);
     connect(ui->tableViewSearcher, &QTableView::customContextMenuRequested, this, &Eggs5::tableViewSearcherContextMenu);
@@ -128,9 +128,9 @@ void Eggs5::setupModels()
     setting.endGroup();
 }
 
-void Eggs5::updateProgress(const QVector<SearcherFrame5<EggFrame>> &frames, int progress)
+void Eggs5::updateProgress(const QVector<SearcherState5<EggState>> &states, int progress)
 {
-    searcherModel->addItems(frames);
+    searcherModel->addItems(states);
     ui->progressBar->setValue(progress);
 }
 
@@ -152,7 +152,7 @@ void Eggs5::generate()
     Method method = (currentProfile.getVersion() & Game::BW) ? Method::BWBred : Method::BW2Bred;
 
     u64 seed = ui->textBoxGeneratorSeed->getULong();
-    u32 initialFrame = ui->textBoxGeneratorInitialFrame->getUInt();
+    u32 initialAdvances = ui->textBoxGeneratorInitialAdvances->getUInt();
     u32 maxResults = ui->textBoxGeneratorMaxResults->getUInt();
     u16 tid = currentProfile.getTID();
     u16 sid = currentProfile.getSID();
@@ -163,16 +163,16 @@ void Eggs5::generate()
         offset = ui->filterGenerator->getDelay();
     }
 
-    FrameFilter filter(ui->filterGenerator->getGender(), ui->filterGenerator->getAbility(), ui->filterGenerator->getShiny(),
+    StateFilter filter(ui->filterGenerator->getGender(), ui->filterGenerator->getAbility(), ui->filterGenerator->getShiny(),
                        ui->filterGenerator->getDisableFilters(), ui->filterGenerator->getMinIVs(), ui->filterGenerator->getMaxIVs(),
                        ui->filterGenerator->getNatures(), ui->filterGenerator->getHiddenPowers(), {});
 
-    EggGenerator5 generator(initialFrame, maxResults, tid, sid, genderRatio, method, filter, ui->eggSettingsGenerator->getDaycareSettings(),
-                            currentProfile.getShinyCharm());
+    EggGenerator5 generator(initialAdvances, maxResults, tid, sid, genderRatio, method, filter,
+                            ui->eggSettingsGenerator->getDaycareSettings(), currentProfile.getShinyCharm());
     generator.setOffset(offset);
 
-    auto frames = generator.generate(seed);
-    generatorModel->addItems(frames);
+    auto states = generator.generate(seed);
+    generatorModel->addItems(states);
 }
 
 void Eggs5::search()
@@ -200,7 +200,7 @@ void Eggs5::search()
     u16 sid = currentProfile.getSID();
     u8 genderRatio = ui->filterSearcher->getGenderRatio();
 
-    FrameFilter filter(ui->filterSearcher->getGender(), ui->filterSearcher->getAbility(), ui->filterSearcher->getShiny(),
+    StateFilter filter(ui->filterSearcher->getGender(), ui->filterSearcher->getAbility(), ui->filterSearcher->getShiny(),
                        ui->filterSearcher->getDisableFilters(), ui->filterSearcher->getMinIVs(), ui->filterSearcher->getMaxIVs(),
                        ui->filterSearcher->getNatures(), ui->filterSearcher->getHiddenPowers(), {});
 
@@ -240,21 +240,21 @@ void Eggs5::search()
     timer->start(1000);
 }
 
-void Eggs5::calculateInitialFrame()
+void Eggs5::calculateInitialAdvances()
 {
     Game version = currentProfile.getVersion();
 
-    u8 initialFrame;
+    u8 initialAdvances;
     if (version & Game::BW)
     {
-        initialFrame = Utilities::initialFrameBW(ui->textBoxGeneratorSeed->getULong());
+        initialAdvances = Utilities::initialAdvancesBW(ui->textBoxGeneratorSeed->getULong());
     }
     else
     {
-        initialFrame = Utilities::initialFrameBW2(ui->textBoxGeneratorSeed->getULong(), currentProfile.getMemoryLink());
+        initialAdvances = Utilities::initialAdvancesBW2(ui->textBoxGeneratorSeed->getULong(), currentProfile.getMemoryLink());
     }
 
-    ui->textBoxGeneratorInitialFrame->setText(QString::number(initialFrame));
+    ui->textBoxGeneratorInitialAdvances->setText(QString::number(initialAdvances));
 }
 
 void Eggs5::profileIndexChanged(int index)

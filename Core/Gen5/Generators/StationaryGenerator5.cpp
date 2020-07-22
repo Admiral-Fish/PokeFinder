@@ -21,20 +21,20 @@
 #include <Core/Enum/Encounter.hpp>
 #include <Core/Enum/Lead.hpp>
 #include <Core/Enum/Method.hpp>
-#include <Core/Parents/Filters/FrameFilter.hpp>
+#include <Core/Parents/Filters/StateFilter.hpp>
 #include <Core/RNG/LCRNG64.hpp>
 #include <Core/RNG/MT.hpp>
 #include <Core/RNG/RNGList.hpp>
 
-StationaryGenerator5::StationaryGenerator5(u32 initialFrame, u32 maxResults, u16 tid, u16 sid, u8 genderRatio, Method method,
-                                           Encounter encounter, const FrameFilter &filter) :
-    StationaryGenerator(initialFrame, maxResults, tid, sid, genderRatio, method, filter),
+StationaryGenerator5::StationaryGenerator5(u32 initialAdvances, u32 maxResults, u16 tid, u16 sid, u8 genderRatio, Method method,
+                                           Encounter encounter, const StateFilter &filter) :
+    StationaryGenerator(initialAdvances, maxResults, tid, sid, genderRatio, method, filter),
     idBit((tid & 1) ^ (sid & 1)),
     encounter(encounter)
 {
 }
 
-QVector<StationaryFrame> StationaryGenerator5::generate(u64 seed) const
+QVector<StationaryState> StationaryGenerator5::generate(u64 seed) const
 {
     switch (method)
     {
@@ -57,24 +57,24 @@ QVector<StationaryFrame> StationaryGenerator5::generate(u64 seed) const
     // case Method::Method5:
     //    break;
     default:
-        return QVector<StationaryFrame>();
+        return QVector<StationaryState>();
     }
 }
 
-QVector<StationaryFrame> StationaryGenerator5::generateRoamerIVs(u64 seed) const
+QVector<StationaryState> StationaryGenerator5::generateRoamerIVs(u64 seed) const
 {
-    QVector<StationaryFrame> frames;
+    QVector<StationaryState> states;
 
     MT mt(seed >> 32);
-    mt.advanceFrames(initialFrame - 1 + offset);
+    mt.advance(initialAdvances + offset);
 
     RNGList<u8, MT, 100, 27> rngList(mt);
 
     for (u32 cnt = 0; cnt < maxResults; cnt++, rngList.advanceState())
     {
-        StationaryFrame frame;
+        StationaryState currentState;
 
-        rngList.advanceFrames(1); // Blank ???
+        rngList.advance(1); // Blank ???
         u8 hp = rngList.getValue();
         u8 atk = rngList.getValue();
         u8 def = rngList.getValue();
@@ -82,100 +82,31 @@ QVector<StationaryFrame> StationaryGenerator5::generateRoamerIVs(u64 seed) const
         u8 spe = rngList.getValue();
         u8 spa = rngList.getValue();
 
-        frame.setIVs(hp, atk, def, spa, spd, spe);
-        frame.calculateHiddenPower();
+        currentState.setIVs(hp, atk, def, spa, spd, spe);
+        currentState.calculateHiddenPower();
 
-        if (filter.compareIVs(frame))
+        if (filter.compareIVs(currentState))
         {
-            // frame.setIVFrame(initialFrame + cnt);
-            frames.append(frame);
+            // currentState.setIVFrame(initialAdvances + cnt);
+            states.append(currentState);
         }
     }
 
-    return frames;
+    return states;
 }
 
-QVector<StationaryFrame> StationaryGenerator5::generateIVs(u64 seed) const
+QVector<StationaryState> StationaryGenerator5::generateIVs(u64 seed) const
 {
-    QVector<StationaryFrame> frames;
+    QVector<StationaryState> states;
 
     MT mt(seed >> 32);
-    mt.advanceFrames(initialFrame - 1 + offset);
+    mt.advance(initialAdvances + offset);
 
     RNGList<u8, MT, 100, 27> rngList(mt);
 
     for (u32 cnt = 0; cnt < maxResults; cnt++, rngList.advanceState())
     {
-        StationaryFrame frame;
-
-        u8 hp = rngList.getValue();
-        u8 atk = rngList.getValue();
-        u8 def = rngList.getValue();
-        u8 spa = rngList.getValue();
-        u8 spd = rngList.getValue();
-        u8 spe = rngList.getValue();
-
-        frame.setIVs(hp, atk, def, spa, spd, spe);
-        frame.calculateHiddenPower();
-
-        if (filter.compareIVs(frame))
-        {
-            // frame.setIVFrame(initialFrame + cnt);
-            frames.append(frame);
-        }
-    }
-
-    return frames;
-}
-
-QVector<StationaryFrame> StationaryGenerator5::generateRoamerCGear(u64 seed) const
-{
-    QVector<StationaryFrame> frames;
-
-    MT mt(seed >> 32);
-    mt.advanceFrames(initialFrame - 1 + offset);
-    mt.advanceFrames(2); // Skip first two frames
-
-    RNGList<u8, MT, 100, 27> rngList(mt);
-
-    for (u32 cnt = 0; cnt < maxResults; cnt++, rngList.advanceState())
-    {
-        StationaryFrame frame;
-
-        rngList.advanceFrames(1); // Blank ???
-        u8 hp = rngList.getValue();
-        u8 atk = rngList.getValue();
-        u8 def = rngList.getValue();
-        u8 spd = rngList.getValue();
-        u8 spe = rngList.getValue();
-        u8 spa = rngList.getValue();
-
-        frame.setIVs(hp, atk, def, spa, spd, spe);
-        frame.calculateHiddenPower();
-
-        if (filter.compareIVs(frame))
-        {
-            // frame.setIVFrame(initialFrame + cnt);
-            frames.append(frame);
-        }
-    }
-
-    return frames;
-}
-
-QVector<StationaryFrame> StationaryGenerator5::generateCGear(u64 seed) const
-{
-    QVector<StationaryFrame> frames;
-
-    MT mt(seed >> 32);
-    mt.advanceFrames(initialFrame - 1 + offset);
-    mt.advanceFrames(2); // Skip first two frames
-
-    RNGList<u8, MT, 100, 27> rngList(mt);
-
-    for (u32 cnt = 0; cnt < maxResults; cnt++, rngList.advanceState())
-    {
-        StationaryFrame frame;
+        StationaryState currentState;
 
         u8 hp = rngList.getValue();
         u8 atk = rngList.getValue();
@@ -184,29 +115,98 @@ QVector<StationaryFrame> StationaryGenerator5::generateCGear(u64 seed) const
         u8 spd = rngList.getValue();
         u8 spe = rngList.getValue();
 
-        frame.setIVs(hp, atk, def, spa, spd, spe);
-        frame.calculateHiddenPower();
+        currentState.setIVs(hp, atk, def, spa, spd, spe);
+        currentState.calculateHiddenPower();
 
-        if (filter.compareIVs(frame))
+        if (filter.compareIVs(currentState))
         {
-            // frame.setIVFrame(initialFrame + cnt);
-            frames.append(frame);
+            // currentState.setIVFrame(initialAdvances + cnt);
+            states.append(currentState);
         }
     }
 
-    return frames;
+    return states;
 }
 
-QVector<StationaryFrame> StationaryGenerator5::generateStationary(u64 seed) const
+QVector<StationaryState> StationaryGenerator5::generateRoamerCGear(u64 seed) const
 {
-    QVector<StationaryFrame> frames;
+    QVector<StationaryState> states;
+
+    MT mt(seed >> 32);
+    mt.advance(initialAdvances + offset);
+    mt.advance(2); // Skip first two advances
+
+    RNGList<u8, MT, 100, 27> rngList(mt);
+
+    for (u32 cnt = 0; cnt < maxResults; cnt++, rngList.advanceState())
+    {
+        StationaryState currentState;
+
+        rngList.advance(1); // Blank ???
+        u8 hp = rngList.getValue();
+        u8 atk = rngList.getValue();
+        u8 def = rngList.getValue();
+        u8 spd = rngList.getValue();
+        u8 spe = rngList.getValue();
+        u8 spa = rngList.getValue();
+
+        currentState.setIVs(hp, atk, def, spa, spd, spe);
+        currentState.calculateHiddenPower();
+
+        if (filter.compareIVs(currentState))
+        {
+            // currentState.setIVFrame(initialAdvances + cnt);
+            states.append(currentState);
+        }
+    }
+
+    return states;
+}
+
+QVector<StationaryState> StationaryGenerator5::generateCGear(u64 seed) const
+{
+    QVector<StationaryState> states;
+
+    MT mt(seed >> 32);
+    mt.advance(initialAdvances + offset);
+    mt.advance(2); // Skip first two advances
+
+    RNGList<u8, MT, 100, 27> rngList(mt);
+
+    for (u32 cnt = 0; cnt < maxResults; cnt++, rngList.advanceState())
+    {
+        StationaryState currentState;
+
+        u8 hp = rngList.getValue();
+        u8 atk = rngList.getValue();
+        u8 def = rngList.getValue();
+        u8 spa = rngList.getValue();
+        u8 spd = rngList.getValue();
+        u8 spe = rngList.getValue();
+
+        currentState.setIVs(hp, atk, def, spa, spd, spe);
+        currentState.calculateHiddenPower();
+
+        if (filter.compareIVs(currentState))
+        {
+            // currentState.setIVFrame(initialAdvances + cnt);
+            states.append(currentState);
+        }
+    }
+
+    return states;
+}
+
+QVector<StationaryState> StationaryGenerator5::generateStationary(u64 seed) const
+{
+    QVector<StationaryState> states;
 
     BWRNG rng(seed);
-    rng.advanceFrames(initialFrame - 1 + offset);
+    rng.advance(initialAdvances + offset);
 
     for (u32 cnt = 0; cnt < maxResults; cnt++)
     {
-        StationaryFrame frame(initialFrame + cnt);
+        StationaryState currentState(initialAdvances + cnt);
         BWRNG go(rng.getSeed());
 
         u32 pid;
@@ -217,11 +217,11 @@ QVector<StationaryFrame> StationaryGenerator5::generateStationary(u64 seed) cons
 
             if (synch)
             {
-                frame.setNature(synchNature);
+                currentState.setNature(synchNature);
             }
             else
             {
-                frame.setNature(static_cast<u8>(go.nextUInt(25)));
+                currentState.setNature(static_cast<u8>(go.nextUInt(25)));
             }
         }
         else if (lead == Lead::CuteCharm)
@@ -231,18 +231,18 @@ QVector<StationaryFrame> StationaryGenerator5::generateStationary(u64 seed) cons
 
             if (!charm)
             {
-                frame.setNature(static_cast<u8>(go.nextUInt(25)));
+                currentState.setNature(static_cast<u8>(go.nextUInt(25)));
             }
             else
             {
                 go.next(); // TODO modify pid
-                frame.setNature(static_cast<u8>(go.nextUInt(25)));
+                currentState.setNature(static_cast<u8>(go.nextUInt(25)));
             }
         }
         else if (lead == Lead::CompoundEyes)
         {
             pid = go.nextUInt();
-            frame.setNature(static_cast<u8>(go.nextUInt(25)));
+            currentState.setNature(static_cast<u8>(go.nextUInt(25)));
         }
         else if (lead == Lead::Search)
         {
@@ -250,9 +250,9 @@ QVector<StationaryFrame> StationaryGenerator5::generateStationary(u64 seed) cons
         }
         else // No lead
         {
-            go.advanceFrames(1);
+            go.advance(1);
             pid = go.nextUInt();
-            frame.setNature(static_cast<u8>(go.nextUInt(25)));
+            currentState.setNature(static_cast<u8>(go.nextUInt(25)));
         }
 
         u8 val = idBit ^ (pid & 1) ^ (pid >> 31);
@@ -261,140 +261,140 @@ QVector<StationaryFrame> StationaryGenerator5::generateStationary(u64 seed) cons
             pid ^= 0x80000000;
         }
 
-        frame.setPID(pid);
-        frame.setAbility((pid >> 16) & 1);
-        frame.setGender(pid & 255, genderRatio);
-        frame.setShiny(tsv, (pid >> 16) ^ (pid & 0xffff), 8);
+        currentState.setPID(pid);
+        currentState.setAbility((pid >> 16) & 1);
+        currentState.setGender(pid & 255, genderRatio);
+        currentState.setShiny(tsv, (pid >> 16) ^ (pid & 0xffff), 8);
 
-        if (filter.comparePID(frame))
+        if (filter.comparePID(currentState))
         {
-            frames.append(frame);
+            states.append(currentState);
         }
     }
 
-    return frames;
+    return states;
 }
 
-QVector<StationaryFrame> StationaryGenerator5::generateRoamer(u64 seed)
+QVector<StationaryState> StationaryGenerator5::generateRoamer(u64 seed)
 {
-    QVector<StationaryFrame> frames;
+    QVector<StationaryState> states;
 
     BWRNG rng(seed);
-    rng.advanceFrames(initialFrame - 1 + offset);
+    rng.advance(initialAdvances + offset);
 
     for (u32 cnt = 0; cnt < maxResults; cnt++)
     {
-        StationaryFrame frame(initialFrame + cnt);
+        StationaryState currentState(initialAdvances + cnt);
         BWRNG go(rng.getSeed());
 
         u32 pid = go.nextUInt();
-        frame.setNature(static_cast<u8>(go.nextUInt(25)));
+        currentState.setNature(static_cast<u8>(go.nextUInt(25)));
 
-        frame.setPID(pid);
-        frame.setAbility((pid >> 16) & 1);
-        frame.setGender(pid & 255, genderRatio);
-        frame.setShiny(tsv, (pid >> 16) ^ (pid & 0xffff), 8);
+        currentState.setPID(pid);
+        currentState.setAbility((pid >> 16) & 1);
+        currentState.setGender(pid & 255, genderRatio);
+        currentState.setShiny(tsv, (pid >> 16) ^ (pid & 0xffff), 8);
 
-        if (filter.comparePID(frame))
+        if (filter.comparePID(currentState))
         {
-            frames.append(frame);
+            states.append(currentState);
         }
     }
 
-    return frames;
+    return states;
 }
 
-QVector<StationaryFrame> StationaryGenerator5::generateGift(u64 seed)
+QVector<StationaryState> StationaryGenerator5::generateGift(u64 seed)
 {
-    QVector<StationaryFrame> frames;
+    QVector<StationaryState> states;
 
     BWRNG rng(seed);
-    rng.advanceFrames(initialFrame - 1 + offset);
+    rng.advance(initialAdvances + offset);
 
     for (u32 cnt = 0; cnt < maxResults; cnt++)
     {
-        StationaryFrame frame(initialFrame + cnt);
+        StationaryState currentState(initialAdvances + cnt);
         BWRNG go(rng.getSeed());
 
         u32 pid = go.nextUInt() ^ 0x10000;
-        frame.setNature(static_cast<u8>(go.nextUInt(25)));
+        currentState.setNature(static_cast<u8>(go.nextUInt(25)));
 
-        frame.setPID(pid);
-        frame.setAbility((pid >> 16) & 1);
-        frame.setGender(pid & 255, genderRatio);
-        frame.setShiny(tsv, (pid >> 16) ^ (pid & 0xffff), 8);
+        currentState.setPID(pid);
+        currentState.setAbility((pid >> 16) & 1);
+        currentState.setGender(pid & 255, genderRatio);
+        currentState.setShiny(tsv, (pid >> 16) ^ (pid & 0xffff), 8);
 
-        if (filter.comparePID(frame))
+        if (filter.comparePID(currentState))
         {
-            frames.append(frame);
+            states.append(currentState);
         }
     }
 
-    return frames;
+    return states;
 }
 
-QVector<StationaryFrame> StationaryGenerator5::generateEntraLink(u64 seed)
+QVector<StationaryState> StationaryGenerator5::generateEntraLink(u64 seed)
 {
-    QVector<StationaryFrame> frames;
+    QVector<StationaryState> states;
 
     BWRNG rng(seed);
-    rng.advanceFrames(initialFrame - 1 + offset);
+    rng.advance(initialAdvances + offset);
 
     for (u32 cnt = 0; cnt < maxResults; cnt++)
     {
-        StationaryFrame frame(initialFrame + cnt);
+        StationaryState currentState(initialAdvances + cnt);
         BWRNG go(rng.getSeed());
 
         // TODO
     }
 
-    return frames;
+    return states;
 }
 
-QVector<StationaryFrame> StationaryGenerator5::generateLarvestaEgg(u64 seed)
+QVector<StationaryState> StationaryGenerator5::generateLarvestaEgg(u64 seed)
 {
-    QVector<StationaryFrame> frames;
+    QVector<StationaryState> states;
 
     BWRNG rng(seed);
-    rng.advanceFrames(initialFrame - 1 + offset);
+    rng.advance(initialAdvances + offset);
 
     for (u32 cnt = 0; cnt < maxResults; cnt++)
     {
-        StationaryFrame frame(initialFrame + cnt);
+        StationaryState currentState(initialAdvances + cnt);
         BWRNG go(rng.getSeed());
 
         u32 pid = go.nextUInt();
-        go.advanceFrames(1);
-        frame.setNature(static_cast<u8>(go.nextUInt(25)));
+        go.advance(1);
+        currentState.setNature(static_cast<u8>(go.nextUInt(25)));
 
-        frame.setPID(pid);
-        frame.setAbility((pid >> 16) & 1);
-        frame.setGender(pid & 255, genderRatio);
-        frame.setShiny(tsv, (pid >> 16) ^ (pid & 0xffff), 8);
+        currentState.setPID(pid);
+        currentState.setAbility((pid >> 16) & 1);
+        currentState.setGender(pid & 255, genderRatio);
+        currentState.setShiny(tsv, (pid >> 16) ^ (pid & 0xffff), 8);
 
-        if (filter.comparePID(frame))
+        if (filter.comparePID(currentState))
         {
-            frames.append(frame);
+            states.append(currentState);
         }
     }
 
-    return frames;
+    return states;
 }
 
-QVector<StationaryFrame> StationaryGenerator5::generateHiddenGrotto(u64 seed)
+QVector<StationaryState> StationaryGenerator5::generateHiddenGrotto(u64 seed)
 {
-    QVector<StationaryFrame> frames;
+    QVector<StationaryState> states;
 
     BWRNG rng(seed);
-    rng.advanceFrames(initialFrame - 1 + offset);
+    rng.advance(initialAdvances + offset);
 
     for (u32 cnt = 0; cnt < maxResults; cnt++)
     {
-        StationaryFrame frame(initialFrame + cnt);
+        StationaryState currentState(initialAdvances + cnt);
         BWRNG go(rng.getSeed());
 
         // TODO
     }
 
-    return frames;
+    return states;
 }

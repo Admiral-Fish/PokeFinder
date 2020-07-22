@@ -21,24 +21,24 @@
 #include <Core/Enum/Encounter.hpp>
 #include <Core/Enum/Lead.hpp>
 #include <Core/Enum/Method.hpp>
-#include <Core/Parents/Filters/FrameFilter.hpp>
-#include <Core/Parents/Frames/WildFrame.hpp>
+#include <Core/Parents/Filters/StateFilter.hpp>
+#include <Core/Parents/States/WildState.hpp>
 #include <Core/RNG/LCRNG.hpp>
 #include <Core/Util/EncounterSlot.hpp>
 #include <functional>
 
-WildGenerator3::WildGenerator3(u32 initialFrame, u32 maxResults, u16 tid, u16 sid, u8 genderRatio, Method method,
-                               const FrameFilter &filter) :
-    WildGenerator(initialFrame, maxResults, tid, sid, genderRatio, method, filter)
+WildGenerator3::WildGenerator3(u32 initialAdvances, u32 maxResults, u16 tid, u16 sid, u8 genderRatio, Method method,
+                               const StateFilter &filter) :
+    WildGenerator(initialAdvances, maxResults, tid, sid, genderRatio, method, filter)
 {
 }
 
-QVector<WildFrame> WildGenerator3::generate(u32 seed) const
+QVector<WildState> WildGenerator3::generate(u32 seed) const
 {
-    QVector<WildFrame> frames;
+    QVector<WildState> states;
 
     PokeRNG rng(seed);
-    rng.advanceFrames(initialFrame - 1 + offset);
+    rng.advance(initialAdvances + offset);
 
     u16 rate = encounterArea.getEncounterRate() * 16;
     bool rock = rate == 2880;
@@ -80,7 +80,7 @@ QVector<WildFrame> WildGenerator3::generate(u32 seed) const
 
     for (u32 cnt = 0; cnt < maxResults; cnt++, rng.next())
     {
-        WildFrame frame(initialFrame + cnt);
+        WildState currentState(initialAdvances + cnt);
         PokeRNG go(rng.getSeed());
 
         switch (encounter)
@@ -95,47 +95,47 @@ QVector<WildFrame> WildGenerator3::generate(u32 seed) const
                 continue;
             }
 
-            frame.setEncounterSlot(EncounterSlot::hSlot(go.nextUShort(), encounter));
-            if (!filter.compareEncounterSlot(frame))
+            currentState.setEncounterSlot(EncounterSlot::hSlot(go.nextUShort(), encounter));
+            if (!filter.compareEncounterSlot(currentState))
             {
                 continue;
             }
 
-            frame.setLevel(encounterArea.calcLevel(frame.getEncounterSlot(), go.nextUShort()));
+            currentState.setLevel(encounterArea.calcLevel(currentState.getEncounterSlot(), go.nextUShort()));
             break;
         case Encounter::SafariZone:
-            frame.setEncounterSlot(EncounterSlot::hSlot(go.nextUShort(), encounter));
-            if (!filter.compareEncounterSlot(frame))
+            currentState.setEncounterSlot(EncounterSlot::hSlot(go.nextUShort(), encounter));
+            if (!filter.compareEncounterSlot(currentState))
             {
                 continue;
             }
 
-            frame.setLevel(encounterArea.calcLevel(frame.getEncounterSlot()));
-            go.advanceFrames(2);
+            currentState.setLevel(encounterArea.calcLevel(currentState.getEncounterSlot()));
+            go.advance(2);
             break;
         case Encounter::Grass:
             go.next();
-            frame.setEncounterSlot(EncounterSlot::hSlot(go.nextUShort(), encounter));
-            if (!filter.compareEncounterSlot(frame))
+            currentState.setEncounterSlot(EncounterSlot::hSlot(go.nextUShort(), encounter));
+            if (!filter.compareEncounterSlot(currentState))
             {
                 continue;
             }
 
-            frame.setLevel(encounterArea.calcLevel(frame.getEncounterSlot()));
-            go.advanceFrames(1);
+            currentState.setLevel(encounterArea.calcLevel(currentState.getEncounterSlot()));
+            go.advance(1);
             break;
         case Encounter::Surfing:
         case Encounter::OldRod:
         case Encounter::GoodRod:
         case Encounter::SuperRod:
             go.next();
-            frame.setEncounterSlot(EncounterSlot::hSlot(go.nextUShort(), encounter));
-            if (!filter.compareEncounterSlot(frame))
+            currentState.setEncounterSlot(EncounterSlot::hSlot(go.nextUShort(), encounter));
+            if (!filter.compareEncounterSlot(currentState))
             {
                 continue;
             }
 
-            frame.setLevel(encounterArea.calcLevel(frame.getEncounterSlot(), go.nextUShort()));
+            currentState.setLevel(encounterArea.calcLevel(currentState.getEncounterSlot(), go.nextUShort()));
             break;
         default:
             break;
@@ -143,26 +143,26 @@ QVector<WildFrame> WildGenerator3::generate(u32 seed) const
 
         if (lead == Lead::None)
         {
-            frame.setNature(go.nextUShort() % 25);
+            currentState.setNature(go.nextUShort() % 25);
         }
         else if (lead == Lead::Synchronize)
         {
-            if ((go.nextUShort() & 1) == 0) // Frame is synchable so set nature to synch nature
+            if ((go.nextUShort() & 1) == 0) // state is synchable so set nature to synch nature
             {
-                frame.setNature(synchNature);
+                currentState.setNature(synchNature);
             }
             else // Synch failed so grab hunt nature from next RNG call
             {
-                frame.setNature(go.nextUShort() % 25);
+                currentState.setNature(go.nextUShort() % 25);
             }
         }
         else // Covers cutecharm
         {
             cuteCharmFlag = go.nextUShort() % 3 > 0;
-            frame.setNature(go.nextUShort() % 25);
+            currentState.setNature(go.nextUShort() % 25);
         }
 
-        if (!filter.compareNature(frame))
+        if (!filter.compareNature(currentState))
         {
             continue;
         }
@@ -174,12 +174,12 @@ QVector<WildFrame> WildGenerator3::generate(u32 seed) const
             u16 low = go.nextUShort();
             u16 high = go.nextUShort();
             pid = (high << 16) | low;
-        } while (pid % 25 != frame.getNature() || (cuteCharmFlag && !cuteCharm(pid)));
+        } while (pid % 25 != currentState.getNature() || (cuteCharmFlag && !cuteCharm(pid)));
 
-        frame.setPID(pid);
-        frame.setAbility(pid & 1);
-        frame.setGender(pid & 255, genderRatio);
-        frame.setShiny(tsv, (pid & 0xffff) ^ (pid >> 16), 8);
+        currentState.setPID(pid);
+        currentState.setAbility(pid & 1);
+        currentState.setGender(pid & 255, genderRatio);
+        currentState.setShiny(tsv, (pid & 0xffff) ^ (pid >> 16), 8);
 
         // Valid PID is found now time to generate IVs
         u16 iv1;
@@ -201,16 +201,16 @@ QVector<WildFrame> WildGenerator3::generate(u32 seed) const
             go.next();
             iv2 = go.nextUShort();
         }
-        frame.setIVs(iv1, iv2);
-        frame.calculateHiddenPower();
+        currentState.setIVs(iv1, iv2);
+        currentState.calculateHiddenPower();
 
-        if (filter.compareFrame(frame))
+        if (filter.compareState(currentState))
         {
-            frames.append(frame);
+            states.append(currentState);
         }
     }
 
-    return frames;
+    return states;
 }
 
 void WildGenerator3::setEncounterArea(const EncounterArea3 &encounterArea)

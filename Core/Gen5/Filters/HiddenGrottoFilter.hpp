@@ -23,13 +23,13 @@
 #include <Core/Util/Global.hpp>
 #include <QVector>
 
-class HiddenGrottoFrame;
+class HiddenGrottoState;
 
 class HiddenGrottoFilter
 {
 public:
     HiddenGrottoFilter(const QVector<bool> &groups, const QVector<bool> &encounterSlots, const QVector<bool> &genders);
-    bool compareFrame(const HiddenGrottoFrame &frame);
+    bool compareState(const HiddenGrottoState &currentState);
 
 private:
     QVector<bool> groups;

@@ -29,9 +29,9 @@ MT::MT(u32 seed)
     }
 }
 
-void MT::advanceFrames(u32 frames)
+void MT::advance(u32 advances)
 {
-    index += frames;
+    index += advances;
     while (index >= 624)
     {
         shuffle();
@@ -109,9 +109,9 @@ u16 MTFast::nextUShort()
     return next() >> 16;
 }
 
-void MTFast::advanceFrames(u32 frames)
+void MTFast::advance(u32 advances)
 {
-    index += frames;
+    index += advances;
     while (index >= size + 397)
     {
         shuffle();

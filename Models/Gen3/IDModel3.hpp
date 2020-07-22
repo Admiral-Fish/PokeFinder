@@ -20,10 +20,10 @@
 #ifndef IDMODEL3_HPP
 #define IDMODEL3_HPP
 
-#include <Core/Gen3/Frames/IDFrame3.hpp>
+#include <Core/Gen3/States/IDState3.hpp>
 #include <Models/TableModel.hpp>
 
-class IDModel3 : public TableModel<IDFrame3>
+class IDModel3 : public TableModel<IDState3>
 {
     Q_OBJECT
 public:
@@ -33,7 +33,7 @@ public:
     QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
 
 private:
-    QStringList header = { tr("Frame"), tr("TID"), tr("SID"), tr("TSV") };
+    QStringList header = { tr("Advance"), tr("TID"), tr("SID"), tr("TSV") };
 };
 
 #endif // IDMODEL3_HPP

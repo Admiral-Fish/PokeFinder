@@ -20,12 +20,12 @@
 #ifndef EGG4MODEL_HPP
 #define EGG4MODEL_HPP
 
-#include <Core/Gen4/Frames/EggFrame4.hpp>
+#include <Core/Gen4/States/EggState4.hpp>
 #include <Models/TableModel.hpp>
 
 enum Method : u8;
 
-class EggGeneratorModel4 : public TableModel<EggFrame4>
+class EggGeneratorModel4 : public TableModel<EggState4>
 {
     Q_OBJECT
 public:
@@ -41,13 +41,13 @@ public slots:
 private:
     Method method;
     bool showInheritance;
-    QStringList header = { tr("Frame"), tr("Call"), tr("Chatot"), tr("PID"), tr("Shiny"), tr("Nature"), tr("Ability"), tr("HP"),
-                           tr("Atk"),   tr("Def"),  tr("SpA"),    tr("SpD"), tr("Spe"),   tr("Hidden"), tr("Power"),   tr("Gender") };
+    QStringList header = { tr("Advance"), tr("Call"), tr("Chatot"), tr("PID"), tr("Shiny"), tr("Nature"), tr("Ability"), tr("HP"),
+                           tr("Atk"),     tr("Def"),  tr("SpA"),    tr("SpD"), tr("Spe"),   tr("Hidden"), tr("Power"),   tr("Gender") };
 
     int getColumn(int column) const;
 };
 
-class EggSearcherModel4 : public TableModel<EggFrame4>
+class EggSearcherModel4 : public TableModel<EggState4>
 {
     Q_OBJECT
 public:
@@ -65,8 +65,8 @@ private:
     Method method;
     bool showInheritance;
     QStringList header
-        = { tr("Seed"), tr("Frame"), tr("PID Frame"), tr("IV Frame"), tr("PID"), tr("Shiny"),  tr("Nature"), tr("Ability"), tr("HP"),
-            tr("Atk"),  tr("Def"),   tr("SpA"),       tr("SpD"),      tr("Spe"), tr("Hidden"), tr("Power"),  tr("Gender") };
+        = { tr("Seed"), tr("Advance"), tr("PID Advance"), tr("IV Advance"), tr("PID"), tr("Shiny"),  tr("Nature"), tr("Ability"), tr("HP"),
+            tr("Atk"),  tr("Def"),     tr("SpA"),         tr("SpD"),        tr("Spe"), tr("Hidden"), tr("Power"),  tr("Gender") };
 
     int getColumn(int column) const;
 };

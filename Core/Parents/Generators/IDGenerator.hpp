@@ -27,10 +27,10 @@ class IDGenerator
 {
 public:
     IDGenerator() = default;
-    IDGenerator(u32 initialFrame, u32 maxResults, const IDFilter &filter);
+    IDGenerator(u32 initialAdvances, u32 maxResults, const IDFilter &filter);
 
 protected:
-    u32 initialFrame;
+    u32 initialAdvances;
     u32 maxResults;
     IDFilter filter;
 };

@@ -54,22 +54,22 @@ void IDs3::setupModels()
     ui->textBoxFRLGEPID->setValues(InputType::Seed32Bit);
     ui->textBoxFRLGETID->setValues(InputType::TIDSID);
     ui->textBoxFRLGESID->setValues(InputType::TIDSID);
-    ui->textBoxFRLGEStartingFrame->setValues(InputType::Frame32Bit);
-    ui->textBoxFRLGEMaxResults->setValues(InputType::Frame32Bit);
+    ui->textBoxFRLGEStartingAdvance->setValues(InputType::State32Bit);
+    ui->textBoxFRLGEMaxResults->setValues(InputType::State32Bit);
 
     ui->textBoxRSPID->setValues(InputType::Seed32Bit);
     ui->textBoxRSTID->setValues(InputType::TIDSID);
     ui->textBoxRSSID->setValues(InputType::TIDSID);
     ui->textBoxRSInitialSeed->setValues(InputType::Seed16Bit);
-    ui->textBoxRSStartingFrame->setValues(InputType::Frame32Bit);
-    ui->textBoxRSMaxResults->setValues(InputType::Frame32Bit);
+    ui->textBoxRSStartingAdvance->setValues(InputType::State32Bit);
+    ui->textBoxRSMaxResults->setValues(InputType::State32Bit);
 
     ui->textBoxXDColoPID->setValues(InputType::Seed32Bit);
     ui->textBoxXDColoTID->setValues(InputType::TIDSID);
     ui->textBoxXDColoSID->setValues(InputType::TIDSID);
     ui->textBoxXDColoSeed->setValues(InputType::Seed32Bit);
-    ui->textBoxXDColoStartingFrame->setValues(InputType::Frame32Bit);
-    ui->textBoxXDColoMaxResults->setValues(InputType::Frame32Bit);
+    ui->textBoxXDColoStartingAdvance->setValues(InputType::State32Bit);
+    ui->textBoxXDColoMaxResults->setValues(InputType::State32Bit);
 
     ui->dateTimeEdit->setDisplayFormat(QLocale::system().dateTimeFormat(QLocale::ShortFormat));
 
@@ -92,7 +92,7 @@ void IDs3::xdColoSearch()
     xdcolo->clearModel();
 
     u32 seed = ui->textBoxXDColoSeed->getUInt();
-    u32 initialFrame = ui->textBoxXDColoStartingFrame->getUInt();
+    u32 initialAdvances = ui->textBoxXDColoStartingAdvance->getUInt();
     u32 maxResults = ui->textBoxXDColoMaxResults->getUInt();
 
     QVector<u16> tidFilter;
@@ -116,10 +116,10 @@ void IDs3::xdColoSearch()
     }
 
     IDFilter filter(tidFilter, sidFilter, tsvFilter);
-    IDGenerator3 generator(initialFrame, maxResults, filter);
+    IDGenerator3 generator(initialAdvances, maxResults, filter);
 
-    auto frames = generator.generateXDColo(seed);
-    xdcolo->addItems(frames);
+    auto states = generator.generateXDColo(seed);
+    xdcolo->addItems(states);
 }
 
 void IDs3::frlgeSearch()
@@ -127,7 +127,7 @@ void IDs3::frlgeSearch()
     frlge->clearModel();
 
     u16 tid = ui->textBoxFRLGETID->getUShort();
-    u32 initialFrame = ui->textBoxFRLGEStartingFrame->getUInt();
+    u32 initialAdvances = ui->textBoxFRLGEStartingAdvance->getUInt();
     u32 maxResults = ui->textBoxFRLGEMaxResults->getUInt();
 
     QVector<u16> sidFilter;
@@ -145,11 +145,11 @@ void IDs3::frlgeSearch()
     }
 
     IDFilter filter({ tid }, sidFilter, tsvFilter);
-    IDGenerator3 generator(initialFrame, maxResults, filter);
+    IDGenerator3 generator(initialAdvances, maxResults, filter);
     generator.setStaticTID(tid);
 
-    auto frames = generator.generateFRLGE(tid);
-    frlge->addItems(frames);
+    auto states = generator.generateFRLGE(tid);
+    frlge->addItems(states);
 }
 
 void IDs3::rsSearch()
@@ -165,7 +165,7 @@ void IDs3::rsSearch()
     {
         seed = Utilities::calcGen3Seed(ui->dateTimeEdit->dateTime());
     }
-    u32 initialFrame = ui->textBoxRSStartingFrame->getUInt();
+    u32 initialAdvances = ui->textBoxRSStartingAdvance->getUInt();
     u32 maxResults = ui->textBoxRSMaxResults->getUInt();
 
     QVector<u16> tidFilter;
@@ -189,10 +189,10 @@ void IDs3::rsSearch()
     }
 
     IDFilter filter(tidFilter, sidFilter, tsvFilter);
-    IDGenerator3 generator(initialFrame, maxResults, filter);
+    IDGenerator3 generator(initialAdvances, maxResults, filter);
 
-    auto frames = generator.generateRS(seed);
-    rs->addItems(frames);
+    auto states = generator.generateRS(seed);
+    rs->addItems(states);
 }
 
 void IDs3::rsDeadBattery(bool checked)

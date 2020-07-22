@@ -20,12 +20,12 @@
 #ifndef PIDIVCALCULATOR_HPP
 #define PIDIVCALCULATOR_HPP
 
-#include <Core/Gen3/Frames/PIDIVFrame.hpp>
+#include <Core/Gen3/States/PIDIVState.hpp>
 #include <QVector>
 
 namespace PIDIVCalculator
 {
-    QVector<PIDIVFrame> calculateIVs(u32 pid);
+    QVector<PIDIVState> calculateIVs(u32 pid);
 };
 
 #endif // PIDIVCALCULATOR_HPP

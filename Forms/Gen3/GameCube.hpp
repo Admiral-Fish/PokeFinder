@@ -23,7 +23,7 @@
 #include <Core/Gen3/Profile3.hpp>
 #include <QMenu>
 
-class GameCubeFrame;
+class GameCubeState;
 class GameCubeGeneratorModel;
 class GameCubeSearcherModel;
 
@@ -55,7 +55,7 @@ private:
     void setupModels();
 
 private slots:
-    void updateProgress(const QVector<GameCubeFrame> &frames, int progress);
+    void updateProgress(const QVector<GameCubeState> &states, int progress);
     void generate();
     void search();
     void profilesIndexChanged(int index);

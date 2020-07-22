@@ -27,7 +27,7 @@ class StationarySearcher : public Searcher
 {
 public:
     StationarySearcher() = default;
-    StationarySearcher(u16 tid, u16 sid, u8 genderRatio, Method method, const FrameFilter &filter);
+    StationarySearcher(u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter);
     void setLead(Lead lead);
 
 protected:

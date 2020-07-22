@@ -42,20 +42,20 @@ void IDSearcher4::startSearch(bool infinite, u16 year, u32 minDelay, u32 maxDela
 
                 u32 seed = static_cast<u32>((ab << 24) | (cd << 16)) + efgh;
                 MT mt(seed);
-                mt.advanceFrames(1);
+                mt.advance(1);
 
                 u32 sidtid = mt.next();
 
                 u16 tid = sidtid & 0xffff;
                 u16 sid = sidtid >> 16;
 
-                IDFrame4 frame(seed, tid, sid);
-                if (filter.compare(frame))
+                IDState4 currentState(seed, tid, sid);
+                if (filter.compare(currentState))
                 {
-                    frame.setDelay(efgh + 2000 - year);
+                    currentState.setDelay(efgh + 2000 - year);
 
                     std::lock_guard<std::mutex> guard(mutex);
-                    results.append(frame);
+                    results.append(currentState);
                 }
 
                 progress++;
@@ -69,7 +69,7 @@ void IDSearcher4::cancelSearch()
     searching = false;
 }
 
-QVector<IDFrame4> IDSearcher4::getResults()
+QVector<IDState4> IDSearcher4::getResults()
 {
     std::lock_guard<std::mutex> guard(mutex);
     auto data(results);

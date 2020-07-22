@@ -21,8 +21,8 @@
 #define WILDSEARCHER3_HPP
 
 #include <Core/Gen3/EncounterArea3.hpp>
-#include <Core/Parents/Frames/WildFrame.hpp>
 #include <Core/Parents/Searchers/WildSearcher.hpp>
+#include <Core/Parents/States/WildState.hpp>
 #include <Core/RNG/RNGCache.hpp>
 #include <mutex>
 
@@ -30,11 +30,11 @@ class WildSearcher3 : public WildSearcher
 {
 public:
     WildSearcher3() = default;
-    WildSearcher3(u16 tid, u16 sid, u8 genderRatio, Method method, const FrameFilter &filter);
+    WildSearcher3(u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter);
     void setEncounterArea(const EncounterArea3 &encounterArea);
     void startSearch(const QVector<u8> &min, const QVector<u8> &max);
     void cancelSearch();
-    QVector<WildFrame> getResults();
+    QVector<WildState> getResults();
     int getProgress() const;
 
 private:
@@ -43,10 +43,10 @@ private:
 
     bool searching;
     int progress;
-    QVector<WildFrame> results;
+    QVector<WildState> results;
     std::mutex mutex;
 
-    QVector<WildFrame> search(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const;
+    QVector<WildState> search(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const;
 };
 
 #endif // WILDSEARCHER3_HPP

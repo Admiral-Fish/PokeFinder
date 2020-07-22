@@ -20,7 +20,7 @@
 #include "PokeSpotModel.hpp"
 #include <Core/Util/Translator.hpp>
 
-PokeSpotModel::PokeSpotModel(QObject *parent) : TableModel<GameCubeFrame>(parent)
+PokeSpotModel::PokeSpotModel(QObject *parent) : TableModel<GameCubeState>(parent)
 {
 }
 
@@ -33,20 +33,20 @@ QVariant PokeSpotModel::data(const QModelIndex &index, int role) const
 {
     if (role == Qt::DisplayRole)
     {
-        const auto &frame = model.at(index.row());
+        const auto &currentState = model.at(index.row());
         switch (index.column())
         {
         case 0:
-            return frame.getFrame();
+            return currentState.getAdvance();
         case 1:
-            return QString::number(frame.getPID(), 16).toUpper().rightJustified(8, '0');
+            return QString::number(currentState.getPID(), 16).toUpper().rightJustified(8, '0');
         case 2:
         {
-            u8 shiny = frame.getShiny();
+            u8 shiny = currentState.getShiny();
             return shiny == 2 ? tr("Square") : shiny == 1 ? tr("Star") : tr("No");
         }
         case 3:
-            switch (frame.getInfo())
+            switch (currentState.getInfo())
             {
             case 0:
                 return tr("Common");
@@ -56,11 +56,11 @@ QVariant PokeSpotModel::data(const QModelIndex &index, int role) const
                 return tr("Rare");
             }
         case 4:
-            return Translator::getNature(frame.getNature());
+            return Translator::getNature(currentState.getNature());
         case 5:
-            return frame.getAbility();
+            return currentState.getAbility();
         case 6:
-            return Translator::getGender(frame.getGender());
+            return Translator::getGender(currentState.getGender());
         }
     }
     return QVariant();

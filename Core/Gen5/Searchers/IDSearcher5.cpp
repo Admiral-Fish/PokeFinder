@@ -26,13 +26,7 @@
 #include <QtConcurrent>
 
 IDSearcher5::IDSearcher5(const IDGenerator5 &idGenerator, const Profile5 &profile, u32 pid, bool checkPID, bool save) :
-    idGenerator(idGenerator),
-    profile(profile),
-    pid(pid),
-    checkPID(checkPID),
-    save(save),
-    searching(false),
-    progress(0)
+    idGenerator(idGenerator), profile(profile), pid(pid), checkPID(checkPID), save(save), searching(false), progress(0)
 {
 }
 
@@ -76,7 +70,7 @@ void IDSearcher5::cancelSearch()
     searching = false;
 }
 
-QVector<IDFrame5> IDSearcher5::getResults()
+QVector<IDState5> IDSearcher5::getResults()
 {
     std::lock_guard<std::mutex> lock(resultMutex);
 
@@ -126,22 +120,22 @@ void IDSearcher5::search(const QDate &start, const QDate &end)
                         sha.setTime(hour, minute, second, profile.getDSType());
                         u64 seed = sha.hashSeed();
 
-                        idGenerator.setInitialFrame(
-                            offset
-                            + (flag ? Utilities::initialFrameBW(seed, save ? 2 : 3) : Utilities::initialFrameBW2ID(seed, save ? 2 : 3)));
-                        auto frames = idGenerator.generate(seed, pid, checkPID);
+                        idGenerator.setInitialAdvances(offset
+                                                       + (flag ? Utilities::initialAdvancesBW(seed, save ? 2 : 3)
+                                                               : Utilities::initialAdvancesBW2ID(seed, save ? 2 : 3)));
+                        auto states = idGenerator.generate(seed, pid, checkPID);
 
-                        if (!frames.isEmpty())
+                        if (!states.isEmpty())
                         {
                             QDateTime dt(date, QTime(hour, minute, second));
-                            for (auto &frame : frames)
+                            for (auto &currentState : states)
                             {
-                                frame.setDateTime(dt);
-                                frame.setKeypress(buttons.at(i));
+                                currentState.setDateTime(dt);
+                                currentState.setKeypress(buttons.at(i));
                             }
 
                             std::lock_guard<std::mutex> lock(resultMutex);
-                            results.append(frames);
+                            results.append(states);
                         }
 
                         std::lock_guard<std::mutex> lock(progressMutex);

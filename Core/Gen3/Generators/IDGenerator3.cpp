@@ -21,7 +21,7 @@
 #include <Core/Parents/Filters/IDFilter.hpp>
 #include <Core/RNG/LCRNG.hpp>
 
-IDGenerator3::IDGenerator3(u32 initialFrame, u32 maxResults, const IDFilter &filter) : IDGenerator(initialFrame, maxResults, filter)
+IDGenerator3::IDGenerator3(u32 initialAdvances, u32 maxResults, const IDFilter &filter) : IDGenerator(initialAdvances, maxResults, filter)
 {
 }
 
@@ -30,12 +30,12 @@ void IDGenerator3::setStaticTID(u16 staticTID)
     this->staticTID = staticTID;
 }
 
-QVector<IDFrame3> IDGenerator3::generateXDColo(u32 seed)
+QVector<IDState3> IDGenerator3::generateXDColo(u32 seed)
 {
-    QVector<IDFrame3> frames;
+    QVector<IDState3> states;
 
     XDRNG rng(seed);
-    rng.advanceFrames(initialFrame - 1);
+    rng.advance(initialAdvances);
 
     for (u32 cnt = 0; cnt < maxResults; cnt++, rng.next())
     {
@@ -44,45 +44,45 @@ QVector<IDFrame3> IDGenerator3::generateXDColo(u32 seed)
         u16 tid = go.nextUShort();
         u16 sid = go.nextUShort();
 
-        IDFrame3 frame(initialFrame + cnt, tid, sid);
+        IDState3 currentState(initialAdvances + cnt, tid, sid);
 
-        if (filter.compare(frame))
+        if (filter.compare(currentState))
         {
-            frames.append(frame);
+            states.append(currentState);
         }
     }
 
-    return frames;
+    return states;
 }
 
-QVector<IDFrame3> IDGenerator3::generateFRLGE(u32 seed)
+QVector<IDState3> IDGenerator3::generateFRLGE(u32 seed)
 {
-    QVector<IDFrame3> frames;
+    QVector<IDState3> states;
 
     PokeRNG rng(seed);
-    rng.advanceFrames(initialFrame);
+    rng.advance(initialAdvances);
 
     for (u32 cnt = 0; cnt < maxResults; cnt++)
     {
         u16 sid = rng.nextUShort();
 
-        IDFrame3 frame(initialFrame + cnt, staticTID, sid);
+        IDState3 currentState(initialAdvances + cnt, staticTID, sid);
 
-        if (filter.compare(frame))
+        if (filter.compare(currentState))
         {
-            frames.append(frame);
+            states.append(currentState);
         }
     }
 
-    return frames;
+    return states;
 }
 
-QVector<IDFrame3> IDGenerator3::generateRS(u32 seed)
+QVector<IDState3> IDGenerator3::generateRS(u32 seed)
 {
-    QVector<IDFrame3> frames;
+    QVector<IDState3> states;
 
     PokeRNG rng(seed);
-    rng.advanceFrames(initialFrame);
+    rng.advance(initialAdvances);
 
     for (u32 cnt = 0; cnt < maxResults; cnt++, rng.next())
     {
@@ -91,13 +91,13 @@ QVector<IDFrame3> IDGenerator3::generateRS(u32 seed)
         u16 sid = go.nextUShort();
         u16 tid = go.nextUShort();
 
-        IDFrame3 frame(initialFrame + cnt, tid, sid);
+        IDState3 currentState(initialAdvances + cnt, tid, sid);
 
-        if (filter.compare(frame))
+        if (filter.compare(currentState))
         {
-            frames.append(frame);
+            states.append(currentState);
         }
     }
 
-    return frames;
+    return states;
 }

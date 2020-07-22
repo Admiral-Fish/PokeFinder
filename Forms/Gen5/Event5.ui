@@ -228,19 +228,19 @@
          </property>
          <layout class="QGridLayout" name="gridLayout_6">
           <item row="0" column="0">
-           <widget class="QLabel" name="labelGeneratorInitialFrame">
+           <widget class="QLabel" name="labelGeneratorInitialAdvances">
             <property name="text">
-             <string>Initial Frame</string>
+             <string>Initial Advances</string>
             </property>
            </widget>
           </item>
           <item row="0" column="1">
-           <widget class="TextBox" name="textBoxGeneratorInitialFrame">
+           <widget class="TextBox" name="textBoxGeneratorInitialAdvances">
             <property name="inputMask">
              <string/>
             </property>
             <property name="text">
-             <string notr="true">1</string>
+             <string notr="true">0</string>
             </property>
            </widget>
           </item>
@@ -306,9 +306,9 @@
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="pushButtonCalculateInitialFrame">
+             <widget class="QPushButton" name="pushButtonCalculateInitialAdvances">
               <property name="text">
-               <string>Calculate Initial Frame</string>
+               <string>Calculate Initial Advance</string>
               </property>
              </widget>
             </item>
@@ -1063,11 +1063,11 @@
   <tabstop>comboBoxProfiles</tabstop>
   <tabstop>pushButtonProfileManager</tabstop>
   <tabstop>tabRNGSelector</tabstop>
-  <tabstop>textBoxGeneratorInitialFrame</tabstop>
+  <tabstop>textBoxGeneratorInitialAdvances</tabstop>
   <tabstop>textBoxGeneratorMaxResults</tabstop>
   <tabstop>textBoxGeneratorSeed</tabstop>
   <tabstop>pushButtonGenerate</tabstop>
-  <tabstop>pushButtonCalculateInitialFrame</tabstop>
+  <tabstop>pushButtonCalculateInitialAdvances</tabstop>
   <tabstop>comboBoxGeneratorSpecies</tabstop>
   <tabstop>pushButtonGeneratorImport</tabstop>
   <tabstop>checkBoxGeneratorHP</tabstop>

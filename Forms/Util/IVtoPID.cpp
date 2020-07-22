@@ -238,7 +238,7 @@ QVector<QList<QStandardItem *>> IVtoPID::getSeedsChannel(u8 hp, u8 atk, u8 def, 
     for (const auto &seed : seeds)
     {
         XDRNGR rng(seed);
-        rng.advanceFrames(3);
+        rng.advance(3);
 
         u16 pid2 = rng.nextUShort();
         u16 pid1 = rng.nextUShort();

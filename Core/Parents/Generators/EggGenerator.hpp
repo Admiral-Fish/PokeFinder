@@ -26,7 +26,7 @@ class EggGenerator : public Generator
 {
 public:
     EggGenerator() = default;
-    EggGenerator(u32 initialFrame, u32 maxResults, u16 tid, u16 sid, u8 genderRatio, Method method, const FrameFilter &filter);
+    EggGenerator(u32 initialAdvances, u32 maxResults, u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter);
     void setParents(const QVector<u8> &parent1, const QVector<u8> &parent2);
     void setEverstoneNature(u8 everstoneNature);
 

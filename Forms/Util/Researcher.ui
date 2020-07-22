@@ -2506,16 +2506,16 @@
      </property>
      <layout class="QGridLayout" name="gridLayout_6">
       <item row="0" column="0">
-       <widget class="QLabel" name="labelInitialFrame">
+       <widget class="QLabel" name="labelInitialAdvances">
         <property name="text">
-         <string>Initial Frame</string>
+         <string>Initial Advances</string>
         </property>
        </widget>
       </item>
       <item row="0" column="1">
-       <widget class="TextBox" name="textBoxInitialFrame">
+       <widget class="TextBox" name="textBoxInitialAdvances">
         <property name="text">
-         <string notr="true">1</string>
+         <string notr="true">0</string>
         </property>
        </widget>
       </item>
@@ -2664,7 +2664,7 @@
   <tabstop>textBoxStatus2</tabstop>
   <tabstop>textBoxStatus1</tabstop>
   <tabstop>textBoxStatus0</tabstop>
-  <tabstop>textBoxInitialFrame</tabstop>
+  <tabstop>textBoxInitialAdvances</tabstop>
   <tabstop>textBoxMaxResults</tabstop>
   <tabstop>textBoxSeed</tabstop>
   <tabstop>pushButtonGenerate</tabstop>

@@ -23,8 +23,8 @@
 #include <Core/Gen4/Generators/EggGenerator4.hpp>
 #include <Core/Gen4/ProfileLoader4.hpp>
 #include <Core/Gen4/Searchers/EggSearcher4.hpp>
-#include <Core/Parents/Filters/FrameFilter.hpp>
-#include <Core/Parents/Frames/EggFrame.hpp>
+#include <Core/Parents/Filters/StateFilter.hpp>
+#include <Core/Parents/States/EggState.hpp>
 #include <Core/Util/Translator.hpp>
 #include <Forms/Gen4/Profile/ProfileManager4.hpp>
 #include <Forms/Gen4/Tools/SeedtoTime4.hpp>
@@ -41,7 +41,7 @@ Eggs4::Eggs4(QWidget *parent) : QWidget(parent), ui(new Ui::Eggs4)
     updateProfiles();
     setupModels();
 
-    qRegisterMetaType<QVector<EggFrame>>("QVector<EggFrame>");
+    qRegisterMetaType<QVector<EggState>>("QVector<EggState>");
 }
 
 Eggs4::~Eggs4()
@@ -50,10 +50,10 @@ Eggs4::~Eggs4()
     setting.beginGroup("eggs4");
     setting.setValue("minDelay", ui->textBoxSearcherMinDelay->text());
     setting.setValue("maxDelay", ui->textBoxSearcherMaxDelay->text());
-    setting.setValue("minFrameIV", ui->textBoxSearcherIVMinFrame->text());
-    setting.setValue("maxFrameIV", ui->textBoxSearcherIVMaxFrame->text());
-    setting.setValue("minFramePID", ui->textBoxSearcherPIDMinFrame->text());
-    setting.setValue("maxFramePID", ui->textBoxSearcherPIDMaxFrame->text());
+    setting.setValue("minAdvanceIV", ui->textBoxSearcherIVMinAdvance->text());
+    setting.setValue("maxAdvanceIV", ui->textBoxSearcherIVMaxAdvance->text());
+    setting.setValue("minAdvancePID", ui->textBoxSearcherPIDMinAdvance->text());
+    setting.setValue("maxAdvancePID", ui->textBoxSearcherPIDMaxAdvance->text());
     setting.setValue("profile", ui->comboBoxProfiles->currentIndex());
     setting.setValue("geometry", this->saveGeometry());
     setting.endGroup();
@@ -94,16 +94,16 @@ void Eggs4::setupModels()
     ui->tableViewGenerator->setModel(generatorModel);
     ui->tableViewSearcher->setModel(searcherModel);
 
-    ui->textBoxGeneratorInitialFrame->setValues(InputType::Frame32Bit);
-    ui->textBoxGeneratorMaxResults->setValues(InputType::Frame32Bit);
+    ui->textBoxGeneratorInitialAdvances->setValues(InputType::State32Bit);
+    ui->textBoxGeneratorMaxResults->setValues(InputType::State32Bit);
     ui->textBoxGeneratorSeed->setValues(InputType::Seed32Bit);
 
-    ui->textBoxSearcherIVMinFrame->setValues(InputType::Frame32Bit);
-    ui->textBoxSearcherIVMaxFrame->setValues(InputType::Frame32Bit);
-    ui->textBoxSearcherPIDMinFrame->setValues(InputType::Frame32Bit);
-    ui->textBoxSearcherPIDMaxFrame->setValues(InputType::Frame32Bit);
-    ui->textBoxSearcherMinDelay->setValues(InputType::Frame32Bit);
-    ui->textBoxSearcherMaxDelay->setValues(InputType::Frame32Bit);
+    ui->textBoxSearcherIVMinAdvance->setValues(InputType::State32Bit);
+    ui->textBoxSearcherIVMaxAdvance->setValues(InputType::State32Bit);
+    ui->textBoxSearcherPIDMinAdvance->setValues(InputType::State32Bit);
+    ui->textBoxSearcherPIDMaxAdvance->setValues(InputType::State32Bit);
+    ui->textBoxSearcherMinDelay->setValues(InputType::State32Bit);
+    ui->textBoxSearcherMaxDelay->setValues(InputType::State32Bit);
 
     ui->comboBoxGeneratorMethod->setup({ Method::DPPtIVs, Method::Gen4Normal });
 
@@ -140,21 +140,21 @@ void Eggs4::setupModels()
     {
         ui->textBoxSearcherMaxDelay->setText(setting.value("maxDelay").toString());
     }
-    if (setting.contains("minFrameIV"))
+    if (setting.contains("minAdvanceIV"))
     {
-        ui->textBoxSearcherIVMinFrame->setText(setting.value("minFrameIV").toString());
+        ui->textBoxSearcherIVMinAdvance->setText(setting.value("minAdvanceIV").toString());
     }
-    if (setting.contains("maxFrameIV"))
+    if (setting.contains("maxAdvanceIV"))
     {
-        ui->textBoxSearcherIVMaxFrame->setText(setting.value("maxFrameIV").toString());
+        ui->textBoxSearcherIVMaxAdvance->setText(setting.value("maxAdvanceIV").toString());
     }
-    if (setting.contains("minFramePID"))
+    if (setting.contains("minAdvancePID"))
     {
-        ui->textBoxSearcherPIDMinFrame->setText(setting.value("minFramePID").toString());
+        ui->textBoxSearcherPIDMinAdvance->setText(setting.value("minAdvancePID").toString());
     }
-    if (setting.contains("maxFramePID"))
+    if (setting.contains("maxAdvancePID"))
     {
-        ui->textBoxSearcherPIDMaxFrame->setText(setting.value("maxFramePID").toString());
+        ui->textBoxSearcherPIDMaxAdvance->setText(setting.value("maxAdvancePID").toString());
     }
     if (setting.contains("geometry"))
     {
@@ -163,9 +163,9 @@ void Eggs4::setupModels()
     setting.endGroup();
 }
 
-void Eggs4::updateProgress(const QVector<EggFrame4> &frames, int progress)
+void Eggs4::updateProgress(const QVector<EggState4> &states, int progress)
 {
-    searcherModel->addItems(frames);
+    searcherModel->addItems(states);
     ui->progressBarSearcher->setValue(progress);
 }
 
@@ -173,7 +173,7 @@ void Eggs4::generate()
 {
     generatorModel->clearModel();
 
-    u32 initialFrame = ui->textBoxGeneratorInitialFrame->getUInt();
+    u32 initialAdvances = ui->textBoxGeneratorInitialAdvances->getUInt();
     u32 maxResults = ui->textBoxGeneratorMaxResults->getUInt();
     u32 seed = ui->textBoxGeneratorSeed->getUInt();
     u16 tid = currentProfile.getTID();
@@ -194,15 +194,15 @@ void Eggs4::generate()
     }
     generatorModel->setMethod(method);
 
-    FrameFilter filter(ui->filterGenerator->getGender(), ui->filterGenerator->getAbility(), ui->filterGenerator->getShiny(), false,
+    StateFilter filter(ui->filterGenerator->getGender(), ui->filterGenerator->getAbility(), ui->filterGenerator->getShiny(), false,
                        ui->filterGenerator->getMinIVs(), ui->filterGenerator->getMaxIVs(), ui->filterGenerator->getNatures(),
                        ui->filterGenerator->getHiddenPowers(), {});
 
-    EggGenerator4 generator(initialFrame, maxResults, tid, sid, ui->filterGenerator->getGenderRatio(), method, filter);
+    EggGenerator4 generator(initialAdvances, maxResults, tid, sid, ui->filterGenerator->getGenderRatio(), method, filter);
     generator.setParents(ui->eggSettingsGenerator->getParent1(), ui->eggSettingsGenerator->getParent2());
 
-    auto frames = generator.generate(seed);
-    generatorModel->addItems(frames);
+    auto states = generator.generate(seed);
+    generatorModel->addItems(states);
 }
 
 void Eggs4::search()
@@ -231,23 +231,23 @@ void Eggs4::search()
     u16 sid = currentProfile.getSID();
     u8 genderRatio = ui->filterSearcher->getGenderRatio();
 
-    FrameFilter filter(ui->filterSearcher->getGender(), ui->filterSearcher->getAbility(), ui->filterSearcher->getShiny(), false,
+    StateFilter filter(ui->filterSearcher->getGender(), ui->filterSearcher->getAbility(), ui->filterSearcher->getShiny(), false,
                        ui->filterSearcher->getMinIVs(), ui->filterSearcher->getMaxIVs(), ui->filterSearcher->getNatures(),
                        ui->filterSearcher->getHiddenPowers(), {});
 
     u32 minDelay = ui->textBoxSearcherMinDelay->getUInt();
     u32 maxDelay = ui->textBoxSearcherMaxDelay->getUInt();
-    u32 minFrameIV = ui->textBoxSearcherIVMinFrame->getUInt();
-    u32 maxFrameIV = ui->textBoxSearcherIVMaxFrame->getUInt();
-    u32 minFramePID = ui->textBoxSearcherPIDMinFrame->getUInt();
-    u32 maxFramePID = ui->textBoxSearcherPIDMaxFrame->getUInt();
+    u32 minAdvanceIV = ui->textBoxSearcherIVMinAdvance->getUInt();
+    u32 maxAdvanceIV = ui->textBoxSearcherIVMaxAdvance->getUInt();
+    u32 minAdvancePID = ui->textBoxSearcherPIDMinAdvance->getUInt();
+    u32 maxAdvancePID = ui->textBoxSearcherPIDMaxAdvance->getUInt();
 
     Method methodIV = (currentProfile.getVersion() & Game::HGSS) ? Method::HGSSIVs : Method::DPPtIVs;
-    EggGenerator4 generatorIV(minFrameIV, maxFrameIV, tid, sid, genderRatio, methodIV, filter);
+    EggGenerator4 generatorIV(minAdvanceIV, maxAdvanceIV, tid, sid, genderRatio, methodIV, filter);
     generatorIV.setParents(ui->eggSettingsSearcher->getParent1(), ui->eggSettingsSearcher->getParent2());
 
     Method methodPID = ui->checkBoxSearcherMasuada->isChecked() ? Method::Gen4Masuada : Method::Gen4Normal;
-    EggGenerator4 generatorPID(minFramePID, maxFramePID, tid, sid, genderRatio, methodPID, filter);
+    EggGenerator4 generatorPID(minAdvancePID, maxAdvancePID, tid, sid, genderRatio, methodPID, filter);
 
     ui->progressBarSearcher->setValue(0);
     ui->progressBarSearcher->setMaximum(static_cast<int>(256 * 24 * (maxDelay - minDelay + 1)));

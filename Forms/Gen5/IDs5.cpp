@@ -34,9 +34,7 @@
 #include <QThread>
 #include <QTimer>
 
-IDs5::IDs5(QWidget *parent) :
-    QWidget(parent),
-    ui(new Ui::IDs5)
+IDs5::IDs5(QWidget *parent) : QWidget(parent), ui(new Ui::IDs5)
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
@@ -93,10 +91,10 @@ void IDs5::setupModels()
     ui->textBoxTID->setValues(InputType::TIDSID);
     ui->textBoxSID->setValues(InputType::TIDSID);
 
-    ui->textBoxMaxResults->setValues(InputType::Frame32Bit);
+    ui->textBoxMaxResults->setValues(InputType::State32Bit);
 
     ui->textBoxSeedFinderTID->setValues(InputType::TIDSID);
-    ui->textBoxSeedFinderMaxResults->setValues(InputType::Frame32Bit);
+    ui->textBoxSeedFinderMaxResults->setValues(InputType::State32Bit);
 
     QAction *outputTXTGenerator = menu->addAction(tr("Output Results to TXT"));
     QAction *outputCSVGenerator = menu->addAction(tr("Output Results to CSV"));
@@ -117,9 +115,9 @@ void IDs5::setupModels()
     setting.endGroup();
 }
 
-void IDs5::updateProgress(const QVector<IDFrame5> &frames, int progress)
+void IDs5::updateProgress(const QVector<IDState5> &states, int progress)
 {
-    model->addItems(frames);
+    model->addItems(states);
     ui->progressBar->setValue(progress);
 }
 
@@ -191,13 +189,13 @@ void IDs5::find()
     int minute = ui->spinBoxMinute->value();
     int minSecond = ui->spinBoxMinSecond->value();
     int maxSecond = ui->spinBoxMaxSecond->value();
-    u32 maxFrame = ui->textBoxSeedFinderMaxResults->getUInt();
+    u32 maxAdvance = ui->textBoxSeedFinderMaxResults->getUInt();
     bool save = ui->checkBoxSeedFinderExistingSave->isChecked();
 
     int offset = (currentProfile.getVersion() & Game::BW) ? 2 : save ? 4 : 7;
 
     IDFilter filter({ tid }, {}, {});
-    IDGenerator5 generator(0, maxFrame, filter);
+    IDGenerator5 generator(0, maxAdvance, filter);
 
     SHA1 sha(currentProfile);
     auto buttons = Keypresses::getKeyPresses({ 0, 1 }, currentProfile.getSkipLR());
@@ -205,7 +203,7 @@ void IDs5::find()
 
     sha.setTimer0(currentProfile.getTimer0Min(), currentProfile.getVCount());
 
-    QVector<IDFrame5> results;
+    QVector<IDState5> results;
     for (int i = 0; i < values.size(); i++)
     {
         sha.setButton(values.at(i));
@@ -219,19 +217,20 @@ void IDs5::find()
             sha.setTime(hour, minute, second, currentProfile.getDSType());
             u64 seed = sha.hashSeed();
 
-            generator.setInitialFrame(offset
-                                      + ((currentProfile.getVersion() & Game::BW) ? Utilities::initialFrameBW(seed, save ? 2 : 3)
-                                                                                  : Utilities::initialFrameBW2ID(seed, save ? 2 : 3)));
-            auto frames = generator.generate(seed);
+            generator.setInitialAdvances(offset
+                                         + ((currentProfile.getVersion() & Game::BW)
+                                                ? Utilities::initialAdvancesBW(seed, save ? 2 : 3)
+                                                : Utilities::initialAdvancesBW2ID(seed, save ? 2 : 3)));
+            auto states = generator.generate(seed);
 
             QDateTime dt(date, QTime(hour, minute, second));
-            for (auto &frame : frames)
+            for (auto &currentState : states)
             {
-                frame.setDateTime(dt);
-                frame.setKeypress(buttons.at(i));
+                currentState.setDateTime(dt);
+                currentState.setKeypress(buttons.at(i));
             }
 
-            results.append(frames);
+            results.append(states);
         }
     }
 

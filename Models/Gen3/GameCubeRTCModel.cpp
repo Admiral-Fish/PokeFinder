@@ -19,7 +19,7 @@
 
 #include "GameCubeRTCModel.hpp"
 
-GameCubeRTCModel::GameCubeRTCModel(QObject *parent) : TableModel<GameCubeRTCFrame>(parent)
+GameCubeRTCModel::GameCubeRTCModel(QObject *parent) : TableModel<GameCubeRTCState>(parent)
 {
 }
 
@@ -33,15 +33,15 @@ QVariant GameCubeRTCModel::data(const QModelIndex &index, int role) const
 {
     if (role == Qt::DisplayRole)
     {
-        const auto &frame = model.at(index.row());
+        const auto &currentState = model.at(index.row());
         switch (index.column())
         {
         case 0:
-            return frame.getDateTime();
+            return currentState.getDateTime();
         case 1:
-            return frame.getFrame();
+            return currentState.getAdvance();
         case 2:
-            return QString::number(frame.getSeed(), 16).toUpper().rightJustified(8, '0');
+            return QString::number(currentState.getSeed(), 16).toUpper().rightJustified(8, '0');
         }
     }
     return QVariant();

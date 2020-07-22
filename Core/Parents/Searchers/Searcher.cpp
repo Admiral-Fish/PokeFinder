@@ -19,12 +19,7 @@
 
 #include "Searcher.hpp"
 
-Searcher::Searcher(u16 tid, u16 sid, u8 genderRatio, Method method, const FrameFilter &filter) :
-    tid(tid),
-    sid(sid),
-    tsv(tid ^ sid),
-    genderRatio(genderRatio),
-    method(method),
-    filter(filter)
+Searcher::Searcher(u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter) :
+    tid(tid), sid(sid), tsv(tid ^ sid), genderRatio(genderRatio), method(method), filter(filter)
 {
 }

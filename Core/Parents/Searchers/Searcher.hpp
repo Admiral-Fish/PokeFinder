@@ -20,7 +20,7 @@
 #ifndef SEARCHER_HPP
 #define SEARCHER_HPP
 
-#include <Core/Parents/Filters/FrameFilter.hpp>
+#include <Core/Parents/Filters/StateFilter.hpp>
 #include <Core/Util/Global.hpp>
 #include <QVector>
 
@@ -30,7 +30,7 @@ class Searcher
 {
 public:
     Searcher() = default;
-    Searcher(u16 tid, u16 sid, u8 genderRatio, Method method, const FrameFilter &filter);
+    Searcher(u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter);
 
 protected:
     u16 tid;
@@ -38,7 +38,7 @@ protected:
     u16 tsv;
     u8 genderRatio;
     Method method;
-    FrameFilter filter;
+    StateFilter filter;
 };
 
 #endif // SEARCHER_HPP

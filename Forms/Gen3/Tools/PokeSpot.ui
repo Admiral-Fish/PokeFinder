@@ -47,16 +47,16 @@
        </widget>
       </item>
       <item row="1" column="0">
-       <widget class="QLabel" name="labelStartingFrame">
+       <widget class="QLabel" name="labelStartingAdvance">
         <property name="text">
-         <string>Starting Frame</string>
+         <string>Starting Advance</string>
         </property>
        </widget>
       </item>
       <item row="1" column="1">
-       <widget class="TextBox" name="textBoxStartingFrame">
+       <widget class="TextBox" name="textBoxStartingAdvance">
         <property name="text">
-         <string notr="true">1</string>
+         <string notr="true">0</string>
         </property>
         <property name="maxLength">
          <number>10</number>
@@ -218,7 +218,7 @@
  </customwidgets>
  <tabstops>
   <tabstop>textBoxSeed</tabstop>
-  <tabstop>textBoxStartingFrame</tabstop>
+  <tabstop>textBoxStartingAdvance</tabstop>
   <tabstop>textBoxMaxResults</tabstop>
   <tabstop>textBoxTID</tabstop>
   <tabstop>textBoxSID</tabstop>

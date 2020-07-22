@@ -216,8 +216,8 @@
     </message>
     <message>
         <location filename="../Models/Gen4/EggModel4.hpp" line="44"/>
-        <source>Frame</source>
-        <translation>Frame</translation>
+        <source>Advance</source>
+        <translation>Advance</translation>
     </message>
     <message>
         <location filename="../Models/Gen4/EggModel4.hpp" line="44"/>
@@ -314,18 +314,18 @@
     </message>
     <message>
         <location filename="../Models/Gen3/EggModel3.hpp" line="44"/>
-        <source>Frame</source>
-        <translation>Frame</translation>
+        <source>Advance</source>
+        <translation>Advance</translation>
     </message>
     <message>
         <location filename="../Models/Gen3/EggModel3.hpp" line="44"/>
-        <source>Held Frame</source>
-        <translation>Held Frame</translation>
+        <source>Held Advance</source>
+        <translation>Held Advance</translation>
     </message>
     <message>
         <location filename="../Models/Gen3/EggModel3.hpp" line="44"/>
-        <source>Pickup Frame</source>
-        <translation>Pickup Frame</translation>
+        <source>Pickup Advance</source>
+        <translation>Pickup Advance</translation>
     </message>
     <message>
         <location filename="../Models/Gen3/EggModel3.hpp" line="44"/>
@@ -422,18 +422,18 @@
     </message>
     <message>
         <location filename="../Models/Gen4/EggModel4.hpp" line="68"/>
-        <source>Frame</source>
-        <translation>Frame</translation>
+        <source>Advance</source>
+        <translation>Advance</translation>
     </message>
     <message>
         <location filename="../Models/Gen4/EggModel4.hpp" line="68"/>
-        <source>PID Frame</source>
-        <translation>PID Frame</translation>
+        <source>PID Advance</source>
+        <translation>PID Advance</translation>
     </message>
     <message>
         <location filename="../Models/Gen4/EggModel4.hpp" line="68"/>
-        <source>IV Frame</source>
-        <translation>IV Frame</translation>
+        <source>IV Advance</source>
+        <translation>IV Advance</translation>
     </message>
     <message>
         <location filename="../Models/Gen4/EggModel4.hpp" line="68"/>
@@ -583,13 +583,13 @@
     </message>
     <message>
         <location filename="../Forms/Gen3/Eggs3.ui"/>
-        <source>Frame Held</source>
-        <translation>Frame Held</translation>
+        <source>Adavnce Held</source>
+        <translation>Adavnce Held</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Eggs3.ui"/>
-        <source>Pickup Frame</source>
-        <translation>Pickup Frame</translation>
+        <source>Pickup Advance</source>
+        <translation>Pickup Advance</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Eggs3.ui"/>
@@ -668,8 +668,8 @@
     </message>
     <message>
         <location filename="../Forms/Gen3/Eggs3.ui"/>
-        <source>Initial Frame</source>
-        <translation>Initial Frame</translation>
+        <source>Initial Advance</source>
+        <translation>Initial Advance</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Eggs3.ui"/>
@@ -817,13 +817,13 @@
     </message>
     <message>
         <location filename="../Forms/Gen4/Eggs4.ui"/>
-        <source>IV Frame</source>
-        <translation>IV Frame</translation>
+        <source>IV Advance</source>
+        <translation>IV Advance</translation>
     </message>
     <message>
         <location filename="../Forms/Gen4/Eggs4.ui"/>
-        <source>PID Frame</source>
-        <translation>PID Frame</translation>
+        <source>PID Advance</source>
+        <translation>PID Advance</translation>
     </message>
     <message>
         <location filename="../Forms/Gen4/Eggs4.ui"/>
@@ -832,8 +832,8 @@
     </message>
     <message>
         <location filename="../Forms/Gen4/Eggs4.ui"/>
-        <source>Initial Frame</source>
-        <translation>Initial Frame</translation>
+        <source>Initial Advance</source>
+        <translation>Initial Advance</translation>
     </message>
 </context>
 <context>
@@ -1081,8 +1081,8 @@
     </message>
     <message>
         <location filename="../Forms/Gen3/GameCube.ui"/>
-        <source>Starting Frame</source>
-        <translation>Starting Frame</translation>
+        <source>Starting Advance</source>
+        <translation>Starting Advance</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/GameCube.ui"/>
@@ -1251,8 +1251,8 @@
     </message>
     <message>
         <location filename="../Models/Gen3/GameCubeModel.hpp" line="37"/>
-        <source>Frame</source>
-        <translation>Frame</translation>
+        <source>Advance</source>
+        <translation>Advance</translation>
     </message>
     <message>
         <location filename="../Models/Gen3/GameCubeModel.hpp" line="37"/>
@@ -1339,13 +1339,13 @@
     </message>
     <message>
         <location filename="../Forms/Gen3/Tools/GameCubeRTC.ui"/>
-        <source>Min Frame</source>
-        <translation>Min Frame</translation>
+        <source>Min Advance</source>
+        <translation>Min Advance</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Tools/GameCubeRTC.ui"/>
-        <source>Max Frame</source>
-        <translation>Max Frame</translation>
+        <source>Max Advance</source>
+        <translation>Max Advance</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Tools/GameCubeRTC.ui"/>
@@ -1367,8 +1367,8 @@
     </message>
     <message>
         <location filename="../Models/Gen3/GameCubeRTCModel.hpp" line="36"/>
-        <source>Frame</source>
-        <translation>Frame</translation>
+        <source>Advance</source>
+        <translation>Advance</translation>
     </message>
     <message>
         <location filename="../Models/Gen3/GameCubeRTCModel.hpp" line="36"/>
@@ -1739,8 +1739,8 @@
     <name>IDModel3</name>
     <message>
         <location filename="../Models/Gen3/IDModel3.hpp" line="36"/>
-        <source>Frame</source>
-        <translation>Frame</translation>
+        <source>Advance</source>
+        <translation>Advance</translation>
     </message>
     <message>
         <location filename="../Models/Gen3/IDModel3.hpp" line="36"/>
@@ -1830,8 +1830,8 @@
     </message>
     <message>
         <location filename="../Forms/Gen3/IDs3.ui"/>
-        <source>Starting Frame</source>
-        <translation>Starting Frame</translation>
+        <source>Starting Advance</source>
+        <translation>Starting Advance</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/IDs3.ui"/>
@@ -2609,8 +2609,8 @@
     </message>
     <message>
         <location filename="../Forms/Gen3/Tools/PokeSpot.ui"/>
-        <source>Starting Frame</source>
-        <translation>Starting Frame</translation>
+        <source>Starting Advance</source>
+        <translation>Starting Advance</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Tools/PokeSpot.ui"/>
@@ -2662,8 +2662,8 @@
     <name>PokeSpotModel</name>
     <message>
         <location filename="../Models/Gen3/PokeSpotModel.hpp" line="36"/>
-        <source>Frame</source>
-        <translation>Frame</translation>
+        <source>Advance</source>
+        <translation>Advance</translation>
     </message>
     <message>
         <location filename="../Models/Gen3/PokeSpotModel.hpp" line="36"/>
@@ -3531,16 +3531,16 @@
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <source>Initial Frame</source>
-        <translation>Initial Frame</translation>
+        <source>Initial Advance</source>
+        <translation>Initial Advance</translation>
     </message>
 </context>
 <context>
     <name>ResearcherModel</name>
     <message>
         <location filename="../Models/Util/ResearcherModel.hpp" line="43"/>
-        <source>Frame</source>
-        <translation>Frame</translation>
+        <source>Advance</source>
+        <translation>Advance</translation>
     </message>
     <message>
         <location filename="../Models/Util/ResearcherModel.cpp" line="107"/>
@@ -3780,8 +3780,8 @@
     </message>
     <message>
         <location filename="../Models/Gen3/SeedTimeModel3.hpp" line="36"/>
-        <source>Frame</source>
-        <translation>Frame</translation>
+        <source>Advance</source>
+        <translation>Advance</translation>
     </message>
 </context>
 <context>
@@ -4107,8 +4107,8 @@
     </message>
     <message>
         <location filename="../Forms/Gen3/Stationary3.ui"/>
-        <source>Initial Frame</source>
-        <translation>Initial Frame</translation>
+        <source>Initial Advance</source>
+        <translation>Initial Advance</translation>
     </message>
 </context>
 <context>
@@ -4231,13 +4231,13 @@
     </message>
     <message>
         <location filename="../Forms/Gen4/Stationary4.ui"/>
-        <source>Min Frame</source>
-        <translation>Min Frame</translation>
+        <source>Min Advance</source>
+        <translation>Min Advance</translation>
     </message>
     <message>
         <location filename="../Forms/Gen4/Stationary4.ui"/>
-        <source>Max Frame</source>
-        <translation>Max Frame</translation>
+        <source>Max Advance</source>
+        <translation>Max Advance</translation>
     </message>
     <message>
         <location filename="../Forms/Gen4/Stationary4.ui"/>
@@ -4316,8 +4316,8 @@
     </message>
     <message>
         <location filename="../Forms/Gen4/Stationary4.ui"/>
-        <source>Initial Frame</source>
-        <translation>Initial Frame</translation>
+        <source>Initial Advance</source>
+        <translation>Initial Advance</translation>
     </message>
 </context>
 <context>
@@ -4339,8 +4339,8 @@
     </message>
     <message>
         <location filename="../Models/Gen3/StationaryModel3.hpp" line="36"/>
-        <source>Frame</source>
-        <translation>Frame</translation>
+        <source>Advance</source>
+        <translation>Advance</translation>
     </message>
     <message>
         <location filename="../Models/Gen3/StationaryModel3.hpp" line="36"/>
@@ -4452,8 +4452,8 @@
     </message>
     <message>
         <location filename="../Models/Gen4/StationaryModel4.hpp" line="41"/>
-        <source>Frame</source>
-        <translation>Frame</translation>
+        <source>Advance</source>
+        <translation>Advance</translation>
     </message>
     <message>
         <location filename="../Models/Gen4/StationaryModel4.hpp" line="41"/>
@@ -4683,8 +4683,8 @@
     </message>
     <message>
         <location filename="../Models/Gen4/StationaryModel4.hpp" line="60"/>
-        <source>Frame</source>
-        <translation>Frame</translation>
+        <source>Advance</source>
+        <translation>Advance</translation>
     </message>
     <message>
         <location filename="../Models/Gen4/StationaryModel4.hpp" line="60"/>
@@ -5004,8 +5004,8 @@
     </message>
     <message>
         <location filename="../Forms/Gen3/Wild3.ui"/>
-        <source>Initial Frame</source>
-        <translation>Initial Frame</translation>
+        <source>Initial Advance</source>
+        <translation>Initial Advance</translation>
     </message>
 </context>
 <context>
@@ -5165,8 +5165,8 @@
     </message>
     <message>
         <location filename="../Forms/Gen4/Wild4.ui"/>
-        <source>Starting Frame</source>
-        <translation>Starting Frame</translation>
+        <source>Starting Advance</source>
+        <translation>Starting Advance</translation>
     </message>
     <message>
         <location filename="../Forms/Gen4/Wild4.ui"/>
@@ -5228,8 +5228,8 @@
     </message>
     <message>
         <location filename="../Forms/Gen4/Wild4.ui"/>
-        <source>Min Frame</source>
-        <translation>Min Frame</translation>
+        <source>Min Advance</source>
+        <translation>Min Advance</translation>
     </message>
     <message>
         <location filename="../Forms/Gen4/Wild4.ui"/>
@@ -5238,8 +5238,8 @@
     </message>
     <message>
         <location filename="../Forms/Gen4/Wild4.ui"/>
-        <source>Max Frame</source>
-        <translation>Max Frame</translation>
+        <source>Max Advance</source>
+        <translation>Max Advance</translation>
     </message>
     <message>
         <location filename="../Forms/Gen4/Wild4.cpp" line="114"/>
@@ -5356,8 +5356,8 @@
     </message>
     <message>
         <location filename="../Models/Gen3/WildModel3.hpp" line="36"/>
-        <source>Frame</source>
-        <translation>Frame</translation>
+        <source>Advance</source>
+        <translation>Advance</translation>
     </message>
     <message>
         <location filename="../Models/Gen3/WildModel3.hpp" line="36"/>
@@ -5479,8 +5479,8 @@
     </message>
     <message>
         <location filename="../Models/Gen4/WildModel4.hpp" line="41"/>
-        <source>Frame</source>
-        <translation>Frame</translation>
+        <source>Advance</source>
+        <translation>Advance</translation>
     </message>
     <message>
         <location filename="../Models/Gen4/WildModel4.hpp" line="41"/>
@@ -5750,8 +5750,8 @@
     </message>
     <message>
         <location filename="../Models/Gen4/WildModel4.hpp" line="61"/>
-        <source>Frame</source>
-        <translation>Frame</translation>
+        <source>Advance</source>
+        <translation>Advance</translation>
     </message>
     <message>
         <location filename="../Models/Gen4/WildModel4.hpp" line="61"/>

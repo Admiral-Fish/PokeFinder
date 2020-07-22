@@ -19,16 +19,16 @@
 
 #include "StationaryGenerator3.hpp"
 #include <Core/Enum/Method.hpp>
-#include <Core/Parents/Filters/FrameFilter.hpp>
+#include <Core/Parents/Filters/StateFilter.hpp>
 #include <Core/RNG/LCRNG.hpp>
 
-StationaryGenerator3::StationaryGenerator3(u32 initialFrame, u32 maxResults, u16 tid, u16 sid, u8 genderRatio, Method method,
-                                           const FrameFilter &filter) :
-    StationaryGenerator(initialFrame, maxResults, tid, sid, genderRatio, method, filter)
+StationaryGenerator3::StationaryGenerator3(u32 initialAdvances, u32 maxResults, u16 tid, u16 sid, u8 genderRatio, Method method,
+                                           const StateFilter &filter) :
+    StationaryGenerator(initialAdvances, maxResults, tid, sid, genderRatio, method, filter)
 {
 }
 
-QVector<Frame> StationaryGenerator3::generate(u32 seed) const
+QVector<State> StationaryGenerator3::generate(u32 seed) const
 {
     switch (method)
     {
@@ -39,16 +39,16 @@ QVector<Frame> StationaryGenerator3::generate(u32 seed) const
     case Method::Method1Reverse:
         return generateMethod1Reverse(seed);
     default:
-        return QVector<Frame>();
+        return QVector<State>();
     }
 }
 
-QVector<Frame> StationaryGenerator3::generateMethod124(u32 seed) const
+QVector<State> StationaryGenerator3::generateMethod124(u32 seed) const
 {
-    QVector<Frame> frames;
+    QVector<State> states;
 
     PokeRNG rng(seed);
-    rng.advanceFrames(initialFrame - 1 + offset);
+    rng.advance(initialAdvances + offset);
 
     // Method 1 [SEED] [PID] [PID] [IVS] [IVS]
     // Method 2 [SEED] [PID] [PID] [BLANK] [IVS] [IVS]
@@ -56,47 +56,47 @@ QVector<Frame> StationaryGenerator3::generateMethod124(u32 seed) const
 
     for (u32 cnt = 0; cnt < maxResults; cnt++, rng.next())
     {
-        Frame frame(cnt + initialFrame);
+        State currentState(cnt + initialAdvances);
         PokeRNG go(rng.getSeed());
 
         u16 low = go.nextUShort();
         u16 high = go.nextUShort();
 
-        go.advanceFrames(method == Method::Method2);
+        go.advance(method == Method::Method2);
         u16 iv1 = go.nextUShort();
-        go.advanceFrames(method == Method::Method4);
+        go.advance(method == Method::Method4);
         u16 iv2 = go.nextUShort();
 
-        frame.setPID(high, low);
-        frame.setAbility(low & 1);
-        frame.setGender(low & 255, genderRatio);
-        frame.setNature(frame.getPID() % 25);
-        frame.setShiny(tsv, high ^ low, 8);
+        currentState.setPID(high, low);
+        currentState.setAbility(low & 1);
+        currentState.setGender(low & 255, genderRatio);
+        currentState.setNature(currentState.getPID() % 25);
+        currentState.setShiny(tsv, high ^ low, 8);
 
-        frame.setIVs(iv1, iv2);
-        frame.calculateHiddenPower();
+        currentState.setIVs(iv1, iv2);
+        currentState.calculateHiddenPower();
 
-        if (filter.compareFrame(frame))
+        if (filter.compareState(currentState))
         {
-            frames.append(frame);
+            states.append(currentState);
         }
     }
 
-    return frames;
+    return states;
 }
 
-QVector<Frame> StationaryGenerator3::generateMethod1Reverse(u32 seed) const
+QVector<State> StationaryGenerator3::generateMethod1Reverse(u32 seed) const
 {
-    QVector<Frame> frames;
+    QVector<State> states;
 
     PokeRNG rng(seed);
-    rng.advanceFrames(initialFrame - 1 + offset);
+    rng.advance(initialAdvances + offset);
 
     // Method 1 Reverse [SEED] [PID] [PID] [IVS] [IVS]
 
     for (u32 cnt = 0; cnt < maxResults; cnt++, rng.next())
     {
-        Frame frame(cnt + initialFrame);
+        State currentState(cnt + initialAdvances);
         PokeRNG go(rng.getSeed());
 
         u16 high = go.nextUShort();
@@ -104,20 +104,20 @@ QVector<Frame> StationaryGenerator3::generateMethod1Reverse(u32 seed) const
         u16 iv1 = go.nextUShort();
         u16 iv2 = go.nextUShort();
 
-        frame.setPID(high, low);
-        frame.setAbility(low & 1);
-        frame.setGender(low & 255, genderRatio);
-        frame.setNature(frame.getPID() % 25);
-        frame.setShiny(tsv, high ^ low, 8);
+        currentState.setPID(high, low);
+        currentState.setAbility(low & 1);
+        currentState.setGender(low & 255, genderRatio);
+        currentState.setNature(currentState.getPID() % 25);
+        currentState.setShiny(tsv, high ^ low, 8);
 
-        frame.setIVs(iv1, iv2);
-        frame.calculateHiddenPower();
+        currentState.setIVs(iv1, iv2);
+        currentState.calculateHiddenPower();
 
-        if (filter.compareFrame(frame))
+        if (filter.compareState(currentState))
         {
-            frames.append(frame);
+            states.append(currentState);
         }
     }
 
-    return frames;
+    return states;
 }

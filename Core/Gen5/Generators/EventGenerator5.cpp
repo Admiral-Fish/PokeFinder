@@ -22,32 +22,31 @@
 #include <Core/RNG/LCRNG64.hpp>
 #include <Core/Util/Utilities.hpp>
 
-EventGenerator5::EventGenerator5(u32 initialFrame, u32 maxResults, u16 tid, u16 sid, u8 genderRatio, Method method,
-                                 const FrameFilter &filter, const PGF &parameters) :
-    Generator(initialFrame, maxResults, tid, sid, genderRatio, method, filter),
-    parameters(parameters)
+EventGenerator5::EventGenerator5(u32 initialAdvances, u32 maxResults, u16 tid, u16 sid, u8 genderRatio, Method method,
+                                 const StateFilter &filter, const PGF &parameters) :
+    Generator(initialAdvances, maxResults, tid, sid, genderRatio, method, filter), parameters(parameters)
 {
     u16 cardXOR = parameters.getTID() ^ parameters.getSID();
     xorValue = parameters.isEgg() ? (tid ^ sid) : cardXOR;
     tsv = xorValue >> 3;
 
-    advances = parameters.getAdvances();
+    advanceParameter = parameters.getAdvances();
 }
 
-QVector<Frame> EventGenerator5::generate(u64 seed) const
+QVector<State> EventGenerator5::generate(u64 seed) const
 {
-    QVector<Frame> frames;
+    QVector<State> states;
 
     BWRNG rng(seed);
-    rng.advanceFrames(initialFrame + offset - 1);
+    rng.advance(initialAdvances + offset);
 
     for (u32 cnt = 0; cnt < maxResults; cnt++, rng.next())
     {
         // TODO: set seed for chatot pitch
-        Frame frame(initialFrame + cnt);
+        State currentState(initialAdvances + cnt);
 
         BWRNG go(rng.getSeed());
-        go.advanceFrames(advances); // Advances from loading wondercard
+        go.advance(advanceParameter); // Advances from loading wondercard
 
         // IVs
         for (u8 i = 0; i < 6; i++)
@@ -55,17 +54,17 @@ QVector<Frame> EventGenerator5::generate(u64 seed) const
             u8 parameterIV = parameters.getIV(i);
             if (parameterIV == 255)
             {
-                frame.setIVs(i, go.nextUInt() >> 27);
+                currentState.setIVs(i, go.nextUInt() >> 27);
             }
             else
             {
-                frame.setIVs(i, parameterIV);
+                currentState.setIVs(i, parameterIV);
             }
         }
-        frame.calculateHiddenPower();
+        currentState.calculateHiddenPower();
 
         // 2 blanks
-        go.advanceFrames(2);
+        go.advance(2);
 
         u32 pid = go.nextUInt();
 
@@ -74,11 +73,11 @@ QVector<Frame> EventGenerator5::generate(u64 seed) const
         {
             u64 rand = go.nextUInt();
             pid = Utilities::forceGender(pid, rand, parameters.getGender(), genderRatio);
-            frame.setGender(parameters.getGender());
+            currentState.setGender(parameters.getGender());
         }
         else
         {
-            frame.setGender(pid & 0xff, genderRatio);
+            currentState.setGender(pid & 0xff, genderRatio);
         }
 
         if (parameters.getPIDType() == 0) // No shiny
@@ -106,34 +105,34 @@ QVector<Frame> EventGenerator5::generate(u64 seed) const
                 pid &= ~0x10000U;
             }
 
-            frame.setAbility(parameters.getAbilityType());
+            currentState.setAbility(parameters.getAbilityType());
         }
         else if (parameters.getAbilityType() == 3) // Ability flip
         {
             pid ^= 0x10000;
-            frame.setAbility((pid >> 16) & 1);
+            currentState.setAbility((pid >> 16) & 1);
         }
 
-        frame.setPID(pid);
-        frame.setShiny(tsv, ((pid >> 16) ^ (pid & 0xffff)) >> 3, 8);
+        currentState.setPID(pid);
+        currentState.setShiny(tsv, ((pid >> 16) ^ (pid & 0xffff)) >> 3, 8);
 
         if (parameters.getNature() != 0xff)
         {
-            frame.setNature(parameters.getNature());
+            currentState.setNature(parameters.getNature());
         }
         else
         {
             // Unused frame
-            go.advanceFrames(1);
+            go.advance(1);
 
-            frame.setNature(go.nextUInt(25));
+            currentState.setNature(go.nextUInt(25));
         }
 
-        if (filter.compareFrame(frame))
+        if (filter.compareState(currentState))
         {
-            frames.append(frame);
+            states.append(currentState);
         }
     }
 
-    return frames;
+    return states;
 }

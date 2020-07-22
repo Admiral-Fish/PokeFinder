@@ -20,7 +20,7 @@
 #ifndef IDGENERATOR3_HPP
 #define IDGENERATOR3_HPP
 
-#include <Core/Gen3/Frames/IDFrame3.hpp>
+#include <Core/Gen3/States/IDState3.hpp>
 #include <Core/Parents/Generators/IDGenerator.hpp>
 #include <QVector>
 
@@ -28,11 +28,11 @@ class IDGenerator3 : public IDGenerator
 {
 public:
     IDGenerator3() = default;
-    IDGenerator3(u32 initialFrame, u32 maxResults, const IDFilter &filter);
+    IDGenerator3(u32 initialAdvances, u32 maxResults, const IDFilter &filter);
     void setStaticTID(u16 staticTID);
-    QVector<IDFrame3> generateXDColo(u32 seed);
-    QVector<IDFrame3> generateFRLGE(u32 seed);
-    QVector<IDFrame3> generateRS(u32 seed);
+    QVector<IDState3> generateXDColo(u32 seed);
+    QVector<IDState3> generateFRLGE(u32 seed);
+    QVector<IDState3> generateRS(u32 seed);
 
 private:
     u16 staticTID;

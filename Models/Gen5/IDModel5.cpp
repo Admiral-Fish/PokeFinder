@@ -20,7 +20,7 @@
 #include "IDModel5.hpp"
 #include <Core/Util/Translator.hpp>
 
-IDModel5::IDModel5(QObject *parent) : TableModel<IDFrame5>(parent)
+IDModel5::IDModel5(QObject *parent) : TableModel<IDState5>(parent)
 {
 }
 
@@ -34,23 +34,23 @@ QVariant IDModel5::data(const QModelIndex &index, int role) const
 {
     if (role == Qt::DisplayRole)
     {
-        auto frame = model.at(index.row());
+        auto currentState = model.at(index.row());
         switch (index.column())
         {
         case 0:
-            return QString::number(frame.getSeed(), 16).toUpper().rightJustified(16, '0');
+            return QString::number(currentState.getSeed(), 16).toUpper().rightJustified(16, '0');
         case 1:
-            return frame.getInitialFrame();
+            return currentState.getInitialAdvances();
         case 2:
-            return frame.getFrame();
+            return currentState.getAdvance();
         case 3:
-            return frame.getTID();
+            return currentState.getTID();
         case 4:
-            return frame.getSID();
+            return currentState.getSID();
         case 5:
-            return frame.getDateTime().toString("MM-dd-yyyy hh:mm:ss");
+            return currentState.getDateTime().toString("MM-dd-yyyy hh:mm:ss");
         case 6:
-            return Translator::getKeypresses(frame.getKeypress());
+            return Translator::getKeypresses(currentState.getKeypress());
         }
     }
     return QVariant();

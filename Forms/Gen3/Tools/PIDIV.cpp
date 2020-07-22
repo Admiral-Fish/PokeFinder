@@ -62,6 +62,6 @@ void PIDIV::generate()
     model->clearModel();
 
     u32 pid = ui->textBoxPID->getUInt();
-    auto frames = PIDIVCalculator::calculateIVs(pid);
-    model->addItems(frames);
+    auto states = PIDIVCalculator::calculateIVs(pid);
+    model->addItems(states);
 }

@@ -27,19 +27,19 @@ namespace PIDIVCalculator
 {
     namespace
     {
-        void setIVs(PIDIVFrame &frame, u16 iv1, u16 iv2)
+        void setIVs(PIDIVState &currentState, u16 iv1, u16 iv2)
         {
-            frame.setIV(0, iv1 & 0x1f);
-            frame.setIV(1, (iv1 >> 5) & 0x1f);
-            frame.setIV(2, (iv1 >> 10) & 0x1f);
-            frame.setIV(3, (iv2 >> 5) & 0x1f);
-            frame.setIV(4, (iv2 >> 10) & 0x1f);
-            frame.setIV(5, iv2 & 0x1f);
+            currentState.setIV(0, iv1 & 0x1f);
+            currentState.setIV(1, (iv1 >> 5) & 0x1f);
+            currentState.setIV(2, (iv1 >> 10) & 0x1f);
+            currentState.setIV(3, (iv2 >> 5) & 0x1f);
+            currentState.setIV(4, (iv2 >> 10) & 0x1f);
+            currentState.setIV(5, iv2 & 0x1f);
         }
 
-        QVector<PIDIVFrame> calcMethod124(u32 pid)
+        QVector<PIDIVState> calcMethod124(u32 pid)
         {
-            QVector<PIDIVFrame> frames;
+            QVector<PIDIVState> states;
 
             RNGCache cache(Method::Method1);
 
@@ -50,29 +50,29 @@ namespace PIDIVCalculator
                 u32 originSeed = backward.next();
 
                 PokeRNG forward(seed);
-                forward.advanceFrames(1);
+                forward.advance(1);
 
                 u16 iv1 = forward.nextUShort(); // Method 1/4
                 u16 iv2 = forward.nextUShort(); // Method 1/2
                 u16 iv3 = forward.nextUShort(); // Method 2/4
 
-                PIDIVFrame frame1(originSeed, Method::Method1);
-                PIDIVFrame frame2(originSeed, Method::Method2);
-                PIDIVFrame frame3(originSeed, Method::Method4);
+                PIDIVState state1(originSeed, Method::Method1);
+                PIDIVState state2(originSeed, Method::Method2);
+                PIDIVState state3(originSeed, Method::Method4);
 
-                setIVs(frame1, iv1, iv2);
-                setIVs(frame2, iv2, iv3);
-                setIVs(frame3, iv1, iv3);
+                setIVs(state1, iv1, iv2);
+                setIVs(state2, iv2, iv3);
+                setIVs(state3, iv1, iv3);
 
-                frames.append({ frame1, frame2, frame3 });
+                states.append({ state1, state2, state3 });
             }
 
-            return frames;
+            return states;
         }
 
-        QVector<PIDIVFrame> calcMethodXDColo(u32 pid)
+        QVector<PIDIVState> calcMethodXDColo(u32 pid)
         {
-            QVector<PIDIVFrame> frames;
+            QVector<PIDIVState> states;
 
             RNGEuclidean euclidean(Method::XDColo);
 
@@ -80,25 +80,25 @@ namespace PIDIVCalculator
             for (const auto &pair : seeds)
             {
                 XDRNGR backward(pair.first);
-                backward.advanceFrames(1);
+                backward.advance(1);
 
                 u16 iv2 = backward.nextUShort();
                 u16 iv1 = backward.nextUShort();
                 u32 seed = backward.next();
 
-                PIDIVFrame frame(seed, Method::XDColo);
+                PIDIVState currentState(seed, Method::XDColo);
 
-                setIVs(frame, iv1, iv2);
+                setIVs(currentState, iv1, iv2);
 
-                frames.append(frame);
+                states.append(currentState);
             }
 
-            return frames;
+            return states;
         }
 
-        QVector<PIDIVFrame> calcMethodChannel(u32 pid)
+        QVector<PIDIVState> calcMethodChannel(u32 pid)
         {
-            QVector<PIDIVFrame> frames;
+            QVector<PIDIVState> states;
 
             RNGEuclidean euclidean(Method::XDColo);
 
@@ -113,7 +113,7 @@ namespace PIDIVCalculator
                 u32 seed = backward.next();
 
                 XDRNG forward(seed);
-                forward.advanceFrames(1);
+                forward.advance(1);
 
                 u16 high = forward.nextUShort();
                 u16 low = forward.nextUShort();
@@ -126,16 +126,16 @@ namespace PIDIVCalculator
                 u32 val = static_cast<u32>((high << 16) | low);
                 if (val == pid) // PID matches based on SID
                 {
-                    forward.advanceFrames(3);
+                    forward.advance(3);
 
-                    PIDIVFrame frame(seed, Method::Channel);
+                    PIDIVState currentState(seed, Method::Channel);
 
                     for (u8 i : { 0, 1, 2, 5, 3, 4 })
                     {
-                        frame.setIV(i, forward.next() >> 27);
+                        currentState.setIV(i, forward.next() >> 27);
                     }
 
-                    frames.append(frame);
+                    states.append(currentState);
                 }
             }
 
@@ -147,7 +147,7 @@ namespace PIDIVCalculator
                 u32 seed = backward.next();
 
                 XDRNG forward(seed);
-                forward.advanceFrames(1);
+                forward.advance(1);
 
                 u16 high = forward.nextUShort();
                 u16 low = forward.nextUShort();
@@ -160,31 +160,31 @@ namespace PIDIVCalculator
                 u32 val = static_cast<u32>((high << 16) | low);
                 if (val == pid) // PID matches based on SID
                 {
-                    forward.advanceFrames(3);
+                    forward.advance(3);
 
-                    PIDIVFrame frame(seed, Method::Channel);
+                    PIDIVState currentState(seed, Method::Channel);
 
                     for (u8 i : { 0, 1, 2, 5, 3, 4 })
                     {
-                        frame.setIV(i, forward.next() >> 27);
+                        currentState.setIV(i, forward.next() >> 27);
                     }
 
-                    frames.append(frame);
+                    states.append(currentState);
                 }
             }
 
-            return frames;
+            return states;
         }
     }
 
-    QVector<PIDIVFrame> calculateIVs(u32 pid)
+    QVector<PIDIVState> calculateIVs(u32 pid)
     {
-        QVector<PIDIVFrame> frames;
+        QVector<PIDIVState> states;
 
-        frames.append(calcMethod124(pid));
-        frames.append(calcMethodXDColo(pid));
-        frames.append(calcMethodChannel(pid));
+        states.append(calcMethod124(pid));
+        states.append(calcMethodXDColo(pid));
+        states.append(calcMethodChannel(pid));
 
-        return frames;
+        return states;
     }
 }

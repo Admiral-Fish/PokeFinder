@@ -23,7 +23,7 @@
 #include <Core/Util/Global.hpp>
 #include <QWidget>
 
-class GameCubeRTCFrame;
+class GameCubeRTCState;
 class GameCubeRTCModel;
 
 namespace Ui
@@ -47,7 +47,7 @@ private:
 
 private slots:
     void search();
-    void updateTableView(const QVector<GameCubeRTCFrame> &results);
+    void updateTableView(const QVector<GameCubeRTCState> &results);
 };
 
 #endif // GAMECUBERTC_HPP

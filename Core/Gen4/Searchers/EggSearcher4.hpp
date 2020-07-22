@@ -28,12 +28,12 @@ class EggSearcher4 : public Searcher
 {
 public:
     EggSearcher4() = default;
-    EggSearcher4(u16 tid, u16 sid, u8 genderRatio, Method method, const FrameFilter &filter);
+    EggSearcher4(u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter);
     void setGenerators(const EggGenerator4 &generatorIV, const EggGenerator4 &generatorPID);
     void setType(int type);
     void startSearch(u32 minDelay, u32 maxDelay);
     void cancelSearch();
-    QVector<EggFrame4> getResults();
+    QVector<EggState4> getResults();
     int getProgress() const;
 
 private:
@@ -43,7 +43,7 @@ private:
 
     bool searching;
     int progress;
-    QVector<EggFrame4> results;
+    QVector<EggState4> results;
     std::mutex mutex;
 };
 

@@ -20,16 +20,16 @@
 #include "StationaryGenerator4.hpp"
 #include <Core/Enum/Lead.hpp>
 #include <Core/Enum/Method.hpp>
-#include <Core/Parents/Filters/FrameFilter.hpp>
+#include <Core/Parents/Filters/StateFilter.hpp>
 #include <Core/RNG/LCRNG.hpp>
 
-StationaryGenerator4::StationaryGenerator4(u32 initialFrame, u32 maxResults, u16 tid, u16 sid, u8 genderRatio, Method method,
-                                           const FrameFilter &filter) :
-    StationaryGenerator(initialFrame, maxResults, tid, sid, genderRatio, method, filter)
+StationaryGenerator4::StationaryGenerator4(u32 initialAdvances, u32 maxResults, u16 tid, u16 sid, u8 genderRatio, Method method,
+                                           const StateFilter &filter) :
+    StationaryGenerator(initialAdvances, maxResults, tid, sid, genderRatio, method, filter)
 {
 }
 
-QVector<Frame> StationaryGenerator4::generate(u32 seed) const
+QVector<State> StationaryGenerator4::generate(u32 seed) const
 {
     switch (method)
     {
@@ -42,21 +42,21 @@ QVector<Frame> StationaryGenerator4::generate(u32 seed) const
     case Method::WondercardIVs:
         return generateWonderCardIVs(seed);
     default:
-        return QVector<Frame>();
+        return QVector<State>();
     }
 }
 
-QVector<Frame> StationaryGenerator4::generateMethod1(u32 seed) const
+QVector<State> StationaryGenerator4::generateMethod1(u32 seed) const
 {
-    QVector<Frame> frames;
+    QVector<State> states;
 
     PokeRNG rng(seed);
-    rng.advanceFrames(initialFrame - 1 + offset);
+    rng.advance(initialAdvances + offset);
 
     // Method 1 [SEED] [PID] [PID] [IVS] [IVS]
     for (u32 cnt = 0; cnt < maxResults; cnt++, rng.next())
     {
-        Frame frame(initialFrame + cnt);
+        State currentState(initialAdvances + cnt);
         PokeRNG go(rng.getSeed());
 
         u16 low = go.nextUShort();
@@ -65,31 +65,31 @@ QVector<Frame> StationaryGenerator4::generateMethod1(u32 seed) const
         u16 iv1 = go.nextUShort();
         u16 iv2 = go.nextUShort();
 
-        frame.setPID(high, low);
-        frame.setShiny(tsv, high ^ low, 8);
-        frame.setAbility(low & 1);
-        frame.setGender(low & 255, genderRatio);
-        frame.setNature(frame.getPID() % 25);
+        currentState.setPID(high, low);
+        currentState.setShiny(tsv, high ^ low, 8);
+        currentState.setAbility(low & 1);
+        currentState.setGender(low & 255, genderRatio);
+        currentState.setNature(currentState.getPID() % 25);
 
-        frame.setIVs(iv1, iv2);
-        frame.calculateHiddenPower();
+        currentState.setIVs(iv1, iv2);
+        currentState.calculateHiddenPower();
 
-        if (filter.compareFrame(frame))
+        if (filter.compareState(currentState))
         {
-            frame.setSeed(low);
-            frames.append(frame);
+            currentState.setSeed(low);
+            states.append(currentState);
         }
     }
 
-    return frames;
+    return states;
 }
 
-QVector<Frame> StationaryGenerator4::generateMethodJ(u32 seed) const
+QVector<State> StationaryGenerator4::generateMethodJ(u32 seed) const
 {
-    QVector<Frame> frames;
+    QVector<State> states;
 
     PokeRNG rng(seed);
-    rng.advanceFrames(initialFrame - 1 + offset);
+    rng.advance(initialAdvances + offset);
 
     u8 buffer = 0;
     switch (lead)
@@ -115,18 +115,18 @@ QVector<Frame> StationaryGenerator4::generateMethodJ(u32 seed) const
 
     for (u32 cnt = 0; cnt < maxResults; cnt++, rng.next())
     {
-        Frame frame(initialFrame + cnt);
+        State currentState(initialAdvances + cnt);
 
         PokeRNG go(rng.getSeed());
-        frame.setSeed(go.getSeed());
+        currentState.setSeed(go.getSeed());
 
         u32 pid = 0;
         switch (lead)
         {
         case Lead::None:
             // Get hunt nature
-            frame.setNature(go.nextUShort() / 0xa3e);
-            if (!filter.compareNature(frame))
+            currentState.setNature(go.nextUShort() / 0xa3e);
+            if (!filter.compareNature(currentState))
             {
                 continue;
             }
@@ -137,21 +137,21 @@ QVector<Frame> StationaryGenerator4::generateMethodJ(u32 seed) const
                 u16 low = go.nextUShort();
                 u16 high = go.nextUShort();
                 pid = (high << 16) | low;
-            } while (pid % 25 != frame.getNature());
-            frame.setPID(pid);
+            } while (pid % 25 != currentState.getNature());
+            currentState.setPID(pid);
 
             break;
         case Lead::Synchronize:
             if ((go.nextUShort() >> 15) == 0) // Successful synch
             {
-                frame.setNature(synchNature);
+                currentState.setNature(synchNature);
             }
             else // Failed synch
             {
-                frame.setNature(go.nextUShort() / 0xa3e);
+                currentState.setNature(go.nextUShort() / 0xa3e);
             }
 
-            if (!filter.compareNature(frame))
+            if (!filter.compareNature(currentState))
             {
                 continue;
             }
@@ -162,30 +162,30 @@ QVector<Frame> StationaryGenerator4::generateMethodJ(u32 seed) const
                 u16 low = go.nextUShort();
                 u16 high = go.nextUShort();
                 pid = (high << 16) | low;
-            } while (pid % 25 != frame.getNature());
-            frame.setPID(pid);
+            } while (pid % 25 != currentState.getNature());
+            currentState.setPID(pid);
 
             break;
         default: // Default to cover all cute charm cases
             if ((go.nextUShort() / 0x5556) != 0) // Successful cute charm
             {
                 // Get nature
-                frame.setNature(go.nextUShort() / 0xa3e);
+                currentState.setNature(go.nextUShort() / 0xa3e);
 
-                if (!filter.compareNature(frame))
+                if (!filter.compareNature(currentState))
                 {
                     continue;
                 }
 
                 // Cute charm doesn't hunt for a valid PID, just uses buffer and target nature
-                frame.setPID(buffer + frame.getNature());
+                currentState.setPID(buffer + currentState.getNature());
             }
             else // Failed cute charm
             {
                 // Get nature
-                frame.setNature(go.nextUShort() / 0xa3e);
+                currentState.setNature(go.nextUShort() / 0xa3e);
 
-                if (!filter.compareNature(frame))
+                if (!filter.compareNature(currentState))
                 {
                     continue;
                 }
@@ -196,38 +196,38 @@ QVector<Frame> StationaryGenerator4::generateMethodJ(u32 seed) const
                     u16 low = go.nextUShort();
                     u16 high = go.nextUShort();
                     pid = (high << 16) | low;
-                } while (pid % 25 != frame.getNature());
-                frame.setPID(pid);
+                } while (pid % 25 != currentState.getNature());
+                currentState.setPID(pid);
             }
 
             break;
         }
 
-        frame.setAbility(pid & 1);
-        frame.setGender(pid & 255, genderRatio);
-        frame.setShiny(tsv, (pid >> 16) ^ (pid & 0xffff), 8);
+        currentState.setAbility(pid & 1);
+        currentState.setGender(pid & 255, genderRatio);
+        currentState.setShiny(tsv, (pid >> 16) ^ (pid & 0xffff), 8);
 
         u16 iv1 = go.nextUShort();
         u16 iv2 = go.nextUShort();
 
-        frame.setIVs(iv1, iv2);
-        frame.calculateHiddenPower();
+        currentState.setIVs(iv1, iv2);
+        currentState.calculateHiddenPower();
 
-        if (filter.compareFrame(frame))
+        if (filter.compareState(currentState))
         {
-            frames.append(frame);
+            states.append(currentState);
         }
     }
 
-    return frames;
+    return states;
 }
 
-QVector<Frame> StationaryGenerator4::generateMethodK(u32 seed) const
+QVector<State> StationaryGenerator4::generateMethodK(u32 seed) const
 {
-    QVector<Frame> frames;
+    QVector<State> states;
 
     PokeRNG rng(seed);
-    rng.advanceFrames(initialFrame - 1 + offset);
+    rng.advance(initialAdvances + offset);
 
     u8 buffer = 0;
     switch (lead)
@@ -253,19 +253,19 @@ QVector<Frame> StationaryGenerator4::generateMethodK(u32 seed) const
 
     for (u32 cnt = 0; cnt < maxResults; cnt++, rng.next())
     {
-        Frame frame(initialFrame + cnt);
+        State currentState(initialAdvances + cnt);
 
         PokeRNG go(rng.getSeed());
-        frame.setSeed(go.getSeed());
+        currentState.setSeed(go.getSeed());
 
         u32 pid = 0;
         switch (lead)
         {
         case Lead::None:
             // Get hunt nature
-            frame.setNature(go.nextUShort() % 25);
+            currentState.setNature(go.nextUShort() % 25);
 
-            if (!filter.compareNature(frame))
+            if (!filter.compareNature(currentState))
             {
                 continue;
             }
@@ -276,21 +276,21 @@ QVector<Frame> StationaryGenerator4::generateMethodK(u32 seed) const
                 u16 low = go.nextUShort();
                 u16 high = go.nextUShort();
                 pid = (high << 16) | low;
-            } while (pid % 25 != frame.getNature());
-            frame.setPID(pid);
+            } while (pid % 25 != currentState.getNature());
+            currentState.setPID(pid);
 
             break;
         case Lead::Synchronize:
             if ((go.nextUShort() & 1) == 0) // Successful synch
             {
-                frame.setNature(synchNature);
+                currentState.setNature(synchNature);
             }
             else // Failed synch
             {
-                frame.setNature(go.nextUShort() % 25);
+                currentState.setNature(go.nextUShort() % 25);
             }
 
-            if (!filter.compareNature(frame))
+            if (!filter.compareNature(currentState))
             {
                 continue;
             }
@@ -301,29 +301,29 @@ QVector<Frame> StationaryGenerator4::generateMethodK(u32 seed) const
                 u16 low = go.nextUShort();
                 u16 high = go.nextUShort();
                 pid = (high << 16) | low;
-            } while (pid % 25 != frame.getNature());
-            frame.setPID(pid);
+            } while (pid % 25 != currentState.getNature());
+            currentState.setPID(pid);
 
             break;
         default: // Default to cover all cute charm cases
             if ((go.nextUShort() % 3) != 0) // Successfull cute charm
             {
                 // Get hunt nature
-                frame.setNature(go.nextUShort() % 25);
+                currentState.setNature(go.nextUShort() % 25);
 
-                if (!filter.compareNature(frame))
+                if (!filter.compareNature(currentState))
                 {
                     continue;
                 }
 
-                frame.setPID(buffer + frame.getNature());
+                currentState.setPID(buffer + currentState.getNature());
             }
             else // Failed cutecharm
             {
                 // Get hunt nature
-                frame.setNature(go.nextUShort() % 25);
+                currentState.setNature(go.nextUShort() % 25);
 
-                if (!filter.compareNature(frame))
+                if (!filter.compareNature(currentState))
                 {
                     continue;
                 }
@@ -334,59 +334,59 @@ QVector<Frame> StationaryGenerator4::generateMethodK(u32 seed) const
                     u16 low = go.nextUShort();
                     u16 high = go.nextUShort();
                     pid = (high << 16) | low;
-                } while (pid % 25 != frame.getNature());
+                } while (pid % 25 != currentState.getNature());
 
-                frame.setPID(pid);
+                currentState.setPID(pid);
             }
 
             break;
         }
 
-        frame.setAbility(pid & 1);
-        frame.setGender(pid & 255, genderRatio);
-        frame.setShiny(tsv, (pid >> 16) ^ (pid & 0xffff), 8);
+        currentState.setAbility(pid & 1);
+        currentState.setGender(pid & 255, genderRatio);
+        currentState.setShiny(tsv, (pid >> 16) ^ (pid & 0xffff), 8);
 
         u16 iv1 = go.nextUShort();
         u16 iv2 = go.nextUShort();
 
-        frame.setIVs(iv1, iv2);
-        frame.calculateHiddenPower();
+        currentState.setIVs(iv1, iv2);
+        currentState.calculateHiddenPower();
 
-        if (filter.compareFrame(frame))
+        if (filter.compareState(currentState))
         {
-            frames.append(frame);
+            states.append(currentState);
         }
     }
 
-    return frames;
+    return states;
 }
 
-QVector<Frame> StationaryGenerator4::generateWonderCardIVs(u32 seed) const
+QVector<State> StationaryGenerator4::generateWonderCardIVs(u32 seed) const
 {
-    QVector<Frame> frames;
+    QVector<State> states;
 
     PokeRNG rng(seed);
-    rng.advanceFrames(initialFrame - 1 + offset);
+    rng.advance(initialAdvances + offset);
 
     // Wondercard IVs [SEED] [IVS] [IVS]
 
     for (u32 cnt = 0; cnt < maxResults; cnt++, rng.next())
     {
-        Frame frame(initialFrame + cnt);
+        State currentState(initialAdvances + cnt);
         PokeRNG go(rng.getSeed());
 
         u16 iv1 = go.nextUShort();
         u16 iv2 = go.nextUShort();
 
-        frame.setIVs(iv1, iv2);
-        frame.calculateHiddenPower();
+        currentState.setIVs(iv1, iv2);
+        currentState.calculateHiddenPower();
 
-        if (filter.compareIVs(frame))
+        if (filter.compareIVs(currentState))
         {
-            frame.setSeed(iv1);
-            frames.append(frame);
+            currentState.setSeed(iv1);
+            states.append(currentState);
         }
     }
 
-    return frames;
+    return states;
 }

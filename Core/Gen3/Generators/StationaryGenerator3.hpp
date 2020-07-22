@@ -20,20 +20,20 @@
 #ifndef STATIONARYGENERATOR3_HPP
 #define STATIONARYGENERATOR3_HPP
 
-#include <Core/Parents/Frames/Frame.hpp>
 #include <Core/Parents/Generators/StationaryGenerator.hpp>
+#include <Core/Parents/States/State.hpp>
 #include <QVector>
 
 class StationaryGenerator3 : public StationaryGenerator
 {
 public:
     StationaryGenerator3() = default;
-    StationaryGenerator3(u32 initialFrame, u32 maxResults, u16 tid, u16 sid, u8 genderRatio, Method method, const FrameFilter &filter);
-    QVector<Frame> generate(u32 seed) const;
+    StationaryGenerator3(u32 initialAdvances, u32 maxResults, u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter);
+    QVector<State> generate(u32 seed) const;
 
 private:
-    QVector<Frame> generateMethod124(u32 seed) const;
-    QVector<Frame> generateMethod1Reverse(u32 seed) const;
+    QVector<State> generateMethod124(u32 seed) const;
+    QVector<State> generateMethod1Reverse(u32 seed) const;
 };
 
 #endif // STATIONARYGENERATOR3_HPP

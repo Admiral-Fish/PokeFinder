@@ -22,7 +22,7 @@
 #include <Core/Enum/ShadowType.hpp>
 #include <Core/RNG/LCRNG.hpp>
 
-GameCubeSearcher::GameCubeSearcher(u16 tid, u16 sid, u8 genderRatio, Method method, const FrameFilter &filter) :
+GameCubeSearcher::GameCubeSearcher(u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter) :
     Searcher(tid, sid, genderRatio, method, filter), euclidean(method), searching(false), progress(0)
 {
 }
@@ -54,10 +54,10 @@ void GameCubeSearcher::startSearch(const QVector<u8> &min, const QVector<u8> &ma
                                 return;
                             }
 
-                            QVector<GameCubeFrame> frames = search(hp, atk, def, spa, spd, spe);
+                            QVector<GameCubeState> states = search(hp, atk, def, spa, spd, spe);
 
                             std::lock_guard<std::mutex> guard(mutex);
-                            results.append(frames);
+                            results.append(states);
                             progress++;
                         }
                     }
@@ -72,7 +72,7 @@ void GameCubeSearcher::cancelSearch()
     searching = false;
 }
 
-QVector<GameCubeFrame> GameCubeSearcher::getResults()
+QVector<GameCubeState> GameCubeSearcher::getResults()
 {
     std::lock_guard<std::mutex> guard(mutex);
     auto data(results);
@@ -91,7 +91,7 @@ void GameCubeSearcher::setupNatureLock(u8 num)
     type = lock.getType();
 }
 
-QVector<GameCubeFrame> GameCubeSearcher::search(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe)
+QVector<GameCubeState> GameCubeSearcher::search(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe)
 {
     switch (method)
     {
@@ -102,72 +102,72 @@ QVector<GameCubeFrame> GameCubeSearcher::search(u8 hp, u8 atk, u8 def, u8 spa, u
     case Method::Colo:
         return searchColoShadow(hp, atk, def, spa, spd, spe);
     default:
-        return QVector<GameCubeFrame>();
+        return QVector<GameCubeState>();
     }
 }
 
-QVector<GameCubeFrame> GameCubeSearcher::searchXDColo(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe)
+QVector<GameCubeState> GameCubeSearcher::searchXDColo(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe)
 {
-    QVector<GameCubeFrame> frames;
+    QVector<GameCubeState> states;
 
-    GameCubeFrame frame;
-    frame.setIVs(hp, atk, def, spa, spd, spe);
-    frame.calculateHiddenPower();
-    if (!filter.compareHiddenPower(frame))
+    GameCubeState currentState;
+    currentState.setIVs(hp, atk, def, spa, spd, spe);
+    currentState.calculateHiddenPower();
+    if (!filter.compareHiddenPower(currentState))
     {
-        return frames;
+        return states;
     }
 
     QVector<QPair<u32, u32>> seeds = euclidean.recoverLower16BitsIV(hp, atk, def, spa, spd, spe);
     for (const auto &pair : seeds)
     {
-        // Setup normal frame
+        // Setup normal state
         XDRNG rng(pair.second);
 
         u8 ability = rng.nextUShort() & 1;
         u16 high = rng.nextUShort();
         u16 low = rng.nextUShort();
 
-        frame.setSeed(pair.first * 0xB9B33155 + 0xA170F641);
-        frame.setPID(high, low);
-        frame.setAbility(ability);
-        frame.setGender(low & 255, genderRatio);
-        frame.setNature(frame.getPID() % 25);
-        frame.setShiny(tsv, high ^ low, 8);
+        currentState.setSeed(pair.first * 0xB9B33155 + 0xA170F641);
+        currentState.setPID(high, low);
+        currentState.setAbility(ability);
+        currentState.setGender(low & 255, genderRatio);
+        currentState.setNature(currentState.getPID() % 25);
+        currentState.setShiny(tsv, high ^ low, 8);
 
-        if (filter.comparePID(frame))
+        if (filter.comparePID(currentState))
         {
-            frames.append(frame);
+            states.append(currentState);
         }
 
-        // Setup XORed frame
-        frame.setPID(frame.getPID() ^ 0x80008000);
-        frame.setNature(frame.getPID() % 25);
-        if (filter.comparePID(frame))
+        // Setup XORed state
+        currentState.setPID(currentState.getPID() ^ 0x80008000);
+        currentState.setNature(currentState.getPID() % 25);
+        if (filter.comparePID(currentState))
         {
-            frame.setSeed(frame.getSeed() ^ 0x80000000);
-            frames.append(frame);
+            currentState.setSeed(currentState.getSeed() ^ 0x80000000);
+            states.append(currentState);
         }
     }
-    return frames;
+    return states;
 }
 
-QVector<GameCubeFrame> GameCubeSearcher::searchXDShadow(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe)
+QVector<GameCubeState> GameCubeSearcher::searchXDShadow(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe)
 {
-    QVector<GameCubeFrame> frames;
+    QVector<GameCubeState> states;
 
-    GameCubeFrame frame;
-    frame.setIVs(hp, atk, def, spa, spd, spe);
-    frame.calculateHiddenPower();
-    if (!filter.compareHiddenPower(frame))
+    GameCubeState currentState;
+    currentState.setIVs(hp, atk, def, spa, spd, spe);
+    currentState.calculateHiddenPower();
+    if (!filter.compareHiddenPower(currentState))
     {
-        return frames;
+        return states;
     }
 
     QVector<QPair<u32, u32>> seeds = euclidean.recoverLower16BitsIV(hp, atk, def, spa, spd, spe);
     for (const auto &pair : seeds)
     {
-        // Setup normal frame
+        // Setup normal state
         XDRNG rng(pair.second);
 
         u8 ability = rng.nextUShort() & 1;
@@ -180,58 +180,58 @@ QVector<GameCubeFrame> GameCubeSearcher::searchXDShadow(u8 hp, u8 atk, u8 def, u
             low = rng.nextUShort();
         }
 
-        frame.setSeed(pair.first * 0xB9B33155 + 0xA170F641);
-        frame.setPID(high, low);
-        frame.setAbility(ability);
-        frame.setGender(low & 255, genderRatio);
-        frame.setNature(frame.getPID() % 25);
-        frame.setShiny(0);
+        currentState.setSeed(pair.first * 0xB9B33155 + 0xA170F641);
+        currentState.setPID(high, low);
+        currentState.setAbility(ability);
+        currentState.setGender(low & 255, genderRatio);
+        currentState.setNature(currentState.getPID() % 25);
+        currentState.setShiny(0);
 
-        if (filter.comparePID(frame))
+        if (filter.comparePID(currentState))
         {
             switch (type)
             {
             case ShadowType::SingleLock:
-                if (lock.singleNL(frame.getSeed(), tsv))
+                if (lock.singleNL(currentState.getSeed(), tsv))
                 {
-                    frame.setInfo(0);
-                    frames.append(frame); // If this seed passes it is impossible for the sister spread to generate
+                    currentState.setInfo(0);
+                    states.append(currentState); // If this seed passes it is impossible for the sister spread to generate
                     continue;
                 }
                 break;
             case ShadowType::FirstShadow:
-                if (lock.firstShadowNormal(frame.getSeed(), tsv))
+                if (lock.firstShadowNormal(currentState.getSeed(), tsv))
                 {
-                    frame.setInfo(0);
-                    frames.append(frame); // If this seed passes it is impossible for the sister spread to generate
+                    currentState.setInfo(0);
+                    states.append(currentState); // If this seed passes it is impossible for the sister spread to generate
                     continue;
                 }
                 break;
             case ShadowType::SecondShadow:
-                if (lock.firstShadowUnset(frame.getSeed(), tsv))
+                if (lock.firstShadowUnset(currentState.getSeed(), tsv))
                 {
-                    frame.setInfo(1); // Also unlikely for the other methods of encounter to pass
-                    frames.append(frame); // If this seed passes it is impossible for the sister spread to generate
+                    currentState.setInfo(1); // Also unlikely for the other methods of encounter to pass
+                    states.append(currentState); // If this seed passes it is impossible for the sister spread to generate
                     continue;
                 }
-                if (lock.firstShadowSet(frame.getSeed(), tsv))
+                if (lock.firstShadowSet(currentState.getSeed(), tsv))
                 {
-                    frame.setInfo(2); // Also unlikely for the other methods of encounter to pass
-                    frames.append(frame); // If this seed passes it is impossible for the sister spread to generate
+                    currentState.setInfo(2); // Also unlikely for the other methods of encounter to pass
+                    states.append(currentState); // If this seed passes it is impossible for the sister spread to generate
                     continue;
                 }
                 break;
             case ShadowType::Salamence:
-                if (lock.salamenceUnset(frame.getSeed(), tsv))
+                if (lock.salamenceUnset(currentState.getSeed(), tsv))
                 {
-                    frame.setInfo(1); // Also unlikely for the other methods of encounter to pass
-                    frames.append(frame); // If this seed passes it is impossible for the sister spread to generate
+                    currentState.setInfo(1); // Also unlikely for the other methods of encounter to pass
+                    states.append(currentState); // If this seed passes it is impossible for the sister spread to generate
                     continue;
                 }
-                if (lock.salamenceSet(frame.getSeed(), tsv))
+                if (lock.salamenceSet(currentState.getSeed(), tsv))
                 {
-                    frame.setInfo(2); // Also unlikely for the other methods of encounter to pass
-                    frames.append(frame); // If this seed passes it is impossible for the sister spread to generate
+                    currentState.setInfo(2); // Also unlikely for the other methods of encounter to pass
+                    states.append(currentState); // If this seed passes it is impossible for the sister spread to generate
                     continue;
                 }
                 break;
@@ -240,51 +240,51 @@ QVector<GameCubeFrame> GameCubeSearcher::searchXDShadow(u8 hp, u8 atk, u8 def, u
             }
         }
 
-        // Setup XORed frame
-        frame.setSeed(frame.getSeed() ^ 0x80000000);
-        frame.setPID(frame.getPID() ^ 0x80008000);
-        frame.setNature(frame.getPID() % 25);
+        // Setup XORed state
+        currentState.setSeed(currentState.getSeed() ^ 0x80000000);
+        currentState.setPID(currentState.getPID() ^ 0x80008000);
+        currentState.setNature(currentState.getPID() % 25);
 
-        if (filter.comparePID(frame))
+        if (filter.comparePID(currentState))
         {
             switch (type)
             {
             case ShadowType::SingleLock:
-                if (lock.singleNL(frame.getSeed(), tsv))
+                if (lock.singleNL(currentState.getSeed(), tsv))
                 {
-                    frame.setInfo(0);
-                    frames.append(frame);
+                    currentState.setInfo(0);
+                    states.append(currentState);
                 }
                 break;
             case ShadowType::FirstShadow:
-                if (lock.firstShadowNormal(frame.getSeed(), tsv))
+                if (lock.firstShadowNormal(currentState.getSeed(), tsv))
                 {
-                    frame.setInfo(0);
-                    frames.append(frame);
+                    currentState.setInfo(0);
+                    states.append(currentState);
                 }
                 break;
             case ShadowType::SecondShadow:
-                if (lock.firstShadowUnset(frame.getSeed(), tsv))
+                if (lock.firstShadowUnset(currentState.getSeed(), tsv))
                 {
-                    frame.setInfo(1);
-                    frames.append(frame);
+                    currentState.setInfo(1);
+                    states.append(currentState);
                 }
-                else if (lock.firstShadowSet(frame.getSeed(), tsv))
+                else if (lock.firstShadowSet(currentState.getSeed(), tsv))
                 {
-                    frame.setInfo(2);
-                    frames.append(frame);
+                    currentState.setInfo(2);
+                    states.append(currentState);
                 }
                 break;
             case ShadowType::Salamence:
-                if (lock.salamenceUnset(frame.getSeed(), tsv))
+                if (lock.salamenceUnset(currentState.getSeed(), tsv))
                 {
-                    frame.setInfo(1);
-                    frames.append(frame);
+                    currentState.setInfo(1);
+                    states.append(currentState);
                 }
-                else if (lock.salamenceSet(frame.getSeed(), tsv))
+                else if (lock.salamenceSet(currentState.getSeed(), tsv))
                 {
-                    frame.setInfo(2);
-                    frames.append(frame);
+                    currentState.setInfo(2);
+                    states.append(currentState);
                 }
                 break;
             default:
@@ -292,55 +292,55 @@ QVector<GameCubeFrame> GameCubeSearcher::searchXDShadow(u8 hp, u8 atk, u8 def, u
             }
         }
     }
-    return frames;
+    return states;
 }
 
-QVector<GameCubeFrame> GameCubeSearcher::searchColoShadow(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe)
+QVector<GameCubeState> GameCubeSearcher::searchColoShadow(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe)
 {
-    QVector<GameCubeFrame> frames;
+    QVector<GameCubeState> states;
 
-    GameCubeFrame frame;
-    frame.setIVs(hp, atk, def, spa, spd, spe);
-    frame.calculateHiddenPower();
-    if (!filter.compareHiddenPower(frame))
+    GameCubeState currentState;
+    currentState.setIVs(hp, atk, def, spa, spd, spe);
+    currentState.calculateHiddenPower();
+    if (!filter.compareHiddenPower(currentState))
     {
-        return frames;
+        return states;
     }
 
     QVector<QPair<u32, u32>> seeds = euclidean.recoverLower16BitsIV(hp, atk, def, spa, spd, spe);
     for (const auto &pair : seeds)
     {
-        // Setup normal frame
+        // Setup normal state
         XDRNG rng(pair.second);
 
         u8 ability = rng.nextUShort() & 1;
         u16 high = rng.nextUShort();
         u16 low = rng.nextUShort();
 
-        frame.setSeed(pair.first * 0xB9B33155 + 0xA170F641);
-        frame.setPID(high, low);
-        frame.setAbility(ability);
-        frame.setGender(low & 255, genderRatio);
-        frame.setNature(frame.getPID() % 25);
-        frame.setShiny(tsv, high ^ low, 8);
+        currentState.setSeed(pair.first * 0xB9B33155 + 0xA170F641);
+        currentState.setPID(high, low);
+        currentState.setAbility(ability);
+        currentState.setGender(low & 255, genderRatio);
+        currentState.setNature(currentState.getPID() % 25);
+        currentState.setShiny(tsv, high ^ low, 8);
 
-        if (filter.comparePID(frame))
+        if (filter.comparePID(currentState))
         {
             switch (type)
             {
             case ShadowType::FirstShadow:
-                if (lock.coloShadow(frame.getSeed()))
+                if (lock.coloShadow(currentState.getSeed()))
                 {
-                    frame.setInfo(0);
-                    frames.append(frame); // If this seed passes it is impossible for the sister spread to generate
+                    currentState.setInfo(0);
+                    states.append(currentState); // If this seed passes it is impossible for the sister spread to generate
                     continue;
                 }
                 break;
             case ShadowType::EReader:
-                if (lock.ereader(frame.getSeed(), frame.getPID()))
+                if (lock.ereader(currentState.getSeed(), currentState.getPID()))
                 {
-                    frame.setInfo(0);
-                    frames.append(frame); // If this seed passes it is impossible for the sister spread to generate
+                    currentState.setInfo(0);
+                    states.append(currentState); // If this seed passes it is impossible for the sister spread to generate
                     continue;
                 }
                 break;
@@ -349,27 +349,27 @@ QVector<GameCubeFrame> GameCubeSearcher::searchColoShadow(u8 hp, u8 atk, u8 def,
             }
         }
 
-        // Setup XORed frame
-        frame.setSeed(frame.getSeed() ^ 0x80000000);
-        frame.setPID(frame.getPID() ^ 0x80008000);
-        frame.setNature(frame.getPID() % 25);
+        // Setup XORed state
+        currentState.setSeed(currentState.getSeed() ^ 0x80000000);
+        currentState.setPID(currentState.getPID() ^ 0x80008000);
+        currentState.setNature(currentState.getPID() % 25);
 
-        if (filter.comparePID(frame))
+        if (filter.comparePID(currentState))
         {
             switch (type)
             {
             case ShadowType::FirstShadow:
-                if (lock.coloShadow(frame.getSeed()))
+                if (lock.coloShadow(currentState.getSeed()))
                 {
-                    frame.setInfo(0);
-                    frames.append(frame);
+                    currentState.setInfo(0);
+                    states.append(currentState);
                 }
                 break;
             case ShadowType::EReader:
-                if (lock.ereader(frame.getSeed(), frame.getPID()))
+                if (lock.ereader(currentState.getSeed(), currentState.getPID()))
                 {
-                    frame.setInfo(0);
-                    frames.append(frame); // If this seed passes it is impossible for the sister spread to generate
+                    currentState.setInfo(0);
+                    states.append(currentState); // If this seed passes it is impossible for the sister spread to generate
                     continue;
                 }
                 break;
@@ -378,7 +378,7 @@ QVector<GameCubeFrame> GameCubeSearcher::searchColoShadow(u8 hp, u8 atk, u8 def,
             }
         }
     }
-    return frames;
+    return states;
 }
 
 void GameCubeSearcher::searchChannel(u8 minSpD, u8 maxSpD)
@@ -403,15 +403,15 @@ void GameCubeSearcher::searchChannel(u8 minSpD, u8 maxSpD)
             u8 atk = rng.nextUShort() >> 11;
             u8 hp = rng.nextUShort() >> 11;
 
-            GameCubeFrame frame;
-            frame.setIVs(hp, atk, def, spa, spd, spe);
-            frame.calculateHiddenPower();
-            if (!filter.compareIVs(frame))
+            GameCubeState currentState;
+            currentState.setIVs(hp, atk, def, spa, spd, spe);
+            currentState.calculateHiddenPower();
+            if (!filter.compareIVs(currentState))
             {
                 continue;
             }
 
-            rng.advanceFrames(3);
+            rng.advance(3);
 
             // Calculate PID
             u16 low = rng.nextUShort();
@@ -424,19 +424,19 @@ void GameCubeSearcher::searchChannel(u8 minSpD, u8 maxSpD)
                 high ^= 0x8000;
             }
 
-            frame.setPID(high, low);
-            frame.setAbility(low & 1);
-            frame.setGender(low & 255, genderRatio);
-            frame.setNature(frame.getPID() % 25);
-            frame.setShiny(40122 ^ sid, high ^ low, 8);
+            currentState.setPID(high, low);
+            currentState.setAbility(low & 1);
+            currentState.setGender(low & 255, genderRatio);
+            currentState.setNature(currentState.getPID() % 25);
+            currentState.setShiny(40122 ^ sid, high ^ low, 8);
 
             u32 originSeed = rng.next();
-            if (filter.comparePID(frame) && validateJirachi(originSeed))
+            if (filter.comparePID(currentState) && validateJirachi(originSeed))
             {
-                frame.setSeed(originSeed);
+                currentState.setSeed(originSeed);
 
                 std::lock_guard<std::mutex> lock(mutex);
-                results.append(frame);
+                results.append(currentState);
             }
         }
     }
@@ -450,7 +450,7 @@ bool GameCubeSearcher::validateJirachi(u32 seed)
     u16 num2 = rng.nextUShort();
     u16 num3 = rng.nextUShort();
 
-    rng.advanceFrames(3);
+    rng.advance(3);
     if (num1 <= 0x4000) // 6 advances
     {
         if (validateMenu(rng.getSeed()))
@@ -459,7 +459,7 @@ bool GameCubeSearcher::validateJirachi(u32 seed)
         }
     }
 
-    rng.advanceFrames(1);
+    rng.advance(1);
     if (num2 > 0x4000 && num1 <= 0x547a) // 7 advances
     {
         if (validateMenu(rng.getSeed()))
@@ -468,7 +468,7 @@ bool GameCubeSearcher::validateJirachi(u32 seed)
         }
     }
 
-    rng.advanceFrames(1);
+    rng.advance(1);
     if (num3 > 0x4000 && num2 > 0x547a) // 8 advances
     {
         if (validateMenu(rng.getSeed()))

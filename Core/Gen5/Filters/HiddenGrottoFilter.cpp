@@ -18,28 +18,26 @@
  */
 
 #include "HiddenGrottoFilter.hpp"
-#include <Core/Gen5/Frames/HiddenGrottoFrame.hpp>
+#include <Core/Gen5/States/HiddenGrottoState.hpp>
 
 HiddenGrottoFilter::HiddenGrottoFilter(const QVector<bool> &groups, const QVector<bool> &encounterSlots, const QVector<bool> &genders) :
-    groups(groups),
-    encounterSlots(encounterSlots),
-    genders(genders)
+    groups(groups), encounterSlots(encounterSlots), genders(genders)
 {
 }
 
-bool HiddenGrottoFilter::compareFrame(const HiddenGrottoFrame &frame)
+bool HiddenGrottoFilter::compareState(const HiddenGrottoState &currentState)
 {
-    if (!groups.at(frame.getGroup()))
+    if (!groups.at(currentState.getGroup()))
     {
         return false;
     }
 
-    if (!encounterSlots.at(frame.getSlot()))
+    if (!encounterSlots.at(currentState.getSlot()))
     {
         return false;
     }
 
-    if (!genders.at(frame.getGender()))
+    if (!genders.at(currentState.getGender()))
     {
         return false;
     }

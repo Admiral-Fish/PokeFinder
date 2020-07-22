@@ -26,7 +26,7 @@ class WildGenerator : public Generator
 {
 public:
     WildGenerator() = default;
-    WildGenerator(u32 initialFrame, u32 maxResults, u16 tid, u16 sid, u8 genderRatio, Method method, const FrameFilter &filter);
+    WildGenerator(u32 initialAdvances, u32 maxResults, u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter);
     void setEncounter(Encounter encounter);
     void setLead(Lead lead);
     void setSynchNature(u8 synchNature);

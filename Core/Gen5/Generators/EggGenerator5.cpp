@@ -28,9 +28,9 @@ inline bool isShiny(u32 pid, u16 tsv)
     return ((pid >> 16) ^ (pid & 0xffff) ^ tsv) < 8;
 }
 
-EggGenerator5::EggGenerator5(u32 initialFrame, u32 maxResults, u16 tid, u16 sid, u8 genderRatio, Method method, const FrameFilter &filter,
-                             const Daycare &daycare, bool shinyCharm) :
-    EggGenerator(initialFrame, maxResults, tid, sid, genderRatio, method, filter),
+EggGenerator5::EggGenerator5(u32 initialAdvances, u32 maxResults, u16 tid, u16 sid, u8 genderRatio, Method method,
+                             const StateFilter &filter, const Daycare &daycare, bool shinyCharm) :
+    EggGenerator(initialAdvances, maxResults, tid, sid, genderRatio, method, filter),
     daycare(daycare),
     rolls((shinyCharm ? 2 : 0) + (daycare.getMasuada() ? 5 : 0)),
     everstone(daycare.getEverstoneCount(Game::BW)),
@@ -41,7 +41,7 @@ EggGenerator5::EggGenerator5(u32 initialFrame, u32 maxResults, u16 tid, u16 sid,
     tsv = (tid ^ sid) >> 3;
 }
 
-QVector<EggFrame> EggGenerator5::generate(u64 seed) const
+QVector<EggState> EggGenerator5::generate(u64 seed) const
 {
     switch (method)
     {
@@ -50,16 +50,16 @@ QVector<EggFrame> EggGenerator5::generate(u64 seed) const
     case Method::BW2Bred:
         return generateBW2(seed);
     default:
-        return QVector<EggFrame>();
+        return QVector<EggState>();
     }
 }
 
-QVector<EggFrame> EggGenerator5::generateBW(u64 seed) const
+QVector<EggState> EggGenerator5::generateBW(u64 seed) const
 {
-    QVector<EggFrame> frames;
+    QVector<EggState> states;
 
     MTFast mt(seed >> 32, 13);
-    mt.advanceFrames(7);
+    mt.advance(7);
 
     u8 ivs[6];
     for (u8 i = 0; i < 6; i++)
@@ -68,15 +68,15 @@ QVector<EggFrame> EggGenerator5::generateBW(u64 seed) const
     }
 
     BWRNG rng(seed);
-    rng.advanceFrames(initialFrame - 1 + offset);
+    rng.advance(initialAdvances + offset);
 
     for (u32 cnt = 0; cnt < maxResults; cnt++, rng.next())
     {
-        EggFrame frame(cnt + initialFrame);
+        EggState currentState(cnt + initialAdvances);
         // TODO: chatot
 
         BWRNG go(rng.getSeed());
-        go.advanceFrames(2);
+        go.advance(2);
 
         // False: Nidoran-F / Volbeat
         // True: Nidoran-M / Illumise
@@ -104,7 +104,7 @@ QVector<EggFrame> EggGenerator5::generateBW(u64 seed) const
                 }
             }
         }
-        frame.setNature(nature);
+        currentState.setNature(nature);
 
         // Add check for mother having HA
         bool hiddenAbility = go.nextUInt(100) >= 40 && parentAbility == 2;
@@ -129,7 +129,7 @@ QVector<EggFrame> EggGenerator5::generateBW(u64 seed) const
         if (ditto)
         {
             // ability = go.nextUInt(2);
-            go.advanceFrames(1);
+            go.advance(1);
             hiddenAbility = false;
         }
 
@@ -146,16 +146,16 @@ QVector<EggFrame> EggGenerator5::generateBW(u64 seed) const
                 u8 parent = go.nextUInt(2);
                 u8 item = daycare.getParentItem(parent);
 
-                frame.setIVs(item - 2, daycare.getParentIV(parent, item - 2));
-                frame.setInheritance(item - 2, parent + 1);
+                currentState.setIVs(item - 2, daycare.getParentIV(parent, item - 2));
+                currentState.setInheritance(item - 2, parent + 1);
             }
             else
             {
                 u8 parent = (daycare.getParentItem(0) >= 2 && daycare.getParentItem(1) <= 7) ? 0 : 1;
                 u8 item = daycare.getParentItem(parent);
 
-                frame.setIVs(item - 2, daycare.getParentIV(parent, item - 2));
-                frame.setInheritance(item - 2, parent + 1);
+                currentState.setIVs(item - 2, daycare.getParentIV(parent, item - 2));
+                currentState.setInheritance(item - 2, parent + 1);
             }
         }
 
@@ -166,22 +166,22 @@ QVector<EggFrame> EggGenerator5::generateBW(u64 seed) const
             u8 parent = go.nextUInt(2);
 
             // Assign stat inheritance
-            if (frame.getInheritance(index) == 0)
+            if (currentState.getInheritance(index) == 0)
             {
                 inheritance++;
-                frame.setIVs(index, daycare.getParentIV(parent, index));
-                frame.setInheritance(index, parent + 1);
+                currentState.setIVs(index, daycare.getParentIV(parent, index));
+                currentState.setInheritance(index, parent + 1);
             }
         }
 
         for (u8 i = 0; i < 6; i++)
         {
-            if (frame.getInheritance(i) == 0)
+            if (currentState.getInheritance(i) == 0)
             {
-                frame.setIVs(i, ivs[i]);
+                currentState.setIVs(i, ivs[i]);
             }
         }
-        frame.calculateHiddenPower();
+        currentState.calculateHiddenPower();
 
         u32 pid = go.nextUInt(0xffffffff);
         for (u8 i = 0; i < rolls && !isShiny(pid, tsv); i++)
@@ -189,43 +189,43 @@ QVector<EggFrame> EggGenerator5::generateBW(u64 seed) const
             pid = go.nextUInt(0xffffffff);
         }
 
-        frame.setPID(pid);
-        frame.setAbility(hiddenAbility ? 2 : ((pid >> 16) & 1));
-        frame.setGender(pid & 255, genderRatio);
-        frame.setShiny(tsv, (pid >> 16) ^ (pid ^ 0xffff), 8);
+        currentState.setPID(pid);
+        currentState.setAbility(hiddenAbility ? 2 : ((pid >> 16) & 1));
+        currentState.setGender(pid & 255, genderRatio);
+        currentState.setShiny(tsv, (pid >> 16) ^ (pid ^ 0xffff), 8);
 
-        if (filter.compareFrame(frame))
+        if (filter.compareState(currentState))
         {
-            frames.append(frame);
+            states.append(currentState);
         }
     }
 
-    return frames;
+    return states;
 }
 
-QVector<EggFrame> EggGenerator5::generateBW2(u64 seed) const
+QVector<EggState> EggGenerator5::generateBW2(u64 seed) const
 {
-    QVector<EggFrame> frames;
+    QVector<EggState> states;
 
     MTFast mt(seed >> 32, 4);
-    mt.advanceFrames(2);
+    mt.advance(2);
 
     u64 eggSeed = static_cast<u64>(mt.next()) << 32;
     eggSeed |= mt.next();
 
-    EggFrame frame = generateBW2Egg(eggSeed);
-    if (filter.compareIVs(frame) && filter.compareAbility(frame) && filter.compareNature(frame))
+    EggState currentState = generateBW2Egg(eggSeed);
+    if (filter.compareIVs(currentState) && filter.compareAbility(currentState) && filter.compareNature(currentState))
     {
         BWRNG rng(seed);
-        rng.advanceFrames(initialFrame - 1 + offset);
+        rng.advance(initialAdvances + offset);
         for (u32 cnt = 0; cnt < maxResults; cnt++, rng.next())
         {
             BWRNG go(rng.getSeed());
 
-            go.advanceFrames(2); // 2 blanks
+            go.advance(2); // 2 blanks
 
             u32 pid = go.nextUInt();
-            if (((pid >> 16) & 1) != frame.getAbility())
+            if (((pid >> 16) & 1) != currentState.getAbility())
             {
                 pid ^= 0x10000;
             }
@@ -233,30 +233,30 @@ QVector<EggFrame> EggGenerator5::generateBW2(u64 seed) const
             for (u8 i = 0; i < rolls && !isShiny(pid, tsv); i++)
             {
                 pid = go.nextUInt();
-                if (((pid >> 16) & 1) != frame.getAbility())
+                if (((pid >> 16) & 1) != currentState.getAbility())
                 {
                     pid ^= 0x10000;
                 }
             }
 
-            frame.setPID(pid);
-            frame.setGender(pid & 255, genderRatio);
-            frame.setShiny(tsv, (pid >> 16) ^ (pid & 0xffff), 8);
+            currentState.setPID(pid);
+            currentState.setGender(pid & 255, genderRatio);
+            currentState.setShiny(tsv, (pid >> 16) ^ (pid & 0xffff), 8);
 
-            if (filter.compareShiny(frame) && filter.compareGender(frame))
+            if (filter.compareShiny(currentState) && filter.compareGender(currentState))
             {
-                frame.setFrame(initialFrame + cnt);
-                frames.append(frame);
+                currentState.setAdvance(initialAdvances + cnt);
+                states.append(currentState);
             }
         }
     }
 
-    return frames;
+    return states;
 }
 
-EggFrame EggGenerator5::generateBW2Egg(u64 seed) const
+EggState EggGenerator5::generateBW2Egg(u64 seed) const
 {
-    EggFrame frame(0);
+    EggState currentState(0);
     BWRNG rng(seed);
 
     // False: Nidoran-F / Volbeat
@@ -282,7 +282,7 @@ EggFrame EggGenerator5::generateBW2Egg(u64 seed) const
             nature = daycare.getParentNature(parent);
         }
     }
-    frame.setNature(nature);
+    currentState.setNature(nature);
 
     u8 ability;
     if (!ditto)
@@ -303,10 +303,10 @@ EggFrame EggGenerator5::generateBW2Egg(u64 seed) const
     }
     else
     {
-        rng.advanceFrames(1);
+        rng.advance(1);
         ability = rng.nextUInt(2);
     }
-    frame.setAbility(ability);
+    currentState.setAbility(ability);
 
     // Power Items
     u8 inheritance = 0;
@@ -321,16 +321,16 @@ EggFrame EggGenerator5::generateBW2Egg(u64 seed) const
             u8 parent = rng.nextUInt(2);
             u8 item = daycare.getParentItem(parent);
 
-            frame.setIVs(item - 2, daycare.getParentIV(parent, item - 2));
-            frame.setInheritance(item - 2, parent + 1);
+            currentState.setIVs(item - 2, daycare.getParentIV(parent, item - 2));
+            currentState.setInheritance(item - 2, parent + 1);
         }
         else
         {
             u8 parent = (daycare.getParentItem(0) >= 2 && daycare.getParentItem(1) <= 7) ? 0 : 1;
             u8 item = daycare.getParentItem(parent);
 
-            frame.setIVs(item - 2, daycare.getParentIV(parent, item - 2));
-            frame.setInheritance(item - 2, parent + 1);
+            currentState.setIVs(item - 2, daycare.getParentIV(parent, item - 2));
+            currentState.setInheritance(item - 2, parent + 1);
         }
     }
 
@@ -340,22 +340,22 @@ EggFrame EggGenerator5::generateBW2Egg(u64 seed) const
         u8 index = rng.nextUInt(6);
         u8 parent = rng.nextUInt(2);
 
-        if (frame.getInheritance(index) == 0)
+        if (currentState.getInheritance(index) == 0)
         {
-            frame.setIVs(index, daycare.getParentIV(parent, index));
-            frame.setInheritance(index, parent + 1);
+            currentState.setIVs(index, daycare.getParentIV(parent, index));
+            currentState.setInheritance(index, parent + 1);
             inheritance++;
         }
     }
 
     for (u8 i = 0; i < 6; i++)
     {
-        if (frame.getInheritance(i) == 0)
+        if (currentState.getInheritance(i) == 0)
         {
-            frame.setIVs(i, rng.nextUInt(32));
+            currentState.setIVs(i, rng.nextUInt(32));
         }
     }
-    frame.calculateHiddenPower();
+    currentState.calculateHiddenPower();
 
-    return frame;
+    return currentState;
 }

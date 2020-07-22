@@ -20,8 +20,8 @@
 #ifndef STATIONARYSEARCHER3_HPP
 #define STATIONARYSEARCHER3_HPP
 
-#include <Core/Parents/Frames/Frame.hpp>
 #include <Core/Parents/Searchers/StationarySearcher.hpp>
+#include <Core/Parents/States/State.hpp>
 #include <Core/RNG/RNGCache.hpp>
 #include <mutex>
 
@@ -29,10 +29,10 @@ class StationarySearcher3 : public StationarySearcher
 {
 public:
     StationarySearcher3() = default;
-    StationarySearcher3(u16 tid, u16 sid, u8 genderRatio, Method method, const FrameFilter &filter);
+    StationarySearcher3(u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter);
     void startSearch(const QVector<u8> &min, const QVector<u8> &max);
     void cancelSearch();
-    QVector<Frame> getResults();
+    QVector<State> getResults();
     int getProgress() const;
 
 private:
@@ -41,12 +41,12 @@ private:
 
     bool searching;
     int progress;
-    QVector<Frame> results;
+    QVector<State> results;
     std::mutex mutex;
 
-    QVector<Frame> search(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const;
-    QVector<Frame> searchMethod124(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const;
-    QVector<Frame> searchMethod1Reverse(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const;
+    QVector<State> search(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const;
+    QVector<State> searchMethod124(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const;
+    QVector<State> searchMethod1Reverse(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const;
 };
 
 #endif // STATIONARYSEARCHER3_HPP

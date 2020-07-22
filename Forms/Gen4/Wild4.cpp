@@ -26,8 +26,8 @@
 #include <Core/Gen4/Generators/WildGenerator4.hpp>
 #include <Core/Gen4/ProfileLoader4.hpp>
 #include <Core/Gen4/Searchers/WildSearcher4.hpp>
-#include <Core/Parents/Filters/FrameFilter.hpp>
-#include <Core/Parents/Frames/WildFrame.hpp>
+#include <Core/Parents/Filters/StateFilter.hpp>
+#include <Core/Parents/States/WildState.hpp>
 #include <Core/Util/Nature.hpp>
 #include <Core/Util/Translator.hpp>
 #include <Forms/Gen4/Profile/ProfileManager4.hpp>
@@ -46,7 +46,7 @@ Wild4::Wild4(QWidget *parent) : QWidget(parent), ui(new Ui::Wild4)
     updateProfiles();
     setupModels();
 
-    qRegisterMetaType<QVector<WildFrame>>("QVector<WildFrame>");
+    qRegisterMetaType<QVector<WildState>>("QVector<WildState>");
 }
 
 Wild4::~Wild4()
@@ -55,8 +55,8 @@ Wild4::~Wild4()
     setting.beginGroup("wild4");
     setting.setValue("minDelay", ui->textBoxSearcherMinDelay->text());
     setting.setValue("maxDelay", ui->textBoxSearcherMaxDelay->text());
-    setting.setValue("minFrame", ui->textBoxSearcherMinFrame->text());
-    setting.setValue("maxFrame", ui->textBoxSearcherMaxFrame->text());
+    setting.setValue("minAdvance", ui->textBoxSearcherMinAdvance->text());
+    setting.setValue("maxAdvance", ui->textBoxSearcherMaxAdvance->text());
     setting.setValue("profile", ui->comboBoxProfiles->currentIndex());
     setting.setValue("geometry", this->saveGeometry());
     setting.endGroup();
@@ -98,13 +98,13 @@ void Wild4::setupModels()
     ui->tableViewSearcher->setModel(searcherModel);
 
     ui->textBoxGeneratorSeed->setValues(InputType::Seed32Bit);
-    ui->textBoxGeneratorStartingFrame->setValues(InputType::Frame32Bit);
-    ui->textBoxGeneratorMaxResults->setValues(InputType::Frame32Bit);
+    ui->textBoxGeneratorStartingAdvance->setValues(InputType::State32Bit);
+    ui->textBoxGeneratorMaxResults->setValues(InputType::State32Bit);
 
     ui->textBoxSearcherMinDelay->setValues(InputType::Delay);
     ui->textBoxSearcherMaxDelay->setValues(InputType::Delay);
-    ui->textBoxSearcherMinFrame->setValues(InputType::Frame32Bit);
-    ui->textBoxSearcherMaxFrame->setValues(InputType::Frame32Bit);
+    ui->textBoxSearcherMinAdvance->setValues(InputType::State32Bit);
+    ui->textBoxSearcherMaxAdvance->setValues(InputType::State32Bit);
 
     ui->filterSearcher->disableControls(Controls::UseDelay | Controls::DisableFilter);
 
@@ -154,13 +154,13 @@ void Wild4::setupModels()
     {
         ui->textBoxSearcherMaxDelay->setText(setting.value("maxDelay").toString());
     }
-    if (setting.contains("minFrame"))
+    if (setting.contains("minAdvance"))
     {
-        ui->textBoxSearcherMinFrame->setText(setting.value("minFrame").toString());
+        ui->textBoxSearcherMinAdvance->setText(setting.value("minAdvance").toString());
     }
-    if (setting.contains("maxFrame"))
+    if (setting.contains("maxAdvance"))
     {
-        ui->textBoxSearcherMaxFrame->setText(setting.value("maxFrame").toString());
+        ui->textBoxSearcherMaxAdvance->setText(setting.value("maxAdvance").toString());
     }
     if (setting.contains("geometry"))
     {
@@ -249,9 +249,9 @@ void Wild4::updatePokemonSearcher()
     }
 }
 
-void Wild4::updateProgress(const QVector<WildFrame> &frames, int progress)
+void Wild4::updateProgress(const QVector<WildState> &states, int progress)
 {
-    searcherModel->addItems(frames);
+    searcherModel->addItems(states);
     ui->progressBar->setValue(progress);
 }
 
@@ -262,7 +262,7 @@ void Wild4::generate()
     generatorModel->setMethod(method);
 
     u32 seed = ui->textBoxGeneratorSeed->getUInt();
-    u32 initialFrame = ui->textBoxGeneratorStartingFrame->getUInt();
+    u32 initialAdvances = ui->textBoxGeneratorStartingAdvance->getUInt();
     u32 maxResults = ui->textBoxGeneratorMaxResults->getUInt();
     u16 tid = currentProfile.getTID();
     u16 sid = currentProfile.getSID();
@@ -273,11 +273,11 @@ void Wild4::generate()
         offset = ui->filterGenerator->getDelay();
     }
 
-    FrameFilter filter(ui->filterGenerator->getGender(), ui->filterGenerator->getAbility(), ui->filterGenerator->getShiny(),
+    StateFilter filter(ui->filterGenerator->getGender(), ui->filterGenerator->getAbility(), ui->filterGenerator->getShiny(),
                        ui->filterGenerator->getDisableFilters(), ui->filterGenerator->getMinIVs(), ui->filterGenerator->getMaxIVs(),
                        ui->filterGenerator->getNatures(), ui->filterGenerator->getHiddenPowers(), ui->filterGenerator->getEncounterSlots());
 
-    WildGenerator4 generator(initialFrame, maxResults, tid, sid, genderRatio, method, filter);
+    WildGenerator4 generator(initialAdvances, maxResults, tid, sid, genderRatio, method, filter);
     generator.setOffset(offset);
     generator.setEncounter(static_cast<Encounter>(ui->comboBoxGeneratorEncounter->getCurrentInt()));
 
@@ -304,8 +304,8 @@ void Wild4::generate()
     }
     generator.setEncounterArea(encounterGenerator.at(ui->comboBoxGeneratorLocation->currentData().toInt()));
 
-    auto frames = generator.generate(seed);
-    generatorModel->addItems(frames);
+    auto states = generator.generate(seed);
+    generatorModel->addItems(states);
 }
 
 void Wild4::search()
@@ -320,7 +320,7 @@ void Wild4::search()
     QVector<u8> min = ui->filterSearcher->getMinIVs();
     QVector<u8> max = ui->filterSearcher->getMaxIVs();
 
-    FrameFilter filter(ui->filterSearcher->getGender(), ui->filterSearcher->getAbility(), ui->filterSearcher->getShiny(), false, min, max,
+    StateFilter filter(ui->filterSearcher->getGender(), ui->filterSearcher->getAbility(), ui->filterSearcher->getShiny(), false, min, max,
                        ui->filterSearcher->getNatures(), ui->filterSearcher->getHiddenPowers(), ui->filterSearcher->getEncounterSlots());
 
     u16 tid = currentProfile.getTID();
@@ -329,7 +329,7 @@ void Wild4::search()
 
     auto *searcher = new WildSearcher4(tid, sid, genderRatio, method, filter);
     searcher->setDelay(ui->textBoxSearcherMinDelay->getUInt(), ui->textBoxSearcherMaxDelay->getUInt());
-    searcher->setFrame(ui->textBoxSearcherMinFrame->getUInt(), ui->textBoxSearcherMaxFrame->getUInt());
+    searcher->setState(ui->textBoxSearcherMinAdvance->getUInt(), ui->textBoxSearcherMaxAdvance->getUInt());
     searcher->setEncounter(static_cast<Encounter>(ui->comboBoxSearcherEncounter->getCurrentInt()));
     searcher->setEncounterArea(encounterSearcher.at(ui->comboBoxSearcherLocation->currentData().toInt()));
     searcher->setLead(static_cast<Lead>(ui->comboBoxSearcherLead->getCurrentInt()));

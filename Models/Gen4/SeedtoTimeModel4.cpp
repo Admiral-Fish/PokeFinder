@@ -46,25 +46,25 @@ QVariant SeedtoTimeModel4::data(const QModelIndex &index, int role) const
 {
     if (role == Qt::DisplayRole)
     {
-        const auto &frame = model.at(index.row());
+        const auto &currentState = model.at(index.row());
         if (calibrate)
         {
             switch (index.column())
             {
             case 0:
-                return QString::number(frame.getSeed(), 16).toUpper().toUpper().rightJustified(8, '0');
+                return QString::number(currentState.getSeed(), 16).toUpper().toUpper().rightJustified(8, '0');
             case 1:
-                return frame.getDate();
+                return currentState.getDate();
             case 2:
-                return frame.getTime();
+                return currentState.getTime();
             case 3:
-                return frame.getDelay();
+                return currentState.getDelay();
             case 4:
-                return (version & Game::HGSS) ? Utilities::getCalls(frame.getSeed(), frame.getInfo())
-                                              : Utilities::coinFlips(frame.getSeed());
+                return (version & Game::HGSS) ? Utilities::getCalls(currentState.getSeed(), currentState.getInfo())
+                                              : Utilities::coinFlips(currentState.getSeed());
             case 5:
             {
-                QString str = frame.getInfo().getRouteString();
+                QString str = currentState.getInfo().getRouteString();
                 return str.isEmpty() ? tr("No roamers") : str;
             }
             }
@@ -74,11 +74,11 @@ QVariant SeedtoTimeModel4::data(const QModelIndex &index, int role) const
             switch (index.column())
             {
             case 0:
-                return frame.getDate();
+                return currentState.getDate();
             case 1:
-                return frame.getTime();
+                return currentState.getTime();
             case 2:
-                return frame.getDelay();
+                return currentState.getDelay();
             }
         }
     }

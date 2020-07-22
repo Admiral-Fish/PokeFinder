@@ -21,8 +21,8 @@
 #define WILDSEARCHER4_HPP
 
 #include <Core/Gen4/EncounterArea4.hpp>
-#include <Core/Parents/Frames/WildFrame.hpp>
 #include <Core/Parents/Searchers/WildSearcher.hpp>
+#include <Core/Parents/States/WildState.hpp>
 #include <Core/RNG/RNGCache.hpp>
 #include <mutex>
 
@@ -30,13 +30,13 @@ class WildSearcher4 : public WildSearcher
 {
 public:
     WildSearcher4() = default;
-    WildSearcher4(u16 tid, u16 sid, u8 genderRatio, Method method, const FrameFilter &filter);
+    WildSearcher4(u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter);
     void setEncounterArea(const EncounterArea4 &encounterArea);
     void setDelay(u32 minDelay, u32 maxDelay);
-    void setFrame(u32 minFrame, u32 maxFrame);
+    void setState(u32 minAdvance, u32 maxAdvance);
     void startSearch(const QVector<u8> &min, const QVector<u8> &max);
     void cancelSearch();
-    QVector<WildFrame> getResults();
+    QVector<WildState> getResults();
     int getProgress() const;
 
 private:
@@ -44,30 +44,30 @@ private:
     EncounterArea4 encounterArea;
     u32 minDelay;
     u32 maxDelay;
-    u32 minFrame;
-    u32 maxFrame;
+    u32 minAdvance;
+    u32 maxAdvance;
     u8 thresh, suctionCupThresh;
     u16 rock;
 
     bool searching;
     int progress;
-    QVector<WildFrame> results;
+    QVector<WildState> results;
     std::mutex mutex;
 
-    QVector<WildFrame> search(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const;
-    QVector<WildFrame> searchMethodJ(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const;
-    QVector<WildFrame> searchMethodK(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const;
-    QVector<WildFrame> searchChainedShiny(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const;
-    QVector<WildFrame> searchInitialSeeds(const QVector<WildFrame> &results) const;
+    QVector<WildState> search(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const;
+    QVector<WildState> searchMethodJ(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const;
+    QVector<WildState> searchMethodK(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const;
+    QVector<WildState> searchChainedShiny(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const;
+    QVector<WildState> searchInitialSeeds(const QVector<WildState> &results) const;
 
-    QVector<WildFrame> normalMethodJ(WildFrame frame, u32 seed) const;
-    QVector<WildFrame> synchMethodJ(WildFrame frame, u32 seed) const;
-    QVector<WildFrame> cuteCharmMethodJ(WildFrame frame, u32 seed) const;
-    bool encounterMethodJ(WildFrame &frame, u32 seed) const;
-    QVector<WildFrame> normalMethodK(WildFrame frame, u32 seed) const;
-    QVector<WildFrame> synchMethodK(WildFrame frame, u32 seed) const;
-    QVector<WildFrame> cuteCharmMethodK(WildFrame frame, u32 seed) const;
-    bool encounterMethodK(WildFrame &frame, u32 seed) const;
+    QVector<WildState> normalMethodJ(WildState currentState, u32 seed) const;
+    QVector<WildState> synchMethodJ(WildState currentState, u32 seed) const;
+    QVector<WildState> cuteCharmMethodJ(WildState currentState, u32 seed) const;
+    bool encounterMethodJ(WildState &currentState, u32 seed) const;
+    QVector<WildState> normalMethodK(WildState currentState, u32 seed) const;
+    QVector<WildState> synchMethodK(WildState currentState, u32 seed) const;
+    QVector<WildState> cuteCharmMethodK(WildState currentState, u32 seed) const;
+    bool encounterMethodK(WildState &currentState, u32 seed) const;
 };
 
 #endif // WILDSEARCHER4_HPP

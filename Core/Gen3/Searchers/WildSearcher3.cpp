@@ -22,7 +22,7 @@
 #include <Core/RNG/LCRNG.hpp>
 #include <Core/Util/EncounterSlot.hpp>
 
-WildSearcher3::WildSearcher3(u16 tid, u16 sid, u8 genderRatio, Method method, const FrameFilter &filter) :
+WildSearcher3::WildSearcher3(u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter) :
     WildSearcher(tid, sid, genderRatio, method, filter), cache(method), searching(false), progress(0)
 {
 }
@@ -53,10 +53,10 @@ void WildSearcher3::startSearch(const QVector<u8> &min, const QVector<u8> &max)
                                 return;
                             }
 
-                            auto frames = search(hp, atk, def, spa, spd, spe);
+                            auto states = search(hp, atk, def, spa, spd, spe);
 
                             std::lock_guard<std::mutex> guard(mutex);
-                            results.append(frames);
+                            results.append(states);
                             progress++;
                         }
                     }
@@ -71,7 +71,7 @@ void WildSearcher3::cancelSearch()
     searching = false;
 }
 
-QVector<WildFrame> WildSearcher3::getResults()
+QVector<WildState> WildSearcher3::getResults()
 {
     std::lock_guard<std::mutex> guard(mutex);
     auto data(results);
@@ -84,33 +84,33 @@ int WildSearcher3::getProgress() const
     return progress;
 }
 
-QVector<WildFrame> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const
+QVector<WildState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const
 {
-    QVector<WildFrame> frames;
+    QVector<WildState> states;
 
-    WildFrame frame;
-    frame.setIVs(hp, atk, def, spa, spd, spe);
-    frame.calculateHiddenPower();
-    if (!filter.compareHiddenPower(frame))
+    WildState currentState;
+    currentState.setIVs(hp, atk, def, spa, spd, spe);
+    currentState.calculateHiddenPower();
+    if (!filter.compareHiddenPower(currentState))
     {
-        return frames;
+        return states;
     }
 
     auto seeds = cache.recoverLower16BitsIV(hp, atk, def, spa, spd, spe);
     for (const u32 val : seeds)
     {
-        // Setup normal frame
+        // Setup normal state
         PokeRNGR rng(val);
-        rng.advanceFrames(method == Method::MethodH2);
+        rng.advance(method == Method::MethodH2);
 
         u16 high = rng.nextUShort();
         u16 low = rng.nextUShort();
 
-        frame.setPID(high, low);
-        frame.setAbility(low & 1);
-        frame.setGender(low & 255, genderRatio);
-        frame.setNature(frame.getPID() % 25);
-        frame.setShiny(tsv, high ^ low, 8);
+        currentState.setPID(high, low);
+        currentState.setAbility(low & 1);
+        currentState.setGender(low & 255, genderRatio);
+        currentState.setNature(currentState.getPID() % 25);
+        currentState.setShiny(tsv, high ^ low, 8);
 
         u32 seed = rng.next();
 
@@ -119,12 +119,12 @@ QVector<WildFrame> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, 
         {
             if (flag)
             {
-                frame.setPID(frame.getPID() ^ 0x80008000);
-                frame.setNature(frame.getPID() % 25);
+                currentState.setPID(currentState.getPID() ^ 0x80008000);
+                currentState.setNature(currentState.getPID() % 25);
                 seed ^= 0x80000000;
             }
 
-            if (!filter.comparePID(frame))
+            if (!filter.comparePID(currentState))
             {
                 continue;
             }
@@ -140,16 +140,16 @@ QVector<WildFrame> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, 
                 switch (lead)
                 {
                 case Lead::None:
-                    if ((nextRNG % 25) == frame.getNature())
+                    if ((nextRNG % 25) == currentState.getNature())
                     {
-                        frame.setLead(Lead::None);
+                        currentState.setLead(Lead::None);
                         slot = testRNG.getSeed() * 0xeeb9eb65 + 0xa3561a1;
-                        frame.setSeed(slot * 0xdc6c95d9 + 0x4d3cb126);
-                        frame.setEncounterSlot(EncounterSlot::hSlot(slot >> 16, encounter));
-                        if (filter.compareEncounterSlot(frame))
+                        currentState.setSeed(slot * 0xdc6c95d9 + 0x4d3cb126);
+                        currentState.setEncounterSlot(EncounterSlot::hSlot(slot >> 16, encounter));
+                        if (filter.compareEncounterSlot(currentState))
                         {
-                            frame.setLevel(encounterArea.calcLevel(frame.getEncounterSlot(), testRNG.getSeed() >> 16));
-                            frames.append(frame);
+                            currentState.setLevel(encounterArea.calcLevel(currentState.getEncounterSlot(), testRNG.getSeed() >> 16));
+                            states.append(currentState);
                         }
                     }
                     break;
@@ -157,92 +157,92 @@ QVector<WildFrame> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, 
                     // Successful synch
                     if ((nextRNG & 1) == 0)
                     {
-                        frame.setLead(Lead::Synchronize);
+                        currentState.setLead(Lead::Synchronize);
                         slot = testRNG.getSeed() * 0xeeb9eb65 + 0xa3561a1;
-                        frame.setSeed(slot * 0xdc6c95d9 + 0x4d3cb126);
-                        frame.setEncounterSlot(EncounterSlot::hSlot(slot >> 16, encounter));
-                        if (filter.compareEncounterSlot(frame))
+                        currentState.setSeed(slot * 0xdc6c95d9 + 0x4d3cb126);
+                        currentState.setEncounterSlot(EncounterSlot::hSlot(slot >> 16, encounter));
+                        if (filter.compareEncounterSlot(currentState))
                         {
-                            frame.setLevel(encounterArea.calcLevel(frame.getEncounterSlot(), testRNG.getSeed() >> 16));
-                            frames.append(frame);
+                            currentState.setLevel(encounterArea.calcLevel(currentState.getEncounterSlot(), testRNG.getSeed() >> 16));
+                            states.append(currentState);
                         }
                     }
                     // Failed synch
-                    else if ((nextRNG2 & 1) == 1 && (nextRNG % 25) == frame.getNature())
+                    else if ((nextRNG2 & 1) == 1 && (nextRNG % 25) == currentState.getNature())
                     {
-                        frame.setLead(Lead::Synchronize);
+                        currentState.setLead(Lead::Synchronize);
                         slot = testRNG.getSeed() * 0xdc6c95d9 + 0x4d3cb126;
-                        frame.setSeed(slot * 0xdc6c95d9 + 0x4d3cb126);
-                        frame.setEncounterSlot(EncounterSlot::hSlot(slot >> 16, encounter));
-                        if (filter.compareEncounterSlot(frame))
+                        currentState.setSeed(slot * 0xdc6c95d9 + 0x4d3cb126);
+                        currentState.setEncounterSlot(EncounterSlot::hSlot(slot >> 16, encounter));
+                        if (filter.compareEncounterSlot(currentState))
                         {
-                            frame.setLevel(encounterArea.calcLevel(frame.getEncounterSlot(), testRNG.getSeed() >> 16));
-                            frames.append(frame);
+                            currentState.setLevel(encounterArea.calcLevel(currentState.getEncounterSlot(), testRNG.getSeed() >> 16));
+                            states.append(currentState);
                         }
                     }
                     break;
                 case Lead::CuteCharm:
-                    if ((nextRNG % 25) == frame.getNature() && (nextRNG2 % 3) > 0)
+                    if ((nextRNG % 25) == currentState.getNature() && (nextRNG2 % 3) > 0)
                     {
-                        frame.setLead(Lead::CuteCharm);
+                        currentState.setLead(Lead::CuteCharm);
                         slot = testRNG.getSeed() * 0xdc6c95d9 + 0x4d3cb126;
-                        frame.setSeed(slot * 0xdc6c95d9 + 0x4d3cb126);
-                        frame.setEncounterSlot(EncounterSlot::hSlot(slot >> 16, encounter));
-                        if (filter.compareEncounterSlot(frame))
+                        currentState.setSeed(slot * 0xdc6c95d9 + 0x4d3cb126);
+                        currentState.setEncounterSlot(EncounterSlot::hSlot(slot >> 16, encounter));
+                        if (filter.compareEncounterSlot(currentState))
                         {
-                            frame.setLevel(encounterArea.calcLevel(frame.getEncounterSlot(), testRNG.getSeed() >> 16));
-                            frames.append(frame);
+                            currentState.setLevel(encounterArea.calcLevel(currentState.getEncounterSlot(), testRNG.getSeed() >> 16));
+                            states.append(currentState);
                         }
                     }
                     break;
                 case Lead::Search:
                 default:
                     // Normal
-                    if ((nextRNG % 25) == frame.getNature())
+                    if ((nextRNG % 25) == currentState.getNature())
                     {
-                        frame.setLead(Lead::None);
+                        currentState.setLead(Lead::None);
                         slot = testRNG.getSeed() * 0xeeb9eb65 + 0xa3561a1;
-                        frame.setSeed(slot * 0xdc6c95d9 + 0x4d3cb126);
-                        frame.setEncounterSlot(EncounterSlot::hSlot(slot >> 16, encounter));
-                        if (filter.compareEncounterSlot(frame))
+                        currentState.setSeed(slot * 0xdc6c95d9 + 0x4d3cb126);
+                        currentState.setEncounterSlot(EncounterSlot::hSlot(slot >> 16, encounter));
+                        if (filter.compareEncounterSlot(currentState))
                         {
-                            frame.setLevel(encounterArea.calcLevel(frame.getEncounterSlot(), testRNG.getSeed() >> 16));
-                            frames.append(frame);
+                            currentState.setLevel(encounterArea.calcLevel(currentState.getEncounterSlot(), testRNG.getSeed() >> 16));
+                            states.append(currentState);
                         }
 
                         slot = testRNG.getSeed() * 0xdc6c95d9 + 0x4d3cb126;
-                        frame.setSeed(slot * 0xdc6c95d9 + 0x4d3cb126);
-                        frame.setEncounterSlot(EncounterSlot::hSlot(slot >> 16, encounter));
-                        if (filter.compareEncounterSlot(frame))
+                        currentState.setSeed(slot * 0xdc6c95d9 + 0x4d3cb126);
+                        currentState.setEncounterSlot(EncounterSlot::hSlot(slot >> 16, encounter));
+                        if (filter.compareEncounterSlot(currentState))
                         {
-                            frame.setLevel(encounterArea.calcLevel(frame.getEncounterSlot(), testRNG.getSeed() >> 16));
+                            currentState.setLevel(encounterArea.calcLevel(currentState.getEncounterSlot(), testRNG.getSeed() >> 16));
 
                             // Failed synch
-                            if ((nextRNG2 & 1) == 1 && (nextRNG % 25) == frame.getNature())
+                            if ((nextRNG2 & 1) == 1 && (nextRNG % 25) == currentState.getNature())
                             {
-                                frame.setLead(Lead::Synchronize);
-                                frames.append(frame);
+                                currentState.setLead(Lead::Synchronize);
+                                states.append(currentState);
                             }
 
                             // Cute Charm
                             if ((nextRNG2 % 3) > 0)
                             {
-                                frame.setLead(Lead::CuteCharm);
-                                frames.append(frame);
+                                currentState.setLead(Lead::CuteCharm);
+                                states.append(currentState);
                             }
                         }
                     }
                     // Successful Synch
                     else if ((nextRNG & 1) == 0)
                     {
-                        frame.setLead(Lead::Synchronize);
+                        currentState.setLead(Lead::Synchronize);
                         slot = testRNG.getSeed() * 0xeeb9eb65 + 0xa3561a1;
-                        frame.setSeed(slot * 0xdc6c95d9 + 0x4d3cb126);
-                        frame.setEncounterSlot(EncounterSlot::hSlot(slot >> 16, encounter));
-                        if (filter.compareEncounterSlot(frame))
+                        currentState.setSeed(slot * 0xdc6c95d9 + 0x4d3cb126);
+                        currentState.setEncounterSlot(EncounterSlot::hSlot(slot >> 16, encounter));
+                        if (filter.compareEncounterSlot(currentState))
                         {
-                            frame.setLevel(encounterArea.calcLevel(frame.getEncounterSlot(), testRNG.getSeed() >> 16));
-                            frames.append(frame);
+                            currentState.setLevel(encounterArea.calcLevel(currentState.getEncounterSlot(), testRNG.getSeed() >> 16));
+                            states.append(currentState);
                         }
                     }
                     break;
@@ -251,7 +251,7 @@ QVector<WildFrame> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, 
                 testPID = (nextRNG << 16) | nextRNG2;
                 nextRNG = testRNG.nextUShort();
                 nextRNG2 = testRNG.nextUShort();
-            } while ((testPID % 25) != frame.getNature());
+            } while ((testPID % 25) != currentState.getNature());
         }
     }
 
@@ -263,22 +263,22 @@ QVector<WildFrame> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, 
         // 2880 means FRLG which is not dependent on origin seed for encounter check
         if (rate != 2880)
         {
-            for (int i = 0; i < frames.size();)
+            for (int i = 0; i < states.size();)
             {
-                u32 check = frames.at(i).getSeed() * 0x41c64e6d + 0x6073;
+                u32 check = states.at(i).getSeed() * 0x41c64e6d + 0x6073;
 
                 if (((check >> 16) % 2880) >= rate)
                 {
-                    frames.erase(frames.begin() + i);
+                    states.erase(states.begin() + i);
                 }
                 else
                 {
-                    frames[i].setSeed(frames.at(i).getSeed() * 0xeeb9eb65 + 0xa3561a1);
+                    states[i].setSeed(states.at(i).getSeed() * 0xeeb9eb65 + 0xa3561a1);
                     i++;
                 }
             }
         }
     }
 
-    return frames;
+    return states;
 }

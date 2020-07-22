@@ -39,9 +39,9 @@ public:
 
     void operator=(const RNGList &) = delete;
 
-    void advanceStates(u32 frames)
+    void advanceStates(u32 advances)
     {
-        for (u32 frame = 0; frame < frames; frame++)
+        for (u32 advance = 0; advance < advances; advance++)
         {
             advanceState();
         }
@@ -63,9 +63,9 @@ public:
         pointer = head;
     }
 
-    void advanceFrames(u32 frames)
+    void advance(u32 advances)
     {
-        pointer += frames;
+        pointer += advances;
         if (pointer >= size)
         {
             pointer -= size;

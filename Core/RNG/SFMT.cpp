@@ -40,9 +40,9 @@ SFMT::SFMT(u32 seed)
     }
 }
 
-void SFMT::advanceFrames(u32 frames)
+void SFMT::advance(u32 advances)
 {
-    index += (frames * 2);
+    index += (advances * 2);
     while (index >= 624)
     {
         shuffle();

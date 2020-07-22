@@ -20,9 +20,9 @@
 #ifndef EGGSEARCHER5_HPP
 #define EGGSEARCHER5_HPP
 
-#include <Core/Gen5/Frames/SearcherFrame5.hpp>
 #include <Core/Gen5/Generators/EggGenerator5.hpp>
 #include <Core/Gen5/Profile5.hpp>
+#include <Core/Gen5/States/SearcherState5.hpp>
 #include <Core/Util/Global.hpp>
 #include <QDate>
 #include <mutex>
@@ -34,7 +34,7 @@ public:
     explicit EggSearcher5(const EggGenerator5 &generator, const Profile5 &profile);
     void startSearch(int threads, QDate start, const QDate &end);
     void cancelSearch();
-    QVector<SearcherFrame5<EggFrame>> getResults();
+    QVector<SearcherState5<EggState>> getResults();
     int getProgress() const;
 
 private:
@@ -43,7 +43,7 @@ private:
 
     bool searching;
     int progress;
-    QVector<SearcherFrame5<EggFrame>> results;
+    QVector<SearcherState5<EggState>> results;
     std::mutex resultMutex;
     std::mutex progressMutex;
 

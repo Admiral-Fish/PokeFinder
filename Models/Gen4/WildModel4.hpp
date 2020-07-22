@@ -20,12 +20,12 @@
 #ifndef WILD4MODEL_HPP
 #define WILD4MODEL_HPP
 
-#include <Core/Parents/Frames/WildFrame.hpp>
+#include <Core/Parents/States/WildState.hpp>
 #include <Models/TableModel.hpp>
 
 enum Method : u8;
 
-class WildGeneratorModel4 : public TableModel<WildFrame>
+class WildGeneratorModel4 : public TableModel<WildState>
 {
     Q_OBJECT
 public:
@@ -38,13 +38,13 @@ public:
 private:
     Method method;
     QStringList header
-        = { tr("Frame"), tr("Call"), tr("Chatot"), tr("Slot"), tr("Level"), tr("PID"), tr("Shiny"),  tr("Nature"), tr("Ability"),
-            tr("HP"),    tr("Atk"),  tr("Def"),    tr("SpA"),  tr("SpD"),   tr("Spe"), tr("Hidden"), tr("Power"),  tr("Gender") };
+        = { tr("Advance"), tr("Call"), tr("Chatot"), tr("Slot"), tr("Level"), tr("PID"), tr("Shiny"),  tr("Nature"), tr("Ability"),
+            tr("HP"),      tr("Atk"),  tr("Def"),    tr("SpA"),  tr("SpD"),   tr("Spe"), tr("Hidden"), tr("Power"),  tr("Gender") };
 
     int getColumn(int column) const;
 };
 
-class WildSearcherModel4 : public TableModel<WildFrame>
+class WildSearcherModel4 : public TableModel<WildState>
 {
     Q_OBJECT
 public:
@@ -58,8 +58,8 @@ public:
 private:
     Method method;
     QStringList header
-        = { tr("Seed"), tr("Frame"), tr("Lead"), tr("Slot"), tr("Level"), tr("PID"), tr("Shiny"),  tr("Nature"), tr("Ability"),
-            tr("HP"),   tr("Atk"),   tr("Def"),  tr("SpA"),  tr("SpD"),   tr("Spe"), tr("Hidden"), tr("Power"),  tr("Gender") };
+        = { tr("Seed"), tr("Advance"), tr("Lead"), tr("Slot"), tr("Level"), tr("PID"), tr("Shiny"),  tr("Nature"), tr("Ability"),
+            tr("HP"),   tr("Atk"),     tr("Def"),  tr("SpA"),  tr("SpD"),   tr("Spe"), tr("Hidden"), tr("Power"),  tr("Gender") };
 
     int getColumn(int column) const;
 };

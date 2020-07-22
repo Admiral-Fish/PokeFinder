@@ -26,9 +26,9 @@ IDGenerator4::IDGenerator4(u32 minDelay, u32 maxDelay, u16 year, u8 month, u8 da
 {
 }
 
-QVector<IDFrame4> IDGenerator4::generate(const IDFilter &filter)
+QVector<IDState4> IDGenerator4::generate(const IDFilter &filter)
 {
-    QVector<IDFrame4> frames;
+    QVector<IDState4> states;
 
     for (u8 second = 0; second < 60; second++)
     {
@@ -37,23 +37,23 @@ QVector<IDFrame4> IDGenerator4::generate(const IDFilter &filter)
             u32 seed = static_cast<u32>(((((month * day) + (minute + second)) & 0xFF) << 24) | (hour << 16)) + efgh;
 
             MT mt(seed);
-            mt.advanceFrames(1);
+            mt.advance(1);
 
             u32 sidtid = mt.next();
 
             u16 tid = sidtid & 0xFFFF;
             u16 sid = sidtid >> 16;
 
-            IDFrame4 frame(seed, tid, sid);
+            IDState4 currentState(seed, tid, sid);
 
-            if (filter.compare(frame))
+            if (filter.compare(currentState))
             {
-                frame.setDelay(efgh + 2000 - year);
-                frame.setSeconds(second);
-                frames.append(frame);
+                currentState.setDelay(efgh + 2000 - year);
+                currentState.setSeconds(second);
+                states.append(currentState);
             }
         }
     }
 
-    return frames;
+    return states;
 }

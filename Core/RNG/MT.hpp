@@ -26,7 +26,7 @@ class MT
 {
 public:
     MT(u32 seed = 0);
-    void advanceFrames(u32 frames);
+    void advance(u32 advances);
     u32 next();
     u16 nextUShort();
 
@@ -40,7 +40,7 @@ class MTFast
 {
 public:
     explicit MTFast(u32 seed = 0, u8 size = 0);
-    void advanceFrames(u32 frames);
+    void advance(u32 advances);
     u32 next();
     u16 nextUShort();
 

@@ -20,8 +20,8 @@
 #ifndef DREAMRADARGENERATOR_HPP
 #define DREAMRADARGENERATOR_HPP
 
-#include <Core/Parents/Frames/Frame.hpp>
 #include <Core/Parents/Generators/Generator.hpp>
+#include <Core/Parents/States/State.hpp>
 
 struct DreamRadarSlot
 {
@@ -40,9 +40,9 @@ class DreamRadarGenerator : public Generator
 {
 public:
     DreamRadarGenerator() = default;
-    DreamRadarGenerator(u32 initialFrame, u32 maxResults, u16 tid, u16 sid, u8 genderRatio, Method method, const FrameFilter &filter,
+    DreamRadarGenerator(u32 initialAdvances, u32 maxResults, u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter,
                         const QVector<DreamRadarSlot> &radarSlots);
-    QVector<Frame> generate(u64 seed, bool memory);
+    QVector<State> generate(u64 seed, bool memory);
 
 private:
     u8 pidAdvances;

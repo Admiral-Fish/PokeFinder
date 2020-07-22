@@ -179,9 +179,9 @@ bool ColoSeedSearcher::searchSeed(XDRNG &rng)
     u16 tsv = (tid ^ sid) >> 3;
     for (u8 i = 0; i < 6; i++)
     {
-        rng.advanceFrames(2); // Fake PID
+        rng.advance(2); // Fake PID
 
-        rng.advanceFrames(2); // IVs
+        rng.advance(2); // IVs
 
         rng.next(); // Ability
 
@@ -199,9 +199,9 @@ bool ColoSeedSearcher::searchSeed(XDRNG &rng)
     tsv = (tid ^ sid) >> 3;
     for (u8 i = 0; i < 6; i++)
     {
-        rng.advanceFrames(2); // Fake PID
+        rng.advance(2); // Fake PID
 
-        rng.advanceFrames(2); // IVs
+        rng.advance(2); // IVs
 
         rng.next(); // Ability
 

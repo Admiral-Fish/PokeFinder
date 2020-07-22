@@ -21,15 +21,15 @@
 #define WILDGENERATOR3_HPP
 
 #include <Core/Gen3/EncounterArea3.hpp>
-#include <Core/Parents/Frames/WildFrame.hpp>
 #include <Core/Parents/Generators/WildGenerator.hpp>
+#include <Core/Parents/States/WildState.hpp>
 
 class WildGenerator3 : public WildGenerator
 {
 public:
     WildGenerator3() = default;
-    WildGenerator3(u32 initialFrame, u32 maxResults, u16 tid, u16 sid, u8 genderRatio, Method method, const FrameFilter &filter);
-    QVector<WildFrame> generate(u32 seed) const;
+    WildGenerator3(u32 initialAdvances, u32 maxResults, u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter);
+    QVector<WildState> generate(u32 seed) const;
     void setEncounterArea(const EncounterArea3 &encounterArea);
 
 private:

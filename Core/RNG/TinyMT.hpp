@@ -27,7 +27,7 @@ class TinyMT
 public:
     TinyMT(u32 seed = 0);
     explicit TinyMT(const u32 state[4]);
-    void advanceFrames(u32 frames);
+    void advance(u32 advances);
     u32 next();
     u16 nextUShort();
 

@@ -19,8 +19,9 @@
 
 #include "EggGenerator.hpp"
 
-EggGenerator::EggGenerator(u32 initialFrame, u32 maxResults, u16 tid, u16 sid, u8 genderRatio, Method method, const FrameFilter &filter) :
-    Generator(initialFrame, maxResults, tid, sid, genderRatio, method, filter)
+EggGenerator::EggGenerator(u32 initialAdvances, u32 maxResults, u16 tid, u16 sid, u8 genderRatio, Method method,
+                           const StateFilter &filter) :
+    Generator(initialAdvances, maxResults, tid, sid, genderRatio, method, filter)
 {
 }
 

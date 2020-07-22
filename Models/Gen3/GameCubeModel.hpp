@@ -21,10 +21,10 @@
 #define GAMECUBEMODEL_HPP
 
 #include <Core/Enum/Method.hpp>
-#include <Core/Gen3/Frames/GameCubeFrame.hpp>
+#include <Core/Gen3/States/GameCubeState.hpp>
 #include <Models/TableModel.hpp>
 
-class GameCubeGeneratorModel : public TableModel<GameCubeFrame>
+class GameCubeGeneratorModel : public TableModel<GameCubeState>
 {
     Q_OBJECT
 public:
@@ -34,11 +34,11 @@ public:
     QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
 
 private:
-    QStringList header = { tr("Frame"), tr("PID"), tr("Shiny"), tr("Nature"), tr("Ability"), tr("HP"),    tr("Atk"),
-                           tr("Def"),   tr("SpA"), tr("SpD"),   tr("Spe"),    tr("Hidden"),  tr("Power"), tr("Gender") };
+    QStringList header = { tr("Advance"), tr("PID"), tr("Shiny"), tr("Nature"), tr("Ability"), tr("HP"),    tr("Atk"),
+                           tr("Def"),     tr("SpA"), tr("SpD"),   tr("Spe"),    tr("Hidden"),  tr("Power"), tr("Gender") };
 };
 
-class GameCubeSearcherModel : public TableModel<GameCubeFrame>
+class GameCubeSearcherModel : public TableModel<GameCubeState>
 {
     Q_OBJECT
 public:

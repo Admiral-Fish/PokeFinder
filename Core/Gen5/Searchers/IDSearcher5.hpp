@@ -33,7 +33,7 @@ public:
     explicit IDSearcher5(const IDGenerator5 &idGenerator, const Profile5 &profile, u32 pid, bool checkPID, bool save);
     void startSearch(int threads, QDate start, const QDate &end);
     void cancelSearch();
-    QVector<IDFrame5> getResults();
+    QVector<IDState5> getResults();
     int getProgress() const;
 
 private:
@@ -45,7 +45,7 @@ private:
 
     bool searching;
     int progress;
-    QVector<IDFrame5> results;
+    QVector<IDState5> results;
     std::mutex resultMutex;
     std::mutex progressMutex;
 

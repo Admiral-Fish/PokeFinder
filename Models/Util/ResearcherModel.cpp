@@ -20,7 +20,7 @@
 #include "ResearcherModel.hpp"
 #include <functional>
 
-ResearcherModel::ResearcherModel(QObject *parent, bool flag) : TableModel<ResearcherFrame>(parent), flag(flag)
+ResearcherModel::ResearcherModel(QObject *parent, bool flag) : TableModel<ResearcherState>(parent), flag(flag)
 {
 }
 
@@ -45,24 +45,24 @@ QVariant ResearcherModel::data(const QModelIndex &index, int role) const
 {
     if (role == Qt::DisplayRole)
     {
-        const auto &frame = model.at(index.row());
+        const auto &currentState = model.at(index.row());
         int column = getColumn(index.column());
         switch (column)
         {
         case 0:
-            return frame.getFrame();
+            return currentState.getAdvance();
         case 1:
-            return QString::number(frame.getState(), 16).toUpper().rightJustified(16, '0');
+            return QString::number(currentState.getAdvance(), 16).toUpper().rightJustified(16, '0');
         case 2:
-            return QString::number(frame.getHigh32(), 16).toUpper().rightJustified(8, '0');
+            return QString::number(currentState.getHigh32(), 16).toUpper().rightJustified(8, '0');
         case 3:
-            return QString::number(frame.getLow32(), 16).toUpper().rightJustified(8, '0');
+            return QString::number(currentState.getLow32(), 16).toUpper().rightJustified(8, '0');
         case 4:
-            return QString::number(frame.getState(), 16).toUpper().rightJustified(8, '0');
+            return QString::number(currentState.getAdvance(), 16).toUpper().rightJustified(8, '0');
         case 5:
-            return QString::number(frame.getHigh16(), 16).toUpper().rightJustified(4, '0');
+            return QString::number(currentState.getHigh16(), 16).toUpper().rightJustified(4, '0');
         case 6:
-            return QString::number(frame.getLow16(), 16).toUpper().rightJustified(4, '0');
+            return QString::number(currentState.getLow16(), 16).toUpper().rightJustified(4, '0');
         case 7:
         case 8:
         case 9:
@@ -73,19 +73,19 @@ QVariant ResearcherModel::data(const QModelIndex &index, int role) const
         case 14:
         case 15:
         case 16:
-            return QString::number(frame.getCustom(static_cast<u8>(column - 7)), hex.at(column - 7) ? 16 : 10).toUpper();
+            return QString::number(currentState.getCustom(static_cast<u8>(column - 7)), hex.at(column - 7) ? 16 : 10).toUpper();
         case 17:
-            return frame.getMod3();
+            return currentState.getMod3();
         case 18:
-            return frame.getMod25();
+            return currentState.getMod25();
         case 19:
-            return frame.getMod100();
+            return currentState.getMod100();
         case 20:
-            return frame.getDiv656();
+            return currentState.getDiv656();
         case 21:
-            return frame.getHighBit();
+            return currentState.getHighBit();
         case 22:
-            return frame.getLowBit();
+            return currentState.getLowBit();
         }
     }
     return QVariant();
@@ -103,36 +103,36 @@ QVariant ResearcherModel::headerData(int section, Qt::Orientation orientation, i
 QModelIndex ResearcherModel::search(const QString &string, u64 result, int row)
 {
     int column = 0;
-    std::function<u64(const ResearcherFrame &)> getResult;
+    std::function<u64(const ResearcherState &)> getResult;
     if (string == tr("64Bit"))
     {
         column = 1;
-        getResult = [](const ResearcherFrame &frame) { return frame.getState(); };
+        getResult = [](const ResearcherState &currentState) { return currentState.getAdvance(); };
     }
     else if (string == tr("32Bit High"))
     {
         column = 2;
-        getResult = [](const ResearcherFrame &frame) { return frame.getHigh32(); };
+        getResult = [](const ResearcherState &currentState) { return currentState.getHigh32(); };
     }
     else if (string == tr("32Bit Low"))
     {
         column = 3;
-        getResult = [](const ResearcherFrame &frame) { return frame.getLow32(); };
+        getResult = [](const ResearcherState &currentState) { return currentState.getLow32(); };
     }
     else if (string == tr("32Bit"))
     {
         column = 1;
-        getResult = [](const ResearcherFrame &frame) { return frame.getState(); };
+        getResult = [](const ResearcherState &currentState) { return currentState.getAdvance(); };
     }
     else if (string == tr("16Bit High"))
     {
         column = flag ? 4 : 2;
-        getResult = [](const ResearcherFrame &frame) { return frame.getHigh16(); };
+        getResult = [](const ResearcherState &currentState) { return currentState.getHigh16(); };
     }
     else if (string == tr("16Bit Low"))
     {
         column = flag ? 5 : 3;
-        getResult = [](const ResearcherFrame &frame) { return frame.getLow16(); };
+        getResult = [](const ResearcherState &currentState) { return currentState.getLow16(); };
     }
 
     for (; row < rowCount(); row++)

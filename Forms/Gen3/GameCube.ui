@@ -190,12 +190,12 @@
            </widget>
           </item>
           <item row="3" column="1">
-           <widget class="TextBox" name="textBoxGeneratorStartingFrame">
+           <widget class="TextBox" name="textBoxGeneratorStartingAdvance">
             <property name="inputMask">
              <string/>
             </property>
             <property name="text">
-             <string notr="true">1</string>
+             <string notr="true">0</string>
             </property>
             <property name="maxLength">
              <number>10</number>
@@ -216,7 +216,7 @@
            </widget>
           </item>
           <item row="3" column="0">
-           <widget class="QLabel" name="labelGeneratorStartingFrame">
+           <widget class="QLabel" name="labelGeneratorStartingAdvance">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
               <horstretch>0</horstretch>
@@ -224,7 +224,7 @@
              </sizepolicy>
             </property>
             <property name="text">
-             <string>Starting Frame</string>
+             <string>Starting Advance</string>
             </property>
            </widget>
           </item>
@@ -551,7 +551,7 @@
   <tabstop>comboBoxGeneratorMethod</tabstop>
   <tabstop>comboBoxGeneratorShadow</tabstop>
   <tabstop>comboBoxGeneratorType</tabstop>
-  <tabstop>textBoxGeneratorStartingFrame</tabstop>
+  <tabstop>textBoxGeneratorStartingAdvance</tabstop>
   <tabstop>textBoxGeneratorMaxResults</tabstop>
   <tabstop>textBoxGeneratorSeed</tabstop>
   <tabstop>pushButtonGenerate</tabstop>

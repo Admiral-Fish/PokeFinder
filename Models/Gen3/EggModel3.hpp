@@ -20,12 +20,12 @@
 #ifndef EGG3MODEL_HPP
 #define EGG3MODEL_HPP
 
-#include <Core/Gen3/Frames/EggFrame3.hpp>
+#include <Core/Gen3/States/EggState3.hpp>
 #include <Models/TableModel.hpp>
 
 enum Method : u8;
 
-class EggModel3 : public TableModel<EggFrame3>
+class EggModel3 : public TableModel<EggState3>
 {
     Q_OBJECT
 public:
@@ -41,9 +41,12 @@ public slots:
 private:
     Method method;
     bool showInheritance;
-    QStringList header = { tr("Frame"),  tr("Held Frame"), tr("Pickup Frame"), tr("Redraws"), tr("PID"),   tr("Shiny"),
-                           tr("Nature"), tr("Ability"),    tr("HP"),           tr("Atk"),     tr("Def"),   tr("SpA"),
-                           tr("SpD"),    tr("Spe"),        tr("Hidden"),       tr("Power"),   tr("Gender") };
+    QStringList header = { tr("Advance"), tr("Held Advance"), tr("Pickup Advance"),
+                           tr("Redraws"), tr("PID"),          tr("Shiny"),
+                           tr("Nature"),  tr("Ability"),      tr("HP"),
+                           tr("Atk"),     tr("Def"),          tr("SpA"),
+                           tr("SpD"),     tr("Spe"),          tr("Hidden"),
+                           tr("Power"),   tr("Gender") };
 
     int getColumn(int column) const;
 };

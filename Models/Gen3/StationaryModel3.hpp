@@ -20,10 +20,10 @@
 #ifndef STATIONARY3MODEL_HPP
 #define STATIONARY3MODEL_HPP
 
-#include <Core/Parents/Frames/Frame.hpp>
+#include <Core/Parents/States/State.hpp>
 #include <Models/TableModel.hpp>
 
-class StationaryGeneratorModel3 : public TableModel<Frame>
+class StationaryGeneratorModel3 : public TableModel<State>
 {
     Q_OBJECT
 public:
@@ -33,11 +33,11 @@ public:
     QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
 
 private:
-    QStringList header = { tr("Frame"), tr("PID"), tr("Shiny"), tr("Nature"), tr("Ability"), tr("HP"),    tr("Atk"),
-                           tr("Def"),   tr("SpA"), tr("SpD"),   tr("Spe"),    tr("Hidden"),  tr("Power"), tr("Gender") };
+    QStringList header = { tr("Advance"), tr("PID"), tr("Shiny"), tr("Nature"), tr("Ability"), tr("HP"),    tr("Atk"),
+                           tr("Def"),     tr("SpA"), tr("SpD"),   tr("Spe"),    tr("Hidden"),  tr("Power"), tr("Gender") };
 };
 
-class StationarySearcherModel3 : public TableModel<Frame>
+class StationarySearcherModel3 : public TableModel<State>
 {
     Q_OBJECT
 public:

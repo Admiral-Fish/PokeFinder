@@ -19,9 +19,9 @@
 
 #include "IDs4.hpp"
 #include "ui_IDs4.h"
-#include <Core/Gen4/Frames/EggFrame4.hpp>
 #include <Core/Gen4/Generators/IDGenerator4.hpp>
 #include <Core/Gen4/Searchers/IDSearcher4.hpp>
+#include <Core/Gen4/States/EggState4.hpp>
 #include <Models/Gen4/IDModel4.hpp>
 #include <QSettings>
 #include <QThread>
@@ -81,15 +81,15 @@ void IDs4::setupModels()
     }
 }
 
-void IDs4::updateProgressShinyPID(const QVector<IDFrame4> &frames, int progress)
+void IDs4::updateProgressShinyPID(const QVector<IDState4> &states, int progress)
 {
-    shinyPID->addItems(frames);
+    shinyPID->addItems(states);
     ui->progressBarShinyPID->setValue(progress);
 }
 
-void IDs4::updateProgressTIDSID(const QVector<IDFrame4> &frames, int progress)
+void IDs4::updateProgressTIDSID(const QVector<IDState4> &states, int progress)
 {
-    tidSID->addItems(frames);
+    tidSID->addItems(states);
     ui->progressBarTIDSID->setValue(progress);
 }
 
@@ -203,6 +203,6 @@ void IDs4::seedFinderSearch()
     IDGenerator4 generator(minDelay, maxDelay, year, month, day, hour, minute);
     IDFilter filter({ ui->textBoxSeedFinderTID->getUShort() }, QVector<u16>(), QVector<u16>());
 
-    auto frames = generator.generate(filter);
-    seedFinder->addItems(frames);
+    auto states = generator.generate(filter);
+    seedFinder->addItems(states);
 }

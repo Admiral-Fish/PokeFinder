@@ -20,10 +20,10 @@
 #ifndef IDMODEL4_HPP
 #define IDMODEL4_HPP
 
-#include <Core/Gen4/Frames/IDFrame4.hpp>
+#include <Core/Gen4/States/IDState4.hpp>
 #include <Models/TableModel.hpp>
 
-class IDModel4 : public TableModel<IDFrame4>
+class IDModel4 : public TableModel<IDState4>
 {
     Q_OBJECT
 public:

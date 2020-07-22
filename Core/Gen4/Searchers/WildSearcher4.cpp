@@ -26,7 +26,7 @@
 
 constexpr u8 genderThreshHolds[5] = { 0, 0x96, 0xC8, 0x4B, 0x32 };
 
-WildSearcher4::WildSearcher4(u16 tid, u16 sid, u8 genderRatio, Method method, const FrameFilter &filter) :
+WildSearcher4::WildSearcher4(u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter) :
     WildSearcher(tid, sid, genderRatio, method, filter), cache(method), searching(false), progress(0)
 {
 }
@@ -42,10 +42,10 @@ void WildSearcher4::setDelay(u32 minDelay, u32 maxDelay)
     this->maxDelay = maxDelay;
 }
 
-void WildSearcher4::setFrame(u32 minFrame, u32 maxFrame)
+void WildSearcher4::setState(u32 minAdvance, u32 maxAdvance)
 {
-    this->minFrame = minFrame;
-    this->maxFrame = maxFrame;
+    this->minAdvance = minAdvance;
+    this->maxAdvance = maxAdvance;
 }
 
 void WildSearcher4::startSearch(const QVector<u8> &min, const QVector<u8> &max)
@@ -74,10 +74,10 @@ void WildSearcher4::startSearch(const QVector<u8> &min, const QVector<u8> &max)
                                 return;
                             }
 
-                            auto frames = search(hp, atk, def, spa, spd, spe);
+                            auto states = search(hp, atk, def, spa, spd, spe);
 
                             std::lock_guard<std::mutex> guard(mutex);
-                            results.append(frames);
+                            results.append(states);
                             progress++;
                         }
                     }
@@ -92,7 +92,7 @@ void WildSearcher4::cancelSearch()
     searching = false;
 }
 
-QVector<WildFrame> WildSearcher4::getResults()
+QVector<WildState> WildSearcher4::getResults()
 {
     std::lock_guard<std::mutex> guard(mutex);
     auto data(results);
@@ -105,37 +105,37 @@ int WildSearcher4::getProgress() const
     return progress;
 }
 
-QVector<WildFrame> WildSearcher4::search(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const
+QVector<WildState> WildSearcher4::search(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const
 {
-    QVector<WildFrame> frames;
+    QVector<WildState> states;
 
     if (method == Method::MethodJ)
     {
-        frames = searchMethodJ(hp, atk, def, spa, spd, spe);
+        states = searchMethodJ(hp, atk, def, spa, spd, spe);
     }
     else if (method == Method::MethodK)
     {
-        frames = searchMethodK(hp, atk, def, spa, spd, spe);
+        states = searchMethodK(hp, atk, def, spa, spd, spe);
     }
     else if (method == Method::ChainedShiny)
     {
-        frames = searchChainedShiny(hp, atk, def, spa, spd, spe);
+        states = searchChainedShiny(hp, atk, def, spa, spd, spe);
     }
 
-    return searchInitialSeeds(frames);
+    return searchInitialSeeds(states);
 }
 
-QVector<WildFrame> WildSearcher4::searchMethodJ(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const
+QVector<WildState> WildSearcher4::searchMethodJ(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const
 {
-    QVector<WildFrame> frames;
+    QVector<WildState> states;
 
-    WildFrame frame;
-    frame.setIVs(hp, atk, def, spa, spd, spe);
-    frame.calculateHiddenPower();
+    WildState currentState;
+    currentState.setIVs(hp, atk, def, spa, spd, spe);
+    currentState.calculateHiddenPower();
 
-    if (!filter.compareHiddenPower(frame))
+    if (!filter.compareHiddenPower(currentState))
     {
-        return frames;
+        return states;
     }
 
     auto seeds = cache.recoverLower16BitsIV(hp, atk, def, spa, spd, spe);
@@ -146,68 +146,68 @@ QVector<WildFrame> WildSearcher4::searchMethodJ(u8 hp, u8 atk, u8 def, u8 spa, u
         u16 low = rng.nextUShort();
         u32 seed = rng.next();
 
-        frame.setPID(high, low);
+        currentState.setPID(high, low);
 
         for (const bool flag : { false, true })
         {
             if (flag)
             {
-                frame.setPID(frame.getPID() ^ 0x80008000);
+                currentState.setPID(currentState.getPID() ^ 0x80008000);
                 seed ^= 0x80000000;
             }
 
             if (lead == Lead::CuteCharm)
             {
-                frames.append(cuteCharmMethodJ(frame, seed));
+                states.append(cuteCharmMethodJ(currentState, seed));
             }
             else
             {
                 if (lead == Lead::Search)
                 {
-                    frames.append(cuteCharmMethodJ(frame, seed));
+                    states.append(cuteCharmMethodJ(currentState, seed));
                 }
 
-                frame.setAbility(low & 1);
-                frame.setGender(low & 255, genderRatio);
-                frame.setNature(frame.getPID() % 25);
-                frame.setShiny(tsv, high ^ low, 8);
+                currentState.setAbility(low & 1);
+                currentState.setGender(low & 255, genderRatio);
+                currentState.setNature(currentState.getPID() % 25);
+                currentState.setShiny(tsv, high ^ low, 8);
 
-                if (!filter.comparePID(frame))
+                if (!filter.comparePID(currentState))
                 {
                     continue;
                 }
 
                 if (lead == Lead::None)
                 {
-                    frames.append(normalMethodJ(frame, seed));
+                    states.append(normalMethodJ(currentState, seed));
                 }
                 else if (lead == Lead::Synchronize)
                 {
-                    frames.append(synchMethodJ(frame, seed));
+                    states.append(synchMethodJ(currentState, seed));
                 }
                 else if (lead == Lead::Search)
                 {
-                    frames.append(normalMethodJ(frame, seed));
-                    frames.append(synchMethodJ(frame, seed));
+                    states.append(normalMethodJ(currentState, seed));
+                    states.append(synchMethodJ(currentState, seed));
                 }
             }
         }
     }
 
-    return frames;
+    return states;
 }
 
-QVector<WildFrame> WildSearcher4::searchMethodK(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const
+QVector<WildState> WildSearcher4::searchMethodK(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const
 {
-    QVector<WildFrame> frames;
+    QVector<WildState> states;
 
-    WildFrame frame;
-    frame.setIVs(hp, atk, def, spa, spd, spe);
-    frame.calculateHiddenPower();
+    WildState currentState;
+    currentState.setIVs(hp, atk, def, spa, spd, spe);
+    currentState.calculateHiddenPower();
 
-    if (!filter.compareHiddenPower(frame))
+    if (!filter.compareHiddenPower(currentState))
     {
-        return frames;
+        return states;
     }
 
     auto seeds = cache.recoverLower16BitsIV(hp, atk, def, spa, spd, spe);
@@ -218,68 +218,68 @@ QVector<WildFrame> WildSearcher4::searchMethodK(u8 hp, u8 atk, u8 def, u8 spa, u
         u16 low = rng.nextUShort();
         u32 seed = rng.next();
 
-        frame.setPID(high, low);
+        currentState.setPID(high, low);
 
         for (const bool flag : { false, true })
         {
             if (flag)
             {
-                frame.setPID(frame.getPID() ^ 0x80008000);
+                currentState.setPID(currentState.getPID() ^ 0x80008000);
                 seed ^= 0x80000000;
             }
 
             if (lead == Lead::CuteCharm)
             {
-                frames.append(cuteCharmMethodK(frame, seed));
+                states.append(cuteCharmMethodK(currentState, seed));
             }
             else
             {
                 if (lead == Lead::Search)
                 {
-                    frames.append(cuteCharmMethodK(frame, seed));
+                    states.append(cuteCharmMethodK(currentState, seed));
                 }
 
-                frame.setAbility(low & 1);
-                frame.setGender(low & 255, genderRatio);
-                frame.setNature(frame.getPID() % 25);
-                frame.setShiny(tsv, high ^ low, 8);
+                currentState.setAbility(low & 1);
+                currentState.setGender(low & 255, genderRatio);
+                currentState.setNature(currentState.getPID() % 25);
+                currentState.setShiny(tsv, high ^ low, 8);
 
-                if (!filter.comparePID(frame))
+                if (!filter.comparePID(currentState))
                 {
                     continue;
                 }
 
                 if (lead == Lead::None)
                 {
-                    frames.append(normalMethodK(frame, seed));
+                    states.append(normalMethodK(currentState, seed));
                 }
                 else if (lead == Lead::Synchronize)
                 {
-                    frames.append(synchMethodK(frame, seed));
+                    states.append(synchMethodK(currentState, seed));
                 }
                 else if (lead == Lead::Search)
                 {
-                    frames.append(normalMethodK(frame, seed));
-                    frames.append(synchMethodK(frame, seed));
+                    states.append(normalMethodK(currentState, seed));
+                    states.append(synchMethodK(currentState, seed));
                 }
             }
         }
     }
 
-    return frames;
+    return states;
 }
 
-QVector<WildFrame> WildSearcher4::searchChainedShiny(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const
+QVector<WildState> WildSearcher4::searchChainedShiny(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const
 {
-    QVector<WildFrame> frames;
+    QVector<WildState> states;
 
-    WildFrame frame;
-    frame.setIVs(hp, atk, def, spa, spd, spe);
-    frame.calculateHiddenPower();
+    WildState currentState;
+    currentState.setIVs(hp, atk, def, spa, spd, spe);
+    currentState.calculateHiddenPower();
 
-    if (!filter.compareHiddenPower(frame))
+    if (!filter.compareHiddenPower(currentState))
     {
-        return frames;
+        return states;
     }
 
     auto seeds = cache.recoverLower16BitsIV(hp, atk, def, spa, spd, spe);
@@ -296,39 +296,39 @@ QVector<WildFrame> WildSearcher4::searchChainedShiny(u8 hp, u8 atk, u8 def, u8 s
         low |= rng.nextUShort() & 7;
         high |= (tid ^ sid ^ low) & 0xfff8;
 
-        frame.setPID(high, low);
-        frame.setAbility(low & 1);
-        frame.setGender(low & 255, genderRatio);
-        frame.setNature(frame.getPID() % 25);
-        frame.setShiny(true);
+        currentState.setPID(high, low);
+        currentState.setAbility(low & 1);
+        currentState.setGender(low & 255, genderRatio);
+        currentState.setNature(currentState.getPID() % 25);
+        currentState.setShiny(true);
 
-        if (filter.comparePID(frame))
+        if (filter.comparePID(currentState))
         {
             rng.next();
-            frame.setSeed(rng.next());
-            frames.append(frame);
+            currentState.setSeed(rng.next());
+            states.append(currentState);
 
             // Sister spread shares PID
-            frame.setSeed(frame.getSeed() ^ 0x80000000);
-            frames.append(frame);
+            currentState.setSeed(currentState.getSeed() ^ 0x80000000);
+            states.append(currentState);
         }
     }
 
-    return frames;
+    return states;
 }
 
-QVector<WildFrame> WildSearcher4::searchInitialSeeds(const QVector<WildFrame> &results) const
+QVector<WildState> WildSearcher4::searchInitialSeeds(const QVector<WildState> &results) const
 {
-    QVector<WildFrame> frames;
+    QVector<WildState> states;
 
-    for (WildFrame result : results)
+    for (WildState result : results)
     {
         PokeRNGR rng(result.getSeed());
-        rng.advanceFrames(minFrame - 1);
+        rng.advance(minAdvance);
 
         u32 test = rng.getSeed();
 
-        for (u32 cnt = minFrame; cnt <= maxFrame; cnt++)
+        for (u32 cnt = minAdvance; cnt <= maxAdvance; cnt++)
         {
             u8 hour = (test >> 16) & 0xFF;
             u16 delay = test & 0xFFFF;
@@ -337,21 +337,21 @@ QVector<WildFrame> WildSearcher4::searchInitialSeeds(const QVector<WildFrame> &r
             if (hour < 24 && delay >= minDelay && delay <= maxDelay)
             {
                 result.setSeed(test);
-                result.setFrame(cnt);
-                frames.append(result);
+                result.setAdvance(cnt);
+                states.append(result);
             }
 
             test = rng.next();
         }
     }
 
-    return frames;
+    return states;
 }
 
-QVector<WildFrame> WildSearcher4::normalMethodJ(WildFrame frame, u32 seed) const
+QVector<WildState> WildSearcher4::normalMethodJ(WildState currentState, u32 seed) const
 {
-    QVector<WildFrame> frames;
-    frame.setLead(Lead::None);
+    QVector<WildState> states;
+    currentState.setLead(Lead::None);
 
     PokeRNGR rng(seed);
     u32 pid;
@@ -360,26 +360,26 @@ QVector<WildFrame> WildSearcher4::normalMethodJ(WildFrame frame, u32 seed) const
 
     do
     {
-        if ((nextRNG / 0xa3e) == frame.getNature())
+        if ((nextRNG / 0xa3e) == currentState.getNature())
         {
-            if (encounterMethodJ(frame, rng.getSeed()))
+            if (encounterMethodJ(currentState, rng.getSeed()))
             {
-                frames.append(frame);
+                states.append(currentState);
             }
         }
 
         pid = static_cast<u32>((nextRNG << 16) | nextRNG2);
         nextRNG = rng.nextUShort();
         nextRNG2 = rng.nextUShort();
-    } while (pid % 25 != frame.getNature());
+    } while (pid % 25 != currentState.getNature());
 
-    return frames;
+    return states;
 }
 
-QVector<WildFrame> WildSearcher4::synchMethodJ(WildFrame frame, u32 seed) const
+QVector<WildState> WildSearcher4::synchMethodJ(WildState currentState, u32 seed) const
 {
-    QVector<WildFrame> frames;
-    frame.setLead(Lead::Synchronize);
+    QVector<WildState> states;
+    currentState.setLead(Lead::Synchronize);
 
     PokeRNGR rng(seed);
     u32 pid;
@@ -390,38 +390,38 @@ QVector<WildFrame> WildSearcher4::synchMethodJ(WildFrame frame, u32 seed) const
     {
         if ((nextRNG >> 15) == 0)
         {
-            if (encounterMethodJ(frame, rng.getSeed()))
+            if (encounterMethodJ(currentState, rng.getSeed()))
             {
-                frames.append(frame);
+                states.append(currentState);
             }
         }
-        else if ((nextRNG2 >> 15) == 1 && (nextRNG / 0xa3e) == frame.getNature())
+        else if ((nextRNG2 >> 15) == 1 && (nextRNG / 0xa3e) == currentState.getNature())
         {
-            if (encounterMethodJ(frame, rng.getSeed() * 0xeeb9eb65 + 0xa3561a1))
+            if (encounterMethodJ(currentState, rng.getSeed() * 0xeeb9eb65 + 0xa3561a1))
             {
-                frames.append(frame);
+                states.append(currentState);
             }
         }
 
         pid = static_cast<u32>((nextRNG << 16) | nextRNG2);
         nextRNG = rng.nextUShort();
         nextRNG2 = rng.nextUShort();
-    } while (pid % 25 != frame.getNature());
+    } while (pid % 25 != currentState.getNature());
 
-    return frames;
+    return states;
 }
 
-QVector<WildFrame> WildSearcher4::cuteCharmMethodJ(WildFrame frame, u32 seed) const
+QVector<WildState> WildSearcher4::cuteCharmMethodJ(WildState currentState, u32 seed) const
 {
-    QVector<WildFrame> frames;
+    QVector<WildState> states;
 
     PokeRNGR rng(seed);
-    u16 high = frame.getPID() >> 16;
-    u16 low = frame.getPID() & 0xffff;
+    u16 high = currentState.getPID() >> 16;
+    u16 low = currentState.getPID() & 0xffff;
 
     if ((low / 0x5556) != 0)
     {
-        if (encounterMethodJ(frame, seed))
+        if (encounterMethodJ(currentState, seed))
         {
             u8 choppedPID = high / 0xa3e;
             u8 nature = choppedPID % 25;
@@ -429,58 +429,58 @@ QVector<WildFrame> WildSearcher4::cuteCharmMethodJ(WildFrame frame, u32 seed) co
             {
                 if (buffer == 0)
                 {
-                    frame.setLead(Lead::CuteCharmFemale);
+                    currentState.setLead(Lead::CuteCharmFemale);
                 }
                 else if (buffer == 0x96)
                 {
-                    frame.setLead(Lead::CuteCharm50M);
+                    currentState.setLead(Lead::CuteCharm50M);
                 }
                 else if (buffer == 0xc8)
                 {
-                    frame.setLead(Lead::CuteCharm25M);
+                    currentState.setLead(Lead::CuteCharm25M);
                 }
                 else if (buffer == 0x4b)
                 {
-                    frame.setLead(Lead::CuteCharm75M);
+                    currentState.setLead(Lead::CuteCharm75M);
                 }
                 else if (buffer == 0x32)
                 {
-                    frame.setLead(Lead::CuteCharm875M);
+                    currentState.setLead(Lead::CuteCharm875M);
                 }
 
                 u8 pid = choppedPID + buffer;
-                frame.setPID(pid);
-                frame.setAbility(pid & 1);
-                frame.setGender(pid, genderRatio);
-                frame.setNature(nature);
-                frame.setShiny(tsv, pid, 8);
+                currentState.setPID(pid);
+                currentState.setAbility(pid & 1);
+                currentState.setGender(pid, genderRatio);
+                currentState.setNature(nature);
+                currentState.setShiny(tsv, pid, 8);
 
-                if (filter.comparePID(frame))
+                if (filter.comparePID(currentState))
                 {
-                    frames.append(frame);
+                    states.append(currentState);
                 }
             }
         }
     }
 
-    return frames;
+    return states;
 }
 
-bool WildSearcher4::encounterMethodJ(WildFrame &frame, u32 seed) const
+bool WildSearcher4::encounterMethodJ(WildState &currentState, u32 seed) const
 {
     PokeRNGR rng(seed);
 
     switch (encounter)
     {
     case Encounter::Grass:
-        frame.setEncounterSlot(EncounterSlot::jSlot(seed >> 16, encounter));
-        frame.setLevel(encounterArea.calcLevel(frame.getEncounterSlot()));
-        frame.setSeed(rng.next());
+        currentState.setEncounterSlot(EncounterSlot::jSlot(seed >> 16, encounter));
+        currentState.setLevel(encounterArea.calcLevel(currentState.getEncounterSlot()));
+        currentState.setSeed(rng.next());
         break;
     case Encounter::Surfing:
-        frame.setEncounterSlot(EncounterSlot::jSlot(rng.nextUShort(), encounter));
-        frame.setLevel(encounterArea.calcLevel(frame.getEncounterSlot(), seed >> 16));
-        frame.setSeed(rng.next());
+        currentState.setEncounterSlot(EncounterSlot::jSlot(rng.nextUShort(), encounter));
+        currentState.setLevel(encounterArea.calcLevel(currentState.getEncounterSlot(), seed >> 16));
+        currentState.setSeed(rng.next());
         break;
     case Encounter::OldRod:
     case Encounter::GoodRod:
@@ -489,9 +489,9 @@ bool WildSearcher4::encounterMethodJ(WildFrame &frame, u32 seed) const
         u16 slot = rng.nextUShort();
         if ((rng.nextUShort() / 656) < thresh)
         {
-            frame.setEncounterSlot(EncounterSlot::jSlot(slot, encounter));
-            frame.setLevel(encounterArea.calcLevel(frame.getEncounterSlot(), seed >> 16));
-            frame.setSeed(rng.next());
+            currentState.setEncounterSlot(EncounterSlot::jSlot(slot, encounter));
+            currentState.setLevel(encounterArea.calcLevel(currentState.getEncounterSlot(), seed >> 16));
+            currentState.setSeed(rng.next());
         }
         else
         {
@@ -503,12 +503,12 @@ bool WildSearcher4::encounterMethodJ(WildFrame &frame, u32 seed) const
         break;
     }
 
-    return filter.compareEncounterSlot(frame);
+    return filter.compareEncounterSlot(currentState);
 }
 
-QVector<WildFrame> WildSearcher4::normalMethodK(WildFrame frame, u32 seed) const
+QVector<WildState> WildSearcher4::normalMethodK(WildState currentState, u32 seed) const
 {
-    QVector<WildFrame> frames;
+    QVector<WildState> states;
 
     PokeRNGR rng(seed);
     u32 pid;
@@ -517,27 +517,27 @@ QVector<WildFrame> WildSearcher4::normalMethodK(WildFrame frame, u32 seed) const
 
     do
     {
-        if ((nextRNG % 25) == frame.getNature())
+        if ((nextRNG % 25) == currentState.getNature())
         {
-            frame.setLead(Lead::None);
-            if (encounterMethodK(frame, rng.getSeed()))
+            currentState.setLead(Lead::None);
+            if (encounterMethodK(currentState, rng.getSeed()))
             {
-                frames.append(frame);
+                states.append(currentState);
             }
         }
 
         pid = static_cast<u32>((nextRNG << 16) | nextRNG2);
         nextRNG = rng.nextUShort();
         nextRNG2 = rng.nextUShort();
-    } while (pid % 25 != frame.getNature());
+    } while (pid % 25 != currentState.getNature());
 
-    return frames;
+    return states;
 }
 
-QVector<WildFrame> WildSearcher4::synchMethodK(WildFrame frame, u32 seed) const
+QVector<WildState> WildSearcher4::synchMethodK(WildState currentState, u32 seed) const
 {
-    QVector<WildFrame> frames;
-    frame.setLead(Lead::Synchronize);
+    QVector<WildState> states;
+    currentState.setLead(Lead::Synchronize);
 
     PokeRNGR rng(seed);
     u32 pid;
@@ -548,38 +548,38 @@ QVector<WildFrame> WildSearcher4::synchMethodK(WildFrame frame, u32 seed) const
     {
         if ((nextRNG & 1) == 0)
         {
-            if (encounterMethodK(frame, rng.getSeed()))
+            if (encounterMethodK(currentState, rng.getSeed()))
             {
-                frames.append(frame);
+                states.append(currentState);
             }
         }
-        else if ((nextRNG2 & 1) == 1 && (nextRNG % 25) == frame.getNature())
+        else if ((nextRNG2 & 1) == 1 && (nextRNG % 25) == currentState.getNature())
         {
-            if (encounterMethodK(frame, rng.getSeed() * 0xeeb9eb65 + 0xa3561a1))
+            if (encounterMethodK(currentState, rng.getSeed() * 0xeeb9eb65 + 0xa3561a1))
             {
-                frames.append(frame);
+                states.append(currentState);
             }
         }
 
         pid = static_cast<u32>((nextRNG << 16) | nextRNG2);
         nextRNG = rng.nextUShort();
         nextRNG2 = rng.nextUShort();
-    } while (pid % 25 != frame.getNature());
+    } while (pid % 25 != currentState.getNature());
 
-    return frames;
+    return states;
 }
 
-QVector<WildFrame> WildSearcher4::cuteCharmMethodK(WildFrame frame, u32 seed) const
+QVector<WildState> WildSearcher4::cuteCharmMethodK(WildState currentState, u32 seed) const
 {
-    QVector<WildFrame> frames;
+    QVector<WildState> states;
 
     PokeRNGR rng(seed);
-    u16 high = frame.getPID() >> 16;
-    u16 low = frame.getPID() & 0xffff;
+    u16 high = currentState.getPID() >> 16;
+    u16 low = currentState.getPID() & 0xffff;
 
     if ((low % 3) != 0)
     {
-        if (encounterMethodK(frame, seed))
+        if (encounterMethodK(currentState, seed))
         {
             u8 choppedPID = high % 25;
             u8 nature = choppedPID % 25;
@@ -587,58 +587,58 @@ QVector<WildFrame> WildSearcher4::cuteCharmMethodK(WildFrame frame, u32 seed) co
             {
                 if (buffer == 0)
                 {
-                    frame.setLead(Lead::CuteCharmFemale);
+                    currentState.setLead(Lead::CuteCharmFemale);
                 }
                 else if (buffer == 0x96)
                 {
-                    frame.setLead(Lead::CuteCharm50M);
+                    currentState.setLead(Lead::CuteCharm50M);
                 }
                 else if (buffer == 0xc8)
                 {
-                    frame.setLead(Lead::CuteCharm25M);
+                    currentState.setLead(Lead::CuteCharm25M);
                 }
                 else if (buffer == 0x4b)
                 {
-                    frame.setLead(Lead::CuteCharm75M);
+                    currentState.setLead(Lead::CuteCharm75M);
                 }
                 else if (buffer == 0x32)
                 {
-                    frame.setLead(Lead::CuteCharm875M);
+                    currentState.setLead(Lead::CuteCharm875M);
                 }
 
                 u8 pid = choppedPID + buffer;
-                frame.setPID(pid);
-                frame.setAbility(pid & 1);
-                frame.setGender(pid, genderRatio);
-                frame.setNature(nature);
-                frame.setShiny(tsv, pid, 8);
+                currentState.setPID(pid);
+                currentState.setAbility(pid & 1);
+                currentState.setGender(pid, genderRatio);
+                currentState.setNature(nature);
+                currentState.setShiny(tsv, pid, 8);
 
-                if (filter.comparePID(frame))
+                if (filter.comparePID(currentState))
                 {
-                    frames.append(frame);
+                    states.append(currentState);
                 }
             }
         }
     }
 
-    return frames;
+    return states;
 }
 
-bool WildSearcher4::encounterMethodK(WildFrame &frame, u32 seed) const
+bool WildSearcher4::encounterMethodK(WildState &currentState, u32 seed) const
 {
     PokeRNGR rng(seed);
 
     switch (encounter)
     {
     case Encounter::Grass:
-        frame.setEncounterSlot(EncounterSlot::kSlot(seed >> 16, encounter));
-        frame.setLevel(encounterArea.calcLevel(frame.getEncounterSlot()));
-        frame.setSeed(rng.next());
+        currentState.setEncounterSlot(EncounterSlot::kSlot(seed >> 16, encounter));
+        currentState.setLevel(encounterArea.calcLevel(currentState.getEncounterSlot()));
+        currentState.setSeed(rng.next());
         break;
     case Encounter::Surfing:
-        frame.setEncounterSlot(EncounterSlot::kSlot(rng.nextUShort(), encounter));
-        frame.setLevel(encounterArea.calcLevel(frame.getEncounterSlot(), seed >> 16));
-        frame.setSeed(rng.next());
+        currentState.setEncounterSlot(EncounterSlot::kSlot(rng.nextUShort(), encounter));
+        currentState.setLevel(encounterArea.calcLevel(currentState.getEncounterSlot(), seed >> 16));
+        currentState.setSeed(rng.next());
         break;
     case Encounter::OldRod:
     case Encounter::GoodRod:
@@ -648,16 +648,16 @@ bool WildSearcher4::encounterMethodK(WildFrame &frame, u32 seed) const
         u16 nibble = rng.nextUShort() % 100;
         if (nibble < thresh)
         {
-            frame.setEncounterSlot(EncounterSlot::kSlot(slot, encounter));
-            frame.setLevel(encounterArea.calcLevel(frame.getEncounterSlot()));
-            frame.setSeed(rng.next());
+            currentState.setEncounterSlot(EncounterSlot::kSlot(slot, encounter));
+            currentState.setLevel(encounterArea.calcLevel(currentState.getEncounterSlot()));
+            currentState.setSeed(rng.next());
         }
-        else if (nibble < suctionCupThresh && frame.getLead() == Lead::None)
+        else if (nibble < suctionCupThresh && currentState.getLead() == Lead::None)
         {
-            frame.setLead(Lead::SuctionCups);
-            frame.setEncounterSlot(EncounterSlot::kSlot(slot, encounter));
-            frame.setLevel(encounterArea.calcLevel(frame.getEncounterSlot()));
-            frame.setSeed(rng.next());
+            currentState.setLead(Lead::SuctionCups);
+            currentState.setEncounterSlot(EncounterSlot::kSlot(slot, encounter));
+            currentState.setLevel(encounterArea.calcLevel(currentState.getEncounterSlot()));
+            currentState.setSeed(rng.next());
         }
         else
         {
@@ -670,10 +670,10 @@ bool WildSearcher4::encounterMethodK(WildFrame &frame, u32 seed) const
         u16 slot = rng.nextUShort();
         if ((rng.nextUShort() % 100) < rock)
         {
-            frame.setEncounterSlot(EncounterSlot::kSlot(slot, encounter));
-            frame.setLevel(encounterArea.calcLevel(frame.getEncounterSlot(), seed >> 16));
-            rng.advanceFrames(1); // Blank (maybe item)
-            frame.setSeed(rng.next());
+            currentState.setEncounterSlot(EncounterSlot::kSlot(slot, encounter));
+            currentState.setLevel(encounterArea.calcLevel(currentState.getEncounterSlot(), seed >> 16));
+            rng.advance(1); // Blank (maybe item)
+            currentState.setSeed(rng.next());
         }
         else
         {
@@ -685,5 +685,5 @@ bool WildSearcher4::encounterMethodK(WildFrame &frame, u32 seed) const
         break;
     }
 
-    return filter.compareEncounterSlot(frame);
+    return filter.compareEncounterSlot(currentState);
 }

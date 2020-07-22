@@ -164,13 +164,13 @@ bool GalesSeedSearcher::searchSeed(XDRNG &rng)
     }
     rng.next();
 
-    rng.advanceFrames(2); // SID/TID
+    rng.advance(2); // SID/TID
     for (u8 i = 0; i < 2; i++)
     {
-        rng.advanceFrames(2); // Temp PID
+        rng.advance(2); // Temp PID
 
         u8 hpIV = rng.nextUShort() & 31;
-        rng.advanceFrames(1); // Other IV Call
+        rng.advance(1); // Other IV Call
 
         rng.next(); // Ability
 
@@ -184,13 +184,13 @@ bool GalesSeedSearcher::searchSeed(XDRNG &rng)
     }
     rng.next();
 
-    rng.advanceFrames(2); // SID/TID
+    rng.advance(2); // SID/TID
     for (u8 i = 0; i < 2; i++)
     {
-        rng.advanceFrames(2); // Temp PID
+        rng.advance(2); // Temp PID
 
         u8 hpIV = rng.nextUShort() & 31;
-        rng.advanceFrames(1); // Other IV Call
+        rng.advance(1); // Other IV Call
 
         rng.next(); // Ability
 

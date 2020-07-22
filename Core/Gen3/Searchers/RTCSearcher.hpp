@@ -20,7 +20,7 @@
 #ifndef RTCSEARCHER_HPP
 #define RTCSEARCHER_HPP
 
-#include <Core/Gen3/Frames/GameCubeRTCFrame.hpp>
+#include <Core/Gen3/States/GameCubeRTCState.hpp>
 #include <Core/Util/Global.hpp>
 #include <QVector>
 
@@ -28,12 +28,12 @@ class RTCSearcher
 {
 public:
     RTCSearcher();
-    void startSearch(u32 initialSeed, u32 targetSeed, u32 initialFrame, u32 maxResults);
+    void startSearch(u32 initialSeed, u32 targetSeed, u32 initialAdvances, u32 maxResults);
     void cancelSearch();
-    QVector<GameCubeRTCFrame> getResults();
+    QVector<GameCubeRTCState> getResults();
 
 private:
-    QVector<GameCubeRTCFrame> results;
+    QVector<GameCubeRTCState> results;
     bool searching;
 };
 

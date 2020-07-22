@@ -55,7 +55,7 @@ ShadowType ShadowLock::getType()
 bool ShadowLock::singleNL(u32 seed, u16 tsv)
 {
     XDRNGR backward(seed);
-    backward.advanceFrames(1);
+    backward.advance(1);
 
     // Build PID of non-shadow
     u32 pid = getPIDBackward(backward);
@@ -69,7 +69,7 @@ bool ShadowLock::singleNL(u32 seed, u16 tsv)
 bool ShadowLock::firstShadowNormal(u32 seed, u16 tsv)
 {
     XDRNGR backward(seed);
-    backward.advanceFrames(1);
+    backward.advance(1);
 
     // Grab PID from first non-shadow going backwards
     // If it doesn't match spread fails
@@ -83,7 +83,7 @@ bool ShadowLock::firstShadowNormal(u32 seed, u16 tsv)
     u32 pid;
     for (backwardLock++; backwardLock != locks.cend(); backwardLock++)
     {
-        backward.advanceFrames(5);
+        backward.advance(5);
 
         // If lock is a shadow assume PID is already set
         if (!backwardLock->getFree())
@@ -96,12 +96,12 @@ bool ShadowLock::firstShadowNormal(u32 seed, u16 tsv)
     }
 
     XDRNG forward(backward.getSeed());
-    forward.advanceFrames(1);
+    forward.advance(1);
 
     auto forwardLock = locks.crbegin();
     for (forwardLock++; forwardLock != locks.crend(); forwardLock++)
     {
-        forward.advanceFrames(5);
+        forward.advance(5);
 
         // If lock is a shadow assume PID is already set
         if (!forwardLock->getFree())
@@ -122,7 +122,7 @@ bool ShadowLock::firstShadowNormal(u32 seed, u16 tsv)
 bool ShadowLock::firstShadowSet(u32 seed, u16 tsv)
 {
     XDRNGR backward(seed);
-    backward.advanceFrames(6);
+    backward.advance(6);
 
     // Grab PID from first non-shadow going backwards
     // If it doesn't match spread fails
@@ -136,7 +136,7 @@ bool ShadowLock::firstShadowSet(u32 seed, u16 tsv)
     u32 pid;
     for (backwardLock++; backwardLock != locks.cend(); backwardLock++)
     {
-        backward.advanceFrames(5);
+        backward.advance(5);
 
         // If lock is a shadow assume PID is already set
         if (!backwardLock->getFree())
@@ -149,12 +149,12 @@ bool ShadowLock::firstShadowSet(u32 seed, u16 tsv)
     }
 
     XDRNG forward(backward.getSeed());
-    forward.advanceFrames(1);
+    forward.advance(1);
 
     auto forwardLock = locks.crbegin();
     for (forwardLock++; forwardLock != locks.crend(); forwardLock++)
     {
-        forward.advanceFrames(5);
+        forward.advance(5);
 
         // If lock is a shadow assume PID is already set
         if (!forwardLock->getFree())
@@ -175,7 +175,7 @@ bool ShadowLock::firstShadowSet(u32 seed, u16 tsv)
 bool ShadowLock::firstShadowUnset(u32 seed, u16 tsv)
 {
     XDRNGR backward(seed);
-    backward.advanceFrames(3);
+    backward.advance(3);
 
     // Shiny lock test for first shadow
     XDRNGR test(backward.getSeed());
@@ -186,7 +186,7 @@ bool ShadowLock::firstShadowUnset(u32 seed, u16 tsv)
         shadowPSV = test.nextUShort() ^ test.nextUShort();
     }
 
-    backward.advanceFrames(5);
+    backward.advance(5);
 
     // Grab PID from first non-shadow going backwards
     // If it doesn't match spread fails
@@ -200,7 +200,7 @@ bool ShadowLock::firstShadowUnset(u32 seed, u16 tsv)
     u32 pid;
     for (backwardLock++; backwardLock != locks.cend(); backwardLock++)
     {
-        backward.advanceFrames(5);
+        backward.advance(5);
 
         // If lock is a shadow assume PID is already set
         if (!backwardLock->getFree())
@@ -213,12 +213,12 @@ bool ShadowLock::firstShadowUnset(u32 seed, u16 tsv)
     }
 
     XDRNG forward(backward.getSeed());
-    forward.advanceFrames(1);
+    forward.advance(1);
 
     auto forwardLock = locks.crbegin();
     for (forwardLock++; forwardLock != locks.crend(); forwardLock++)
     {
-        forward.advanceFrames(5);
+        forward.advance(5);
 
         // If lock is a shadow assume PID is already set
         if (!forwardLock->getFree())
@@ -237,7 +237,7 @@ bool ShadowLock::firstShadowUnset(u32 seed, u16 tsv)
 bool ShadowLock::salamenceSet(u32 seed, u16 tsv)
 {
     XDRNGR backward(seed);
-    backward.advanceFrames(6);
+    backward.advance(6);
 
     // Build PID of non-shadow
     u32 pid = getPIDBackward(backward);
@@ -248,7 +248,7 @@ bool ShadowLock::salamenceSet(u32 seed, u16 tsv)
 bool ShadowLock::salamenceUnset(u32 seed, u16 tsv)
 {
     XDRNGR backward(seed);
-    backward.advanceFrames(3);
+    backward.advance(3);
 
     // Shiny lock test for first shadow
     XDRNGR test(backward.getSeed());
@@ -259,7 +259,7 @@ bool ShadowLock::salamenceUnset(u32 seed, u16 tsv)
         shadowPSV = test.nextUShort() ^ test.nextUShort();
     }
 
-    backward.advanceFrames(5);
+    backward.advance(5);
 
     // Build PID of non-shadow
     u32 pid = getPIDBackward(backward);
@@ -274,7 +274,7 @@ bool ShadowLock::salamenceUnset(u32 seed, u16 tsv)
 bool ShadowLock::coloShadow(u32 seed)
 {
     XDRNGR backward(seed);
-    backward.advanceFrames(1);
+    backward.advance(1);
 
     // Grab PID from first non-shadow going backwards
     // If it doesn't match spread fails
@@ -288,7 +288,7 @@ bool ShadowLock::coloShadow(u32 seed)
     u32 pid;
     for (backwardLock++; backwardLock != locks.cend(); backwardLock++)
     {
-        backward.advanceFrames(5);
+        backward.advance(5);
 
         // If lock is a shadow assume PID is already set
         if (!backwardLock->getFree())
@@ -301,12 +301,12 @@ bool ShadowLock::coloShadow(u32 seed)
     }
 
     XDRNG forward(backward.getSeed());
-    forward.advanceFrames(1);
+    forward.advance(1);
 
     auto forwardLock = locks.crbegin();
     for (forwardLock++; forwardLock != locks.crend(); forwardLock++)
     {
-        forward.advanceFrames(5);
+        forward.advance(5);
 
         // If lock is a shadow assume PID is already set
         if (!forwardLock->getFree())
@@ -336,14 +336,14 @@ bool ShadowLock::ereader(u32 seed, u32 readerPID)
     }
 
     XDRNGR backward(seed);
-    backward.advanceFrames(1);
+    backward.advance(1);
 
     u32 pid;
     for (backwardLock++; backwardLock != locks.cend(); backwardLock++)
     {
         if (backwardLock != locks.begin() + 1)
         {
-            backward.advanceFrames(5);
+            backward.advance(5);
         }
 
         do
@@ -353,12 +353,12 @@ bool ShadowLock::ereader(u32 seed, u32 readerPID)
     }
 
     XDRNG forward(backward.getSeed());
-    forward.advanceFrames(1);
+    forward.advance(1);
 
     auto forwardLock = locks.crbegin();
     for (forwardLock++; forwardLock != locks.crend(); forwardLock++)
     {
-        forward.advanceFrames(5);
+        forward.advance(5);
 
         do
         {
