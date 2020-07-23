@@ -91,10 +91,10 @@ void IDs5::setupModels()
     ui->textBoxTID->setValues(InputType::TIDSID);
     ui->textBoxSID->setValues(InputType::TIDSID);
 
-    ui->textBoxMaxAdvances->setValues(InputType::State32Bit);
+    ui->textBoxMaxAdvances->setValues(InputType::Advance32Bit);
 
     ui->textBoxSeedFinderTID->setValues(InputType::TIDSID);
-    ui->textBoxSeedFinderMaxAdvances->setValues(InputType::State32Bit);
+    ui->textBoxSeedFinderMaxAdvances->setValues(InputType::Advance32Bit);
 
     QAction *outputTXTGenerator = menu->addAction(tr("Output Results to TXT"));
     QAction *outputCSVGenerator = menu->addAction(tr("Output Results to CSV"));

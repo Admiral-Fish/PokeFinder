@@ -94,13 +94,13 @@ void Stationary4::setupModels()
     ui->tableViewSearcher->setModel(searcherModel);
 
     ui->textBoxGeneratorSeed->setValues(InputType::Seed32Bit);
-    ui->textBoxGeneratorInitialAdvances->setValues(InputType::State32Bit);
-    ui->textBoxGeneratorMaxAdvances->setValues(InputType::State32Bit);
+    ui->textBoxGeneratorInitialAdvances->setValues(InputType::Advance32Bit);
+    ui->textBoxGeneratorMaxAdvances->setValues(InputType::Advance32Bit);
 
     ui->textBoxSearcherMinDelay->setValues(InputType::Delay);
     ui->textBoxSearcherMaxDelay->setValues(InputType::Delay);
-    ui->textBoxSearcherMinAdvance->setValues(InputType::State32Bit);
-    ui->textBoxSearcherMaxAdvance->setValues(InputType::State32Bit);
+    ui->textBoxSearcherMinAdvance->setValues(InputType::Advance32Bit);
+    ui->textBoxSearcherMaxAdvance->setValues(InputType::Advance32Bit);
 
     ui->comboBoxSearcherLead->setup({ Lead::Search, Lead::Synchronize, Lead::CuteCharm, Lead::None });
 

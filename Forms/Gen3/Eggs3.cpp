@@ -85,25 +85,25 @@ void Eggs3::setupModels()
     ui->tableViewRS->setModel(rs);
     ui->tableViewFRLG->setModel(frlg);
 
-    ui->textBoxEmeraldInitialAdvances->setValues(InputType::State32Bit);
-    ui->textBoxEmeraldMaxAdvances->setValues(InputType::State32Bit);
+    ui->textBoxEmeraldInitialAdvances->setValues(InputType::Advance32Bit);
+    ui->textBoxEmeraldMaxAdvances->setValues(InputType::Advance32Bit);
     ui->textBoxMinRedraws->setValues(0, 255, 3, 10);
     ui->textBoxMaxRedraws->setValues(0, 255, 3, 10);
     ui->textBoxCalibration->setValues(0, 255, 3, 10);
 
     ui->textBoxRSSeedHeld->setValues(InputType::Seed16Bit);
     ui->textBoxRSSeedPickup->setValues(InputType::Seed16Bit);
-    ui->textBoxRSInitialAdvancesHeld->setValues(InputType::State32Bit);
-    ui->textBoxRSMaxAdvancesHeld->setValues(InputType::State32Bit);
-    ui->textBoxRSInitialAdvancesPickup->setValues(InputType::State32Bit);
-    ui->textBoxRSMaxAdvancesPickup->setValues(InputType::State32Bit);
+    ui->textBoxRSInitialAdvancesHeld->setValues(InputType::Advance32Bit);
+    ui->textBoxRSMaxAdvancesHeld->setValues(InputType::Advance32Bit);
+    ui->textBoxRSInitialAdvancesPickup->setValues(InputType::Advance32Bit);
+    ui->textBoxRSMaxAdvancesPickup->setValues(InputType::Advance32Bit);
 
     ui->textBoxFRLGSeedHeld->setValues(InputType::Seed16Bit);
     ui->textBoxFRLGSeedPickup->setValues(InputType::Seed16Bit);
-    ui->textBoxFRLGInitialAdvancesHeld->setValues(InputType::State32Bit);
-    ui->textBoxFRLGMaxAdvancesHeld->setValues(InputType::State32Bit);
-    ui->textBoxFRLGInitialAdvancesPickup->setValues(InputType::State32Bit);
-    ui->textBoxFRLGMaxAdvancesPickup->setValues(InputType::State32Bit);
+    ui->textBoxFRLGInitialAdvancesHeld->setValues(InputType::Advance32Bit);
+    ui->textBoxFRLGMaxAdvancesHeld->setValues(InputType::Advance32Bit);
+    ui->textBoxFRLGInitialAdvancesPickup->setValues(InputType::Advance32Bit);
+    ui->textBoxFRLGMaxAdvancesPickup->setValues(InputType::Advance32Bit);
 
     ui->comboBoxEmeraldCompatibility->setup({ 20, 50, 70 });
     ui->comboBoxRSCompatibility->setup({ 20, 50, 70 });

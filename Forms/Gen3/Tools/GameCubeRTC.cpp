@@ -65,8 +65,8 @@ void GameCubeRTC::setupModels()
 
     ui->textBoxStartSeed->setValues(InputType::Seed32Bit);
     ui->textBoxTargetSeed->setValues(InputType::Seed32Bit);
-    ui->textBoxMinAdvance->setValues(InputType::State32Bit);
-    ui->textBoxMaxAdvance->setValues(InputType::State32Bit);
+    ui->textBoxMinAdvance->setValues(InputType::Advance32Bit);
+    ui->textBoxMaxAdvance->setValues(InputType::Advance32Bit);
 
     connect(ui->pushButtonSearch, &QPushButton::clicked, this, &GameCubeRTC::search);
 

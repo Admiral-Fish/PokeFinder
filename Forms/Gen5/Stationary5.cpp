@@ -80,14 +80,14 @@ void Stationary5::setupModels()
     // ui->tableViewSearcher->setModel(searcherModel);
 
     ui->textBoxGeneratorSeed->setValues(InputType::Seed32Bit);
-    ui->textBoxGeneratorStartingAdvance->setValues(InputType::State32Bit);
-    ui->textBoxGeneratorMaxAdvances->setValues(InputType::State32Bit);
-    ui->textBoxGeneratorDelay->setValues(InputType::State32Bit);
+    ui->textBoxGeneratorStartingAdvance->setValues(InputType::Advance32Bit);
+    ui->textBoxGeneratorMaxAdvances->setValues(InputType::Advance32Bit);
+    ui->textBoxGeneratorDelay->setValues(InputType::Advance32Bit);
 
     ui->textBoxSearcherMinDelay->setValues(InputType::Delay);
     ui->textBoxSearcherMaxDelay->setValues(InputType::Delay);
-    ui->textBoxSearcherMinAdvance->setValues(InputType::State32Bit);
-    ui->textBoxSearcherMaxAdvance->setValues(InputType::State32Bit);
+    ui->textBoxSearcherMinAdvance->setValues(InputType::Advance32Bit);
+    ui->textBoxSearcherMaxAdvance->setValues(InputType::Advance32Bit);
 
     ui->comboBoxSearcherLead->setItemData(0, Lead::Search);
     ui->comboBoxSearcherLead->setItemData(1, Lead::Synchronize);

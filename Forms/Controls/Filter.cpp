@@ -31,7 +31,7 @@ Filter::Filter(QWidget *parent) : QWidget(parent), ui(new Ui::Filter)
     ui->checkListHiddenPower->setup(Translator::getHiddenPowers());
     ui->checkListNature->setup(Translator::getNatures());
     ui->comboBoxShiny->setup({ 255, 1, 2, 3 });
-    ui->textBoxDelay->setValues(InputType::State32Bit);
+    ui->textBoxDelay->setValues(InputType::Advance32Bit);
 
     connect(ui->pushButtonEncounterSlotAny, &QPushButton::clicked, ui->checkListEncounterSlot, &CheckList::resetChecks);
     connect(ui->pushButtonHiddenPowerAny, &QPushButton::clicked, ui->checkListHiddenPower, &CheckList::resetChecks);

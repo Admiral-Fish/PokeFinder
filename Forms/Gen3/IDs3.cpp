@@ -54,22 +54,22 @@ void IDs3::setupModels()
     ui->textBoxFRLGEPID->setValues(InputType::Seed32Bit);
     ui->textBoxFRLGETID->setValues(InputType::TIDSID);
     ui->textBoxFRLGESID->setValues(InputType::TIDSID);
-    ui->textBoxFRLGEStartingAdvance->setValues(InputType::State32Bit);
-    ui->textBoxFRLGEMaxAdvances->setValues(InputType::State32Bit);
+    ui->textBoxFRLGEStartingAdvance->setValues(InputType::Advance32Bit);
+    ui->textBoxFRLGEMaxAdvances->setValues(InputType::Advance32Bit);
 
     ui->textBoxRSPID->setValues(InputType::Seed32Bit);
     ui->textBoxRSTID->setValues(InputType::TIDSID);
     ui->textBoxRSSID->setValues(InputType::TIDSID);
     ui->textBoxRSInitialSeed->setValues(InputType::Seed16Bit);
-    ui->textBoxRSStartingAdvance->setValues(InputType::State32Bit);
-    ui->textBoxRSMaxAdvances->setValues(InputType::State32Bit);
+    ui->textBoxRSStartingAdvance->setValues(InputType::Advance32Bit);
+    ui->textBoxRSMaxAdvances->setValues(InputType::Advance32Bit);
 
     ui->textBoxXDColoPID->setValues(InputType::Seed32Bit);
     ui->textBoxXDColoTID->setValues(InputType::TIDSID);
     ui->textBoxXDColoSID->setValues(InputType::TIDSID);
     ui->textBoxXDColoSeed->setValues(InputType::Seed32Bit);
-    ui->textBoxXDColoStartingAdvance->setValues(InputType::State32Bit);
-    ui->textBoxXDColoMaxAdvances->setValues(InputType::State32Bit);
+    ui->textBoxXDColoStartingAdvance->setValues(InputType::Advance32Bit);
+    ui->textBoxXDColoMaxAdvances->setValues(InputType::Advance32Bit);
 
     ui->dateTimeEdit->setDisplayFormat(QLocale::system().dateTimeFormat(QLocale::ShortFormat));
 

@@ -54,8 +54,8 @@ void PokeSpot::setupModels()
     menu = new QMenu(ui->tableView);
 
     ui->textBoxSeed->setValues(InputType::Seed32Bit);
-    ui->textBoxStartingAdvance->setValues(InputType::State32Bit);
-    ui->textBoxMaxAdvances->setValues(InputType::State32Bit);
+    ui->textBoxStartingAdvance->setValues(InputType::Advance32Bit);
+    ui->textBoxMaxAdvances->setValues(InputType::Advance32Bit);
     ui->textBoxTID->setValues(InputType::TIDSID);
     ui->textBoxSID->setValues(InputType::TIDSID);
 

@@ -28,7 +28,7 @@ enum InputType : u8
     Seed64Bit,
     Advance64Bit,
     Seed32Bit,
-    State32Bit,
+    Advance32Bit,
     Seed16Bit,
     Delay,
     TIDSID

@@ -94,16 +94,16 @@ void Eggs4::setupModels()
     ui->tableViewGenerator->setModel(generatorModel);
     ui->tableViewSearcher->setModel(searcherModel);
 
-    ui->textBoxGeneratorInitialAdvances->setValues(InputType::State32Bit);
-    ui->textBoxGeneratorMaxAdvances->setValues(InputType::State32Bit);
+    ui->textBoxGeneratorInitialAdvances->setValues(InputType::Advance32Bit);
+    ui->textBoxGeneratorMaxAdvances->setValues(InputType::Advance32Bit);
     ui->textBoxGeneratorSeed->setValues(InputType::Seed32Bit);
 
-    ui->textBoxSearcherIVMinAdvance->setValues(InputType::State32Bit);
-    ui->textBoxSearcherIVMaxAdvance->setValues(InputType::State32Bit);
-    ui->textBoxSearcherPIDMinAdvance->setValues(InputType::State32Bit);
-    ui->textBoxSearcherPIDMaxAdvance->setValues(InputType::State32Bit);
-    ui->textBoxSearcherMinDelay->setValues(InputType::State32Bit);
-    ui->textBoxSearcherMaxDelay->setValues(InputType::State32Bit);
+    ui->textBoxSearcherIVMinAdvance->setValues(InputType::Advance32Bit);
+    ui->textBoxSearcherIVMaxAdvance->setValues(InputType::Advance32Bit);
+    ui->textBoxSearcherPIDMinAdvance->setValues(InputType::Advance32Bit);
+    ui->textBoxSearcherPIDMaxAdvance->setValues(InputType::Advance32Bit);
+    ui->textBoxSearcherMinDelay->setValues(InputType::Advance32Bit);
+    ui->textBoxSearcherMaxDelay->setValues(InputType::Advance32Bit);
 
     ui->comboBoxGeneratorMethod->setup({ Method::DPPtIVs, Method::Gen4Normal });
 

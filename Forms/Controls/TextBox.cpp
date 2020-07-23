@@ -47,7 +47,7 @@ void TextBox::setValues(InputType type)
         length = 8;
         base = 16;
         break;
-    case InputType::State32Bit:
+    case InputType::Advance32Bit:
         minValue = 0;
         maxValue = 0xffffffff;
         length = 10;
