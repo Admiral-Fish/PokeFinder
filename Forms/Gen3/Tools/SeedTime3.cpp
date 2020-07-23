@@ -97,7 +97,7 @@ void SeedTime3::find()
 {
     u32 seed = ui->textBoxSeed->getUInt();
     u16 year = ui->textBoxYear->getUShort();
-    advance = 1;
+    advance = 0;
 
     if (seed > 0xFFFF)
     {
