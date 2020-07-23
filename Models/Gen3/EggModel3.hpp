@@ -41,12 +41,12 @@ public slots:
 private:
     Method method;
     bool showInheritance;
-    QStringList header = { tr("Advance"), tr("Held Advance"), tr("Pickup Advance"),
-                           tr("Redraws"), tr("PID"),          tr("Shiny"),
-                           tr("Nature"),  tr("Ability"),      tr("HP"),
-                           tr("Atk"),     tr("Def"),          tr("SpA"),
-                           tr("SpD"),     tr("Spe"),          tr("Hidden"),
-                           tr("Power"),   tr("Gender") };
+    QStringList header = { tr("Advances"), tr("Held Advances"), tr("Pickup Advances"),
+                           tr("Redraws"),  tr("PID"),           tr("Shiny"),
+                           tr("Nature"),   tr("Ability"),       tr("HP"),
+                           tr("Atk"),      tr("Def"),           tr("SpA"),
+                           tr("SpD"),      tr("Spe"),           tr("Hidden"),
+                           tr("Power"),    tr("Gender") };
 
     int getColumn(int column) const;
 };

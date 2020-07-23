@@ -38,8 +38,8 @@ public:
 private:
     Method method;
     QStringList header
-        = { tr("Advance"), tr("Call"), tr("Chatot"), tr("Slot"), tr("Level"), tr("PID"), tr("Shiny"),  tr("Nature"), tr("Ability"),
-            tr("HP"),      tr("Atk"),  tr("Def"),    tr("SpA"),  tr("SpD"),   tr("Spe"), tr("Hidden"), tr("Power"),  tr("Gender") };
+        = { tr("Advances"), tr("Call"), tr("Chatot"), tr("Slot"), tr("Level"), tr("PID"), tr("Shiny"),  tr("Nature"), tr("Ability"),
+            tr("HP"),       tr("Atk"),  tr("Def"),    tr("SpA"),  tr("SpD"),   tr("Spe"), tr("Hidden"), tr("Power"),  tr("Gender") };
 
     int getColumn(int column) const;
 };
@@ -58,8 +58,8 @@ public:
 private:
     Method method;
     QStringList header
-        = { tr("Seed"), tr("Advance"), tr("Lead"), tr("Slot"), tr("Level"), tr("PID"), tr("Shiny"),  tr("Nature"), tr("Ability"),
-            tr("HP"),   tr("Atk"),     tr("Def"),  tr("SpA"),  tr("SpD"),   tr("Spe"), tr("Hidden"), tr("Power"),  tr("Gender") };
+        = { tr("Seed"), tr("Advances"), tr("Lead"), tr("Slot"), tr("Level"), tr("PID"), tr("Shiny"),  tr("Nature"), tr("Ability"),
+            tr("HP"),   tr("Atk"),      tr("Def"),  tr("SpA"),  tr("SpD"),   tr("Spe"), tr("Hidden"), tr("Power"),  tr("Gender") };
 
     int getColumn(int column) const;
 };

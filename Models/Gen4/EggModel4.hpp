@@ -41,8 +41,8 @@ public slots:
 private:
     Method method;
     bool showInheritance;
-    QStringList header = { tr("Advance"), tr("Call"), tr("Chatot"), tr("PID"), tr("Shiny"), tr("Nature"), tr("Ability"), tr("HP"),
-                           tr("Atk"),     tr("Def"),  tr("SpA"),    tr("SpD"), tr("Spe"),   tr("Hidden"), tr("Power"),   tr("Gender") };
+    QStringList header = { tr("Advances"), tr("Call"), tr("Chatot"), tr("PID"), tr("Shiny"), tr("Nature"), tr("Ability"), tr("HP"),
+                           tr("Atk"),      tr("Def"),  tr("SpA"),    tr("SpD"), tr("Spe"),   tr("Hidden"), tr("Power"),   tr("Gender") };
 
     int getColumn(int column) const;
 };
@@ -64,9 +64,9 @@ public slots:
 private:
     Method method;
     bool showInheritance;
-    QStringList header
-        = { tr("Seed"), tr("Advance"), tr("PID Advance"), tr("IV Advance"), tr("PID"), tr("Shiny"),  tr("Nature"), tr("Ability"), tr("HP"),
-            tr("Atk"),  tr("Def"),     tr("SpA"),         tr("SpD"),        tr("Spe"), tr("Hidden"), tr("Power"),  tr("Gender") };
+    QStringList header = { tr("Seed"),   tr("Advances"), tr("PID Advances"), tr("IV Advances"), tr("PID"),   tr("Shiny"),
+                           tr("Nature"), tr("Ability"),  tr("HP"),           tr("Atk"),         tr("Def"),   tr("SpA"),
+                           tr("SpD"),    tr("Spe"),      tr("Hidden"),       tr("Power"),       tr("Gender") };
 
     int getColumn(int column) const;
 };

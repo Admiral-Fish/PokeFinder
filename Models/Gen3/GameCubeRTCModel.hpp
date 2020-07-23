@@ -33,7 +33,7 @@ public:
     QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
 
 private:
-    QStringList header = { tr("Time"), tr("Advance"), tr("Seed") };
+    QStringList header = { tr("Time"), tr("Advances"), tr("Seed") };
 };
 
 #endif // GAMECUBERTCMODEL_HPP

@@ -33,7 +33,7 @@ public:
     QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
 
 private:
-    QStringList header = { tr("Time"), tr("Advance") };
+    QStringList header = { tr("Time"), tr("Advances") };
 };
 
 #endif // SEEDTIMEMODEL3_HPP

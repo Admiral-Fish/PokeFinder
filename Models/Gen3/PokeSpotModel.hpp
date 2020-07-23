@@ -33,7 +33,7 @@ public:
     QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
 
 private:
-    QStringList header = { tr("Advance"), tr("PID"), tr("Shiny"), tr("Type"), tr("Nature"), tr("Ability"), tr("Gender") };
+    QStringList header = { tr("Advances"), tr("PID"), tr("Shiny"), tr("Type"), tr("Nature"), tr("Ability"), tr("Gender") };
 };
 
 #endif // POKESPOTMODEL_HPP
