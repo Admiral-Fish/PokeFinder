@@ -170,7 +170,7 @@ namespace Utilities
     u32 initialAdvancesBW2(u64 seed, bool memory)
     {
         BWRNG rng(seed);
-        u32 count = 1;
+        u32 count = 0;
 
         for (u8 i = 0; i < 5; i++)
         {
