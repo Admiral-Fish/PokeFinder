@@ -30,12 +30,12 @@ public:
     GameCubeRTCState(const QDateTime &dateTime, u32 seed, u32 advance);
     QString getDateTime() const;
     u32 getSeed() const;
-    u32 getAdvance() const;
+    u32 getAdvances() const;
 
 private:
     QDateTime dateTime;
     u32 seed;
-    u32 advance;
+    u32 advances;
 };
 
 #endif // GAMECUBERTCSTATE_HPP

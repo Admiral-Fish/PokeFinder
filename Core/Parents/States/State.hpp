@@ -29,8 +29,8 @@ public:
     explicit State(u32 advance);
     u32 getSeed() const;
     void setSeed(u32 seed);
-    u32 getAdvance() const;
-    void setAdvance(u32 advance);
+    u32 getAdvances() const;
+    void setAdvances(u32 advance);
     u32 getPID() const;
     void setPID(u32 pid);
     void setPID(u16 high, u16 low);
@@ -57,7 +57,7 @@ public:
 
 protected:
     u32 seed;
-    u32 advance;
+    u32 advances;
     u32 pid;
     u8 ivs[6];
     u8 ability;

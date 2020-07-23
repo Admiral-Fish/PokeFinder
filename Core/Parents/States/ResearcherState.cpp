@@ -19,7 +19,7 @@
 
 #include "ResearcherState.hpp"
 
-ResearcherState::ResearcherState(bool rng64Bit, u32 advance) : custom {}, rng64Bit(rng64Bit), advance(advance)
+ResearcherState::ResearcherState(bool rng64Bit, u32 advances) : custom {}, rng64Bit(rng64Bit), advances(advances)
 {
 }
 
@@ -33,9 +33,9 @@ void ResearcherState::setState(u64 seed)
     state = seed;
 }
 
-u32 ResearcherState::getAdvance() const
+u32 ResearcherState::getAdvances() const
 {
-    return advance;
+    return advances;
 }
 
 u64 ResearcherState::getCustom(u8 x) const

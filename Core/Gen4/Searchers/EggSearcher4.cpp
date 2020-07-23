@@ -85,7 +85,7 @@ void EggSearcher4::startSearch(u32 minDelay, u32 maxDelay)
                                 {
                                     statePID.setInheritance(i, stateIV.getInheritance(i));
                                 }
-                                statePID.setSecondaryAdvance(stateIV.getAdvance());
+                                statePID.setSecondaryAdvance(stateIV.getAdvances());
 
                                 states.append(statePID);
                             }

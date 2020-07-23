@@ -39,7 +39,7 @@ QVariant WildGeneratorModel3::data(const QModelIndex &index, int role) const
         switch (column)
         {
         case 0:
-            return state.getAdvance();
+            return state.getAdvances();
         case 1:
             return state.getEncounterSlot();
         case 2:

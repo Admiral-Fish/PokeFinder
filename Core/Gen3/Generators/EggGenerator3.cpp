@@ -201,7 +201,7 @@ QVector<EggState3> EggGenerator3::generateEmeraldPID(u32 seed) const
     }
 
     std::sort(states.begin(), states.end(),
-              [](const EggState3 &state1, const EggState3 &state2) { return state1.getAdvance() < state2.getAdvance(); });
+              [](const EggState3 &state1, const EggState3 &state2) { return state1.getAdvances() < state2.getAdvances(); });
 
     return states;
 }
@@ -325,7 +325,7 @@ QVector<EggState3> EggGenerator3::generateUpper(u32 seed, const QVector<QPair<u3
 
             if (filter.comparePID(up))
             {
-                up.setAdvance(low.first);
+                up.setAdvances(low.first);
                 states.append(up);
             }
         }

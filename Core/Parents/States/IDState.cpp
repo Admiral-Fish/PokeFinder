@@ -19,7 +19,7 @@
 
 #include "IDState.hpp"
 
-IDState::IDState(u32 advance, u16 tid, u16 sid) : advance(advance), tid(tid), sid(sid)
+IDState::IDState(u32 advances, u16 tid, u16 sid) : advances(advances), tid(tid), sid(sid)
 {
 }
 
@@ -27,9 +27,9 @@ IDState::IDState(u16 tid, u16 sid) : tid(tid), sid(sid)
 {
 }
 
-u32 IDState::getAdvance() const
+u32 IDState::getAdvances() const
 {
-    return advance;
+    return advances;
 }
 
 u16 IDState::getTID() const

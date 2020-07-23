@@ -37,7 +37,7 @@ QVariant IDModel3::data(const QModelIndex &index, int role) const
         switch (index.column())
         {
         case 0:
-            return state.getAdvance();
+            return state.getAdvances();
         case 1:
             return state.getTID();
         case 2:

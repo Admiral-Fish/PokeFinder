@@ -27,13 +27,13 @@ class HiddenGrottoState
 public:
     HiddenGrottoState() = default;
 
-    HiddenGrottoState(u32 advance, u8 group, u8 slot, u8 gender) : advance(advance), group(group), slot(slot), gender(gender)
+    HiddenGrottoState(u32 advances, u8 group, u8 slot, u8 gender) : advances(advances), group(group), slot(slot), gender(gender)
     {
     }
 
-    u32 getAdvance() const
+    u32 getAdvances() const
     {
-        return advance;
+        return advances;
     }
 
     u8 getGroup() const
@@ -52,7 +52,7 @@ public:
     }
 
 private:
-    u32 advance;
+    u32 advances;
     u8 group;
     u8 slot;
     u8 gender;

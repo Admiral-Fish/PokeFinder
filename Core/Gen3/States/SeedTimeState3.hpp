@@ -29,11 +29,11 @@ public:
     SeedTimeState3() = default;
     SeedTimeState3(const QDateTime &dateTime, u32 advance);
     QString getDateTime() const;
-    u32 getAdvance() const;
+    u32 getAdvances() const;
 
 private:
     QDateTime dateTime;
-    u32 advance;
+    u32 advances;
 };
 
 #endif // SEEDTIMESTATE3_HPP

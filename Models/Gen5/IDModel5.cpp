@@ -42,7 +42,7 @@ QVariant IDModel5::data(const QModelIndex &index, int role) const
         case 1:
             return state.getInitialAdvances();
         case 2:
-            return state.getAdvance();
+            return state.getAdvances();
         case 3:
             return state.getTID();
         case 4:

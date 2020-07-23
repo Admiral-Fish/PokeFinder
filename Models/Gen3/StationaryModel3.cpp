@@ -38,7 +38,7 @@ QVariant StationaryGeneratorModel3::data(const QModelIndex &index, int role) con
         switch (column)
         {
         case 0:
-            return state.getAdvance();
+            return state.getAdvances();
         case 1:
             return QString::number(state.getPID(), 16).toUpper().rightJustified(8, '0');
         case 2:

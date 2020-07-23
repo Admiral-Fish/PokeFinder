@@ -58,7 +58,7 @@ QVariant StationaryGeneratorModel4::data(const QModelIndex &index, int role) con
         switch (column)
         {
         case 0:
-            return state.getAdvance();
+            return state.getAdvances();
         case 1:
         {
             u8 call = state.getSeed() % 3;
@@ -174,7 +174,7 @@ void StationarySearcherModel4::sort(int column, Qt::SortOrder order)
             break;
         case 1:
             std::sort(model.begin(), model.end(), [flag](const StationaryState &state1, const StationaryState &state2) {
-                return flag ? state1.getAdvance() < state2.getAdvance() : state1.getAdvance() > state2.getAdvance();
+                return flag ? state1.getAdvances() < state2.getAdvances() : state1.getAdvances() > state2.getAdvances();
             });
             break;
         case 2:
@@ -262,7 +262,7 @@ QVariant StationarySearcherModel4::data(const QModelIndex &index, int role) cons
         case 0:
             return QString::number(state.getSeed(), 16).toUpper().rightJustified(8, '0');
         case 1:
-            return state.getAdvance();
+            return state.getAdvances();
         case 2:
             switch (state.getLead())
             {

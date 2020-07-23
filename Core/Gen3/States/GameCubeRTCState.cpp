@@ -19,7 +19,7 @@
 
 #include "GameCubeRTCState.hpp"
 
-GameCubeRTCState::GameCubeRTCState(const QDateTime &dateTime, u32 seed, u32 advance) : dateTime(dateTime), seed(seed), advance(advance)
+GameCubeRTCState::GameCubeRTCState(const QDateTime &dateTime, u32 seed, u32 advances) : dateTime(dateTime), seed(seed), advances(advances)
 {
 }
 
@@ -33,7 +33,7 @@ u32 GameCubeRTCState::getSeed() const
     return seed;
 }
 
-u32 GameCubeRTCState::getAdvance() const
+u32 GameCubeRTCState::getAdvances() const
 {
-    return advance;
+    return advances;
 }

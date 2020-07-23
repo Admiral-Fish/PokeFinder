@@ -37,7 +37,7 @@ QVariant PokeSpotModel::data(const QModelIndex &index, int role) const
         switch (index.column())
         {
         case 0:
-            return state.getAdvance();
+            return state.getAdvances();
         case 1:
             return QString::number(state.getPID(), 16).toUpper().rightJustified(8, '0');
         case 2:

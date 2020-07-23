@@ -29,7 +29,7 @@ public:
     ResearcherState(bool rng64Bit, u32 advance);
     u64 getState() const;
     void setState(u64 seed);
-    u32 getAdvance() const;
+    u32 getAdvances() const;
     u64 getCustom(u8 x) const;
     void setCustom(u8 x, u64 val);
     u32 getHigh32() const;
@@ -47,7 +47,7 @@ private:
     u64 custom[10];
     bool rng64Bit;
     u64 state;
-    u32 advance;
+    u32 advances;
 };
 
 #endif // RESEARCHERSTATE_HPP

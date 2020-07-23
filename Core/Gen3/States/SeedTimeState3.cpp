@@ -19,7 +19,7 @@
 
 #include "SeedTimeState3.hpp"
 
-SeedTimeState3::SeedTimeState3(const QDateTime &dateTime, u32 advance) : dateTime(dateTime), advance(advance)
+SeedTimeState3::SeedTimeState3(const QDateTime &dateTime, u32 advances) : dateTime(dateTime), advances(advances)
 {
 }
 
@@ -28,7 +28,7 @@ QString SeedTimeState3::getDateTime() const
     return dateTime.toString();
 }
 
-u32 SeedTimeState3::getAdvance() const
+u32 SeedTimeState3::getAdvances() const
 {
-    return advance;
+    return advances;
 }

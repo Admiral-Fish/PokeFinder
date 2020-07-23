@@ -28,13 +28,13 @@ public:
     IDState() = default;
     IDState(u32 advance, u16 tid, u16 sid);
     IDState(u16 tid, u16 sid);
-    u32 getAdvance() const;
+    u32 getAdvances() const;
     u16 getTID() const;
     u16 getSID() const;
     u16 getTSV() const;
 
 protected:
-    u32 advance;
+    u32 advances;
     u16 tid;
     u16 sid;
     u16 tsv;

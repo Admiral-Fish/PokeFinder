@@ -58,7 +58,7 @@ QVariant EggGeneratorModel4::data(const QModelIndex &index, int role) const
         switch (column)
         {
         case 0:
-            return state.getAdvance();
+            return state.getAdvances();
         case 1:
         {
             u8 call = state.getSeed() % 3;
@@ -190,7 +190,7 @@ void EggSearcherModel4::sort(int column, Qt::SortOrder order)
         case 1:
         case 2:
             std::sort(model.begin(), model.end(), [flag](const EggState4 &state1, const EggState4 &state2) {
-                return flag ? state1.getAdvance() < state2.getAdvance() : state1.getAdvance() > state2.getAdvance();
+                return flag ? state1.getAdvances() < state2.getAdvances() : state1.getAdvances() > state2.getAdvances();
             });
             break;
         case 3:
@@ -281,7 +281,7 @@ QVariant EggSearcherModel4::data(const QModelIndex &index, int role) const
             return QString::number(state.getInitialSeed(), 16).toUpper().rightJustified(8, '0');
         case 1:
         case 2:
-            return state.getAdvance();
+            return state.getAdvances();
         case 3:
             return state.getSecondaryAdvance();
         case 4:

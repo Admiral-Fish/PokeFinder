@@ -62,7 +62,7 @@ QVariant EggModel3::data(const QModelIndex &index, int role) const
         {
         case 0:
         case 1:
-            return state.getAdvance();
+            return state.getAdvances();
         case 2:
             return state.getPickupAdvance();
         case 3:

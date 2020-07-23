@@ -39,7 +39,7 @@ QVariant EventGeneratorModel5::data(const QModelIndex &index, int role) const
         switch (column)
         {
         case 0:
-            return state.getAdvance();
+            return state.getAdvances();
         case 1:
             return "TODO";
         case 2:
@@ -110,8 +110,8 @@ void EventSearcherModel5::sort(int column, Qt::SortOrder order)
             break;
         case 1:
             std::sort(model.begin(), model.end(), [flag](const SearcherState5<State> &state1, const SearcherState5<State> &state2) {
-                return flag ? state1.getState().getAdvance() < state2.getState().getAdvance()
-                            : state1.getState().getAdvance() > state2.getState().getAdvance();
+                return flag ? state1.getState().getAdvances() < state2.getState().getAdvances()
+                            : state1.getState().getAdvances() > state2.getState().getAdvances();
             });
             break;
         case 2:
@@ -204,7 +204,7 @@ QVariant EventSearcherModel5::data(const QModelIndex &index, int role) const
         case 0:
             return QString::number(display.getInitialSeed(), 16).toUpper().rightJustified(16, '0');
         case 1:
-            return state.getAdvance();
+            return state.getAdvances();
         case 2:
             return QString::number(state.getPID(), 16).toUpper().rightJustified(8, '0');
         case 3:

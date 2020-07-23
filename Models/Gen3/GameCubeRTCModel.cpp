@@ -39,7 +39,7 @@ QVariant GameCubeRTCModel::data(const QModelIndex &index, int role) const
         case 0:
             return state.getDateTime();
         case 1:
-            return state.getAdvance();
+            return state.getAdvances();
         case 2:
             return QString::number(state.getSeed(), 16).toUpper().rightJustified(8, '0');
         }

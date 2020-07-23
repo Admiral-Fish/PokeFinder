@@ -19,7 +19,7 @@
 
 #include "State.hpp"
 
-State::State(u32 advance) : advance(advance)
+State::State(u32 advances) : advances(advances)
 {
 }
 
@@ -33,14 +33,14 @@ void State::setSeed(u32 seed)
     this->seed = seed;
 }
 
-u32 State::getAdvance() const
+u32 State::getAdvances() const
 {
-    return advance;
+    return advances;
 }
 
-void State::setAdvance(u32 advance)
+void State::setAdvances(u32 advances)
 {
-    this->advance = advance;
+    this->advances = advances;
 }
 
 u32 State::getPID() const

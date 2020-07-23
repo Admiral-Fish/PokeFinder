@@ -577,7 +577,7 @@ QVector<StationaryState> StationarySearcher4::searchInitialSeeds(const QVector<S
             if (hour < 24 && delay >= minDelay && delay <= maxDelay)
             {
                 result.setSeed(test);
-                result.setAdvance(cnt);
+                result.setAdvances(cnt);
                 states.append(result);
             }
 

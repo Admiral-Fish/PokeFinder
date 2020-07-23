@@ -245,7 +245,7 @@ QVector<EggState> EggGenerator5::generateBW2(u64 seed) const
 
             if (filter.compareShiny(state) && filter.compareGender(state))
             {
-                state.setAdvance(initialAdvances + cnt);
+                state.setAdvances(initialAdvances + cnt);
                 states.append(state);
             }
         }

@@ -337,7 +337,7 @@ QVector<WildState> WildSearcher4::searchInitialSeeds(const QVector<WildState> &r
             if (hour < 24 && delay >= minDelay && delay <= maxDelay)
             {
                 result.setSeed(test);
-                result.setAdvance(cnt);
+                result.setAdvances(cnt);
                 states.append(result);
             }
 

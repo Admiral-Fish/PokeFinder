@@ -57,7 +57,7 @@ QVariant WildGeneratorModel4::data(const QModelIndex &index, int role) const
         switch (column)
         {
         case 0:
-            return state.getAdvance();
+            return state.getAdvances();
         case 1:
         {
             u8 call = state.getSeed() % 3;
@@ -174,7 +174,7 @@ void WildSearcherModel4::sort(int column, Qt::SortOrder order)
             break;
         case 1:
             std::sort(model.begin(), model.end(), [flag](const WildState &state1, const WildState &state2) {
-                return flag ? state1.getAdvance() < state2.getAdvance() : state1.getAdvance() > state2.getAdvance();
+                return flag ? state1.getAdvances() < state2.getAdvances() : state1.getAdvances() > state2.getAdvances();
             });
             break;
         case 2:
@@ -271,7 +271,7 @@ QVariant WildSearcherModel4::data(const QModelIndex &index, int role) const
         case 0:
             return QString::number(state.getSeed(), 16).toUpper().rightJustified(8, '0');
         case 1:
-            return state.getAdvance();
+            return state.getAdvances();
         case 2:
             switch (state.getLead())
             {

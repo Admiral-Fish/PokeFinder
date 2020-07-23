@@ -39,7 +39,7 @@ QVariant SeedTimeModel3::data(const QModelIndex &index, int role) const
         case 0:
             return state.getDateTime();
         case 1:
-            return state.getAdvance();
+            return state.getAdvances();
         }
     }
     return QVariant();

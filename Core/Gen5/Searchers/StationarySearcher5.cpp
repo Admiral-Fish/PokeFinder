@@ -169,7 +169,7 @@ void StationarySearcher5::search(const QDate &start, const QDate &end)
                                     {
                                         ivState.setPID(pidState.getPID());
                                         ivState.setAbility(pidState.getAbility());
-                                        ivState.setAdvance(pidState.getAdvance());
+                                        ivState.setAdvances(pidState.getAdvances());
                                         ivState.setGender(pidState.getGender());
                                         ivState.setNature(pidState.getNature());
                                         ivState.setShiny(pidState.getShiny());
