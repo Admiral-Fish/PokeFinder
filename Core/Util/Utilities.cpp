@@ -157,7 +157,7 @@ namespace Utilities
     u32 initialAdvancesBW(u64 seed, u8 rounds)
     {
         BWRNG rng(seed);
-        u32 count = 1;
+        u32 count = 0;
 
         for (u8 i = 0; i < rounds; i++)
         {
@@ -204,7 +204,7 @@ namespace Utilities
     u32 initialAdvancesBW2ID(u64 seed, u8 rounds)
     {
         BWRNG rng(seed);
-        u32 count = 1;
+        u32 count = 0;
 
         for (u8 i = 0; i < rounds; i++)
         {
