@@ -30,7 +30,7 @@ EventGenerator5::EventGenerator5(u32 initialAdvances, u32 maxAdvances, u16 tid, 
     xorValue = parameters.isEgg() ? (tid ^ sid) : cardXOR;
     tsv = xorValue >> 3;
 
-    advanceParameter = parameters.getAdvances();
+    wondercardAdvances = parameters.getAdvances();
 }
 
 QVector<State> EventGenerator5::generate(u64 seed) const
@@ -46,7 +46,7 @@ QVector<State> EventGenerator5::generate(u64 seed) const
         State state(initialAdvances + cnt);
 
         BWRNG go(rng.getSeed());
-        go.advance(advanceParameter); // Advances from loading wondercard
+        go.advance(wondercardAdvances); // Advances from loading wondercard
 
         // IVs
         for (u8 i = 0; i < 6; i++)

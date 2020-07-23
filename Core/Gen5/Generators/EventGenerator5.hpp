@@ -35,7 +35,7 @@ public:
 private:
     PGF parameters;
     u16 xorValue;
-    u8 advanceParameter;
+    u8 wondercardAdvances;
 };
 
 #endif // EVENTGENERATOR5_HPP
