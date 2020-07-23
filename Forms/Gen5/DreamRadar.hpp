@@ -27,7 +27,7 @@
 class DreamRadarGeneratorModel5;
 class DreamRadarSearcherModel5;
 class State;
-template <typename AdvanceType>
+template <typename StateType>
 class SearcherState5;
 
 namespace Ui

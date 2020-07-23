@@ -26,7 +26,7 @@
 class EggGeneratorModel5;
 class EggSearcherModel5;
 class EggState;
-template <typename AdvanceType>
+template <typename StateType>
 class SearcherState5;
 
 namespace Ui

@@ -27,7 +27,7 @@
 class EventGeneratorModel5;
 class EventSearcherModel5;
 class State;
-template <typename AdvanceType>
+template <typename StateType>
 class SearcherState5;
 
 namespace Ui
