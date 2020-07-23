@@ -56,7 +56,7 @@ QVector<State> DreamRadarGenerator::generate(u64 seed, bool memory)
     BWRNG rng(seed);
     rng.advance(Utilities::initialAdvancesBW2(seed, memory) - 1);
     rng.advance(1); // Opening menu advances 1
-    rng.advance((initialAdvances)*2);
+    rng.advance(initialAdvances * 2);
     if (!memory)
     {
         rng.next();
@@ -64,7 +64,7 @@ QVector<State> DreamRadarGenerator::generate(u64 seed, bool memory)
 
     MT mt(seed >> 32);
     mt.advance(9); // Initial advances
-    mt.advance((initialAdvances)*2); // Starting advance
+    mt.advance(initialAdvances * 2); // Starting advance
     mt.advance(ivAdvances); // Slot advances
 
     RNGList<u8, MT, 6, 27> rngList(mt);
