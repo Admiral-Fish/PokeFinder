@@ -26,7 +26,6 @@ ProfileEditor5::ProfileEditor5(QWidget *parent) : QDialog(parent), ui(new Ui::Pr
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
-    setWindowFlags(Qt::Widget | Qt::MSWindowsFixedSizeDialogHint);
 
     setupModels();
     versionIndexChanged(ui->comboBoxVersion->currentIndex());
@@ -36,7 +35,6 @@ ProfileEditor5::ProfileEditor5(const Profile5 &profile, QWidget *parent) : QDial
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
-    setWindowFlags(Qt::Widget | Qt::MSWindowsFixedSizeDialogHint);
 
     setupModels();
 
@@ -73,7 +71,6 @@ ProfileEditor5::ProfileEditor5(Game version, Language language, DSType dsType, u
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
-    setWindowFlags(Qt::Widget | Qt::MSWindowsFixedSizeDialogHint);
 
     setupModels();
 
