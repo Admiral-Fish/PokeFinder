@@ -207,7 +207,7 @@ QVector<EggFrame> EggGenerator5::generateBW2(u64 seed) const
 {
     QVector<EggFrame> frames;
 
-    MTFast mt(seed >> 32, 4);
+    MT mt(seed >> 32);
     mt.advanceFrames(2);
 
     u64 eggSeed = static_cast<u64>(mt.next()) << 32;
