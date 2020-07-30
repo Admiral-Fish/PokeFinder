@@ -77,11 +77,11 @@ QVector<EggFrame3> EggGenerator3::generate(u32 seed, u32 seed2) const
     switch (method)
     {
     case Method::EBredPID:
-        return generateEmeraldPID(seed);
+        return generateEmeraldPID();
     case Method::EBred:
     case Method::EBredSplit:
     case Method::EBredAlternate:
-        return generateEmeraldIVs(seed);
+        return generateEmeraldIVs();
     case Method::RSBred:
     case Method::RSBredAlternate:
     case Method::RSBredSplit:
@@ -132,22 +132,23 @@ void EggGenerator3::setEverstone(bool value)
     everstone = value;
 }
 
-QVector<EggFrame3> EggGenerator3::generateEmeraldPID(u32 seed) const
+QVector<EggFrame3> EggGenerator3::generateEmeraldPID() const
 {
     QVector<EggFrame3> frames;
 
-    PokeRNG rng(seed);
+    PokeRNG rng(0);
     rng.advanceFrames(initialFrame - 1);
 
     u32 val = initialFrame;
     for (u32 cnt = 0; cnt < maxResults; cnt++, val++, rng.next())
     {
-        for (u8 redraw = minRedraw; redraw <= maxRedraw; redraw++)
+        PokeRNG comp(rng.getSeed());
+        if (((comp.nextUShort() * 100) / 0xFFFF) < compatability)
         {
-            PokeRNG go(rng.getSeed());
-
-            if (((go.nextUShort() * 100) / 0xFFFF) < compatability)
+            for (u8 redraw = minRedraw; redraw <= maxRedraw; redraw++)
             {
+                PokeRNG go(comp.getSeed());
+
                 u16 offset = calibration + 3 * redraw;
                 EggFrame3 frame(cnt + initialFrame - offset);
 
@@ -205,14 +206,14 @@ QVector<EggFrame3> EggGenerator3::generateEmeraldPID(u32 seed) const
     return frames;
 }
 
-QVector<EggFrame3> EggGenerator3::generateEmeraldIVs(u32 seed) const
+QVector<EggFrame3> EggGenerator3::generateEmeraldIVs() const
 {
     QVector<EggFrame3> frames;
 
-    PokeRNG rng(seed);
+    PokeRNG rng(0);
     rng.advanceFrames(initialFrame - 1);
 
-    for (u32 cnt = 0; cnt < maxResults; cnt++, rng.nextUShort())
+    for (u32 cnt = 0; cnt < maxResults; cnt++, rng.next())
     {
         EggFrame3 frame(cnt + initialFrame);
         PokeRNG go(rng.getSeed());

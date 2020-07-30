@@ -47,8 +47,8 @@ private:
     bool everstone;
     u8 iv1, iv2, inh;
 
-    QVector<EggFrame3> generateEmeraldPID(u32 seed) const;
-    QVector<EggFrame3> generateEmeraldIVs(u32 seed) const;
+    QVector<EggFrame3> generateEmeraldPID() const;
+    QVector<EggFrame3> generateEmeraldIVs() const;
     QVector<QPair<u32, u16>> generateLower(u32 seed) const;
     QVector<EggFrame3> generateUpper(u32 seed, const QVector<QPair<u32, u16>> &lower) const;
     void setInheritance(EggFrame3 &frame, const u16 *inh, const u16 *par, bool broken) const;
