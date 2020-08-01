@@ -111,11 +111,11 @@ namespace Utilities
     {
         QStringList coins;
 
-        MT rng(seed);
+        MT<20> mt(seed);
 
         for (u8 i = 0; i < 20; i++)
         {
-            coins.append((rng.next() & 1) == 0 ? "T" : "H");
+            coins.append((mt.next() & 1) == 0 ? "T" : "H");
         }
 
         return coins.join(", ");

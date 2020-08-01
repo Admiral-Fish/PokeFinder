@@ -67,7 +67,7 @@ QVector<Frame> DreamRadarGenerator::generate(u64 seed, bool memory)
     mt.advanceFrames((initialFrame - 1) * 2); // Starting frame
     mt.advanceFrames(ivAdvances); // Slot advances
 
-    RNGList<u8, MT, 6, 27> rngList(mt);
+    RNGList<u8, MT<624>, 6, 27> rngList(mt);
 
     for (u32 cnt = 0; cnt < maxResults; cnt++, rngList.advanceStates(2), rng.next())
     {

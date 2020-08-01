@@ -22,34 +22,94 @@
 
 #include <Core/Util/Global.hpp>
 
+constexpr u16 bound(u16 num)
+{
+    return num + 397 > 624 ? 624 : num + 397;
+}
+
+template <u16 size = 624, bool fast = false>
 class MT
 {
 public:
-    MT(u32 seed = 0);
-    void advanceFrames(u32 frames);
-    u32 next();
-    u16 nextUShort();
+    MT(u32 seed = 0)
+    {
+        mt[0] = seed;
+
+        for (index = 1; index < bound(size); index++)
+        {
+            mt[index] = 0x6C078965 * (mt[index - 1] ^ (mt[index - 1] >> 30)) + index;
+        }
+    }
+
+    void advanceFrames(u32 frames)
+    {
+        index += frames;
+        while (index >= bound(size))
+        {
+            shuffle();
+        }
+    }
+
+    u32 next()
+    {
+        if (index >= bound(size))
+        {
+            shuffle();
+        }
+
+        u32 y = mt[index++];
+        y ^= (y >> 11);
+        y ^= (y << 7) & 0x9D2C5680;
+        y ^= (y << 15) & 0xEFC60000;
+        if constexpr (!fast)
+        {
+            y ^= (y >> 18);
+        }
+
+        return y;
+    }
+
+    u16 nextUShort()
+    {
+        return next() >> 16;
+    }
 
 private:
-    u32 mt[624];
-    u16 index;
-    void shuffle();
-};
-
-class MTFast
-{
-public:
-    explicit MTFast(u32 seed = 0, u8 size = 0);
-    void advanceFrames(u32 frames);
-    u32 next();
-    u16 nextUShort();
-
-private:
-    u32 mt[624];
-    u8 size;
+    u32 mt[bound(size)];
     u16 index;
 
-    void shuffle();
+    void shuffle()
+    {
+        for (u16 i = 0; i < size; i++)
+        {
+            u32 y;
+            if constexpr (size == 624)
+            {
+                y = (mt[i] & 0x80000000) | (mt[(i + 1) % 624] & 0x7FFFFFFF);
+            }
+            else
+            {
+                y = (mt[i] & 0x80000000) | (mt[i + 1] & 0x7FFFFFFF);
+            }
+            u32 next = y >> 1;
+
+            if (y & 1)
+            {
+                next ^= 0x9908B0DF;
+            }
+
+            if constexpr (size >= 227)
+            {
+                mt[i] = next ^ mt[(i + 397) % 624];
+            }
+            else
+            {
+                mt[i] = next ^ mt[i + 397];
+            }
+        }
+
+        index -= bound(size);
+    }
 };
 
 #endif // MT_HPP

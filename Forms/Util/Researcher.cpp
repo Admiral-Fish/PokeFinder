@@ -259,20 +259,6 @@ void Researcher::generate()
         case 6:
             states = getStates(MT(seed), initialFrame, maxResults);
             break;
-        case 7:
-
-            if (initialFrame + maxResults - 1 <= 227)
-            {
-                states = getStates(MTFast(seed, initialFrame + maxResults), initialFrame, maxResults);
-            }
-            else
-            {
-                QMessageBox error;
-                error.setText(tr("Please enter a search range lower then 228"));
-                error.exec();
-                return;
-            }
-            break;
         }
     }
     else if (ui->rngSelection->currentIndex() == 1)

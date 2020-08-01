@@ -68,7 +68,7 @@ QVector<StationaryFrame> StationaryGenerator5::generateRoamerIVs(u64 seed) const
     MT mt(seed >> 32);
     mt.advanceFrames(initialFrame - 1 + offset);
 
-    RNGList<u8, MT, 100, 27> rngList(mt);
+    RNGList<u8, MT<624>, 100, 27> rngList(mt);
 
     for (u32 cnt = 0; cnt < maxResults; cnt++, rngList.advanceState())
     {
@@ -102,7 +102,7 @@ QVector<StationaryFrame> StationaryGenerator5::generateIVs(u64 seed) const
     MT mt(seed >> 32);
     mt.advanceFrames(initialFrame - 1 + offset);
 
-    RNGList<u8, MT, 100, 27> rngList(mt);
+    RNGList<u8, MT<624>, 100, 27> rngList(mt);
 
     for (u32 cnt = 0; cnt < maxResults; cnt++, rngList.advanceState())
     {
@@ -136,7 +136,7 @@ QVector<StationaryFrame> StationaryGenerator5::generateRoamerCGear(u64 seed) con
     mt.advanceFrames(initialFrame - 1 + offset);
     mt.advanceFrames(2); // Skip first two frames
 
-    RNGList<u8, MT, 100, 27> rngList(mt);
+    RNGList<u8, MT<624>, 100, 27> rngList(mt);
 
     for (u32 cnt = 0; cnt < maxResults; cnt++, rngList.advanceState())
     {
@@ -171,7 +171,7 @@ QVector<StationaryFrame> StationaryGenerator5::generateCGear(u64 seed) const
     mt.advanceFrames(initialFrame - 1 + offset);
     mt.advanceFrames(2); // Skip first two frames
 
-    RNGList<u8, MT, 100, 27> rngList(mt);
+    RNGList<u8, MT<624>, 100, 27> rngList(mt);
 
     for (u32 cnt = 0; cnt < maxResults; cnt++, rngList.advanceState())
     {
