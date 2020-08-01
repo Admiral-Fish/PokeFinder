@@ -259,20 +259,6 @@ void Researcher::generate()
         case 6:
             rngStates = getStates(MT(seed), initialAdvances, maxAdvances);
             break;
-        case 7:
-
-            if (initialAdvances + maxAdvances - 1 <= 227)
-            {
-                rngStates = getStates(MTFast(seed, initialAdvances + maxAdvances), initialAdvances, maxAdvances);
-            }
-            else
-            {
-                QMessageBox error;
-                error.setText(tr("Please enter a search range lower then 228"));
-                error.exec();
-                return;
-            }
-            break;
         }
     }
     else if (ui->rngSelection->currentIndex() == 1)

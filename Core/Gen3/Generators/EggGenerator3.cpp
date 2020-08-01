@@ -78,11 +78,11 @@ QVector<EggState3> EggGenerator3::generate(u32 seed, u32 seed2) const
     switch (method)
     {
     case Method::EBredPID:
-        return generateEmeraldPID(seed);
+        return generateEmeraldPID();
     case Method::EBred:
     case Method::EBredSplit:
     case Method::EBredAlternate:
-        return generateEmeraldIVs(seed);
+        return generateEmeraldIVs();
     case Method::RSBred:
     case Method::RSBredAlternate:
     case Method::RSBredSplit:
@@ -133,22 +133,23 @@ void EggGenerator3::setEverstone(bool value)
     everstone = value;
 }
 
-QVector<EggState3> EggGenerator3::generateEmeraldPID(u32 seed) const
+QVector<EggState3> EggGenerator3::generateEmeraldPID() const
 {
     QVector<EggState3> states;
 
-    PokeRNG rng(seed);
-    rng.advance(initialAdvances);
+    PokeRNG rng(0);
+    rng.advance(initialAdvances - 1);
 
     u32 val = initialAdvances;
     for (u32 cnt = 0; cnt < maxAdvances; cnt++, val++, rng.next())
     {
-        for (u8 redraw = minRedraw; redraw <= maxRedraw; redraw++)
+        PokeRNG comp(rng.getSeed());
+        if (((comp.nextUShort() * 100) / 0xFFFF) < compatability)
         {
-            PokeRNG go(rng.getSeed());
-
-            if (((go.nextUShort() * 100) / 0xFFFF) < compatability)
+            for (u8 redraw = minRedraw; redraw <= maxRedraw; redraw++)
             {
+                PokeRNG go(comp.getSeed());
+
                 u16 offset = calibration + 3 * redraw;
                 EggState3 state(cnt + initialAdvances - offset);
 
@@ -206,14 +207,14 @@ QVector<EggState3> EggGenerator3::generateEmeraldPID(u32 seed) const
     return states;
 }
 
-QVector<EggState3> EggGenerator3::generateEmeraldIVs(u32 seed) const
+QVector<EggState3> EggGenerator3::generateEmeraldIVs() const
 {
     QVector<EggState3> states;
 
-    PokeRNG rng(seed);
-    rng.advance(initialAdvances);
+    PokeRNG rng(0);
+    rng.advance(initialAdvances - 1);
 
-    for (u32 cnt = 0; cnt < maxAdvances; cnt++, rng.nextUShort())
+    for (u32 cnt = 0; cnt < maxAdvances; cnt++, rng.next())
     {
         EggState3 state(cnt + initialAdvances);
         PokeRNG go(rng.getSeed());

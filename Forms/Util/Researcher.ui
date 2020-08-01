@@ -64,11 +64,6 @@
            <string>Mersenne Twister</string>
           </property>
          </item>
-         <item>
-          <property name="text">
-           <string>Mersenne Twister Fast</string>
-          </property>
-         </item>
         </widget>
        </item>
       </layout>

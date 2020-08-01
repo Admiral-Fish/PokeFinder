@@ -355,7 +355,6 @@ SOURCES += \
     Core/Parents/Searchers/StationarySearcher.cpp \
     Core/Parents/Searchers/WildSearcher.cpp \
     Core/Parents/Slot.cpp \
-    Core/RNG/MT.cpp \
     Core/RNG/RNGCache.cpp \
     Core/RNG/RNGEuclidean.cpp \
     Core/RNG/SFMT.cpp \
