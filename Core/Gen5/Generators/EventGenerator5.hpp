@@ -34,7 +34,6 @@ public:
 
 private:
     PGF parameters;
-    u16 xorValue;
     u8 advances;
 };
 

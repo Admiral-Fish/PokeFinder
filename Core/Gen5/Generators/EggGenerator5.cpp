@@ -38,7 +38,6 @@ EggGenerator5::EggGenerator5(u32 initialFrame, u32 maxResults, u16 tid, u16 sid,
     ditto(daycare.getDitto()),
     parentAbility(daycare.getParentAbility(1))
 {
-    tsv = (tid ^ sid) >> 3;
 }
 
 QVector<EggFrame> EggGenerator5::generate(u64 seed) const
@@ -192,7 +191,7 @@ QVector<EggFrame> EggGenerator5::generateBW(u64 seed) const
         frame.setPID(pid);
         frame.setAbility(hiddenAbility ? 2 : ((pid >> 16) & 1));
         frame.setGender(pid & 255, genderRatio);
-        frame.setShiny(tsv, (pid >> 16) ^ (pid ^ 0xffff), 8);
+        frame.setShiny(tsv, (pid >> 16) ^ (pid & 0xffff), 8);
 
         if (filter.compareFrame(frame))
         {

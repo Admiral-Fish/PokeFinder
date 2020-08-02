@@ -27,9 +27,10 @@ EventGenerator5::EventGenerator5(u32 initialFrame, u32 maxResults, u16 tid, u16 
     Generator(initialFrame, maxResults, tid, sid, genderRatio, method, filter),
     parameters(parameters)
 {
-    u16 cardXOR = parameters.getTID() ^ parameters.getSID();
-    xorValue = parameters.isEgg() ? (tid ^ sid) : cardXOR;
-    tsv = xorValue >> 3;
+    if (parameters.isEgg())
+    {
+        tsv = parameters.getTID() ^ parameters.getSID();
+    }
 
     advances = parameters.getAdvances();
 }
@@ -83,7 +84,7 @@ QVector<Frame> EventGenerator5::generate(u64 seed) const
 
         if (parameters.getPIDType() == 0) // No shiny
         {
-            if (((pid >> 16) ^ (pid & 0xffff) ^ xorValue) < 8)
+            if (((pid >> 16) ^ (pid & 0xffff) ^ tsv) < 8)
             {
                 pid ^= 0x10000000;
             }
@@ -91,7 +92,7 @@ QVector<Frame> EventGenerator5::generate(u64 seed) const
         else if (parameters.getPIDType() == 2) // Force shiny
         {
             u32 low = pid & 0xff;
-            pid = ((low ^ xorValue) << 16) | low;
+            pid = ((low ^ tsv) << 16) | low;
         }
 
         // Handle ability
@@ -115,7 +116,7 @@ QVector<Frame> EventGenerator5::generate(u64 seed) const
         }
 
         frame.setPID(pid);
-        frame.setShiny(tsv, ((pid >> 16) ^ (pid & 0xffff)) >> 3, 8);
+        frame.setShiny(tsv, (pid >> 16) ^ (pid & 0xffff), 8);
 
         if (parameters.getNature() != 0xff)
         {
