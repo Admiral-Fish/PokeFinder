@@ -30,8 +30,6 @@ DreamRadarGenerator::DreamRadarGenerator(u32 initialAdvances, u32 maxAdvances, u
     ivAdvances(0),
     radarSlot(radarSlots.last())
 {
-    tsv = (tid ^ sid) >> 3;
-
     for (u8 i = 0; i < radarSlots.size(); i++)
     {
         auto slot = radarSlots.at(i);
@@ -105,7 +103,7 @@ QVector<State> DreamRadarGenerator::generate(u64 seed, bool memory)
         pid ^= 0x10000;
 
         // Force non-shiny
-        if ((((pid >> 16) ^ (pid & 0xffff)) >> 3) == tsv)
+        if (((pid >> 16) ^ (pid & 0xffff) ^ tsv) < 8)
         {
             pid ^= 0x10000000;
         }

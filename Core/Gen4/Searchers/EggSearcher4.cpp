@@ -81,6 +81,8 @@ void EggSearcher4::startSearch(u32 minDelay, u32 maxDelay)
                             {
                                 statePID.setIVs(stateIV.getIV(0), stateIV.getIV(1), stateIV.getIV(2), stateIV.getIV(3), stateIV.getIV(4),
                                                 stateIV.getIV(5));
+                                statePID.calculateHiddenPower();
+
                                 for (u8 i = 0; i < 6; i++)
                                 {
                                     statePID.setInheritance(i, stateIV.getInheritance(i));
