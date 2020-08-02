@@ -52,13 +52,13 @@ QVariant ResearcherModel::data(const QModelIndex &index, int role) const
         case 0:
             return state.getAdvances();
         case 1:
-            return QString::number(state.getAdvances(), 16).toUpper().rightJustified(16, '0');
+            return QString::number(state.getState(), 16).toUpper().rightJustified(16, '0');
         case 2:
             return QString::number(state.getHigh32(), 16).toUpper().rightJustified(8, '0');
         case 3:
             return QString::number(state.getLow32(), 16).toUpper().rightJustified(8, '0');
         case 4:
-            return QString::number(state.getAdvances(), 16).toUpper().rightJustified(8, '0');
+            return QString::number(state.getState(), 16).toUpper().rightJustified(8, '0');
         case 5:
             return QString::number(state.getHigh16(), 16).toUpper().rightJustified(4, '0');
         case 6:
@@ -107,7 +107,7 @@ QModelIndex ResearcherModel::search(const QString &string, u64 result, int row)
     if (string == tr("64Bit"))
     {
         column = 1;
-        getResult = [](const ResearcherState &state) { return state.getAdvances(); };
+        getResult = [](const ResearcherState &state) { return state.getState(); };
     }
     else if (string == tr("32Bit High"))
     {
@@ -122,7 +122,7 @@ QModelIndex ResearcherModel::search(const QString &string, u64 result, int row)
     else if (string == tr("32Bit"))
     {
         column = 1;
-        getResult = [](const ResearcherState &state) { return state.getAdvances(); };
+        getResult = [](const ResearcherState &state) { return state.getState(); };
     }
     else if (string == tr("16Bit High"))
     {
