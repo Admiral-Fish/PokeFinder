@@ -20,22 +20,22 @@
 #ifndef STATIONARYGENERATOR4_HPP
 #define STATIONARYGENERATOR4_HPP
 
-#include <Core/Parents/Frames/Frame.hpp>
 #include <Core/Parents/Generators/StationaryGenerator.hpp>
+#include <Core/Parents/States/State.hpp>
 #include <QVector>
 
 class StationaryGenerator4 : public StationaryGenerator
 {
 public:
     StationaryGenerator4() = default;
-    StationaryGenerator4(u32 initialFrame, u32 maxResults, u16 tid, u16 sid, u8 genderRatio, Method method, const FrameFilter &filter);
-    QVector<Frame> generate(u32 seed) const;
+    StationaryGenerator4(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter);
+    QVector<State> generate(u32 seed) const;
 
 private:
-    QVector<Frame> generateMethod1(u32 seed) const;
-    QVector<Frame> generateMethodJ(u32 seed) const;
-    QVector<Frame> generateMethodK(u32 seed) const;
-    QVector<Frame> generateWonderCardIVs(u32 seed) const;
+    QVector<State> generateMethod1(u32 seed) const;
+    QVector<State> generateMethodJ(u32 seed) const;
+    QVector<State> generateMethodK(u32 seed) const;
+    QVector<State> generateWonderCardIVs(u32 seed) const;
 };
 
 #endif // STATIONARYGENERATOR4_HPP

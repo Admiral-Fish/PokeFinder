@@ -20,10 +20,10 @@
 #ifndef GAMECUBERTCMODEL_HPP
 #define GAMECUBERTCMODEL_HPP
 
-#include <Core/Gen3/Frames/GameCubeRTCFrame.hpp>
+#include <Core/Gen3/States/GameCubeRTCState.hpp>
 #include <Models/TableModel.hpp>
 
-class GameCubeRTCModel : public TableModel<GameCubeRTCFrame>
+class GameCubeRTCModel : public TableModel<GameCubeRTCState>
 {
     Q_OBJECT
 public:
@@ -33,7 +33,7 @@ public:
     QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
 
 private:
-    QStringList header = { tr("Time"), tr("Frame"), tr("Seed") };
+    QStringList header = { tr("Time"), tr("Advances"), tr("Seed") };
 };
 
 #endif // GAMECUBERTCMODEL_HPP

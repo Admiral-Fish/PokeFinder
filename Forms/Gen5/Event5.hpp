@@ -26,9 +26,9 @@
 
 class EventGeneratorModel5;
 class EventSearcherModel5;
-class Frame;
-template <typename FrameType>
-class SearcherFrame5;
+class State;
+template <typename StateType>
+class SearcherState5;
 
 namespace Ui
 {
@@ -61,12 +61,12 @@ private:
     PGF getSearcherParameters() const;
 
 private slots:
-    void updateProgress(const QVector<SearcherFrame5<Frame>> &frames, int progress);
+    void updateProgress(const QVector<SearcherState5<State>> &states, int progress);
     void generate();
     void search();
     void generatorImportEvent();
     void searcherImportEvent();
-    void calculateInitialFrame();
+    void calculateInitialAdvances();
     void profileIndexChanged(int index);
     void tableViewGeneratorContextMenu(QPoint pos);
     void tableViewSearcherContextMenu(QPoint pos);

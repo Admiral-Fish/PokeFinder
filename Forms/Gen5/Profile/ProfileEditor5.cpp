@@ -66,8 +66,7 @@ ProfileEditor5::ProfileEditor5(const Profile5 &profile, QWidget *parent) : QDial
 
 ProfileEditor5::ProfileEditor5(Game version, Language language, DSType dsType, u64 mac, u8 vcount, u16 timer0, u8 gxstat, u8 vframe,
                                QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::ProfileEditor5)
+    QDialog(parent), ui(new Ui::ProfileEditor5)
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);

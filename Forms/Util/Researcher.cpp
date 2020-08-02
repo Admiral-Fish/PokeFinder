@@ -53,8 +53,8 @@ void Researcher::setupModels()
 
     menu = new QMenu(ui->tableView);
 
-    ui->textBoxInitialFrame->setValues(InputType::Frame64Bit);
-    ui->textBoxMaxResults->setValues(InputType::Frame64Bit);
+    ui->textBoxInitialAdvances->setValues(InputType::Advance64Bit);
+    ui->textBoxMaxAdvances->setValues(InputType::Advance64Bit);
     ui->textBoxSeed->setValues(InputType::Seed64Bit);
     ui->textBoxSearch->setValues(InputType::Seed64Bit);
 
@@ -117,57 +117,57 @@ void Researcher::setupModels()
     }
 }
 
-u64 Researcher::getCustom(const QString &text, const ResearcherFrame &frame, const QVector<ResearcherFrame> &frames)
+u64 Researcher::getCustom(const QString &text, const ResearcherState &state, const QVector<ResearcherState> &states)
 {
     switch (keys[text])
     {
     case 0:
     case 1:
-        return frame.getState();
+        return state.getAdvances();
     case 2:
-        return frame.getHigh32();
+        return state.getHigh32();
     case 3:
-        return frame.getLow32();
+        return state.getLow32();
     case 4:
-        return frame.getHigh16();
+        return state.getHigh16();
     case 5:
-        return frame.getLow16();
+        return state.getLow16();
     case 6:
-        return frame.getCustom(0);
+        return state.getCustom(0);
     case 7:
-        return frame.getCustom(1);
+        return state.getCustom(1);
     case 8:
-        return frame.getCustom(2);
+        return state.getCustom(2);
     case 9:
-        return frame.getCustom(3);
+        return state.getCustom(3);
     case 10:
-        return frame.getCustom(4);
+        return state.getCustom(4);
     case 11:
-        return frame.getCustom(5);
+        return state.getCustom(5);
     case 12:
-        return frame.getCustom(6);
+        return state.getCustom(6);
     case 13:
-        return frame.getCustom(7);
+        return state.getCustom(7);
     case 14:
-        return frame.getCustom(8);
+        return state.getCustom(8);
     case 15:
-        return frames.isEmpty() ? 0 : frames[frames.size() - 1].getCustom(0);
+        return states.isEmpty() ? 0 : states[states.size() - 1].getCustom(0);
     case 16:
-        return frames.isEmpty() ? 0 : frames[frames.size() - 1].getCustom(1);
+        return states.isEmpty() ? 0 : states[states.size() - 1].getCustom(1);
     case 17:
-        return frames.isEmpty() ? 0 : frames[frames.size() - 1].getCustom(2);
+        return states.isEmpty() ? 0 : states[states.size() - 1].getCustom(2);
     case 18:
-        return frames.isEmpty() ? 0 : frames[frames.size() - 1].getCustom(3);
+        return states.isEmpty() ? 0 : states[states.size() - 1].getCustom(3);
     case 19:
-        return frames.isEmpty() ? 0 : frames[frames.size() - 1].getCustom(4);
+        return states.isEmpty() ? 0 : states[states.size() - 1].getCustom(4);
     case 20:
-        return frames.isEmpty() ? 0 : frames[frames.size() - 1].getCustom(5);
+        return states.isEmpty() ? 0 : states[states.size() - 1].getCustom(5);
     case 21:
-        return frames.isEmpty() ? 0 : frames[frames.size() - 1].getCustom(6);
+        return states.isEmpty() ? 0 : states[states.size() - 1].getCustom(6);
     case 22:
-        return frames.isEmpty() ? 0 : frames[frames.size() - 1].getCustom(7);
+        return states.isEmpty() ? 0 : states[states.size() - 1].getCustom(7);
     case 23:
-        return frames.isEmpty() ? 0 : frames[frames.size() - 1].getCustom(8);
+        return states.isEmpty() ? 0 : states[states.size() - 1].getCustom(8);
     default:
         return 0;
     }
@@ -208,7 +208,7 @@ QVector<u64> getStates(RNGType rng, u32 initial, u32 max)
 {
     QVector<u64> states;
 
-    rng.advanceFrames(initial - 1);
+    rng.advance(initial);
     for (u32 i = 0; i < max; i++)
     {
         states.append(rng.next());
@@ -225,39 +225,39 @@ void Researcher::generate()
     model->setFlag(rng64Bit);
 
     u64 seed = ui->textBoxSeed->text().toULongLong(nullptr, 16);
-    u32 initialFrame = ui->textBoxInitialFrame->getUInt();
-    u32 maxResults = ui->textBoxMaxResults->getUInt();
+    u32 initialAdvances = ui->textBoxInitialAdvances->getUInt();
+    u32 maxAdvances = ui->textBoxMaxAdvances->getUInt();
 
     if (ui->rngSelection->currentIndex() != 1 && (seed > 0xffffffff))
     {
         seed >>= 32;
     }
 
-    QVector<u64> states;
+    QVector<u64> rngStates;
     if (ui->rngSelection->currentIndex() == 0)
     {
         switch (ui->comboBoxRNG32Bit->currentIndex())
         {
         case 0:
-            states = getStates(PokeRNG(seed), initialFrame, maxResults);
+            rngStates = getStates(PokeRNG(seed), initialAdvances, maxAdvances);
             break;
         case 1:
-            states = getStates(PokeRNGR(seed), initialFrame, maxResults);
+            rngStates = getStates(PokeRNGR(seed), initialAdvances, maxAdvances);
             break;
         case 2:
-            states = getStates(XDRNG(seed), initialFrame, maxResults);
+            rngStates = getStates(XDRNG(seed), initialAdvances, maxAdvances);
             break;
         case 3:
-            states = getStates(XDRNGR(seed), initialFrame, maxResults);
+            rngStates = getStates(XDRNGR(seed), initialAdvances, maxAdvances);
             break;
         case 4:
-            states = getStates(ARNG(seed), initialFrame, maxResults);
+            rngStates = getStates(ARNG(seed), initialAdvances, maxAdvances);
             break;
         case 5:
-            states = getStates(ARNGR(seed), initialFrame, maxResults);
+            rngStates = getStates(ARNGR(seed), initialAdvances, maxAdvances);
             break;
         case 6:
-            states = getStates(MT(seed), initialFrame, maxResults);
+            rngStates = getStates(MT(seed), initialAdvances, maxAdvances);
             break;
         }
     }
@@ -266,17 +266,17 @@ void Researcher::generate()
         switch (ui->comboBoxRNG64Bit->currentIndex())
         {
         case 0:
-            states = getStates(BWRNG(seed), initialFrame, maxResults);
+            rngStates = getStates(BWRNG(seed), initialAdvances, maxAdvances);
             break;
         case 1:
-            states = getStates(BWRNGR(seed), initialFrame, maxResults);
+            rngStates = getStates(BWRNGR(seed), initialAdvances, maxAdvances);
             break;
         case 2:
             if (seed > 0xffffffff)
             {
                 seed >>= 32;
             }
-            states = getStates(SFMT(seed), initialFrame, maxResults);
+            rngStates = getStates(SFMT(seed), initialAdvances, maxAdvances);
             break;
         }
     }
@@ -287,11 +287,11 @@ void Researcher::generate()
 
         if (std::all_of(std::begin(status), std::end(status), [](u32 x) { return x == 0; }))
         {
-            states = getStates(TinyMT(seed), initialFrame, maxResults);
+            rngStates = getStates(TinyMT(seed), initialAdvances, maxAdvances);
         }
         else
         {
-            states = getStates(TinyMT(status), initialFrame, maxResults);
+            rngStates = getStates(TinyMT(status), initialAdvances, maxAdvances);
         }
     }
 
@@ -382,32 +382,32 @@ void Researcher::generate()
                           ui->comboBoxRValue9->currentText(),
                           ui->comboBoxRValue10->currentText() };
 
-    QVector<ResearcherFrame> frames;
-    for (u32 cnt = 0; cnt < maxResults; cnt++)
+    QVector<ResearcherState> states;
+    for (u32 cnt = 0; cnt < maxAdvances; cnt++)
     {
-        ResearcherFrame frame(rng64Bit, cnt + initialFrame);
+        ResearcherState state(rng64Bit, cnt + initialAdvances);
 
-        frame.setState(states.at(cnt));
+        state.setState(rngStates.at(cnt));
 
         for (u8 j = 0; j < 10; j++)
         {
             if (calcCustom.at(j))
             {
-                u64 temp = getCustom(textL.at(j), frame, frames);
+                u64 temp = getCustom(textL.at(j), state, states);
 
                 if (textR[j] != tr("None"))
                 {
-                    customRValue[j] = getCustom(textR.at(j), frame, frames);
+                    customRValue[j] = getCustom(textR.at(j), state, states);
                 }
 
-                frame.setCustom(j, calculators.at(j)(temp, customRValue.at(j)));
+                state.setCustom(j, calculators.at(j)(temp, customRValue.at(j)));
             }
         }
-        frames.append(frame);
+        states.append(state);
     }
 
     model->setHex(getHexCheck());
-    model->addItems(frames);
+    model->addItems(states);
 
     for (int i = 1; i < (rng64Bit ? 4 : 2); i++)
     {

@@ -20,11 +20,11 @@
 #ifndef EGGMODEL5_HPP
 #define EGGMODEL5_HPP
 
-#include <Core/Gen5/Frames/SearcherFrame5.hpp>
-#include <Core/Parents/Frames/EggFrame.hpp>
+#include <Core/Gen5/States/SearcherState5.hpp>
+#include <Core/Parents/States/EggState.hpp>
 #include <Models/TableModel.hpp>
 
-class EggGeneratorModel5 : public TableModel<EggFrame>
+class EggGeneratorModel5 : public TableModel<EggState>
 {
     Q_OBJECT
 public:
@@ -34,11 +34,11 @@ public:
     QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
 
 private:
-    QStringList header = { tr("Frame"), tr("Chatot"), tr("PID"), tr("Shiny"), tr("Nature"), tr("Ability"), tr("HP"),    tr("Atk"),
-                           tr("Def"),   tr("SpA"),    tr("SpD"), tr("Spe"),   tr("Hidden"), tr("Power"),   tr("Gender") };
+    QStringList header = { tr("Advances"), tr("Chatot"), tr("PID"), tr("Shiny"), tr("Nature"), tr("Ability"), tr("HP"),    tr("Atk"),
+                           tr("Def"),      tr("SpA"),    tr("SpD"), tr("Spe"),   tr("Hidden"), tr("Power"),   tr("Gender") };
 };
 
-class EggSearcherModel5 : public TableModel<SearcherFrame5<EggFrame>>
+class EggSearcherModel5 : public TableModel<SearcherState5<EggState>>
 {
     Q_OBJECT
 public:
@@ -49,9 +49,9 @@ public:
     QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
 
 private:
-    QStringList header
-        = { tr("Seed"), tr("Frame"), tr("PID"), tr("Shiny"),  tr("Nature"), tr("Ability"), tr("HP"),        tr("Atk"),    tr("Def"),
-            tr("SpA"),  tr("SpD"),   tr("Spe"), tr("Hidden"), tr("Power"),  tr("Gender"),  tr("Date/Time"), tr("Timer0"), tr("Buttons") };
+    QStringList header = { tr("Seed"),   tr("Advances"), tr("PID"),    tr("Shiny"),     tr("Nature"), tr("Ability"),
+                           tr("HP"),     tr("Atk"),      tr("Def"),    tr("SpA"),       tr("SpD"),    tr("Spe"),
+                           tr("Hidden"), tr("Power"),    tr("Gender"), tr("Date/Time"), tr("Timer0"), tr("Buttons") };
 };
 
 #endif // EGGMODEL5_HPP

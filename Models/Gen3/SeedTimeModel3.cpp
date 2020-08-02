@@ -19,7 +19,7 @@
 
 #include "SeedTimeModel3.hpp"
 
-SeedTimeModel3::SeedTimeModel3(QObject *parent) : TableModel<SeedTimeFrame3>(parent)
+SeedTimeModel3::SeedTimeModel3(QObject *parent) : TableModel<SeedTimeState3>(parent)
 {
 }
 
@@ -33,13 +33,13 @@ QVariant SeedTimeModel3::data(const QModelIndex &index, int role) const
 {
     if (role == Qt::DisplayRole)
     {
-        const auto &frame = model.at(index.row());
+        const auto &state = model.at(index.row());
         switch (index.column())
         {
         case 0:
-            return frame.getDateTime();
+            return state.getDateTime();
         case 1:
-            return frame.getFrame();
+            return state.getAdvances();
         }
     }
     return QVariant();

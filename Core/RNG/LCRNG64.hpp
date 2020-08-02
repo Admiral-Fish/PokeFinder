@@ -30,9 +30,9 @@ public:
     {
     }
 
-    void advanceFrames(u32 frames)
+    void advance(u32 advances)
     {
-        for (u32 frame = 0; frame < frames; frame++)
+        for (u32 advance = 0; advance < advances; advance++)
         {
             next();
         }

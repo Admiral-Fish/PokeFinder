@@ -154,11 +154,11 @@ void ProfileCalibrator5::updateParameters()
     ui->textBoxMaxVFrame->setText("10");
 }
 
-void ProfileCalibrator5::updateProgress(const QVector<QList<QStandardItem *>> &frames, int progress)
+void ProfileCalibrator5::updateProgress(const QVector<QList<QStandardItem *>> &states, int progress)
 {
-    for (auto &frame : frames)
+    for (auto &state : states)
     {
-        model->appendRow(frame);
+        model->appendRow(state);
     }
     ui->progressBar->setValue(progress);
 }

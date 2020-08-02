@@ -23,7 +23,7 @@
 #include <Core/Gen4/Profile4.hpp>
 #include <QMenu>
 
-class StationaryFrame;
+class StationaryState;
 class StationaryGeneratorModel4;
 class StationarySearcherModel4;
 
@@ -55,7 +55,7 @@ private:
     void setupModels();
 
 private slots:
-    void updateProgress(const QVector<StationaryFrame> &frames, int progress);
+    void updateProgress(const QVector<StationaryState> &states, int progress);
     void generate();
     void search();
     void profileIndexChanged(int index);

@@ -25,10 +25,7 @@
 #include <QtConcurrent>
 
 EggSearcher5::EggSearcher5(const EggGenerator5 &generator, const Profile5 &profile) :
-    generator(generator),
-    profile(profile),
-    searching(false),
-    progress(0)
+    generator(generator), profile(profile), searching(false), progress(0)
 {
 }
 
@@ -72,7 +69,7 @@ void EggSearcher5::cancelSearch()
     searching = false;
 }
 
-QVector<SearcherFrame5<EggFrame>> EggSearcher5::getResults()
+QVector<SearcherState5<EggState>> EggSearcher5::getResults()
 {
     std::lock_guard<std::mutex> lock(resultMutex);
 
@@ -121,24 +118,24 @@ void EggSearcher5::search(const QDate &start, const QDate &end)
                             sha.setTime(hour, minute, second, profile.getDSType());
                             u64 seed = sha.hashSeed();
 
-                            generator.setInitialFrame(flag ? Utilities::initialFrameBW(seed)
-                                                           : Utilities::initialFrameBW2(seed, profile.getMemoryLink()));
-                            auto frames = generator.generate(seed);
+                            generator.setInitialAdvances(flag ? Utilities::initialAdvancesBW(seed)
+                                                              : Utilities::initialAdvancesBW2(seed, profile.getMemoryLink()));
+                            auto states = generator.generate(seed);
 
-                            if (!frames.isEmpty())
+                            if (!states.isEmpty())
                             {
-                                QVector<SearcherFrame5<EggFrame>> displayFrames;
-                                displayFrames.reserve(frames.size());
+                                QVector<SearcherState5<EggState>> displayStates;
+                                displayStates.reserve(states.size());
 
                                 QDateTime dt(date, QTime(hour, minute, second));
-                                for (const auto &frame : frames)
+                                for (const auto &state : states)
                                 {
-                                    SearcherFrame5<EggFrame> display(dt, seed, buttons.at(i), timer0, frame);
-                                    displayFrames.append(display);
+                                    SearcherState5<EggState> display(dt, seed, buttons.at(i), timer0, state);
+                                    displayStates.append(display);
                                 }
 
                                 std::lock_guard<std::mutex> lock(resultMutex);
-                                results.append(displayFrames);
+                                results.append(displayStates);
                             }
 
                             std::lock_guard<std::mutex> lock(progressMutex);

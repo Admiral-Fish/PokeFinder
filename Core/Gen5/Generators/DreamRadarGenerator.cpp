@@ -23,9 +23,9 @@
 #include <Core/RNG/RNGList.hpp>
 #include <Core/Util/Utilities.hpp>
 
-DreamRadarGenerator::DreamRadarGenerator(u32 initialFrame, u32 maxResults, u16 tid, u16 sid, u8 genderRatio, Method method,
-                                         const FrameFilter &filter, const QVector<DreamRadarSlot> &radarSlots) :
-    Generator(initialFrame, maxResults, tid, sid, genderRatio, method, filter),
+DreamRadarGenerator::DreamRadarGenerator(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, Method method,
+                                         const StateFilter &filter, const QVector<DreamRadarSlot> &radarSlots) :
+    Generator(initialAdvances, maxAdvances, tid, sid, genderRatio, method, filter),
     pidAdvances(0),
     ivAdvances(0),
     radarSlot(radarSlots.last())
@@ -47,56 +47,56 @@ DreamRadarGenerator::DreamRadarGenerator(u32 initialFrame, u32 maxResults, u16 t
     }
 }
 
-QVector<Frame> DreamRadarGenerator::generate(u64 seed, bool memory)
+QVector<State> DreamRadarGenerator::generate(u64 seed, bool memory)
 {
-    QVector<Frame> frames;
+    QVector<State> states;
 
     BWRNG rng(seed);
-    rng.advanceFrames(Utilities::initialFrameBW2(seed, memory) - 1);
-    rng.advanceFrames(1); // Opening menu advances 1 frame
-    rng.advanceFrames((initialFrame - 1) * 2);
+    rng.advance(Utilities::initialAdvancesBW2(seed, memory));
+    rng.advance(1); // Opening menu advances 1
+    rng.advance(initialAdvances * 2);
     if (!memory)
     {
         rng.next();
     }
 
     MT mt(seed >> 32);
-    mt.advanceFrames(9); // Initial advances
-    mt.advanceFrames((initialFrame - 1) * 2); // Starting frame
-    mt.advanceFrames(ivAdvances); // Slot advances
+    mt.advance(9); // Initial advances
+    mt.advance(initialAdvances * 2); // Starting advance
+    mt.advance(ivAdvances); // Slot advances
 
     RNGList<u8, MT<624>, 6, 27> rngList(mt);
 
-    for (u32 cnt = 0; cnt < maxResults; cnt++, rngList.advanceStates(2), rng.next())
+    for (u32 cnt = 0; cnt < maxAdvances; cnt++, rngList.advanceStates(2), rng.next())
     {
-        Frame frame(cnt + initialFrame);
+        State state(cnt + initialAdvances);
 
         BWRNG go(rng.getSeed());
-        go.advanceFrames(pidAdvances);
+        go.advance(pidAdvances);
 
         for (u8 i = 0; i < 6; i++)
         {
-            frame.setIVs(i, rngList.getValue());
+            state.setIVs(i, rngList.getValue());
         }
-        frame.calculateHiddenPower();
+        state.calculateHiddenPower();
 
-        go.next(); // Frame skip ???
+        go.next(); // Advance skip ???
         u32 pid = go.nextUInt();
 
         // Gender modification
         if (radarSlot.type == 0 || radarSlot.type == 1) // Genies already male, gen 4 legends also get assigned male pids
         {
             pid = Utilities::forceGender(pid, go.next() >> 32, 0, 0);
-            frame.setGender(radarSlot.gender);
+            state.setGender(radarSlot.gender);
         }
         else if (radarSlot.gender == 0 || radarSlot.gender == 1)
         {
             pid = Utilities::forceGender(pid, go.next() >> 32, radarSlot.gender, radarSlot.genderRatio);
-            frame.setGender(pid & 0xff, radarSlot.genderRatio);
+            state.setGender(pid & 0xff, radarSlot.genderRatio);
         }
         else
         {
-            frame.setGender(2);
+            state.setGender(2);
         }
 
         // Flip ability
@@ -108,21 +108,21 @@ QVector<Frame> DreamRadarGenerator::generate(u64 seed, bool memory)
             pid ^= 0x10000000;
         }
 
-        frame.setPID(pid);
-        frame.setAbility(2);
-        frame.setShiny(0);
+        state.setPID(pid);
+        state.setAbility(2);
+        state.setShiny(0);
 
-        go.advanceFrames(2);
+        go.advance(2);
 
-        frame.setNature(go.nextUInt(25));
+        state.setNature(go.nextUInt(25));
 
-        frame.setSeed(rng.nextUInt(8)); // Needle calculation
+        state.setSeed(rng.nextUInt(8)); // Needle calculation
 
-        if (filter.compareFrame(frame))
+        if (filter.compareState(state))
         {
-            frames.append(frame);
+            states.append(state);
         }
     }
 
-    return frames;
+    return states;
 }

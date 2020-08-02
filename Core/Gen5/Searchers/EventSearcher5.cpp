@@ -25,10 +25,7 @@
 #include <QtConcurrent>
 
 EventSearcher5::EventSearcher5(const EventGenerator5 &generator, const Profile5 &profile) :
-    generator(generator),
-    profile(profile),
-    searching(false),
-    progress(0)
+    generator(generator), profile(profile), searching(false), progress(0)
 {
 }
 
@@ -72,7 +69,7 @@ void EventSearcher5::cancelSearch()
     searching = false;
 }
 
-QVector<SearcherFrame5<Frame>> EventSearcher5::getResults()
+QVector<SearcherState5<State>> EventSearcher5::getResults()
 {
     std::lock_guard<std::mutex> lock(resultMutex);
 
@@ -121,24 +118,24 @@ void EventSearcher5::search(const QDate &start, const QDate &end)
                             sha.setTime(hour, minute, second, profile.getDSType());
                             u64 seed = sha.hashSeed();
 
-                            generator.setInitialFrame(flag ? Utilities::initialFrameBW(seed)
-                                                           : Utilities::initialFrameBW2(seed, profile.getMemoryLink()));
-                            auto frames = generator.generate(seed);
+                            generator.setInitialAdvances(flag ? Utilities::initialAdvancesBW(seed)
+                                                              : Utilities::initialAdvancesBW2(seed, profile.getMemoryLink()));
+                            auto states = generator.generate(seed);
 
-                            if (!frames.isEmpty())
+                            if (!states.isEmpty())
                             {
-                                QVector<SearcherFrame5<Frame>> displayFrames;
-                                displayFrames.reserve(frames.size());
+                                QVector<SearcherState5<State>> displayStates;
+                                displayStates.reserve(states.size());
 
                                 QDateTime dt(date, QTime(hour, minute, second));
-                                for (const auto &frame : frames)
+                                for (const auto &state : states)
                                 {
-                                    SearcherFrame5<Frame> display(dt, seed, buttons.at(i), timer0, frame);
-                                    displayFrames.append(display);
+                                    SearcherState5<State> display(dt, seed, buttons.at(i), timer0, state);
+                                    displayStates.append(display);
                                 }
 
                                 std::lock_guard<std::mutex> lock(resultMutex);
-                                results.append(displayFrames);
+                                results.append(displayStates);
                             }
 
                             std::lock_guard<std::mutex> lock(progressMutex);

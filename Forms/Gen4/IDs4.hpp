@@ -22,7 +22,7 @@
 
 #include <QWidget>
 
-class IDFrame4;
+class IDState4;
 class IDModel4;
 
 namespace Ui
@@ -49,8 +49,8 @@ private:
     void setupModels();
 
 private slots:
-    void updateProgressShinyPID(const QVector<IDFrame4> &frames, int progress);
-    void updateProgressTIDSID(const QVector<IDFrame4> &frames, int progress);
+    void updateProgressShinyPID(const QVector<IDState4> &states, int progress);
+    void updateProgressTIDSID(const QVector<IDState4> &states, int progress);
     void shinyPIDSearch();
     void tidSIDSearch();
     void seedFinderSearch();

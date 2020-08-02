@@ -21,16 +21,16 @@
 #define EGGGENERATOR5_HPP
 
 #include <Core/Parents/Daycare.hpp>
-#include <Core/Parents/Frames/EggFrame.hpp>
 #include <Core/Parents/Generators/EggGenerator.hpp>
+#include <Core/Parents/States/EggState.hpp>
 
 class EggGenerator5 : public EggGenerator
 {
 public:
     EggGenerator5() = default;
-    EggGenerator5(u32 initialFrame, u32 maxResults, u16 tid, u16 sid, u8 genderRatio, Method method, const FrameFilter &filter,
+    EggGenerator5(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter,
                   const Daycare &daycare, bool shinyCharm);
-    QVector<EggFrame> generate(u64 seed) const;
+    QVector<EggState> generate(u64 seed) const;
 
 private:
     Daycare daycare;
@@ -40,9 +40,9 @@ private:
     bool ditto;
     u8 parentAbility;
 
-    QVector<EggFrame> generateBW(u64 seed) const;
-    QVector<EggFrame> generateBW2(u64 seed) const;
-    EggFrame generateBW2Egg(u64 seed) const;
+    QVector<EggState> generateBW(u64 seed) const;
+    QVector<EggState> generateBW2(u64 seed) const;
+    EggState generateBW2Egg(u64 seed) const;
 };
 
 #endif // EGGGENERATOR5_HPP

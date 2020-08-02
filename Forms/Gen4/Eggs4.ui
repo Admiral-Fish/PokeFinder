@@ -139,9 +139,9 @@
            </widget>
           </item>
           <item row="3" column="0">
-           <widget class="QLabel" name="labelGeneratorMaxResults">
+           <widget class="QLabel" name="labelGeneratorMaxAdvances">
             <property name="text">
-             <string>Max Results</string>
+             <string>Max Advances</string>
             </property>
            </widget>
           </item>
@@ -156,16 +156,16 @@
            </widget>
           </item>
           <item row="2" column="0">
-           <widget class="QLabel" name="labelGeneratorInitialFrame">
+           <widget class="QLabel" name="labelGeneratorInitialAdvances">
             <property name="text">
-             <string>Initial Frame</string>
+             <string>Initial Advances</string>
             </property>
            </widget>
           </item>
           <item row="2" column="1">
-           <widget class="TextBox" name="textBoxGeneratorInitialFrame">
+           <widget class="TextBox" name="textBoxGeneratorInitialAdvances">
             <property name="text">
-             <string notr="true">1</string>
+             <string notr="true">0</string>
             </property>
             <property name="maxLength">
              <number>10</number>
@@ -173,7 +173,7 @@
            </widget>
           </item>
           <item row="3" column="1">
-           <widget class="TextBox" name="textBoxGeneratorMaxResults">
+           <widget class="TextBox" name="textBoxGeneratorMaxAdvances">
             <property name="text">
              <string notr="true">100000</string>
             </property>
@@ -277,7 +277,7 @@
            </widget>
           </item>
           <item row="1" column="3">
-           <widget class="TextBox" name="textBoxSearcherPIDMaxFrame">
+           <widget class="TextBox" name="textBoxSearcherPIDMaxAdvance">
             <property name="text">
              <string notr="true">30</string>
             </property>
@@ -294,9 +294,9 @@
            </widget>
           </item>
           <item row="1" column="2">
-           <widget class="TextBox" name="textBoxSearcherPIDMinFrame">
+           <widget class="TextBox" name="textBoxSearcherPIDMinAdvance">
             <property name="text">
-             <string notr="true">1</string>
+             <string notr="true">0</string>
             </property>
             <property name="maxLength">
              <number>10</number>
@@ -322,9 +322,9 @@
            </layout>
           </item>
           <item row="2" column="2">
-           <widget class="TextBox" name="textBoxSearcherIVMinFrame">
+           <widget class="TextBox" name="textBoxSearcherIVMinAdvance">
             <property name="text">
-             <string notr="true">1</string>
+             <string notr="true">0</string>
             </property>
             <property name="maxLength">
              <number>10</number>
@@ -332,7 +332,7 @@
            </widget>
           </item>
           <item row="2" column="3">
-           <widget class="TextBox" name="textBoxSearcherIVMaxFrame">
+           <widget class="TextBox" name="textBoxSearcherIVMaxAdvance">
             <property name="text">
              <string notr="true">100000</string>
             </property>
@@ -361,16 +361,16 @@
            </widget>
           </item>
           <item row="1" column="0">
-           <widget class="QLabel" name="labelSearcherPIDFrame">
+           <widget class="QLabel" name="labelSearcherPIDState">
             <property name="text">
-             <string>PID Frame</string>
+             <string>PID Advance</string>
             </property>
            </widget>
           </item>
           <item row="2" column="0">
-           <widget class="QLabel" name="labelSearcherIVFrame">
+           <widget class="QLabel" name="labelSearcherIVAdvance">
             <property name="text">
-             <string>IV Frame</string>
+             <string>IV Advance</string>
             </property>
            </widget>
           </item>
@@ -476,16 +476,16 @@
   <tabstop>tabEggSelection</tabstop>
   <tabstop>comboBoxGeneratorMethod</tabstop>
   <tabstop>textBoxGeneratorSeed</tabstop>
-  <tabstop>textBoxGeneratorInitialFrame</tabstop>
-  <tabstop>textBoxGeneratorMaxResults</tabstop>
+  <tabstop>textBoxGeneratorInitialAdvances</tabstop>
+  <tabstop>textBoxGeneratorMaxAdvances</tabstop>
   <tabstop>checkBoxGeneratorMasuada</tabstop>
   <tabstop>pushButtonGenerate</tabstop>
   <tabstop>tableViewGenerator</tabstop>
   <tabstop>comboBoxSearcherMethod</tabstop>
-  <tabstop>textBoxSearcherPIDMinFrame</tabstop>
-  <tabstop>textBoxSearcherPIDMaxFrame</tabstop>
-  <tabstop>textBoxSearcherIVMinFrame</tabstop>
-  <tabstop>textBoxSearcherIVMaxFrame</tabstop>
+  <tabstop>textBoxSearcherPIDMinAdvance</tabstop>
+  <tabstop>textBoxSearcherPIDMaxAdvance</tabstop>
+  <tabstop>textBoxSearcherIVMinAdvance</tabstop>
+  <tabstop>textBoxSearcherIVMaxAdvance</tabstop>
   <tabstop>textBoxSearcherMinDelay</tabstop>
   <tabstop>textBoxSearcherMaxDelay</tabstop>
   <tabstop>checkBoxSearcherMasuada</tabstop>

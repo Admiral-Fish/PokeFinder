@@ -35,8 +35,8 @@ void TextBox::setValues(InputType type)
         length = 16;
         base = 16;
         break;
-    case InputType::Frame64Bit:
-        minValue = 1;
+    case InputType::Advance64Bit:
+        minValue = 0;
         maxValue = 0xffffffffffffffff;
         length = 20;
         base = 10;
@@ -47,8 +47,8 @@ void TextBox::setValues(InputType type)
         length = 8;
         base = 16;
         break;
-    case InputType::Frame32Bit:
-        minValue = 1;
+    case InputType::Advance32Bit:
+        minValue = 0;
         maxValue = 0xffffffff;
         length = 10;
         base = 10;

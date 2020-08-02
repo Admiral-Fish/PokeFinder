@@ -20,13 +20,13 @@
 #ifndef STATIONARY4MODEL_HPP
 #define STATIONARY4MODEL_HPP
 
-#include <Core/Parents/Frames/Frame.hpp>
-#include <Core/Parents/Frames/StationaryFrame.hpp>
+#include <Core/Parents/States/State.hpp>
+#include <Core/Parents/States/StationaryState.hpp>
 #include <Models/TableModel.hpp>
 
 enum Method : u8;
 
-class StationaryGeneratorModel4 : public TableModel<Frame>
+class StationaryGeneratorModel4 : public TableModel<State>
 {
     Q_OBJECT
 public:
@@ -38,13 +38,13 @@ public:
 
 private:
     Method method;
-    QStringList header = { tr("Frame"), tr("Call"), tr("Chatot"), tr("PID"), tr("Shiny"), tr("Nature"), tr("Ability"), tr("HP"),
-                           tr("Atk"),   tr("Def"),  tr("SpA"),    tr("SpD"), tr("Spe"),   tr("Hidden"), tr("Power"),   tr("Gender") };
+    QStringList header = { tr("Advances"), tr("Call"), tr("Chatot"), tr("PID"), tr("Shiny"), tr("Nature"), tr("Ability"), tr("HP"),
+                           tr("Atk"),      tr("Def"),  tr("SpA"),    tr("SpD"), tr("Spe"),   tr("Hidden"), tr("Power"),   tr("Gender") };
 
     int getColumn(int column) const;
 };
 
-class StationarySearcherModel4 : public TableModel<StationaryFrame>
+class StationarySearcherModel4 : public TableModel<StationaryState>
 {
     Q_OBJECT
 public:
@@ -57,8 +57,8 @@ public:
 
 private:
     Method method;
-    QStringList header = { tr("Seed"), tr("Frame"), tr("Lead"), tr("PID"), tr("Shiny"), tr("Nature"), tr("Ability"), tr("HP"),
-                           tr("Atk"),  tr("Def"),   tr("SpA"),  tr("SpD"), tr("Spe"),   tr("Hidden"), tr("Power"),   tr("Gender") };
+    QStringList header = { tr("Seed"), tr("Advances"), tr("Lead"), tr("PID"), tr("Shiny"), tr("Nature"), tr("Ability"), tr("HP"),
+                           tr("Atk"),  tr("Def"),      tr("SpA"),  tr("SpD"), tr("Spe"),   tr("Hidden"), tr("Power"),   tr("Gender") };
 
     int getColumn(int column) const;
 };

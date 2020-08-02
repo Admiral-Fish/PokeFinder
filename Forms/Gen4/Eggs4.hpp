@@ -23,7 +23,7 @@
 #include <Core/Gen4/Profile4.hpp>
 #include <QMenu>
 
-class EggFrame4;
+class EggState4;
 class EggGeneratorModel4;
 class EggSearcherModel4;
 
@@ -55,7 +55,7 @@ private:
     void setupModels();
 
 private slots:
-    void updateProgress(const QVector<EggFrame4> &frames, int progress);
+    void updateProgress(const QVector<EggState4> &states, int progress);
     void generate();
     void search();
     void profilesIndexChanged(int index);

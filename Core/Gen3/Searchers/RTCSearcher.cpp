@@ -27,12 +27,12 @@ RTCSearcher::RTCSearcher() : searching(false)
 {
 }
 
-void RTCSearcher::startSearch(u32 initialSeed, u32 targetSeed, u32 initialFrame, u32 maxResults)
+void RTCSearcher::startSearch(u32 initialSeed, u32 targetSeed, u32 initialAdvances, u32 maxAdvances)
 {
     searching = true;
 
     XDRNGR back(targetSeed);
-    back.advanceFrames(initialFrame);
+    back.advance(initialAdvances);
 
     targetSeed = back.getSeed();
 
@@ -44,13 +44,13 @@ void RTCSearcher::startSearch(u32 initialSeed, u32 targetSeed, u32 initialFrame,
     {
         XDRNG rng(initialSeed);
 
-        for (u32 x = 0; x < maxResults; x++)
+        for (u32 x = 0; x < maxAdvances; x++)
         {
             if (rng.next() == targetSeed)
             {
                 QDateTime finalTime = date.addSecs(seconds);
 
-                GameCubeRTCFrame result(finalTime, initialSeed, x + 2 + initialFrame);
+                GameCubeRTCState result(finalTime, initialSeed, x + 1 + initialAdvances);
                 results.append(result);
 
                 return;
@@ -74,7 +74,7 @@ void RTCSearcher::cancelSearch()
     searching = false;
 }
 
-QVector<GameCubeRTCFrame> RTCSearcher::getResults()
+QVector<GameCubeRTCState> RTCSearcher::getResults()
 {
     return results;
 }

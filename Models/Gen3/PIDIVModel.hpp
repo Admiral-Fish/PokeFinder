@@ -20,10 +20,10 @@
 #ifndef PIDIVMODEL_HPP
 #define PIDIVMODEL_HPP
 
-#include <Core/Gen3/Frames/PIDIVFrame.hpp>
+#include <Core/Gen3/States/PIDIVState.hpp>
 #include <Models/TableModel.hpp>
 
-class PIDIVModel : public TableModel<PIDIVFrame>
+class PIDIVModel : public TableModel<PIDIVState>
 {
     Q_OBJECT
 public:

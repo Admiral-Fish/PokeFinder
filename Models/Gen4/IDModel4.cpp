@@ -19,7 +19,7 @@
 
 #include "IDModel4.hpp"
 
-IDModel4::IDModel4(QObject *parent, bool flag) : TableModel<IDFrame4>(parent), showSeconds(flag)
+IDModel4::IDModel4(QObject *parent, bool flag) : TableModel<IDState4>(parent), showSeconds(flag)
 {
 }
 
@@ -33,22 +33,22 @@ QVariant IDModel4::data(const QModelIndex &index, int role) const
 {
     if (role == Qt::DisplayRole)
     {
-        const auto &frame = model.at(index.row());
+        const auto &state = model.at(index.row());
         int column = index.column();
         switch (column)
         {
         case 0:
-            return QString::number(frame.getSeed(), 16).toUpper().rightJustified(8, '0');
+            return QString::number(state.getSeed(), 16).toUpper().rightJustified(8, '0');
         case 1:
-            return frame.getTID();
+            return state.getTID();
         case 2:
-            return frame.getSID();
+            return state.getSID();
         case 3:
-            return frame.getTSV();
+            return state.getTSV();
         case 4:
-            return frame.getDelay();
+            return state.getDelay();
         case 5:
-            return frame.getSeconds();
+            return state.getSeconds();
         }
     }
     return QVariant();

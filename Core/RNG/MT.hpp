@@ -41,9 +41,9 @@ public:
         }
     }
 
-    void advanceFrames(u32 frames)
+    void advance(u32 advances)
     {
-        index += frames;
+        index += advances;
         while (index >= bound(size))
         {
             shuffle();

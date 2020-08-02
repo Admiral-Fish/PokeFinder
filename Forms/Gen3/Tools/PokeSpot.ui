@@ -47,16 +47,16 @@
        </widget>
       </item>
       <item row="1" column="0">
-       <widget class="QLabel" name="labelStartingFrame">
+       <widget class="QLabel" name="labelStartingAdvance">
         <property name="text">
-         <string>Starting Frame</string>
+         <string>Initial Advances</string>
         </property>
        </widget>
       </item>
       <item row="1" column="1">
-       <widget class="TextBox" name="textBoxStartingFrame">
+       <widget class="TextBox" name="textBoxStartingAdvance">
         <property name="text">
-         <string notr="true">1</string>
+         <string notr="true">0</string>
         </property>
         <property name="maxLength">
          <number>10</number>
@@ -64,14 +64,14 @@
        </widget>
       </item>
       <item row="2" column="0">
-       <widget class="QLabel" name="labelMaxResults">
+       <widget class="QLabel" name="labelMaxAdvances">
         <property name="text">
-         <string>Max Results</string>
+         <string>Max Advances</string>
         </property>
        </widget>
       </item>
       <item row="2" column="1">
-       <widget class="TextBox" name="textBoxMaxResults">
+       <widget class="TextBox" name="textBoxMaxAdvances">
         <property name="text">
          <string notr="true">100000</string>
         </property>
@@ -218,8 +218,8 @@
  </customwidgets>
  <tabstops>
   <tabstop>textBoxSeed</tabstop>
-  <tabstop>textBoxStartingFrame</tabstop>
-  <tabstop>textBoxMaxResults</tabstop>
+  <tabstop>textBoxStartingAdvance</tabstop>
+  <tabstop>textBoxMaxAdvances</tabstop>
   <tabstop>textBoxTID</tabstop>
   <tabstop>textBoxSID</tabstop>
   <tabstop>pushButtonGenerate</tabstop>

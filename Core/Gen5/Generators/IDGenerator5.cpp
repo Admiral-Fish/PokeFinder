@@ -20,31 +20,31 @@
 #include "IDGenerator5.hpp"
 #include <Core/RNG/LCRNG64.hpp>
 
-IDGenerator5::IDGenerator5(u32 initialFrame, u32 maxResults, const IDFilter &filter) : IDGenerator(initialFrame, maxResults, filter)
+IDGenerator5::IDGenerator5(u32 initialAdvances, u32 maxAdvances, const IDFilter &filter) : IDGenerator(initialAdvances, maxAdvances, filter)
 {
 }
 
-QVector<IDFrame5> IDGenerator5::generate(u64 seed, u32 pid, bool checkPID)
+QVector<IDState5> IDGenerator5::generate(u64 seed, u32 pid, bool checkPID)
 {
-    QVector<IDFrame5> frames;
+    QVector<IDState5> states;
 
     BWRNG rng(seed);
-    rng.advanceFrames(initialFrame - 1);
+    rng.advance(initialAdvances);
 
     bool pidBit = (pid >> 31) ^ (pid & 1);
     u16 psv = (pid >> 16) ^ (pid & 0xffff);
     u16 xorPSV = psv ^ 0x8000;
 
-    for (u32 cnt = 0; cnt < maxResults; cnt++)
+    for (u32 cnt = 0; cnt < maxAdvances; cnt++)
     {
         u32 rand = rng.nextUInt(0xffffffff);
         u16 tid = rand & 0xffff;
         u16 sid = rand >> 16;
 
-        IDFrame5 frame(initialFrame + cnt, tid, sid);
-        frame.setInitialFrame(initialFrame);
+        IDState5 state(initialAdvances + cnt, tid, sid);
+        state.setInitialAdvances(initialAdvances);
 
-        if (filter.compare(frame))
+        if (filter.compare(state))
         {
             if (checkPID)
             {
@@ -52,24 +52,24 @@ QVector<IDFrame5> IDGenerator5::generate(u64 seed, u32 pid, bool checkPID)
 
                 // Check if PID will be modified by the tid/sid combo
                 u16 actualPSV = (idBit ^ pidBit) ? xorPSV : psv;
-                if ((actualPSV >> 3) == frame.getTSV())
+                if ((actualPSV >> 3) == state.getTSV())
                 {
-                    frame.setSeed(seed);
-                    frames.append(frame);
+                    state.setSeed(seed);
+                    states.append(state);
                 }
             }
             else
             {
-                frame.setSeed(seed);
-                frames.append(frame);
+                state.setSeed(seed);
+                states.append(state);
             }
         }
     }
 
-    return frames;
+    return states;
 }
 
-void IDGenerator5::setInitialFrame(u32 initialFrame)
+void IDGenerator5::setInitialAdvances(u32 initialAdvances)
 {
-    this->initialFrame = initialFrame;
+    this->initialAdvances = initialAdvances;
 }

@@ -24,21 +24,18 @@
 // Game has all of these + 1, removed for simplicity
 constexpr u32 grottoSlots[11] = { 0, 4, 19, 20, 24, 34, 59, 60, 64, 74, 99 };
 
-HiddenGrottoGenerator::HiddenGrottoGenerator(u32 initialFrame, u32 maxResults, u8 genderRatio, const HiddenGrottoFilter &filter) :
-    initialFrame(initialFrame),
-    maxResults(maxResults),
-    genderRatio(genderRatio),
-    filter(filter)
+HiddenGrottoGenerator::HiddenGrottoGenerator(u32 initialAdvances, u32 maxAdvances, u8 genderRatio, const HiddenGrottoFilter &filter) :
+    initialAdvances(initialAdvances), maxAdvances(maxAdvances), genderRatio(genderRatio), filter(filter)
 {
 }
 
-QVector<HiddenGrottoFrame> HiddenGrottoGenerator::generate(u64 seed)
+QVector<HiddenGrottoState> HiddenGrottoGenerator::generate(u64 seed)
 {
-    QVector<HiddenGrottoFrame> frames;
+    QVector<HiddenGrottoState> states;
 
     BWRNG rng(seed);
 
-    for (u32 cnt = 0; cnt < maxResults; cnt++, rng.next())
+    for (u32 cnt = 0; cnt < maxAdvances; cnt++, rng.next())
     {
         BWRNG go(rng.getSeed());
 
@@ -56,13 +53,13 @@ QVector<HiddenGrottoFrame> HiddenGrottoGenerator::generate(u64 seed)
 
             u8 gender = go.nextUInt(100) < genderRatio;
 
-            HiddenGrottoFrame frame(initialFrame + cnt, group, slot, gender);
-            if (filter.compareFrame(frame))
+            HiddenGrottoState state(initialAdvances + cnt, group, slot, gender);
+            if (filter.compareState(state))
             {
-                frames.append(frame);
+                states.append(state);
             }
         }
     }
 
-    return frames;
+    return states;
 }

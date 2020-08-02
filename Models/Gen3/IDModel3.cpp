@@ -19,7 +19,7 @@
 
 #include "IDModel3.hpp"
 
-IDModel3::IDModel3(QObject *parent) : TableModel<IDFrame3>(parent)
+IDModel3::IDModel3(QObject *parent) : TableModel<IDState3>(parent)
 {
 }
 
@@ -33,17 +33,17 @@ QVariant IDModel3::data(const QModelIndex &index, int role) const
 {
     if (role == Qt::DisplayRole)
     {
-        const auto &frame = model.at(index.row());
+        const auto &state = model.at(index.row());
         switch (index.column())
         {
         case 0:
-            return frame.getFrame();
+            return state.getAdvances();
         case 1:
-            return frame.getTID();
+            return state.getTID();
         case 2:
-            return frame.getSID();
+            return state.getSID();
         case 3:
-            return frame.getTSV();
+            return state.getTSV();
         }
     }
 

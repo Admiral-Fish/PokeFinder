@@ -20,7 +20,7 @@
 #ifndef GENERATOR_HPP
 #define GENERATOR_HPP
 
-#include <Core/Parents/Filters/FrameFilter.hpp>
+#include <Core/Parents/Filters/StateFilter.hpp>
 #include <Core/Util/Global.hpp>
 
 enum Encounter : u8;
@@ -31,21 +31,21 @@ class Generator
 {
 public:
     Generator() = default;
-    Generator(u32 initialFrame, u32 maxResults, u16 tid, u16 sid, u8 genderRatio, Method method, const FrameFilter &filter);
-    FrameFilter getFilter() const;
+    Generator(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter);
+    StateFilter getFilter() const;
     void setOffset(u32 offset);
-    void setInitialFrame(u32 initialFrame);
+    void setInitialAdvances(u32 initialAdvances);
 
 protected:
-    u32 initialFrame;
-    u32 maxResults;
+    u32 initialAdvances;
+    u32 maxAdvances;
     u32 offset;
     u16 tid;
     u16 sid;
     u16 tsv;
     u8 genderRatio;
     Method method;
-    FrameFilter filter;
+    StateFilter filter;
 };
 
 #endif // GENERATOR_HPP

@@ -20,10 +20,10 @@
 #ifndef SEEDTIMEMODEL3_HPP
 #define SEEDTIMEMODEL3_HPP
 
-#include <Core/Gen3/Frames/SeedTimeFrame3.hpp>
+#include <Core/Gen3/States/SeedTimeState3.hpp>
 #include <Models/TableModel.hpp>
 
-class SeedTimeModel3 : public TableModel<SeedTimeFrame3>
+class SeedTimeModel3 : public TableModel<SeedTimeState3>
 {
     Q_OBJECT
 public:
@@ -33,7 +33,7 @@ public:
     QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
 
 private:
-    QStringList header = { tr("Time"), tr("Frame") };
+    QStringList header = { tr("Time"), tr("Advances") };
 };
 
 #endif // SEEDTIMEMODEL3_HPP

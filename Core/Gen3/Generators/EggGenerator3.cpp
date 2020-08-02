@@ -20,11 +20,12 @@
 
 #include "EggGenerator3.hpp"
 #include <Core/Enum/Method.hpp>
-#include <Core/Parents/Filters/FrameFilter.hpp>
+#include <Core/Parents/Filters/StateFilter.hpp>
 #include <Core/RNG/LCRNG.hpp>
 
-EggGenerator3::EggGenerator3(u32 initialFrame, u32 maxResults, u16 tid, u16 sid, u8 genderRatio, Method method, const FrameFilter &filter) :
-    EggGenerator(initialFrame, maxResults, tid, sid, genderRatio, method, filter)
+EggGenerator3::EggGenerator3(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, Method method,
+                             const StateFilter &filter) :
+    EggGenerator(initialAdvances, maxAdvances, tid, sid, genderRatio, method, filter)
 {
     switch (method)
     {
@@ -72,7 +73,7 @@ EggGenerator3::EggGenerator3(u32 initialFrame, u32 maxResults, u16 tid, u16 sid,
     }
 }
 
-QVector<EggFrame3> EggGenerator3::generate(u32 seed, u32 seed2) const
+QVector<EggState3> EggGenerator3::generate(u32 seed, u32 seed2) const
 {
     switch (method)
     {
@@ -90,21 +91,21 @@ QVector<EggFrame3> EggGenerator3::generate(u32 seed, u32 seed2) const
     case Method::FRLGBredAlternate:
     {
         auto lower = generateLower(seed);
-        return lower.isEmpty() ? QVector<EggFrame3>() : generateUpper(seed2, lower);
+        return lower.isEmpty() ? QVector<EggState3>() : generateUpper(seed2, lower);
     }
     default:
-        return QVector<EggFrame3>();
+        return QVector<EggState3>();
     }
 }
 
-void EggGenerator3::setInitialFramePickup(u32 value)
+void EggGenerator3::setInitialAdvancesPickup(u32 value)
 {
-    initialFramePickup = value;
+    initialAdvancesPickup = value;
 }
 
-void EggGenerator3::setMaxResultsPickup(u32 value)
+void EggGenerator3::setMaxAdvancesPickup(u32 value)
 {
-    maxResultsPickup = value;
+    maxAdvancesPickup = value;
 }
 
 void EggGenerator3::setCalibration(u8 value)
@@ -132,15 +133,15 @@ void EggGenerator3::setEverstone(bool value)
     everstone = value;
 }
 
-QVector<EggFrame3> EggGenerator3::generateEmeraldPID() const
+QVector<EggState3> EggGenerator3::generateEmeraldPID() const
 {
-    QVector<EggFrame3> frames;
+    QVector<EggState3> states;
 
     PokeRNG rng(0);
-    rng.advanceFrames(initialFrame - 1);
+    rng.advance(initialAdvances);
 
-    u32 val = initialFrame;
-    for (u32 cnt = 0; cnt < maxResults; cnt++, val++, rng.next())
+    u32 val = initialAdvances + 1;
+    for (u32 cnt = 0; cnt < maxAdvances; cnt++, val++, rng.next())
     {
         PokeRNG comp(rng.getSeed());
         if (((comp.nextUShort() * 100) / 0xFFFF) < compatability)
@@ -150,7 +151,7 @@ QVector<EggFrame3> EggGenerator3::generateEmeraldPID() const
                 PokeRNG go(comp.getSeed());
 
                 u16 offset = calibration + 3 * redraw;
-                EggFrame3 frame(cnt + initialFrame - offset);
+                EggState3 state(cnt + initialAdvances - offset);
 
                 bool flag = everstone ? (go.nextUShort() >> 15) == 0 : false;
 
@@ -160,7 +161,7 @@ QVector<EggFrame3> EggGenerator3::generateEmeraldPID() const
                 if (!flag)
                 {
                     pid = ((go.nextUShort() % 0xFFFE) + 1) | (trng.next() & 0xFFFF0000);
-                    frame.setNature(pid % 25);
+                    state.setNature(pid % 25);
                 }
                 else
                 {
@@ -183,79 +184,79 @@ QVector<EggFrame3> EggGenerator3::generateEmeraldPID() const
                     {
                         continue;
                     }
-                    frame.setNature(everstoneNature);
+                    state.setNature(everstoneNature);
                 }
 
-                frame.setPID(pid);
-                frame.setAbility(pid & 1);
-                frame.setGender(pid & 255, genderRatio);
-                frame.setShiny(tsv, (pid >> 16) ^ (pid & 0xffff), 8);
+                state.setPID(pid);
+                state.setAbility(pid & 1);
+                state.setGender(pid & 255, genderRatio);
+                state.setShiny(tsv, (pid >> 16) ^ (pid & 0xffff), 8);
 
-                if (filter.comparePID(frame))
+                if (filter.comparePID(state))
                 {
-                    frame.setRedraw(redraw);
-                    frames.append(frame);
+                    state.setRedraw(redraw);
+                    states.append(state);
                 }
             }
         }
     }
 
-    std::sort(frames.begin(), frames.end(),
-              [](const EggFrame3 &frame1, const EggFrame3 &frame2) { return frame1.getFrame() < frame2.getFrame(); });
+    std::sort(states.begin(), states.end(),
+              [](const EggState3 &state1, const EggState3 &state2) { return state1.getAdvances() < state2.getAdvances(); });
 
-    return frames;
+    return states;
 }
 
-QVector<EggFrame3> EggGenerator3::generateEmeraldIVs() const
+QVector<EggState3> EggGenerator3::generateEmeraldIVs() const
 {
-    QVector<EggFrame3> frames;
+    QVector<EggState3> states;
 
     PokeRNG rng(0);
-    rng.advanceFrames(initialFrame - 1);
+    rng.advance(initialAdvances);
 
-    for (u32 cnt = 0; cnt < maxResults; cnt++, rng.next())
+    for (u32 cnt = 0; cnt < maxAdvances; cnt++, rng.next())
     {
-        EggFrame3 frame(cnt + initialFrame);
+        EggState3 state(cnt + initialAdvances);
         PokeRNG go(rng.getSeed());
 
-        go.advanceFrames(this->iv1);
+        go.advance(this->iv1);
         u16 iv1 = go.nextUShort();
-        go.advanceFrames(this->iv2);
+        go.advance(this->iv2);
         u16 iv2 = go.nextUShort();
-        frame.setIVs(iv1, iv2);
+        state.setIVs(iv1, iv2);
 
-        go.advanceFrames(this->inh);
+        go.advance(this->inh);
         u16 inh1 = go.nextUShort();
         u16 inh2 = go.nextUShort();
         u16 inh3 = go.nextUShort();
         u16 inh[3] = { inh1, inh2, inh3 };
 
-        // go.advanceFrames(this->par);
+        // go.advance(this->par);
         u16 par1 = go.nextUShort();
         u16 par2 = go.nextUShort();
         u16 par3 = go.nextUShort();
         u16 par[3] = { par1, par2, par3 };
 
-        setInheritance(frame, inh, par, true);
-        frame.calculateHiddenPower();
+        setInheritance(state, inh, par, true);
+        state.calculateHiddenPower();
 
-        if (filter.compareIVs(frame))
+        if (filter.compareIVs(state))
         {
-            frames.append(frame);
+            states.append(state);
         }
     }
 
-    return frames;
+    return states;
 }
 
 QVector<QPair<u32, u16>> EggGenerator3::generateLower(u32 seed) const
 {
-    QVector<QPair<u32, u16>> frames;
+    QVector<QPair<u32, u16>> states;
 
     PokeRNG rng(seed);
-    rng.advanceFrames(initialFrame - 1);
+    rng.advance(initialAdvances);
 
-    for (u32 cnt = 0; cnt < maxResults; cnt++, rng.next())
+    for (u32 cnt = 0; cnt < maxAdvances; cnt++, rng.next())
     {
         PokeRNG go(rng.getSeed());
         if (((go.nextUShort() * 100) / 0xFFFF) < compatability)
@@ -263,56 +264,56 @@ QVector<QPair<u32, u16>> EggGenerator3::generateLower(u32 seed) const
             u16 pid = (go.nextUShort() % 0xFFFE) + 1;
 
             // TODO: decide on filtering for ability/gender
-            frames.append(qMakePair(cnt + initialFrame, pid));
+            states.append(qMakePair(cnt + initialAdvances, pid));
         }
     }
 
-    return frames;
+    return states;
 }
 
-QVector<EggFrame3> EggGenerator3::generateUpper(u32 seed, const QVector<QPair<u32, u16>> &lower) const
+QVector<EggState3> EggGenerator3::generateUpper(u32 seed, const QVector<QPair<u32, u16>> &lower) const
 {
-    QVector<EggFrame3> upper;
+    QVector<EggState3> upper;
 
     PokeRNG rng(seed);
-    rng.advanceFrames(initialFramePickup - 1);
+    rng.advance(initialAdvancesPickup);
 
-    for (u32 cnt = 0; cnt < maxResultsPickup; cnt++, rng.next())
+    for (u32 cnt = 0; cnt < maxAdvancesPickup; cnt++, rng.next())
     {
-        EggFrame3 frame;
+        EggState3 state;
         PokeRNG go(rng.getSeed());
 
-        frame.setPID(go.nextUShort());
+        state.setPID(go.nextUShort());
 
-        go.advanceFrames(this->iv1);
+        go.advance(this->iv1);
         u16 iv1 = go.nextUShort();
-        rng.advanceFrames(this->iv2);
+        rng.advance(this->iv2);
         u16 iv2 = go.nextUShort();
-        frame.setIVs(iv1, iv2);
+        state.setIVs(iv1, iv2);
 
-        go.advanceFrames(this->inh);
+        go.advance(this->inh);
         u16 inh1 = go.nextUShort();
         u16 inh2 = go.nextUShort();
         u16 inh3 = go.nextUShort();
         u16 inh[3] = { inh1, inh2, inh3 };
 
-        // go.advanceFrames(this->par);
+        // go.advance(this->par);
         u16 par1 = go.nextUShort();
         u16 par2 = go.nextUShort();
         u16 par3 = go.nextUShort();
         u16 par[3] = { par1, par2, par3 };
 
-        setInheritance(frame, inh, par, false);
-        frame.calculateHiddenPower();
+        setInheritance(state, inh, par, false);
+        state.calculateHiddenPower();
 
-        if (filter.compareIVs(frame))
+        if (filter.compareIVs(state))
         {
-            frame.setPickupFrame(cnt + initialFramePickup);
-            upper.append(frame);
+            state.setPickupAdvance(cnt + initialAdvancesPickup);
+            upper.append(state);
         }
     }
 
-    QVector<EggFrame3> frames;
+    QVector<EggState3> states;
     for (const auto &low : lower)
     {
         for (auto up : upper)
@@ -325,15 +326,15 @@ QVector<EggFrame3> EggGenerator3::generateUpper(u32 seed, const QVector<QPair<u3
 
             if (filter.comparePID(up))
             {
-                up.setFrame(low.first);
-                frames.append(up);
+                up.setAdvances(low.first);
+                states.append(up);
             }
         }
     }
-    return frames;
+    return states;
 }
 
-void EggGenerator3::setInheritance(EggFrame3 &frame, const u16 *inh, const u16 *par, bool broken) const
+void EggGenerator3::setInheritance(EggState3 &state, const u16 *inh, const u16 *par, bool broken) const
 {
     u8 available[6] = { 0, 1, 2, 3, 4, 5 };
     for (u8 i = 0; i < 3; i++)
@@ -344,28 +345,28 @@ void EggGenerator3::setInheritance(EggFrame3 &frame, const u16 *inh, const u16 *
         switch (stat)
         {
         case 0:
-            frame.setIVs(0, parent == 0 ? parent1.at(0) : parent2.at(0));
-            frame.setInheritance(0, parent + 1);
+            state.setIVs(0, parent == 0 ? parent1.at(0) : parent2.at(0));
+            state.setInheritance(0, parent + 1);
             break;
         case 1:
-            frame.setIVs(1, parent == 0 ? parent1.at(1) : parent2.at(1));
-            frame.setInheritance(1, parent + 1);
+            state.setIVs(1, parent == 0 ? parent1.at(1) : parent2.at(1));
+            state.setInheritance(1, parent + 1);
             break;
         case 2:
-            frame.setIVs(2, parent == 0 ? parent1.at(2) : parent2.at(2));
-            frame.setInheritance(2, parent + 1);
+            state.setIVs(2, parent == 0 ? parent1.at(2) : parent2.at(2));
+            state.setInheritance(2, parent + 1);
             break;
         case 3:
-            frame.setIVs(5, parent == 0 ? parent1.at(5) : parent2.at(5));
-            frame.setInheritance(5, parent + 1);
+            state.setIVs(5, parent == 0 ? parent1.at(5) : parent2.at(5));
+            state.setInheritance(5, parent + 1);
             break;
         case 4:
-            frame.setIVs(3, parent == 0 ? parent1.at(3) : parent2.at(3));
-            frame.setInheritance(3, parent + 1);
+            state.setIVs(3, parent == 0 ? parent1.at(3) : parent2.at(3));
+            state.setInheritance(3, parent + 1);
             break;
         case 5:
-            frame.setIVs(4, parent == 0 ? parent1.at(4) : parent2.at(4));
-            frame.setInheritance(4, parent + 1);
+            state.setIVs(4, parent == 0 ? parent1.at(4) : parent2.at(4));
+            state.setInheritance(4, parent + 1);
             break;
         }
 

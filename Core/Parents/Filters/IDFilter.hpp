@@ -23,14 +23,14 @@
 #include <Core/Util/Global.hpp>
 #include <QVector>
 
-class IDFrame;
+class IDState;
 
 class IDFilter
 {
 public:
     IDFilter() = default;
     IDFilter(const QVector<u16> &tidFilter, const QVector<u16> &sidFilter, const QVector<u16> &tsvFilter);
-    bool compare(const IDFrame &frame) const;
+    bool compare(const IDState &state) const;
 
 private:
     QVector<u16> tidFilter;

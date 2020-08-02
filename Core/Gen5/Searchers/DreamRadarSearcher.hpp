@@ -20,10 +20,10 @@
 #ifndef DREAMRADARSEARCHER_HPP
 #define DREAMRADARSEARCHER_HPP
 
-#include <Core/Gen5/Frames/SearcherFrame5.hpp>
 #include <Core/Gen5/Generators/DreamRadarGenerator.hpp>
 #include <Core/Gen5/Profile5.hpp>
-#include <Core/Parents/Frames/Frame.hpp>
+#include <Core/Gen5/States/SearcherState5.hpp>
+#include <Core/Parents/States/State.hpp>
 #include <Core/Util/Global.hpp>
 #include <QDate>
 #include <mutex>
@@ -35,7 +35,7 @@ public:
     explicit DreamRadarSearcher(const DreamRadarGenerator &generator, const Profile5 &profile);
     void startSearch(int threads, QDate start, const QDate &end);
     void cancelSearch();
-    QVector<SearcherFrame5<Frame>> getResults();
+    QVector<SearcherState5<State>> getResults();
     int getProgress() const;
 
 private:
@@ -44,7 +44,7 @@ private:
 
     bool searching;
     int progress;
-    QVector<SearcherFrame5<Frame>> results;
+    QVector<SearcherState5<State>> results;
     std::mutex resultMutex;
     std::mutex progressMutex;
 

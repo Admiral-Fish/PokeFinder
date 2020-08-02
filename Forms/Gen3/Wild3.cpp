@@ -27,7 +27,7 @@
 #include <Core/Gen3/Generators/WildGenerator3.hpp>
 #include <Core/Gen3/ProfileLoader3.hpp>
 #include <Core/Gen3/Searchers/WildSearcher3.hpp>
-#include <Core/Parents/Frames/WildFrame.hpp>
+#include <Core/Parents/States/WildState.hpp>
 #include <Core/Util/Nature.hpp>
 #include <Core/Util/Translator.hpp>
 #include <Forms/Gen3/Profile/ProfileManager3.hpp>
@@ -46,7 +46,7 @@ Wild3::Wild3(QWidget *parent) : QWidget(parent), ui(new Ui::Wild3)
     updateProfiles();
     setupModels();
 
-    qRegisterMetaType<QVector<WildFrame>>("QVector<WildFrame>");
+    qRegisterMetaType<QVector<WildState>>("QVector<WildState>");
 }
 
 Wild3::~Wild3()
@@ -99,8 +99,8 @@ void Wild3::setupModels()
     ui->tableViewSearcher->setModel(searcherModel);
 
     ui->textBoxGeneratorSeed->setValues(InputType::Seed32Bit);
-    ui->textBoxGeneratorInitialFrame->setValues(InputType::Frame32Bit);
-    ui->textBoxGeneratorMaxResults->setValues(InputType::Frame32Bit);
+    ui->textBoxGeneratorInitialAdvances->setValues(InputType::Advance32Bit);
+    ui->textBoxGeneratorMaxAdvances->setValues(InputType::Advance32Bit);
 
     ui->comboBoxGeneratorMethod->setup({ Method::MethodH1, Method::MethodH2, Method::MethodH4 });
     ui->comboBoxSearcherMethod->setup({ Method::MethodH1, Method::MethodH2, Method::MethodH4 });
@@ -225,9 +225,9 @@ void Wild3::updatePokemonSearcher()
     }
 }
 
-void Wild3::updateProgress(const QVector<WildFrame> &frames, int progress)
+void Wild3::updateProgress(const QVector<WildState> &states, int progress)
 {
-    searcherModel->addItems(frames);
+    searcherModel->addItems(states);
     ui->progressBar->setValue(progress);
 }
 
@@ -236,8 +236,8 @@ void Wild3::generate()
     generatorModel->clearModel();
 
     u32 seed = ui->textBoxGeneratorSeed->getUInt();
-    u32 initialFrame = ui->textBoxGeneratorInitialFrame->getUInt();
-    u32 maxResults = ui->textBoxGeneratorMaxResults->getUInt();
+    u32 initialAdvances = ui->textBoxGeneratorInitialAdvances->getUInt();
+    u32 maxAdvances = ui->textBoxGeneratorMaxAdvances->getUInt();
     u16 tid = currentProfile.getTID();
     u16 sid = currentProfile.getSID();
     u8 genderRatio = ui->filterGenerator->getGenderRatio();
@@ -248,11 +248,11 @@ void Wild3::generate()
         offset = ui->filterGenerator->getDelay();
     }
 
-    FrameFilter filter(ui->filterGenerator->getGender(), ui->filterGenerator->getAbility(), ui->filterGenerator->getShiny(),
+    StateFilter filter(ui->filterGenerator->getGender(), ui->filterGenerator->getAbility(), ui->filterGenerator->getShiny(),
                        ui->filterGenerator->getDisableFilters(), ui->filterGenerator->getMinIVs(), ui->filterGenerator->getMaxIVs(),
                        ui->filterGenerator->getNatures(), ui->filterGenerator->getHiddenPowers(), ui->filterGenerator->getEncounterSlots());
 
-    WildGenerator3 generator(initialFrame, maxResults, tid, sid, genderRatio, method, filter);
+    WildGenerator3 generator(initialAdvances, maxAdvances, tid, sid, genderRatio, method, filter);
     generator.setEncounter(static_cast<Encounter>(ui->comboBoxGeneratorEncounter->currentData().toInt()));
     generator.setEncounterArea(encounterGenerator[ui->comboBoxGeneratorLocation->currentData().toInt()]);
     generator.setOffset(offset);
@@ -274,8 +274,8 @@ void Wild3::generate()
         }
     }
 
-    auto frames = generator.generate(seed);
-    generatorModel->addItems(frames);
+    auto states = generator.generate(seed);
+    generatorModel->addItems(states);
 }
 
 void Wild3::search()
@@ -288,7 +288,7 @@ void Wild3::search()
     QVector<u8> min = ui->filterSearcher->getMinIVs();
     QVector<u8> max = ui->filterSearcher->getMaxIVs();
 
-    FrameFilter filter(ui->filterSearcher->getGender(), ui->filterSearcher->getAbility(), ui->filterSearcher->getShiny(), false, min, max,
+    StateFilter filter(ui->filterSearcher->getGender(), ui->filterSearcher->getAbility(), ui->filterSearcher->getShiny(), false, min, max,
                        ui->filterSearcher->getNatures(), ui->filterSearcher->getHiddenPowers(), ui->filterSearcher->getEncounterSlots());
 
     u16 tid = currentProfile.getTID();

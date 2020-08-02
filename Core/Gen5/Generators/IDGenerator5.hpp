@@ -20,16 +20,16 @@
 #ifndef IDGENERATOR5_HPP
 #define IDGENERATOR5_HPP
 
-#include <Core/Gen5/Frames/IDFrame5.hpp>
+#include <Core/Gen5/States/IDState5.hpp>
 #include <Core/Parents/Generators/IDGenerator.hpp>
 
 class IDGenerator5 : public IDGenerator
 {
 public:
     IDGenerator5() = default;
-    IDGenerator5(u32 initialFrame, u32 maxResults, const IDFilter &filter);
-    QVector<IDFrame5> generate(u64 seed, u32 pid = 0, bool checkPID = false);
-    void setInitialFrame(u32 initialFrame);
+    IDGenerator5(u32 initialAdvances, u32 maxAdvances, const IDFilter &filter);
+    QVector<IDState5> generate(u64 seed, u32 pid = 0, bool checkPID = false);
+    void setInitialAdvances(u32 initialAdvances);
 };
 
 #endif // IDGENERATOR5_HPP

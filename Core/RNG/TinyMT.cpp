@@ -46,9 +46,9 @@ TinyMT::TinyMT(const u32 state[])
     std::memcpy(this->state, state, sizeof(this->state));
 }
 
-void TinyMT::advanceFrames(u32 frames)
+void TinyMT::advance(u32 advances)
 {
-    for (u32 frame = 0; frame < frames; frame++)
+    for (u32 advance = 0; advance < advances; advance++)
     {
         nextState();
     }

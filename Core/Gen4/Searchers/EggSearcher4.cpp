@@ -19,7 +19,7 @@
 
 #include "EggSearcher4.hpp"
 
-EggSearcher4::EggSearcher4(u16 tid, u16 sid, u8 genderRatio, Method method, const FrameFilter &filter) :
+EggSearcher4::EggSearcher4(u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter) :
     Searcher(tid, sid, genderRatio, method, filter), searching(false), progress(0)
 {
 }
@@ -57,53 +57,53 @@ void EggSearcher4::startSearch(u32 minDelay, u32 maxDelay)
                     return;
                 }
 
-                QVector<EggFrame4> frames;
+                QVector<EggState4> states;
                 u32 seed = static_cast<u32>((ab << 24) | (cd << 16)) + efgh;
 
                 if (type == 0)
                 {
-                    frames = generatorIV.generate(seed);
+                    states = generatorIV.generate(seed);
                 }
                 else if (type == 1)
                 {
-                    frames = generatorPID.generate(seed);
+                    states = generatorPID.generate(seed);
                 }
                 else
                 {
-                    auto framesIV = generatorIV.generate(seed);
-                    auto framesPID = generatorPID.generate(seed);
+                    auto statesIV = generatorIV.generate(seed);
+                    auto statesPID = generatorPID.generate(seed);
 
-                    if (!framesIV.isEmpty() && !framesPID.isEmpty())
+                    if (!statesIV.isEmpty() && !statesPID.isEmpty())
                     {
-                        for (auto framePID : framesPID)
+                        for (auto statePID : statesPID)
                         {
-                            for (const auto &frameIV : framesIV)
+                            for (const auto &stateIV : statesIV)
                             {
-                                framePID.setIVs(frameIV.getIV(0), frameIV.getIV(1), frameIV.getIV(2), frameIV.getIV(3), frameIV.getIV(4),
-                                                frameIV.getIV(5));
-                                framePID.calculateHiddenPower();
+                                statePID.setIVs(stateIV.getIV(0), stateIV.getIV(1), stateIV.getIV(2), stateIV.getIV(3), stateIV.getIV(4),
+                                                stateIV.getIV(5));
+                                statePID.calculateHiddenPower();
 
                                 for (u8 i = 0; i < 6; i++)
                                 {
-                                    framePID.setInheritance(i, frameIV.getInheritance(i));
+                                    statePID.setInheritance(i, stateIV.getInheritance(i));
                                 }
-                                framePID.setSecondaryFrame(frameIV.getFrame());
+                                statePID.setSecondaryAdvance(stateIV.getAdvances());
 
-                                frames.append(framePID);
+                                states.append(statePID);
                             }
                         }
                     }
                 }
 
-                for (EggFrame4 &frame : frames)
+                for (EggState4 &state : states)
                 {
-                    frame.setInitialSeed(seed);
+                    state.setInitialSeed(seed);
                 }
 
-                total += frames.size();
+                total += states.size();
 
                 std::lock_guard<std::mutex> guard(mutex);
-                results.append(frames);
+                results.append(states);
                 progress++;
             }
         }
@@ -115,7 +115,7 @@ void EggSearcher4::cancelSearch()
     searching = false;
 }
 
-QVector<EggFrame4> EggSearcher4::getResults()
+QVector<EggState4> EggSearcher4::getResults()
 {
     std::lock_guard<std::mutex> guard(mutex);
     auto data(results);

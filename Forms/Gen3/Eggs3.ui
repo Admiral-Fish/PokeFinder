@@ -158,7 +158,7 @@
          </property>
          <layout class="QGridLayout" name="gridLayout_2">
           <item row="0" column="1" colspan="2">
-           <widget class="TextBox" name="textBoxEmeraldInitialFrame">
+           <widget class="TextBox" name="textBoxEmeraldInitialAdvances">
             <property name="text">
              <string notr="true">1000</string>
             </property>
@@ -241,7 +241,7 @@
            </widget>
           </item>
           <item row="0" column="0">
-           <widget class="QLabel" name="labelEmeraldInitialFrame">
+           <widget class="QLabel" name="labelEmeraldInitialAdvances">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
               <horstretch>0</horstretch>
@@ -249,7 +249,7 @@
              </sizepolicy>
             </property>
             <property name="text">
-             <string>Initial Frame</string>
+             <string>Initial Advances</string>
             </property>
            </widget>
           </item>
@@ -267,7 +267,7 @@
            </widget>
           </item>
           <item row="1" column="0">
-           <widget class="QLabel" name="labelEmeraldMaxResults">
+           <widget class="QLabel" name="labelEmeraldMaxAdvances">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
               <horstretch>0</horstretch>
@@ -275,12 +275,12 @@
              </sizepolicy>
             </property>
             <property name="text">
-             <string>Max Results</string>
+             <string>Max Advances</string>
             </property>
            </widget>
           </item>
           <item row="1" column="1" colspan="2">
-           <widget class="TextBox" name="textBoxEmeraldMaxResults">
+           <widget class="TextBox" name="textBoxEmeraldMaxAdvances">
             <property name="text">
              <string notr="true">5000</string>
             </property>
@@ -408,7 +408,7 @@
              </widget>
             </item>
             <item row="1" column="0">
-             <widget class="QLabel" name="labelRSFrameHeld">
+             <widget class="QLabel" name="labelRSAdvanceHeld">
               <property name="sizePolicy">
                <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
                 <horstretch>0</horstretch>
@@ -416,26 +416,26 @@
                </sizepolicy>
               </property>
               <property name="text">
-               <string>Frame Held</string>
+               <string>Held Advances</string>
               </property>
              </widget>
             </item>
             <item row="1" column="1">
-             <widget class="TextBox" name="textBoxRSInitialFrameHeld">
+             <widget class="TextBox" name="textBoxRSInitialAdvancesHeld">
               <property name="text">
                <string notr="true">1000</string>
               </property>
              </widget>
             </item>
             <item row="1" column="2">
-             <widget class="TextBox" name="textBoxRSMaxResultsHeld">
+             <widget class="TextBox" name="textBoxRSMaxAdvancesHeld">
               <property name="text">
                <string notr="true">5000</string>
               </property>
              </widget>
             </item>
             <item row="2" column="0">
-             <widget class="QLabel" name="labelRSPickupFrame">
+             <widget class="QLabel" name="labelRSPickupAdvance">
               <property name="sizePolicy">
                <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
                 <horstretch>0</horstretch>
@@ -443,19 +443,19 @@
                </sizepolicy>
               </property>
               <property name="text">
-               <string>Pickup Frame</string>
+               <string>Pickup Advances</string>
               </property>
              </widget>
             </item>
             <item row="2" column="1">
-             <widget class="TextBox" name="textBoxRSInitialFramePickup">
+             <widget class="TextBox" name="textBoxRSInitialAdvancesPickup">
               <property name="text">
                <string notr="true">1000</string>
               </property>
              </widget>
             </item>
             <item row="2" column="2">
-             <widget class="TextBox" name="textBoxRSMaxResultsPickup">
+             <widget class="TextBox" name="textBoxRSMaxAdvancesPickup">
               <property name="text">
                <string notr="true">5000</string>
               </property>
@@ -599,7 +599,7 @@
              <widget class="TextBox" name="textBoxFRLGSeedPickup"/>
             </item>
             <item row="1" column="0">
-             <widget class="QLabel" name="labelFRLGFrameHeld">
+             <widget class="QLabel" name="labelFRLGAdvanceHeld">
               <property name="sizePolicy">
                <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
                 <horstretch>0</horstretch>
@@ -607,26 +607,26 @@
                </sizepolicy>
               </property>
               <property name="text">
-               <string>Frame Held</string>
+               <string>Held Advances</string>
               </property>
              </widget>
             </item>
             <item row="1" column="1">
-             <widget class="TextBox" name="textBoxFRLGInitialFrameHeld">
+             <widget class="TextBox" name="textBoxFRLGInitialAdvancesHeld">
               <property name="text">
                <string notr="true">1000</string>
               </property>
              </widget>
             </item>
             <item row="1" column="2">
-             <widget class="TextBox" name="textBoxFRLGMaxResultsHeld">
+             <widget class="TextBox" name="textBoxFRLGMaxAdvancesHeld">
               <property name="text">
                <string notr="true">5000</string>
               </property>
              </widget>
             </item>
             <item row="2" column="0">
-             <widget class="QLabel" name="labelFRLGPickupFrame">
+             <widget class="QLabel" name="labelFRLGPickupAdvance">
               <property name="sizePolicy">
                <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
                 <horstretch>0</horstretch>
@@ -634,19 +634,19 @@
                </sizepolicy>
               </property>
               <property name="text">
-               <string>Pickup Frame</string>
+               <string>Pickup Advances</string>
               </property>
              </widget>
             </item>
             <item row="2" column="1">
-             <widget class="TextBox" name="textBoxFRLGInitialFramePickup">
+             <widget class="TextBox" name="textBoxFRLGInitialAdvancesPickup">
               <property name="text">
                <string notr="true">1000</string>
               </property>
              </widget>
             </item>
             <item row="2" column="2">
-             <widget class="TextBox" name="textBoxFRLGMaxResultsPickup">
+             <widget class="TextBox" name="textBoxFRLGMaxAdvancesPickup">
               <property name="text">
                <string notr="true">5000</string>
               </property>
@@ -798,8 +798,8 @@
   <tabstop>comboBoxProfiles</tabstop>
   <tabstop>pushButtonProfileManager</tabstop>
   <tabstop>tabEggSelection</tabstop>
-  <tabstop>textBoxEmeraldInitialFrame</tabstop>
-  <tabstop>textBoxEmeraldMaxResults</tabstop>
+  <tabstop>textBoxEmeraldInitialAdvances</tabstop>
+  <tabstop>textBoxEmeraldMaxAdvances</tabstop>
   <tabstop>comboBoxEmeraldMethod</tabstop>
   <tabstop>textBoxCalibration</tabstop>
   <tabstop>textBoxMinRedraws</tabstop>
@@ -810,20 +810,20 @@
   <tabstop>tableViewEmerald</tabstop>
   <tabstop>textBoxRSSeedHeld</tabstop>
   <tabstop>textBoxRSSeedPickup</tabstop>
-  <tabstop>textBoxRSInitialFrameHeld</tabstop>
-  <tabstop>textBoxRSMaxResultsHeld</tabstop>
-  <tabstop>textBoxRSInitialFramePickup</tabstop>
-  <tabstop>textBoxRSMaxResultsPickup</tabstop>
+  <tabstop>textBoxRSInitialAdvancesHeld</tabstop>
+  <tabstop>textBoxRSMaxAdvancesHeld</tabstop>
+  <tabstop>textBoxRSInitialAdvancesPickup</tabstop>
+  <tabstop>textBoxRSMaxAdvancesPickup</tabstop>
   <tabstop>comboBoxRSMethod</tabstop>
   <tabstop>comboBoxRSCompatibility</tabstop>
   <tabstop>pushButtonRSGenerate</tabstop>
   <tabstop>tableViewRS</tabstop>
   <tabstop>textBoxFRLGSeedHeld</tabstop>
   <tabstop>textBoxFRLGSeedPickup</tabstop>
-  <tabstop>textBoxFRLGInitialFrameHeld</tabstop>
-  <tabstop>textBoxFRLGMaxResultsHeld</tabstop>
-  <tabstop>textBoxFRLGInitialFramePickup</tabstop>
-  <tabstop>textBoxFRLGMaxResultsPickup</tabstop>
+  <tabstop>textBoxFRLGInitialAdvancesHeld</tabstop>
+  <tabstop>textBoxFRLGMaxAdvancesHeld</tabstop>
+  <tabstop>textBoxFRLGInitialAdvancesPickup</tabstop>
+  <tabstop>textBoxFRLGMaxAdvancesPickup</tabstop>
   <tabstop>comboBoxFRLGMethod</tabstop>
   <tabstop>comboBoxFRLGCompatibility</tabstop>
   <tabstop>pushButtonFRLGGenerate</tabstop>

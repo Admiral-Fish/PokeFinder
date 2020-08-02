@@ -19,11 +19,11 @@
 
 #include "PokeSpotGenerator.hpp"
 #include <Core/Enum/Method.hpp>
-#include <Core/Parents/Filters/FrameFilter.hpp>
+#include <Core/Parents/Filters/StateFilter.hpp>
 #include <Core/RNG/LCRNG.hpp>
 
-PokeSpotGenerator::PokeSpotGenerator(u32 initialFrame, u32 maxResults, u16 tid, u16 sid, u8 genderRatio, const FrameFilter &filter) :
-    Generator(initialFrame, maxResults, tid, sid, genderRatio, Method::XDColo, filter)
+PokeSpotGenerator::PokeSpotGenerator(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, const StateFilter &filter) :
+    Generator(initialAdvances, maxAdvances, tid, sid, genderRatio, Method::XDColo, filter)
 {
 }
 
@@ -32,24 +32,24 @@ void PokeSpotGenerator::setSpots(const QVector<bool> &spots)
     this->spots = spots;
 }
 
-QVector<GameCubeFrame> PokeSpotGenerator::generate(u32 seed) const
+QVector<GameCubeState> PokeSpotGenerator::generate(u32 seed) const
 {
-    QVector<GameCubeFrame> frames;
+    QVector<GameCubeState> states;
 
     XDRNG rng(seed);
-    rng.advanceFrames(initialFrame - 1);
+    rng.advance(initialAdvances);
 
-    for (u32 cnt = 0; cnt < maxResults; cnt++, rng.next())
+    for (u32 cnt = 0; cnt < maxAdvances; cnt++, rng.next())
     {
         XDRNG go(rng.getSeed());
 
-        // Check if frame is a valid pokespot call
+        // Check if state is a valid pokespot call
         if ((go.nextUShort() % 3) == 0)
         {
-            // Munchlax provides a frame skip
+            // Munchlax provides a skip
             if ((go.nextUShort() % 100) >= 10)
             {
-                GameCubeFrame frame(initialFrame + cnt);
+                GameCubeState state(initialAdvances + cnt);
 
                 // Check what type the pokespot is
                 u8 call = go.nextUShort() % 100;
@@ -59,7 +59,7 @@ QVector<GameCubeFrame> PokeSpotGenerator::generate(u32 seed) const
                     {
                         continue;
                     }
-                    frame.setInfo(0);
+                    state.setInfo(0);
                 }
                 else if (call > 49 && call < 85)
                 {
@@ -67,7 +67,7 @@ QVector<GameCubeFrame> PokeSpotGenerator::generate(u32 seed) const
                     {
                         continue;
                     }
-                    frame.setInfo(1);
+                    state.setInfo(1);
                 }
                 else
                 {
@@ -75,25 +75,25 @@ QVector<GameCubeFrame> PokeSpotGenerator::generate(u32 seed) const
                     {
                         continue;
                     }
-                    frame.setInfo(2);
+                    state.setInfo(2);
                 }
 
                 u16 high = go.nextUShort();
                 u16 low = go.nextUShort();
 
-                frame.setPID(high, low);
-                frame.setAbility(low & 1);
-                frame.setGender(low & 255, genderRatio);
-                frame.setNature(frame.getPID() % 25);
-                frame.setShiny(tsv, high ^ low, 8);
+                state.setPID(high, low);
+                state.setAbility(low & 1);
+                state.setGender(low & 255, genderRatio);
+                state.setNature(state.getPID() % 25);
+                state.setShiny(tsv, high ^ low, 8);
 
-                if (filter.comparePID(frame))
+                if (filter.comparePID(state))
                 {
-                    frames.append(frame);
+                    states.append(state);
                 }
             }
         }
     }
 
-    return frames;
+    return states;
 }

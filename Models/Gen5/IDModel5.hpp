@@ -20,10 +20,10 @@
 #ifndef IDMODEL5_HPP
 #define IDMODEL5_HPP
 
-#include <Core/Gen5/Frames/IDFrame5.hpp>
+#include <Core/Gen5/States/IDState5.hpp>
 #include <Models/TableModel.hpp>
 
-class IDModel5 : public TableModel<IDFrame5>
+class IDModel5 : public TableModel<IDState5>
 {
     Q_OBJECT
 public:
@@ -33,7 +33,7 @@ public:
     QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
 
 private:
-    QStringList header = { tr("Seed"), tr("Initial Frame"), tr("Frame"), tr("TID"), tr("SID"), tr("Date/Time"), tr("Buttons") };
+    QStringList header = { tr("Seed"), tr("Initial Advances"), tr("Advances"), tr("TID"), tr("SID"), tr("Date/Time"), tr("Buttons") };
 };
 
 #endif // IDMODEL5_HPP

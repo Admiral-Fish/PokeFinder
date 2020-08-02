@@ -30,14 +30,14 @@ namespace JirachiPatternCalculator
             /*
              *  thresh = [ .25,.33 ]
              *  thresh = [ 0x4000, 0x547a ]
-             *  rng.advanceFrames(4)
+             *  rng.advance(4)
              *  flag = false
              *  for (u8 i = 0; i < 2; i++)
              *      rand = (double)rng.nextUShort()/65536.0
              *      if rand <= thresh[i]
              *          flag = true
              *          break
-             *  rng.advanceFrames(flag ? 1 : 2)
+             *  rng.advance(flag ? 1 : 2)
              */
 
             switch (index)
@@ -88,7 +88,7 @@ namespace JirachiPatternCalculator
                 u8 target = data.at(index) >> 14;
                 if (target != 0)
                 {
-                    // From start, game advances frames until(prng >> 30) gives a 1, 2, and 3
+                    // From start, game advances until(prng >> 30) gives a 1, 2, and 3
                     // (prng >> 30) being 0 just acts as a filler
                     u8 mask = static_cast<u8>(1 << target);
 

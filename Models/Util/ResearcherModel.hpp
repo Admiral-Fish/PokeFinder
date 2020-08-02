@@ -21,10 +21,10 @@
 #ifndef RESEARCHERMODEL_HPP
 #define RESEARCHERMODEL_HPP
 
-#include <Core/Parents/Frames/ResearcherFrame.hpp>
+#include <Core/Parents/States/ResearcherState.hpp>
 #include <Models/TableModel.hpp>
 
-class ResearcherModel : public TableModel<ResearcherFrame>
+class ResearcherModel : public TableModel<ResearcherState>
 {
     Q_OBJECT
 public:
@@ -40,7 +40,7 @@ private:
     bool flag;
     QVector<bool> hex;
 
-    QStringList header = { tr("Frame"),     tr("64Bit"),    tr("32Bit High"), tr("32Bit Low"), tr("32Bit"),     tr("16Bit High"),
+    QStringList header = { tr("Advances"),  tr("64Bit"),    tr("32Bit High"), tr("32Bit Low"), tr("32Bit"),     tr("16Bit High"),
                            tr("16Bit Low"), tr("Custom 1"), tr("Custom 2"),   tr("Custom 3"),  tr("Custom 4"),  tr("Custom 5"),
                            tr("Custom 6"),  tr("Custom 7"), tr("Custom 8"),   tr("Custom 9"),  tr("Custom 10"), "%3",
                            "%25",           "%100",         "/656",           tr("HBit"),      tr("LBit") };

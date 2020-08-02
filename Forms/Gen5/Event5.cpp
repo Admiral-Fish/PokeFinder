@@ -93,12 +93,12 @@ void Event5::setupModels()
     ui->tableViewSearcher->setModel(searcherModel);
 
     ui->textBoxGeneratorSeed->setValues(InputType::Seed64Bit);
-    ui->textBoxGeneratorInitialFrame->setValues(InputType::Frame32Bit);
-    ui->textBoxGeneratorMaxResults->setValues(InputType::Frame32Bit);
+    ui->textBoxGeneratorInitialAdvances->setValues(InputType::Advance32Bit);
+    ui->textBoxGeneratorMaxAdvances->setValues(InputType::Advance32Bit);
     ui->textBoxGeneratorEventTID->setValues(InputType::TIDSID);
     ui->textBoxGeneratorEventSID->setValues(InputType::TIDSID);
 
-    ui->textBoxSearcherMaxAdvances->setValues(InputType::Frame32Bit);
+    ui->textBoxSearcherMaxAdvances->setValues(InputType::Advance32Bit);
     ui->textBoxSearcherEventTID->setValues(InputType::TIDSID);
     ui->textBoxSearcherEventSID->setValues(InputType::TIDSID);
 
@@ -125,7 +125,7 @@ void Event5::setupModels()
 
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Event5::generate);
     connect(ui->pushButtonSearch, &QPushButton::clicked, this, &Event5::search);
-    connect(ui->pushButtonCalculateInitialFrame, &QPushButton::clicked, this, &Event5::calculateInitialFrame);
+    connect(ui->pushButtonCalculateInitialAdvances, &QPushButton::clicked, this, &Event5::calculateInitialAdvances);
     connect(ui->pushButtonGeneratorImport, &QPushButton::clicked, this, &Event5::generatorImportEvent);
     connect(ui->pushButtonSearcherImport, &QPushButton::clicked, this, &Event5::searcherImportEvent);
     connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &Event5::profileManager);
@@ -173,9 +173,9 @@ PGF Event5::getSearcherParameters() const
                ui->checkBoxSearcherEgg->isChecked());
 }
 
-void Event5::updateProgress(const QVector<SearcherFrame5<Frame>> &frames, int progress)
+void Event5::updateProgress(const QVector<SearcherState5<State>> &states, int progress)
 {
-    searcherModel->addItems(frames);
+    searcherModel->addItems(states);
     ui->progressBar->setValue(progress);
 }
 
@@ -184,8 +184,8 @@ void Event5::generate()
     generatorModel->clearModel();
 
     u64 seed = ui->textBoxGeneratorSeed->getULong();
-    u32 initialFrame = ui->textBoxGeneratorInitialFrame->getUInt();
-    u32 maxResults = ui->textBoxGeneratorMaxResults->getUInt();
+    u32 initialAdvances = ui->textBoxGeneratorInitialAdvances->getUInt();
+    u32 maxAdvances = ui->textBoxGeneratorMaxAdvances->getUInt();
     u16 tid = currentProfile.getTID();
     u16 sid = currentProfile.getSID();
     u8 genderRatio = ui->filterGenerator->getGenderRatio();
@@ -195,15 +195,15 @@ void Event5::generate()
         offset = ui->filterGenerator->getDelay();
     }
 
-    FrameFilter filter(ui->filterGenerator->getGender(), ui->filterGenerator->getAbility(), ui->filterGenerator->getShiny(),
+    StateFilter filter(ui->filterGenerator->getGender(), ui->filterGenerator->getAbility(), ui->filterGenerator->getShiny(),
                        ui->filterGenerator->getDisableFilters(), ui->filterGenerator->getMinIVs(), ui->filterGenerator->getMaxIVs(),
                        ui->filterGenerator->getNatures(), ui->filterGenerator->getHiddenPowers(), {});
 
-    EventGenerator5 generator(initialFrame, maxResults, tid, sid, genderRatio, Method::Method5Event, filter, getGeneratorParameters());
+    EventGenerator5 generator(initialAdvances, maxAdvances, tid, sid, genderRatio, Method::Method5Event, filter, getGeneratorParameters());
     generator.setOffset(offset);
 
-    auto frames = generator.generate(seed);
-    generatorModel->addItems(frames);
+    auto states = generator.generate(seed);
+    generatorModel->addItems(states);
 }
 
 void Event5::search()
@@ -213,16 +213,16 @@ void Event5::search()
     ui->pushButtonSearch->setEnabled(false);
     ui->pushButtonCancel->setEnabled(true);
 
-    u32 maxResults = ui->textBoxSearcherMaxAdvances->getUInt();
+    u32 maxAdvances = ui->textBoxSearcherMaxAdvances->getUInt();
     u16 tid = currentProfile.getTID();
     u16 sid = currentProfile.getSID();
     u8 genderRatio = ui->filterSearcher->getGenderRatio();
 
-    FrameFilter filter(ui->filterSearcher->getGender(), ui->filterSearcher->getAbility(), ui->filterSearcher->getShiny(),
+    StateFilter filter(ui->filterSearcher->getGender(), ui->filterSearcher->getAbility(), ui->filterSearcher->getShiny(),
                        ui->filterSearcher->getDisableFilters(), ui->filterSearcher->getMinIVs(), ui->filterSearcher->getMaxIVs(),
                        ui->filterSearcher->getNatures(), ui->filterSearcher->getHiddenPowers(), {});
 
-    EventGenerator5 generator(0, maxResults, tid, sid, genderRatio, Method::Method5Event, filter, getSearcherParameters());
+    EventGenerator5 generator(0, maxAdvances, tid, sid, genderRatio, Method::Method5Event, filter, getSearcherParameters());
     generator.setOffset(0);
 
     EventSearcher5 *searcher = new EventSearcher5(generator, currentProfile);
@@ -393,21 +393,21 @@ void Event5::searcherImportEvent()
     }
 }
 
-void Event5::calculateInitialFrame()
+void Event5::calculateInitialAdvances()
 {
     Game version = currentProfile.getVersion();
 
-    u8 initialFrame;
+    u8 initialAdvances;
     if (version & Game::BW)
     {
-        initialFrame = Utilities::initialFrameBW(ui->textBoxGeneratorSeed->getULong());
+        initialAdvances = Utilities::initialAdvancesBW(ui->textBoxGeneratorSeed->getULong());
     }
     else
     {
-        initialFrame = Utilities::initialFrameBW2(ui->textBoxGeneratorSeed->getULong(), currentProfile.getMemoryLink());
+        initialAdvances = Utilities::initialAdvancesBW2(ui->textBoxGeneratorSeed->getULong(), currentProfile.getMemoryLink());
     }
 
-    ui->textBoxGeneratorInitialFrame->setText(QString::number(initialFrame));
+    ui->textBoxGeneratorInitialAdvances->setText(QString::number(initialAdvances));
 }
 
 void Event5::profileIndexChanged(int index)

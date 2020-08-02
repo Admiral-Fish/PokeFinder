@@ -20,7 +20,7 @@
 #include "EggModel5.hpp"
 #include <Core/Util/Translator.hpp>
 
-EggGeneratorModel5::EggGeneratorModel5(QObject *parent) : TableModel<EggFrame>(parent)
+EggGeneratorModel5::EggGeneratorModel5(QObject *parent) : TableModel<EggState>(parent)
 {
 }
 
@@ -34,26 +34,26 @@ QVariant EggGeneratorModel5::data(const QModelIndex &index, int role) const
 {
     if (role == Qt::DisplayRole)
     {
-        const auto &frame = model.at(index.row());
+        const auto &state = model.at(index.row());
         int column = index.column();
         switch (column)
         {
         case 0:
-            return frame.getFrame();
+            return state.getAdvances();
         case 1:
             return "TODO";
         case 2:
-            return QString::number(frame.getPID(), 16).toUpper().rightJustified(8, '0');
+            return QString::number(state.getPID(), 16).toUpper().rightJustified(8, '0');
         case 3:
         {
-            u8 shiny = frame.getShiny();
+            u8 shiny = state.getShiny();
             return shiny == 2 ? tr("Square") : shiny == 1 ? tr("Star") : tr("No");
         }
         case 4:
-            return Translator::getNature(frame.getNature());
+            return Translator::getNature(state.getNature());
         case 5:
         {
-            u8 ability = frame.getAbility();
+            u8 ability = state.getAbility();
             if (ability == 0 || ability == 1)
             {
                 return ability;
@@ -69,13 +69,13 @@ QVariant EggGeneratorModel5::data(const QModelIndex &index, int role) const
         case 9:
         case 10:
         case 11:
-            return frame.getIV(static_cast<u8>(column - 6));
+            return state.getIV(static_cast<u8>(column - 6));
         case 12:
-            return Translator::getHiddenPower(frame.getHidden());
+            return Translator::getHiddenPower(state.getHidden());
         case 13:
-            return frame.getPower();
+            return state.getPower();
         case 14:
-            return Translator::getGender(frame.getGender());
+            return Translator::getGender(state.getGender());
         }
     }
 
@@ -91,7 +91,7 @@ QVariant EggGeneratorModel5::headerData(int section, Qt::Orientation orientation
     return QVariant();
 }
 
-EggSearcherModel5::EggSearcherModel5(QObject *parent) : TableModel<SearcherFrame5<EggFrame>>(parent)
+EggSearcherModel5::EggSearcherModel5(QObject *parent) : TableModel<SearcherState5<EggState>>(parent)
 {
 }
 
@@ -104,38 +104,38 @@ void EggSearcherModel5::sort(int column, Qt::SortOrder order)
         switch (column)
         {
         case 0:
-            std::sort(model.begin(), model.end(), [flag](const SearcherFrame5<EggFrame> &frame1, const SearcherFrame5<EggFrame> &frame2) {
-                return flag ? frame1.getInitialSeed() < frame2.getInitialSeed() : frame1.getInitialSeed() > frame2.getInitialSeed();
+            std::sort(model.begin(), model.end(), [flag](const SearcherState5<EggState> &state1, const SearcherState5<EggState> &state2) {
+                return flag ? state1.getInitialSeed() < state2.getInitialSeed() : state1.getInitialSeed() > state2.getInitialSeed();
             });
             break;
         case 1:
-            std::sort(model.begin(), model.end(), [flag](const SearcherFrame5<EggFrame> &frame1, const SearcherFrame5<EggFrame> &frame2) {
-                return flag ? frame1.getFrame().getFrame() < frame2.getFrame().getFrame()
-                            : frame1.getFrame().getFrame() > frame2.getFrame().getFrame();
+            std::sort(model.begin(), model.end(), [flag](const SearcherState5<EggState> &state1, const SearcherState5<EggState> &state2) {
+                return flag ? state1.getState().getAdvances() < state2.getState().getAdvances()
+                            : state1.getState().getAdvances() > state2.getState().getAdvances();
             });
             break;
         case 2:
-            std::sort(model.begin(), model.end(), [flag](const SearcherFrame5<EggFrame> &frame1, const SearcherFrame5<EggFrame> &frame2) {
-                return flag ? frame1.getFrame().getPID() < frame2.getFrame().getPID()
-                            : frame1.getFrame().getPID() > frame2.getFrame().getPID();
+            std::sort(model.begin(), model.end(), [flag](const SearcherState5<EggState> &state1, const SearcherState5<EggState> &state2) {
+                return flag ? state1.getState().getPID() < state2.getState().getPID()
+                            : state1.getState().getPID() > state2.getState().getPID();
             });
             break;
         case 3:
-            std::sort(model.begin(), model.end(), [flag](const SearcherFrame5<EggFrame> &frame1, const SearcherFrame5<EggFrame> &frame2) {
-                return flag ? frame1.getFrame().getShiny() < frame2.getFrame().getShiny()
-                            : frame1.getFrame().getShiny() > frame2.getFrame().getShiny();
+            std::sort(model.begin(), model.end(), [flag](const SearcherState5<EggState> &state1, const SearcherState5<EggState> &state2) {
+                return flag ? state1.getState().getShiny() < state2.getState().getShiny()
+                            : state1.getState().getShiny() > state2.getState().getShiny();
             });
             break;
         case 4:
-            std::sort(model.begin(), model.end(), [flag](const SearcherFrame5<EggFrame> &frame1, const SearcherFrame5<EggFrame> &frame2) {
-                return flag ? frame1.getFrame().getNature() < frame2.getFrame().getNature()
-                            : frame1.getFrame().getNature() > frame2.getFrame().getNature();
+            std::sort(model.begin(), model.end(), [flag](const SearcherState5<EggState> &state1, const SearcherState5<EggState> &state2) {
+                return flag ? state1.getState().getNature() < state2.getState().getNature()
+                            : state1.getState().getNature() > state2.getState().getNature();
             });
             break;
         case 5:
-            std::sort(model.begin(), model.end(), [flag](const SearcherFrame5<EggFrame> &frame1, const SearcherFrame5<EggFrame> &frame2) {
-                return flag ? frame1.getFrame().getAbility() < frame2.getFrame().getAbility()
-                            : frame1.getFrame().getAbility() > frame2.getFrame().getAbility();
+            std::sort(model.begin(), model.end(), [flag](const SearcherState5<EggState> &state1, const SearcherState5<EggState> &state2) {
+                return flag ? state1.getState().getAbility() < state2.getState().getAbility()
+                            : state1.getState().getAbility() > state2.getState().getAbility();
             });
             break;
         case 6:
@@ -145,43 +145,43 @@ void EggSearcherModel5::sort(int column, Qt::SortOrder order)
         case 10:
         case 11:
             std::sort(model.begin(), model.end(),
-                      [flag, column](const SearcherFrame5<EggFrame> &frame1, const SearcherFrame5<EggFrame> &frame2) {
+                      [flag, column](const SearcherState5<EggState> &state1, const SearcherState5<EggState> &state2) {
                           return flag
-                              ? frame1.getFrame().getIV(static_cast<u8>(column - 6)) < frame2.getFrame().getIV(static_cast<u8>(column - 6))
-                              : frame1.getFrame().getIV(static_cast<u8>(column - 6)) > frame2.getFrame().getIV(static_cast<u8>(column - 6));
+                              ? state1.getState().getIV(static_cast<u8>(column - 6)) < state2.getState().getIV(static_cast<u8>(column - 6))
+                              : state1.getState().getIV(static_cast<u8>(column - 6)) > state2.getState().getIV(static_cast<u8>(column - 6));
                       });
             break;
         case 12:
-            std::sort(model.begin(), model.end(), [flag](const SearcherFrame5<EggFrame> &frame1, const SearcherFrame5<EggFrame> &frame2) {
-                return flag ? frame1.getFrame().getHidden() < frame2.getFrame().getHidden()
-                            : frame1.getFrame().getHidden() > frame2.getFrame().getHidden();
+            std::sort(model.begin(), model.end(), [flag](const SearcherState5<EggState> &state1, const SearcherState5<EggState> &state2) {
+                return flag ? state1.getState().getHidden() < state2.getState().getHidden()
+                            : state1.getState().getHidden() > state2.getState().getHidden();
             });
             break;
         case 13:
-            std::sort(model.begin(), model.end(), [flag](const SearcherFrame5<EggFrame> &frame1, const SearcherFrame5<EggFrame> &frame2) {
-                return flag ? frame1.getFrame().getPower() < frame2.getFrame().getPower()
-                            : frame1.getFrame().getPower() > frame2.getFrame().getPower();
+            std::sort(model.begin(), model.end(), [flag](const SearcherState5<EggState> &state1, const SearcherState5<EggState> &state2) {
+                return flag ? state1.getState().getPower() < state2.getState().getPower()
+                            : state1.getState().getPower() > state2.getState().getPower();
             });
             break;
         case 14:
-            std::sort(model.begin(), model.end(), [flag](const SearcherFrame5<EggFrame> &frame1, const SearcherFrame5<EggFrame> &frame2) {
-                return flag ? frame1.getFrame().getGender() < frame2.getFrame().getGender()
-                            : frame1.getFrame().getGender() > frame2.getFrame().getGender();
+            std::sort(model.begin(), model.end(), [flag](const SearcherState5<EggState> &state1, const SearcherState5<EggState> &state2) {
+                return flag ? state1.getState().getGender() < state2.getState().getGender()
+                            : state1.getState().getGender() > state2.getState().getGender();
             });
             break;
         case 15:
-            std::sort(model.begin(), model.end(), [flag](const SearcherFrame5<EggFrame> &frame1, const SearcherFrame5<EggFrame> &frame2) {
-                return flag ? frame1.getDateTime() < frame2.getDateTime() : frame1.getDateTime() > frame2.getDateTime();
+            std::sort(model.begin(), model.end(), [flag](const SearcherState5<EggState> &state1, const SearcherState5<EggState> &state2) {
+                return flag ? state1.getDateTime() < state2.getDateTime() : state1.getDateTime() > state2.getDateTime();
             });
             break;
         case 16:
-            std::sort(model.begin(), model.end(), [flag](const SearcherFrame5<EggFrame> &frame1, const SearcherFrame5<EggFrame> &frame2) {
-                return flag ? frame1.getTimer0() < frame2.getTimer0() : frame1.getTimer0() > frame2.getTimer0();
+            std::sort(model.begin(), model.end(), [flag](const SearcherState5<EggState> &state1, const SearcherState5<EggState> &state2) {
+                return flag ? state1.getTimer0() < state2.getTimer0() : state1.getTimer0() > state2.getTimer0();
             });
             break;
         case 17:
-            std::sort(model.begin(), model.end(), [flag](const SearcherFrame5<EggFrame> &frame1, const SearcherFrame5<EggFrame> &frame2) {
-                return flag ? frame1.getButtons() < frame2.getButtons() : frame1.getButtons() > frame2.getButtons();
+            std::sort(model.begin(), model.end(), [flag](const SearcherState5<EggState> &state1, const SearcherState5<EggState> &state2) {
+                return flag ? state1.getButtons() < state2.getButtons() : state1.getButtons() > state2.getButtons();
             });
             break;
         }
@@ -199,26 +199,26 @@ QVariant EggSearcherModel5::data(const QModelIndex &index, int role) const
     if (role == Qt::DisplayRole)
     {
         const auto &display = model.at(index.row());
-        const auto &frame = display.getFrame();
+        const auto &state = display.getState();
         int column = index.column();
         switch (column)
         {
         case 0:
             return QString::number(display.getInitialSeed(), 16).toUpper().rightJustified(16, '0');
         case 1:
-            return frame.getFrame();
+            return state.getAdvances();
         case 2:
-            return QString::number(frame.getPID(), 16).toUpper().rightJustified(8, '0');
+            return QString::number(state.getPID(), 16).toUpper().rightJustified(8, '0');
         case 3:
         {
-            u8 shiny = frame.getShiny();
+            u8 shiny = state.getShiny();
             return shiny == 2 ? tr("Square") : shiny == 1 ? tr("Star") : tr("No");
         }
         case 4:
-            return Translator::getNature(frame.getNature());
+            return Translator::getNature(state.getNature());
         case 5:
         {
-            u8 ability = frame.getAbility();
+            u8 ability = state.getAbility();
             if (ability == 0 || ability == 1)
             {
                 return ability;
@@ -234,13 +234,13 @@ QVariant EggSearcherModel5::data(const QModelIndex &index, int role) const
         case 9:
         case 10:
         case 11:
-            return frame.getIV(static_cast<u8>(column - 6));
+            return state.getIV(static_cast<u8>(column - 6));
         case 12:
-            return Translator::getHiddenPower(frame.getHidden());
+            return Translator::getHiddenPower(state.getHidden());
         case 13:
-            return frame.getPower();
+            return state.getPower();
         case 14:
-            return Translator::getGender(frame.getGender());
+            return Translator::getGender(state.getGender());
         case 15:
             return display.getDateTime().toString("MM-dd-yyyy hh:mm:ss");
         case 16:

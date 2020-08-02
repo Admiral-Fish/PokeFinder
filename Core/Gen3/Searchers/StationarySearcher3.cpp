@@ -21,7 +21,7 @@
 #include <Core/Enum/Method.hpp>
 #include <Core/RNG/LCRNG.hpp>
 
-StationarySearcher3::StationarySearcher3(u16 tid, u16 sid, u8 genderRatio, Method method, const FrameFilter &filter) :
+StationarySearcher3::StationarySearcher3(u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter) :
     StationarySearcher(tid, sid, genderRatio, method, filter),
     cache(method),
     ivAdvance(method == Method::Method2 ? 1 : 0),
@@ -51,10 +51,10 @@ void StationarySearcher3::startSearch(const QVector<u8> &min, const QVector<u8> 
                                 return;
                             }
 
-                            auto frames = search(hp, atk, def, spa, spd, spe);
+                            auto states = search(hp, atk, def, spa, spd, spe);
 
                             std::lock_guard<std::mutex> guard(mutex);
-                            results.append(frames);
+                            results.append(states);
                             progress++;
                         }
                     }
@@ -69,7 +69,7 @@ void StationarySearcher3::cancelSearch()
     searching = false;
 }
 
-QVector<Frame> StationarySearcher3::getResults()
+QVector<State> StationarySearcher3::getResults()
 {
     std::lock_guard<std::mutex> guard(mutex);
     auto data(results);
@@ -82,7 +82,7 @@ int StationarySearcher3::getProgress() const
     return progress;
 }
 
-QVector<Frame> StationarySearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const
+QVector<State> StationarySearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const
 {
     switch (method)
     {
@@ -93,100 +93,100 @@ QVector<Frame> StationarySearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 spd
     case Method::Method1Reverse:
         return searchMethod1Reverse(hp, atk, def, spa, spd, spe);
     default:
-        return QVector<Frame>();
+        return QVector<State>();
     }
 }
 
-QVector<Frame> StationarySearcher3::searchMethod124(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const
+QVector<State> StationarySearcher3::searchMethod124(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const
 {
-    QVector<Frame> frames;
-    Frame frame;
+    QVector<State> states;
+    State state;
 
-    frame.setIVs(hp, atk, def, spa, spd, spe);
-    frame.calculateHiddenPower();
+    state.setIVs(hp, atk, def, spa, spd, spe);
+    state.calculateHiddenPower();
 
-    if (!filter.compareHiddenPower(frame))
+    if (!filter.compareHiddenPower(state))
     {
-        return frames;
+        return states;
     }
 
     auto seeds = cache.recoverLower16BitsIV(hp, atk, def, spa, spd, spe);
     for (const u32 seed : seeds)
     {
-        // Setup normal frame
+        // Setup normal state
         PokeRNGR rng(seed);
-        rng.advanceFrames(ivAdvance);
+        rng.advance(ivAdvance);
 
         u16 high = rng.nextUShort();
         u16 low = rng.nextUShort();
 
-        frame.setSeed(rng.next());
-        frame.setPID(high, low);
-        frame.setAbility(low & 1);
-        frame.setGender(low & 255, genderRatio);
-        frame.setNature(frame.getPID() % 25);
-        frame.setShiny(tsv, high ^ low, 8);
+        state.setSeed(rng.next());
+        state.setPID(high, low);
+        state.setAbility(low & 1);
+        state.setGender(low & 255, genderRatio);
+        state.setNature(state.getPID() % 25);
+        state.setShiny(tsv, high ^ low, 8);
 
-        if (filter.comparePID(frame))
+        if (filter.comparePID(state))
         {
-            frames.append(frame);
+            states.append(state);
         }
 
-        // Setup XORed frame
-        frame.setSeed(frame.getSeed() ^ 0x80000000);
-        frame.setPID(frame.getPID() ^ 0x80008000);
-        frame.setNature(frame.getPID() % 25);
-        if (filter.comparePID(frame))
+        // Setup XORed state
+        state.setSeed(state.getSeed() ^ 0x80000000);
+        state.setPID(state.getPID() ^ 0x80008000);
+        state.setNature(state.getPID() % 25);
+        if (filter.comparePID(state))
         {
-            frames.append(frame);
+            states.append(state);
         }
     }
-    return frames;
+    return states;
 }
 
-QVector<Frame> StationarySearcher3::searchMethod1Reverse(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const
+QVector<State> StationarySearcher3::searchMethod1Reverse(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const
 {
-    QVector<Frame> frames;
-    Frame frame;
+    QVector<State> states;
+    State state;
 
-    frame.setIVs(hp, atk, def, spa, spd, spe);
-    frame.calculateHiddenPower();
+    state.setIVs(hp, atk, def, spa, spd, spe);
+    state.calculateHiddenPower();
 
-    if (!filter.compareHiddenPower(frame))
+    if (!filter.compareHiddenPower(state))
     {
-        return frames;
+        return states;
     }
 
     auto seeds = cache.recoverLower16BitsIV(hp, atk, def, spa, spd, spe);
     for (const u32 seed : seeds)
     {
-        // Setup normal frame
+        // Setup normal state
         PokeRNGR rng(seed);
-        rng.advanceFrames(ivAdvance);
+        rng.advance(ivAdvance);
 
         u16 low = rng.nextUShort();
         u16 high = rng.nextUShort();
 
-        frame.setSeed(rng.next());
-        frame.setPID(high, low);
-        frame.setAbility(low & 1);
-        frame.setGender(low & 255, genderRatio);
-        frame.setNature(frame.getPID() % 25);
-        frame.setShiny(tsv, high ^ low, 8);
+        state.setSeed(rng.next());
+        state.setPID(high, low);
+        state.setAbility(low & 1);
+        state.setGender(low & 255, genderRatio);
+        state.setNature(state.getPID() % 25);
+        state.setShiny(tsv, high ^ low, 8);
 
-        if (filter.comparePID(frame))
+        if (filter.comparePID(state))
         {
-            frames.append(frame);
+            states.append(state);
         }
 
-        // Setup XORed frame
-        frame.setPID(frame.getPID() ^ 0x80008000);
-        frame.setNature(frame.getPID() % 25);
-        frame.setSeed(frame.getSeed() ^ 0x80000000);
-        if (filter.comparePID(frame))
+        // Setup XORed state
+        state.setPID(state.getPID() ^ 0x80008000);
+        state.setNature(state.getPID() % 25);
+        state.setSeed(state.getSeed() ^ 0x80000000);
+        if (filter.comparePID(state))
         {
-            frames.append(frame);
+            states.append(state);
         }
     }
-    return frames;
+    return states;
 }

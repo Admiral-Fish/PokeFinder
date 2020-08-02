@@ -40,7 +40,7 @@ Stationary3::Stationary3(QWidget *parent) : QWidget(parent), ui(new Ui::Stationa
     updateProfiles();
     setupModels();
 
-    qRegisterMetaType<QVector<Frame>>("QVector<Frame>");
+    qRegisterMetaType<QVector<State>>("QVector<State>");
 }
 
 Stationary3::~Stationary3()
@@ -93,8 +93,8 @@ void Stationary3::setupModels()
     ui->tableViewSearcher->setModel(searcherModel);
 
     ui->textBoxGeneratorSeed->setValues(InputType::Seed32Bit);
-    ui->textBoxGeneratorInitialFrame->setValues(InputType::Frame32Bit);
-    ui->textBoxGeneratorMaxResults->setValues(InputType::Frame32Bit);
+    ui->textBoxGeneratorInitialAdvances->setValues(InputType::Advance32Bit);
+    ui->textBoxGeneratorMaxAdvances->setValues(InputType::Advance32Bit);
 
     ui->comboBoxGeneratorMethod->setup({ Method::Method1, Method::Method1Reverse, Method::Method2, Method::Method4 });
     ui->comboBoxSearcherMethod->setup({ Method::Method1, Method::Method1Reverse, Method::Method2, Method::Method4 });
@@ -127,9 +127,9 @@ void Stationary3::setupModels()
     }
 }
 
-void Stationary3::updateProgress(const QVector<Frame> &frames, int progress)
+void Stationary3::updateProgress(const QVector<State> &states, int progress)
 {
-    searcherModel->addItems(frames);
+    searcherModel->addItems(states);
     ui->progressBar->setValue(progress);
 }
 
@@ -138,8 +138,8 @@ void Stationary3::generate()
     generatorModel->clearModel();
 
     u32 seed = ui->textBoxGeneratorSeed->getUInt();
-    u32 initialFrame = ui->textBoxGeneratorInitialFrame->getUInt();
-    u32 maxResults = ui->textBoxGeneratorMaxResults->getUInt();
+    u32 initialAdvances = ui->textBoxGeneratorInitialAdvances->getUInt();
+    u32 maxAdvances = ui->textBoxGeneratorMaxAdvances->getUInt();
     u16 tid = currentProfile.getTID();
     u16 sid = currentProfile.getSID();
     u8 genderRatio = ui->filterGenerator->getGenderRatio();
@@ -150,15 +150,15 @@ void Stationary3::generate()
         offset = ui->filterGenerator->getDelay();
     }
 
-    FrameFilter filter(ui->filterGenerator->getGender(), ui->filterGenerator->getAbility(), ui->filterGenerator->getShiny(),
+    StateFilter filter(ui->filterGenerator->getGender(), ui->filterGenerator->getAbility(), ui->filterGenerator->getShiny(),
                        ui->filterGenerator->getDisableFilters(), ui->filterGenerator->getMinIVs(), ui->filterGenerator->getMaxIVs(),
                        ui->filterGenerator->getNatures(), ui->filterGenerator->getHiddenPowers(), {});
 
-    StationaryGenerator3 generator(initialFrame, maxResults, tid, sid, genderRatio, method, filter);
+    StationaryGenerator3 generator(initialAdvances, maxAdvances, tid, sid, genderRatio, method, filter);
     generator.setOffset(offset);
 
-    auto frames = generator.generate(seed);
-    generatorModel->addItems(frames);
+    auto states = generator.generate(seed);
+    generatorModel->addItems(states);
 }
 
 void Stationary3::search()
@@ -171,7 +171,7 @@ void Stationary3::search()
     QVector<u8> min = ui->filterSearcher->getMinIVs();
     QVector<u8> max = ui->filterSearcher->getMaxIVs();
 
-    FrameFilter filter(ui->filterSearcher->getGender(), ui->filterSearcher->getAbility(), ui->filterSearcher->getShiny(), false, min, max,
+    StateFilter filter(ui->filterSearcher->getGender(), ui->filterSearcher->getAbility(), ui->filterSearcher->getShiny(), false, min, max,
                        ui->filterSearcher->getNatures(), ui->filterSearcher->getHiddenPowers(), {});
 
     u16 tid = currentProfile.getTID();

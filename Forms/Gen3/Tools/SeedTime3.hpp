@@ -41,7 +41,7 @@ public:
 private:
     Ui::SeedTime3 *ui;
     SeedTimeModel3 *model = nullptr;
-    u32 frame = 1;
+    u32 advance = 0;
 
     void setupModels();
     u16 originSeed(u32 seed);

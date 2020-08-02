@@ -20,10 +20,10 @@
 #ifndef POKESPOTMODEL_HPP
 #define POKESPOTMODEL_HPP
 
-#include <Core/Gen3/Frames/GameCubeFrame.hpp>
+#include <Core/Gen3/States/GameCubeState.hpp>
 #include <Models/TableModel.hpp>
 
-class PokeSpotModel : public TableModel<GameCubeFrame>
+class PokeSpotModel : public TableModel<GameCubeState>
 {
     Q_OBJECT
 public:
@@ -33,7 +33,7 @@ public:
     QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
 
 private:
-    QStringList header = { tr("Frame"), tr("PID"), tr("Shiny"), tr("Type"), tr("Nature"), tr("Ability"), tr("Gender") };
+    QStringList header = { tr("Advances"), tr("PID"), tr("Shiny"), tr("Type"), tr("Nature"), tr("Ability"), tr("Gender") };
 };
 
 #endif // POKESPOTMODEL_HPP

@@ -216,7 +216,7 @@
     </message>
     <message>
         <location filename="../Models/Gen4/EggModel4.hpp" line="44"/>
-        <source>Frame</source>
+        <source>Advance</source>
         <translation type="unfinished">Frame</translation>
     </message>
     <message>
@@ -314,17 +314,17 @@
     </message>
     <message>
         <location filename="../Models/Gen3/EggModel3.hpp" line="44"/>
-        <source>Frame</source>
+        <source>Advance</source>
         <translation type="unfinished">Frame</translation>
     </message>
     <message>
         <location filename="../Models/Gen3/EggModel3.hpp" line="44"/>
-        <source>Held Frame</source>
+        <source>Held Advance</source>
         <translation type="unfinished">Mantener frame</translation>
     </message>
     <message>
         <location filename="../Models/Gen3/EggModel3.hpp" line="44"/>
-        <source>Pickup Frame</source>
+        <source>Pickup Advance</source>
         <translation type="unfinished">Recoger frame</translation>
     </message>
     <message>
@@ -422,18 +422,18 @@
     </message>
     <message>
         <location filename="../Models/Gen4/EggModel4.hpp" line="68"/>
-        <source>Frame</source>
+        <source>Advance</source>
         <translation type="unfinished">Frame</translation>
     </message>
     <message>
         <location filename="../Models/Gen4/EggModel4.hpp" line="68"/>
-        <source>PID Frame</source>
-        <translation type="unfinished">PID Frame</translation>
+        <source>PID Advance</source>
+        <translation type="unfinished">PID Advance</translation>
     </message>
     <message>
         <location filename="../Models/Gen4/EggModel4.hpp" line="68"/>
-        <source>IV Frame</source>
-        <translation type="unfinished">IV Frame</translation>
+        <source>IV Advance</source>
+        <translation type="unfinished">IV Advance</translation>
     </message>
     <message>
         <location filename="../Models/Gen4/EggModel4.hpp" line="68"/>
@@ -583,12 +583,12 @@
     </message>
     <message>
         <location filename="../Forms/Gen3/Eggs3.ui"/>
-        <source>Frame Held</source>
+        <source>Adavnce Held</source>
         <translation>Mantener frame</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Eggs3.ui"/>
-        <source>Pickup Frame</source>
+        <source>Pickup Advance</source>
         <translation>Recoger frame</translation>
     </message>
     <message>
@@ -669,7 +669,7 @@
     </message>
     <message>
         <location filename="../Forms/Gen3/Eggs3.ui"/>
-        <source>Initial Frame</source>
+        <source>Initial Advance</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -818,13 +818,13 @@
     </message>
     <message>
         <location filename="../Forms/Gen4/Eggs4.ui"/>
-        <source>IV Frame</source>
-        <translation>IV Frame</translation>
+        <source>IV Advance</source>
+        <translation>IV Advance</translation>
     </message>
     <message>
         <location filename="../Forms/Gen4/Eggs4.ui"/>
-        <source>PID Frame</source>
-        <translation>PID Frame</translation>
+        <source>PID Advance</source>
+        <translation>PID Advance</translation>
     </message>
     <message>
         <location filename="../Forms/Gen4/Eggs4.ui"/>
@@ -833,7 +833,7 @@
     </message>
     <message>
         <location filename="../Forms/Gen4/Eggs4.ui"/>
-        <source>Initial Frame</source>
+        <source>Initial Advance</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1082,7 +1082,7 @@
     </message>
     <message>
         <location filename="../Forms/Gen3/GameCube.ui"/>
-        <source>Starting Frame</source>
+        <source>Starting Advance</source>
         <translation>Frame inicial</translation>
     </message>
     <message>
@@ -1252,7 +1252,7 @@
     </message>
     <message>
         <location filename="../Models/Gen3/GameCubeModel.hpp" line="37"/>
-        <source>Frame</source>
+        <source>Advance</source>
         <translation type="unfinished">Frame</translation>
     </message>
     <message>
@@ -1340,12 +1340,12 @@
     </message>
     <message>
         <location filename="../Forms/Gen3/Tools/GameCubeRTC.ui"/>
-        <source>Min Frame</source>
+        <source>Min Advance</source>
         <translation>Frame minimo</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Tools/GameCubeRTC.ui"/>
-        <source>Max Frame</source>
+        <source>Max Advance</source>
         <translation>Frame máximo</translation>
     </message>
     <message>
@@ -1368,7 +1368,7 @@
     </message>
     <message>
         <location filename="../Models/Gen3/GameCubeRTCModel.hpp" line="36"/>
-        <source>Frame</source>
+        <source>Advance</source>
         <translation type="unfinished">Frame</translation>
     </message>
     <message>
@@ -1740,7 +1740,7 @@
     <name>IDModel3</name>
     <message>
         <location filename="../Models/Gen3/IDModel3.hpp" line="36"/>
-        <source>Frame</source>
+        <source>Advance</source>
         <translation type="unfinished">Frame</translation>
     </message>
     <message>
@@ -1831,7 +1831,7 @@
     </message>
     <message>
         <location filename="../Forms/Gen3/IDs3.ui"/>
-        <source>Starting Frame</source>
+        <source>Starting Advance</source>
         <translation>Frame inicial</translation>
     </message>
     <message>
@@ -2610,7 +2610,7 @@
     </message>
     <message>
         <location filename="../Forms/Gen3/Tools/PokeSpot.ui"/>
-        <source>Starting Frame</source>
+        <source>Starting Advance</source>
         <translation>Frame inicial</translation>
     </message>
     <message>
@@ -2663,8 +2663,8 @@
     <name>PokeSpotModel</name>
     <message>
         <location filename="../Models/Gen3/PokeSpotModel.hpp" line="36"/>
-        <source>Frame</source>
-        <translation>Frame</translation>
+        <source>Advance</source>
+        <translation>Advance</translation>
     </message>
     <message>
         <location filename="../Models/Gen3/PokeSpotModel.hpp" line="36"/>
@@ -3540,7 +3540,7 @@
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <source>Initial Frame</source>
+        <source>Initial Advance</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3548,8 +3548,8 @@
     <name>ResearcherModel</name>
     <message>
         <location filename="../Models/Util/ResearcherModel.hpp" line="43"/>
-        <source>Frame</source>
-        <translation>Frame</translation>
+        <source>Advance</source>
+        <translation>Advance</translation>
     </message>
     <message>
         <location filename="../Models/Util/ResearcherModel.cpp" line="107"/>
@@ -3789,7 +3789,7 @@
     </message>
     <message>
         <location filename="../Models/Gen3/SeedTimeModel3.hpp" line="36"/>
-        <source>Frame</source>
+        <source>Advance</source>
         <translation type="unfinished">Frame</translation>
     </message>
 </context>
@@ -4116,7 +4116,7 @@
     </message>
     <message>
         <location filename="../Forms/Gen3/Stationary3.ui"/>
-        <source>Initial Frame</source>
+        <source>Initial Advance</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4240,12 +4240,12 @@
     </message>
     <message>
         <location filename="../Forms/Gen4/Stationary4.ui"/>
-        <source>Min Frame</source>
+        <source>Min Advance</source>
         <translation>Frame minimo</translation>
     </message>
     <message>
         <location filename="../Forms/Gen4/Stationary4.ui"/>
-        <source>Max Frame</source>
+        <source>Max Advance</source>
         <translation>Frame máximo</translation>
     </message>
     <message>
@@ -4325,7 +4325,7 @@
     </message>
     <message>
         <location filename="../Forms/Gen4/Stationary4.ui"/>
-        <source>Initial Frame</source>
+        <source>Initial Advance</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4348,7 +4348,7 @@
     </message>
     <message>
         <location filename="../Models/Gen3/StationaryModel3.hpp" line="36"/>
-        <source>Frame</source>
+        <source>Advance</source>
         <translation type="unfinished">Frame</translation>
     </message>
     <message>
@@ -4461,7 +4461,7 @@
     </message>
     <message>
         <location filename="../Models/Gen4/StationaryModel4.hpp" line="41"/>
-        <source>Frame</source>
+        <source>Advance</source>
         <translation type="unfinished">Frame</translation>
     </message>
     <message>
@@ -4692,7 +4692,7 @@
     </message>
     <message>
         <location filename="../Models/Gen4/StationaryModel4.hpp" line="60"/>
-        <source>Frame</source>
+        <source>Advance</source>
         <translation type="unfinished">Frame</translation>
     </message>
     <message>
@@ -5013,7 +5013,7 @@
     </message>
     <message>
         <location filename="../Forms/Gen3/Wild3.ui"/>
-        <source>Initial Frame</source>
+        <source>Initial Advance</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -5174,7 +5174,7 @@
     </message>
     <message>
         <location filename="../Forms/Gen4/Wild4.ui"/>
-        <source>Starting Frame</source>
+        <source>Starting Advance</source>
         <translation>Frame inicial</translation>
     </message>
     <message>
@@ -5237,7 +5237,7 @@
     </message>
     <message>
         <location filename="../Forms/Gen4/Wild4.ui"/>
-        <source>Min Frame</source>
+        <source>Min Advance</source>
         <translation>Frame minimo</translation>
     </message>
     <message>
@@ -5247,7 +5247,7 @@
     </message>
     <message>
         <location filename="../Forms/Gen4/Wild4.ui"/>
-        <source>Max Frame</source>
+        <source>Max Advance</source>
         <translation>Frame máximo</translation>
     </message>
     <message>
@@ -5365,7 +5365,7 @@
     </message>
     <message>
         <location filename="../Models/Gen3/WildModel3.hpp" line="36"/>
-        <source>Frame</source>
+        <source>Advance</source>
         <translation type="unfinished">Frame</translation>
     </message>
     <message>
@@ -5488,7 +5488,7 @@
     </message>
     <message>
         <location filename="../Models/Gen4/WildModel4.hpp" line="41"/>
-        <source>Frame</source>
+        <source>Advance</source>
         <translation type="unfinished">Frame</translation>
     </message>
     <message>
@@ -5759,7 +5759,7 @@
     </message>
     <message>
         <location filename="../Models/Gen4/WildModel4.hpp" line="61"/>
-        <source>Frame</source>
+        <source>Advance</source>
         <translation type="unfinished">Frame</translation>
     </message>
     <message>

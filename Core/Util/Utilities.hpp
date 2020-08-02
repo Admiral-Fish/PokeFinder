@@ -31,9 +31,9 @@ namespace Utilities
     u32 calcGen4Seed(const QDateTime &dateTime, u32 delay);
     QString coinFlips(u32 seed);
     QString getCalls(u32 seed, const HGSSRoamer &info);
-    u32 initialFrameBW(u64 seed, u8 rounds = 5);
-    u32 initialFrameBW2(u64 seed, bool memory);
-    u32 initialFrameBW2ID(u64 seed, u8 rounds = 3);
+    u32 initialAdvancesBW(u64 seed, u8 rounds = 5);
+    u32 initialAdvancesBW2(u64 seed, bool memory);
+    u32 initialAdvancesBW2ID(u64 seed, u8 rounds = 3);
     u32 forceGender(u32 pid, u64 rand, u8 gender, u8 genderRatio);
 }
 

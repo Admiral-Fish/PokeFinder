@@ -88,7 +88,7 @@ u16 SeedTime3::originSeed(u32 seed)
     while (rng.getSeed() > 0xFFFF)
     {
         rng.next();
-        frame++;
+        advance++;
     }
     return static_cast<u16>(rng.getSeed());
 }
@@ -97,7 +97,7 @@ void SeedTime3::find()
 {
     u32 seed = ui->textBoxSeed->getUInt();
     u16 year = ui->textBoxYear->getUShort();
-    frame = 1;
+    advance = 0;
 
     if (seed > 0xFFFF)
     {
@@ -106,6 +106,6 @@ void SeedTime3::find()
     }
 
     model->clearModel();
-    auto frames = SeedTimeCalculator3::calculateTimes(seed, frame, year);
-    model->addItems(frames);
+    auto states = SeedTimeCalculator3::calculateTimes(seed, advance, year);
+    model->addItems(states);
 }

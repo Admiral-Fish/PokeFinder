@@ -21,7 +21,7 @@
 #include <Core/Enum/Method.hpp>
 #include <Core/Util/Translator.hpp>
 
-EggModel3::EggModel3(QObject *parent, Method method) : TableModel<EggFrame3>(parent)
+EggModel3::EggModel3(QObject *parent, Method method) : TableModel<EggState3>(parent)
 {
     this->method = method;
     showInheritance = false;
@@ -57,27 +57,27 @@ QVariant EggModel3::data(const QModelIndex &index, int role) const
     {
         int column = getColumn(index.column());
 
-        const auto &frame = model.at(index.row());
+        const auto &state = model.at(index.row());
         switch (column)
         {
         case 0:
         case 1:
-            return frame.getFrame();
+            return state.getAdvances();
         case 2:
-            return frame.getPickupFrame();
+            return state.getPickupAdvance();
         case 3:
-            return frame.getRedraw();
+            return state.getRedraw();
         case 4:
-            return QString::number(frame.getPID(), 16).toUpper().rightJustified(8, '0');
+            return QString::number(state.getPID(), 16).toUpper().rightJustified(8, '0');
         case 5:
         {
-            u8 shiny = frame.getShiny();
+            u8 shiny = state.getShiny();
             return shiny == 2 ? tr("Square") : shiny == 1 ? tr("Star") : tr("No");
         }
         case 6:
-            return Translator::getNature(frame.getNature());
+            return Translator::getNature(state.getNature());
         case 7:
-            return frame.getAbility();
+            return state.getAbility();
         case 8:
         case 9:
         case 10:
@@ -86,19 +86,19 @@ QVariant EggModel3::data(const QModelIndex &index, int role) const
         case 13:
             if (showInheritance)
             {
-                u8 inh = frame.getInheritance(static_cast<u8>(column - 8));
+                u8 inh = state.getInheritance(static_cast<u8>(column - 8));
                 if (inh)
                 {
                     return inh == 1 ? "A" : "B";
                 }
             }
-            return frame.getIV(static_cast<u8>(column - 8));
+            return state.getIV(static_cast<u8>(column - 8));
         case 14:
-            return Translator::getHiddenPower(frame.getHidden());
+            return Translator::getHiddenPower(state.getHidden());
         case 15:
-            return frame.getPower();
+            return state.getPower();
         case 16:
-            return Translator::getGender(frame.getGender());
+            return Translator::getGender(state.getGender());
         }
     }
 

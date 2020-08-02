@@ -32,7 +32,7 @@ GameCubeRTC::GameCubeRTC(QWidget *parent) : QWidget(parent), ui(new Ui::GameCube
 
     setupModels();
 
-    qRegisterMetaType<QVector<GameCubeRTCFrame>>("QVector<GameCubeRTCFrame>");
+    qRegisterMetaType<QVector<GameCubeRTCState>>("QVector<GameCubeRTCState>");
 }
 
 GameCubeRTC::GameCubeRTC(u32 seed, QWidget *parent) : QWidget(parent), ui(new Ui::GameCubeRTC)
@@ -44,7 +44,7 @@ GameCubeRTC::GameCubeRTC(u32 seed, QWidget *parent) : QWidget(parent), ui(new Ui
     setupModels();
     ui->textBoxTargetSeed->setText(QString::number(seed, 16));
 
-    qRegisterMetaType<QVector<GameCubeRTCFrame>>("QVector<GameCubeRTCFrame>");
+    qRegisterMetaType<QVector<GameCubeRTCState>>("QVector<GameCubeRTCState>");
 }
 
 GameCubeRTC::~GameCubeRTC()
@@ -65,8 +65,8 @@ void GameCubeRTC::setupModels()
 
     ui->textBoxStartSeed->setValues(InputType::Seed32Bit);
     ui->textBoxTargetSeed->setValues(InputType::Seed32Bit);
-    ui->textBoxMinFrame->setValues(InputType::Frame32Bit);
-    ui->textBoxMaxFrame->setValues(InputType::Frame32Bit);
+    ui->textBoxMinAdvance->setValues(InputType::Advance32Bit);
+    ui->textBoxMaxAdvance->setValues(InputType::Advance32Bit);
 
     connect(ui->pushButtonSearch, &QPushButton::clicked, this, &GameCubeRTC::search);
 
@@ -92,11 +92,11 @@ void GameCubeRTC::search()
 
     u32 initialSeed = ui->textBoxStartSeed->getUInt();
     u32 targetSeed = ui->textBoxTargetSeed->getUInt();
-    u32 initialFrame = ui->textBoxMinFrame->getUInt();
-    u32 maxResults = ui->textBoxMaxFrame->getUInt();
+    u32 initialAdvances = ui->textBoxMinAdvance->getUInt();
+    u32 maxAdvances = ui->textBoxMaxAdvance->getUInt();
 
     auto *searcher = new RTCSearcher();
-    auto *thread = QThread::create([=] { searcher->startSearch(initialSeed, targetSeed, initialFrame, maxResults); });
+    auto *thread = QThread::create([=] { searcher->startSearch(initialSeed, targetSeed, initialAdvances, maxAdvances); });
 
     connect(thread, &QThread::finished, this, [=] {
         ui->pushButtonSearch->setEnabled(true);
@@ -112,7 +112,7 @@ void GameCubeRTC::search()
     thread->start();
 }
 
-void GameCubeRTC::updateTableView(const QVector<GameCubeRTCFrame> &results)
+void GameCubeRTC::updateTableView(const QVector<GameCubeRTCState> &results)
 {
     model->addItems(results);
 }

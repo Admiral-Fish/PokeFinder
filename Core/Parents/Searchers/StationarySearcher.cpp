@@ -19,7 +19,7 @@
 
 #include "StationarySearcher.hpp"
 
-StationarySearcher::StationarySearcher(u16 tid, u16 sid, u8 genderRatio, Method method, const FrameFilter &filter) :
+StationarySearcher::StationarySearcher(u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter) :
     Searcher(tid, sid, genderRatio, method, filter)
 {
 }

@@ -170,7 +170,7 @@ ProfileIVSearcher5::ProfileIVSearcher5(const QVector<u8> &minIVs, const QVector<
 bool ProfileIVSearcher5::valid(u64 seed)
 {
     MT<8, true> rng(seed >> 32);
-    rng.advanceFrames(offset);
+    rng.advance(offset);
 
     for (u8 i = 0; i < 6; i++)
     {
@@ -201,15 +201,15 @@ bool ProfileNeedleSearcher5::valid(u64 seed)
 {
     BWRNG rng(seed);
 
-    u8 advances = game ? Utilities::initialFrameBW(seed) : Utilities::initialFrameBW2(seed, memoryLink);
+    u8 advances = game ? Utilities::initialAdvancesBW(seed) : Utilities::initialAdvancesBW2(seed, memoryLink);
 
-    // Opening the menu advances 1 frame
+    // Opening the menu advances 1
     if (unovaLink)
     {
         advances++;
     }
 
-    rng.advanceFrames(advances - 1);
+    rng.advance(advances);
 
     for (u8 needle : needles)
     {

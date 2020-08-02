@@ -20,22 +20,22 @@
 #ifndef EGGGENERATOR4_HPP
 #define EGGGENERATOR4_HPP
 
-#include <Core/Gen4/Frames/EggFrame4.hpp>
+#include <Core/Gen4/States/EggState4.hpp>
 #include <Core/Parents/Generators/EggGenerator.hpp>
 
 class EggGenerator4 : public EggGenerator
 {
 public:
     EggGenerator4() = default;
-    EggGenerator4(u32 initialFrame, u32 maxResults, u16 tid, u16 sid, u8 genderRatio, Method method, const FrameFilter &filter);
-    QVector<EggFrame4> generate(u32 seed) const;
+    EggGenerator4(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter);
+    QVector<EggState4> generate(u32 seed) const;
 
 private:
-    QVector<EggFrame4> generateNormal(u32 seed) const;
-    QVector<EggFrame4> generateMasuada(u32 seed) const;
-    QVector<EggFrame4> generateDPPtIVs(u32 seed) const;
-    QVector<EggFrame4> generateHGSSIVs(u32 seed) const;
-    void setInheritance(EggFrame4 &frame, const u16 *inh, const u16 *par, bool broken) const;
+    QVector<EggState4> generateNormal(u32 seed) const;
+    QVector<EggState4> generateMasuada(u32 seed) const;
+    QVector<EggState4> generateDPPtIVs(u32 seed) const;
+    QVector<EggState4> generateHGSSIVs(u32 seed) const;
+    void setInheritance(EggState4 &state, const u16 *inh, const u16 *par, bool broken) const;
 };
 
 #endif // EGGGENERATOR4_HPP

@@ -31,14 +31,14 @@ namespace
 
         // Round 1
         count++;
-        rng.advanceFrames(1);
+        rng.advance(1);
 
         // Round 2
         count++;
         if (rng.nextUInt(101) > 50)
         {
             count++;
-            rng.advanceFrames(1);
+            rng.advance(1);
         }
 
         // Round 3
@@ -46,7 +46,7 @@ namespace
         if (rng.nextUInt(101) > 30)
         {
             count++;
-            rng.advanceFrames(1);
+            rng.advance(1);
         }
 
         // Round 4
@@ -57,7 +57,7 @@ namespace
             if (rng.nextUInt(101) > 30)
             {
                 count++;
-                rng.advanceFrames(1);
+                rng.advance(1);
             }
         }
 
@@ -72,7 +72,7 @@ namespace
                 if (rng.nextUInt(101) > 33)
                 {
                     count++;
-                    rng.advanceFrames(1);
+                    rng.advance(1);
                 }
             }
         }
@@ -154,10 +154,10 @@ namespace Utilities
         return calls;
     }
 
-    u32 initialFrameBW(u64 seed, u8 rounds)
+    u32 initialAdvancesBW(u64 seed, u8 rounds)
     {
         BWRNG rng(seed);
-        u32 count = 1;
+        u32 count = 0;
 
         for (u8 i = 0; i < rounds; i++)
         {
@@ -167,10 +167,10 @@ namespace Utilities
         return count;
     }
 
-    u32 initialFrameBW2(u64 seed, bool memory)
+    u32 initialAdvancesBW2(u64 seed, bool memory)
     {
         BWRNG rng(seed);
-        u32 count = 1;
+        u32 count = 0;
 
         for (u8 i = 0; i < 5; i++)
         {
@@ -179,7 +179,7 @@ namespace Utilities
             if (i == 0)
             {
                 count += memory ? 2 : 3;
-                rng.advanceFrames(memory ? 2 : 3);
+                rng.advance(memory ? 2 : 3);
             }
         }
 
@@ -201,10 +201,10 @@ namespace Utilities
         return count;
     }
 
-    u32 initialFrameBW2ID(u64 seed, u8 rounds)
+    u32 initialAdvancesBW2ID(u64 seed, u8 rounds)
     {
         BWRNG rng(seed);
-        u32 count = 1;
+        u32 count = 0;
 
         for (u8 i = 0; i < rounds; i++)
         {

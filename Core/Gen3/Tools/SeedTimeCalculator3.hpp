@@ -20,12 +20,12 @@
 #ifndef SEEDTIMECALCULATOR3_HPP
 #define SEEDTIMECALCULATOR3_HPP
 
-#include <Core/Gen3/Frames/SeedTimeFrame3.hpp>
+#include <Core/Gen3/States/SeedTimeState3.hpp>
 #include <QVector>
 
 namespace SeedTimeCalculator3
 {
-    QVector<SeedTimeFrame3> calculateTimes(u32 seed, u32 frame, u16 year);
+    QVector<SeedTimeState3> calculateTimes(u32 seed, u32 advance, u16 year);
     u16 calculateOriginSeed(u32 seed);
 }
 

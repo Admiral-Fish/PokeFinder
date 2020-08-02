@@ -24,7 +24,7 @@
 #include <Core/Gen4/Profile4.hpp>
 #include <QMenu>
 
-class WildFrame;
+class WildState;
 class WildGeneratorModel4;
 class WildSearcherModel4;
 
@@ -62,7 +62,7 @@ private:
     void updatePokemonSearcher();
 
 private slots:
-    void updateProgress(const QVector<WildFrame> &frames, int progress);
+    void updateProgress(const QVector<WildState> &states, int progress);
     void generate();
     void search();
     void profilesIndexChanged(int index);

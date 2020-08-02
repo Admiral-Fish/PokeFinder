@@ -20,16 +20,16 @@
 #ifndef POKESPOTGENERATOR_HPP
 #define POKESPOTGENERATOR_HPP
 
-#include <Core/Gen3/Frames/GameCubeFrame.hpp>
+#include <Core/Gen3/States/GameCubeState.hpp>
 #include <Core/Parents/Generators/Generator.hpp>
 
 class PokeSpotGenerator : public Generator
 {
 public:
     PokeSpotGenerator() = default;
-    PokeSpotGenerator(u32 initialFrame, u32 maxResults, u16 tid, u16 sid, u8 genderRatio, const FrameFilter &filter);
+    PokeSpotGenerator(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, const StateFilter &filter);
     void setSpots(const QVector<bool> &spots);
-    QVector<GameCubeFrame> generate(u32 seed) const;
+    QVector<GameCubeState> generate(u32 seed) const;
 
 private:
     QVector<bool> spots;

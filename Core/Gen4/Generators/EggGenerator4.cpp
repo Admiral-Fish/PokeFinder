@@ -19,16 +19,17 @@
 
 #include "EggGenerator4.hpp"
 #include <Core/Enum/Method.hpp>
-#include <Core/Parents/Filters/FrameFilter.hpp>
+#include <Core/Parents/Filters/StateFilter.hpp>
 #include <Core/RNG/LCRNG.hpp>
 #include <Core/RNG/MT.hpp>
 
-EggGenerator4::EggGenerator4(u32 initialFrame, u32 maxResults, u16 tid, u16 sid, u8 genderRatio, Method method, const FrameFilter &filter) :
-    EggGenerator(initialFrame, maxResults, tid, sid, genderRatio, method, filter)
+EggGenerator4::EggGenerator4(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, Method method,
+                             const StateFilter &filter) :
+    EggGenerator(initialAdvances, maxAdvances, tid, sid, genderRatio, method, filter)
 {
 }
 
-QVector<EggFrame4> EggGenerator4::generate(u32 seed) const
+QVector<EggState4> EggGenerator4::generate(u32 seed) const
 {
     switch (method)
     {
@@ -41,47 +42,47 @@ QVector<EggFrame4> EggGenerator4::generate(u32 seed) const
     case Method::HGSSIVs:
         return generateHGSSIVs(seed);
     default:
-        return QVector<EggFrame4>();
+        return QVector<EggState4>();
     }
 }
 
-QVector<EggFrame4> EggGenerator4::generateNormal(u32 seed) const
+QVector<EggState4> EggGenerator4::generateNormal(u32 seed) const
 {
-    QVector<EggFrame4> frames;
+    QVector<EggState4> states;
 
     MT mt(seed);
-    mt.advanceFrames(initialFrame - 1);
+    mt.advance(initialAdvances);
 
-    for (u32 cnt = 0; cnt < maxResults; cnt++)
+    for (u32 cnt = 0; cnt < maxAdvances; cnt++)
     {
-        EggFrame4 frame(initialFrame + cnt);
+        EggState4 state(initialAdvances + cnt);
 
         u32 pid = mt.next();
-        frame.setPID(pid);
-        frame.setAbility(pid & 1);
-        frame.setGender(pid & 255, genderRatio);
-        frame.setNature(pid % 25);
-        frame.setShiny(tsv, (pid >> 16) ^ (pid & 0xffff), 8);
+        state.setPID(pid);
+        state.setAbility(pid & 1);
+        state.setGender(pid & 255, genderRatio);
+        state.setNature(pid % 25);
+        state.setShiny(tsv, (pid >> 16) ^ (pid & 0xffff), 8);
 
-        if (filter.comparePID(frame))
+        if (filter.comparePID(state))
         {
-            frames.append(frame);
+            states.append(state);
         }
     }
 
-    return frames;
+    return states;
 }
 
-QVector<EggFrame4> EggGenerator4::generateMasuada(u32 seed) const
+QVector<EggState4> EggGenerator4::generateMasuada(u32 seed) const
 {
-    QVector<EggFrame4> frames;
+    QVector<EggState4> states;
 
     MT mt(seed);
-    mt.advanceFrames(initialFrame - 1);
+    mt.advance(initialAdvances);
 
-    for (u32 cnt = 0; cnt < maxResults; cnt++)
+    for (u32 cnt = 0; cnt < maxAdvances; cnt++)
     {
-        EggFrame4 frame(initialFrame + cnt);
+        EggState4 state(initialAdvances + cnt);
 
         u32 pid = mt.next();
         for (int i = 0; i <= 3; i++)
@@ -96,36 +97,36 @@ QVector<EggFrame4> EggGenerator4::generateMasuada(u32 seed) const
             pid = pid * 0x6c078965 + 1; // Advance with ARNG
         }
 
-        frame.setPID(pid);
-        frame.setAbility(pid & 1);
-        frame.setGender(pid & 255, genderRatio);
-        frame.setNature(pid % 25);
-        frame.setShiny(tsv, (pid >> 16) ^ (pid & 0xffff), 8);
+        state.setPID(pid);
+        state.setAbility(pid & 1);
+        state.setGender(pid & 255, genderRatio);
+        state.setNature(pid % 25);
+        state.setShiny(tsv, (pid >> 16) ^ (pid & 0xffff), 8);
 
-        if (filter.comparePID(frame))
+        if (filter.comparePID(state))
         {
-            frames.append(frame);
+            states.append(state);
         }
     }
 
-    return frames;
+    return states;
 }
 
-QVector<EggFrame4> EggGenerator4::generateDPPtIVs(u32 seed) const
+QVector<EggState4> EggGenerator4::generateDPPtIVs(u32 seed) const
 {
-    QVector<EggFrame4> frames;
+    QVector<EggState4> states;
 
     PokeRNG rng(seed);
-    rng.advanceFrames(initialFrame - 1);
+    rng.advance(initialAdvances);
 
-    for (u32 cnt = 0; cnt < maxResults; cnt++, rng.next())
+    for (u32 cnt = 0; cnt < maxAdvances; cnt++, rng.next())
     {
-        EggFrame4 frame(initialFrame + cnt);
+        EggState4 state(initialAdvances + cnt);
         PokeRNG go(rng.getSeed());
 
         u16 iv1 = go.nextUShort();
         u16 iv2 = go.nextUShort();
-        frame.setIVs(iv1, iv2);
+        state.setIVs(iv1, iv2);
 
         u16 inh1 = go.nextUShort();
         u16 inh2 = go.nextUShort();
@@ -137,33 +138,33 @@ QVector<EggFrame4> EggGenerator4::generateDPPtIVs(u32 seed) const
         u16 par3 = go.nextUShort();
         u16 par[3] = { par1, par2, par3 };
 
-        setInheritance(frame, inh, par, true);
-        frame.calculateHiddenPower();
+        setInheritance(state, inh, par, true);
+        state.calculateHiddenPower();
 
-        if (filter.compareIVs(frame))
+        if (filter.compareIVs(state))
         {
-            frame.setSeed(iv1);
-            frames.append(frame);
+            state.setSeed(iv1);
+            states.append(state);
         }
     }
-    return frames;
+    return states;
 }
 
-QVector<EggFrame4> EggGenerator4::generateHGSSIVs(u32 seed) const
+QVector<EggState4> EggGenerator4::generateHGSSIVs(u32 seed) const
 {
-    QVector<EggFrame4> frames;
+    QVector<EggState4> states;
 
     PokeRNG rng(seed);
-    rng.advanceFrames(initialFrame - 1);
+    rng.advance(initialAdvances);
 
-    for (u32 cnt = 0; cnt < maxResults; cnt++, rng.next())
+    for (u32 cnt = 0; cnt < maxAdvances; cnt++, rng.next())
     {
-        EggFrame4 frame(initialFrame + cnt);
+        EggState4 state(initialAdvances + cnt);
         PokeRNG go(rng.getSeed());
 
         u16 iv1 = go.nextUShort();
         u16 iv2 = go.nextUShort();
-        frame.setIVs(iv1, iv2);
+        state.setIVs(iv1, iv2);
 
         u16 inh1 = go.nextUShort();
         u16 inh2 = go.nextUShort();
@@ -175,19 +176,19 @@ QVector<EggFrame4> EggGenerator4::generateHGSSIVs(u32 seed) const
         u16 par3 = go.nextUShort();
         u16 par[3] = { par1, par2, par3 };
 
-        setInheritance(frame, inh, par, false);
-        frame.calculateHiddenPower();
+        setInheritance(state, inh, par, false);
+        state.calculateHiddenPower();
 
-        if (filter.compareIVs(frame))
+        if (filter.compareIVs(state))
         {
-            frame.setSeed(iv1);
-            frames.append(frame);
+            state.setSeed(iv1);
+            states.append(state);
         }
     }
-    return frames;
+    return states;
 }
 
-void EggGenerator4::setInheritance(EggFrame4 &frame, const u16 *inh, const u16 *par, bool broken) const
+void EggGenerator4::setInheritance(EggState4 &state, const u16 *inh, const u16 *par, bool broken) const
 {
     u8 available[6] = { 0, 1, 2, 3, 4, 5 };
     for (u8 i = 0; i < 3; i++)
@@ -198,28 +199,28 @@ void EggGenerator4::setInheritance(EggFrame4 &frame, const u16 *inh, const u16 *
         switch (stat)
         {
         case 0:
-            frame.setIVs(0, parent == 0 ? parent1.at(0) : parent2.at(0));
-            frame.setInheritance(0, parent + 1);
+            state.setIVs(0, parent == 0 ? parent1.at(0) : parent2.at(0));
+            state.setInheritance(0, parent + 1);
             break;
         case 1:
-            frame.setIVs(1, parent == 0 ? parent1.at(1) : parent2.at(1));
-            frame.setInheritance(1, parent + 1);
+            state.setIVs(1, parent == 0 ? parent1.at(1) : parent2.at(1));
+            state.setInheritance(1, parent + 1);
             break;
         case 2:
-            frame.setIVs(2, parent == 0 ? parent1.at(2) : parent2.at(2));
-            frame.setInheritance(2, parent + 1);
+            state.setIVs(2, parent == 0 ? parent1.at(2) : parent2.at(2));
+            state.setInheritance(2, parent + 1);
             break;
         case 3:
-            frame.setIVs(5, parent == 0 ? parent1.at(5) : parent2.at(5));
-            frame.setInheritance(5, parent + 1);
+            state.setIVs(5, parent == 0 ? parent1.at(5) : parent2.at(5));
+            state.setInheritance(5, parent + 1);
             break;
         case 4:
-            frame.setIVs(3, parent == 0 ? parent1.at(3) : parent2.at(3));
-            frame.setInheritance(3, parent + 1);
+            state.setIVs(3, parent == 0 ? parent1.at(3) : parent2.at(3));
+            state.setInheritance(3, parent + 1);
             break;
         case 5:
-            frame.setIVs(4, parent == 0 ? parent1.at(4) : parent2.at(4));
-            frame.setInheritance(4, parent + 1);
+            state.setIVs(4, parent == 0 ? parent1.at(4) : parent2.at(4));
+            state.setInheritance(4, parent + 1);
             break;
         }
 

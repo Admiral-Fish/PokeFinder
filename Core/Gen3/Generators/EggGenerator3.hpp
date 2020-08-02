@@ -20,17 +20,17 @@
 #ifndef EGGGENERATOR3_HPP
 #define EGGGENERATOR3_HPP
 
-#include <Core/Gen3/Frames/EggFrame3.hpp>
+#include <Core/Gen3/States/EggState3.hpp>
 #include <Core/Parents/Generators/EggGenerator.hpp>
 
 class EggGenerator3 : public EggGenerator
 {
 public:
     EggGenerator3() = default;
-    EggGenerator3(u32 initialFrame, u32 maxResults, u16 tid, u16 sid, u8 genderRatio, Method method, const FrameFilter &filter);
-    QVector<EggFrame3> generate(u32 seed = 0, u32 seed2 = 0) const;
-    void setInitialFramePickup(u32 value);
-    void setMaxResultsPickup(u32 value);
+    EggGenerator3(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter);
+    QVector<EggState3> generate(u32 seed = 0, u32 seed2 = 0) const;
+    void setInitialAdvancesPickup(u32 value);
+    void setMaxAdvancesPickup(u32 value);
     void setCalibration(u8 value);
     void setMinRedraw(u8 value);
     void setMaxRedraw(u8 value);
@@ -38,8 +38,8 @@ public:
     void setEverstone(bool value);
 
 private:
-    u32 initialFramePickup;
-    u32 maxResultsPickup;
+    u32 initialAdvancesPickup;
+    u32 maxAdvancesPickup;
     u8 calibration;
     u8 minRedraw;
     u8 maxRedraw;
@@ -47,11 +47,11 @@ private:
     bool everstone;
     u8 iv1, iv2, inh;
 
-    QVector<EggFrame3> generateEmeraldPID() const;
-    QVector<EggFrame3> generateEmeraldIVs() const;
+    QVector<EggState3> generateEmeraldPID() const;
+    QVector<EggState3> generateEmeraldIVs() const;
     QVector<QPair<u32, u16>> generateLower(u32 seed) const;
-    QVector<EggFrame3> generateUpper(u32 seed, const QVector<QPair<u32, u16>> &lower) const;
-    void setInheritance(EggFrame3 &frame, const u16 *inh, const u16 *par, bool broken) const;
+    QVector<EggState3> generateUpper(u32 seed, const QVector<QPair<u32, u16>> &lower) const;
+    void setInheritance(EggState3 &state, const u16 *inh, const u16 *par, bool broken) const;
 };
 
 #endif // EGGGENERATOR3_HPP

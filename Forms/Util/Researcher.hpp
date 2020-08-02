@@ -25,7 +25,7 @@
 #include <QMenu>
 #include <QMessageBox>
 
-class ResearcherFrame;
+class ResearcherState;
 class ResearcherModel;
 
 namespace Ui
@@ -47,7 +47,7 @@ private:
     QHash<QString, u8> keys;
 
     void setupModels();
-    u64 getCustom(const QString &text, const ResearcherFrame &frame, const QVector<ResearcherFrame> &frames);
+    u64 getCustom(const QString &text, const ResearcherState &state, const QVector<ResearcherState> &states);
     void resizeHeader();
     QVector<bool> getHexCheck();
 

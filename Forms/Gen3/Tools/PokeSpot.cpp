@@ -20,7 +20,7 @@
 #include "PokeSpot.hpp"
 #include "ui_PokeSpot.h"
 #include <Core/Gen3/Generators/PokeSpotGenerator.hpp>
-#include <Core/Parents/Filters/FrameFilter.hpp>
+#include <Core/Parents/Filters/StateFilter.hpp>
 #include <Core/Util/Translator.hpp>
 #include <Models/Gen3/PokeSpotModel.hpp>
 #include <QSettings>
@@ -54,8 +54,8 @@ void PokeSpot::setupModels()
     menu = new QMenu(ui->tableView);
 
     ui->textBoxSeed->setValues(InputType::Seed32Bit);
-    ui->textBoxStartingFrame->setValues(InputType::Frame32Bit);
-    ui->textBoxMaxResults->setValues(InputType::Frame32Bit);
+    ui->textBoxStartingAdvance->setValues(InputType::Advance32Bit);
+    ui->textBoxMaxAdvances->setValues(InputType::Advance32Bit);
     ui->textBoxTID->setValues(InputType::TIDSID);
     ui->textBoxSID->setValues(InputType::TIDSID);
 
@@ -94,20 +94,20 @@ void PokeSpot::generate()
     model->clearModel();
 
     u32 seed = ui->textBoxSeed->getUInt();
-    u32 initialFrame = ui->textBoxStartingFrame->getUInt();
-    u32 maxResults = ui->textBoxMaxResults->getUInt();
+    u32 initialAdvances = ui->textBoxStartingAdvance->getUInt();
+    u32 maxAdvances = ui->textBoxMaxAdvances->getUInt();
     u16 tid = ui->textBoxTID->getUShort();
     u16 sid = ui->textBoxSID->getUShort();
     u8 genderRatio = ui->filter->getGenderRatio();
 
-    FrameFilter filter(ui->filter->getGender(), ui->filter->getAbility(), ui->filter->getShiny(), false, {}, {}, ui->filter->getNatures(),
+    StateFilter filter(ui->filter->getGender(), ui->filter->getAbility(), ui->filter->getShiny(), false, {}, {}, ui->filter->getNatures(),
                        {}, {});
 
-    PokeSpotGenerator generator(initialFrame, maxResults, tid, sid, genderRatio, filter);
+    PokeSpotGenerator generator(initialAdvances, maxAdvances, tid, sid, genderRatio, filter);
     generator.setSpots(ui->comboBoxSpotType->getChecked());
 
-    auto frames = generator.generate(seed);
-    model->addItems(frames);
+    auto states = generator.generate(seed);
+    model->addItems(states);
 }
 
 void PokeSpot::tableViewContextMenu(QPoint pos)

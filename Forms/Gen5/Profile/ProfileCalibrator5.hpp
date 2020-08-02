@@ -48,7 +48,7 @@ private:
     void updateParameters();
 
 private slots:
-    void updateProgress(const QVector<QList<QStandardItem *>> &frames, int progress);
+    void updateProgress(const QVector<QList<QStandardItem *>> &states, int progress);
     void openIVCalculator();
     void clearTable();
     void search();

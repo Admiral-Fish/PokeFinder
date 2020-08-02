@@ -25,9 +25,9 @@
 
 class EggGeneratorModel5;
 class EggSearcherModel5;
-class EggFrame;
-template <typename FrameType>
-class SearcherFrame5;
+class EggState;
+template <typename StateType>
+class SearcherState5;
 
 namespace Ui
 {
@@ -58,10 +58,10 @@ private:
     void setupModels();
 
 private slots:
-    void updateProgress(const QVector<SearcherFrame5<EggFrame>> &frames, int progress);
+    void updateProgress(const QVector<SearcherState5<EggState>> &states, int progress);
     void generate();
     void search();
-    void calculateInitialFrame();
+    void calculateInitialAdvances();
     void profileIndexChanged(int index);
     void tableViewGeneratorContextMenu(QPoint pos);
     void tableViewSearcherContextMenu(QPoint pos);
