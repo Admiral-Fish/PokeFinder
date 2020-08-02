@@ -27,7 +27,7 @@ EventGenerator5::EventGenerator5(u32 initialFrame, u32 maxResults, u16 tid, u16 
     Generator(initialFrame, maxResults, tid, sid, genderRatio, method, filter),
     parameters(parameters)
 {
-    if (parameters.isEgg())
+    if (!parameters.isEgg())
     {
         tsv = parameters.getTID() ^ parameters.getSID();
     }
