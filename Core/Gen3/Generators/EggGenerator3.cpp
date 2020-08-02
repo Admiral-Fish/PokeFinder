@@ -138,9 +138,9 @@ QVector<EggState3> EggGenerator3::generateEmeraldPID() const
     QVector<EggState3> states;
 
     PokeRNG rng(0);
-    rng.advance(initialAdvances - 1);
+    rng.advance(initialAdvances);
 
-    u32 val = initialAdvances;
+    u32 val = initialAdvances + 1;
     for (u32 cnt = 0; cnt < maxAdvances; cnt++, val++, rng.next())
     {
         PokeRNG comp(rng.getSeed());
@@ -212,7 +212,7 @@ QVector<EggState3> EggGenerator3::generateEmeraldIVs() const
     QVector<EggState3> states;
 
     PokeRNG rng(0);
-    rng.advance(initialAdvances - 1);
+    rng.advance(initialAdvances);
 
     for (u32 cnt = 0; cnt < maxAdvances; cnt++, rng.next())
     {
