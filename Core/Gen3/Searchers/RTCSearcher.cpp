@@ -50,7 +50,7 @@ void RTCSearcher::startSearch(u32 initialSeed, u32 targetSeed, u32 initialAdvanc
             {
                 QDateTime finalTime = date.addSecs(seconds);
 
-                GameCubeRTCState result(finalTime, initialSeed, x + 2 + initialAdvances);
+                GameCubeRTCState result(finalTime, initialSeed, x + 1 + initialAdvances);
                 results.append(result);
 
                 return;
