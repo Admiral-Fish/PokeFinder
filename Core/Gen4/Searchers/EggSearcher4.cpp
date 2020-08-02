@@ -81,6 +81,8 @@ void EggSearcher4::startSearch(u32 minDelay, u32 maxDelay)
                             {
                                 framePID.setIVs(frameIV.getIV(0), frameIV.getIV(1), frameIV.getIV(2), frameIV.getIV(3), frameIV.getIV(4),
                                                 frameIV.getIV(5));
+                                framePID.calculateHiddenPower();
+
                                 for (u8 i = 0; i < 6; i++)
                                 {
                                     framePID.setInheritance(i, frameIV.getInheritance(i));
