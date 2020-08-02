@@ -416,7 +416,7 @@
                </sizepolicy>
               </property>
               <property name="text">
-               <string>Advance Held</string>
+               <string>Held Advances</string>
               </property>
              </widget>
             </item>
@@ -443,7 +443,7 @@
                </sizepolicy>
               </property>
               <property name="text">
-               <string>Pickup Advance</string>
+               <string>Pickup Advances</string>
               </property>
              </widget>
             </item>
@@ -607,7 +607,7 @@
                </sizepolicy>
               </property>
               <property name="text">
-               <string>Advance Held</string>
+               <string>Held Advances</string>
               </property>
              </widget>
             </item>
@@ -634,7 +634,7 @@
                </sizepolicy>
               </property>
               <property name="text">
-               <string>Pickup Advance</string>
+               <string>Pickup Advances</string>
               </property>
              </widget>
             </item>
