@@ -80,32 +80,46 @@ private:
 
     void shuffle()
     {
-        for (u16 i = 0; i < size; i++)
+        for (u16 i = 0; i < (size < 227 ? size : 227); i++)
         {
-            u32 y;
-            if constexpr (size == 624)
-            {
-                y = (mt[i] & 0x80000000) | (mt[(i + 1) % 624] & 0x7FFFFFFF);
-            }
-            else
-            {
-                y = (mt[i] & 0x80000000) | (mt[i + 1] & 0x7FFFFFFF);
-            }
-            u32 next = y >> 1;
+            u32 y = (mt[i] & 0x80000000) | (mt[i + 1] & 0x7fffffff);
 
+            u32 y1 = y >> 1;
             if (y & 1)
             {
-                next ^= 0x9908B0DF;
+                y1 ^= 0x9908B0DF;
             }
 
-            if constexpr (size >= 227)
+            mt[i] = y1 ^ mt[i + 397];
+        }
+
+        if constexpr (size >= 227)
+        {
+            for (u16 i = 227; i < (size < 623 ? size : 623); i++)
             {
-                mt[i] = next ^ mt[(i + 397) % 624];
+                u32 y = (mt[i] & 0x80000000) | (mt[i + 1] & 0x7fffffff);
+
+                u32 y1 = y >> 1;
+                if (y & 1)
+                {
+                    y1 ^= 0x9908B0DF;
+                }
+
+                mt[i] = y1 ^ mt[i - 227];
             }
-            else
+        }
+
+        if constexpr (size == 624)
+        {
+            u32 y = (mt[623] & 0x80000000) | (mt[0] & 0x7fffffff);
+
+            u32 y1 = y >> 1;
+            if (y & 1)
             {
-                mt[i] = next ^ mt[i + 397];
+                y1 ^= 0x9908B0DF;
             }
+
+            mt[623] = y1 ^ mt[396];
         }
 
         index -= bound(size);
