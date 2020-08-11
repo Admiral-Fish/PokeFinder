@@ -51,7 +51,7 @@ void DreamRadarSearcher::startSearch(int threads, QDate start, const QDate &end)
         }
         else
         {
-            QDate mid = start.addDays(daysSplit);
+            QDate mid = start.addDays(daysSplit - 1);
             threadContainer.append(QtConcurrent::run(&pool, [=] { search(start, mid); }));
         }
         start = start.addDays(daysSplit);

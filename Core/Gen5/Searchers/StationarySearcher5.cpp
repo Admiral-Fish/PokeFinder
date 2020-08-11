@@ -40,37 +40,33 @@ void StationarySearcher5::startSearch(int threads, QDate start, const QDate &end
     searching = true;
     QThreadPool pool;
 
-    auto days = start.daysTo(end);
-    if (days == 0 || days < threads)
+    auto days = start.daysTo(end) + 1;
+    if (days < threads)
     {
-        pool.setMaxThreadCount(1);
-        auto future = QtConcurrent::run(&pool, [=] { search(start, end); });
-        future.waitForFinished();
+        threads = days;
     }
-    else
+
+    pool.setMaxThreadCount(threads);
+    QVector<QFuture<void>> threadContainer;
+
+    auto daysSplit = days / threads;
+    for (int i = 0; i < threads; i++)
     {
-        pool.setMaxThreadCount(threads);
-        QVector<QFuture<void>> threadContainer;
-
-        auto daysSplit = days / threads;
-        for (int i = 0; i < threads; i++)
+        if (i == threads - 1)
         {
-            if (i == threads - 1)
-            {
-                threadContainer.append(QtConcurrent::run(&pool, [=] { search(start, end); }));
-            }
-            else
-            {
-                QDate mid = start.addDays(daysSplit);
-                threadContainer.append(QtConcurrent::run(&pool, [=] { search(start, mid); }));
-            }
-            start = start.addDays(daysSplit);
+            threadContainer.append(QtConcurrent::run(&pool, [=] { search(start, end); }));
         }
-
-        for (int i = 0; i < threads; i++)
+        else
         {
-            threadContainer[i].waitForFinished();
+            QDate mid = start.addDays(daysSplit - 1);
+            threadContainer.append(QtConcurrent::run(&pool, [=] { search(start, mid); }));
         }
+        start = start.addDays(daysSplit);
+    }
+
+    for (int i = 0; i < threads; i++)
+    {
+        threadContainer[i].waitForFinished();
     }
 }
 
