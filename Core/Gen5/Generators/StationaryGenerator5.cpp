@@ -68,7 +68,7 @@ QVector<StationaryState> StationaryGenerator5::generateRoamerIVs(u64 seed) const
     MT mt(seed >> 32);
     mt.advance(initialAdvances + offset);
 
-    RNGList<u8, MT<624>, 100, 27> rngList(mt);
+    RNGList<u8, MT, 8, 27> rngList(mt);
 
     for (u32 cnt = 0; cnt < maxAdvances; cnt++, rngList.advanceState())
     {
@@ -102,7 +102,7 @@ QVector<StationaryState> StationaryGenerator5::generateIVs(u64 seed) const
     MT mt(seed >> 32);
     mt.advance(initialAdvances + offset);
 
-    RNGList<u8, MT<624>, 100, 27> rngList(mt);
+    RNGList<u8, MT, 8, 27> rngList(mt);
 
     for (u32 cnt = 0; cnt < maxAdvances; cnt++, rngList.advanceState())
     {
@@ -136,7 +136,7 @@ QVector<StationaryState> StationaryGenerator5::generateRoamerCGear(u64 seed) con
     mt.advance(initialAdvances + offset);
     mt.advance(2); // Skip first two advances
 
-    RNGList<u8, MT<624>, 100, 27> rngList(mt);
+    RNGList<u8, MT, 8, 27> rngList(mt);
 
     for (u32 cnt = 0; cnt < maxAdvances; cnt++, rngList.advanceState())
     {
@@ -171,7 +171,7 @@ QVector<StationaryState> StationaryGenerator5::generateCGear(u64 seed) const
     mt.advance(initialAdvances + offset);
     mt.advance(2); // Skip first two advances
 
-    RNGList<u8, MT<624>, 100, 27> rngList(mt);
+    RNGList<u8, MT, 8, 27> rngList(mt);
 
     for (u32 cnt = 0; cnt < maxAdvances; cnt++, rngList.advanceState())
     {

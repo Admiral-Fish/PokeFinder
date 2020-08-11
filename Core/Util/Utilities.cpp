@@ -111,7 +111,7 @@ namespace Utilities
     {
         QStringList coins;
 
-        MT<20> mt(seed);
+        MTFast<20> mt(seed);
 
         for (u8 i = 0; i < 20; i++)
         {

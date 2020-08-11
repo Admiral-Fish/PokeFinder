@@ -23,13 +23,15 @@
 
 #include <Core/Util/Global.hpp>
 
-template <typename IntegerType, typename RNGType, u32 size, u8 shift>
+template <typename IntegerType, typename RNGType, u16 size, u8 shift>
 class RNGList
 {
 public:
-    explicit RNGList(RNGType &rng) : rng(rng), head(0), tail(size - 1), pointer(0)
+    explicit RNGList(RNGType &rng) : rng(rng), head(0), pointer(0)
     {
-        for (u32 i = 0; i < size; i++)
+        static_assert(size && ((size & (size - 1)) == 0), "Number is not a perfect multiple of two");
+
+        for (u16 i = 0; i < size; i++)
         {
             list[i] = this->rng.next() >> shift;
         }
@@ -41,7 +43,7 @@ public:
 
     void advanceStates(u32 advances)
     {
-        for (u32 advance = 0; advance < advances; advance++)
+        for (u32 i = 0; i < advances; i++)
         {
             advanceState();
         }
@@ -49,36 +51,20 @@ public:
 
     void advanceState()
     {
-        if (++tail == size)
-        {
-            tail = 0;
-        }
-
+        head &= size - 1;
         list[head++] = rng.next() >> shift;
-        if (head == size)
-        {
-            head = 0;
-        }
 
         pointer = head;
     }
 
     void advance(u32 advances)
     {
-        pointer += advances;
-        if (pointer >= size)
-        {
-            pointer -= size;
-        }
+        pointer = (pointer + advances) & (size - 1);
     }
 
     IntegerType getValue()
     {
-        if (pointer == size)
-        {
-            pointer = 0;
-        }
-
+        pointer &= size - 1;
         return list[pointer++];
     }
 
@@ -90,7 +76,7 @@ public:
 private:
     RNGType rng;
     IntegerType list[size];
-    u32 head, tail, pointer;
+    u16 head, pointer;
 };
 
 #endif // RNGLIST_HPP

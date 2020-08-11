@@ -22,16 +22,31 @@
 
 #include <Core/Util/Global.hpp>
 
+class MT
+{
+public:
+    explicit MT(u32 seed = 0);
+    void advance(u32 advances);
+    u32 next();
+    u16 nextUShort();
+
+private:
+    u32 mt[624];
+    u16 index;
+
+    void shuffle();
+};
+
 constexpr u16 bound(u16 num)
 {
     return num + 397 > 624 ? 624 : num + 397;
 }
 
 template <u16 size = 624, bool fast = false>
-class MT
+class MTFast
 {
 public:
-    MT(u32 seed = 0)
+    MTFast(u32 seed = 0)
     {
         mt[0] = seed;
 
