@@ -568,6 +568,23 @@
           </item>
          </layout>
         </widget>
+        <widget class="QWidget" name="tabSeed">
+         <attribute name="title">
+          <string>Seed Search</string>
+         </attribute>
+         <layout class="QGridLayout" name="gridLayout_11">
+          <item row="0" column="0">
+           <widget class="QLabel" name="labelSeed">
+            <property name="text">
+             <string>Seed</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="TextBox" name="textBoxSeed"/>
+          </item>
+         </layout>
+        </widget>
        </widget>
       </item>
      </layout>
@@ -622,6 +639,7 @@
   <tabstop>radioButtonSaving</tabstop>
   <tabstop>pushButtonDelete</tabstop>
   <tabstop>pushButtonClear</tabstop>
+  <tabstop>textBoxSeed</tabstop>
   <tabstop>dateTimeEdit</tabstop>
   <tabstop>pushButtonSearch</tabstop>
   <tabstop>pushButtonCancel</tabstop>

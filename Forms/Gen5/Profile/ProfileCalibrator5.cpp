@@ -59,6 +59,7 @@ void ProfileCalibrator5::setupModels()
 
     menu = new QMenu(ui->tableView);
 
+    ui->textBoxSeed->setValues(InputType::Seed64Bit);
     ui->textBoxMinVCount->setValues(0, 0xFF, 2, 16);
     ui->textBoxMaxVCount->setValues(0, 0xFF, 2, 16);
     ui->textBoxMinTimer0->setValues(InputType::Seed16Bit);
@@ -222,7 +223,7 @@ void ProfileCalibrator5::search()
         searcher = new ProfileIVSearcher5(minIVs, maxIVs, date, time, minSeconds, maxSeconds, minVCount, maxVCount, minTimer0, maxTimer0,
                                           minGxStat, maxGxStat, softReset, version, language, dsType, mac, keypress);
     }
-    else // Needle Search
+    else if (ui->tabWidgetType->currentIndex() == 1) // Needle Search
     {
         bool unovaLink = ui->radioButtonUnovaLink->isChecked();
         bool memoryLink = ui->checkBoxMemoryLink->isChecked();
@@ -269,6 +270,12 @@ void ProfileCalibrator5::search()
         searcher
             = new ProfileNeedleSearcher5(needles, unovaLink, memoryLink, date, time, minSeconds, maxSeconds, minVCount, maxVCount,
                                          minTimer0, maxTimer0, minGxStat, maxGxStat, softReset, version, language, dsType, mac, keypress);
+    }
+    else // Seed search
+    {
+        u64 seed = ui->textBoxSeed->getULong();
+        searcher = new ProfileSeedSearcher5(seed, date, time, minSeconds, maxSeconds, minVCount, maxVCount, minTimer0, maxTimer0, minGxStat,
+                                            maxGxStat, softReset, version, language, dsType, mac, keypress);
     }
 
     int maxProgress = (maxSeconds - minSeconds + 1) * (maxVCount - minVCount + 1) * (maxTimer0 - minTimer0 + 1)

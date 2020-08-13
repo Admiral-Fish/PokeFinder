@@ -227,3 +227,17 @@ bool ProfileNeedleSearcher5::valid(u64 seed)
 
     return true;
 }
+
+ProfileSeedSearcher5::ProfileSeedSearcher5(u64 seed, const QDate &date, const QTime &time, int minSeconds, int maxSeconds, u8 minVCount,
+                                           u8 maxVCount, u16 minTimer0, u16 maxTimer0, u8 minGxStat, u8 maxGxStat, bool softReset,
+                                           Game version, Language language, DSType dsType, u64 mac, Buttons keypress) :
+    ProfileSearcher5(date, time, minSeconds, maxSeconds, minVCount, maxVCount, minTimer0, maxTimer0, minGxStat, maxGxStat, softReset,
+                     version, language, dsType, mac, keypress),
+    seed(seed)
+{
+}
+
+bool ProfileSeedSearcher5::valid(u64 seed)
+{
+    return this->seed == seed;
+}

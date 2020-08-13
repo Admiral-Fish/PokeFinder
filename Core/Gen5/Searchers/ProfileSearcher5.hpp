@@ -109,4 +109,18 @@ private:
     bool valid(u64 seed) override;
 };
 
+class ProfileSeedSearcher5 : public ProfileSearcher5
+{
+public:
+    ProfileSeedSearcher5() = default;
+    explicit ProfileSeedSearcher5(u64 seed, const QDate &date, const QTime &time, int minSeconds, int maxSeconds, u8 minVCount,
+                                  u8 maxVCount, u16 minTimer0, u16 maxTimer0, u8 minGxStat, u8 maxGxStat, bool softReset, Game version,
+                                  Language language, DSType dsType, u64 mac, Buttons keypress);
+
+private:
+    u64 seed;
+
+    bool valid(u64 seed) override;
+};
+
 #endif // PROFILESEARCHER5_HPP
