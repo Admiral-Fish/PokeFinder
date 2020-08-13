@@ -292,6 +292,7 @@ QVector<WildState> WildSearcher4::searchChainedShiny(u8 hp, u8 atk, u8 def, u8 s
         {
             low |= (rng.nextUShort() & 1) << i;
         }
+
         u16 high = rng.nextUShort() & 7;
         low |= rng.nextUShort() & 7;
         high |= (tid ^ sid ^ low) & 0xfff8;
@@ -300,11 +301,10 @@ QVector<WildState> WildSearcher4::searchChainedShiny(u8 hp, u8 atk, u8 def, u8 s
         state.setAbility(low & 1);
         state.setGender(low & 255, genderRatio);
         state.setNature(state.getPID() % 25);
-        state.setShiny(true);
+        state.setShiny(tsv, high ^ low, 8);
 
         if (filter.comparePID(state))
         {
-            rng.next();
             state.setSeed(rng.next());
             states.append(state);
 

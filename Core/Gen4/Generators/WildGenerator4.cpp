@@ -85,11 +85,9 @@ QVector<WildState> WildGenerator4::generateMethodJ(u32 seed) const
     for (u32 cnt = 0; cnt < maxAdvances; cnt++, rng.next())
     {
         WildState state(initialAdvances + cnt);
-
         PokeRNG go(rng.getSeed());
 
         u16 first = go.nextUShort(); // Encounter slot call, nibble call for fishing
-        state.setSeed(first);
 
         switch (encounter)
         {
@@ -225,6 +223,7 @@ QVector<WildState> WildGenerator4::generateMethodJ(u32 seed) const
 
         if (filter.compareState(state))
         {
+            state.setSeed(first);
             states.append(state);
         }
     }
@@ -279,11 +278,9 @@ QVector<WildState> WildGenerator4::generateMethodK(u32 seed) const
     for (u32 cnt = 0; cnt < maxAdvances; cnt++, rng.next())
     {
         WildState state(initialAdvances + cnt);
-
         PokeRNG go(rng.getSeed());
 
         u16 first = go.nextUShort(); // Encounter slot, nibble for fishing, blank or item for rock smash
-        state.setSeed(first);
 
         switch (encounter)
         {
@@ -436,6 +433,7 @@ QVector<WildState> WildGenerator4::generateMethodK(u32 seed) const
 
         if (filter.compareState(state))
         {
+            state.setSeed(first);
             states.append(state);
         }
     }
@@ -455,9 +453,9 @@ QVector<WildState> WildGenerator4::generateChainedShiny(u32 seed) const
         WildState state(initialAdvances + cnt);
 
         PokeRNG go(rng.getSeed());
-        u32 originSeed = go.next(); // TODO: is this necessary
+        u16 first = go.nextUShort();
 
-        u16 low = go.nextUShort() & 7;
+        u16 low = first & 7;
         u16 high = go.nextUShort() & 7;
 
         for (int i = 3; i < 16; i++)
@@ -473,14 +471,14 @@ QVector<WildState> WildGenerator4::generateChainedShiny(u32 seed) const
         state.setAbility(low & 1);
         state.setGender(low & 255, genderRatio);
         state.setNature(state.getPID() % 25);
-        state.setShiny(true);
+        state.setShiny(tsv, high ^ low, 8);
 
         state.setIVs(iv1, iv2);
         state.calculateHiddenPower();
 
         if (filter.compareState(state))
         {
-            state.setSeed(originSeed);
+            state.setSeed(first);
             states.append(state);
         }
     }

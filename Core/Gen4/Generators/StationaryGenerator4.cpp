@@ -116,16 +116,15 @@ QVector<State> StationaryGenerator4::generateMethodJ(u32 seed) const
     for (u32 cnt = 0; cnt < maxAdvances; cnt++, rng.next())
     {
         State state(initialAdvances + cnt);
-
         PokeRNG go(rng.getSeed());
-        state.setSeed(go.getSeed());
 
+        u16 first = go.nextUShort();
         u32 pid = 0;
         switch (lead)
         {
         case Lead::None:
             // Get hunt nature
-            state.setNature(go.nextUShort() / 0xa3e);
+            state.setNature(first / 0xa3e);
             if (!filter.compareNature(state))
             {
                 continue;
@@ -142,7 +141,7 @@ QVector<State> StationaryGenerator4::generateMethodJ(u32 seed) const
 
             break;
         case Lead::Synchronize:
-            if ((go.nextUShort() >> 15) == 0) // Successful synch
+            if ((first >> 15) == 0) // Successful synch
             {
                 state.setNature(synchNature);
             }
@@ -167,7 +166,7 @@ QVector<State> StationaryGenerator4::generateMethodJ(u32 seed) const
 
             break;
         default: // Default to cover all cute charm cases
-            if ((go.nextUShort() / 0x5556) != 0) // Successful cute charm
+            if ((first / 0x5556) != 0) // Successful cute charm
             {
                 // Get nature
                 state.setNature(go.nextUShort() / 0xa3e);
@@ -215,6 +214,7 @@ QVector<State> StationaryGenerator4::generateMethodJ(u32 seed) const
 
         if (filter.compareState(state))
         {
+            state.setSeed(first);
             states.append(state);
         }
     }
@@ -254,16 +254,15 @@ QVector<State> StationaryGenerator4::generateMethodK(u32 seed) const
     for (u32 cnt = 0; cnt < maxAdvances; cnt++, rng.next())
     {
         State state(initialAdvances + cnt);
-
         PokeRNG go(rng.getSeed());
-        state.setSeed(go.getSeed());
 
+        u16 first = go.nextUShort();
         u32 pid = 0;
         switch (lead)
         {
         case Lead::None:
             // Get hunt nature
-            state.setNature(go.nextUShort() % 25);
+            state.setNature(first % 25);
 
             if (!filter.compareNature(state))
             {
@@ -281,7 +280,7 @@ QVector<State> StationaryGenerator4::generateMethodK(u32 seed) const
 
             break;
         case Lead::Synchronize:
-            if ((go.nextUShort() & 1) == 0) // Successful synch
+            if ((first & 1) == 0) // Successful synch
             {
                 state.setNature(synchNature);
             }
@@ -306,7 +305,7 @@ QVector<State> StationaryGenerator4::generateMethodK(u32 seed) const
 
             break;
         default: // Default to cover all cute charm cases
-            if ((go.nextUShort() % 3) != 0) // Successfull cute charm
+            if ((first % 3) != 0) // Successfull cute charm
             {
                 // Get hunt nature
                 state.setNature(go.nextUShort() % 25);
@@ -354,6 +353,7 @@ QVector<State> StationaryGenerator4::generateMethodK(u32 seed) const
 
         if (filter.compareState(state))
         {
+            state.setSeed(first);
             states.append(state);
         }
     }
