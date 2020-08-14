@@ -24,12 +24,11 @@
 #include <Core/Util/Utilities.hpp>
 #include <QtConcurrent>
 
-EventSearcher5::EventSearcher5(const EventGenerator5 &generator, const Profile5 &profile) :
-    generator(generator), profile(profile), searching(false), progress(0)
+EventSearcher5::EventSearcher5(const Profile5 &profile) : profile(profile), searching(false), progress(0)
 {
 }
 
-void EventSearcher5::startSearch(int threads, QDate start, const QDate &end)
+void EventSearcher5::startSearch(const EventGenerator5 &generator, int threads, QDate start, const QDate &end)
 {
     searching = true;
     QThreadPool pool;
@@ -48,12 +47,12 @@ void EventSearcher5::startSearch(int threads, QDate start, const QDate &end)
     {
         if (i == threads - 1)
         {
-            threadContainer.append(QtConcurrent::run(&pool, [=] { search(start, end); }));
+            threadContainer.append(QtConcurrent::run(&pool, [=] { search(generator, start, end); }));
         }
         else
         {
             QDate mid = start.addDays(daysSplit - 1);
-            threadContainer.append(QtConcurrent::run(&pool, [=] { search(start, mid); }));
+            threadContainer.append(QtConcurrent::run(&pool, [=] { search(generator, start, mid); }));
         }
         start = start.addDays(daysSplit);
     }
@@ -84,7 +83,7 @@ int EventSearcher5::getProgress() const
     return progress;
 }
 
-void EventSearcher5::search(const QDate &start, const QDate &end)
+void EventSearcher5::search(EventGenerator5 generator, const QDate &start, const QDate &end)
 {
     bool flag = profile.getVersion() & Game::BW;
 

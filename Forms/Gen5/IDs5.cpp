@@ -150,7 +150,7 @@ void IDs5::search()
     IDFilter filter(tid, sid, {});
     IDGenerator5 generator(0, ui->textBoxMaxAdvances->getUInt(), filter);
 
-    auto *searcher = new IDSearcher5(generator, currentProfile, pid, usePID, ui->checkBoxExistingSave->isChecked());
+    auto *searcher = new IDSearcher5(currentProfile, pid, usePID, ui->checkBoxExistingSave->isChecked());
 
     int maxProgress = Keypresses::getKeyPresses({ false, true, false, false }, currentProfile.getSkipLR()).size();
     maxProgress *= 86400 * (start.daysTo(end) + 1);
@@ -159,7 +159,7 @@ void IDs5::search()
     QSettings settings;
     int threads = settings.value("settings/threads", QThread::idealThreadCount()).toInt();
 
-    auto *thread = QThread::create([=] { searcher->startSearch(threads, start, end); });
+    auto *thread = QThread::create([=] { searcher->startSearch(generator, threads, start, end); });
     connect(thread, &QThread::finished, thread, &QThread::deleteLater);
     connect(ui->pushButtonCancel, &QPushButton::clicked, [searcher] { searcher->cancelSearch(); });
 

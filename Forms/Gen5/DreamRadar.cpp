@@ -261,7 +261,7 @@ void DreamRadar::search()
     DreamRadarGenerator generator(initialAdvances, maxAdvances, tid, sid, genderRatio, Method::DreamRadar, filter, radarSlots);
     generator.setOffset(0);
 
-    DreamRadarSearcher *searcher = new DreamRadarSearcher(generator, currentProfile);
+    DreamRadarSearcher *searcher = new DreamRadarSearcher(currentProfile);
 
     QDate start = ui->dateEditSearcherStartDate->date();
     QDate end = ui->dateEditSearcherEndDate->date();
@@ -274,7 +274,7 @@ void DreamRadar::search()
     QSettings settings;
     int threads = settings.value("settings/threads", QThread::idealThreadCount()).toInt();
 
-    auto *thread = QThread::create([=] { searcher->startSearch(threads, start, end); });
+    auto *thread = QThread::create([=] { searcher->startSearch(generator, threads, start, end); });
     connect(thread, &QThread::finished, thread, &QThread::deleteLater);
     connect(ui->pushButtonCancel, &QPushButton::clicked, [searcher] { searcher->cancelSearch(); });
 

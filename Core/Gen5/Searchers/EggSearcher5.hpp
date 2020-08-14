@@ -31,14 +31,13 @@ class EggSearcher5
 {
 public:
     EggSearcher5() = default;
-    explicit EggSearcher5(const EggGenerator5 &generator, const Profile5 &profile);
-    void startSearch(int threads, QDate start, const QDate &end);
+    explicit EggSearcher5(const Profile5 &profile);
+    void startSearch(const EggGenerator5 &generator, int threads, QDate start, const QDate &end);
     void cancelSearch();
     QVector<SearcherState5<EggState>> getResults();
     int getProgress() const;
 
 private:
-    EggGenerator5 generator;
     Profile5 profile;
 
     bool searching;
@@ -47,7 +46,7 @@ private:
     std::mutex resultMutex;
     std::mutex progressMutex;
 
-    void search(const QDate &start, const QDate &end);
+    void search(EggGenerator5 generator, const QDate &start, const QDate &end);
 };
 
 #endif // EGGSEARCHER5_HPP

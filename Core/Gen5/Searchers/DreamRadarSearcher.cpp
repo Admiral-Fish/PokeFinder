@@ -23,12 +23,11 @@
 #include <Core/Util/Utilities.hpp>
 #include <QtConcurrent>
 
-DreamRadarSearcher::DreamRadarSearcher(const DreamRadarGenerator &generator, const Profile5 &profile) :
-    generator(generator), profile(profile), searching(false), progress(0)
+DreamRadarSearcher::DreamRadarSearcher(const Profile5 &profile) : profile(profile), searching(false), progress(0)
 {
 }
 
-void DreamRadarSearcher::startSearch(int threads, QDate start, const QDate &end)
+void DreamRadarSearcher::startSearch(const DreamRadarGenerator &generator, int threads, QDate start, const QDate &end)
 {
     searching = true;
     QThreadPool pool;
@@ -47,12 +46,12 @@ void DreamRadarSearcher::startSearch(int threads, QDate start, const QDate &end)
     {
         if (i == threads - 1)
         {
-            threadContainer.append(QtConcurrent::run(&pool, [=] { search(start, end); }));
+            threadContainer.append(QtConcurrent::run(&pool, [=] { search(generator, start, end); }));
         }
         else
         {
             QDate mid = start.addDays(daysSplit - 1);
-            threadContainer.append(QtConcurrent::run(&pool, [=] { search(start, mid); }));
+            threadContainer.append(QtConcurrent::run(&pool, [=] { search(generator, start, mid); }));
         }
         start = start.addDays(daysSplit);
     }
@@ -83,7 +82,7 @@ int DreamRadarSearcher::getProgress() const
     return progress;
 }
 
-void DreamRadarSearcher::search(const QDate &start, const QDate &end)
+void DreamRadarSearcher::search(DreamRadarGenerator generator, const QDate &start, const QDate &end)
 {
     SHA1 sha(profile);
     auto buttons = Keypresses::getKeyPresses(profile.getKeypresses(), profile.getSkipLR());

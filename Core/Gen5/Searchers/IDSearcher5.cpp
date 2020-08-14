@@ -25,12 +25,17 @@
 #include <Core/Util/Utilities.hpp>
 #include <QtConcurrent>
 
-IDSearcher5::IDSearcher5(const IDGenerator5 &idGenerator, const Profile5 &profile, u32 pid, bool checkPID, bool save) :
-    idGenerator(idGenerator), profile(profile), pid(pid), checkPID(checkPID), save(save), searching(false), progress(0)
+IDSearcher5::IDSearcher5(const Profile5 &profile, u32 pid, bool checkPID, bool save) :
+    profile(profile),
+    pid(pid),
+    checkPID(checkPID),
+    save(save),
+    searching(false),
+    progress(0)
 {
 }
 
-void IDSearcher5::startSearch(int threads, QDate start, const QDate &end)
+void IDSearcher5::startSearch(const IDGenerator5 &generator, int threads, QDate start, const QDate &end)
 {
     searching = true;
     QThreadPool pool;
@@ -49,12 +54,12 @@ void IDSearcher5::startSearch(int threads, QDate start, const QDate &end)
     {
         if (i == threads - 1)
         {
-            threadContainer.append(QtConcurrent::run(&pool, [=] { search(start, end); }));
+            threadContainer.append(QtConcurrent::run(&pool, [=] { search(generator, start, end); }));
         }
         else
         {
             QDate mid = start.addDays(daysSplit - 1);
-            threadContainer.append(QtConcurrent::run(&pool, [=] { search(start, mid); }));
+            threadContainer.append(QtConcurrent::run(&pool, [=] { search(generator, start, mid); }));
         }
         start = start.addDays(daysSplit);
     }
@@ -85,7 +90,7 @@ int IDSearcher5::getProgress() const
     return progress;
 }
 
-void IDSearcher5::search(const QDate &start, const QDate &end)
+void IDSearcher5::search(IDGenerator5 generator, const QDate &start, const QDate &end)
 {
     bool flag = profile.getVersion() & Game::BW;
     int offset = flag ? 2 : save ? 4 : 7;
@@ -120,10 +125,10 @@ void IDSearcher5::search(const QDate &start, const QDate &end)
                         sha.setTime(hour, minute, second, profile.getDSType());
                         u64 seed = sha.hashSeed();
 
-                        idGenerator.setInitialAdvances(offset
-                                                       + (flag ? Utilities::initialAdvancesBW(seed, save ? 2 : 3)
-                                                               : Utilities::initialAdvancesBW2ID(seed, save ? 2 : 3)));
-                        auto states = idGenerator.generate(seed, pid, checkPID);
+                        generator.setInitialAdvances(offset
+                                                     + (flag ? Utilities::initialAdvancesBW(seed, save ? 2 : 3)
+                                                             : Utilities::initialAdvancesBW2ID(seed, save ? 2 : 3)));
+                        auto states = generator.generate(seed, pid, checkPID);
 
                         if (!states.isEmpty())
                         {

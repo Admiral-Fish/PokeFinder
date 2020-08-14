@@ -225,7 +225,7 @@ void Event5::search()
     EventGenerator5 generator(0, maxAdvances, tid, sid, genderRatio, Method::Method5Event, filter, getSearcherParameters());
     generator.setOffset(0);
 
-    EventSearcher5 *searcher = new EventSearcher5(generator, currentProfile);
+    EventSearcher5 *searcher = new EventSearcher5(currentProfile);
 
     QDate start = ui->dateEditSearcherStartDate->date();
     QDate end = ui->dateEditSearcherEndDate->date();
@@ -238,7 +238,7 @@ void Event5::search()
     QSettings settings;
     int threads = settings.value("settings/threads", QThread::idealThreadCount()).toInt();
 
-    auto *thread = QThread::create([=] { searcher->startSearch(threads, start, end); });
+    auto *thread = QThread::create([=] { searcher->startSearch(generator, threads, start, end); });
     connect(thread, &QThread::finished, thread, &QThread::deleteLater);
     connect(ui->pushButtonCancel, &QPushButton::clicked, [searcher] { searcher->cancelSearch(); });
 

@@ -24,12 +24,11 @@
 #include <Core/Util/Utilities.hpp>
 #include <QtConcurrent>
 
-EggSearcher5::EggSearcher5(const EggGenerator5 &generator, const Profile5 &profile) :
-    generator(generator), profile(profile), searching(false), progress(0)
+EggSearcher5::EggSearcher5(const Profile5 &profile) : profile(profile), searching(false), progress(0)
 {
 }
 
-void EggSearcher5::startSearch(int threads, QDate start, const QDate &end)
+void EggSearcher5::startSearch(const EggGenerator5 &generator, int threads, QDate start, const QDate &end)
 {
     searching = true;
     QThreadPool pool;
@@ -48,12 +47,12 @@ void EggSearcher5::startSearch(int threads, QDate start, const QDate &end)
     {
         if (i == threads - 1)
         {
-            threadContainer.append(QtConcurrent::run(&pool, [=] { search(start, end); }));
+            threadContainer.append(QtConcurrent::run(&pool, [=] { search(generator, start, end); }));
         }
         else
         {
             QDate mid = start.addDays(daysSplit - 1);
-            threadContainer.append(QtConcurrent::run(&pool, [=] { search(start, mid); }));
+            threadContainer.append(QtConcurrent::run(&pool, [=] { search(generator, start, mid); }));
         }
         start = start.addDays(daysSplit);
     }
@@ -84,7 +83,7 @@ int EggSearcher5::getProgress() const
     return progress;
 }
 
-void EggSearcher5::search(const QDate &start, const QDate &end)
+void EggSearcher5::search(EggGenerator5 generator, const QDate &start, const QDate &end)
 {
     bool flag = profile.getVersion() & Game::BW;
 

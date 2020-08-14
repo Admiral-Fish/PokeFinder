@@ -208,7 +208,7 @@ void Eggs5::search()
                             currentProfile.getShinyCharm());
     generator.setOffset(0);
 
-    EggSearcher5 *searcher = new EggSearcher5(generator, currentProfile);
+    EggSearcher5 *searcher = new EggSearcher5(currentProfile);
 
     QDate start = ui->dateEditSearcherStartDate->date();
     QDate end = ui->dateEditSearcherEndDate->date();
@@ -221,7 +221,7 @@ void Eggs5::search()
     QSettings settings;
     int threads = settings.value("settings/threads", QThread::idealThreadCount()).toInt();
 
-    auto *thread = QThread::create([=] { searcher->startSearch(threads, start, end); });
+    auto *thread = QThread::create([=] { searcher->startSearch(generator, threads, start, end); });
     connect(thread, &QThread::finished, thread, &QThread::deleteLater);
     connect(ui->pushButtonCancel, &QPushButton::clicked, [searcher] { searcher->cancelSearch(); });
 

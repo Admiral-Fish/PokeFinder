@@ -30,14 +30,13 @@ class IDSearcher5
 {
 public:
     IDSearcher5() = default;
-    explicit IDSearcher5(const IDGenerator5 &idGenerator, const Profile5 &profile, u32 pid, bool checkPID, bool save);
-    void startSearch(int threads, QDate start, const QDate &end);
+    explicit IDSearcher5(const Profile5 &profile, u32 pid, bool checkPID, bool save);
+    void startSearch(const IDGenerator5 &generator, int threads, QDate start, const QDate &end);
     void cancelSearch();
     QVector<IDState5> getResults();
     int getProgress() const;
 
 private:
-    IDGenerator5 idGenerator;
     Profile5 profile;
     u32 pid;
     bool checkPID;
@@ -49,7 +48,7 @@ private:
     std::mutex resultMutex;
     std::mutex progressMutex;
 
-    void search(const QDate &start, const QDate &end);
+    void search(IDGenerator5 generator, const QDate &start, const QDate &end);
 };
 
 #endif // IDSEARCHER5_HPP

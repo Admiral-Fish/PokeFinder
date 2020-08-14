@@ -38,6 +38,7 @@ public:
     int getProgress() const;
 
 private:
+    // TODO: pass these to startSearch
     StationaryGenerator5 ivGenerator;
     StationaryGenerator5 pidGenerator;
     Profile5 profile;
