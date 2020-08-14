@@ -18,6 +18,7 @@
  */
 
 #include "PokeSpotModel.hpp"
+#include <Core/Gen3/States/GameCubeState.hpp>
 #include <Core/Util/Translator.hpp>
 
 PokeSpotModel::PokeSpotModel(QObject *parent) : TableModel<GameCubeState>(parent)

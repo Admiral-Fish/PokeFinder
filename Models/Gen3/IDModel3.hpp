@@ -20,8 +20,9 @@
 #ifndef IDMODEL3_HPP
 #define IDMODEL3_HPP
 
-#include <Core/Gen3/States/IDState3.hpp>
 #include <Models/TableModel.hpp>
+
+class IDState3;
 
 class IDModel3 : public TableModel<IDState3>
 {

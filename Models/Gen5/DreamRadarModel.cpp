@@ -18,6 +18,8 @@
  */
 
 #include "DreamRadarModel.hpp"
+#include <Core/Gen5/States/SearcherState5.hpp>
+#include <Core/Parents/States/State.hpp>
 #include <Core/Util/Translator.hpp>
 
 DreamRadarGeneratorModel5::DreamRadarGeneratorModel5(QObject *parent) : TableModel<State>(parent)

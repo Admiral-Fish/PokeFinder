@@ -20,9 +20,11 @@
 #ifndef GAMECUBEMODEL_HPP
 #define GAMECUBEMODEL_HPP
 
-#include <Core/Enum/Method.hpp>
-#include <Core/Gen3/States/GameCubeState.hpp>
+#include <Core/Util/Global.hpp>
 #include <Models/TableModel.hpp>
+
+class GameCubeState;
+enum Method : u8;
 
 class GameCubeGeneratorModel : public TableModel<GameCubeState>
 {

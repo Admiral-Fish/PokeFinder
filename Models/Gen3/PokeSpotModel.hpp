@@ -20,8 +20,9 @@
 #ifndef POKESPOTMODEL_HPP
 #define POKESPOTMODEL_HPP
 
-#include <Core/Gen3/States/GameCubeState.hpp>
 #include <Models/TableModel.hpp>
+
+class GameCubeState;
 
 class PokeSpotModel : public TableModel<GameCubeState>
 {

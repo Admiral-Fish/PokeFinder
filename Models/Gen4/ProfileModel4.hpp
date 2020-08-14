@@ -20,8 +20,9 @@
 #ifndef PROFILE4MODEL_HPP
 #define PROFILE4MODEL_HPP
 
-#include <Core/Gen4/Profile4.hpp>
 #include <Models/TableModel.hpp>
+
+class Profile4;
 
 class ProfileModel4 : public TableModel<Profile4>
 {

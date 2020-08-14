@@ -21,7 +21,6 @@
 #define EVENTSTATE5_HPP
 
 #include <Core/Gen5/States/State5.hpp>
-#include <Core/Parents/States/State.hpp>
 
 template <typename StateType>
 class SearcherState5 : public State5

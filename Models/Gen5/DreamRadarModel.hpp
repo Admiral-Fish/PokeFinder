@@ -20,9 +20,11 @@
 #ifndef DREAMRADARMODEL_HPP
 #define DREAMRADARMODEL_HPP
 
-#include <Core/Gen5/States/SearcherState5.hpp>
-#include <Core/Parents/States/State.hpp>
 #include <Models/TableModel.hpp>
+
+template <typename Type>
+class SearcherState5;
+class State;
 
 class DreamRadarGeneratorModel5 : public TableModel<State>
 {

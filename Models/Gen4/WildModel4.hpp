@@ -20,9 +20,10 @@
 #ifndef WILD4MODEL_HPP
 #define WILD4MODEL_HPP
 
-#include <Core/Parents/States/WildState.hpp>
+#include <Core/Util/Global.hpp>
 #include <Models/TableModel.hpp>
 
+class WildState;
 enum Method : u8;
 
 class WildGeneratorModel4 : public TableModel<WildState>

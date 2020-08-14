@@ -19,6 +19,7 @@
 
 #include "PIDIVModel.hpp"
 #include <Core/Enum/Method.hpp>
+#include <Core/Gen3/States/PIDIVState.hpp>
 
 PIDIVModel::PIDIVModel(QObject *parent) : TableModel<PIDIVState>(parent)
 {

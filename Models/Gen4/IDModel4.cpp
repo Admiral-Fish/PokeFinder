@@ -18,6 +18,7 @@
  */
 
 #include "IDModel4.hpp"
+#include <Core/Gen4/States/IDState4.hpp>
 
 IDModel4::IDModel4(QObject *parent, bool flag) : TableModel<IDState4>(parent), showSeconds(flag)
 {

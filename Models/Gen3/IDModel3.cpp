@@ -18,6 +18,7 @@
  */
 
 #include "IDModel3.hpp"
+#include <Core/Gen3/States/IDState3.hpp>
 
 IDModel3::IDModel3(QObject *parent) : TableModel<IDState3>(parent)
 {

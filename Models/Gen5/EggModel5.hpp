@@ -20,9 +20,11 @@
 #ifndef EGGMODEL5_HPP
 #define EGGMODEL5_HPP
 
-#include <Core/Gen5/States/SearcherState5.hpp>
-#include <Core/Parents/States/EggState.hpp>
 #include <Models/TableModel.hpp>
+
+template <typename Type>
+class SearcherState5;
+class EggState;
 
 class EggGeneratorModel5 : public TableModel<EggState>
 {

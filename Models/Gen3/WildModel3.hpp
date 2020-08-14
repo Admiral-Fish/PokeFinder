@@ -20,8 +20,9 @@
 #ifndef WILD3MODEL_HPP
 #define WILD3MODEL_HPP
 
-#include <Core/Parents/States/WildState.hpp>
 #include <Models/TableModel.hpp>
+
+class WildState;
 
 class WildGeneratorModel3 : public TableModel<WildState>
 {

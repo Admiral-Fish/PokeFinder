@@ -18,6 +18,8 @@
  */
 
 #include "GameCubeModel.hpp"
+#include <Core/Enum/Method.hpp>
+#include <Core/Gen3/States/GameCubeState.hpp>
 #include <Core/Util/Translator.hpp>
 
 GameCubeGeneratorModel::GameCubeGeneratorModel(QObject *parent) : TableModel<GameCubeState>(parent)

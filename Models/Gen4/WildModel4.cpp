@@ -20,6 +20,7 @@
 #include "WildModel4.hpp"
 #include <Core/Enum/Lead.hpp>
 #include <Core/Enum/Method.hpp>
+#include <Core/Parents/States/WildState.hpp>
 #include <Core/Util/Translator.hpp>
 
 WildGeneratorModel4::WildGeneratorModel4(QObject *parent, Method method) : TableModel<WildState>(parent), method(method)

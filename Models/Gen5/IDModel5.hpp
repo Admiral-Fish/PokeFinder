@@ -20,8 +20,9 @@
 #ifndef IDMODEL5_HPP
 #define IDMODEL5_HPP
 
-#include <Core/Gen5/States/IDState5.hpp>
 #include <Models/TableModel.hpp>
+
+class IDState5;
 
 class IDModel5 : public TableModel<IDState5>
 {

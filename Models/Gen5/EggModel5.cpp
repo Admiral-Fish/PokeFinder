@@ -18,6 +18,8 @@
  */
 
 #include "EggModel5.hpp"
+#include <Core/Gen5/States/SearcherState5.hpp>
+#include <Core/Parents/States/EggState.hpp>
 #include <Core/Util/Translator.hpp>
 
 EggGeneratorModel5::EggGeneratorModel5(QObject *parent) : TableModel<EggState>(parent)

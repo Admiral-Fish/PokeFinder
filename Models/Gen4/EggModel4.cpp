@@ -19,6 +19,7 @@
 
 #include "EggModel4.hpp"
 #include <Core/Enum/Method.hpp>
+#include <Core/Gen4/States/EggState4.hpp>
 #include <Core/Util/Translator.hpp>
 
 EggGeneratorModel4::EggGeneratorModel4(QObject *parent, Method method) :

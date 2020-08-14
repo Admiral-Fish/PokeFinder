@@ -21,8 +21,9 @@
 #define SEEDTOTIME4MODEL_HPP
 
 #include <Core/Enum/Game.hpp>
-#include <Core/Util/DateTime.hpp>
 #include <Models/TableModel.hpp>
+
+class DateTime;
 
 class SeedtoTimeModel4 : public TableModel<DateTime>
 {
