@@ -20,10 +20,9 @@
 #ifndef EGG4MODEL_HPP
 #define EGG4MODEL_HPP
 
-#include <Core/Util/Global.hpp>
+#include <Core/Gen4/States/EggState4.hpp>
 #include <Models/TableModel.hpp>
 
-class EggState4;
 enum Method : u8;
 
 class EggGeneratorModel4 : public TableModel<EggState4>

@@ -20,9 +20,8 @@
 #ifndef PROFILE5MODEL_HPP
 #define PROFILE5MODEL_HPP
 
+#include <Core/Gen5/Profile5.hpp>
 #include <Models/TableModel.hpp>
-
-class Profile5;
 
 class ProfileModel5 : public TableModel<Profile5>
 {

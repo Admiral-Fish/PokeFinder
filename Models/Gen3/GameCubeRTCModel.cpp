@@ -18,7 +18,6 @@
  */
 
 #include "GameCubeRTCModel.hpp"
-#include <Core/Gen3/States/GameCubeRTCState.hpp>
 
 GameCubeRTCModel::GameCubeRTCModel(QObject *parent) : TableModel<GameCubeRTCState>(parent)
 {

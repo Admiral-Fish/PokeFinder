@@ -18,7 +18,6 @@
  */
 
 #include "SeedtoTimeModel4.hpp"
-#include <Core/Util/DateTime.hpp>
 #include <Core/Util/Utilities.hpp>
 
 SeedtoTimeModel4::SeedtoTimeModel4(QObject *parent, bool flag, Game version) : TableModel<DateTime>(parent)

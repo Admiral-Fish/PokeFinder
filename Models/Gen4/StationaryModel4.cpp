@@ -20,7 +20,6 @@
 #include "StationaryModel4.hpp"
 #include <Core/Enum/Lead.hpp>
 #include <Core/Enum/Method.hpp>
-#include <Core/Parents/States/StationaryState.hpp>
 #include <Core/Util/Translator.hpp>
 
 StationaryGeneratorModel4::StationaryGeneratorModel4(QObject *parent, Method method) : TableModel<State>(parent), method(method)

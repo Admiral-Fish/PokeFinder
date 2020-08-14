@@ -19,7 +19,6 @@
 
 #include "ProfileModel3.hpp"
 #include <Core/Enum/Game.hpp>
-#include <Core/Gen3/Profile3.hpp>
 
 ProfileModel3::ProfileModel3(QObject *parent) : TableModel<Profile3>(parent)
 {

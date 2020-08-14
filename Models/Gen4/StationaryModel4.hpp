@@ -20,11 +20,10 @@
 #ifndef STATIONARY4MODEL_HPP
 #define STATIONARY4MODEL_HPP
 
-#include <Core/Util/Global.hpp>
+#include <Core/Parents/States/State.hpp>
+#include <Core/Parents/States/StationaryState.hpp>
 #include <Models/TableModel.hpp>
 
-class State;
-class StationaryState;
 enum Method : u8;
 
 class StationaryGeneratorModel4 : public TableModel<State>

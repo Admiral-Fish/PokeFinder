@@ -20,9 +20,8 @@
 #ifndef PIDIVMODEL_HPP
 #define PIDIVMODEL_HPP
 
+#include <Core/Gen3/States/PIDIVState.hpp>
 #include <Models/TableModel.hpp>
-
-class PIDIVState;
 
 class PIDIVModel : public TableModel<PIDIVState>
 {

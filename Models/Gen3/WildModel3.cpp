@@ -19,7 +19,6 @@
 
 #include "WildModel3.hpp"
 #include <Core/Enum/Lead.hpp>
-#include <Core/Parents/States/WildState.hpp>
 #include <Core/Util/Translator.hpp>
 
 WildGeneratorModel3::WildGeneratorModel3(QObject *parent) : TableModel<WildState>(parent)

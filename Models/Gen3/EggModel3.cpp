@@ -19,7 +19,6 @@
 
 #include "EggModel3.hpp"
 #include <Core/Enum/Method.hpp>
-#include <Core/Gen3/States/EggState3.hpp>
 #include <Core/Util/Translator.hpp>
 
 EggModel3::EggModel3(QObject *parent, Method method) : TableModel<EggState3>(parent)

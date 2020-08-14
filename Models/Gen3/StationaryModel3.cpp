@@ -18,7 +18,6 @@
  */
 
 #include "StationaryModel3.hpp"
-#include <Core/Parents/States/State.hpp>
 #include <Core/Util/Translator.hpp>
 
 StationaryGeneratorModel3::StationaryGeneratorModel3(QObject *parent) : TableModel<State>(parent)

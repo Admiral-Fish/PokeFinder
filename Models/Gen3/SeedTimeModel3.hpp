@@ -20,9 +20,8 @@
 #ifndef SEEDTIMEMODEL3_HPP
 #define SEEDTIMEMODEL3_HPP
 
+#include <Core/Gen3/States/SeedTimeState3.hpp>
 #include <Models/TableModel.hpp>
-
-class SeedTimeState3;
 
 class SeedTimeModel3 : public TableModel<SeedTimeState3>
 {

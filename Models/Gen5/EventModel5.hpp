@@ -20,11 +20,9 @@
 #ifndef EVENTMODEL5_HPP
 #define EVENTMODEL5_HPP
 
+#include <Core/Gen5/States/SearcherState5.hpp>
+#include <Core/Parents/States/State.hpp>
 #include <Models/TableModel.hpp>
-
-template <typename Type>
-class SearcherState5;
-class State;
 
 class EventGeneratorModel5 : public TableModel<State>
 {

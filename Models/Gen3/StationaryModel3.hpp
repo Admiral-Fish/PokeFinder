@@ -20,9 +20,8 @@
 #ifndef STATIONARY3MODEL_HPP
 #define STATIONARY3MODEL_HPP
 
+#include <Core/Parents/States/State.hpp>
 #include <Models/TableModel.hpp>
-
-class State;
 
 class StationaryGeneratorModel3 : public TableModel<State>
 {

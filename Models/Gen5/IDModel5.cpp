@@ -18,7 +18,6 @@
  */
 
 #include "IDModel5.hpp"
-#include <Core/Gen5/States/IDState5.hpp>
 #include <Core/Util/Translator.hpp>
 
 IDModel5::IDModel5(QObject *parent) : TableModel<IDState5>(parent)

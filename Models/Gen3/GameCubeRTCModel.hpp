@@ -20,9 +20,8 @@
 #ifndef GAMECUBERTCMODEL_HPP
 #define GAMECUBERTCMODEL_HPP
 
+#include <Core/Gen3/States/GameCubeRTCState.hpp>
 #include <Models/TableModel.hpp>
-
-class GameCubeRTCState;
 
 class GameCubeRTCModel : public TableModel<GameCubeRTCState>
 {

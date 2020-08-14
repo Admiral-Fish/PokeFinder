@@ -18,7 +18,6 @@
  */
 
 #include "ProfileModel5.hpp"
-#include <Core/Gen5/Profile5.hpp>
 
 ProfileModel5::ProfileModel5(QObject *parent) : TableModel<Profile5>(parent)
 {

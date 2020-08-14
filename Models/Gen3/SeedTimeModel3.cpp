@@ -18,7 +18,6 @@
  */
 
 #include "SeedTimeModel3.hpp"
-#include <Core/Gen3/States/SeedTimeState3.hpp>
 
 SeedTimeModel3::SeedTimeModel3(QObject *parent) : TableModel<SeedTimeState3>(parent)
 {
