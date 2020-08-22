@@ -72,10 +72,11 @@ QVector<EggState> EggGenerator5::generateBW(u64 seed) const
     for (u32 cnt = 0; cnt < maxAdvances; cnt++, rng.next())
     {
         EggState state(cnt + initialAdvances);
-        // TODO: chatot
 
         BWRNG go(rng.getSeed());
-        go.advance(2);
+        state.setSeed(go.nextUInt(0x1fff)); // Chatot pitch
+
+        go.advance(1);
 
         // False: Nidoran-F / Volbeat
         // True: Nidoran-M / Illumise
@@ -220,8 +221,9 @@ QVector<EggState> EggGenerator5::generateBW2(u64 seed) const
         for (u32 cnt = 0; cnt < maxAdvances; cnt++, rng.next())
         {
             BWRNG go(rng.getSeed());
+            state.setSeed(go.nextUInt(0x1fff));
 
-            go.advance(2); // 2 blanks
+            go.advance(1);
 
             u32 pid = go.nextUInt();
             if (((pid >> 16) & 1) != state.getAbility())

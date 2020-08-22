@@ -31,6 +31,8 @@ namespace Utilities
     u32 calcGen4Seed(const QDateTime &dateTime, u32 delay);
     QString coinFlips(u32 seed);
     QString getCalls(u32 seed, const HGSSRoamer &info);
+    QString getChatot(u32 seed);
+    QString getChatot64(u32 seed);
     u32 initialAdvancesBW(u64 seed, u8 rounds = 5);
     u32 initialAdvancesBW2(u64 seed, bool memory);
     u32 initialAdvancesBW2ID(u64 seed, u8 rounds = 3);

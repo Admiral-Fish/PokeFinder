@@ -43,11 +43,12 @@ QVector<State> EventGenerator5::generate(u64 seed) const
 
     for (u32 cnt = 0; cnt < maxAdvances; cnt++, rng.next())
     {
-        // TODO: set seed for chatot pitch
         State state(initialAdvances + cnt);
 
         BWRNG go(rng.getSeed());
-        go.advance(wondercardAdvances); // Advances from loading wondercard
+        state.setSeed(go.nextUInt(0x1FFF)); // Chatot pitch
+
+        go.advance(wondercardAdvances - 1); // Advances from loading wondercard
 
         // IVs
         for (u8 i = 0; i < 6; i++)

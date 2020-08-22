@@ -79,6 +79,33 @@ namespace
 
         return count;
     }
+
+    QString getPitch(u8 result)
+    {
+        QString pitch;
+        if (result < 20)
+        {
+            pitch = "L (%1)";
+        }
+        else if (result < 40)
+        {
+            pitch = "ML (%1)";
+        }
+        else if (result < 60)
+        {
+            pitch = "M (%1)";
+        }
+        else if (result < 80)
+        {
+            pitch = "MH (%1)";
+        }
+        else
+        {
+            pitch = "H (%1)";
+        }
+
+        return pitch.arg(result);
+    }
 }
 
 namespace Utilities
@@ -152,6 +179,16 @@ namespace Utilities
             }
         }
         return calls;
+    }
+
+    QString getChatot(u32 seed)
+    {
+        return getPitch(((seed & 0x1fff) * 100) >> 13);
+    }
+
+    QString getChatot64(u32 seed)
+    {
+        return getPitch(seed / 82);
     }
 
     u32 initialAdvancesBW(u64 seed, u8 rounds)

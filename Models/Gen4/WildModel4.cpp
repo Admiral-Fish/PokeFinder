@@ -21,6 +21,7 @@
 #include <Core/Enum/Lead.hpp>
 #include <Core/Enum/Method.hpp>
 #include <Core/Util/Translator.hpp>
+#include <Core/Util/Utilities.hpp>
 
 WildGeneratorModel4::WildGeneratorModel4(QObject *parent, Method method) : TableModel<WildState>(parent), method(method)
 {
@@ -65,31 +66,7 @@ QVariant WildGeneratorModel4::data(const QModelIndex &index, int role) const
         }
         case 2:
         {
-            u8 val = ((state.getSeed() & 0x1fff) * 100) >> 13;
-            QString pitch;
-            if (val < 20)
-            {
-                pitch = tr("Low");
-            }
-            else if (val < 40)
-            {
-                pitch = tr("Mid-Low");
-            }
-            else if (val < 60)
-            {
-                pitch = tr("Mid");
-            }
-            else if (val < 80)
-            {
-                pitch = tr("Mid-High");
-            }
-            else
-            {
-                pitch = tr("High");
-            }
-
-            pitch += " (" + QString::number(val) + ")";
-            return pitch;
+            return Utilities::getChatot(state.getSeed());
         }
         case 3:
             return state.getEncounterSlot();

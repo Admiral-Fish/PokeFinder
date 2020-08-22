@@ -19,6 +19,7 @@
 
 #include "EventModel5.hpp"
 #include <Core/Util/Translator.hpp>
+#include <Core/Util/Utilities.hpp>
 
 EventGeneratorModel5::EventGeneratorModel5(QObject *parent) : TableModel<State>(parent)
 {
@@ -41,7 +42,7 @@ QVariant EventGeneratorModel5::data(const QModelIndex &index, int role) const
         case 0:
             return state.getAdvances();
         case 1:
-            return "TODO";
+            return Utilities::getChatot64(state.getSeed());
         case 2:
             return QString::number(state.getPID(), 16).toUpper().rightJustified(8, '0');
         case 3:
