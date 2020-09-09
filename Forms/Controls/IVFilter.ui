@@ -21,267 +21,292 @@
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
-    <widget class="Label" name="labelHP">
+    <widget class="QScrollArea" name="scrollArea">
      <property name="sizePolicy">
-      <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+      <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
        <horstretch>0</horstretch>
        <verstretch>0</verstretch>
       </sizepolicy>
      </property>
-     <property name="minimumSize">
-      <size>
-       <width>0</width>
-       <height>0</height>
-      </size>
+     <property name="widgetResizable">
+      <bool>true</bool>
      </property>
-     <property name="text">
-      <string>HP</string>
-     </property>
-    </widget>
-   </item>
-   <item row="0" column="1">
-    <widget class="QSpinBox" name="spinBoxHPMin">
-     <property name="maximum">
-      <number>31</number>
-     </property>
-    </widget>
-   </item>
-   <item row="0" column="2">
-    <widget class="QLabel" name="labelHPSeperator">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="text">
-      <string notr="true">~</string>
-     </property>
-    </widget>
-   </item>
-   <item row="0" column="3">
-    <widget class="QSpinBox" name="spinBoxHPMax">
-     <property name="maximum">
-      <number>31</number>
-     </property>
-     <property name="value">
-      <number>31</number>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="0">
-    <widget class="Label" name="labelAtk">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="text">
-      <string>Atk</string>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="1">
-    <widget class="QSpinBox" name="spinBoxAtkMin">
-     <property name="maximum">
-      <number>31</number>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="2">
-    <widget class="QLabel" name="labelAtkSeperator">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="text">
-      <string notr="true">~</string>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="3">
-    <widget class="QSpinBox" name="spinBoxAtkMax">
-     <property name="maximum">
-      <number>31</number>
-     </property>
-     <property name="value">
-      <number>31</number>
-     </property>
-    </widget>
-   </item>
-   <item row="2" column="0">
-    <widget class="Label" name="labelDef">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="text">
-      <string>Def</string>
-     </property>
-    </widget>
-   </item>
-   <item row="2" column="1">
-    <widget class="QSpinBox" name="spinBoxDefMin">
-     <property name="maximum">
-      <number>31</number>
-     </property>
-    </widget>
-   </item>
-   <item row="2" column="2">
-    <widget class="QLabel" name="labelDefSeperator">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="text">
-      <string notr="true">~</string>
-     </property>
-    </widget>
-   </item>
-   <item row="2" column="3">
-    <widget class="QSpinBox" name="spinBoxDefMax">
-     <property name="maximum">
-      <number>31</number>
-     </property>
-     <property name="value">
-      <number>31</number>
-     </property>
-    </widget>
-   </item>
-   <item row="3" column="0">
-    <widget class="Label" name="labelSpA">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="text">
-      <string>SpA</string>
-     </property>
-    </widget>
-   </item>
-   <item row="3" column="1">
-    <widget class="QSpinBox" name="spinBoxSpAMin">
-     <property name="maximum">
-      <number>31</number>
-     </property>
-    </widget>
-   </item>
-   <item row="3" column="2">
-    <widget class="QLabel" name="labelSpASeperator">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="text">
-      <string notr="true">~</string>
-     </property>
-    </widget>
-   </item>
-   <item row="3" column="3">
-    <widget class="QSpinBox" name="spinBoxSpAMax">
-     <property name="maximum">
-      <number>31</number>
-     </property>
-     <property name="value">
-      <number>31</number>
-     </property>
-    </widget>
-   </item>
-   <item row="4" column="0">
-    <widget class="Label" name="labelSpD">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="text">
-      <string>SpD</string>
-     </property>
-    </widget>
-   </item>
-   <item row="4" column="1">
-    <widget class="QSpinBox" name="spinBoxSpDMin">
-     <property name="maximum">
-      <number>31</number>
-     </property>
-    </widget>
-   </item>
-   <item row="4" column="2">
-    <widget class="QLabel" name="labelSpDSeperator">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="text">
-      <string notr="true">~</string>
-     </property>
-    </widget>
-   </item>
-   <item row="4" column="3">
-    <widget class="QSpinBox" name="spinBoxSpDMax">
-     <property name="maximum">
-      <number>31</number>
-     </property>
-     <property name="value">
-      <number>31</number>
-     </property>
-    </widget>
-   </item>
-   <item row="5" column="0">
-    <widget class="Label" name="labelSpe">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="text">
-      <string>Spe</string>
-     </property>
-    </widget>
-   </item>
-   <item row="5" column="1">
-    <widget class="QSpinBox" name="spinBoxSpeMin">
-     <property name="maximum">
-      <number>31</number>
-     </property>
-    </widget>
-   </item>
-   <item row="5" column="2">
-    <widget class="QLabel" name="labelSpeSeperator">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="text">
-      <string notr="true">~</string>
-     </property>
-    </widget>
-   </item>
-   <item row="5" column="3">
-    <widget class="QSpinBox" name="spinBoxSpeMax">
-     <property name="maximum">
-      <number>31</number>
-     </property>
-     <property name="value">
-      <number>31</number>
-     </property>
+     <widget class="QWidget" name="scrollAreaWidgetContents">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>141</width>
+        <height>186</height>
+       </rect>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_2">
+       <item row="0" column="0">
+        <widget class="Label" name="labelHP">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>HP</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QSpinBox" name="spinBoxHPMin">
+         <property name="maximum">
+          <number>31</number>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="2">
+        <widget class="QLabel" name="labelHPSeperator">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="text">
+          <string notr="true">~</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="3">
+        <widget class="QSpinBox" name="spinBoxHPMax">
+         <property name="maximum">
+          <number>31</number>
+         </property>
+         <property name="value">
+          <number>31</number>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="Label" name="labelAtk">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="text">
+          <string>Atk</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QSpinBox" name="spinBoxAtkMin">
+         <property name="maximum">
+          <number>31</number>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="2">
+        <widget class="QLabel" name="labelAtkSeperator">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="text">
+          <string notr="true">~</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="3">
+        <widget class="QSpinBox" name="spinBoxAtkMax">
+         <property name="maximum">
+          <number>31</number>
+         </property>
+         <property name="value">
+          <number>31</number>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="Label" name="labelDef">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="text">
+          <string>Def</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QSpinBox" name="spinBoxDefMin">
+         <property name="maximum">
+          <number>31</number>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="2">
+        <widget class="QLabel" name="labelDefSeperator">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="text">
+          <string notr="true">~</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="3">
+        <widget class="QSpinBox" name="spinBoxDefMax">
+         <property name="maximum">
+          <number>31</number>
+         </property>
+         <property name="value">
+          <number>31</number>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <widget class="Label" name="labelSpA">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="text">
+          <string>SpA</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="1">
+        <widget class="QSpinBox" name="spinBoxSpAMin">
+         <property name="maximum">
+          <number>31</number>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="2">
+        <widget class="QLabel" name="labelSpASeperator">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="text">
+          <string notr="true">~</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="3">
+        <widget class="QSpinBox" name="spinBoxSpAMax">
+         <property name="maximum">
+          <number>31</number>
+         </property>
+         <property name="value">
+          <number>31</number>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="0">
+        <widget class="Label" name="labelSpD">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="text">
+          <string>SpD</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="1">
+        <widget class="QSpinBox" name="spinBoxSpDMin">
+         <property name="maximum">
+          <number>31</number>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="2">
+        <widget class="QLabel" name="labelSpDSeperator">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="text">
+          <string notr="true">~</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="3">
+        <widget class="QSpinBox" name="spinBoxSpDMax">
+         <property name="maximum">
+          <number>31</number>
+         </property>
+         <property name="value">
+          <number>31</number>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="0">
+        <widget class="Label" name="labelSpe">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="text">
+          <string>Spe</string>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="1">
+        <widget class="QSpinBox" name="spinBoxSpeMin">
+         <property name="maximum">
+          <number>31</number>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="2">
+        <widget class="QLabel" name="labelSpeSeperator">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="text">
+          <string notr="true">~</string>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="3">
+        <widget class="QSpinBox" name="spinBoxSpeMax">
+         <property name="maximum">
+          <number>31</number>
+         </property>
+         <property name="value">
+          <number>31</number>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
     </widget>
    </item>
   </layout>
@@ -296,119 +321,8 @@
    </slots>
   </customwidget>
  </customwidgets>
- <tabstops>
-  <tabstop>spinBoxHPMin</tabstop>
-  <tabstop>spinBoxHPMax</tabstop>
-  <tabstop>spinBoxAtkMin</tabstop>
-  <tabstop>spinBoxAtkMax</tabstop>
-  <tabstop>spinBoxDefMin</tabstop>
-  <tabstop>spinBoxDefMax</tabstop>
-  <tabstop>spinBoxSpAMin</tabstop>
-  <tabstop>spinBoxSpAMax</tabstop>
-  <tabstop>spinBoxSpDMin</tabstop>
-  <tabstop>spinBoxSpDMax</tabstop>
-  <tabstop>spinBoxSpeMin</tabstop>
-  <tabstop>spinBoxSpeMax</tabstop>
- </tabstops>
  <resources/>
- <connections>
-  <connection>
-   <sender>labelSpe</sender>
-   <signal>pressed(int)</signal>
-   <receiver>IVFilter</receiver>
-   <slot>changeCompareSpe(int)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>27</x>
-     <y>155</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>24</x>
-     <y>170</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>labelSpD</sender>
-   <signal>pressed(int)</signal>
-   <receiver>IVFilter</receiver>
-   <slot>changeCompareSpD(int)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>10</x>
-     <y>129</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>93</x>
-     <y>171</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>labelSpA</sender>
-   <signal>pressed(int)</signal>
-   <receiver>IVFilter</receiver>
-   <slot>changeCompareSpA(int)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>14</x>
-     <y>101</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>100</x>
-     <y>92</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>labelDef</sender>
-   <signal>pressed(int)</signal>
-   <receiver>IVFilter</receiver>
-   <slot>changeCompareDef(int)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>22</x>
-     <y>75</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>153</x>
-     <y>65</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>labelAtk</sender>
-   <signal>pressed(int)</signal>
-   <receiver>IVFilter</receiver>
-   <slot>changeCompareAtk(int)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>23</x>
-     <y>48</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>367</x>
-     <y>54</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>labelHP</sender>
-   <signal>pressed(int)</signal>
-   <receiver>IVFilter</receiver>
-   <slot>changeCompareHP(int)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>15</x>
-     <y>18</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>316</x>
-     <y>34</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
  <slots>
   <slot>changeCompareHP(int)</slot>
   <slot>changeCompareAtk(int)</slot>
