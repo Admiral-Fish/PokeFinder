@@ -30,8 +30,7 @@ inline bool isShiny(u32 pid, u16 tsv)
 
 EggGenerator5::EggGenerator5(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, Method method,
                              const StateFilter &filter, const Daycare &daycare, bool shinyCharm) :
-    EggGenerator(initialAdvances, maxAdvances, tid, sid, genderRatio, method, filter),
-    daycare(daycare),
+    EggGenerator(initialAdvances, maxAdvances, tid, sid, genderRatio, method, filter, daycare),
     rolls((shinyCharm ? 2 : 0) + (daycare.getMasuada() ? 5 : 0)),
     everstone(daycare.getEverstoneCount(Game::BW)),
     poweritem(daycare.getPowerItemCount()),
@@ -61,9 +60,9 @@ QVector<EggState> EggGenerator5::generateBW(u64 seed) const
     mt.advance(7);
 
     u8 ivs[6];
-    for (u8 i = 0; i < 6; i++)
+    for (u8 &iv : ivs)
     {
-        ivs[i] = mt.nextUShort() >> 11;
+        iv = mt.nextUShort() >> 11;
     }
 
     BWRNG rng(seed);

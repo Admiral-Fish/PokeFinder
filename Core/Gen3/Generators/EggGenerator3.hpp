@@ -27,7 +27,8 @@ class EggGenerator3 : public EggGenerator
 {
 public:
     EggGenerator3() = default;
-    EggGenerator3(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter);
+    EggGenerator3(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter,
+                  const Daycare &daycare);
     QVector<EggState3> generate(u32 seed = 0, u32 seed2 = 0) const;
     void setInitialAdvancesPickup(u32 value);
     void setMaxAdvancesPickup(u32 value);
@@ -35,7 +36,6 @@ public:
     void setMinRedraw(u8 value);
     void setMaxRedraw(u8 value);
     void setCompatability(u8 value);
-    void setEverstone(bool value);
 
 private:
     u32 initialAdvancesPickup;
@@ -44,7 +44,6 @@ private:
     u8 minRedraw;
     u8 maxRedraw;
     u8 compatability;
-    bool everstone;
     u8 iv1, iv2, inh;
 
     QVector<EggState3> generateEmeraldPID() const;

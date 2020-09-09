@@ -24,8 +24,8 @@
 #include <Core/RNG/LCRNG.hpp>
 
 EggGenerator3::EggGenerator3(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, Method method,
-                             const StateFilter &filter) :
-    EggGenerator(initialAdvances, maxAdvances, tid, sid, genderRatio, method, filter)
+                             const StateFilter &filter, const Daycare &daycare) :
+    EggGenerator(initialAdvances, maxAdvances, tid, sid, genderRatio, method, filter, daycare)
 {
     switch (method)
     {
@@ -128,14 +128,36 @@ void EggGenerator3::setCompatability(u8 value)
     compatability = value;
 }
 
-void EggGenerator3::setEverstone(bool value)
-{
-    everstone = value;
-}
-
 QVector<EggState3> EggGenerator3::generateEmeraldPID() const
 {
     QVector<EggState3> states;
+
+    // Determine if female parent is holding everstone
+    bool everstone;
+    u8 parent;
+    for (u8 i = 0; i < 2; i++)
+    {
+        if (daycare.getParentGender(i) == 1)
+        {
+            if (daycare.getParentItem(i) == 1)
+            {
+                parent = i;
+                everstone = true;
+            }
+        }
+    }
+
+    for (u8 i = 0; i < 2; i++)
+    {
+        if (daycare.getParentGender(i) == 3)
+        {
+            if (daycare.getParentItem(i) == 1)
+            {
+                parent = i;
+                everstone = true;
+            }
+        }
+    }
 
     PokeRNG rng(0);
     rng.advance(initialAdvances);
@@ -178,13 +200,13 @@ QVector<EggState3> EggGenerator3::generateEmeraldPID() const
 
                         pid = go.nextUShort() | (trng.next() & 0xFFFF0000);
                         i++;
-                    } while (pid % 25 != everstoneNature);
+                    } while (pid % 25 != daycare.getParentNature(parent));
 
                     if (i == 19)
                     {
                         continue;
                     }
-                    state.setNature(everstoneNature);
+                    state.setNature(daycare.getParentNature(parent));
                 }
 
                 state.setPID(pid);
@@ -345,27 +367,27 @@ void EggGenerator3::setInheritance(EggState3 &state, const u16 *inh, const u16 *
         switch (stat)
         {
         case 0:
-            state.setIVs(0, parent == 0 ? parent1.at(0) : parent2.at(0));
+            state.setIVs(0, daycare.getParentIV(parent, 0));
             state.setInheritance(0, parent + 1);
             break;
         case 1:
-            state.setIVs(1, parent == 0 ? parent1.at(1) : parent2.at(1));
+            state.setIVs(1, daycare.getParentIV(parent, 1));
             state.setInheritance(1, parent + 1);
             break;
         case 2:
-            state.setIVs(2, parent == 0 ? parent1.at(2) : parent2.at(2));
+            state.setIVs(2, daycare.getParentIV(parent, 2));
             state.setInheritance(2, parent + 1);
             break;
         case 3:
-            state.setIVs(5, parent == 0 ? parent1.at(5) : parent2.at(5));
+            state.setIVs(5, daycare.getParentIV(parent, 5));
             state.setInheritance(5, parent + 1);
             break;
         case 4:
-            state.setIVs(3, parent == 0 ? parent1.at(3) : parent2.at(3));
+            state.setIVs(3, daycare.getParentIV(parent, 3));
             state.setInheritance(3, parent + 1);
             break;
         case 5:
-            state.setIVs(4, parent == 0 ? parent1.at(4) : parent2.at(4));
+            state.setIVs(4, daycare.getParentIV(parent, 4));
             state.setInheritance(4, parent + 1);
             break;
         }

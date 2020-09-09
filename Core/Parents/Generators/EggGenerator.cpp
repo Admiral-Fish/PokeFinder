@@ -19,19 +19,9 @@
 
 #include "EggGenerator.hpp"
 
-EggGenerator::EggGenerator(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, Method method,
-                           const StateFilter &filter) :
-    Generator(initialAdvances, maxAdvances, tid, sid, genderRatio, method, filter)
+EggGenerator::EggGenerator(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter,
+                           const Daycare &daycare) :
+    Generator(initialAdvances, maxAdvances, tid, sid, genderRatio, method, filter),
+    daycare(daycare)
 {
-}
-
-void EggGenerator::setParents(const QVector<u8> &parent1, const QVector<u8> &parent2)
-{
-    this->parent1 = parent1;
-    this->parent2 = parent2;
-}
-
-void EggGenerator::setEverstoneNature(u8 everstoneNature)
-{
-    this->everstoneNature = everstoneNature;
 }

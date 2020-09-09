@@ -19,6 +19,7 @@
 
 #include "Eggs3.hpp"
 #include "ui_Eggs3.h"
+#include <Core/Enum/Game.hpp>
 #include <Core/Enum/Method.hpp>
 #include <Core/Gen3/Generators/EggGenerator3.hpp>
 #include <Core/Gen3/ProfileLoader3.hpp>
@@ -27,6 +28,7 @@
 #include <Core/Util/Translator.hpp>
 #include <Forms/Gen3/Profile/ProfileManager3.hpp>
 #include <Models/Gen3/EggModel3.hpp>
+#include <QMessageBox>
 #include <QSettings>
 
 Eggs3::Eggs3(QWidget *parent) : QWidget(parent), ui(new Ui::Eggs3)
@@ -119,6 +121,10 @@ void Eggs3::setupModels()
     ui->filterRS->disableControls(Controls::EncounterSlots | Controls::UseDelay | Controls::DisableFilter);
     ui->filterFRLG->disableControls(Controls::EncounterSlots | Controls::UseDelay | Controls::DisableFilter);
 
+    ui->eggSettingsEmerald->setup(Game::Emerald);
+    ui->eggSettingsRS->setup(Game::RS);
+    ui->eggSettingsFRLG->setup(Game::FRLG);
+
     QAction *outputTXTEmerald = emeraldMenu->addAction(tr("Output Results to TXT"));
     QAction *outputCSVEmerald = emeraldMenu->addAction(tr("Output Results to CSV"));
     connect(outputTXTEmerald, &QAction::triggered, this, [=] { ui->tableViewEmerald->outputModel(); });
@@ -154,6 +160,13 @@ void Eggs3::setupModels()
 
 void Eggs3::emeraldGenerate()
 {
+    if (!ui->eggSettingsEmerald->compatibleParents())
+    {
+        QMessageBox box(QMessageBox::Warning, "Incompatible Parents", "Gender of selected parents are not compatible for breeding");
+        box.exec();
+        return;
+    }
+
     auto method = static_cast<Method>(ui->comboBoxEmeraldMethod->getCurrentInt());
     emerald->clearModel();
     emerald->setMethod(method);
@@ -168,20 +181,12 @@ void Eggs3::emeraldGenerate()
                        ui->filterEmerald->getMinIVs(), ui->filterEmerald->getMaxIVs(), ui->filterEmerald->getNatures(),
                        ui->filterEmerald->getHiddenPowers(), {});
 
-    EggGenerator3 generator(initialAdvances, maxAdvances, tid, sid, genderRatio, method, filter);
+    EggGenerator3 generator(initialAdvances, maxAdvances, tid, sid, genderRatio, method, filter,
+                            ui->eggSettingsEmerald->getDaycareSettings());
     generator.setMinRedraw(ui->textBoxMinRedraws->getUChar());
     generator.setMaxRedraw(ui->textBoxMaxRedraws->getUChar());
     generator.setCalibration(ui->textBoxCalibration->getUChar());
     generator.setCompatability(ui->comboBoxEmeraldCompatibility->getCurrentByte());
-    generator.setEverstone(ui->comboBoxEverstone->currentIndex() != 0);
-    if (ui->comboBoxEverstone->currentIndex() != 0)
-    {
-        generator.setEverstoneNature(static_cast<u8>(ui->comboBoxEverstone->currentIndex() - 1));
-    }
-    if (method != Method::EBredPID)
-    {
-        generator.setParents(ui->eggSettingsEmerald->getParent1(), ui->eggSettingsEmerald->getParent2());
-    }
 
     auto states = generator.generate();
     emerald->addItems(states);
@@ -189,6 +194,13 @@ void Eggs3::emeraldGenerate()
 
 void Eggs3::rsGenerate()
 {
+    if (!ui->eggSettingsRS->compatibleParents())
+    {
+        QMessageBox box(QMessageBox::Warning, "Incompatible Parents", "Gender of selected parents are not compatible for breeding");
+        box.exec();
+        return;
+    }
+
     rs->clearModel();
 
     u32 initialAdvancesHeld = ui->textBoxRSInitialAdvancesHeld->getUInt();
@@ -200,8 +212,8 @@ void Eggs3::rsGenerate()
     StateFilter filter(ui->filterRS->getGender(), ui->filterRS->getAbility(), ui->filterRS->getShiny(), false, ui->filterRS->getMinIVs(),
                        ui->filterRS->getMaxIVs(), ui->filterRS->getNatures(), ui->filterRS->getHiddenPowers(), {});
 
-    EggGenerator3 generator(initialAdvancesHeld, maxAdvancesHeld, tid, sid, genderRatio, method, filter);
-    generator.setParents(ui->eggSettingsRS->getParent1(), ui->eggSettingsRS->getParent2());
+    EggGenerator3 generator(initialAdvancesHeld, maxAdvancesHeld, tid, sid, genderRatio, method, filter,
+                            ui->eggSettingsRS->getDaycareSettings());
     generator.setCompatability(static_cast<u8>(ui->comboBoxRSCompatibility->currentData().toUInt()));
     generator.setInitialAdvancesPickup(ui->textBoxRSInitialAdvancesPickup->getUInt());
     generator.setMaxAdvancesPickup(ui->textBoxRSMaxAdvancesPickup->getUInt());
@@ -212,6 +224,13 @@ void Eggs3::rsGenerate()
 
 void Eggs3::frlgGenerate()
 {
+    if (!ui->eggSettingsFRLG->compatibleParents())
+    {
+        QMessageBox box(QMessageBox::Warning, "Incompatible Parents", "Gender of selected parents are not compatible for breeding");
+        box.exec();
+        return;
+    }
+
     frlg->clearModel();
 
     u32 initialAdvancesHeld = ui->textBoxFRLGInitialAdvancesHeld->getUInt();
@@ -225,8 +244,8 @@ void Eggs3::frlgGenerate()
                        ui->filterFRLG->getMinIVs(), ui->filterFRLG->getMaxIVs(), ui->filterFRLG->getNatures(),
                        ui->filterFRLG->getHiddenPowers(), {});
 
-    EggGenerator3 generator(initialAdvancesHeld, maxAdvancesHeld, tid, sid, genderRatio, method, filter);
-    generator.setParents(ui->eggSettingsFRLG->getParent1(), ui->eggSettingsFRLG->getParent2());
+    EggGenerator3 generator(initialAdvancesHeld, maxAdvancesHeld, tid, sid, genderRatio, method, filter,
+                            ui->eggSettingsFRLG->getDaycareSettings());
     generator.setCompatability(static_cast<u8>(ui->comboBoxFRLGCompatibility->currentData().toUInt()));
     generator.setInitialAdvancesPickup(ui->textBoxFRLGInitialAdvancesPickup->getUInt());
     generator.setMaxAdvancesPickup(ui->textBoxFRLGMaxAdvancesPickup->getUInt());

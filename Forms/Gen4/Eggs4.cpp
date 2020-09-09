@@ -29,6 +29,7 @@
 #include <Forms/Gen4/Profile/ProfileManager4.hpp>
 #include <Forms/Gen4/Tools/SeedtoTime4.hpp>
 #include <Models/Gen4/EggModel4.hpp>
+#include <QMessageBox>
 #include <QSettings>
 #include <QThread>
 #include <QTimer>
@@ -171,6 +172,13 @@ void Eggs4::updateProgress(const QVector<EggState4> &states, int progress)
 
 void Eggs4::generate()
 {
+    if (!ui->eggSettingsGenerator->compatibleParents())
+    {
+        QMessageBox box(QMessageBox::Warning, "Incompatible Parents", "Gender of selected parents are not compatible for breeding");
+        box.exec();
+        return;
+    }
+
     generatorModel->clearModel();
 
     u32 initialAdvances = ui->textBoxGeneratorInitialAdvances->getUInt();
@@ -198,8 +206,8 @@ void Eggs4::generate()
                        ui->filterGenerator->getMinIVs(), ui->filterGenerator->getMaxIVs(), ui->filterGenerator->getNatures(),
                        ui->filterGenerator->getHiddenPowers(), {});
 
-    EggGenerator4 generator(initialAdvances, maxAdvances, tid, sid, ui->filterGenerator->getGenderRatio(), method, filter);
-    generator.setParents(ui->eggSettingsGenerator->getParent1(), ui->eggSettingsGenerator->getParent2());
+    EggGenerator4 generator(initialAdvances, maxAdvances, tid, sid, ui->filterGenerator->getGenderRatio(), method, filter,
+                            ui->eggSettingsGenerator->getDaycareSettings());
 
     auto states = generator.generate(seed);
     generatorModel->addItems(states);
@@ -207,6 +215,13 @@ void Eggs4::generate()
 
 void Eggs4::search()
 {
+    if (!ui->eggSettingsSearcher->compatibleParents())
+    {
+        QMessageBox box(QMessageBox::Warning, "Incompatible Parents", "Gender of selected parents are not compatible for breeding");
+        box.exec();
+        return;
+    }
+
     searcherModel->clearModel();
 
     Method methodModel;
@@ -243,11 +258,12 @@ void Eggs4::search()
     u32 maxAdvancePID = ui->textBoxSearcherPIDMaxAdvance->getUInt();
 
     Method methodIV = (currentProfile.getVersion() & Game::HGSS) ? Method::HGSSIVs : Method::DPPtIVs;
-    EggGenerator4 generatorIV(minAdvanceIV, maxAdvanceIV, tid, sid, genderRatio, methodIV, filter);
-    generatorIV.setParents(ui->eggSettingsSearcher->getParent1(), ui->eggSettingsSearcher->getParent2());
+    EggGenerator4 generatorIV(minAdvanceIV, maxAdvanceIV, tid, sid, genderRatio, methodIV, filter,
+                              ui->eggSettingsSearcher->getDaycareSettings());
 
     Method methodPID = ui->checkBoxSearcherMasuada->isChecked() ? Method::Gen4Masuada : Method::Gen4Normal;
-    EggGenerator4 generatorPID(minAdvancePID, maxAdvancePID, tid, sid, genderRatio, methodPID, filter);
+    EggGenerator4 generatorPID(minAdvancePID, maxAdvancePID, tid, sid, genderRatio, methodPID, filter,
+                               ui->eggSettingsSearcher->getDaycareSettings());
 
     ui->progressBarSearcher->setValue(0);
     ui->progressBarSearcher->setMaximum(static_cast<int>(256 * 24 * (maxDelay - minDelay + 1)));

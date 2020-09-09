@@ -19,13 +19,13 @@
 
 #include "EggSettings.hpp"
 #include "ui_EggSettings.h"
+#include <Core/Enum/Game.hpp>
+#include <Core/Util/Translator.hpp>
 
 EggSettings::EggSettings(QWidget *parent) : QWidget(parent), ui(new Ui::EggSettings)
 {
     ui->setupUi(this);
-
-    connect(ui->pushButtonSwapParents, &QPushButton::clicked, this, &EggSettings::swapParents);
-    connect(ui->checkBoxShowInteritance, &QCheckBox::clicked, this, &EggSettings::toggleInheritance);
+    setupModels();
 }
 
 EggSettings::~EggSettings()
@@ -33,42 +33,194 @@ EggSettings::~EggSettings()
     delete ui;
 }
 
-QVector<u8> EggSettings::getParent1() const
+void EggSettings::setup(Game version)
 {
-    QVector<u8> parent1 = { static_cast<u8>(ui->spinBoxParent1HP->value()),  static_cast<u8>(ui->spinBoxParent1Atk->value()),
-                            static_cast<u8>(ui->spinBoxParent1Def->value()), static_cast<u8>(ui->spinBoxParent1SpA->value()),
-                            static_cast<u8>(ui->spinBoxParent1SpD->value()), static_cast<u8>(ui->spinBoxParent1Spe->value()) };
+    if ((version & Game::RSE) || (version & Game::FRLG))
+    {
+        ui->labelAbility->setVisible(false);
+        ui->labelItem->setVisible(version & Game::Emerald);
+        ui->labelNature->setVisible(version & Game::Emerald);
 
-    return parent1;
+        ui->comboBoxParentAAbility->setVisible(false);
+        ui->comboBoxParentBAbility->setVisible(false);
+        ui->comboBoxParentAItem->setVisible(version & Game::Emerald);
+        ui->comboBoxParentBItem->setVisible(version & Game::Emerald);
+        ui->comboBoxParentANature->setVisible(version & Game::Emerald);
+        ui->comboBoxParentBNature->setVisible(version & Game::Emerald);
+
+        ui->checkBoxNidoranVolbeat->setVisible(false);
+        ui->checkBoxMasuada->setVisible(false);
+    }
+    else if ((version & Game::DPPt) || (version & Game::HGSS))
+    {
+        ui->labelAbility->setVisible(false);
+        ui->labelItem->setVisible(false);
+        ui->labelNature->setVisible(false);
+
+        ui->comboBoxParentAAbility->setVisible(false);
+        ui->comboBoxParentBAbility->setVisible(false);
+        ui->comboBoxParentAItem->setVisible(false);
+        ui->comboBoxParentBItem->setVisible(false);
+        ui->comboBoxParentANature->setVisible(false);
+        ui->comboBoxParentBNature->setVisible(false);
+
+        ui->checkBoxNidoranVolbeat->setVisible(false);
+    }
+    else if ((version & Game::BW) || (version & Game::BW2))
+    {
+        ui->comboBoxParentAItem->addItem(tr("Power Weight"));
+        ui->comboBoxParentAItem->addItem(tr("Power Bracer"));
+        ui->comboBoxParentAItem->addItem(tr("Power Belt"));
+        ui->comboBoxParentAItem->addItem(tr("Power Lens"));
+        ui->comboBoxParentAItem->addItem(tr("Power Band"));
+        ui->comboBoxParentAItem->addItem(tr("Power Anklet"));
+
+        ui->comboBoxParentBItem->addItem(tr("Power Weight"));
+        ui->comboBoxParentBItem->addItem(tr("Power Bracer"));
+        ui->comboBoxParentBItem->addItem(tr("Power Belt"));
+        ui->comboBoxParentBItem->addItem(tr("Power Lens"));
+        ui->comboBoxParentBItem->addItem(tr("Power Band"));
+        ui->comboBoxParentBItem->addItem(tr("Power Anklet"));
+
+        ui->comboBoxParentAAbility->addItem("H");
+        ui->comboBoxParentBAbility->addItem("H");
+    }
 }
 
-QVector<u8> EggSettings::getParent2() const
+Daycare EggSettings::getDaycareSettings() const
 {
-    QVector<u8> parent2 = { static_cast<u8>(ui->spinBoxParent2HP->value()),  static_cast<u8>(ui->spinBoxParent2Atk->value()),
-                            static_cast<u8>(ui->spinBoxParent2Def->value()), static_cast<u8>(ui->spinBoxParent2SpA->value()),
-                            static_cast<u8>(ui->spinBoxParent2SpD->value()), static_cast<u8>(ui->spinBoxParent2Spe->value()) };
+    QVector<u8> parent1IVs = { static_cast<u8>(ui->spinBoxParentAHP->value()),  static_cast<u8>(ui->spinBoxParentAAtk->value()),
+                               static_cast<u8>(ui->spinBoxParentADef->value()), static_cast<u8>(ui->spinBoxParentASpA->value()),
+                               static_cast<u8>(ui->spinBoxParentASpD->value()), static_cast<u8>(ui->spinBoxParentASpe->value()) };
 
-    return parent2;
+    QVector<u8> parent2IVs = { static_cast<u8>(ui->spinBoxParentBHP->value()),  static_cast<u8>(ui->spinBoxParentBAtk->value()),
+                               static_cast<u8>(ui->spinBoxParentBDef->value()), static_cast<u8>(ui->spinBoxParentBSpA->value()),
+                               static_cast<u8>(ui->spinBoxParentBSpD->value()), static_cast<u8>(ui->spinBoxParentBSpe->value()) };
+
+    u8 parent1Ability = ui->comboBoxParentAAbility->currentIndex();
+    u8 parent2Ability = ui->comboBoxParentBAbility->currentIndex();
+
+    u8 parent1Gender = ui->comboBoxParentAGender->currentIndex();
+    u8 parent2Gender = ui->comboBoxParentBGender->currentIndex();
+
+    u8 parent1Item = ui->comboBoxParentAItem->currentIndex();
+    u8 parent2Item = ui->comboBoxParentBItem->currentIndex();
+
+    u8 parent1Nature = ui->comboBoxParentANature->currentIndex();
+    u8 parent2Nature = ui->comboBoxParentBNature->currentIndex();
+
+    bool masuada = ui->checkBoxMasuada->isChecked();
+    bool nidoranVolbeat = ui->checkBoxNidoranVolbeat->isChecked();
+
+    return Daycare(parent1IVs, parent2IVs, parent1Ability, parent2Ability, parent1Gender, parent2Gender, parent1Item, parent2Item,
+                   parent1Nature, parent2Nature, masuada, nidoranVolbeat);
 }
 
-void EggSettings::swapParents()
+bool EggSettings::compatibleParents() const
 {
-    QVector<u8> parent1 = getParent1();
-    QVector<u8> parent2 = getParent2();
+    u8 parent1 = ui->comboBoxParentAGender->currentIndex();
+    u8 parent2 = ui->comboBoxParentBGender->currentIndex();
 
-    ui->spinBoxParent1HP->setValue(parent2[0]);
-    ui->spinBoxParent1Atk->setValue(parent2[1]);
-    ui->spinBoxParent1Def->setValue(parent2[2]);
-    ui->spinBoxParent1SpA->setValue(parent2[3]);
-    ui->spinBoxParent1SpD->setValue(parent2[4]);
-    ui->spinBoxParent1Spe->setValue(parent2[5]);
+    // Male/Female
+    if ((parent1 == 0 && parent2 == 1) || (parent1 == 1 && parent2 == 0))
+    {
+        return true;
+    }
 
-    ui->spinBoxParent2HP->setValue(parent1[0]);
-    ui->spinBoxParent2Atk->setValue(parent1[1]);
-    ui->spinBoxParent2Def->setValue(parent1[2]);
-    ui->spinBoxParent2SpA->setValue(parent1[3]);
-    ui->spinBoxParent2SpD->setValue(parent1[4]);
-    ui->spinBoxParent2Spe->setValue(parent1[5]);
+    // Ditto/Female
+    if ((parent1 == 3 && parent2 == 1) || (parent1 == 1 && parent2 == 3))
+    {
+        return true;
+    }
+
+    // Male/Ditto
+    if ((parent1 == 0 && parent2 == 3) || (parent1 == 3 && parent2 == 0))
+    {
+        return true;
+    }
+
+    // Genderless/Ditto
+    if ((parent1 == 2 && parent2 == 3) || (parent1 == 3 && parent2 == 2))
+    {
+        return true;
+    }
+
+    return false;
+}
+
+bool EggSettings::reorderParents()
+{
+    u8 parent1 = ui->comboBoxParentAGender->currentIndex();
+    u8 parent2 = ui->comboBoxParentBGender->currentIndex();
+
+    // Female/Male -> Male/Female
+    bool flag = parent1 == 1 && parent2 == 0;
+
+    // Female/Ditto -> Ditto/Female
+    flag |= parent1 == 1 && parent2 == 3;
+
+    // Ditto/Male -> Male/Ditto
+    flag |= parent1 == 3 && parent2 == 0;
+
+    // Ditto/Genderless -> Genderless/Ditto
+    flag |= parent1 == 3 && parent2 == 2;
+
+    if (flag)
+    {
+        Daycare daycare = getDaycareSettings();
+
+        ui->spinBoxParentAHP->setValue(daycare.getParentIV(1, 0));
+        ui->spinBoxParentAAtk->setValue(daycare.getParentIV(1, 1));
+        ui->spinBoxParentADef->setValue(daycare.getParentIV(1, 2));
+        ui->spinBoxParentASpA->setValue(daycare.getParentIV(1, 3));
+        ui->spinBoxParentASpD->setValue(daycare.getParentIV(1, 4));
+        ui->spinBoxParentASpe->setValue(daycare.getParentIV(1, 5));
+        ui->comboBoxParentAAbility->setCurrentIndex(daycare.getParentAbility(1));
+        ui->comboBoxParentAGender->setCurrentIndex(daycare.getParentGender(1));
+        ui->comboBoxParentAItem->setCurrentIndex(daycare.getParentItem(1));
+        ui->comboBoxParentANature->setCurrentIndex(daycare.getParentNature(1));
+
+        ui->spinBoxParentBHP->setValue(daycare.getParentIV(0, 0));
+        ui->spinBoxParentBAtk->setValue(daycare.getParentIV(0, 1));
+        ui->spinBoxParentBDef->setValue(daycare.getParentIV(0, 2));
+        ui->spinBoxParentBSpA->setValue(daycare.getParentIV(0, 3));
+        ui->spinBoxParentBSpD->setValue(daycare.getParentIV(0, 4));
+        ui->spinBoxParentBSpe->setValue(daycare.getParentIV(0, 5));
+        ui->comboBoxParentBAbility->setCurrentIndex(daycare.getParentAbility(0));
+        ui->comboBoxParentBGender->setCurrentIndex(daycare.getParentGender(0));
+        ui->comboBoxParentBItem->setCurrentIndex(daycare.getParentItem(0));
+        ui->comboBoxParentBNature->setCurrentIndex(daycare.getParentNature(0));
+    }
+
+    return flag;
+}
+
+void EggSettings::setupModels()
+{
+    ui->comboBoxParentANature->addItems(Translator::getNatures());
+    ui->comboBoxParentBNature->addItems(Translator::getNatures());
+
+    for (u8 i = 0; i < 3; i++)
+    {
+        ui->comboBoxParentAGender->addItem(Translator::getGender(i));
+        ui->comboBoxParentBGender->addItem(Translator::getGender(i));
+    }
+    ui->comboBoxParentAGender->addItem(Translator::getSpecies(132));
+    ui->comboBoxParentBGender->addItem(Translator::getSpecies(132));
+
+    ui->comboBoxParentAAbility->addItem("1");
+    ui->comboBoxParentAAbility->addItem("2");
+
+    ui->comboBoxParentBAbility->addItem("1");
+    ui->comboBoxParentBAbility->addItem("2");
+
+    ui->comboBoxParentAItem->addItem("None");
+    ui->comboBoxParentAItem->addItem("Everstone");
+
+    ui->comboBoxParentBItem->addItem("None");
+    ui->comboBoxParentBItem->addItem("Everstone");
+
+    connect(ui->checkBoxShowInheritance, &QCheckBox::clicked, this, &EggSettings::toggleInheritance);
 }
 
 void EggSettings::showInheritance(bool checked)

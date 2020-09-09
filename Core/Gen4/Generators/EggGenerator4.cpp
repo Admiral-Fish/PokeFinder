@@ -24,8 +24,8 @@
 #include <Core/RNG/MT.hpp>
 
 EggGenerator4::EggGenerator4(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, Method method,
-                             const StateFilter &filter) :
-    EggGenerator(initialAdvances, maxAdvances, tid, sid, genderRatio, method, filter)
+                             const StateFilter &filter, const Daycare &daycare) :
+    EggGenerator(initialAdvances, maxAdvances, tid, sid, genderRatio, method, filter, daycare)
 {
 }
 
@@ -199,27 +199,27 @@ void EggGenerator4::setInheritance(EggState4 &state, const u16 *inh, const u16 *
         switch (stat)
         {
         case 0:
-            state.setIVs(0, parent == 0 ? parent1.at(0) : parent2.at(0));
+            state.setIVs(0, daycare.getParentIV(parent, 0));
             state.setInheritance(0, parent + 1);
             break;
         case 1:
-            state.setIVs(1, parent == 0 ? parent1.at(1) : parent2.at(1));
+            state.setIVs(1, daycare.getParentIV(parent, 1));
             state.setInheritance(1, parent + 1);
             break;
         case 2:
-            state.setIVs(2, parent == 0 ? parent1.at(2) : parent2.at(2));
+            state.setIVs(2, daycare.getParentIV(parent, 2));
             state.setInheritance(2, parent + 1);
             break;
         case 3:
-            state.setIVs(5, parent == 0 ? parent1.at(5) : parent2.at(5));
+            state.setIVs(5, daycare.getParentIV(parent, 5));
             state.setInheritance(5, parent + 1);
             break;
         case 4:
-            state.setIVs(3, parent == 0 ? parent1.at(3) : parent2.at(3));
+            state.setIVs(3, daycare.getParentIV(parent, 3));
             state.setInheritance(3, parent + 1);
             break;
         case 5:
-            state.setIVs(4, parent == 0 ? parent1.at(4) : parent2.at(4));
+            state.setIVs(4, daycare.getParentIV(parent, 4));
             state.setInheritance(4, parent + 1);
             break;
         }

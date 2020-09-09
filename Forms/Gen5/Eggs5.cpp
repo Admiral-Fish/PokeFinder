@@ -99,8 +99,8 @@ void Eggs5::setupModels()
     ui->filterGenerator->disableControls(Controls::EncounterSlots);
     ui->filterSearcher->disableControls(Controls::EncounterSlots | Controls::DisableFilter | Controls::UseDelay);
 
-    ui->eggSettingsGenerator->setup(5);
-    ui->eggSettingsSearcher->setup(5);
+    ui->eggSettingsGenerator->setup(static_cast<Game>(Game::BW | Game::BW2));
+    ui->eggSettingsSearcher->setup(static_cast<Game>(Game::BW | Game::BW2));
 
     QAction *outputTXTGenerator = generatorMenu->addAction(tr("Output Results to TXT"));
     QAction *outputCSVGenerator = generatorMenu->addAction(tr("Output Results to CSV"));
@@ -142,7 +142,7 @@ void Eggs5::generate()
         box.exec();
         return;
     }
-    else if (ui->eggSettingsGenerator->reorderParents())
+    if (ui->eggSettingsGenerator->reorderParents())
     {
         QMessageBox box(QMessageBox::Information, "Parents Reordered", "Parent were swapped to match the game");
         box.exec();
@@ -183,7 +183,7 @@ void Eggs5::search()
         box.exec();
         return;
     }
-    else if (ui->eggSettingsSearcher->reorderParents())
+    if (ui->eggSettingsSearcher->reorderParents())
     {
         QMessageBox box(QMessageBox::Information, "Parents Reordered", "Parent were swapped to match the game");
         box.exec();
@@ -208,7 +208,7 @@ void Eggs5::search()
                             currentProfile.getShinyCharm());
     generator.setOffset(0);
 
-    EggSearcher5 *searcher = new EggSearcher5(currentProfile);
+    auto *searcher = new EggSearcher5(currentProfile);
 
     QDate start = ui->dateEditSearcherStartDate->date();
     QDate end = ui->dateEditSearcherEndDate->date();

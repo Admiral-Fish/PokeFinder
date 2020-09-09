@@ -107,46 +107,9 @@
       <attribute name="title">
        <string>Emerald</string>
       </attribute>
-      <layout class="QGridLayout" name="gridLayout_5">
-       <item row="1" column="0" colspan="2">
-        <widget class="TableView" name="tableViewEmerald">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-           <horstretch>1</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="contextMenuPolicy">
-          <enum>Qt::CustomContextMenu</enum>
-         </property>
-         <attribute name="verticalHeaderVisible">
-          <bool>false</bool>
-         </attribute>
-        </widget>
-       </item>
-       <item row="0" column="1">
-        <widget class="QGroupBox" name="groupBoxEmeraldIVs">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-           <horstretch>2</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="title">
-          <string>Filters</string>
-         </property>
-         <layout class="QGridLayout" name="gridLayout_4">
-          <item row="1" column="0" colspan="2">
-           <widget class="EggSettings" name="eggSettingsEmerald" native="true"/>
-          </item>
-          <item row="0" column="0" colspan="2">
-           <widget class="Filter" name="filterEmerald" native="true"/>
-          </item>
-         </layout>
-        </widget>
-       </item>
+      <layout class="QGridLayout" name="gridLayout_17">
        <item row="0" column="0">
-        <widget class="QGroupBox" name="groupBoxEmeraldPID">
+        <widget class="QGroupBox" name="groupBoxEmeraldRNGInfo">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
            <horstretch>1</horstretch>
@@ -349,15 +312,72 @@
          </layout>
         </widget>
        </item>
-      </layout>
-     </widget>
-     <widget class="QWidget" name="tabRS">
-      <attribute name="title">
-       <string>Ruby/Sapphire</string>
-      </attribute>
-      <layout class="QGridLayout" name="gridLayout_7">
-       <item row="1" column="0" colspan="2">
-        <widget class="TableView" name="tableViewRS">
+       <item row="0" column="1">
+        <widget class="QGroupBox" name="groupBoxEmeraldSettings">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>2</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="title">
+          <string>Settings</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_5">
+          <item row="0" column="0">
+           <widget class="EggSettings" name="eggSettingsEmerald" native="true"/>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="0" column="2">
+        <widget class="QGroupBox" name="groupBoxEmeraldFilters">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>2</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="title">
+          <string>Filters</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_4">
+          <item row="0" column="0">
+           <widget class="QScrollArea" name="scrollArea">
+            <property name="widgetResizable">
+             <bool>true</bool>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+            <widget class="QWidget" name="scrollAreaWidgetContents">
+             <property name="geometry">
+              <rect>
+               <x>0</x>
+               <y>0</y>
+               <width>387</width>
+               <height>225</height>
+              </rect>
+             </property>
+             <layout class="QGridLayout" name="gridLayout_14">
+              <item row="0" column="0">
+               <widget class="Filter" name="filterEmerald" native="true"/>
+              </item>
+             </layout>
+            </widget>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="1" column="0" colspan="3">
+        <widget class="TableView" name="tableViewEmerald">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>1</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
          <property name="contextMenuPolicy">
           <enum>Qt::CustomContextMenu</enum>
          </property>
@@ -366,6 +386,13 @@
          </attribute>
         </widget>
        </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tabRS">
+      <attribute name="title">
+       <string>Ruby/Sapphire</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_15">
        <item row="0" column="0">
         <widget class="QGroupBox" name="groupBoxRSRNGInfo">
          <property name="sizePolicy">
@@ -538,6 +565,24 @@
         </widget>
        </item>
        <item row="0" column="1">
+        <widget class="QGroupBox" name="groupBoxRSSettings">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>2</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="title">
+          <string>Settings</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_7">
+          <item row="0" column="0">
+           <widget class="EggSettings" name="eggSettingsRS" native="true"/>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="0" column="2">
         <widget class="QGroupBox" name="groupBoxFiltersRS">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -549,13 +594,20 @@
           <string>Filters</string>
          </property>
          <layout class="QGridLayout" name="gridLayout_3">
-          <item row="3" column="0" colspan="2">
-           <widget class="EggSettings" name="eggSettingsRS" native="true"/>
-          </item>
           <item row="0" column="0" rowspan="3" colspan="2">
            <widget class="Filter" name="filterRS" native="true"/>
           </item>
          </layout>
+        </widget>
+       </item>
+       <item row="1" column="0" colspan="3">
+        <widget class="TableView" name="tableViewRS">
+         <property name="contextMenuPolicy">
+          <enum>Qt::CustomContextMenu</enum>
+         </property>
+         <attribute name="verticalHeaderVisible">
+          <bool>false</bool>
+         </attribute>
         </widget>
        </item>
       </layout>
@@ -564,7 +616,7 @@
       <attribute name="title">
        <string>Fire Red/Leaf Green</string>
       </attribute>
-      <layout class="QGridLayout" name="gridLayout_9">
+      <layout class="QGridLayout" name="gridLayout_16">
        <item row="0" column="0">
         <widget class="QGroupBox" name="groupBoxFRLGRNGInfo">
          <property name="sizePolicy">
@@ -729,6 +781,24 @@
         </widget>
        </item>
        <item row="0" column="1">
+        <widget class="QGroupBox" name="groupBoxFRLGSettings">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>2</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="title">
+          <string>Settings</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_9">
+          <item row="0" column="0">
+           <widget class="EggSettings" name="eggSettingsFRLG" native="true"/>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="0" column="2">
         <widget class="QGroupBox" name="groupBoxFRLGFilter">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -740,16 +810,13 @@
           <string>Filters</string>
          </property>
          <layout class="QGridLayout" name="gridLayout_10">
-          <item row="3" column="0" colspan="2">
-           <widget class="EggSettings" name="eggSettingsFRLG" native="true"/>
-          </item>
           <item row="0" column="0" rowspan="3" colspan="2">
            <widget class="Filter" name="filterFRLG" native="true"/>
           </item>
          </layout>
         </widget>
        </item>
-       <item row="1" column="0" colspan="2">
+       <item row="1" column="0" colspan="3">
         <widget class="TableView" name="tableViewFRLG">
          <property name="contextMenuPolicy">
           <enum>Qt::CustomContextMenu</enum>
@@ -772,14 +839,14 @@
    <header>Forms/Controls/TextBox.hpp</header>
   </customwidget>
   <customwidget>
-   <class>TableView</class>
-   <extends>QTableView</extends>
-   <header>Forms/Controls/TableView.hpp</header>
-  </customwidget>
-  <customwidget>
    <class>ComboBox</class>
    <extends>QComboBox</extends>
    <header>Forms/Controls/ComboBox.hpp</header>
+  </customwidget>
+  <customwidget>
+   <class>TableView</class>
+   <extends>QTableView</extends>
+   <header>Forms/Controls/TableView.hpp</header>
   </customwidget>
   <customwidget>
    <class>Filter</class>

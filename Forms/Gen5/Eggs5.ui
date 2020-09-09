@@ -210,6 +210,9 @@
    </item>
    <item row="1" column="0">
     <widget class="QTabWidget" name="tabRNGSelector">
+     <property name="currentIndex">
+      <number>1</number>
+     </property>
      <widget class="QWidget" name="tabStationary">
       <attribute name="title">
        <string>Generator</string>
@@ -228,7 +231,7 @@
          </property>
          <layout class="QGridLayout" name="gridLayout_11">
           <item row="0" column="0">
-           <widget class="EggSettings2" name="eggSettingsGenerator" native="true"/>
+           <widget class="EggSettings" name="eggSettingsGenerator" native="true"/>
           </item>
          </layout>
         </widget>
@@ -339,7 +342,7 @@
         <widget class="QGroupBox" name="groupBoxGeneratorFilters">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-           <horstretch>2</horstretch>
+           <horstretch>3</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
@@ -401,7 +404,7 @@
          </property>
          <layout class="QGridLayout" name="gridLayout_13">
           <item row="0" column="0">
-           <widget class="EggSettings2" name="eggSettingsSearcher" native="true"/>
+           <widget class="EggSettings" name="eggSettingsSearcher" native="true"/>
           </item>
          </layout>
         </widget>
@@ -410,7 +413,7 @@
         <widget class="QGroupBox" name="groupBoxSearcherFilters">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-           <horstretch>2</horstretch>
+           <horstretch>3</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
@@ -607,9 +610,9 @@
    <container>1</container>
   </customwidget>
   <customwidget>
-   <class>EggSettings2</class>
+   <class>EggSettings</class>
    <extends>QWidget</extends>
-   <header>Forms/Controls/EggSettings2.hpp</header>
+   <header>Forms/Controls/EggSettings.hpp</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

@@ -20,7 +20,7 @@
 #ifndef EGGSETTINGS_HPP
 #define EGGSETTINGS_HPP
 
-#include <Core/Util/Global.hpp>
+#include <Core/Parents/Daycare.hpp>
 #include <QWidget>
 
 namespace Ui
@@ -37,15 +37,18 @@ signals:
 
 public:
     explicit EggSettings(QWidget *parent = nullptr);
-    ~EggSettings() override;
-    QVector<u8> getParent1() const;
-    QVector<u8> getParent2() const;
+    ~EggSettings();
+    void setup(Game version);
+    Daycare getDaycareSettings() const;
+    bool compatibleParents() const;
+    bool reorderParents();
 
 private:
     Ui::EggSettings *ui;
 
+    void setupModels();
+
 private slots:
-    void swapParents();
     void showInheritance(bool checked);
 };
 

@@ -20,20 +20,18 @@
 #ifndef EGGGENERATOR_HPP
 #define EGGGENERATOR_HPP
 
+#include <Core/Parents/Daycare.hpp>
 #include <Core/Parents/Generators/Generator.hpp>
 
 class EggGenerator : public Generator
 {
 public:
     EggGenerator() = default;
-    EggGenerator(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter);
-    void setParents(const QVector<u8> &parent1, const QVector<u8> &parent2);
-    void setEverstoneNature(u8 everstoneNature);
+    EggGenerator(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter,
+                 const Daycare &daycare);
 
 protected:
-    QVector<u8> parent1;
-    QVector<u8> parent2;
-    u8 everstoneNature;
+    Daycare daycare;
 };
 
 #endif // EGGGENERATOR_HPP

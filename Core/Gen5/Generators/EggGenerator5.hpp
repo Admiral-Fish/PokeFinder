@@ -33,7 +33,6 @@ public:
     QVector<EggState> generate(u64 seed) const;
 
 private:
-    Daycare daycare;
     u8 rolls;
     u8 everstone;
     u8 poweritem;

@@ -94,9 +94,9 @@ u8 Daycare::getEverstoneCount(Game version) const
     }
     else
     {
-        for (u8 i = 0; i < 2; i++)
+        for (u8 item : parentItem)
         {
-            if (parentItem[i] == 1)
+            if (item == 1)
             {
                 count++;
             }
@@ -110,9 +110,9 @@ u8 Daycare::getPowerItemCount() const
 {
     u8 count = 0;
 
-    for (u8 i = 0; i < 2; i++)
+    for (u8 item : parentItem)
     {
-        if (parentItem[i] >= 2 && parentItem[i] <= 7)
+        if (item >= 2 && item <= 7)
         {
             count++;
         }
@@ -123,9 +123,9 @@ u8 Daycare::getPowerItemCount() const
 
 bool Daycare::getDitto() const
 {
-    for (u8 i = 0; i < 2; i++)
+    for (u8 gender : parentGender)
     {
-        if (parentGender[i] == 3)
+        if (gender == 3)
         {
             return true;
         }

@@ -37,7 +37,6 @@ RESOURCES += \
 
 FORMS += \
     Forms/Controls/EggSettings.ui \
-    Forms/Controls/EggSettings2.ui \
     Forms/Controls/Filter.ui \
     Forms/Controls/IVFilter.ui \
     Forms/Gen3/Eggs3.ui \
@@ -198,7 +197,6 @@ HEADERS += \
     Forms/Controls/CheckList.hpp \
     Forms/Controls/ComboBox.hpp \
     Forms/Controls/EggSettings.hpp \
-    Forms/Controls/EggSettings2.hpp \
     Forms/Controls/Filter.hpp \
     Forms/Controls/GraphicsPixmapItem.hpp \
     Forms/Controls/IVFilter.hpp \
@@ -370,7 +368,6 @@ SOURCES += \
     Forms/Controls/CheckList.cpp \
     Forms/Controls/ComboBox.cpp \
     Forms/Controls/EggSettings.cpp \
-    Forms/Controls/EggSettings2.cpp \
     Forms/Controls/Filter.cpp \
     Forms/Controls/GraphicsPixmapItem.cpp \
     Forms/Controls/IVFilter.cpp \

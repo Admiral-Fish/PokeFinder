@@ -97,14 +97,11 @@
    </item>
    <item row="1" column="0">
     <widget class="QTabWidget" name="tabEggSelection">
-     <property name="currentIndex">
-      <number>0</number>
-     </property>
      <widget class="QWidget" name="tabGenerator">
       <attribute name="title">
        <string>Generator</string>
       </attribute>
-      <layout class="QGridLayout" name="gridLayout_5">
+      <layout class="QGridLayout" name="gridLayout_8">
        <item row="0" column="0">
         <widget class="QGroupBox" name="groupBoxGeneratorRNGInfo">
          <property name="sizePolicy">
@@ -206,17 +203,25 @@
          </layout>
         </widget>
        </item>
-       <item row="1" column="0" colspan="2">
-        <widget class="TableView" name="tableViewGenerator">
-         <property name="contextMenuPolicy">
-          <enum>Qt::CustomContextMenu</enum>
+       <item row="0" column="1">
+        <widget class="QGroupBox" name="groupBoxGeneratorSettings">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>2</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
          </property>
-         <attribute name="verticalHeaderVisible">
-          <bool>false</bool>
-         </attribute>
+         <property name="title">
+          <string>Settings</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_5">
+          <item row="0" column="0">
+           <widget class="EggSettings" name="eggSettingsGenerator" native="true"/>
+          </item>
+         </layout>
         </widget>
        </item>
-       <item row="0" column="1">
+       <item row="0" column="2">
         <widget class="QGroupBox" name="groupBoxGeneratorFilters">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -228,13 +233,20 @@
           <string>Filters</string>
          </property>
          <layout class="QGridLayout" name="gridLayout_2">
-          <item row="3" column="0" colspan="2">
-           <widget class="EggSettings" name="eggSettingsGenerator" native="true"/>
-          </item>
           <item row="0" column="0" rowspan="3" colspan="2">
            <widget class="Filter" name="filterGenerator" native="true"/>
           </item>
          </layout>
+        </widget>
+       </item>
+       <item row="1" column="0" colspan="3">
+        <widget class="TableView" name="tableViewGenerator">
+         <property name="contextMenuPolicy">
+          <enum>Qt::CustomContextMenu</enum>
+         </property>
+         <attribute name="verticalHeaderVisible">
+          <bool>false</bool>
+         </attribute>
         </widget>
        </item>
       </layout>
@@ -243,7 +255,7 @@
       <attribute name="title">
        <string>Searcher</string>
       </attribute>
-      <layout class="QGridLayout" name="gridLayout">
+      <layout class="QGridLayout" name="gridLayout_10">
        <item row="0" column="0">
         <widget class="QGroupBox" name="groupBoxSearcherRNGInfo">
          <property name="sizePolicy">
@@ -392,6 +404,24 @@
         </widget>
        </item>
        <item row="0" column="1">
+        <widget class="QGroupBox" name="groupBox">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>2</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="title">
+          <string>Settings</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout">
+          <item row="0" column="0">
+           <widget class="EggSettings" name="eggSettingsSearcher" native="true"/>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="0" column="2">
         <widget class="QGroupBox" name="groupBoxGeneratorFilters_2">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -403,16 +433,13 @@
           <string>Filters</string>
          </property>
          <layout class="QGridLayout" name="gridLayout_4">
-          <item row="3" column="0" colspan="2">
-           <widget class="EggSettings" name="eggSettingsSearcher" native="true"/>
-          </item>
           <item row="0" column="0" rowspan="3" colspan="2">
            <widget class="Filter" name="filterSearcher" native="true"/>
           </item>
          </layout>
         </widget>
        </item>
-       <item row="2" column="0" colspan="2">
+       <item row="2" column="0" colspan="3">
         <widget class="TableView" name="tableViewSearcher">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
@@ -428,7 +455,7 @@
          </attribute>
         </widget>
        </item>
-       <item row="1" column="0" colspan="2">
+       <item row="1" column="0" colspan="3">
         <widget class="QProgressBar" name="progressBarSearcher">
          <property name="value">
           <number>0</number>
@@ -453,11 +480,6 @@
    <header>Forms/Controls/TableView.hpp</header>
   </customwidget>
   <customwidget>
-   <class>ComboBox</class>
-   <extends>QComboBox</extends>
-   <header>Forms/Controls/ComboBox.hpp</header>
-  </customwidget>
-  <customwidget>
    <class>Filter</class>
    <extends>QWidget</extends>
    <header>Forms/Controls/Filter.hpp</header>
@@ -468,6 +490,11 @@
    <extends>QWidget</extends>
    <header>Forms/Controls/EggSettings.hpp</header>
    <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>ComboBox</class>
+   <extends>QComboBox</extends>
+   <header>Forms/Controls/ComboBox.hpp</header>
   </customwidget>
  </customwidgets>
  <tabstops>
