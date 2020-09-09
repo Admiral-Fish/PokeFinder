@@ -19,6 +19,7 @@
 
 #include "Daycare.hpp"
 #include <Core/Enum/Game.hpp>
+#include <algorithm>
 
 Daycare::Daycare(const QVector<u8> &parent1IVs, const QVector<u8> &parent2IVs, u8 parent1Ability, u8 parent2Ability, u8 parent1Gender,
                  u8 parent2Gender, u8 parent1Item, u8 parent2Item, u8 parent1Nature, u8 parent2Nature, bool masuada, bool nidoranVolbeat) :
@@ -94,13 +95,7 @@ u8 Daycare::getEverstoneCount(Game version) const
     }
     else
     {
-        for (u8 item : parentItem)
-        {
-            if (item == 1)
-            {
-                count++;
-            }
-        }
+        count = std::count_if(std::begin(parentItem), std::end(parentItem), [](u8 item) { return item == 1; });
     }
 
     return count;
@@ -108,30 +103,12 @@ u8 Daycare::getEverstoneCount(Game version) const
 
 u8 Daycare::getPowerItemCount() const
 {
-    u8 count = 0;
-
-    for (u8 item : parentItem)
-    {
-        if (item >= 2 && item <= 7)
-        {
-            count++;
-        }
-    }
-
-    return count;
+    return std::count_if(std::begin(parentItem), std::end(parentItem), [](u8 item) { return item >= 2 && item <= 7; });
 }
 
 bool Daycare::getDitto() const
 {
-    for (u8 gender : parentGender)
-    {
-        if (gender == 3)
-        {
-            return true;
-        }
-    }
-
-    return false;
+    return std::any_of(std::begin(parentGender), std::end(parentGender), [](u8 gender) { return gender == 3; });
 }
 
 bool Daycare::getMasuada() const

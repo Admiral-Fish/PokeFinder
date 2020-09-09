@@ -60,10 +60,7 @@ QVector<EggState> EggGenerator5::generateBW(u64 seed) const
     mt.advance(7);
 
     u8 ivs[6];
-    for (u8 &iv : ivs)
-    {
-        iv = mt.nextUShort() >> 11;
-    }
+    std::generate(std::begin(ivs), std::end(ivs), [&mt] { return mt.nextUShort() >> 11; });
 
     BWRNG rng(seed);
     rng.advance(initialAdvances + offset);
