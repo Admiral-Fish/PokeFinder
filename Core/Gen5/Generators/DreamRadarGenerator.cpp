@@ -52,7 +52,6 @@ QVector<State> DreamRadarGenerator::generate(u64 seed, bool memory)
     QVector<State> states;
 
     BWRNG rng(seed);
-    rng.advance(1); // Opening menu advances 1
     rng.advance(Utilities::initialAdvancesBW2(seed, memory) + (initialAdvances * 2));
     if (!memory)
     {
