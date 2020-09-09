@@ -261,7 +261,7 @@ void DreamRadar::search()
     DreamRadarGenerator generator(initialAdvances, maxAdvances, tid, sid, genderRatio, Method::DreamRadar, filter, radarSlots);
     generator.setOffset(0);
 
-    DreamRadarSearcher *searcher = new DreamRadarSearcher(currentProfile);
+    auto *searcher = new DreamRadarSearcher(currentProfile);
 
     QDate start = ui->dateEditSearcherStartDate->date();
     QDate end = ui->dateEditSearcherEndDate->date();

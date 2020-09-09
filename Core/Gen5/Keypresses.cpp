@@ -31,12 +31,7 @@ namespace Keypresses
     {
         bool valid(Buttons button, bool skipLR)
         {
-            if (skipLR && (button & Buttons::L || button & Buttons::R))
-            {
-                return false;
-            }
-
-            return true;
+            return !(skipLR && (button & Buttons::L || button & Buttons::R));
         }
     }
 

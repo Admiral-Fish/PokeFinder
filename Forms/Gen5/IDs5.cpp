@@ -198,7 +198,7 @@ void IDs5::find()
     IDGenerator5 generator(0, maxAdvance, filter);
 
     SHA1 sha(currentProfile);
-    auto buttons = Keypresses::getKeyPresses({ 0, 1 }, currentProfile.getSkipLR());
+    auto buttons = Keypresses::getKeyPresses({ false, true, false, false }, currentProfile.getSkipLR());
     auto values = Keypresses::getValues(buttons);
 
     sha.setTimer0(currentProfile.getTimer0Min(), currentProfile.getVCount());

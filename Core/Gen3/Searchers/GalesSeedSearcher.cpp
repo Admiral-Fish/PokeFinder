@@ -128,14 +128,14 @@ void GalesSeedSearcher::search(u32 start, u32 end)
 
 void GalesSeedSearcher::search(const QVector<u32> &seeds)
 {
-    for (int i = 0; i < seeds.size(); i++)
+    for (u32 seed : seeds)
     {
         if (!searching)
         {
             return;
         }
 
-        XDRNG rng(seeds.at(i));
+        XDRNG rng(seed);
         if (searchSeed(rng))
         {
             std::lock_guard<std::mutex> lock(resultMutex);
@@ -206,7 +206,7 @@ bool GalesSeedSearcher::searchSeed(XDRNG &rng)
     return true;
 }
 
-void GalesSeedSearcher::generatePokemon(XDRNG &rng)
+void GalesSeedSearcher::generatePokemon(XDRNG &rng) const
 {
     while (true)
     {
@@ -228,10 +228,10 @@ u8 GalesSeedSearcher::generateEVs(XDRNG &rng)
 
     for (u8 i = 0; i <= 100; i++)
     {
-        for (u8 j = 0; j < 6; j++)
+        for (u8 &ev : evs)
         {
-            evs[j] += rng.nextUShort() & 0xff;
-            sum += evs[j];
+            ev += rng.nextUShort() & 0xff;
+            sum += ev;
         }
 
         if (sum == 510)
@@ -253,21 +253,21 @@ u8 GalesSeedSearcher::generateEVs(XDRNG &rng)
 
     while (sum != 510)
     {
-        for (u8 i = 0; i < 6; i++)
+        for (u8 &ev : evs)
         {
             if (sum < 510)
             {
-                if (evs[i] < 255)
+                if (ev < 255)
                 {
-                    evs[i]++;
+                    ev++;
                     sum++;
                 }
             }
             else if (sum > 510)
             {
-                if (evs[i] != 0)
+                if (ev != 0)
                 {
-                    evs[i]--;
+                    ev--;
                     sum--;
                 }
             }

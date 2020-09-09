@@ -39,7 +39,7 @@ public:
     explicit ProfileSearcher5(const QDate &date, const QTime &time, int minSeconds, int maxSeconds, u8 minVCount, u8 maxVCount,
                               u16 minTimer0, u16 maxTimer0, u8 minGxStat, u8 maxGxStat, bool softReset, Game version, Language language,
                               DSType dsType, u64 mac, Buttons keypress);
-    virtual ~ProfileSearcher5();
+    virtual ~ProfileSearcher5() = default;
     void startSearch(int threads, u8 minVFrame, u8 maxVFrame);
     void cancelSearch();
     QVector<QList<QStandardItem *>> getResults();

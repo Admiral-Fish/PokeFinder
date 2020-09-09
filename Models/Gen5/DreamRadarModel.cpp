@@ -58,10 +58,7 @@ QVariant DreamRadarGeneratorModel5::data(const QModelIndex &index, int role) con
             {
                 return ability;
             }
-            else
-            {
-                return "H";
-            }
+            return "H";
         }
         case 6:
         case 7:
@@ -220,10 +217,7 @@ QVariant DreamRadarSearcherModel5::data(const QModelIndex &index, int role) cons
             {
                 return ability;
             }
-            else
-            {
-                return "H";
-            }
+            return "H";
         }
         case 6:
         case 7:

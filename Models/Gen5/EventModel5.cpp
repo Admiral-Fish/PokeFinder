@@ -59,10 +59,7 @@ QVariant EventGeneratorModel5::data(const QModelIndex &index, int role) const
             {
                 return ability;
             }
-            else
-            {
-                return "H";
-            }
+            return "H";
         }
         case 6:
         case 7:
@@ -222,10 +219,7 @@ QVariant EventSearcherModel5::data(const QModelIndex &index, int role) const
             {
                 return ability;
             }
-            else
-            {
-                return "H";
-            }
+            return "H";
         }
         case 6:
         case 7:

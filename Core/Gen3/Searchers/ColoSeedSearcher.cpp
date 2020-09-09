@@ -141,14 +141,14 @@ void ColoSeedSearcher::search(u32 start, u32 end)
 
 void ColoSeedSearcher::search(const QVector<u32> &seeds)
 {
-    for (int i = 0; i < seeds.size(); i++)
+    for (u32 seed : seeds)
     {
         if (!searching)
         {
             return;
         }
 
-        XDRNG rng(seeds.at(i));
+        XDRNG rng(seed);
         if (searchSeed(rng))
         {
             std::lock_guard<std::mutex> lock(resultMutex);

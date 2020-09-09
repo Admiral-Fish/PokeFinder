@@ -109,8 +109,8 @@ void ProfileCalibrator5::setupModels()
 
 void ProfileCalibrator5::updateParameters()
 {
-    Game version = static_cast<Game>(ui->comboBoxVersion->getCurrentInt());
-    DSType dsType = static_cast<DSType>(ui->comboBoxDSType->getCurrentInt());
+    auto version = static_cast<Game>(ui->comboBoxVersion->getCurrentInt());
+    auto dsType = static_cast<DSType>(ui->comboBoxDSType->getCurrentInt());
 
     switch (dsType)
     {
@@ -191,12 +191,12 @@ void ProfileCalibrator5::search()
     u8 minVFrame = ui->textBoxMinVFrame->getUChar();
     u8 maxVFrame = ui->textBoxMaxVFrame->getUChar();
     bool softReset = ui->checkBoxSoftReset->isChecked();
-    Game version = static_cast<Game>(ui->comboBoxVersion->getCurrentInt());
-    Language language = static_cast<Language>(ui->comboBoxLanguage->getCurrentInt());
-    DSType dsType = static_cast<DSType>(ui->comboBoxDSType->getCurrentInt());
+    auto version = static_cast<Game>(ui->comboBoxVersion->getCurrentInt());
+    auto language = static_cast<Language>(ui->comboBoxLanguage->getCurrentInt());
+    auto dsType = static_cast<DSType>(ui->comboBoxDSType->getCurrentInt());
     u64 mac = ui->textBoxMACAddress->getULong();
-    Buttons keypress = static_cast<Buttons>(ui->comboBoxKeypress1->getCurrentUShort() | ui->comboBoxKeypress2->getCurrentUShort()
-                                            | ui->comboBoxKeypress3->getCurrentUShort());
+    auto keypress = static_cast<Buttons>(ui->comboBoxKeypress1->getCurrentUShort() | ui->comboBoxKeypress2->getCurrentUShort()
+                                         | ui->comboBoxKeypress3->getCurrentUShort());
 
     if (minSeconds > maxSeconds || minVCount > maxVCount || minTimer0 > maxTimer0 || minGxStat > maxGxStat || minVFrame > maxVFrame)
     {
@@ -230,9 +230,8 @@ void ProfileCalibrator5::search()
 
         QVector<u8> needles;
         QStringList input = ui->lineEditNeedles->text().split(" ");
-        for (int i = 0; i < input.size(); i++)
+        for (QString &needle : input)
         {
-            QString needle = input.at(i);
             if (needle == "↑")
             {
                 needles.append(0);
@@ -315,9 +314,9 @@ void ProfileCalibrator5::createProfile()
         return;
     }
 
-    Game version = static_cast<Game>(ui->comboBoxVersion->getCurrentInt());
-    Language language = static_cast<Language>(ui->comboBoxLanguage->getCurrentInt());
-    DSType dsType = static_cast<DSType>(ui->comboBoxLanguage->getCurrentInt());
+    auto version = static_cast<Game>(ui->comboBoxVersion->getCurrentInt());
+    auto language = static_cast<Language>(ui->comboBoxLanguage->getCurrentInt());
+    auto dsType = static_cast<DSType>(ui->comboBoxLanguage->getCurrentInt());
     u64 mac = ui->textBoxMACAddress->getULong();
     u8 vcount = model->data(model->index(row, 1)).toString().toUShort(nullptr, 16);
     u16 timer0 = model->data(model->index(row, 2)).toString().toUShort(nullptr, 16);

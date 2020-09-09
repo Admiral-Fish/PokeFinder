@@ -135,7 +135,7 @@ void GameCubeSeedFinder::updateColoProgress(int progress)
 
 void GameCubeSeedFinder::updateChannel(const QVector<u32> &seeds)
 {
-    if (seeds.size() == 0)
+    if (seeds.isEmpty())
     {
         ui->labelChannelResult->setText(tr("Result: Invalid"));
     }

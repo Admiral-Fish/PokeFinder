@@ -26,7 +26,7 @@ IDGenerator4::IDGenerator4(u32 minDelay, u32 maxDelay, u16 year, u8 month, u8 da
 {
 }
 
-QVector<IDState4> IDGenerator4::generate(const IDFilter &filter)
+QVector<IDState4> IDGenerator4::generate(const IDFilter &filter) const
 {
     QVector<IDState4> states;
 

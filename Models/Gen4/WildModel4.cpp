@@ -227,7 +227,6 @@ int WildSearcherModel4::columnCount(const QModelIndex &parent) const
     switch (method)
     {
     case Method::MethodJ:
-        return 18;
     case Method::MethodK:
         return 18;
     case Method::ChainedShiny:

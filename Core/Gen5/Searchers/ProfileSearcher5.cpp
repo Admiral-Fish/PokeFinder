@@ -50,10 +50,6 @@ ProfileSearcher5::ProfileSearcher5(const QDate &date, const QTime &time, int min
 {
 }
 
-ProfileSearcher5::~ProfileSearcher5()
-{
-}
-
 void ProfileSearcher5::startSearch(int threads, u8 minVFrame, u8 maxVFrame)
 {
     searching = true;

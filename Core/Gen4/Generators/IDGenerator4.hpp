@@ -28,7 +28,7 @@ class IDGenerator4 : public IDGenerator
 {
 public:
     IDGenerator4(u32 minDelay, u32 maxDelay, u16 year, u8 month, u8 day, u8 hour, u8 minute);
-    QVector<IDState4> generate(const IDFilter &filter);
+    QVector<IDState4> generate(const IDFilter &filter) const;
 
 private:
     u32 minDelay;
