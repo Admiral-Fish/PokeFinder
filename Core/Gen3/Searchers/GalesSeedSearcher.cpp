@@ -206,7 +206,7 @@ bool GalesSeedSearcher::searchSeed(XDRNG &rng)
     return true;
 }
 
-void GalesSeedSearcher::generatePokemon(XDRNG &rng) const
+void GalesSeedSearcher::generatePokemon(XDRNG &rng)
 {
     while (true)
     {
