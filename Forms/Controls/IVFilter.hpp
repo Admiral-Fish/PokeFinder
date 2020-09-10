@@ -36,8 +36,6 @@ public:
     ~IVFilter() override;
     QVector<u8> getLower() const;
     QVector<u8> getUpper() const;
-    void clearValues();
-    void setValues(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe);
 
 private:
     Ui::IVFilter *ui;

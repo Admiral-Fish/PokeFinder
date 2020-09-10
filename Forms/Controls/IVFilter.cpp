@@ -34,6 +34,13 @@ IVFilter::IVFilter(QWidget *parent) : QWidget(parent), ui(new Ui::IVFilter)
     ui->labelSpA->setToolTip(tip);
     ui->labelSpD->setToolTip(tip);
     ui->labelSpe->setToolTip(tip);
+
+    connect(ui->labelHP, &Label::pressed, this, &IVFilter::changeCompareHP);
+    connect(ui->labelAtk, &Label::pressed, this, &IVFilter::changeCompareAtk);
+    connect(ui->labelDef, &Label::pressed, this, &IVFilter::changeCompareDef);
+    connect(ui->labelSpA, &Label::pressed, this, &IVFilter::changeCompareSpA);
+    connect(ui->labelSpD, &Label::pressed, this, &IVFilter::changeCompareSpD);
+    connect(ui->labelSpe, &Label::pressed, this, &IVFilter::changeCompareSpe);
 }
 
 IVFilter::~IVFilter()
@@ -57,26 +64,6 @@ QVector<u8> IVFilter::getUpper() const
                          static_cast<u8>(ui->spinBoxSpDMax->value()), static_cast<u8>(ui->spinBoxSpeMax->value()) };
 
     return high;
-}
-
-void IVFilter::clearValues()
-{
-    changeHP(0, 31);
-    changeAtk(0, 31);
-    changeDef(0, 31);
-    changeSpA(0, 31);
-    changeSpD(0, 31);
-    changeSpe(0, 31);
-}
-
-void IVFilter::setValues(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe)
-{
-    changeHP(hp, hp);
-    changeAtk(atk, atk);
-    changeDef(def, def);
-    changeSpA(spa, spa);
-    changeSpD(spd, spd);
-    changeSpe(spe, spe);
 }
 
 void IVFilter::changeHP(int min, int max)
