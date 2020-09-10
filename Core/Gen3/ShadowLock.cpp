@@ -341,7 +341,7 @@ bool ShadowLock::ereader(u32 seed, u32 readerPID)
     u32 pid;
     for (backwardLock++; backwardLock != locks.cend(); backwardLock++)
     {
-        if (backwardLock != locks.begin() + 1)
+        if (backwardLock != locks.cbegin() + 1)
         {
             backward.advance(5);
         }
