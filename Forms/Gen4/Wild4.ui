@@ -201,7 +201,7 @@
         <widget class="QGroupBox" name="groupBoxGeneratorFilters">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-           <horstretch>2</horstretch>
+           <horstretch>3</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
@@ -725,7 +725,7 @@
         <widget class="QGroupBox" name="groupBoxSearcherFilters">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-           <horstretch>2</horstretch>
+           <horstretch>3</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>

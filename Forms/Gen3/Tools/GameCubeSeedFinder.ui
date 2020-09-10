@@ -564,10 +564,6 @@
  <resources/>
  <connections/>
  <buttongroups>
-  <buttongroup name="buttonGroupColoTrainerName"/>
-  <buttongroup name="buttonGroupGalesYourLead"/>
-  <buttongroup name="buttonGroupGalesEnemyLead"/>
   <buttongroup name="buttonGroupChannel"/>
-  <buttongroup name="buttonGroupColoPartyLead"/>
  </buttongroups>
 </ui>

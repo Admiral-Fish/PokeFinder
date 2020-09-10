@@ -111,6 +111,9 @@ void Eggs4::setupModels()
     ui->filterGenerator->disableControls(Controls::EncounterSlots);
     ui->filterSearcher->disableControls(Controls::EncounterSlots | Controls::UseDelay | Controls::DisableFilter);
 
+    ui->eggSettingsGenerator->setup(static_cast<Game>(Game::HGSS | Game::DPPt));
+    ui->eggSettingsSearcher->setup(static_cast<Game>(Game::HGSS | Game::DPPt));
+
     QAction *outputTXTGenerator = generatorMenu->addAction(tr("Output Results to TXT"));
     QAction *outputCSVGenerator = generatorMenu->addAction(tr("Output Results to CSV"));
     connect(outputTXTGenerator, &QAction::triggered, [=] { ui->tableViewGenerator->outputModel(); });
@@ -188,9 +191,10 @@ void Eggs4::generate()
     u16 sid = currentProfile.getSID();
 
     auto method = static_cast<Method>(ui->comboBoxGeneratorMethod->currentData().toInt());
+    Daycare daycare = ui->eggSettingsGenerator->getDaycareSettings();
     if (method == Method::Gen4Normal)
     {
-        if (ui->checkBoxGeneratorMasuada->isChecked())
+        if (daycare.getMasuada())
         {
             method = Method::Gen4Masuada;
         }
@@ -206,8 +210,7 @@ void Eggs4::generate()
                        ui->filterGenerator->getMinIVs(), ui->filterGenerator->getMaxIVs(), ui->filterGenerator->getNatures(),
                        ui->filterGenerator->getHiddenPowers(), {});
 
-    EggGenerator4 generator(initialAdvances, maxAdvances, tid, sid, ui->filterGenerator->getGenderRatio(), method, filter,
-                            ui->eggSettingsGenerator->getDaycareSettings());
+    EggGenerator4 generator(initialAdvances, maxAdvances, tid, sid, ui->filterGenerator->getGenderRatio(), method, filter, daycare);
 
     auto states = generator.generate(seed);
     generatorModel->addItems(states);
@@ -225,13 +228,14 @@ void Eggs4::search()
     searcherModel->clearModel();
 
     Method methodModel;
+    Daycare daycare = ui->eggSettingsSearcher->getDaycareSettings();
     switch (ui->comboBoxSearcherMethod->currentIndex())
     {
     case 0:
         methodModel = (currentProfile.getVersion() & Game::HGSS) ? Method::HGSSIVs : Method::DPPtIVs;
         break;
     case 1:
-        methodModel = ui->checkBoxSearcherMasuada->isChecked() ? Method::Gen4Masuada : Method::Gen4Normal;
+        methodModel = daycare.getMasuada() ? Method::Gen4Masuada : Method::Gen4Normal;
         break;
     case 2:
         methodModel = Method::Gen4Combined;
@@ -258,12 +262,10 @@ void Eggs4::search()
     u32 maxAdvancePID = ui->textBoxSearcherPIDMaxAdvance->getUInt();
 
     Method methodIV = (currentProfile.getVersion() & Game::HGSS) ? Method::HGSSIVs : Method::DPPtIVs;
-    EggGenerator4 generatorIV(minAdvanceIV, maxAdvanceIV, tid, sid, genderRatio, methodIV, filter,
-                              ui->eggSettingsSearcher->getDaycareSettings());
+    EggGenerator4 generatorIV(minAdvanceIV, maxAdvanceIV, tid, sid, genderRatio, methodIV, filter, daycare);
 
-    Method methodPID = ui->checkBoxSearcherMasuada->isChecked() ? Method::Gen4Masuada : Method::Gen4Normal;
-    EggGenerator4 generatorPID(minAdvancePID, maxAdvancePID, tid, sid, genderRatio, methodPID, filter,
-                               ui->eggSettingsSearcher->getDaycareSettings());
+    Method methodPID = daycare.getMasuada() ? Method::Gen4Masuada : Method::Gen4Normal;
+    EggGenerator4 generatorPID(minAdvancePID, maxAdvancePID, tid, sid, genderRatio, methodPID, filter, daycare);
 
     ui->progressBarSearcher->setValue(0);
     ui->progressBarSearcher->setMaximum(static_cast<int>(256 * 24 * (maxDelay - minDelay + 1)));

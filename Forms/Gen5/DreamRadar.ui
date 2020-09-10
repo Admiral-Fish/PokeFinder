@@ -219,7 +219,7 @@
         <widget class="QGroupBox" name="groupBoxGeneratorRNGInfo">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-           <horstretch>2</horstretch>
+           <horstretch>1</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
@@ -310,7 +310,7 @@
         <widget class="QGroupBox" name="groupBoxGeneratorSettings">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-           <horstretch>2</horstretch>
+           <horstretch>1</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
@@ -320,6 +320,12 @@
          <layout class="QGridLayout" name="gridLayout">
           <item row="0" column="0">
            <widget class="QLabel" name="labelGeneratorSlot1">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="text">
              <string>Slot 1</string>
             </property>
@@ -333,6 +339,12 @@
           </item>
           <item row="1" column="0">
            <widget class="QLabel" name="labelGeneratorSlot2">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="text">
              <string>Slot 2</string>
             </property>
@@ -346,6 +358,12 @@
           </item>
           <item row="2" column="0">
            <widget class="QLabel" name="labelGeneratorSlot3">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="text">
              <string>Slot 3</string>
             </property>
@@ -359,6 +377,12 @@
           </item>
           <item row="3" column="0">
            <widget class="QLabel" name="labelGeneratorSlot4">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="text">
              <string>Slot 4</string>
             </property>
@@ -372,6 +396,12 @@
           </item>
           <item row="4" column="0">
            <widget class="QLabel" name="labelGeneratorSlot5">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="text">
              <string>Slot 5</string>
             </property>
@@ -385,6 +415,12 @@
           </item>
           <item row="5" column="0">
            <widget class="QLabel" name="labelGeneratorSlot6">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="text">
              <string>Slot 6</string>
             </property>
@@ -403,7 +439,7 @@
         <widget class="QGroupBox" name="groupBoxGeneratorFilters">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-           <horstretch>2</horstretch>
+           <horstretch>3</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
@@ -456,7 +492,7 @@
         <widget class="QGroupBox" name="groupBoxSearcherSettings">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-           <horstretch>2</horstretch>
+           <horstretch>1</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
@@ -466,6 +502,12 @@
          <layout class="QGridLayout" name="gridLayout_3">
           <item row="0" column="0">
            <widget class="QLabel" name="labelSearcherSlot1">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="text">
              <string>Slot 1</string>
             </property>
@@ -479,6 +521,12 @@
           </item>
           <item row="1" column="0">
            <widget class="QLabel" name="labelSearcherSlot2">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="text">
              <string>Slot 2</string>
             </property>
@@ -492,6 +540,12 @@
           </item>
           <item row="2" column="0">
            <widget class="QLabel" name="labelSearcherSlot3">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="text">
              <string>Slot 3</string>
             </property>
@@ -505,6 +559,12 @@
           </item>
           <item row="3" column="0">
            <widget class="QLabel" name="labelSearcherSlot4">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="text">
              <string>Slot 4</string>
             </property>
@@ -518,6 +578,12 @@
           </item>
           <item row="4" column="0">
            <widget class="QLabel" name="labelSearcherSlot5">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="text">
              <string>Slot 5</string>
             </property>
@@ -531,6 +597,12 @@
           </item>
           <item row="5" column="0">
            <widget class="QLabel" name="labelSearcherSlot6">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="text">
              <string>Slot 6</string>
             </property>
@@ -549,7 +621,7 @@
         <widget class="QGroupBox" name="groupBoxSearcherFilters">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-           <horstretch>2</horstretch>
+           <horstretch>3</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>

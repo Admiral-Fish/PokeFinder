@@ -210,9 +210,6 @@
    </item>
    <item row="1" column="0">
     <widget class="QTabWidget" name="tabRNGSelector">
-     <property name="currentIndex">
-      <number>1</number>
-     </property>
      <widget class="QWidget" name="tabStationary">
       <attribute name="title">
        <string>Generator</string>
