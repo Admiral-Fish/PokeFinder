@@ -67,7 +67,7 @@ MacOS
 Linux
 - Install the dependencies
   - sudo apt-get update -qq
-  - sudo apt-get install -y build-essential qtbase5-dev qt5-qmake qt5-default
+  - sudo apt-get install -y build-essential qtbase5-dev qt5-qmake qt5-default qttools5-dev-tools
 - Build
   - git submodule update
   - qmake PokeFinder.pro
