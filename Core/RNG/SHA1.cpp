@@ -48,24 +48,10 @@ inline u8 bcd(u8 value)
     return static_cast<u8>(tens << 4) | ones;
 }
 
-SHA1::SHA1(const Profile5 &profile)
+SHA1::SHA1(const Profile5 &profile) :
+    SHA1(profile.getVersion(), profile.getLanguage(), profile.getDSType(), profile.getMac(), profile.getSoftReset(), profile.getVFrame(),
+         profile.getGxStat())
 {
-    std::memset(data, 0, sizeof(data));
-
-    auto nazos = Nazos::getNazo(profile);
-    std::copy(nazos.begin(), nazos.end(), data);
-
-    data[6] = profile.getMac() & 0xFFFF;
-    if (profile.getSoftReset())
-    {
-        data[6] ^= 0x01000000;
-    }
-    data[7] = static_cast<u32>((profile.getMac() >> 16) ^ static_cast<u32>(profile.getVFrame() << 24) ^ profile.getGxStat());
-    data[13] = 0x80000000;
-    data[15] = 0x000001A0;
-
-    // Precompute data[18]
-    data[18] = rotateLeft(data[15] ^ data[10] ^ data[4] ^ data[2], 1);
 }
 
 SHA1::SHA1(Game version, Language language, DSType type, u64 mac, bool softReset, u8 vFrame, u8 gxStat)
