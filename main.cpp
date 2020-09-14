@@ -33,6 +33,9 @@ int main(int argc, char *argv[])
 
     QSettings setting;
 
+    // Buttons currently aren't easy to press with style sheet
+    // Disable it for now on MacOS
+#ifndef Q_OS_MAC
     QString style = setting.value("settings/style", "dark").toString();
     if (style == "dark")
     {
@@ -44,6 +47,7 @@ int main(int argc, char *argv[])
             file.close();
         }
     }
+#endif
 
     QString locale = setting.value("settings/locale", "en").toString();
     if (locale == "zh_Hans_CN") // TODO: remove in a future version
