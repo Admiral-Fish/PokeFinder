@@ -41,8 +41,7 @@ void IDSearcher4::startSearch(bool infinite, u16 year, u32 minDelay, u32 maxDela
                 }
 
                 u32 seed = static_cast<u32>((ab << 24) | (cd << 16)) + efgh;
-                MTFast<2> mt(seed);
-                mt.advance(1);
+                MTFast<2> mt(seed, 1);
 
                 u32 sidtid = mt.next();
 

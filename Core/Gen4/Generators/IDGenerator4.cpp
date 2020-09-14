@@ -36,8 +36,7 @@ QVector<IDState4> IDGenerator4::generate(const IDFilter &filter) const
         {
             u32 seed = static_cast<u32>(((((month * day) + (minute + second)) & 0xFF) << 24) | (hour << 16)) + efgh;
 
-            MTFast<2> mt(seed);
-            mt.advance(1);
+            MTFast<2> mt(seed, 1);
 
             u32 sidtid = mt.next();
 

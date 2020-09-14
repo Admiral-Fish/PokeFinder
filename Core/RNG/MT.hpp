@@ -37,41 +37,32 @@ private:
     void shuffle();
 };
 
-constexpr u16 bound(u16 num)
-{
-    return num + 397 > 624 ? 624 : num + 397;
-}
-
-template <u16 size = 624, bool fast = false>
+// The assumptions of MTFast allow some simplifications to be made from normal MT
+// 1. computing less of the internal MT array
+// 2. skipping the shuffle check when generating numbers for use
+// 3. if the fast parameter is true skip the last bit shift operation (only in IV generation)
+template <u16 size, bool fast = false>
 class MTFast
 {
 public:
-    MTFast(u32 seed = 0)
+    MTFast(u32 seed, u32 advances=0)
     {
+        static_assert(size < 227, "Size exceeds range of MTFast");
+
         mt[0] = seed;
 
-        for (index = 1; index < bound(size); index++)
+        for (index = 1; index < (size + 397); index++)
         {
-            mt[index] = 0x6C078965 * (mt[index - 1] ^ (mt[index - 1] >> 30)) + index;
+            seed = 0x6C078965 * (seed ^ (seed >> 30)) + index;
+            mt[index] = seed;
         }
-    }
 
-    void advance(u32 advances)
-    {
         index += advances;
-        while (index >= bound(size))
-        {
-            shuffle();
-        }
+        shuffle();
     }
 
     u32 next()
     {
-        if (index >= bound(size))
-        {
-            shuffle();
-        }
-
         u32 y = mt[index++];
         y ^= (y >> 11);
         y ^= (y << 7) & 0x9D2C5680;
@@ -90,14 +81,18 @@ public:
     }
 
 private:
-    u32 mt[bound(size)];
+    u32 mt[size + 397];
     u16 index;
 
     void shuffle()
     {
-        for (u16 i = 0; i < (size < 227 ? size : 227); i++)
+        u32 mt1 = mt[0], mt2;
+
+        for (u16 i = 0; i < size; i++)
         {
-            u32 y = (mt[i] & 0x80000000) | (mt[i + 1] & 0x7fffffff);
+            mt2 = mt[i + 1];
+
+            u32 y = (mt1 & 0x80000000) | (mt2 & 0x7fffffff);
 
             u32 y1 = y >> 1;
             if (y & 1)
@@ -106,38 +101,10 @@ private:
             }
 
             mt[i] = y1 ^ mt[i + 397];
+            mt1 = mt2;
         }
 
-        if constexpr (size >= 227)
-        {
-            for (u16 i = 227; i < (size < 623 ? size : 623); i++)
-            {
-                u32 y = (mt[i] & 0x80000000) | (mt[i + 1] & 0x7fffffff);
-
-                u32 y1 = y >> 1;
-                if (y & 1)
-                {
-                    y1 ^= 0x9908B0DF;
-                }
-
-                mt[i] = y1 ^ mt[i - 227];
-            }
-        }
-
-        if constexpr (size == 624)
-        {
-            u32 y = (mt[623] & 0x80000000) | (mt[0] & 0x7fffffff);
-
-            u32 y1 = y >> 1;
-            if (y & 1)
-            {
-                y1 ^= 0x9908B0DF;
-            }
-
-            mt[623] = y1 ^ mt[396];
-        }
-
-        index -= bound(size);
+        index -= (size + 397);
     }
 };
 

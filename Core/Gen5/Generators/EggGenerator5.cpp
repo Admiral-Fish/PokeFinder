@@ -56,8 +56,7 @@ QVector<EggState> EggGenerator5::generateBW(u64 seed) const
 {
     QVector<EggState> states;
 
-    MTFast<13, true> mt(seed >> 32);
-    mt.advance(7);
+    MTFast<13, true> mt(seed >> 32, 7);
 
     u8 ivs[6];
     std::generate(std::begin(ivs), std::end(ivs), [&mt] { return mt.nextUShort() >> 11; });
@@ -203,8 +202,7 @@ QVector<EggState> EggGenerator5::generateBW2(u64 seed) const
 {
     QVector<EggState> states;
 
-    MTFast<4> mt(seed >> 32);
-    mt.advance(2);
+    MTFast<4> mt(seed >> 32, 2);
 
     u64 eggSeed = static_cast<u64>(mt.next()) << 32;
     eggSeed |= mt.next();
