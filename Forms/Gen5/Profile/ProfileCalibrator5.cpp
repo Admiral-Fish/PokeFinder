@@ -68,7 +68,7 @@ void ProfileCalibrator5::setupModels()
     ui->textBoxMaxGxStat->setValues(0, 99, 2, 16);
     ui->textBoxMinVFrame->setValues(0, 99, 2, 16);
     ui->textBoxMaxVFrame->setValues(0, 99, 2, 16);
-    ui->textBoxMACAddress->setValues(0, 0xFFFFFFFFFF, 10, 16);
+    ui->textBoxMACAddress->setValues(0, 0xFFFFFFFFFFFF, 12, 16);
 
     ui->comboBoxVersion->setup({ Game::Black, Game::White, Game::Black2, Game::White2 });
     ui->comboBoxLanguage->setup({ Language::English, Language::Spanish, Language::French, Language::Italian, Language::German,
