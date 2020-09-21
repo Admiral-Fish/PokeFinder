@@ -57,7 +57,7 @@ public:
             mt[index] = seed;
         }
 
-        index += advances;
+        index = advances;
         shuffle();
     }
 
@@ -103,8 +103,6 @@ private:
             mt[i] = y1 ^ mt[i + 397];
             mt1 = mt2;
         }
-
-        index -= (size + 397);
     }
 };
 

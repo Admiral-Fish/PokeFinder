@@ -25,6 +25,7 @@
 #include <QCompleter>
 #include <QMessageBox>
 #include <QSettings>
+#include <QSpinBox>
 
 IVCalculator::IVCalculator(QWidget *parent) : QWidget(parent), ui(new Ui::IVCalculator)
 {
@@ -53,6 +54,10 @@ void IVCalculator::setupModels()
     ui->comboBoxPokemon->setInsertPolicy(QComboBox::NoInsert);
     ui->comboBoxPokemon->completer()->setCompletionMode(QCompleter::PopupCompletion);
 
+    addEntry();
+
+    connect(ui->pushButtonAddRow, &QPushButton::clicked, this, &IVCalculator::addEntry);
+    connect(ui->pushButtonRemoveRow, &QPushButton::clicked, this, &IVCalculator::removeEntry);
     connect(ui->pushButtonFindIVs, &QPushButton::clicked, this, &IVCalculator::findIVs);
     connect(ui->comboBoxPokemon, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &IVCalculator::pokemonIndexChanged);
     connect(ui->comboBoxAltForm, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &IVCalculator::altformIndexChanged);
@@ -129,51 +134,78 @@ PersonalInfo IVCalculator::getPersonalInfo(const PersonalInfo &base)
     return personalInfo.at(formIndex + form - 1);
 }
 
+void IVCalculator::addEntry()
+{
+    QSpinBox *level = new QSpinBox(ui->scrollAreaWidgetContents);
+    level->setRange(1, 100);
+
+    QSpinBox *hp = new QSpinBox(ui->scrollAreaWidgetContents);
+    hp->setRange(1, 651);
+
+    QSpinBox *atk = new QSpinBox(ui->scrollAreaWidgetContents);
+    atk->setRange(1, 437);
+
+    QSpinBox *def = new QSpinBox(ui->scrollAreaWidgetContents);
+    def->setRange(1, 545);
+
+    QSpinBox *spa = new QSpinBox(ui->scrollAreaWidgetContents);
+    spa->setRange(1, 420);
+
+    QSpinBox *spd = new QSpinBox(ui->scrollAreaWidgetContents);
+    spd->setRange(1, 545);
+
+    QSpinBox *spe = new QSpinBox(ui->scrollAreaWidgetContents);
+    spe->setRange(1, 435);
+
+    rows++;
+    ui->gridLayoutEntry->addWidget(level, rows, 0);
+    ui->gridLayoutEntry->addWidget(hp, rows, 1);
+    ui->gridLayoutEntry->addWidget(atk, rows, 2);
+    ui->gridLayoutEntry->addWidget(def, rows, 3);
+    ui->gridLayoutEntry->addWidget(spa, rows, 4);
+    ui->gridLayoutEntry->addWidget(spd, rows, 5);
+    ui->gridLayoutEntry->addWidget(spe, rows, 6);
+}
+
+void IVCalculator::removeEntry()
+{
+    if (rows == 1)
+    {
+        return;
+    }
+
+    for (int column = 0; column < 7; column++)
+    {
+        QLayoutItem *item = ui->gridLayoutEntry->itemAtPosition(rows, column);
+        ui->gridLayoutEntry->removeItem(item);
+
+        delete item->widget();
+        delete item;
+    }
+
+    rows--;
+}
+
 void IVCalculator::findIVs()
 {
     QVector<QVector<u16>> stats;
     QVector<u8> levels;
 
-    QStringList entries = ui->textEdit->toPlainText().split("\n");
-    bool flag = true;
-    for (const QString &entry : entries)
+    for (int row = 1; row < rows; row++)
     {
-        QStringList values = entry.split(" ");
-        if (values.size() != 7)
-        {
-            flag = false;
-            break;
-        }
+        QLayoutItem *item = ui->gridLayoutEntry->itemAtPosition(row, 0);
+        QSpinBox *widget = reinterpret_cast<QSpinBox *>(item->widget());
 
-        levels.append(static_cast<u8>(values.at(0).toUInt(&flag)));
-        if (!flag)
-        {
-            break;
-        }
+        levels.append(widget->value());
 
         QVector<u16> stat;
-        for (u8 i = 1; i < 7; i++)
+        for (int column = 1; column < 7; column++)
         {
-            stat.append(static_cast<u16>(values.at(i).toUInt(&flag)));
-            if (!flag)
-            {
-                break;
-            }
+            item = ui->gridLayoutEntry->itemAtPosition(row, column);
+            widget = reinterpret_cast<QSpinBox *>(item->widget());
+            stat.append(widget->value());
         }
         stats.append(stat);
-
-        if (!flag)
-        {
-            break;
-        }
-    }
-
-    if (!flag)
-    {
-        QMessageBox error;
-        error.setText(tr("Invalid input"));
-        error.exec();
-        return;
     }
 
     u8 nature = static_cast<u8>(ui->comboBoxNature->currentIndex());

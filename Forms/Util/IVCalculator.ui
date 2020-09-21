@@ -26,34 +26,32 @@
       <string>Settings</string>
      </property>
      <layout class="QGridLayout" name="gridLayout">
-      <item row="3" column="1">
-       <widget class="QComboBox" name="comboBoxHiddenPower">
-        <item>
-         <property name="text">
-          <string>None</string>
-         </property>
-        </item>
-       </widget>
-      </item>
-      <item row="4" column="0" colspan="2">
-       <spacer name="horizontalSpacer">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>219</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-      <item row="2" column="2">
-       <widget class="QLabel" name="labelNature">
+      <item row="2" column="0">
+       <widget class="QLabel" name="labelCharacteristic">
         <property name="text">
-         <string>Nature</string>
+         <string>Characteristic</string>
         </property>
        </widget>
+      </item>
+      <item row="0" column="0">
+       <widget class="QLabel" name="labelGeneraiton">
+        <property name="text">
+         <string>Generation</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="2">
+       <widget class="QLabel" name="labelAltForm">
+        <property name="text">
+         <string>Altform</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="2">
+       <widget class="QComboBox" name="comboBoxAltForm"/>
+      </item>
+      <item row="1" column="1">
+       <widget class="QComboBox" name="comboBoxPokemon"/>
       </item>
       <item row="4" column="2">
        <widget class="QPushButton" name="pushButtonFindIVs">
@@ -67,6 +65,42 @@
          <string>Find IVs</string>
         </property>
        </widget>
+      </item>
+      <item row="2" column="2">
+       <widget class="QLabel" name="labelNature">
+        <property name="text">
+         <string>Nature</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QLabel" name="labelHiddenPower">
+        <property name="text">
+         <string>Hidden Power</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QLabel" name="labelSpecies">
+        <property name="text">
+         <string>Pokémon</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="1">
+       <widget class="QComboBox" name="comboBoxHiddenPower">
+        <item>
+         <property name="text">
+          <string>None</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="3" column="0">
+       <widget class="QComboBox" name="comboBoxCharacteristic"/>
+      </item>
+      <item row="3" column="2">
+       <widget class="QComboBox" name="comboBoxNature"/>
       </item>
       <item row="1" column="0">
        <widget class="QComboBox" name="comboBoxGeneration">
@@ -87,59 +121,129 @@
         </item>
        </widget>
       </item>
-      <item row="3" column="0">
-       <widget class="QComboBox" name="comboBoxCharacteristic"/>
-      </item>
       <item row="5" column="0" colspan="3">
-       <widget class="QTextEdit" name="textEdit">
-        <property name="placeholderText">
-         <string>Level HP Atk Def Spa Spd Spe</string>
+       <widget class="QScrollArea" name="scrollArea">
+        <property name="widgetResizable">
+         <bool>true</bool>
         </property>
+        <widget class="QWidget" name="scrollAreaWidgetContents">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>0</y>
+           <width>277</width>
+           <height>236</height>
+          </rect>
+         </property>
+         <layout class="QGridLayout" name="gridLayoutEntry">
+          <item row="0" column="0">
+           <widget class="QLabel" name="labelLevel">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>Level</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QLabel" name="labelHP">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>HP</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="2">
+           <widget class="QLabel" name="labelAtk">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>Atk</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="3">
+           <widget class="QLabel" name="labelDef">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>Def</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="4">
+           <widget class="QLabel" name="labelSpA">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>SpA</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="5">
+           <widget class="QLabel" name="labelSpD">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>SpD</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="6">
+           <widget class="QLabel" name="labelSpe">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>Speed</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
        </widget>
       </item>
-      <item row="2" column="0">
-       <widget class="QLabel" name="labelCharacteristic">
+      <item row="4" column="0">
+       <widget class="QPushButton" name="pushButtonAddRow">
         <property name="text">
-         <string>Characteristic</string>
+         <string>Add row</string>
         </property>
        </widget>
       </item>
-      <item row="3" column="2">
-       <widget class="QComboBox" name="comboBoxNature"/>
-      </item>
-      <item row="2" column="1">
-       <widget class="QLabel" name="labelHiddenPower">
+      <item row="4" column="1">
+       <widget class="QPushButton" name="pushButtonRemoveRow">
         <property name="text">
-         <string>Hidden Power</string>
+         <string>Remove Row</string>
         </property>
        </widget>
-      </item>
-      <item row="0" column="0">
-       <widget class="QLabel" name="labelGeneraiton">
-        <property name="text">
-         <string>Generation</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="1">
-       <widget class="QComboBox" name="comboBoxPokemon"/>
-      </item>
-      <item row="0" column="1">
-       <widget class="QLabel" name="labelSpecies">
-        <property name="text">
-         <string>Pokémon</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="2">
-       <widget class="QLabel" name="labelAltForm">
-        <property name="text">
-         <string>Altform</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="2">
-       <widget class="QComboBox" name="comboBoxAltForm"/>
       </item>
      </layout>
     </widget>
@@ -339,8 +443,10 @@
   <tabstop>comboBoxCharacteristic</tabstop>
   <tabstop>comboBoxHiddenPower</tabstop>
   <tabstop>comboBoxNature</tabstop>
+  <tabstop>pushButtonAddRow</tabstop>
+  <tabstop>pushButtonRemoveRow</tabstop>
   <tabstop>pushButtonFindIVs</tabstop>
-  <tabstop>textEdit</tabstop>
+  <tabstop>scrollArea</tabstop>
  </tabstops>
  <resources/>
  <connections/>

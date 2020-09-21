@@ -39,6 +39,7 @@ public:
 
 private:
     Ui::IVCalculator *ui;
+    int rows = 0;
     QVector<PersonalInfo> personalInfo;
 
     void setupModels();
@@ -46,6 +47,8 @@ private:
     PersonalInfo getPersonalInfo(const PersonalInfo &base);
 
 private slots:
+    void addEntry();
+    void removeEntry();
     void findIVs();
     void pokemonIndexChanged(int index);
     void altformIndexChanged(int index);
