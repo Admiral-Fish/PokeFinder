@@ -19,6 +19,10 @@
 
 #include "MT.hpp"
 
+#ifdef __SSE2__
+#include <smmintrin.h>
+#endif
+
 MT::MT(u32 seed)
 {
     mt[0] = seed;
@@ -62,6 +66,87 @@ u16 MT::nextUShort()
 
 void MT::shuffle()
 {
+#ifdef __SSE2__
+    __m128i upperMask = _mm_set1_epi32(0x80000000);
+    __m128i lowerMask = _mm_set1_epi32(0x7fffffff);
+    __m128i matrix = _mm_set1_epi32(0x9908B0DF);
+    __m128i one = _mm_set1_epi32(1);
+
+    int i = 0;
+    for (; i < 224; i += 4)
+    {
+        __m128i m0 = *(__m128i *)&mt[i];
+        __m128i m1 = *(__m128i *)&mt[i + 1];
+        __m128i m2 = *(__m128i *)&mt[i + 397];
+
+        __m128i y = _mm_or_si128(_mm_and_si128(m0, upperMask), _mm_and_si128(m1, lowerMask));
+        __m128i y1 = _mm_srli_epi32(y, 1);
+
+        __m128i mag01 = _mm_and_si128(y, one);
+        mag01 = _mm_cmpeq_epi32(mag01, one);
+        mag01 = _mm_and_si128(mag01, matrix);
+
+        y1 = _mm_xor_si128(y1, mag01);
+        y1 = _mm_xor_si128(y1, m2);
+
+        *(__m128i *)&mt[i] = y1;
+    }
+
+    for (; i < 228; i++)
+    {
+        u32 y = (mt[i] & 0x80000000) | (mt[i + 1] & 0x7fffffff);
+
+        u32 y1 = y >> 1;
+        if (y & 1)
+        {
+            y1 ^= 0x9908B0DF;
+        }
+
+        mt[i] = y1 ^ mt[i + 397];
+    }
+
+    for (; i < 620; i += 4)
+    {
+        __m128i m0 = *(__m128i *)&mt[i];
+        __m128i m1 = *(__m128i *)&mt[i + 1];
+        __m128i m2 = *(__m128i *)&mt[i - 227];
+
+        __m128i y = _mm_or_si128(_mm_and_si128(m0, upperMask), _mm_and_si128(m1, lowerMask));
+        __m128i y1 = _mm_srli_epi32(y, 1);
+
+        __m128i mag01 = _mm_and_si128(y, one);
+        mag01 = _mm_cmpeq_epi32(mag01, one);
+        mag01 = _mm_and_si128(mag01, matrix);
+
+        y1 = _mm_xor_si128(y1, mag01);
+        y1 = _mm_xor_si128(y1, m2);
+
+        *(__m128i *)&mt[i] = y1;
+    }
+
+    for (; i < 623; i++)
+    {
+        u32 y = (mt[i] & 0x80000000) | (mt[i + 1] & 0x7fffffff);
+
+        u32 y1 = y >> 1;
+        if (y & 1)
+        {
+            y1 ^= 0x9908B0DF;
+        }
+
+        mt[i] = y1 ^ mt[i - 227];
+    }
+
+    u32 y = (mt[623] & 0x80000000) | (mt[0] & 0x7fffffff);
+
+    u32 y1 = y >> 1;
+    if (y & 1)
+    {
+        y1 ^= 0x9908B0DF;
+    }
+
+    mt[623] = y1 ^ mt[396];
+#else
     u32 mt1 = mt[0], mt2;
 
     for (u16 i = 0; i < 227; i++)
@@ -105,6 +190,7 @@ void MT::shuffle()
     }
 
     mt[623] = y1 ^ mt[396];
+#endif
 
     index -= 624;
 }
