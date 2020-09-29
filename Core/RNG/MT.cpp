@@ -19,10 +19,6 @@
 
 #include "MT.hpp"
 
-#ifdef __SSE2__
-#include <smmintrin.h>
-#endif
-
 MT::MT(u32 seed)
 {
     mt[0] = seed;
