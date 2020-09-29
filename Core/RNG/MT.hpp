@@ -91,7 +91,7 @@ private:
     void shuffle()
     {
 #ifdef __SSE2__
-        if constexpr (size > 4)
+        if constexpr (size >= 4)
         {
             __m128i upperMask = _mm_set1_epi32(0x80000000);
             __m128i lowerMask = _mm_set1_epi32(0x7fffffff);
