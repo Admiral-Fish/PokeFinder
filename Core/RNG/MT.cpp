@@ -70,9 +70,9 @@ void MT::shuffle()
 
     for (int i = 0; i < 224; i += 4)
     {
-        __m128i m0 = *(__m128i *)&mt[i];
-        __m128i m1 = *(__m128i_u *)&mt[i + 1];
-        __m128i m2 = *(__m128i_u *)&mt[i + 397];
+        __m128i m0 = _mm_loadu_si128((__m128i *)&mt[i]);
+        __m128i m1 = _mm_loadu_si128((__m128i_u *)&mt[i + 1]);
+        __m128i m2 = _mm_loadu_si128((__m128i_u *)&mt[i + 397]);
 
         __m128i y = _mm_or_si128(_mm_and_si128(m0, upperMask), _mm_and_si128(m1, lowerMask));
         __m128i y1 = _mm_srli_epi32(y, 1);
@@ -88,24 +88,28 @@ void MT::shuffle()
     }
 
     {
-        u32 y = (mt[224] & 0x80000000) | (mt[225] & 0x7fffffff);
-        mt[224] = (y >> 1) ^ ((y & 1) ? 0x9908B0DF : 0) ^ mt[621];
+        __m128i m0 = _mm_loadu_si128((__m128i *)&mt[224]);
+        __m128i m1 = _mm_loadu_si128((__m128i *)&mt[225]);
+        __m128i m2 = _mm_insert_epi32(_mm_insert_epi32(_mm_loadl_epi64((__m128i *)&mt[621]), mt[623], 2), mt[0], 3);
 
-        y = (mt[225] & 0x80000000) | (mt[226] & 0x7fffffff);
-        mt[225] = (y >> 1) ^ ((y & 1) ? 0x9908B0DF : 0) ^ mt[622];
+        __m128i y = _mm_or_si128(_mm_and_si128(m0, upperMask), _mm_and_si128(m1, lowerMask));
+        __m128i y1 = _mm_srli_epi32(y, 1);
 
-        y = (mt[226] & 0x80000000) | (mt[227] & 0x7fffffff);
-        mt[226] = (y >> 1) ^ ((y & 1) ? 0x9908B0DF : 0) ^ mt[623];
+        __m128i mag01 = _mm_and_si128(y, one);
+        mag01 = _mm_cmpeq_epi32(mag01, one);
+        mag01 = _mm_and_si128(mag01, matrix);
 
-        y = (mt[227] & 0x80000000) | (mt[228] & 0x7fffffff);
-        mt[227] = (y >> 1) ^ ((y & 1) ? 0x9908B0DF : 0) ^ mt[0];
+        y1 = _mm_xor_si128(y1, mag01);
+        y1 = _mm_xor_si128(y1, m2);
+
+        *(__m128i *)&mt[224] = y1;
     }
 
     for (int i = 228; i < 620; i += 4)
     {
-        __m128i m0 = *(__m128i *)&mt[i];
-        __m128i m1 = *(__m128i_u *)&mt[i + 1];
-        __m128i m2 = *(__m128i_u *)&mt[i - 227];
+        __m128i m0 = _mm_loadu_si128((__m128i *)&mt[i]);
+        __m128i m1 = _mm_loadu_si128((__m128i_u *)&mt[i + 1]);
+        __m128i m2 = _mm_loadu_si128((__m128i_u *)&mt[i - 227]);
 
         __m128i y = _mm_or_si128(_mm_and_si128(m0, upperMask), _mm_and_si128(m1, lowerMask));
         __m128i y1 = _mm_srli_epi32(y, 1);
@@ -121,17 +125,21 @@ void MT::shuffle()
     }
 
     {
-        u32 y = (mt[620] & 0x80000000) | (mt[621] & 0x7fffffff);
-        mt[620] = (y >> 1) ^ ((y & 1) ? 0x9908B0DF : 0) ^ mt[393];
+        __m128i m0 = _mm_loadu_si128((__m128i *)&mt[620]);
+        __m128i m1 = _mm_insert_epi32(_mm_insert_epi32(_mm_loadl_epi64((__m128i *)&mt[621]), mt[623], 2), mt[0], 3);
+        __m128i m2 = _mm_loadu_si128((__m128i *)&mt[393]);
 
-        y = (mt[621] & 0x80000000) | (mt[622] & 0x7fffffff);
-        mt[621] = (y >> 1) ^ ((y & 1) ? 0x9908B0DF : 0) ^ mt[394];
+        __m128i y = _mm_or_si128(_mm_and_si128(m0, upperMask), _mm_and_si128(m1, lowerMask));
+        __m128i y1 = _mm_srli_epi32(y, 1);
 
-        y = (mt[622] & 0x80000000) | (mt[623] & 0x7fffffff);
-        mt[622] = (y >> 1) ^ ((y & 1) ? 0x9908B0DF : 0) ^ mt[395];
+        __m128i mag01 = _mm_and_si128(y, one);
+        mag01 = _mm_cmpeq_epi32(mag01, one);
+        mag01 = _mm_and_si128(mag01, matrix);
 
-        y = (mt[623] & 0x80000000) | (mt[0] & 0x7fffffff);
-        mt[623] = (y >> 1) ^ ((y & 1) ? 0x9908B0DF : 0) ^ mt[396];
+        y1 = _mm_xor_si128(y1, mag01);
+        y1 = _mm_xor_si128(y1, m2);
+
+        *(__m128i *)&mt[620] = y1;
     }
 #else
     u32 mt1 = mt[0], mt2;
