@@ -35,7 +35,7 @@ public:
     u16 nextUShort();
 
 private:
-    u32 mt[624];
+    alignas(16) u32 mt[624];
     u16 index;
 
     void shuffle();
@@ -85,7 +85,7 @@ public:
     }
 
 private:
-    u32 mt[size + 397];
+    alignas(16) u32 mt[size + 397];
     u16 index;
 
     void shuffle()
