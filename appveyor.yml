@@ -3,15 +3,13 @@ environment:
   - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2019
     QTPATH: C:\Qt\5.15\msvc2019_64
     OpenSSL: C:\OpenSSL-v111-Win64\bin
-    OS: win64
+    OS: win-msvc
     VCVARSALLPATH: C:\"Program Files (x86)\Microsoft Visual Studio"\2019\Community\VC\Auxiliary\Build\vcvarsall.bat
     VCVARSALL: x64
   - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2019
-    QTPATH: C:\Qt\5.15\msvc2019
-    OpenSSL: C:\OpenSSL-v111-Win32\bin
-    OS: win32
-    VCVARSALLPATH: C:\"Program Files (x86)\Microsoft Visual Studio"\2019\Community\VC\Auxiliary\Build\vcvarsall.bat
-    VCVARSALL: x86
+    QTPATH: C:\Qt\5.15.0\mingw81_64
+    OpenSSL: C:\OpenSSL-v111-Win64\bin
+    OS: win-mingw
   - APPVEYOR_BUILD_WORKER_IMAGE: Ubuntu2004
     OS: linux
   - APPVEYOR_BUILD_WORKER_IMAGE: macos
@@ -23,11 +21,13 @@ install:
     
 before_build:
     - cmd: set PATH=%QTPATH%\bin;C:\Qt\Tools\QtCreator\bin;%PATH%
-    - cmd: call %VCVARSALLPATH% %VCVARSALL%
+    - cmd: if "%OS%"=="win-msvc" call %VCVARSALLPATH% %VCVARSALL%
+    - cmd: if "%OS%"=="win-mingw" set PATH=C:\Qt\Tools\mingw810_64\bin;%PATH%
     
 build_script:
     - cmd: qmake PokeFinder.pro
-    - cmd: jom -j %NUMBER_OF_PROCESSORS%
+    - cmd: if "%OS%"=="win-msvc" jom -j %NUMBER_OF_PROCESSORS%
+    - cmd: if "%OS%"=="win-mingw" mingw32-make -j %NUMBER_OF_PROCESSORS%
     - sh: bash .ci/build.sh
     
 after_build:
