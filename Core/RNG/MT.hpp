@@ -115,7 +115,7 @@ private:
                 y1 = _mm_xor_si128(y1, mag01);
                 y1 = _mm_xor_si128(y1, m2);
 
-                *(__m128i *)&mt[i] = y1;
+                _mm_storeu_si128((__m128i *)&mt[i], y1);
             }
 
             for (; i < size; i++)

@@ -84,7 +84,7 @@ void MT::shuffle()
         y1 = _mm_xor_si128(y1, mag01);
         y1 = _mm_xor_si128(y1, m2);
 
-        *(__m128i *)&mt[i] = y1;
+        _mm_storeu_si128((__m128i *)&mt[i], y1);
     }
 
     {
@@ -102,7 +102,7 @@ void MT::shuffle()
         y1 = _mm_xor_si128(y1, mag01);
         y1 = _mm_xor_si128(y1, m2);
 
-        *(__m128i *)&mt[224] = y1;
+        _mm_storeu_si128((__m128i *)&mt[224], y1);
     }
 
     for (int i = 228; i < 620; i += 4)
@@ -121,7 +121,7 @@ void MT::shuffle()
         y1 = _mm_xor_si128(y1, mag01);
         y1 = _mm_xor_si128(y1, m2);
 
-        *(__m128i *)&mt[i] = y1;
+        _mm_storeu_si128((__m128i *)&mt[i], y1);
     }
 
     {
@@ -139,7 +139,7 @@ void MT::shuffle()
         y1 = _mm_xor_si128(y1, mag01);
         y1 = _mm_xor_si128(y1, m2);
 
-        *(__m128i *)&mt[620] = y1;
+        _mm_storeu_si128((__m128i *)&mt[620], y1);
     }
 #else
     u32 mt1 = mt[0], mt2;
