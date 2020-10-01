@@ -22,6 +22,10 @@
 
 #include <Core/Util/Global.hpp>
 
+#ifdef __SSE2__
+#include <smmintrin.h>
+#endif
+
 class MT
 {
 public:
@@ -31,7 +35,7 @@ public:
     u16 nextUShort();
 
 private:
-    u32 mt[624];
+    alignas(16) u32 mt[624];
     u16 index;
 
     void shuffle();
@@ -81,11 +85,73 @@ public:
     }
 
 private:
-    u32 mt[size + 397];
+    alignas(16) u32 mt[size + 397];
     u16 index;
 
     void shuffle()
     {
+#ifdef __SSE2__
+        if constexpr (size >= 4)
+        {
+            __m128i upperMask = _mm_set1_epi32(0x80000000);
+            __m128i lowerMask = _mm_set1_epi32(0x7fffffff);
+            __m128i matrix = _mm_set1_epi32(0x9908B0DF);
+            __m128i one = _mm_set1_epi32(1);
+
+            u16 i = 0;
+            for (; i < size - (size % 4); i += 4)
+            {
+                __m128i m0 = *(__m128i *)&mt[i];
+                __m128i m1 = *(__m128i *)&mt[i + 1];
+                __m128i m2 = *(__m128i *)&mt[i + 397];
+
+                __m128i y = _mm_or_si128(_mm_and_si128(m0, upperMask), _mm_and_si128(m1, lowerMask));
+                __m128i y1 = _mm_srli_epi32(y, 1);
+
+                __m128i mag01 = _mm_and_si128(y, one);
+                mag01 = _mm_cmpeq_epi32(mag01, one);
+                mag01 = _mm_and_si128(mag01, matrix);
+
+                y1 = _mm_xor_si128(y1, mag01);
+                y1 = _mm_xor_si128(y1, m2);
+
+                _mm_storeu_si128((__m128i *)&mt[i], y1);
+            }
+
+            for (; i < size; i++)
+            {
+                u32 y = (mt[i] & 0x80000000) | (mt[i + 1] & 0x7fffffff);
+
+                u32 y1 = y >> 1;
+                if (y & 1)
+                {
+                    y1 ^= 0x9908B0DF;
+                }
+
+                mt[i] = y1 ^ mt[i + 397];
+            }
+        }
+        else
+        {
+            u32 mt1 = mt[0], mt2;
+
+            for (u16 i = 0; i < size; i++)
+            {
+                mt2 = mt[i + 1];
+
+                u32 y = (mt1 & 0x80000000) | (mt2 & 0x7fffffff);
+
+                u32 y1 = y >> 1;
+                if (y & 1)
+                {
+                    y1 ^= 0x9908B0DF;
+                }
+
+                mt[i] = y1 ^ mt[i + 397];
+                mt1 = mt2;
+            }
+        }
+#else
         u32 mt1 = mt[0], mt2;
 
         for (u16 i = 0; i < size; i++)
@@ -103,6 +169,7 @@ private:
             mt[i] = y1 ^ mt[i + 397];
             mt1 = mt2;
         }
+#endif
     }
 };
 
