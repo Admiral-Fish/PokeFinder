@@ -64,7 +64,7 @@ QVector<EggState> EggGenerator5::generateBW(u64 seed) const
     BWRNG rng(seed);
     rng.advance(initialAdvances + offset);
 
-    for (u32 cnt = 0; cnt < maxAdvances; cnt++, rng.next())
+    for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rng.next())
     {
         EggState state(cnt + initialAdvances);
 
@@ -212,7 +212,7 @@ QVector<EggState> EggGenerator5::generateBW2(u64 seed) const
     {
         BWRNG rng(seed);
         rng.advance(initialAdvances + offset);
-        for (u32 cnt = 0; cnt < maxAdvances; cnt++, rng.next())
+        for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rng.next())
         {
             BWRNG go(rng.getSeed());
             state.setSeed(go.nextUInt(0x1fff));

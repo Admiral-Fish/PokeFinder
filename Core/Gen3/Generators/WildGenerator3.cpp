@@ -78,7 +78,7 @@ QVector<WildState> WildGenerator3::generate(u32 seed) const
         };
     }
 
-    for (u32 cnt = 0; cnt < maxAdvances; cnt++, rng.next())
+    for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rng.next())
     {
         WildState state(initialAdvances + cnt);
         PokeRNG go(rng.getSeed());

@@ -35,7 +35,7 @@ QVector<HiddenGrottoState> HiddenGrottoGenerator::generate(u64 seed)
 
     BWRNG rng(seed);
 
-    for (u32 cnt = 0; cnt < maxAdvances; cnt++, rng.next())
+    for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rng.next())
     {
         BWRNG go(rng.getSeed());
 

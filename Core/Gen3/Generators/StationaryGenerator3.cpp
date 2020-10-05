@@ -54,7 +54,7 @@ QVector<State> StationaryGenerator3::generateMethod124(u32 seed) const
     // Method 2 [SEED] [PID] [PID] [BLANK] [IVS] [IVS]
     // Method 4 [SEED] [PID] [PID] [IVS] [BLANK] [IVS]
 
-    for (u32 cnt = 0; cnt < maxAdvances; cnt++, rng.next())
+    for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rng.next())
     {
         State state(cnt + initialAdvances);
         PokeRNG go(rng.getSeed());
@@ -94,7 +94,7 @@ QVector<State> StationaryGenerator3::generateMethod1Reverse(u32 seed) const
 
     // Method 1 Reverse [SEED] [PID] [PID] [IVS] [IVS]
 
-    for (u32 cnt = 0; cnt < maxAdvances; cnt++, rng.next())
+    for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rng.next())
     {
         State state(cnt + initialAdvances);
         PokeRNG go(rng.getSeed());

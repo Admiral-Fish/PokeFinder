@@ -41,7 +41,7 @@ QVector<State> EventGenerator5::generate(u64 seed) const
     BWRNG rng(seed);
     rng.advance(initialAdvances + offset);
 
-    for (u32 cnt = 0; cnt < maxAdvances; cnt++, rng.next())
+    for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rng.next())
     {
         State state(initialAdvances + cnt);
 

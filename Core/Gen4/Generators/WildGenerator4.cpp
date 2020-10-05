@@ -82,7 +82,7 @@ QVector<WildState> WildGenerator4::generateMethodJ(u32 seed) const
         break;
     }
 
-    for (u32 cnt = 0; cnt < maxAdvances; cnt++, rng.next())
+    for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rng.next())
     {
         WildState state(initialAdvances + cnt);
         PokeRNG go(rng.getSeed());
@@ -275,7 +275,7 @@ QVector<WildState> WildGenerator4::generateMethodK(u32 seed) const
         break;
     }
 
-    for (u32 cnt = 0; cnt < maxAdvances; cnt++, rng.next())
+    for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rng.next())
     {
         WildState state(initialAdvances + cnt);
         PokeRNG go(rng.getSeed());
@@ -448,7 +448,7 @@ QVector<WildState> WildGenerator4::generateChainedShiny(u32 seed) const
     PokeRNG rng(seed);
     rng.advance(initialAdvances + offset);
 
-    for (u32 cnt = 0; cnt < maxAdvances; cnt++, rng.next())
+    for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rng.next())
     {
         WildState state(initialAdvances + cnt);
 

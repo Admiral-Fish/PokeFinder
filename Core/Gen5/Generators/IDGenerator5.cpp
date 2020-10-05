@@ -35,7 +35,7 @@ QVector<IDState5> IDGenerator5::generate(u64 seed, u32 pid, bool checkPID)
     u16 psv = (pid >> 16) ^ (pid & 0xffff);
     u16 xorPSV = psv ^ 0x8000;
 
-    for (u32 cnt = 0; cnt < maxAdvances; cnt++)
+    for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
     {
         u32 rand = rng.nextUInt(0xffffffff);
         u16 tid = rand & 0xffff;

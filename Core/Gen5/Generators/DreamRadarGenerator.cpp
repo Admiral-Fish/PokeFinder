@@ -63,7 +63,7 @@ QVector<State> DreamRadarGenerator::generate(u64 seed, bool memory)
 
     RNGList<u8, MT, 8, 27> rngList(mt);
 
-    for (u32 cnt = 0; cnt < maxAdvances; cnt++, rngList.advanceStates(2), rng.next())
+    for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rngList.advanceStates(2), rng.next())
     {
         State state(cnt + initialAdvances);
 

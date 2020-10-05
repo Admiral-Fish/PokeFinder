@@ -37,7 +37,7 @@ QVector<IDState3> IDGenerator3::generateXDColo(u32 seed)
     XDRNG rng(seed);
     rng.advance(initialAdvances);
 
-    for (u32 cnt = 0; cnt < maxAdvances; cnt++, rng.next())
+    for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rng.next())
     {
         XDRNG go(rng.getSeed());
 
@@ -62,7 +62,7 @@ QVector<IDState3> IDGenerator3::generateFRLGE(u32 seed)
     PokeRNG rng(seed);
     rng.advance(initialAdvances);
 
-    for (u32 cnt = 0; cnt < maxAdvances; cnt++)
+    for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
     {
         u16 sid = rng.nextUShort();
 
@@ -84,7 +84,7 @@ QVector<IDState3> IDGenerator3::generateRS(u32 seed)
     PokeRNG rng(seed);
     rng.advance(initialAdvances);
 
-    for (u32 cnt = 0; cnt < maxAdvances; cnt++, rng.next())
+    for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rng.next())
     {
         PokeRNG go(rng.getSeed());
 

@@ -54,7 +54,7 @@ QVector<State> StationaryGenerator4::generateMethod1(u32 seed) const
     rng.advance(initialAdvances + offset);
 
     // Method 1 [SEED] [PID] [PID] [IVS] [IVS]
-    for (u32 cnt = 0; cnt < maxAdvances; cnt++, rng.next())
+    for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rng.next())
     {
         State state(initialAdvances + cnt);
         PokeRNG go(rng.getSeed());
@@ -113,7 +113,7 @@ QVector<State> StationaryGenerator4::generateMethodJ(u32 seed) const
         break;
     }
 
-    for (u32 cnt = 0; cnt < maxAdvances; cnt++, rng.next())
+    for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rng.next())
     {
         State state(initialAdvances + cnt);
         PokeRNG go(rng.getSeed());
@@ -251,7 +251,7 @@ QVector<State> StationaryGenerator4::generateMethodK(u32 seed) const
         break;
     }
 
-    for (u32 cnt = 0; cnt < maxAdvances; cnt++, rng.next())
+    for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rng.next())
     {
         State state(initialAdvances + cnt);
         PokeRNG go(rng.getSeed());
@@ -370,7 +370,7 @@ QVector<State> StationaryGenerator4::generateWonderCardIVs(u32 seed) const
 
     // Wondercard IVs [SEED] [IVS] [IVS]
 
-    for (u32 cnt = 0; cnt < maxAdvances; cnt++, rng.next())
+    for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rng.next())
     {
         State state(initialAdvances + cnt);
         PokeRNG go(rng.getSeed());
