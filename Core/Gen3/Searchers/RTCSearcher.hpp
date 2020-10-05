@@ -23,18 +23,20 @@
 #include <Core/Gen3/States/GameCubeRTCState.hpp>
 #include <Core/Util/Global.hpp>
 #include <QVector>
+#include <mutex>
 
 class RTCSearcher
 {
 public:
     RTCSearcher();
-    void startSearch(u32 initialSeed, u32 targetSeed, u32 initialAdvances, u32 maxAdvances);
+    void startSearch(u32 initialSeed, u32 targetSeed, u32 initialAdvances, u32 maxAdvances, const QDateTime &end);
     void cancelSearch();
     QVector<GameCubeRTCState> getResults();
 
 private:
     QVector<GameCubeRTCState> results;
     bool searching;
+    std::mutex mutex;
 };
 
 #endif // RTCSEARCHER_HPP

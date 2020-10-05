@@ -23,6 +23,7 @@
 #include <Models/Gen3/GameCubeRTCModel.hpp>
 #include <QSettings>
 #include <QThread>
+#include <QTimer>
 
 GameCubeRTC::GameCubeRTC(QWidget *parent) : QWidget(parent), ui(new Ui::GameCubeRTC)
 {
@@ -94,25 +95,30 @@ void GameCubeRTC::search()
     u32 targetSeed = ui->textBoxTargetSeed->getUInt();
     u32 initialAdvances = ui->textBoxMinAdvance->getUInt();
     u32 maxAdvances = ui->textBoxMaxAdvance->getUInt();
+    QDateTime end = ui->dateTimeEdit->dateTime();
 
     auto *searcher = new RTCSearcher();
-    auto *thread = QThread::create([=] { searcher->startSearch(initialSeed, targetSeed, initialAdvances, maxAdvances); });
 
-    connect(thread, &QThread::finished, this, [=] {
+    auto *thread = QThread::create([=] { searcher->startSearch(initialSeed, targetSeed, initialAdvances, maxAdvances, end); });
+    connect(thread, &QThread::finished, thread, &QThread::deleteLater);
+    connect(ui->pushButtonCancel, &QPushButton::clicked, [searcher] { searcher->cancelSearch(); });
+
+    auto *timer = new QTimer();
+    connect(timer, &QTimer::timeout, [=] { updateProgress(searcher->getResults()); });
+    connect(thread, &QThread::finished, timer, &QTimer::stop);
+    connect(thread, &QThread::finished, timer, &QTimer::deleteLater);
+    connect(timer, &QTimer::destroyed, [=] {
         ui->pushButtonSearch->setEnabled(true);
         ui->pushButtonCancel->setEnabled(false);
-    });
-    connect(ui->pushButtonCancel, &QPushButton::clicked, [=] { searcher->cancelSearch(); });
-    connect(thread, &QThread::finished, thread, &QThread::deleteLater);
-    connect(thread, &QThread::destroyed, [=] {
-        updateTableView(searcher->getResults());
+        updateProgress(searcher->getResults());
         delete searcher;
     });
 
     thread->start();
+    timer->start(1000);
 }
 
-void GameCubeRTC::updateTableView(const QVector<GameCubeRTCState> &results)
+void GameCubeRTC::updateProgress(const QVector<GameCubeRTCState> &results)
 {
     model->addItems(results);
 }

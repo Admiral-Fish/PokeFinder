@@ -19,15 +19,12 @@
 
 #include "RTCSearcher.hpp"
 #include <Core/RNG/LCRNG.hpp>
-#include <QDateTime>
-
-static const QDateTime date(QDate(2000, 1, 1), QTime(0, 0));
 
 RTCSearcher::RTCSearcher() : searching(false)
 {
 }
 
-void RTCSearcher::startSearch(u32 initialSeed, u32 targetSeed, u32 initialAdvances, u32 maxAdvances)
+void RTCSearcher::startSearch(u32 initialSeed, u32 targetSeed, u32 initialAdvances, u32 maxAdvances, const QDateTime &end)
 {
     searching = true;
 
@@ -36,35 +33,25 @@ void RTCSearcher::startSearch(u32 initialSeed, u32 targetSeed, u32 initialAdvanc
 
     targetSeed = back.getSeed();
 
-    u32 seconds = 0;
-    u32 minutes = 0;
-    u8 secoundCount = 0;
-
-    while (searching)
+    QDateTime time(QDate(2000, 1, 1), QTime(0, 0));
+    for (; time < end; time = time.addSecs(1), initialSeed += 40500000)
     {
         XDRNG rng(initialSeed);
 
         for (u32 x = 0; x < maxAdvances; x++)
         {
-            if (rng.next() == targetSeed)
+            if (!searching)
             {
-                QDateTime finalTime = date.addSecs(seconds);
-
-                GameCubeRTCState result(finalTime, initialSeed, x + 1 + initialAdvances);
-                results.append(result);
-
                 return;
             }
-        }
 
-        initialSeed += 40500000;
-        seconds++;
-        secoundCount++;
+            if (rng.next() == targetSeed)
+            {
+                GameCubeRTCState result(time, initialSeed, x + 1 + initialAdvances);
 
-        if (secoundCount == 60)
-        {
-            minutes++;
-            secoundCount = 0;
+                std::lock_guard<std::mutex> guard(mutex);
+                results.append(result);
+            }
         }
     }
 }
@@ -76,5 +63,8 @@ void RTCSearcher::cancelSearch()
 
 QVector<GameCubeRTCState> RTCSearcher::getResults()
 {
-    return results;
+    std::lock_guard<std::mutex> guard(mutex);
+    auto data(results);
+    results.clear();
+    return data;
 }
