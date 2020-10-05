@@ -18,6 +18,7 @@
  */
 
 #include "ProfileLoader4.hpp"
+#include <QFile>
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QJsonObject>
@@ -61,14 +62,18 @@ namespace ProfileLoader4
         QVector<Profile4> profileList;
 
         QSettings setting;
-        QByteArray data = setting.value("profiles").toByteArray();
-
-        QJsonObject profiles(QJsonDocument::fromJson(data).object());
-        QJsonArray gen4 = profiles[QString("gen4")].toArray();
-
-        for (const auto i : gen4)
+        QFile f(setting.value("settings/profiles").toString());
+        if (f.open(QIODevice::ReadOnly))
         {
-            profileList.append(getProfile(i.toObject()));
+            QByteArray data = f.readAll();
+
+            QJsonObject profiles(QJsonDocument::fromJson(data).object());
+            QJsonArray gen4 = profiles["gen4"].toArray();
+
+            for (const auto i : gen4)
+            {
+                profileList.append(getProfile(i.toObject()));
+            }
         }
 
         return profileList;
@@ -77,36 +82,44 @@ namespace ProfileLoader4
     void addProfile(const Profile4 &profile)
     {
         QSettings setting;
-        QByteArray data = setting.value("profiles").toByteArray();
+        QFile f(setting.value("settings/profiles").toString());
+        if (f.open(QIODevice::ReadWrite))
+        {
+            QByteArray data = f.readAll();
 
-        QJsonObject profiles(QJsonDocument::fromJson(data).object());
-        QJsonArray gen4 = profiles["gen4"].toArray();
+            QJsonObject profiles(QJsonDocument::fromJson(data).object());
+            QJsonArray gen4 = profiles["gen4"].toArray();
 
-        gen4.append(getJson(profile));
-        profiles["gen4"] = gen4;
+            gen4.append(getJson(profile));
+            profiles["gen4"] = gen4;
 
-        setting.setValue("profiles", QJsonDocument(profiles).toJson());
+            f.write(QJsonDocument(profiles).toJson());
+        }
     }
 
     void removeProfile(const Profile4 &remove)
     {
         QSettings setting;
-        QByteArray data = setting.value("profiles").toByteArray();
-
-        QJsonObject profiles(QJsonDocument::fromJson(data).object());
-        QJsonArray gen4 = profiles["gen4"].toArray();
-
-        for (int i = 0; i < gen4.size(); i++)
+        QFile f(setting.value("settings/profiles").toString());
+        if (f.open(QIODevice::ReadWrite))
         {
-            Profile4 profile = getProfile(gen4[i].toObject());
+            QByteArray data = f.readAll();
 
-            if (profile == remove)
+            QJsonObject profiles(QJsonDocument::fromJson(data).object());
+            QJsonArray gen4 = profiles["gen4"].toArray();
+
+            for (int i = 0; i < gen4.size(); i++)
             {
-                gen4.removeAt(i);
-                profiles["gen4"] = gen4;
+                Profile4 profile = getProfile(gen4[i].toObject());
 
-                setting.setValue("profiles", QJsonDocument(profiles).toJson());
-                break;
+                if (profile == remove)
+                {
+                    gen4.removeAt(i);
+                    profiles["gen4"] = gen4;
+
+                    f.write(QJsonDocument(profiles).toJson());
+                    break;
+                }
             }
         }
     }
@@ -114,22 +127,26 @@ namespace ProfileLoader4
     void updateProfile(const Profile4 &update, const Profile4 &original)
     {
         QSettings setting;
-        QByteArray data = setting.value("profiles").toByteArray();
-
-        QJsonObject profiles(QJsonDocument::fromJson(data).object());
-        QJsonArray gen4 = profiles["gen4"].toArray();
-
-        for (auto i = 0; i < gen4.size(); i++)
+        QFile f(setting.value("settings/profiles").toString());
+        if (f.open(QIODevice::ReadWrite))
         {
-            Profile4 profile = getProfile(gen4[i].toObject());
+            QByteArray data = f.readAll();
 
-            if (original == profile && original != update)
+            QJsonObject profiles(QJsonDocument::fromJson(data).object());
+            QJsonArray gen4 = profiles["gen4"].toArray();
+
+            for (auto i = 0; i < gen4.size(); i++)
             {
-                gen4[i] = getJson(update);
-                profiles["gen4"] = gen4;
+                Profile4 profile = getProfile(gen4[i].toObject());
 
-                setting.setValue("profiles", QJsonDocument(profiles).toJson());
-                break;
+                if (original == profile && original != update)
+                {
+                    gen4[i] = getJson(update);
+                    profiles["gen4"] = gen4;
+
+                    f.write(QJsonDocument(profiles).toJson());
+                    break;
+                }
             }
         }
     }

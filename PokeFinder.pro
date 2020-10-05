@@ -77,7 +77,8 @@ FORMS += \
     Forms/Util/EncounterLookup.ui \
     Forms/Util/IVCalculator.ui \
     Forms/Util/IVtoPID.ui \
-    Forms/Util/Researcher.ui
+    Forms/Util/Researcher.ui \
+    Forms/Util/Settings.ui
 
 HEADERS += \
     Core/Enum/Buttons.hpp \
@@ -242,6 +243,7 @@ HEADERS += \
     Forms/Util/IVCalculator.hpp \
     Forms/Util/IVtoPID.hpp \
     Forms/Util/Researcher.hpp \
+    Forms/Util/Settings.hpp \
     Models/Gen3/EggModel3.hpp \
     Models/Gen3/GameCubeModel.hpp \
     Models/Gen3/GameCubeRTCModel.hpp \
@@ -413,6 +415,7 @@ SOURCES += \
     Forms/Util/IVCalculator.cpp \
     Forms/Util/IVtoPID.cpp \
     Forms/Util/Researcher.cpp \
+    Forms/Util/Settings.cpp \
     Models/Gen3/EggModel3.cpp \
     Models/Gen3/GameCubeModel.cpp \
     Models/Gen3/GameCubeRTCModel.cpp \

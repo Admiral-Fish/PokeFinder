@@ -178,6 +178,7 @@
     <addaction name="actionEncounterLookup"/>
     <addaction name="actionIVCalculator"/>
     <addaction name="actionResearcher"/>
+    <addaction name="actionSettings"/>
    </widget>
    <widget class="QMenu" name="menuGen3Tools">
     <property name="title">
@@ -208,39 +209,6 @@
     <addaction name="actionSeedtoTime4"/>
     <addaction name="actionSIDfromChainedShiny"/>
    </widget>
-   <widget class="QMenu" name="menuSettings">
-    <property name="title">
-     <string>Settings</string>
-    </property>
-    <widget class="QMenu" name="menuLanguage">
-     <property name="title">
-      <string>Language</string>
-     </property>
-     <addaction name="actionGerman"/>
-     <addaction name="actionEnglish"/>
-     <addaction name="actionSpanish"/>
-     <addaction name="actionFrench"/>
-     <addaction name="actionItalian"/>
-     <addaction name="actionJapanese"/>
-     <addaction name="actionKorean"/>
-     <addaction name="actionChinese"/>
-    </widget>
-    <widget class="QMenu" name="menuStyle">
-     <property name="title">
-      <string>Style</string>
-     </property>
-     <addaction name="actionDark"/>
-     <addaction name="actionLight"/>
-    </widget>
-    <widget class="QMenu" name="menuThreads">
-     <property name="title">
-      <string>Threads</string>
-     </property>
-    </widget>
-    <addaction name="menuLanguage"/>
-    <addaction name="menuStyle"/>
-    <addaction name="menuThreads"/>
-   </widget>
    <widget class="QMenu" name="menuGen5Tools">
     <property name="title">
      <string>Gen 5 Tools</string>
@@ -251,7 +219,6 @@
    <addaction name="menuGen3Tools"/>
    <addaction name="menuGen4Tools"/>
    <addaction name="menuGen5Tools"/>
-   <addaction name="menuSettings"/>
    <addaction name="menuTools"/>
   </widget>
   <action name="actionResearcher">
@@ -422,6 +389,11 @@
   <action name="actionProfileManager5">
    <property name="text">
     <string>Profile Manager</string>
+   </property>
+  </action>
+  <action name="actionSettings">
+   <property name="text">
+    <string>Settings</string>
    </property>
   </action>
  </widget>

@@ -21,9 +21,39 @@
 #include <Forms/MainWindow.hpp>
 #include <QApplication>
 #include <QFile>
+#include <QJsonDocument>
 #include <QSettings>
 #include <QTextStream>
+#include <QThread>
 #include <QTranslator>
+
+void validateSettings(QSettings &setting)
+{
+    if (!setting.contains("settings/profiles"))
+    {
+        setting.setValue("settings/profiles", QString("%1/profiles.json").arg(QApplication::applicationDirPath()));
+    }
+
+    if (!setting.contains("settings/style"))
+    {
+        setting.setValue("settings/style", "dark");
+    }
+
+    if (!setting.contains("settings/locale"))
+    {
+        setting.setValue("settings/locale", "en");
+    }
+    // TODO: remove this check in a later version
+    else if (setting.value("settings/locale").toString() == "zh_Hans_CN")
+    {
+        setting.setValue("settings/locale", "zh");
+    }
+
+    if (!setting.contains("settings/threads") || (setting.value("settings/threads").toInt() > QThread::idealThreadCount()))
+    {
+        setting.setValue("settings/threads", QThread::idealThreadCount());
+    }
+}
 
 int main(int argc, char *argv[])
 {
@@ -32,11 +62,29 @@ int main(int argc, char *argv[])
     a.setOrganizationName("PokeFinder Team");
 
     QSettings setting;
+    validateSettings(setting);
+
+    // Transfer profiles to new setup
+    // TODO: remove in a future version
+    if (setting.contains("profiles"))
+    {
+        QString fileName = setting.value("settings/profiles").toString();
+
+        QByteArray data = setting.value("profiles").toByteArray();
+        QJsonDocument profiles(QJsonDocument::fromJson(data));
+
+        QFile f(fileName);
+        if (f.open(QIODevice::WriteOnly))
+        {
+            f.write(QJsonDocument(profiles).toJson());
+            setting.remove("profiles");
+        }
+    }
 
     // Buttons currently aren't easy to press with style sheet
     // Disable it for now on MacOS
 #ifndef Q_OS_MAC
-    QString style = setting.value("settings/style", "dark").toString();
+    QString style = setting.value("settings/style").toString();
     if (style == "dark")
     {
         QFile file(":/qdarkstyle/style.qss");
@@ -49,13 +97,7 @@ int main(int argc, char *argv[])
     }
 #endif
 
-    QString locale = setting.value("settings/locale", "en").toString();
-    if (locale == "zh_Hans_CN") // TODO: remove in a future version
-    {
-        locale = "zh";
-        setting.setValue("settings/locale", locale);
-    }
-
+    QString locale = setting.value("settings/locale").toString();
     Translator::init(locale);
 
     QTranslator translator;

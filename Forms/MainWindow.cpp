@@ -50,9 +50,9 @@
 #include <Forms/Util/IVCalculator.hpp>
 #include <Forms/Util/IVtoPID.hpp>
 #include <Forms/Util/Researcher.hpp>
+#include <Forms/Util/Settings.hpp>
 #include <QDate>
 #include <QDesktopServices>
-#include <QProcess>
 #include <QSettings>
 #include <QTimer>
 #include <QtNetwork>
@@ -69,11 +69,6 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 MainWindow::~MainWindow()
 {
     QSettings setting;
-    setting.beginGroup("settings");
-    setting.setValue("locale", currentLanguage);
-    setting.setValue("style", currentStyle);
-    setting.endGroup();
-
     setting.setValue("mainWindow/geometry", this->saveGeometry());
 
     delete ui;
@@ -95,66 +90,6 @@ MainWindow::~MainWindow()
 
 void MainWindow::setupModels()
 {
-    QSettings setting;
-
-    langGroup = new QActionGroup(ui->menuLanguage);
-    langGroup->setExclusive(true);
-    connect(langGroup, &QActionGroup::triggered, this, &MainWindow::slotLanguageChanged);
-    currentLanguage = setting.value("settings/locale", "en").toString();
-    QStringList locales = { "de", "en", "es", "fr", "it", "ja", "ko", "zh" };
-    for (int i = 0; i < locales.size(); i++)
-    {
-        const QString &lang = locales.at(i);
-
-        auto *action = ui->menuLanguage->actions()[i];
-        action->setData(lang);
-
-        if (currentLanguage == lang)
-        {
-            action->setChecked(true);
-        }
-
-        langGroup->addAction(action);
-    }
-
-    styleGroup = new QActionGroup(ui->menuStyle);
-    styleGroup->setExclusive(true);
-    connect(styleGroup, &QActionGroup::triggered, this, &MainWindow::slotStyleChanged);
-    currentStyle = setting.value("settings/style", "dark").toString();
-    QStringList styles = { "dark", "light" };
-    for (int i = 0; i < styles.size(); i++)
-    {
-        const QString &style = styles.at(i);
-
-        auto *action = ui->menuStyle->actions()[i];
-        action->setData(style);
-
-        if (currentStyle == style)
-        {
-            action->setChecked(true);
-        }
-
-        styleGroup->addAction(action);
-    }
-
-    threadGroup = new QActionGroup(ui->menuThreads);
-    threadGroup->setExclusive(true);
-    connect(threadGroup, &QActionGroup::triggered, this, &MainWindow::slotThreadChanged);
-    int threads = setting.value("settings/threads", QThread::idealThreadCount()).toInt();
-    for (int i = 1; i <= QThread::idealThreadCount(); i++)
-    {
-        auto *action = ui->menuThreads->addAction(QString::number(i));
-        action->setData(i);
-        action->setCheckable(true);
-
-        if (threads == i)
-        {
-            action->setChecked(true);
-        }
-
-        threadGroup->addAction(action);
-    }
-
     connect(ui->pushButtonStationary3, &QPushButton::clicked, this, &MainWindow::openStationary3);
     connect(ui->pushButtonWild3, &QPushButton::clicked, this, &MainWindow::openWild3);
     connect(ui->pushButtonGameCube, &QPushButton::clicked, this, &MainWindow::openGameCube);
@@ -189,59 +124,12 @@ void MainWindow::setupModels()
     connect(ui->actionEncounterLookup, &QAction::triggered, this, &MainWindow::openEncounterLookup);
     connect(ui->actionIVCalculator, &QAction::triggered, this, &MainWindow::openIVCalculator);
     connect(ui->actionResearcher, &QAction::triggered, this, &MainWindow::openResearcher);
+    connect(ui->actionSettings, &QAction::triggered, this, &MainWindow::openSettings);
 
+    QSettings setting;
     if (setting.contains("mainWindow/geometry"))
     {
         this->restoreGeometry(setting.value("mainWindow/geometry").toByteArray());
-    }
-}
-
-void MainWindow::slotLanguageChanged(QAction *action)
-{
-    if (action)
-    {
-        QString lang = action->data().toString();
-        if (currentLanguage != lang)
-        {
-            currentLanguage = lang;
-
-            QMessageBox message(QMessageBox::Question, tr("Language update"), tr("Restart for changes to take effect. Restart now?"),
-                                QMessageBox::Yes | QMessageBox::No);
-            if (message.exec() == QMessageBox::Yes)
-            {
-                QProcess::startDetached(QApplication::applicationFilePath());
-                QApplication::quit();
-            }
-        }
-    }
-}
-
-void MainWindow::slotStyleChanged(QAction *action)
-{
-    if (action)
-    {
-        QString style = action->data().toString();
-        if (currentStyle != style)
-        {
-            currentStyle = style;
-
-            QMessageBox message(QMessageBox::Question, tr("Style change"), tr("Restart for changes to take effect. Restart now?"),
-                                QMessageBox::Yes | QMessageBox::No);
-            if (message.exec() == QMessageBox::Yes)
-            {
-                QProcess::startDetached(QApplication::applicationFilePath());
-                QApplication::quit();
-            }
-        }
-    }
-}
-
-void MainWindow::slotThreadChanged(QAction *action)
-{
-    if (action)
-    {
-        QSettings setting;
-        setting.setValue("settings/threads", action->data().toInt());
     }
 }
 
@@ -646,4 +534,11 @@ void MainWindow::openResearcher()
     auto *r = new Researcher();
     r->show();
     r->raise();
+}
+
+void MainWindow::openSettings()
+{
+    auto *s = new Settings();
+    s->show();
+    s->raise();
 }

@@ -52,11 +52,6 @@ public:
 
 private:
     Ui::MainWindow *ui;
-    QActionGroup *langGroup = nullptr;
-    QActionGroup *styleGroup = nullptr;
-    QActionGroup *threadGroup = nullptr;
-    QString currentLanguage;
-    QString currentStyle;
 
     Stationary3 *stationary3 = nullptr;
     Wild3 *wild3 = nullptr;
@@ -76,9 +71,6 @@ private:
     void setupModels();
 
 private slots:
-    void slotLanguageChanged(QAction *action);
-    void slotStyleChanged(QAction *action);
-    void slotThreadChanged(QAction *action);
     void checkUpdates();
     void updateProfiles(int num);
     void openStationary3();
@@ -112,6 +104,7 @@ private slots:
     void openEncounterLookup();
     void openIVCalculator();
     void openResearcher();
+    void openSettings();
 };
 
 #endif // MAINWINDOW_HPP
