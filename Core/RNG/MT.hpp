@@ -107,15 +107,9 @@ private:
 
                 __m128i y = _mm_or_si128(_mm_and_si128(m0, upperMask), _mm_and_si128(m1, lowerMask));
                 __m128i y1 = _mm_srli_epi32(y, 1);
+                __m128i mag01 = _mm_and_si128(_mm_cmpeq_epi32(_mm_and_si128(y, one), one), matrix);
 
-                __m128i mag01 = _mm_and_si128(y, one);
-                mag01 = _mm_cmpeq_epi32(mag01, one);
-                mag01 = _mm_and_si128(mag01, matrix);
-
-                y1 = _mm_xor_si128(y1, mag01);
-                y1 = _mm_xor_si128(y1, m2);
-
-                _mm_storeu_si128((__m128i *)&mt[i], y1);
+                _mm_storeu_si128((__m128i *)&mt[i], _mm_xor_si128(_mm_xor_si128(y1, mag01), m2));
             }
 
             for (; i < size; i++)
