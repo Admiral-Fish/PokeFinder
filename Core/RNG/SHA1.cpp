@@ -76,119 +76,123 @@ SHA1::SHA1(Game version, Language language, DSType type, u64 mac, bool softReset
 
 u64 SHA1::hashSeed()
 {
-    u32 temp;
     u32 a = alpha[0];
     u32 b = alpha[1];
     u32 c = alpha[2];
     u32 d = alpha[3];
     u32 e = alpha[4];
+    u32 t;
 
-    auto section1Calc = [&temp, &a, &b, &c, &d, &e] { temp = rotateLeft(a, 5) + ((b & c) | (~b & d)) + e + 0x5A827999 + temp; };
-    auto section2Calc = [&temp, &a, &b, &c, &d, &e] { temp = rotateLeft(a, 5) + (b ^ c ^ d) + e + 0x6ED9EBA1 + temp; };
-    auto section3Calc = [&temp, &a, &b, &c, &d, &e] { temp = rotateLeft(a, 5) + ((b & c) | ((b | c) & d)) + e + 0x8F1BBCDC + temp; };
-    auto section4Calc = [&temp, &a, &b, &c, &d, &e] { temp = rotateLeft(a, 5) + (b ^ c ^ d) + e + 0xCA62C1D6 + temp; };
-    auto updateVars = [&temp, &a, &b, &c, &d, &e] {
-        e = d;
-        d = c;
-        c = rotateRight(b, 2);
-        b = a;
-        a = temp;
+    auto section1Calc = [](const u32 &a, u32 &b, const u32 &c, const u32 &d, const u32 &e, u32 &t, const u32 &input) {
+        t = rotateLeft(a, 5) + ((b & c) | (~b & d)) + e + 0x5A827999 + input;
+        b = rotateRight(b, 2);
     };
-    auto calcW = [&temp, this](int i) {
-        temp = data[i - 3] ^ data[i - 8] ^ data[i - 14] ^ data[i - 16];
-        data[i] = temp = rotateLeft(temp, 1);
+    auto section2Calc = [](const u32 &a, u32 &b, const u32 &c, const u32 &d, const u32 &e, u32 &t, const u32 &input) {
+        t = rotateLeft(a, 5) + (b ^ c ^ d) + e + 0x6ED9EBA1 + input;
+        b = rotateRight(b, 2);
     };
-    auto calcWSIMD = [&temp, this](int i) {
-        temp = data[i - 6] ^ data[i - 16] ^ data[i - 28] ^ data[i - 32];
-        data[i] = temp = rotateLeft(temp, 2);
+    auto section3Calc = [](const u32 &a, u32 &b, const u32 &c, const u32 &d, const u32 &e, u32 &t, const u32 &input) {
+        t = rotateLeft(a, 5) + ((b & c) | ((b | c) & d)) + e + 0x8F1BBCDC + input;
+        b = rotateRight(b, 2);
+    };
+    auto section4Calc = [](const u32 &a, u32 &b, const u32 &c, const u32 &d, const u32 &e, u32 &t, const u32 &input) {
+        t = rotateLeft(a, 5) + (b ^ c ^ d) + e + 0xCA62C1D6 + input;
+        b = rotateRight(b, 2);
     };
 
-    // clang-format off
-    
+    auto calcW = [this](int i) {
+        u32 val = rotateLeft(data[i - 3] ^ data[i - 8] ^ data[i - 14] ^ data[i - 16], 1);
+        data[i] = val;
+        return val;
+    };
+    auto calcWSIMD = [this](int i) {
+        u32 val = rotateLeft(data[i - 6] ^ data[i - 16] ^ data[i - 28] ^ data[i - 32], 2);
+        data[i] = val;
+        return val;
+    };
+
     // Section 1: 0-19
     // 0-8 already computed
-    temp = data[9]; section1Calc(); updateVars();
-    temp = data[10]; section1Calc(); updateVars();
-    temp = data[11]; section1Calc(); updateVars();
-    temp = data[12]; section1Calc(); updateVars();
-    temp = data[13]; section1Calc(); updateVars();
-    temp = data[14]; section1Calc(); updateVars();
-    temp = data[15]; section1Calc(); updateVars();
-    temp = data[16]; section1Calc(); updateVars();
-    calcW(17); section1Calc(); updateVars();
-    temp = data[18]; section1Calc(); updateVars();
-    temp = data[19]; section1Calc(); updateVars();
+    section1Calc(a, b, c, d, e, t, data[9]);
+    section1Calc(t, a, b, c, d, e, data[10]);
+    section1Calc(e, t, a, b, c, d, data[11]);
+    section1Calc(d, e, t, a, b, c, data[12]);
+    section1Calc(c, d, e, t, a, b, data[13]);
+    section1Calc(b, c, d, e, t, a, data[14]);
+    section1Calc(a, b, c, d, e, t, data[15]);
+    section1Calc(t, a, b, c, d, e, data[16]);
+    section1Calc(e, t, a, b, c, d, calcW(17));
+    section1Calc(d, e, t, a, b, c, data[18]);
+    section1Calc(c, d, e, t, a, b, data[19]);
 
     // Section 2: 20 - 39
-    calcW(20); section2Calc(); updateVars();
-    temp = data[21]; section2Calc(); updateVars();
-    temp = data[22]; section2Calc(); updateVars();
-    calcW(23); section2Calc(); updateVars();
-    temp = data[24]; section2Calc(); updateVars();
-    calcW(25); section2Calc(); updateVars();
-    calcW(26); section2Calc(); updateVars();
-    temp = data[27]; section2Calc(); updateVars();
-    calcW(28); section2Calc(); updateVars();
-    calcW(29); section2Calc(); updateVars();
-    temp = data[30]; section2Calc(); updateVars();
-    calcW(31); section2Calc(); updateVars();
-    calcWSIMD(32); section2Calc(); updateVars();
-    calcWSIMD(33); section2Calc(); updateVars();
-    calcWSIMD(34); section2Calc(); updateVars();
-    calcWSIMD(35); section2Calc(); updateVars();
-    calcWSIMD(36); section2Calc(); updateVars();
-    calcWSIMD(37); section2Calc(); updateVars();
-    calcWSIMD(38); section2Calc(); updateVars();
-    calcWSIMD(39); section2Calc(); updateVars();
+    section2Calc(b, c, d, e, t, a, calcW(20));
+    section2Calc(a, b, c, d, e, t, data[21]);
+    section2Calc(t, a, b, c, d, e, data[22]);
+    section2Calc(e, t, a, b, c, d, calcW(23));
+    section2Calc(d, e, t, a, b, c, data[24]);
+    section2Calc(c, d, e, t, a, b, calcW(25));
+    section2Calc(b, c, d, e, t, a, calcW(26));
+    section2Calc(a, b, c, d, e, t, data[27]);
+    section2Calc(t, a, b, c, d, e, calcW(28));
+    section2Calc(e, t, a, b, c, d, calcW(29));
+    section2Calc(d, e, t, a, b, c, data[30]);
+    section2Calc(c, d, e, t, a, b, calcW(31));
+    section2Calc(b, c, d, e, t, a, calcWSIMD(32));
+    section2Calc(a, b, c, d, e, t, calcWSIMD(33));
+    section2Calc(t, a, b, c, d, e, calcWSIMD(34));
+    section2Calc(e, t, a, b, c, d, calcWSIMD(35));
+    section2Calc(d, e, t, a, b, c, calcWSIMD(36));
+    section2Calc(c, d, e, t, a, b, calcWSIMD(37));
+    section2Calc(b, c, d, e, t, a, calcWSIMD(38));
+    section2Calc(a, b, c, d, e, t, calcWSIMD(39));
 
     // Section 3: 40 - 59
-    calcWSIMD(40); section3Calc(); updateVars();
-    calcWSIMD(41); section3Calc(); updateVars();
-    calcWSIMD(42); section3Calc(); updateVars();
-    calcWSIMD(43); section3Calc(); updateVars();
-    calcWSIMD(44); section3Calc(); updateVars();
-    calcWSIMD(45); section3Calc(); updateVars();
-    calcWSIMD(46); section3Calc(); updateVars();
-    calcWSIMD(47); section3Calc(); updateVars();
-    calcWSIMD(48); section3Calc(); updateVars();
-    calcWSIMD(49); section3Calc(); updateVars();
-    calcWSIMD(50); section3Calc(); updateVars();
-    calcWSIMD(51); section3Calc(); updateVars();
-    calcWSIMD(52); section3Calc(); updateVars();
-    calcWSIMD(53); section3Calc(); updateVars();
-    calcWSIMD(54); section3Calc(); updateVars();
-    calcWSIMD(55); section3Calc(); updateVars();
-    calcWSIMD(56); section3Calc(); updateVars();
-    calcWSIMD(57); section3Calc(); updateVars();
-    calcWSIMD(58); section3Calc(); updateVars();
-    calcWSIMD(59); section3Calc(); updateVars();
+    section3Calc(t, a, b, c, d, e, calcWSIMD(40));
+    section3Calc(e, t, a, b, c, d, calcWSIMD(41));
+    section3Calc(d, e, t, a, b, c, calcWSIMD(42));
+    section3Calc(c, d, e, t, a, b, calcWSIMD(43));
+    section3Calc(b, c, d, e, t, a, calcWSIMD(44));
+    section3Calc(a, b, c, d, e, t, calcWSIMD(45));
+    section3Calc(t, a, b, c, d, e, calcWSIMD(46));
+    section3Calc(e, t, a, b, c, d, calcWSIMD(47));
+    section3Calc(d, e, t, a, b, c, calcWSIMD(48));
+    section3Calc(c, d, e, t, a, b, calcWSIMD(49));
+    section3Calc(b, c, d, e, t, a, calcWSIMD(50));
+    section3Calc(a, b, c, d, e, t, calcWSIMD(51));
+    section3Calc(t, a, b, c, d, e, calcWSIMD(52));
+    section3Calc(e, t, a, b, c, d, calcWSIMD(53));
+    section3Calc(d, e, t, a, b, c, calcWSIMD(54));
+    section3Calc(c, d, e, t, a, b, calcWSIMD(55));
+    section3Calc(b, c, d, e, t, a, calcWSIMD(56));
+    section3Calc(a, b, c, d, e, t, calcWSIMD(57));
+    section3Calc(t, a, b, c, d, e, calcWSIMD(58));
+    section3Calc(e, t, a, b, c, d, calcWSIMD(59));
 
     // Section 3: 60 - 79
-    calcWSIMD(60); section4Calc(); updateVars();
-    calcWSIMD(61); section4Calc(); updateVars();
-    calcWSIMD(62); section4Calc(); updateVars();
-    calcWSIMD(63); section4Calc(); updateVars();
-    calcWSIMD(64); section4Calc(); updateVars();
-    calcWSIMD(65); section4Calc(); updateVars();
-    calcWSIMD(66); section4Calc(); updateVars();
-    calcWSIMD(67); section4Calc(); updateVars();
-    calcWSIMD(68); section4Calc(); updateVars();
-    calcWSIMD(69); section4Calc(); updateVars();
-    calcWSIMD(70); section4Calc(); updateVars();
-    calcWSIMD(71); section4Calc(); updateVars();
-    calcWSIMD(72); section4Calc(); updateVars();
-    calcWSIMD(73); section4Calc(); updateVars();
-    calcWSIMD(74); section4Calc(); updateVars();
-    calcWSIMD(75); section4Calc(); updateVars();
-    calcWSIMD(76); section4Calc(); updateVars();
-    calcWSIMD(77); section4Calc(); updateVars();
-    calcWSIMD(78); section4Calc(); updateVars();
-    calcWSIMD(79); section4Calc();
+    section4Calc(d, e, t, a, b, c, calcWSIMD(60));
+    section4Calc(c, d, e, t, a, b, calcWSIMD(61));
+    section4Calc(b, c, d, e, t, a, calcWSIMD(62));
+    section4Calc(a, b, c, d, e, t, calcWSIMD(63));
+    section4Calc(t, a, b, c, d, e, calcWSIMD(64));
+    section4Calc(e, t, a, b, c, d, calcWSIMD(65));
+    section4Calc(d, e, t, a, b, c, calcWSIMD(66));
+    section4Calc(c, d, e, t, a, b, calcWSIMD(67));
+    section4Calc(b, c, d, e, t, a, calcWSIMD(68));
+    section4Calc(a, b, c, d, e, t, calcWSIMD(69));
+    section4Calc(t, a, b, c, d, e, calcWSIMD(70));
+    section4Calc(e, t, a, b, c, d, calcWSIMD(71));
+    section4Calc(d, e, t, a, b, c, calcWSIMD(72));
+    section4Calc(c, d, e, t, a, b, calcWSIMD(73));
+    section4Calc(b, c, d, e, t, a, calcWSIMD(74));
+    section4Calc(a, b, c, d, e, t, calcWSIMD(75));
+    section4Calc(t, a, b, c, d, e, calcWSIMD(76));
+    section4Calc(e, t, a, b, c, d, calcWSIMD(77));
+    section4Calc(d, e, t, a, b, c, calcWSIMD(78));
+    section4Calc(c, d, e, t, a, b, calcWSIMD(79));
 
-    // clang-format on
-
-    u64 part1 = changeEndian(temp + 0x67452301);
-    u64 part2 = changeEndian(a + 0xEFCDAB89);
+    u64 part1 = changeEndian(b + 0x67452301);
+    u64 part2 = changeEndian(c + 0xEFCDAB89);
 
     u64 seed = (part2 << 32) | part1;
     return BWRNG(seed).next();
@@ -196,43 +200,35 @@ u64 SHA1::hashSeed()
 
 void SHA1::precompute()
 {
-    // For hashes computed on the same date, the first 8 steps will be the same
-    u32 temp;
+    // For hashes computed on the same date, the first 8 rounds will be the same
     u32 a = 0x67452301;
     u32 b = 0xEFCDAB89;
     u32 c = 0x98BADCFE;
     u32 d = 0x10325476;
     u32 e = 0xC3D2E1F0;
+    u32 t;
 
-    auto section1Calc = [&temp, &a, &b, &c, &d, &e] { temp = rotateLeft(a, 5) + ((b & c) | (~b & d)) + e + 0x5A827999 + temp; };
-    auto updateVars = [&temp, &a, &b, &c, &d, &e] {
-        e = d;
-        d = c;
-        c = rotateRight(b, 2);
-        b = a;
-        a = temp;
+    auto section1Calc = [](const u32 &a, u32 &b, const u32 &c, const u32 &d, const u32 &e, u32 &t, const u32 &input) {
+        t = rotateLeft(a, 5) + ((b & c) | (~b & d)) + e + 0x5A827999 + input;
+        b = rotateRight(b, 2);
     };
     auto calcW = [this](int i) { data[i] = rotateLeft(data[i - 3] ^ data[i - 8] ^ data[i - 14] ^ data[i - 16], 1); };
 
-    // clang-format off
+    section1Calc(a, b, c, d, e, t, data[0]);
+    section1Calc(t, a, b, c, d, e, data[1]);
+    section1Calc(e, t, a, b, c, d, data[2]);
+    section1Calc(d, e, t, a, b, c, data[3]);
+    section1Calc(c, d, e, t, a, b, data[4]);
+    section1Calc(b, c, d, e, t, a, data[5]);
+    section1Calc(a, b, c, d, e, t, data[6]);
+    section1Calc(t, a, b, c, d, e, data[7]);
+    section1Calc(e, t, a, b, c, d, data[8]);
 
-    temp = data[0]; section1Calc(); updateVars();
-    temp = data[1]; section1Calc(); updateVars();
-    temp = data[2]; section1Calc(); updateVars();
-    temp = data[3]; section1Calc(); updateVars();
-    temp = data[4]; section1Calc(); updateVars();
-    temp = data[5]; section1Calc(); updateVars();
-    temp = data[6]; section1Calc(); updateVars();
-    temp = data[7]; section1Calc(); updateVars();
-    temp = data[8]; section1Calc(); updateVars();
-
-    // clang-format on
-
-    alpha[0] = a;
-    alpha[1] = b;
-    alpha[2] = c;
-    alpha[3] = d;
-    alpha[4] = e;
+    alpha[0] = d;
+    alpha[1] = e;
+    alpha[2] = t;
+    alpha[3] = a;
+    alpha[4] = b;
 
     // Select values will be the same for same date
     calcW(16);
