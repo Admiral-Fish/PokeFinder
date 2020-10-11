@@ -57,7 +57,7 @@ public:
 
         for (index = 1; index < (size + 397); index++)
         {
-            seed = 0x6C078965 * (seed ^ (seed >> 30)) + index;
+            seed = 0x6c078965 * (seed ^ (seed >> 30)) + index;
             mt[index] = seed;
         }
 
@@ -69,8 +69,8 @@ public:
     {
         u32 y = mt[index++];
         y ^= (y >> 11);
-        y ^= (y << 7) & 0x9D2C5680;
-        y ^= (y << 15) & 0xEFC60000;
+        y ^= (y << 7) & 0x9d2c5680;
+        y ^= (y << 15) & 0xefc60000;
         if constexpr (!fast)
         {
             y ^= (y >> 18);
@@ -91,59 +91,36 @@ private:
     void shuffle()
     {
 #ifdef __SSE2__
-        if constexpr (size >= 4)
+        __m128i upperMask = _mm_set1_epi32(0x80000000);
+        __m128i lowerMask = _mm_set1_epi32(0x7fffffff);
+        __m128i matrix = _mm_set1_epi32(0x9908b0df);
+        __m128i one = _mm_set1_epi32(1);
+
+        u16 i = 0;
+        for (; i < size - (size % 4); i += 4)
         {
-            __m128i upperMask = _mm_set1_epi32(0x80000000);
-            __m128i lowerMask = _mm_set1_epi32(0x7fffffff);
-            __m128i matrix = _mm_set1_epi32(0x9908B0DF);
-            __m128i one = _mm_set1_epi32(1);
+            __m128i m0 = _mm_loadu_si128((const __m128i *)&mt[i]);
+            __m128i m1 = _mm_loadu_si128((const __m128i *)&mt[i + 1]);
+            __m128i m2 = _mm_loadu_si128((const __m128i *)&mt[i + 397]);
 
-            u16 i = 0;
-            for (; i < size - (size % 4); i += 4)
-            {
-                __m128i m0 = *(__m128i *)&mt[i];
-                __m128i m1 = *(__m128i *)&mt[i + 1];
-                __m128i m2 = *(__m128i *)&mt[i + 397];
+            __m128i y = _mm_or_si128(_mm_and_si128(m0, upperMask), _mm_and_si128(m1, lowerMask));
+            __m128i y1 = _mm_srli_epi32(y, 1);
+            __m128i mag01 = _mm_and_si128(_mm_cmpeq_epi32(_mm_and_si128(y, one), one), matrix);
 
-                __m128i y = _mm_or_si128(_mm_and_si128(m0, upperMask), _mm_and_si128(m1, lowerMask));
-                __m128i y1 = _mm_srli_epi32(y, 1);
-                __m128i mag01 = _mm_and_si128(_mm_cmpeq_epi32(_mm_and_si128(y, one), one), matrix);
-
-                _mm_storeu_si128((__m128i *)&mt[i], _mm_xor_si128(_mm_xor_si128(y1, mag01), m2));
-            }
-
-            for (; i < size; i++)
-            {
-                u32 y = (mt[i] & 0x80000000) | (mt[i + 1] & 0x7fffffff);
-
-                u32 y1 = y >> 1;
-                if (y & 1)
-                {
-                    y1 ^= 0x9908B0DF;
-                }
-
-                mt[i] = y1 ^ mt[i + 397];
-            }
+            _mm_storeu_si128((__m128i *)&mt[i], _mm_xor_si128(_mm_xor_si128(y1, mag01), m2));
         }
-        else
+
+        for (; i < size; i++)
         {
-            u32 mt1 = mt[0], mt2;
+            u32 y = (mt[i] & 0x80000000) | (mt[i + 1] & 0x7fffffff);
 
-            for (u16 i = 0; i < size; i++)
+            u32 y1 = y >> 1;
+            if (y & 1)
             {
-                mt2 = mt[i + 1];
-
-                u32 y = (mt1 & 0x80000000) | (mt2 & 0x7fffffff);
-
-                u32 y1 = y >> 1;
-                if (y & 1)
-                {
-                    y1 ^= 0x9908B0DF;
-                }
-
-                mt[i] = y1 ^ mt[i + 397];
-                mt1 = mt2;
+                y1 ^= 0x9908b0df;
             }
+
+            mt[i] = y1 ^ mt[i + 397];
         }
 #else
         u32 mt1 = mt[0], mt2;
@@ -157,7 +134,7 @@ private:
             u32 y1 = y >> 1;
             if (y & 1)
             {
-                y1 ^= 0x9908B0DF;
+                y1 ^= 0x9908b0df;
             }
 
             mt[i] = y1 ^ mt[i + 397];
