@@ -249,7 +249,7 @@ QVector<WildState> WildSearcher4::searchMethodK(u8 hp, u8 atk, u8 def, u8 spa, u
                     continue;
                 }
 
-                if (lead == Lead::None)
+                if (lead == Lead::None || lead == Lead::SuctionCups)
                 {
                     states.append(normalMethodK(state, seed));
                 }
@@ -652,7 +652,7 @@ bool WildSearcher4::encounterMethodK(WildState &state, u32 seed) const
             state.setLevel(encounterArea.calcLevel(state.getEncounterSlot()));
             state.setSeed(rng.next());
         }
-        else if (nibble < suctionCupThresh && state.getLead() == Lead::None)
+        else if (nibble < suctionCupThresh && (lead == Lead::SuctionCups || lead == Lead::Search))
         {
             state.setLead(Lead::SuctionCups);
             state.setEncounterSlot(EncounterSlot::kSlot(slot, encounter));
