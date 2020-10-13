@@ -74,15 +74,9 @@ void TinyMT::nextState()
     y ^= (y >> 1) ^ x;
 
     state[0] = state[1];
-    state[1] = state[2];
-    state[2] = x ^ (y << 10);
+    state[1] = state[2] ^ ((y & 1) * 0x8f7011ee);
+    state[2] = x ^ (y << 10) ^ ((y & 1) * 0xfc78ff1f);
     state[3] = y;
-
-    if (y & 1)
-    {
-        state[1] ^= 0x8f7011ee;
-        state[2] ^= 0xfc78ff1f;
-    }
 }
 
 u32 TinyMT::temper()
