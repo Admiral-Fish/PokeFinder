@@ -109,11 +109,24 @@ void Researcher::setupModels()
     connect(ui->pushButtonSearch, &QPushButton::clicked, this, &Researcher::search);
     connect(ui->pushButtonNext, &QPushButton::clicked, this, &Researcher::next);
     connect(ui->tableView, &QTableView::customContextMenuRequested, this, &Researcher::tableViewContextMenu);
+    connect(ui->comboBoxSearch, QOverload<int>::of(&QComboBox::currentIndexChanged), [=](int index){ setuptextBoxSearchInputType(index); });
 
     QSettings setting;
     if (setting.contains("researcher/geometry"))
     {
         this->restoreGeometry(setting.value("researcher/geometry").toByteArray());
+    }
+}
+
+void Researcher::setuptextBoxSearchInputType(int index)
+{
+    if (index == 3)
+    {
+        ui->textBoxSearch->setValues(InputType::Advance64Bit);
+    }
+    else
+    {
+        ui->textBoxSearch->setValues(InputType::Seed64Bit);
     }
 }
 
@@ -438,7 +451,16 @@ void Researcher::search()
     }
 
     QString string = ui->comboBoxSearch->currentText();
-    u64 result = ui->textBoxSearch->text().toULongLong(nullptr, 16);
+    u64 result;
+
+    if (string == tr("Advances"))
+    {
+        result = ui->textBoxSearch->text().toULongLong(nullptr, 10);
+    }
+    else
+    {
+        result = ui->textBoxSearch->text().toULongLong(nullptr, 16);
+    }
 
     QModelIndex end = model->search(string, result, 0);
     if (end.isValid())
@@ -458,7 +480,7 @@ void Researcher::search()
 
 void Researcher::next()
 {
-    if (model->rowCount() == 0)
+    if (model->rowCount() == 0 || ui->comboBoxSearch->currentText() == tr("Advances"))
     {
         return;
     }

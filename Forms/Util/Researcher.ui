@@ -2587,6 +2587,11 @@
           <string>16Bit Low</string>
          </property>
         </item>
+        <item>
+         <property name="text">
+          <string>Advances</string>
+         </property>
+        </item>
        </widget>
       </item>
       <item row="1" column="0" colspan="2">

@@ -104,7 +104,12 @@ QModelIndex ResearcherModel::search(const QString &string, u64 result, int row)
 {
     int column = 0;
     std::function<u64(const ResearcherState &)> getResult;
-    if (string == tr("64Bit"))
+    if (string == tr("Advances"))
+    {
+        column = 0;
+        getResult = [](const ResearcherState &state) { return state.getAdvances(); };
+    }
+    else if (string == tr("64Bit"))
     {
         column = 1;
         getResult = [](const ResearcherState &state) { return state.getState(); };

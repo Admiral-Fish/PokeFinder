@@ -47,6 +47,7 @@ private:
     QHash<QString, u8> keys;
 
     void setupModels();
+    void setuptextBoxSearchInputType(int);
     u64 getCustom(const QString &text, const ResearcherState &state, const QVector<ResearcherState> &states);
     void resizeHeader();
     QVector<bool> getHexCheck();
