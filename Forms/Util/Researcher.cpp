@@ -398,7 +398,7 @@ void Researcher::generate()
     QVector<ResearcherState> states;
     for (u32 cnt = 0; cnt < maxAdvances; cnt++)
     {
-        ResearcherState state(rng64Bit, cnt + initialAdvances);
+        ResearcherState state(rng64Bit, cnt + initialAdvances + 1);
 
         state.setState(rngStates.at(cnt));
 
