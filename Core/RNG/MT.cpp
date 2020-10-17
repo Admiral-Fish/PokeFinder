@@ -81,12 +81,10 @@ void MT::shuffle()
         _mm_storeu_si128((__m128i *)&mt[i], _mm_xor_si128(_mm_xor_si128(y1, mag01), m2));
     }
 
-    /*
-     * This first assignment technically reads memory out of bounds
-     * But unless it crashes then _mm_insert_epi32 fixes the incorrect value
-     * The second assignment does the same thing but only reads in-bound memory
-     * Opt for the first one since it does 1 less memory read
-     */
+    // This first assignment technically reads memory out of bounds
+    // But unless it crashes then _mm_insert_epi32 fixes the incorrect value
+    // The second assignment does the same thing but only reads in-bound memory
+    // Opt for the first one since it does 1 less memory read
     __m128i last = _mm_insert_epi32(_mm_loadu_si128((const __m128i *)&mt[621]), mt[0], 3);
     //__m128i last = _mm_insert_epi32(_mm_insert_epi32(_mm_loadl_epi64((const __m128i *)&mt[621]), mt[623], 2), mt[0], 3);
     {
