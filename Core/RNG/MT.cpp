@@ -68,15 +68,6 @@ void MT::shuffle()
     __m128i matrix = _mm_set1_epi32(0x9908b0df);
     __m128i one = _mm_set1_epi32(1);
 
-    /*
-     * This first assignment technically reads memory out of bounds
-     * But unless it crashes then _mm_insert_epi32 fixes the incorrect value
-     * The second assignment does the same thing but only reads in-bound memory
-     * Opt for the first one since it does 1 less memory read
-     */
-    __m128i last = _mm_insert_epi32(_mm_loadu_si128((const __m128i *)&mt[621]), mt[0], 3);
-    //__m128i last = _mm_insert_epi32(_mm_insert_epi32(_mm_loadl_epi64((const __m128i *)&mt[621]), mt[623], 2), mt[0], 3);
-
     for (int i = 0; i < 224; i += 4)
     {
         __m128i m0 = _mm_loadu_si128((const __m128i *)&mt[i]);
@@ -90,6 +81,14 @@ void MT::shuffle()
         _mm_storeu_si128((__m128i *)&mt[i], _mm_xor_si128(_mm_xor_si128(y1, mag01), m2));
     }
 
+    /*
+     * This first assignment technically reads memory out of bounds
+     * But unless it crashes then _mm_insert_epi32 fixes the incorrect value
+     * The second assignment does the same thing but only reads in-bound memory
+     * Opt for the first one since it does 1 less memory read
+     */
+    __m128i last = _mm_insert_epi32(_mm_loadu_si128((const __m128i *)&mt[621]), mt[0], 3);
+    //__m128i last = _mm_insert_epi32(_mm_insert_epi32(_mm_loadl_epi64((const __m128i *)&mt[621]), mt[623], 2), mt[0], 3);
     {
         __m128i m0 = _mm_loadu_si128((const __m128i *)&mt[224]);
         __m128i m1 = _mm_loadu_si128((const __m128i *)&mt[225]);
