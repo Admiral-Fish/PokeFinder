@@ -3,7 +3,7 @@ equals(QT_MAJOR_VERSION, 5):lessThan(QT_MINOR_VERSION, 12):error("You need at le
 
 QT += concurrent network widgets
 CONFIG += c++1z lrelease embed_translations
-QMAKE_CXXFLAGS += -msse4.1
+gcc:QMAKE_CXXFLAGS += -msse4.1
 QMAKE_LRELEASE_FLAGS = -nounfinished -removeidentical
 
 TARGET = PokeFinder
