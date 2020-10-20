@@ -240,21 +240,27 @@ void Researcher::generate()
         {
         case 0:
             rngStates = getStates(PokeRNG(seed), initialAdvances, maxAdvances);
+            rngStates.prepend(seed);
             break;
         case 1:
             rngStates = getStates(PokeRNGR(seed), initialAdvances, maxAdvances);
+            rngStates.prepend(seed);
             break;
         case 2:
             rngStates = getStates(XDRNG(seed), initialAdvances, maxAdvances);
+            rngStates.prepend(seed);
             break;
         case 3:
             rngStates = getStates(XDRNGR(seed), initialAdvances, maxAdvances);
+            rngStates.prepend(seed);
             break;
         case 4:
             rngStates = getStates(ARNG(seed), initialAdvances, maxAdvances);
+            rngStates.prepend(seed);
             break;
         case 5:
             rngStates = getStates(ARNGR(seed), initialAdvances, maxAdvances);
+            rngStates.prepend(seed);
             break;
         case 6:
             rngStates = getStates(MT(seed), initialAdvances, maxAdvances);
@@ -267,9 +273,11 @@ void Researcher::generate()
         {
         case 0:
             rngStates = getStates(BWRNG(seed), initialAdvances, maxAdvances);
+            rngStates.prepend(seed);
             break;
         case 1:
             rngStates = getStates(BWRNGR(seed), initialAdvances, maxAdvances);
+            rngStates.prepend(seed);
             break;
         case 2:
             if (seed > 0xffffffff)
