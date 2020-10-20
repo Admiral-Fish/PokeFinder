@@ -396,11 +396,18 @@ void Researcher::generate()
                           ui->comboBoxRValue10->currentText() };
 
     QVector<ResearcherState> states;
-    for (u32 cnt = 0; cnt < maxAdvances; cnt++)
+    for (u32 cnt = 0; cnt < maxAdvances + 1; cnt++)
     {
         ResearcherState state(rng64Bit, cnt + initialAdvances);
 
-        state.setState(rngStates.at(cnt));
+        if (cnt == 0)
+        {
+            state.setState(seed);
+        }
+        else
+        {
+            state.setState(rngStates.at(cnt - 1));
+        }
 
         for (u8 j = 0; j < 10; j++)
         {
