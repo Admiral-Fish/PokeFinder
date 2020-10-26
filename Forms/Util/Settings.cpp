@@ -25,6 +25,7 @@
 #include <QMessageBox>
 #include <QProcess>
 #include <QSettings>
+#include <QThread>
 
 Settings::Settings(QWidget *parent) : QWidget(parent), ui(new Ui::Settings)
 {
@@ -76,7 +77,7 @@ void Settings::setupModels()
 
     // Threads
     int threads = setting.value("threads").toInt();
-    for (int i = 1; i <= threads; i++)
+    for (int i = 1; i <= QThread::idealThreadCount(); i++)
     {
         ui->comboBoxThreads->addItem(QString::number(i), i);
         if (i == threads)
