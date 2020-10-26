@@ -21,7 +21,12 @@
 #define MT_HPP
 
 #include <Core/Util/Global.hpp>
+
+#ifdef USE_AVX2
+#include <immintrin.h>
+#else
 #include <smmintrin.h>
+#endif
 
 class MT
 {
@@ -89,6 +94,48 @@ private:
     {
         int i = 0;
 
+#ifdef USE_AVX2
+        if constexpr ((size % 8) == 0)
+        {
+            __m256i upperMask256 = _mm256_set1_epi32(0x80000000);
+            __m256i lowerMask256 = _mm256_set1_epi32(0x7fffffff);
+            __m256i matrix256 = _mm256_set1_epi32(0x9908b0df);
+            __m256i one256 = _mm256_set1_epi32(1);
+
+            for (; i < size; i += 8)
+            {
+                __m256i m0 = _mm256_loadu_si256((const __m256i *)&mt[i]);
+                __m256i m1 = _mm256_loadu_si256((const __m256i *)&mt[i + 1]);
+                __m256i m2 = _mm256_loadu_si256((const __m256i *)&mt[i + 397]);
+
+                __m256i y = _mm256_or_si256(_mm256_and_si256(m0, upperMask256), _mm256_and_si256(m1, lowerMask256));
+                __m256i y1 = _mm256_srli_epi32(y, 1);
+                __m256i mag01 = _mm256_and_si256(_mm256_cmpeq_epi32(_mm256_and_si256(y, one256), one256), matrix256);
+
+                _mm256_storeu_si256((__m256i *)&mt[i], _mm256_xor_si256(_mm256_xor_si256(y1, mag01), m2));
+            }
+        }
+        else if constexpr (size > 4)
+        {
+            __m128i upperMask = _mm_set1_epi32(0x80000000);
+            __m128i lowerMask = _mm_set1_epi32(0x7fffffff);
+            __m128i matrix = _mm_set1_epi32(0x9908b0df);
+            __m128i one = _mm_set1_epi32(1);
+
+            for (; i < size - (size % 4); i += 4)
+            {
+                __m128i m0 = _mm_loadu_si128((const __m128i *)&mt[i]);
+                __m128i m1 = _mm_loadu_si128((const __m128i *)&mt[i + 1]);
+                __m128i m2 = _mm_loadu_si128((const __m128i *)&mt[i + 397]);
+
+                __m128i y = _mm_or_si128(_mm_and_si128(m0, upperMask), _mm_and_si128(m1, lowerMask));
+                __m128i y1 = _mm_srli_epi32(y, 1);
+                __m128i mag01 = _mm_and_si128(_mm_cmpeq_epi32(_mm_and_si128(y, one), one), matrix);
+
+                _mm_storeu_si128((__m128i *)&mt[i], _mm_xor_si128(_mm_xor_si128(y1, mag01), m2));
+            }
+        }
+#else
         if constexpr (size > 4)
         {
             __m128i upperMask = _mm_set1_epi32(0x80000000);
@@ -109,6 +156,7 @@ private:
                 _mm_storeu_si128((__m128i *)&mt[i], _mm_xor_si128(_mm_xor_si128(y1, mag01), m2));
             }
         }
+#endif
 
         for (; i < size; i++)
         {

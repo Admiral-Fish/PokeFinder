@@ -3,7 +3,6 @@ equals(QT_MAJOR_VERSION, 5):lessThan(QT_MINOR_VERSION, 12):error("You need at le
 
 QT += concurrent network widgets
 CONFIG += c++1z lrelease embed_translations
-gcc:QMAKE_CXXFLAGS += -msse4.1
 QMAKE_LRELEASE_FLAGS = -nounfinished -removeidentical
 
 TARGET = PokeFinder
@@ -21,6 +20,12 @@ DEFINES += VERSION=\\\"$$VERSION\\\"
 #DEFINES += GIT_VERSION=\\\"$$GIT_VERSION\\\"
 #DEFINES += GIT_BRANCH=\\\"$$GIT_BRANCH\\\"
 DEFINES += QT_DEPRECATED_WARNINGS
+
+gcc:QMAKE_CXXFLAGS += -msse4.1
+contains(DEFINES, USE_AVX2) {
+    gcc:QMAKE_CXXFLAGS += -mavx2
+    msvc:QMAKE_CXXFLAGS += /arch:AVX2
+}
 
 TRANSLATIONS += \
     i18n/PokeFinder_en.ts \

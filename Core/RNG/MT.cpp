@@ -62,7 +62,7 @@ u16 MT::nextUShort()
 
 void MT::shuffle()
 {
-    /*  AVX2 implementation, eventually determine if doing runtime dispatching is beneifical
+#ifdef USE_AVX2
     __m128i upperMask = _mm_set1_epi32(0x80000000);
     __m128i lowerMask = _mm_set1_epi32(0x7fffffff);
     __m128i matrix = _mm_set1_epi32(0x9908b0df);
@@ -120,8 +120,8 @@ void MT::shuffle()
         __m128i mag01 = _mm_and_si128(_mm_cmpeq_epi32(_mm_and_si128(y, one), one), matrix);
 
         _mm_storeu_si128((__m128i *)&mt[620], _mm_xor_si128(_mm_xor_si128(y1, mag01), m2));
-    }*/
-
+    }
+#else
     __m128i upperMask = _mm_set1_epi32(0x80000000);
     __m128i lowerMask = _mm_set1_epi32(0x7fffffff);
     __m128i matrix = _mm_set1_epi32(0x9908b0df);
@@ -175,6 +175,7 @@ void MT::shuffle()
 
         _mm_storeu_si128((__m128i *)&mt[620], _mm_xor_si128(_mm_xor_si128(y1, mag01), m2));
     }
+#endif
 
     index -= 624;
 }
