@@ -102,7 +102,7 @@ private:
             __m256i matrix256 = _mm256_set1_epi32(0x9908b0df);
             __m256i one256 = _mm256_set1_epi32(1);
 
-            for (; i < size; i += 8)
+            for (; i < size - (size % 8); i += 8)
             {
                 __m256i m0 = _mm256_loadu_si256((const __m256i *)&mt[i]);
                 __m256i m1 = _mm256_loadu_si256((const __m256i *)&mt[i + 1]);
