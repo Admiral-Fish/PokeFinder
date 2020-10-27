@@ -82,7 +82,6 @@ void Stationary5::setupModels()
     ui->textBoxGeneratorSeed->setValues(InputType::Seed32Bit);
     ui->textBoxGeneratorStartingAdvance->setValues(InputType::Advance32Bit);
     ui->textBoxGeneratorMaxAdvances->setValues(InputType::Advance32Bit);
-    ui->textBoxGeneratorDelay->setValues(InputType::Advance32Bit);
 
     ui->textBoxSearcherMinDelay->setValues(InputType::Delay);
     ui->textBoxSearcherMaxDelay->setValues(InputType::Delay);
@@ -96,28 +95,6 @@ void Stationary5::setupModels()
 
     ui->comboBoxGeneratorLead->addItem(tr("None"));
     ui->comboBoxGeneratorLead->addItems(Translator::getNatures());
-
-    ui->comboBoxGeneratorNature->setup(Translator::getNatures());
-    ui->comboBoxSearcherNature->setup(Translator::getNatures());
-
-    ui->comboBoxGeneratorHiddenPower->setup(Translator::getHiddenPowers());
-    ui->comboBoxSearcherHiddenPower->setup(Translator::getHiddenPowers());
-
-    ui->comboBoxGeneratorGenderRatio->setItemData(0, 0);
-    ui->comboBoxGeneratorGenderRatio->setItemData(1, 127);
-    ui->comboBoxGeneratorGenderRatio->setItemData(2, 191);
-    ui->comboBoxGeneratorGenderRatio->setItemData(3, 63);
-    ui->comboBoxGeneratorGenderRatio->setItemData(4, 31);
-    ui->comboBoxGeneratorGenderRatio->setItemData(5, 1);
-    ui->comboBoxGeneratorGenderRatio->setItemData(6, 2);
-
-    ui->comboBoxSearcherGenderRatio->setItemData(0, 0);
-    ui->comboBoxSearcherGenderRatio->setItemData(1, 127);
-    ui->comboBoxSearcherGenderRatio->setItemData(2, 191);
-    ui->comboBoxSearcherGenderRatio->setItemData(3, 63);
-    ui->comboBoxSearcherGenderRatio->setItemData(4, 31);
-    ui->comboBoxSearcherGenderRatio->setItemData(5, 1);
-    ui->comboBoxSearcherGenderRatio->setItemData(6, 2);
 
     QAction *outputTXTGenerator = generatorMenu->addAction(tr("Output Results to TXT"));
     QAction *outputCSVGenerator = generatorMenu->addAction(tr("Output Results to CSV"));
