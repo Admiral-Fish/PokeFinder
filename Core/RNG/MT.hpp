@@ -95,7 +95,9 @@ private:
         int i = 0;
 
 #ifdef USE_AVX2
-        if constexpr ((size % 8) == 0)
+        // Even with AVX2 only use it if the number of iterations remaining is less then 4
+        // Otherwise using SSE2 is preferred so we don't mix-match AVX2 and SSE2
+        if constexpr (size > 8 && (size % 8) < 4)
         {
             __m256i upperMask256 = _mm256_set1_epi32(0x80000000);
             __m256i lowerMask256 = _mm256_set1_epi32(0x7fffffff);

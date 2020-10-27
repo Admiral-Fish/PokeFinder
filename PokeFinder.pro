@@ -25,10 +25,6 @@ gcc:QMAKE_CXXFLAGS += -msse4.1
 contains(DEFINES, USE_AVX2) {
     gcc:QMAKE_CXXFLAGS += -mavx2
     msvc:QMAKE_CXXFLAGS += /arch:AVX2
-    message("Building with AVX2")
-}
-else {
-    message("Building with SSE4.1")
 }
 
 TRANSLATIONS += \
