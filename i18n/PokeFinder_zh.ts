@@ -165,59 +165,447 @@
 <context>
     <name>CheckList</name>
     <message>
-        <location filename="../Forms/Controls/CheckList.cpp" line="108"/>
-        <location filename="../Forms/Controls/CheckList.cpp" line="111"/>
-        <location filename="../Forms/Controls/CheckList.cpp" line="128"/>
+        <location filename="../Forms/Controls/CheckList.cpp" line="109"/>
+        <location filename="../Forms/Controls/CheckList.cpp" line="126"/>
         <source>Any</source>
         <translation>任何</translation>
     </message>
 </context>
 <context>
-    <name>EggGeneratorModel4</name>
+    <name>DreamRadar</name>
     <message>
-        <location filename="../Models/Gen4/EggModel4.cpp" line="73"/>
-        <source>Low</source>
+        <location filename="../Forms/Gen5/DreamRadar.ui"/>
+        <source>Dream Radar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/EggModel4.cpp" line="77"/>
-        <source>Mid-Low</source>
+        <location filename="../Forms/Gen5/DreamRadar.ui"/>
+        <source>Profile</source>
+        <translation type="unfinished">配置</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/DreamRadar.ui"/>
+        <source>TID</source>
+        <translation type="unfinished">TID</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/DreamRadar.ui"/>
+        <source>Game</source>
+        <translation type="unfinished">游戏</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/DreamRadar.ui"/>
+        <source>White</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/EggModel4.cpp" line="81"/>
-        <source>Mid</source>
+        <location filename="../Forms/Gen5/DreamRadar.ui"/>
+        <source>VCount</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/EggModel4.cpp" line="85"/>
-        <source>Mid-High</source>
+        <location filename="../Forms/Gen5/DreamRadar.ui"/>
+        <source>None, 1, 2, 3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/EggModel4.cpp" line="89"/>
-        <source>High</source>
+        <location filename="../Forms/Gen5/DreamRadar.ui"/>
+        <source>DS Type</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/EggModel4.cpp" line="100"/>
+        <location filename="../Forms/Gen5/DreamRadar.ui"/>
+        <source>GxStat</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/DreamRadar.ui"/>
+        <source>Keypresses</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/DreamRadar.ui"/>
+        <source>Manager</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/DreamRadar.ui"/>
+        <source>MAC Address</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/DreamRadar.ui"/>
+        <source>DS Original/Lite</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/DreamRadar.ui"/>
+        <source>Timer0</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/DreamRadar.ui"/>
+        <source>SID</source>
+        <translation type="unfinished">SID</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/DreamRadar.ui"/>
+        <source>VFrame</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/DreamRadar.ui"/>
+        <source>Generator</source>
+        <translation type="unfinished">生成器</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/DreamRadar.ui"/>
+        <source>RNG Info</source>
+        <translation type="unfinished">RNG 信息</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/DreamRadar.ui"/>
+        <source>Initial Advances</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/DreamRadar.ui"/>
+        <source>Max Advances</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/DreamRadar.ui"/>
+        <source>Seed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/DreamRadar.ui"/>
+        <source>Generate</source>
+        <translation type="unfinished">生成</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/DreamRadar.ui"/>
+        <source>Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/DreamRadar.ui"/>
+        <source>Slot 1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/DreamRadar.ui"/>
+        <source>Slot 2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/DreamRadar.ui"/>
+        <source>Slot 3</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/DreamRadar.ui"/>
+        <source>Slot 4</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/DreamRadar.ui"/>
+        <source>Slot 5</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/DreamRadar.ui"/>
+        <source>Slot 6</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/DreamRadar.ui"/>
+        <source>Filters</source>
+        <translation type="unfinished">过滤器</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/DreamRadar.ui"/>
+        <source>Searcher</source>
+        <translation type="unfinished">检索器</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/DreamRadar.ui"/>
+        <source>End Date</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/DreamRadar.ui"/>
+        <source>Search</source>
+        <translation type="unfinished">检索</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/DreamRadar.ui"/>
+        <source>Cancel</source>
+        <translation type="unfinished">取消</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/DreamRadar.ui"/>
+        <source>Start Date</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/DreamRadar.cpp" line="99"/>
+        <location filename="../Forms/Gen5/DreamRadar.cpp" line="100"/>
+        <location filename="../Forms/Gen5/DreamRadar.cpp" line="101"/>
+        <location filename="../Forms/Gen5/DreamRadar.cpp" line="102"/>
+        <location filename="../Forms/Gen5/DreamRadar.cpp" line="103"/>
+        <location filename="../Forms/Gen5/DreamRadar.cpp" line="104"/>
+        <location filename="../Forms/Gen5/DreamRadar.cpp" line="106"/>
+        <location filename="../Forms/Gen5/DreamRadar.cpp" line="107"/>
+        <location filename="../Forms/Gen5/DreamRadar.cpp" line="108"/>
+        <location filename="../Forms/Gen5/DreamRadar.cpp" line="109"/>
+        <location filename="../Forms/Gen5/DreamRadar.cpp" line="110"/>
+        <location filename="../Forms/Gen5/DreamRadar.cpp" line="111"/>
+        <source>None</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/DreamRadar.cpp" line="170"/>
+        <location filename="../Forms/Gen5/DreamRadar.cpp" line="175"/>
+        <source>Output Results to TXT</source>
+        <translation type="unfinished">导出结果至TXT</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/DreamRadar.cpp" line="171"/>
+        <location filename="../Forms/Gen5/DreamRadar.cpp" line="176"/>
+        <source>Output Results to CSV</source>
+        <translation type="unfinished">导出结果至CSV</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/DreamRadar.cpp" line="206"/>
+        <location filename="../Forms/Gen5/DreamRadar.cpp" line="241"/>
+        <source>Missing settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/DreamRadar.cpp" line="206"/>
+        <location filename="../Forms/Gen5/DreamRadar.cpp" line="241"/>
+        <source>Enter information for at least 1 slot</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>DreamRadarGeneratorModel5</name>
+    <message>
+        <location filename="../Models/Gen5/DreamRadarModel.cpp" line="50"/>
         <source>Square</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/EggModel4.cpp" line="100"/>
+        <location filename="../Models/Gen5/DreamRadarModel.cpp" line="50"/>
         <source>Star</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/EggModel4.cpp" line="100"/>
+        <location filename="../Models/Gen5/DreamRadarModel.cpp" line="50"/>
         <source>No</source>
         <translation type="unfinished">否</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/EggModel4.hpp" line="44"/>
-        <source>Advance</source>
-        <translation type="unfinished">帧</translation>
+        <location filename="../Models/Gen5/DreamRadarModel.hpp" line="37"/>
+        <source>Advances</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/DreamRadarModel.hpp" line="37"/>
+        <source>Needle</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/DreamRadarModel.hpp" line="37"/>
+        <source>PID</source>
+        <translation type="unfinished">PID</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/DreamRadarModel.hpp" line="37"/>
+        <source>Shiny</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/DreamRadarModel.hpp" line="37"/>
+        <source>Nature</source>
+        <translation type="unfinished">性格</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/DreamRadarModel.hpp" line="37"/>
+        <source>Ability</source>
+        <translation type="unfinished">特性</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/DreamRadarModel.hpp" line="37"/>
+        <source>HP</source>
+        <translation type="unfinished">HP</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/DreamRadarModel.hpp" line="37"/>
+        <source>Atk</source>
+        <translation type="unfinished">攻击</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/DreamRadarModel.hpp" line="38"/>
+        <source>Def</source>
+        <translation type="unfinished">防御</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/DreamRadarModel.hpp" line="38"/>
+        <source>SpA</source>
+        <translation type="unfinished">特攻</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/DreamRadarModel.hpp" line="38"/>
+        <source>SpD</source>
+        <translation type="unfinished">特防</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/DreamRadarModel.hpp" line="38"/>
+        <source>Spe</source>
+        <translation type="unfinished">速度</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/DreamRadarModel.hpp" line="38"/>
+        <source>Hidden</source>
+        <translation type="unfinished">觉醒</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/DreamRadarModel.hpp" line="38"/>
+        <source>Power</source>
+        <translation type="unfinished">力量</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/DreamRadarModel.hpp" line="38"/>
+        <source>Gender</source>
+        <translation type="unfinished">性别</translation>
+    </message>
+</context>
+<context>
+    <name>DreamRadarSearcherModel5</name>
+    <message>
+        <location filename="../Models/Gen5/DreamRadarModel.cpp" line="209"/>
+        <source>Square</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/DreamRadarModel.cpp" line="209"/>
+        <source>Star</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/DreamRadarModel.cpp" line="209"/>
+        <source>No</source>
+        <translation type="unfinished">否</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/DreamRadarModel.hpp" line="52"/>
+        <source>Seed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/DreamRadarModel.hpp" line="52"/>
+        <source>Advances</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/DreamRadarModel.hpp" line="52"/>
+        <source>PID</source>
+        <translation type="unfinished">PID</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/DreamRadarModel.hpp" line="52"/>
+        <source>Shiny</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/DreamRadarModel.hpp" line="52"/>
+        <source>Nature</source>
+        <translation type="unfinished">性格</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/DreamRadarModel.hpp" line="52"/>
+        <source>Ability</source>
+        <translation type="unfinished">特性</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/DreamRadarModel.hpp" line="53"/>
+        <source>HP</source>
+        <translation type="unfinished">HP</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/DreamRadarModel.hpp" line="53"/>
+        <source>Atk</source>
+        <translation type="unfinished">攻击</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/DreamRadarModel.hpp" line="53"/>
+        <source>Def</source>
+        <translation type="unfinished">防御</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/DreamRadarModel.hpp" line="53"/>
+        <source>SpA</source>
+        <translation type="unfinished">特攻</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/DreamRadarModel.hpp" line="53"/>
+        <source>SpD</source>
+        <translation type="unfinished">特防</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/DreamRadarModel.hpp" line="53"/>
+        <source>Spe</source>
+        <translation type="unfinished">速度</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/DreamRadarModel.hpp" line="54"/>
+        <source>Hidden</source>
+        <translation type="unfinished">觉醒</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/DreamRadarModel.hpp" line="54"/>
+        <source>Power</source>
+        <translation type="unfinished">力量</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/DreamRadarModel.hpp" line="54"/>
+        <source>Gender</source>
+        <translation type="unfinished">性别</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/DreamRadarModel.hpp" line="54"/>
+        <source>Date/Time</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/DreamRadarModel.hpp" line="54"/>
+        <source>Timer0</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/DreamRadarModel.hpp" line="54"/>
+        <source>Buttons</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>EggGeneratorModel4</name>
+    <message>
+        <location filename="../Models/Gen4/EggModel4.cpp" line="77"/>
+        <source>Square</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen4/EggModel4.cpp" line="77"/>
+        <source>Star</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen4/EggModel4.cpp" line="77"/>
+        <source>No</source>
+        <translation type="unfinished">否</translation>
     </message>
     <message>
         <location filename="../Models/Gen4/EggModel4.hpp" line="44"/>
@@ -255,6 +643,11 @@
         <translation type="unfinished">HP</translation>
     </message>
     <message>
+        <location filename="../Models/Gen4/EggModel4.hpp" line="44"/>
+        <source>Advances</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../Models/Gen4/EggModel4.hpp" line="45"/>
         <source>Atk</source>
         <translation type="unfinished">攻击</translation>
@@ -291,6 +684,99 @@
     </message>
     <message>
         <location filename="../Models/Gen4/EggModel4.hpp" line="45"/>
+        <source>Gender</source>
+        <translation type="unfinished">性别</translation>
+    </message>
+</context>
+<context>
+    <name>EggGeneratorModel5</name>
+    <message>
+        <location filename="../Models/Gen5/EggModel5.cpp" line="51"/>
+        <source>Square</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EggModel5.cpp" line="51"/>
+        <source>Star</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EggModel5.cpp" line="51"/>
+        <source>No</source>
+        <translation type="unfinished">否</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EggModel5.hpp" line="37"/>
+        <source>Advances</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EggModel5.hpp" line="37"/>
+        <source>Chatot</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EggModel5.hpp" line="37"/>
+        <source>PID</source>
+        <translation type="unfinished">PID</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EggModel5.hpp" line="37"/>
+        <source>Shiny</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EggModel5.hpp" line="37"/>
+        <source>Nature</source>
+        <translation type="unfinished">性格</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EggModel5.hpp" line="37"/>
+        <source>Ability</source>
+        <translation type="unfinished">特性</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EggModel5.hpp" line="37"/>
+        <source>HP</source>
+        <translation type="unfinished">HP</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EggModel5.hpp" line="37"/>
+        <source>Atk</source>
+        <translation type="unfinished">攻击</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EggModel5.hpp" line="38"/>
+        <source>Def</source>
+        <translation type="unfinished">防御</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EggModel5.hpp" line="38"/>
+        <source>SpA</source>
+        <translation type="unfinished">特攻</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EggModel5.hpp" line="38"/>
+        <source>SpD</source>
+        <translation type="unfinished">特防</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EggModel5.hpp" line="38"/>
+        <source>Spe</source>
+        <translation type="unfinished">速度</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EggModel5.hpp" line="38"/>
+        <source>Hidden</source>
+        <translation type="unfinished">觉醒</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EggModel5.hpp" line="38"/>
+        <source>Power</source>
+        <translation type="unfinished">力量</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EggModel5.hpp" line="38"/>
         <source>Gender</source>
         <translation type="unfinished">性别</translation>
     </message>
@@ -314,86 +800,86 @@
     </message>
     <message>
         <location filename="../Models/Gen3/EggModel3.hpp" line="44"/>
-        <source>Advance</source>
-        <translation type="unfinished">帧</translation>
+        <source>Advances</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Models/Gen3/EggModel3.hpp" line="44"/>
-        <source>Held Advance</source>
-        <translation type="unfinished">持有帧数</translation>
+        <source>Held Advances</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Models/Gen3/EggModel3.hpp" line="44"/>
-        <source>Pickup Advance</source>
-        <translation type="unfinished">领取帧数</translation>
-    </message>
-    <message>
-        <location filename="../Models/Gen3/EggModel3.hpp" line="44"/>
-        <source>Redraws</source>
-        <translation type="unfinished">重抽</translation>
-    </message>
-    <message>
-        <location filename="../Models/Gen3/EggModel3.hpp" line="44"/>
-        <source>PID</source>
-        <translation type="unfinished">PID</translation>
-    </message>
-    <message>
-        <location filename="../Models/Gen3/EggModel3.hpp" line="44"/>
-        <source>Shiny</source>
+        <source>Pickup Advances</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Models/Gen3/EggModel3.hpp" line="45"/>
+        <source>Redraws</source>
+        <translation type="unfinished">重抽</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen3/EggModel3.hpp" line="45"/>
+        <source>PID</source>
+        <translation type="unfinished">PID</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen3/EggModel3.hpp" line="45"/>
+        <source>Shiny</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen3/EggModel3.hpp" line="46"/>
         <source>Nature</source>
         <translation type="unfinished">性格</translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/EggModel3.hpp" line="45"/>
+        <location filename="../Models/Gen3/EggModel3.hpp" line="46"/>
         <source>Ability</source>
         <translation type="unfinished">特性</translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/EggModel3.hpp" line="45"/>
+        <location filename="../Models/Gen3/EggModel3.hpp" line="46"/>
         <source>HP</source>
         <translation type="unfinished">HP</translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/EggModel3.hpp" line="45"/>
+        <location filename="../Models/Gen3/EggModel3.hpp" line="47"/>
         <source>Atk</source>
         <translation type="unfinished">攻击</translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/EggModel3.hpp" line="45"/>
+        <location filename="../Models/Gen3/EggModel3.hpp" line="47"/>
         <source>Def</source>
         <translation type="unfinished">防御</translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/EggModel3.hpp" line="45"/>
+        <location filename="../Models/Gen3/EggModel3.hpp" line="47"/>
         <source>SpA</source>
         <translation type="unfinished">特攻</translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/EggModel3.hpp" line="46"/>
+        <location filename="../Models/Gen3/EggModel3.hpp" line="48"/>
         <source>SpD</source>
         <translation type="unfinished">特防</translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/EggModel3.hpp" line="46"/>
+        <location filename="../Models/Gen3/EggModel3.hpp" line="48"/>
         <source>Spe</source>
         <translation type="unfinished">速度</translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/EggModel3.hpp" line="46"/>
+        <location filename="../Models/Gen3/EggModel3.hpp" line="48"/>
         <source>Hidden</source>
         <translation type="unfinished">觉醒</translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/EggModel3.hpp" line="46"/>
+        <location filename="../Models/Gen3/EggModel3.hpp" line="49"/>
         <source>Power</source>
         <translation type="unfinished">力量</translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/EggModel3.hpp" line="46"/>
+        <location filename="../Models/Gen3/EggModel3.hpp" line="49"/>
         <source>Gender</source>
         <translation type="unfinished">性别</translation>
     </message>
@@ -401,48 +887,48 @@
 <context>
     <name>EggSearcherModel4</name>
     <message>
-        <location filename="../Models/Gen4/EggModel4.cpp" line="292"/>
+        <location filename="../Models/Gen4/EggModel4.cpp" line="269"/>
         <source>Square</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/EggModel4.cpp" line="292"/>
+        <location filename="../Models/Gen4/EggModel4.cpp" line="269"/>
         <source>Star</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/EggModel4.cpp" line="292"/>
+        <location filename="../Models/Gen4/EggModel4.cpp" line="269"/>
         <source>No</source>
         <translation type="unfinished">否</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/EggModel4.hpp" line="68"/>
+        <location filename="../Models/Gen4/EggModel4.hpp" line="67"/>
         <source>Seed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/EggModel4.hpp" line="68"/>
-        <source>Advance</source>
-        <translation type="unfinished">帧</translation>
-    </message>
-    <message>
-        <location filename="../Models/Gen4/EggModel4.hpp" line="68"/>
-        <source>PID Advance</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Models/Gen4/EggModel4.hpp" line="68"/>
-        <source>IV Advance</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Models/Gen4/EggModel4.hpp" line="68"/>
+        <location filename="../Models/Gen4/EggModel4.hpp" line="67"/>
         <source>PID</source>
         <translation type="unfinished">PID</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/EggModel4.hpp" line="68"/>
+        <location filename="../Models/Gen4/EggModel4.hpp" line="67"/>
         <source>Shiny</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen4/EggModel4.hpp" line="67"/>
+        <source>Advances</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen4/EggModel4.hpp" line="67"/>
+        <source>PID Advances</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen4/EggModel4.hpp" line="67"/>
+        <source>IV Advances</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -461,17 +947,17 @@
         <translation type="unfinished">HP</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/EggModel4.hpp" line="69"/>
+        <location filename="../Models/Gen4/EggModel4.hpp" line="68"/>
         <source>Atk</source>
         <translation type="unfinished">攻击</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/EggModel4.hpp" line="69"/>
+        <location filename="../Models/Gen4/EggModel4.hpp" line="68"/>
         <source>Def</source>
         <translation type="unfinished">防御</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/EggModel4.hpp" line="69"/>
+        <location filename="../Models/Gen4/EggModel4.hpp" line="68"/>
         <source>SpA</source>
         <translation type="unfinished">特攻</translation>
     </message>
@@ -502,12 +988,115 @@
     </message>
 </context>
 <context>
-    <name>EggSettings</name>
+    <name>EggSearcherModel5</name>
     <message>
-        <location filename="../Forms/Controls/EggSettings.ui"/>
-        <source>Swap Parents</source>
+        <location filename="../Models/Gen5/EggModel5.cpp" line="213"/>
+        <source>Square</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="../Models/Gen5/EggModel5.cpp" line="213"/>
+        <source>Star</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EggModel5.cpp" line="213"/>
+        <source>No</source>
+        <translation type="unfinished">否</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EggModel5.hpp" line="52"/>
+        <source>Seed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EggModel5.hpp" line="52"/>
+        <source>Advances</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EggModel5.hpp" line="52"/>
+        <source>PID</source>
+        <translation type="unfinished">PID</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EggModel5.hpp" line="52"/>
+        <source>Shiny</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EggModel5.hpp" line="52"/>
+        <source>Nature</source>
+        <translation type="unfinished">性格</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EggModel5.hpp" line="52"/>
+        <source>Ability</source>
+        <translation type="unfinished">特性</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EggModel5.hpp" line="53"/>
+        <source>HP</source>
+        <translation type="unfinished">HP</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EggModel5.hpp" line="53"/>
+        <source>Atk</source>
+        <translation type="unfinished">攻击</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EggModel5.hpp" line="53"/>
+        <source>Def</source>
+        <translation type="unfinished">防御</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EggModel5.hpp" line="53"/>
+        <source>SpA</source>
+        <translation type="unfinished">特攻</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EggModel5.hpp" line="53"/>
+        <source>SpD</source>
+        <translation type="unfinished">特防</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EggModel5.hpp" line="53"/>
+        <source>Spe</source>
+        <translation type="unfinished">速度</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EggModel5.hpp" line="54"/>
+        <source>Hidden</source>
+        <translation type="unfinished">觉醒</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EggModel5.hpp" line="54"/>
+        <source>Power</source>
+        <translation type="unfinished">力量</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EggModel5.hpp" line="54"/>
+        <source>Gender</source>
+        <translation type="unfinished">性别</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EggModel5.hpp" line="54"/>
+        <source>Date/Time</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EggModel5.hpp" line="54"/>
+        <source>Timer0</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EggModel5.hpp" line="54"/>
+        <source>Buttons</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>EggSettings</name>
     <message>
         <location filename="../Forms/Controls/EggSettings.ui"/>
         <source>Parent A</source>
@@ -521,6 +1110,108 @@
     <message>
         <location filename="../Forms/Controls/EggSettings.ui"/>
         <source>Show Inheritance</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Controls/EggSettings.ui"/>
+        <source>Form</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Controls/EggSettings.ui"/>
+        <source>HP</source>
+        <translation type="unfinished">HP</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Controls/EggSettings.ui"/>
+        <source>Atk</source>
+        <translation type="unfinished">攻击</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Controls/EggSettings.ui"/>
+        <source>Def</source>
+        <translation type="unfinished">防御</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Controls/EggSettings.ui"/>
+        <source>SpA</source>
+        <translation type="unfinished">特攻</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Controls/EggSettings.ui"/>
+        <source>SpD</source>
+        <translation type="unfinished">特防</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Controls/EggSettings.ui"/>
+        <source>Spe</source>
+        <translation type="unfinished">速度</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Controls/EggSettings.ui"/>
+        <source>Ability</source>
+        <translation type="unfinished">特性</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Controls/EggSettings.ui"/>
+        <source>Gender</source>
+        <translation type="unfinished">性别</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Controls/EggSettings.ui"/>
+        <source>Item</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Controls/EggSettings.ui"/>
+        <source>Nature</source>
+        <translation type="unfinished">性格</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Controls/EggSettings.ui"/>
+        <source>Masuada</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Controls/EggSettings.ui"/>
+        <source>Nidoran
+Volbeat</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Controls/EggSettings.cpp" line="71"/>
+        <location filename="../Forms/Controls/EggSettings.cpp" line="78"/>
+        <source>Power Weight</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Controls/EggSettings.cpp" line="72"/>
+        <location filename="../Forms/Controls/EggSettings.cpp" line="79"/>
+        <source>Power Bracer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Controls/EggSettings.cpp" line="73"/>
+        <location filename="../Forms/Controls/EggSettings.cpp" line="80"/>
+        <source>Power Belt</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Controls/EggSettings.cpp" line="74"/>
+        <location filename="../Forms/Controls/EggSettings.cpp" line="81"/>
+        <source>Power Lens</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Controls/EggSettings.cpp" line="75"/>
+        <location filename="../Forms/Controls/EggSettings.cpp" line="82"/>
+        <source>Power Band</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Controls/EggSettings.cpp" line="76"/>
+        <location filename="../Forms/Controls/EggSettings.cpp" line="83"/>
+        <source>Power Anklet</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -575,16 +1266,6 @@
         <location filename="../Forms/Gen3/Eggs3.ui"/>
         <source>Manager</source>
         <translation>管理</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Eggs3.ui"/>
-        <source>Adavnce Held</source>
-        <translation>持有帧数</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Eggs3.ui"/>
-        <source>Pickup Advance</source>
-        <translation>领取帧数</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Eggs3.ui"/>
@@ -667,28 +1348,43 @@
         <translation type="unfinished">PID</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Eggs3.ui"/>
-        <source>Initial Advance</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Eggs3.ui"/>
-        <source>Max Results</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Eggs3.cpp" line="122"/>
-        <location filename="../Forms/Gen3/Eggs3.cpp" line="127"/>
-        <location filename="../Forms/Gen3/Eggs3.cpp" line="132"/>
+        <location filename="../Forms/Gen3/Eggs3.cpp" line="128"/>
+        <location filename="../Forms/Gen3/Eggs3.cpp" line="133"/>
+        <location filename="../Forms/Gen3/Eggs3.cpp" line="138"/>
         <source>Output Results to TXT</source>
         <translation type="unfinished">导出结果至TXT</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Eggs3.cpp" line="123"/>
-        <location filename="../Forms/Gen3/Eggs3.cpp" line="128"/>
-        <location filename="../Forms/Gen3/Eggs3.cpp" line="133"/>
+        <location filename="../Forms/Gen3/Eggs3.cpp" line="129"/>
+        <location filename="../Forms/Gen3/Eggs3.cpp" line="134"/>
+        <location filename="../Forms/Gen3/Eggs3.cpp" line="139"/>
         <source>Output Results to CSV</source>
         <translation type="unfinished">导出结果至CSV</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Eggs3.ui"/>
+        <source>Initial Advances</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Eggs3.ui"/>
+        <source>Max Advances</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Eggs3.ui"/>
+        <source>Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Eggs3.ui"/>
+        <source>Held Advances</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Eggs3.ui"/>
+        <source>Pickup Advances</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -745,11 +1441,6 @@
     </message>
     <message>
         <location filename="../Forms/Gen4/Eggs4.ui"/>
-        <source>Max Results</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Eggs4.ui"/>
         <source>Generate</source>
         <translation>生成</translation>
     </message>
@@ -775,11 +1466,6 @@
     </message>
     <message>
         <location filename="../Forms/Gen4/Eggs4.ui"/>
-        <source>Masuada</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Eggs4.ui"/>
         <source>Searcher</source>
         <translation>检索器</translation>
     </message>
@@ -794,19 +1480,19 @@
         <translation>检索</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/Eggs4.cpp" line="113"/>
-        <location filename="../Forms/Gen4/Eggs4.cpp" line="119"/>
+        <location filename="../Forms/Gen4/Eggs4.cpp" line="117"/>
+        <location filename="../Forms/Gen4/Eggs4.cpp" line="123"/>
         <source>Output Results to TXT</source>
         <translation type="unfinished">导出结果至TXT</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/Eggs4.cpp" line="114"/>
-        <location filename="../Forms/Gen4/Eggs4.cpp" line="120"/>
+        <location filename="../Forms/Gen4/Eggs4.cpp" line="118"/>
+        <location filename="../Forms/Gen4/Eggs4.cpp" line="124"/>
         <source>Output Results to CSV</source>
         <translation type="unfinished">导出结果至CSV</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/Eggs4.cpp" line="118"/>
+        <location filename="../Forms/Gen4/Eggs4.cpp" line="122"/>
         <source>Generate times for seed</source>
         <translation>为Seed生成时间</translation>
     </message>
@@ -832,8 +1518,183 @@
     </message>
     <message>
         <location filename="../Forms/Gen4/Eggs4.ui"/>
-        <source>Initial Advance</source>
+        <source>Initial Advances</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen4/Eggs4.ui"/>
+        <source>Max Advances</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen4/Eggs4.ui"/>
+        <source>Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>Eggs5</name>
+    <message>
+        <location filename="../Forms/Gen5/Eggs5.ui"/>
+        <source>Gen 5 Eggs</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Eggs5.ui"/>
+        <source>Profile</source>
+        <translation type="unfinished">配置</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Eggs5.ui"/>
+        <source>TID</source>
+        <translation type="unfinished">TID</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Eggs5.ui"/>
+        <source>MAC Address</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Eggs5.ui"/>
+        <source>VCount</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Eggs5.ui"/>
+        <source>GxStat</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Eggs5.ui"/>
+        <source>Keypresses</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Eggs5.ui"/>
+        <source>None, 1, 2, 3</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Eggs5.ui"/>
+        <source>Manager</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Eggs5.ui"/>
+        <source>SID</source>
+        <translation type="unfinished">SID</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Eggs5.ui"/>
+        <source>DS Type</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Eggs5.ui"/>
+        <source>DS Original/Lite</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Eggs5.ui"/>
+        <source>Timer0</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Eggs5.ui"/>
+        <source>VFrame</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Eggs5.ui"/>
+        <source>Game</source>
+        <translation type="unfinished">游戏</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Eggs5.ui"/>
+        <source>White</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Eggs5.ui"/>
+        <source>Generator</source>
+        <translation type="unfinished">生成器</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Eggs5.ui"/>
+        <source>Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Eggs5.ui"/>
+        <source>RNG Info</source>
+        <translation type="unfinished">RNG 信息</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Eggs5.ui"/>
+        <source>Initial Advances</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Eggs5.ui"/>
+        <source>Max Advances</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Eggs5.ui"/>
+        <source>Seed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Eggs5.ui"/>
+        <source>Generate</source>
+        <translation type="unfinished">生成</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Eggs5.ui"/>
+        <source>Calculate Initial Advance</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Eggs5.ui"/>
+        <source>Filters</source>
+        <translation type="unfinished">过滤器</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Eggs5.ui"/>
+        <source>Searcher</source>
+        <translation type="unfinished">检索器</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Eggs5.ui"/>
+        <source>Start Date</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Eggs5.ui"/>
+        <source>End Date</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Eggs5.ui"/>
+        <source>Search</source>
+        <translation type="unfinished">检索</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Eggs5.ui"/>
+        <source>Cancel</source>
+        <translation type="unfinished">取消</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Eggs5.cpp" line="105"/>
+        <location filename="../Forms/Gen5/Eggs5.cpp" line="110"/>
+        <source>Output Results to TXT</source>
+        <translation type="unfinished">导出结果至TXT</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Eggs5.cpp" line="106"/>
+        <location filename="../Forms/Gen5/Eggs5.cpp" line="111"/>
+        <source>Output Results to CSV</source>
+        <translation type="unfinished">导出结果至CSV</translation>
     </message>
 </context>
 <context>
@@ -960,6 +1821,472 @@
     </message>
 </context>
 <context>
+    <name>Event5</name>
+    <message>
+        <location filename="../Forms/Gen5/Event5.ui"/>
+        <source>Gen 5 Event</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Event5.ui"/>
+        <source>Profile</source>
+        <translation type="unfinished">配置</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Event5.ui"/>
+        <source>TID</source>
+        <translation type="unfinished">TID</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Event5.ui"/>
+        <source>MAC Address</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Event5.ui"/>
+        <source>VCount</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Event5.ui"/>
+        <source>GxStat</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Event5.ui"/>
+        <source>Keypresses</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Event5.ui"/>
+        <source>None, 1, 2, 3</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Event5.ui"/>
+        <source>Manager</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Event5.ui"/>
+        <source>SID</source>
+        <translation type="unfinished">SID</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Event5.ui"/>
+        <source>DS Type</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Event5.ui"/>
+        <source>DS Original/Lite</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Event5.ui"/>
+        <source>Timer0</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Event5.ui"/>
+        <source>VFrame</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Event5.ui"/>
+        <source>Game</source>
+        <translation type="unfinished">游戏</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Event5.ui"/>
+        <source>White</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Event5.ui"/>
+        <source>Generator</source>
+        <translation type="unfinished">生成器</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Event5.ui"/>
+        <source>RNG Info</source>
+        <translation type="unfinished">RNG 信息</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Event5.ui"/>
+        <source>Initial Advances</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Event5.ui"/>
+        <source>Max Advances</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Event5.ui"/>
+        <source>Seed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Event5.ui"/>
+        <source>Generate</source>
+        <translation type="unfinished">生成</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Event5.ui"/>
+        <source>Calculate Initial Advance</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Event5.ui"/>
+        <source>Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Event5.ui"/>
+        <source>Species</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Event5.ui"/>
+        <source>HP</source>
+        <translation type="unfinished">HP</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Event5.ui"/>
+        <source>Atk</source>
+        <translation type="unfinished">攻击</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Event5.ui"/>
+        <source>Def</source>
+        <translation type="unfinished">防御</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Event5.ui"/>
+        <source>SpA</source>
+        <translation type="unfinished">特攻</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Event5.ui"/>
+        <source>SpD</source>
+        <translation type="unfinished">特防</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Event5.ui"/>
+        <source>Spe</source>
+        <translation type="unfinished">速度</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Event5.ui"/>
+        <source>Ability</source>
+        <translation type="unfinished">特性</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Event5.ui"/>
+        <source>Gender</source>
+        <translation type="unfinished">性别</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Event5.ui"/>
+        <source>♂ Only</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Event5.ui"/>
+        <source>♀ Only</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Event5.ui"/>
+        <source>Random</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Event5.ui"/>
+        <source>Nature</source>
+        <translation type="unfinished">性格</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Event5.ui"/>
+        <source>Shiny</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Event5.ui"/>
+        <source>Force non-shiny</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Event5.ui"/>
+        <source>Force shiny</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Event5.ui"/>
+        <source>Event TID</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Event5.ui"/>
+        <source>Event SID</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Event5.ui"/>
+        <source>Egg</source>
+        <translation type="unfinished">孵化乱数</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Event5.ui"/>
+        <source>Import</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Event5.ui"/>
+        <source>Filters</source>
+        <translation type="unfinished">过滤器</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Event5.ui"/>
+        <source>Searcher</source>
+        <translation type="unfinished">检索器</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Event5.ui"/>
+        <source>Start Date</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Event5.ui"/>
+        <source>End Date</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Event5.ui"/>
+        <source>Search</source>
+        <translation type="unfinished">检索</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Event5.ui"/>
+        <source>Cancel</source>
+        <translation type="unfinished">取消</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Event5.cpp" line="116"/>
+        <location filename="../Forms/Gen5/Event5.cpp" line="121"/>
+        <source>Output Results to TXT</source>
+        <translation type="unfinished">导出结果至TXT</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Event5.cpp" line="117"/>
+        <location filename="../Forms/Gen5/Event5.cpp" line="122"/>
+        <source>Output Results to CSV</source>
+        <translation type="unfinished">导出结果至CSV</translation>
+    </message>
+</context>
+<context>
+    <name>EventGeneratorModel5</name>
+    <message>
+        <location filename="../Models/Gen5/EventModel5.cpp" line="51"/>
+        <source>Square</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EventModel5.cpp" line="51"/>
+        <source>Star</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EventModel5.cpp" line="51"/>
+        <source>No</source>
+        <translation type="unfinished">否</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EventModel5.hpp" line="37"/>
+        <source>Advances</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EventModel5.hpp" line="37"/>
+        <source>Chatot</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EventModel5.hpp" line="37"/>
+        <source>PID</source>
+        <translation type="unfinished">PID</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EventModel5.hpp" line="37"/>
+        <source>Shiny</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EventModel5.hpp" line="37"/>
+        <source>Nature</source>
+        <translation type="unfinished">性格</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EventModel5.hpp" line="37"/>
+        <source>Ability</source>
+        <translation type="unfinished">特性</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EventModel5.hpp" line="37"/>
+        <source>HP</source>
+        <translation type="unfinished">HP</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EventModel5.hpp" line="37"/>
+        <source>Atk</source>
+        <translation type="unfinished">攻击</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EventModel5.hpp" line="38"/>
+        <source>Def</source>
+        <translation type="unfinished">防御</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EventModel5.hpp" line="38"/>
+        <source>SpA</source>
+        <translation type="unfinished">特攻</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EventModel5.hpp" line="38"/>
+        <source>SpD</source>
+        <translation type="unfinished">特防</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EventModel5.hpp" line="38"/>
+        <source>Spe</source>
+        <translation type="unfinished">速度</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EventModel5.hpp" line="38"/>
+        <source>Hidden</source>
+        <translation type="unfinished">觉醒</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EventModel5.hpp" line="38"/>
+        <source>Power</source>
+        <translation type="unfinished">力量</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EventModel5.hpp" line="38"/>
+        <source>Gender</source>
+        <translation type="unfinished">性别</translation>
+    </message>
+</context>
+<context>
+    <name>EventSearcherModel5</name>
+    <message>
+        <location filename="../Models/Gen5/EventModel5.cpp" line="211"/>
+        <source>Square</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EventModel5.cpp" line="211"/>
+        <source>Star</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EventModel5.cpp" line="211"/>
+        <source>No</source>
+        <translation type="unfinished">否</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EventModel5.hpp" line="52"/>
+        <source>Seed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EventModel5.hpp" line="52"/>
+        <source>Advances</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EventModel5.hpp" line="52"/>
+        <source>PID</source>
+        <translation type="unfinished">PID</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EventModel5.hpp" line="52"/>
+        <source>Shiny</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EventModel5.hpp" line="52"/>
+        <source>Nature</source>
+        <translation type="unfinished">性格</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EventModel5.hpp" line="52"/>
+        <source>Ability</source>
+        <translation type="unfinished">特性</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EventModel5.hpp" line="53"/>
+        <source>HP</source>
+        <translation type="unfinished">HP</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EventModel5.hpp" line="53"/>
+        <source>Atk</source>
+        <translation type="unfinished">攻击</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EventModel5.hpp" line="53"/>
+        <source>Def</source>
+        <translation type="unfinished">防御</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EventModel5.hpp" line="53"/>
+        <source>SpA</source>
+        <translation type="unfinished">特攻</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EventModel5.hpp" line="53"/>
+        <source>SpD</source>
+        <translation type="unfinished">特防</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EventModel5.hpp" line="53"/>
+        <source>Spe</source>
+        <translation type="unfinished">速度</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EventModel5.hpp" line="54"/>
+        <source>Hidden</source>
+        <translation type="unfinished">觉醒</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EventModel5.hpp" line="54"/>
+        <source>Power</source>
+        <translation type="unfinished">力量</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EventModel5.hpp" line="54"/>
+        <source>Gender</source>
+        <translation type="unfinished">性别</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EventModel5.hpp" line="54"/>
+        <source>Date/Time</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EventModel5.hpp" line="54"/>
+        <source>Timer0</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EventModel5.hpp" line="54"/>
+        <source>Buttons</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>Filter</name>
     <message>
         <location filename="../Forms/Controls/Filter.ui"/>
@@ -1081,18 +2408,8 @@
     </message>
     <message>
         <location filename="../Forms/Gen3/GameCube.ui"/>
-        <source>Starting Advance</source>
-        <translation>开始帧</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/GameCube.ui"/>
         <source>Method</source>
         <translation>方式</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/GameCube.ui"/>
-        <source>Max Results</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/GameCube.ui"/>
@@ -1231,6 +2548,16 @@
         <source>XD</source>
         <translation type="unfinished">XD</translation>
     </message>
+    <message>
+        <location filename="../Forms/Gen3/GameCube.ui"/>
+        <source>Initial Advances</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/GameCube.ui"/>
+        <source>Max Advances</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>GameCubeGeneratorModel</name>
@@ -1248,11 +2575,6 @@
         <location filename="../Models/Gen3/GameCubeModel.cpp" line="48"/>
         <source>No</source>
         <translation type="unfinished">否</translation>
-    </message>
-    <message>
-        <location filename="../Models/Gen3/GameCubeModel.hpp" line="37"/>
-        <source>Advance</source>
-        <translation type="unfinished">帧</translation>
     </message>
     <message>
         <location filename="../Models/Gen3/GameCubeModel.hpp" line="37"/>
@@ -1283,6 +2605,11 @@
         <location filename="../Models/Gen3/GameCubeModel.hpp" line="37"/>
         <source>Atk</source>
         <translation type="unfinished">攻击</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen3/GameCubeModel.hpp" line="37"/>
+        <source>Advances</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Models/Gen3/GameCubeModel.hpp" line="38"/>
@@ -1329,11 +2656,6 @@
     </message>
     <message>
         <location filename="../Forms/Gen3/Tools/GameCubeRTC.ui"/>
-        <source>Seed at 1/1/2000 at 00:00:00</source>
-        <translation>Seed在2000年1月1日0点0分0秒</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Tools/GameCubeRTC.ui"/>
         <source>Target Seed</source>
         <translation>目标Seed</translation>
     </message>
@@ -1357,6 +2679,16 @@
         <source>Cancel</source>
         <translation>取消</translation>
     </message>
+    <message>
+        <location filename="../Forms/Gen3/Tools/GameCubeRTC.ui"/>
+        <source>Origin Seed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Tools/GameCubeRTC.ui"/>
+        <source>End Date</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>GameCubeRTCModel</name>
@@ -1367,8 +2699,8 @@
     </message>
     <message>
         <location filename="../Models/Gen3/GameCubeRTCModel.hpp" line="36"/>
-        <source>Advance</source>
-        <translation type="unfinished">帧</translation>
+        <source>Advances</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Models/Gen3/GameCubeRTCModel.hpp" line="36"/>
@@ -1739,11 +3071,6 @@
     <name>IDModel3</name>
     <message>
         <location filename="../Models/Gen3/IDModel3.hpp" line="36"/>
-        <source>Advance</source>
-        <translation type="unfinished">帧</translation>
-    </message>
-    <message>
-        <location filename="../Models/Gen3/IDModel3.hpp" line="36"/>
         <source>TID</source>
         <translation type="unfinished">TID</translation>
     </message>
@@ -1755,6 +3082,11 @@
     <message>
         <location filename="../Models/Gen3/IDModel3.hpp" line="36"/>
         <source>TSV</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen3/IDModel3.hpp" line="36"/>
+        <source>Advances</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1789,6 +3121,44 @@
         <location filename="../Models/Gen4/IDModel4.hpp" line="37"/>
         <source>Seconds</source>
         <translation type="unfinished">秒</translation>
+    </message>
+</context>
+<context>
+    <name>IDModel5</name>
+    <message>
+        <location filename="../Models/Gen5/IDModel5.hpp" line="36"/>
+        <source>Seed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/IDModel5.hpp" line="36"/>
+        <source>Initial Advances</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/IDModel5.hpp" line="36"/>
+        <source>Advances</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/IDModel5.hpp" line="36"/>
+        <source>TID</source>
+        <translation type="unfinished">TID</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/IDModel5.hpp" line="36"/>
+        <source>SID</source>
+        <translation type="unfinished">SID</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/IDModel5.hpp" line="36"/>
+        <source>Date/Time</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/IDModel5.hpp" line="36"/>
+        <source>Buttons</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1830,16 +3200,6 @@
     </message>
     <message>
         <location filename="../Forms/Gen3/IDs3.ui"/>
-        <source>Starting Advance</source>
-        <translation>开始帧</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/IDs3.ui"/>
-        <source>Max Results</source>
-        <translation>最大结果数</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/IDs3.ui"/>
         <source>Gen III FRLGE</source>
         <translation>Gen3 火红叶绿 绿宝石</translation>
     </message>
@@ -1872,6 +3232,16 @@
         <location filename="../Forms/Gen3/IDs3.ui"/>
         <source>Initial Seed</source>
         <translation>初始Seed</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/IDs3.ui"/>
+        <source>Initial Advances</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/IDs3.ui"/>
+        <source>Max Advances</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1965,6 +3335,164 @@
         <location filename="../Forms/Gen4/IDs4.ui"/>
         <source>Find</source>
         <translation type="unfinished">查找</translation>
+    </message>
+</context>
+<context>
+    <name>IDs5</name>
+    <message>
+        <location filename="../Forms/Gen5/IDs5.ui"/>
+        <source>Gen 5 TID/SID</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/IDs5.ui"/>
+        <source>Profile</source>
+        <translation type="unfinished">配置</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/IDs5.ui"/>
+        <source>MAC Address</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/IDs5.ui"/>
+        <source>DS Original/Lite</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/IDs5.ui"/>
+        <source>None, 1, 2, 3</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/IDs5.ui"/>
+        <source>DS Type</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/IDs5.ui"/>
+        <source>VCount</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/IDs5.ui"/>
+        <source>Timer0</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/IDs5.ui"/>
+        <source>GxStat</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/IDs5.ui"/>
+        <source>Manager</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/IDs5.ui"/>
+        <source>VFrame</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/IDs5.ui"/>
+        <source>Game</source>
+        <translation type="unfinished">游戏</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/IDs5.ui"/>
+        <source>White</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/IDs5.ui"/>
+        <source>Keypresses</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/IDs5.ui"/>
+        <source>Seed Finder</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/IDs5.ui"/>
+        <source>Second Range</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/IDs5.ui"/>
+        <source>Max Advances</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/IDs5.ui"/>
+        <source>Hour</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/IDs5.ui"/>
+        <source>TID</source>
+        <translation type="unfinished">TID</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/IDs5.ui"/>
+        <source>Date</source>
+        <translation type="unfinished">日期</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/IDs5.ui"/>
+        <source>Minute</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/IDs5.ui"/>
+        <source>Find</source>
+        <translation type="unfinished">查找</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/IDs5.ui"/>
+        <source>Existing save</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/IDs5.ui"/>
+        <source>Search By</source>
+        <translation type="unfinished">通过..检索</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/IDs5.ui"/>
+        <source>PID</source>
+        <translation type="unfinished">PID</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/IDs5.ui"/>
+        <source>SID</source>
+        <translation type="unfinished">SID</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/IDs5.ui"/>
+        <source>Start/End Date</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/IDs5.ui"/>
+        <source>Search</source>
+        <translation type="unfinished">检索</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/IDs5.ui"/>
+        <source>Cancel</source>
+        <translation type="unfinished">取消</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/IDs5.cpp" line="99"/>
+        <source>Output Results to TXT</source>
+        <translation type="unfinished">导出结果至TXT</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/IDs5.cpp" line="100"/>
+        <source>Output Results to CSV</source>
+        <translation type="unfinished">导出结果至CSV</translation>
     </message>
 </context>
 <context>
@@ -2095,23 +3623,38 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Util/IVCalculator.cpp" line="76"/>
+        <location filename="../Forms/Util/IVCalculator.cpp" line="81"/>
         <source>Invalid</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Forms/Util/IVCalculator.cpp" line="174"/>
-        <source>Invalid input</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Forms/Util/IVCalculator.ui"/>
-        <source>Level HP Atk Def Spa Spd Spe</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Forms/Util/IVCalculator.ui"/>
         <source>Altform</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Util/IVCalculator.ui"/>
+        <source>Gen 5</source>
+        <translation type="unfinished">第四世代 {5?}</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Util/IVCalculator.ui"/>
+        <source>Level</source>
+        <translation type="unfinished">等级</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Util/IVCalculator.ui"/>
+        <source>Speed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Util/IVCalculator.ui"/>
+        <source>Add row</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Util/IVCalculator.ui"/>
+        <source>Remove row</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2394,11 +3937,6 @@
     </message>
     <message>
         <location filename="../Forms/MainWindow.ui"/>
-        <source>Language</source>
-        <translation>语言</translation>
-    </message>
-    <message>
-        <location filename="../Forms/MainWindow.ui"/>
         <source>German</source>
         <translation>德语</translation>
     </message>
@@ -2438,29 +3976,31 @@
         <translation>简体中文</translation>
     </message>
     <message>
-        <location filename="../Forms/MainWindow.cpp" line="168"/>
-        <source>Language update</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Forms/MainWindow.cpp" line="168"/>
-        <location filename="../Forms/MainWindow.cpp" line="188"/>
-        <source>Restart for changes to take effect. Restart now?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Forms/MainWindow.cpp" line="188"/>
-        <source>Style change</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Forms/MainWindow.cpp" line="220"/>
+        <location filename="../Forms/MainWindow.cpp" line="157"/>
         <source>Update Check</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/MainWindow.cpp" line="221"/>
+        <location filename="../Forms/MainWindow.cpp" line="158"/>
         <source>An update is available. Would you like to download the newest version?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/MainWindow.cpp" line="420"/>
+        <location filename="../Forms/MainWindow.cpp" line="439"/>
+        <location filename="../Forms/MainWindow.cpp" line="458"/>
+        <location filename="../Forms/MainWindow.cpp" line="477"/>
+        <location filename="../Forms/MainWindow.cpp" line="496"/>
+        <source>No profiles found</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/MainWindow.cpp" line="421"/>
+        <location filename="../Forms/MainWindow.cpp" line="440"/>
+        <location filename="../Forms/MainWindow.cpp" line="459"/>
+        <location filename="../Forms/MainWindow.cpp" line="478"/>
+        <location filename="../Forms/MainWindow.cpp" line="497"/>
+        <source>Please use the Profile Calibrator under Gen 5 Tools to create one.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2471,11 +4011,6 @@
     <message>
         <location filename="../Forms/MainWindow.ui"/>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Forms/MainWindow.ui"/>
-        <source>Style</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2511,6 +4046,36 @@
     <message>
         <location filename="../Forms/MainWindow.ui"/>
         <source>GameCube Seed Finder</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/MainWindow.ui"/>
+        <source>Gen 5</source>
+        <translation type="unfinished">第四世代 {5?}</translation>
+    </message>
+    <message>
+        <location filename="../Forms/MainWindow.ui"/>
+        <source>Event</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/MainWindow.ui"/>
+        <source>Dream Radar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/MainWindow.ui"/>
+        <source>Gen 5 Tools</source>
+        <translation type="unfinished">第三世代工具 {4 ?} {5 ?}</translation>
+    </message>
+    <message>
+        <location filename="../Forms/MainWindow.ui"/>
+        <source>Profile Calibrator</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/MainWindow.ui"/>
+        <source>Profile Manager</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2609,16 +4174,6 @@
     </message>
     <message>
         <location filename="../Forms/Gen3/Tools/PokeSpot.ui"/>
-        <source>Starting Advance</source>
-        <translation>开始帧</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Tools/PokeSpot.ui"/>
-        <source>Max Results</source>
-        <translation>最大结果数</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Tools/PokeSpot.ui"/>
         <source>TID</source>
         <translation>TID</translation>
     </message>
@@ -2657,14 +4212,19 @@
         <source>Output Results to CSV</source>
         <translation type="unfinished">导出结果至CSV</translation>
     </message>
+    <message>
+        <location filename="../Forms/Gen3/Tools/PokeSpot.ui"/>
+        <source>Initial Advances</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Tools/PokeSpot.ui"/>
+        <source>Max Advances</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PokeSpotModel</name>
-    <message>
-        <location filename="../Models/Gen3/PokeSpotModel.hpp" line="36"/>
-        <source>Advance</source>
-        <translation>帧</translation>
-    </message>
     <message>
         <location filename="../Models/Gen3/PokeSpotModel.hpp" line="36"/>
         <source>PID</source>
@@ -2696,6 +4256,11 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../Models/Gen3/PokeSpotModel.hpp" line="36"/>
+        <source>Advances</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../Models/Gen3/PokeSpotModel.cpp" line="46"/>
         <source>Square</source>
         <translation type="unfinished"></translation>
@@ -2724,6 +4289,302 @@
         <location filename="../Models/Gen3/PokeSpotModel.cpp" line="56"/>
         <source>Rare</source>
         <translation type="unfinished">稀有</translation>
+    </message>
+</context>
+<context>
+    <name>ProfileCalibrator5</name>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.ui"/>
+        <source>Profile Calibrator</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.ui"/>
+        <source>Variables</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.ui"/>
+        <source>DS Type</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.ui"/>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.cpp" line="57"/>
+        <source>GxStat</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.ui"/>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.cpp" line="57"/>
+        <source>VFrame</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.ui"/>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.cpp" line="57"/>
+        <source>Seconds</source>
+        <translation type="unfinished">秒</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.ui"/>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.cpp" line="57"/>
+        <source>Timer0</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.ui"/>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.cpp" line="57"/>
+        <source>VCount</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.ui"/>
+        <source>Max</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.ui"/>
+        <source>Min</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.ui"/>
+        <source>Soft Reset</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.ui"/>
+        <source>Memory Link</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.ui"/>
+        <source>DS Original/Lite</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.ui"/>
+        <source>DSi/DSi XL</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.ui"/>
+        <source>3DS</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.ui"/>
+        <source>Language</source>
+        <translation type="unfinished">语言</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.ui"/>
+        <source>Keypresses</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.ui"/>
+        <source>MAC Address</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.ui"/>
+        <source>Version</source>
+        <translation type="unfinished">版本</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.ui"/>
+        <source>Black</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.ui"/>
+        <source>White</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.ui"/>
+        <source>Black 2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.ui"/>
+        <source>White 2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.ui"/>
+        <source>ENG</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.ui"/>
+        <source>SPA</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.ui"/>
+        <source>FRE</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.ui"/>
+        <source>ITA</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.ui"/>
+        <source>DEU</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.ui"/>
+        <source>JPN</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.ui"/>
+        <source>KOR</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.ui"/>
+        <source>Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.ui"/>
+        <source>Date</source>
+        <translation type="unfinished">日期</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.ui"/>
+        <source>Clear table</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.ui"/>
+        <source>Cancel</source>
+        <translation type="unfinished">取消</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.ui"/>
+        <source>Search</source>
+        <translation type="unfinished">检索</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.ui"/>
+        <source>IV Search</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.ui"/>
+        <source>Min IVs</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.ui"/>
+        <source>Max IVs</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.ui"/>
+        <source>Open IV Calculator</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.ui"/>
+        <source>Needle Search</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.ui"/>
+        <source>↖</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.ui"/>
+        <source>↑</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.ui"/>
+        <source>↗</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.ui"/>
+        <source>←</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.ui"/>
+        <source>→</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.ui"/>
+        <source>↙</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.ui"/>
+        <source>↓</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.ui"/>
+        <source>↘</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.ui"/>
+        <source>Unova Link</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.ui"/>
+        <source>Saving</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.ui"/>
+        <source>Delete</source>
+        <translation type="unfinished">删除</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.ui"/>
+        <source>Clear</source>
+        <translation type="unfinished">清空</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.ui"/>
+        <source>Seed Search</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.ui"/>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.cpp" line="57"/>
+        <source>Seed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.cpp" line="78"/>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.cpp" line="79"/>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.cpp" line="80"/>
+        <source>None</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.cpp" line="204"/>
+        <source>Some min values are greater then max values</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.cpp" line="312"/>
+        <source>Please select a entry.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2938,6 +4799,209 @@
     </message>
 </context>
 <context>
+    <name>ProfileEditor5</name>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileEditor5.ui"/>
+        <source>Profile Editor Gen 5</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileEditor5.ui"/>
+        <source>Profile Name</source>
+        <translation type="unfinished">配置名</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileEditor5.ui"/>
+        <source>MAC</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileEditor5.ui"/>
+        <source>VFrame</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileEditor5.ui"/>
+        <source>TID</source>
+        <translation type="unfinished">TID</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileEditor5.ui"/>
+        <source>Accept</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileEditor5.ui"/>
+        <source>Version</source>
+        <translation type="unfinished">版本</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileEditor5.ui"/>
+        <source>Black</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileEditor5.ui"/>
+        <source>White</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileEditor5.ui"/>
+        <source>Black 2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileEditor5.ui"/>
+        <source>White 2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileEditor5.ui"/>
+        <source>Keypresses</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileEditor5.ui"/>
+        <source>None</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileEditor5.ui"/>
+        <source>1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileEditor5.ui"/>
+        <source>2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileEditor5.ui"/>
+        <source>3</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileEditor5.ui"/>
+        <source>Timer0 Min</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileEditor5.ui"/>
+        <source>SID</source>
+        <translation type="unfinished">SID</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileEditor5.ui"/>
+        <source>Cancel</source>
+        <translation type="unfinished">取消</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileEditor5.ui"/>
+        <source>Language</source>
+        <translation type="unfinished">语言</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileEditor5.ui"/>
+        <source>ENG</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileEditor5.ui"/>
+        <source>SPA</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileEditor5.ui"/>
+        <source>FRE</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileEditor5.ui"/>
+        <source>ITA</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileEditor5.ui"/>
+        <source>DEU</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileEditor5.ui"/>
+        <source>JPN</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileEditor5.ui"/>
+        <source>KOR</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileEditor5.ui"/>
+        <source>VCount</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileEditor5.ui"/>
+        <source>Timer0 Max</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileEditor5.ui"/>
+        <source>DS Type</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileEditor5.ui"/>
+        <source>DS Original/Lite</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileEditor5.ui"/>
+        <source>DSi/DSi XL</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileEditor5.ui"/>
+        <source>3DS</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileEditor5.ui"/>
+        <source>GxStat</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileEditor5.ui"/>
+        <source>Find Parameters</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileEditor5.ui"/>
+        <source>Soft Reset</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileEditor5.ui"/>
+        <source>Skip L/R</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileEditor5.ui"/>
+        <source>Memory Link</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileEditor5.ui"/>
+        <source>Shiny Charm</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileEditor5.cpp" line="145"/>
+        <source>Enter a profile name</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>ProfileManager3</name>
     <message>
         <location filename="../Forms/Gen3/Profile/ProfileManager3.ui"/>
@@ -3021,6 +5085,50 @@
     </message>
     <message>
         <location filename="../Forms/Gen4/Profile/ProfileManager4.cpp" line="106"/>
+        <source>Are you sure you wish to delete this profile?</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ProfileManager5</name>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileManager5.ui"/>
+        <source>Profile Manager Gen 5</source>
+        <translation type="unfinished">配置管理 Gen5</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileManager5.ui"/>
+        <source>New</source>
+        <translation type="unfinished">新建</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileManager5.ui"/>
+        <source>Edit</source>
+        <translation type="unfinished">编辑</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileManager5.ui"/>
+        <source>Delete</source>
+        <translation type="unfinished">删除</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileManager5.ui"/>
+        <source>Done</source>
+        <translation type="unfinished">完成</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileManager5.cpp" line="70"/>
+        <location filename="../Forms/Gen5/Profile/ProfileManager5.cpp" line="92"/>
+        <source>Please select a profile.</source>
+        <translation type="unfinished">请选择一个配置。</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileManager5.cpp" line="97"/>
+        <source>Delete profile</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileManager5.cpp" line="97"/>
         <source>Are you sure you wish to delete this profile?</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3119,6 +5227,105 @@
     </message>
 </context>
 <context>
+    <name>ProfileModel5</name>
+    <message>
+        <location filename="../Models/Gen5/ProfileModel5.cpp" line="64"/>
+        <location filename="../Models/Gen5/ProfileModel5.cpp" line="66"/>
+        <location filename="../Models/Gen5/ProfileModel5.cpp" line="68"/>
+        <location filename="../Models/Gen5/ProfileModel5.cpp" line="70"/>
+        <source>Yes</source>
+        <translation type="unfinished">是</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/ProfileModel5.cpp" line="64"/>
+        <location filename="../Models/Gen5/ProfileModel5.cpp" line="66"/>
+        <location filename="../Models/Gen5/ProfileModel5.cpp" line="68"/>
+        <location filename="../Models/Gen5/ProfileModel5.cpp" line="70"/>
+        <source>No</source>
+        <translation type="unfinished">否</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/ProfileModel5.hpp" line="36"/>
+        <source>Profile Name</source>
+        <translation type="unfinished">配置名</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/ProfileModel5.hpp" line="36"/>
+        <source>Version</source>
+        <translation type="unfinished">版本</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/ProfileModel5.hpp" line="36"/>
+        <source>Language</source>
+        <translation type="unfinished">语言</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/ProfileModel5.hpp" line="36"/>
+        <source>TID</source>
+        <translation type="unfinished">TID</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/ProfileModel5.hpp" line="36"/>
+        <source>SID</source>
+        <translation type="unfinished">SID</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/ProfileModel5.hpp" line="36"/>
+        <source>MAC Address</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/ProfileModel5.hpp" line="37"/>
+        <source>DS Type</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/ProfileModel5.hpp" line="37"/>
+        <source>VCount</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/ProfileModel5.hpp" line="37"/>
+        <source>Timer0</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/ProfileModel5.hpp" line="37"/>
+        <source>GxStat</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/ProfileModel5.hpp" line="37"/>
+        <source>VFrame</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/ProfileModel5.hpp" line="37"/>
+        <source>Keypresses</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/ProfileModel5.hpp" line="38"/>
+        <source>Skip L/R</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/ProfileModel5.hpp" line="38"/>
+        <source>Soft Reset</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/ProfileModel5.hpp" line="38"/>
+        <source>Memory Link</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/ProfileModel5.hpp" line="38"/>
+        <source>Shiny Charm</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>QObject</name>
     <message>
         <location filename="../Core/Gen4/Profile4.cpp" line="38"/>
@@ -3153,6 +5360,7 @@
     <message>
         <location filename="../Core/Gen4/Profile4.cpp" line="48"/>
         <location filename="../Core/Gen4/Profile4.cpp" line="66"/>
+        <location filename="../Core/Gen5/Profile5.cpp" line="81"/>
         <source>None</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3221,6 +5429,21 @@
         <source>White 2</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="../Core/Gen5/Profile5.cpp" line="146"/>
+        <source>DS Lite</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Core/Gen5/Profile5.cpp" line="148"/>
+        <source>DSi</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Core/Gen5/Profile5.cpp" line="150"/>
+        <source>3DS</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>Researcher</name>
@@ -3261,16 +5484,6 @@
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <source>M. Twister (Untempered)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Forms/Util/Researcher.ui"/>
-        <source>M. Twister (Fast)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Forms/Util/Researcher.ui"/>
         <source>BWRNG</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3291,15 +5504,15 @@
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="78"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="443"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="77"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="428"/>
         <source>64Bit</source>
         <translation>64位</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="79"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="442"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="78"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="427"/>
         <source>32Bit</source>
         <translation>32位</translation>
     </message>
@@ -3310,38 +5523,38 @@
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="80"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="443"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="79"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="428"/>
         <source>32Bit High</source>
         <translation>前32位</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="81"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="443"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="80"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="428"/>
         <source>32Bit Low</source>
         <translation>后32位</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="82"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="442"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="443"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="81"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="427"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="428"/>
         <source>16Bit High</source>
         <translation>前16位</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="83"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="442"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="443"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="82"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="427"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="428"/>
         <source>16Bit Low</source>
         <translation>后16位</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="378"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="408"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="374"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="398"/>
         <source>None</source>
         <translation>无</translation>
     </message>
@@ -3367,24 +5580,19 @@
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <source>Max Results</source>
-        <translation>最大结果数</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="99"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="98"/>
         <source>Previous 7</source>
         <translation>前7</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="100"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="99"/>
         <source>Previous 8</source>
         <translation>前8</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="101"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="100"/>
         <source>Previous 9</source>
         <translation>前9</translation>
     </message>
@@ -3405,91 +5613,91 @@
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="84"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="83"/>
         <source>Custom 1</source>
         <translation>自定义1</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="85"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="84"/>
         <source>Custom 2</source>
         <translation>自定义2</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="86"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="85"/>
         <source>Custom 3</source>
         <translation>自定义3</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="93"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="92"/>
         <source>Previous 1</source>
         <translation>前1</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="94"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="93"/>
         <source>Previous 2</source>
         <translation>前2</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="87"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="86"/>
         <source>Custom 4</source>
         <translation>自定义4</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="95"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="94"/>
         <source>Previous 3</source>
         <translation>前3</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="88"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="87"/>
         <source>Custom 5</source>
         <translation>自定义5</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="89"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="88"/>
         <source>Custom 6</source>
         <translation>自定义6</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="96"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="95"/>
         <source>Previous 4</source>
         <translation>前4</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="97"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="96"/>
         <source>Previous 5</source>
         <translation>前5</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="98"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="97"/>
         <source>Previous 6</source>
         <translation>前6</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="90"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="89"/>
         <source>Custom 7</source>
         <translation>自定义7</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="91"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="90"/>
         <source>Custom 8</source>
         <translation>自定义8</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="92"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="91"/>
         <source>Custom 9</source>
         <translation>自定义9</translation>
     </message>
@@ -3504,44 +5712,39 @@
         <translation>16进制</translation>
     </message>
     <message>
-        <location filename="../Forms/Util/Researcher.cpp" line="103"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="102"/>
         <source>Output Results to TXT</source>
         <translation type="unfinished">导出结果至TXT</translation>
     </message>
     <message>
-        <location filename="../Forms/Util/Researcher.cpp" line="104"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="103"/>
         <source>Output Results to CSV</source>
         <translation type="unfinished">导出结果至CSV</translation>
     </message>
     <message>
-        <location filename="../Forms/Util/Researcher.cpp" line="264"/>
-        <source>Please enter a search range lower then 228</source>
-        <translation>请输入小于228的输入范围</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Util/Researcher.cpp" line="354"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="352"/>
         <source>You must check the Hex box in order to use Hex values.</source>
         <translation>请勾上16进制以输入16进制数。</translation>
     </message>
     <message>
-        <location filename="../Forms/Util/Researcher.cpp" line="468"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="500"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="453"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="485"/>
         <source>No result found</source>
         <translation>无结果</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <source>Initial Advance</source>
+        <source>Initial Advances</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Util/Researcher.ui"/>
+        <source>Max Advances</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>ResearcherModel</name>
-    <message>
-        <location filename="../Models/Util/ResearcherModel.hpp" line="43"/>
-        <source>Advance</source>
-        <translation>帧</translation>
-    </message>
     <message>
         <location filename="../Models/Util/ResearcherModel.cpp" line="107"/>
         <location filename="../Models/Util/ResearcherModel.hpp" line="43"/>
@@ -3571,6 +5774,11 @@
         <location filename="../Models/Util/ResearcherModel.hpp" line="44"/>
         <source>16Bit Low</source>
         <translation>后16位</translation>
+    </message>
+    <message>
+        <location filename="../Models/Util/ResearcherModel.hpp" line="43"/>
+        <source>Advances</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Models/Util/ResearcherModel.hpp" line="44"/>
@@ -3780,8 +5988,8 @@
     </message>
     <message>
         <location filename="../Models/Gen3/SeedTimeModel3.hpp" line="36"/>
-        <source>Advance</source>
-        <translation type="unfinished">帧</translation>
+        <source>Advances</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3964,6 +6172,136 @@
     </message>
 </context>
 <context>
+    <name>Settings</name>
+    <message>
+        <location filename="../Forms/Util/Settings.ui"/>
+        <source>Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Util/Settings.ui"/>
+        <source>Language</source>
+        <translation type="unfinished">语言</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Util/Settings.ui"/>
+        <source>Chinese</source>
+        <translation type="unfinished">简体中文</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Util/Settings.ui"/>
+        <source>English</source>
+        <translation type="unfinished">英语</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Util/Settings.ui"/>
+        <source>French</source>
+        <translation type="unfinished">法语</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Util/Settings.ui"/>
+        <source>German</source>
+        <translation type="unfinished">德语</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Util/Settings.ui"/>
+        <source>Italian</source>
+        <translation type="unfinished">意大利语</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Util/Settings.ui"/>
+        <source>Japanese</source>
+        <translation type="unfinished">日语</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Util/Settings.ui"/>
+        <source>Korean</source>
+        <translation type="unfinished">韩语</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Util/Settings.ui"/>
+        <source>Spanish</source>
+        <translation type="unfinished">西班牙语</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Util/Settings.ui"/>
+        <source>Style</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Util/Settings.ui"/>
+        <source>Dark</source>
+        <translation type="unfinished">恶</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Util/Settings.ui"/>
+        <source>Light</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Util/Settings.ui"/>
+        <source>Threads</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Util/Settings.ui"/>
+        <source>Profiles Path</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Util/Settings.ui"/>
+        <source>Change</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Util/Settings.ui"/>
+        <source>IV Bin Path</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Util/Settings.cpp" line="122"/>
+        <source>Language update</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Util/Settings.cpp" line="122"/>
+        <location filename="../Forms/Util/Settings.cpp" line="143"/>
+        <source>Restart for changes to take effect. Restart now?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Util/Settings.cpp" line="143"/>
+        <source>Style change</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Util/Settings.cpp" line="171"/>
+        <source>Profile File</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Util/Settings.cpp" line="171"/>
+        <source>There was a problem creating the file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Util/Settings.cpp" line="196"/>
+        <location filename="../Forms/Util/Settings.cpp" line="208"/>
+        <source>IV bin</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Util/Settings.cpp" line="196"/>
+        <source>Invalid IV bin file was provided</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Util/Settings.cpp" line="208"/>
+        <source>There was a problem opening the file</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>SpindaPainter</name>
     <message>
         <location filename="../Forms/Gen3/Tools/SpindaPainter.ui"/>
@@ -4017,11 +6355,6 @@
         <location filename="../Forms/Gen3/Stationary3.ui"/>
         <source>Method</source>
         <translation>方式</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Stationary3.ui"/>
-        <source>Max Results</source>
-        <translation>最大结果数</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Stationary3.ui"/>
@@ -4107,7 +6440,12 @@
     </message>
     <message>
         <location filename="../Forms/Gen3/Stationary3.ui"/>
-        <source>Initial Advance</source>
+        <source>Initial Advances</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Stationary3.ui"/>
+        <source>Max Advances</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4162,11 +6500,6 @@
         <location filename="../Forms/Gen4/Stationary4.ui"/>
         <source>Method</source>
         <translation>方式</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Stationary4.ui"/>
-        <source>Max Results</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Forms/Gen4/Stationary4.cpp" line="273"/>
@@ -4316,7 +6649,242 @@
     </message>
     <message>
         <location filename="../Forms/Gen4/Stationary4.ui"/>
-        <source>Initial Advance</source>
+        <source>Max Advances</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen4/Stationary4.ui"/>
+        <source>Initial Advances</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>Stationary5</name>
+    <message>
+        <location filename="../Forms/Gen5/Stationary5.ui"/>
+        <source>Gen 5 Stationary</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Stationary5.ui"/>
+        <source>Profile</source>
+        <translation type="unfinished">配置</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Stationary5.ui"/>
+        <source>TID</source>
+        <translation type="unfinished">TID</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Stationary5.ui"/>
+        <source>MAC Address</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Stationary5.ui"/>
+        <source>VCount</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Stationary5.ui"/>
+        <source>GxStat</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Stationary5.ui"/>
+        <source>Keypresses</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Stationary5.ui"/>
+        <source>None, 1, 2, 3</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Stationary5.ui"/>
+        <source>Manager</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Stationary5.ui"/>
+        <source>SID</source>
+        <translation type="unfinished">SID</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Stationary5.ui"/>
+        <source>DS Type</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Stationary5.ui"/>
+        <source>DS Original/Lite</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Stationary5.ui"/>
+        <source>Timer0</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Stationary5.ui"/>
+        <source>VFrame</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Stationary5.ui"/>
+        <source>Game</source>
+        <translation type="unfinished">游戏</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Stationary5.ui"/>
+        <source>White</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Stationary5.ui"/>
+        <source>Generator</source>
+        <translation type="unfinished">生成器</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Stationary5.ui"/>
+        <source>RNG Info</source>
+        <translation type="unfinished">RNG 信息</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Stationary5.ui"/>
+        <source>Seed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Stationary5.ui"/>
+        <source>Method</source>
+        <translation type="unfinished">方式</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Stationary5.ui"/>
+        <source>Initial Advances</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Stationary5.ui"/>
+        <source>Max Advances</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Stationary5.ui"/>
+        <location filename="../Forms/Gen5/Stationary5.cpp" line="287"/>
+        <location filename="../Forms/Gen5/Stationary5.cpp" line="305"/>
+        <source>Synchronize</source>
+        <translation type="unfinished">同步</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Stationary5.ui"/>
+        <source>Generate</source>
+        <translation type="unfinished">生成</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Stationary5.ui"/>
+        <source>Filters</source>
+        <translation type="unfinished">过滤器</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Stationary5.ui"/>
+        <source>Any</source>
+        <translation type="unfinished">任何</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Stationary5.ui"/>
+        <source>Searcher</source>
+        <translation type="unfinished">检索器</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Stationary5.ui"/>
+        <source>Min Delay</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Stationary5.ui"/>
+        <source>Max Delay</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Stationary5.ui"/>
+        <source>Min Advance</source>
+        <translation type="unfinished">最小帧数</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Stationary5.ui"/>
+        <source>Max Advance</source>
+        <translation type="unfinished">最大帧数</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Stationary5.ui"/>
+        <source>Lead</source>
+        <translation type="unfinished">队首</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Stationary5.ui"/>
+        <location filename="../Forms/Gen5/Stationary5.cpp" line="289"/>
+        <location filename="../Forms/Gen5/Stationary5.cpp" line="298"/>
+        <source>Cute Charm</source>
+        <translation type="unfinished">迷人身躯</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Stationary5.ui"/>
+        <location filename="../Forms/Gen5/Stationary5.cpp" line="97"/>
+        <source>None</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Stationary5.ui"/>
+        <source>Search</source>
+        <translation type="unfinished">检索</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Stationary5.ui"/>
+        <source>Cancel</source>
+        <translation type="unfinished">取消</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Stationary5.cpp" line="122"/>
+        <location filename="../Forms/Gen5/Stationary5.cpp" line="128"/>
+        <source>Output Results to TXT</source>
+        <translation type="unfinished">导出结果至TXT</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Stationary5.cpp" line="123"/>
+        <location filename="../Forms/Gen5/Stationary5.cpp" line="129"/>
+        <source>Output Results to CSV</source>
+        <translation type="unfinished">导出结果至CSV</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Stationary5.cpp" line="292"/>
+        <source>♂ Lead</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Stationary5.cpp" line="293"/>
+        <source>♀ Lead (50% ♂ Target)</source>
+        <translation type="unfinished">♀ 队首（50% ♂ 目标）</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Stationary5.cpp" line="294"/>
+        <source>♀ Lead (75% ♂ Target)</source>
+        <translation type="unfinished">♀ 队首（75% ♂ 目标）</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Stationary5.cpp" line="295"/>
+        <source>♀ Lead (25% ♂ Target)</source>
+        <translation type="unfinished">♀ 队首（25% ♂ 目标）</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Stationary5.cpp" line="296"/>
+        <source>♀ Lead (87.5% ♂ Target)</source>
+        <translation type="unfinished">♀ 队首（87.5% ♂ 目标）</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Stationary5.cpp" line="300"/>
+        <source>Suction Cups</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4336,11 +6904,6 @@
         <location filename="../Models/Gen3/StationaryModel3.cpp" line="47"/>
         <source>No</source>
         <translation type="unfinished">否</translation>
-    </message>
-    <message>
-        <location filename="../Models/Gen3/StationaryModel3.hpp" line="36"/>
-        <source>Advance</source>
-        <translation type="unfinished">帧</translation>
     </message>
     <message>
         <location filename="../Models/Gen3/StationaryModel3.hpp" line="36"/>
@@ -4371,6 +6934,11 @@
         <location filename="../Models/Gen3/StationaryModel3.hpp" line="36"/>
         <source>Atk</source>
         <translation type="unfinished">攻击</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen3/StationaryModel3.hpp" line="36"/>
+        <source>Advances</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Models/Gen3/StationaryModel3.hpp" line="37"/>
@@ -4411,49 +6979,19 @@
 <context>
     <name>StationaryGeneratorModel4</name>
     <message>
-        <location filename="../Models/Gen4/StationaryModel4.cpp" line="73"/>
-        <source>Low</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../Models/Gen4/StationaryModel4.cpp" line="77"/>
-        <source>Mid-Low</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Models/Gen4/StationaryModel4.cpp" line="81"/>
-        <source>Mid</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Models/Gen4/StationaryModel4.cpp" line="85"/>
-        <source>Mid-High</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Models/Gen4/StationaryModel4.cpp" line="89"/>
-        <source>High</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Models/Gen4/StationaryModel4.cpp" line="100"/>
         <source>Square</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/StationaryModel4.cpp" line="100"/>
+        <location filename="../Models/Gen4/StationaryModel4.cpp" line="77"/>
         <source>Star</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/StationaryModel4.cpp" line="100"/>
+        <location filename="../Models/Gen4/StationaryModel4.cpp" line="77"/>
         <source>No</source>
         <translation type="unfinished">否</translation>
-    </message>
-    <message>
-        <location filename="../Models/Gen4/StationaryModel4.hpp" line="41"/>
-        <source>Advance</source>
-        <translation type="unfinished">帧</translation>
     </message>
     <message>
         <location filename="../Models/Gen4/StationaryModel4.hpp" line="41"/>
@@ -4489,6 +7027,11 @@
         <location filename="../Models/Gen4/StationaryModel4.hpp" line="41"/>
         <source>HP</source>
         <translation type="unfinished">HP</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen4/StationaryModel4.hpp" line="41"/>
+        <source>Advances</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Models/Gen4/StationaryModel4.hpp" line="42"/>
@@ -4622,57 +7165,57 @@
 <context>
     <name>StationarySearcherModel4</name>
     <message>
-        <location filename="../Models/Gen4/StationaryModel4.cpp" line="270"/>
+        <location filename="../Models/Gen4/StationaryModel4.cpp" line="247"/>
         <source>None</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/StationaryModel4.cpp" line="272"/>
+        <location filename="../Models/Gen4/StationaryModel4.cpp" line="249"/>
         <source>Synchronize</source>
         <translation type="unfinished">同步</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/StationaryModel4.cpp" line="274"/>
+        <location filename="../Models/Gen4/StationaryModel4.cpp" line="251"/>
         <source>Suction Cups</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/StationaryModel4.cpp" line="276"/>
+        <location filename="../Models/Gen4/StationaryModel4.cpp" line="253"/>
         <source>Cute Charm (♀)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/StationaryModel4.cpp" line="278"/>
+        <location filename="../Models/Gen4/StationaryModel4.cpp" line="255"/>
         <source>Cute Charm (25% ♂)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/StationaryModel4.cpp" line="280"/>
+        <location filename="../Models/Gen4/StationaryModel4.cpp" line="257"/>
         <source>Cute Charm (50% ♂)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/StationaryModel4.cpp" line="282"/>
+        <location filename="../Models/Gen4/StationaryModel4.cpp" line="259"/>
         <source>Cute Charm (75% ♂)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/StationaryModel4.cpp" line="285"/>
+        <location filename="../Models/Gen4/StationaryModel4.cpp" line="262"/>
         <source>Cute Charm (87.5% ♂)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/StationaryModel4.cpp" line="292"/>
+        <location filename="../Models/Gen4/StationaryModel4.cpp" line="269"/>
         <source>Square</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/StationaryModel4.cpp" line="292"/>
+        <location filename="../Models/Gen4/StationaryModel4.cpp" line="269"/>
         <source>Star</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/StationaryModel4.cpp" line="292"/>
+        <location filename="../Models/Gen4/StationaryModel4.cpp" line="269"/>
         <source>No</source>
         <translation type="unfinished">否</translation>
     </message>
@@ -4680,11 +7223,6 @@
         <location filename="../Models/Gen4/StationaryModel4.hpp" line="60"/>
         <source>Seed</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Models/Gen4/StationaryModel4.hpp" line="60"/>
-        <source>Advance</source>
-        <translation type="unfinished">帧</translation>
     </message>
     <message>
         <location filename="../Models/Gen4/StationaryModel4.hpp" line="60"/>
@@ -4715,6 +7253,11 @@
         <location filename="../Models/Gen4/StationaryModel4.hpp" line="60"/>
         <source>HP</source>
         <translation type="unfinished">HP</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen4/StationaryModel4.hpp" line="60"/>
+        <source>Advances</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Models/Gen4/StationaryModel4.hpp" line="61"/>
@@ -4863,11 +7406,6 @@
     </message>
     <message>
         <location filename="../Forms/Gen3/Wild3.ui"/>
-        <source>Max Results</source>
-        <translation>最大结果</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Wild3.ui"/>
         <source>SID</source>
         <translation></translation>
     </message>
@@ -5004,7 +7542,12 @@
     </message>
     <message>
         <location filename="../Forms/Gen3/Wild3.ui"/>
-        <source>Initial Advance</source>
+        <source>Initial Advances</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Wild3.ui"/>
+        <source>Max Advances</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -5162,16 +7705,6 @@
         <location filename="../Forms/Gen4/Wild4.cpp" line="465"/>
         <source>Synchronize</source>
         <translation>同步</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Wild4.ui"/>
-        <source>Starting Advance</source>
-        <translation>开始帧</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Wild4.ui"/>
-        <source>Max Results</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Forms/Gen4/Wild4.ui"/>
@@ -5336,6 +7869,16 @@
         <source>Poke Radar</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="../Forms/Gen4/Wild4.ui"/>
+        <source>Max Advances</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen4/Wild4.ui"/>
+        <source>Initial Advances</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>WildGeneratorModel3</name>
@@ -5353,11 +7896,6 @@
         <location filename="../Models/Gen3/WildModel3.cpp" line="52"/>
         <source>No</source>
         <translation type="unfinished">否</translation>
-    </message>
-    <message>
-        <location filename="../Models/Gen3/WildModel3.hpp" line="36"/>
-        <source>Advance</source>
-        <translation type="unfinished">帧</translation>
     </message>
     <message>
         <location filename="../Models/Gen3/WildModel3.hpp" line="36"/>
@@ -5393,6 +7931,11 @@
         <location filename="../Models/Gen3/WildModel3.hpp" line="36"/>
         <source>HP</source>
         <translation type="unfinished">HP</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen3/WildModel3.hpp" line="36"/>
+        <source>Advances</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Models/Gen3/WildModel3.hpp" line="37"/>
@@ -5438,49 +7981,19 @@
 <context>
     <name>WildGeneratorModel4</name>
     <message>
-        <location filename="../Models/Gen4/WildModel4.cpp" line="72"/>
-        <source>Low</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Models/Gen4/WildModel4.cpp" line="76"/>
-        <source>Mid-Low</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../Models/Gen4/WildModel4.cpp" line="80"/>
-        <source>Mid</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Models/Gen4/WildModel4.cpp" line="84"/>
-        <source>Mid-High</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Models/Gen4/WildModel4.cpp" line="88"/>
-        <source>High</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Models/Gen4/WildModel4.cpp" line="103"/>
         <source>Square</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/WildModel4.cpp" line="103"/>
+        <location filename="../Models/Gen4/WildModel4.cpp" line="80"/>
         <source>Star</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/WildModel4.cpp" line="103"/>
+        <location filename="../Models/Gen4/WildModel4.cpp" line="80"/>
         <source>No</source>
         <translation type="unfinished">否</translation>
-    </message>
-    <message>
-        <location filename="../Models/Gen4/WildModel4.hpp" line="41"/>
-        <source>Advance</source>
-        <translation type="unfinished">帧</translation>
     </message>
     <message>
         <location filename="../Models/Gen4/WildModel4.hpp" line="41"/>
@@ -5521,6 +8034,11 @@
         <location filename="../Models/Gen4/WildModel4.hpp" line="41"/>
         <source>Ability</source>
         <translation type="unfinished">特性</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen4/WildModel4.hpp" line="41"/>
+        <source>Advances</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Models/Gen4/WildModel4.hpp" line="42"/>
@@ -5689,57 +8207,57 @@
 <context>
     <name>WildSearcherModel4</name>
     <message>
-        <location filename="../Models/Gen4/WildModel4.cpp" line="279"/>
+        <location filename="../Models/Gen4/WildModel4.cpp" line="255"/>
         <source>None</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/WildModel4.cpp" line="281"/>
+        <location filename="../Models/Gen4/WildModel4.cpp" line="257"/>
         <source>Synchronize</source>
         <translation type="unfinished">同步</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/WildModel4.cpp" line="283"/>
+        <location filename="../Models/Gen4/WildModel4.cpp" line="259"/>
         <source>Suction Cups</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/WildModel4.cpp" line="285"/>
+        <location filename="../Models/Gen4/WildModel4.cpp" line="261"/>
         <source>Cute Charm (♀)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/WildModel4.cpp" line="287"/>
+        <location filename="../Models/Gen4/WildModel4.cpp" line="263"/>
         <source>Cute Charm (25% ♂)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/WildModel4.cpp" line="289"/>
+        <location filename="../Models/Gen4/WildModel4.cpp" line="265"/>
         <source>Cute Charm (50% ♂)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/WildModel4.cpp" line="291"/>
+        <location filename="../Models/Gen4/WildModel4.cpp" line="267"/>
         <source>Cute Charm (75% ♂)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/WildModel4.cpp" line="294"/>
+        <location filename="../Models/Gen4/WildModel4.cpp" line="270"/>
         <source>Cute Charm (87.5% ♂)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/WildModel4.cpp" line="305"/>
+        <location filename="../Models/Gen4/WildModel4.cpp" line="281"/>
         <source>Square</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/WildModel4.cpp" line="305"/>
+        <location filename="../Models/Gen4/WildModel4.cpp" line="281"/>
         <source>Star</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/WildModel4.cpp" line="305"/>
+        <location filename="../Models/Gen4/WildModel4.cpp" line="281"/>
         <source>No</source>
         <translation type="unfinished">否</translation>
     </message>
@@ -5747,11 +8265,6 @@
         <location filename="../Models/Gen4/WildModel4.hpp" line="61"/>
         <source>Seed</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Models/Gen4/WildModel4.hpp" line="61"/>
-        <source>Advance</source>
-        <translation type="unfinished">帧</translation>
     </message>
     <message>
         <location filename="../Models/Gen4/WildModel4.hpp" line="61"/>
@@ -5787,6 +8300,11 @@
         <location filename="../Models/Gen4/WildModel4.hpp" line="61"/>
         <source>Ability</source>
         <translation type="unfinished">特性</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen4/WildModel4.hpp" line="61"/>
+        <source>Advances</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Models/Gen4/WildModel4.hpp" line="62"/>

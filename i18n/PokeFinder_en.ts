@@ -165,59 +165,447 @@
 <context>
     <name>CheckList</name>
     <message>
-        <location filename="../Forms/Controls/CheckList.cpp" line="108"/>
-        <location filename="../Forms/Controls/CheckList.cpp" line="111"/>
-        <location filename="../Forms/Controls/CheckList.cpp" line="128"/>
+        <location filename="../Forms/Controls/CheckList.cpp" line="109"/>
+        <location filename="../Forms/Controls/CheckList.cpp" line="126"/>
         <source>Any</source>
         <translation>Any</translation>
     </message>
 </context>
 <context>
-    <name>EggGeneratorModel4</name>
+    <name>DreamRadar</name>
     <message>
-        <location filename="../Models/Gen4/EggModel4.cpp" line="73"/>
-        <source>Low</source>
-        <translation>Low</translation>
+        <location filename="../Forms/Gen5/DreamRadar.ui"/>
+        <source>Dream Radar</source>
+        <translation>Dream Radar</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/EggModel4.cpp" line="77"/>
-        <source>Mid-Low</source>
-        <translation>Mid-Low</translation>
+        <location filename="../Forms/Gen5/DreamRadar.ui"/>
+        <source>Profile</source>
+        <translation>Profile</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/EggModel4.cpp" line="81"/>
-        <source>Mid</source>
-        <translation>Mid</translation>
+        <location filename="../Forms/Gen5/DreamRadar.ui"/>
+        <source>TID</source>
+        <translation>TID</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/EggModel4.cpp" line="85"/>
-        <source>Mid-High</source>
-        <translation>Mid-High</translation>
+        <location filename="../Forms/Gen5/DreamRadar.ui"/>
+        <source>Game</source>
+        <translation>Game</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/EggModel4.cpp" line="89"/>
-        <source>High</source>
-        <translation>High</translation>
+        <location filename="../Forms/Gen5/DreamRadar.ui"/>
+        <source>White</source>
+        <translation>White</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/EggModel4.cpp" line="100"/>
+        <location filename="../Forms/Gen5/DreamRadar.ui"/>
+        <source>VCount</source>
+        <translation>VCount</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/DreamRadar.ui"/>
+        <source>None, 1, 2, 3</source>
+        <translation>None, 1, 2, 3</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/DreamRadar.ui"/>
+        <source>DS Type</source>
+        <translation>DS Type</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/DreamRadar.ui"/>
+        <source>GxStat</source>
+        <translation>GxStat</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/DreamRadar.ui"/>
+        <source>Keypresses</source>
+        <translation>Keypresses</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/DreamRadar.ui"/>
+        <source>Manager</source>
+        <translation>Manager</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/DreamRadar.ui"/>
+        <source>MAC Address</source>
+        <translation>MAC Address</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/DreamRadar.ui"/>
+        <source>DS Original/Lite</source>
+        <translation>DS Original/Lite</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/DreamRadar.ui"/>
+        <source>Timer0</source>
+        <translation>Timer0</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/DreamRadar.ui"/>
+        <source>SID</source>
+        <translation>SID</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/DreamRadar.ui"/>
+        <source>VFrame</source>
+        <translation>VFrame</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/DreamRadar.ui"/>
+        <source>Generator</source>
+        <translation>Generator</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/DreamRadar.ui"/>
+        <source>RNG Info</source>
+        <translation>RNG Info</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/DreamRadar.ui"/>
+        <source>Initial Advances</source>
+        <translation>Initial Advances</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/DreamRadar.ui"/>
+        <source>Max Advances</source>
+        <translation>Max Advances</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/DreamRadar.ui"/>
+        <source>Seed</source>
+        <translation>Seed</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/DreamRadar.ui"/>
+        <source>Generate</source>
+        <translation>Generate</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/DreamRadar.ui"/>
+        <source>Settings</source>
+        <translation>Settings</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/DreamRadar.ui"/>
+        <source>Slot 1</source>
+        <translation>Slot 1</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/DreamRadar.ui"/>
+        <source>Slot 2</source>
+        <translation>Slot 2</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/DreamRadar.ui"/>
+        <source>Slot 3</source>
+        <translation>Slot 3</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/DreamRadar.ui"/>
+        <source>Slot 4</source>
+        <translation>Slot 4</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/DreamRadar.ui"/>
+        <source>Slot 5</source>
+        <translation>Slot 5</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/DreamRadar.ui"/>
+        <source>Slot 6</source>
+        <translation>Slot 6</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/DreamRadar.ui"/>
+        <source>Filters</source>
+        <translation>Filters</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/DreamRadar.ui"/>
+        <source>Searcher</source>
+        <translation>Searcher</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/DreamRadar.ui"/>
+        <source>End Date</source>
+        <translation>End Date</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/DreamRadar.ui"/>
+        <source>Search</source>
+        <translation>Search</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/DreamRadar.ui"/>
+        <source>Cancel</source>
+        <translation>Cancel</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/DreamRadar.ui"/>
+        <source>Start Date</source>
+        <translation>Start Date</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/DreamRadar.cpp" line="99"/>
+        <location filename="../Forms/Gen5/DreamRadar.cpp" line="100"/>
+        <location filename="../Forms/Gen5/DreamRadar.cpp" line="101"/>
+        <location filename="../Forms/Gen5/DreamRadar.cpp" line="102"/>
+        <location filename="../Forms/Gen5/DreamRadar.cpp" line="103"/>
+        <location filename="../Forms/Gen5/DreamRadar.cpp" line="104"/>
+        <location filename="../Forms/Gen5/DreamRadar.cpp" line="106"/>
+        <location filename="../Forms/Gen5/DreamRadar.cpp" line="107"/>
+        <location filename="../Forms/Gen5/DreamRadar.cpp" line="108"/>
+        <location filename="../Forms/Gen5/DreamRadar.cpp" line="109"/>
+        <location filename="../Forms/Gen5/DreamRadar.cpp" line="110"/>
+        <location filename="../Forms/Gen5/DreamRadar.cpp" line="111"/>
+        <source>None</source>
+        <translation>None</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/DreamRadar.cpp" line="170"/>
+        <location filename="../Forms/Gen5/DreamRadar.cpp" line="175"/>
+        <source>Output Results to TXT</source>
+        <translation>Output Results to TXT</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/DreamRadar.cpp" line="171"/>
+        <location filename="../Forms/Gen5/DreamRadar.cpp" line="176"/>
+        <source>Output Results to CSV</source>
+        <translation>Output Results to CSV</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/DreamRadar.cpp" line="206"/>
+        <location filename="../Forms/Gen5/DreamRadar.cpp" line="241"/>
+        <source>Missing settings</source>
+        <translation>Missing settings</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/DreamRadar.cpp" line="206"/>
+        <location filename="../Forms/Gen5/DreamRadar.cpp" line="241"/>
+        <source>Enter information for at least 1 slot</source>
+        <translation>Enter information for at least 1 slot</translation>
+    </message>
+</context>
+<context>
+    <name>DreamRadarGeneratorModel5</name>
+    <message>
+        <location filename="../Models/Gen5/DreamRadarModel.cpp" line="50"/>
         <source>Square</source>
         <translation>Square</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/EggModel4.cpp" line="100"/>
+        <location filename="../Models/Gen5/DreamRadarModel.cpp" line="50"/>
         <source>Star</source>
         <translation>Star</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/EggModel4.cpp" line="100"/>
+        <location filename="../Models/Gen5/DreamRadarModel.cpp" line="50"/>
         <source>No</source>
         <translation>No</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/EggModel4.hpp" line="44"/>
-        <source>Advance</source>
-        <translation>Advance</translation>
+        <location filename="../Models/Gen5/DreamRadarModel.hpp" line="37"/>
+        <source>Advances</source>
+        <translation>Advances</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/DreamRadarModel.hpp" line="37"/>
+        <source>Needle</source>
+        <translation>Needle</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/DreamRadarModel.hpp" line="37"/>
+        <source>PID</source>
+        <translation>PID</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/DreamRadarModel.hpp" line="37"/>
+        <source>Shiny</source>
+        <translation>Shiny</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/DreamRadarModel.hpp" line="37"/>
+        <source>Nature</source>
+        <translation>Nature</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/DreamRadarModel.hpp" line="37"/>
+        <source>Ability</source>
+        <translation>Ability</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/DreamRadarModel.hpp" line="37"/>
+        <source>HP</source>
+        <translation>HP</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/DreamRadarModel.hpp" line="37"/>
+        <source>Atk</source>
+        <translation>Atk</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/DreamRadarModel.hpp" line="38"/>
+        <source>Def</source>
+        <translation>Def</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/DreamRadarModel.hpp" line="38"/>
+        <source>SpA</source>
+        <translation>SpA</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/DreamRadarModel.hpp" line="38"/>
+        <source>SpD</source>
+        <translation>SpD</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/DreamRadarModel.hpp" line="38"/>
+        <source>Spe</source>
+        <translation>Spe</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/DreamRadarModel.hpp" line="38"/>
+        <source>Hidden</source>
+        <translation>Hidden</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/DreamRadarModel.hpp" line="38"/>
+        <source>Power</source>
+        <translation>Power</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/DreamRadarModel.hpp" line="38"/>
+        <source>Gender</source>
+        <translation>Gender</translation>
+    </message>
+</context>
+<context>
+    <name>DreamRadarSearcherModel5</name>
+    <message>
+        <location filename="../Models/Gen5/DreamRadarModel.cpp" line="209"/>
+        <source>Square</source>
+        <translation>Square</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/DreamRadarModel.cpp" line="209"/>
+        <source>Star</source>
+        <translation>Star</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/DreamRadarModel.cpp" line="209"/>
+        <source>No</source>
+        <translation>No</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/DreamRadarModel.hpp" line="52"/>
+        <source>Seed</source>
+        <translation>Seed</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/DreamRadarModel.hpp" line="52"/>
+        <source>Advances</source>
+        <translation>Advances</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/DreamRadarModel.hpp" line="52"/>
+        <source>PID</source>
+        <translation>PID</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/DreamRadarModel.hpp" line="52"/>
+        <source>Shiny</source>
+        <translation>Shiny</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/DreamRadarModel.hpp" line="52"/>
+        <source>Nature</source>
+        <translation>Nature</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/DreamRadarModel.hpp" line="52"/>
+        <source>Ability</source>
+        <translation>Ability</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/DreamRadarModel.hpp" line="53"/>
+        <source>HP</source>
+        <translation>HP</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/DreamRadarModel.hpp" line="53"/>
+        <source>Atk</source>
+        <translation>Atk</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/DreamRadarModel.hpp" line="53"/>
+        <source>Def</source>
+        <translation>Def</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/DreamRadarModel.hpp" line="53"/>
+        <source>SpA</source>
+        <translation>SpA</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/DreamRadarModel.hpp" line="53"/>
+        <source>SpD</source>
+        <translation>SpD</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/DreamRadarModel.hpp" line="53"/>
+        <source>Spe</source>
+        <translation>Spe</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/DreamRadarModel.hpp" line="54"/>
+        <source>Hidden</source>
+        <translation>Hidden</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/DreamRadarModel.hpp" line="54"/>
+        <source>Power</source>
+        <translation>Power</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/DreamRadarModel.hpp" line="54"/>
+        <source>Gender</source>
+        <translation>Gender</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/DreamRadarModel.hpp" line="54"/>
+        <source>Date/Time</source>
+        <translation>Date/Time</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/DreamRadarModel.hpp" line="54"/>
+        <source>Timer0</source>
+        <translation>Timer0</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/DreamRadarModel.hpp" line="54"/>
+        <source>Buttons</source>
+        <translation>Buttons</translation>
+    </message>
+</context>
+<context>
+    <name>EggGeneratorModel4</name>
+    <message>
+        <location filename="../Models/Gen4/EggModel4.cpp" line="77"/>
+        <source>Square</source>
+        <translation>Square</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen4/EggModel4.cpp" line="77"/>
+        <source>Star</source>
+        <translation>Star</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen4/EggModel4.cpp" line="77"/>
+        <source>No</source>
+        <translation>No</translation>
     </message>
     <message>
         <location filename="../Models/Gen4/EggModel4.hpp" line="44"/>
@@ -255,6 +643,11 @@
         <translation>HP</translation>
     </message>
     <message>
+        <location filename="../Models/Gen4/EggModel4.hpp" line="44"/>
+        <source>Advances</source>
+        <translation>Advances</translation>
+    </message>
+    <message>
         <location filename="../Models/Gen4/EggModel4.hpp" line="45"/>
         <source>Atk</source>
         <translation>Atk</translation>
@@ -291,6 +684,99 @@
     </message>
     <message>
         <location filename="../Models/Gen4/EggModel4.hpp" line="45"/>
+        <source>Gender</source>
+        <translation>Gender</translation>
+    </message>
+</context>
+<context>
+    <name>EggGeneratorModel5</name>
+    <message>
+        <location filename="../Models/Gen5/EggModel5.cpp" line="51"/>
+        <source>Square</source>
+        <translation>Square</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EggModel5.cpp" line="51"/>
+        <source>Star</source>
+        <translation>Star</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EggModel5.cpp" line="51"/>
+        <source>No</source>
+        <translation>No</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EggModel5.hpp" line="37"/>
+        <source>Advances</source>
+        <translation>Advances</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EggModel5.hpp" line="37"/>
+        <source>Chatot</source>
+        <translation>Chatot</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EggModel5.hpp" line="37"/>
+        <source>PID</source>
+        <translation>PID</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EggModel5.hpp" line="37"/>
+        <source>Shiny</source>
+        <translation>Shiny</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EggModel5.hpp" line="37"/>
+        <source>Nature</source>
+        <translation>Nature</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EggModel5.hpp" line="37"/>
+        <source>Ability</source>
+        <translation>Ability</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EggModel5.hpp" line="37"/>
+        <source>HP</source>
+        <translation>HP</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EggModel5.hpp" line="37"/>
+        <source>Atk</source>
+        <translation>Atk</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EggModel5.hpp" line="38"/>
+        <source>Def</source>
+        <translation>Def</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EggModel5.hpp" line="38"/>
+        <source>SpA</source>
+        <translation>SpA</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EggModel5.hpp" line="38"/>
+        <source>SpD</source>
+        <translation>SpD</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EggModel5.hpp" line="38"/>
+        <source>Spe</source>
+        <translation>Spe</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EggModel5.hpp" line="38"/>
+        <source>Hidden</source>
+        <translation>Hidden</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EggModel5.hpp" line="38"/>
+        <source>Power</source>
+        <translation>Power</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EggModel5.hpp" line="38"/>
         <source>Gender</source>
         <translation>Gender</translation>
     </message>
@@ -314,86 +800,86 @@
     </message>
     <message>
         <location filename="../Models/Gen3/EggModel3.hpp" line="44"/>
-        <source>Advance</source>
-        <translation>Advance</translation>
+        <source>Advances</source>
+        <translation>Advances</translation>
     </message>
     <message>
         <location filename="../Models/Gen3/EggModel3.hpp" line="44"/>
-        <source>Held Advance</source>
-        <translation>Held Advance</translation>
+        <source>Held Advances</source>
+        <translation>Held Advances</translation>
     </message>
     <message>
         <location filename="../Models/Gen3/EggModel3.hpp" line="44"/>
-        <source>Pickup Advance</source>
-        <translation>Pickup Advance</translation>
+        <source>Pickup Advances</source>
+        <translation>Pickup Advances</translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/EggModel3.hpp" line="44"/>
+        <location filename="../Models/Gen3/EggModel3.hpp" line="45"/>
         <source>Redraws</source>
         <translation>Redraws</translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/EggModel3.hpp" line="44"/>
+        <location filename="../Models/Gen3/EggModel3.hpp" line="45"/>
         <source>PID</source>
         <translation>PID</translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/EggModel3.hpp" line="44"/>
+        <location filename="../Models/Gen3/EggModel3.hpp" line="45"/>
         <source>Shiny</source>
         <translation>Shiny</translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/EggModel3.hpp" line="45"/>
+        <location filename="../Models/Gen3/EggModel3.hpp" line="46"/>
         <source>Nature</source>
         <translation>Nature</translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/EggModel3.hpp" line="45"/>
+        <location filename="../Models/Gen3/EggModel3.hpp" line="46"/>
         <source>Ability</source>
         <translation>Ability</translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/EggModel3.hpp" line="45"/>
+        <location filename="../Models/Gen3/EggModel3.hpp" line="46"/>
         <source>HP</source>
         <translation>HP</translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/EggModel3.hpp" line="45"/>
+        <location filename="../Models/Gen3/EggModel3.hpp" line="47"/>
         <source>Atk</source>
         <translation>Atk</translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/EggModel3.hpp" line="45"/>
+        <location filename="../Models/Gen3/EggModel3.hpp" line="47"/>
         <source>Def</source>
         <translation>Def</translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/EggModel3.hpp" line="45"/>
+        <location filename="../Models/Gen3/EggModel3.hpp" line="47"/>
         <source>SpA</source>
         <translation>SpA</translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/EggModel3.hpp" line="46"/>
+        <location filename="../Models/Gen3/EggModel3.hpp" line="48"/>
         <source>SpD</source>
         <translation>SpD</translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/EggModel3.hpp" line="46"/>
+        <location filename="../Models/Gen3/EggModel3.hpp" line="48"/>
         <source>Spe</source>
         <translation>Spe</translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/EggModel3.hpp" line="46"/>
+        <location filename="../Models/Gen3/EggModel3.hpp" line="48"/>
         <source>Hidden</source>
         <translation>Hidden</translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/EggModel3.hpp" line="46"/>
+        <location filename="../Models/Gen3/EggModel3.hpp" line="49"/>
         <source>Power</source>
         <translation>Power</translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/EggModel3.hpp" line="46"/>
+        <location filename="../Models/Gen3/EggModel3.hpp" line="49"/>
         <source>Gender</source>
         <translation>Gender</translation>
     </message>
@@ -401,49 +887,49 @@
 <context>
     <name>EggSearcherModel4</name>
     <message>
-        <location filename="../Models/Gen4/EggModel4.cpp" line="292"/>
+        <location filename="../Models/Gen4/EggModel4.cpp" line="269"/>
         <source>Square</source>
         <translation>Square</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/EggModel4.cpp" line="292"/>
+        <location filename="../Models/Gen4/EggModel4.cpp" line="269"/>
         <source>Star</source>
         <translation>Star</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/EggModel4.cpp" line="292"/>
+        <location filename="../Models/Gen4/EggModel4.cpp" line="269"/>
         <source>No</source>
         <translation>No</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/EggModel4.hpp" line="68"/>
+        <location filename="../Models/Gen4/EggModel4.hpp" line="67"/>
         <source>Seed</source>
         <translation>Seed</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/EggModel4.hpp" line="68"/>
-        <source>Advance</source>
-        <translation>Advance</translation>
-    </message>
-    <message>
-        <location filename="../Models/Gen4/EggModel4.hpp" line="68"/>
-        <source>PID Advance</source>
-        <translation>PID Advance</translation>
-    </message>
-    <message>
-        <location filename="../Models/Gen4/EggModel4.hpp" line="68"/>
-        <source>IV Advance</source>
-        <translation>IV Advance</translation>
-    </message>
-    <message>
-        <location filename="../Models/Gen4/EggModel4.hpp" line="68"/>
+        <location filename="../Models/Gen4/EggModel4.hpp" line="67"/>
         <source>PID</source>
         <translation>PID</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/EggModel4.hpp" line="68"/>
+        <location filename="../Models/Gen4/EggModel4.hpp" line="67"/>
         <source>Shiny</source>
         <translation>Shiny</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen4/EggModel4.hpp" line="67"/>
+        <source>Advances</source>
+        <translation>Advances</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen4/EggModel4.hpp" line="67"/>
+        <source>PID Advances</source>
+        <translation>PID Advances</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen4/EggModel4.hpp" line="67"/>
+        <source>IV Advances</source>
+        <translation>IV Advances</translation>
     </message>
     <message>
         <location filename="../Models/Gen4/EggModel4.hpp" line="68"/>
@@ -461,17 +947,17 @@
         <translation>HP</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/EggModel4.hpp" line="69"/>
+        <location filename="../Models/Gen4/EggModel4.hpp" line="68"/>
         <source>Atk</source>
         <translation>Atk</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/EggModel4.hpp" line="69"/>
+        <location filename="../Models/Gen4/EggModel4.hpp" line="68"/>
         <source>Def</source>
         <translation>Def</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/EggModel4.hpp" line="69"/>
+        <location filename="../Models/Gen4/EggModel4.hpp" line="68"/>
         <source>SpA</source>
         <translation>SpA</translation>
     </message>
@@ -502,12 +988,115 @@
     </message>
 </context>
 <context>
-    <name>EggSettings</name>
+    <name>EggSearcherModel5</name>
     <message>
-        <location filename="../Forms/Controls/EggSettings.ui"/>
-        <source>Swap Parents</source>
-        <translation>Swap Parents</translation>
+        <location filename="../Models/Gen5/EggModel5.cpp" line="213"/>
+        <source>Square</source>
+        <translation>Square</translation>
     </message>
+    <message>
+        <location filename="../Models/Gen5/EggModel5.cpp" line="213"/>
+        <source>Star</source>
+        <translation>Star</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EggModel5.cpp" line="213"/>
+        <source>No</source>
+        <translation>No</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EggModel5.hpp" line="52"/>
+        <source>Seed</source>
+        <translation>Seed</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EggModel5.hpp" line="52"/>
+        <source>Advances</source>
+        <translation>Advances</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EggModel5.hpp" line="52"/>
+        <source>PID</source>
+        <translation>PID</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EggModel5.hpp" line="52"/>
+        <source>Shiny</source>
+        <translation>Shiny</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EggModel5.hpp" line="52"/>
+        <source>Nature</source>
+        <translation>Nature</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EggModel5.hpp" line="52"/>
+        <source>Ability</source>
+        <translation>Ability</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EggModel5.hpp" line="53"/>
+        <source>HP</source>
+        <translation>HP</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EggModel5.hpp" line="53"/>
+        <source>Atk</source>
+        <translation>Atk</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EggModel5.hpp" line="53"/>
+        <source>Def</source>
+        <translation>Def</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EggModel5.hpp" line="53"/>
+        <source>SpA</source>
+        <translation>SpA</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EggModel5.hpp" line="53"/>
+        <source>SpD</source>
+        <translation>SpD</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EggModel5.hpp" line="53"/>
+        <source>Spe</source>
+        <translation>Spe</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EggModel5.hpp" line="54"/>
+        <source>Hidden</source>
+        <translation>Hidden</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EggModel5.hpp" line="54"/>
+        <source>Power</source>
+        <translation>Power</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EggModel5.hpp" line="54"/>
+        <source>Gender</source>
+        <translation>Gender</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EggModel5.hpp" line="54"/>
+        <source>Date/Time</source>
+        <translation>Date/Time</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EggModel5.hpp" line="54"/>
+        <source>Timer0</source>
+        <translation>Timer0</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EggModel5.hpp" line="54"/>
+        <source>Buttons</source>
+        <translation>Buttons</translation>
+    </message>
+</context>
+<context>
+    <name>EggSettings</name>
     <message>
         <location filename="../Forms/Controls/EggSettings.ui"/>
         <source>Parent A</source>
@@ -522,6 +1111,109 @@
         <location filename="../Forms/Controls/EggSettings.ui"/>
         <source>Show Inheritance</source>
         <translation>Show Inheritance</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Controls/EggSettings.ui"/>
+        <source>Form</source>
+        <translation>Form</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Controls/EggSettings.ui"/>
+        <source>HP</source>
+        <translation>HP</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Controls/EggSettings.ui"/>
+        <source>Atk</source>
+        <translation>Atk</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Controls/EggSettings.ui"/>
+        <source>Def</source>
+        <translation>Def</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Controls/EggSettings.ui"/>
+        <source>SpA</source>
+        <translation>SpA</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Controls/EggSettings.ui"/>
+        <source>SpD</source>
+        <translation>SpD</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Controls/EggSettings.ui"/>
+        <source>Spe</source>
+        <translation>Spe</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Controls/EggSettings.ui"/>
+        <source>Ability</source>
+        <translation>Ability</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Controls/EggSettings.ui"/>
+        <source>Gender</source>
+        <translation>Gender</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Controls/EggSettings.ui"/>
+        <source>Item</source>
+        <translation>Item</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Controls/EggSettings.ui"/>
+        <source>Nature</source>
+        <translation>Nature</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Controls/EggSettings.ui"/>
+        <source>Masuada</source>
+        <translation>Masuada</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Controls/EggSettings.ui"/>
+        <source>Nidoran
+Volbeat</source>
+        <translation>Nidoran
+Volbeat</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Controls/EggSettings.cpp" line="71"/>
+        <location filename="../Forms/Controls/EggSettings.cpp" line="78"/>
+        <source>Power Weight</source>
+        <translation>Power Weight</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Controls/EggSettings.cpp" line="72"/>
+        <location filename="../Forms/Controls/EggSettings.cpp" line="79"/>
+        <source>Power Bracer</source>
+        <translation>Power Bracer</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Controls/EggSettings.cpp" line="73"/>
+        <location filename="../Forms/Controls/EggSettings.cpp" line="80"/>
+        <source>Power Belt</source>
+        <translation>Power Belt</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Controls/EggSettings.cpp" line="74"/>
+        <location filename="../Forms/Controls/EggSettings.cpp" line="81"/>
+        <source>Power Lens</source>
+        <translation>Power Lens</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Controls/EggSettings.cpp" line="75"/>
+        <location filename="../Forms/Controls/EggSettings.cpp" line="82"/>
+        <source>Power Band</source>
+        <translation>Power Band</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Controls/EggSettings.cpp" line="76"/>
+        <location filename="../Forms/Controls/EggSettings.cpp" line="83"/>
+        <source>Power Anklet</source>
+        <translation>Power Anklet</translation>
     </message>
 </context>
 <context>
@@ -580,16 +1272,6 @@
         <location filename="../Forms/Gen3/Eggs3.ui"/>
         <source>Manager</source>
         <translation>Manager</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Eggs3.ui"/>
-        <source>Adavnce Held</source>
-        <translation>Adavnce Held</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Eggs3.ui"/>
-        <source>Pickup Advance</source>
-        <translation>Pickup Advance</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Eggs3.ui"/>
@@ -667,28 +1349,43 @@
         <translation>PID</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Eggs3.ui"/>
-        <source>Initial Advance</source>
-        <translation>Initial Advance</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Eggs3.ui"/>
-        <source>Max Results</source>
-        <translation>Max Results</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Eggs3.cpp" line="122"/>
-        <location filename="../Forms/Gen3/Eggs3.cpp" line="127"/>
-        <location filename="../Forms/Gen3/Eggs3.cpp" line="132"/>
+        <location filename="../Forms/Gen3/Eggs3.cpp" line="128"/>
+        <location filename="../Forms/Gen3/Eggs3.cpp" line="133"/>
+        <location filename="../Forms/Gen3/Eggs3.cpp" line="138"/>
         <source>Output Results to TXT</source>
         <translation>Output Results to TXT</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Eggs3.cpp" line="123"/>
-        <location filename="../Forms/Gen3/Eggs3.cpp" line="128"/>
-        <location filename="../Forms/Gen3/Eggs3.cpp" line="133"/>
+        <location filename="../Forms/Gen3/Eggs3.cpp" line="129"/>
+        <location filename="../Forms/Gen3/Eggs3.cpp" line="134"/>
+        <location filename="../Forms/Gen3/Eggs3.cpp" line="139"/>
         <source>Output Results to CSV</source>
         <translation>Output Results to CSV</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Eggs3.ui"/>
+        <source>Initial Advances</source>
+        <translation>Initial Advances</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Eggs3.ui"/>
+        <source>Max Advances</source>
+        <translation>Max Advances</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Eggs3.ui"/>
+        <source>Settings</source>
+        <translation>Settings</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Eggs3.ui"/>
+        <source>Held Advances</source>
+        <translation>Held Advances</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Eggs3.ui"/>
+        <source>Pickup Advances</source>
+        <translation>Pickup Advances</translation>
     </message>
 </context>
 <context>
@@ -745,11 +1442,6 @@
     </message>
     <message>
         <location filename="../Forms/Gen4/Eggs4.ui"/>
-        <source>Max Results</source>
-        <translation>Max Results</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Eggs4.ui"/>
         <source>Generate</source>
         <translation>Generate</translation>
     </message>
@@ -775,11 +1467,6 @@
     </message>
     <message>
         <location filename="../Forms/Gen4/Eggs4.ui"/>
-        <source>Masuada</source>
-        <translation>Masuada</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Eggs4.ui"/>
         <source>Searcher</source>
         <translation>Searcher</translation>
     </message>
@@ -794,19 +1481,19 @@
         <translation>Search</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/Eggs4.cpp" line="113"/>
-        <location filename="../Forms/Gen4/Eggs4.cpp" line="119"/>
+        <location filename="../Forms/Gen4/Eggs4.cpp" line="117"/>
+        <location filename="../Forms/Gen4/Eggs4.cpp" line="123"/>
         <source>Output Results to TXT</source>
         <translation>Output Results to TXT</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/Eggs4.cpp" line="114"/>
-        <location filename="../Forms/Gen4/Eggs4.cpp" line="120"/>
+        <location filename="../Forms/Gen4/Eggs4.cpp" line="118"/>
+        <location filename="../Forms/Gen4/Eggs4.cpp" line="124"/>
         <source>Output Results to CSV</source>
         <translation>Output Results to CSV</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/Eggs4.cpp" line="118"/>
+        <location filename="../Forms/Gen4/Eggs4.cpp" line="122"/>
         <source>Generate times for seed</source>
         <translation>Generate times for seed</translation>
     </message>
@@ -832,8 +1519,183 @@
     </message>
     <message>
         <location filename="../Forms/Gen4/Eggs4.ui"/>
-        <source>Initial Advance</source>
-        <translation>Initial Advance</translation>
+        <source>Initial Advances</source>
+        <translation>Initial Advances</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen4/Eggs4.ui"/>
+        <source>Max Advances</source>
+        <translation>Max Advances</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen4/Eggs4.ui"/>
+        <source>Settings</source>
+        <translation>Settings</translation>
+    </message>
+</context>
+<context>
+    <name>Eggs5</name>
+    <message>
+        <location filename="../Forms/Gen5/Eggs5.ui"/>
+        <source>Gen 5 Eggs</source>
+        <translation>Gen 5 Eggs</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Eggs5.ui"/>
+        <source>Profile</source>
+        <translation>Profile</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Eggs5.ui"/>
+        <source>TID</source>
+        <translation>TID</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Eggs5.ui"/>
+        <source>MAC Address</source>
+        <translation>MAC Address</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Eggs5.ui"/>
+        <source>VCount</source>
+        <translation>VCount</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Eggs5.ui"/>
+        <source>GxStat</source>
+        <translation>GxStat</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Eggs5.ui"/>
+        <source>Keypresses</source>
+        <translation>Keypresses</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Eggs5.ui"/>
+        <source>None, 1, 2, 3</source>
+        <translation>None, 1, 2, 3</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Eggs5.ui"/>
+        <source>Manager</source>
+        <translation>Manager</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Eggs5.ui"/>
+        <source>SID</source>
+        <translation>SID</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Eggs5.ui"/>
+        <source>DS Type</source>
+        <translation>DS Type</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Eggs5.ui"/>
+        <source>DS Original/Lite</source>
+        <translation>DS Original/Lite</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Eggs5.ui"/>
+        <source>Timer0</source>
+        <translation>Timer0</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Eggs5.ui"/>
+        <source>VFrame</source>
+        <translation>VFrame</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Eggs5.ui"/>
+        <source>Game</source>
+        <translation>Game</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Eggs5.ui"/>
+        <source>White</source>
+        <translation>White</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Eggs5.ui"/>
+        <source>Generator</source>
+        <translation>Generator</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Eggs5.ui"/>
+        <source>Settings</source>
+        <translation>Settings</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Eggs5.ui"/>
+        <source>RNG Info</source>
+        <translation>RNG Info</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Eggs5.ui"/>
+        <source>Initial Advances</source>
+        <translation>Initial Advances</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Eggs5.ui"/>
+        <source>Max Advances</source>
+        <translation>Max Advances</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Eggs5.ui"/>
+        <source>Seed</source>
+        <translation>Seed</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Eggs5.ui"/>
+        <source>Generate</source>
+        <translation>Generate</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Eggs5.ui"/>
+        <source>Calculate Initial Advance</source>
+        <translation>Calculate Initial Advance</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Eggs5.ui"/>
+        <source>Filters</source>
+        <translation>Filters</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Eggs5.ui"/>
+        <source>Searcher</source>
+        <translation>Searcher</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Eggs5.ui"/>
+        <source>Start Date</source>
+        <translation>Start Date</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Eggs5.ui"/>
+        <source>End Date</source>
+        <translation>End Date</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Eggs5.ui"/>
+        <source>Search</source>
+        <translation>Search</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Eggs5.ui"/>
+        <source>Cancel</source>
+        <translation>Cancel</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Eggs5.cpp" line="105"/>
+        <location filename="../Forms/Gen5/Eggs5.cpp" line="110"/>
+        <source>Output Results to TXT</source>
+        <translation>Output Results to TXT</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Eggs5.cpp" line="106"/>
+        <location filename="../Forms/Gen5/Eggs5.cpp" line="111"/>
+        <source>Output Results to CSV</source>
+        <translation>Output Results to CSV</translation>
     </message>
 </context>
 <context>
@@ -960,6 +1822,472 @@
     </message>
 </context>
 <context>
+    <name>Event5</name>
+    <message>
+        <location filename="../Forms/Gen5/Event5.ui"/>
+        <source>Gen 5 Event</source>
+        <translation>Gen 5 Event</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Event5.ui"/>
+        <source>Profile</source>
+        <translation>Profile</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Event5.ui"/>
+        <source>TID</source>
+        <translation>TID</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Event5.ui"/>
+        <source>MAC Address</source>
+        <translation>MAC Address</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Event5.ui"/>
+        <source>VCount</source>
+        <translation>VCount</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Event5.ui"/>
+        <source>GxStat</source>
+        <translation>GxStat</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Event5.ui"/>
+        <source>Keypresses</source>
+        <translation>Keypresses</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Event5.ui"/>
+        <source>None, 1, 2, 3</source>
+        <translation>None, 1, 2, 3</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Event5.ui"/>
+        <source>Manager</source>
+        <translation>Manager</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Event5.ui"/>
+        <source>SID</source>
+        <translation>SID</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Event5.ui"/>
+        <source>DS Type</source>
+        <translation>DS Type</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Event5.ui"/>
+        <source>DS Original/Lite</source>
+        <translation>DS Original/Lite</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Event5.ui"/>
+        <source>Timer0</source>
+        <translation>Timer0</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Event5.ui"/>
+        <source>VFrame</source>
+        <translation>VFrame</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Event5.ui"/>
+        <source>Game</source>
+        <translation>Game</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Event5.ui"/>
+        <source>White</source>
+        <translation>White</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Event5.ui"/>
+        <source>Generator</source>
+        <translation>Generator</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Event5.ui"/>
+        <source>RNG Info</source>
+        <translation>RNG Info</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Event5.ui"/>
+        <source>Initial Advances</source>
+        <translation>Initial Advances</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Event5.ui"/>
+        <source>Max Advances</source>
+        <translation>Max Advances</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Event5.ui"/>
+        <source>Seed</source>
+        <translation>Seed</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Event5.ui"/>
+        <source>Generate</source>
+        <translation>Generate</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Event5.ui"/>
+        <source>Calculate Initial Advance</source>
+        <translation>Calculate Initial Advance</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Event5.ui"/>
+        <source>Settings</source>
+        <translation>Settings</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Event5.ui"/>
+        <source>Species</source>
+        <translation>Species</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Event5.ui"/>
+        <source>HP</source>
+        <translation>HP</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Event5.ui"/>
+        <source>Atk</source>
+        <translation>Atk</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Event5.ui"/>
+        <source>Def</source>
+        <translation>Def</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Event5.ui"/>
+        <source>SpA</source>
+        <translation>SpA</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Event5.ui"/>
+        <source>SpD</source>
+        <translation>SpD</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Event5.ui"/>
+        <source>Spe</source>
+        <translation>Spe</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Event5.ui"/>
+        <source>Ability</source>
+        <translation>Ability</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Event5.ui"/>
+        <source>Gender</source>
+        <translation>Gender</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Event5.ui"/>
+        <source>♂ Only</source>
+        <translation>♂ Only</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Event5.ui"/>
+        <source>♀ Only</source>
+        <translation>♀ Only</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Event5.ui"/>
+        <source>Random</source>
+        <translation>Random</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Event5.ui"/>
+        <source>Nature</source>
+        <translation>Nature</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Event5.ui"/>
+        <source>Shiny</source>
+        <translation>Shiny</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Event5.ui"/>
+        <source>Force non-shiny</source>
+        <translation>Force non-shiny</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Event5.ui"/>
+        <source>Force shiny</source>
+        <translation>Force shiny</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Event5.ui"/>
+        <source>Event TID</source>
+        <translation>Event TID</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Event5.ui"/>
+        <source>Event SID</source>
+        <translation>Event SID</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Event5.ui"/>
+        <source>Egg</source>
+        <translation>Egg</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Event5.ui"/>
+        <source>Import</source>
+        <translation>Import</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Event5.ui"/>
+        <source>Filters</source>
+        <translation>Filters</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Event5.ui"/>
+        <source>Searcher</source>
+        <translation>Searcher</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Event5.ui"/>
+        <source>Start Date</source>
+        <translation>Start Date</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Event5.ui"/>
+        <source>End Date</source>
+        <translation>End Date</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Event5.ui"/>
+        <source>Search</source>
+        <translation>Search</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Event5.ui"/>
+        <source>Cancel</source>
+        <translation>Cancel</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Event5.cpp" line="116"/>
+        <location filename="../Forms/Gen5/Event5.cpp" line="121"/>
+        <source>Output Results to TXT</source>
+        <translation>Output Results to TXT</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Event5.cpp" line="117"/>
+        <location filename="../Forms/Gen5/Event5.cpp" line="122"/>
+        <source>Output Results to CSV</source>
+        <translation>Output Results to CSV</translation>
+    </message>
+</context>
+<context>
+    <name>EventGeneratorModel5</name>
+    <message>
+        <location filename="../Models/Gen5/EventModel5.cpp" line="51"/>
+        <source>Square</source>
+        <translation>Square</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EventModel5.cpp" line="51"/>
+        <source>Star</source>
+        <translation>Star</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EventModel5.cpp" line="51"/>
+        <source>No</source>
+        <translation>No</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EventModel5.hpp" line="37"/>
+        <source>Advances</source>
+        <translation>Advances</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EventModel5.hpp" line="37"/>
+        <source>Chatot</source>
+        <translation>Chatot</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EventModel5.hpp" line="37"/>
+        <source>PID</source>
+        <translation>PID</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EventModel5.hpp" line="37"/>
+        <source>Shiny</source>
+        <translation>Shiny</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EventModel5.hpp" line="37"/>
+        <source>Nature</source>
+        <translation>Nature</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EventModel5.hpp" line="37"/>
+        <source>Ability</source>
+        <translation>Ability</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EventModel5.hpp" line="37"/>
+        <source>HP</source>
+        <translation>HP</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EventModel5.hpp" line="37"/>
+        <source>Atk</source>
+        <translation>Atk</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EventModel5.hpp" line="38"/>
+        <source>Def</source>
+        <translation>Def</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EventModel5.hpp" line="38"/>
+        <source>SpA</source>
+        <translation>SpA</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EventModel5.hpp" line="38"/>
+        <source>SpD</source>
+        <translation>SpD</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EventModel5.hpp" line="38"/>
+        <source>Spe</source>
+        <translation>Spe</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EventModel5.hpp" line="38"/>
+        <source>Hidden</source>
+        <translation>Hidden</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EventModel5.hpp" line="38"/>
+        <source>Power</source>
+        <translation>Power</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EventModel5.hpp" line="38"/>
+        <source>Gender</source>
+        <translation>Gender</translation>
+    </message>
+</context>
+<context>
+    <name>EventSearcherModel5</name>
+    <message>
+        <location filename="../Models/Gen5/EventModel5.cpp" line="211"/>
+        <source>Square</source>
+        <translation>Square</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EventModel5.cpp" line="211"/>
+        <source>Star</source>
+        <translation>Star</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EventModel5.cpp" line="211"/>
+        <source>No</source>
+        <translation>No</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EventModel5.hpp" line="52"/>
+        <source>Seed</source>
+        <translation>Seed</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EventModel5.hpp" line="52"/>
+        <source>Advances</source>
+        <translation>Advances</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EventModel5.hpp" line="52"/>
+        <source>PID</source>
+        <translation>PID</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EventModel5.hpp" line="52"/>
+        <source>Shiny</source>
+        <translation>Shiny</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EventModel5.hpp" line="52"/>
+        <source>Nature</source>
+        <translation>Nature</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EventModel5.hpp" line="52"/>
+        <source>Ability</source>
+        <translation>Ability</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EventModel5.hpp" line="53"/>
+        <source>HP</source>
+        <translation>HP</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EventModel5.hpp" line="53"/>
+        <source>Atk</source>
+        <translation>Atk</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EventModel5.hpp" line="53"/>
+        <source>Def</source>
+        <translation>Def</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EventModel5.hpp" line="53"/>
+        <source>SpA</source>
+        <translation>SpA</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EventModel5.hpp" line="53"/>
+        <source>SpD</source>
+        <translation>SpD</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EventModel5.hpp" line="53"/>
+        <source>Spe</source>
+        <translation>Spe</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EventModel5.hpp" line="54"/>
+        <source>Hidden</source>
+        <translation>Hidden</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EventModel5.hpp" line="54"/>
+        <source>Power</source>
+        <translation>Power</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EventModel5.hpp" line="54"/>
+        <source>Gender</source>
+        <translation>Gender</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EventModel5.hpp" line="54"/>
+        <source>Date/Time</source>
+        <translation>Date/Time</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EventModel5.hpp" line="54"/>
+        <source>Timer0</source>
+        <translation>Timer0</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/EventModel5.hpp" line="54"/>
+        <source>Buttons</source>
+        <translation>Buttons</translation>
+    </message>
+</context>
+<context>
     <name>Filter</name>
     <message>
         <location filename="../Forms/Controls/Filter.ui"/>
@@ -1081,18 +2409,8 @@
     </message>
     <message>
         <location filename="../Forms/Gen3/GameCube.ui"/>
-        <source>Starting Advance</source>
-        <translation>Starting Advance</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/GameCube.ui"/>
         <source>Method</source>
         <translation>Method</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/GameCube.ui"/>
-        <source>Max Results</source>
-        <translation>Max Results</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/GameCube.ui"/>
@@ -1231,6 +2549,16 @@
         <source>XD</source>
         <translation>XD</translation>
     </message>
+    <message>
+        <location filename="../Forms/Gen3/GameCube.ui"/>
+        <source>Initial Advances</source>
+        <translation>Initial Advances</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/GameCube.ui"/>
+        <source>Max Advances</source>
+        <translation>Max Advances</translation>
+    </message>
 </context>
 <context>
     <name>GameCubeGeneratorModel</name>
@@ -1248,11 +2576,6 @@
         <location filename="../Models/Gen3/GameCubeModel.cpp" line="48"/>
         <source>No</source>
         <translation>No</translation>
-    </message>
-    <message>
-        <location filename="../Models/Gen3/GameCubeModel.hpp" line="37"/>
-        <source>Advance</source>
-        <translation>Advance</translation>
     </message>
     <message>
         <location filename="../Models/Gen3/GameCubeModel.hpp" line="37"/>
@@ -1283,6 +2606,11 @@
         <location filename="../Models/Gen3/GameCubeModel.hpp" line="37"/>
         <source>Atk</source>
         <translation>Atk</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen3/GameCubeModel.hpp" line="37"/>
+        <source>Advances</source>
+        <translation>Advances</translation>
     </message>
     <message>
         <location filename="../Models/Gen3/GameCubeModel.hpp" line="38"/>
@@ -1329,11 +2657,6 @@
     </message>
     <message>
         <location filename="../Forms/Gen3/Tools/GameCubeRTC.ui"/>
-        <source>Seed at 1/1/2000 at 00:00:00</source>
-        <translation>Seed at 1/1/2000 at 00:00:00</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Tools/GameCubeRTC.ui"/>
         <source>Target Seed</source>
         <translation>Target Seed</translation>
     </message>
@@ -1357,6 +2680,16 @@
         <source>Cancel</source>
         <translation>Cancel</translation>
     </message>
+    <message>
+        <location filename="../Forms/Gen3/Tools/GameCubeRTC.ui"/>
+        <source>Origin Seed</source>
+        <translation>Origin Seed</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Tools/GameCubeRTC.ui"/>
+        <source>End Date</source>
+        <translation>End Date</translation>
+    </message>
 </context>
 <context>
     <name>GameCubeRTCModel</name>
@@ -1367,8 +2700,8 @@
     </message>
     <message>
         <location filename="../Models/Gen3/GameCubeRTCModel.hpp" line="36"/>
-        <source>Advance</source>
-        <translation>Advance</translation>
+        <source>Advances</source>
+        <translation>Advances</translation>
     </message>
     <message>
         <location filename="../Models/Gen3/GameCubeRTCModel.hpp" line="36"/>
@@ -1739,11 +3072,6 @@
     <name>IDModel3</name>
     <message>
         <location filename="../Models/Gen3/IDModel3.hpp" line="36"/>
-        <source>Advance</source>
-        <translation>Advance</translation>
-    </message>
-    <message>
-        <location filename="../Models/Gen3/IDModel3.hpp" line="36"/>
         <source>TID</source>
         <translation>TID</translation>
     </message>
@@ -1756,6 +3084,11 @@
         <location filename="../Models/Gen3/IDModel3.hpp" line="36"/>
         <source>TSV</source>
         <translation>TSV</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen3/IDModel3.hpp" line="36"/>
+        <source>Advances</source>
+        <translation>Advances</translation>
     </message>
 </context>
 <context>
@@ -1789,6 +3122,44 @@
         <location filename="../Models/Gen4/IDModel4.hpp" line="37"/>
         <source>Seconds</source>
         <translation>Seconds</translation>
+    </message>
+</context>
+<context>
+    <name>IDModel5</name>
+    <message>
+        <location filename="../Models/Gen5/IDModel5.hpp" line="36"/>
+        <source>Seed</source>
+        <translation>Seed</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/IDModel5.hpp" line="36"/>
+        <source>Initial Advances</source>
+        <translation>Initial Advances</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/IDModel5.hpp" line="36"/>
+        <source>Advances</source>
+        <translation>Advances</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/IDModel5.hpp" line="36"/>
+        <source>TID</source>
+        <translation>TID</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/IDModel5.hpp" line="36"/>
+        <source>SID</source>
+        <translation>SID</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/IDModel5.hpp" line="36"/>
+        <source>Date/Time</source>
+        <translation>Date/Time</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/IDModel5.hpp" line="36"/>
+        <source>Buttons</source>
+        <translation>Buttons</translation>
     </message>
 </context>
 <context>
@@ -1830,16 +3201,6 @@
     </message>
     <message>
         <location filename="../Forms/Gen3/IDs3.ui"/>
-        <source>Starting Advance</source>
-        <translation>Starting Advance</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/IDs3.ui"/>
-        <source>Max Results</source>
-        <translation>Max Results</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/IDs3.ui"/>
         <source>Gen III FRLGE</source>
         <translation>Gen III FRLGE</translation>
     </message>
@@ -1872,6 +3233,16 @@
         <location filename="../Forms/Gen3/IDs3.ui"/>
         <source>Initial Seed</source>
         <translation>Initial Seed</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/IDs3.ui"/>
+        <source>Initial Advances</source>
+        <translation>Initial Advances</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/IDs3.ui"/>
+        <source>Max Advances</source>
+        <translation>Max Advances</translation>
     </message>
 </context>
 <context>
@@ -1965,6 +3336,164 @@
         <location filename="../Forms/Gen4/IDs4.ui"/>
         <source>Find</source>
         <translation>Find</translation>
+    </message>
+</context>
+<context>
+    <name>IDs5</name>
+    <message>
+        <location filename="../Forms/Gen5/IDs5.ui"/>
+        <source>Gen 5 TID/SID</source>
+        <translation>Gen 5 TID/SID</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/IDs5.ui"/>
+        <source>Profile</source>
+        <translation>Profile</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/IDs5.ui"/>
+        <source>MAC Address</source>
+        <translation>MAC Address</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/IDs5.ui"/>
+        <source>DS Original/Lite</source>
+        <translation>DS Original/Lite</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/IDs5.ui"/>
+        <source>None, 1, 2, 3</source>
+        <translation>None, 1, 2, 3</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/IDs5.ui"/>
+        <source>DS Type</source>
+        <translation>DS Type</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/IDs5.ui"/>
+        <source>VCount</source>
+        <translation>VCount</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/IDs5.ui"/>
+        <source>Timer0</source>
+        <translation>Timer0</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/IDs5.ui"/>
+        <source>GxStat</source>
+        <translation>GxStat</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/IDs5.ui"/>
+        <source>Manager</source>
+        <translation>Manager</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/IDs5.ui"/>
+        <source>VFrame</source>
+        <translation>VFrame</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/IDs5.ui"/>
+        <source>Game</source>
+        <translation>Game</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/IDs5.ui"/>
+        <source>White</source>
+        <translation>White</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/IDs5.ui"/>
+        <source>Keypresses</source>
+        <translation>Keypresses</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/IDs5.ui"/>
+        <source>Seed Finder</source>
+        <translation>Seed Finder</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/IDs5.ui"/>
+        <source>Second Range</source>
+        <translation>Second Range</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/IDs5.ui"/>
+        <source>Max Advances</source>
+        <translation>Max Advances</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/IDs5.ui"/>
+        <source>Hour</source>
+        <translation>Hour</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/IDs5.ui"/>
+        <source>TID</source>
+        <translation>TID</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/IDs5.ui"/>
+        <source>Date</source>
+        <translation>Date</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/IDs5.ui"/>
+        <source>Minute</source>
+        <translation>Minute</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/IDs5.ui"/>
+        <source>Find</source>
+        <translation>Find</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/IDs5.ui"/>
+        <source>Existing save</source>
+        <translation>Existing save</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/IDs5.ui"/>
+        <source>Search By</source>
+        <translation>Search By</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/IDs5.ui"/>
+        <source>PID</source>
+        <translation>PID</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/IDs5.ui"/>
+        <source>SID</source>
+        <translation>SID</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/IDs5.ui"/>
+        <source>Start/End Date</source>
+        <translation>Start/End Date</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/IDs5.ui"/>
+        <source>Search</source>
+        <translation>Search</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/IDs5.ui"/>
+        <source>Cancel</source>
+        <translation>Cancel</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/IDs5.cpp" line="99"/>
+        <source>Output Results to TXT</source>
+        <translation>Output Results to TXT</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/IDs5.cpp" line="100"/>
+        <source>Output Results to CSV</source>
+        <translation>Output Results to CSV</translation>
     </message>
 </context>
 <context>
@@ -2095,24 +3624,39 @@
         <translation>Base Spe</translation>
     </message>
     <message>
-        <location filename="../Forms/Util/IVCalculator.cpp" line="76"/>
+        <location filename="../Forms/Util/IVCalculator.cpp" line="81"/>
         <source>Invalid</source>
         <translation>Invalid</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Util/IVCalculator.cpp" line="174"/>
-        <source>Invalid input</source>
-        <translation>Invalid input</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Util/IVCalculator.ui"/>
-        <source>Level HP Atk Def Spa Spd Spe</source>
-        <translation>Level HP Atk Def Spa Spd Spe</translation>
     </message>
     <message>
         <location filename="../Forms/Util/IVCalculator.ui"/>
         <source>Altform</source>
         <translation>Altform</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Util/IVCalculator.ui"/>
+        <source>Gen 5</source>
+        <translation>Gen 5</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Util/IVCalculator.ui"/>
+        <source>Level</source>
+        <translation>Level</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Util/IVCalculator.ui"/>
+        <source>Speed</source>
+        <translation>Speed</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Util/IVCalculator.ui"/>
+        <source>Add row</source>
+        <translation>Add row</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Util/IVCalculator.ui"/>
+        <source>Remove row</source>
+        <translation>Remove row</translation>
     </message>
 </context>
 <context>
@@ -2394,11 +3938,6 @@
     </message>
     <message>
         <location filename="../Forms/MainWindow.ui"/>
-        <source>Language</source>
-        <translation>Language</translation>
-    </message>
-    <message>
-        <location filename="../Forms/MainWindow.ui"/>
         <source>German</source>
         <translation>German</translation>
     </message>
@@ -2438,30 +3977,32 @@
         <translation>Chinese</translation>
     </message>
     <message>
-        <location filename="../Forms/MainWindow.cpp" line="168"/>
-        <source>Language update</source>
-        <translation>Language update</translation>
-    </message>
-    <message>
-        <location filename="../Forms/MainWindow.cpp" line="168"/>
-        <location filename="../Forms/MainWindow.cpp" line="188"/>
-        <source>Restart for changes to take effect. Restart now?</source>
-        <translation>Restart for changes to take effect. Restart now?</translation>
-    </message>
-    <message>
-        <location filename="../Forms/MainWindow.cpp" line="188"/>
-        <source>Style change</source>
-        <translation>Style change</translation>
-    </message>
-    <message>
-        <location filename="../Forms/MainWindow.cpp" line="220"/>
+        <location filename="../Forms/MainWindow.cpp" line="157"/>
         <source>Update Check</source>
         <translation>Update Check</translation>
     </message>
     <message>
-        <location filename="../Forms/MainWindow.cpp" line="221"/>
+        <location filename="../Forms/MainWindow.cpp" line="158"/>
         <source>An update is available. Would you like to download the newest version?</source>
         <translation>An update is available. Would you like to download the newest version?</translation>
+    </message>
+    <message>
+        <location filename="../Forms/MainWindow.cpp" line="420"/>
+        <location filename="../Forms/MainWindow.cpp" line="439"/>
+        <location filename="../Forms/MainWindow.cpp" line="458"/>
+        <location filename="../Forms/MainWindow.cpp" line="477"/>
+        <location filename="../Forms/MainWindow.cpp" line="496"/>
+        <source>No profiles found</source>
+        <translation>No profiles found</translation>
+    </message>
+    <message>
+        <location filename="../Forms/MainWindow.cpp" line="421"/>
+        <location filename="../Forms/MainWindow.cpp" line="440"/>
+        <location filename="../Forms/MainWindow.cpp" line="459"/>
+        <location filename="../Forms/MainWindow.cpp" line="478"/>
+        <location filename="../Forms/MainWindow.cpp" line="497"/>
+        <source>Please use the Profile Calibrator under Gen 5 Tools to create one.</source>
+        <translation>Please use the Profile Calibrator under Gen 5 Tools to create one.</translation>
     </message>
     <message>
         <location filename="../Forms/MainWindow.ui"/>
@@ -2472,11 +4013,6 @@
         <location filename="../Forms/MainWindow.ui"/>
         <source>Settings</source>
         <translation>Settings</translation>
-    </message>
-    <message>
-        <location filename="../Forms/MainWindow.ui"/>
-        <source>Style</source>
-        <translation>Style</translation>
     </message>
     <message>
         <location filename="../Forms/MainWindow.ui"/>
@@ -2512,6 +4048,36 @@
         <location filename="../Forms/MainWindow.ui"/>
         <source>GameCube Seed Finder</source>
         <translation>GameCube Seed Finder</translation>
+    </message>
+    <message>
+        <location filename="../Forms/MainWindow.ui"/>
+        <source>Gen 5</source>
+        <translation>Gen 5</translation>
+    </message>
+    <message>
+        <location filename="../Forms/MainWindow.ui"/>
+        <source>Event</source>
+        <translation>Event</translation>
+    </message>
+    <message>
+        <location filename="../Forms/MainWindow.ui"/>
+        <source>Dream Radar</source>
+        <translation>Dream Radar</translation>
+    </message>
+    <message>
+        <location filename="../Forms/MainWindow.ui"/>
+        <source>Gen 5 Tools</source>
+        <translation>Gen 5 Tools</translation>
+    </message>
+    <message>
+        <location filename="../Forms/MainWindow.ui"/>
+        <source>Profile Calibrator</source>
+        <translation>Profile Calibrator</translation>
+    </message>
+    <message>
+        <location filename="../Forms/MainWindow.ui"/>
+        <source>Profile Manager</source>
+        <translation>Profile Manager</translation>
     </message>
 </context>
 <context>
@@ -2609,16 +4175,6 @@
     </message>
     <message>
         <location filename="../Forms/Gen3/Tools/PokeSpot.ui"/>
-        <source>Starting Advance</source>
-        <translation>Starting Advance</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Tools/PokeSpot.ui"/>
-        <source>Max Results</source>
-        <translation>Max Results</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Tools/PokeSpot.ui"/>
         <source>TID</source>
         <translation>TID</translation>
     </message>
@@ -2657,14 +4213,19 @@
         <source>Output Results to CSV</source>
         <translation>Output Results to CSV</translation>
     </message>
+    <message>
+        <location filename="../Forms/Gen3/Tools/PokeSpot.ui"/>
+        <source>Initial Advances</source>
+        <translation>Initial Advances</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Tools/PokeSpot.ui"/>
+        <source>Max Advances</source>
+        <translation>Max Advances</translation>
+    </message>
 </context>
 <context>
     <name>PokeSpotModel</name>
-    <message>
-        <location filename="../Models/Gen3/PokeSpotModel.hpp" line="36"/>
-        <source>Advance</source>
-        <translation>Advance</translation>
-    </message>
     <message>
         <location filename="../Models/Gen3/PokeSpotModel.hpp" line="36"/>
         <source>PID</source>
@@ -2696,6 +4257,11 @@
         <translation>Shiny</translation>
     </message>
     <message>
+        <location filename="../Models/Gen3/PokeSpotModel.hpp" line="36"/>
+        <source>Advances</source>
+        <translation>Advances</translation>
+    </message>
+    <message>
         <location filename="../Models/Gen3/PokeSpotModel.cpp" line="46"/>
         <source>Square</source>
         <translation>Square</translation>
@@ -2724,6 +4290,302 @@
         <location filename="../Models/Gen3/PokeSpotModel.cpp" line="56"/>
         <source>Rare</source>
         <translation>Rare</translation>
+    </message>
+</context>
+<context>
+    <name>ProfileCalibrator5</name>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.ui"/>
+        <source>Profile Calibrator</source>
+        <translation>Profile Calibrator</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.ui"/>
+        <source>Variables</source>
+        <translation>Variables</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.ui"/>
+        <source>DS Type</source>
+        <translation>DS Type</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.ui"/>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.cpp" line="57"/>
+        <source>GxStat</source>
+        <translation>GxStat</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.ui"/>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.cpp" line="57"/>
+        <source>VFrame</source>
+        <translation>VFrame</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.ui"/>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.cpp" line="57"/>
+        <source>Seconds</source>
+        <translation>Seconds</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.ui"/>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.cpp" line="57"/>
+        <source>Timer0</source>
+        <translation>Timer0</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.ui"/>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.cpp" line="57"/>
+        <source>VCount</source>
+        <translation>VCount</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.ui"/>
+        <source>Max</source>
+        <translation>Max</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.ui"/>
+        <source>Min</source>
+        <translation>Min</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.ui"/>
+        <source>Soft Reset</source>
+        <translation>Soft Reset</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.ui"/>
+        <source>Memory Link</source>
+        <translation>Memory Link</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.ui"/>
+        <source>DS Original/Lite</source>
+        <translation>DS Original/Lite</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.ui"/>
+        <source>DSi/DSi XL</source>
+        <translation>DSi/DSi XL</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.ui"/>
+        <source>3DS</source>
+        <translation>3DS</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.ui"/>
+        <source>Language</source>
+        <translation>Language</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.ui"/>
+        <source>Keypresses</source>
+        <translation>Keypresses</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.ui"/>
+        <source>MAC Address</source>
+        <translation>MAC Address</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.ui"/>
+        <source>Version</source>
+        <translation>Version</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.ui"/>
+        <source>Black</source>
+        <translation>Black</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.ui"/>
+        <source>White</source>
+        <translation>White</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.ui"/>
+        <source>Black 2</source>
+        <translation>Black 2</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.ui"/>
+        <source>White 2</source>
+        <translation>White 2</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.ui"/>
+        <source>ENG</source>
+        <translation>ENG</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.ui"/>
+        <source>SPA</source>
+        <translation>SPA</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.ui"/>
+        <source>FRE</source>
+        <translation>FRE</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.ui"/>
+        <source>ITA</source>
+        <translation>ITA</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.ui"/>
+        <source>DEU</source>
+        <translation>DEU</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.ui"/>
+        <source>JPN</source>
+        <translation>JPN</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.ui"/>
+        <source>KOR</source>
+        <translation>KOR</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.ui"/>
+        <source>Settings</source>
+        <translation>Settings</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.ui"/>
+        <source>Date</source>
+        <translation>Date</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.ui"/>
+        <source>Clear table</source>
+        <translation>Clear table</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.ui"/>
+        <source>Cancel</source>
+        <translation>Cancel</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.ui"/>
+        <source>Search</source>
+        <translation>Search</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.ui"/>
+        <source>IV Search</source>
+        <translation>IV Search</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.ui"/>
+        <source>Min IVs</source>
+        <translation>Min IVs</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.ui"/>
+        <source>Max IVs</source>
+        <translation>Max IVs</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.ui"/>
+        <source>Open IV Calculator</source>
+        <translation>Open IV Calculator</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.ui"/>
+        <source>Needle Search</source>
+        <translation>Needle Search</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.ui"/>
+        <source>↖</source>
+        <translation>↖</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.ui"/>
+        <source>↑</source>
+        <translation>↑</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.ui"/>
+        <source>↗</source>
+        <translation>↗</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.ui"/>
+        <source>←</source>
+        <translation>←</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.ui"/>
+        <source>→</source>
+        <translation>→</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.ui"/>
+        <source>↙</source>
+        <translation>↙</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.ui"/>
+        <source>↓</source>
+        <translation>↓</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.ui"/>
+        <source>↘</source>
+        <translation>↘</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.ui"/>
+        <source>Unova Link</source>
+        <translation>Unova Link</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.ui"/>
+        <source>Saving</source>
+        <translation>Saving</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.ui"/>
+        <source>Delete</source>
+        <translation>Delete</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.ui"/>
+        <source>Clear</source>
+        <translation>Clear</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.ui"/>
+        <source>Seed Search</source>
+        <translation>Seed Search</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.ui"/>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.cpp" line="57"/>
+        <source>Seed</source>
+        <translation>Seed</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.cpp" line="78"/>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.cpp" line="79"/>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.cpp" line="80"/>
+        <source>None</source>
+        <translation>None</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.cpp" line="204"/>
+        <source>Some min values are greater then max values</source>
+        <translation>Some min values are greater then max values</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileCalibrator5.cpp" line="312"/>
+        <source>Please select a entry.</source>
+        <translation>Please select a entry.</translation>
     </message>
 </context>
 <context>
@@ -2938,6 +4800,209 @@
     </message>
 </context>
 <context>
+    <name>ProfileEditor5</name>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileEditor5.ui"/>
+        <source>Profile Editor Gen 5</source>
+        <translation>Profile Editor Gen 5</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileEditor5.ui"/>
+        <source>Profile Name</source>
+        <translation>Profile Name</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileEditor5.ui"/>
+        <source>MAC</source>
+        <translation>MAC</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileEditor5.ui"/>
+        <source>VFrame</source>
+        <translation>VFrame</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileEditor5.ui"/>
+        <source>TID</source>
+        <translation>TID</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileEditor5.ui"/>
+        <source>Accept</source>
+        <translation>Accept</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileEditor5.ui"/>
+        <source>Version</source>
+        <translation>Version</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileEditor5.ui"/>
+        <source>Black</source>
+        <translation>Black</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileEditor5.ui"/>
+        <source>White</source>
+        <translation>White</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileEditor5.ui"/>
+        <source>Black 2</source>
+        <translation>Black 2</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileEditor5.ui"/>
+        <source>White 2</source>
+        <translation>White 2</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileEditor5.ui"/>
+        <source>Keypresses</source>
+        <translation>Keypresses</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileEditor5.ui"/>
+        <source>None</source>
+        <translation>None</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileEditor5.ui"/>
+        <source>1</source>
+        <translation>1</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileEditor5.ui"/>
+        <source>2</source>
+        <translation>2</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileEditor5.ui"/>
+        <source>3</source>
+        <translation>3</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileEditor5.ui"/>
+        <source>Timer0 Min</source>
+        <translation>Timer0 Min</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileEditor5.ui"/>
+        <source>SID</source>
+        <translation>SID</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileEditor5.ui"/>
+        <source>Cancel</source>
+        <translation>Cancel</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileEditor5.ui"/>
+        <source>Language</source>
+        <translation>Language</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileEditor5.ui"/>
+        <source>ENG</source>
+        <translation>ENG</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileEditor5.ui"/>
+        <source>SPA</source>
+        <translation>SPA</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileEditor5.ui"/>
+        <source>FRE</source>
+        <translation>FRE</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileEditor5.ui"/>
+        <source>ITA</source>
+        <translation>ITA</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileEditor5.ui"/>
+        <source>DEU</source>
+        <translation>DEU</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileEditor5.ui"/>
+        <source>JPN</source>
+        <translation>JPN</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileEditor5.ui"/>
+        <source>KOR</source>
+        <translation>KOR</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileEditor5.ui"/>
+        <source>VCount</source>
+        <translation>VCount</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileEditor5.ui"/>
+        <source>Timer0 Max</source>
+        <translation>Timer0 Max</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileEditor5.ui"/>
+        <source>DS Type</source>
+        <translation>DS Type</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileEditor5.ui"/>
+        <source>DS Original/Lite</source>
+        <translation>DS Original/Lite</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileEditor5.ui"/>
+        <source>DSi/DSi XL</source>
+        <translation>DSi/DSi XL</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileEditor5.ui"/>
+        <source>3DS</source>
+        <translation>3DS</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileEditor5.ui"/>
+        <source>GxStat</source>
+        <translation>GxStat</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileEditor5.ui"/>
+        <source>Find Parameters</source>
+        <translation>Find Parameters</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileEditor5.ui"/>
+        <source>Soft Reset</source>
+        <translation>Soft Reset</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileEditor5.ui"/>
+        <source>Skip L/R</source>
+        <translation>Skip L/R</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileEditor5.ui"/>
+        <source>Memory Link</source>
+        <translation>Memory Link</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileEditor5.ui"/>
+        <source>Shiny Charm</source>
+        <translation>Shiny Charm</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileEditor5.cpp" line="145"/>
+        <source>Enter a profile name</source>
+        <translation>Enter a profile name</translation>
+    </message>
+</context>
+<context>
     <name>ProfileManager3</name>
     <message>
         <location filename="../Forms/Gen3/Profile/ProfileManager3.ui"/>
@@ -3021,6 +5086,50 @@
     </message>
     <message>
         <location filename="../Forms/Gen4/Profile/ProfileManager4.cpp" line="106"/>
+        <source>Are you sure you wish to delete this profile?</source>
+        <translation>Are you sure you wish to delete this profile?</translation>
+    </message>
+</context>
+<context>
+    <name>ProfileManager5</name>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileManager5.ui"/>
+        <source>Profile Manager Gen 5</source>
+        <translation>Profile Manager Gen 5</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileManager5.ui"/>
+        <source>New</source>
+        <translation>New</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileManager5.ui"/>
+        <source>Edit</source>
+        <translation>Edit</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileManager5.ui"/>
+        <source>Delete</source>
+        <translation>Delete</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileManager5.ui"/>
+        <source>Done</source>
+        <translation>Done</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileManager5.cpp" line="70"/>
+        <location filename="../Forms/Gen5/Profile/ProfileManager5.cpp" line="92"/>
+        <source>Please select a profile.</source>
+        <translation>Please select a profile.</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileManager5.cpp" line="97"/>
+        <source>Delete profile</source>
+        <translation>Delete profile</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Profile/ProfileManager5.cpp" line="97"/>
         <source>Are you sure you wish to delete this profile?</source>
         <translation>Are you sure you wish to delete this profile?</translation>
     </message>
@@ -3119,6 +5228,105 @@
     </message>
 </context>
 <context>
+    <name>ProfileModel5</name>
+    <message>
+        <location filename="../Models/Gen5/ProfileModel5.cpp" line="64"/>
+        <location filename="../Models/Gen5/ProfileModel5.cpp" line="66"/>
+        <location filename="../Models/Gen5/ProfileModel5.cpp" line="68"/>
+        <location filename="../Models/Gen5/ProfileModel5.cpp" line="70"/>
+        <source>Yes</source>
+        <translation>Yes</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/ProfileModel5.cpp" line="64"/>
+        <location filename="../Models/Gen5/ProfileModel5.cpp" line="66"/>
+        <location filename="../Models/Gen5/ProfileModel5.cpp" line="68"/>
+        <location filename="../Models/Gen5/ProfileModel5.cpp" line="70"/>
+        <source>No</source>
+        <translation>No</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/ProfileModel5.hpp" line="36"/>
+        <source>Profile Name</source>
+        <translation>Profile Name</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/ProfileModel5.hpp" line="36"/>
+        <source>Version</source>
+        <translation>Version</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/ProfileModel5.hpp" line="36"/>
+        <source>Language</source>
+        <translation>Language</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/ProfileModel5.hpp" line="36"/>
+        <source>TID</source>
+        <translation>TID</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/ProfileModel5.hpp" line="36"/>
+        <source>SID</source>
+        <translation>SID</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/ProfileModel5.hpp" line="36"/>
+        <source>MAC Address</source>
+        <translation>MAC Address</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/ProfileModel5.hpp" line="37"/>
+        <source>DS Type</source>
+        <translation>DS Type</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/ProfileModel5.hpp" line="37"/>
+        <source>VCount</source>
+        <translation>VCount</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/ProfileModel5.hpp" line="37"/>
+        <source>Timer0</source>
+        <translation>Timer0</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/ProfileModel5.hpp" line="37"/>
+        <source>GxStat</source>
+        <translation>GxStat</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/ProfileModel5.hpp" line="37"/>
+        <source>VFrame</source>
+        <translation>VFrame</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/ProfileModel5.hpp" line="37"/>
+        <source>Keypresses</source>
+        <translation>Keypresses</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/ProfileModel5.hpp" line="38"/>
+        <source>Skip L/R</source>
+        <translation>Skip L/R</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/ProfileModel5.hpp" line="38"/>
+        <source>Soft Reset</source>
+        <translation>Soft Reset</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/ProfileModel5.hpp" line="38"/>
+        <source>Memory Link</source>
+        <translation>Memory Link</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/ProfileModel5.hpp" line="38"/>
+        <source>Shiny Charm</source>
+        <translation>Shiny Charm</translation>
+    </message>
+</context>
+<context>
     <name>QObject</name>
     <message>
         <location filename="../Core/Gen4/Profile4.cpp" line="38"/>
@@ -3153,6 +5361,7 @@
     <message>
         <location filename="../Core/Gen4/Profile4.cpp" line="48"/>
         <location filename="../Core/Gen4/Profile4.cpp" line="66"/>
+        <location filename="../Core/Gen5/Profile5.cpp" line="81"/>
         <source>None</source>
         <translation>None</translation>
     </message>
@@ -3221,6 +5430,21 @@
         <source>White 2</source>
         <translation>White 2</translation>
     </message>
+    <message>
+        <location filename="../Core/Gen5/Profile5.cpp" line="146"/>
+        <source>DS Lite</source>
+        <translation>DS Lite</translation>
+    </message>
+    <message>
+        <location filename="../Core/Gen5/Profile5.cpp" line="148"/>
+        <source>DSi</source>
+        <translation>DSi</translation>
+    </message>
+    <message>
+        <location filename="../Core/Gen5/Profile5.cpp" line="150"/>
+        <source>3DS</source>
+        <translation>3DS</translation>
+    </message>
 </context>
 <context>
     <name>Researcher</name>
@@ -3261,16 +5485,6 @@
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <source>M. Twister (Untempered)</source>
-        <translation>M. Twister (Untempered)</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Util/Researcher.ui"/>
-        <source>M. Twister (Fast)</source>
-        <translation>M. Twister (Fast)</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Util/Researcher.ui"/>
         <source>BWRNG</source>
         <translation>BWRNG</translation>
     </message>
@@ -3291,15 +5505,15 @@
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="78"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="443"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="77"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="428"/>
         <source>64Bit</source>
         <translation>64Bit</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="79"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="442"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="78"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="427"/>
         <source>32Bit</source>
         <translation>32Bit</translation>
     </message>
@@ -3310,38 +5524,38 @@
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="80"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="443"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="79"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="428"/>
         <source>32Bit High</source>
         <translation>32Bit High</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="81"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="443"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="80"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="428"/>
         <source>32Bit Low</source>
         <translation>32Bit Low</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="82"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="442"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="443"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="81"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="427"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="428"/>
         <source>16Bit High</source>
         <translation>16Bit High</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="83"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="442"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="443"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="82"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="427"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="428"/>
         <source>16Bit Low</source>
         <translation>16Bit Low</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="378"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="408"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="374"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="398"/>
         <source>None</source>
         <translation>None</translation>
     </message>
@@ -3367,24 +5581,19 @@
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <source>Max Results</source>
-        <translation>Max Results</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="99"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="98"/>
         <source>Previous 7</source>
         <translation>Previous 7</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="100"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="99"/>
         <source>Previous 8</source>
         <translation>Previous 8</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="101"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="100"/>
         <source>Previous 9</source>
         <translation>Previous 9</translation>
     </message>
@@ -3405,91 +5614,91 @@
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="84"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="83"/>
         <source>Custom 1</source>
         <translation>Custom 1</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="85"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="84"/>
         <source>Custom 2</source>
         <translation>Custom 2</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="86"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="85"/>
         <source>Custom 3</source>
         <translation>Custom 3</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="93"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="92"/>
         <source>Previous 1</source>
         <translation>Previous 1</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="94"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="93"/>
         <source>Previous 2</source>
         <translation>Previous 2</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="87"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="86"/>
         <source>Custom 4</source>
         <translation>Custom 4</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="95"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="94"/>
         <source>Previous 3</source>
         <translation>Previous 3</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="88"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="87"/>
         <source>Custom 5</source>
         <translation>Custom 5</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="89"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="88"/>
         <source>Custom 6</source>
         <translation>Custom 6</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="96"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="95"/>
         <source>Previous 4</source>
         <translation>Previous 4</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="97"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="96"/>
         <source>Previous 5</source>
         <translation>Previous 5</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="98"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="97"/>
         <source>Previous 6</source>
         <translation>Previous 6</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="90"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="89"/>
         <source>Custom 7</source>
         <translation>Custom 7</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="91"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="90"/>
         <source>Custom 8</source>
         <translation>Custom 8</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="92"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="91"/>
         <source>Custom 9</source>
         <translation>Custom 9</translation>
     </message>
@@ -3504,44 +5713,39 @@
         <translation>Hex</translation>
     </message>
     <message>
-        <location filename="../Forms/Util/Researcher.cpp" line="103"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="102"/>
         <source>Output Results to TXT</source>
         <translation>Output Results to TXT</translation>
     </message>
     <message>
-        <location filename="../Forms/Util/Researcher.cpp" line="104"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="103"/>
         <source>Output Results to CSV</source>
         <translation>Output Results to CSV</translation>
     </message>
     <message>
-        <location filename="../Forms/Util/Researcher.cpp" line="264"/>
-        <source>Please enter a search range lower then 228</source>
-        <translation>Please enter a search range lower then 228</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Util/Researcher.cpp" line="354"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="352"/>
         <source>You must check the Hex box in order to use Hex values.</source>
         <translation>You must check the Hex box in order to use Hex values.</translation>
     </message>
     <message>
-        <location filename="../Forms/Util/Researcher.cpp" line="468"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="500"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="453"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="485"/>
         <source>No result found</source>
         <translation>No result found</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <source>Initial Advance</source>
-        <translation>Initial Advance</translation>
+        <source>Initial Advances</source>
+        <translation>Initial Advances</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Util/Researcher.ui"/>
+        <source>Max Advances</source>
+        <translation>Max Advances</translation>
     </message>
 </context>
 <context>
     <name>ResearcherModel</name>
-    <message>
-        <location filename="../Models/Util/ResearcherModel.hpp" line="43"/>
-        <source>Advance</source>
-        <translation>Advance</translation>
-    </message>
     <message>
         <location filename="../Models/Util/ResearcherModel.cpp" line="107"/>
         <location filename="../Models/Util/ResearcherModel.hpp" line="43"/>
@@ -3571,6 +5775,11 @@
         <location filename="../Models/Util/ResearcherModel.hpp" line="44"/>
         <source>16Bit Low</source>
         <translation>16Bit Low</translation>
+    </message>
+    <message>
+        <location filename="../Models/Util/ResearcherModel.hpp" line="43"/>
+        <source>Advances</source>
+        <translation>Advances</translation>
     </message>
     <message>
         <location filename="../Models/Util/ResearcherModel.hpp" line="44"/>
@@ -3780,8 +5989,8 @@
     </message>
     <message>
         <location filename="../Models/Gen3/SeedTimeModel3.hpp" line="36"/>
-        <source>Advance</source>
-        <translation>Advance</translation>
+        <source>Advances</source>
+        <translation>Advances</translation>
     </message>
 </context>
 <context>
@@ -3964,6 +6173,136 @@
     </message>
 </context>
 <context>
+    <name>Settings</name>
+    <message>
+        <location filename="../Forms/Util/Settings.ui"/>
+        <source>Settings</source>
+        <translation>Settings</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Util/Settings.ui"/>
+        <source>Language</source>
+        <translation>Language</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Util/Settings.ui"/>
+        <source>Chinese</source>
+        <translation>Chinese</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Util/Settings.ui"/>
+        <source>English</source>
+        <translation>English</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Util/Settings.ui"/>
+        <source>French</source>
+        <translation>French</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Util/Settings.ui"/>
+        <source>German</source>
+        <translation>German</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Util/Settings.ui"/>
+        <source>Italian</source>
+        <translation>Italian</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Util/Settings.ui"/>
+        <source>Japanese</source>
+        <translation>Japanese</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Util/Settings.ui"/>
+        <source>Korean</source>
+        <translation>Korean</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Util/Settings.ui"/>
+        <source>Spanish</source>
+        <translation>Spanish</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Util/Settings.ui"/>
+        <source>Style</source>
+        <translation>Style</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Util/Settings.ui"/>
+        <source>Dark</source>
+        <translation>Dark</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Util/Settings.ui"/>
+        <source>Light</source>
+        <translation>Light</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Util/Settings.ui"/>
+        <source>Threads</source>
+        <translation>Threads</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Util/Settings.ui"/>
+        <source>Profiles Path</source>
+        <translation>Profiles Path</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Util/Settings.ui"/>
+        <source>Change</source>
+        <translation>Change</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Util/Settings.ui"/>
+        <source>IV Bin Path</source>
+        <translation>IV Bin Path</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Util/Settings.cpp" line="122"/>
+        <source>Language update</source>
+        <translation>Language update</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Util/Settings.cpp" line="122"/>
+        <location filename="../Forms/Util/Settings.cpp" line="143"/>
+        <source>Restart for changes to take effect. Restart now?</source>
+        <translation>Restart for changes to take effect. Restart now?</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Util/Settings.cpp" line="143"/>
+        <source>Style change</source>
+        <translation>Style change</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Util/Settings.cpp" line="171"/>
+        <source>Profile File</source>
+        <translation>Profile File</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Util/Settings.cpp" line="171"/>
+        <source>There was a problem creating the file</source>
+        <translation>There was a problem creating the file</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Util/Settings.cpp" line="196"/>
+        <location filename="../Forms/Util/Settings.cpp" line="208"/>
+        <source>IV bin</source>
+        <translation>IV bin</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Util/Settings.cpp" line="196"/>
+        <source>Invalid IV bin file was provided</source>
+        <translation>Invalid IV bin file was provided</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Util/Settings.cpp" line="208"/>
+        <source>There was a problem opening the file</source>
+        <translation>There was a problem opening the file</translation>
+    </message>
+</context>
+<context>
     <name>SpindaPainter</name>
     <message>
         <location filename="../Forms/Gen3/Tools/SpindaPainter.ui"/>
@@ -4017,11 +6356,6 @@
         <location filename="../Forms/Gen3/Stationary3.ui"/>
         <source>Method</source>
         <translation>Method</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Stationary3.ui"/>
-        <source>Max Results</source>
-        <translation>Max Results</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Stationary3.ui"/>
@@ -4107,8 +6441,13 @@
     </message>
     <message>
         <location filename="../Forms/Gen3/Stationary3.ui"/>
-        <source>Initial Advance</source>
-        <translation>Initial Advance</translation>
+        <source>Initial Advances</source>
+        <translation>Initial Advances</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Stationary3.ui"/>
+        <source>Max Advances</source>
+        <translation>Max Advances</translation>
     </message>
 </context>
 <context>
@@ -4162,11 +6501,6 @@
         <location filename="../Forms/Gen4/Stationary4.ui"/>
         <source>Method</source>
         <translation>Method</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Stationary4.ui"/>
-        <source>Max Results</source>
-        <translation>Max Results</translation>
     </message>
     <message>
         <location filename="../Forms/Gen4/Stationary4.cpp" line="273"/>
@@ -4316,8 +6650,243 @@
     </message>
     <message>
         <location filename="../Forms/Gen4/Stationary4.ui"/>
-        <source>Initial Advance</source>
-        <translation>Initial Advance</translation>
+        <source>Max Advances</source>
+        <translation>Max Advances</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen4/Stationary4.ui"/>
+        <source>Initial Advances</source>
+        <translation>Initial Advances</translation>
+    </message>
+</context>
+<context>
+    <name>Stationary5</name>
+    <message>
+        <location filename="../Forms/Gen5/Stationary5.ui"/>
+        <source>Gen 5 Stationary</source>
+        <translation>Gen 5 Stationary</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Stationary5.ui"/>
+        <source>Profile</source>
+        <translation>Profile</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Stationary5.ui"/>
+        <source>TID</source>
+        <translation>TID</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Stationary5.ui"/>
+        <source>MAC Address</source>
+        <translation>MAC Address</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Stationary5.ui"/>
+        <source>VCount</source>
+        <translation>VCount</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Stationary5.ui"/>
+        <source>GxStat</source>
+        <translation>GxStat</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Stationary5.ui"/>
+        <source>Keypresses</source>
+        <translation>Keypresses</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Stationary5.ui"/>
+        <source>None, 1, 2, 3</source>
+        <translation>None, 1, 2, 3</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Stationary5.ui"/>
+        <source>Manager</source>
+        <translation>Manager</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Stationary5.ui"/>
+        <source>SID</source>
+        <translation>SID</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Stationary5.ui"/>
+        <source>DS Type</source>
+        <translation>DS Type</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Stationary5.ui"/>
+        <source>DS Original/Lite</source>
+        <translation>DS Original/Lite</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Stationary5.ui"/>
+        <source>Timer0</source>
+        <translation>Timer0</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Stationary5.ui"/>
+        <source>VFrame</source>
+        <translation>VFrame</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Stationary5.ui"/>
+        <source>Game</source>
+        <translation>Game</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Stationary5.ui"/>
+        <source>White</source>
+        <translation>White</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Stationary5.ui"/>
+        <source>Generator</source>
+        <translation>Generator</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Stationary5.ui"/>
+        <source>RNG Info</source>
+        <translation>RNG Info</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Stationary5.ui"/>
+        <source>Seed</source>
+        <translation>Seed</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Stationary5.ui"/>
+        <source>Method</source>
+        <translation>Method</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Stationary5.ui"/>
+        <source>Initial Advances</source>
+        <translation>Initial Advances</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Stationary5.ui"/>
+        <source>Max Advances</source>
+        <translation>Max Advances</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Stationary5.ui"/>
+        <location filename="../Forms/Gen5/Stationary5.cpp" line="287"/>
+        <location filename="../Forms/Gen5/Stationary5.cpp" line="305"/>
+        <source>Synchronize</source>
+        <translation>Synchronize</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Stationary5.ui"/>
+        <source>Generate</source>
+        <translation>Generate</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Stationary5.ui"/>
+        <source>Filters</source>
+        <translation>Filters</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Stationary5.ui"/>
+        <source>Any</source>
+        <translation>Any</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Stationary5.ui"/>
+        <source>Searcher</source>
+        <translation>Searcher</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Stationary5.ui"/>
+        <source>Min Delay</source>
+        <translation>Min Delay</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Stationary5.ui"/>
+        <source>Max Delay</source>
+        <translation>Max Delay</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Stationary5.ui"/>
+        <source>Min Advance</source>
+        <translation>Min Advance</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Stationary5.ui"/>
+        <source>Max Advance</source>
+        <translation>Max Advance</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Stationary5.ui"/>
+        <source>Lead</source>
+        <translation>Lead</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Stationary5.ui"/>
+        <location filename="../Forms/Gen5/Stationary5.cpp" line="289"/>
+        <location filename="../Forms/Gen5/Stationary5.cpp" line="298"/>
+        <source>Cute Charm</source>
+        <translation>Cute Charm</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Stationary5.ui"/>
+        <location filename="../Forms/Gen5/Stationary5.cpp" line="97"/>
+        <source>None</source>
+        <translation>None</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Stationary5.ui"/>
+        <source>Search</source>
+        <translation>Search</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Stationary5.ui"/>
+        <source>Cancel</source>
+        <translation>Cancel</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Stationary5.cpp" line="122"/>
+        <location filename="../Forms/Gen5/Stationary5.cpp" line="128"/>
+        <source>Output Results to TXT</source>
+        <translation>Output Results to TXT</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Stationary5.cpp" line="123"/>
+        <location filename="../Forms/Gen5/Stationary5.cpp" line="129"/>
+        <source>Output Results to CSV</source>
+        <translation>Output Results to CSV</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Stationary5.cpp" line="292"/>
+        <source>♂ Lead</source>
+        <translation>♂ Lead</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Stationary5.cpp" line="293"/>
+        <source>♀ Lead (50% ♂ Target)</source>
+        <translation>♀ Lead (50% ♂ Target)</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Stationary5.cpp" line="294"/>
+        <source>♀ Lead (75% ♂ Target)</source>
+        <translation>♀ Lead (75% ♂ Target)</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Stationary5.cpp" line="295"/>
+        <source>♀ Lead (25% ♂ Target)</source>
+        <translation>♀ Lead (25% ♂ Target)</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Stationary5.cpp" line="296"/>
+        <source>♀ Lead (87.5% ♂ Target)</source>
+        <translation>♀ Lead (87.5% ♂ Target)</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Stationary5.cpp" line="300"/>
+        <source>Suction Cups</source>
+        <translation>Suction Cups</translation>
     </message>
 </context>
 <context>
@@ -4336,11 +6905,6 @@
         <location filename="../Models/Gen3/StationaryModel3.cpp" line="47"/>
         <source>No</source>
         <translation>No</translation>
-    </message>
-    <message>
-        <location filename="../Models/Gen3/StationaryModel3.hpp" line="36"/>
-        <source>Advance</source>
-        <translation>Advance</translation>
     </message>
     <message>
         <location filename="../Models/Gen3/StationaryModel3.hpp" line="36"/>
@@ -4371,6 +6935,11 @@
         <location filename="../Models/Gen3/StationaryModel3.hpp" line="36"/>
         <source>Atk</source>
         <translation>Atk</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen3/StationaryModel3.hpp" line="36"/>
+        <source>Advances</source>
+        <translation>Advances</translation>
     </message>
     <message>
         <location filename="../Models/Gen3/StationaryModel3.hpp" line="37"/>
@@ -4411,49 +6980,19 @@
 <context>
     <name>StationaryGeneratorModel4</name>
     <message>
-        <location filename="../Models/Gen4/StationaryModel4.cpp" line="73"/>
-        <source>Low</source>
-        <translation>Low</translation>
-    </message>
-    <message>
         <location filename="../Models/Gen4/StationaryModel4.cpp" line="77"/>
-        <source>Mid-Low</source>
-        <translation>Mid-Low</translation>
-    </message>
-    <message>
-        <location filename="../Models/Gen4/StationaryModel4.cpp" line="81"/>
-        <source>Mid</source>
-        <translation>Mid</translation>
-    </message>
-    <message>
-        <location filename="../Models/Gen4/StationaryModel4.cpp" line="85"/>
-        <source>Mid-High</source>
-        <translation>Mid-High</translation>
-    </message>
-    <message>
-        <location filename="../Models/Gen4/StationaryModel4.cpp" line="89"/>
-        <source>High</source>
-        <translation>High</translation>
-    </message>
-    <message>
-        <location filename="../Models/Gen4/StationaryModel4.cpp" line="100"/>
         <source>Square</source>
         <translation>Square</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/StationaryModel4.cpp" line="100"/>
+        <location filename="../Models/Gen4/StationaryModel4.cpp" line="77"/>
         <source>Star</source>
         <translation>Star</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/StationaryModel4.cpp" line="100"/>
+        <location filename="../Models/Gen4/StationaryModel4.cpp" line="77"/>
         <source>No</source>
         <translation>No</translation>
-    </message>
-    <message>
-        <location filename="../Models/Gen4/StationaryModel4.hpp" line="41"/>
-        <source>Advance</source>
-        <translation>Advance</translation>
     </message>
     <message>
         <location filename="../Models/Gen4/StationaryModel4.hpp" line="41"/>
@@ -4489,6 +7028,11 @@
         <location filename="../Models/Gen4/StationaryModel4.hpp" line="41"/>
         <source>HP</source>
         <translation>HP</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen4/StationaryModel4.hpp" line="41"/>
+        <source>Advances</source>
+        <translation>Advances</translation>
     </message>
     <message>
         <location filename="../Models/Gen4/StationaryModel4.hpp" line="42"/>
@@ -4622,57 +7166,57 @@
 <context>
     <name>StationarySearcherModel4</name>
     <message>
-        <location filename="../Models/Gen4/StationaryModel4.cpp" line="270"/>
+        <location filename="../Models/Gen4/StationaryModel4.cpp" line="247"/>
         <source>None</source>
         <translation>None</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/StationaryModel4.cpp" line="272"/>
+        <location filename="../Models/Gen4/StationaryModel4.cpp" line="249"/>
         <source>Synchronize</source>
         <translation>Synchronize</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/StationaryModel4.cpp" line="274"/>
+        <location filename="../Models/Gen4/StationaryModel4.cpp" line="251"/>
         <source>Suction Cups</source>
         <translation>Suction Cups</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/StationaryModel4.cpp" line="276"/>
+        <location filename="../Models/Gen4/StationaryModel4.cpp" line="253"/>
         <source>Cute Charm (♀)</source>
         <translation>Cute Charm (♀)</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/StationaryModel4.cpp" line="278"/>
+        <location filename="../Models/Gen4/StationaryModel4.cpp" line="255"/>
         <source>Cute Charm (25% ♂)</source>
         <translation>Cute Charm (25% ♂)</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/StationaryModel4.cpp" line="280"/>
+        <location filename="../Models/Gen4/StationaryModel4.cpp" line="257"/>
         <source>Cute Charm (50% ♂)</source>
         <translation>Cute Charm (50% ♂)</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/StationaryModel4.cpp" line="282"/>
+        <location filename="../Models/Gen4/StationaryModel4.cpp" line="259"/>
         <source>Cute Charm (75% ♂)</source>
         <translation>Cute Charm (75% ♂)</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/StationaryModel4.cpp" line="285"/>
+        <location filename="../Models/Gen4/StationaryModel4.cpp" line="262"/>
         <source>Cute Charm (87.5% ♂)</source>
         <translation>Cute Charm (87.5% ♂)</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/StationaryModel4.cpp" line="292"/>
+        <location filename="../Models/Gen4/StationaryModel4.cpp" line="269"/>
         <source>Square</source>
         <translation>Square</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/StationaryModel4.cpp" line="292"/>
+        <location filename="../Models/Gen4/StationaryModel4.cpp" line="269"/>
         <source>Star</source>
         <translation>Star</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/StationaryModel4.cpp" line="292"/>
+        <location filename="../Models/Gen4/StationaryModel4.cpp" line="269"/>
         <source>No</source>
         <translation>No</translation>
     </message>
@@ -4680,11 +7224,6 @@
         <location filename="../Models/Gen4/StationaryModel4.hpp" line="60"/>
         <source>Seed</source>
         <translation>Seed</translation>
-    </message>
-    <message>
-        <location filename="../Models/Gen4/StationaryModel4.hpp" line="60"/>
-        <source>Advance</source>
-        <translation>Advance</translation>
     </message>
     <message>
         <location filename="../Models/Gen4/StationaryModel4.hpp" line="60"/>
@@ -4715,6 +7254,11 @@
         <location filename="../Models/Gen4/StationaryModel4.hpp" line="60"/>
         <source>HP</source>
         <translation>HP</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen4/StationaryModel4.hpp" line="60"/>
+        <source>Advances</source>
+        <translation>Advances</translation>
     </message>
     <message>
         <location filename="../Models/Gen4/StationaryModel4.hpp" line="61"/>
@@ -4863,11 +7407,6 @@
     </message>
     <message>
         <location filename="../Forms/Gen3/Wild3.ui"/>
-        <source>Max Results</source>
-        <translation>Max Results</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Wild3.ui"/>
         <source>SID</source>
         <translation>SID</translation>
     </message>
@@ -5004,8 +7543,13 @@
     </message>
     <message>
         <location filename="../Forms/Gen3/Wild3.ui"/>
-        <source>Initial Advance</source>
-        <translation>Initial Advance</translation>
+        <source>Initial Advances</source>
+        <translation>Initial Advances</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Wild3.ui"/>
+        <source>Max Advances</source>
+        <translation>Max Advances</translation>
     </message>
 </context>
 <context>
@@ -5162,16 +7706,6 @@
         <location filename="../Forms/Gen4/Wild4.cpp" line="465"/>
         <source>Synchronize</source>
         <translation>Synchronize</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Wild4.ui"/>
-        <source>Starting Advance</source>
-        <translation>Starting Advance</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Wild4.ui"/>
-        <source>Max Results</source>
-        <translation>Max Results</translation>
     </message>
     <message>
         <location filename="../Forms/Gen4/Wild4.ui"/>
@@ -5336,6 +7870,16 @@
         <source>Poke Radar</source>
         <translation>Poke Radar</translation>
     </message>
+    <message>
+        <location filename="../Forms/Gen4/Wild4.ui"/>
+        <source>Max Advances</source>
+        <translation>Max Advances</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen4/Wild4.ui"/>
+        <source>Initial Advances</source>
+        <translation>Initial Advances</translation>
+    </message>
 </context>
 <context>
     <name>WildGeneratorModel3</name>
@@ -5353,11 +7897,6 @@
         <location filename="../Models/Gen3/WildModel3.cpp" line="52"/>
         <source>No</source>
         <translation>No</translation>
-    </message>
-    <message>
-        <location filename="../Models/Gen3/WildModel3.hpp" line="36"/>
-        <source>Advance</source>
-        <translation>Advance</translation>
     </message>
     <message>
         <location filename="../Models/Gen3/WildModel3.hpp" line="36"/>
@@ -5393,6 +7932,11 @@
         <location filename="../Models/Gen3/WildModel3.hpp" line="36"/>
         <source>HP</source>
         <translation>HP</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen3/WildModel3.hpp" line="36"/>
+        <source>Advances</source>
+        <translation>Advances</translation>
     </message>
     <message>
         <location filename="../Models/Gen3/WildModel3.hpp" line="37"/>
@@ -5438,49 +7982,19 @@
 <context>
     <name>WildGeneratorModel4</name>
     <message>
-        <location filename="../Models/Gen4/WildModel4.cpp" line="72"/>
-        <source>Low</source>
-        <translation>Low</translation>
-    </message>
-    <message>
-        <location filename="../Models/Gen4/WildModel4.cpp" line="76"/>
-        <source>Mid-Low</source>
-        <translation>Mid-Low</translation>
-    </message>
-    <message>
         <location filename="../Models/Gen4/WildModel4.cpp" line="80"/>
-        <source>Mid</source>
-        <translation>Mid</translation>
-    </message>
-    <message>
-        <location filename="../Models/Gen4/WildModel4.cpp" line="84"/>
-        <source>Mid-High</source>
-        <translation>Mid-High</translation>
-    </message>
-    <message>
-        <location filename="../Models/Gen4/WildModel4.cpp" line="88"/>
-        <source>High</source>
-        <translation>High</translation>
-    </message>
-    <message>
-        <location filename="../Models/Gen4/WildModel4.cpp" line="103"/>
         <source>Square</source>
         <translation>Square</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/WildModel4.cpp" line="103"/>
+        <location filename="../Models/Gen4/WildModel4.cpp" line="80"/>
         <source>Star</source>
         <translation>Star</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/WildModel4.cpp" line="103"/>
+        <location filename="../Models/Gen4/WildModel4.cpp" line="80"/>
         <source>No</source>
         <translation>No</translation>
-    </message>
-    <message>
-        <location filename="../Models/Gen4/WildModel4.hpp" line="41"/>
-        <source>Advance</source>
-        <translation>Advance</translation>
     </message>
     <message>
         <location filename="../Models/Gen4/WildModel4.hpp" line="41"/>
@@ -5521,6 +8035,11 @@
         <location filename="../Models/Gen4/WildModel4.hpp" line="41"/>
         <source>Ability</source>
         <translation>Ability</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen4/WildModel4.hpp" line="41"/>
+        <source>Advances</source>
+        <translation>Advances</translation>
     </message>
     <message>
         <location filename="../Models/Gen4/WildModel4.hpp" line="42"/>
@@ -5689,57 +8208,57 @@
 <context>
     <name>WildSearcherModel4</name>
     <message>
-        <location filename="../Models/Gen4/WildModel4.cpp" line="279"/>
+        <location filename="../Models/Gen4/WildModel4.cpp" line="255"/>
         <source>None</source>
         <translation>None</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/WildModel4.cpp" line="281"/>
+        <location filename="../Models/Gen4/WildModel4.cpp" line="257"/>
         <source>Synchronize</source>
         <translation>Synchronize</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/WildModel4.cpp" line="283"/>
+        <location filename="../Models/Gen4/WildModel4.cpp" line="259"/>
         <source>Suction Cups</source>
         <translation>Suction Cups</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/WildModel4.cpp" line="285"/>
+        <location filename="../Models/Gen4/WildModel4.cpp" line="261"/>
         <source>Cute Charm (♀)</source>
         <translation>Cute Charm (♀)</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/WildModel4.cpp" line="287"/>
+        <location filename="../Models/Gen4/WildModel4.cpp" line="263"/>
         <source>Cute Charm (25% ♂)</source>
         <translation>Cute Charm (25% ♂)</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/WildModel4.cpp" line="289"/>
+        <location filename="../Models/Gen4/WildModel4.cpp" line="265"/>
         <source>Cute Charm (50% ♂)</source>
         <translation>Cute Charm (50% ♂)</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/WildModel4.cpp" line="291"/>
+        <location filename="../Models/Gen4/WildModel4.cpp" line="267"/>
         <source>Cute Charm (75% ♂)</source>
         <translation>Cute Charm (75% ♂)</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/WildModel4.cpp" line="294"/>
+        <location filename="../Models/Gen4/WildModel4.cpp" line="270"/>
         <source>Cute Charm (87.5% ♂)</source>
         <translation>Cute Charm (87.5% ♂)</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/WildModel4.cpp" line="305"/>
+        <location filename="../Models/Gen4/WildModel4.cpp" line="281"/>
         <source>Square</source>
         <translation>Square</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/WildModel4.cpp" line="305"/>
+        <location filename="../Models/Gen4/WildModel4.cpp" line="281"/>
         <source>Star</source>
         <translation>Star</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/WildModel4.cpp" line="305"/>
+        <location filename="../Models/Gen4/WildModel4.cpp" line="281"/>
         <source>No</source>
         <translation>No</translation>
     </message>
@@ -5747,11 +8266,6 @@
         <location filename="../Models/Gen4/WildModel4.hpp" line="61"/>
         <source>Seed</source>
         <translation>Seed</translation>
-    </message>
-    <message>
-        <location filename="../Models/Gen4/WildModel4.hpp" line="61"/>
-        <source>Advance</source>
-        <translation>Advance</translation>
     </message>
     <message>
         <location filename="../Models/Gen4/WildModel4.hpp" line="61"/>
@@ -5787,6 +8301,11 @@
         <location filename="../Models/Gen4/WildModel4.hpp" line="61"/>
         <source>Ability</source>
         <translation>Ability</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen4/WildModel4.hpp" line="61"/>
+        <source>Advances</source>
+        <translation>Advances</translation>
     </message>
     <message>
         <location filename="../Models/Gen4/WildModel4.hpp" line="62"/>
