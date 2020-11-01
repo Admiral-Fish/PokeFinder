@@ -277,7 +277,7 @@ void SeedtoTime4::dpptCalibrate()
     if (!index.isValid())
     {
         QMessageBox error;
-        error.setText("Please select a result from Seed to Time.");
+        error.setText(tr("Please select a result from Seed to Time."));
         error.exec();
         return;
     }
@@ -335,7 +335,7 @@ void SeedtoTime4::hgssCalibrate()
     if (!index.isValid())
     {
         QMessageBox error;
-        error.setText("Please select a result from Seed to Time.");
+        error.setText(tr("Please select a result from Seed to Time."));
         error.exec();
         return;
     }

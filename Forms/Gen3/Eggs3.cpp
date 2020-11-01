@@ -162,7 +162,7 @@ void Eggs3::emeraldGenerate()
 {
     if (!ui->eggSettingsEmerald->compatibleParents())
     {
-        QMessageBox box(QMessageBox::Warning, "Incompatible Parents", "Gender of selected parents are not compatible for breeding");
+        QMessageBox box(QMessageBox::Warning, tr("Incompatible Parents"), tr("Gender of selected parents are not compatible for breeding"));
         box.exec();
         return;
     }
@@ -196,7 +196,7 @@ void Eggs3::rsGenerate()
 {
     if (!ui->eggSettingsRS->compatibleParents())
     {
-        QMessageBox box(QMessageBox::Warning, "Incompatible Parents", "Gender of selected parents are not compatible for breeding");
+        QMessageBox box(QMessageBox::Warning, tr("Incompatible Parents"), tr("Gender of selected parents are not compatible for breeding"));
         box.exec();
         return;
     }
@@ -226,7 +226,7 @@ void Eggs3::frlgGenerate()
 {
     if (!ui->eggSettingsFRLG->compatibleParents())
     {
-        QMessageBox box(QMessageBox::Warning, "Incompatible Parents", "Gender of selected parents are not compatible for breeding");
+        QMessageBox box(QMessageBox::Warning, tr("Incompatible Parents"), tr("Gender of selected parents are not compatible for breeding"));
         box.exec();
         return;
     }

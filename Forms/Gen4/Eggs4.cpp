@@ -177,7 +177,7 @@ void Eggs4::generate()
 {
     if (!ui->eggSettingsGenerator->compatibleParents())
     {
-        QMessageBox box(QMessageBox::Warning, "Incompatible Parents", "Gender of selected parents are not compatible for breeding");
+        QMessageBox box(QMessageBox::Warning, tr("Incompatible Parents"), tr("Gender of selected parents are not compatible for breeding"));
         box.exec();
         return;
     }
@@ -220,7 +220,7 @@ void Eggs4::search()
 {
     if (!ui->eggSettingsSearcher->compatibleParents())
     {
-        QMessageBox box(QMessageBox::Warning, "Incompatible Parents", "Gender of selected parents are not compatible for breeding");
+        QMessageBox box(QMessageBox::Warning, tr("Incompatible Parents"), tr("Gender of selected parents are not compatible for breeding"));
         box.exec();
         return;
     }

@@ -1363,6 +1363,20 @@ Volbeat</translation>
         <translation>Output Results to CSV</translation>
     </message>
     <message>
+        <location filename="../Forms/Gen3/Eggs3.cpp" line="165"/>
+        <location filename="../Forms/Gen3/Eggs3.cpp" line="199"/>
+        <location filename="../Forms/Gen3/Eggs3.cpp" line="229"/>
+        <source>Incompatible Parents</source>
+        <translation>Incompatible Parents</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Eggs3.cpp" line="165"/>
+        <location filename="../Forms/Gen3/Eggs3.cpp" line="199"/>
+        <location filename="../Forms/Gen3/Eggs3.cpp" line="229"/>
+        <source>Gender of selected parents are not compatible for breeding</source>
+        <translation>Gender of selected parents are not compatible for breeding</translation>
+    </message>
+    <message>
         <location filename="../Forms/Gen3/Eggs3.ui"/>
         <source>Initial Advances</source>
         <translation>Initial Advances</translation>
@@ -1496,6 +1510,18 @@ Volbeat</translation>
         <location filename="../Forms/Gen4/Eggs4.cpp" line="122"/>
         <source>Generate times for seed</source>
         <translation>Generate times for seed</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen4/Eggs4.cpp" line="180"/>
+        <location filename="../Forms/Gen4/Eggs4.cpp" line="223"/>
+        <source>Incompatible Parents</source>
+        <translation>Incompatible Parents</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen4/Eggs4.cpp" line="180"/>
+        <location filename="../Forms/Gen4/Eggs4.cpp" line="223"/>
+        <source>Gender of selected parents are not compatible for breeding</source>
+        <translation>Gender of selected parents are not compatible for breeding</translation>
     </message>
     <message>
         <location filename="../Forms/Gen4/Eggs4.ui"/>
@@ -1696,6 +1722,30 @@ Volbeat</translation>
         <location filename="../Forms/Gen5/Eggs5.cpp" line="111"/>
         <source>Output Results to CSV</source>
         <translation>Output Results to CSV</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Eggs5.cpp" line="141"/>
+        <location filename="../Forms/Gen5/Eggs5.cpp" line="182"/>
+        <source>Incompatible Parents</source>
+        <translation>Incompatible Parents</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Eggs5.cpp" line="141"/>
+        <location filename="../Forms/Gen5/Eggs5.cpp" line="182"/>
+        <source>Gender of selected parents are not compatible for breeding</source>
+        <translation>Gender of selected parents are not compatible for breeding</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Eggs5.cpp" line="147"/>
+        <location filename="../Forms/Gen5/Eggs5.cpp" line="188"/>
+        <source>Parents Reordered</source>
+        <translation>Parents Reordered</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen5/Eggs5.cpp" line="147"/>
+        <location filename="../Forms/Gen5/Eggs5.cpp" line="188"/>
+        <source>Parent were swapped to match the game</source>
+        <translation>Parent were swapped to match the game</translation>
     </message>
 </context>
 <context>
@@ -6101,6 +6151,12 @@ Volbeat</translation>
         <translation>Coin Flips: </translation>
     </message>
     <message>
+        <location filename="../Forms/Gen4/Tools/SeedtoTime4.cpp" line="280"/>
+        <location filename="../Forms/Gen4/Tools/SeedtoTime4.cpp" line="338"/>
+        <source>Please select a result from Seed to Time.</source>
+        <translation>Please select a result from Seed to Time.</translation>
+    </message>
+    <message>
         <location filename="../Forms/Gen4/Tools/SeedtoTime4.cpp" line="317"/>
         <source>Elm Calls: </source>
         <translation>Elm Calls: </translation>
@@ -6773,8 +6829,8 @@ Volbeat</translation>
     </message>
     <message>
         <location filename="../Forms/Gen5/Stationary5.ui"/>
-        <location filename="../Forms/Gen5/Stationary5.cpp" line="287"/>
-        <location filename="../Forms/Gen5/Stationary5.cpp" line="305"/>
+        <location filename="../Forms/Gen5/Stationary5.cpp" line="264"/>
+        <location filename="../Forms/Gen5/Stationary5.cpp" line="282"/>
         <source>Synchronize</source>
         <translation>Synchronize</translation>
     </message>
@@ -6825,14 +6881,14 @@ Volbeat</translation>
     </message>
     <message>
         <location filename="../Forms/Gen5/Stationary5.ui"/>
-        <location filename="../Forms/Gen5/Stationary5.cpp" line="289"/>
-        <location filename="../Forms/Gen5/Stationary5.cpp" line="298"/>
+        <location filename="../Forms/Gen5/Stationary5.cpp" line="266"/>
+        <location filename="../Forms/Gen5/Stationary5.cpp" line="275"/>
         <source>Cute Charm</source>
         <translation>Cute Charm</translation>
     </message>
     <message>
         <location filename="../Forms/Gen5/Stationary5.ui"/>
-        <location filename="../Forms/Gen5/Stationary5.cpp" line="97"/>
+        <location filename="../Forms/Gen5/Stationary5.cpp" line="96"/>
         <source>None</source>
         <translation>None</translation>
     </message>
@@ -6847,44 +6903,44 @@ Volbeat</translation>
         <translation>Cancel</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen5/Stationary5.cpp" line="122"/>
-        <location filename="../Forms/Gen5/Stationary5.cpp" line="128"/>
+        <location filename="../Forms/Gen5/Stationary5.cpp" line="99"/>
+        <location filename="../Forms/Gen5/Stationary5.cpp" line="105"/>
         <source>Output Results to TXT</source>
         <translation>Output Results to TXT</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen5/Stationary5.cpp" line="123"/>
-        <location filename="../Forms/Gen5/Stationary5.cpp" line="129"/>
+        <location filename="../Forms/Gen5/Stationary5.cpp" line="100"/>
+        <location filename="../Forms/Gen5/Stationary5.cpp" line="106"/>
         <source>Output Results to CSV</source>
         <translation>Output Results to CSV</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen5/Stationary5.cpp" line="292"/>
+        <location filename="../Forms/Gen5/Stationary5.cpp" line="269"/>
         <source>♂ Lead</source>
         <translation>♂ Lead</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen5/Stationary5.cpp" line="293"/>
+        <location filename="../Forms/Gen5/Stationary5.cpp" line="270"/>
         <source>♀ Lead (50% ♂ Target)</source>
         <translation>♀ Lead (50% ♂ Target)</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen5/Stationary5.cpp" line="294"/>
+        <location filename="../Forms/Gen5/Stationary5.cpp" line="271"/>
         <source>♀ Lead (75% ♂ Target)</source>
         <translation>♀ Lead (75% ♂ Target)</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen5/Stationary5.cpp" line="295"/>
+        <location filename="../Forms/Gen5/Stationary5.cpp" line="272"/>
         <source>♀ Lead (25% ♂ Target)</source>
         <translation>♀ Lead (25% ♂ Target)</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen5/Stationary5.cpp" line="296"/>
+        <location filename="../Forms/Gen5/Stationary5.cpp" line="273"/>
         <source>♀ Lead (87.5% ♂ Target)</source>
         <translation>♀ Lead (87.5% ♂ Target)</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen5/Stationary5.cpp" line="300"/>
+        <location filename="../Forms/Gen5/Stationary5.cpp" line="277"/>
         <source>Suction Cups</source>
         <translation>Suction Cups</translation>
     </message>

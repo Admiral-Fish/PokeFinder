@@ -138,13 +138,13 @@ void Eggs5::generate()
 {
     if (!ui->eggSettingsGenerator->compatibleParents())
     {
-        QMessageBox box(QMessageBox::Warning, "Incompatible Parents", "Gender of selected parents are not compatible for breeding");
+        QMessageBox box(QMessageBox::Warning, tr("Incompatible Parents"), tr("Gender of selected parents are not compatible for breeding"));
         box.exec();
         return;
     }
     if (ui->eggSettingsGenerator->reorderParents())
     {
-        QMessageBox box(QMessageBox::Information, "Parents Reordered", "Parent were swapped to match the game");
+        QMessageBox box(QMessageBox::Information, tr("Parents Reordered"), tr("Parent were swapped to match the game"));
         box.exec();
     }
 
@@ -179,13 +179,13 @@ void Eggs5::search()
 {
     if (!ui->eggSettingsSearcher->compatibleParents())
     {
-        QMessageBox box(QMessageBox::Warning, "Incompatible Parents", "Gender of selected parents are not compatible for breeding");
+        QMessageBox box(QMessageBox::Warning, tr("Incompatible Parents"), tr("Gender of selected parents are not compatible for breeding"));
         box.exec();
         return;
     }
     if (ui->eggSettingsSearcher->reorderParents())
     {
-        QMessageBox box(QMessageBox::Information, "Parents Reordered", "Parent were swapped to match the game");
+        QMessageBox box(QMessageBox::Information, tr("Parents Reordered"), tr("Parent were swapped to match the game"));
         box.exec();
     }
 
