@@ -229,7 +229,7 @@ QVariant GameCubeSearcherModel::data(const QModelIndex &index, int role) const
             switch (state.getInfo())
             {
             case 0:
-                return tr("Pass NL");
+                return tr("Pass SL");
             case 1:
                 return tr("First shadow unset");
             case 2:

@@ -2777,7 +2777,7 @@ Volbeat</source>
     </message>
     <message>
         <location filename="../Models/Gen3/GameCubeModel.cpp" line="232"/>
-        <source>Pass NL</source>
+        <source>Pass SL</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

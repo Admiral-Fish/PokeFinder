@@ -2777,8 +2777,8 @@ Volbeat</source>
     </message>
     <message>
         <location filename="../Models/Gen3/GameCubeModel.cpp" line="232"/>
-        <source>Pass NL</source>
-        <translation type="unfinished">通过性格锁</translation>
+        <source>Pass SL</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Models/Gen3/GameCubeModel.cpp" line="234"/>
