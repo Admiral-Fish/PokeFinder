@@ -2581,16 +2581,6 @@ Volbeat</source>
     </message>
     <message>
         <location filename="../Forms/Gen3/GameCube.ui"/>
-        <source>Set</source>
-        <translation>Establecer</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/GameCube.ui"/>
-        <source>Unset</source>
-        <translation>Sin establecer</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/GameCube.ui"/>
         <source>Shiny Skip</source>
         <translation>Omitir variocolor</translation>
     </message>
@@ -2608,6 +2598,16 @@ Volbeat</source>
         <location filename="../Forms/Gen3/GameCube.ui"/>
         <source>Max Advances</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/GameCube.ui"/>
+        <source>First shadow set</source>
+        <translation type="unfinished">Primer oscuro establecido</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/GameCube.ui"/>
+        <source>First shadow unset</source>
+        <translation type="unfinished">Primer oscuro sin establecer</translation>
     </message>
 </context>
 <context>

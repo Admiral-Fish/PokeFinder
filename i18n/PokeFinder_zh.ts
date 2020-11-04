@@ -2580,16 +2580,6 @@ Volbeat</source>
     </message>
     <message>
         <location filename="../Forms/Gen3/GameCube.ui"/>
-        <source>Set</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/GameCube.ui"/>
-        <source>Unset</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/GameCube.ui"/>
         <source>Shiny Skip</source>
         <translation type="unfinished">跳过异色</translation>
     </message>
@@ -2607,6 +2597,16 @@ Volbeat</source>
         <location filename="../Forms/Gen3/GameCube.ui"/>
         <source>Max Advances</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/GameCube.ui"/>
+        <source>First shadow set</source>
+        <translation type="unfinished">第一只黑暗已设置</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/GameCube.ui"/>
+        <source>First shadow unset</source>
+        <translation type="unfinished">第一只黑暗未设置</translation>
     </message>
 </context>
 <context>

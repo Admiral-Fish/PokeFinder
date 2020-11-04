@@ -277,12 +277,12 @@
            <widget class="QComboBox" name="comboBoxGeneratorType">
             <item>
              <property name="text">
-              <string>Set</string>
+              <string>First shadow set</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string>Unset</string>
+              <string>First shadow unset</string>
              </property>
             </item>
             <item>
