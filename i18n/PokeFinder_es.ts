@@ -377,14 +377,14 @@
         <translation type="unfinished">Guardar resultados como archivo CSV</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen5/DreamRadar.cpp" line="206"/>
-        <location filename="../Forms/Gen5/DreamRadar.cpp" line="241"/>
+        <location filename="../Forms/Gen5/DreamRadar.cpp" line="209"/>
+        <location filename="../Forms/Gen5/DreamRadar.cpp" line="247"/>
         <source>Missing settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen5/DreamRadar.cpp" line="206"/>
-        <location filename="../Forms/Gen5/DreamRadar.cpp" line="241"/>
+        <location filename="../Forms/Gen5/DreamRadar.cpp" line="209"/>
+        <location filename="../Forms/Gen5/DreamRadar.cpp" line="247"/>
         <source>Enter information for at least 1 slot</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5412,6 +5412,7 @@ Volbeat</source>
         <location filename="../Core/Gen4/Profile4.cpp" line="48"/>
         <location filename="../Core/Gen4/Profile4.cpp" line="66"/>
         <location filename="../Core/Gen5/Profile5.cpp" line="81"/>
+        <location filename="../Core/Parents/Profile.cpp" line="24"/>
         <source>None</source>
         <translation>Ninguno</translation>
     </message>
@@ -6510,6 +6511,11 @@ Volbeat</source>
         <location filename="../Forms/Gen3/Stationary3.ui"/>
         <source>Max Advances</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Stationary3.ui"/>
+        <source>Gen 3 Stationary</source>
+        <translation type="unfinished">Generación 4 estacionarios {3 ?}</translation>
     </message>
 </context>
 <context>
