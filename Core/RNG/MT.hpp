@@ -45,23 +45,35 @@ private:
 
 // The assumptions of MTFast allow some simplifications to be made from normal MT
 // 1. computing less of the internal MT array
-// 2. skipping the shuffle check when generating numbers for use
-// 3. if the fast parameter is true skip the last bit shift operation (only in IV generation)
+// 2. storing less of the internal MT array
+// 3. skipping the shuffle check when generating numbers for use
+// 4. if the fast parameter is true skip the last bit shift operation (only in gen 5)
 template <u16 size, bool fast = false>
 class MTFast
 {
 public:
-    MTFast(u32 seed, u32 advances=0)
+    MTFast(u32 seed, u32 advances = 0) : index(1)
     {
         static_assert(size < 227, "Size exceeds range of MTFast");
 
         mt[0] = seed;
-
-        for (index = 1; index < (size + 397); index++)
+        do
         {
             seed = 0x6c078965 * (seed ^ (seed >> 30)) + index;
-            mt[index] = seed;
-        }
+            mt[index++] = seed;
+        } while (index < (size + 1));
+
+        do
+        {
+            seed = 0x6c078965 * (seed ^ (seed >> 30)) + index++;
+        } while (index < 397);
+
+        u32 *ptr = &temper[0];
+        do
+        {
+            seed = 0x6c078965 * (seed ^ (seed >> 30)) + index++;
+            *ptr++ = seed;
+        } while (index < (size + 397));
 
         index = advances;
         shuffle();
@@ -87,7 +99,8 @@ public:
     }
 
 private:
-    u32 mt[size + 397];
+    u32 mt[size + 1];
+    u32 temper[size];
     u16 index;
 
     void shuffle()
@@ -97,7 +110,7 @@ private:
 #ifdef USE_AVX2
         // Even with AVX2 only use it if the number of iterations remaining is less then 4
         // Otherwise using SSE2 is preferred so we don't mix-match AVX2 and SSE2
-        if constexpr (size > 8 && (size % 8) < 4)
+        if constexpr (size >= 8 && (size % 8) < 4)
         {
             __m256i upperMask256 = _mm256_set1_epi32(0x80000000);
             __m256i lowerMask256 = _mm256_set1_epi32(0x7fffffff);
@@ -108,7 +121,7 @@ private:
             {
                 __m256i m0 = _mm256_loadu_si256((const __m256i *)&mt[i]);
                 __m256i m1 = _mm256_loadu_si256((const __m256i *)&mt[i + 1]);
-                __m256i m2 = _mm256_loadu_si256((const __m256i *)&mt[i + 397]);
+                __m256i m2 = _mm256_loadu_si256((const __m256i *)&temper[i]);
 
                 __m256i y = _mm256_or_si256(_mm256_and_si256(m0, upperMask256), _mm256_and_si256(m1, lowerMask256));
                 __m256i y1 = _mm256_srli_epi32(y, 1);
@@ -117,7 +130,7 @@ private:
                 _mm256_storeu_si256((__m256i *)&mt[i], _mm256_xor_si256(_mm256_xor_si256(y1, mag01), m2));
             }
         }
-        else if constexpr (size > 4)
+        else if constexpr (size >= 4)
         {
             __m128i upperMask = _mm_set1_epi32(0x80000000);
             __m128i lowerMask = _mm_set1_epi32(0x7fffffff);
@@ -128,7 +141,7 @@ private:
             {
                 __m128i m0 = _mm_loadu_si128((const __m128i *)&mt[i]);
                 __m128i m1 = _mm_loadu_si128((const __m128i *)&mt[i + 1]);
-                __m128i m2 = _mm_loadu_si128((const __m128i *)&mt[i + 397]);
+                __m128i m2 = _mm_loadu_si128((const __m128i *)&temper[i]);
 
                 __m128i y = _mm_or_si128(_mm_and_si128(m0, upperMask), _mm_and_si128(m1, lowerMask));
                 __m128i y1 = _mm_srli_epi32(y, 1);
@@ -138,7 +151,7 @@ private:
             }
         }
 #else
-        if constexpr (size > 4)
+        if constexpr (size >= 4)
         {
             __m128i upperMask = _mm_set1_epi32(0x80000000);
             __m128i lowerMask = _mm_set1_epi32(0x7fffffff);
@@ -149,7 +162,7 @@ private:
             {
                 __m128i m0 = _mm_loadu_si128((const __m128i *)&mt[i]);
                 __m128i m1 = _mm_loadu_si128((const __m128i *)&mt[i + 1]);
-                __m128i m2 = _mm_loadu_si128((const __m128i *)&mt[i + 397]);
+                __m128i m2 = _mm_loadu_si128((const __m128i *)&temper[i]);
 
                 __m128i y = _mm_or_si128(_mm_and_si128(m0, upperMask), _mm_and_si128(m1, lowerMask));
                 __m128i y1 = _mm_srli_epi32(y, 1);
@@ -164,6 +177,7 @@ private:
         {
             u32 m0 = mt[i];
             u32 m1 = mt[i + 1];
+            u32 m2 = temper[i];
 
             u32 y = (m0 & 0x80000000) | (m1 & 0x7fffffff);
 
@@ -173,7 +187,7 @@ private:
                 y1 ^= 0x9908b0df;
             }
 
-            mt[i] = y1 ^ mt[i + 397];
+            mt[i] = y1 ^ m2;
         }
     }
 };
