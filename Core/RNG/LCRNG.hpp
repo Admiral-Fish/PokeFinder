@@ -43,8 +43,20 @@ public:
         return seed = seed * mult + add;
     }
 
+    u32 next(u32 &count)
+    {
+        count++;
+        return seed = seed * mult + add;
+    }
+
     u16 nextUShort()
     {
+        return next() >> 16;
+    }
+
+    u16 nextUShort(u32 &count)
+    {
+        count++;
         return next() >> 16;
     }
 

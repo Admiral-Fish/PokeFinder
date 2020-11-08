@@ -20,12 +20,12 @@
 #ifndef WILD4MODEL_HPP
 #define WILD4MODEL_HPP
 
-#include <Core/Parents/States/WildState.hpp>
+#include <Core/Gen4/States/WildState4.hpp>
 #include <Models/TableModel.hpp>
 
 enum Method : u8;
 
-class WildGeneratorModel4 : public TableModel<WildState>
+class WildGeneratorModel4 : public TableModel<WildState4>
 {
     Q_OBJECT
 public:
@@ -37,9 +37,9 @@ public:
 
 private:
     Method method;
-    QStringList header
-        = { tr("Advances"), tr("Call"), tr("Chatot"), tr("Slot"), tr("Level"), tr("PID"), tr("Shiny"),  tr("Nature"), tr("Ability"),
-            tr("HP"),       tr("Atk"),  tr("Def"),    tr("SpA"),  tr("SpD"),   tr("Spe"), tr("Hidden"), tr("Power"),  tr("Gender") };
+    QStringList header = { tr("Advances"), tr("Occidentary"), tr("Call"),    tr("Chatot"), tr("Slot"),  tr("Level"), tr("PID"),
+                           tr("Shiny"),    tr("Nature"),      tr("Ability"), tr("HP"),     tr("Atk"),   tr("Def"),   tr("SpA"),
+                           tr("SpD"),      tr("Spe"),         tr("Hidden"),  tr("Power"),  tr("Gender") };
 
     int getColumn(int column) const;
 };

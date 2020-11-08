@@ -138,6 +138,7 @@ HEADERS += \
     Core/Gen4/Searchers/IDSearcher4.hpp \
     Core/Gen4/Searchers/StationarySearcher4.hpp \
     Core/Gen4/Searchers/WildSearcher4.hpp \
+    Core/Gen4/States/WildState4.hpp \
     Core/Gen4/Tools/ChainedSIDCalc.hpp \
     Core/Gen5/EncounterArea5.hpp \
     Core/Gen5/Encounters5.hpp \

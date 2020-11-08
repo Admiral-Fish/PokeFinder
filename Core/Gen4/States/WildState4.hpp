@@ -17,28 +17,32 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef WILDGENERATOR4_HPP
-#define WILDGENERATOR4_HPP
+#ifndef WILDSTATE4_HPP
+#define WILDSTATE4_HPP
 
-#include <Core/Gen4/EncounterArea4.hpp>
-#include <Core/Gen4/States/WildState4.hpp>
-#include <Core/Parents/Generators/WildGenerator.hpp>
-#include <QVector>
+#include <Core/Parents/States/WildState.hpp>
 
-class WildGenerator4 : public WildGenerator
+class WildState4 : public WildState
 {
 public:
-    WildGenerator4() = default;
-    WildGenerator4(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter);
-    QVector<WildState4> generate(u32 seed) const;
-    void setEncounterArea(const EncounterArea4 &encounterArea);
+    WildState4() = default;
+
+    explicit WildState4(u32 advance) : WildState(advance)
+    {
+    }
+
+    u32 getOccidentary() const
+    {
+        return occidentary;
+    }
+
+    void setOccidentary(u32 occidentary)
+    {
+        this->occidentary = occidentary;
+    }
 
 private:
-    QVector<WildState4> generateMethodJ(u32 seed) const;
-    QVector<WildState4> generateMethodK(u32 seed) const;
-    QVector<WildState4> generateChainedShiny(u32 seed) const;
-
-    EncounterArea4 encounterArea;
+    u32 occidentary;
 };
 
-#endif // WILDGENERATOR4_HPP
+#endif // WILDSTATE4_HPP
