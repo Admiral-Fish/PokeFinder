@@ -183,7 +183,7 @@ void GameCubeSeedFinder::galesSearch()
             QFile f(path);
             if (f.open(QIODevice::ReadOnly))
             {
-                if (QCryptographicHash::hash(f.readAll(), QCryptographicHash::Sha256)
+                if (QCryptographicHash::hash(f.readAll(), QCryptographicHash::Sha256).toHex()
                     == "d915b199ff9c24e6bedd0c783a40ce8fc57c778176ceacd50324c073c48ef9b4")
                 {
                     galesPrecalc = 1;
@@ -308,7 +308,7 @@ void GameCubeSeedFinder::coloSearch()
             QFile f(path);
             if (f.open(QIODevice::ReadOnly))
             {
-                if (QCryptographicHash::hash(f.readAll(), QCryptographicHash::Sha256)
+                if (QCryptographicHash::hash(f.readAll(), QCryptographicHash::Sha256).toHex()
                     == "753efaca0a0a1fc02a81a6d010a8a76c384bd097bf53e28bb7efae8440a67727")
                 {
                     coloPrecalc = 1;
