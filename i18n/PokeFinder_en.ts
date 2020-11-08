@@ -377,14 +377,14 @@
         <translation>Output Results to CSV</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen5/DreamRadar.cpp" line="209"/>
-        <location filename="../Forms/Gen5/DreamRadar.cpp" line="247"/>
+        <location filename="../Forms/Gen5/DreamRadar.cpp" line="206"/>
+        <location filename="../Forms/Gen5/DreamRadar.cpp" line="241"/>
         <source>Missing settings</source>
         <translation>Missing settings</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen5/DreamRadar.cpp" line="209"/>
-        <location filename="../Forms/Gen5/DreamRadar.cpp" line="247"/>
+        <location filename="../Forms/Gen5/DreamRadar.cpp" line="206"/>
+        <location filename="../Forms/Gen5/DreamRadar.cpp" line="241"/>
         <source>Enter information for at least 1 slot</source>
         <translation>Enter information for at least 1 slot</translation>
     </message>
@@ -2940,60 +2940,114 @@ Volbeat</translation>
         <translation>Party Lead</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="87"/>
-        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="113"/>
-        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="225"/>
-        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="279"/>
+        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="91"/>
+        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="117"/>
+        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="294"/>
+        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="414"/>
         <source>Round #</source>
         <translation>Round #</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="92"/>
-        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="118"/>
+        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="96"/>
+        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="122"/>
         <source>Your seed is %1. Copy to clipboard?</source>
         <translation>Your seed is %1. Copy to clipboard?</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="101"/>
-        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="127"/>
+        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="105"/>
+        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="131"/>
         <source>Possible Results: %1</source>
         <translation>Possible Results: %1</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="140"/>
+        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="144"/>
         <source>Result: Invalid</source>
         <translation>Result: Invalid</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="154"/>
+        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="158"/>
         <source>Result: </source>
         <translation>Result: </translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="155"/>
+        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="159"/>
         <source>Your seed(s) is %1. Copy to clipboard?</source>
         <translation>Your seed(s) is %1. Copy to clipboard?</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="288"/>
+        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="177"/>
+        <source>Gales Precalc</source>
+        <translation>Gales Precalc</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="178"/>
+        <source>Would you like to use the Gales Precalc file? This decision will be remembered until you close this window.</source>
+        <translation>Would you like to sue the Gales Precalc file? This decision will be remembered until you close this window.</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="181"/>
+        <source>Select Gales Precalc</source>
+        <translation>Select Gales Precalc</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="194"/>
+        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="319"/>
+        <source>Invalid Precalc File</source>
+        <translation>Invalid Precalc File</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="195"/>
+        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="320"/>
+        <source>An invalid Precalc file was provided. Please try again.</source>
+        <translation>An invalid Precalc file was provided. Please try again.</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="202"/>
+        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="327"/>
+        <source>Unable to open file</source>
+        <translation>Unable to open file</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="202"/>
+        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="327"/>
+        <source>Unable to open file. Please try again.</source>
+        <translation>Unable to open file. Please try again.</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="302"/>
+        <source>Colo Precalc</source>
+        <translation>Colo Precalc</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="303"/>
+        <source>Would you like to use the Colo Precalc file? This decision will be remembered until you close this window.</source>
+        <translation>Would you like to use the Colo Precalc file? This decision will be remembered until you close this window.</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="306"/>
+        <source>Select Colo Precalc</source>
+        <translation>Select Colo Precalc</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="423"/>
         <source>Missing info</source>
         <translation>Missing info</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="288"/>
+        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="423"/>
         <source>You must have at least 10 entries</source>
         <translation>You must have at least 10 entries</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="91"/>
-        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="117"/>
+        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="95"/>
+        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="121"/>
         <source>Seed: </source>
         <translation>Seed: </translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="92"/>
-        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="118"/>
-        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="155"/>
+        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="96"/>
+        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="122"/>
+        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="159"/>
         <source>Seed found</source>
         <translation>Seed found</translation>
     </message>
@@ -8044,42 +8098,42 @@ Volbeat</translation>
 <context>
     <name>WildGeneratorModel4</name>
     <message>
-        <location filename="../Models/Gen4/WildModel4.cpp" line="80"/>
+        <location filename="../Models/Gen4/WildModel4.cpp" line="82"/>
         <source>Square</source>
         <translation>Square</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/WildModel4.cpp" line="80"/>
+        <location filename="../Models/Gen4/WildModel4.cpp" line="82"/>
         <source>Star</source>
         <translation>Star</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/WildModel4.cpp" line="80"/>
+        <location filename="../Models/Gen4/WildModel4.cpp" line="82"/>
         <source>No</source>
         <translation>No</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/WildModel4.hpp" line="41"/>
+        <location filename="../Models/Gen4/WildModel4.hpp" line="40"/>
         <source>Call</source>
         <translation>Call</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/WildModel4.hpp" line="41"/>
+        <location filename="../Models/Gen4/WildModel4.hpp" line="40"/>
         <source>Chatot</source>
         <translation>Chatot</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/WildModel4.hpp" line="41"/>
+        <location filename="../Models/Gen4/WildModel4.hpp" line="40"/>
         <source>Slot</source>
         <translation>Slot</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/WildModel4.hpp" line="41"/>
+        <location filename="../Models/Gen4/WildModel4.hpp" line="40"/>
         <source>Level</source>
         <translation>Level</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/WildModel4.hpp" line="41"/>
+        <location filename="../Models/Gen4/WildModel4.hpp" line="40"/>
         <source>PID</source>
         <translation>PID</translation>
     </message>
@@ -8099,27 +8153,32 @@ Volbeat</translation>
         <translation>Ability</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/WildModel4.hpp" line="41"/>
+        <location filename="../Models/Gen4/WildModel4.hpp" line="40"/>
         <source>Advances</source>
         <translation>Advances</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/WildModel4.hpp" line="42"/>
+        <location filename="../Models/Gen4/WildModel4.hpp" line="40"/>
+        <source>Occidentary</source>
+        <translation>Occidentary</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen4/WildModel4.hpp" line="41"/>
         <source>HP</source>
         <translation>HP</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/WildModel4.hpp" line="42"/>
+        <location filename="../Models/Gen4/WildModel4.hpp" line="41"/>
         <source>Atk</source>
         <translation>Atk</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/WildModel4.hpp" line="42"/>
+        <location filename="../Models/Gen4/WildModel4.hpp" line="41"/>
         <source>Def</source>
         <translation>Def</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/WildModel4.hpp" line="42"/>
+        <location filename="../Models/Gen4/WildModel4.hpp" line="41"/>
         <source>SpA</source>
         <translation>SpA</translation>
     </message>
@@ -8270,57 +8329,57 @@ Volbeat</translation>
 <context>
     <name>WildSearcherModel4</name>
     <message>
-        <location filename="../Models/Gen4/WildModel4.cpp" line="255"/>
+        <location filename="../Models/Gen4/WildModel4.cpp" line="257"/>
         <source>None</source>
         <translation>None</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/WildModel4.cpp" line="257"/>
+        <location filename="../Models/Gen4/WildModel4.cpp" line="259"/>
         <source>Synchronize</source>
         <translation>Synchronize</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/WildModel4.cpp" line="259"/>
+        <location filename="../Models/Gen4/WildModel4.cpp" line="261"/>
         <source>Suction Cups</source>
         <translation>Suction Cups</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/WildModel4.cpp" line="261"/>
+        <location filename="../Models/Gen4/WildModel4.cpp" line="263"/>
         <source>Cute Charm (♀)</source>
         <translation>Cute Charm (♀)</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/WildModel4.cpp" line="263"/>
+        <location filename="../Models/Gen4/WildModel4.cpp" line="265"/>
         <source>Cute Charm (25% ♂)</source>
         <translation>Cute Charm (25% ♂)</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/WildModel4.cpp" line="265"/>
+        <location filename="../Models/Gen4/WildModel4.cpp" line="267"/>
         <source>Cute Charm (50% ♂)</source>
         <translation>Cute Charm (50% ♂)</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/WildModel4.cpp" line="267"/>
+        <location filename="../Models/Gen4/WildModel4.cpp" line="269"/>
         <source>Cute Charm (75% ♂)</source>
         <translation>Cute Charm (75% ♂)</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/WildModel4.cpp" line="270"/>
+        <location filename="../Models/Gen4/WildModel4.cpp" line="272"/>
         <source>Cute Charm (87.5% ♂)</source>
         <translation>Cute Charm (87.5% ♂)</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/WildModel4.cpp" line="281"/>
+        <location filename="../Models/Gen4/WildModel4.cpp" line="283"/>
         <source>Square</source>
         <translation>Square</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/WildModel4.cpp" line="281"/>
+        <location filename="../Models/Gen4/WildModel4.cpp" line="283"/>
         <source>Star</source>
         <translation>Star</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/WildModel4.cpp" line="281"/>
+        <location filename="../Models/Gen4/WildModel4.cpp" line="283"/>
         <source>No</source>
         <translation>No</translation>
     </message>
