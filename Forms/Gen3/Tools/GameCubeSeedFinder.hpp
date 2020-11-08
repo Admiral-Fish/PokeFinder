@@ -41,6 +41,10 @@ private:
     QVector<u32> coloSeeds;
     u8 galesRound;
     u8 coloRound;
+    int galesPrecalc;
+    int coloPrecalc;
+    QString galesPath;
+    QString coloPath;
 
     void updateGales(const QVector<u32> &seeds);
     void updateGalesProgress(int progress);

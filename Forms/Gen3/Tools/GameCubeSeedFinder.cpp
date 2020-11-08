@@ -25,7 +25,9 @@
 #include <Core/Gen3/Searchers/GalesSeedSearcher.hpp>
 #include <Core/Util/Translator.hpp>
 #include <QClipboard>
+#include <QCryptographicHash>
 #include <QDesktopServices>
+#include <QFileDialog>
 #include <QMessageBox>
 #include <QSettings>
 #include <QThread>
@@ -44,6 +46,8 @@ GameCubeSeedFinder::GameCubeSeedFinder(QWidget *parent) : QWidget(parent), ui(ne
 
     galesRound = 1;
     coloRound = 1;
+    galesPrecalc = -1;
+    coloPrecalc = -1;
 
     ui->textBoxGalesTSV->setValues(0, 8191, 4, 10);
     ui->textBoxGalesTopLeft->setValues(1, 714, 3, 10);
@@ -168,6 +172,45 @@ void GameCubeSeedFinder::updateChannelProgress(int progress)
 
 void GameCubeSeedFinder::galesSearch()
 {
+    if (galesPrecalc == -1)
+    {
+        QMessageBox msg(QMessageBox::Question, tr("Gales Precalc"),
+                        tr("Would you like to use the Gales Precalc file? This decision will be remembered until you close this window."));
+        if (msg.exec() == QMessageBox::Yes)
+        {
+            QString path = QFileDialog::getOpenFileName(this, tr("Select Gales Precalc"), QDir::currentPath(), "precalc (*.precalc)");
+
+            QFile f(path);
+            if (f.open(QIODevice::ReadOnly))
+            {
+                if (QCryptographicHash::hash(f.readAll(), QCryptographicHash::Sha256)
+                    == "d915b199ff9c24e6bedd0c783a40ce8fc57c778176ceacd50324c073c48ef9b4")
+                {
+                    galesPrecalc = 1;
+                    galesPath = path;
+                }
+                else
+                {
+                    QMessageBox error(QMessageBox::Warning, tr("Invalid Precalc File"),
+                                      tr("An invalid Precalc file was provided. Please try again."), QMessageBox::Ok);
+                    error.exec();
+                    return;
+                }
+            }
+            else
+            {
+                QMessageBox error(QMessageBox::Warning, tr("Unable to open file"), tr("Unable to open file. Please try again."),
+                                  QMessageBox::Ok);
+                error.exec();
+                return;
+            }
+        }
+        else
+        {
+            galesPrecalc = 0;
+        }
+    }
+
     u8 yourLead = ui->comboBoxGalesYourLead->currentIndex();
     u8 enemyLead = ui->comboBoxGalesEnemyLead->currentIndex();
     u16 tsv = ui->textBoxGalesTSV->getUShort();
@@ -176,10 +219,36 @@ void GameCubeSeedFinder::galesSearch()
     u16 topRight = ui->textBoxGalesTopRight->getUShort();
     u16 bottomRight = ui->textBoxGalesBottomRight->getUShort();
 
+    if (galesRound == 1 && galesPrecalc == 1)
+    {
+        QFile f(galesPath);
+        if (f.open(QIODevice::ReadOnly))
+        {
+            u32 seedSizes[25];
+            f.read(reinterpret_cast<char *>(seedSizes), sizeof(seedSizes));
+
+            u8 index = yourLead * 5 + enemyLead;
+            u32 offset = 0;
+            for (u8 i = 0; i < index; i++)
+            {
+                offset += seedSizes[i];
+            }
+
+            QVector<u32> seeds;
+            seeds.resize(seedSizes[index]);
+
+            f.seek(offset * sizeof(u32) + sizeof(u32) * 25);
+            f.read(reinterpret_cast<char *>(seeds.data()), sizeof(u32) * seedSizes[index]);
+
+            updateGales(seeds);
+        }
+
+        return;
+    }
+
     ui->pushButtonGalesSearch->setEnabled(false);
     ui->pushButtonGalesCancel->setEnabled(true);
 
-    // TODO: provide TSV
     auto *searcher = new GalesSeedSearcher({ yourLead, enemyLead, topLeft, bottomLeft, topRight, bottomRight }, tsv);
 
     QSettings setting;
@@ -228,8 +297,74 @@ void GameCubeSeedFinder::galesReset()
 
 void GameCubeSeedFinder::coloSearch()
 {
+    if (coloPrecalc == -1)
+    {
+        QMessageBox msg(QMessageBox::Question, tr("Colo Precalc"),
+                        tr("Would you like to use the Colo Precalc file? This decision will be remembered until you close this window."));
+        if (msg.exec() == QMessageBox::Yes)
+        {
+            QString path = QFileDialog::getOpenFileName(this, tr("Select Colo Precalc"), QDir::currentPath(), "precalc (*.precalc)");
+
+            QFile f(path);
+            if (f.open(QIODevice::ReadOnly))
+            {
+                if (QCryptographicHash::hash(f.readAll(), QCryptographicHash::Sha256)
+                    == "753efaca0a0a1fc02a81a6d010a8a76c384bd097bf53e28bb7efae8440a67727")
+                {
+                    coloPrecalc = 1;
+                    coloPath = path;
+                }
+                else
+                {
+                    QMessageBox error(QMessageBox::Warning, tr("Invalid Precalc File"),
+                                      tr("An invalid Precalc file was provided. Please try again."), QMessageBox::Ok);
+                    error.exec();
+                    return;
+                }
+            }
+            else
+            {
+                QMessageBox error(QMessageBox::Warning, tr("Unable to open file"), tr("Unable to open file. Please try again."),
+                                  QMessageBox::Ok);
+                error.exec();
+                return;
+            }
+        }
+        else
+        {
+            coloPrecalc = 0;
+        }
+    }
+
     u8 partyLead = ui->comboBoxColoPartyLead->currentIndex();
     u8 trainer = ui->comboBoxColoTrainer->currentIndex();
+
+    if (coloRound == 1 && coloPrecalc == 1)
+    {
+        QFile f(coloPath);
+        if (f.open(QIODevice::ReadOnly))
+        {
+            u32 seedSizes[24];
+            f.read(reinterpret_cast<char *>(seedSizes), sizeof(seedSizes));
+
+            u8 index = partyLead + 8 * trainer;
+            u32 offset = 0;
+            for (u8 i = 0; i < index; i++)
+            {
+                offset += seedSizes[i];
+            }
+
+            QVector<u32> seeds;
+            seeds.resize(seedSizes[index]);
+
+            f.seek(offset * sizeof(u32) + sizeof(u32) * 25);
+            f.read(reinterpret_cast<char *>(seeds.data()), sizeof(u32) * seedSizes[index]);
+
+            updateColo(seeds);
+        }
+
+        return;
+    }
 
     auto *searcher = new ColoSeedSearcher({ partyLead, trainer });
 
@@ -240,7 +375,7 @@ void GameCubeSeedFinder::coloSearch()
     ui->pushButtonColoCancel->setEnabled(true);
 
     QThread *thread;
-    if (galesRound == 1)
+    if (coloRound == 1)
     {
         ui->progressBarColo->setRange(0, 0x20000000);
         thread = QThread::create([=] { searcher->startSearch(threads); });
