@@ -175,7 +175,8 @@ void GameCubeSeedFinder::galesSearch()
     if (galesPrecalc == -1)
     {
         QMessageBox msg(QMessageBox::Question, tr("Gales Precalc"),
-                        tr("Would you like to use the Gales Precalc file? This decision will be remembered until you close this window."));
+                        tr("Would you like to use the Gales Precalc file? This decision will be remembered until you close this window."),
+                        QMessageBox::Yes | QMessageBox::No);
         if (msg.exec() == QMessageBox::Yes)
         {
             QString path = QFileDialog::getOpenFileName(this, tr("Select Gales Precalc"), QDir::currentPath(), "precalc (*.precalc)");
@@ -300,7 +301,8 @@ void GameCubeSeedFinder::coloSearch()
     if (coloPrecalc == -1)
     {
         QMessageBox msg(QMessageBox::Question, tr("Colo Precalc"),
-                        tr("Would you like to use the Colo Precalc file? This decision will be remembered until you close this window."));
+                        tr("Would you like to use the Colo Precalc file? This decision will be remembered until you close this window."),
+                        QMessageBox::Yes | QMessageBox::No);
         if (msg.exec() == QMessageBox::Yes)
         {
             QString path = QFileDialog::getOpenFileName(this, tr("Select Colo Precalc"), QDir::currentPath(), "precalc (*.precalc)");
