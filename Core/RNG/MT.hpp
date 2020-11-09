@@ -99,8 +99,8 @@ public:
     }
 
 private:
-    u32 mt[size + 1];
-    u32 temper[size];
+    alignas(16) u32 mt[size + 1];
+    alignas(16) u32 temper[size];
     u16 index;
 
     void shuffle()

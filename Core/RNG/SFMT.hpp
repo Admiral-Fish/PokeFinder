@@ -31,7 +31,7 @@ public:
     u32 nextUInt();
 
 private:
-    u32 sfmt[624];
+    alignas(16) u32 sfmt[624];
     u32 index;
 
     void shuffle();

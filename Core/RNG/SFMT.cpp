@@ -74,8 +74,8 @@ u32 SFMT::nextUInt()
 
 void SFMT::shuffle()
 {
-    __m128i c = _mm_loadu_si128((const __m128i *)&sfmt[616]);
-    __m128i d = _mm_loadu_si128((const __m128i *)&sfmt[620]);
+    __m128i c = _mm_load_si128((const __m128i *)&sfmt[616]);
+    __m128i d = _mm_load_si128((const __m128i *)&sfmt[620]);
     __m128i mask = _mm_set_epi32(0xbffffff6, 0xbffaffff, 0xddfecb7f, 0xdfffffef);
 
     auto mm_recursion = [&mask](__m128i &a, const __m128i &b, const __m128i &c, const __m128i &d) {
@@ -90,11 +90,11 @@ void SFMT::shuffle()
 
     for (int i = 0; i < 136; i += 4)
     {
-        __m128i a = _mm_loadu_si128((const __m128i *)&sfmt[i]);
-        __m128i b = _mm_loadu_si128((const __m128i *)&sfmt[i + 488]);
+        __m128i a = _mm_load_si128((const __m128i *)&sfmt[i]);
+        __m128i b = _mm_load_si128((const __m128i *)&sfmt[i + 488]);
 
         mm_recursion(a, b, c, d);
-        _mm_storeu_si128((__m128i *)&sfmt[i], a);
+        _mm_store_si128((__m128i *)&sfmt[i], a);
 
         c = d;
         d = a;
@@ -102,11 +102,11 @@ void SFMT::shuffle()
 
     for (int i = 136; i < 624; i += 4)
     {
-        __m128i a = _mm_loadu_si128((const __m128i *)&sfmt[i]);
-        __m128i b = _mm_loadu_si128((const __m128i *)&sfmt[i - 136]);
+        __m128i a = _mm_load_si128((const __m128i *)&sfmt[i]);
+        __m128i b = _mm_load_si128((const __m128i *)&sfmt[i - 136]);
 
         mm_recursion(a, b, c, d);
-        _mm_storeu_si128((__m128i *)&sfmt[i], a);
+        _mm_store_si128((__m128i *)&sfmt[i], a);
 
         c = d;
         d = a;
