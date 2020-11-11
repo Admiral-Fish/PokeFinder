@@ -1,120 +1,120 @@
-0,New Bark Town
-1,Route 29
-2,Cherrygrove City
-3,Route 30
-4,Route 31
-5,Violet City
-6,Sprout Tower
-7,Route 32
-8,Ruins of Alph (Outside)
-9,Ruins of Alph (Inside)
-10,Union Cave 1F
-11,Union Cave B1F
-12,Union Cave B2F
-13,Route 33
-14,SLOWPOKE Well 1F
-15,SLOWPOKE Well B1F
-16,Ilex Forest
-17,Route 34
-18,Route 35
-19,National Park
-20,Route 36
-21,Route 37
-22,Ecruteak City
-23,Burned Tower 1F
-24,Burned Tower B1F
-25,Bell Tower
-26,Route 38
-27,Route 39
-28,Olivine City
-29,Route 40
-30,Route 41
-31,Whirl Islands 1F
-32,Whirl Islands B1F
-33,Whirl Islands B2F
-34,Whirl Islands B3F
-35,Cianwood City
-36,Route 42
-37,Mt. Mortar 1F
-38,Mt. Mortar 1F (Back)
-39,Mt. Mortar 2F
-40,Mt. Mortar B1F
-41,Route 43
-42,Lake of Rage
-43,Route 44
-44,Ice Path 1F
-45,Ice Path B1F
-46,Ice Path B2F
-47,Ice Path B3F
-48,Blackthorn City
-49,Dragon’s Den
-50,Route 45
-51,Route 46
-52,Dark Cave (Route 31)
-53,Dark Cave (Route 45)
-54,Route 47
-55,Mt. Moon
-56,Mt. Moon (Clefairy)
-57,Seafoam Islands 1F
-58,Seafoam Islands B1F
-59,Seafoam Islands B2F
-60,Seafoam Islands B3F
-61,Seafoam Islands B4F
-62,Mt. Silver 1F
-63,Mt. Silver Cave 1F Top
-64,Mt. Silver 4F
-65,Cliff Edge Gate
-66,Cliff Cave
-67,Mt. Silver
-68,Mt. Silver 2F
-69,Mt. Silver Cave Mountainside
-70,Mt. Silver Cave 3F
-71,Mt. Silver Top
-72,Route 12
-73,Route 19
-74,Route 20
-75,Pallet Town
-76,Viridian City
-77,Cerulean City
-78,Vermilion City
-79,Celadon City
-80,Fuchsia City
-81,Cinnabar Island
-82,Route 48
-83,Route 26
-84,Route 27
-85,Route 28
-86,Mt. Moon
-87,Rock Tunnel 1F
-88,Rock Tunnel 2F
-89,Victory Road 1F
-90,Route 1
-91,Route 2 (South)
-92,Route 3
-93,Route 4
-94,Route 5
-95,Route 6
-96,Route 7
-97,Route 8
-98,Route 9
-99,Route 10
-100,Route 11
-101,Route 13
-102,Route 14
-103,Route 15
-104,Route 16
-105,Route 17
-106,Route 18
-107,Route 21
-108,Route 22
-109,Route 24
-110,Route 25
-111,Tohjo Falls
-112,DIGLETT’s Cave
-113,Victory Road 2F
-114,Victory Road 3F
-115,Route 2 (North)
-116,Viridian Forest
-117,Cerulean Cave 1F
-118,Cerulean Cave 2F
-119,Cerulean Cave B1F
+0,Borgo Foglianova
+1,Percorso 29
+2,Fiorpescopoli
+3,Percorso 30
+4,Percorso 31
+5,Violapoli
+6,Torre Sprout
+7,Percorso 32
+8,Rovine d'Alfa (Esterno)
+9,Rovine d'Alfa (Inside)
+10,Grotta di mezzo P1
+11,Grotta di mezzo P1S
+12,Grotta di mezzo P2S
+13,Percorso 33
+14,Pozzo SLOWPOKE P1
+15,Pozzo SLOWPOKE P1S
+16,Bosco di Lecci
+17,Percorso 34
+18,Percorso 35
+19,Parco Nazionale
+20,Percorso 36
+21,Percorso 37
+22,Amarantopoli
+23,Torre Bruciata P1
+24,Torre Bruciata P1S
+25,Torre Campana
+26,Percorso 38
+27,Percorso 39
+28,Olivinopoli
+29,Percorso 40
+30,Percorso 41
+31,Isole Vorticose P1
+32,Isole Vorticose P1S
+33,Isole Vorticose P2S
+34,Isole Vorticose P3S
+35,Fiorlisopoli
+36,Percorso 42
+37,Monte Scodella P1
+38,Monte Scodella P1 (Retro)
+39,Monte Scodella P2
+40,Monte Scodella P1S
+41,Percorso 43
+42,Lago d'Ira
+43,Percorso 44
+44,Via Gelata P1
+45,Via Gelata P1S
+46,Via Gelata P2S
+47,Via Gelata P3S
+48,Ebanopoli
+49,Tana del Drago
+50,Percorso 45
+51,Percorso 46
+52,Grotta Scura (Percorso 31)
+53,Grotta Scura (Percorso 45)
+54,Percorso 47
+55,Monte Luna
+56,Monte Luna (Clefairy)
+57,Isole Spumarine P1
+58,Isole Spumarine P1S
+59,Isole Spumarine P2S
+60,Isole Spumarine P3S
+61,Isole Spumarine P4S
+62,Grotta Argento P1
+63,Grotta Argento - Grotta in Cima P1
+64,Grotta Argento P4
+65,Ingresso Falesia
+66,Grotta Falesia
+67,Grotta Argento
+68,Grotta Argento P2
+69,Grotta Argento - Grotta nel Pendio del Monte
+70,Grotta Argento - Grotta P3
+71,Grotta Argento - Cima
+72,Percorso 12
+73,Percorso 19
+74,Percorso 20
+75,Biancavilla
+76,Smeraldopoli
+77,Celestopoli
+78,Aranciopoli
+79,Azzurropoli
+80,Fucsiapoli
+81,Isola Cannella
+82,Percorso 48
+83,Percorso 26
+84,Percorso 27
+85,Percorso 28
+86,Monte Luna
+87,Tunnel Roccioso P1
+88,Tunnel Roccioso P2
+89,Via Vittoria P1
+90,Percorso 1
+91,Percorso 2 (Sud)
+92,Percorso 3
+93,Percorso 4
+94,Percorso 5
+95,Percorso 6
+96,Percorso 7
+97,Percorso 8
+98,Percorso 9
+99,Percorso 10
+100,Percorso 11
+101,Percorso 13
+102,Percorso 14
+103,Percorso 15
+104,Percorso 16
+105,Percorso 17
+106,Percorso 18
+107,Percorso 21
+108,Percorso 22
+109,Percorso 24
+110,Percorso 25
+111,Cascate Tohjo
+112,Grotta DIGLETT
+113,Via Vittoria P2
+114,Via Vittoria P3
+115,Percorso 2 (Nord)
+116,Bosco Smeraldo
+117,Grotta Celeste P1
+118,Grotta Celeste P2
+119,Grotta Celeste P1S

@@ -1,86 +1,86 @@
-0,Dewford Town
-1,Pacifidlog Town
-2,Petalburg City
-3,Slateport City
-4,Lilycove City
-5,Mossdeep City
-6,Sootopolis City
-7,Ever Grande City
-8,Route 101
-9,Route 102
-10,Route 103
-11,Route 104
-12,Route 105
-13,Route 106
-14,Route 107
-15,Route 108
-16,Route 109
-17,Route 110
-18,Route 111
-19,Route 112
-20,Route 113
-21,Route 114
-22,Route 115
-23,Route 116
-24,Route 117
-25,Route 118
-26,Route 119
-27,Route 120
-28,Route 121
-29,Route 122
-30,Route 123
-31,Route 124
-32,Route 125
-33,Route 126
-34,Route 127
-35,Route 128
-36,Route 129
-37,Route 130
-38,Route 131
-39,Route 132
-40,Route 133
-41,Route 134
-42,Underwater (Route 124)
-43,Underwater (Route 126)
-44,Granite Cave 1F
-45,Granite Cave Steven's Room
-46,Granite Cave B1F
-47,Granite Cave B2F
-48,Safari Zone Area 1
-49,Safari Zone Area 2
-50,Safari Zone Area 3
-51,Safari Zone Area 4
-52,Safari Zone Area 5
-53,Safari Zone Area 6
-54,Petalburg Woods
-55,Rusturf Tunnel
-56,Abandoned Ship
-57,New Mauville (Entrance)
-58,New Mauville (Basement)
-59,Meteor Falls 1F 1R
-60,Meteor Falls 1F 2R
-61,Meteor Falls B1F 1R
-62,Meteor Falls B1F 2R
-63,Meteor Falls Steven's Cave
-64,Mt. Pyre 1F-3F
-65,Mt. Pyre 4F-6F
-66,Mt. Pyre Exterior
-67,Mt. Pyre Summit
-68,Shoal Cave
-69,Shoal Cave Ice Room
-70,Seafloor Cavern
-71,Victory Road 1F
-72,Victory Road B1F
-73,Victory Road B2F
-74,Cave of Origin Entrance
-75,Cave of Origin
-76,Fiery Path
-77,Jagged Pass
-78,Sky Pillar 1F
-79,Sky Pillar 3F
-80,Sky Pillar 5F
-81,Magma Hideout
-82,Mirage Tower
-83,Artisan Cave
-84,Desert Underpass
-85,Altering Cave
+0,Bluruvia
+1,Orocea
+2,Petalipoli
+3,Porto Selcepoli
+4,Porto Alghepoli
+5,Verdeazzupoli
+6,Ceneride
+7,Iridopoli
+8,Percorso 101
+9,Percorso 102
+10,Percorso 103
+11,Percorso 104
+12,Percorso 105
+13,Percorso 106
+14,Percorso 107
+15,Percorso 108
+16,Percorso 109
+17,Percorso 110
+18,Percorso 111
+19,Percorso 112
+20,Percorso 113
+21,Percorso 114
+22,Percorso 115
+23,Percorso 116
+24,Percorso 117
+25,Percorso 118
+26,Percorso 119
+27,Percorso 120
+28,Percorso 121
+29,Percorso 122
+30,Percorso 123
+31,Percorso 124
+32,Percorso 125
+33,Percorso 126
+34,Percorso 127
+35,Percorso 128
+36,Percorso 129
+37,Percorso 130
+38,Percorso 131
+39,Percorso 132
+40,Percorso 133
+41,Percorso 134
+42,Sott'acqua (Percorso 124)
+43,Sott'acqua (Percorso 126)
+44,Grotta Pietrosa P1
+45,Grotta Pietrosa - Stanza di Rocco
+46,Grotta Pietrosa P1S
+47,Grotta Pietrosa P2S
+48,Safari Zone - Area 1
+49,Safari Zone - Area 2
+50,Safari Zone - Area 3
+51,Safari Zone - Area 4
+52,Safari Zone - Area 5
+53,Safari Zone - Area 6
+54,Bosco Petalo
+55,Tunnel Menferro
+56,Vecchia Nave
+57,Ciclanova (Entrata)
+58,Ciclanova (Sotterranei)
+59,Cascate Meteora P1 1S
+60,Cascate Meteora P1 2S
+61,Cascate Meteora P1S 1S
+62,Cascate Meteora P1S 2S
+63,Cascate Meteora - Stanza di Rocco
+64,Monte Pira P1-P3
+65,Monte Pira P4-P6
+66,Monte Pira - Esterno
+67,Monte Pira - Cima
+68,Grotta Ondosa
+69,Grotta Ondosa - Stanza Ghiacciata
+70,Antro Abissale
+71,Via Vittoria P1
+72,Via Vittoria P1S
+73,Via Vittoria P2S
+74,Grotta dei Tempi - Entrata
+75,Grotta dei Tempi
+76,Cammino Ardente
+77,Passo Selvaggio
+78,Torre dei Cieli P1
+79,Torre dei Cieli P3
+80,Torre dei Cieli P5
+81,Rifugio Magma
+82,Torre Miraggio
+83,Grotta Artistica
+84,Galleria Deserto
+85,Grotta Mutevole
