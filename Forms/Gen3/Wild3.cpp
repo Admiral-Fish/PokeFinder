@@ -412,7 +412,7 @@ void Wild3::generatorLead()
     {
         ui->pushButtonGeneratorLead->setText(tr("Synchronize"));
 
-        ui->comboBoxGeneratorLead->addItem("None");
+        ui->comboBoxGeneratorLead->addItem(tr("None"));
         ui->comboBoxGeneratorLead->addItems(Translator::getNatures());
     }
 }

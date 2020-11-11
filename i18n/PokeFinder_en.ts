@@ -1215,6 +1215,18 @@ Volbeat</translation>
         <source>Power Anklet</source>
         <translation>Power Anklet</translation>
     </message>
+    <message>
+        <location filename="../Forms/Controls/EggSettings.cpp" line="217"/>
+        <location filename="../Forms/Controls/EggSettings.cpp" line="220"/>
+        <source>None</source>
+        <translation>None</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Controls/EggSettings.cpp" line="218"/>
+        <location filename="../Forms/Controls/EggSettings.cpp" line="221"/>
+        <source>Everstone</source>
+        <translation>Everstone</translation>
+    </message>
 </context>
 <context>
     <name>Eggs3</name>
@@ -2942,8 +2954,8 @@ Volbeat</translation>
     <message>
         <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="91"/>
         <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="117"/>
-        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="294"/>
-        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="414"/>
+        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="295"/>
+        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="416"/>
         <source>Round #</source>
         <translation>Round #</translation>
     </message>
@@ -2985,56 +2997,56 @@ Volbeat</translation>
         <translation>Would you like to sue the Gales Precalc file? This decision will be remembered until you close this window.</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="181"/>
+        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="182"/>
         <source>Select Gales Precalc</source>
         <translation>Select Gales Precalc</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="194"/>
-        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="319"/>
+        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="195"/>
+        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="321"/>
         <source>Invalid Precalc File</source>
         <translation>Invalid Precalc File</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="195"/>
-        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="320"/>
+        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="196"/>
+        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="322"/>
         <source>An invalid Precalc file was provided. Please try again.</source>
         <translation>An invalid Precalc file was provided. Please try again.</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="202"/>
-        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="327"/>
+        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="203"/>
+        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="329"/>
         <source>Unable to open file</source>
         <translation>Unable to open file</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="202"/>
-        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="327"/>
+        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="203"/>
+        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="329"/>
         <source>Unable to open file. Please try again.</source>
         <translation>Unable to open file. Please try again.</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="302"/>
+        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="303"/>
         <source>Colo Precalc</source>
         <translation>Colo Precalc</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="303"/>
+        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="304"/>
         <source>Would you like to use the Colo Precalc file? This decision will be remembered until you close this window.</source>
         <translation>Would you like to use the Colo Precalc file? This decision will be remembered until you close this window.</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="306"/>
+        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="308"/>
         <source>Select Colo Precalc</source>
         <translation>Select Colo Precalc</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="423"/>
+        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="425"/>
         <source>Missing info</source>
         <translation>Missing info</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="423"/>
+        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="425"/>
         <source>You must have at least 10 entries</source>
         <translation>You must have at least 10 entries</translation>
     </message>
@@ -6709,6 +6721,7 @@ Volbeat</translation>
     <message>
         <location filename="../Forms/Gen4/Stationary4.ui"/>
         <location filename="../Forms/Gen4/Stationary4.cpp" line="110"/>
+        <location filename="../Forms/Gen4/Stationary4.cpp" line="303"/>
         <source>None</source>
         <translation>None</translation>
     </message>
@@ -7451,6 +7464,7 @@ Volbeat</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Wild3.ui"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="415"/>
         <source>None</source>
         <translation>None</translation>
     </message>
