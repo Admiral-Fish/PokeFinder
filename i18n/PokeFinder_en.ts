@@ -7877,6 +7877,9 @@ Volbeat</translation>
     <message>
         <location filename="../Forms/Gen4/Wild4.ui"/>
         <location filename="../Forms/Gen4/Wild4.cpp" line="111"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="417"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="420"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="467"/>
         <source>None</source>
         <translation>None</translation>
     </message>

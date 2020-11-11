@@ -414,10 +414,10 @@ void Wild4::profilesIndexChanged(int index)
         {
             ui->comboBoxSearcherLead->addItem("Suction Cups", Lead::SuctionCups);
         }
-        ui->comboBoxSearcherLead->addItem("None", Lead::None);
+        ui->comboBoxSearcherLead->addItem(tr("None"), Lead::None);
 
         ui->pushButtonGeneratorLead->setText(tr("Synchronize"));
-        ui->comboBoxGeneratorLead->addItem("None");
+        ui->comboBoxGeneratorLead->addItem(tr("None"));
         ui->comboBoxGeneratorLead->addItems(Translator::getNatures());
 
         updateLocationsSearcher();
@@ -464,7 +464,7 @@ void Wild4::generatorLead()
     {
         ui->pushButtonGeneratorLead->setText(tr("Synchronize"));
 
-        ui->comboBoxGeneratorLead->addItem("None");
+        ui->comboBoxGeneratorLead->addItem(tr("None"));
         ui->comboBoxGeneratorLead->addItems(Translator::getNatures());
     }
 }
