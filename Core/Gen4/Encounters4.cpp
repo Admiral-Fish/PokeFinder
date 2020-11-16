@@ -236,13 +236,13 @@ namespace Encounters4
                 {
                     u8 level = static_cast<u8>(getValue(data, 4 + i * 7, 1));
                     u16 specie = getValue(data, 4 + timeOffset + i * 7, 2);
-                    grass.emplace_back(Slot(specie, level, info.at(specie)));
+                    grass.emplace_back(specie, level, info.at(specie));
                 }
 
                 modifyRadio(grass, data, info, profile.getRadio());
                 modifySwarmHGSS(grass, data, info, encounter, profile.getSwarm());
 
-                encounters.emplace_back(EncounterArea4(location, Encounter::Grass, grass));
+                encounters.emplace_back(location, Encounter::Grass, grass);
             }
 
             // Rock Smash
@@ -254,9 +254,9 @@ namespace Encounters4
                     u8 min = static_cast<u8>(getValue(data, 96 + i * 4, 1));
                     u8 max = static_cast<u8>(getValue(data, 97 + i * 4, 1));
                     u16 specie = getValue(data, 98 + i * 4, 2);
-                    rock.emplace_back(Slot(specie, min, max, info.at(specie)));
+                    rock.emplace_back(specie, min, max, info.at(specie));
                 }
-                encounters.emplace_back(EncounterArea4(location, Encounter::RockSmash, rock));
+                encounters.emplace_back(location, Encounter::RockSmash, rock);
             }
 
             // Water
@@ -271,12 +271,12 @@ namespace Encounters4
                     u8 min = static_cast<u8>(getValue(data, 104 + i * 4, 1));
                     u8 max = static_cast<u8>(getValue(data, 105 + i * 4, 1));
                     u16 specie = getValue(data, 106 + i * 4, 2);
-                    surf.emplace_back(Slot(specie, min, max, info.at(specie)));
+                    surf.emplace_back(specie, min, max, info.at(specie));
 
                     min = static_cast<u8>(getValue(data, 124 + i * 4, 1));
                     max = static_cast<u8>(getValue(data, 125 + i * 4, 1));
                     specie = getValue(data, 126 + i * 4, 2);
-                    old.emplace_back(Slot(specie, min, max, info.at(specie)));
+                    old.emplace_back(specie, min, max, info.at(specie));
 
                     min = static_cast<u8>(getValue(data, 144 + i * 4, 1));
                     max = static_cast<u8>(getValue(data, 145 + i * 4, 1));
@@ -296,7 +296,7 @@ namespace Encounters4
                         }
                     }
 
-                    good.emplace_back(Slot(specie, min, max, info.at(specie)));
+                    good.emplace_back(specie, min, max, info.at(specie));
 
                     min = static_cast<u8>(getValue(data, 164 + i * 4, 1));
                     max = static_cast<u8>(getValue(data, 165 + i * 4, 1));
@@ -316,19 +316,19 @@ namespace Encounters4
                         }
                     }
 
-                    super.emplace_back(Slot(specie, min, max, info.at(specie)));
+                    super.emplace_back(specie, min, max, info.at(specie));
                 }
 
                 modifySwarmHGSS(surf, data, info, encounter, profile.getSwarm());
-                encounters.emplace_back(EncounterArea4(location, Encounter::Surfing, surf));
+                encounters.emplace_back(location, Encounter::Surfing, surf);
 
-                encounters.emplace_back(EncounterArea4(location, Encounter::OldRod, old));
+                encounters.emplace_back(location, Encounter::OldRod, old);
 
                 modifySwarmHGSS(good, data, info, encounter, profile.getSwarm());
-                encounters.emplace_back(EncounterArea4(location, Encounter::GoodRod, good));
+                encounters.emplace_back(location, Encounter::GoodRod, good);
 
                 modifySwarmHGSS(super, data, info, encounter, profile.getSwarm());
-                encounters.emplace_back(EncounterArea4(location, Encounter::SuperRod, super));
+                encounters.emplace_back(location, Encounter::SuperRod, super);
             }
             return encounters;
         }
@@ -347,7 +347,7 @@ namespace Encounters4
                 {
                     u8 level = static_cast<u8>(getValue(data, 3 + i * 3, 1));
                     u16 specie = getValue(data, 4 + i * 3, 2);
-                    grass.emplace_back(Slot(specie, level, info.at(specie)));
+                    grass.emplace_back(specie, level, info.at(specie));
                 }
 
                 modifyTime(grass, data, info, time);
@@ -355,7 +355,7 @@ namespace Encounters4
                 modifyRadar(grass, data, info, profile.getRadar());
                 modifySwarmDPPt(grass, data, info, profile.getSwarm());
 
-                encounters.emplace_back(EncounterArea4(location, Encounter::Grass, grass));
+                encounters.emplace_back(location, Encounter::Grass, grass);
             }
 
             // Water
@@ -370,28 +370,28 @@ namespace Encounters4
                     u8 min = static_cast<u8>(getValue(data, 79 + i * 4, 1));
                     u8 max = static_cast<u8>(getValue(data, 80 + i * 4, 1));
                     u16 specie = getValue(data, 81 + i * 4, 2);
-                    surf.emplace_back(Slot(specie, min, max, info.at(specie)));
+                    surf.emplace_back(specie, min, max, info.at(specie));
 
                     min = static_cast<u8>(getValue(data, 99 + i * 4, 1));
                     max = static_cast<u8>(getValue(data, 100 + i * 4, 1));
                     specie = getValue(data, 101 + i * 4, 2);
-                    old.emplace_back(Slot(specie, min, max, info.at(specie)));
+                    old.emplace_back(specie, min, max, info.at(specie));
 
                     min = static_cast<u8>(getValue(data, 119 + i * 4, 1));
                     max = static_cast<u8>(getValue(data, 120 + i * 4, 1));
                     specie = getValue(data, 121 + i * 4, 2);
-                    good.emplace_back(Slot(specie, min, max, info.at(specie)));
+                    good.emplace_back(specie, min, max, info.at(specie));
 
                     min = static_cast<u8>(getValue(data, 139 + i * 4, 1));
                     max = static_cast<u8>(getValue(data, 140 + i * 4, 1));
                     specie = getValue(data, 141 + i * 4, 2);
-                    super.emplace_back(Slot(specie, min, max, info.at(specie)));
+                    super.emplace_back(specie, min, max, info.at(specie));
                 }
 
-                encounters.emplace_back(EncounterArea4(location, Encounter::Surfing, surf));
-                encounters.emplace_back(EncounterArea4(location, Encounter::OldRod, old));
-                encounters.emplace_back(EncounterArea4(location, Encounter::GoodRod, good));
-                encounters.emplace_back(EncounterArea4(location, Encounter::SuperRod, super));
+                encounters.emplace_back(location, Encounter::Surfing, surf);
+                encounters.emplace_back(location, Encounter::OldRod, old);
+                encounters.emplace_back(location, Encounter::GoodRod, good);
+                encounters.emplace_back(location, Encounter::SuperRod, super);
             }
             return encounters;
         }

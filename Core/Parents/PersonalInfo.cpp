@@ -91,7 +91,7 @@ std::vector<PersonalInfo> PersonalInfo::loadPersonal(u8 gen)
                 formStatIndex = data.mid(i + 11, 2).toHex().toUShort(nullptr, 16);
             }
 
-            pokemon.emplace_back(PersonalInfo(hp, atk, def, spa, spd, spe, gender, ability1, ability2, abilityH, formCount, formStatIndex));
+            pokemon.emplace_back(hp, atk, def, spa, spd, spe, gender, ability1, ability2, abilityH, formCount, formStatIndex);
         }
     }
 

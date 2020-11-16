@@ -126,7 +126,7 @@ std::set<std::pair<u8, QString>> EncounterLookup::getEncounters4(Game game, u16 
         {
             for (const bool swarm : { false, true })
             {
-                profiles.emplace_back(Profile4("", game, 0, 0, Game::Blank, radio, false, swarm));
+                profiles.emplace_back("", game, 0, 0, Game::Blank, radio, false, swarm);
             }
         }
     }
@@ -139,7 +139,7 @@ std::set<std::pair<u8, QString>> EncounterLookup::getEncounters4(Game game, u16 
             {
                 for (const bool radar : { false, true })
                 {
-                    profiles.emplace_back(Profile4("", game, 0, 0, dual, 0, radar, swarm));
+                    profiles.emplace_back("", game, 0, 0, dual, 0, radar, swarm);
                 }
             }
         }

@@ -199,7 +199,7 @@ std::vector<DateTime> SeedtoTime4::generate(u32 seed, u32 year, bool forceSecond
                         if (!forceSecond || second == forcedSecond)
                         {
                             QDateTime dateTime(QDate(static_cast<int>(year), month, day), QTime(static_cast<int>(hour), minute, second));
-                            results.emplace_back(DateTime(dateTime, delay, version, roamer, routes));
+                            results.emplace_back(dateTime, delay, version, roamer, routes);
                         }
                     }
                 }
@@ -241,8 +241,7 @@ std::vector<DateTime> SeedtoTime4::calibrate(int minusDelay, int plusDelay, int 
         for (int j : delayRange)
         {
             QDateTime offset = time.addSecs(i);
-            DateTime result(offset, delay + j, target.getVersion(), target.getInfo());
-            results.emplace_back(result);
+            results.emplace_back(offset, delay + j, target.getVersion(), target.getInfo());
         }
     }
 

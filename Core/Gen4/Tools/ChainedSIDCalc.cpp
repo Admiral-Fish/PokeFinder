@@ -57,7 +57,7 @@ void ChainedSIDCalc::addEntry(const std::vector<u8> &ivs, u8 nature, u8 ability,
 
         if ((ability == 0 || (abilityNum == 0 && ability == 1) || (abilityNum == 1 && ability == 2)) && matchGender(gender, genderNum))
         {
-            pids.emplace_back(std::make_pair(adjustLow, pid2));
+            pids.emplace_back(adjustLow, pid2);
         }
     }
 

@@ -123,8 +123,7 @@ void DreamRadarSearcher::search(DreamRadarGenerator generator, const QDate &star
                                 QDateTime dt(date, QTime(hour, minute, second));
                                 for (const auto &state : states)
                                 {
-                                    SearcherState5<State> display(dt, seed, buttons.at(i), timer0, state);
-                                    displayStates.emplace_back(display);
+                                    displayStates.emplace_back(dt, seed, buttons.at(i), timer0, state);
                                 }
 
                                 std::lock_guard<std::mutex> lock(resultMutex);

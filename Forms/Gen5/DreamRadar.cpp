@@ -320,7 +320,7 @@ std::vector<DreamRadarSlot> DreamRadar::getGeneratorSettings()
             u8 genderRatio = info.at(specie).getGender();
             u8 gender = genderRatio == 255 ? 2 : genders.at(i)->currentIndex();
 
-            radarSlots.emplace_back(DreamRadarSlot(type, gender, genderRatio));
+            radarSlots.emplace_back(type, gender, genderRatio);
         }
     }
 
@@ -358,7 +358,7 @@ std::vector<DreamRadarSlot> DreamRadar::getSearcherSettings()
             u8 gender = genders.at(i)->currentData().toUInt();
             u8 genderRatio = info.at(specie).getGender();
 
-            radarSlots.emplace_back(DreamRadarSlot(type, gender, genderRatio));
+            radarSlots.emplace_back(type, gender, genderRatio);
         }
     }
 

@@ -287,7 +287,7 @@ std::vector<std::pair<u32, u16>> EggGenerator3::generateLower(u32 seed) const
             u16 pid = (go.nextUShort() % 0xFFFE) + 1;
 
             // TODO: decide on filtering for ability/gender
-            states.emplace_back(std::make_pair(cnt + initialAdvances, pid));
+            states.emplace_back(cnt + initialAdvances, pid);
         }
     }
 

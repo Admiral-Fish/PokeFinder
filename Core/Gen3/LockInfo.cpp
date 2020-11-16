@@ -96,10 +96,10 @@ std::vector<ShadowTeam> ShadowTeam::loadShadowTeams(Method version)
             u8 nature = static_cast<u8>(data.at(offset + 2 + i * 3));
             u8 genderLower = static_cast<u8>(data.at(offset + 3 + i * 3));
             u8 genderUpper = static_cast<u8>(data.at(offset + 4 + i * 3));
-            locks.emplace_back(LockInfo(nature, genderLower, genderUpper));
+            locks.emplace_back(nature, genderLower, genderUpper);
         }
 
-        shadowTeams.emplace_back(ShadowTeam(locks, type));
+        shadowTeams.emplace_back(locks, type);
         offset += data[offset] * 3 + 2;
     }
 

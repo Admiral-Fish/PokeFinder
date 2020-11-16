@@ -133,9 +133,9 @@ namespace Encounters5
                     u16 species = getValue(data, offset + 8 + i * 4);
                     u8 min = data.at(offset + 10 + i * 4);
                     u8 max = data.at(offset + 11 + i * 4);
-                    grass.emplace_back(Slot(species & 0x7ff, min, max, getInfo(info, species & 0x7ff, species >> 11)));
+                    grass.emplace_back(species & 0x7ff, min, max, getInfo(info, species & 0x7ff, species >> 11));
                 }
-                encounters.emplace_back(EncounterArea5(location, Encounter::Grass, grass));
+                encounters.emplace_back(location, Encounter::Grass, grass);
             }
 
             // Double Grass
@@ -147,9 +147,9 @@ namespace Encounters5
                     u16 species = getValue(data, offset + 56 + i * 4);
                     u8 min = data.at(offset + 58 + i * 4);
                     u8 max = data.at(offset + 59 + i * 4);
-                    doubleGrass.emplace_back(Slot(species & 0x7ff, min, max, getInfo(info, species & 0x7ff, species >> 11)));
+                    doubleGrass.emplace_back(species & 0x7ff, min, max, getInfo(info, species & 0x7ff, species >> 11));
                 }
-                encounters.emplace_back(EncounterArea5(location, Encounter::DoubleGrass, doubleGrass));
+                encounters.emplace_back(location, Encounter::DoubleGrass, doubleGrass);
             }
 
             // Special Grass
@@ -161,9 +161,9 @@ namespace Encounters5
                     u16 species = getValue(data, offset + 104 + i * 4);
                     u8 min = data.at(offset + 106 + i * 4);
                     u8 max = data.at(offset + 107 + i * 4);
-                    specialGrass.emplace_back(Slot(species & 0x7ff, min, max, getInfo(info, species & 0x7ff, species >> 11)));
+                    specialGrass.emplace_back(species & 0x7ff, min, max, getInfo(info, species & 0x7ff, species >> 11));
                 }
-                encounters.emplace_back(EncounterArea5(location, Encounter::SpecialGrass, specialGrass));
+                encounters.emplace_back(location, Encounter::SpecialGrass, specialGrass);
             }
 
             // Surf
@@ -175,9 +175,9 @@ namespace Encounters5
                     u16 species = getValue(data, offset + 152 + i * 4);
                     u8 min = data.at(offset + 154 + i * 4);
                     u8 max = data.at(offset + 155 + i * 4);
-                    surf.emplace_back(Slot(species & 0x7ff, min, max, getInfo(info, species & 0x7ff, species >> 11)));
+                    surf.emplace_back(species & 0x7ff, min, max, getInfo(info, species & 0x7ff, species >> 11));
                 }
-                encounters.emplace_back(EncounterArea5(location, Encounter::Surfing, surf));
+                encounters.emplace_back(location, Encounter::Surfing, surf);
             }
 
             // Special Surf
@@ -189,9 +189,9 @@ namespace Encounters5
                     u16 species = getValue(data, offset + 172 + i * 4);
                     u8 min = data.at(offset + 174 + i * 4);
                     u8 max = data.at(offset + 175 + i * 4);
-                    specialSurf.emplace_back(Slot(species & 0x7ff, min, max, getInfo(info, species & 0x7ff, species >> 11)));
+                    specialSurf.emplace_back(species & 0x7ff, min, max, getInfo(info, species & 0x7ff, species >> 11));
                 }
-                encounters.emplace_back(EncounterArea5(location, Encounter::SpecialSurf, specialSurf));
+                encounters.emplace_back(location, Encounter::SpecialSurf, specialSurf);
             }
 
             // Fish
@@ -203,9 +203,9 @@ namespace Encounters5
                     u16 species = getValue(data, offset + 192 + i * 4);
                     u8 min = data.at(offset + 194 + i * 4);
                     u8 max = data.at(offset + 195 + i * 4);
-                    fish.emplace_back(Slot(species & 0x7ff, min, max, getInfo(info, species & 0x7ff, species >> 11)));
+                    fish.emplace_back(species & 0x7ff, min, max, getInfo(info, species & 0x7ff, species >> 11));
                 }
-                encounters.emplace_back(EncounterArea5(location, Encounter::SuperRod, fish));
+                encounters.emplace_back(location, Encounter::SuperRod, fish);
             }
 
             // Special Fish
@@ -217,9 +217,9 @@ namespace Encounters5
                     u16 species = getValue(data, offset + 212 + i * 4);
                     u8 min = data.at(offset + 214 + i * 4);
                     u8 max = data.at(offset + 215 + i * 4);
-                    specialFish.emplace_back(Slot(species & 0x7ff, min, max, getInfo(info, species & 0x7ff, species >> 11)));
+                    specialFish.emplace_back(species & 0x7ff, min, max, getInfo(info, species & 0x7ff, species >> 11));
                 }
-                encounters.emplace_back(EncounterArea5(location, Encounter::SpecialSuperRod, specialFish));
+                encounters.emplace_back(location, Encounter::SpecialSuperRod, specialFish);
             }
 
             return encounters;
