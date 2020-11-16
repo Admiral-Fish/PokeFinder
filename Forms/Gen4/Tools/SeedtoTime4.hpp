@@ -47,8 +47,8 @@ private:
     SeedtoTimeModel4 *hgssCalibrateModel = nullptr;
 
     void setupModels();
-    QVector<DateTime> generate(u32 seed, u32 year, bool forceSecond, int forcedSecond, Game version);
-    QVector<DateTime> calibrate(int minusDelay, int plusDelay, int minusSecond, int plusSecond, const DateTime &target);
+    std::vector<DateTime> generate(u32 seed, u32 year, bool forceSecond, int forcedSecond, Game version);
+    std::vector<DateTime> calibrate(int minusDelay, int plusDelay, int minusSecond, int plusSecond, const DateTime &target);
 
 private slots:
     void dpptGenerate();

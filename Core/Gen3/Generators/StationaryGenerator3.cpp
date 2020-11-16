@@ -28,7 +28,7 @@ StationaryGenerator3::StationaryGenerator3(u32 initialAdvances, u32 maxAdvances,
 {
 }
 
-QVector<State> StationaryGenerator3::generate(u32 seed) const
+std::vector<State> StationaryGenerator3::generate(u32 seed) const
 {
     switch (method)
     {
@@ -39,13 +39,13 @@ QVector<State> StationaryGenerator3::generate(u32 seed) const
     case Method::Method1Reverse:
         return generateMethod1Reverse(seed);
     default:
-        return QVector<State>();
+        return std::vector<State>();
     }
 }
 
-QVector<State> StationaryGenerator3::generateMethod124(u32 seed) const
+std::vector<State> StationaryGenerator3::generateMethod124(u32 seed) const
 {
-    QVector<State> states;
+    std::vector<State> states;
 
     PokeRNG rng(seed);
     rng.advance(initialAdvances + offset);
@@ -78,16 +78,16 @@ QVector<State> StationaryGenerator3::generateMethod124(u32 seed) const
 
         if (filter.compareState(state))
         {
-            states.append(state);
+            states.push_back(state);
         }
     }
 
     return states;
 }
 
-QVector<State> StationaryGenerator3::generateMethod1Reverse(u32 seed) const
+std::vector<State> StationaryGenerator3::generateMethod1Reverse(u32 seed) const
 {
-    QVector<State> states;
+    std::vector<State> states;
 
     PokeRNG rng(seed);
     rng.advance(initialAdvances + offset);
@@ -115,7 +115,7 @@ QVector<State> StationaryGenerator3::generateMethod1Reverse(u32 seed) const
 
         if (filter.compareState(state))
         {
-            states.append(state);
+            states.push_back(state);
         }
     }
 

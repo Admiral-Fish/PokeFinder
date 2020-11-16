@@ -21,11 +21,8 @@
 #include <Core/Enum/Game.hpp>
 #include <Core/Util/Utilities.hpp>
 
-DateTime::DateTime(const QDateTime &dateTime, u32 delay, Game version, const QVector<bool> &roamers, const QVector<u8> &routes) :
-    seed(Utilities::calcGen4Seed(dateTime, delay + dateTime.date().year() - 2000)),
-    delay(delay),
-    dateTime(dateTime),
-    version(version)
+DateTime::DateTime(const QDateTime &dateTime, u32 delay, Game version, const std::vector<bool> &roamers, const std::vector<u8> &routes) :
+    seed(Utilities::calcGen4Seed(dateTime, delay + dateTime.date().year() - 2000)), delay(delay), dateTime(dateTime), version(version)
 {
     info = HGSSRoamer(seed, roamers, routes);
 }

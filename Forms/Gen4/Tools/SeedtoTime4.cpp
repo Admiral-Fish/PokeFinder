@@ -153,14 +153,14 @@ void SeedtoTime4::setupModels()
     setting.endGroup();
 }
 
-QVector<DateTime> SeedtoTime4::generate(u32 seed, u32 year, bool forceSecond, int forcedSecond, Game version)
+std::vector<DateTime> SeedtoTime4::generate(u32 seed, u32 year, bool forceSecond, int forcedSecond, Game version)
 {
     if (year < 2000 || year > 2099)
     {
         QMessageBox error;
         error.setText(tr("Please enter a year between 2000 and 2099"));
         error.exec();
-        return QVector<DateTime>();
+        return std::vector<DateTime>();
     }
 
     u8 ab = seed >> 24;
@@ -175,15 +175,16 @@ QVector<DateTime> SeedtoTime4::generate(u32 seed, u32 year, bool forceSecond, in
         QMessageBox error;
         error.setText(tr("Seed is invalid. Please enter a valid seed."));
         error.exec();
-        return QVector<DateTime>();
+        return std::vector<DateTime>();
     }
 
-    QVector<bool> roamer = { ui->checkBoxHGSSRaikou->isChecked(), ui->checkBoxHGSSEntei->isChecked(), ui->checkBoxHGSSLati->isChecked() };
-    QVector<u8> routes
+    std::vector<bool> roamer
+        = { ui->checkBoxHGSSRaikou->isChecked(), ui->checkBoxHGSSEntei->isChecked(), ui->checkBoxHGSSLati->isChecked() };
+    std::vector<u8> routes
         = { static_cast<u8>(ui->lineEditHGSSRaikou->text().toUInt()), static_cast<u8>(ui->lineEditHGSSEntei->text().toUInt()),
             static_cast<u8>(ui->lineEditHGSSLati->text().toUInt()) };
 
-    QVector<DateTime> results;
+    std::vector<DateTime> results;
     for (int month = 0; month < 13; month++)
     {
         int maxDays = QDate(static_cast<int>(year), month, 1).daysInMonth();
@@ -198,7 +199,7 @@ QVector<DateTime> SeedtoTime4::generate(u32 seed, u32 year, bool forceSecond, in
                         if (!forceSecond || second == forcedSecond)
                         {
                             QDateTime dateTime(QDate(static_cast<int>(year), month, day), QTime(static_cast<int>(hour), minute, second));
-                            results.append(DateTime(dateTime, delay, version, roamer, routes));
+                            results.push_back(DateTime(dateTime, delay, version, roamer, routes));
                         }
                     }
                 }
@@ -208,40 +209,40 @@ QVector<DateTime> SeedtoTime4::generate(u32 seed, u32 year, bool forceSecond, in
     return results;
 }
 
-QVector<DateTime> SeedtoTime4::calibrate(int minusDelay, int plusDelay, int minusSecond, int plusSecond, const DateTime &target)
+std::vector<DateTime> SeedtoTime4::calibrate(int minusDelay, int plusDelay, int minusSecond, int plusSecond, const DateTime &target)
 {
     QDateTime time = target.getDateTime();
     u32 delay = target.getDelay();
 
-    QVector<int> secondRange;
-    QVector<int> delayRange;
+    std::vector<int> secondRange;
+    std::vector<int> delayRange;
 
     for (int i = minusDelay; i > 0; i--)
     {
-        delayRange.append(-i);
+        delayRange.push_back(-i);
     }
     for (int i = 0; i <= plusDelay; i++)
     {
-        delayRange.append(i);
+        delayRange.push_back(i);
     }
 
     for (int i = minusSecond; i > 0; i--)
     {
-        secondRange.append(-i);
+        secondRange.push_back(-i);
     }
     for (int i = 0; i <= plusSecond; i++)
     {
-        secondRange.append(i);
+        secondRange.push_back(i);
     }
 
-    QVector<DateTime> results;
+    std::vector<DateTime> results;
     for (int i : secondRange)
     {
         for (int j : delayRange)
         {
             QDateTime offset = time.addSecs(i);
             DateTime result(offset, delay + j, target.getVersion(), target.getInfo());
-            results.append(result);
+            results.push_back(result);
         }
     }
 
@@ -258,7 +259,7 @@ void SeedtoTime4::dpptGenerate()
 
     dpptModel->clearModel();
 
-    QVector<DateTime> results = generate(seed, year, forceSecond, forcedSecond, Game::Diamond);
+    std::vector<DateTime> results = generate(seed, year, forceSecond, forcedSecond, Game::Diamond);
     ui->labelDPPtCoinFlips->setText(tr("Coin Flips: ") + Utilities::coinFlips(seed));
 
     dpptModel->addItems(results);
@@ -285,7 +286,7 @@ void SeedtoTime4::dpptCalibrate()
     dpptCalibrateModel->clearModel();
 
     DateTime target = dpptModel->getItem(index.row());
-    QVector<DateTime> results = calibrate(minusDelay, plusDelay, minusSecond, plusSecond, target);
+    std::vector<DateTime> results = calibrate(minusDelay, plusDelay, minusSecond, plusSecond, target);
 
     dpptCalibrateModel->addItems(results);
 
@@ -306,14 +307,15 @@ void SeedtoTime4::hgssGenerate()
     bool forceSecond = ui->checkBoxHGSSSecond->isChecked();
     int forcedSecond = ui->textBoxHGSSSecond->getInt();
 
-    QVector<bool> roamer = { ui->checkBoxHGSSRaikou->isChecked(), ui->checkBoxHGSSEntei->isChecked(), ui->checkBoxHGSSLati->isChecked() };
-    QVector<u8> routes
+    std::vector<bool> roamer
+        = { ui->checkBoxHGSSRaikou->isChecked(), ui->checkBoxHGSSEntei->isChecked(), ui->checkBoxHGSSLati->isChecked() };
+    std::vector<u8> routes
         = { static_cast<u8>(ui->lineEditHGSSRaikou->text().toUInt()), static_cast<u8>(ui->lineEditHGSSEntei->text().toUInt()),
             static_cast<u8>(ui->lineEditHGSSLati->text().toUInt()) };
 
     HGSSRoamer info(seed, roamer, routes);
 
-    QVector<DateTime> results = generate(seed, year, forceSecond, forcedSecond, Game::HeartGold);
+    std::vector<DateTime> results = generate(seed, year, forceSecond, forcedSecond, Game::HeartGold);
     ui->labelHGSSElmCalls->setText(tr("Elm Calls: ") + Utilities::getCalls(seed, info));
     QString str = info.getRouteString();
     str = str.isEmpty() ? tr("No roamers") : str;
@@ -343,7 +345,7 @@ void SeedtoTime4::hgssCalibrate()
     hgssCalibrateModel->clearModel();
 
     DateTime target = hgssModel->getItem(index.row());
-    QVector<DateTime> results = calibrate(minusDelay, plusDelay, minusSecond, plusSecond, target);
+    std::vector<DateTime> results = calibrate(minusDelay, plusDelay, minusSecond, plusSecond, target);
 
     hgssCalibrateModel->addItems(results);
 
@@ -367,7 +369,7 @@ void SeedtoTime4::searchFlips()
         return;
     }
 
-    QVector<bool> results = search->possibleResults();
+    std::vector<bool> results = search->possibleResults();
 
     ui->tableViewDPPtCalibrate->setSelectionMode(QAbstractItemView::MultiSelection);
     ui->tableViewDPPtCalibrate->clearSelection();
@@ -391,8 +393,9 @@ void SeedtoTime4::searchCalls()
         return;
     }
 
-    QVector<bool> roamer = { ui->checkBoxHGSSRaikou->isChecked(), ui->checkBoxHGSSEntei->isChecked(), ui->checkBoxHGSSLati->isChecked() };
-    QVector<u8> routes
+    std::vector<bool> roamer
+        = { ui->checkBoxHGSSRaikou->isChecked(), ui->checkBoxHGSSEntei->isChecked(), ui->checkBoxHGSSLati->isChecked() };
+    std::vector<u8> routes
         = { static_cast<u8>(ui->lineEditHGSSRaikou->text().toUInt()), static_cast<u8>(ui->lineEditHGSSEntei->text().toUInt()),
             static_cast<u8>(ui->lineEditHGSSLati->text().toUInt()) };
 
@@ -402,7 +405,7 @@ void SeedtoTime4::searchCalls()
         return;
     }
 
-    QVector<bool> results = search->possibleResults();
+    std::vector<bool> results = search->possibleResults();
 
     ui->tableViewHGSSCalibrate->setSelectionMode(QAbstractItemView::MultiSelection);
     ui->tableViewHGSSCalibrate->clearSelection();

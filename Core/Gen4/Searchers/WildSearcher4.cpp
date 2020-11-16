@@ -48,7 +48,7 @@ void WildSearcher4::setState(u32 minAdvance, u32 maxAdvance)
     this->maxAdvance = maxAdvance;
 }
 
-void WildSearcher4::startSearch(const QVector<u8> &min, const QVector<u8> &max)
+void WildSearcher4::startSearch(const std::array<u8, 6> &min, const std::array<u8, 6> &max)
 {
     searching = true;
 
@@ -77,7 +77,7 @@ void WildSearcher4::startSearch(const QVector<u8> &min, const QVector<u8> &max)
                             auto states = search(hp, atk, def, spa, spd, spe);
 
                             std::lock_guard<std::mutex> guard(mutex);
-                            results.append(states);
+                            results.insert(results.end(), states.begin(), states.end());
                             progress++;
                         }
                     }
@@ -92,7 +92,7 @@ void WildSearcher4::cancelSearch()
     searching = false;
 }
 
-QVector<WildState> WildSearcher4::getResults()
+std::vector<WildState> WildSearcher4::getResults()
 {
     std::lock_guard<std::mutex> guard(mutex);
     auto data(results);
@@ -105,9 +105,9 @@ int WildSearcher4::getProgress() const
     return progress;
 }
 
-QVector<WildState> WildSearcher4::search(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const
+std::vector<WildState> WildSearcher4::search(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const
 {
-    QVector<WildState> states;
+    std::vector<WildState> states;
 
     if (method == Method::MethodJ)
     {
@@ -125,9 +125,9 @@ QVector<WildState> WildSearcher4::search(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, 
     return searchInitialSeeds(states);
 }
 
-QVector<WildState> WildSearcher4::searchMethodJ(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const
+std::vector<WildState> WildSearcher4::searchMethodJ(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const
 {
-    QVector<WildState> states;
+    std::vector<WildState> states;
 
     WildState state;
     state.setIVs(hp, atk, def, spa, spd, spe);
@@ -158,13 +158,15 @@ QVector<WildState> WildSearcher4::searchMethodJ(u8 hp, u8 atk, u8 def, u8 spa, u
 
             if (lead == Lead::CuteCharm)
             {
-                states.append(cuteCharmMethodJ(state, seed));
+                auto results = cuteCharmMethodJ(state, seed);
+                states.insert(states.begin(), results.begin(), results.end());
             }
             else
             {
                 if (lead == Lead::Search)
                 {
-                    states.append(cuteCharmMethodJ(state, seed));
+                    auto results = cuteCharmMethodJ(state, seed);
+                    states.insert(states.begin(), results.begin(), results.end());
                 }
 
                 state.setAbility(low & 1);
@@ -179,16 +181,20 @@ QVector<WildState> WildSearcher4::searchMethodJ(u8 hp, u8 atk, u8 def, u8 spa, u
 
                 if (lead == Lead::None)
                 {
-                    states.append(normalMethodJ(state, seed));
+                    auto results = normalMethodJ(state, seed);
+                    states.insert(states.begin(), results.begin(), results.end());
                 }
                 else if (lead == Lead::Synchronize)
                 {
-                    states.append(synchMethodJ(state, seed));
+                    auto results = synchMethodJ(state, seed);
+                    states.insert(states.begin(), results.begin(), results.end());
                 }
                 else if (lead == Lead::Search)
                 {
-                    states.append(normalMethodJ(state, seed));
-                    states.append(synchMethodJ(state, seed));
+                    auto results = normalMethodJ(state, seed);
+                    states.insert(states.begin(), results.begin(), results.end());
+                    results = synchMethodJ(state, seed);
+                    states.insert(states.begin(), results.begin(), results.end());
                 }
             }
         }
@@ -197,9 +203,9 @@ QVector<WildState> WildSearcher4::searchMethodJ(u8 hp, u8 atk, u8 def, u8 spa, u
     return states;
 }
 
-QVector<WildState> WildSearcher4::searchMethodK(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const
+std::vector<WildState> WildSearcher4::searchMethodK(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const
 {
-    QVector<WildState> states;
+    std::vector<WildState> states;
 
     WildState state;
     state.setIVs(hp, atk, def, spa, spd, spe);
@@ -230,13 +236,15 @@ QVector<WildState> WildSearcher4::searchMethodK(u8 hp, u8 atk, u8 def, u8 spa, u
 
             if (lead == Lead::CuteCharm)
             {
-                states.append(cuteCharmMethodK(state, seed));
+                auto results = cuteCharmMethodK(state, seed);
+                states.insert(states.begin(), results.begin(), results.end());
             }
             else
             {
                 if (lead == Lead::Search)
                 {
-                    states.append(cuteCharmMethodK(state, seed));
+                    auto results = cuteCharmMethodK(state, seed);
+                    states.insert(states.begin(), results.begin(), results.end());
                 }
 
                 state.setAbility(low & 1);
@@ -251,16 +259,20 @@ QVector<WildState> WildSearcher4::searchMethodK(u8 hp, u8 atk, u8 def, u8 spa, u
 
                 if (lead == Lead::None || lead == Lead::SuctionCups)
                 {
-                    states.append(normalMethodK(state, seed));
+                    auto results = normalMethodK(state, seed);
+                    states.insert(states.begin(), results.begin(), results.end());
                 }
                 else if (lead == Lead::Synchronize)
                 {
-                    states.append(synchMethodK(state, seed));
+                    auto results = synchMethodK(state, seed);
+                    states.insert(states.begin(), results.begin(), results.end());
                 }
                 else if (lead == Lead::Search)
                 {
-                    states.append(normalMethodK(state, seed));
-                    states.append(synchMethodK(state, seed));
+                    auto results = normalMethodK(state, seed);
+                    states.insert(states.begin(), results.begin(), results.end());
+                    results = synchMethodK(state, seed);
+                    states.insert(states.begin(), results.begin(), results.end());
                 }
             }
         }
@@ -269,9 +281,9 @@ QVector<WildState> WildSearcher4::searchMethodK(u8 hp, u8 atk, u8 def, u8 spa, u
     return states;
 }
 
-QVector<WildState> WildSearcher4::searchChainedShiny(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const
+std::vector<WildState> WildSearcher4::searchChainedShiny(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const
 {
-    QVector<WildState> states;
+    std::vector<WildState> states;
 
     WildState state;
     state.setIVs(hp, atk, def, spa, spd, spe);
@@ -306,20 +318,20 @@ QVector<WildState> WildSearcher4::searchChainedShiny(u8 hp, u8 atk, u8 def, u8 s
         if (filter.comparePID(state))
         {
             state.setSeed(rng.next());
-            states.append(state);
+            states.push_back(state);
 
             // Sister spread shares PID
             state.setSeed(state.getSeed() ^ 0x80000000);
-            states.append(state);
+            states.push_back(state);
         }
     }
 
     return states;
 }
 
-QVector<WildState> WildSearcher4::searchInitialSeeds(const QVector<WildState> &results) const
+std::vector<WildState> WildSearcher4::searchInitialSeeds(const std::vector<WildState> &results) const
 {
-    QVector<WildState> states;
+    std::vector<WildState> states;
 
     for (WildState result : results)
     {
@@ -338,7 +350,7 @@ QVector<WildState> WildSearcher4::searchInitialSeeds(const QVector<WildState> &r
             {
                 result.setSeed(test);
                 result.setAdvances(cnt);
-                states.append(result);
+                states.push_back(result);
             }
 
             test = rng.next();
@@ -348,9 +360,9 @@ QVector<WildState> WildSearcher4::searchInitialSeeds(const QVector<WildState> &r
     return states;
 }
 
-QVector<WildState> WildSearcher4::normalMethodJ(WildState state, u32 seed) const
+std::vector<WildState> WildSearcher4::normalMethodJ(WildState state, u32 seed) const
 {
-    QVector<WildState> states;
+    std::vector<WildState> states;
     state.setLead(Lead::None);
 
     PokeRNGR rng(seed);
@@ -364,7 +376,7 @@ QVector<WildState> WildSearcher4::normalMethodJ(WildState state, u32 seed) const
         {
             if (encounterMethodJ(state, rng.getSeed()))
             {
-                states.append(state);
+                states.push_back(state);
             }
         }
 
@@ -376,9 +388,9 @@ QVector<WildState> WildSearcher4::normalMethodJ(WildState state, u32 seed) const
     return states;
 }
 
-QVector<WildState> WildSearcher4::synchMethodJ(WildState state, u32 seed) const
+std::vector<WildState> WildSearcher4::synchMethodJ(WildState state, u32 seed) const
 {
-    QVector<WildState> states;
+    std::vector<WildState> states;
     state.setLead(Lead::Synchronize);
 
     PokeRNGR rng(seed);
@@ -392,14 +404,14 @@ QVector<WildState> WildSearcher4::synchMethodJ(WildState state, u32 seed) const
         {
             if (encounterMethodJ(state, rng.getSeed()))
             {
-                states.append(state);
+                states.push_back(state);
             }
         }
         else if ((nextRNG2 >> 15) == 1 && (nextRNG / 0xa3e) == state.getNature())
         {
             if (encounterMethodJ(state, rng.getSeed() * 0xeeb9eb65 + 0xa3561a1))
             {
-                states.append(state);
+                states.push_back(state);
             }
         }
 
@@ -411,9 +423,9 @@ QVector<WildState> WildSearcher4::synchMethodJ(WildState state, u32 seed) const
     return states;
 }
 
-QVector<WildState> WildSearcher4::cuteCharmMethodJ(WildState state, u32 seed) const
+std::vector<WildState> WildSearcher4::cuteCharmMethodJ(WildState state, u32 seed) const
 {
-    QVector<WildState> states;
+    std::vector<WildState> states;
 
     PokeRNGR rng(seed);
     u16 high = state.getPID() >> 16;
@@ -457,7 +469,7 @@ QVector<WildState> WildSearcher4::cuteCharmMethodJ(WildState state, u32 seed) co
 
                 if (filter.comparePID(state))
                 {
-                    states.append(state);
+                    states.push_back(state);
                 }
             }
         }
@@ -506,9 +518,9 @@ bool WildSearcher4::encounterMethodJ(WildState &state, u32 seed) const
     return filter.compareEncounterSlot(state);
 }
 
-QVector<WildState> WildSearcher4::normalMethodK(WildState state, u32 seed) const
+std::vector<WildState> WildSearcher4::normalMethodK(WildState state, u32 seed) const
 {
-    QVector<WildState> states;
+    std::vector<WildState> states;
 
     PokeRNGR rng(seed);
     u32 pid;
@@ -522,7 +534,7 @@ QVector<WildState> WildSearcher4::normalMethodK(WildState state, u32 seed) const
             state.setLead(Lead::None);
             if (encounterMethodK(state, rng.getSeed()))
             {
-                states.append(state);
+                states.push_back(state);
             }
         }
 
@@ -534,9 +546,9 @@ QVector<WildState> WildSearcher4::normalMethodK(WildState state, u32 seed) const
     return states;
 }
 
-QVector<WildState> WildSearcher4::synchMethodK(WildState state, u32 seed) const
+std::vector<WildState> WildSearcher4::synchMethodK(WildState state, u32 seed) const
 {
-    QVector<WildState> states;
+    std::vector<WildState> states;
     state.setLead(Lead::Synchronize);
 
     PokeRNGR rng(seed);
@@ -550,14 +562,14 @@ QVector<WildState> WildSearcher4::synchMethodK(WildState state, u32 seed) const
         {
             if (encounterMethodK(state, rng.getSeed()))
             {
-                states.append(state);
+                states.push_back(state);
             }
         }
         else if ((nextRNG2 & 1) == 1 && (nextRNG % 25) == state.getNature())
         {
             if (encounterMethodK(state, rng.getSeed() * 0xeeb9eb65 + 0xa3561a1))
             {
-                states.append(state);
+                states.push_back(state);
             }
         }
 
@@ -569,9 +581,9 @@ QVector<WildState> WildSearcher4::synchMethodK(WildState state, u32 seed) const
     return states;
 }
 
-QVector<WildState> WildSearcher4::cuteCharmMethodK(WildState state, u32 seed) const
+std::vector<WildState> WildSearcher4::cuteCharmMethodK(WildState state, u32 seed) const
 {
-    QVector<WildState> states;
+    std::vector<WildState> states;
 
     PokeRNGR rng(seed);
     u16 high = state.getPID() >> 16;
@@ -615,7 +627,7 @@ QVector<WildState> WildSearcher4::cuteCharmMethodK(WildState state, u32 seed) co
 
                 if (filter.comparePID(state))
                 {
-                    states.append(state);
+                    states.push_back(state);
                 }
             }
         }

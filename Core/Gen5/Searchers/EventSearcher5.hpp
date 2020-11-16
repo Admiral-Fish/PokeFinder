@@ -34,7 +34,7 @@ public:
     explicit EventSearcher5(const Profile5 &profile);
     void startSearch(const EventGenerator5 &generator, int threads, QDate start, const QDate &end);
     void cancelSearch();
-    QVector<SearcherState5<State>> getResults();
+    std::vector<SearcherState5<State>> getResults();
     int getProgress() const;
 
 private:
@@ -42,7 +42,7 @@ private:
 
     bool searching;
     int progress;
-    QVector<SearcherState5<State>> results;
+    std::vector<SearcherState5<State>> results;
     std::mutex resultMutex;
     std::mutex progressMutex;
 

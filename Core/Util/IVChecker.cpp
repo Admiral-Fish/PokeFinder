@@ -20,17 +20,20 @@
 #include "IVChecker.hpp"
 #include <Core/Parents/PersonalInfo.hpp>
 #include <Core/Util/Nature.hpp>
-#include <QSet>
+#include <algorithm>
 #include <cmath>
+#include <iterator>
+#include <set>
 
 constexpr u8 ivOrder[6] = { 0, 1, 2, 5, 3, 4 };
 
 namespace
 {
-    QVector<QSet<u8>> calculateIVs(const QVector<u8> &baseStats, const QVector<u16> &stats, u8 level, u8 nature, u8 characteristic)
+    std::vector<std::vector<u8>> calculateIVs(const std::vector<u8> &baseStats, const std::vector<u16> &stats, u8 level, u8 nature,
+                                              u8 characteristic)
     {
-        QVector<u8> minIVs(6, 31);
-        QVector<u8> maxIVs(6, 0);
+        std::vector<u8> minIVs(6, 31);
+        std::vector<u8> maxIVs(6, 0);
 
         for (u8 i = 0; i < 6; i++)
         {
@@ -54,8 +57,8 @@ namespace
             }
         }
 
-        QVector<QSet<u8>> possible(6);
-        QVector<u8> indexes = { 0, 1, 2, 3, 4, 5 };
+        std::vector<std::vector<u8>> possible(6);
+        std::vector<u8> indexes = { 0, 1, 2, 3, 4, 5 };
 
         u8 characteristicHigh = 31;
         if (characteristic != 255)
@@ -63,13 +66,13 @@ namespace
             u8 stat = ivOrder[characteristic / 5];
             u8 result = characteristic % 5;
 
-            indexes.removeAll(stat);
+            indexes.erase(std::find(indexes.begin(), indexes.end(), stat));
 
             for (u8 i = minIVs.at(stat); i <= maxIVs.at(stat); i++)
             {
                 if ((i % 5) == result)
                 {
-                    possible[stat].insert(i);
+                    possible[stat].push_back(i);
                     characteristicHigh = i;
                 }
             }
@@ -83,7 +86,7 @@ namespace
                 {
                     break;
                 }
-                possible[i].insert(iv);
+                possible[i].push_back(iv);
             }
         }
 
@@ -91,47 +94,56 @@ namespace
     }
 }
 
-QVector<QVector<u8>> IVChecker::calculateIVRange(const QVector<u8> &baseStats, const QVector<QVector<u16>> &stats, const QVector<u8> &level,
-                                                 u8 nature, u8 characteristic, u8 hiddenPower)
+std::vector<std::vector<u8>> IVChecker::calculateIVRange(const std::vector<u8> &baseStats, const std::vector<std::vector<u16>> &stats,
+                                                         const std::vector<u8> &level, u8 nature, u8 characteristic, u8 hiddenPower)
 {
-    QVector<QSet<u8>> first = calculateIVs(baseStats, stats.at(0), level.at(0), nature, characteristic);
-
-    for (int i = 1; i < stats.size(); i++)
+    std::vector<std::vector<u8>> ivs(6);
+    for (size_t i = 0; i < stats.size(); i++)
     {
-        auto next = calculateIVs(baseStats, stats.at(i), level.at(i), nature, characteristic);
+        auto current = calculateIVs(baseStats, stats.at(i), level.at(i), nature, characteristic);
 
-        for (u8 j = 0; j < 6; j++)
+        if (i == 0)
         {
-            first[j].intersect(next.at(j));
+            ivs = current;
+        }
+        else
+        {
+            std::vector<std::vector<u8>> temp(6);
+            for (size_t j = 0; j < 6; j++)
+            {
+                std::set_intersection(ivs.at(j).begin(), ivs.at(j).end(), current.at(j).begin(), current.at(j).end(),
+                                      std::back_inserter(temp[i]));
+            }
+            ivs = temp;
         }
     }
 
     if (hiddenPower != 255)
     {
-        QVector<QSet<u8>> ivs(6);
-        for (u8 hp : first.at(0))
+        std::vector<std::set<u8>> temp(6);
+        for (u8 hp : ivs.at(0))
         {
-            for (u8 atk : first.at(1))
+            for (u8 atk : ivs.at(1))
             {
-                for (u8 def : first.at(2))
+                for (u8 def : ivs.at(2))
                 {
-                    for (u8 spa : first.at(3))
+                    for (u8 spa : ivs.at(3))
                     {
-                        for (u8 spd : first.at(4))
+                        for (u8 spd : ivs.at(4))
                         {
-                            for (u8 spe : first.at(5))
+                            for (u8 spe : ivs.at(5))
                             {
                                 u8 hpType
                                     = ((((hp & 1) + 2 * (atk & 1) + 4 * (def & 1) + 8 * (spe & 1) + 16 * (spa & 1) + 32 * (spd & 1)) * 15)
                                        / 63);
                                 if (hpType == hiddenPower)
                                 {
-                                    ivs[0].insert(hp);
-                                    ivs[1].insert(atk);
-                                    ivs[2].insert(def);
-                                    ivs[3].insert(spa);
-                                    ivs[4].insert(spd);
-                                    ivs[5].insert(spe);
+                                    temp[0].insert(hp);
+                                    temp[1].insert(atk);
+                                    temp[2].insert(def);
+                                    temp[3].insert(spa);
+                                    temp[4].insert(spd);
+                                    temp[5].insert(spe);
                                 }
                             }
                         }
@@ -139,17 +151,12 @@ QVector<QVector<u8>> IVChecker::calculateIVRange(const QVector<u8> &baseStats, c
                 }
             }
         }
-        first = ivs;
+
+        for (size_t i = 0; i < 6; i++)
+        {
+            ivs[i].assign(temp.at(i).begin(), temp.at(i).end());
+        }
     }
 
-    QVector<QVector<u8>> ivs(6);
-    for (u8 i = 0; i < 6; i++)
-    {
-        for (const u8 num : first.at(i))
-        {
-            ivs[i].append(num);
-        }
-        std::sort(ivs[i].begin(), ivs[i].end());
-    }
     return ivs;
 }

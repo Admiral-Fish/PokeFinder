@@ -29,7 +29,7 @@ EggGenerator4::EggGenerator4(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 
 {
 }
 
-QVector<EggState4> EggGenerator4::generate(u32 seed) const
+std::vector<EggState4> EggGenerator4::generate(u32 seed) const
 {
     switch (method)
     {
@@ -42,13 +42,13 @@ QVector<EggState4> EggGenerator4::generate(u32 seed) const
     case Method::HGSSIVs:
         return generateHGSSIVs(seed);
     default:
-        return QVector<EggState4>();
+        return std::vector<EggState4>();
     }
 }
 
-QVector<EggState4> EggGenerator4::generateNormal(u32 seed) const
+std::vector<EggState4> EggGenerator4::generateNormal(u32 seed) const
 {
-    QVector<EggState4> states;
+    std::vector<EggState4> states;
 
     MT mt(seed);
     mt.advance(initialAdvances);
@@ -66,16 +66,16 @@ QVector<EggState4> EggGenerator4::generateNormal(u32 seed) const
 
         if (filter.comparePID(state))
         {
-            states.append(state);
+            states.push_back(state);
         }
     }
 
     return states;
 }
 
-QVector<EggState4> EggGenerator4::generateMasuada(u32 seed) const
+std::vector<EggState4> EggGenerator4::generateMasuada(u32 seed) const
 {
-    QVector<EggState4> states;
+    std::vector<EggState4> states;
 
     MT mt(seed);
     mt.advance(initialAdvances);
@@ -105,16 +105,16 @@ QVector<EggState4> EggGenerator4::generateMasuada(u32 seed) const
 
         if (filter.comparePID(state))
         {
-            states.append(state);
+            states.push_back(state);
         }
     }
 
     return states;
 }
 
-QVector<EggState4> EggGenerator4::generateDPPtIVs(u32 seed) const
+std::vector<EggState4> EggGenerator4::generateDPPtIVs(u32 seed) const
 {
-    QVector<EggState4> states;
+    std::vector<EggState4> states;
 
     PokeRNG rng(seed);
     rng.advance(initialAdvances);
@@ -144,15 +144,15 @@ QVector<EggState4> EggGenerator4::generateDPPtIVs(u32 seed) const
         if (filter.compareIVs(state))
         {
             state.setSeed(iv1);
-            states.append(state);
+            states.push_back(state);
         }
     }
     return states;
 }
 
-QVector<EggState4> EggGenerator4::generateHGSSIVs(u32 seed) const
+std::vector<EggState4> EggGenerator4::generateHGSSIVs(u32 seed) const
 {
-    QVector<EggState4> states;
+    std::vector<EggState4> states;
 
     PokeRNG rng(seed);
     rng.advance(initialAdvances);
@@ -182,7 +182,7 @@ QVector<EggState4> EggGenerator4::generateHGSSIVs(u32 seed) const
         if (filter.compareIVs(state))
         {
             state.setSeed(iv1);
-            states.append(state);
+            states.push_back(state);
         }
     }
     return states;

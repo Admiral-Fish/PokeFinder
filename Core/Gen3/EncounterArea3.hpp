@@ -26,7 +26,7 @@ class EncounterArea3 : public EncounterArea
 {
 public:
     EncounterArea3() = default;
-    EncounterArea3(u8 location, Encounter encounter, const QVector<Slot> &pokemon);
+    EncounterArea3(u8 location, Encounter encounter, const std::vector<Slot> &pokemon);
     u8 calcLevel(u8 index, u16 prng) const;
     u8 calcLevel(u8 index) const;
     u8 getEncounterRate() const;

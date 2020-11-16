@@ -21,14 +21,14 @@
 #define IVCHECKER_HPP
 
 #include <Core/Util/Global.hpp>
-#include <QVector>
+#include <vector>
 
 class PersonalInfo;
 
 namespace IVChecker
 {
-    QVector<QVector<u8>> calculateIVRange(const QVector<u8> &baseStats, const QVector<QVector<u16>> &stats, const QVector<u8> &level,
-                                          u8 nature, u8 characteristic, u8 hiddenPower);
+    std::vector<std::vector<u8>> calculateIVRange(const std::vector<u8> &baseStats, const std::vector<std::vector<u16>> &stats,
+                                                  const std::vector<u8> &level, u8 nature, u8 characteristic, u8 hiddenPower);
 };
 
 #endif // IVCHECKER_HPP

@@ -68,7 +68,7 @@ void GameCube::updateProfiles()
     {
         if (profile.getVersion() & Game::GC)
         {
-            profiles.append(profile);
+            profiles.push_back(profile);
         }
     }
 
@@ -135,7 +135,7 @@ void GameCube::setupModels()
     }
 }
 
-void GameCube::updateProgress(const QVector<GameCubeState> &states, int progress)
+void GameCube::updateProgress(const std::vector<GameCubeState> &states, int progress)
 {
     searcherModel->addItems(states);
     ui->progressBar->setValue(progress);
@@ -184,8 +184,8 @@ void GameCube::search()
     ui->pushButtonSearch->setEnabled(false);
     ui->pushButtonCancel->setEnabled(true);
 
-    QVector<u8> min = ui->filterSearcher->getMinIVs();
-    QVector<u8> max = ui->filterSearcher->getMaxIVs();
+    std::array<u8, 6> min = ui->filterSearcher->getMinIVs();
+    std::array<u8, 6> max = ui->filterSearcher->getMaxIVs();
 
     StateFilter filter(ui->filterSearcher->getGender(), ui->filterSearcher->getAbility(), ui->filterSearcher->getShiny(), false, min, max,
                        ui->filterSearcher->getNatures(), ui->filterSearcher->getHiddenPowers(), {});
@@ -274,9 +274,11 @@ void GameCube::generatorMethodIndexChanged(int index)
             ui->comboBoxGeneratorShadow->setVisible(true);
             ui->labelGeneratorShadow->setVisible(true);
 
-            QVector<int> secondShadows = { 0, 2, 3, 4, 14, 20, 22, 26, 34, 41, 49, 50, 57, 71 };
-            ui->comboBoxGeneratorType->setVisible(secondShadows.contains(ui->comboBoxGeneratorShadow->currentIndex()));
-            ui->labelGeneratorType->setVisible(secondShadows.contains(ui->comboBoxGeneratorShadow->currentIndex()));
+            std::array<int, 14> shadows = { 0, 2, 3, 4, 14, 20, 22, 26, 34, 41, 49, 50, 57, 71 };
+            bool flag = std::find(shadows.begin(), shadows.end(), ui->comboBoxGeneratorShadow->currentIndex()) != shadows.end();
+
+            ui->comboBoxGeneratorType->setVisible(flag);
+            ui->labelGeneratorType->setVisible(flag);
         }
         else if (method == Method::Colo)
         {
@@ -307,9 +309,11 @@ void GameCube::generatorShadowIndexChanged(int index)
         auto method = static_cast<Method>(ui->comboBoxGeneratorMethod->getCurrentInt());
         if (ui->comboBoxGeneratorShadow->isVisible() && method == Method::XD)
         {
-            QVector<int> secondShadows = { 0, 2, 3, 4, 14, 20, 22, 26, 34, 41, 49, 50, 57, 71 };
-            ui->comboBoxGeneratorType->setVisible(secondShadows.contains(index));
-            ui->labelGeneratorType->setVisible(secondShadows.contains(index));
+            std::array<int, 14> shadows = { 0, 2, 3, 4, 14, 20, 22, 26, 34, 41, 49, 50, 57, 71 };
+            bool flag = std::find(shadows.begin(), shadows.end(), ui->comboBoxGeneratorShadow->currentIndex()) != shadows.end();
+
+            ui->comboBoxGeneratorType->setVisible(flag);
+            ui->labelGeneratorType->setVisible(flag);
         }
         else
         {

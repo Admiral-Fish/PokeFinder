@@ -35,10 +35,10 @@ namespace ProfileLoader5
             u16 tid = static_cast<u16>(object["tid"].toInt());
             u16 sid = static_cast<u16>(object["sid"].toInt());
             u64 mac = object["mac"].toString().toULongLong(nullptr, 16);
-            QVector<bool> keypresses;
+            std::vector<bool> keypresses(4);
             for (int i = 0; i < 4; i++)
             {
-                keypresses.append(object["keypresses"].toArray()[i].toBool());
+                keypresses[i] = object["keypresses"].toArray()[i].toBool();
             }
             u8 vcount = static_cast<u8>(object["vcount"].toInt());
             u8 gxstat = static_cast<u8>(object["gxstat"].toInt());
@@ -64,9 +64,9 @@ namespace ProfileLoader5
             data["sid"] = profile.getSID();
             data["mac"] = QString::number(profile.getMac(), 16);
             QJsonArray keys;
-            for (u8 i = 0; i < 4; i++)
+            for (bool key : profile.getKeypresses())
             {
-                keys.append(profile.getKeypresses().at(i));
+                keys.append(key);
             }
             data["keypresses"] = keys;
             data["vcount"] = profile.getVCount();
@@ -84,9 +84,9 @@ namespace ProfileLoader5
         }
     }
 
-    QVector<Profile5> getProfiles()
+    std::vector<Profile5> getProfiles()
     {
-        QVector<Profile5> profileList;
+        std::vector<Profile5> profileList;
 
         QSettings setting;
         QFile f(setting.value("settings/profiles").toString());
@@ -99,7 +99,7 @@ namespace ProfileLoader5
 
             for (const auto i : gen5)
             {
-                profileList.append(getProfile(i.toObject()));
+                profileList.push_back(getProfile(i.toObject()));
             }
         }
 

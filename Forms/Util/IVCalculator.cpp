@@ -72,18 +72,18 @@ void IVCalculator::setupModels()
     }
 }
 
-void IVCalculator::displayIVs(QLabel *label, const QVector<u8> &ivs)
+void IVCalculator::displayIVs(QLabel *label, const std::vector<u8> &ivs)
 {
     QString result;
 
-    if (ivs.isEmpty())
+    if (ivs.empty())
     {
         result = tr("Invalid");
     }
     else
     {
         bool flag = false;
-        for (int i = 0; i < ivs.size(); i++)
+        for (size_t i = 0; i < ivs.size(); i++)
         {
             if (i == 0)
             {
@@ -188,24 +188,24 @@ void IVCalculator::removeEntry()
 
 void IVCalculator::findIVs()
 {
-    QVector<QVector<u16>> stats;
-    QVector<u8> levels;
+    std::vector<std::vector<u16>> stats;
+    std::vector<u8> levels;
 
     for (int row = 1; row < rows; row++)
     {
         QLayoutItem *item = ui->gridLayoutEntry->itemAtPosition(row, 0);
         QSpinBox *widget = reinterpret_cast<QSpinBox *>(item->widget());
 
-        levels.append(widget->value());
+        levels.push_back(widget->value());
 
-        QVector<u16> stat;
+        std::vector<u16> stat;
         for (int column = 1; column < 7; column++)
         {
             item = ui->gridLayoutEntry->itemAtPosition(row, column);
             widget = reinterpret_cast<QSpinBox *>(item->widget());
-            stat.append(widget->value());
+            stat.push_back(widget->value());
         }
-        stats.append(stat);
+        stats.push_back(stat);
     }
 
     u8 nature = static_cast<u8>(ui->comboBoxNature->currentIndex());
@@ -225,7 +225,7 @@ void IVCalculator::findIVs()
 
 void IVCalculator::pokemonIndexChanged(int index)
 {
-    if (index >= 0 && !personalInfo.isEmpty())
+    if (index >= 0 && !personalInfo.empty())
     {
         PersonalInfo base = personalInfo.at(index + 1);
         u8 formCount = base.getFormCount();
@@ -250,7 +250,7 @@ void IVCalculator::altformIndexChanged(int index)
         auto base = personalInfo.at(specie + 1);
         auto info = getPersonalInfo(base);
 
-        QVector<u8> stats = info.getBaseStats();
+        std::vector<u8> stats = info.getBaseStats();
         ui->labelBaseHPValue->setText(QString::number(stats[0]));
         ui->labelBaseAtkValue->setText(QString::number(stats[1]));
         ui->labelBaseDefValue->setText(QString::number(stats[2]));
@@ -281,10 +281,10 @@ void IVCalculator::generationIndexChanged(int index)
             max = 649;
         }
 
-        QVector<u16> species;
+        std::vector<u16> species;
         for (u16 i = 1; i <= max; i++)
         {
-            species.append(i);
+            species.push_back(i);
         }
 
         ui->comboBoxPokemon->clear();

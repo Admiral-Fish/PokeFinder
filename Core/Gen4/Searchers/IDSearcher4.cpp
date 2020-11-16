@@ -54,7 +54,7 @@ void IDSearcher4::startSearch(bool infinite, u16 year, u32 minDelay, u32 maxDela
                     state.setDelay(efgh + 2000 - year);
 
                     std::lock_guard<std::mutex> guard(mutex);
-                    results.append(state);
+                    results.push_back(state);
                 }
 
                 progress++;
@@ -68,7 +68,7 @@ void IDSearcher4::cancelSearch()
     searching = false;
 }
 
-QVector<IDState4> IDSearcher4::getResults()
+std::vector<IDState4> IDSearcher4::getResults()
 {
     std::lock_guard<std::mutex> guard(mutex);
     auto data(results);

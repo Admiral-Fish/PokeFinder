@@ -22,20 +22,19 @@
 
 #include <Core/Parents/Generators/StationaryGenerator.hpp>
 #include <Core/Parents/States/State.hpp>
-#include <QVector>
 
 class StationaryGenerator4 : public StationaryGenerator
 {
 public:
     StationaryGenerator4() = default;
     StationaryGenerator4(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter);
-    QVector<State> generate(u32 seed) const;
+    std::vector<State> generate(u32 seed) const;
 
 private:
-    QVector<State> generateMethod1(u32 seed) const;
-    QVector<State> generateMethodJ(u32 seed) const;
-    QVector<State> generateMethodK(u32 seed) const;
-    QVector<State> generateWonderCardIVs(u32 seed) const;
+    std::vector<State> generateMethod1(u32 seed) const;
+    std::vector<State> generateMethodJ(u32 seed) const;
+    std::vector<State> generateMethodK(u32 seed) const;
+    std::vector<State> generateWonderCardIVs(u32 seed) const;
 };
 
 #endif // STATIONARYGENERATOR4_HPP

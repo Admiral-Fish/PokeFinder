@@ -89,13 +89,13 @@ void EggSettings::setup(Game version)
 
 Daycare EggSettings::getDaycareSettings() const
 {
-    QVector<u8> parent1IVs = { static_cast<u8>(ui->spinBoxParentAHP->value()),  static_cast<u8>(ui->spinBoxParentAAtk->value()),
-                               static_cast<u8>(ui->spinBoxParentADef->value()), static_cast<u8>(ui->spinBoxParentASpA->value()),
-                               static_cast<u8>(ui->spinBoxParentASpD->value()), static_cast<u8>(ui->spinBoxParentASpe->value()) };
+    std::array<u8, 6> parent1IVs = { static_cast<u8>(ui->spinBoxParentAHP->value()),  static_cast<u8>(ui->spinBoxParentAAtk->value()),
+                                     static_cast<u8>(ui->spinBoxParentADef->value()), static_cast<u8>(ui->spinBoxParentASpA->value()),
+                                     static_cast<u8>(ui->spinBoxParentASpD->value()), static_cast<u8>(ui->spinBoxParentASpe->value()) };
 
-    QVector<u8> parent2IVs = { static_cast<u8>(ui->spinBoxParentBHP->value()),  static_cast<u8>(ui->spinBoxParentBAtk->value()),
-                               static_cast<u8>(ui->spinBoxParentBDef->value()), static_cast<u8>(ui->spinBoxParentBSpA->value()),
-                               static_cast<u8>(ui->spinBoxParentBSpD->value()), static_cast<u8>(ui->spinBoxParentBSpe->value()) };
+    std::array<u8, 6> parent2IVs = { static_cast<u8>(ui->spinBoxParentBHP->value()),  static_cast<u8>(ui->spinBoxParentBAtk->value()),
+                                     static_cast<u8>(ui->spinBoxParentBDef->value()), static_cast<u8>(ui->spinBoxParentBSpA->value()),
+                                     static_cast<u8>(ui->spinBoxParentBSpD->value()), static_cast<u8>(ui->spinBoxParentBSpe->value()) };
 
     u8 parent1Ability = ui->comboBoxParentAAbility->currentIndex();
     u8 parent2Ability = ui->comboBoxParentBAbility->currentIndex();

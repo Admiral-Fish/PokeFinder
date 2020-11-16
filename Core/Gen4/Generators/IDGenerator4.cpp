@@ -26,9 +26,9 @@ IDGenerator4::IDGenerator4(u32 minDelay, u32 maxDelay, u16 year, u8 month, u8 da
 {
 }
 
-QVector<IDState4> IDGenerator4::generate(const IDFilter &filter) const
+std::vector<IDState4> IDGenerator4::generate(const IDFilter &filter) const
 {
-    QVector<IDState4> states;
+    std::vector<IDState4> states;
 
     for (u8 second = 0; second < 60; second++)
     {
@@ -49,7 +49,7 @@ QVector<IDState4> IDGenerator4::generate(const IDFilter &filter) const
             {
                 state.setDelay(efgh + 2000 - year);
                 state.setSeconds(second);
-                states.append(state);
+                states.push_back(state);
             }
         }
     }

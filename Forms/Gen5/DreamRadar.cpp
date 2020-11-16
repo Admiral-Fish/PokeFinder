@@ -62,7 +62,7 @@ void DreamRadar::updateProfiles()
     {
         if (profile.getVersion() & Game::BW2)
         {
-            profiles.append(profile);
+            profiles.push_back(profile);
         }
     }
 
@@ -86,7 +86,7 @@ void DreamRadar::updateProfiles()
 
 bool DreamRadar::hasProfiles() const
 {
-    return !profiles.isEmpty();
+    return !profiles.empty();
 }
 
 void DreamRadar::setupModels()
@@ -110,7 +110,7 @@ void DreamRadar::setupModels()
     ui->comboBoxSearcherSpecies5->addItem(tr("None"), 0);
     ui->comboBoxSearcherSpecies6->addItem(tr("None"), 0);
 
-    QVector<u16> species
+    std::vector<u16> species
         = { 641, 642, 645, 483, 484, 487, 249, 250, 79, 120, 137, 163, 174, 175, 213, 238, 280, 333, 425, 436, 442, 447, 479, 517, 561 };
     QStringList names = Translator::getSpecies(species);
     QStringList genders = { "♂", "♀", "-" };
@@ -192,7 +192,7 @@ void DreamRadar::setupModels()
     setting.endGroup();
 }
 
-void DreamRadar::updateProgress(const QVector<SearcherState5<State>> &states, int progress)
+void DreamRadar::updateProgress(const std::vector<SearcherState5<State>> &states, int progress)
 {
     searcherModel->addItems(states);
     ui->progressBar->setValue(progress);
@@ -201,7 +201,7 @@ void DreamRadar::updateProgress(const QVector<SearcherState5<State>> &states, in
 void DreamRadar::generate()
 {
     auto radarSlots = getGeneratorSettings();
-    if (radarSlots.isEmpty())
+    if (radarSlots.empty())
     {
         QMessageBox message(QMessageBox::Warning, tr("Missing settings"), tr("Enter information for at least 1 slot"));
         message.exec();
@@ -236,7 +236,7 @@ void DreamRadar::generate()
 void DreamRadar::search()
 {
     auto radarSlots = getSearcherSettings();
-    if (radarSlots.isEmpty())
+    if (radarSlots.empty())
     {
         QMessageBox message(QMessageBox::Warning, tr("Missing settings"), tr("Enter information for at least 1 slot"));
         message.exec();
@@ -293,58 +293,76 @@ void DreamRadar::search()
     timer->start(1000);
 }
 
-QVector<DreamRadarSlot> DreamRadar::getGeneratorSettings()
+std::vector<DreamRadarSlot> DreamRadar::getGeneratorSettings()
 {
-    QVector<DreamRadarSlot> radarSlots;
+    std::vector<DreamRadarSlot> radarSlots;
 
-    QVector<u16> genies = { 641, 642, 645 };
-    QVector<u16> legends = { 483, 484, 487, 249, 250 };
+    std::array<u16, 3> genies = { 641, 642, 645 };
+    std::array<u16, 5> legends = { 483, 484, 487, 249, 250 };
     auto info = PersonalInfo::loadPersonal(5);
 
-    QVector<QComboBox *> species = { ui->comboBoxGeneratorSpecies1, ui->comboBoxGeneratorSpecies2, ui->comboBoxGeneratorSpecies3,
-                                     ui->comboBoxGeneratorSpecies4, ui->comboBoxGeneratorSpecies5, ui->comboBoxGeneratorSpecies6 };
-    QVector<QComboBox *> genders = { ui->comboBoxGeneratorGender1, ui->comboBoxGeneratorGender2, ui->comboBoxGeneratorGender3,
-                                     ui->comboBoxGeneratorGender4, ui->comboBoxGeneratorGender5, ui->comboBoxGeneratorGender6 };
+    std::array<QComboBox *, 6> species = { ui->comboBoxGeneratorSpecies1, ui->comboBoxGeneratorSpecies2, ui->comboBoxGeneratorSpecies3,
+                                           ui->comboBoxGeneratorSpecies4, ui->comboBoxGeneratorSpecies5, ui->comboBoxGeneratorSpecies6 };
+    std::array<QComboBox *, 6> genders = { ui->comboBoxGeneratorGender1, ui->comboBoxGeneratorGender2, ui->comboBoxGeneratorGender3,
+                                           ui->comboBoxGeneratorGender4, ui->comboBoxGeneratorGender5, ui->comboBoxGeneratorGender6 };
 
-    for (u8 i = 0; i < 6; i++)
+    for (size_t i = 0; i < 6; i++)
     {
         u16 specie = species.at(i)->currentData().toUInt();
         if (specie != 0)
         {
-            u8 type = genies.contains(specie) ? 0 : legends.contains(specie) ? 1 : 2;
+            u8 type = 2;
+            if (std::find(genies.begin(), genies.end(), specie) != genies.end())
+            {
+                type = 0;
+            }
+            else if (std::find(legends.begin(), legends.end(), specie) != legends.end())
+            {
+                type = 1;
+            }
+
             u8 genderRatio = info.at(specie).getGender();
             u8 gender = genderRatio == 255 ? 2 : genders.at(i)->currentIndex();
 
-            radarSlots.append(DreamRadarSlot(type, gender, genderRatio));
+            radarSlots.push_back(DreamRadarSlot(type, gender, genderRatio));
         }
     }
 
     return radarSlots;
 }
 
-QVector<DreamRadarSlot> DreamRadar::getSearcherSettings()
+std::vector<DreamRadarSlot> DreamRadar::getSearcherSettings()
 {
-    QVector<DreamRadarSlot> radarSlots;
+    std::vector<DreamRadarSlot> radarSlots;
 
-    QVector<u16> genies = { 641, 642, 645 };
-    QVector<u16> legends = { 483, 484, 487, 249, 250 };
+    std::array<u16, 3> genies = { 641, 642, 645 };
+    std::array<u16, 5> legends = { 483, 484, 487, 249, 250 };
     auto info = PersonalInfo::loadPersonal(5);
 
-    QVector<QComboBox *> species = { ui->comboBoxSearcherSpecies1, ui->comboBoxSearcherSpecies2, ui->comboBoxSearcherSpecies3,
-                                     ui->comboBoxSearcherSpecies4, ui->comboBoxSearcherSpecies5, ui->comboBoxSearcherSpecies6 };
-    QVector<QComboBox *> genders = { ui->comboBoxSearcherGender1, ui->comboBoxSearcherGender2, ui->comboBoxSearcherGender3,
-                                     ui->comboBoxSearcherGender4, ui->comboBoxSearcherGender5, ui->comboBoxSearcherGender6 };
+    std::array<QComboBox *, 6> species = { ui->comboBoxSearcherSpecies1, ui->comboBoxSearcherSpecies2, ui->comboBoxSearcherSpecies3,
+                                           ui->comboBoxSearcherSpecies4, ui->comboBoxSearcherSpecies5, ui->comboBoxSearcherSpecies6 };
+    std::array<QComboBox *, 6> genders = { ui->comboBoxSearcherGender1, ui->comboBoxSearcherGender2, ui->comboBoxSearcherGender3,
+                                           ui->comboBoxSearcherGender4, ui->comboBoxSearcherGender5, ui->comboBoxSearcherGender6 };
 
-    for (u8 i = 0; i < 6; i++)
+    for (size_t i = 0; i < 6; i++)
     {
         u16 specie = species.at(i)->currentData().toUInt();
         if (specie != 0)
         {
-            u8 type = genies.contains(specie) ? 0 : legends.contains(specie) ? 1 : 2;
+            u8 type = 2;
+            if (std::find(genies.begin(), genies.end(), specie) != genies.end())
+            {
+                type = 0;
+            }
+            else if (std::find(legends.begin(), legends.end(), specie) != legends.end())
+            {
+                type = 1;
+            }
+
             u8 gender = genders.at(i)->currentData().toUInt();
             u8 genderRatio = info.at(specie).getGender();
 
-            radarSlots.append(DreamRadarSlot(type, gender, genderRatio));
+            radarSlots.push_back(DreamRadarSlot(type, gender, genderRatio));
         }
     }
 

@@ -83,7 +83,7 @@ GameCubeSeedFinder::~GameCubeSeedFinder()
     delete ui;
 }
 
-void GameCubeSeedFinder::updateGales(const QVector<u32> &seeds)
+void GameCubeSeedFinder::updateGales(const std::vector<u32> &seeds)
 {
     galeSeeds = seeds;
     ui->labelGalesRound->setText(tr("Round #") + QString::number(++galesRound));
@@ -109,7 +109,7 @@ void GameCubeSeedFinder::updateGalesProgress(int progress)
     ui->progressBarGales->setValue(progress);
 }
 
-void GameCubeSeedFinder::updateColo(const QVector<u32> &seeds)
+void GameCubeSeedFinder::updateColo(const std::vector<u32> &seeds)
 {
     coloSeeds = seeds;
     ui->labelColoRound->setText(tr("Round #") + QString::number(++coloRound));
@@ -135,16 +135,16 @@ void GameCubeSeedFinder::updateColoProgress(int progress)
     ui->progressBarColo->setValue(progress);
 }
 
-void GameCubeSeedFinder::updateChannel(const QVector<u32> &seeds)
+void GameCubeSeedFinder::updateChannel(const std::vector<u32> &seeds)
 {
-    if (seeds.isEmpty())
+    if (seeds.empty())
     {
         ui->labelChannelResult->setText(tr("Result: Invalid"));
     }
     else
     {
         QString seed = "";
-        for (int i = 0; i < seeds.size(); i++)
+        for (size_t i = 0; i < seeds.size(); i++)
         {
             seed += QString::number(seeds.at(i), 16).toUpper();
             if (i != seeds.size() - 1)
@@ -233,7 +233,7 @@ void GameCubeSeedFinder::galesSearch()
                 offset += seedSizes[i];
             }
 
-            QVector<u32> seeds;
+            std::vector<u32> seeds;
             seeds.resize(seedSizes[index]);
 
             f.seek(offset * sizeof(u32) + sizeof(u32) * 25);
@@ -288,7 +288,7 @@ void GameCubeSeedFinder::galesReset()
     if (ui->pushButtonGalesSearch->isEnabled())
     {
         galeSeeds.clear();
-        galeSeeds.squeeze();
+        galeSeeds.shrink_to_fit();
         galesRound = 1;
         ui->labelGalesRound->setText(tr("Round #") + QString::number(galesRound));
     }
@@ -354,7 +354,7 @@ void GameCubeSeedFinder::coloSearch()
                 offset += seedSizes[i];
             }
 
-            QVector<u32> seeds;
+            std::vector<u32> seeds;
             seeds.resize(seedSizes[index]);
 
             f.seek(offset * sizeof(u32) + sizeof(u32) * 25);
@@ -409,7 +409,7 @@ void GameCubeSeedFinder::coloReset()
     if (ui->pushButtonColoSearch->isEnabled())
     {
         coloSeeds.clear();
-        coloSeeds.squeeze();
+        coloSeeds.shrink_to_fit();
         coloRound = 1;
         ui->labelColoRound->setText(tr("Round #") + QString::number(coloRound));
     }
@@ -425,10 +425,10 @@ void GameCubeSeedFinder::channelSearch()
         return;
     }
 
-    QVector<u32> criteria;
+    std::vector<u32> criteria;
     for (const QString &input : inputs)
     {
-        criteria.append(patterns.at(input));
+        criteria.push_back(patterns.at(input));
     }
 
     ui->pushButtonChannelSearch->setEnabled(false);

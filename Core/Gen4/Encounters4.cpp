@@ -80,7 +80,7 @@ namespace Encounters4
             return data.mid(offset, length).toHex().toUShort(nullptr, 16);
         }
 
-        void modifyRadio(QVector<Slot> &mons, const QByteArray &data, const QVector<PersonalInfo> &info, int radio)
+        void modifyRadio(std::vector<Slot> &mons, const QByteArray &data, const std::vector<PersonalInfo> &info, int radio)
         {
             u16 specie1;
             u16 specie2;
@@ -105,7 +105,7 @@ namespace Encounters4
             mons[5].setSpecie(specie2, info.at(specie2));
         }
 
-        void modifyTime(QVector<Slot> &mons, const QByteArray &data, const QVector<PersonalInfo> &info, int time)
+        void modifyTime(std::vector<Slot> &mons, const QByteArray &data, const std::vector<PersonalInfo> &info, int time)
         {
             u16 specie1;
             u16 specie2;
@@ -128,7 +128,7 @@ namespace Encounters4
             mons[3].setSpecie(specie2, info.at(specie2));
         }
 
-        void modifyDual(QVector<Slot> &mons, const QByteArray &data, const QVector<PersonalInfo> &info, Game dual)
+        void modifyDual(std::vector<Slot> &mons, const QByteArray &data, const std::vector<PersonalInfo> &info, Game dual)
         {
             u16 specie1;
             u16 specie2;
@@ -166,11 +166,11 @@ namespace Encounters4
             mons[9].setSpecie(specie2, info.at(specie2));
         }
 
-        void modifyRadar(QVector<Slot> &mons, const QByteArray &data, const QVector<PersonalInfo> &info, bool radar)
+        void modifyRadar(std::vector<Slot> &mons, const QByteArray &data, const std::vector<PersonalInfo> &info, bool radar)
         {
             if (radar)
             {
-                QVector<u16> species = { getValue(data, 51, 2), getValue(data, 53, 2), getValue(data, 55, 2), getValue(data, 57, 2) };
+                std::vector<u16> species = { getValue(data, 51, 2), getValue(data, 53, 2), getValue(data, 55, 2), getValue(data, 57, 2) };
                 mons[4].setSpecie(species.at(0), info.at(species.at(0)));
                 mons[5].setSpecie(species.at(1), info.at(species.at(1)));
                 mons[10].setSpecie(species.at(2), info.at(species.at(2)));
@@ -178,7 +178,7 @@ namespace Encounters4
             }
         }
 
-        void modifySwarmHGSS(QVector<Slot> &mons, const QByteArray &data, const QVector<PersonalInfo> &info, Encounter encounter,
+        void modifySwarmHGSS(std::vector<Slot> &mons, const QByteArray &data, const std::vector<PersonalInfo> &info, Encounter encounter,
                              bool swarm)
         {
             if (swarm)
@@ -210,20 +210,20 @@ namespace Encounters4
             }
         }
 
-        void modifySwarmDPPt(QVector<Slot> &mons, const QByteArray &data, const QVector<PersonalInfo> &info, bool swarm)
+        void modifySwarmDPPt(std::vector<Slot> &mons, const QByteArray &data, const std::vector<PersonalInfo> &info, bool swarm)
         {
             if (swarm)
             {
-                QVector<u16> species = { getValue(data, 39, 2), getValue(data, 41, 2) };
+                std::vector<u16> species = { getValue(data, 39, 2), getValue(data, 41, 2) };
                 mons[0].setSpecie(species.at(0), info.at(species.at(0)));
                 mons[1].setSpecie(species.at(1), info.at(species.at(1)));
             }
         }
 
-        QVector<EncounterArea4> getHGSS(const QByteArray &data, const Profile4 &profile, const QVector<PersonalInfo> &info,
-                                        Encounter encounter, int time)
+        std::vector<EncounterArea4> getHGSS(const QByteArray &data, const Profile4 &profile, const std::vector<PersonalInfo> &info,
+                                            Encounter encounter, int time)
         {
-            QVector<EncounterArea4> encounters;
+            std::vector<EncounterArea4> encounters;
             u8 location = static_cast<u8>(getValue(data, 0, 1));
 
             // Grass
@@ -231,52 +231,52 @@ namespace Encounters4
             {
                 int timeOffset = (time * 2) + 1;
 
-                QVector<Slot> grass;
+                std::vector<Slot> grass;
                 for (int i = 0; i < 12; i++)
                 {
                     u8 level = static_cast<u8>(getValue(data, 4 + i * 7, 1));
                     u16 specie = getValue(data, 4 + timeOffset + i * 7, 2);
-                    grass.append(Slot(specie, level, info.at(specie)));
+                    grass.push_back(Slot(specie, level, info.at(specie)));
                 }
 
                 modifyRadio(grass, data, info, profile.getRadio());
                 modifySwarmHGSS(grass, data, info, encounter, profile.getSwarm());
 
-                encounters.append(EncounterArea4(location, Encounter::Grass, grass));
+                encounters.push_back(EncounterArea4(location, Encounter::Grass, grass));
             }
 
             // Rock Smash
             if (getValue(data, 2, 1) == 1)
             {
-                QVector<Slot> rock;
+                std::vector<Slot> rock;
                 for (int i = 0; i < 2; i++)
                 {
                     u8 min = static_cast<u8>(getValue(data, 96 + i * 4, 1));
                     u8 max = static_cast<u8>(getValue(data, 97 + i * 4, 1));
                     u16 specie = getValue(data, 98 + i * 4, 2);
-                    rock.append(Slot(specie, min, max, info.at(specie)));
+                    rock.push_back(Slot(specie, min, max, info.at(specie)));
                 }
-                encounters.append(EncounterArea4(location, Encounter::RockSmash, rock));
+                encounters.push_back(EncounterArea4(location, Encounter::RockSmash, rock));
             }
 
             // Water
             if (getValue(data, 3, 1) == 1)
             {
-                QVector<Slot> surf;
-                QVector<Slot> old;
-                QVector<Slot> good;
-                QVector<Slot> super;
+                std::vector<Slot> surf;
+                std::vector<Slot> old;
+                std::vector<Slot> good;
+                std::vector<Slot> super;
                 for (int i = 0; i < 5; i++)
                 {
                     u8 min = static_cast<u8>(getValue(data, 104 + i * 4, 1));
                     u8 max = static_cast<u8>(getValue(data, 105 + i * 4, 1));
                     u16 specie = getValue(data, 106 + i * 4, 2);
-                    surf.append(Slot(specie, min, max, info.at(specie)));
+                    surf.push_back(Slot(specie, min, max, info.at(specie)));
 
                     min = static_cast<u8>(getValue(data, 124 + i * 4, 1));
                     max = static_cast<u8>(getValue(data, 125 + i * 4, 1));
                     specie = getValue(data, 126 + i * 4, 2);
-                    old.append(Slot(specie, min, max, info.at(specie)));
+                    old.push_back(Slot(specie, min, max, info.at(specie)));
 
                     min = static_cast<u8>(getValue(data, 144 + i * 4, 1));
                     max = static_cast<u8>(getValue(data, 145 + i * 4, 1));
@@ -296,7 +296,7 @@ namespace Encounters4
                         }
                     }
 
-                    good.append(Slot(specie, min, max, info.at(specie)));
+                    good.push_back(Slot(specie, min, max, info.at(specie)));
 
                     min = static_cast<u8>(getValue(data, 164 + i * 4, 1));
                     max = static_cast<u8>(getValue(data, 165 + i * 4, 1));
@@ -316,37 +316,38 @@ namespace Encounters4
                         }
                     }
 
-                    super.append(Slot(specie, min, max, info.at(specie)));
+                    super.push_back(Slot(specie, min, max, info.at(specie)));
                 }
 
                 modifySwarmHGSS(surf, data, info, encounter, profile.getSwarm());
-                encounters.append(EncounterArea4(location, Encounter::Surfing, surf));
+                encounters.push_back(EncounterArea4(location, Encounter::Surfing, surf));
 
-                encounters.append(EncounterArea4(location, Encounter::OldRod, old));
+                encounters.push_back(EncounterArea4(location, Encounter::OldRod, old));
 
                 modifySwarmHGSS(good, data, info, encounter, profile.getSwarm());
-                encounters.append(EncounterArea4(location, Encounter::GoodRod, good));
+                encounters.push_back(EncounterArea4(location, Encounter::GoodRod, good));
 
                 modifySwarmHGSS(super, data, info, encounter, profile.getSwarm());
-                encounters.append(EncounterArea4(location, Encounter::SuperRod, super));
+                encounters.push_back(EncounterArea4(location, Encounter::SuperRod, super));
             }
             return encounters;
         }
 
-        QVector<EncounterArea4> getDPPt(const QByteArray &data, const Profile4 &profile, const QVector<PersonalInfo> &info, int time)
+        std::vector<EncounterArea4> getDPPt(const QByteArray &data, const Profile4 &profile, const std::vector<PersonalInfo> &info,
+                                            int time)
         {
-            QVector<EncounterArea4> encounters;
+            std::vector<EncounterArea4> encounters;
             u8 location = static_cast<u8>(getValue(data, 0, 1));
 
             // Grass
             if (getValue(data, 1, 1) == 1)
             {
-                QVector<Slot> grass;
+                std::vector<Slot> grass;
                 for (int i = 0; i < 12; i++)
                 {
                     u8 level = static_cast<u8>(getValue(data, 3 + i * 3, 1));
                     u16 specie = getValue(data, 4 + i * 3, 2);
-                    grass.append(Slot(specie, level, info.at(specie)));
+                    grass.push_back(Slot(specie, level, info.at(specie)));
                 }
 
                 modifyTime(grass, data, info, time);
@@ -354,52 +355,52 @@ namespace Encounters4
                 modifyRadar(grass, data, info, profile.getRadar());
                 modifySwarmDPPt(grass, data, info, profile.getSwarm());
 
-                encounters.append(EncounterArea4(location, Encounter::Grass, grass));
+                encounters.push_back(EncounterArea4(location, Encounter::Grass, grass));
             }
 
             // Water
             if (getValue(data, 2, 1) == 1)
             {
-                QVector<Slot> surf;
-                QVector<Slot> old;
-                QVector<Slot> good;
-                QVector<Slot> super;
+                std::vector<Slot> surf;
+                std::vector<Slot> old;
+                std::vector<Slot> good;
+                std::vector<Slot> super;
                 for (int i = 0; i < 5; i++)
                 {
                     u8 min = static_cast<u8>(getValue(data, 79 + i * 4, 1));
                     u8 max = static_cast<u8>(getValue(data, 80 + i * 4, 1));
                     u16 specie = getValue(data, 81 + i * 4, 2);
-                    surf.append(Slot(specie, min, max, info.at(specie)));
+                    surf.push_back(Slot(specie, min, max, info.at(specie)));
 
                     min = static_cast<u8>(getValue(data, 99 + i * 4, 1));
                     max = static_cast<u8>(getValue(data, 100 + i * 4, 1));
                     specie = getValue(data, 101 + i * 4, 2);
-                    old.append(Slot(specie, min, max, info.at(specie)));
+                    old.push_back(Slot(specie, min, max, info.at(specie)));
 
                     min = static_cast<u8>(getValue(data, 119 + i * 4, 1));
                     max = static_cast<u8>(getValue(data, 120 + i * 4, 1));
                     specie = getValue(data, 121 + i * 4, 2);
-                    good.append(Slot(specie, min, max, info.at(specie)));
+                    good.push_back(Slot(specie, min, max, info.at(specie)));
 
                     min = static_cast<u8>(getValue(data, 139 + i * 4, 1));
                     max = static_cast<u8>(getValue(data, 140 + i * 4, 1));
                     specie = getValue(data, 141 + i * 4, 2);
-                    super.append(Slot(specie, min, max, info.at(specie)));
+                    super.push_back(Slot(specie, min, max, info.at(specie)));
                 }
 
-                encounters.append(EncounterArea4(location, Encounter::Surfing, surf));
-                encounters.append(EncounterArea4(location, Encounter::OldRod, old));
-                encounters.append(EncounterArea4(location, Encounter::GoodRod, good));
-                encounters.append(EncounterArea4(location, Encounter::SuperRod, super));
+                encounters.push_back(EncounterArea4(location, Encounter::Surfing, surf));
+                encounters.push_back(EncounterArea4(location, Encounter::OldRod, old));
+                encounters.push_back(EncounterArea4(location, Encounter::GoodRod, good));
+                encounters.push_back(EncounterArea4(location, Encounter::SuperRod, super));
             }
             return encounters;
         }
     }
 
-    QVector<EncounterArea4> getEncounters(Encounter encounter, int time, const Profile4 &profile)
+    std::vector<EncounterArea4> getEncounters(Encounter encounter, int time, const Profile4 &profile)
     {
-        QVector<EncounterArea4> encounters;
-        QVector<PersonalInfo> info = PersonalInfo::loadPersonal(4);
+        std::vector<EncounterArea4> encounters;
+        std::vector<PersonalInfo> info = PersonalInfo::loadPersonal(4);
 
         for (const auto &data : getData(profile.getVersion()))
         {
@@ -409,7 +410,7 @@ namespace Encounters4
             {
                 if (area.getEncounter() == encounter)
                 {
-                    encounters.append(area);
+                    encounters.push_back(area);
                 }
             }
         }

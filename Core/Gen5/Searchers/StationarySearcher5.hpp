@@ -31,10 +31,10 @@ class StationarySearcher5
 public:
     StationarySearcher5() = default;
     explicit StationarySearcher5(const StationaryGenerator5 &ivGenerator, const StationaryGenerator5 &pidGenerator, const Profile5 &profile,
-                                 const QVector<QHash<u32, u32>> &ivMap, bool includePID);
+                                 const std::vector<std::unordered_map<u32, u32>> &ivMap, bool includePID);
     void startSearch(int threads, QDate start, const QDate &end);
     void cancelSearch();
-    QVector<StationaryState5> getResults();
+    std::vector<StationaryState5> getResults();
     int getProgress() const;
 
 private:
@@ -42,13 +42,13 @@ private:
     StationaryGenerator5 ivGenerator;
     StationaryGenerator5 pidGenerator;
     Profile5 profile;
-    QVector<QHash<u32, u32>> ivMap;
+    std::vector<std::unordered_map<u32, u32>> ivMap;
     bool includePID;
     bool fastSearch;
 
     bool searching;
     int progress;
-    QVector<StationaryState5> results;
+    std::vector<StationaryState5> results;
     std::mutex resultMutex;
     std::mutex progressMutex;
 

@@ -24,11 +24,11 @@
 #include <Core/Util/Utilities.hpp>
 
 DreamRadarGenerator::DreamRadarGenerator(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, Method method,
-                                         const StateFilter &filter, const QVector<DreamRadarSlot> &radarSlots) :
+                                         const StateFilter &filter, const std::vector<DreamRadarSlot> &radarSlots) :
     Generator(initialAdvances, maxAdvances, tid, sid, genderRatio, method, filter),
     pidAdvances(0),
     ivAdvances(0),
-    radarSlot(radarSlots.last())
+    radarSlot(radarSlots.back())
 {
     for (u8 i = 0; i < radarSlots.size(); i++)
     {
@@ -47,9 +47,9 @@ DreamRadarGenerator::DreamRadarGenerator(u32 initialAdvances, u32 maxAdvances, u
     }
 }
 
-QVector<State> DreamRadarGenerator::generate(u64 seed, bool memory)
+std::vector<State> DreamRadarGenerator::generate(u64 seed, bool memory)
 {
-    QVector<State> states;
+    std::vector<State> states;
 
     BWRNG rng(seed);
     rng.advance(Utilities::initialAdvancesBW2(seed, memory) + (initialAdvances * 2));
@@ -116,7 +116,7 @@ QVector<State> DreamRadarGenerator::generate(u64 seed, bool memory)
 
         if (filter.compareState(state))
         {
-            states.append(state);
+            states.push_back(state);
         }
     }
 

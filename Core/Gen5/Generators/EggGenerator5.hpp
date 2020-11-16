@@ -30,7 +30,7 @@ public:
     EggGenerator5() = default;
     EggGenerator5(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter,
                   const Daycare &daycare, bool shinyCharm);
-    QVector<EggState> generate(u64 seed) const;
+    std::vector<EggState> generate(u64 seed) const;
 
 private:
     u8 rolls;
@@ -39,8 +39,8 @@ private:
     bool ditto;
     u8 parentAbility;
 
-    QVector<EggState> generateBW(u64 seed) const;
-    QVector<EggState> generateBW2(u64 seed) const;
+    std::vector<EggState> generateBW(u64 seed) const;
+    std::vector<EggState> generateBW2(u64 seed) const;
     EggState generateBW2Egg(u64 seed) const;
 };
 

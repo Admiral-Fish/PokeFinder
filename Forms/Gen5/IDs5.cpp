@@ -77,7 +77,7 @@ void IDs5::updateProfiles()
 
 bool IDs5::hasProfiles() const
 {
-    return !profiles.isEmpty();
+    return !profiles.empty();
 }
 
 void IDs5::setupModels()
@@ -115,7 +115,7 @@ void IDs5::setupModels()
     setting.endGroup();
 }
 
-void IDs5::updateProgress(const QVector<IDState5> &states, int progress)
+void IDs5::updateProgress(const std::vector<IDState5> &states, int progress)
 {
     model->addItems(states);
     ui->progressBar->setValue(progress);
@@ -132,16 +132,16 @@ void IDs5::search()
     u32 pid = ui->textBoxPID->getUInt();
     bool usePID = ui->checkBoxPID->isChecked();
 
-    QVector<u16> tid;
+    std::vector<u16> tid;
     if (ui->checkBoxTID->isChecked())
     {
-        tid.append(ui->textBoxTID->getUShort());
+        tid.push_back(ui->textBoxTID->getUShort());
     }
 
-    QVector<u16> sid;
+    std::vector<u16> sid;
     if (ui->checkBoxSID->isChecked())
     {
-        sid.append(ui->textBoxSID->getUShort());
+        sid.push_back(ui->textBoxSID->getUShort());
     }
 
     QDate start = ui->dateEditStart->date();
@@ -203,8 +203,8 @@ void IDs5::find()
 
     sha.setTimer0(currentProfile.getTimer0Min(), currentProfile.getVCount());
 
-    QVector<IDState5> results;
-    for (int i = 0; i < values.size(); i++)
+    std::vector<IDState5> results;
+    for (size_t i = 0; i < values.size(); i++)
     {
         sha.setButton(values.at(i));
 
@@ -230,7 +230,7 @@ void IDs5::find()
                 state.setKeypress(buttons.at(i));
             }
 
-            results.append(states);
+            results.insert(results.end(), states.begin(), states.end());
         }
     }
 

@@ -21,7 +21,7 @@
 #define IDFILTER_HPP
 
 #include <Core/Util/Global.hpp>
-#include <QVector>
+#include <vector>
 
 class IDState;
 
@@ -29,13 +29,13 @@ class IDFilter
 {
 public:
     IDFilter() = default;
-    IDFilter(const QVector<u16> &tidFilter, const QVector<u16> &sidFilter, const QVector<u16> &tsvFilter);
+    IDFilter(const std::vector<u16> &tidFilter, const std::vector<u16> &sidFilter, const std::vector<u16> &tsvFilter);
     bool compare(const IDState &state) const;
 
 private:
-    QVector<u16> tidFilter;
-    QVector<u16> sidFilter;
-    QVector<u16> tsvFilter;
+    std::vector<u16> tidFilter;
+    std::vector<u16> sidFilter;
+    std::vector<u16> tsvFilter;
 };
 
 #endif // IDFILTER_HPP

@@ -62,18 +62,18 @@ void ProfileSearcher5::startSearch(int threads, u8 minVFrame, u8 maxVFrame)
     }
 
     pool.setMaxThreadCount(threads);
-    QVector<QFuture<void>> threadContainer;
+    std::vector<QFuture<void>> threadContainer;
 
     auto split = (diff / threads);
     for (int i = 0; i < threads; i++)
     {
         if (i == threads - 1)
         {
-            threadContainer.append(QtConcurrent::run(&pool, [=] { search(minVFrame, maxVFrame + 1); }));
+            threadContainer.push_back(QtConcurrent::run(&pool, [=] { search(minVFrame, maxVFrame + 1); }));
         }
         else
         {
-            threadContainer.append(QtConcurrent::run(&pool, [=] { search(minVFrame, minVFrame + split); }));
+            threadContainer.push_back(QtConcurrent::run(&pool, [=] { search(minVFrame, minVFrame + split); }));
         }
         minVFrame += split;
     }
@@ -89,7 +89,7 @@ void ProfileSearcher5::cancelSearch()
     searching = false;
 }
 
-QVector<QList<QStandardItem *>> ProfileSearcher5::getResults()
+std::vector<QList<QStandardItem *>> ProfileSearcher5::getResults()
 {
     std::lock_guard<std::mutex> lock(resultMutex);
 
@@ -106,7 +106,7 @@ int ProfileSearcher5::getProgress() const
 
 void ProfileSearcher5::search(u8 vframeStart, u8 vframeEnd)
 {
-    u32 button = Keypresses::getValues({ keypress }).first();
+    u32 button = Keypresses::getValues({ keypress }).front();
     for (u8 vframe = vframeStart; vframe < vframeEnd; vframe++)
     {
         for (u8 gxStat = minGxStat; gxStat <= maxGxStat; gxStat++)
@@ -139,7 +139,7 @@ void ProfileSearcher5::search(u8 vframeStart, u8 vframeEnd)
                             items.append(new QStandardItem(QString::number(seed, 16)));
 
                             std::lock_guard<std::mutex> lock(resultMutex);
-                            results.append(items);
+                            results.push_back(items);
                         }
 
                         std::lock_guard<std::mutex> lock(progressMutex);
@@ -151,10 +151,10 @@ void ProfileSearcher5::search(u8 vframeStart, u8 vframeEnd)
     }
 }
 
-ProfileIVSearcher5::ProfileIVSearcher5(const QVector<u8> &minIVs, const QVector<u8> &maxIVs, const QDate &date, const QTime &time,
-                                       int minSeconds, int maxSeconds, u8 minVCount, u8 maxVCount, u16 minTimer0, u16 maxTimer0,
-                                       u8 minGxStat, u8 maxGxStat, bool softReset, Game version, Language language, DSType dsType, u64 mac,
-                                       Buttons keypress) :
+ProfileIVSearcher5::ProfileIVSearcher5(const std::array<u8, 6> &minIVs, const std::array<u8, 6> &maxIVs, const QDate &date,
+                                       const QTime &time, int minSeconds, int maxSeconds, u8 minVCount, u8 maxVCount, u16 minTimer0,
+                                       u16 maxTimer0, u8 minGxStat, u8 maxGxStat, bool softReset, Game version, Language language,
+                                       DSType dsType, u64 mac, Buttons keypress) :
     ProfileSearcher5(date, time, minSeconds, maxSeconds, minVCount, maxVCount, minTimer0, maxTimer0, minGxStat, maxGxStat, softReset,
                      version, language, dsType, mac, keypress),
     minIVs(minIVs),
@@ -179,7 +179,7 @@ bool ProfileIVSearcher5::valid(u64 seed)
     return true;
 }
 
-ProfileNeedleSearcher5::ProfileNeedleSearcher5(const QVector<u8> &needles, bool unovaLink, bool memoryLink, const QDate &date,
+ProfileNeedleSearcher5::ProfileNeedleSearcher5(const std::vector<u8> &needles, bool unovaLink, bool memoryLink, const QDate &date,
                                                const QTime &time, int minSeconds, int maxSeconds, u8 minVCount, u8 maxVCount, u16 minTimer0,
                                                u16 maxTimer0, u8 minGxStat, u8 maxGxStat, bool softReset, Game version, Language language,
                                                DSType dsType, u64 mac, Buttons keypress) :

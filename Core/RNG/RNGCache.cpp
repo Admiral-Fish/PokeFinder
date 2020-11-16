@@ -55,9 +55,9 @@ RNGCache::RNGCache(Method method)
 }
 
 // Recovers origin seeds for two 16 bit calls(15 bits known) with or without gap based on the cache
-QVector<u32> RNGCache::recoverLower16BitsIV(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const
+std::vector<u32> RNGCache::recoverLower16BitsIV(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const
 {
-    QVector<u32> origin;
+    std::vector<u32> origin;
 
     u32 first = static_cast<u32>((hp | (atk << 5) | (def << 10)) << 16);
     u32 second = static_cast<u32>((spe | (spa << 5) | (spd << 10)) << 16);
@@ -75,7 +75,7 @@ QVector<u32> RNGCache::recoverLower16BitsIV(u8 hp, u8 atk, u8 def, u8 spa, u8 sp
             // Verify IV calls line up
             if (((test * mult + add) & 0x7fff0000) == second)
             {
-                origin.append(test);
+                origin.push_back(test);
             }
         }
 
@@ -85,7 +85,7 @@ QVector<u32> RNGCache::recoverLower16BitsIV(u8 hp, u8 atk, u8 def, u8 spa, u8 sp
             // Verify IV calls line up
             if (((test * mult + add) & 0x7fff0000) == second)
             {
-                origin.append(test);
+                origin.push_back(test);
             }
         }
     }
@@ -94,9 +94,9 @@ QVector<u32> RNGCache::recoverLower16BitsIV(u8 hp, u8 atk, u8 def, u8 spa, u8 sp
 }
 
 // Recovers origin seeds for two 16 bit calls based on the cache
-QVector<u32> RNGCache::recoverLower16BitsPID(u32 pid) const
+std::vector<u32> RNGCache::recoverLower16BitsPID(u32 pid) const
 {
-    QVector<u32> origin;
+    std::vector<u32> origin;
 
     u32 first = pid << 16;
     u32 second = pid & 0xFFFF0000;
@@ -110,7 +110,7 @@ QVector<u32> RNGCache::recoverLower16BitsPID(u32 pid) const
             // Verify PID calls line up
             if (((test * mult + add) & 0xffff0000) == second)
             {
-                origin.append(test);
+                origin.push_back(test);
             }
         }
     }

@@ -21,11 +21,11 @@
 #define PROFILELOADER4_HPP
 
 #include <Core/Gen4/Profile4.hpp>
-#include <QVector>
+#include <vector>
 
 namespace ProfileLoader4
 {
-    QVector<Profile4> getProfiles();
+    std::vector<Profile4> getProfiles();
     void addProfile(const Profile4 &profile);
     void removeProfile(const Profile4 &remove);
     void updateProfile(const Profile4 &update, const Profile4 &original);

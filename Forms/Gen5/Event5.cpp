@@ -79,7 +79,7 @@ void Event5::updateProfiles()
 
 bool Event5::hasProfiles() const
 {
-    return !profiles.isEmpty();
+    return !profiles.empty();
 }
 
 void Event5::setupModels()
@@ -108,7 +108,7 @@ void Event5::setupModels()
     ui->filterGenerator->disableControls(Controls::EncounterSlots);
     ui->filterSearcher->disableControls(Controls::EncounterSlots | Controls::DisableFilter | Controls::UseDelay);
 
-    QVector<u16> species(649);
+    std::vector<u16> species(649);
     std::iota(species.begin(), species.end(), 1);
     ui->comboBoxGeneratorSpecies->addItems(Translator::getSpecies(species));
     ui->comboBoxSearcherSpecies->addItems(Translator::getSpecies(species));
@@ -173,7 +173,7 @@ PGF Event5::getSearcherParameters() const
                ui->checkBoxSearcherEgg->isChecked());
 }
 
-void Event5::updateProgress(const QVector<SearcherState5<State>> &states, int progress)
+void Event5::updateProgress(const std::vector<SearcherState5<State>> &states, int progress)
 {
     searcherModel->addItems(states);
     ui->progressBar->setValue(progress);
@@ -292,10 +292,10 @@ void Event5::generatorImportEvent()
             ui->comboBoxGeneratorAbility->setCurrentIndex(pgf.getAbilityType());
             ui->comboBoxGeneratorShiny->setCurrentIndex(pgf.getPIDType());
 
-            QVector<QCheckBox *> checkBoxes = { ui->checkBoxGeneratorHP,  ui->checkBoxGeneratorAtk, ui->checkBoxGeneratorDef,
-                                                ui->checkBoxGeneratorSpA, ui->checkBoxGeneratorSpD, ui->checkBoxGeneratorSpe };
-            QVector<QSpinBox *> spinBoxes = { ui->spinBoxGeneratorHP,  ui->spinBoxGeneratorAtk, ui->spinBoxGeneratorDef,
-                                              ui->spinBoxGeneratorSpA, ui->spinBoxGeneratorSpD, ui->spinBoxGeneratorSpe };
+            std::vector<QCheckBox *> checkBoxes = { ui->checkBoxGeneratorHP,  ui->checkBoxGeneratorAtk, ui->checkBoxGeneratorDef,
+                                                    ui->checkBoxGeneratorSpA, ui->checkBoxGeneratorSpD, ui->checkBoxGeneratorSpe };
+            std::vector<QSpinBox *> spinBoxes = { ui->spinBoxGeneratorHP,  ui->spinBoxGeneratorAtk, ui->spinBoxGeneratorDef,
+                                                  ui->spinBoxGeneratorSpA, ui->spinBoxGeneratorSpD, ui->spinBoxGeneratorSpe };
 
             for (u8 i = 0; i < 6; i++)
             {
@@ -360,10 +360,10 @@ void Event5::searcherImportEvent()
             ui->comboBoxSearcherAbility->setCurrentIndex(pgf.getAbilityType());
             ui->comboBoxSearcherShiny->setCurrentIndex(pgf.getPIDType());
 
-            QVector<QCheckBox *> checkBoxes = { ui->checkBoxSearcherHP,  ui->checkBoxSearcherAtk, ui->checkBoxSearcherDef,
-                                                ui->checkBoxSearcherSpA, ui->checkBoxSearcherSpD, ui->checkBoxSearcherSpe };
-            QVector<QSpinBox *> spinBoxes = { ui->spinBoxSearcherHP,  ui->spinBoxSearcherAtk, ui->spinBoxSearcherDef,
-                                              ui->spinBoxSearcherSpA, ui->spinBoxSearcherSpD, ui->spinBoxSearcherSpe };
+            std::vector<QCheckBox *> checkBoxes = { ui->checkBoxSearcherHP,  ui->checkBoxSearcherAtk, ui->checkBoxSearcherDef,
+                                                    ui->checkBoxSearcherSpA, ui->checkBoxSearcherSpD, ui->checkBoxSearcherSpe };
+            std::vector<QSpinBox *> spinBoxes = { ui->spinBoxSearcherHP,  ui->spinBoxSearcherAtk, ui->spinBoxSearcherDef,
+                                                  ui->spinBoxSearcherSpA, ui->spinBoxSearcherSpD, ui->spinBoxSearcherSpe };
 
             for (u8 i = 0; i < 6; i++)
             {

@@ -46,7 +46,7 @@ bool LockInfo::getFree() const
     return free;
 }
 
-ShadowTeam::ShadowTeam(const QVector<LockInfo> &locks, ShadowType type)
+ShadowTeam::ShadowTeam(const std::vector<LockInfo> &locks, ShadowType type)
 {
     this->locks = locks;
     this->type = type;
@@ -57,7 +57,7 @@ LockInfo ShadowTeam::getLock(u8 index) const
     return locks.at(index);
 }
 
-QVector<LockInfo> ShadowTeam::getLocks() const
+std::vector<LockInfo> ShadowTeam::getLocks() const
 {
     return locks;
 }
@@ -72,9 +72,9 @@ int ShadowTeam::getSize() const
     return locks.size();
 }
 
-QVector<ShadowTeam> ShadowTeam::loadShadowTeams(Method version)
+std::vector<ShadowTeam> ShadowTeam::loadShadowTeams(Method version)
 {
-    QVector<ShadowTeam> shadowTeams;
+    std::vector<ShadowTeam> shadowTeams;
     QString path = version == Method::XD ? ":/encounters/gales.bin" : ":/encounters/colo.bin";
 
     QByteArray data;
@@ -90,16 +90,16 @@ QVector<ShadowTeam> ShadowTeam::loadShadowTeams(Method version)
     {
         auto type = static_cast<ShadowType>(data.at(offset + 1));
         u8 size = static_cast<u8>(data.at(offset));
-        QVector<LockInfo> locks;
+        std::vector<LockInfo> locks;
         for (u8 i = 0; i < size; i++)
         {
             u8 nature = static_cast<u8>(data.at(offset + 2 + i * 3));
             u8 genderLower = static_cast<u8>(data.at(offset + 3 + i * 3));
             u8 genderUpper = static_cast<u8>(data.at(offset + 4 + i * 3));
-            locks.append(LockInfo(nature, genderLower, genderUpper));
+            locks.push_back(LockInfo(nature, genderLower, genderUpper));
         }
 
-        shadowTeams.append(ShadowTeam(locks, type));
+        shadowTeams.push_back(ShadowTeam(locks, type));
         offset += data[offset] * 3 + 2;
     }
 

@@ -31,22 +31,22 @@ public:
     StationaryGenerator5() = default;
     StationaryGenerator5(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, Method method, Encounter encounter,
                          const StateFilter &filter);
-    QVector<StationaryState> generate(u64 seed) const;
+    std::vector<StationaryState> generate(u64 seed) const;
 
 private:
     u8 idBit;
     Encounter encounter;
 
-    QVector<StationaryState> generateRoamerIVs(u64 seed) const;
-    QVector<StationaryState> generateIVs(u64 seed) const;
-    QVector<StationaryState> generateRoamerCGear(u64 seed) const;
-    QVector<StationaryState> generateCGear(u64 seed) const;
-    QVector<StationaryState> generateStationary(u64 seed) const;
-    QVector<StationaryState> generateRoamer(u64 seed);
-    QVector<StationaryState> generateGift(u64 seed);
-    QVector<StationaryState> generateEntraLink(u64 seed);
-    QVector<StationaryState> generateLarvestaEgg(u64 seed);
-    QVector<StationaryState> generateHiddenGrotto(u64 seed);
+    std::vector<StationaryState> generateRoamerIVs(u64 seed) const;
+    std::vector<StationaryState> generateIVs(u64 seed) const;
+    std::vector<StationaryState> generateRoamerCGear(u64 seed) const;
+    std::vector<StationaryState> generateCGear(u64 seed) const;
+    std::vector<StationaryState> generateStationary(u64 seed) const;
+    std::vector<StationaryState> generateRoamer(u64 seed);
+    std::vector<StationaryState> generateGift(u64 seed);
+    std::vector<StationaryState> generateEntraLink(u64 seed);
+    std::vector<StationaryState> generateLarvestaEgg(u64 seed);
+    std::vector<StationaryState> generateHiddenGrotto(u64 seed);
 };
 
 #endif // GENERATOR5_HPP

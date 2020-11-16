@@ -21,22 +21,22 @@
 #define SEEDSEARCHER_HPP
 
 #include <Core/Util/Global.hpp>
-#include <QVector>
 #include <mutex>
+#include <vector>
 
 class SeedSearcher
 {
 public:
-    explicit SeedSearcher(const QVector<u32> &criteria);
+    explicit SeedSearcher(const std::vector<u32> &criteria);
     virtual ~SeedSearcher() = default;
-    QVector<u32> getInitialSeeds();
+    std::vector<u32> getInitialSeeds();
     void cancelSearch();
-    QVector<u32> getResults() const;
+    std::vector<u32> getResults() const;
     virtual int getProgress() const;
 
 protected:
-    QVector<u32> results;
-    QVector<u32> criteria;
+    std::vector<u32> results;
+    std::vector<u32> criteria;
     bool searching;
     u32 progress;
     std::mutex resultMutex;

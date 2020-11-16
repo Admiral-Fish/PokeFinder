@@ -77,7 +77,7 @@ void Eggs5::updateProfiles()
 
 bool Eggs5::hasProfiles() const
 {
-    return !profiles.isEmpty();
+    return !profiles.empty();
 }
 
 void Eggs5::setupModels()
@@ -128,7 +128,7 @@ void Eggs5::setupModels()
     setting.endGroup();
 }
 
-void Eggs5::updateProgress(const QVector<SearcherState5<EggState>> &states, int progress)
+void Eggs5::updateProgress(const std::vector<SearcherState5<EggState>> &states, int progress)
 {
     searcherModel->addItems(states);
     ui->progressBar->setValue(progress);

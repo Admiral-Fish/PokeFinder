@@ -21,7 +21,7 @@
 #define RNGCACHE_HPP
 
 #include <Core/Util/Global.hpp>
-#include <QVector>
+#include <vector>
 
 enum Method : u8;
 
@@ -30,8 +30,8 @@ class RNGCache
 public:
     RNGCache() = default;
     explicit RNGCache(Method method);
-    QVector<u32> recoverLower16BitsIV(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const;
-    QVector<u32> recoverLower16BitsPID(u32 pid) const;
+    std::vector<u32> recoverLower16BitsIV(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const;
+    std::vector<u32> recoverLower16BitsPID(u32 pid) const;
 
 private:
     u32 add;

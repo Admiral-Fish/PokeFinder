@@ -19,13 +19,13 @@
 
 #include "JirachiPatternCalculator.hpp"
 #include <Core/RNG/LCRNG.hpp>
-#include <QVector>
+#include <vector>
 
 namespace JirachiPatternCalculator
 {
     namespace
     {
-        u8 getTarget(u8 index, const QVector<u16> &data)
+        u8 getTarget(u8 index, const std::vector<u16> &data)
         {
             /*
              *  thresh = [ .25,.33 ]
@@ -70,12 +70,12 @@ namespace JirachiPatternCalculator
         QStringList patterns;
 
         XDRNGR rng(seed);
-        QVector<u16> data;
-        data.append(seed >> 16);
+        std::vector<u16> data;
+        data.push_back(seed >> 16);
 
         for (u8 i = 0; i < 30; i++)
         {
-            data.append(rng.nextUShort());
+            data.push_back(rng.nextUShort());
         }
 
         // Loop through 3 possible pattern cases
@@ -94,7 +94,7 @@ namespace JirachiPatternCalculator
 
                     // Determine if spread is possible
                     // Need to work backwards to see if going forward with 1, 2, and 3 lands on our target
-                    for (auto x = index + 1; x < data.size(); x++)
+                    for (size_t x = index + 1; x < data.size(); x++)
                     {
                         u8 temp = data.at(x) >> 14;
 
@@ -110,7 +110,7 @@ namespace JirachiPatternCalculator
                         if ((mask & 14) == 14)
                         {
                             QStringList pattern;
-                            for (int j = data.length() - 1; j > 0; j--)
+                            for (size_t j = data.size() - 1; j > 0; j--)
                             {
                                 pattern.append(QString::number(data.at(j) >> 14));
                             }

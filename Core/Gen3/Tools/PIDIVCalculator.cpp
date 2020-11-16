@@ -37,9 +37,9 @@ namespace PIDIVCalculator
             state.setIV(5, iv2 & 0x1f);
         }
 
-        QVector<PIDIVState> calcMethod124(u32 pid)
+        std::vector<PIDIVState> calcMethod124(u32 pid)
         {
-            QVector<PIDIVState> states;
+            std::vector<PIDIVState> states;
 
             RNGCache cache(Method::Method1);
 
@@ -64,19 +64,21 @@ namespace PIDIVCalculator
                 setIVs(state2, iv2, iv3);
                 setIVs(state3, iv1, iv3);
 
-                states.append({ state1, state2, state3 });
+                states.push_back(state1);
+                states.push_back(state2);
+                states.push_back(state3);
             }
 
             return states;
         }
 
-        QVector<PIDIVState> calcMethodXDColo(u32 pid)
+        std::vector<PIDIVState> calcMethodXDColo(u32 pid)
         {
-            QVector<PIDIVState> states;
+            std::vector<PIDIVState> states;
 
             RNGEuclidean euclidean(Method::XDColo);
 
-            QVector<QPair<u32, u32>> seeds = euclidean.recoverLower16BitsPID(pid);
+            auto seeds = euclidean.recoverLower16BitsPID(pid);
             for (const auto &pair : seeds)
             {
                 XDRNGR backward(pair.first);
@@ -90,22 +92,22 @@ namespace PIDIVCalculator
 
                 setIVs(state, iv1, iv2);
 
-                states.append(state);
+                states.push_back(state);
             }
 
             return states;
         }
 
-        QVector<PIDIVState> calcMethodChannel(u32 pid)
+        std::vector<PIDIVState> calcMethodChannel(u32 pid)
         {
-            QVector<PIDIVState> states;
+            std::vector<PIDIVState> states;
 
             RNGEuclidean euclidean(Method::XDColo);
 
             // Whether PID is xored or unxored is determined by SID which we don't know by only providing a PID
             // So we have to check both xored and unxored and recalculate the PID to see if we have a match
 
-            QVector<QPair<u32, u32>> seeds = euclidean.recoverLower16BitsPID(pid);
+            auto seeds = euclidean.recoverLower16BitsPID(pid);
             for (const auto &pair : seeds)
             {
                 XDRNGR backward(pair.first);
@@ -135,11 +137,11 @@ namespace PIDIVCalculator
                         state.setIV(i, forward.next() >> 27);
                     }
 
-                    states.append(state);
+                    states.push_back(state);
                 }
             }
 
-            QVector<QPair<u32, u32>> seedsXOR = euclidean.recoverLower16BitsPID(pid ^ 0x80000000);
+            auto seedsXOR = euclidean.recoverLower16BitsPID(pid ^ 0x80000000);
             for (const auto &pair : seedsXOR)
             {
                 XDRNGR backward(pair.first);
@@ -169,7 +171,7 @@ namespace PIDIVCalculator
                         state.setIV(i, forward.next() >> 27);
                     }
 
-                    states.append(state);
+                    states.push_back(state);
                 }
             }
 
@@ -177,13 +179,17 @@ namespace PIDIVCalculator
         }
     }
 
-    QVector<PIDIVState> calculateIVs(u32 pid)
+    std::vector<PIDIVState> calculateIVs(u32 pid)
     {
-        QVector<PIDIVState> states;
+        std::vector<PIDIVState> states;
 
-        states.append(calcMethod124(pid));
-        states.append(calcMethodXDColo(pid));
-        states.append(calcMethodChannel(pid));
+        auto results1 = calcMethod124(pid);
+        auto results2 = calcMethodXDColo(pid);
+        auto results3 = calcMethodChannel(pid);
+
+        states.insert(states.end(), results1.begin(), results1.end());
+        states.insert(states.end(), results2.begin(), results2.end());
+        states.insert(states.end(), results3.begin(), results3.end());
 
         return states;
     }

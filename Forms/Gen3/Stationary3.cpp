@@ -61,7 +61,7 @@ void Stationary3::updateProfiles()
     {
         if (!(profile.getVersion() & Game::GC))
         {
-            profiles.append(profile);
+            profiles.push_back(profile);
         }
     }
 
@@ -125,7 +125,7 @@ void Stationary3::setupModels()
     }
 }
 
-void Stationary3::updateProgress(const QVector<State> &states, int progress)
+void Stationary3::updateProgress(const std::vector<State> &states, int progress)
 {
     searcherModel->addItems(states);
     ui->progressBar->setValue(progress);
@@ -166,8 +166,8 @@ void Stationary3::search()
     ui->pushButtonSearch->setEnabled(false);
     ui->pushButtonCancel->setEnabled(true);
 
-    QVector<u8> min = ui->filterSearcher->getMinIVs();
-    QVector<u8> max = ui->filterSearcher->getMaxIVs();
+    std::array<u8, 6> min = ui->filterSearcher->getMinIVs();
+    std::array<u8, 6> max = ui->filterSearcher->getMaxIVs();
 
     StateFilter filter(ui->filterSearcher->getGender(), ui->filterSearcher->getAbility(), ui->filterSearcher->getShiny(), false, min, max,
                        ui->filterSearcher->getNatures(), ui->filterSearcher->getHiddenPowers(), {});

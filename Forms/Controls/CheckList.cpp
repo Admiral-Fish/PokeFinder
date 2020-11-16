@@ -53,25 +53,25 @@ void CheckList::setup(const QStringList &items)
     }
 }
 
-QVector<bool> CheckList::getChecked() const
+std::vector<bool> CheckList::getChecked() const
 {
-    QVector<bool> result;
+    std::vector<bool> result;
 
     if (checkState() == Qt::PartiallyChecked)
     {
         for (auto i = 0; i < model->rowCount(); i++)
         {
-            result.append(model->item(i)->checkState() == Qt::Checked);
+            result.push_back(model->item(i)->checkState() == Qt::Checked);
         }
     }
     else
     {
-        result = QVector<bool>(model->rowCount(), true);
+        result = std::vector<bool>(model->rowCount(), true);
     }
     return result;
 }
 
-void CheckList::setChecks(QVector<bool> flags)
+void CheckList::setChecks(std::vector<bool> flags)
 {
     for (auto i = 0; i < model->rowCount(); i++)
     {

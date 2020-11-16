@@ -21,20 +21,20 @@
 #define HIDDENGROTTOFILTER_HPP
 
 #include <Core/Util/Global.hpp>
-#include <QVector>
+#include <vector>
 
 class HiddenGrottoState;
 
 class HiddenGrottoFilter
 {
 public:
-    HiddenGrottoFilter(const QVector<bool> &groups, const QVector<bool> &encounterSlots, const QVector<bool> &genders);
+    HiddenGrottoFilter(const std::vector<bool> &groups, const std::vector<bool> &encounterSlots, const std::vector<bool> &genders);
     bool compareState(const HiddenGrottoState &state);
 
 private:
-    QVector<bool> groups;
-    QVector<bool> encounterSlots;
-    QVector<bool> genders;
+    std::vector<bool> groups;
+    std::vector<bool> encounterSlots;
+    std::vector<bool> genders;
 };
 
 #endif // HIDDENGROTTOFILTER_HPP

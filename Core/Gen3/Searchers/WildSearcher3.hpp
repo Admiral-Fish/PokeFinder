@@ -32,9 +32,9 @@ public:
     WildSearcher3() = default;
     WildSearcher3(u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter);
     void setEncounterArea(const EncounterArea3 &encounterArea);
-    void startSearch(const QVector<u8> &min, const QVector<u8> &max);
+    void startSearch(const std::array<u8, 6> &min, const std::array<u8, 6> &max);
     void cancelSearch();
-    QVector<WildState> getResults();
+    std::vector<WildState> getResults();
     int getProgress() const;
 
 private:
@@ -43,10 +43,10 @@ private:
 
     bool searching;
     int progress;
-    QVector<WildState> results;
+    std::vector<WildState> results;
     std::mutex mutex;
 
-    QVector<WildState> search(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const;
+    std::vector<WildState> search(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const;
 };
 
 #endif // WILDSEARCHER3_HPP

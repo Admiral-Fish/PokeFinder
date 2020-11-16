@@ -32,7 +32,7 @@ void WildSearcher3::setEncounterArea(const EncounterArea3 &encounterArea)
     this->encounterArea = encounterArea;
 }
 
-void WildSearcher3::startSearch(const QVector<u8> &min, const QVector<u8> &max)
+void WildSearcher3::startSearch(const std::array<u8, 6> &min, const std::array<u8, 6> &max)
 {
     searching = true;
 
@@ -56,7 +56,7 @@ void WildSearcher3::startSearch(const QVector<u8> &min, const QVector<u8> &max)
                             auto states = search(hp, atk, def, spa, spd, spe);
 
                             std::lock_guard<std::mutex> guard(mutex);
-                            results.append(states);
+                            results.insert(results.end(), states.begin(), states.end());
                             progress++;
                         }
                     }
@@ -71,7 +71,7 @@ void WildSearcher3::cancelSearch()
     searching = false;
 }
 
-QVector<WildState> WildSearcher3::getResults()
+std::vector<WildState> WildSearcher3::getResults()
 {
     std::lock_guard<std::mutex> guard(mutex);
     auto data(results);
@@ -84,9 +84,9 @@ int WildSearcher3::getProgress() const
     return progress;
 }
 
-QVector<WildState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const
+std::vector<WildState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const
 {
-    QVector<WildState> states;
+    std::vector<WildState> states;
 
     WildState state;
     state.setIVs(hp, atk, def, spa, spd, spe);
@@ -149,7 +149,7 @@ QVector<WildState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, 
                         if (filter.compareEncounterSlot(state))
                         {
                             state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), testRNG.getSeed() >> 16));
-                            states.append(state);
+                            states.push_back(state);
                         }
                     }
                     break;
@@ -164,7 +164,7 @@ QVector<WildState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, 
                         if (filter.compareEncounterSlot(state))
                         {
                             state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), testRNG.getSeed() >> 16));
-                            states.append(state);
+                            states.push_back(state);
                         }
                     }
                     // Failed synch
@@ -177,7 +177,7 @@ QVector<WildState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, 
                         if (filter.compareEncounterSlot(state))
                         {
                             state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), testRNG.getSeed() >> 16));
-                            states.append(state);
+                            states.push_back(state);
                         }
                     }
                     break;
@@ -191,7 +191,7 @@ QVector<WildState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, 
                         if (filter.compareEncounterSlot(state))
                         {
                             state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), testRNG.getSeed() >> 16));
-                            states.append(state);
+                            states.push_back(state);
                         }
                     }
                     break;
@@ -207,7 +207,7 @@ QVector<WildState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, 
                         if (filter.compareEncounterSlot(state))
                         {
                             state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), testRNG.getSeed() >> 16));
-                            states.append(state);
+                            states.push_back(state);
                         }
 
                         slot = testRNG.getSeed() * 0xdc6c95d9 + 0x4d3cb126;
@@ -221,14 +221,14 @@ QVector<WildState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, 
                             if ((nextRNG2 & 1) == 1 && (nextRNG % 25) == state.getNature())
                             {
                                 state.setLead(Lead::Synchronize);
-                                states.append(state);
+                                states.push_back(state);
                             }
 
                             // Cute Charm
                             if ((nextRNG2 % 3) > 0)
                             {
                                 state.setLead(Lead::CuteCharm);
-                                states.append(state);
+                                states.push_back(state);
                             }
                         }
                     }
@@ -242,7 +242,7 @@ QVector<WildState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, 
                         if (filter.compareEncounterSlot(state))
                         {
                             state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), testRNG.getSeed() >> 16));
-                            states.append(state);
+                            states.push_back(state);
                         }
                     }
                     break;
@@ -263,7 +263,7 @@ QVector<WildState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, 
         // 2880 means FRLG which is not dependent on origin seed for encounter check
         if (rate != 2880)
         {
-            for (int i = 0; i < states.size();)
+            for (size_t i = 0; i < states.size();)
             {
                 u32 check = states.at(i).getSeed() * 0x41c64e6d + 0x6073;
 

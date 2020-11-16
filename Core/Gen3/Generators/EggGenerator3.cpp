@@ -22,6 +22,7 @@
 #include <Core/Enum/Method.hpp>
 #include <Core/Parents/Filters/StateFilter.hpp>
 #include <Core/RNG/LCRNG.hpp>
+#include <algorithm>
 
 EggGenerator3::EggGenerator3(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, Method method,
                              const StateFilter &filter, const Daycare &daycare) :
@@ -73,7 +74,7 @@ EggGenerator3::EggGenerator3(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 
     }
 }
 
-QVector<EggState3> EggGenerator3::generate(u32 seed, u32 seed2) const
+std::vector<EggState3> EggGenerator3::generate(u32 seed, u32 seed2) const
 {
     switch (method)
     {
@@ -91,10 +92,10 @@ QVector<EggState3> EggGenerator3::generate(u32 seed, u32 seed2) const
     case Method::FRLGBredAlternate:
     {
         auto lower = generateLower(seed);
-        return lower.isEmpty() ? QVector<EggState3>() : generateUpper(seed2, lower);
+        return lower.empty() ? std::vector<EggState3>() : generateUpper(seed2, lower);
     }
     default:
-        return QVector<EggState3>();
+        return std::vector<EggState3>();
     }
 }
 
@@ -128,9 +129,9 @@ void EggGenerator3::setCompatability(u8 value)
     compatability = value;
 }
 
-QVector<EggState3> EggGenerator3::generateEmeraldPID() const
+std::vector<EggState3> EggGenerator3::generateEmeraldPID() const
 {
-    QVector<EggState3> states;
+    std::vector<EggState3> states;
 
     // Determine if female parent is holding everstone
     bool everstone;
@@ -217,7 +218,7 @@ QVector<EggState3> EggGenerator3::generateEmeraldPID() const
                 if (filter.comparePID(state))
                 {
                     state.setRedraw(redraw);
-                    states.append(state);
+                    states.push_back(state);
                 }
             }
         }
@@ -229,9 +230,9 @@ QVector<EggState3> EggGenerator3::generateEmeraldPID() const
     return states;
 }
 
-QVector<EggState3> EggGenerator3::generateEmeraldIVs() const
+std::vector<EggState3> EggGenerator3::generateEmeraldIVs() const
 {
-    QVector<EggState3> states;
+    std::vector<EggState3> states;
 
     PokeRNG rng(0);
     rng.advance(initialAdvances);
@@ -264,16 +265,16 @@ QVector<EggState3> EggGenerator3::generateEmeraldIVs() const
 
         if (filter.compareIVs(state))
         {
-            states.append(state);
+            states.push_back(state);
         }
     }
 
     return states;
 }
 
-QVector<QPair<u32, u16>> EggGenerator3::generateLower(u32 seed) const
+std::vector<std::pair<u32, u16>> EggGenerator3::generateLower(u32 seed) const
 {
-    QVector<QPair<u32, u16>> states;
+    std::vector<std::pair<u32, u16>> states;
 
     PokeRNG rng(seed);
     rng.advance(initialAdvances);
@@ -286,16 +287,16 @@ QVector<QPair<u32, u16>> EggGenerator3::generateLower(u32 seed) const
             u16 pid = (go.nextUShort() % 0xFFFE) + 1;
 
             // TODO: decide on filtering for ability/gender
-            states.append(qMakePair(cnt + initialAdvances, pid));
+            states.push_back(std::make_pair(cnt + initialAdvances, pid));
         }
     }
 
     return states;
 }
 
-QVector<EggState3> EggGenerator3::generateUpper(u32 seed, const QVector<QPair<u32, u16>> &lower) const
+std::vector<EggState3> EggGenerator3::generateUpper(u32 seed, const std::vector<std::pair<u32, u16>> &lower) const
 {
-    QVector<EggState3> upper;
+    std::vector<EggState3> upper;
 
     PokeRNG rng(seed);
     rng.advance(initialAdvancesPickup);
@@ -331,11 +332,11 @@ QVector<EggState3> EggGenerator3::generateUpper(u32 seed, const QVector<QPair<u3
         if (filter.compareIVs(state))
         {
             state.setPickupAdvance(cnt + initialAdvancesPickup);
-            upper.append(state);
+            upper.push_back(state);
         }
     }
 
-    QVector<EggState3> states;
+    std::vector<EggState3> states;
     for (const auto &low : lower)
     {
         for (auto up : upper)
@@ -349,7 +350,7 @@ QVector<EggState3> EggGenerator3::generateUpper(u32 seed, const QVector<QPair<u3
             if (filter.comparePID(up))
             {
                 up.setAdvances(low.first);
-                states.append(up);
+                states.push_back(up);
             }
         }
     }

@@ -30,7 +30,7 @@ void ResearcherModel::setFlag(bool flag)
     emit headerDataChanged(Qt::Horizontal, 0, columnCount());
 }
 
-void ResearcherModel::setHex(const QVector<bool> &hex)
+void ResearcherModel::setHex(const std::array<bool, 10> &hex)
 {
     this->hex = hex;
 }

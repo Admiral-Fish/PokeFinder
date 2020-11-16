@@ -34,9 +34,9 @@ EventGenerator5::EventGenerator5(u32 initialAdvances, u32 maxAdvances, u16 tid, 
     wondercardAdvances = parameters.getAdvances();
 }
 
-QVector<State> EventGenerator5::generate(u64 seed) const
+std::vector<State> EventGenerator5::generate(u64 seed) const
 {
-    QVector<State> states;
+    std::vector<State> states;
 
     BWRNG rng(seed);
     rng.advance(initialAdvances + offset);
@@ -132,7 +132,7 @@ QVector<State> EventGenerator5::generate(u64 seed) const
 
         if (filter.compareState(state))
         {
-            states.append(state);
+            states.push_back(state);
         }
     }
 

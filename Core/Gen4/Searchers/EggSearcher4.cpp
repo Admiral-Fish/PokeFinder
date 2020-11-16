@@ -57,7 +57,7 @@ void EggSearcher4::startSearch(u32 minDelay, u32 maxDelay)
                     return;
                 }
 
-                QVector<EggState4> states;
+                std::vector<EggState4> states;
                 u32 seed = static_cast<u32>((ab << 24) | (cd << 16)) + efgh;
 
                 if (type == 0)
@@ -73,7 +73,7 @@ void EggSearcher4::startSearch(u32 minDelay, u32 maxDelay)
                     auto statesIV = generatorIV.generate(seed);
                     auto statesPID = generatorPID.generate(seed);
 
-                    if (!statesIV.isEmpty() && !statesPID.isEmpty())
+                    if (!statesIV.empty() && !statesPID.empty())
                     {
                         for (auto statePID : statesPID)
                         {
@@ -89,7 +89,7 @@ void EggSearcher4::startSearch(u32 minDelay, u32 maxDelay)
                                 }
                                 statePID.setSecondaryAdvance(stateIV.getAdvances());
 
-                                states.append(statePID);
+                                states.push_back(statePID);
                             }
                         }
                     }
@@ -103,7 +103,7 @@ void EggSearcher4::startSearch(u32 minDelay, u32 maxDelay)
                 total += states.size();
 
                 std::lock_guard<std::mutex> guard(mutex);
-                results.append(states);
+                results.insert(results.end(), states.begin(), states.end());
                 progress++;
             }
         }
@@ -115,7 +115,7 @@ void EggSearcher4::cancelSearch()
     searching = false;
 }
 
-QVector<EggState4> EggSearcher4::getResults()
+std::vector<EggState4> EggSearcher4::getResults()
 {
     std::lock_guard<std::mutex> guard(mutex);
     auto data(results);

@@ -22,7 +22,7 @@
 #include <Core/Util/Translator.hpp>
 #include <QStringList>
 
-EncounterArea::EncounterArea(u8 location, Encounter encounter, const QVector<Slot> &pokemon) :
+EncounterArea::EncounterArea(u8 location, Encounter encounter, const std::vector<Slot> &pokemon) :
     pokemon(pokemon), location(location), encounter(encounter)
 {
 }
@@ -37,38 +37,38 @@ u8 EncounterArea::getLocation() const
     return location;
 }
 
-QVector<Slot> EncounterArea::getPokemon() const
+std::vector<Slot> EncounterArea::getPokemon() const
 {
     return pokemon;
 }
 
-QVector<u16> EncounterArea::getUniqueSpecies() const
+std::vector<u16> EncounterArea::getUniqueSpecies() const
 {
-    QVector<u16> nums;
+    std::vector<u16> nums;
 
     for (const auto &mon : pokemon)
     {
-        if (!nums.contains(mon.getSpecie()))
+        if (std::find(nums.begin(), nums.end(), mon.getSpecie()) == nums.end())
         {
-            nums.append(mon.getSpecie());
+            nums.push_back(mon.getSpecie());
         }
     }
 
     return nums;
 }
 
-QVector<bool> EncounterArea::getSlots(u16 num) const
+std::vector<bool> EncounterArea::getSlots(u16 num) const
 {
-    QVector<bool> flags(pokemon.size());
+    std::vector<bool> flags(pokemon.size());
 
     std::transform(pokemon.begin(), pokemon.end(), flags.begin(), [num](const auto &mon) { return mon.getSpecie() == num; });
 
     return flags;
 }
 
-QPair<u8, u8> EncounterArea::getLevelRange(u16 specie) const
+std::pair<u8, u8> EncounterArea::getLevelRange(u16 specie) const
 {
-    QPair<u8, u8> range = qMakePair(100, 0);
+    std::pair<u8, u8> range = std::make_pair(100, 0);
     for (auto slot : pokemon)
     {
         if (slot.getSpecie() == specie)

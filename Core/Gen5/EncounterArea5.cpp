@@ -19,7 +19,7 @@
 
 #include "EncounterArea5.hpp"
 
-EncounterArea5::EncounterArea5(u8 location, Encounter type, const QVector<Slot> &pokemon) : EncounterArea(location, type, pokemon)
+EncounterArea5::EncounterArea5(u8 location, Encounter type, const std::vector<Slot> &pokemon) : EncounterArea(location, type, pokemon)
 {
 }
 

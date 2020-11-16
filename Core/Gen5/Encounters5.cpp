@@ -103,7 +103,7 @@ namespace Encounters5
             return high | low;
         }
 
-        PersonalInfo getInfo(const QVector<PersonalInfo> &info, u16 species, u8 form)
+        PersonalInfo getInfo(const std::vector<PersonalInfo> &info, u16 species, u8 form)
         {
             auto personal = info.at(species);
             if (form != 0 && personal.getFormStatIndex() != 0)
@@ -113,10 +113,10 @@ namespace Encounters5
             return personal;
         }
 
-        QVector<EncounterArea5> getAreas(const QByteArray &data, Encounter encounter, const QVector<PersonalInfo> &info, u8 location,
-                                         u8 season)
+        std::vector<EncounterArea5> getAreas(const QByteArray &data, Encounter encounter, const std::vector<PersonalInfo> &info,
+                                             u8 location, u8 season)
         {
-            QVector<EncounterArea5> encounters;
+            std::vector<EncounterArea5> encounters;
 
             int offset = 0;
             if (season != 0 && data.size() != 232)
@@ -127,115 +127,115 @@ namespace Encounters5
             // Grass
             if (data.at(offset + 0) != 0 && encounter == Encounter::Grass)
             {
-                QVector<Slot> grass;
+                std::vector<Slot> grass;
                 for (int i = 0; i < 12; i++)
                 {
                     u16 species = getValue(data, offset + 8 + i * 4);
                     u8 min = data.at(offset + 10 + i * 4);
                     u8 max = data.at(offset + 11 + i * 4);
-                    grass.append(Slot(species & 0x7ff, min, max, getInfo(info, species & 0x7ff, species >> 11)));
+                    grass.push_back(Slot(species & 0x7ff, min, max, getInfo(info, species & 0x7ff, species >> 11)));
                 }
-                encounters.append(EncounterArea5(location, Encounter::Grass, grass));
+                encounters.push_back(EncounterArea5(location, Encounter::Grass, grass));
             }
 
             // Double Grass
             if (data.at(offset + 1) != 0 && encounter == Encounter::DoubleGrass)
             {
-                QVector<Slot> doubleGrass;
+                std::vector<Slot> doubleGrass;
                 for (int i = 0; i < 12; i++)
                 {
                     u16 species = getValue(data, offset + 56 + i * 4);
                     u8 min = data.at(offset + 58 + i * 4);
                     u8 max = data.at(offset + 59 + i * 4);
-                    doubleGrass.append(Slot(species & 0x7ff, min, max, getInfo(info, species & 0x7ff, species >> 11)));
+                    doubleGrass.push_back(Slot(species & 0x7ff, min, max, getInfo(info, species & 0x7ff, species >> 11)));
                 }
-                encounters.append(EncounterArea5(location, Encounter::DoubleGrass, doubleGrass));
+                encounters.push_back(EncounterArea5(location, Encounter::DoubleGrass, doubleGrass));
             }
 
             // Special Grass
             if (data.at(offset + 2) != 0 && encounter == Encounter::SpecialGrass)
             {
-                QVector<Slot> specialGrass;
+                std::vector<Slot> specialGrass;
                 for (int i = 0; i < 12; i++)
                 {
                     u16 species = getValue(data, offset + 104 + i * 4);
                     u8 min = data.at(offset + 106 + i * 4);
                     u8 max = data.at(offset + 107 + i * 4);
-                    specialGrass.append(Slot(species & 0x7ff, min, max, getInfo(info, species & 0x7ff, species >> 11)));
+                    specialGrass.push_back(Slot(species & 0x7ff, min, max, getInfo(info, species & 0x7ff, species >> 11)));
                 }
-                encounters.append(EncounterArea5(location, Encounter::SpecialGrass, specialGrass));
+                encounters.push_back(EncounterArea5(location, Encounter::SpecialGrass, specialGrass));
             }
 
             // Surf
             if (data.at(offset + 3) != 0 && encounter == Encounter::Surfing)
             {
-                QVector<Slot> surf;
+                std::vector<Slot> surf;
                 for (int i = 0; i < 5; i++)
                 {
                     u16 species = getValue(data, offset + 152 + i * 4);
                     u8 min = data.at(offset + 154 + i * 4);
                     u8 max = data.at(offset + 155 + i * 4);
-                    surf.append(Slot(species & 0x7ff, min, max, getInfo(info, species & 0x7ff, species >> 11)));
+                    surf.push_back(Slot(species & 0x7ff, min, max, getInfo(info, species & 0x7ff, species >> 11)));
                 }
-                encounters.append(EncounterArea5(location, Encounter::Surfing, surf));
+                encounters.push_back(EncounterArea5(location, Encounter::Surfing, surf));
             }
 
             // Special Surf
             if (data.at(offset + 4) != 0 && encounter == Encounter::SpecialSurf)
             {
-                QVector<Slot> specialSurf;
+                std::vector<Slot> specialSurf;
                 for (int i = 0; i < 5; i++)
                 {
                     u16 species = getValue(data, offset + 172 + i * 4);
                     u8 min = data.at(offset + 174 + i * 4);
                     u8 max = data.at(offset + 175 + i * 4);
-                    specialSurf.append(Slot(species & 0x7ff, min, max, getInfo(info, species & 0x7ff, species >> 11)));
+                    specialSurf.push_back(Slot(species & 0x7ff, min, max, getInfo(info, species & 0x7ff, species >> 11)));
                 }
-                encounters.append(EncounterArea5(location, Encounter::SpecialSurf, specialSurf));
+                encounters.push_back(EncounterArea5(location, Encounter::SpecialSurf, specialSurf));
             }
 
             // Fish
             if (data.at(offset + 5) != 0 && encounter == Encounter::SuperRod)
             {
-                QVector<Slot> fish;
+                std::vector<Slot> fish;
                 for (int i = 0; i < 5; i++)
                 {
                     u16 species = getValue(data, offset + 192 + i * 4);
                     u8 min = data.at(offset + 194 + i * 4);
                     u8 max = data.at(offset + 195 + i * 4);
-                    fish.append(Slot(species & 0x7ff, min, max, getInfo(info, species & 0x7ff, species >> 11)));
+                    fish.push_back(Slot(species & 0x7ff, min, max, getInfo(info, species & 0x7ff, species >> 11)));
                 }
-                encounters.append(EncounterArea5(location, Encounter::SuperRod, fish));
+                encounters.push_back(EncounterArea5(location, Encounter::SuperRod, fish));
             }
 
             // Special Fish
             if (data.at(offset + 6) != 0 && encounter == Encounter::SpecialSuperRod)
             {
-                QVector<Slot> specialFish;
+                std::vector<Slot> specialFish;
                 for (int i = 0; i < 5; i++)
                 {
                     u16 species = getValue(data, offset + 212 + i * 4);
                     u8 min = data.at(offset + 214 + i * 4);
                     u8 max = data.at(offset + 215 + i * 4);
-                    specialFish.append(Slot(species & 0x7ff, min, max, getInfo(info, species & 0x7ff, species >> 11)));
+                    specialFish.push_back(Slot(species & 0x7ff, min, max, getInfo(info, species & 0x7ff, species >> 11)));
                 }
-                encounters.append(EncounterArea5(location, Encounter::SpecialSuperRod, specialFish));
+                encounters.push_back(EncounterArea5(location, Encounter::SpecialSuperRod, specialFish));
             }
 
             return encounters;
         }
     }
 
-    QVector<EncounterArea5> getEncounters(Encounter encounter, u8 season, Game version)
+    std::vector<EncounterArea5> getEncounters(Encounter encounter, u8 season, Game version)
     {
-        QVector<EncounterArea5> encounters;
-        QVector<PersonalInfo> info = PersonalInfo::loadPersonal(5);
+        std::vector<EncounterArea5> encounters;
+        std::vector<PersonalInfo> info = PersonalInfo::loadPersonal(5);
 
         const auto &encounterData = getData(version);
         for (u8 i = 0; i < encounterData.size(); i++)
         {
             auto areas = getAreas(encounterData.at(i), encounter, info, i, season);
-            encounters.append(areas);
+            encounters.insert(encounters.end(), areas.begin(), areas.end());
         }
 
         return encounters;

@@ -49,8 +49,8 @@ private:
     void setupModels();
 
 private slots:
-    void updateProgressShinyPID(const QVector<IDState4> &states, int progress);
-    void updateProgressTIDSID(const QVector<IDState4> &states, int progress);
+    void updateProgressShinyPID(const std::vector<IDState4> &states, int progress);
+    void updateProgressTIDSID(const std::vector<IDState4> &states, int progress);
     void shinyPIDSearch();
     void tidSIDSearch();
     void seedFinderSearch();

@@ -47,19 +47,19 @@ void IDSearcher5::startSearch(const IDGenerator5 &generator, int threads, QDate 
     }
 
     pool.setMaxThreadCount(threads);
-    QVector<QFuture<void>> threadContainer;
+    std::vector<QFuture<void>> threadContainer;
 
     auto daysSplit = days / threads;
     for (int i = 0; i < threads; i++)
     {
         if (i == threads - 1)
         {
-            threadContainer.append(QtConcurrent::run(&pool, [=] { search(generator, start, end); }));
+            threadContainer.push_back(QtConcurrent::run(&pool, [=] { search(generator, start, end); }));
         }
         else
         {
             QDate mid = start.addDays(daysSplit - 1);
-            threadContainer.append(QtConcurrent::run(&pool, [=] { search(generator, start, mid); }));
+            threadContainer.push_back(QtConcurrent::run(&pool, [=] { search(generator, start, mid); }));
         }
         start = start.addDays(daysSplit);
     }
@@ -75,7 +75,7 @@ void IDSearcher5::cancelSearch()
     searching = false;
 }
 
-QVector<IDState5> IDSearcher5::getResults()
+std::vector<IDState5> IDSearcher5::getResults()
 {
     std::lock_guard<std::mutex> lock(resultMutex);
 
@@ -107,7 +107,7 @@ void IDSearcher5::search(IDGenerator5 generator, const QDate &start, const QDate
         sha.setDate(static_cast<u8>(date.year() - 2000), static_cast<u8>(date.month()), static_cast<u8>(date.day()),
                     static_cast<u8>(date.dayOfWeek()));
         sha.precompute();
-        for (int i = 0; i < values.size(); i++)
+        for (size_t i = 0; i < values.size(); i++)
         {
             sha.setButton(values.at(i));
 
@@ -130,7 +130,7 @@ void IDSearcher5::search(IDGenerator5 generator, const QDate &start, const QDate
                                                              : Utilities::initialAdvancesBW2ID(seed, save ? 2 : 3)));
                         auto states = generator.generate(seed, pid, checkPID);
 
-                        if (!states.isEmpty())
+                        if (!states.empty())
                         {
                             QDateTime dt(date, QTime(hour, minute, second));
                             for (auto &state : states)
@@ -140,7 +140,7 @@ void IDSearcher5::search(IDGenerator5 generator, const QDate &start, const QDate
                             }
 
                             std::lock_guard<std::mutex> lock(resultMutex);
-                            results.append(states);
+                            results.insert(results.end(), states.begin(), states.end());
                         }
 
                         std::lock_guard<std::mutex> lock(progressMutex);

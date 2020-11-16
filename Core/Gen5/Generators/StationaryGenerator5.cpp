@@ -34,7 +34,7 @@ StationaryGenerator5::StationaryGenerator5(u32 initialAdvances, u32 maxAdvances,
 {
 }
 
-QVector<StationaryState> StationaryGenerator5::generate(u64 seed) const
+std::vector<StationaryState> StationaryGenerator5::generate(u64 seed) const
 {
     switch (method)
     {
@@ -57,13 +57,13 @@ QVector<StationaryState> StationaryGenerator5::generate(u64 seed) const
     // case Method::Method5:
     //    break;
     default:
-        return QVector<StationaryState>();
+        return std::vector<StationaryState>();
     }
 }
 
-QVector<StationaryState> StationaryGenerator5::generateRoamerIVs(u64 seed) const
+std::vector<StationaryState> StationaryGenerator5::generateRoamerIVs(u64 seed) const
 {
-    QVector<StationaryState> states;
+    std::vector<StationaryState> states;
 
     MT mt(seed >> 32);
     mt.advance(initialAdvances + offset);
@@ -88,16 +88,16 @@ QVector<StationaryState> StationaryGenerator5::generateRoamerIVs(u64 seed) const
         if (filter.compareIVs(state))
         {
             // state.setIVFrame(initialAdvances + cnt);
-            states.append(state);
+            states.push_back(state);
         }
     }
 
     return states;
 }
 
-QVector<StationaryState> StationaryGenerator5::generateIVs(u64 seed) const
+std::vector<StationaryState> StationaryGenerator5::generateIVs(u64 seed) const
 {
-    QVector<StationaryState> states;
+    std::vector<StationaryState> states;
 
     MT mt(seed >> 32);
     mt.advance(initialAdvances + offset);
@@ -121,16 +121,16 @@ QVector<StationaryState> StationaryGenerator5::generateIVs(u64 seed) const
         if (filter.compareIVs(state))
         {
             // state.setIVFrame(initialAdvances + cnt);
-            states.append(state);
+            states.push_back(state);
         }
     }
 
     return states;
 }
 
-QVector<StationaryState> StationaryGenerator5::generateRoamerCGear(u64 seed) const
+std::vector<StationaryState> StationaryGenerator5::generateRoamerCGear(u64 seed) const
 {
-    QVector<StationaryState> states;
+    std::vector<StationaryState> states;
 
     MT mt(seed >> 32);
     mt.advance(initialAdvances + offset);
@@ -156,16 +156,16 @@ QVector<StationaryState> StationaryGenerator5::generateRoamerCGear(u64 seed) con
         if (filter.compareIVs(state))
         {
             // state.setIVFrame(initialAdvances + cnt);
-            states.append(state);
+            states.push_back(state);
         }
     }
 
     return states;
 }
 
-QVector<StationaryState> StationaryGenerator5::generateCGear(u64 seed) const
+std::vector<StationaryState> StationaryGenerator5::generateCGear(u64 seed) const
 {
-    QVector<StationaryState> states;
+    std::vector<StationaryState> states;
 
     MT mt(seed >> 32);
     mt.advance(initialAdvances + offset);
@@ -190,16 +190,16 @@ QVector<StationaryState> StationaryGenerator5::generateCGear(u64 seed) const
         if (filter.compareIVs(state))
         {
             // state.setIVFrame(initialAdvances + cnt);
-            states.append(state);
+            states.push_back(state);
         }
     }
 
     return states;
 }
 
-QVector<StationaryState> StationaryGenerator5::generateStationary(u64 seed) const
+std::vector<StationaryState> StationaryGenerator5::generateStationary(u64 seed) const
 {
-    QVector<StationaryState> states;
+    std::vector<StationaryState> states;
 
     BWRNG rng(seed);
     rng.advance(initialAdvances + offset);
@@ -268,16 +268,16 @@ QVector<StationaryState> StationaryGenerator5::generateStationary(u64 seed) cons
 
         if (filter.comparePID(state))
         {
-            states.append(state);
+            states.push_back(state);
         }
     }
 
     return states;
 }
 
-QVector<StationaryState> StationaryGenerator5::generateRoamer(u64 seed)
+std::vector<StationaryState> StationaryGenerator5::generateRoamer(u64 seed)
 {
-    QVector<StationaryState> states;
+    std::vector<StationaryState> states;
 
     BWRNG rng(seed);
     rng.advance(initialAdvances + offset);
@@ -297,16 +297,16 @@ QVector<StationaryState> StationaryGenerator5::generateRoamer(u64 seed)
 
         if (filter.comparePID(state))
         {
-            states.append(state);
+            states.push_back(state);
         }
     }
 
     return states;
 }
 
-QVector<StationaryState> StationaryGenerator5::generateGift(u64 seed)
+std::vector<StationaryState> StationaryGenerator5::generateGift(u64 seed)
 {
-    QVector<StationaryState> states;
+    std::vector<StationaryState> states;
 
     BWRNG rng(seed);
     rng.advance(initialAdvances + offset);
@@ -326,16 +326,16 @@ QVector<StationaryState> StationaryGenerator5::generateGift(u64 seed)
 
         if (filter.comparePID(state))
         {
-            states.append(state);
+            states.push_back(state);
         }
     }
 
     return states;
 }
 
-QVector<StationaryState> StationaryGenerator5::generateEntraLink(u64 seed)
+std::vector<StationaryState> StationaryGenerator5::generateEntraLink(u64 seed)
 {
-    QVector<StationaryState> states;
+    std::vector<StationaryState> states;
 
     BWRNG rng(seed);
     rng.advance(initialAdvances + offset);
@@ -351,9 +351,9 @@ QVector<StationaryState> StationaryGenerator5::generateEntraLink(u64 seed)
     return states;
 }
 
-QVector<StationaryState> StationaryGenerator5::generateLarvestaEgg(u64 seed)
+std::vector<StationaryState> StationaryGenerator5::generateLarvestaEgg(u64 seed)
 {
-    QVector<StationaryState> states;
+    std::vector<StationaryState> states;
 
     BWRNG rng(seed);
     rng.advance(initialAdvances + offset);
@@ -374,16 +374,16 @@ QVector<StationaryState> StationaryGenerator5::generateLarvestaEgg(u64 seed)
 
         if (filter.comparePID(state))
         {
-            states.append(state);
+            states.push_back(state);
         }
     }
 
     return states;
 }
 
-QVector<StationaryState> StationaryGenerator5::generateHiddenGrotto(u64 seed)
+std::vector<StationaryState> StationaryGenerator5::generateHiddenGrotto(u64 seed)
 {
-    QVector<StationaryState> states;
+    std::vector<StationaryState> states;
 
     BWRNG rng(seed);
     rng.advance(initialAdvances + offset);

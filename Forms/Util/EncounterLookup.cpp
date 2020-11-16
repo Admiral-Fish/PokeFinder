@@ -83,9 +83,9 @@ void EncounterLookup::setupModels()
     }
 }
 
-QSet<QPair<u8, QString>> EncounterLookup::getEncounters3(Game game, u16 specie)
+std::set<std::pair<u8, QString>> EncounterLookup::getEncounters3(Game game, u16 specie)
 {
-    QSet<QPair<u8, QString>> encounters;
+    std::set<std::pair<u8, QString>> encounters;
     Profile3 profile("", game, 0, 0);
 
     // Encounter variables to iterate through
@@ -97,13 +97,13 @@ QSet<QPair<u8, QString>> EncounterLookup::getEncounters3(Game game, u16 specie)
         auto areas = Encounters3::getEncounters(type, profile);
         for (const auto &area : areas)
         {
-            QVector<Slot> pokemon = area.getPokemon();
+            std::vector<Slot> pokemon = area.getPokemon();
             if (std::any_of(pokemon.begin(), pokemon.end(), [specie](const auto &entry) { return entry.getSpecie() == specie; }))
             {
                 QString info = getEncounterString(type);
-                QPair<u8, u8> range = area.getLevelRange(specie);
+                std::pair<u8, u8> range = area.getLevelRange(specie);
                 info += QString("/%1-%2").arg(range.first).arg(range.second);
-                encounters.insert(qMakePair(area.getLocation(), info));
+                encounters.insert(std::make_pair(area.getLocation(), info));
             }
         }
     }
@@ -111,10 +111,10 @@ QSet<QPair<u8, QString>> EncounterLookup::getEncounters3(Game game, u16 specie)
     return encounters;
 }
 
-QSet<QPair<u8, QString>> EncounterLookup::getEncounters4(Game game, u16 specie)
+std::set<std::pair<u8, QString>> EncounterLookup::getEncounters4(Game game, u16 specie)
 {
-    QSet<QPair<u8, QString>> encounters;
-    QVector<Profile4> profiles;
+    std::set<std::pair<u8, QString>> encounters;
+    std::vector<Profile4> profiles;
 
     // Encounter variables to iterate through
     auto types = { Encounter::Grass, Encounter::RockSmash, Encounter::OldRod, Encounter::GoodRod, Encounter::SuperRod };
@@ -127,7 +127,7 @@ QSet<QPair<u8, QString>> EncounterLookup::getEncounters4(Game game, u16 specie)
         {
             for (const auto swarm : { false, true })
             {
-                profiles.append(Profile4("", game, 0, 0, Game::Blank, radio, false, swarm));
+                profiles.push_back(Profile4("", game, 0, 0, Game::Blank, radio, false, swarm));
             }
         }
     }
@@ -139,7 +139,7 @@ QSet<QPair<u8, QString>> EncounterLookup::getEncounters4(Game game, u16 specie)
             {
                 for (const auto radar : { false, true })
                 {
-                    profiles.append(Profile4("", game, 0, 0, dual, 0, radar, swarm));
+                    profiles.push_back(Profile4("", game, 0, 0, dual, 0, radar, swarm));
                 }
             }
         }
@@ -158,9 +158,9 @@ QSet<QPair<u8, QString>> EncounterLookup::getEncounters4(Game game, u16 specie)
                     if (std::any_of(pokemon.begin(), pokemon.end(), [specie](const auto &entry) { return entry.getSpecie() == specie; }))
                     {
                         QString info = getEncounterString(type);
-                        QPair<u8, u8> range = area.getLevelRange(specie);
+                        std::pair<u8, u8> range = area.getLevelRange(specie);
                         info += QString("/%1-%2").arg(range.first).arg(range.second);
-                        encounters.insert(qMakePair(area.getLocation(), info));
+                        encounters.insert(std::make_pair(area.getLocation(), info));
                     }
                 }
             }
@@ -199,8 +199,8 @@ void EncounterLookup::find()
 
     Game game = static_cast<Game>(ui->comboBoxGame->currentData().toInt());
     u16 specie = static_cast<u16>(ui->comboBoxPokemon->currentIndex() + 1);
-    QSet<QPair<u8, QString>> encounters;
-    QVector<u8> locations;
+    std::set<std::pair<u8, QString>> encounters;
+    std::vector<u8> locations;
     QStringList locationNames;
 
     if (game & Game::FRLG || game & Game::RSE)
@@ -214,7 +214,7 @@ void EncounterLookup::find()
 
     for (const auto &encounter : encounters)
     {
-        locations.append(encounter.first);
+        locations.push_back(encounter.first);
     }
     locationNames = Translator::getLocations(locations, game);
 
@@ -244,10 +244,10 @@ void EncounterLookup::gameIndexChanged(int index)
             max = 493;
         }
 
-        QVector<u16> nums;
+        std::vector<u16> nums;
         for (u16 i = 1; i <= max; i++)
         {
-            nums.append(i);
+            nums.push_back(i);
         }
 
         int oldIndex = ui->comboBoxPokemon->currentIndex();

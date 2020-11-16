@@ -165,7 +165,7 @@ void Eggs4::setupModels()
     setting.endGroup();
 }
 
-void Eggs4::updateProgress(const QVector<EggState4> &states, int progress)
+void Eggs4::updateProgress(const std::vector<EggState4> &states, int progress)
 {
     searcherModel->addItems(states);
     ui->progressBarSearcher->setValue(progress);

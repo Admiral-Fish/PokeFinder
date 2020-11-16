@@ -57,9 +57,9 @@ namespace ProfileLoader4
         }
     }
 
-    QVector<Profile4> getProfiles()
+    std::vector<Profile4> getProfiles()
     {
-        QVector<Profile4> profileList;
+        std::vector<Profile4> profileList;
 
         QSettings setting;
         QFile f(setting.value("settings/profiles").toString());
@@ -72,7 +72,7 @@ namespace ProfileLoader4
 
             for (const auto i : gen4)
             {
-                profileList.append(getProfile(i.toObject()));
+                profileList.push_back(getProfile(i.toObject()));
             }
         }
 

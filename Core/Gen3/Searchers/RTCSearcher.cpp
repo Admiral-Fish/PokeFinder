@@ -50,7 +50,7 @@ void RTCSearcher::startSearch(u32 initialSeed, u32 targetSeed, u32 initialAdvanc
                 GameCubeRTCState result(time, initialSeed, x + 1 + initialAdvances);
 
                 std::lock_guard<std::mutex> guard(mutex);
-                results.append(result);
+                results.push_back(result);
             }
         }
     }
@@ -61,7 +61,7 @@ void RTCSearcher::cancelSearch()
     searching = false;
 }
 
-QVector<GameCubeRTCState> RTCSearcher::getResults()
+std::vector<GameCubeRTCState> RTCSearcher::getResults()
 {
     std::lock_guard<std::mutex> guard(mutex);
     auto data(results);

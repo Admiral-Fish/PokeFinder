@@ -21,9 +21,9 @@
 
 namespace SeedTimeCalculator3
 {
-    QVector<SeedTimeState3> calculateTimes(u32 seed, u32 advance, u16 year)
+    std::vector<SeedTimeState3> calculateTimes(u32 seed, u32 advance, u16 year)
     {
-        QVector<SeedTimeState3> states;
+        std::vector<SeedTimeState3> states;
 
         u32 minDay = 0;
         u32 maxDay = 0;
@@ -59,7 +59,7 @@ namespace SeedTimeCalculator3
                             QDateTime finalTime = start.addDays(day).addSecs((hour * 60 * 60) + (minute * 60));
 
                             SeedTimeState3 result(finalTime, advance);
-                            states.append(result);
+                            states.push_back(result);
                         }
                     }
                 }

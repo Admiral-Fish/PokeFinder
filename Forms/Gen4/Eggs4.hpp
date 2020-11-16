@@ -45,7 +45,7 @@ public:
 
 private:
     Ui::Eggs4 *ui;
-    QVector<Profile4> profiles;
+    std::vector<Profile4> profiles;
     Profile4 currentProfile;
     EggGeneratorModel4 *generatorModel = nullptr;
     EggSearcherModel4 *searcherModel = nullptr;
@@ -55,7 +55,7 @@ private:
     void setupModels();
 
 private slots:
-    void updateProgress(const QVector<EggState4> &states, int progress);
+    void updateProgress(const std::vector<EggState4> &states, int progress);
     void generate();
     void search();
     void profilesIndexChanged(int index);

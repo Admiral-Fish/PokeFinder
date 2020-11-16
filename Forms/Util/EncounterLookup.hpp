@@ -22,6 +22,7 @@
 
 #include <Core/Util/Global.hpp>
 #include <QWidget>
+#include <set>
 
 class QStandardItemModel;
 enum Encounter : u8;
@@ -44,8 +45,8 @@ private:
     QStandardItemModel *model = nullptr;
 
     void setupModels();
-    QSet<QPair<u8, QString>> getEncounters3(Game game, u16 specie);
-    QSet<QPair<u8, QString>> getEncounters4(Game game, u16 specie);
+    std::set<std::pair<u8, QString>> getEncounters3(Game game, u16 specie);
+    std::set<std::pair<u8, QString>> getEncounters4(Game game, u16 specie);
     QString getEncounterString(Encounter type);
 
 private slots:

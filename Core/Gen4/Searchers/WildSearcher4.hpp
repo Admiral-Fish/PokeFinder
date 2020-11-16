@@ -34,9 +34,9 @@ public:
     void setEncounterArea(const EncounterArea4 &encounterArea);
     void setDelay(u32 minDelay, u32 maxDelay);
     void setState(u32 minAdvance, u32 maxAdvance);
-    void startSearch(const QVector<u8> &min, const QVector<u8> &max);
+    void startSearch(const std::array<u8, 6> &min, const std::array<u8, 6> &max);
     void cancelSearch();
-    QVector<WildState> getResults();
+    std::vector<WildState> getResults();
     int getProgress() const;
 
 private:
@@ -51,22 +51,22 @@ private:
 
     bool searching;
     int progress;
-    QVector<WildState> results;
+    std::vector<WildState> results;
     std::mutex mutex;
 
-    QVector<WildState> search(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const;
-    QVector<WildState> searchMethodJ(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const;
-    QVector<WildState> searchMethodK(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const;
-    QVector<WildState> searchChainedShiny(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const;
-    QVector<WildState> searchInitialSeeds(const QVector<WildState> &results) const;
+    std::vector<WildState> search(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const;
+    std::vector<WildState> searchMethodJ(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const;
+    std::vector<WildState> searchMethodK(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const;
+    std::vector<WildState> searchChainedShiny(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const;
+    std::vector<WildState> searchInitialSeeds(const std::vector<WildState> &results) const;
 
-    QVector<WildState> normalMethodJ(WildState state, u32 seed) const;
-    QVector<WildState> synchMethodJ(WildState state, u32 seed) const;
-    QVector<WildState> cuteCharmMethodJ(WildState state, u32 seed) const;
+    std::vector<WildState> normalMethodJ(WildState state, u32 seed) const;
+    std::vector<WildState> synchMethodJ(WildState state, u32 seed) const;
+    std::vector<WildState> cuteCharmMethodJ(WildState state, u32 seed) const;
     bool encounterMethodJ(WildState &state, u32 seed) const;
-    QVector<WildState> normalMethodK(WildState state, u32 seed) const;
-    QVector<WildState> synchMethodK(WildState state, u32 seed) const;
-    QVector<WildState> cuteCharmMethodK(WildState state, u32 seed) const;
+    std::vector<WildState> normalMethodK(WildState state, u32 seed) const;
+    std::vector<WildState> synchMethodK(WildState state, u32 seed) const;
+    std::vector<WildState> cuteCharmMethodK(WildState state, u32 seed) const;
     bool encounterMethodK(WildState &state, u32 seed) const;
 };
 

@@ -21,7 +21,7 @@
 #define RNGEUCLIDEAN_HPP
 
 #include <Core/Util/Global.hpp>
-#include <QVector>
+#include <vector>
 
 enum Method : u8;
 
@@ -30,9 +30,9 @@ class RNGEuclidean
 public:
     RNGEuclidean() = default;
     explicit RNGEuclidean(Method method);
-    QVector<QPair<u32, u32>> recoverLower16BitsIV(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const;
-    QVector<QPair<u32, u32>> recoverLower16BitsPID(u32 pid) const;
-    QVector<u32> recoverLower27BitsChannel(u32 hp, u32 atk, u32 def, u32 spa, u32 spd, u32 spe) const;
+    std::vector<std::pair<u32, u32>> recoverLower16BitsIV(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const;
+    std::vector<std::pair<u32, u32>> recoverLower16BitsPID(u32 pid) const;
+    std::vector<u32> recoverLower27BitsChannel(u32 hp, u32 atk, u32 def, u32 spa, u32 spd, u32 spe) const;
 
 private:
     u64 base;

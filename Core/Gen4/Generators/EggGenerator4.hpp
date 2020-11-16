@@ -29,13 +29,13 @@ public:
     EggGenerator4() = default;
     EggGenerator4(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter,
                   const Daycare &daycare);
-    QVector<EggState4> generate(u32 seed) const;
+    std::vector<EggState4> generate(u32 seed) const;
 
 private:
-    QVector<EggState4> generateNormal(u32 seed) const;
-    QVector<EggState4> generateMasuada(u32 seed) const;
-    QVector<EggState4> generateDPPtIVs(u32 seed) const;
-    QVector<EggState4> generateHGSSIVs(u32 seed) const;
+    std::vector<EggState4> generateNormal(u32 seed) const;
+    std::vector<EggState4> generateMasuada(u32 seed) const;
+    std::vector<EggState4> generateDPPtIVs(u32 seed) const;
+    std::vector<EggState4> generateHGSSIVs(u32 seed) const;
     void setInheritance(EggState4 &state, const u16 *inh, const u16 *par, bool broken) const;
 };
 

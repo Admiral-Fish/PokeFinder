@@ -114,7 +114,7 @@ void GameCubeRTC::search()
     timer->start(1000);
 }
 
-void GameCubeRTC::updateProgress(const QVector<GameCubeRTCState> &results)
+void GameCubeRTC::updateProgress(const std::vector<GameCubeRTCState> &results)
 {
     model->addItems(results);
 }

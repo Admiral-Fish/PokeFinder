@@ -35,13 +35,13 @@ namespace Keypresses
         }
     }
 
-    QVector<Buttons> getKeyPresses(const QVector<bool> &keypresses, bool skipLR)
+    std::vector<Buttons> getKeyPresses(const std::vector<bool> &keypresses, bool skipLR)
     {
-        QVector<Buttons> buttons;
+        std::vector<Buttons> buttons;
 
         if (keypresses.at(0))
         {
-            buttons.append({ Buttons::None });
+            buttons.push_back(Buttons::None);
         }
 
         for (u8 i = 0; i < 8; i++)
@@ -51,10 +51,10 @@ namespace Keypresses
                 Buttons combo = keys[i];
                 if (valid(combo, skipLR))
                 {
-                    buttons.append(keys[i]);
+                    buttons.push_back(keys[i]);
                 }
 
-                buttons.append(directions[i]);
+                buttons.push_back(directions[i]);
             }
 
             if (keypresses.at(2))
@@ -64,7 +64,7 @@ namespace Keypresses
                     Buttons combo = static_cast<Buttons>(keys[i] | directions[j]);
                     if (valid(combo, skipLR))
                     {
-                        buttons.append(combo);
+                        buttons.push_back(combo);
                     }
                 }
             }
@@ -76,7 +76,7 @@ namespace Keypresses
                     Buttons combo = static_cast<Buttons>(keys[i] | keys[j]);
                     if (valid(combo, skipLR))
                     {
-                        buttons.append(combo);
+                        buttons.push_back(combo);
                     }
                 }
 
@@ -87,7 +87,7 @@ namespace Keypresses
                         Buttons combo = static_cast<Buttons>(keys[i] | keys[j] | directions[k]);
                         if (valid(combo, skipLR))
                         {
-                            buttons.append(combo);
+                            buttons.push_back(combo);
                         }
                     }
 
@@ -96,7 +96,7 @@ namespace Keypresses
                         Buttons combo = static_cast<Buttons>(keys[i] | keys[j] | keys[k]);
                         if (valid(combo, skipLR))
                         {
-                            buttons.append(combo);
+                            buttons.push_back(combo);
                         }
                     }
                 }
@@ -106,9 +106,9 @@ namespace Keypresses
         return buttons;
     }
 
-    QVector<u32> getValues(const QVector<Buttons> &buttons)
+    std::vector<u32> getValues(const std::vector<Buttons> &buttons)
     {
-        QVector<u32> values;
+        std::vector<u32> values;
         for (const auto button : buttons)
         {
             u32 value = 0xff2f0000;
@@ -121,7 +121,7 @@ namespace Keypresses
                 }
             }
 
-            values.append(value);
+            values.push_back(value);
         }
 
         return values;

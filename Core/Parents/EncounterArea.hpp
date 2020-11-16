@@ -22,7 +22,8 @@
 
 #include <Core/Parents/Slot.hpp>
 #include <Core/Util/Global.hpp>
-#include <QVector>
+#include <QString>
+#include <vector>
 
 enum Encounter : u8;
 
@@ -30,18 +31,18 @@ class EncounterArea
 {
 public:
     EncounterArea() = default;
-    EncounterArea(u8 location, Encounter encounter, const QVector<Slot> &pokemon);
+    EncounterArea(u8 location, Encounter encounter, const std::vector<Slot> &pokemon);
     Encounter getEncounter() const;
     u8 getLocation() const;
-    QVector<Slot> getPokemon() const;
-    QVector<u16> getUniqueSpecies() const;
-    QVector<bool> getSlots(u16 num) const;
-    QPair<u8, u8> getLevelRange(u16 specie) const;
+    std::vector<Slot> getPokemon() const;
+    std::vector<u16> getUniqueSpecies() const;
+    std::vector<bool> getSlots(u16 num) const;
+    std::pair<u8, u8> getLevelRange(u16 specie) const;
     QStringList getSpecieNames() const;
     void setSlot(u8 index, u16 specie, const PersonalInfo &info);
 
 protected:
-    QVector<Slot> pokemon;
+    std::vector<Slot> pokemon;
     u8 location;
     Encounter encounter;
 };

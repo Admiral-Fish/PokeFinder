@@ -21,17 +21,17 @@
 #define CHAINEDSIDCALC_HPP
 
 #include <Core/Util/Global.hpp>
-#include <QVector>
+#include <vector>
 
 class ChainedSIDCalc
 {
 public:
     explicit ChainedSIDCalc(u16 tid);
-    void addEntry(const QVector<u8> &ivs, u8 nature, u8 ability, u8 gender);
-    QVector<u16> getSIDs() const;
+    void addEntry(const std::vector<u8> &ivs, u8 nature, u8 ability, u8 gender);
+    std::vector<u16> getSIDs() const;
 
 private:
-    QVector<u16> sids;
+    std::vector<u16> sids;
     u16 tid;
 
     bool matchGender(u8 gender, u8 val) const;

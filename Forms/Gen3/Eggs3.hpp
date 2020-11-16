@@ -44,7 +44,7 @@ public:
 
 private:
     Ui::Eggs3 *ui;
-    QVector<Profile3> profiles;
+    std::vector<Profile3> profiles;
     Profile3 currentProfile;
     EggModel3 *emerald = nullptr;
     EggModel3 *rs = nullptr;

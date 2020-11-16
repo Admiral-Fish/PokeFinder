@@ -90,7 +90,7 @@ void GameCubeSearcherModel::setMethod(Method type)
 
 void GameCubeSearcherModel::sort(int column, Qt::SortOrder order)
 {
-    if (!model.isEmpty())
+    if (!model.empty())
     {
         emit layoutAboutToBeChanged();
         bool flag = order == Qt::AscendingOrder;

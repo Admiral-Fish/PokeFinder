@@ -22,6 +22,7 @@
 
 #include <Core/Parents/Filters/IDFilter.hpp>
 #include <Core/Util/Global.hpp>
+#include <vector>
 
 class IDGenerator
 {

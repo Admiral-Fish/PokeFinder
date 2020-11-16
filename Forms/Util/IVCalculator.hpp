@@ -40,10 +40,10 @@ public:
 private:
     Ui::IVCalculator *ui;
     int rows = 0;
-    QVector<PersonalInfo> personalInfo;
+    std::vector<PersonalInfo> personalInfo;
 
     void setupModels();
-    void displayIVs(QLabel *label, const QVector<u8> &ivs);
+    void displayIVs(QLabel *label, const std::vector<u8> &ivs);
     PersonalInfo getPersonalInfo(const PersonalInfo &base);
 
 private slots:

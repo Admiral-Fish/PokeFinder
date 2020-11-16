@@ -87,7 +87,7 @@ void ChainedSID::calculate()
     model->appendRow(row);
 
     chainedCalc->addEntry({ hp, atk, def, spa, spd, spe }, nature, ability, gender);
-    QVector<u16> sids = chainedCalc->getSIDs();
+    std::vector<u16> sids = chainedCalc->getSIDs();
     if (sids.size() == 1)
     {
         ui->labelPossibleResults->setText(tr("SID Found: ") + QString::number(sids.at(0)));

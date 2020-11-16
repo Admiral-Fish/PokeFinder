@@ -61,7 +61,7 @@ bool ShadowLock::singleNL(u32 seed, u16 tsv)
     u32 pid = getPIDBackward(backward);
 
     // Backwards nature lock check
-    return locks.first().compare(pid) && !isShiny(pid, tsv);
+    return locks.front().compare(pid) && !isShiny(pid, tsv);
 }
 
 // Working backwards it is hard to know what PID would get rerolled from shiny lock
@@ -242,7 +242,7 @@ bool ShadowLock::salamenceSet(u32 seed, u16 tsv)
     // Build PID of non-shadow
     u32 pid = getPIDBackward(backward);
 
-    return locks.first().compare(pid) && !isShiny(pid, tsv);
+    return locks.front().compare(pid) && !isShiny(pid, tsv);
 }
 
 bool ShadowLock::salamenceUnset(u32 seed, u16 tsv)
@@ -265,7 +265,7 @@ bool ShadowLock::salamenceUnset(u32 seed, u16 tsv)
     u32 pid = getPIDBackward(backward);
 
     // Backwards nature lock check
-    return locks.first().compare(pid) && !isShiny(pid, tsv);
+    return locks.front().compare(pid) && !isShiny(pid, tsv);
 }
 
 // The following is technically shiny locked by the trainer TID/SID

@@ -22,7 +22,8 @@
 #include <Core/Util/Utilities.hpp>
 #include <QSettings>
 
-SearchCalls::SearchCalls(const QVector<DateTime> &model, const QVector<bool> &roamers, const QVector<u8> &routes, QWidget *parent) :
+SearchCalls::SearchCalls(const std::vector<DateTime> &model, const std::vector<bool> &roamers, const std::vector<u8> &routes,
+                         QWidget *parent) :
     QDialog(parent), ui(new Ui::SearchCalls)
 {
     ui->setupUi(this);
@@ -56,7 +57,7 @@ SearchCalls::~SearchCalls()
     delete ui;
 }
 
-QVector<bool> SearchCalls::possibleResults() const
+std::vector<bool> SearchCalls::possibleResults() const
 {
     return possible;
 }
@@ -102,7 +103,7 @@ void SearchCalls::callsTextChanged(const QString &val)
             compare.replace(" ", "").replace(",", "");
 
             bool pass = compare.contains(result);
-            possible.append(pass);
+            possible.push_back(pass);
             if (pass)
             {
                 num++;

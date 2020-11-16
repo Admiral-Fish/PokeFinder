@@ -83,7 +83,7 @@ StationarySearcherModel3::StationarySearcherModel3(QObject *parent) : TableModel
 
 void StationarySearcherModel3::sort(int column, Qt::SortOrder order)
 {
-    if (!model.isEmpty())
+    if (!model.empty())
     {
         emit layoutAboutToBeChanged();
         bool flag = order == Qt::AscendingOrder;

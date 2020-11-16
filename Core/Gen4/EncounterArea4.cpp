@@ -20,7 +20,7 @@
 #include "EncounterArea4.hpp"
 #include <Core/Parents/Slot.hpp>
 
-EncounterArea4::EncounterArea4(u8 location, Encounter type, const QVector<Slot> &pokemon) : EncounterArea(location, type, pokemon)
+EncounterArea4::EncounterArea4(u8 location, Encounter type, const std::vector<Slot> &pokemon) : EncounterArea(location, type, pokemon)
 {
 }
 

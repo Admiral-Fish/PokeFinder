@@ -174,14 +174,14 @@ void Wild4::updateLocationsGenerator()
 
     encounterGenerator = Encounters4::getEncounters(encounter, time, currentProfile);
 
-    QVector<u8> locs;
+    std::vector<u8> locs;
     for (const auto &area : encounterGenerator)
     {
-        locs.append(area.getLocation());
+        locs.push_back(area.getLocation());
     }
 
     QStringList locations = Translator::getLocations(locs, currentProfile.getVersion());
-    QVector<int> indices(locations.size());
+    std::vector<int> indices(locations.size());
     std::iota(indices.begin(), indices.end(), 0);
     std::sort(indices.begin(), indices.end(), [&locations](int i, int j) { return locations[i] < locations[j]; });
 
@@ -199,14 +199,14 @@ void Wild4::updateLocationsSearcher()
 
     encounterSearcher = Encounters4::getEncounters(encounter, time, currentProfile);
 
-    QVector<u8> locs;
+    std::vector<u8> locs;
     for (const auto &area : encounterSearcher)
     {
-        locs.append(area.getLocation());
+        locs.push_back(area.getLocation());
     }
 
     QStringList locations = Translator::getLocations(locs, currentProfile.getVersion());
-    QVector<int> indices(locations.size());
+    std::vector<int> indices(locations.size());
     std::iota(indices.begin(), indices.end(), 0);
     std::sort(indices.begin(), indices.end(), [&locations](int i, int j) { return locations[i] < locations[j]; });
 
@@ -220,7 +220,7 @@ void Wild4::updateLocationsSearcher()
 void Wild4::updatePokemonGenerator()
 {
     auto area = encounterGenerator.at(ui->comboBoxGeneratorLocation->currentData().toInt());
-    QVector<u16> species = area.getUniqueSpecies();
+    std::vector<u16> species = area.getUniqueSpecies();
 
     QStringList names = area.getSpecieNames();
 
@@ -235,19 +235,19 @@ void Wild4::updatePokemonGenerator()
 void Wild4::updatePokemonSearcher()
 {
     auto area = encounterSearcher.at(ui->comboBoxSearcherLocation->currentData().toInt());
-    QVector<u16> species = area.getUniqueSpecies();
+    std::vector<u16> species = area.getUniqueSpecies();
 
     QStringList names = area.getSpecieNames();
 
     ui->comboBoxSearcherPokemon->clear();
     ui->comboBoxSearcherPokemon->addItem("-");
-    for (auto i = 0; i < species.size(); i++)
+    for (size_t i = 0; i < species.size(); i++)
     {
         ui->comboBoxSearcherPokemon->addItem(names.at(i), species.at(i));
     }
 }
 
-void Wild4::updateProgress(const QVector<WildState> &states, int progress)
+void Wild4::updateProgress(const std::vector<WildState> &states, int progress)
 {
     searcherModel->addItems(states);
     ui->progressBar->setValue(progress);
@@ -315,8 +315,8 @@ void Wild4::search()
     ui->pushButtonSearch->setEnabled(false);
     ui->pushButtonCancel->setEnabled(true);
 
-    QVector<u8> min = ui->filterSearcher->getMinIVs();
-    QVector<u8> max = ui->filterSearcher->getMaxIVs();
+    std::array<u8, 6> min = ui->filterSearcher->getMinIVs();
+    std::array<u8, 6> max = ui->filterSearcher->getMaxIVs();
 
     StateFilter filter(ui->filterSearcher->getGender(), ui->filterSearcher->getAbility(), ui->filterSearcher->getShiny(), false, min, max,
                        ui->filterSearcher->getNatures(), ui->filterSearcher->getHiddenPowers(), ui->filterSearcher->getEncounterSlots());
@@ -552,7 +552,7 @@ void Wild4::generatorPokemonIndexChanged(int index)
     else
     {
         u16 num = ui->comboBoxGeneratorPokemon->getCurrentUShort();
-        QVector<bool> flags = encounterGenerator.at(ui->comboBoxGeneratorLocation->currentData().toInt()).getSlots(num);
+        std::vector<bool> flags = encounterGenerator.at(ui->comboBoxGeneratorLocation->currentData().toInt()).getSlots(num);
 
         ui->filterGenerator->toggleEncounterSlots(flags);
     }
@@ -567,7 +567,7 @@ void Wild4::searcherPokemonIndexChanged(int index)
     else
     {
         u16 num = ui->comboBoxSearcherPokemon->getCurrentUShort();
-        QVector<bool> flags = encounterSearcher.at(ui->comboBoxSearcherLocation->currentData().toInt()).getSlots(num);
+        std::vector<bool> flags = encounterSearcher.at(ui->comboBoxSearcherLocation->currentData().toInt()).getSlots(num);
 
         ui->filterSearcher->toggleEncounterSlots(flags);
     }

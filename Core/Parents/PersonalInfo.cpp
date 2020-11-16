@@ -37,7 +37,7 @@ PersonalInfo::PersonalInfo(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, u8 gen
 {
 }
 
-QVector<PersonalInfo> PersonalInfo::loadPersonal(u8 gen)
+std::vector<PersonalInfo> PersonalInfo::loadPersonal(u8 gen)
 {
     QString path;
     int size = 0;
@@ -57,7 +57,7 @@ QVector<PersonalInfo> PersonalInfo::loadPersonal(u8 gen)
         size = 13;
     }
 
-    QVector<PersonalInfo> pokemon;
+    std::vector<PersonalInfo> pokemon;
     QFile file(path);
     if (file.open(QIODevice::ReadOnly))
     {
@@ -91,7 +91,7 @@ QVector<PersonalInfo> PersonalInfo::loadPersonal(u8 gen)
                 formStatIndex = data.mid(i + 11, 2).toHex().toUShort(nullptr, 16);
             }
 
-            pokemon.append(PersonalInfo(hp, atk, def, spa, spd, spe, gender, ability1, ability2, abilityH, formCount, formStatIndex));
+            pokemon.push_back(PersonalInfo(hp, atk, def, spa, spd, spe, gender, ability1, ability2, abilityH, formCount, formStatIndex));
         }
     }
 
@@ -128,7 +128,7 @@ u16 PersonalInfo::getBaseSpe() const
     return baseSpe;
 }
 
-QVector<u8> PersonalInfo::getBaseStats() const
+std::vector<u8> PersonalInfo::getBaseStats() const
 {
     return { baseHP, baseAtk, baseDef, baseSpA, baseSpD, baseSpe };
 }

@@ -31,6 +31,7 @@
 #include <QSettings>
 #include <QThread>
 #include <QTimer>
+#include <array>
 
 ProfileCalibrator5::ProfileCalibrator5(QWidget *parent) : QWidget(parent), ui(new Ui::ProfileCalibrator5)
 {
@@ -155,7 +156,7 @@ void ProfileCalibrator5::updateParameters()
     ui->textBoxMaxVFrame->setText("10");
 }
 
-void ProfileCalibrator5::updateProgress(const QVector<QList<QStandardItem *>> &states, int progress)
+void ProfileCalibrator5::updateProgress(const std::vector<QList<QStandardItem *>> &states, int progress)
 {
     for (auto &state : states)
     {
@@ -213,12 +214,12 @@ void ProfileCalibrator5::search()
 
     if (ui->tabWidgetType->currentIndex() == 0) // IV Search
     {
-        QVector<u8> minIVs = { static_cast<u8>(ui->spinBoxMinHP->value()),  static_cast<u8>(ui->spinBoxMinAtk->value()),
-                               static_cast<u8>(ui->spinBoxMinDef->value()), static_cast<u8>(ui->spinBoxMinSpA->value()),
-                               static_cast<u8>(ui->spinBoxMinSpD->value()), static_cast<u8>(ui->spinBoxMinSpe->value()) };
-        QVector<u8> maxIVs = { static_cast<u8>(ui->spinBoxMaxHP->value()),  static_cast<u8>(ui->spinBoxMaxAtk->value()),
-                               static_cast<u8>(ui->spinBoxMaxDef->value()), static_cast<u8>(ui->spinBoxMaxSpA->value()),
-                               static_cast<u8>(ui->spinBoxMaxSpD->value()), static_cast<u8>(ui->spinBoxMaxSpe->value()) };
+        std::array<u8, 6> minIVs = { static_cast<u8>(ui->spinBoxMinHP->value()),  static_cast<u8>(ui->spinBoxMinAtk->value()),
+                                     static_cast<u8>(ui->spinBoxMinDef->value()), static_cast<u8>(ui->spinBoxMinSpA->value()),
+                                     static_cast<u8>(ui->spinBoxMinSpD->value()), static_cast<u8>(ui->spinBoxMinSpe->value()) };
+        std::array<u8, 6> maxIVs = { static_cast<u8>(ui->spinBoxMaxHP->value()),  static_cast<u8>(ui->spinBoxMaxAtk->value()),
+                                     static_cast<u8>(ui->spinBoxMaxDef->value()), static_cast<u8>(ui->spinBoxMaxSpA->value()),
+                                     static_cast<u8>(ui->spinBoxMaxSpD->value()), static_cast<u8>(ui->spinBoxMaxSpe->value()) };
 
         searcher = new ProfileIVSearcher5(minIVs, maxIVs, date, time, minSeconds, maxSeconds, minVCount, maxVCount, minTimer0, maxTimer0,
                                           minGxStat, maxGxStat, softReset, version, language, dsType, mac, keypress);
@@ -228,41 +229,41 @@ void ProfileCalibrator5::search()
         bool unovaLink = ui->radioButtonUnovaLink->isChecked();
         bool memoryLink = ui->checkBoxMemoryLink->isChecked();
 
-        QVector<u8> needles;
+        std::vector<u8> needles;
         QStringList input = ui->lineEditNeedles->text().split(" ");
         for (QString &needle : input)
         {
             if (needle == "↑")
             {
-                needles.append(0);
+                needles.push_back(0);
             }
             else if (needle == "↗")
             {
-                needles.append(1);
+                needles.push_back(1);
             }
             else if (needle == "→")
             {
-                needles.append(2);
+                needles.push_back(2);
             }
             else if (needle == "↘")
             {
-                needles.append(3);
+                needles.push_back(3);
             }
             else if (needle == "↓")
             {
-                needles.append(4);
+                needles.push_back(4);
             }
             else if (needle == "↙")
             {
-                needles.append(5);
+                needles.push_back(5);
             }
             else if (needle == "←")
             {
-                needles.append(6);
+                needles.push_back(6);
             }
             else if (needle == "↖")
             {
-                needles.append(7);
+                needles.push_back(7);
             }
         }
 

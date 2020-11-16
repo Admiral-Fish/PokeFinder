@@ -20,7 +20,7 @@
 #include "HGSSRoamer.hpp"
 #include <Core/RNG/LCRNG.hpp>
 
-HGSSRoamer::HGSSRoamer(u32 seed, const QVector<bool> &roamers, const QVector<u8> &routes)
+HGSSRoamer::HGSSRoamer(u32 seed, const std::vector<bool> &roamers, const std::vector<u8> &routes)
 {
     this->seed = seed;
     this->roamers = roamers;
@@ -69,12 +69,12 @@ QString HGSSRoamer::getRouteString() const
     return routes;
 }
 
-QVector<bool> HGSSRoamer::getRoamers() const
+std::vector<bool> HGSSRoamer::getRoamers() const
 {
     return roamers;
 }
 
-QVector<u8> HGSSRoamer::getRoutes() const
+std::vector<u8> HGSSRoamer::getRoutes() const
 {
     return routes;
 }

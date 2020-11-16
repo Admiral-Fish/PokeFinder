@@ -136,7 +136,7 @@ void StationarySearcherModel4::setMethod(Method method)
 
 void StationarySearcherModel4::sort(int column, Qt::SortOrder order)
 {
-    if (!model.isEmpty())
+    if (!model.empty())
     {
         emit layoutAboutToBeChanged();
         bool flag = order == Qt::AscendingOrder;

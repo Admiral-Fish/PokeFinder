@@ -32,9 +32,9 @@ public:
     StationarySearcher4(u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter);
     void setDelay(u32 minDelay, u32 maxDelay);
     void setState(u32 minAdvance, u32 maxAdvance);
-    void startSearch(const QVector<u8> &min, const QVector<u8> &max);
+    void startSearch(const std::array<u8, 6> &min, const std::array<u8, 6> &max);
     void cancelSearch();
-    QVector<StationaryState> getResults();
+    std::vector<StationaryState> getResults();
     int getProgress() const;
 
 private:
@@ -46,21 +46,21 @@ private:
 
     bool searching;
     int progress;
-    QVector<StationaryState> results;
+    std::vector<StationaryState> results;
     std::mutex mutex;
 
-    QVector<StationaryState> search(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const;
-    QVector<StationaryState> searchMethod1(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const;
-    QVector<StationaryState> searchMethodJ(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const;
-    QVector<StationaryState> searchMethodK(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const;
-    QVector<StationaryState> searchWondercardIVs(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const;
-    QVector<StationaryState> normalMethodJ(StationaryState state, u32 seed) const;
-    QVector<StationaryState> synchMethodJ(StationaryState state, u32 seed) const;
-    QVector<StationaryState> cuteCharmMethodJ(StationaryState state, u32 seed) const;
-    QVector<StationaryState> normalMethodK(StationaryState state, u32 seed) const;
-    QVector<StationaryState> synchMethodK(StationaryState state, u32 seed) const;
-    QVector<StationaryState> cuteCharmMethodK(StationaryState state, u32 seed) const;
-    QVector<StationaryState> searchInitialSeeds(const QVector<StationaryState> &results) const;
+    std::vector<StationaryState> search(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const;
+    std::vector<StationaryState> searchMethod1(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const;
+    std::vector<StationaryState> searchMethodJ(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const;
+    std::vector<StationaryState> searchMethodK(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const;
+    std::vector<StationaryState> searchWondercardIVs(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const;
+    std::vector<StationaryState> normalMethodJ(StationaryState state, u32 seed) const;
+    std::vector<StationaryState> synchMethodJ(StationaryState state, u32 seed) const;
+    std::vector<StationaryState> cuteCharmMethodJ(StationaryState state, u32 seed) const;
+    std::vector<StationaryState> normalMethodK(StationaryState state, u32 seed) const;
+    std::vector<StationaryState> synchMethodK(StationaryState state, u32 seed) const;
+    std::vector<StationaryState> cuteCharmMethodK(StationaryState state, u32 seed) const;
+    std::vector<StationaryState> searchInitialSeeds(const std::vector<StationaryState> &results) const;
 };
 
 #endif // STATIONARYSEARCHER4_HPP

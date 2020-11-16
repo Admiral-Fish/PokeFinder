@@ -32,14 +32,14 @@ class SearchCoinFlips : public QDialog
 {
     Q_OBJECT
 public:
-    explicit SearchCoinFlips(const QVector<DateTime> &model, QWidget *parent = nullptr);
+    explicit SearchCoinFlips(const std::vector<DateTime> &model, QWidget *parent = nullptr);
     ~SearchCoinFlips() override;
-    QVector<bool> possibleResults() const;
+    std::vector<bool> possibleResults() const;
 
 private:
     Ui::SearchCoinFlips *ui;
-    QVector<DateTime> data;
-    QVector<bool> possible;
+    std::vector<DateTime> data;
+    std::vector<bool> possible;
 
 private slots:
     void heads();

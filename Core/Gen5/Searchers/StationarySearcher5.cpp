@@ -23,13 +23,13 @@
 #include <QtConcurrent>
 
 StationarySearcher5::StationarySearcher5(const StationaryGenerator5 &ivGenerator, const StationaryGenerator5 &pidGenerator,
-                                         const Profile5 &profile, const QVector<QHash<u32, u32>> &ivMap, bool includePID) :
+                                         const Profile5 &profile, const std::vector<std::unordered_map<u32, u32>> &ivMap, bool includePID) :
     ivGenerator(ivGenerator),
     pidGenerator(pidGenerator),
     profile(profile),
     ivMap(ivMap),
     includePID(includePID),
-    fastSearch(!ivMap.isEmpty()),
+    fastSearch(!ivMap.empty()),
     searching(false),
     progress(0)
 {
@@ -47,19 +47,19 @@ void StationarySearcher5::startSearch(int threads, QDate start, const QDate &end
     }
 
     pool.setMaxThreadCount(threads);
-    QVector<QFuture<void>> threadContainer;
+    std::vector<QFuture<void>> threadContainer;
 
     auto daysSplit = days / threads;
     for (int i = 0; i < threads; i++)
     {
         if (i == threads - 1)
         {
-            threadContainer.append(QtConcurrent::run(&pool, [=] { search(start, end); }));
+            threadContainer.push_back(QtConcurrent::run(&pool, [=] { search(start, end); }));
         }
         else
         {
             QDate mid = start.addDays(daysSplit - 1);
-            threadContainer.append(QtConcurrent::run(&pool, [=] { search(start, mid); }));
+            threadContainer.push_back(QtConcurrent::run(&pool, [=] { search(start, mid); }));
         }
         start = start.addDays(daysSplit);
     }
@@ -75,7 +75,7 @@ void StationarySearcher5::cancelSearch()
     searching = false;
 }
 
-QVector<StationaryState5> StationarySearcher5::getResults()
+std::vector<StationaryState5> StationarySearcher5::getResults()
 {
     std::lock_guard<std::mutex> lock(resultMutex);
 
@@ -106,7 +106,7 @@ void StationarySearcher5::search(const QDate &start, const QDate &end)
                         static_cast<u8>(date.dayOfWeek()));
             sha.precompute();
 
-            for (int i = 0; i < values.size(); i++)
+            for (size_t i = 0; i < values.size(); i++)
             {
                 sha.setButton(values.at(i));
 
@@ -124,7 +124,7 @@ void StationarySearcher5::search(const QDate &start, const QDate &end)
                             sha.setTime(hour, minute, second, profile.getDSType());
                             u64 seed = sha.hashSeed();
 
-                            QVector<StationaryState5> states;
+                            std::vector<StationaryState5> states;
                             if (fastSearch)
                             {
                                 for (u8 j = 0; j < ivMap.size(); j++)
@@ -133,14 +133,14 @@ void StationarySearcher5::search(const QDate &start, const QDate &end)
                                     if (it != ivMap.at(j).end())
                                     {
                                         StationaryState5 state;
-                                        state.setIVs(it.value());
+                                        state.setIVs(it->second);
                                         state.calculateHiddenPower();
 
                                         // Filter here
                                         if (ivGenerator.getFilter().compareIVs(state))
                                         {
                                             state.setIVState(j + 1);
-                                            states.append(state);
+                                            states.push_back(state);
                                         }
                                     }
                                 }
@@ -172,13 +172,13 @@ void StationarySearcher5::search(const QDate &start, const QDate &end)
                                         ivState.setSeed(pidState.getSeed());
 
                                         std::lock_guard<std::mutex> lock(resultMutex);
-                                        results.append(ivState);
+                                        results.push_back(ivState);
                                     }
                                 }
                                 else
                                 {
                                     std::lock_guard<std::mutex> lock(resultMutex);
-                                    results.append(ivState);
+                                    results.push_back(ivState);
                                 }
                             }
 

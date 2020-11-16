@@ -21,6 +21,7 @@
 #include "ui_SpindaPainter.h"
 #include <Core/Util/Translator.hpp>
 #include <QSettings>
+#include <array>
 
 constexpr u8 coords[8] = { 0, 0, 24, 1, 6, 18, 18, 19 };
 constexpr u8 origin[2] = { 8, 6 };
@@ -109,18 +110,10 @@ void SpindaPainter::updatePID(const QList<QRectF> & /*region*/)
 {
     if (!text)
     {
-        QVector<qreal> pos;
-        pos.append(spot1->x());
-        pos.append(spot1->y());
-        pos.append(spot2->x());
-        pos.append(spot2->y());
-        pos.append(spot3->x());
-        pos.append(spot3->y());
-        pos.append(spot4->x());
-        pos.append(spot4->y());
+        std::array<double, 8> pos = { spot1->x(), spot1->y(), spot2->x(), spot2->y(), spot3->x(), spot3->y(), spot4->x(), spot4->y() };
 
         u32 pid = 0;
-        for (u8 i = 0; i < 4; i++)
+        for (size_t i = 0; i < 4; i++)
         {
             u32 left = static_cast<u32>(pos.at(i * 2) / 8) - coords[2 * i] - origin[0];
             u32 right = static_cast<u32>(pos.at(i * 2 + 1) / 8) - coords[2 * i + 1] - origin[1];

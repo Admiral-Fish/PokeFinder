@@ -21,11 +21,11 @@
 #define PROFILELOADER5_HPP
 
 #include <Core/Gen5/Profile5.hpp>
-#include <QVector>
+#include <vector>
 
 namespace ProfileLoader5
 {
-    QVector<Profile5> getProfiles();
+    std::vector<Profile5> getProfiles();
     void addProfile(const Profile5 &profile);
     void removeProfile(const Profile5 &remove);
     void updateProfile(const Profile5 &update, const Profile5 &original);

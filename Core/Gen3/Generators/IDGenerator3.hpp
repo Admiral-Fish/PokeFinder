@@ -22,7 +22,6 @@
 
 #include <Core/Gen3/States/IDState3.hpp>
 #include <Core/Parents/Generators/IDGenerator.hpp>
-#include <QVector>
 
 class IDGenerator3 : public IDGenerator
 {
@@ -30,9 +29,9 @@ public:
     IDGenerator3() = default;
     IDGenerator3(u32 initialAdvances, u32 maxAdvances, const IDFilter &filter);
     void setStaticTID(u16 staticTID);
-    QVector<IDState3> generateXDColo(u32 seed);
-    QVector<IDState3> generateFRLGE(u32 seed);
-    QVector<IDState3> generateRS(u32 seed);
+    std::vector<IDState3> generateXDColo(u32 seed);
+    std::vector<IDState3> generateFRLGE(u32 seed);
+    std::vector<IDState3> generateRS(u32 seed);
 
 private:
     u16 staticTID;

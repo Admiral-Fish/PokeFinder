@@ -26,13 +26,13 @@
 class ColoSeedSearcher : public SeedSearcher
 {
 public:
-    explicit ColoSeedSearcher(const QVector<u32> &criteria);
+    explicit ColoSeedSearcher(const std::vector<u32> &criteria);
     void startSearch(int threads);
-    void startSearch(int threads, const QVector<u32> &seeds);
+    void startSearch(int threads, const std::vector<u32> &seeds);
 
 private:
     void search(u32 start, u32 end);
-    void search(const QVector<u32> &seeds);
+    void search(const std::vector<u32>::const_iterator &start, const std::vector<u32>::const_iterator &end);
     bool searchSeed(XDRNG &rng);
     void generatePokemon(XDRNG &rng, u16 tsv, u8 nature, u8 gender, u8 genderRatio);
 };

@@ -21,8 +21,8 @@
 #include <Core/Parents/States/State.hpp>
 #include <Core/Parents/States/WildState.hpp>
 
-StateFilter::StateFilter(u8 gender, u8 ability, u8 shiny, bool skip, const QVector<u8> &min, const QVector<u8> &max,
-                         const QVector<bool> &natures, const QVector<bool> &powers, const QVector<bool> &encounters) :
+StateFilter::StateFilter(u8 gender, u8 ability, u8 shiny, bool skip, const std::array<u8, 6> &min, const std::array<u8, 6> &max,
+                         const std::vector<bool> &natures, const std::vector<bool> &powers, const std::vector<bool> &encounters) :
     min(min), max(max), gender(gender), ability(ability), natures(natures), powers(powers), encounters(encounters), shiny(shiny), skip(skip)
 {
 }

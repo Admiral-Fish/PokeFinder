@@ -75,87 +75,87 @@ namespace Encounters3
             return data.mid(offset, length).toHex().toUShort(nullptr, 16);
         }
 
-        QVector<EncounterArea3> getArea(const QByteArray &data, const QVector<PersonalInfo> &info)
+        std::vector<EncounterArea3> getArea(const QByteArray &data, const std::vector<PersonalInfo> &info)
         {
-            QVector<EncounterArea3> encounters;
+            std::vector<EncounterArea3> encounters;
 
             u8 location = static_cast<u8>(data.at(0));
 
             if (data.at(1) == 1 || data.at(1) == 2)
             {
-                QVector<Slot> grass;
+                std::vector<Slot> grass;
                 for (u8 i = 0; i < 12; i++)
                 {
                     u8 level = static_cast<u8>(data.at(4 + i * 3));
                     u16 specie = getValue(data, 5 + i * 3, 2);
-                    grass.append(Slot(specie, level, info.at(specie)));
+                    grass.push_back(Slot(specie, level, info.at(specie)));
                 }
 
                 u8 val = static_cast<u8>(data.at(1));
-                encounters.append(EncounterArea3(location, val == 1 ? Encounter::Grass : Encounter::SafariZone, grass));
+                encounters.push_back(EncounterArea3(location, val == 1 ? Encounter::Grass : Encounter::SafariZone, grass));
             }
             if (data.at(2) == 1)
             {
-                QVector<Slot> rock;
+                std::vector<Slot> rock;
                 for (u8 i = 0; i < 5; i++)
                 {
                     u8 minLevel = static_cast<u8>(data.at(40 + i * 4));
                     u8 maxLevel = static_cast<u8>(data.at(41 + i * 4));
                     u16 specie = getValue(data, 42 + i * 4, 2);
-                    rock.append(Slot(specie, minLevel, maxLevel, info.at(specie)));
+                    rock.push_back(Slot(specie, minLevel, maxLevel, info.at(specie)));
                 }
-                encounters.append(EncounterArea3(location, Encounter::RockSmash, rock));
+                encounters.push_back(EncounterArea3(location, Encounter::RockSmash, rock));
             }
             if (data.at(3) == 1)
             {
-                QVector<Slot> surf;
+                std::vector<Slot> surf;
                 for (u8 i = 0; i < 5; i++)
                 {
                     u8 minLevel = static_cast<u8>(data.at(60 + i * 4));
                     u8 maxLevel = static_cast<u8>(data.at(61 + i * 4));
                     u16 specie = getValue(data, 62 + i * 4, 2);
-                    surf.append(Slot(specie, minLevel, maxLevel, info.at(specie)));
+                    surf.push_back(Slot(specie, minLevel, maxLevel, info.at(specie)));
                 }
-                encounters.append(EncounterArea3(location, Encounter::Surfing, surf));
+                encounters.push_back(EncounterArea3(location, Encounter::Surfing, surf));
 
-                QVector<Slot> old;
+                std::vector<Slot> old;
                 for (u8 i = 0; i < 2; i++)
                 {
                     u8 minLevel = static_cast<u8>(data.at(80 + i * 4));
                     u8 maxLevel = static_cast<u8>(data.at(81 + i * 4));
                     u16 specie = getValue(data, 82 + i * 4, 2);
-                    old.append(Slot(specie, minLevel, maxLevel, info.at(specie)));
+                    old.push_back(Slot(specie, minLevel, maxLevel, info.at(specie)));
                 }
-                encounters.append(EncounterArea3(location, Encounter::OldRod, old));
+                encounters.push_back(EncounterArea3(location, Encounter::OldRod, old));
 
-                QVector<Slot> good;
+                std::vector<Slot> good;
                 for (u8 i = 0; i < 3; i++)
                 {
                     u8 minLevel = static_cast<u8>(data.at(88 + i * 4));
                     u8 maxLevel = static_cast<u8>(data.at(89 + i * 4));
                     u16 specie = getValue(data, 90 + i * 4, 2);
-                    good.append(Slot(specie, minLevel, maxLevel, info.at(specie)));
+                    good.push_back(Slot(specie, minLevel, maxLevel, info.at(specie)));
                 }
-                encounters.append(EncounterArea3(location, Encounter::GoodRod, good));
+                encounters.push_back(EncounterArea3(location, Encounter::GoodRod, good));
 
-                QVector<Slot> super;
+                std::vector<Slot> super;
                 for (u8 i = 0; i < 5; i++)
                 {
                     u8 minLevel = static_cast<u8>(data.at(100 + i * 4));
                     u8 maxLevel = static_cast<u8>(data.at(101 + i * 4));
                     u16 specie = getValue(data, 102 + i * 4, 2);
-                    super.append(Slot(specie, minLevel, maxLevel, info.at(specie)));
+                    super.push_back(Slot(specie, minLevel, maxLevel, info.at(specie)));
                 }
-                encounters.append(EncounterArea3(location, Encounter::SuperRod, super));
+                encounters.push_back(EncounterArea3(location, Encounter::SuperRod, super));
             }
             return encounters;
         }
     }
 
-    QVector<EncounterArea3> getEncounters(Encounter encounter, const Profile3 &profile)
+    std::vector<EncounterArea3> getEncounters(Encounter encounter, const Profile3 &profile)
     {
-        QVector<EncounterArea3> encounterAreas;
-        QVector<PersonalInfo> info = PersonalInfo::loadPersonal(3);
+        std::vector<EncounterArea3> encounterAreas;
+        std::vector<PersonalInfo> info = PersonalInfo::loadPersonal(3);
 
         for (const auto &data : getData(profile.getVersion()))
         {
@@ -163,7 +163,7 @@ namespace Encounters3
             {
                 if (encounterArea.getEncounter() == encounter)
                 {
-                    encounterAreas.append(encounterArea);
+                    encounterAreas.push_back(encounterArea);
                 }
             }
         }

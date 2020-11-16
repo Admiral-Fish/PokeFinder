@@ -47,7 +47,7 @@ private:
     Ui::Stationary3 *ui;
     StationaryGeneratorModel3 *generatorModel = nullptr;
     StationarySearcherModel3 *searcherModel = nullptr;
-    QVector<Profile3> profiles;
+    std::vector<Profile3> profiles;
     Profile3 currentProfile;
     QMenu *generatorMenu = nullptr;
     QMenu *searcherMenu = nullptr;
@@ -55,7 +55,7 @@ private:
     void setupModels();
 
 private slots:
-    void updateProgress(const QVector<State> &states, int progress);
+    void updateProgress(const std::vector<State> &states, int progress);
     void generate();
     void search();
     void profilesIndexChanged(int index);

@@ -21,7 +21,7 @@
 #define LOCKINFO_HPP
 
 #include <Core/Util/Global.hpp>
-#include <QVector>
+#include <vector>
 
 enum Method : u8;
 enum ShadowType : u8;
@@ -46,15 +46,15 @@ class ShadowTeam
 
 public:
     ShadowTeam() = default;
-    ShadowTeam(const QVector<LockInfo> &locks, ShadowType type);
+    ShadowTeam(const std::vector<LockInfo> &locks, ShadowType type);
     LockInfo getLock(u8 index) const;
-    QVector<LockInfo> getLocks() const;
+    std::vector<LockInfo> getLocks() const;
     ShadowType getType() const;
     int getSize() const;
-    static QVector<ShadowTeam> loadShadowTeams(Method version);
+    static std::vector<ShadowTeam> loadShadowTeams(Method version);
 
 private:
-    QVector<LockInfo> locks;
+    std::vector<LockInfo> locks;
     ShadowType type;
 };
 

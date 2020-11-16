@@ -21,7 +21,6 @@
 #include <Core/Enum/Game.hpp>
 #include <QFile>
 #include <QTextStream>
-#include <QVector>
 
 namespace
 {
@@ -95,7 +94,7 @@ namespace Translator
         return species.at(specie - 1);
     }
 
-    QStringList getSpecies(const QVector<u16> &nums)
+    QStringList getSpecies(const std::vector<u16> &nums)
     {
         QStringList s;
         for (u16 num : nums)
@@ -110,7 +109,7 @@ namespace Translator
         return genders.at(gender);
     }
 
-    QStringList getLocations(const QVector<u8> &nums, Game game)
+    QStringList getLocations(const std::vector<u8> &nums, Game game)
     {
         QString version;
         if (game & Game::FRLG)

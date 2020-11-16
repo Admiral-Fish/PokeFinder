@@ -28,7 +28,7 @@ GameCubeGenerator::GameCubeGenerator(u32 initialAdvances, u32 maxAdvances, u16 t
 {
 }
 
-QVector<GameCubeState> GameCubeGenerator::generate(u32 seed) const
+std::vector<GameCubeState> GameCubeGenerator::generate(u32 seed) const
 {
     switch (method)
     {
@@ -41,7 +41,7 @@ QVector<GameCubeState> GameCubeGenerator::generate(u32 seed) const
     case Method::Channel:
         return generateChannel(seed);
     default:
-        return QVector<GameCubeState>();
+        return std::vector<GameCubeState>();
     }
 }
 
@@ -51,9 +51,9 @@ void GameCubeGenerator::setShadowTeam(u8 index, u8 type)
     this->type = type;
 }
 
-QVector<GameCubeState> GameCubeGenerator::generateXDColo(u32 seed) const
+std::vector<GameCubeState> GameCubeGenerator::generateXDColo(u32 seed) const
 {
-    QVector<GameCubeState> states;
+    std::vector<GameCubeState> states;
 
     XDRNG rng(seed);
     rng.advance(initialAdvances + offset);
@@ -82,21 +82,21 @@ QVector<GameCubeState> GameCubeGenerator::generateXDColo(u32 seed) const
 
         if (filter.compareState(state))
         {
-            states.append(state);
+            states.push_back(state);
         }
     }
 
     return states;
 }
 
-QVector<GameCubeState> GameCubeGenerator::generateXDShadow(u32 seed) const
+std::vector<GameCubeState> GameCubeGenerator::generateXDShadow(u32 seed) const
 {
-    QVector<GameCubeState> states;
+    std::vector<GameCubeState> states;
 
     XDRNG rng(seed);
     rng.advance(initialAdvances + offset);
 
-    QVector<LockInfo> locks = team.getLocks();
+    std::vector<LockInfo> locks = team.getLocks();
 
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rng.next())
     {
@@ -171,21 +171,21 @@ QVector<GameCubeState> GameCubeGenerator::generateXDShadow(u32 seed) const
 
         if (filter.compareState(state))
         {
-            states.append(state);
+            states.push_back(state);
         }
     }
 
     return states;
 }
 
-QVector<GameCubeState> GameCubeGenerator::generateColoShadow(u32 seed) const
+std::vector<GameCubeState> GameCubeGenerator::generateColoShadow(u32 seed) const
 {
-    QVector<GameCubeState> states;
+    std::vector<GameCubeState> states;
 
     XDRNG rng(seed);
     rng.advance(initialAdvances + offset);
 
-    QVector<LockInfo> locks = team.getLocks();
+    std::vector<LockInfo> locks = team.getLocks();
 
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rng.next())
     {
@@ -260,16 +260,16 @@ QVector<GameCubeState> GameCubeGenerator::generateColoShadow(u32 seed) const
 
         if (filter.compareState(state))
         {
-            states.append(state);
+            states.push_back(state);
         }
     }
 
     return states;
 }
 
-QVector<GameCubeState> GameCubeGenerator::generateChannel(u32 seed) const
+std::vector<GameCubeState> GameCubeGenerator::generateChannel(u32 seed) const
 {
-    QVector<GameCubeState> states;
+    std::vector<GameCubeState> states;
 
     XDRNG rng(seed);
     rng.advance(initialAdvances + offset);
@@ -314,7 +314,7 @@ QVector<GameCubeState> GameCubeGenerator::generateChannel(u32 seed) const
 
         if (filter.compareState(state))
         {
-            states.append(state);
+            states.push_back(state);
         }
     }
 

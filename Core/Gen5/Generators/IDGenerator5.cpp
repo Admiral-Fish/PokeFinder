@@ -24,9 +24,9 @@ IDGenerator5::IDGenerator5(u32 initialAdvances, u32 maxAdvances, const IDFilter 
 {
 }
 
-QVector<IDState5> IDGenerator5::generate(u64 seed, u32 pid, bool checkPID)
+std::vector<IDState5> IDGenerator5::generate(u64 seed, u32 pid, bool checkPID)
 {
-    QVector<IDState5> states;
+    std::vector<IDState5> states;
 
     BWRNG rng(seed);
     rng.advance(initialAdvances);
@@ -55,13 +55,13 @@ QVector<IDState5> IDGenerator5::generate(u64 seed, u32 pid, bool checkPID)
                 if ((actualPSV >> 3) == state.getTSV())
                 {
                     state.setSeed(seed);
-                    states.append(state);
+                    states.push_back(state);
                 }
             }
             else
             {
                 state.setSeed(seed);
-                states.append(state);
+                states.push_back(state);
             }
         }
     }

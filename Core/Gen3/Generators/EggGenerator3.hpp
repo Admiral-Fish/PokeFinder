@@ -29,7 +29,7 @@ public:
     EggGenerator3() = default;
     EggGenerator3(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter,
                   const Daycare &daycare);
-    QVector<EggState3> generate(u32 seed = 0, u32 seed2 = 0) const;
+    std::vector<EggState3> generate(u32 seed = 0, u32 seed2 = 0) const;
     void setInitialAdvancesPickup(u32 value);
     void setMaxAdvancesPickup(u32 value);
     void setCalibration(u8 value);
@@ -46,10 +46,10 @@ private:
     u8 compatability;
     u8 iv1, iv2, inh;
 
-    QVector<EggState3> generateEmeraldPID() const;
-    QVector<EggState3> generateEmeraldIVs() const;
-    QVector<QPair<u32, u16>> generateLower(u32 seed) const;
-    QVector<EggState3> generateUpper(u32 seed, const QVector<QPair<u32, u16>> &lower) const;
+    std::vector<EggState3> generateEmeraldPID() const;
+    std::vector<EggState3> generateEmeraldIVs() const;
+    std::vector<std::pair<u32, u16>> generateLower(u32 seed) const;
+    std::vector<EggState3> generateUpper(u32 seed, const std::vector<std::pair<u32, u16>> &lower) const;
     void setInheritance(EggState3 &state, const u16 *inh, const u16 *par, bool broken) const;
 };
 

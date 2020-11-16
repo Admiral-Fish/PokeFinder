@@ -30,9 +30,9 @@ void IDGenerator3::setStaticTID(u16 staticTID)
     this->staticTID = staticTID;
 }
 
-QVector<IDState3> IDGenerator3::generateXDColo(u32 seed)
+std::vector<IDState3> IDGenerator3::generateXDColo(u32 seed)
 {
-    QVector<IDState3> states;
+    std::vector<IDState3> states;
 
     XDRNG rng(seed);
     rng.advance(initialAdvances);
@@ -48,16 +48,16 @@ QVector<IDState3> IDGenerator3::generateXDColo(u32 seed)
 
         if (filter.compare(state))
         {
-            states.append(state);
+            states.push_back(state);
         }
     }
 
     return states;
 }
 
-QVector<IDState3> IDGenerator3::generateFRLGE(u32 seed)
+std::vector<IDState3> IDGenerator3::generateFRLGE(u32 seed)
 {
-    QVector<IDState3> states;
+    std::vector<IDState3> states;
 
     PokeRNG rng(seed);
     rng.advance(initialAdvances);
@@ -70,16 +70,16 @@ QVector<IDState3> IDGenerator3::generateFRLGE(u32 seed)
 
         if (filter.compare(state))
         {
-            states.append(state);
+            states.push_back(state);
         }
     }
 
     return states;
 }
 
-QVector<IDState3> IDGenerator3::generateRS(u32 seed)
+std::vector<IDState3> IDGenerator3::generateRS(u32 seed)
 {
-    QVector<IDState3> states;
+    std::vector<IDState3> states;
 
     PokeRNG rng(seed);
     rng.advance(initialAdvances);
@@ -95,7 +95,7 @@ QVector<IDState3> IDGenerator3::generateRS(u32 seed)
 
         if (filter.compare(state))
         {
-            states.append(state);
+            states.push_back(state);
         }
     }
 

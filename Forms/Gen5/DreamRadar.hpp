@@ -51,7 +51,7 @@ private:
     Ui::DreamRadar *ui;
     DreamRadarGeneratorModel5 *generatorModel = nullptr;
     DreamRadarSearcherModel5 *searcherModel = nullptr;
-    QVector<Profile5> profiles;
+    std::vector<Profile5> profiles;
     Profile5 currentProfile;
     QMenu *generatorMenu = nullptr;
     QMenu *searcherMenu = nullptr;
@@ -59,11 +59,11 @@ private:
     void setupModels();
 
 private slots:
-    void updateProgress(const QVector<SearcherState5<State>> &states, int progress);
+    void updateProgress(const std::vector<SearcherState5<State>> &states, int progress);
     void generate();
     void search();
-    QVector<DreamRadarSlot> getGeneratorSettings();
-    QVector<DreamRadarSlot> getSearcherSettings();
+    std::vector<DreamRadarSlot> getGeneratorSettings();
+    std::vector<DreamRadarSlot> getSearcherSettings();
     void profileIndexChanged(int index);
     void tableViewGeneratorContextMenu(QPoint pos);
     void tableViewSearcherContextMenu(QPoint pos);

@@ -21,7 +21,7 @@
 #include <Core/RNG/LCRNG.hpp>
 #include <QtConcurrent>
 
-ChannelSeedSearcher::ChannelSeedSearcher(const QVector<u32> &criteria) : SeedSearcher(criteria)
+ChannelSeedSearcher::ChannelSeedSearcher(const std::vector<u32> &criteria) : SeedSearcher(criteria)
 {
 }
 
@@ -31,7 +31,7 @@ void ChannelSeedSearcher::startSearch(int threads)
 
     QThreadPool pool;
     pool.setMaxThreadCount(threads);
-    QVector<QFuture<void>> threadContainer;
+    std::vector<QFuture<void>> threadContainer;
 
     u32 split = 0xBFFFFFFE / threads;
     u32 start = 0x40000001;
@@ -39,11 +39,11 @@ void ChannelSeedSearcher::startSearch(int threads)
     {
         if (i == threads - 1)
         {
-            threadContainer.append(QtConcurrent::run(&pool, [=] { search(start, 0xffffffff); }));
+            threadContainer.push_back(QtConcurrent::run(&pool, [=] { search(start, 0xffffffff); }));
         }
         else
         {
-            threadContainer.append(QtConcurrent::run(&pool, [=] { search(start, start + split); }));
+            threadContainer.push_back(QtConcurrent::run(&pool, [=] { search(start, start + split); }));
         }
         start += split;
     }
@@ -75,7 +75,7 @@ void ChannelSeedSearcher::search(u32 start, u32 end)
         if (searchSeed(rng))
         {
             std::lock_guard<std::mutex> lock(resultMutex);
-            results.append(rng.getSeed());
+            results.push_back(rng.getSeed());
         }
 
         std::lock_guard<std::mutex> lock(progressMutex);

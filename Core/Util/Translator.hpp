@@ -22,6 +22,7 @@
 
 #include <Core/Util/Global.hpp>
 #include <QString>
+#include <vector>
 
 enum Game : u16;
 
@@ -34,9 +35,9 @@ namespace Translator
     QStringList getHiddenPowers();
     QString getHiddenPower(u8 power);
     QString getSpecies(u16 specie);
-    QStringList getSpecies(const QVector<u16> &nums);
+    QStringList getSpecies(const std::vector<u16> &nums);
     QString getGender(u8 gender);
-    QStringList getLocations(const QVector<u8> &nums, Game game);
+    QStringList getLocations(const std::vector<u8> &nums, Game game);
     QString getKeypress(u8 keypress);
     QString getKeypresses(u16 keypresses);
 }
