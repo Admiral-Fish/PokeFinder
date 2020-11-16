@@ -58,13 +58,9 @@ void DreamRadar::updateProfiles()
     connect(ui->comboBoxProfiles, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &DreamRadar::profileIndexChanged);
 
     profiles.clear();
-    for (const auto &profile : ProfileLoader5::getProfiles())
-    {
-        if (profile.getVersion() & Game::BW2)
-        {
-            profiles.push_back(profile);
-        }
-    }
+    auto completeProfiles = ProfileLoader5::getProfiles();
+    std::copy_if(completeProfiles.begin(), completeProfiles.end(), std::back_inserter(profiles),
+                 [](const Profile5 &profile) { return profile.getVersion() & Game::BW2; });
 
     ui->comboBoxProfiles->clear();
 

@@ -64,10 +64,8 @@ namespace ProfileLoader3
             QJsonObject profiles(QJsonDocument::fromJson(data).object());
             QJsonArray gen3 = profiles["gen3"].toArray();
 
-            for (const auto i : gen3)
-            {
-                profileList.push_back(getProfile(i.toObject()));
-            }
+            std::transform(gen3.begin(), gen3.end(), std::back_inserter(profileList),
+                           [](const QJsonValueRef &val) { return getProfile(val.toObject()); });
         }
 
         return profileList;

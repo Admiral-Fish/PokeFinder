@@ -63,13 +63,9 @@ void Wild3::updateProfiles()
     connect(ui->comboBoxProfiles, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &Wild3::profilesIndexChanged);
 
     profiles = { Profile3() };
-    for (const auto &profile : ProfileLoader3::getProfiles())
-    {
-        if (!(profile.getVersion() & Game::GC))
-        {
-            profiles.push_back(profile);
-        }
-    }
+    auto completeProfiles = ProfileLoader3::getProfiles();
+    std::copy_if(completeProfiles.begin(), completeProfiles.end(), std::back_inserter(profiles),
+                 [](const Profile3 &profile) { return !(profile.getVersion() & Game::GC); });
 
     ui->comboBoxProfiles->clear();
     for (const auto &profile : profiles)
@@ -153,10 +149,8 @@ void Wild3::updateLocationsGenerator()
     encounterGenerator = Encounters3::getEncounters(encounter, currentProfile);
 
     std::vector<u8> locs;
-    for (const auto &area : encounterGenerator)
-    {
-        locs.push_back(area.getLocation());
-    }
+    std::transform(encounterGenerator.begin(), encounterGenerator.end(), std::back_inserter(locs),
+                   [](const EncounterArea3 &area) { return area.getLocation(); });
 
     QStringList locations = Translator::getLocations(locs, currentProfile.getVersion());
     std::vector<int> indices(locations.size());
@@ -176,10 +170,8 @@ void Wild3::updateLocationsSearcher()
     encounterSearcher = Encounters3::getEncounters(encounter, currentProfile);
 
     std::vector<u8> locs;
-    for (const auto &area : encounterSearcher)
-    {
-        locs.push_back(area.getLocation());
-    }
+    std::transform(encounterSearcher.begin(), encounterSearcher.end(), std::back_inserter(locs),
+                   [](const EncounterArea3 &area) { return area.getLocation(); });
 
     QStringList locations = Translator::getLocations(locs, currentProfile.getVersion());
     std::vector<int> indices(locations.size());

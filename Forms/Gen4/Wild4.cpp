@@ -175,10 +175,8 @@ void Wild4::updateLocationsGenerator()
     encounterGenerator = Encounters4::getEncounters(encounter, time, currentProfile);
 
     std::vector<u8> locs;
-    for (const auto &area : encounterGenerator)
-    {
-        locs.push_back(area.getLocation());
-    }
+    std::transform(encounterGenerator.begin(), encounterGenerator.end(), std::back_inserter(locs),
+                   [](const EncounterArea4 &area) { return area.getLocation(); });
 
     QStringList locations = Translator::getLocations(locs, currentProfile.getVersion());
     std::vector<int> indices(locations.size());
@@ -200,10 +198,8 @@ void Wild4::updateLocationsSearcher()
     encounterSearcher = Encounters4::getEncounters(encounter, time, currentProfile);
 
     std::vector<u8> locs;
-    for (const auto &area : encounterSearcher)
-    {
-        locs.push_back(area.getLocation());
-    }
+    std::transform(encounterSearcher.begin(), encounterSearcher.end(), std::back_inserter(locs),
+                   [](const EncounterArea4 &area) { return area.getLocation(); });
 
     QStringList locations = Translator::getLocations(locs, currentProfile.getVersion());
     std::vector<int> indices(locations.size());
@@ -226,7 +222,7 @@ void Wild4::updatePokemonGenerator()
 
     ui->comboBoxGeneratorPokemon->clear();
     ui->comboBoxGeneratorPokemon->addItem("-");
-    for (auto i = 0; i < species.size(); i++)
+    for (size_t i = 0; i < species.size(); i++)
     {
         ui->comboBoxGeneratorPokemon->addItem(names.at(i), species.at(i));
     }

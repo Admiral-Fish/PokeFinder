@@ -426,10 +426,7 @@ void GameCubeSeedFinder::channelSearch()
     }
 
     std::vector<u32> criteria;
-    for (const QString &input : inputs)
-    {
-        criteria.push_back(patterns.at(input));
-    }
+    std::transform(inputs.begin(), inputs.end(), std::back_inserter(criteria), [](const QString &input) { return patterns.at(input); });
 
     ui->pushButtonChannelSearch->setEnabled(false);
     ui->pushButtonChannelCancel->setEnabled(true);

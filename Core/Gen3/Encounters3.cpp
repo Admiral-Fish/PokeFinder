@@ -154,20 +154,16 @@ namespace Encounters3
 
     std::vector<EncounterArea3> getEncounters(Encounter encounter, const Profile3 &profile)
     {
-        std::vector<EncounterArea3> encounterAreas;
+        std::vector<EncounterArea3> encounters;
         std::vector<PersonalInfo> info = PersonalInfo::loadPersonal(3);
 
         for (const auto &data : getData(profile.getVersion()))
         {
-            for (const auto &encounterArea : getArea(data, info))
-            {
-                if (encounterArea.getEncounter() == encounter)
-                {
-                    encounterAreas.push_back(encounterArea);
-                }
-            }
+            auto areas = getArea(data, info);
+            std::copy_if(areas.begin(), areas.end(), std::back_inserter(encounters),
+                         [&encounter](const EncounterArea3 &area) { return area.getEncounter() == encounter; });
         }
 
-        return encounterAreas;
+        return encounters;
     }
 }

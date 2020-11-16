@@ -70,10 +70,8 @@ namespace ProfileLoader4
             QJsonObject profiles(QJsonDocument::fromJson(data).object());
             QJsonArray gen4 = profiles["gen4"].toArray();
 
-            for (const auto i : gen4)
-            {
-                profileList.push_back(getProfile(i.toObject()));
-            }
+            std::transform(gen4.begin(), gen4.end(), std::back_inserter(profileList),
+                           [](const QJsonValueRef &val) { return getProfile(val.toObject()); });
         }
 
         return profileList;

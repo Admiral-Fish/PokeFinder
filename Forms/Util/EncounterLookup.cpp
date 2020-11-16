@@ -118,14 +118,13 @@ std::set<std::pair<u8, QString>> EncounterLookup::getEncounters4(Game game, u16 
 
     // Encounter variables to iterate through
     auto types = { Encounter::Grass, Encounter::RockSmash, Encounter::OldRod, Encounter::GoodRod, Encounter::SuperRod };
-    auto duals = { Game::Emerald, Game::Ruby, Game::Sapphire, Game::FireRed, Game::LeafGreen };
 
     // Setup profiles to iterate through of the different combinations of possibilities depending on HGSS vs DPPt
     if (game & Game::HGSS)
     {
-        for (const auto radio : { 0, 1, 2 })
+        for (const int radio : { 0, 1, 2 })
         {
-            for (const auto swarm : { false, true })
+            for (const bool swarm : { false, true })
             {
                 profiles.push_back(Profile4("", game, 0, 0, Game::Blank, radio, false, swarm));
             }
@@ -133,11 +132,12 @@ std::set<std::pair<u8, QString>> EncounterLookup::getEncounters4(Game game, u16 
     }
     else
     {
-        for (const auto dual : duals)
+        auto duals = { Game::Emerald, Game::Ruby, Game::Sapphire, Game::FireRed, Game::LeafGreen };
+        for (const Game dual : duals)
         {
-            for (const auto swarm : { false, true })
+            for (const bool swarm : { false, true })
             {
-                for (const auto radar : { false, true })
+                for (const bool radar : { false, true })
                 {
                     profiles.push_back(Profile4("", game, 0, 0, dual, 0, radar, swarm));
                 }
@@ -200,7 +200,6 @@ void EncounterLookup::find()
     Game game = static_cast<Game>(ui->comboBoxGame->currentData().toInt());
     u16 specie = static_cast<u16>(ui->comboBoxPokemon->currentIndex() + 1);
     std::set<std::pair<u8, QString>> encounters;
-    std::vector<u8> locations;
     QStringList locationNames;
 
     if (game & Game::FRLG || game & Game::RSE)
@@ -212,10 +211,9 @@ void EncounterLookup::find()
         encounters = getEncounters4(game, specie);
     }
 
-    for (const auto &encounter : encounters)
-    {
-        locations.push_back(encounter.first);
-    }
+    std::vector<u8> locations;
+    std::transform(encounters.begin(), encounters.end(), std::back_inserter(locations),
+                   [](const std::pair<u8, QString> &encounter) { return encounter.first; });
     locationNames = Translator::getLocations(locations, game);
 
     u16 i = 0;

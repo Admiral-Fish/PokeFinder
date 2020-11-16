@@ -57,13 +57,9 @@ void Stationary3::updateProfiles()
     connect(ui->comboBoxProfiles, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &Stationary3::profilesIndexChanged);
 
     profiles = { Profile3() };
-    for (const auto &profile : ProfileLoader3::getProfiles())
-    {
-        if (!(profile.getVersion() & Game::GC))
-        {
-            profiles.push_back(profile);
-        }
-    }
+    auto completeProfiles = ProfileLoader3::getProfiles();
+    std::copy_if(completeProfiles.begin(), completeProfiles.end(), std::back_inserter(profiles),
+                 [](const Profile3 &profile) { return !(profile.getVersion() & Game::GC); });
 
     ui->comboBoxProfiles->clear();
     for (const auto &profile : profiles)

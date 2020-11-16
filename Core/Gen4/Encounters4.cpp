@@ -406,13 +406,8 @@ namespace Encounters4
         {
             auto areas
                 = (profile.getVersion() & Game::HGSS) ? getHGSS(data, profile, info, encounter, time) : getDPPt(data, profile, info, time);
-            for (const auto &area : areas)
-            {
-                if (area.getEncounter() == encounter)
-                {
-                    encounters.push_back(area);
-                }
-            }
+            std::copy_if(areas.begin(), areas.end(), std::back_inserter(encounters),
+                         [&encounter](const EncounterArea4 &area) { return area.getEncounter() == encounter; });
         }
 
         return encounters;
