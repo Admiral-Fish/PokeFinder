@@ -45,7 +45,7 @@ public:
     {
         int i = rowCount();
         emit beginInsertRows(QModelIndex(), i, i);
-        model.push_back(item);
+        model.emplace_back(item);
         emit endInsertRows();
     }
 

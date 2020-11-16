@@ -101,18 +101,18 @@ void IDs3::xdColoSearch()
 
     if (ui->checkBoxXDColoTID->isChecked())
     {
-        tidFilter.push_back(ui->textBoxXDColoTID->getUShort());
+        tidFilter.emplace_back(ui->textBoxXDColoTID->getUShort());
     }
 
     if (ui->checkBoxXDColoSID->isChecked())
     {
-        sidFilter.push_back(ui->textBoxXDColoSID->getUShort());
+        sidFilter.emplace_back(ui->textBoxXDColoSID->getUShort());
     }
 
     if (ui->checkBoxXDColoPID->isChecked())
     {
         u32 pid = ui->textBoxXDColoPID->getUInt();
-        tsvFilter.push_back(((pid >> 16) ^ (pid & 0xffff)) >> 3);
+        tsvFilter.emplace_back(((pid >> 16) ^ (pid & 0xffff)) >> 3);
     }
 
     IDFilter filter(tidFilter, sidFilter, tsvFilter);
@@ -135,13 +135,13 @@ void IDs3::frlgeSearch()
 
     if (ui->checkBoxFRLGESID->isChecked())
     {
-        sidFilter.push_back(ui->textBoxFRLGESID->getUShort());
+        sidFilter.emplace_back(ui->textBoxFRLGESID->getUShort());
     }
 
     if (ui->checkBoxFRLGEPID->isChecked())
     {
         u32 pid = ui->textBoxFRLGEPID->getUInt();
-        tsvFilter.push_back(((pid >> 16) ^ (pid & 0xffff)) >> 3);
+        tsvFilter.emplace_back(((pid >> 16) ^ (pid & 0xffff)) >> 3);
     }
 
     IDFilter filter({ tid }, sidFilter, tsvFilter);
@@ -174,18 +174,18 @@ void IDs3::rsSearch()
 
     if (ui->checkBoxRSTID->isChecked())
     {
-        tidFilter.push_back(ui->textBoxRSTID->getUShort());
+        tidFilter.emplace_back(ui->textBoxRSTID->getUShort());
     }
 
     if (ui->checkBoxRSSID->isChecked())
     {
-        sidFilter.push_back(ui->textBoxRSSID->getUShort());
+        sidFilter.emplace_back(ui->textBoxRSSID->getUShort());
     }
 
     if (ui->checkBoxRSPID->isChecked())
     {
         u32 pid = ui->textBoxRSPID->getUInt();
-        tsvFilter.push_back(((pid >> 16) ^ (pid & 0xffff)) >> 3);
+        tsvFilter.emplace_back(((pid >> 16) ^ (pid & 0xffff)) >> 3);
     }
 
     IDFilter filter(tidFilter, sidFilter, tsvFilter);

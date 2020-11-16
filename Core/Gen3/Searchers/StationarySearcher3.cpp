@@ -129,7 +129,7 @@ std::vector<State> StationarySearcher3::searchMethod124(u8 hp, u8 atk, u8 def, u
 
         if (filter.comparePID(state))
         {
-            states.push_back(state);
+            states.emplace_back(state);
         }
 
         // Setup XORed state
@@ -138,7 +138,7 @@ std::vector<State> StationarySearcher3::searchMethod124(u8 hp, u8 atk, u8 def, u
         state.setNature(state.getPID() % 25);
         if (filter.comparePID(state))
         {
-            states.push_back(state);
+            states.emplace_back(state);
         }
     }
     return states;
@@ -176,7 +176,7 @@ std::vector<State> StationarySearcher3::searchMethod1Reverse(u8 hp, u8 atk, u8 d
 
         if (filter.comparePID(state))
         {
-            states.push_back(state);
+            states.emplace_back(state);
         }
 
         // Setup XORed state
@@ -185,7 +185,7 @@ std::vector<State> StationarySearcher3::searchMethod1Reverse(u8 hp, u8 atk, u8 d
         state.setSeed(state.getSeed() ^ 0x80000000);
         if (filter.comparePID(state))
         {
-            states.push_back(state);
+            states.emplace_back(state);
         }
     }
     return states;

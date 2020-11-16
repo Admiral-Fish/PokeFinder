@@ -103,7 +103,7 @@ void SearchCalls::callsTextChanged(const QString &val)
             compare.replace(" ", "").replace(",", "");
 
             bool pass = compare.contains(result);
-            possible.push_back(pass);
+            possible.emplace_back(pass);
             if (pass)
             {
                 num++;

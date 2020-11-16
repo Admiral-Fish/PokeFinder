@@ -74,7 +74,7 @@ std::vector<bool> Profile5::getKeypresses() const
 QString Profile5::getKeypressesString() const
 {
     QStringList strings;
-    for (u8 i = 0; i < keypresses.size(); i++)
+    for (size_t i = 0; i < keypresses.size(); i++)
     {
         if (i == 0 && keypresses.at(i))
         {

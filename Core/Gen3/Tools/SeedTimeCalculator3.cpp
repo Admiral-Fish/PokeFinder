@@ -59,7 +59,7 @@ namespace SeedTimeCalculator3
                             QDateTime finalTime = start.addDays(day).addSecs((hour * 60 * 60) + (minute * 60));
 
                             SeedTimeState3 result(finalTime, advance);
-                            states.push_back(result);
+                            states.emplace_back(result);
                         }
                     }
                 }

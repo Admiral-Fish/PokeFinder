@@ -137,7 +137,7 @@ std::vector<GameCubeState> GameCubeSearcher::searchXDColo(u8 hp, u8 atk, u8 def,
 
         if (filter.comparePID(state))
         {
-            states.push_back(state);
+            states.emplace_back(state);
         }
 
         // Setup XORed state
@@ -146,7 +146,7 @@ std::vector<GameCubeState> GameCubeSearcher::searchXDColo(u8 hp, u8 atk, u8 def,
         if (filter.comparePID(state))
         {
             state.setSeed(state.getSeed() ^ 0x80000000);
-            states.push_back(state);
+            states.emplace_back(state);
         }
     }
     return states;
@@ -195,7 +195,7 @@ std::vector<GameCubeState> GameCubeSearcher::searchXDShadow(u8 hp, u8 atk, u8 de
                 if (lock.singleNL(state.getSeed(), tsv))
                 {
                     state.setInfo(0);
-                    states.push_back(state); // If this seed passes it is impossible for the sister spread to generate
+                    states.emplace_back(state); // If this seed passes it is impossible for the sister spread to generate
                     continue;
                 }
                 break;
@@ -203,7 +203,7 @@ std::vector<GameCubeState> GameCubeSearcher::searchXDShadow(u8 hp, u8 atk, u8 de
                 if (lock.firstShadowNormal(state.getSeed(), tsv))
                 {
                     state.setInfo(0);
-                    states.push_back(state); // If this seed passes it is impossible for the sister spread to generate
+                    states.emplace_back(state); // If this seed passes it is impossible for the sister spread to generate
                     continue;
                 }
                 break;
@@ -211,13 +211,13 @@ std::vector<GameCubeState> GameCubeSearcher::searchXDShadow(u8 hp, u8 atk, u8 de
                 if (lock.firstShadowUnset(state.getSeed(), tsv))
                 {
                     state.setInfo(1); // Also unlikely for the other methods of encounter to pass
-                    states.push_back(state); // If this seed passes it is impossible for the sister spread to generate
+                    states.emplace_back(state); // If this seed passes it is impossible for the sister spread to generate
                     continue;
                 }
                 if (lock.firstShadowSet(state.getSeed(), tsv))
                 {
                     state.setInfo(2); // Also unlikely for the other methods of encounter to pass
-                    states.push_back(state); // If this seed passes it is impossible for the sister spread to generate
+                    states.emplace_back(state); // If this seed passes it is impossible for the sister spread to generate
                     continue;
                 }
                 break;
@@ -225,13 +225,13 @@ std::vector<GameCubeState> GameCubeSearcher::searchXDShadow(u8 hp, u8 atk, u8 de
                 if (lock.salamenceUnset(state.getSeed(), tsv))
                 {
                     state.setInfo(1); // Also unlikely for the other methods of encounter to pass
-                    states.push_back(state); // If this seed passes it is impossible for the sister spread to generate
+                    states.emplace_back(state); // If this seed passes it is impossible for the sister spread to generate
                     continue;
                 }
                 if (lock.salamenceSet(state.getSeed(), tsv))
                 {
                     state.setInfo(2); // Also unlikely for the other methods of encounter to pass
-                    states.push_back(state); // If this seed passes it is impossible for the sister spread to generate
+                    states.emplace_back(state); // If this seed passes it is impossible for the sister spread to generate
                     continue;
                 }
                 break;
@@ -253,38 +253,38 @@ std::vector<GameCubeState> GameCubeSearcher::searchXDShadow(u8 hp, u8 atk, u8 de
                 if (lock.singleNL(state.getSeed(), tsv))
                 {
                     state.setInfo(0);
-                    states.push_back(state);
+                    states.emplace_back(state);
                 }
                 break;
             case ShadowType::FirstShadow:
                 if (lock.firstShadowNormal(state.getSeed(), tsv))
                 {
                     state.setInfo(0);
-                    states.push_back(state);
+                    states.emplace_back(state);
                 }
                 break;
             case ShadowType::SecondShadow:
                 if (lock.firstShadowUnset(state.getSeed(), tsv))
                 {
                     state.setInfo(1);
-                    states.push_back(state);
+                    states.emplace_back(state);
                 }
                 else if (lock.firstShadowSet(state.getSeed(), tsv))
                 {
                     state.setInfo(2);
-                    states.push_back(state);
+                    states.emplace_back(state);
                 }
                 break;
             case ShadowType::Salamence:
                 if (lock.salamenceUnset(state.getSeed(), tsv))
                 {
                     state.setInfo(1);
-                    states.push_back(state);
+                    states.emplace_back(state);
                 }
                 else if (lock.salamenceSet(state.getSeed(), tsv))
                 {
                     state.setInfo(2);
-                    states.push_back(state);
+                    states.emplace_back(state);
                 }
                 break;
             default:
@@ -332,7 +332,7 @@ std::vector<GameCubeState> GameCubeSearcher::searchColoShadow(u8 hp, u8 atk, u8 
                 if (lock.coloShadow(state.getSeed()))
                 {
                     state.setInfo(0);
-                    states.push_back(state); // If this seed passes it is impossible for the sister spread to generate
+                    states.emplace_back(state); // If this seed passes it is impossible for the sister spread to generate
                     continue;
                 }
                 break;
@@ -340,7 +340,7 @@ std::vector<GameCubeState> GameCubeSearcher::searchColoShadow(u8 hp, u8 atk, u8 
                 if (lock.ereader(state.getSeed(), state.getPID()))
                 {
                     state.setInfo(0);
-                    states.push_back(state); // If this seed passes it is impossible for the sister spread to generate
+                    states.emplace_back(state); // If this seed passes it is impossible for the sister spread to generate
                     continue;
                 }
                 break;
@@ -362,14 +362,14 @@ std::vector<GameCubeState> GameCubeSearcher::searchColoShadow(u8 hp, u8 atk, u8 
                 if (lock.coloShadow(state.getSeed()))
                 {
                     state.setInfo(0);
-                    states.push_back(state);
+                    states.emplace_back(state);
                 }
                 break;
             case ShadowType::EReader:
                 if (lock.ereader(state.getSeed(), state.getPID()))
                 {
                     state.setInfo(0);
-                    states.push_back(state); // If this seed passes it is impossible for the sister spread to generate
+                    states.emplace_back(state); // If this seed passes it is impossible for the sister spread to generate
                     continue;
                 }
                 break;
@@ -436,7 +436,7 @@ void GameCubeSearcher::searchChannel(u8 minSpD, u8 maxSpD)
                 state.setSeed(originSeed);
 
                 std::lock_guard<std::mutex> lock(mutex);
-                results.push_back(state);
+                results.emplace_back(state);
             }
         }
     }

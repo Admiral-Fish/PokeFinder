@@ -103,7 +103,7 @@ void IDs4::shinyPIDSearch()
     std::vector<u16> tidList;
     if (ui->checkBoxShinyPIDSearchTID->isChecked())
     {
-        tidList.push_back(ui->textBoxShinyPIDTID->getUShort());
+        tidList.emplace_back(ui->textBoxShinyPIDTID->getUShort());
     }
 
     u32 pid = ui->textBoxShinyPIDPID->getUInt();
@@ -153,7 +153,7 @@ void IDs4::tidSIDSearch()
     std::vector<u16> sidList;
     if (ui->checkBoxTIDSIDSearchSID->isChecked())
     {
-        sidList.push_back(ui->textBoxTIDSIDSID->getUShort());
+        sidList.emplace_back(ui->textBoxTIDSIDSID->getUShort());
     }
 
     IDFilter filter(tidList, sidList, std::vector<u16>());

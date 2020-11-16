@@ -49,7 +49,7 @@ std::vector<IDState4> IDGenerator4::generate(const IDFilter &filter) const
             {
                 state.setDelay(efgh + 2000 - year);
                 state.setSeconds(second);
-                states.push_back(state);
+                states.emplace_back(state);
             }
         }
     }

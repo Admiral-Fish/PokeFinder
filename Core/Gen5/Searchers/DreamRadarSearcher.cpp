@@ -46,12 +46,12 @@ void DreamRadarSearcher::startSearch(const DreamRadarGenerator &generator, int t
     {
         if (i == threads - 1)
         {
-            threadContainer.push_back(QtConcurrent::run(&pool, [=] { search(generator, start, end); }));
+            threadContainer.emplace_back(QtConcurrent::run(&pool, [=] { search(generator, start, end); }));
         }
         else
         {
             QDate mid = start.addDays(daysSplit - 1);
-            threadContainer.push_back(QtConcurrent::run(&pool, [=] { search(generator, start, mid); }));
+            threadContainer.emplace_back(QtConcurrent::run(&pool, [=] { search(generator, start, mid); }));
         }
         start = start.addDays(daysSplit);
     }
@@ -124,7 +124,7 @@ void DreamRadarSearcher::search(DreamRadarGenerator generator, const QDate &star
                                 for (const auto &state : states)
                                 {
                                     SearcherState5<State> display(dt, seed, buttons.at(i), timer0, state);
-                                    displayStates.push_back(display);
+                                    displayStates.emplace_back(display);
                                 }
 
                                 std::lock_guard<std::mutex> lock(resultMutex);

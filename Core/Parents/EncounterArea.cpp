@@ -50,7 +50,7 @@ std::vector<u16> EncounterArea::getUniqueSpecies() const
     {
         if (std::find(nums.begin(), nums.end(), mon.getSpecie()) == nums.end())
         {
-            nums.push_back(mon.getSpecie());
+            nums.emplace_back(mon.getSpecie());
         }
     }
 

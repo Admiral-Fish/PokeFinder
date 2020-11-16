@@ -75,7 +75,7 @@ std::vector<u32> RNGCache::recoverLower16BitsIV(u8 hp, u8 atk, u8 def, u8 spa, u
             // Verify IV calls line up
             if (((test * mult + add) & 0x7fff0000) == second)
             {
-                origin.push_back(test);
+                origin.emplace_back(test);
             }
         }
 
@@ -85,7 +85,7 @@ std::vector<u32> RNGCache::recoverLower16BitsIV(u8 hp, u8 atk, u8 def, u8 spa, u
             // Verify IV calls line up
             if (((test * mult + add) & 0x7fff0000) == second)
             {
-                origin.push_back(test);
+                origin.emplace_back(test);
             }
         }
     }
@@ -110,7 +110,7 @@ std::vector<u32> RNGCache::recoverLower16BitsPID(u32 pid) const
             // Verify PID calls line up
             if (((test * mult + add) & 0xffff0000) == second)
             {
-                origin.push_back(test);
+                origin.emplace_back(test);
             }
         }
     }

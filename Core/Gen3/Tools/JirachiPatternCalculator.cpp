@@ -71,11 +71,11 @@ namespace JirachiPatternCalculator
 
         XDRNGR rng(seed);
         std::vector<u16> data;
-        data.push_back(seed >> 16);
+        data.emplace_back(seed >> 16);
 
         for (u8 i = 0; i < 30; i++)
         {
-            data.push_back(rng.nextUShort());
+            data.emplace_back(rng.nextUShort());
         }
 
         // Loop through 3 possible pattern cases

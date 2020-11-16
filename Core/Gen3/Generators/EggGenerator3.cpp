@@ -218,7 +218,7 @@ std::vector<EggState3> EggGenerator3::generateEmeraldPID() const
                 if (filter.comparePID(state))
                 {
                     state.setRedraw(redraw);
-                    states.push_back(state);
+                    states.emplace_back(state);
                 }
             }
         }
@@ -265,7 +265,7 @@ std::vector<EggState3> EggGenerator3::generateEmeraldIVs() const
 
         if (filter.compareIVs(state))
         {
-            states.push_back(state);
+            states.emplace_back(state);
         }
     }
 
@@ -287,7 +287,7 @@ std::vector<std::pair<u32, u16>> EggGenerator3::generateLower(u32 seed) const
             u16 pid = (go.nextUShort() % 0xFFFE) + 1;
 
             // TODO: decide on filtering for ability/gender
-            states.push_back(std::make_pair(cnt + initialAdvances, pid));
+            states.emplace_back(std::make_pair(cnt + initialAdvances, pid));
         }
     }
 
@@ -332,7 +332,7 @@ std::vector<EggState3> EggGenerator3::generateUpper(u32 seed, const std::vector<
         if (filter.compareIVs(state))
         {
             state.setPickupAdvance(cnt + initialAdvancesPickup);
-            upper.push_back(state);
+            upper.emplace_back(state);
         }
     }
 
@@ -350,7 +350,7 @@ std::vector<EggState3> EggGenerator3::generateUpper(u32 seed, const std::vector<
             if (filter.comparePID(up))
             {
                 up.setAdvances(low.first);
-                states.push_back(up);
+                states.emplace_back(up);
             }
         }
     }

@@ -55,13 +55,13 @@ std::vector<IDState5> IDGenerator5::generate(u64 seed, u32 pid, bool checkPID)
                 if ((actualPSV >> 3) == state.getTSV())
                 {
                     state.setSeed(seed);
-                    states.push_back(state);
+                    states.emplace_back(state);
                 }
             }
             else
             {
                 state.setSeed(seed);
-                states.push_back(state);
+                states.emplace_back(state);
             }
         }
     }

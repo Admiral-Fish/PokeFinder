@@ -41,7 +41,7 @@ namespace Keypresses
 
         if (keypresses.at(0))
         {
-            buttons.push_back(Buttons::None);
+            buttons.emplace_back(Buttons::None);
         }
 
         for (u8 i = 0; i < 8; i++)
@@ -51,10 +51,10 @@ namespace Keypresses
                 Buttons combo = keys[i];
                 if (valid(combo, skipLR))
                 {
-                    buttons.push_back(keys[i]);
+                    buttons.emplace_back(keys[i]);
                 }
 
-                buttons.push_back(directions[i]);
+                buttons.emplace_back(directions[i]);
             }
 
             if (keypresses.at(2))
@@ -64,7 +64,7 @@ namespace Keypresses
                     Buttons combo = static_cast<Buttons>(keys[i] | directions[j]);
                     if (valid(combo, skipLR))
                     {
-                        buttons.push_back(combo);
+                        buttons.emplace_back(combo);
                     }
                 }
             }
@@ -76,7 +76,7 @@ namespace Keypresses
                     Buttons combo = static_cast<Buttons>(keys[i] | keys[j]);
                     if (valid(combo, skipLR))
                     {
-                        buttons.push_back(combo);
+                        buttons.emplace_back(combo);
                     }
                 }
 
@@ -87,7 +87,7 @@ namespace Keypresses
                         Buttons combo = static_cast<Buttons>(keys[i] | keys[j] | directions[k]);
                         if (valid(combo, skipLR))
                         {
-                            buttons.push_back(combo);
+                            buttons.emplace_back(combo);
                         }
                     }
 
@@ -96,7 +96,7 @@ namespace Keypresses
                         Buttons combo = static_cast<Buttons>(keys[i] | keys[j] | keys[k]);
                         if (valid(combo, skipLR))
                         {
-                            buttons.push_back(combo);
+                            buttons.emplace_back(combo);
                         }
                     }
                 }
@@ -121,7 +121,7 @@ namespace Keypresses
                 }
             }
 
-            values.push_back(value);
+            values.emplace_back(value);
         }
 
         return values;

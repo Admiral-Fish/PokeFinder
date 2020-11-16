@@ -146,7 +146,7 @@ std::vector<StationaryState> StationarySearcher4::searchMethod1(u8 hp, u8 atk, u
         state.setShiny(tsv, high ^ low, 8);
         if (filter.comparePID(state))
         {
-            states.push_back(state);
+            states.emplace_back(state);
         }
 
         // Setup XORed state
@@ -155,7 +155,7 @@ std::vector<StationaryState> StationarySearcher4::searchMethod1(u8 hp, u8 atk, u
         if (filter.comparePID(state))
         {
             state.setSeed(state.getSeed() ^ 0x80000000);
-            states.push_back(state);
+            states.emplace_back(state);
         }
     }
 
@@ -337,11 +337,11 @@ std::vector<StationaryState> StationarySearcher4::searchWondercardIVs(u8 hp, u8 
         // Setup normal state
         PokeRNGR rng(seed);
         state.setSeed(rng.next());
-        states.push_back(state);
+        states.emplace_back(state);
 
         // Setup XORed state
         state.setSeed(state.getSeed() ^ 0x80000000);
-        states.push_back(state);
+        states.emplace_back(state);
     }
 
     return states;
@@ -362,7 +362,7 @@ std::vector<StationaryState> StationarySearcher4::normalMethodJ(StationaryState 
         if ((nextRNG / 0xa3e) == state.getNature())
         {
             state.setSeed(rng.getSeed());
-            states.push_back(state);
+            states.emplace_back(state);
         }
 
         pid = static_cast<u32>((nextRNG << 16) | nextRNG2);
@@ -388,13 +388,13 @@ std::vector<StationaryState> StationarySearcher4::synchMethodJ(StationaryState s
         if ((nextRNG >> 15) == 0)
         {
             state.setSeed(rng.getSeed());
-            states.push_back(state);
+            states.emplace_back(state);
         }
         else if ((nextRNG2 >> 15) == 1 && (nextRNG / 0xa3e) == state.getNature())
         {
             PokeRNGR go(rng.getSeed());
             state.setSeed(go.next());
-            states.push_back(state);
+            states.emplace_back(state);
         }
 
         pid = static_cast<u32>((nextRNG << 16) | nextRNG2);
@@ -450,7 +450,7 @@ std::vector<StationaryState> StationarySearcher4::cuteCharmMethodJ(StationarySta
 
             if (filter.comparePID(state))
             {
-                states.push_back(state);
+                states.emplace_back(state);
             }
         }
     }
@@ -473,7 +473,7 @@ std::vector<StationaryState> StationarySearcher4::normalMethodK(StationaryState 
         if ((nextRNG % 25) == state.getNature())
         {
             state.setSeed(rng.getSeed());
-            states.push_back(state);
+            states.emplace_back(state);
         }
 
         pid = static_cast<u32>((nextRNG << 16) | nextRNG2);
@@ -499,13 +499,13 @@ std::vector<StationaryState> StationarySearcher4::synchMethodK(StationaryState s
         if ((nextRNG & 1) == 0)
         {
             state.setSeed(rng.getSeed());
-            states.push_back(state);
+            states.emplace_back(state);
         }
         else if ((nextRNG2 & 1) == 1 && (nextRNG % 25) == state.getNature())
         {
             PokeRNGR go(rng.getSeed());
             state.setSeed(go.next());
-            states.push_back(state);
+            states.emplace_back(state);
         }
 
         pid = static_cast<u32>((nextRNG << 16) | nextRNG2);
@@ -561,7 +561,7 @@ std::vector<StationaryState> StationarySearcher4::cuteCharmMethodK(StationarySta
 
             if (filter.comparePID(state))
             {
-                states.push_back(state);
+                states.emplace_back(state);
             }
         }
     }
@@ -590,7 +590,7 @@ std::vector<StationaryState> StationarySearcher4::searchInitialSeeds(const std::
             {
                 result.setSeed(test);
                 result.setAdvances(cnt);
-                states.push_back(result);
+                states.emplace_back(result);
             }
 
             test = rng.next();

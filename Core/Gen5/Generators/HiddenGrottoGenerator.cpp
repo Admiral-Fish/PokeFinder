@@ -56,7 +56,7 @@ std::vector<HiddenGrottoState> HiddenGrottoGenerator::generate(u64 seed)
             HiddenGrottoState state(initialAdvances + cnt, group, slot, gender);
             if (filter.compareState(state))
             {
-                states.push_back(state);
+                states.emplace_back(state);
             }
         }
     }

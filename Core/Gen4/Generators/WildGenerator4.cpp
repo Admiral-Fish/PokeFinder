@@ -226,7 +226,7 @@ std::vector<WildState4> WildGenerator4::generateMethodJ(u32 seed) const
         {
             state.setOccidentary(occidentary);
             state.setSeed(first);
-            states.push_back(state);
+            states.emplace_back(state);
         }
     }
 
@@ -438,7 +438,7 @@ std::vector<WildState4> WildGenerator4::generateMethodK(u32 seed) const
         {
             state.setOccidentary(occidentary);
             state.setSeed(first);
-            states.push_back(state);
+            states.emplace_back(state);
         }
     }
 
@@ -483,7 +483,7 @@ std::vector<WildState4> WildGenerator4::generateChainedShiny(u32 seed) const
         if (filter.compareState(state))
         {
             state.setSeed(first);
-            states.push_back(state);
+            states.emplace_back(state);
         }
     }
 

@@ -65,7 +65,7 @@ std::vector<std::pair<u32, u32>> RNGEuclidean::recoverLower16BitsIV(u8 hp, u8 at
         {
             u32 fullFirst = first | static_cast<u32>(t / sub1);
             u32 fullSecond = XDRNG(fullFirst).next();
-            origin.push_back(std::make_pair(fullFirst, fullSecond));
+            origin.emplace_back(std::make_pair(fullFirst, fullSecond));
         }
     }
     return origin;
@@ -88,7 +88,7 @@ std::vector<std::pair<u32, u32>> RNGEuclidean::recoverLower16BitsPID(u32 pid) co
         {
             u32 fullFirst = first | static_cast<u32>(t / sub1);
             u32 fullSecond = XDRNG(fullFirst).next();
-            origin.push_back(std::make_pair(fullFirst, fullSecond));
+            origin.emplace_back(std::make_pair(fullFirst, fullSecond));
         }
     }
     return origin;
@@ -121,7 +121,7 @@ std::vector<u32> RNGEuclidean::recoverLower27BitsChannel(u32 hp, u32 atk, u32 de
                     {
                         if ((rng.next() >> 27) == spa)
                         {
-                            origin.push_back(fullFirst);
+                            origin.emplace_back(fullFirst);
                         }
                     }
                 }

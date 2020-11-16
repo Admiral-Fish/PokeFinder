@@ -54,7 +54,7 @@ void IDSearcher4::startSearch(bool infinite, u16 year, u32 minDelay, u32 maxDela
                     state.setDelay(efgh + 2000 - year);
 
                     std::lock_guard<std::mutex> guard(mutex);
-                    results.push_back(state);
+                    results.emplace_back(state);
                 }
 
                 progress++;

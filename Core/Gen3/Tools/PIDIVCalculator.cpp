@@ -64,9 +64,9 @@ namespace PIDIVCalculator
                 setIVs(state2, iv2, iv3);
                 setIVs(state3, iv1, iv3);
 
-                states.push_back(state1);
-                states.push_back(state2);
-                states.push_back(state3);
+                states.emplace_back(state1);
+                states.emplace_back(state2);
+                states.emplace_back(state3);
             }
 
             return states;
@@ -92,7 +92,7 @@ namespace PIDIVCalculator
 
                 setIVs(state, iv1, iv2);
 
-                states.push_back(state);
+                states.emplace_back(state);
             }
 
             return states;
@@ -137,7 +137,7 @@ namespace PIDIVCalculator
                         state.setIV(i, forward.next() >> 27);
                     }
 
-                    states.push_back(state);
+                    states.emplace_back(state);
                 }
             }
 
@@ -171,7 +171,7 @@ namespace PIDIVCalculator
                         state.setIV(i, forward.next() >> 27);
                     }
 
-                    states.push_back(state);
+                    states.emplace_back(state);
                 }
             }
 

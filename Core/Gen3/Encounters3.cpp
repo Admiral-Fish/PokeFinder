@@ -88,11 +88,11 @@ namespace Encounters3
                 {
                     u8 level = static_cast<u8>(data.at(4 + i * 3));
                     u16 specie = getValue(data, 5 + i * 3, 2);
-                    grass.push_back(Slot(specie, level, info.at(specie)));
+                    grass.emplace_back(Slot(specie, level, info.at(specie)));
                 }
 
                 u8 val = static_cast<u8>(data.at(1));
-                encounters.push_back(EncounterArea3(location, val == 1 ? Encounter::Grass : Encounter::SafariZone, grass));
+                encounters.emplace_back(EncounterArea3(location, val == 1 ? Encounter::Grass : Encounter::SafariZone, grass));
             }
             if (data.at(2) == 1)
             {
@@ -102,9 +102,9 @@ namespace Encounters3
                     u8 minLevel = static_cast<u8>(data.at(40 + i * 4));
                     u8 maxLevel = static_cast<u8>(data.at(41 + i * 4));
                     u16 specie = getValue(data, 42 + i * 4, 2);
-                    rock.push_back(Slot(specie, minLevel, maxLevel, info.at(specie)));
+                    rock.emplace_back(Slot(specie, minLevel, maxLevel, info.at(specie)));
                 }
-                encounters.push_back(EncounterArea3(location, Encounter::RockSmash, rock));
+                encounters.emplace_back(EncounterArea3(location, Encounter::RockSmash, rock));
             }
             if (data.at(3) == 1)
             {
@@ -114,9 +114,9 @@ namespace Encounters3
                     u8 minLevel = static_cast<u8>(data.at(60 + i * 4));
                     u8 maxLevel = static_cast<u8>(data.at(61 + i * 4));
                     u16 specie = getValue(data, 62 + i * 4, 2);
-                    surf.push_back(Slot(specie, minLevel, maxLevel, info.at(specie)));
+                    surf.emplace_back(Slot(specie, minLevel, maxLevel, info.at(specie)));
                 }
-                encounters.push_back(EncounterArea3(location, Encounter::Surfing, surf));
+                encounters.emplace_back(EncounterArea3(location, Encounter::Surfing, surf));
 
                 std::vector<Slot> old;
                 for (u8 i = 0; i < 2; i++)
@@ -124,9 +124,9 @@ namespace Encounters3
                     u8 minLevel = static_cast<u8>(data.at(80 + i * 4));
                     u8 maxLevel = static_cast<u8>(data.at(81 + i * 4));
                     u16 specie = getValue(data, 82 + i * 4, 2);
-                    old.push_back(Slot(specie, minLevel, maxLevel, info.at(specie)));
+                    old.emplace_back(Slot(specie, minLevel, maxLevel, info.at(specie)));
                 }
-                encounters.push_back(EncounterArea3(location, Encounter::OldRod, old));
+                encounters.emplace_back(EncounterArea3(location, Encounter::OldRod, old));
 
                 std::vector<Slot> good;
                 for (u8 i = 0; i < 3; i++)
@@ -134,9 +134,9 @@ namespace Encounters3
                     u8 minLevel = static_cast<u8>(data.at(88 + i * 4));
                     u8 maxLevel = static_cast<u8>(data.at(89 + i * 4));
                     u16 specie = getValue(data, 90 + i * 4, 2);
-                    good.push_back(Slot(specie, minLevel, maxLevel, info.at(specie)));
+                    good.emplace_back(Slot(specie, minLevel, maxLevel, info.at(specie)));
                 }
-                encounters.push_back(EncounterArea3(location, Encounter::GoodRod, good));
+                encounters.emplace_back(EncounterArea3(location, Encounter::GoodRod, good));
 
                 std::vector<Slot> super;
                 for (u8 i = 0; i < 5; i++)
@@ -144,9 +144,9 @@ namespace Encounters3
                     u8 minLevel = static_cast<u8>(data.at(100 + i * 4));
                     u8 maxLevel = static_cast<u8>(data.at(101 + i * 4));
                     u16 specie = getValue(data, 102 + i * 4, 2);
-                    super.push_back(Slot(specie, minLevel, maxLevel, info.at(specie)));
+                    super.emplace_back(Slot(specie, minLevel, maxLevel, info.at(specie)));
                 }
-                encounters.push_back(EncounterArea3(location, Encounter::SuperRod, super));
+                encounters.emplace_back(EncounterArea3(location, Encounter::SuperRod, super));
             }
             return encounters;
         }

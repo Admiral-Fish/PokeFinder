@@ -78,7 +78,7 @@ std::vector<State> StationaryGenerator3::generateMethod124(u32 seed) const
 
         if (filter.compareState(state))
         {
-            states.push_back(state);
+            states.emplace_back(state);
         }
     }
 
@@ -115,7 +115,7 @@ std::vector<State> StationaryGenerator3::generateMethod1Reverse(u32 seed) const
 
         if (filter.compareState(state))
         {
-            states.push_back(state);
+            states.emplace_back(state);
         }
     }
 

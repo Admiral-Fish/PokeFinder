@@ -54,12 +54,12 @@ void StationarySearcher5::startSearch(int threads, QDate start, const QDate &end
     {
         if (i == threads - 1)
         {
-            threadContainer.push_back(QtConcurrent::run(&pool, [=] { search(start, end); }));
+            threadContainer.emplace_back(QtConcurrent::run(&pool, [=] { search(start, end); }));
         }
         else
         {
             QDate mid = start.addDays(daysSplit - 1);
-            threadContainer.push_back(QtConcurrent::run(&pool, [=] { search(start, mid); }));
+            threadContainer.emplace_back(QtConcurrent::run(&pool, [=] { search(start, mid); }));
         }
         start = start.addDays(daysSplit);
     }
@@ -127,7 +127,7 @@ void StationarySearcher5::search(const QDate &start, const QDate &end)
                             std::vector<StationaryState5> states;
                             if (fastSearch)
                             {
-                                for (u8 j = 0; j < ivMap.size(); j++)
+                                for (size_t j = 0; j < ivMap.size(); j++)
                                 {
                                     auto it = ivMap.at(j).find(seed >> 32);
                                     if (it != ivMap.at(j).end())
@@ -140,7 +140,7 @@ void StationarySearcher5::search(const QDate &start, const QDate &end)
                                         if (ivGenerator.getFilter().compareIVs(state))
                                         {
                                             state.setIVState(j + 1);
-                                            states.push_back(state);
+                                            states.emplace_back(state);
                                         }
                                     }
                                 }
@@ -172,13 +172,13 @@ void StationarySearcher5::search(const QDate &start, const QDate &end)
                                         ivState.setSeed(pidState.getSeed());
 
                                         std::lock_guard<std::mutex> lock(resultMutex);
-                                        results.push_back(ivState);
+                                        results.emplace_back(ivState);
                                     }
                                 }
                                 else
                                 {
                                     std::lock_guard<std::mutex> lock(resultMutex);
-                                    results.push_back(ivState);
+                                    results.emplace_back(ivState);
                                 }
                             }
 

@@ -69,11 +69,11 @@ void ProfileSearcher5::startSearch(int threads, u8 minVFrame, u8 maxVFrame)
     {
         if (i == threads - 1)
         {
-            threadContainer.push_back(QtConcurrent::run(&pool, [=] { search(minVFrame, maxVFrame + 1); }));
+            threadContainer.emplace_back(QtConcurrent::run(&pool, [=] { search(minVFrame, maxVFrame + 1); }));
         }
         else
         {
-            threadContainer.push_back(QtConcurrent::run(&pool, [=] { search(minVFrame, minVFrame + split); }));
+            threadContainer.emplace_back(QtConcurrent::run(&pool, [=] { search(minVFrame, minVFrame + split); }));
         }
         minVFrame += split;
     }
@@ -139,7 +139,7 @@ void ProfileSearcher5::search(u8 vframeStart, u8 vframeEnd)
                             items.append(new QStandardItem(QString::number(seed, 16)));
 
                             std::lock_guard<std::mutex> lock(resultMutex);
-                            results.push_back(items);
+                            results.emplace_back(items);
                         }
 
                         std::lock_guard<std::mutex> lock(progressMutex);

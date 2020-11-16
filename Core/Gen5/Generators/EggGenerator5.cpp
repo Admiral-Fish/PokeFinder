@@ -192,7 +192,7 @@ std::vector<EggState> EggGenerator5::generateBW(u64 seed) const
 
         if (filter.compareState(state))
         {
-            states.push_back(state);
+            states.emplace_back(state);
         }
     }
 
@@ -242,7 +242,7 @@ std::vector<EggState> EggGenerator5::generateBW2(u64 seed) const
             if (filter.compareShiny(state) && filter.compareGender(state))
             {
                 state.setAdvances(initialAdvances + cnt);
-                states.push_back(state);
+                states.emplace_back(state);
             }
         }
     }

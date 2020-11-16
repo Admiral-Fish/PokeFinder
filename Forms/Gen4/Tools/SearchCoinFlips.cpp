@@ -82,7 +82,7 @@ void SearchCoinFlips::flipsTextChanged(const QString &val)
             QString compare = Utilities::coinFlips(dt.getSeed()).replace(" ", "").replace(",", "");
 
             bool pass = compare.contains(result);
-            possible.push_back(pass);
+            possible.emplace_back(pass);
             if (pass)
             {
                 num++;

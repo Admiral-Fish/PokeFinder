@@ -89,7 +89,7 @@ std::vector<GameCubeState> PokeSpotGenerator::generate(u32 seed) const
 
                 if (filter.comparePID(state))
                 {
-                    states.push_back(state);
+                    states.emplace_back(state);
                 }
             }
         }

@@ -48,7 +48,7 @@ std::vector<IDState3> IDGenerator3::generateXDColo(u32 seed)
 
         if (filter.compare(state))
         {
-            states.push_back(state);
+            states.emplace_back(state);
         }
     }
 
@@ -70,7 +70,7 @@ std::vector<IDState3> IDGenerator3::generateFRLGE(u32 seed)
 
         if (filter.compare(state))
         {
-            states.push_back(state);
+            states.emplace_back(state);
         }
     }
 
@@ -95,7 +95,7 @@ std::vector<IDState3> IDGenerator3::generateRS(u32 seed)
 
         if (filter.compare(state))
         {
-            states.push_back(state);
+            states.emplace_back(state);
         }
     }
 

@@ -77,7 +77,7 @@ std::vector<State> StationaryGenerator4::generateMethod1(u32 seed) const
         if (filter.compareState(state))
         {
             state.setSeed(low);
-            states.push_back(state);
+            states.emplace_back(state);
         }
     }
 
@@ -215,7 +215,7 @@ std::vector<State> StationaryGenerator4::generateMethodJ(u32 seed) const
         if (filter.compareState(state))
         {
             state.setSeed(first);
-            states.push_back(state);
+            states.emplace_back(state);
         }
     }
 
@@ -354,7 +354,7 @@ std::vector<State> StationaryGenerator4::generateMethodK(u32 seed) const
         if (filter.compareState(state))
         {
             state.setSeed(first);
-            states.push_back(state);
+            states.emplace_back(state);
         }
     }
 
@@ -384,7 +384,7 @@ std::vector<State> StationaryGenerator4::generateWonderCardIVs(u32 seed) const
         if (filter.compareIVs(state))
         {
             state.setSeed(iv1);
-            states.push_back(state);
+            states.emplace_back(state);
         }
     }
 

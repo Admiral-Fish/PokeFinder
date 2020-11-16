@@ -136,25 +136,25 @@ PersonalInfo IVCalculator::getPersonalInfo(const PersonalInfo &base)
 
 void IVCalculator::addEntry()
 {
-    QSpinBox *level = new QSpinBox(ui->scrollAreaWidgetContents);
+    auto *level = new QSpinBox(ui->scrollAreaWidgetContents);
     level->setRange(1, 100);
 
-    QSpinBox *hp = new QSpinBox(ui->scrollAreaWidgetContents);
+    auto *hp = new QSpinBox(ui->scrollAreaWidgetContents);
     hp->setRange(1, 651);
 
-    QSpinBox *atk = new QSpinBox(ui->scrollAreaWidgetContents);
+    auto *atk = new QSpinBox(ui->scrollAreaWidgetContents);
     atk->setRange(1, 437);
 
-    QSpinBox *def = new QSpinBox(ui->scrollAreaWidgetContents);
+    auto *def = new QSpinBox(ui->scrollAreaWidgetContents);
     def->setRange(1, 545);
 
-    QSpinBox *spa = new QSpinBox(ui->scrollAreaWidgetContents);
+    auto *spa = new QSpinBox(ui->scrollAreaWidgetContents);
     spa->setRange(1, 420);
 
-    QSpinBox *spd = new QSpinBox(ui->scrollAreaWidgetContents);
+    auto *spd = new QSpinBox(ui->scrollAreaWidgetContents);
     spd->setRange(1, 545);
 
-    QSpinBox *spe = new QSpinBox(ui->scrollAreaWidgetContents);
+    auto *spe = new QSpinBox(ui->scrollAreaWidgetContents);
     spe->setRange(1, 435);
 
     rows++;
@@ -194,18 +194,18 @@ void IVCalculator::findIVs()
     for (int row = 1; row < rows; row++)
     {
         QLayoutItem *item = ui->gridLayoutEntry->itemAtPosition(row, 0);
-        QSpinBox *widget = reinterpret_cast<QSpinBox *>(item->widget());
+        auto *widget = reinterpret_cast<QSpinBox *>(item->widget());
 
-        levels.push_back(widget->value());
+        levels.emplace_back(widget->value());
 
         std::vector<u16> stat;
         for (int column = 1; column < 7; column++)
         {
             item = ui->gridLayoutEntry->itemAtPosition(row, column);
             widget = reinterpret_cast<QSpinBox *>(item->widget());
-            stat.push_back(widget->value());
+            stat.emplace_back(widget->value());
         }
-        stats.push_back(stat);
+        stats.emplace_back(stat);
     }
 
     u8 nature = static_cast<u8>(ui->comboBoxNature->currentIndex());
@@ -284,7 +284,7 @@ void IVCalculator::generationIndexChanged(int index)
         std::vector<u16> species;
         for (u16 i = 1; i <= max; i++)
         {
-            species.push_back(i);
+            species.emplace_back(i);
         }
 
         ui->comboBoxPokemon->clear();

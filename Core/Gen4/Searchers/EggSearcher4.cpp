@@ -89,7 +89,7 @@ void EggSearcher4::startSearch(u32 minDelay, u32 maxDelay)
                                 }
                                 statePID.setSecondaryAdvance(stateIV.getAdvances());
 
-                                states.push_back(statePID);
+                                states.emplace_back(statePID);
                             }
                         }
                     }

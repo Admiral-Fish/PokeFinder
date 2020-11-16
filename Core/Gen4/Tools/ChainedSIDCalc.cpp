@@ -26,7 +26,7 @@ ChainedSIDCalc::ChainedSIDCalc(u16 tid) : tid(tid)
 {
     for (u32 i = 0; i <= 0xFFFF; i += 8)
     {
-        sids.push_back(static_cast<u16>(i));
+        sids.emplace_back(static_cast<u16>(i));
     }
 }
 
@@ -57,7 +57,7 @@ void ChainedSIDCalc::addEntry(const std::vector<u8> &ivs, u8 nature, u8 ability,
 
         if ((ability == 0 || (abilityNum == 0 && ability == 1) || (abilityNum == 1 && ability == 2)) && matchGender(gender, genderNum))
         {
-            pids.push_back(std::make_pair(adjustLow, pid2));
+            pids.emplace_back(std::make_pair(adjustLow, pid2));
         }
     }
 
@@ -73,7 +73,7 @@ void ChainedSIDCalc::addEntry(const std::vector<u8> &ivs, u8 nature, u8 ability,
             u32 pid = (adjustHigh << 16) | pair.first;
             if ((pid % 25) == nature)
             {
-                newSids.push_back(sid);
+                newSids.emplace_back(sid);
             }
         }
     }

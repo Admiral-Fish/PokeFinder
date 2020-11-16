@@ -126,7 +126,7 @@ std::set<std::pair<u8, QString>> EncounterLookup::getEncounters4(Game game, u16 
         {
             for (const bool swarm : { false, true })
             {
-                profiles.push_back(Profile4("", game, 0, 0, Game::Blank, radio, false, swarm));
+                profiles.emplace_back(Profile4("", game, 0, 0, Game::Blank, radio, false, swarm));
             }
         }
     }
@@ -139,7 +139,7 @@ std::set<std::pair<u8, QString>> EncounterLookup::getEncounters4(Game game, u16 
             {
                 for (const bool radar : { false, true })
                 {
-                    profiles.push_back(Profile4("", game, 0, 0, dual, 0, radar, swarm));
+                    profiles.emplace_back(Profile4("", game, 0, 0, dual, 0, radar, swarm));
                 }
             }
         }
@@ -245,7 +245,7 @@ void EncounterLookup::gameIndexChanged(int index)
         std::vector<u16> nums;
         for (u16 i = 1; i <= max; i++)
         {
-            nums.push_back(i);
+            nums.emplace_back(i);
         }
 
         int oldIndex = ui->comboBoxPokemon->currentIndex();

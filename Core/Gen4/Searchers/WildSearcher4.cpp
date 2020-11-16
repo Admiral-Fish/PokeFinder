@@ -318,11 +318,11 @@ std::vector<WildState> WildSearcher4::searchChainedShiny(u8 hp, u8 atk, u8 def, 
         if (filter.comparePID(state))
         {
             state.setSeed(rng.next());
-            states.push_back(state);
+            states.emplace_back(state);
 
             // Sister spread shares PID
             state.setSeed(state.getSeed() ^ 0x80000000);
-            states.push_back(state);
+            states.emplace_back(state);
         }
     }
 
@@ -350,7 +350,7 @@ std::vector<WildState> WildSearcher4::searchInitialSeeds(const std::vector<WildS
             {
                 result.setSeed(test);
                 result.setAdvances(cnt);
-                states.push_back(result);
+                states.emplace_back(result);
             }
 
             test = rng.next();
@@ -376,7 +376,7 @@ std::vector<WildState> WildSearcher4::normalMethodJ(WildState state, u32 seed) c
         {
             if (encounterMethodJ(state, rng.getSeed()))
             {
-                states.push_back(state);
+                states.emplace_back(state);
             }
         }
 
@@ -404,14 +404,14 @@ std::vector<WildState> WildSearcher4::synchMethodJ(WildState state, u32 seed) co
         {
             if (encounterMethodJ(state, rng.getSeed()))
             {
-                states.push_back(state);
+                states.emplace_back(state);
             }
         }
         else if ((nextRNG2 >> 15) == 1 && (nextRNG / 0xa3e) == state.getNature())
         {
             if (encounterMethodJ(state, rng.getSeed() * 0xeeb9eb65 + 0xa3561a1))
             {
-                states.push_back(state);
+                states.emplace_back(state);
             }
         }
 
@@ -469,7 +469,7 @@ std::vector<WildState> WildSearcher4::cuteCharmMethodJ(WildState state, u32 seed
 
                 if (filter.comparePID(state))
                 {
-                    states.push_back(state);
+                    states.emplace_back(state);
                 }
             }
         }
@@ -534,7 +534,7 @@ std::vector<WildState> WildSearcher4::normalMethodK(WildState state, u32 seed) c
             state.setLead(Lead::None);
             if (encounterMethodK(state, rng.getSeed()))
             {
-                states.push_back(state);
+                states.emplace_back(state);
             }
         }
 
@@ -562,14 +562,14 @@ std::vector<WildState> WildSearcher4::synchMethodK(WildState state, u32 seed) co
         {
             if (encounterMethodK(state, rng.getSeed()))
             {
-                states.push_back(state);
+                states.emplace_back(state);
             }
         }
         else if ((nextRNG2 & 1) == 1 && (nextRNG % 25) == state.getNature())
         {
             if (encounterMethodK(state, rng.getSeed() * 0xeeb9eb65 + 0xa3561a1))
             {
-                states.push_back(state);
+                states.emplace_back(state);
             }
         }
 
@@ -627,7 +627,7 @@ std::vector<WildState> WildSearcher4::cuteCharmMethodK(WildState state, u32 seed
 
                 if (filter.comparePID(state))
                 {
-                    states.push_back(state);
+                    states.emplace_back(state);
                 }
             }
         }

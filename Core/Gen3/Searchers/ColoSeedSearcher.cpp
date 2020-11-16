@@ -52,11 +52,11 @@ void ColoSeedSearcher::startSearch(int threads)
     {
         if (i == threads - 1)
         {
-            threadContainer.push_back(QtConcurrent::run(&pool, [=] { search(start, 0x10000); }));
+            threadContainer.emplace_back(QtConcurrent::run(&pool, [=] { search(start, 0x10000); }));
         }
         else
         {
-            threadContainer.push_back(QtConcurrent::run(&pool, [=] { search(start, start + split); }));
+            threadContainer.emplace_back(QtConcurrent::run(&pool, [=] { search(start, start + split); }));
         }
         start += split;
     }
@@ -89,11 +89,11 @@ void ColoSeedSearcher::startSearch(int threads, const std::vector<u32> &seeds)
     {
         if (i == threads - 1)
         {
-            threadContainer.push_back(QtConcurrent::run(&pool, [=] { search(seeds.cbegin() + start, seeds.cend()); }));
+            threadContainer.emplace_back(QtConcurrent::run(&pool, [=] { search(seeds.cbegin() + start, seeds.cend()); }));
         }
         else
         {
-            threadContainer.push_back(QtConcurrent::run(&pool, [=] { search(seeds.cbegin() + start, seeds.cbegin() + split); }));
+            threadContainer.emplace_back(QtConcurrent::run(&pool, [=] { search(seeds.cbegin() + start, seeds.cbegin() + split); }));
         }
         start += split;
     }
@@ -128,7 +128,7 @@ void ColoSeedSearcher::search(u32 start, u32 end)
             if (searchSeed(rng))
             {
                 std::lock_guard<std::mutex> lock(resultMutex);
-                results.push_back(rng.getSeed());
+                results.emplace_back(rng.getSeed());
             }
 
             std::lock_guard<std::mutex> lock(progressMutex);
@@ -150,7 +150,7 @@ void ColoSeedSearcher::search(const std::vector<u32>::const_iterator &start, con
         if (searchSeed(rng))
         {
             std::lock_guard<std::mutex> lock(resultMutex);
-            results.push_back(rng.getSeed());
+            results.emplace_back(rng.getSeed());
         }
 
         std::lock_guard<std::mutex> lock(progressMutex);

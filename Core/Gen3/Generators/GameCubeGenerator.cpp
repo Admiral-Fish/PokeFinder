@@ -82,7 +82,7 @@ std::vector<GameCubeState> GameCubeGenerator::generateXDColo(u32 seed) const
 
         if (filter.compareState(state))
         {
-            states.push_back(state);
+            states.emplace_back(state);
         }
     }
 
@@ -171,7 +171,7 @@ std::vector<GameCubeState> GameCubeGenerator::generateXDShadow(u32 seed) const
 
         if (filter.compareState(state))
         {
-            states.push_back(state);
+            states.emplace_back(state);
         }
     }
 
@@ -260,7 +260,7 @@ std::vector<GameCubeState> GameCubeGenerator::generateColoShadow(u32 seed) const
 
         if (filter.compareState(state))
         {
-            states.push_back(state);
+            states.emplace_back(state);
         }
     }
 
@@ -314,7 +314,7 @@ std::vector<GameCubeState> GameCubeGenerator::generateChannel(u32 seed) const
 
         if (filter.compareState(state))
         {
-            states.push_back(state);
+            states.emplace_back(state);
         }
     }
 

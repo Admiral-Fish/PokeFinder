@@ -206,7 +206,7 @@ std::vector<WildState> WildGenerator3::generate(u32 seed) const
 
         if (filter.compareState(state))
         {
-            states.push_back(state);
+            states.emplace_back(state);
         }
     }
 

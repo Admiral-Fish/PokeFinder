@@ -54,12 +54,12 @@ void IDSearcher5::startSearch(const IDGenerator5 &generator, int threads, QDate 
     {
         if (i == threads - 1)
         {
-            threadContainer.push_back(QtConcurrent::run(&pool, [=] { search(generator, start, end); }));
+            threadContainer.emplace_back(QtConcurrent::run(&pool, [=] { search(generator, start, end); }));
         }
         else
         {
             QDate mid = start.addDays(daysSplit - 1);
-            threadContainer.push_back(QtConcurrent::run(&pool, [=] { search(generator, start, mid); }));
+            threadContainer.emplace_back(QtConcurrent::run(&pool, [=] { search(generator, start, mid); }));
         }
         start = start.addDays(daysSplit);
     }

@@ -39,11 +39,11 @@ void ChannelSeedSearcher::startSearch(int threads)
     {
         if (i == threads - 1)
         {
-            threadContainer.push_back(QtConcurrent::run(&pool, [=] { search(start, 0xffffffff); }));
+            threadContainer.emplace_back(QtConcurrent::run(&pool, [=] { search(start, 0xffffffff); }));
         }
         else
         {
-            threadContainer.push_back(QtConcurrent::run(&pool, [=] { search(start, start + split); }));
+            threadContainer.emplace_back(QtConcurrent::run(&pool, [=] { search(start, start + split); }));
         }
         start += split;
     }
@@ -75,7 +75,7 @@ void ChannelSeedSearcher::search(u32 start, u32 end)
         if (searchSeed(rng))
         {
             std::lock_guard<std::mutex> lock(resultMutex);
-            results.push_back(rng.getSeed());
+            results.emplace_back(rng.getSeed());
         }
 
         std::lock_guard<std::mutex> lock(progressMutex);

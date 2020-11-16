@@ -99,7 +99,7 @@ std::vector<QList<QStandardItem *>> IVtoPID::getSeeds(u16 ivs1, u16 ivs2, u8 nat
                        << new QStandardItem(QString::number(pid & 1)) << new QStandardItem(((pid & 0xFF) > 126) ? "M" : "F")
                        << new QStandardItem(((pid & 0xFF) > 30) ? "M" : "F") << new QStandardItem(((pid & 0xFF) > 63) ? "M" : "F")
                        << new QStandardItem(((pid & 0xFF) > 190) ? "M" : "F") << new QStandardItem(QString::number(sid));
-                results.push_back(result);
+                results.emplace_back(result);
             }
         }
 
@@ -128,7 +128,7 @@ std::vector<QList<QStandardItem *>> IVtoPID::getSeeds(u16 ivs1, u16 ivs2, u8 nat
                        << new QStandardItem(QString::number(pid & 1)) << new QStandardItem(((pid & 0xFF) > 126) ? "M" : "F")
                        << new QStandardItem(((pid & 0xFF) > 30) ? "M" : "F") << new QStandardItem(((pid & 0xFF) > 63) ? "M" : "F")
                        << new QStandardItem(((pid & 0xFF) > 190) ? "M" : "F") << new QStandardItem(QString::number(sid));
-                results.push_back(result);
+                results.emplace_back(result);
             }
 
             // Method 1 reverse pid
@@ -141,7 +141,7 @@ std::vector<QList<QStandardItem *>> IVtoPID::getSeeds(u16 ivs1, u16 ivs2, u8 nat
                        << new QStandardItem(QString::number(pid & 1)) << new QStandardItem(((pid & 0xFF) > 126) ? "M" : "F")
                        << new QStandardItem(((pid & 0xFF) > 30) ? "M" : "F") << new QStandardItem(((pid & 0xFF) > 63) ? "M" : "F")
                        << new QStandardItem(((pid & 0xFF) > 190) ? "M" : "F") << new QStandardItem(QString::number(sid));
-                results.push_back(result);
+                results.emplace_back(result);
             }
 
             // Method 2
@@ -155,7 +155,7 @@ std::vector<QList<QStandardItem *>> IVtoPID::getSeeds(u16 ivs1, u16 ivs2, u8 nat
                        << new QStandardItem(QString::number(pid & 1)) << new QStandardItem(((pid & 0xFF) > 126) ? "M" : "F")
                        << new QStandardItem(((pid & 0xFF) > 30) ? "M" : "F") << new QStandardItem(((pid & 0xFF) > 63) ? "M" : "F")
                        << new QStandardItem(((pid & 0xFF) > 190) ? "M" : "F") << new QStandardItem(QString::number(sid));
-                results.push_back(result);
+                results.emplace_back(result);
             }
 
             // Cute Charm DPPt
@@ -177,7 +177,7 @@ std::vector<QList<QStandardItem *>> IVtoPID::getSeeds(u16 ivs1, u16 ivs2, u8 nat
                                << new QStandardItem(((choppedPID & 0xFF) > 30) ? "M" : "F")
                                << new QStandardItem(((choppedPID & 0xFF) > 63) ? "M" : "F")
                                << new QStandardItem(((choppedPID & 0xFF) > 190) ? "M" : "F") << new QStandardItem(QString::number(sid));
-                        results.push_back(result);
+                        results.emplace_back(result);
                     }
                 }
             }
@@ -201,7 +201,7 @@ std::vector<QList<QStandardItem *>> IVtoPID::getSeeds(u16 ivs1, u16 ivs2, u8 nat
                                << new QStandardItem(((choppedPID & 0xFF) > 30) ? "M" : "F")
                                << new QStandardItem(((choppedPID & 0xFF) > 63) ? "M" : "F")
                                << new QStandardItem(((choppedPID & 0xFF) > 190) ? "M" : "F") << new QStandardItem(QString::number(sid));
-                        results.push_back(result);
+                        results.emplace_back(result);
                     }
                 }
             }
@@ -220,7 +220,7 @@ std::vector<QList<QStandardItem *>> IVtoPID::getSeeds(u16 ivs1, u16 ivs2, u8 nat
                        << new QStandardItem(QString::number(pid & 1)) << new QStandardItem(((pid & 0xFF) > 126) ? "M" : "F")
                        << new QStandardItem(((pid & 0xFF) > 30) ? "M" : "F") << new QStandardItem(((pid & 0xFF) > 63) ? "M" : "F")
                        << new QStandardItem(((pid & 0xFF) > 190) ? "M" : "F") << new QStandardItem(QString::number(sid));
-                results.push_back(result);
+                results.emplace_back(result);
             }
         }
     }
@@ -260,7 +260,7 @@ std::vector<QList<QStandardItem *>> IVtoPID::getSeedsChannel(u8 hp, u8 atk, u8 d
                    << new QStandardItem(((pid & 0xFF) > 126) ? "M" : "F") << new QStandardItem(((pid & 0xFF) > 30) ? "M" : "F")
                    << new QStandardItem(((pid & 0xFF) > 63) ? "M" : "F") << new QStandardItem(((pid & 0xFF) > 190) ? "M" : "F")
                    << new QStandardItem(QString::number(sid));
-            results.push_back(result);
+            results.emplace_back(result);
         }
     }
 

@@ -61,7 +61,7 @@ std::vector<bool> CheckList::getChecked() const
     {
         for (auto i = 0; i < model->rowCount(); i++)
         {
-            result.push_back(model->item(i)->checkState() == Qt::Checked);
+            result.emplace_back(model->item(i)->checkState() == Qt::Checked);
         }
     }
     else

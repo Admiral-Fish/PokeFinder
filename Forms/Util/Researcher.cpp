@@ -212,7 +212,7 @@ std::vector<u64> getStates(RNGType rng, u32 initial, u32 max)
     rng.advance(initial);
     for (u32 i = 0; i < max; i++)
     {
-        states.push_back(rng.next());
+        states.emplace_back(rng.next());
     }
 
     return states;
@@ -412,7 +412,7 @@ void Researcher::generate()
                 state.setCustom(j, calculators.at(j)(temp, customRValue.at(j)));
             }
         }
-        states.push_back(state);
+        states.emplace_back(state);
     }
 
     model->setHex(getHexCheck());

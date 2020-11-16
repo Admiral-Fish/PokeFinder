@@ -135,13 +135,13 @@ void IDs5::search()
     std::vector<u16> tid;
     if (ui->checkBoxTID->isChecked())
     {
-        tid.push_back(ui->textBoxTID->getUShort());
+        tid.emplace_back(ui->textBoxTID->getUShort());
     }
 
     std::vector<u16> sid;
     if (ui->checkBoxSID->isChecked())
     {
-        sid.push_back(ui->textBoxSID->getUShort());
+        sid.emplace_back(ui->textBoxSID->getUShort());
     }
 
     QDate start = ui->dateEditStart->date();

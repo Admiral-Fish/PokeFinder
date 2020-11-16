@@ -30,7 +30,7 @@ DreamRadarGenerator::DreamRadarGenerator(u32 initialAdvances, u32 maxAdvances, u
     ivAdvances(0),
     radarSlot(radarSlots.back())
 {
-    for (u8 i = 0; i < radarSlots.size(); i++)
+    for (size_t i = 0; i < radarSlots.size(); i++)
     {
         auto slot = radarSlots.at(i);
         if (slot.type == 0)
@@ -116,7 +116,7 @@ std::vector<State> DreamRadarGenerator::generate(u64 seed, bool memory)
 
         if (filter.compareState(state))
         {
-            states.push_back(state);
+            states.emplace_back(state);
         }
     }
 

@@ -235,35 +235,35 @@ void ProfileCalibrator5::search()
         {
             if (needle == "↑")
             {
-                needles.push_back(0);
+                needles.emplace_back(0);
             }
             else if (needle == "↗")
             {
-                needles.push_back(1);
+                needles.emplace_back(1);
             }
             else if (needle == "→")
             {
-                needles.push_back(2);
+                needles.emplace_back(2);
             }
             else if (needle == "↘")
             {
-                needles.push_back(3);
+                needles.emplace_back(3);
             }
             else if (needle == "↓")
             {
-                needles.push_back(4);
+                needles.emplace_back(4);
             }
             else if (needle == "↙")
             {
-                needles.push_back(5);
+                needles.emplace_back(5);
             }
             else if (needle == "←")
             {
-                needles.push_back(6);
+                needles.emplace_back(6);
             }
             else if (needle == "↖")
             {
-                needles.push_back(7);
+                needles.emplace_back(7);
             }
         }
 

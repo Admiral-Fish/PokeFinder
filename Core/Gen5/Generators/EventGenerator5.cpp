@@ -132,7 +132,7 @@ std::vector<State> EventGenerator5::generate(u64 seed) const
 
         if (filter.compareState(state))
         {
-            states.push_back(state);
+            states.emplace_back(state);
         }
     }
 

@@ -72,7 +72,7 @@ namespace
             {
                 if ((i % 5) == result)
                 {
-                    possible[stat].push_back(i);
+                    possible[stat].emplace_back(i);
                     characteristicHigh = i;
                 }
             }
@@ -86,7 +86,7 @@ namespace
                 {
                     break;
                 }
-                possible[i].push_back(iv);
+                possible[i].emplace_back(iv);
             }
         }
 

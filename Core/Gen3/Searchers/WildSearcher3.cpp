@@ -149,7 +149,7 @@ std::vector<WildState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 s
                         if (filter.compareEncounterSlot(state))
                         {
                             state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), testRNG.getSeed() >> 16));
-                            states.push_back(state);
+                            states.emplace_back(state);
                         }
                     }
                     break;
@@ -164,7 +164,7 @@ std::vector<WildState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 s
                         if (filter.compareEncounterSlot(state))
                         {
                             state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), testRNG.getSeed() >> 16));
-                            states.push_back(state);
+                            states.emplace_back(state);
                         }
                     }
                     // Failed synch
@@ -177,7 +177,7 @@ std::vector<WildState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 s
                         if (filter.compareEncounterSlot(state))
                         {
                             state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), testRNG.getSeed() >> 16));
-                            states.push_back(state);
+                            states.emplace_back(state);
                         }
                     }
                     break;
@@ -191,7 +191,7 @@ std::vector<WildState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 s
                         if (filter.compareEncounterSlot(state))
                         {
                             state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), testRNG.getSeed() >> 16));
-                            states.push_back(state);
+                            states.emplace_back(state);
                         }
                     }
                     break;
@@ -207,7 +207,7 @@ std::vector<WildState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 s
                         if (filter.compareEncounterSlot(state))
                         {
                             state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), testRNG.getSeed() >> 16));
-                            states.push_back(state);
+                            states.emplace_back(state);
                         }
 
                         slot = testRNG.getSeed() * 0xdc6c95d9 + 0x4d3cb126;
@@ -221,14 +221,14 @@ std::vector<WildState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 s
                             if ((nextRNG2 & 1) == 1 && (nextRNG % 25) == state.getNature())
                             {
                                 state.setLead(Lead::Synchronize);
-                                states.push_back(state);
+                                states.emplace_back(state);
                             }
 
                             // Cute Charm
                             if ((nextRNG2 % 3) > 0)
                             {
                                 state.setLead(Lead::CuteCharm);
-                                states.push_back(state);
+                                states.emplace_back(state);
                             }
                         }
                     }
@@ -242,7 +242,7 @@ std::vector<WildState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 s
                         if (filter.compareEncounterSlot(state))
                         {
                             state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), testRNG.getSeed() >> 16));
-                            states.push_back(state);
+                            states.emplace_back(state);
                         }
                     }
                     break;

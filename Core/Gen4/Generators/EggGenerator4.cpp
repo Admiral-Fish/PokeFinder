@@ -66,7 +66,7 @@ std::vector<EggState4> EggGenerator4::generateNormal(u32 seed) const
 
         if (filter.comparePID(state))
         {
-            states.push_back(state);
+            states.emplace_back(state);
         }
     }
 
@@ -105,7 +105,7 @@ std::vector<EggState4> EggGenerator4::generateMasuada(u32 seed) const
 
         if (filter.comparePID(state))
         {
-            states.push_back(state);
+            states.emplace_back(state);
         }
     }
 
@@ -144,7 +144,7 @@ std::vector<EggState4> EggGenerator4::generateDPPtIVs(u32 seed) const
         if (filter.compareIVs(state))
         {
             state.setSeed(iv1);
-            states.push_back(state);
+            states.emplace_back(state);
         }
     }
     return states;
@@ -182,7 +182,7 @@ std::vector<EggState4> EggGenerator4::generateHGSSIVs(u32 seed) const
         if (filter.compareIVs(state))
         {
             state.setSeed(iv1);
-            states.push_back(state);
+            states.emplace_back(state);
         }
     }
     return states;

@@ -88,7 +88,7 @@ std::vector<StationaryState> StationaryGenerator5::generateRoamerIVs(u64 seed) c
         if (filter.compareIVs(state))
         {
             // state.setIVFrame(initialAdvances + cnt);
-            states.push_back(state);
+            states.emplace_back(state);
         }
     }
 
@@ -121,7 +121,7 @@ std::vector<StationaryState> StationaryGenerator5::generateIVs(u64 seed) const
         if (filter.compareIVs(state))
         {
             // state.setIVFrame(initialAdvances + cnt);
-            states.push_back(state);
+            states.emplace_back(state);
         }
     }
 
@@ -156,7 +156,7 @@ std::vector<StationaryState> StationaryGenerator5::generateRoamerCGear(u64 seed)
         if (filter.compareIVs(state))
         {
             // state.setIVFrame(initialAdvances + cnt);
-            states.push_back(state);
+            states.emplace_back(state);
         }
     }
 
@@ -190,7 +190,7 @@ std::vector<StationaryState> StationaryGenerator5::generateCGear(u64 seed) const
         if (filter.compareIVs(state))
         {
             // state.setIVFrame(initialAdvances + cnt);
-            states.push_back(state);
+            states.emplace_back(state);
         }
     }
 
@@ -268,7 +268,7 @@ std::vector<StationaryState> StationaryGenerator5::generateStationary(u64 seed) 
 
         if (filter.comparePID(state))
         {
-            states.push_back(state);
+            states.emplace_back(state);
         }
     }
 
@@ -297,7 +297,7 @@ std::vector<StationaryState> StationaryGenerator5::generateRoamer(u64 seed)
 
         if (filter.comparePID(state))
         {
-            states.push_back(state);
+            states.emplace_back(state);
         }
     }
 
@@ -326,7 +326,7 @@ std::vector<StationaryState> StationaryGenerator5::generateGift(u64 seed)
 
         if (filter.comparePID(state))
         {
-            states.push_back(state);
+            states.emplace_back(state);
         }
     }
 
@@ -374,7 +374,7 @@ std::vector<StationaryState> StationaryGenerator5::generateLarvestaEgg(u64 seed)
 
         if (filter.comparePID(state))
         {
-            states.push_back(state);
+            states.emplace_back(state);
         }
     }
 

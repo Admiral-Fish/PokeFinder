@@ -111,7 +111,7 @@ void DreamRadar::setupModels()
     QStringList names = Translator::getSpecies(species);
     QStringList genders = { "♂", "♀", "-" };
 
-    for (u8 i = 0; i < species.size(); i++)
+    for (size_t i = 0; i < species.size(); i++)
     {
         if (i < 3)
         {
@@ -320,7 +320,7 @@ std::vector<DreamRadarSlot> DreamRadar::getGeneratorSettings()
             u8 genderRatio = info.at(specie).getGender();
             u8 gender = genderRatio == 255 ? 2 : genders.at(i)->currentIndex();
 
-            radarSlots.push_back(DreamRadarSlot(type, gender, genderRatio));
+            radarSlots.emplace_back(DreamRadarSlot(type, gender, genderRatio));
         }
     }
 
@@ -358,7 +358,7 @@ std::vector<DreamRadarSlot> DreamRadar::getSearcherSettings()
             u8 gender = genders.at(i)->currentData().toUInt();
             u8 genderRatio = info.at(specie).getGender();
 
-            radarSlots.push_back(DreamRadarSlot(type, gender, genderRatio));
+            radarSlots.emplace_back(DreamRadarSlot(type, gender, genderRatio));
         }
     }
 
