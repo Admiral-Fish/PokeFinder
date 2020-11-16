@@ -45,8 +45,6 @@ Wild3::Wild3(QWidget *parent) : QWidget(parent), ui(new Ui::Wild3)
 
     updateProfiles();
     setupModels();
-
-    qRegisterMetaType<QVector<WildState>>("QVector<WildState>");
 }
 
 Wild3::~Wild3()

@@ -41,8 +41,6 @@ Eggs4::Eggs4(QWidget *parent) : QWidget(parent), ui(new Ui::Eggs4)
 
     updateProfiles();
     setupModels();
-
-    qRegisterMetaType<QVector<EggState>>("QVector<EggState>");
 }
 
 Eggs4::~Eggs4()

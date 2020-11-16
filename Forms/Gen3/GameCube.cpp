@@ -46,8 +46,6 @@ GameCube::GameCube(QWidget *parent) : QWidget(parent), ui(new Ui::GameCube)
 
     updateProfiles();
     setupModels();
-
-    qRegisterMetaType<QVector<State>>("QVector<State>");
 }
 
 GameCube::~GameCube()

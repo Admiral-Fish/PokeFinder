@@ -39,8 +39,6 @@ Stationary3::Stationary3(QWidget *parent) : QWidget(parent), ui(new Ui::Stationa
 
     updateProfiles();
     setupModels();
-
-    qRegisterMetaType<QVector<State>>("QVector<State>");
 }
 
 Stationary3::~Stationary3()

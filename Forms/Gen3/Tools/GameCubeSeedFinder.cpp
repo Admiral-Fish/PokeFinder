@@ -73,8 +73,6 @@ GameCubeSeedFinder::GameCubeSeedFinder(QWidget *parent) : QWidget(parent), ui(ne
     {
         this->restoreGeometry(setting.value("gameCubeSeedFinder/geometry").toByteArray());
     }
-
-    qRegisterMetaType<QVector<u32>>("QVector<u32>");
 }
 
 GameCubeSeedFinder::~GameCubeSeedFinder()

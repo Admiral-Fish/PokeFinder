@@ -45,8 +45,6 @@ Wild4::Wild4(QWidget *parent) : QWidget(parent), ui(new Ui::Wild4)
 
     updateProfiles();
     setupModels();
-
-    qRegisterMetaType<QVector<WildState>>("QVector<WildState>");
 }
 
 Wild4::~Wild4()

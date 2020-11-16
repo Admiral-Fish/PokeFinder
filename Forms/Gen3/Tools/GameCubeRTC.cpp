@@ -32,8 +32,6 @@ GameCubeRTC::GameCubeRTC(QWidget *parent) : QWidget(parent), ui(new Ui::GameCube
     setAttribute(Qt::WA_DeleteOnClose);
 
     setupModels();
-
-    qRegisterMetaType<QVector<GameCubeRTCState>>("QVector<GameCubeRTCState>");
 }
 
 GameCubeRTC::GameCubeRTC(u32 seed, QWidget *parent) : QWidget(parent), ui(new Ui::GameCubeRTC)
@@ -44,8 +42,6 @@ GameCubeRTC::GameCubeRTC(u32 seed, QWidget *parent) : QWidget(parent), ui(new Ui
 
     setupModels();
     ui->textBoxTargetSeed->setText(QString::number(seed, 16));
-
-    qRegisterMetaType<QVector<GameCubeRTCState>>("QVector<GameCubeRTCState>");
 }
 
 GameCubeRTC::~GameCubeRTC()
