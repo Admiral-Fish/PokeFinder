@@ -89,7 +89,7 @@ void SpindaPainter::moveSpot(GraphicsPixmapItem *item, int index, u32 pid)
 
 void SpindaPainter::updateInfo(u32 pid)
 {
-    QString info = Translator::getNature(pid % 25) + ", ";
+    QString info = QString::fromStdString(Translator::getNature(pid % 25)) + ", ";
     info += QString((pid & 0xff) > 126 ? "♂" : "♀") + ", ";
     info += QString((pid & 1) == 0 ? tr("Ability 0") : tr("Ability 1"));
     ui->labelInfo->setText(info);

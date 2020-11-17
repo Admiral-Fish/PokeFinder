@@ -94,7 +94,7 @@ void Stationary5::setupModels()
     ui->comboBoxSearcherLead->setItemData(3, Lead::None);
 
     ui->comboBoxGeneratorLead->addItem(tr("None"));
-    ui->comboBoxGeneratorLead->addItems(Translator::getNatures());
+    // ui->comboBoxGeneratorLead->addItems(Translator::getNatures());
 
     QAction *outputTXTGenerator = generatorMenu->addAction(tr("Output Results to TXT"));
     QAction *outputCSVGenerator = generatorMenu->addAction(tr("Output Results to CSV"));
@@ -283,7 +283,7 @@ void Stationary5::generatorLead()
         ui->comboBoxGeneratorLead->setEnabled(true);
 
         ui->comboBoxGeneratorLead->addItem("None");
-        ui->comboBoxGeneratorLead->addItems(Translator::getNatures());
+        // ui->comboBoxGeneratorLead->addItems(Translator::getNatures());
     }
 }
 

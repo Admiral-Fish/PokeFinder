@@ -56,11 +56,11 @@ QVariant PokeSpotModel::data(const QModelIndex &index, int role) const
                 return tr("Rare");
             }
         case 4:
-            return Translator::getNature(state.getNature());
+            return QString::fromStdString(Translator::getNature(state.getNature()));
         case 5:
             return state.getAbility();
         case 6:
-            return Translator::getGender(state.getGender());
+            return QString::fromStdString(Translator::getGender(state.getGender()));
         }
     }
     return QVariant();

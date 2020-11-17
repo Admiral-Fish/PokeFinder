@@ -102,16 +102,22 @@ void Event5::setupModels()
     ui->textBoxSearcherEventTID->setValues(InputType::TIDSID);
     ui->textBoxSearcherEventSID->setValues(InputType::TIDSID);
 
-    ui->comboBoxGeneratorNature->addItems(Translator::getNatures());
-    ui->comboBoxSearcherNature->addItems(Translator::getNatures());
+    for (const std::string &nature : Translator::getNatures())
+    {
+        ui->comboBoxGeneratorNature->addItem(QString::fromStdString(nature));
+        ui->comboBoxSearcherNature->addItem(QString::fromStdString(nature));
+    }
 
     ui->filterGenerator->disableControls(Controls::EncounterSlots);
     ui->filterSearcher->disableControls(Controls::EncounterSlots | Controls::DisableFilter | Controls::UseDelay);
 
     std::vector<u16> species(649);
     std::iota(species.begin(), species.end(), 1);
-    ui->comboBoxGeneratorSpecies->addItems(Translator::getSpecies(species));
-    ui->comboBoxSearcherSpecies->addItems(Translator::getSpecies(species));
+    for (const std::string &specie : Translator::getSpecies(species))
+    {
+        ui->comboBoxGeneratorSpecies->addItem(QString::fromStdString(specie));
+        ui->comboBoxSearcherSpecies->addItem(QString::fromStdString(specie));
+    }
 
     QAction *outputTXTGenerator = generatorMenu->addAction(tr("Output Results to TXT"));
     QAction *outputCSVGenerator = generatorMenu->addAction(tr("Output Results to CSV"));

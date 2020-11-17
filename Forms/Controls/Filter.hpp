@@ -55,7 +55,7 @@ public:
     u8 getGender() const;
     u8 getGenderRatio() const;
     std::vector<bool> getEncounterSlots();
-    void setEncounterSlots(const QStringList &encounterSlots) const;
+    void setEncounterSlots(const std::vector<std::string> &encounterSlots) const;
     void toggleEncounterSlots(const std::vector<bool> &encounterSlots) const;
     void resetEncounterSlots() const;
     std::vector<bool> getHiddenPowers();

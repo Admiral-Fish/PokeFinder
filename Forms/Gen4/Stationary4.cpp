@@ -105,8 +105,7 @@ void Stationary4::setupModels()
     ui->filterGenerator->disableControls(Controls::EncounterSlots);
     ui->filterSearcher->disableControls(Controls::EncounterSlots | Controls::UseDelay | Controls::DisableFilter);
 
-    ui->comboBoxGeneratorLead->addItem(tr("None"));
-    ui->comboBoxGeneratorLead->addItems(Translator::getNatures());
+    generatorLead();
 
     QAction *outputTXTGenerator = generatorMenu->addAction(tr("Output Results to TXT"));
     QAction *outputCSVGenerator = generatorMenu->addAction(tr("Output Results to CSV"));
@@ -299,7 +298,10 @@ void Stationary4::generatorLead()
         ui->pushButtonGeneratorLead->setText(tr("Synchronize"));
 
         ui->comboBoxGeneratorLead->addItem(tr("None"));
-        ui->comboBoxGeneratorLead->addItems(Translator::getNatures());
+        for (const std::string &nature : Translator::getNatures())
+        {
+            ui->comboBoxGeneratorLead->addItem(QString::fromStdString(nature));
+        }
     }
 }
 

@@ -108,47 +108,49 @@ void DreamRadar::setupModels()
 
     std::vector<u16> species
         = { 641, 642, 645, 483, 484, 487, 249, 250, 79, 120, 137, 163, 174, 175, 213, 238, 280, 333, 425, 436, 442, 447, 479, 517, 561 };
-    QStringList names = Translator::getSpecies(species);
-    QStringList genders = { "♂", "♀", "-" };
+    std::vector<std::string> names = Translator::getSpecies(species);
 
     for (size_t i = 0; i < species.size(); i++)
     {
         if (i < 3)
         {
-            ui->comboBoxGeneratorSpecies1->addItem(names.at(i), species.at(i));
-            ui->comboBoxSearcherSpecies1->addItem(names.at(i), species.at(i));
+            ui->comboBoxGeneratorSpecies1->addItem(QString::fromStdString(names.at(i)), species.at(i));
+            ui->comboBoxSearcherSpecies1->addItem(QString::fromStdString(names.at(i)), species.at(i));
         }
         else
         {
-            ui->comboBoxGeneratorSpecies1->addItem(names.at(i), species.at(i));
-            ui->comboBoxGeneratorSpecies2->addItem(names.at(i), species.at(i));
-            ui->comboBoxGeneratorSpecies3->addItem(names.at(i), species.at(i));
-            ui->comboBoxGeneratorSpecies4->addItem(names.at(i), species.at(i));
-            ui->comboBoxGeneratorSpecies5->addItem(names.at(i), species.at(i));
-            ui->comboBoxGeneratorSpecies6->addItem(names.at(i), species.at(i));
+            ui->comboBoxGeneratorSpecies1->addItem(QString::fromStdString(names.at(i)), species.at(i));
+            ui->comboBoxGeneratorSpecies2->addItem(QString::fromStdString(names.at(i)), species.at(i));
+            ui->comboBoxGeneratorSpecies3->addItem(QString::fromStdString(names.at(i)), species.at(i));
+            ui->comboBoxGeneratorSpecies4->addItem(QString::fromStdString(names.at(i)), species.at(i));
+            ui->comboBoxGeneratorSpecies5->addItem(QString::fromStdString(names.at(i)), species.at(i));
+            ui->comboBoxGeneratorSpecies6->addItem(QString::fromStdString(names.at(i)), species.at(i));
 
-            ui->comboBoxSearcherSpecies1->addItem(names.at(i), species.at(i));
-            ui->comboBoxSearcherSpecies2->addItem(names.at(i), species.at(i));
-            ui->comboBoxSearcherSpecies3->addItem(names.at(i), species.at(i));
-            ui->comboBoxSearcherSpecies4->addItem(names.at(i), species.at(i));
-            ui->comboBoxSearcherSpecies5->addItem(names.at(i), species.at(i));
-            ui->comboBoxSearcherSpecies6->addItem(names.at(i), species.at(i));
+            ui->comboBoxSearcherSpecies1->addItem(QString::fromStdString(names.at(i)), species.at(i));
+            ui->comboBoxSearcherSpecies2->addItem(QString::fromStdString(names.at(i)), species.at(i));
+            ui->comboBoxSearcherSpecies3->addItem(QString::fromStdString(names.at(i)), species.at(i));
+            ui->comboBoxSearcherSpecies4->addItem(QString::fromStdString(names.at(i)), species.at(i));
+            ui->comboBoxSearcherSpecies5->addItem(QString::fromStdString(names.at(i)), species.at(i));
+            ui->comboBoxSearcherSpecies6->addItem(QString::fromStdString(names.at(i)), species.at(i));
         }
     }
 
-    ui->comboBoxGeneratorGender1->addItems(genders);
-    ui->comboBoxGeneratorGender2->addItems(genders);
-    ui->comboBoxGeneratorGender3->addItems(genders);
-    ui->comboBoxGeneratorGender4->addItems(genders);
-    ui->comboBoxGeneratorGender5->addItems(genders);
-    ui->comboBoxGeneratorGender6->addItems(genders);
+    for (const std::string &gender : Translator::getGenders())
+    {
+        ui->comboBoxGeneratorGender1->addItem(QString::fromStdString(gender));
+        ui->comboBoxGeneratorGender2->addItem(QString::fromStdString(gender));
+        ui->comboBoxGeneratorGender3->addItem(QString::fromStdString(gender));
+        ui->comboBoxGeneratorGender4->addItem(QString::fromStdString(gender));
+        ui->comboBoxGeneratorGender5->addItem(QString::fromStdString(gender));
+        ui->comboBoxGeneratorGender6->addItem(QString::fromStdString(gender));
 
-    ui->comboBoxSearcherGender1->addItems(genders);
-    ui->comboBoxSearcherGender2->addItems(genders);
-    ui->comboBoxSearcherGender3->addItems(genders);
-    ui->comboBoxSearcherGender4->addItems(genders);
-    ui->comboBoxSearcherGender5->addItems(genders);
-    ui->comboBoxSearcherGender6->addItems(genders);
+        ui->comboBoxSearcherGender1->addItem(QString::fromStdString(gender));
+        ui->comboBoxSearcherGender2->addItem(QString::fromStdString(gender));
+        ui->comboBoxSearcherGender3->addItem(QString::fromStdString(gender));
+        ui->comboBoxSearcherGender4->addItem(QString::fromStdString(gender));
+        ui->comboBoxSearcherGender5->addItem(QString::fromStdString(gender));
+        ui->comboBoxSearcherGender6->addItem(QString::fromStdString(gender));
+    }
 
     ui->tableViewGenerator->setModel(generatorModel);
     ui->tableViewSearcher->setModel(searcherModel);

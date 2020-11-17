@@ -74,7 +74,7 @@ std::vector<bool> Filter::getEncounterSlots()
     return ui->checkListEncounterSlot->getChecked();
 }
 
-void Filter::setEncounterSlots(const QStringList &encounterSlots) const
+void Filter::setEncounterSlots(const std::vector<std::string> &encounterSlots) const
 {
     ui->checkListEncounterSlot->setup(encounterSlots);
 }

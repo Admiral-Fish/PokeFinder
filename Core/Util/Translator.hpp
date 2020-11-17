@@ -21,25 +21,26 @@
 #define TRANSLATOR_HPP
 
 #include <Core/Util/Global.hpp>
-#include <QString>
+#include <string>
 #include <vector>
 
 enum Game : u16;
 
 namespace Translator
 {
-    void init(const QString &locale);
-    QStringList getCharacteristic();
-    QStringList getNatures();
-    QString getNature(u8 nature);
-    QStringList getHiddenPowers();
-    QString getHiddenPower(u8 power);
-    QString getSpecies(u16 specie);
-    QStringList getSpecies(const std::vector<u16> &nums);
-    QString getGender(u8 gender);
-    QStringList getLocations(const std::vector<u8> &nums, Game game);
-    QString getKeypress(u8 keypress);
-    QString getKeypresses(u16 keypresses);
+    void init(const std::string &locale, const std::string &location = "");
+    std::vector<std::string> getCharacteristic();
+    std::vector<std::string> getNatures();
+    std::string getNature(u8 nature);
+    std::vector<std::string> getHiddenPowers();
+    std::string getHiddenPower(u8 power);
+    std::string getSpecies(u16 specie);
+    std::vector<std::string> getSpecies(const std::vector<u16> &nums);
+    std::string getGender(u8 gender);
+    std::vector<std::string> getGenders();
+    std::vector<std::string> getLocations(const std::vector<u8> &nums, Game game);
+    std::string getKeypress(u8 keypress);
+    std::string getKeypresses(u16 keypresses);
 }
 
 #endif // TRANSLATOR_HPP

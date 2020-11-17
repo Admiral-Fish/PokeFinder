@@ -82,7 +82,7 @@ QVariant WildGeneratorModel4::data(const QModelIndex &index, int role) const
             return shiny == 2 ? tr("Square") : shiny == 1 ? tr("Star") : tr("No");
         }
         case 8:
-            return Translator::getNature(state.getNature());
+            return QString::fromStdString(Translator::getNature(state.getNature()));
         case 9:
             return state.getAbility();
         case 10:
@@ -93,11 +93,11 @@ QVariant WildGeneratorModel4::data(const QModelIndex &index, int role) const
         case 15:
             return state.getIV(static_cast<u8>(column - 9));
         case 16:
-            return Translator::getHiddenPower(state.getHidden());
+            return QString::fromStdString(Translator::getHiddenPower(state.getHidden()));
         case 17:
             return state.getPower();
         case 18:
-            return Translator::getGender(state.getGender());
+            return QString::fromStdString(Translator::getGender(state.getGender()));
         }
     }
     return QVariant();
@@ -283,7 +283,7 @@ QVariant WildSearcherModel4::data(const QModelIndex &index, int role) const
             return shiny == 2 ? tr("Square") : shiny == 1 ? tr("Star") : tr("No");
         }
         case 7:
-            return Translator::getNature(state.getNature());
+            return QString::fromStdString(Translator::getNature(state.getNature()));
         case 8:
             return state.getAbility();
         case 9:
@@ -294,11 +294,11 @@ QVariant WildSearcherModel4::data(const QModelIndex &index, int role) const
         case 14:
             return state.getIV(static_cast<u8>(column - 9));
         case 15:
-            return Translator::getHiddenPower(state.getHidden());
+            return QString::fromStdString(Translator::getHiddenPower(state.getHidden()));
         case 16:
             return state.getPower();
         case 17:
-            return Translator::getGender(state.getGender());
+            return QString::fromStdString(Translator::getGender(state.getGender()));
         }
     }
     return QVariant();

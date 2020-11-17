@@ -29,7 +29,7 @@ class CheckList : public QComboBox
     Q_OBJECT
 public:
     explicit CheckList(QWidget *parent = nullptr);
-    void setup(const QStringList &items = QStringList());
+    void setup(const std::vector<std::string> &items = std::vector<std::string>());
     std::vector<bool> getChecked() const;
     void setChecks(std::vector<bool> flags);
 

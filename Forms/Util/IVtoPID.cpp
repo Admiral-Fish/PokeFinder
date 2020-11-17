@@ -53,7 +53,10 @@ void IVtoPID::setupModels()
     ui->tableView->setModel(model);
 
     ui->textBoxTID->setValues(InputType::TIDSID);
-    ui->comboBoxNature->addItems(Translator::getNatures());
+    for (const std::string &nature : Translator::getNatures())
+    {
+        ui->comboBoxNature->addItem(QString::fromStdString(nature));
+    }
 
     connect(ui->pushButtonFind, &QPushButton::clicked, this, &IVtoPID::find);
 

@@ -197,16 +197,19 @@ bool EggSettings::reorderParents()
 
 void EggSettings::setupModels()
 {
-    ui->comboBoxParentANature->addItems(Translator::getNatures());
-    ui->comboBoxParentBNature->addItems(Translator::getNatures());
+    for (const std::string &nature : Translator::getNatures())
+    {
+        ui->comboBoxParentANature->addItem(QString::fromStdString(nature));
+        ui->comboBoxParentBNature->addItem(QString::fromStdString(nature));
+    }
 
     for (u8 i = 0; i < 3; i++)
     {
-        ui->comboBoxParentAGender->addItem(Translator::getGender(i));
-        ui->comboBoxParentBGender->addItem(Translator::getGender(i));
+        ui->comboBoxParentAGender->addItem(QString::fromStdString(Translator::getGender(i)));
+        ui->comboBoxParentBGender->addItem(QString::fromStdString(Translator::getGender(i)));
     }
-    ui->comboBoxParentAGender->addItem(Translator::getSpecies(132));
-    ui->comboBoxParentBGender->addItem(Translator::getSpecies(132));
+    ui->comboBoxParentAGender->addItem(QString::fromStdString(Translator::getSpecies(132)));
+    ui->comboBoxParentBGender->addItem(QString::fromStdString(Translator::getSpecies(132)));
 
     ui->comboBoxParentAAbility->addItem("1");
     ui->comboBoxParentAAbility->addItem("2");

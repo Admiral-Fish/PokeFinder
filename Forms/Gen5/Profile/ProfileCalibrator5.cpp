@@ -81,9 +81,9 @@ void ProfileCalibrator5::setupModels()
     ui->comboBoxKeypress3->addItem(tr("None"), 0);
     for (int i = 0; i < 12; i++)
     {
-        ui->comboBoxKeypress1->addItem(Translator::getKeypress(i), 1 << i);
-        ui->comboBoxKeypress2->addItem(Translator::getKeypress(i), 1 << i);
-        ui->comboBoxKeypress3->addItem(Translator::getKeypress(i), 1 << i);
+        ui->comboBoxKeypress1->addItem(QString::fromStdString(Translator::getKeypress(i)), 1 << i);
+        ui->comboBoxKeypress2->addItem(QString::fromStdString(Translator::getKeypress(i)), 1 << i);
+        ui->comboBoxKeypress3->addItem(QString::fromStdString(Translator::getKeypress(i)), 1 << i);
     }
 
     QAction *createProfile = menu->addAction("Create profile");

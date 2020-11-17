@@ -37,12 +37,15 @@ CheckList::CheckList(QWidget *parent) : QComboBox(parent)
     connect(model, &QAbstractItemModel::dataChanged, this, &CheckList::modelDataChanged);
 }
 
-void CheckList::setup(const QStringList &items)
+void CheckList::setup(const std::vector<std::string> &items)
 {
-    if (!items.isEmpty())
+    if (!items.empty())
     {
         clear();
-        addItems(items);
+        for (const std::string &item : items)
+        {
+            addItem(QString::fromStdString(item));
+        }
     }
 
     for (int i = 0; i < model->rowCount(); i++)

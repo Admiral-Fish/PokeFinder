@@ -200,7 +200,7 @@ void EncounterLookup::find()
     Game game = static_cast<Game>(ui->comboBoxGame->currentData().toInt());
     u16 specie = static_cast<u16>(ui->comboBoxPokemon->currentIndex() + 1);
     std::set<std::pair<u8, QString>> encounters;
-    QStringList locationNames;
+    std::vector<std::string> locationNames;
 
     if (game & Game::FRLG || game & Game::RSE)
     {
@@ -221,7 +221,8 @@ void EncounterLookup::find()
     {
         QList<QStandardItem *> row;
         QStringList split = encounter.second.split('/');
-        row << new QStandardItem(locationNames[i++]) << new QStandardItem(split.at(0)) << new QStandardItem(split.at(1));
+        row << new QStandardItem(QString::fromStdString(locationNames[i++])) << new QStandardItem(split.at(0))
+            << new QStandardItem(split.at(1));
         model->appendRow(row);
     }
 }
@@ -249,8 +250,13 @@ void EncounterLookup::gameIndexChanged(int index)
         }
 
         int oldIndex = ui->comboBoxPokemon->currentIndex();
+
         ui->comboBoxPokemon->clear();
-        ui->comboBoxPokemon->addItems(Translator::getSpecies(nums));
+        for (const std::string &specie : Translator::getSpecies(nums))
+        {
+            ui->comboBoxPokemon->addItem(QString::fromStdString(specie));
+        }
+
         if (oldIndex >= 0 && oldIndex < nums.size())
         {
             ui->comboBoxPokemon->setCurrentIndex(oldIndex);

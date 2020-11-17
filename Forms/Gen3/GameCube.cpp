@@ -251,22 +251,28 @@ void GameCube::generatorMethodIndexChanged(int index)
 
         if (method == Method::XD)
         {
-            QStringList s = Translator::getSpecies(
+            std::vector<std::string> species = Translator::getSpecies(
                 { 334, 24,  354, 12,  113, 301, 85,  149, 51,  355, 125, 83,  55,  88,  58,  316, 316, 316, 107, 106, 97, 115, 131, 165,
                   108, 337, 219, 126, 82,  296, 310, 105, 303, 52,  122, 177, 299, 322, 46,  17,  204, 127, 62,  261, 57, 280, 78,  20,
                   315, 302, 373, 123, 273, 273, 273, 86,  285, 143, 361, 338, 21,  363, 363, 363, 167, 121, 220, 114, 49, 100, 37,  70 });
+            for (size_t i = 0; i < species.size(); i++)
+            {
+                QString specie = QString::fromStdString(species.at(i));
+                if (i == 15 || i == 52 || i == 61)
+                {
+                    specie += tr(" (Citadark)");
+                }
+                else if (i == 16 || i == 53 || i == 62)
+                {
+                    specie += tr(" (Initial)");
+                }
+                else if (i == 17 || i == 54 || i == 63)
+                {
+                    specie += tr(" (Phenac)");
+                }
+                ui->comboBoxGeneratorShadow->addItem(specie);
+            }
 
-            s[15] += tr(" (Citadark)");
-            s[16] += tr(" (Initial)");
-            s[17] += tr(" (Phenac)");
-            s[52] += tr(" (Citadark)");
-            s[53] += tr(" (Initial)");
-            s[54] += tr(" (Phenac)");
-            s[61] += tr(" (Citadark)");
-            s[62] += tr(" (Initial)");
-            s[63] += tr(" (Phenac)");
-
-            ui->comboBoxGeneratorShadow->addItems(s);
             ui->comboBoxGeneratorShadow->setVisible(true);
             ui->labelGeneratorShadow->setVisible(true);
 
@@ -278,11 +284,17 @@ void GameCube::generatorMethodIndexChanged(int index)
         }
         else if (method == Method::Colo)
         {
-            QStringList s = Translator::getSpecies({ 207, 214, 296, 179, 198, 212, 175, 217 });
-            s[3] += tr(" (E-Reader)");
-            s[5] += tr(" (E-Reader)");
-            s[6] += tr(" (E-Reader)");
-            ui->comboBoxGeneratorShadow->addItems(s);
+            std::vector<std::string> species = Translator::getSpecies({ 207, 214, 296, 179, 198, 212, 175, 217 });
+            for (size_t i = 0; i < species.size(); i++)
+            {
+                QString specie = QString::fromStdString(species.at(i));
+                if (i == 3 || i == 5 || i == 6)
+                {
+                    specie += tr(" (E-Reader)");
+                }
+                ui->comboBoxGeneratorShadow->addItem(specie);
+            }
+
             ui->comboBoxGeneratorShadow->setVisible(true);
             ui->labelGeneratorShadow->setVisible(true);
             ui->comboBoxGeneratorType->setVisible(false);
@@ -328,32 +340,44 @@ void GameCube::searcherMethodIndexChanged(int index)
 
         if (method == Method::XD)
         {
-            QStringList s = Translator::getSpecies(
+            std::vector<std::string> species = Translator::getSpecies(
                 { 334, 24,  354, 12,  113, 301, 85,  149, 51,  355, 125, 83,  55,  88,  58,  316, 316, 316, 107, 106, 97, 115, 131, 165,
                   108, 337, 219, 126, 82,  296, 310, 105, 303, 52,  122, 177, 299, 322, 46,  17,  204, 127, 62,  261, 57, 280, 78,  20,
                   315, 302, 373, 123, 273, 273, 273, 86,  285, 143, 361, 338, 21,  363, 363, 363, 167, 121, 220, 114, 49, 100, 37,  70 });
+            for (size_t i = 0; i < species.size(); i++)
+            {
+                QString specie = QString::fromStdString(species.at(i));
+                if (i == 15 || i == 52 || i == 61)
+                {
+                    specie += tr(" (Citadark)");
+                }
+                else if (i == 16 || i == 53 || i == 62)
+                {
+                    specie += tr(" (Initial)");
+                }
+                else if (i == 17 || i == 54 || i == 63)
+                {
+                    specie += tr(" (Phenac)");
+                }
+                ui->comboBoxSearcherShadow->addItem(specie);
+            }
 
-            s[15] += tr(" (Citadark)");
-            s[16] += tr(" (Initial)");
-            s[17] += tr(" (Phenac)");
-            s[52] += tr(" (Citadark)");
-            s[53] += tr(" (Initial)");
-            s[54] += tr(" (Phenac)");
-            s[61] += tr(" (Citadark)");
-            s[62] += tr(" (Initial)");
-            s[63] += tr(" (Phenac)");
-
-            ui->comboBoxSearcherShadow->addItems(s);
             ui->comboBoxSearcherShadow->setVisible(true);
             ui->labelSearcherShadow->setVisible(true);
         }
         else if (method == Method::Colo)
         {
-            QStringList s = Translator::getSpecies({ 207, 214, 296, 179, 198, 212, 175, 217 });
-            s[3] += tr(" (E-Reader)");
-            s[5] += tr(" (E-Reader)");
-            s[6] += tr(" (E-Reader)");
-            ui->comboBoxSearcherShadow->addItems(s);
+            std::vector<std::string> species = Translator::getSpecies({ 207, 214, 296, 179, 198, 212, 175, 217 });
+            for (size_t i = 0; i < species.size(); i++)
+            {
+                QString specie = QString::fromStdString(species.at(i));
+                if (i == 3 || i == 5 || i == 6)
+                {
+                    specie += tr(" (E-Reader)");
+                }
+                ui->comboBoxSearcherShadow->addItem(specie);
+            }
+
             ui->comboBoxSearcherShadow->setVisible(true);
             ui->labelSearcherShadow->setVisible(true);
         }

@@ -28,10 +28,10 @@ RoamerMap::RoamerMap(QWidget *parent) : QDialog(parent), ui(new Ui::RoamerMap)
     setAttribute(Qt::WA_DeleteOnClose);
     setWindowFlags(Qt::Widget | Qt::MSWindowsFixedSizeDialogHint);
 
-    QStringList roamers = Translator::getSpecies({ 244, 243, 380, 381 });
-    ui->labelEntei->setText(roamers.at(0));
-    ui->labelRaikou->setText(roamers.at(1));
-    ui->labelLatiasLatios->setText(roamers.at(2) + "/" + roamers.at(3));
+    std::vector<std::string> roamers = Translator::getSpecies({ 244, 243, 380, 381 });
+    ui->labelEntei->setText(QString::fromStdString(roamers.at(0)));
+    ui->labelRaikou->setText(QString::fromStdString(roamers.at(1)));
+    ui->labelLatiasLatios->setText(QString::fromStdString(roamers.at(2)) + "/" + QString::fromStdString(roamers.at(3)));
 }
 
 RoamerMap::~RoamerMap()

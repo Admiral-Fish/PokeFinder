@@ -106,8 +106,7 @@ void Wild4::setupModels()
 
     ui->filterSearcher->disableControls(Controls::UseDelay | Controls::DisableFilter);
 
-    ui->comboBoxGeneratorLead->addItem(tr("None"));
-    ui->comboBoxGeneratorLead->addItems(Translator::getNatures());
+    generatorLead();
 
     QAction *outputTXTGenerator = generatorMenu->addAction(tr("Output Results to TXT"));
     QAction *outputCSVGenerator = generatorMenu->addAction(tr("Output Results to CSV"));
@@ -178,7 +177,7 @@ void Wild4::updateLocationsGenerator()
     std::transform(encounterGenerator.begin(), encounterGenerator.end(), std::back_inserter(locs),
                    [](const EncounterArea4 &area) { return area.getLocation(); });
 
-    QStringList locations = Translator::getLocations(locs, currentProfile.getVersion());
+    std::vector<std::string> locations = Translator::getLocations(locs, currentProfile.getVersion());
     std::vector<int> indices(locations.size());
     std::iota(indices.begin(), indices.end(), 0);
     std::sort(indices.begin(), indices.end(), [&locations](int i, int j) { return locations[i] < locations[j]; });
@@ -186,7 +185,7 @@ void Wild4::updateLocationsGenerator()
     ui->comboBoxGeneratorLocation->clear();
     for (int index : indices)
     {
-        ui->comboBoxGeneratorLocation->addItem(locations.at(index), index);
+        ui->comboBoxGeneratorLocation->addItem(QString::fromStdString(locations.at(index)), index);
     }
 }
 
@@ -201,7 +200,7 @@ void Wild4::updateLocationsSearcher()
     std::transform(encounterSearcher.begin(), encounterSearcher.end(), std::back_inserter(locs),
                    [](const EncounterArea4 &area) { return area.getLocation(); });
 
-    QStringList locations = Translator::getLocations(locs, currentProfile.getVersion());
+    std::vector<std::string> locations = Translator::getLocations(locs, currentProfile.getVersion());
     std::vector<int> indices(locations.size());
     std::iota(indices.begin(), indices.end(), 0);
     std::sort(indices.begin(), indices.end(), [&locations](int i, int j) { return locations[i] < locations[j]; });
@@ -209,7 +208,7 @@ void Wild4::updateLocationsSearcher()
     ui->comboBoxSearcherLocation->clear();
     for (int index : indices)
     {
-        ui->comboBoxSearcherLocation->addItem(locations.at(index), index);
+        ui->comboBoxSearcherLocation->addItem(QString::fromStdString(locations.at(index)), index);
     }
 }
 
@@ -218,13 +217,13 @@ void Wild4::updatePokemonGenerator()
     auto area = encounterGenerator.at(ui->comboBoxGeneratorLocation->currentData().toInt());
     std::vector<u16> species = area.getUniqueSpecies();
 
-    QStringList names = area.getSpecieNames();
+    std::vector<std::string> names = area.getSpecieNames();
 
     ui->comboBoxGeneratorPokemon->clear();
     ui->comboBoxGeneratorPokemon->addItem("-");
     for (size_t i = 0; i < species.size(); i++)
     {
-        ui->comboBoxGeneratorPokemon->addItem(names.at(i), species.at(i));
+        ui->comboBoxGeneratorPokemon->addItem(QString::fromStdString(names.at(i)), species.at(i));
     }
 }
 
@@ -233,13 +232,13 @@ void Wild4::updatePokemonSearcher()
     auto area = encounterSearcher.at(ui->comboBoxSearcherLocation->currentData().toInt());
     std::vector<u16> species = area.getUniqueSpecies();
 
-    QStringList names = area.getSpecieNames();
+    std::vector<std::string> names = area.getSpecieNames();
 
     ui->comboBoxSearcherPokemon->clear();
     ui->comboBoxSearcherPokemon->addItem("-");
     for (size_t i = 0; i < species.size(); i++)
     {
-        ui->comboBoxSearcherPokemon->addItem(names.at(i), species.at(i));
+        ui->comboBoxSearcherPokemon->addItem(QString::fromStdString(names.at(i)), species.at(i));
     }
 }
 
@@ -410,9 +409,8 @@ void Wild4::profilesIndexChanged(int index)
         }
         ui->comboBoxSearcherLead->addItem(tr("None"), Lead::None);
 
-        ui->pushButtonGeneratorLead->setText(tr("Synchronize"));
-        ui->comboBoxGeneratorLead->addItem(tr("None"));
-        ui->comboBoxGeneratorLead->addItems(Translator::getNatures());
+        ui->pushButtonGeneratorLead->setText(tr("Cute Charm"));
+        generatorLead();
 
         updateLocationsSearcher();
         updateLocationsGenerator();
@@ -459,7 +457,10 @@ void Wild4::generatorLead()
         ui->pushButtonGeneratorLead->setText(tr("Synchronize"));
 
         ui->comboBoxGeneratorLead->addItem(tr("None"));
-        ui->comboBoxGeneratorLead->addItems(Translator::getNatures());
+        for (const std::string &nature : Translator::getNatures())
+        {
+            ui->comboBoxGeneratorLead->addItem(QString::fromStdString(nature));
+        }
     }
 }
 
@@ -467,22 +468,22 @@ void Wild4::generatorEncounterIndexChanged(int index)
 {
     if (index >= 0)
     {
-        QStringList t;
+        std::vector<std::string> t;
         auto encounter = static_cast<Encounter>(ui->comboBoxGeneratorEncounter->currentData().toInt());
 
         switch (encounter)
         {
         case Encounter::Grass:
-            t = QStringList({ "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11" });
+            t = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11" };
             break;
         case Encounter::Surfing:
         case Encounter::OldRod:
         case Encounter::GoodRod:
         case Encounter::SuperRod:
-            t = QStringList({ "0", "1", "2", "3", "4" });
+            t = { "0", "1", "2", "3", "4" };
             break;
         case Encounter::RockSmash:
-            t = QStringList({ "0", "1" });
+            t = { "0", "1" };
             break;
         default:
             break;
@@ -497,22 +498,22 @@ void Wild4::searcherEncounterIndexChanged(int index)
 {
     if (index >= 0)
     {
-        QStringList t;
+        std::vector<std::string> t;
         auto encounter = static_cast<Encounter>(ui->comboBoxSearcherEncounter->currentData().toInt());
 
         switch (encounter)
         {
         case Encounter::Grass:
-            t = QStringList({ "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11" });
+            t = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11" };
             break;
         case Encounter::Surfing:
         case Encounter::OldRod:
         case Encounter::GoodRod:
         case Encounter::SuperRod:
-            t = QStringList({ "0", "1", "2", "3", "4" });
+            t = { "0", "1", "2", "3", "4" };
             break;
         case Encounter::RockSmash:
-            t = QStringList({ "0", "1" });
+            t = { "0", "1" };
             break;
         default:
             break;

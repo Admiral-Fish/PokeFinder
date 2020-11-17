@@ -46,9 +46,18 @@ IVCalculator::~IVCalculator()
 
 void IVCalculator::setupModels()
 {
-    ui->comboBoxNature->addItems(Translator::getNatures());
-    ui->comboBoxHiddenPower->addItems(Translator::getHiddenPowers());
-    ui->comboBoxCharacteristic->addItems(Translator::getCharacteristic());
+    for (const std::string &nature : Translator::getNatures())
+    {
+        ui->comboBoxNature->addItem(QString::fromStdString(nature));
+    }
+    for (const std::string &hiddenPower : Translator::getHiddenPowers())
+    {
+        ui->comboBoxHiddenPower->addItem(QString::fromStdString(hiddenPower));
+    }
+    for (const std::string &characteristic : Translator::getCharacteristic())
+    {
+        ui->comboBoxCharacteristic->addItem(QString::fromStdString(characteristic));
+    }
 
     ui->comboBoxPokemon->setEditable(true);
     ui->comboBoxPokemon->setInsertPolicy(QComboBox::NoInsert);
@@ -288,6 +297,9 @@ void IVCalculator::generationIndexChanged(int index)
         }
 
         ui->comboBoxPokemon->clear();
-        ui->comboBoxPokemon->addItems(Translator::getSpecies(species));
+        for (const std::string &specie : Translator::getSpecies(species))
+        {
+            ui->comboBoxPokemon->addItem(QString::fromStdString(specie));
+        }
     }
 }

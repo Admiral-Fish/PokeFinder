@@ -55,10 +55,19 @@ GameCubeSeedFinder::GameCubeSeedFinder(QWidget *parent) : QWidget(parent), ui(ne
     ui->textBoxGalesTopRight->setValues(1, 714, 3, 10);
     ui->textBoxGalesBottomRight->setValues(1, 714, 3, 10);
 
-    ui->comboBoxGalesYourLead->addItems(Translator::getSpecies({ 150, 151, 386, 384, 385 }));
-    ui->comboBoxGalesEnemyLead->addItems(Translator::getSpecies({ 144, 145, 146, 115, 380 }));
+    for (const std::string &specie : Translator::getSpecies({ 150, 151, 386, 384, 385 }))
+    {
+        ui->comboBoxGalesYourLead->addItem(QString::fromStdString(specie));
+    }
+    for (const std::string &specie : Translator::getSpecies({ 144, 145, 146, 115, 380 }))
+    {
+        ui->comboBoxGalesEnemyLead->addItem(QString::fromStdString(specie));
+    }
 
-    ui->comboBoxColoPartyLead->addItems(Translator::getSpecies({ 257, 244, 260, 243, 154, 245, 376, 214 }));
+    for (const std::string &specie : Translator::getSpecies({ 257, 244, 260, 243, 154, 245, 376, 214 }))
+    {
+        ui->comboBoxColoPartyLead->addItem(QString::fromStdString(specie));
+    }
 
     connect(ui->pushButtonGalesSearch, &QPushButton::clicked, this, &GameCubeSeedFinder::galesSearch);
     connect(ui->pushButtonGalesReset, &QPushButton::clicked, this, &GameCubeSeedFinder::galesReset);

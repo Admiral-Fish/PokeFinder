@@ -22,7 +22,7 @@
 
 #include <Core/Parents/Slot.hpp>
 #include <Core/Util/Global.hpp>
-#include <QString>
+#include <string>
 #include <vector>
 
 enum Encounter : u8;
@@ -38,7 +38,7 @@ public:
     std::vector<u16> getUniqueSpecies() const;
     std::vector<bool> getSlots(u16 num) const;
     std::pair<u8, u8> getLevelRange(u16 specie) const;
-    QStringList getSpecieNames() const;
+    std::vector<std::string> getSpecieNames() const;
     void setSlot(u8 index, u16 specie, const PersonalInfo &info);
 
 protected:

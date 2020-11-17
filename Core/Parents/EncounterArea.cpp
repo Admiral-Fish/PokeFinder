@@ -80,7 +80,7 @@ std::pair<u8, u8> EncounterArea::getLevelRange(u16 specie) const
     return range;
 }
 
-QStringList EncounterArea::getSpecieNames() const
+std::vector<std::string> EncounterArea::getSpecieNames() const
 {
     return Translator::getSpecies(getUniqueSpecies());
 }
