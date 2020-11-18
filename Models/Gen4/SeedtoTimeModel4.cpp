@@ -20,7 +20,7 @@
 #include "SeedtoTimeModel4.hpp"
 #include <Core/Util/Utilities.hpp>
 
-SeedtoTimeModel4::SeedtoTimeModel4(QObject *parent, bool flag, Game version) : TableModel<DateTime>(parent)
+SeedtoTimeModel4::SeedtoTimeModel4(QObject *parent, bool flag, Game version) : TableModel<SeedTime>(parent)
 {
     calibrate = flag;
     this->version = version;
@@ -54,15 +54,13 @@ QVariant SeedtoTimeModel4::data(const QModelIndex &index, int role) const
             case 0:
                 return QString::number(state.getSeed(), 16).toUpper().toUpper().rightJustified(8, '0');
             case 1:
-                return state.getDate();
+                return QString::fromStdString(state.getDateTime().toString());
             case 2:
-                return state.getTime();
-            case 3:
                 return state.getDelay();
+            case 3:
+                return QString::fromStdString((version & Game::HGSS) ? Utilities::getCalls(state.getSeed(), state.getInfo())
+                                                                     : Utilities::coinFlips(state.getSeed()));
             case 4:
-                return (version & Game::HGSS) ? Utilities::getCalls(state.getSeed(), state.getInfo())
-                                              : Utilities::coinFlips(state.getSeed());
-            case 5:
             {
                 QString str = state.getInfo().getRouteString();
                 return str.isEmpty() ? tr("No roamers") : str;
@@ -74,10 +72,8 @@ QVariant SeedtoTimeModel4::data(const QModelIndex &index, int role) const
             switch (index.column())
             {
             case 0:
-                return state.getDate();
+                return QString::fromStdString(state.getDateTime().toString());
             case 1:
-                return state.getTime();
-            case 2:
                 return state.getDelay();
             }
         }

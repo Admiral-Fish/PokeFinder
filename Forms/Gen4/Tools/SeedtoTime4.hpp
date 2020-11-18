@@ -23,7 +23,7 @@
 #include <Core/Gen4/Profile4.hpp>
 #include <QWidget>
 
-class DateTime;
+class SeedTime;
 class SeedtoTimeModel4;
 
 namespace Ui
@@ -47,8 +47,8 @@ private:
     SeedtoTimeModel4 *hgssCalibrateModel = nullptr;
 
     void setupModels();
-    std::vector<DateTime> generate(u32 seed, u32 year, bool forceSecond, int forcedSecond, Game version);
-    std::vector<DateTime> calibrate(int minusDelay, int plusDelay, int minusSecond, int plusSecond, const DateTime &target);
+    std::vector<SeedTime> generate(u32 seed, u32 year, bool forceSecond, int forcedSecond, Game version);
+    std::vector<SeedTime> calibrate(int minusDelay, int plusDelay, int minusSecond, int plusSecond, const SeedTime &target);
 
 private slots:
     void dpptGenerate();

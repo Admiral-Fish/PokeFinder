@@ -20,7 +20,7 @@
 #include "StationarySearcher5.hpp"
 #include <Core/Gen5/Keypresses.hpp>
 #include <Core/RNG/SHA1.hpp>
-#include <QtConcurrent>
+#include <future>
 
 StationarySearcher5::StationarySearcher5(const StationaryGenerator5 &ivGenerator, const StationaryGenerator5 &pidGenerator,
                                          const Profile5 &profile, const std::vector<std::unordered_map<u32, u32>> &ivMap, bool includePID) :
@@ -35,10 +35,9 @@ StationarySearcher5::StationarySearcher5(const StationaryGenerator5 &ivGenerator
 {
 }
 
-void StationarySearcher5::startSearch(int threads, QDate start, const QDate &end)
+void StationarySearcher5::startSearch(int threads, Date start, const Date &end)
 {
     searching = true;
-    QThreadPool pool;
 
     auto days = start.daysTo(end) + 1;
     if (days < threads)
@@ -46,27 +45,26 @@ void StationarySearcher5::startSearch(int threads, QDate start, const QDate &end
         threads = days;
     }
 
-    pool.setMaxThreadCount(threads);
-    std::vector<QFuture<void>> threadContainer;
+    std::vector<std::future<void>> threadContainer;
 
     auto daysSplit = days / threads;
     for (int i = 0; i < threads; i++)
     {
         if (i == threads - 1)
         {
-            threadContainer.emplace_back(QtConcurrent::run(&pool, [=] { search(start, end); }));
+            threadContainer.emplace_back(std::async(std::launch::async, [=] { search(start, end); }));
         }
         else
         {
-            QDate mid = start.addDays(daysSplit - 1);
-            threadContainer.emplace_back(QtConcurrent::run(&pool, [=] { search(start, mid); }));
+            Date mid = start.addDays(daysSplit - 1);
+            threadContainer.emplace_back(std::async(std::launch::async, [=] { search(start, mid); }));
         }
         start = start.addDays(daysSplit);
     }
 
     for (int i = 0; i < threads; i++)
     {
-        threadContainer[i].waitForFinished();
+        threadContainer[i].wait();
     }
 }
 
@@ -90,7 +88,7 @@ int StationarySearcher5::getProgress() const
     return progress;
 }
 
-void StationarySearcher5::search(const QDate &start, const QDate &end)
+void StationarySearcher5::search(const Date &start, const Date &end)
 {
     SHA1 sha(profile);
     auto buttons = Keypresses::getKeyPresses(profile.getKeypresses(), profile.getSkipLR());
@@ -100,7 +98,7 @@ void StationarySearcher5::search(const QDate &start, const QDate &end)
     {
         sha.setTimer0(timer0, profile.getVCount());
 
-        for (QDate date = start; date <= end; date = date.addDays(1))
+        for (Date date = start; date <= end; date = date.addDays(1))
         {
             sha.setDate(static_cast<u8>(date.year() - 2000), static_cast<u8>(date.month()), static_cast<u8>(date.day()),
                         static_cast<u8>(date.dayOfWeek()));
@@ -152,7 +150,7 @@ void StationarySearcher5::search(const QDate &start, const QDate &end)
 
                             for (auto ivState : states)
                             {
-                                // ivState.setDateTime(QDateTime(date, QTime(hour, minute, second)));
+                                // ivState.setDateTime(DateTime(date, Time(hour, minute, second)));
                                 // ivState.setInitialSeed(seed);
                                 // ivState.setButtons(buttons.at(i));
                                 // ivState.setTimer0(timer0);

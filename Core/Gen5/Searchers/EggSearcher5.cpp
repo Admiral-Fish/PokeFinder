@@ -22,16 +22,15 @@
 #include <Core/Gen5/Keypresses.hpp>
 #include <Core/RNG/SHA1.hpp>
 #include <Core/Util/Utilities.hpp>
-#include <QtConcurrent>
+#include <future>
 
 EggSearcher5::EggSearcher5(const Profile5 &profile) : profile(profile), searching(false), progress(0)
 {
 }
 
-void EggSearcher5::startSearch(const EggGenerator5 &generator, int threads, QDate start, const QDate &end)
+void EggSearcher5::startSearch(const EggGenerator5 &generator, int threads, Date start, const Date &end)
 {
     searching = true;
-    QThreadPool pool;
 
     auto days = start.daysTo(end) + 1;
     if (days < threads)
@@ -39,27 +38,26 @@ void EggSearcher5::startSearch(const EggGenerator5 &generator, int threads, QDat
         threads = days;
     }
 
-    pool.setMaxThreadCount(threads);
-    std::vector<QFuture<void>> threadContainer;
+    std::vector<std::future<void>> threadContainer;
 
     auto daysSplit = days / threads;
     for (int i = 0; i < threads; i++)
     {
         if (i == threads - 1)
         {
-            threadContainer.emplace_back(QtConcurrent::run(&pool, [=] { search(generator, start, end); }));
+            threadContainer.emplace_back(std::async([=] { search(generator, start, end); }));
         }
         else
         {
-            QDate mid = start.addDays(daysSplit - 1);
-            threadContainer.emplace_back(QtConcurrent::run(&pool, [=] { search(generator, start, mid); }));
+            Date mid = start.addDays(daysSplit - 1);
+            threadContainer.emplace_back(std::async([=] { search(generator, start, mid); }));
         }
         start = start.addDays(daysSplit);
     }
 
     for (int i = 0; i < threads; i++)
     {
-        threadContainer[i].waitForFinished();
+        threadContainer[i].wait();
     }
 }
 
@@ -83,7 +81,7 @@ int EggSearcher5::getProgress() const
     return progress;
 }
 
-void EggSearcher5::search(EggGenerator5 generator, const QDate &start, const QDate &end)
+void EggSearcher5::search(EggGenerator5 generator, const Date &start, const Date &end)
 {
     bool flag = profile.getVersion() & Game::BW;
 
@@ -94,10 +92,10 @@ void EggSearcher5::search(EggGenerator5 generator, const QDate &start, const QDa
     for (u16 timer0 = profile.getTimer0Min(); timer0 <= profile.getTimer0Max(); timer0++)
     {
         sha.setTimer0(timer0, profile.getVCount());
-        for (QDate date = start; date <= end; date = date.addDays(1))
+        for (Date date = start; date <= end; date = date.addDays(1))
         {
-            sha.setDate(static_cast<u8>(date.year() - 2000), static_cast<u8>(date.month()), static_cast<u8>(date.day()),
-                        static_cast<u8>(date.dayOfWeek()));
+            auto parts = date.getParts();
+            sha.setDate(parts.at(0) - 2000, parts.at(1), parts.at(2), static_cast<u8>(date.dayOfWeek()));
             sha.precompute();
             for (size_t i = 0; i < values.size(); i++)
             {
@@ -126,7 +124,7 @@ void EggSearcher5::search(EggGenerator5 generator, const QDate &start, const QDa
                                 std::vector<SearcherState5<EggState>> displayStates;
                                 displayStates.reserve(states.size());
 
-                                QDateTime dt(date, QTime(hour, minute, second));
+                                DateTime dt(date, Time(hour, minute, second));
                                 for (const auto &state : states)
                                 {
                                     displayStates.emplace_back(dt, seed, buttons.at(i), timer0, state);

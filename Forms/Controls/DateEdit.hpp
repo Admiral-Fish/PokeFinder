@@ -17,39 +17,17 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include "SeedTimeModel3.hpp"
+#ifndef DATEEDIT_HPP
+#define DATEEDIT_HPP
 
-SeedTimeModel3::SeedTimeModel3(QObject *parent) : TableModel<SeedTimeState3>(parent)
-{
-}
+#include <Core/Util/DateTime.hpp>
+#include <QDateEdit>
 
-int SeedTimeModel3::columnCount(const QModelIndex &parent) const
+class DateEdit : public QDateEdit
 {
-    (void)parent;
-    return 2;
-}
+public:
+    explicit DateEdit(QWidget *parent = nullptr);
+    Date getDate() const;
+};
 
-QVariant SeedTimeModel3::data(const QModelIndex &index, int role) const
-{
-    if (role == Qt::DisplayRole)
-    {
-        const auto &state = model.at(index.row());
-        switch (index.column())
-        {
-        case 0:
-            return QString::fromStdString(state.getDateTime());
-        case 1:
-            return state.getAdvances();
-        }
-    }
-    return QVariant();
-}
-
-QVariant SeedTimeModel3::headerData(int section, Qt::Orientation orientation, int role) const
-{
-    if (role == Qt::DisplayRole && orientation == Qt::Horizontal)
-    {
-        return header.at(section);
-    }
-    return QVariant();
-}
+#endif // DATEEDIT_HPP

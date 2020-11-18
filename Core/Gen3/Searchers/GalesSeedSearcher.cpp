@@ -18,8 +18,8 @@
  */
 
 #include "GalesSeedSearcher.hpp"
-#include <QtConcurrent>
 #include <cstring>
+#include <future>
 
 constexpr u16 hpStat[10][2] = { { 322, 340 }, { 310, 290 }, { 210, 620 }, { 320, 230 }, { 310, 310 },
                                 { 290, 310 }, { 290, 270 }, { 290, 250 }, { 320, 270 }, { 270, 230 } };
@@ -32,9 +32,7 @@ void GalesSeedSearcher::startSearch(int threads)
 {
     searching = true;
 
-    QThreadPool pool;
-    pool.setMaxThreadCount(threads);
-    std::vector<QFuture<void>> threadContainer;
+    std::vector<std::future<void>> threadContainer;
 
     u32 split = 0x10000 / threads;
     u32 start = 0;
@@ -42,18 +40,18 @@ void GalesSeedSearcher::startSearch(int threads)
     {
         if (i == threads - 1)
         {
-            threadContainer.emplace_back(QtConcurrent::run(&pool, [=] { search(start, 0x10000); }));
+            threadContainer.emplace_back(std::async(std::launch::async, [=] { search(start, 0x10000); }));
         }
         else
         {
-            threadContainer.emplace_back(QtConcurrent::run(&pool, [=] { search(start, start + split); }));
+            threadContainer.emplace_back(std::async(std::launch::async, [=] { search(start, start + split); }));
         }
         start += split;
     }
 
     for (int i = 0; i < threads; i++)
     {
-        threadContainer[i].waitForFinished();
+        threadContainer[i].wait();
     }
 
     std::sort(results.begin(), results.end());
@@ -69,9 +67,7 @@ void GalesSeedSearcher::startSearch(int threads, const std::vector<u32> &seeds)
         threads = seeds.size();
     }
 
-    QThreadPool pool;
-    pool.setMaxThreadCount(threads);
-    std::vector<QFuture<void>> threadContainer;
+    std::vector<std::future<void>> threadContainer;
 
     u32 split = seeds.size() / threads;
     u32 start = 0;
@@ -79,18 +75,20 @@ void GalesSeedSearcher::startSearch(int threads, const std::vector<u32> &seeds)
     {
         if (i == threads - 1)
         {
-            threadContainer.emplace_back(QtConcurrent::run(&pool, [=] { search(seeds.cbegin() + start, seeds.cend()); }));
+            threadContainer.emplace_back(
+                std::async(std::launch::async, [=] { search(std::vector<u32>(seeds.cbegin() + start, seeds.cend())); }));
         }
         else
         {
-            threadContainer.emplace_back(QtConcurrent::run(&pool, [=] { search(seeds.cbegin() + start, seeds.cbegin() + split); }));
+            threadContainer.emplace_back(
+                std::async(std::launch::async, [=] { search(std::vector<u32>(seeds.cbegin() + start, seeds.cbegin() + split)); }));
         }
         start += split;
     }
 
     for (int i = 0; i < threads; i++)
     {
-        threadContainer[i].waitForFinished();
+        threadContainer[i].wait();
     }
 
     std::sort(results.begin(), results.end());
@@ -124,16 +122,16 @@ void GalesSeedSearcher::search(u32 start, u32 end)
     }
 }
 
-void GalesSeedSearcher::search(const std::vector<u32>::const_iterator &start, const std::vector<u32>::const_iterator &end)
+void GalesSeedSearcher::search(const std::vector<u32> &seeds)
 {
-    for (auto seed = start; seed != end; seed++)
+    for (auto seed : seeds)
     {
         if (!searching)
         {
             return;
         }
 
-        XDRNG rng(*seed);
+        XDRNG rng(seed);
         if (searchSeed(rng))
         {
             std::lock_guard<std::mutex> lock(resultMutex);

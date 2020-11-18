@@ -24,8 +24,8 @@
 #include <Core/Gen5/Profile5.hpp>
 #include <Core/Gen5/States/SearcherState5.hpp>
 #include <Core/Parents/States/State.hpp>
+#include <Core/Util/DateTime.hpp>
 #include <Core/Util/Global.hpp>
-#include <QDate>
 #include <mutex>
 
 class DreamRadarSearcher
@@ -33,7 +33,7 @@ class DreamRadarSearcher
 public:
     DreamRadarSearcher() = default;
     explicit DreamRadarSearcher(const Profile5 &profile);
-    void startSearch(const DreamRadarGenerator &generator, int threads, QDate start, const QDate &end);
+    void startSearch(const DreamRadarGenerator &generator, int threads, Date start, const Date &end);
     void cancelSearch();
     std::vector<SearcherState5<State>> getResults();
     int getProgress() const;
@@ -47,7 +47,7 @@ private:
     std::mutex resultMutex;
     std::mutex progressMutex;
 
-    void search(DreamRadarGenerator generator, const QDate &start, const QDate &end);
+    void search(DreamRadarGenerator generator, const Date &start, const Date &end);
 };
 
 #endif // DREAMRADARSEARCHER_HPP

@@ -1,78 +1,151 @@
-/*
- * This file is part of PokéFinder
- * Copyright (C) 2017-2020 by Admiral_Fish, bumba, and EzPzStreamz
- *
- * This program is free software; you can redistribute it and/or
- * modify it under the terms of the GNU General Public License
- * as published by the Free Software Foundation; either version 3
- * of the License, or (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
- */
-
 #include "DateTime.hpp"
-#include <Core/Enum/Game.hpp>
-#include <Core/Util/Utilities.hpp>
 
-DateTime::DateTime(const QDateTime &dateTime, u32 delay, Game version, const std::vector<bool> &roamers, const std::vector<u8> &routes) :
-    seed(Utilities::calcGen4Seed(dateTime, delay + dateTime.date().year() - 2000)), delay(delay), dateTime(dateTime), version(version)
+constexpr int monthDays[13] = { 0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+
+Date::Date(int year, int month, int day)
 {
-    info = HGSSRoamer(seed, roamers, routes);
+    int a = month < 3 ? 1 : 0;
+    int y = year + 4800 - a;
+    int m = month + 12 * a - 3;
+    jd = day + ((153 * m + 2) / 5) - 32045 + 365 * y + (y / 4) - (y / 100) + (y / 400);
 }
 
-DateTime::DateTime(const QDateTime &dateTime, u32 delay, Game version, const HGSSRoamer &info) :
-    seed(Utilities::calcGen4Seed(dateTime, delay + dateTime.date().year() - 2000)),
-    delay(delay),
-    dateTime(dateTime),
-    version(version),
-    info(info)
+Date Date::addDays(int days)
 {
-    this->info.recalculateRoamers(seed);
+    return Date(jd + days);
 }
 
-QString DateTime::sequence() const
+int Date::daysTo(const Date &other) const
 {
-    return (version & Game::HGSS) ? Utilities::getCalls(seed, info) : Utilities::coinFlips(seed);
+    return other.jd - jd;
 }
 
-QString DateTime::getDate() const
+int Date::year() const
 {
-    return dateTime.date().toString(Qt::SystemLocaleShortDate);
+    return getParts().at(0);
 }
 
-QString DateTime::getTime() const
+int Date::month() const
 {
-    return dateTime.time().toString();
+    return getParts().at(1);
 }
 
-u32 DateTime::getSeed() const
+int Date::day() const
 {
-    return seed;
+    return getParts().at(2);
 }
 
-u32 DateTime::getDelay() const
+int Date::dayOfWeek() const
 {
-    return delay;
+    return jd % 7;
 }
 
-Game DateTime::getVersion() const
+std::array<int, 3> Date::getParts() const
 {
-    return version;
+    int a = jd + 32044;
+    int b = (4 * a + 3) / 146097;
+    int c = a - (146097 * b) / 4;
+
+    int d = (4 * c + 3) / 1461;
+    int e = c - (1461 * d) / 4;
+    int m = (5 * e + 2) / 153;
+
+    int y = 100 * b + d - 4800 + (m / 10);
+
+    int year = y > 0 ? y : y - 1;
+    int month = m + 3 - 12 * (m / 10);
+    int day = e - ((153 * m + 2) / 5) + 1;
+
+    return { year, month, day };
 }
 
-QDateTime DateTime::getDateTime() const
+int Date::daysInMonth(int month, int year)
 {
-    return dateTime;
+    if (month == 2 && isLeapYear(year))
+    {
+        return 29;
+    }
+    return monthDays[month];
 }
 
-HGSSRoamer DateTime::getInfo() const
+bool Date::isLeapYear(int year)
 {
-    return info;
+    return ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0));
+}
+
+int Date::weekDay() const
+{
+    return jd % 7;
+}
+
+std::string Date::toString() const
+{
+    auto parts = getParts();
+    return std::to_string(parts.at(1)) + "/" + std::to_string(parts.at(2)) + "/" + std::to_string(parts.at(0));
+}
+
+bool Time::addSeconds(int seconds)
+{
+    md += seconds;
+    if (md >= 86400)
+    {
+        md -= 86400;
+        return true;
+    }
+    return false;
+}
+
+int Time::hour() const
+{
+    return md / 3600;
+}
+
+int Time::minute() const
+{
+    return (md % 3600) / 60;
+}
+
+int Time::second() const
+{
+    return md % 60;
+}
+
+std::string Time::toString() const
+{
+    return std::to_string(hour()) + ":" + std::to_string(minute()) + ":" + std::to_string(second());
+}
+
+DateTime::DateTime(int year, int month, int day, int hour, int minute, int second) :
+    date(Date(year, month, day)), time(Time(hour, minute, second))
+{
+}
+
+void DateTime::addSeconds(int seconds)
+{
+    if (time.addSeconds(seconds))
+    {
+        date.addDays(1);
+    }
+}
+
+DateTime DateTime::addSecs(int seconds)
+{
+    DateTime dt(*this);
+    dt.addSeconds(seconds);
+    return dt;
+}
+
+Date DateTime::getDate() const
+{
+    return date;
+}
+
+Time DateTime::getTime() const
+{
+    return time;
+}
+
+std::string DateTime::toString() const
+{
+    return date.toString() + " " + time.toString();
 }

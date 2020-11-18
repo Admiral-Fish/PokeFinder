@@ -21,8 +21,9 @@
 #include "ui_SearchCalls.h"
 #include <Core/Util/Utilities.hpp>
 #include <QSettings>
+#include <algorithm>
 
-SearchCalls::SearchCalls(const std::vector<DateTime> &model, const std::vector<bool> &roamers, const std::vector<u8> &routes,
+SearchCalls::SearchCalls(const std::vector<SeedTime> &model, const std::vector<bool> &roamers, const std::vector<u8> &routes,
                          QWidget *parent) :
     QDialog(parent), ui(new Ui::SearchCalls)
 {
@@ -89,20 +90,33 @@ void SearchCalls::callsTextChanged(const QString &val)
     {
         QString result = val;
         result.replace(" ", "").replace(",", "");
+
         int num = 0;
 
         possible.clear();
         for (const auto &dt : data)
         {
-            QString compare = Utilities::getCalls(dt.getSeed(), dt.getInfo());
-            if (compare.contains("skipped"))
+            std::string compare = Utilities::getCalls(dt.getSeed(), dt.getInfo());
+            if (compare.find("skipped") != std::string::npos)
             {
-                int index = compare.indexOf(")", 1);
-                compare = compare.mid(index + 3);
+                size_t index = compare.find(")");
+                compare = compare.substr(index, compare.size() - index);
             }
-            compare.replace(" ", "").replace(",", "");
 
-            bool pass = compare.contains(result);
+            for (size_t i = 0; i < compare.size();)
+            {
+                auto c = compare.at(i);
+                if (c == ' ' || c == ',')
+                {
+                    compare.erase(compare.begin() + i);
+                }
+                else
+                {
+                    i++;
+                }
+            }
+
+            bool pass = compare.find(result.toStdString()) != std::string::npos;
             possible.emplace_back(pass);
             if (pass)
             {

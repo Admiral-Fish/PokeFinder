@@ -19,7 +19,7 @@
 
 #include "ChannelSeedSearcher.hpp"
 #include <Core/RNG/LCRNG.hpp>
-#include <QtConcurrent>
+#include <future>
 
 ChannelSeedSearcher::ChannelSeedSearcher(const std::vector<u32> &criteria) : SeedSearcher(criteria)
 {
@@ -29,9 +29,7 @@ void ChannelSeedSearcher::startSearch(int threads)
 {
     searching = true;
 
-    QThreadPool pool;
-    pool.setMaxThreadCount(threads);
-    std::vector<QFuture<void>> threadContainer;
+    std::vector<std::future<void>> threadContainer;
 
     u32 split = 0xBFFFFFFE / threads;
     u32 start = 0x40000001;
@@ -39,18 +37,18 @@ void ChannelSeedSearcher::startSearch(int threads)
     {
         if (i == threads - 1)
         {
-            threadContainer.emplace_back(QtConcurrent::run(&pool, [=] { search(start, 0xffffffff); }));
+            threadContainer.emplace_back(std::async(std::launch::async, [=] { search(start, 0xffffffff); }));
         }
         else
         {
-            threadContainer.emplace_back(QtConcurrent::run(&pool, [=] { search(start, start + split); }));
+            threadContainer.emplace_back(std::async(std::launch::async, [=] { search(start, start + split); }));
         }
         start += split;
     }
 
     for (int i = 0; i < threads; i++)
     {
-        threadContainer[i].waitForFinished();
+        threadContainer[i].wait();
     }
 
     std::sort(results.begin(), results.end());

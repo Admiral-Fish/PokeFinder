@@ -153,14 +153,14 @@ void SeedtoTime4::setupModels()
     setting.endGroup();
 }
 
-std::vector<DateTime> SeedtoTime4::generate(u32 seed, u32 year, bool forceSecond, int forcedSecond, Game version)
+std::vector<SeedTime> SeedtoTime4::generate(u32 seed, u32 year, bool forceSecond, int forcedSecond, Game version)
 {
     if (year < 2000 || year > 2099)
     {
         QMessageBox error;
         error.setText(tr("Please enter a year between 2000 and 2099"));
         error.exec();
-        return std::vector<DateTime>();
+        return std::vector<SeedTime>();
     }
 
     u8 ab = seed >> 24;
@@ -175,7 +175,7 @@ std::vector<DateTime> SeedtoTime4::generate(u32 seed, u32 year, bool forceSecond
         QMessageBox error;
         error.setText(tr("Seed is invalid. Please enter a valid seed."));
         error.exec();
-        return std::vector<DateTime>();
+        return std::vector<SeedTime>();
     }
 
     std::vector<bool> roamer
@@ -184,10 +184,10 @@ std::vector<DateTime> SeedtoTime4::generate(u32 seed, u32 year, bool forceSecond
         = { static_cast<u8>(ui->lineEditHGSSRaikou->text().toUInt()), static_cast<u8>(ui->lineEditHGSSEntei->text().toUInt()),
             static_cast<u8>(ui->lineEditHGSSLati->text().toUInt()) };
 
-    std::vector<DateTime> results;
+    std::vector<SeedTime> results;
     for (int month = 0; month < 13; month++)
     {
-        int maxDays = QDate(static_cast<int>(year), month, 1).daysInMonth();
+        int maxDays = Date::daysInMonth(month, year);
         for (int day = 1; day <= maxDays; day++)
         {
             for (int minute = 0; minute < 60; minute++)
@@ -198,8 +198,7 @@ std::vector<DateTime> SeedtoTime4::generate(u32 seed, u32 year, bool forceSecond
                     {
                         if (!forceSecond || second == forcedSecond)
                         {
-                            QDateTime dateTime(QDate(static_cast<int>(year), month, day), QTime(static_cast<int>(hour), minute, second));
-                            results.emplace_back(dateTime, delay, version, roamer, routes);
+                            results.emplace_back(DateTime(year, month, day, hour, minute, second), delay, version, roamer, routes);
                         }
                     }
                 }
@@ -209,9 +208,9 @@ std::vector<DateTime> SeedtoTime4::generate(u32 seed, u32 year, bool forceSecond
     return results;
 }
 
-std::vector<DateTime> SeedtoTime4::calibrate(int minusDelay, int plusDelay, int minusSecond, int plusSecond, const DateTime &target)
+std::vector<SeedTime> SeedtoTime4::calibrate(int minusDelay, int plusDelay, int minusSecond, int plusSecond, const SeedTime &target)
 {
-    QDateTime time = target.getDateTime();
+    DateTime time = target.getDateTime();
     u32 delay = target.getDelay();
 
     std::vector<int> secondRange;
@@ -235,12 +234,12 @@ std::vector<DateTime> SeedtoTime4::calibrate(int minusDelay, int plusDelay, int 
         secondRange.emplace_back(i);
     }
 
-    std::vector<DateTime> results;
+    std::vector<SeedTime> results;
     for (int i : secondRange)
     {
+        DateTime offset = time.addSecs(i);
         for (int j : delayRange)
         {
-            QDateTime offset = time.addSecs(i);
             results.emplace_back(offset, delay + j, target.getVersion(), target.getInfo());
         }
     }
@@ -258,8 +257,8 @@ void SeedtoTime4::dpptGenerate()
 
     dpptModel->clearModel();
 
-    std::vector<DateTime> results = generate(seed, year, forceSecond, forcedSecond, Game::Diamond);
-    ui->labelDPPtCoinFlips->setText(tr("Coin Flips: ") + Utilities::coinFlips(seed));
+    std::vector<SeedTime> results = generate(seed, year, forceSecond, forcedSecond, Game::Diamond);
+    ui->labelDPPtCoinFlips->setText(tr("Coin Flips: ") + QString::fromStdString(Utilities::coinFlips(seed)));
 
     dpptModel->addItems(results);
 }
@@ -284,8 +283,8 @@ void SeedtoTime4::dpptCalibrate()
 
     dpptCalibrateModel->clearModel();
 
-    DateTime target = dpptModel->getItem(index.row());
-    std::vector<DateTime> results = calibrate(minusDelay, plusDelay, minusSecond, plusSecond, target);
+    SeedTime target = dpptModel->getItem(index.row());
+    std::vector<SeedTime> results = calibrate(minusDelay, plusDelay, minusSecond, plusSecond, target);
 
     dpptCalibrateModel->addItems(results);
 
@@ -314,8 +313,8 @@ void SeedtoTime4::hgssGenerate()
 
     HGSSRoamer info(seed, roamer, routes);
 
-    std::vector<DateTime> results = generate(seed, year, forceSecond, forcedSecond, Game::HeartGold);
-    ui->labelHGSSElmCalls->setText(tr("Elm Calls: ") + Utilities::getCalls(seed, info));
+    std::vector<SeedTime> results = generate(seed, year, forceSecond, forcedSecond, Game::HeartGold);
+    ui->labelHGSSElmCalls->setText(tr("Elm Calls: ") + QString::fromStdString(Utilities::getCalls(seed, info)));
     QString str = info.getRouteString();
     str = str.isEmpty() ? tr("No roamers") : str;
     ui->labelHGSSRoamers->setText(tr("Roamers: ") + str);
@@ -343,8 +342,8 @@ void SeedtoTime4::hgssCalibrate()
 
     hgssCalibrateModel->clearModel();
 
-    DateTime target = hgssModel->getItem(index.row());
-    std::vector<DateTime> results = calibrate(minusDelay, plusDelay, minusSecond, plusSecond, target);
+    SeedTime target = hgssModel->getItem(index.row());
+    std::vector<SeedTime> results = calibrate(minusDelay, plusDelay, minusSecond, plusSecond, target);
 
     hgssCalibrateModel->addItems(results);
 
@@ -373,7 +372,7 @@ void SeedtoTime4::searchFlips()
     ui->tableViewDPPtCalibrate->setSelectionMode(QAbstractItemView::MultiSelection);
     ui->tableViewDPPtCalibrate->clearSelection();
 
-    for (auto i = 0; i < results.size(); i++)
+    for (size_t i = 0; i < results.size(); i++)
     {
         if (results.at(i))
         {
@@ -409,7 +408,7 @@ void SeedtoTime4::searchCalls()
     ui->tableViewHGSSCalibrate->setSelectionMode(QAbstractItemView::MultiSelection);
     ui->tableViewHGSSCalibrate->clearSelection();
 
-    for (auto i = 0; i < results.size(); i++)
+    for (size_t i = 0; i < results.size(); i++)
     {
         if (results.at(i))
         {

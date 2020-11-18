@@ -124,7 +124,7 @@ u64 Researcher::getCustom(const QString &text, const ResearcherState &state, con
     {
     case 0:
     case 1:
-        return state.getAdvances();
+        return state.getState();
     case 2:
         return state.getHigh32();
     case 3:

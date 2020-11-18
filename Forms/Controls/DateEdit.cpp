@@ -17,39 +17,13 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include "SeedTimeModel3.hpp"
+#include "DateEdit.hpp"
 
-SeedTimeModel3::SeedTimeModel3(QObject *parent) : TableModel<SeedTimeState3>(parent)
+DateEdit::DateEdit(QWidget *parent) : QDateEdit(parent)
 {
 }
 
-int SeedTimeModel3::columnCount(const QModelIndex &parent) const
+Date DateEdit::getDate() const
 {
-    (void)parent;
-    return 2;
-}
-
-QVariant SeedTimeModel3::data(const QModelIndex &index, int role) const
-{
-    if (role == Qt::DisplayRole)
-    {
-        const auto &state = model.at(index.row());
-        switch (index.column())
-        {
-        case 0:
-            return QString::fromStdString(state.getDateTime());
-        case 1:
-            return state.getAdvances();
-        }
-    }
-    return QVariant();
-}
-
-QVariant SeedTimeModel3::headerData(int section, Qt::Orientation orientation, int role) const
-{
-    if (role == Qt::DisplayRole && orientation == Qt::Horizontal)
-    {
-        return header.at(section);
-    }
-    return QVariant();
+    return Date(date().toJulianDay());
 }

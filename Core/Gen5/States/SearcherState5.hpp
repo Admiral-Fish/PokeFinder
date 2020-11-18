@@ -28,7 +28,7 @@ class SearcherState5 : public State5
 {
 public:
     SearcherState5() = default;
-    SearcherState5(const QDateTime &dt, u64 initialSeed, u16 buttons, u16 timer0, const StateType &state) :
+    SearcherState5(const DateTime &dt, u64 initialSeed, u16 buttons, u16 timer0, const StateType &state) :
         State5(dt, initialSeed, buttons, timer0), state(state)
     {
     }

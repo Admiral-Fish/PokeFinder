@@ -24,7 +24,7 @@ RTCSearcher::RTCSearcher() : searching(false)
 {
 }
 
-void RTCSearcher::startSearch(u32 initialSeed, u32 targetSeed, u32 initialAdvances, u32 maxAdvances, const QDateTime &end)
+void RTCSearcher::startSearch(u32 initialSeed, u32 targetSeed, u32 initialAdvances, u32 maxAdvances, const DateTime &end)
 {
     searching = true;
 
@@ -33,8 +33,8 @@ void RTCSearcher::startSearch(u32 initialSeed, u32 targetSeed, u32 initialAdvanc
 
     targetSeed = back.getSeed();
 
-    QDateTime time(QDate(2000, 1, 1), QTime(0, 0));
-    for (; time < end; time = time.addSecs(1), initialSeed += 40500000)
+    DateTime time;
+    for (; time < end; time.addSeconds(1), initialSeed += 40500000)
     {
         XDRNG rng(initialSeed);
 
@@ -47,10 +47,8 @@ void RTCSearcher::startSearch(u32 initialSeed, u32 targetSeed, u32 initialAdvanc
 
             if (rng.next() == targetSeed)
             {
-                GameCubeRTCState result(time, initialSeed, x + 1 + initialAdvances);
-
                 std::lock_guard<std::mutex> guard(mutex);
-                results.emplace_back(result);
+                results.emplace_back(time, initialSeed, x + 1 + initialAdvances);
             }
         }
     }

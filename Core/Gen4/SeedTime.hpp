@@ -17,49 +17,33 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include "IDState5.hpp"
+#ifndef SEEDTIME_HPP
+#define SEEDTIME_HPP
 
-IDState5::IDState5(u32 advance, u16 tid, u16 sid) : IDState(advance, tid, sid)
-{
-    tsv = (tid ^ sid) >> 3;
-}
+#include <Core/Gen4/HGSSRoamer.hpp>
+#include <Core/Util/DateTime.hpp>
 
-void IDState5::setDateTime(const DateTime &dt)
-{
-    this->dt = dt;
-}
+enum Game : u16;
 
-DateTime IDState5::getDateTime() const
+class SeedTime
 {
-    return dt;
-}
+public:
+    SeedTime() = default;
+    SeedTime(const DateTime &dateTime, u32 delay, Game version, const std::vector<bool> &roamers, const std::vector<u8> &routes);
+    SeedTime(const DateTime &dateTime, u32 delay, Game version, const HGSSRoamer &info);
+    std::string sequence() const;
+    u32 getSeed() const;
+    u32 getDelay() const;
+    Game getVersion() const;
+    DateTime getDateTime() const;
+    HGSSRoamer getInfo() const;
 
-void IDState5::setInitialAdvances(u32 initialAdvances)
-{
-    this->initialAdvances = initialAdvances;
-}
+private:
+    u32 seed;
+    u32 delay;
+    DateTime dateTime;
+    Game version;
+    HGSSRoamer info;
+};
 
-u32 IDState5::getInitialAdvances() const
-{
-    return initialAdvances;
-}
-
-void IDState5::setKeypress(u16 keypress)
-{
-    this->keypress = keypress;
-}
-
-u16 IDState5::getKeypress() const
-{
-    return keypress;
-}
-
-void IDState5::setSeed(u64 seed)
-{
-    this->seed = seed;
-}
-
-u64 IDState5::getSeed() const
-{
-    return seed;
-}
+#endif // SEEDTIME_HPP

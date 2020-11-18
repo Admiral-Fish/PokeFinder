@@ -20,19 +20,19 @@
 #ifndef SEEDTIMESTATE3_HPP
 #define SEEDTIMESTATE3_HPP
 
+#include <Core/Util/DateTime.hpp>
 #include <Core/Util/Global.hpp>
-#include <QDateTime>
 
 class SeedTimeState3
 {
 public:
     SeedTimeState3() = default;
-    SeedTimeState3(const QDateTime &dateTime, u32 advance);
-    QString getDateTime() const;
+    SeedTimeState3(const DateTime &dateTime, u32 advance);
+    std::string getDateTime() const;
     u32 getAdvances() const;
 
 private:
-    QDateTime dateTime;
+    DateTime dateTime;
     u32 advances;
 };
 

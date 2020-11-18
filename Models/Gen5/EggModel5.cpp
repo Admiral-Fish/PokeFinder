@@ -42,7 +42,7 @@ QVariant EggGeneratorModel5::data(const QModelIndex &index, int role) const
         case 0:
             return state.getAdvances();
         case 1:
-            return Utilities::getChatot64(state.getSeed());
+            return QString::fromStdString(Utilities::getChatot64(state.getSeed()));
         case 2:
             return QString::number(state.getPID(), 16).toUpper().rightJustified(8, '0');
         case 3:
@@ -237,7 +237,7 @@ QVariant EggSearcherModel5::data(const QModelIndex &index, int role) const
         case 14:
             return QString::fromStdString(Translator::getGender(state.getGender()));
         case 15:
-            return display.getDateTime().toString("MM-dd-yyyy hh:mm:ss");
+            return QString::fromStdString(display.getDateTime().toString());
         case 16:
             return QString::number(display.getTimer0(), 16).toUpper();
         case 17:

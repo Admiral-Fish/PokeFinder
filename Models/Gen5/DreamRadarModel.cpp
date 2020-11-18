@@ -233,7 +233,7 @@ QVariant DreamRadarSearcherModel5::data(const QModelIndex &index, int role) cons
         case 14:
             return QString::fromStdString(Translator::getGender(state.getGender()));
         case 15:
-            return display.getDateTime().toString("MM-dd-yyyy hh:mm:ss");
+            return QString::fromStdString(display.getDateTime().toString());
         case 16:
             return QString::number(display.getTimer0(), 16).toUpper();
         case 17:

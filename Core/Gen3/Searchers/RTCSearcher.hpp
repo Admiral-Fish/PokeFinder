@@ -29,7 +29,7 @@ class RTCSearcher
 {
 public:
     RTCSearcher();
-    void startSearch(u32 initialSeed, u32 targetSeed, u32 initialAdvances, u32 maxAdvances, const QDateTime &end);
+    void startSearch(u32 initialSeed, u32 targetSeed, u32 initialAdvances, u32 maxAdvances, const DateTime &end);
     void cancelSearch();
     std::vector<GameCubeRTCState> getResults();
 

@@ -163,7 +163,7 @@ void IDs3::rsSearch()
     }
     else
     {
-        seed = Utilities::calcGen3Seed(ui->dateTimeEdit->dateTime());
+        seed = Utilities::calcGen3Seed(ui->dateTimeEdit->getDateTime());
     }
     u32 initialAdvances = ui->textBoxRSStartingAdvance->getUInt();
     u32 maxAdvances = ui->textBoxRSMaxAdvances->getUInt();

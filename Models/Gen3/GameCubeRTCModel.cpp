@@ -37,7 +37,7 @@ QVariant GameCubeRTCModel::data(const QModelIndex &index, int role) const
         switch (index.column())
         {
         case 0:
-            return state.getDateTime();
+            return QString::fromStdString(state.getDateTime());
         case 1:
             return state.getAdvances();
         case 2:

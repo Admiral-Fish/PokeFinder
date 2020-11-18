@@ -21,10 +21,10 @@
 #define SEEDTOTIME4MODEL_HPP
 
 #include <Core/Enum/Game.hpp>
-#include <Core/Util/DateTime.hpp>
+#include <Core/Gen4/SeedTime.hpp>
 #include <Models/TableModel.hpp>
 
-class SeedtoTimeModel4 : public TableModel<DateTime>
+class SeedtoTimeModel4 : public TableModel<SeedTime>
 {
     Q_OBJECT
 public:
@@ -38,9 +38,9 @@ private:
     bool calibrate;
     Game version;
 
-    QStringList header1 = { tr("Seed"), tr("Date"), tr("Time"), tr("Delay"), tr("Calls"), tr("Roamer locations") };
-    QStringList header2 = { tr("Seed"), tr("Date"), tr("Time"), tr("Delay"), tr("Coin flips"), tr("Roamer locations") };
-    QStringList header3 = { tr("Date"), tr("Time"), tr("Delay") };
+    QStringList header1 = { tr("Seed"), tr("Date/Time"), tr("Delay"), tr("Calls"), tr("Roamer locations") };
+    QStringList header2 = { tr("Seed"), tr("Date/Time"), tr("Delay"), tr("Coin flips"), tr("Roamer locations") };
+    QStringList header3 = { tr("Date/Time"), tr("Delay") };
 };
 
 #endif // SEEDTOTIME4MODEL_HPP

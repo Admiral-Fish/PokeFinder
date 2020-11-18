@@ -233,8 +233,8 @@ void Event5::search()
 
     auto *searcher = new EventSearcher5(currentProfile);
 
-    QDate start = ui->dateEditSearcherStartDate->date();
-    QDate end = ui->dateEditSearcherEndDate->date();
+    Date start = ui->dateEditSearcherStartDate->getDate();
+    Date end = ui->dateEditSearcherEndDate->getDate();
 
     int maxProgress = Keypresses::getKeyPresses(currentProfile.getKeypresses(), currentProfile.getSkipLR()).size();
     maxProgress *= 86400 * (start.daysTo(end) + 1);

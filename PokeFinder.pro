@@ -1,8 +1,8 @@
 lessThan(QT_MAJOR_VERSION, 5):error("You need at least Qt 5.12 to build PokeFinder")
 equals(QT_MAJOR_VERSION, 5):lessThan(QT_MINOR_VERSION, 12):error("You need at least Qt 5.12 to build PokeFinder")
 
-QT += concurrent network widgets
-CONFIG += c++1z lrelease embed_translations
+QT += network widgets
+CONFIG += c++2a lrelease embed_translations
 QMAKE_LRELEASE_FLAGS = -nounfinished -removeidentical
 
 TARGET = PokeFinder
@@ -96,12 +96,6 @@ HEADERS += \
     Core/Enum/ShadowType.hpp \
     Core/Gen3/EncounterArea3.hpp \
     Core/Gen3/Encounters3.hpp \
-    Core/Gen3/States/EggState3.hpp \
-    Core/Gen3/States/GameCubeState.hpp \
-    Core/Gen3/States/GameCubeRTCState.hpp \
-    Core/Gen3/States/IDState3.hpp \
-    Core/Gen3/States/PIDIVState.hpp \
-    Core/Gen3/States/SeedTimeState3.hpp \
     Core/Gen3/Generators/EggGenerator3.hpp \
     Core/Gen3/Generators/GameCubeGenerator.hpp \
     Core/Gen3/Generators/IDGenerator3.hpp \
@@ -120,13 +114,17 @@ HEADERS += \
     Core/Gen3/Searchers/StationarySearcher3.hpp \
     Core/Gen3/Searchers/WildSearcher3.hpp \
     Core/Gen3/ShadowLock.hpp \
+    Core/Gen3/States/EggState3.hpp \
+    Core/Gen3/States/GameCubeRTCState.hpp \
+    Core/Gen3/States/GameCubeState.hpp \
+    Core/Gen3/States/IDState3.hpp \
+    Core/Gen3/States/PIDIVState.hpp \
+    Core/Gen3/States/SeedTimeState3.hpp \
     Core/Gen3/Tools/JirachiPatternCalculator.hpp \
     Core/Gen3/Tools/PIDIVCalculator.hpp \
     Core/Gen3/Tools/SeedTimeCalculator3.hpp \
     Core/Gen4/EncounterArea4.hpp \
     Core/Gen4/Encounters4.hpp \
-    Core/Gen4/States/EggState4.hpp \
-    Core/Gen4/States/IDState4.hpp \
     Core/Gen4/Generators/EggGenerator4.hpp \
     Core/Gen4/Generators/IDGenerator4.hpp \
     Core/Gen4/Generators/StationaryGenerator4.hpp \
@@ -138,16 +136,14 @@ HEADERS += \
     Core/Gen4/Searchers/IDSearcher4.hpp \
     Core/Gen4/Searchers/StationarySearcher4.hpp \
     Core/Gen4/Searchers/WildSearcher4.hpp \
+    Core/Gen4/SeedTime.hpp \
+    Core/Gen4/States/EggState4.hpp \
+    Core/Gen4/States/IDState4.hpp \
     Core/Gen4/States/WildState4.hpp \
     Core/Gen4/Tools/ChainedSIDCalc.hpp \
     Core/Gen5/EncounterArea5.hpp \
     Core/Gen5/Encounters5.hpp \
     Core/Gen5/Filters/HiddenGrottoFilter.hpp \
-    Core/Gen5/States/State5.hpp \
-    Core/Gen5/States/HiddenGrottoState.hpp \
-    Core/Gen5/States/IDState5.hpp \
-    Core/Gen5/States/SearcherState5.hpp \
-    Core/Gen5/States/StationaryState5.hpp \
     Core/Gen5/Generators/DreamRadarGenerator.hpp \
     Core/Gen5/Generators/EggGenerator5.hpp \
     Core/Gen5/Generators/EventGenerator5.hpp \
@@ -165,16 +161,15 @@ HEADERS += \
     Core/Gen5/Searchers/IDSearcher5.hpp \
     Core/Gen5/Searchers/ProfileSearcher5.hpp \
     Core/Gen5/Searchers/StationarySearcher5.hpp \
+    Core/Gen5/States/HiddenGrottoState.hpp \
+    Core/Gen5/States/IDState5.hpp \
+    Core/Gen5/States/SearcherState5.hpp \
+    Core/Gen5/States/State5.hpp \
+    Core/Gen5/States/StationaryState5.hpp \
     Core/Parents/Daycare.hpp \
     Core/Parents/EncounterArea.hpp \
-    Core/Parents/Filters/StateFilter.hpp \
     Core/Parents/Filters/IDFilter.hpp \
-    Core/Parents/States/EggState.hpp \
-    Core/Parents/States/State.hpp \
-    Core/Parents/States/IDState.hpp \
-    Core/Parents/States/ResearcherState.hpp \
-    Core/Parents/States/StationaryState.hpp \
-    Core/Parents/States/WildState.hpp \
+    Core/Parents/Filters/StateFilter.hpp \
     Core/Parents/Generators/EggGenerator.hpp \
     Core/Parents/Generators/Generator.hpp \
     Core/Parents/Generators/IDGenerator.hpp \
@@ -186,6 +181,12 @@ HEADERS += \
     Core/Parents/Searchers/StationarySearcher.hpp \
     Core/Parents/Searchers/WildSearcher.hpp \
     Core/Parents/Slot.hpp \
+    Core/Parents/States/EggState.hpp \
+    Core/Parents/States/IDState.hpp \
+    Core/Parents/States/ResearcherState.hpp \
+    Core/Parents/States/State.hpp \
+    Core/Parents/States/StationaryState.hpp \
+    Core/Parents/States/WildState.hpp \
     Core/RNG/LCRNG.hpp \
     Core/RNG/LCRNG64.hpp \
     Core/RNG/MT.hpp \
@@ -204,6 +205,8 @@ HEADERS += \
     Core/Util/Utilities.hpp \
     Forms/Controls/CheckList.hpp \
     Forms/Controls/ComboBox.hpp \
+    Forms/Controls/DateEdit.hpp \
+    Forms/Controls/DateTimeEdit.hpp \
     Forms/Controls/EggSettings.hpp \
     Forms/Controls/Filter.hpp \
     Forms/Controls/GraphicsPixmapItem.hpp \
@@ -277,12 +280,6 @@ HEADERS += \
 SOURCES += \
     Core/Gen3/EncounterArea3.cpp \
     Core/Gen3/Encounters3.cpp \
-    Core/Gen3/States/EggState3.cpp \
-    Core/Gen3/States/GameCubeState.cpp \
-    Core/Gen3/States/GameCubeRTCState.cpp \
-    Core/Gen3/States/IDState3.cpp \
-    Core/Gen3/States/PIDIVState.cpp \
-    Core/Gen3/States/SeedTimeState3.cpp \
     Core/Gen3/Generators/EggGenerator3.cpp \
     Core/Gen3/Generators/GameCubeGenerator.cpp \
     Core/Gen3/Generators/IDGenerator3.cpp \
@@ -301,13 +298,17 @@ SOURCES += \
     Core/Gen3/Searchers/StationarySearcher3.cpp \
     Core/Gen3/Searchers/WildSearcher3.cpp \
     Core/Gen3/ShadowLock.cpp \
+    Core/Gen3/States/EggState3.cpp \
+    Core/Gen3/States/GameCubeRTCState.cpp \
+    Core/Gen3/States/GameCubeState.cpp \
+    Core/Gen3/States/IDState3.cpp \
+    Core/Gen3/States/PIDIVState.cpp \
+    Core/Gen3/States/SeedTimeState3.cpp \
     Core/Gen3/Tools/JirachiPatternCalculator.cpp \
     Core/Gen3/Tools/PIDIVCalculator.cpp \
     Core/Gen3/Tools/SeedTimeCalculator3.cpp \
     Core/Gen4/EncounterArea4.cpp \
     Core/Gen4/Encounters4.cpp \
-    Core/Gen4/States/EggState4.cpp \
-    Core/Gen4/States/IDState4.cpp \
     Core/Gen4/Generators/EggGenerator4.cpp \
     Core/Gen4/Generators/IDGenerator4.cpp \
     Core/Gen4/Generators/StationaryGenerator4.cpp \
@@ -319,11 +320,13 @@ SOURCES += \
     Core/Gen4/Searchers/IDSearcher4.cpp \
     Core/Gen4/Searchers/StationarySearcher4.cpp \
     Core/Gen4/Searchers/WildSearcher4.cpp \
+    Core/Gen4/SeedTime.cpp \
+    Core/Gen4/States/EggState4.cpp \
+    Core/Gen4/States/IDState4.cpp \
     Core/Gen4/Tools/ChainedSIDCalc.cpp \
     Core/Gen5/EncounterArea5.cpp \
     Core/Gen5/Encounters5.cpp \
     Core/Gen5/Filters/HiddenGrottoFilter.cpp \
-    Core/Gen5/States/IDState5.cpp \
     Core/Gen5/Generators/DreamRadarGenerator.cpp \
     Core/Gen5/Generators/EggGenerator5.cpp \
     Core/Gen5/Generators/EventGenerator5.cpp \
@@ -341,16 +344,11 @@ SOURCES += \
     Core/Gen5/Searchers/IDSearcher5.cpp \
     Core/Gen5/Searchers/ProfileSearcher5.cpp \
     Core/Gen5/Searchers/StationarySearcher5.cpp \
+    Core/Gen5/States/IDState5.cpp \
     Core/Parents/Daycare.cpp \
     Core/Parents/EncounterArea.cpp \
-    Core/Parents/Filters/StateFilter.cpp \
     Core/Parents/Filters/IDFilter.cpp \
-    Core/Parents/States/EggState.cpp \
-    Core/Parents/States/State.cpp \
-    Core/Parents/States/IDState.cpp \
-    Core/Parents/States/ResearcherState.cpp \
-    Core/Parents/States/StationaryState.cpp \
-    Core/Parents/States/WildState.cpp \
+    Core/Parents/Filters/StateFilter.cpp \
     Core/Parents/Generators/EggGenerator.cpp \
     Core/Parents/Generators/Generator.cpp \
     Core/Parents/Generators/IDGenerator.cpp \
@@ -362,6 +360,12 @@ SOURCES += \
     Core/Parents/Searchers/StationarySearcher.cpp \
     Core/Parents/Searchers/WildSearcher.cpp \
     Core/Parents/Slot.cpp \
+    Core/Parents/States/EggState.cpp \
+    Core/Parents/States/IDState.cpp \
+    Core/Parents/States/ResearcherState.cpp \
+    Core/Parents/States/State.cpp \
+    Core/Parents/States/StationaryState.cpp \
+    Core/Parents/States/WildState.cpp \
     Core/RNG/MT.cpp \
     Core/RNG/RNGCache.cpp \
     Core/RNG/RNGEuclidean.cpp \
@@ -376,6 +380,8 @@ SOURCES += \
     Core/Util/Utilities.cpp \
     Forms/Controls/CheckList.cpp \
     Forms/Controls/ComboBox.cpp \
+    Forms/Controls/DateEdit.cpp \
+    Forms/Controls/DateTimeEdit.cpp \
     Forms/Controls/EggSettings.cpp \
     Forms/Controls/Filter.cpp \
     Forms/Controls/GraphicsPixmapItem.cpp \
