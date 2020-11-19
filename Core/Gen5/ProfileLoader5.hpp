@@ -25,6 +25,7 @@
 
 namespace ProfileLoader5
 {
+    void init(const std::string &location);
     std::vector<Profile5> getProfiles();
     void addProfile(const Profile5 &profile);
     void removeProfile(const Profile5 &remove);

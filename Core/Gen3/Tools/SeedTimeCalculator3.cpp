@@ -46,23 +46,27 @@ namespace SeedTimeCalculator3
     {
         std::vector<SeedTimeState3> states;
 
-        DateTime start(year, 1, 1);
-        DateTime end(year, 12, 31, 23, 59, 59);
+        constexpr Date start;
+        Date date(year, 1, 1);
+        Date end(year, 12, 31);
 
-        for (; start <= end; start.addSeconds(60))
+        for (; date <= end; date = date.addDays(1))
         {
-            auto parts = start.getDate().getParts();
-            u16 days = dateToDays(parts.at(0) - 2000, parts.at(1), parts.at(2));
+            // The if statement considering the year is to handle a bug the game has
+            // If the year is greater then 2000 it does not count the days in that year
+            u16 days = start.daysTo(date) - (year > 2000 ? 366 : 0) + 1;
 
-            auto time = start.getTime();
-            u8 hour = time.hour();
-            u8 minute = time.minute();
-
-            u32 v = 1440 * days + 960 * (hour / 10) + 60 * (hour % 10) + 16 * (minute / 10) + (minute % 10);
-            v = (v >> 16) ^ (v & 0xffff);
-            if (v == seed)
+            for (u8 hour = 0; hour < 24; hour++)
             {
-                states.emplace_back(start, advance);
+                for (u8 minute = 0; minute < 60; minute++)
+                {
+                    u32 v = 1440 * days + 960 * (hour / 10) + 60 * (hour % 10) + 16 * (minute / 10) + (minute % 10);
+                    v = (v >> 16) ^ (v & 0xffff);
+                    if (v == seed)
+                    {
+                        states.emplace_back(DateTime(date, Time(hour, minute, 0)), advance);
+                    }
+                }
             }
         }
 

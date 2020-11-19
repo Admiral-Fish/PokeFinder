@@ -179,8 +179,7 @@ void ProfileCalibrator5::clearTable()
 
 void ProfileCalibrator5::search()
 {
-    QDate date = ui->dateTimeEdit->date();
-    QTime time = ui->dateTimeEdit->time();
+    DateTime dt = ui->dateTimeEdit->getDateTime();
     int minSeconds = ui->spinBoxMinSeconds->value();
     int maxSeconds = ui->spinBoxMaxSeconds->value();
     u8 minVCount = ui->textBoxMinVCount->getUChar();
@@ -221,8 +220,8 @@ void ProfileCalibrator5::search()
                                      static_cast<u8>(ui->spinBoxMaxDef->value()), static_cast<u8>(ui->spinBoxMaxSpA->value()),
                                      static_cast<u8>(ui->spinBoxMaxSpD->value()), static_cast<u8>(ui->spinBoxMaxSpe->value()) };
 
-        searcher = new ProfileIVSearcher5(minIVs, maxIVs, date, time, minSeconds, maxSeconds, minVCount, maxVCount, minTimer0, maxTimer0,
-                                          minGxStat, maxGxStat, softReset, version, language, dsType, mac, keypress);
+        searcher = new ProfileIVSearcher5(minIVs, maxIVs, dt.getDate(), dt.getTime(), minSeconds, maxSeconds, minVCount, maxVCount,
+                                          minTimer0, maxTimer0, minGxStat, maxGxStat, softReset, version, language, dsType, mac, keypress);
     }
     else if (ui->tabWidgetType->currentIndex() == 1) // Needle Search
     {
@@ -267,15 +266,15 @@ void ProfileCalibrator5::search()
             }
         }
 
-        searcher
-            = new ProfileNeedleSearcher5(needles, unovaLink, memoryLink, date, time, minSeconds, maxSeconds, minVCount, maxVCount,
-                                         minTimer0, maxTimer0, minGxStat, maxGxStat, softReset, version, language, dsType, mac, keypress);
+        searcher = new ProfileNeedleSearcher5(needles, unovaLink, memoryLink, dt.getDate(), dt.getTime(), minSeconds, maxSeconds, minVCount,
+                                              maxVCount, minTimer0, maxTimer0, minGxStat, maxGxStat, softReset, version, language, dsType,
+                                              mac, keypress);
     }
     else // Seed search
     {
         u64 seed = ui->textBoxSeed->getULong();
-        searcher = new ProfileSeedSearcher5(seed, date, time, minSeconds, maxSeconds, minVCount, maxVCount, minTimer0, maxTimer0, minGxStat,
-                                            maxGxStat, softReset, version, language, dsType, mac, keypress);
+        searcher = new ProfileSeedSearcher5(seed, dt.getDate(), dt.getTime(), minSeconds, maxSeconds, minVCount, maxVCount, minTimer0,
+                                            maxTimer0, minGxStat, maxGxStat, softReset, version, language, dsType, mac, keypress);
     }
 
     int maxProgress = (maxSeconds - minSeconds + 1) * (maxVCount - minVCount + 1) * (maxTimer0 - minTimer0 + 1)

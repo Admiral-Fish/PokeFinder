@@ -18,104 +18,109 @@
  */
 
 #include "ProfileLoader4.hpp"
-#include <QFile>
-#include <QJsonArray>
-#include <QJsonDocument>
-#include <QJsonObject>
-#include <QSettings>
+#include <fstream>
+#include <nlohmann/json.hpp>
+
+namespace
+{
+    std::string path;
+}
 
 namespace ProfileLoader4
 {
     namespace
     {
-        Profile4 getProfile(const QJsonObject &object)
+        Profile4 getProfile(const nlohmann::json &j)
         {
-            QString name = object["name"].toString();
-            Game version = static_cast<Game>(object["version"].toInt());
-            u16 tid = static_cast<u16>(object["tid"].toInt());
-            u16 sid = static_cast<u16>(object["sid"].toInt());
-            Game dual = static_cast<Game>(object["dual"].toInt());
-            int radio = object["radio"].toInt();
-            bool radar = object["radar"].toBool();
-            bool swarm = object["swarm"].toBool();
+            std::string name = j["name"].get<std::string>();
+            Game version = j["version"].get<Game>();
+            u16 tid = j["tid"].get<u16>();
+            u16 sid = j["sid"].get<u16>();
+            Game dual = j["dual"].get<Game>();
+            int radio = j["radio"].get<int>();
+            bool radar = j["radar"].get<bool>();
+            bool swarm = j["swarm"].get<bool>();
 
             return Profile4(name, version, tid, sid, dual, radio, radar, swarm);
         }
 
-        QJsonObject getJson(const Profile4 &profile)
+        nlohmann::json getJson(const Profile4 &profile)
         {
-            QJsonObject data;
-            data["name"] = profile.getName();
-            data["version"] = static_cast<int>(profile.getVersion());
-            data["tid"] = profile.getTID();
-            data["sid"] = profile.getSID();
-            data["dual"] = static_cast<int>(profile.getDualSlot());
-            data["radio"] = profile.getRadio();
-            data["radar"] = profile.getRadar();
-            data["swarm"] = profile.getSwarm();
-            return data;
+            nlohmann::json j;
+            j["name"] = profile.getName();
+            j["version"] = profile.getVersion();
+            j["tid"] = profile.getTID();
+            j["sid"] = profile.getSID();
+            j["dual"] = profile.getDualSlot();
+            j["radio"] = profile.getRadio();
+            j["radar"] = profile.getRadar();
+            j["swarm"] = profile.getSwarm();
+            return j;
         }
+    }
+
+    void init(const std::string &location)
+    {
+        path = location;
     }
 
     std::vector<Profile4> getProfiles()
     {
-        std::vector<Profile4> profileList;
+        std::vector<Profile4> profiles;
 
-        QSettings setting;
-        QFile f(setting.value("settings/profiles").toString());
-        if (f.open(QIODevice::ReadOnly))
+        std::ifstream read(path);
+        if (read.is_open())
         {
-            QByteArray data = f.readAll();
+            nlohmann::json j;
+            read >> j;
+            read.close();
 
-            QJsonObject profiles(QJsonDocument::fromJson(data).object());
-            QJsonArray gen4 = profiles["gen4"].toArray();
-
-            std::transform(gen4.begin(), gen4.end(), std::back_inserter(profileList),
-                           [](const QJsonValueRef &val) { return getProfile(val.toObject()); });
+            const auto &gen4 = j["gen4"];
+            std::transform(gen4.begin(), gen4.end(), std::back_inserter(profiles), [](const nlohmann::json &j) { return getProfile(j); });
         }
 
-        return profileList;
+        return profiles;
     }
 
     void addProfile(const Profile4 &profile)
     {
-        QSettings setting;
-        QFile f(setting.value("settings/profiles").toString());
-        if (f.open(QIODevice::ReadWrite))
+        std::ifstream read(path);
+        if (read.is_open())
         {
-            QByteArray data = f.readAll();
+            nlohmann::json j;
+            read >> j;
+            read.close();
 
-            QJsonObject profiles(QJsonDocument::fromJson(data).object());
-            QJsonArray gen4 = profiles["gen4"].toArray();
+            auto &gen4 = j["gen4"];
+            gen4.emplace_back(getJson(profile));
 
-            gen4.append(getJson(profile));
-            profiles["gen4"] = gen4;
-
-            f.write(QJsonDocument(profiles).toJson());
+            std::ofstream write(path);
+            write << j.dump(4);
+            write.close();
         }
     }
 
     void removeProfile(const Profile4 &remove)
     {
-        QSettings setting;
-        QFile f(setting.value("settings/profiles").toString());
-        if (f.open(QIODevice::ReadWrite))
+        std::ifstream read(path);
+        if (read.is_open())
         {
-            QByteArray data = f.readAll();
+            nlohmann::json j;
+            read >> j;
+            read.close();
 
-            QJsonObject profiles(QJsonDocument::fromJson(data).object());
-            QJsonArray gen4 = profiles["gen4"].toArray();
-
-            for (int i = 0; i < gen4.size(); i++)
+            auto &gen4 = j["gen4"];
+            for (size_t i = 0; i < gen4.size(); i++)
             {
-                Profile4 profile = getProfile(gen4[i].toObject());
+                Profile4 profile = getProfile(gen4.at(i));
 
                 if (profile == remove)
                 {
-                    gen4.removeAt(i);
-                    profiles["gen4"] = gen4;
+                    gen4.erase(gen4.begin() + i);
 
-                    f.write(QJsonDocument(profiles).toJson());
+                    std::ofstream write(path);
+                    write << j.dump(4);
+                    write.close();
                     break;
                 }
             }
@@ -124,25 +129,25 @@ namespace ProfileLoader4
 
     void updateProfile(const Profile4 &update, const Profile4 &original)
     {
-        QSettings setting;
-        QFile f(setting.value("settings/profiles").toString());
-        if (f.open(QIODevice::ReadWrite))
+        std::ifstream read(path);
+        if (read.is_open())
         {
-            QByteArray data = f.readAll();
+            nlohmann::json j;
+            read >> j;
+            read.close();
 
-            QJsonObject profiles(QJsonDocument::fromJson(data).object());
-            QJsonArray gen4 = profiles["gen4"].toArray();
-
-            for (auto i = 0; i < gen4.size(); i++)
+            auto &gen4 = j["gen4"];
+            for (size_t i = 0; i < gen4.size(); i++)
             {
-                Profile4 profile = getProfile(gen4[i].toObject());
+                Profile4 profile = getProfile(gen4.at(i));
 
                 if (original == profile && original != update)
                 {
                     gen4[i] = getJson(update);
-                    profiles["gen4"] = gen4;
 
-                    f.write(QJsonDocument(profiles).toJson());
+                    std::ofstream write(path);
+                    write << j.dump(4);
+                    write.close();
                     break;
                 }
             }

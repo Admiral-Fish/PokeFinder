@@ -23,7 +23,7 @@
 #include <Core/Gen3/EncounterArea3.hpp>
 #include <Core/Gen3/Profile3.hpp>
 #include <Core/Parents/Slot.hpp>
-#include <QFile>
+#include <QResource>
 
 namespace Encounters3
 {
@@ -53,13 +53,8 @@ namespace Encounters3
                 break;
             }
 
-            QByteArray data;
-            QFile file(path);
-            if (file.open(QIODevice::ReadOnly))
-            {
-                data = file.readAll();
-                file.close();
-            }
+            QResource file(path);
+            QByteArray data = file.uncompressedData();
 
             QByteArrayList encounters;
             for (int i = 0; i < data.size(); i += size)

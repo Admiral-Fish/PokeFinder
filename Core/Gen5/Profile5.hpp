@@ -30,12 +30,12 @@ class Profile5 : public Profile
 
 public:
     Profile5();
-    Profile5(const QString &name, Game version, u16 tid, u16 sid, u64 mac, const std::vector<bool> &keypresses, u8 vcount, u8 gxstat,
+    Profile5(const std::string &name, Game version, u16 tid, u16 sid, u64 mac, const std::vector<bool> &keypresses, u8 vcount, u8 gxstat,
              u8 vframe, bool skipLR, u16 timer0Min, u16 timer0Max, bool softReset, bool memoryLink, bool shinyCharm, DSType dsType,
              Language language = Language::English);
     u64 getMac() const;
     std::vector<bool> getKeypresses() const;
-    QString getKeypressesString() const;
+    std::string getKeypressesString() const;
     u8 getVCount() const;
     u8 getGxStat() const;
     u8 getVFrame() const;
@@ -46,9 +46,9 @@ public:
     bool getMemoryLink() const;
     bool getShinyCharm() const;
     DSType getDSType() const;
-    QString getDSTypeString() const;
+    std::string getDSTypeString() const;
     Language getLanguage() const;
-    QString getLanguageString() const;
+    std::string getLanguageString() const;
 
 private:
     u64 mac;

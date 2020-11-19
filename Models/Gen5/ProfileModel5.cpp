@@ -37,11 +37,11 @@ QVariant ProfileModel5::data(const QModelIndex &index, int role) const
         switch (index.column())
         {
         case 0:
-            return profile.getName();
+            return QString::fromStdString(profile.getName());
         case 1:
-            return profile.getVersionString();
+            return QString::fromStdString(profile.getVersionString());
         case 2:
-            return profile.getLanguageString();
+            return QString::fromStdString(profile.getLanguageString());
         case 3:
             return QString::number(profile.getTID());
         case 4:
@@ -49,7 +49,7 @@ QVariant ProfileModel5::data(const QModelIndex &index, int role) const
         case 5:
             return QString::number(profile.getMac(), 16);
         case 6:
-            return profile.getDSTypeString();
+            return QString::fromStdString(profile.getDSTypeString());
         case 7:
             return QString::number(profile.getVCount(), 16);
         case 8:
@@ -59,7 +59,7 @@ QVariant ProfileModel5::data(const QModelIndex &index, int role) const
         case 10:
             return profile.getVFrame();
         case 11:
-            return profile.getKeypressesString();
+            return QString::fromStdString(profile.getKeypressesString());
         case 12:
             return profile.getSkipLR() ? tr("Yes") : tr("No");
         case 13:

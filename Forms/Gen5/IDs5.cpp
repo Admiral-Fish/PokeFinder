@@ -64,7 +64,7 @@ void IDs5::updateProfiles()
 
     for (const auto &profile : profiles)
     {
-        ui->comboBoxProfiles->addItem(profile.getName());
+        ui->comboBoxProfiles->addItem(QString::fromStdString(profile.getName()));
     }
 
     QSettings setting;
@@ -144,8 +144,8 @@ void IDs5::search()
         sid.emplace_back(ui->textBoxSID->getUShort());
     }
 
-    QDate start = ui->dateEditStart->date();
-    QDate end = ui->dateEditEnd->date();
+    Date start = ui->dateEditStart->getDate();
+    Date end = ui->dateEditEnd->getDate();
 
     IDFilter filter(tid, sid, {});
     IDGenerator5 generator(0, ui->textBoxMaxAdvances->getUInt(), filter);
@@ -184,7 +184,7 @@ void IDs5::find()
     model->clearModel();
 
     u16 tid = ui->textBoxSeedFinderTID->getUShort();
-    QDate date = ui->dateEdit->date();
+    Date date = ui->dateEdit->getDate();
     int hour = ui->spinBoxHour->value();
     int minute = ui->spinBoxMinute->value();
     int minSecond = ui->spinBoxMinSecond->value();
@@ -223,7 +223,7 @@ void IDs5::find()
                                                 : Utilities::initialAdvancesBW2ID(seed, save ? 2 : 3)));
             auto states = generator.generate(seed);
 
-            QDateTime dt(date, QTime(hour, minute, second));
+            DateTime dt(date, Time(hour, minute, second));
             for (auto &state : states)
             {
                 state.setDateTime(dt);
@@ -244,14 +244,14 @@ void IDs5::profileIndexChanged(int index)
         currentProfile = profiles.at(index);
 
         ui->labelProfileMACAddressValue->setText(QString::number(currentProfile.getMac(), 16));
-        ui->labelProfileDSTypeValue->setText(currentProfile.getDSTypeString());
+        ui->labelProfileDSTypeValue->setText(QString::fromStdString(currentProfile.getDSTypeString()));
         ui->labelProfileVCountValue->setText(QString::number(currentProfile.getVCount(), 16));
         ui->labelProfileTimer0Value->setText(QString::number(currentProfile.getTimer0Min(), 16) + "-"
                                              + QString::number(currentProfile.getTimer0Max(), 16));
         ui->labelProfileGxStatValue->setText(QString::number(currentProfile.getGxStat()));
         ui->labelProfileVFrameValue->setText(QString::number(currentProfile.getVFrame()));
-        ui->labelProfileKeypressesValue->setText(currentProfile.getKeypressesString());
-        ui->labelProfileGameValue->setText(currentProfile.getVersionString());
+        ui->labelProfileKeypressesValue->setText(QString::fromStdString(currentProfile.getKeypressesString()));
+        ui->labelProfileGameValue->setText(QString::fromStdString(currentProfile.getVersionString()));
     }
 }
 

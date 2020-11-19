@@ -38,7 +38,7 @@ ProfileEditor5::ProfileEditor5(const Profile5 &profile, QWidget *parent) : QDial
 
     setupModels();
 
-    ui->lineEditProfile->setText(profile.getName());
+    ui->lineEditProfile->setText(QString::fromStdString(profile.getName()));
     ui->textBoxTID->setText(QString::number(profile.getTID()));
     ui->textBoxSID->setText(QString::number(profile.getSID()));
     ui->textBoxMAC->setText(QString::number(profile.getMac(), 16));
@@ -148,7 +148,7 @@ void ProfileEditor5::okay()
         return;
     }
 
-    fresh = Profile5(ui->lineEditProfile->text(), static_cast<Game>(ui->comboBoxVersion->currentData().toInt()),
+    fresh = Profile5(ui->lineEditProfile->text().toStdString(), static_cast<Game>(ui->comboBoxVersion->currentData().toInt()),
                      ui->textBoxTID->getUShort(), ui->textBoxSID->getUShort(), ui->textBoxMAC->getULong(),
                      ui->comboBoxKeypresses->getChecked(), ui->textBoxVCount->getUChar(), ui->textBoxGxStat->getUChar(),
                      ui->textBoxVFrame->getUChar(), ui->checkBoxSkipLR->isChecked(), ui->textBoxTimer0Min->getUShort(),

@@ -17,6 +17,9 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+#include <Core/Gen3/ProfileLoader3.hpp>
+#include <Core/Gen4/ProfileLoader4.hpp>
+#include <Core/Gen5/ProfileLoader5.hpp>
 #include <Core/Util/Translator.hpp>
 #include <Forms/MainWindow.hpp>
 #include <QApplication>
@@ -63,6 +66,11 @@ int main(int argc, char *argv[])
 
     QSettings setting;
     validateSettings(setting);
+
+    std::string profilePath = setting.value("settings/profiles").toString().toStdString();
+    ProfileLoader3::init(profilePath);
+    ProfileLoader4::init(profilePath);
+    ProfileLoader5::init(profilePath);
 
     // Transfer profiles to new setup
     // TODO: remove in a future version

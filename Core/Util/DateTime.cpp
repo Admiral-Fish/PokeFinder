@@ -70,7 +70,9 @@ int Date::daysInMonth(int month, int year)
 
 bool Date::isLeapYear(int year)
 {
-    return ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0));
+    // Since we know the years are bound between 2000 and 2099, we can simplify this check
+    // return ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0));
+    return (year % 4) == 0;
 }
 
 int Date::weekDay() const
@@ -81,7 +83,16 @@ int Date::weekDay() const
 std::string Date::toString() const
 {
     auto parts = getParts();
-    return std::to_string(parts.at(1)) + "/" + std::to_string(parts.at(2)) + "/" + std::to_string(parts.at(0));
+
+    std::string y = std::to_string(parts.at(0));
+
+    std::string m = std::to_string(parts.at(1));
+    m.insert(m.begin(), 2 - m.size(), '0');
+
+    std::string d = std::to_string(parts.at(2));
+    d.insert(d.begin(), 2 - d.size(), '0');
+
+    return m + "/" + d + "/" + y;
 }
 
 bool Time::addSeconds(int seconds)
@@ -112,7 +123,16 @@ int Time::second() const
 
 std::string Time::toString() const
 {
-    return std::to_string(hour()) + ":" + std::to_string(minute()) + ":" + std::to_string(second());
+    std::string h = std::to_string(hour());
+    h.insert(h.begin(), 2 - h.size(), '0');
+
+    std::string m = std::to_string(minute());
+    m.insert(m.begin(), 2 - m.size(), '0');
+
+    std::string s = std::to_string(second());
+    s.insert(s.begin(), 2 - s.size(), '0');
+
+    return h + ":" + m + ":" + s;
 }
 
 DateTime::DateTime(int year, int month, int day, int hour, int minute, int second) :

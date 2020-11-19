@@ -23,8 +23,6 @@
 #include <map>
 #include <sstream>
 
-#include <QDebug>
-
 namespace
 {
     std::string language;
@@ -56,7 +54,6 @@ namespace
 
 namespace Translator
 {
-
     void init(const std::string &locale, const std::string &location)
     {
         language = locale;

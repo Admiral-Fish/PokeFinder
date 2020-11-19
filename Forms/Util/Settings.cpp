@@ -19,6 +19,9 @@
 
 #include "Settings.hpp"
 #include "ui_Settings.h"
+#include <Core/Gen3/ProfileLoader3.hpp>
+#include <Core/Gen4/ProfileLoader4.hpp>
+#include <Core/Gen5/ProfileLoader5.hpp>
 #include <QApplication>
 #include <QCryptographicHash>
 #include <QFileDialog>
@@ -177,6 +180,10 @@ void Settings::changeProfiles()
 
         QSettings setting;
         setting.setValue("settings/profiles", fileName);
+
+        ProfileLoader3::init(fileName.toStdString());
+        ProfileLoader4::init(fileName.toStdString());
+        ProfileLoader5::init(fileName.toStdString());
 
         ui->lineEditProfiles->setText(fileName);
     }

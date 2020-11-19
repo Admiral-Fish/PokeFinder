@@ -39,7 +39,7 @@ private:
     Game version;
 
     QStringList header1 = { tr("Seed"), tr("Date/Time"), tr("Delay"), tr("Calls"), tr("Roamer locations") };
-    QStringList header2 = { tr("Seed"), tr("Date/Time"), tr("Delay"), tr("Coin flips"), tr("Roamer locations") };
+    QStringList header2 = { tr("Seed"), tr("Date/Time"), tr("Delay"), tr("Coin flips") };
     QStringList header3 = { tr("Date/Time"), tr("Delay") };
 };
 

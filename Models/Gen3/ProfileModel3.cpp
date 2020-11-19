@@ -37,9 +37,9 @@ QVariant ProfileModel3::data(const QModelIndex &index, int role) const
         switch (index.column())
         {
         case 0:
-            return profile.getName();
+            return QString::fromStdString(profile.getName());
         case 1:
-            return profile.getVersionString();
+            return QString::fromStdString(profile.getVersionString());
         case 2:
             return profile.getTID();
         case 3:

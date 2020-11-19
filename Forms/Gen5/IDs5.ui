@@ -186,7 +186,7 @@
      </property>
      <layout class="QGridLayout" name="gridLayout_4">
       <item row="1" column="1" colspan="2">
-       <widget class="QDateEdit" name="dateEdit">
+       <widget class="DateEdit" name="dateEdit">
         <property name="maximumDateTime">
          <datetime>
           <hour>23</hour>
@@ -362,7 +362,7 @@
        </widget>
       </item>
       <item row="3" column="1">
-       <widget class="QDateEdit" name="dateEditStart">
+       <widget class="DateEdit" name="dateEditStart">
         <property name="maximumDateTime">
          <datetime>
           <hour>23</hour>
@@ -389,7 +389,7 @@
        </widget>
       </item>
       <item row="3" column="2">
-       <widget class="QDateEdit" name="dateEditEnd">
+       <widget class="DateEdit" name="dateEditEnd">
         <property name="maximumDateTime">
          <datetime>
           <hour>23</hour>
@@ -479,6 +479,11 @@
    <class>TableView</class>
    <extends>QTableView</extends>
    <header>Forms/Controls/TableView.hpp</header>
+  </customwidget>
+  <customwidget>
+   <class>DateEdit</class>
+   <extends>QDateEdit</extends>
+   <header>Forms/Controls/DateEdit.hpp</header>
   </customwidget>
  </customwidgets>
  <tabstops>

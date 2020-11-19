@@ -37,9 +37,9 @@ int SeedtoTimeModel4::columnCount(const QModelIndex & /*parent*/) const
 {
     if (calibrate)
     {
-        return (version & Game::HGSS) ? 6 : 5;
+        return (version & Game::HGSS) ? 5 : 4;
     }
-    return 3;
+    return 2;
 }
 
 QVariant SeedtoTimeModel4::data(const QModelIndex &index, int role) const

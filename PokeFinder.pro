@@ -275,7 +275,8 @@ HEADERS += \
     Models/Gen5/IDModel5.hpp \
     Models/Gen5/ProfileModel5.hpp \
     Models/TableModel.hpp \
-    Models/Util/ResearcherModel.hpp
+    Models/Util/ResearcherModel.hpp \
+    nlohmann/json.hpp
 
 SOURCES += \
     Core/Gen3/EncounterArea3.cpp \

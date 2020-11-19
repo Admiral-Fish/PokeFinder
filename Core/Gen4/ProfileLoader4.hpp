@@ -25,6 +25,7 @@
 
 namespace ProfileLoader4
 {
+    void init(const std::string &location);
     std::vector<Profile4> getProfiles();
     void addProfile(const Profile4 &profile);
     void removeProfile(const Profile4 &remove);

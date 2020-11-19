@@ -115,8 +115,7 @@ namespace Utilities
         const Date &date = dateTime.getDate();
         const Time &time = dateTime.getTime();
 
-        u32 d = date.daysTo(Date());
-        d = d > 365 ? d - 366 : d;
+        u32 d = Date().daysTo(date) - (date.year() > 2000 ? 366 : 0) + 1;
 
         u32 h = time.hour();
         u32 m = time.minute();

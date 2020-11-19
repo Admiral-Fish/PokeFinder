@@ -36,17 +36,17 @@ QVariant ProfileModel4::data(const QModelIndex &index, int role) const
         switch (index.column())
         {
         case 0:
-            return profile.getName();
+            return QString::fromStdString(profile.getName());
         case 1:
-            return profile.getVersionString();
+            return QString::fromStdString(profile.getVersionString());
         case 2:
             return profile.getTID();
         case 3:
             return profile.getSID();
         case 4:
-            return profile.getDualSlotString();
+            return QString::fromStdString(profile.getDualSlotString());
         case 5:
-            return profile.getRadioString();
+            return QString::fromStdString(profile.getRadioString());
         case 6:
             return profile.getRadar() ? tr("Yes") : tr("No");
         case 7:
