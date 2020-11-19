@@ -22,7 +22,7 @@
 #include <Core/Enum/Game.hpp>
 #include <Core/Gen5/Generators/IDGenerator5.hpp>
 #include <Core/Gen5/Keypresses.hpp>
-#include <Core/Gen5/ProfileLoader5.hpp>
+#include <Core/Parents/ProfileLoader.hpp>
 #include <Core/Gen5/Searchers/IDSearcher5.hpp>
 #include <Core/Parents/Filters/IDFilter.hpp>
 #include <Core/RNG/SHA1.hpp>

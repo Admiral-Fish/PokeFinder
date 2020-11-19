@@ -104,7 +104,6 @@ HEADERS += \
     Core/Gen3/Generators/WildGenerator3.hpp \
     Core/Gen3/LockInfo.hpp \
     Core/Gen3/Profile3.hpp \
-    Core/Gen3/ProfileLoader3.hpp \
     Core/Gen3/Searchers/ChannelSeedSearcher.hpp \
     Core/Gen3/Searchers/ColoSeedSearcher.hpp \
     Core/Gen3/Searchers/GalesSeedSearcher.hpp \
@@ -131,7 +130,6 @@ HEADERS += \
     Core/Gen4/Generators/WildGenerator4.hpp \
     Core/Gen4/HGSSRoamer.hpp \
     Core/Gen4/Profile4.hpp \
-    Core/Gen4/ProfileLoader4.hpp \
     Core/Gen4/Searchers/EggSearcher4.hpp \
     Core/Gen4/Searchers/IDSearcher4.hpp \
     Core/Gen4/Searchers/StationarySearcher4.hpp \
@@ -154,7 +152,6 @@ HEADERS += \
     Core/Gen5/Nazos.hpp \
     Core/Gen5/PGF.hpp \
     Core/Gen5/Profile5.hpp \
-    Core/Gen5/ProfileLoader5.hpp \
     Core/Gen5/Searchers/DreamRadarSearcher.hpp \
     Core/Gen5/Searchers/EggSearcher5.hpp \
     Core/Gen5/Searchers/EventSearcher5.hpp \
@@ -177,6 +174,7 @@ HEADERS += \
     Core/Parents/Generators/WildGenerator.hpp \
     Core/Parents/PersonalInfo.hpp \
     Core/Parents/Profile.hpp \
+    Core/Parents/ProfileLoader.hpp \
     Core/Parents/Searchers/Searcher.hpp \
     Core/Parents/Searchers/StationarySearcher.hpp \
     Core/Parents/Searchers/WildSearcher.hpp \
@@ -289,7 +287,6 @@ SOURCES += \
     Core/Gen3/Generators/WildGenerator3.cpp \
     Core/Gen3/LockInfo.cpp \
     Core/Gen3/Profile3.cpp \
-    Core/Gen3/ProfileLoader3.cpp \
     Core/Gen3/Searchers/ChannelSeedSearcher.cpp \
     Core/Gen3/Searchers/ColoSeedSearcher.cpp \
     Core/Gen3/Searchers/GalesSeedSearcher.cpp \
@@ -316,7 +313,6 @@ SOURCES += \
     Core/Gen4/Generators/WildGenerator4.cpp \
     Core/Gen4/HGSSRoamer.cpp \
     Core/Gen4/Profile4.cpp \
-    Core/Gen4/ProfileLoader4.cpp \
     Core/Gen4/Searchers/EggSearcher4.cpp \
     Core/Gen4/Searchers/IDSearcher4.cpp \
     Core/Gen4/Searchers/StationarySearcher4.cpp \
@@ -338,7 +334,6 @@ SOURCES += \
     Core/Gen5/Nazos.cpp \
     Core/Gen5/PGF.cpp \
     Core/Gen5/Profile5.cpp \
-    Core/Gen5/ProfileLoader5.cpp \
     Core/Gen5/Searchers/DreamRadarSearcher.cpp \
     Core/Gen5/Searchers/EggSearcher5.cpp \
     Core/Gen5/Searchers/EventSearcher5.cpp \
@@ -357,6 +352,7 @@ SOURCES += \
     Core/Parents/Generators/WildGenerator.cpp \
     Core/Parents/PersonalInfo.cpp \
     Core/Parents/Profile.cpp \
+    Core/Parents/ProfileLoader.cpp \
     Core/Parents/Searchers/Searcher.cpp \
     Core/Parents/Searchers/StationarySearcher.cpp \
     Core/Parents/Searchers/WildSearcher.cpp \

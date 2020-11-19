@@ -22,7 +22,7 @@
 #include <Core/Enum/Game.hpp>
 #include <Core/Enum/Method.hpp>
 #include <Core/Gen3/Generators/StationaryGenerator3.hpp>
-#include <Core/Gen3/ProfileLoader3.hpp>
+#include <Core/Parents/ProfileLoader.hpp>
 #include <Core/Gen3/Searchers/StationarySearcher3.hpp>
 #include <Core/Util/Translator.hpp>
 #include <Forms/Gen3/Profile/ProfileManager3.hpp>

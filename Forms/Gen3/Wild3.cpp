@@ -25,7 +25,7 @@
 #include <Core/Enum/Method.hpp>
 #include <Core/Gen3/Encounters3.hpp>
 #include <Core/Gen3/Generators/WildGenerator3.hpp>
-#include <Core/Gen3/ProfileLoader3.hpp>
+#include <Core/Parents/ProfileLoader.hpp>
 #include <Core/Gen3/Searchers/WildSearcher3.hpp>
 #include <Core/Parents/States/WildState.hpp>
 #include <Core/Util/Nature.hpp>

@@ -19,7 +19,7 @@
 
 #include "ProfileManager5.hpp"
 #include "ui_ProfileManager5.h"
-#include <Core/Gen5/ProfileLoader5.hpp>
+#include <Core/Parents/ProfileLoader.hpp>
 #include <Forms/Gen5/Profile/ProfileEditor5.hpp>
 #include <Models/Gen5/ProfileModel5.hpp>
 

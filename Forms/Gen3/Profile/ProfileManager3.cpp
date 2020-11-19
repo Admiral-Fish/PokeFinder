@@ -19,7 +19,7 @@
 
 #include "ProfileManager3.hpp"
 #include "ui_ProfileManager3.h"
-#include <Core/Gen3/ProfileLoader3.hpp>
+#include <Core/Parents/ProfileLoader.hpp>
 #include <Forms/Gen3/Profile/ProfileEditor3.hpp>
 #include <Models/Gen3/ProfileModel3.hpp>
 #include <QMessageBox>

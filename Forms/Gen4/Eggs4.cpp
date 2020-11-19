@@ -21,7 +21,7 @@
 #include "ui_Eggs4.h"
 #include <Core/Enum/Method.hpp>
 #include <Core/Gen4/Generators/EggGenerator4.hpp>
-#include <Core/Gen4/ProfileLoader4.hpp>
+#include <Core/Parents/ProfileLoader.hpp>
 #include <Core/Gen4/Searchers/EggSearcher4.hpp>
 #include <Core/Parents/Filters/StateFilter.hpp>
 #include <Core/Parents/States/EggState.hpp>

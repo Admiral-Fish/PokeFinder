@@ -20,7 +20,7 @@
 #include "Stationary5.hpp"
 #include "ui_Stationary5.h"
 #include <Core/Enum/Lead.hpp>
-#include <Core/Gen5/ProfileLoader5.hpp>
+#include <Core/Parents/ProfileLoader.hpp>
 #include <Core/Parents/States/StationaryState.hpp>
 #include <Core/Util/Translator.hpp>
 #include <Forms/Gen5/Profile/ProfileManager5.hpp>

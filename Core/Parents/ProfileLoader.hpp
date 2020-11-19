@@ -17,19 +17,41 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef PROFILELOADER3_HPP
-#define PROFILELOADER3_HPP
+#ifndef PROFILELOADER_HPP
+#define PROFILELOADER_HPP
 
 #include <Core/Gen3/Profile3.hpp>
+#include <Core/Gen4/Profile4.hpp>
+#include <Core/Gen5/Profile5.hpp>
 #include <vector>
+
+namespace ProfileLoader
+{
+    void init(const std::string &location);
+}
 
 namespace ProfileLoader3
 {
-    void init(const std::string &location);
     std::vector<Profile3> getProfiles();
     void addProfile(const Profile3 &profile);
     void removeProfile(const Profile3 &remove);
     void updateProfile(const Profile3 &update, const Profile3 &original);
 }
 
-#endif // PROFILELOADER3_HPP
+namespace ProfileLoader4
+{
+    std::vector<Profile4> getProfiles();
+    void addProfile(const Profile4 &profile);
+    void removeProfile(const Profile4 &remove);
+    void updateProfile(const Profile4 &update, const Profile4 &original);
+}
+
+namespace ProfileLoader5
+{
+    std::vector<Profile5> getProfiles();
+    void addProfile(const Profile5 &profile);
+    void removeProfile(const Profile5 &remove);
+    void updateProfile(const Profile5 &update, const Profile5 &original);
+}
+
+#endif // PROFILELOADER_HPP
