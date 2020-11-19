@@ -82,12 +82,11 @@ std::string Profile5::getKeypressesString() const
         }
         else if (keypresses.at(i))
         {
+            if (i != keypresses.size())
+            {
+                keys += ", ";
+            }
             keys += std::to_string(i);
-        }
-
-        if (i != keypresses.size() - 1)
-        {
-            keys += ", ";
         }
     }
     return keys;
