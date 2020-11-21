@@ -374,7 +374,7 @@ void SeedtoTime4::searchFlips()
 
     for (size_t i = 0; i < results.size(); i++)
     {
-        if (results.at(i))
+        if (results[i])
         {
             ui->tableViewDPPtCalibrate->selectRow(i);
         }
@@ -410,7 +410,7 @@ void SeedtoTime4::searchCalls()
 
     for (size_t i = 0; i < results.size(); i++)
     {
-        if (results.at(i))
+        if (results[i])
         {
             ui->tableViewHGSSCalibrate->selectRow(i);
         }

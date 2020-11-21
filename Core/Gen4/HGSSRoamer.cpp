@@ -53,15 +53,15 @@ QString HGSSRoamer::getRouteString() const
 {
     QString routes;
 
-    if (roamers.at(0))
+    if (roamers[0])
     {
         routes += QString("R: %1 ").arg(raikouRoute);
     }
-    if (roamers.at(1))
+    if (roamers[1])
     {
         routes += QString("E: %1 ").arg(enteiRoute);
     }
-    if (roamers.at(2))
+    if (roamers[2])
     {
         routes += QString("L: %1 ").arg(latiRoute);
     }
@@ -90,31 +90,31 @@ void HGSSRoamer::calculateRoamers()
     PokeRNG rng(seed);
     skips = 0;
 
-    if (roamers.at(0))
+    if (roamers[0])
     {
         do
         {
             skips++;
             raikouRoute = getRouteJ(rng.nextUShort());
-        } while (routes.at(0) == raikouRoute);
+        } while (routes[0] == raikouRoute);
     }
 
-    if (roamers.at(1))
+    if (roamers[1])
     {
         do
         {
             skips++;
             enteiRoute = getRouteJ(rng.nextUShort());
-        } while (routes.at(1) == enteiRoute);
+        } while (routes[1] == enteiRoute);
     }
 
-    if (roamers.at(2))
+    if (roamers[2])
     {
         do
         {
             skips++;
             latiRoute = getRouteK(rng.nextUShort());
-        } while (routes.at(2) == latiRoute);
+        } while (routes[2] == latiRoute);
     }
 }
 

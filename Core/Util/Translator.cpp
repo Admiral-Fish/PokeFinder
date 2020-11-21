@@ -77,7 +77,7 @@ namespace Translator
 
     std::string getNature(u8 nature)
     {
-        return natures.at(nature);
+        return natures[nature];
     }
 
     std::vector<std::string> getHiddenPowers()
@@ -87,12 +87,12 @@ namespace Translator
 
     std::string getHiddenPower(u8 power)
     {
-        return hiddenPowers.at(power);
+        return hiddenPowers[power];
     }
 
     std::string getSpecies(u16 specie)
     {
-        return species.at(specie - 1);
+        return species[specie - 1];
     }
 
     std::vector<std::string> getSpecies(const std::vector<u16> &nums)
@@ -100,14 +100,14 @@ namespace Translator
         std::vector<std::string> s;
         for (u16 num : nums)
         {
-            s.emplace_back(species.at(num - 1));
+            s.emplace_back(species[num - 1]);
         }
         return s;
     }
 
     std::string getGender(u8 gender)
     {
-        return genders.at(gender);
+        return genders[gender];
     }
 
     std::vector<std::string> getGenders()
@@ -147,7 +147,7 @@ namespace Translator
                 entry.emplace_back(token);
             }
 
-            map.emplace(std::stoi(entry.at(0)), entry.at(1));
+            map.emplace(std::stoi(entry[0]), entry[1]);
         }
 
         std::vector<std::string> locations;
@@ -161,7 +161,7 @@ namespace Translator
 
     std::string getKeypress(u8 keypress)
     {
-        return buttons.at(keypress);
+        return buttons[keypress];
     }
 
     std::string getKeypresses(u16 keypresses)
@@ -182,7 +182,7 @@ namespace Translator
                     result += " + ";
                 }
 
-                result += buttons.at(i);
+                result += buttons[i];
             }
         }
 

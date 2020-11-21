@@ -35,7 +35,7 @@ QVariant EventGeneratorModel5::data(const QModelIndex &index, int role) const
 {
     if (role == Qt::DisplayRole)
     {
-        const auto &state = model.at(index.row());
+        const auto &state = model[index.row()];
         int column = index.column();
         switch (column)
         {
@@ -84,7 +84,7 @@ QVariant EventGeneratorModel5::headerData(int section, Qt::Orientation orientati
 {
     if (role == Qt::DisplayRole && orientation == Qt::Horizontal)
     {
-        return header.at(section);
+        return header[section];
     }
     return QVariant();
 }
@@ -194,7 +194,7 @@ QVariant EventSearcherModel5::data(const QModelIndex &index, int role) const
 {
     if (role == Qt::DisplayRole)
     {
-        const auto &display = model.at(index.row());
+        const auto &display = model[index.row()];
         const auto &state = display.getState();
         int column = index.column();
         switch (column)
@@ -250,7 +250,7 @@ QVariant EventSearcherModel5::headerData(int section, Qt::Orientation orientatio
 {
     if (role == Qt::DisplayRole && orientation == Qt::Horizontal)
     {
-        return header.at(section);
+        return header[section];
     }
     return QVariant();
 }

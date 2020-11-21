@@ -32,7 +32,7 @@ QVariant ProfileModel4::data(const QModelIndex &index, int role) const
 {
     if (role == Qt::DisplayRole)
     {
-        const auto &profile = model.at(index.row());
+        const auto &profile = model[index.row()];
         switch (index.column())
         {
         case 0:
@@ -60,7 +60,7 @@ QVariant ProfileModel4::headerData(int section, Qt::Orientation orientation, int
 {
     if (role == Qt::DisplayRole && orientation == Qt::Horizontal)
     {
-        return header.at(section);
+        return header[section];
     }
     return QVariant();
 }

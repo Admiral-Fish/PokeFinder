@@ -46,7 +46,7 @@ QVariant SeedtoTimeModel4::data(const QModelIndex &index, int role) const
 {
     if (role == Qt::DisplayRole)
     {
-        const auto &state = model.at(index.row());
+        const auto &state = model[index.row()];
         if (calibrate)
         {
             switch (index.column())
@@ -87,9 +87,9 @@ QVariant SeedtoTimeModel4::headerData(int section, Qt::Orientation orientation, 
     {
         if (calibrate)
         {
-            return (version & Game::HGSS) ? header1.at(section) : header2.at(section);
+            return (version & Game::HGSS) ? header1[section] : header2[section];
         }
-        return header3.at(section);
+        return header3[section];
     }
     return QVariant();
 }

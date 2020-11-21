@@ -42,17 +42,17 @@ namespace
                 double stat;
                 if (i == 0)
                 {
-                    stat = std::floor(((2 * baseStats.at(i) + iv) * level) / 100.0) + level + 10;
+                    stat = std::floor(((2 * baseStats[i] + iv) * level) / 100.0) + level + 10;
                 }
                 else
                 {
-                    stat = (std::floor(((2 * baseStats.at(i) + iv) * level) / 100.0) + 5) * Nature::getNatureModifier(nature, i);
+                    stat = (std::floor(((2 * baseStats[i] + iv) * level) / 100.0) + 5) * Nature::getNatureModifier(nature, i);
                 }
 
-                if (static_cast<u16>(stat) == stats.at(i))
+                if (static_cast<u16>(stat) == stats[i])
                 {
-                    minIVs[i] = std::min(iv, minIVs.at(i));
-                    maxIVs[i] = std::max(iv, maxIVs.at(i));
+                    minIVs[i] = std::min(iv, minIVs[i]);
+                    maxIVs[i] = std::max(iv, maxIVs[i]);
                 }
             }
         }
@@ -68,7 +68,7 @@ namespace
 
             indexes.erase(std::find(indexes.begin(), indexes.end(), stat));
 
-            for (u8 i = minIVs.at(stat); i <= maxIVs.at(stat); i++)
+            for (u8 i = minIVs[stat]; i <= maxIVs[stat]; i++)
             {
                 if ((i % 5) == result)
                 {
@@ -80,7 +80,7 @@ namespace
 
         for (u8 i : indexes)
         {
-            for (u8 iv = minIVs.at(i); iv <= maxIVs.at(i); iv++)
+            for (u8 iv = minIVs[i]; iv <= maxIVs[i]; iv++)
             {
                 if (iv > characteristicHigh)
                 {
@@ -100,7 +100,7 @@ std::vector<std::vector<u8>> IVChecker::calculateIVRange(const std::vector<u8> &
     std::vector<std::vector<u8>> ivs(6);
     for (size_t i = 0; i < stats.size(); i++)
     {
-        auto current = calculateIVs(baseStats, stats.at(i), level.at(i), nature, characteristic);
+        auto current = calculateIVs(baseStats, stats[i], level[i], nature, characteristic);
 
         if (i == 0)
         {
@@ -111,8 +111,7 @@ std::vector<std::vector<u8>> IVChecker::calculateIVRange(const std::vector<u8> &
             std::vector<std::vector<u8>> temp(6);
             for (size_t j = 0; j < 6; j++)
             {
-                std::set_intersection(ivs.at(j).begin(), ivs.at(j).end(), current.at(j).begin(), current.at(j).end(),
-                                      std::back_inserter(temp[i]));
+                std::set_intersection(ivs[j].begin(), ivs[j].end(), current[j].begin(), current[j].end(), std::back_inserter(temp[i]));
             }
             ivs = temp;
         }
@@ -121,17 +120,17 @@ std::vector<std::vector<u8>> IVChecker::calculateIVRange(const std::vector<u8> &
     if (hiddenPower != 255)
     {
         std::vector<std::set<u8>> temp(6);
-        for (u8 hp : ivs.at(0))
+        for (u8 hp : ivs[0])
         {
-            for (u8 atk : ivs.at(1))
+            for (u8 atk : ivs[1])
             {
-                for (u8 def : ivs.at(2))
+                for (u8 def : ivs[2])
                 {
-                    for (u8 spa : ivs.at(3))
+                    for (u8 spa : ivs[3])
                     {
-                        for (u8 spd : ivs.at(4))
+                        for (u8 spd : ivs[4])
                         {
-                            for (u8 spe : ivs.at(5))
+                            for (u8 spe : ivs[5])
                             {
                                 u8 hpType
                                     = ((((hp & 1) + 2 * (atk & 1) + 4 * (def & 1) + 8 * (spe & 1) + 16 * (spa & 1) + 32 * (spd & 1)) * 15)
@@ -154,7 +153,7 @@ std::vector<std::vector<u8>> IVChecker::calculateIVRange(const std::vector<u8> &
 
         for (size_t i = 0; i < 6; i++)
         {
-            ivs[i].assign(temp.at(i).begin(), temp.at(i).end());
+            ivs[i].assign(temp[i].begin(), temp[i].end());
         }
     }
 

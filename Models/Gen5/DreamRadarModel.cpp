@@ -34,7 +34,7 @@ QVariant DreamRadarGeneratorModel5::data(const QModelIndex &index, int role) con
 {
     if (role == Qt::DisplayRole)
     {
-        const auto &state = model.at(index.row());
+        const auto &state = model[index.row()];
         int column = index.column();
         switch (column)
         {
@@ -82,7 +82,7 @@ QVariant DreamRadarGeneratorModel5::headerData(int section, Qt::Orientation orie
 {
     if (role == Qt::DisplayRole && orientation == Qt::Horizontal)
     {
-        return header.at(section);
+        return header[section];
     }
     return QVariant();
 }
@@ -192,7 +192,7 @@ QVariant DreamRadarSearcherModel5::data(const QModelIndex &index, int role) cons
 {
     if (role == Qt::DisplayRole)
     {
-        const auto &display = model.at(index.row());
+        const auto &display = model[index.row()];
         const auto &state = display.getState();
         int column = index.column();
         switch (column)
@@ -247,7 +247,7 @@ QVariant DreamRadarSearcherModel5::headerData(int section, Qt::Orientation orien
 {
     if (role == Qt::DisplayRole && orientation == Qt::Horizontal)
     {
-        return header.at(section);
+        return header[section];
     }
     return QVariant();
 }

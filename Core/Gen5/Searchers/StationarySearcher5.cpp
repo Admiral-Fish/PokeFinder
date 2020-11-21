@@ -106,7 +106,7 @@ void StationarySearcher5::search(const Date &start, const Date &end)
 
             for (size_t i = 0; i < values.size(); i++)
             {
-                sha.setButton(values.at(i));
+                sha.setButton(values[i]);
 
                 for (u8 hour = 0; hour < 24; hour++)
                 {
@@ -127,8 +127,8 @@ void StationarySearcher5::search(const Date &start, const Date &end)
                             {
                                 for (size_t j = 0; j < ivMap.size(); j++)
                                 {
-                                    auto it = ivMap.at(j).find(seed >> 32);
-                                    if (it != ivMap.at(j).end())
+                                    auto it = ivMap[j].find(seed >> 32);
+                                    if (it != ivMap[j].end())
                                     {
                                         StationaryState5 state;
                                         state.setIVs(it->second);
@@ -152,7 +152,7 @@ void StationarySearcher5::search(const Date &start, const Date &end)
                             {
                                 // ivState.setDateTime(DateTime(date, Time(hour, minute, second)));
                                 // ivState.setInitialSeed(seed);
-                                // ivState.setButtons(buttons.at(i));
+                                // ivState.setButtons(buttons[i]);
                                 // ivState.setTimer0(timer0);
 
                                 if (includePID)

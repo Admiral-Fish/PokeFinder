@@ -34,7 +34,7 @@ QVariant GameCubeGeneratorModel::data(const QModelIndex &index, int role) const
 {
     if (role == Qt::DisplayRole)
     {
-        const auto &state = model.at(index.row());
+        const auto &state = model[index.row()];
         int column = index.column();
         switch (column)
         {
@@ -73,7 +73,7 @@ QVariant GameCubeGeneratorModel::headerData(int section, Qt::Orientation orienta
 {
     if (role == Qt::DisplayRole && orientation == Qt::Horizontal)
     {
-        return header.at(section);
+        return header[section];
     }
     return QVariant();
 }
@@ -191,7 +191,7 @@ QVariant GameCubeSearcherModel::data(const QModelIndex &index, int role) const
 {
     if (role == Qt::DisplayRole)
     {
-        const auto &state = model.at(index.row());
+        const auto &state = model[index.row()];
         switch (index.column())
         {
         case 0:
@@ -244,7 +244,7 @@ QVariant GameCubeSearcherModel::headerData(int section, Qt::Orientation orientat
 {
     if (role == Qt::DisplayRole && orientation == Qt::Horizontal)
     {
-        return header.at(section);
+        return header[section];
     }
     return QVariant();
 }

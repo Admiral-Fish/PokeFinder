@@ -372,7 +372,7 @@ bool ShadowLock::ereader(u32 seed, u32 readerPID)
 
 void ShadowLock::switchLock(u8 lockNum, Method version)
 {
-    auto team = ShadowTeam::loadShadowTeams(version).at(lockNum);
+    auto team = ShadowTeam::loadShadowTeams(version)[lockNum];
 
     locks = team.getLocks();
     type = team.getType();

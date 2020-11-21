@@ -22,17 +22,17 @@ int Date::daysTo(const Date &other) const
 
 int Date::year() const
 {
-    return getParts().at(0);
+    return getParts()[0];
 }
 
 int Date::month() const
 {
-    return getParts().at(1);
+    return getParts()[1];
 }
 
 int Date::day() const
 {
-    return getParts().at(2);
+    return getParts()[2];
 }
 
 int Date::dayOfWeek() const
@@ -84,12 +84,12 @@ std::string Date::toString() const
 {
     auto parts = getParts();
 
-    std::string y = std::to_string(parts.at(0));
+    std::string y = std::to_string(parts[0]);
 
-    std::string m = std::to_string(parts.at(1));
+    std::string m = std::to_string(parts[1]);
     m.insert(m.begin(), 2 - m.size(), '0');
 
-    std::string d = std::to_string(parts.at(2));
+    std::string d = std::to_string(parts[2]);
     d.insert(d.begin(), 2 - d.size(), '0');
 
     return m + "/" + d + "/" + y;

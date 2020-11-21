@@ -18,7 +18,7 @@
  */
 
 #include "PersonalInfo.hpp"
-#include <QResource>
+#include <Core/Resources/Resources.hpp>
 
 PersonalInfo::PersonalInfo(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, u8 gender, u16 ability1, u16 ability2, u16 abilityH, u8 formCount,
                            u16 formStatIndex) :
@@ -39,53 +39,55 @@ PersonalInfo::PersonalInfo(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, u8 gen
 
 std::vector<PersonalInfo> PersonalInfo::loadPersonal(u8 gen)
 {
-    QString path;
-    int size = 0;
+    const u8 *data;
+    int size;
+    int offset;
+
     if (gen == 3)
     {
-        path = ":/personal/personal3.bin";
-        size = 9;
+        data = personal3;
+        size = 3483;
+        offset = 9;
     }
     else if (gen == 4)
     {
-        path = ":/personal/personal4.bin";
-        size = 12;
+        data = personal4;
+        size = 6096;
+        offset = 12;
     }
-    else if (gen == 5)
+    else
     {
-        path = ":/personal/personal5.bin";
-        size = 13;
+        data = personal5;
+        size = 9217;
+        offset = 13;
     }
-
-    QResource file(path);
-    QByteArray data = file.uncompressedData();
 
     std::vector<PersonalInfo> pokemon;
-    for (auto i = 0; i < data.size(); i += size)
+    for (int i = 0; i < size; i += offset)
     {
-        u8 hp = static_cast<u8>(data[i]);
-        u8 atk = static_cast<u8>(data[i + 1]);
-        u8 def = static_cast<u8>(data[i + 2]);
-        u8 spe = static_cast<u8>(data[i + 3]);
-        u8 spa = static_cast<u8>(data[i + 4]);
-        u8 spd = static_cast<u8>(data[i + 5]);
-        u8 gender = static_cast<u8>(data[i + 6]);
-        u16 ability1 = data.mid(i + 7, 1).toHex().toUShort(nullptr, 16);
-        u16 ability2 = data.mid(i + 8, 1).toHex().toUShort(nullptr, 16);
+        u8 hp = data[i];
+        u8 atk = data[i + 1];
+        u8 def = data[i + 2];
+        u8 spe = data[i + 3];
+        u8 spa = data[i + 4];
+        u8 spd = data[i + 5];
+        u8 gender = data[i + 6];
+        u16 ability1 = data[i + 7];
+        u16 ability2 = data[i + 8];
         u8 formCount = 1;
         u16 abilityH = 0;
         u16 formStatIndex = 0;
 
         if (gen == 4)
         {
-            formCount = static_cast<u8>(data[i + 9]);
-            formStatIndex = data.mid(i + 10, 2).toHex().toUShort(nullptr, 16);
+            formCount = data[i + 9];
+            formStatIndex = static_cast<u16>(data[i + 10] << 8) | data[i + 11];
         }
         else if (gen == 5)
         {
-            abilityH = data.mid(i + 9, 1).toHex().toUShort(nullptr, 16);
-            formCount = static_cast<u8>(data[i + 10]);
-            formStatIndex = data.mid(i + 11, 2).toHex().toUShort(nullptr, 16);
+            abilityH = data[i + 9];
+            formCount = data[i + 10];
+            formStatIndex = static_cast<u16>(data[i + 11] << 8) | data[i + 12];
         }
 
         pokemon.emplace_back(hp, atk, def, spa, spd, spe, gender, ability1, ability2, abilityH, formCount, formStatIndex);

@@ -99,7 +99,7 @@ void GalesSeedSearcher::search(u32 start, u32 end)
 {
     for (u32 low = start; low < end; low++)
     {
-        for (u32 high = criteria.at(0); high < 0x10000; high += 5)
+        for (u32 high = criteria[0]; high < 0x10000; high += 5)
         {
             if (!searching)
             {
@@ -148,13 +148,13 @@ bool GalesSeedSearcher::searchSeed(XDRNG &rng)
     rng.next();
 
     u8 playerIndex = rng.nextUShort() % 5;
-    if (playerIndex != criteria.at(0))
+    if (playerIndex != criteria[0])
     {
         return false;
     }
 
     u8 enemyIndex = rng.nextUShort() % 5;
-    if (enemyIndex != criteria.at(1))
+    if (enemyIndex != criteria[1])
     {
         return false;
     }
@@ -173,7 +173,7 @@ bool GalesSeedSearcher::searchSeed(XDRNG &rng)
         generatePokemon(rng);
 
         u16 hp = (generateEVs(rng) >> 2) + hpIV + hpStat[enemyIndex + 5][i];
-        if (hp != criteria.at(4 + i))
+        if (hp != criteria[4 + i])
         {
             return false;
         }
@@ -193,7 +193,7 @@ bool GalesSeedSearcher::searchSeed(XDRNG &rng)
         generatePokemon(rng);
 
         u16 hp = (generateEVs(rng) >> 2) + hpIV + hpStat[playerIndex][i];
-        if (hp != criteria.at(2 + i))
+        if (hp != criteria[2 + i])
         {
             return false;
         }

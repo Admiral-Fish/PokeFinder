@@ -21,13 +21,13 @@
 #define PGF_HPP
 
 #include <Core/Util/Global.hpp>
-#include <QByteArray>
+#include <array>
 
 class PGF
 {
 public:
     PGF() = default;
-    explicit PGF(const QByteArray &data);
+    explicit PGF(const std::array<u8, 204> &data);
     PGF(u16 tid, u16 sid, u16 species, u8 nature, u8 gender, u8 abilityType, u8 pidType, u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe,
         bool egg);
     u16 getTID() const;

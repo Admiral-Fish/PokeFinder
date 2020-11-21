@@ -34,7 +34,7 @@ QVariant IDModel5::data(const QModelIndex &index, int role) const
 {
     if (role == Qt::DisplayRole)
     {
-        auto state = model.at(index.row());
+        auto state = model[index.row()];
         switch (index.column())
         {
         case 0:
@@ -60,7 +60,7 @@ QVariant IDModel5::headerData(int section, Qt::Orientation orientation, int role
 {
     if (role == Qt::DisplayRole && orientation == Qt::Horizontal)
     {
-        return header.at(section);
+        return header[section];
     }
     return QVariant();
 }

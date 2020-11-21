@@ -35,7 +35,7 @@ void ChainedSIDCalc::addEntry(const std::vector<u8> &ivs, u8 nature, u8 ability,
     std::vector<std::pair<u32, u32>> pids;
 
     RNGCache cache(Method::Method1);
-    auto seeds = cache.recoverLower16BitsIV(ivs.at(0), ivs.at(1), ivs.at(2), ivs.at(3), ivs.at(4), ivs.at(5));
+    auto seeds = cache.recoverLower16BitsIV(ivs[0], ivs[1], ivs[2], ivs[3], ivs[4], ivs[5]);
 
     for (const auto seed : seeds)
     {

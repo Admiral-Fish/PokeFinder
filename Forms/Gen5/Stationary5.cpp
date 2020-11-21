@@ -217,7 +217,7 @@ void Stationary5::search()
    int maxProgress = 1;
    for (int i = 0; i < 6; i++)
    {
-       maxProgress *= max.at(i) - min.at(i) + 1;
+       maxProgress *= max[i] - min[i] + 1;
    }
 
    ui->progressBar->setValue(0);
@@ -241,7 +241,7 @@ void Stationary5::profileIndexChanged(int index)
 {
     if (index >= 0)
     {
-        currentProfile = profiles.at(index);
+        currentProfile = profiles[index];
 
         ui->labelProfileTIDValue->setText(QString::number(currentProfile.getTID()));
         ui->labelProfileSIDValue->setText(QString::number(currentProfile.getSID()));

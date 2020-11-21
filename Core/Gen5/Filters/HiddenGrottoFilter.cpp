@@ -28,17 +28,17 @@ HiddenGrottoFilter::HiddenGrottoFilter(const std::vector<bool> &groups, const st
 
 bool HiddenGrottoFilter::compareState(const HiddenGrottoState &state)
 {
-    if (!groups.at(state.getGroup()))
+    if (!groups[state.getGroup()])
     {
         return false;
     }
 
-    if (!encounterSlots.at(state.getSlot()))
+    if (!encounterSlots[state.getSlot()])
     {
         return false;
     }
 
-    if (!genders.at(state.getGender()))
+    if (!genders[state.getGender()])
     {
         return false;
     }

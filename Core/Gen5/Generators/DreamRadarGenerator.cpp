@@ -32,7 +32,7 @@ DreamRadarGenerator::DreamRadarGenerator(u32 initialAdvances, u32 maxAdvances, u
 {
     for (size_t i = 0; i < radarSlots.size(); i++)
     {
-        auto slot = radarSlots.at(i);
+        auto slot = radarSlots[i];
         if (slot.type == 0)
         {
             pidAdvances += 5;

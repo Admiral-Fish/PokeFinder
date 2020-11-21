@@ -98,7 +98,7 @@ void GameCubeSeedFinder::updateGales(const std::vector<u32> &seeds)
     ui->labelGalesRound->setText(tr("Round #") + QString::number(++galesRound));
     if (galeSeeds.size() == 1)
     {
-        QString seed = QString::number(galeSeeds.at(0), 16).toUpper();
+        QString seed = QString::number(galeSeeds[0], 16).toUpper();
         ui->labelGalesResults->setText(tr("Seed: ") + seed);
         QMessageBox info(QMessageBox::Question, tr("Seed found"), tr("Your seed is %1. Copy to clipboard?").arg(seed),
                          QMessageBox::Yes | QMessageBox::No);
@@ -124,7 +124,7 @@ void GameCubeSeedFinder::updateColo(const std::vector<u32> &seeds)
     ui->labelColoRound->setText(tr("Round #") + QString::number(++coloRound));
     if (coloSeeds.size() == 1)
     {
-        QString seed = QString::number(coloSeeds.at(0), 16).toUpper();
+        QString seed = QString::number(coloSeeds[0], 16).toUpper();
         ui->labelColoResults->setText(tr("Seed: ") + seed);
         QMessageBox info(QMessageBox::Question, tr("Seed found"), tr("Your seed is %1. Copy to clipboard?").arg(seed),
                          QMessageBox::Yes | QMessageBox::No);
@@ -155,7 +155,7 @@ void GameCubeSeedFinder::updateChannel(const std::vector<u32> &seeds)
         QString seed = "";
         for (size_t i = 0; i < seeds.size(); i++)
         {
-            seed += QString::number(seeds.at(i), 16).toUpper();
+            seed += QString::number(seeds[i], 16).toUpper();
             if (i != seeds.size() - 1)
             {
                 seed += ", ";

@@ -355,7 +355,7 @@ void Researcher::generate()
 
     for (int i = 0; i < 10; i++)
     {
-        if (calcCustom.at(i) && !pass.at(i))
+        if (calcCustom[i] && !pass[i])
         {
             QMessageBox error;
             error.setText(tr("You must check the Hex box in order to use Hex values."));
@@ -396,20 +396,20 @@ void Researcher::generate()
     {
         ResearcherState state(rng64Bit, cnt + initialAdvances);
 
-        state.setState(rngStates.at(cnt));
+        state.setState(rngStates[cnt]);
 
         for (u8 j = 0; j < 10; j++)
         {
-            if (calcCustom.at(j))
+            if (calcCustom[j])
             {
-                u64 temp = getCustom(textL.at(j), state, states);
+                u64 temp = getCustom(textL[j], state, states);
 
                 if (textR[j] != tr("None"))
                 {
-                    customRValue[j] = getCustom(textR.at(j), state, states);
+                    customRValue[j] = getCustom(textR[j], state, states);
                 }
 
-                state.setCustom(j, calculators.at(j)(temp, customRValue.at(j)));
+                state.setCustom(j, calculators[j](temp, customRValue[j]));
             }
         }
         states.emplace_back(state);

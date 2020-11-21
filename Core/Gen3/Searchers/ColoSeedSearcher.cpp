@@ -109,7 +109,7 @@ void ColoSeedSearcher::search(u32 start, u32 end)
 {
     for (u32 low = start; low < end; low++)
     {
-        for (u32 high = criteria.at(0); high < 0x10000; high += 8)
+        for (u32 high = criteria[0]; high < 0x10000; high += 8)
         {
             if (!searching)
             {
@@ -118,9 +118,7 @@ void ColoSeedSearcher::search(u32 start, u32 end)
 
             // Mimic no duplicate enemy and trainer party
             XDRNGR reverse((high << 16) | low);
-            while ((reverse.nextUShort() & 7) == criteria.at(0))
-            {
-            }
+            while ((reverse.nextUShort() & 7) == criteria[0]) { }
 
             XDRNG rng(reverse.next());
             if (searchSeed(rng))
@@ -165,7 +163,7 @@ bool ColoSeedSearcher::searchSeed(XDRNG &rng)
         playerIndex = rng.nextUShort() & 7;
     } while (enemyIndex == playerIndex);
 
-    if (playerIndex != criteria.at(0))
+    if (playerIndex != criteria[0])
     {
         return false;
     }
@@ -185,7 +183,7 @@ bool ColoSeedSearcher::searchSeed(XDRNG &rng)
     }
 
     u8 playerName = rng.nextUShort() % 3;
-    if (playerName != criteria.at(1))
+    if (playerName != criteria[1])
     {
         return false;
     }

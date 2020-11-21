@@ -1,22 +1,4 @@
 <RCC>
-    <qresource prefix="/encounters">
-        <file alias="ruby.bin">Core/Resources/Encounters/Gen3/ruby.bin</file>
-        <file alias="sapphire.bin">Core/Resources/Encounters/Gen3/sapphire.bin</file>
-        <file alias="firered.bin">Core/Resources/Encounters/Gen3/firered.bin</file>
-        <file alias="leafgreen.bin">Core/Resources/Encounters/Gen3/leafgreen.bin</file>
-        <file alias="emerald.bin">Core/Resources/Encounters/Gen3/emerald.bin</file>
-        <file alias="gales.bin">Core/Resources/Encounters/Gen3/gales.bin</file>
-        <file alias="colo.bin">Core/Resources/Encounters/Gen3/colo.bin</file>
-        <file alias="diamond.bin">Core/Resources/Encounters/Gen4/diamond.bin</file>
-        <file alias="pearl.bin">Core/Resources/Encounters/Gen4/pearl.bin</file>
-        <file alias="platinum.bin">Core/Resources/Encounters/Gen4/platinum.bin</file>
-        <file alias="heartgold.bin">Core/Resources/Encounters/Gen4/heartgold.bin</file>
-        <file alias="soulsilver.bin">Core/Resources/Encounters/Gen4/soulsilver.bin</file>
-        <file alias="black.bin">Core/Resources/Encounters/Gen5/black.bin</file>
-        <file alias="black2.bin">Core/Resources/Encounters/Gen5/black2.bin</file>
-        <file alias="white.bin">Core/Resources/Encounters/Gen5/white.bin</file>
-        <file alias="white2.bin">Core/Resources/Encounters/Gen5/white2.bin</file>
-    </qresource>
     <qresource prefix="/images">
         <file alias="pokefinder.ico">Images/pokefinder.ico</file>
         <file alias="heads.png">Images/heads.png</file>
@@ -31,11 +13,6 @@
         <file alias="spinda_spot2.png">Images/spinda_spot2.png</file>
         <file alias="spinda_spot3.png">Images/spinda_spot3.png</file>
         <file alias="spinda_spot4.png">Images/spinda_spot4.png</file>
-    </qresource>
-    <qresource prefix="/personal">
-        <file alias="personal3.bin">Core/Resources/Personal/Gen3/personal3.bin</file>
-        <file alias="personal4.bin">Core/Resources/Personal/Gen4/personal4.bin</file>
-        <file alias="personal5.bin">Core/Resources/Personal/Gen5/personal5.bin</file>
     </qresource>
     <qresource prefix="/text">
         <file alias="characteristic_de.txt">Core/Resources/Text/de/characteristic_de.txt</file>

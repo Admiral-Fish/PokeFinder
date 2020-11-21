@@ -54,7 +54,7 @@ QVariant StationaryGeneratorModel4::data(const QModelIndex &index, int role) con
 {
     if (role == Qt::DisplayRole)
     {
-        const auto &state = model.at(index.row());
+        const auto &state = model[index.row()];
         int column = getColumn(index.column());
         switch (column)
         {
@@ -104,7 +104,7 @@ QVariant StationaryGeneratorModel4::headerData(int section, Qt::Orientation orie
     {
         section = getColumn(section);
 
-        return header.at(section);
+        return header[section];
     }
     return QVariant();
 }
@@ -232,7 +232,7 @@ QVariant StationarySearcherModel4::data(const QModelIndex &index, int role) cons
 {
     if (role == Qt::DisplayRole)
     {
-        const auto &state = model.at(index.row());
+        const auto &state = model[index.row()];
         int column = getColumn(index.column());
         switch (column)
         {
@@ -295,7 +295,7 @@ QVariant StationarySearcherModel4::headerData(int section, Qt::Orientation orien
     if (role == Qt::DisplayRole && orientation == Qt::Horizontal)
     {
         section = getColumn(section);
-        return header.at(section);
+        return header[section];
     }
     return QVariant();
 }

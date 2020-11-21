@@ -221,8 +221,7 @@ void EncounterLookup::find()
     {
         QList<QStandardItem *> row;
         QStringList split = encounter.second.split('/');
-        row << new QStandardItem(QString::fromStdString(locationNames[i++])) << new QStandardItem(split.at(0))
-            << new QStandardItem(split.at(1));
+        row << new QStandardItem(QString::fromStdString(locationNames[i++])) << new QStandardItem(split[0]) << new QStandardItem(split[1]);
         model->appendRow(row);
     }
 }

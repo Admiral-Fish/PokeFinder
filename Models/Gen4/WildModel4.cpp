@@ -53,7 +53,7 @@ QVariant WildGeneratorModel4::data(const QModelIndex &index, int role) const
 {
     if (role == Qt::DisplayRole)
     {
-        const auto &state = model.at(index.row());
+        const auto &state = model[index.row()];
         int column = getColumn(index.column());
         switch (column)
         {
@@ -109,7 +109,7 @@ QVariant WildGeneratorModel4::headerData(int section, Qt::Orientation orientatio
     {
         section = getColumn(section);
 
-        return header.at(section);
+        return header[section];
     }
     return QVariant();
 }
@@ -242,7 +242,7 @@ QVariant WildSearcherModel4::data(const QModelIndex &index, int role) const
 {
     if (role == Qt::DisplayRole)
     {
-        const auto &state = model.at(index.row());
+        const auto &state = model[index.row()];
         int column = getColumn(index.column());
         switch (column)
         {
@@ -310,7 +310,7 @@ QVariant WildSearcherModel4::headerData(int section, Qt::Orientation orientation
     {
         section = getColumn(section);
 
-        return header.at(section);
+        return header[section];
     }
     return QVariant();
 }

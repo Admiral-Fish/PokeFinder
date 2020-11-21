@@ -93,7 +93,7 @@ void ChainedSID::calculate()
     std::vector<u16> sids = chainedCalc->getSIDs();
     if (sids.size() == 1)
     {
-        ui->labelPossibleResults->setText(tr("SID Found: ") + QString::number(sids.at(0)));
+        ui->labelPossibleResults->setText(tr("SID Found: ") + QString::number(sids[0]));
     }
     else
     {

@@ -168,7 +168,7 @@ bool ProfileIVSearcher5::valid(u64 seed)
     for (u8 i = 0; i < 6; i++)
     {
         u8 iv = rng.next() >> 27;
-        if (iv < minIVs.at(i) || iv > maxIVs.at(i))
+        if (iv < minIVs[i] || iv > maxIVs[i])
         {
             return false;
         }

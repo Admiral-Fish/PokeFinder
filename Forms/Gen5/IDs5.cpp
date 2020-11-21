@@ -206,10 +206,10 @@ void IDs5::find()
     std::vector<IDState5> results;
     for (size_t i = 0; i < values.size(); i++)
     {
-        sha.setButton(values.at(i));
+        sha.setButton(values[i]);
 
-        sha.setDate(static_cast<u8>(date.year() - 2000), static_cast<u8>(date.month()), static_cast<u8>(date.day()),
-                    static_cast<u8>(date.dayOfWeek()));
+        auto parts = date.getParts();
+        sha.setDate(parts[0] - 2000, parts[1], parts[2], static_cast<u8>(date.dayOfWeek()));
         sha.precompute();
 
         for (u8 second = minSecond; second <= maxSecond; second++)
@@ -227,7 +227,7 @@ void IDs5::find()
             for (auto &state : states)
             {
                 state.setDateTime(dt);
-                state.setKeypress(buttons.at(i));
+                state.setKeypress(buttons[i]);
             }
 
             results.insert(results.end(), states.begin(), states.end());
@@ -241,7 +241,7 @@ void IDs5::profileIndexChanged(int index)
 {
     if (index >= 0)
     {
-        currentProfile = profiles.at(index);
+        currentProfile = profiles[index];
 
         ui->labelProfileMACAddressValue->setText(QString::number(currentProfile.getMac(), 16));
         ui->labelProfileDSTypeValue->setText(QString::fromStdString(currentProfile.getDSTypeString()));

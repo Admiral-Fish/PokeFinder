@@ -194,6 +194,7 @@ HEADERS += \
     Core/RNG/SFMT.hpp \
     Core/RNG/SHA1.hpp \
     Core/RNG/TinyMT.hpp \
+    Core/Resources/Resources.hpp \
     Core/Util/DateTime.hpp \
     Core/Util/EncounterSlot.hpp \
     Core/Util/Global.hpp \

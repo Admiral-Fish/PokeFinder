@@ -115,8 +115,8 @@ void SpindaPainter::updatePID(const QList<QRectF> & /*region*/)
         u32 pid = 0;
         for (size_t i = 0; i < 4; i++)
         {
-            u32 left = static_cast<u32>(pos.at(i * 2) / 8) - coords[2 * i] - origin[0];
-            u32 right = static_cast<u32>(pos.at(i * 2 + 1) / 8) - coords[2 * i + 1] - origin[1];
+            u32 left = static_cast<u32>(pos[i * 2] / 8) - coords[2 * i] - origin[0];
+            u32 right = static_cast<u32>(pos[i * 2 + 1] / 8) - coords[2 * i + 1] - origin[1];
 
             pid |= (left << (i * 8));
             pid |= (right << (i * 8 + 4));

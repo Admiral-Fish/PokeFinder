@@ -27,7 +27,7 @@ namespace
     {
         for (size_t i = 0; i < ranges.size(); i++)
         {
-            if (compare < ranges.at(i))
+            if (compare < ranges[i])
             {
                 return i;
             }
@@ -39,7 +39,7 @@ namespace
     {
         for (size_t i = 0; i < ranges.size(); i++)
         {
-            if (compare >= ranges.at(i).first && compare <= ranges.at(i).second)
+            if (compare >= ranges[i].first && compare <= ranges[i].second)
             {
                 return i;
             }

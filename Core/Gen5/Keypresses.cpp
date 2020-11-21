@@ -39,14 +39,14 @@ namespace Keypresses
     {
         std::vector<Buttons> buttons;
 
-        if (keypresses.at(0))
+        if (keypresses[0])
         {
             buttons.emplace_back(Buttons::None);
         }
 
         for (u8 i = 0; i < 8; i++)
         {
-            if (keypresses.at(1))
+            if (keypresses[1])
             {
                 Buttons combo = keys[i];
                 if (valid(combo, skipLR))
@@ -57,7 +57,7 @@ namespace Keypresses
                 buttons.emplace_back(directions[i]);
             }
 
-            if (keypresses.at(2))
+            if (keypresses[2])
             {
                 for (u8 j = 0; j < 8; j++)
                 {
@@ -71,7 +71,7 @@ namespace Keypresses
 
             for (u8 j = i + 1; j < 8; j++)
             {
-                if (keypresses.at(2))
+                if (keypresses[2])
                 {
                     Buttons combo = static_cast<Buttons>(keys[i] | keys[j]);
                     if (valid(combo, skipLR))
@@ -80,7 +80,7 @@ namespace Keypresses
                     }
                 }
 
-                if (keypresses.at(3))
+                if (keypresses[3])
                 {
                     for (u8 k = 0; k < 8; k++)
                     {

@@ -65,7 +65,7 @@ public:
 
     Item getItem(int row) const
     {
-        return model.at(row);
+        return model[row];
     }
 
     std::vector<Item> getModel() const

@@ -185,7 +185,7 @@ void Wild4::updateLocationsGenerator()
     ui->comboBoxGeneratorLocation->clear();
     for (int index : indices)
     {
-        ui->comboBoxGeneratorLocation->addItem(QString::fromStdString(locations.at(index)), index);
+        ui->comboBoxGeneratorLocation->addItem(QString::fromStdString(locations[index]), index);
     }
 }
 
@@ -208,13 +208,13 @@ void Wild4::updateLocationsSearcher()
     ui->comboBoxSearcherLocation->clear();
     for (int index : indices)
     {
-        ui->comboBoxSearcherLocation->addItem(QString::fromStdString(locations.at(index)), index);
+        ui->comboBoxSearcherLocation->addItem(QString::fromStdString(locations[index]), index);
     }
 }
 
 void Wild4::updatePokemonGenerator()
 {
-    auto area = encounterGenerator.at(ui->comboBoxGeneratorLocation->currentData().toInt());
+    auto area = encounterGenerator[ui->comboBoxGeneratorLocation->currentData().toInt()];
     std::vector<u16> species = area.getUniqueSpecies();
 
     std::vector<std::string> names = area.getSpecieNames();
@@ -223,13 +223,13 @@ void Wild4::updatePokemonGenerator()
     ui->comboBoxGeneratorPokemon->addItem("-");
     for (size_t i = 0; i < species.size(); i++)
     {
-        ui->comboBoxGeneratorPokemon->addItem(QString::fromStdString(names.at(i)), species.at(i));
+        ui->comboBoxGeneratorPokemon->addItem(QString::fromStdString(names[i]), species[i]);
     }
 }
 
 void Wild4::updatePokemonSearcher()
 {
-    auto area = encounterSearcher.at(ui->comboBoxSearcherLocation->currentData().toInt());
+    auto area = encounterSearcher[ui->comboBoxSearcherLocation->currentData().toInt()];
     std::vector<u16> species = area.getUniqueSpecies();
 
     std::vector<std::string> names = area.getSpecieNames();
@@ -238,7 +238,7 @@ void Wild4::updatePokemonSearcher()
     ui->comboBoxSearcherPokemon->addItem("-");
     for (size_t i = 0; i < species.size(); i++)
     {
-        ui->comboBoxSearcherPokemon->addItem(QString::fromStdString(names.at(i)), species.at(i));
+        ui->comboBoxSearcherPokemon->addItem(QString::fromStdString(names[i]), species[i]);
     }
 }
 
@@ -295,7 +295,7 @@ void Wild4::generate()
             generator.setSynchNature(static_cast<u8>(ui->comboBoxGeneratorLead->currentIndex() - 1));
         }
     }
-    generator.setEncounterArea(encounterGenerator.at(ui->comboBoxGeneratorLocation->currentData().toInt()));
+    generator.setEncounterArea(encounterGenerator[ui->comboBoxGeneratorLocation->currentData().toInt()]);
 
     auto states = generator.generate(seed);
     generatorModel->addItems(states);
@@ -324,13 +324,13 @@ void Wild4::search()
     searcher->setDelay(ui->textBoxSearcherMinDelay->getUInt(), ui->textBoxSearcherMaxDelay->getUInt());
     searcher->setState(ui->textBoxSearcherMinAdvance->getUInt(), ui->textBoxSearcherMaxAdvance->getUInt());
     searcher->setEncounter(static_cast<Encounter>(ui->comboBoxSearcherEncounter->getCurrentInt()));
-    searcher->setEncounterArea(encounterSearcher.at(ui->comboBoxSearcherLocation->currentData().toInt()));
+    searcher->setEncounterArea(encounterSearcher[ui->comboBoxSearcherLocation->currentData().toInt()]);
     searcher->setLead(static_cast<Lead>(ui->comboBoxSearcherLead->getCurrentInt()));
 
     int maxProgress = 1;
     for (u8 i = 0; i < 6; i++)
     {
-        maxProgress *= max.at(i) - min.at(i) + 1;
+        maxProgress *= max[i] - min[i] + 1;
     }
     ui->progressBar->setRange(0, maxProgress);
 
@@ -357,7 +357,7 @@ void Wild4::profilesIndexChanged(int index)
 {
     if (index >= 0)
     {
-        currentProfile = profiles.at(index);
+        currentProfile = profiles[index];
 
         ui->labelProfileTIDValue->setText(QString::number(currentProfile.getTID()));
         ui->labelProfileSIDValue->setText(QString::number(currentProfile.getSID()));
@@ -549,7 +549,7 @@ void Wild4::generatorPokemonIndexChanged(int index)
     else
     {
         u16 num = ui->comboBoxGeneratorPokemon->getCurrentUShort();
-        std::vector<bool> flags = encounterGenerator.at(ui->comboBoxGeneratorLocation->currentData().toInt()).getSlots(num);
+        std::vector<bool> flags = encounterGenerator[ui->comboBoxGeneratorLocation->currentData().toInt()].getSlots(num);
 
         ui->filterGenerator->toggleEncounterSlots(flags);
     }
@@ -564,7 +564,7 @@ void Wild4::searcherPokemonIndexChanged(int index)
     else
     {
         u16 num = ui->comboBoxSearcherPokemon->getCurrentUShort();
-        std::vector<bool> flags = encounterSearcher.at(ui->comboBoxSearcherLocation->currentData().toInt()).getSlots(num);
+        std::vector<bool> flags = encounterSearcher[ui->comboBoxSearcherLocation->currentData().toInt()].getSlots(num);
 
         ui->filterSearcher->toggleEncounterSlots(flags);
     }

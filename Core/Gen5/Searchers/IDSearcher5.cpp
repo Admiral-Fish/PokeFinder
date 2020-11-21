@@ -103,11 +103,11 @@ void IDSearcher5::search(IDGenerator5 generator, const Date &start, const Date &
     for (Date date = start; date <= end; date = date.addDays(1))
     {
         auto parts = date.getParts();
-        sha.setDate(parts.at(0) - 2000, parts.at(1), parts.at(2), static_cast<u8>(date.dayOfWeek()));
+        sha.setDate(parts[0] - 2000, parts[1], parts[2], static_cast<u8>(date.dayOfWeek()));
         sha.precompute();
         for (size_t i = 0; i < values.size(); i++)
         {
-            sha.setButton(values.at(i));
+            sha.setButton(values[i]);
 
             for (u8 hour = 0; hour < 24; hour++)
             {
@@ -134,7 +134,7 @@ void IDSearcher5::search(IDGenerator5 generator, const Date &start, const Date &
                             for (auto &state : states)
                             {
                                 state.setDateTime(dt);
-                                state.setKeypress(buttons.at(i));
+                                state.setKeypress(buttons[i]);
                             }
 
                             std::lock_guard<std::mutex> lock(resultMutex);

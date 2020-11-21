@@ -76,11 +76,11 @@ std::string Profile5::getKeypressesString() const
     std::string keys = "";
     for (size_t i = 0; i < keypresses.size(); i++)
     {
-        if (i == 0 && keypresses.at(i))
+        if (i == 0 && keypresses[i])
         {
             keys += "None";
         }
-        else if (keypresses.at(i))
+        else if (keypresses[i])
         {
             if (i != keypresses.size())
             {

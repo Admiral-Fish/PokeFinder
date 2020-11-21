@@ -95,11 +95,11 @@ void EggSearcher5::search(EggGenerator5 generator, const Date &start, const Date
         for (Date date = start; date <= end; date = date.addDays(1))
         {
             auto parts = date.getParts();
-            sha.setDate(parts.at(0) - 2000, parts.at(1), parts.at(2), static_cast<u8>(date.dayOfWeek()));
+            sha.setDate(parts[0] - 2000, parts[1], parts[2], static_cast<u8>(date.dayOfWeek()));
             sha.precompute();
             for (size_t i = 0; i < values.size(); i++)
             {
-                sha.setButton(values.at(i));
+                sha.setButton(values[i]);
 
                 for (u8 hour = 0; hour < 24; hour++)
                 {
@@ -127,7 +127,7 @@ void EggSearcher5::search(EggGenerator5 generator, const Date &start, const Date
                                 DateTime dt(date, Time(hour, minute, second));
                                 for (const auto &state : states)
                                 {
-                                    displayStates.emplace_back(dt, seed, buttons.at(i), timer0, state);
+                                    displayStates.emplace_back(dt, seed, buttons[i], timer0, state);
                                 }
 
                                 std::lock_guard<std::mutex> lock(resultMutex);

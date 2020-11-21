@@ -82,7 +82,7 @@ void SearchCoinFlips::flipsTextChanged(const QString &val)
             std::string compare = Utilities::coinFlips(dt.getSeed());
             for (size_t i = 0; i < compare.size();)
             {
-                auto c = compare.at(i);
+                auto c = compare[i];
                 if (c == ' ' || c == ',')
                 {
                     compare.erase(compare.begin() + i);

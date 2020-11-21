@@ -114,24 +114,24 @@ void DreamRadar::setupModels()
     {
         if (i < 3)
         {
-            ui->comboBoxGeneratorSpecies1->addItem(QString::fromStdString(names.at(i)), species.at(i));
-            ui->comboBoxSearcherSpecies1->addItem(QString::fromStdString(names.at(i)), species.at(i));
+            ui->comboBoxGeneratorSpecies1->addItem(QString::fromStdString(names[i]), species[i]);
+            ui->comboBoxSearcherSpecies1->addItem(QString::fromStdString(names[i]), species[i]);
         }
         else
         {
-            ui->comboBoxGeneratorSpecies1->addItem(QString::fromStdString(names.at(i)), species.at(i));
-            ui->comboBoxGeneratorSpecies2->addItem(QString::fromStdString(names.at(i)), species.at(i));
-            ui->comboBoxGeneratorSpecies3->addItem(QString::fromStdString(names.at(i)), species.at(i));
-            ui->comboBoxGeneratorSpecies4->addItem(QString::fromStdString(names.at(i)), species.at(i));
-            ui->comboBoxGeneratorSpecies5->addItem(QString::fromStdString(names.at(i)), species.at(i));
-            ui->comboBoxGeneratorSpecies6->addItem(QString::fromStdString(names.at(i)), species.at(i));
+            ui->comboBoxGeneratorSpecies1->addItem(QString::fromStdString(names[i]), species[i]);
+            ui->comboBoxGeneratorSpecies2->addItem(QString::fromStdString(names[i]), species[i]);
+            ui->comboBoxGeneratorSpecies3->addItem(QString::fromStdString(names[i]), species[i]);
+            ui->comboBoxGeneratorSpecies4->addItem(QString::fromStdString(names[i]), species[i]);
+            ui->comboBoxGeneratorSpecies5->addItem(QString::fromStdString(names[i]), species[i]);
+            ui->comboBoxGeneratorSpecies6->addItem(QString::fromStdString(names[i]), species[i]);
 
-            ui->comboBoxSearcherSpecies1->addItem(QString::fromStdString(names.at(i)), species.at(i));
-            ui->comboBoxSearcherSpecies2->addItem(QString::fromStdString(names.at(i)), species.at(i));
-            ui->comboBoxSearcherSpecies3->addItem(QString::fromStdString(names.at(i)), species.at(i));
-            ui->comboBoxSearcherSpecies4->addItem(QString::fromStdString(names.at(i)), species.at(i));
-            ui->comboBoxSearcherSpecies5->addItem(QString::fromStdString(names.at(i)), species.at(i));
-            ui->comboBoxSearcherSpecies6->addItem(QString::fromStdString(names.at(i)), species.at(i));
+            ui->comboBoxSearcherSpecies1->addItem(QString::fromStdString(names[i]), species[i]);
+            ui->comboBoxSearcherSpecies2->addItem(QString::fromStdString(names[i]), species[i]);
+            ui->comboBoxSearcherSpecies3->addItem(QString::fromStdString(names[i]), species[i]);
+            ui->comboBoxSearcherSpecies4->addItem(QString::fromStdString(names[i]), species[i]);
+            ui->comboBoxSearcherSpecies5->addItem(QString::fromStdString(names[i]), species[i]);
+            ui->comboBoxSearcherSpecies6->addItem(QString::fromStdString(names[i]), species[i]);
         }
     }
 
@@ -306,7 +306,7 @@ std::vector<DreamRadarSlot> DreamRadar::getGeneratorSettings()
 
     for (size_t i = 0; i < 6; i++)
     {
-        u16 specie = species.at(i)->currentData().toUInt();
+        u16 specie = species[i]->currentData().toUInt();
         if (specie != 0)
         {
             u8 type = 2;
@@ -319,8 +319,8 @@ std::vector<DreamRadarSlot> DreamRadar::getGeneratorSettings()
                 type = 1;
             }
 
-            u8 genderRatio = info.at(specie).getGender();
-            u8 gender = genderRatio == 255 ? 2 : genders.at(i)->currentIndex();
+            u8 genderRatio = info[specie].getGender();
+            u8 gender = genderRatio == 255 ? 2 : genders[i]->currentIndex();
 
             radarSlots.emplace_back(type, gender, genderRatio);
         }
@@ -344,7 +344,7 @@ std::vector<DreamRadarSlot> DreamRadar::getSearcherSettings()
 
     for (size_t i = 0; i < 6; i++)
     {
-        u16 specie = species.at(i)->currentData().toUInt();
+        u16 specie = species[i]->currentData().toUInt();
         if (specie != 0)
         {
             u8 type = 2;
@@ -357,8 +357,8 @@ std::vector<DreamRadarSlot> DreamRadar::getSearcherSettings()
                 type = 1;
             }
 
-            u8 gender = genders.at(i)->currentData().toUInt();
-            u8 genderRatio = info.at(specie).getGender();
+            u8 gender = genders[i]->currentData().toUInt();
+            u8 genderRatio = info[specie].getGender();
 
             radarSlots.emplace_back(type, gender, genderRatio);
         }
@@ -371,7 +371,7 @@ void DreamRadar::profileIndexChanged(int index)
 {
     if (index >= 0)
     {
-        currentProfile = profiles.at(index);
+        currentProfile = profiles[index];
 
         ui->labelProfileTIDValue->setText(QString::number(currentProfile.getTID()));
         ui->labelProfileSIDValue->setText(QString::number(currentProfile.getSID()));

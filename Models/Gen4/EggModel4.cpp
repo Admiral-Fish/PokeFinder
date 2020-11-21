@@ -54,7 +54,7 @@ QVariant EggGeneratorModel4::data(const QModelIndex &index, int role) const
 {
     if (role == Qt::DisplayRole)
     {
-        const auto &state = model.at(index.row());
+        const auto &state = model[index.row()];
         int column = getColumn(index.column());
         switch (column)
         {
@@ -113,7 +113,7 @@ QVariant EggGeneratorModel4::headerData(int section, Qt::Orientation orientation
     {
         section = getColumn(section);
 
-        return header.at(section);
+        return header[section];
     }
     return QVariant();
 }
@@ -250,7 +250,7 @@ QVariant EggSearcherModel4::data(const QModelIndex &index, int role) const
 {
     if (role == Qt::DisplayRole)
     {
-        const auto &state = model.at(index.row());
+        const auto &state = model[index.row()];
         int column = getColumn(index.column());
         switch (column)
         {
@@ -304,7 +304,7 @@ QVariant EggSearcherModel4::headerData(int section, Qt::Orientation orientation,
     {
         section = getColumn(section);
 
-        return header.at(section);
+        return header[section];
     }
     return QVariant();
 }

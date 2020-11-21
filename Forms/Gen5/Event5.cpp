@@ -271,15 +271,16 @@ void Event5::generatorImportEvent()
         QFile file(fileName);
         if (file.open(QIODevice::ReadOnly))
         {
-            QByteArray data = file.readAll();
-            file.close();
-            if (data.size() != 204)
+            if (file.size() != 204)
             {
                 QMessageBox error;
                 error.setText("Invalid format for wondercard");
                 error.exec();
                 return;
             }
+
+            std::array<u8, 204> data;
+            file.read(reinterpret_cast<char *>(data.data()), 204);
 
             PGF pgf(data);
 
@@ -319,7 +320,7 @@ void Event5::generatorImportEvent()
 
             ui->checkBoxGeneratorEgg->setChecked(pgf.isEgg());
 
-            ui->filterGenerator->setGenderRatio(PersonalInfo::loadPersonal(5).at(pgf.getSpecies()).getGender());
+            ui->filterGenerator->setGenderRatio(PersonalInfo::loadPersonal(5)[pgf.getSpecies()].getGender());
         }
         else
         {
@@ -339,15 +340,17 @@ void Event5::searcherImportEvent()
         QFile file(fileName);
         if (file.open(QIODevice::ReadOnly))
         {
-            QByteArray data = file.readAll();
-            file.close();
-            if (data.size() != 204)
+            if (file.size() != 204)
             {
                 QMessageBox error;
                 error.setText("Invalid format for wondercard");
                 error.exec();
                 return;
             }
+
+            std::array<u8, 204> data;
+            file.read(reinterpret_cast<char *>(data.data()), 204);
+            file.close();
 
             PGF pgf(data);
 
@@ -387,7 +390,7 @@ void Event5::searcherImportEvent()
 
             ui->checkBoxSearcherEgg->setChecked(pgf.isEgg());
 
-            ui->filterSearcher->setGenderRatio(PersonalInfo::loadPersonal(5).at(pgf.getSpecies()).getGender());
+            ui->filterSearcher->setGenderRatio(PersonalInfo::loadPersonal(5)[pgf.getSpecies()].getGender());
         }
         else
         {
@@ -420,7 +423,7 @@ void Event5::profileIndexChanged(int index)
 {
     if (index >= 0)
     {
-        currentProfile = profiles.at(index);
+        currentProfile = profiles[index];
 
         ui->labelProfileTIDValue->setText(QString::number(currentProfile.getTID()));
         ui->labelProfileSIDValue->setText(QString::number(currentProfile.getSID()));

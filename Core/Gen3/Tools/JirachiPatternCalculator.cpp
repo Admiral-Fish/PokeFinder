@@ -43,19 +43,19 @@ namespace JirachiPatternCalculator
             switch (index)
             {
             case 0: // 6 advances total
-                if (data.at(1) <= 0x4000)
+                if (data[1] <= 0x4000)
                 {
                     return 6;
                 }
                 break;
             case 1: // 7 advances total
-                if (data.at(2) > 0x4000 && data.at(1) <= 0x547a)
+                if (data[2] > 0x4000 && data[1] <= 0x547a)
                 {
                     return 7;
                 }
                 break;
             case 2: // 8 advances total
-                if (data.at(3) > 0x4000 && data.at(2) > 0x547a)
+                if (data[3] > 0x4000 && data[2] > 0x547a)
                 {
                     return 8;
                 }
@@ -85,7 +85,7 @@ namespace JirachiPatternCalculator
             if (index != 0)
             {
                 // Menu advances can't stop on 0; skip
-                u8 target = data.at(index) >> 14;
+                u8 target = data[index] >> 14;
                 if (target != 0)
                 {
                     // From start, game advances until(prng >> 30) gives a 1, 2, and 3
@@ -96,7 +96,7 @@ namespace JirachiPatternCalculator
                     // Need to work backwards to see if going forward with 1, 2, and 3 lands on our target
                     for (size_t x = index + 1; x < data.size(); x++)
                     {
-                        u8 temp = data.at(x) >> 14;
+                        u8 temp = data[x] >> 14;
 
                         // Spread impossible
                         if (temp == target)
@@ -112,9 +112,9 @@ namespace JirachiPatternCalculator
                             QStringList pattern;
                             for (size_t j = data.size() - 1; j > 0; j--)
                             {
-                                pattern.append(QString::number(data.at(j) >> 14));
+                                pattern.append(QString::number(data[j] >> 14));
                             }
-                            pattern[pattern.size() - index] = "T:" + pattern.at(pattern.size() - index);
+                            pattern[pattern.size() - index] = "T:" + pattern[pattern.size() - index];
                             patterns.append(pattern.join(" | "));
 
                             break;

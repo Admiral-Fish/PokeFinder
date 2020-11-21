@@ -96,18 +96,18 @@ void IVCalculator::displayIVs(QLabel *label, const std::vector<u8> &ivs)
         {
             if (i == 0)
             {
-                result += QString::number(ivs.at(i));
+                result += QString::number(ivs[i]);
             }
             else
             {
-                if (ivs.at(i) == ivs.at(i - 1) + 1)
+                if (ivs[i] == ivs[i - 1] + 1)
                 {
                     flag = true;
 
                     //  Check to see if we need to cap here.
                     if (i == ivs.size() - 1)
                     {
-                        result += QString("-%1").arg(ivs.at(i));
+                        result += QString("-%1").arg(ivs[i]);
                     }
                 }
                 else
@@ -115,12 +115,12 @@ void IVCalculator::displayIVs(QLabel *label, const std::vector<u8> &ivs)
                     if (flag)
                     {
                         flag = false;
-                        result += QString("-%1").arg(ivs.at(i - 1));
-                        result += QString(", %1").arg(ivs.at(i));
+                        result += QString("-%1").arg(ivs[i - 1]);
+                        result += QString(", %1").arg(ivs[i]);
                     }
                     else
                     {
-                        result += QString(", %1").arg(ivs.at(i));
+                        result += QString(", %1").arg(ivs[i]);
                     }
                 }
             }
@@ -140,7 +140,7 @@ PersonalInfo IVCalculator::getPersonalInfo(const PersonalInfo &base)
         return base;
     }
 
-    return personalInfo.at(formIndex + form - 1);
+    return personalInfo[formIndex + form - 1];
 }
 
 void IVCalculator::addEntry()
@@ -220,23 +220,23 @@ void IVCalculator::findIVs()
     u8 nature = static_cast<u8>(ui->comboBoxNature->currentIndex());
     u8 hiddenPower = static_cast<u8>(ui->comboBoxHiddenPower->currentIndex() - 1);
     u8 characteristic = static_cast<u8>(ui->comboBoxCharacteristic->currentIndex() - 1);
-    auto base = personalInfo.at(ui->comboBoxPokemon->currentIndex() + 1);
+    auto base = personalInfo[ui->comboBoxPokemon->currentIndex() + 1];
 
     auto ivs = IVChecker::calculateIVRange(getPersonalInfo(base).getBaseStats(), stats, levels, nature, characteristic, hiddenPower);
 
-    displayIVs(ui->labelHPIVValue, ivs.at(0));
-    displayIVs(ui->labelAtkIVValue, ivs.at(1));
-    displayIVs(ui->labelDefIVValue, ivs.at(2));
-    displayIVs(ui->labelSpAIVValue, ivs.at(3));
-    displayIVs(ui->labelSpDIVValue, ivs.at(4));
-    displayIVs(ui->labelSpeIVValue, ivs.at(5));
+    displayIVs(ui->labelHPIVValue, ivs[0]);
+    displayIVs(ui->labelAtkIVValue, ivs[1]);
+    displayIVs(ui->labelDefIVValue, ivs[2]);
+    displayIVs(ui->labelSpAIVValue, ivs[3]);
+    displayIVs(ui->labelSpDIVValue, ivs[4]);
+    displayIVs(ui->labelSpeIVValue, ivs[5]);
 }
 
 void IVCalculator::pokemonIndexChanged(int index)
 {
     if (index >= 0 && !personalInfo.empty())
     {
-        PersonalInfo base = personalInfo.at(index + 1);
+        PersonalInfo base = personalInfo[index + 1];
         u8 formCount = base.getFormCount();
 
         ui->labelAltForm->setVisible(formCount > 1);
@@ -256,7 +256,7 @@ void IVCalculator::altformIndexChanged(int index)
     {
         u16 specie = static_cast<u16>(ui->comboBoxPokemon->currentIndex());
 
-        auto base = personalInfo.at(specie + 1);
+        auto base = personalInfo[specie + 1];
         auto info = getPersonalInfo(base);
 
         std::vector<u8> stats = info.getBaseStats();

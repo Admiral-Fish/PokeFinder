@@ -57,7 +57,7 @@ QVariant EggModel3::data(const QModelIndex &index, int role) const
     {
         int column = getColumn(index.column());
 
-        const auto &state = model.at(index.row());
+        const auto &state = model[index.row()];
         switch (column)
         {
         case 0:
@@ -110,7 +110,7 @@ QVariant EggModel3::headerData(int section, Qt::Orientation orientation, int rol
     if (role == Qt::DisplayRole && orientation == Qt::Horizontal)
     {
         section = getColumn(section);
-        return header.at(section);
+        return header[section];
     }
     return QVariant();
 }

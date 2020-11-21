@@ -47,7 +47,7 @@ std::vector<GameCubeState> GameCubeGenerator::generate(u32 seed) const
 
 void GameCubeGenerator::setShadowTeam(u8 index, u8 type)
 {
-    team = ShadowTeam::loadShadowTeams(method).at(index);
+    team = ShadowTeam::loadShadowTeams(method)[index];
     this->type = type;
 }
 

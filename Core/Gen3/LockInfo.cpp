@@ -20,14 +20,11 @@
 #include "LockInfo.hpp"
 #include <Core/Enum/Method.hpp>
 #include <Core/Enum/ShadowType.hpp>
-#include <QFile>
+#include <Core/Resources/Resources.hpp>
 
-LockInfo::LockInfo(u8 nature, u8 genderLower, u8 genderUpper)
+constexpr LockInfo::LockInfo(u8 nature, u8 genderLower, u8 genderUpper) :
+    nature(nature), genderLower(genderLower), genderUpper(genderUpper), free(nature == 255 && genderLower == 255 && genderUpper == 255)
 {
-    this->nature = nature;
-    this->genderLower = genderLower;
-    this->genderUpper = genderUpper;
-    free = nature == 255 && genderLower == 255 && genderUpper == 255;
 }
 
 bool LockInfo::compare(u32 pid) const
@@ -46,15 +43,13 @@ bool LockInfo::getFree() const
     return free;
 }
 
-ShadowTeam::ShadowTeam(const std::vector<LockInfo> &locks, ShadowType type)
+ShadowTeam::ShadowTeam(const std::vector<LockInfo> &locks, ShadowType type) : locks(locks), type(type)
 {
-    this->locks = locks;
-    this->type = type;
 }
 
 LockInfo ShadowTeam::getLock(u8 index) const
 {
-    return locks.at(index);
+    return locks[index];
 }
 
 std::vector<LockInfo> ShadowTeam::getLocks() const
@@ -74,34 +69,39 @@ int ShadowTeam::getSize() const
 
 std::vector<ShadowTeam> ShadowTeam::loadShadowTeams(Method version)
 {
-    std::vector<ShadowTeam> shadowTeams;
-    QString path = version == Method::XD ? ":/encounters/gales.bin" : ":/encounters/colo.bin";
+    const u8 *data;
+    int size;
 
-    QByteArray data;
-    QFile file(path);
-    if (file.open(QIODevice::ReadOnly))
+    if (version == Method::XD)
     {
-        data = file.readAll();
-        file.close();
+        data = gales;
+        size = 747;
+    }
+    else
+    {
+        data = colo;
+        size = 91;
     }
 
-    u16 offset = 0;
-    while (offset < data.size())
+    std::vector<ShadowTeam> teams;
+
+    int offset = 0;
+    while (offset < size)
     {
-        auto type = static_cast<ShadowType>(data.at(offset + 1));
-        u8 size = static_cast<u8>(data.at(offset));
+        u8 count = data[offset];
+        auto type = static_cast<ShadowType>(data[offset + 1]);
         std::vector<LockInfo> locks;
-        for (u8 i = 0; i < size; i++)
+        for (u8 i = 0; i < count; i++)
         {
-            u8 nature = static_cast<u8>(data.at(offset + 2 + i * 3));
-            u8 genderLower = static_cast<u8>(data.at(offset + 3 + i * 3));
-            u8 genderUpper = static_cast<u8>(data.at(offset + 4 + i * 3));
+            u8 nature = data[offset + 2 + i * 3];
+            u8 genderLower = data[offset + 3 + i * 3];
+            u8 genderUpper = data[offset + 4 + i * 3];
             locks.emplace_back(nature, genderLower, genderUpper);
         }
 
-        shadowTeams.emplace_back(locks, type);
-        offset += data[offset] * 3 + 2;
+        teams.emplace_back(locks, type);
+        offset += size * 3 + 2;
     }
 
-    return shadowTeams;
+    return teams;
 }

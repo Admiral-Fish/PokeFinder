@@ -36,17 +36,17 @@ void WildSearcher3::startSearch(const std::array<u8, 6> &min, const std::array<u
 {
     searching = true;
 
-    for (u8 hp = min.at(0); hp <= max.at(0); hp++)
+    for (u8 hp = min[0]; hp <= max[0]; hp++)
     {
-        for (u8 atk = min.at(1); atk <= max.at(1); atk++)
+        for (u8 atk = min[1]; atk <= max[1]; atk++)
         {
-            for (u8 def = min.at(2); def <= max.at(2); def++)
+            for (u8 def = min[2]; def <= max[2]; def++)
             {
-                for (u8 spa = min.at(3); spa <= max.at(3); spa++)
+                for (u8 spa = min[3]; spa <= max[3]; spa++)
                 {
-                    for (u8 spd = min.at(4); spd <= max.at(4); spd++)
+                    for (u8 spd = min[4]; spd <= max[4]; spd++)
                     {
-                        for (u8 spe = min.at(5); spe <= max.at(5); spe++)
+                        for (u8 spe = min[5]; spe <= max[5]; spe++)
                         {
                             if (!searching)
                             {
@@ -265,7 +265,7 @@ std::vector<WildState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 s
         {
             for (size_t i = 0; i < states.size();)
             {
-                u32 check = states.at(i).getSeed() * 0x41c64e6d + 0x6073;
+                u32 check = states[i].getSeed() * 0x41c64e6d + 0x6073;
 
                 if (((check >> 16) % 2880) >= rate)
                 {
@@ -273,7 +273,7 @@ std::vector<WildState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 s
                 }
                 else
                 {
-                    states[i].setSeed(states.at(i).getSeed() * 0xeeb9eb65 + 0xa3561a1);
+                    states[i].setSeed(states[i].getSeed() * 0xeeb9eb65 + 0xa3561a1);
                     i++;
                 }
             }

@@ -27,7 +27,7 @@ void ComboBox::setup(const std::vector<QVariant> &data)
 {
     for (size_t i = 0; i < data.size(); i++)
     {
-        this->setItemData(i, data.at(i));
+        this->setItemData(i, data[i]);
     }
 }
 

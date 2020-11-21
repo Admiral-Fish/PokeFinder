@@ -201,12 +201,12 @@ void GameCube::search()
     {
         for (u8 i = 0; i < 6; i++)
         {
-            maxProgress *= max.at(i) - min.at(i) + 1;
+            maxProgress *= max[i] - min[i] + 1;
         }
     }
     else
     {
-        maxProgress *= max.at(4) - min.at(4) + 1;
+        maxProgress *= max[4] - min[4] + 1;
         maxProgress *= 0x7ffffff;
     }
     ui->progressBar->setRange(0, maxProgress);
@@ -234,7 +234,7 @@ void GameCube::profilesIndexChanged(int index)
 {
     if (index >= 0)
     {
-        currentProfile = profiles.at(index);
+        currentProfile = profiles[index];
 
         ui->labelProfileTIDValue->setText(QString::number(currentProfile.getTID()));
         ui->labelProfileSIDValue->setText(QString::number(currentProfile.getSID()));
@@ -257,7 +257,7 @@ void GameCube::generatorMethodIndexChanged(int index)
                   315, 302, 373, 123, 273, 273, 273, 86,  285, 143, 361, 338, 21,  363, 363, 363, 167, 121, 220, 114, 49, 100, 37,  70 });
             for (size_t i = 0; i < species.size(); i++)
             {
-                QString specie = QString::fromStdString(species.at(i));
+                QString specie = QString::fromStdString(species[i]);
                 if (i == 15 || i == 52 || i == 61)
                 {
                     specie += tr(" (Citadark)");
@@ -287,7 +287,7 @@ void GameCube::generatorMethodIndexChanged(int index)
             std::vector<std::string> species = Translator::getSpecies({ 207, 214, 296, 179, 198, 212, 175, 217 });
             for (size_t i = 0; i < species.size(); i++)
             {
-                QString specie = QString::fromStdString(species.at(i));
+                QString specie = QString::fromStdString(species[i]);
                 if (i == 3 || i == 5 || i == 6)
                 {
                     specie += tr(" (E-Reader)");
@@ -346,7 +346,7 @@ void GameCube::searcherMethodIndexChanged(int index)
                   315, 302, 373, 123, 273, 273, 273, 86,  285, 143, 361, 338, 21,  363, 363, 363, 167, 121, 220, 114, 49, 100, 37,  70 });
             for (size_t i = 0; i < species.size(); i++)
             {
-                QString specie = QString::fromStdString(species.at(i));
+                QString specie = QString::fromStdString(species[i]);
                 if (i == 15 || i == 52 || i == 61)
                 {
                     specie += tr(" (Citadark)");
@@ -370,7 +370,7 @@ void GameCube::searcherMethodIndexChanged(int index)
             std::vector<std::string> species = Translator::getSpecies({ 207, 214, 296, 179, 198, 212, 175, 217 });
             for (size_t i = 0; i < species.size(); i++)
             {
-                QString specie = QString::fromStdString(species.at(i));
+                QString specie = QString::fromStdString(species[i]);
                 if (i == 3 || i == 5 || i == 6)
                 {
                     specie += tr(" (E-Reader)");

@@ -99,7 +99,7 @@ void EventSearcher5::search(EventGenerator5 generator, const Date &start, const 
             sha.precompute();
             for (size_t i = 0; i < values.size(); i++)
             {
-                sha.setButton(values.at(i));
+                sha.setButton(values[i]);
 
                 for (u8 hour = 0; hour < 24; hour++)
                 {
@@ -127,7 +127,7 @@ void EventSearcher5::search(EventGenerator5 generator, const Date &start, const 
                                 DateTime dt(date, Time(hour, minute, second));
                                 for (const auto &state : states)
                                 {
-                                    displayStates.emplace_back(dt, seed, buttons.at(i), timer0, state);
+                                    displayStates.emplace_back(dt, seed, buttons[i], timer0, state);
                                 }
 
                                 std::lock_guard<std::mutex> lock(resultMutex);

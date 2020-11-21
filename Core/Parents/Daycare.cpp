@@ -39,10 +39,10 @@ u8 Daycare::getParentIV(u8 parent, u8 index) const
 {
     if (parent == 0)
     {
-        return parent1IVs.at(index);
+        return parent1IVs[index];
     }
 
-    return parent2IVs.at(index);
+    return parent2IVs[index];
 }
 
 u8 Daycare::getParentAbility(u8 parent) const

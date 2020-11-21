@@ -25,10 +25,10 @@ EncounterArea5::EncounterArea5(u8 location, Encounter type, const std::vector<Sl
 
 u8 EncounterArea5::calcLevel(u8 index, u16 prng) const
 {
-    return (prng % (pokemon.at(index).getMaxLevel() - pokemon.at(index).getMinLevel() + 1)) + pokemon.at(index).getMinLevel();
+    return (prng % (pokemon[index].getMaxLevel() - pokemon[index].getMinLevel() + 1)) + pokemon[index].getMinLevel();
 }
 
 u8 EncounterArea5::calcLevel(u8 index) const
 {
-    return pokemon.at(index).getMinLevel();
+    return pokemon[index].getMinLevel();
 }

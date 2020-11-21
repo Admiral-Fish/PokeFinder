@@ -115,7 +115,7 @@ namespace ProfileLoader3
             auto &gen3 = j["gen3"];
             for (size_t i = 0; i < gen3.size(); i++)
             {
-                Profile3 profile = getProfile(gen3.at(i));
+                Profile3 profile = getProfile(gen3[i]);
 
                 if (profile == remove)
                 {
@@ -142,7 +142,7 @@ namespace ProfileLoader3
             auto &gen3 = j["gen3"];
             for (size_t i = 0; i < gen3.size(); i++)
             {
-                Profile3 profile = getProfile(gen3.at(i));
+                Profile3 profile = getProfile(gen3[i]);
 
                 if (original == profile && original != update)
                 {
@@ -244,7 +244,7 @@ namespace ProfileLoader4
             auto &gen4 = j["gen4"];
             for (size_t i = 0; i < gen4.size(); i++)
             {
-                Profile4 profile = getProfile(gen4.at(i));
+                Profile4 profile = getProfile(gen4[i]);
 
                 if (profile == remove)
                 {
@@ -271,7 +271,7 @@ namespace ProfileLoader4
             auto &gen4 = j["gen4"];
             for (size_t i = 0; i < gen4.size(); i++)
             {
-                Profile4 profile = getProfile(gen4.at(i));
+                Profile4 profile = getProfile(gen4[i]);
 
                 if (original == profile && original != update)
                 {
@@ -392,7 +392,7 @@ namespace ProfileLoader5
             auto &gen5 = j["gen5"];
             for (size_t i = 0; i < gen5.size(); i++)
             {
-                Profile5 profile = getProfile(gen5.at(i));
+                Profile5 profile = getProfile(gen5[i]);
 
                 if (profile == remove)
                 {
@@ -419,7 +419,7 @@ namespace ProfileLoader5
             auto &gen5 = j["gen5"];
             for (size_t i = 0; i < gen5.size(); i++)
             {
-                Profile5 profile = getProfile(gen5.at(i));
+                Profile5 profile = getProfile(gen5[i]);
 
                 if (original == profile && original != update)
                 {

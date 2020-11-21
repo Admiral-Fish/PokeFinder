@@ -30,20 +30,19 @@ class LockInfo
 {
 public:
     LockInfo() = default;
-    LockInfo(u8 nature, u8 genderLower, u8 genderUpper);
+    constexpr LockInfo(u8 nature, u8 genderLower, u8 genderUpper);
     bool compare(u32 pid) const;
     bool getFree() const;
 
-private:
-    u8 genderUpper;
-    u8 genderLower;
+public:
     u8 nature;
+    u8 genderLower;
+    u8 genderUpper;
     bool free;
 };
 
 class ShadowTeam
 {
-
 public:
     ShadowTeam() = default;
     ShadowTeam(const std::vector<LockInfo> &locks, ShadowType type);

@@ -65,19 +65,17 @@ int main(int argc, char *argv[])
     QSettings setting;
     validateSettings(setting);
 
-    std::string profilePath = setting.value("settings/profiles").toString().toStdString();
-    ProfileLoader::init(profilePath);
+    QString profilePath = setting.value("settings/profiles").toString();
+    ProfileLoader::init(profilePath.toStdString());
 
     // Transfer profiles to new setup
     // TODO: remove in a future version
     if (setting.contains("profiles"))
     {
-        QString fileName = setting.value("settings/profiles").toString();
-
         QByteArray data = setting.value("profiles").toByteArray();
         QJsonDocument profiles(QJsonDocument::fromJson(data));
 
-        QFile f(fileName);
+        QFile f(profilePath);
         if (f.open(QIODevice::WriteOnly))
         {
             f.write(QJsonDocument(profiles).toJson());
