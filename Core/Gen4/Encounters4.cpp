@@ -25,6 +25,7 @@
 #include <Core/Parents/Slot.hpp>
 #include <Core/Resources/Resources.hpp>
 #include <algorithm>
+#include <cstring>
 #include <iterator>
 
 namespace Encounters4

@@ -19,27 +19,6 @@
 
 #include "SeedTimeCalculator3.hpp"
 
-inline u16 dateToDays(u8 year, u8 month, u8 day)
-{
-    u16 days = 0;
-    for (int i = year - 1; i > 0; i--)
-    {
-        days += 365;
-
-        if (Date::isLeapYear(i))
-        {
-            days++;
-        }
-    }
-
-    for (int i = 1; i < month; i++)
-    {
-        days += Date::daysInMonth(i, year);
-    }
-
-    return days + day;
-}
-
 namespace SeedTimeCalculator3
 {
     std::vector<SeedTimeState3> calculateTimes(u32 seed, u32 advance, u16 year)

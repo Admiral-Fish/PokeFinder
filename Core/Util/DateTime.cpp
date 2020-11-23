@@ -94,11 +94,6 @@ bool Date::isLeapYear(int year)
     return (year % 4) == 0;
 }
 
-int Date::weekDay() const
-{
-    return jd % 7;
-}
-
 std::string Date::toString() const
 {
     auto parts = getParts();

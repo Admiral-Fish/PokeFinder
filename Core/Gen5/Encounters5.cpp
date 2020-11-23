@@ -24,6 +24,7 @@
 #include <Core/Parents/PersonalInfo.hpp>
 #include <Core/Resources/Resources.hpp>
 #include <algorithm>
+#include <cstring>
 #include <iterator>
 
 namespace Encounters5

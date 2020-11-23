@@ -26,6 +26,7 @@
 #include <Core/Resources/Resources.hpp>
 #include <algorithm>
 #include <array>
+#include <cstring>
 #include <iterator>
 
 namespace Encounters3
