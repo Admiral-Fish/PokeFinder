@@ -4,16 +4,14 @@ import glob
 def embed(paths):    
     arrays = []
     for path in paths:
-        files = glob.glob(f"{path}/**/*.bin", recursive=True)
+        files = glob.glob(path + "/**/*.bin", recursive=True)
         for file in files:
             with open(file, "rb") as f:
                 data = f.read()
 
             name = os.path.basename(f.name).replace(".bin", "")
             
-            string = f"constexpr u8 {name}[{len(data)}] = "
-            string += " { "
-
+            string = "constexpr u8 " + name + "[" + len(data) + "] = {"
             for i in range(len(data)):
                 string += str(data[i])
                 if i != len(data) - 1:
