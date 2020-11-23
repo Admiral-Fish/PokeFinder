@@ -27,7 +27,7 @@ def write(arrays):
     f.write("#include <Core/Util/Global.hpp>\n\n")
 
     for array in arrays:
-        f.write(f"{array}\n\n")
+        f.write(array + "\n\n")
 
 def main():
     arrays = embed(["Core\Resources\Encounters", "Core\Resources\Personal"])
