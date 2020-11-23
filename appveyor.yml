@@ -18,6 +18,7 @@ install:
 before_build:
     - cmd: set PATH=%QTPATH%\bin;C:\Qt\Tools\QtCreator\bin;%PATH%
     - cmd: call %VCVARSALLPATH% %VCVARSALL%
+    - python embed.py
     
 build_script:
     - cmd: qmake PokeFinder.pro
