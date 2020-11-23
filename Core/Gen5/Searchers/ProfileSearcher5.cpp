@@ -87,7 +87,7 @@ void ProfileSearcher5::cancelSearch()
     searching = false;
 }
 
-std::vector<QList<QStandardItem *>> ProfileSearcher5::getResults()
+std::vector<ProfileSearcherState5> ProfileSearcher5::getResults()
 {
     std::lock_guard<std::mutex> lock(resultMutex);
 
@@ -128,16 +128,8 @@ void ProfileSearcher5::search(u8 vframeStart, u8 vframeEnd)
 
                         if (valid(seed))
                         {
-                            QList<QStandardItem *> items;
-                            items.append(new QStandardItem(QString::number(second)));
-                            items.append(new QStandardItem(QString::number(vcount, 16)));
-                            items.append(new QStandardItem(QString::number(timer0, 16)));
-                            items.append(new QStandardItem(QString::number(gxStat, 16)));
-                            items.append(new QStandardItem(QString::number(vframe, 16)));
-                            items.append(new QStandardItem(QString::number(seed, 16)));
-
                             std::lock_guard<std::mutex> lock(resultMutex);
-                            results.emplace_back(items);
+                            results.emplace_back(seed, timer0, vcount, vframe, gxStat, second);
                         }
 
                         std::lock_guard<std::mutex> lock(progressMutex);

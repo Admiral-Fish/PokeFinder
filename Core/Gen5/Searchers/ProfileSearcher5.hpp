@@ -20,9 +20,9 @@
 #ifndef PROFILESEARCHER5_HPP
 #define PROFILESEARCHER5_HPP
 
+#include <Core/Gen5/States/ProfileSearcherState5.hpp>
 #include <Core/Util/DateTime.hpp>
 #include <Core/Util/Global.hpp>
-#include <QStandardItem>
 #include <array>
 #include <mutex>
 #include <vector>
@@ -42,7 +42,7 @@ public:
     virtual ~ProfileSearcher5() = default;
     void startSearch(int threads, u8 minVFrame, u8 maxVFrame);
     void cancelSearch();
-    std::vector<QList<QStandardItem *>> getResults();
+    std::vector<ProfileSearcherState5> getResults();
     int getProgress() const;
 
 private:
@@ -65,7 +65,7 @@ private:
 
     bool searching;
     int progress;
-    std::vector<QList<QStandardItem *>> results;
+    std::vector<ProfileSearcherState5> results;
     std::mutex resultMutex;
     std::mutex progressMutex;
 

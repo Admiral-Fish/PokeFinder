@@ -22,11 +22,12 @@
 #include <Core/Enum/DSType.hpp>
 #include <Core/Enum/Game.hpp>
 #include <Core/Enum/Language.hpp>
-#include <Core/Parents/ProfileLoader.hpp>
 #include <Core/Gen5/Searchers/ProfileSearcher5.hpp>
+#include <Core/Parents/ProfileLoader.hpp>
 #include <Core/Util/Translator.hpp>
 #include <Forms/Gen5/Profile/ProfileEditor5.hpp>
 #include <Forms/Util/IVCalculator.hpp>
+#include <Models/Gen5/ProfileSearcherModel5.hpp>
 #include <QMessageBox>
 #include <QSettings>
 #include <QThread>
@@ -54,8 +55,7 @@ ProfileCalibrator5::~ProfileCalibrator5()
 
 void ProfileCalibrator5::setupModels()
 {
-    model = new QStandardItemModel(ui->tableView);
-    model->setHorizontalHeaderLabels({ tr("Seconds"), tr("VCount"), tr("Timer0"), tr("GxStat"), tr("VFrame"), tr("Seed") });
+    model = new ProfileSearcherModel5(ui->tableView);
     ui->tableView->setModel(model);
 
     menu = new QMenu(ui->tableView);
@@ -156,12 +156,9 @@ void ProfileCalibrator5::updateParameters()
     ui->textBoxMaxVFrame->setText("10");
 }
 
-void ProfileCalibrator5::updateProgress(const std::vector<QList<QStandardItem *>> &states, int progress)
+void ProfileCalibrator5::updateProgress(const std::vector<ProfileSearcherState5> &states, int progress)
 {
-    for (auto &state : states)
-    {
-        model->appendRow(state);
-    }
+    model->addItems(states);
     ui->progressBar->setValue(progress);
 }
 
@@ -318,12 +315,10 @@ void ProfileCalibrator5::createProfile()
     auto language = static_cast<Language>(ui->comboBoxLanguage->getCurrentInt());
     auto dsType = static_cast<DSType>(ui->comboBoxLanguage->getCurrentInt());
     u64 mac = ui->textBoxMACAddress->getULong();
-    u8 vcount = model->data(model->index(row, 1)).toString().toUShort(nullptr, 16);
-    u16 timer0 = model->data(model->index(row, 2)).toString().toUShort(nullptr, 16);
-    u8 gxstat = model->data(model->index(row, 3)).toString().toUShort(nullptr, 16);
-    u8 vframe = model->data(model->index(row, 4)).toString().toUShort(nullptr, 16);
+    auto state = model->getItem(row);
 
-    QScopedPointer<ProfileEditor5> dialog(new ProfileEditor5(version, language, dsType, mac, vcount, timer0, gxstat, vframe));
+    QScopedPointer<ProfileEditor5> dialog(
+        new ProfileEditor5(version, language, dsType, mac, state.getVcount(), state.getTimer0(), state.getGxstat(), state.getVframe()));
     if (dialog->exec() == QDialog::Accepted)
     {
         Profile5 profile = dialog->getNewProfile();

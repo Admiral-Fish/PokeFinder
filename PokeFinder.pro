@@ -160,6 +160,7 @@ HEADERS += \
     Core/Gen5/Searchers/StationarySearcher5.hpp \
     Core/Gen5/States/HiddenGrottoState.hpp \
     Core/Gen5/States/IDState5.hpp \
+    Core/Gen5/States/ProfileSearcherState5.hpp \
     Core/Gen5/States/SearcherState5.hpp \
     Core/Gen5/States/State5.hpp \
     Core/Gen5/States/StationaryState5.hpp \
@@ -273,6 +274,7 @@ HEADERS += \
     Models/Gen5/EventModel5.hpp \
     Models/Gen5/IDModel5.hpp \
     Models/Gen5/ProfileModel5.hpp \
+    Models/Gen5/ProfileSearcherModel5.hpp \
     Models/TableModel.hpp \
     Models/Util/ResearcherModel.hpp \
     nlohmann/json.hpp
@@ -342,6 +344,7 @@ SOURCES += \
     Core/Gen5/Searchers/ProfileSearcher5.cpp \
     Core/Gen5/Searchers/StationarySearcher5.cpp \
     Core/Gen5/States/IDState5.cpp \
+    Core/Gen5/States/ProfileSearcherState5.cpp \
     Core/Parents/Daycare.cpp \
     Core/Parents/EncounterArea.cpp \
     Core/Parents/Filters/IDFilter.cpp \
@@ -447,5 +450,6 @@ SOURCES += \
     Models/Gen5/EventModel5.cpp \
     Models/Gen5/IDModel5.cpp \
     Models/Gen5/ProfileModel5.cpp \
+    Models/Gen5/ProfileSearcherModel5.cpp \
     Models/Util/ResearcherModel.cpp \
     main.cpp
