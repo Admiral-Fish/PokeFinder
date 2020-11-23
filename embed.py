@@ -1,6 +1,5 @@
 import os
 import glob
-import bz2
 
 def embed(paths):    
     arrays = []
@@ -11,14 +10,13 @@ def embed(paths):
                 data = f.read()
 
             name = os.path.basename(f.name).replace(".bin", "")
-            compressed_data = bz2.compress(data, 9)
             
-            string = f"constexpr u8 {name}[{len(compressed_data)}] = "
+            string = f"constexpr u8 {name}[{len(data)}] = "
             string += " { "
 
-            for i in range(len(compressed_data)):
-                string += str(compressed_data[i])
-                if i != len(compressed_data) - 1:
+            for i in range(len(data)):
+                string += str(data[i])
+                if i != len(data) - 1:
                     string += ", "
 
             string += " };"
@@ -28,7 +26,6 @@ def embed(paths):
 
 def write(arrays):
     f = open("Core\Resources\Resources.hpp", "w")
-
     f.write("#include <Core/Util/Global.hpp>\n\n")
 
     for array in arrays:
