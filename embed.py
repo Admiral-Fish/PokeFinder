@@ -11,7 +11,7 @@ def embed(paths):
 
             name = os.path.basename(f.name).replace(".bin", "")
             
-            string = "constexpr u8 " + name + "[" + len(data) + "] = {"
+            string = "constexpr u8 " + name + "[" + str(len(data)) + "] = {"
             for i in range(len(data)):
                 string += str(data[i])
                 if i != len(data) - 1:
