@@ -62,8 +62,8 @@ QVariant SeedtoTimeModel4::data(const QModelIndex &index, int role) const
                                                                      : Utilities::coinFlips(state.getSeed()));
             case 4:
             {
-                QString str = state.getInfo().getRouteString();
-                return str.isEmpty() ? tr("No roamers") : str;
+                std::string str = state.getInfo().getRouteString();
+                return str.empty() ? tr("No roamers") : QString::fromStdString(str);
             }
             }
         }

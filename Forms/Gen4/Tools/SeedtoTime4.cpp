@@ -315,9 +315,8 @@ void SeedtoTime4::hgssGenerate()
 
     std::vector<SeedTime> results = generate(seed, year, forceSecond, forcedSecond, Game::HeartGold);
     ui->labelHGSSElmCalls->setText(tr("Elm Calls: ") + QString::fromStdString(Utilities::getCalls(seed, info)));
-    QString str = info.getRouteString();
-    str = str.isEmpty() ? tr("No roamers") : str;
-    ui->labelHGSSRoamers->setText(tr("Roamers: ") + str);
+    std::string str = info.getRouteString();
+    ui->labelHGSSRoamers->setText(tr("Roamers: ") + (str.empty() ? tr("No roamers") : QString::fromStdString(str)));
 
     hgssModel->addItems(results);
 }

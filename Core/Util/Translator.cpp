@@ -19,6 +19,7 @@
 
 #include "Translator.hpp"
 #include <Core/Enum/Game.hpp>
+#include <algorithm>
 #include <fstream>
 #include <map>
 #include <sstream>
@@ -98,10 +99,7 @@ namespace Translator
     std::vector<std::string> getSpecies(const std::vector<u16> &nums)
     {
         std::vector<std::string> s;
-        for (u16 num : nums)
-        {
-            s.emplace_back(species[num - 1]);
-        }
+        std::transform(nums.begin(), nums.end(), std::back_inserter(s), [](u16 num) { return species[num - 1]; });
         return s;
     }
 
@@ -151,10 +149,7 @@ namespace Translator
         }
 
         std::vector<std::string> locations;
-        for (const u8 num : nums)
-        {
-            locations.emplace_back(map[num]);
-        }
+        std::transform(nums.begin(), nums.end(), std::back_inserter(locations), [&map](u8 num) { return map[num]; });
 
         return locations;
     }

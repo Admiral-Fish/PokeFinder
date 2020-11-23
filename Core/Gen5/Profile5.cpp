@@ -19,8 +19,6 @@
 
 #include "Profile5.hpp"
 #include <Core/Enum/Game.hpp>
-#include <QStringList>
-#include <QTranslator>
 
 Profile5::Profile5() :
     mac(0x9BF123456),

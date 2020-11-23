@@ -18,7 +18,6 @@
  */
 
 #include "Profile4.hpp"
-#include <QTranslator>
 
 Profile4::Profile4() : dual(Game::Blank), radio(0), radar(false), swarm(false)
 {

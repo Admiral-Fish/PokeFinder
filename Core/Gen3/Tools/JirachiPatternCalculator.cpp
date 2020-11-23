@@ -19,7 +19,7 @@
 
 #include "JirachiPatternCalculator.hpp"
 #include <Core/RNG/LCRNG.hpp>
-#include <vector>
+#include <sstream>
 
 namespace JirachiPatternCalculator
 {
@@ -65,9 +65,9 @@ namespace JirachiPatternCalculator
         }
     }
 
-    QStringList getPatterns(u32 seed)
+    std::vector<std::string> getPatterns(u32 seed)
     {
-        QStringList patterns;
+        std::vector<std::string> patterns;
 
         XDRNGR rng(seed);
         std::vector<u16> data;
@@ -109,13 +109,16 @@ namespace JirachiPatternCalculator
                         // Spread valid
                         if ((mask & 14) == 14)
                         {
-                            QStringList pattern;
+                            std::vector<std::string> pattern;
                             for (size_t j = data.size() - 1; j > 0; j--)
                             {
-                                pattern.append(QString::number(data[j] >> 14));
+                                pattern.emplace_back(std::to_string(data[j] >> 14));
                             }
                             pattern[pattern.size() - index] = "T:" + pattern[pattern.size() - index];
-                            patterns.append(pattern.join(" | "));
+
+                            std::stringstream stream;
+                            std::copy(pattern.begin(), pattern.end(), std::ostream_iterator<std::string>(stream, " | "));
+                            patterns.emplace_back(stream.str());
 
                             break;
                         }

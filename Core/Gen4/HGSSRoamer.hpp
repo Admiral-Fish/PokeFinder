@@ -21,7 +21,7 @@
 #define HGSSROAMER_HPP
 
 #include <Core/Util/Global.hpp>
-#include <QString>
+#include <string>
 #include <vector>
 
 class HGSSRoamer
@@ -33,7 +33,7 @@ public:
     u8 getRaikouRoute() const;
     u8 getEnteiRoute() const;
     u8 getLatiRoute() const;
-    QString getRouteString() const;
+    std::string getRouteString() const;
     std::vector<bool> getRoamers() const;
     std::vector<u8> getRoutes() const;
     void recalculateRoamers(u32 seed);

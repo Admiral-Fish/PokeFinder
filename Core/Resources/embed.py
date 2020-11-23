@@ -1,8 +1,8 @@
 import os
 import glob
+import bz2
 
-
-def embed(paths):
+def embed(paths):    
     arrays = []
     for path in paths:
         files = glob.glob(f"{path}/**/*.bin", recursive=True)
@@ -11,13 +11,14 @@ def embed(paths):
                 data = f.read()
 
             name = os.path.basename(f.name).replace(".bin", "")
+            compressed_data = bz2.compress(data, 9)
             
-            string = f"constexpr u8 {name}[{len(data)}] = "
+            string = f"constexpr u8 {name}[{len(compressed_data)}] = "
             string += " { "
 
-            for i in range(len(data)):
-                string += str(data[i])
-                if i != len(data) - 1:
+            for i in range(len(compressed_data)):
+                string += str(compressed_data[i])
+                if i != len(compressed_data) - 1:
                     string += ", "
 
             string += " };"

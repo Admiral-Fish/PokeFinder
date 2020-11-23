@@ -20,7 +20,7 @@
 #include "EncounterArea.hpp"
 #include <Core/Enum/Encounter.hpp>
 #include <Core/Util/Translator.hpp>
-#include <QStringList>
+#include <algorithm>
 
 EncounterArea::EncounterArea(u8 location, Encounter encounter, const std::vector<Slot> &pokemon) :
     pokemon(pokemon), location(location), encounter(encounter)

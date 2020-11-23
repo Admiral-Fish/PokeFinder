@@ -136,7 +136,7 @@ public:
         return date == other.date && time == other.time;
     }
 
-    bool operator<=(const DateTime &other) const
+    constexpr bool operator<=(const DateTime &other) const
     {
         return date < other.date || (date == other.date && time <= other.time);
     }

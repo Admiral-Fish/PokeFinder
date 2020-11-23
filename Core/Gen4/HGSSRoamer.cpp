@@ -49,24 +49,24 @@ u8 HGSSRoamer::getLatiRoute() const
     return latiRoute;
 }
 
-QString HGSSRoamer::getRouteString() const
+std::string HGSSRoamer::getRouteString() const
 {
-    QString routes;
+    std::string route;
 
     if (roamers[0])
     {
-        routes += QString("R: %1 ").arg(raikouRoute);
+        route = "R: " + std::to_string(raikouRoute);
     }
     if (roamers[1])
     {
-        routes += QString("E: %1 ").arg(enteiRoute);
+        route = "E: " + std::to_string(enteiRoute);
     }
     if (roamers[2])
     {
-        routes += QString("L: %1 ").arg(latiRoute);
+        route = "L: " + std::to_string(latiRoute);
     }
 
-    return routes;
+    return route;
 }
 
 std::vector<bool> HGSSRoamer::getRoamers() const
