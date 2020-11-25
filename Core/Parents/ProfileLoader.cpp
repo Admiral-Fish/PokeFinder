@@ -375,7 +375,7 @@ namespace ProfileLoader5
             gen5.emplace_back(getJson(profile));
 
             std::ofstream write(path);
-            write << j;
+            write << j.dump(4);
             write.close();
         }
     }
@@ -399,7 +399,7 @@ namespace ProfileLoader5
                     gen5.erase(gen5.begin() + i);
 
                     std::ofstream write(path);
-                    write << j;
+                    write << j.dump(4);
                     write.close();
                     break;
                 }
@@ -426,7 +426,7 @@ namespace ProfileLoader5
                     gen5[i] = getJson(update);
 
                     std::ofstream write(path);
-                    write << j;
+                    write << j.dump(4);
                     write.close();
                     break;
                 }
