@@ -56,7 +56,7 @@ int Date::day() const
 
 int Date::dayOfWeek() const
 {
-    return jd % 7;
+    return (jd + 1) % 7;
 }
 
 std::array<int, 3> Date::getParts() const
