@@ -19,6 +19,7 @@
 
 #include "IDFilter.hpp"
 #include <Core/Parents/States/IDState.hpp>
+#include <algorithm>
 
 IDFilter::IDFilter(const std::vector<u16> &tidFilter, const std::vector<u16> &sidFilter, const std::vector<u16> &tsvFilter) :
     tidFilter(tidFilter), sidFilter(sidFilter), tsvFilter(tsvFilter)

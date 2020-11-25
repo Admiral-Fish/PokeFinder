@@ -2,7 +2,7 @@ lessThan(QT_MAJOR_VERSION, 5):error("You need at least Qt 5.12 to build PokeFind
 equals(QT_MAJOR_VERSION, 5):lessThan(QT_MINOR_VERSION, 12):error("You need at least Qt 5.12 to build PokeFinder")
 
 QT += network widgets
-CONFIG += c++2a lrelease embed_translations
+CONFIG += c++1z lrelease embed_translations
 QMAKE_LRELEASE_FLAGS = -nounfinished -removeidentical
 
 TARGET = PokeFinder
