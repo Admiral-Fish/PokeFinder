@@ -18,6 +18,7 @@
  */
 
 #include "GalesSeedSearcher.hpp"
+#include <algorithm>
 #include <cstring>
 #include <future>
 

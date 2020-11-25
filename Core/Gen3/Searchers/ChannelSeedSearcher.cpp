@@ -19,6 +19,7 @@
 
 #include "ChannelSeedSearcher.hpp"
 #include <Core/RNG/LCRNG.hpp>
+#include <algorithm>
 #include <future>
 
 ChannelSeedSearcher::ChannelSeedSearcher(const std::vector<u32> &criteria) : SeedSearcher(criteria)
