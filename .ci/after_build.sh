@@ -3,7 +3,7 @@
 case $OS in
   linux)
   {
-    zip -r PokeFinder-linux.zip PokeFinder Core\Resources\i18n
+    zip -r PokeFinder-linux.zip PokeFinder Core/Resources/i18n
     sha256sum PokeFinder-linux.zip > PokeFinder-linux.zip.sha256
   } ;;  
   macOS)
