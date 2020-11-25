@@ -77,9 +77,10 @@ namespace ProfileLoader3
     {
         QSettings setting;
         QFile f(setting.value("settings/profiles").toString());
-        if (f.open(QIODevice::ReadWrite))
+        if (f.open(QIODevice::ReadOnly))
         {
             QByteArray data = f.readAll();
+            f.close();
 
             QJsonObject profiles(QJsonDocument::fromJson(data).object());
             QJsonArray gen3 = profiles["gen3"].toArray();
@@ -87,6 +88,7 @@ namespace ProfileLoader3
             gen3.append(getJson(profile));
             profiles["gen3"] = gen3;
 
+            f.open(QIODevice::WriteOnly);
             f.write(QJsonDocument(profiles).toJson());
         }
     }
@@ -95,9 +97,10 @@ namespace ProfileLoader3
     {
         QSettings setting;
         QFile f(setting.value("settings/profiles").toString());
-        if (f.open(QIODevice::ReadWrite))
+        if (f.open(QIODevice::ReadOnly))
         {
             QByteArray data = f.readAll();
+            f.close();
 
             QJsonObject profiles(QJsonDocument::fromJson(data).object());
             QJsonArray gen3 = profiles["gen3"].toArray();
@@ -111,6 +114,7 @@ namespace ProfileLoader3
                     gen3.removeAt(i);
                     profiles["gen3"] = gen3;
 
+                    f.open(QIODevice::WriteOnly);
                     f.write(QJsonDocument(profiles).toJson());
                     break;
                 }
@@ -122,9 +126,10 @@ namespace ProfileLoader3
     {
         QSettings setting;
         QFile f(setting.value("settings/profiles").toString());
-        if (f.open(QIODevice::ReadWrite))
+        if (f.open(QIODevice::ReadOnly))
         {
             QByteArray data = f.readAll();
+            f.close();
 
             QJsonObject profiles(QJsonDocument::fromJson(data).object());
             QJsonArray gen3 = profiles["gen3"].toArray();
@@ -138,6 +143,7 @@ namespace ProfileLoader3
                     gen3[i] = getJson(update);
                     profiles["gen3"] = gen3;
 
+                    f.open(QIODevice::WriteOnly);
                     f.write(QJsonDocument(profiles).toJson());
                     break;
                 }

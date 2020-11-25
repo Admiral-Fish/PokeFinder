@@ -110,9 +110,10 @@ namespace ProfileLoader5
     {
         QSettings setting;
         QFile f(setting.value("settings/profiles").toString());
-        if (f.open(QIODevice::ReadWrite))
+        if (f.open(QIODevice::ReadOnly))
         {
             QByteArray data = f.readAll();
+            f.close();
 
             QJsonObject profiles(QJsonDocument::fromJson(data).object());
             QJsonArray gen5 = profiles["gen5"].toArray();
@@ -120,6 +121,7 @@ namespace ProfileLoader5
             gen5.append(getJson(profile));
             profiles["gen5"] = gen5;
 
+            f.open(QIODevice::WriteOnly);
             f.write(QJsonDocument(profiles).toJson());
         }
     }
@@ -128,9 +130,10 @@ namespace ProfileLoader5
     {
         QSettings setting;
         QFile f(setting.value("settings/profiles").toString());
-        if (f.open(QIODevice::ReadWrite))
+        if (f.open(QIODevice::ReadOnly))
         {
             QByteArray data = f.readAll();
+            f.close();
 
             QJsonObject profiles(QJsonDocument::fromJson(data).object());
             QJsonArray gen5 = profiles["gen5"].toArray();
@@ -144,6 +147,7 @@ namespace ProfileLoader5
                     gen5.removeAt(i);
                     profiles["gen5"] = gen5;
 
+                    f.open(QIODevice::WriteOnly);
                     f.write(QJsonDocument(profiles).toJson());
                     break;
                 }
@@ -155,9 +159,10 @@ namespace ProfileLoader5
     {
         QSettings setting;
         QFile f(setting.value("settings/profiles").toString());
-        if (f.open(QIODevice::ReadWrite))
+        if (f.open(QIODevice::ReadOnly))
         {
             QByteArray data = f.readAll();
+            f.close();
 
             QJsonObject profiles(QJsonDocument::fromJson(data).object());
             QJsonArray gen5 = profiles["gen5"].toArray();
@@ -171,6 +176,7 @@ namespace ProfileLoader5
                     gen5[i] = getJson(update);
                     profiles["gen5"] = gen5;
 
+                    f.open(QIODevice::WriteOnly);
                     f.write(QJsonDocument(profiles).toJson());
                     break;
                 }
