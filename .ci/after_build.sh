@@ -8,7 +8,7 @@ case $OS in
   } ;;  
   macOS)
   {
-	mv Core\Resources\i18n PokeFinder.app\i18n
+	mv Core/Resources/i18n PokeFinder.app/Contents/MacOS/i18n
     macdeployqt PokeFinder.app -dmg -verbose=2
     zip -r PokeFinder-macOS.zip PokeFinder.dmg
     shasum -a 256 PokeFinder-macOS.zip > PokeFinder-macOS.zip.sha256
