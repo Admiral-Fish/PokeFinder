@@ -18,7 +18,6 @@
  */
 
 #include "ProfileLoader.hpp"
-#include <filesystem>
 #include <fstream>
 #include <nlohmann/json.hpp>
 #include <sstream>
@@ -34,11 +33,12 @@ namespace ProfileLoader
     {
         path = location;
 
-        if (!std::filesystem::exists(path))
+        std::ifstream file(path);
+        if (!file)
         {
-            std::ofstream file(path);
-            file << "{}";
-            file.close();
+            std::ofstream json(path);
+            json << "{}";
+            json.close();
         }
     }
 }
