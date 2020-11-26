@@ -96,36 +96,6 @@ std::vector<PersonalInfo> PersonalInfo::loadPersonal(u8 gen)
     return pokemon;
 }
 
-u16 PersonalInfo::getBaseHP() const
-{
-    return baseHP;
-}
-
-u16 PersonalInfo::getBaseAtk() const
-{
-    return baseAtk;
-}
-
-u16 PersonalInfo::getBaseDef() const
-{
-    return baseDef;
-}
-
-u16 PersonalInfo::getBaseSpA() const
-{
-    return baseSpA;
-}
-
-u16 PersonalInfo::getBaseSpD() const
-{
-    return baseSpD;
-}
-
-u16 PersonalInfo::getBaseSpe() const
-{
-    return baseSpe;
-}
-
 std::vector<u8> PersonalInfo::getBaseStats() const
 {
     return { baseHP, baseAtk, baseDef, baseSpA, baseSpD, baseSpe };

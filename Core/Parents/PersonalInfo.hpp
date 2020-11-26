@@ -30,12 +30,6 @@ public:
     PersonalInfo(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, u8 gender, u16 ability1, u16 ability2, u16 abilityH = 0, u8 formCount = 1,
                  u16 formStatIndex = 0);
     static std::vector<PersonalInfo> loadPersonal(u8 gen);
-    u16 getBaseHP() const;
-    u16 getBaseAtk() const;
-    u16 getBaseDef() const;
-    u16 getBaseSpA() const;
-    u16 getBaseSpD() const;
-    u16 getBaseSpe() const;
     std::vector<u8> getBaseStats() const;
     u16 getGender() const;
     u16 getAbility1() const;

@@ -37,7 +37,7 @@ SeedTime::SeedTime(const DateTime &dateTime, u32 delay, Game version, const HGSS
     this->info.recalculateRoamers(seed);
 }
 
-std::string SeedTime::sequence() const
+std::string SeedTime::getSequence() const
 {
     return (version & Game::HGSS) ? Utilities::getCalls(seed, info) : Utilities::coinFlips(seed);
 }

@@ -47,11 +47,6 @@ ShadowTeam::ShadowTeam(const std::vector<LockInfo> &locks, ShadowType type) : lo
 {
 }
 
-LockInfo ShadowTeam::getLock(u8 index) const
-{
-    return locks[index];
-}
-
 std::vector<LockInfo> ShadowTeam::getLocks() const
 {
     return locks;
@@ -60,11 +55,6 @@ std::vector<LockInfo> ShadowTeam::getLocks() const
 ShadowType ShadowTeam::getType() const
 {
     return type;
-}
-
-int ShadowTeam::getSize() const
-{
-    return locks.size();
 }
 
 std::vector<ShadowTeam> ShadowTeam::loadShadowTeams(Method version)

@@ -31,27 +31,6 @@ GraphicsPixmapItem::GraphicsPixmapItem(const QPixmap &pixmap, u16 minX, u16 minY
     setY(minY);
 }
 
-void GraphicsPixmapItem::setMin(u16 minX, u16 minY)
-{
-    this->minX = minX;
-    this->minY = minY;
-
-    if (x() < minX)
-    {
-        setX(minX);
-    }
-    if (y() < minY)
-    {
-        setY(minY);
-    }
-}
-
-void GraphicsPixmapItem::setMax(u16 maxX, u16 maxY)
-{
-    this->maxX = maxX;
-    this->maxY = maxY;
-}
-
 void GraphicsPixmapItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 {
     QGraphicsPixmapItem::mouseMoveEvent(event);

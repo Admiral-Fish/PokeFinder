@@ -46,10 +46,8 @@ class ShadowTeam
 public:
     ShadowTeam() = default;
     ShadowTeam(const std::vector<LockInfo> &locks, ShadowType type);
-    LockInfo getLock(u8 index) const;
     std::vector<LockInfo> getLocks() const;
     ShadowType getType() const;
-    int getSize() const;
     static std::vector<ShadowTeam> loadShadowTeams(Method version);
 
 private:

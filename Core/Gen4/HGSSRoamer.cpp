@@ -34,21 +34,6 @@ u8 HGSSRoamer::getSkips() const
     return skips;
 }
 
-u8 HGSSRoamer::getRaikouRoute() const
-{
-    return raikouRoute;
-}
-
-u8 HGSSRoamer::getEnteiRoute() const
-{
-    return enteiRoute;
-}
-
-u8 HGSSRoamer::getLatiRoute() const
-{
-    return latiRoute;
-}
-
 std::string HGSSRoamer::getRouteString() const
 {
     std::string route;
@@ -67,16 +52,6 @@ std::string HGSSRoamer::getRouteString() const
     }
 
     return route;
-}
-
-std::vector<bool> HGSSRoamer::getRoamers() const
-{
-    return roamers;
-}
-
-std::vector<u8> HGSSRoamer::getRoutes() const
-{
-    return routes;
 }
 
 void HGSSRoamer::recalculateRoamers(u32 seed)

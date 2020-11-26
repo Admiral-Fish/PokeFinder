@@ -39,7 +39,6 @@ public:
     std::vector<bool> getSlots(u16 num) const;
     std::pair<u8, u8> getLevelRange(u16 specie) const;
     std::vector<std::string> getSpecieNames() const;
-    void setSlot(u8 index, u16 specie, const PersonalInfo &info);
 
 protected:
     std::vector<Slot> pokemon;

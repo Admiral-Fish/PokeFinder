@@ -30,12 +30,7 @@ public:
     HGSSRoamer() = default;
     HGSSRoamer(u32 seed, const std::vector<bool> &roamers, const std::vector<u8> &routes);
     u8 getSkips() const;
-    u8 getRaikouRoute() const;
-    u8 getEnteiRoute() const;
-    u8 getLatiRoute() const;
     std::string getRouteString() const;
-    std::vector<bool> getRoamers() const;
-    std::vector<u8> getRoutes() const;
     void recalculateRoamers(u32 seed);
 
 private:

@@ -96,7 +96,7 @@ void SearchCalls::callsTextChanged(const QString &val)
         possible.clear();
         for (const auto &dt : data)
         {
-            std::string compare = Utilities::getCalls(dt.getSeed(), dt.getInfo());
+            std::string compare = dt.getSequence();
             if (compare.find("skipped") != std::string::npos)
             {
                 size_t index = compare.find(")");

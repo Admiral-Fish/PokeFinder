@@ -58,8 +58,7 @@ QVariant SeedtoTimeModel4::data(const QModelIndex &index, int role) const
             case 2:
                 return state.getDelay();
             case 3:
-                return QString::fromStdString((version & Game::HGSS) ? Utilities::getCalls(state.getSeed(), state.getInfo())
-                                                                     : Utilities::coinFlips(state.getSeed()));
+                return QString::fromStdString(state.getSequence());
             case 4:
             {
                 std::string str = state.getInfo().getRouteString();
