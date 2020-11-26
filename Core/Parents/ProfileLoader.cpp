@@ -18,6 +18,7 @@
  */
 
 #include "ProfileLoader.hpp"
+#include <filesystem>
 #include <fstream>
 #include <nlohmann/json.hpp>
 #include <sstream>
@@ -32,6 +33,13 @@ namespace ProfileLoader
     void init(const std::string &location)
     {
         path = location;
+
+        if (!std::filesystem::exists(path))
+        {
+            std::ofstream file(path);
+            file << "{}";
+            file.close();
+        }
     }
 }
 
@@ -60,11 +68,6 @@ namespace ProfileLoader3
             j["battery"] = profile.getDeadBattery();
             return j;
         }
-    }
-
-    void init(const std::string &location)
-    {
-        path = location;
     }
 
     std::vector<Profile3> getProfiles()
@@ -189,11 +192,6 @@ namespace ProfileLoader4
             j["swarm"] = profile.getSwarm();
             return j;
         }
-    }
-
-    void init(const std::string &location)
-    {
-        path = location;
     }
 
     std::vector<Profile4> getProfiles()
@@ -338,11 +336,6 @@ namespace ProfileLoader5
             j["language"] = static_cast<int>(profile.getLanguage());
             return j;
         }
-    }
-
-    void init(const std::string &location)
-    {
-        path = location;
     }
 
     std::vector<Profile5> getProfiles()
