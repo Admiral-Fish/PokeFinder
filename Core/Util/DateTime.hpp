@@ -33,7 +33,7 @@ public:
     {
     }
     Date(int year, int month, int day);
-    Date addDays(int days);
+    Date addDays(int days) const;
     int daysTo(const Date &other) const;
     int year() const;
     int month() const;

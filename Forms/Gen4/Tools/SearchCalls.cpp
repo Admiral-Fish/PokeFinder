@@ -99,7 +99,7 @@ void SearchCalls::callsTextChanged(const QString &val)
             std::string compare = dt.getSequence();
             if (compare.find("skipped") != std::string::npos)
             {
-                size_t index = compare.find(")");
+                size_t index = compare.find(')');
                 compare = compare.substr(index, compare.size() - index);
             }
 

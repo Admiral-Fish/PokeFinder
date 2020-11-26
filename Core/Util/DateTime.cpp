@@ -29,7 +29,7 @@ Date::Date(int year, int month, int day)
     jd = day + ((153 * m + 2) / 5) - 32045 + 365 * y + (y / 4) - (y / 100) + (y / 400);
 }
 
-Date Date::addDays(int days)
+Date Date::addDays(int days) const
 {
     return Date(jd + days);
 }

@@ -143,13 +143,13 @@ namespace ProfileLoader3
             read.close();
 
             auto &gen3 = j["gen3"];
-            for (size_t i = 0; i < gen3.size(); i++)
+            for (auto &i : gen3)
             {
-                Profile3 profile = getProfile(gen3[i]);
+                Profile3 profile = getProfile(i);
 
                 if (original == profile && original != update)
                 {
-                    gen3[i] = getJson(update);
+                    i = getJson(update);
 
                     std::ofstream write(path);
                     write << j.dump(4);
@@ -267,13 +267,13 @@ namespace ProfileLoader4
             read.close();
 
             auto &gen4 = j["gen4"];
-            for (size_t i = 0; i < gen4.size(); i++)
+            for (auto &i : gen4)
             {
-                Profile4 profile = getProfile(gen4[i]);
+                Profile4 profile = getProfile(i);
 
                 if (original == profile && original != update)
                 {
-                    gen4[i] = getJson(update);
+                    i = getJson(update);
 
                     std::ofstream write(path);
                     write << j.dump(4);
@@ -410,13 +410,13 @@ namespace ProfileLoader5
             read.close();
 
             auto &gen5 = j["gen5"];
-            for (size_t i = 0; i < gen5.size(); i++)
+            for (auto &i : gen5)
             {
-                Profile5 profile = getProfile(gen5[i]);
+                Profile5 profile = getProfile(i);
 
                 if (original == profile && original != update)
                 {
-                    gen5[i] = getJson(update);
+                    i = getJson(update);
 
                     std::ofstream write(path);
                     write << j.dump(4);
