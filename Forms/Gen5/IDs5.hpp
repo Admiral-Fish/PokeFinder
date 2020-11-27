@@ -46,14 +46,14 @@ public:
 private:
     Ui::IDs5 *ui;
     IDModel5 *model = nullptr;
-    QVector<Profile5> profiles;
+    std::vector<Profile5> profiles;
     Profile5 currentProfile;
     QMenu *menu = nullptr;
 
     void setupModels();
 
 private slots:
-    void updateProgress(const QVector<IDState5> &states, int progress);
+    void updateProgress(const std::vector<IDState5> &states, int progress);
     void search();
     void find();
     void profileIndexChanged(int index);

@@ -20,7 +20,7 @@
 #ifndef SEARCHCOINFLIPS_HPP
 #define SEARCHCOINFLIPS_HPP
 
-#include <Core/Util/DateTime.hpp>
+#include <Core/Gen4/SeedTime.hpp>
 #include <QDialog>
 
 namespace Ui
@@ -32,14 +32,14 @@ class SearchCoinFlips : public QDialog
 {
     Q_OBJECT
 public:
-    explicit SearchCoinFlips(const QVector<DateTime> &model, QWidget *parent = nullptr);
+    explicit SearchCoinFlips(const std::vector<SeedTime> &model, QWidget *parent = nullptr);
     ~SearchCoinFlips() override;
-    QVector<bool> possibleResults() const;
+    std::vector<bool> possibleResults() const;
 
 private:
     Ui::SearchCoinFlips *ui;
-    QVector<DateTime> data;
-    QVector<bool> possible;
+    std::vector<SeedTime> data;
+    std::vector<bool> possible;
 
 private slots:
     void heads();

@@ -17,18 +17,40 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef PROFILELOADER3_HPP
-#define PROFILELOADER3_HPP
+#include "ProfileSearcherState5.hpp"
 
-#include <Core/Gen3/Profile3.hpp>
-#include <QVector>
-
-namespace ProfileLoader3
+ProfileSearcherState5::ProfileSearcherState5(u64 seed, u16 timer0, u8 vcount, u8 vframe, u8 gxstat, u8 second) :
+    seed(seed), timer0(timer0), vcount(vcount), vframe(vframe), gxstat(gxstat), second(second)
 {
-    QVector<Profile3> getProfiles();
-    void addProfile(const Profile3 &profile);
-    void removeProfile(const Profile3 &remove);
-    void updateProfile(const Profile3 &update, const Profile3 &original);
+
 }
 
-#endif // PROFILELOADER3_HPP
+u64 ProfileSearcherState5::getSeed() const
+{
+    return seed;
+}
+
+u16 ProfileSearcherState5::getTimer0() const
+{
+    return timer0;
+}
+
+u8 ProfileSearcherState5::getVcount() const
+{
+    return vcount;
+}
+
+u8 ProfileSearcherState5::getVframe() const
+{
+    return vframe;
+}
+
+u8 ProfileSearcherState5::getGxstat() const
+{
+    return gxstat;
+}
+
+u8 ProfileSearcherState5::getSecond() const
+{
+    return second;
+}

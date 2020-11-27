@@ -33,7 +33,7 @@ public:
     void setType(int type);
     void startSearch(u32 minDelay, u32 maxDelay);
     void cancelSearch();
-    QVector<EggState4> getResults();
+    std::vector<EggState4> getResults();
     int getProgress() const;
 
 private:
@@ -43,7 +43,7 @@ private:
 
     bool searching;
     int progress;
-    QVector<EggState4> results;
+    std::vector<EggState4> results;
     std::mutex mutex;
 };
 

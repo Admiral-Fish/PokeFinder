@@ -21,20 +21,16 @@
 #define HGSSROAMER_HPP
 
 #include <Core/Util/Global.hpp>
-#include <QVector>
+#include <string>
+#include <vector>
 
 class HGSSRoamer
 {
 public:
     HGSSRoamer() = default;
-    HGSSRoamer(u32 seed, const QVector<bool> &roamers, const QVector<u8> &routes);
+    HGSSRoamer(u32 seed, const std::vector<bool> &roamers, const std::vector<u8> &routes);
     u8 getSkips() const;
-    u8 getRaikouRoute() const;
-    u8 getEnteiRoute() const;
-    u8 getLatiRoute() const;
-    QString getRouteString() const;
-    QVector<bool> getRoamers() const;
-    QVector<u8> getRoutes() const;
+    std::string getRouteString() const;
     void recalculateRoamers(u32 seed);
 
 private:
@@ -47,8 +43,8 @@ private:
     u8 enteiRoute;
     u8 latiRoute;
     u32 seed;
-    QVector<bool> roamers;
-    QVector<u8> routes;
+    std::vector<bool> roamers;
+    std::vector<u8> routes;
 };
 
 #endif // HGSSROAMER_HPP

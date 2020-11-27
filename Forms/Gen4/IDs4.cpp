@@ -81,13 +81,13 @@ void IDs4::setupModels()
     }
 }
 
-void IDs4::updateProgressShinyPID(const QVector<IDState4> &states, int progress)
+void IDs4::updateProgressShinyPID(const std::vector<IDState4> &states, int progress)
 {
     shinyPID->addItems(states);
     ui->progressBarShinyPID->setValue(progress);
 }
 
-void IDs4::updateProgressTIDSID(const QVector<IDState4> &states, int progress)
+void IDs4::updateProgressTIDSID(const std::vector<IDState4> &states, int progress)
 {
     tidSID->addItems(states);
     ui->progressBarTIDSID->setValue(progress);
@@ -100,17 +100,17 @@ void IDs4::shinyPIDSearch()
     ui->pushButtonShinyPIDSearch->setEnabled(false);
     ui->pushButtonShinyPIDCancel->setEnabled(true);
 
-    QVector<u16> tidList;
+    std::vector<u16> tidList;
     if (ui->checkBoxShinyPIDSearchTID->isChecked())
     {
-        tidList.append(ui->textBoxShinyPIDTID->getUShort());
+        tidList.emplace_back(ui->textBoxShinyPIDTID->getUShort());
     }
 
     u32 pid = ui->textBoxShinyPIDPID->getUInt();
     u16 psv = ((pid >> 16) ^ (pid & 0xffff)) >> 3;
-    QVector<u16> psvList = { psv };
+    std::vector<u16> psvList = { psv };
 
-    IDFilter filter(tidList, QVector<u16>(), psvList);
+    IDFilter filter(tidList, std::vector<u16>(), psvList);
 
     u16 year = ui->textBoxShinyPIDYear->getUShort();
     u32 minDelay = ui->textBoxShinyPIDMinDelay->getUInt() + year - 2000;
@@ -148,15 +148,15 @@ void IDs4::tidSIDSearch()
     ui->pushButtonTIDSIDSearch->setEnabled(false);
     ui->pushButtonTIDSIDCancel->setEnabled(true);
 
-    QVector<u16> tidList = { ui->textBoxTIDSIDTID->getUShort() };
+    std::vector<u16> tidList = { ui->textBoxTIDSIDTID->getUShort() };
 
-    QVector<u16> sidList;
+    std::vector<u16> sidList;
     if (ui->checkBoxTIDSIDSearchSID->isChecked())
     {
-        sidList.append(ui->textBoxTIDSIDSID->getUShort());
+        sidList.emplace_back(ui->textBoxTIDSIDSID->getUShort());
     }
 
-    IDFilter filter(tidList, sidList, QVector<u16>());
+    IDFilter filter(tidList, sidList, std::vector<u16>());
 
     u16 year = ui->textBoxTIDSIDYear->getUShort();
     u32 minDelay = ui->textBoxTIDSIDMinDelay->getUInt() + year - 2000;
@@ -201,7 +201,7 @@ void IDs4::seedFinderSearch()
     u32 maxDelay = ui->textBoxSeedFinderMaxDelay->getUInt() + year - 2000;
 
     IDGenerator4 generator(minDelay, maxDelay, year, month, day, hour, minute);
-    IDFilter filter({ ui->textBoxSeedFinderTID->getUShort() }, QVector<u16>(), QVector<u16>());
+    IDFilter filter({ ui->textBoxSeedFinderTID->getUShort() }, std::vector<u16>(), std::vector<u16>());
 
     auto states = generator.generate(filter);
     seedFinder->addItems(states);

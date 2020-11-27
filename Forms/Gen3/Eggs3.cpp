@@ -22,8 +22,8 @@
 #include <Core/Enum/Game.hpp>
 #include <Core/Enum/Method.hpp>
 #include <Core/Gen3/Generators/EggGenerator3.hpp>
-#include <Core/Gen3/ProfileLoader3.hpp>
 #include <Core/Parents/Filters/StateFilter.hpp>
+#include <Core/Parents/ProfileLoader.hpp>
 #include <Core/Util/Nature.hpp>
 #include <Core/Util/Translator.hpp>
 #include <Forms/Gen3/Profile/ProfileManager3.hpp>
@@ -62,7 +62,7 @@ void Eggs3::updateProfiles()
 
     for (const auto &profile : profiles)
     {
-        ui->comboBoxProfiles->addItem(profile.getName());
+        ui->comboBoxProfiles->addItem(QString::fromStdString(profile.getName()));
     }
 
     QSettings setting;
@@ -110,8 +110,6 @@ void Eggs3::setupModels()
     ui->comboBoxEmeraldCompatibility->setup({ 20, 50, 70 });
     ui->comboBoxRSCompatibility->setup({ 20, 50, 70 });
     ui->comboBoxFRLGCompatibility->setup({ 20, 50, 70 });
-
-    ui->comboBoxEverstone->addItems(Translator::getNatures());
 
     ui->comboBoxEmeraldMethod->setup({ Method::EBredPID, Method::EBred, Method::EBredSplit, Method::EBredAlternate });
     ui->comboBoxRSMethod->setup({ Method::RSBred, Method::RSBredSplit, Method::RSBredAlternate });
@@ -258,11 +256,11 @@ void Eggs3::profilesIndexChanged(int index)
 {
     if (index >= 0)
     {
-        currentProfile = profiles.at(index);
+        currentProfile = profiles[index];
 
         ui->labelProfileTIDValue->setText(QString::number(currentProfile.getTID()));
         ui->labelProfileSIDValue->setText(QString::number(currentProfile.getSID()));
-        ui->labelProfileGameValue->setText(currentProfile.getVersionString());
+        ui->labelProfileGameValue->setText(QString::fromStdString(currentProfile.getVersionString()));
     }
 }
 

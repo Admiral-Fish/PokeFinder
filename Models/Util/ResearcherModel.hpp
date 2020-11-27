@@ -23,6 +23,7 @@
 
 #include <Core/Parents/States/ResearcherState.hpp>
 #include <Models/TableModel.hpp>
+#include <array>
 
 class ResearcherModel : public TableModel<ResearcherState>
 {
@@ -30,7 +31,7 @@ class ResearcherModel : public TableModel<ResearcherState>
 public:
     ResearcherModel(QObject *parent, bool flag);
     void setFlag(bool flag);
-    void setHex(const QVector<bool> &hex);
+    void setHex(const std::array<bool, 10> &hex);
     int columnCount(const QModelIndex &index = QModelIndex()) const override;
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
     QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
@@ -38,7 +39,7 @@ public:
 
 private:
     bool flag;
-    QVector<bool> hex;
+    std::array<bool, 10> hex;
 
     QStringList header = { tr("Advances"),  tr("64Bit"),    tr("32Bit High"), tr("32Bit Low"), tr("32Bit"),     tr("16Bit High"),
                            tr("16Bit Low"), tr("Custom 1"), tr("Custom 2"),   tr("Custom 3"),  tr("Custom 4"),  tr("Custom 5"),

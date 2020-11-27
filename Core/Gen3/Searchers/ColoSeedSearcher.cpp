@@ -18,7 +18,8 @@
  */
 
 #include "ColoSeedSearcher.hpp"
-#include <QtConcurrent>
+#include <algorithm>
+#include <future>
 
 constexpr u8 natures[8][6]
     = { { 0x16, 0x15, 0x0f, 0x13, 0x04, 0x04 }, { 0x0b, 0x08, 0x01, 0x10, 0x10, 0x0C }, { 0x02, 0x10, 0x0f, 0x12, 0x0f, 0x03 },
@@ -33,7 +34,7 @@ constexpr u8 genderRatios[8][6]
         { 0xff, 0xbf, 0x7f, 0x7f, 0x1f, 0x7f }, { 0x1f, 0x1f, 0x1f, 0x1f, 0x1f, 0x7f }, { 0xff, 0x7f, 0xff, 0x7f, 0xff, 0x7f },
         { 0xff, 0x1f, 0x3f, 0x7f, 0x7f, 0x3f }, { 0x7f, 0x7f, 0x7f, 0x7f, 0x7f, 0x7f } };
 
-ColoSeedSearcher::ColoSeedSearcher(const QVector<u32> &criteria) : SeedSearcher(criteria)
+ColoSeedSearcher::ColoSeedSearcher(const std::vector<u32> &criteria) : SeedSearcher(criteria)
 {
 }
 
@@ -42,9 +43,7 @@ void ColoSeedSearcher::startSearch(int threads)
     searching = true;
     threads = 1;
 
-    QThreadPool pool;
-    pool.setMaxThreadCount(threads);
-    QVector<QFuture<void>> threadContainer;
+    std::vector<std::future<void>> threadContainer;
 
     u32 split = 0x10000 / threads;
     u32 start = 0;
@@ -52,25 +51,25 @@ void ColoSeedSearcher::startSearch(int threads)
     {
         if (i == threads - 1)
         {
-            threadContainer.append(QtConcurrent::run(&pool, [=] { search(start, 0x10000); }));
+            threadContainer.emplace_back(std::async(std::launch::async, [=] { search(start, 0x10000); }));
         }
         else
         {
-            threadContainer.append(QtConcurrent::run(&pool, [=] { search(start, start + split); }));
+            threadContainer.emplace_back(std::async(std::launch::async, [=] { search(start, start + split); }));
         }
         start += split;
     }
 
     for (int i = 0; i < threads; i++)
     {
-        threadContainer[i].waitForFinished();
+        threadContainer[i].wait();
     }
 
     std::sort(results.begin(), results.end());
     results.erase(std::unique(results.begin(), results.end()), results.end());
 }
 
-void ColoSeedSearcher::startSearch(int threads, const QVector<u32> &seeds)
+void ColoSeedSearcher::startSearch(int threads, const std::vector<u32> &seeds)
 {
     searching = true;
 
@@ -79,9 +78,7 @@ void ColoSeedSearcher::startSearch(int threads, const QVector<u32> &seeds)
         threads = seeds.size();
     }
 
-    QThreadPool pool;
-    pool.setMaxThreadCount(threads);
-    QVector<QFuture<void>> threadContainer;
+    std::vector<std::future<void>> threadContainer;
 
     u32 split = seeds.size() / threads;
     u32 start = 0;
@@ -89,20 +86,20 @@ void ColoSeedSearcher::startSearch(int threads, const QVector<u32> &seeds)
     {
         if (i == threads - 1)
         {
-            auto set = seeds.mid(start);
-            threadContainer.append(QtConcurrent::run(&pool, [=] { search(set); }));
+            threadContainer.emplace_back(
+                std::async(std::launch::async, [=] { search(std::vector<u32>(seeds.cbegin() + start, seeds.cend())); }));
         }
         else
         {
-            auto set = seeds.mid(start, split);
-            threadContainer.append(QtConcurrent::run(&pool, [=] { search(set); }));
+            threadContainer.emplace_back(
+                std::async(std::launch::async, [=] { search(std::vector<u32>(seeds.cbegin() + start, seeds.cbegin() + split)); }));
         }
         start += split;
     }
 
     for (int i = 0; i < threads; i++)
     {
-        threadContainer[i].waitForFinished();
+        threadContainer[i].wait();
     }
 
     std::sort(results.begin(), results.end());
@@ -113,7 +110,7 @@ void ColoSeedSearcher::search(u32 start, u32 end)
 {
     for (u32 low = start; low < end; low++)
     {
-        for (u32 high = criteria.at(0); high < 0x10000; high += 8)
+        for (u32 high = criteria[0]; high < 0x10000; high += 8)
         {
             if (!searching)
             {
@@ -122,15 +119,13 @@ void ColoSeedSearcher::search(u32 start, u32 end)
 
             // Mimic no duplicate enemy and trainer party
             XDRNGR reverse((high << 16) | low);
-            while ((reverse.nextUShort() & 7) == criteria.at(0))
-            {
-            }
+            while ((reverse.nextUShort() & 7) == criteria[0]) { }
 
             XDRNG rng(reverse.next());
             if (searchSeed(rng))
             {
                 std::lock_guard<std::mutex> lock(resultMutex);
-                results.append(rng.getSeed());
+                results.emplace_back(rng.getSeed());
             }
 
             std::lock_guard<std::mutex> lock(progressMutex);
@@ -139,9 +134,9 @@ void ColoSeedSearcher::search(u32 start, u32 end)
     }
 }
 
-void ColoSeedSearcher::search(const QVector<u32> &seeds)
+void ColoSeedSearcher::search(const std::vector<u32> &seeds)
 {
-    for (u32 seed : seeds)
+    for (auto seed : seeds)
     {
         if (!searching)
         {
@@ -152,7 +147,7 @@ void ColoSeedSearcher::search(const QVector<u32> &seeds)
         if (searchSeed(rng))
         {
             std::lock_guard<std::mutex> lock(resultMutex);
-            results.append(rng.getSeed());
+            results.emplace_back(rng.getSeed());
         }
 
         std::lock_guard<std::mutex> lock(progressMutex);
@@ -169,7 +164,7 @@ bool ColoSeedSearcher::searchSeed(XDRNG &rng)
         playerIndex = rng.nextUShort() & 7;
     } while (enemyIndex == playerIndex);
 
-    if (playerIndex != criteria.at(0))
+    if (playerIndex != criteria[0])
     {
         return false;
     }
@@ -189,7 +184,7 @@ bool ColoSeedSearcher::searchSeed(XDRNG &rng)
     }
 
     u8 playerName = rng.nextUShort() % 3;
-    if (playerName != criteria.at(1))
+    if (playerName != criteria[1])
     {
         return false;
     }

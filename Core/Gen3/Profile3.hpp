@@ -26,7 +26,7 @@ class Profile3 : public Profile
 {
 public:
     Profile3();
-    Profile3(const QString &name, Game version, u16 tid, u16 sid, bool deadBattery = false);
+    Profile3(const std::string &name, Game version, u16 tid, u16 sid, bool deadBattery = false);
     bool getDeadBattery() const;
 
 private:

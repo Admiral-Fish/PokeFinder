@@ -49,17 +49,17 @@ public:
     explicit Filter(QWidget *parent = nullptr);
     ~Filter() override ;
 
-    QVector<u8> getMinIVs() const;
-    QVector<u8> getMaxIVs() const;
+    std::array<u8, 6> getMinIVs() const;
+    std::array<u8, 6> getMaxIVs() const;
     u8 getAbility() const;
     u8 getGender() const;
     u8 getGenderRatio() const;
-    QVector<bool> getEncounterSlots();
-    void setEncounterSlots(const QStringList &encounterSlots) const;
-    void toggleEncounterSlots(const QVector<bool> &encounterSlots) const;
+    std::vector<bool> getEncounterSlots();
+    void setEncounterSlots(const std::vector<std::string> &encounterSlots) const;
+    void toggleEncounterSlots(const std::vector<bool> &encounterSlots) const;
     void resetEncounterSlots() const;
-    QVector<bool> getHiddenPowers();
-    QVector<bool> getNatures();
+    std::vector<bool> getHiddenPowers();
+    std::vector<bool> getNatures();
     u8 getShiny() const;
     bool useDelay() const;
     u32 getDelay() const;

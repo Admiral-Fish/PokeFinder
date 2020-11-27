@@ -23,11 +23,11 @@ ComboBox::ComboBox(QWidget *parent) : QComboBox(parent)
 {
 }
 
-void ComboBox::setup(const QVector<QVariant> &data)
+void ComboBox::setup(const std::vector<QVariant> &data)
 {
-    for (auto i = 0; i < data.size(); i++)
+    for (size_t i = 0; i < data.size(); i++)
     {
-        this->setItemData(i, data.at(i));
+        this->setItemData(i, data[i]);
     }
 }
 

@@ -23,7 +23,7 @@
 #include <Core/Enum/Method.hpp>
 #include <Core/Gen5/Generators/EggGenerator5.hpp>
 #include <Core/Gen5/Keypresses.hpp>
-#include <Core/Gen5/ProfileLoader5.hpp>
+#include <Core/Parents/ProfileLoader.hpp>
 #include <Core/Gen5/Searchers/EggSearcher5.hpp>
 #include <Core/Util/Translator.hpp>
 #include <Core/Util/Utilities.hpp>
@@ -64,7 +64,7 @@ void Eggs5::updateProfiles()
 
     for (const auto &profile : profiles)
     {
-        ui->comboBoxProfiles->addItem(profile.getName());
+        ui->comboBoxProfiles->addItem(QString::fromStdString(profile.getName()));
     }
 
     QSettings setting;
@@ -77,7 +77,7 @@ void Eggs5::updateProfiles()
 
 bool Eggs5::hasProfiles() const
 {
-    return !profiles.isEmpty();
+    return !profiles.empty();
 }
 
 void Eggs5::setupModels()
@@ -128,7 +128,7 @@ void Eggs5::setupModels()
     setting.endGroup();
 }
 
-void Eggs5::updateProgress(const QVector<SearcherState5<EggState>> &states, int progress)
+void Eggs5::updateProgress(const std::vector<SearcherState5<EggState>> &states, int progress)
 {
     searcherModel->addItems(states);
     ui->progressBar->setValue(progress);
@@ -210,8 +210,8 @@ void Eggs5::search()
 
     auto *searcher = new EggSearcher5(currentProfile);
 
-    QDate start = ui->dateEditSearcherStartDate->date();
-    QDate end = ui->dateEditSearcherEndDate->date();
+    Date start = ui->dateEditSearcherStartDate->getDate();
+    Date end = ui->dateEditSearcherEndDate->getDate();
 
     int maxProgress = Keypresses::getKeyPresses(currentProfile.getKeypresses(), currentProfile.getSkipLR()).size();
     maxProgress *= 86400 * (start.daysTo(end) + 1);
@@ -261,19 +261,19 @@ void Eggs5::profileIndexChanged(int index)
 {
     if (index >= 0)
     {
-        currentProfile = profiles.at(index);
+        currentProfile = profiles[index];
 
         ui->labelProfileTIDValue->setText(QString::number(currentProfile.getTID()));
         ui->labelProfileSIDValue->setText(QString::number(currentProfile.getSID()));
         ui->labelProfileMACAddressValue->setText(QString::number(currentProfile.getMac(), 16));
-        ui->labelProfileDSTypeValue->setText(currentProfile.getDSTypeString());
+        ui->labelProfileDSTypeValue->setText(QString::fromStdString(currentProfile.getDSTypeString()));
         ui->labelProfileVCountValue->setText(QString::number(currentProfile.getVCount(), 16));
         ui->labelProfileTimer0Value->setText(QString::number(currentProfile.getTimer0Min(), 16) + "-"
                                              + QString::number(currentProfile.getTimer0Max(), 16));
         ui->labelProfileGxStatValue->setText(QString::number(currentProfile.getGxStat()));
         ui->labelProfileVFrameValue->setText(QString::number(currentProfile.getVFrame()));
-        ui->labelProfileKeypressesValue->setText(currentProfile.getKeypressesString());
-        ui->labelProfileGameValue->setText(currentProfile.getVersionString());
+        ui->labelProfileKeypressesValue->setText(QString::fromStdString(currentProfile.getKeypressesString()));
+        ui->labelProfileGameValue->setText(QString::fromStdString(currentProfile.getVersionString()));
     }
 }
 

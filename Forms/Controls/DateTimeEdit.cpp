@@ -17,18 +17,20 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef PROFILELOADER4_HPP
-#define PROFILELOADER4_HPP
+#include "DateTimeEdit.hpp"
 
-#include <Core/Gen4/Profile4.hpp>
-#include <QVector>
-
-namespace ProfileLoader4
+DateTimeEdit::DateTimeEdit(QWidget *parent) : QDateTimeEdit(parent)
 {
-    QVector<Profile4> getProfiles();
-    void addProfile(const Profile4 &profile);
-    void removeProfile(const Profile4 &remove);
-    void updateProfile(const Profile4 &update, const Profile4 &original);
 }
 
-#endif // PROFILELOADER4_HPP
+DateTime DateTimeEdit::getDateTime() const
+{
+    QDateTime dt = dateTime();
+    const QDate &date = dt.date();
+    const QTime &time = dt.time();
+
+    int jd = date.toJulianDay();
+    int md = time.msecsSinceStartOfDay() / 1000;
+
+    return DateTime(jd, md);
+}

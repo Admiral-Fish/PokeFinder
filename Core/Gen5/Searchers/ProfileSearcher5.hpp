@@ -20,12 +20,12 @@
 #ifndef PROFILESEARCHER5_HPP
 #define PROFILESEARCHER5_HPP
 
+#include <Core/Gen5/States/ProfileSearcherState5.hpp>
+#include <Core/Util/DateTime.hpp>
 #include <Core/Util/Global.hpp>
-#include <QDate>
-#include <QStandardItem>
-#include <QTime>
-#include <QVector>
+#include <array>
 #include <mutex>
+#include <vector>
 
 enum Buttons : u16;
 enum Game : u16;
@@ -36,18 +36,18 @@ class ProfileSearcher5
 {
 public:
     ProfileSearcher5() = default;
-    explicit ProfileSearcher5(const QDate &date, const QTime &time, int minSeconds, int maxSeconds, u8 minVCount, u8 maxVCount,
-                              u16 minTimer0, u16 maxTimer0, u8 minGxStat, u8 maxGxStat, bool softReset, Game version, Language language,
-                              DSType dsType, u64 mac, Buttons keypress);
+    explicit ProfileSearcher5(const Date &date, const Time &time, int minSeconds, int maxSeconds, u8 minVCount, u8 maxVCount, u16 minTimer0,
+                              u16 maxTimer0, u8 minGxStat, u8 maxGxStat, bool softReset, Game version, Language language, DSType dsType,
+                              u64 mac, Buttons keypress);
     virtual ~ProfileSearcher5() = default;
     void startSearch(int threads, u8 minVFrame, u8 maxVFrame);
     void cancelSearch();
-    QVector<QList<QStandardItem *>> getResults();
+    std::vector<ProfileSearcherState5> getResults();
     int getProgress() const;
 
 private:
-    QDate date;
-    QTime time;
+    Date date;
+    Time time;
     int minSeconds;
     int maxSeconds;
     u8 minVCount;
@@ -65,7 +65,7 @@ private:
 
     bool searching;
     int progress;
-    QVector<QList<QStandardItem *>> results;
+    std::vector<ProfileSearcherState5> results;
     std::mutex resultMutex;
     std::mutex progressMutex;
 
@@ -79,13 +79,13 @@ class ProfileIVSearcher5 : public ProfileSearcher5
 {
 public:
     ProfileIVSearcher5() = default;
-    explicit ProfileIVSearcher5(const QVector<u8> &minIVs, const QVector<u8> &maxIVs, const QDate &date, const QTime &time, int minSeconds,
-                                int maxSeconds, u8 minVCount, u8 maxVCount, u16 minTimer0, u16 maxTimer0, u8 minGxStat, u8 maxGxStat,
-                                bool softReset, Game version, Language language, DSType dsType, u64 mac, Buttons keypress);
+    explicit ProfileIVSearcher5(const std::array<u8, 6> &minIVs, const std::array<u8, 6> &maxIVs, const Date &date, const Time &time,
+                                int minSeconds, int maxSeconds, u8 minVCount, u8 maxVCount, u16 minTimer0, u16 maxTimer0, u8 minGxStat,
+                                u8 maxGxStat, bool softReset, Game version, Language language, DSType dsType, u64 mac, Buttons keypress);
 
 private:
-    QVector<u8> minIVs;
-    QVector<u8> maxIVs;
+    std::array<u8, 6> minIVs;
+    std::array<u8, 6> maxIVs;
     u8 offset;
 
     bool valid(u64 seed) override;
@@ -95,13 +95,13 @@ class ProfileNeedleSearcher5 : public ProfileSearcher5
 {
 public:
     ProfileNeedleSearcher5() = default;
-    explicit ProfileNeedleSearcher5(const QVector<u8> &needles, bool unovaLink, bool memoryLink, const QDate &date, const QTime &time,
+    explicit ProfileNeedleSearcher5(const std::vector<u8> &needles, bool unovaLink, bool memoryLink, const Date &date, const Time &time,
                                     int minSeconds, int maxSeconds, u8 minVCount, u8 maxVCount, u16 minTimer0, u16 maxTimer0, u8 minGxStat,
                                     u8 maxGxStat, bool softReset, Game version, Language language, DSType dsType, u64 mac,
                                     Buttons keypress);
 
 private:
-    QVector<u8> needles;
+    std::vector<u8> needles;
     bool unovaLink;
     bool memoryLink;
     bool game;
@@ -113,9 +113,9 @@ class ProfileSeedSearcher5 : public ProfileSearcher5
 {
 public:
     ProfileSeedSearcher5() = default;
-    explicit ProfileSeedSearcher5(u64 seed, const QDate &date, const QTime &time, int minSeconds, int maxSeconds, u8 minVCount,
-                                  u8 maxVCount, u16 minTimer0, u16 maxTimer0, u8 minGxStat, u8 maxGxStat, bool softReset, Game version,
-                                  Language language, DSType dsType, u64 mac, Buttons keypress);
+    explicit ProfileSeedSearcher5(u64 seed, const Date &date, const Time &time, int minSeconds, int maxSeconds, u8 minVCount, u8 maxVCount,
+                                  u16 minTimer0, u16 maxTimer0, u8 minGxStat, u8 maxGxStat, bool softReset, Game version, Language language,
+                                  DSType dsType, u64 mac, Buttons keypress);
 
 private:
     u64 seed;

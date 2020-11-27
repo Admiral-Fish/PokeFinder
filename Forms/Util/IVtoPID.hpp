@@ -41,8 +41,8 @@ private:
     QStandardItemModel *model = nullptr;
 
     void setupModels();
-    QVector<QList<QStandardItem *>> getSeeds(u16 ivs1, u16 ivs2, u8 nature, u16 tid);
-    QVector<QList<QStandardItem *>> getSeedsChannel(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, u8 nature);
+    std::vector<QList<QStandardItem *>> getSeeds(u16 ivs1, u16 ivs2, u8 nature, u16 tid);
+    std::vector<QList<QStandardItem *>> getSeedsChannel(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, u8 nature);
 
 private slots:
     void find();

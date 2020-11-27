@@ -47,9 +47,9 @@ private:
     QHash<QString, u8> keys;
 
     void setupModels();
-    u64 getCustom(const QString &text, const ResearcherState &state, const QVector<ResearcherState> &states);
+    u64 getCustom(const QString &text, const ResearcherState &state, const std::vector<ResearcherState> &states);
     void resizeHeader();
-    QVector<bool> getHexCheck();
+    std::array<bool, 10> getHexCheck();
 
 private slots:
     void generate();

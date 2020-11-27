@@ -22,7 +22,7 @@
 #include <Core/Enum/Game.hpp>
 #include <Core/Enum/Method.hpp>
 #include <Core/Gen3/Generators/GameCubeGenerator.hpp>
-#include <Core/Gen3/ProfileLoader3.hpp>
+#include <Core/Parents/ProfileLoader.hpp>
 #include <Core/Gen3/Searchers/GameCubeSearcher.hpp>
 #include <Core/Util/Translator.hpp>
 #include <Forms/Gen3/Profile/ProfileManager3.hpp>
@@ -63,19 +63,15 @@ void GameCube::updateProfiles()
 {
     connect(ui->comboBoxProfiles, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &GameCube::profilesIndexChanged);
 
-    profiles = { Profile3(tr("None"), Game::Gales, 12345, 54321) };
-    for (const auto &profile : ProfileLoader3::getProfiles())
-    {
-        if (profile.getVersion() & Game::GC)
-        {
-            profiles.append(profile);
-        }
-    }
+    profiles = { Profile3("None", Game::Gales, 12345, 54321) };
+    auto completeProfiles = ProfileLoader3::getProfiles();
+    std::copy_if(completeProfiles.begin(), completeProfiles.end(), std::back_inserter(profiles),
+                 [](const Profile3 &profile) { return profile.getVersion() & Game::GC; });
 
     ui->comboBoxProfiles->clear();
     for (const auto &profile : profiles)
     {
-        ui->comboBoxProfiles->addItem(profile.getName());
+        ui->comboBoxProfiles->addItem(QString::fromStdString(profile.getName()));
     }
 
     QSettings setting;
@@ -135,7 +131,7 @@ void GameCube::setupModels()
     }
 }
 
-void GameCube::updateProgress(const QVector<GameCubeState> &states, int progress)
+void GameCube::updateProgress(const std::vector<GameCubeState> &states, int progress)
 {
     searcherModel->addItems(states);
     ui->progressBar->setValue(progress);
@@ -184,8 +180,8 @@ void GameCube::search()
     ui->pushButtonSearch->setEnabled(false);
     ui->pushButtonCancel->setEnabled(true);
 
-    QVector<u8> min = ui->filterSearcher->getMinIVs();
-    QVector<u8> max = ui->filterSearcher->getMaxIVs();
+    std::array<u8, 6> min = ui->filterSearcher->getMinIVs();
+    std::array<u8, 6> max = ui->filterSearcher->getMaxIVs();
 
     StateFilter filter(ui->filterSearcher->getGender(), ui->filterSearcher->getAbility(), ui->filterSearcher->getShiny(), false, min, max,
                        ui->filterSearcher->getNatures(), ui->filterSearcher->getHiddenPowers(), {});
@@ -205,12 +201,12 @@ void GameCube::search()
     {
         for (u8 i = 0; i < 6; i++)
         {
-            maxProgress *= max.at(i) - min.at(i) + 1;
+            maxProgress *= max[i] - min[i] + 1;
         }
     }
     else
     {
-        maxProgress *= max.at(4) - min.at(4) + 1;
+        maxProgress *= max[4] - min[4] + 1;
         maxProgress *= 0x7ffffff;
     }
     ui->progressBar->setRange(0, maxProgress);
@@ -238,11 +234,11 @@ void GameCube::profilesIndexChanged(int index)
 {
     if (index >= 0)
     {
-        currentProfile = profiles.at(index);
+        currentProfile = profiles[index];
 
         ui->labelProfileTIDValue->setText(QString::number(currentProfile.getTID()));
         ui->labelProfileSIDValue->setText(QString::number(currentProfile.getSID()));
-        ui->labelProfileGameValue->setText(currentProfile.getVersionString());
+        ui->labelProfileGameValue->setText(QString::fromStdString(currentProfile.getVersionString()));
     }
 }
 
@@ -255,36 +251,50 @@ void GameCube::generatorMethodIndexChanged(int index)
 
         if (method == Method::XD)
         {
-            QStringList s = Translator::getSpecies(
+            std::vector<std::string> species = Translator::getSpecies(
                 { 334, 24,  354, 12,  113, 301, 85,  149, 51,  355, 125, 83,  55,  88,  58,  316, 316, 316, 107, 106, 97, 115, 131, 165,
                   108, 337, 219, 126, 82,  296, 310, 105, 303, 52,  122, 177, 299, 322, 46,  17,  204, 127, 62,  261, 57, 280, 78,  20,
                   315, 302, 373, 123, 273, 273, 273, 86,  285, 143, 361, 338, 21,  363, 363, 363, 167, 121, 220, 114, 49, 100, 37,  70 });
+            for (size_t i = 0; i < species.size(); i++)
+            {
+                QString specie = QString::fromStdString(species[i]);
+                if (i == 15 || i == 52 || i == 61)
+                {
+                    specie += tr(" (Citadark)");
+                }
+                else if (i == 16 || i == 53 || i == 62)
+                {
+                    specie += tr(" (Initial)");
+                }
+                else if (i == 17 || i == 54 || i == 63)
+                {
+                    specie += tr(" (Phenac)");
+                }
+                ui->comboBoxGeneratorShadow->addItem(specie);
+            }
 
-            s[15] += tr(" (Citadark)");
-            s[16] += tr(" (Initial)");
-            s[17] += tr(" (Phenac)");
-            s[52] += tr(" (Citadark)");
-            s[53] += tr(" (Initial)");
-            s[54] += tr(" (Phenac)");
-            s[61] += tr(" (Citadark)");
-            s[62] += tr(" (Initial)");
-            s[63] += tr(" (Phenac)");
-
-            ui->comboBoxGeneratorShadow->addItems(s);
             ui->comboBoxGeneratorShadow->setVisible(true);
             ui->labelGeneratorShadow->setVisible(true);
 
-            QVector<int> secondShadows = { 0, 2, 3, 4, 14, 20, 22, 26, 34, 41, 49, 50, 57, 71 };
-            ui->comboBoxGeneratorType->setVisible(secondShadows.contains(ui->comboBoxGeneratorShadow->currentIndex()));
-            ui->labelGeneratorType->setVisible(secondShadows.contains(ui->comboBoxGeneratorShadow->currentIndex()));
+            std::array<int, 14> shadows = { 0, 2, 3, 4, 14, 20, 22, 26, 34, 41, 49, 50, 57, 71 };
+            bool flag = std::find(shadows.begin(), shadows.end(), ui->comboBoxGeneratorShadow->currentIndex()) != shadows.end();
+
+            ui->comboBoxGeneratorType->setVisible(flag);
+            ui->labelGeneratorType->setVisible(flag);
         }
         else if (method == Method::Colo)
         {
-            QStringList s = Translator::getSpecies({ 207, 214, 296, 179, 198, 212, 175, 217 });
-            s[3] += tr(" (E-Reader)");
-            s[5] += tr(" (E-Reader)");
-            s[6] += tr(" (E-Reader)");
-            ui->comboBoxGeneratorShadow->addItems(s);
+            std::vector<std::string> species = Translator::getSpecies({ 207, 214, 296, 179, 198, 212, 175, 217 });
+            for (size_t i = 0; i < species.size(); i++)
+            {
+                QString specie = QString::fromStdString(species[i]);
+                if (i == 3 || i == 5 || i == 6)
+                {
+                    specie += tr(" (E-Reader)");
+                }
+                ui->comboBoxGeneratorShadow->addItem(specie);
+            }
+
             ui->comboBoxGeneratorShadow->setVisible(true);
             ui->labelGeneratorShadow->setVisible(true);
             ui->comboBoxGeneratorType->setVisible(false);
@@ -307,9 +317,11 @@ void GameCube::generatorShadowIndexChanged(int index)
         auto method = static_cast<Method>(ui->comboBoxGeneratorMethod->getCurrentInt());
         if (ui->comboBoxGeneratorShadow->isVisible() && method == Method::XD)
         {
-            QVector<int> secondShadows = { 0, 2, 3, 4, 14, 20, 22, 26, 34, 41, 49, 50, 57, 71 };
-            ui->comboBoxGeneratorType->setVisible(secondShadows.contains(index));
-            ui->labelGeneratorType->setVisible(secondShadows.contains(index));
+            std::array<int, 14> shadows = { 0, 2, 3, 4, 14, 20, 22, 26, 34, 41, 49, 50, 57, 71 };
+            bool flag = std::find(shadows.begin(), shadows.end(), ui->comboBoxGeneratorShadow->currentIndex()) != shadows.end();
+
+            ui->comboBoxGeneratorType->setVisible(flag);
+            ui->labelGeneratorType->setVisible(flag);
         }
         else
         {
@@ -328,32 +340,44 @@ void GameCube::searcherMethodIndexChanged(int index)
 
         if (method == Method::XD)
         {
-            QStringList s = Translator::getSpecies(
+            std::vector<std::string> species = Translator::getSpecies(
                 { 334, 24,  354, 12,  113, 301, 85,  149, 51,  355, 125, 83,  55,  88,  58,  316, 316, 316, 107, 106, 97, 115, 131, 165,
                   108, 337, 219, 126, 82,  296, 310, 105, 303, 52,  122, 177, 299, 322, 46,  17,  204, 127, 62,  261, 57, 280, 78,  20,
                   315, 302, 373, 123, 273, 273, 273, 86,  285, 143, 361, 338, 21,  363, 363, 363, 167, 121, 220, 114, 49, 100, 37,  70 });
+            for (size_t i = 0; i < species.size(); i++)
+            {
+                QString specie = QString::fromStdString(species[i]);
+                if (i == 15 || i == 52 || i == 61)
+                {
+                    specie += tr(" (Citadark)");
+                }
+                else if (i == 16 || i == 53 || i == 62)
+                {
+                    specie += tr(" (Initial)");
+                }
+                else if (i == 17 || i == 54 || i == 63)
+                {
+                    specie += tr(" (Phenac)");
+                }
+                ui->comboBoxSearcherShadow->addItem(specie);
+            }
 
-            s[15] += tr(" (Citadark)");
-            s[16] += tr(" (Initial)");
-            s[17] += tr(" (Phenac)");
-            s[52] += tr(" (Citadark)");
-            s[53] += tr(" (Initial)");
-            s[54] += tr(" (Phenac)");
-            s[61] += tr(" (Citadark)");
-            s[62] += tr(" (Initial)");
-            s[63] += tr(" (Phenac)");
-
-            ui->comboBoxSearcherShadow->addItems(s);
             ui->comboBoxSearcherShadow->setVisible(true);
             ui->labelSearcherShadow->setVisible(true);
         }
         else if (method == Method::Colo)
         {
-            QStringList s = Translator::getSpecies({ 207, 214, 296, 179, 198, 212, 175, 217 });
-            s[3] += tr(" (E-Reader)");
-            s[5] += tr(" (E-Reader)");
-            s[6] += tr(" (E-Reader)");
-            ui->comboBoxSearcherShadow->addItems(s);
+            std::vector<std::string> species = Translator::getSpecies({ 207, 214, 296, 179, 198, 212, 175, 217 });
+            for (size_t i = 0; i < species.size(); i++)
+            {
+                QString specie = QString::fromStdString(species[i]);
+                if (i == 3 || i == 5 || i == 6)
+                {
+                    specie += tr(" (E-Reader)");
+                }
+                ui->comboBoxSearcherShadow->addItem(specie);
+            }
+
             ui->comboBoxSearcherShadow->setVisible(true);
             ui->labelSearcherShadow->setVisible(true);
         }

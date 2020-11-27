@@ -31,9 +31,9 @@ class GameCubeSearcher : public Searcher
 public:
     GameCubeSearcher() = default;
     GameCubeSearcher(u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter);
-    void startSearch(const QVector<u8> &min, const QVector<u8> &max);
+    void startSearch(const std::array<u8, 6> &min, const std::array<u8, 6> &max);
     void cancelSearch();
-    QVector<GameCubeState> getResults();
+    std::vector<GameCubeState> getResults();
     int getProgress() const;
     void setupNatureLock(u8 num);
 
@@ -44,13 +44,13 @@ private:
 
     bool searching;
     int progress;
-    QVector<GameCubeState> results;
+    std::vector<GameCubeState> results;
     std::mutex mutex;
 
-    QVector<GameCubeState> search(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe);
-    QVector<GameCubeState> searchXDColo(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe);
-    QVector<GameCubeState> searchXDShadow(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe);
-    QVector<GameCubeState> searchColoShadow(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe);
+    std::vector<GameCubeState> search(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe);
+    std::vector<GameCubeState> searchXDColo(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe);
+    std::vector<GameCubeState> searchXDShadow(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe);
+    std::vector<GameCubeState> searchColoShadow(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe);
     void searchChannel(u8 minSpD, u8 maxSpD);
     bool validateJirachi(u32 seed);
     bool validateMenu(u32 seed);

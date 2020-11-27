@@ -64,8 +64,8 @@ void JirachiPattern::generate()
 
     u32 seed = ui->textBoxSeed->getUInt();
 
-    QStringList patterns = JirachiPatternCalculator::getPatterns(seed);
-    if (patterns.isEmpty())
+    std::vector<std::string> patterns = JirachiPatternCalculator::getPatterns(seed);
+    if (patterns.empty())
     {
         model->appendRow(new QStandardItem(tr("Spread Impossible")));
     }
@@ -73,7 +73,7 @@ void JirachiPattern::generate()
     {
         for (const auto &pattern : patterns)
         {
-            model->appendRow(new QStandardItem(pattern));
+            model->appendRow(new QStandardItem(QString::fromStdString(pattern)));
         }
     }
 }

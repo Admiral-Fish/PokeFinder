@@ -20,24 +20,25 @@
 #include "HiddenGrottoFilter.hpp"
 #include <Core/Gen5/States/HiddenGrottoState.hpp>
 
-HiddenGrottoFilter::HiddenGrottoFilter(const QVector<bool> &groups, const QVector<bool> &encounterSlots, const QVector<bool> &genders) :
+HiddenGrottoFilter::HiddenGrottoFilter(const std::vector<bool> &groups, const std::vector<bool> &encounterSlots,
+                                       const std::vector<bool> &genders) :
     groups(groups), encounterSlots(encounterSlots), genders(genders)
 {
 }
 
 bool HiddenGrottoFilter::compareState(const HiddenGrottoState &state)
 {
-    if (!groups.at(state.getGroup()))
+    if (!groups[state.getGroup()])
     {
         return false;
     }
 
-    if (!encounterSlots.at(state.getSlot()))
+    if (!encounterSlots[state.getSlot()])
     {
         return false;
     }
 
-    if (!genders.at(state.getGender()))
+    if (!genders[state.getGender()])
     {
         return false;
     }

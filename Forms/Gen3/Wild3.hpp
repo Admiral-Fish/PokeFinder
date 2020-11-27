@@ -46,14 +46,14 @@ public:
 
 private:
     Ui::Wild3 *ui;
-    QVector<Profile3> profiles;
+    std::vector<Profile3> profiles;
     Profile3 currentProfile;
     WildGeneratorModel3 *generatorModel = nullptr;
     WildSearcherModel3 *searcherModel = nullptr;
     QMenu *generatorMenu = nullptr;
     QMenu *searcherMenu = nullptr;
-    QVector<EncounterArea3> encounterGenerator;
-    QVector<EncounterArea3> encounterSearcher;
+    std::vector<EncounterArea3> encounterGenerator;
+    std::vector<EncounterArea3> encounterSearcher;
 
     void setupModels();
     void updateLocationsGenerator();
@@ -62,7 +62,7 @@ private:
     void updatePokemonSearcher();
 
 private slots:
-    void updateProgress(const QVector<WildState> &states, int progress);
+    void updateProgress(const std::vector<WildState> &states, int progress);
     void generate();
     void search();
     void profilesIndexChanged(int index);

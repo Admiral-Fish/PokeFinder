@@ -20,20 +20,20 @@
 #ifndef STATE5_HPP
 #define STATE5_HPP
 
+#include <Core/Util/DateTime.hpp>
 #include <Core/Util/Global.hpp>
-#include <QDateTime>
 
 class State5
 {
 public:
     State5() = default;
 
-    State5(const QDateTime &dt, u64 initialSeed, u16 buttons, u16 timer0) :
+    State5(const DateTime &dt, u64 initialSeed, u16 buttons, u16 timer0) :
         dt(dt), initialSeed(initialSeed), buttons(buttons), timer0(timer0)
     {
     }
 
-    QDateTime getDateTime() const
+    DateTime getDateTime() const
     {
         return dt;
     }
@@ -54,7 +54,7 @@ public:
     }
 
 protected:
-    QDateTime dt;
+    DateTime dt;
     u64 initialSeed;
     u16 buttons;
     u16 timer0;

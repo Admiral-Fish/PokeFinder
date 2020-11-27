@@ -30,7 +30,7 @@ void ResearcherModel::setFlag(bool flag)
     emit headerDataChanged(Qt::Horizontal, 0, columnCount());
 }
 
-void ResearcherModel::setHex(const QVector<bool> &hex)
+void ResearcherModel::setHex(const std::array<bool, 10> &hex)
 {
     this->hex = hex;
 }
@@ -45,7 +45,7 @@ QVariant ResearcherModel::data(const QModelIndex &index, int role) const
 {
     if (role == Qt::DisplayRole)
     {
-        const auto &state = model.at(index.row());
+        const auto &state = model[index.row()];
         int column = getColumn(index.column());
         switch (column)
         {
@@ -73,7 +73,7 @@ QVariant ResearcherModel::data(const QModelIndex &index, int role) const
         case 14:
         case 15:
         case 16:
-            return QString::number(state.getCustom(static_cast<u8>(column - 7)), hex.at(column - 7) ? 16 : 10).toUpper();
+            return QString::number(state.getCustom(static_cast<u8>(column - 7)), hex[column - 7] ? 16 : 10).toUpper();
         case 17:
             return state.getMod3();
         case 18:
@@ -95,7 +95,7 @@ QVariant ResearcherModel::headerData(int section, Qt::Orientation orientation, i
 {
     if (role == Qt::DisplayRole && orientation == Qt::Horizontal)
     {
-        return header.at(getColumn(section));
+        return header[getColumn(section)];
     }
     return QVariant();
 }
@@ -137,7 +137,7 @@ QModelIndex ResearcherModel::search(const QString &string, u64 result, int row)
 
     for (; row < rowCount(); row++)
     {
-        u64 value = getResult(model.at(row));
+        u64 value = getResult(model[row]);
         if (value == result)
         {
             return index(row, column, QModelIndex());

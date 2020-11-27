@@ -20,7 +20,7 @@
 #include "HGSSRoamer.hpp"
 #include <Core/RNG/LCRNG.hpp>
 
-HGSSRoamer::HGSSRoamer(u32 seed, const QVector<bool> &roamers, const QVector<u8> &routes)
+HGSSRoamer::HGSSRoamer(u32 seed, const std::vector<bool> &roamers, const std::vector<u8> &routes)
 {
     this->seed = seed;
     this->roamers = roamers;
@@ -34,49 +34,24 @@ u8 HGSSRoamer::getSkips() const
     return skips;
 }
 
-u8 HGSSRoamer::getRaikouRoute() const
+std::string HGSSRoamer::getRouteString() const
 {
-    return raikouRoute;
-}
+    std::string route;
 
-u8 HGSSRoamer::getEnteiRoute() const
-{
-    return enteiRoute;
-}
-
-u8 HGSSRoamer::getLatiRoute() const
-{
-    return latiRoute;
-}
-
-QString HGSSRoamer::getRouteString() const
-{
-    QString routes;
-
-    if (roamers.at(0))
+    if (roamers[0])
     {
-        routes += QString("R: %1 ").arg(raikouRoute);
+        route = "R: " + std::to_string(raikouRoute);
     }
-    if (roamers.at(1))
+    if (roamers[1])
     {
-        routes += QString("E: %1 ").arg(enteiRoute);
+        route = "E: " + std::to_string(enteiRoute);
     }
-    if (roamers.at(2))
+    if (roamers[2])
     {
-        routes += QString("L: %1 ").arg(latiRoute);
+        route = "L: " + std::to_string(latiRoute);
     }
 
-    return routes;
-}
-
-QVector<bool> HGSSRoamer::getRoamers() const
-{
-    return roamers;
-}
-
-QVector<u8> HGSSRoamer::getRoutes() const
-{
-    return routes;
+    return route;
 }
 
 void HGSSRoamer::recalculateRoamers(u32 seed)
@@ -90,31 +65,31 @@ void HGSSRoamer::calculateRoamers()
     PokeRNG rng(seed);
     skips = 0;
 
-    if (roamers.at(0))
+    if (roamers[0])
     {
         do
         {
             skips++;
             raikouRoute = getRouteJ(rng.nextUShort());
-        } while (routes.at(0) == raikouRoute);
+        } while (routes[0] == raikouRoute);
     }
 
-    if (roamers.at(1))
+    if (roamers[1])
     {
         do
         {
             skips++;
             enteiRoute = getRouteJ(rng.nextUShort());
-        } while (routes.at(1) == enteiRoute);
+        } while (routes[1] == enteiRoute);
     }
 
-    if (roamers.at(2))
+    if (roamers[2])
     {
         do
         {
             skips++;
             latiRoute = getRouteK(rng.nextUShort());
-        } while (routes.at(2) == latiRoute);
+        } while (routes[2] == latiRoute);
     }
 }
 

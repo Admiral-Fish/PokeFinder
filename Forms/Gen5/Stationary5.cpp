@@ -20,7 +20,7 @@
 #include "Stationary5.hpp"
 #include "ui_Stationary5.h"
 #include <Core/Enum/Lead.hpp>
-#include <Core/Gen5/ProfileLoader5.hpp>
+#include <Core/Parents/ProfileLoader.hpp>
 #include <Core/Parents/States/StationaryState.hpp>
 #include <Core/Util/Translator.hpp>
 #include <Forms/Gen5/Profile/ProfileManager5.hpp>
@@ -53,7 +53,7 @@ void Stationary5::updateProfiles()
 
     for (const auto &profile : profiles)
     {
-        ui->comboBoxProfiles->addItem(profile.getName());
+        ui->comboBoxProfiles->addItem(QString::fromStdString(profile.getName()));
     }
 
     QSettings setting;
@@ -66,7 +66,7 @@ void Stationary5::updateProfiles()
 
 bool Stationary5::hasProfiles() const
 {
-    return !profiles.isEmpty();
+    return !profiles.empty();
 }
 
 void Stationary5::setupModels()
@@ -94,7 +94,7 @@ void Stationary5::setupModels()
     ui->comboBoxSearcherLead->setItemData(3, Lead::None);
 
     ui->comboBoxGeneratorLead->addItem(tr("None"));
-    ui->comboBoxGeneratorLead->addItems(Translator::getNatures());
+    // ui->comboBoxGeneratorLead->addItems(Translator::getNatures());
 
     QAction *outputTXTGenerator = generatorMenu->addAction(tr("Output Results to TXT"));
     QAction *outputCSVGenerator = generatorMenu->addAction(tr("Output Results to CSV"));
@@ -133,7 +133,7 @@ void Stationary5::setupModels()
     setting.endGroup();
 }
 
-void Stationary5::updateProgress(const QVector<StationaryState> &states, int progress)
+void Stationary5::updateProgress(const std::vector<StationaryState> &states, int progress)
 {
     // searcherModel->addItems(states);
     ui->progressBar->setValue(progress);
@@ -161,7 +161,7 @@ void Stationary5::generate()
     AdvanceCompare compare(ui->comboBoxGeneratorAbility->currentIndex(), ui->comboBoxGeneratorAbility->currentIndex(),
         ui->checkBoxGeneratorShinyOnly->isChecked(), ui->checkBoxGeneratorDisableFilters->isChecked(),
         ui->ivFilterGenerator->getLower(), ui->ivFilterGenerator->getLower(), ui->comboBoxGeneratorNature->getChecked(),
-        ui->comboBoxGeneratorHiddenPower->getChecked(), QVector<bool>());
+        ui->comboBoxGeneratorHiddenPower->getChecked(), std::vector<bool>());
 
     generator.setEncounterType(Stationary);
     if (ui->pushButtonGeneratorLead->text() == tr("Cute Charm"))
@@ -183,7 +183,7 @@ void Stationary5::generate()
         }
     }
 
-    QVector<State5> advances = generator.generate(compare);
+    std::vector<State5> advances = generator.generate(compare);
     generatorModel->setModel(advances);*/
 }
 
@@ -202,7 +202,7 @@ void Stationary5::search()
    AdvanceCompare compare(ui->comboBoxSearcherAbility->currentIndex(), ui->comboBoxSearcherAbility->currentIndex(),
        ui->checkBoxSearcherShinyOnly->isChecked(), false, ui->ivFilterSearcher->getLower(),
        ui->ivFilterSearcher->getLower(), ui->comboBoxSearcherNature->getChecked(),
-       ui->comboBoxSearcherHiddenPower->getChecked(), QVector<bool>());
+       ui->comboBoxSearcherHiddenPower->getChecked(), std::vector<bool>());
     Searcher5 searcher(tid, sid, static_cast<u32>(genderRatioIndex), ui->textBoxSearcherMinDelay->getUInt(),
     ui->textBoxSearcherMaxDelay->getUInt(),
                                   ui->textBoxSearcherMinAdvance->getUInt(), ui->textBoxSearcherMaxAdvance->getUInt(),
@@ -211,13 +211,13 @@ void Stationary5::search()
 
     searcher.setLeadType(static_cast<Lead>(ui->comboBoxSearcherLead->currentData().toInt()));
 
-   QVector<u8> min = ui->ivFilterSearcher->getLower();
-   QVector<u8> max = ui->ivFilterSearcher->getUpper();
+   std::vector<u8> min = ui->ivFilterSearcher->getLower();
+   std::vector<u8> max = ui->ivFilterSearcher->getUpper();
 
    int maxProgress = 1;
    for (int i = 0; i < 6; i++)
    {
-       maxProgress *= max.at(i) - min.at(i) + 1;
+       maxProgress *= max[i] - min[i] + 1;
    }
 
    ui->progressBar->setValue(0);
@@ -241,19 +241,19 @@ void Stationary5::profileIndexChanged(int index)
 {
     if (index >= 0)
     {
-        currentProfile = profiles.at(index);
+        currentProfile = profiles[index];
 
         ui->labelProfileTIDValue->setText(QString::number(currentProfile.getTID()));
         ui->labelProfileSIDValue->setText(QString::number(currentProfile.getSID()));
         ui->labelProfileMACAddressValue->setText(QString::number(currentProfile.getMac(), 16));
-        ui->labelProfileDSTypeValue->setText(currentProfile.getDSTypeString());
+        ui->labelProfileDSTypeValue->setText(QString::fromStdString(currentProfile.getDSTypeString()));
         ui->labelProfileVCountValue->setText(QString::number(currentProfile.getVCount(), 16));
         ui->labelProfileTimer0Value->setText(QString::number(currentProfile.getTimer0Min(), 16) + "-"
                                              + QString::number(currentProfile.getTimer0Max(), 16));
         ui->labelProfileGxStatValue->setText(QString::number(currentProfile.getGxStat()));
         ui->labelProfileVFrameValue->setText(QString::number(currentProfile.getVFrame()));
-        ui->labelProfileKeypressesValue->setText(currentProfile.getKeypressesString());
-        ui->labelProfileGameValue->setText(currentProfile.getVersionString());
+        ui->labelProfileKeypressesValue->setText(QString::fromStdString(currentProfile.getKeypressesString()));
+        ui->labelProfileGameValue->setText(QString::fromStdString(currentProfile.getVersionString()));
     }
 }
 
@@ -283,7 +283,7 @@ void Stationary5::generatorLead()
         ui->comboBoxGeneratorLead->setEnabled(true);
 
         ui->comboBoxGeneratorLead->addItem("None");
-        ui->comboBoxGeneratorLead->addItems(Translator::getNatures());
+        // ui->comboBoxGeneratorLead->addItems(Translator::getNatures());
     }
 }
 

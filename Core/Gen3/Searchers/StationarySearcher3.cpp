@@ -30,21 +30,21 @@ StationarySearcher3::StationarySearcher3(u16 tid, u16 sid, u8 genderRatio, Metho
 {
 }
 
-void StationarySearcher3::startSearch(const QVector<u8> &min, const QVector<u8> &max)
+void StationarySearcher3::startSearch(const std::array<u8, 6> &min, const std::array<u8, 6> &max)
 {
     searching = true;
 
-    for (u8 hp = min.at(0); hp <= max.at(0); hp++)
+    for (u8 hp = min[0]; hp <= max[0]; hp++)
     {
-        for (u8 atk = min.at(1); atk <= max.at(1); atk++)
+        for (u8 atk = min[1]; atk <= max[1]; atk++)
         {
-            for (u8 def = min.at(2); def <= max.at(2); def++)
+            for (u8 def = min[2]; def <= max[2]; def++)
             {
-                for (u8 spa = min.at(3); spa <= max.at(3); spa++)
+                for (u8 spa = min[3]; spa <= max[3]; spa++)
                 {
-                    for (u8 spd = min.at(4); spd <= max.at(4); spd++)
+                    for (u8 spd = min[4]; spd <= max[4]; spd++)
                     {
-                        for (u8 spe = min.at(5); spe <= max.at(5); spe++)
+                        for (u8 spe = min[5]; spe <= max[5]; spe++)
                         {
                             if (!searching)
                             {
@@ -54,7 +54,7 @@ void StationarySearcher3::startSearch(const QVector<u8> &min, const QVector<u8> 
                             auto states = search(hp, atk, def, spa, spd, spe);
 
                             std::lock_guard<std::mutex> guard(mutex);
-                            results.append(states);
+                            results.insert(results.end(), states.begin(), states.end());
                             progress++;
                         }
                     }
@@ -69,7 +69,7 @@ void StationarySearcher3::cancelSearch()
     searching = false;
 }
 
-QVector<State> StationarySearcher3::getResults()
+std::vector<State> StationarySearcher3::getResults()
 {
     std::lock_guard<std::mutex> guard(mutex);
     auto data(results);
@@ -82,7 +82,7 @@ int StationarySearcher3::getProgress() const
     return progress;
 }
 
-QVector<State> StationarySearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const
+std::vector<State> StationarySearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const
 {
     switch (method)
     {
@@ -93,13 +93,13 @@ QVector<State> StationarySearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 spd
     case Method::Method1Reverse:
         return searchMethod1Reverse(hp, atk, def, spa, spd, spe);
     default:
-        return QVector<State>();
+        return std::vector<State>();
     }
 }
 
-QVector<State> StationarySearcher3::searchMethod124(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const
+std::vector<State> StationarySearcher3::searchMethod124(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const
 {
-    QVector<State> states;
+    std::vector<State> states;
     State state;
 
     state.setIVs(hp, atk, def, spa, spd, spe);
@@ -129,7 +129,7 @@ QVector<State> StationarySearcher3::searchMethod124(u8 hp, u8 atk, u8 def, u8 sp
 
         if (filter.comparePID(state))
         {
-            states.append(state);
+            states.emplace_back(state);
         }
 
         // Setup XORed state
@@ -138,15 +138,15 @@ QVector<State> StationarySearcher3::searchMethod124(u8 hp, u8 atk, u8 def, u8 sp
         state.setNature(state.getPID() % 25);
         if (filter.comparePID(state))
         {
-            states.append(state);
+            states.emplace_back(state);
         }
     }
     return states;
 }
 
-QVector<State> StationarySearcher3::searchMethod1Reverse(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const
+std::vector<State> StationarySearcher3::searchMethod1Reverse(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const
 {
-    QVector<State> states;
+    std::vector<State> states;
     State state;
 
     state.setIVs(hp, atk, def, spa, spd, spe);
@@ -176,7 +176,7 @@ QVector<State> StationarySearcher3::searchMethod1Reverse(u8 hp, u8 atk, u8 def, 
 
         if (filter.comparePID(state))
         {
-            states.append(state);
+            states.emplace_back(state);
         }
 
         // Setup XORed state
@@ -185,7 +185,7 @@ QVector<State> StationarySearcher3::searchMethod1Reverse(u8 hp, u8 atk, u8 def, 
         state.setSeed(state.getSeed() ^ 0x80000000);
         if (filter.comparePID(state))
         {
-            states.append(state);
+            states.emplace_back(state);
         }
     }
     return states;

@@ -26,16 +26,16 @@ ChainedSIDCalc::ChainedSIDCalc(u16 tid) : tid(tid)
 {
     for (u32 i = 0; i <= 0xFFFF; i += 8)
     {
-        sids.append(static_cast<u16>(i));
+        sids.emplace_back(static_cast<u16>(i));
     }
 }
 
-void ChainedSIDCalc::addEntry(const QVector<u8> &ivs, u8 nature, u8 ability, u8 gender)
+void ChainedSIDCalc::addEntry(const std::vector<u8> &ivs, u8 nature, u8 ability, u8 gender)
 {
-    QVector<QPair<u32, u32>> pids;
+    std::vector<std::pair<u32, u32>> pids;
 
     RNGCache cache(Method::Method1);
-    auto seeds = cache.recoverLower16BitsIV(ivs.at(0), ivs.at(1), ivs.at(2), ivs.at(3), ivs.at(4), ivs.at(5));
+    auto seeds = cache.recoverLower16BitsIV(ivs[0], ivs[1], ivs[2], ivs[3], ivs[4], ivs[5]);
 
     for (const auto seed : seeds)
     {
@@ -57,11 +57,11 @@ void ChainedSIDCalc::addEntry(const QVector<u8> &ivs, u8 nature, u8 ability, u8 
 
         if ((ability == 0 || (abilityNum == 0 && ability == 1) || (abilityNum == 1 && ability == 2)) && matchGender(gender, genderNum))
         {
-            pids.append(qMakePair(adjustLow, pid2));
+            pids.emplace_back(adjustLow, pid2);
         }
     }
 
-    QVector<u16> newSids;
+    std::vector<u16> newSids;
     for (const auto &sid : sids)
     {
         for (const auto &pair : pids)
@@ -73,14 +73,14 @@ void ChainedSIDCalc::addEntry(const QVector<u8> &ivs, u8 nature, u8 ability, u8 
             u32 pid = (adjustHigh << 16) | pair.first;
             if ((pid % 25) == nature)
             {
-                newSids.append(sid);
+                newSids.emplace_back(sid);
             }
         }
     }
     sids = newSids;
 }
 
-QVector<u16> ChainedSIDCalc::getSIDs() const
+std::vector<u16> ChainedSIDCalc::getSIDs() const
 {
     return sids;
 }

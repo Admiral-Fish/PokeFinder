@@ -22,7 +22,7 @@
 #include <Core/Enum/Game.hpp>
 #include <Core/Gen5/Generators/IDGenerator5.hpp>
 #include <Core/Gen5/Keypresses.hpp>
-#include <Core/Gen5/ProfileLoader5.hpp>
+#include <Core/Parents/ProfileLoader.hpp>
 #include <Core/Gen5/Searchers/IDSearcher5.hpp>
 #include <Core/Parents/Filters/IDFilter.hpp>
 #include <Core/RNG/SHA1.hpp>
@@ -64,7 +64,7 @@ void IDs5::updateProfiles()
 
     for (const auto &profile : profiles)
     {
-        ui->comboBoxProfiles->addItem(profile.getName());
+        ui->comboBoxProfiles->addItem(QString::fromStdString(profile.getName()));
     }
 
     QSettings setting;
@@ -77,7 +77,7 @@ void IDs5::updateProfiles()
 
 bool IDs5::hasProfiles() const
 {
-    return !profiles.isEmpty();
+    return !profiles.empty();
 }
 
 void IDs5::setupModels()
@@ -115,7 +115,7 @@ void IDs5::setupModels()
     setting.endGroup();
 }
 
-void IDs5::updateProgress(const QVector<IDState5> &states, int progress)
+void IDs5::updateProgress(const std::vector<IDState5> &states, int progress)
 {
     model->addItems(states);
     ui->progressBar->setValue(progress);
@@ -132,20 +132,20 @@ void IDs5::search()
     u32 pid = ui->textBoxPID->getUInt();
     bool usePID = ui->checkBoxPID->isChecked();
 
-    QVector<u16> tid;
+    std::vector<u16> tid;
     if (ui->checkBoxTID->isChecked())
     {
-        tid.append(ui->textBoxTID->getUShort());
+        tid.emplace_back(ui->textBoxTID->getUShort());
     }
 
-    QVector<u16> sid;
+    std::vector<u16> sid;
     if (ui->checkBoxSID->isChecked())
     {
-        sid.append(ui->textBoxSID->getUShort());
+        sid.emplace_back(ui->textBoxSID->getUShort());
     }
 
-    QDate start = ui->dateEditStart->date();
-    QDate end = ui->dateEditEnd->date();
+    Date start = ui->dateEditStart->getDate();
+    Date end = ui->dateEditEnd->getDate();
 
     IDFilter filter(tid, sid, {});
     IDGenerator5 generator(0, ui->textBoxMaxAdvances->getUInt(), filter);
@@ -184,7 +184,7 @@ void IDs5::find()
     model->clearModel();
 
     u16 tid = ui->textBoxSeedFinderTID->getUShort();
-    QDate date = ui->dateEdit->date();
+    Date date = ui->dateEdit->getDate();
     int hour = ui->spinBoxHour->value();
     int minute = ui->spinBoxMinute->value();
     int minSecond = ui->spinBoxMinSecond->value();
@@ -203,13 +203,13 @@ void IDs5::find()
 
     sha.setTimer0(currentProfile.getTimer0Min(), currentProfile.getVCount());
 
-    QVector<IDState5> results;
-    for (int i = 0; i < values.size(); i++)
+    std::vector<IDState5> results;
+    for (size_t i = 0; i < values.size(); i++)
     {
-        sha.setButton(values.at(i));
+        sha.setButton(values[i]);
 
-        sha.setDate(static_cast<u8>(date.year() - 2000), static_cast<u8>(date.month()), static_cast<u8>(date.day()),
-                    static_cast<u8>(date.dayOfWeek()));
+        auto parts = date.getParts();
+        sha.setDate(parts[0] - 2000, parts[1], parts[2], static_cast<u8>(date.dayOfWeek()));
         sha.precompute();
 
         for (u8 second = minSecond; second <= maxSecond; second++)
@@ -223,14 +223,14 @@ void IDs5::find()
                                                 : Utilities::initialAdvancesBW2ID(seed, save ? 2 : 3)));
             auto states = generator.generate(seed);
 
-            QDateTime dt(date, QTime(hour, minute, second));
+            DateTime dt(date, Time(hour, minute, second));
             for (auto &state : states)
             {
                 state.setDateTime(dt);
-                state.setKeypress(buttons.at(i));
+                state.setKeypress(buttons[i]);
             }
 
-            results.append(states);
+            results.insert(results.end(), states.begin(), states.end());
         }
     }
 
@@ -241,17 +241,17 @@ void IDs5::profileIndexChanged(int index)
 {
     if (index >= 0)
     {
-        currentProfile = profiles.at(index);
+        currentProfile = profiles[index];
 
         ui->labelProfileMACAddressValue->setText(QString::number(currentProfile.getMac(), 16));
-        ui->labelProfileDSTypeValue->setText(currentProfile.getDSTypeString());
+        ui->labelProfileDSTypeValue->setText(QString::fromStdString(currentProfile.getDSTypeString()));
         ui->labelProfileVCountValue->setText(QString::number(currentProfile.getVCount(), 16));
         ui->labelProfileTimer0Value->setText(QString::number(currentProfile.getTimer0Min(), 16) + "-"
                                              + QString::number(currentProfile.getTimer0Max(), 16));
         ui->labelProfileGxStatValue->setText(QString::number(currentProfile.getGxStat()));
         ui->labelProfileVFrameValue->setText(QString::number(currentProfile.getVFrame()));
-        ui->labelProfileKeypressesValue->setText(currentProfile.getKeypressesString());
-        ui->labelProfileGameValue->setText(currentProfile.getVersionString());
+        ui->labelProfileKeypressesValue->setText(QString::fromStdString(currentProfile.getKeypressesString()));
+        ui->labelProfileGameValue->setText(QString::fromStdString(currentProfile.getVersionString()));
     }
 }
 

@@ -33,7 +33,7 @@ QVariant StationaryGeneratorModel3::data(const QModelIndex &index, int role) con
 {
     if (role == Qt::DisplayRole)
     {
-        const auto &state = model.at(index.row());
+        const auto &state = model[index.row()];
         int column = index.column();
         switch (column)
         {
@@ -47,7 +47,7 @@ QVariant StationaryGeneratorModel3::data(const QModelIndex &index, int role) con
             return shiny == 2 ? tr("Square") : shiny == 1 ? tr("Star") : tr("No");
         }
         case 3:
-            return Translator::getNature(state.getNature());
+            return QString::fromStdString(Translator::getNature(state.getNature()));
         case 4:
             return state.getAbility();
         case 5:
@@ -58,11 +58,11 @@ QVariant StationaryGeneratorModel3::data(const QModelIndex &index, int role) con
         case 10:
             return state.getIV(static_cast<u8>(column - 5));
         case 11:
-            return Translator::getHiddenPower(state.getHidden());
+            return QString::fromStdString(Translator::getHiddenPower(state.getHidden()));
         case 12:
             return state.getPower();
         case 13:
-            return Translator::getGender(state.getGender());
+            return QString::fromStdString(Translator::getGender(state.getGender()));
         }
     }
     return QVariant();
@@ -72,7 +72,7 @@ QVariant StationaryGeneratorModel3::headerData(int section, Qt::Orientation orie
 {
     if (role == Qt::DisplayRole && orientation == Qt::Horizontal)
     {
-        return header.at(section);
+        return header[section];
     }
     return QVariant();
 }
@@ -83,7 +83,7 @@ StationarySearcherModel3::StationarySearcherModel3(QObject *parent) : TableModel
 
 void StationarySearcherModel3::sort(int column, Qt::SortOrder order)
 {
-    if (!model.isEmpty())
+    if (!model.empty())
     {
         emit layoutAboutToBeChanged();
         bool flag = order == Qt::AscendingOrder;
@@ -156,7 +156,7 @@ QVariant StationarySearcherModel3::data(const QModelIndex &index, int role) cons
 {
     if (role == Qt::DisplayRole)
     {
-        const auto &state = model.at(index.row());
+        const auto &state = model[index.row()];
         int column = index.column();
         switch (column)
         {
@@ -170,7 +170,7 @@ QVariant StationarySearcherModel3::data(const QModelIndex &index, int role) cons
             return shiny == 2 ? tr("Square") : shiny == 1 ? tr("Star") : tr("No");
         }
         case 3:
-            return Translator::getNature(state.getNature());
+            return QString::fromStdString(Translator::getNature(state.getNature()));
         case 4:
             return state.getAbility();
         case 5:
@@ -181,11 +181,11 @@ QVariant StationarySearcherModel3::data(const QModelIndex &index, int role) cons
         case 10:
             return state.getIV(static_cast<u8>(column - 5));
         case 11:
-            return Translator::getHiddenPower(state.getHidden());
+            return QString::fromStdString(Translator::getHiddenPower(state.getHidden()));
         case 12:
             return state.getPower();
         case 13:
-            return Translator::getGender(state.getGender());
+            return QString::fromStdString(Translator::getGender(state.getGender()));
         }
     }
     return QVariant();
@@ -195,7 +195,7 @@ QVariant StationarySearcherModel3::headerData(int section, Qt::Orientation orien
 {
     if (role == Qt::DisplayRole && orientation == Qt::Horizontal)
     {
-        return header.at(section);
+        return header[section];
     }
     return QVariant();
 }

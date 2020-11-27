@@ -55,10 +55,19 @@ GameCubeSeedFinder::GameCubeSeedFinder(QWidget *parent) : QWidget(parent), ui(ne
     ui->textBoxGalesTopRight->setValues(1, 714, 3, 10);
     ui->textBoxGalesBottomRight->setValues(1, 714, 3, 10);
 
-    ui->comboBoxGalesYourLead->addItems(Translator::getSpecies({ 150, 151, 386, 384, 385 }));
-    ui->comboBoxGalesEnemyLead->addItems(Translator::getSpecies({ 144, 145, 146, 115, 380 }));
+    for (const std::string &specie : Translator::getSpecies({ 150, 151, 386, 384, 385 }))
+    {
+        ui->comboBoxGalesYourLead->addItem(QString::fromStdString(specie));
+    }
+    for (const std::string &specie : Translator::getSpecies({ 144, 145, 146, 115, 380 }))
+    {
+        ui->comboBoxGalesEnemyLead->addItem(QString::fromStdString(specie));
+    }
 
-    ui->comboBoxColoPartyLead->addItems(Translator::getSpecies({ 257, 244, 260, 243, 154, 245, 376, 214 }));
+    for (const std::string &specie : Translator::getSpecies({ 257, 244, 260, 243, 154, 245, 376, 214 }))
+    {
+        ui->comboBoxColoPartyLead->addItem(QString::fromStdString(specie));
+    }
 
     connect(ui->pushButtonGalesSearch, &QPushButton::clicked, this, &GameCubeSeedFinder::galesSearch);
     connect(ui->pushButtonGalesReset, &QPushButton::clicked, this, &GameCubeSeedFinder::galesReset);
@@ -83,13 +92,13 @@ GameCubeSeedFinder::~GameCubeSeedFinder()
     delete ui;
 }
 
-void GameCubeSeedFinder::updateGales(const QVector<u32> &seeds)
+void GameCubeSeedFinder::updateGales(const std::vector<u32> &seeds)
 {
     galeSeeds = seeds;
     ui->labelGalesRound->setText(tr("Round #") + QString::number(++galesRound));
     if (galeSeeds.size() == 1)
     {
-        QString seed = QString::number(galeSeeds.at(0), 16).toUpper();
+        QString seed = QString::number(galeSeeds[0], 16).toUpper();
         ui->labelGalesResults->setText(tr("Seed: ") + seed);
         QMessageBox info(QMessageBox::Question, tr("Seed found"), tr("Your seed is %1. Copy to clipboard?").arg(seed),
                          QMessageBox::Yes | QMessageBox::No);
@@ -109,13 +118,13 @@ void GameCubeSeedFinder::updateGalesProgress(int progress)
     ui->progressBarGales->setValue(progress);
 }
 
-void GameCubeSeedFinder::updateColo(const QVector<u32> &seeds)
+void GameCubeSeedFinder::updateColo(const std::vector<u32> &seeds)
 {
     coloSeeds = seeds;
     ui->labelColoRound->setText(tr("Round #") + QString::number(++coloRound));
     if (coloSeeds.size() == 1)
     {
-        QString seed = QString::number(coloSeeds.at(0), 16).toUpper();
+        QString seed = QString::number(coloSeeds[0], 16).toUpper();
         ui->labelColoResults->setText(tr("Seed: ") + seed);
         QMessageBox info(QMessageBox::Question, tr("Seed found"), tr("Your seed is %1. Copy to clipboard?").arg(seed),
                          QMessageBox::Yes | QMessageBox::No);
@@ -135,18 +144,18 @@ void GameCubeSeedFinder::updateColoProgress(int progress)
     ui->progressBarColo->setValue(progress);
 }
 
-void GameCubeSeedFinder::updateChannel(const QVector<u32> &seeds)
+void GameCubeSeedFinder::updateChannel(const std::vector<u32> &seeds)
 {
-    if (seeds.isEmpty())
+    if (seeds.empty())
     {
         ui->labelChannelResult->setText(tr("Result: Invalid"));
     }
     else
     {
         QString seed = "";
-        for (int i = 0; i < seeds.size(); i++)
+        for (size_t i = 0; i < seeds.size(); i++)
         {
-            seed += QString::number(seeds.at(i), 16).toUpper();
+            seed += QString::number(seeds[i], 16).toUpper();
             if (i != seeds.size() - 1)
             {
                 seed += ", ";
@@ -233,7 +242,7 @@ void GameCubeSeedFinder::galesSearch()
                 offset += seedSizes[i];
             }
 
-            QVector<u32> seeds;
+            std::vector<u32> seeds;
             seeds.resize(seedSizes[index]);
 
             f.seek(offset * sizeof(u32) + sizeof(u32) * 25);
@@ -288,7 +297,7 @@ void GameCubeSeedFinder::galesReset()
     if (ui->pushButtonGalesSearch->isEnabled())
     {
         galeSeeds.clear();
-        galeSeeds.squeeze();
+        galeSeeds.shrink_to_fit();
         galesRound = 1;
         ui->labelGalesRound->setText(tr("Round #") + QString::number(galesRound));
     }
@@ -354,7 +363,7 @@ void GameCubeSeedFinder::coloSearch()
                 offset += seedSizes[i];
             }
 
-            QVector<u32> seeds;
+            std::vector<u32> seeds;
             seeds.resize(seedSizes[index]);
 
             f.seek(offset * sizeof(u32) + sizeof(u32) * 25);
@@ -409,7 +418,7 @@ void GameCubeSeedFinder::coloReset()
     if (ui->pushButtonColoSearch->isEnabled())
     {
         coloSeeds.clear();
-        coloSeeds.squeeze();
+        coloSeeds.shrink_to_fit();
         coloRound = 1;
         ui->labelColoRound->setText(tr("Round #") + QString::number(coloRound));
     }
@@ -425,11 +434,8 @@ void GameCubeSeedFinder::channelSearch()
         return;
     }
 
-    QVector<u32> criteria;
-    for (const QString &input : inputs)
-    {
-        criteria.append(patterns.at(input));
-    }
+    std::vector<u32> criteria;
+    std::transform(inputs.begin(), inputs.end(), std::back_inserter(criteria), [](const QString &input) { return patterns.at(input); });
 
     ui->pushButtonChannelSearch->setEnabled(false);
     ui->pushButtonChannelCancel->setEnabled(true);

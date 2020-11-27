@@ -27,14 +27,14 @@ PokeSpotGenerator::PokeSpotGenerator(u32 initialAdvances, u32 maxAdvances, u16 t
 {
 }
 
-void PokeSpotGenerator::setSpots(const QVector<bool> &spots)
+void PokeSpotGenerator::setSpots(const std::vector<bool> &spots)
 {
     this->spots = spots;
 }
 
-QVector<GameCubeState> PokeSpotGenerator::generate(u32 seed) const
+std::vector<GameCubeState> PokeSpotGenerator::generate(u32 seed) const
 {
-    QVector<GameCubeState> states;
+    std::vector<GameCubeState> states;
 
     XDRNG rng(seed);
     rng.advance(initialAdvances);
@@ -55,7 +55,7 @@ QVector<GameCubeState> PokeSpotGenerator::generate(u32 seed) const
                 u8 call = go.nextUShort() % 100;
                 if (call < 50)
                 {
-                    if (!spots.at(0))
+                    if (!spots[0])
                     {
                         continue;
                     }
@@ -63,7 +63,7 @@ QVector<GameCubeState> PokeSpotGenerator::generate(u32 seed) const
                 }
                 else if (call > 49 && call < 85)
                 {
-                    if (!spots.at(1))
+                    if (!spots[1])
                     {
                         continue;
                     }
@@ -71,7 +71,7 @@ QVector<GameCubeState> PokeSpotGenerator::generate(u32 seed) const
                 }
                 else
                 {
-                    if (!spots.at(2))
+                    if (!spots[2])
                     {
                         continue;
                     }
@@ -89,7 +89,7 @@ QVector<GameCubeState> PokeSpotGenerator::generate(u32 seed) const
 
                 if (filter.comparePID(state))
                 {
-                    states.append(state);
+                    states.emplace_back(state);
                 }
             }
         }

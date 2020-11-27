@@ -21,7 +21,7 @@
 #define ENCOUNTERS5_HPP
 
 #include <Core/Util/Global.hpp>
-#include <QVector>
+#include <vector>
 
 class EncounterArea5;
 enum Encounter : u8;
@@ -29,7 +29,7 @@ enum Game : u16;
 
 namespace Encounters5
 {
-    QVector<EncounterArea5> getEncounters(Encounter encounter, u8 season, Game version);
+    std::vector<EncounterArea5> getEncounters(Encounter encounter, u8 season, Game version);
 }
 
 #endif // ENCOUNTERS5_HPP

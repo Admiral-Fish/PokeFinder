@@ -120,62 +120,41 @@
           <string>RNG Info</string>
          </property>
          <layout class="QGridLayout" name="gridLayout_2">
-          <item row="0" column="1" colspan="2">
-           <widget class="TextBox" name="textBoxEmeraldInitialAdvances">
-            <property name="text">
-             <string notr="true">1000</string>
-            </property>
-           </widget>
-          </item>
-          <item row="6" column="0" colspan="2">
-           <widget class="QLabel" name="labelEmeraldCompatibility">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="text">
-             <string>Compatibility</string>
-            </property>
-           </widget>
+          <item row="4" column="0" colspan="3">
+           <layout class="QHBoxLayout" name="horizontalLayout">
+            <item>
+             <widget class="QLabel" name="labelEmeraldRedraws">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="text">
+               <string>Redraws</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="TextBox" name="textBoxMinRedraws">
+              <property name="text">
+               <string notr="true">0</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="TextBox" name="textBoxMaxRedraws">
+              <property name="text">
+               <string notr="true">5</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
           </item>
           <item row="3" column="2">
            <widget class="TextBox" name="textBoxCalibration">
             <property name="text">
              <string notr="true">18</string>
-            </property>
-           </widget>
-          </item>
-          <item row="6" column="2">
-           <widget class="ComboBox" name="comboBoxEmeraldCompatibility">
-            <item>
-             <property name="text">
-              <string>The two don't seem to like each other</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>The two seem to get along</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>The two seem to get along very well</string>
-             </property>
-            </item>
-           </widget>
-          </item>
-          <item row="2" column="0">
-           <widget class="QLabel" name="labelEmeraldMethod">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="text">
-             <string>Method</string>
             </property>
            </widget>
           </item>
@@ -216,8 +195,15 @@
             </property>
            </widget>
           </item>
-          <item row="5" column="0">
-           <widget class="QLabel" name="labelEmeraldEverstone">
+          <item row="6" column="0" colspan="3">
+           <widget class="QPushButton" name="pushButtonEmeraldGenerate">
+            <property name="text">
+             <string>Generate</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="labelEmeraldMethod">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
               <horstretch>0</horstretch>
@@ -225,7 +211,27 @@
              </sizepolicy>
             </property>
             <property name="text">
-             <string>Everstone</string>
+             <string>Method</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1" colspan="2">
+           <widget class="TextBox" name="textBoxEmeraldInitialAdvances">
+            <property name="text">
+             <string notr="true">1000</string>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="0" colspan="2">
+           <widget class="QLabel" name="labelEmeraldCompatibility">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>Compatibility</string>
             </property>
            </widget>
           </item>
@@ -242,13 +248,6 @@
             </property>
            </widget>
           </item>
-          <item row="1" column="1" colspan="2">
-           <widget class="TextBox" name="textBoxEmeraldMaxAdvances">
-            <property name="text">
-             <string notr="true">5000</string>
-            </property>
-           </widget>
-          </item>
           <item row="3" column="0">
            <widget class="QLabel" name="labelEmeraldCalibration">
             <property name="sizePolicy">
@@ -262,49 +261,28 @@
             </property>
            </widget>
           </item>
-          <item row="7" column="0" colspan="3">
-           <widget class="QPushButton" name="pushButtonEmeraldGenerate">
+          <item row="1" column="1" colspan="2">
+           <widget class="TextBox" name="textBoxEmeraldMaxAdvances">
             <property name="text">
-             <string>Generate</string>
+             <string notr="true">5000</string>
             </property>
            </widget>
           </item>
-          <item row="4" column="0" colspan="3">
-           <layout class="QHBoxLayout" name="horizontalLayout">
-            <item>
-             <widget class="QLabel" name="labelEmeraldRedraws">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
-              <property name="text">
-               <string>Redraws</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="TextBox" name="textBoxMinRedraws">
-              <property name="text">
-               <string notr="true">0</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="TextBox" name="textBoxMaxRedraws">
-              <property name="text">
-               <string notr="true">5</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </item>
           <item row="5" column="2">
-           <widget class="QComboBox" name="comboBoxEverstone">
+           <widget class="ComboBox" name="comboBoxEmeraldCompatibility">
             <item>
              <property name="text">
-              <string>None</string>
+              <string>The two don't seem to like each other</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>The two seem to get along</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>The two seem to get along very well</string>
              </property>
             </item>
            </widget>
@@ -849,7 +827,6 @@
   <tabstop>textBoxCalibration</tabstop>
   <tabstop>textBoxMinRedraws</tabstop>
   <tabstop>textBoxMaxRedraws</tabstop>
-  <tabstop>comboBoxEverstone</tabstop>
   <tabstop>comboBoxEmeraldCompatibility</tabstop>
   <tabstop>pushButtonEmeraldGenerate</tabstop>
   <tabstop>tableViewEmerald</tabstop>

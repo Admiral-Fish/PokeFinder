@@ -33,7 +33,7 @@ QVariant PokeSpotModel::data(const QModelIndex &index, int role) const
 {
     if (role == Qt::DisplayRole)
     {
-        const auto &state = model.at(index.row());
+        const auto &state = model[index.row()];
         switch (index.column())
         {
         case 0:
@@ -56,11 +56,11 @@ QVariant PokeSpotModel::data(const QModelIndex &index, int role) const
                 return tr("Rare");
             }
         case 4:
-            return Translator::getNature(state.getNature());
+            return QString::fromStdString(Translator::getNature(state.getNature()));
         case 5:
             return state.getAbility();
         case 6:
-            return Translator::getGender(state.getGender());
+            return QString::fromStdString(Translator::getGender(state.getGender()));
         }
     }
     return QVariant();
@@ -70,7 +70,7 @@ QVariant PokeSpotModel::headerData(int section, Qt::Orientation orientation, int
 {
     if (role == Qt::DisplayRole && orientation == Qt::Horizontal)
     {
-        return header.at(section);
+        return header[section];
     }
     return QVariant();
 }

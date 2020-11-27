@@ -23,7 +23,6 @@
 #include <Core/Gen5/Generators/IDGenerator5.hpp>
 #include <Core/Gen5/Profile5.hpp>
 #include <Core/Util/Global.hpp>
-#include <QDate>
 #include <mutex>
 
 class IDSearcher5
@@ -31,9 +30,9 @@ class IDSearcher5
 public:
     IDSearcher5() = default;
     explicit IDSearcher5(const Profile5 &profile, u32 pid, bool checkPID, bool save);
-    void startSearch(const IDGenerator5 &generator, int threads, QDate start, const QDate &end);
+    void startSearch(const IDGenerator5 &generator, int threads, Date start, const Date &end);
     void cancelSearch();
-    QVector<IDState5> getResults();
+    std::vector<IDState5> getResults();
     int getProgress() const;
 
 private:
@@ -44,11 +43,11 @@ private:
 
     bool searching;
     int progress;
-    QVector<IDState5> results;
+    std::vector<IDState5> results;
     std::mutex resultMutex;
     std::mutex progressMutex;
 
-    void search(IDGenerator5 generator, const QDate &start, const QDate &end);
+    void search(IDGenerator5 generator, const Date &start, const Date &end);
 };
 
 #endif // IDSEARCHER5_HPP

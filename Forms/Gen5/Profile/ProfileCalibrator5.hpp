@@ -22,7 +22,9 @@
 
 #include <QAbstractButton>
 #include <QMenu>
-#include <QStandardItemModel>
+
+class ProfileSearcherModel5;
+class ProfileSearcherState5;
 
 namespace Ui
 {
@@ -41,14 +43,14 @@ public:
 
 private:
     Ui::ProfileCalibrator5 *ui;
-    QStandardItemModel *model = nullptr;
+    ProfileSearcherModel5 *model = nullptr;
     QMenu *menu = nullptr;
 
     void setupModels();
     void updateParameters();
 
 private slots:
-    void updateProgress(const QVector<QList<QStandardItem *>> &states, int progress);
+    void updateProgress(const std::vector<ProfileSearcherState5> &states, int progress);
     void openIVCalculator();
     void clearTable();
     void search();

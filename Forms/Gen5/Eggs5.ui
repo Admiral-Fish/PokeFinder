@@ -490,7 +490,7 @@
            </widget>
           </item>
           <item row="1" column="1">
-           <widget class="QDateEdit" name="dateEditSearcherStartDate">
+           <widget class="DateEdit" name="dateEditSearcherStartDate">
             <property name="maximumDateTime">
              <datetime>
               <hour>23</hour>
@@ -524,7 +524,7 @@
            </widget>
           </item>
           <item row="2" column="1">
-           <widget class="QDateEdit" name="dateEditSearcherEndDate">
+           <widget class="DateEdit" name="dateEditSearcherEndDate">
             <property name="maximumDateTime">
              <datetime>
               <hour>23</hour>
@@ -611,6 +611,11 @@
    <extends>QWidget</extends>
    <header>Forms/Controls/EggSettings.hpp</header>
    <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>DateEdit</class>
+   <extends>QDateEdit</extends>
+   <header>Forms/Controls/DateEdit.hpp</header>
   </customwidget>
  </customwidgets>
  <resources/>

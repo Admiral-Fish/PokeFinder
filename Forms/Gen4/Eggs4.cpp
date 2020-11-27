@@ -21,7 +21,7 @@
 #include "ui_Eggs4.h"
 #include <Core/Enum/Method.hpp>
 #include <Core/Gen4/Generators/EggGenerator4.hpp>
-#include <Core/Gen4/ProfileLoader4.hpp>
+#include <Core/Parents/ProfileLoader.hpp>
 #include <Core/Gen4/Searchers/EggSearcher4.hpp>
 #include <Core/Parents/Filters/StateFilter.hpp>
 #include <Core/Parents/States/EggState.hpp>
@@ -71,7 +71,7 @@ void Eggs4::updateProfiles()
 
     for (const auto &profile : profiles)
     {
-        ui->comboBoxProfiles->addItem(profile.getName());
+        ui->comboBoxProfiles->addItem(QString::fromStdString(profile.getName()));
     }
 
     QSettings setting;
@@ -165,7 +165,7 @@ void Eggs4::setupModels()
     setting.endGroup();
 }
 
-void Eggs4::updateProgress(const QVector<EggState4> &states, int progress)
+void Eggs4::updateProgress(const std::vector<EggState4> &states, int progress)
 {
     searcherModel->addItems(states);
     ui->progressBarSearcher->setValue(progress);
@@ -295,11 +295,11 @@ void Eggs4::profilesIndexChanged(int index)
 {
     if (index >= 0)
     {
-        currentProfile = profiles.at(index);
+        currentProfile = profiles[index];
 
         ui->labelProfileTIDValue->setText(QString::number(currentProfile.getTID()));
         ui->labelProfileSIDValue->setText(QString::number(currentProfile.getSID()));
-        ui->labelProfileGameValue->setText(currentProfile.getVersionString());
+        ui->labelProfileGameValue->setText(QString::fromStdString(currentProfile.getVersionString()));
     }
 }
 

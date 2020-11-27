@@ -19,7 +19,7 @@
 
 #include "ProfileManager4.hpp"
 #include "ui_ProfileManager4.h"
-#include <Core/Gen4/ProfileLoader4.hpp>
+#include <Core/Parents/ProfileLoader.hpp>
 #include <Forms/Gen4/Profile/ProfileEditor4.hpp>
 #include <Models/Gen4/ProfileModel4.hpp>
 #include <QMessageBox>

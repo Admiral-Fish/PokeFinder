@@ -38,7 +38,7 @@ ProfileEditor5::ProfileEditor5(const Profile5 &profile, QWidget *parent) : QDial
 
     setupModels();
 
-    ui->lineEditProfile->setText(profile.getName());
+    ui->lineEditProfile->setText(QString::fromStdString(profile.getName()));
     ui->textBoxTID->setText(QString::number(profile.getTID()));
     ui->textBoxSID->setText(QString::number(profile.getSID()));
     ui->textBoxMAC->setText(QString::number(profile.getMac(), 16));
@@ -51,7 +51,8 @@ ProfileEditor5::ProfileEditor5(const Profile5 &profile, QWidget *parent) : QDial
     ui->comboBoxVersion->setCurrentIndex(ui->comboBoxVersion->findData(profile.getVersion()));
     ui->comboBoxLanguage->setCurrentIndex(ui->comboBoxLanguage->findData(profile.getLanguage()));
     ui->comboBoxDSType->setCurrentIndex(ui->comboBoxDSType->findData(profile.getDSType()));
-    ui->comboBoxKeypresses->setChecks(profile.getKeypresses());
+    auto keypress = profile.getKeypresses();
+    ui->comboBoxKeypresses->setChecks(std::vector<bool>(keypress.begin(), keypress.end()));
 
     ui->checkBoxSkipLR->setChecked(profile.getSkipLR());
     ui->checkBoxSoftReset->setChecked(profile.getSoftReset());
@@ -147,7 +148,7 @@ void ProfileEditor5::okay()
         return;
     }
 
-    fresh = Profile5(ui->lineEditProfile->text(), static_cast<Game>(ui->comboBoxVersion->currentData().toInt()),
+    fresh = Profile5(ui->lineEditProfile->text().toStdString(), static_cast<Game>(ui->comboBoxVersion->currentData().toInt()),
                      ui->textBoxTID->getUShort(), ui->textBoxSID->getUShort(), ui->textBoxMAC->getULong(),
                      ui->comboBoxKeypresses->getChecked(), ui->textBoxVCount->getUChar(), ui->textBoxGxStat->getUChar(),
                      ui->textBoxVFrame->getUChar(), ui->checkBoxSkipLR->isChecked(), ui->textBoxTimer0Min->getUShort(),

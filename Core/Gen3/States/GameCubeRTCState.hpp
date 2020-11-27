@@ -20,20 +20,20 @@
 #ifndef GAMECUBERTCSTATE_HPP
 #define GAMECUBERTCSTATE_HPP
 
+#include <Core/Util/DateTime.hpp>
 #include <Core/Util/Global.hpp>
-#include <QDateTime>
 
 class GameCubeRTCState
 {
 public:
     GameCubeRTCState() = default;
-    GameCubeRTCState(const QDateTime &dateTime, u32 seed, u32 advance);
-    QString getDateTime() const;
+    GameCubeRTCState(const DateTime &dateTime, u32 seed, u32 advance);
+    std::string getDateTime() const;
     u32 getSeed() const;
     u32 getAdvances() const;
 
 private:
-    QDateTime dateTime;
+    DateTime dateTime;
     u32 seed;
     u32 advances;
 };

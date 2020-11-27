@@ -91,7 +91,7 @@ void GameCubeRTC::search()
     u32 targetSeed = ui->textBoxTargetSeed->getUInt();
     u32 initialAdvances = ui->textBoxMinAdvance->getUInt();
     u32 maxAdvances = ui->textBoxMaxAdvance->getUInt();
-    QDateTime end = ui->dateTimeEdit->dateTime();
+    DateTime end = ui->dateTimeEdit->getDateTime();
 
     auto *searcher = new RTCSearcher();
 
@@ -114,7 +114,7 @@ void GameCubeRTC::search()
     timer->start(1000);
 }
 
-void GameCubeRTC::updateProgress(const QVector<GameCubeRTCState> &results)
+void GameCubeRTC::updateProgress(const std::vector<GameCubeRTCState> &results)
 {
     model->addItems(results);
 }

@@ -26,17 +26,17 @@
 class GalesSeedSearcher : public SeedSearcher
 {
 public:
-    GalesSeedSearcher(const QVector<u32> &criteria, u16 tsv);
+    GalesSeedSearcher(const std::vector<u32> &criteria, u16 tsv);
     void startSearch(int threads);
-    void startSearch(int threads, const QVector<u32> &seeds);
+    void startSearch(int threads, const std::vector<u32> &seeds);
 
 private:
     u16 tsv;
 
     void search(u32 start, u32 end);
-    void search(const QVector<u32> &seeds);
+    void search(const std::vector<u32> &seeds);
     bool searchSeed(XDRNG &rng);
-    void generatePokemon(XDRNG &rng);
+    void generatePokemon(XDRNG &rng) const;
     u8 generateEVs(XDRNG &rng);
 };
 

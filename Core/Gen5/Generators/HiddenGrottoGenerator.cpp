@@ -29,9 +29,9 @@ HiddenGrottoGenerator::HiddenGrottoGenerator(u32 initialAdvances, u32 maxAdvance
 {
 }
 
-QVector<HiddenGrottoState> HiddenGrottoGenerator::generate(u64 seed)
+std::vector<HiddenGrottoState> HiddenGrottoGenerator::generate(u64 seed)
 {
-    QVector<HiddenGrottoState> states;
+    std::vector<HiddenGrottoState> states;
 
     BWRNG rng(seed);
 
@@ -56,7 +56,7 @@ QVector<HiddenGrottoState> HiddenGrottoGenerator::generate(u64 seed)
             HiddenGrottoState state(initialAdvances + cnt, group, slot, gender);
             if (filter.compareState(state))
             {
-                states.append(state);
+                states.emplace_back(state);
             }
         }
     }

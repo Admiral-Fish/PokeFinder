@@ -17,6 +17,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+#include <Core/Parents/ProfileLoader.hpp>
 #include <Core/Util/Translator.hpp>
 #include <Forms/MainWindow.hpp>
 #include <QApplication>
@@ -64,16 +65,17 @@ int main(int argc, char *argv[])
     QSettings setting;
     validateSettings(setting);
 
+    QString profilePath = setting.value("settings/profiles").toString();
+    ProfileLoader::init(profilePath.toStdString());
+
     // Transfer profiles to new setup
     // TODO: remove in a future version
     if (setting.contains("profiles"))
     {
-        QString fileName = setting.value("settings/profiles").toString();
-
         QByteArray data = setting.value("profiles").toByteArray();
         QJsonDocument profiles(QJsonDocument::fromJson(data));
 
-        QFile f(fileName);
+        QFile f(profilePath);
         if (f.open(QIODevice::WriteOnly))
         {
             f.write(QJsonDocument(profiles).toJson());
@@ -98,7 +100,7 @@ int main(int argc, char *argv[])
 #endif
 
     QString locale = setting.value("settings/locale").toString();
-    Translator::init(locale);
+    Translator::init(locale.toStdString(), a.applicationDirPath().toStdString());
 
     QTranslator translator;
     if (translator.load(QString(":/i18n/PokeFinder_%1.qm").arg(locale)))

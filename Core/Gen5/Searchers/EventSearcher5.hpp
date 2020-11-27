@@ -24,7 +24,6 @@
 #include <Core/Gen5/Profile5.hpp>
 #include <Core/Gen5/States/SearcherState5.hpp>
 #include <Core/Util/Global.hpp>
-#include <QDate>
 #include <mutex>
 
 class EventSearcher5
@@ -32,9 +31,9 @@ class EventSearcher5
 public:
     EventSearcher5() = default;
     explicit EventSearcher5(const Profile5 &profile);
-    void startSearch(const EventGenerator5 &generator, int threads, QDate start, const QDate &end);
+    void startSearch(const EventGenerator5 &generator, int threads, Date start, const Date &end);
     void cancelSearch();
-    QVector<SearcherState5<State>> getResults();
+    std::vector<SearcherState5<State>> getResults();
     int getProgress() const;
 
 private:
@@ -42,11 +41,11 @@ private:
 
     bool searching;
     int progress;
-    QVector<SearcherState5<State>> results;
+    std::vector<SearcherState5<State>> results;
     std::mutex resultMutex;
     std::mutex progressMutex;
 
-    void search(EventGenerator5 generator, const QDate &start, const QDate &end);
+    void search(EventGenerator5 generator, const Date &start, const Date &end);
 };
 
 #endif // EVENTSEARCHER5_HPP

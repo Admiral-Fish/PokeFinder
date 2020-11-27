@@ -248,12 +248,6 @@ void SHA1::setTimer0(u32 timer0, u8 vcount)
 
 void SHA1::setDate(u8 year, u8 month, u8 day, u8 week)
 {
-    // QDate has Sunday as 7, but we need it as 0
-    if (week == 7)
-    {
-        week = 0;
-    }
-
     u32 val = static_cast<u32>((bcd(year) << 24) | (bcd(month) << 16) | (bcd(day) << 8) | week);
     data[8] = val;
 }

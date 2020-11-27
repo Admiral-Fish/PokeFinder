@@ -22,7 +22,7 @@
 #include <Core/Enum/Game.hpp>
 #include <Core/Enum/Method.hpp>
 #include <Core/Gen5/Keypresses.hpp>
-#include <Core/Gen5/ProfileLoader5.hpp>
+#include <Core/Parents/ProfileLoader.hpp>
 #include <Core/Gen5/Searchers/DreamRadarSearcher.hpp>
 #include <Core/Parents/PersonalInfo.hpp>
 #include <Core/Util/Translator.hpp>
@@ -58,13 +58,9 @@ void DreamRadar::updateProfiles()
     connect(ui->comboBoxProfiles, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &DreamRadar::profileIndexChanged);
 
     profiles.clear();
-    for (const auto &profile : ProfileLoader5::getProfiles())
-    {
-        if (profile.getVersion() & Game::BW2)
-        {
-            profiles.append(profile);
-        }
-    }
+    auto completeProfiles = ProfileLoader5::getProfiles();
+    std::copy_if(completeProfiles.begin(), completeProfiles.end(), std::back_inserter(profiles),
+                 [](const Profile5 &profile) { return profile.getVersion() & Game::BW2; });
 
     ui->comboBoxProfiles->clear();
 
@@ -72,7 +68,7 @@ void DreamRadar::updateProfiles()
     {
         if (profile.getVersion() & Game::BW2)
         {
-            ui->comboBoxProfiles->addItem(profile.getName());
+            ui->comboBoxProfiles->addItem(QString::fromStdString(profile.getName()));
         }
     }
 
@@ -86,7 +82,7 @@ void DreamRadar::updateProfiles()
 
 bool DreamRadar::hasProfiles() const
 {
-    return !profiles.isEmpty();
+    return !profiles.empty();
 }
 
 void DreamRadar::setupModels()
@@ -110,49 +106,51 @@ void DreamRadar::setupModels()
     ui->comboBoxSearcherSpecies5->addItem(tr("None"), 0);
     ui->comboBoxSearcherSpecies6->addItem(tr("None"), 0);
 
-    QVector<u16> species
+    std::vector<u16> species
         = { 641, 642, 645, 483, 484, 487, 249, 250, 79, 120, 137, 163, 174, 175, 213, 238, 280, 333, 425, 436, 442, 447, 479, 517, 561 };
-    QStringList names = Translator::getSpecies(species);
-    QStringList genders = { "♂", "♀", "-" };
+    std::vector<std::string> names = Translator::getSpecies(species);
 
-    for (u8 i = 0; i < species.size(); i++)
+    for (size_t i = 0; i < species.size(); i++)
     {
         if (i < 3)
         {
-            ui->comboBoxGeneratorSpecies1->addItem(names.at(i), species.at(i));
-            ui->comboBoxSearcherSpecies1->addItem(names.at(i), species.at(i));
+            ui->comboBoxGeneratorSpecies1->addItem(QString::fromStdString(names[i]), species[i]);
+            ui->comboBoxSearcherSpecies1->addItem(QString::fromStdString(names[i]), species[i]);
         }
         else
         {
-            ui->comboBoxGeneratorSpecies1->addItem(names.at(i), species.at(i));
-            ui->comboBoxGeneratorSpecies2->addItem(names.at(i), species.at(i));
-            ui->comboBoxGeneratorSpecies3->addItem(names.at(i), species.at(i));
-            ui->comboBoxGeneratorSpecies4->addItem(names.at(i), species.at(i));
-            ui->comboBoxGeneratorSpecies5->addItem(names.at(i), species.at(i));
-            ui->comboBoxGeneratorSpecies6->addItem(names.at(i), species.at(i));
+            ui->comboBoxGeneratorSpecies1->addItem(QString::fromStdString(names[i]), species[i]);
+            ui->comboBoxGeneratorSpecies2->addItem(QString::fromStdString(names[i]), species[i]);
+            ui->comboBoxGeneratorSpecies3->addItem(QString::fromStdString(names[i]), species[i]);
+            ui->comboBoxGeneratorSpecies4->addItem(QString::fromStdString(names[i]), species[i]);
+            ui->comboBoxGeneratorSpecies5->addItem(QString::fromStdString(names[i]), species[i]);
+            ui->comboBoxGeneratorSpecies6->addItem(QString::fromStdString(names[i]), species[i]);
 
-            ui->comboBoxSearcherSpecies1->addItem(names.at(i), species.at(i));
-            ui->comboBoxSearcherSpecies2->addItem(names.at(i), species.at(i));
-            ui->comboBoxSearcherSpecies3->addItem(names.at(i), species.at(i));
-            ui->comboBoxSearcherSpecies4->addItem(names.at(i), species.at(i));
-            ui->comboBoxSearcherSpecies5->addItem(names.at(i), species.at(i));
-            ui->comboBoxSearcherSpecies6->addItem(names.at(i), species.at(i));
+            ui->comboBoxSearcherSpecies1->addItem(QString::fromStdString(names[i]), species[i]);
+            ui->comboBoxSearcherSpecies2->addItem(QString::fromStdString(names[i]), species[i]);
+            ui->comboBoxSearcherSpecies3->addItem(QString::fromStdString(names[i]), species[i]);
+            ui->comboBoxSearcherSpecies4->addItem(QString::fromStdString(names[i]), species[i]);
+            ui->comboBoxSearcherSpecies5->addItem(QString::fromStdString(names[i]), species[i]);
+            ui->comboBoxSearcherSpecies6->addItem(QString::fromStdString(names[i]), species[i]);
         }
     }
 
-    ui->comboBoxGeneratorGender1->addItems(genders);
-    ui->comboBoxGeneratorGender2->addItems(genders);
-    ui->comboBoxGeneratorGender3->addItems(genders);
-    ui->comboBoxGeneratorGender4->addItems(genders);
-    ui->comboBoxGeneratorGender5->addItems(genders);
-    ui->comboBoxGeneratorGender6->addItems(genders);
+    for (const std::string &gender : Translator::getGenders())
+    {
+        ui->comboBoxGeneratorGender1->addItem(QString::fromStdString(gender));
+        ui->comboBoxGeneratorGender2->addItem(QString::fromStdString(gender));
+        ui->comboBoxGeneratorGender3->addItem(QString::fromStdString(gender));
+        ui->comboBoxGeneratorGender4->addItem(QString::fromStdString(gender));
+        ui->comboBoxGeneratorGender5->addItem(QString::fromStdString(gender));
+        ui->comboBoxGeneratorGender6->addItem(QString::fromStdString(gender));
 
-    ui->comboBoxSearcherGender1->addItems(genders);
-    ui->comboBoxSearcherGender2->addItems(genders);
-    ui->comboBoxSearcherGender3->addItems(genders);
-    ui->comboBoxSearcherGender4->addItems(genders);
-    ui->comboBoxSearcherGender5->addItems(genders);
-    ui->comboBoxSearcherGender6->addItems(genders);
+        ui->comboBoxSearcherGender1->addItem(QString::fromStdString(gender));
+        ui->comboBoxSearcherGender2->addItem(QString::fromStdString(gender));
+        ui->comboBoxSearcherGender3->addItem(QString::fromStdString(gender));
+        ui->comboBoxSearcherGender4->addItem(QString::fromStdString(gender));
+        ui->comboBoxSearcherGender5->addItem(QString::fromStdString(gender));
+        ui->comboBoxSearcherGender6->addItem(QString::fromStdString(gender));
+    }
 
     ui->tableViewGenerator->setModel(generatorModel);
     ui->tableViewSearcher->setModel(searcherModel);
@@ -192,7 +190,7 @@ void DreamRadar::setupModels()
     setting.endGroup();
 }
 
-void DreamRadar::updateProgress(const QVector<SearcherState5<State>> &states, int progress)
+void DreamRadar::updateProgress(const std::vector<SearcherState5<State>> &states, int progress)
 {
     searcherModel->addItems(states);
     ui->progressBar->setValue(progress);
@@ -201,7 +199,7 @@ void DreamRadar::updateProgress(const QVector<SearcherState5<State>> &states, in
 void DreamRadar::generate()
 {
     auto radarSlots = getGeneratorSettings();
-    if (radarSlots.isEmpty())
+    if (radarSlots.empty())
     {
         QMessageBox message(QMessageBox::Warning, tr("Missing settings"), tr("Enter information for at least 1 slot"));
         message.exec();
@@ -236,7 +234,7 @@ void DreamRadar::generate()
 void DreamRadar::search()
 {
     auto radarSlots = getSearcherSettings();
-    if (radarSlots.isEmpty())
+    if (radarSlots.empty())
     {
         QMessageBox message(QMessageBox::Warning, tr("Missing settings"), tr("Enter information for at least 1 slot"));
         message.exec();
@@ -263,8 +261,8 @@ void DreamRadar::search()
 
     auto *searcher = new DreamRadarSearcher(currentProfile);
 
-    QDate start = ui->dateEditSearcherStartDate->date();
-    QDate end = ui->dateEditSearcherEndDate->date();
+    Date start = ui->dateEditSearcherStartDate->getDate();
+    Date end = ui->dateEditSearcherEndDate->getDate();
 
     int maxProgress = Keypresses::getKeyPresses(currentProfile.getKeypresses(), currentProfile.getSkipLR()).size();
     maxProgress *= 86400 * (start.daysTo(end) + 1);
@@ -293,58 +291,76 @@ void DreamRadar::search()
     timer->start(1000);
 }
 
-QVector<DreamRadarSlot> DreamRadar::getGeneratorSettings()
+std::vector<DreamRadarSlot> DreamRadar::getGeneratorSettings()
 {
-    QVector<DreamRadarSlot> radarSlots;
+    std::vector<DreamRadarSlot> radarSlots;
 
-    QVector<u16> genies = { 641, 642, 645 };
-    QVector<u16> legends = { 483, 484, 487, 249, 250 };
+    std::array<u16, 3> genies = { 641, 642, 645 };
+    std::array<u16, 5> legends = { 483, 484, 487, 249, 250 };
     auto info = PersonalInfo::loadPersonal(5);
 
-    QVector<QComboBox *> species = { ui->comboBoxGeneratorSpecies1, ui->comboBoxGeneratorSpecies2, ui->comboBoxGeneratorSpecies3,
-                                     ui->comboBoxGeneratorSpecies4, ui->comboBoxGeneratorSpecies5, ui->comboBoxGeneratorSpecies6 };
-    QVector<QComboBox *> genders = { ui->comboBoxGeneratorGender1, ui->comboBoxGeneratorGender2, ui->comboBoxGeneratorGender3,
-                                     ui->comboBoxGeneratorGender4, ui->comboBoxGeneratorGender5, ui->comboBoxGeneratorGender6 };
+    std::array<QComboBox *, 6> species = { ui->comboBoxGeneratorSpecies1, ui->comboBoxGeneratorSpecies2, ui->comboBoxGeneratorSpecies3,
+                                           ui->comboBoxGeneratorSpecies4, ui->comboBoxGeneratorSpecies5, ui->comboBoxGeneratorSpecies6 };
+    std::array<QComboBox *, 6> genders = { ui->comboBoxGeneratorGender1, ui->comboBoxGeneratorGender2, ui->comboBoxGeneratorGender3,
+                                           ui->comboBoxGeneratorGender4, ui->comboBoxGeneratorGender5, ui->comboBoxGeneratorGender6 };
 
-    for (u8 i = 0; i < 6; i++)
+    for (size_t i = 0; i < 6; i++)
     {
-        u16 specie = species.at(i)->currentData().toUInt();
+        u16 specie = species[i]->currentData().toUInt();
         if (specie != 0)
         {
-            u8 type = genies.contains(specie) ? 0 : legends.contains(specie) ? 1 : 2;
-            u8 genderRatio = info.at(specie).getGender();
-            u8 gender = genderRatio == 255 ? 2 : genders.at(i)->currentIndex();
+            u8 type = 2;
+            if (std::find(genies.begin(), genies.end(), specie) != genies.end())
+            {
+                type = 0;
+            }
+            else if (std::find(legends.begin(), legends.end(), specie) != legends.end())
+            {
+                type = 1;
+            }
 
-            radarSlots.append(DreamRadarSlot(type, gender, genderRatio));
+            u8 genderRatio = info[specie].getGender();
+            u8 gender = genderRatio == 255 ? 2 : genders[i]->currentIndex();
+
+            radarSlots.emplace_back(type, gender, genderRatio);
         }
     }
 
     return radarSlots;
 }
 
-QVector<DreamRadarSlot> DreamRadar::getSearcherSettings()
+std::vector<DreamRadarSlot> DreamRadar::getSearcherSettings()
 {
-    QVector<DreamRadarSlot> radarSlots;
+    std::vector<DreamRadarSlot> radarSlots;
 
-    QVector<u16> genies = { 641, 642, 645 };
-    QVector<u16> legends = { 483, 484, 487, 249, 250 };
+    std::array<u16, 3> genies = { 641, 642, 645 };
+    std::array<u16, 5> legends = { 483, 484, 487, 249, 250 };
     auto info = PersonalInfo::loadPersonal(5);
 
-    QVector<QComboBox *> species = { ui->comboBoxSearcherSpecies1, ui->comboBoxSearcherSpecies2, ui->comboBoxSearcherSpecies3,
-                                     ui->comboBoxSearcherSpecies4, ui->comboBoxSearcherSpecies5, ui->comboBoxSearcherSpecies6 };
-    QVector<QComboBox *> genders = { ui->comboBoxSearcherGender1, ui->comboBoxSearcherGender2, ui->comboBoxSearcherGender3,
-                                     ui->comboBoxSearcherGender4, ui->comboBoxSearcherGender5, ui->comboBoxSearcherGender6 };
+    std::array<QComboBox *, 6> species = { ui->comboBoxSearcherSpecies1, ui->comboBoxSearcherSpecies2, ui->comboBoxSearcherSpecies3,
+                                           ui->comboBoxSearcherSpecies4, ui->comboBoxSearcherSpecies5, ui->comboBoxSearcherSpecies6 };
+    std::array<QComboBox *, 6> genders = { ui->comboBoxSearcherGender1, ui->comboBoxSearcherGender2, ui->comboBoxSearcherGender3,
+                                           ui->comboBoxSearcherGender4, ui->comboBoxSearcherGender5, ui->comboBoxSearcherGender6 };
 
-    for (u8 i = 0; i < 6; i++)
+    for (size_t i = 0; i < 6; i++)
     {
-        u16 specie = species.at(i)->currentData().toUInt();
+        u16 specie = species[i]->currentData().toUInt();
         if (specie != 0)
         {
-            u8 type = genies.contains(specie) ? 0 : legends.contains(specie) ? 1 : 2;
-            u8 gender = genders.at(i)->currentData().toUInt();
-            u8 genderRatio = info.at(specie).getGender();
+            u8 type = 2;
+            if (std::find(genies.begin(), genies.end(), specie) != genies.end())
+            {
+                type = 0;
+            }
+            else if (std::find(legends.begin(), legends.end(), specie) != legends.end())
+            {
+                type = 1;
+            }
 
-            radarSlots.append(DreamRadarSlot(type, gender, genderRatio));
+            u8 gender = genders[i]->currentData().toUInt();
+            u8 genderRatio = info[specie].getGender();
+
+            radarSlots.emplace_back(type, gender, genderRatio);
         }
     }
 
@@ -355,19 +371,19 @@ void DreamRadar::profileIndexChanged(int index)
 {
     if (index >= 0)
     {
-        currentProfile = profiles.at(index);
+        currentProfile = profiles[index];
 
         ui->labelProfileTIDValue->setText(QString::number(currentProfile.getTID()));
         ui->labelProfileSIDValue->setText(QString::number(currentProfile.getSID()));
         ui->labelProfileMACAddressValue->setText(QString::number(currentProfile.getMac(), 16));
-        ui->labelProfileDSTypeValue->setText(currentProfile.getDSTypeString());
+        ui->labelProfileDSTypeValue->setText(QString::fromStdString(currentProfile.getDSTypeString()));
         ui->labelProfileVCountValue->setText(QString::number(currentProfile.getVCount(), 16));
         ui->labelProfileTimer0Value->setText(QString::number(currentProfile.getTimer0Min(), 16) + "-"
                                              + QString::number(currentProfile.getTimer0Max(), 16));
         ui->labelProfileGxStatValue->setText(QString::number(currentProfile.getGxStat()));
         ui->labelProfileVFrameValue->setText(QString::number(currentProfile.getVFrame()));
-        ui->labelProfileKeypressesValue->setText(currentProfile.getKeypressesString());
-        ui->labelProfileGameValue->setText(currentProfile.getVersionString());
+        ui->labelProfileKeypressesValue->setText(QString::fromStdString(currentProfile.getKeypressesString()));
+        ui->labelProfileGameValue->setText(QString::fromStdString(currentProfile.getVersionString()));
     }
 }
 

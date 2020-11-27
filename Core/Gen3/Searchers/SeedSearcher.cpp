@@ -20,7 +20,7 @@
 #include "SeedSearcher.hpp"
 #include <Core/RNG/LCRNG.hpp>
 
-SeedSearcher::SeedSearcher(const QVector<u32> &criteria) : criteria(criteria), searching(false), progress(0)
+SeedSearcher::SeedSearcher(const std::vector<u32> &criteria) : criteria(criteria), searching(false), progress(0)
 {
 }
 
@@ -29,7 +29,7 @@ void SeedSearcher::cancelSearch()
     searching = false;
 }
 
-QVector<u32> SeedSearcher::getResults() const
+std::vector<u32> SeedSearcher::getResults() const
 {
     return results;
 }

@@ -25,9 +25,9 @@ namespace
 {
     u8 calcSlot(u8 compare, const std::vector<u8> &ranges)
     {
-        for (u8 i = 0; i < ranges.size(); i++)
+        for (size_t i = 0; i < ranges.size(); i++)
         {
-            if (compare < ranges.at(i))
+            if (compare < ranges[i])
             {
                 return i;
             }
@@ -37,9 +37,9 @@ namespace
 
     u8 calcSlot(u8 compare, const std::vector<std::pair<u8, u8>> &ranges)
     {
-        for (u8 i = 0; i < ranges.size(); i++)
+        for (size_t i = 0; i < ranges.size(); i++)
         {
-            if (compare >= ranges.at(i).first && compare <= ranges.at(i).second)
+            if (compare >= ranges[i].first && compare <= ranges[i].second)
             {
                 return i;
             }

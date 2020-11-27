@@ -35,14 +35,14 @@ QVariant EventGeneratorModel5::data(const QModelIndex &index, int role) const
 {
     if (role == Qt::DisplayRole)
     {
-        const auto &state = model.at(index.row());
+        const auto &state = model[index.row()];
         int column = index.column();
         switch (column)
         {
         case 0:
             return state.getAdvances();
         case 1:
-            return Utilities::getChatot64(state.getSeed());
+            return QString::fromStdString(Utilities::getChatot64(state.getSeed()));
         case 2:
             return QString::number(state.getPID(), 16).toUpper().rightJustified(8, '0');
         case 3:
@@ -51,7 +51,7 @@ QVariant EventGeneratorModel5::data(const QModelIndex &index, int role) const
             return shiny == 2 ? tr("Square") : shiny == 1 ? tr("Star") : tr("No");
         }
         case 4:
-            return Translator::getNature(state.getNature());
+            return QString::fromStdString(Translator::getNature(state.getNature()));
         case 5:
         {
             u8 ability = state.getAbility();
@@ -69,11 +69,11 @@ QVariant EventGeneratorModel5::data(const QModelIndex &index, int role) const
         case 11:
             return state.getIV(static_cast<u8>(column - 6));
         case 12:
-            return Translator::getHiddenPower(state.getHidden());
+            return QString::fromStdString(Translator::getHiddenPower(state.getHidden()));
         case 13:
             return state.getPower();
         case 14:
-            return Translator::getGender(state.getGender());
+            return QString::fromStdString(Translator::getGender(state.getGender()));
         }
     }
 
@@ -84,7 +84,7 @@ QVariant EventGeneratorModel5::headerData(int section, Qt::Orientation orientati
 {
     if (role == Qt::DisplayRole && orientation == Qt::Horizontal)
     {
-        return header.at(section);
+        return header[section];
     }
     return QVariant();
 }
@@ -194,7 +194,7 @@ QVariant EventSearcherModel5::data(const QModelIndex &index, int role) const
 {
     if (role == Qt::DisplayRole)
     {
-        const auto &display = model.at(index.row());
+        const auto &display = model[index.row()];
         const auto &state = display.getState();
         int column = index.column();
         switch (column)
@@ -211,7 +211,7 @@ QVariant EventSearcherModel5::data(const QModelIndex &index, int role) const
             return shiny == 2 ? tr("Square") : shiny == 1 ? tr("Star") : tr("No");
         }
         case 4:
-            return Translator::getNature(state.getNature());
+            return QString::fromStdString(Translator::getNature(state.getNature()));
         case 5:
         {
             u8 ability = state.getAbility();
@@ -229,17 +229,17 @@ QVariant EventSearcherModel5::data(const QModelIndex &index, int role) const
         case 11:
             return state.getIV(static_cast<u8>(column - 6));
         case 12:
-            return Translator::getHiddenPower(state.getHidden());
+            return QString::fromStdString(Translator::getHiddenPower(state.getHidden()));
         case 13:
             return state.getPower();
         case 14:
-            return Translator::getGender(state.getGender());
+            return QString::fromStdString(Translator::getGender(state.getGender()));
         case 15:
-            return display.getDateTime().toString("MM-dd-yyyy hh:mm:ss");
+            return QString::fromStdString(display.getDateTime().toString());
         case 16:
             return QString::number(display.getTimer0(), 16).toUpper();
         case 17:
-            return Translator::getKeypresses(display.getButtons());
+            return QString::fromStdString(Translator::getKeypresses(display.getButtons()));
         }
     }
 
@@ -250,7 +250,7 @@ QVariant EventSearcherModel5::headerData(int section, Qt::Orientation orientatio
 {
     if (role == Qt::DisplayRole && orientation == Qt::Horizontal)
     {
-        return header.at(section);
+        return header[section];
     }
     return QVariant();
 }

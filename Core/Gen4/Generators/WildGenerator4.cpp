@@ -31,7 +31,7 @@ WildGenerator4::WildGenerator4(u32 initialAdvances, u32 maxAdvances, u16 tid, u1
 {
 }
 
-QVector<WildState4> WildGenerator4::generate(u32 seed) const
+std::vector<WildState4> WildGenerator4::generate(u32 seed) const
 {
     switch (method)
     {
@@ -42,7 +42,7 @@ QVector<WildState4> WildGenerator4::generate(u32 seed) const
     case Method::ChainedShiny:
         return generateChainedShiny(seed);
     default:
-        return QVector<WildState4>();
+        return std::vector<WildState4>();
     }
 }
 
@@ -51,9 +51,9 @@ void WildGenerator4::setEncounterArea(const EncounterArea4 &encounterArea)
     this->encounterArea = encounterArea;
 }
 
-QVector<WildState4> WildGenerator4::generateMethodJ(u32 seed) const
+std::vector<WildState4> WildGenerator4::generateMethodJ(u32 seed) const
 {
-    QVector<WildState4> states;
+    std::vector<WildState4> states;
 
     PokeRNG rng(seed);
     rng.advance(initialAdvances + offset);
@@ -226,16 +226,16 @@ QVector<WildState4> WildGenerator4::generateMethodJ(u32 seed) const
         {
             state.setOccidentary(occidentary);
             state.setSeed(first);
-            states.append(state);
+            states.emplace_back(state);
         }
     }
 
     return states;
 }
 
-QVector<WildState4> WildGenerator4::generateMethodK(u32 seed) const
+std::vector<WildState4> WildGenerator4::generateMethodK(u32 seed) const
 {
-    QVector<WildState4> states;
+    std::vector<WildState4> states;
 
     PokeRNG rng(seed);
     rng.advance(initialAdvances + offset);
@@ -438,16 +438,16 @@ QVector<WildState4> WildGenerator4::generateMethodK(u32 seed) const
         {
             state.setOccidentary(occidentary);
             state.setSeed(first);
-            states.append(state);
+            states.emplace_back(state);
         }
     }
 
     return states;
 }
 
-QVector<WildState4> WildGenerator4::generateChainedShiny(u32 seed) const
+std::vector<WildState4> WildGenerator4::generateChainedShiny(u32 seed) const
 {
-    QVector<WildState4> states;
+    std::vector<WildState4> states;
 
     PokeRNG rng(seed);
     rng.advance(initialAdvances + offset);
@@ -483,7 +483,7 @@ QVector<WildState4> WildGenerator4::generateChainedShiny(u32 seed) const
         if (filter.compareState(state))
         {
             state.setSeed(first);
-            states.append(state);
+            states.emplace_back(state);
         }
     }
 

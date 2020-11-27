@@ -34,7 +34,7 @@ QVariant DreamRadarGeneratorModel5::data(const QModelIndex &index, int role) con
 {
     if (role == Qt::DisplayRole)
     {
-        const auto &state = model.at(index.row());
+        const auto &state = model[index.row()];
         int column = index.column();
         switch (column)
         {
@@ -50,7 +50,7 @@ QVariant DreamRadarGeneratorModel5::data(const QModelIndex &index, int role) con
             return shiny == 2 ? tr("Square") : shiny == 1 ? tr("Star") : tr("No");
         }
         case 4:
-            return Translator::getNature(state.getNature());
+            return QString::fromStdString(Translator::getNature(state.getNature()));
         case 5:
         {
             u8 ability = state.getAbility();
@@ -68,11 +68,11 @@ QVariant DreamRadarGeneratorModel5::data(const QModelIndex &index, int role) con
         case 11:
             return state.getIV(static_cast<u8>(column - 6));
         case 12:
-            return Translator::getHiddenPower(state.getHidden());
+            return QString::fromStdString(Translator::getHiddenPower(state.getHidden()));
         case 13:
             return state.getPower();
         case 14:
-            return Translator::getGender(state.getGender());
+            return QString::fromStdString(Translator::getGender(state.getGender()));
         }
     }
     return QVariant();
@@ -82,7 +82,7 @@ QVariant DreamRadarGeneratorModel5::headerData(int section, Qt::Orientation orie
 {
     if (role == Qt::DisplayRole && orientation == Qt::Horizontal)
     {
-        return header.at(section);
+        return header[section];
     }
     return QVariant();
 }
@@ -192,7 +192,7 @@ QVariant DreamRadarSearcherModel5::data(const QModelIndex &index, int role) cons
 {
     if (role == Qt::DisplayRole)
     {
-        const auto &display = model.at(index.row());
+        const auto &display = model[index.row()];
         const auto &state = display.getState();
         int column = index.column();
         switch (column)
@@ -209,7 +209,7 @@ QVariant DreamRadarSearcherModel5::data(const QModelIndex &index, int role) cons
             return shiny == 2 ? tr("Square") : shiny == 1 ? tr("Star") : tr("No");
         }
         case 4:
-            return Translator::getNature(state.getNature());
+            return QString::fromStdString(Translator::getNature(state.getNature()));
         case 5:
         {
             u8 ability = state.getAbility();
@@ -227,17 +227,17 @@ QVariant DreamRadarSearcherModel5::data(const QModelIndex &index, int role) cons
         case 11:
             return state.getIV(static_cast<u8>(column - 6));
         case 12:
-            return Translator::getHiddenPower(state.getHidden());
+            return QString::fromStdString(Translator::getHiddenPower(state.getHidden()));
         case 13:
             return state.getPower();
         case 14:
-            return Translator::getGender(state.getGender());
+            return QString::fromStdString(Translator::getGender(state.getGender()));
         case 15:
-            return display.getDateTime().toString("MM-dd-yyyy hh:mm:ss");
+            return QString::fromStdString(display.getDateTime().toString());
         case 16:
             return QString::number(display.getTimer0(), 16).toUpper();
         case 17:
-            return Translator::getKeypresses(display.getButtons());
+            return QString::fromStdString(Translator::getKeypresses(display.getButtons()));
         }
     }
     return QVariant();
@@ -247,7 +247,7 @@ QVariant DreamRadarSearcherModel5::headerData(int section, Qt::Orientation orien
 {
     if (role == Qt::DisplayRole && orientation == Qt::Horizontal)
     {
-        return header.at(section);
+        return header[section];
     }
     return QVariant();
 }

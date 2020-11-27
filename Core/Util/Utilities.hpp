@@ -20,19 +20,20 @@
 #ifndef UTILITIES_HPP
 #define UTILITIES_HPP
 
+#include <Core/Util/DateTime.hpp>
 #include <Core/Util/Global.hpp>
-#include <QDateTime>
+#include <string>
 
 class HGSSRoamer;
 
 namespace Utilities
 {
-    u16 calcGen3Seed(const QDateTime &dateTime);
-    u32 calcGen4Seed(const QDateTime &dateTime, u32 delay);
-    QString coinFlips(u32 seed);
-    QString getCalls(u32 seed, const HGSSRoamer &info);
-    QString getChatot(u32 seed);
-    QString getChatot64(u32 seed);
+    u16 calcGen3Seed(const DateTime &dateTime);
+    u32 calcGen4Seed(const DateTime &dateTime, u32 delay);
+    std::string coinFlips(u32 seed);
+    std::string getCalls(u32 seed, const HGSSRoamer &info);
+    std::string getChatot(u32 seed);
+    std::string getChatot64(u32 seed);
     u32 initialAdvancesBW(u64 seed, u8 rounds = 5);
     u32 initialAdvancesBW2(u64 seed, bool memory);
     u32 initialAdvancesBW2ID(u64 seed, u8 rounds = 3);

@@ -21,7 +21,7 @@
 #define PROFILE_HPP
 
 #include <Core/Util/Global.hpp>
-#include <QString>
+#include <string>
 
 enum Game : u16;
 
@@ -29,15 +29,15 @@ class Profile
 {
 public:
     Profile();
-    Profile(const QString &name, Game version, u16 tid, u16 sid);
-    QString getVersionString() const;
+    Profile(const std::string &name, Game version, u16 tid, u16 sid);
+    std::string getVersionString() const;
     Game getVersion() const;
-    QString getName() const;
+    std::string getName() const;
     u16 getTID() const;
     u16 getSID() const;
 
 protected:
-    QString name;
+    std::string name;
     Game version;
     u16 tid;
     u16 sid;

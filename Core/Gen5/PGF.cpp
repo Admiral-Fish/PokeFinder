@@ -19,21 +19,21 @@
 
 #include "PGF.hpp"
 
-PGF::PGF(const QByteArray &data) :
-    tid((static_cast<u8>(data.at(0x01)) << 8) | static_cast<u8>(data.at(0x00))),
-    sid((static_cast<u8>(data.at(0x03)) << 8) | static_cast<u8>(data.at(0x02))),
-    species((static_cast<u8>(data.at(0x1B)) << 8) | static_cast<u8>(data.at(0x1A))),
-    nature(static_cast<u8>(data.at(0x34))),
-    gender(static_cast<u8>(data.at(0x35))),
-    abilityType(static_cast<u8>(data.at(0x36))),
-    pidType(static_cast<u8>(data.at(0x37))),
-    hp(static_cast<u8>(data.at(0x43))),
-    atk(static_cast<u8>(data.at(0x44))),
-    def(static_cast<u8>(data.at(0x45))),
-    spa(static_cast<u8>(data.at(0x47))),
-    spd(static_cast<u8>(data.at(0x48))),
-    spe(static_cast<u8>(data.at(0x46))),
-    egg(static_cast<u8>(data.at(0x5C)) == 1)
+PGF::PGF(const std::array<u8, 204> &data) :
+    tid(static_cast<u16>(data[0x01] << 8) | data[0x00]),
+    sid(static_cast<u16>(data[0x03] << 8) | data[0x02]),
+    species(static_cast<u16>(data[0x1B] << 8) | data[0x1A]),
+    nature(data[0x34]),
+    gender(data[0x35]),
+    abilityType(data[0x36]),
+    pidType(data[0x37]),
+    hp(data[0x43]),
+    atk(data[0x44]),
+    def(data[0x45]),
+    spa(data[0x47]),
+    spd(data[0x48]),
+    spe(data[0x46]),
+    egg(data[0x5C] == 1)
 {
 }
 

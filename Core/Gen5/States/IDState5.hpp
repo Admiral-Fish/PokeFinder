@@ -21,15 +21,15 @@
 #define IDSTATE5_HPP
 
 #include <Core/Parents/States/IDState.hpp>
-#include <QDateTime>
+#include <Core/Util/DateTime.hpp>
 
 class IDState5 : public IDState
 {
 public:
     IDState5() = default;
     IDState5(u32 advance, u16 tid, u16 sid);
-    void setDateTime(const QDateTime &dt);
-    QDateTime getDateTime() const;
+    void setDateTime(const DateTime &dt);
+    DateTime getDateTime() const;
     void setInitialAdvances(u32 initialAdvances);
     u32 getInitialAdvances() const;
     void setKeypress(u16 keypress);
@@ -38,7 +38,7 @@ public:
     u64 getSeed() const;
 
 private:
-    QDateTime dt;
+    DateTime dt;
     u32 initialAdvances;
     u16 keypress;
     u64 seed;

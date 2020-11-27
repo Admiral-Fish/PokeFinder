@@ -24,9 +24,9 @@
 #include <Core/RNG/MT.hpp>
 #include <Core/RNG/SHA1.hpp>
 #include <Core/Util/Utilities.hpp>
-#include <QtConcurrent>
+#include <future>
 
-ProfileSearcher5::ProfileSearcher5(const QDate &date, const QTime &time, int minSeconds, int maxSeconds, u8 minVCount, u8 maxVCount,
+ProfileSearcher5::ProfileSearcher5(const Date &date, const Time &time, int minSeconds, int maxSeconds, u8 minVCount, u8 maxVCount,
                                    u16 minTimer0, u16 maxTimer0, u8 minGxStat, u8 maxGxStat, bool softReset, Game version,
                                    Language language, DSType dsType, u64 mac, Buttons keypress) :
     date(date),
@@ -53,7 +53,6 @@ ProfileSearcher5::ProfileSearcher5(const QDate &date, const QTime &time, int min
 void ProfileSearcher5::startSearch(int threads, u8 minVFrame, u8 maxVFrame)
 {
     searching = true;
-    QThreadPool pool;
 
     u8 diff = maxVFrame - minVFrame + 1;
     if (diff < threads)
@@ -61,26 +60,25 @@ void ProfileSearcher5::startSearch(int threads, u8 minVFrame, u8 maxVFrame)
         threads = diff;
     }
 
-    pool.setMaxThreadCount(threads);
-    QVector<QFuture<void>> threadContainer;
+    std::vector<std::future<void>> threadContainer;
 
     auto split = (diff / threads);
     for (int i = 0; i < threads; i++)
     {
         if (i == threads - 1)
         {
-            threadContainer.append(QtConcurrent::run(&pool, [=] { search(minVFrame, maxVFrame + 1); }));
+            threadContainer.emplace_back(std::async(std::launch::async, [=] { search(minVFrame, maxVFrame + 1); }));
         }
         else
         {
-            threadContainer.append(QtConcurrent::run(&pool, [=] { search(minVFrame, minVFrame + split); }));
+            threadContainer.emplace_back(std::async(std::launch::async, [=] { search(minVFrame, minVFrame + split); }));
         }
         minVFrame += split;
     }
 
     for (int i = 0; i < threads; i++)
     {
-        threadContainer[i].waitForFinished();
+        threadContainer[i].wait();
     }
 }
 
@@ -89,7 +87,7 @@ void ProfileSearcher5::cancelSearch()
     searching = false;
 }
 
-QVector<QList<QStandardItem *>> ProfileSearcher5::getResults()
+std::vector<ProfileSearcherState5> ProfileSearcher5::getResults()
 {
     std::lock_guard<std::mutex> lock(resultMutex);
 
@@ -106,7 +104,7 @@ int ProfileSearcher5::getProgress() const
 
 void ProfileSearcher5::search(u8 vframeStart, u8 vframeEnd)
 {
-    u32 button = Keypresses::getValues({ keypress }).first();
+    u32 button = Keypresses::getValues({ keypress }).front();
     for (u8 vframe = vframeStart; vframe < vframeEnd; vframe++)
     {
         for (u8 gxStat = minGxStat; gxStat <= maxGxStat; gxStat++)
@@ -130,16 +128,8 @@ void ProfileSearcher5::search(u8 vframeStart, u8 vframeEnd)
 
                         if (valid(seed))
                         {
-                            QList<QStandardItem *> items;
-                            items.append(new QStandardItem(QString::number(second)));
-                            items.append(new QStandardItem(QString::number(vcount, 16)));
-                            items.append(new QStandardItem(QString::number(timer0, 16)));
-                            items.append(new QStandardItem(QString::number(gxStat, 16)));
-                            items.append(new QStandardItem(QString::number(vframe, 16)));
-                            items.append(new QStandardItem(QString::number(seed, 16)));
-
                             std::lock_guard<std::mutex> lock(resultMutex);
-                            results.append(items);
+                            results.emplace_back(seed, timer0, vcount, vframe, gxStat, second);
                         }
 
                         std::lock_guard<std::mutex> lock(progressMutex);
@@ -151,7 +141,7 @@ void ProfileSearcher5::search(u8 vframeStart, u8 vframeEnd)
     }
 }
 
-ProfileIVSearcher5::ProfileIVSearcher5(const QVector<u8> &minIVs, const QVector<u8> &maxIVs, const QDate &date, const QTime &time,
+ProfileIVSearcher5::ProfileIVSearcher5(const std::array<u8, 6> &minIVs, const std::array<u8, 6> &maxIVs, const Date &date, const Time &time,
                                        int minSeconds, int maxSeconds, u8 minVCount, u8 maxVCount, u16 minTimer0, u16 maxTimer0,
                                        u8 minGxStat, u8 maxGxStat, bool softReset, Game version, Language language, DSType dsType, u64 mac,
                                        Buttons keypress) :
@@ -170,7 +160,7 @@ bool ProfileIVSearcher5::valid(u64 seed)
     for (u8 i = 0; i < 6; i++)
     {
         u8 iv = rng.next() >> 27;
-        if (iv < minIVs.at(i) || iv > maxIVs.at(i))
+        if (iv < minIVs[i] || iv > maxIVs[i])
         {
             return false;
         }
@@ -179,8 +169,8 @@ bool ProfileIVSearcher5::valid(u64 seed)
     return true;
 }
 
-ProfileNeedleSearcher5::ProfileNeedleSearcher5(const QVector<u8> &needles, bool unovaLink, bool memoryLink, const QDate &date,
-                                               const QTime &time, int minSeconds, int maxSeconds, u8 minVCount, u8 maxVCount, u16 minTimer0,
+ProfileNeedleSearcher5::ProfileNeedleSearcher5(const std::vector<u8> &needles, bool unovaLink, bool memoryLink, const Date &date,
+                                               const Time &time, int minSeconds, int maxSeconds, u8 minVCount, u8 maxVCount, u16 minTimer0,
                                                u16 maxTimer0, u8 minGxStat, u8 maxGxStat, bool softReset, Game version, Language language,
                                                DSType dsType, u64 mac, Buttons keypress) :
     ProfileSearcher5(date, time, minSeconds, maxSeconds, minVCount, maxVCount, minTimer0, maxTimer0, minGxStat, maxGxStat, softReset,
@@ -223,7 +213,7 @@ bool ProfileNeedleSearcher5::valid(u64 seed)
     return true;
 }
 
-ProfileSeedSearcher5::ProfileSeedSearcher5(u64 seed, const QDate &date, const QTime &time, int minSeconds, int maxSeconds, u8 minVCount,
+ProfileSeedSearcher5::ProfileSeedSearcher5(u64 seed, const Date &date, const Time &time, int minSeconds, int maxSeconds, u8 minVCount,
                                            u8 maxVCount, u16 minTimer0, u16 maxTimer0, u8 minGxStat, u8 maxGxStat, bool softReset,
                                            Game version, Language language, DSType dsType, u64 mac, Buttons keypress) :
     ProfileSearcher5(date, time, minSeconds, maxSeconds, minVCount, maxVCount, minTimer0, maxTimer0, minGxStat, maxGxStat, softReset,

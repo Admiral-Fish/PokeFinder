@@ -22,7 +22,7 @@
 #include <Core/Enum/Lead.hpp>
 #include <Core/Enum/Method.hpp>
 #include <Core/Gen4/Generators/StationaryGenerator4.hpp>
-#include <Core/Gen4/ProfileLoader4.hpp>
+#include <Core/Parents/ProfileLoader.hpp>
 #include <Core/Gen4/Searchers/StationarySearcher4.hpp>
 #include <Core/Parents/Filters/StateFilter.hpp>
 #include <Core/Parents/States/StationaryState.hpp>
@@ -69,7 +69,7 @@ void Stationary4::updateProfiles()
 
     for (const auto &profile : profiles)
     {
-        ui->comboBoxProfiles->addItem(profile.getName());
+        ui->comboBoxProfiles->addItem(QString::fromStdString(profile.getName()));
     }
 
     QSettings setting;
@@ -105,8 +105,7 @@ void Stationary4::setupModels()
     ui->filterGenerator->disableControls(Controls::EncounterSlots);
     ui->filterSearcher->disableControls(Controls::EncounterSlots | Controls::UseDelay | Controls::DisableFilter);
 
-    ui->comboBoxGeneratorLead->addItem(tr("None"));
-    ui->comboBoxGeneratorLead->addItems(Translator::getNatures());
+    generatorLead();
 
     QAction *outputTXTGenerator = generatorMenu->addAction(tr("Output Results to TXT"));
     QAction *outputCSVGenerator = generatorMenu->addAction(tr("Output Results to CSV"));
@@ -152,7 +151,7 @@ void Stationary4::setupModels()
     setting.endGroup();
 }
 
-void Stationary4::updateProgress(const QVector<StationaryState> &states, int progress)
+void Stationary4::updateProgress(const std::vector<StationaryState> &states, int progress)
 {
     searcherModel->addItems(states);
     ui->progressBar->setValue(progress);
@@ -214,8 +213,8 @@ void Stationary4::search()
     ui->pushButtonSearch->setEnabled(false);
     ui->pushButtonCancel->setEnabled(true);
 
-    QVector<u8> min = ui->filterSearcher->getMinIVs();
-    QVector<u8> max = ui->filterSearcher->getMaxIVs();
+    std::array<u8, 6> min = ui->filterSearcher->getMinIVs();
+    std::array<u8, 6> max = ui->filterSearcher->getMaxIVs();
 
     StateFilter filter(ui->filterSearcher->getGender(), ui->filterSearcher->getAbility(), ui->filterSearcher->getShiny(), false, min, max,
                        ui->filterSearcher->getNatures(), ui->filterSearcher->getHiddenPowers(), {});
@@ -232,7 +231,7 @@ void Stationary4::search()
     int maxProgress = 1;
     for (u8 i = 0; i < 6; i++)
     {
-        maxProgress *= max.at(i) - min.at(i) + 1;
+        maxProgress *= max[i] - min[i] + 1;
     }
     ui->progressBar->setRange(0, maxProgress);
 
@@ -259,11 +258,11 @@ void Stationary4::profileIndexChanged(int index)
 {
     if (index >= 0)
     {
-        currentProfile = profiles.at(index);
+        currentProfile = profiles[index];
 
         ui->labelProfileTIDValue->setText(QString::number(currentProfile.getTID()));
         ui->labelProfileSIDValue->setText(QString::number(currentProfile.getSID()));
-        ui->labelProfileGameValue->setText(currentProfile.getVersionString());
+        ui->labelProfileGameValue->setText(QString::fromStdString(currentProfile.getVersionString()));
 
         bool flag = currentProfile.getVersion() & Game::HGSS;
 
@@ -299,7 +298,10 @@ void Stationary4::generatorLead()
         ui->pushButtonGeneratorLead->setText(tr("Synchronize"));
 
         ui->comboBoxGeneratorLead->addItem(tr("None"));
-        ui->comboBoxGeneratorLead->addItems(Translator::getNatures());
+        for (const std::string &nature : Translator::getNatures())
+        {
+            ui->comboBoxGeneratorLead->addItem(QString::fromStdString(nature));
+        }
     }
 }
 

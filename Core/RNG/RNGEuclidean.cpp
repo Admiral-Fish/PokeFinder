@@ -49,9 +49,9 @@ RNGEuclidean::RNGEuclidean(Method method)
 }
 
 // Recovers origin seeds for two 16 bit calls(15 bits known)
-QVector<QPair<u32, u32>> RNGEuclidean::recoverLower16BitsIV(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const
+std::vector<std::pair<u32, u32>> RNGEuclidean::recoverLower16BitsIV(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const
 {
-    QVector<QPair<u32, u32>> origin;
+    std::vector<std::pair<u32, u32>> origin;
 
     u32 first = static_cast<u32>((hp | (atk << 5) | (def << 10)) << 16);
     u32 second = static_cast<u32>((spe | (spa << 5) | (spd << 10)) << 16);
@@ -65,16 +65,16 @@ QVector<QPair<u32, u32>> RNGEuclidean::recoverLower16BitsIV(u8 hp, u8 atk, u8 de
         {
             u32 fullFirst = first | static_cast<u32>(t / sub1);
             u32 fullSecond = XDRNG(fullFirst).next();
-            origin.append(QPair<u32, u32>(fullFirst, fullSecond));
+            origin.emplace_back(fullFirst, fullSecond);
         }
     }
     return origin;
 }
 
 // Recovers origin seeds for two 16 bit calls
-QVector<QPair<u32, u32>> RNGEuclidean::recoverLower16BitsPID(u32 pid) const
+std::vector<std::pair<u32, u32>> RNGEuclidean::recoverLower16BitsPID(u32 pid) const
 {
-    QVector<QPair<u32, u32>> origin;
+    std::vector<std::pair<u32, u32>> origin;
 
     u32 first = pid & 0xffff0000;
     u32 second = pid << 16;
@@ -88,16 +88,16 @@ QVector<QPair<u32, u32>> RNGEuclidean::recoverLower16BitsPID(u32 pid) const
         {
             u32 fullFirst = first | static_cast<u32>(t / sub1);
             u32 fullSecond = XDRNG(fullFirst).next();
-            origin.append(QPair<u32, u32>(fullFirst, fullSecond));
+            origin.emplace_back(fullFirst, fullSecond);
         }
     }
     return origin;
 }
 
 // Recovers origin seeds for six 5 bit calls
-QVector<u32> RNGEuclidean::recoverLower27BitsChannel(u32 hp, u32 atk, u32 def, u32 spa, u32 spd, u32 spe) const
+std::vector<u32> RNGEuclidean::recoverLower27BitsChannel(u32 hp, u32 atk, u32 def, u32 spa, u32 spd, u32 spe) const
 {
-    QVector<u32> origin;
+    std::vector<u32> origin;
     u32 first = hp << 27;
     u32 fullFirst;
 
@@ -121,7 +121,7 @@ QVector<u32> RNGEuclidean::recoverLower27BitsChannel(u32 hp, u32 atk, u32 def, u
                     {
                         if ((rng.next() >> 27) == spa)
                         {
-                            origin.append(fullFirst);
+                            origin.emplace_back(fullFirst);
                         }
                     }
                 }

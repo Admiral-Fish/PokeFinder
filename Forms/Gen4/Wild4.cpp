@@ -24,7 +24,7 @@
 #include <Core/Enum/Method.hpp>
 #include <Core/Gen4/Encounters4.hpp>
 #include <Core/Gen4/Generators/WildGenerator4.hpp>
-#include <Core/Gen4/ProfileLoader4.hpp>
+#include <Core/Parents/ProfileLoader.hpp>
 #include <Core/Gen4/Searchers/WildSearcher4.hpp>
 #include <Core/Parents/Filters/StateFilter.hpp>
 #include <Core/Parents/States/WildState.hpp>
@@ -73,7 +73,7 @@ void Wild4::updateProfiles()
 
     for (const auto &profile : profiles)
     {
-        ui->comboBoxProfiles->addItem(profile.getName());
+        ui->comboBoxProfiles->addItem(QString::fromStdString(profile.getName()));
     }
 
     QSettings setting;
@@ -106,8 +106,7 @@ void Wild4::setupModels()
 
     ui->filterSearcher->disableControls(Controls::UseDelay | Controls::DisableFilter);
 
-    ui->comboBoxGeneratorLead->addItem(tr("None"));
-    ui->comboBoxGeneratorLead->addItems(Translator::getNatures());
+    generatorLead();
 
     QAction *outputTXTGenerator = generatorMenu->addAction(tr("Output Results to TXT"));
     QAction *outputCSVGenerator = generatorMenu->addAction(tr("Output Results to CSV"));
@@ -174,21 +173,19 @@ void Wild4::updateLocationsGenerator()
 
     encounterGenerator = Encounters4::getEncounters(encounter, time, currentProfile);
 
-    QVector<u8> locs;
-    for (const auto &area : encounterGenerator)
-    {
-        locs.append(area.getLocation());
-    }
+    std::vector<u8> locs;
+    std::transform(encounterGenerator.begin(), encounterGenerator.end(), std::back_inserter(locs),
+                   [](const EncounterArea4 &area) { return area.getLocation(); });
 
-    QStringList locations = Translator::getLocations(locs, currentProfile.getVersion());
-    QVector<int> indices(locations.size());
+    std::vector<std::string> locations = Translator::getLocations(locs, currentProfile.getVersion());
+    std::vector<int> indices(locations.size());
     std::iota(indices.begin(), indices.end(), 0);
     std::sort(indices.begin(), indices.end(), [&locations](int i, int j) { return locations[i] < locations[j]; });
 
     ui->comboBoxGeneratorLocation->clear();
     for (int index : indices)
     {
-        ui->comboBoxGeneratorLocation->addItem(locations.at(index), index);
+        ui->comboBoxGeneratorLocation->addItem(QString::fromStdString(locations[index]), index);
     }
 }
 
@@ -199,55 +196,53 @@ void Wild4::updateLocationsSearcher()
 
     encounterSearcher = Encounters4::getEncounters(encounter, time, currentProfile);
 
-    QVector<u8> locs;
-    for (const auto &area : encounterSearcher)
-    {
-        locs.append(area.getLocation());
-    }
+    std::vector<u8> locs;
+    std::transform(encounterSearcher.begin(), encounterSearcher.end(), std::back_inserter(locs),
+                   [](const EncounterArea4 &area) { return area.getLocation(); });
 
-    QStringList locations = Translator::getLocations(locs, currentProfile.getVersion());
-    QVector<int> indices(locations.size());
+    std::vector<std::string> locations = Translator::getLocations(locs, currentProfile.getVersion());
+    std::vector<int> indices(locations.size());
     std::iota(indices.begin(), indices.end(), 0);
     std::sort(indices.begin(), indices.end(), [&locations](int i, int j) { return locations[i] < locations[j]; });
 
     ui->comboBoxSearcherLocation->clear();
     for (int index : indices)
     {
-        ui->comboBoxSearcherLocation->addItem(locations.at(index), index);
+        ui->comboBoxSearcherLocation->addItem(QString::fromStdString(locations[index]), index);
     }
 }
 
 void Wild4::updatePokemonGenerator()
 {
-    auto area = encounterGenerator.at(ui->comboBoxGeneratorLocation->currentData().toInt());
-    QVector<u16> species = area.getUniqueSpecies();
+    auto area = encounterGenerator[ui->comboBoxGeneratorLocation->currentData().toInt()];
+    std::vector<u16> species = area.getUniqueSpecies();
 
-    QStringList names = area.getSpecieNames();
+    std::vector<std::string> names = area.getSpecieNames();
 
     ui->comboBoxGeneratorPokemon->clear();
     ui->comboBoxGeneratorPokemon->addItem("-");
-    for (auto i = 0; i < species.size(); i++)
+    for (size_t i = 0; i < species.size(); i++)
     {
-        ui->comboBoxGeneratorPokemon->addItem(names.at(i), species.at(i));
+        ui->comboBoxGeneratorPokemon->addItem(QString::fromStdString(names[i]), species[i]);
     }
 }
 
 void Wild4::updatePokemonSearcher()
 {
-    auto area = encounterSearcher.at(ui->comboBoxSearcherLocation->currentData().toInt());
-    QVector<u16> species = area.getUniqueSpecies();
+    auto area = encounterSearcher[ui->comboBoxSearcherLocation->currentData().toInt()];
+    std::vector<u16> species = area.getUniqueSpecies();
 
-    QStringList names = area.getSpecieNames();
+    std::vector<std::string> names = area.getSpecieNames();
 
     ui->comboBoxSearcherPokemon->clear();
     ui->comboBoxSearcherPokemon->addItem("-");
-    for (auto i = 0; i < species.size(); i++)
+    for (size_t i = 0; i < species.size(); i++)
     {
-        ui->comboBoxSearcherPokemon->addItem(names.at(i), species.at(i));
+        ui->comboBoxSearcherPokemon->addItem(QString::fromStdString(names[i]), species[i]);
     }
 }
 
-void Wild4::updateProgress(const QVector<WildState> &states, int progress)
+void Wild4::updateProgress(const std::vector<WildState> &states, int progress)
 {
     searcherModel->addItems(states);
     ui->progressBar->setValue(progress);
@@ -300,7 +295,7 @@ void Wild4::generate()
             generator.setSynchNature(static_cast<u8>(ui->comboBoxGeneratorLead->currentIndex() - 1));
         }
     }
-    generator.setEncounterArea(encounterGenerator.at(ui->comboBoxGeneratorLocation->currentData().toInt()));
+    generator.setEncounterArea(encounterGenerator[ui->comboBoxGeneratorLocation->currentData().toInt()]);
 
     auto states = generator.generate(seed);
     generatorModel->addItems(states);
@@ -315,8 +310,8 @@ void Wild4::search()
     ui->pushButtonSearch->setEnabled(false);
     ui->pushButtonCancel->setEnabled(true);
 
-    QVector<u8> min = ui->filterSearcher->getMinIVs();
-    QVector<u8> max = ui->filterSearcher->getMaxIVs();
+    std::array<u8, 6> min = ui->filterSearcher->getMinIVs();
+    std::array<u8, 6> max = ui->filterSearcher->getMaxIVs();
 
     StateFilter filter(ui->filterSearcher->getGender(), ui->filterSearcher->getAbility(), ui->filterSearcher->getShiny(), false, min, max,
                        ui->filterSearcher->getNatures(), ui->filterSearcher->getHiddenPowers(), ui->filterSearcher->getEncounterSlots());
@@ -329,13 +324,13 @@ void Wild4::search()
     searcher->setDelay(ui->textBoxSearcherMinDelay->getUInt(), ui->textBoxSearcherMaxDelay->getUInt());
     searcher->setState(ui->textBoxSearcherMinAdvance->getUInt(), ui->textBoxSearcherMaxAdvance->getUInt());
     searcher->setEncounter(static_cast<Encounter>(ui->comboBoxSearcherEncounter->getCurrentInt()));
-    searcher->setEncounterArea(encounterSearcher.at(ui->comboBoxSearcherLocation->currentData().toInt()));
+    searcher->setEncounterArea(encounterSearcher[ui->comboBoxSearcherLocation->currentData().toInt()]);
     searcher->setLead(static_cast<Lead>(ui->comboBoxSearcherLead->getCurrentInt()));
 
     int maxProgress = 1;
     for (u8 i = 0; i < 6; i++)
     {
-        maxProgress *= max.at(i) - min.at(i) + 1;
+        maxProgress *= max[i] - min[i] + 1;
     }
     ui->progressBar->setRange(0, maxProgress);
 
@@ -362,13 +357,13 @@ void Wild4::profilesIndexChanged(int index)
 {
     if (index >= 0)
     {
-        currentProfile = profiles.at(index);
+        currentProfile = profiles[index];
 
         ui->labelProfileTIDValue->setText(QString::number(currentProfile.getTID()));
         ui->labelProfileSIDValue->setText(QString::number(currentProfile.getSID()));
-        ui->labelProfileGameValue->setText(currentProfile.getVersionString());
-        ui->labelProfileDualSlotValue->setText(currentProfile.getDualSlotString());
-        ui->labelProfileRadioValue->setText(currentProfile.getRadioString());
+        ui->labelProfileGameValue->setText(QString::fromStdString(currentProfile.getVersionString()));
+        ui->labelProfileDualSlotValue->setText(QString::fromStdString(currentProfile.getDualSlotString()));
+        ui->labelProfileRadioValue->setText(QString::fromStdString(currentProfile.getRadioString()));
         ui->labelProfilePokeRadarValue->setText(currentProfile.getRadar() ? tr("Yes") : tr("No"));
         ui->labelProfileSwarmValue->setText(currentProfile.getSwarm() ? tr("Yes") : tr("No"));
 
@@ -414,9 +409,8 @@ void Wild4::profilesIndexChanged(int index)
         }
         ui->comboBoxSearcherLead->addItem(tr("None"), Lead::None);
 
-        ui->pushButtonGeneratorLead->setText(tr("Synchronize"));
-        ui->comboBoxGeneratorLead->addItem(tr("None"));
-        ui->comboBoxGeneratorLead->addItems(Translator::getNatures());
+        ui->pushButtonGeneratorLead->setText(tr("Cute Charm"));
+        generatorLead();
 
         updateLocationsSearcher();
         updateLocationsGenerator();
@@ -463,7 +457,10 @@ void Wild4::generatorLead()
         ui->pushButtonGeneratorLead->setText(tr("Synchronize"));
 
         ui->comboBoxGeneratorLead->addItem(tr("None"));
-        ui->comboBoxGeneratorLead->addItems(Translator::getNatures());
+        for (const std::string &nature : Translator::getNatures())
+        {
+            ui->comboBoxGeneratorLead->addItem(QString::fromStdString(nature));
+        }
     }
 }
 
@@ -471,22 +468,22 @@ void Wild4::generatorEncounterIndexChanged(int index)
 {
     if (index >= 0)
     {
-        QStringList t;
+        std::vector<std::string> t;
         auto encounter = static_cast<Encounter>(ui->comboBoxGeneratorEncounter->currentData().toInt());
 
         switch (encounter)
         {
         case Encounter::Grass:
-            t = QStringList({ "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11" });
+            t = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11" };
             break;
         case Encounter::Surfing:
         case Encounter::OldRod:
         case Encounter::GoodRod:
         case Encounter::SuperRod:
-            t = QStringList({ "0", "1", "2", "3", "4" });
+            t = { "0", "1", "2", "3", "4" };
             break;
         case Encounter::RockSmash:
-            t = QStringList({ "0", "1" });
+            t = { "0", "1" };
             break;
         default:
             break;
@@ -501,22 +498,22 @@ void Wild4::searcherEncounterIndexChanged(int index)
 {
     if (index >= 0)
     {
-        QStringList t;
+        std::vector<std::string> t;
         auto encounter = static_cast<Encounter>(ui->comboBoxSearcherEncounter->currentData().toInt());
 
         switch (encounter)
         {
         case Encounter::Grass:
-            t = QStringList({ "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11" });
+            t = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11" };
             break;
         case Encounter::Surfing:
         case Encounter::OldRod:
         case Encounter::GoodRod:
         case Encounter::SuperRod:
-            t = QStringList({ "0", "1", "2", "3", "4" });
+            t = { "0", "1", "2", "3", "4" };
             break;
         case Encounter::RockSmash:
-            t = QStringList({ "0", "1" });
+            t = { "0", "1" };
             break;
         default:
             break;
@@ -552,7 +549,7 @@ void Wild4::generatorPokemonIndexChanged(int index)
     else
     {
         u16 num = ui->comboBoxGeneratorPokemon->getCurrentUShort();
-        QVector<bool> flags = encounterGenerator.at(ui->comboBoxGeneratorLocation->currentData().toInt()).getSlots(num);
+        std::vector<bool> flags = encounterGenerator[ui->comboBoxGeneratorLocation->currentData().toInt()].getSlots(num);
 
         ui->filterGenerator->toggleEncounterSlots(flags);
     }
@@ -567,7 +564,7 @@ void Wild4::searcherPokemonIndexChanged(int index)
     else
     {
         u16 num = ui->comboBoxSearcherPokemon->getCurrentUShort();
-        QVector<bool> flags = encounterSearcher.at(ui->comboBoxSearcherLocation->currentData().toInt()).getSlots(num);
+        std::vector<bool> flags = encounterSearcher[ui->comboBoxSearcherLocation->currentData().toInt()].getSlots(num);
 
         ui->filterSearcher->toggleEncounterSlots(flags);
     }

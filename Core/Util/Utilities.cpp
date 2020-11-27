@@ -80,77 +80,83 @@ namespace
         return count;
     }
 
-    QString getPitch(u8 result)
+    std::string getPitch(u8 result)
     {
-        QString pitch;
+        std::string pitch;
         if (result < 20)
         {
-            pitch = "L (%1)";
+            pitch = "L ";
         }
         else if (result < 40)
         {
-            pitch = "ML (%1)";
+            pitch = "ML ";
         }
         else if (result < 60)
         {
-            pitch = "M (%1)";
+            pitch = "M ";
         }
         else if (result < 80)
         {
-            pitch = "MH (%1)";
+            pitch = "MH ";
         }
         else
         {
-            pitch = "H (%1)";
+            pitch = "H ";
         }
 
-        return pitch.arg(result);
+        return pitch + std::to_string(result);
     }
 }
 
 namespace Utilities
 {
-    u16 calcGen3Seed(const QDateTime &dateTime)
+    u16 calcGen3Seed(const DateTime &dateTime)
     {
-        const QDate &date = dateTime.date();
-        const QTime &time = dateTime.time();
+        const Date &date = dateTime.getDate();
+        const Time &time = dateTime.getTime();
 
-        u32 d = static_cast<u32>(QDate(date.year() == 2000 ? 1999 : 2000, 12, 31).daysTo(date));
-        u32 h = static_cast<u32>(time.hour());
-        u32 m = static_cast<u32>(time.minute());
+        u32 d = Date().daysTo(date) - (date.year() > 2000 ? 366 : 0) + 1;
+
+        u32 h = time.hour();
+        u32 m = time.minute();
 
         u32 seed = 1440 * d + 960 * (h / 10) + 60 * (h % 10) + 16 * (m / 10) + m % 10;
         return (seed >> 16) ^ (seed & 0xFFFF);
     }
 
-    u32 calcGen4Seed(const QDateTime &dateTime, u32 delay)
+    u32 calcGen4Seed(const DateTime &dateTime, u32 delay)
     {
-        const QDate &date = dateTime.date();
-        const QTime &time = dateTime.time();
+        const Date &date = dateTime.getDate();
+        const Time &time = dateTime.getTime();
 
-        u8 ab = static_cast<u8>(date.month() * date.day() + time.minute() + time.second());
+        auto parts = date.getParts();
+
+        u8 ab = static_cast<u8>(parts[1] * parts[2] + time.minute() + time.second());
         u8 cd = static_cast<u8>(time.hour());
 
         return static_cast<u32>(((ab << 24) | (cd << 16))) + delay;
     }
 
-    QString coinFlips(u32 seed)
+    std::string coinFlips(u32 seed)
     {
-        QStringList coins;
+        std::string coins;
 
         MT mt(seed);
-
         for (u8 i = 0; i < 20; i++)
         {
-            coins.append((mt.next() & 1) == 0 ? "T" : "H");
+            coins += (mt.next() & 1) == 0 ? "T" : "H";
+            if (i != 19)
+            {
+                coins += ", ";
+            }
         }
 
-        return coins.join(", ");
+        return coins;
     }
 
-    QString getCalls(u32 seed, const HGSSRoamer &info)
+    std::string getCalls(u32 seed, const HGSSRoamer &info)
     {
-        QString calls = "";
+        std::string calls = "";
 
         u8 skips = info.getSkips();
         if (skips > 0)
@@ -181,12 +187,12 @@ namespace Utilities
         return calls;
     }
 
-    QString getChatot(u32 seed)
+    std::string getChatot(u32 seed)
     {
         return getPitch(((seed & 0x1fff) * 100) >> 13);
     }
 
-    QString getChatot64(u32 seed)
+    std::string getChatot64(u32 seed)
     {
         return getPitch(seed / 82);
     }

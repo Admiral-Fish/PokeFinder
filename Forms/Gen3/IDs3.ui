@@ -408,7 +408,7 @@
            </widget>
           </item>
           <item row="1" column="1" colspan="2">
-           <widget class="QDateTimeEdit" name="dateTimeEdit">
+           <widget class="DateTimeEdit" name="dateTimeEdit">
             <property name="enabled">
              <bool>false</bool>
             </property>
@@ -527,6 +527,11 @@
    <class>TableView</class>
    <extends>QTableView</extends>
    <header>Forms/Controls/TableView.hpp</header>
+  </customwidget>
+  <customwidget>
+   <class>DateTimeEdit</class>
+   <extends>QDateTimeEdit</extends>
+   <header>Forms/Controls/DateTimeEdit.hpp</header>
   </customwidget>
  </customwidgets>
  <tabstops>

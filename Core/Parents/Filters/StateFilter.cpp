@@ -21,8 +21,8 @@
 #include <Core/Parents/States/State.hpp>
 #include <Core/Parents/States/WildState.hpp>
 
-StateFilter::StateFilter(u8 gender, u8 ability, u8 shiny, bool skip, const QVector<u8> &min, const QVector<u8> &max,
-                         const QVector<bool> &natures, const QVector<bool> &powers, const QVector<bool> &encounters) :
+StateFilter::StateFilter(u8 gender, u8 ability, u8 shiny, bool skip, const std::array<u8, 6> &min, const std::array<u8, 6> &max,
+                         const std::vector<bool> &natures, const std::vector<bool> &powers, const std::vector<bool> &encounters) :
     min(min), max(max), gender(gender), ability(ability), natures(natures), powers(powers), encounters(encounters), shiny(shiny), skip(skip)
 {
 }
@@ -54,7 +54,7 @@ bool StateFilter::compareGender(const State &state) const
 
 bool StateFilter::compareNature(const State &state) const
 {
-    return skip || natures.at(state.getNature());
+    return skip || natures[state.getNature()];
 }
 
 bool StateFilter::compareShiny(const State &state) const
@@ -73,7 +73,7 @@ bool StateFilter::compareIV(const State &state) const
     {
         u8 iv = state.getIV(i);
 
-        if (iv < min.at(i) || iv > max.at(i))
+        if (iv < min[i] || iv > max[i])
         {
             return false;
         }
@@ -84,10 +84,10 @@ bool StateFilter::compareIV(const State &state) const
 
 bool StateFilter::compareHiddenPower(const State &state) const
 {
-    return skip || powers.at(state.getHidden());
+    return skip || powers[state.getHidden()];
 }
 
 bool StateFilter::compareEncounterSlot(const WildState &state) const
 {
-    return skip || encounters.at(state.getEncounterSlot());
+    return skip || encounters[state.getEncounterSlot()];
 }

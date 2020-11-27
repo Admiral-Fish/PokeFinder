@@ -37,12 +37,15 @@ CheckList::CheckList(QWidget *parent) : QComboBox(parent)
     connect(model, &QAbstractItemModel::dataChanged, this, &CheckList::modelDataChanged);
 }
 
-void CheckList::setup(const QStringList &items)
+void CheckList::setup(const std::vector<std::string> &items)
 {
-    if (!items.isEmpty())
+    if (!items.empty())
     {
         clear();
-        addItems(items);
+        for (const std::string &item : items)
+        {
+            addItem(QString::fromStdString(item));
+        }
     }
 
     for (int i = 0; i < model->rowCount(); i++)
@@ -53,25 +56,25 @@ void CheckList::setup(const QStringList &items)
     }
 }
 
-QVector<bool> CheckList::getChecked() const
+std::vector<bool> CheckList::getChecked() const
 {
-    QVector<bool> result;
+    std::vector<bool> result;
 
     if (checkState() == Qt::PartiallyChecked)
     {
         for (auto i = 0; i < model->rowCount(); i++)
         {
-            result.append(model->item(i)->checkState() == Qt::Checked);
+            result.emplace_back(model->item(i)->checkState() == Qt::Checked);
         }
     }
     else
     {
-        result = QVector<bool>(model->rowCount(), true);
+        result = std::vector<bool>(model->rowCount(), true);
     }
     return result;
 }
 
-void CheckList::setChecks(QVector<bool> flags)
+void CheckList::setChecks(std::vector<bool> flags)
 {
     for (auto i = 0; i < model->rowCount(); i++)
     {

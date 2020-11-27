@@ -19,18 +19,19 @@
 
 #include "EncounterArea3.hpp"
 
-EncounterArea3::EncounterArea3(u8 location, Encounter encounter, const QVector<Slot> &pokemon) : EncounterArea(location, encounter, pokemon)
+EncounterArea3::EncounterArea3(u8 location, Encounter encounter, const std::vector<Slot> &pokemon) :
+    EncounterArea(location, encounter, pokemon)
 {
 }
 
 u8 EncounterArea3::calcLevel(u8 index, u16 prng) const
 {
-    return (prng % (pokemon.at(index).getMaxLevel() - pokemon.at(index).getMinLevel() + 1)) + pokemon.at(index).getMinLevel();
+    return (prng % (pokemon[index].getMaxLevel() - pokemon[index].getMinLevel() + 1)) + pokemon[index].getMinLevel();
 }
 
 u8 EncounterArea3::calcLevel(u8 index) const
 {
-    return pokemon.at(index).getMinLevel();
+    return pokemon[index].getMinLevel();
 }
 
 // Only for Rock Smash since all other encounters can be forced

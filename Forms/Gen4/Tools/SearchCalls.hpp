@@ -20,7 +20,7 @@
 #ifndef SEARCHCALLS_HPP
 #define SEARCHCALLS_HPP
 
-#include <Core/Util/DateTime.hpp>
+#include <Core/Gen4/SeedTime.hpp>
 #include <QDialog>
 
 namespace Ui
@@ -32,17 +32,17 @@ class SearchCalls : public QDialog
 {
     Q_OBJECT
 public:
-    explicit SearchCalls(const QVector<DateTime> &model, const QVector<bool> &roamers, const QVector<u8> &routes,
+    explicit SearchCalls(const std::vector<SeedTime> &model, const std::vector<bool> &roamers, const std::vector<u8> &routes,
                          QWidget *parent = nullptr);
     ~SearchCalls() override;
-    QVector<bool> possibleResults() const;
+    std::vector<bool> possibleResults() const;
 
 private:
     Ui::SearchCalls *ui;
-    QVector<DateTime> data;
-    QVector<bool> possible;
-    QVector<bool> roamers;
-    QVector<u8> routes;
+    std::vector<SeedTime> data;
+    std::vector<bool> possible;
+    std::vector<bool> roamers;
+    std::vector<u8> routes;
 
 private slots:
     void k();

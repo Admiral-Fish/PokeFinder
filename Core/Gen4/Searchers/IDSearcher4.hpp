@@ -22,8 +22,8 @@
 
 #include <Core/Gen4/States/IDState4.hpp>
 #include <Core/Parents/Filters/IDFilter.hpp>
-#include <QVector>
 #include <mutex>
+#include <vector>
 
 class IDSearcher4
 {
@@ -32,7 +32,7 @@ public:
     explicit IDSearcher4(const IDFilter &filter);
     void startSearch(bool infinite, u16 year, u32 minDelay, u32 maxDelay);
     void cancelSearch();
-    QVector<IDState4> getResults();
+    std::vector<IDState4> getResults();
     int getProgress() const;
 
 private:
@@ -40,7 +40,7 @@ private:
 
     bool searching;
     int progress;
-    QVector<IDState4> results;
+    std::vector<IDState4> results;
     std::mutex mutex;
 };
 

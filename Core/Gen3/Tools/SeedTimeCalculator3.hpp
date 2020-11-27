@@ -21,11 +21,11 @@
 #define SEEDTIMECALCULATOR3_HPP
 
 #include <Core/Gen3/States/SeedTimeState3.hpp>
-#include <QVector>
+#include <vector>
 
 namespace SeedTimeCalculator3
 {
-    QVector<SeedTimeState3> calculateTimes(u32 seed, u32 advance, u16 year);
+    std::vector<SeedTimeState3> calculateTimes(u32 seed, u32 advance, u16 year);
     u16 calculateOriginSeed(u32 seed);
 }
 

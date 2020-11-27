@@ -151,7 +151,7 @@
           <item row="1" column="0">
            <widget class="QPushButton" name="pushButtonGeneratorLead">
             <property name="text">
-             <string>Synchronize</string>
+             <string>Cute Charm</string>
             </property>
            </widget>
           </item>

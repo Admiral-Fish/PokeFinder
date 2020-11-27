@@ -29,7 +29,7 @@ class WildGenerator3 : public WildGenerator
 public:
     WildGenerator3() = default;
     WildGenerator3(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter);
-    QVector<WildState> generate(u32 seed) const;
+    std::vector<WildState> generate(u32 seed) const;
     void setEncounterArea(const EncounterArea3 &encounterArea);
 
 private:

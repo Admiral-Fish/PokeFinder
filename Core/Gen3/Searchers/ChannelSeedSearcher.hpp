@@ -26,7 +26,7 @@
 class ChannelSeedSearcher : public SeedSearcher
 {
 public:
-    explicit ChannelSeedSearcher(const QVector<u32> &criteria);
+    explicit ChannelSeedSearcher(const std::vector<u32> &criteria);
     void startSearch(int threads);
     int getProgress() const override;
 

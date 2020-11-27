@@ -19,11 +19,11 @@
 
 #include "GameCubeRTCState.hpp"
 
-GameCubeRTCState::GameCubeRTCState(const QDateTime &dateTime, u32 seed, u32 advances) : dateTime(dateTime), seed(seed), advances(advances)
+GameCubeRTCState::GameCubeRTCState(const DateTime &dateTime, u32 seed, u32 advances) : dateTime(dateTime), seed(seed), advances(advances)
 {
 }
 
-QString GameCubeRTCState::getDateTime() const
+std::string GameCubeRTCState::getDateTime() const
 {
     return dateTime.toString();
 }

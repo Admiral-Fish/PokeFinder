@@ -29,7 +29,7 @@ StationaryGenerator4::StationaryGenerator4(u32 initialAdvances, u32 maxAdvances,
 {
 }
 
-QVector<State> StationaryGenerator4::generate(u32 seed) const
+std::vector<State> StationaryGenerator4::generate(u32 seed) const
 {
     switch (method)
     {
@@ -42,13 +42,13 @@ QVector<State> StationaryGenerator4::generate(u32 seed) const
     case Method::WondercardIVs:
         return generateWonderCardIVs(seed);
     default:
-        return QVector<State>();
+        return std::vector<State>();
     }
 }
 
-QVector<State> StationaryGenerator4::generateMethod1(u32 seed) const
+std::vector<State> StationaryGenerator4::generateMethod1(u32 seed) const
 {
-    QVector<State> states;
+    std::vector<State> states;
 
     PokeRNG rng(seed);
     rng.advance(initialAdvances + offset);
@@ -77,16 +77,16 @@ QVector<State> StationaryGenerator4::generateMethod1(u32 seed) const
         if (filter.compareState(state))
         {
             state.setSeed(low);
-            states.append(state);
+            states.emplace_back(state);
         }
     }
 
     return states;
 }
 
-QVector<State> StationaryGenerator4::generateMethodJ(u32 seed) const
+std::vector<State> StationaryGenerator4::generateMethodJ(u32 seed) const
 {
-    QVector<State> states;
+    std::vector<State> states;
 
     PokeRNG rng(seed);
     rng.advance(initialAdvances + offset);
@@ -215,16 +215,16 @@ QVector<State> StationaryGenerator4::generateMethodJ(u32 seed) const
         if (filter.compareState(state))
         {
             state.setSeed(first);
-            states.append(state);
+            states.emplace_back(state);
         }
     }
 
     return states;
 }
 
-QVector<State> StationaryGenerator4::generateMethodK(u32 seed) const
+std::vector<State> StationaryGenerator4::generateMethodK(u32 seed) const
 {
-    QVector<State> states;
+    std::vector<State> states;
 
     PokeRNG rng(seed);
     rng.advance(initialAdvances + offset);
@@ -354,16 +354,16 @@ QVector<State> StationaryGenerator4::generateMethodK(u32 seed) const
         if (filter.compareState(state))
         {
             state.setSeed(first);
-            states.append(state);
+            states.emplace_back(state);
         }
     }
 
     return states;
 }
 
-QVector<State> StationaryGenerator4::generateWonderCardIVs(u32 seed) const
+std::vector<State> StationaryGenerator4::generateWonderCardIVs(u32 seed) const
 {
-    QVector<State> states;
+    std::vector<State> states;
 
     PokeRNG rng(seed);
     rng.advance(initialAdvances + offset);
@@ -384,7 +384,7 @@ QVector<State> StationaryGenerator4::generateWonderCardIVs(u32 seed) const
         if (filter.compareIVs(state))
         {
             state.setSeed(iv1);
-            states.append(state);
+            states.emplace_back(state);
         }
     }
 

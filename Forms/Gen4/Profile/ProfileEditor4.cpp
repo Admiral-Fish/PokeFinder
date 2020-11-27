@@ -40,7 +40,7 @@ ProfileEditor4::ProfileEditor4(const Profile4 &profile, QWidget *parent) : QDial
 
     setupModels();
 
-    ui->lineEditProfile->setText(profile.getName());
+    ui->lineEditProfile->setText(QString::fromStdString(profile.getName()));
     ui->comboBoxVersion->setCurrentIndex(ui->comboBoxVersion->findData(profile.getVersion()));
     ui->textBoxTID->setText(QString::number(profile.getTID()));
     ui->textBoxSID->setText(QString::number(profile.getSID()));
@@ -111,8 +111,8 @@ void ProfileEditor4::okay()
     }
 
     fresh
-        = Profile4(ui->lineEditProfile->text(), static_cast<Game>(ui->comboBoxVersion->currentData().toInt()), ui->textBoxTID->getUShort(),
-                   ui->textBoxSID->getUShort(), static_cast<Game>(ui->comboBoxDualSlot->currentData().toInt()),
+        = Profile4(ui->lineEditProfile->text().toStdString(), static_cast<Game>(ui->comboBoxVersion->currentData().toInt()),
+                   ui->textBoxTID->getUShort(), ui->textBoxSID->getUShort(), static_cast<Game>(ui->comboBoxDualSlot->currentData().toInt()),
                    ui->comboBoxRadio->currentIndex(), ui->checkBoxRadar->isChecked(), ui->checkBoxSwarm->isChecked());
 
     done(QDialog::Accepted);

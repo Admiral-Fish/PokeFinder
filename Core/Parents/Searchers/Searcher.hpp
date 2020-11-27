@@ -22,7 +22,7 @@
 
 #include <Core/Parents/Filters/StateFilter.hpp>
 #include <Core/Util/Global.hpp>
-#include <QVector>
+#include <vector>
 
 enum Method : u8;
 

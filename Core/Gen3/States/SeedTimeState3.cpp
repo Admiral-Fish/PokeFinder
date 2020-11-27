@@ -19,11 +19,11 @@
 
 #include "SeedTimeState3.hpp"
 
-SeedTimeState3::SeedTimeState3(const QDateTime &dateTime, u32 advances) : dateTime(dateTime), advances(advances)
+SeedTimeState3::SeedTimeState3(const DateTime &dateTime, u32 advances) : dateTime(dateTime), advances(advances)
 {
 }
 
-QString SeedTimeState3::getDateTime() const
+std::string SeedTimeState3::getDateTime() const
 {
     return dateTime.toString();
 }

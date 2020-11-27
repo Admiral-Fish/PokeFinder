@@ -27,11 +27,11 @@ class Profile4 : public Profile
 {
 public:
     Profile4();
-    Profile4(const QString &profileName, Game version, u16 tid, u16 sid, Game dual = Game::Blank, int radio = 0, bool radar = false,
+    Profile4(const std::string &profileName, Game version, u16 tid, u16 sid, Game dual = Game::Blank, int radio = 0, bool radar = false,
              bool swarm = false);
-    QString getDualSlotString() const;
+    std::string getDualSlotString() const;
     Game getDualSlot() const;
-    QString getRadioString() const;
+    std::string getRadioString() const;
     int getRadio() const;
     bool getRadar() const;
     bool getSwarm() const;

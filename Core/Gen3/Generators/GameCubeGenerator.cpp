@@ -28,7 +28,7 @@ GameCubeGenerator::GameCubeGenerator(u32 initialAdvances, u32 maxAdvances, u16 t
 {
 }
 
-QVector<GameCubeState> GameCubeGenerator::generate(u32 seed) const
+std::vector<GameCubeState> GameCubeGenerator::generate(u32 seed) const
 {
     switch (method)
     {
@@ -41,19 +41,19 @@ QVector<GameCubeState> GameCubeGenerator::generate(u32 seed) const
     case Method::Channel:
         return generateChannel(seed);
     default:
-        return QVector<GameCubeState>();
+        return std::vector<GameCubeState>();
     }
 }
 
 void GameCubeGenerator::setShadowTeam(u8 index, u8 type)
 {
-    team = ShadowTeam::loadShadowTeams(method).at(index);
+    team = ShadowTeam::loadShadowTeams(method)[index];
     this->type = type;
 }
 
-QVector<GameCubeState> GameCubeGenerator::generateXDColo(u32 seed) const
+std::vector<GameCubeState> GameCubeGenerator::generateXDColo(u32 seed) const
 {
-    QVector<GameCubeState> states;
+    std::vector<GameCubeState> states;
 
     XDRNG rng(seed);
     rng.advance(initialAdvances + offset);
@@ -82,21 +82,21 @@ QVector<GameCubeState> GameCubeGenerator::generateXDColo(u32 seed) const
 
         if (filter.compareState(state))
         {
-            states.append(state);
+            states.emplace_back(state);
         }
     }
 
     return states;
 }
 
-QVector<GameCubeState> GameCubeGenerator::generateXDShadow(u32 seed) const
+std::vector<GameCubeState> GameCubeGenerator::generateXDShadow(u32 seed) const
 {
-    QVector<GameCubeState> states;
+    std::vector<GameCubeState> states;
 
     XDRNG rng(seed);
     rng.advance(initialAdvances + offset);
 
-    QVector<LockInfo> locks = team.getLocks();
+    std::vector<LockInfo> locks = team.getLocks();
 
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rng.next())
     {
@@ -107,7 +107,7 @@ QVector<GameCubeState> GameCubeGenerator::generateXDShadow(u32 seed) const
         // Enemy TID/SID
         go.advance(2);
 
-        for (auto lock = locks.rbegin(); lock != locks.rend(); lock++)
+        for (auto lock : locks)
         {
             // Temporary PID: 2 advances
             // IVs: 2 advances
@@ -116,7 +116,7 @@ QVector<GameCubeState> GameCubeGenerator::generateXDShadow(u32 seed) const
 
             // If we are looking at a shadow pokemon
             // We will assume it is already set and skip the PID process
-            if (!lock->getFree())
+            if (!lock.getFree())
             {
                 u32 pid;
                 do
@@ -129,7 +129,7 @@ QVector<GameCubeState> GameCubeGenerator::generateXDShadow(u32 seed) const
                     {
                         continue;
                     }
-                } while (!lock->compare(pid));
+                } while (!lock.compare(pid));
             }
         }
 
@@ -171,21 +171,21 @@ QVector<GameCubeState> GameCubeGenerator::generateXDShadow(u32 seed) const
 
         if (filter.compareState(state))
         {
-            states.append(state);
+            states.emplace_back(state);
         }
     }
 
     return states;
 }
 
-QVector<GameCubeState> GameCubeGenerator::generateColoShadow(u32 seed) const
+std::vector<GameCubeState> GameCubeGenerator::generateColoShadow(u32 seed) const
 {
-    QVector<GameCubeState> states;
+    std::vector<GameCubeState> states;
 
     XDRNG rng(seed);
     rng.advance(initialAdvances + offset);
 
-    QVector<LockInfo> locks = team.getLocks();
+    std::vector<LockInfo> locks = team.getLocks();
 
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rng.next())
     {
@@ -198,7 +198,7 @@ QVector<GameCubeState> GameCubeGenerator::generateColoShadow(u32 seed) const
 
         u8 ability;
         u32 pid;
-        for (auto lock = locks.rbegin(); lock != locks.rend(); lock++)
+        for (auto lock : locks)
         {
             // Temporary PID: 2 advances
             // IVs: 2 advances
@@ -216,7 +216,7 @@ QVector<GameCubeState> GameCubeGenerator::generateColoShadow(u32 seed) const
                 {
                     continue;
                 }
-            } while (!lock->compare(pid));
+            } while (!lock.compare(pid));
         }
 
         // E-Reader is included as part of the above loop
@@ -260,16 +260,16 @@ QVector<GameCubeState> GameCubeGenerator::generateColoShadow(u32 seed) const
 
         if (filter.compareState(state))
         {
-            states.append(state);
+            states.emplace_back(state);
         }
     }
 
     return states;
 }
 
-QVector<GameCubeState> GameCubeGenerator::generateChannel(u32 seed) const
+std::vector<GameCubeState> GameCubeGenerator::generateChannel(u32 seed) const
 {
-    QVector<GameCubeState> states;
+    std::vector<GameCubeState> states;
 
     XDRNG rng(seed);
     rng.advance(initialAdvances + offset);
@@ -314,7 +314,7 @@ QVector<GameCubeState> GameCubeGenerator::generateChannel(u32 seed) const
 
         if (filter.compareState(state))
         {
-            states.append(state);
+            states.emplace_back(state);
         }
     }
 

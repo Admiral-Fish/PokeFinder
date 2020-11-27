@@ -30,13 +30,13 @@ public:
     {
     }
 
-    void addItems(const QVector<Item> &items)
+    void addItems(const std::vector<Item> &items)
     {
-        if (!items.isEmpty())
+        if (!items.empty())
         {
             int i = rowCount();
-            emit beginInsertRows(QModelIndex(), i, i + items.size() - 1);
-            model.append(items);
+            emit beginInsertRows(QModelIndex(), i, i + static_cast<int>(items.size()) - 1);
+            model.insert(model.end(), items.begin(), items.end());
             emit endInsertRows();
         }
     }
@@ -45,7 +45,7 @@ public:
     {
         int i = rowCount();
         emit beginInsertRows(QModelIndex(), i, i);
-        model.push_back(item);
+        model.emplace_back(item);
         emit endInsertRows();
     }
 
@@ -59,27 +59,27 @@ public:
     {
         emit beginRemoveRows(QModelIndex(), row, row);
         model.erase(model.begin() + row);
-        model.squeeze();
+        model.shrink_to_fit();
         emit endRemoveRows();
     }
 
     Item getItem(int row) const
     {
-        return model.at(row);
+        return model[row];
     }
 
-    QVector<Item> getModel() const
+    std::vector<Item> getModel() const
     {
         return model;
     }
 
     void clearModel()
     {
-        if (!model.isEmpty())
+        if (!model.empty())
         {
             emit beginRemoveRows(QModelIndex(), 0, rowCount() - 1);
             model.clear();
-            model.squeeze();
+            model.shrink_to_fit();
             emit endRemoveRows();
         }
     }
@@ -87,11 +87,11 @@ public:
     int rowCount(const QModelIndex &parent = QModelIndex()) const override
     {
         (void)parent;
-        return model.size();
+        return static_cast<int>(model.size());
     }
 
 protected:
-    QVector<Item> model;
+    std::vector<Item> model;
 };
 
 #endif // TABLEMODEL_HPP

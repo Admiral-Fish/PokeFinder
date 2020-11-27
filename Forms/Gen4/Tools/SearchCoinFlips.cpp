@@ -22,7 +22,7 @@
 #include <Core/Util/Utilities.hpp>
 #include <QSettings>
 
-SearchCoinFlips::SearchCoinFlips(const QVector<DateTime> &model, QWidget *parent) : QDialog(parent), ui(new Ui::SearchCoinFlips)
+SearchCoinFlips::SearchCoinFlips(const std::vector<SeedTime> &model, QWidget *parent) : QDialog(parent), ui(new Ui::SearchCoinFlips)
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
@@ -49,7 +49,7 @@ SearchCoinFlips::~SearchCoinFlips()
     delete ui;
 }
 
-QVector<bool> SearchCoinFlips::possibleResults() const
+std::vector<bool> SearchCoinFlips::possibleResults() const
 {
     return possible;
 }
@@ -79,10 +79,22 @@ void SearchCoinFlips::flipsTextChanged(const QString &val)
         possible.clear();
         for (const auto &dt : data)
         {
-            QString compare = Utilities::coinFlips(dt.getSeed()).replace(" ", "").replace(",", "");
+            std::string compare = dt.getSequence();
+            for (size_t i = 0; i < compare.size();)
+            {
+                auto c = compare[i];
+                if (c == ' ' || c == ',')
+                {
+                    compare.erase(compare.begin() + i);
+                }
+                else
+                {
+                    i++;
+                }
+            }
 
-            bool pass = compare.contains(result);
-            possible.append(pass);
+            bool pass = compare.find(result.toStdString()) != std::string::npos;
+            possible.emplace_back(pass);
             if (pass)
             {
                 num++;

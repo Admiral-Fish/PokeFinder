@@ -21,16 +21,15 @@
 #include <Core/Gen5/Keypresses.hpp>
 #include <Core/RNG/SHA1.hpp>
 #include <Core/Util/Utilities.hpp>
-#include <QtConcurrent>
+#include <future>
 
 DreamRadarSearcher::DreamRadarSearcher(const Profile5 &profile) : profile(profile), searching(false), progress(0)
 {
 }
 
-void DreamRadarSearcher::startSearch(const DreamRadarGenerator &generator, int threads, QDate start, const QDate &end)
+void DreamRadarSearcher::startSearch(const DreamRadarGenerator &generator, int threads, Date start, const Date &end)
 {
     searching = true;
-    QThreadPool pool;
 
     auto days = start.daysTo(end) + 1;
     if (days < threads)
@@ -38,27 +37,26 @@ void DreamRadarSearcher::startSearch(const DreamRadarGenerator &generator, int t
         threads = days;
     }
 
-    pool.setMaxThreadCount(threads);
-    QVector<QFuture<void>> threadContainer;
+    std::vector<std::future<void>> threadContainer;
 
     auto daysSplit = days / threads;
     for (int i = 0; i < threads; i++)
     {
         if (i == threads - 1)
         {
-            threadContainer.append(QtConcurrent::run(&pool, [=] { search(generator, start, end); }));
+            threadContainer.emplace_back(std::async(std::launch::async, [=] { search(generator, start, end); }));
         }
         else
         {
-            QDate mid = start.addDays(daysSplit - 1);
-            threadContainer.append(QtConcurrent::run(&pool, [=] { search(generator, start, mid); }));
+            Date mid = start.addDays(daysSplit - 1);
+            threadContainer.emplace_back(std::async(std::launch::async, [=] { search(generator, start, mid); }));
         }
         start = start.addDays(daysSplit);
     }
 
     for (int i = 0; i < threads; i++)
     {
-        threadContainer[i].waitForFinished();
+        threadContainer[i].wait();
     }
 }
 
@@ -67,7 +65,7 @@ void DreamRadarSearcher::cancelSearch()
     searching = false;
 }
 
-QVector<SearcherState5<State>> DreamRadarSearcher::getResults()
+std::vector<SearcherState5<State>> DreamRadarSearcher::getResults()
 {
     std::lock_guard<std::mutex> lock(resultMutex);
 
@@ -82,7 +80,7 @@ int DreamRadarSearcher::getProgress() const
     return progress;
 }
 
-void DreamRadarSearcher::search(DreamRadarGenerator generator, const QDate &start, const QDate &end)
+void DreamRadarSearcher::search(DreamRadarGenerator generator, const Date &start, const Date &end)
 {
     SHA1 sha(profile);
     auto buttons = Keypresses::getKeyPresses(profile.getKeypresses(), profile.getSkipLR());
@@ -91,14 +89,14 @@ void DreamRadarSearcher::search(DreamRadarGenerator generator, const QDate &star
     for (u16 timer0 = profile.getTimer0Min(); timer0 <= profile.getTimer0Max(); timer0++)
     {
         sha.setTimer0(timer0, profile.getVCount());
-        for (QDate date = start; date <= end; date = date.addDays(1))
+        for (Date date = start; date <= end; date = date.addDays(1))
         {
-            sha.setDate(static_cast<u8>(date.year() - 2000), static_cast<u8>(date.month()), static_cast<u8>(date.day()),
-                        static_cast<u8>(date.dayOfWeek()));
+            auto parts = date.getParts();
+            sha.setDate(parts[0] - 2000, parts[1], parts[2], static_cast<u8>(date.dayOfWeek()));
             sha.precompute();
-            for (int i = 0; i < values.size(); i++)
+            for (size_t i = 0; i < values.size(); i++)
             {
-                sha.setButton(values.at(i));
+                sha.setButton(values[i]);
 
                 for (u8 hour = 0; hour < 24; hour++)
                 {
@@ -115,20 +113,19 @@ void DreamRadarSearcher::search(DreamRadarGenerator generator, const QDate &star
                             u64 seed = sha.hashSeed();
 
                             auto states = generator.generate(seed, profile.getMemoryLink());
-                            if (!states.isEmpty())
+                            if (!states.empty())
                             {
-                                QVector<SearcherState5<State>> displayStates;
+                                std::vector<SearcherState5<State>> displayStates;
                                 displayStates.reserve(states.size());
 
-                                QDateTime dt(date, QTime(hour, minute, second));
+                                DateTime dt(date, Time(hour, minute, second));
                                 for (const auto &state : states)
                                 {
-                                    SearcherState5<State> display(dt, seed, buttons.at(i), timer0, state);
-                                    displayStates.append(display);
+                                    displayStates.emplace_back(dt, seed, buttons[i], timer0, state);
                                 }
 
                                 std::lock_guard<std::mutex> lock(resultMutex);
-                                results.append(displayStates);
+                                results.insert(results.end(), displayStates.begin(), displayStates.end());
                             }
 
                             std::lock_guard<std::mutex> lock(progressMutex);

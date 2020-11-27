@@ -20,25 +20,24 @@
 #include "StationarySearcher5.hpp"
 #include <Core/Gen5/Keypresses.hpp>
 #include <Core/RNG/SHA1.hpp>
-#include <QtConcurrent>
+#include <future>
 
 StationarySearcher5::StationarySearcher5(const StationaryGenerator5 &ivGenerator, const StationaryGenerator5 &pidGenerator,
-                                         const Profile5 &profile, const QVector<QHash<u32, u32>> &ivMap, bool includePID) :
+                                         const Profile5 &profile, const std::vector<std::unordered_map<u32, u32>> &ivMap, bool includePID) :
     ivGenerator(ivGenerator),
     pidGenerator(pidGenerator),
     profile(profile),
     ivMap(ivMap),
     includePID(includePID),
-    fastSearch(!ivMap.isEmpty()),
+    fastSearch(!ivMap.empty()),
     searching(false),
     progress(0)
 {
 }
 
-void StationarySearcher5::startSearch(int threads, QDate start, const QDate &end)
+void StationarySearcher5::startSearch(int threads, Date start, const Date &end)
 {
     searching = true;
-    QThreadPool pool;
 
     auto days = start.daysTo(end) + 1;
     if (days < threads)
@@ -46,27 +45,26 @@ void StationarySearcher5::startSearch(int threads, QDate start, const QDate &end
         threads = days;
     }
 
-    pool.setMaxThreadCount(threads);
-    QVector<QFuture<void>> threadContainer;
+    std::vector<std::future<void>> threadContainer;
 
     auto daysSplit = days / threads;
     for (int i = 0; i < threads; i++)
     {
         if (i == threads - 1)
         {
-            threadContainer.append(QtConcurrent::run(&pool, [=] { search(start, end); }));
+            threadContainer.emplace_back(std::async(std::launch::async, [=] { search(start, end); }));
         }
         else
         {
-            QDate mid = start.addDays(daysSplit - 1);
-            threadContainer.append(QtConcurrent::run(&pool, [=] { search(start, mid); }));
+            Date mid = start.addDays(daysSplit - 1);
+            threadContainer.emplace_back(std::async(std::launch::async, [=] { search(start, mid); }));
         }
         start = start.addDays(daysSplit);
     }
 
     for (int i = 0; i < threads; i++)
     {
-        threadContainer[i].waitForFinished();
+        threadContainer[i].wait();
     }
 }
 
@@ -75,7 +73,7 @@ void StationarySearcher5::cancelSearch()
     searching = false;
 }
 
-QVector<StationaryState5> StationarySearcher5::getResults()
+std::vector<StationaryState5> StationarySearcher5::getResults()
 {
     std::lock_guard<std::mutex> lock(resultMutex);
 
@@ -90,7 +88,7 @@ int StationarySearcher5::getProgress() const
     return progress;
 }
 
-void StationarySearcher5::search(const QDate &start, const QDate &end)
+void StationarySearcher5::search(const Date &start, const Date &end)
 {
     SHA1 sha(profile);
     auto buttons = Keypresses::getKeyPresses(profile.getKeypresses(), profile.getSkipLR());
@@ -100,15 +98,15 @@ void StationarySearcher5::search(const QDate &start, const QDate &end)
     {
         sha.setTimer0(timer0, profile.getVCount());
 
-        for (QDate date = start; date <= end; date = date.addDays(1))
+        for (Date date = start; date <= end; date = date.addDays(1))
         {
             sha.setDate(static_cast<u8>(date.year() - 2000), static_cast<u8>(date.month()), static_cast<u8>(date.day()),
                         static_cast<u8>(date.dayOfWeek()));
             sha.precompute();
 
-            for (int i = 0; i < values.size(); i++)
+            for (size_t i = 0; i < values.size(); i++)
             {
-                sha.setButton(values.at(i));
+                sha.setButton(values[i]);
 
                 for (u8 hour = 0; hour < 24; hour++)
                 {
@@ -124,23 +122,23 @@ void StationarySearcher5::search(const QDate &start, const QDate &end)
                             sha.setTime(hour, minute, second, profile.getDSType());
                             u64 seed = sha.hashSeed();
 
-                            QVector<StationaryState5> states;
+                            std::vector<StationaryState5> states;
                             if (fastSearch)
                             {
-                                for (u8 j = 0; j < ivMap.size(); j++)
+                                for (size_t j = 0; j < ivMap.size(); j++)
                                 {
-                                    auto it = ivMap.at(j).find(seed >> 32);
-                                    if (it != ivMap.at(j).end())
+                                    auto it = ivMap[j].find(seed >> 32);
+                                    if (it != ivMap[j].end())
                                     {
                                         StationaryState5 state;
-                                        state.setIVs(it.value());
+                                        state.setIVs(it->second);
                                         state.calculateHiddenPower();
 
                                         // Filter here
                                         if (ivGenerator.getFilter().compareIVs(state))
                                         {
                                             state.setIVState(j + 1);
-                                            states.append(state);
+                                            states.emplace_back(state);
                                         }
                                     }
                                 }
@@ -152,9 +150,9 @@ void StationarySearcher5::search(const QDate &start, const QDate &end)
 
                             for (auto ivState : states)
                             {
-                                // ivState.setDateTime(QDateTime(date, QTime(hour, minute, second)));
+                                // ivState.setDateTime(DateTime(date, Time(hour, minute, second)));
                                 // ivState.setInitialSeed(seed);
-                                // ivState.setButtons(buttons.at(i));
+                                // ivState.setButtons(buttons[i]);
                                 // ivState.setTimer0(timer0);
 
                                 if (includePID)
@@ -172,13 +170,13 @@ void StationarySearcher5::search(const QDate &start, const QDate &end)
                                         ivState.setSeed(pidState.getSeed());
 
                                         std::lock_guard<std::mutex> lock(resultMutex);
-                                        results.append(ivState);
+                                        results.emplace_back(ivState);
                                     }
                                 }
                                 else
                                 {
                                     std::lock_guard<std::mutex> lock(resultMutex);
-                                    results.append(ivState);
+                                    results.emplace_back(ivState);
                                 }
                             }
 

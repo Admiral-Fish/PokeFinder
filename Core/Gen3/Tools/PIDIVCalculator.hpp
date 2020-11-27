@@ -21,11 +21,11 @@
 #define PIDIVCALCULATOR_HPP
 
 #include <Core/Gen3/States/PIDIVState.hpp>
-#include <QVector>
+#include <vector>
 
 namespace PIDIVCalculator
 {
-    QVector<PIDIVState> calculateIVs(u32 pid);
+    std::vector<PIDIVState> calculateIVs(u32 pid);
 };
 
 #endif // PIDIVCALCULATOR_HPP

@@ -28,11 +28,11 @@ class PokeSpotGenerator : public Generator
 public:
     PokeSpotGenerator() = default;
     PokeSpotGenerator(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, const StateFilter &filter);
-    void setSpots(const QVector<bool> &spots);
-    QVector<GameCubeState> generate(u32 seed) const;
+    void setSpots(const std::vector<bool> &spots);
+    std::vector<GameCubeState> generate(u32 seed) const;
 
 private:
-    QVector<bool> spots;
+    std::vector<bool> spots;
 };
 
 #endif // POKESPOTGENERATOR_HPP

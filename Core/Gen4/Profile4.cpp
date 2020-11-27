@@ -18,34 +18,33 @@
  */
 
 #include "Profile4.hpp"
-#include <QTranslator>
 
 Profile4::Profile4() : dual(Game::Blank), radio(0), radar(false), swarm(false)
 {
     version = Game::Diamond;
 }
 
-Profile4::Profile4(const QString &profileName, Game version, u16 tid, u16 sid, Game dual, int radio, bool radar, bool swarm) :
+Profile4::Profile4(const std::string &profileName, Game version, u16 tid, u16 sid, Game dual, int radio, bool radar, bool swarm) :
     Profile(profileName, version, tid, sid), dual(dual), radio(radio), radar(radar), swarm(swarm)
 {
 }
 
-QString Profile4::getDualSlotString() const
+std::string Profile4::getDualSlotString() const
 {
     switch (dual)
     {
     case Game::Ruby:
-        return QObject::tr("Ruby");
+        return "Ruby";
     case Game::Sapphire:
-        return QObject::tr("Sapphire");
+        return "Sapphire";
     case Game::FireRed:
-        return QObject::tr("Fire Red");
+        return "Fire Red";
     case Game::LeafGreen:
-        return QObject::tr("Leaf Green");
+        return "Leaf Green";
     case Game::Emerald:
-        return QObject::tr("Emerald");
+        return "Emerald";
     default:
-        return QObject::tr("None");
+        return "None";
     }
 }
 
@@ -54,16 +53,16 @@ Game Profile4::getDualSlot() const
     return dual;
 }
 
-QString Profile4::getRadioString() const
+std::string Profile4::getRadioString() const
 {
     switch (radio)
     {
     case 1:
-        return QObject::tr("Hoenn Sound");
+        return "Hoenn Sound";
     case 2:
-        return QObject::tr("Sinnoh Sound");
+        return "Sinnoh Sound";
     default:
-        return QObject::tr("None");
+        return "None";
     }
 }
 

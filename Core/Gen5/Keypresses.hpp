@@ -22,12 +22,12 @@
 
 #include <Core/Enum/Buttons.hpp>
 #include <Core/Util/Global.hpp>
-#include <QVector>
+#include <vector>
 
 namespace Keypresses
 {
-    QVector<Buttons> getKeyPresses(const QVector<bool> &keypresses, bool skipLR);
-    QVector<u32> getValues(const QVector<Buttons> &buttons);
+    std::vector<Buttons> getKeyPresses(const std::vector<bool> &keypresses, bool skipLR);
+    std::vector<u32> getValues(const std::vector<Buttons> &buttons);
 }
 
 #endif // KEYPRESSES_HPP

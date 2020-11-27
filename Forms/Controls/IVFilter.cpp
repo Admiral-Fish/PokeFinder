@@ -19,6 +19,7 @@
 
 #include "IVFilter.hpp"
 #include "ui_IVFilter.h"
+#include <array>
 
 IVFilter::IVFilter(QWidget *parent) : QWidget(parent), ui(new Ui::IVFilter)
 {
@@ -48,20 +49,20 @@ IVFilter::~IVFilter()
     delete ui;
 }
 
-QVector<u8> IVFilter::getLower() const
+std::array<u8, 6> IVFilter::getLower() const
 {
-    QVector<u8> low = { static_cast<u8>(ui->spinBoxHPMin->value()),  static_cast<u8>(ui->spinBoxAtkMin->value()),
-                        static_cast<u8>(ui->spinBoxDefMin->value()), static_cast<u8>(ui->spinBoxSpAMin->value()),
-                        static_cast<u8>(ui->spinBoxSpDMin->value()), static_cast<u8>(ui->spinBoxSpeMin->value()) };
+    std::array<u8, 6> low = { static_cast<u8>(ui->spinBoxHPMin->value()),  static_cast<u8>(ui->spinBoxAtkMin->value()),
+                              static_cast<u8>(ui->spinBoxDefMin->value()), static_cast<u8>(ui->spinBoxSpAMin->value()),
+                              static_cast<u8>(ui->spinBoxSpDMin->value()), static_cast<u8>(ui->spinBoxSpeMin->value()) };
 
     return low;
 }
 
-QVector<u8> IVFilter::getUpper() const
+std::array<u8, 6> IVFilter::getUpper() const
 {
-    QVector<u8> high = { static_cast<u8>(ui->spinBoxHPMax->value()),  static_cast<u8>(ui->spinBoxAtkMax->value()),
-                         static_cast<u8>(ui->spinBoxDefMax->value()), static_cast<u8>(ui->spinBoxSpAMax->value()),
-                         static_cast<u8>(ui->spinBoxSpDMax->value()), static_cast<u8>(ui->spinBoxSpeMax->value()) };
+    std::array<u8, 6> high = { static_cast<u8>(ui->spinBoxHPMax->value()),  static_cast<u8>(ui->spinBoxAtkMax->value()),
+                               static_cast<u8>(ui->spinBoxDefMax->value()), static_cast<u8>(ui->spinBoxSpAMax->value()),
+                               static_cast<u8>(ui->spinBoxSpDMax->value()), static_cast<u8>(ui->spinBoxSpeMax->value()) };
 
     return high;
 }

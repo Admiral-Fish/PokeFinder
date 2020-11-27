@@ -33,9 +33,9 @@ WildGenerator3::WildGenerator3(u32 initialAdvances, u32 maxAdvances, u16 tid, u1
 {
 }
 
-QVector<WildState> WildGenerator3::generate(u32 seed) const
+std::vector<WildState> WildGenerator3::generate(u32 seed) const
 {
-    QVector<WildState> states;
+    std::vector<WildState> states;
 
     PokeRNG rng(seed);
     rng.advance(initialAdvances + offset);
@@ -206,7 +206,7 @@ QVector<WildState> WildGenerator3::generate(u32 seed) const
 
         if (filter.compareState(state))
         {
-            states.append(state);
+            states.emplace_back(state);
         }
     }
 

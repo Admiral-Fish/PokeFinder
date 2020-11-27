@@ -19,35 +19,35 @@
 
 #include "Translator.hpp"
 #include <Core/Enum/Game.hpp>
-#include <QFile>
-#include <QTextStream>
-#include <QVector>
+#include <algorithm>
+#include <fstream>
+#include <map>
+#include <sstream>
 
 namespace
 {
-    QString language;
-    QStringList characteristics;
-    QStringList natures;
-    QStringList hiddenPowers;
-    QStringList species;
-    const QStringList genders = { "♂", "♀", "-" };
-    const QStringList buttons = { "R", "L", "X", "Y", "A", "B", "Select", "Start", "Right", "Left", "Up", "Down" };
+    std::string language;
+    std::string folder;
+    std::vector<std::string> characteristics;
+    std::vector<std::string> natures;
+    std::vector<std::string> hiddenPowers;
+    std::vector<std::string> species;
+    const std::vector<std::string> genders = { "♂", "♀", "-" };
+    const std::vector<std::string> buttons = { "R", "L", "X", "Y", "A", "B", "Select", "Start", "Right", "Left", "Up", "Down" };
 
-    QStringList readFile(const QString &name)
+    std::vector<std::string> readFile(const std::string &name)
     {
-        QFile file(name);
+        std::string path = folder + "/i18n/" + language + "/" + name + language + ".txt";
+        std::ifstream file(path);
 
-        QStringList input;
-        if (file.open(QIODevice::ReadOnly | QIODevice::Text))
+        std::vector<std::string> input;
+        if (file.is_open())
         {
-            QTextStream ts(&file);
-            ts.setCodec("UTF-8");
-
-            while (!ts.atEnd())
+            std::string line;
+            while (std::getline(file, line))
             {
-                input << ts.readLine();
+                input.emplace_back(line);
             }
-            file.close();
         }
         return input;
     }
@@ -55,122 +55,129 @@ namespace
 
 namespace Translator
 {
-
-    void init(const QString &locale)
+    void init(const std::string &locale, const std::string &location)
     {
         language = locale;
-        characteristics = readFile(QString(":/text/characteristic_%1.txt").arg(language));
-        natures = readFile(QString(":/text/natures_%1.txt").arg(language));
-        hiddenPowers = readFile(QString(":/text/powers_%1.txt").arg(language));
-        species = readFile(QString(":/text/species_%1.txt").arg(language));
+        folder = location;
+
+        characteristics = readFile("characteristic_");
+        natures = readFile("natures_");
+        hiddenPowers = readFile("powers_");
+        species = readFile("species_");
     }
 
-    QStringList getCharacteristic()
+    std::vector<std::string> getCharacteristic()
     {
         return characteristics;
     }
 
-    QStringList getNatures()
+    std::vector<std::string> getNatures()
     {
         return natures;
     }
 
-    QString getNature(u8 nature)
+    std::string getNature(u8 nature)
     {
-        return natures.at(nature);
+        return natures[nature];
     }
 
-    QStringList getHiddenPowers()
+    std::vector<std::string> getHiddenPowers()
     {
         return hiddenPowers;
     }
 
-    QString getHiddenPower(u8 power)
+    std::string getHiddenPower(u8 power)
     {
-        return hiddenPowers.at(power);
+        return hiddenPowers[power];
     }
 
-    QString getSpecies(u16 specie)
+    std::string getSpecies(u16 specie)
     {
-        return species.at(specie - 1);
+        return species[specie - 1];
     }
 
-    QStringList getSpecies(const QVector<u16> &nums)
+    std::vector<std::string> getSpecies(const std::vector<u16> &nums)
     {
-        QStringList s;
-        for (u16 num : nums)
-        {
-            s.append(species.at(num - 1));
-        }
+        std::vector<std::string> s;
+        std::transform(nums.begin(), nums.end(), std::back_inserter(s), [](u16 num) { return species[num - 1]; });
         return s;
     }
 
-    QString getGender(u8 gender)
+    std::string getGender(u8 gender)
     {
-        return genders.at(gender);
+        return genders[gender];
     }
 
-    QStringList getLocations(const QVector<u8> &nums, Game game)
+    std::vector<std::string> getGenders()
     {
-        QString version;
+        return genders;
+    }
+
+    std::vector<std::string> getLocations(const std::vector<u8> &nums, Game game)
+    {
+        std::vector<std::string> strings;
         if (game & Game::FRLG)
         {
-            version = "frlg";
+            strings = readFile("frlg_");
         }
         else if (game & Game::RSE)
         {
-            version = "rse";
+            strings = readFile("rse_");
         }
         else if (game & Game::DPPt)
         {
-            version = "dppt";
+            strings = readFile("dppt_");
         }
         else
         {
-            version = "hgss";
+            strings = readFile("hgss_");
         }
 
-        QStringList strings = readFile(QString(":/text/%1_%2.txt").arg(version, language));
-        QMap<int, QString> map;
-        for (const QString &string : strings)
+        std::map<int, std::string> map;
+        for (const std::string &string : strings)
         {
-            QStringList entry = string.split(",");
-            map.insert(entry.at(0).toInt(), entry.at(1));
+            std::vector<std::string> entry;
+
+            std::string token;
+            std::istringstream stream(string);
+            while (std::getline(stream, token, ','))
+            {
+                entry.emplace_back(token);
+            }
+
+            map.emplace(std::stoi(entry[0]), entry[1]);
         }
 
-        QStringList locations;
-        for (const u8 num : nums)
-        {
-            locations.append(map[num]);
-        }
+        std::vector<std::string> locations;
+        std::transform(nums.begin(), nums.end(), std::back_inserter(locations), [&map](u8 num) { return map[num]; });
 
         return locations;
     }
 
-    QString getKeypress(u8 keypress)
+    std::string getKeypress(u8 keypress)
     {
-        return buttons.at(keypress);
+        return buttons[keypress];
     }
 
-    QString getKeypresses(u16 keypresses)
+    std::string getKeypresses(u16 keypresses)
     {
         if (keypresses == 0)
         {
             return "None";
         }
 
-        QString result = "";
+        std::string result = "";
 
         for (int i = 0; i < 12; i++)
         {
             if (keypresses & (1 << i))
             {
-                if (!result.isEmpty())
+                if (!result.empty())
                 {
                     result += " + ";
                 }
 
-                result += buttons.at(i);
+                result += buttons[i];
             }
         }
 

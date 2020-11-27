@@ -34,7 +34,7 @@ QVariant IDModel5::data(const QModelIndex &index, int role) const
 {
     if (role == Qt::DisplayRole)
     {
-        auto state = model.at(index.row());
+        auto state = model[index.row()];
         switch (index.column())
         {
         case 0:
@@ -48,9 +48,9 @@ QVariant IDModel5::data(const QModelIndex &index, int role) const
         case 4:
             return state.getSID();
         case 5:
-            return state.getDateTime().toString("MM-dd-yyyy hh:mm:ss");
+            return QString::fromStdString(state.getDateTime().toString());
         case 6:
-            return Translator::getKeypresses(state.getKeypress());
+            return QString::fromStdString(Translator::getKeypresses(state.getKeypress()));
         }
     }
     return QVariant();
@@ -60,7 +60,7 @@ QVariant IDModel5::headerData(int section, Qt::Orientation orientation, int role
 {
     if (role == Qt::DisplayRole && orientation == Qt::Horizontal)
     {
-        return header.at(section);
+        return header[section];
     }
     return QVariant();
 }

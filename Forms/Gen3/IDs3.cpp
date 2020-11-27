@@ -95,24 +95,24 @@ void IDs3::xdColoSearch()
     u32 initialAdvances = ui->textBoxXDColoStartingAdvance->getUInt();
     u32 maxAdvances = ui->textBoxXDColoMaxAdvances->getUInt();
 
-    QVector<u16> tidFilter;
-    QVector<u16> sidFilter;
-    QVector<u16> tsvFilter;
+    std::vector<u16> tidFilter;
+    std::vector<u16> sidFilter;
+    std::vector<u16> tsvFilter;
 
     if (ui->checkBoxXDColoTID->isChecked())
     {
-        tidFilter.append(ui->textBoxXDColoTID->getUShort());
+        tidFilter.emplace_back(ui->textBoxXDColoTID->getUShort());
     }
 
     if (ui->checkBoxXDColoSID->isChecked())
     {
-        sidFilter.append(ui->textBoxXDColoSID->getUShort());
+        sidFilter.emplace_back(ui->textBoxXDColoSID->getUShort());
     }
 
     if (ui->checkBoxXDColoPID->isChecked())
     {
         u32 pid = ui->textBoxXDColoPID->getUInt();
-        tsvFilter.append(((pid >> 16) ^ (pid & 0xffff)) >> 3);
+        tsvFilter.emplace_back(((pid >> 16) ^ (pid & 0xffff)) >> 3);
     }
 
     IDFilter filter(tidFilter, sidFilter, tsvFilter);
@@ -130,18 +130,18 @@ void IDs3::frlgeSearch()
     u32 initialAdvances = ui->textBoxFRLGEStartingAdvance->getUInt();
     u32 maxAdvances = ui->textBoxFRLGEMaxAdvances->getUInt();
 
-    QVector<u16> sidFilter;
-    QVector<u16> tsvFilter;
+    std::vector<u16> sidFilter;
+    std::vector<u16> tsvFilter;
 
     if (ui->checkBoxFRLGESID->isChecked())
     {
-        sidFilter.append(ui->textBoxFRLGESID->getUShort());
+        sidFilter.emplace_back(ui->textBoxFRLGESID->getUShort());
     }
 
     if (ui->checkBoxFRLGEPID->isChecked())
     {
         u32 pid = ui->textBoxFRLGEPID->getUInt();
-        tsvFilter.append(((pid >> 16) ^ (pid & 0xffff)) >> 3);
+        tsvFilter.emplace_back(((pid >> 16) ^ (pid & 0xffff)) >> 3);
     }
 
     IDFilter filter({ tid }, sidFilter, tsvFilter);
@@ -163,29 +163,29 @@ void IDs3::rsSearch()
     }
     else
     {
-        seed = Utilities::calcGen3Seed(ui->dateTimeEdit->dateTime());
+        seed = Utilities::calcGen3Seed(ui->dateTimeEdit->getDateTime());
     }
     u32 initialAdvances = ui->textBoxRSStartingAdvance->getUInt();
     u32 maxAdvances = ui->textBoxRSMaxAdvances->getUInt();
 
-    QVector<u16> tidFilter;
-    QVector<u16> sidFilter;
-    QVector<u16> tsvFilter;
+    std::vector<u16> tidFilter;
+    std::vector<u16> sidFilter;
+    std::vector<u16> tsvFilter;
 
     if (ui->checkBoxRSTID->isChecked())
     {
-        tidFilter.append(ui->textBoxRSTID->getUShort());
+        tidFilter.emplace_back(ui->textBoxRSTID->getUShort());
     }
 
     if (ui->checkBoxRSSID->isChecked())
     {
-        sidFilter.append(ui->textBoxRSSID->getUShort());
+        sidFilter.emplace_back(ui->textBoxRSSID->getUShort());
     }
 
     if (ui->checkBoxRSPID->isChecked())
     {
         u32 pid = ui->textBoxRSPID->getUInt();
-        tsvFilter.append(((pid >> 16) ^ (pid & 0xffff)) >> 3);
+        tsvFilter.emplace_back(((pid >> 16) ^ (pid & 0xffff)) >> 3);
     }
 
     IDFilter filter(tidFilter, sidFilter, tsvFilter);

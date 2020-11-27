@@ -23,7 +23,7 @@
 #include <Core/Enum/Method.hpp>
 #include <Core/Gen5/Generators/EventGenerator5.hpp>
 #include <Core/Gen5/Keypresses.hpp>
-#include <Core/Gen5/ProfileLoader5.hpp>
+#include <Core/Parents/ProfileLoader.hpp>
 #include <Core/Gen5/Searchers/EventSearcher5.hpp>
 #include <Core/Parents/PersonalInfo.hpp>
 #include <Core/Util/Translator.hpp>
@@ -66,7 +66,7 @@ void Event5::updateProfiles()
 
     for (const auto &profile : profiles)
     {
-        ui->comboBoxProfiles->addItem(profile.getName());
+        ui->comboBoxProfiles->addItem(QString::fromStdString(profile.getName()));
     }
 
     QSettings setting;
@@ -79,7 +79,7 @@ void Event5::updateProfiles()
 
 bool Event5::hasProfiles() const
 {
-    return !profiles.isEmpty();
+    return !profiles.empty();
 }
 
 void Event5::setupModels()
@@ -102,16 +102,22 @@ void Event5::setupModels()
     ui->textBoxSearcherEventTID->setValues(InputType::TIDSID);
     ui->textBoxSearcherEventSID->setValues(InputType::TIDSID);
 
-    ui->comboBoxGeneratorNature->addItems(Translator::getNatures());
-    ui->comboBoxSearcherNature->addItems(Translator::getNatures());
+    for (const std::string &nature : Translator::getNatures())
+    {
+        ui->comboBoxGeneratorNature->addItem(QString::fromStdString(nature));
+        ui->comboBoxSearcherNature->addItem(QString::fromStdString(nature));
+    }
 
     ui->filterGenerator->disableControls(Controls::EncounterSlots);
     ui->filterSearcher->disableControls(Controls::EncounterSlots | Controls::DisableFilter | Controls::UseDelay);
 
-    QVector<u16> species(649);
+    std::vector<u16> species(649);
     std::iota(species.begin(), species.end(), 1);
-    ui->comboBoxGeneratorSpecies->addItems(Translator::getSpecies(species));
-    ui->comboBoxSearcherSpecies->addItems(Translator::getSpecies(species));
+    for (const std::string &specie : Translator::getSpecies(species))
+    {
+        ui->comboBoxGeneratorSpecies->addItem(QString::fromStdString(specie));
+        ui->comboBoxSearcherSpecies->addItem(QString::fromStdString(specie));
+    }
 
     QAction *outputTXTGenerator = generatorMenu->addAction(tr("Output Results to TXT"));
     QAction *outputCSVGenerator = generatorMenu->addAction(tr("Output Results to CSV"));
@@ -173,7 +179,7 @@ PGF Event5::getSearcherParameters() const
                ui->checkBoxSearcherEgg->isChecked());
 }
 
-void Event5::updateProgress(const QVector<SearcherState5<State>> &states, int progress)
+void Event5::updateProgress(const std::vector<SearcherState5<State>> &states, int progress)
 {
     searcherModel->addItems(states);
     ui->progressBar->setValue(progress);
@@ -227,8 +233,8 @@ void Event5::search()
 
     auto *searcher = new EventSearcher5(currentProfile);
 
-    QDate start = ui->dateEditSearcherStartDate->date();
-    QDate end = ui->dateEditSearcherEndDate->date();
+    Date start = ui->dateEditSearcherStartDate->getDate();
+    Date end = ui->dateEditSearcherEndDate->getDate();
 
     int maxProgress = Keypresses::getKeyPresses(currentProfile.getKeypresses(), currentProfile.getSkipLR()).size();
     maxProgress *= 86400 * (start.daysTo(end) + 1);
@@ -265,15 +271,16 @@ void Event5::generatorImportEvent()
         QFile file(fileName);
         if (file.open(QIODevice::ReadOnly))
         {
-            QByteArray data = file.readAll();
-            file.close();
-            if (data.size() != 204)
+            if (file.size() != 204)
             {
                 QMessageBox error;
                 error.setText("Invalid format for wondercard");
                 error.exec();
                 return;
             }
+
+            std::array<u8, 204> data;
+            file.read(reinterpret_cast<char *>(data.data()), 204);
 
             PGF pgf(data);
 
@@ -292,10 +299,10 @@ void Event5::generatorImportEvent()
             ui->comboBoxGeneratorAbility->setCurrentIndex(pgf.getAbilityType());
             ui->comboBoxGeneratorShiny->setCurrentIndex(pgf.getPIDType());
 
-            QVector<QCheckBox *> checkBoxes = { ui->checkBoxGeneratorHP,  ui->checkBoxGeneratorAtk, ui->checkBoxGeneratorDef,
-                                                ui->checkBoxGeneratorSpA, ui->checkBoxGeneratorSpD, ui->checkBoxGeneratorSpe };
-            QVector<QSpinBox *> spinBoxes = { ui->spinBoxGeneratorHP,  ui->spinBoxGeneratorAtk, ui->spinBoxGeneratorDef,
-                                              ui->spinBoxGeneratorSpA, ui->spinBoxGeneratorSpD, ui->spinBoxGeneratorSpe };
+            std::vector<QCheckBox *> checkBoxes = { ui->checkBoxGeneratorHP,  ui->checkBoxGeneratorAtk, ui->checkBoxGeneratorDef,
+                                                    ui->checkBoxGeneratorSpA, ui->checkBoxGeneratorSpD, ui->checkBoxGeneratorSpe };
+            std::vector<QSpinBox *> spinBoxes = { ui->spinBoxGeneratorHP,  ui->spinBoxGeneratorAtk, ui->spinBoxGeneratorDef,
+                                                  ui->spinBoxGeneratorSpA, ui->spinBoxGeneratorSpD, ui->spinBoxGeneratorSpe };
 
             for (u8 i = 0; i < 6; i++)
             {
@@ -313,7 +320,7 @@ void Event5::generatorImportEvent()
 
             ui->checkBoxGeneratorEgg->setChecked(pgf.isEgg());
 
-            ui->filterGenerator->setGenderRatio(PersonalInfo::loadPersonal(5).at(pgf.getSpecies()).getGender());
+            ui->filterGenerator->setGenderRatio(PersonalInfo::loadPersonal(5)[pgf.getSpecies()].getGender());
         }
         else
         {
@@ -333,15 +340,17 @@ void Event5::searcherImportEvent()
         QFile file(fileName);
         if (file.open(QIODevice::ReadOnly))
         {
-            QByteArray data = file.readAll();
-            file.close();
-            if (data.size() != 204)
+            if (file.size() != 204)
             {
                 QMessageBox error;
                 error.setText("Invalid format for wondercard");
                 error.exec();
                 return;
             }
+
+            std::array<u8, 204> data;
+            file.read(reinterpret_cast<char *>(data.data()), 204);
+            file.close();
 
             PGF pgf(data);
 
@@ -360,10 +369,10 @@ void Event5::searcherImportEvent()
             ui->comboBoxSearcherAbility->setCurrentIndex(pgf.getAbilityType());
             ui->comboBoxSearcherShiny->setCurrentIndex(pgf.getPIDType());
 
-            QVector<QCheckBox *> checkBoxes = { ui->checkBoxSearcherHP,  ui->checkBoxSearcherAtk, ui->checkBoxSearcherDef,
-                                                ui->checkBoxSearcherSpA, ui->checkBoxSearcherSpD, ui->checkBoxSearcherSpe };
-            QVector<QSpinBox *> spinBoxes = { ui->spinBoxSearcherHP,  ui->spinBoxSearcherAtk, ui->spinBoxSearcherDef,
-                                              ui->spinBoxSearcherSpA, ui->spinBoxSearcherSpD, ui->spinBoxSearcherSpe };
+            std::vector<QCheckBox *> checkBoxes = { ui->checkBoxSearcherHP,  ui->checkBoxSearcherAtk, ui->checkBoxSearcherDef,
+                                                    ui->checkBoxSearcherSpA, ui->checkBoxSearcherSpD, ui->checkBoxSearcherSpe };
+            std::vector<QSpinBox *> spinBoxes = { ui->spinBoxSearcherHP,  ui->spinBoxSearcherAtk, ui->spinBoxSearcherDef,
+                                                  ui->spinBoxSearcherSpA, ui->spinBoxSearcherSpD, ui->spinBoxSearcherSpe };
 
             for (u8 i = 0; i < 6; i++)
             {
@@ -381,7 +390,7 @@ void Event5::searcherImportEvent()
 
             ui->checkBoxSearcherEgg->setChecked(pgf.isEgg());
 
-            ui->filterSearcher->setGenderRatio(PersonalInfo::loadPersonal(5).at(pgf.getSpecies()).getGender());
+            ui->filterSearcher->setGenderRatio(PersonalInfo::loadPersonal(5)[pgf.getSpecies()].getGender());
         }
         else
         {
@@ -414,19 +423,19 @@ void Event5::profileIndexChanged(int index)
 {
     if (index >= 0)
     {
-        currentProfile = profiles.at(index);
+        currentProfile = profiles[index];
 
         ui->labelProfileTIDValue->setText(QString::number(currentProfile.getTID()));
         ui->labelProfileSIDValue->setText(QString::number(currentProfile.getSID()));
         ui->labelProfileMACAddressValue->setText(QString::number(currentProfile.getMac(), 16));
-        ui->labelProfileDSTypeValue->setText(currentProfile.getDSTypeString());
+        ui->labelProfileDSTypeValue->setText(QString::fromStdString(currentProfile.getDSTypeString()));
         ui->labelProfileVCountValue->setText(QString::number(currentProfile.getVCount(), 16));
         ui->labelProfileTimer0Value->setText(QString::number(currentProfile.getTimer0Min(), 16) + "-"
                                              + QString::number(currentProfile.getTimer0Max(), 16));
         ui->labelProfileGxStatValue->setText(QString::number(currentProfile.getGxStat()));
         ui->labelProfileVFrameValue->setText(QString::number(currentProfile.getVFrame()));
-        ui->labelProfileKeypressesValue->setText(currentProfile.getKeypressesString());
-        ui->labelProfileGameValue->setText(currentProfile.getVersionString());
+        ui->labelProfileKeypressesValue->setText(QString::fromStdString(currentProfile.getKeypressesString()));
+        ui->labelProfileGameValue->setText(QString::fromStdString(currentProfile.getVersionString()));
     }
 }
 

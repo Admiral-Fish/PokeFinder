@@ -30,9 +30,9 @@ class StationarySearcher3 : public StationarySearcher
 public:
     StationarySearcher3() = default;
     StationarySearcher3(u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter);
-    void startSearch(const QVector<u8> &min, const QVector<u8> &max);
+    void startSearch(const std::array<u8, 6> &min, const std::array<u8, 6> &max);
     void cancelSearch();
-    QVector<State> getResults();
+    std::vector<State> getResults();
     int getProgress() const;
 
 private:
@@ -41,12 +41,12 @@ private:
 
     bool searching;
     int progress;
-    QVector<State> results;
+    std::vector<State> results;
     std::mutex mutex;
 
-    QVector<State> search(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const;
-    QVector<State> searchMethod124(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const;
-    QVector<State> searchMethod1Reverse(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const;
+    std::vector<State> search(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const;
+    std::vector<State> searchMethod124(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const;
+    std::vector<State> searchMethod1Reverse(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const;
 };
 
 #endif // STATIONARYSEARCHER3_HPP

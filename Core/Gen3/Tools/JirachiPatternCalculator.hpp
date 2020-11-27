@@ -21,11 +21,12 @@
 #define JIRACHIPATTERNCALCULATOR_HPP
 
 #include <Core/Util/Global.hpp>
-#include <QStringList>
+#include <string>
+#include <vector>
 
 namespace JirachiPatternCalculator
 {
-    QStringList getPatterns(u32 seed);
+    std::vector<std::string> getPatterns(u32 seed);
 }
 
 #endif // JIRACHIPATTERNCALCULATOR_HPP

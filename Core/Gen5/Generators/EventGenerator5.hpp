@@ -30,7 +30,7 @@ public:
     EventGenerator5() = default;
     EventGenerator5(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter,
                     const PGF &parameters);
-    QVector<State> generate(u64 seed) const;
+    std::vector<State> generate(u64 seed) const;
 
 private:
     PGF parameters;

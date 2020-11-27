@@ -21,50 +21,32 @@
 
 namespace SeedTimeCalculator3
 {
-    QVector<SeedTimeState3> calculateTimes(u32 seed, u32 advance, u16 year)
+    std::vector<SeedTimeState3> calculateTimes(u32 seed, u32 advance, u16 year)
     {
-        QVector<SeedTimeState3> states;
+        std::vector<SeedTimeState3> states;
 
-        u32 minDay = 0;
-        u32 maxDay = 0;
+        constexpr Date start;
+        Date date(year, 1, 1);
+        Date end(year, 12, 31);
 
-        // For whatever reason the start date is different if the year is greater then 2000
-        QDateTime start(QDate(year == 2000 ? 2000 : 2001, 1, 1), QTime(0, 0));
-
-        // Game decides to ignore a year of counting days
-        for (u16 x = 2001; x < year; x++)
+        for (; date <= end; date = date.addDays(1))
         {
-            QDate temp(x, 1, 1);
-            minDay += static_cast<u32>(temp.daysInYear());
-            maxDay += static_cast<u32>(temp.daysInYear());
-        }
+            // The if statement considering the year is to handle a bug the game has
+            // If the year is greater then 2000 it does not count the days in that year
+            u16 days = start.daysTo(date) - (year > 2000 ? 366 : 0) + 1;
 
-        // Loop through the year generating seeds to check against user input
-        for (u8 month = 1; month < 13; month++)
-        {
-            QDate temp(2000, month, 1);
-            maxDay += static_cast<u32>(temp.daysInMonth());
-            for (u32 day = minDay; day < maxDay; day++)
+            for (u8 hour = 0; hour < 24; hour++)
             {
-                for (u32 hour = 0; hour < 24; hour++)
+                for (u8 minute = 0; minute < 60; minute++)
                 {
-                    for (u32 minute = 0; minute < 60; minute++)
+                    u32 v = 1440 * days + 960 * (hour / 10) + 60 * (hour % 10) + 16 * (minute / 10) + (minute % 10);
+                    v = (v >> 16) ^ (v & 0xffff);
+                    if (v == seed)
                     {
-                        // Formula to generate intial seed
-                        u32 v = 1440 * day + 960 * (hour / 10) + 60 * (hour % 10) + 16 * (minute / 10) + (minute % 10) + 0x5A0;
-                        v = (v >> 16) ^ (v & 0xFFFF);
-
-                        if (v == seed)
-                        {
-                            QDateTime finalTime = start.addDays(day).addSecs((hour * 60 * 60) + (minute * 60));
-
-                            SeedTimeState3 result(finalTime, advance);
-                            states.append(result);
-                        }
+                        states.emplace_back(DateTime(date, Time(hour, minute, 0)), advance);
                     }
                 }
             }
-            minDay += static_cast<u32>(temp.daysInMonth());
         }
 
         return states;

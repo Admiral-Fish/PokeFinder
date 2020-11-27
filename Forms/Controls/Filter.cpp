@@ -20,6 +20,7 @@
 #include "Filter.hpp"
 #include "ui_Filter.h"
 #include <Core/Util/Translator.hpp>
+#include <array>
 
 Filter::Filter(QWidget *parent) : QWidget(parent), ui(new Ui::Filter)
 {
@@ -43,12 +44,12 @@ Filter::~Filter()
     delete ui;
 }
 
-QVector<u8> Filter::getMinIVs() const
+std::array<u8, 6> Filter::getMinIVs() const
 {
     return ui->ivFilter->getLower();
 }
 
-QVector<u8> Filter::getMaxIVs() const
+std::array<u8, 6> Filter::getMaxIVs() const
 {
     return ui->ivFilter->getUpper();
 }
@@ -68,17 +69,17 @@ u8 Filter::getGenderRatio() const
     return ui->comboBoxGenderRatio->getCurrentByte();
 }
 
-QVector<bool> Filter::getEncounterSlots()
+std::vector<bool> Filter::getEncounterSlots()
 {
     return ui->checkListEncounterSlot->getChecked();
 }
 
-void Filter::setEncounterSlots(const QStringList &encounterSlots) const
+void Filter::setEncounterSlots(const std::vector<std::string> &encounterSlots) const
 {
     ui->checkListEncounterSlot->setup(encounterSlots);
 }
 
-void Filter::toggleEncounterSlots(const QVector<bool> &encounterSlots) const
+void Filter::toggleEncounterSlots(const std::vector<bool> &encounterSlots) const
 {
     ui->checkListEncounterSlot->setChecks(encounterSlots);
 }
@@ -88,12 +89,12 @@ void Filter::resetEncounterSlots() const
     ui->checkListEncounterSlot->resetChecks();
 }
 
-QVector<bool> Filter::getHiddenPowers()
+std::vector<bool> Filter::getHiddenPowers()
 {
     return ui->checkListHiddenPower->getChecked();
 }
 
-QVector<bool> Filter::getNatures()
+std::vector<bool> Filter::getNatures()
 {
     return ui->checkListNature->getChecked();
 }

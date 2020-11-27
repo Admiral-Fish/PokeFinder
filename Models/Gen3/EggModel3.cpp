@@ -57,7 +57,7 @@ QVariant EggModel3::data(const QModelIndex &index, int role) const
     {
         int column = getColumn(index.column());
 
-        const auto &state = model.at(index.row());
+        const auto &state = model[index.row()];
         switch (column)
         {
         case 0:
@@ -75,7 +75,7 @@ QVariant EggModel3::data(const QModelIndex &index, int role) const
             return shiny == 2 ? tr("Square") : shiny == 1 ? tr("Star") : tr("No");
         }
         case 6:
-            return Translator::getNature(state.getNature());
+            return QString::fromStdString(Translator::getNature(state.getNature()));
         case 7:
             return state.getAbility();
         case 8:
@@ -94,11 +94,11 @@ QVariant EggModel3::data(const QModelIndex &index, int role) const
             }
             return state.getIV(static_cast<u8>(column - 8));
         case 14:
-            return Translator::getHiddenPower(state.getHidden());
+            return QString::fromStdString(Translator::getHiddenPower(state.getHidden()));
         case 15:
             return state.getPower();
         case 16:
-            return Translator::getGender(state.getGender());
+            return QString::fromStdString(Translator::getGender(state.getGender()));
         }
     }
 
@@ -110,7 +110,7 @@ QVariant EggModel3::headerData(int section, Qt::Orientation orientation, int rol
     if (role == Qt::DisplayRole && orientation == Qt::Horizontal)
     {
         section = getColumn(section);
-        return header.at(section);
+        return header[section];
     }
     return QVariant();
 }

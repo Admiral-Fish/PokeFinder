@@ -19,8 +19,6 @@
 
 #include "Profile5.hpp"
 #include <Core/Enum/Game.hpp>
-#include <QStringList>
-#include <QTranslator>
 
 Profile5::Profile5() :
     mac(0x9BF123456),
@@ -41,9 +39,9 @@ Profile5::Profile5() :
     version = Game::White;
 }
 
-Profile5::Profile5(const QString &name, Game version, u16 tid, u16 sid, u64 mac, const QVector<bool> &keypresses, u8 vcount, u8 gxstat,
-                   u8 vframe, bool skipLR, u16 timer0Min, u16 timer0Max, bool softReset, bool memoryLink, bool shinyCharm, DSType dsType,
-                   Language language) :
+Profile5::Profile5(const std::string &name, Game version, u16 tid, u16 sid, u64 mac, const std::vector<bool> &keypresses, u8 vcount,
+                   u8 gxstat, u8 vframe, bool skipLR, u16 timer0Min, u16 timer0Max, bool softReset, bool memoryLink, bool shinyCharm,
+                   DSType dsType, Language language) :
     Profile(name, version, tid, sid),
     mac(mac),
     keypresses(keypresses),
@@ -66,26 +64,30 @@ u64 Profile5::getMac() const
     return mac;
 }
 
-QVector<bool> Profile5::getKeypresses() const
+std::vector<bool> Profile5::getKeypresses() const
 {
     return keypresses;
 }
 
-QString Profile5::getKeypressesString() const
+std::string Profile5::getKeypressesString() const
 {
-    QStringList strings;
-    for (u8 i = 0; i < keypresses.size(); i++)
+    std::string keys = "";
+    for (size_t i = 0; i < keypresses.size(); i++)
     {
-        if (i == 0 && keypresses.at(i))
+        if (i == 0 && keypresses[i])
         {
-            strings.append(QObject::tr("None"));
+            keys += "None";
         }
-        else if (keypresses.at(i))
+        else if (keypresses[i])
         {
-            strings.append(QString::number(i));
+            if (i != keypresses.size())
+            {
+                keys += ", ";
+            }
+            keys += std::to_string(i);
         }
     }
-    return strings.join(", ");
+    return keys;
 }
 
 u8 Profile5::getVCount() const
@@ -138,16 +140,16 @@ DSType Profile5::getDSType() const
     return dsType;
 }
 
-QString Profile5::getDSTypeString() const
+std::string Profile5::getDSTypeString() const
 {
     switch (dsType)
     {
     case DSType::DSOriginal:
-        return QObject::tr("DS Lite");
+        return "DS Lite";
     case DSType::DSi:
-        return QObject::tr("DSi");
+        return "DSi";
     case DSType::DS3:
-        return QObject::tr("3DS");
+        return "3DS";
     }
     return "-";
 }
@@ -157,7 +159,7 @@ Language Profile5::getLanguage() const
     return language;
 }
 
-QString Profile5::getLanguageString() const
+std::string Profile5::getLanguageString() const
 {
     switch (language)
     {

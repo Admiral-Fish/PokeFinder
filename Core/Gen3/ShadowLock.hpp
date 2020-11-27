@@ -22,7 +22,6 @@
 
 #include <Core/Gen3/LockInfo.hpp>
 #include <Core/RNG/LCRNG.hpp>
-#include <QVector>
 
 class ShadowLock
 {
@@ -41,7 +40,7 @@ public:
     void switchLock(u8 lockNum, Method version);
 
 private:
-    QVector<LockInfo> locks;
+    std::vector<LockInfo> locks;
     ShadowType type;
 };
 

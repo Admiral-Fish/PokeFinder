@@ -47,7 +47,7 @@ private:
 
 private slots:
     void search();
-    void updateProgress(const QVector<GameCubeRTCState> &results);
+    void updateProgress(const std::vector<GameCubeRTCState> &results);
 };
 
 #endif // GAMECUBERTC_HPP

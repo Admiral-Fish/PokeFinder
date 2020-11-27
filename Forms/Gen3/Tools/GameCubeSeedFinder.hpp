@@ -37,8 +37,8 @@ public:
 
 private:
     Ui::GameCubeSeedFinder *ui;
-    QVector<u32> galeSeeds;
-    QVector<u32> coloSeeds;
+    std::vector<u32> galeSeeds;
+    std::vector<u32> coloSeeds;
     u8 galesRound;
     u8 coloRound;
     int galesPrecalc;
@@ -46,11 +46,11 @@ private:
     QString galesPath;
     QString coloPath;
 
-    void updateGales(const QVector<u32> &seeds);
+    void updateGales(const std::vector<u32> &seeds);
     void updateGalesProgress(int progress);
-    void updateColo(const QVector<u32> &seeds);
+    void updateColo(const std::vector<u32> &seeds);
     void updateColoProgress(int progress);
-    void updateChannel(const QVector<u32> &seeds);
+    void updateChannel(const std::vector<u32> &seeds);
     void updateChannelProgress(int progress);
 
 private slots:

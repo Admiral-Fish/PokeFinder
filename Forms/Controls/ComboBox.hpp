@@ -27,7 +27,7 @@ class ComboBox : public QComboBox
 {
 public:
     explicit ComboBox(QWidget *parent);
-    void setup(const QVector<QVariant> &data);
+    void setup(const std::vector<QVariant> &data);
     u8 getCurrentByte() const;
     u16 getCurrentUShort() const;
     int getCurrentInt() const;

@@ -33,11 +33,11 @@ QVariant SeedTimeModel3::data(const QModelIndex &index, int role) const
 {
     if (role == Qt::DisplayRole)
     {
-        const auto &state = model.at(index.row());
+        const auto &state = model[index.row()];
         switch (index.column())
         {
         case 0:
-            return state.getDateTime();
+            return QString::fromStdString(state.getDateTime());
         case 1:
             return state.getAdvances();
         }
@@ -49,7 +49,7 @@ QVariant SeedTimeModel3::headerData(int section, Qt::Orientation orientation, in
 {
     if (role == Qt::DisplayRole && orientation == Qt::Horizontal)
     {
-        return header.at(section);
+        return header[section];
     }
     return QVariant();
 }

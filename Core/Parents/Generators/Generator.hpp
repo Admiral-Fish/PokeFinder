@@ -22,6 +22,7 @@
 
 #include <Core/Parents/Filters/StateFilter.hpp>
 #include <Core/Util/Global.hpp>
+#include <vector>
 
 enum Encounter : u8;
 enum Lead : u8;

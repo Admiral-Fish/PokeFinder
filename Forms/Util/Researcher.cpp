@@ -26,6 +26,7 @@
 #include <Core/RNG/TinyMT.hpp>
 #include <Models/Util/ResearcherModel.hpp>
 #include <QSettings>
+#include <array>
 #include <functional>
 
 Researcher::Researcher(QWidget *parent) : QWidget(parent), ui(new Ui::Researcher)
@@ -117,13 +118,13 @@ void Researcher::setupModels()
     }
 }
 
-u64 Researcher::getCustom(const QString &text, const ResearcherState &state, const QVector<ResearcherState> &states)
+u64 Researcher::getCustom(const QString &text, const ResearcherState &state, const std::vector<ResearcherState> &states)
 {
     switch (keys[text])
     {
     case 0:
     case 1:
-        return state.getAdvances();
+        return state.getState();
     case 2:
         return state.getHigh32();
     case 3:
@@ -151,23 +152,23 @@ u64 Researcher::getCustom(const QString &text, const ResearcherState &state, con
     case 14:
         return state.getCustom(8);
     case 15:
-        return states.isEmpty() ? 0 : states[states.size() - 1].getCustom(0);
+        return states.empty() ? 0 : states[states.size() - 1].getCustom(0);
     case 16:
-        return states.isEmpty() ? 0 : states[states.size() - 1].getCustom(1);
+        return states.empty() ? 0 : states[states.size() - 1].getCustom(1);
     case 17:
-        return states.isEmpty() ? 0 : states[states.size() - 1].getCustom(2);
+        return states.empty() ? 0 : states[states.size() - 1].getCustom(2);
     case 18:
-        return states.isEmpty() ? 0 : states[states.size() - 1].getCustom(3);
+        return states.empty() ? 0 : states[states.size() - 1].getCustom(3);
     case 19:
-        return states.isEmpty() ? 0 : states[states.size() - 1].getCustom(4);
+        return states.empty() ? 0 : states[states.size() - 1].getCustom(4);
     case 20:
-        return states.isEmpty() ? 0 : states[states.size() - 1].getCustom(5);
+        return states.empty() ? 0 : states[states.size() - 1].getCustom(5);
     case 21:
-        return states.isEmpty() ? 0 : states[states.size() - 1].getCustom(6);
+        return states.empty() ? 0 : states[states.size() - 1].getCustom(6);
     case 22:
-        return states.isEmpty() ? 0 : states[states.size() - 1].getCustom(7);
+        return states.empty() ? 0 : states[states.size() - 1].getCustom(7);
     case 23:
-        return states.isEmpty() ? 0 : states[states.size() - 1].getCustom(8);
+        return states.empty() ? 0 : states[states.size() - 1].getCustom(8);
     default:
         return 0;
     }
@@ -185,33 +186,33 @@ void Researcher::resizeHeader()
     }
 }
 
-QVector<bool> Researcher::getHexCheck()
+std::array<bool, 10> Researcher::getHexCheck()
 {
-    QVector<bool> hex;
+    std::array<bool, 10> hex;
 
-    hex.append(ui->checkBoxHex1->isChecked());
-    hex.append(ui->checkBoxHex2->isChecked());
-    hex.append(ui->checkBoxHex3->isChecked());
-    hex.append(ui->checkBoxHex4->isChecked());
-    hex.append(ui->checkBoxHex5->isChecked());
-    hex.append(ui->checkBoxHex6->isChecked());
-    hex.append(ui->checkBoxHex7->isChecked());
-    hex.append(ui->checkBoxHex8->isChecked());
-    hex.append(ui->checkBoxHex9->isChecked());
-    hex.append(ui->checkBoxHex10->isChecked());
+    hex[0] = ui->checkBoxHex1->isChecked();
+    hex[1] = ui->checkBoxHex2->isChecked();
+    hex[2] = ui->checkBoxHex3->isChecked();
+    hex[3] = ui->checkBoxHex4->isChecked();
+    hex[4] = ui->checkBoxHex5->isChecked();
+    hex[5] = ui->checkBoxHex6->isChecked();
+    hex[6] = ui->checkBoxHex7->isChecked();
+    hex[7] = ui->checkBoxHex8->isChecked();
+    hex[8] = ui->checkBoxHex9->isChecked();
+    hex[9] = ui->checkBoxHex10->isChecked();
 
     return hex;
 }
 
 template <class RNGType>
-QVector<u64> getStates(RNGType rng, u32 initial, u32 max)
+std::vector<u64> getStates(RNGType rng, u32 initial, u32 max)
 {
-    QVector<u64> states;
+    std::vector<u64> states;
 
     rng.advance(initial);
     for (u32 i = 0; i < max; i++)
     {
-        states.append(rng.next());
+        states.emplace_back(rng.next());
     }
 
     return states;
@@ -233,34 +234,34 @@ void Researcher::generate()
         seed >>= 32;
     }
 
-    QVector<u64> rngStates;
+    std::vector<u64> rngStates;
     if (ui->rngSelection->currentIndex() == 0)
     {
         switch (ui->comboBoxRNG32Bit->currentIndex())
         {
         case 0:
             rngStates = getStates(PokeRNG(seed), initialAdvances, maxAdvances);
-            rngStates.prepend(seed);
+            rngStates.insert(rngStates.begin(), seed);
             break;
         case 1:
             rngStates = getStates(PokeRNGR(seed), initialAdvances, maxAdvances);
-            rngStates.prepend(seed);
+            rngStates.insert(rngStates.begin(), seed);
             break;
         case 2:
             rngStates = getStates(XDRNG(seed), initialAdvances, maxAdvances);
-            rngStates.prepend(seed);
+            rngStates.insert(rngStates.begin(), seed);
             break;
         case 3:
             rngStates = getStates(XDRNGR(seed), initialAdvances, maxAdvances);
-            rngStates.prepend(seed);
+            rngStates.insert(rngStates.begin(), seed);
             break;
         case 4:
             rngStates = getStates(ARNG(seed), initialAdvances, maxAdvances);
-            rngStates.prepend(seed);
+            rngStates.insert(rngStates.begin(), seed);
             break;
         case 5:
             rngStates = getStates(ARNGR(seed), initialAdvances, maxAdvances);
-            rngStates.prepend(seed);
+            rngStates.insert(rngStates.begin(), seed);
             break;
         case 6:
             rngStates = getStates(MT(seed), initialAdvances, maxAdvances);
@@ -273,11 +274,11 @@ void Researcher::generate()
         {
         case 0:
             rngStates = getStates(BWRNG(seed), initialAdvances, maxAdvances);
-            rngStates.prepend(seed);
+            rngStates.insert(rngStates.begin(), seed);
             break;
         case 1:
             rngStates = getStates(BWRNGR(seed), initialAdvances, maxAdvances);
-            rngStates.prepend(seed);
+            rngStates.insert(rngStates.begin(), seed);
             break;
         case 2:
             if (seed > 0xffffffff)
@@ -315,10 +316,10 @@ void Researcher::generate()
     calc["-"] = [](u64 x, u64 y) { return x - y; };
     calc["*"] = [](u64 x, u64 y) { return x * y; };
 
-    QVector<bool> calcCustom(10);
-    QVector<u64> customRValue(10);
-    QVector<bool> pass(10);
-    QVector<std::function<u64(u64, u64)>> calculators(10);
+    std::array<bool, 10> calcCustom;
+    std::array<u64, 10> customRValue;
+    std::array<bool, 10> pass;
+    std::array<std::function<u64(u64, u64)>, 10> calculators;
 
     calcCustom[0] = ui->lineEditRValue1->text() != "";
     calcCustom[1] = ui->lineEditRValue2->text() != "" || ui->comboBoxRValue2->currentIndex() != 0;
@@ -354,7 +355,7 @@ void Researcher::generate()
 
     for (int i = 0; i < 10; i++)
     {
-        if (calcCustom.at(i) && !pass.at(i))
+        if (calcCustom[i] && !pass[i])
         {
             QMessageBox error;
             error.setText(tr("You must check the Hex box in order to use Hex values."));
@@ -390,28 +391,28 @@ void Researcher::generate()
                           ui->comboBoxRValue9->currentText(),
                           ui->comboBoxRValue10->currentText() };
 
-    QVector<ResearcherState> states;
+    std::vector<ResearcherState> states;
     for (u32 cnt = 0; cnt < maxAdvances; cnt++)
     {
         ResearcherState state(rng64Bit, cnt + initialAdvances);
 
-        state.setState(rngStates.at(cnt));
+        state.setState(rngStates[cnt]);
 
         for (u8 j = 0; j < 10; j++)
         {
-            if (calcCustom.at(j))
+            if (calcCustom[j])
             {
-                u64 temp = getCustom(textL.at(j), state, states);
+                u64 temp = getCustom(textL[j], state, states);
 
                 if (textR[j] != tr("None"))
                 {
-                    customRValue[j] = getCustom(textR.at(j), state, states);
+                    customRValue[j] = getCustom(textR[j], state, states);
                 }
 
-                state.setCustom(j, calculators.at(j)(temp, customRValue.at(j)));
+                state.setCustom(j, calculators[j](temp, customRValue[j]));
             }
         }
-        states.append(state);
+        states.emplace_back(state);
     }
 
     model->setHex(getHexCheck());

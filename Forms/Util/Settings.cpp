@@ -19,6 +19,7 @@
 
 #include "Settings.hpp"
 #include "ui_Settings.h"
+#include <Core/Parents/ProfileLoader.hpp>
 #include <QApplication>
 #include <QCryptographicHash>
 #include <QFileDialog>
@@ -54,7 +55,7 @@ void Settings::setupModels()
     QStringList languages = { "zh", "en", "fr", "de", "it", "ja", "ko", "es" };
     for (int i = 0; i < languages.size(); i++)
     {
-        QString lang = languages.at(i);
+        const QString &lang = languages[i];
         ui->comboBoxLanguage->setItemData(i, lang);
         if (language == lang)
         {
@@ -67,7 +68,7 @@ void Settings::setupModels()
     QStringList styles = { "dark", "light" };
     for (int i = 0; i < styles.size(); i++)
     {
-        QString sty = styles.at(i);
+        const QString &sty = styles[i];
         ui->comboBoxStyle->setItemData(i, sty);
         if (style == sty)
         {
@@ -177,6 +178,8 @@ void Settings::changeProfiles()
 
         QSettings setting;
         setting.setValue("settings/profiles", fileName);
+
+        ProfileLoader::init(fileName.toStdString());
 
         ui->lineEditProfiles->setText(fileName);
     }

@@ -50,7 +50,7 @@ private:
     Ui::Eggs5 *ui;
     EggGeneratorModel5 *generatorModel = nullptr;
     EggSearcherModel5 *searcherModel = nullptr;
-    QVector<Profile5> profiles;
+    std::vector<Profile5> profiles;
     Profile5 currentProfile;
     QMenu *generatorMenu = nullptr;
     QMenu *searcherMenu = nullptr;
@@ -58,7 +58,7 @@ private:
     void setupModels();
 
 private slots:
-    void updateProgress(const QVector<SearcherState5<EggState>> &states, int progress);
+    void updateProgress(const std::vector<SearcherState5<EggState>> &states, int progress);
     void generate();
     void search();
     void calculateInitialAdvances();

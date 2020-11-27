@@ -24,12 +24,12 @@ IDState5::IDState5(u32 advance, u16 tid, u16 sid) : IDState(advance, tid, sid)
     tsv = (tid ^ sid) >> 3;
 }
 
-void IDState5::setDateTime(const QDateTime &dt)
+void IDState5::setDateTime(const DateTime &dt)
 {
     this->dt = dt;
 }
 
-QDateTime IDState5::getDateTime() const
+DateTime IDState5::getDateTime() const
 {
     return dt;
 }

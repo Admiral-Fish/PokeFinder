@@ -22,7 +22,7 @@
 #include <Core/Enum/Game.hpp>
 #include <Core/Enum/Method.hpp>
 #include <Core/Gen3/Generators/StationaryGenerator3.hpp>
-#include <Core/Gen3/ProfileLoader3.hpp>
+#include <Core/Parents/ProfileLoader.hpp>
 #include <Core/Gen3/Searchers/StationarySearcher3.hpp>
 #include <Core/Util/Translator.hpp>
 #include <Forms/Gen3/Profile/ProfileManager3.hpp>
@@ -57,18 +57,14 @@ void Stationary3::updateProfiles()
     connect(ui->comboBoxProfiles, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &Stationary3::profilesIndexChanged);
 
     profiles = { Profile3() };
-    for (const auto &profile : ProfileLoader3::getProfiles())
-    {
-        if (!(profile.getVersion() & Game::GC))
-        {
-            profiles.append(profile);
-        }
-    }
+    auto completeProfiles = ProfileLoader3::getProfiles();
+    std::copy_if(completeProfiles.begin(), completeProfiles.end(), std::back_inserter(profiles),
+                 [](const Profile3 &profile) { return !(profile.getVersion() & Game::GC); });
 
     ui->comboBoxProfiles->clear();
     for (const auto &profile : profiles)
     {
-        ui->comboBoxProfiles->addItem(profile.getName());
+        ui->comboBoxProfiles->addItem(QString::fromStdString(profile.getName()));
     }
 
     QSettings setting;
@@ -125,7 +121,7 @@ void Stationary3::setupModels()
     }
 }
 
-void Stationary3::updateProgress(const QVector<State> &states, int progress)
+void Stationary3::updateProgress(const std::vector<State> &states, int progress)
 {
     searcherModel->addItems(states);
     ui->progressBar->setValue(progress);
@@ -166,8 +162,8 @@ void Stationary3::search()
     ui->pushButtonSearch->setEnabled(false);
     ui->pushButtonCancel->setEnabled(true);
 
-    QVector<u8> min = ui->filterSearcher->getMinIVs();
-    QVector<u8> max = ui->filterSearcher->getMaxIVs();
+    std::array<u8, 6> min = ui->filterSearcher->getMinIVs();
+    std::array<u8, 6> max = ui->filterSearcher->getMaxIVs();
 
     StateFilter filter(ui->filterSearcher->getGender(), ui->filterSearcher->getAbility(), ui->filterSearcher->getShiny(), false, min, max,
                        ui->filterSearcher->getNatures(), ui->filterSearcher->getHiddenPowers(), {});
@@ -182,7 +178,7 @@ void Stationary3::search()
     int maxProgress = 1;
     for (u8 i = 0; i < 6; i++)
     {
-        maxProgress *= max.at(i) - min.at(i) + 1;
+        maxProgress *= max[i] - min[i] + 1;
     }
     ui->progressBar->setRange(0, maxProgress);
 
@@ -209,11 +205,11 @@ void Stationary3::profilesIndexChanged(int index)
 {
     if (index >= 0)
     {
-        currentProfile = profiles.at(index);
+        currentProfile = profiles[index];
 
         ui->labelProfileTIDValue->setText(QString::number(currentProfile.getTID()));
         ui->labelProfileSIDValue->setText(QString::number(currentProfile.getSID()));
-        ui->labelProfileGameValue->setText(currentProfile.getVersionString());
+        ui->labelProfileGameValue->setText(QString::fromStdString(currentProfile.getVersionString()));
     }
 }
 

@@ -19,25 +19,26 @@
 
 #include "IDFilter.hpp"
 #include <Core/Parents/States/IDState.hpp>
+#include <algorithm>
 
-IDFilter::IDFilter(const QVector<u16> &tidFilter, const QVector<u16> &sidFilter, const QVector<u16> &tsvFilter) :
+IDFilter::IDFilter(const std::vector<u16> &tidFilter, const std::vector<u16> &sidFilter, const std::vector<u16> &tsvFilter) :
     tidFilter(tidFilter), sidFilter(sidFilter), tsvFilter(tsvFilter)
 {
 }
 
 bool IDFilter::compare(const IDState &state) const
 {
-    if (!tidFilter.isEmpty() && !tidFilter.contains(state.getTID()))
+    if (std::find(tidFilter.begin(), tidFilter.end(), state.getTID()) == tidFilter.end())
     {
         return false;
     }
 
-    if (!sidFilter.isEmpty() && !sidFilter.contains(state.getSID()))
+    if (std::find(sidFilter.begin(), sidFilter.end(), state.getSID()) == sidFilter.end())
     {
         return false;
     }
 
-    if (!tsvFilter.isEmpty() && !tsvFilter.contains(state.getTSV()))
+    if (std::find(tsvFilter.begin(), tsvFilter.end(), state.getTSV()) == tsvFilter.end())
     {
         return false;
     }

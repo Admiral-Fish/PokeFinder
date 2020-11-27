@@ -54,7 +54,7 @@ QVariant StationaryGeneratorModel4::data(const QModelIndex &index, int role) con
 {
     if (role == Qt::DisplayRole)
     {
-        const auto &state = model.at(index.row());
+        const auto &state = model[index.row()];
         int column = getColumn(index.column());
         switch (column)
         {
@@ -67,7 +67,7 @@ QVariant StationaryGeneratorModel4::data(const QModelIndex &index, int role) con
         }
         case 2:
         {
-            return Utilities::getChatot(state.getSeed());
+            return QString::fromStdString(Utilities::getChatot(state.getSeed()));
         }
         case 3:
             return QString::number(state.getPID(), 16).toUpper().rightJustified(8, '0');
@@ -77,7 +77,7 @@ QVariant StationaryGeneratorModel4::data(const QModelIndex &index, int role) con
             return shiny == 2 ? tr("Square") : shiny == 1 ? tr("Star") : tr("No");
         }
         case 5:
-            return Translator::getNature(state.getNature());
+            return QString::fromStdString(Translator::getNature(state.getNature()));
         case 6:
             return state.getAbility();
         case 7:
@@ -88,11 +88,11 @@ QVariant StationaryGeneratorModel4::data(const QModelIndex &index, int role) con
         case 12:
             return state.getIV(static_cast<u8>(column - 7));
         case 13:
-            return Translator::getHiddenPower(state.getHidden());
+            return QString::fromStdString(Translator::getHiddenPower(state.getHidden()));
         case 14:
             return state.getPower();
         case 15:
-            return Translator::getGender(state.getGender());
+            return QString::fromStdString(Translator::getGender(state.getGender()));
         }
     }
     return QVariant();
@@ -104,7 +104,7 @@ QVariant StationaryGeneratorModel4::headerData(int section, Qt::Orientation orie
     {
         section = getColumn(section);
 
-        return header.at(section);
+        return header[section];
     }
     return QVariant();
 }
@@ -136,7 +136,7 @@ void StationarySearcherModel4::setMethod(Method method)
 
 void StationarySearcherModel4::sort(int column, Qt::SortOrder order)
 {
-    if (!model.isEmpty())
+    if (!model.empty())
     {
         emit layoutAboutToBeChanged();
         bool flag = order == Qt::AscendingOrder;
@@ -232,7 +232,7 @@ QVariant StationarySearcherModel4::data(const QModelIndex &index, int role) cons
 {
     if (role == Qt::DisplayRole)
     {
-        const auto &state = model.at(index.row());
+        const auto &state = model[index.row()];
         int column = getColumn(index.column());
         switch (column)
         {
@@ -269,7 +269,7 @@ QVariant StationarySearcherModel4::data(const QModelIndex &index, int role) cons
             return shiny == 2 ? tr("Square") : shiny == 1 ? tr("Star") : tr("No");
         }
         case 5:
-            return Translator::getNature(state.getNature());
+            return QString::fromStdString(Translator::getNature(state.getNature()));
         case 6:
             return state.getAbility();
         case 7:
@@ -280,11 +280,11 @@ QVariant StationarySearcherModel4::data(const QModelIndex &index, int role) cons
         case 12:
             return state.getIV(static_cast<u8>(column - 7));
         case 13:
-            return Translator::getHiddenPower(state.getHidden());
+            return QString::fromStdString(Translator::getHiddenPower(state.getHidden()));
         case 14:
             return state.getPower();
         case 15:
-            return Translator::getGender(state.getGender());
+            return QString::fromStdString(Translator::getGender(state.getGender()));
         }
     }
     return QVariant();
@@ -295,7 +295,7 @@ QVariant StationarySearcherModel4::headerData(int section, Qt::Orientation orien
     if (role == Qt::DisplayRole && orientation == Qt::Horizontal)
     {
         section = getColumn(section);
-        return header.at(section);
+        return header[section];
     }
     return QVariant();
 }

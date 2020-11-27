@@ -21,7 +21,8 @@
 #define STATEFILTER_HPP
 
 #include <Core/Util/Global.hpp>
-#include <QVector>
+#include <array>
+#include <vector>
 
 class State;
 class WildState;
@@ -30,8 +31,8 @@ class StateFilter
 {
 public:
     StateFilter() = default;
-    StateFilter(u8 gender, u8 ability, u8 shiny, bool skip, const QVector<u8> &min, const QVector<u8> &max, const QVector<bool> &natures,
-                const QVector<bool> &powers, const QVector<bool> &encounters);
+    StateFilter(u8 gender, u8 ability, u8 shiny, bool skip, const std::array<u8, 6> &min, const std::array<u8, 6> &max,
+                const std::vector<bool> &natures, const std::vector<bool> &powers, const std::vector<bool> &encounters);
     bool compareState(const State &state) const;
     bool comparePID(const State &state) const;
     bool compareIVs(const State &state) const;
@@ -44,13 +45,13 @@ public:
     bool compareEncounterSlot(const WildState &currrentState) const;
 
 private:
-    QVector<u8> min;
-    QVector<u8> max;
+    std::array<u8, 6> min;
+    std::array<u8, 6> max;
     u8 gender;
     u8 ability;
-    QVector<bool> natures;
-    QVector<bool> powers;
-    QVector<bool> encounters;
+    std::vector<bool> natures;
+    std::vector<bool> powers;
+    std::vector<bool> encounters;
     u8 shiny;
     bool skip;
 };

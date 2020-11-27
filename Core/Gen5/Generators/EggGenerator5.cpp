@@ -22,6 +22,7 @@
 #include <Core/Enum/Method.hpp>
 #include <Core/RNG/LCRNG64.hpp>
 #include <Core/RNG/MT.hpp>
+#include <algorithm>
 
 inline bool isShiny(u32 pid, u16 tsv)
 {
@@ -39,7 +40,7 @@ EggGenerator5::EggGenerator5(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 
 {
 }
 
-QVector<EggState> EggGenerator5::generate(u64 seed) const
+std::vector<EggState> EggGenerator5::generate(u64 seed) const
 {
     switch (method)
     {
@@ -48,13 +49,13 @@ QVector<EggState> EggGenerator5::generate(u64 seed) const
     case Method::BW2Bred:
         return generateBW2(seed);
     default:
-        return QVector<EggState>();
+        return std::vector<EggState>();
     }
 }
 
-QVector<EggState> EggGenerator5::generateBW(u64 seed) const
+std::vector<EggState> EggGenerator5::generateBW(u64 seed) const
 {
-    QVector<EggState> states;
+    std::vector<EggState> states;
 
     MTFast<13, true> mt(seed >> 32, 7);
 
@@ -191,16 +192,16 @@ QVector<EggState> EggGenerator5::generateBW(u64 seed) const
 
         if (filter.compareState(state))
         {
-            states.append(state);
+            states.emplace_back(state);
         }
     }
 
     return states;
 }
 
-QVector<EggState> EggGenerator5::generateBW2(u64 seed) const
+std::vector<EggState> EggGenerator5::generateBW2(u64 seed) const
 {
-    QVector<EggState> states;
+    std::vector<EggState> states;
 
     MTFast<4> mt(seed >> 32, 2);
 
@@ -241,7 +242,7 @@ QVector<EggState> EggGenerator5::generateBW2(u64 seed) const
             if (filter.compareShiny(state) && filter.compareGender(state))
             {
                 state.setAdvances(initialAdvances + cnt);
-                states.append(state);
+                states.emplace_back(state);
             }
         }
     }

@@ -19,52 +19,51 @@
 
 #include "Profile.hpp"
 #include <Core/Enum/Game.hpp>
-#include <QTranslator>
 
-Profile::Profile() : name(QObject::tr("None")), version(Game::Emerald), tid(12345), sid(54321)
+Profile::Profile() : name("None"), version(Game::Emerald), tid(12345), sid(54321)
 {
 }
 
-Profile::Profile(const QString &name, Game version, u16 tid, u16 sid) : name(name), version(version), tid(tid), sid(sid)
+Profile::Profile(const std::string &name, Game version, u16 tid, u16 sid) : name(name), version(version), tid(tid), sid(sid)
 {
 }
 
-QString Profile::getVersionString() const
+std::string Profile::getVersionString() const
 {
     switch (version)
     {
     case Game::Ruby:
-        return QObject::tr("Ruby");
+        return "Ruby";
     case Game::Sapphire:
-        return QObject::tr("Sapphire");
+        return "Sapphire";
     case Game::FireRed:
-        return QObject::tr("Fire Red");
+        return "Fire Red";
     case Game::LeafGreen:
-        return QObject::tr("Leaf Green");
+        return "Leaf Green";
     case Game::Emerald:
-        return QObject::tr("Emerald");
+        return "Emerald";
     case Game::Gales:
-        return QObject::tr("Gales");
+        return "Gales";
     case Game::Colosseum:
-        return QObject::tr("Colosseum");
+        return "Colosseum";
     case Game::Diamond:
-        return QObject::tr("Diamond");
+        return "Diamond";
     case Game::Pearl:
-        return QObject::tr("Pearl");
+        return "Pearl";
     case Game::Platinum:
-        return QObject::tr("Platinum");
+        return "Platinum";
     case Game::HeartGold:
-        return QObject::tr("Heart Gold");
+        return "Heart Gold";
     case Game::SoulSilver:
-        return QObject::tr("Soul Silver");
+        return "Soul Silver";
     case Game::Black:
-        return QObject::tr("Black");
+        return "Black";
     case Game::White:
-        return QObject::tr("White");
+        return "White";
     case Game::Black2:
-        return QObject::tr("Black 2");
+        return "Black 2";
     case Game::White2:
-        return QObject::tr("White 2");
+        return "White 2";
     default:
         return "-";
     }
@@ -75,7 +74,7 @@ Game Profile::getVersion() const
     return version;
 }
 
-QString Profile::getName() const
+std::string Profile::getName() const
 {
     return name;
 }

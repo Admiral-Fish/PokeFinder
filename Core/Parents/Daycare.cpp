@@ -21,8 +21,9 @@
 #include <Core/Enum/Game.hpp>
 #include <algorithm>
 
-Daycare::Daycare(const QVector<u8> &parent1IVs, const QVector<u8> &parent2IVs, u8 parent1Ability, u8 parent2Ability, u8 parent1Gender,
-                 u8 parent2Gender, u8 parent1Item, u8 parent2Item, u8 parent1Nature, u8 parent2Nature, bool masuada, bool nidoranVolbeat) :
+Daycare::Daycare(const std::array<u8, 6> &parent1IVs, const std::array<u8, 6> &parent2IVs, u8 parent1Ability, u8 parent2Ability,
+                 u8 parent1Gender, u8 parent2Gender, u8 parent1Item, u8 parent2Item, u8 parent1Nature, u8 parent2Nature, bool masuada,
+                 bool nidoranVolbeat) :
     parent1IVs(parent1IVs),
     parent2IVs(parent2IVs),
     parentAbility { parent1Ability, parent2Ability },
@@ -38,10 +39,10 @@ u8 Daycare::getParentIV(u8 parent, u8 index) const
 {
     if (parent == 0)
     {
-        return parent1IVs.at(index);
+        return parent1IVs[index];
     }
 
-    return parent2IVs.at(index);
+    return parent2IVs[index];
 }
 
 u8 Daycare::getParentAbility(u8 parent) const

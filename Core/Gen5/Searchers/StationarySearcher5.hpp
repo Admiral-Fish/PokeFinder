@@ -23,18 +23,18 @@
 #include <Core/Gen5/Generators/StationaryGenerator5.hpp>
 #include <Core/Gen5/Profile5.hpp>
 #include <Core/Gen5/States/StationaryState5.hpp>
-#include <QDate>
 #include <mutex>
+#include <unordered_map>
 
 class StationarySearcher5
 {
 public:
     StationarySearcher5() = default;
     explicit StationarySearcher5(const StationaryGenerator5 &ivGenerator, const StationaryGenerator5 &pidGenerator, const Profile5 &profile,
-                                 const QVector<QHash<u32, u32>> &ivMap, bool includePID);
-    void startSearch(int threads, QDate start, const QDate &end);
+                                 const std::vector<std::unordered_map<u32, u32>> &ivMap, bool includePID);
+    void startSearch(int threads, Date start, const Date &end);
     void cancelSearch();
-    QVector<StationaryState5> getResults();
+    std::vector<StationaryState5> getResults();
     int getProgress() const;
 
 private:
@@ -42,17 +42,17 @@ private:
     StationaryGenerator5 ivGenerator;
     StationaryGenerator5 pidGenerator;
     Profile5 profile;
-    QVector<QHash<u32, u32>> ivMap;
+    std::vector<std::unordered_map<u32, u32>> ivMap;
     bool includePID;
     bool fastSearch;
 
     bool searching;
     int progress;
-    QVector<StationaryState5> results;
+    std::vector<StationaryState5> results;
     std::mutex resultMutex;
     std::mutex progressMutex;
 
-    void search(const QDate &start, const QDate &end);
+    void search(const Date &start, const Date &end);
 };
 
 #endif // STATIONARYSEARCHER5_HPP

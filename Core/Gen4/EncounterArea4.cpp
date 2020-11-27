@@ -20,18 +20,18 @@
 #include "EncounterArea4.hpp"
 #include <Core/Parents/Slot.hpp>
 
-EncounterArea4::EncounterArea4(u8 location, Encounter type, const QVector<Slot> &pokemon) : EncounterArea(location, type, pokemon)
+EncounterArea4::EncounterArea4(u8 location, Encounter type, const std::vector<Slot> &pokemon) : EncounterArea(location, type, pokemon)
 {
 }
 
 u8 EncounterArea4::calcLevel(u8 index, u16 prng) const
 {
-    return (prng % (pokemon.at(index).getMaxLevel() - pokemon.at(index).getMinLevel() + 1)) + pokemon.at(index).getMinLevel();
+    return (prng % (pokemon[index].getMaxLevel() - pokemon[index].getMinLevel() + 1)) + pokemon[index].getMinLevel();
 }
 
 u8 EncounterArea4::calcLevel(u8 index) const
 {
-    return pokemon.at(index).getMinLevel();
+    return pokemon[index].getMinLevel();
 }
 
 u16 EncounterArea4::getEncounterRate() const

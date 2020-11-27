@@ -21,7 +21,7 @@
 #define ENCOUNTERS3_HPP
 
 #include <Core/Util/Global.hpp>
-#include <QVector>
+#include <vector>
 
 class EncounterArea3;
 enum Encounter : u8;
@@ -29,7 +29,7 @@ class Profile3;
 
 namespace Encounters3
 {
-    QVector<EncounterArea3> getEncounters(Encounter encounter, const Profile3 &profile);
+    std::vector<EncounterArea3> getEncounters(Encounter encounter, const Profile3 &profile);
 };
 
 #endif // ENCOUNTERS3_HPP

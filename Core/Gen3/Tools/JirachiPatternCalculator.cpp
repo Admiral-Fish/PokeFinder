@@ -19,13 +19,14 @@
 
 #include "JirachiPatternCalculator.hpp"
 #include <Core/RNG/LCRNG.hpp>
-#include <QVector>
+#include <iterator>
+#include <sstream>
 
 namespace JirachiPatternCalculator
 {
     namespace
     {
-        u8 getTarget(u8 index, const QVector<u16> &data)
+        u8 getTarget(u8 index, const std::vector<u16> &data)
         {
             /*
              *  thresh = [ .25,.33 ]
@@ -43,19 +44,19 @@ namespace JirachiPatternCalculator
             switch (index)
             {
             case 0: // 6 advances total
-                if (data.at(1) <= 0x4000)
+                if (data[1] <= 0x4000)
                 {
                     return 6;
                 }
                 break;
             case 1: // 7 advances total
-                if (data.at(2) > 0x4000 && data.at(1) <= 0x547a)
+                if (data[2] > 0x4000 && data[1] <= 0x547a)
                 {
                     return 7;
                 }
                 break;
             case 2: // 8 advances total
-                if (data.at(3) > 0x4000 && data.at(2) > 0x547a)
+                if (data[3] > 0x4000 && data[2] > 0x547a)
                 {
                     return 8;
                 }
@@ -65,17 +66,17 @@ namespace JirachiPatternCalculator
         }
     }
 
-    QStringList getPatterns(u32 seed)
+    std::vector<std::string> getPatterns(u32 seed)
     {
-        QStringList patterns;
+        std::vector<std::string> patterns;
 
         XDRNGR rng(seed);
-        QVector<u16> data;
-        data.append(seed >> 16);
+        std::vector<u16> data;
+        data.emplace_back(seed >> 16);
 
         for (u8 i = 0; i < 30; i++)
         {
-            data.append(rng.nextUShort());
+            data.emplace_back(rng.nextUShort());
         }
 
         // Loop through 3 possible pattern cases
@@ -85,7 +86,7 @@ namespace JirachiPatternCalculator
             if (index != 0)
             {
                 // Menu advances can't stop on 0; skip
-                u8 target = data.at(index) >> 14;
+                u8 target = data[index] >> 14;
                 if (target != 0)
                 {
                     // From start, game advances until(prng >> 30) gives a 1, 2, and 3
@@ -94,9 +95,9 @@ namespace JirachiPatternCalculator
 
                     // Determine if spread is possible
                     // Need to work backwards to see if going forward with 1, 2, and 3 lands on our target
-                    for (auto x = index + 1; x < data.size(); x++)
+                    for (size_t x = index + 1; x < data.size(); x++)
                     {
-                        u8 temp = data.at(x) >> 14;
+                        u8 temp = data[x] >> 14;
 
                         // Spread impossible
                         if (temp == target)
@@ -109,13 +110,16 @@ namespace JirachiPatternCalculator
                         // Spread valid
                         if ((mask & 14) == 14)
                         {
-                            QStringList pattern;
-                            for (int j = data.length() - 1; j > 0; j--)
+                            std::vector<std::string> pattern;
+                            for (size_t j = data.size() - 1; j > 0; j--)
                             {
-                                pattern.append(QString::number(data.at(j) >> 14));
+                                pattern.emplace_back(std::to_string(data[j] >> 14));
                             }
-                            pattern[pattern.size() - index] = "T:" + pattern.at(pattern.size() - index);
-                            patterns.append(pattern.join(" | "));
+                            pattern[pattern.size() - index] = "T:" + pattern[pattern.size() - index];
+
+                            std::stringstream stream;
+                            std::copy(pattern.begin(), pattern.end(), std::ostream_iterator<std::string>(stream, " | "));
+                            patterns.emplace_back(stream.str());
 
                             break;
                         }

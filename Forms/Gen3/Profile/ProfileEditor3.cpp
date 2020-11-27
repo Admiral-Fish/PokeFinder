@@ -38,7 +38,7 @@ ProfileEditor3::ProfileEditor3(const Profile3 &profile, QWidget *parent) : QDial
 
     setupModels();
 
-    ui->lineEditProfile->setText(profile.getName());
+    ui->lineEditProfile->setText(QString::fromStdString(profile.getName()));
     ui->comboBoxVersion->setCurrentIndex(ui->comboBoxVersion->findData(profile.getVersion()));
     ui->textBoxTID->setText(QString::number(profile.getTID()));
     ui->textBoxSID->setText(QString::number(profile.getSID()));
@@ -100,7 +100,7 @@ void ProfileEditor3::okay()
         return;
     }
 
-    fresh = Profile3(ui->lineEditProfile->text(), static_cast<Game>(ui->comboBoxVersion->currentData().toInt()),
+    fresh = Profile3(ui->lineEditProfile->text().toStdString(), static_cast<Game>(ui->comboBoxVersion->currentData().toInt()),
                      ui->textBoxTID->getUShort(), ui->textBoxSID->getUShort(), ui->checkBoxDeadBattery->isChecked());
 
     done(QDialog::Accepted);
