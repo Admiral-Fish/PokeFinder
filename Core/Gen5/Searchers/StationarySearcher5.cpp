@@ -100,8 +100,8 @@ void StationarySearcher5::search(const Date &start, const Date &end)
 
         for (Date date = start; date <= end; date = date.addDays(1))
         {
-            sha.setDate(static_cast<u8>(date.year() - 2000), static_cast<u8>(date.month()), static_cast<u8>(date.day()),
-                        static_cast<u8>(date.dayOfWeek()));
+            auto parts = date.getParts();
+            sha.setDate(parts[0] - 2000, parts[1], parts[2], date.dayOfWeek());
             sha.precompute();
 
             for (size_t i = 0; i < values.size(); i++)

@@ -92,7 +92,7 @@ void DreamRadarSearcher::search(DreamRadarGenerator generator, const Date &start
         for (Date date = start; date <= end; date = date.addDays(1))
         {
             auto parts = date.getParts();
-            sha.setDate(parts[0] - 2000, parts[1], parts[2], static_cast<u8>(date.dayOfWeek()));
+            sha.setDate(parts[0] - 2000, parts[1], parts[2], date.dayOfWeek());
             sha.precompute();
             for (size_t i = 0; i < values.size(); i++)
             {

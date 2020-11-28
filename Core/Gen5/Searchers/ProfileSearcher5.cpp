@@ -105,13 +105,16 @@ int ProfileSearcher5::getProgress() const
 void ProfileSearcher5::search(u8 vframeStart, u8 vframeEnd)
 {
     u32 button = Keypresses::getValues({ keypress }).front();
+    auto parts = date.getParts();
+    int hour = time.hour();
+    int minute = time.minute();
+
     for (u8 vframe = vframeStart; vframe < vframeEnd; vframe++)
     {
         for (u8 gxStat = minGxStat; gxStat <= maxGxStat; gxStat++)
         {
             SHA1 sha(version, language, dsType, mac, softReset, vframe, gxStat);
-            sha.setDate(static_cast<u8>(date.year() - 2000), static_cast<u8>(date.month()), static_cast<u8>(date.day()),
-                        static_cast<u8>(date.dayOfWeek()));
+            sha.setDate(parts[0] - 2000, parts[1], parts[2], date.dayOfWeek());
             sha.setButton(button);
             for (u16 timer0 = minTimer0; timer0 <= maxTimer0; timer0++)
             {
@@ -122,7 +125,7 @@ void ProfileSearcher5::search(u8 vframeStart, u8 vframeEnd)
 
                     for (u8 second = minSeconds; second <= maxSeconds; second++)
                     {
-                        sha.setTime(time.hour(), time.minute(), second, dsType);
+                        sha.setTime(hour, minute, second, dsType);
 
                         u64 seed = sha.hashSeed();
 

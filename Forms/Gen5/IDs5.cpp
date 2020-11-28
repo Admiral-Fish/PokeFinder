@@ -209,7 +209,7 @@ void IDs5::find()
         sha.setButton(values[i]);
 
         auto parts = date.getParts();
-        sha.setDate(parts[0] - 2000, parts[1], parts[2], static_cast<u8>(date.dayOfWeek()));
+        sha.setDate(parts[0] - 2000, parts[1], parts[2], date.dayOfWeek());
         sha.precompute();
 
         for (u8 second = minSecond; second <= maxSecond; second++)
