@@ -235,10 +235,8 @@ std::vector<QList<QStandardItem *>> IVtoPID::getSeedsChannel(u8 hp, u8 atk, u8 d
 {
     std::vector<QList<QStandardItem *>> results;
 
-    RNGEuclidean euclidean(Method::Channel);
-    std::vector<u32> seeds = euclidean.recoverLower27BitsChannel(hp, atk, def, spa, spd, spe);
-
-    for (const auto &seed : seeds)
+    std::vector<u32> seeds = RNGEuclidean::recoverLower27BitsChannel(hp, atk, def, spa, spd, spe);
+    for (const u32 seed : seeds)
     {
         XDRNGR rng(seed);
         rng.advance(3);

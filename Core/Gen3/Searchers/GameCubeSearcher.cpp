@@ -21,9 +21,10 @@
 #include <Core/Enum/Method.hpp>
 #include <Core/Enum/ShadowType.hpp>
 #include <Core/RNG/LCRNG.hpp>
+#include <Core/RNG/RNGEuclidean.hpp>
 
 GameCubeSearcher::GameCubeSearcher(u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter) :
-    Searcher(tid, sid, genderRatio, method, filter), euclidean(method), searching(false), progress(0)
+    Searcher(tid, sid, genderRatio, method, filter), searching(false), progress(0)
 {
 }
 
@@ -118,7 +119,7 @@ std::vector<GameCubeState> GameCubeSearcher::searchXDColo(u8 hp, u8 atk, u8 def,
         return states;
     }
 
-    auto seeds = euclidean.recoverLower16BitsIV(hp, atk, def, spa, spd, spe);
+    auto seeds = RNGEuclidean::recoverLower16BitsIV(hp, atk, def, spa, spd, spe);
     for (const auto &pair : seeds)
     {
         // Setup normal state
@@ -164,7 +165,7 @@ std::vector<GameCubeState> GameCubeSearcher::searchXDShadow(u8 hp, u8 atk, u8 de
         return states;
     }
 
-    auto seeds = euclidean.recoverLower16BitsIV(hp, atk, def, spa, spd, spe);
+    auto seeds = RNGEuclidean::recoverLower16BitsIV(hp, atk, def, spa, spd, spe);
     for (const auto &pair : seeds)
     {
         // Setup normal state
@@ -307,7 +308,7 @@ std::vector<GameCubeState> GameCubeSearcher::searchColoShadow(u8 hp, u8 atk, u8 
         return states;
     }
 
-    auto seeds = euclidean.recoverLower16BitsIV(hp, atk, def, spa, spd, spe);
+    auto seeds = RNGEuclidean::recoverLower16BitsIV(hp, atk, def, spa, spd, spe);
     for (const auto &pair : seeds)
     {
         // Setup normal state

@@ -76,9 +76,7 @@ namespace PIDIVCalculator
         {
             std::vector<PIDIVState> states;
 
-            RNGEuclidean euclidean(Method::XDColo);
-
-            auto seeds = euclidean.recoverLower16BitsPID(pid);
+            auto seeds = RNGEuclidean::recoverLower16BitsPID(pid);
             for (const auto &pair : seeds)
             {
                 XDRNGR backward(pair.first);
@@ -102,12 +100,10 @@ namespace PIDIVCalculator
         {
             std::vector<PIDIVState> states;
 
-            RNGEuclidean euclidean(Method::XDColo);
-
             // Whether PID is xored or unxored is determined by SID which we don't know by only providing a PID
             // So we have to check both xored and unxored and recalculate the PID to see if we have a match
 
-            auto seeds = euclidean.recoverLower16BitsPID(pid);
+            auto seeds = RNGEuclidean::recoverLower16BitsPID(pid);
             for (const auto &pair : seeds)
             {
                 XDRNGR backward(pair.first);
@@ -141,7 +137,7 @@ namespace PIDIVCalculator
                 }
             }
 
-            auto seedsXOR = euclidean.recoverLower16BitsPID(pid ^ 0x80000000);
+            auto seedsXOR = RNGEuclidean::recoverLower16BitsPID(pid ^ 0x80000000);
             for (const auto &pair : seedsXOR)
             {
                 XDRNGR backward(pair.first);

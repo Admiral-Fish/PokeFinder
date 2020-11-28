@@ -23,7 +23,6 @@
 #include <Core/Gen3/ShadowLock.hpp>
 #include <Core/Gen3/States/GameCubeState.hpp>
 #include <Core/Parents/Searchers/Searcher.hpp>
-#include <Core/RNG/RNGEuclidean.hpp>
 #include <mutex>
 
 class GameCubeSearcher : public Searcher
@@ -38,7 +37,6 @@ public:
     void setupNatureLock(u8 num);
 
 private:
-    RNGEuclidean euclidean;
     ShadowLock lock;
     ShadowType type;
 
