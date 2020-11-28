@@ -21,6 +21,13 @@
 
 constexpr int monthDays[13] = { 0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 
+inline bool isLeapYear(int year)
+{
+    // Since we know the years are bound between 2000 and 2099, we can simplify this check
+    // return ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0));
+    return (year % 4) == 0;
+}
+
 Date::Date(int year, int month, int day)
 {
     int a = month < 3 ? 1 : 0;
@@ -85,13 +92,6 @@ int Date::daysInMonth(int month, int year)
         return 29;
     }
     return monthDays[month];
-}
-
-bool Date::isLeapYear(int year)
-{
-    // Since we know the years are bound between 2000 and 2099, we can simplify this check
-    // return ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0));
-    return (year % 4) == 0;
 }
 
 std::string Date::toString() const

@@ -185,7 +185,7 @@ std::vector<SeedTime> SeedtoTime4::generate(u32 seed, u32 year, bool forceSecond
             static_cast<u8>(ui->lineEditHGSSLati->text().toUInt()) };
 
     std::vector<SeedTime> results;
-    for (int month = 0; month < 13; month++)
+    for (int month = 1; month <= 12; month++)
     {
         int maxDays = Date::daysInMonth(month, year);
         for (int day = 1; day <= maxDays; day++)
