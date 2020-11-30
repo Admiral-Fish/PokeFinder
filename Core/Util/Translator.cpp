@@ -19,15 +19,14 @@
 
 #include "Translator.hpp"
 #include <Core/Enum/Game.hpp>
+#include <Core/Resources/I18n.hpp>
 #include <algorithm>
-#include <fstream>
 #include <map>
 #include <sstream>
 
 namespace
 {
     std::string language;
-    std::string folder;
     std::vector<std::string> characteristics;
     std::vector<std::string> natures;
     std::vector<std::string> hiddenPowers;
@@ -37,33 +36,301 @@ namespace
 
     std::vector<std::string> readFile(const std::string &name)
     {
-        std::string path = folder + "/i18n/" + language + "/" + name + language + ".txt";
-        std::ifstream file(path);
-
-        std::vector<std::string> input;
-        if (file.is_open())
+        if (language == "de")
         {
-            std::string line;
-            while (std::getline(file, line))
+            if (name == "characteristic")
             {
-                input.emplace_back(line);
+                return characteristic_de;
+            }
+            else if (name == "natures")
+            {
+                return natures_de;
+            }
+            else if (name == "powers")
+            {
+                return powers_de;
+            }
+            else if (name == "species")
+            {
+                return species_de;
+            }
+            else if (name == "frlg")
+            {
+                return frlg_de;
+            }
+            else if (name == "rse")
+            {
+                return rse_de;
+            }
+            else if (name == "dppt")
+            {
+                return dppt_de;
+            }
+            else if (name == "hgss")
+            {
+                return hgss_de;
             }
         }
-        return input;
+        else if (language == "en")
+        {
+            if (name == "characteristic")
+            {
+                return characteristic_en;
+            }
+            else if (name == "natures")
+            {
+                return natures_en;
+            }
+            else if (name == "powers")
+            {
+                return powers_en;
+            }
+            else if (name == "species")
+            {
+                return species_en;
+            }
+            else if (name == "frlg")
+            {
+                return frlg_en;
+            }
+            else if (name == "rse")
+            {
+                return rse_en;
+            }
+            else if (name == "dppt")
+            {
+                return dppt_en;
+            }
+            else if (name == "hgss")
+            {
+                return hgss_en;
+            }
+        }
+        else if (language == "es")
+        {
+            if (name == "characteristic")
+            {
+                return characteristic_en;
+            }
+            else if (name == "natures")
+            {
+                return natures_en;
+            }
+            else if (name == "powers")
+            {
+                return powers_en;
+            }
+            else if (name == "species")
+            {
+                return species_en;
+            }
+            else if (name == "frlg")
+            {
+                return frlg_en;
+            }
+            else if (name == "rse")
+            {
+                return rse_en;
+            }
+            else if (name == "dppt")
+            {
+                return dppt_en;
+            }
+            else if (name == "hgss")
+            {
+                return hgss_en;
+            }
+        }
+        else if (language == "fr")
+        {
+            if (name == "characteristic")
+            {
+                return characteristic_fr;
+            }
+            else if (name == "natures")
+            {
+                return natures_fr;
+            }
+            else if (name == "powers")
+            {
+                return powers_fr;
+            }
+            else if (name == "species")
+            {
+                return species_fr;
+            }
+            else if (name == "frlg")
+            {
+                return frlg_fr;
+            }
+            else if (name == "rse")
+            {
+                return rse_fr;
+            }
+            else if (name == "dppt")
+            {
+                return dppt_fr;
+            }
+            else if (name == "hgss")
+            {
+                return hgss_fr;
+            }
+        }
+        else if (language == "it")
+        {
+            if (name == "characteristic")
+            {
+                return characteristic_it;
+            }
+            else if (name == "natures")
+            {
+                return natures_it;
+            }
+            else if (name == "powers")
+            {
+                return powers_it;
+            }
+            else if (name == "species")
+            {
+                return species_it;
+            }
+            else if (name == "frlg")
+            {
+                return frlg_it;
+            }
+            else if (name == "rse")
+            {
+                return rse_it;
+            }
+            else if (name == "dppt")
+            {
+                return dppt_it;
+            }
+            else if (name == "hgss")
+            {
+                return hgss_it;
+            }
+        }
+        else if (language == "ja")
+        {
+            if (name == "characteristic")
+            {
+                return characteristic_ja;
+            }
+            else if (name == "natures")
+            {
+                return natures_ja;
+            }
+            else if (name == "powers")
+            {
+                return powers_ja;
+            }
+            else if (name == "species")
+            {
+                return species_ja;
+            }
+            else if (name == "frlg")
+            {
+                return frlg_ja;
+            }
+            else if (name == "rse")
+            {
+                return rse_ja;
+            }
+            else if (name == "dppt")
+            {
+                return dppt_ja;
+            }
+            else if (name == "hgss")
+            {
+                return hgss_ja;
+            }
+        }
+        else if (language == "ko")
+        {
+            if (name == "characteristic")
+            {
+                return characteristic_ko;
+            }
+            else if (name == "natures")
+            {
+                return natures_ko;
+            }
+            else if (name == "powers")
+            {
+                return powers_ko;
+            }
+            else if (name == "species")
+            {
+                return species_ko;
+            }
+            else if (name == "frlg")
+            {
+                return frlg_ko;
+            }
+            else if (name == "rse")
+            {
+                return rse_ko;
+            }
+            else if (name == "dppt")
+            {
+                return dppt_ko;
+            }
+            else if (name == "hgss")
+            {
+                return hgss_ko;
+            }
+        }
+        else if (language == "zh")
+        {
+            if (name == "characteristic")
+            {
+                return characteristic_zh;
+            }
+            else if (name == "natures")
+            {
+                return natures_zh;
+            }
+            else if (name == "powers")
+            {
+                return powers_zh;
+            }
+            else if (name == "species")
+            {
+                return species_zh;
+            }
+            else if (name == "frlg")
+            {
+                return frlg_zh;
+            }
+            else if (name == "rse")
+            {
+                return rse_zh;
+            }
+            else if (name == "dppt")
+            {
+                return dppt_zh;
+            }
+            else if (name == "hgss")
+            {
+                return hgss_zh;
+            }
+        }
+
+        return std::vector<std::string>();
     }
 }
 
 namespace Translator
 {
-    void init(const std::string &locale, const std::string &location)
+    void init(const std::string &locale)
     {
         language = locale;
-        folder = location;
 
-        characteristics = readFile("characteristic_");
-        natures = readFile("natures_");
-        hiddenPowers = readFile("powers_");
-        species = readFile("species_");
+        characteristics = readFile("characteristic");
+        natures = readFile("natures");
+        hiddenPowers = readFile("powers");
+        species = readFile("species");
     }
 
     std::vector<std::string> getCharacteristic()
@@ -118,19 +385,19 @@ namespace Translator
         std::vector<std::string> strings;
         if (game & Game::FRLG)
         {
-            strings = readFile("frlg_");
+            strings = readFile("frlg");
         }
         else if (game & Game::RSE)
         {
-            strings = readFile("rse_");
+            strings = readFile("rse");
         }
         else if (game & Game::DPPt)
         {
-            strings = readFile("dppt_");
+            strings = readFile("dppt");
         }
         else
         {
-            strings = readFile("hgss_");
+            strings = readFile("hgss");
         }
 
         std::map<int, std::string> map;

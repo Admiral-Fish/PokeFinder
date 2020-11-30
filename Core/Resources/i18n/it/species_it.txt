@@ -1,4 +1,4 @@
-Bulbasaur
+﻿Bulbasaur
 Ivysaur
 Venusaur
 Charmander
@@ -26,10 +26,10 @@ Pikachu
 Raichu
 Sandshrew
 Sandslash
-Nidoran?
+Nidoran♀
 Nidorina
 Nidoqueen
-Nidoran?
+Nidoran♂
 Nidorino
 Nidoking
 Clefairy
@@ -80,7 +80,7 @@ Slowpoke
 Slowbro
 Magnemite
 Magneton
-Farfetch�d
+Farfetch’d
 Doduo
 Dodrio
 Seel
@@ -666,7 +666,7 @@ Spewpa
 Vivillon
 Litleo
 Pyroar
-Flab�b�
+Flabébé
 Floette
 Florges
 Skiddo

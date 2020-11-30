@@ -28,7 +28,7 @@ enum Game : u16;
 
 namespace Translator
 {
-    void init(const std::string &locale, const std::string &location = "");
+    void init(const std::string &locale);
     std::vector<std::string> getCharacteristic();
     std::vector<std::string> getNatures();
     std::string getNature(u8 nature);

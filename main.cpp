@@ -100,7 +100,7 @@ int main(int argc, char *argv[])
 #endif
 
     QString locale = setting.value("settings/locale").toString();
-    Translator::init(locale.toStdString(), a.applicationDirPath().toStdString());
+    Translator::init(locale.toStdString());
 
     QTranslator translator;
     if (translator.load(QString(":/i18n/PokeFinder_%1.qm").arg(locale)))
