@@ -60,22 +60,22 @@ ShadowType ShadowTeam::getType() const
 std::vector<ShadowTeam> ShadowTeam::loadShadowTeams(Method version)
 {
     const u8 *data;
-    int size;
+    size_t size;
 
     if (version == Method::XD)
     {
-        data = gales;
-        size = 747;
+        data = gales.data();
+        size = gales.size();
     }
     else
     {
-        data = colo;
-        size = 91;
+        data = colo.data();
+        size = colo.size();
     }
 
     std::vector<ShadowTeam> teams;
 
-    int offset = 0;
+    size_t offset = 0;
     while (offset < size)
     {
         u8 count = data[offset];

@@ -4,6 +4,7 @@ import os
 
 def embed_data(paths):
     arrays = []
+
     for path in paths:
         files = glob.glob(f"{path}/**/*.bin", recursive=True)
         for file in files:
@@ -12,7 +13,7 @@ def embed_data(paths):
 
             name = os.path.basename(f.name).replace(".bin", "")
 
-            string = f"constexpr u8 {name}[{len(data)}] = "
+            string = f"constexpr std::array<u8, {len(data)}> {name} = "
             string += " { "
 
             for i in range(len(data)):
@@ -29,7 +30,8 @@ def embed_data(paths):
 def write_data(arrays):
     f = open("Core\Resources\Resources.hpp", "w")
 
-    f.write("#include <Core/Util/Global.hpp>\n\n")
+    f.write("#include <Core/Util/Global.hpp>\n")
+    f.write("#include <array>\n\n")
 
     for array in arrays:
         f.write(f"{array}\n\n")
@@ -47,12 +49,20 @@ def embed_strings(paths):
 
             name = os.path.basename(f.name).replace(".txt", "")
 
-            string = f"std::vector<std::string> {name} = "
+            string_data = []
+            for line in data:
+                line = line.replace('\r', '').replace('\n', '')
+
+                for x in [int(y) for y in bytearray(line, encoding="utf-8")]:
+                    string_data.append(x)
+                string_data.append(0)
+
+            string = f"constexpr std::array<u8, {len(string_data)}> {name} = "
             string += " { "
 
-            for i in range(len(data)):
-                string += "\"" + str(data[i]).replace('\r', '').replace('\n', '') + "\""
-                if i != len(data) - 1:
+            for i in range(len(string_data)):
+                string += str(string_data[i])
+                if i != len(string_data) - 1:
                     string += ", "
 
             string += " };"
@@ -66,8 +76,8 @@ def embed_strings(paths):
 def write_strings(maps):
     f = open("Core\Resources\I18n.hpp", "w", encoding="utf-8")
 
-    f.write("#include <string>\n")
-    f.write("#include <vector>\n\n")
+    f.write("#include <Core/Util/Global.hpp>\n")
+    f.write("#include <array>\n\n")
 
     for map in maps:
         for string in map.values():
@@ -75,11 +85,12 @@ def write_strings(maps):
 
 
 def main():
-    arrays = embed_data(["Core\Resources\Encounters", "Core\Resources\Personal"])
+    arrays = embed_data(
+        ["Core\Resources\Encounters", "Core\Resources\Personal"])
     write_data(arrays)
 
     maps = embed_strings(["Core\Resources\i18n\de", "Core\Resources\i18n\en", "Core\Resources\i18n\es", "Core\Resources\i18n\\fr",
-                             "Core\Resources\i18n\it", "Core\Resources\i18n\ja", "Core\Resources\i18n\ko", "Core\Resources\i18n\zh", ])
+                          "Core\Resources\i18n\it", "Core\Resources\i18n\ja", "Core\Resources\i18n\ko", "Core\Resources\i18n\zh", ])
     write_strings(maps)
 
 

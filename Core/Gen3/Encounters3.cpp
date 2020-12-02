@@ -36,36 +36,36 @@ namespace Encounters3
         std::vector<std::array<u8, 120>> getData(Game game)
         {
             const u8 *data;
-            int size;
+            size_t size;
 
             if (game == Game::Emerald)
             {
-                data = emerald;
-                size = 10320;
+                data = emerald.data();
+                size = emerald.size();
             }
             else if (game == Game::FireRed)
             {
-                data = firered;
-                size = 12840;
+                data = emerald.data();
+                size = emerald.size();
             }
             else if (game == Game::LeafGreen)
             {
-                data = leafgreen;
-                size = 12840;
+                data = leafgreen.data();
+                size = leafgreen.size();
             }
             else if (game == Game::Ruby)
             {
-                data = ruby;
-                size = 9360;
+                data = ruby.data();
+                size = ruby.size();
             }
             else
             {
-                data = sapphire;
-                size = 9360;
+                data = sapphire.data();
+                size = sapphire.size();
             }
 
             std::vector<std::array<u8, 120>> encounters;
-            for (int i = 0; i < size; i += 120)
+            for (size_t i = 0; i < size; i += 120)
             {
                 std::array<u8, 120> entry;
                 std::memcpy(entry.data(), data + i, 120);

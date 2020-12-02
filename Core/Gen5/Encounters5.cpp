@@ -37,32 +37,32 @@ namespace Encounters5
         std::vector<std::vector<u8>> getData(Game game)
         {
             const u8 *data;
-            int size;
+            size_t size;
 
             if (game == Game::Black)
             {
-                data = black;
-                size = 34336;
+                data = black.data();
+                size = black.size();
             }
             else if (game == Game::Black2)
             {
-                data = black2;
-                size = 40368;
+                data = black2.data();
+                size = black2.size();
             }
             else if (game == Game::White)
             {
-                data = white;
-                size = 34336;
+                data = white.data();
+                size = white.size();
             }
             else
             {
-                data = white2;
-                size = 40369;
+                data = white2.data();
+                size = white2.size();
             }
 
             std::vector<std::vector<u8>> encounters;
             int count = 0;
-            for (int i = 0; i < size;)
+            for (size_t i = 0; i < size;)
             {
                 int length;
                 if (game & Game::BW)

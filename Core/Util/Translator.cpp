@@ -36,288 +36,366 @@ namespace
 
     std::vector<std::string> readFile(const std::string &name)
     {
+        const u8 *data;
+        size_t size = 0;
+
         if (language == "de")
         {
             if (name == "characteristic")
             {
-                return characteristic_de;
+                data = characteristic_de.data();
+                size = characteristic_de.size();
             }
             else if (name == "natures")
             {
-                return natures_de;
+                data = natures_de.data();
+                size = natures_de.size();
             }
             else if (name == "powers")
             {
-                return powers_de;
+                data = powers_de.data();
+                size = powers_de.size();
             }
             else if (name == "species")
             {
-                return species_de;
+                data = species_de.data();
+                size = species_de.size();
             }
             else if (name == "frlg")
             {
-                return frlg_de;
+                data = frlg_de.data();
+                size = frlg_de.size();
             }
             else if (name == "rse")
             {
-                return rse_de;
+                data = rse_de.data();
+                size = rse_de.size();
             }
             else if (name == "dppt")
             {
-                return dppt_de;
+                data = dppt_de.data();
+                size = dppt_de.size();
             }
             else if (name == "hgss")
             {
-                return hgss_de;
+                data = hgss_de.data();
+                size = hgss_de.size();
             }
         }
         else if (language == "en")
         {
             if (name == "characteristic")
             {
-                return characteristic_en;
+                data = characteristic_en.data();
+                size = characteristic_en.size();
             }
             else if (name == "natures")
             {
-                return natures_en;
+                data = natures_en.data();
+                size = natures_en.size();
             }
             else if (name == "powers")
             {
-                return powers_en;
+                data = powers_en.data();
+                size = powers_en.size();
             }
             else if (name == "species")
             {
-                return species_en;
+                data = species_en.data();
+                size = species_en.size();
             }
             else if (name == "frlg")
             {
-                return frlg_en;
+                data = frlg_en.data();
+                size = frlg_en.size();
             }
             else if (name == "rse")
             {
-                return rse_en;
+                data = rse_en.data();
+                size = rse_en.size();
             }
             else if (name == "dppt")
             {
-                return dppt_en;
+                data = dppt_en.data();
+                size = dppt_en.size();
             }
             else if (name == "hgss")
             {
-                return hgss_en;
+                data = hgss_en.data();
+                size = hgss_en.size();
             }
         }
         else if (language == "es")
         {
             if (name == "characteristic")
             {
-                return characteristic_en;
+                data = characteristic_es.data();
+                size = characteristic_es.size();
             }
             else if (name == "natures")
             {
-                return natures_en;
+                data = natures_es.data();
+                size = natures_es.size();
             }
             else if (name == "powers")
             {
-                return powers_en;
+                data = powers_es.data();
+                size = powers_es.size();
             }
             else if (name == "species")
             {
-                return species_en;
+                data = species_es.data();
+                size = species_es.size();
             }
             else if (name == "frlg")
             {
-                return frlg_en;
+                data = frlg_es.data();
+                size = frlg_es.size();
             }
             else if (name == "rse")
             {
-                return rse_en;
+                data = rse_es.data();
+                size = rse_es.size();
             }
             else if (name == "dppt")
             {
-                return dppt_en;
+                data = dppt_es.data();
+                size = dppt_es.size();
             }
             else if (name == "hgss")
             {
-                return hgss_en;
+                data = hgss_es.data();
+                size = hgss_es.size();
             }
         }
         else if (language == "fr")
         {
             if (name == "characteristic")
             {
-                return characteristic_fr;
+                data = characteristic_fr.data();
+                size = characteristic_fr.size();
             }
             else if (name == "natures")
             {
-                return natures_fr;
+                data = natures_fr.data();
+                size = natures_fr.size();
             }
             else if (name == "powers")
             {
-                return powers_fr;
+                data = powers_fr.data();
+                size = powers_fr.size();
             }
             else if (name == "species")
             {
-                return species_fr;
+                data = species_fr.data();
+                size = species_fr.size();
             }
             else if (name == "frlg")
             {
-                return frlg_fr;
+                data = frlg_fr.data();
+                size = frlg_fr.size();
             }
             else if (name == "rse")
             {
-                return rse_fr;
+                data = rse_fr.data();
+                size = rse_fr.size();
             }
             else if (name == "dppt")
             {
-                return dppt_fr;
+                data = dppt_fr.data();
+                size = dppt_fr.size();
             }
             else if (name == "hgss")
             {
-                return hgss_fr;
+                data = hgss_fr.data();
+                size = hgss_fr.size();
             }
         }
         else if (language == "it")
         {
             if (name == "characteristic")
             {
-                return characteristic_it;
+                data = characteristic_it.data();
+                size = characteristic_it.size();
             }
             else if (name == "natures")
             {
-                return natures_it;
+                data = natures_it.data();
+                size = natures_it.size();
             }
             else if (name == "powers")
             {
-                return powers_it;
+                data = powers_it.data();
+                size = powers_it.size();
             }
             else if (name == "species")
             {
-                return species_it;
+                data = species_it.data();
+                size = species_it.size();
             }
             else if (name == "frlg")
             {
-                return frlg_it;
+                data = frlg_it.data();
+                size = frlg_it.size();
             }
             else if (name == "rse")
             {
-                return rse_it;
+                data = rse_it.data();
+                size = rse_it.size();
             }
             else if (name == "dppt")
             {
-                return dppt_it;
+                data = dppt_it.data();
+                size = dppt_it.size();
             }
             else if (name == "hgss")
             {
-                return hgss_it;
+                data = hgss_it.data();
+                size = hgss_it.size();
             }
         }
         else if (language == "ja")
         {
             if (name == "characteristic")
             {
-                return characteristic_ja;
+                data = characteristic_ja.data();
+                size = characteristic_ja.size();
             }
             else if (name == "natures")
             {
-                return natures_ja;
+                data = natures_ja.data();
+                size = natures_ja.size();
             }
             else if (name == "powers")
             {
-                return powers_ja;
+                data = powers_ja.data();
+                size = powers_ja.size();
             }
             else if (name == "species")
             {
-                return species_ja;
+                data = species_ja.data();
+                size = species_ja.size();
             }
             else if (name == "frlg")
             {
-                return frlg_ja;
+                data = frlg_ja.data();
+                size = frlg_ja.size();
             }
             else if (name == "rse")
             {
-                return rse_ja;
+                data = rse_ja.data();
+                size = rse_ja.size();
             }
             else if (name == "dppt")
             {
-                return dppt_ja;
+                data = dppt_ja.data();
+                size = dppt_ja.size();
             }
             else if (name == "hgss")
             {
-                return hgss_ja;
+                data = hgss_ja.data();
+                size = hgss_ja.size();
             }
         }
         else if (language == "ko")
         {
             if (name == "characteristic")
             {
-                return characteristic_ko;
+                data = characteristic_ko.data();
+                size = characteristic_ko.size();
             }
             else if (name == "natures")
             {
-                return natures_ko;
+                data = natures_ko.data();
+                size = natures_ko.size();
             }
             else if (name == "powers")
             {
-                return powers_ko;
+                data = powers_ko.data();
+                size = powers_ko.size();
             }
             else if (name == "species")
             {
-                return species_ko;
+                data = species_ko.data();
+                size = species_ko.size();
             }
             else if (name == "frlg")
             {
-                return frlg_ko;
+                data = frlg_ko.data();
+                size = frlg_ko.size();
             }
             else if (name == "rse")
             {
-                return rse_ko;
+                data = rse_ko.data();
+                size = rse_ko.size();
             }
             else if (name == "dppt")
             {
-                return dppt_ko;
+                data = dppt_ko.data();
+                size = dppt_ko.size();
             }
             else if (name == "hgss")
             {
-                return hgss_ko;
+                data = hgss_ko.data();
+                size = hgss_ko.size();
             }
         }
         else if (language == "zh")
         {
             if (name == "characteristic")
             {
-                return characteristic_zh;
+                data = characteristic_zh.data();
+                size = characteristic_zh.size();
             }
             else if (name == "natures")
             {
-                return natures_zh;
+                data = natures_zh.data();
+                size = natures_zh.size();
             }
             else if (name == "powers")
             {
-                return powers_zh;
+                data = powers_zh.data();
+                size = powers_zh.size();
             }
             else if (name == "species")
             {
-                return species_zh;
+                data = species_zh.data();
+                size = species_zh.size();
             }
             else if (name == "frlg")
             {
-                return frlg_zh;
+                data = frlg_zh.data();
+                size = frlg_zh.size();
             }
             else if (name == "rse")
             {
-                return rse_zh;
+                data = rse_zh.data();
+                size = rse_zh.size();
             }
             else if (name == "dppt")
             {
-                return dppt_zh;
+                data = dppt_zh.data();
+                size = dppt_zh.size();
             }
             else if (name == "hgss")
             {
-                return hgss_zh;
+                data = hgss_zh.data();
+                size = hgss_zh.size();
             }
         }
 
-        return std::vector<std::string>();
+        std::vector<std::string> strings;
+        size_t start = 0;
+        for (size_t i = 0; i < size; i++)
+        {
+            if (data[i] == 0)
+            {
+                strings.emplace_back((char *)&data[start], i - start);
+                start = i + 1;
+            }
+        }
+
+        return strings;
     }
 }
 

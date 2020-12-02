@@ -40,30 +40,30 @@ PersonalInfo::PersonalInfo(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, u8 gen
 std::vector<PersonalInfo> PersonalInfo::loadPersonal(u8 gen)
 {
     const u8 *data;
-    int size;
+    size_t size;
     int offset;
 
     if (gen == 3)
     {
-        data = personal3;
-        size = 3483;
+        data = personal3.data();
+        size = personal3.size();
         offset = 9;
     }
     else if (gen == 4)
     {
-        data = personal4;
-        size = 6096;
+        data = personal4.data();
+        size = personal4.size();
         offset = 12;
     }
     else
     {
-        data = personal5;
-        size = 9217;
+        data = personal5.data();
+        size = personal5.size();
         offset = 13;
     }
 
     std::vector<PersonalInfo> pokemon;
-    for (int i = 0; i < size; i += offset)
+    for (size_t i = 0; i < size; i += offset)
     {
         u8 hp = data[i];
         u8 atk = data[i + 1];

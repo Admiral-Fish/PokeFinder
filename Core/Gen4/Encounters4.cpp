@@ -35,42 +35,42 @@ namespace Encounters4
         std::vector<std::vector<u8>> getData(Game game)
         {
             const u8 *data;
-            int size;
+            size_t size;
             int offset;
 
             if (game == Game::Diamond)
             {
-                data = diamond;
-                size = 17967;
+                data = diamond.data();
+                size = diamond.size();
                 offset = 159;
             }
             else if (game == Game::Pearl)
             {
-                data = pearl;
-                size = 17967;
+                data = pearl.data();
+                size = pearl.size();
                 offset = 159;
             }
             else if (game == Game::Platinum)
             {
-                data = platinum;
-                size = 17967;
+                data = platinum.data();
+                size = platinum.size();
                 offset = 159;
             }
             else if (game == Game::HeartGold)
             {
-                data = heartgold;
-                size = 23040;
+                data = heartgold.data();
+                size = heartgold.size();
                 offset = 192;
             }
             else
             {
-                data = soulsilver;
-                size = 23040;
+                data = soulsilver.data();
+                size = soulsilver.size();
                 offset = 192;
             }
 
             std::vector<std::vector<u8>> encounters;
-            for (int i = 0; i < size; i += offset)
+            for (size_t i = 0; i < size; i += offset)
             {
                 std::vector<u8> entry(offset);
                 std::memcpy(entry.data(), data + i, offset);
