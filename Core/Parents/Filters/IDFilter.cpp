@@ -28,17 +28,17 @@ IDFilter::IDFilter(const std::vector<u16> &tidFilter, const std::vector<u16> &si
 
 bool IDFilter::compare(const IDState &state) const
 {
-    if (std::find(tidFilter.begin(), tidFilter.end(), state.getTID()) == tidFilter.end())
+    if (!tidFilter.empty() && std::find(tidFilter.begin(), tidFilter.end(), state.getTID()) == tidFilter.end())
     {
         return false;
     }
 
-    if (std::find(sidFilter.begin(), sidFilter.end(), state.getSID()) == sidFilter.end())
+    if (!sidFilter.empty() && std::find(sidFilter.begin(), sidFilter.end(), state.getSID()) == sidFilter.end())
     {
         return false;
     }
 
-    if (std::find(tsvFilter.begin(), tsvFilter.end(), state.getTSV()) == tsvFilter.end())
+    if (!tsvFilter.empty() && std::find(tsvFilter.begin(), tsvFilter.end(), state.getTSV()) == tsvFilter.end())
     {
         return false;
     }
