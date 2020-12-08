@@ -26,9 +26,6 @@
 
 class EventGeneratorModel5;
 class EventSearcherModel5;
-class State;
-template <typename StateType>
-class SearcherState5;
 
 namespace Ui
 {
@@ -61,7 +58,6 @@ private:
     PGF getSearcherParameters() const;
 
 private slots:
-    void updateProgress(const std::vector<SearcherState5<State>> &states, int progress);
     void generate();
     void search();
     void generatorImportEvent();

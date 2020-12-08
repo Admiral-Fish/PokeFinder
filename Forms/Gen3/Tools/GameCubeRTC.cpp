@@ -100,21 +100,16 @@ void GameCubeRTC::search()
     connect(ui->pushButtonCancel, &QPushButton::clicked, [searcher] { searcher->cancelSearch(); });
 
     auto *timer = new QTimer();
-    connect(timer, &QTimer::timeout, [=] { updateProgress(searcher->getResults()); });
+    connect(timer, &QTimer::timeout, [=] { model->addItems(searcher->getResults()); });
     connect(thread, &QThread::finished, timer, &QTimer::stop);
     connect(thread, &QThread::finished, timer, &QTimer::deleteLater);
     connect(timer, &QTimer::destroyed, [=] {
         ui->pushButtonSearch->setEnabled(true);
         ui->pushButtonCancel->setEnabled(false);
-        updateProgress(searcher->getResults());
+        model->addItems(searcher->getResults());
         delete searcher;
     });
 
     thread->start();
     timer->start(1000);
-}
-
-void GameCubeRTC::updateProgress(const std::vector<GameCubeRTCState> &results)
-{
-    model->addItems(results);
 }

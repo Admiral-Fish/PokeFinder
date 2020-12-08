@@ -128,12 +128,6 @@ void Eggs5::setupModels()
     setting.endGroup();
 }
 
-void Eggs5::updateProgress(const std::vector<SearcherState5<EggState>> &states, int progress)
-{
-    searcherModel->addItems(states);
-    ui->progressBar->setValue(progress);
-}
-
 void Eggs5::generate()
 {
     if (!ui->eggSettingsGenerator->compatibleParents())
@@ -226,13 +220,17 @@ void Eggs5::search()
     connect(ui->pushButtonCancel, &QPushButton::clicked, [searcher] { searcher->cancelSearch(); });
 
     auto *timer = new QTimer();
-    connect(timer, &QTimer::timeout, [=] { updateProgress(searcher->getResults(), searcher->getProgress()); });
+    connect(timer, &QTimer::timeout, [=] {
+        searcherModel->addItems(searcher->getResults());
+        ui->progressBar->setValue(searcher->getProgress());
+    });
     connect(thread, &QThread::finished, timer, &QTimer::stop);
     connect(thread, &QThread::finished, timer, &QTimer::deleteLater);
     connect(timer, &QTimer::destroyed, [=] {
         ui->pushButtonSearch->setEnabled(true);
         ui->pushButtonCancel->setEnabled(false);
-        updateProgress(searcher->getResults(), searcher->getProgress());
+        searcherModel->addItems(searcher->getResults());
+        ui->progressBar->setValue(searcher->getProgress());
         delete searcher;
     });
 

@@ -23,7 +23,6 @@
 #include <Core/Gen5/Profile5.hpp>
 #include <QMenu>
 
-class IDState5;
 class IDModel5;
 
 namespace Ui
@@ -53,7 +52,6 @@ private:
     void setupModels();
 
 private slots:
-    void updateProgress(const std::vector<IDState5> &states, int progress);
     void search();
     void find();
     void profileIndexChanged(int index);

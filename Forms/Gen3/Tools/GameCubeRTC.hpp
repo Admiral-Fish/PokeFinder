@@ -23,7 +23,6 @@
 #include <Core/Util/Global.hpp>
 #include <QWidget>
 
-class GameCubeRTCState;
 class GameCubeRTCModel;
 
 namespace Ui
@@ -47,7 +46,6 @@ private:
 
 private slots:
     void search();
-    void updateProgress(const std::vector<GameCubeRTCState> &results);
 };
 
 #endif // GAMECUBERTC_HPP

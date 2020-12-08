@@ -23,7 +23,6 @@
 #include <Core/Gen5/Profile5.hpp>
 #include <QMenu>
 
-class StationaryState;
 class StationaryGeneratorModel4;
 class StationarySearcherModel4;
 
@@ -54,7 +53,6 @@ private:
     QMenu *searcherMenu = nullptr;
 
     void setupModels();
-    void updateProgress(const std::vector<StationaryState> &states, int progress);
 
 private slots:
     void generate();

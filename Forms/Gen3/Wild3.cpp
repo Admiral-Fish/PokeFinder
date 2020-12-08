@@ -215,12 +215,6 @@ void Wild3::updatePokemonSearcher()
     }
 }
 
-void Wild3::updateProgress(const std::vector<WildState> &states, int progress)
-{
-    searcherModel->addItems(states);
-    ui->progressBar->setValue(progress);
-}
-
 void Wild3::generate()
 {
     generatorModel->clearModel();
@@ -244,7 +238,6 @@ void Wild3::generate()
 
     WildGenerator3 generator(initialAdvances, maxAdvances, tid, sid, genderRatio, method, filter);
     generator.setEncounter(static_cast<Encounter>(ui->comboBoxGeneratorEncounter->currentData().toInt()));
-    generator.setEncounterArea(encounterGenerator[ui->comboBoxGeneratorLocation->currentData().toInt()]);
     generator.setOffset(offset);
 
     if (ui->pushButtonGeneratorLead->text() == tr("Cute Charm"))
@@ -264,7 +257,7 @@ void Wild3::generate()
         }
     }
 
-    auto states = generator.generate(seed);
+    auto states = generator.generate(seed, encounterGenerator[ui->comboBoxGeneratorLocation->currentData().toInt()]);
     generatorModel->addItems(states);
 }
 
@@ -303,13 +296,17 @@ void Wild3::search()
     connect(ui->pushButtonCancel, &QPushButton::clicked, [searcher] { searcher->cancelSearch(); });
 
     auto *timer = new QTimer();
-    connect(timer, &QTimer::timeout, [=] { updateProgress(searcher->getResults(), searcher->getProgress()); });
+    connect(timer, &QTimer::timeout, [=] {
+        searcherModel->addItems(searcher->getResults());
+        ui->progressBar->setValue(searcher->getProgress());
+    });
     connect(thread, &QThread::finished, timer, &QTimer::stop);
     connect(thread, &QThread::finished, timer, &QTimer::deleteLater);
     connect(timer, &QTimer::destroyed, [=] {
         ui->pushButtonSearch->setEnabled(true);
         ui->pushButtonCancel->setEnabled(false);
-        updateProgress(searcher->getResults(), searcher->getProgress());
+        searcherModel->addItems(searcher->getResults());
+        ui->progressBar->setValue(searcher->getProgress());
         delete searcher;
     });
 

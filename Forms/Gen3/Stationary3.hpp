@@ -23,7 +23,6 @@
 #include <Core/Gen3/Profile3.hpp>
 #include <QMenu>
 
-class State;
 class StationaryGeneratorModel3;
 class StationarySearcherModel3;
 
@@ -55,7 +54,6 @@ private:
     void setupModels();
 
 private slots:
-    void updateProgress(const std::vector<State> &states, int progress);
     void generate();
     void search();
     void profilesIndexChanged(int index);

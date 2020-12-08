@@ -22,7 +22,6 @@
 
 #include <QWidget>
 
-class IDState4;
 class IDModel4;
 
 namespace Ui
@@ -33,9 +32,6 @@ namespace Ui
 class IDs4 : public QWidget
 {
     Q_OBJECT
-signals:
-    void updateProgress();
-
 public:
     explicit IDs4(QWidget *parent = nullptr);
     ~IDs4() override;
@@ -49,8 +45,6 @@ private:
     void setupModels();
 
 private slots:
-    void updateProgressShinyPID(const std::vector<IDState4> &states, int progress);
-    void updateProgressTIDSID(const std::vector<IDState4> &states, int progress);
     void shinyPIDSearch();
     void tidSIDSearch();
     void seedFinderSearch();

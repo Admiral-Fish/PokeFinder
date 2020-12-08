@@ -24,7 +24,6 @@
 #include <Core/Gen3/Profile3.hpp>
 #include <QMenu>
 
-class WildState;
 class WildGeneratorModel3;
 class WildSearcherModel3;
 
@@ -62,7 +61,6 @@ private:
     void updatePokemonSearcher();
 
 private slots:
-    void updateProgress(const std::vector<WildState> &states, int progress);
     void generate();
     void search();
     void profilesIndexChanged(int index);

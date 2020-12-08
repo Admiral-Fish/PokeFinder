@@ -121,12 +121,6 @@ void Stationary3::setupModels()
     }
 }
 
-void Stationary3::updateProgress(const std::vector<State> &states, int progress)
-{
-    searcherModel->addItems(states);
-    ui->progressBar->setValue(progress);
-}
-
 void Stationary3::generate()
 {
     generatorModel->clearModel();
@@ -187,13 +181,17 @@ void Stationary3::search()
     connect(ui->pushButtonCancel, &QPushButton::clicked, [searcher] { searcher->cancelSearch(); });
 
     auto *timer = new QTimer();
-    connect(timer, &QTimer::timeout, [=] { updateProgress(searcher->getResults(), searcher->getProgress()); });
+    connect(timer, &QTimer::timeout, [=] {
+        searcherModel->addItems(searcher->getResults());
+        ui->progressBar->setValue(searcher->getProgress());
+    });
     connect(thread, &QThread::finished, timer, &QTimer::stop);
     connect(thread, &QThread::finished, timer, &QTimer::deleteLater);
     connect(timer, &QTimer::destroyed, [=] {
         ui->pushButtonSearch->setEnabled(true);
         ui->pushButtonCancel->setEnabled(false);
-        updateProgress(searcher->getResults(), searcher->getProgress());
+        searcherModel->addItems(searcher->getResults());
+        ui->progressBar->setValue(searcher->getProgress());
         delete searcher;
     });
 

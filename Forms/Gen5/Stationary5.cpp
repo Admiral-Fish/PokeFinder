@@ -133,12 +133,6 @@ void Stationary5::setupModels()
     setting.endGroup();
 }
 
-void Stationary5::updateProgress(const std::vector<StationaryState> &states, int progress)
-{
-    // searcherModel->addItems(states);
-    ui->progressBar->setValue(progress);
-}
-
 void Stationary5::generate()
 {
     /*generatorModel->clear();

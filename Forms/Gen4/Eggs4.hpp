@@ -23,7 +23,6 @@
 #include <Core/Gen4/Profile4.hpp>
 #include <QMenu>
 
-class EggState4;
 class EggGeneratorModel4;
 class EggSearcherModel4;
 
@@ -55,7 +54,6 @@ private:
     void setupModels();
 
 private slots:
-    void updateProgress(const std::vector<EggState4> &states, int progress);
     void generate();
     void search();
     void profilesIndexChanged(int index);

@@ -97,6 +97,9 @@
    </item>
    <item row="1" column="0">
     <widget class="QTabWidget" name="tabEggSelection">
+     <property name="currentIndex">
+      <number>1</number>
+     </property>
      <widget class="QWidget" name="tabGenerator">
       <attribute name="title">
        <string>Generator</string>
@@ -442,7 +445,7 @@
         </widget>
        </item>
        <item row="1" column="0" colspan="3">
-        <widget class="QProgressBar" name="progressBarSearcher">
+        <widget class="QProgressBar" name="progressBar">
          <property name="value">
           <number>0</number>
          </property>

@@ -156,12 +156,6 @@ void ProfileCalibrator5::updateParameters()
     ui->textBoxMaxVFrame->setText("10");
 }
 
-void ProfileCalibrator5::updateProgress(const std::vector<ProfileSearcherState5> &states, int progress)
-{
-    model->addItems(states);
-    ui->progressBar->setValue(progress);
-}
-
 void ProfileCalibrator5::openIVCalculator()
 {
     auto *iv = new IVCalculator();
@@ -286,13 +280,17 @@ void ProfileCalibrator5::search()
     connect(ui->pushButtonCancel, &QPushButton::clicked, [searcher] { searcher->cancelSearch(); });
 
     auto *timer = new QTimer();
-    connect(timer, &QTimer::timeout, [=] { updateProgress(searcher->getResults(), searcher->getProgress()); });
+    connect(timer, &QTimer::timeout, [=] {
+        model->addItems(searcher->getResults());
+        ui->progressBar->setValue(searcher->getProgress());
+    });
     connect(thread, &QThread::finished, timer, &QTimer::stop);
     connect(thread, &QThread::finished, timer, &QTimer::deleteLater);
     connect(timer, &QTimer::destroyed, [=] {
         ui->pushButtonSearch->setEnabled(true);
         ui->pushButtonCancel->setEnabled(false);
-        updateProgress(searcher->getResults(), searcher->getProgress());
+        model->addItems(searcher->getResults());
+        ui->progressBar->setValue(searcher->getProgress());
         delete searcher;
     });
 

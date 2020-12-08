@@ -24,7 +24,6 @@
 #include <QMenu>
 
 class ProfileSearcherModel5;
-class ProfileSearcherState5;
 
 namespace Ui
 {
@@ -50,7 +49,6 @@ private:
     void updateParameters();
 
 private slots:
-    void updateProgress(const std::vector<ProfileSearcherState5> &states, int progress);
     void openIVCalculator();
     void clearTable();
     void search();

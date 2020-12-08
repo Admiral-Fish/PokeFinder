@@ -25,9 +25,6 @@
 
 class EggGeneratorModel5;
 class EggSearcherModel5;
-class EggState;
-template <typename StateType>
-class SearcherState5;
 
 namespace Ui
 {
@@ -58,7 +55,6 @@ private:
     void setupModels();
 
 private slots:
-    void updateProgress(const std::vector<SearcherState5<EggState>> &states, int progress);
     void generate();
     void search();
     void calculateInitialAdvances();

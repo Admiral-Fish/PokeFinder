@@ -165,12 +165,6 @@ void Eggs4::setupModels()
     setting.endGroup();
 }
 
-void Eggs4::updateProgress(const std::vector<EggState4> &states, int progress)
-{
-    searcherModel->addItems(states);
-    ui->progressBarSearcher->setValue(progress);
-}
-
 void Eggs4::generate()
 {
     if (!ui->eggSettingsGenerator->compatibleParents())
@@ -265,25 +259,28 @@ void Eggs4::search()
     Method methodPID = daycare.getMasuada() ? Method::Gen4Masuada : Method::Gen4Normal;
     EggGenerator4 generatorPID(minAdvancePID, maxAdvancePID, tid, sid, genderRatio, methodPID, filter, daycare);
 
-    ui->progressBarSearcher->setValue(0);
-    ui->progressBarSearcher->setMaximum(static_cast<int>(256 * 24 * (maxDelay - minDelay + 1)));
+    ui->progressBar->setValue(0);
+    ui->progressBar->setMaximum(static_cast<int>(256 * 24 * (maxDelay - minDelay + 1)));
 
     auto *searcher = new EggSearcher4(tid, sid, genderRatio, methodModel, filter);
-    searcher->setGenerators(generatorIV, generatorPID);
-    searcher->setType(ui->comboBoxSearcherMethod->currentIndex());
 
-    auto *thread = QThread::create([=] { searcher->startSearch(minDelay, maxDelay); });
+    auto *thread = QThread::create(
+        [=] { searcher->startSearch(minDelay, maxDelay, ui->comboBoxSearcherMethod->currentIndex(), generatorIV, generatorPID); });
     connect(thread, &QThread::finished, thread, &QThread::deleteLater);
     connect(ui->pushButtonCancel, &QPushButton::clicked, [searcher] { searcher->cancelSearch(); });
 
     auto *timer = new QTimer();
-    connect(timer, &QTimer::timeout, [=] { updateProgress(searcher->getResults(), searcher->getProgress()); });
+    connect(timer, &QTimer::timeout, [=] {
+        searcherModel->addItems(searcher->getResults());
+        ui->progressBar->setValue(searcher->getProgress());
+    });
     connect(thread, &QThread::finished, timer, &QTimer::stop);
     connect(thread, &QThread::finished, timer, &QTimer::deleteLater);
     connect(timer, &QTimer::destroyed, [=] {
         ui->pushButtonSearch->setEnabled(true);
         ui->pushButtonCancel->setEnabled(false);
-        updateProgress(searcher->getResults(), searcher->getProgress());
+        searcherModel->addItems(searcher->getResults());
+        ui->progressBar->setValue(searcher->getProgress());
         delete searcher;
     });
 
