@@ -20,12 +20,9 @@
 #include "HGSSRoamer.hpp"
 #include <Core/RNG/LCRNG.hpp>
 
-HGSSRoamer::HGSSRoamer(u32 seed, const std::vector<bool> &roamers, const std::vector<u8> &routes)
+HGSSRoamer::HGSSRoamer(u32 seed, const std::vector<bool> &roamers, const std::vector<u8> &routes) :
+    seed(seed), roamers(roamers), routes(routes)
 {
-    this->seed = seed;
-    this->roamers = roamers;
-    this->routes = routes;
-
     calculateRoamers();
 }
 

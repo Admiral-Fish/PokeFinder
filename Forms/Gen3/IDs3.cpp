@@ -146,7 +146,6 @@ void IDs3::frlgeSearch()
 
     IDFilter filter({ tid }, sidFilter, tsvFilter);
     IDGenerator3 generator(initialAdvances, maxAdvances, filter);
-    generator.setStaticTID(tid);
 
     auto states = generator.generateFRLGE(tid);
     frlge->addItems(states);

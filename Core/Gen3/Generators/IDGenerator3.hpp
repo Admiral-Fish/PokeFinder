@@ -28,13 +28,9 @@ class IDGenerator3 : public IDGenerator
 public:
     IDGenerator3() = default;
     IDGenerator3(u32 initialAdvances, u32 maxAdvances, const IDFilter &filter);
-    void setStaticTID(u16 staticTID);
     std::vector<IDState3> generateXDColo(u32 seed);
-    std::vector<IDState3> generateFRLGE(u32 seed);
+    std::vector<IDState3> generateFRLGE(u16 tid);
     std::vector<IDState3> generateRS(u32 seed);
-
-private:
-    u16 staticTID;
 };
 
 #endif // IDGENERATOR3_HPP

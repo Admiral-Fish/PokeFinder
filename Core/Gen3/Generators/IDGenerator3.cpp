@@ -25,11 +25,6 @@ IDGenerator3::IDGenerator3(u32 initialAdvances, u32 maxAdvances, const IDFilter 
 {
 }
 
-void IDGenerator3::setStaticTID(u16 staticTID)
-{
-    this->staticTID = staticTID;
-}
-
 std::vector<IDState3> IDGenerator3::generateXDColo(u32 seed)
 {
     std::vector<IDState3> states;
@@ -55,19 +50,18 @@ std::vector<IDState3> IDGenerator3::generateXDColo(u32 seed)
     return states;
 }
 
-std::vector<IDState3> IDGenerator3::generateFRLGE(u32 seed)
+std::vector<IDState3> IDGenerator3::generateFRLGE(u16 tid)
 {
     std::vector<IDState3> states;
 
-    PokeRNG rng(seed);
+    PokeRNG rng(tid);
     rng.advance(initialAdvances);
 
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
     {
         u16 sid = rng.nextUShort();
 
-        IDState3 state(initialAdvances + cnt, staticTID, sid);
-
+        IDState3 state(initialAdvances + cnt, tid, sid);
         if (filter.compare(state))
         {
             states.emplace_back(state);

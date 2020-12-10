@@ -27,12 +27,7 @@ PokeSpotGenerator::PokeSpotGenerator(u32 initialAdvances, u32 maxAdvances, u16 t
 {
 }
 
-void PokeSpotGenerator::setSpots(const std::vector<bool> &spots)
-{
-    this->spots = spots;
-}
-
-std::vector<GameCubeState> PokeSpotGenerator::generate(u32 seed) const
+std::vector<GameCubeState> PokeSpotGenerator::generate(u32 seed, const std::vector<bool> &spots) const
 {
     std::vector<GameCubeState> states;
 

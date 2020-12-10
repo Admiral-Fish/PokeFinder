@@ -18,24 +18,14 @@
  */
 
 #include "EggSearcher4.hpp"
+#include <Core/Gen4/Generators/EggGenerator4.hpp>
 
 EggSearcher4::EggSearcher4(u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter) :
     Searcher(tid, sid, genderRatio, method, filter), searching(false), progress(0)
 {
 }
 
-void EggSearcher4::setGenerators(const EggGenerator4 &generatorIV, const EggGenerator4 &generatorPID)
-{
-    this->generatorIV = generatorIV;
-    this->generatorPID = generatorPID;
-}
-
-void EggSearcher4::setType(int type)
-{
-    this->type = type;
-}
-
-void EggSearcher4::startSearch(u32 minDelay, u32 maxDelay)
+void EggSearcher4::startSearch(u32 minDelay, u32 maxDelay, int type, const EggGenerator4 &generatorIV, const EggGenerator4 &generatorPID)
 {
     searching = true;
     u16 total = 0;

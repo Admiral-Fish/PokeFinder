@@ -25,9 +25,9 @@ Profile3::Profile3() : deadBattery(false)
     version = Game::Emerald;
 }
 
-Profile3::Profile3(const std::string &name, Game version, u16 tid, u16 sid, bool deadBattery) : Profile(name, version, tid, sid)
+Profile3::Profile3(const std::string &name, Game version, u16 tid, u16 sid, bool deadBattery) :
+    Profile(name, version, tid, sid), deadBattery(deadBattery)
 {
-    this->deadBattery = deadBattery;
 }
 
 bool Profile3::getDeadBattery() const

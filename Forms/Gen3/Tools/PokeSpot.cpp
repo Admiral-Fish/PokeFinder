@@ -104,9 +104,8 @@ void PokeSpot::generate()
                        {}, {});
 
     PokeSpotGenerator generator(initialAdvances, maxAdvances, tid, sid, genderRatio, filter);
-    generator.setSpots(ui->comboBoxSpotType->getChecked());
 
-    auto states = generator.generate(seed);
+    auto states = generator.generate(seed, ui->comboBoxSpotType->getChecked());
     model->addItems(states);
 }
 

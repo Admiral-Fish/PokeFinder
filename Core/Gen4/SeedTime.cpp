@@ -22,17 +22,13 @@
 #include <Core/Util/Utilities.hpp>
 
 SeedTime::SeedTime(const DateTime &dateTime, u32 delay, Game version, const std::vector<bool> &roamers, const std::vector<u8> &routes) :
-    seed(Utilities::calcGen4Seed(dateTime, delay + dateTime.getDate().year() - 2000)), delay(delay), dateTime(dateTime), version(version)
+    seed(Utilities::calcGen4Seed(dateTime, delay)), delay(delay), dateTime(dateTime), version(version)
 {
     info = HGSSRoamer(seed, roamers, routes);
 }
 
 SeedTime::SeedTime(const DateTime &dateTime, u32 delay, Game version, const HGSSRoamer &info) :
-    seed(Utilities::calcGen4Seed(dateTime, delay + dateTime.getDate().year() - 2000)),
-    delay(delay),
-    dateTime(dateTime),
-    version(version),
-    info(info)
+    seed(Utilities::calcGen4Seed(dateTime, delay)), delay(delay), dateTime(dateTime), version(version), info(info)
 {
     this->info.recalculateRoamers(seed);
 }

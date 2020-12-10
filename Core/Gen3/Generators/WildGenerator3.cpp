@@ -21,6 +21,7 @@
 #include <Core/Enum/Encounter.hpp>
 #include <Core/Enum/Lead.hpp>
 #include <Core/Enum/Method.hpp>
+#include <Core/Gen3/EncounterArea3.hpp>
 #include <Core/Parents/Filters/StateFilter.hpp>
 #include <Core/Parents/States/WildState.hpp>
 #include <Core/RNG/LCRNG.hpp>
@@ -33,7 +34,7 @@ WildGenerator3::WildGenerator3(u32 initialAdvances, u32 maxAdvances, u16 tid, u1
 {
 }
 
-std::vector<WildState> WildGenerator3::generate(u32 seed) const
+std::vector<WildState> WildGenerator3::generate(u32 seed, const EncounterArea3 &encounterArea) const
 {
     std::vector<WildState> states;
 
@@ -211,9 +212,4 @@ std::vector<WildState> WildGenerator3::generate(u32 seed) const
     }
 
     return states;
-}
-
-void WildGenerator3::setEncounterArea(const EncounterArea3 &encounterArea)
-{
-    this->encounterArea = encounterArea;
 }
