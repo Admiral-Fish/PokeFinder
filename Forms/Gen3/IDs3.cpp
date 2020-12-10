@@ -156,14 +156,22 @@ void IDs3::rsSearch()
     rs->clearModel();
 
     u16 seed;
-    if (ui->radioButtonRSInitialSeed->isChecked())
+    if (ui->checkBoxRSDeadBattery->isChecked())
     {
-        seed = ui->textBoxRSInitialSeed->getUShort();
+        seed = 0x5a0;
     }
     else
     {
-        seed = Utilities::calcGen3Seed(ui->dateTimeEdit->getDateTime());
+        if (ui->radioButtonRSDate->isChecked())
+        {
+            seed = Utilities::calcGen3Seed(ui->dateTimeEdit->getDateTime());
+        }
+        else
+        {
+            seed = ui->textBoxRSInitialSeed->getUShort();
+        }
     }
+
     u32 initialAdvances = ui->textBoxRSStartingAdvance->getUInt();
     u32 maxAdvances = ui->textBoxRSMaxAdvances->getUInt();
 
