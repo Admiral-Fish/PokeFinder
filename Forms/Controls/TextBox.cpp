@@ -73,7 +73,7 @@ void TextBox::setValues(InputType type)
         break;
     }
 
-    filter = QRegExp(base == 10 ? "[^0-9]" : "[^0-9A-F]");
+    filter = QRegularExpression(base == 10 ? "[^0-9]" : "[^0-9A-F]");
     setup = true;
 }
 
@@ -83,7 +83,7 @@ void TextBox::setValues(u64 minValue, u64 maxValue, int length, int base)
     this->maxValue = maxValue;
     this->length = length;
     this->base = base;
-    filter = QRegExp(base == 10 ? "[^0-9]" : "[^0-9A-F]");
+    filter = QRegularExpression(base == 10 ? "[^0-9]" : "[^0-9A-F]");
     setup = true;
 }
 
