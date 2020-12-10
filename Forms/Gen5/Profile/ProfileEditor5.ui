@@ -324,9 +324,13 @@
   <tabstop>textBoxTimer0Max</tabstop>
   <tabstop>textBoxTID</tabstop>
   <tabstop>textBoxSID</tabstop>
+  <tabstop>checkBoxSoftReset</tabstop>
+  <tabstop>checkBoxSkipLR</tabstop>
+  <tabstop>checkBoxMemoryLink</tabstop>
+  <tabstop>checkBoxShinyCharm</tabstop>
+  <tabstop>pushButtonFindParameters</tabstop>
   <tabstop>pushButtonAccept</tabstop>
   <tabstop>pushButtonCancel</tabstop>
-  <tabstop>pushButtonFindParameters</tabstop>
  </tabstops>
  <resources/>
  <connections>

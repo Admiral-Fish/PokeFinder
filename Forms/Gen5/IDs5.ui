@@ -481,6 +481,8 @@
   <tabstop>textBoxTID</tabstop>
   <tabstop>checkBoxSID</tabstop>
   <tabstop>textBoxSID</tabstop>
+  <tabstop>dateEditStart</tabstop>
+  <tabstop>dateEditEnd</tabstop>
   <tabstop>textBoxMaxAdvances</tabstop>
   <tabstop>pushButtonSearch</tabstop>
   <tabstop>pushButtonCancel</tabstop>

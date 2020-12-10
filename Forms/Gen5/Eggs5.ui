@@ -210,6 +210,9 @@
    </item>
    <item row="1" column="0">
     <widget class="QTabWidget" name="tabRNGSelector">
+     <property name="currentIndex">
+      <number>1</number>
+     </property>
      <widget class="QWidget" name="tabStationary">
       <attribute name="title">
        <string>Generator</string>
@@ -601,6 +604,11 @@
    <header>Forms/Controls/TableView.hpp</header>
   </customwidget>
   <customwidget>
+   <class>DateEdit</class>
+   <extends>QDateEdit</extends>
+   <header>Forms/Controls/DateEdit.hpp</header>
+  </customwidget>
+  <customwidget>
    <class>Filter</class>
    <extends>QWidget</extends>
    <header>Forms/Controls/Filter.hpp</header>
@@ -612,12 +620,24 @@
    <header>Forms/Controls/EggSettings.hpp</header>
    <container>1</container>
   </customwidget>
-  <customwidget>
-   <class>DateEdit</class>
-   <extends>QDateEdit</extends>
-   <header>Forms/Controls/DateEdit.hpp</header>
-  </customwidget>
  </customwidgets>
+ <tabstops>
+  <tabstop>comboBoxProfiles</tabstop>
+  <tabstop>pushButtonProfileManager</tabstop>
+  <tabstop>tabRNGSelector</tabstop>
+  <tabstop>textBoxGeneratorInitialAdvances</tabstop>
+  <tabstop>textBoxGeneratorMaxAdvances</tabstop>
+  <tabstop>textBoxGeneratorSeed</tabstop>
+  <tabstop>pushButtonGenerate</tabstop>
+  <tabstop>pushButtonCalculateInitialAdvances</tabstop>
+  <tabstop>tableViewGenerator</tabstop>
+  <tabstop>textBoxSearcherMaxAdvances</tabstop>
+  <tabstop>dateEditSearcherStartDate</tabstop>
+  <tabstop>dateEditSearcherEndDate</tabstop>
+  <tabstop>pushButtonSearch</tabstop>
+  <tabstop>pushButtonCancel</tabstop>
+  <tabstop>tableViewSearcher</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>
