@@ -34,9 +34,10 @@ namespace Utilities
     std::string getCalls(u32 seed, const HGSSRoamer &info);
     std::string getChatot(u32 seed);
     std::string getChatot64(u32 seed);
-    u32 initialAdvancesBW(u64 seed, u8 rounds = 5);
+    u32 initialAdvancesBW(u64 seed);
     u32 initialAdvancesBW2(u64 seed, bool memory);
-    u32 initialAdvancesBW2ID(u64 seed, u8 rounds = 3);
+    u32 initialAdvancesBWID(u64 seed);
+    u32 initialAdvancesBW2ID(u64 seed);
     u32 forceGender(u32 pid, u64 rand, u8 gender, u8 genderRatio);
 }
 

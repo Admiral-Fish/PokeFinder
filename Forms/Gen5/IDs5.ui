@@ -185,6 +185,20 @@
       <string>Seed Finder</string>
      </property>
      <layout class="QGridLayout" name="gridLayout_4">
+      <item row="4" column="1">
+       <widget class="QSpinBox" name="spinBoxMinSecond">
+        <property name="maximum">
+         <number>59</number>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="0">
+       <widget class="QLabel" name="labelSecondRange">
+        <property name="text">
+         <string>Second Range</string>
+        </property>
+       </widget>
+      </item>
       <item row="1" column="1" colspan="2">
        <widget class="DateEdit" name="dateEdit">
         <property name="maximumDateTime">
@@ -212,48 +226,6 @@
         </property>
        </widget>
       </item>
-      <item row="4" column="0">
-       <widget class="QLabel" name="labelSecondRange">
-        <property name="text">
-         <string>Second Range</string>
-        </property>
-       </widget>
-      </item>
-      <item row="5" column="1" colspan="2">
-       <widget class="TextBox" name="textBoxSeedFinderMaxAdvances">
-        <property name="text">
-         <string notr="true">100</string>
-        </property>
-       </widget>
-      </item>
-      <item row="5" column="0">
-       <widget class="QLabel" name="labelAdvanceRange">
-        <property name="text">
-         <string>Max Advances</string>
-        </property>
-       </widget>
-      </item>
-      <item row="3" column="1" colspan="2">
-       <widget class="QSpinBox" name="spinBoxMinute">
-        <property name="maximum">
-         <number>59</number>
-        </property>
-       </widget>
-      </item>
-      <item row="4" column="2">
-       <widget class="QSpinBox" name="spinBoxMaxSecond">
-        <property name="maximum">
-         <number>59</number>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="1" colspan="2">
-       <widget class="QSpinBox" name="spinBoxHour">
-        <property name="maximum">
-         <number>23</number>
-        </property>
-       </widget>
-      </item>
       <item row="2" column="0">
        <widget class="QLabel" name="labelHour">
         <property name="text">
@@ -261,8 +233,8 @@
         </property>
        </widget>
       </item>
-      <item row="4" column="1">
-       <widget class="QSpinBox" name="spinBoxMinSecond">
+      <item row="4" column="2">
+       <widget class="QSpinBox" name="spinBoxMaxSecond">
         <property name="maximum">
          <number>59</number>
         </property>
@@ -275,13 +247,27 @@
         </property>
        </widget>
       </item>
-      <item row="0" column="1" colspan="2">
-       <widget class="TextBox" name="textBoxSeedFinderTID"/>
+      <item row="5" column="0">
+       <widget class="QLabel" name="labelAdvanceRange">
+        <property name="text">
+         <string>Max Advances</string>
+        </property>
+       </widget>
       </item>
       <item row="1" column="0">
        <widget class="QLabel" name="labelDate">
         <property name="text">
          <string>Date</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1" colspan="2">
+       <widget class="TextBox" name="textBoxSeedFinderTID"/>
+      </item>
+      <item row="6" column="0" colspan="3">
+       <widget class="QPushButton" name="pushButtonFind">
+        <property name="text">
+         <string>Find</string>
         </property>
        </widget>
       </item>
@@ -292,17 +278,24 @@
         </property>
        </widget>
       </item>
-      <item row="7" column="0" colspan="3">
-       <widget class="QPushButton" name="pushButtonFind">
-        <property name="text">
-         <string>Find</string>
+      <item row="3" column="1" colspan="2">
+       <widget class="QSpinBox" name="spinBoxMinute">
+        <property name="maximum">
+         <number>59</number>
         </property>
        </widget>
       </item>
-      <item row="6" column="0">
-       <widget class="QCheckBox" name="checkBoxSeedFinderExistingSave">
+      <item row="2" column="1" colspan="2">
+       <widget class="QSpinBox" name="spinBoxHour">
+        <property name="maximum">
+         <number>23</number>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="1" colspan="2">
+       <widget class="TextBox" name="textBoxSeedFinderMaxAdvances">
         <property name="text">
-         <string>Existing save</string>
+         <string notr="true">100</string>
         </property>
        </widget>
       </item>
@@ -328,63 +321,6 @@
        <widget class="QCheckBox" name="checkBoxPID">
         <property name="text">
          <string>PID</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="1" colspan="2">
-       <widget class="TextBox" name="textBoxPID"/>
-      </item>
-      <item row="1" column="0">
-       <widget class="QCheckBox" name="checkBoxTID">
-        <property name="text">
-         <string>TID</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="1" colspan="2">
-       <widget class="TextBox" name="textBoxTID"/>
-      </item>
-      <item row="2" column="0">
-       <widget class="QCheckBox" name="checkBoxSID">
-        <property name="text">
-         <string>SID</string>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="1" colspan="2">
-       <widget class="TextBox" name="textBoxSID"/>
-      </item>
-      <item row="3" column="0">
-       <widget class="QLabel" name="labelDateTime">
-        <property name="text">
-         <string>Start/End Date</string>
-        </property>
-       </widget>
-      </item>
-      <item row="3" column="1">
-       <widget class="DateEdit" name="dateEditStart">
-        <property name="maximumDateTime">
-         <datetime>
-          <hour>23</hour>
-          <minute>59</minute>
-          <second>59</second>
-          <year>2099</year>
-          <month>12</month>
-          <day>31</day>
-         </datetime>
-        </property>
-        <property name="minimumDateTime">
-         <datetime>
-          <hour>0</hour>
-          <minute>0</minute>
-          <second>0</second>
-          <year>2000</year>
-          <month>1</month>
-          <day>1</day>
-         </datetime>
-        </property>
-        <property name="calendarPopup">
-         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -415,28 +351,51 @@
         </property>
        </widget>
       </item>
-      <item row="4" column="0" colspan="2">
-       <widget class="QCheckBox" name="checkBoxExistingSave">
-        <property name="text">
-         <string>Existing save</string>
+      <item row="1" column="1" colspan="2">
+       <widget class="TextBox" name="textBoxTID"/>
+      </item>
+      <item row="3" column="1">
+       <widget class="DateEdit" name="dateEditStart">
+        <property name="maximumDateTime">
+         <datetime>
+          <hour>23</hour>
+          <minute>59</minute>
+          <second>59</second>
+          <year>2099</year>
+          <month>12</month>
+          <day>31</day>
+         </datetime>
+        </property>
+        <property name="minimumDateTime">
+         <datetime>
+          <hour>0</hour>
+          <minute>0</minute>
+          <second>0</second>
+          <year>2000</year>
+          <month>1</month>
+          <day>1</day>
+         </datetime>
+        </property>
+        <property name="calendarPopup">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
-      <item row="5" column="0">
-       <widget class="QLabel" name="labelMaxFrame">
+      <item row="1" column="0">
+       <widget class="QCheckBox" name="checkBoxTID">
         <property name="text">
-         <string>Max Advances</string>
+         <string>TID</string>
         </property>
        </widget>
       </item>
-      <item row="5" column="1" colspan="2">
+      <item row="4" column="1" colspan="2">
        <widget class="TextBox" name="textBoxMaxAdvances">
         <property name="text">
          <string notr="true">100</string>
         </property>
        </widget>
       </item>
-      <item row="6" column="0" colspan="3">
+      <item row="5" column="0" colspan="3">
        <layout class="QHBoxLayout" name="horizontalLayout">
         <item>
          <widget class="QPushButton" name="pushButtonSearch">
@@ -456,6 +415,33 @@
          </widget>
         </item>
        </layout>
+      </item>
+      <item row="2" column="1" colspan="2">
+       <widget class="TextBox" name="textBoxSID"/>
+      </item>
+      <item row="4" column="0">
+       <widget class="QLabel" name="labelMaxFrame">
+        <property name="text">
+         <string>Max Advances</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QCheckBox" name="checkBoxSID">
+        <property name="text">
+         <string>SID</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1" colspan="2">
+       <widget class="TextBox" name="textBoxPID"/>
+      </item>
+      <item row="3" column="0">
+       <widget class="QLabel" name="labelDateTime">
+        <property name="text">
+         <string>Start/End Date</string>
+        </property>
+       </widget>
       </item>
      </layout>
     </widget>
@@ -495,7 +481,6 @@
   <tabstop>textBoxTID</tabstop>
   <tabstop>checkBoxSID</tabstop>
   <tabstop>textBoxSID</tabstop>
-  <tabstop>checkBoxExistingSave</tabstop>
   <tabstop>textBoxMaxAdvances</tabstop>
   <tabstop>pushButtonSearch</tabstop>
   <tabstop>pushButtonCancel</tabstop>
@@ -506,7 +491,6 @@
   <tabstop>spinBoxMinSecond</tabstop>
   <tabstop>spinBoxMaxSecond</tabstop>
   <tabstop>textBoxSeedFinderMaxAdvances</tabstop>
-  <tabstop>checkBoxSeedFinderExistingSave</tabstop>
   <tabstop>pushButtonFind</tabstop>
   <tabstop>tableView</tabstop>
  </tabstops>

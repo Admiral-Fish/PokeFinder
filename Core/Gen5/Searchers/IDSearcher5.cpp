@@ -25,13 +25,8 @@
 #include <Core/Util/Utilities.hpp>
 #include <future>
 
-IDSearcher5::IDSearcher5(const Profile5 &profile, u32 pid, bool checkPID, bool save) :
-    profile(profile),
-    pid(pid),
-    checkPID(checkPID),
-    save(save),
-    searching(false),
-    progress(0)
+IDSearcher5::IDSearcher5(const Profile5 &profile, u32 pid, bool checkPID) :
+    profile(profile), pid(pid), checkPID(checkPID), searching(false), progress(0)
 {
 }
 
@@ -91,7 +86,6 @@ int IDSearcher5::getProgress() const
 void IDSearcher5::search(IDGenerator5 generator, const Date &start, const Date &end)
 {
     bool flag = profile.getVersion() & Game::BW;
-    int offset = flag ? 2 : save ? 4 : 7;
 
     SHA1 sha(profile);
     auto buttons = Keypresses::getKeyPresses(profile.getKeypresses(), profile.getSkipLR());
@@ -123,9 +117,7 @@ void IDSearcher5::search(IDGenerator5 generator, const Date &start, const Date &
                         sha.setTime(hour, minute, second, profile.getDSType());
                         u64 seed = sha.hashSeed();
 
-                        generator.setInitialAdvances(offset
-                                                     + (flag ? Utilities::initialAdvancesBW(seed, save ? 2 : 3)
-                                                             : Utilities::initialAdvancesBW2ID(seed, save ? 2 : 3)));
+                        generator.setInitialAdvances(flag ? Utilities::initialAdvancesBWID(seed) : Utilities::initialAdvancesBW2ID(seed));
                         auto states = generator.generate(seed, pid, checkPID);
 
                         if (!states.empty())

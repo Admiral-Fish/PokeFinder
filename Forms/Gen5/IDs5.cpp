@@ -144,7 +144,7 @@ void IDs5::search()
     IDFilter filter(tid, sid, {});
     IDGenerator5 generator(0, ui->textBoxMaxAdvances->getUInt(), filter);
 
-    auto *searcher = new IDSearcher5(currentProfile, pid, usePID, ui->checkBoxExistingSave->isChecked());
+    auto *searcher = new IDSearcher5(currentProfile, pid, usePID);
 
     int maxProgress = Keypresses::getKeyPresses({ false, true, false, false }, currentProfile.getSkipLR()).size();
     maxProgress *= 86400 * (start.daysTo(end) + 1);
@@ -188,37 +188,35 @@ void IDs5::find()
     int minSecond = ui->spinBoxMinSecond->value();
     int maxSecond = ui->spinBoxMaxSecond->value();
     u32 maxAdvance = ui->textBoxSeedFinderMaxAdvances->getUInt();
-    bool save = ui->checkBoxSeedFinderExistingSave->isChecked();
 
-    int offset = (currentProfile.getVersion() & Game::BW) ? 2 : save ? 4 : 7;
+    QList<u32> test;
+    test.append(0);
 
     IDFilter filter({ tid }, {}, {});
     IDGenerator5 generator(0, maxAdvance, filter);
 
-    SHA1 sha(currentProfile);
     auto buttons = Keypresses::getKeyPresses({ false, true, false, false }, currentProfile.getSkipLR());
     auto values = Keypresses::getValues(buttons);
+    auto parts = date.getParts();
 
+    SHA1 sha(currentProfile);
     sha.setTimer0(currentProfile.getTimer0Min(), currentProfile.getVCount());
+    sha.setDate(parts[0] - 2000, parts[1], parts[2], date.dayOfWeek());
+    sha.precompute();
+
+    bool flag = currentProfile.getVersion() & Game::BW;
 
     std::vector<IDState5> results;
     for (size_t i = 0; i < values.size(); i++)
     {
         sha.setButton(values[i]);
 
-        auto parts = date.getParts();
-        sha.setDate(parts[0] - 2000, parts[1], parts[2], date.dayOfWeek());
-        sha.precompute();
-
         for (u8 second = minSecond; second <= maxSecond; second++)
         {
             sha.setTime(hour, minute, second, currentProfile.getDSType());
             u64 seed = sha.hashSeed();
 
-            generator.setInitialAdvances(offset
-                                         + ((currentProfile.getVersion() & Game::BW)
-                                                ? Utilities::initialAdvancesBW(seed, save ? 2 : 3)
-                                                : Utilities::initialAdvancesBW2ID(seed, save ? 2 : 3)));
+            generator.setInitialAdvances(flag ? Utilities::initialAdvancesBWID(seed) : Utilities::initialAdvancesBW2ID(seed));
             auto states = generator.generate(seed);
 
             DateTime dt(date, Time(hour, minute, second));

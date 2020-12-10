@@ -134,7 +134,7 @@ namespace Utilities
         u8 ab = static_cast<u8>(parts[1] * parts[2] + time.minute() + time.second());
         u8 cd = static_cast<u8>(time.hour());
 
-        return static_cast<u32>(((ab << 24) | (cd << 16))) + delay;
+        return static_cast<u32>(((ab << 24) | (cd << 16))) + delay + parts[0] - 2000;
     }
 
     std::string coinFlips(u32 seed)
@@ -197,12 +197,12 @@ namespace Utilities
         return getPitch(seed / 82);
     }
 
-    u32 initialAdvancesBW(u64 seed, u8 rounds)
+    u32 initialAdvancesBW(u64 seed)
     {
         BWRNG rng(seed);
         u32 count = 0;
 
-        for (u8 i = 0; i < rounds; i++)
+        for (u8 i = 0; i < 5; i++)
         {
             count += advanceProbabilityTable(rng);
         }
@@ -244,14 +244,45 @@ namespace Utilities
         return count;
     }
 
-    u32 initialAdvancesBW2ID(u64 seed, u8 rounds)
+    u32 initialAdvancesBWID(u64 seed)
     {
         BWRNG rng(seed);
-        u32 count = 0;
 
-        for (u8 i = 0; i < rounds; i++)
+        // 2 advances are done after the probability table
+        u32 count = 2;
+
+        for (u8 i = 0; i < 3; i++)
         {
             count += advanceProbabilityTable(rng);
+        }
+
+        return count;
+    }
+
+    u32 initialAdvancesBW2ID(u64 seed)
+    {
+        BWRNG rng(seed);
+
+        // 10 advances are done by default
+        // 2 are after the first probability table
+        // 3 are after the second probability table
+        // 1 is done when the main menu is loaded
+        // 2 are done after the third probability table
+        // 2 are done right before Professor Juniper appears
+        u32 count = 10;
+
+        for (u8 i = 0; i < 3; i++)
+        {
+            count += advanceProbabilityTable(rng);
+
+            if (i == 0)
+            {
+                rng.advance(2);
+            }
+            else if (i == 1)
+            {
+                rng.advance(4);
+            }
         }
 
         return count;
