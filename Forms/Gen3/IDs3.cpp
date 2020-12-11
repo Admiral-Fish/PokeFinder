@@ -160,16 +160,13 @@ void IDs3::rsSearch()
     {
         seed = 0x5a0;
     }
+    else if (ui->radioButtonRSDate->isChecked())
+    {
+        seed = Utilities::calcGen3Seed(ui->dateTimeEdit->getDateTime());
+    }
     else
     {
-        if (ui->radioButtonRSDate->isChecked())
-        {
-            seed = Utilities::calcGen3Seed(ui->dateTimeEdit->getDateTime());
-        }
-        else
-        {
-            seed = ui->textBoxRSInitialSeed->getUShort();
-        }
+        seed = ui->textBoxRSInitialSeed->getUShort();
     }
 
     u32 initialAdvances = ui->textBoxRSStartingAdvance->getUInt();
