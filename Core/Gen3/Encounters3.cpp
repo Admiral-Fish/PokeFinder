@@ -45,8 +45,8 @@ namespace Encounters3
             }
             else if (game == Game::FireRed)
             {
-                data = emerald.data();
-                size = emerald.size();
+                data = firered.data();
+                size = firered.size();
             }
             else if (game == Game::LeafGreen)
             {
