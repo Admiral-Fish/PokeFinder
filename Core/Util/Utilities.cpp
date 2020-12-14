@@ -156,7 +156,7 @@ namespace Utilities
 
     std::string getCalls(u32 seed, const HGSSRoamer &info)
     {
-        std::string calls = "";
+        std::string calls;
 
         u8 skips = info.getSkips();
         if (skips > 0)

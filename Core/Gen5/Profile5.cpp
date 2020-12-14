@@ -71,7 +71,7 @@ std::vector<bool> Profile5::getKeypresses() const
 
 std::string Profile5::getKeypressesString() const
 {
-    std::string keys = "";
+    std::string keys;
     for (size_t i = 0; i < keypresses.size(); i++)
     {
         if (i == 0 && keypresses[i])

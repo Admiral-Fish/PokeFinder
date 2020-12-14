@@ -26,7 +26,7 @@
 #include <Core/Util/Utilities.hpp>
 #include <future>
 
-ProfileSearcher5::ProfileSearcher5(const Date &date, const Time &time, int minSeconds, int maxSeconds, u8 minVCount, u8 maxVCount,
+ProfileSearcher5::ProfileSearcher5(const Date &date, const Time &time, u8 minSeconds, u8 maxSeconds, u8 minVCount, u8 maxVCount,
                                    u16 minTimer0, u16 maxTimer0, u8 minGxStat, u8 maxGxStat, bool softReset, Game version,
                                    Language language, DSType dsType, u64 mac, Buttons keypress) :
     date(date),

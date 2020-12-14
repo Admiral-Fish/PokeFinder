@@ -390,7 +390,7 @@ namespace
         {
             if (data[i] == 0)
             {
-                strings.emplace_back((char *)&data[start], i - start);
+                strings.emplace_back((const char *)&data[start], i - start);
                 start = i + 1;
             }
         }
@@ -511,8 +511,7 @@ namespace Translator
             return "None";
         }
 
-        std::string result = "";
-
+        std::string result;
         for (int i = 0; i < 12; i++)
         {
             if (keypresses & (1 << i))

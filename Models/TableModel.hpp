@@ -22,7 +22,7 @@
 
 #include <QAbstractTableModel>
 
-template <typename Item>
+template <class Item>
 class TableModel : public QAbstractTableModel
 {
 public:
