@@ -147,7 +147,6 @@ void MainWindow::checkUpdates()
 
         QEventLoop loop;
         connect(reply.data(), &QNetworkReply::finished, &loop, &QEventLoop::quit);
-        connect(reply.data(), QOverload<QNetworkReply::NetworkError>::of(&QNetworkReply::error), &loop, &QEventLoop::quit);
         loop.exec();
 
         auto json = QJsonDocument::fromJson(reply->readAll()).object();
