@@ -26,7 +26,7 @@ class ResearcherState
 {
 public:
     ResearcherState() = default;
-    ResearcherState(bool rng64Bit, u32 advance);
+    ResearcherState(bool rng64Bit, u32 advances);
     u64 getState() const;
     void setState(u64 seed);
     u32 getAdvances() const;

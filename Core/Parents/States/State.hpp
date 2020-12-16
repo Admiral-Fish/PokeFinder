@@ -26,11 +26,11 @@ class State
 {
 public:
     State() = default;
-    explicit State(u32 advance);
+    explicit State(u32 advances);
     u32 getSeed() const;
     void setSeed(u32 seed);
     u32 getAdvances() const;
-    void setAdvances(u32 advance);
+    void setAdvances(u32 advances);
     u32 getPID() const;
     void setPID(u32 pid);
     void setPID(u16 high, u16 low);

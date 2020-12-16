@@ -26,7 +26,7 @@ class IDState
 {
 public:
     IDState() = default;
-    IDState(u32 advance, u16 tid, u16 sid);
+    IDState(u32 advances, u16 tid, u16 sid);
     IDState(u16 tid, u16 sid);
     u32 getAdvances() const;
     u16 getTID() const;

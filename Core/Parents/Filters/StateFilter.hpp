@@ -42,7 +42,7 @@ public:
     bool compareShiny(const State &state) const;
     bool compareIV(const State &state) const;
     bool compareHiddenPower(const State &state) const;
-    bool compareEncounterSlot(const WildState &currrentState) const;
+    bool compareEncounterSlot(const WildState &state) const;
 
 private:
     std::array<u8, 6> min;
