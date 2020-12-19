@@ -461,7 +461,7 @@ set(PROJECT_SOURCES
     main.cpp
 )
 
-qt_add_translation(PROJECT_QM ${PROJECT_TS} OPTIONS -nounfinished -removeidentical)
+qt5_add_translation(PROJECT_QM ${PROJECT_TS} OPTIONS -nounfinished -removeidentical)
 
 function(EMBED_TRANSLATIONS res_file)
     set(_qm_files ${ARGN})
