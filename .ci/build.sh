@@ -3,12 +3,12 @@
 case $OS in
   linux)
   {
-    $HOME/Qt/5.14/gcc_64/bin/qmake PokeFinder.pro
+    cmake
     make -j $(nproc)
   } ;;  
   macOS)
   {
-    qmake PokeFinder.pro
+    cmake
     make -j $(sysctl -n hw.physicalcpu)
   } ;;
 esac
