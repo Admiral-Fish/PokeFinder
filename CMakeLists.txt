@@ -26,7 +26,7 @@ if (AVX2)
 endif ()
 
 
-find_package(Qt6 COMPONENTS Core LinguistTools Network Widgets REQUIRED)
+find_package(Qt5 COMPONENTS Core LinguistTools Network Widgets REQUIRED)
 
 set(PROJECT_TS
     i18n/PokeFinder_fr.ts
@@ -488,4 +488,4 @@ add_executable(PokeFinder
     ${PROJECT_SOURCES}
 )
 
-target_link_libraries(PokeFinder PRIVATE Qt6::Core Qt6::Network Qt6::Widgets)
+target_link_libraries(PokeFinder PRIVATE Qt5::Core Qt5::Network Qt5::Widgets)
