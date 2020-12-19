@@ -16,6 +16,10 @@ if (UNIX)
     add_compile_options(-msse4.1)
 endif ()
 
+if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+    add_compile_options(-pthread)
+endif ()
+
 if (AVX2)
     add_compile_definitions(USE_AVX2)
     if (UNIX)
