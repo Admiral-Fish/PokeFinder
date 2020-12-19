@@ -20,7 +20,7 @@ before_build:
     - cmd: call %VCVARSALLPATH% %VCVARSALL%
     
 build_script:
-    - cmd: cmake
+    - cmd: cmake .
     - cmd: jom -j %NUMBER_OF_PROCESSORS%
     - sh: bash .ci/build.sh
     

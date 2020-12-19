@@ -3,12 +3,12 @@
 case $OS in
   linux)
   {
-    cmake
+    cmake .
     make -j $(nproc)
   } ;;  
   macOS)
   {
-    cmake
+    cmake .
     make -j $(sysctl -n hw.physicalcpu)
   } ;;
 esac
