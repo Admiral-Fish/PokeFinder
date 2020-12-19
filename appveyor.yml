@@ -23,7 +23,7 @@ build_script:
     - mkdir build
     - cd build
     - cmd: cmake -G"NMake Makefiles" -DCMAKE_BUILD_TYPE=RELEASE ../
-    - sh: bash .ci/build.sh
+    - sh: bash ../.ci/build.sh
     - cmake --build .
     
 after_build:
@@ -35,19 +35,19 @@ after_build:
     - cmd: xcopy /I %QTPATH%\plugins\styles\qwindowsvistastyle.dll PokeFinder-windows\styles\
     - cmd: xcopy /I %OpenSSL%\libcrypto*.dll PokeFinder-windows\
     - cmd: xcopy /I %OpenSSL%\libssl*.dll PokeFinder-windows\
-    - cmd: 7z a PokeFinder-%OS%.zip PokeFinder-windows\
-    - cmd: sha256sum PokeFinder-%OS%.zip > PokeFinder-%OS%.zip.sha256
+    - cmd: 7z a PokeFinder-win.zip PokeFinder-windows\
+    - cmd: sha256sum PokeFinder-win.zip > PokeFinder-win.zip.sha256
     - sh: bash .ci/after_build.sh
     
 artifacts:
-- path: PokeFinder-%OS%.zip
-- path: PokeFinder-%OS%.zip.sha256
+- path: build/PokeFinder-%OS%.zip
+- path: build/PokeFinder-%OS%.zip.sha256
 
 deploy:
     provider: GitHub
     description: ''
     auth_token:
         secure: u3c5wUq11csZ77TpgKMImu9U+ibNiviMcEpTuQXmqp1YGSHA/+u5FhqZ3KRZBAQX
-    artifact: PokeFinder-%OS%.zip,PokeFinder-%OS%.zip.sha256
+    artifact: build/PokeFinder-%OS%.zip,build/PokeFinder-%OS%.zip.sha256
     on:
         APPVEYOR_REPO_TAG: true
