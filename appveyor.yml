@@ -23,12 +23,12 @@ build_script:
     - mkdir build
     - cd build
     - cmd: cmake -G"NMake Makefiles" -DCMAKE_BUILD_TYPE=RELEASE ../
-    - sh: cmake -G"Unix Makefiles" -DCMAKE_BUILD_TYPE=RELEASE ../
+    - sh: bash .ci/build.sh
     - cmake --build .
     
 after_build:
     - cmd: md PokeFinder-windows
-    - cmd: move release\PokeFinder.exe PokeFinder-windows\PokeFinder.exe
+    - cmd: move PokeFinder.exe PokeFinder-windows\PokeFinder.exe
     - cmd: windeployqt --no-translations --no-angle --no-plugins --no-opengl-sw PokeFinder-windows\PokeFinder.exe
     - cmd: del PokeFinder-windows\vc_redist*.exe
     - cmd: xcopy /I %QTPATH%\plugins\platforms\qwindows.dll PokeFinder-windows\platforms\
