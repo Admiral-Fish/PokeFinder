@@ -20,9 +20,11 @@ before_build:
     - cmd: call %VCVARSALLPATH% %VCVARSALL%
     
 build_script:
-    - cmd: cmake .
-    - cmd: jom -j %NUMBER_OF_PROCESSORS%
-    - sh: bash .ci/build.sh
+    - mkdir build
+    - cd build
+    - cmd: cmake -G"NMake Makefiles" -DCMAKE_BUILD_TYPE=RELEASE ../
+    - sh: cmake -G"Unix Makefiles" -DCMAKE_BUILD_TYPE=RELEASE ../
+    - cmake --build .
     
 after_build:
     - cmd: md PokeFinder-windows
