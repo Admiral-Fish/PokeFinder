@@ -498,6 +498,7 @@ elseif (APPLE)
     set_source_files_properties(${APP_ICON_MACOSX} PROPERTIES MACOSX_PACKAGE_LOCATION "Resources")
 
     add_executable(PokeFinder
+        MACOSX_BUNDLE
         ${PROJECT_I18N}
         ${PROJECT_QRC}
         ${PROJECT_UI}
