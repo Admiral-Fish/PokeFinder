@@ -45,7 +45,6 @@ set(PROJECT_TS
 set(PROJECT_QRC
     QDarkStyleSheet/qdarkstyle/style.qrc
     resources.qrc
-    Images/pokefinder.ico
 )
 
 set(PROJECT_UI	
@@ -485,6 +484,7 @@ EMBED_TRANSLATIONS(PROJECT_I18N ${PROJECT_QM})
 
 if (WIN32)
     add_executable(PokeFinder
+        WIN32
         ${PROJECT_I18N}
         ${PROJECT_QRC}
         ${PROJECT_UI}
