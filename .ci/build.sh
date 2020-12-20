@@ -7,6 +7,6 @@ case $OS in
   } ;;  
   macOS)
   {
-	cmake -G"Unix Makefiles" -DCMAKE_BUILD_TYPE=RELEASE ../
+	PATH="$(brew --prefix qt5)/bin:$PATH" cmake -G"Unix Makefiles" -DCMAKE_BUILD_TYPE=RELEASE ../
   } ;;
 esac
