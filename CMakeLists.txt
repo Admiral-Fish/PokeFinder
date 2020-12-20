@@ -484,12 +484,36 @@ endfunction()
 
 EMBED_TRANSLATIONS(PROJECT_I18N ${PROJECT_QM})
 
-add_executable(PokeFinder
-    ${PROJECT_I18N}
-    ${PROJECT_QRC}
-    ${PROJECT_UI}
-    ${PROJECT_HEADERS}
-    ${PROJECT_SOURCES}
-)
+if (WIN32)
+    add_executable(PokeFinder
+        ${PROJECT_I18N}
+        ${PROJECT_QRC}
+        ${PROJECT_UI}
+        ${PROJECT_HEADERS}
+        ${PROJECT_SOURCES}
+        appicon.rc
+    )
+elseif (APPLE)
+    set(MACOSX_BUNDLE_ICON_FILE pokefinder.icns)
+    set(APP_ICON_MACOSX ${CMAKE_CURRENT_SOURCE_DIR}/Images/pokefinder.icns)
+    set_source_files_properties(${APP_ICON_MACOSX} PROPERTIES MACOSX_PACKAGE_LOCATION "Resources")
+
+    add_executable(PokeFinder
+        ${PROJECT_I18N}
+        ${PROJECT_QRC}
+        ${PROJECT_UI}
+        ${PROJECT_HEADERS}
+        ${PROJECT_SOURCES}
+        ${APP_ICON_MACOSX}
+    )
+else ()
+    add_executable(PokeFinder
+        ${PROJECT_I18N}
+        ${PROJECT_QRC}
+        ${PROJECT_UI}
+        ${PROJECT_HEADERS}
+        ${PROJECT_SOURCES}
+    )
+endif ()
 
 target_link_libraries(PokeFinder PRIVATE Qt5::Core Qt5::Network Qt5::Widgets)
