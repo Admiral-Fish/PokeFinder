@@ -7,6 +7,6 @@ case $OS in
   } ;;  
   macOS)
   {
-	cmake -G"Unix Makefiles" -DCMAKE_BUILD_TYPE=RELEASE ../ -DCMAKE_PREFIX_PATH=/usr/local/Cellar/qt/5*
+	cmake -G"Unix Makefiles" -DCMAKE_BUILD_TYPE=RELEASE ../
   } ;;
 esac
