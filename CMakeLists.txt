@@ -3,6 +3,12 @@ cmake_minimum_required(VERSION 3.16.0)
 project(PokeFinder VERSION 2.5.4 LANGUAGES CXX)
 add_compile_definitions(VERSION="2.5.4")
 
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake")
+
+include(GetTargetArch)
+
+get_target_arch(ARCH)
+
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 set(CMAKE_CXX_STANDARD 17)
@@ -13,7 +19,11 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
 
 if (UNIX)
-    add_compile_options(-msse4.1)
+    if((ARCH EQUAL "x86_64") OR (ARCH EQUAL "i686"))
+        add_compile_options(-msse4.1)
+    elseif(ARCH EQUAL "arm")
+        add_compile_options(-mfpu=neon)
+    endif()
 endif ()
 
 if (AVX2)
