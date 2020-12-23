@@ -20,32 +20,34 @@ before_build:
     - cmd: call %VCVARSALLPATH% %VCVARSALL%
     
 build_script:
-    - cmd: qmake PokeFinder.pro
-    - cmd: jom -j %NUMBER_OF_PROCESSORS%
-    - sh: bash .ci/build.sh
+    - mkdir build
+    - cd build
+    - cmd: cmake -G"NMake Makefiles" -DCMAKE_BUILD_TYPE=RELEASE ../
+    - sh: bash ../.ci/build.sh
+    - cmake --build .
     
 after_build:
     - cmd: md PokeFinder-windows
-    - cmd: move release\PokeFinder.exe PokeFinder-windows\PokeFinder.exe
+    - cmd: move PokeFinder.exe PokeFinder-windows\PokeFinder.exe
     - cmd: windeployqt --no-translations --no-angle --no-plugins --no-opengl-sw PokeFinder-windows\PokeFinder.exe
     - cmd: del PokeFinder-windows\vc_redist*.exe
     - cmd: xcopy /I %QTPATH%\plugins\platforms\qwindows.dll PokeFinder-windows\platforms\
     - cmd: xcopy /I %QTPATH%\plugins\styles\qwindowsvistastyle.dll PokeFinder-windows\styles\
     - cmd: xcopy /I %OpenSSL%\libcrypto*.dll PokeFinder-windows\
     - cmd: xcopy /I %OpenSSL%\libssl*.dll PokeFinder-windows\
-    - cmd: 7z a PokeFinder-%OS%.zip PokeFinder-windows\
-    - cmd: sha256sum PokeFinder-%OS%.zip > PokeFinder-%OS%.zip.sha256
-    - sh: bash .ci/after_build.sh
+    - cmd: 7z a PokeFinder-win.zip PokeFinder-windows\
+    - cmd: sha256sum PokeFinder-win.zip > PokeFinder-win.zip.sha256
+    - sh: bash ../.ci/after_build.sh
     
 artifacts:
-- path: PokeFinder-%OS%.zip
-- path: PokeFinder-%OS%.zip.sha256
+- path: build/PokeFinder-%OS%.zip
+- path: build/PokeFinder-%OS%.zip.sha256
 
 deploy:
     provider: GitHub
     description: ''
     auth_token:
         secure: u3c5wUq11csZ77TpgKMImu9U+ibNiviMcEpTuQXmqp1YGSHA/+u5FhqZ3KRZBAQX
-    artifact: PokeFinder-%OS%.zip,PokeFinder-%OS%.zip.sha256
+    artifact: build/PokeFinder-%OS%.zip,build/PokeFinder-%OS%.zip.sha256
     on:
         APPVEYOR_REPO_TAG: true

@@ -3,12 +3,10 @@
 case $OS in
   linux)
   {
-    $HOME/Qt/5.14/gcc_64/bin/qmake PokeFinder.pro
-    make -j $(nproc)
+    cmake -G"Unix Makefiles" -DCMAKE_BUILD_TYPE=RELEASE ../ -DCMAKE_PREFIX_PATH=/home/appveyor/Qt/5.14.2/gcc_64
   } ;;  
   macOS)
   {
-    qmake PokeFinder.pro
-    make -j $(sysctl -n hw.physicalcpu)
+	PATH="$(brew --prefix qt5)/bin:$PATH" cmake -G"Unix Makefiles" -DCMAKE_BUILD_TYPE=RELEASE ../
   } ;;
 esac
