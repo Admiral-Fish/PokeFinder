@@ -25,6 +25,26 @@
 namespace
 {
     std::string path;
+
+    nlohmann::json readJson()
+    {
+        nlohmann::json j;
+
+        std::ifstream read(path);
+        if (read.is_open())
+        {
+            j = nlohmann::json::parse(read, nullptr, false);
+        }
+
+        return j.is_discarded() ? nlohmann::json() : j;
+    }
+
+    void writeJson(const nlohmann::json &j)
+    {
+        std::ofstream write(path);
+        write << j.dump();
+        write.close();
+    }
 }
 
 namespace ProfileLoader
@@ -74,88 +94,57 @@ namespace ProfileLoader3
     {
         std::vector<Profile3> profiles;
 
-        std::ifstream read(path);
-        if (read.is_open())
-        {
-            nlohmann::json j;
-            read >> j;
-            read.close();
-
-            const auto &gen3 = j["gen3"];
-            std::transform(gen3.begin(), gen3.end(), std::back_inserter(profiles), [](const nlohmann::json &j) { return getProfile(j); });
-        }
+        nlohmann::json j = readJson();
+        const auto &gen3 = j["gen3"];
+        std::transform(gen3.begin(), gen3.end(), std::back_inserter(profiles), [](const nlohmann::json &j) { return getProfile(j); });
 
         return profiles;
     }
 
     void addProfile(const Profile3 &profile)
     {
-        std::ifstream read(path);
-        if (read.is_open())
-        {
-            nlohmann::json j;
-            read >> j;
-            read.close();
+        nlohmann::json j = readJson();
 
-            auto &gen3 = j["gen3"];
-            gen3.emplace_back(getJson(profile));
+        auto &gen3 = j["gen3"];
+        gen3.emplace_back(getJson(profile));
 
-            std::ofstream write(path);
-            write << j.dump(4);
-            write.close();
-        }
+        writeJson(j);
     }
 
     void removeProfile(const Profile3 &remove)
     {
-        std::ifstream read(path);
-        if (read.is_open())
+        nlohmann::json j = readJson();
+
+        auto &gen3 = j["gen3"];
+        for (size_t i = 0; i < gen3.size(); i++)
         {
-            nlohmann::json j;
-            read >> j;
-            read.close();
+            Profile3 profile = getProfile(gen3[i]);
 
-            auto &gen3 = j["gen3"];
-            for (size_t i = 0; i < gen3.size(); i++)
+            if (profile == remove)
             {
-                Profile3 profile = getProfile(gen3[i]);
+                gen3.erase(gen3.begin() + i);
 
-                if (profile == remove)
-                {
-                    gen3.erase(gen3.begin() + i);
-
-                    std::ofstream write(path);
-                    write << j.dump(4);
-                    write.close();
-                    break;
-                }
+                writeJson(j);
+                break;
             }
         }
     }
 
     void updateProfile(const Profile3 &update, const Profile3 &original)
     {
-        std::ifstream read(path);
-        if (read.is_open())
+        nlohmann::json j = readJson();
+
+        auto &gen3 = j["gen3"];
+        for (auto &i : gen3)
         {
-            nlohmann::json j;
-            read >> j;
-            read.close();
+            Profile3 profile = getProfile(i);
 
-            auto &gen3 = j["gen3"];
-            for (auto &i : gen3)
+            if (original == profile && original != update)
             {
-                Profile3 profile = getProfile(i);
+                i = getJson(update);
 
-                if (original == profile && original != update)
-                {
-                    i = getJson(update);
-
-                    std::ofstream write(path);
-                    write << j.dump(4);
-                    write.close();
-                    break;
-                }
+                writeJson(j);
+                break;
             }
         }
     }
@@ -198,88 +187,57 @@ namespace ProfileLoader4
     {
         std::vector<Profile4> profiles;
 
-        std::ifstream read(path);
-        if (read.is_open())
-        {
-            nlohmann::json j;
-            read >> j;
-            read.close();
-
-            const auto &gen4 = j["gen4"];
-            std::transform(gen4.begin(), gen4.end(), std::back_inserter(profiles), [](const nlohmann::json &j) { return getProfile(j); });
-        }
+        nlohmann::json j = readJson();
+        const auto &gen4 = j["gen4"];
+        std::transform(gen4.begin(), gen4.end(), std::back_inserter(profiles), [](const nlohmann::json &j) { return getProfile(j); });
 
         return profiles;
     }
 
     void addProfile(const Profile4 &profile)
     {
-        std::ifstream read(path);
-        if (read.is_open())
-        {
-            nlohmann::json j;
-            read >> j;
-            read.close();
+        nlohmann::json j = readJson();
 
-            auto &gen4 = j["gen4"];
-            gen4.emplace_back(getJson(profile));
+        auto &gen4 = j["gen4"];
+        gen4.emplace_back(getJson(profile));
 
-            std::ofstream write(path);
-            write << j.dump(4);
-            write.close();
-        }
+        writeJson(j);
     }
 
     void removeProfile(const Profile4 &remove)
     {
-        std::ifstream read(path);
-        if (read.is_open())
+        nlohmann::json j = readJson();
+
+        auto &gen4 = j["gen4"];
+        for (size_t i = 0; i < gen4.size(); i++)
         {
-            nlohmann::json j;
-            read >> j;
-            read.close();
+            Profile4 profile = getProfile(gen4[i]);
 
-            auto &gen4 = j["gen4"];
-            for (size_t i = 0; i < gen4.size(); i++)
+            if (profile == remove)
             {
-                Profile4 profile = getProfile(gen4[i]);
+                gen4.erase(gen4.begin() + i);
 
-                if (profile == remove)
-                {
-                    gen4.erase(gen4.begin() + i);
-
-                    std::ofstream write(path);
-                    write << j.dump(4);
-                    write.close();
-                    break;
-                }
+                writeJson(j);
+                break;
             }
         }
     }
 
     void updateProfile(const Profile4 &update, const Profile4 &original)
     {
-        std::ifstream read(path);
-        if (read.is_open())
+        nlohmann::json j = readJson();
+
+        auto &gen4 = j["gen4"];
+        for (auto &i : gen4)
         {
-            nlohmann::json j;
-            read >> j;
-            read.close();
+            Profile4 profile = getProfile(i);
 
-            auto &gen4 = j["gen4"];
-            for (auto &i : gen4)
+            if (original == profile && original != update)
             {
-                Profile4 profile = getProfile(i);
+                i = getJson(update);
 
-                if (original == profile && original != update)
-                {
-                    i = getJson(update);
-
-                    std::ofstream write(path);
-                    write << j.dump(4);
-                    write.close();
-                    break;
-                }
+                writeJson(j);
+                break;
             }
         }
     }
@@ -332,8 +290,8 @@ namespace ProfileLoader5
             j["softReset"] = profile.getSoftReset();
             j["memoryLink"] = profile.getMemoryLink();
             j["shinyCharm"] = profile.getShinyCharm();
-            j["dsType"] = static_cast<int>(profile.getDSType());
-            j["language"] = static_cast<int>(profile.getLanguage());
+            j["dsType"] = profile.getDSType();
+            j["language"] = profile.getLanguage();
             return j;
         }
     }
@@ -342,87 +300,57 @@ namespace ProfileLoader5
     {
         std::vector<Profile5> profiles;
 
-        std::ifstream read(path);
-        if (read.is_open())
-        {
-            nlohmann::json j;
-            read >> j;
-            read.close();
-
-            const auto &gen5 = j["gen5"];
-            std::transform(gen5.begin(), gen5.end(), std::back_inserter(profiles), [](const nlohmann::json &j) { return getProfile(j); });
-        }
+        nlohmann::json j = readJson();
+        const auto &gen5 = j["gen5"];
+        std::transform(gen5.begin(), gen5.end(), std::back_inserter(profiles), [](const nlohmann::json &j) { return getProfile(j); });
 
         return profiles;
     }
 
     void addProfile(const Profile5 &profile)
     {
-        std::ifstream read(path);
-        if (read.is_open())
-        {
-            nlohmann::json j;
-            read >> j;
+        nlohmann::json j = readJson();
 
-            auto &gen5 = j["gen5"];
-            gen5.emplace_back(getJson(profile));
+        auto &gen5 = j["gen5"];
+        gen5.emplace_back(getJson(profile));
 
-            std::ofstream write(path);
-            write << j.dump(4);
-            write.close();
-        }
+        writeJson(j);
     }
 
     void removeProfile(const Profile5 &remove)
     {
-        std::ifstream read(path);
-        if (read.is_open())
+        nlohmann::json j = readJson();
+
+        auto &gen5 = j["gen5"];
+        for (size_t i = 0; i < gen5.size(); i++)
         {
-            nlohmann::json j;
-            read >> j;
-            read.close();
+            Profile5 profile = getProfile(gen5[i]);
 
-            auto &gen5 = j["gen5"];
-            for (size_t i = 0; i < gen5.size(); i++)
+            if (profile == remove)
             {
-                Profile5 profile = getProfile(gen5[i]);
+                gen5.erase(gen5.begin() + i);
 
-                if (profile == remove)
-                {
-                    gen5.erase(gen5.begin() + i);
-
-                    std::ofstream write(path);
-                    write << j.dump(4);
-                    write.close();
-                    break;
-                }
+                writeJson(j);
+                break;
             }
         }
     }
 
     void updateProfile(const Profile5 &update, const Profile5 &original)
     {
-        std::ifstream read(path);
-        if (read.is_open())
+        nlohmann::json j = readJson();
+
+        auto &gen5 = j["gen5"];
+        for (auto &i : gen5)
         {
-            nlohmann::json j;
-            read >> j;
-            read.close();
+            Profile5 profile = getProfile(i);
 
-            auto &gen5 = j["gen5"];
-            for (auto &i : gen5)
+            if (original == profile && original != update)
             {
-                Profile5 profile = getProfile(i);
+                i = getJson(update);
 
-                if (original == profile && original != update)
-                {
-                    i = getJson(update);
-
-                    std::ofstream write(path);
-                    write << j.dump(4);
-                    write.close();
-                    break;
-                }
+                writeJson(j);
+                break;
             }
         }
     }
