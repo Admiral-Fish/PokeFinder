@@ -32,7 +32,11 @@ public:
     u16 nextUShort();
 
 private:
+#ifdef SIMD_256BIT
+    alignas(32) u32 mt[624];
+#else
     alignas(16) u32 mt[624];
+#endif
     u16 index;
 
     void shuffle();
@@ -94,8 +98,13 @@ public:
     }
 
 private:
+#ifdef SIMD_256BIT
+    alignas(u32) u32 mt[size + 1];
+    alignas(u32) u32 temper[size];
+#else
     alignas(16) u32 mt[size + 1];
     alignas(16) u32 temper[size];
+#endif
     u16 index;
 
     void shuffle()
@@ -142,7 +151,7 @@ private:
                 vuint32x4 y1 = v32x4_shr(y, 1);
                 vuint32x4 mag01 = v32x4_and(v32x4_cmpeq(v32x4_and(y, one), one), matrix);
 
-                _mm_storeu_si128((vuint32x4 *)&mt[i], v32x4_xor(v32x4_xor(y1, mag01), m2));
+                v32x4_store(&mt[i], v32x4_xor(v32x4_xor(y1, mag01), m2));
             }
         }
 #else
