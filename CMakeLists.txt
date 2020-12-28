@@ -6,7 +6,7 @@ add_compile_definitions(VERSION="2.5.4")
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake")
 
 include(GetTargetArch)
-
+include(EmbedTranslations)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
@@ -17,26 +17,32 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
 
-if (UNIX)
-    get_target_arch(ARCH)
-    if((ARCH STREQUAL "x86_64") OR (ARCH STREQUAL "i686"))
-        add_compile_options(-msse4.1)
-    elseif(ARCH STREQUAL "arm")
-        add_compile_options(-mfpu=neon)
-    endif()
-endif ()
-
 if (AVX2)
     add_compile_definitions(USE_AVX2)
-    if (UNIX)
-        add_compile_options(-mavx2)
-    else ()
+    if (WIN32)
         add_compile_options(/arch:AVX2)
+    else ()
+        get_target_arch(ARCH)
+        if ((ARCH STREQUAL "x86_64") OR (ARCH STREQUAL "i686"))
+            add_compile_options(-msse4.1)
+            add_compile_options(-mavx2)
+        elseif (ARCH STREQUAL "arm")
+            add_compile_options(-mfpu=neon)
+        endif ()
+    endif ()
+else ()
+    if (UNIX)
+        get_target_arch(ARCH)
+        if ((ARCH STREQUAL "x86_64") OR (ARCH STREQUAL "i686"))
+            add_compile_options(-msse4.1)
+        elseif (ARCH STREQUAL "arm")
+            add_compile_options(-mfpu=neon)
+        endif ()
     endif ()
 endif ()
 
 
-find_package(Qt5 COMPONENTS Core LinguistTools Network Widgets REQUIRED)
+find_package(Qt6 COMPONENTS Core LinguistTools Network Widgets REQUIRED)
 
 set(PROJECT_TS
     i18n/PokeFinder_fr.ts
@@ -470,23 +476,8 @@ set(PROJECT_SOURCES
     main.cpp
 )
 
-qt5_add_translation(PROJECT_QM ${PROJECT_TS} OPTIONS -nounfinished -removeidentical)
-
-function(EMBED_TRANSLATIONS res_file)
-    set(_qm_files ${ARGN})
-    set(_res_file ${CMAKE_CURRENT_BINARY_DIR}/i18n.qrc)
-
-    file(WRITE ${_res_file} "<RCC>\n\t<qresource prefix=\"/i18n\">\n")
-    foreach(_lang ${_qm_files})
-        get_filename_component(_filename ${_lang} NAME)
-        file(APPEND ${_res_file} "\t\t<file>${_filename}</file>\n")
-    endforeach()
-    file(APPEND ${_res_file} "\t</qresource>\n</RCC>\n")
-
-    set(${res_file} ${_res_file} PARENT_SCOPE)
-endfunction()
-
-EMBED_TRANSLATIONS(PROJECT_I18N ${PROJECT_QM})
+qt_add_translation(PROJECT_QM ${PROJECT_TS} OPTIONS -nounfinished -removeidentical)
+embed_translations(PROJECT_I18N ${PROJECT_QM})
 
 if (WIN32)
     add_executable(PokeFinder
@@ -523,4 +514,4 @@ else ()
     )
 endif ()
 
-target_link_libraries(PokeFinder PRIVATE Qt5::Core Qt5::Network Qt5::Widgets)
+target_link_libraries(PokeFinder PRIVATE Qt6::Core Qt6::Network Qt6::Widgets)
