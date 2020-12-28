@@ -62,118 +62,118 @@ u16 MT::nextUShort()
 
 void MT::shuffle()
 {
-#ifdef USE_AVX2
-    __m128i upperMask = _mm_set1_epi32(0x80000000);
-    __m128i lowerMask = _mm_set1_epi32(0x7fffffff);
-    __m128i matrix = _mm_set1_epi32(0x9908b0df);
-    __m128i one = _mm_set1_epi32(1);
+#ifdef SIMD_256BIT
+    vuint32x4 upperMask = v32x4_splat(0x80000000);
+    vuint32x4 lowerMask = v32x4_splat(0x7fffffff);
+    vuint32x4 matrix = v32x4_splat(0x9908b0df);
+    vuint32x4 one = v32x4_splat(1);
 
-    __m256i upperMask256 = _mm256_set1_epi32(0x80000000);
-    __m256i lowerMask256 = _mm256_set1_epi32(0x7fffffff);
-    __m256i matrix256 = _mm256_set1_epi32(0x9908b0df);
-    __m256i one256 = _mm256_set1_epi32(1);
+    vuint32x8 upperMask256 = v32x8_splat(0x80000000);
+    vuint32x8 lowerMask256 = v32x8_splat(0x7fffffff);
+    vuint32x8 matrix256 = v32x8_splat(0x9908b0df);
+    vuint32x8 one256 = v32x8_splat(1);
 
     for (int i = 0; i < 224; i += 8)
     {
-        __m256i m0 = _mm256_loadu_si256((const __m256i *)&mt[i]);
-        __m256i m1 = _mm256_loadu_si256((const __m256i *)&mt[i + 1]);
-        __m256i m2 = _mm256_loadu_si256((const __m256i *)&mt[i + 397]);
+        vuint32x8 m0 = v32x8_load(&mt[i]);
+        vuint32x8 m1 = v32x8_load(&mt[i + 1]);
+        vuint32x8 m2 = v32x8_load(&mt[i + 397]);
 
-        __m256i y = _mm256_or_si256(_mm256_and_si256(m0, upperMask256), _mm256_and_si256(m1, lowerMask256));
-        __m256i y1 = _mm256_srli_epi32(y, 1);
-        __m256i mag01 = _mm256_and_si256(_mm256_cmpeq_epi32(_mm256_and_si256(y, one256), one256), matrix256);
+        vuint32x8 y = v32x8_or(v32x8_and(m0, upperMask256), v32x8_and(m1, lowerMask256));
+        vuint32x8 y1 = v32x8_shr(y, 1);
+        vuint32x8 mag01 = v32x8_and(v32x8_cmpeq(v32x8_and(y, one256), one256), matrix256);
 
-        _mm256_storeu_si256((__m256i *)&mt[i], _mm256_xor_si256(_mm256_xor_si256(y1, mag01), m2));
+        v32x8_store(&mt[i], v32x8_xor(v32x8_xor(y1, mag01), m2));
     }
 
-    __m128i last = _mm_insert_epi32(_mm_loadu_si128((const __m128i *)&mt[621]), mt[0], 3);
+    vuint32x4 last = v32x4_insert(v32x4_load(&mt[621]), mt[0], 3);
     {
-        __m128i m0 = _mm_loadu_si128((const __m128i *)&mt[224]);
-        __m128i m1 = _mm_loadu_si128((const __m128i *)&mt[225]);
+        vuint32x4 m0 = v32x4_load(&mt[224]);
+        vuint32x4 m1 = v32x4_load(&mt[225]);
 
-        __m128i y = _mm_or_si128(_mm_and_si128(m0, upperMask), _mm_and_si128(m1, lowerMask));
-        __m128i y1 = _mm_srli_epi32(y, 1);
-        __m128i mag01 = _mm_and_si128(_mm_cmpeq_epi32(_mm_and_si128(y, one), one), matrix);
+        vuint32x4 y = v32x4_or(v32x4_and(m0, upperMask), v32x4_and(m1, lowerMask));
+        vuint32x4 y1 = v32x4_shr(y, 1);
+        vuint32x4 mag01 = v32x4_and(v32x4_cmpeq(v32x4_and(y, one), one), matrix);
 
-        _mm_storeu_si128((__m128i *)&mt[224], _mm_xor_si128(_mm_xor_si128(y1, mag01), last));
+        v32x4_store(&mt[224], v32x4_xor(v32x4_xor(y1, mag01), last));
     }
 
     for (int i = 228; i < 620; i += 8)
     {
-        __m256i m0 = _mm256_loadu_si256((const __m256i *)&mt[i]);
-        __m256i m1 = _mm256_loadu_si256((const __m256i *)&mt[i + 1]);
-        __m256i m2 = _mm256_loadu_si256((const __m256i *)&mt[i - 227]);
+        vuint32x8 m0 = v32x8_load(&mt[i]);
+        vuint32x8 m1 = v32x8_load(&mt[i + 1]);
+        vuint32x8 m2 = v32x8_load(&mt[i - 227]);
 
-        __m256i y = _mm256_or_si256(_mm256_and_si256(m0, upperMask256), _mm256_and_si256(m1, lowerMask256));
-        __m256i y1 = _mm256_srli_epi32(y, 1);
-        __m256i mag01 = _mm256_and_si256(_mm256_cmpeq_epi32(_mm256_and_si256(y, one256), one256), matrix256);
+        vuint32x8 y = v32x8_or(v32x8_and(m0, upperMask256), v32x8_and(m1, lowerMask256));
+        vuint32x8 y1 = v32x8_shr(y, 1);
+        vuint32x8 mag01 = v32x8_and(v32x8_cmpeq(v32x8_and(y, one256), one256), matrix256);
 
-        _mm256_storeu_si256((__m256i *)&mt[i], _mm256_xor_si256(_mm256_xor_si256(y1, mag01), m2));
+        v32x8_store(&mt[i], v32x8_xor(v32x8_xor(y1, mag01), m2));
     }
 
     {
-        __m128i m0 = _mm_loadu_si128((const __m128i *)&mt[620]);
-        __m128i m2 = _mm_loadu_si128((const __m128i *)&mt[393]);
+        vuint32x4 m0 = v32x4_load(&mt[620]);
+        vuint32x4 m2 = v32x4_load(&mt[393]);
 
-        __m128i y = _mm_or_si128(_mm_and_si128(m0, upperMask), _mm_and_si128(last, lowerMask));
-        __m128i y1 = _mm_srli_epi32(y, 1);
-        __m128i mag01 = _mm_and_si128(_mm_cmpeq_epi32(_mm_and_si128(y, one), one), matrix);
+        vuint32x4 y = v32x4_or(v32x4_and(m0, upperMask), v32x4_and(last, lowerMask));
+        vuint32x4 y1 = v32x4_shr(y, 1);
+        vuint32x4 mag01 = v32x4_and(v32x4_cmpeq(v32x4_and(y, one), one), matrix);
 
-        _mm_storeu_si128((__m128i *)&mt[620], _mm_xor_si128(_mm_xor_si128(y1, mag01), m2));
+        v32x4_store(&mt[620], v32x4_xor(v32x4_xor(y1, mag01), m2));
     }
 #else
-    __m128i upperMask = _mm_set1_epi32(0x80000000);
-    __m128i lowerMask = _mm_set1_epi32(0x7fffffff);
-    __m128i matrix = _mm_set1_epi32(0x9908b0df);
-    __m128i one = _mm_set1_epi32(1);
+    vuint32x4 upperMask = v32x4_splat(0x80000000);
+    vuint32x4 lowerMask = v32x4_splat(0x7fffffff);
+    vuint32x4 matrix = v32x4_splat(0x9908b0df);
+    vuint32x4 one = v32x4_splat(1);
 
     for (int i = 0; i < 224; i += 4)
     {
-        __m128i m0 = _mm_loadu_si128((const __m128i *)&mt[i]);
-        __m128i m1 = _mm_loadu_si128((const __m128i *)&mt[i + 1]);
-        __m128i m2 = _mm_loadu_si128((const __m128i *)&mt[i + 397]);
+        vuint32x4 m0 = v32x4_load(&mt[i]);
+        vuint32x4 m1 = v32x4_load(&mt[i + 1]);
+        vuint32x4 m2 = v32x4_load(&mt[i + 397]);
 
-        __m128i y = _mm_or_si128(_mm_and_si128(m0, upperMask), _mm_and_si128(m1, lowerMask));
-        __m128i y1 = _mm_srli_epi32(y, 1);
-        __m128i mag01 = _mm_and_si128(_mm_cmpeq_epi32(_mm_and_si128(y, one), one), matrix);
+        vuint32x4 y = v32x4_or(v32x4_and(m0, upperMask), v32x4_and(m1, lowerMask));
+        vuint32x4 y1 = v32x4_shr(y, 1);
+        vuint32x4 mag01 = v32x4_and(v32x4_cmpeq(v32x4_and(y, one), one), matrix);
 
-        _mm_storeu_si128((__m128i *)&mt[i], _mm_xor_si128(_mm_xor_si128(y1, mag01), m2));
+        v32x4_store(&mt[i], v32x4_xor(v32x4_xor(y1, mag01), m2));
     }
 
-    __m128i last = _mm_insert_epi32(_mm_loadu_si128((const __m128i *)&mt[621]), mt[0], 3);
+    vuint32x4 last = v32x4_insert(v32x4_load(&mt[621]), mt[0], 3);
     {
-        __m128i m0 = _mm_loadu_si128((const __m128i *)&mt[224]);
-        __m128i m1 = _mm_loadu_si128((const __m128i *)&mt[225]);
+        vuint32x4 m0 = v32x4_load(&mt[224]);
+        vuint32x4 m1 = v32x4_load(&mt[225]);
 
-        __m128i y = _mm_or_si128(_mm_and_si128(m0, upperMask), _mm_and_si128(m1, lowerMask));
-        __m128i y1 = _mm_srli_epi32(y, 1);
-        __m128i mag01 = _mm_and_si128(_mm_cmpeq_epi32(_mm_and_si128(y, one), one), matrix);
+        vuint32x4 y = v32x4_or(v32x4_and(m0, upperMask), v32x4_and(m1, lowerMask));
+        vuint32x4 y1 = v32x4_shr(y, 1);
+        vuint32x4 mag01 = v32x4_and(v32x4_cmpeq(v32x4_and(y, one), one), matrix);
 
-        _mm_storeu_si128((__m128i *)&mt[224], _mm_xor_si128(_mm_xor_si128(y1, mag01), last));
+        v32x4_store(&mt[224], v32x4_xor(v32x4_xor(y1, mag01), last));
     }
 
     for (int i = 228; i < 620; i += 4)
     {
-        __m128i m0 = _mm_loadu_si128((const __m128i *)&mt[i]);
-        __m128i m1 = _mm_loadu_si128((const __m128i *)&mt[i + 1]);
-        __m128i m2 = _mm_loadu_si128((const __m128i *)&mt[i - 227]);
+        vuint32x4 m0 = v32x4_load(&mt[i]);
+        vuint32x4 m1 = v32x4_load(&mt[i + 1]);
+        vuint32x4 m2 = v32x4_load(&mt[i - 227]);
 
-        __m128i y = _mm_or_si128(_mm_and_si128(m0, upperMask), _mm_and_si128(m1, lowerMask));
-        __m128i y1 = _mm_srli_epi32(y, 1);
-        __m128i mag01 = _mm_and_si128(_mm_cmpeq_epi32(_mm_and_si128(y, one), one), matrix);
+        vuint32x4 y = v32x4_or(v32x4_and(m0, upperMask), v32x4_and(m1, lowerMask));
+        vuint32x4 y1 = v32x4_shr(y, 1);
+        vuint32x4 mag01 = v32x4_and(v32x4_cmpeq(v32x4_and(y, one), one), matrix);
 
-        _mm_storeu_si128((__m128i *)&mt[i], _mm_xor_si128(_mm_xor_si128(y1, mag01), m2));
+        v32x4_store(&mt[i], v32x4_xor(v32x4_xor(y1, mag01), m2));
     }
 
     {
-        __m128i m0 = _mm_loadu_si128((const __m128i *)&mt[620]);
-        __m128i m2 = _mm_loadu_si128((const __m128i *)&mt[393]);
+        vuint32x4 m0 = v32x4_load(&mt[620]);
+        vuint32x4 m2 = v32x4_load(&mt[393]);
 
-        __m128i y = _mm_or_si128(_mm_and_si128(m0, upperMask), _mm_and_si128(last, lowerMask));
-        __m128i y1 = _mm_srli_epi32(y, 1);
-        __m128i mag01 = _mm_and_si128(_mm_cmpeq_epi32(_mm_and_si128(y, one), one), matrix);
+        vuint32x4 y = v32x4_or(v32x4_and(m0, upperMask), v32x4_and(last, lowerMask));
+        vuint32x4 y1 = v32x4_shr(y, 1);
+        vuint32x4 mag01 = v32x4_and(v32x4_cmpeq(v32x4_and(y, one), one), matrix);
 
-        _mm_storeu_si128((__m128i *)&mt[620], _mm_xor_si128(_mm_xor_si128(y1, mag01), m2));
+        v32x4_store(&mt[620], v32x4_xor(v32x4_xor(y1, mag01), m2));
     }
 #endif
 
