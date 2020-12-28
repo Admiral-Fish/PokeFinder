@@ -7,7 +7,6 @@ list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake")
 
 include(GetTargetArch)
 
-get_target_arch(ARCH)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
@@ -19,6 +18,7 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
 
 if (UNIX)
+    get_target_arch(ARCH)
     if((ARCH STREQUAL "x86_64") OR (ARCH STREQUAL "i686"))
         add_compile_options(-msse4.1)
     elseif(ARCH STREQUAL "arm")
