@@ -32,11 +32,7 @@ public:
     u16 nextUShort();
 
 private:
-#ifdef SIMD_256BIT
-    alignas(32) u32 mt[624];
-#else
     alignas(16) u32 mt[624];
-#endif
     u16 index;
 
     void shuffle();
@@ -98,69 +94,20 @@ public:
     }
 
 private:
-#ifdef SIMD_256BIT
-    alignas(u32) u32 mt[size + 1];
-    alignas(u32) u32 temper[size];
-#else
     alignas(16) u32 mt[size + 1];
     alignas(16) u32 temper[size];
-#endif
     u16 index;
 
     void shuffle()
     {
         int i = 0;
 
-#ifdef SIMD_256BIT
-        // Even with 256-bit SIMD only use it if the number of iterations remaining is less than 4
-        // Otherwise using 128-bit SIMD is preferred so we don't mix-match SIMD extensions
-        if constexpr (size >= 8 && (size % 8) < 4)
-        {
-            vuint32x8 upperMask256 = v32x8_splat(0x80000000);
-            vuint32x8 lowerMask256 = v32x8_splat(0x7fffffff);
-            vuint32x8 matrix256 = v32x8_splat(0x9908b0df);
-            vuint32x8 one256 = v32x8_splat(1);
-
-            for (; i < size - (size % 8); i += 8)
-            {
-                vuint32x8 m0 = v32x8_load(&mt[i]);
-                vuint32x8 m1 = v32x8_load(&mt[i + 1]);
-                vuint32x8 m2 = v32x8_load(&temper[i]);
-
-                vuint32x8 y = v32x8_or(v32x8_and(m0, upperMask256), v32x8_and(m1, lowerMask256));
-                vuint32x8 y1 = v32x8_shr(y, 1);
-                vuint32x8 mag01 = v32x8_and(v32x8_cmpeq(v32x8_and(y, one256), one256), matrix256);
-
-                v32x8_store(&mt[i], v32x8_xor(v32x8_xor(y1, mag01), m2));
-            }
-        }
-        else if constexpr (size >= 4)
-        {
-            vuint32x4 upperMask = v32x4_splat(0x80000000);
-            vuint32x4 lowerMask = v32x4_splat(0x7fffffff);
-            vuint32x4 matrix = v32x4_splat(0x9908b0df);
-            vuint32x4 one = v32x4_splat(1);
-
-            for (; i < size - (size % 4); i += 4)
-            {
-                vuint32x4 m0 = v32x4_load((const vuint32x4 *)&mt[i]);
-                vuint32x4 m1 = v32x4_load((const vuint32x4 *)&mt[i + 1]);
-                vuint32x4 m2 = v32x4_load((const vuint32x4 *)&temper[i]);
-
-                vuint32x4 y = v32x4_or(v32x4_and(m0, upperMask), v32x4_and(m1, lowerMask));
-                vuint32x4 y1 = v32x4_shr(y, 1);
-                vuint32x4 mag01 = v32x4_and(v32x4_cmpeq(v32x4_and(y, one), one), matrix);
-
-                v32x4_store(&mt[i], v32x4_xor(v32x4_xor(y1, mag01), m2));
-            }
-        }
-#else
         if constexpr (size >= 4)
         {
-            vuint32x4 upperMask = v32x4_splat(0x80000000);
-            vuint32x4 lowerMask = v32x4_splat(0x7fffffff);
-            vuint32x4 matrix = v32x4_splat(0x9908b0df);
-            vuint32x4 one = v32x4_splat(1);
+            vuint32x4 upperMask = v32x4_set(0x80000000);
+            vuint32x4 lowerMask = v32x4_set(0x7fffffff);
+            vuint32x4 matrix = v32x4_set(0x9908b0df);
+            vuint32x4 one = v32x4_set(1);
 
             for (; i < size - (size % 4); i += 4)
             {
@@ -175,7 +122,6 @@ private:
                 v32x4_store(&mt[i], v32x4_xor(v32x4_xor(y1, mag01), m2));
             }
         }
-#endif
 
         for (; i < size; i++)
         {

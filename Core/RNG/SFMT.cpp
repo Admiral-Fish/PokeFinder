@@ -76,12 +76,11 @@ void SFMT::shuffle()
 {
     vuint32x4 c = v32x4_load(&sfmt[616]);
     vuint32x4 d = v32x4_load(&sfmt[620]);
-    uint32_t _mask[4] = {0xbffffff6, 0xbffaffff, 0xddfecb7f, 0xdfffffef};
-    vuint32x4 mask = v32x4_load(_mask);
+    vuint32x4 mask = v32x4_set(0xdfffffef, 0xddfecb7f, 0xbffaffff, 0xbffffff6);
 
     auto mm_recursion = [&mask](vuint32x4 &a, const vuint32x4 &b, const vuint32x4 &c, const vuint32x4 &d) {
-        vuint32x4 x = v8x16_shl(a, 1);
-        vuint32x4 y = v8x16_shr(c, 1);
+        vuint32x4 x = v128_shl<1>(a);
+        vuint32x4 y = v128_shr<1>(c);
 
         vuint32x4 b1 = v32x4_and(v32x4_shr(b, 11), mask);
         vuint32x4 d1 = v32x4_shl(d, 18);

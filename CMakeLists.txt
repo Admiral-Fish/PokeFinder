@@ -17,30 +17,14 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
 
-if (AVX2)
-    add_compile_definitions(USE_AVX2)
-    if (WIN32)
-        add_compile_options(/arch:AVX2)
-    else ()
-        get_target_arch(ARCH)
-        if ((ARCH STREQUAL "x86_64") OR (ARCH STREQUAL "i686"))
-            add_compile_options(-msse4.1)
-            add_compile_options(-mavx2)
-        elseif (ARCH STREQUAL "arm")
-            add_compile_options(-mfpu=neon)
-        endif ()
-    endif ()
-else ()
-    if (UNIX)
-        get_target_arch(ARCH)
-        if ((ARCH STREQUAL "x86_64") OR (ARCH STREQUAL "i686"))
-            add_compile_options(-msse4.1)
-        elseif (ARCH STREQUAL "arm")
-            add_compile_options(-mfpu=neon)
-        endif ()
+if (UNIX)
+    get_target_arch(ARCH)
+    if ((ARCH STREQUAL "x86_64") OR (ARCH STREQUAL "i686"))
+        add_compile_options(-msse4.1)
+    elseif (ARCH STREQUAL "arm")
+        add_compile_options(-mfpu=neon)
     endif ()
 endif ()
-
 
 find_package(Qt5 COMPONENTS Core LinguistTools Network Widgets REQUIRED)
 
@@ -213,6 +197,7 @@ set(PROJECT_HEADERS
     Core/RNG/RNGList.hpp
     Core/RNG/SFMT.hpp
     Core/RNG/SHA1.hpp
+    Core/RNG/SIMD.hpp
     Core/RNG/TinyMT.hpp
     Core/Resources/I18n.hpp
     Core/Resources/Resources.hpp
