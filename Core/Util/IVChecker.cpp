@@ -111,7 +111,7 @@ std::vector<std::vector<u8>> IVChecker::calculateIVRange(const std::vector<u8> &
             std::vector<std::vector<u8>> temp(6);
             for (size_t j = 0; j < 6; j++)
             {
-                std::set_intersection(ivs[j].begin(), ivs[j].end(), current[j].begin(), current[j].end(), std::back_inserter(temp[i]));
+                std::set_intersection(ivs[j].begin(), ivs[j].end(), current[j].begin(), current[j].end(), std::back_inserter(temp[j]));
             }
             ivs = temp;
         }
