@@ -194,7 +194,7 @@ void Settings::changeIVs()
         if (f.open(QIODevice::ReadOnly))
         {
             QByteArray hash = QCryptographicHash::hash(f.readAll(), QCryptographicHash::Sha256).toHex();
-            if (hash != "955a61f878252aa5aabf2d450eeeff138f091d90d01acf394e4a8e13ea807dc8")
+            if (hash != "c49210a31edb77ae54ddce028f8e4081947b0b5315c70e6eefda8ff88d3d70c1")
             {
                 QMessageBox message(QMessageBox::Information, tr("IV bin"), tr("Invalid IV bin file was provided"), QMessageBox::Ok);
                 message.exec();
