@@ -22,7 +22,6 @@
 #include <Core/Gen5/Profile5.hpp>
 #include <Core/RNG/LCRNG64.hpp>
 #include <array>
-#include <cstring>
 
 inline u32 changeEndian(u32 val)
 {
@@ -56,8 +55,6 @@ SHA1::SHA1(const Profile5 &profile) :
 
 SHA1::SHA1(Game version, Language language, DSType type, u64 mac, bool softReset, u8 vFrame, u8 gxStat)
 {
-    std::memset(data, 0, sizeof(data));
-
     auto nazos = Nazos::getNazo(version, language, type);
     std::copy(nazos.begin(), nazos.end(), data);
 
@@ -67,7 +64,12 @@ SHA1::SHA1(Game version, Language language, DSType type, u64 mac, bool softReset
         data[6] ^= 0x01000000;
     }
     data[7] = static_cast<u32>((mac >> 16) ^ static_cast<u32>(vFrame << 24) ^ gxStat);
+
+    // Set values
+    data[10] = 0;
+    data[11] = 0;
     data[13] = 0x80000000;
+    data[14] = 0;
     data[15] = 0x000001A0;
 
     // Precompute data[18]

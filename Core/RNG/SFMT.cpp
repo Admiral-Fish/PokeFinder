@@ -20,15 +20,15 @@
 #include "SFMT.hpp"
 #include <Core/RNG/SIMD.hpp>
 
-SFMT::SFMT(u32 seed)
+SFMT::SFMT(u32 seed) : index(624)
 {
     u32 inner = seed & 1;
     sfmt[0] = seed;
 
-    for (index = 1; index < 624; index++)
+    for (u32 i = 1; i < 624; i++)
     {
-        seed = 0x6C078965 * (seed ^ (seed >> 30)) + index;
-        sfmt[index] = seed;
+        seed = 0x6C078965 * (seed ^ (seed >> 30)) + i;
+        sfmt[i] = seed;
     }
 
     inner ^= sfmt[3] & 0x13c9e684;
@@ -43,18 +43,21 @@ SFMT::SFMT(u32 seed)
 
 void SFMT::advance(u32 advances)
 {
-    index += (advances * 2);
-    while (index >= 624)
+    advances = (advances * 2) + index;
+    while (advances >= 624)
     {
         shuffle();
+        advances -= 624;
     }
+    index = advances;
 }
 
 u64 SFMT::next()
 {
-    if (index >= 624)
+    if (index == 624)
     {
         shuffle();
+        index = 0;
     }
 
     u32 high = sfmt[index++];
@@ -64,9 +67,10 @@ u64 SFMT::next()
 
 u32 SFMT::nextUInt()
 {
-    if (index >= 624)
+    if (index == 624)
     {
         shuffle();
+        index = 0;
     }
 
     return sfmt[index++];
@@ -111,6 +115,4 @@ void SFMT::shuffle()
         c = d;
         d = a;
     }
-
-    index -= 624;
 }
