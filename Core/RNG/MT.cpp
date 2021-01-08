@@ -19,31 +19,34 @@
 
 #include "MT.hpp"
 
-MT::MT(u32 seed)
+MT::MT(u32 seed) : index(624)
 {
     mt[0] = seed;
 
-    for (index = 1; index < 624; index++)
+    for (u32 i = 1; i < 624; i++)
     {
-        seed = 0x6c078965 * (seed ^ (seed >> 30)) + index;
-        mt[index] = seed;
+        seed = 0x6c078965 * (seed ^ (seed >> 30)) + i;
+        mt[i] = seed;
     }
 }
 
 void MT::advance(u32 advances)
 {
-    index += advances;
-    while (index >= 624)
+    advances += index;
+    while (advances >= 624)
     {
         shuffle();
+        advances -= 624;
     }
+    index = advances;
 }
 
 u32 MT::next()
 {
-    if (index >= 624)
+    if (index == 624)
     {
         shuffle();
+        index = 0;
     }
 
     u32 y = mt[index++];
@@ -115,6 +118,4 @@ void MT::shuffle()
 
         v32x4_store(&mt[620], v32x4_xor(v32x4_xor(y1, mag01), m2));
     }
-
-    index -= 624;
 }
