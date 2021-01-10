@@ -20,8 +20,8 @@
 #ifndef MT_HPP
 #define MT_HPP
 
-#include <Core/Util/Global.hpp>
 #include <Core/RNG/SIMD.hpp>
+#include <Core/Util/Global.hpp>
 
 class MT
 {
@@ -52,26 +52,88 @@ public:
     {
         static_assert(size < 227, "Size exceeds range of MTFast");
 
-        mt[0] = seed;
         u32 i = 1;
-        do
+        for (u32 &x : mt)
         {
-            seed = 0x6c078965 * (seed ^ (seed >> 30)) + i;
-            mt[i++] = seed;
-        } while (i < (size + 1));
+            x = seed;
+            seed = 0x6c078965 * (seed ^ (seed >> 30)) + i++;
+        }
 
         do
         {
             seed = 0x6c078965 * (seed ^ (seed >> 30)) + i++;
         } while (i < 397);
 
-        for (u32 &x : temper)
+        // Shuffle with SIMD if size is big enough
+        if constexpr (size >= 4)
         {
-            seed = 0x6c078965 * (seed ^ (seed >> 30)) + i++;
-            x = seed;
+            vuint32x4 upperMask = v32x4_set(0x80000000);
+            vuint32x4 lowerMask = v32x4_set(0x7fffffff);
+            vuint32x4 matrix = v32x4_set(0x9908b0df);
+            vuint32x4 one = v32x4_set(1);
+            vuint32x4 mask1 = v32x4_set(0x9d2c5680);
+            vuint32x4 mask2 = v32x4_set(0xefc60000);
+
+            for (int j = 0; j < size - (size % 4); j += 4)
+            {
+                vuint32x4 m0 = v32x4_load(&mt[j]);
+                vuint32x4 m1 = v32x4_load(&mt[j + 1]);
+
+                u32 x0 = 0x6c078965 * (seed ^ (seed >> 30)) + (j + 397);
+                u32 x1 = 0x6c078965 * (x0 ^ (x0 >> 30)) + (j + 398);
+                u32 x2 = 0x6c078965 * (x1 ^ (x1 >> 30)) + (j + 399);
+                seed = 0x6c078965 * (x2 ^ (x2 >> 30)) + (j + 400);
+
+                vuint32x4 m2 = v32x4_set(x0, x1, x2, seed);
+
+                vuint32x4 y = v32x4_or(v32x4_and(m0, upperMask), v32x4_and(m1, lowerMask));
+                vuint32x4 y1 = v32x4_shr(y, 1);
+                vuint32x4 mag01 = v32x4_and(v32x4_cmpeq(v32x4_and(y, one), one), matrix);
+
+                // Temper results while shuffling
+                y = v32x4_xor(v32x4_xor(y1, mag01), m2);
+                y = v32x4_xor(y, v32x4_shr(y, 11));
+                y = v32x4_xor(y, v32x4_and(v32x4_shl(y, 7), mask1));
+                y = v32x4_xor(y, v32x4_and(v32x4_shl(y, 15), mask2));
+                if constexpr (!fast)
+                {
+                    y = v32x4_xor(y, v32x4_shr(y, 18));
+                }
+
+                v32x4_store(&mt[j], y);
+            }
         }
 
-        shuffle();
+        // Shuffle without SIMD if neccessary (SIMD usage not possible or didn't cover everything)
+        if constexpr ((size % 4) != 0)
+        {
+            for (int j = size - (size % 4); j < size; j++)
+            {
+                u32 m0 = mt[j];
+                u32 m1 = mt[j + 1];
+                seed = 0x6c078965 * (seed ^ (seed >> 30)) + (j + 397);
+
+                u32 y = (m0 & 0x80000000) | (m1 & 0x7fffffff);
+
+                u32 y1 = y >> 1;
+                if (y & 1)
+                {
+                    y1 ^= 0x9908b0df;
+                }
+
+                // Temper results while shuffling
+                y = y1 ^ seed;
+                y ^= (y >> 11);
+                y ^= (y << 7) & 0x9d2c5680;
+                y ^= (y << 15) & 0xefc60000;
+                if constexpr (!fast)
+                {
+                    y ^= (y >> 18);
+                }
+
+                mt[j] = y;
+            }
+        }
     }
 
     u32 next()
@@ -86,71 +148,7 @@ public:
 
 private:
     alignas(16) u32 mt[size + 1];
-    alignas(16) u32 temper[size];
     u16 index;
-
-    void shuffle()
-    {
-        int i = 0;
-
-        if constexpr (size >= 4)
-        {
-            vuint32x4 upperMask = v32x4_set(0x80000000);
-            vuint32x4 lowerMask = v32x4_set(0x7fffffff);
-            vuint32x4 matrix = v32x4_set(0x9908b0df);
-            vuint32x4 one = v32x4_set(1);
-            vuint32x4 mask1 = v32x4_set(0x9d2c5680);
-            vuint32x4 mask2 = v32x4_set(0xefc60000);
-
-            for (; i < size - (size % 4); i += 4)
-            {
-                vuint32x4 m0 = v32x4_load(&mt[i]);
-                vuint32x4 m1 = v32x4_load(&mt[i + 1]);
-                vuint32x4 m2 = v32x4_load(&temper[i]);
-
-                vuint32x4 y = v32x4_or(v32x4_and(m0, upperMask), v32x4_and(m1, lowerMask));
-                vuint32x4 y1 = v32x4_shr(y, 1);
-                vuint32x4 mag01 = v32x4_and(v32x4_cmpeq(v32x4_and(y, one), one), matrix);
-
-                y = v32x4_xor(v32x4_xor(y1, mag01), m2);
-                y = v32x4_xor(y, v32x4_shr(y, 11));
-                y = v32x4_xor(y, v32x4_and(v32x4_shl(y, 7), mask1));
-                y = v32x4_xor(y, v32x4_and(v32x4_shl(y, 15), mask2));
-                if constexpr (!fast)
-                {
-                    y = v32x4_xor(y, v32x4_shr(y, 18));
-                }
-
-                v32x4_store(&mt[i], y);
-            }
-        }
-
-        for (; i < size; i++)
-        {
-            u32 m0 = mt[i];
-            u32 m1 = mt[i + 1];
-            u32 m2 = temper[i];
-
-            u32 y = (m0 & 0x80000000) | (m1 & 0x7fffffff);
-
-            u32 y1 = y >> 1;
-            if (y & 1)
-            {
-                y1 ^= 0x9908b0df;
-            }
-
-            y = y1 ^ m2;
-            y ^= (y >> 11);
-            y ^= (y << 7) & 0x9d2c5680;
-            y ^= (y << 15) & 0xefc60000;
-            if constexpr (!fast)
-            {
-                y ^= (y >> 18);
-            }
-
-            mt[i] = y;
-        }
-    }
 };
 
 #endif // MT_HPP
