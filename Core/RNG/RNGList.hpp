@@ -23,17 +23,17 @@
 
 #include <Core/Util/Global.hpp>
 
-template <typename IntegerType, typename RNGType, u16 size, u8 shift>
+template <typename Integer, class RNG, u16 size, u8 shift>
 class RNGList
 {
 public:
-    explicit RNGList(RNGType &rng) : rng(rng), head(0), pointer(0)
+    explicit RNGList(RNG &rng) : rng(rng), head(0), pointer(0)
     {
         static_assert(size && ((size & (size - 1)) == 0), "Number is not a perfect multiple of two");
 
-        for (u16 i = 0; i < size; i++)
+        for (Integer &x : list)
         {
-            list[i] = this->rng.next() >> shift;
+            x = this->rng.next() >> shift;
         }
     }
 
@@ -51,8 +51,8 @@ public:
 
     void advanceState()
     {
-        head &= size - 1;
         list[head++] = rng.next() >> shift;
+        head &= size - 1;
 
         pointer = head;
     }
@@ -62,10 +62,11 @@ public:
         pointer = (pointer + advances) & (size - 1);
     }
 
-    IntegerType getValue()
+    Integer getValue()
     {
+        Integer result = list[pointer++];
         pointer &= size - 1;
-        return list[pointer++];
+        return result;
     }
 
     void resetState()
@@ -74,8 +75,8 @@ public:
     }
 
 private:
-    RNGType rng;
-    IntegerType list[size];
+    RNG rng;
+    Integer list[size];
     u16 head, pointer;
 };
 

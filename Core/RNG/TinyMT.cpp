@@ -22,7 +22,7 @@
 
 TinyMT::TinyMT(u32 seed) : state { seed, 0x8f7011ee, 0xfc78ff1f, 0x3793fdff }
 {
-    for (u8 i = 1; i < 8; i++)
+    for (u32 i = 1; i < 8; i++)
     {
         state[i & 3] ^= 0x6c078965 * (state[(i - 1) & 3] ^ (state[(i - 1) & 3] >> 30)) + i;
     }
