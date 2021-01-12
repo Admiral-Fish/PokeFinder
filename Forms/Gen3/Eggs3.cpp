@@ -258,6 +258,12 @@ void Eggs3::profilesIndexChanged(int index)
     {
         currentProfile = profiles[index];
 
+        if (currentProfile.getDeadBattery())
+        {
+            ui->textBoxRSSeedHeld->setText("5a0");
+            ui->textBoxRSSeedPickup->setText("5a0");
+        }
+
         ui->labelProfileTIDValue->setText(QString::number(currentProfile.getTID()));
         ui->labelProfileSIDValue->setText(QString::number(currentProfile.getSID()));
         ui->labelProfileGameValue->setText(QString::fromStdString(currentProfile.getVersionString()));

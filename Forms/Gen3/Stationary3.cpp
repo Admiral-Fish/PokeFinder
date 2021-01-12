@@ -205,6 +205,11 @@ void Stationary3::profilesIndexChanged(int index)
     {
         currentProfile = profiles[index];
 
+        if (currentProfile.getDeadBattery())
+        {
+            ui->textBoxGeneratorSeed->setText("5a0");
+        }
+
         ui->labelProfileTIDValue->setText(QString::number(currentProfile.getTID()));
         ui->labelProfileSIDValue->setText(QString::number(currentProfile.getSID()));
         ui->labelProfileGameValue->setText(QString::fromStdString(currentProfile.getVersionString()));
