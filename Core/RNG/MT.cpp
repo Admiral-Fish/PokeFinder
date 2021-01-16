@@ -18,6 +18,7 @@
  */
 
 #include "MT.hpp"
+#include <Core/RNG/SIMD.hpp>
 
 MT::MT(u32 seed) : index(624)
 {

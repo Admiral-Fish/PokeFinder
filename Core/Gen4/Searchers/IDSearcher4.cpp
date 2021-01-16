@@ -18,7 +18,7 @@
  */
 
 #include "IDSearcher4.hpp"
-#include <Core/RNG/MT.hpp>
+#include <Core/RNG/MTFast.hpp>
 
 IDSearcher4::IDSearcher4(const IDFilter &filter) : filter(filter), searching(false), progress(0)
 {

@@ -21,7 +21,7 @@
 #include <Core/Enum/Game.hpp>
 #include <Core/Gen5/Keypresses.hpp>
 #include <Core/RNG/LCRNG64.hpp>
-#include <Core/RNG/MT.hpp>
+#include <Core/RNG/MTFast.hpp>
 #include <Core/RNG/SHA1.hpp>
 #include <Core/Util/Utilities.hpp>
 #include <future>

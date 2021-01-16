@@ -21,7 +21,7 @@
 #include <Core/Enum/Game.hpp>
 #include <Core/Enum/Method.hpp>
 #include <Core/RNG/LCRNG64.hpp>
-#include <Core/RNG/MT.hpp>
+#include <Core/RNG/MTFast.hpp>
 #include <algorithm>
 
 inline bool isShiny(u32 pid, u16 tsv)

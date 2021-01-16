@@ -19,7 +19,7 @@
 
 #include "IDGenerator4.hpp"
 #include <Core/Parents/Filters/IDFilter.hpp>
-#include <Core/RNG/MT.hpp>
+#include <Core/RNG/MTFast.hpp>
 
 IDGenerator4::IDGenerator4(u32 minDelay, u32 maxDelay, u16 year, u8 month, u8 day, u8 hour, u8 minute) :
     minDelay(minDelay), maxDelay(maxDelay), year(year), month(month), day(day), hour(hour), minute(minute)
