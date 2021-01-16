@@ -27,7 +27,7 @@
 // 1. computing less of the internal MT array
 // 2. storing less of the internal MT array
 // 3. skipping the shuffle check when generating numbers for use
-// 4. if the fast parameter is true skip the last bit shift operation (only in gen 5)
+// 4. if the fast parameter is true skip the last bit shift operation and shift by 27 during shuffle (only in gen 5)
 // 5. Temper the results in the initial shuffle to take advantage of SIMD
 template <u16 size, bool fast = false>
 class MTFast
@@ -59,7 +59,7 @@ public:
             vuint32x4 mask1 = v32x4_set(0x9d2c5680);
             vuint32x4 mask2 = v32x4_set(fast ? 0xe8000000 : 0xefc60000);
 
-            for (int j = 0; j < size - (size % 4); j += 4)
+            for (u32 j = 0; j < size - (size % 4); j += 4)
             {
                 vuint32x4 m0 = v32x4_load(&mt[j]);
                 vuint32x4 m1 = v32x4_load(&mt[j + 1]);
@@ -80,7 +80,11 @@ public:
                 y = v32x4_xor(y, v32x4_shr(y, 11));
                 y = v32x4_xor(y, v32x4_and(v32x4_shl(y, 7), mask1));
                 y = v32x4_xor(y, v32x4_and(v32x4_shl(y, 15), mask2));
-                if constexpr (!fast)
+                if constexpr (fast)
+                {
+                    y = v32x4_shr(y, 27);
+                }
+                else
                 {
                     y = v32x4_xor(y, v32x4_shr(y, 18));
                 }
@@ -92,7 +96,7 @@ public:
         // Shuffle without SIMD if neccessary (SIMD usage not possible or didn't cover everything)
         if constexpr ((size % 4) != 0)
         {
-            for (int j = size - (size % 4); j < size; j++)
+            for (u32 j = size - (size % 4); j < size; j++)
             {
                 u32 m0 = mt[j];
                 u32 m1 = mt[j + 1];
@@ -113,6 +117,7 @@ public:
                 if constexpr (fast)
                 {
                     y ^= (y << 15) & 0xe8000000;
+                    y >>= 27;
                 }
                 else
                 {
@@ -128,11 +133,6 @@ public:
     u32 next()
     {
         return mt[index++];
-    }
-
-    u16 nextUShort()
-    {
-        return next() >> 16;
     }
 
 private:

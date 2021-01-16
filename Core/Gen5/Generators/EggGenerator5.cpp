@@ -60,7 +60,7 @@ std::vector<EggState> EggGenerator5::generateBW(u64 seed) const
     MTFast<13, true> mt(seed >> 32, 7);
 
     u8 ivs[6];
-    std::generate(std::begin(ivs), std::end(ivs), [&mt] { return mt.nextUShort() >> 11; });
+    std::generate(std::begin(ivs), std::end(ivs), [&mt] { return mt.next(); });
 
     BWRNG rng(seed);
     rng.advance(initialAdvances + offset);
