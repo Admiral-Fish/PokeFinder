@@ -20,11 +20,9 @@
 #ifndef GLOBAL_HPP
 #define GLOBAL_HPP
 
-#include <cstdint>
-
-using u64 = uint64_t;
-using u32 = uint32_t;
-using u16 = uint16_t;
-using u8 = uint8_t;
+using u64 = unsigned long long;
+using u32 = unsigned int;
+using u16 = unsigned short;
+using u8 = unsigned char;
 
 #endif // GLOBAL_HPP
