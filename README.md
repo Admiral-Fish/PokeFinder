@@ -20,6 +20,12 @@ Gen 4
 - Egg
 - IDs
 
+Gen 5
+- Events
+- Dream Radar
+- Egg
+- IDs
+
 # Installing
 
 Windows
@@ -43,8 +49,10 @@ Windows
   - [Build tools for Visual Studio](https://visualstudio.microsoft.com/downloads/)
 - Build
   - git submodule update
-  - qmake PokeFinder.pro
-  - jom -j %NUMBER_OF_PROCESSORS%
+  - mkdir build
+  - cd build
+  - cmake -G"NMake Makefiles" -DCMAKE_BUILD_TYPE=RELEASE ../
+  - cmake --build .
 - Bundle
   - mk PokeFinder-windows
   - move release\PokeFinder.exe PokeFinder-windows\PokeFinder.exe 
@@ -59,8 +67,10 @@ MacOS
    - brew link --force qt5
 - Build
   - git submodule update
-  - qmake PokeFinder.pro
-  - make -j $(sysctl -n hw.physicalcpu)
+  - mkdir build
+  - cd build
+  - PATH="$(brew --prefix qt5)/bin:$PATH" cmake -G"Unix Makefiles" -DCMAKE_BUILD_TYPE=RELEASE ../
+  - cmake --build .
 - Bundle
   - macdeployqt PokeFinder.app -dmg -verbose=2
 
@@ -70,8 +80,11 @@ Linux
   - sudo apt-get install -y build-essential qtbase5-dev qt5-qmake qt5-default qttools5-dev-tools
 - Build
   - git submodule update
-  - qmake PokeFinder.pro
-  - make -j $(nproc)
+  - mkdir build
+  - cd build
+  - cmake -G"Unix Makefiles" -DCMAKE_BUILD_TYPE=RELEASE ../ -DCMAKE_PREFIX_PATH=/home/appveyor/Qt/5.14.2/gcc_64
+    - Replace Qt path as necessary
+  - cmake --build .
 
 # Credits
 - Bill Young, Mike Suleski, and Andrew Ringer for [RNG Reporter](https://github.com/Slashmolder/RNGReporter)
