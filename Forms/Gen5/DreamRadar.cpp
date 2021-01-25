@@ -259,7 +259,7 @@ void DreamRadar::search()
     Date end = ui->dateEditSearcherEndDate->getDate();
 
     int maxProgress = Keypresses::getKeyPresses(currentProfile.getKeypresses(), currentProfile.getSkipLR()).size();
-    maxProgress *= 86400 * (start.daysTo(end) + 1);
+    maxProgress *= start.daysTo(end) + 1;
     maxProgress *= currentProfile.getTimer0Max() - currentProfile.getTimer0Min() + 1;
     ui->progressBar->setRange(0, maxProgress);
 

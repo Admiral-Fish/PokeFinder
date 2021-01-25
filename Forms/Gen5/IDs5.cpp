@@ -146,8 +146,8 @@ void IDs5::search()
 
     auto *searcher = new IDSearcher5(currentProfile, pid, usePID);
 
-    int maxProgress = Keypresses::getKeyPresses({ false, true, false, false }, currentProfile.getSkipLR()).size();
-    maxProgress *= 86400 * (start.daysTo(end) + 1);
+    int maxProgress = Keypresses::getKeyPresses(currentProfile.getKeypresses(), currentProfile.getSkipLR()).size();
+    maxProgress *= (start.daysTo(end) + 1);
     ui->progressBar->setRange(0, maxProgress);
 
     QSettings settings;
@@ -195,7 +195,7 @@ void IDs5::find()
     IDFilter filter({ tid }, {}, {});
     IDGenerator5 generator(0, maxAdvance, filter);
 
-    auto buttons = Keypresses::getKeyPresses({ false, true, false, false }, currentProfile.getSkipLR());
+    auto buttons = Keypresses::getKeyPresses(currentProfile.getKeypresses(), currentProfile.getSkipLR());
     auto values = Keypresses::getValues(buttons);
     auto parts = date.getParts();
 

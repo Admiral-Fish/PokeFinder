@@ -132,12 +132,12 @@ void IDSearcher5::search(IDGenerator5 generator, const Date &start, const Date &
                             std::lock_guard<std::mutex> lock(resultMutex);
                             results.insert(results.end(), states.begin(), states.end());
                         }
-
-                        std::lock_guard<std::mutex> lock(progressMutex);
-                        progress++;
                     }
                 }
             }
+
+            std::lock_guard<std::mutex> lock(progressMutex);
+            progress++;
         }
     }
 }

@@ -133,11 +133,11 @@ void EggSearcher5::search(EggGenerator5 generator, const Date &start, const Date
                                 std::lock_guard<std::mutex> lock(resultMutex);
                                 results.insert(results.end(), displayStates.begin(), displayStates.end());
                             }
-
-                            std::lock_guard<std::mutex> lock(progressMutex);
-                            progress++;
                         }
                     }
+
+                    std::lock_guard<std::mutex> lock(progressMutex);
+                    progress++;
                 }
             }
         }

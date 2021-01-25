@@ -127,12 +127,12 @@ void DreamRadarSearcher::search(DreamRadarGenerator generator, const Date &start
                                 std::lock_guard<std::mutex> lock(resultMutex);
                                 results.insert(results.end(), displayStates.begin(), displayStates.end());
                             }
-
-                            std::lock_guard<std::mutex> lock(progressMutex);
-                            progress++;
                         }
                     }
                 }
+
+                std::lock_guard<std::mutex> lock(progressMutex);
+                progress++;
             }
         }
     }

@@ -133,12 +133,12 @@ void EventSearcher5::search(EventGenerator5 generator, const Date &start, const 
                                 std::lock_guard<std::mutex> lock(resultMutex);
                                 results.insert(results.end(), displayStates.begin(), displayStates.end());
                             }
-
-                            std::lock_guard<std::mutex> lock(progressMutex);
-                            progress++;
                         }
                     }
                 }
+
+                std::lock_guard<std::mutex> lock(progressMutex);
+                progress++;
             }
         }
     }
