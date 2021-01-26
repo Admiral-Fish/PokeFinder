@@ -8,7 +8,7 @@ environment:
     VCVARSALL: x64
   - APPVEYOR_BUILD_WORKER_IMAGE: Ubuntu2004
     OS: linux
-  - APPVEYOR_BUILD_WORKER_IMAGE: macos
+  - APPVEYOR_BUILD_WORKER_IMAGE: macos-mojave
     OS: macOS
 
 install:
