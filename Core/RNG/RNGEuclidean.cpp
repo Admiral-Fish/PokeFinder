@@ -30,6 +30,7 @@ namespace RNGEuclidean
     std::vector<std::pair<u32, u32>> recoverLower16BitsIV(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe)
     {
         std::vector<std::pair<u32, u32>> origin;
+        origin.reserve(3);
 
         constexpr u32 sub1 = 0x343fd; // XDRNG mult (>= 2^16)
         constexpr u32 sub2 = 0x259ec4; // (-)XDRNG add + 0x10000 - 1

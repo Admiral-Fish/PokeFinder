@@ -58,6 +58,7 @@ RNGCache::RNGCache(Method method)
 std::vector<u32> RNGCache::recoverLower16BitsIV(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const
 {
     std::vector<u32> origin;
+    origin.reserve(3);
 
     u32 first = static_cast<u32>((hp | (atk << 5) | (def << 10)) << 16);
     u32 second = static_cast<u32>((spe | (spa << 5) | (spd << 10)) << 16);
@@ -114,5 +115,6 @@ std::vector<u32> RNGCache::recoverLower16BitsPID(u32 pid) const
             }
         }
     }
+
     return origin;
 }
