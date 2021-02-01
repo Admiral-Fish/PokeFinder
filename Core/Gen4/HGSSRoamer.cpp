@@ -37,15 +37,15 @@ std::string HGSSRoamer::getRouteString() const
 
     if (roamers[0])
     {
-        route = "R: " + std::to_string(raikouRoute);
+        route += "R: " + std::to_string(raikouRoute) + " ";
     }
     if (roamers[1])
     {
-        route = "E: " + std::to_string(enteiRoute);
+        route += "E: " + std::to_string(enteiRoute) + " ";
     }
     if (roamers[2])
     {
-        route = "L: " + std::to_string(latiRoute);
+        route += "L: " + std::to_string(latiRoute);
     }
 
     return route;
