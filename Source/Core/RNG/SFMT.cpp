@@ -60,9 +60,9 @@ u64 SFMT::next()
         index = 0;
     }
 
-    u32 high = sfmt[index++];
     u32 low = sfmt[index++];
-    return high | (static_cast<u64>(low) << 32);
+    u32 high = sfmt[index++];
+    return low | (static_cast<u64>(high) << 32);
 }
 
 u32 SFMT::nextUInt()

@@ -25,6 +25,7 @@ build_script:
     - cmd: cmake -G"NMake Makefiles" -DCMAKE_BUILD_TYPE=RELEASE ../
     - sh: bash ../.ci/build.sh
     - cmake --build .
+    - ctest -V
     
 after_build:
     - cmd: md PokeFinder-windows
