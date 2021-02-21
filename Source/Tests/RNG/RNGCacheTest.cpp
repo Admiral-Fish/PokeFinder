@@ -4,11 +4,13 @@
 #include <QTest>
 #include <array>
 
+using IVs = std::array<u8, 6>;
+using Results = std::vector<u32>;
+Q_DECLARE_METATYPE(IVs)
+Q_DECLARE_METATYPE(Results)
+
 void RNGCacheTest::ivs_data()
 {
-    using IVs = std::array<u8, 6>;
-    using Results = std::vector<u32>;
-
     QTest::addColumn<Method>("method");
     QTest::addColumn<IVs>("ivs");
     QTest::addColumn<Results>("results");
@@ -23,9 +25,6 @@ void RNGCacheTest::ivs_data()
 
 void RNGCacheTest::ivs()
 {
-    using IVs = std::array<u8, 6>;
-    using Results = std::vector<u32>;
-
     QFETCH(Method, method);
     QFETCH(IVs, ivs);
     QFETCH(Results, results);
@@ -36,8 +35,6 @@ void RNGCacheTest::ivs()
 
 void RNGCacheTest::pid_data()
 {
-    using Results = std::vector<u32>;
-
     QTest::addColumn<Method>("method");
     QTest::addColumn<u32>("pid");
     QTest::addColumn<Results>("results");
@@ -50,8 +47,6 @@ void RNGCacheTest::pid_data()
 
 void RNGCacheTest::pid()
 {
-    using Results = std::vector<u32>;
-
     QFETCH(Method, method);
     QFETCH(u32, pid);
     QFETCH(Results, results);

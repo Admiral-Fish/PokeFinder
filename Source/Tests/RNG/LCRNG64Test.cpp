@@ -3,10 +3,11 @@
 #include <QTest>
 #include <array>
 
+using Results = std::array<u64, 2>;
+Q_DECLARE_METATYPE(Results)
+
 void LCRNG64Test::advance_data()
 {
-    using Results = std::array<u64, 2>;
-
     QTest::addColumn<u64>("seed");
     QTest::addColumn<u32>("advances");
     QTest::addColumn<Results>("results");
@@ -19,8 +20,6 @@ void LCRNG64Test::advance_data()
 
 void LCRNG64Test::advance()
 {
-    using Results = std::array<u64, 2>;
-
     QFETCH(u64, seed);
     QFETCH(u32, advances);
     QFETCH(Results, results);
@@ -36,8 +35,6 @@ void LCRNG64Test::advance()
 
 void LCRNG64Test::next_data()
 {
-    using Results = std::array<u64, 2>;
-
     QTest::addColumn<u64>("seed");
     QTest::addColumn<Results>("results");
 
@@ -49,8 +46,6 @@ void LCRNG64Test::next_data()
 
 void LCRNG64Test::next()
 {
-    using Results = std::array<u64, 2>;
-
     QFETCH(u64, seed);
     QFETCH(Results, results);
 

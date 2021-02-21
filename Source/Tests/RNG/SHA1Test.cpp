@@ -6,6 +6,9 @@
 #include <Core/Util/DateTime.hpp>
 #include <QTest>
 
+Q_DECLARE_METATYPE(DateTime)
+Q_DECLARE_METATYPE(Profile5)
+
 void SHA1Test::hash_data()
 {
     QTest::addColumn<DateTime>("dateTime");
