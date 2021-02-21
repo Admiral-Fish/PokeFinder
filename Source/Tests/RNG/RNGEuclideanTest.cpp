@@ -6,6 +6,9 @@
 using IVs = std::array<u8, 6>;
 using Results1 = std::vector<std::pair<u32, u32>>;
 using Results2 = std::vector<u32>;
+Q_DECLARE_METATYPE(IVs)
+Q_DECLARE_METATYPE(Results1)
+Q_DECLARE_METATYPE(Results2)
 
 void RNGEuclideanTest::ivs_data()
 {
