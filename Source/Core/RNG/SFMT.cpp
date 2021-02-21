@@ -86,8 +86,8 @@ void SFMT::shuffle()
         vuint32x4 x = v128_shl<1>(a);
         vuint32x4 y = v128_shr<1>(c);
 
-        vuint32x4 b1 = v32x4_and(v32x4_shr(b, 11), mask);
-        vuint32x4 d1 = v32x4_shl(d, 18);
+        vuint32x4 b1 = v32x4_and(v32x4_shr<11>(b), mask);
+        vuint32x4 d1 = v32x4_shl<18>(d);
 
         a = v32x4_xor(v32x4_xor(v32x4_xor(v32x4_xor(a, x), b1), y), d1);
     };

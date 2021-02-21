@@ -78,7 +78,7 @@ void MT::shuffle()
         vuint32x4 m2 = v32x4_load(&mt[i + 397]);
 
         vuint32x4 y = v32x4_or(v32x4_and(m0, upperMask), v32x4_and(m1, lowerMask));
-        vuint32x4 y1 = v32x4_shr(y, 1);
+        vuint32x4 y1 = v32x4_shr<1>(y);
         vuint32x4 mag01 = v32x4_and(v32x4_cmpeq(v32x4_and(y, one), one), matrix);
 
         v32x4_store(&mt[i], v32x4_xor(v32x4_xor(y1, mag01), m2));
@@ -90,7 +90,7 @@ void MT::shuffle()
         vuint32x4 m1 = v32x4_load(&mt[225]);
 
         vuint32x4 y = v32x4_or(v32x4_and(m0, upperMask), v32x4_and(m1, lowerMask));
-        vuint32x4 y1 = v32x4_shr(y, 1);
+        vuint32x4 y1 = v32x4_shr<1>(y);
         vuint32x4 mag01 = v32x4_and(v32x4_cmpeq(v32x4_and(y, one), one), matrix);
 
         v32x4_store(&mt[224], v32x4_xor(v32x4_xor(y1, mag01), last));
@@ -103,7 +103,7 @@ void MT::shuffle()
         vuint32x4 m2 = v32x4_load(&mt[i - 227]);
 
         vuint32x4 y = v32x4_or(v32x4_and(m0, upperMask), v32x4_and(m1, lowerMask));
-        vuint32x4 y1 = v32x4_shr(y, 1);
+        vuint32x4 y1 = v32x4_shr<1>(y);
         vuint32x4 mag01 = v32x4_and(v32x4_cmpeq(v32x4_and(y, one), one), matrix);
 
         v32x4_store(&mt[i], v32x4_xor(v32x4_xor(y1, mag01), m2));
@@ -114,7 +114,7 @@ void MT::shuffle()
         vuint32x4 m2 = v32x4_load(&mt[393]);
 
         vuint32x4 y = v32x4_or(v32x4_and(m0, upperMask), v32x4_and(last, lowerMask));
-        vuint32x4 y1 = v32x4_shr(y, 1);
+        vuint32x4 y1 = v32x4_shr<1>(y);
         vuint32x4 mag01 = v32x4_and(v32x4_cmpeq(v32x4_and(y, one), one), matrix);
 
         v32x4_store(&mt[620], v32x4_xor(v32x4_xor(y1, mag01), m2));

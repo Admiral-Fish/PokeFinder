@@ -72,21 +72,21 @@ public:
                 vuint32x4 m2 = v32x4_set(x0, x1, x2, seed);
 
                 vuint32x4 y = v32x4_or(v32x4_and(m0, upperMask), v32x4_and(m1, lowerMask));
-                vuint32x4 y1 = v32x4_shr(y, 1);
+                vuint32x4 y1 = v32x4_shr<1>(y);
                 vuint32x4 mag01 = v32x4_and(v32x4_cmpeq(v32x4_and(y, one), one), matrix);
 
                 // Temper results while shuffling
                 y = v32x4_xor(v32x4_xor(y1, mag01), m2);
-                y = v32x4_xor(y, v32x4_shr(y, 11));
-                y = v32x4_xor(y, v32x4_and(v32x4_shl(y, 7), mask1));
-                y = v32x4_xor(y, v32x4_and(v32x4_shl(y, 15), mask2));
+                y = v32x4_xor(y, v32x4_shr<11>(y));
+                y = v32x4_xor(y, v32x4_and(v32x4_shl<7>(y), mask1));
+                y = v32x4_xor(y, v32x4_and(v32x4_shl<15>(y), mask2));
                 if constexpr (fast)
                 {
-                    y = v32x4_shr(y, 27);
+                    y = v32x4_shr<27>(y);
                 }
                 else
                 {
-                    y = v32x4_xor(y, v32x4_shr(y, 18));
+                    y = v32x4_xor(y, v32x4_shr<18>(y));
                 }
 
                 v32x4_store(&mt[j], y);
