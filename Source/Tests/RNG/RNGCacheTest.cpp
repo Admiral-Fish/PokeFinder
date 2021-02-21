@@ -6,6 +6,7 @@
 
 using IVs = std::array<u8, 6>;
 using Results = std::vector<u32>;
+Q_DECLARE_METATYPE(Method)
 Q_DECLARE_METATYPE(IVs)
 Q_DECLARE_METATYPE(Results)
 
