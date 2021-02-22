@@ -1,8 +1,6 @@
 project(PokeFinder VERSION 2.5.4 LANGUAGES CXX)
 add_compile_definitions(VERSION="2.5.4")
 
-include(EmbedTranslations)
-
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 set(CMAKE_CXX_STANDARD 17)
@@ -120,7 +118,7 @@ set(PROJECT_SOURCES
     Gen5/Profile/ProfileManager5.cpp
     Gen5/Stationary5.cpp
     MainWindow.cpp
-	Models/Gen3/EggModel3.cpp
+    Models/Gen3/EggModel3.cpp
     Models/Gen3/GameCubeModel.cpp
     Models/Gen3/GameCubeRTCModel.cpp
     Models/Gen3/IDModel3.cpp
@@ -152,6 +150,7 @@ set(PROJECT_SOURCES
 )
 
 qt5_add_translation(PROJECT_QM ${PROJECT_TS} OPTIONS -nounfinished -removeidentical)
+include(EmbedTranslations)
 embed_translations(PROJECT_I18N ${PROJECT_QM})
 
 if (WIN32)

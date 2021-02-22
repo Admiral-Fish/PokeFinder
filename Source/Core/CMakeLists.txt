@@ -1,7 +1,5 @@
 project(Core)
 
-include(GetTargetArch)
-
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 set(CMAKE_CXX_STANDARD 17)
@@ -12,6 +10,7 @@ if (MSVC)
 endif ()
 
 if (UNIX)
+    include(GetTargetArch)
     get_target_arch(ARCH)
     if ((ARCH STREQUAL "x86_64") OR (ARCH STREQUAL "i686"))
         add_compile_options(-msse4.1)

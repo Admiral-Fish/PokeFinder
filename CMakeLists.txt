@@ -5,8 +5,5 @@ project(PokeFinder)
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake")
 
 include_directories(Externals/nlohmann)
-include_directories(Externals/zlib)
-
-enable_testing(true)
 
 add_subdirectory(Source)
