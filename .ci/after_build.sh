@@ -9,7 +9,7 @@ case $OS in
   macOS)
   {
     macdeployqt Source/Forms/PokeFinder.app -dmg -verbose=2
-    zip -r PokeFinder-macOS.zip PokeFinder.dmg
+    zip -r PokeFinder-macOS.zip Source/Forms/PokeFinder.dmg
     shasum -a 256 PokeFinder-macOS.zip > PokeFinder-macOS.zip.sha256
   } ;;
 esac
