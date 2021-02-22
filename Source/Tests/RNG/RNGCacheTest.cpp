@@ -19,7 +19,8 @@ void RNGCacheTest::ivs_data()
                                     << QVector<u32>({ 0x7C1F0DEC, 0x7C1F75BF });
     QTest::newRow("Method 4 6IV") << Method::Method4 << QVector<u8>({ 31, 31, 31, 31, 31, 31 }) << QVector<u32>({ 0x7FFF52E5, 0x7FFF8D6E });
     QTest::newRow("Method 4 Atk") << Method::Method4 << QVector<u8>({ 31, 31, 31, 0, 31, 31 }) << QVector<u32>({ 0x7FFFA85E, 0x7FFFE2E7 });
-    QTest::newRow("Method 4 SpA") << Method::Method4 << QVector<u8>({ 31, 0, 31, 31, 31, 31 }) << QVector<u32>({ 0x7C1FF9B6 });
+    // Idk why this other vector constructor is necessary, initializer list of length 1 was segfaulting
+    QTest::newRow("Method 4 SpA") << Method::Method4 << QVector<u8>({ 31, 0, 31, 31, 31, 31 }) << QVector<u32>(1, 0x7C1FF9B6);
 }
 
 void RNGCacheTest::ivs()
@@ -39,7 +40,8 @@ void RNGCacheTest::pid_data()
     QTest::addColumn<QVector<u32>>("results");
 
     QTest::newRow("Method 1/2") << Method::Method1 << 0x00000000U << QVector<u32>({ 0x00000000, 0x000067D3 });
-    QTest::newRow("Method 1/2") << Method::Method1 << 0x80000000U << QVector<u32>({ 0x0000C907 });
+    // Idk why this other vector constructor is necessary, initializer list of length 1 given 50k 0 elements
+    QTest::newRow("Method 1/2") << Method::Method1 << 0x80000000U << QVector<u32>(1, 0x0000C907);
     QTest::newRow("Method 4") << Method::Method4 << 0x00000000U << QVector<u32>({});
     QTest::newRow("Method 4") << Method::Method4 << 0x80000000U << QVector<u32>({ 0x00000280, 0x00003D09 });
 }
