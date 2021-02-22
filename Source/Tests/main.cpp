@@ -8,12 +8,6 @@
 #include <RNG/SHA1Test.hpp>
 #include <RNG/TinyMTTest.hpp>
 
-// Register types to meta system
-#include <Core/Enum/Method.hpp>
-#include <Core/Gen5/Profile5.hpp>
-Q_DECLARE_METATYPE(Method)
-Q_DECLARE_METATYPE(Profile5)
-
 template <class Testname>
 int runTest(QStringList &fails)
 {
