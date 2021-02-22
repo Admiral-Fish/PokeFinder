@@ -5,6 +5,7 @@
 
 using IVs = QVector<u8>;
 using Results = QVector<u32>;
+Q_DECLARE_METATYPE(Method)
 
 void RNGCacheTest::ivs_data()
 {
