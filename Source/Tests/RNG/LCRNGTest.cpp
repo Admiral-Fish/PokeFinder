@@ -1,10 +1,8 @@
 #include "LCRNGTest.hpp"
 #include <Core/RNG/LCRNG.hpp>
 #include <QTest>
-#include <array>
 
-using Results = std::array<u32, 6>;
-Q_DECLARE_METATYPE(Results)
+using Results = QVector<u32>;
 
 void LCRNGTest::advance_data()
 {

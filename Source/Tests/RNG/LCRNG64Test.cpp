@@ -1,10 +1,8 @@
 #include "LCRNG64Test.hpp"
 #include <Core/RNG/LCRNG64.hpp>
 #include <QTest>
-#include <array>
 
-using Results = std::array<u64, 2>;
-Q_DECLARE_METATYPE(Results)
+using Results = QVector<u64>;
 
 void LCRNG64Test::advance_data()
 {

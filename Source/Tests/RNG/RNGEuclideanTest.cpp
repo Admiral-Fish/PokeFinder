@@ -1,18 +1,14 @@
 #include "RNGEuclideanTest.hpp"
 #include <Core/RNG/RNGEuclidean.hpp>
 #include <QTest>
-#include <array>
 
-using IVs = std::array<u8, 6>;
-using Results1 = std::vector<std::pair<u32, u32>>;
-using Results2 = std::vector<u32>;
-Q_DECLARE_METATYPE(IVs)
-Q_DECLARE_METATYPE(Results1)
-Q_DECLARE_METATYPE(Results2)
+using IVs = QVector<u8>;
+using Results1 = QVector<QPair<u32, u32>>;
+using Results2 = QVector<u32>;
 
 void RNGEuclideanTest::ivs_data()
 {
-    QTest::addColumn<std::array<u8, 6>>("ivs");
+    QTest::addColumn<IVs>("ivs");
     QTest::addColumn<Results1>("results");
 
     QTest::newRow("6IV") << std::array<u8, 6> { 31, 31, 31, 31, 31, 31 }
@@ -29,7 +25,9 @@ void RNGEuclideanTest::ivs()
     QFETCH(IVs, ivs);
     QFETCH(Results1, results);
 
-    QCOMPARE(RNGEuclidean::recoverLower16BitsIV(ivs[0], ivs[1], ivs[2], ivs[3], ivs[4], ivs[5]), results);
+    auto convert = std::vector<std::pair<u32, u32>>(results.begin(), results.end());
+
+    QCOMPARE(RNGEuclidean::recoverLower16BitsIV(ivs[0], ivs[1], ivs[2], ivs[3], ivs[4], ivs[5]), convert);
 }
 
 void RNGEuclideanTest::pid_data()
@@ -46,7 +44,9 @@ void RNGEuclideanTest::pid()
     QFETCH(u32, pid);
     QFETCH(Results1, results);
 
-    QCOMPARE(RNGEuclidean::recoverLower16BitsPID(pid), results);
+    auto convert = std::vector<std::pair<u32, u32>>(results.begin(), results.end());
+
+    QCOMPARE(RNGEuclidean::recoverLower16BitsPID(pid), convert);
 }
 
 void RNGEuclideanTest::ivsChannel_data()
@@ -64,5 +64,6 @@ void RNGEuclideanTest::ivsChannel()
     QFETCH(IVs, ivs);
     QFETCH(Results2, results);
 
-    QCOMPARE(RNGEuclidean::recoverLower27BitsChannel(ivs[0], ivs[1], ivs[2], ivs[3], ivs[4], ivs[5]), results);
+    QCOMPARE(RNGEuclidean::recoverLower27BitsChannel(ivs[0], ivs[1], ivs[2], ivs[3], ivs[4], ivs[5]),
+             std::vector<u32>(results.begin(), results.end()));
 }

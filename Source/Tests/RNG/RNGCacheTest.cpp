@@ -2,13 +2,9 @@
 #include <Core/Enum/Method.hpp>
 #include <Core/RNG/RNGCache.hpp>
 #include <QTest>
-#include <array>
 
-using IVs = std::array<u8, 6>;
-using Results = std::vector<u32>;
-Q_DECLARE_METATYPE(Method)
-Q_DECLARE_METATYPE(IVs)
-Q_DECLARE_METATYPE(Results)
+using IVs = QVector<u8>;
+using Results = QVector<u32>;
 
 void RNGCacheTest::ivs_data()
 {
@@ -31,7 +27,7 @@ void RNGCacheTest::ivs()
     QFETCH(Results, results);
 
     RNGCache cache(method);
-    QCOMPARE(cache.recoverLower16BitsIV(ivs[0], ivs[1], ivs[2], ivs[3], ivs[4], ivs[5]), results);
+    QCOMPARE(cache.recoverLower16BitsIV(ivs[0], ivs[1], ivs[2], ivs[3], ivs[4], ivs[5]), std::vector<u32>(results.begin(), results.end()));
 }
 
 void RNGCacheTest::pid_data()
@@ -53,5 +49,5 @@ void RNGCacheTest::pid()
     QFETCH(Results, results);
 
     RNGCache cache(method);
-    QCOMPARE(cache.recoverLower16BitsPID(pid), results);
+    QCOMPARE(cache.recoverLower16BitsPID(pid), std::vector<u32>(results.begin(), results.end()));
 }
