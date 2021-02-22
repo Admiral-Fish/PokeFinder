@@ -8,10 +8,10 @@ void SFMTTest::advance_data()
     QTest::addColumn<u32>("advances");
     QTest::addColumn<u64>("result");
 
-    QTest::newRow("Advance 1") << 0x00000000U << 312U << 0x850F9C256959E905UL;
-    QTest::newRow("Advance 2") << 0x00000000U << 624U << 0xCF28F86E759721F9UL;
-    QTest::newRow("Advance 3") << 0x80000000U << 312U << 0x8B1D05116EFC4EC1UL;
-    QTest::newRow("Advance 4") << 0x80000000U << 624U << 0x39A9C69523428380UL;
+    QTest::newRow("Advance 1") << 0x00000000U << 312U << 0x850F9C256959E905ULL;
+    QTest::newRow("Advance 2") << 0x00000000U << 624U << 0xCF28F86E759721F9ULL;
+    QTest::newRow("Advance 3") << 0x80000000U << 312U << 0x8B1D05116EFC4EC1ULL;
+    QTest::newRow("Advance 4") << 0x80000000U << 624U << 0x39A9C69523428380ULL;
 }
 
 void SFMTTest::advance()
@@ -30,10 +30,10 @@ void SFMTTest::next_data()
     QTest::addColumn<u32>("seed");
     QTest::addColumn<u64>("result");
 
-    QTest::newRow("Next 1") << 0x00000000U << 0x0FCF240A2E0CAA58UL;
-    QTest::newRow("Next 2") << 0x40000000U << 0xEA99371E78ADDC1CUL;
-    QTest::newRow("Next 3") << 0x80000000U << 0x8BFA1535E2A81345UL;
-    QTest::newRow("Next 4") << 0xC0000000U << 0xF42D08B9889C465FUL;
+    QTest::newRow("Next 1") << 0x00000000U << 0x0FCF240A2E0CAA58ULL;
+    QTest::newRow("Next 2") << 0x40000000U << 0xEA99371E78ADDC1CULL;
+    QTest::newRow("Next 3") << 0x80000000U << 0x8BFA1535E2A81345ULL;
+    QTest::newRow("Next 4") << 0xC0000000U << 0xF42D08B9889C465FULL;
 }
 
 void SFMTTest::next()
