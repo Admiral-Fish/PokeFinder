@@ -1,3 +1,4 @@
+#include <QDebug>
 #include <QTest>
 #include <RNG/LCRNG64Test.hpp>
 #include <RNG/LCRNGTest.hpp>
