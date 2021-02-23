@@ -1,6 +1,7 @@
 #include "RNGEuclideanTest.hpp"
 #include <Core/RNG/RNGEuclidean.hpp>
 #include <QTest>
+#include <QVector>
 
 void RNGEuclideanTest::ivs_data()
 {

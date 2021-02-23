@@ -1,6 +1,7 @@
 #include "LCRNGTest.hpp"
 #include <Core/RNG/LCRNG.hpp>
 #include <QTest>
+#include <QVector>
 
 void LCRNGTest::advance_data()
 {

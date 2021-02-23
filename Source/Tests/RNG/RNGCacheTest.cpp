@@ -2,6 +2,7 @@
 #include <Core/Enum/Method.hpp>
 #include <Core/RNG/RNGCache.hpp>
 #include <QTest>
+#include <QVector>
 
 Q_DECLARE_METATYPE(Method)
 
