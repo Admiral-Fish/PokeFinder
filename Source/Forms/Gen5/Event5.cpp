@@ -279,6 +279,7 @@ void Event5::generatorImportEvent()
 
             std::array<u8, 204> data;
             file.read(reinterpret_cast<char *>(data.data()), 204);
+            file.close();
 
             PGF pgf(data);
 
