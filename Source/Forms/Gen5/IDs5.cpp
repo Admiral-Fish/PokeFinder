@@ -183,10 +183,10 @@ void IDs5::find()
 
     u16 tid = ui->textBoxSeedFinderTID->getUShort();
     Date date = ui->dateEdit->getDate();
-    int hour = ui->spinBoxHour->value();
-    int minute = ui->spinBoxMinute->value();
-    int minSecond = ui->spinBoxMinSecond->value();
-    int maxSecond = ui->spinBoxMaxSecond->value();
+    u8 hour = ui->spinBoxHour->value();
+    u8 minute = ui->spinBoxMinute->value();
+    u8 minSecond = ui->spinBoxMinSecond->value();
+    u8 maxSecond = ui->spinBoxMaxSecond->value();
     u32 maxAdvance = ui->textBoxSeedFinderMaxAdvances->getUInt();
 
     QList<u32> test;

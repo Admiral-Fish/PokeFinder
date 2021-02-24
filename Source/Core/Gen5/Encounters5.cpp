@@ -233,7 +233,7 @@ namespace Encounters5
         std::vector<PersonalInfo> info = PersonalInfo::loadPersonal(5);
 
         const auto &encounterData = getData(version);
-        for (u8 i = 0; i < encounterData.size(); i++)
+        for (size_t i = 0; i < encounterData.size(); i++)
         {
             auto areas = getAreas(encounterData[i], encounter, info, i, season);
             encounters.insert(encounters.end(), areas.begin(), areas.end());
