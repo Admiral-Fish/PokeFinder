@@ -39,7 +39,7 @@ after_build:
     - cmd: xcopy /I %OpenSSL%\libssl*.dll PokeFinder-windows\
     - cmd: 7z a PokeFinder-win.zip PokeFinder-windows\
     - cmd: sha256sum PokeFinder-win.zip > PokeFinder-win.zip.sha256
-    - sh: bash ../.ci/after_build.sh
+    - sh: bash .ci/after_build.sh
     
 artifacts:
 - path: PokeFinder-%OS%.zip
