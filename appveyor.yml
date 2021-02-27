@@ -28,8 +28,9 @@ build_script:
     - ctest -V
     
 after_build:
+    - cd ..
     - cmd: md PokeFinder-windows
-    - cmd: move Source\Forms\PokeFinder.exe PokeFinder-windows\PokeFinder.exe
+    - cmd: move build\Source\Forms\PokeFinder.exe PokeFinder-windows\PokeFinder.exe
     - cmd: windeployqt --no-translations --no-angle --no-plugins --no-opengl-sw PokeFinder-windows\PokeFinder.exe
     - cmd: del PokeFinder-windows\vc_redist*.exe
     - cmd: xcopy /I %QTPATH%\plugins\platforms\qwindows.dll PokeFinder-windows\platforms\
@@ -41,14 +42,14 @@ after_build:
     - sh: bash ../.ci/after_build.sh
     
 artifacts:
-- path: build/PokeFinder-%OS%.zip
-- path: build/PokeFinder-%OS%.zip.sha256
+- path: PokeFinder-%OS%.zip
+- path: PokeFinder-%OS%.zip.sha256
 
 deploy:
     provider: GitHub
     description: ''
     auth_token:
         secure: u3c5wUq11csZ77TpgKMImu9U+ibNiviMcEpTuQXmqp1YGSHA/+u5FhqZ3KRZBAQX
-    artifact: build/PokeFinder-%OS%.zip,build/PokeFinder-%OS%.zip.sha256
+    artifact: PokeFinder-%OS%.zip,PokeFinder-%OS%.zip.sha256
     on:
         APPVEYOR_REPO_TAG: true
