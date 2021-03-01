@@ -6,4 +6,6 @@ list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake")
 
 include_directories(Externals/nlohmann)
 
+enable_testing()
+
 add_subdirectory(Source)
