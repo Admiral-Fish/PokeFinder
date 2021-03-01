@@ -83,9 +83,6 @@ int main(int argc, char *argv[])
         }
     }
 
-    // Buttons currently aren't easy to press with style sheet
-    // Disable it for now on MacOS
-#ifndef Q_OS_MAC
     QString style = setting.value("settings/style").toString();
     if (style == "dark")
     {
@@ -97,7 +94,6 @@ int main(int argc, char *argv[])
             file.close();
         }
     }
-#endif
 
     QString locale = setting.value("settings/locale").toString();
     Translator::init(locale.toStdString());
