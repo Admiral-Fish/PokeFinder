@@ -4016,46 +4016,6 @@ Volbeat</source>
         <translation>IDA/IDS</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui"/>
-        <source>German</source>
-        <translation>Tedesco</translation>
-    </message>
-    <message>
-        <location filename="../MainWindow.ui"/>
-        <source>English</source>
-        <translation>Inglese</translation>
-    </message>
-    <message>
-        <location filename="../MainWindow.ui"/>
-        <source>Spanish</source>
-        <translation>Spagnolo</translation>
-    </message>
-    <message>
-        <location filename="../MainWindow.ui"/>
-        <source>French</source>
-        <translation>Francese</translation>
-    </message>
-    <message>
-        <location filename="../MainWindow.ui"/>
-        <source>Italian</source>
-        <translation>Italiano</translation>
-    </message>
-    <message>
-        <location filename="../MainWindow.ui"/>
-        <source>Japanese</source>
-        <translation>Giapponese</translation>
-    </message>
-    <message>
-        <location filename="../MainWindow.ui"/>
-        <source>Korean</source>
-        <translation>Coreano</translation>
-    </message>
-    <message>
-        <location filename="../MainWindow.ui"/>
-        <source>Chinese</source>
-        <translation>Cinese</translation>
-    </message>
-    <message>
         <location filename="../MainWindow.cpp" line="156"/>
         <source>Update Check</source>
         <translation>Controllo Aggiornamento</translation>
@@ -4092,16 +4052,6 @@ Volbeat</source>
         <location filename="../MainWindow.ui"/>
         <source>Settings</source>
         <translation>Impostazioni</translation>
-    </message>
-    <message>
-        <location filename="../MainWindow.ui"/>
-        <source>Light</source>
-        <translation>Chiaro</translation>
-    </message>
-    <message>
-        <location filename="../MainWindow.ui"/>
-        <source>Dark</source>
-        <translation>Scuro</translation>
     </message>
     <message>
         <location filename="../MainWindow.ui"/>

@@ -362,7 +362,7 @@
         <location filename="../Gen5/DreamRadar.cpp" line="106"/>
         <location filename="../Gen5/DreamRadar.cpp" line="107"/>
         <source>None</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">无</translation>
     </message>
     <message>
         <location filename="../Gen5/DreamRadar.cpp" line="168"/>
@@ -1218,7 +1218,7 @@ Volbeat</source>
         <location filename="../Controls/EggSettings.cpp" line="219"/>
         <location filename="../Controls/EggSettings.cpp" line="222"/>
         <source>None</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">无</translation>
     </message>
     <message>
         <location filename="../Controls/EggSettings.cpp" line="220"/>
@@ -3625,7 +3625,7 @@ Volbeat</source>
     <message>
         <location filename="../Util/IVCalculator.ui"/>
         <source>None</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">无</translation>
     </message>
     <message>
         <location filename="../Util/IVCalculator.ui"/>
@@ -4016,46 +4016,6 @@ Volbeat</source>
         <translation>工具</translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui"/>
-        <source>German</source>
-        <translation>德语</translation>
-    </message>
-    <message>
-        <location filename="../MainWindow.ui"/>
-        <source>English</source>
-        <translation>英语</translation>
-    </message>
-    <message>
-        <location filename="../MainWindow.ui"/>
-        <source>Spanish</source>
-        <translation>西班牙语</translation>
-    </message>
-    <message>
-        <location filename="../MainWindow.ui"/>
-        <source>French</source>
-        <translation>法语</translation>
-    </message>
-    <message>
-        <location filename="../MainWindow.ui"/>
-        <source>Italian</source>
-        <translation>意大利语</translation>
-    </message>
-    <message>
-        <location filename="../MainWindow.ui"/>
-        <source>Japanese</source>
-        <translation>日语</translation>
-    </message>
-    <message>
-        <location filename="../MainWindow.ui"/>
-        <source>Korean</source>
-        <translation>韩语</translation>
-    </message>
-    <message>
-        <location filename="../MainWindow.ui"/>
-        <source>Chinese</source>
-        <translation>简体中文</translation>
-    </message>
-    <message>
         <location filename="../MainWindow.cpp" line="156"/>
         <source>Update Check</source>
         <translation type="unfinished"></translation>
@@ -4092,16 +4052,6 @@ Volbeat</source>
         <location filename="../MainWindow.ui"/>
         <source>Settings</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../MainWindow.ui"/>
-        <source>Light</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../MainWindow.ui"/>
-        <source>Dark</source>
-        <translation>恶</translation>
     </message>
     <message>
         <location filename="../MainWindow.ui"/>
@@ -4648,7 +4598,7 @@ Volbeat</source>
         <location filename="../Gen5/Profile/ProfileCalibrator5.cpp" line="80"/>
         <location filename="../Gen5/Profile/ProfileCalibrator5.cpp" line="81"/>
         <source>None</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">无</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileCalibrator5.cpp" line="195"/>
@@ -4764,7 +4714,7 @@ Volbeat</source>
     <message>
         <location filename="../Gen4/Profile/ProfileEditor4.ui"/>
         <source>None</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">无</translation>
     </message>
     <message>
         <location filename="../Gen4/Profile/ProfileEditor4.ui"/>
@@ -4937,7 +4887,7 @@ Volbeat</source>
     <message>
         <location filename="../Gen5/Profile/ProfileEditor5.ui"/>
         <source>None</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">无</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileEditor5.ui"/>
@@ -6583,7 +6533,7 @@ Volbeat</source>
         <location filename="../Gen4/Stationary4.ui"/>
         <location filename="../Gen4/Stationary4.cpp" line="298"/>
         <source>None</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">无</translation>
     </message>
     <message>
         <location filename="../Gen4/Stationary4.ui"/>
@@ -6823,7 +6773,7 @@ Volbeat</source>
         <location filename="../Gen5/Stationary5.ui"/>
         <location filename="../Gen5/Stationary5.cpp" line="96"/>
         <source>None</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">无</translation>
     </message>
     <message>
         <location filename="../Gen5/Stationary5.ui"/>
@@ -7157,7 +7107,7 @@ Volbeat</source>
     <message>
         <location filename="../Models/Gen4/StationaryModel4.cpp" line="247"/>
         <source>None</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">无</translation>
     </message>
     <message>
         <location filename="../Models/Gen4/StationaryModel4.cpp" line="249"/>
@@ -7739,7 +7689,7 @@ Volbeat</source>
         <location filename="../Gen4/Wild4.cpp" line="408"/>
         <location filename="../Gen4/Wild4.cpp" line="457"/>
         <source>None</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">无</translation>
     </message>
     <message>
         <location filename="../Gen4/Wild4.ui"/>
@@ -8088,7 +8038,7 @@ Volbeat</source>
     <message>
         <location filename="../Models/Gen3/WildModel3.cpp" line="188"/>
         <source>None</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">无</translation>
     </message>
     <message>
         <location filename="../Models/Gen3/WildModel3.cpp" line="188"/>
@@ -8206,7 +8156,7 @@ Volbeat</source>
     <message>
         <location filename="../Models/Gen4/WildModel4.cpp" line="257"/>
         <source>None</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">无</translation>
     </message>
     <message>
         <location filename="../Models/Gen4/WildModel4.cpp" line="259"/>

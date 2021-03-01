@@ -4017,46 +4017,6 @@ Zufallswert</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.ui"/>
-        <source>German</source>
-        <translation>Deutsch</translation>
-    </message>
-    <message>
-        <location filename="../MainWindow.ui"/>
-        <source>English</source>
-        <translation>Englisch</translation>
-    </message>
-    <message>
-        <location filename="../MainWindow.ui"/>
-        <source>Spanish</source>
-        <translation>Spanisch</translation>
-    </message>
-    <message>
-        <location filename="../MainWindow.ui"/>
-        <source>French</source>
-        <translation>Französisch</translation>
-    </message>
-    <message>
-        <location filename="../MainWindow.ui"/>
-        <source>Italian</source>
-        <translation>Italienisch</translation>
-    </message>
-    <message>
-        <location filename="../MainWindow.ui"/>
-        <source>Japanese</source>
-        <translation>Japanisch</translation>
-    </message>
-    <message>
-        <location filename="../MainWindow.ui"/>
-        <source>Korean</source>
-        <translation>Koreanisch</translation>
-    </message>
-    <message>
-        <location filename="../MainWindow.ui"/>
-        <source>Chinese</source>
-        <translation>Chinesisch</translation>
-    </message>
-    <message>
         <location filename="../MainWindow.cpp" line="156"/>
         <source>Update Check</source>
         <translation type="unfinished"></translation>
@@ -4093,16 +4053,6 @@ Zufallswert</translation>
         <location filename="../MainWindow.ui"/>
         <source>Settings</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../MainWindow.ui"/>
-        <source>Light</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../MainWindow.ui"/>
-        <source>Dark</source>
-        <translation>Unlicht</translation>
     </message>
     <message>
         <location filename="../MainWindow.ui"/>
