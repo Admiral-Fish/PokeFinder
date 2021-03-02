@@ -75,22 +75,22 @@ std::vector<ShadowTeam> ShadowTeam::loadShadowTeams(Method version)
 
     std::vector<ShadowTeam> teams;
 
-    size_t offset = 0;
-    while (offset < size)
+    for (size_t i = 0; i < size;)
     {
-        u8 count = data[offset];
-        auto type = static_cast<ShadowType>(data[offset + 1]);
+        u8 count = data[i];
+        auto type = static_cast<ShadowType>(data[i + 1]);
+
         std::vector<LockInfo> locks;
-        for (u8 i = 0; i < count; i++)
+        for (u8 j = 0; j < count; j++)
         {
-            u8 nature = data[offset + 2 + i * 3];
-            u8 genderLower = data[offset + 3 + i * 3];
-            u8 genderUpper = data[offset + 4 + i * 3];
+            u8 nature = data[i + 2 + j * 3];
+            u8 genderLower = data[i + 3 + j * 3];
+            u8 genderUpper = data[i + 4 + j * 3];
             locks.emplace_back(nature, genderLower, genderUpper);
         }
 
         teams.emplace_back(locks, type);
-        offset += size * 3 + 2;
+        i += count * 3 + 2;
     }
 
     return teams;
