@@ -134,7 +134,7 @@ std::vector<EggState3> EggGenerator3::generateEmeraldPID() const
     std::vector<EggState3> states;
 
     // Determine if female parent is holding everstone
-    bool everstone;
+    bool everstone = false;
     u8 parent;
     for (u8 i = 0; i < 2; i++)
     {
