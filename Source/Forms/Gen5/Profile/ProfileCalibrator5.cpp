@@ -165,7 +165,7 @@ void ProfileCalibrator5::openIVCalculator()
 
 void ProfileCalibrator5::clearTable()
 {
-    model->removeRows(0, model->rowCount());
+    model->clearModel();
 }
 
 void ProfileCalibrator5::search()
@@ -196,6 +196,8 @@ void ProfileCalibrator5::search()
         error.exec();
         return;
     }
+
+    model->clearModel();
 
     ui->pushButtonSearch->setEnabled(false);
     ui->pushButtonCancel->setEnabled(true);
