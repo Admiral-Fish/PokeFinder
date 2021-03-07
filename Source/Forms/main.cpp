@@ -24,6 +24,7 @@
 #include <QFile>
 #include <QJsonDocument>
 #include <QSettings>
+#include <QStandardPaths>
 #include <QTextStream>
 #include <QThread>
 #include <QTranslator>
@@ -32,7 +33,8 @@ void validateSettings(QSettings &setting)
 {
     if (!setting.contains("settings/profiles"))
     {
-        setting.setValue("settings/profiles", QString("%1/profiles.json").arg(QApplication::applicationDirPath()));
+        QString documentFolder = QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation);
+        setting.setValue("settings/profiles", QString("%1/profiles.json").arg(documentFolder));
     }
 
     if (!setting.contains("settings/style"))
