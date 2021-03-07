@@ -333,10 +333,10 @@
       </item>
       <item row="2" column="0" colspan="2">
        <layout class="QGridLayout" name="gridLayout_5">
-        <item row="1" column="0" colspan="2">
-         <widget class="QPushButton" name="pushButtonClearTable">
+        <item row="0" column="0">
+         <widget class="QPushButton" name="pushButtonSearch">
           <property name="text">
-           <string>Clear table</string>
+           <string>Search</string>
           </property>
          </widget>
         </item>
@@ -347,13 +347,6 @@
           </property>
           <property name="text">
            <string>Cancel</string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="0">
-         <widget class="QPushButton" name="pushButtonSearch">
-          <property name="text">
-           <string>Search</string>
           </property>
          </widget>
         </item>
@@ -648,7 +641,6 @@
   <tabstop>dateTimeEdit</tabstop>
   <tabstop>pushButtonSearch</tabstop>
   <tabstop>pushButtonCancel</tabstop>
-  <tabstop>pushButtonClearTable</tabstop>
   <tabstop>spinBoxMinSeconds</tabstop>
   <tabstop>spinBoxMaxSeconds</tabstop>
   <tabstop>textBoxMinVCount</tabstop>
@@ -673,11 +665,11 @@
  <resources/>
  <connections/>
  <buttongroups>
-  <buttongroup name="buttonGroupNeedleType"/>
   <buttongroup name="buttonGroupNeedles">
    <property name="exclusive">
     <bool>false</bool>
    </property>
   </buttongroup>
+  <buttongroup name="buttonGroupNeedleType"/>
  </buttongroups>
 </ui>

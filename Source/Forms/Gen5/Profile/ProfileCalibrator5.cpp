@@ -91,7 +91,6 @@ void ProfileCalibrator5::setupModels()
 
     connect(ui->pushButtonIVCalculator, &QPushButton::clicked, this, &ProfileCalibrator5::openIVCalculator);
     connect(ui->pushButtonSearch, &QPushButton::clicked, this, &ProfileCalibrator5::search);
-    connect(ui->pushButtonClearTable, &QPushButton::clicked, this, &ProfileCalibrator5::clearTable);
     connect(ui->tableView, &QTableView::customContextMenuRequested, this, &ProfileCalibrator5::tableViewContextMenu);
     connect(ui->comboBoxVersion, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &ProfileCalibrator5::versionIndexChanged);
     connect(ui->comboBoxDSType, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &ProfileCalibrator5::dsTypeIndexChanged);
@@ -161,11 +160,6 @@ void ProfileCalibrator5::openIVCalculator()
     auto *iv = new IVCalculator();
     iv->show();
     iv->raise();
-}
-
-void ProfileCalibrator5::clearTable()
-{
-    model->clearModel();
 }
 
 void ProfileCalibrator5::search()

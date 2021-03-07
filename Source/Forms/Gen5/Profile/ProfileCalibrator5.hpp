@@ -50,7 +50,6 @@ private:
 
 private slots:
     void openIVCalculator();
-    void clearTable();
     void search();
     void createProfile();
     void tableViewContextMenu(QPoint pos);
