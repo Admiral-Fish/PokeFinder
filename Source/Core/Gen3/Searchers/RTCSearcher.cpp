@@ -24,7 +24,7 @@ RTCSearcher::RTCSearcher() : searching(false)
 {
 }
 
-void RTCSearcher::startSearch(u32 initialSeed, u32 targetSeed, u32 initialAdvances, u32 maxAdvances, const DateTime &end)
+void RTCSearcher::startSearch(u32 initialSeed, u32 targetSeed, u32 initialAdvances, u32 maxAdvances, const Date &end)
 {
     searching = true;
 
@@ -33,22 +33,30 @@ void RTCSearcher::startSearch(u32 initialSeed, u32 targetSeed, u32 initialAdvanc
 
     targetSeed = back.getSeed();
 
-    DateTime time;
-    for (; time < end; time.addSeconds(1), initialSeed += 40500000)
+    for (Date date; date < end; date.addDays(1))
     {
-        XDRNG rng(initialSeed);
-
-        for (u32 x = 0; x < maxAdvances; x++)
+        for (u8 hour = 0; hour < 24; hour++)
         {
-            if (!searching)
+            for (u8 minute = 0; minute < 60; minute++)
             {
-                return;
-            }
+                for (u8 second = 0; second < 60; second++, initialSeed += 40500000)
+                {
+                    XDRNG rng(initialSeed);
 
-            if (rng.next() == targetSeed)
-            {
-                std::lock_guard<std::mutex> guard(mutex);
-                results.emplace_back(time, initialSeed, x + 1 + initialAdvances);
+                    for (u32 x = 0; x < maxAdvances; x++)
+                    {
+                        if (!searching)
+                        {
+                            return;
+                        }
+
+                        if (rng.next() == targetSeed)
+                        {
+                            std::lock_guard<std::mutex> guard(mutex);
+                            results.emplace_back(DateTime(date, Time(hour, minute, second)), initialSeed, x + 1 + initialAdvances);
+                        }
+                    }
+                }
             }
         }
     }

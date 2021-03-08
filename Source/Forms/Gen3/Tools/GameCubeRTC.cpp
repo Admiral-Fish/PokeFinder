@@ -91,7 +91,7 @@ void GameCubeRTC::search()
     u32 targetSeed = ui->textBoxTargetSeed->getUInt();
     u32 initialAdvances = ui->textBoxMinAdvance->getUInt();
     u32 maxAdvances = ui->textBoxMaxAdvance->getUInt();
-    DateTime end = ui->dateTimeEdit->getDateTime();
+    Date end = ui->dateEdit->getDate();
 
     auto *searcher = new RTCSearcher();
 

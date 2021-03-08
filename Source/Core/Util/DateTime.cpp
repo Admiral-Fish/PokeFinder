@@ -159,7 +159,7 @@ void DateTime::addSeconds(int seconds)
 {
     if (time.addSeconds(seconds))
     {
-        date.addDays(1);
+        date = date.addDays(1);
     }
 }
 
