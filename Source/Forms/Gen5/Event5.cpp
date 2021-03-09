@@ -111,6 +111,9 @@ void Event5::setupModels()
     ui->filterGenerator->disableControls(Controls::EncounterSlots);
     ui->filterSearcher->disableControls(Controls::EncounterSlots | Controls::DisableFilter | Controls::UseDelay);
 
+    ui->filterGenerator->enableHiddenAbility();
+    ui->filterSearcher->enableHiddenAbility();
+
     std::vector<u16> species(649);
     std::iota(species.begin(), species.end(), 1);
     for (const std::string &specie : Translator::getSpecies(species))

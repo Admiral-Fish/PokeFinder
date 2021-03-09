@@ -106,6 +106,9 @@ void DreamRadar::setupModels()
     ui->comboBoxSearcherSpecies5->addItem(tr("None"), 0);
     ui->comboBoxSearcherSpecies6->addItem(tr("None"), 0);
 
+    ui->filterGenerator->enableHiddenAbility();
+    ui->filterSearcher->enableHiddenAbility();
+
     std::vector<u16> species
         = { 641, 642, 645, 483, 484, 487, 249, 250, 79, 120, 137, 163, 174, 175, 213, 238, 280, 333, 425, 436, 442, 447, 479, 517, 561 };
     std::vector<std::string> names = Translator::getSpecies(species);

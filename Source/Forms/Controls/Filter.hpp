@@ -66,6 +66,7 @@ public:
     bool getDisableFilters();
     void disableControls(u16 control);
     void setGenderRatio(u8 genderRatio);
+    void enableHiddenAbility();
 
 private:
     Ui::Filter *ui;

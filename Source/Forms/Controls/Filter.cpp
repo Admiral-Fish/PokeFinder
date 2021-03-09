@@ -187,3 +187,8 @@ void Filter::setGenderRatio(u8 genderRatio)
 {
     ui->comboBoxGenderRatio->setCurrentIndex(ui->comboBoxGenderRatio->findData(genderRatio));
 }
+
+void Filter::enableHiddenAbility()
+{
+    ui->comboBoxAbility->addItem("H", 2);
+}

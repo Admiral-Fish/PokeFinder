@@ -102,6 +102,9 @@ void Eggs5::setupModels()
     ui->eggSettingsGenerator->setup(static_cast<Game>(Game::BW | Game::BW2));
     ui->eggSettingsSearcher->setup(static_cast<Game>(Game::BW | Game::BW2));
 
+    ui->filterGenerator->enableHiddenAbility();
+    ui->filterSearcher->enableHiddenAbility();
+
     QAction *outputTXTGenerator = generatorMenu->addAction(tr("Output Results to TXT"));
     QAction *outputCSVGenerator = generatorMenu->addAction(tr("Output Results to CSV"));
     connect(outputTXTGenerator, &QAction::triggered, [=]() { ui->tableViewGenerator->outputModel(false); });
