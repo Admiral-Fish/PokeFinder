@@ -91,7 +91,7 @@ QVariant WildGeneratorModel4::data(const QModelIndex &index, int role) const
         case 13:
         case 14:
         case 15:
-            return state.getIV(static_cast<u8>(column - 9));
+            return state.getIV(static_cast<u8>(column - 10));
         case 16:
             return QString::fromStdString(Translator::getHiddenPower(state.getHidden()));
         case 17:
