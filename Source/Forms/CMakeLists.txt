@@ -1,5 +1,5 @@
-project(PokeFinder VERSION 3.0.0 LANGUAGES CXX)
-add_compile_definitions(VERSION="3.0.0")
+project(PokeFinder VERSION 3.0.1 LANGUAGES CXX)
+add_compile_definitions(VERSION="3.0.1")
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 

@@ -365,26 +365,26 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/DreamRadar.cpp" line="168"/>
-        <location filename="../Gen5/DreamRadar.cpp" line="173"/>
+        <location filename="../Gen5/DreamRadar.cpp" line="171"/>
+        <location filename="../Gen5/DreamRadar.cpp" line="176"/>
         <source>Output Results to TXT</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/DreamRadar.cpp" line="169"/>
-        <location filename="../Gen5/DreamRadar.cpp" line="174"/>
+        <location filename="../Gen5/DreamRadar.cpp" line="172"/>
+        <location filename="../Gen5/DreamRadar.cpp" line="177"/>
         <source>Output Results to CSV</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/DreamRadar.cpp" line="198"/>
-        <location filename="../Gen5/DreamRadar.cpp" line="233"/>
+        <location filename="../Gen5/DreamRadar.cpp" line="201"/>
+        <location filename="../Gen5/DreamRadar.cpp" line="236"/>
         <source>Missing settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/DreamRadar.cpp" line="198"/>
-        <location filename="../Gen5/DreamRadar.cpp" line="233"/>
+        <location filename="../Gen5/DreamRadar.cpp" line="201"/>
+        <location filename="../Gen5/DreamRadar.cpp" line="236"/>
         <source>Enter information for at least 1 slot</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1713,38 +1713,38 @@ Volbeat</source>
         <translation type="unfinished">Annuler</translation>
     </message>
     <message>
-        <location filename="../Gen5/Eggs5.cpp" line="105"/>
-        <location filename="../Gen5/Eggs5.cpp" line="110"/>
+        <location filename="../Gen5/Eggs5.cpp" line="108"/>
+        <location filename="../Gen5/Eggs5.cpp" line="113"/>
         <source>Output Results to TXT</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/Eggs5.cpp" line="106"/>
-        <location filename="../Gen5/Eggs5.cpp" line="111"/>
+        <location filename="../Gen5/Eggs5.cpp" line="109"/>
+        <location filename="../Gen5/Eggs5.cpp" line="114"/>
         <source>Output Results to CSV</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/Eggs5.cpp" line="135"/>
-        <location filename="../Gen5/Eggs5.cpp" line="176"/>
+        <location filename="../Gen5/Eggs5.cpp" line="138"/>
+        <location filename="../Gen5/Eggs5.cpp" line="179"/>
         <source>Incompatible Parents</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/Eggs5.cpp" line="135"/>
-        <location filename="../Gen5/Eggs5.cpp" line="176"/>
+        <location filename="../Gen5/Eggs5.cpp" line="138"/>
+        <location filename="../Gen5/Eggs5.cpp" line="179"/>
         <source>Gender of selected parents are not compatible for breeding</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/Eggs5.cpp" line="141"/>
-        <location filename="../Gen5/Eggs5.cpp" line="182"/>
+        <location filename="../Gen5/Eggs5.cpp" line="144"/>
+        <location filename="../Gen5/Eggs5.cpp" line="185"/>
         <source>Parents Reordered</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/Eggs5.cpp" line="141"/>
-        <location filename="../Gen5/Eggs5.cpp" line="182"/>
+        <location filename="../Gen5/Eggs5.cpp" line="144"/>
+        <location filename="../Gen5/Eggs5.cpp" line="185"/>
         <source>Parent were swapped to match the game</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2125,14 +2125,14 @@ Volbeat</source>
         <translation type="unfinished">Annuler</translation>
     </message>
     <message>
-        <location filename="../Gen5/Event5.cpp" line="122"/>
-        <location filename="../Gen5/Event5.cpp" line="127"/>
+        <location filename="../Gen5/Event5.cpp" line="125"/>
+        <location filename="../Gen5/Event5.cpp" line="130"/>
         <source>Output Results to TXT</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/Event5.cpp" line="123"/>
-        <location filename="../Gen5/Event5.cpp" line="128"/>
+        <location filename="../Gen5/Event5.cpp" line="126"/>
+        <location filename="../Gen5/Event5.cpp" line="131"/>
         <source>Output Results to CSV</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3869,38 +3869,38 @@ Volbeat</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Util/IVtoPID.cpp" line="101"/>
+        <location filename="../Util/IVtoPID.cpp" line="98"/>
         <source>XD/Colo</source>
         <translation>XD/Colo</translation>
     </message>
     <message>
-        <location filename="../Util/IVtoPID.cpp" line="130"/>
+        <location filename="../Util/IVtoPID.cpp" line="127"/>
         <source>Method 1</source>
         <translation>Méthode 1</translation>
     </message>
     <message>
-        <location filename="../Util/IVtoPID.cpp" line="143"/>
+        <location filename="../Util/IVtoPID.cpp" line="140"/>
         <source>Reverse Method 1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Util/IVtoPID.cpp" line="157"/>
+        <location filename="../Util/IVtoPID.cpp" line="154"/>
         <source>Method 2</source>
         <translation>Méthode 2</translation>
     </message>
     <message>
-        <location filename="../Util/IVtoPID.cpp" line="178"/>
-        <location filename="../Util/IVtoPID.cpp" line="202"/>
+        <location filename="../Util/IVtoPID.cpp" line="173"/>
+        <location filename="../Util/IVtoPID.cpp" line="195"/>
         <source>Cute Charm (DPPt)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Util/IVtoPID.cpp" line="222"/>
+        <location filename="../Util/IVtoPID.cpp" line="215"/>
         <source>Method 4</source>
         <translation>Méthode 4</translation>
     </message>
     <message>
-        <location filename="../Util/IVtoPID.cpp" line="260"/>
+        <location filename="../Util/IVtoPID.cpp" line="253"/>
         <source>Channel</source>
         <translation>Channel</translation>
     </message>
@@ -4485,11 +4485,6 @@ Volbeat</source>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileCalibrator5.ui"/>
-        <source>Clear table</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Gen5/Profile/ProfileCalibrator5.ui"/>
         <source>Cancel</source>
         <translation type="unfinished">Annuler</translation>
     </message>
@@ -4601,12 +4596,12 @@ Volbeat</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/Profile/ProfileCalibrator5.cpp" line="195"/>
+        <location filename="../Gen5/Profile/ProfileCalibrator5.cpp" line="189"/>
         <source>Some min values are greater then max values</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/Profile/ProfileCalibrator5.cpp" line="307"/>
+        <location filename="../Gen5/Profile/ProfileCalibrator5.cpp" line="303"/>
         <source>Please select a entry.</source>
         <translation type="unfinished"></translation>
     </message>
