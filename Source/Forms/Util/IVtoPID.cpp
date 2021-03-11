@@ -73,9 +73,6 @@ std::vector<QList<QStandardItem *>> IVtoPID::getSeeds(u16 ivs1, u16 ivs2, u8 nat
 
     u32 x_test = ivs2 << 16;
     u32 x_testXD = ivs1 << 16;
-    u32 pid;
-    u16 sid;
-    bool pass;
 
     for (u32 cnt = 0; cnt <= 0xFFFF; cnt++)
     {
@@ -91,9 +88,9 @@ std::vector<QList<QStandardItem *>> IVtoPID::getSeeds(u16 ivs1, u16 ivs2, u8 nat
             u16 rng3XD = rngXD.nextUShort();
             u16 rng4XD = rngXD.nextUShort();
             u32 XDColoSeed = rngXDR.next();
-            sid = (rng4XD ^ rng3XD ^ tid) & 0xFFF8;
+            u16 sid = (rng4XD ^ rng3XD ^ tid) & 0xFFF8;
 
-            pid = (rng3XD << 16) | rng4XD;
+            u32 pid = (rng3XD << 16) | rng4XD;
             if (pid % 25 == nature)
             {
                 QList<QStandardItem *> result;
@@ -115,14 +112,14 @@ std::vector<QList<QStandardItem *>> IVtoPID::getSeeds(u16 ivs1, u16 ivs2, u8 nat
         u16 rng4 = rng.nextUShort();
 
         u32 method1Seed = rng.getSeed();
-        sid = (rng2 ^ rng3 ^ tid) & 0xFFF8;
+        u16 sid = (rng2 ^ rng3 ^ tid) & 0xFFF8;
 
         u32 method234Seed = rng.next();
 
         if ((rng1 & 0x7FFF) == (ivs1 & 0x7FFF))
         {
             // Method 1
-            pid = (rng2 << 16) | rng3;
+            u32 pid = (rng2 << 16) | rng3;
             if (pid % 25 == nature)
             {
                 QList<QStandardItem *> result;
@@ -165,9 +162,7 @@ std::vector<QList<QStandardItem *>> IVtoPID::getSeeds(u16 ivs1, u16 ivs2, u8 nat
             if (rng3 / 0x5556 != 0)
             {
                 u8 choppedPID = rng2 / 0xA3E;
-                pass = choppedPID % 25 == nature;
-
-                if (pass)
+                if ((choppedPID % 25) == nature)
                 {
                     for (auto i : { 0, 0x96, 0x32, -0x7d, -0x19 })
                     {
@@ -189,9 +184,7 @@ std::vector<QList<QStandardItem *>> IVtoPID::getSeeds(u16 ivs1, u16 ivs2, u8 nat
             if (rng3 % 3 != 0)
             {
                 u8 choppedPID = rng2 % 25;
-                pass = choppedPID == nature;
-
-                if (pass)
+                if (choppedPID == nature)
                 {
                     for (auto i : { 0, 0x96, 0x32, -0x7d, -0x19 })
                     {
@@ -213,7 +206,7 @@ std::vector<QList<QStandardItem *>> IVtoPID::getSeeds(u16 ivs1, u16 ivs2, u8 nat
         // Method 4
         if ((rng2 & 0x7FFF) == (ivs1 & 0x7FFF))
         {
-            pid = (rng3 << 16) | rng4;
+            u32 pid = (rng3 << 16) | rng4;
             sid = (rng3 ^ rng4 ^ tid) & 0xFFF8;
             if (pid % 25 == nature)
             {
