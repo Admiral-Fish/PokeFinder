@@ -79,7 +79,7 @@ public:
     constexpr Time(int hour, int minute, int second) : md(hour * 3600 + minute * 60 + second)
     {
     }
-    bool addSeconds(int seconds);
+    int addSeconds(int seconds);
     int hour() const;
     int minute() const;
     int second() const;

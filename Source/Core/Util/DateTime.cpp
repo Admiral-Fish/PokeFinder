@@ -110,15 +110,17 @@ std::string Date::toString() const
     return m + "/" + d + "/" + y;
 }
 
-bool Time::addSeconds(int seconds)
+int Time::addSeconds(int seconds)
 {
     md += seconds;
-    if (md >= 86400)
+
+    int days = 0;
+    while (md >= 86400)
     {
         md -= 86400;
-        return true;
+        days++;
     }
-    return false;
+    return days;
 }
 
 int Time::hour() const
@@ -157,10 +159,8 @@ DateTime::DateTime(int year, int month, int day, int hour, int minute, int secon
 
 void DateTime::addSeconds(int seconds)
 {
-    if (time.addSeconds(seconds))
-    {
-        date = date.addDays(1);
-    }
+    int days = time.addSeconds(seconds);
+    date = date.addDays(days);
 }
 
 DateTime DateTime::addSecs(int seconds)

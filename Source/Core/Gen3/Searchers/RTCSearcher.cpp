@@ -33,7 +33,7 @@ void RTCSearcher::startSearch(u32 initialSeed, u32 targetSeed, u32 initialAdvanc
 
     targetSeed = back.getSeed();
 
-    for (Date date; date < end; date.addDays(1))
+    for (Date date; date < end; date = date.addDays(1))
     {
         for (u8 hour = 0; hour < 24; hour++)
         {
