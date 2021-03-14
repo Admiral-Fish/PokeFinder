@@ -198,9 +198,9 @@ void Eggs4::generate()
     }
     generatorModel->setMethod(method);
 
-    StateFilter filter(ui->filterGenerator->getGender(), ui->filterGenerator->getAbility(), ui->filterGenerator->getShiny(), false,
-                       ui->filterGenerator->getMinIVs(), ui->filterGenerator->getMaxIVs(), ui->filterGenerator->getNatures(),
-                       ui->filterGenerator->getHiddenPowers(), {});
+    StateFilter filter(ui->filterGenerator->getGender(), ui->filterGenerator->getAbility(), ui->filterGenerator->getShiny(),
+                       ui->filterGenerator->getDisableFilters(), ui->filterGenerator->getMinIVs(), ui->filterGenerator->getMaxIVs(),
+                       ui->filterGenerator->getNatures(), ui->filterGenerator->getHiddenPowers(), {});
 
     EggGenerator4 generator(initialAdvances, maxAdvances, tid, sid, ui->filterGenerator->getGenderRatio(), method, filter, daycare);
 
