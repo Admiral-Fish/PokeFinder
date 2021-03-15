@@ -24,24 +24,14 @@
 #include <QHeaderView>
 #include <QKeyEvent>
 #include <QTextStream>
+#include <QTimer>
 
 TableView::TableView(QWidget *parent) : QTableView(parent)
 {
-}
-
-void TableView::resizeEvent(QResizeEvent *event)
-{
-    QTableView::resizeEvent(event);
-
     QHeaderView *header = this->horizontalHeader();
-    header->setSectionResizeMode(QHeaderView::Stretch);
+    header->setSectionResizeMode(QHeaderView::Interactive);
 
-    for (int column = 0; column < header->count(); column++)
-    {
-        int width = header->sectionSize(column);
-        header->setSectionResizeMode(column, QHeaderView::Interactive);
-        header->resizeSection(column, width);
-    }
+    QTimer::singleShot(500, [header] { header->resizeSections(QHeaderView::Stretch); });
 }
 
 void TableView::mouseDoubleClickEvent(QMouseEvent *event)
