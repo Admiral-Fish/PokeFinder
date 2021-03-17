@@ -107,7 +107,7 @@ std::string Date::toString() const
     std::string d = std::to_string(parts[2]);
     d.insert(d.begin(), 2 - d.size(), '0');
 
-    return m + "/" + d + "/" + y;
+    return y + "-" + m + "-" + d;
 }
 
 int Time::addSeconds(int seconds)
