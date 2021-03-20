@@ -21,6 +21,7 @@
 
 DateTimeEdit::DateTimeEdit(QWidget *parent) : QDateTimeEdit(parent)
 {
+    setDisplayFormat("yyyy-MM-dd  HH:mm:ss");
 }
 
 DateTime DateTimeEdit::getDateTime() const
