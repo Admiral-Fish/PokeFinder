@@ -71,8 +71,6 @@ void IDs3::setupModels()
     ui->textBoxXDColoStartingAdvance->setValues(InputType::Advance32Bit);
     ui->textBoxXDColoMaxAdvances->setValues(InputType::Advance32Bit);
 
-    ui->dateTimeEdit->setDisplayFormat(QLocale::system().dateTimeFormat(QLocale::ShortFormat));
-
     connect(ui->pushButtonXDColoSearch, &QPushButton::clicked, this, &IDs3::xdColoSearch);
     connect(ui->pushButtonFRLGESearch, &QPushButton::clicked, this, &IDs3::frlgeSearch);
     connect(ui->pushButtonRSSearch, &QPushButton::clicked, this, &IDs3::rsSearch);
