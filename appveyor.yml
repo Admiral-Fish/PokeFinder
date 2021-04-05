@@ -22,7 +22,7 @@ before_build:
 build_script:
     - mkdir build
     - cd build
-    - cmd: cmake -G"NMake Makefiles" -DCMAKE_BUILD_TYPE=RELEASE ../
+    - cmd: cmake -G"NMake Makefiles" -DCMAKE_BUILD_TYPE=RELEASE -DTEST=ON ../
     - sh: bash ../.ci/build.sh
     - cmake --build .
     - ctest -V
