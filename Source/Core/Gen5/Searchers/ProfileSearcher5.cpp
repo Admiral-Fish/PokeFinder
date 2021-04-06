@@ -105,7 +105,6 @@ int ProfileSearcher5::getProgress() const
 void ProfileSearcher5::search(u8 vframeStart, u8 vframeEnd)
 {
     u32 button = Keypresses::getValues({ keypress }).front();
-    auto parts = date.getParts();
     int hour = time.hour();
     int minute = time.minute();
 

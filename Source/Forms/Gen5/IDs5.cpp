@@ -189,9 +189,6 @@ void IDs5::find()
     u8 maxSecond = ui->spinBoxMaxSecond->value();
     u32 maxAdvance = ui->textBoxSeedFinderMaxAdvances->getUInt();
 
-    QList<u32> test;
-    test.append(0);
-
     IDFilter filter({ tid }, {}, {});
     IDGenerator5 generator(0, maxAdvance, filter);
 
