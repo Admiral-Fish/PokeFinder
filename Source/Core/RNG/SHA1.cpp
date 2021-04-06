@@ -21,6 +21,7 @@
 #include <Core/Gen5/Nazos.hpp>
 #include <Core/Gen5/Profile5.hpp>
 #include <Core/RNG/LCRNG64.hpp>
+#include <Core/Util/DateTime.hpp>
 #include <array>
 
 inline u32 changeEndian(u32 val)
@@ -248,9 +249,10 @@ void SHA1::setTimer0(u32 timer0, u8 vcount)
     data[5] = changeEndian(static_cast<u32>(vcount << 16) | timer0);
 }
 
-void SHA1::setDate(u8 year, u8 month, u8 day, u8 week)
+void SHA1::setDate(const Date &date)
 {
-    u32 val = static_cast<u32>((bcd(year) << 24) | (bcd(month) << 16) | (bcd(day) << 8) | week);
+    auto parts = date.getParts();
+    u32 val = static_cast<u32>((bcd(parts[0] - 2000) << 24) | (bcd(parts[1]) << 16) | (bcd(parts[2]) << 8) | date.dayOfWeek());
     data[8] = val;
 }
 

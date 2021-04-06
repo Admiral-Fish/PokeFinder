@@ -94,8 +94,7 @@ void EggSearcher5::search(EggGenerator5 generator, const Date &start, const Date
         sha.setTimer0(timer0, profile.getVCount());
         for (Date date = start; date <= end; date = date.addDays(1))
         {
-            auto parts = date.getParts();
-            sha.setDate(parts[0] - 2000, parts[1], parts[2], date.dayOfWeek());
+            sha.setDate(date);
             sha.precompute();
             for (size_t i = 0; i < values.size(); i++)
             {

@@ -197,11 +197,10 @@ void IDs5::find()
 
     auto buttons = Keypresses::getKeyPresses(currentProfile.getKeypresses(), currentProfile.getSkipLR());
     auto values = Keypresses::getValues(buttons);
-    auto parts = date.getParts();
 
     SHA1 sha(currentProfile);
     sha.setTimer0(currentProfile.getTimer0Min(), currentProfile.getVCount());
-    sha.setDate(parts[0] - 2000, parts[1], parts[2], date.dayOfWeek());
+    sha.setDate(date);
     sha.precompute();
 
     bool flag = currentProfile.getVersion() & Game::BW;

@@ -44,11 +44,10 @@ void SHA1Test::hash()
 
     const Date &date = dateTime.getDate();
     const Time &time = dateTime.getTime();
-    auto parts = dateTime.getDate().getParts();
 
     SHA1 sha(profile);
     sha.setButton(values.front());
-    sha.setDate(parts[0] - 2000, parts[1], parts[2], date.dayOfWeek());
+    sha.setDate(date);
     sha.setTime(time.hour(), time.minute(), time.second(), profile.getDSType());
     sha.setTimer0(profile.getTimer0Min(), profile.getVCount());
 

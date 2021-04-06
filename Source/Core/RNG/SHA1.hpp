@@ -25,6 +25,7 @@
 enum DSType : u8;
 enum Game : u16;
 enum Language : u8;
+class Date;
 class Profile5;
 
 class SHA1
@@ -35,7 +36,7 @@ public:
     u64 hashSeed();
     void precompute();
     void setTimer0(u32 timer0, u8 vcount);
-    void setDate(u8 year, u8 month, u8 day, u8 week);
+    void setDate(const Date &date);
     void setTime(u8 hour, u8 minute, u8 second, DSType dsType);
     void setButton(u32 button);
 

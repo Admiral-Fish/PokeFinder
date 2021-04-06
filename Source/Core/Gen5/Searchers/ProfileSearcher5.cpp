@@ -114,7 +114,7 @@ void ProfileSearcher5::search(u8 vframeStart, u8 vframeEnd)
         for (u8 gxStat = minGxStat; gxStat <= maxGxStat; gxStat++)
         {
             SHA1 sha(version, language, dsType, mac, softReset, vframe, gxStat);
-            sha.setDate(parts[0] - 2000, parts[1], parts[2], date.dayOfWeek());
+            sha.setDate(date);
             sha.setButton(button);
             for (u16 timer0 = minTimer0; timer0 <= maxTimer0; timer0++)
             {
