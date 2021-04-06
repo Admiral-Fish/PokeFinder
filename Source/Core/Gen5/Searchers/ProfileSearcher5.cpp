@@ -124,6 +124,11 @@ void ProfileSearcher5::search(u8 vframeStart, u8 vframeEnd)
 
                     for (u8 second = minSeconds; second <= maxSeconds; second++)
                     {
+                        if (!searching)
+                        {
+                            return;
+                        }
+
                         sha.setTime(hour, minute, second, dsType);
 
                         u64 seed = sha.hashSeed();
