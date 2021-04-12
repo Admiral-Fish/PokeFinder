@@ -23,6 +23,7 @@
 #include <Core/Gen5/Generators/StationaryGenerator5.hpp>
 #include <Core/Gen5/Profile5.hpp>
 #include <Core/Gen5/States/StationaryState5.hpp>
+#include <atomic>
 #include <mutex>
 #include <unordered_map>
 

@@ -26,6 +26,7 @@
 #include <Core/Parents/States/State.hpp>
 #include <Core/Util/DateTime.hpp>
 #include <Core/Util/Global.hpp>
+#include <atomic>
 #include <mutex>
 
 class DreamRadarSearcher

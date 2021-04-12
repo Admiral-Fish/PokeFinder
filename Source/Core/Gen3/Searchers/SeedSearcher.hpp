@@ -21,6 +21,7 @@
 #define SEEDSEARCHER_HPP
 
 #include <Core/Util/Global.hpp>
+#include <atomic>
 #include <mutex>
 #include <vector>
 

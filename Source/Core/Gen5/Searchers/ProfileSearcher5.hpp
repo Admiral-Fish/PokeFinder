@@ -24,6 +24,7 @@
 #include <Core/Util/DateTime.hpp>
 #include <Core/Util/Global.hpp>
 #include <array>
+#include <atomic>
 #include <mutex>
 #include <vector>
 

@@ -24,6 +24,7 @@
 #include <Core/Gen5/Profile5.hpp>
 #include <Core/Gen5/States/SearcherState5.hpp>
 #include <Core/Util/Global.hpp>
+#include <atomic>
 #include <mutex>
 
 class EggSearcher5
