@@ -64,10 +64,9 @@ private:
     Buttons keypress;
 
     bool searching;
-    int progress;
+    std::atomic<int> progress;
     std::vector<ProfileSearcherState5> results;
-    std::mutex resultMutex;
-    std::mutex progressMutex;
+    std::mutex mutex;
 
     void search(u8 vframeStart, u8 vframeEnd);
 

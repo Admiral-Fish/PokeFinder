@@ -42,10 +42,9 @@ private:
     Profile5 profile;
 
     bool searching;
-    int progress;
+    std::atomic<int> progress;
     std::vector<SearcherState5<State>> results;
-    std::mutex resultMutex;
-    std::mutex progressMutex;
+    std::mutex mutex;
 
     void search(DreamRadarGenerator generator, const Date &start, const Date &end);
 };

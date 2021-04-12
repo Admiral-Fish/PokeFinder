@@ -70,11 +70,8 @@ void IDSearcher5::cancelSearch()
 
 std::vector<IDState5> IDSearcher5::getResults()
 {
-    std::lock_guard<std::mutex> lock(resultMutex);
-
-    auto data(results);
-    results.clear();
-
+    std::lock_guard<std::mutex> lock(mutex);
+    auto data = std::move(results);
     return data;
 }
 
@@ -128,14 +125,13 @@ void IDSearcher5::search(IDGenerator5 generator, const Date &start, const Date &
                                 state.setKeypress(buttons[i]);
                             }
 
-                            std::lock_guard<std::mutex> lock(resultMutex);
+                            std::lock_guard<std::mutex> lock(mutex);
                             results.insert(results.end(), states.begin(), states.end());
                         }
                     }
                 }
             }
 
-            std::lock_guard<std::mutex> lock(progressMutex);
             progress++;
         }
     }

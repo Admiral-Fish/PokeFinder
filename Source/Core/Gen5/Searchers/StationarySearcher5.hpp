@@ -47,10 +47,9 @@ private:
     bool fastSearch;
 
     bool searching;
-    int progress;
+    std::atomic<int> progress;
     std::vector<StationaryState5> results;
-    std::mutex resultMutex;
-    std::mutex progressMutex;
+    std::mutex mutex;
 
     void search(const Date &start, const Date &end);
 };

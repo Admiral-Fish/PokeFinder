@@ -70,7 +70,6 @@ void RTCSearcher::cancelSearch()
 std::vector<GameCubeRTCState> RTCSearcher::getResults()
 {
     std::lock_guard<std::mutex> guard(mutex);
-    auto data(results);
-    results.clear();
+    auto data = std::move(results);
     return data;
 }

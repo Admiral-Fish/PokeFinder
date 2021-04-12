@@ -72,11 +72,10 @@ void ChannelSeedSearcher::search(u32 start, u32 end)
         XDRNG rng(seed);
         if (searchSeed(rng))
         {
-            std::lock_guard<std::mutex> lock(resultMutex);
+            std::lock_guard<std::mutex> lock(mutex);
             results.emplace_back(rng.getSeed());
         }
 
-        std::lock_guard<std::mutex> lock(progressMutex);
         progress++;
     }
 }

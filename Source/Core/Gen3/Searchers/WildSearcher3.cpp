@@ -74,8 +74,7 @@ void WildSearcher3::cancelSearch()
 std::vector<WildState> WildSearcher3::getResults()
 {
     std::lock_guard<std::mutex> guard(mutex);
-    auto data(results);
-    results.clear();
+    auto data = std::move(results);
     return data;
 }
 

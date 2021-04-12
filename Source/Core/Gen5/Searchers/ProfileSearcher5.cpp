@@ -89,11 +89,8 @@ void ProfileSearcher5::cancelSearch()
 
 std::vector<ProfileSearcherState5> ProfileSearcher5::getResults()
 {
-    std::lock_guard<std::mutex> lock(resultMutex);
-
-    auto data(results);
-    results.clear();
-
+    std::lock_guard<std::mutex> lock(mutex);
+    auto data = std::move(results);
     return data;
 }
 
@@ -135,11 +132,10 @@ void ProfileSearcher5::search(u8 vframeStart, u8 vframeEnd)
 
                         if (valid(seed))
                         {
-                            std::lock_guard<std::mutex> lock(resultMutex);
+                            std::lock_guard<std::mutex> lock(mutex);
                             results.emplace_back(seed, timer0, vcount, vframe, gxStat, second);
                         }
 
-                        std::lock_guard<std::mutex> lock(progressMutex);
                         progress++;
                     }
                 }

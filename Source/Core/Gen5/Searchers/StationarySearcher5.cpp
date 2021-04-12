@@ -75,11 +75,8 @@ void StationarySearcher5::cancelSearch()
 
 std::vector<StationaryState5> StationarySearcher5::getResults()
 {
-    std::lock_guard<std::mutex> lock(resultMutex);
-
-    auto data(results);
-    results.clear();
-
+    std::lock_guard<std::mutex> lock(mutex);
+    auto data = std::move(results);
     return data;
 }
 
@@ -168,18 +165,17 @@ void StationarySearcher5::search(const Date &start, const Date &end)
                                         ivState.setShiny(pidState.getShiny());
                                         ivState.setSeed(pidState.getSeed());
 
-                                        std::lock_guard<std::mutex> lock(resultMutex);
+                                        std::lock_guard<std::mutex> lock(mutex);
                                         results.emplace_back(ivState);
                                     }
                                 }
                                 else
                                 {
-                                    std::lock_guard<std::mutex> lock(resultMutex);
+                                    std::lock_guard<std::mutex> lock(mutex);
                                     results.emplace_back(ivState);
                                 }
                             }
 
-                            std::lock_guard<std::mutex> lock(progressMutex);
                             progress++;
                         }
                     }

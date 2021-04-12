@@ -83,8 +83,7 @@ void StationarySearcher4::cancelSearch()
 std::vector<StationaryState> StationarySearcher4::getResults()
 {
     std::lock_guard<std::mutex> guard(mutex);
-    auto data(results);
-    results.clear();
+    auto data = std::move(results);
     return data;
 }
 

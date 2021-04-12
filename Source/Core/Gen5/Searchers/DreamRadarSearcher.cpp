@@ -67,11 +67,8 @@ void DreamRadarSearcher::cancelSearch()
 
 std::vector<SearcherState5<State>> DreamRadarSearcher::getResults()
 {
-    std::lock_guard<std::mutex> lock(resultMutex);
-
-    auto data(results);
-    results.clear();
-
+    std::lock_guard<std::mutex> lock(mutex);
+    auto data = std::move(results);
     return data;
 }
 
@@ -123,14 +120,13 @@ void DreamRadarSearcher::search(DreamRadarGenerator generator, const Date &start
                                     displayStates.emplace_back(dt, seed, buttons[i], timer0, state);
                                 }
 
-                                std::lock_guard<std::mutex> lock(resultMutex);
+                                std::lock_guard<std::mutex> lock(mutex);
                                 results.insert(results.end(), displayStates.begin(), displayStates.end());
                             }
                         }
                     }
                 }
 
-                std::lock_guard<std::mutex> lock(progressMutex);
                 progress++;
             }
         }

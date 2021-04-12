@@ -41,10 +41,9 @@ private:
     bool checkPID;
 
     bool searching;
-    int progress;
+    std::atomic<int> progress;
     std::vector<IDState5> results;
-    std::mutex resultMutex;
-    std::mutex progressMutex;
+    std::mutex mutex;
 
     void search(IDGenerator5 generator, const Date &start, const Date &end);
 };

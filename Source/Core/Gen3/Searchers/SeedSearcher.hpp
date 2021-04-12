@@ -38,9 +38,8 @@ protected:
     std::vector<u32> results;
     std::vector<u32> criteria;
     bool searching;
-    u32 progress;
-    std::mutex resultMutex;
-    std::mutex progressMutex;
+    std::atomic<u32> progress;
+    std::mutex mutex;
 };
 
 #endif // SEEDSEARCHER_HPP

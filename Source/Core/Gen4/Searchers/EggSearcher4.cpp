@@ -108,8 +108,7 @@ void EggSearcher4::cancelSearch()
 std::vector<EggState4> EggSearcher4::getResults()
 {
     std::lock_guard<std::mutex> guard(mutex);
-    auto data(results);
-    results.clear();
+    auto data = std::move(results);
     return data;
 }
 
