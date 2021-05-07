@@ -169,7 +169,7 @@ std::vector<EggState3> EggGenerator3::generateEmeraldPID() const
         PokeRNG comp(rng.getSeed());
         if (((comp.nextUShort() * 100) / 0xFFFF) < compatability)
         {
-            for (u8 redraw = minRedraw; redraw <= maxRedraw; redraw++)
+            for (u16 redraw = minRedraw; redraw <= maxRedraw; redraw++)
             {
                 PokeRNG go(comp.getSeed());
 
