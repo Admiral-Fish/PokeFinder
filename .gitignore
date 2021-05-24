@@ -41,3 +41,9 @@ target_wrapper.*
 
 # QtCreator CMake
 CMakeLists.txt.user*
+
+# CMake
+build
+
+# VS Code
+.vscode

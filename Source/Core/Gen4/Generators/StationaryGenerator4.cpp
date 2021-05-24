@@ -137,7 +137,6 @@ std::vector<State> StationaryGenerator4::generateMethodJ(u32 seed) const
                 u16 high = go.nextUShort();
                 pid = (high << 16) | low;
             } while (pid % 25 != state.getNature());
-            state.setPID(pid);
 
             break;
         case Lead::Synchronize:
@@ -162,7 +161,6 @@ std::vector<State> StationaryGenerator4::generateMethodJ(u32 seed) const
                 u16 high = go.nextUShort();
                 pid = (high << 16) | low;
             } while (pid % 25 != state.getNature());
-            state.setPID(pid);
 
             break;
         default: // Default to cover all cute charm cases
@@ -177,7 +175,7 @@ std::vector<State> StationaryGenerator4::generateMethodJ(u32 seed) const
                 }
 
                 // Cute charm doesn't hunt for a valid PID, just uses buffer and target nature
-                state.setPID(buffer + state.getNature());
+                pid = buffer + state.getNature();
             }
             else // Failed cute charm
             {
@@ -196,7 +194,6 @@ std::vector<State> StationaryGenerator4::generateMethodJ(u32 seed) const
                     u16 high = go.nextUShort();
                     pid = (high << 16) | low;
                 } while (pid % 25 != state.getNature());
-                state.setPID(pid);
             }
 
             break;
@@ -204,6 +201,7 @@ std::vector<State> StationaryGenerator4::generateMethodJ(u32 seed) const
 
         state.setAbility(pid & 1);
         state.setGender(pid & 255, genderRatio);
+        state.setPID(pid);
         state.setShiny(tsv, (pid >> 16) ^ (pid & 0xffff), 8);
 
         u16 iv1 = go.nextUShort();
@@ -276,7 +274,6 @@ std::vector<State> StationaryGenerator4::generateMethodK(u32 seed) const
                 u16 high = go.nextUShort();
                 pid = (high << 16) | low;
             } while (pid % 25 != state.getNature());
-            state.setPID(pid);
 
             break;
         case Lead::Synchronize:
@@ -301,7 +298,6 @@ std::vector<State> StationaryGenerator4::generateMethodK(u32 seed) const
                 u16 high = go.nextUShort();
                 pid = (high << 16) | low;
             } while (pid % 25 != state.getNature());
-            state.setPID(pid);
 
             break;
         default: // Default to cover all cute charm cases
@@ -315,7 +311,7 @@ std::vector<State> StationaryGenerator4::generateMethodK(u32 seed) const
                     continue;
                 }
 
-                state.setPID(buffer + state.getNature());
+                pid = buffer + state.getNature();
             }
             else // Failed cutecharm
             {
@@ -334,8 +330,6 @@ std::vector<State> StationaryGenerator4::generateMethodK(u32 seed) const
                     u16 high = go.nextUShort();
                     pid = (high << 16) | low;
                 } while (pid % 25 != state.getNature());
-
-                state.setPID(pid);
             }
 
             break;
@@ -343,6 +337,7 @@ std::vector<State> StationaryGenerator4::generateMethodK(u32 seed) const
 
         state.setAbility(pid & 1);
         state.setGender(pid & 255, genderRatio);
+        state.setPID(pid);
         state.setShiny(tsv, (pid >> 16) ^ (pid & 0xffff), 8);
 
         u16 iv1 = go.nextUShort();
