@@ -23,7 +23,7 @@ set(PROJECT_TS
 )
 	
 set(PROJECT_QRC
-    ../../Externals/QDarkStyleSheet/qdarkstyle/style.qrc
+    ../../Externals/QDarkStyleSheet/qdarkstyle/dark/style.qrc
     resources.qrc
 )
 
