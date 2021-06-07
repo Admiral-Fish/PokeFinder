@@ -88,7 +88,7 @@ int main(int argc, char *argv[])
     QString style = setting.value("settings/style").toString();
     if (style == "dark")
     {
-        QFile file(":/qdarkstyle/style.qss");
+        QFile file(":/qdarkstyle/dark/style.qss");
         if (file.open(QIODevice::ReadOnly | QIODevice::Text))
         {
             QTextStream ts(&file);
