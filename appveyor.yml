@@ -49,7 +49,7 @@ deploy:
     provider: GitHub
     description: ''
     auth_token:
-        secure: u3c5wUq11csZ77TpgKMImu9U+ibNiviMcEpTuQXmqp1YGSHA/+u5FhqZ3KRZBAQX
+        secure: SFsouaBlVG46u5QjtuDZMhTxq9FHVPr1BRF6YwNJhOtlj+vk707p3MEzHttr7Vep
     artifact: PokeFinder-%OS%.zip,PokeFinder-%OS%.zip.sha256
     on:
         APPVEYOR_REPO_TAG: true
