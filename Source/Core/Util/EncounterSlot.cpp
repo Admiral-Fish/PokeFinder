@@ -23,7 +23,7 @@
 
 namespace
 {
-    template <int size>
+    template <u32 size>
     u8 calcSlot(u8 compare, const std::array<u8, size> &ranges)
     {
         for (size_t i = 0; i < size; i++)
@@ -36,7 +36,7 @@ namespace
         return 255;
     }
 
-    template <int size>
+    template <u32 size>
     u8 calcSlot(u8 compare, const std::array<std::pair<u8, u8>, size> &ranges)
     {
         for (size_t i = 0; i < size; i++)
