@@ -22,6 +22,10 @@
 
 #include <Core/Gen3/LockInfo.hpp>
 #include <Core/RNG/LCRNG.hpp>
+#include <vector>
+
+enum Method : u8;
+enum ShadowType : u8;
 
 class ShadowLock
 {
