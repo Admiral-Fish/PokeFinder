@@ -36,7 +36,6 @@ private:
     std::vector<EggState4> generateMasuada(u32 seed) const;
     std::vector<EggState4> generateDPPtIVs(u32 seed) const;
     std::vector<EggState4> generateHGSSIVs(u32 seed) const;
-    void setInheritance(EggState4 &state, const u16 *inh, const u16 *par, bool broken) const;
 };
 
 #endif // EGGGENERATOR4_HPP

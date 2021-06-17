@@ -23,6 +23,65 @@
 #include <Core/RNG/LCRNG.hpp>
 #include <Core/RNG/MT.hpp>
 
+template <bool broken>
+void setInheritance(const Daycare &daycare, EggState4 &state, const u16 *inh, const u16 *par)
+{
+    constexpr u8 order[6] = { 0, 1, 2, 5, 3, 4 };
+
+    if constexpr (broken)
+    {
+        // Avoid repeat IV inheritance doesn't work in DPPt
+        constexpr u8 available1[6] = { 0, 1, 2, 3, 4, 5 };
+        constexpr u8 available2[6] = { 1, 2, 3, 4, 5, 5 };
+        constexpr u8 available3[6] = { 1, 3, 4, 5, 5, 5 };
+
+        u8 stat = available1[inh[0] % 6];
+        u8 parent = par[0] & 1;
+        state.setIVs(order[stat], daycare.getParentIV(parent, order[stat]));
+        state.setInheritance(order[stat], parent + 1);
+
+        stat = available2[inh[1] % 5];
+        parent = par[1] & 1;
+        state.setIVs(order[stat], daycare.getParentIV(parent, order[stat]));
+        state.setInheritance(order[stat], parent + 1);
+
+        stat = available1[inh[2] % 4];
+        parent = par[2] & 1;
+        state.setIVs(order[stat], daycare.getParentIV(parent, order[stat]));
+        state.setInheritance(order[stat], parent + 1);
+    }
+    else
+    {
+        u8 available[6] = { 0, 1, 2, 3, 4, 5 };
+        auto avoid = [&available](u8 stat, u8 i)
+        {
+            for (u8 j = stat; j < 5 - i; j++)
+            {
+                available[j] = available[j + 1];
+            }
+        };
+
+        u8 stat = available[inh[0] % 6];
+        u8 parent = par[0] & 1;
+        state.setIVs(order[stat], daycare.getParentIV(parent, order[stat]));
+        state.setInheritance(order[stat], parent + 1);
+
+        avoid(stat, 0);
+
+        stat = available[inh[1] % 5];
+        parent = par[1] & 1;
+        state.setIVs(order[stat], daycare.getParentIV(parent, order[stat]));
+        state.setInheritance(order[stat], parent + 1);
+
+        avoid(stat, 1);
+
+        stat = available[inh[2] % 4];
+        parent = par[2] & 1;
+        state.setIVs(order[stat], daycare.getParentIV(parent, order[stat]));
+        state.setInheritance(order[stat], parent + 1);
+    }
+}
+
 EggGenerator4::EggGenerator4(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, Method method,
                              const StateFilter &filter, const Daycare &daycare) :
     EggGenerator(initialAdvances, maxAdvances, tid, sid, genderRatio, method, filter, daycare)
@@ -138,7 +197,7 @@ std::vector<EggState4> EggGenerator4::generateDPPtIVs(u32 seed) const
         u16 par3 = go.nextUShort();
         u16 par[3] = { par1, par2, par3 };
 
-        setInheritance(state, inh, par, true);
+        setInheritance<true>(daycare, state, inh, par);
         state.calculateHiddenPower();
 
         if (filter.compareIVs(state))
@@ -176,7 +235,7 @@ std::vector<EggState4> EggGenerator4::generateHGSSIVs(u32 seed) const
         u16 par3 = go.nextUShort();
         u16 par[3] = { par1, par2, par3 };
 
-        setInheritance(state, inh, par, false);
+        setInheritance<false>(daycare, state, inh, par);
         state.calculateHiddenPower();
 
         if (filter.compareIVs(state))
@@ -186,49 +245,4 @@ std::vector<EggState4> EggGenerator4::generateHGSSIVs(u32 seed) const
         }
     }
     return states;
-}
-
-void EggGenerator4::setInheritance(EggState4 &state, const u16 *inh, const u16 *par, bool broken) const
-{
-    u8 available[6] = { 0, 1, 2, 3, 4, 5 };
-    for (u8 i = 0; i < 3; i++)
-    {
-        u8 stat = available[inh[i] % (6 - i)];
-        u8 parent = par[i] & 1;
-
-        switch (stat)
-        {
-        case 0:
-            state.setIVs(0, daycare.getParentIV(parent, 0));
-            state.setInheritance(0, parent + 1);
-            break;
-        case 1:
-            state.setIVs(1, daycare.getParentIV(parent, 1));
-            state.setInheritance(1, parent + 1);
-            break;
-        case 2:
-            state.setIVs(2, daycare.getParentIV(parent, 2));
-            state.setInheritance(2, parent + 1);
-            break;
-        case 3:
-            state.setIVs(5, daycare.getParentIV(parent, 5));
-            state.setInheritance(5, parent + 1);
-            break;
-        case 4:
-            state.setIVs(3, daycare.getParentIV(parent, 3));
-            state.setInheritance(3, parent + 1);
-            break;
-        case 5:
-            state.setIVs(4, daycare.getParentIV(parent, 4));
-            state.setInheritance(4, parent + 1);
-            break;
-        }
-
-        // Avoids repeat IV inheritance
-        // In DPPt this doesn't work properly
-        for (u8 j = broken ? i : stat; j < 5 - i; j++)
-        {
-            available[j] = available[j + 1];
-        }
-    }
 }
