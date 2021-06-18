@@ -33,8 +33,8 @@ void setInheritance(const Daycare &daycare, EggState3 &state, const u16 *inh, co
     {
         // Avoid repeat IV inheritance doesn't work in Emerald
         constexpr u8 available1[6] = { 0, 1, 2, 3, 4, 5 };
-        constexpr u8 available2[6] = { 1, 2, 3, 4, 5, 5 };
-        constexpr u8 available3[6] = { 1, 3, 4, 5, 5, 5 };
+        constexpr u8 available2[5] = { 1, 2, 3, 4, 5 };
+        constexpr u8 available3[4] = { 1, 3, 4, 5 };
 
         u8 stat = available1[inh[0] % 6];
         u8 parent = par[0] & 1;
