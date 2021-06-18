@@ -175,7 +175,7 @@ namespace Encounters4
         {
             if (radar)
             {
-                std::vector<u16> species = { getValue(data, 51), getValue(data, 53), getValue(data, 55), getValue(data, 57) };
+                u16 species[4] = { getValue(data, 51), getValue(data, 53), getValue(data, 55), getValue(data, 57) };
                 mons[4].setSpecie(species[0], info[species[0]]);
                 mons[5].setSpecie(species[1], info[species[1]]);
                 mons[10].setSpecie(species[2], info[species[2]]);
@@ -219,7 +219,7 @@ namespace Encounters4
         {
             if (swarm)
             {
-                std::vector<u16> species = { getValue(data, 39), getValue(data, 41) };
+                u16 species[2] = { getValue(data, 39), getValue(data, 41) };
                 mons[0].setSpecie(species[0], info[species[0]]);
                 mons[1].setSpecie(species[1], info[species[1]]);
             }

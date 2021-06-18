@@ -20,22 +20,48 @@
 #ifndef WILDSTATE_HPP
 #define WILDSTATE_HPP
 
+#include <Core/Enum/Encounter.hpp>
+#include <Core/Enum/Lead.hpp>
 #include <Core/Parents/States/State.hpp>
-
-enum Encounter : u8;
-enum Lead : u8;
 
 class WildState : public State
 {
 public:
     WildState() = default;
-    explicit WildState(u32 advance);
-    Lead getLead() const;
-    void setLead(Lead lead);
-    u8 getEncounterSlot() const;
-    void setEncounterSlot(u8 encounterSlot);
-    Encounter getEncounter() const;
-    void setEncounter(Encounter encounter);
+
+    explicit WildState(u32 advance) : State(advance), lead(Lead::None)
+    {
+    }
+
+    Lead getLead() const
+    {
+        return lead;
+    }
+
+    void setLead(Lead lead)
+    {
+        this->lead = lead;
+    }
+
+    u8 getEncounterSlot() const
+    {
+        return encounterSlot;
+    }
+
+    void setEncounterSlot(u8 encounterSlot)
+    {
+        this->encounterSlot = encounterSlot;
+    }
+
+    Encounter getEncounter() const
+    {
+        return encounter;
+    }
+
+    void setEncounter(Encounter encounter)
+    {
+        this->encounter = encounter;
+    }
 
 protected:
     Lead lead;

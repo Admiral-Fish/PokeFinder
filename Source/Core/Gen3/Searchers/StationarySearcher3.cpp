@@ -124,7 +124,7 @@ std::vector<State> StationarySearcher3::searchMethod124(u8 hp, u8 atk, u8 def, u
         state.setAbility(low & 1);
         state.setGender(low & 255, genderRatio);
         state.setNature(state.getPID() % 25);
-        state.setShiny(tsv, high ^ low, 8);
+        state.setShiny<8>(tsv, high ^ low);
 
         if (filter.comparePID(state))
         {
@@ -171,7 +171,7 @@ std::vector<State> StationarySearcher3::searchMethod1Reverse(u8 hp, u8 atk, u8 d
         state.setAbility(low & 1);
         state.setGender(low & 255, genderRatio);
         state.setNature(state.getPID() % 25);
-        state.setShiny(tsv, high ^ low, 8);
+        state.setShiny<8>(tsv, high ^ low);
 
         if (filter.comparePID(state))
         {

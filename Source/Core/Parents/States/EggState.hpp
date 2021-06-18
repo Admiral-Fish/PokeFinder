@@ -26,9 +26,19 @@ class EggState : public State
 {
 public:
     EggState() = default;
-    explicit EggState(u32 advance);
-    u8 getInheritance(u8 index) const;
-    void setInheritance(u8 index, u8 val);
+    explicit EggState(u32 advance) : State(advance), inheritance { 0, 0, 0, 0, 0, 0 }
+    {
+    }
+
+    u8 getInheritance(u8 index) const
+    {
+        return inheritance[index];
+    }
+    
+    void setInheritance(u8 index, u8 val)
+    {
+        inheritance[index] = val;
+    }
 
 protected:
     u8 inheritance[6];

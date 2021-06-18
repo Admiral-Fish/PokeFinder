@@ -121,7 +121,7 @@ std::vector<EggState4> EggGenerator4::generateNormal(u32 seed) const
         state.setAbility(pid & 1);
         state.setGender(pid & 255, genderRatio);
         state.setNature(pid % 25);
-        state.setShiny(tsv, (pid >> 16) ^ (pid & 0xffff), 8);
+        state.setShiny<8>(tsv, (pid >> 16) ^ (pid & 0xffff));
 
         if (filter.comparePID(state))
         {
@@ -160,7 +160,7 @@ std::vector<EggState4> EggGenerator4::generateMasuada(u32 seed) const
         state.setAbility(pid & 1);
         state.setGender(pid & 255, genderRatio);
         state.setNature(pid % 25);
-        state.setShiny(tsv, (pid >> 16) ^ (pid & 0xffff), 8);
+        state.setShiny<8>(tsv, (pid >> 16) ^ (pid & 0xffff));
 
         if (filter.comparePID(state))
         {

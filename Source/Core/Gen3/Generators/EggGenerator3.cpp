@@ -272,7 +272,7 @@ std::vector<EggState3> EggGenerator3::generateEmeraldPID() const
                 state.setPID(pid);
                 state.setAbility(pid & 1);
                 state.setGender(pid & 255, genderRatio);
-                state.setShiny(tsv, (pid >> 16) ^ (pid & 0xffff), 8);
+                state.setShiny<8>(tsv, (pid >> 16) ^ (pid & 0xffff));
 
                 if (filter.comparePID(state))
                 {
@@ -404,7 +404,7 @@ std::vector<EggState3> EggGenerator3::generateUpper(u32 seed, const std::vector<
             up.setAbility(low.second & 1);
             up.setGender(low.second & 255, genderRatio);
             up.setNature(up.getPID() % 25);
-            up.setShiny(tsv, (up.getPID() >> 16) ^ (up.getPID() & 0xffff), 8);
+            up.setShiny<8>(tsv, (up.getPID() >> 16) ^ (up.getPID() & 0xffff));
 
             if (filter.comparePID(up))
             {

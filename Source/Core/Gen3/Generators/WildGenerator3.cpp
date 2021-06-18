@@ -180,7 +180,7 @@ std::vector<WildState> WildGenerator3::generate(u32 seed, const EncounterArea3 &
         state.setPID(pid);
         state.setAbility(pid & 1);
         state.setGender(pid & 255, genderRatio);
-        state.setShiny(tsv, (pid & 0xffff) ^ (pid >> 16), 8);
+        state.setShiny<8>(tsv, (pid & 0xffff) ^ (pid >> 16));
 
         // Valid PID is found now time to generate IVs
         u16 iv1;

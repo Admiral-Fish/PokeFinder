@@ -20,17 +20,27 @@
 #ifndef STATIONARYSTATE_HPP
 #define STATIONARYSTATE_HPP
 
+#include <Core/Enum/Lead.hpp>
 #include <Core/Parents/States/State.hpp>
-
-enum Lead : u8;
 
 class StationaryState : public State
 {
 public:
     StationaryState() = default;
-    explicit StationaryState(u32 advance);
-    Lead getLead() const;
-    void setLead(Lead lead);
+
+    explicit StationaryState(u32 advance) : State(advance), lead(Lead::None)
+    {
+    }
+
+    Lead getLead() const
+    {
+        return lead;
+    }
+
+    void setLead(Lead lead)
+    {
+        this->lead = lead;
+    }
 
 protected:
     Lead lead;
