@@ -45,6 +45,7 @@ set(PROJECT_UI
     Gen3/Tools/SeedTime3.ui
     Gen3/Tools/SpindaPainter.ui
     Gen3/Wild3.ui
+    Gen3/Unown3.ui
     Gen4/Eggs4.ui
     Gen4/IDs4.ui
     Gen4/Profile/ProfileEditor4.ui
@@ -98,6 +99,7 @@ set(PROJECT_SOURCES
     Gen3/Tools/SeedTime3.cpp
     Gen3/Tools/SpindaPainter.cpp
     Gen3/Wild3.cpp
+    Gen3/Unown3.cpp
     Gen4/Eggs4.cpp
     Gen4/IDs4.cpp
     Gen4/Profile/ProfileEditor4.cpp
@@ -128,6 +130,7 @@ set(PROJECT_SOURCES
     Models/Gen3/SeedTimeModel3.cpp
     Models/Gen3/StationaryModel3.cpp
     Models/Gen3/WildModel3.cpp
+    Models/Gen3/UnownModel3.cpp
     Models/Gen4/EggModel4.cpp
     Models/Gen4/IDModel4.cpp
     Models/Gen4/ProfileModel4.cpp

@@ -30,6 +30,7 @@ namespace Ui
 
 class Stationary3;
 class Wild3;
+class Unown3;
 class GameCube;
 class Eggs3;
 class IDs3;
@@ -55,6 +56,7 @@ private:
 
     Stationary3 *stationary3 = nullptr;
     Wild3 *wild3 = nullptr;
+    Unown3 *unown3 = nullptr;
     GameCube *gamecube = nullptr;
     Eggs3 *egg3 = nullptr;
     IDs3 *ids3 = nullptr;
@@ -75,6 +77,7 @@ private slots:
     void updateProfiles(int num);
     void openStationary3();
     void openWild3();
+    void openUnown3();
     void openGameCube();
     void openEgg3();
     void openIDs3();

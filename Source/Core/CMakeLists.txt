@@ -28,6 +28,7 @@ add_library(Core STATIC
     Gen3/Generators/PokeSpotGenerator.cpp
     Gen3/Generators/StationaryGenerator3.cpp
     Gen3/Generators/WildGenerator3.cpp
+    Gen3/Generators/UnownGenerator3.cpp
     Gen3/LockInfo.cpp
     Gen3/Profile3.cpp
     Gen3/Searchers/ChannelSeedSearcher.cpp
@@ -38,6 +39,7 @@ add_library(Core STATIC
     Gen3/Searchers/SeedSearcher.cpp
     Gen3/Searchers/StationarySearcher3.cpp
     Gen3/Searchers/WildSearcher3.cpp
+    Gen3/Searchers/UnownSearcher3.cpp
     Gen3/ShadowLock.cpp
     Gen3/States/EggState3.cpp
     Gen3/States/GameCubeRTCState.cpp
@@ -94,12 +96,14 @@ add_library(Core STATIC
     Parents/Generators/IDGenerator.cpp
     Parents/Generators/StationaryGenerator.cpp
     Parents/Generators/WildGenerator.cpp
+    Parents/Generators/UnownGenerator.cpp
     Parents/PersonalInfo.cpp
     Parents/Profile.cpp
     Parents/ProfileLoader.cpp
     Parents/Searchers/Searcher.cpp
     Parents/Searchers/StationarySearcher.cpp
     Parents/Searchers/WildSearcher.cpp
+    Parents/Searchers/UnownSearcher.cpp
     Parents/Slot.cpp
     Parents/States/EggState.cpp
     Parents/States/IDState.cpp
@@ -107,6 +111,7 @@ add_library(Core STATIC
     Parents/States/State.cpp
     Parents/States/StationaryState.cpp
     Parents/States/WildState.cpp
+    Parents/States/UnownState.cpp
     RNG/MT.cpp
     RNG/RNGCache.cpp
     RNG/RNGEuclidean.cpp

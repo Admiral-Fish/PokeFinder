@@ -32,6 +32,7 @@
 #include <Forms/Gen3/Tools/SeedTime3.hpp>
 #include <Forms/Gen3/Tools/SpindaPainter.hpp>
 #include <Forms/Gen3/Wild3.hpp>
+#include <Forms/Gen3/Unown3.hpp>
 #include <Forms/Gen4/Eggs4.hpp>
 #include <Forms/Gen4/IDs4.hpp>
 #include <Forms/Gen4/Profile/ProfileManager4.hpp>
@@ -60,7 +61,7 @@
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    setWindowTitle(QString("Pok\303\251Finder %1").arg(VERSION));
+    setWindowTitle(QString("Finder ToolBox (PokeFinder)"));
 
     setupModels();
     QTimer::singleShot(1000, this, &MainWindow::checkUpdates);
@@ -74,6 +75,7 @@ MainWindow::~MainWindow()
     delete ui;
     delete stationary3;
     delete wild3;
+    delete unown3;
     delete egg3;
     delete gamecube;
     delete ids3;
@@ -92,6 +94,7 @@ void MainWindow::setupModels()
 {
     connect(ui->pushButtonStationary3, &QPushButton::clicked, this, &MainWindow::openStationary3);
     connect(ui->pushButtonWild3, &QPushButton::clicked, this, &MainWindow::openWild3);
+    connect(ui->pushButtonUnown3, &QPushButton::clicked, this, &MainWindow::openUnown3);
     connect(ui->pushButtonGameCube, &QPushButton::clicked, this, &MainWindow::openGameCube);
     connect(ui->pushButtonEgg3, &QPushButton::clicked, this, &MainWindow::openEgg3);
     connect(ui->pushButtonIDs3, &QPushButton::clicked, this, &MainWindow::openIDs3);
@@ -178,6 +181,10 @@ void MainWindow::updateProfiles(int num)
         {
             wild3->updateProfiles();
         }
+        if (unown3)
+        {
+            unown3->updateProfiles();
+        }
         if (gamecube)
         {
             gamecube->updateProfiles();
@@ -243,6 +250,17 @@ void MainWindow::openWild3()
     }
     wild3->show();
     wild3->raise();
+}
+
+void MainWindow::openUnown3()
+{
+    if (!unown3)
+    {
+        unown3 = new Unown3();
+        connect(unown3, &Unown3::alertProfiles, this, &MainWindow::updateProfiles);
+    }
+    unown3->show();
+    unown3->raise();
 }
 
 void MainWindow::openGameCube()

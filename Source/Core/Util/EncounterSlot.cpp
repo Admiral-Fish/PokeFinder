@@ -20,6 +20,7 @@
 #include "EncounterSlot.hpp"
 #include <Core/Enum/Encounter.hpp>
 #include <array>
+#include <vector>
 
 namespace
 {
