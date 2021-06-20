@@ -25,7 +25,6 @@
 #include <Models/Gen3/IDModel3.hpp>
 #include <Models/Gen3/LiveIDModel3.hpp>
 #include <QSettings>
-#include <QDebug>
 
 IDs3::IDs3(QWidget *parent) : QWidget(parent), ui(new Ui::IDs3)
 {
@@ -235,14 +234,11 @@ void IDs3::rsSearchLive()
 
     u16 tid = ui->textBoxRSTIDLive->getUShort();
     u32 pid = ui->textBoxRSPIDLive->getUInt();
-    qDebug() << tid;
-    qDebug() << pid;
 
 
     IDFilter filter(tidFilter, sidFilter, tsvFilter);
     IDGenerator3 generator(0, 0, filter);
 
     auto states = generator.generateRSLive(pid,tid);
-    qDebug() << states.size();
     rsLive->addItems(states);
 }
