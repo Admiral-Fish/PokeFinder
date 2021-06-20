@@ -17,22 +17,27 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef IDGENERATOR3_HPP
-#define IDGENERATOR3_HPP
+#include "LiveIDState3.hpp"
 
-#include <Core/Gen3/States/IDState3.hpp>
-#include <Core/Gen3/States/LiveIDState3.hpp>
-#include <Core/Parents/Generators/IDGenerator.hpp>
-
-class IDGenerator3 : public IDGenerator
+LiveIDState3::LiveIDState3(u32 advance, u16 tid, u16 sid, u16 initial, std::string shiny, std::string date) : IDState(advance, tid, sid)
 {
-public:
-    IDGenerator3() = default;
-    IDGenerator3(u32 initialAdvances, u32 maxAdvances, const IDFilter &filter);
-    std::vector<IDState3> generateXDColo(u32 seed);
-    std::vector<IDState3> generateFRLGE(u16 tid);
-    std::vector<IDState3> generateRS(u32 seed);
-    std::vector<LiveIDState3> generateRSLive(u32 pid, u16 tid);
-};
+    this->initial = initial;
+    this->shiny = shiny;
+    this->date = date;
+    tsv = (tid ^ sid) >> 3;
+}
 
-#endif // IDGENERATOR3_HPP
+u16 LiveIDState3::getInitial() const
+{
+    return initial;
+}
+
+std::string LiveIDState3::getShiny() const
+{
+    return shiny;
+}
+
+std::string LiveIDState3::getDate() const
+{
+    return date;
+}

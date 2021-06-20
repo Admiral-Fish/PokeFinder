@@ -45,6 +45,7 @@ add_library(Core STATIC
     Gen3/States/GameCubeRTCState.cpp
     Gen3/States/GameCubeState.cpp
     Gen3/States/IDState3.cpp
+    Gen3/States/LiveIDState3.cpp
     Gen3/States/PIDIVState.cpp
     Gen3/States/SeedTimeState3.cpp
     Gen3/Tools/JirachiPatternCalculator.cpp

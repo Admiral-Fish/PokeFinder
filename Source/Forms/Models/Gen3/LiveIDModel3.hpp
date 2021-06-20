@@ -17,22 +17,23 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef IDGENERATOR3_HPP
-#define IDGENERATOR3_HPP
+#ifndef LIVEIDMODEL3_HPP
+#define LIVEIDMODEL3_HPP
 
-#include <Core/Gen3/States/IDState3.hpp>
 #include <Core/Gen3/States/LiveIDState3.hpp>
-#include <Core/Parents/Generators/IDGenerator.hpp>
+#include <Models/TableModel.hpp>
 
-class IDGenerator3 : public IDGenerator
+class LiveIDModel3 : public TableModel<LiveIDState3>
 {
+    Q_OBJECT
 public:
-    IDGenerator3() = default;
-    IDGenerator3(u32 initialAdvances, u32 maxAdvances, const IDFilter &filter);
-    std::vector<IDState3> generateXDColo(u32 seed);
-    std::vector<IDState3> generateFRLGE(u16 tid);
-    std::vector<IDState3> generateRS(u32 seed);
-    std::vector<LiveIDState3> generateRSLive(u32 pid, u16 tid);
+    explicit LiveIDModel3(QObject *parent);
+    int columnCount(const QModelIndex &parent = QModelIndex()) const override;
+    QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
+    QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
+
+private:
+    QStringList header = { tr("Initial"), tr("Advances"), tr("TID"), tr("SID"), tr("Shiny"), tr("Date") };
 };
 
-#endif // IDGENERATOR3_HPP
+#endif // LiveIDMODEL3_HPP

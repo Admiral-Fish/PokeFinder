@@ -23,6 +23,7 @@
 #include <QWidget>
 
 class IDModel3;
+class LiveIDModel3;
 
 namespace Ui
 {
@@ -41,6 +42,7 @@ private:
     IDModel3 *xdcolo = nullptr;
     IDModel3 *frlge = nullptr;
     IDModel3 *rs = nullptr;
+    LiveIDModel3 *rsLive = nullptr;
 
     void setupModels();
 
@@ -48,6 +50,7 @@ private slots:
     void xdColoSearch();
     void frlgeSearch();
     void rsSearch();
+    void rsSearchLive();
     void rsDeadBattery(bool checked);
     void rsDate(bool checked);
     void rsInitialSeed(bool checked);

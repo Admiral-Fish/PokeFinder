@@ -23,7 +23,9 @@
 #include <Core/Parents/Filters/IDFilter.hpp>
 #include <Core/Util/Utilities.hpp>
 #include <Models/Gen3/IDModel3.hpp>
+#include <Models/Gen3/LiveIDModel3.hpp>
 #include <QSettings>
+#include <QDebug>
 
 IDs3::IDs3(QWidget *parent) : QWidget(parent), ui(new Ui::IDs3)
 {
@@ -45,11 +47,13 @@ void IDs3::setupModels()
 {
     xdcolo = new IDModel3(ui->tableViewXDColo);
     frlge = new IDModel3(ui->tableViewFRLGE);
-    rs = new IDModel3(ui->tableViewFRLGE);
+    rs = new IDModel3(ui->tableViewRS);
+    rsLive = new LiveIDModel3(ui->tableViewRSLive);
 
     ui->tableViewXDColo->setModel(xdcolo);
     ui->tableViewFRLGE->setModel(frlge);
     ui->tableViewRS->setModel(rs);
+    ui->tableViewRSLive->setModel(rsLive);
 
     ui->textBoxFRLGEPID->setValues(InputType::Seed32Bit);
     ui->textBoxFRLGETID->setValues(InputType::TIDSID);
@@ -71,9 +75,13 @@ void IDs3::setupModels()
     ui->textBoxXDColoStartingAdvance->setValues(InputType::Advance32Bit);
     ui->textBoxXDColoMaxAdvances->setValues(InputType::Advance32Bit);
 
+    ui->textBoxRSPIDLive->setValues(InputType::Seed32Bit);
+    ui->textBoxRSTIDLive->setValues(InputType::TIDSID);
+
     connect(ui->pushButtonXDColoSearch, &QPushButton::clicked, this, &IDs3::xdColoSearch);
     connect(ui->pushButtonFRLGESearch, &QPushButton::clicked, this, &IDs3::frlgeSearch);
     connect(ui->pushButtonRSSearch, &QPushButton::clicked, this, &IDs3::rsSearch);
+    connect(ui->pushButtonRSSearchLive, &QPushButton::clicked, this, &IDs3::rsSearchLive);
     connect(ui->checkBoxRSDeadBattery, &QCheckBox::clicked, this, &IDs3::rsDeadBattery);
     connect(ui->radioButtonRSDate, &QRadioButton::toggled, this, &IDs3::rsDate);
     connect(ui->radioButtonRSInitialSeed, &QRadioButton::toggled, this, &IDs3::rsInitialSeed);
@@ -213,4 +221,28 @@ void IDs3::rsDate(bool checked)
 void IDs3::rsInitialSeed(bool checked)
 {
     ui->textBoxRSInitialSeed->setEnabled(checked);
+}
+
+
+void IDs3::rsSearchLive()
+{
+    rsLive->clearModel();
+
+    std::vector<u16> tidFilter;
+    std::vector<u16> sidFilter;
+    std::vector<u16> tsvFilter;
+
+
+    u16 tid = ui->textBoxRSTIDLive->getUShort();
+    u32 pid = ui->textBoxRSPIDLive->getUInt();
+    qDebug() << tid;
+    qDebug() << pid;
+
+
+    IDFilter filter(tidFilter, sidFilter, tsvFilter);
+    IDGenerator3 generator(0, 0, filter);
+
+    auto states = generator.generateRSLive(pid,tid);
+    qDebug() << states.size();
+    rsLive->addItems(states);
 }
