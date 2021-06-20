@@ -167,3 +167,32 @@ std::vector<LiveIDState3> IDGenerator3::generateRSLive(u32 pid, u16 tid)
 
     return states;
 }
+
+std::vector<LiveXDColoIDState3> IDGenerator3::generateXDColoLive(u32 pid, u16 tid)
+{
+    std::vector<LiveXDColoIDState3> states;
+    u16 low = pid & 0xFFFF;
+    u16 high = pid >> 16;
+    u16 pxor = low ^ high;
+    u16 psv = pxor / 8;
+    u16 square = pxor ^ tid;
+    u16 rangeLow = square / 8;
+    rangeLow *= 8;
+
+    for (u16 sid = rangeLow; sid <= rangeLow+7; sid++)
+    {
+        u32 tsid = (tid << 16) | sid;
+        auto seeds = RNGEuclidean::recoverLower16BitsPID(tsid);
+        for (const auto &pair : seeds)
+        {
+            XDRNGR backward(pair.first);
+            u32 originSeed = backward.next();
+            std::string shiny = sid == square ? "Square" : "Star";
+
+            LiveXDColoIDState3 state(tid, sid, originSeed, shiny);
+            states.emplace_back(state);
+        }
+    }
+
+    return states;
+}

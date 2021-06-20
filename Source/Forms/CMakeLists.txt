@@ -125,6 +125,7 @@ set(PROJECT_SOURCES
     Models/Gen3/GameCubeRTCModel.cpp
     Models/Gen3/IDModel3.cpp
     Models/Gen3/LiveIDModel3.cpp
+    Models/Gen3/LiveXDColoIDModel3.cpp
     Models/Gen3/PIDIVModel.cpp
     Models/Gen3/PokeSpotModel.cpp
     Models/Gen3/ProfileModel3.cpp

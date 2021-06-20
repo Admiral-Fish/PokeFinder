@@ -17,24 +17,23 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef IDGENERATOR3_HPP
-#define IDGENERATOR3_HPP
+#include "LiveXDColoIDState3.hpp"
 
-#include <Core/Gen3/States/IDState3.hpp>
-#include <Core/Gen3/States/LiveIDState3.hpp>
-#include <Core/Gen3/States/LiveXDColoIDState3.hpp>
-#include <Core/Parents/Generators/IDGenerator.hpp>
-
-class IDGenerator3 : public IDGenerator
+LiveXDColoIDState3::LiveXDColoIDState3(u16 tid, u16 sid, u32 seed, std::string shiny)
 {
-public:
-    IDGenerator3() = default;
-    IDGenerator3(u32 initialAdvances, u32 maxAdvances, const IDFilter &filter);
-    std::vector<IDState3> generateXDColo(u32 seed);
-    std::vector<IDState3> generateFRLGE(u16 tid);
-    std::vector<IDState3> generateRS(u32 seed);
-    std::vector<LiveIDState3> generateRSLive(u32 pid, u16 tid);
-    std::vector<LiveXDColoIDState3> generateXDColoLive(u32 pid, u16 tid);
-};
+    this->tid = tid;
+    this->sid = sid;
+    this->seed = seed;
+    this->shiny = shiny;
+    tsv = (tid ^ sid) >> 3;
+}
 
-#endif // IDGENERATOR3_HPP
+u32 LiveXDColoIDState3::getSeed() const
+{
+    return seed;
+}
+
+std::string LiveXDColoIDState3::getShiny() const
+{
+    return shiny;
+}

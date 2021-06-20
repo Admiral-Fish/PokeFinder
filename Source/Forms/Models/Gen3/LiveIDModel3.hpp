@@ -36,4 +36,4 @@ private:
     QStringList header = { tr("Initial"), tr("Advances"), tr("TID"), tr("SID"), tr("Shiny"), tr("Date") };
 };
 
-#endif // LiveIDMODEL3_HPP
+#endif // LIVEIDMODEL3_HPP

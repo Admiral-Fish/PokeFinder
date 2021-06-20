@@ -24,6 +24,7 @@
 
 class IDModel3;
 class LiveIDModel3;
+class LiveXDColoIDModel3;
 
 namespace Ui
 {
@@ -43,11 +44,13 @@ private:
     IDModel3 *frlge = nullptr;
     IDModel3 *rs = nullptr;
     LiveIDModel3 *rsLive = nullptr;
+    LiveXDColoIDModel3 *xdcoloLive = nullptr;
 
     void setupModels();
 
 private slots:
     void xdColoSearch();
+    void xdColoSearchLive();
     void frlgeSearch();
     void rsSearch();
     void rsSearchLive();

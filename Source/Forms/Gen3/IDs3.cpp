@@ -24,6 +24,7 @@
 #include <Core/Util/Utilities.hpp>
 #include <Models/Gen3/IDModel3.hpp>
 #include <Models/Gen3/LiveIDModel3.hpp>
+#include <Models/Gen3/LiveXDColoIDModel3.hpp>
 #include <QSettings>
 
 IDs3::IDs3(QWidget *parent) : QWidget(parent), ui(new Ui::IDs3)
@@ -45,11 +46,13 @@ IDs3::~IDs3()
 void IDs3::setupModels()
 {
     xdcolo = new IDModel3(ui->tableViewXDColo);
+    xdcoloLive = new LiveXDColoIDModel3(ui->tableViewXDColoLive);
     frlge = new IDModel3(ui->tableViewFRLGE);
     rs = new IDModel3(ui->tableViewRS);
     rsLive = new LiveIDModel3(ui->tableViewRSLive);
 
     ui->tableViewXDColo->setModel(xdcolo);
+    ui->tableViewXDColoLive->setModel(xdcoloLive);
     ui->tableViewFRLGE->setModel(frlge);
     ui->tableViewRS->setModel(rs);
     ui->tableViewRSLive->setModel(rsLive);
@@ -77,7 +80,11 @@ void IDs3::setupModels()
     ui->textBoxRSPIDLive->setValues(InputType::Seed32Bit);
     ui->textBoxRSTIDLive->setValues(InputType::TIDSID);
 
+    ui->textBoxXDColoPIDLive->setValues(InputType::Seed32Bit);
+    ui->textBoxXDColoTIDLive->setValues(InputType::TIDSID);
+
     connect(ui->pushButtonXDColoSearch, &QPushButton::clicked, this, &IDs3::xdColoSearch);
+    connect(ui->pushButtonXDColoSearchLive, &QPushButton::clicked, this, &IDs3::xdColoSearchLive);
     connect(ui->pushButtonFRLGESearch, &QPushButton::clicked, this, &IDs3::frlgeSearch);
     connect(ui->pushButtonRSSearch, &QPushButton::clicked, this, &IDs3::rsSearch);
     connect(ui->pushButtonRSSearchLive, &QPushButton::clicked, this, &IDs3::rsSearchLive);
@@ -125,6 +132,26 @@ void IDs3::xdColoSearch()
 
     auto states = generator.generateXDColo(seed);
     xdcolo->addItems(states);
+}
+
+void IDs3::xdColoSearchLive()
+{
+    xdcoloLive->clearModel();
+
+    std::vector<u16> tidFilter;
+    std::vector<u16> sidFilter;
+    std::vector<u16> tsvFilter;
+
+
+    u16 tid = ui->textBoxXDColoTIDLive->getUShort();
+    u32 pid = ui->textBoxXDColoPIDLive->getUInt();
+
+
+    IDFilter filter(tidFilter, sidFilter, tsvFilter);
+    IDGenerator3 generator(0, 0, filter);
+
+    auto states = generator.generateXDColoLive(pid,tid);
+    xdcoloLive->addItems(states);
 }
 
 void IDs3::frlgeSearch()
@@ -221,7 +248,6 @@ void IDs3::rsInitialSeed(bool checked)
 {
     ui->textBoxRSInitialSeed->setEnabled(checked);
 }
-
 
 void IDs3::rsSearchLive()
 {

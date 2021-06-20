@@ -23,7 +23,7 @@
    <item row="0" column="1">
     <widget class="QTabWidget" name="tabWidget">
      <property name="currentIndex">
-      <number>2</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="gen3XDColo">
       <attribute name="title">
@@ -159,6 +159,82 @@
          <attribute name="verticalHeaderVisible">
           <bool>false</bool>
          </attribute>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="gen3XDColoLive">
+      <attribute name="title">
+       <string>XD/Colo Search</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_10">
+       <item row="1" column="0" colspan="2">
+        <widget class="TableView" name="tableViewXDColoLive">
+         <attribute name="verticalHeaderVisible">
+          <bool>false</bool>
+         </attribute>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QGroupBox" name="groupBoxXDColoSearchBy_2">
+         <property name="minimumSize">
+          <size>
+           <width>200</width>
+           <height>200</height>
+          </size>
+         </property>
+         <property name="title">
+          <string>Search By</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_8">
+          <item row="1" column="1">
+           <widget class="TextBox" name="textBoxXDColoTIDLive">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
+            <property name="maxLength">
+             <number>5</number>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="TextBox" name="textBoxXDColoPIDLive">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
+            <property name="maxLength">
+             <number>8</number>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0" colspan="2">
+           <widget class="QPushButton" name="pushButtonXDColoSearchLive">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>23</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>Search</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0">
+           <widget class="QLabel" name="label">
+            <property name="text">
+             <string>PID</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="label_2">
+            <property name="text">
+             <string>TID</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
         </widget>
        </item>
       </layout>
@@ -614,17 +690,6 @@
   </customwidget>
  </customwidgets>
  <tabstops>
-  <tabstop>checkBoxXDColoPID</tabstop>
-  <tabstop>textBoxXDColoPID</tabstop>
-  <tabstop>checkBoxXDColoTID</tabstop>
-  <tabstop>textBoxXDColoTID</tabstop>
-  <tabstop>checkBoxXDColoSID</tabstop>
-  <tabstop>textBoxXDColoSID</tabstop>
-  <tabstop>pushButtonXDColoSearch</tabstop>
-  <tabstop>textBoxXDColoSeed</tabstop>
-  <tabstop>textBoxXDColoStartingAdvance</tabstop>
-  <tabstop>textBoxXDColoMaxAdvances</tabstop>
-  <tabstop>tableViewXDColo</tabstop>
   <tabstop>checkBoxFRLGEPID</tabstop>
   <tabstop>textBoxFRLGEPID</tabstop>
   <tabstop>checkBoxFRLGESID</tabstop>
@@ -652,54 +717,6 @@
  </tabstops>
  <resources/>
  <connections>
-  <connection>
-   <sender>checkBoxXDColoPID</sender>
-   <signal>clicked(bool)</signal>
-   <receiver>textBoxXDColoPID</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>37</x>
-     <y>76</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>225</x>
-     <y>72</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>checkBoxXDColoTID</sender>
-   <signal>clicked(bool)</signal>
-   <receiver>textBoxXDColoTID</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>48</x>
-     <y>103</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>303</x>
-     <y>108</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>checkBoxXDColoSID</sender>
-   <signal>clicked(bool)</signal>
-   <receiver>textBoxXDColoSID</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>73</x>
-     <y>139</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>222</x>
-     <y>137</y>
-    </hint>
-   </hints>
-  </connection>
   <connection>
    <sender>checkBoxFRLGEPID</sender>
    <signal>clicked(bool)</signal>
