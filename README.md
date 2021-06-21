@@ -6,6 +6,12 @@ Join the PokéFinder Discord server to talk about development and contribute.
 
 This will be a RNG Tool for all main Pokémon games generations 3-7. It currently supports generation 3 and 4.
 
+# Additional ToolBox Features
+Gen 3
+- FRLG Unown Tool
+- Ruby/Sapphire ID Search
+- XD/Colo ID Search
+
 # Features
 Gen 3
 - Stationary
