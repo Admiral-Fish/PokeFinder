@@ -27,6 +27,7 @@
 #include <Forms/Gen3/Tools/GameCubeRTC.hpp>
 #include <Forms/Gen3/Tools/GameCubeSeedFinder.hpp>
 #include <Forms/Gen3/Tools/JirachiPattern.hpp>
+#include <Forms/Gen3/Tools/JirachiChecksum.hpp>
 #include <Forms/Gen3/Tools/PIDIV.hpp>
 #include <Forms/Gen3/Tools/PokeSpot.hpp>
 #include <Forms/Gen3/Tools/SeedTime3.hpp>
@@ -107,6 +108,7 @@ void MainWindow::setupModels()
     connect(ui->actionProfileManager3, &QAction::triggered, this, &MainWindow::openProfileManager3);
     connect(ui->actionSeedtoTime3, &QAction::triggered, this, &MainWindow::openSeedtoTime3);
     connect(ui->actionSpindaPainter, &QAction::triggered, this, &MainWindow::openSpindaPainter);
+    connect(ui->actionJirachiChecksum, &QAction::triggered, this, &MainWindow::openJirachiChecksum);
 
     connect(ui->pushButtonStationary4, &QPushButton::clicked, this, &MainWindow::openStationary4);
     connect(ui->pushButtonWild4, &QPushButton::clicked, this, &MainWindow::openWild4);
@@ -356,6 +358,13 @@ void MainWindow::openSpindaPainter()
     auto *spinda = new SpindaPainter();
     spinda->show();
     spinda->raise();
+}
+
+void MainWindow::openJirachiChecksum()
+{
+    auto *checksum = new JirachiChecksum();
+    checksum->show();
+    checksum->raise();
 }
 
 void MainWindow::openStationary4()

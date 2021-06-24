@@ -40,6 +40,7 @@ set(PROJECT_UI
     Gen3/Tools/GameCubeRTC.ui
     Gen3/Tools/GameCubeSeedFinder.ui
     Gen3/Tools/JirachiPattern.ui
+    Gen3/Tools/JirachiChecksum.ui
     Gen3/Tools/PIDIV.ui
     Gen3/Tools/PokeSpot.ui
     Gen3/Tools/SeedTime3.ui
@@ -94,6 +95,7 @@ set(PROJECT_SOURCES
     Gen3/Tools/GameCubeRTC.cpp
     Gen3/Tools/GameCubeSeedFinder.cpp
     Gen3/Tools/JirachiPattern.cpp
+    Gen3/Tools/JirachiChecksum.cpp
     Gen3/Tools/PIDIV.cpp
     Gen3/Tools/PokeSpot.cpp
     Gen3/Tools/SeedTime3.cpp

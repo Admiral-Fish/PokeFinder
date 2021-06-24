@@ -91,6 +91,9 @@
    </item>
    <item row="1" column="0">
     <widget class="QTabWidget" name="tabRNGSelector">
+     <property name="currentIndex">
+      <number>0</number>
+     </property>
      <widget class="QWidget" name="tabStationary">
       <attribute name="title">
        <string>Generator</string>
@@ -150,6 +153,11 @@
             <item>
              <property name="text">
               <string>Channel</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Ageto</string>
              </property>
             </item>
            </widget>
@@ -445,6 +453,11 @@
             <item>
              <property name="text">
               <string>Channel</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Ageto</string>
              </property>
             </item>
            </widget>

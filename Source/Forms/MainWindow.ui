@@ -326,6 +326,11 @@
     <string>Settings</string>
    </property>
   </action>
+  <action name="actionJirachiChecksum">
+   <property name="text">
+    <string>Jirachi Checksum</string>
+   </property>
+  </action>
  </widget>
  <tabstops>
   <tabstop>pushButtonStationary3</tabstop>

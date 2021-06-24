@@ -101,6 +101,8 @@ std::vector<GameCubeState> GameCubeSearcher::search(u8 hp, u8 atk, u8 def, u8 sp
         return searchXDShadow(hp, atk, def, spa, spd, spe);
     case Method::Colo:
         return searchColoShadow(hp, atk, def, spa, spd, spe);
+    case Method::Ageto:
+        return searchAgeto(hp, atk, def, spa, spd, spe);
     default:
         return std::vector<GameCubeState>();
     }
@@ -134,6 +136,57 @@ std::vector<GameCubeState> GameCubeSearcher::searchXDColo(u8 hp, u8 atk, u8 def,
         state.setGender(low & 255, genderRatio);
         state.setNature(state.getPID() % 25);
         state.setShiny(tsv, high ^ low, 8);
+
+        if (filter.comparePID(state))
+        {
+            states.emplace_back(state);
+        }
+
+        // Setup XORed state
+        state.setPID(state.getPID() ^ 0x80008000);
+        state.setNature(state.getPID() % 25);
+        if (filter.comparePID(state))
+        {
+            state.setSeed(state.getSeed() ^ 0x80000000);
+            states.emplace_back(state);
+        }
+    }
+    return states;
+}
+
+std::vector<GameCubeState> GameCubeSearcher::searchAgeto(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe)
+{
+    std::vector<GameCubeState> states;
+
+    GameCubeState state;
+    state.setIVs(hp, atk, def, spa, spd, spe);
+    state.calculateHiddenPower();
+    if (!filter.compareHiddenPower(state))
+    {
+        return states;
+    }
+
+    auto seeds = RNGEuclidean::recoverLower16BitsIV(hp, atk, def, spa, spd, spe);
+    for (const auto &pair : seeds)
+    {
+        // Setup normal state
+        XDRNG rng(pair.second);
+
+        u8 ability = rng.nextUShort() & 1;
+        u16 high = rng.nextUShort();
+        u16 low = rng.nextUShort();
+        while ((31121 ^ 00000 ^ high ^ low) < 8)
+        {
+            high = rng.nextUShort();
+            low = rng.nextUShort();
+        }
+
+        state.setSeed(pair.first * 0xB9B33155 + 0xA170F641);
+        state.setPID(high, low);
+        state.setAbility(ability);
+        state.setGender(low & 255, genderRatio);
+        state.setNature(state.getPID() % 25);
+        state.setShiny(31121 ^ 00000, high ^ low, 8);
 
         if (filter.comparePID(state))
         {

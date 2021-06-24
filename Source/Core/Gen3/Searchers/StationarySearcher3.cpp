@@ -34,28 +34,46 @@ void StationarySearcher3::startSearch(const std::array<u8, 6> &min, const std::a
 {
     searching = true;
 
-    for (u8 hp = min[0]; hp <= max[0]; hp++)
+    if (method == Method::Locked16Bit)
     {
-        for (u8 atk = min[1]; atk <= max[1]; atk++)
+        for (u32 seed = 0; seed <= 0xFFFF; seed++)
         {
-            for (u8 def = min[2]; def <= max[2]; def++)
+            if (!searching)
             {
-                for (u8 spa = min[3]; spa <= max[3]; spa++)
+                return;
+            }
+            auto states = searchLocked16Bit(seed);
+
+            std::lock_guard<std::mutex> guard(mutex);
+            results.insert(results.end(), states.begin(), states.end());
+            progress++;
+        }
+    }
+    else
+    {
+        for (u8 hp = min[0]; hp <= max[0]; hp++)
+        {
+            for (u8 atk = min[1]; atk <= max[1]; atk++)
+            {
+                for (u8 def = min[2]; def <= max[2]; def++)
                 {
-                    for (u8 spd = min[4]; spd <= max[4]; spd++)
+                    for (u8 spa = min[3]; spa <= max[3]; spa++)
                     {
-                        for (u8 spe = min[5]; spe <= max[5]; spe++)
+                        for (u8 spd = min[4]; spd <= max[4]; spd++)
                         {
-                            if (!searching)
+                            for (u8 spe = min[5]; spe <= max[5]; spe++)
                             {
-                                return;
+                                if (!searching)
+                                {
+                                    return;
+                                }
+
+                                auto states = search(hp, atk, def, spa, spd, spe);
+
+                                std::lock_guard<std::mutex> guard(mutex);
+                                results.insert(results.end(), states.begin(), states.end());
+                                progress++;
                             }
-
-                            auto states = search(hp, atk, def, spa, spd, spe);
-
-                            std::lock_guard<std::mutex> guard(mutex);
-                            results.insert(results.end(), states.begin(), states.end());
-                            progress++;
                         }
                     }
                 }
@@ -186,6 +204,41 @@ std::vector<State> StationarySearcher3::searchMethod1Reverse(u8 hp, u8 atk, u8 d
         {
             states.emplace_back(state);
         }
+    }
+    return states;
+}
+
+std::vector<State> StationarySearcher3::searchLocked16Bit(u16 seed) const
+{
+    std::vector<State> states;
+    State state;
+
+    PokeRNG rng(seed);
+
+    // Method 1 Reverse [SEED] [PID] [PID] [IVS] [IVS]
+
+    u16 high = rng.nextUShort();
+    u16 low = rng.nextUShort();
+    while ((tsv ^ high ^ low) < 8)
+    {
+        high = rng.nextUShort();
+        low = rng.nextUShort();
+    }
+    u16 iv1 = rng.nextUShort();
+    u16 iv2 = rng.nextUShort();
+
+    state.setPID(high, low);
+    state.setAbility(low & 1);
+    state.setGender(low & 255, genderRatio);
+    state.setNature(state.getPID() % 25);
+    state.setShiny(tsv, high ^ low, 8);
+    state.setSeed(seed);
+    state.setIVs(iv1, iv2);
+    state.calculateHiddenPower();
+
+    if (filter.compareState(state))
+    {
+        states.emplace_back(state);
     }
     return states;
 }

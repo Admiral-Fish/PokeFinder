@@ -47,6 +47,7 @@ private:
     std::vector<State> search(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const;
     std::vector<State> searchMethod124(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const;
     std::vector<State> searchMethod1Reverse(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const;
+    std::vector<State> searchLocked16Bit(u16 seed) const;
 };
 
 #endif // STATIONARYSEARCHER3_HPP

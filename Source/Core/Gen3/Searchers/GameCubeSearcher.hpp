@@ -47,6 +47,7 @@ private:
 
     std::vector<GameCubeState> search(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe);
     std::vector<GameCubeState> searchXDColo(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe);
+    std::vector<GameCubeState> searchAgeto(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe);
     std::vector<GameCubeState> searchXDShadow(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe);
     std::vector<GameCubeState> searchColoShadow(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe);
     void searchChannel(u8 minSpD, u8 maxSpD);

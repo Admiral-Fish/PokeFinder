@@ -41,6 +41,8 @@ std::vector<GameCubeState> GameCubeGenerator::generate(u32 seed) const
         return generateColoShadow(seed);
     case Method::Channel:
         return generateChannel(seed);
+    case Method::Ageto:
+        return generateAgeto(seed);
     default:
         return std::vector<GameCubeState>();
     }
@@ -77,6 +79,50 @@ std::vector<GameCubeState> GameCubeGenerator::generateXDColo(u32 seed) const
         state.setGender(low & 255, genderRatio);
         state.setNature(state.getPID() % 25);
         state.setShiny(tsv, high ^ low, 8);
+
+        state.setIVs(iv1, iv2);
+        state.calculateHiddenPower();
+
+        if (filter.compareState(state))
+        {
+            states.emplace_back(state);
+        }
+    }
+
+    return states;
+}
+
+std::vector<GameCubeState> GameCubeGenerator::generateAgeto(u32 seed) const
+{
+    std::vector<GameCubeState> states;
+
+    XDRNG rng(seed);
+    rng.advance(initialAdvances + offset);
+
+    // Method XD/Colo [SEED] [IVS] [IVS] [BLANK] [PID] [PID]
+
+    for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rng.next())
+    {
+        GameCubeState state(initialAdvances + cnt);
+        XDRNG go(rng.getSeed());
+
+        u16 iv1 = go.nextUShort();
+        u16 iv2 = go.nextUShort();
+        u8 ability = go.nextUShort() & 1;
+        u16 high = go.nextUShort();
+        u16 low = go.nextUShort();
+        while ((31121 ^ 00000 ^ high ^ low) < 8)
+        {
+            high = go.nextUShort();
+            low = go.nextUShort();
+        }
+        
+
+        state.setPID(high, low);
+        state.setAbility(ability);
+        state.setGender(low & 255, genderRatio);
+        state.setNature(state.getPID() % 25);
+        state.setShiny(31121 ^ 00000, high ^ low, 8);
 
         state.setIVs(iv1, iv2);
         state.calculateHiddenPower();

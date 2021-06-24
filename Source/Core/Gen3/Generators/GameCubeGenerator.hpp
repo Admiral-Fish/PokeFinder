@@ -37,6 +37,7 @@ private:
     u8 type;
 
     std::vector<GameCubeState> generateXDColo(u32 seed) const;
+    std::vector<GameCubeState> generateAgeto(u32 seed) const;
     std::vector<GameCubeState> generateXDShadow(u32 seed) const;
     std::vector<GameCubeState> generateColoShadow(u32 seed) const;
     std::vector<GameCubeState> generateChannel(u32 seed) const;

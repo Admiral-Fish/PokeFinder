@@ -85,6 +85,7 @@ private slots:
     void openGameCubeSeedFinder();
     void openIVtoPID();
     void openJirachiPattern();
+    void openJirachiChecksum();
     void openPIDtoIV();
     void openPokeSpot();
     void openProfileManager3();

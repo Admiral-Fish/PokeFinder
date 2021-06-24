@@ -33,6 +33,7 @@ public:
 private:
     std::vector<State> generateMethod124(u32 seed) const;
     std::vector<State> generateMethod1Reverse(u32 seed) const;
+    std::vector<State> generateLocked16Bit(u32 seed) const;
 };
 
 #endif // STATIONARYGENERATOR3_HPP
