@@ -8,11 +8,11 @@ This will be a RNG Tool for all main Pokémon games generations 3-7. It currentl
 
 # Additional ToolBox Features
 Gen 3
-- (FRLG Unown Tool)[https://github.com/Lincoln-LM/Unown-Finder]
-- (Ruby/Sapphire ID Search)[https://github.com/Lincoln-LM/RS-TID-SID-Frame-Finder]
+- [FRLG Unown Tool](https://github.com/Lincoln-LM/Unown-Finder)
+- [Ruby/Sapphire ID Search](https://github.com/Lincoln-LM/RS-TID-SID-Frame-Finder)
 - XD/Colo ID Search
 - Ageto Celebi Generator
-- (AGuAcaTE)[https://www.dropbox.com/s/kfqaihc5gilub1s/AGuAcaTE.pyw?dl=0]
+- [AGuAcaTE](https://www.dropbox.com/s/kfqaihc5gilub1s/AGuAcaTE.pyw?dl=0)
 - Shiny Locked 16 Bit Event Generator
 - Pokémon Box RTC Searcher
 
