@@ -51,6 +51,7 @@ private:
 
     std::vector<StationaryState> search(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const;
     std::vector<StationaryState> searchMethod1(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const;
+    std::vector<StationaryState> searchManaphy(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const;
     std::vector<StationaryState> searchMethodJ(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const;
     std::vector<StationaryState> searchMethodK(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const;
     std::vector<StationaryState> searchWondercardIVs(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const;

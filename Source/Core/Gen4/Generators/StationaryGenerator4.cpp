@@ -35,6 +35,8 @@ std::vector<State> StationaryGenerator4::generate(u32 seed) const
     {
     case Method::Method1:
         return generateMethod1(seed);
+    case Method::Manaphy:
+        return generateManaphy(seed);
     case Method::MethodJ:
         return generateMethodJ(seed);
     case Method::MethodK:
@@ -61,6 +63,52 @@ std::vector<State> StationaryGenerator4::generateMethod1(u32 seed) const
 
         u16 low = go.nextUShort();
         u16 high = go.nextUShort();
+
+        u16 iv1 = go.nextUShort();
+        u16 iv2 = go.nextUShort();
+
+        state.setPID(high, low);
+        state.setShiny<8>(tsv, high ^ low);
+        state.setAbility(low & 1);
+        state.setGender(low & 255, genderRatio);
+        state.setNature(state.getPID() % 25);
+
+        state.setIVs(iv1, iv2);
+        state.calculateHiddenPower();
+
+        if (filter.compareState(state))
+        {
+            state.setSeed(low);
+            states.emplace_back(state);
+        }
+    }
+
+    return states;
+}
+
+std::vector<State> StationaryGenerator4::generateManaphy(u32 seed) const
+{
+    std::vector<State> states;
+
+    PokeRNG rng(seed);
+    rng.advance(initialAdvances + offset);
+
+    // Method 1 [SEED] [PID] [PID] [IVS] [IVS]
+    for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rng.next())
+    {
+        State state(initialAdvances + cnt);
+        PokeRNG go(rng.getSeed());
+
+        u16 low = go.nextUShort();
+        u16 high = go.nextUShort();
+        u16 psv = low^high;
+        while ((low ^ high ^ psv) < 8)
+        {
+            u32 pid = (high << 16) | low;
+            pid = pid * 0x6c078965 + 1;
+            low = pid & 0xFFFF;
+            high = pid >> 16;
+        }
 
         u16 iv1 = go.nextUShort();
         u16 iv2 = go.nextUShort();

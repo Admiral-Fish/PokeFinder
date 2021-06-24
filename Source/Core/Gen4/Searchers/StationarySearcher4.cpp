@@ -100,6 +100,10 @@ std::vector<StationaryState> StationarySearcher4::search(u8 hp, u8 atk, u8 def, 
     {
         states = searchMethod1(hp, atk, def, spa, spd, spe);
     }
+    else if (method == Method::Manaphy)
+    {
+        states = searchManaphy(hp, atk, def, spa, spd, spe);
+    }
     else if (method == Method::MethodJ)
     {
         states = searchMethodJ(hp, atk, def, spa, spd, spe);
@@ -150,6 +154,73 @@ std::vector<StationaryState> StationarySearcher4::searchMethod1(u8 hp, u8 atk, u
 
         // Setup XORed state
         state.setPID(state.getPID() ^ 0x80008000);
+        state.setNature(state.getPID() % 25);
+        if (filter.comparePID(state))
+        {
+            state.setSeed(state.getSeed() ^ 0x80000000);
+            states.emplace_back(state);
+        }
+    }
+
+    return states;
+}
+
+std::vector<StationaryState> StationarySearcher4::searchManaphy(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const
+{
+    std::vector<StationaryState> states;
+
+    StationaryState state;
+    state.setIVs(hp, atk, def, spa, spd, spe);
+    state.calculateHiddenPower();
+
+    if (!filter.compareHiddenPower(state))
+    {
+        return states;
+    }
+
+    auto seeds = cache.recoverLower16BitsIV(hp, atk, def, spa, spd, spe);
+    for (const u32 seed : seeds)
+    {
+        // Setup normal state
+        PokeRNGR rng(seed);
+        u16 high = rng.nextUShort();
+        u16 low = rng.nextUShort();
+        u32 opid = (high << 16) | low;
+        u16 psv = low^high;
+        u32 pid;
+        while ((low ^ high ^ psv) < 8)
+        {
+            ARNG reroller((high << 16) | low);
+            pid = reroller.next();
+            low = pid & 0xFFFF;
+            high = pid >> 16;
+        }
+
+        state.setSeed(rng.next());
+        state.setPID(high, low);
+        state.setAbility(low & 1);
+        state.setGender(low & 255, genderRatio);
+        state.setNature(state.getPID() % 25);
+        state.setShiny<8>(tsv, high ^ low);
+        if (filter.comparePID(state))
+        {
+            states.emplace_back(state);
+        }
+
+        // Setup XORed state
+        pid = opid ^ 0x80008000;
+        low = pid & 0xFFFF;
+        high = pid >> 16;
+        psv = low^high;
+        while ((low ^ high ^ psv) < 8)
+        {
+            ARNG reroller((high << 16) | low);
+            pid = reroller.next();
+            low = pid & 0xFFFF;
+            high = pid >> 16;
+        }
+
+        state.setPID((high << 16) | low);
         state.setNature(state.getPID() % 25);
         if (filter.comparePID(state))
         {

@@ -32,6 +32,7 @@ public:
 
 private:
     std::vector<State> generateMethod1(u32 seed) const;
+    std::vector<State> generateManaphy(u32 seed) const;
     std::vector<State> generateMethodJ(u32 seed) const;
     std::vector<State> generateMethodK(u32 seed) const;
     std::vector<State> generateWonderCardIVs(u32 seed) const;

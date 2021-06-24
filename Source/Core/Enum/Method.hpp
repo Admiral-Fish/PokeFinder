@@ -49,6 +49,7 @@ enum Method : u8
     FRLGBredAlternate,
     MethodJ,
     MethodK,
+    Manaphy,
     ChainedShiny,
     WondercardIVs,
     Gen4Normal,

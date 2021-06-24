@@ -266,11 +266,13 @@ void Stationary4::profileIndexChanged(int index)
 
         ui->comboBoxGeneratorMethod->clear();
         ui->comboBoxGeneratorMethod->addItem(tr("Method 1"), Method::Method1);
+        ui->comboBoxGeneratorMethod->addItem(tr("Manaphy"), Method::Manaphy);
         ui->comboBoxGeneratorMethod->addItem(flag ? tr("Method K") : tr("Method J"), flag ? Method::MethodK : Method::MethodJ);
         ui->comboBoxGeneratorMethod->addItem(tr("Wondercard IVs"), Method::WondercardIVs);
 
         ui->comboBoxSearcherMethod->clear();
         ui->comboBoxSearcherMethod->addItem(tr("Method 1"), Method::Method1);
+        ui->comboBoxSearcherMethod->addItem(tr("Manaphy"), Method::Manaphy);
         ui->comboBoxSearcherMethod->addItem(flag ? tr("Method K") : tr("Method J"), flag ? Method::MethodK : Method::MethodJ);
         ui->comboBoxSearcherMethod->addItem(tr("Wondercard IVs"), Method::WondercardIVs);
     }

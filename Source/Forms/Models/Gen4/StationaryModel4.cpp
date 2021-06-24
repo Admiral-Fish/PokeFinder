@@ -40,6 +40,7 @@ int StationaryGeneratorModel4::columnCount(const QModelIndex &parent) const
     {
     case Method::Method1:
     case Method::MethodK:
+    case Method::Manaphy:
         return 16;
     case Method::MethodJ:
         return 15;
@@ -115,6 +116,7 @@ int StationaryGeneratorModel4::getColumn(int column) const
     {
     case Method::Method1:
     case Method::MethodK:
+    case Method::Manaphy:
     default:
         return column;
     case Method::MethodJ:
@@ -220,6 +222,7 @@ int StationarySearcherModel4::columnCount(const QModelIndex &parent) const
     case Method::MethodK:
         return 16;
     case Method::Method1:
+    case Method::Manaphy:
         return 15;
     case Method::WondercardIVs:
         return 10;
@@ -309,6 +312,7 @@ int StationarySearcherModel4::getColumn(int column) const
     default:
         return column;
     case Method::Method1:
+    case Method::Manaphy:
         return column > 1 ? column + 1 : column;
     case Method::WondercardIVs:
         return column > 1 ? column + 5 : column;
