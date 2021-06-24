@@ -21,6 +21,7 @@
 #define GAMECUBEGENERATOR_HPP
 
 #include <Core/Gen3/LockInfo.hpp>
+#include <Core/Gen3/ShadowTeam.hpp>
 #include <Core/Gen3/States/GameCubeState.hpp>
 #include <Core/Parents/Generators/Generator.hpp>
 

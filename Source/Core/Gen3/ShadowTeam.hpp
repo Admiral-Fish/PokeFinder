@@ -17,36 +17,40 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef LOCKINFO_HPP
-#define LOCKINFO_HPP
+#ifndef SHADOWTEAM_HPP
+#define SHADOWTEAM_HPP
 
+#include <Core/Gen3/LockInfo.hpp>
 #include <Core/Util/Global.hpp>
+#include <vector>
 
-class LockInfo
+enum Method : u8;
+enum ShadowType : u8;
+
+class ShadowTeam
 {
 public:
-    LockInfo() = default;
-    constexpr LockInfo(u8 nature, u8 genderLower, u8 genderUpper) :
-        nature(nature), genderLower(genderLower), genderUpper(genderUpper), free(nature == 255 && genderLower == 255 && genderUpper == 255)
+    ShadowTeam() = default;
+
+    ShadowTeam(const std::vector<LockInfo> &locks, ShadowType type) : locks(locks), type(type)
     {
     }
 
-    bool compare(u32 pid) const
+    std::vector<LockInfo> getLocks() const
     {
-        u8 gender = pid & 255;
-        return gender >= genderLower && gender <= genderUpper && nature == (pid % 25);
+        return locks;
     }
 
-    bool getFree() const
+    ShadowType getType() const
     {
-        return free;
+        return type;
     }
 
-public:
-    u8 nature;
-    u8 genderLower;
-    u8 genderUpper;
-    bool free;
+    static std::vector<ShadowTeam> loadShadowTeams(Method version);
+
+private:
+    std::vector<LockInfo> locks;
+    ShadowType type;
 };
 
-#endif // LOCKINFO_HPP
+#endif // SHADOWTEAM_HPP

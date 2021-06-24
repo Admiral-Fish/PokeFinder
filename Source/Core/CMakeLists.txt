@@ -29,7 +29,6 @@ add_library(Core STATIC
     Gen3/Generators/StationaryGenerator3.cpp
     Gen3/Generators/WildGenerator3.cpp
     Gen3/Generators/UnownGenerator3.cpp
-    Gen3/LockInfo.cpp
     Gen3/Profile3.cpp
     Gen3/Searchers/ChannelSeedSearcher.cpp
     Gen3/Searchers/ColoSeedSearcher.cpp
@@ -41,6 +40,7 @@ add_library(Core STATIC
     Gen3/Searchers/WildSearcher3.cpp
     Gen3/Searchers/UnownSearcher3.cpp
     Gen3/ShadowLock.cpp
+    Gen3/ShadowTeam.cpp
     Gen3/States/EggState3.cpp
     Gen3/States/GameCubeRTCState.cpp
     Gen3/States/GameCubeState.cpp

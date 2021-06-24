@@ -17,45 +17,10 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include "LockInfo.hpp"
+#include "ShadowTeam.hpp"
 #include <Core/Enum/Method.hpp>
 #include <Core/Enum/ShadowType.hpp>
 #include <Core/Resources/Resources.hpp>
-
-constexpr LockInfo::LockInfo(u8 nature, u8 genderLower, u8 genderUpper) :
-    nature(nature), genderLower(genderLower), genderUpper(genderUpper), free(nature == 255 && genderLower == 255 && genderUpper == 255)
-{
-}
-
-bool LockInfo::compare(u32 pid) const
-{
-    if (free)
-    {
-        return true;
-    }
-
-    u8 gender = pid & 255;
-    return gender >= genderLower && gender <= genderUpper && nature == (pid % 25);
-}
-
-bool LockInfo::getFree() const
-{
-    return free;
-}
-
-ShadowTeam::ShadowTeam(const std::vector<LockInfo> &locks, ShadowType type) : locks(locks), type(type)
-{
-}
-
-std::vector<LockInfo> ShadowTeam::getLocks() const
-{
-    return locks;
-}
-
-ShadowType ShadowTeam::getType() const
-{
-    return type;
-}
 
 std::vector<ShadowTeam> ShadowTeam::loadShadowTeams(Method version)
 {
