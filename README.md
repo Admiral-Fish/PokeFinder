@@ -16,6 +16,7 @@ Gen 3
 - Shiny Locked 16 Bit Event Generator
 - Pokémon Box RTC Searcher
 - [Wishmaker Jirachi Checksum Generator](https://github.com/Lincoln-LM/Jirachi-Finder)
+- [Jirachi Advancer](https://gist.github.com/Admiral-Fish/6111ca2c19ee3a7a382aa5b897deef4c)
 
 Gen 4
 - Manaphy Reroll Generator
