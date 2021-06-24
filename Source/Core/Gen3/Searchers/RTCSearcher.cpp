@@ -24,36 +24,58 @@ RTCSearcher::RTCSearcher() : searching(false)
 {
 }
 
-void RTCSearcher::startSearch(u32 initialSeed, u32 targetSeed, u32 initialAdvances, u32 maxAdvances, const Date &end)
+void RTCSearcher::startSearch(u32 initialSeed, u32 targetSeed, u32 initialAdvances, u32 maxAdvances, const Date &end, bool box)
 {
     searching = true;
-
-    XDRNGR back(targetSeed);
-    back.advance(initialAdvances);
-
-    targetSeed = back.getSeed();
-
-    for (Date date; date < end; date = date.addDays(1))
+    if (!box)
     {
-        for (u8 hour = 0; hour < 24; hour++)
+        XDRNGR back(targetSeed);
+        back.advance(initialAdvances);
+
+        targetSeed = back.getSeed();
+
+        for (Date date; date < end; date = date.addDays(1))
         {
-            for (u8 minute = 0; minute < 60; minute++)
+            for (u8 hour = 0; hour < 24; hour++)
             {
-                for (u8 second = 0; second < 60; second++, initialSeed += 40500000)
+                for (u8 minute = 0; minute < 60; minute++)
                 {
-                    XDRNG rng(initialSeed);
-
-                    for (u32 x = 0; x < maxAdvances; x++)
+                    for (u8 second = 0; second < 60; second++, initialSeed += 40500000)
                     {
-                        if (!searching)
-                        {
-                            return;
-                        }
+                        XDRNG rng(initialSeed);
 
-                        if (rng.next() == targetSeed)
+                        for (u32 x = 0; x < maxAdvances; x++)
+                        {
+                            if (!searching)
+                            {
+                                return;
+                            }
+
+                            if (rng.next() == targetSeed)
+                            {
+                                std::lock_guard<std::mutex> guard(mutex);
+                                results.emplace_back(DateTime(date, Time(hour, minute, second)), initialSeed, x + 1 + initialAdvances);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    else
+    {
+        for (Date date; date < end; date = date.addDays(1))
+        {
+            for (u8 hour = 0; hour < 24; hour++)
+            {
+                for (u8 minute = 0; minute < 60; minute++)
+                {
+                    for (u8 second = 0; second < 60; second++, initialSeed += 0x269FB20)
+                    {
+                        if (initialSeed == targetSeed)
                         {
                             std::lock_guard<std::mutex> guard(mutex);
-                            results.emplace_back(DateTime(date, Time(hour, minute, second)), initialSeed, x + 1 + initialAdvances);
+                            results.emplace_back(DateTime(date, Time(hour, minute, second)), initialSeed, 0);
                         }
                     }
                 }

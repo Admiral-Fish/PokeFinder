@@ -55,6 +55,12 @@ GameCubeRTC::~GameCubeRTC()
     delete ui;
 }
 
+void GameCubeRTC::boxToggled(bool on)
+{
+    ui->textBoxMinAdvance->setEnabled(!on);
+    ui->textBoxMaxAdvance->setEnabled(!on);
+}
+
 void GameCubeRTC::setupModels()
 {
     model = new GameCubeRTCModel(ui->tableView);
@@ -66,6 +72,7 @@ void GameCubeRTC::setupModels()
     ui->textBoxMaxAdvance->setValues(InputType::Advance32Bit);
 
     connect(ui->pushButtonSearch, &QPushButton::clicked, this, &GameCubeRTC::search);
+    connect(ui->checkBoxBox, &QCheckBox::toggled, this, &GameCubeRTC::boxToggled);
 
     QSettings setting;
     setting.beginGroup("gamecubeRTC");
@@ -95,7 +102,7 @@ void GameCubeRTC::search()
 
     auto *searcher = new RTCSearcher();
 
-    auto *thread = QThread::create([=] { searcher->startSearch(initialSeed, targetSeed, initialAdvances, maxAdvances, end); });
+    auto *thread = QThread::create([=] { searcher->startSearch(initialSeed, targetSeed, initialAdvances, maxAdvances, end, ui->checkBoxBox->isChecked()); });
     connect(thread, &QThread::finished, thread, &QThread::deleteLater);
     connect(ui->pushButtonCancel, &QPushButton::clicked, [searcher] { searcher->cancelSearch(); });
 

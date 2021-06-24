@@ -36,6 +36,7 @@ class GameCubeRTC : public QWidget
 public:
     explicit GameCubeRTC(QWidget *parent = nullptr);
     explicit GameCubeRTC(u32 seed, QWidget *parent = nullptr);
+    void boxToggled(bool on);
     ~GameCubeRTC() override;
 
 private:
