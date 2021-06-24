@@ -79,7 +79,7 @@
      <string/>
     </property>
     <property name="text">
-     <string notr="true"/>
+     <string notr="true">0</string>
     </property>
     <property name="maxLength">
      <number>10</number>
@@ -124,7 +124,7 @@
      <string/>
     </property>
     <property name="text">
-     <string notr="true"/>
+     <string notr="true">0</string>
     </property>
     <property name="maxLength">
      <number>10</number>
@@ -392,7 +392,7 @@
      <string/>
     </property>
     <property name="text">
-     <string notr="true"/>
+     <string notr="true">0</string>
     </property>
     <property name="maxLength">
      <number>10</number>
@@ -411,7 +411,7 @@
      <string/>
     </property>
     <property name="text">
-     <string notr="true"/>
+     <string notr="true">0</string>
     </property>
     <property name="maxLength">
      <number>10</number>
@@ -430,7 +430,7 @@
      <string/>
     </property>
     <property name="text">
-     <string notr="true"/>
+     <string notr="true">0</string>
     </property>
     <property name="maxLength">
      <number>10</number>
@@ -763,7 +763,7 @@
      <string/>
     </property>
     <property name="text">
-     <string notr="true"/>
+     <string notr="true">1</string>
     </property>
     <property name="maxLength">
      <number>10</number>
@@ -865,7 +865,7 @@
     </font>
    </property>
    <property name="text">
-    <string>0000</string>
+    <string>500F</string>
    </property>
   </widget>
  </widget>
@@ -879,12 +879,12 @@
  <resources/>
  <connections/>
  <buttongroups>
-  <buttongroup name="buttonGroup_6"/>
-  <buttongroup name="buttonGroup_5"/>
+  <buttongroup name="buttonGroup_7"/>
   <buttongroup name="buttonGroup"/>
-  <buttongroup name="buttonGroup_4"/>
   <buttongroup name="buttonGroup_2"/>
   <buttongroup name="buttonGroup_3"/>
-  <buttongroup name="buttonGroup_7"/>
+  <buttongroup name="buttonGroup_4"/>
+  <buttongroup name="buttonGroup_6"/>
+  <buttongroup name="buttonGroup_5"/>
  </buttongroups>
 </ui>

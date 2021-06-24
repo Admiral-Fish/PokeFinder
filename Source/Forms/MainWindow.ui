@@ -210,6 +210,7 @@
     <addaction name="actionProfileManager3"/>
     <addaction name="actionSeedtoTime3"/>
     <addaction name="actionSpindaPainter"/>
+    <addaction name="actionJirachiChecksum"/>
    </widget>
    <widget class="QMenu" name="menuGen4Tools">
     <property name="title">
@@ -327,14 +328,14 @@
     <string>Settings</string>
    </property>
   </action>
-  <action name="actionJirachiChecksum">
-   <property name="text">
-    <string>Jirachi Checksum</string>
-   </property>
-  </action>
   <action name="actionAGuAcaTE">
    <property name="text">
     <string>AGuAcaTE</string>
+   </property>
+  </action>
+  <action name="actionJirachiChecksum">
+   <property name="text">
+    <string>Jirachi Checksum</string>
    </property>
   </action>
  </widget>

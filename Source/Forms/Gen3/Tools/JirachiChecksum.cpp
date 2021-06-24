@@ -153,105 +153,81 @@ u32 JirachiChecksum::nameConvert(QString name) const
 
 void JirachiChecksum::on_Change()
 {
-    u32 trainerValue = ui->tidTB->getUInt() << 16;
-    qDebug() << trainerValue;
-    u32 timeValue = 0x1;
-    u32 starterValue;
-    bool treecko = true;
-    bool torchic = true;
-    bool mudkip = true;
-    u32 textValue = 0;
-    u32 sceneValue = 0;
-    u32 styleValue = 0;
-    u32 soundValue = 0;
-    u32 buttonValue = 0;
-    u32 pokemonValue = 0x10;
-    u32 nameValue = nameConvert(ui->nameTB->text());
-    qDebug() << nameValue;
-
+    u32 c = 0x10;
+    c += ui->tidTB->getUShort()<<16;
+    c += ui->sidTB->getUShort();
+    c += nameConvert(ui->nameTB->text());
     if (ui->femaleRadio->isChecked())
     {
-        trainerValue += 0x1;
+        c += 1;
     }
     if (ui->xnRadio->isChecked())
     {
-        timeValue += 0x180000;
+        c += 0x180000;
     }
-    if (ui->nnRadio->isChecked())
+    else if (ui->xxRadio->isChecked())
     {
-        timeValue += 0x3C170000;
-    }
-    if (ui->torchicRadio->isChecked())
-    {
-        starterValue = 0x40000000;
-        treecko = false;
-    }
-    else if (ui->mudkipRadio->isChecked())
-    {
-        starterValue = 0x2;
-        torchic = false;
+        c += 0x3C170000;
     }
     else
     {
-        starterValue = 0x8000000;
-        mudkip = false;
+        c += 0x1;
     }
-
-    if (torchic)
+    if (ui->treeckoRadio->isChecked())
     {
-        starterValue += 0x40000000;
+        c += 0x08000000 + 0x40000000 + 0x08000000;
     }
-    if (treecko)
+    else if (ui->torchicRadio->isChecked())
     {
-        starterValue += 0x8000000;
+        c += 0x40000000 + 0x2 + 0x40000000;
     }
-    if (mudkip)
+    else
     {
-        starterValue += 0x2;
+        c += 0x2 + 0x08000000 + 0x2;
     }
-
     if (ui->midRadio->isChecked())
     {
-        textValue = 0x1;
+        c += 0x1;
     }
     else if (ui->fastRadio->isChecked())
     {
-        textValue = 0x2;
+        c += 0x2;
     }
-
     if (ui->offRadio->isChecked())
     {
-        sceneValue = 0x400;
+        c += 0x400;
     }
     if (ui->setRadio->isChecked())
     {
-        styleValue = 0x200;
+        c += 0x200;
     }
     if (ui->stereoRadio->isChecked())
     {
-        soundValue = 0x100;
+        c += 0x100;
     }
     if (ui->lrRadio->isChecked())
     {
-        buttonValue = 0x1000000;
+        c += 0x1000000;
     }
     else if (ui->laRadio->isChecked())
     {
-        buttonValue = 0x2000000;
+        c += 0x2000000;
     }
     if (ui->zigzagoonCheck->isChecked())
     {
-        pokemonValue += 0x40;
+        c += 0x40;
     }
     if (ui->wurmpleRadio->isChecked())
     {
-        pokemonValue += 0x100;
+        c += 0x100;
     }
     if (ui->wingullCheck->isChecked())
     {
-        pokemonValue += 0x200000;
+        c += 0x200000;
     }
-    u32 u32checksum = u32checksum = (ui->minuteTB->getUInt() + (ui->secondsTB->getUInt() << 8)) + (ui->framesTB->getUInt() << 16) + ((ui->frameStyleTB->getUInt() - 1) * 0x8) + ui->sidTB->getUInt() + pokemonValue + trainerValue + timeValue + starterValue + textValue + sceneValue + styleValue + soundValue + buttonValue + nameValue;
+    c += ((ui->frameStyleTB->getUInt() - 1) * 0x8);
+
+    u32 u32checksum = (ui->minuteTB->getUInt() + (ui->secondsTB->getUInt() << 8)) + (ui->framesTB->getUInt() << 16) + c;
     u16 u16checksum = ((u32checksum >> 16) + (u32checksum & 0xFFFF));
     ui->seedLabel->setText(QString::number(u16checksum,16).toUpper());
 }
