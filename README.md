@@ -15,6 +15,7 @@ Gen 3
 - [AGuAcaTE](https://www.dropbox.com/s/kfqaihc5gilub1s/AGuAcaTE.pyw?dl=0)
 - Shiny Locked 16 Bit Event Generator
 - Pokémon Box RTC Searcher
+- [Wishmaker Jirachi Checksum Generator](https://github.com/Lincoln-LM/Jirachi-Finder)
 
 Gen 4
 - Manaphy Reroll Generator
