@@ -13,6 +13,7 @@ Gen 3
 - XD/Colo ID Search
 - Ageto Celebi Generator
 - Shiny Locked 16 Bit Event Generator
+- Pokémon Box RTC Searcher
 
 Gen 4
 - Manaphy Reroll Generator
