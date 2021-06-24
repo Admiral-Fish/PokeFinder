@@ -41,14 +41,8 @@ add_library(Core STATIC
     Gen3/Searchers/UnownSearcher3.cpp
     Gen3/ShadowLock.cpp
     Gen3/ShadowTeam.cpp
-    Gen3/States/EggState3.cpp
-    Gen3/States/GameCubeRTCState.cpp
-    Gen3/States/GameCubeState.cpp
-    Gen3/States/IDState3.cpp
     Gen3/States/LiveIDState3.cpp
     Gen3/States/LiveXDColoIDState3.cpp
-    Gen3/States/PIDIVState.cpp
-    Gen3/States/SeedTimeState3.cpp
     Gen3/Tools/JirachiPatternCalculator.cpp
     Gen3/Tools/PIDIVCalculator.cpp
     Gen3/Tools/SeedTimeCalculator3.cpp
@@ -65,8 +59,6 @@ add_library(Core STATIC
     Gen4/Searchers/StationarySearcher4.cpp
     Gen4/Searchers/WildSearcher4.cpp
     Gen4/SeedTime.cpp
-    Gen4/States/EggState4.cpp
-    Gen4/States/IDState4.cpp
     Gen4/Tools/ChainedSIDCalc.cpp
     Gen5/EncounterArea5.cpp
     Gen5/Encounters5.cpp
@@ -87,8 +79,6 @@ add_library(Core STATIC
     Gen5/Searchers/IDSearcher5.cpp
     Gen5/Searchers/ProfileSearcher5.cpp
     Gen5/Searchers/StationarySearcher5.cpp
-    Gen5/States/IDState5.cpp
-    Gen5/States/ProfileSearcherState5.cpp
     Parents/Daycare.cpp
     Parents/EncounterArea.cpp
     Parents/Filters/IDFilter.cpp
@@ -107,12 +97,6 @@ add_library(Core STATIC
     Parents/Searchers/WildSearcher.cpp
     Parents/Searchers/UnownSearcher.cpp
     Parents/Slot.cpp
-    Parents/States/EggState.cpp
-    Parents/States/IDState.cpp
-    Parents/States/ResearcherState.cpp
-    Parents/States/State.cpp
-    Parents/States/StationaryState.cpp
-    Parents/States/WildState.cpp
     Parents/States/UnownState.cpp
     RNG/MT.cpp
     RNG/RNGCache.cpp

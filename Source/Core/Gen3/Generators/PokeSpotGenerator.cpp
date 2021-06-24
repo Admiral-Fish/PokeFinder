@@ -80,7 +80,7 @@ std::vector<GameCubeState> PokeSpotGenerator::generate(u32 seed, const std::vect
                 state.setAbility(low & 1);
                 state.setGender(low & 255, genderRatio);
                 state.setNature(state.getPID() % 25);
-                state.setShiny(tsv, high ^ low, 8);
+                state.setShiny<8>(tsv, high ^ low);
 
                 if (filter.comparePID(state))
                 {

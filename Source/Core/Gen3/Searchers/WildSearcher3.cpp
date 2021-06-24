@@ -109,7 +109,7 @@ std::vector<WildState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 s
         state.setAbility(low & 1);
         state.setGender(low & 255, genderRatio);
         state.setNature(state.getPID() % 25);
-        state.setShiny(tsv, high ^ low, 8);
+        state.setShiny<8>(tsv, high ^ low);
 
         u32 seed = rng.next();
 

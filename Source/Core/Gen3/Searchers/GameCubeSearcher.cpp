@@ -135,7 +135,7 @@ std::vector<GameCubeState> GameCubeSearcher::searchXDColo(u8 hp, u8 atk, u8 def,
         state.setAbility(ability);
         state.setGender(low & 255, genderRatio);
         state.setNature(state.getPID() % 25);
-        state.setShiny(tsv, high ^ low, 8);
+        state.setShiny<8>(tsv, high ^ low);
 
         if (filter.comparePID(state))
         {
@@ -375,7 +375,7 @@ std::vector<GameCubeState> GameCubeSearcher::searchColoShadow(u8 hp, u8 atk, u8 
         state.setAbility(ability);
         state.setGender(low & 255, genderRatio);
         state.setNature(state.getPID() % 25);
-        state.setShiny(tsv, high ^ low, 8);
+        state.setShiny<8>(tsv, high ^ low);
 
         if (filter.comparePID(state))
         {
@@ -481,7 +481,7 @@ void GameCubeSearcher::searchChannel(u8 minSpD, u8 maxSpD)
             state.setAbility(low & 1);
             state.setGender(low & 255, genderRatio);
             state.setNature(state.getPID() % 25);
-            state.setShiny(40122 ^ sid, high ^ low, 8);
+            state.setShiny<8>(40122 ^ sid, high ^ low);
 
             u32 originSeed = rng.next();
             if (filter.comparePID(state) && validateJirachi(originSeed))

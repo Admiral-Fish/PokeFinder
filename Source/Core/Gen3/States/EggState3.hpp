@@ -26,11 +26,30 @@ class EggState3 : public EggState
 {
 public:
     EggState3() = default;
-    explicit EggState3(u32 advance);
-    u32 getPickupAdvance() const;
-    void setPickupAdvance(u32 pickupAdvance);
-    u8 getRedraw() const;
-    void setRedraw(u8 redraw);
+
+    explicit EggState3(u32 advance) : EggState(advance)
+    {
+    }
+
+    u32 getPickupAdvance() const
+    {
+        return pickupAdvance;
+    }
+
+    void setPickupAdvance(u32 pickupAdvance)
+    {
+        this->pickupAdvance = pickupAdvance;
+    }
+
+    u8 getRedraw() const
+    {
+        return redraw;
+    }
+
+    void setRedraw(u8 redraw)
+    {
+        this->redraw = redraw;
+    }
 
 private:
     u32 pickupAdvance;

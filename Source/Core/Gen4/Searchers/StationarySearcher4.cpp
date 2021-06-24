@@ -142,7 +142,7 @@ std::vector<StationaryState> StationarySearcher4::searchMethod1(u8 hp, u8 atk, u
         state.setAbility(low & 1);
         state.setGender(low & 255, genderRatio);
         state.setNature(state.getPID() % 25);
-        state.setShiny(tsv, high ^ low, 8);
+        state.setShiny<8>(tsv, high ^ low);
         if (filter.comparePID(state))
         {
             states.emplace_back(state);
@@ -208,7 +208,7 @@ std::vector<StationaryState> StationarySearcher4::searchMethodJ(u8 hp, u8 atk, u
                 state.setAbility(low & 1);
                 state.setGender(low & 255, genderRatio);
                 state.setNature(state.getPID() % 25);
-                state.setShiny(tsv, high ^ low, 8);
+                state.setShiny<8>(tsv, high ^ low);
 
                 if (!filter.comparePID(state))
                 {
@@ -286,7 +286,7 @@ std::vector<StationaryState> StationarySearcher4::searchMethodK(u8 hp, u8 atk, u
                 state.setAbility(low & 1);
                 state.setGender(low & 255, genderRatio);
                 state.setNature(state.getPID() % 25);
-                state.setShiny(tsv, high ^ low, 8);
+                state.setShiny<8>(tsv, high ^ low);
 
                 if (!filter.comparePID(state))
                 {
@@ -445,7 +445,7 @@ std::vector<StationaryState> StationarySearcher4::cuteCharmMethodJ(StationarySta
             state.setAbility(pid & 1);
             state.setGender(pid, genderRatio);
             state.setNature(nature);
-            state.setShiny(tsv, pid, 8);
+            state.setShiny<8>(tsv, pid);
 
             if (filter.comparePID(state))
             {
@@ -556,7 +556,7 @@ std::vector<StationaryState> StationarySearcher4::cuteCharmMethodK(StationarySta
             state.setAbility(pid & 1);
             state.setGender(pid, genderRatio);
             state.setNature(nature);
-            state.setShiny(tsv, pid, 8);
+            state.setShiny<8>(tsv, pid);
 
             if (filter.comparePID(state))
             {

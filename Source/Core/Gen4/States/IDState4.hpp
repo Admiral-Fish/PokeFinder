@@ -26,13 +26,41 @@ class IDState4 : public IDState
 {
 public:
     IDState4() = default;
-    IDState4(u32 seed, u16 tid, u16 sid);
-    u32 getSeed() const;
-    void setSeed(u32 seed);
-    u32 getDelay() const;
-    void setDelay(u32 delay);
-    u8 getSeconds() const;
-    void setSeconds(u8 seconds);
+
+    IDState4(u32 seed, u16 tid, u16 sid) : IDState(tid, sid), seed(seed)
+    {
+        tsv = (tid ^ sid) >> 3;
+    }
+
+    u32 getSeed() const
+    {
+        return seed;
+    }
+
+    void setSeed(u32 seed)
+    {
+        this->seed = seed;
+    }
+
+    u32 getDelay() const
+    {
+        return delay;
+    }
+
+    void setDelay(u32 delay)
+    {
+        this->delay = delay;
+    }
+
+    u8 getSeconds() const
+    {
+        return seconds;
+    }
+
+    void setSeconds(u8 seconds)
+    {
+        this->seconds = seconds;
+    }
 
 private:
     u32 seed;

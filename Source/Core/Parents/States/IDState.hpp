@@ -26,12 +26,34 @@ class IDState
 {
 public:
     IDState() = default;
-    IDState(u32 advances, u16 tid, u16 sid);
-    IDState(u16 tid, u16 sid);
-    u32 getAdvances() const;
-    u16 getTID() const;
-    u16 getSID() const;
-    u16 getTSV() const;
+
+    IDState(u32 advances, u16 tid, u16 sid) : advances(advances), tid(tid), sid(sid)
+    {
+    }
+
+    IDState(u16 tid, u16 sid) : tid(tid), sid(sid)
+    {
+    }
+
+    u32 getAdvances() const
+    {
+        return advances;
+    }
+
+    u16 getTID() const
+    {
+        return tid;
+    }
+
+    u16 getSID() const
+    {
+        return sid;
+    }
+
+    u16 getTSV() const
+    {
+        return tsv;
+    }
 
 protected:
     u32 advances;

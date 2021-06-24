@@ -50,7 +50,6 @@ private:
     std::vector<EggState3> generateEmeraldIVs() const;
     std::vector<std::pair<u32, u16>> generateLower(u32 seed) const;
     std::vector<EggState3> generateUpper(u32 seed, const std::vector<std::pair<u32, u16>> &lower) const;
-    void setInheritance(EggState3 &state, const u16 *inh, const u16 *par, bool broken) const;
 };
 
 #endif // EGGGENERATOR3_HPP

@@ -66,7 +66,7 @@ std::vector<State> StationaryGenerator4::generateMethod1(u32 seed) const
         u16 iv2 = go.nextUShort();
 
         state.setPID(high, low);
-        state.setShiny(tsv, high ^ low, 8);
+        state.setShiny<8>(tsv, high ^ low);
         state.setAbility(low & 1);
         state.setGender(low & 255, genderRatio);
         state.setNature(state.getPID() % 25);
@@ -202,7 +202,7 @@ std::vector<State> StationaryGenerator4::generateMethodJ(u32 seed) const
         state.setAbility(pid & 1);
         state.setGender(pid & 255, genderRatio);
         state.setPID(pid);
-        state.setShiny(tsv, (pid >> 16) ^ (pid & 0xffff), 8);
+        state.setShiny<8>(tsv, (pid >> 16) ^ (pid & 0xffff));
 
         u16 iv1 = go.nextUShort();
         u16 iv2 = go.nextUShort();
@@ -338,7 +338,7 @@ std::vector<State> StationaryGenerator4::generateMethodK(u32 seed) const
         state.setAbility(pid & 1);
         state.setGender(pid & 255, genderRatio);
         state.setPID(pid);
-        state.setShiny(tsv, (pid >> 16) ^ (pid & 0xffff), 8);
+        state.setShiny<8>(tsv, (pid >> 16) ^ (pid & 0xffff));
 
         u16 iv1 = go.nextUShort();
         u16 iv2 = go.nextUShort();

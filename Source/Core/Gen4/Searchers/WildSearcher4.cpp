@@ -171,7 +171,7 @@ std::vector<WildState> WildSearcher4::searchMethodJ(u8 hp, u8 atk, u8 def, u8 sp
                 state.setAbility(low & 1);
                 state.setGender(low & 255, genderRatio);
                 state.setNature(state.getPID() % 25);
-                state.setShiny(tsv, high ^ low, 8);
+                state.setShiny<8>(tsv, high ^ low);
 
                 if (!filter.comparePID(state))
                 {
@@ -249,7 +249,7 @@ std::vector<WildState> WildSearcher4::searchMethodK(u8 hp, u8 atk, u8 def, u8 sp
                 state.setAbility(low & 1);
                 state.setGender(low & 255, genderRatio);
                 state.setNature(state.getPID() % 25);
-                state.setShiny(tsv, high ^ low, 8);
+                state.setShiny<8>(tsv, high ^ low);
 
                 if (!filter.comparePID(state))
                 {
@@ -312,7 +312,7 @@ std::vector<WildState> WildSearcher4::searchChainedShiny(u8 hp, u8 atk, u8 def, 
         state.setAbility(low & 1);
         state.setGender(low & 255, genderRatio);
         state.setNature(state.getPID() % 25);
-        state.setShiny(tsv, high ^ low, 8);
+        state.setShiny<8>(tsv, high ^ low);
 
         if (filter.comparePID(state))
         {
@@ -464,7 +464,7 @@ std::vector<WildState> WildSearcher4::cuteCharmMethodJ(WildState state, u32 seed
                 state.setAbility(pid & 1);
                 state.setGender(pid, genderRatio);
                 state.setNature(nature);
-                state.setShiny(tsv, pid, 8);
+                state.setShiny<8>(tsv, pid);
 
                 if (filter.comparePID(state))
                 {
@@ -622,7 +622,7 @@ std::vector<WildState> WildSearcher4::cuteCharmMethodK(WildState state, u32 seed
                 state.setAbility(pid & 1);
                 state.setGender(pid, genderRatio);
                 state.setNature(nature);
-                state.setShiny(tsv, pid, 8);
+                state.setShiny<8>(tsv, pid);
 
                 if (filter.comparePID(state))
                 {

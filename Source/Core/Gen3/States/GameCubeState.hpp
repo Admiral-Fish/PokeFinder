@@ -26,9 +26,20 @@ class GameCubeState : public State
 {
 public:
     GameCubeState() = default;
-    explicit GameCubeState(u32 advance);
-    u8 getInfo() const;
-    void setInfo(u8 info);
+
+    explicit GameCubeState(u32 advance) : State(advance)
+    {
+    }
+    
+    u8 getInfo() const
+    {
+        return info;
+    }
+
+    void setInfo(u8 info)
+    {
+        this->info = info;
+    }
 
 private:
     u8 info;

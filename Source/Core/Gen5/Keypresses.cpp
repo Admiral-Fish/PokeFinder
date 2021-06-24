@@ -41,7 +41,7 @@ namespace Keypresses
 
         if (keypresses[0])
         {
-            buttons.emplace_back(Buttons::None);
+            buttons.emplace_back(Buttons::No);
         }
 
         for (u8 i = 0; i < 8; i++)

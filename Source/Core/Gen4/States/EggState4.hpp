@@ -26,11 +26,30 @@ class EggState4 : public EggState
 {
 public:
     EggState4() = default;
-    explicit EggState4(u32 advance);
-    u32 getInitialSeed() const;
-    void setInitialSeed(u32 initialSeed);
-    u32 getSecondaryAdvance() const;
-    void setSecondaryAdvance(u32 secondaryAdvance);
+
+    explicit EggState4(u32 advance) : EggState(advance)
+    {
+    }
+
+    u32 getInitialSeed() const
+    {
+        return initialSeed;
+    }
+
+    void setInitialSeed(u32 initialSeed)
+    {
+        this->initialSeed = initialSeed;
+    }
+
+    u32 getSecondaryAdvance() const
+    {
+        return secondaryAdvance;
+    }
+
+    void setSecondaryAdvance(u32 secondaryAdvance)
+    {
+        this->secondaryAdvance = secondaryAdvance;
+    }
 
 private:
     u32 initialSeed;
