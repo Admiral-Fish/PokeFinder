@@ -188,7 +188,7 @@ std::vector<EggState> EggGenerator5::generateBW(u64 seed) const
         state.setPID(pid);
         state.setAbility(hiddenAbility ? 2 : ((pid >> 16) & 1));
         state.setGender(pid & 255, genderRatio);
-        state.setShiny(tsv, (pid >> 16) ^ (pid & 0xffff), 8);
+        state.setShiny<8>(tsv, (pid >> 16) ^ (pid & 0xffff));
 
         if (filter.compareState(state))
         {
@@ -237,7 +237,7 @@ std::vector<EggState> EggGenerator5::generateBW2(u64 seed) const
 
             state.setPID(pid);
             state.setGender(pid & 255, genderRatio);
-            state.setShiny(tsv, (pid >> 16) ^ (pid & 0xffff), 8);
+            state.setShiny<8>(tsv, (pid >> 16) ^ (pid & 0xffff));
 
             if (filter.compareShiny(state) && filter.compareGender(state))
             {

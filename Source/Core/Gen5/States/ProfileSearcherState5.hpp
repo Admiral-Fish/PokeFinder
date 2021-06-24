@@ -25,13 +25,40 @@
 class ProfileSearcherState5
 {
 public:
-    ProfileSearcherState5(u64 seed, u16 timer0, u8 vcount, u8 vframe, u8 gxstat, u8 second);
-    u64 getSeed() const;
-    u16 getTimer0() const;
-    u8 getVcount() const;
-    u8 getVframe() const;
-    u8 getGxstat() const;
-    u8 getSecond() const;
+    ProfileSearcherState5(u64 seed, u16 timer0, u8 vcount, u8 vframe, u8 gxstat, u8 second) :
+    seed(seed), timer0(timer0), vcount(vcount), vframe(vframe), gxstat(gxstat), second(second)
+    {
+    }
+
+    u64 getSeed() const
+    {
+        return seed;
+    }
+
+    u16 getTimer0() const
+    {
+        return timer0;
+    }
+
+    u8 getVcount() const
+    {
+        return vcount;
+    }
+
+    u8 getVframe() const
+    {
+        return vframe;
+    }
+
+    u8 getGxstat() const
+    {
+        return gxstat;
+    }
+
+    u8 getSecond() const
+    {
+        return second;
+    }
 
 private:
     u64 seed;

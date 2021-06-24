@@ -116,7 +116,7 @@ std::vector<State> EventGenerator5::generate(u64 seed) const
         }
 
         state.setPID(pid);
-        state.setShiny(tsv, (pid >> 16) ^ (pid & 0xffff), 8);
+        state.setShiny<8>(tsv, (pid >> 16) ^ (pid & 0xffff));
 
         if (parameters.getNature() != 0xff)
         {

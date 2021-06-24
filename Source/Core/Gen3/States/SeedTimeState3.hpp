@@ -27,9 +27,20 @@ class SeedTimeState3
 {
 public:
     SeedTimeState3() = default;
-    SeedTimeState3(const DateTime &dateTime, u32 advances);
-    std::string getDateTime() const;
-    u32 getAdvances() const;
+
+    SeedTimeState3(const DateTime &dateTime, u32 advances) : dateTime(dateTime), advances(advances)
+    {
+    }
+
+    std::string getDateTime() const
+    {
+        return dateTime.toString();
+    }
+
+    u32 getAdvances() const
+    {
+        return advances;
+    }
 
 private:
     DateTime dateTime;

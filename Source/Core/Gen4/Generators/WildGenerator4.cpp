@@ -214,7 +214,7 @@ std::vector<WildState4> WildGenerator4::generateMethodJ(u32 seed) const
         state.setPID(pid);
         state.setAbility(pid & 1);
         state.setGender(pid & 255, genderRatio);
-        state.setShiny(tsv, (pid >> 16) ^ (pid & 0xffff), 8);
+        state.setShiny<8>(tsv, (pid >> 16) ^ (pid & 0xffff));
 
         u16 iv1 = go.nextUShort(occidentary);
         u16 iv2 = go.nextUShort(occidentary);
@@ -426,7 +426,7 @@ std::vector<WildState4> WildGenerator4::generateMethodK(u32 seed) const
         state.setPID(pid);
         state.setAbility(pid & 1);
         state.setGender(pid & 255, genderRatio);
-        state.setShiny(tsv, (pid >> 16) ^ (pid & 0xffff), 8);
+        state.setShiny<8>(tsv, (pid >> 16) ^ (pid & 0xffff));
 
         u16 iv1 = go.nextUShort(occidentary);
         u16 iv2 = go.nextUShort(occidentary);
@@ -475,7 +475,7 @@ std::vector<WildState4> WildGenerator4::generateChainedShiny(u32 seed) const
         state.setAbility(low & 1);
         state.setGender(low & 255, genderRatio);
         state.setNature(state.getPID() % 25);
-        state.setShiny(tsv, high ^ low, 8);
+        state.setShiny<8>(tsv, high ^ low);
 
         state.setIVs(iv1, iv2);
         state.calculateHiddenPower();

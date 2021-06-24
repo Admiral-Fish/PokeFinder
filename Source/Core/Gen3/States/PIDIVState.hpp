@@ -28,11 +28,30 @@ class PIDIVState
 {
 public:
     PIDIVState() = default;
-    PIDIVState(u32 seed, Method method);
-    u32 getSeed() const;
-    Method getMethod() const;
-    u8 getIV(u8 index) const;
-    void setIV(u8 index, u8 iv);
+
+    PIDIVState(u32 seed, Method method) : seed(seed), method(method)
+    {
+    }
+
+    u32 getSeed() const
+    {
+        return seed;
+    }
+
+    Method getMethod() const
+    {
+        return method;
+    }
+
+    u8 getIV(u8 index) const
+    {
+        return ivs[index];
+    }
+
+    void setIV(u8 index, u8 iv)
+    {
+        ivs[index] = iv;
+    }
 
 private:
     u32 seed;

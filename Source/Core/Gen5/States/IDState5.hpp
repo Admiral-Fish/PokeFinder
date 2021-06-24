@@ -27,15 +27,51 @@ class IDState5 : public IDState
 {
 public:
     IDState5() = default;
-    IDState5(u32 advance, u16 tid, u16 sid);
-    void setDateTime(const DateTime &dt);
-    DateTime getDateTime() const;
-    void setInitialAdvances(u32 initialAdvances);
-    u32 getInitialAdvances() const;
-    void setKeypress(u16 keypress);
-    u16 getKeypress() const;
-    void setSeed(u64 seed);
-    u64 getSeed() const;
+
+    IDState5(u32 advance, u16 tid, u16 sid) : IDState(advances, tid, sid)
+    {
+        tsv = (tid ^ sid) >> 3;
+    }
+
+    void setDateTime(const DateTime &dt)
+    {
+        this->dt = dt;
+    }
+
+    DateTime getDateTime() const
+    {
+        return dt;
+    }
+
+    void setInitialAdvances(u32 initialAdvances)
+    {
+        this->initialAdvances = initialAdvances;
+    }
+
+    u32 getInitialAdvances() const
+    {
+        return initialAdvances;
+    }
+
+    void setKeypress(u16 keypress)
+    {
+        this->keypress = keypress;
+    }
+
+    u16 getKeypress() const
+    {
+        return keypress;
+    }
+
+    void setSeed(u64 seed)
+    {
+        this->seed = seed;
+    }
+
+    u64 getSeed() const
+    {
+        return seed;
+    }
 
 private:
     DateTime dt;

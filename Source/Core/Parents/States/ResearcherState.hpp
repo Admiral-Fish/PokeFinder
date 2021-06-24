@@ -26,22 +26,85 @@ class ResearcherState
 {
 public:
     ResearcherState() = default;
-    ResearcherState(bool rng64Bit, u32 advances);
-    u64 getState() const;
-    void setState(u64 seed);
-    u32 getAdvances() const;
-    u64 getCustom(u8 x) const;
-    void setCustom(u8 x, u64 val);
-    u32 getHigh32() const;
-    u32 getLow32() const;
-    u32 getHigh16() const;
-    u32 getLow16() const;
-    u32 getMod25() const;
-    u32 getMod100() const;
-    u32 getMod3() const;
-    u32 getDiv656() const;
-    u32 getHighBit() const;
-    u32 getLowBit() const;
+
+    ResearcherState(bool rng64Bit, u32 advances) : custom {}, rng64Bit(rng64Bit), advances(advances)
+    {
+    }
+
+    u64 getState() const
+    {
+        return state;
+    }
+
+    void setState(u64 seed)
+    {
+        state = seed;
+    }
+
+    u32 getAdvances() const
+    {
+        return advances;
+    }
+
+    u64 getCustom(u8 index) const
+    {
+        return custom[index];
+    }
+
+    void setCustom(u8 index, u64 val)
+    {
+        custom[index] = val;
+    }
+
+    u32 getHigh32() const
+    {
+        return state >> 32;
+    }
+
+    u32 getLow32() const
+    {
+        return state & 0xffffffff;
+    }
+
+    u32 getHigh16() const
+    {
+        return rng64Bit ? getHigh32() >> 16 : state >> 16;
+    }
+
+    u32 getLow16() const
+    {
+        return rng64Bit ? getHigh32() & 0xFFFF : state & 0xFFFF;
+    }
+
+    u32 getMod25() const
+    {
+        return rng64Bit ? getHigh32() % 25 : getHigh16() % 25;
+    }
+
+    u32 getMod100() const
+    {
+        return rng64Bit ? getHigh32() % 100 : getHigh16() % 100;
+    }
+
+    u32 getMod3() const
+    {
+        return rng64Bit ? getHigh32() % 3 : getHigh16() % 3;
+    }
+
+    u32 getDiv656() const
+    {
+        return getHigh16() / 656;
+    }
+
+    u32 getHighBit() const
+    {
+        return rng64Bit ? getHigh32() >> 31 : getHigh16() >> 15;
+    }
+
+    u32 getLowBit() const
+    {
+        return rng64Bit ? getHigh32() & 1 : getHigh16() & 1;
+    }
 
 private:
     u64 custom[10];

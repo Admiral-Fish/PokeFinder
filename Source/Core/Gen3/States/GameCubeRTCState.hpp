@@ -27,10 +27,25 @@ class GameCubeRTCState
 {
 public:
     GameCubeRTCState() = default;
-    GameCubeRTCState(const DateTime &dateTime, u32 seed, u32 advances);
-    std::string getDateTime() const;
-    u32 getSeed() const;
-    u32 getAdvances() const;
+
+    GameCubeRTCState(const DateTime &dateTime, u32 seed, u32 advances) : dateTime(dateTime), seed(seed), advances(advances)
+    {
+    }
+
+    std::string getDateTime() const
+    {
+        return dateTime.toString();
+    }
+
+    u32 getSeed() const
+    {
+        return seed;
+    }
+
+    u32 getAdvances() const
+    {
+        return advances;
+    }
 
 private:
     DateTime dateTime;

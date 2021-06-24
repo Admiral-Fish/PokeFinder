@@ -261,7 +261,7 @@ std::vector<StationaryState> StationaryGenerator5::generateStationary(u64 seed) 
         state.setPID(pid);
         state.setAbility((pid >> 16) & 1);
         state.setGender(pid & 255, genderRatio);
-        state.setShiny(tsv, (pid >> 16) ^ (pid & 0xffff), 8);
+        state.setShiny<8>(tsv, (pid >> 16) ^ (pid & 0xffff));
 
         if (filter.comparePID(state))
         {
@@ -290,7 +290,7 @@ std::vector<StationaryState> StationaryGenerator5::generateRoamer(u64 seed)
         state.setPID(pid);
         state.setAbility((pid >> 16) & 1);
         state.setGender(pid & 255, genderRatio);
-        state.setShiny(tsv, (pid >> 16) ^ (pid & 0xffff), 8);
+        state.setShiny<8>(tsv, (pid >> 16) ^ (pid & 0xffff));
 
         if (filter.comparePID(state))
         {
@@ -319,7 +319,7 @@ std::vector<StationaryState> StationaryGenerator5::generateGift(u64 seed)
         state.setPID(pid);
         state.setAbility((pid >> 16) & 1);
         state.setGender(pid & 255, genderRatio);
-        state.setShiny(tsv, (pid >> 16) ^ (pid & 0xffff), 8);
+        state.setShiny<8>(tsv, (pid >> 16) ^ (pid & 0xffff));
 
         if (filter.comparePID(state))
         {
@@ -367,7 +367,7 @@ std::vector<StationaryState> StationaryGenerator5::generateLarvestaEgg(u64 seed)
         state.setPID(pid);
         state.setAbility((pid >> 16) & 1);
         state.setGender(pid & 255, genderRatio);
-        state.setShiny(tsv, (pid >> 16) ^ (pid & 0xffff), 8);
+        state.setShiny<8>(tsv, (pid >> 16) ^ (pid & 0xffff));
 
         if (filter.comparePID(state))
         {
