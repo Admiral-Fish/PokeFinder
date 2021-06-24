@@ -21,7 +21,6 @@
 #include "ui_JirachiAdvancer.h"
 #include <QSettings>
 #include <QStandardItemModel>
-#include <QDebug>
 
 JirachiAdvancer::JirachiAdvancer(QWidget *parent) : QWidget(parent), ui(new Ui::JirachiAdvancer)
 {

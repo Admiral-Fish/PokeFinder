@@ -21,7 +21,6 @@
 #include "ui_JirachiChecksum.h"
 #include <QSettings>
 #include <QStandardItemModel>
-#include <QDebug>
 
 JirachiChecksum::JirachiChecksum(QWidget *parent) : QWidget(parent), ui(new Ui::JirachiChecksum)
 {
