@@ -39,6 +39,7 @@ set(PROJECT_UI
     Gen3/Stationary3.ui
     Gen3/Tools/GameCubeRTC.ui
     Gen3/Tools/GameCubeSeedFinder.ui
+    Gen3/Tools/AGuAcaTE.ui
     Gen3/Tools/JirachiPattern.ui
     Gen3/Tools/JirachiChecksum.ui
     Gen3/Tools/PIDIV.ui
@@ -94,6 +95,7 @@ set(PROJECT_SOURCES
     Gen3/Stationary3.cpp
     Gen3/Tools/GameCubeRTC.cpp
     Gen3/Tools/GameCubeSeedFinder.cpp
+    Gen3/Tools/AGuAcaTE.cpp
     Gen3/Tools/JirachiPattern.cpp
     Gen3/Tools/JirachiChecksum.cpp
     Gen3/Tools/PIDIV.cpp

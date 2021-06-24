@@ -83,6 +83,7 @@ private slots:
     void openIDs3();
     void openGameCubeRTC();
     void openGameCubeSeedFinder();
+    void openAGuAcaTE();
     void openIVtoPID();
     void openJirachiPattern();
     void openJirachiChecksum();

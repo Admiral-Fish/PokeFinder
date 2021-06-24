@@ -26,6 +26,7 @@
 #include <Forms/Gen3/Stationary3.hpp>
 #include <Forms/Gen3/Tools/GameCubeRTC.hpp>
 #include <Forms/Gen3/Tools/GameCubeSeedFinder.hpp>
+#include <Forms/Gen3/Tools/AGuAcaTE.hpp>
 #include <Forms/Gen3/Tools/JirachiPattern.hpp>
 #include <Forms/Gen3/Tools/JirachiChecksum.hpp>
 #include <Forms/Gen3/Tools/PIDIV.hpp>
@@ -101,6 +102,7 @@ void MainWindow::setupModels()
     connect(ui->pushButtonIDs3, &QPushButton::clicked, this, &MainWindow::openIDs3);
     connect(ui->actionGameCubeRTC, &QAction::triggered, this, &MainWindow::openGameCubeRTC);
     connect(ui->actionGameCubeSeedFinder, &QAction::triggered, this, &MainWindow::openGameCubeSeedFinder);
+    connect(ui->actionAGuAcaTE, &QAction::triggered, this, &MainWindow::openAGuAcaTE);
     connect(ui->actionIVtoPID3, &QAction::triggered, this, &MainWindow::openIVtoPID);
     connect(ui->actionJirachiPattern, &QAction::triggered, this, &MainWindow::openJirachiPattern);
     connect(ui->actionPIDtoIV, &QAction::triggered, this, &MainWindow::openPIDtoIV);
@@ -309,6 +311,13 @@ void MainWindow::openGameCubeSeedFinder()
     auto *finder = new GameCubeSeedFinder();
     finder->show();
     finder->raise();
+}
+
+void MainWindow::openAGuAcaTE()
+{
+    auto *aguacate = new AGuAcaTE();
+    aguacate->show();
+    aguacate->raise();
 }
 
 void MainWindow::openIVtoPID()

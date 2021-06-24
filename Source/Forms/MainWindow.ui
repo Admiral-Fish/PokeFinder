@@ -202,6 +202,7 @@
      <addaction name="actionGameCubeSeedFinder"/>
      <addaction name="actionJirachiPattern"/>
      <addaction name="actionPokeSpot"/>
+     <addaction name="actionAGuAcaTE"/>
     </widget>
     <addaction name="menuGameCube"/>
     <addaction name="actionIVtoPID3"/>
@@ -329,6 +330,11 @@
   <action name="actionJirachiChecksum">
    <property name="text">
     <string>Jirachi Checksum</string>
+   </property>
+  </action>
+  <action name="actionAGuAcaTE">
+   <property name="text">
+    <string>AGuAcaTE</string>
    </property>
   </action>
  </widget>
