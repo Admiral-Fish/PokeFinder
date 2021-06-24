@@ -381,7 +381,7 @@ std::vector<UnownState> UnownSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8
                     state.setAbility(lowtest2 & 1);
                     state.setGender(lowtest2 & 255, genderRatio);
                     state.setNature(state.getPID() % 25);
-                    state.setShiny(tsv, hightest2 ^ lowtest2, 8);
+                    state.setShiny<8>(tsv, hightest2 ^ lowtest2);
                     // if (!filter.comparePID(state))
                     // {
                     //     rng.advance(2);

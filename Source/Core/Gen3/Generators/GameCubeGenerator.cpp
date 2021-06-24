@@ -122,7 +122,7 @@ std::vector<GameCubeState> GameCubeGenerator::generateAgeto(u32 seed) const
         state.setAbility(ability);
         state.setGender(low & 255, genderRatio);
         state.setNature(state.getPID() % 25);
-        state.setShiny(31121 ^ 00000, high ^ low, 8);
+        state.setShiny<8>(31121 ^ 00000, high ^ low);
 
         state.setIVs(iv1, iv2);
         state.calculateHiddenPower();

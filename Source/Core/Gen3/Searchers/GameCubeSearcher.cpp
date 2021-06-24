@@ -186,7 +186,7 @@ std::vector<GameCubeState> GameCubeSearcher::searchAgeto(u8 hp, u8 atk, u8 def, 
         state.setAbility(ability);
         state.setGender(low & 255, genderRatio);
         state.setNature(state.getPID() % 25);
-        state.setShiny(31121 ^ 00000, high ^ low, 8);
+        state.setShiny<8>(31121 ^ 00000, high ^ low);
 
         if (filter.comparePID(state))
         {

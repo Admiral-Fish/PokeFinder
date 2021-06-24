@@ -231,7 +231,7 @@ std::vector<State> StationarySearcher3::searchLocked16Bit(u16 seed) const
     state.setAbility(low & 1);
     state.setGender(low & 255, genderRatio);
     state.setNature(state.getPID() % 25);
-    state.setShiny(tsv, high ^ low, 8);
+    state.setShiny<8>(tsv, high ^ low);
     state.setSeed(seed);
     state.setIVs(iv1, iv2);
     state.calculateHiddenPower();
