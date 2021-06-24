@@ -11,6 +11,8 @@ Gen 3
 - FRLG Unown Tool
 - Ruby/Sapphire ID Search
 - XD/Colo ID Search
+- Ageto Celebi Generator
+- Shiny Locked 16 Bit Event Generator
 
 # Features
 Gen 3
