@@ -14,6 +14,9 @@ Gen 3
 - Ageto Celebi Generator
 - Shiny Locked 16 Bit Event Generator
 
+Gen 4
+- Manaphy Reroll Generator
+
 # Features
 Gen 3
 - Stationary

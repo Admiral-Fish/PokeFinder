@@ -190,8 +190,8 @@ std::vector<StationaryState> StationarySearcher4::searchManaphy(u8 hp, u8 atk, u
         u32 pid;
         while ((low ^ high ^ psv) < 8)
         {
-            ARNG reroller((high << 16) | low);
-            pid = reroller.next();
+            pid = (high << 16) | low;
+            pid = pid * 0x6c078965 + 1;
             low = pid & 0xFFFF;
             high = pid >> 16;
         }
@@ -214,8 +214,8 @@ std::vector<StationaryState> StationarySearcher4::searchManaphy(u8 hp, u8 atk, u
         psv = low^high;
         while ((low ^ high ^ psv) < 8)
         {
-            ARNG reroller((high << 16) | low);
-            pid = reroller.next();
+            pid = (high << 16) | low;
+            pid = pid * 0x6c078965 + 1;
             low = pid & 0xFFFF;
             high = pid >> 16;
         }
