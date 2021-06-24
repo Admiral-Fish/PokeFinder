@@ -36,6 +36,7 @@ enum Method : u8
     Colo,
     XDColo,
     Channel,
+    PossibleChannel,
     Ageto,
     EBred,
     EBredSplit,

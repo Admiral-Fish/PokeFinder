@@ -42,6 +42,9 @@ private:
     std::vector<GameCubeState> generateXDShadow(u32 seed) const;
     std::vector<GameCubeState> generateColoShadow(u32 seed) const;
     std::vector<GameCubeState> generateChannel(u32 seed) const;
+    std::vector<GameCubeState> generatePossibleChannel(u32 seed) const;
+    bool validateJirachi(u32 seed) const;
+    bool validateMenu(u32 seed) const;
 };
 
 #endif // GAMECUBEGENERATOR_HPP

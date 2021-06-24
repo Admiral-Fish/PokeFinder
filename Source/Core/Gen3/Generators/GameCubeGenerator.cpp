@@ -43,6 +43,8 @@ std::vector<GameCubeState> GameCubeGenerator::generate(u32 seed) const
         return generateChannel(seed);
     case Method::Ageto:
         return generateAgeto(seed);
+    case Method::PossibleChannel:
+        return generatePossibleChannel(seed);
     default:
         return std::vector<GameCubeState>();
     }
@@ -116,7 +118,7 @@ std::vector<GameCubeState> GameCubeGenerator::generateAgeto(u32 seed) const
             high = go.nextUShort();
             low = go.nextUShort();
         }
-        
+
 
         state.setPID(high, low);
         state.setAbility(ability);
@@ -366,4 +368,136 @@ std::vector<GameCubeState> GameCubeGenerator::generateChannel(u32 seed) const
     }
 
     return states;
+}
+
+std::vector<GameCubeState> GameCubeGenerator::generatePossibleChannel(u32 seed) const
+{
+    std::vector<GameCubeState> states;
+
+    XDRNG rng(seed);
+    rng.advance(initialAdvances + offset);
+
+    // Method Channel [SEED] [SID] [PID] [PID] [BERRY] [GAME ORIGIN] [OT GENDER] [IV] [IV] [IV] [IV] [IV] [IV]
+
+    for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rng.next())
+    {
+        if (validateJirachi(rng.getSeed()))
+        {
+            GameCubeState state(initialAdvances + cnt);
+            XDRNG go(rng.getSeed());
+
+            // u16 tid = 40122;
+            u16 sid = go.nextUShort();
+            u16 high = go.nextUShort();
+            u16 low = go.nextUShort();
+            go.advance(3);
+
+            // u16 berry = go.nextUShort() >> 13; If >= 4 salac, else ganlon
+            // u16 game = go.nextUShort() >> 12; If >= 8 ruby, else sapphire
+            // u16 gender = go.nextUShort() >> 11; If >= 16 female, else male
+
+            if ((low > 7 ? 0 : 1) != (high ^ 40122 ^ sid))
+            {
+                high ^= 0x8000;
+            }
+
+            state.setPID(high, low);
+            state.setAbility(low & 1);
+            state.setGender(low & 255, genderRatio);
+            state.setNature(state.getPID() % 25);
+            state.setShiny<8>(40122 ^ sid, high ^ low);
+
+            u8 hp = go.nextUShort() >> 11;
+            u8 atk = go.nextUShort() >> 11;
+            u8 def = go.nextUShort() >> 11;
+            u8 spe = go.nextUShort() >> 11;
+            u8 spa = go.nextUShort() >> 11;
+            u8 spd = go.nextUShort() >> 11;
+
+            state.setIVs(hp, atk, def, spa, spd, spe);
+            state.calculateHiddenPower();
+
+            if (filter.compareState(state))
+            {
+                states.emplace_back(state);
+            }
+        }
+    }
+
+    return states;
+}
+
+// Working backwards this validates if a Jirachi seed is obtainable
+// There are 3 different patterns for this (6/7/8 advances) plus menu checking
+bool GameCubeGenerator::validateJirachi(u32 seed) const
+{
+    XDRNGR rng(seed);
+
+    u16 num1 = rng.nextUShort();
+    u16 num2 = rng.nextUShort();
+    u16 num3 = rng.nextUShort();
+
+    rng.advance(3);
+    if (num1 <= 0x4000) // 6 advances
+    {
+        if (validateMenu(rng.getSeed()))
+        {
+            return true;
+        }
+    }
+
+    rng.advance(1);
+    if (num2 > 0x4000 && num1 <= 0x547a) // 7 advances
+    {
+        if (validateMenu(rng.getSeed()))
+        {
+            return true;
+        }
+    }
+
+    rng.advance(1);
+    if (num3 > 0x4000 && num2 > 0x547a) // 8 advances
+    {
+        if (validateMenu(rng.getSeed()))
+        {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+// Working backwards from a seed check if the menu sequence will end on said seed
+// Menu will advance the prng until it collects a 1, 2, and 3
+bool GameCubeGenerator::validateMenu(u32 seed) const
+{
+    u8 mask = 0;
+    u8 target = seed >> 30;
+
+    // Impossible to stop 0
+    if (target == 0)
+    {
+        return false;
+    }
+    else
+    {
+        mask |= 1 << target;
+    }
+
+    auto rng = XDRNGR(seed);
+    while ((mask & 14) != 14)
+    {
+        u8 num = rng.next() >> 30;
+
+        // Basically this check means that while rolling for 1, 2, and 3
+        // We hit our original target meaning that we can't land on the target
+        if (num == target)
+        {
+            return false;
+        }
+
+        mask |= 1 << num;
+    }
+
+    return true;
 }
