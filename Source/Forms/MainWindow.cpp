@@ -28,6 +28,7 @@
 #include <Forms/Gen3/Tools/GameCubeSeedFinder.hpp>
 #include <Forms/Gen3/Tools/AGuAcaTE.hpp>
 #include <Forms/Gen3/Tools/JirachiPattern.hpp>
+#include <Forms/Gen3/Tools/JirachiAdvancer.hpp>
 #include <Forms/Gen3/Tools/JirachiChecksum.hpp>
 #include <Forms/Gen3/Tools/PIDIV.hpp>
 #include <Forms/Gen3/Tools/PokeSpot.hpp>
@@ -105,6 +106,7 @@ void MainWindow::setupModels()
     connect(ui->actionAGuAcaTE, &QAction::triggered, this, &MainWindow::openAGuAcaTE);
     connect(ui->actionIVtoPID3, &QAction::triggered, this, &MainWindow::openIVtoPID);
     connect(ui->actionJirachiPattern, &QAction::triggered, this, &MainWindow::openJirachiPattern);
+    connect(ui->actionJirachiAdvancer, &QAction::triggered, this, &MainWindow::openJirachiAdvancer);
     connect(ui->actionPIDtoIV, &QAction::triggered, this, &MainWindow::openPIDtoIV);
     connect(ui->actionPokeSpot, &QAction::triggered, this, &MainWindow::openPokeSpot);
     connect(ui->actionProfileManager3, &QAction::triggered, this, &MainWindow::openProfileManager3);
@@ -332,6 +334,13 @@ void MainWindow::openJirachiPattern()
     auto *jirachi = new JirachiPattern();
     jirachi->show();
     jirachi->raise();
+}
+
+void MainWindow::openJirachiAdvancer()
+{
+   auto *advancer = new JirachiAdvancer();
+   advancer->show();
+   advancer->raise();
 }
 
 void MainWindow::openPIDtoIV()

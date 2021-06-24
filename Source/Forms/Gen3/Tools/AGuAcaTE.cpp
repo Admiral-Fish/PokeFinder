@@ -25,6 +25,8 @@
 AGuAcaTE::AGuAcaTE(QWidget *parent) : QWidget(parent), ui(new Ui::AGuAcaTE)
 {
     ui->setupUi(this);
+    setAttribute(Qt::WA_QuitOnClose, false);
+    setAttribute(Qt::WA_DeleteOnClose);
     ui->textBoxAdvance->setValues(InputType::Advance32Bit);
     connect(ui->pushButtonRun, &QPushButton::clicked, this, &AGuAcaTE::run);
 }

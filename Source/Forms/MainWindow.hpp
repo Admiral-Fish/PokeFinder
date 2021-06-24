@@ -86,6 +86,7 @@ private slots:
     void openAGuAcaTE();
     void openIVtoPID();
     void openJirachiPattern();
+    void openJirachiAdvancer();
     void openJirachiChecksum();
     void openPIDtoIV();
     void openPokeSpot();
