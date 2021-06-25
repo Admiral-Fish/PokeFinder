@@ -45,8 +45,8 @@ JirachiAdvancer::~JirachiAdvancer()
 
 void JirachiAdvancer::minClicked(bool toggled)
 {
-    ui->bruteforceRange->setEnabled(not toggled);
-    ui->bruteforceLabel->setEnabled(not toggled);
+    ui->bruteforceRange->setEnabled(!toggled);
+    ui->bruteforceLabel->setEnabled(!toggled);
 }
 
 void JirachiAdvancer::run()
