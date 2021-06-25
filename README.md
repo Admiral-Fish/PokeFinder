@@ -7,13 +7,13 @@ Gen 3
 - [FRLG Unown Tool](https://github.com/Lincoln-LM/Unown-Finder)
 - [Ruby/Sapphire ID Search](https://github.com/Lincoln-LM/RS-TID-SID-Frame-Finder)
 - XD/Colo ID Search
-- Shiny Locked 16 Bit Event Generator
+- Shiny Locked 16 Bit Event Generator/Searcher - Help from [Real.96](https://github.com/Real96)
 - [Wishmaker Jirachi Checksum Generator](https://github.com/Lincoln-LM/Jirachi-Finder)
 - Possible Channel Spreads Generator
-- [Jirachi Advancer](https://gist.github.com/Admiral-Fish/6111ca2c19ee3a7a382aa5b897deef4c)
-- Ageto Celebi Generator
-- [AGuAcaTE](https://www.dropbox.com/s/kfqaihc5gilub1s/AGuAcaTE.pyw?dl=0)
-- Pokémon Box RTC Searcher
+- [Jirachi Advancer](https://gist.github.com/Admiral-Fish/6111ca2c19ee3a7a382aa5b897deef4c) - Originally from [Admiral-Fish](https://github.com/Admiral-Fish) 
+- Ageto Celebi Generator - Help from [Real.96](https://github.com/Real96)
+- [AGuAcaTE](https://www.dropbox.com/s/kfqaihc5gilub1s/AGuAcaTE.pyw?dl=0) - Originally from Jellal and [amab](https://github.com/AskMeAboutBirds)
+- Pokémon Box RTC Searcher - Help from [Real.96](https://github.com/Real96)
 
 
 Gen 4
