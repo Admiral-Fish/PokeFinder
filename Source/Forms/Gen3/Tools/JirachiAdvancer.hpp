@@ -50,6 +50,7 @@ private:
     u32 calculateFrame(u32 currentSeed, u32 targetSeed);
     std::vector<u8> calculateActions(u32 currentSeed, u32 targetFrame, u32 bruteForce);
     void run();
+    void minClicked(bool toggled);
 };
 
 #endif // JIRACHIADVANCER_HPP

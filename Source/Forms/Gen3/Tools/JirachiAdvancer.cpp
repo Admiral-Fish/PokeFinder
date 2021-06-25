@@ -32,6 +32,7 @@ JirachiAdvancer::JirachiAdvancer(QWidget *parent) : QWidget(parent), ui(new Ui::
     ui->maxFrame->setValues(InputType::Advance32Bit);
     ui->bruteforceRange->setValues(InputType::Advance32Bit);
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &JirachiAdvancer::run);
+    connect(ui->checkBoxMin, &QAbstractButton::clicked, this, &JirachiAdvancer::minClicked);
 }
 
 JirachiAdvancer::~JirachiAdvancer()
@@ -40,6 +41,12 @@ JirachiAdvancer::~JirachiAdvancer()
     setting.setValue("jirachiAdvancer/geometry", this->saveGeometry());
 
     delete ui;
+}
+
+void JirachiAdvancer::minClicked(bool toggled)
+{
+    ui->bruteforceRange->setEnabled(not toggled);
+    ui->bruteforceLabel->setEnabled(not toggled);
 }
 
 void JirachiAdvancer::run()
@@ -71,36 +78,81 @@ void JirachiAdvancer::run()
             }
             else
             {
-                u32 bruteForce = ui->bruteforceRange->getUInt();
-                std::vector<u8> path = calculateActions(currentSeed, targetFrame, bruteForce);
-                if (path.empty())
+                if (ui->checkBoxMin->isChecked())
                 {
-                    ui->listWidgetInfo->addItem("Target seed is unreachable");
-                    return;
+                    std::vector<u8> path;
+                    u32 bruteForce = targetFrame;
+                    while (path.empty())
+                    {
+                        ui->bruteforceRange->setText(QString::number(bruteForce));
+                        path = calculateActions(currentSeed, targetFrame, bruteForce);
+                        if (!path.empty())
+                        {
+                            int number = 1;
+                            if (path[0] != 255)
+                            {
+                                for (u8 action : path)
+                                {
+                                    if (action == 0)
+                                    {
+                                        ui->listWidgetInfo->addItem(QString::number(number) + ": Reload Menu");
+                                    }
+                                    else if (action == 1)
+                                    {
+                                        ui->listWidgetInfo->addItem(QString::number(number) + ": Reject Jirachi");
+                                    }
+                                    else
+                                    {
+                                        ui->listWidgetInfo->addItem(QString::number(number) + ": Exit Special cutscene");
+                                    }
+                                    number++;
+                                }
+                            }
+                            ui->listWidgetInfo->addItem(QString::number(number) + ": Accept Jirachi");
+                        }
+                        else
+                        {
+                            bruteForce--;
+                            if (bruteForce <= 15)
+                            {
+                                ui->listWidgetInfo->addItem("Target seed is unreachable");
+                                return;
+                            }
+                        }
+                    }
                 }
                 else
                 {
-                    int number = 1;
-                    if (path[0] != 255)
+                    u32 bruteForce = ui->bruteforceRange->getUInt();
+                    std::vector<u8> path = calculateActions(currentSeed, targetFrame, bruteForce);
+                    if (path.empty())
                     {
-                        for (u8 action : path)
-                        {
-                            if (action == 0)
-                            {
-                                ui->listWidgetInfo->addItem(QString::number(number) + ": Reload Menu");
-                            }
-                            else if (action == 1)
-                            {
-                                ui->listWidgetInfo->addItem(QString::number(number) + ": Reject Jirachi");
-                            }
-                            else
-                            {
-                                ui->listWidgetInfo->addItem(QString::number(number) + ": Exit Special cutscene");
-                            }
-                            number++;
-                        }
+                        ui->listWidgetInfo->addItem("Target seed is unreachable");
                     }
-                    ui->listWidgetInfo->addItem(QString::number(number) + ": Accept Jirachi");
+                    else
+                    {
+                        int number = 1;
+                        if (path[0] != 255)
+                        {
+                            for (u8 action : path)
+                            {
+                                if (action == 0)
+                                {
+                                    ui->listWidgetInfo->addItem(QString::number(number) + ": Reload Menu");
+                                }
+                                else if (action == 1)
+                                {
+                                    ui->listWidgetInfo->addItem(QString::number(number) + ": Reject Jirachi");
+                                }
+                                else
+                                {
+                                    ui->listWidgetInfo->addItem(QString::number(number) + ": Exit Special cutscene");
+                                }
+                                number++;
+                            }
+                        }
+                        ui->listWidgetInfo->addItem(QString::number(number) + ": Accept Jirachi");
+                    }
                 }
 
             }
