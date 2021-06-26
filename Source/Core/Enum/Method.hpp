@@ -38,6 +38,7 @@ enum Method : u8
     Channel,
     PossibleChannel,
     Ageto,
+    Ageto0Difference,
     EBred,
     EBredSplit,
     EBredAlternate,

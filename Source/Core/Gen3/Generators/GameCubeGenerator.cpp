@@ -43,6 +43,8 @@ std::vector<GameCubeState> GameCubeGenerator::generate(u32 seed) const
         return generateChannel(seed);
     case Method::Ageto:
         return generateAgeto(seed);
+    case Method::Ageto0Difference:
+        return generateAgeto0Difference(seed);
     case Method::PossibleChannel:
         return generatePossibleChannel(seed);
     default:
@@ -106,6 +108,50 @@ std::vector<GameCubeState> GameCubeGenerator::generateAgeto(u32 seed) const
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rng.next())
     {
         GameCubeState state(initialAdvances + cnt);
+        XDRNG go(rng.getSeed());
+
+        u16 iv1 = go.nextUShort();
+        u16 iv2 = go.nextUShort();
+        u8 ability = go.nextUShort() & 1;
+        u16 high = go.nextUShort();
+        u16 low = go.nextUShort();
+        while ((31121 ^ 00000 ^ high ^ low) < 8)
+        {
+            high = go.nextUShort();
+            low = go.nextUShort();
+        }
+
+
+        state.setPID(high, low);
+        state.setAbility(ability);
+        state.setGender(low & 255, genderRatio);
+        state.setNature(state.getPID() % 25);
+        state.setShiny<8>(31121 ^ 00000, high ^ low);
+
+        state.setIVs(iv1, iv2);
+        state.calculateHiddenPower();
+
+        if (filter.compareState(state))
+        {
+            states.emplace_back(state);
+        }
+    }
+
+    return states;
+}
+
+std::vector<GameCubeState> GameCubeGenerator::generateAgeto0Difference(u32 seed) const
+{
+    std::vector<GameCubeState> states;
+
+    XDRNG rng(seed);
+    rng.advance(initialAdvances + offset + 29278);
+
+    // Method XD/Colo [SEED] [IVS] [IVS] [BLANK] [PID] [PID]
+
+    for (u32 cnt = 0; cnt <= maxAdvances; cnt += 2792, rng.advance(2792))
+    {
+        GameCubeState state(initialAdvances + cnt + 29278);
         XDRNG go(rng.getSeed());
 
         u16 iv1 = go.nextUShort();

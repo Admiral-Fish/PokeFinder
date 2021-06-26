@@ -162,6 +162,11 @@
             </item>
             <item>
              <property name="text">
+              <string>Ageto 0 Difference</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
               <string>Possible Channel</string>
              </property>
             </item>
