@@ -27,9 +27,25 @@ class LiveXDColoIDState3 : public IDState
 {
 public:
     LiveXDColoIDState3() = default;
-    LiveXDColoIDState3(u16 tid, u16 sid, u32 seed, std::string shiny);
-    u32 getSeed() const;
-    std::string getShiny() const;
+
+    LiveXDColoIDState3(u16 tid, u16 sid, u32 seed, std::string shiny)
+    {
+        this->tid = tid;
+        this->sid = sid;
+        this->seed = seed;
+        this->shiny = shiny;
+        tsv = (tid ^ sid) >> 3;
+    }
+
+    u32 getSeed() const
+    {
+        return seed;
+    }
+
+    std::string getShiny() const
+    {
+        return shiny;
+    }
 
 protected:
     u32 seed;

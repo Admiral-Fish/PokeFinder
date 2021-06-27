@@ -21,7 +21,7 @@
 #define LIVEXDCOLOIDMODEL3_HPP
 
 #include <Core/Gen3/States/LiveXDColoIDState3.hpp>
-#include <Models/TableModel.hpp>
+#include <Forms/Models/TableModel.hpp>
 
 class LiveXDColoIDModel3 : public TableModel<LiveXDColoIDState3>
 {

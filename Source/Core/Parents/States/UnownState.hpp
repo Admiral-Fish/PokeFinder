@@ -30,9 +30,21 @@ class UnownState : public State
 {
 public:
     UnownState() = default;
-    explicit UnownState(u32 advance);
-    std::string getLetter() const;
-    void setLetter(std::string letter);
+
+    explicit UnownState(u32 advance) : State(advance)
+    {
+    }
+
+    std::string getLetter() const
+    {
+        return letter;
+    }
+
+    void setLetter(std::string letter)
+    {
+        this->letter = letter;
+    }
+    
     // Lead getLead() const;
     // void setLead(Lead lead);
     // u8 getEncounterSlot() const;

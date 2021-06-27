@@ -32,7 +32,7 @@
 #include <Core/Util/Translator.hpp>
 #include <Forms/Gen3/Profile/ProfileManager3.hpp>
 #include <Forms/Gen3/Tools/SeedTime3.hpp>
-#include <Models/Gen3/UnownModel3.hpp>
+#include <Forms/Models/Gen3/UnownModel3.hpp>
 #include <QClipboard>
 #include <QSettings>
 #include <QThread>

@@ -21,7 +21,7 @@
 #define UNOWN3MODEL_HPP
 
 #include <Core/Parents/States/UnownState.hpp>
-#include <Models/TableModel.hpp>
+#include <Forms/Models/TableModel.hpp>
 
 class UnownGeneratorModel3 : public TableModel<UnownState>
 {

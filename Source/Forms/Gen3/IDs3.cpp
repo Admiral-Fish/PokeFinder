@@ -22,9 +22,9 @@
 #include <Core/Gen3/Generators/IDGenerator3.hpp>
 #include <Core/Parents/Filters/IDFilter.hpp>
 #include <Core/Util/Utilities.hpp>
-#include <Models/Gen3/IDModel3.hpp>
-#include <Models/Gen3/LiveIDModel3.hpp>
-#include <Models/Gen3/LiveXDColoIDModel3.hpp>
+#include <Forms/Models/Gen3/IDModel3.hpp>
+#include <Forms/Models/Gen3/LiveIDModel3.hpp>
+#include <Forms/Models/Gen3/LiveXDColoIDModel3.hpp>
 #include <QSettings>
 
 IDs3::IDs3(QWidget *parent) : QWidget(parent), ui(new Ui::IDs3)

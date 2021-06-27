@@ -27,10 +27,29 @@ class LiveIDState3 : public IDState
 {
 public:
     LiveIDState3() = default;
-    LiveIDState3(u32 advance, u16 tid, u16 sid, u16 initial, std::string shiny, std::string date);
-    u16 getInitial() const;
-    std::string getShiny() const;
-    std::string getDate() const;
+
+    LiveIDState3(u32 advance, u16 tid, u16 sid, u16 initial, std::string shiny, std::string date) : IDState(advance, tid, sid)
+    {
+        this->initial = initial;
+        this->shiny = shiny;
+        this->date = date;
+        tsv = (tid ^ sid) >> 3;
+    }
+
+    u16 getInitial() const
+    {
+        return initial;
+    }
+
+    std::string getShiny() const
+    {
+        return shiny;
+    }
+
+    std::string getDate() const
+    {
+        return date;
+    }
 
 protected:
     u16 initial;

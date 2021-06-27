@@ -21,7 +21,7 @@
 #define LIVEIDMODEL3_HPP
 
 #include <Core/Gen3/States/LiveIDState3.hpp>
-#include <Models/TableModel.hpp>
+#include <Forms/Models/TableModel.hpp>
 
 class LiveIDModel3 : public TableModel<LiveIDState3>
 {

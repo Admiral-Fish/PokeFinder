@@ -41,8 +41,6 @@ add_library(PokeFinderCore STATIC
     Gen3/Searchers/UnownSearcher3.cpp
     Gen3/ShadowLock.cpp
     Gen3/ShadowTeam.cpp
-    Gen3/States/LiveIDState3.cpp
-    Gen3/States/LiveXDColoIDState3.cpp
     Gen3/Tools/JirachiPatternCalculator.cpp
     Gen3/Tools/PIDIVCalculator.cpp
     Gen3/Tools/SeedTimeCalculator3.cpp
@@ -97,7 +95,6 @@ add_library(PokeFinderCore STATIC
     Parents/Searchers/WildSearcher.cpp
     Parents/Searchers/UnownSearcher.cpp
     Parents/Slot.cpp
-    Parents/States/UnownState.cpp
     RNG/MT.cpp
     RNG/RNGCache.cpp
     RNG/RNGEuclidean.cpp
