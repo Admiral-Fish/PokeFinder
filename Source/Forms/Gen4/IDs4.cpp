@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2020 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2021 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -22,7 +22,7 @@
 #include <Core/Gen4/Generators/IDGenerator4.hpp>
 #include <Core/Gen4/Searchers/IDSearcher4.hpp>
 #include <Core/Gen4/States/EggState4.hpp>
-#include <Models/Gen4/IDModel4.hpp>
+#include <Forms/Models/Gen4/IDModel4.hpp>
 #include <QSettings>
 #include <QThread>
 #include <QTimer>

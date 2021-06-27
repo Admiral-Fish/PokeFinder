@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2020 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2021 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -23,7 +23,7 @@
 #include <Forms/Gen4/Tools/RoamerMap.hpp>
 #include <Forms/Gen4/Tools/SearchCalls.hpp>
 #include <Forms/Gen4/Tools/SearchCoinFlips.hpp>
-#include <Models/Gen4/SeedtoTimeModel4.hpp>
+#include <Forms/Models/Gen4/SeedtoTimeModel4.hpp>
 #include <QMessageBox>
 #include <QSettings>
 

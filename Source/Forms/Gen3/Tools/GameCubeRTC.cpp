@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2020 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2021 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -20,7 +20,7 @@
 #include "GameCubeRTC.hpp"
 #include "ui_GameCubeRTC.h"
 #include <Core/Gen3/Searchers/RTCSearcher.hpp>
-#include <Models/Gen3/GameCubeRTCModel.hpp>
+#include <Forms/Models/Gen3/GameCubeRTCModel.hpp>
 #include <QSettings>
 #include <QThread>
 #include <QTimer>

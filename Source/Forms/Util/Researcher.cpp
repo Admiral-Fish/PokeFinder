@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2020 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2021 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,7 +24,7 @@
 #include <Core/RNG/MT.hpp>
 #include <Core/RNG/SFMT.hpp>
 #include <Core/RNG/TinyMT.hpp>
-#include <Models/Util/ResearcherModel.hpp>
+#include <Forms/Models/Util/ResearcherModel.hpp>
 #include <QSettings>
 #include <array>
 #include <functional>

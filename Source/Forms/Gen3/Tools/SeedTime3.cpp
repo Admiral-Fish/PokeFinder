@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2020 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2021 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -21,7 +21,7 @@
 #include "ui_SeedTime3.h"
 #include <Core/Gen3/Tools/SeedTimeCalculator3.hpp>
 #include <Core/RNG/LCRNG.hpp>
-#include <Models/Gen3/SeedTimeModel3.hpp>
+#include <Forms/Models/Gen3/SeedTimeModel3.hpp>
 #include <QSettings>
 
 SeedTime3::SeedTime3(QWidget *parent) : QWidget(parent), ui(new Ui::SeedTime3)

@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2020 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2021 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -21,7 +21,7 @@
 #include "ui_ProfileManager3.h"
 #include <Core/Parents/ProfileLoader.hpp>
 #include <Forms/Gen3/Profile/ProfileEditor3.hpp>
-#include <Models/Gen3/ProfileModel3.hpp>
+#include <Forms/Models/Gen3/ProfileModel3.hpp>
 #include <QMessageBox>
 #include <QSettings>
 

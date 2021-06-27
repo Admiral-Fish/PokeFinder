@@ -1,8 +1,6 @@
 project(PokeFinder VERSION 3.0.1 LANGUAGES CXX)
 add_compile_definitions(VERSION="3.0.1")
 
-set(CMAKE_INCLUDE_CURRENT_DIR ON)
-
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
@@ -23,7 +21,7 @@ set(PROJECT_TS
 )
 	
 set(PROJECT_QRC
-    ../../Externals/QDarkStyleSheet/qdarkstyle/dark/style.qrc
+    "${CMAKE_SOURCE_DIR}/Externals/QDarkStyleSheet/qdarkstyle/dark/style.qrc"
     resources.qrc
 )
 
@@ -196,4 +194,4 @@ else ()
     )
 endif ()
 
-target_link_libraries(PokeFinder PRIVATE Core Qt5::Core Qt5::Network Qt5::Widgets)
+target_link_libraries(PokeFinder PRIVATE PokeFinderCore Qt5::Core Qt5::Network Qt5::Widgets)
