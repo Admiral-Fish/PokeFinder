@@ -27,7 +27,7 @@
 #include <Core/Util/Translator.hpp>
 #include <Forms/Gen3/Profile/ProfileManager3.hpp>
 #include <Forms/Gen3/Tools/SeedTime3.hpp>
-#include <Models/Gen3/StationaryModel3.hpp>
+#include <Forms/Models/Gen3/StationaryModel3.hpp>
 #include <QSettings>
 #include <QThread>
 #include <QTimer>

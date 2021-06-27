@@ -23,7 +23,7 @@
 #include <Forms/Gen4/Tools/RoamerMap.hpp>
 #include <Forms/Gen4/Tools/SearchCalls.hpp>
 #include <Forms/Gen4/Tools/SearchCoinFlips.hpp>
-#include <Models/Gen4/SeedtoTimeModel4.hpp>
+#include <Forms/Models/Gen4/SeedtoTimeModel4.hpp>
 #include <QMessageBox>
 #include <QSettings>
 

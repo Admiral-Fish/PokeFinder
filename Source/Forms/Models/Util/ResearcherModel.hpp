@@ -22,7 +22,7 @@
 #define RESEARCHERMODEL_HPP
 
 #include <Core/Parents/States/ResearcherState.hpp>
-#include <Models/TableModel.hpp>
+#include <Forms/Models/TableModel.hpp>
 #include <array>
 
 class ResearcherModel : public TableModel<ResearcherState>

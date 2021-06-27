@@ -22,7 +22,7 @@
 
 #include <Core/Gen5/States/SearcherState5.hpp>
 #include <Core/Parents/States/State.hpp>
-#include <Models/TableModel.hpp>
+#include <Forms/Models/TableModel.hpp>
 
 class DreamRadarGeneratorModel5 : public TableModel<State>
 {

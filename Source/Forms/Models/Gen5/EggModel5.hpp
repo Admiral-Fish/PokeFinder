@@ -22,7 +22,7 @@
 
 #include <Core/Gen5/States/SearcherState5.hpp>
 #include <Core/Parents/States/EggState.hpp>
-#include <Models/TableModel.hpp>
+#include <Forms/Models/TableModel.hpp>
 
 class EggGeneratorModel5 : public TableModel<EggState>
 {

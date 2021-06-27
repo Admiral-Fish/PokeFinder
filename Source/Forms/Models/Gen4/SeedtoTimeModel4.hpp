@@ -22,7 +22,7 @@
 
 #include <Core/Enum/Game.hpp>
 #include <Core/Gen4/SeedTime.hpp>
-#include <Models/TableModel.hpp>
+#include <Forms/Models/TableModel.hpp>
 
 class SeedtoTimeModel4 : public TableModel<SeedTime>
 {

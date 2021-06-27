@@ -21,7 +21,7 @@
 #define PIDIVMODEL_HPP
 
 #include <Core/Gen3/States/PIDIVState.hpp>
-#include <Models/TableModel.hpp>
+#include <Forms/Models/TableModel.hpp>
 
 class PIDIVModel : public TableModel<PIDIVState>
 {

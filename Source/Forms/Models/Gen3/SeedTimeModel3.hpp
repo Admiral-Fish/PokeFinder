@@ -21,7 +21,7 @@
 #define SEEDTIMEMODEL3_HPP
 
 #include <Core/Gen3/States/SeedTimeState3.hpp>
-#include <Models/TableModel.hpp>
+#include <Forms/Models/TableModel.hpp>
 
 class SeedTimeModel3 : public TableModel<SeedTimeState3>
 {

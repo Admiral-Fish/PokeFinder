@@ -21,7 +21,7 @@
 #define POKESPOTMODEL_HPP
 
 #include <Core/Gen3/States/GameCubeState.hpp>
-#include <Models/TableModel.hpp>
+#include <Forms/Models/TableModel.hpp>
 
 class PokeSpotModel : public TableModel<GameCubeState>
 {

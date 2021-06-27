@@ -21,7 +21,7 @@
 #define EGG3MODEL_HPP
 
 #include <Core/Gen3/States/EggState3.hpp>
-#include <Models/TableModel.hpp>
+#include <Forms/Models/TableModel.hpp>
 
 enum Method : u8;
 

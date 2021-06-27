@@ -1,13 +1,13 @@
 #include <QDebug>
 #include <QTest>
-#include <RNG/LCRNG64Test.hpp>
-#include <RNG/LCRNGTest.hpp>
-#include <RNG/MTTest.hpp>
-#include <RNG/RNGCacheTest.hpp>
-#include <RNG/RNGEuclideanTest.hpp>
-#include <RNG/SFMTTest.hpp>
-#include <RNG/SHA1Test.hpp>
-#include <RNG/TinyMTTest.hpp>
+#include <Tests/RNG/LCRNG64Test.hpp>
+#include <Tests/RNG/LCRNGTest.hpp>
+#include <Tests/RNG/MTTest.hpp>
+#include <Tests/RNG/RNGCacheTest.hpp>
+#include <Tests/RNG/RNGEuclideanTest.hpp>
+#include <Tests/RNG/SFMTTest.hpp>
+#include <Tests/RNG/SHA1Test.hpp>
+#include <Tests/RNG/TinyMTTest.hpp>
 
 template <class Testname>
 int runTest(QStringList &fails)

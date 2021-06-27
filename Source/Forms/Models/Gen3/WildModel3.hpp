@@ -21,7 +21,7 @@
 #define WILD3MODEL_HPP
 
 #include <Core/Parents/States/WildState.hpp>
-#include <Models/TableModel.hpp>
+#include <Forms/Models/TableModel.hpp>
 
 class WildGeneratorModel3 : public TableModel<WildState>
 {

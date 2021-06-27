@@ -21,7 +21,7 @@
 #define IDMODEL4_HPP
 
 #include <Core/Gen4/States/IDState4.hpp>
-#include <Models/TableModel.hpp>
+#include <Forms/Models/TableModel.hpp>
 
 class IDModel4 : public TableModel<IDState4>
 {

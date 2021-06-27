@@ -21,7 +21,7 @@
 #define PROFILESEARCHERMODEL5_HPP
 
 #include <Core/Gen5/States/ProfileSearcherState5.hpp>
-#include <Models/TableModel.hpp>
+#include <Forms/Models/TableModel.hpp>
 
 class ProfileSearcherModel5 : public TableModel<ProfileSearcherState5>
 {

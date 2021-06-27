@@ -21,7 +21,7 @@
 #define WILD4MODEL_HPP
 
 #include <Core/Gen4/States/WildState4.hpp>
-#include <Models/TableModel.hpp>
+#include <Forms/Models/TableModel.hpp>
 
 enum Method : u8;
 

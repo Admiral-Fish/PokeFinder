@@ -28,7 +28,7 @@
 #include <Core/Util/Translator.hpp>
 #include <Core/Util/Utilities.hpp>
 #include <Forms/Gen5/Profile/ProfileManager5.hpp>
-#include <Models/Gen5/EggModel5.hpp>
+#include <Forms/Models/Gen5/EggModel5.hpp>
 #include <QMessageBox>
 #include <QSettings>
 #include <QThread>

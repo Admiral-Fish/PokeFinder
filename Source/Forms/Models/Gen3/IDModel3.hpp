@@ -21,7 +21,7 @@
 #define IDMODEL3_HPP
 
 #include <Core/Gen3/States/IDState3.hpp>
-#include <Models/TableModel.hpp>
+#include <Forms/Models/TableModel.hpp>
 
 class IDModel3 : public TableModel<IDState3>
 {

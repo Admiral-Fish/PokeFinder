@@ -21,7 +21,7 @@
 #define PROFILE5MODEL_HPP
 
 #include <Core/Gen5/Profile5.hpp>
-#include <Models/TableModel.hpp>
+#include <Forms/Models/TableModel.hpp>
 
 class ProfileModel5 : public TableModel<Profile5>
 {

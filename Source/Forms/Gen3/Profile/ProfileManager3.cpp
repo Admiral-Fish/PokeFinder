@@ -21,7 +21,7 @@
 #include "ui_ProfileManager3.h"
 #include <Core/Parents/ProfileLoader.hpp>
 #include <Forms/Gen3/Profile/ProfileEditor3.hpp>
-#include <Models/Gen3/ProfileModel3.hpp>
+#include <Forms/Models/Gen3/ProfileModel3.hpp>
 #include <QMessageBox>
 #include <QSettings>
 

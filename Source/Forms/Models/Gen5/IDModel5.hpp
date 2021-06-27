@@ -21,7 +21,7 @@
 #define IDMODEL5_HPP
 
 #include <Core/Gen5/States/IDState5.hpp>
-#include <Models/TableModel.hpp>
+#include <Forms/Models/TableModel.hpp>
 
 class IDModel5 : public TableModel<IDState5>
 {

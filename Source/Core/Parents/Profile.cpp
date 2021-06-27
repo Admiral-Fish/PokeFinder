@@ -18,7 +18,7 @@
  */
 
 #include "Profile.hpp"
-#include <Enum/Game.hpp>
+#include <Core/Enum/Game.hpp>
 
 Profile::Profile() : name("-"), version(Game::Emerald), tid(12345), sid(54321)
 {

@@ -21,7 +21,7 @@
 #include "ui_SeedTime3.h"
 #include <Core/Gen3/Tools/SeedTimeCalculator3.hpp>
 #include <Core/RNG/LCRNG.hpp>
-#include <Models/Gen3/SeedTimeModel3.hpp>
+#include <Forms/Models/Gen3/SeedTimeModel3.hpp>
 #include <QSettings>
 
 SeedTime3::SeedTime3(QWidget *parent) : QWidget(parent), ui(new Ui::SeedTime3)

@@ -1,6 +1,6 @@
-project(Core)
+project(PokeFinderCore)
 
-set(CMAKE_INCLUDE_CURRENT_DIR ON)
+include_directories("${CMAKE_SOURCE_DIR}/Externals/nlohmann")
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -19,7 +19,7 @@ if (UNIX)
     endif ()
 endif ()
 
-add_library(Core STATIC
+add_library(PokeFinderCore STATIC
     Gen3/EncounterArea3.cpp
     Gen3/Encounters3.cpp
     Gen3/Generators/EggGenerator3.cpp

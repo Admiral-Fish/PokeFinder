@@ -27,7 +27,7 @@
 #include <Core/Parents/PersonalInfo.hpp>
 #include <Core/Util/Translator.hpp>
 #include <Forms/Gen5/Profile/ProfileManager5.hpp>
-#include <Models/Gen5/DreamRadarModel.hpp>
+#include <Forms/Models/Gen5/DreamRadarModel.hpp>
 #include <QMessageBox>
 #include <QSettings>
 #include <QThread>

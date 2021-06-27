@@ -21,7 +21,7 @@
 #define PROFILE3MODEL_HPP
 
 #include <Core/Gen3/Profile3.hpp>
-#include <Models/TableModel.hpp>
+#include <Forms/Models/TableModel.hpp>
 
 class ProfileModel3 : public TableModel<Profile3>
 {

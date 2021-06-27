@@ -21,7 +21,7 @@
 #define GAMECUBERTCMODEL_HPP
 
 #include <Core/Gen3/States/GameCubeRTCState.hpp>
-#include <Models/TableModel.hpp>
+#include <Forms/Models/TableModel.hpp>
 
 class GameCubeRTCModel : public TableModel<GameCubeRTCState>
 {

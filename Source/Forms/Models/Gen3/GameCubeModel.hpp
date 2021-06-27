@@ -22,7 +22,7 @@
 
 #include <Core/Enum/Method.hpp>
 #include <Core/Gen3/States/GameCubeState.hpp>
-#include <Models/TableModel.hpp>
+#include <Forms/Models/TableModel.hpp>
 
 class GameCubeGeneratorModel : public TableModel<GameCubeState>
 {

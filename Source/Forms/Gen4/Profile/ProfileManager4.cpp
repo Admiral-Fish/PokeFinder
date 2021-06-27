@@ -21,7 +21,7 @@
 #include "ui_ProfileManager4.h"
 #include <Core/Parents/ProfileLoader.hpp>
 #include <Forms/Gen4/Profile/ProfileEditor4.hpp>
-#include <Models/Gen4/ProfileModel4.hpp>
+#include <Forms/Models/Gen4/ProfileModel4.hpp>
 #include <QMessageBox>
 #include <QSettings>
 

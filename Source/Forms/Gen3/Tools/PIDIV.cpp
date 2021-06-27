@@ -20,7 +20,7 @@
 #include "PIDIV.hpp"
 #include "ui_PIDIV.h"
 #include <Core/Gen3/Tools/PIDIVCalculator.hpp>
-#include <Models/Gen3/PIDIVModel.hpp>
+#include <Forms/Models/Gen3/PIDIVModel.hpp>
 #include <QClipboard>
 #include <QSettings>
 

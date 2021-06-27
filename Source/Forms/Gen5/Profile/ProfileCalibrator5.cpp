@@ -27,7 +27,7 @@
 #include <Core/Util/Translator.hpp>
 #include <Forms/Gen5/Profile/ProfileEditor5.hpp>
 #include <Forms/Util/IVCalculator.hpp>
-#include <Models/Gen5/ProfileSearcherModel5.hpp>
+#include <Forms/Models/Gen5/ProfileSearcherModel5.hpp>
 #include <QMessageBox>
 #include <QSettings>
 #include <QThread>

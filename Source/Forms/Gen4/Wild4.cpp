@@ -32,7 +32,7 @@
 #include <Core/Util/Translator.hpp>
 #include <Forms/Gen4/Profile/ProfileManager4.hpp>
 #include <Forms/Gen4/Tools/SeedtoTime4.hpp>
-#include <Models/Gen4/WildModel4.hpp>
+#include <Forms/Models/Gen4/WildModel4.hpp>
 #include <QSettings>
 #include <QThread>
 #include <QTimer>

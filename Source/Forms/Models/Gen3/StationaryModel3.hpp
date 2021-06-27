@@ -21,7 +21,7 @@
 #define STATIONARY3MODEL_HPP
 
 #include <Core/Parents/States/State.hpp>
-#include <Models/TableModel.hpp>
+#include <Forms/Models/TableModel.hpp>
 
 class StationaryGeneratorModel3 : public TableModel<State>
 {

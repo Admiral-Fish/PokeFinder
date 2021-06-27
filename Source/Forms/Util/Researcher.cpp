@@ -24,7 +24,7 @@
 #include <Core/RNG/MT.hpp>
 #include <Core/RNG/SFMT.hpp>
 #include <Core/RNG/TinyMT.hpp>
-#include <Models/Util/ResearcherModel.hpp>
+#include <Forms/Models/Util/ResearcherModel.hpp>
 #include <QSettings>
 #include <array>
 #include <functional>

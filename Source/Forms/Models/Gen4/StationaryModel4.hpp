@@ -22,7 +22,7 @@
 
 #include <Core/Parents/States/State.hpp>
 #include <Core/Parents/States/StationaryState.hpp>
-#include <Models/TableModel.hpp>
+#include <Forms/Models/TableModel.hpp>
 
 enum Method : u8;
 

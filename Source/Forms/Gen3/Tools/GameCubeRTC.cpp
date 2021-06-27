@@ -20,7 +20,7 @@
 #include "GameCubeRTC.hpp"
 #include "ui_GameCubeRTC.h"
 #include <Core/Gen3/Searchers/RTCSearcher.hpp>
-#include <Models/Gen3/GameCubeRTCModel.hpp>
+#include <Forms/Models/Gen3/GameCubeRTCModel.hpp>
 #include <QSettings>
 #include <QThread>
 #include <QTimer>

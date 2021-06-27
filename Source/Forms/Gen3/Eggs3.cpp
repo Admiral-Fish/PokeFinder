@@ -27,7 +27,7 @@
 #include <Core/Util/Nature.hpp>
 #include <Core/Util/Translator.hpp>
 #include <Forms/Gen3/Profile/ProfileManager3.hpp>
-#include <Models/Gen3/EggModel3.hpp>
+#include <Forms/Models/Gen3/EggModel3.hpp>
 #include <QMessageBox>
 #include <QSettings>
 
