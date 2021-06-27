@@ -19,7 +19,7 @@
 
 #include "ProfileLoader.hpp"
 #include <fstream>
-#include <json.hpp>
+#include <nlohmann/json.hpp>
 #include <sstream>
 
 using json = nlohmann::json;
