@@ -134,6 +134,56 @@ QModelIndex ResearcherModel::search(const QString &string, u64 result, int row)
         column = flag ? 5 : 3;
         getResult = [](const ResearcherState &state) { return state.getLow16(); };
     }
+    else if (string == tr("Custom 1"))
+    {
+        column = flag ? 6 : 4;
+        getResult = [](const ResearcherState &state) { return state.getCustom(0); };
+    }
+    else if (string == tr("Custom 2"))
+    {
+        column = flag ? 7 : 5;
+        getResult = [](const ResearcherState &state) { return state.getCustom(1); };
+    }
+    else if (string == tr("Custom 3"))
+    {
+        column = flag ? 8 : 6;
+        getResult = [](const ResearcherState &state) { return state.getCustom(2); };
+    }
+    else if (string == tr("Custom 4"))
+    {
+        column = flag ? 9 : 7;
+        getResult = [](const ResearcherState &state) { return state.getCustom(3); };
+    }
+    else if (string == tr("Custom 5"))
+    {
+        column = flag ? 10 : 8;
+        getResult = [](const ResearcherState &state) { return state.getCustom(4); };
+    }
+    else if (string == tr("Custom 6"))
+    {
+        column = flag ? 11 : 9;
+        getResult = [](const ResearcherState &state) { return state.getCustom(5); };
+    }
+    else if (string == tr("Custom 7"))
+    {
+        column = flag ? 12 : 10;
+        getResult = [](const ResearcherState &state) { return state.getCustom(6); };
+    }
+    else if (string == tr("Custom 8"))
+    {
+        column = flag ? 13 : 11;
+        getResult = [](const ResearcherState &state) { return state.getCustom(7); };
+    }
+    else if (string == tr("Custom 9"))
+    {
+        column = flag ? 14 : 12;
+        getResult = [](const ResearcherState &state) { return state.getCustom(8); };
+    }
+    else if (string == tr("Custom 10"))
+    {
+        column = flag ? 15 : 13;
+        getResult = [](const ResearcherState &state) { return state.getCustom(9); };
+    }
 
     for (; row < rowCount(); row++)
     {

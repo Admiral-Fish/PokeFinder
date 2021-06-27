@@ -2560,13 +2560,6 @@
       <string>Search</string>
      </property>
      <layout class="QGridLayout" name="gridLayout_4">
-      <item row="0" column="0">
-       <widget class="QLabel" name="labelSearchSeed">
-        <property name="text">
-         <string>Search Seed</string>
-        </property>
-       </widget>
-      </item>
       <item row="0" column="1" colspan="2">
        <widget class="TextBox" name="textBoxSearch"/>
       </item>
@@ -2585,6 +2578,56 @@
         <item>
          <property name="text">
           <string>16Bit Low</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Custom 1</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Custom 2</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Custom 3</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Custom 4</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Custom 5</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Custom 6</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Custom 7</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Custom 8</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Custom 9</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Custom 10</string>
          </property>
         </item>
        </widget>
@@ -2612,6 +2655,16 @@
         </property>
         <property name="text">
          <string>Next</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0">
+       <widget class="QCheckBox" name="checkBoxSearch">
+        <property name="text">
+         <string>Value (Hex)</string>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -2663,6 +2716,7 @@
   <tabstop>textBoxMaxAdvances</tabstop>
   <tabstop>textBoxSeed</tabstop>
   <tabstop>pushButtonGenerate</tabstop>
+  <tabstop>checkBoxSearch</tabstop>
   <tabstop>textBoxSearch</tabstop>
   <tabstop>comboBoxSearch</tabstop>
   <tabstop>pushButtonSearch</tabstop>

@@ -432,9 +432,13 @@ void Researcher::selectionIndexChanged(int index)
     if (index >= 0)
     {
         ui->comboBoxSearch->clear();
-        QStringList items = index != 1
-            ? QStringList() << tr("32Bit") << tr("16Bit High") << tr("16Bit Low")
-            : QStringList() << tr("64Bit") << tr("32Bit High") << tr("32Bit Low") << tr("16Bit High") << tr("16Bit Low");
+        QStringList items
+            = { tr("32Bit"),    tr("16Bit High"), tr("16Bit Low"), tr("Custom 1"), tr("Custom 2"), tr("Custom 3"), tr("Custom 4"),
+                tr("Custom 5"), tr("Custom 6"),   tr("Custom 7"),  tr("Custom 8"), tr("Custom 9"), tr("Custom 10") };
+        if (index == 1)
+        {
+            items.prepend(tr("64Bit"));
+        }
         ui->comboBoxSearch->addItems(items);
     }
 }
@@ -447,7 +451,7 @@ void Researcher::search()
     }
 
     QString string = ui->comboBoxSearch->currentText();
-    u64 result = ui->textBoxSearch->text().toULongLong(nullptr, 16);
+    u64 result = ui->textBoxSearch->text().toULongLong(nullptr, ui->checkBoxSearch->isChecked() ? 16 : 10);
 
     QModelIndex end = model->search(string, result, 0);
     if (end.isValid())
