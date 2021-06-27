@@ -45,6 +45,16 @@ public:
         this->letter = letter;
     }
     
+    void setLetterIndex(u8 letterIndex)
+    {
+        this->letterIndex = letterIndex;
+    }
+
+    u8 getLetterIndex() const
+    {
+        return letterIndex;
+    }
+
     // Lead getLead() const;
     // void setLead(Lead lead);
     // u8 getEncounterSlot() const;
@@ -55,7 +65,7 @@ public:
 protected:
     std::string letter;
     // Lead lead;
-    // u8 encounterSlot;
+    u8 letterIndex;
     // Encounter encounter;
 };
 

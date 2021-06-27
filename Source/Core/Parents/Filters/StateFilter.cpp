@@ -20,6 +20,7 @@
 #include "StateFilter.hpp"
 #include <Core/Parents/States/State.hpp>
 #include <Core/Parents/States/WildState.hpp>
+#include <Core/Parents/States/UnownState.hpp>
 
 StateFilter::StateFilter(u8 gender, u8 ability, u8 shiny, bool skip, const std::array<u8, 6> &min, const std::array<u8, 6> &max,
                          const std::vector<bool> &natures, const std::vector<bool> &powers, const std::vector<bool> &encounters) :
@@ -90,4 +91,9 @@ bool StateFilter::compareHiddenPower(const State &state) const
 bool StateFilter::compareEncounterSlot(const WildState &state) const
 {
     return skip || encounters[state.getEncounterSlot()];
+}
+
+bool StateFilter::compareLetter(const UnownState &state) const
+{
+    return skip || encounters[state.getLetterIndex()];
 }

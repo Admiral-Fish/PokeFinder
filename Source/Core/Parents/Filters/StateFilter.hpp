@@ -26,6 +26,7 @@
 
 class State;
 class WildState;
+class UnownState;
 
 class StateFilter
 {
@@ -43,6 +44,7 @@ public:
     bool compareIV(const State &state) const;
     bool compareHiddenPower(const State &state) const;
     bool compareEncounterSlot(const WildState &state) const;
+    bool compareLetter(const UnownState &state) const;
 
 private:
     std::array<u8, 6> min;

@@ -22,19 +22,14 @@
 #include <Core/RNG/LCRNG.hpp>
 #include <algorithm>
 #include <array>
-#include <iostream>
 
 UnownSearcher3::UnownSearcher3(u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter) :
     UnownSearcher(tid, sid, genderRatio, method, filter), cache(method), searching(false), progress(0)
 {
-    // std::cout << "created\n";
-    // std::cout.flush();
 }
 
 void UnownSearcher3::startSearch(const std::array<u8, 6> &min, const std::array<u8, 6> &max)
 {
-    // std::cout << "started\n";
-    // std::cout.flush();
     searching = true;
 
     for (u8 hp = min[0]; hp <= max[0]; hp++)
@@ -68,15 +63,11 @@ void UnownSearcher3::startSearch(const std::array<u8, 6> &min, const std::array<
 
 void UnownSearcher3::cancelSearch()
 {
-    std::cout << "cancel\n";
-    std::cout.flush();
     searching = false;
 }
 
 std::vector<UnownState> UnownSearcher3::getResults()
 {
-    // std::cout << "get results\n";
-    // std::cout.flush();
     std::lock_guard<std::mutex> guard(mutex);
     auto data = std::move(results);
     return data;
@@ -96,6 +87,17 @@ std::string UnownSearcher3::getLetter(u32 pid) const
     val4 = pid & 3;
     val = (val1 << 6) | (val2 << 4) | (val3 << 2) | val4;
     return letters[val % 28];
+}
+
+u8 UnownSearcher3::getLetterIndex(u32 pid) const
+{
+    u32 val1, val2, val3, val4, val;
+    val1 = (pid >> 24) & 3;
+    val2 = (pid >> 16) & 3;
+    val3 = (pid >> 8) & 3;
+    val4 = pid & 3;
+    val = (val1 << 6) | (val2 << 4) | (val3 << 2) | val4;
+    return val % 28;
 }
 
 std::string UnownSearcher3::getTargetLetter(u8 location, u8 slot) const
@@ -305,8 +307,6 @@ std::vector<UnownState> UnownSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8
     auto seeds = cache.recoverLower16BitsIV(hp, atk, def, spa, spd, spe);
     for (const u32 val : seeds)
     {
-        // std::cout << val << "\n";
-        // std::cout.flush();
 
         // Use for loop to check both normal and sister spread
         for (const bool flag : { false, true })
@@ -326,16 +326,10 @@ std::vector<UnownState> UnownSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8
             u16 high = rng.nextUShort();
 
             state.setPID(high, low);
-    //        state.setAbility(low & 1);
-    //        state.setGender(low & 255, genderRatio);
-    //        state.setNature(state.getPID() % 25);
-    //        state.setShiny(tsv, high ^ low, 8);
 
             u32 seed;
 
             std::array<std::string,7> letterslots;
-            // std::cout << "started big loop\n";
-            // std::cout.flush();
             bool sflag = true;
             do
             {
@@ -365,8 +359,6 @@ std::vector<UnownState> UnownSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8
                     u32 pidtest2;
                     std::string targetLetter = getTargetLetter(getLocation(getLetter(state.getPID())), slot2);
                     u16 hightest2,lowtest2;
-                    // std::cout << "start of letter loop\n";
-                    // std::cout.flush();
                     while (letter != targetLetter)
                     {
                         hightest2 = go2.nextUShort();
@@ -374,26 +366,21 @@ std::vector<UnownState> UnownSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8
                         pidtest2 = (hightest2 << 16) | lowtest2;
                         letter = getLetter(pidtest2);
                     }
-                    // std::cout << "end of letter loop\n";
-                    // std::cout.flush();
                     state.setLetter(letter);
+                    state.setLetterIndex(getLetterIndex(pidtest2));
                     state.setPID(hightest2, lowtest2);
                     state.setAbility(lowtest2 & 1);
                     state.setGender(lowtest2 & 255, genderRatio);
                     state.setNature(state.getPID() % 25);
                     state.setShiny<8>(tsv, hightest2 ^ lowtest2);
-                    // if (!filter.comparePID(state))
-                    // {
-                    //     rng.advance(2);
-                    //     continue;
-                    // }
                     state.setSeed(stateseed);
-                    states.emplace_back(state);
+                    if (filter.compareState(state) && filter.compareLetter(state))
+                    {
+                        states.emplace_back(state);
+                    }
                 }
                 rng.advance(2);
             } while (sflag & searching);
-            // std::cout << "ended big loop\n";
-            // std::cout.flush();
 
         }
     }

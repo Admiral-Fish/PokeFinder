@@ -28,6 +28,7 @@ set(PROJECT_QRC
 set(PROJECT_UI	
     Controls/EggSettings.ui
     Controls/Filter.ui
+    Controls/UnownFilter.ui
     Controls/IVFilter.ui
     Gen3/Eggs3.ui
     Gen3/GameCube.ui
@@ -81,6 +82,7 @@ set(PROJECT_SOURCES
     Controls/DateTimeEdit.cpp
     Controls/EggSettings.cpp
     Controls/Filter.cpp
+    Controls/UnownFilter.cpp
     Controls/GraphicsPixmapItem.cpp
     Controls/IVFilter.cpp
     Controls/Label.cpp

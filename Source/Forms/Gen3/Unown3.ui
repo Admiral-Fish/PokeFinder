@@ -297,7 +297,7 @@
          </property>
          <layout class="QGridLayout" name="gridLayout">
           <item row="0" column="0" rowspan="2">
-           <widget class="Filter" name="filterGenerator" native="true"/>
+           <widget class="UnownFilter" name="filterGenerator" native="true"/>
           </item>
          </layout>
         </widget>
@@ -385,7 +385,7 @@
          </property>
          <layout class="QGridLayout" name="gridLayout_2">
           <item row="0" column="0" rowspan="2">
-           <widget class="Filter" name="filterSearcher" native="true"/>
+           <widget class="UnownFilter" name="filterSearcher" native="true"/>
           </item>
          </layout>
         </widget>
@@ -499,9 +499,9 @@
    <header>Forms/Controls/TableView.hpp</header>
   </customwidget>
   <customwidget>
-   <class>Filter</class>
+   <class>UnownFilter</class>
    <extends>QWidget</extends>
-   <header>Forms/Controls/Filter.hpp</header>
+   <header>Forms/Controls/UnownFilter.hpp</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

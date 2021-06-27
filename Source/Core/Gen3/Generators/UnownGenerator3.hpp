@@ -38,6 +38,7 @@ public:
     UnownGenerator3() = default;
     UnownGenerator3(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter);
     std::string getLetter(u32 pid) const;
+    u8 getLetterIndex(u32 pid) const;
     std::string getTargetLetter(u8 location, u8 slot) const;
     std::vector<UnownState> generate(u32 seed, u8 location) const;
 };

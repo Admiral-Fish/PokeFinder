@@ -41,6 +41,7 @@ public:
     void startSearch(const std::array<u8, 6> &min, const std::array<u8, 6> &max);
     void cancelSearch();
     std::string getLetter(u32 pid) const;
+    u8 getLetterIndex(u32 pid) const;
     std::string getTargetLetter(u8 location, u8 slot) const;
     u32 getLocation(std::string letter) const;
     std::array<std::string,7> getLetterSlots(u32 slot) const;

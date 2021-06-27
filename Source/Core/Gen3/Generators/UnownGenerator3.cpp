@@ -46,6 +46,17 @@ std::string UnownGenerator3::getLetter(u32 pid) const
     return letters[val % 28];
 }
 
+u8 UnownGenerator3::getLetterIndex(u32 pid) const
+{
+    u32 val1, val2, val3, val4, val;
+    val1 = (pid >> 24) & 3;
+    val2 = (pid >> 16) & 3;
+    val3 = (pid >> 8) & 3;
+    val4 = pid & 3;
+    val = (val1 << 6) | (val2 << 4) | (val3 << 2) | val4;
+    return val % 28;
+}
+
 std::string UnownGenerator3::getTargetLetter(u8 location, u8 slot) const
 {
     switch (location)
@@ -112,6 +123,7 @@ std::vector<UnownState> UnownGenerator3::generate(u32 seed, u8 location) const
         } while (letter != targetLetter);
 
         state.setLetter(letter);
+        state.setLetterIndex(getLetterIndex(pid));
         state.setNature(pid%25);
         state.setPID(pid);
         state.setAbility(pid & 1);
@@ -141,7 +153,7 @@ std::vector<UnownState> UnownGenerator3::generate(u32 seed, u8 location) const
         state.setIVs(iv1, iv2);
         state.calculateHiddenPower();
 
-        if (filter.compareState(state))
+        if (filter.compareState(state) && filter.compareLetter(state))
         {
             states.emplace_back(state);
         }
