@@ -26,7 +26,14 @@
    <string>AGuAcaTE</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="0" column="0" colspan="3">
+   <item row="1" column="0">
+    <widget class="QLabel" name="label">
+     <property name="text">
+      <string>Current Advance:</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="0" colspan="5">
     <widget class="QGroupBox" name="groupBox">
      <property name="maximumSize">
       <size>
@@ -69,20 +76,23 @@
      </layout>
     </widget>
    </item>
-   <item row="1" column="1">
-    <widget class="TextBox" name="textBoxAdvance"/>
+   <item row="1" column="3">
+    <widget class="TextBox" name="textBoxTargetAdvance"/>
    </item>
-   <item row="1" column="2">
+   <item row="1" column="4">
     <widget class="QPushButton" name="pushButtonRun">
      <property name="text">
       <string>Run</string>
      </property>
     </widget>
    </item>
-   <item row="1" column="0">
-    <widget class="QLabel" name="label">
+   <item row="1" column="1">
+    <widget class="TextBox" name="textBoxCurrentAdvance"/>
+   </item>
+   <item row="1" column="2">
+    <widget class="QLabel" name="label_2">
      <property name="text">
-      <string>Advances To Target:</string>
+      <string>Target Advance:</string>
      </property>
     </widget>
    </item>

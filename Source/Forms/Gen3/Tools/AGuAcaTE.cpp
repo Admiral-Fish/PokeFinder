@@ -27,7 +27,8 @@ AGuAcaTE::AGuAcaTE(QWidget *parent) : QWidget(parent), ui(new Ui::AGuAcaTE)
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
     setAttribute(Qt::WA_DeleteOnClose);
-    ui->textBoxAdvance->setValues(InputType::Advance32Bit);
+    ui->textBoxCurrentAdvance->setValues(InputType::Advance32Bit);
+    ui->textBoxTargetAdvance->setValues(InputType::Advance32Bit);
     connect(ui->pushButtonRun, &QPushButton::clicked, this, &AGuAcaTE::run);
 }
 
@@ -45,7 +46,7 @@ void AGuAcaTE::run()
     ui->labelDifference->setText("");
     ui->labelClosest->setText("");
     u16 target = 29279;
-    u32 advances = ui->textBoxAdvance->getUInt()+1;
+    u32 advances = ui->textBoxTargetAdvance->getUInt()-ui->textBoxCurrentAdvance->getUInt()+1;
     u32 closestCycle = (advances-target)/2792;
     u32 difference = advances - (target + closestCycle*2792);
     u32 highestBound = 4*difference/27;
