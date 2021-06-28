@@ -30,11 +30,46 @@ public:
     {
     }
 
-    void advance(u32 advances)
+    u32 modpow32(u32 base, u32 exp)
     {
-        for (u32 advance = 0; advance < advances; advance++)
+        u32 result = 1;
+        while (exp > 0)
         {
-            next();
+            if (exp & 1)
+            result = result * base;
+            base = base * base;
+            exp >>= 1;
+        }
+        return result;
+    }
+
+    void advance(u32 advances, bool lcgn = false)
+    {
+        if (lcgn)
+        {
+            u32 ex = advances - 1;
+            u32 q = mult;
+            u32 factor = 1;
+            u32 sum = 0;
+            while (ex > 0)
+            {
+                if (!(ex & 1))
+                {
+                    sum = sum + (factor * modpow32(q, ex));
+                    ex--;
+                }
+                factor *= (1 + q);
+                q *= q;
+                ex /= 2;
+            }
+            seed = (seed * modpow32(mult, advances)) + (sum + factor) * add;
+        }
+        else
+        {
+            for (u32 advance = 0; advance < advances; advance++)
+            {
+                next();
+            }
         }
     }
 

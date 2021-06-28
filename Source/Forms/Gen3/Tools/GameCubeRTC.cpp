@@ -61,6 +61,11 @@ void GameCubeRTC::boxToggled(bool on)
     ui->textBoxMaxAdvance->setEnabled(!on);
 }
 
+void GameCubeRTC::agetoToggled(bool on)
+{
+    ui->textBoxMinAdvance->setEnabled(!on);
+}
+
 void GameCubeRTC::setupModels()
 {
     model = new GameCubeRTCModel(ui->tableView);
@@ -73,6 +78,7 @@ void GameCubeRTC::setupModels()
 
     connect(ui->pushButtonSearch, &QPushButton::clicked, this, &GameCubeRTC::search);
     connect(ui->checkBoxBox, &QCheckBox::toggled, this, &GameCubeRTC::boxToggled);
+    connect(ui->checkBoxAgeto, &QCheckBox::toggled, this, &GameCubeRTC::agetoToggled);
 
     QSettings setting;
     setting.beginGroup("gamecubeRTC");
@@ -102,7 +108,7 @@ void GameCubeRTC::search()
 
     auto *searcher = new RTCSearcher();
 
-    auto *thread = QThread::create([=] { searcher->startSearch(initialSeed, targetSeed, initialAdvances, maxAdvances, end, ui->checkBoxBox->isChecked()); });
+    auto *thread = QThread::create([=] { searcher->startSearch(initialSeed, targetSeed, initialAdvances, maxAdvances, end, ui->checkBoxBox->isChecked(), ui->checkBoxAgeto->isChecked()); });
     connect(thread, &QThread::finished, thread, &QThread::deleteLater);
     connect(ui->pushButtonCancel, &QPushButton::clicked, [searcher] { searcher->cancelSearch(); });
 
