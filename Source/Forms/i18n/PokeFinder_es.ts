@@ -408,6 +408,11 @@
     </message>
     <message>
         <location filename="../Models/Gen5/DreamRadarModel.hpp" line="37"/>
+        <source>Key Advances</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/DreamRadarModel.hpp" line="37"/>
         <source>Advances</source>
         <translation type="unfinished"></translation>
     </message>
@@ -503,6 +508,11 @@
         <location filename="../Models/Gen5/DreamRadarModel.hpp" line="52"/>
         <source>Seed</source>
         <translation type="unfinished">Seed</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen5/DreamRadarModel.hpp" line="37"/>
+        <source>Key Advances</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Models/Gen5/DreamRadarModel.hpp" line="52"/>

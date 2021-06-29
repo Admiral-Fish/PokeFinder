@@ -65,7 +65,7 @@ void DreamRadarSearcher::cancelSearch()
     searching = false;
 }
 
-std::vector<SearcherState5<State>> DreamRadarSearcher::getResults()
+std::vector<SearcherState5<DreamRadarState>> DreamRadarSearcher::getResults()
 {
     std::lock_guard<std::mutex> lock(mutex);
     auto data = std::move(results);
@@ -111,7 +111,7 @@ void DreamRadarSearcher::search(DreamRadarGenerator generator, const Date &start
                             auto states = generator.generate(seed, profile.getMemoryLink());
                             if (!states.empty())
                             {
-                                std::vector<SearcherState5<State>> displayStates;
+                                std::vector<SearcherState5<DreamRadarState>> displayStates;
                                 displayStates.reserve(states.size());
 
                                 DateTime dt(date, Time(hour, minute, second));

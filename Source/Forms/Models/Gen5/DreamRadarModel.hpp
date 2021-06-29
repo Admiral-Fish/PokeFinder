@@ -21,10 +21,10 @@
 #define DREAMRADARMODEL_HPP
 
 #include <Core/Gen5/States/SearcherState5.hpp>
-#include <Core/Parents/States/State.hpp>
+#include <Core/Gen5/States/DreamRadarState.hpp>
 #include <Forms/Models/TableModel.hpp>
 
-class DreamRadarGeneratorModel5 : public TableModel<State>
+class DreamRadarGeneratorModel5 : public TableModel<DreamRadarState>
 {
     Q_OBJECT
 public:
@@ -34,11 +34,11 @@ public:
     QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
 
 private:
-    QStringList header = { tr("Advances"), tr("Needle"), tr("PID"), tr("Shiny"), tr("Nature"), tr("Ability"), tr("HP"),    tr("Atk"),
-                           tr("Def"),      tr("SpA"),    tr("SpD"), tr("Spe"),   tr("Hidden"), tr("Power"),   tr("Gender") };
+    QStringList header = { tr("Key Advances"), tr("Advances"), tr("Needle"), tr("PID"), tr("Shiny"), tr("Nature"), tr("Ability"), tr("HP"),
+                           tr("Atk"),    tr("Def"),      tr("SpA"),    tr("SpD"), tr("Spe"),   tr("Hidden"), tr("Power"),   tr("Gender") };
 };
 
-class DreamRadarSearcherModel5 : public TableModel<SearcherState5<State>>
+class DreamRadarSearcherModel5 : public TableModel<SearcherState5<DreamRadarState>>
 {
     Q_OBJECT
 public:
@@ -49,9 +49,9 @@ public:
     QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
 
 private:
-    QStringList header = { tr("Seed"),   tr("Advances"), tr("PID"),    tr("Shiny"),     tr("Nature"), tr("Ability"),
-                           tr("HP"),     tr("Atk"),      tr("Def"),    tr("SpA"),       tr("SpD"),    tr("Spe"),
-                           tr("Hidden"), tr("Power"),    tr("Gender"), tr("Date/Time"), tr("Timer0"), tr("Buttons") };
+    QStringList header = { tr("Seed"),   tr("Key Advances"), tr("Advances"), tr("PID"),    tr("Shiny"),     tr("Nature"),
+                           tr("Ability"), tr("HP"),     tr("Atk"),      tr("Def"),    tr("SpA"),       tr("SpD"),
+                           tr("Spe"), tr("Hidden"), tr("Power"),    tr("Gender"), tr("Date/Time"), tr("Timer0"), tr("Buttons") };
 };
 
 #endif // DREAMRADARMODEL_HPP
