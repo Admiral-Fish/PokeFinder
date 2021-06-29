@@ -89,6 +89,7 @@ private slots:
     void openJirachiAdvancer();
     void openJirachiChecksum();
     void openPIDtoIV();
+    void openPIDtoIVWild();
     void openPokeSpot();
     void openProfileManager3();
     void openSeedtoTime3();

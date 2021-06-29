@@ -31,6 +31,7 @@
 #include <Forms/Gen3/Tools/JirachiAdvancer.hpp>
 #include <Forms/Gen3/Tools/JirachiChecksum.hpp>
 #include <Forms/Gen3/Tools/PIDIV.hpp>
+#include <Forms/Gen3/Tools/PIDIVWild.hpp>
 #include <Forms/Gen3/Tools/PokeSpot.hpp>
 #include <Forms/Gen3/Tools/SeedTime3.hpp>
 #include <Forms/Gen3/Tools/SpindaPainter.hpp>
@@ -108,6 +109,7 @@ void MainWindow::setupModels()
     connect(ui->actionJirachiPattern, &QAction::triggered, this, &MainWindow::openJirachiPattern);
     connect(ui->actionJirachiAdvancer, &QAction::triggered, this, &MainWindow::openJirachiAdvancer);
     connect(ui->actionPIDtoIV, &QAction::triggered, this, &MainWindow::openPIDtoIV);
+    connect(ui->actionPIDtoIVWild, &QAction::triggered, this, &MainWindow::openPIDtoIVWild);
     connect(ui->actionPokeSpot, &QAction::triggered, this, &MainWindow::openPokeSpot);
     connect(ui->actionProfileManager3, &QAction::triggered, this, &MainWindow::openProfileManager3);
     connect(ui->actionSeedtoTime3, &QAction::triggered, this, &MainWindow::openSeedtoTime3);
@@ -348,6 +350,13 @@ void MainWindow::openPIDtoIV()
     auto *pidToIV = new PIDIV();
     pidToIV->show();
     pidToIV->raise();
+}
+
+void MainWindow::openPIDtoIVWild()
+{
+    auto *pidToIVWild = new PIDIVWild();
+    pidToIVWild->show();
+    pidToIVWild->raise();
 }
 
 void MainWindow::openPokeSpot()

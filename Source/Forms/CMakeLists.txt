@@ -43,6 +43,7 @@ set(PROJECT_UI
     Gen3/Tools/JirachiAdvancer.ui
     Gen3/Tools/JirachiChecksum.ui
     Gen3/Tools/PIDIV.ui
+    Gen3/Tools/PIDIVWild.ui
     Gen3/Tools/PokeSpot.ui
     Gen3/Tools/SeedTime3.ui
     Gen3/Tools/SpindaPainter.ui
@@ -101,6 +102,7 @@ set(PROJECT_SOURCES
     Gen3/Tools/JirachiAdvancer.cpp
     Gen3/Tools/JirachiChecksum.cpp
     Gen3/Tools/PIDIV.cpp
+    Gen3/Tools/PIDIVWild.cpp
     Gen3/Tools/PokeSpot.cpp
     Gen3/Tools/SeedTime3.cpp
     Gen3/Tools/SpindaPainter.cpp

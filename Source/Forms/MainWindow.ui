@@ -208,6 +208,7 @@
     <addaction name="menuGameCube"/>
     <addaction name="actionIVtoPID3"/>
     <addaction name="actionPIDtoIV"/>
+    <addaction name="actionPIDtoIVWild"/>
     <addaction name="actionProfileManager3"/>
     <addaction name="actionSeedtoTime3"/>
     <addaction name="actionSpindaPainter"/>
@@ -342,6 +343,11 @@
   <action name="actionJirachiAdvancer">
    <property name="text">
     <string>Jirachi Advancer</string>
+   </property>
+  </action>
+  <action name="actionPIDtoIVWild">
+   <property name="text">
+    <string>PID to IV Wild</string>
    </property>
   </action>
  </widget>

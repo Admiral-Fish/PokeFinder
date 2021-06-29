@@ -72,6 +72,56 @@ namespace PIDIVCalculator
             return states;
         }
 
+        std::vector<PIDIVState> calcMethod124Wild(u32 pid)
+        {
+            std::vector<PIDIVState> states;
+
+            RNGCache cache(Method::Method1);
+
+            auto seeds = cache.recoverLower16BitsPID(pid);
+            for (const u32 seed : seeds)
+            {
+                PokeRNGR first(seed);
+                u32 originSeed = first.next();
+
+                PokeRNGR backward(originSeed);
+                u32 testPID;
+                u32 slot;
+                u32 testPIDHigh = seed >> 16;
+                u32 nextPIDLow = backward.nextUShort();
+                
+                do
+                {
+                    if ((testPIDHigh % 25) == (pid % 25))
+                    {
+                        slot = backward.getSeed() * 0xeeb9eb65 + 0xa3561a1;
+                        u32 frameSeed = slot * 0xdc6c95d9 + 0x4d3cb126;
+                        PokeRNG forward(originSeed);
+                        forward.advance(2); // PID
+                        u16 iv1 = forward.nextUShort(); // Method H1/H4
+                        u16 iv2 = forward.nextUShort(); // Method H1/H2
+                        u16 iv3 = forward.nextUShort(); // Method H2/H4
+
+                        PIDIVState state1(frameSeed, Method::Method1);
+                        PIDIVState state2(frameSeed, Method::Method2);
+                        PIDIVState state3(frameSeed, Method::Method4);
+                        setIVs(state1, iv1, iv2);
+                        setIVs(state2, iv2, iv3);
+                        setIVs(state3, iv1, iv3);
+                        states.emplace_back(state1);
+                        states.emplace_back(state2);
+                        states.emplace_back(state3);
+                    }
+                    testPID = (testPIDHigh << 16) | nextPIDLow;
+                    testPIDHigh = backward.nextUShort();
+                    nextPIDLow = backward.nextUShort();
+
+                } while ((testPID % 25) != (pid % 25));  
+            }
+
+            return states;
+        }
+
         std::vector<PIDIVState> calcMethodXDColo(u32 pid)
         {
             std::vector<PIDIVState> states;
@@ -186,6 +236,17 @@ namespace PIDIVCalculator
         states.insert(states.end(), results1.begin(), results1.end());
         states.insert(states.end(), results2.begin(), results2.end());
         states.insert(states.end(), results3.begin(), results3.end());
+
+        return states;
+    }
+
+    std::vector<PIDIVState> calculateWildIVs(u32 pid)
+    {
+        std::vector<PIDIVState> states;
+
+        auto results = calcMethod124Wild(pid);
+
+        states.insert(states.end(), results.begin(), results.end());
 
         return states;
     }

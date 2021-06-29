@@ -17,16 +17,34 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef PIDIVCALCULATOR_HPP
-#define PIDIVCALCULATOR_HPP
+#ifndef PIDTOIVSWILD_HPP
+#define PIDTOIVSWILD_HPP
 
-#include <Core/Gen3/States/PIDIVState.hpp>
-#include <vector>
+#include <Core/Util/Global.hpp>
+#include <QWidget>
 
-namespace PIDIVCalculator
+class PIDIVModel;
+
+namespace Ui
 {
-    std::vector<PIDIVState> calculateIVs(u32 pid);
-    std::vector<PIDIVState> calculateWildIVs(u32 pid);
+    class PIDIVWild;
+}
+
+class PIDIVWild : public QWidget
+{
+    Q_OBJECT
+public:
+    explicit PIDIVWild(QWidget *parent = nullptr);
+    ~PIDIVWild() override;
+
+private:
+    Ui::PIDIVWild *ui;
+    PIDIVModel *model = nullptr;
+
+    void setupModels();
+
+private slots:
+    void generate();
 };
 
-#endif // PIDIVCALCULATOR_HPP
+#endif // PIDTOIVSWILD_HPP
