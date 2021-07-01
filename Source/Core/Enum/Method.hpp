@@ -49,6 +49,7 @@ enum Method : u8
     FRLGBred,
     FRLGBredSplit,
     FRLGBredAlternate,
+    FRLGBredMixed,
     MethodJ,
     MethodK,
     Manaphy,
