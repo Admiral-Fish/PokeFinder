@@ -145,13 +145,13 @@ std::vector<GameCubeState> GameCubeGenerator::generateAgeto0Difference(u32 seed)
     std::vector<GameCubeState> states;
 
     XDRNG rng(seed);
-    rng.advance(initialAdvances + offset + 29278);
+    rng.advance(initialAdvances + 29278);
 
     // Method XD/Colo [SEED] [IVS] [IVS] [BLANK] [PID] [PID]
 
     for (u32 cnt = 0; cnt <= maxAdvances; cnt += 2792, rng.advance(2792))
     {
-        GameCubeState state(initialAdvances + cnt + 29278);
+        GameCubeState state(initialAdvances + cnt + 29278-offset);
         XDRNG go(rng.getSeed());
 
         u16 iv1 = go.nextUShort();
