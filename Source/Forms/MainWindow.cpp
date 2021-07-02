@@ -58,17 +58,27 @@
 #include <Forms/Util/Settings.hpp>
 #include <QDate>
 #include <QDesktopServices>
+#include <QFile>
 #include <QSettings>
 #include <QTimer>
 #include <QtNetwork>
 
-MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow)
+MainWindow::MainWindow(bool profile, QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
     setWindowTitle(QString("Finder ToolBox (PokeFinder)"));
 
     setupModels();
-    QTimer::singleShot(1000, this, &MainWindow::checkUpdates);
+    
+    QTimer::singleShot(1000, [this, &profile] {
+        if (profile)
+        {
+            QMessageBox message(QMessageBox::Warning, tr("Unable to locate profiles"), tr("Please update path to your profiles file to restore existing profiles."));
+            message.exec();
+        }
+
+        checkUpdates();
+    });
 }
 
 MainWindow::~MainWindow()

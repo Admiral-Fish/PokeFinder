@@ -48,7 +48,7 @@ class MainWindow : public QMainWindow
 {
     Q_OBJECT
 public:
-    explicit MainWindow(QWidget *parent = nullptr);
+    explicit MainWindow(bool profile, QWidget *parent = nullptr);
     ~MainWindow() override;
 
 private:
@@ -71,9 +71,9 @@ private:
     IDs5 *ids5 = nullptr;
 
     void setupModels();
+    void checkUpdates();
 
 private slots:
-    void checkUpdates();
     void updateProfiles(int num);
     void openStationary3();
     void openWild3();

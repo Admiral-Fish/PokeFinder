@@ -1,6 +1,6 @@
 project(PokeFinderCore)
 
-include_directories("${CMAKE_SOURCE_DIR}/Externals/nlohmann")
+include_directories("${CMAKE_SOURCE_DIR}/Externals")
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)

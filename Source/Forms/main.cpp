@@ -68,6 +68,7 @@ int main(int argc, char *argv[])
     validateSettings(setting);
 
     QString profilePath = setting.value("settings/profiles").toString();
+    bool profile = !QFile::exists(profilePath);
     ProfileLoader::init(profilePath.toStdString());
 
     // Transfer profiles to new setup
@@ -106,7 +107,7 @@ int main(int argc, char *argv[])
         QApplication::installTranslator(&translator);
     }
 
-    MainWindow w;
+    MainWindow w(profile);
     w.show();
     w.raise();
 
