@@ -130,7 +130,7 @@ EggGenerator3::EggGenerator3(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 
         break;
     case Method::FRLGBredMixed:
         iv1 = 0;
-        iv2 = 2;
+        iv2 = 0;
         inh = 2;
         // par = 0;
         break;
@@ -376,7 +376,7 @@ std::vector<EggState3> EggGenerator3::generateUpper(u32 seed, const std::vector<
 
         go.advance(this->iv1);
         u16 iv1 = go.nextUShort();
-        rng.advance(this->iv2);
+        go.advance(this->iv2);
         u16 iv2 = go.nextUShort();
         state.setIVs(iv1, iv2);
 
