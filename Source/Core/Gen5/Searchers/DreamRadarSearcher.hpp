@@ -23,7 +23,7 @@
 #include <Core/Gen5/Generators/DreamRadarGenerator.hpp>
 #include <Core/Gen5/Profile5.hpp>
 #include <Core/Gen5/States/SearcherState5.hpp>
-#include <Core/Parents/States/State.hpp>
+#include <Core/Gen5/States/DreamRadarState.hpp>
 #include <Core/Util/DateTime.hpp>
 #include <Core/Util/Global.hpp>
 #include <atomic>
@@ -36,7 +36,7 @@ public:
     explicit DreamRadarSearcher(const Profile5 &profile);
     void startSearch(const DreamRadarGenerator &generator, int threads, Date start, const Date &end);
     void cancelSearch();
-    std::vector<SearcherState5<State>> getResults();
+    std::vector<SearcherState5<DreamRadarState>> getResults();
     int getProgress() const;
 
 private:
@@ -44,7 +44,7 @@ private:
 
     bool searching;
     std::atomic<int> progress;
-    std::vector<SearcherState5<State>> results;
+    std::vector<SearcherState5<DreamRadarState>> results;
     std::mutex mutex;
 
     void search(DreamRadarGenerator generator, const Date &start, const Date &end);
