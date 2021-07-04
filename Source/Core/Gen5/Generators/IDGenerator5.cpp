@@ -35,7 +35,11 @@ std::vector<IDState5> IDGenerator5::generate(u64 seed, u32 pid, bool checkPID)
     u16 psv = (pid >> 16) ^ (pid & 0xffff);
     u16 xorPSV = psv ^ 0x8000;
 
-    for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
+    //cnt starts from 1 because the game forces
+    //you to enter in the name insertion screen
+    //at least once, so prng advances +1 at the
+    //Yes/No screen after you click A on OK
+    for (u32 cnt = 1; cnt <= maxAdvances; cnt++)
     {
         u32 rand = rng.nextUInt(0xffffffff);
         u16 tid = rand & 0xffff;
