@@ -66,7 +66,7 @@ MainWindow::MainWindow(bool profile, QWidget *parent) : QMainWindow(parent), ui(
     setupModels();
     
     QTimer::singleShot(1000, [this, &profile] {
-        if (profile)
+        if (!profile)
         {
             QMessageBox message(QMessageBox::Warning, tr("Unable to locate profiles"), tr("Please update path to your profiles file to restore existing profiles."));
             message.exec();
