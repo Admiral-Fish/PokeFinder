@@ -108,7 +108,7 @@ std::vector<GameCubeState> GameCubeGenerator::generateXDShadow(u32 seed) const
         // Enemy TID/SID
         go.advance(2);
 
-        for (auto lock : locks)
+        for (auto lock = locks.rbegin(); lock != locks.rend(); lock++)
         {
             // Temporary PID: 2 advances
             // IVs: 2 advances
@@ -117,7 +117,7 @@ std::vector<GameCubeState> GameCubeGenerator::generateXDShadow(u32 seed) const
 
             // If we are looking at a shadow pokemon
             // We will assume it is already set and skip the PID process
-            if (!lock.getFree())
+            if (!lock->getFree())
             {
                 u32 pid;
                 do
@@ -130,7 +130,7 @@ std::vector<GameCubeState> GameCubeGenerator::generateXDShadow(u32 seed) const
                     {
                         continue;
                     }
-                } while (!lock.compare(pid));
+                } while (!lock->compare(pid));
             }
         }
 
@@ -199,7 +199,7 @@ std::vector<GameCubeState> GameCubeGenerator::generateColoShadow(u32 seed) const
 
         u8 ability;
         u32 pid;
-        for (auto lock : locks)
+        for (auto lock = locks.rbegin(); lock != locks.rend(); lock++)
         {
             // Temporary PID: 2 advances
             // IVs: 2 advances
@@ -217,7 +217,7 @@ std::vector<GameCubeState> GameCubeGenerator::generateColoShadow(u32 seed) const
                 {
                     continue;
                 }
-            } while (!lock.compare(pid));
+            } while (!lock->compare(pid));
         }
 
         // E-Reader is included as part of the above loop
