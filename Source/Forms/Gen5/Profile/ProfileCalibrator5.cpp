@@ -264,8 +264,7 @@ void ProfileCalibrator5::search()
                                             maxTimer0, minGxStat, maxGxStat, softReset, version, language, dsType, mac, keypress);
     }
 
-    int maxProgress = (maxSeconds - minSeconds + 1) * (maxVCount - minVCount + 1) * (maxTimer0 - minTimer0 + 1)
-        * (maxGxStat - minGxStat + 1) * (maxVFrame - minVFrame + 1);
+    int maxProgress = (maxTimer0 - minTimer0 + 1) * (maxGxStat - minGxStat + 1) * (maxVFrame - minVFrame + 1);
     ui->progressBar->setRange(0, maxProgress);
 
     QSettings settings;

@@ -135,10 +135,9 @@ void ProfileSearcher5::search(u8 vframeStart, u8 vframeEnd)
                             std::lock_guard<std::mutex> lock(mutex);
                             results.emplace_back(seed, timer0, vcount, vframe, gxStat, second);
                         }
-
-                        progress++;
                     }
                 }
+                progress++;
             }
         }
     }
