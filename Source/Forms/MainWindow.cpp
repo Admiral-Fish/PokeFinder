@@ -51,6 +51,7 @@
 #include <Forms/Util/IVtoPID.hpp>
 #include <Forms/Util/Researcher.hpp>
 #include <Forms/Util/Settings.hpp>
+#include <version.h>
 #include <QDate>
 #include <QDesktopServices>
 #include <QFile>
@@ -61,7 +62,7 @@
 MainWindow::MainWindow(bool profile, QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    setWindowTitle(QString("Pok\303\251Finder %1").arg(VERSION));
+    setWindowTitle(QString("Pok\303\251Finder %1").arg(POKEFINDER_VERSION));
 
     setupModels();
     
@@ -131,6 +132,8 @@ void MainWindow::setupModels()
     connect(ui->pushButtonIDs5, &QPushButton::clicked, this, &MainWindow::openIDs5);
     connect(ui->actionProfileCalibrator, &QAction::triggered, this, &MainWindow::openProfileCalibrator);
     connect(ui->actionProfileManager5, &QAction::triggered, this, &MainWindow::openProfileManager5);
+
+    connect(ui->actionAbout, &QAction::triggered, this, &MainWindow::openAbout);
     connect(ui->actionEncounterLookup, &QAction::triggered, this, &MainWindow::openEncounterLookup);
     connect(ui->actionIVCalculator, &QAction::triggered, this, &MainWindow::openIVCalculator);
     connect(ui->actionResearcher, &QAction::triggered, this, &MainWindow::openResearcher);
@@ -161,7 +164,7 @@ void MainWindow::checkUpdates()
 
         auto json = QJsonDocument::fromJson(reply->readAll()).object();
         QString webVersion = json["tag_name"].toString().right(5);
-        if (!webVersion.isEmpty() && VERSION != webVersion)
+        if (!webVersion.isEmpty() && POKEFINDER_VERSION != webVersion)
         {
             QMessageBox info(QMessageBox::Question, tr("Update Check"),
                              tr("An update is available. Would you like to download the newest version?"),
@@ -522,6 +525,19 @@ void MainWindow::openProfileManager5()
     auto *manager = new ProfileManager5();
     connect(manager, &ProfileManager5::updateProfiles, this, [=] { updateProfiles(5); });
     manager->show();
+}
+
+void MainWindow::openAbout()
+{
+    QStringList info = 
+    {
+        QString("Version: %1").arg(POKEFINDER_VERSION),
+        QString("Branch: %1").arg(GIT_BRANCH),
+        QString("Commit: %1").arg(GIT_COMMIT)
+    };
+    
+    QMessageBox about(QMessageBox::Information, tr("About"), info.join("\n"), QMessageBox::Close);
+    about.exec();
 }
 
 void MainWindow::openEncounterLookup()
