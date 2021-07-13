@@ -3,13 +3,12 @@
 case $OS in
   linux)
   {
-    sudo sudo apt-get update
-    sudo apt-get install -y libgl1-mesa-dev
-  } ;;
-  macOS)
-  {
-    brew update
-    brew install qt5
-    brew link --force qt5
+    sudo apt update
+    sudo apt install -y g++ libgl1-mesa-dev
+
+    # Change default g++ from 7.5 to 9.3, gets access to <filesystem>
+    # Should probably do this with update-alternatives but I am lazy
+    sudo rm /usr/bin/g++
+    sudo ln -s /usr/bin/g++-9 /usr/bin/g++
   } ;;
 esac

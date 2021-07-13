@@ -178,13 +178,14 @@
      <x>0</x>
      <y>0</y>
      <width>680</width>
-     <height>22</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuTools">
     <property name="title">
      <string>Tools</string>
     </property>
+    <addaction name="actionAbout"/>
     <addaction name="actionEncounterLookup"/>
     <addaction name="actionIVCalculator"/>
     <addaction name="actionResearcher"/>
@@ -348,6 +349,9 @@
   <action name="actionPIDtoIVWild">
    <property name="text">
     <string>PID to IV Wild</string>
+  <action name="actionAbout">
+   <property name="text">
+    <string>About</string>
    </property>
   </action>
  </widget>

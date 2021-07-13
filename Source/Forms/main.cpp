@@ -68,8 +68,7 @@ int main(int argc, char *argv[])
     validateSettings(setting);
 
     QString profilePath = setting.value("settings/profiles").toString();
-    bool profile = !QFile::exists(profilePath);
-    ProfileLoader::init(profilePath.toStdString());
+    bool profile = ProfileLoader::init(profilePath.toStdString());
 
     // Transfer profiles to new setup
     // TODO: remove in a future version
@@ -94,7 +93,6 @@ int main(int argc, char *argv[])
         {
             QTextStream ts(&file);
             a.setStyleSheet(ts.readAll());
-            file.close();
         }
     }
 

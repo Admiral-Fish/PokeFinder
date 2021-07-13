@@ -67,11 +67,11 @@ void ProfileSearcher5::startSearch(int threads, u8 minVFrame, u8 maxVFrame)
     {
         if (i == threads - 1)
         {
-            threadContainer.emplace_back(std::async(std::launch::async, [=] { search(minVFrame, maxVFrame + 1); }));
+            threadContainer.emplace_back(std::async(std::launch::async, [=] { search(minVFrame, maxVFrame); }));
         }
         else
         {
-            threadContainer.emplace_back(std::async(std::launch::async, [=] { search(minVFrame, minVFrame + split); }));
+            threadContainer.emplace_back(std::async(std::launch::async, [=] { search(minVFrame, minVFrame + split - 1); }));
         }
         minVFrame += split;
     }
@@ -105,16 +105,16 @@ void ProfileSearcher5::search(u8 vframeStart, u8 vframeEnd)
     int hour = time.hour();
     int minute = time.minute();
 
-    for (u8 vframe = vframeStart; vframe < vframeEnd; vframe++)
+    for (u16 vframe = vframeStart; vframe <= vframeEnd; vframe++)
     {
-        for (u8 gxStat = minGxStat; gxStat <= maxGxStat; gxStat++)
+        for (u16 gxStat = minGxStat; gxStat <= maxGxStat; gxStat++)
         {
             SHA1 sha(version, language, dsType, mac, softReset, vframe, gxStat);
             sha.setDate(date);
             sha.setButton(button);
-            for (u16 timer0 = minTimer0; timer0 <= maxTimer0; timer0++)
+            for (u32 timer0 = minTimer0; timer0 <= maxTimer0; timer0++)
             {
-                for (u8 vcount = minVCount; vcount <= maxVCount; vcount++)
+                for (u16 vcount = minVCount; vcount <= maxVCount; vcount++)
                 {
                     sha.setTimer0(timer0, vcount);
                     sha.precompute();
@@ -135,10 +135,9 @@ void ProfileSearcher5::search(u8 vframeStart, u8 vframeEnd)
                             std::lock_guard<std::mutex> lock(mutex);
                             results.emplace_back(seed, timer0, vcount, vframe, gxStat, second);
                         }
-
-                        progress++;
                     }
                 }
+                progress++;
             }
         }
     }

@@ -27,7 +27,7 @@
 
 namespace ProfileLoader
 {
-    void init(const std::string &location);
+    bool init(const std::string &location);
 }
 
 namespace ProfileLoader3

@@ -47,12 +47,13 @@ DreamRadarGenerator::DreamRadarGenerator(u32 initialAdvances, u32 maxAdvances, u
     }
 }
 
-std::vector<State> DreamRadarGenerator::generate(u64 seed, bool memory)
+std::vector<DreamRadarState> DreamRadarGenerator::generate(u64 seed, bool memory)
 {
-    std::vector<State> states;
+    std::vector<DreamRadarState> states;
 
     BWRNG rng(seed);
-    rng.advance(Utilities::initialAdvancesBW2(seed, memory) + (initialAdvances * 2));
+    u32 initialAdvancesBW2 = Utilities::initialAdvancesBW2(seed, memory);
+    rng.advance(initialAdvancesBW2 + (initialAdvances * 2));
     if (!memory)
     {
         rng.next();
@@ -65,7 +66,8 @@ std::vector<State> DreamRadarGenerator::generate(u64 seed, bool memory)
 
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rngList.advanceStates(2), rng.next())
     {
-        State state(cnt + initialAdvances);
+        DreamRadarState state((cnt + initialAdvances) * 2 + initialAdvancesBW2 + 1);
+        state.setKeyAdvances(cnt + initialAdvances);
 
         BWRNG go(rng.getSeed());
         go.advance(pidAdvances);
