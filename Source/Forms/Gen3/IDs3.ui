@@ -167,7 +167,7 @@
       <attribute name="title">
        <string>XD/Colo Search</string>
       </attribute>
-      <layout class="QGridLayout" name="gridLayout_10">
+      <layout class="QGridLayout" name="gridLayout_11">
        <item row="1" column="0" colspan="2">
         <widget class="TableView" name="tableViewXDColoLive">
          <attribute name="verticalHeaderVisible">
@@ -243,7 +243,7 @@
       <attribute name="title">
        <string>Gen III RS</string>
       </attribute>
-      <layout class="QGridLayout" name="gridLayout_10">
+      <layout class="QGridLayout" name="gridLayout_13">
        <item row="0" column="1">
         <widget class="QGroupBox" name="groupBoxRSSearchParameters">
          <property name="title">
@@ -401,7 +401,7 @@
          <property name="title">
           <string>Search By</string>
          </property>
-         <layout class="QGridLayout" name="gridLayout_8">
+         <layout class="QGridLayout" name="gridLayout_12">
           <item row="0" column="0">
            <widget class="QCheckBox" name="checkBoxRSPID">
             <property name="text">
@@ -484,7 +484,7 @@
         </widget>
        </item>
        <item row="0" column="0">
-        <widget class="QGroupBox" name="groupBoxRSSearchBy">
+        <widget class="QGroupBox" name="groupBoxRSLiveSearchBy">
          <property name="minimumSize">
           <size>
            <width>200</width>
@@ -494,7 +494,7 @@
          <property name="title">
           <string>Search By</string>
          </property>
-         <layout class="QGridLayout" name="gridLayout_8">
+         <layout class="QGridLayout" name="gridLayout_14">
           <item row="1" column="1">
            <widget class="TextBox" name="textBoxRSTIDLive">
             <property name="enabled">
@@ -529,14 +529,14 @@
            </widget>
           </item>
           <item row="0" column="0">
-           <widget class="QLabel" name="label">
+           <widget class="QLabel" name="label_3">
             <property name="text">
              <string>PID</string>
             </property>
            </widget>
           </item>
           <item row="1" column="0">
-           <widget class="QLabel" name="label_2">
+           <widget class="QLabel" name="label_4">
             <property name="text">
              <string>TID</string>
             </property>
