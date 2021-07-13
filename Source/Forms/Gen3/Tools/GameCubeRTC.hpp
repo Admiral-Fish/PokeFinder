@@ -38,6 +38,8 @@ public:
     explicit GameCubeRTC(u32 seed, QWidget *parent = nullptr);
     void boxToggled(bool on);
     void agetoToggled(bool on);
+    void rumbleToggled(bool on);
+    void channelToggled(bool on);
     ~GameCubeRTC() override;
 
 private:

@@ -59,11 +59,32 @@ void GameCubeRTC::boxToggled(bool on)
 {
     ui->textBoxMinAdvance->setEnabled(!on);
     ui->textBoxMaxAdvance->setEnabled(!on);
+    ui->checkBoxAgeto->setEnabled(!on);
+    ui->checkBoxRumble->setEnabled(!on);
+    ui->checkBoxChannel->setEnabled(!on);
 }
 
 void GameCubeRTC::agetoToggled(bool on)
 {
     ui->textBoxMinAdvance->setEnabled(!on);
+    ui->checkBoxBox->setEnabled(!on);
+    ui->checkBoxRumble->setEnabled(!on);
+    ui->checkBoxChannel->setEnabled(!on);
+}
+
+void GameCubeRTC::rumbleToggled(bool on)
+{
+    ui->checkBoxAgeto->setEnabled(!on);
+    ui->checkBoxBox->setEnabled(!on);
+    ui->checkBoxChannel->setEnabled(!on);
+}
+
+void GameCubeRTC::channelToggled(bool on)
+{
+    ui->textBoxMinAdvance->setEnabled(!on);
+    ui->checkBoxAgeto->setEnabled(!on);
+    ui->checkBoxBox->setEnabled(!on);
+    ui->checkBoxRumble->setEnabled(!on);
 }
 
 void GameCubeRTC::setupModels()
@@ -79,6 +100,8 @@ void GameCubeRTC::setupModels()
     connect(ui->pushButtonSearch, &QPushButton::clicked, this, &GameCubeRTC::search);
     connect(ui->checkBoxBox, &QCheckBox::toggled, this, &GameCubeRTC::boxToggled);
     connect(ui->checkBoxAgeto, &QCheckBox::toggled, this, &GameCubeRTC::agetoToggled);
+    connect(ui->checkBoxRumble, &QCheckBox::toggled, this, &GameCubeRTC::rumbleToggled);
+    connect(ui->checkBoxChannel, &QCheckBox::toggled, this, &GameCubeRTC::channelToggled);
 
     QSettings setting;
     setting.beginGroup("gamecubeRTC");
@@ -108,7 +131,7 @@ void GameCubeRTC::search()
 
     auto *searcher = new RTCSearcher();
 
-    auto *thread = QThread::create([=] { searcher->startSearch(initialSeed, targetSeed, initialAdvances, maxAdvances, end, ui->checkBoxBox->isChecked(), ui->checkBoxAgeto->isChecked()); });
+    auto *thread = QThread::create([=] { searcher->startSearch(initialSeed, targetSeed, initialAdvances, maxAdvances, end, ui->checkBoxBox->isChecked(), ui->checkBoxAgeto->isChecked(), ui->checkBoxRumble->isChecked(), ui->checkBoxChannel->isChecked()); });
     connect(thread, &QThread::finished, thread, &QThread::deleteLater);
     connect(ui->pushButtonCancel, &QPushButton::clicked, [searcher] { searcher->cancelSearch(); });
 

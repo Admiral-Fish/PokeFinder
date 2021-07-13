@@ -89,6 +89,11 @@ public:
         return next() >> 16;
     }
 
+    u16 nextHalfUShort()
+    {
+        return (next() >> 16) & 0x7FFF;
+    }
+
     u16 nextUShort(u32 &count)
     {
         count++;
@@ -115,5 +120,6 @@ using PokeRNG = LCRNG<0x6073, 0x41C64E6D>;
 using PokeRNGR = LCRNG<0xA3561A1, 0xEEB9EB65>;
 using XDRNG = LCRNG<0x269EC3, 0x343FD>;
 using XDRNGR = LCRNG<0xA170F641, 0xB9B33155>;
-
+using RBRNG = LCRNG<0x3039, 0x41C64E6D>;
+using RBRNGR = LCRNG<0xFC77A683, 0xEEB9EB65>;
 #endif // LCRNG_HPP

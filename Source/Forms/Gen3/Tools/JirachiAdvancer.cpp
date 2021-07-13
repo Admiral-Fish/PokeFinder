@@ -113,7 +113,7 @@ void JirachiAdvancer::run()
                         else
                         {
                             bruteForce--;
-                            if (bruteForce <= 15)
+                            if (bruteForce == -1)
                             {
                                 ui->listWidgetInfo->addItem("Target seed is unreachable");
                                 return;
@@ -331,6 +331,10 @@ std::vector<u8> JirachiAdvancer::calculateActions(u32 currentSeed, u32 targetFra
     {
         menuCount++;
         advanceMenu(menu, menuFrame);
+        if (menuFrame > targetFrame)
+        {
+            return {};
+        }
     }
 
     // Now that we are within our brute force range we brute force search
