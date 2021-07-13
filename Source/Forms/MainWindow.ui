@@ -349,6 +349,8 @@
   <action name="actionPIDtoIVWild">
    <property name="text">
     <string>PID to IV Wild</string>
+   </property>
+  </action>
   <action name="actionAbout">
    <property name="text">
     <string>About</string>
