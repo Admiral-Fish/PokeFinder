@@ -16,6 +16,8 @@ Gen 3
 - [AGuAcaTE](https://www.dropbox.com/s/kfqaihc5gilub1s/AGuAcaTE.pyw?dl=0) - Originally from Jellal and [amab](https://github.com/AskMeAboutBirds)
 - Ageto 0 Difference RTC Searcher
 - Pokémon Box RTC Searcher - Help from [Real.96](https://github.com/Real96)
+- Pokémon Rumble RTC Searcher
+- Menu Advance Channel RTC Searcher (not that useful)
 - PID to IV Wild Searcher (For Spinda)
 
 
