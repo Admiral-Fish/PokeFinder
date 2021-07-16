@@ -113,7 +113,7 @@ void JirachiAdvancer::run()
                         else
                         {
                             bruteForce--;
-                            if (bruteForce == -1)
+                            if (bruteForce > 5000)
                             {
                                 ui->listWidgetInfo->addItem("Target seed is unreachable");
                                 return;
@@ -329,6 +329,18 @@ std::vector<u8> JirachiAdvancer::calculateActions(u32 currentSeed, u32 targetFra
     // Use menu advances to get to a brute forcable range
     while (targetFrame - menuFrame > bruteForce)
     {
+        if ((targetFrame - menuFrame) >= 6 && (targetFrame - menuFrame) <= 8)
+        {
+            XDRNG rng(menu.getSeed());
+            u32 count = 0;
+            advanceJirachi(rng, count);
+
+            if (count == (targetFrame - menuFrame))
+            {
+                std::vector<u8> actions(static_cast<size_t>(menuCount), 0);
+                return actions;
+            }
+        }
         menuCount++;
         advanceMenu(menu, menuFrame);
         if (menuFrame > targetFrame)

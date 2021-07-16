@@ -40,6 +40,8 @@ std::vector<State> StationaryGenerator3::generate(u32 seed) const
         return generateMethod1Reverse(seed);
     case Method::Locked16Bit:
         return generateLocked16Bit(seed);
+    case Method::Wishmaker:
+        return generateWishmaker(seed);
     default:
         return std::vector<State>();
     }
@@ -149,6 +151,38 @@ std::vector<State> StationaryGenerator3::generateLocked16Bit(u32 seed) const
     state.setGender(low & 255, genderRatio);
     state.setNature(state.getPID() % 25);
     state.setShiny<8>(tsv, high ^ low);
+
+    state.setIVs(iv1, iv2);
+    state.calculateHiddenPower();
+
+    if (filter.compareState(state))
+    {
+        states.emplace_back(state);
+    }
+
+    return states;
+}
+
+std::vector<State> StationaryGenerator3::generateWishmaker(u32 seed) const
+{
+    std::vector<State> states;
+
+    PokeRNG rng(seed);
+
+    // Method 1 Reverse [SEED] [PID] [PID] [IVS] [IVS]
+
+    State state(0);
+
+    u16 high = rng.nextUShort();
+    u16 low = rng.nextUShort();
+    u16 iv1 = rng.nextUShort();
+    u16 iv2 = rng.nextUShort();
+
+    state.setPID(high, low);
+    state.setAbility(low & 1);
+    state.setGender(low & 255, genderRatio);
+    state.setNature(state.getPID() % 25);
+    state.setShiny<8>(20043, high ^ low);
 
     state.setIVs(iv1, iv2);
     state.calculateHiddenPower();

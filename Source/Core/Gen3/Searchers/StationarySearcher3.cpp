@@ -49,6 +49,21 @@ void StationarySearcher3::startSearch(const std::array<u8, 6> &min, const std::a
             progress++;
         }
     }
+    else if (method == Method::Wishmaker)
+    {
+        for (u32 seed = 0; seed <= 0xFFFF; seed++)
+        {
+            if (!searching)
+            {
+                return;
+            }
+            auto states = searchWishmaker(seed);
+
+            std::lock_guard<std::mutex> guard(mutex);
+            results.insert(results.end(), states.begin(), states.end());
+            progress++;
+        }
+    }
     else
     {
         for (u8 hp = min[0]; hp <= max[0]; hp++)
@@ -232,6 +247,36 @@ std::vector<State> StationarySearcher3::searchLocked16Bit(u16 seed) const
     state.setGender(low & 255, genderRatio);
     state.setNature(state.getPID() % 25);
     state.setShiny<8>(tsv, high ^ low);
+    state.setSeed(seed);
+    state.setIVs(iv1, iv2);
+    state.calculateHiddenPower();
+
+    if (filter.compareState(state))
+    {
+        states.emplace_back(state);
+    }
+    return states;
+}
+
+std::vector<State> StationarySearcher3::searchWishmaker(u16 seed) const
+{
+    std::vector<State> states;
+    State state;
+
+    PokeRNG rng(seed);
+
+    // Method 1 Reverse [SEED] [PID] [PID] [IVS] [IVS]
+
+    u16 high = rng.nextUShort();
+    u16 low = rng.nextUShort();
+    u16 iv1 = rng.nextUShort();
+    u16 iv2 = rng.nextUShort();
+
+    state.setPID(high, low);
+    state.setAbility(low & 1);
+    state.setGender(low & 255, genderRatio);
+    state.setNature(state.getPID() % 25);
+    state.setShiny<8>(20043, high ^ low);
     state.setSeed(seed);
     state.setIVs(iv1, iv2);
     state.calculateHiddenPower();

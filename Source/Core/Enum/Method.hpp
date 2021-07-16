@@ -32,6 +32,7 @@ enum Method : u8
     MethodH2,
     MethodH4,
     Locked16Bit,
+    Wishmaker,
     XD,
     Colo,
     XDColo,
