@@ -8,6 +8,7 @@ Gen 3
 - [Ruby/Sapphire ID Search](https://github.com/Lincoln-LM/RS-TID-SID-Frame-Finder)
 - XD/Colo ID Search
 - Shiny Locked 16 Bit Event Generator/Searcher - Help from [Real.96](https://github.com/Real96)
+- Wishmaker Generator/Searcher
 - [Wishmaker Jirachi Checksum Generator](https://github.com/Lincoln-LM/Jirachi-Finder)
 - Possible Channel Spreads Generator
 - [Jirachi Advancer](https://gist.github.com/Admiral-Fish/6111ca2c19ee3a7a382aa5b897deef4c) - Originally from [Admiral-Fish](https://github.com/Admiral-Fish) 
