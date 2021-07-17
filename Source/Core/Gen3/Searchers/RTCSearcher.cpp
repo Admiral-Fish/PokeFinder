@@ -147,12 +147,14 @@ void RTCSearcher::startSearch(u32 initialSeed, u32 targetSeed, u32 initialAdvanc
                             }
 
                             advanceMenu(rng,x);
-                            advanceJirachi(rng,x);
+                            XDRNG go(rng.getSeed());
+                            u32 y = 0;
+                            advanceJirachi(go,y);
 
-                            if (rng.getSeed() == targetSeed)
+                            if (go.getSeed() == targetSeed)
                             {
                                 std::lock_guard<std::mutex> guard(mutex);
-                                results.emplace_back(DateTime(date, Time(hour, minute, second)), initialSeed, x);
+                                results.emplace_back(DateTime(date, Time(hour, minute, second)), initialSeed, x+y);
                             }
                         }
                     }
