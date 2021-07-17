@@ -64,6 +64,11 @@
            <string>Mersenne Twister</string>
           </property>
          </item>
+         <item>
+          <property name="text">
+           <string>RBRNG</string>
+          </property>
+         </item>
         </widget>
        </item>
       </layout>

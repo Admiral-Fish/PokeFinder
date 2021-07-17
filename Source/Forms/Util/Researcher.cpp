@@ -266,6 +266,10 @@ void Researcher::generate()
         case 6:
             rngStates = getStates(MT(seed), initialAdvances, maxAdvances);
             break;
+        case 7:
+            rngStates = getStates(RBRNG(seed), initialAdvances, maxAdvances);
+            rngStates.insert(rngStates.begin(), seed);
+            break;
         }
     }
     else if (ui->rngSelection->currentIndex() == 1)

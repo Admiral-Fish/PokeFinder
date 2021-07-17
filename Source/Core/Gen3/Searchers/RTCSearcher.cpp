@@ -138,8 +138,9 @@ void RTCSearcher::startSearch(u32 initialSeed, u32 targetSeed, u32 initialAdvanc
                     for (u8 second = 0; second < 60; second++, initialSeed += 40500000)
                     {
                         XDRNG rng(initialSeed);
+                        rng.next();
 
-                        for (u32 x = 0; x < maxAdvances;)
+                        for (u32 x = 1; x < maxAdvances;)
                         {
                             if (!searching)
                             {
