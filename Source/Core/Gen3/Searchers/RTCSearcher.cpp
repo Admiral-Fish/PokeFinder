@@ -142,15 +142,13 @@ void RTCSearcher::startSearch(u32 initialSeed, u32 targetSeed, u32 initialAdvanc
                         u32 y = 0;
                         advanceMenu(rng,y);
 
-                        for (u32 x = 0; x < maxAdvances;)
+                        for (u32 x = 0; x < maxAdvances; advanceMenu(rng,y), x++)
                         {
                             if (!searching)
                             {
                                 return;
                             }
-
-                            advanceMenu(rng,y);
-                            x++;
+                            
                             XDRNG go(rng.getSeed());
                             advanceJirachi(go,y);
 
