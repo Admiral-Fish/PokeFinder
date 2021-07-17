@@ -18,7 +18,7 @@ Gen 3
 - Ageto 0 Difference RTC Searcher
 - Pokémon Box RTC Searcher - Help from [Real.96](https://github.com/Real96)
 - Pokémon Rumble RTC Searcher
-- Menu Advance Channel RTC Searcher (not that useful)
+- Menu Advance Channel RTC Searcher
 - PID to IV Wild Searcher (For Spinda)
 
 

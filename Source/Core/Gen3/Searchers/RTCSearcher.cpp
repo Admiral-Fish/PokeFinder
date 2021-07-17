@@ -139,23 +139,25 @@ void RTCSearcher::startSearch(u32 initialSeed, u32 targetSeed, u32 initialAdvanc
                     {
                         XDRNG rng(initialSeed);
                         rng.next();
+                        u32 y = 0;
+                        advanceMenu(rng,y);
 
-                        for (u32 x = 1; x < maxAdvances;)
+                        for (u32 x = 0; x < maxAdvances;)
                         {
                             if (!searching)
                             {
                                 return;
                             }
 
-                            advanceMenu(rng,x);
+                            advanceMenu(rng,y);
+                            x++;
                             XDRNG go(rng.getSeed());
-                            u32 y = 0;
                             advanceJirachi(go,y);
 
                             if (go.getSeed() == targetSeed)
                             {
                                 std::lock_guard<std::mutex> guard(mutex);
-                                results.emplace_back(DateTime(date, Time(hour, minute, second)), initialSeed, x+y);
+                                results.emplace_back(DateTime(date, Time(hour, minute, second)), initialSeed, x);
                             }
                         }
                     }

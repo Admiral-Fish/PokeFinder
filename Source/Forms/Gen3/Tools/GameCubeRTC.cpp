@@ -85,6 +85,8 @@ void GameCubeRTC::channelToggled(bool on)
     ui->checkBoxAgeto->setEnabled(!on);
     ui->checkBoxBox->setEnabled(!on);
     ui->checkBoxRumble->setEnabled(!on);
+    ui->labelMaxAdvance->setText(on ? "Max Menus" : "Max Advances");
+    model->header[1] = on ? tr("Menu Advances") : tr("Advances");
 }
 
 void GameCubeRTC::setupModels()
