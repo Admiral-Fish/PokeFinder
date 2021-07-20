@@ -24,6 +24,7 @@ Gen 3
 
 Gen 4
 - Manaphy Reroll Generator
+- Bug Catching Contest Generator
 
 # Features
 Gen 3
