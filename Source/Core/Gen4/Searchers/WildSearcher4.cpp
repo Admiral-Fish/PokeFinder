@@ -489,6 +489,7 @@ bool WildSearcher4::encounterMethodJ(WildState &state, u32 seed) const
         state.setSeed(rng.next());
         break;
     case Encounter::Surfing:
+    case Encounter::BugCatchingContest:
         state.setEncounterSlot(EncounterSlot::jSlot(rng.nextUShort(), encounter));
         state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), seed >> 16));
         state.setSeed(rng.next());
