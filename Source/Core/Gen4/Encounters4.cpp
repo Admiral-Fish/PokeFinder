@@ -250,6 +250,7 @@ namespace Encounters4
 
                 encounters.emplace_back(location, Encounter::Grass, grass);
                 encounters.emplace_back(location, Encounter::BugCatchingContest, bcc);
+                encounters.emplace_back(location, Encounter::SafariZoneHGSS, bcc);
             }
 
             // Rock Smash

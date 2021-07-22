@@ -656,6 +656,11 @@ bool WildSearcher4::encounterMethodK(WildState &state, u32 seed) const
         state.setLevel(0);
         state.setSeed(rng.next());
         break;
+    case Encounter::SafariZoneHGSS:
+        state.setEncounterSlot(EncounterSlot::kSlot(seed >> 16, encounter));
+        state.setLevel(0);
+        state.setSeed(rng.next());
+        break;
     case Encounter::OldRod:
     case Encounter::GoodRod:
     case Encounter::SuperRod:

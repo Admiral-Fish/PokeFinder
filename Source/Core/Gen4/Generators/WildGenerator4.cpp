@@ -284,6 +284,7 @@ std::vector<WildState4> WildGenerator4::generateMethodK(u32 seed) const
 
         u32 occidentary = cnt;
         u16 first = go.nextUShort(occidentary); // Encounter slot, nibble for fishing, blank or item for rock smash
+        u8 loops = 1;
 
         switch (encounter)
         {
@@ -345,6 +346,17 @@ std::vector<WildState4> WildGenerator4::generateMethodK(u32 seed) const
 
             state.setLevel(0);
             go.nextUShort(occidentary);
+            loops = 4;
+            break;
+        case Encounter::SafariZoneHGSS:
+            state.setEncounterSlot(EncounterSlot::kSlot(first, encounter));
+            if (!filter.compareEncounterSlot(state))
+            {
+                continue;
+            }
+
+            state.setLevel(0);
+            loops = 4;
             break;
         case Encounter::HeadButt: // TODO
         default:
@@ -352,72 +364,33 @@ std::vector<WildState4> WildGenerator4::generateMethodK(u32 seed) const
         }
 
         u32 pid = 0;
-        switch (lead)
+        for (u8 loop = 0; loop < loops; loop++)
         {
-        case Lead::None:
-        case Lead::SuctionCups:
-            // Get hunt nature
-            state.setNature(go.nextUShort(occidentary) % 25);
-
-            if (!filter.compareNature(state))
+            pid = 0;
+            switch (lead)
             {
-                continue;
-            }
-
-            // Begin search for valid pid
-            do
-            {
-                u16 low = go.nextUShort(occidentary);
-                u16 high = go.nextUShort(occidentary);
-                pid = static_cast<u32>((high << 16) | low);
-            } while (pid % 25 != state.getNature());
-
-            break;
-        case Lead::Synchronize:
-            if ((go.nextUShort(occidentary) & 1) == 0) // Successful synch
-            {
-                state.setNature(synchNature);
-            }
-            else // Failed synch
-            {
-                state.setNature(go.nextUShort(occidentary) % 25);
-            }
-
-            if (!filter.compareNature(state))
-            {
-                continue;
-            }
-
-            // Begin search for valid pid
-            do
-            {
-                u16 low = go.nextUShort(occidentary);
-                u16 high = go.nextUShort(occidentary);
-                pid = static_cast<u32>((high << 16) | low);
-            } while (pid % 25 != state.getNature());
-
-            break;
-        default: // Default to cover all cute charm cases
-            if ((go.nextUShort(occidentary) % 3) != 0) // Successfull cute charm
-            {
+            case Lead::None:
+            case Lead::SuctionCups:
                 // Get hunt nature
                 state.setNature(go.nextUShort(occidentary) % 25);
 
-                if (!filter.compareNature(state))
+                // Begin search for valid pid
+                do
                 {
-                    continue;
+                    u16 low = go.nextUShort(occidentary);
+                    u16 high = go.nextUShort(occidentary);
+                    pid = static_cast<u32>((high << 16) | low);
+                } while (pid % 25 != state.getNature());
+
+                break;
+            case Lead::Synchronize:
+                if ((go.nextUShort(occidentary) & 1) == 0) // Successful synch
+                {
+                    state.setNature(synchNature);
                 }
-
-                pid = buffer + state.getNature();
-            }
-            else // Failed cutecharm
-            {
-                // Get hunt nature
-                state.setNature(go.nextUShort(occidentary) % 25);
-
-                if (!filter.compareNature(state))
+                else // Failed synch
                 {
-                    continue;
+                    state.setNature(go.nextUShort(occidentary) % 25);
                 }
 
                 // Begin search for valid pid
@@ -427,21 +400,57 @@ std::vector<WildState4> WildGenerator4::generateMethodK(u32 seed) const
                     u16 high = go.nextUShort(occidentary);
                     pid = static_cast<u32>((high << 16) | low);
                 } while (pid % 25 != state.getNature());
+
+                break;
+            default: // Default to cover all cute charm cases
+                if ((go.nextUShort(occidentary) % 3) != 0) // Successfull cute charm
+                {
+                    // Get hunt nature
+                    state.setNature(go.nextUShort(occidentary) % 25);
+
+                    pid = buffer + state.getNature();
+                }
+                else // Failed cutecharm
+                {
+                    // Get hunt nature
+                    state.setNature(go.nextUShort(occidentary) % 25);
+
+                    // Begin search for valid pid
+                    do
+                    {
+                        u16 low = go.nextUShort(occidentary);
+                        u16 high = go.nextUShort(occidentary);
+                        pid = static_cast<u32>((high << 16) | low);
+                    } while (pid % 25 != state.getNature());
+                }
+
+                break;
             }
 
-            break;
+            state.setPID(pid);
+            state.setAbility(pid & 1);
+            state.setGender(pid & 255, genderRatio);
+            state.setShiny<8>(tsv, (pid >> 16) ^ (pid & 0xffff));
+
+            u16 iv1 = go.nextUShort(occidentary);
+            u16 iv2 = go.nextUShort(occidentary);
+
+            state.setIVs(iv1, iv2);
+            state.calculateHiddenPower();
+            bool skip = true;
+            for (u8 in = 0; in < 6; in++)
+            {
+                if (state.getIV(in) == 31)
+                {
+                    skip = false;
+                    break;
+                }
+            }
+            if (!skip)
+            {
+                break;
+            }
         }
-
-        state.setPID(pid);
-        state.setAbility(pid & 1);
-        state.setGender(pid & 255, genderRatio);
-        state.setShiny<8>(tsv, (pid >> 16) ^ (pid & 0xffff));
-
-        u16 iv1 = go.nextUShort(occidentary);
-        u16 iv2 = go.nextUShort(occidentary);
-
-        state.setIVs(iv1, iv2);
-        state.calculateHiddenPower();
 
         if (filter.compareState(state))
         {

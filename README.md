@@ -24,7 +24,8 @@ Gen 3
 
 Gen 4
 - Manaphy Reroll Generator/Searcher
-- Basic Bug Catching Contest Generator/Searcher
+- Basic Bug Catching Contest/Safari Zone Searcher
+- Bug Catching Contest/Safari Zone Reroll Generator
 - DPPT Unown Generator/Searcher
 
 # Features

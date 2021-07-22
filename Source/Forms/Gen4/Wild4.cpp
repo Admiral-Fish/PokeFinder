@@ -380,24 +380,26 @@ void Wild4::profilesIndexChanged(int index)
         if (flag)
         {
             ui->comboBoxGeneratorEncounter->addItem(tr("Rock Smash"), Encounter::RockSmash);
+            ui->comboBoxGeneratorEncounter->addItem(tr("Bug Catching Contest"), Encounter::BugCatchingContest);
+            ui->comboBoxGeneratorEncounter->addItem(tr("Safari Zone"), Encounter::SafariZoneHGSS);
         }
         ui->comboBoxGeneratorEncounter->addItem(tr("Surfing"), Encounter::Surfing);
         ui->comboBoxGeneratorEncounter->addItem(tr("Old Rod"), Encounter::OldRod);
         ui->comboBoxGeneratorEncounter->addItem(tr("Good Rod"), Encounter::GoodRod);
         ui->comboBoxGeneratorEncounter->addItem(tr("Super Rod"), Encounter::SuperRod);
-        ui->comboBoxGeneratorEncounter->addItem(tr("Bug Catching Contest"), Encounter::BugCatchingContest);
 
         ui->comboBoxSearcherEncounter->clear();
         ui->comboBoxSearcherEncounter->addItem(tr("Grass"), Encounter::Grass);
         if (flag)
         {
             ui->comboBoxSearcherEncounter->addItem(tr("Rock Smash"), Encounter::RockSmash);
+            ui->comboBoxSearcherEncounter->addItem(tr("Bug Catching Contest"), Encounter::BugCatchingContest);
+            ui->comboBoxSearcherEncounter->addItem(tr("Safari Zone"), Encounter::SafariZoneHGSS);
         }
         ui->comboBoxSearcherEncounter->addItem(tr("Surfing"), Encounter::Surfing);
         ui->comboBoxSearcherEncounter->addItem(tr("Old Rod"), Encounter::OldRod);
         ui->comboBoxSearcherEncounter->addItem(tr("Good Rod"), Encounter::GoodRod);
         ui->comboBoxSearcherEncounter->addItem(tr("Super Rod"), Encounter::SuperRod);
-        ui->comboBoxSearcherEncounter->addItem(tr("Bug Catching Contest"), Encounter::BugCatchingContest);
 
         ui->comboBoxSearcherLead->clear();
         ui->comboBoxSearcherLead->addItem(tr("Any"), Lead::Search);

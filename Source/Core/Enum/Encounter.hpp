@@ -36,6 +36,7 @@ enum Encounter : u8
     SpecialSuperRod,
     Stationary,
     SafariZone,
+    SafariZoneHGSS,
     BugCatchingContest,
     HeadButt,
     Roamer,

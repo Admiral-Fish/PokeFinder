@@ -102,6 +102,7 @@ namespace EncounterSlot
             return calcSlot<5>(compare, std::array<u8, 5> { 40, 70, 85, 95, 100 });
         case Encounter::Surfing:
             return calcSlot<5>(compare, std::array<u8, 5> { 60, 90, 95, 99, 100 });
+        case Encounter::SafariZoneHGSS:
         case Encounter::BugCatchingContest:
             return calcSlot<10>(compare,
                             std::array<std::pair<u8, u8>, 10> { std::pair<u8, u8> { 80, 99 }, std::pair<u8, u8> { 60, 79 },
