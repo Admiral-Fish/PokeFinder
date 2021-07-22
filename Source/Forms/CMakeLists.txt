@@ -82,6 +82,7 @@ set(PROJECT_UI
     Gen4/Tools/SearchCoinFlips.ui
     Gen4/Tools/SeedtoTime4.ui
     Gen4/Wild4.ui
+    Gen4/Unown4.ui
     Gen5/DreamRadar.ui
     Gen5/Eggs5.ui
     Gen5/Event5.ui
@@ -141,6 +142,7 @@ set(PROJECT_SOURCES
     Gen4/Tools/SearchCoinFlips.cpp
     Gen4/Tools/SeedtoTime4.cpp
     Gen4/Wild4.cpp
+    Gen4/Unown4.cpp
     Gen5/DreamRadar.cpp
     Gen5/Eggs5.cpp
     Gen5/Event5.cpp
@@ -169,6 +171,7 @@ set(PROJECT_SOURCES
     Models/Gen4/SeedtoTimeModel4.cpp
     Models/Gen4/StationaryModel4.cpp
     Models/Gen4/WildModel4.cpp
+    Models/Gen4/UnownModel4.cpp
     Models/Gen5/DreamRadarModel.cpp
     Models/Gen5/EggModel5.cpp
     Models/Gen5/EventModel5.cpp

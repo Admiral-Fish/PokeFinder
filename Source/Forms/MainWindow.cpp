@@ -44,6 +44,7 @@
 #include <Forms/Gen4/Tools/ChainedSID.hpp>
 #include <Forms/Gen4/Tools/SeedtoTime4.hpp>
 #include <Forms/Gen4/Wild4.hpp>
+#include <Forms/Gen4/Unown4.hpp>
 #include <Forms/Gen5/DreamRadar.hpp>
 #include <Forms/Gen5/Eggs5.hpp>
 #include <Forms/Gen5/Event5.hpp>
@@ -96,6 +97,7 @@ MainWindow::~MainWindow()
     delete ids3;
     delete stationary4;
     delete wild4;
+    delete unown4;
     delete egg4;
     delete ids4;
     delete stationary5;
@@ -129,6 +131,7 @@ void MainWindow::setupModels()
 
     connect(ui->pushButtonStationary4, &QPushButton::clicked, this, &MainWindow::openStationary4);
     connect(ui->pushButtonWild4, &QPushButton::clicked, this, &MainWindow::openWild4);
+    connect(ui->pushButtonUnown4, &QPushButton::clicked, this, &MainWindow::openUnown4);
     connect(ui->pushButtonEgg4, &QPushButton::clicked, this, &MainWindow::openEgg4);
     connect(ui->pushButtonIDs4, &QPushButton::clicked, this, &MainWindow::openIDs4);
     connect(ui->actionProfileManager4, &QAction::triggered, this, &MainWindow::openProfileManager4);
@@ -224,6 +227,10 @@ void MainWindow::updateProfiles(int num)
         if (wild4)
         {
             wild4->updateProfiles();
+        }
+        if (unown4)
+        {
+            unown4->updateProfiles();
         }
         if (egg4)
         {
@@ -427,6 +434,17 @@ void MainWindow::openWild4()
     }
     wild4->show();
     wild4->raise();
+}
+
+void MainWindow::openUnown4()
+{
+    if (!unown4)
+    {
+        unown4 = new Unown4();
+        connect(unown4, &Unown4::alertProfiles, this, &MainWindow::updateProfiles);
+    }
+    unown4->show();
+    unown4->raise();
 }
 
 void MainWindow::openEgg4()

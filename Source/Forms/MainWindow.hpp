@@ -36,6 +36,7 @@ class Eggs3;
 class IDs3;
 class Stationary4;
 class Wild4;
+class Unown4;
 class Eggs4;
 class IDs4;
 class Stationary5;
@@ -62,6 +63,7 @@ private:
     IDs3 *ids3 = nullptr;
     Stationary4 *stationary4 = nullptr;
     Wild4 *wild4 = nullptr;
+    Unown4 *unown4 = nullptr;
     Eggs4 *egg4 = nullptr;
     IDs4 *ids4 = nullptr;
     Stationary5 *stationary5 = nullptr;
@@ -96,6 +98,7 @@ private slots:
     void openSpindaPainter();
     void openStationary4();
     void openWild4();
+    void openUnown4();
     void openEgg4();
     void openIDs4();
     void openProfileManager4();

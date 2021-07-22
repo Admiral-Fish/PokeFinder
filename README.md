@@ -23,8 +23,9 @@ Gen 3
 
 
 Gen 4
-- Manaphy Reroll Generator
-- Bug Catching Contest Generator
+- Manaphy Reroll Generator/Searcher
+- Basic Bug Catching Contest Generator/Searcher
+- DPPT Unown Generator/Searcher
 
 # Features
 Gen 3

@@ -122,7 +122,6 @@ std::vector<UnownState> UnownGenerator3::generate(u32 seed, u8 location) const
             letter = getLetter(pid);
         } while (letter != targetLetter);
 
-        state.setLetter(letter);
         state.setLetterIndex(getLetterIndex(pid));
         state.setNature(pid%25);
         state.setPID(pid);

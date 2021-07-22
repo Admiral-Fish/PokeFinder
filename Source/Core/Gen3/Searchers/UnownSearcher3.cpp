@@ -366,7 +366,6 @@ std::vector<UnownState> UnownSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8
                         pidtest2 = (hightest2 << 16) | lowtest2;
                         letter = getLetter(pidtest2);
                     }
-                    state.setLetter(letter);
                     state.setLetterIndex(getLetterIndex(pidtest2));
                     state.setPID(hightest2, lowtest2);
                     state.setAbility(lowtest2 & 1);

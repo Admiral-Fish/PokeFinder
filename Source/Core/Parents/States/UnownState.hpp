@@ -22,9 +22,10 @@
 
 #include <Core/Parents/States/State.hpp>
 #include <string>
+#include <functional>
 
 // enum Encounter : u8;
-// enum Lead : u8;
+enum Lead : u8;
 
 class UnownState : public State
 {
@@ -33,6 +34,16 @@ public:
 
     explicit UnownState(u32 advance) : State(advance)
     {
+    }
+
+    Lead getLead() const
+    {
+        return lead;
+    }
+
+    void setLead(Lead lead)
+    {
+        this->lead = lead;
     }
 
     std::string getLetter() const
@@ -48,12 +59,33 @@ public:
     void setLetterIndex(u8 letterIndex)
     {
         this->letterIndex = letterIndex;
+        setLetter(letters[letterIndex]);
+    }
+    
+    void setLetterIndex4(u8 letterIndex)
+    {
+        this->letterIndex = letters4ToLetters[letterIndex];
+        setLetter(letters4[letterIndex]);
+    }
+    
+    void setLetterIndex4b(u8 letterIndex)
+    {
+        this->letterIndex = letterIndex+26;
+        setLetter(letters[letterIndex+26]);
     }
 
     u8 getLetterIndex() const
     {
         return letterIndex;
     }
+    std::array<std::string,28> letters = { "A", "B", "C", "D", "E",
+                                           "F", "G", "H", "I", "J",
+                                           "K", "L", "M", "N", "O",
+                                           "P", "Q", "R", "S", "T",
+                                           "U", "V", "W", "X", "Y",
+                                                "Z", "!", "?" };
+    std::array<std::string,20> letters4 = { "A","B","C","G","H","J","K","L","M","O","P","Q","S","T","U","V","W","X","Y","Z" };
+    std::array<u8,20> letters4ToLetters = { 0,  1,  2,  6,  7,  9,  10, 11, 12, 14, 15, 16, 18, 19, 20, 21, 22, 23, 24, 25  };
 
     // Lead getLead() const;
     // void setLead(Lead lead);
@@ -63,6 +95,7 @@ public:
     // void setEncounter(Encounter encounter);
 
 protected:
+    Lead lead;
     std::string letter;
     // Lead lead;
     u8 letterIndex;

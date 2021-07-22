@@ -50,12 +50,14 @@ add_library(PokeFinderCore STATIC
     Gen4/Generators/IDGenerator4.cpp
     Gen4/Generators/StationaryGenerator4.cpp
     Gen4/Generators/WildGenerator4.cpp
+    Gen4/Generators/UnownGenerator4.cpp
     Gen4/HGSSRoamer.cpp
     Gen4/Profile4.cpp
     Gen4/Searchers/EggSearcher4.cpp
     Gen4/Searchers/IDSearcher4.cpp
     Gen4/Searchers/StationarySearcher4.cpp
     Gen4/Searchers/WildSearcher4.cpp
+    Gen4/Searchers/UnownSearcher4.cpp
     Gen4/SeedTime.cpp
     Gen4/Tools/ChainedSIDCalc.cpp
     Gen5/EncounterArea5.cpp
