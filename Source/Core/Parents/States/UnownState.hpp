@@ -23,6 +23,7 @@
 #include <Core/Parents/States/State.hpp>
 #include <string>
 #include <functional>
+#include <array>
 
 // enum Encounter : u8;
 enum Lead : u8;
