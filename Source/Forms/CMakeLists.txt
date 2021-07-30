@@ -77,6 +77,7 @@ set(PROJECT_UI
     Gen4/Profile/ProfileManager4.ui
     Gen4/Stationary4.ui
     Gen4/Tools/ChainedSID.ui
+    Gen4/Tools/Lottery.ui
     Gen4/Tools/RoamerMap.ui
     Gen4/Tools/SearchCalls.ui
     Gen4/Tools/SearchCoinFlips.ui
@@ -137,6 +138,7 @@ set(PROJECT_SOURCES
     Gen4/Profile/ProfileManager4.cpp
     Gen4/Stationary4.cpp
     Gen4/Tools/ChainedSID.cpp
+    Gen4/Tools/Lottery.cpp
     Gen4/Tools/RoamerMap.cpp
     Gen4/Tools/SearchCalls.cpp
     Gen4/Tools/SearchCoinFlips.cpp

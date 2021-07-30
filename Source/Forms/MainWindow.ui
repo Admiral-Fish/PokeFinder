@@ -230,6 +230,7 @@
     <addaction name="actionProfileManager4"/>
     <addaction name="actionSeedtoTime4"/>
     <addaction name="actionSIDfromChainedShiny"/>
+    <addaction name="actionLottery"/>
    </widget>
    <widget class="QMenu" name="menuGen5Tools">
     <property name="title">
@@ -361,6 +362,11 @@
   <action name="actionAbout">
    <property name="text">
     <string>About</string>
+   </property>
+  </action>
+  <action name="actionLottery">
+   <property name="text">
+    <string>Lottery Generator</string>
    </property>
   </action>
  </widget>

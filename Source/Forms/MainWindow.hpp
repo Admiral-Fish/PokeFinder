@@ -104,6 +104,7 @@ private slots:
     void openProfileManager4();
     void openSeedtoTime4();
     void openSIDFromChainedShiny();
+    void openLottery();
     void openStationary5();
     void openEvent5();
     void openDreamRadar();

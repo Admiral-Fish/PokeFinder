@@ -42,6 +42,7 @@
 #include <Forms/Gen4/Profile/ProfileManager4.hpp>
 #include <Forms/Gen4/Stationary4.hpp>
 #include <Forms/Gen4/Tools/ChainedSID.hpp>
+#include <Forms/Gen4/Tools/Lottery.hpp>
 #include <Forms/Gen4/Tools/SeedtoTime4.hpp>
 #include <Forms/Gen4/Wild4.hpp>
 #include <Forms/Gen4/Unown4.hpp>
@@ -138,6 +139,7 @@ void MainWindow::setupModels()
     connect(ui->actionIVtoPID4, &QAction::triggered, this, &MainWindow::openIVtoPID);
     connect(ui->actionSeedtoTime4, &QAction::triggered, this, &MainWindow::openSeedtoTime4);
     connect(ui->actionSIDfromChainedShiny, &QAction::triggered, this, &MainWindow::openSIDFromChainedShiny);
+    connect(ui->actionLottery, &QAction::triggered, this, &MainWindow::openLottery);
 
     connect(ui->pushButtonStationary5, &QPushButton::clicked, this, &MainWindow::openStationary5);
     connect(ui->pushButtonEvent5, &QPushButton::clicked, this, &MainWindow::openEvent5);
@@ -487,6 +489,13 @@ void MainWindow::openSIDFromChainedShiny()
     auto *chainedSID = new ChainedSID();
     chainedSID->show();
     chainedSID->raise();
+}
+
+void MainWindow::openLottery()
+{
+    auto *lottery = new Lottery();
+    lottery->show();
+    lottery->raise();
 }
 
 void MainWindow::openStationary5()
