@@ -425,6 +425,10 @@ void Wild3::generatorEncounterIndexChanged(int index)
         case Encounter::SafariZone:
             t = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11" };
             break;
+        case Encounter::SafariZoneHGSS:
+        case Encounter::BugCatchingContest:
+            t = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+            break;
         case Encounter::RockSmash:
         case Encounter::Surfing:
         case Encounter::SuperRod:
@@ -457,6 +461,10 @@ void Wild3::searcherEncounterIndexChanged(int index)
         case Encounter::Grass:
         case Encounter::SafariZone:
             t = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11" };
+            break;
+        case Encounter::SafariZoneHGSS:
+        case Encounter::BugCatchingContest:
+            t = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" };
             break;
         case Encounter::RockSmash:
         case Encounter::Surfing:
