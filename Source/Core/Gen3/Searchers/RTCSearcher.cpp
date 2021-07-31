@@ -220,7 +220,7 @@ void RTCSearcher::startSearch(u32 initialSeed, u32 targetSeed, u32 initialAdvanc
     }
     else if (rumble)
     {
-        RBRNGR back(targetSeed);
+        MRNGR back(targetSeed);
         back.advance(initialAdvances);
 
         targetSeed = back.getSeed();
@@ -233,7 +233,7 @@ void RTCSearcher::startSearch(u32 initialSeed, u32 targetSeed, u32 initialAdvanc
                 {
                     for (u8 second = 0; second < 60; second++, initialSeed += 60750000)
                     {
-                        RBRNG rng(initialSeed);
+                        MRNG rng(initialSeed);
 
                         for (u32 x = 0; x < maxAdvances; x++)
                         {

@@ -68,18 +68,20 @@ void Lottery::generate()
     u16 lotto2 = ui->textBoxLotto2->getUInt();
     u16 lotto3 = ui->textBoxLotto3->getUInt();
     u32 lottoseed = 0;
+    u32 reverseAdd = ui->radioButtonDPPT->isChecked() ? 0xFC77A683 : 0xA3561A1;
+    u16 add = ui->radioButtonDPPT->isChecked() ? 0x3039 : 0x6073;
     bool found = false;
-    for (u16 low = 0; low <= 0xFFFF; low++)
+    for (u32 low = 0; low <= 0xFFFF; low++)
     {
-        lottoseed = (lotto1 | low) * 0xEEB9EB65 + 0xA3561A1;
+        lottoseed = (lotto1 | low) * 0xEEB9EB65 + reverseAdd;
         u32 seed = lottoseed * 0x6c078965 + 0x1;
-        u16 test = (seed * 0x41c64e6d + 0x6073) >> 16;
+        u16 test = (seed * 0x41c64e6d + add) >> 16;
         if (test != lotto2)
         {
             continue;
         }
         seed = seed * 0x6c078965 + 0x1;
-        test = (seed * 0x41c64e6d + 0x6073) >> 16;
+        test = (seed * 0x41c64e6d + add) >> 16;
         if (test != lotto3)
         {
             continue;
@@ -87,19 +89,18 @@ void Lottery::generate()
         found = true;
         break;
     }
-    if (!found)
+    if (found)
     {
-        return;
-    }
-    ARNG rng(lottoseed);
-    for (u32 i = 0; i < ui->textBoxAdvances->getUInt(); i++)
-    {
-        QList<QStandardItem *> row;
-        row << new QStandardItem(QString::number(i));
-        row << new QStandardItem(QString::number(rng.getSeed(),16).toUpper());
-        u16 lotto = (rng.getSeed() * 0x41C64E6D + 0x6073) >> 16;
-        row << new QStandardItem(QString::number(lotto));
-        model->appendRow(row);
-        rng.next();
+        ARNG rng(lottoseed);
+        for (u32 i = 0; i < ui->textBoxAdvances->getUInt(); i++)
+        {
+            QList<QStandardItem *> row;
+            row << new QStandardItem(QString::number(i));
+            row << new QStandardItem(QString::number(rng.getSeed(),16).toUpper());
+            u16 lotto = (rng.getSeed() * 0x41C64E6D + add) >> 16;
+            row << new QStandardItem(QString::number(lotto));
+            model->appendRow(row);
+            rng.next();
+        }
     }
 }

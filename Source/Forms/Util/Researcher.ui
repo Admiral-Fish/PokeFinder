@@ -61,6 +61,16 @@
          </item>
          <item>
           <property name="text">
+           <string>MRNG</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>MRNG[R]</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
            <string>Mersenne Twister</string>
           </property>
          </item>

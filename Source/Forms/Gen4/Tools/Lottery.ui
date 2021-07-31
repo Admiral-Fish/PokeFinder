@@ -20,15 +20,25 @@
    <string>Lottery Generator</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="0" column="0">
-    <widget class="QLabel" name="labelLotto">
+   <item row="5" column="0" colspan="3">
+    <widget class="QTableView" name="tableView"/>
+   </item>
+   <item row="2" column="0">
+    <widget class="QLabel" name="labelAdvances">
      <property name="text">
-      <string>Lottery Numbers</string>
+      <string>Max Advances:</string>
      </property>
     </widget>
    </item>
-   <item row="4" column="0" colspan="3">
-    <widget class="QTableView" name="tableView"/>
+   <item row="2" column="1" colspan="2">
+    <widget class="TextBox" name="textBoxAdvances">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+    </widget>
    </item>
    <item row="1" column="0" colspan="3">
     <layout class="QVBoxLayout" name="verticalLayout">
@@ -64,27 +74,34 @@
      </item>
     </layout>
    </item>
-   <item row="2" column="0">
-    <widget class="QLabel" name="labelAdvances">
+   <item row="0" column="0">
+    <widget class="QLabel" name="labelLotto">
      <property name="text">
-      <string>Max Advances:</string>
+      <string>Lottery Numbers</string>
      </property>
     </widget>
    </item>
-   <item row="2" column="1" colspan="2">
-    <widget class="TextBox" name="textBoxAdvances">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-    </widget>
-   </item>
-   <item row="3" column="0" colspan="3">
+   <item row="4" column="0" colspan="3">
     <widget class="QPushButton" name="pushButtonGenerate">
      <property name="text">
       <string>Generate</string>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="0">
+    <widget class="QRadioButton" name="radioButtonDPPT">
+     <property name="text">
+      <string>DPPT</string>
+     </property>
+     <property name="checked">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="1">
+    <widget class="QRadioButton" name="radioButtonHGSS">
+     <property name="text">
+      <string>HGSS</string>
      </property>
     </widget>
    </item>

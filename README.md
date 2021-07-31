@@ -27,7 +27,7 @@ Gen 4
 - Basic Bug Catching Contest/Safari Zone Searcher
 - Bug Catching Contest/Safari Zone Reroll Generator
 - DPPT Unown Generator/Searcher
-- Basic Lottery Number Prediction
+- Basic Lottery Number Prediction for HGSS and DPPT
 
 # Features
 Gen 3

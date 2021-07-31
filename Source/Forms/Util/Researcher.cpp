@@ -264,11 +264,15 @@ void Researcher::generate()
             rngStates.insert(rngStates.begin(), seed);
             break;
         case 6:
-            rngStates = getStates(MT(seed), initialAdvances, maxAdvances);
+            rngStates = getStates(MRNG(seed), initialAdvances, maxAdvances);
+            rngStates.insert(rngStates.begin(), seed);
             break;
         case 7:
-            rngStates = getStates(RBRNG(seed), initialAdvances, maxAdvances);
+            rngStates = getStates(MRNGR(seed), initialAdvances, maxAdvances);
             rngStates.insert(rngStates.begin(), seed);
+            break;
+        case 8:
+            rngStates = getStates(MT(seed), initialAdvances, maxAdvances);
             break;
         }
     }
