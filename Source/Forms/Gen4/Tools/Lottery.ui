@@ -20,17 +20,60 @@
    <string>Lottery Generator</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="5" column="0" colspan="3">
-    <widget class="QTableView" name="tableView"/>
-   </item>
-   <item row="2" column="0">
-    <widget class="QLabel" name="labelAdvances">
+   <item row="10" column="0">
+    <widget class="QRadioButton" name="radioButtonDPPT">
      <property name="text">
-      <string>Max Advances:</string>
+      <string>DPPT</string>
+     </property>
+     <property name="checked">
+      <bool>true</bool>
+     </property>
+     <attribute name="buttonGroup">
+      <string notr="true">buttonGroupGame</string>
+     </attribute>
+    </widget>
+   </item>
+   <item row="10" column="1">
+    <widget class="QRadioButton" name="radioButtonHGSS">
+     <property name="text">
+      <string>HGSS</string>
+     </property>
+     <attribute name="buttonGroup">
+      <string notr="true">buttonGroupGame</string>
+     </attribute>
+    </widget>
+   </item>
+   <item row="12" column="0" colspan="2">
+    <widget class="QTableView" name="tableView">
+     <attribute name="horizontalHeaderVisible">
+      <bool>true</bool>
+     </attribute>
+     <attribute name="verticalHeaderVisible">
+      <bool>false</bool>
+     </attribute>
+    </widget>
+   </item>
+   <item row="9" column="0" colspan="2">
+    <widget class="TextBox" name="textBoxFilter">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
      </property>
     </widget>
    </item>
-   <item row="2" column="1" colspan="2">
+   <item row="11" column="0" colspan="2">
+    <widget class="QPushButton" name="pushButtonGenerate">
+     <property name="text">
+      <string>Generate</string>
+     </property>
+    </widget>
+   </item>
+   <item row="7" column="0" colspan="2">
     <widget class="TextBox" name="textBoxAdvances">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
@@ -40,69 +83,84 @@
      </property>
     </widget>
    </item>
-   <item row="1" column="0" colspan="3">
-    <layout class="QVBoxLayout" name="verticalLayout">
-     <item>
-      <widget class="TextBox" name="textBoxLotto1">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="TextBox" name="textBoxLotto2">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="TextBox" name="textBoxLotto3">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-      </widget>
-     </item>
-    </layout>
+   <item row="5" column="0" colspan="2">
+    <widget class="TextBox" name="textBoxSeed">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+    </widget>
    </item>
-   <item row="0" column="0">
-    <widget class="QLabel" name="labelLotto">
+   <item row="3" column="0" colspan="2">
+    <widget class="TextBox" name="textBoxLotto3">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="0" colspan="2">
+    <widget class="TextBox" name="textBoxLotto2">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0" colspan="2">
+    <widget class="TextBox" name="textBoxLotto1">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="0" colspan="2">
+    <widget class="QRadioButton" name="radioButtonLottery">
      <property name="text">
       <string>Lottery Numbers</string>
-     </property>
-    </widget>
-   </item>
-   <item row="4" column="0" colspan="3">
-    <widget class="QPushButton" name="pushButtonGenerate">
-     <property name="text">
-      <string>Generate</string>
-     </property>
-    </widget>
-   </item>
-   <item row="3" column="0">
-    <widget class="QRadioButton" name="radioButtonDPPT">
-     <property name="text">
-      <string>DPPT</string>
      </property>
      <property name="checked">
       <bool>true</bool>
      </property>
+     <attribute name="buttonGroup">
+      <string notr="true">buttonGroupCalibration</string>
+     </attribute>
     </widget>
    </item>
-   <item row="3" column="1">
-    <widget class="QRadioButton" name="radioButtonHGSS">
+   <item row="8" column="0" colspan="2">
+    <widget class="QCheckBox" name="checkBoxFilter">
      <property name="text">
-      <string>HGSS</string>
+      <string>Lotto Filter</string>
      </property>
+    </widget>
+   </item>
+   <item row="6" column="0" colspan="2">
+    <widget class="QLabel" name="labelAdvances">
+     <property name="text">
+      <string>Max Advances:</string>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="0" colspan="2">
+    <widget class="QRadioButton" name="radioButtonSeed">
+     <property name="text">
+      <string>Group Seed</string>
+     </property>
+     <attribute name="buttonGroup">
+      <string notr="true">buttonGroupCalibration</string>
+     </attribute>
     </widget>
    </item>
   </layout>
@@ -119,4 +177,8 @@
  </tabstops>
  <resources/>
  <connections/>
+ <buttongroups>
+  <buttongroup name="buttonGroupCalibration"/>
+  <buttongroup name="buttonGroupGame"/>
+ </buttongroups>
 </ui>

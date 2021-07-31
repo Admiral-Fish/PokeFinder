@@ -50,9 +50,13 @@ void Lottery::setupModels()
     ui->textBoxLotto1->setValues(InputType::TIDSID);
     ui->textBoxLotto2->setValues(InputType::TIDSID);
     ui->textBoxLotto3->setValues(InputType::TIDSID);
+    ui->textBoxFilter->setValues(InputType::TIDSID);
     ui->textBoxAdvances->setValues(InputType::Advance32Bit);
+    ui->textBoxSeed->setValues(InputType::Seed32Bit);
 
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Lottery::generate);
+    connect(ui->radioButtonSeed, &QRadioButton::toggled, this, &Lottery::switchCalibration);
+    connect(ui->checkBoxFilter, &QCheckBox::toggled, this, &Lottery::toggleFilter);
 
     QSettings setting;
     if (setting.contains("lottery/geometry"))
@@ -64,43 +68,64 @@ void Lottery::setupModels()
 void Lottery::generate()
 {
     model->removeRows(0, model->rowCount());
-    u32 lotto1 = ui->textBoxLotto1->getUInt() << 16;
-    u16 lotto2 = ui->textBoxLotto2->getUInt();
-    u16 lotto3 = ui->textBoxLotto3->getUInt();
-    u32 lottoseed = 0;
+    bool seedCalibration = ui->radioButtonSeed->isChecked();
+    bool found = seedCalibration;
+    bool filter = ui->checkBoxFilter->isChecked();
+    u32 lottoseed = seedCalibration ? ui->textBoxSeed->getUInt() : 0;
     u32 reverseAdd = ui->radioButtonDPPT->isChecked() ? 0xFC77A683 : 0xA3561A1;
     u16 add = ui->radioButtonDPPT->isChecked() ? 0x3039 : 0x6073;
-    bool found = false;
-    for (u32 low = 0; low <= 0xFFFF; low++)
-    {
-        lottoseed = (lotto1 | low) * 0xEEB9EB65 + reverseAdd;
-        u32 seed = lottoseed * 0x6c078965 + 0x1;
-        u16 test = (seed * 0x41c64e6d + add) >> 16;
-        if (test != lotto2)
+    u16 target = ui->textBoxFilter->getUShort();
+    if (!seedCalibration) {
+        u32 lotto1 = ui->textBoxLotto1->getUInt() << 16;
+        u16 lotto2 = ui->textBoxLotto2->getUInt();
+        u16 lotto3 = ui->textBoxLotto3->getUInt();
+        for (u32 low = 0; low <= 0xFFFF; low++)
         {
-            continue;
+            lottoseed = (lotto1 | low) * 0xEEB9EB65 + reverseAdd;
+            u32 seed = lottoseed * 0x6c078965 + 0x1;
+            u16 test = (seed * 0x41c64e6d + add) >> 16;
+            if (test != lotto2)
+            {
+                continue;
+            }
+            seed = seed * 0x6c078965 + 0x1;
+            test = (seed * 0x41c64e6d + add) >> 16;
+            if (test != lotto3)
+            {
+                continue;
+            }
+            found = true;
+            break;
         }
-        seed = seed * 0x6c078965 + 0x1;
-        test = (seed * 0x41c64e6d + add) >> 16;
-        if (test != lotto3)
-        {
-            continue;
-        }
-        found = true;
-        break;
     }
     if (found)
     {
         ARNG rng(lottoseed);
         for (u32 i = 0; i < ui->textBoxAdvances->getUInt(); i++)
         {
-            QList<QStandardItem *> row;
-            row << new QStandardItem(QString::number(i));
-            row << new QStandardItem(QString::number(rng.getSeed(),16).toUpper());
             u16 lotto = (rng.getSeed() * 0x41C64E6D + add) >> 16;
-            row << new QStandardItem(QString::number(lotto));
-            model->appendRow(row);
+            if (!filter || (filter && lotto == target))
+            {
+                QList<QStandardItem *> row;
+                row << new QStandardItem(QString::number(i));
+                row << new QStandardItem(QString::number(rng.getSeed(),16).toUpper());
+                row << new QStandardItem(QString::number(lotto));
+                model->appendRow(row);
+            }
             rng.next();
         }
     }
+}
+
+void Lottery::switchCalibration(bool seed)
+{
+    ui->textBoxLotto1->setDisabled(seed);
+    ui->textBoxLotto2->setDisabled(seed);
+    ui->textBoxLotto3->setDisabled(seed);
+    ui->textBoxSeed->setDisabled(!seed);
+}
+
+void Lottery::toggleFilter(bool on)
+{
+    ui->textBoxFilter->setDisabled(!on);
 }

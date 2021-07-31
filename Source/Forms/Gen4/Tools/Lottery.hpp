@@ -43,6 +43,8 @@ private:
 
 private slots:
     void generate();
+    void switchCalibration(bool seed);
+    void toggleFilter(bool on);
 };
 
 #endif // LOTTERY_HPP
