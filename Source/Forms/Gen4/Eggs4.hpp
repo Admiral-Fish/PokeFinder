@@ -50,6 +50,7 @@ private:
     EggSearcherModel4 *searcherModel = nullptr;
     QMenu *generatorMenu = nullptr;
     QMenu *searcherMenu = nullptr;
+    QAction *calcPoketchGenerator = nullptr;
 
     void setupModels();
 
@@ -60,7 +61,9 @@ private slots:
     void tableViewGeneratorContextMenu(QPoint pos);
     void tableViewSearcherContextMenu(QPoint pos);
     void seedToTime();
+    void calcPoketch();
     void profileManager();
+    void on_comboBoxGeneratorMethod_currentIndexChanged(int index);
 };
 
 #endif // EGGS4_HPP
