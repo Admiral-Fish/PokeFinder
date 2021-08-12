@@ -28,6 +28,7 @@
 #include <Core/Util/Translator.hpp>
 #include <Forms/Gen4/Profile/ProfileManager4.hpp>
 #include <Forms/Gen4/Tools/SeedtoTime4.hpp>
+#include <Forms/Gen4/Tools/Poketch.hpp>
 #include <Forms/Models/Gen4/EggModel4.hpp>
 #include <QMessageBox>
 #include <QSettings>
@@ -114,8 +115,11 @@ void Eggs4::setupModels()
 
     QAction *outputTXTGenerator = generatorMenu->addAction(tr("Output Results to TXT"));
     QAction *outputCSVGenerator = generatorMenu->addAction(tr("Output Results to CSV"));
+    calcPoketchGenerator = generatorMenu->addAction(tr("Calculate Poketch"));
+    calcPoketchGenerator->setVisible(false);
     connect(outputTXTGenerator, &QAction::triggered, [=] { ui->tableViewGenerator->outputModel(); });
     connect(outputCSVGenerator, &QAction::triggered, [=] { ui->tableViewGenerator->outputModel(true); });
+    connect(calcPoketchGenerator, &QAction::triggered, this, &Eggs4::calcPoketch);
 
     QAction *seedToTime = searcherMenu->addAction(tr("Generate times for seed"));
     QAction *outputTXTSearcher = searcherMenu->addAction(tr("Output Results to TXT"));
@@ -131,6 +135,7 @@ void Eggs4::setupModels()
     connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &Eggs4::profileManager);
     connect(ui->eggSettingsGenerator, &EggSettings::toggleInheritance, generatorModel, &EggGeneratorModel4::toggleInheritance);
     connect(ui->eggSettingsSearcher, &EggSettings::toggleInheritance, searcherModel, &EggSearcherModel4::toggleInheritance);
+    connect(ui->comboBoxGeneratorMethod, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &Eggs4::on_comboBoxGeneratorMethod_currentIndexChanged);
 
     QSettings setting;
     setting.beginGroup("eggs4");
@@ -326,9 +331,32 @@ void Eggs4::seedToTime()
     time->raise();
 }
 
+void Eggs4::calcPoketch() {
+    QModelIndex index = ui->tableViewGenerator->currentIndex();
+    int advances = generatorModel->data(generatorModel->index(index.row(), 0)).toInt();
+
+    auto *poketch = new Poketch(advances);
+    poketch->show();
+    poketch->raise();
+
+}
+
 void Eggs4::profileManager()
 {
     auto *manager = new ProfileManager4();
     connect(manager, &ProfileManager4::updateProfiles, this, [=] { emit alertProfiles(4); });
     manager->show();
+}
+
+void Eggs4::on_comboBoxGeneratorMethod_currentIndexChanged(int index)
+{
+    auto method = static_cast<Method>(ui->comboBoxGeneratorMethod->currentData().toInt());
+    if(method == Method::Gen4Normal)
+    {
+        calcPoketchGenerator->setVisible(true);
+    }
+    else
+    {
+        calcPoketchGenerator->setVisible(false);
+    }
 }
