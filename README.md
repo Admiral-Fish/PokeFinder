@@ -28,6 +28,7 @@ Gen 4
 - Bug Catching Contest/Safari Zone Reroll Generator
 - DPPT Unown Generator/Searcher
 - Basic Lottery Number Prediction for HGSS and DPPT
+- Basic Non Reroll PokeWalker PID/IV Generator/Searcher
 
 # Features
 Gen 3
