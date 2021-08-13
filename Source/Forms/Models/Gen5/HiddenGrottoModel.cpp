@@ -1,5 +1,57 @@
 #include "HiddenGrottoModel.hpp"
 #include <Core/Util/Translator.hpp>
+#include <Core/Util/Utilities.hpp>
+
+HiddenGrottoGeneratorModel5::HiddenGrottoGeneratorModel5(QObject *parent) : TableModel<HiddenGrottoState>(parent)
+{
+}
+
+int HiddenGrottoGeneratorModel5::columnCount(const QModelIndex &parent) const
+{
+    (void) parent;
+    return 6;
+}
+
+QVariant HiddenGrottoGeneratorModel5::data(const QModelIndex &index, int role) const
+{
+    if (role == Qt::DisplayRole)
+    {
+        const auto &state = model[index.row()];
+        int column = index.column();
+        switch (column)
+        {
+        case 0:
+            return state.getAdvances();
+        case 1:
+            return QString::fromStdString(Utilities::getChatot64(state.getSeed()));
+        case 2:
+            return QString::number(state.getPID(), 16).toUpper().rightJustified(8, '0');
+        case 3:
+            return QString::fromStdString(Translator::getNature(state.getNature()));
+        case 4:
+        {
+            u8 ability = state.getAbility();
+            if (ability == 0 || ability == 1)
+            {
+                return ability;
+            }
+            return "H";
+        }
+        case 5:
+            return QString::fromStdString(Translator::getGender(state.getGender()));
+        }
+    }
+    return QVariant();
+}
+
+QVariant HiddenGrottoGeneratorModel5::headerData(int section, Qt::Orientation orientation, int role) const
+{
+    if (role == Qt::DisplayRole && orientation == Qt::Horizontal)
+    {
+        return header[section];
+    }
+    return QVariant();
+}
 
 HiddenGrottoSearcherModel5::HiddenGrottoSearcherModel5(QObject *parent) : TableModel<SearcherState5<HiddenGrottoState>>(parent)
 {
