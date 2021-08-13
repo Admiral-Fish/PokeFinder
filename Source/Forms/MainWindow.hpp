@@ -38,6 +38,7 @@ class Stationary4;
 class Wild4;
 class Unown4;
 class Eggs4;
+class PokeWalker;
 class IDs4;
 class Stationary5;
 class Event5;
@@ -65,6 +66,7 @@ private:
     Wild4 *wild4 = nullptr;
     Unown4 *unown4 = nullptr;
     Eggs4 *egg4 = nullptr;
+    PokeWalker *pokewalker = nullptr;
     IDs4 *ids4 = nullptr;
     Stationary5 *stationary5 = nullptr;
     Event5 *event5 = nullptr;
@@ -100,6 +102,7 @@ private slots:
     void openWild4();
     void openUnown4();
     void openEgg4();
+    void openPokeWalker();
     void openIDs4();
     void openProfileManager4();
     void openSeedtoTime4();

@@ -72,6 +72,7 @@ set(PROJECT_UI
     Gen3/Wild3.ui
     Gen3/Unown3.ui
     Gen4/Eggs4.ui
+    Gen4/PokeWalker.ui
     Gen4/IDs4.ui
     Gen4/Profile/ProfileEditor4.ui
     Gen4/Profile/ProfileManager4.ui
@@ -133,6 +134,7 @@ set(PROJECT_SOURCES
     Gen3/Wild3.cpp
     Gen3/Unown3.cpp
     Gen4/Eggs4.cpp
+    Gen4/PokeWalker.cpp
     Gen4/IDs4.cpp
     Gen4/Profile/ProfileEditor4.cpp
     Gen4/Profile/ProfileManager4.cpp
@@ -168,6 +170,7 @@ set(PROJECT_SOURCES
     Models/Gen3/WildModel3.cpp
     Models/Gen3/UnownModel3.cpp
     Models/Gen4/EggModel4.cpp
+    Models/Gen4/PokeWalkerModel.cpp
     Models/Gen4/IDModel4.cpp
     Models/Gen4/ProfileModel4.cpp
     Models/Gen4/SeedtoTimeModel4.cpp

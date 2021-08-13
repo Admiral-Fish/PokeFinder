@@ -38,6 +38,7 @@
 #include <Forms/Gen3/Wild3.hpp>
 #include <Forms/Gen3/Unown3.hpp>
 #include <Forms/Gen4/Eggs4.hpp>
+#include <Forms/Gen4/PokeWalker.hpp>
 #include <Forms/Gen4/IDs4.hpp>
 #include <Forms/Gen4/Profile/ProfileManager4.hpp>
 #include <Forms/Gen4/Stationary4.hpp>
@@ -134,6 +135,7 @@ void MainWindow::setupModels()
     connect(ui->pushButtonWild4, &QPushButton::clicked, this, &MainWindow::openWild4);
     connect(ui->pushButtonUnown4, &QPushButton::clicked, this, &MainWindow::openUnown4);
     connect(ui->pushButtonEgg4, &QPushButton::clicked, this, &MainWindow::openEgg4);
+    connect(ui->pushButtonPokeWalker, &QPushButton::clicked, this, &MainWindow::openPokeWalker);
     connect(ui->pushButtonIDs4, &QPushButton::clicked, this, &MainWindow::openIDs4);
     connect(ui->actionProfileManager4, &QAction::triggered, this, &MainWindow::openProfileManager4);
     connect(ui->actionIVtoPID4, &QAction::triggered, this, &MainWindow::openIVtoPID);
@@ -458,6 +460,17 @@ void MainWindow::openEgg4()
     }
     egg4->show();
     egg4->raise();
+}
+
+void MainWindow::openPokeWalker()
+{
+    if (!pokewalker)
+    {
+        pokewalker = new PokeWalker();
+        connect(pokewalker, &PokeWalker::alertProfiles, this, &MainWindow::updateProfiles);
+    }
+    pokewalker->show();
+    pokewalker->raise();
 }
 
 void MainWindow::openIDs4()

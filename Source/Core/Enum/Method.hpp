@@ -58,6 +58,8 @@ enum Method : u8
     WondercardIVs,
     Gen4Normal,
     Gen4Masuada,
+    PokeWalkerPID,
+    PokeWalkerIVs,
     DPPtIVs,
     HGSSIVs,
     Gen4Combined,
