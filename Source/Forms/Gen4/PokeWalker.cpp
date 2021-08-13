@@ -105,6 +105,8 @@ void PokeWalker::setupModels()
     ui->textBoxSearcherMaxDelay->setValues(InputType::Advance32Bit);
 
     ui->comboBoxGeneratorMethod->setup({ Method::PokeWalkerIVs, Method::PokeWalkerPID });
+    ui->comboBoxGeneratorGender->setup({ 0, 1, 2 });
+    ui->comboBoxSearcherGender->setup({ 0, 1, 2 });
 
     ui->filterGenerator->disableControls(Controls::EncounterSlots);
     ui->filterSearcher->disableControls(Controls::EncounterSlots | Controls::UseDelay | Controls::DisableFilter);
@@ -169,6 +171,7 @@ void PokeWalker::generate()
     u32 seed = ui->textBoxGeneratorSeed->getUInt();
     u16 tid = currentProfile.getTID();
     u16 sid = currentProfile.getSID();
+    u8 gender = ui->comboBoxGeneratorGender->currentData().toInt();
 
     auto method = static_cast<Method>(ui->comboBoxGeneratorMethod->currentData().toInt());
     generatorModel->setMethod(method);
@@ -177,7 +180,7 @@ void PokeWalker::generate()
                        ui->filterGenerator->getDisableFilters(), ui->filterGenerator->getMinIVs(), ui->filterGenerator->getMaxIVs(),
                        ui->filterGenerator->getNatures(), ui->filterGenerator->getHiddenPowers(), {});
 
-    PokeWalkerGenerator generator(initialAdvances, maxAdvances, tid, sid, ui->filterGenerator->getGenderRatio(), method, filter);
+    PokeWalkerGenerator generator(initialAdvances, maxAdvances, tid, sid, ui->filterGenerator->getGenderRatio(), method, filter, gender);
 
     auto states = generator.generate(seed);
     generatorModel->addItems(states);
@@ -208,6 +211,7 @@ void PokeWalker::search()
     u16 tid = currentProfile.getTID();
     u16 sid = currentProfile.getSID();
     u8 genderRatio = ui->filterSearcher->getGenderRatio();
+    u8 gender = ui->comboBoxSearcherGender->currentData().toInt();
 
     StateFilter filter(ui->filterSearcher->getGender(), ui->filterSearcher->getAbility(), ui->filterSearcher->getShiny(), false,
                        ui->filterSearcher->getMinIVs(), ui->filterSearcher->getMaxIVs(), ui->filterSearcher->getNatures(),
@@ -220,8 +224,8 @@ void PokeWalker::search()
     u32 minAdvancePID = ui->textBoxSearcherPIDMinAdvance->getUInt();
     u32 maxAdvancePID = ui->textBoxSearcherPIDMaxAdvance->getUInt();
 
-    PokeWalkerGenerator generatorIV(minAdvanceIV, maxAdvanceIV, tid, sid, genderRatio, Method::PokeWalkerIVs, filter);
-    PokeWalkerGenerator generatorPID(minAdvanceIV, maxAdvanceIV, tid, sid, genderRatio, Method::PokeWalkerPID, filter);
+    PokeWalkerGenerator generatorIV(minAdvanceIV, maxAdvanceIV, tid, sid, genderRatio, Method::PokeWalkerIVs, filter, gender);
+    PokeWalkerGenerator generatorPID(minAdvanceIV, maxAdvanceIV, tid, sid, genderRatio, Method::PokeWalkerPID, filter, gender);
 
     ui->progressBar->setValue(0);
     ui->progressBar->setMaximum(static_cast<int>(256 * 24 * (maxDelay - minDelay + 1)));

@@ -27,12 +27,13 @@ class PokeWalkerGenerator : public Generator
 {
 public:
     PokeWalkerGenerator() = default;
-    PokeWalkerGenerator(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter);
+    PokeWalkerGenerator(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter, u8 gender);
     std::vector<PokeWalkerState> generate(u32 seed) const;
 
 private:
     std::vector<PokeWalkerState> generatePokeWalkerPID(u32 seed) const;
     std::vector<PokeWalkerState> generatePokeWalkerIVs(u32 seed) const;
+    u8 gender;
 };
 
 #endif // POKEWALKERGENERATOR4_HPP

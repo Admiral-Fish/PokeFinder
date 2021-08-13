@@ -24,9 +24,10 @@
 #include <Core/RNG/MT.hpp>
 
 PokeWalkerGenerator::PokeWalkerGenerator(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, Method method,
-                                         const StateFilter &filter) :
+                                         const StateFilter &filter, u8 gender) :
     Generator(initialAdvances, maxAdvances, tid, sid, genderRatio, method, filter)
 {
+    this->gender = gender;
 }
 
 std::vector<PokeWalkerState> PokeWalkerGenerator::generate(u32 seed) const
@@ -58,6 +59,18 @@ std::vector<PokeWalkerState> PokeWalkerGenerator::generatePokeWalkerPID(u32 seed
         pid = ((tsv >> 8) ^ 255) << 24;
         correction -= pid % 25;
         pid += correction;
+        u32 genderCorrection = ((genderRatio/50)+1)*50;
+        if (gender > 0 && genderRatio > 0 && genderRatio < 254)
+        {
+            if (gender == 1 && correction < 24)
+            {
+                pid += genderCorrection;
+            }
+            else if (gender == 2 && correction >= 24)
+            {
+                pid -= genderCorrection;
+            }
+        }
         
         state.setPID(pid);
         state.setAbility(pid & 1);
