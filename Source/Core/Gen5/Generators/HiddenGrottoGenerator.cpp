@@ -29,11 +29,13 @@ HiddenGrottoGenerator::HiddenGrottoGenerator(u32 initialAdvances, u32 maxAdvance
 {
 }
 
-std::vector<HiddenGrottoState> HiddenGrottoGenerator::generate(u64 seed)
+std::vector<HiddenGrottoState> HiddenGrottoGenerator::generate(u64 seed, bool memory)
 {
     std::vector<HiddenGrottoState> states;
 
     BWRNG rng(seed);
+    u32 initialAdvancesBW2 = Utilities::initialAdvancesBW2(seed, memory);
+    rng.advance(initialAdvancesBW2);
 
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rng.next())
     {
