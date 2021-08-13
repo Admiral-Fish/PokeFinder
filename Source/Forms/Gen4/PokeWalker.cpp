@@ -225,7 +225,7 @@ void PokeWalker::search()
     u32 maxAdvancePID = ui->textBoxSearcherPIDMaxAdvance->getUInt();
 
     PokeWalkerGenerator generatorIV(minAdvanceIV, maxAdvanceIV, tid, sid, genderRatio, Method::PokeWalkerIVs, filter, gender);
-    PokeWalkerGenerator generatorPID(minAdvanceIV, maxAdvanceIV, tid, sid, genderRatio, Method::PokeWalkerPID, filter, gender);
+    PokeWalkerGenerator generatorPID(minAdvancePID, maxAdvancePID, tid, sid, genderRatio, Method::PokeWalkerPID, filter, gender);
 
     ui->progressBar->setValue(0);
     ui->progressBar->setMaximum(static_cast<int>(256 * 24 * (maxDelay - minDelay + 1)));
