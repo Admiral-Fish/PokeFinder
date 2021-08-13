@@ -109,16 +109,6 @@
        <string>Gen 5</string>
       </property>
       <layout class="QGridLayout" name="gridLayout_4">
-       <item row="0" column="0">
-        <widget class="QPushButton" name="pushButtonStationary5">
-         <property name="enabled">
-          <bool>false</bool>
-         </property>
-         <property name="text">
-          <string>Stationary</string>
-         </property>
-        </widget>
-       </item>
        <item row="1" column="0">
         <widget class="QPushButton" name="pushButtonWild5">
          <property name="enabled">
@@ -129,10 +119,27 @@
          </property>
         </widget>
        </item>
+       <item row="5" column="0">
+        <widget class="QPushButton" name="pushButtonEgg5">
+         <property name="text">
+          <string>Egg</string>
+         </property>
+        </widget>
+       </item>
        <item row="2" column="0">
         <widget class="QPushButton" name="pushButtonEvent5">
          <property name="text">
           <string>Event</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QPushButton" name="pushButtonStationary5">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="text">
+          <string>Stationary</string>
          </property>
         </widget>
        </item>
@@ -143,17 +150,17 @@
          </property>
         </widget>
        </item>
-       <item row="4" column="0">
-        <widget class="QPushButton" name="pushButtonEgg5">
-         <property name="text">
-          <string>Egg</string>
-         </property>
-        </widget>
-       </item>
-       <item row="5" column="0">
+       <item row="6" column="0">
         <widget class="QPushButton" name="pushButtonIDs5">
          <property name="text">
           <string>TID/SID</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="0">
+        <widget class="QPushButton" name="pushButtonHiddenGrotto">
+         <property name="text">
+          <string>Hidden Grotto</string>
          </property>
         </widget>
        </item>
@@ -168,7 +175,7 @@
      <x>0</x>
      <y>0</y>
      <width>680</width>
-     <height>21</height>
+     <height>20</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuTools">

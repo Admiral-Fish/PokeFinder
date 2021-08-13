@@ -72,6 +72,7 @@ add_library(PokeFinderCore STATIC
     Gen5/Searchers/DreamRadarSearcher.cpp
     Gen5/Searchers/EggSearcher5.cpp
     Gen5/Searchers/EventSearcher5.cpp
+    Gen5/Searchers/HiddenGrottoSearcher.cpp
     Gen5/Searchers/IDSearcher5.cpp
     Gen5/Searchers/ProfileSearcher5.cpp
     Gen5/Searchers/StationarySearcher5.cpp
