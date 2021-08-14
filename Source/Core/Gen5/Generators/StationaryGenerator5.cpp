@@ -44,22 +44,43 @@ std::vector<StationaryState> StationaryGenerator5::generate(u64 seed) const
         {
         case Encounter::Roamer:
             return generateRoamerIVs(seed);
-        default:
+        case Encounter::Stationary:
             return generateIVs(seed);
+        default:
+            break;
         }
     case Method::Method5CGear:
         switch (encounter)
         {
         case Encounter::Roamer:
             return generateRoamerCGear(seed);
-        default:
+        case Encounter::Stationary:
             return generateCGear(seed);
+        default:
+            break;
         }
-    // case Method::Method5:
-    //    break;
+    case Method::Method5:
+        switch (encounter)
+        {
+        case Encounter::Stationary:
+            return generateStationary(seed);
+        case Encounter::Roamer:
+            return generateRoamer(seed);
+        case Encounter::Gift:
+            return generateGift(seed);
+        case Encounter::EntraLink:
+            return generateEntraLink(seed);
+        case Encounter::LarvestaEgg:
+            return generateLarvestaEgg(seed);
+        case Encounter::HiddenGrotto:
+            return generateHiddenGrotto(seed);
+        default:
+            break;
+        }
     default:
-        return std::vector<StationaryState>();
+        break;
     }
+    return std::vector<StationaryState>();
 }
 
 std::vector<StationaryState> StationaryGenerator5::generateRoamerIVs(u64 seed) const
@@ -73,7 +94,7 @@ std::vector<StationaryState> StationaryGenerator5::generateRoamerIVs(u64 seed) c
 
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rngList.advanceState())
     {
-        StationaryState state;
+        StationaryState state(initialAdvances + cnt);
 
         rngList.advance(1); // Blank ???
         u8 hp = rngList.getValue();
@@ -88,7 +109,6 @@ std::vector<StationaryState> StationaryGenerator5::generateRoamerIVs(u64 seed) c
 
         if (filter.compareIVs(state))
         {
-            // state.setIVFrame(initialAdvances + cnt);
             states.emplace_back(state);
         }
     }
@@ -107,7 +127,7 @@ std::vector<StationaryState> StationaryGenerator5::generateIVs(u64 seed) const
 
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rngList.advanceState())
     {
-        StationaryState state;
+        StationaryState state(initialAdvances + cnt);
 
         u8 hp = rngList.getValue();
         u8 atk = rngList.getValue();
@@ -121,7 +141,6 @@ std::vector<StationaryState> StationaryGenerator5::generateIVs(u64 seed) const
 
         if (filter.compareIVs(state))
         {
-            // state.setIVFrame(initialAdvances + cnt);
             states.emplace_back(state);
         }
     }
@@ -141,7 +160,7 @@ std::vector<StationaryState> StationaryGenerator5::generateRoamerCGear(u64 seed)
 
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rngList.advanceState())
     {
-        StationaryState state;
+        StationaryState state(initialAdvances + cnt);
 
         rngList.advance(1); // Blank ???
         u8 hp = rngList.getValue();
@@ -156,7 +175,6 @@ std::vector<StationaryState> StationaryGenerator5::generateRoamerCGear(u64 seed)
 
         if (filter.compareIVs(state))
         {
-            // state.setIVFrame(initialAdvances + cnt);
             states.emplace_back(state);
         }
     }
@@ -176,7 +194,7 @@ std::vector<StationaryState> StationaryGenerator5::generateCGear(u64 seed) const
 
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rngList.advanceState())
     {
-        StationaryState state;
+        StationaryState state(initialAdvances + cnt);
 
         u8 hp = rngList.getValue();
         u8 atk = rngList.getValue();
@@ -190,7 +208,6 @@ std::vector<StationaryState> StationaryGenerator5::generateCGear(u64 seed) const
 
         if (filter.compareIVs(state))
         {
-            // state.setIVFrame(initialAdvances + cnt);
             states.emplace_back(state);
         }
     }
@@ -205,7 +222,7 @@ std::vector<StationaryState> StationaryGenerator5::generateStationary(u64 seed) 
     BWRNG rng(seed);
     rng.advance(initialAdvances + offset);
 
-    for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
+    for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rng.next())
     {
         StationaryState state(initialAdvances + cnt);
         BWRNG go(rng.getSeed());
@@ -272,14 +289,14 @@ std::vector<StationaryState> StationaryGenerator5::generateStationary(u64 seed) 
     return states;
 }
 
-std::vector<StationaryState> StationaryGenerator5::generateRoamer(u64 seed)
+std::vector<StationaryState> StationaryGenerator5::generateRoamer(u64 seed) const
 {
     std::vector<StationaryState> states;
 
     BWRNG rng(seed);
     rng.advance(initialAdvances + offset);
 
-    for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
+    for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rng.next())
     {
         StationaryState state(initialAdvances + cnt);
         BWRNG go(rng.getSeed());
@@ -301,14 +318,14 @@ std::vector<StationaryState> StationaryGenerator5::generateRoamer(u64 seed)
     return states;
 }
 
-std::vector<StationaryState> StationaryGenerator5::generateGift(u64 seed)
+std::vector<StationaryState> StationaryGenerator5::generateGift(u64 seed) const
 {
     std::vector<StationaryState> states;
 
     BWRNG rng(seed);
     rng.advance(initialAdvances + offset);
 
-    for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
+    for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rng.next())
     {
         StationaryState state(initialAdvances + cnt);
         BWRNG go(rng.getSeed());
@@ -330,14 +347,14 @@ std::vector<StationaryState> StationaryGenerator5::generateGift(u64 seed)
     return states;
 }
 
-std::vector<StationaryState> StationaryGenerator5::generateEntraLink(u64 seed)
+std::vector<StationaryState> StationaryGenerator5::generateEntraLink(u64 seed) const
 {
     std::vector<StationaryState> states;
 
     BWRNG rng(seed);
     rng.advance(initialAdvances + offset);
 
-    for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
+    for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rng.next())
     {
         StationaryState state(initialAdvances + cnt);
         BWRNG go(rng.getSeed());
@@ -348,14 +365,14 @@ std::vector<StationaryState> StationaryGenerator5::generateEntraLink(u64 seed)
     return states;
 }
 
-std::vector<StationaryState> StationaryGenerator5::generateLarvestaEgg(u64 seed)
+std::vector<StationaryState> StationaryGenerator5::generateLarvestaEgg(u64 seed) const
 {
     std::vector<StationaryState> states;
 
     BWRNG rng(seed);
     rng.advance(initialAdvances + offset);
 
-    for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
+    for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rng.next())
     {
         StationaryState state(initialAdvances + cnt);
         BWRNG go(rng.getSeed());
@@ -378,14 +395,14 @@ std::vector<StationaryState> StationaryGenerator5::generateLarvestaEgg(u64 seed)
     return states;
 }
 
-std::vector<StationaryState> StationaryGenerator5::generateHiddenGrotto(u64 seed)
+std::vector<StationaryState> StationaryGenerator5::generateHiddenGrotto(u64 seed) const
 {
     std::vector<StationaryState> states;
 
     BWRNG rng(seed);
     rng.advance(initialAdvances + offset);
 
-    for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
+    for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rng.next())
     {
         StationaryState state(initialAdvances + cnt);
         BWRNG go(rng.getSeed());

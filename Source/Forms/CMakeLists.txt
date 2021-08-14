@@ -163,6 +163,7 @@ set(PROJECT_SOURCES
     Models/Gen5/IDModel5.cpp
     Models/Gen5/ProfileModel5.cpp
     Models/Gen5/ProfileSearcherModel5.cpp
+    Models/Gen5/StationaryModel5.cpp
     Models/Util/ResearcherModel.cpp
     Util/EncounterLookup.cpp
     Util/IVCalculator.cpp
