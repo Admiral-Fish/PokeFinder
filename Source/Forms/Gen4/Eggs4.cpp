@@ -40,8 +40,9 @@ Eggs4::Eggs4(QWidget *parent) : QWidget(parent), ui(new Ui::Eggs4)
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
 
-    updateProfiles();
     setupModels();
+    updateProfiles();
+
 }
 
 Eggs4::~Eggs4()
