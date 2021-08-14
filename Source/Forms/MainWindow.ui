@@ -112,7 +112,7 @@
        <item row="0" column="0">
         <widget class="QPushButton" name="pushButtonStationary5">
          <property name="enabled">
-          <bool>false</bool>
+          <bool>true</bool>
          </property>
          <property name="text">
           <string>Stationary</string>

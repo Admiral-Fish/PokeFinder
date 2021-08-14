@@ -406,8 +406,57 @@ std::vector<StationaryState> StationaryGenerator5::generateHiddenGrotto(u64 seed
     {
         StationaryState state(initialAdvances + cnt);
         BWRNG go(rng.getSeed());
+        state.setSeed(go.nextUInt(0x1FFF));
 
-        // TODO
+        bool synch = (go.nextUInt() >> 31) == 1;
+        u32 pid = go.nextUInt();
+
+        if(genderRatio == 255)
+        {
+            state.setNature(go.nextUInt(25));
+        }
+        else if(genderRatio == 254)
+        {
+            u32 genderAdjustment = go.nextUInt(0x8);
+            pid = (pid & 0xFFFFFF00) | (genderAdjustment + 1);
+            state.setNature(go.nextUInt(25));
+        }
+        else if(genderRatio == 0)
+        {
+            u32 genderAdjustment = go.nextUInt(0xF6);
+            pid = (pid & 0xFFFFFF00) | (genderAdjustment + 8);
+            state.setNature(go.nextUInt(25));
+        }
+        else
+        {
+            state.setGender(0);
+            if(filter.compareGender(state))
+            {
+                u32 genderAdjustment = go.nextUInt(0xFE - genderRatio);
+                pid = (pid & 0xFFFFFF00) | (genderAdjustment + genderRatio);
+            }
+            state.setGender(1);
+            if(filter.compareGender(state))
+            {
+                u32 genderAdjustment = go.nextUInt(genderRatio - 1);
+                pid = (pid & 0xFFFFFF00) | (genderAdjustment + 1);
+            }
+            state.setNature(go.nextUInt(25));
+        }
+
+        if(lead == Lead::Synchronize && synch)
+        {
+            state.setNature(synchNature);
+        }
+
+        pid = pid ^ 0x10000;
+        state.setPID(pid);
+        state.setAbility((pid >> 16) & 1);
+        state.setGender(pid & 255, genderRatio);
+        if (filter.comparePID(state))
+        {
+            states.emplace_back(state);
+        }
     }
 
     return states;

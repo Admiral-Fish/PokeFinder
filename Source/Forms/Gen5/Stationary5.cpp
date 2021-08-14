@@ -94,6 +94,8 @@ void Stationary5::setupModels()
     ui->textBoxSearcherMaxAdvance->setValues(InputType::Advance32Bit);
 
     ui->comboBoxGeneratorMethod->setup({ Method::Method5IVs, Method::Method5CGear, Method::Method5 });
+    connect(ui->comboBoxGeneratorMethod, QOverload<int>::of(&ComboBox::currentIndexChanged), this, &Stationary5::generatorMethodIndexChanged);
+
     ui->comboBoxGeneratorEncounter->setup({ Encounter::Stationary, Encounter::Roamer });
 
     ui->comboBoxSearcherLead->setup({ Lead::Search, Lead::Synchronize, Lead::CuteCharm, Lead::None });
@@ -291,6 +293,27 @@ void Stationary5::generatorLead()
 
         ui->comboBoxGeneratorLead->addItem("None");
         // ui->comboBoxGeneratorLead->addItems(Translator::getNatures());
+    }
+}
+
+void Stationary5::generatorMethodIndexChanged(int index)
+{
+    ui->comboBoxGeneratorEncounter->clear();
+    switch(ui->comboBoxGeneratorMethod->getCurrentByte())
+    {
+    case Method::Method5IVs:
+    case Method::Method5CGear:
+    {
+        ui->comboBoxGeneratorEncounter->addItems({ tr("Stationary"),    tr("Roamer")});
+        ui->comboBoxGeneratorEncounter->setup({ Encounter::Stationary, Encounter::Roamer });
+        break;
+    }
+    case Method::Method5:
+    {
+        ui->comboBoxGeneratorEncounter->addItems({ tr("Stationary"),    tr("Roamer"),   tr("Hidden Grotto")});
+        ui->comboBoxGeneratorEncounter->setup({ Encounter::Stationary, Encounter::Roamer, Encounter::HiddenGrotto });
+        break;
+    }
     }
 }
 
