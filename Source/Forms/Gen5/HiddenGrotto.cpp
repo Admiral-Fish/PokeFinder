@@ -71,11 +71,8 @@ bool HiddenGrotto::hasProfiles() const
 
 void HiddenGrotto::setupModels()
 {
-    generatorModel = new HiddenGrottoGeneratorModel5(ui->tableViewGenerator);
-    generatorMenu = new QMenu(ui->tableViewGenerator);
     searcherModel = new HiddenGrottoSearcherModel5(ui->tableViewSearcher);
-    searcherMenu = new QMenu(ui->tableViewSearcher);        
-
+    searcherMenu = new QMenu(ui->tableViewSearcher);
     ui->checkListSlot->setup({ "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" });
     ui->checkListGroup->setup({ "0", "1", "2", "3" });
     ui->checkListGender->setup({"♂", "♀"});
@@ -104,17 +101,6 @@ void HiddenGrotto::setupModels()
         this->restoreGeometry(setting.value("geometry").toByteArray());
     }
     setting.endGroup();
-}
-
-void HiddenGrotto::generate()
-{
-    generatorModel->clearModel();
-
-    u64 seed = ui->textBoxGeneratorSeed->getULong();
-    u32 initialAdvances = ui->textBoxGeneratorInitialAdvances->getUInt();
-    u32 maxAdvances = ui->textBoxGeneratorMaxAdvances->getUInt();
-
-
 }
 
 void HiddenGrotto::search()
@@ -183,14 +169,6 @@ void HiddenGrotto::profileIndexChanged(int index)
         ui->labelProfileVFrameValue->setText(QString::number(currentProfile.getVFrame()));
         ui->labelProfileKeypressesValue->setText(QString::fromStdString(currentProfile.getKeypressesString()));
         ui->labelProfileGameValue->setText(QString::fromStdString(currentProfile.getVersionString()));
-    }
-}
-
-void HiddenGrotto::tableViewGeneratorContextMenu(QPoint pos)
-{
-    if (generatorModel->rowCount() > 0)
-    {
-        generatorMenu->popup(ui->tableViewGenerator->viewport()->mapToGlobal(pos));
     }
 }
 
