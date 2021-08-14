@@ -25,7 +25,7 @@ void Poketch::setupModels(u32 advances) {
     if(advances < 12)
     {
         coin = advances;
-        ui->labelNote->setText("DO NOT SWITCH TO THE HAPPINESS APPLICATION AT ALL");
+        ui->labelNote->setText(tr("Do not switch to the happiness application at all"));
     } else
     {
         target = advances - 12;
@@ -34,7 +34,7 @@ void Poketch::setupModels(u32 advances) {
 
         if(happy == 0)
         {
-            ui->labelNote->setText("SWITCH TO THE HAPPINESS APPLICATION ONCE BUT DO NOT CLICK");
+            ui->labelNote->setText(tr("Switch to the happiness application once but do not click"));
         }
     }
 

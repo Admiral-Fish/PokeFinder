@@ -302,6 +302,15 @@ void Eggs4::profilesIndexChanged(int index)
         ui->labelProfileTIDValue->setText(QString::number(currentProfile.getTID()));
         ui->labelProfileSIDValue->setText(QString::number(currentProfile.getSID()));
         ui->labelProfileGameValue->setText(QString::fromStdString(currentProfile.getVersionString()));
+
+        if(currentProfile.getVersion() == Game::Diamond || currentProfile.getVersion() == Game::Pearl || currentProfile.getVersion() == Game::Platinum)
+        {
+            calcPoketchGenerator->setVisible(true);
+        }
+        else
+        {
+            calcPoketchGenerator->setVisible(false);
+        }
     }
 }
 
