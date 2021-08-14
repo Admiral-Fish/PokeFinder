@@ -216,9 +216,6 @@
    </item>
    <item row="1" column="0">
     <widget class="QTabWidget" name="tabRNGSelector">
-     <property name="currentIndex">
-      <number>1</number>
-     </property>
      <widget class="QWidget" name="tabStationary">
       <attribute name="title">
        <string>Generator</string>
@@ -236,11 +233,39 @@
           <string>RNG Info</string>
          </property>
          <layout class="QGridLayout" name="gridLayout_6">
-          <item row="4" column="0">
-           <widget class="QLabel" name="labelGeneratorSeed">
+          <item row="3" column="0">
+           <widget class="QLabel" name="labelGeneratorStartingAdvance">
             <property name="text">
-             <string>Seed</string>
+             <string>Initial Advances</string>
             </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="ComboBox" name="comboBoxGeneratorMethod">
+            <property name="layoutDirection">
+             <enum>Qt::LeftToRight</enum>
+            </property>
+            <property name="editable">
+             <bool>false</bool>
+            </property>
+            <property name="frame">
+             <bool>true</bool>
+            </property>
+            <item>
+             <property name="text">
+              <string>IVs</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>IVs C-Gear</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>PIDRNG</string>
+             </property>
+            </item>
            </widget>
           </item>
           <item row="0" column="0">
@@ -251,6 +276,49 @@
            </widget>
           </item>
           <item row="4" column="1">
+           <widget class="TextBox" name="textBoxGeneratorMaxAdvances">
+            <property name="inputMask">
+             <string/>
+            </property>
+            <property name="text">
+             <string notr="true">100000</string>
+            </property>
+            <property name="maxLength">
+             <number>10</number>
+            </property>
+           </widget>
+          </item>
+          <item row="6" column="0" colspan="2">
+           <widget class="QPushButton" name="pushButtonGenerate">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
+            <property name="text">
+             <string>Generate</string>
+            </property>
+            <property name="checkable">
+             <bool>false</bool>
+            </property>
+            <property name="autoDefault">
+             <bool>false</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="0">
+           <widget class="QLabel" name="labelGeneratorSeed">
+            <property name="text">
+             <string>Seed</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QPushButton" name="pushButtonGeneratorLead">
+            <property name="text">
+             <string>Synchronize</string>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="1">
            <widget class="TextBox" name="textBoxGeneratorSeed">
             <property name="inputMask">
              <string/>
@@ -272,14 +340,7 @@
             </property>
            </widget>
           </item>
-          <item row="2" column="0">
-           <widget class="QLabel" name="labelGeneratorStartingAdvance">
-            <property name="text">
-             <string>Initial Advances</string>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="0">
+          <item row="4" column="0">
            <widget class="QLabel" name="labelGeneratorMaxAdvances">
             <property name="text">
              <string>Max Advances</string>
@@ -287,6 +348,9 @@
            </widget>
           </item>
           <item row="2" column="1">
+           <widget class="QComboBox" name="comboBoxGeneratorLead"/>
+          </item>
+          <item row="3" column="1">
            <widget class="TextBox" name="textBoxGeneratorStartingAdvance">
             <property name="inputMask">
              <string/>
@@ -300,55 +364,24 @@
            </widget>
           </item>
           <item row="1" column="0">
-           <widget class="QPushButton" name="pushButtonGeneratorLead">
+           <widget class="QLabel" name="labelGeneratorEncounter">
             <property name="text">
-             <string>Synchronize</string>
+             <string>Encounter</string>
             </property>
            </widget>
           </item>
           <item row="1" column="1">
-           <widget class="QComboBox" name="comboBoxGeneratorLead"/>
-          </item>
-          <item row="0" column="1">
-           <widget class="QComboBox" name="comboBoxGeneratorMethod">
-            <property name="layoutDirection">
-             <enum>Qt::LeftToRight</enum>
-            </property>
-            <property name="editable">
-             <bool>false</bool>
-            </property>
-            <property name="frame">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="5" column="0" colspan="2">
-           <widget class="QPushButton" name="pushButtonGenerate">
-            <property name="enabled">
-             <bool>true</bool>
-            </property>
-            <property name="text">
-             <string>Generate</string>
-            </property>
-            <property name="checkable">
-             <bool>false</bool>
-            </property>
-            <property name="autoDefault">
-             <bool>false</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="1">
-           <widget class="TextBox" name="textBoxGeneratorMaxAdvances">
-            <property name="inputMask">
-             <string/>
-            </property>
-            <property name="text">
-             <string notr="true">100000</string>
-            </property>
-            <property name="maxLength">
-             <number>10</number>
-            </property>
+           <widget class="ComboBox" name="comboBoxGeneratorEncounter">
+            <item>
+             <property name="text">
+              <string>Stationary</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Roamer</string>
+             </property>
+            </item>
            </widget>
           </item>
          </layout>
@@ -367,7 +400,7 @@
          </property>
          <layout class="QGridLayout" name="gridLayout">
           <item row="0" column="0" rowspan="2">
-           <widget class="Filter" name="ivFilterGenerator" native="true"/>
+           <widget class="Filter" name="filterGenerator" native="true"/>
           </item>
          </layout>
         </widget>
@@ -417,7 +450,7 @@
          </property>
          <layout class="QGridLayout" name="gridLayout_4">
           <item row="0" column="0" rowspan="2">
-           <widget class="Filter" name="ivFilterSearcher" native="true"/>
+           <widget class="Filter" name="filterSearcher" native="true"/>
           </item>
          </layout>
         </widget>
@@ -474,7 +507,7 @@
            </widget>
           </item>
           <item row="0" column="1">
-           <widget class="QComboBox" name="comboBoxSearcherMethod">
+           <widget class="ComboBox" name="comboBoxSearcherMethod">
             <property name="layoutDirection">
              <enum>Qt::LeftToRight</enum>
             </property>
@@ -494,7 +527,7 @@
            </widget>
           </item>
           <item row="1" column="1">
-           <widget class="QComboBox" name="comboBoxSearcherLead">
+           <widget class="ComboBox" name="comboBoxSearcherLead">
             <item>
              <property name="text">
               <string>Any</string>
@@ -656,6 +689,11 @@
    <extends>QWidget</extends>
    <header>Forms/Controls/Filter.hpp</header>
    <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>ComboBox</class>
+   <extends>QComboBox</extends>
+   <header>Forms/Controls/ComboBox.hpp</header>
   </customwidget>
  </customwidgets>
  <tabstops>
