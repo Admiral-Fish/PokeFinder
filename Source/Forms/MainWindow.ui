@@ -123,6 +123,7 @@
         <widget class="QPushButton" name="pushButtonWild5">
          <property name="enabled">
           <bool>false</bool>
+         </property>
          <property name="text">
           <string>Wild</string>
          </property>
