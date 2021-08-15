@@ -106,7 +106,7 @@ void Stationary5::setupModels()
         ui->comboBoxGeneratorLead->addItem(QString::fromStdString(nature));
     }
 
-    ui->filterGenerator->disableControls(Controls::EncounterSlots);
+    ui->filterGenerator->disableControls(Controls::EncounterSlots | Controls::Ability | Controls::Shiny | Controls::Gender | Controls::GenderRatio | Controls::Natures);
     ui->filterSearcher->disableControls(Controls::EncounterSlots | Controls::DisableFilter | Controls::UseDelay);
 
     QAction *outputTXTGenerator = generatorMenu->addAction(tr("Output Results to TXT"));
@@ -306,12 +306,18 @@ void Stationary5::generatorMethodIndexChanged(int index)
     {
         ui->comboBoxGeneratorEncounter->addItems({ tr("Stationary"),    tr("Roamer")});
         ui->comboBoxGeneratorEncounter->setup({ Encounter::Stationary, Encounter::Roamer });
+
+        ui->filterGenerator->enableControls(Controls::IVs | Controls::HiddenPowers);
+        ui->filterGenerator->disableControls(Controls::Ability | Controls::Shiny | Controls::Gender | Controls::GenderRatio | Controls::Natures);
         break;
     }
     case Method::Method5:
     {
         ui->comboBoxGeneratorEncounter->addItems({ tr("Stationary"),    tr("Roamer"),   tr("Hidden Grotto")});
         ui->comboBoxGeneratorEncounter->setup({ Encounter::Stationary, Encounter::Roamer, Encounter::HiddenGrotto });
+
+        ui->filterGenerator->disableControls(Controls::IVs | Controls::HiddenPowers);
+        ui->filterGenerator->enableControls(Controls::Ability | Controls::Shiny | Controls::Gender | Controls::GenderRatio | Controls::Natures);
         break;
     }
     }
