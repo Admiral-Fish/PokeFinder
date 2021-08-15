@@ -7,8 +7,9 @@
 
 class HiddenGrottoSearcherModel5;
 
-namespace Ui {
-class HiddenGrotto;
+namespace Ui
+{
+    class HiddenGrotto;
 }
 
 class HiddenGrotto : public QWidget

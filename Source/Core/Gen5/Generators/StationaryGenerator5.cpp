@@ -411,17 +411,17 @@ std::vector<StationaryState> StationaryGenerator5::generateHiddenGrotto(u64 seed
         bool synch = (go.nextUInt() >> 31) == 1;
         u32 pid = go.nextUInt();
 
-        if(genderRatio == 255)
+        if (genderRatio == 255)
         {
             state.setNature(go.nextUInt(25));
         }
-        else if(genderRatio == 254)
+        else if (genderRatio == 254)
         {
             u32 genderAdjustment = go.nextUInt(0x8);
             pid = (pid & 0xFFFFFF00) | (genderAdjustment + 1);
             state.setNature(go.nextUInt(25));
         }
-        else if(genderRatio == 0)
+        else if (genderRatio == 0)
         {
             u32 genderAdjustment = go.nextUInt(0xF6);
             pid = (pid & 0xFFFFFF00) | (genderAdjustment + 8);
@@ -430,13 +430,13 @@ std::vector<StationaryState> StationaryGenerator5::generateHiddenGrotto(u64 seed
         else
         {
             state.setGender(0);
-            if(filter.compareGender(state))
+            if (filter.compareGender(state))
             {
                 u32 genderAdjustment = go.nextUInt(0xFE - genderRatio);
                 pid = (pid & 0xFFFFFF00) | (genderAdjustment + genderRatio);
             }
             state.setGender(1);
-            if(filter.compareGender(state))
+            if (filter.compareGender(state))
             {
                 u32 genderAdjustment = go.nextUInt(genderRatio - 1);
                 pid = (pid & 0xFFFFFF00) | (genderAdjustment + 1);
@@ -444,7 +444,7 @@ std::vector<StationaryState> StationaryGenerator5::generateHiddenGrotto(u64 seed
             state.setNature(go.nextUInt(25));
         }
 
-        if(lead == Lead::Synchronize && synch)
+        if (lead == Lead::Synchronize && synch)
         {
             state.setNature(synchNature);
         }

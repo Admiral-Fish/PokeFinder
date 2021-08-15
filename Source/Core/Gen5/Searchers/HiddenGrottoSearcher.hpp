@@ -3,8 +3,8 @@
 
 #include <Core/Gen5/Generators/HiddenGrottoGenerator.hpp>
 #include <Core/Gen5/Profile5.hpp>
-#include <Core/Gen5/States/SearcherState5.hpp>
 #include <Core/Gen5/States/HiddenGrottoState.hpp>
+#include <Core/Gen5/States/SearcherState5.hpp>
 #include <Core/Util/DateTime.hpp>
 #include <Core/Util/Global.hpp>
 #include <atomic>

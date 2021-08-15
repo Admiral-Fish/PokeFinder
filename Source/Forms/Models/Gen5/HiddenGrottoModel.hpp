@@ -1,8 +1,8 @@
 #ifndef HIDDENGROTTOMODEL_HPP
 #define HIDDENGROTTOMODEL_HPP
 
-#include <Core/Gen5/States/SearcherState5.hpp>
 #include <Core/Gen5/States/HiddenGrottoState.hpp>
+#include <Core/Gen5/States/SearcherState5.hpp>
 #include <Forms/Models/TableModel.hpp>
 
 class HiddenGrottoSearcherModel5 : public TableModel<SearcherState5<HiddenGrottoState>>
@@ -16,8 +16,8 @@ public:
     QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
 
 private:
-    QStringList header = {  tr("Seed"),  tr("Group"),    tr("Slot"),     tr("Advances"), tr("Gender"),   tr("Date/Time"),
-                            tr("Timer0"),   tr("Buttons")};
+    QStringList header
+        = { tr("Seed"), tr("Group"), tr("Slot"), tr("Advances"), tr("Gender"), tr("Date/Time"), tr("Timer0"), tr("Buttons") };
 };
 
 #endif // HIDDENGROTTOMODEL_HPP

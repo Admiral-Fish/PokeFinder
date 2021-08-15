@@ -4,9 +4,9 @@
 #include <Core/Enum/Method.hpp>
 #include <Core/Gen5/Filters/HiddenGrottoFilter.hpp>
 #include <Core/Gen5/Keypresses.hpp>
-#include <Core/Parents/ProfileLoader.hpp>
 #include <Core/Gen5/Searchers/HiddenGrottoSearcher.hpp>
 #include <Core/Parents/PersonalInfo.hpp>
+#include <Core/Parents/ProfileLoader.hpp>
 #include <Core/Util/Translator.hpp>
 #include <Forms/Gen5/Profile/ProfileManager5.hpp>
 #include <Forms/Models/Gen5/HiddenGrottoModel.hpp>
@@ -15,9 +15,7 @@
 #include <QThread>
 #include <QTimer>
 
-HiddenGrotto::HiddenGrotto(QWidget *parent) :
-    QWidget(parent),
-    ui(new Ui::HiddenGrotto)
+HiddenGrotto::HiddenGrotto(QWidget *parent) : QWidget(parent), ui(new Ui::HiddenGrotto)
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
@@ -75,7 +73,7 @@ void HiddenGrotto::setupModels()
     searcherMenu = new QMenu(ui->tableViewSearcher);
     ui->checkListSlot->setup({ "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" });
     ui->checkListGroup->setup({ "0", "1", "2", "3" });
-    ui->checkListGender->setup({"♂", "♀"});
+    ui->checkListGender->setup({ "♂", "♀" });
     ui->comboBoxGenderRatio->setItemData(0, 60);
     ui->comboBoxGenderRatio->setItemData(1, 30);
     ui->comboBoxGenderRatio->setItemData(2, 10);
@@ -133,20 +131,24 @@ void HiddenGrotto::search()
     connect(ui->pushButtonCancel, &QPushButton::clicked, [searcher] { searcher->cancelSearch(); });
 
     auto *timer = new QTimer();
-    connect(timer, &QTimer::timeout, [=] {
-        searcherModel->addItems(searcher->getResults());
-        ui->progressBar->setValue(searcher->getProgress());
-    });
+    connect(timer, &QTimer::timeout,
+            [=]
+            {
+                searcherModel->addItems(searcher->getResults());
+                ui->progressBar->setValue(searcher->getProgress());
+            });
 
     connect(thread, &QThread::finished, timer, &QTimer::stop);
     connect(thread, &QThread::finished, timer, &QTimer::deleteLater);
-    connect(timer, &QTimer::destroyed, [=] {
-        ui->pushButtonSearch->setEnabled(true);
-        ui->pushButtonCancel->setEnabled(false);
-        searcherModel->addItems(searcher->getResults());
-        ui->progressBar->setValue(searcher->getProgress());
-        delete searcher;
-    });
+    connect(timer, &QTimer::destroyed,
+            [=]
+            {
+                ui->pushButtonSearch->setEnabled(true);
+                ui->pushButtonCancel->setEnabled(false);
+                searcherModel->addItems(searcher->getResults());
+                ui->progressBar->setValue(searcher->getProgress());
+                delete searcher;
+            });
 
     thread->start();
     timer->start(1000);

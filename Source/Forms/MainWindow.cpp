@@ -52,13 +52,13 @@
 #include <Forms/Util/IVtoPID.hpp>
 #include <Forms/Util/Researcher.hpp>
 #include <Forms/Util/Settings.hpp>
-#include <version.h>
 #include <QDate>
 #include <QDesktopServices>
 #include <QFile>
 #include <QSettings>
 #include <QTimer>
 #include <QtNetwork>
+#include <version.h>
 
 MainWindow::MainWindow(bool profile, QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow)
 {
@@ -66,16 +66,19 @@ MainWindow::MainWindow(bool profile, QWidget *parent) : QMainWindow(parent), ui(
     setWindowTitle(QString("Pok\303\251Finder %1").arg(POKEFINDER_VERSION));
 
     setupModels();
-    
-    QTimer::singleShot(1000, [this, &profile] {
-        if (!profile)
-        {
-            QMessageBox message(QMessageBox::Warning, tr("Unable to locate profiles"), tr("Please update path to your profiles file to restore existing profiles."));
-            message.exec();
-        }
 
-        checkUpdates();
-    });
+    QTimer::singleShot(1000,
+                       [this, &profile]
+                       {
+                           if (!profile)
+                           {
+                               QMessageBox message(QMessageBox::Warning, tr("Unable to locate profiles"),
+                                                   tr("Please update path to your profiles file to restore existing profiles."));
+                               message.exec();
+                           }
+
+                           checkUpdates();
+                       });
 }
 
 MainWindow::~MainWindow()
@@ -479,7 +482,7 @@ void MainWindow::openDreamRadar()
 
 void MainWindow::openHiddenGrotto()
 {
-    if(!hiddenGrotto)
+    if (!hiddenGrotto)
     {
         hiddenGrotto = new HiddenGrotto();
         connect(hiddenGrotto, &HiddenGrotto::alertProfiles, this, &MainWindow::updateProfiles);
@@ -487,7 +490,7 @@ void MainWindow::openHiddenGrotto()
     hiddenGrotto->show();
     hiddenGrotto->raise();
 
-    if(!hiddenGrotto->hasProfiles())
+    if (!hiddenGrotto->hasProfiles())
     {
         QMessageBox message(QMessageBox::Warning, tr("No profiles found"),
                             tr("Please use the Profile Calibrator under Gen 5 Tools to create one."));
@@ -551,13 +554,9 @@ void MainWindow::openProfileManager5()
 
 void MainWindow::openAbout()
 {
-    QStringList info = 
-    {
-        QString("Version: %1").arg(POKEFINDER_VERSION),
-        QString("Branch: %1").arg(GIT_BRANCH),
-        QString("Commit: %1").arg(GIT_COMMIT)
-    };
-    
+    QStringList info
+        = { QString("Version: %1").arg(POKEFINDER_VERSION), QString("Branch: %1").arg(GIT_BRANCH), QString("Commit: %1").arg(GIT_COMMIT) };
+
     QMessageBox about(QMessageBox::Information, tr("About"), info.join("\n"), QMessageBox::Close);
     about.exec();
 }
@@ -589,5 +588,3 @@ void MainWindow::openSettings()
     s->show();
     s->raise();
 }
-
-

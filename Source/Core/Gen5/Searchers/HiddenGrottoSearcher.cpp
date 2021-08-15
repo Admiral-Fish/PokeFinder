@@ -13,7 +13,7 @@ void HiddenGrottoSearcher::startSearch(const HiddenGrottoGenerator &generator, i
     searching = true;
 
     auto days = start.daysTo(end) + 1;
-    if(days < threads)
+    if (days < threads)
     {
         threads = days;
     }
@@ -23,23 +23,22 @@ void HiddenGrottoSearcher::startSearch(const HiddenGrottoGenerator &generator, i
     auto daysSplit = days / threads;
     for (int i = 0; i < threads; i++)
     {
-        if(i == threads - 1)
+        if (i == threads - 1)
         {
             threadContainer.emplace_back(std::async(std::launch::async, [=] { search(generator, start, end); }));
         }
         else
         {
             Date mid = start.addDays(daysSplit - 1);
-            threadContainer.emplace_back(std::async(std::launch::async, [=]{ search(generator, start, mid); }));
+            threadContainer.emplace_back(std::async(std::launch::async, [=] { search(generator, start, mid); }));
         }
         start = start.addDays(daysSplit);
     }
 
-    for(int i = 0; i < threads; i++)
+    for (int i = 0; i < threads; i++)
     {
         threadContainer[i].wait();
     }
-
 }
 
 void HiddenGrottoSearcher::cancelSearch()
@@ -65,22 +64,22 @@ void HiddenGrottoSearcher::search(HiddenGrottoGenerator generator, const Date &s
     auto buttons = Keypresses::getKeyPresses(profile.getKeypresses(), profile.getSkipLR());
     auto values = Keypresses::getValues(buttons);
 
-    for(u16 timer0 = profile.getTimer0Min(); timer0 <= profile.getTimer0Max(); timer0++)
+    for (u16 timer0 = profile.getTimer0Min(); timer0 <= profile.getTimer0Max(); timer0++)
     {
         sha.setTimer0(timer0, profile.getVCount());
-        for(Date date = start; date <= end; date = date.addDays(1))
+        for (Date date = start; date <= end; date = date.addDays(1))
         {
             sha.setDate(date);
             sha.precompute();
-            for(size_t i = 0; i < values.size(); i++)
+            for (size_t i = 0; i < values.size(); i++)
             {
                 sha.setButton(values[i]);
 
-                for(u8 hour = 0; hour < 24; hour++)
+                for (u8 hour = 0; hour < 24; hour++)
                 {
-                    for(u8 minute = 0; minute < 60; minute++)
+                    for (u8 minute = 0; minute < 60; minute++)
                     {
-                        for(u8 second = 0; second < 60; second++)
+                        for (u8 second = 0; second < 60; second++)
                         {
                             if (!searching)
                             {
@@ -90,7 +89,7 @@ void HiddenGrottoSearcher::search(HiddenGrottoGenerator generator, const Date &s
                             u64 seed = sha.hashSeed();
 
                             auto states = generator.generate(seed, profile.getMemoryLink());
-                            if(!states.empty())
+                            if (!states.empty())
                             {
                                 std::vector<SearcherState5<HiddenGrottoState>> displayStates;
                                 displayStates.reserve(states.size());
