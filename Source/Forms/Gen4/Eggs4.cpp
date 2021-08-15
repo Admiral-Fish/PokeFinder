@@ -21,14 +21,14 @@
 #include "ui_Eggs4.h"
 #include <Core/Enum/Method.hpp>
 #include <Core/Gen4/Generators/EggGenerator4.hpp>
-#include <Core/Parents/ProfileLoader.hpp>
 #include <Core/Gen4/Searchers/EggSearcher4.hpp>
 #include <Core/Parents/Filters/StateFilter.hpp>
+#include <Core/Parents/ProfileLoader.hpp>
 #include <Core/Parents/States/EggState.hpp>
 #include <Core/Util/Translator.hpp>
 #include <Forms/Gen4/Profile/ProfileManager4.hpp>
-#include <Forms/Gen4/Tools/SeedtoTime4.hpp>
 #include <Forms/Gen4/Tools/Poketch.hpp>
+#include <Forms/Gen4/Tools/SeedtoTime4.hpp>
 #include <Forms/Models/Gen4/EggModel4.hpp>
 #include <QMessageBox>
 #include <QSettings>
@@ -42,7 +42,6 @@ Eggs4::Eggs4(QWidget *parent) : QWidget(parent), ui(new Ui::Eggs4)
 
     setupModels();
     updateProfiles();
-
 }
 
 Eggs4::~Eggs4()
@@ -136,7 +135,8 @@ void Eggs4::setupModels()
     connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &Eggs4::profileManager);
     connect(ui->eggSettingsGenerator, &EggSettings::toggleInheritance, generatorModel, &EggGeneratorModel4::toggleInheritance);
     connect(ui->eggSettingsSearcher, &EggSettings::toggleInheritance, searcherModel, &EggSearcherModel4::toggleInheritance);
-    connect(ui->comboBoxGeneratorMethod, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &Eggs4::on_comboBoxGeneratorMethod_currentIndexChanged);
+    connect(ui->comboBoxGeneratorMethod, QOverload<int>::of(&QComboBox::currentIndexChanged), this,
+            &Eggs4::on_comboBoxGeneratorMethod_currentIndexChanged);
 
     QSettings setting;
     setting.beginGroup("eggs4");
@@ -276,19 +276,23 @@ void Eggs4::search()
     connect(ui->pushButtonCancel, &QPushButton::clicked, [searcher] { searcher->cancelSearch(); });
 
     auto *timer = new QTimer();
-    connect(timer, &QTimer::timeout, [=] {
-        searcherModel->addItems(searcher->getResults());
-        ui->progressBar->setValue(searcher->getProgress());
-    });
+    connect(timer, &QTimer::timeout,
+            [=]
+            {
+                searcherModel->addItems(searcher->getResults());
+                ui->progressBar->setValue(searcher->getProgress());
+            });
     connect(thread, &QThread::finished, timer, &QTimer::stop);
     connect(thread, &QThread::finished, timer, &QTimer::deleteLater);
-    connect(timer, &QTimer::destroyed, [=] {
-        ui->pushButtonSearch->setEnabled(true);
-        ui->pushButtonCancel->setEnabled(false);
-        searcherModel->addItems(searcher->getResults());
-        ui->progressBar->setValue(searcher->getProgress());
-        delete searcher;
-    });
+    connect(timer, &QTimer::destroyed,
+            [=]
+            {
+                ui->pushButtonSearch->setEnabled(true);
+                ui->pushButtonCancel->setEnabled(false);
+                searcherModel->addItems(searcher->getResults());
+                ui->progressBar->setValue(searcher->getProgress());
+                delete searcher;
+            });
 
     thread->start();
     timer->start(1000);
@@ -304,7 +308,8 @@ void Eggs4::profilesIndexChanged(int index)
         ui->labelProfileSIDValue->setText(QString::number(currentProfile.getSID()));
         ui->labelProfileGameValue->setText(QString::fromStdString(currentProfile.getVersionString()));
 
-        if(currentProfile.getVersion() == Game::Diamond || currentProfile.getVersion() == Game::Pearl || currentProfile.getVersion() == Game::Platinum)
+        if (currentProfile.getVersion() == Game::Diamond || currentProfile.getVersion() == Game::Pearl
+            || currentProfile.getVersion() == Game::Platinum)
         {
             calcPoketchGenerator->setVisible(true);
         }
@@ -341,14 +346,14 @@ void Eggs4::seedToTime()
     time->raise();
 }
 
-void Eggs4::calcPoketch() {
+void Eggs4::calcPoketch()
+{
     QModelIndex index = ui->tableViewGenerator->currentIndex();
     int advances = generatorModel->data(generatorModel->index(index.row(), 0)).toInt();
 
     auto *poketch = new Poketch(advances);
     poketch->show();
     poketch->raise();
-
 }
 
 void Eggs4::profileManager()
@@ -361,7 +366,7 @@ void Eggs4::profileManager()
 void Eggs4::on_comboBoxGeneratorMethod_currentIndexChanged(int index)
 {
     auto method = static_cast<Method>(ui->comboBoxGeneratorMethod->currentData().toInt());
-    if(method == Method::Gen4Normal)
+    if (method == Method::Gen4Normal)
     {
         calcPoketchGenerator->setVisible(true);
     }

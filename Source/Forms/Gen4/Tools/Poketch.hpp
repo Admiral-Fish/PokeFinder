@@ -1,11 +1,12 @@
 #ifndef POKETCH_HPP
 #define POKETCH_HPP
 
-#include <QWidget>
 #include <Core/Util/Utilities.hpp>
+#include <QWidget>
 
-namespace Ui {
-class Poketch;
+namespace Ui
+{
+    class Poketch;
 }
 
 class Poketch : public QWidget
