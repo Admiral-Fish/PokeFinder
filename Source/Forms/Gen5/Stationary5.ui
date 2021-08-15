@@ -327,7 +327,7 @@
              <string/>
             </property>
             <property name="maxLength">
-             <number>8</number>
+             <number>16</number>
             </property>
             <property name="cursorPosition">
              <number>0</number>

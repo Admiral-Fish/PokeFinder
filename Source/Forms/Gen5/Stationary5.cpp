@@ -84,7 +84,7 @@ void Stationary5::setupModels()
     ui->tableViewGenerator->setModel(generatorModel);
     // ui->tableViewSearcher->setModel(searcherModel);
 
-    ui->textBoxGeneratorSeed->setValues(InputType::Seed32Bit);
+    ui->textBoxGeneratorSeed->setValues(InputType::Seed64Bit);
     ui->textBoxGeneratorStartingAdvance->setValues(InputType::Advance32Bit);
     ui->textBoxGeneratorMaxAdvances->setValues(InputType::Advance32Bit);
 
