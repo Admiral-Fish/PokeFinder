@@ -13,7 +13,6 @@ Poketch::Poketch(u32 advances, QWidget *parent) : QWidget(parent), ui(new Ui::Po
 
 void Poketch::setupModels(u32 advances)
 {
-
     connect(ui->pushButtonClose, &QPushButton::clicked, this, &Poketch::on_pushButtonClose_clicked);
 
     u32 coin = 0;
