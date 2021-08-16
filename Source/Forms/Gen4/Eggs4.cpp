@@ -308,8 +308,10 @@ void Eggs4::profilesIndexChanged(int index)
         ui->labelProfileSIDValue->setText(QString::number(currentProfile.getSID()));
         ui->labelProfileGameValue->setText(QString::fromStdString(currentProfile.getVersionString()));
 
-        if (currentProfile.getVersion() == Game::Diamond || currentProfile.getVersion() == Game::Pearl
-            || currentProfile.getVersion() == Game::Platinum)
+        auto method = static_cast<Method>(ui->comboBoxGeneratorMethod->currentData().toInt());
+        if (method == Method::Gen4Normal
+            && (currentProfile.getVersion() == Game::Diamond || currentProfile.getVersion() == Game::Pearl
+                || currentProfile.getVersion() == Game::Platinum))
         {
             calcPoketchGenerator->setVisible(true);
         }
@@ -366,7 +368,9 @@ void Eggs4::profileManager()
 void Eggs4::on_comboBoxGeneratorMethod_currentIndexChanged(int index)
 {
     auto method = static_cast<Method>(ui->comboBoxGeneratorMethod->currentData().toInt());
-    if (method == Method::Gen4Normal)
+    if (method == Method::Gen4Normal
+        && (currentProfile.getVersion() == Game::Diamond || currentProfile.getVersion() == Game::Pearl
+            || currentProfile.getVersion() == Game::Platinum))
     {
         calcPoketchGenerator->setVisible(true);
     }
