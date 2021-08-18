@@ -28,7 +28,7 @@ HiddenGrottoGenerator::HiddenGrottoGenerator(u8 genderRatio, const HiddenGrottoF
 {
 }
 
-std::vector<HiddenGrottoState> HiddenGrottoGenerator::generate(u64 seed, bool memory)
+std::vector<HiddenGrottoState> HiddenGrottoGenerator::generate(u64 seed, bool memory) const
 {
     std::vector<HiddenGrottoState> states;
 

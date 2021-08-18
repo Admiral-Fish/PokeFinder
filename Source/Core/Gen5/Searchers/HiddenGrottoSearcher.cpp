@@ -77,7 +77,7 @@ int HiddenGrottoSearcher::getProgress() const
     return progress;
 }
 
-void HiddenGrottoSearcher::search(HiddenGrottoGenerator generator, const Date &start, const Date &end)
+void HiddenGrottoSearcher::search(const HiddenGrottoGenerator generator, const Date &start, const Date &end)
 {
     SHA1 sha(profile);
     auto buttons = Keypresses::getKeyPresses(profile.getKeypresses(), profile.getSkipLR());

@@ -47,7 +47,7 @@ private:
     std::vector<SearcherState5<HiddenGrottoState>> results;
     std::mutex mutex;
 
-    void search(HiddenGrottoGenerator generator, const Date &start, const Date &end);
+    void search(const HiddenGrottoGenerator generator, const Date &start, const Date &end);
 };
 
 #endif // HIDDENGROTTOSEARCHER_HPP
