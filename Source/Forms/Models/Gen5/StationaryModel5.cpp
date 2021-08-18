@@ -158,7 +158,28 @@ QVariant StationarySearcherModel5::data(const QModelIndex &index, int role) cons
         case 1:
             return state.getAdvances();
         case 2:
-            return state.getLead();
+        {
+            switch (state.getLead())
+            {
+            case Lead::None:
+                return tr("None");
+            case Lead::Synchronize:
+                return tr("Synchronize");
+            case Lead::SuctionCups:
+                return tr("Suction Cups");
+            case Lead::CuteCharmFemale:
+                return tr("Cute Charm (♀)");
+            case Lead::CuteCharm25M:
+                return tr("Cute Charm (25% ♂)");
+            case Lead::CuteCharm50M:
+                return tr("Cute Charm (50% ♂)");
+            case Lead::CuteCharm75M:
+                return tr("Cute Charm (75% ♂)");
+            case Lead::CuteCharm875M:
+            default:
+                return tr("Cute Charm (87.5% ♂)");
+            }
+        }
         case 3:
             return QString::number(state.getPID(), 16).toUpper().rightJustified(8, '0');
         case 4:
