@@ -45,7 +45,7 @@ void setInheritance(const Daycare &daycare, EggState4 &state, const u16 *inh, co
         state.setIVs(order[stat], daycare.getParentIV(parent, order[stat]));
         state.setInheritance(order[stat], parent + 1);
 
-        stat = available1[inh[2] % 4];
+        stat = available3[inh[2] % 4];
         parent = par[2] & 1;
         state.setIVs(order[stat], daycare.getParentIV(parent, order[stat]));
         state.setInheritance(order[stat], parent + 1);
