@@ -27,7 +27,7 @@
 class HiddenGrottoGenerator
 {
 public:
-    HiddenGrottoGenerator(u32 initialAdvances, u32 maxAdvances, u8 genderRatio, const HiddenGrottoFilter &filter);
+    HiddenGrottoGenerator(u8 genderRatio, const HiddenGrottoFilter &filter);
     std::vector<HiddenGrottoState> generate(u64 seed, bool memory);
 
 private:

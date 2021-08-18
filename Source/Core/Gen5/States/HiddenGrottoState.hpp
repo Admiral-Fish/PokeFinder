@@ -23,12 +23,12 @@
 #include <Core/Parents/States/State.hpp>
 #include <Core/Util/Global.hpp>
 
-class HiddenGrottoState : public State
+class HiddenGrottoState
 {
 public:
     HiddenGrottoState() = default;
 
-    HiddenGrottoState(u32 advances, u8 group, u8 slot, u8 gender) : State(advances), group(group), slot(slot), gender(gender)
+    HiddenGrottoState(u8 group, u8 slot, u8 gender) : group(group), slot(slot), gender(gender)
     {
     }
 

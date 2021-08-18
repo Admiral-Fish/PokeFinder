@@ -100,8 +100,6 @@ void HiddenGrotto::setupModels()
 
     ui->tableViewSearcher->setModel(searcherModel);
 
-    ui->textBoxSearcherMaxAdvances->setValues(InputType::Advance32Bit);
-
     QAction *outputTXTSearcher = searcherMenu->addAction(tr("Output Results to TXT"));
     QAction *outputCSVSearcher = searcherMenu->addAction(tr("Output Results to CSV"));
     connect(outputTXTSearcher, &QAction::triggered, [=]() { ui->tableViewSearcher->outputModel(false); });
@@ -127,10 +125,9 @@ void HiddenGrotto::search()
     ui->pushButtonCancel->setEnabled(true);
 
     HiddenGrottoFilter filter(ui->checkListGroup->getChecked(), ui->checkListSlot->getChecked(), ui->checkListGender->getChecked());
-    u32 maxAdvances = ui->textBoxSearcherMaxAdvances->getUInt();
     u8 genderRatio = ui->comboBoxGenderRatio->currentData().toUInt();
 
-    HiddenGrottoGenerator generator(0, maxAdvances, genderRatio, filter);
+    HiddenGrottoGenerator generator(genderRatio, filter);
     auto *searcher = new HiddenGrottoSearcher(currentProfile);
 
     Date start = ui->dateEditSearcherStartDate->getDate();

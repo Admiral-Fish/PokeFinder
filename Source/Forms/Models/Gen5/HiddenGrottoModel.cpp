@@ -58,29 +58,21 @@ void HiddenGrottoSearcherModel5::sort(int column, Qt::SortOrder order)
             std::sort(model.begin(), model.end(),
                       [flag](const SearcherState5<HiddenGrottoState> &state1, const SearcherState5<HiddenGrottoState> &state2)
                       {
-                          return flag ? state1.getState().getAdvances() < state2.getState().getAdvances()
-                                      : state1.getState().getAdvances() > state2.getState().getAdvances();
+                          return flag ? state1.getState().getGender() < state2.getState().getGender()
+                                      : state1.getState().getGender() > state2.getState().getGender();
                       });
             break;
         case 4:
             std::sort(model.begin(), model.end(),
                       [flag](const SearcherState5<HiddenGrottoState> &state1, const SearcherState5<HiddenGrottoState> &state2)
-                      {
-                          return flag ? state1.getState().getGender() < state2.getState().getGender()
-                                      : state1.getState().getGender() > state2.getState().getGender();
-                      });
+                      { return flag ? state1.getDateTime() < state2.getDateTime() : state1.getDateTime() > state2.getDateTime(); });
             break;
         case 5:
             std::sort(model.begin(), model.end(),
                       [flag](const SearcherState5<HiddenGrottoState> &state1, const SearcherState5<HiddenGrottoState> &state2)
-                      { return flag ? state1.getDateTime() < state2.getDateTime() : state1.getDateTime() > state2.getDateTime(); });
-            break;
-        case 6:
-            std::sort(model.begin(), model.end(),
-                      [flag](const SearcherState5<HiddenGrottoState> &state1, const SearcherState5<HiddenGrottoState> &state2)
                       { return flag ? state1.getTimer0() < state2.getTimer0() : state1.getTimer0() > state2.getTimer0(); });
             break;
-        case 7:
+        case 6:
             std::sort(model.begin(), model.end(),
                       [flag](const SearcherState5<HiddenGrottoState> &state1, const SearcherState5<HiddenGrottoState> &state2)
                       { return flag ? state1.getButtons() < state2.getButtons() : state1.getButtons() > state2.getButtons(); });
@@ -92,7 +84,7 @@ void HiddenGrottoSearcherModel5::sort(int column, Qt::SortOrder order)
 int HiddenGrottoSearcherModel5::columnCount(const QModelIndex &parent) const
 {
     (void)parent;
-    return 8;
+    return 7;
 }
 
 QVariant HiddenGrottoSearcherModel5::data(const QModelIndex &index, int role) const
@@ -107,18 +99,16 @@ QVariant HiddenGrottoSearcherModel5::data(const QModelIndex &index, int role) co
         case 0:
             return QString::number(display.getInitialSeed(), 16).toUpper().rightJustified(16, '0');
         case 1:
-            return state.getAdvances();
-        case 2:
             return state.getGroup();
-        case 3:
+        case 2:
             return state.getSlot();
-        case 4:
+        case 3:
             return QString::fromStdString(Translator::getGender(state.getGender()));
-        case 5:
+        case 4:
             return QString::fromStdString(display.getDateTime().toString());
-        case 6:
+        case 5:
             return QString::number(display.getTimer0(), 16).toUpper();
-        case 7:
+        case 6:
             return QString::fromStdString(Translator::getKeypresses(display.getButtons()));
         }
     }

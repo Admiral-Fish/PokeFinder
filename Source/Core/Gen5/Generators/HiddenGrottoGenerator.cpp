@@ -24,8 +24,7 @@
 // Game has all of these + 1, removed for simplicity
 constexpr u32 grottoSlots[11] = { 0, 4, 19, 20, 24, 34, 59, 60, 64, 74, 99 };
 
-HiddenGrottoGenerator::HiddenGrottoGenerator(u32 initialAdvances, u32 maxAdvances, u8 genderRatio, const HiddenGrottoFilter &filter) :
-    initialAdvances(initialAdvances), maxAdvances(maxAdvances), genderRatio(genderRatio), filter(filter)
+HiddenGrottoGenerator::HiddenGrottoGenerator(u8 genderRatio, const HiddenGrottoFilter &filter) : genderRatio(genderRatio), filter(filter)
 {
 }
 
@@ -37,29 +36,26 @@ std::vector<HiddenGrottoState> HiddenGrottoGenerator::generate(u64 seed, bool me
     u32 initialAdvancesBW2 = Utilities::initialAdvancesBW2(seed, memory);
     rng.advance(initialAdvancesBW2);
 
-    for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rng.next())
+    BWRNG go(rng.getSeed());
+
+    if (go.nextUInt(100) < 5)
     {
-        BWRNG go(rng.getSeed());
+        u8 group = go.nextUInt(4);
 
-        if (go.nextUInt(100) < 5)
+        // Game does slot + 1, removed for simplicity
+        u8 slotRand = go.nextUInt(100);
+        u8 slot = 0;
+        while (slotRand > grottoSlots[slot])
         {
-            u8 group = go.nextUInt(4);
+            slot++;
+        }
 
-            // Game does slot + 1, removed for simplicity
-            u8 slotRand = go.nextUInt(100);
-            u8 slot = 0;
-            while (slotRand > grottoSlots[slot])
-            {
-                slot++;
-            }
+        u8 gender = go.nextUInt(100) < genderRatio;
 
-            u8 gender = go.nextUInt(100) < genderRatio;
-
-            HiddenGrottoState state(initialAdvances + cnt, group, slot, gender);
-            if (filter.compareState(state))
-            {
-                states.emplace_back(state);
-            }
+        HiddenGrottoState state(group, slot, gender);
+        if (filter.compareState(state))
+        {
+            states.emplace_back(state);
         }
     }
 
