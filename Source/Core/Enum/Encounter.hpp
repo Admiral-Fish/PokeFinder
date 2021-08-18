@@ -40,7 +40,10 @@ enum Encounter : u8
     BugCatchingContest,
     HeadButt,
     Roamer,
-    Gift
+    Gift,
+    EntraLink,
+    LarvestaEgg,
+    HiddenGrotto
 };
 
 #endif // ENCOUNTER_HPP

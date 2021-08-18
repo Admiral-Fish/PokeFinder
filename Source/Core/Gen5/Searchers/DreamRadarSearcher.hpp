@@ -22,8 +22,8 @@
 
 #include <Core/Gen5/Generators/DreamRadarGenerator.hpp>
 #include <Core/Gen5/Profile5.hpp>
-#include <Core/Gen5/States/SearcherState5.hpp>
 #include <Core/Gen5/States/DreamRadarState.hpp>
+#include <Core/Gen5/States/SearcherState5.hpp>
 #include <Core/Util/DateTime.hpp>
 #include <Core/Util/Global.hpp>
 #include <atomic>
@@ -47,7 +47,7 @@ private:
     std::vector<SearcherState5<DreamRadarState>> results;
     std::mutex mutex;
 
-    void search(DreamRadarGenerator generator, const Date &start, const Date &end);
+    void search(const DreamRadarGenerator &generator, const Date &start, const Date &end);
 };
 
 #endif // DREAMRADARSEARCHER_HPP

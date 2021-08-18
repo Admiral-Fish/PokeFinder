@@ -19,11 +19,15 @@
 
 #include "Stationary5.hpp"
 #include "ui_Stationary5.h"
+#include <Core/Enum/Encounter.hpp>
 #include <Core/Enum/Lead.hpp>
+#include <Core/Enum/Method.hpp>
+#include <Core/Gen5/Generators/StationaryGenerator5.hpp>
 #include <Core/Parents/ProfileLoader.hpp>
 #include <Core/Parents/States/StationaryState.hpp>
 #include <Core/Util/Translator.hpp>
 #include <Forms/Gen5/Profile/ProfileManager5.hpp>
+#include <Forms/Models/Gen5/StationaryModel5.hpp>
 #include <QSettings>
 
 Stationary5::Stationary5(QWidget *parent) : QWidget(parent), ui(new Ui::Stationary5)
@@ -71,12 +75,13 @@ bool Stationary5::hasProfiles() const
 
 void Stationary5::setupModels()
 {
-    // generatorModel = new Stationary5Model(ui->tableViewGenerator, Method::Method1);
-    // searcherModel = new Searcher4Model(ui->tableViewSearcher, Method::Method1);
-    generatorMenu = new QMenu(ui->tableViewGenerator);
-    searcherMenu = new QMenu(ui->tableViewSearcher);
+    generatorModel = new StationaryGeneratorModel5(ui->tableViewGenerator, Method::Method5IVs);
+    // searcherModel = new Searcher5Model(ui->tableViewSearcher, Method::Method1);
 
-    // ui->tableViewGenerator->setModel(generatorModel);
+    generatorMenu = new QMenu(ui->tableViewGenerator);
+    // searcherMenu = new QMenu(ui->tableViewSearcher);
+
+    ui->tableViewGenerator->setModel(generatorModel);
     // ui->tableViewSearcher->setModel(searcherModel);
 
     ui->textBoxGeneratorSeed->setValues(InputType::Seed32Bit);
@@ -88,25 +93,33 @@ void Stationary5::setupModels()
     ui->textBoxSearcherMinAdvance->setValues(InputType::Advance32Bit);
     ui->textBoxSearcherMaxAdvance->setValues(InputType::Advance32Bit);
 
-    ui->comboBoxSearcherLead->setItemData(0, Lead::Search);
-    ui->comboBoxSearcherLead->setItemData(1, Lead::Synchronize);
-    ui->comboBoxSearcherLead->setItemData(2, Lead::CuteCharm);
-    ui->comboBoxSearcherLead->setItemData(3, Lead::None);
+    ui->comboBoxGeneratorMethod->setup({ Method::Method5IVs, Method::Method5CGear, Method::Method5 });
+    ui->comboBoxGeneratorEncounter->setup({ Encounter::Stationary, Encounter::Roamer });
+
+    ui->comboBoxSearcherLead->setup({ Lead::Search, Lead::Synchronize, Lead::CuteCharm, Lead::None });
 
     ui->comboBoxGeneratorLead->addItem(tr("None"));
-    // ui->comboBoxGeneratorLead->addItems(Translator::getNatures());
+    for (const std::string &nature : Translator::getNatures())
+    {
+        ui->comboBoxGeneratorLead->addItem(QString::fromStdString(nature));
+    }
+
+    ui->filterGenerator->disableControls(Controls::EncounterSlots);
+    ui->filterSearcher->disableControls(Controls::EncounterSlots | Controls::DisableFilter | Controls::UseDelay);
 
     QAction *outputTXTGenerator = generatorMenu->addAction(tr("Output Results to TXT"));
     QAction *outputCSVGenerator = generatorMenu->addAction(tr("Output Results to CSV"));
-
     connect(outputTXTGenerator, &QAction::triggered, [=]() { ui->tableViewGenerator->outputModel(false); });
     connect(outputCSVGenerator, &QAction::triggered, [=]() { ui->tableViewGenerator->outputModel(true); });
 
-    QAction *outputTXTSearcher = searcherMenu->addAction(tr("Output Results to TXT"));
-    QAction *outputCSVSearcher = searcherMenu->addAction(tr("Output Results to CSV"));
+    // QAction *outputTXTSearcher = searcherMenu->addAction(tr("Output Results to TXT"));
+    // QAction *outputCSVSearcher = searcherMenu->addAction(tr("Output Results to CSV"));
+    // connect(outputTXTSearcher, &QAction::triggered, [=]() { ui->tableViewSearcher->outputModel(false); });
+    // connect(outputCSVSearcher, &QAction::triggered, [=]() { ui->tableViewSearcher->outputModel(true); });
 
-    connect(outputTXTSearcher, &QAction::triggered, [=]() { ui->tableViewSearcher->outputModel(false); });
-    connect(outputCSVSearcher, &QAction::triggered, [=]() { ui->tableViewSearcher->outputModel(true); });
+    connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Stationary5::generate);
+    connect(ui->tableViewGenerator, &QTableView::customContextMenuRequested, this, &Stationary5::tableViewGeneratorContextMenu);
+    // connect(ui->tableViewSearcher, &QTableView::customContextMenuRequested, this, &Stationary5::tableViewSearcherContextMenu);
 
     QSettings setting;
     setting.beginGroup("stationary5");
@@ -135,50 +148,50 @@ void Stationary5::setupModels()
 
 void Stationary5::generate()
 {
-    /*generatorModel->clear();
-    generatorModel->setMethod(static_cast<Method>(ui->comboBoxGeneratorMethod->currentData().toInt()));
+    generatorModel->clearModel();
+    auto method = static_cast<Method>(ui->comboBoxGeneratorMethod->getCurrentInt());
+    generatorModel->setMethod(method);
 
-    u32 seed = ui->textBoxGeneratorSeed->getUInt();
-    u32 startingAdvance = ui->textBoxGeneratorStartingAdvance->getUInt();
+    u64 seed = ui->textBoxGeneratorSeed->getULong();
+    u32 initialAdvances = ui->textBoxGeneratorStartingAdvance->getUInt();
     u32 maxAdvances = ui->textBoxGeneratorMaxAdvances->getUInt();
-    u16 tid = ui->textBoxGeneratorTID->getUShort();
-    u16 sid = ui->textBoxGeneratorSID->getUShort();
+    u16 tid = currentProfile.getTID();
+    u16 sid = currentProfile.getSID();
+    u8 genderRatio = ui->filterGenerator->getGenderRatio();
     u32 offset = 0;
-    if (ui->checkBoxGeneratorDelay->isChecked())
+    auto encounter = static_cast<Encounter>(ui->comboBoxGeneratorEncounter->getCurrentInt());
+    if (ui->filterGenerator->useDelay())
     {
-        offset = ui->textBoxGeneratorDelay->getUInt();
+        offset = ui->filterGenerator->getDelay();
     }
 
-    u8 genderRatio = ui->comboBoxGeneratorGenderRatio->currentData().toInt();
-    Generator5 generator(maxAdvances, startingAdvance, seed, tid, sid, offset,
-        static_cast<Method>(ui->comboBoxGeneratorMethod->currentData().toInt()));
-    AdvanceCompare compare(ui->comboBoxGeneratorAbility->currentIndex(), ui->comboBoxGeneratorAbility->currentIndex(),
-        ui->checkBoxGeneratorShinyOnly->isChecked(), ui->checkBoxGeneratorDisableFilters->isChecked(),
-        ui->ivFilterGenerator->getLower(), ui->ivFilterGenerator->getLower(), ui->comboBoxGeneratorNature->getChecked(),
-        ui->comboBoxGeneratorHiddenPower->getChecked(), std::vector<bool>());
+    StateFilter filter(ui->filterGenerator->getGender(), ui->filterGenerator->getAbility(), ui->filterGenerator->getShiny(),
+                       ui->filterGenerator->getDisableFilters(), ui->filterGenerator->getMinIVs(), ui->filterGenerator->getMaxIVs(),
+                       ui->filterGenerator->getNatures(), ui->filterGenerator->getHiddenPowers(), {});
 
-    generator.setEncounterType(Stationary);
+    StationaryGenerator5 generator(initialAdvances, maxAdvances, tid, sid, genderRatio, method, encounter, filter);
+    generator.setOffset(offset);
+
     if (ui->pushButtonGeneratorLead->text() == tr("Cute Charm"))
     {
-        generator.setLeadType(static_cast<Lead>(ui->comboBoxGeneratorLead->currentData().toInt()));
+        generator.setLead(static_cast<Lead>(ui->comboBoxGeneratorLead->currentData().toInt()));
     }
     else
     {
         int num = ui->comboBoxGeneratorLead->currentIndex();
         if (num == 0)
         {
-            generator.setLeadType(Lead::None);
+            generator.setLead(Lead::None);
         }
         else
         {
-            generator.setLeadType(Lead::Synchronize);
-            generator.setSynchNature(
-                Nature::getAdjustedNature(static_cast<u32>(ui->comboBoxGeneratorLead->currentIndex() - 1)));
+            generator.setLead(Lead::Synchronize);
+            generator.setSynchNature(static_cast<u8>(ui->comboBoxGeneratorLead->currentIndex() - 1));
         }
     }
 
-    std::vector<State5> advances = generator.generate(compare);
-    generatorModel->setModel(advances);*/
+    auto states = generator.generate(seed);
+    generatorModel->addItems(states);
 }
 
 void Stationary5::search()
@@ -283,10 +296,10 @@ void Stationary5::generatorLead()
 
 void Stationary5::tableViewGeneratorContextMenu(const QPoint &pos)
 {
-    /*if (generatorModel->rowCount() > 0)
+    if (generatorModel->rowCount() > 0)
     {
         generatorMenu->popup(ui->tableViewGenerator->viewport()->mapToGlobal(pos));
-    }*/
+    }
 }
 
 void Stationary5::tableViewSearcherContextMenu(const QPoint &pos)

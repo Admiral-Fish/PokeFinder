@@ -42,11 +42,11 @@ private:
     std::vector<StationaryState> generateRoamerCGear(u64 seed) const;
     std::vector<StationaryState> generateCGear(u64 seed) const;
     std::vector<StationaryState> generateStationary(u64 seed) const;
-    std::vector<StationaryState> generateRoamer(u64 seed);
-    std::vector<StationaryState> generateGift(u64 seed);
-    std::vector<StationaryState> generateEntraLink(u64 seed);
-    std::vector<StationaryState> generateLarvestaEgg(u64 seed);
-    std::vector<StationaryState> generateHiddenGrotto(u64 seed);
+    std::vector<StationaryState> generateRoamer(u64 seed) const;
+    std::vector<StationaryState> generateGift(u64 seed) const;
+    std::vector<StationaryState> generateEntraLink(u64 seed) const;
+    std::vector<StationaryState> generateLarvestaEgg(u64 seed) const;
+    std::vector<StationaryState> generateHiddenGrotto(u64 seed) const;
 };
 
 #endif // GENERATOR5_HPP

@@ -23,8 +23,8 @@
 #include <Core/Gen5/Profile5.hpp>
 #include <QMenu>
 
-class StationaryGeneratorModel4;
-class StationarySearcherModel4;
+class StationaryGeneratorModel5;
+class StationarySearcherModel5;
 
 namespace Ui
 {
@@ -45,8 +45,8 @@ public:
 
 private:
     Ui::Stationary5 *ui;
-    // Searcher5Model *searcherModel= nullptr;
-    // Stationary5Model *generatorModel= nullptr;
+    StationaryGeneratorModel5 *generatorModel = nullptr;
+    // StationarySearcherModel5 *searcherModel = nullptr;
     std::vector<Profile5> profiles;
     Profile5 currentProfile;
     QMenu *generatorMenu = nullptr;

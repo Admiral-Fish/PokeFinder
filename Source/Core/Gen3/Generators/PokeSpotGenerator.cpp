@@ -56,7 +56,7 @@ std::vector<GameCubeState> PokeSpotGenerator::generate(u32 seed, const std::vect
                     }
                     state.setInfo(0);
                 }
-                else if (call > 49 && call < 85)
+                else if (call < 85)
                 {
                     if (!spots[1])
                     {

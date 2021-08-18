@@ -20,8 +20,8 @@
 #ifndef DREAMRADARGENERATOR_HPP
 #define DREAMRADARGENERATOR_HPP
 
-#include <Core/Parents/Generators/Generator.hpp>
 #include <Core/Gen5/States/DreamRadarState.hpp>
+#include <Core/Parents/Generators/Generator.hpp>
 
 struct DreamRadarSlot
 {
@@ -42,7 +42,7 @@ public:
     DreamRadarGenerator() = default;
     DreamRadarGenerator(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter,
                         const std::vector<DreamRadarSlot> &radarSlots);
-    std::vector<DreamRadarState> generate(u64 seed, bool memory);
+    std::vector<DreamRadarState> generate(u64 seed, bool memory) const;
 
 private:
     u8 pidAdvances;
