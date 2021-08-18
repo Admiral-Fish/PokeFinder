@@ -22,6 +22,7 @@
 
 #include <Core/Gen5/Generators/StationaryGenerator5.hpp>
 #include <Core/Gen5/Profile5.hpp>
+#include <Core/Gen5/States/SearcherState5.hpp>
 #include <Core/Gen5/States/StationaryState5.hpp>
 #include <atomic>
 #include <mutex>
@@ -31,28 +32,21 @@ class StationarySearcher5
 {
 public:
     StationarySearcher5() = default;
-    explicit StationarySearcher5(const StationaryGenerator5 &ivGenerator, const StationaryGenerator5 &pidGenerator, const Profile5 &profile,
-                                 const std::vector<std::unordered_map<u32, u32>> &ivMap, bool includePID);
-    void startSearch(int threads, Date start, const Date &end);
+    explicit StationarySearcher5(const Profile5 &profile);
+    void startSearch(const StationaryGenerator5 &generator, int threads, Date start, const Date &end);
     void cancelSearch();
-    std::vector<StationaryState5> getResults();
+    std::vector<SearcherState5<StationaryState>> getResults();
     int getProgress() const;
 
 private:
-    // TODO: pass these to startSearch
-    StationaryGenerator5 ivGenerator;
-    StationaryGenerator5 pidGenerator;
     Profile5 profile;
-    std::vector<std::unordered_map<u32, u32>> ivMap;
-    bool includePID;
-    bool fastSearch;
 
     bool searching;
     std::atomic<int> progress;
-    std::vector<StationaryState5> results;
+    std::vector<SearcherState5<StationaryState>> results;
     std::mutex mutex;
 
-    void search(const Date &start, const Date &end);
+    void search(StationaryGenerator5 generator, const Date &start, const Date &end);
 };
 
 #endif // STATIONARYSEARCHER5_HPP

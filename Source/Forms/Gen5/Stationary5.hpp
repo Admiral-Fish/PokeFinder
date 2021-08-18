@@ -46,7 +46,7 @@ public:
 private:
     Ui::Stationary5 *ui;
     StationaryGeneratorModel5 *generatorModel = nullptr;
-    // StationarySearcherModel5 *searcherModel = nullptr;
+    StationarySearcherModel5 *searcherModel = nullptr;
     std::vector<Profile5> profiles;
     Profile5 currentProfile;
     QMenu *generatorMenu = nullptr;
@@ -60,6 +60,7 @@ private slots:
     void profileIndexChanged(int index);
     void generatorLead();
     void generatorMethodIndexChanged(int index);
+    void searcherMethodIndexChanged(int index);
     void tableViewGeneratorContextMenu(const QPoint &pos);
     void tableViewSearcherContextMenu(const QPoint &pos);
     void profileManager();

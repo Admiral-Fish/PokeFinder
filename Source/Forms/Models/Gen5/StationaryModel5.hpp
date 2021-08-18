@@ -57,7 +57,9 @@ public:
 
 private:
     Method method;
-    QStringList header = { };
+    QStringList header = { tr("Seed"),  tr("Advances"), tr("Lead"),      tr("PID"),    tr("Shiny"),  tr("Nature"), tr("Ability"),
+                           tr("HP"),    tr("Atk"),      tr("Def"),       tr("SpA"),    tr("SpD"),    tr("Spe"),    tr("Hidden"),
+                           tr("Power"), tr("Gender"),   tr("Date/Time"), tr("Timer0"), tr("Buttons") };
 
     int getColumn(int column) const;
 };
