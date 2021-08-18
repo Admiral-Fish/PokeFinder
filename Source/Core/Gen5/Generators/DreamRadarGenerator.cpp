@@ -47,7 +47,7 @@ DreamRadarGenerator::DreamRadarGenerator(u32 initialAdvances, u32 maxAdvances, u
     }
 }
 
-std::vector<DreamRadarState> DreamRadarGenerator::generate(u64 seed, bool memory)
+std::vector<DreamRadarState> DreamRadarGenerator::generate(u64 seed, bool memory) const
 {
     std::vector<DreamRadarState> states;
 

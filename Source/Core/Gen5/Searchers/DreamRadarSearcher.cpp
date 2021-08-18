@@ -77,7 +77,7 @@ int DreamRadarSearcher::getProgress() const
     return progress;
 }
 
-void DreamRadarSearcher::search(DreamRadarGenerator generator, const Date &start, const Date &end)
+void DreamRadarSearcher::search(const DreamRadarGenerator &generator, const Date &start, const Date &end)
 {
     SHA1 sha(profile);
     auto buttons = Keypresses::getKeyPresses(profile.getKeypresses(), profile.getSkipLR());
