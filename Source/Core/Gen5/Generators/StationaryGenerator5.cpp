@@ -415,32 +415,10 @@ std::vector<StationaryState> StationaryGenerator5::generateHiddenGrotto(u64 seed
         {
             state.setNature(go.nextUInt(25));
         }
-        else if (genderRatio == 254)
-        {
-            u32 genderAdjustment = go.nextUInt(0x8);
-            pid = (pid & 0xFFFFFF00) | (genderAdjustment + 1);
-            state.setNature(go.nextUInt(25));
-        }
-        else if (genderRatio == 0)
-        {
-            u32 genderAdjustment = go.nextUInt(0xF6);
-            pid = (pid & 0xFFFFFF00) | (genderAdjustment + 8);
-            state.setNature(go.nextUInt(25));
-        }
         else
         {
             state.setGender(0);
-            if (filter.compareGender(state))
-            {
-                u32 genderAdjustment = go.nextUInt(0xFE - genderRatio);
-                pid = (pid & 0xFFFFFF00) | (genderAdjustment + genderRatio);
-            }
-            state.setGender(1);
-            if (filter.compareGender(state))
-            {
-                u32 genderAdjustment = go.nextUInt(genderRatio - 1);
-                pid = (pid & 0xFFFFFF00) | (genderAdjustment + 1);
-            }
+            pid = Utilities::forceGender(pid, go.nextUInt(), filter.compareGender(state) ? 0 : 1, genderRatio);
             state.setNature(go.nextUInt(25));
         }
 
