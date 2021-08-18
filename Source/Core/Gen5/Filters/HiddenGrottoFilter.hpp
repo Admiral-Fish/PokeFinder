@@ -29,7 +29,7 @@ class HiddenGrottoFilter
 {
 public:
     HiddenGrottoFilter(const std::vector<bool> &groups, const std::vector<bool> &encounterSlots, const std::vector<bool> &genders);
-    bool compareState(const HiddenGrottoState &state);
+    bool compareState(const HiddenGrottoState &state) const;
 
 private:
     std::vector<bool> groups;
