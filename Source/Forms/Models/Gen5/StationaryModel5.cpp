@@ -38,7 +38,7 @@ int StationaryGeneratorModel5::columnCount(const QModelIndex &parent) const
     {
     case Method::Method5IVs:
     case Method::Method5CGear:
-        return 7;
+        return 9;
     case Method::Method5:
         return 7;
     default:

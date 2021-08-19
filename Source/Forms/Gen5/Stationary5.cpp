@@ -28,6 +28,7 @@
 #include <Core/Parents/ProfileLoader.hpp>
 #include <Core/Parents/States/StationaryState.hpp>
 #include <Core/Util/Translator.hpp>
+#include <Core/Util/Utilities.hpp>
 #include <Forms/Gen5/Profile/ProfileManager5.hpp>
 #include <Forms/Models/Gen5/StationaryModel5.hpp>
 #include <QSettings>
@@ -89,7 +90,7 @@ void Stationary5::setupModels()
     ui->tableViewSearcher->setModel(searcherModel);
 
     ui->textBoxGeneratorSeed->setValues(InputType::Seed64Bit);
-    ui->textBoxGeneratorStartingAdvance->setValues(InputType::Advance32Bit);
+    ui->textBoxGeneratorInitialAdvances->setValues(InputType::Advance32Bit);
     ui->textBoxGeneratorMaxAdvances->setValues(InputType::Advance32Bit);
 
     ui->textBoxSearcherMinAdvances->setValues(InputType::Advance32Bit);
@@ -127,6 +128,7 @@ void Stationary5::setupModels()
 
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Stationary5::generate);
     connect(ui->pushButtonSearch, &QPushButton::clicked, this, &Stationary5::search);
+    connect(ui->pushButtonCalculateInitialAdvances, &QPushButton::clicked, this, &Stationary5::calculateInitialAdvances);
     connect(ui->tableViewGenerator, &QTableView::customContextMenuRequested, this, &Stationary5::tableViewGeneratorContextMenu);
     connect(ui->tableViewSearcher, &QTableView::customContextMenuRequested, this, &Stationary5::tableViewSearcherContextMenu);
 
@@ -154,7 +156,7 @@ void Stationary5::generate()
     generatorModel->setMethod(method);
 
     u64 seed = ui->textBoxGeneratorSeed->getULong();
-    u32 initialAdvances = ui->textBoxGeneratorStartingAdvance->getUInt();
+    u32 initialAdvances = ui->textBoxGeneratorInitialAdvances->getUInt();
     u32 maxAdvances = ui->textBoxGeneratorMaxAdvances->getUInt();
     u16 tid = currentProfile.getTID();
     u16 sid = currentProfile.getSID();
@@ -172,6 +174,14 @@ void Stationary5::generate()
 
     StationaryGenerator5 generator(initialAdvances, maxAdvances, tid, sid, genderRatio, method, encounter, filter);
     generator.setOffset(offset);
+
+    if (method == Method::Method5IVs || method == Method::Method5CGear)
+    {
+        generator.setInitialAdvances(ui->textBoxSearcherMinAdvances->getUInt());
+
+        // temp fix for IV and seed matchup?
+        generator.setOffset(offset + (currentProfile.getVersion() == Game::Black || currentProfile.getVersion() == Game::White ? 0 : 2));
+    }
 
     if (ui->pushButtonGeneratorLead->text() == tr("Cute Charm"))
     {
@@ -215,9 +225,13 @@ void Stationary5::search()
                        ui->filterSearcher->getNatures(), ui->filterSearcher->getHiddenPowers(), {});
 
     StationaryGenerator5 generator(0, maxAdvances, tid, sid, genderRatio, method, encounter, filter);
-    generator.setOffset(0);
 
-    auto *searcher = new StationarySearcher5(currentProfile);
+    if (method == Method::Method5IVs || method == Method::Method5CGear)
+    {
+        generator.setInitialAdvances(ui->textBoxSearcherMinAdvances->getUInt());
+    }
+
+    auto *searcher = new StationarySearcher5(currentProfile, method);
 
     Date start = ui->dateEditSearcherStartDate->getDate();
     Date end = ui->dateEditSearcherEndDate->getDate();
@@ -310,12 +324,29 @@ void Stationary5::generatorLead()
     }
 }
 
+void Stationary5::calculateInitialAdvances()
+{
+    Game version = currentProfile.getVersion();
+
+    u8 initialAdvances;
+    if (version & Game::BW)
+    {
+        initialAdvances = Utilities::initialAdvancesBW(ui->textBoxGeneratorSeed->getULong());
+    }
+    else
+    {
+        initialAdvances = Utilities::initialAdvancesBW2(ui->textBoxGeneratorSeed->getULong(), currentProfile.getMemoryLink());
+    }
+
+    ui->textBoxGeneratorInitialAdvances->setText(QString::number(initialAdvances));
+}
+
 void Stationary5::generatorMethodIndexChanged(int index)
 {
+    u8 method = ui->comboBoxGeneratorMethod->getCurrentByte();
+    ui->comboBoxGeneratorEncounter->clear();
     if (currentProfile.getVersion() == Game::Black2 || currentProfile.getVersion() == Game::White2)
     {
-        u8 method = ui->comboBoxGeneratorMethod->getCurrentByte();
-        ui->comboBoxGeneratorEncounter->clear();
         switch (method)
         {
         case Method::Method5IVs:
@@ -323,6 +354,8 @@ void Stationary5::generatorMethodIndexChanged(int index)
         {
             ui->comboBoxGeneratorEncounter->addItems({ tr("Stationary"), tr("Roamer") });
             ui->comboBoxGeneratorEncounter->setup({ Encounter::Stationary, Encounter::Roamer });
+
+            ui->pushButtonCalculateInitialAdvances->setVisible(false);
 
             ui->filterGenerator->enableControls(Controls::IVs | Controls::HiddenPowers);
             ui->filterGenerator->disableControls(Controls::Ability | Controls::Shiny | Controls::Gender | Controls::GenderRatio
@@ -334,6 +367,8 @@ void Stationary5::generatorMethodIndexChanged(int index)
             ui->comboBoxGeneratorEncounter->addItems({ tr("Stationary"), tr("Roamer"), tr("Hidden Grotto") });
             ui->comboBoxGeneratorEncounter->setup({ Encounter::Stationary, Encounter::Roamer, Encounter::HiddenGrotto });
 
+            ui->pushButtonCalculateInitialAdvances->setVisible(true);
+
             ui->filterGenerator->disableControls(Controls::IVs | Controls::HiddenPowers);
             ui->filterGenerator->enableControls(Controls::Ability | Controls::Shiny | Controls::Gender | Controls::GenderRatio
                                                 | Controls::Natures);
@@ -344,6 +379,8 @@ void Stationary5::generatorMethodIndexChanged(int index)
             ui->comboBoxGeneratorEncounter->addItems({ tr("Stationary"), tr("Roamer") });
             ui->comboBoxGeneratorEncounter->setup({ Encounter::Stationary, Encounter::Roamer });
 
+            ui->pushButtonCalculateInitialAdvances->setVisible(false);
+
             ui->filterGenerator->enableControls(Controls::IVs | Controls::HiddenPowers);
             ui->filterGenerator->disableControls(Controls::Ability | Controls::Shiny | Controls::Gender | Controls::GenderRatio
                                                  | Controls::Natures);
@@ -352,6 +389,14 @@ void Stationary5::generatorMethodIndexChanged(int index)
     }
     else
     {
+        if (method == Method::Method5IVs || method == Method::Method5CGear)
+        {
+            ui->pushButtonCalculateInitialAdvances->setVisible(false);
+        }
+        else
+        {
+            ui->pushButtonCalculateInitialAdvances->setVisible(true);
+        }
         ui->comboBoxGeneratorEncounter->addItems({ tr("Stationary"), tr("Roamer") });
         ui->comboBoxGeneratorEncounter->setup({ Encounter::Stationary, Encounter::Roamer });
 

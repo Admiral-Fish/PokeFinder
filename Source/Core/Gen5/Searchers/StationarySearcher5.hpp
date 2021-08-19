@@ -32,7 +32,7 @@ class StationarySearcher5
 {
 public:
     StationarySearcher5() = default;
-    explicit StationarySearcher5(const Profile5 &profile);
+    explicit StationarySearcher5(const Profile5 &profile, Method method);
     void startSearch(const StationaryGenerator5 &generator, int threads, Date start, const Date &end);
     void cancelSearch();
     std::vector<SearcherState5<StationaryState>> getResults();
@@ -41,6 +41,7 @@ public:
 private:
     Profile5 profile;
 
+    Method method;
     bool searching;
     std::atomic<int> progress;
     std::vector<SearcherState5<StationaryState>> results;

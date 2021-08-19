@@ -59,6 +59,7 @@ private slots:
     void search();
     void profileIndexChanged(int index);
     void generatorLead();
+    void calculateInitialAdvances();
     void generatorMethodIndexChanged(int index);
     void searcherMethodIndexChanged(int index);
     void tableViewGeneratorContextMenu(const QPoint &pos);

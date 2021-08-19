@@ -19,12 +19,14 @@
 
 #include "StationarySearcher5.hpp"
 #include <Core/Enum/Game.hpp>
+#include <Core/Enum/Method.hpp>
 #include <Core/Gen5/Keypresses.hpp>
 #include <Core/RNG/SHA1.hpp>
 #include <Core/Util/Utilities.hpp>
 #include <future>
 
-StationarySearcher5::StationarySearcher5(const Profile5 &profile) : profile(profile), searching(false), progress(0)
+StationarySearcher5::StationarySearcher5(const Profile5 &profile, Method method) :
+    profile(profile), method(method), searching(false), progress(0)
 {
 }
 
@@ -118,8 +120,15 @@ void StationarySearcher5::search(StationaryGenerator5 generator, const Date &sta
                             sha.setTime(hour, minute, second, profile.getDSType());
                             u64 seed = sha.hashSeed();
 
-                            generator.setInitialAdvances(flag ? Utilities::initialAdvancesBW(seed)
-                                                              : Utilities::initialAdvancesBW2(seed, profile.getMemoryLink()));
+                            if (method == Method::Method5)
+                            {
+                                generator.setInitialAdvances(flag ? Utilities::initialAdvancesBW(seed)
+                                                                  : Utilities::initialAdvancesBW2(seed, profile.getMemoryLink()));
+                            }
+                            else
+                            {
+                                generator.setOffset(flag ? 0 : 2);
+                            }
 
                             auto states = generator.generate(seed);
 
