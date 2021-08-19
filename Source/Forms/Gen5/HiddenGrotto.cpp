@@ -27,6 +27,7 @@
 #include <Core/Parents/PersonalInfo.hpp>
 #include <Core/Parents/ProfileLoader.hpp>
 #include <Core/Util/Translator.hpp>
+#include <Core/Util/Utilities.hpp>
 #include <Forms/Gen5/Profile/ProfileManager5.hpp>
 #include <Forms/Models/Gen5/HiddenGrottoModel.hpp>
 #include <QMessageBox>
@@ -88,25 +89,49 @@ bool HiddenGrotto::hasProfiles() const
 
 void HiddenGrotto::setupModels()
 {
+    generatorModel = new HiddenGrottoGeneratorModel5(ui->tableViewGenerator);
+    generatorMenu = new QMenu(ui->tableViewGenerator);
     searcherModel = new HiddenGrottoSearcherModel5(ui->tableViewSearcher);
     searcherMenu = new QMenu(ui->tableViewSearcher);
-    ui->checkListSlot->setup({ "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" });
-    ui->checkListGroup->setup({ "0", "1", "2", "3" });
-    ui->checkListGender->setup({ "♂", "♀" });
-    ui->comboBoxGenderRatio->setItemData(0, 60);
-    ui->comboBoxGenderRatio->setItemData(1, 30);
-    ui->comboBoxGenderRatio->setItemData(2, 10);
-    ui->comboBoxGenderRatio->setItemData(3, 5);
 
+    ui->textBoxGeneratorSeed->setValues(InputType::Seed64Bit);
+    ui->textBoxGeneratorInitialAdvances->setValues(InputType::Advance32Bit);
+    ui->textBoxGeneratorMaxAdvances->setValues(InputType::Advance32Bit);
+
+    ui->checkListGeneratorSlot->setup({ "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" });
+    ui->checkListGeneratorGroup->setup({ "0", "1", "2", "3" });
+    ui->checkListGeneratorGender->setup({ "♂", "♀" });
+    ui->comboBoxGeneratorGenderRatio->setItemData(0, 60);
+    ui->comboBoxGeneratorGenderRatio->setItemData(1, 30);
+    ui->comboBoxGeneratorGenderRatio->setItemData(2, 10);
+    ui->comboBoxGeneratorGenderRatio->setItemData(3, 5);
+
+    ui->checkListSearcherSlot->setup({ "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" });
+    ui->checkListSearcherGroup->setup({ "0", "1", "2", "3" });
+    ui->checkListSearcherGender->setup({ "♂", "♀" });
+    ui->comboBoxSearcherGenderRatio->setItemData(0, 60);
+    ui->comboBoxSearcherGenderRatio->setItemData(1, 30);
+    ui->comboBoxSearcherGenderRatio->setItemData(2, 10);
+    ui->comboBoxSearcherGenderRatio->setItemData(3, 5);
+
+    ui->tableViewGenerator->setModel(generatorModel);
     ui->tableViewSearcher->setModel(searcherModel);
+
+    QAction *outputTXTGenerator = searcherMenu->addAction(tr("Output Results to TXT"));
+    QAction *outputCSVGenerator = searcherMenu->addAction(tr("Output Results to CSV"));
+    connect(outputTXTGenerator, &QAction::triggered, [=]() { ui->tableViewGenerator->outputModel(false); });
+    connect(outputCSVGenerator, &QAction::triggered, [=]() { ui->tableViewGenerator->outputModel(true); });
 
     QAction *outputTXTSearcher = searcherMenu->addAction(tr("Output Results to TXT"));
     QAction *outputCSVSearcher = searcherMenu->addAction(tr("Output Results to CSV"));
     connect(outputTXTSearcher, &QAction::triggered, [=]() { ui->tableViewSearcher->outputModel(false); });
     connect(outputCSVSearcher, &QAction::triggered, [=]() { ui->tableViewSearcher->outputModel(true); });
 
+    connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &HiddenGrotto::generate);
     connect(ui->pushButtonSearch, &QPushButton::clicked, this, &HiddenGrotto::search);
     connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &HiddenGrotto::profileManager);
+    connect(ui->pushButtonCalculateInitialAdvances, &QPushButton::clicked, this, &HiddenGrotto::calculateInitialAdvances);
+    connect(ui->tableViewGenerator, &QTableView::customContextMenuRequested, this, &HiddenGrotto::tableViewGeneratorContextMenu);
     connect(ui->tableViewSearcher, &QTableView::customContextMenuRequested, this, &HiddenGrotto::tableViewSearcherContextMenu);
 
     QSettings setting;
@@ -118,14 +143,33 @@ void HiddenGrotto::setupModels()
     setting.endGroup();
 }
 
+void HiddenGrotto::generate()
+{
+    generatorModel->clearModel();
+
+    u64 seed = ui->textBoxGeneratorSeed->getULong();
+    u32 initialAdvances = ui->textBoxGeneratorInitialAdvances->getUInt();
+    u32 maxAdvances = ui->textBoxGeneratorMaxAdvances->getUInt();
+    u8 genderRatio = ui->comboBoxGeneratorGenderRatio->currentData().toUInt();
+
+    HiddenGrottoFilter filter(ui->checkListGeneratorGroup->getChecked(), ui->checkListGeneratorSlot->getChecked(),
+                              ui->checkListGeneratorGender->getChecked());
+
+    HiddenGrottoGenerator generator(initialAdvances, maxAdvances, genderRatio, filter);
+
+    auto states = generator.generate(seed);
+    generatorModel->addItems(states);
+}
+
 void HiddenGrotto::search()
 {
     searcherModel->clearModel();
     ui->pushButtonSearch->setEnabled(false);
     ui->pushButtonCancel->setEnabled(true);
 
-    HiddenGrottoFilter filter(ui->checkListGroup->getChecked(), ui->checkListSlot->getChecked(), ui->checkListGender->getChecked());
-    u8 genderRatio = ui->comboBoxGenderRatio->currentData().toUInt();
+    HiddenGrottoFilter filter(ui->checkListSearcherGroup->getChecked(), ui->checkListSearcherSlot->getChecked(),
+                              ui->checkListSearcherGender->getChecked());
+    u8 genderRatio = ui->comboBoxSearcherGenderRatio->currentData().toUInt();
 
     HiddenGrottoGenerator generator(0, 0, genderRatio, filter);
     auto *searcher = new HiddenGrottoSearcher(currentProfile);
@@ -186,6 +230,20 @@ void HiddenGrotto::profileIndexChanged(int index)
         ui->labelProfileVFrameValue->setText(QString::number(currentProfile.getVFrame()));
         ui->labelProfileKeypressesValue->setText(QString::fromStdString(currentProfile.getKeypressesString()));
         ui->labelProfileGameValue->setText(QString::fromStdString(currentProfile.getVersionString()));
+    }
+}
+
+void HiddenGrotto::calculateInitialAdvances()
+{
+    ui->textBoxGeneratorInitialAdvances->setText(
+        QString::number(Utilities::initialAdvancesBW2(ui->textBoxGeneratorSeed->getULong(), currentProfile.getMemoryLink())));
+}
+
+void HiddenGrotto::tableViewGeneratorContextMenu(QPoint pos)
+{
+    if (generatorModel->rowCount() > 0)
+    {
+        generatorMenu->popup(ui->tableViewGenerator->viewport()->mapToGlobal(pos));
     }
 }
 

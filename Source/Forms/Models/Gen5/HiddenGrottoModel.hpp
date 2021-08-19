@@ -24,6 +24,19 @@
 #include <Core/Gen5/States/SearcherState5.hpp>
 #include <Forms/Models/TableModel.hpp>
 
+class HiddenGrottoGeneratorModel5 : public TableModel<HiddenGrottoState>
+{
+    Q_OBJECT
+public:
+    explicit HiddenGrottoGeneratorModel5(QObject *parent);
+    int columnCount(const QModelIndex &parent = QModelIndex()) const override;
+    QVariant data(const QModelIndex &index, int role) const override;
+    QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
+
+private:
+    QStringList header = { tr("Seed"), tr("Advances"), tr("Group"), tr("Slot"), tr("Gender") };
+};
+
 class HiddenGrottoSearcherModel5 : public TableModel<SearcherState5<HiddenGrottoState>>
 {
     Q_OBJECT

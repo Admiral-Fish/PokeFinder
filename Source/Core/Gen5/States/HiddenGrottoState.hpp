@@ -28,8 +28,19 @@ class HiddenGrottoState
 public:
     HiddenGrottoState() = default;
 
-    HiddenGrottoState(u8 group, u8 slot, u8 gender) : group(group), slot(slot), gender(gender)
+    HiddenGrottoState(u64 seed, u32 advances, u8 group, u8 slot, u8 gender) :
+        seed(seed), advances(advances), group(group), slot(slot), gender(gender)
     {
+    }
+
+    u64 getSeed() const
+    {
+        return seed;
+    }
+
+    u32 getAdvances() const
+    {
+        return advances;
     }
 
     u8 getGroup() const
@@ -48,6 +59,7 @@ public:
     }
 
 private:
+    u64 seed;
     u32 advances;
     u8 group;
     u8 slot;

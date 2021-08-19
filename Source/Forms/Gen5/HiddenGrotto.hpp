@@ -24,6 +24,7 @@
 #include <Core/Gen5/Profile5.hpp>
 #include <QMenu>
 
+class HiddenGrottoGeneratorModel5;
 class HiddenGrottoSearcherModel5;
 
 namespace Ui
@@ -46,16 +47,21 @@ public:
 
 private:
     Ui::HiddenGrotto *ui;
+    HiddenGrottoGeneratorModel5 *generatorModel = nullptr;
     HiddenGrottoSearcherModel5 *searcherModel = nullptr;
     std::vector<Profile5> profiles;
     Profile5 currentProfile;
+    QMenu *generatorMenu = nullptr;
     QMenu *searcherMenu = nullptr;
 
     void setupModels();
 
 private slots:
+    void generate();
     void search();
     void profileIndexChanged(int index);
+    void calculateInitialAdvances();
+    void tableViewGeneratorContextMenu(QPoint pos);
     void tableViewSearcherContextMenu(QPoint pos);
     void profileManager();
 };

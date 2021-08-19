@@ -20,6 +20,48 @@
 #include "HiddenGrottoModel.hpp"
 #include <Core/Util/Translator.hpp>
 
+HiddenGrottoGeneratorModel5::HiddenGrottoGeneratorModel5(QObject *parent) : TableModel<HiddenGrottoState>(parent)
+{
+}
+
+int HiddenGrottoGeneratorModel5::columnCount(const QModelIndex &parent) const
+{
+    (void)parent;
+    return 5;
+}
+
+QVariant HiddenGrottoGeneratorModel5::data(const QModelIndex &index, int role) const
+{
+    if (role == Qt::DisplayRole)
+    {
+        const auto &state = model[index.row()];
+        int column = index.column();
+        switch (column)
+        {
+        case 0:
+            return QString::number(state.getSeed(), 16).toUpper().rightJustified(16, '0');
+        case 1:
+            return state.getAdvances();
+        case 2:
+            return state.getGroup();
+        case 3:
+            return state.getSlot();
+        case 4:
+            return QString::fromStdString(Translator::getGender(state.getGender()));
+        }
+    }
+    return QVariant();
+}
+
+QVariant HiddenGrottoGeneratorModel5::headerData(int section, Qt::Orientation orientation, int role) const
+{
+    if (role == Qt::DisplayRole && orientation == Qt::Horizontal)
+    {
+        return header[section];
+    }
+    return QVariant();
+}
+
 HiddenGrottoSearcherModel5::HiddenGrottoSearcherModel5(QObject *parent) : TableModel<SearcherState5<HiddenGrottoState>>(parent)
 {
 }

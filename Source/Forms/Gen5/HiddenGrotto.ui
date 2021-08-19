@@ -213,16 +213,100 @@
      <property name="currentIndex">
       <number>0</number>
      </property>
-     <widget class="QWidget" name="tabSearcher">
-      <property name="enabled">
-       <bool>true</bool>
-      </property>
+     <widget class="QWidget" name="tabGenerator">
       <attribute name="title">
-       <string>Searcher</string>
+       <string>Generator</string>
       </attribute>
-      <layout class="QGridLayout" name="gridLayout_20">
+      <layout class="QGridLayout" name="gridLayout">
+       <item row="0" column="0">
+        <widget class="QGroupBox" name="groupBoxGeneratorRNGInfo">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>1</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="title">
+          <string>RNG Info</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_26">
+          <item row="0" column="0">
+           <widget class="QLabel" name="labelGeneratorInitialAdvances">
+            <property name="text">
+             <string>Initial Advances</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="labelGeneratorMaxAdvances">
+            <property name="text">
+             <string>Max Advances</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0" colspan="3">
+           <layout class="QHBoxLayout" name="horizontalLayout_5">
+            <item>
+             <widget class="QPushButton" name="pushButtonGenerate">
+              <property name="enabled">
+               <bool>true</bool>
+              </property>
+              <property name="text">
+               <string>Search</string>
+              </property>
+              <property name="checkable">
+               <bool>false</bool>
+              </property>
+              <property name="autoDefault">
+               <bool>false</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="pushButtonCalculateInitialAdvances">
+              <property name="text">
+               <string>Calculate Initial Advances</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="labelGeneratorSeed">
+            <property name="text">
+             <string>Seed</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1" colspan="2">
+           <widget class="TextBox" name="textBoxGeneratorInitialAdvances">
+            <property name="text">
+             <string>0</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1" colspan="2">
+           <widget class="TextBox" name="textBoxGeneratorMaxAdvances">
+            <property name="text">
+             <string>1000</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1" colspan="2">
+           <widget class="TextBox" name="textBoxGeneratorSeed">
+            <property name="maxLength">
+             <number>16</number>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
        <item row="0" column="1">
-        <widget class="QGroupBox" name="groupBoxSearcherSettings">
+        <widget class="QGroupBox" name="groupBoxGeneratorSettings">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
            <horstretch>1</horstretch>
@@ -232,9 +316,9 @@
          <property name="title">
           <string>Settings</string>
          </property>
-         <layout class="QGridLayout" name="gridLayout_3">
+         <layout class="QGridLayout" name="gridLayout_6">
           <item row="0" column="0">
-           <widget class="QLabel" name="labelSlot">
+           <widget class="QLabel" name="labelGeneratorSlot">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
               <horstretch>0</horstretch>
@@ -247,7 +331,7 @@
            </widget>
           </item>
           <item row="1" column="0">
-           <widget class="QLabel" name="labelGroup">
+           <widget class="QLabel" name="labelGeneratorGroup">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
               <horstretch>0</horstretch>
@@ -260,7 +344,7 @@
            </widget>
           </item>
           <item row="2" column="0">
-           <widget class="QLabel" name="labelGender">
+           <widget class="QLabel" name="labelGeneratorGender">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
               <horstretch>0</horstretch>
@@ -273,7 +357,7 @@
            </widget>
           </item>
           <item row="4" column="1">
-           <widget class="QComboBox" name="comboBoxGenderRatio">
+           <widget class="QComboBox" name="comboBoxGeneratorGenderRatio">
             <item>
              <property name="text">
               <string>60</string>
@@ -297,10 +381,10 @@
            </widget>
           </item>
           <item row="0" column="1">
-           <widget class="CheckList" name="checkListSlot"/>
+           <widget class="CheckList" name="checkListGeneratorSlot"/>
           </item>
           <item row="4" column="0">
-           <widget class="QLabel" name="labelGenderRatio">
+           <widget class="QLabel" name="labelGeneratorGenderRatio">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
               <horstretch>0</horstretch>
@@ -313,14 +397,49 @@
            </widget>
           </item>
           <item row="1" column="1">
-           <widget class="CheckList" name="checkListGroup"/>
+           <widget class="CheckList" name="checkListGeneratorGroup"/>
           </item>
           <item row="2" column="1">
-           <widget class="CheckList" name="checkListGender"/>
+           <widget class="CheckList" name="checkListGeneratorGender"/>
           </item>
          </layout>
         </widget>
        </item>
+       <item row="1" column="0" colspan="2">
+        <widget class="TableView" name="tableViewGenerator">
+         <property name="contextMenuPolicy">
+          <enum>Qt::CustomContextMenu</enum>
+         </property>
+         <property name="editTriggers">
+          <set>QAbstractItemView::NoEditTriggers</set>
+         </property>
+         <property name="sortingEnabled">
+          <bool>true</bool>
+         </property>
+         <attribute name="horizontalHeaderDefaultSectionSize">
+          <number>100</number>
+         </attribute>
+         <attribute name="verticalHeaderVisible">
+          <bool>false</bool>
+         </attribute>
+         <attribute name="verticalHeaderMinimumSectionSize">
+          <number>20</number>
+         </attribute>
+         <attribute name="verticalHeaderDefaultSectionSize">
+          <number>21</number>
+         </attribute>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tabSearcher">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+      <attribute name="title">
+       <string>Searcher</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_20">
        <item row="2" column="0" colspan="3">
         <widget class="TableView" name="tableViewSearcher">
          <property name="contextMenuPolicy">
@@ -466,6 +585,106 @@
          </layout>
         </widget>
        </item>
+       <item row="0" column="1" colspan="2">
+        <widget class="QGroupBox" name="groupBoxSearcherSettings">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>1</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="title">
+          <string>Settings</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_3">
+          <item row="0" column="0">
+           <widget class="QLabel" name="labelSearcherSlot">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>Slot</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="labelSearcherGroup">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>Group</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="labelSearcherGender">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>Gender</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="1">
+           <widget class="QComboBox" name="comboBoxSearcherGenderRatio">
+            <item>
+             <property name="text">
+              <string>60</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>30</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>10</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>5</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="CheckList" name="checkListSearcherSlot"/>
+          </item>
+          <item row="4" column="0">
+           <widget class="QLabel" name="labelSearcherGenderRatio">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>Gender Ratio (% F)</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="CheckList" name="checkListSearcherGroup"/>
+          </item>
+          <item row="2" column="1">
+           <widget class="CheckList" name="checkListSearcherGender"/>
+          </item>
+         </layout>
+        </widget>
+       </item>
       </layout>
      </widget>
     </widget>
@@ -473,6 +692,11 @@
   </layout>
  </widget>
  <customwidgets>
+  <customwidget>
+   <class>TextBox</class>
+   <extends>QLineEdit</extends>
+   <header>Forms/Controls/TextBox.hpp</header>
+  </customwidget>
   <customwidget>
    <class>TableView</class>
    <extends>QTableView</extends>
