@@ -232,7 +232,7 @@ int StationarySearcherModel5::getColumn(int column) const
     {
     case Method::Method5IVs:
     case Method::Method5CGear:
-        return column > 1 ? column + 5 : column;
+        return column > 1 ? (column + 5 > 14 ? column + 6 : column + 5) : column;
     case Method::Method5:
         return column > 6 ? column + 8 : column;
     default:

@@ -77,7 +77,7 @@ int HiddenGrottoSearcher::getProgress() const
     return progress;
 }
 
-void HiddenGrottoSearcher::search(const HiddenGrottoGenerator generator, const Date &start, const Date &end)
+void HiddenGrottoSearcher::search(HiddenGrottoGenerator generator, const Date &start, const Date &end)
 {
     SHA1 sha(profile);
     auto buttons = Keypresses::getKeyPresses(profile.getKeypresses(), profile.getSkipLR());
@@ -107,7 +107,9 @@ void HiddenGrottoSearcher::search(const HiddenGrottoGenerator generator, const D
                             sha.setTime(hour, minute, second, profile.getDSType());
                             u64 seed = sha.hashSeed();
 
-                            auto states = generator.generate(seed, profile.getMemoryLink());
+                            generator.setInitialAdvances(Utilities::initialAdvancesBW2(seed, profile.getMemoryLink()));
+
+                            auto states = generator.generate(seed);
                             if (!states.empty())
                             {
                                 std::vector<SearcherState5<HiddenGrottoState>> displayStates;

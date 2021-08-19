@@ -127,7 +127,7 @@ void HiddenGrotto::search()
     HiddenGrottoFilter filter(ui->checkListGroup->getChecked(), ui->checkListSlot->getChecked(), ui->checkListGender->getChecked());
     u8 genderRatio = ui->comboBoxGenderRatio->currentData().toUInt();
 
-    HiddenGrottoGenerator generator(genderRatio, filter);
+    HiddenGrottoGenerator generator(0, 0, genderRatio, filter);
     auto *searcher = new HiddenGrottoSearcher(currentProfile);
 
     Date start = ui->dateEditSearcherStartDate->getDate();

@@ -22,13 +22,16 @@
 
 #include <Core/Gen5/Filters/HiddenGrottoFilter.hpp>
 #include <Core/Gen5/States/HiddenGrottoState.hpp>
+#include <Core/Parents/Generators/Generator.hpp>
 #include <vector>
 
 class HiddenGrottoGenerator
 {
 public:
-    HiddenGrottoGenerator(u8 genderRatio, const HiddenGrottoFilter &filter);
-    std::vector<HiddenGrottoState> generate(u64 seed, bool memory) const;
+    HiddenGrottoGenerator() = default;
+    HiddenGrottoGenerator(u32 initialAdvances, u32 maxAdvances, u8 genderRatio, const HiddenGrottoFilter &filter);
+    std::vector<HiddenGrottoState> generate(u64 seed) const;
+    void setInitialAdvances(u32 initialAdvances);
 
 private:
     u32 initialAdvances;
