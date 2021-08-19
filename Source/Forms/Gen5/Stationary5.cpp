@@ -128,6 +128,7 @@ void Stationary5::setupModels()
 
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Stationary5::generate);
     connect(ui->pushButtonSearch, &QPushButton::clicked, this, &Stationary5::search);
+    connect(ui->pushButtonGeneratorLead, &QPushButton::clicked, this, &Stationary5::generatorLead);
     connect(ui->pushButtonCalculateInitialAdvances, &QPushButton::clicked, this, &Stationary5::calculateInitialAdvances);
     connect(ui->tableViewGenerator, &QTableView::customContextMenuRequested, this, &Stationary5::tableViewGeneratorContextMenu);
     connect(ui->tableViewSearcher, &QTableView::customContextMenuRequested, this, &Stationary5::tableViewSearcherContextMenu);
@@ -296,8 +297,8 @@ void Stationary5::profileIndexChanged(int index)
 
 void Stationary5::generatorLead()
 {
-    ui->comboBoxGeneratorLead->clear();
     QString text = ui->pushButtonGeneratorLead->text();
+    ui->comboBoxGeneratorLead->clear();
     if (text == tr("Synchronize"))
     {
         ui->pushButtonGeneratorLead->setText(tr("Cute Charm"));
@@ -320,7 +321,10 @@ void Stationary5::generatorLead()
         ui->comboBoxGeneratorLead->setEnabled(true);
 
         ui->comboBoxGeneratorLead->addItem("None");
-        // ui->comboBoxGeneratorLead->addItems(Translator::getNatures());
+        for (const std::string &nature : Translator::getNatures())
+        {
+            ui->comboBoxGeneratorLead->addItem(QString::fromStdString(nature));
+        }
     }
 }
 

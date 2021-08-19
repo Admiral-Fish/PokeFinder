@@ -242,7 +242,7 @@ std::vector<StationaryState> StationaryGenerator5::generateStationary(u64 seed) 
                 state.setNature(go.nextUInt(25));
             }
         }
-        else if (lead == Lead::CuteCharm)
+        else if (lead >= Lead::CuteCharm && lead <= Lead::CuteCharmFemale)
         {
             bool charm = (go.nextUInt(0xffff) / 656) < 67;
             pid = go.nextUInt() ^ 0x10000;
@@ -408,7 +408,24 @@ std::vector<StationaryState> StationaryGenerator5::generateHiddenGrotto(u64 seed
         BWRNG go(rng.getSeed());
         state.setSeed(go.nextUInt(0x1FFF));
 
-        bool synch = (go.nextUInt() >> 31) == 1;
+        bool leadAffects = false;
+        if (lead == Lead::Synchronize)
+        {
+            leadAffects = (go.nextUInt() >> 31) == 1;
+        }
+        else if (lead >= Lead::CuteCharm && lead <= Lead::CuteCharmFemale)
+        {
+            // PIDRNG frame is 'skipped' if cute charm would not have affected the frame
+            leadAffects = (go.nextUInt(0xffff) / 656) < 67;
+            if (!leadAffects)
+            {
+                go.advance(1);
+            }
+        }
+        else
+        {
+            go.advance(1);
+        }
         u32 pid = go.nextUInt();
 
         if (genderRatio == 255)
@@ -422,7 +439,7 @@ std::vector<StationaryState> StationaryGenerator5::generateHiddenGrotto(u64 seed
             state.setNature(go.nextUInt(25));
         }
 
-        if (lead == Lead::Synchronize && synch)
+        if (lead == Lead::Synchronize && leadAffects)
         {
             state.setNature(synchNature);
         }
