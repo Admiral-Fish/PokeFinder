@@ -211,7 +211,7 @@
    <item row="1" column="0">
     <widget class="QTabWidget" name="tabRNGSelector">
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="tabGenerator">
       <attribute name="title">
@@ -484,7 +484,7 @@
           <string>RNG Info</string>
          </property>
          <layout class="QGridLayout" name="gridLayout_25">
-          <item row="2" column="0" colspan="2">
+          <item row="5" column="0" colspan="2">
            <layout class="QHBoxLayout" name="horizontalLayout_4">
             <item>
              <widget class="QPushButton" name="pushButtonSearch">
@@ -513,6 +513,20 @@
              </widget>
             </item>
            </layout>
+          </item>
+          <item row="3" column="1">
+           <widget class="TextBox" name="textBoxSearcherMaxAdvances">
+            <property name="text">
+             <string>100</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0">
+           <widget class="QLabel" name="labelSearcherStartDate">
+            <property name="text">
+             <string>Start Date</string>
+            </property>
+           </widget>
           </item>
           <item row="0" column="1">
            <widget class="DateEdit" name="dateEditSearcherStartDate">
@@ -548,10 +562,10 @@
             </property>
            </widget>
           </item>
-          <item row="0" column="0">
-           <widget class="QLabel" name="labelSearcherStartDate">
+          <item row="3" column="0">
+           <widget class="QLabel" name="labelSearcherMaxAdvances">
             <property name="text">
-             <string>Start Date</string>
+             <string>Max Advances</string>
             </property>
            </widget>
           </item>
