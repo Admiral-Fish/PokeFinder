@@ -27,11 +27,12 @@
 #include <Core/RNG/RNGList.hpp>
 #include <Core/Util/Utilities.hpp>
 
-StationaryGenerator5::StationaryGenerator5(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, Method method,
+StationaryGenerator5::StationaryGenerator5(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 gender, u8 genderRatio, Method method,
                                            Encounter encounter, const StateFilter &filter) :
     StationaryGenerator(initialAdvances, maxAdvances, tid, sid, genderRatio, method, filter),
     idBit((tid & 1) ^ (sid & 1)),
-    encounter(encounter)
+    encounter(encounter),
+    gender(gender)
 {
 }
 
@@ -434,8 +435,7 @@ std::vector<StationaryState> StationaryGenerator5::generateHiddenGrotto(u64 seed
         }
         else
         {
-            state.setGender(0);
-            pid = Utilities::forceGender(pid, go.nextUInt(), filter.compareGender(state) ? 0 : 1, genderRatio);
+            pid = Utilities::forceGender(pid, go.nextUInt(), gender, genderRatio);
             state.setNature(go.nextUInt(25));
         }
 

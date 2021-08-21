@@ -161,6 +161,7 @@ void Stationary5::generate()
     u32 maxAdvances = ui->textBoxGeneratorMaxAdvances->getUInt();
     u16 tid = currentProfile.getTID();
     u16 sid = currentProfile.getSID();
+    u8 gender = ui->filterGenerator->getGender();
     u8 genderRatio = ui->filterGenerator->getGenderRatio();
     u32 offset = 0;
     auto encounter = static_cast<Encounter>(ui->comboBoxGeneratorEncounter->getCurrentInt());
@@ -173,7 +174,7 @@ void Stationary5::generate()
                        ui->filterGenerator->getDisableFilters(), ui->filterGenerator->getMinIVs(), ui->filterGenerator->getMaxIVs(),
                        ui->filterGenerator->getNatures(), ui->filterGenerator->getHiddenPowers(), {});
 
-    StationaryGenerator5 generator(initialAdvances, maxAdvances, tid, sid, genderRatio, method, encounter, filter);
+    StationaryGenerator5 generator(initialAdvances, maxAdvances, tid, sid, gender, genderRatio, method, encounter, filter);
     generator.setOffset(offset);
 
     if (method == Method::Method5IVs || method == Method::Method5CGear)
@@ -218,6 +219,7 @@ void Stationary5::search()
     u32 maxAdvances = ui->textBoxSearcherMaxAdvances->getUInt();
     u16 tid = currentProfile.getTID();
     u16 sid = currentProfile.getSID();
+    u8 gender = ui->filterSearcher->getGender();
     u8 genderRatio = ui->filterSearcher->getGenderRatio();
     auto encounter = static_cast<Encounter>(ui->comboBoxSearcherEncounter->getCurrentInt());
 
@@ -225,7 +227,7 @@ void Stationary5::search()
                        ui->filterSearcher->getDisableFilters(), ui->filterSearcher->getMinIVs(), ui->filterSearcher->getMaxIVs(),
                        ui->filterSearcher->getNatures(), ui->filterSearcher->getHiddenPowers(), {});
 
-    StationaryGenerator5 generator(0, maxAdvances, tid, sid, genderRatio, method, encounter, filter);
+    StationaryGenerator5 generator(0, maxAdvances, tid, sid, gender, genderRatio, method, encounter, filter);
 
     if (method == Method::Method5IVs || method == Method::Method5CGear)
     {
