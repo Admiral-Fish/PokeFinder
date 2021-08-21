@@ -113,6 +113,11 @@ void HiddenGrotto::setupModels()
     ui->comboBoxGeneratorGenderRatio->setItemData(2, 10);
     ui->comboBoxGeneratorGenderRatio->setItemData(3, 5);
 
+    ui->comboBoxSearcherGrottoPower->setItemData(0, 5);
+    ui->comboBoxSearcherGrottoPower->setItemData(1, 15);
+    ui->comboBoxSearcherGrottoPower->setItemData(2, 25);
+    ui->comboBoxSearcherGrottoPower->setItemData(3, 35);
+    ui->comboBoxSearcherGrottoPower->setItemData(4, 55);
     ui->checkListSearcherSlot->setup({ "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" });
     ui->checkListSearcherGroup->setup({ "0", "1", "2", "3" });
     ui->checkListSearcherGender->setup({ "♂", "♀" });
@@ -177,11 +182,12 @@ void HiddenGrotto::search()
 
     u32 maxAdvances = ui->textBoxSearcherMaxAdvances->getUInt();
     u8 genderRatio = ui->comboBoxSearcherGenderRatio->currentData().toUInt();
+    u8 powerLevel = ui->comboBoxSearcherGrottoPower->currentData().toUInt();
 
     HiddenGrottoFilter filter(ui->checkListSearcherGroup->getChecked(), ui->checkListSearcherSlot->getChecked(),
                               ui->checkListSearcherGender->getChecked());
 
-    HiddenGrottoGenerator generator(0, maxAdvances, genderRatio, 5, filter);
+    HiddenGrottoGenerator generator(0, maxAdvances, genderRatio, powerLevel, filter);
     auto *searcher = new HiddenGrottoSearcher(currentProfile);
 
     Date start = ui->dateEditSearcherStartDate->getDate();
