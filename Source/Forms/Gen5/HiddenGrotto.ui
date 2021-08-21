@@ -211,7 +211,7 @@
    <item row="1" column="0">
     <widget class="QTabWidget" name="tabRNGSelector">
      <property name="currentIndex">
-      <number>1</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="tabGenerator">
       <attribute name="title">
@@ -230,6 +230,30 @@
           <string>RNG Info</string>
          </property>
          <layout class="QGridLayout" name="gridLayout_26">
+          <item row="0" column="1" colspan="2">
+           <widget class="TextBox" name="textBoxGeneratorInitialAdvances">
+            <property name="text">
+             <string>0</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0">
+           <widget class="QLabel" name="labelGeneratorSeed">
+            <property name="text">
+             <string>Seed</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="1" colspan="2">
+           <widget class="TextBox" name="textBoxGeneratorSeed">
+            <property name="maxLength">
+             <number>16</number>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
           <item row="0" column="0">
            <widget class="QLabel" name="labelGeneratorInitialAdvances">
             <property name="text">
@@ -244,7 +268,7 @@
             </property>
            </widget>
           </item>
-          <item row="3" column="0" colspan="3">
+          <item row="4" column="0" colspan="3">
            <layout class="QHBoxLayout" name="horizontalLayout_5">
             <item>
              <widget class="QPushButton" name="pushButtonGenerate">
@@ -271,20 +295,6 @@
             </item>
            </layout>
           </item>
-          <item row="2" column="0">
-           <widget class="QLabel" name="labelGeneratorSeed">
-            <property name="text">
-             <string>Seed</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="1" colspan="2">
-           <widget class="TextBox" name="textBoxGeneratorInitialAdvances">
-            <property name="text">
-             <string>0</string>
-            </property>
-           </widget>
-          </item>
           <item row="1" column="1" colspan="2">
            <widget class="TextBox" name="textBoxGeneratorMaxAdvances">
             <property name="text">
@@ -292,14 +302,40 @@
             </property>
            </widget>
           </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="labelGeneratorGrottoPower">
+            <property name="text">
+             <string>Grotto Power</string>
+            </property>
+           </widget>
+          </item>
           <item row="2" column="1" colspan="2">
-           <widget class="TextBox" name="textBoxGeneratorSeed">
-            <property name="maxLength">
-             <number>16</number>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignCenter</set>
-            </property>
+           <widget class="QComboBox" name="comboBoxGeneratorGrottoPower">
+            <item>
+             <property name="text">
+              <string>0</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>1</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>2</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>3</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>S/MAX</string>
+             </property>
+            </item>
            </widget>
           </item>
          </layout>

@@ -100,6 +100,11 @@ void HiddenGrotto::setupModels()
 
     ui->textBoxSearcherMaxAdvances->setValues(InputType::Advance32Bit);
 
+    ui->comboBoxGeneratorGrottoPower->setItemData(0, 5);
+    ui->comboBoxGeneratorGrottoPower->setItemData(1, 15);
+    ui->comboBoxGeneratorGrottoPower->setItemData(2, 25);
+    ui->comboBoxGeneratorGrottoPower->setItemData(3, 35);
+    ui->comboBoxGeneratorGrottoPower->setItemData(4, 55);
     ui->checkListGeneratorSlot->setup({ "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" });
     ui->checkListGeneratorGroup->setup({ "0", "1", "2", "3" });
     ui->checkListGeneratorGender->setup({ "♂", "♀" });
@@ -153,11 +158,12 @@ void HiddenGrotto::generate()
     u32 initialAdvances = ui->textBoxGeneratorInitialAdvances->getUInt();
     u32 maxAdvances = ui->textBoxGeneratorMaxAdvances->getUInt();
     u8 genderRatio = ui->comboBoxGeneratorGenderRatio->currentData().toUInt();
+    u8 powerLevel = ui->comboBoxGeneratorGrottoPower->currentData().toUInt();
 
     HiddenGrottoFilter filter(ui->checkListGeneratorGroup->getChecked(), ui->checkListGeneratorSlot->getChecked(),
                               ui->checkListGeneratorGender->getChecked());
 
-    HiddenGrottoGenerator generator(initialAdvances, maxAdvances, genderRatio, filter);
+    HiddenGrottoGenerator generator(initialAdvances, maxAdvances, genderRatio, powerLevel, filter);
 
     auto states = generator.generate(seed);
     generatorModel->addItems(states);
@@ -175,7 +181,7 @@ void HiddenGrotto::search()
     HiddenGrottoFilter filter(ui->checkListSearcherGroup->getChecked(), ui->checkListSearcherSlot->getChecked(),
                               ui->checkListSearcherGender->getChecked());
 
-    HiddenGrottoGenerator generator(0, maxAdvances, genderRatio, filter);
+    HiddenGrottoGenerator generator(0, maxAdvances, genderRatio, 5, filter);
     auto *searcher = new HiddenGrottoSearcher(currentProfile);
 
     Date start = ui->dateEditSearcherStartDate->getDate();
