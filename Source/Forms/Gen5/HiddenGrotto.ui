@@ -276,7 +276,7 @@
                <bool>true</bool>
               </property>
               <property name="text">
-               <string>Search</string>
+               <string>Generate</string>
               </property>
               <property name="checkable">
                <bool>false</bool>

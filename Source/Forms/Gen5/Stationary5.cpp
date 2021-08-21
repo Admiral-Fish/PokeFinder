@@ -348,24 +348,12 @@ void Stationary5::calculateInitialAdvances()
 void Stationary5::generatorMethodIndexChanged(int index)
 {
     u8 method = ui->comboBoxGeneratorMethod->getCurrentByte();
+
     ui->comboBoxGeneratorEncounter->clear();
     if (currentProfile.getVersion() == Game::Black2 || currentProfile.getVersion() == Game::White2)
     {
         switch (method)
         {
-        case Method::Method5IVs:
-        case Method::Method5CGear:
-        {
-            ui->comboBoxGeneratorEncounter->addItems({ tr("Stationary"), tr("Roamer") });
-            ui->comboBoxGeneratorEncounter->setup({ Encounter::Stationary, Encounter::Roamer });
-
-            ui->pushButtonCalculateInitialAdvances->setVisible(false);
-
-            ui->filterGenerator->enableControls(Controls::IVs | Controls::HiddenPowers);
-            ui->filterGenerator->disableControls(Controls::Ability | Controls::Shiny | Controls::Gender | Controls::GenderRatio
-                                                 | Controls::Natures);
-            break;
-        }
         case Method::Method5:
         {
             ui->comboBoxGeneratorEncounter->addItems({ tr("Stationary"), tr("Roamer"), tr("Hidden Grotto") });
@@ -378,6 +366,8 @@ void Stationary5::generatorMethodIndexChanged(int index)
                                                 | Controls::Natures);
             break;
         }
+        case Method::Method5IVs:
+        case Method::Method5CGear:
         default:
         {
             ui->comboBoxGeneratorEncounter->addItems({ tr("Stationary"), tr("Roamer") });
@@ -393,42 +383,45 @@ void Stationary5::generatorMethodIndexChanged(int index)
     }
     else
     {
-        if (method == Method::Method5IVs || method == Method::Method5CGear)
+        switch (method)
         {
-            ui->pushButtonCalculateInitialAdvances->setVisible(false);
-        }
-        else
+        case Method::Method5:
         {
-            ui->pushButtonCalculateInitialAdvances->setVisible(true);
-        }
-        ui->comboBoxGeneratorEncounter->addItems({ tr("Stationary"), tr("Roamer") });
-        ui->comboBoxGeneratorEncounter->setup({ Encounter::Stationary, Encounter::Roamer });
+            ui->comboBoxGeneratorEncounter->addItems({ tr("Stationary"), tr("Roamer") });
+            ui->comboBoxGeneratorEncounter->setup({ Encounter::Stationary, Encounter::Roamer, Encounter::HiddenGrotto });
 
-        ui->filterGenerator->enableControls(Controls::IVs | Controls::HiddenPowers);
-        ui->filterGenerator->disableControls(Controls::Ability | Controls::Shiny | Controls::Gender | Controls::GenderRatio
-                                             | Controls::Natures);
+            ui->pushButtonCalculateInitialAdvances->setVisible(true);
+
+            ui->filterGenerator->disableControls(Controls::IVs | Controls::HiddenPowers);
+            ui->filterGenerator->enableControls(Controls::Ability | Controls::Shiny | Controls::Gender | Controls::GenderRatio
+                                                | Controls::Natures);
+            break;
+        }
+        case Method::Method5IVs:
+        case Method::Method5CGear:
+        default:
+        {
+            ui->comboBoxGeneratorEncounter->addItems({ tr("Stationary"), tr("Roamer") });
+            ui->comboBoxGeneratorEncounter->setup({ Encounter::Stationary, Encounter::Roamer });
+
+            ui->pushButtonCalculateInitialAdvances->setVisible(false);
+
+            ui->filterGenerator->enableControls(Controls::IVs | Controls::HiddenPowers);
+            ui->filterGenerator->disableControls(Controls::Ability | Controls::Shiny | Controls::Gender | Controls::GenderRatio
+                                                 | Controls::Natures);
+        }
+        }
     }
 }
 
 void Stationary5::searcherMethodIndexChanged(int index)
 {
+    u8 method = ui->comboBoxSearcherMethod->getCurrentByte();
+    ui->comboBoxSearcherEncounter->clear();
     if (currentProfile.getVersion() == Game::Black2 || currentProfile.getVersion() == Game::White2)
     {
-        u8 method = ui->comboBoxSearcherMethod->getCurrentByte();
-        ui->comboBoxSearcherEncounter->clear();
         switch (method)
         {
-        case Method::Method5IVs:
-        case Method::Method5CGear:
-        {
-            ui->comboBoxSearcherEncounter->addItems({ tr("Stationary"), tr("Roamer") });
-            ui->comboBoxSearcherEncounter->setup({ Encounter::Stationary, Encounter::Roamer });
-
-            ui->filterSearcher->enableControls(Controls::IVs | Controls::HiddenPowers);
-            ui->filterSearcher->disableControls(Controls::Ability | Controls::Shiny | Controls::Gender | Controls::GenderRatio
-                                                | Controls::Natures);
-            break;
-        }
         case Method::Method5:
         {
             ui->comboBoxSearcherEncounter->addItems({ tr("Stationary"), tr("Roamer"), tr("Hidden Grotto") });
@@ -439,6 +432,8 @@ void Stationary5::searcherMethodIndexChanged(int index)
                                                | Controls::Natures);
             break;
         }
+        case Method::Method5IVs:
+        case Method::Method5CGear:
         default:
         {
             ui->comboBoxSearcherEncounter->addItems({ tr("Stationary"), tr("Roamer") });
@@ -452,12 +447,30 @@ void Stationary5::searcherMethodIndexChanged(int index)
     }
     else
     {
-        ui->comboBoxSearcherEncounter->addItems({ tr("Stationary"), tr("Roamer") });
-        ui->comboBoxSearcherEncounter->setup({ Encounter::Stationary, Encounter::Roamer });
+        switch (method)
+        {
+        case Method::Method5:
+        {
+            ui->comboBoxSearcherEncounter->addItems({ tr("Stationary"), tr("Roamer") });
+            ui->comboBoxSearcherEncounter->setup({ Encounter::Stationary, Encounter::Roamer, Encounter::HiddenGrotto });
 
-        ui->filterSearcher->enableControls(Controls::IVs | Controls::HiddenPowers);
-        ui->filterSearcher->disableControls(Controls::Ability | Controls::Shiny | Controls::Gender | Controls::GenderRatio
-                                            | Controls::Natures);
+            ui->filterSearcher->disableControls(Controls::IVs | Controls::HiddenPowers);
+            ui->filterSearcher->enableControls(Controls::Ability | Controls::Shiny | Controls::Gender | Controls::GenderRatio
+                                               | Controls::Natures);
+            break;
+        }
+        case Method::Method5IVs:
+        case Method::Method5CGear:
+        default:
+        {
+            ui->comboBoxSearcherEncounter->addItems({ tr("Stationary"), tr("Roamer") });
+            ui->comboBoxSearcherEncounter->setup({ Encounter::Stationary, Encounter::Roamer });
+
+            ui->filterSearcher->enableControls(Controls::IVs | Controls::HiddenPowers);
+            ui->filterSearcher->disableControls(Controls::Ability | Controls::Shiny | Controls::Gender | Controls::GenderRatio
+                                                | Controls::Natures);
+        }
+        }
     }
 }
 
