@@ -19,6 +19,7 @@
 
 #include "HiddenGrottoModel.hpp"
 #include <Core/Util/Translator.hpp>
+#include <Core/Util/Utilities.hpp>
 
 HiddenGrottoGeneratorModel5::HiddenGrottoGeneratorModel5(QObject *parent) : TableModel<HiddenGrottoState>(parent)
 {
@@ -39,9 +40,9 @@ QVariant HiddenGrottoGeneratorModel5::data(const QModelIndex &index, int role) c
         switch (column)
         {
         case 0:
-            return QString::number(state.getSeed(), 16).toUpper().rightJustified(16, '0');
-        case 1:
             return state.getAdvances();
+        case 1:
+            return QString::fromStdString(Utilities::getChatot(state.getSeed()));
         case 2:
             return state.getGroup();
         case 3:

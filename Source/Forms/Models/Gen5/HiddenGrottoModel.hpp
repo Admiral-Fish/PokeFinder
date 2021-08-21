@@ -34,7 +34,7 @@ public:
     QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
 
 private:
-    QStringList header = { tr("Seed"), tr("Advances"), tr("Group"), tr("Slot"), tr("Gender") };
+    QStringList header = { tr("Advances"), tr("Chatot"), tr("Group"), tr("Slot"), tr("Gender") };
 };
 
 class HiddenGrottoSearcherModel5 : public TableModel<SearcherState5<HiddenGrottoState>>
