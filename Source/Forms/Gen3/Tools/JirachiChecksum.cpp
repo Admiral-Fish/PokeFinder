@@ -253,7 +253,7 @@ void JirachiChecksum::generate() const
         {
             for (; second <= ((minute == searchMinute) ? searchSecond : 59); second++)
             {
-                for (; frame <= ((second == searchSecond) ? searchFrame : 59); frame++)
+                for (; frame <= ((second == searchSecond && minute == searchMinute) ? searchFrame : 59); frame++)
                 {
                     u32checksum = (minute + (second << 8)) + (frame << 16) + c;
                     u16checksum = ((u32checksum >> 16) + (u32checksum & 0xFFFF));
