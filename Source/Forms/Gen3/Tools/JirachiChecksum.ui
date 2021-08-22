@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>351</width>
+    <width>1285</width>
     <height>534</height>
    </rect>
   </property>
@@ -379,7 +379,7 @@
      <string>Wingull</string>
     </property>
    </widget>
-   <widget class="TextBox" name="minuteTB">
+   <widget class="TextBox" name="minutesTB">
     <property name="geometry">
      <rect>
       <x>100</x>
@@ -868,6 +868,163 @@
     <string>500F</string>
    </property>
   </widget>
+  <widget class="QTableView" name="tableView">
+   <property name="geometry">
+    <rect>
+     <x>360</x>
+     <y>80</y>
+     <width>901</width>
+     <height>441</height>
+    </rect>
+   </property>
+   <attribute name="horizontalHeaderVisible">
+    <bool>true</bool>
+   </attribute>
+   <attribute name="verticalHeaderVisible">
+    <bool>false</bool>
+   </attribute>
+  </widget>
+  <widget class="QGroupBox" name="groupBoxSearch">
+   <property name="geometry">
+    <rect>
+     <x>360</x>
+     <y>10</y>
+     <width>231</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>331</width>
+     <height>201</height>
+    </size>
+   </property>
+   <property name="title">
+    <string>Time to Search</string>
+   </property>
+   <widget class="TextBox" name="searchMinutesTB">
+    <property name="geometry">
+     <rect>
+      <x>14</x>
+      <y>20</y>
+      <width>41</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="inputMask">
+     <string/>
+    </property>
+    <property name="text">
+     <string notr="true">0</string>
+    </property>
+    <property name="maxLength">
+     <number>10</number>
+    </property>
+   </widget>
+   <widget class="TextBox" name="searchSecondsTB">
+    <property name="geometry">
+     <rect>
+      <x>84</x>
+      <y>20</y>
+      <width>41</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="inputMask">
+     <string/>
+    </property>
+    <property name="text">
+     <string notr="true">0</string>
+    </property>
+    <property name="maxLength">
+     <number>10</number>
+    </property>
+   </widget>
+   <widget class="TextBox" name="searchFramesTB">
+    <property name="geometry">
+     <rect>
+      <x>154</x>
+      <y>20</y>
+      <width>41</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="inputMask">
+     <string/>
+    </property>
+    <property name="text">
+     <string notr="true">0</string>
+    </property>
+    <property name="maxLength">
+     <number>10</number>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_27">
+    <property name="geometry">
+     <rect>
+      <x>60</x>
+      <y>23</y>
+      <width>21</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>m</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_28">
+    <property name="geometry">
+     <rect>
+      <x>130</x>
+      <y>23</y>
+      <width>21</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>s</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_29">
+    <property name="geometry">
+     <rect>
+      <x>200</x>
+      <y>23</y>
+      <width>21</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>F</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QCheckBox" name="checkBoxOptions">
+   <property name="geometry">
+    <rect>
+     <x>600</x>
+     <y>30</y>
+     <width>101</width>
+     <height>19</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Search Options</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButtonGenerate">
+   <property name="geometry">
+    <rect>
+     <x>720</x>
+     <y>30</y>
+     <width>80</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Generate</string>
+   </property>
+  </widget>
  </widget>
  <customwidgets>
   <customwidget>
@@ -879,12 +1036,12 @@
  <resources/>
  <connections/>
  <buttongroups>
+  <buttongroup name="buttonGroup_4"/>
+  <buttongroup name="buttonGroup_3"/>
+  <buttongroup name="buttonGroup_6"/>
   <buttongroup name="buttonGroup_7"/>
   <buttongroup name="buttonGroup"/>
   <buttongroup name="buttonGroup_2"/>
-  <buttongroup name="buttonGroup_3"/>
-  <buttongroup name="buttonGroup_4"/>
-  <buttongroup name="buttonGroup_6"/>
   <buttongroup name="buttonGroup_5"/>
  </buttongroups>
 </ui>

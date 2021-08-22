@@ -21,6 +21,7 @@
 #define JIRACHICHECKSUM_HPP
 
 #include <Core/Util/Global.hpp>
+#include <QStandardItemModel>
 #include <QWidget>
 
 class QStandardItemModel;
@@ -37,96 +38,42 @@ public:
     explicit JirachiChecksum(QWidget *parent = nullptr);
     void on_Change();
     u32 nameConvert(QString name) const;
+    u32 optionlessTimelessSeed() const;
+    void generate() const;
+    void generateJirachi(QList<QStandardItem *> *row, u16 seed) const;
     ~JirachiChecksum() override;
 
 private slots:
+// TODO: change this to use connect()
     void on_wingullCheck_toggled(bool checked);
-
-private slots:
     void on_wurmpleRadio_toggled(bool checked);
-
-private slots:
     void on_zigzagoonCheck_toggled(bool checked);
-
-private slots:
     void on_mudkipRadio_clicked();
-
-private slots:
     void on_torchicRadio_clicked();
-
-private slots:
     void on_treeckoRadio_clicked();
-
-private slots:
     void on_xxRadio_clicked();
-
-private slots:
     void on_xnRadio_clicked();
-
-private slots:
     void on_nnRadio_clicked();
-
-private slots:
     void on_laRadio_clicked();
-
-private slots:
     void on_lrRadio_clicked();
-
-private slots:
     void on_naRadio_clicked();
-
-private slots:
     void on_stereoRadio_clicked();
-
-private slots:
     void on_monRadio_clicked();
-
-private slots:
     void on_setRadio_clicked();
-
-private slots:
     void on_shiftRadio_clicked();
-
-private slots:
     void on_offRadio_clicked();
-
-private slots:
     void on_onRadio_clicked();
-
-private slots:
     void on_fastRadio_clicked();
-
-private slots:
     void on_midRadio_clicked();
-
-private slots:
     void on_slowRadio_clicked();
-
-private slots:
     void on_femaleRadio_clicked();
-
-private slots:
     void on_maleRadio_clicked();
-
-private slots:
     void on_framesTB_textChanged(const QString &arg1);
-
-private slots:
     void on_secondsTB_textChanged(const QString &arg1);
-
-private slots:
-    void on_minuteTB_textChanged(const QString &arg1);
-
-private slots:
+    void on_minutesTB_textChanged(const QString &arg1);
     void on_frameStyleTB_textChanged(const QString &arg1);
-
-private slots:
     void on_sidTB_textChanged(const QString &arg1);
-
-private slots:
     void on_tidTB_textChanged(const QString &arg1);
-
-private slots:
     void on_nameTB_textChanged(const QString &arg1);
 
 private:

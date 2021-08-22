@@ -19,8 +19,10 @@
 
 #include "JirachiChecksum.hpp"
 #include "ui_JirachiChecksum.h"
+#include <Core/Util/Translator.hpp>
+#include <Core/Parents/States/State.hpp>
+#include <Core/RNG/LCRNG.hpp>
 #include <QSettings>
-#include <QStandardItemModel>
 
 JirachiChecksum::JirachiChecksum(QWidget *parent) : QWidget(parent), ui(new Ui::JirachiChecksum)
 {
@@ -29,10 +31,17 @@ JirachiChecksum::JirachiChecksum(QWidget *parent) : QWidget(parent), ui(new Ui::
     setAttribute(Qt::WA_DeleteOnClose);
     ui->tidTB->setValues(InputType::TIDSID);
     ui->sidTB->setValues(InputType::TIDSID);
-    ui->minuteTB->setValues(InputType::Delay);
+    ui->minutesTB->setValues(InputType::Delay);
     ui->secondsTB->setValues(InputType::Delay);
     ui->framesTB->setValues(InputType::Delay);
+    ui->searchMinutesTB->setValues(InputType::Delay);
+    ui->searchSecondsTB->setValues(InputType::Delay);
+    ui->searchFramesTB->setValues(InputType::Delay);
     ui->frameStyleTB->setValues(InputType::Delay);
+    model = new QStandardItemModel(ui->tableView);
+    model->setHorizontalHeaderLabels(QStringList() << tr("Seed") << tr("Total Frame") << tr("Minute") << tr("Second") << tr("Frame") << tr("Options") << tr("PID") << tr("Shiny") << tr("Nature") << tr("HP") << tr("Atk") << tr("Def") << tr("SpA") << tr("SpD") << tr("Spe"));
+    ui->tableView->setModel(model);
+    connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &JirachiChecksum::generate);
 }
 
 JirachiChecksum::~JirachiChecksum()
@@ -41,6 +50,228 @@ JirachiChecksum::~JirachiChecksum()
     setting.setValue("jirachiChecksum/geometry", this->saveGeometry());
 
     delete ui;
+}
+
+u32 JirachiChecksum::optionlessTimelessSeed() const
+{
+    u32 c = 0x10;
+    c += ui->tidTB->getUShort()<<16;
+    c += ui->sidTB->getUShort();
+    c += nameConvert(ui->nameTB->text());
+    if (ui->femaleRadio->isChecked())
+    {
+        c += 1;
+    }
+    if (ui->xnRadio->isChecked())
+    {
+        c += 0x180000;
+    }
+    else if (ui->xxRadio->isChecked())
+    {
+        c += 0x3C170000;
+    }
+    else
+    {
+        c += 0x1;
+    }
+    if (ui->treeckoRadio->isChecked())
+    {
+        c += 0x08000000 + 0x40000000 + 0x08000000;
+    }
+    else if (ui->torchicRadio->isChecked())
+    {
+        c += 0x40000000 + 0x2 + 0x40000000;
+    }
+    else
+    {
+        c += 0x2 + 0x08000000 + 0x2;
+    }
+    if (ui->zigzagoonCheck->isChecked())
+    {
+        c += 0x40;
+    }
+    if (ui->wurmpleRadio->isChecked())
+    {
+        c += 0x100;
+    }
+    if (ui->wingullCheck->isChecked())
+    {
+        c += 0x200000;
+    }
+    return c;
+}
+
+void JirachiChecksum::generateJirachi(QList<QStandardItem *> *row, u16 seed) const
+{
+    // TODO: make this use actual states instead of this
+    PokeRNG rng(seed);
+
+    // Method 1 Reverse [SEED] [PID] [PID] [IVS] [IVS]
+
+    State state(0);
+
+    u16 high = rng.nextUShort();
+    u16 low = rng.nextUShort();
+    u16 iv1 = rng.nextUShort();
+    u16 iv2 = rng.nextUShort();
+
+    state.setPID(high, low);
+    state.setNature(state.getPID() % 25);
+    state.setShiny<8>(20043, high ^ low);
+
+    state.setIVs(iv1, iv2);
+    *row << new QStandardItem(QString::number(state.getPID(),16).toUpper());
+    *row << new QStandardItem(state.getShiny() == 2 ? tr("Square") : state.getShiny() == 1 ? tr("Star") : tr("No"));
+    *row << new QStandardItem(QString::fromStdString(Translator::getNature(state.getNature())));
+    *row << new QStandardItem(QString::number(state.getIV(0)));
+    *row << new QStandardItem(QString::number(state.getIV(1)));
+    *row << new QStandardItem(QString::number(state.getIV(2)));
+    *row << new QStandardItem(QString::number(state.getIV(3)));
+    *row << new QStandardItem(QString::number(state.getIV(4)));
+    *row << new QStandardItem(QString::number(state.getIV(5)));
+
+    return;
+}
+
+void JirachiChecksum::generate() const
+{
+    model->removeRows(0, model->rowCount());
+    u32 c = optionlessTimelessSeed();
+    u32 u32checksum;
+    u16 u16checksum;
+    u8 minute = ui->minutesTB->getUInt();
+    u8 second = ui->secondsTB->getUInt();
+    u8 frame = ui->framesTB->getUInt();
+    if (ui->checkBoxOptions->isChecked())
+    {
+        for (u8 text = 0; text < 3; text++)
+        {
+            for (u8 scene = 0; scene < 2; scene++)
+            {
+                for (u8 style = 0; style < 2; style++)
+                {
+                    for (u8 sound = 0; sound < 2; sound++)
+                    {
+                        for (u8 button = 0; button < 3; button++)
+                        {
+                            for (u8 frameStyle = 0; frameStyle < 20; frameStyle++)
+                            {
+                                c = optionlessTimelessSeed();
+                                if (text == 1)
+                                {
+                                    c += 0x1;
+                                }
+                                else if (text == 2)
+                                {
+                                    c += 0x2;
+                                }
+                                if (style)
+                                {
+                                    c += 0x200;
+                                }
+                                if (scene)
+                                {
+                                    c += 0x400;
+                                }
+                                if (sound)
+                                {
+                                    c += 0x100;
+                                }
+                                if (button == 1)
+                                {
+                                    c += 0x1000000;
+                                }
+                                else if (button == 2)
+                                {
+                                    c += 0x2000000;
+                                }
+                                c += frameStyle * 0x8;
+                                if (ui->midRadio->isChecked())
+                                {
+                                    c += 0x1;
+                                }
+                                else if (ui->fastRadio->isChecked())
+                                {
+                                    c += 0x2;
+                                }
+                                if (ui->offRadio->isChecked())
+                                {
+                                    c += 0x400;
+                                }
+                                if (ui->setRadio->isChecked())
+                                {
+                                    c += 0x200;
+                                }
+                                if (ui->stereoRadio->isChecked())
+                                {
+                                    c += 0x100;
+                                }
+                                if (ui->lrRadio->isChecked())
+                                {
+                                    c += 0x1000000;
+                                }
+                                else if (ui->laRadio->isChecked())
+                                {
+                                    c += 0x2000000;
+                                }
+                                c += ((ui->frameStyleTB->getUInt() - 1) * 0x8);
+                                u32checksum = (minute + (second << 8)) + (frame << 16) + c;
+                                u16checksum = ((u32checksum >> 16) + (u32checksum & 0xFFFF));
+                                QList<QStandardItem *> row;
+                                row << new QStandardItem(QString::number(u16checksum,16).toUpper());
+                                row << new QStandardItem(QString::number(minute*60*60+second*60+frame));
+                                row << new QStandardItem(QString::number(minute));
+                                row << new QStandardItem(QString::number(second));
+                                row << new QStandardItem(QString::number(frame));
+                                row << new QStandardItem(QString("%1|%2|%3|%4|%5|%6").arg(QString::number(text), QString::number(scene), QString::number(style), QString::number(sound), QString::number(button), QString::number(frameStyle)));
+                                generateJirachi(&row,u16checksum);
+                                model->appendRow(row);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    else
+    {
+        u8 searchFrame = ui->searchFramesTB->getUInt()+frame;
+        u8 searchSecond = ui->searchSecondsTB->getUInt()+second;
+        u8 searchMinute = ui->searchMinutesTB->getUInt()+minute;
+        if (searchFrame > 59)
+        {
+            searchSecond += 1;
+        }
+        if (searchSecond > 59)
+        {
+            searchMinute += 1;
+        }
+        searchFrame %= 60;
+        searchSecond %= 60;
+        searchMinute %= 60;
+        for (; minute <= searchMinute; minute++)
+        {
+            for (; second <= ((minute == searchMinute) ? searchSecond : 59); second++)
+            {
+                for (; frame <= ((second == searchSecond) ? searchFrame : 59); frame++)
+                {
+                    u32checksum = (minute + (second << 8)) + (frame << 16) + c;
+                    u16checksum = ((u32checksum >> 16) + (u32checksum & 0xFFFF));
+                    QList<QStandardItem *> row;
+                    row << new QStandardItem(QString::number(u16checksum,16).toUpper());
+                    row << new QStandardItem(QString::number(minute*60*60+second*60+frame));
+                    row << new QStandardItem(QString::number(minute));
+                    row << new QStandardItem(QString::number(second));
+                    row << new QStandardItem(QString::number(frame));
+                    row << new QStandardItem("");
+                    generateJirachi(&row,u16checksum);
+                    model->appendRow(row);
+                }
+                frame = 0;
+            }
+            second = 0;
+        }
+    }
 }
 
 u32 JirachiChecksum::nameConvert(QString name) const
@@ -152,38 +383,7 @@ u32 JirachiChecksum::nameConvert(QString name) const
 
 void JirachiChecksum::on_Change()
 {
-    u32 c = 0x10;
-    c += ui->tidTB->getUShort()<<16;
-    c += ui->sidTB->getUShort();
-    c += nameConvert(ui->nameTB->text());
-    if (ui->femaleRadio->isChecked())
-    {
-        c += 1;
-    }
-    if (ui->xnRadio->isChecked())
-    {
-        c += 0x180000;
-    }
-    else if (ui->xxRadio->isChecked())
-    {
-        c += 0x3C170000;
-    }
-    else
-    {
-        c += 0x1;
-    }
-    if (ui->treeckoRadio->isChecked())
-    {
-        c += 0x08000000 + 0x40000000 + 0x08000000;
-    }
-    else if (ui->torchicRadio->isChecked())
-    {
-        c += 0x40000000 + 0x2 + 0x40000000;
-    }
-    else
-    {
-        c += 0x2 + 0x08000000 + 0x2;
-    }
+    u32 c = optionlessTimelessSeed();
     if (ui->midRadio->isChecked())
     {
         c += 0x1;
@@ -212,25 +412,14 @@ void JirachiChecksum::on_Change()
     {
         c += 0x2000000;
     }
-    if (ui->zigzagoonCheck->isChecked())
-    {
-        c += 0x40;
-    }
-    if (ui->wurmpleRadio->isChecked())
-    {
-        c += 0x100;
-    }
-    if (ui->wingullCheck->isChecked())
-    {
-        c += 0x200000;
-    }
     c += ((ui->frameStyleTB->getUInt() - 1) * 0x8);
 
-    u32 u32checksum = (ui->minuteTB->getUInt() + (ui->secondsTB->getUInt() << 8)) + (ui->framesTB->getUInt() << 16) + c;
+    u32 u32checksum = (ui->minutesTB->getUInt() + (ui->secondsTB->getUInt() << 8)) + (ui->framesTB->getUInt() << 16) + c;
     u16 u16checksum = ((u32checksum >> 16) + (u32checksum & 0xFFFF));
     ui->seedLabel->setText(QString::number(u16checksum,16).toUpper());
 }
 
+// TODO: fix this mess
 void JirachiChecksum::on_nameTB_textChanged(const QString &arg1)
 {
     on_Change();
@@ -251,7 +440,7 @@ void JirachiChecksum::on_frameStyleTB_textChanged(const QString &arg1)
     on_Change();
 }
 
-void JirachiChecksum::on_minuteTB_textChanged(const QString &arg1)
+void JirachiChecksum::on_minutesTB_textChanged(const QString &arg1)
 {
     on_Change();
 }
