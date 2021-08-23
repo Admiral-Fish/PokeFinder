@@ -58,7 +58,7 @@ QVariant StationaryGeneratorModel5::data(const QModelIndex &index, int role) con
             return state.getAdvances();
         case 1:
         {
-            return QString::fromStdString(Utilities::getChatot(state.getSeed()));
+            return QString::fromStdString(Utilities::getChatot64(state.getSeed()));
         }
         case 2:
             return QString::number(state.getPID(), 16).toUpper().rightJustified(8, '0');
