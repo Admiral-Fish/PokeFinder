@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This file is part of PokéFinder
  * Copyright (C) 2017-2021 by Admiral_Fish, bumba, and EzPzStreamz
  *
@@ -44,8 +44,8 @@ std::vector<HiddenGrottoState> HiddenGrottoGenerator::generate(u64 seed) const
 
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rng.next())
     {
-        u64 seed = rng.getSeed();
-        BWRNG go(seed);
+        BWRNG go(rng.getSeed());
+        u32 seed = ((rng.getSeed() >> 32) * 0x1FFF) >> 32;
         if (go.nextUInt(100) < powerLevel)
         {
             u8 group = go.nextUInt(4);
