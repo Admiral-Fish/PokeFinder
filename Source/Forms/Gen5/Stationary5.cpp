@@ -23,12 +23,17 @@
 #include <Core/Enum/Lead.hpp>
 #include <Core/Enum/Method.hpp>
 #include <Core/Gen5/Generators/StationaryGenerator5.hpp>
+#include <Core/Gen5/Keypresses.hpp>
+#include <Core/Gen5/Searchers/StationarySearcher5.hpp>
 #include <Core/Parents/ProfileLoader.hpp>
 #include <Core/Parents/States/StationaryState.hpp>
 #include <Core/Util/Translator.hpp>
+#include <Core/Util/Utilities.hpp>
 #include <Forms/Gen5/Profile/ProfileManager5.hpp>
 #include <Forms/Models/Gen5/StationaryModel5.hpp>
 #include <QSettings>
+#include <QThread>
+#include <QTimer>
 
 Stationary5::Stationary5(QWidget *parent) : QWidget(parent), ui(new Ui::Stationary5)
 {
@@ -76,25 +81,28 @@ bool Stationary5::hasProfiles() const
 void Stationary5::setupModels()
 {
     generatorModel = new StationaryGeneratorModel5(ui->tableViewGenerator, Method::Method5IVs);
-    // searcherModel = new Searcher5Model(ui->tableViewSearcher, Method::Method1);
+    searcherModel = new StationarySearcherModel5(ui->tableViewSearcher, Method::Method5IVs);
 
     generatorMenu = new QMenu(ui->tableViewGenerator);
-    // searcherMenu = new QMenu(ui->tableViewSearcher);
+    searcherMenu = new QMenu(ui->tableViewSearcher);
 
     ui->tableViewGenerator->setModel(generatorModel);
-    // ui->tableViewSearcher->setModel(searcherModel);
+    ui->tableViewSearcher->setModel(searcherModel);
 
-    ui->textBoxGeneratorSeed->setValues(InputType::Seed32Bit);
-    ui->textBoxGeneratorStartingAdvance->setValues(InputType::Advance32Bit);
+    ui->textBoxGeneratorSeed->setValues(InputType::Seed64Bit);
+    ui->textBoxGeneratorInitialAdvances->setValues(InputType::Advance32Bit);
     ui->textBoxGeneratorMaxAdvances->setValues(InputType::Advance32Bit);
 
-    ui->textBoxSearcherMinDelay->setValues(InputType::Delay);
-    ui->textBoxSearcherMaxDelay->setValues(InputType::Delay);
-    ui->textBoxSearcherMinAdvance->setValues(InputType::Advance32Bit);
-    ui->textBoxSearcherMaxAdvance->setValues(InputType::Advance32Bit);
+    ui->textBoxSearcherMinAdvances->setValues(InputType::Advance32Bit);
+    ui->textBoxSearcherMaxAdvances->setValues(InputType::Advance32Bit);
 
     ui->comboBoxGeneratorMethod->setup({ Method::Method5IVs, Method::Method5CGear, Method::Method5 });
-    ui->comboBoxGeneratorEncounter->setup({ Encounter::Stationary, Encounter::Roamer });
+    ui->comboBoxSearcherMethod->setup({ Method::Method5IVs, Method::Method5CGear, Method::Method5 });
+    connect(ui->comboBoxGeneratorMethod, QOverload<int>::of(&ComboBox::currentIndexChanged), this,
+            &Stationary5::generatorMethodIndexChanged);
+    connect(ui->comboBoxSearcherMethod, QOverload<int>::of(&ComboBox::currentIndexChanged), this, &Stationary5::searcherMethodIndexChanged);
+
+    ui->comboBoxSearcherEncounter->setup({ Encounter::Stationary, Encounter::Roamer });
 
     ui->comboBoxSearcherLead->setup({ Lead::Search, Lead::Synchronize, Lead::CuteCharm, Lead::None });
 
@@ -104,7 +112,8 @@ void Stationary5::setupModels()
         ui->comboBoxGeneratorLead->addItem(QString::fromStdString(nature));
     }
 
-    ui->filterGenerator->disableControls(Controls::EncounterSlots);
+    ui->filterGenerator->disableControls(Controls::EncounterSlots | Controls::Ability | Controls::Shiny | Controls::Gender
+                                         | Controls::GenderRatio | Controls::Natures);
     ui->filterSearcher->disableControls(Controls::EncounterSlots | Controls::DisableFilter | Controls::UseDelay);
 
     QAction *outputTXTGenerator = generatorMenu->addAction(tr("Output Results to TXT"));
@@ -112,32 +121,27 @@ void Stationary5::setupModels()
     connect(outputTXTGenerator, &QAction::triggered, [=]() { ui->tableViewGenerator->outputModel(false); });
     connect(outputCSVGenerator, &QAction::triggered, [=]() { ui->tableViewGenerator->outputModel(true); });
 
-    // QAction *outputTXTSearcher = searcherMenu->addAction(tr("Output Results to TXT"));
-    // QAction *outputCSVSearcher = searcherMenu->addAction(tr("Output Results to CSV"));
-    // connect(outputTXTSearcher, &QAction::triggered, [=]() { ui->tableViewSearcher->outputModel(false); });
-    // connect(outputCSVSearcher, &QAction::triggered, [=]() { ui->tableViewSearcher->outputModel(true); });
+    QAction *outputTXTSearcher = searcherMenu->addAction(tr("Output Results to TXT"));
+    QAction *outputCSVSearcher = searcherMenu->addAction(tr("Output Results to CSV"));
+    connect(outputTXTSearcher, &QAction::triggered, [=]() { ui->tableViewSearcher->outputModel(false); });
+    connect(outputCSVSearcher, &QAction::triggered, [=]() { ui->tableViewSearcher->outputModel(true); });
 
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Stationary5::generate);
+    connect(ui->pushButtonSearch, &QPushButton::clicked, this, &Stationary5::search);
+    connect(ui->pushButtonGeneratorLead, &QPushButton::clicked, this, &Stationary5::generatorLead);
+    connect(ui->pushButtonCalculateInitialAdvances, &QPushButton::clicked, this, &Stationary5::calculateInitialAdvances);
     connect(ui->tableViewGenerator, &QTableView::customContextMenuRequested, this, &Stationary5::tableViewGeneratorContextMenu);
-    // connect(ui->tableViewSearcher, &QTableView::customContextMenuRequested, this, &Stationary5::tableViewSearcherContextMenu);
+    connect(ui->tableViewSearcher, &QTableView::customContextMenuRequested, this, &Stationary5::tableViewSearcherContextMenu);
 
     QSettings setting;
     setting.beginGroup("stationary5");
-    if (setting.contains("minDelay"))
-    {
-        ui->textBoxSearcherMinDelay->setText(setting.value("minDelay").toString());
-    }
-    if (setting.contains("maxDelay"))
-    {
-        ui->textBoxSearcherMaxDelay->setText(setting.value("maxDelay").toString());
-    }
     if (setting.contains("minAdvance"))
     {
-        ui->textBoxSearcherMinAdvance->setText(setting.value("minAdvance").toString());
+        ui->textBoxSearcherMinAdvances->setText(setting.value("minAdvance").toString());
     }
     if (setting.contains("maxAdvance"))
     {
-        ui->textBoxSearcherMaxAdvance->setText(setting.value("maxAdvance").toString());
+        ui->textBoxSearcherMaxAdvances->setText(setting.value("maxAdvance").toString());
     }
     if (setting.contains("geometry"))
     {
@@ -153,10 +157,11 @@ void Stationary5::generate()
     generatorModel->setMethod(method);
 
     u64 seed = ui->textBoxGeneratorSeed->getULong();
-    u32 initialAdvances = ui->textBoxGeneratorStartingAdvance->getUInt();
+    u32 initialAdvances = ui->textBoxGeneratorInitialAdvances->getUInt();
     u32 maxAdvances = ui->textBoxGeneratorMaxAdvances->getUInt();
     u16 tid = currentProfile.getTID();
     u16 sid = currentProfile.getSID();
+    u8 gender = ui->filterGenerator->getGender();
     u8 genderRatio = ui->filterGenerator->getGenderRatio();
     u32 offset = 0;
     auto encounter = static_cast<Encounter>(ui->comboBoxGeneratorEncounter->getCurrentInt());
@@ -169,8 +174,16 @@ void Stationary5::generate()
                        ui->filterGenerator->getDisableFilters(), ui->filterGenerator->getMinIVs(), ui->filterGenerator->getMaxIVs(),
                        ui->filterGenerator->getNatures(), ui->filterGenerator->getHiddenPowers(), {});
 
-    StationaryGenerator5 generator(initialAdvances, maxAdvances, tid, sid, genderRatio, method, encounter, filter);
+    StationaryGenerator5 generator(initialAdvances, maxAdvances, tid, sid, gender, genderRatio, method, encounter, filter);
     generator.setOffset(offset);
+
+    if (method == Method::Method5IVs || method == Method::Method5CGear)
+    {
+        generator.setInitialAdvances(ui->textBoxSearcherMinAdvances->getUInt());
+
+        // temp fix for IV and seed matchup?
+        generator.setOffset(offset + (currentProfile.getVersion() == Game::Black || currentProfile.getVersion() == Game::White ? 0 : 2));
+    }
 
     if (ui->pushButtonGeneratorLead->text() == tr("Cute Charm"))
     {
@@ -196,52 +209,69 @@ void Stationary5::generate()
 
 void Stationary5::search()
 {
-    /*searcherModel->clear();
-    searcherModel->setMethod(static_cast<Method>(ui->comboBoxSearcherMethod->currentData().toInt()));
+    searcherModel->clearModel();
+    auto method = static_cast<Method>(ui->comboBoxSearcherMethod->getCurrentInt());
+    searcherModel->setMethod(method);
 
-   ui->pushButtonSearch->setEnabled(false);
-   ui->pushButtonCancel->setEnabled(true);
+    ui->pushButtonSearch->setEnabled(false);
+    ui->pushButtonCancel->setEnabled(true);
 
-   u16 tid = ui->textBoxSearcherTID->getUShort();
-   u16 sid = ui->textBoxSearcherSID->getUShort();
+    u32 maxAdvances = ui->textBoxSearcherMaxAdvances->getUInt();
+    u16 tid = currentProfile.getTID();
+    u16 sid = currentProfile.getSID();
+    u8 gender = ui->filterSearcher->getGender();
+    u8 genderRatio = ui->filterSearcher->getGenderRatio();
+    auto encounter = static_cast<Encounter>(ui->comboBoxSearcherEncounter->getCurrentInt());
 
-   u8 genderRatio = ui->comboBoxSearcherGenderRatio->currentData().toInt();
-   AdvanceCompare compare(ui->comboBoxSearcherAbility->currentIndex(), ui->comboBoxSearcherAbility->currentIndex(),
-       ui->checkBoxSearcherShinyOnly->isChecked(), false, ui->ivFilterSearcher->getLower(),
-       ui->ivFilterSearcher->getLower(), ui->comboBoxSearcherNature->getChecked(),
-       ui->comboBoxSearcherHiddenPower->getChecked(), std::vector<bool>());
-    Searcher5 searcher(tid, sid, static_cast<u32>(genderRatioIndex), ui->textBoxSearcherMinDelay->getUInt(),
-    ui->textBoxSearcherMaxDelay->getUInt(),
-                                  ui->textBoxSearcherMinAdvance->getUInt(), ui->textBoxSearcherMaxAdvance->getUInt(),
-                                  compare,
-                                  static_cast<Method>(ui->comboBoxSearcherMethod->currentData().toInt()));
+    StateFilter filter(ui->filterSearcher->getGender(), ui->filterSearcher->getAbility(), ui->filterSearcher->getShiny(),
+                       ui->filterSearcher->getDisableFilters(), ui->filterSearcher->getMinIVs(), ui->filterSearcher->getMaxIVs(),
+                       ui->filterSearcher->getNatures(), ui->filterSearcher->getHiddenPowers(), {});
 
-    searcher.setLeadType(static_cast<Lead>(ui->comboBoxSearcherLead->currentData().toInt()));
+    StationaryGenerator5 generator(0, maxAdvances, tid, sid, gender, genderRatio, method, encounter, filter);
 
-   std::vector<u8> min = ui->ivFilterSearcher->getLower();
-   std::vector<u8> max = ui->ivFilterSearcher->getUpper();
+    if (method == Method::Method5IVs || method == Method::Method5CGear)
+    {
+        generator.setInitialAdvances(ui->textBoxSearcherMinAdvances->getUInt());
+    }
 
-   int maxProgress = 1;
-   for (int i = 0; i < 6; i++)
-   {
-       maxProgress *= max[i] - min[i] + 1;
-   }
+    auto *searcher = new StationarySearcher5(currentProfile, method);
 
-   ui->progressBar->setValue(0);
-   ui->progressBar->setMaximum(maxProgress);
+    Date start = ui->dateEditSearcherStartDate->getDate();
+    Date end = ui->dateEditSearcherEndDate->getDate();
 
-   auto *search = new IVSearcher5(searcher, min, max);
-   auto *timer = new QTimer(search);
+    int maxProgress = Keypresses::getKeyPresses(currentProfile.getKeypresses(), currentProfile.getSkipLR()).size();
+    maxProgress *= start.daysTo(end) + 1;
+    maxProgress *= (currentProfile.getTimer0Max() - currentProfile.getTimer0Min() + 1);
+    ui->progressBar->setRange(0, maxProgress);
 
-   connect(search, &IVSearcher5::finished, timer, &QTimer::stop);
-   connect(search, &IVSearcher5::finished, this, [ = ] { ui->pushButtonSearch->setEnabled(true);
-   ui->pushButtonCancel->setEnabled(false); }); connect(search, &IVSearcher5::finished, this, [ = ] {
-   updateView(search->getResults(), search->currentProgress()); }); connect(timer, &QTimer::timeout, this, [ = ] {
-   updateView(search->getResults(), search->currentProgress()); }); connect(ui->pushButtonCancel,
-   &QPushButton::clicked, search, &IVSearcher5::cancelSearch);
+    QSettings settings;
+    int threads = settings.value("settings/threads").toInt();
 
-   search->start();
-   timer->start(1000);*/
+    auto *thread = QThread::create([=] { searcher->startSearch(generator, threads, start, end); });
+    connect(thread, &QThread::finished, thread, &QThread::deleteLater);
+    connect(ui->pushButtonCancel, &QPushButton::clicked, [searcher] { searcher->cancelSearch(); });
+
+    auto *timer = new QTimer();
+    connect(timer, &QTimer::timeout,
+            [=]
+            {
+                searcherModel->addItems(searcher->getResults());
+                ui->progressBar->setValue(searcher->getProgress());
+            });
+    connect(thread, &QThread::finished, timer, &QTimer::stop);
+    connect(thread, &QThread::finished, timer, &QTimer::deleteLater);
+    connect(timer, &QTimer::destroyed,
+            [=]
+            {
+                ui->pushButtonSearch->setEnabled(true);
+                ui->pushButtonCancel->setEnabled(false);
+                searcherModel->addItems(searcher->getResults());
+                ui->progressBar->setValue(searcher->getProgress());
+                delete searcher;
+            });
+
+    thread->start();
+    timer->start(1000);
 }
 
 void Stationary5::profileIndexChanged(int index)
@@ -261,13 +291,16 @@ void Stationary5::profileIndexChanged(int index)
         ui->labelProfileVFrameValue->setText(QString::number(currentProfile.getVFrame()));
         ui->labelProfileKeypressesValue->setText(QString::fromStdString(currentProfile.getKeypressesString()));
         ui->labelProfileGameValue->setText(QString::fromStdString(currentProfile.getVersionString()));
+
+        generatorMethodIndexChanged(0);
+        searcherMethodIndexChanged(0);
     }
 }
 
 void Stationary5::generatorLead()
 {
-    ui->comboBoxGeneratorLead->clear();
     QString text = ui->pushButtonGeneratorLead->text();
+    ui->comboBoxGeneratorLead->clear();
     if (text == tr("Synchronize"))
     {
         ui->pushButtonGeneratorLead->setText(tr("Cute Charm"));
@@ -290,7 +323,156 @@ void Stationary5::generatorLead()
         ui->comboBoxGeneratorLead->setEnabled(true);
 
         ui->comboBoxGeneratorLead->addItem("None");
-        // ui->comboBoxGeneratorLead->addItems(Translator::getNatures());
+        for (const std::string &nature : Translator::getNatures())
+        {
+            ui->comboBoxGeneratorLead->addItem(QString::fromStdString(nature));
+        }
+    }
+}
+
+void Stationary5::calculateInitialAdvances()
+{
+    Game version = currentProfile.getVersion();
+
+    u8 initialAdvances;
+    if (version & Game::BW)
+    {
+        initialAdvances = Utilities::initialAdvancesBW(ui->textBoxGeneratorSeed->getULong());
+    }
+    else
+    {
+        initialAdvances = Utilities::initialAdvancesBW2(ui->textBoxGeneratorSeed->getULong(), currentProfile.getMemoryLink());
+    }
+
+    ui->textBoxGeneratorInitialAdvances->setText(QString::number(initialAdvances));
+}
+
+void Stationary5::generatorMethodIndexChanged(int index)
+{
+    u8 method = ui->comboBoxGeneratorMethod->getCurrentByte();
+
+    ui->comboBoxGeneratorEncounter->clear();
+    if (currentProfile.getVersion() == Game::Black2 || currentProfile.getVersion() == Game::White2)
+    {
+        switch (method)
+        {
+        case Method::Method5:
+        {
+            ui->comboBoxGeneratorEncounter->addItems({ tr("Stationary"), tr("Roamer"), tr("Hidden Grotto") });
+            ui->comboBoxGeneratorEncounter->setup({ Encounter::Stationary, Encounter::Roamer, Encounter::HiddenGrotto });
+
+            ui->pushButtonCalculateInitialAdvances->setVisible(true);
+
+            ui->filterGenerator->disableControls(Controls::IVs | Controls::HiddenPowers);
+            ui->filterGenerator->enableControls(Controls::Ability | Controls::Shiny | Controls::Gender | Controls::GenderRatio
+                                                | Controls::Natures);
+            break;
+        }
+        case Method::Method5IVs:
+        case Method::Method5CGear:
+        default:
+        {
+            ui->comboBoxGeneratorEncounter->addItems({ tr("Stationary"), tr("Roamer") });
+            ui->comboBoxGeneratorEncounter->setup({ Encounter::Stationary, Encounter::Roamer });
+
+            ui->pushButtonCalculateInitialAdvances->setVisible(false);
+
+            ui->filterGenerator->enableControls(Controls::IVs | Controls::HiddenPowers);
+            ui->filterGenerator->disableControls(Controls::Ability | Controls::Shiny | Controls::Gender | Controls::GenderRatio
+                                                 | Controls::Natures);
+        }
+        }
+    }
+    else
+    {
+        switch (method)
+        {
+        case Method::Method5:
+        {
+            ui->comboBoxGeneratorEncounter->addItems({ tr("Stationary"), tr("Roamer") });
+            ui->comboBoxGeneratorEncounter->setup({ Encounter::Stationary, Encounter::Roamer, Encounter::HiddenGrotto });
+
+            ui->pushButtonCalculateInitialAdvances->setVisible(true);
+
+            ui->filterGenerator->disableControls(Controls::IVs | Controls::HiddenPowers);
+            ui->filterGenerator->enableControls(Controls::Ability | Controls::Shiny | Controls::Gender | Controls::GenderRatio
+                                                | Controls::Natures);
+            break;
+        }
+        case Method::Method5IVs:
+        case Method::Method5CGear:
+        default:
+        {
+            ui->comboBoxGeneratorEncounter->addItems({ tr("Stationary"), tr("Roamer") });
+            ui->comboBoxGeneratorEncounter->setup({ Encounter::Stationary, Encounter::Roamer });
+
+            ui->pushButtonCalculateInitialAdvances->setVisible(false);
+
+            ui->filterGenerator->enableControls(Controls::IVs | Controls::HiddenPowers);
+            ui->filterGenerator->disableControls(Controls::Ability | Controls::Shiny | Controls::Gender | Controls::GenderRatio
+                                                 | Controls::Natures);
+        }
+        }
+    }
+}
+
+void Stationary5::searcherMethodIndexChanged(int index)
+{
+    u8 method = ui->comboBoxSearcherMethod->getCurrentByte();
+    ui->comboBoxSearcherEncounter->clear();
+    if (currentProfile.getVersion() == Game::Black2 || currentProfile.getVersion() == Game::White2)
+    {
+        switch (method)
+        {
+        case Method::Method5:
+        {
+            ui->comboBoxSearcherEncounter->addItems({ tr("Stationary"), tr("Roamer"), tr("Hidden Grotto") });
+            ui->comboBoxSearcherEncounter->setup({ Encounter::Stationary, Encounter::Roamer, Encounter::HiddenGrotto });
+
+            ui->filterSearcher->disableControls(Controls::IVs | Controls::HiddenPowers);
+            ui->filterSearcher->enableControls(Controls::Ability | Controls::Shiny | Controls::Gender | Controls::GenderRatio
+                                               | Controls::Natures);
+            break;
+        }
+        case Method::Method5IVs:
+        case Method::Method5CGear:
+        default:
+        {
+            ui->comboBoxSearcherEncounter->addItems({ tr("Stationary"), tr("Roamer") });
+            ui->comboBoxSearcherEncounter->setup({ Encounter::Stationary, Encounter::Roamer });
+
+            ui->filterSearcher->enableControls(Controls::IVs | Controls::HiddenPowers);
+            ui->filterSearcher->disableControls(Controls::Ability | Controls::Shiny | Controls::Gender | Controls::GenderRatio
+                                                | Controls::Natures);
+        }
+        }
+    }
+    else
+    {
+        switch (method)
+        {
+        case Method::Method5:
+        {
+            ui->comboBoxSearcherEncounter->addItems({ tr("Stationary"), tr("Roamer") });
+            ui->comboBoxSearcherEncounter->setup({ Encounter::Stationary, Encounter::Roamer, Encounter::HiddenGrotto });
+
+            ui->filterSearcher->disableControls(Controls::IVs | Controls::HiddenPowers);
+            ui->filterSearcher->enableControls(Controls::Ability | Controls::Shiny | Controls::Gender | Controls::GenderRatio
+                                               | Controls::Natures);
+            break;
+        }
+        case Method::Method5IVs:
+        case Method::Method5CGear:
+        default:
+        {
+            ui->comboBoxSearcherEncounter->addItems({ tr("Stationary"), tr("Roamer") });
+            ui->comboBoxSearcherEncounter->setup({ Encounter::Stationary, Encounter::Roamer });
+
+            ui->filterSearcher->enableControls(Controls::IVs | Controls::HiddenPowers);
+            ui->filterSearcher->disableControls(Controls::Ability | Controls::Shiny | Controls::Gender | Controls::GenderRatio
+                                                | Controls::Natures);
+        }
+        }
     }
 }
 
@@ -304,10 +486,10 @@ void Stationary5::tableViewGeneratorContextMenu(const QPoint &pos)
 
 void Stationary5::tableViewSearcherContextMenu(const QPoint &pos)
 {
-    /*if (searcherModel->rowCount() == 0)
+    if (searcherModel->rowCount() == 0)
     {
         searcherMenu->popup(ui->tableViewSearcher->viewport()->mapToGlobal(pos));
-    }*/
+    }
 }
 
 void Stationary5::profileManager()

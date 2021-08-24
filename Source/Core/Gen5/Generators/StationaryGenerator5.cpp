@@ -27,11 +27,12 @@
 #include <Core/RNG/RNGList.hpp>
 #include <Core/Util/Utilities.hpp>
 
-StationaryGenerator5::StationaryGenerator5(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, Method method,
+StationaryGenerator5::StationaryGenerator5(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 gender, u8 genderRatio, Method method,
                                            Encounter encounter, const StateFilter &filter) :
     StationaryGenerator(initialAdvances, maxAdvances, tid, sid, genderRatio, method, filter),
     idBit((tid & 1) ^ (sid & 1)),
-    encounter(encounter)
+    encounter(encounter),
+    gender(gender)
 {
 }
 
@@ -242,7 +243,7 @@ std::vector<StationaryState> StationaryGenerator5::generateStationary(u64 seed) 
                 state.setNature(go.nextUInt(25));
             }
         }
-        else if (lead == Lead::CuteCharm)
+        else if (lead >= Lead::CuteCharm && lead <= Lead::CuteCharmFemale)
         {
             bool charm = (go.nextUInt(0xffff) / 656) < 67;
             pid = go.nextUInt() ^ 0x10000;
@@ -406,8 +407,51 @@ std::vector<StationaryState> StationaryGenerator5::generateHiddenGrotto(u64 seed
     {
         StationaryState state(initialAdvances + cnt);
         BWRNG go(rng.getSeed());
+        state.setSeed(go.nextUInt(0x1FFF));
 
-        // TODO
+        bool leadAffects = false;
+        if (lead == Lead::Synchronize)
+        {
+            leadAffects = (go.nextUInt() >> 31) == 1;
+        }
+        else if (lead >= Lead::CuteCharm && lead <= Lead::CuteCharmFemale)
+        {
+            // PIDRNG frame is 'skipped' if cute charm would not have affected the frame
+            leadAffects = (go.nextUInt(0xffff) / 656) < 67;
+            if (!leadAffects)
+            {
+                go.advance(1);
+            }
+        }
+        else
+        {
+            go.advance(1);
+        }
+        u32 pid = go.nextUInt();
+
+        if (genderRatio == 255)
+        {
+            state.setNature(go.nextUInt(25));
+        }
+        else
+        {
+            pid = Utilities::forceGender(pid, go.nextUInt(), gender, genderRatio);
+            state.setNature(go.nextUInt(25));
+        }
+
+        if (lead == Lead::Synchronize && leadAffects)
+        {
+            state.setNature(synchNature);
+        }
+
+        pid = pid ^ 0x10000;
+        state.setPID(pid);
+        state.setAbility((pid >> 16) & 1);
+        state.setGender(pid & 255, genderRatio);
+        if (filter.comparePID(state))
+        {
+            states.emplace_back(state);
+        }
     }
 
     return states;

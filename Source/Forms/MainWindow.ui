@@ -111,6 +111,9 @@
       <layout class="QGridLayout" name="gridLayout_4">
        <item row="0" column="0">
         <widget class="QPushButton" name="pushButtonStationary5">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
          <property name="text">
           <string>Stationary</string>
          </property>
@@ -141,13 +144,20 @@
         </widget>
        </item>
        <item row="4" column="0">
+        <widget class="QPushButton" name="pushButtonHiddenGrotto">
+         <property name="text">
+          <string>Hidden Grotto</string>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="0">
         <widget class="QPushButton" name="pushButtonEgg5">
          <property name="text">
           <string>Egg</string>
          </property>
         </widget>
        </item>
-       <item row="5" column="0">
+       <item row="6" column="0">
         <widget class="QPushButton" name="pushButtonIDs5">
          <property name="text">
           <string>TID/SID</string>

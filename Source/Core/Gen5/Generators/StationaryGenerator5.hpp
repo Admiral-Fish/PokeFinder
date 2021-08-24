@@ -29,13 +29,14 @@ class StationaryGenerator5 : public StationaryGenerator
 {
 public:
     StationaryGenerator5() = default;
-    StationaryGenerator5(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, Method method, Encounter encounter,
-                         const StateFilter &filter);
+    StationaryGenerator5(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 gender, u8 genderRatio, Method method,
+                         Encounter encounter, const StateFilter &filter);
     std::vector<StationaryState> generate(u64 seed) const;
 
 private:
     u8 idBit;
     Encounter encounter;
+    u8 gender;
 
     std::vector<StationaryState> generateRoamerIVs(u64 seed) const;
     std::vector<StationaryState> generateIVs(u64 seed) const;

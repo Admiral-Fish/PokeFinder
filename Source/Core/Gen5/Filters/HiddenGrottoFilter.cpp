@@ -26,7 +26,7 @@ HiddenGrottoFilter::HiddenGrottoFilter(const std::vector<bool> &groups, const st
 {
 }
 
-bool HiddenGrottoFilter::compareState(const HiddenGrottoState &state)
+bool HiddenGrottoFilter::compareState(const HiddenGrottoState &state) const
 {
     if (!groups[state.getGroup()])
     {

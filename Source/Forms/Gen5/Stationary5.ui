@@ -216,6 +216,9 @@
    </item>
    <item row="1" column="0">
     <widget class="QTabWidget" name="tabRNGSelector">
+     <property name="currentIndex">
+      <number>0</number>
+     </property>
      <widget class="QWidget" name="tabStationary">
       <attribute name="title">
        <string>Generator</string>
@@ -233,10 +236,110 @@
           <string>RNG Info</string>
          </property>
          <layout class="QGridLayout" name="gridLayout_6">
+          <item row="2" column="0">
+           <widget class="QPushButton" name="pushButtonGeneratorLead">
+            <property name="text">
+             <string>Synchronize</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="0">
+           <widget class="QLabel" name="labelGeneratorMaxAdvances">
+            <property name="text">
+             <string>Max Advances</string>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="1">
+           <widget class="TextBox" name="textBoxGeneratorSeed">
+            <property name="inputMask">
+             <string/>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="maxLength">
+             <number>16</number>
+            </property>
+            <property name="cursorPosition">
+             <number>0</number>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+            <property name="clearButtonEnabled">
+             <bool>false</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="labelGeneratorEncounter">
+            <property name="text">
+             <string>Encounter</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="ComboBox" name="comboBoxGeneratorEncounter">
+            <item>
+             <property name="text">
+              <string>Stationary</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Roamer</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item row="5" column="0">
+           <widget class="QLabel" name="labelGeneratorSeed">
+            <property name="text">
+             <string>Seed</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="QComboBox" name="comboBoxGeneratorLead"/>
+          </item>
           <item row="3" column="0">
-           <widget class="QLabel" name="labelGeneratorStartingAdvance">
+           <widget class="QLabel" name="labelGeneratorInitialAdvances">
             <property name="text">
              <string>Initial Advances</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="1">
+           <widget class="TextBox" name="textBoxGeneratorInitialAdvances">
+            <property name="inputMask">
+             <string/>
+            </property>
+            <property name="text">
+             <string notr="true">0</string>
+            </property>
+            <property name="maxLength">
+             <number>10</number>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="1">
+           <widget class="TextBox" name="textBoxGeneratorMaxAdvances">
+            <property name="inputMask">
+             <string/>
+            </property>
+            <property name="text">
+             <string notr="true">100000</string>
+            </property>
+            <property name="maxLength">
+             <number>10</number>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0">
+           <widget class="QLabel" name="labelGeneratorMethod">
+            <property name="text">
+             <string>Method</string>
             </property>
            </widget>
           </item>
@@ -268,121 +371,32 @@
             </item>
            </widget>
           </item>
-          <item row="0" column="0">
-           <widget class="QLabel" name="labelGeneratorMethod">
-            <property name="text">
-             <string>Method</string>
-            </property>
-           </widget>
-          </item>
-          <item row="4" column="1">
-           <widget class="TextBox" name="textBoxGeneratorMaxAdvances">
-            <property name="inputMask">
-             <string/>
-            </property>
-            <property name="text">
-             <string notr="true">100000</string>
-            </property>
-            <property name="maxLength">
-             <number>10</number>
-            </property>
-           </widget>
-          </item>
           <item row="6" column="0" colspan="2">
-           <widget class="QPushButton" name="pushButtonGenerate">
-            <property name="enabled">
-             <bool>true</bool>
-            </property>
-            <property name="text">
-             <string>Generate</string>
-            </property>
-            <property name="checkable">
-             <bool>false</bool>
-            </property>
-            <property name="autoDefault">
-             <bool>false</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="5" column="0">
-           <widget class="QLabel" name="labelGeneratorSeed">
-            <property name="text">
-             <string>Seed</string>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="0">
-           <widget class="QPushButton" name="pushButtonGeneratorLead">
-            <property name="text">
-             <string>Synchronize</string>
-            </property>
-           </widget>
-          </item>
-          <item row="5" column="1">
-           <widget class="TextBox" name="textBoxGeneratorSeed">
-            <property name="inputMask">
-             <string/>
-            </property>
-            <property name="text">
-             <string/>
-            </property>
-            <property name="maxLength">
-             <number>8</number>
-            </property>
-            <property name="cursorPosition">
-             <number>0</number>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignCenter</set>
-            </property>
-            <property name="clearButtonEnabled">
-             <bool>false</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="4" column="0">
-           <widget class="QLabel" name="labelGeneratorMaxAdvances">
-            <property name="text">
-             <string>Max Advances</string>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="1">
-           <widget class="QComboBox" name="comboBoxGeneratorLead"/>
-          </item>
-          <item row="3" column="1">
-           <widget class="TextBox" name="textBoxGeneratorStartingAdvance">
-            <property name="inputMask">
-             <string/>
-            </property>
-            <property name="text">
-             <string notr="true">0</string>
-            </property>
-            <property name="maxLength">
-             <number>10</number>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="0">
-           <widget class="QLabel" name="labelGeneratorEncounter">
-            <property name="text">
-             <string>Encounter</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="1">
-           <widget class="ComboBox" name="comboBoxGeneratorEncounter">
+           <layout class="QHBoxLayout" name="horizontalLayout_2">
             <item>
-             <property name="text">
-              <string>Stationary</string>
-             </property>
+             <widget class="QPushButton" name="pushButtonGenerate">
+              <property name="enabled">
+               <bool>true</bool>
+              </property>
+              <property name="text">
+               <string>Generate</string>
+              </property>
+              <property name="checkable">
+               <bool>false</bool>
+              </property>
+              <property name="autoDefault">
+               <bool>false</bool>
+              </property>
+             </widget>
             </item>
             <item>
-             <property name="text">
-              <string>Roamer</string>
-             </property>
+             <widget class="QPushButton" name="pushButtonCalculateInitialAdvances">
+              <property name="text">
+               <string>Calculate Initial Advance</string>
+              </property>
+             </widget>
             </item>
-           </widget>
+           </layout>
           </item>
          </layout>
         </widget>
@@ -499,142 +513,28 @@
           <string>RNG Info</string>
          </property>
          <layout class="QGridLayout" name="gridLayout_2">
-          <item row="0" column="0">
-           <widget class="QLabel" name="labelSearcherMethod">
-            <property name="text">
-             <string>Method</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="1">
-           <widget class="ComboBox" name="comboBoxSearcherMethod">
-            <property name="layoutDirection">
-             <enum>Qt::LeftToRight</enum>
-            </property>
-            <property name="editable">
-             <bool>false</bool>
-            </property>
-            <property name="frame">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="0">
+          <item row="2" column="1">
            <widget class="QLabel" name="labelSearcherLead">
             <property name="text">
              <string>Lead</string>
             </property>
            </widget>
           </item>
-          <item row="1" column="1">
-           <widget class="ComboBox" name="comboBoxSearcherLead">
-            <item>
-             <property name="text">
-              <string>Any</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Synchronize</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Cute Charm</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>None</string>
-             </property>
-            </item>
+          <item row="3" column="1">
+           <widget class="QLabel" name="labelSearcherStartDate">
+            <property name="text">
+             <string>Start Date</string>
+            </property>
            </widget>
           </item>
-          <item row="2" column="0" colspan="2">
-           <layout class="QGridLayout" name="gridLayout_3">
-            <item row="0" column="0">
-             <widget class="QLabel" name="labelSearcherMinDelay">
-              <property name="text">
-               <string>Min Delay</string>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="1">
-             <widget class="TextBox" name="textBoxSearcherMinDelay">
-              <property name="inputMask">
-               <string/>
-              </property>
-              <property name="text">
-               <string notr="true">600</string>
-              </property>
-              <property name="maxLength">
-               <number>5</number>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="2">
-             <widget class="QLabel" name="labelSearcherMaxDelay">
-              <property name="text">
-               <string>Max Delay</string>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="3">
-             <widget class="TextBox" name="textBoxSearcherMaxDelay">
-              <property name="inputMask">
-               <string/>
-              </property>
-              <property name="text">
-               <string notr="true">2000</string>
-              </property>
-              <property name="maxLength">
-               <number>5</number>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="0">
-             <widget class="QLabel" name="labelSearcherMinAdvance">
-              <property name="text">
-               <string>Min Advance</string>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="1">
-             <widget class="TextBox" name="textBoxSearcherMinAdvance">
-              <property name="inputMask">
-               <string/>
-              </property>
-              <property name="text">
-               <string notr="true">0</string>
-              </property>
-              <property name="maxLength">
-               <number>5</number>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="2">
-             <widget class="QLabel" name="labelSearcherMaxAdvance">
-              <property name="text">
-               <string>Max Advance</string>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="3">
-             <widget class="TextBox" name="textBoxSearcherMaxAdvance">
-              <property name="inputMask">
-               <string/>
-              </property>
-              <property name="text">
-               <string notr="true">1000</string>
-              </property>
-              <property name="maxLength">
-               <number>5</number>
-              </property>
-             </widget>
-            </item>
-           </layout>
+          <item row="0" column="1">
+           <widget class="QLabel" name="labelSearcherMethod">
+            <property name="text">
+             <string>Method</string>
+            </property>
+           </widget>
           </item>
-          <item row="3" column="0" colspan="2">
+          <item row="6" column="1" colspan="5">
            <layout class="QHBoxLayout" name="horizontalLayout">
             <item>
              <widget class="QPushButton" name="pushButtonSearch">
@@ -663,6 +563,136 @@
              </widget>
             </item>
            </layout>
+          </item>
+          <item row="5" column="1" colspan="5">
+           <layout class="QGridLayout" name="gridLayout_3">
+            <item row="0" column="0">
+             <widget class="QLabel" name="labelSearcherMinAdvance">
+              <property name="text">
+               <string>Min Advance</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="3">
+             <widget class="TextBox" name="textBoxSearcherMaxAdvances">
+              <property name="inputMask">
+               <string/>
+              </property>
+              <property name="text">
+               <string notr="true">1000</string>
+              </property>
+              <property name="maxLength">
+               <number>5</number>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="2">
+             <widget class="QLabel" name="labelSearcherMaxAdvance">
+              <property name="text">
+               <string>Max Advance</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="1">
+             <widget class="TextBox" name="textBoxSearcherMinAdvances">
+              <property name="inputMask">
+               <string/>
+              </property>
+              <property name="text">
+               <string notr="true">0</string>
+              </property>
+              <property name="maxLength">
+               <number>5</number>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item row="1" column="1">
+           <widget class="QLabel" name="labelSearcherEncounter">
+            <property name="text">
+             <string>Encounter</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="2" colspan="4">
+           <widget class="ComboBox" name="comboBoxSearcherMethod">
+            <property name="layoutDirection">
+             <enum>Qt::LeftToRight</enum>
+            </property>
+            <property name="editable">
+             <bool>false</bool>
+            </property>
+            <property name="frame">
+             <bool>true</bool>
+            </property>
+            <item>
+             <property name="text">
+              <string>IVs</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>IVs C-Gear</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>PIDRNG</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item row="1" column="2" colspan="4">
+           <widget class="ComboBox" name="comboBoxSearcherEncounter">
+            <item>
+             <property name="text">
+              <string>Stationary</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Roamer</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item row="2" column="2" colspan="4">
+           <widget class="ComboBox" name="comboBoxSearcherLead">
+            <item>
+             <property name="text">
+              <string>Any</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Synchronize</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Cute Charm</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>None</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item row="4" column="1">
+           <widget class="QLabel" name="labelSearcherEndDate">
+            <property name="text">
+             <string>End Date</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="2" colspan="4">
+           <widget class="DateEdit" name="dateEditSearcherStartDate"/>
+          </item>
+          <item row="4" column="2" colspan="4">
+           <widget class="DateEdit" name="dateEditSearcherEndDate"/>
           </item>
          </layout>
         </widget>
@@ -695,6 +725,11 @@
    <extends>QComboBox</extends>
    <header>Forms/Controls/ComboBox.hpp</header>
   </customwidget>
+  <customwidget>
+   <class>DateEdit</class>
+   <extends>QDateEdit</extends>
+   <header>Forms/Controls/DateEdit.hpp</header>
+  </customwidget>
  </customwidgets>
  <tabstops>
   <tabstop>comboBoxProfiles</tabstop>
@@ -703,17 +738,12 @@
   <tabstop>comboBoxGeneratorMethod</tabstop>
   <tabstop>pushButtonGeneratorLead</tabstop>
   <tabstop>comboBoxGeneratorLead</tabstop>
-  <tabstop>textBoxGeneratorStartingAdvance</tabstop>
+  <tabstop>textBoxGeneratorInitialAdvances</tabstop>
   <tabstop>textBoxGeneratorMaxAdvances</tabstop>
   <tabstop>textBoxGeneratorSeed</tabstop>
-  <tabstop>pushButtonGenerate</tabstop>
   <tabstop>tableViewGenerator</tabstop>
-  <tabstop>comboBoxSearcherMethod</tabstop>
-  <tabstop>comboBoxSearcherLead</tabstop>
-  <tabstop>textBoxSearcherMinDelay</tabstop>
-  <tabstop>textBoxSearcherMaxDelay</tabstop>
-  <tabstop>textBoxSearcherMinAdvance</tabstop>
-  <tabstop>textBoxSearcherMaxAdvance</tabstop>
+  <tabstop>textBoxSearcherMinAdvances</tabstop>
+  <tabstop>textBoxSearcherMaxAdvances</tabstop>
   <tabstop>pushButtonSearch</tabstop>
   <tabstop>pushButtonCancel</tabstop>
   <tabstop>tableViewSearcher</tabstop>
