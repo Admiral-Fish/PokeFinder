@@ -33,7 +33,7 @@ public:
     {
     }
 
-    u64 getSeed() const
+    u32 getSeed() const
     {
         return seed;
     }
