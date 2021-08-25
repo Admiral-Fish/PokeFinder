@@ -71,7 +71,7 @@ std::vector<StationaryState> StationaryGenerator5::generate(u64 seed) const
             return generateGift(seed);
         case Encounter::EntraLink:
             return generateEntraLink(seed);
-        case Encounter::LarvestaEgg:
+        case Encounter::GiftEgg:
             return generateLarvestaEgg(seed);
         case Encounter::HiddenGrotto:
             return generateHiddenGrotto(seed);

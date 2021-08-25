@@ -41,7 +41,7 @@ enum Encounter : u8
     Roamer,
     Gift,
     EntraLink,
-    LarvestaEgg,
+    GiftEgg,
     HiddenGrotto
 };
 
