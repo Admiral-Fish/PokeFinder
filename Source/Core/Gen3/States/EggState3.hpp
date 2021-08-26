@@ -31,14 +31,14 @@ public:
     {
     }
 
-    u32 getPickupAdvance() const
+    u32 getGenerateAdvance() const
     {
-        return pickupAdvance;
+        return generateAdvance;
     }
 
-    void setPickupAdvance(u32 pickupAdvance)
+    void setGenerateAdvance(u32 generateAdvance)
     {
-        this->pickupAdvance = pickupAdvance;
+        this->generateAdvance = generateAdvance;
     }
 
     u8 getRedraw() const
@@ -52,7 +52,7 @@ public:
     }
 
 private:
-    u32 pickupAdvance;
+    u32 generateAdvance;
     u8 redraw;
 };
 

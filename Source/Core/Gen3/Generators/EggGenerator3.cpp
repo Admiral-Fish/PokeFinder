@@ -54,8 +54,7 @@ void setInheritance(const Daycare &daycare, EggState3 &state, const u16 *inh, co
     else
     {
         u8 available[6] = { 0, 1, 2, 3, 4, 5 };
-        auto avoid = [&available](u8 stat, u8 i)
-        {
+        auto avoid = [&available](u8 stat, u8 i) {
             for (u8 j = stat; j < 5 - i; j++)
             {
                 available[j] = available[j + 1];
@@ -362,7 +361,7 @@ std::vector<EggState3> EggGenerator3::generateUpper(u32 seed, const std::vector<
 
     for (u32 cnt = 0; cnt <= maxAdvancesPickup; cnt++, rng.next())
     {
-        EggState3 state;
+        EggState3 state(cnt + initialAdvancesPickup);
         PokeRNG go(rng.getSeed());
 
         state.setPID(go.nextUShort());
@@ -390,7 +389,6 @@ std::vector<EggState3> EggGenerator3::generateUpper(u32 seed, const std::vector<
 
         if (filter.compareIVs(state))
         {
-            state.setPickupAdvance(cnt + initialAdvancesPickup);
             upper.emplace_back(state);
         }
     }
@@ -408,7 +406,7 @@ std::vector<EggState3> EggGenerator3::generateUpper(u32 seed, const std::vector<
 
             if (filter.comparePID(up))
             {
-                up.setAdvances(low.first);
+                up.setGenerateAdvance(low.first);
                 states.emplace_back(up);
             }
         }
