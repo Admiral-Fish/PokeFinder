@@ -28,7 +28,8 @@ class WildGenerator4 : public WildGenerator
 {
 public:
     WildGenerator4() = default;
-    WildGenerator4(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter);
+    WildGenerator4(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter,
+                   bool isPlatinumVersion);
     std::vector<WildState4> generate(u32 seed) const;
     void setEncounterArea(const EncounterArea4 &encounterArea);
 
@@ -38,6 +39,7 @@ private:
     std::vector<WildState4> generateChainedShiny(u32 seed) const;
 
     EncounterArea4 encounterArea;
+    bool isPlatinumVersion;
 };
 
 #endif // WILDGENERATOR4_HPP
