@@ -22,9 +22,9 @@
 #include <Core/Enum/Game.hpp>
 #include <Core/Enum/Method.hpp>
 #include <Core/Gen5/Keypresses.hpp>
-#include <Core/Parents/ProfileLoader.hpp>
 #include <Core/Gen5/Searchers/DreamRadarSearcher.hpp>
 #include <Core/Parents/PersonalInfo.hpp>
+#include <Core/Parents/ProfileLoader.hpp>
 #include <Core/Util/Translator.hpp>
 #include <Forms/Gen5/Profile/ProfileManager5.hpp>
 #include <Forms/Models/Gen5/DreamRadarModel.hpp>
@@ -109,8 +109,8 @@ void DreamRadar::setupModels()
     ui->filterGenerator->enableHiddenAbility();
     ui->filterSearcher->enableHiddenAbility();
 
-    std::vector<u16> species
-        = { 641, 642, 645, 483, 484, 487, 249, 250, 79, 120, 137, 163, 174, 175, 213, 238, 280, 333, 425, 436, 442, 447, 479, 517, 561 };
+    std::vector<u16> species = { 641, 642, 645, 483, 484, 487, 249, 250, 79,  120, 137, 163, 174,
+                                 175, 213, 238, 280, 333, 374, 425, 436, 442, 447, 479, 517, 561 };
     std::vector<std::string> names = Translator::getSpecies(species);
 
     for (size_t i = 0; i < species.size(); i++)
@@ -274,19 +274,23 @@ void DreamRadar::search()
     connect(ui->pushButtonCancel, &QPushButton::clicked, [searcher] { searcher->cancelSearch(); });
 
     auto *timer = new QTimer();
-    connect(timer, &QTimer::timeout, [=] {
-        searcherModel->addItems(searcher->getResults());
-        ui->progressBar->setValue(searcher->getProgress());
-    });
+    connect(timer, &QTimer::timeout,
+            [=]
+            {
+                searcherModel->addItems(searcher->getResults());
+                ui->progressBar->setValue(searcher->getProgress());
+            });
     connect(thread, &QThread::finished, timer, &QTimer::stop);
     connect(thread, &QThread::finished, timer, &QTimer::deleteLater);
-    connect(timer, &QTimer::destroyed, [=] {
-        ui->pushButtonSearch->setEnabled(true);
-        ui->pushButtonCancel->setEnabled(false);
-        searcherModel->addItems(searcher->getResults());
-        ui->progressBar->setValue(searcher->getProgress());
-        delete searcher;
-    });
+    connect(timer, &QTimer::destroyed,
+            [=]
+            {
+                ui->pushButtonSearch->setEnabled(true);
+                ui->pushButtonCancel->setEnabled(false);
+                searcherModel->addItems(searcher->getResults());
+                ui->progressBar->setValue(searcher->getProgress());
+                delete searcher;
+            });
 
     thread->start();
     timer->start(1000);
@@ -321,6 +325,7 @@ std::vector<DreamRadarSlot> DreamRadar::getGeneratorSettings()
             }
 
             u8 genderRatio = info[specie].getGender();
+            // TODO  lock gender boxes for forced gender PIDs
             u8 gender = genderRatio == 255 ? 2 : genders[i]->currentIndex();
 
             radarSlots.emplace_back(type, gender, genderRatio);
@@ -358,8 +363,9 @@ std::vector<DreamRadarSlot> DreamRadar::getSearcherSettings()
                 type = 1;
             }
 
-            u8 gender = genders[i]->currentData().toUInt();
             u8 genderRatio = info[specie].getGender();
+            // TODO  lock gender boxes for forced gender PIDs
+            u8 gender = genderRatio == 255 ? 2 : genders[i]->currentIndex();
 
             radarSlots.emplace_back(type, gender, genderRatio);
         }
