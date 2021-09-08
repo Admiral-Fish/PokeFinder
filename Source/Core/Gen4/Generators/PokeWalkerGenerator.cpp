@@ -55,20 +55,31 @@ std::vector<PokeWalkerState> PokeWalkerGenerator::generatePokeWalkerPID(u32 seed
         PokeWalkerState state(initialAdvances + cnt);
 
         u32 pid = mt.next();
-        u32 correction = pid % 24;
-        pid = ((tsv >> 8) ^ 255) << 24;
-        correction -= pid % 25;
-        pid += correction;
-        u32 genderCorrection = ((genderRatio/50)+1)*50;
-        if (gender > 0 && genderRatio > 0 && genderRatio < 254)
+        u32 nature = pid % 24;
+        pid = ((tsv >> 8) ^ 0xFF) << 24;
+        pid += nature - (pid % 25);
+        if (genderRatio != 0 && genderRatio < 0xFE && gender != 0)
         {
-            if (gender == 1 && correction < 24)
+            u8 forcedGender = gender - 1;
+            u8 pidGender = (pid & 0xFF) < genderRatio ? 1 : 0;
+            if (forcedGender != pidGender)
             {
-                pid += genderCorrection;
-            }
-            else if (gender == 2 && correction >= 24)
-            {
-                pid -= genderCorrection;
+                if (forcedGender == 0)
+                {
+                    pid += ((((static_cast<u32>(genderRatio) - (pid & 0xFF)) / 25) + 1) * 25);
+                    if ((nature & 1) != (pid & 1))
+                    {
+                        pid += 25;
+                    }
+                }
+                else
+                {
+                    pid -= (((((pid & 0xFF) - static_cast<u32>(genderRatio)) / 25) + 1) * 25);
+                    if ((nature & 1) != (pid & 1))
+                    {
+                        pid -= 25;
+                    }
+                }
             }
         }
         
