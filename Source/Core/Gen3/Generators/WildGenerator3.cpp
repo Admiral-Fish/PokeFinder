@@ -141,7 +141,11 @@ std::vector<WildState> WildGenerator3::generate(u32 seed, const EncounterArea3 &
         case Encounter::OldRod:
         case Encounter::GoodRod:
         case Encounter::SuperRod:
-            go.next();
+            if (!encounterArea.isSafariZone())
+            {
+                go.next();
+            }
+
             state.setEncounterSlot(EncounterSlot::hSlot(go.nextUShort(), encounter));
             if (!filter.compareEncounterSlot(state))
             {
@@ -149,6 +153,11 @@ std::vector<WildState> WildGenerator3::generate(u32 seed, const EncounterArea3 &
             }
 
             state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), go.nextUShort()));
+            if (encounterArea.isSafariZone())
+            {
+                go.next();
+            }
+
             break;
         default:
             break;
