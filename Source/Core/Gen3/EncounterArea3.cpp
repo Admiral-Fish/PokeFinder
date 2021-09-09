@@ -70,7 +70,7 @@ u8 EncounterArea3::getEncounterRate() const
     }
 }
 
-bool EncounterArea3::isSafariZone() const
+bool EncounterArea3::isRSESafariZone() const
 {
     switch (location)
     {

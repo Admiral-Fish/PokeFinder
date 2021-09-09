@@ -114,7 +114,7 @@ std::vector<WildState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 s
 
         u32 seed = rng.next();
 
-        bool isSafariFishing = false;
+        bool isRSESafariFishing = false;
         if (isRSEVersion)
         {
             switch (encounter)
@@ -123,9 +123,9 @@ std::vector<WildState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 s
             case Encounter::OldRod:
             case Encounter::GoodRod:
             case Encounter::SuperRod:
-                if (encounterArea.isSafariZone())
+                if (encounterArea.isRSESafariZone())
                 {
-                    isSafariFishing = true;
+                    isRSESafariFishing = true;
                 }
 
                 break;
@@ -166,7 +166,7 @@ std::vector<WildState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 s
                         u32 seedForSlot = slot;
                         u32 seedForLevel = testRNG.getSeed();
 
-                        if (isSafariFishing)
+                        if (isRSESafariFishing)
                         {
                             seedForSlot = seedForSlot * 0xeeb9eb65 + 0xa3561a1;
                             seedForLevel = seedForLevel * 0xeeb9eb65 + 0xa3561a1;
@@ -190,7 +190,7 @@ std::vector<WildState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 s
                         u32 seedForSlot = slot;
                         u32 seedForLevel = testRNG.getSeed();
 
-                        if (isSafariFishing)
+                        if (isRSESafariFishing)
                         {
                             seedForSlot = seedForSlot * 0xeeb9eb65 + 0xa3561a1;
                             seedForLevel = seedForLevel * 0xeeb9eb65 + 0xa3561a1;
@@ -212,7 +212,7 @@ std::vector<WildState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 s
                         u32 seedForSlot = slot;
                         u32 seedForLevel = testRNG.getSeed();
 
-                        if (isSafariFishing)
+                        if (isRSESafariFishing)
                         {
                             seedForSlot = seedForSlot * 0xeeb9eb65 + 0xa3561a1;
                             seedForLevel = seedForLevel * 0xeeb9eb65 + 0xa3561a1;
@@ -235,7 +235,7 @@ std::vector<WildState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 s
                         u32 seedForSlot = slot;
                         u32 seedForLevel = testRNG.getSeed() * 0xeeb9eb65 + 0xa3561a1;
 
-                        if (isSafariFishing)
+                        if (isRSESafariFishing)
                         {
                             seedForSlot = seedForSlot * 0xeeb9eb65 + 0xa3561a1;
                             seedForLevel = seedForLevel * 0xeeb9eb65 + 0xa3561a1;
@@ -260,7 +260,7 @@ std::vector<WildState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 s
                         u32 seedForSlot = slot;
                         u32 seedForLevel = testRNG.getSeed();
 
-                        if (isSafariFishing)
+                        if (isRSESafariFishing)
                         {
                             seedForSlot = seedForSlot * 0xeeb9eb65 + 0xa3561a1;
                             seedForLevel = seedForLevel * 0xeeb9eb65 + 0xa3561a1;
@@ -278,7 +278,7 @@ std::vector<WildState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 s
                         seedForSlot = slot;
                         seedForLevel = testRNG.getSeed() * 0xeeb9eb65 + 0xa3561a1;
 
-                        if (isSafariFishing)
+                        if (isRSESafariFishing)
                         {
                             seedForSlot = seedForSlot * 0xeeb9eb65 + 0xa3561a1;
                             seedForLevel = seedForLevel * 0xeeb9eb65 + 0xa3561a1;
@@ -313,7 +313,7 @@ std::vector<WildState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 s
                         u32 seedForSlot = slot;
                         u32 seedForLevel = testRNG.getSeed();
 
-                        if (isSafariFishing)
+                        if (isRSESafariFishing)
                         {
                             seedForSlot = seedForSlot * 0xeeb9eb65 + 0xa3561a1;
                             seedForLevel = seedForLevel * 0xeeb9eb65 + 0xa3561a1;

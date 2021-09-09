@@ -87,7 +87,7 @@ std::vector<WildState> WildGenerator3::generate(u32 seed, const EncounterArea3 &
         switch (encounter)
         {
         case Encounter::RockSmash:
-            if (!encounterArea.isSafariZone())
+            if (!encounterArea.isRSESafariZone())
             {
                 if (!rock)
                 {
@@ -110,7 +110,7 @@ std::vector<WildState> WildGenerator3::generate(u32 seed, const EncounterArea3 &
             }
 
             state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), go.nextUShort()));
-            if (encounterArea.isSafariZone())
+            if (encounterArea.isRSESafariZone())
             {
                 go.advance(1);
             }
@@ -141,7 +141,7 @@ std::vector<WildState> WildGenerator3::generate(u32 seed, const EncounterArea3 &
         case Encounter::OldRod:
         case Encounter::GoodRod:
         case Encounter::SuperRod:
-            if (!encounterArea.isSafariZone())
+            if (!encounterArea.isRSESafariZone())
             {
                 go.next();
             }
@@ -153,7 +153,7 @@ std::vector<WildState> WildGenerator3::generate(u32 seed, const EncounterArea3 &
             }
 
             state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), go.nextUShort()));
-            if (encounterArea.isSafariZone())
+            if (encounterArea.isRSESafariZone())
             {
                 go.next();
             }
