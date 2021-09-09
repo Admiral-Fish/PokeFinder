@@ -22,9 +22,10 @@
 #include <Core/RNG/LCRNG.hpp>
 #include <Core/Util/EncounterSlot.hpp>
 
-WildSearcher3::WildSearcher3(u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter) :
+WildSearcher3::WildSearcher3(u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter, bool isRSEVersion) :
     WildSearcher(tid, sid, genderRatio, method, filter), cache(method), searching(false), progress(0)
 {
+    this->isRSEVersion = isRSEVersion;
 }
 
 void WildSearcher3::setEncounterArea(const EncounterArea3 &encounterArea)
@@ -113,6 +114,26 @@ std::vector<WildState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 s
 
         u32 seed = rng.next();
 
+        bool isSafariFishing = false;
+        if (isRSEVersion)
+        {
+            switch (encounter)
+            {
+            case Encounter::Surfing:
+            case Encounter::OldRod:
+            case Encounter::GoodRod:
+            case Encounter::SuperRod:
+                if (encounterArea.isSafariZone())
+                {
+                    isSafariFishing = true;
+                }
+
+                break;
+            default:
+                break;
+            }
+        }
+
         // Use for loop to check both normal and sister spread
         for (const bool flag : { false, true })
         {
@@ -142,11 +163,20 @@ std::vector<WildState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 s
                     {
                         state.setLead(Lead::None);
                         u32 slot = testRNG.getSeed() * 0xeeb9eb65 + 0xa3561a1;
+                        u32 seedForSlot = slot;
+                        u32 seedForLevel = testRNG.getSeed();
+
+                        if (isSafariFishing)
+                        {
+                            seedForSlot = seedForSlot * 0xeeb9eb65 + 0xa3561a1;
+                            seedForLevel = seedForLevel * 0xeeb9eb65 + 0xa3561a1;
+                        }
+
                         state.setSeed(slot * 0xdc6c95d9 + 0x4d3cb126);
-                        state.setEncounterSlot(EncounterSlot::hSlot(slot >> 16, encounter));
+                        state.setEncounterSlot(EncounterSlot::hSlot(seedForSlot >> 16, encounter));
                         if (filter.compareEncounterSlot(state))
                         {
-                            state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), testRNG.getSeed() >> 16));
+                            state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), seedForLevel >> 16));
                             states.emplace_back(state);
                         }
                     }
@@ -157,11 +187,20 @@ std::vector<WildState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 s
                     {
                         state.setLead(Lead::Synchronize);
                         u32 slot = testRNG.getSeed() * 0xeeb9eb65 + 0xa3561a1;
+                        u32 seedForSlot = slot;
+                        u32 seedForLevel = testRNG.getSeed();
+
+                        if (isSafariFishing)
+                        {
+                            seedForSlot = seedForSlot * 0xeeb9eb65 + 0xa3561a1;
+                            seedForLevel = seedForLevel * 0xeeb9eb65 + 0xa3561a1;
+                        }
+
                         state.setSeed(slot * 0xdc6c95d9 + 0x4d3cb126);
-                        state.setEncounterSlot(EncounterSlot::hSlot(slot >> 16, encounter));
+                        state.setEncounterSlot(EncounterSlot::hSlot(seedForSlot >> 16, encounter));
                         if (filter.compareEncounterSlot(state))
                         {
-                            state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), testRNG.getSeed() >> 16));
+                            state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), seedForLevel >> 16));
                             states.emplace_back(state);
                         }
                     }
@@ -170,11 +209,20 @@ std::vector<WildState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 s
                     {
                         state.setLead(Lead::Synchronize);
                         u32 slot = testRNG.getSeed() * 0xdc6c95d9 + 0x4d3cb126;
+                        u32 seedForSlot = slot;
+                        u32 seedForLevel = testRNG.getSeed();
+
+                        if (isSafariFishing)
+                        {
+                            seedForSlot = seedForSlot * 0xeeb9eb65 + 0xa3561a1;
+                            seedForLevel = seedForLevel * 0xeeb9eb65 + 0xa3561a1;
+                        }
+
                         state.setSeed(slot * 0xdc6c95d9 + 0x4d3cb126);
-                        state.setEncounterSlot(EncounterSlot::hSlot(slot >> 16, encounter));
+                        state.setEncounterSlot(EncounterSlot::hSlot(seedForSlot >> 16, encounter));
                         if (filter.compareEncounterSlot(state))
                         {
-                            state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), testRNG.getSeed() >> 16));
+                            state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), seedForLevel >> 16));
                             states.emplace_back(state);
                         }
                     }
@@ -184,11 +232,20 @@ std::vector<WildState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 s
                     {
                         state.setLead(Lead::CuteCharm);
                         u32 slot = testRNG.getSeed() * 0xdc6c95d9 + 0x4d3cb126;
+                        u32 seedForSlot = slot;
+                        u32 seedForLevel = testRNG.getSeed() * 0xeeb9eb65 + 0xa3561a1;
+
+                        if (isSafariFishing)
+                        {
+                            seedForSlot = seedForSlot * 0xeeb9eb65 + 0xa3561a1;
+                            seedForLevel = seedForLevel * 0xeeb9eb65 + 0xa3561a1;
+                        }
+
                         state.setSeed(slot * 0xdc6c95d9 + 0x4d3cb126);
-                        state.setEncounterSlot(EncounterSlot::hSlot(slot >> 16, encounter));
+                        state.setEncounterSlot(EncounterSlot::hSlot(seedForSlot >> 16, encounter));
                         if (filter.compareEncounterSlot(state))
                         {
-                            state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), testRNG.getSeed() >> 16));
+                            state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), seedForLevel >> 16));
                             states.emplace_back(state);
                         }
                     }
@@ -200,20 +257,38 @@ std::vector<WildState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 s
                     {
                         state.setLead(Lead::None);
                         u32 slot = testRNG.getSeed() * 0xeeb9eb65 + 0xa3561a1;
+                        u32 seedForSlot = slot;
+                        u32 seedForLevel = testRNG.getSeed();
+
+                        if (isSafariFishing)
+                        {
+                            seedForSlot = seedForSlot * 0xeeb9eb65 + 0xa3561a1;
+                            seedForLevel = seedForLevel * 0xeeb9eb65 + 0xa3561a1;
+                        }
+
                         state.setSeed(slot * 0xdc6c95d9 + 0x4d3cb126);
-                        state.setEncounterSlot(EncounterSlot::hSlot(slot >> 16, encounter));
+                        state.setEncounterSlot(EncounterSlot::hSlot(seedForSlot >> 16, encounter));
                         if (filter.compareEncounterSlot(state))
                         {
-                            state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), testRNG.getSeed() >> 16));
+                            state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), seedForLevel >> 16));
                             states.emplace_back(state);
                         }
 
                         slot = testRNG.getSeed() * 0xdc6c95d9 + 0x4d3cb126;
+                        seedForSlot = slot;
+                        seedForLevel = testRNG.getSeed() * 0xeeb9eb65 + 0xa3561a1;
+
+                        if (isSafariFishing)
+                        {
+                            seedForSlot = seedForSlot * 0xeeb9eb65 + 0xa3561a1;
+                            seedForLevel = seedForLevel * 0xeeb9eb65 + 0xa3561a1;
+                        }
+
                         state.setSeed(slot * 0xdc6c95d9 + 0x4d3cb126);
-                        state.setEncounterSlot(EncounterSlot::hSlot(slot >> 16, encounter));
+                        state.setEncounterSlot(EncounterSlot::hSlot(seedForSlot >> 16, encounter));
                         if (filter.compareEncounterSlot(state))
                         {
-                            state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), testRNG.getSeed() >> 16));
+                            state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), seedForLevel >> 16));
 
                             // Failed synch
                             if ((nextRNG2 & 1) == 1 && (nextRNG % 25) == state.getNature())
@@ -235,11 +310,20 @@ std::vector<WildState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 s
                     {
                         state.setLead(Lead::Synchronize);
                         u32 slot = testRNG.getSeed() * 0xeeb9eb65 + 0xa3561a1;
+                        u32 seedForSlot = slot;
+                        u32 seedForLevel = testRNG.getSeed();
+
+                        if (isSafariFishing)
+                        {
+                            seedForSlot = seedForSlot * 0xeeb9eb65 + 0xa3561a1;
+                            seedForLevel = seedForLevel * 0xeeb9eb65 + 0xa3561a1;
+                        }
+
                         state.setSeed(slot * 0xdc6c95d9 + 0x4d3cb126);
-                        state.setEncounterSlot(EncounterSlot::hSlot(slot >> 16, encounter));
+                        state.setEncounterSlot(EncounterSlot::hSlot(seedForSlot >> 16, encounter));
                         if (filter.compareEncounterSlot(state))
                         {
-                            state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), testRNG.getSeed() >> 16));
+                            state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), seedForLevel >> 16));
                             states.emplace_back(state);
                         }
                     }
