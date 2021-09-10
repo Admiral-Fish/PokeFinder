@@ -96,6 +96,8 @@ std::vector<WildState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 s
         return states;
     }
 
+    bool isRSESafariLocation = encounterArea.isRSESafariZone();
+
     auto seeds = cache.recoverLower16BitsIV(hp, atk, def, spa, spd, spe);
     for (const u32 val : seeds)
     {
@@ -115,6 +117,7 @@ std::vector<WildState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 s
         u32 seed = rng.next();
 
         bool isRSESafariFishing = false;
+        bool isRSESafariRockSmash = false;
         if (isRSEVersion)
         {
             switch (encounter)
@@ -123,9 +126,16 @@ std::vector<WildState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 s
             case Encounter::OldRod:
             case Encounter::GoodRod:
             case Encounter::SuperRod:
-                if (encounterArea.isRSESafariZone())
+                if (isRSESafariLocation)
                 {
                     isRSESafariFishing = true;
+                }
+
+                break;
+            case Encounter::RockSmash:
+                if (isRSESafariLocation)
+                {
+                    isRSESafariRockSmash = true;
                 }
 
                 break;
@@ -166,7 +176,7 @@ std::vector<WildState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 s
                         u32 seedForSlot = slot;
                         u32 seedForLevel = testRNG.getSeed();
 
-                        if (isRSESafariFishing)
+                        if (isRSESafariFishing || isRSESafariRockSmash)
                         {
                             seedForSlot = seedForSlot * 0xeeb9eb65 + 0xa3561a1;
                             seedForLevel = seedForLevel * 0xeeb9eb65 + 0xa3561a1;
@@ -190,7 +200,7 @@ std::vector<WildState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 s
                         u32 seedForSlot = slot;
                         u32 seedForLevel = testRNG.getSeed();
 
-                        if (isRSESafariFishing)
+                        if (isRSESafariFishing || isRSESafariRockSmash)
                         {
                             seedForSlot = seedForSlot * 0xeeb9eb65 + 0xa3561a1;
                             seedForLevel = seedForLevel * 0xeeb9eb65 + 0xa3561a1;
@@ -212,7 +222,7 @@ std::vector<WildState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 s
                         u32 seedForSlot = slot;
                         u32 seedForLevel = testRNG.getSeed();
 
-                        if (isRSESafariFishing)
+                        if (isRSESafariFishing || isRSESafariRockSmash)
                         {
                             seedForSlot = seedForSlot * 0xeeb9eb65 + 0xa3561a1;
                             seedForLevel = seedForLevel * 0xeeb9eb65 + 0xa3561a1;
@@ -235,7 +245,7 @@ std::vector<WildState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 s
                         u32 seedForSlot = slot;
                         u32 seedForLevel = testRNG.getSeed() * 0xeeb9eb65 + 0xa3561a1;
 
-                        if (isRSESafariFishing)
+                        if (isRSESafariFishing || isRSESafariRockSmash)
                         {
                             seedForSlot = seedForSlot * 0xeeb9eb65 + 0xa3561a1;
                             seedForLevel = seedForLevel * 0xeeb9eb65 + 0xa3561a1;
@@ -260,7 +270,7 @@ std::vector<WildState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 s
                         u32 seedForSlot = slot;
                         u32 seedForLevel = testRNG.getSeed();
 
-                        if (isRSESafariFishing)
+                        if (isRSESafariFishing || isRSESafariRockSmash)
                         {
                             seedForSlot = seedForSlot * 0xeeb9eb65 + 0xa3561a1;
                             seedForLevel = seedForLevel * 0xeeb9eb65 + 0xa3561a1;
@@ -278,7 +288,7 @@ std::vector<WildState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 s
                         seedForSlot = slot;
                         seedForLevel = testRNG.getSeed() * 0xeeb9eb65 + 0xa3561a1;
 
-                        if (isRSESafariFishing)
+                        if (isRSESafariFishing || isRSESafariRockSmash)
                         {
                             seedForSlot = seedForSlot * 0xeeb9eb65 + 0xa3561a1;
                             seedForLevel = seedForLevel * 0xeeb9eb65 + 0xa3561a1;
@@ -313,7 +323,7 @@ std::vector<WildState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 s
                         u32 seedForSlot = slot;
                         u32 seedForLevel = testRNG.getSeed();
 
-                        if (isRSESafariFishing)
+                        if (isRSESafariFishing || isRSESafariRockSmash)
                         {
                             seedForSlot = seedForSlot * 0xeeb9eb65 + 0xa3561a1;
                             seedForLevel = seedForLevel * 0xeeb9eb65 + 0xa3561a1;
@@ -347,7 +357,15 @@ std::vector<WildState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 s
         {
             for (size_t i = 0; i < states.size();)
             {
-                u32 check = states[i].getSeed() * 0x41c64e6d + 0x6073;
+                u32 check;
+                if (isRSESafariLocation)
+                {
+                    check = states[i].getSeed();
+                }
+                else
+                {
+                    check = states[i].getSeed() * 0x41c64e6d + 0x6073;
+                }
 
                 if (((check >> 16) % 2880) >= rate)
                 {
@@ -355,7 +373,14 @@ std::vector<WildState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 s
                 }
                 else
                 {
-                    states[i].setSeed(states[i].getSeed() * 0xeeb9eb65 + 0xa3561a1);
+                    if (isRSESafariLocation)
+                    {
+                        states[i].setSeed(states[i].getSeed() * 0xdc6c95d9 + 0x4d3cb126);
+                    }
+                    else
+                    {
+                        states[i].setSeed(states[i].getSeed() * 0xeeb9eb65 + 0xa3561a1);
+                    }
                     i++;
                 }
             }
