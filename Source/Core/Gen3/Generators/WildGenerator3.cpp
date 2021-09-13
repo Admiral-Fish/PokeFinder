@@ -87,14 +87,7 @@ std::vector<WildState> WildGenerator3::generate(u32 seed, const EncounterArea3 &
         switch (encounter)
         {
         case Encounter::RockSmash:
-            if (!encounterArea.isRSESafariZone())
-            {
-                if (!rock)
-                {
-                    go.next();
-                }
-            }
-            else
+            if (encounterArea.isRSESafariZone() || !rock)
             {
                 go.next();
             }
