@@ -87,7 +87,7 @@ std::vector<WildState4> WildGenerator4::generateMethodJ(u32 seed) const
         WildState4 state(initialAdvances + cnt);
         PokeRNG go(rng.getSeed());
 
-        u32 occidentary = cnt;
+        u32 occidentary = initialAdvances + cnt;
         u16 first = go.nextUShort(occidentary); // Encounter slot call, nibble call for fishing
 
         switch (encounter)
@@ -282,7 +282,7 @@ std::vector<WildState4> WildGenerator4::generateMethodK(u32 seed) const
         WildState4 state(initialAdvances + cnt);
         PokeRNG go(rng.getSeed());
 
-        u32 occidentary = cnt;
+        u32 occidentary = initialAdvances + cnt;
         u16 first = go.nextUShort(occidentary); // Encounter slot, nibble for fishing, blank or item for rock smash
 
         switch (encounter)
