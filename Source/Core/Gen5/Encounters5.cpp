@@ -21,7 +21,7 @@
 #include <Core/Enum/Encounter.hpp>
 #include <Core/Enum/Game.hpp>
 #include <Core/Gen5/EncounterArea5.hpp>
-#include <Core/Parents/PersonalInfo.hpp>
+#include <Core/Parents/PersonalLoader.hpp>
 #include <Core/Resources/Resources.hpp>
 #include <algorithm>
 #include <cstring>
@@ -230,7 +230,7 @@ namespace Encounters5
     std::vector<EncounterArea5> getEncounters(Encounter encounter, u8 season, Game version)
     {
         std::vector<EncounterArea5> encounters;
-        std::vector<PersonalInfo> info = PersonalInfo::loadPersonal(5);
+        std::vector<PersonalInfo> info = PersonalLoader5::getPersonal();
 
         const auto &encounterData = getData(version);
         for (size_t i = 0; i < encounterData.size(); i++)

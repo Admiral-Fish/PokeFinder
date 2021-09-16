@@ -23,7 +23,7 @@
 #include <Core/Enum/Method.hpp>
 #include <Core/Gen5/Keypresses.hpp>
 #include <Core/Gen5/Searchers/DreamRadarSearcher.hpp>
-#include <Core/Parents/PersonalInfo.hpp>
+#include <Core/Parents/PersonalLoader.hpp>
 #include <Core/Parents/ProfileLoader.hpp>
 #include <Core/Util/Translator.hpp>
 #include <Forms/Gen5/Profile/ProfileManager5.hpp>
@@ -274,23 +274,19 @@ void DreamRadar::search()
     connect(ui->pushButtonCancel, &QPushButton::clicked, [searcher] { searcher->cancelSearch(); });
 
     auto *timer = new QTimer();
-    connect(timer, &QTimer::timeout,
-            [=]
-            {
-                searcherModel->addItems(searcher->getResults());
-                ui->progressBar->setValue(searcher->getProgress());
-            });
+    connect(timer, &QTimer::timeout, [=] {
+        searcherModel->addItems(searcher->getResults());
+        ui->progressBar->setValue(searcher->getProgress());
+    });
     connect(thread, &QThread::finished, timer, &QTimer::stop);
     connect(thread, &QThread::finished, timer, &QTimer::deleteLater);
-    connect(timer, &QTimer::destroyed,
-            [=]
-            {
-                ui->pushButtonSearch->setEnabled(true);
-                ui->pushButtonCancel->setEnabled(false);
-                searcherModel->addItems(searcher->getResults());
-                ui->progressBar->setValue(searcher->getProgress());
-                delete searcher;
-            });
+    connect(timer, &QTimer::destroyed, [=] {
+        ui->pushButtonSearch->setEnabled(true);
+        ui->pushButtonCancel->setEnabled(false);
+        searcherModel->addItems(searcher->getResults());
+        ui->progressBar->setValue(searcher->getProgress());
+        delete searcher;
+    });
 
     thread->start();
     timer->start(1000);
@@ -302,7 +298,7 @@ std::vector<DreamRadarSlot> DreamRadar::getGeneratorSettings()
 
     std::array<u16, 3> genies = { 641, 642, 645 };
     std::array<u16, 5> legends = { 483, 484, 487, 249, 250 };
-    auto info = PersonalInfo::loadPersonal(5);
+    auto info = PersonalLoader5::getPersonal();
 
     std::array<QComboBox *, 6> species = { ui->comboBoxGeneratorSpecies1, ui->comboBoxGeneratorSpecies2, ui->comboBoxGeneratorSpecies3,
                                            ui->comboBoxGeneratorSpecies4, ui->comboBoxGeneratorSpecies5, ui->comboBoxGeneratorSpecies6 };
@@ -341,7 +337,7 @@ std::vector<DreamRadarSlot> DreamRadar::getSearcherSettings()
 
     std::array<u16, 3> genies = { 641, 642, 645 };
     std::array<u16, 5> legends = { 483, 484, 487, 249, 250 };
-    auto info = PersonalInfo::loadPersonal(5);
+    auto info = PersonalLoader5::getPersonal();
 
     std::array<QComboBox *, 6> species = { ui->comboBoxSearcherSpecies1, ui->comboBoxSearcherSpecies2, ui->comboBoxSearcherSpecies3,
                                            ui->comboBoxSearcherSpecies4, ui->comboBoxSearcherSpecies5, ui->comboBoxSearcherSpecies6 };

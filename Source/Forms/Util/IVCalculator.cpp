@@ -19,7 +19,7 @@
 
 #include "IVCalculator.hpp"
 #include "ui_IVCalculator.h"
-#include <Core/Parents/PersonalInfo.hpp>
+#include <Core/Parents/PersonalLoader.hpp>
 #include <Core/Util/IVChecker.hpp>
 #include <Core/Util/Translator.hpp>
 #include <QCompleter>
@@ -259,7 +259,7 @@ void IVCalculator::altformIndexChanged(int index)
         auto base = personalInfo[specie + 1];
         auto info = getPersonalInfo(base);
 
-        std::vector<u8> stats = info.getBaseStats();
+        std::array<u8, 6> stats = info.getBaseStats();
         ui->labelBaseHPValue->setText(QString::number(stats[0]));
         ui->labelBaseAtkValue->setText(QString::number(stats[1]));
         ui->labelBaseDefValue->setText(QString::number(stats[2]));
@@ -276,17 +276,17 @@ void IVCalculator::generationIndexChanged(int index)
         u16 max = 0;
         if (index == 0)
         {
-            personalInfo = PersonalInfo::loadPersonal(3);
+            personalInfo = PersonalLoader3::getPersonal();
             max = 386;
         }
         else if (index == 1)
         {
-            personalInfo = PersonalInfo::loadPersonal(4);
+            personalInfo = PersonalLoader4::getPersonal();
             max = 493;
         }
         else if (index == 2)
         {
-            personalInfo = PersonalInfo::loadPersonal(5);
+            personalInfo = PersonalLoader4::getPersonal();
             max = 649;
         }
 

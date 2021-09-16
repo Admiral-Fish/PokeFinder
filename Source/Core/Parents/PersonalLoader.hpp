@@ -17,18 +17,25 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef IVCHECKER_HPP
-#define IVCHECKER_HPP
+#ifndef PERSONALLOADER_HPP
+#define PERSONALLOADER_HPP
 
-#include <Core/Util/Global.hpp>
+#include <Core/Parents/PersonalInfo.hpp>
 #include <vector>
 
-class PersonalInfo;
-
-namespace IVChecker
+namespace PersonalLoader3
 {
-    std::vector<std::vector<u8>> calculateIVRange(const std::array<u8, 6> &baseStats, const std::vector<std::vector<u16>> &stats,
-                                                  const std::vector<u8> &level, u8 nature, u8 characteristic, u8 hiddenPower);
-};
+    std::vector<PersonalInfo> getPersonal();
+}
 
-#endif // IVCHECKER_HPP
+namespace PersonalLoader4
+{
+    std::vector<PersonalInfo> getPersonal();
+}
+
+namespace PersonalLoader5
+{
+    std::vector<PersonalInfo> getPersonal();
+}
+
+#endif // PERSONALLOADER_HPP

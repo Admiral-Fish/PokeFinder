@@ -22,6 +22,7 @@
 #include <Core/Enum/Game.hpp>
 #include <Core/Gen4/EncounterArea4.hpp>
 #include <Core/Gen4/Profile4.hpp>
+#include <Core/Parents/PersonalLoader.hpp>
 #include <Core/Parents/Slot.hpp>
 #include <Core/Resources/Resources.hpp>
 #include <algorithm>
@@ -405,7 +406,7 @@ namespace Encounters4
     std::vector<EncounterArea4> getEncounters(Encounter encounter, int time, const Profile4 &profile)
     {
         std::vector<EncounterArea4> encounters;
-        std::vector<PersonalInfo> info = PersonalInfo::loadPersonal(4);
+        std::vector<PersonalInfo> info = PersonalLoader4::getPersonal();
 
         for (const auto &data : getData(profile.getVersion()))
         {
