@@ -42,6 +42,7 @@ std::vector<WildState> WildGenerator3::generate(u32 seed, const EncounterArea3 &
     rng.advance(initialAdvances + offset);
 
     u16 rate = encounterArea.getEncounterRate() * 16;
+    bool isRSESafariLocation = encounterArea.isRSESafariZone();
     bool rock = rate == 2880;
 
     bool cuteCharmFlag = false;
@@ -87,7 +88,7 @@ std::vector<WildState> WildGenerator3::generate(u32 seed, const EncounterArea3 &
         switch (encounter)
         {
         case Encounter::RockSmash:
-            if (encounterArea.isRSESafariZone() || !rock)
+            if (isRSESafariLocation || !rock)
             {
                 go.next();
             }
@@ -103,7 +104,7 @@ std::vector<WildState> WildGenerator3::generate(u32 seed, const EncounterArea3 &
             }
 
             state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), go.nextUShort()));
-            if (encounterArea.isRSESafariZone())
+            if (isRSESafariLocation)
             {
                 go.advance(1);
             }
@@ -134,7 +135,7 @@ std::vector<WildState> WildGenerator3::generate(u32 seed, const EncounterArea3 &
         case Encounter::OldRod:
         case Encounter::GoodRod:
         case Encounter::SuperRod:
-            if (!encounterArea.isRSESafariZone())
+            if (!isRSESafariLocation)
             {
                 go.next();
             }
@@ -146,7 +147,7 @@ std::vector<WildState> WildGenerator3::generate(u32 seed, const EncounterArea3 &
             }
 
             state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), go.nextUShort()));
-            if (encounterArea.isRSESafariZone())
+            if (isRSESafariLocation)
             {
                 go.next();
             }
