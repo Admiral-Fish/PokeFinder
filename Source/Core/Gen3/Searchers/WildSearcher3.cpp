@@ -98,7 +98,8 @@ std::vector<WildState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 s
     bool isRSESafariLocation = encounterArea.isRSESafariZone();
     bool isRSESafariFishing = false;
     bool isRSESafariRockSmash = false;
-    if (isRSESafariLocation)
+    if (isRSESafariLocation) // Fishing/RockSmash encounters inside RSE Safari Zone have different rng calls,
+                             // so we set a flag to check if we're searching these kind of spreads
     {
         switch (encounter)
         {
@@ -166,7 +167,7 @@ std::vector<WildState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 s
                         u32 seedForSlot = slot;
                         u32 seedForLevel = testRNG.getSeed();
 
-                        if (isRSESafariFishing || isRSESafariRockSmash)
+                        if (isRSESafariFishing || isRSESafariRockSmash) // Account Fishing/RockSmash inside RSE Safari Zone different rng calls
                         {
                             seedForSlot = seedForSlot * 0xeeb9eb65 + 0xa3561a1;
                             seedForLevel = seedForLevel * 0xeeb9eb65 + 0xa3561a1;
@@ -190,7 +191,7 @@ std::vector<WildState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 s
                         u32 seedForSlot = slot;
                         u32 seedForLevel = testRNG.getSeed();
 
-                        if (isRSESafariFishing || isRSESafariRockSmash)
+                        if (isRSESafariFishing || isRSESafariRockSmash) // Account Fishing/RockSmash inside RSE Safari Zone different rng calls
                         {
                             seedForSlot = seedForSlot * 0xeeb9eb65 + 0xa3561a1;
                             seedForLevel = seedForLevel * 0xeeb9eb65 + 0xa3561a1;
@@ -212,7 +213,7 @@ std::vector<WildState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 s
                         u32 seedForSlot = slot;
                         u32 seedForLevel = testRNG.getSeed();
 
-                        if (isRSESafariFishing || isRSESafariRockSmash)
+                        if (isRSESafariFishing || isRSESafariRockSmash) // Account Fishing/RockSmash inside RSE Safari Zone different rng calls
                         {
                             seedForSlot = seedForSlot * 0xeeb9eb65 + 0xa3561a1;
                             seedForLevel = seedForLevel * 0xeeb9eb65 + 0xa3561a1;
@@ -235,7 +236,7 @@ std::vector<WildState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 s
                         u32 seedForSlot = slot;
                         u32 seedForLevel = testRNG.getSeed() * 0xeeb9eb65 + 0xa3561a1;
 
-                        if (isRSESafariFishing || isRSESafariRockSmash)
+                        if (isRSESafariFishing || isRSESafariRockSmash) // Account Fishing/RockSmash inside RSE Safari Zone different rng calls
                         {
                             seedForSlot = seedForSlot * 0xeeb9eb65 + 0xa3561a1;
                             seedForLevel = seedForLevel * 0xeeb9eb65 + 0xa3561a1;
@@ -260,7 +261,7 @@ std::vector<WildState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 s
                         u32 seedForSlot = slot;
                         u32 seedForLevel = testRNG.getSeed();
 
-                        if (isRSESafariFishing || isRSESafariRockSmash)
+                        if (isRSESafariFishing || isRSESafariRockSmash) // Account Fishing/RockSmash inside RSE Safari Zone different rng calls
                         {
                             seedForSlot = seedForSlot * 0xeeb9eb65 + 0xa3561a1;
                             seedForLevel = seedForLevel * 0xeeb9eb65 + 0xa3561a1;
@@ -278,7 +279,7 @@ std::vector<WildState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 s
                         seedForSlot = slot;
                         seedForLevel = testRNG.getSeed() * 0xeeb9eb65 + 0xa3561a1;
 
-                        if (isRSESafariFishing || isRSESafariRockSmash)
+                        if (isRSESafariFishing || isRSESafariRockSmash) // Account Fishing/RockSmash inside RSE Safari Zone different rng calls
                         {
                             seedForSlot = seedForSlot * 0xeeb9eb65 + 0xa3561a1;
                             seedForLevel = seedForLevel * 0xeeb9eb65 + 0xa3561a1;
@@ -313,7 +314,7 @@ std::vector<WildState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 s
                         u32 seedForSlot = slot;
                         u32 seedForLevel = testRNG.getSeed();
 
-                        if (isRSESafariFishing || isRSESafariRockSmash)
+                        if (isRSESafariFishing || isRSESafariRockSmash) // Account Fishing/RockSmash inside RSE Safari Zone different rng calls
                         {
                             seedForSlot = seedForSlot * 0xeeb9eb65 + 0xa3561a1;
                             seedForLevel = seedForLevel * 0xeeb9eb65 + 0xa3561a1;
@@ -348,7 +349,7 @@ std::vector<WildState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 s
             for (size_t i = 0; i < states.size();)
             {
                 u32 check;
-                if (isRSESafariLocation)
+                if (isRSESafariLocation) // Account RockSmash inside RSE Safari Zone different rng calls
                 {
                     check = states[i].getSeed();
                 }
@@ -363,7 +364,7 @@ std::vector<WildState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 s
                 }
                 else
                 {
-                    if (isRSESafariLocation)
+                    if (isRSESafariLocation) // Account RockSmash inside RSE Safari Zone different rng calls
                     {
                         states[i].setSeed(states[i].getSeed() * 0xdc6c95d9 + 0x4d3cb126);
                     }

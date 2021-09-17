@@ -42,7 +42,8 @@ std::vector<WildState> WildGenerator3::generate(u32 seed, const EncounterArea3 &
     rng.advance(initialAdvances + offset);
 
     u16 rate = encounterArea.getEncounterRate() * 16;
-    bool isRSESafariLocation = encounterArea.isRSESafariZone();
+    bool isRSESafariLocation = encounterArea.isRSESafariZone(); // Fishing/RockSmash encounters inside RSE Safari Zone have different rng calls,
+                                                                // so we set a flag to check if we're searching these kind of spreads
     bool rock = rate == 2880;
 
     bool cuteCharmFlag = false;
@@ -88,7 +89,7 @@ std::vector<WildState> WildGenerator3::generate(u32 seed, const EncounterArea3 &
         switch (encounter)
         {
         case Encounter::RockSmash:
-            if (isRSESafariLocation || !rock)
+            if (isRSESafariLocation || !rock) // account RockSmash inside RSE Safari Zone extra rng call
             {
                 go.next();
             }
@@ -104,7 +105,7 @@ std::vector<WildState> WildGenerator3::generate(u32 seed, const EncounterArea3 &
             }
 
             state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), go.nextUShort()));
-            if (isRSESafariLocation)
+            if (isRSESafariLocation) // account RockSmash inside RSE Safari Zone extra rng call
             {
                 go.advance(1);
             }
@@ -135,7 +136,7 @@ std::vector<WildState> WildGenerator3::generate(u32 seed, const EncounterArea3 &
         case Encounter::OldRod:
         case Encounter::GoodRod:
         case Encounter::SuperRod:
-            if (!isRSESafariLocation)
+            if (!isRSESafariLocation) // account Fishing outside RSE Safari Zone extra rng call
             {
                 go.next();
             }
@@ -147,7 +148,7 @@ std::vector<WildState> WildGenerator3::generate(u32 seed, const EncounterArea3 &
             }
 
             state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), go.nextUShort()));
-            if (isRSESafariLocation)
+            if (isRSESafariLocation) // account Fishing inside RSE Safari Zone extra rng call
             {
                 go.next();
             }
