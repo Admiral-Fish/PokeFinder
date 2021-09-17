@@ -279,7 +279,7 @@ void Wild3::search()
     u8 genderRatio = ui->filterSearcher->getGenderRatio();
     auto method = static_cast<Method>(ui->comboBoxSearcherMethod->getCurrentInt());
 
-    auto *searcher = new WildSearcher3(tid, sid, genderRatio, method, filter, currentProfile.getVersion() & Game::RSE);
+    auto *searcher = new WildSearcher3(tid, sid, genderRatio, method, filter);
     searcher->setEncounter(static_cast<Encounter>(ui->comboBoxSearcherEncounter->currentData().toInt()));
     searcher->setLead(static_cast<Lead>(ui->comboBoxSearcherLead->currentData().toInt()));
     searcher->setEncounterArea(encounterSearcher[ui->comboBoxSearcherLocation->currentData().toInt()]);

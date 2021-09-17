@@ -30,7 +30,7 @@ class WildSearcher3 : public WildSearcher
 {
 public:
     WildSearcher3() = default;
-    WildSearcher3(u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter, bool isRSEVersion);
+    WildSearcher3(u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter);
     void setEncounterArea(const EncounterArea3 &encounterArea);
     void startSearch(const std::array<u8, 6> &min, const std::array<u8, 6> &max);
     void cancelSearch();
@@ -40,7 +40,6 @@ public:
 private:
     RNGCache cache;
     EncounterArea3 encounterArea;
-    bool isRSEVersion;
 
     bool searching;
     int progress;

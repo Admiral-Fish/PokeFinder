@@ -22,10 +22,9 @@
 #include <Core/RNG/LCRNG.hpp>
 #include <Core/Util/EncounterSlot.hpp>
 
-WildSearcher3::WildSearcher3(u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter, bool isRSEVersion) :
+WildSearcher3::WildSearcher3(u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter) :
     WildSearcher(tid, sid, genderRatio, method, filter), cache(method), searching(false), progress(0)
 {
-    this->isRSEVersion = isRSEVersion;
 }
 
 void WildSearcher3::setEncounterArea(const EncounterArea3 &encounterArea)
@@ -97,6 +96,25 @@ std::vector<WildState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 s
     }
 
     bool isRSESafariLocation = encounterArea.isRSESafariZone();
+    bool isRSESafariFishing = false;
+    bool isRSESafariRockSmash = false;
+    if (isRSESafariLocation)
+    {
+        switch (encounter)
+        {
+        case Encounter::Surfing:
+        case Encounter::OldRod:
+        case Encounter::GoodRod:
+        case Encounter::SuperRod:
+            isRSESafariFishing = true;
+            break;
+        case Encounter::RockSmash:
+            isRSESafariRockSmash = true;
+            break;
+        default:
+            break;
+        }
+    }
 
     auto seeds = cache.recoverLower16BitsIV(hp, atk, def, spa, spd, spe);
     for (const u32 val : seeds)
@@ -115,34 +133,6 @@ std::vector<WildState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 s
         state.setShiny<8>(tsv, high ^ low);
 
         u32 seed = rng.next();
-
-        bool isRSESafariFishing = false;
-        bool isRSESafariRockSmash = false;
-        if (isRSEVersion)
-        {
-            switch (encounter)
-            {
-            case Encounter::Surfing:
-            case Encounter::OldRod:
-            case Encounter::GoodRod:
-            case Encounter::SuperRod:
-                if (isRSESafariLocation)
-                {
-                    isRSESafariFishing = true;
-                }
-
-                break;
-            case Encounter::RockSmash:
-                if (isRSESafariLocation)
-                {
-                    isRSESafariRockSmash = true;
-                }
-
-                break;
-            default:
-                break;
-            }
-        }
 
         // Use for loop to check both normal and sister spread
         for (const bool flag : { false, true })
