@@ -53,8 +53,10 @@ void WildSearcher4::startSearch(const std::array<u8, 6> &min, const std::array<u
     searching = true;
 
     thresh = encounter == Encounter::OldRod ? 25 : encounter == Encounter::GoodRod ? 50 : encounter == Encounter::SuperRod ? 75 : 0;
-    suctionCupThresh
-        = encounter == Encounter::OldRod ? 90 : encounter == Encounter::GoodRod ? 100 : encounter == Encounter::SuperRod ? 100 : 0;
+    suctionCupThresh = encounter == Encounter::OldRod ? 90
+        : encounter == Encounter::GoodRod             ? 100
+        : encounter == Encounter::SuperRod            ? 100
+                                                      : 0;
     rock = encounterArea.getEncounterRate();
 
     for (u8 hp = min[0]; hp <= max[0]; hp++)
@@ -408,7 +410,7 @@ std::vector<WildState> WildSearcher4::synchMethodJ(WildState state, u32 seed) co
         }
         else if ((nextRNG2 >> 15) == 1 && (nextRNG / 0xa3e) == state.getNature())
         {
-            if (encounterMethodJ(state, rng.getSeed() * 0xeeb9eb65 + 0xa3561a1))
+            if (encounterMethodJ(state, PokeRNGR(rng.getSeed()).next()))
             {
                 states.emplace_back(state);
             }
@@ -566,7 +568,7 @@ std::vector<WildState> WildSearcher4::synchMethodK(WildState state, u32 seed) co
         }
         else if ((nextRNG2 & 1) == 1 && (nextRNG % 25) == state.getNature())
         {
-            if (encounterMethodK(state, rng.getSeed() * 0xeeb9eb65 + 0xa3561a1))
+            if (encounterMethodK(state, PokeRNGR(rng.getSeed()).next()))
             {
                 states.emplace_back(state);
             }
