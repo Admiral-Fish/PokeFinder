@@ -21,6 +21,7 @@
 #define IVCHECKER_HPP
 
 #include <Core/Util/Global.hpp>
+#include <array>
 #include <vector>
 
 class PersonalInfo;
