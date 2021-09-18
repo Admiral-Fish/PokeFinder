@@ -104,7 +104,7 @@ namespace Encounters5
             return static_cast<u16>(data[offset + 1] << 8) | data[offset];
         }
 
-        PersonalInfo getInfo(const std::vector<PersonalInfo> &info, u16 species, u8 form)
+        PersonalInfo getInfo(const PersonalInfo *info, u16 species, u8 form)
         {
             auto personal = info[species];
             if (form != 0 && personal.getFormStatIndex() != 0)
@@ -114,8 +114,8 @@ namespace Encounters5
             return personal;
         }
 
-        std::vector<EncounterArea5> getAreas(const std::vector<u8> &data, Encounter encounter, const std::vector<PersonalInfo> &info,
-                                             u8 location, u8 season)
+        std::vector<EncounterArea5> getAreas(const std::vector<u8> &data, Encounter encounter, const PersonalInfo *info, u8 location,
+                                             u8 season)
         {
             std::vector<EncounterArea5> encounters;
 
@@ -230,7 +230,7 @@ namespace Encounters5
     std::vector<EncounterArea5> getEncounters(Encounter encounter, u8 season, Game version)
     {
         std::vector<EncounterArea5> encounters;
-        std::vector<PersonalInfo> info = PersonalLoader5::getPersonal();
+        auto info = PersonalLoader5::getPersonal();
 
         const auto &encounterData = getData(version);
         for (size_t i = 0; i < encounterData.size(); i++)

@@ -19,23 +19,6 @@
 
 #include "PersonalInfo.hpp"
 
-PersonalInfo::PersonalInfo(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, u8 gender, u16 ability1, u16 ability2, u16 abilityH, u8 formCount,
-                           u16 formStatIndex) :
-    baseHP(hp),
-    baseAtk(atk),
-    baseDef(def),
-    baseSpA(spa),
-    baseSpD(spd),
-    baseSpe(spe),
-    gender(gender),
-    ability1(ability1),
-    ability2(ability2),
-    abilityH(abilityH),
-    formCount(formCount),
-    formStatIndex(formStatIndex)
-{
-}
-
 std::array<u8, 6> PersonalInfo::getBaseStats() const
 {
     return { baseHP, baseAtk, baseDef, baseSpA, baseSpD, baseSpe };

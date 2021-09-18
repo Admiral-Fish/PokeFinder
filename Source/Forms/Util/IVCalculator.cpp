@@ -19,6 +19,7 @@
 
 #include "IVCalculator.hpp"
 #include "ui_IVCalculator.h"
+#include <Core/Parents/PersonalInfo.hpp>
 #include <Core/Parents/PersonalLoader.hpp>
 #include <Core/Util/IVChecker.hpp>
 #include <Core/Util/Translator.hpp>
@@ -234,7 +235,7 @@ void IVCalculator::findIVs()
 
 void IVCalculator::pokemonIndexChanged(int index)
 {
-    if (index >= 0 && !personalInfo.empty())
+    if (index >= 0 && personalInfo != nullptr)
     {
         PersonalInfo base = personalInfo[index + 1];
         u8 formCount = base.getFormCount();
@@ -286,15 +287,12 @@ void IVCalculator::generationIndexChanged(int index)
         }
         else if (index == 2)
         {
-            personalInfo = PersonalLoader4::getPersonal();
+            personalInfo = PersonalLoader5::getPersonal();
             max = 649;
         }
 
-        std::vector<u16> species;
-        for (u16 i = 1; i <= max; i++)
-        {
-            species.emplace_back(i);
-        }
+        std::vector<u16> species(max);
+        std::iota(species.begin(), species.end(), 1);
 
         ui->comboBoxPokemon->clear();
         for (const std::string &specie : Translator::getSpecies(species))

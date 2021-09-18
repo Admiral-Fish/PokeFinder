@@ -86,7 +86,7 @@ namespace Encounters4
             return static_cast<u16>(data[offset] << 8) | data[offset + 1];
         }
 
-        void modifyRadio(std::vector<Slot> &mons, const std::vector<u8> &data, const std::vector<PersonalInfo> &info, int radio)
+        void modifyRadio(std::vector<Slot> &mons, const std::vector<u8> &data, const PersonalInfo *info, int radio)
         {
             u16 specie1;
             u16 specie2;
@@ -111,7 +111,7 @@ namespace Encounters4
             mons[5].setSpecie(specie2, info[specie2]);
         }
 
-        void modifyTime(std::vector<Slot> &mons, const std::vector<u8> &data, const std::vector<PersonalInfo> &info, int time)
+        void modifyTime(std::vector<Slot> &mons, const std::vector<u8> &data, const PersonalInfo *info, int time)
         {
             u16 specie1;
             u16 specie2;
@@ -134,7 +134,7 @@ namespace Encounters4
             mons[3].setSpecie(specie2, info[specie2]);
         }
 
-        void modifyDual(std::vector<Slot> &mons, const std::vector<u8> &data, const std::vector<PersonalInfo> &info, Game dual)
+        void modifyDual(std::vector<Slot> &mons, const std::vector<u8> &data, const PersonalInfo *info, Game dual)
         {
             u16 specie1;
             u16 specie2;
@@ -172,7 +172,7 @@ namespace Encounters4
             mons[9].setSpecie(specie2, info[specie2]);
         }
 
-        void modifyRadar(std::vector<Slot> &mons, const std::vector<u8> &data, const std::vector<PersonalInfo> &info, bool radar)
+        void modifyRadar(std::vector<Slot> &mons, const std::vector<u8> &data, const PersonalInfo *info, bool radar)
         {
             if (radar)
             {
@@ -184,8 +184,8 @@ namespace Encounters4
             }
         }
 
-        void modifySwarmHGSS(std::vector<Slot> &mons, const std::vector<u8> &data, const std::vector<PersonalInfo> &info,
-                             Encounter encounter, bool swarm)
+        void modifySwarmHGSS(std::vector<Slot> &mons, const std::vector<u8> &data, const PersonalInfo *info, Encounter encounter,
+                             bool swarm)
         {
             if (swarm)
             {
@@ -216,7 +216,7 @@ namespace Encounters4
             }
         }
 
-        void modifySwarmDPPt(std::vector<Slot> &mons, const std::vector<u8> &data, const std::vector<PersonalInfo> &info, bool swarm)
+        void modifySwarmDPPt(std::vector<Slot> &mons, const std::vector<u8> &data, const PersonalInfo *info, bool swarm)
         {
             if (swarm)
             {
@@ -226,7 +226,7 @@ namespace Encounters4
             }
         }
 
-        std::vector<EncounterArea4> getHGSS(const std::vector<u8> &data, const Profile4 &profile, const std::vector<PersonalInfo> &info,
+        std::vector<EncounterArea4> getHGSS(const std::vector<u8> &data, const Profile4 &profile, const PersonalInfo *info,
                                             Encounter encounter, int time)
         {
             std::vector<EncounterArea4> encounters;
@@ -339,8 +339,7 @@ namespace Encounters4
             return encounters;
         }
 
-        std::vector<EncounterArea4> getDPPt(const std::vector<u8> &data, const Profile4 &profile, const std::vector<PersonalInfo> &info,
-                                            int time)
+        std::vector<EncounterArea4> getDPPt(const std::vector<u8> &data, const Profile4 &profile, const PersonalInfo *info, int time)
         {
             std::vector<EncounterArea4> encounters;
             u8 location = data[0];
@@ -406,7 +405,7 @@ namespace Encounters4
     std::vector<EncounterArea4> getEncounters(Encounter encounter, int time, const Profile4 &profile)
     {
         std::vector<EncounterArea4> encounters;
-        std::vector<PersonalInfo> info = PersonalLoader4::getPersonal();
+        auto info = PersonalLoader4::getPersonal();
 
         for (const auto &data : getData(profile.getVersion()))
         {

@@ -20,22 +20,21 @@
 #ifndef PERSONALLOADER_HPP
 #define PERSONALLOADER_HPP
 
-#include <Core/Parents/PersonalInfo.hpp>
-#include <vector>
+class PersonalInfo;
 
 namespace PersonalLoader3
 {
-    std::vector<PersonalInfo> getPersonal();
+    const PersonalInfo *getPersonal();
 }
 
 namespace PersonalLoader4
 {
-    std::vector<PersonalInfo> getPersonal();
+    const PersonalInfo *getPersonal();
 }
 
 namespace PersonalLoader5
 {
-    std::vector<PersonalInfo> getPersonal();
+    const PersonalInfo *getPersonal();
 }
 
 #endif // PERSONALLOADER_HPP
