@@ -22,6 +22,7 @@
 #include <Core/Enum/Game.hpp>
 #include <Core/Gen3/EncounterArea3.hpp>
 #include <Core/Gen3/Profile3.hpp>
+#include <Core/Parents/PersonalLoader.hpp>
 #include <Core/Parents/Slot.hpp>
 #include <Core/Resources/Resources.hpp>
 #include <algorithm>
@@ -80,7 +81,7 @@ namespace Encounters3
             return static_cast<u16>(data[offset] << 8) | data[offset + 1];
         }
 
-        std::vector<EncounterArea3> getArea(const std::array<u8, 120> &data, const std::vector<PersonalInfo> &info)
+        std::vector<EncounterArea3> getArea(const std::array<u8, 120> &data, const PersonalInfo *info)
         {
             std::vector<EncounterArea3> encounters;
 
@@ -160,7 +161,7 @@ namespace Encounters3
     std::vector<EncounterArea3> getEncounters(Encounter encounter, const Profile3 &profile)
     {
         std::vector<EncounterArea3> encounters;
-        std::vector<PersonalInfo> info = PersonalInfo::loadPersonal(3);
+        const auto *info = PersonalLoader3::getPersonal();
 
         for (const auto &data : getData(profile.getVersion()))
         {

@@ -53,8 +53,7 @@ void setInheritance(const Daycare &daycare, EggState4 &state, const u16 *inh, co
     else
     {
         u8 available[6] = { 0, 1, 2, 3, 4, 5 };
-        auto avoid = [&available](u8 stat, u8 i)
-        {
+        auto avoid = [&available](u8 stat, u8 i) {
             for (u8 j = stat; j < 5 - i; j++)
             {
                 available[j] = available[j + 1];
@@ -153,7 +152,7 @@ std::vector<EggState4> EggGenerator4::generateMasuada(u32 seed) const
                 break;
             }
 
-            pid = pid * 0x6c078965 + 1; // Advance with ARNG
+            pid = ARNG(pid).next();
         }
 
         state.setPID(pid);

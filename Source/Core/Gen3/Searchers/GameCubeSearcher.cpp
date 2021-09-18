@@ -128,7 +128,7 @@ std::vector<GameCubeState> GameCubeSearcher::searchXDColo(u8 hp, u8 atk, u8 def,
         u16 high = rng.nextUShort();
         u16 low = rng.nextUShort();
 
-        state.setSeed(pair.first * 0xB9B33155 + 0xA170F641);
+        state.setSeed(XDRNGR(pair.first).next());
         state.setPID(high, low);
         state.setAbility(ability);
         state.setGender(low & 255, genderRatio);
@@ -180,7 +180,7 @@ std::vector<GameCubeState> GameCubeSearcher::searchXDShadow(u8 hp, u8 atk, u8 de
             low = rng.nextUShort();
         }
 
-        state.setSeed(pair.first * 0xB9B33155 + 0xA170F641);
+        state.setSeed(XDRNGR(pair.first).next());
         state.setPID(high, low);
         state.setAbility(ability);
         state.setGender(low & 255, genderRatio);
@@ -317,7 +317,7 @@ std::vector<GameCubeState> GameCubeSearcher::searchColoShadow(u8 hp, u8 atk, u8 
         u16 high = rng.nextUShort();
         u16 low = rng.nextUShort();
 
-        state.setSeed(pair.first * 0xB9B33155 + 0xA170F641);
+        state.setSeed(XDRNGR(pair.first).next());
         state.setPID(high, low);
         state.setAbility(ability);
         state.setGender(low & 255, genderRatio);

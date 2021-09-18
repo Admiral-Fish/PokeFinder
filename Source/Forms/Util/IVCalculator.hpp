@@ -40,7 +40,7 @@ public:
 private:
     Ui::IVCalculator *ui;
     int rows = 0;
-    std::vector<PersonalInfo> personalInfo;
+    const PersonalInfo *personalInfo = nullptr;
 
     void setupModels();
     void displayIVs(QLabel *label, const std::vector<u8> &ivs);

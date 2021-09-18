@@ -21,16 +21,29 @@
 #define PERSONALINFO_HPP
 
 #include <Core/Util/Global.hpp>
-#include <vector>
+#include <array>
 
 class PersonalInfo
 {
 public:
-    PersonalInfo() = default;
-    PersonalInfo(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, u8 gender, u16 ability1, u16 ability2, u16 abilityH = 0, u8 formCount = 1,
-                 u16 formStatIndex = 0);
-    static std::vector<PersonalInfo> loadPersonal(u8 gen);
-    std::vector<u8> getBaseStats() const;
+    constexpr PersonalInfo(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, u8 gender, u16 ability1, u16 ability2, u16 abilityH, u8 formCount,
+                           u16 formStatIndex) :
+        baseHP(hp),
+        baseAtk(atk),
+        baseDef(def),
+        baseSpA(spa),
+        baseSpD(spd),
+        baseSpe(spe),
+        gender(gender),
+        ability1(ability1),
+        ability2(ability2),
+        abilityH(abilityH),
+        formCount(formCount),
+        formStatIndex(formStatIndex)
+    {
+    }
+
+    std::array<u8, 6> getBaseStats() const;
     u16 getGender() const;
     u16 getAbility1() const;
     u16 getAbility2() const;
