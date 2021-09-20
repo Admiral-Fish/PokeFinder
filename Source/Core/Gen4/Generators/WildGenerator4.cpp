@@ -227,6 +227,10 @@ std::vector<WildState4> WildGenerator4::generateMethodJ(u32 seed) const
         state.setIVs(iv1, iv2);
         state.calculateHiddenPower();
 
+        u8 heldItem = go.nextUShort() % 100;
+
+        state.setHeldItem(heldItem);
+
         if (filter.compareState(state))
         {
             state.setOccidentary(occidentary);
@@ -443,6 +447,10 @@ std::vector<WildState4> WildGenerator4::generateMethodK(u32 seed) const
 
         state.setIVs(iv1, iv2);
         state.calculateHiddenPower();
+
+        u8 heldItem = go.nextUShort() % 100;
+
+        state.setHeldItem(heldItem);
 
         if (filter.compareState(state))
         {

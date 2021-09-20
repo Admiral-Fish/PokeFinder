@@ -39,9 +39,9 @@ int WildGeneratorModel4::columnCount(const QModelIndex &parent) const
     switch (method)
     {
     case Method::MethodJ:
-        return 18;
-    case Method::MethodK:
         return 19;
+    case Method::MethodK:
+        return 20;
     case Method::ChainedShiny:
         return 14;
     default:
@@ -63,40 +63,45 @@ QVariant WildGeneratorModel4::data(const QModelIndex &index, int role) const
             return state.getOccidentary();
         case 2:
         {
-            u8 call = state.getSeed() % 3;
-            return call == 0 ? "E" : call == 1 ? "K" : "P";
+            u8 heldItem = state.getHeldItem();
+            return heldItem < 45 ? "No" : heldItem < 95? "50%" : "5%";
         }
         case 3:
         {
-            return QString::fromStdString(Utilities::getChatot(state.getSeed()));
+            u8 call = state.getSeed() % 3;
+            return call == 0 ? "E" : call == 1 ? "K" : "P";
         }
         case 4:
-            return state.getEncounterSlot();
+        {
+            return QString::fromStdString(Utilities::getChatot(state.getSeed()));
+        }
         case 5:
-            return state.getLevel();
+            return state.getEncounterSlot();
         case 6:
-            return QString::number(state.getPID(), 16).toUpper().rightJustified(8, '0');
+            return state.getLevel();
         case 7:
+            return QString::number(state.getPID(), 16).toUpper().rightJustified(8, '0');
+        case 8:
         {
             u8 shiny = state.getShiny();
             return shiny == 2 ? tr("Square") : shiny == 1 ? tr("Star") : tr("No");
         }
-        case 8:
-            return QString::fromStdString(Translator::getNature(state.getNature()));
         case 9:
-            return state.getAbility();
+            return QString::fromStdString(Translator::getNature(state.getNature()));
         case 10:
+            return state.getAbility();
         case 11:
         case 12:
         case 13:
         case 14:
         case 15:
-            return state.getIV(static_cast<u8>(column - 10));
         case 16:
-            return QString::fromStdString(Translator::getHiddenPower(state.getHidden()));
+            return state.getIV(static_cast<u8>(column - 11));
         case 17:
-            return state.getPower();
+            return QString::fromStdString(Translator::getHiddenPower(state.getHidden()));
         case 18:
+            return state.getPower();
+        case 19:
             return QString::fromStdString(Translator::getGender(state.getGender()));
         }
     }
@@ -119,12 +124,12 @@ int WildGeneratorModel4::getColumn(int column) const
     switch (method)
     {
     case Method::MethodJ:
-        return column > 1 ? column + 1 : column;
+        return column > 2 ? column + 1 : column;
     case Method::MethodK:
     default:
         return column;
     case Method::ChainedShiny:
-        return column > 0 ? column + 5 : column;
+        return column > 0 ? column + 6 : column;
     }
 }
 
