@@ -24,7 +24,7 @@ IDGenerator5::IDGenerator5(u32 initialAdvances, u32 maxAdvances, const IDFilter 
 {
 }
 
-std::vector<IDState5> IDGenerator5::generate(u64 seed, u32 pid, bool checkPID)
+std::vector<IDState5> IDGenerator5::generate(u64 seed, u32 pid, bool checkPID, bool checkXOR)
 {
     std::vector<IDState5> states;
 
@@ -33,6 +33,7 @@ std::vector<IDState5> IDGenerator5::generate(u64 seed, u32 pid, bool checkPID)
 
     bool pidBit = (pid >> 31) ^ (pid & 1);
     u16 psv = (pid >> 16) ^ (pid & 0xffff);
+    u16 xorPSV = psv ^ 0x8000;
 
     // cnt starts from 1 because the game forces
     // you to enter in the name insertion screen
@@ -53,7 +54,13 @@ std::vector<IDState5> IDGenerator5::generate(u64 seed, u32 pid, bool checkPID)
             {
                 bool idBit = (tid & 1) ^ (sid & 1);
 
-                // Check if PID will be modified by TID/SID combo
+                // Check if PID will be modified by TID/SID combo if XOR box is checked
+                if (checkXOR && (xorPSV >> 3) == state.getTSV())
+                {
+                    state.setSeed(seed);
+                    states.emplace_back(state);
+                }
+
                 if (!(idBit ^ pidBit) && (psv >> 3) == state.getTSV())
                 {
                     state.setSeed(seed);
