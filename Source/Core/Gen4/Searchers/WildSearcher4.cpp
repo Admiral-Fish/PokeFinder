@@ -366,6 +366,12 @@ std::vector<WildState> WildSearcher4::normalMethodJ(WildState state, u32 seed) c
     std::vector<WildState> states;
     state.setLead(Lead::None);
 
+    PokeRNG rng2(seed);
+    rng2.advance(4);
+    u8 heldItem = rng2.nextUShort() % 100;
+
+    state.setHeldItem(heldItem);
+
     PokeRNGR rng(seed);
     u32 pid;
     u16 nextRNG = seed >> 16;
@@ -393,6 +399,12 @@ std::vector<WildState> WildSearcher4::synchMethodJ(WildState state, u32 seed) co
 {
     std::vector<WildState> states;
     state.setLead(Lead::Synchronize);
+
+    PokeRNG rng2(seed);
+    rng2.advance(4);
+    u8 heldItem = rng2.nextUShort() % 100;
+
+    state.setHeldItem(heldItem);
 
     PokeRNGR rng(seed);
     u32 pid;
@@ -427,6 +439,12 @@ std::vector<WildState> WildSearcher4::synchMethodJ(WildState state, u32 seed) co
 std::vector<WildState> WildSearcher4::cuteCharmMethodJ(WildState state, u32 seed) const
 {
     std::vector<WildState> states;
+
+    PokeRNG rng2(seed);
+    rng2.advance(4);
+    u8 heldItem = rng2.nextUShort() % 100;
+
+    state.setHeldItem(heldItem);
 
     PokeRNGR rng(seed);
     u16 high = state.getPID() >> 16;
@@ -523,6 +541,12 @@ std::vector<WildState> WildSearcher4::normalMethodK(WildState state, u32 seed) c
 {
     std::vector<WildState> states;
 
+    PokeRNG rng2(seed);
+    rng2.advance(4);
+    u8 heldItem = rng2.nextUShort() % 100;
+
+    state.setHeldItem(heldItem);
+
     PokeRNGR rng(seed);
     u32 pid;
     u16 nextRNG = seed >> 16;
@@ -551,6 +575,12 @@ std::vector<WildState> WildSearcher4::synchMethodK(WildState state, u32 seed) co
 {
     std::vector<WildState> states;
     state.setLead(Lead::Synchronize);
+
+    PokeRNG rng2(seed);
+    rng2.advance(4);
+    u8 heldItem = rng2.nextUShort() % 100;
+
+    state.setHeldItem(heldItem);
 
     PokeRNGR rng(seed);
     u32 pid;
@@ -585,6 +615,12 @@ std::vector<WildState> WildSearcher4::synchMethodK(WildState state, u32 seed) co
 std::vector<WildState> WildSearcher4::cuteCharmMethodK(WildState state, u32 seed) const
 {
     std::vector<WildState> states;
+
+    PokeRNG rng2(seed);
+    rng2.advance(4);
+    u8 heldItem = rng2.nextUShort() % 100;
+
+    state.setHeldItem(heldItem);
 
     PokeRNGR rng(seed);
     u16 high = state.getPID() >> 16;

@@ -41,19 +41,8 @@ public:
         this->occidentary = occidentary;
     }
 
-    u8 getHeldItem() const
-    {
-        return heldItem;
-    }
-
-    void setHeldItem(u8 heldItem)
-    {
-        this->heldItem = heldItem;
-    }
-
 private:
     u32 occidentary;
-    u8 heldItem;
 };
 
 #endif // WILDSTATE4_HPP

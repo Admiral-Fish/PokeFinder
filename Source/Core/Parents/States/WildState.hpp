@@ -63,10 +63,21 @@ public:
         this->encounter = encounter;
     }
 
+    u8 getHeldItem() const
+    {
+        return heldItem;
+    }
+
+    void setHeldItem(u8 heldItem)
+    {
+        this->heldItem = heldItem;
+    }
+
 protected:
     Lead lead;
     u8 encounterSlot;
     Encounter encounter;
+    u8 heldItem;
 };
 
 #endif // WILDSTATE_HPP
