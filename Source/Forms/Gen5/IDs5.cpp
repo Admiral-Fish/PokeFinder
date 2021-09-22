@@ -105,6 +105,7 @@ void IDs5::setupModels()
     connect(ui->pushButtonFind, &QPushButton::clicked, this, &IDs5::find);
     connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &IDs5::profileManager);
     connect(ui->tableView, &QTableView::customContextMenuRequested, this, &IDs5::tableViewContextMenu);
+    connect(ui->checkBoxPID, &QCheckBox::clicked, this, &IDs5::setXOR);
 
     QSettings setting;
     setting.beginGroup("id5");
@@ -113,6 +114,12 @@ void IDs5::setupModels()
         this->restoreGeometry(setting.value("geometry").toByteArray());
     }
     setting.endGroup();
+}
+
+void IDs5::setXOR(bool checked)
+{
+    ui->checkBoxXOR->setChecked(false);
+    ui->checkBoxXOR->setEnabled(checked ? ui->checkBoxPID->isChecked() : false);
 }
 
 void IDs5::search()

@@ -426,10 +426,13 @@
         </property>
        </widget>
       </item>
-      <item row="5" column="0">
+      <item row="0" column="2">
        <widget class="QCheckBox" name="checkBoxXOR">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
         <property name="text">
-         <string>Show XOR PID Results</string>
+         <string>Stationary/Wild</string>
         </property>
        </widget>
       </item>
@@ -440,7 +443,7 @@
         </property>
        </widget>
       </item>
-      <item row="0" column="1" colspan="2">
+      <item row="0" column="1">
        <widget class="TextBox" name="textBoxPID"/>
       </item>
       <item row="3" column="0">
@@ -484,6 +487,7 @@
   <tabstop>pushButtonProfileManager</tabstop>
   <tabstop>checkBoxPID</tabstop>
   <tabstop>textBoxPID</tabstop>
+  <tabstop>checkBoxXOR</tabstop>
   <tabstop>checkBoxTID</tabstop>
   <tabstop>textBoxTID</tabstop>
   <tabstop>checkBoxSID</tabstop>
