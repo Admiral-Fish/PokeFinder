@@ -50,24 +50,14 @@ std::vector<IDState5> IDGenerator5::generate(u64 seed, u32 pid, bool checkPID, b
 
         if (filter.compare(state))
         {
-            if (checkPID)
-            {
-                bool idBit = (tid & 1) ^ (sid & 1);
+            bool idBit = (tid & 1) ^ (sid & 1);
 
-                // Check if PID will be modified by TID/SID combo if XOR box is checked
-                if (checkXOR && (xorPSV >> 3) == state.getTSV())
-                {
-                    state.setSeed(seed);
-                    states.emplace_back(state);
-                }
+            // Check if PID will be modified by TID/SID combo if XOR box is checked
+            u16 actualPSV = (idBit ^ pidBit) ? xorPSV : psv;
+            bool isShinyXor = checkXOR && (actualPSV >> 3) == state.getTSV();
+            bool isShiny = !checkXOR && (psv >> 3) == state.getTSV();
 
-                if (!(idBit ^ pidBit) && (psv >> 3) == state.getTSV())
-                {
-                    state.setSeed(seed);
-                    states.emplace_back(state);
-                }
-            }
-            else
+            if (!checkPID || isShinyXor || isShiny)
             {
                 state.setSeed(seed);
                 states.emplace_back(state);
