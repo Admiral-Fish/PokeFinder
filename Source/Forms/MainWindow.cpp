@@ -239,6 +239,10 @@ void MainWindow::updateProfiles(int num)
         {
             ids5->updateProfiles();
         }
+        if (egg5)
+        {
+            egg5->updateProfiles();
+        }
     }
 }
 
