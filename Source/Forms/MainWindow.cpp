@@ -243,6 +243,10 @@ void MainWindow::updateProfiles(int num)
         {
             egg5->updateProfiles();
         }
+        if (hiddenGrotto)
+        {
+            hiddenGrotto->updateProfiles();
+        }
     }
 }
 
