@@ -167,16 +167,9 @@ std::vector<SeedTime> SeedtoTime4::generate(u32 seed, u32 year, bool forceSecond
     u8 cd = (seed >> 16) & 0xFF;
     u32 efgh = seed & 0xFFFF;
 
-    u32 delay = efgh + (2000 - year);
-    u32 hour = cd;
-
-    if (hour > 23)
-    {
-        QMessageBox error;
-        error.setText(tr("Seed is invalid. Please enter a valid seed."));
-        error.exec();
-        return std::vector<SeedTime>();
-    }
+    // Allow overflow seeds by setting hour to 23 and adjusting for delay
+    u32 hour = cd > 23 ? 23 : cd;
+    u32 delay = cd > 23 ? (efgh + (2000 - year)) + ((cd - 23) * 0x10000) : efgh + (2000 - year);
 
     std::vector<bool> roamer
         = { ui->checkBoxHGSSRaikou->isChecked(), ui->checkBoxHGSSEntei->isChecked(), ui->checkBoxHGSSLati->isChecked() };
