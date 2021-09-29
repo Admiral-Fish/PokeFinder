@@ -26,10 +26,10 @@
 #include <Core/Util/EncounterSlot.hpp>
 
 WildGenerator4::WildGenerator4(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, Method method,
-                               const StateFilter &filter, bool isPlatinumVersion) :
+                               const StateFilter &filter, bool platinum) :
     WildGenerator(initialAdvances, maxAdvances, tid, sid, genderRatio, method, filter)
 {
-    this->isPlatinumVersion = isPlatinumVersion;
+    this->platinum = platinum;
 }
 
 std::vector<WildState4> WildGenerator4::generate(u32 seed) const
@@ -101,15 +101,7 @@ std::vector<WildState4> WildGenerator4::generateMethodJ(u32 seed) const
             }
 
             state.setLevel(encounterArea.calcLevel(state.getEncounterSlot()));
-            if (isPlatinumVersion)
-            {
-                occidentary += 2; // Add 2 to compensate for the game's advances after the battle ends
-            }
-            else
-            {
-                occidentary += 6; // Add 6 to compensate for the game's advances after the battle ends
-            }
-
+            occidentary += platinum ? 2 : 6; // Compensate for the game's advances after the battle ends
             break;
         case Encounter::Surfing:
             state.setEncounterSlot(EncounterSlot::jSlot(first, encounter));
@@ -119,15 +111,7 @@ std::vector<WildState4> WildGenerator4::generateMethodJ(u32 seed) const
             }
 
             state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), go.nextUShort(occidentary)));
-            if (isPlatinumVersion)
-            {
-                occidentary += 2; // Add 2 to compensate for the game's advances after the battle ends
-            }
-            else
-            {
-                occidentary += 6; // Add 6 to compensate for the game's advances after the battle ends
-            }
-
+            occidentary += platinum ? 2 : 6; // Compensate for the game's advances after the battle ends
             break;
         case Encounter::OldRod:
         case Encounter::GoodRod:
@@ -144,15 +128,7 @@ std::vector<WildState4> WildGenerator4::generateMethodJ(u32 seed) const
             }
 
             state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), go.nextUShort(occidentary)));
-            if (isPlatinumVersion)
-            {
-                occidentary += 3; // Add 3 to compensate for the game's advances after the battle ends
-            }
-            else
-            {
-                occidentary += 7; // Add 7 to compensate for the game's advances after the battle ends
-            }
-
+            occidentary += platinum ? 3 : 7; // Compensate for the game's advances after the battle ends
             break;
         default:
             break;
@@ -323,7 +299,7 @@ std::vector<WildState4> WildGenerator4::generateMethodK(u32 seed) const
             }
 
             state.setLevel(encounterArea.calcLevel(state.getEncounterSlot()));
-            occidentary += 2; // Add 2 to compensate for the game's advances after the battle ends
+            occidentary += 2; // Compensate for the game's advances after the battle ends
             break;
         case Encounter::Surfing:
             state.setEncounterSlot(EncounterSlot::kSlot(first, encounter));
@@ -333,7 +309,7 @@ std::vector<WildState4> WildGenerator4::generateMethodK(u32 seed) const
             }
 
             state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), go.nextUShort(occidentary)));
-            occidentary += 2; // Add 2 to compensate for the game's advances after the battle ends
+            occidentary += 2; // Compensate for the game's advances after the battle ends
             break;
         case Encounter::OldRod:
         case Encounter::GoodRod:
@@ -350,7 +326,7 @@ std::vector<WildState4> WildGenerator4::generateMethodK(u32 seed) const
             }
 
             state.setLevel(encounterArea.calcLevel(state.getEncounterSlot()));
-            occidentary += 3; // Add 3 to compensate for the game's advances after the battle ends
+            occidentary += 3; // Compensate for the game's advances after the battle ends
             go.next(occidentary);
             break;
         case Encounter::RockSmash:
@@ -366,7 +342,7 @@ std::vector<WildState4> WildGenerator4::generateMethodK(u32 seed) const
             }
 
             state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), go.nextUShort(occidentary)));
-            occidentary += 2; // Add 2 to compensate for the game's advances after the battle ends
+            occidentary += 2; // Compensate for the game's advances after the battle ends
             break;
         case Encounter::HeadButt: // TODO
         case Encounter::BugCatchingContest: // TODO
