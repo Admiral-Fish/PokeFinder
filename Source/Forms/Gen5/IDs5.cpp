@@ -119,7 +119,7 @@ void IDs5::setupModels()
 void IDs5::setXOR(bool checked)
 {
     ui->checkBoxXOR->setChecked(false);
-    ui->checkBoxXOR->setEnabled(checked ? ui->checkBoxPID->isChecked() : false);
+    ui->checkBoxXOR->setEnabled(checked);
 }
 
 void IDs5::search()
