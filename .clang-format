@@ -8,5 +8,6 @@ BreakBeforeBraces: Allman
 BreakConstructorInitializers: AfterColon
 ColumnLimit: 140
 ConstructorInitializerAllOnOneLineOrOnePerLine: true
+LambdaBodyIndentation: OuterScope
 NamespaceIndentation: All
 PointerAlignment: Right
