@@ -7,6 +7,6 @@ case $OS in
   } ;;  
   macOS)
   {
-	  PATH=$PATH:$HOME/Qt/6.1/clang_64/bin cmake -G"Unix Makefiles" -DCMAKE_BUILD_TYPE=RELEASE -DTEST=ON ../
+	  PATH=$PATH:$HOME/Qt/6.1/macos/bin cmake -G"Unix Makefiles" -DCMAKE_BUILD_TYPE=RELEASE -DTEST=ON ../
   } ;;
 esac
