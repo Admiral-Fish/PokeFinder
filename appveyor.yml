@@ -1,7 +1,7 @@
 environment:
   matrix:
   - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2019
-    QTPATH: C:\Qt\5.15\msvc2019_64
+    QTPATH: C:\Qt\6.1\msvc2019_64
     OpenSSL: C:\OpenSSL-v111-Win64\bin
     OS: win
     VCVARSALLPATH: C:\"Program Files (x86)\Microsoft Visual Studio"\2019\Community\VC\Auxiliary\Build\vcvarsall.bat

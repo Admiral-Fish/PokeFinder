@@ -30,7 +30,7 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
 
-find_package(Qt5 COMPONENTS Core LinguistTools Network Widgets REQUIRED)
+find_package(Qt6 COMPONENTS Core LinguistTools Network Widgets REQUIRED)
 
 set(PROJECT_TS
     i18n/PokeFinder_fr.ts
@@ -175,7 +175,7 @@ set(PROJECT_SOURCES
     main.cpp
 )
 
-qt5_add_translation(PROJECT_QM ${PROJECT_TS} OPTIONS -nounfinished -removeidentical)
+qt_add_translation(PROJECT_QM ${PROJECT_TS} OPTIONS -nounfinished -removeidentical)
 include(EmbedTranslations)
 embed_translations(PROJECT_I18N ${PROJECT_QM})
 
@@ -211,4 +211,4 @@ else ()
     )
 endif ()
 
-target_link_libraries(PokeFinder PRIVATE PokeFinderCore Qt5::Core Qt5::Network Qt5::Widgets)
+target_link_libraries(PokeFinder PRIVATE PokeFinderCore Qt6::Core Qt6::Network Qt6::Widgets)
