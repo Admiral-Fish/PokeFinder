@@ -26,7 +26,7 @@ template <u32 add, u32 mult>
 class LCRNG
 {
 public:
-    LCRNG(u32 seed = 0) : seed(seed)
+    LCRNG(u32 seed = 0, u32 *count = nullptr) : seed(seed), count(count)
     {
     }
 
@@ -40,23 +40,15 @@ public:
 
     u32 next()
     {
-        return seed = seed * mult + add;
-    }
-
-    u32 next(u32 &count)
-    {
-        count++;
+        if (count != nullptr)
+        {
+            (*count)++;
+        }
         return seed = seed * mult + add;
     }
 
     u16 nextUShort()
     {
-        return next() >> 16;
-    }
-
-    u16 nextUShort(u32 &count)
-    {
-        count++;
         return next() >> 16;
     }
 
@@ -72,6 +64,7 @@ public:
 
 private:
     u32 seed;
+    u32 *count;
 };
 
 using ARNG = LCRNG<0x01, 0x6C078965>;
