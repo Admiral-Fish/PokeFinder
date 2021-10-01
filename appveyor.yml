@@ -31,7 +31,7 @@ after_build:
     - cd ..
     - cmd: md PokeFinder-windows
     - cmd: move build\Source\Forms\PokeFinder.exe PokeFinder-windows\PokeFinder.exe
-    - cmd: windeployqt --no-translations --no-angle --no-plugins --no-opengl-sw PokeFinder-windows\PokeFinder.exe
+    - cmd: windeployqt --no-translations --no-plugins --no-opengl-sw PokeFinder-windows\PokeFinder.exe
     - cmd: del PokeFinder-windows\vc_redist*.exe
     - cmd: xcopy /I %QTPATH%\plugins\platforms\qwindows.dll PokeFinder-windows\platforms\
     - cmd: xcopy /I %QTPATH%\plugins\styles\qwindowsvistastyle.dll PokeFinder-windows\styles\
