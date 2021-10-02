@@ -26,7 +26,6 @@
 class Slot
 {
 public:
-    Slot() = default;
     Slot(u16 specie, u8 minLevel, u8 maxLevel, const PersonalInfo &info);
     Slot(u16 specie, u8 level, const PersonalInfo &info);
 
