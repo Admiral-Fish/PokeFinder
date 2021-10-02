@@ -30,26 +30,29 @@ public:
     {
     }
 
+    template <bool flag = false>
     void advance(u32 advances)
     {
         for (u32 advance = 0; advance < advances; advance++)
         {
-            next();
+            next<flag>();
         }
     }
 
+    template <bool flag = false>
     u32 next()
     {
-        if (count != nullptr)
+        if constexpr (flag)
         {
             (*count)++;
         }
         return seed = seed * mult + add;
     }
 
+    template <bool flag = false>
     u16 nextUShort()
     {
-        return next() >> 16;
+        return next<flag>() >> 16;
     }
 
     void setSeed(u32 seed)
