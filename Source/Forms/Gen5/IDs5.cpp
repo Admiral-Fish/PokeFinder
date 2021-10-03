@@ -152,7 +152,7 @@ void IDs5::search()
     IDFilter filter(tid, sid, {});
     IDGenerator5 generator(0, ui->textBoxMaxAdvances->getUInt(), filter);
 
-    auto *searcher = new IDSearcher5(currentProfile, pid, usePID, useXOR);
+    auto *searcher = new IDSearcher5(currentProfile, usePID, useXOR, pid);
 
     int maxProgress = Keypresses::getKeyPresses(currentProfile.getKeypresses(), currentProfile.getSkipLR()).size();
     maxProgress *= (start.daysTo(end) + 1);
@@ -166,24 +166,20 @@ void IDs5::search()
     connect(ui->pushButtonCancel, &QPushButton::clicked, [searcher] { searcher->cancelSearch(); });
 
     auto *timer = new QTimer();
-    connect(timer, &QTimer::timeout,
-            [=]
-            {
-                model->addItems(searcher->getResults());
-                ui->progressBar->setValue(searcher->getProgress());
-            });
+    connect(timer, &QTimer::timeout, [=] {
+        model->addItems(searcher->getResults());
+        ui->progressBar->setValue(searcher->getProgress());
+    });
     connect(thread, &QThread::finished, timer, &QTimer::stop);
     connect(thread, &QThread::finished, timer, &QTimer::deleteLater);
-    connect(timer, &QTimer::destroyed,
-            [=]
-            {
-                ui->pushButtonSearch->setEnabled(true);
-                ui->pushButtonFind->setEnabled(true);
-                ui->pushButtonCancel->setEnabled(false);
-                model->addItems(searcher->getResults());
-                ui->progressBar->setValue(searcher->getProgress());
-                delete searcher;
-            });
+    connect(timer, &QTimer::destroyed, [=] {
+        ui->pushButtonSearch->setEnabled(true);
+        ui->pushButtonFind->setEnabled(true);
+        ui->pushButtonCancel->setEnabled(false);
+        model->addItems(searcher->getResults());
+        ui->progressBar->setValue(searcher->getProgress());
+        delete searcher;
+    });
 
     thread->start();
     timer->start(1000);
@@ -200,6 +196,9 @@ void IDs5::find()
     u8 minSecond = ui->spinBoxMinSecond->value();
     u8 maxSecond = ui->spinBoxMaxSecond->value();
     u32 maxAdvance = ui->textBoxSeedFinderMaxAdvances->getUInt();
+    u32 pid = ui->textBoxPID->getUInt();
+    bool usePID = ui->checkBoxPID->isChecked();
+    bool useXOR = ui->checkBoxXOR->isChecked();
 
     IDFilter filter({ tid }, {}, {});
     IDGenerator5 generator(0, maxAdvance, filter);
@@ -225,7 +224,7 @@ void IDs5::find()
             u64 seed = sha.hashSeed();
 
             generator.setInitialAdvances(flag ? Utilities::initialAdvancesBWID(seed) : Utilities::initialAdvancesBW2ID(seed));
-            auto states = generator.generate(seed);
+            auto states = generator.generate(seed, usePID, useXOR, pid);
 
             DateTime dt(date, Time(hour, minute, second));
             for (auto &state : states)

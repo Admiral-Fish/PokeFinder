@@ -26,11 +26,10 @@
 #include <atomic>
 #include <mutex>
 
-class IDSearcher5
-{
+class IDSearcher5 {
 public:
     IDSearcher5() = default;
-    explicit IDSearcher5(const Profile5 &profile, u32 pid, bool checkPID, bool checkXOR);
+    explicit IDSearcher5(const Profile5 &profile, bool checkPID, bool checkXOR, u32 pid);
     void startSearch(const IDGenerator5 &generator, int threads, Date start, const Date &end);
     void cancelSearch();
     std::vector<IDState5> getResults();

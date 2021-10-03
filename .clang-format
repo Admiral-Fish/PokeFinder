@@ -4,7 +4,13 @@ BasedOnStyle: WebKit
 AlignAfterOpenBracket: Align
 AllowShortFunctionsOnASingleLine: None
 AlwaysBreakTemplateDeclarations: Yes
-BreakBeforeBraces: Allman
+BreakBeforeBraces: Custom
+BraceWrapping:
+  BeforeElse: true
+  BeforeLambdaBody: false
+  AfterCaseLabel: true
+  AfterControlStatement: true
+  AfterFunction: true
 BreakConstructorInitializers: AfterColon
 ColumnLimit: 140
 ConstructorInitializerAllOnOneLineOrOnePerLine: true
