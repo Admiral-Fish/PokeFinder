@@ -102,7 +102,7 @@ std::vector<WildState4> WildGenerator4::generateMethodJ(u32 seed) const
             }
 
             state.setLevel(encounterArea.calcLevel(state.getEncounterSlot()));
-            occidentary += platinum ? 2 : 6; // Compensate for the game's advances after the battle ends
+            occidentary += platinum ? 1 : 5; // Compensate for the game's advances after the battle ends
             break;
         case Encounter::Surfing:
             state.setEncounterSlot(EncounterSlot::jSlot(first, encounter));
@@ -112,7 +112,7 @@ std::vector<WildState4> WildGenerator4::generateMethodJ(u32 seed) const
             }
 
             state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), go.nextUShort<true>()));
-            occidentary += platinum ? 2 : 6; // Compensate for the game's advances after the battle ends
+            occidentary += platinum ? 1 : 5; // Compensate for the game's advances after the battle ends
             break;
         case Encounter::OldRod:
         case Encounter::GoodRod:
@@ -129,7 +129,7 @@ std::vector<WildState4> WildGenerator4::generateMethodJ(u32 seed) const
             }
 
             state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), go.nextUShort<true>()));
-            occidentary += platinum ? 3 : 7; // Compensate for the game's advances after the battle ends
+            occidentary += platinum ? 2 : 6; // Compensate for the game's advances after the battle ends
             break;
         default:
             break;
@@ -227,6 +227,10 @@ std::vector<WildState4> WildGenerator4::generateMethodJ(u32 seed) const
         state.setIVs(iv1, iv2);
         state.calculateHiddenPower();
 
+        u8 item = go.nextUShort<true>() % 100;
+
+        state.setItem(item);
+
         if (filter.compareState(state))
         {
             state.setOccidentary(occidentary);
@@ -301,7 +305,7 @@ std::vector<WildState4> WildGenerator4::generateMethodK(u32 seed) const
             }
 
             state.setLevel(encounterArea.calcLevel(state.getEncounterSlot()));
-            occidentary += 2; // Compensate for the game's advances after the battle ends
+            occidentary += 1; // Compensate for the game's advances after the battle ends
             break;
         case Encounter::Surfing:
             state.setEncounterSlot(EncounterSlot::kSlot(first, encounter));
@@ -311,7 +315,7 @@ std::vector<WildState4> WildGenerator4::generateMethodK(u32 seed) const
             }
 
             state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), go.nextUShort<true>()));
-            occidentary += 2; // Compensate for the game's advances after the battle ends
+            occidentary += 1; // Compensate for the game's advances after the battle ends
             break;
         case Encounter::OldRod:
         case Encounter::GoodRod:
@@ -328,7 +332,7 @@ std::vector<WildState4> WildGenerator4::generateMethodK(u32 seed) const
             }
 
             state.setLevel(encounterArea.calcLevel(state.getEncounterSlot()));
-            occidentary += 3; // Compensate for the game's advances after the battle ends
+            occidentary += 2; // Compensate for the game's advances after the battle ends
             go.next();
             break;
         case Encounter::RockSmash:
@@ -344,7 +348,7 @@ std::vector<WildState4> WildGenerator4::generateMethodK(u32 seed) const
             }
 
             state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), go.nextUShort<true>()));
-            occidentary += 2; // Compensate for the game's advances after the battle ends
+            occidentary += 1; // Compensate for the game's advances after the battle ends
             break;
         case Encounter::HeadButt: // TODO
         case Encounter::BugCatchingContest: // TODO
@@ -443,6 +447,10 @@ std::vector<WildState4> WildGenerator4::generateMethodK(u32 seed) const
 
         state.setIVs(iv1, iv2);
         state.calculateHiddenPower();
+
+        u8 item = go.nextUShort<true>() % 100;
+
+        state.setItem(item);
 
         if (filter.compareState(state))
         {
