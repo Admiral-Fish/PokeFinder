@@ -368,9 +368,9 @@ std::vector<WildState> WildSearcher4::normalMethodJ(WildState state, u32 seed) c
 
     PokeRNG rng2(seed);
     rng2.advance(4);
-    u8 heldItem = rng2.nextUShort() % 100;
+    u8 item = rng2.nextUShort() % 100;
 
-    state.setHeldItem(heldItem);
+    state.setItem(item);
 
     PokeRNGR rng(seed);
     u32 pid;
@@ -402,9 +402,9 @@ std::vector<WildState> WildSearcher4::synchMethodJ(WildState state, u32 seed) co
 
     PokeRNG rng2(seed);
     rng2.advance(4);
-    u8 heldItem = rng2.nextUShort() % 100;
+    u8 item = rng2.nextUShort() % 100;
 
-    state.setHeldItem(heldItem);
+    state.setItem(item);
 
     PokeRNGR rng(seed);
     u32 pid;
@@ -442,9 +442,9 @@ std::vector<WildState> WildSearcher4::cuteCharmMethodJ(WildState state, u32 seed
 
     PokeRNG rng2(seed);
     rng2.advance(4);
-    u8 heldItem = rng2.nextUShort() % 100;
+    u8 item = rng2.nextUShort() % 100;
 
-    state.setHeldItem(heldItem);
+    state.setItem(item);
 
     PokeRNGR rng(seed);
     u16 high = state.getPID() >> 16;
@@ -543,9 +543,9 @@ std::vector<WildState> WildSearcher4::normalMethodK(WildState state, u32 seed) c
 
     PokeRNG rng2(seed);
     rng2.advance(4);
-    u8 heldItem = rng2.nextUShort() % 100;
+    u8 item = rng2.nextUShort() % 100;
 
-    state.setHeldItem(heldItem);
+    state.setItem(item);
 
     PokeRNGR rng(seed);
     u32 pid;
@@ -578,9 +578,9 @@ std::vector<WildState> WildSearcher4::synchMethodK(WildState state, u32 seed) co
 
     PokeRNG rng2(seed);
     rng2.advance(4);
-    u8 heldItem = rng2.nextUShort() % 100;
+    u8 item = rng2.nextUShort() % 100;
 
-    state.setHeldItem(heldItem);
+    state.setItem(item);
 
     PokeRNGR rng(seed);
     u32 pid;
@@ -618,9 +618,9 @@ std::vector<WildState> WildSearcher4::cuteCharmMethodK(WildState state, u32 seed
 
     PokeRNG rng2(seed);
     rng2.advance(4);
-    u8 heldItem = rng2.nextUShort() % 100;
+    u8 item = rng2.nextUShort() % 100;
 
-    state.setHeldItem(heldItem);
+    state.setItem(item);
 
     PokeRNGR rng(seed);
     u16 high = state.getPID() >> 16;

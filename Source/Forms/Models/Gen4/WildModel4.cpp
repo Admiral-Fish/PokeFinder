@@ -63,8 +63,8 @@ QVariant WildGeneratorModel4::data(const QModelIndex &index, int role) const
             return state.getOccidentary();
         case 2:
         {
-            u8 heldItem = state.getHeldItem();
-            return heldItem < 45 ? "No" : heldItem < 95? "50%" : "5%";
+            u8 item = state.getItem();
+            return item < 45 ? "No" : item < 95? "50%" : "5%";
         }
         case 3:
         {
@@ -168,7 +168,7 @@ void WildSearcherModel4::sort(int column, Qt::SortOrder order)
             break;
         case 3:
             std::sort(model.begin(), model.end(), [flag](const WildState &state1, const WildState &state2) {
-                return flag ? state1.getHeldItem() > state2.getHeldItem() : state1.getHeldItem() < state2.getHeldItem();
+                return flag ? state1.getItem() > state2.getItem() : state1.getItem() < state2.getItem();
             });
             break;
         case 4:
@@ -283,8 +283,8 @@ QVariant WildSearcherModel4::data(const QModelIndex &index, int role) const
             }
         case 3:
         {
-            u8 heldItem = state.getHeldItem();
-            return heldItem < 45 ? "No" : heldItem < 95? "50%" : "5%";
+            u8 item = state.getItem();
+            return item < 45 ? "No" : item < 95? "50%" : "5%";
         }
         case 4:
             return state.getEncounterSlot();

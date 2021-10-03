@@ -227,9 +227,9 @@ std::vector<WildState4> WildGenerator4::generateMethodJ(u32 seed) const
         state.setIVs(iv1, iv2);
         state.calculateHiddenPower();
 
-        u8 heldItem = go.nextUShort<true>() % 100;
+        u8 item = go.nextUShort<true>() % 100;
 
-        state.setHeldItem(heldItem);
+        state.setItem(item);
 
         if (filter.compareState(state))
         {
@@ -448,9 +448,9 @@ std::vector<WildState4> WildGenerator4::generateMethodK(u32 seed) const
         state.setIVs(iv1, iv2);
         state.calculateHiddenPower();
 
-        u8 heldItem = go.nextUShort<true>() % 100;
+        u8 item = go.nextUShort<true>() % 100;
 
-        state.setHeldItem(heldItem);
+        state.setItem(item);
 
         if (filter.compareState(state))
         {

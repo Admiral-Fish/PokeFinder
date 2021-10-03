@@ -37,9 +37,9 @@ public:
 
 private:
     Method method;
-    QStringList header = { tr("Advances"), tr("Occidentary"), tr("Held Item"), tr("Call"),    tr("Chatot"), tr("Slot"), tr("Level"),
-                           tr("PID"),      tr("Shiny"),       tr("Nature"),    tr("Ability"), tr("HP"),     tr("Atk"),  tr("Def"),
-                           tr("SpA"),      tr("SpD"),         tr("Spe"),       tr("Hidden"),  tr("Power"),  tr("Gender") };
+    QStringList header = { tr("Advances"), tr("Occidentary"), tr("Item"),   tr("Call"),    tr("Chatot"), tr("Slot"), tr("Level"),
+                           tr("PID"),      tr("Shiny"),       tr("Nature"), tr("Ability"), tr("HP"),     tr("Atk"),  tr("Def"),
+                           tr("SpA"),      tr("SpD"),         tr("Spe"),    tr("Hidden"),  tr("Power"),  tr("Gender") };
 
     int getColumn(int column) const;
 };
@@ -58,8 +58,8 @@ public:
 private:
     Method method;
     QStringList header
-        = { tr("Seed"),    tr("Advances"), tr("Lead"), tr("Held Item"), tr("Slot"), tr("Level"), tr("PID"), tr("Shiny"),  tr("Nature"),
-            tr("Ability"), tr("HP"),       tr("Atk"),  tr("Def"),       tr("SpA"),  tr("SpD"),   tr("Spe"), tr("Hidden"), tr("Power"),
+        = { tr("Seed"),    tr("Advances"), tr("Lead"), tr("Item"), tr("Slot"), tr("Level"), tr("PID"), tr("Shiny"),  tr("Nature"),
+            tr("Ability"), tr("HP"),       tr("Atk"),  tr("Def"),  tr("SpA"),  tr("SpD"),   tr("Spe"), tr("Hidden"), tr("Power"),
             tr("Gender") };
 
     int getColumn(int column) const;
