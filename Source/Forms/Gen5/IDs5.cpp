@@ -196,9 +196,6 @@ void IDs5::find()
     u8 minSecond = ui->spinBoxMinSecond->value();
     u8 maxSecond = ui->spinBoxMaxSecond->value();
     u32 maxAdvance = ui->textBoxSeedFinderMaxAdvances->getUInt();
-    u32 pid = ui->textBoxPID->getUInt();
-    bool usePID = ui->checkBoxPID->isChecked();
-    bool useXOR = ui->checkBoxXOR->isChecked();
 
     IDFilter filter({ tid }, {}, {});
     IDGenerator5 generator(0, maxAdvance, filter);
@@ -224,7 +221,7 @@ void IDs5::find()
             u64 seed = sha.hashSeed();
 
             generator.setInitialAdvances(flag ? Utilities::initialAdvancesBWID(seed) : Utilities::initialAdvancesBW2ID(seed));
-            auto states = generator.generate(seed, usePID, useXOR, pid);
+            auto states = generator.generate(seed);
 
             DateTime dt(date, Time(hour, minute, second));
             for (auto &state : states)
