@@ -26,14 +26,40 @@
 class Slot
 {
 public:
-    Slot(u16 specie, u8 minLevel, u8 maxLevel, const PersonalInfo &info);
-    Slot(u16 specie, u8 level, const PersonalInfo &info);
+    Slot(u16 specie, u8 minLevel, u8 maxLevel, const PersonalInfo &info) :
+        minLevel(minLevel), maxLevel(maxLevel), specie(specie), info(info)
+    {
+    }
 
-    u8 getMinLevel() const;
-    u8 getMaxLevel() const;
-    u16 getSpecie() const;
-    PersonalInfo getInfo() const;
-    void setSpecie(u16 specie, const PersonalInfo &info);
+    Slot(u16 specie, u8 level, const PersonalInfo &info) : minLevel(level), maxLevel(level), specie(specie), info(info)
+    {
+    }
+
+    u8 getMinLevel() const
+    {
+        return minLevel;
+    }
+
+    u8 getMaxLevel() const
+    {
+        return maxLevel;
+    }
+
+    u16 getSpecie() const
+    {
+        return specie;
+    }
+
+    PersonalInfo getInfo() const
+    {
+        return info;
+    }
+
+    void setSpecie(u16 specie, const PersonalInfo &info)
+    {
+        this->specie = specie;
+        this->info = info;
+    }
 
 private:
     u8 minLevel;
