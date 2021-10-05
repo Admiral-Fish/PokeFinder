@@ -67,18 +67,16 @@ MainWindow::MainWindow(bool profile, QWidget *parent) : QMainWindow(parent), ui(
 
     setupModels();
 
-    QTimer::singleShot(1000,
-                       [this, &profile]
-                       {
-                           if (!profile)
-                           {
-                               QMessageBox message(QMessageBox::Warning, tr("Unable to locate profiles"),
-                                                   tr("Please update path to your profiles file to restore existing profiles."));
-                               message.exec();
-                           }
+    QTimer::singleShot(1000, [this, &profile] {
+        if (!profile)
+        {
+            QMessageBox message(QMessageBox::Warning, tr("Unable to locate profiles"),
+                                tr("Please update path to your profiles file to restore existing profiles."));
+            message.exec();
+        }
 
-                           checkUpdates();
-                       });
+        checkUpdates();
+    });
 }
 
 MainWindow::~MainWindow()
@@ -238,6 +236,14 @@ void MainWindow::updateProfiles(int num)
         if (ids5)
         {
             ids5->updateProfiles();
+        }
+        if (egg5)
+        {
+            egg5->updateProfiles();
+        }
+        if (hiddenGrotto)
+        {
+            hiddenGrotto->updateProfiles();
         }
     }
 }

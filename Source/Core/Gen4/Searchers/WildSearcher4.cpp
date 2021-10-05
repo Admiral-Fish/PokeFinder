@@ -157,6 +157,12 @@ std::vector<WildState> WildSearcher4::searchMethodJ(u8 hp, u8 atk, u8 def, u8 sp
                 seed ^= 0x80000000;
             }
 
+            PokeRNG rng2(seed);
+            rng2.advance(4);
+            u8 item = rng2.nextUShort() % 100;
+
+            state.setItem(item);
+
             if (lead == Lead::CuteCharm)
             {
                 auto results = cuteCharmMethodJ(state, seed);
@@ -234,6 +240,12 @@ std::vector<WildState> WildSearcher4::searchMethodK(u8 hp, u8 atk, u8 def, u8 sp
                 state.setPID(state.getPID() ^ 0x80008000);
                 seed ^= 0x80000000;
             }
+
+            PokeRNG rng2(seed);
+            rng2.advance(4);
+            u8 item = rng2.nextUShort() % 100;
+
+            state.setItem(item);
 
             if (lead == Lead::CuteCharm)
             {

@@ -10,7 +10,7 @@ case $OS in
   macOS)
   {
     mv build/Source/Forms/PokeFinder.app .
-    PATH=$PATH:$HOME/Qt/5.15/clang_64/bin macdeployqt PokeFinder.app -dmg -verbose=2
+    PATH=$PATH:$HOME/Qt/6.1/macos/bin macdeployqt PokeFinder.app -dmg -verbose=2
     zip -r PokeFinder-macOS.zip PokeFinder.dmg
     shasum -a 256 PokeFinder-macOS.zip > PokeFinder-macOS.zip.sha256
   } ;;

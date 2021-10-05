@@ -130,6 +130,7 @@ void Stationary5::setupModels()
     connect(ui->pushButtonSearch, &QPushButton::clicked, this, &Stationary5::search);
     connect(ui->pushButtonGeneratorLead, &QPushButton::clicked, this, &Stationary5::generatorLead);
     connect(ui->pushButtonCalculateInitialAdvances, &QPushButton::clicked, this, &Stationary5::calculateInitialAdvances);
+    connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &Stationary5::profileManager);
     connect(ui->tableViewGenerator, &QTableView::customContextMenuRequested, this, &Stationary5::tableViewGeneratorContextMenu);
     connect(ui->tableViewSearcher, &QTableView::customContextMenuRequested, this, &Stationary5::tableViewSearcherContextMenu);
 
