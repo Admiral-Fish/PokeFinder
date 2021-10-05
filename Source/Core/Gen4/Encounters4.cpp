@@ -238,6 +238,7 @@ namespace Encounters4
                 int timeOffset = (time * 2) + 1;
 
                 std::vector<Slot> grass;
+                std::vector<Slot> bcc;
                 for (int i = 0; i < 12; i++)
                 {
                     u8 level = data[4 + i * 7];
@@ -249,6 +250,7 @@ namespace Encounters4
                 modifySwarmHGSS(grass, data, info, encounter, profile.getSwarm());
 
                 encounters.emplace_back(location, Encounter::Grass, grass);
+                encounters.emplace_back(location, Encounter::BugCatchingContest, bcc);
             }
 
             // Rock Smash

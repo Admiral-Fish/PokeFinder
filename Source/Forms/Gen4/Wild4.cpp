@@ -376,6 +376,7 @@ void Wild4::profilesIndexChanged(int index)
         if (flag)
         {
             ui->comboBoxGeneratorEncounter->addItem(tr("Rock Smash"), toInt(Encounter::RockSmash));
+            ui->comboBoxGeneratorEncounter->addItem(tr("Bug Catching Contest"), toInt(Encounter::BugCatchingContest));
         }
         ui->comboBoxGeneratorEncounter->addItem(tr("Surfing"), toInt(Encounter::Surfing));
         ui->comboBoxGeneratorEncounter->addItem(tr("Old Rod"), toInt(Encounter::OldRod));
@@ -387,6 +388,7 @@ void Wild4::profilesIndexChanged(int index)
         if (flag)
         {
             ui->comboBoxSearcherEncounter->addItem(tr("Rock Smash"), toInt(Encounter::RockSmash));
+            ui->comboBoxSearcherEncounter->addItem(tr("Bug Catching Contest"), toInt(Encounter::BugCatchingContest));
         }
         ui->comboBoxSearcherEncounter->addItem(tr("Surfing"), toInt(Encounter::Surfing));
         ui->comboBoxSearcherEncounter->addItem(tr("Old Rod"), toInt(Encounter::OldRod));
