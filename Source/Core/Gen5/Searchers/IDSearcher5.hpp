@@ -30,7 +30,7 @@ class IDSearcher5
 {
 public:
     IDSearcher5() = default;
-    explicit IDSearcher5(const Profile5 &profile, u32 pid, bool checkPID);
+    explicit IDSearcher5(const Profile5 &profile, u32 pid, bool checkPID, bool checkXOR);
     void startSearch(const IDGenerator5 &generator, int threads, Date start, const Date &end);
     void cancelSearch();
     std::vector<IDState5> getResults();
@@ -40,6 +40,7 @@ private:
     Profile5 profile;
     u32 pid;
     bool checkPID;
+    bool checkXOR;
 
     bool searching;
     std::atomic<int> progress;

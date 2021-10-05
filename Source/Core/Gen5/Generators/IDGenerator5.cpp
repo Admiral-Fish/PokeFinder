@@ -24,7 +24,7 @@ IDGenerator5::IDGenerator5(u32 initialAdvances, u32 maxAdvances, const IDFilter 
 {
 }
 
-std::vector<IDState5> IDGenerator5::generate(u64 seed, u32 pid, bool checkPID)
+std::vector<IDState5> IDGenerator5::generate(u64 seed, u32 pid, bool checkPID, bool checkXOR)
 {
     std::vector<IDState5> states;
 
@@ -33,12 +33,11 @@ std::vector<IDState5> IDGenerator5::generate(u64 seed, u32 pid, bool checkPID)
 
     bool pidBit = (pid >> 31) ^ (pid & 1);
     u16 psv = (pid >> 16) ^ (pid & 0xffff);
-    u16 xorPSV = psv ^ 0x8000;
 
-    //cnt starts from 1 because the game forces
-    //you to enter in the name insertion screen
-    //at least once, so prng advances +1 at the
-    //Yes/No screen after you click A on OK
+    // cnt starts from 1 because the game forces
+    // you to enter in the name insertion screen
+    // at least once, so prng advances +1 at the
+    // Yes/No screen after you click A on OK
     for (u32 cnt = 1; cnt <= maxAdvances; cnt++)
     {
         u32 rand = rng.nextUInt(0xffffffff);
@@ -50,19 +49,16 @@ std::vector<IDState5> IDGenerator5::generate(u64 seed, u32 pid, bool checkPID)
 
         if (filter.compare(state))
         {
-            if (checkPID)
-            {
-                bool idBit = (tid & 1) ^ (sid & 1);
+            bool shiny = (psv >> 3) == state.getTSV();
 
-                // Check if PID will be modified by the tid/sid combo
-                u16 actualPSV = (idBit ^ pidBit) ? xorPSV : psv;
-                if ((actualPSV >> 3) == state.getTSV())
-                {
-                    state.setSeed(seed);
-                    states.emplace_back(state);
-                }
+            // Check if PID is possible with TID/SID combo if Wild/Stationary box is checked
+            if (shiny && checkXOR) // We need to do the check only if it was shiny first
+            {
+                bool idbit = ((tid & 1) ^ (sid & 1));
+                shiny = idbit == pidBit;
             }
-            else
+
+            if (!checkPID || shiny)
             {
                 state.setSeed(seed);
                 states.emplace_back(state);
