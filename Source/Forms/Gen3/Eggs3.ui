@@ -103,9 +103,6 @@
    </item>
    <item row="1" column="0">
     <widget class="QTabWidget" name="tabEggSelection">
-     <property name="currentIndex">
-      <number>2</number>
-     </property>
      <widget class="QWidget" name="tabEmerald">
       <attribute name="title">
        <string>Emerald</string>
