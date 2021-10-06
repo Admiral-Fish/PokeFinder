@@ -437,6 +437,8 @@ void Wild4::generatorEncounterIndexChanged(int index)
         case Encounter::RockSmash:
             t = { "0", "1" };
             break;
+        case Encounter::BugCatchingContest:
+            t = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" };
         default:
             break;
         }
@@ -467,6 +469,8 @@ void Wild4::searcherEncounterIndexChanged(int index)
         case Encounter::RockSmash:
             t = { "0", "1" };
             break;
+        case Encounter::BugCatchingContest:
+            t = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" };
         default:
             break;
         }
