@@ -113,7 +113,7 @@ void Eggs3::setupModels()
 
     ui->comboBoxEmeraldMethod->setup({ Method::EBredPID, Method::EBred, Method::EBredSplit, Method::EBredAlternate });
     ui->comboBoxRSMethod->setup({ Method::RSBred, Method::RSBredSplit, Method::RSBredAlternate });
-    ui->comboBoxFRLGMethod->setup({ Method::FRLGBred, Method::FRLGBredSplit, Method::FRLGBredAlternate });
+    ui->comboBoxFRLGMethod->setup({ Method::FRLGBred, Method::FRLGBredSplit, Method::FRLGBredAlternate, Method::FRLGBredMixed });
 
     ui->filterEmerald->disableControls(Controls::EncounterSlots | Controls::UseDelay | Controls::DisableFilter);
     ui->filterRS->disableControls(Controls::EncounterSlots | Controls::UseDelay | Controls::DisableFilter);

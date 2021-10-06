@@ -127,6 +127,12 @@ EggGenerator3::EggGenerator3(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 
         inh = 2;
         // par = 0;
         break;
+    case Method::FRLGBredMixed:
+        iv1 = 0;
+        iv2 = 0;
+        inh = 2;
+        // par = 0;
+        break;
     default:
         break;
     }
@@ -148,6 +154,7 @@ std::vector<EggState3> EggGenerator3::generate(u32 seed, u32 seed2) const
     case Method::FRLGBredSplit:
     case Method::FRLGBred:
     case Method::FRLGBredAlternate:
+    case Method::FRLGBredMixed:
     {
         auto lower = generateLower(seed);
         return lower.empty() ? std::vector<EggState3>() : generateUpper(seed2, lower);
