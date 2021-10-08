@@ -17,20 +17,26 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef TINYMTTEST_HPP
-#define TINYMTTEST_HPP
+#ifndef ENCOUNTERSLOTTEST_HPP
+#define ENCOUNTERSLOTTEST_HPP
 
 #include <QObject>
 
-class TinyMTTest : public QObject
+class EncounterSlotTest : public QObject
 {
     Q_OBJECT
 private slots:
-    void advance_data();
-    void advance();
+    void hSlot_data();
+    void hSlot();
 
-    void next_data();
-    void next();
+    void jSlot_data();
+    void jSlot();
+
+    void kSlot_data();
+    void kSlot();
+
+    void bdspSlot_data();
+    void bdspSlot();
 };
 
-#endif // TINYMTTEST_HPP
+#endif // DATETIMETEST_HPP

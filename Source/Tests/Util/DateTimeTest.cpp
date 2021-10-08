@@ -17,20 +17,27 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef TINYMTTEST_HPP
-#define TINYMTTEST_HPP
+#include "DateTimeTest.hpp"
+#include <Core/Util/DateTime.hpp>
+#include <QTest>
+#include <QVector>
 
-#include <QObject>
-
-class TinyMTTest : public QObject
+void DateTest::getParts_data()
 {
-    Q_OBJECT
-private slots:
-    void advance_data();
-    void advance();
+    QTest::addColumn<int>("jd");
+    QTest::addColumn<std::array<int, 3>>("results");
 
-    void next_data();
-    void next();
-};
+    QTest::newRow("Jan 1, 2000") << 2451545 << std::array<int, 3> { 2000, 1, 1 };
+    QTest::newRow("Dec 31, 2099") << 2488069 << std::array<int, 3> { 2099, 12, 31 };
+}
 
-#endif // TINYMTTEST_HPP
+void DateTest::getParts()
+{
+    using Results = std::array<int, 3>;
+
+    QFETCH(int, jd);
+    QFETCH(Results, results);
+
+    Date date(jd);
+    QCOMPARE(date.getParts(), results);
+}
