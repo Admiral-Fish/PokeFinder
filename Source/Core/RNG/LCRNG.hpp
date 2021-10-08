@@ -31,12 +31,13 @@ public:
     }
 
     template <bool flag = false>
-    void advance(u32 advances)
+    u32 advance(u32 advances)
     {
         for (u32 advance = 0; advance < advances; advance++)
         {
             next<flag>();
         }
+        return seed;
     }
 
     template <bool flag = false>

@@ -141,9 +141,10 @@ std::vector<WildState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 s
                     if ((nextRNG % 25) == state.getNature())
                     {
                         state.setLead(Lead::None);
-                        u32 slot = testRNG.getSeed() * 0xeeb9eb65 + 0xa3561a1;
-                        state.setSeed(slot * 0xdc6c95d9 + 0x4d3cb126);
-                        state.setEncounterSlot(EncounterSlot::hSlot(slot >> 16, encounter));
+                        PokeRNGR temp(testRNG.getSeed());
+                        u16 slot = temp.nextUShort();
+                        state.setSeed(temp.advance(2));
+                        state.setEncounterSlot(EncounterSlot::hSlot(slot, encounter));
                         if (filter.compareEncounterSlot(state))
                         {
                             state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), testRNG.getSeed() >> 16));
@@ -156,9 +157,10 @@ std::vector<WildState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 s
                     if ((nextRNG & 1) == 0)
                     {
                         state.setLead(Lead::Synchronize);
-                        u32 slot = testRNG.getSeed() * 0xeeb9eb65 + 0xa3561a1;
-                        state.setSeed(slot * 0xdc6c95d9 + 0x4d3cb126);
-                        state.setEncounterSlot(EncounterSlot::hSlot(slot >> 16, encounter));
+                        PokeRNGR temp(testRNG.getSeed());
+                        u16 slot = temp.nextUShort();
+                        state.setSeed(temp.advance(2));
+                        state.setEncounterSlot(EncounterSlot::hSlot(slot, encounter));
                         if (filter.compareEncounterSlot(state))
                         {
                             state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), testRNG.getSeed() >> 16));
@@ -169,9 +171,10 @@ std::vector<WildState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 s
                     else if ((nextRNG2 & 1) == 1 && (nextRNG % 25) == state.getNature())
                     {
                         state.setLead(Lead::Synchronize);
-                        u32 slot = testRNG.getSeed() * 0xdc6c95d9 + 0x4d3cb126;
-                        state.setSeed(slot * 0xdc6c95d9 + 0x4d3cb126);
-                        state.setEncounterSlot(EncounterSlot::hSlot(slot >> 16, encounter));
+                        PokeRNGR temp(testRNG.getSeed());
+                        u16 slot = temp.advance(2) >> 16;
+                        state.setSeed(temp.advance(2));
+                        state.setEncounterSlot(EncounterSlot::hSlot(slot, encounter));
                         if (filter.compareEncounterSlot(state))
                         {
                             state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), testRNG.getSeed() >> 16));
@@ -183,9 +186,10 @@ std::vector<WildState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 s
                     if ((nextRNG % 25) == state.getNature() && (nextRNG2 % 3) > 0)
                     {
                         state.setLead(Lead::CuteCharm);
-                        u32 slot = testRNG.getSeed() * 0xdc6c95d9 + 0x4d3cb126;
-                        state.setSeed(slot * 0xdc6c95d9 + 0x4d3cb126);
-                        state.setEncounterSlot(EncounterSlot::hSlot(slot >> 16, encounter));
+                        PokeRNGR temp(testRNG.getSeed());
+                        u16 slot = temp.advance(2) >> 16;
+                        state.setSeed(temp.advance(2));
+                        state.setEncounterSlot(EncounterSlot::hSlot(slot, encounter));
                         if (filter.compareEncounterSlot(state))
                         {
                             state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), testRNG.getSeed() >> 16));
@@ -199,18 +203,20 @@ std::vector<WildState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 s
                     if ((nextRNG % 25) == state.getNature())
                     {
                         state.setLead(Lead::None);
-                        u32 slot = testRNG.getSeed() * 0xeeb9eb65 + 0xa3561a1;
-                        state.setSeed(slot * 0xdc6c95d9 + 0x4d3cb126);
-                        state.setEncounterSlot(EncounterSlot::hSlot(slot >> 16, encounter));
+                        PokeRNGR temp(testRNG.getSeed());
+                        u16 slot = temp.nextUShort();
+                        state.setSeed(temp.advance(2));
+                        state.setEncounterSlot(EncounterSlot::hSlot(slot, encounter));
                         if (filter.compareEncounterSlot(state))
                         {
                             state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), testRNG.getSeed() >> 16));
                             states.emplace_back(state);
                         }
 
-                        slot = testRNG.getSeed() * 0xdc6c95d9 + 0x4d3cb126;
-                        state.setSeed(slot * 0xdc6c95d9 + 0x4d3cb126);
-                        state.setEncounterSlot(EncounterSlot::hSlot(slot >> 16, encounter));
+                        temp.setSeed(testRNG.getSeed());
+                        slot = temp.advance(2) >> 16;
+                        state.setSeed(temp.advance(2));
+                        state.setEncounterSlot(EncounterSlot::hSlot(slot, encounter));
                         if (filter.compareEncounterSlot(state))
                         {
                             state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), testRNG.getSeed() >> 16));
@@ -234,9 +240,10 @@ std::vector<WildState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 s
                     else if ((nextRNG & 1) == 0)
                     {
                         state.setLead(Lead::Synchronize);
-                        u32 slot = testRNG.getSeed() * 0xeeb9eb65 + 0xa3561a1;
-                        state.setSeed(slot * 0xdc6c95d9 + 0x4d3cb126);
-                        state.setEncounterSlot(EncounterSlot::hSlot(slot >> 16, encounter));
+                        PokeRNGR temp(testRNG.getSeed());
+                        u16 slot = temp.nextUShort();
+                        state.setSeed(temp.advance(2));
+                        state.setEncounterSlot(EncounterSlot::hSlot(slot, encounter));
                         if (filter.compareEncounterSlot(state))
                         {
                             state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), testRNG.getSeed() >> 16));
@@ -263,15 +270,14 @@ std::vector<WildState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 s
         {
             for (size_t i = 0; i < states.size();)
             {
-                u32 check = states[i].getSeed() * 0x41c64e6d + 0x6073;
-
-                if (((check >> 16) % 2880) >= rate)
+                u16 check = PokeRNG(states[i].getSeed()).nextUShort();
+                if ((check % 2880) >= rate)
                 {
                     states.erase(states.begin() + i);
                 }
                 else
                 {
-                    states[i].setSeed(states[i].getSeed() * 0xeeb9eb65 + 0xa3561a1);
+                    states[i].setSeed(PokeRNGR(states[i].getSeed()).next());
                     i++;
                 }
             }
