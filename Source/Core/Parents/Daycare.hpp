@@ -30,7 +30,7 @@ class Daycare
 public:
     Daycare() = default;
     Daycare(const std::array<std::array<u8, 6>, 2> &parentIVs, const std::array<u8, 2> &parentAbility,
-            const std::array<u8, 2> &parentGender, const std::array<u8, 2> &parentItem, const std::array<u8, 2> &parentNature, bool masuada,
+            const std::array<u8, 2> &parentGender, const std::array<u8, 2> &parentItem, const std::array<u8, 2> &parentNature, bool masuda,
             bool nidoranVolbeat);
     u8 getParentIV(u8 parent, u8 index) const;
     u8 getParentAbility(u8 parent) const;
@@ -40,7 +40,7 @@ public:
     u8 getEverstoneCount(Game version) const;
     u8 getPowerItemCount() const;
     bool getDitto() const;
-    bool getMasuada() const;
+    bool getMasuda() const;
     bool getNidoranVolbeat() const;
 
 private:
@@ -49,7 +49,7 @@ private:
     std::array<u8, 2> parentGender; // 3 - Ditto
     std::array<u8, 2> parentItem; // 0 - No item, 1 - Everstone, 2-7 Power items
     std::array<u8, 2> parentNature;
-    bool masuada;
+    bool masuda;
     bool nidoranVolbeat;
 };
 

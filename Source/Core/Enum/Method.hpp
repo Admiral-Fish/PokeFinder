@@ -51,7 +51,7 @@ enum Method : u8
     ChainedShiny,
     WondercardIVs,
     Gen4Normal,
-    Gen4Masuada,
+    Gen4Masuda,
     DPPtIVs,
     HGSSIVs,
     Gen4Combined,

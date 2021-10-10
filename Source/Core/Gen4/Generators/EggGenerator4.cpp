@@ -93,8 +93,8 @@ std::vector<EggState4> EggGenerator4::generate(u32 seed) const
     {
     case Method::Gen4Normal:
         return generateNormal(seed);
-    case Method::Gen4Masuada:
-        return generateMasuada(seed);
+    case Method::Gen4Masuda:
+        return generateMasuda(seed);
     case Method::DPPtIVs:
         return generateDPPtIVs(seed);
     case Method::HGSSIVs:
@@ -131,7 +131,7 @@ std::vector<EggState4> EggGenerator4::generateNormal(u32 seed) const
     return states;
 }
 
-std::vector<EggState4> EggGenerator4::generateMasuada(u32 seed) const
+std::vector<EggState4> EggGenerator4::generateMasuda(u32 seed) const
 {
     std::vector<EggState4> states;
 

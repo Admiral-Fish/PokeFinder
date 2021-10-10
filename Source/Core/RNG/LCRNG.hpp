@@ -40,6 +40,15 @@ public:
         return seed;
     }
 
+    static u32 advance(u32 prng, u32 advances)
+    {
+        for (u32 advance = 0; advance < advances; advance++)
+        {
+            prng = prng * mult + add;
+        }
+        return prng;
+    }
+
     template <bool flag = false>
     u32 next()
     {

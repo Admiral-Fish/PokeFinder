@@ -32,7 +32,7 @@ inline bool isShiny(u32 pid, u16 tsv)
 EggGenerator5::EggGenerator5(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, Method method,
                              const StateFilter &filter, const Daycare &daycare, bool shinyCharm) :
     EggGenerator(initialAdvances, maxAdvances, tid, sid, genderRatio, method, filter, daycare),
-    rolls((shinyCharm ? 2 : 0) + (daycare.getMasuada() ? 5 : 0)),
+    rolls((shinyCharm ? 2 : 0) + (daycare.getMasuda() ? 5 : 0)),
     everstone(daycare.getEverstoneCount(Game::BW)),
     poweritem(daycare.getPowerItemCount()),
     ditto(daycare.getDitto()),

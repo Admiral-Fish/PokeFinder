@@ -39,7 +39,7 @@ int EggGeneratorModel4::columnCount(const QModelIndex &parent) const
     switch (method)
     {
     case Method::Gen4Normal:
-    case Method::Gen4Masuada:
+    case Method::Gen4Masuda:
         return 6;
     case Method::DPPtIVs:
         return 10;
@@ -130,7 +130,7 @@ int EggGeneratorModel4::getColumn(int column) const
     switch (method)
     {
     case Method::Gen4Normal:
-    case Method::Gen4Masuada:
+    case Method::Gen4Masuda:
         return column == 5 ? column + 10 : column > 0 ? column + 2 : column;
     case Method::DPPtIVs:
         return column == 1 ? column + 1 : column > 1 ? column + 5 : column;
@@ -234,7 +234,7 @@ int EggSearcherModel4::columnCount(const QModelIndex &parent) const
     switch (method)
     {
     case Method::Gen4Normal:
-    case Method::Gen4Masuada:
+    case Method::Gen4Masuda:
         return 7;
     case Method::DPPtIVs:
     case Method::HGSSIVs:
@@ -321,7 +321,7 @@ int EggSearcherModel4::getColumn(int column) const
     switch (method)
     {
     case Method::Gen4Normal:
-    case Method::Gen4Masuada:
+    case Method::Gen4Masuda:
         return column == 6 ? column + 10 : column > 1 ? column + 2 : column;
     case Method::DPPtIVs:
     case Method::HGSSIVs:
