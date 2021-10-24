@@ -360,7 +360,7 @@ std::vector<WildState4> WildGenerator4::generateMethodK(u32 seed) const
 
             state.setLevel(0);
             occidentary += 1; // Compensate for the game's advances after the battle ends
-            go.nextUShort(occidentary);
+            go.nextUShort<true>();
             loops = 4;
             break;
         case Encounter::SafariZoneHGSS:
