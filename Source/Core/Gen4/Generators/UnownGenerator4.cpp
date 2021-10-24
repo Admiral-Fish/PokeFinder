@@ -80,10 +80,11 @@ std::vector<UnownState4> UnownGenerator4::generateMethodJ(u32 seed) const
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rng.next())
     {
         UnownState4 state(initialAdvances + cnt);
-        PokeRNG go(rng.getSeed());
+        
+        u32 occidentary = initialAdvances + cnt;
+        PokeRNG go(rng.getSeed(), &occidentary);
 
-        u32 occidentary = cnt;
-        u16 first = go.nextUShort(occidentary); // Encounter slot call, nibble call for fishing
+        u16 first = go.nextUShort<true>(); // Encounter slot call, nibble call for fishing
 
         // state.setEncounterSlot(EncounterSlot::jSlot(first, encounter));
         // if (!filter.compareEncounterSlot(state))
@@ -99,7 +100,7 @@ std::vector<UnownState4> UnownGenerator4::generateMethodJ(u32 seed) const
         {
         case Lead::None:
             // Get hunt nature
-            state.setNature(go.nextUShort(occidentary) / 0xa3e);
+            state.setNature(go.nextUShort<true>() / 0xa3e);
 
             if (!filter.compareNature(state))
             {
@@ -109,20 +110,20 @@ std::vector<UnownState4> UnownGenerator4::generateMethodJ(u32 seed) const
             // Begin search for valid pid
             do
             {
-                u16 low = go.nextUShort(occidentary);
-                u16 high = go.nextUShort(occidentary);
+                u16 low = go.nextUShort<true>();
+                u16 high = go.nextUShort<true>();
                 pid = static_cast<u32>((high << 16) | low);
             } while (pid % 25 != state.getNature());
 
             break;
         case Lead::Synchronize:
-            if ((go.nextUShort(occidentary) >> 15) == 0) // Successful synch
+            if ((go.nextUShort<true>() >> 15) == 0) // Successful synch
             {
                 state.setNature(synchNature);
             }
             else // Failed synch
             {
-                state.setNature(go.nextUShort(occidentary) / 0xa3e);
+                state.setNature(go.nextUShort<true>() / 0xa3e);
             }
 
             if (!filter.compareNature(state))
@@ -133,17 +134,17 @@ std::vector<UnownState4> UnownGenerator4::generateMethodJ(u32 seed) const
             // Begin search for valid pid
             do
             {
-                u16 low = go.nextUShort(occidentary);
-                u16 high = go.nextUShort(occidentary);
+                u16 low = go.nextUShort<true>();
+                u16 high = go.nextUShort<true>();
                 pid = static_cast<u32>((high << 16) | low);
             } while (pid % 25 != state.getNature());
 
             break;
         default: // Default to cover all cute charm cases
-            if ((go.nextUShort(occidentary) / 0x5556) != 0) // Successful cute charm
+            if ((go.nextUShort<true>() / 0x5556) != 0) // Successful cute charm
             {
                 // Get nature
-                state.setNature(go.nextUShort(occidentary) / 0xa3e);
+                state.setNature(go.nextUShort<true>() / 0xa3e);
 
                 if (!filter.compareNature(state))
                 {
@@ -156,7 +157,7 @@ std::vector<UnownState4> UnownGenerator4::generateMethodJ(u32 seed) const
             else // Failed cute charm
             {
                 // Get nature
-                state.setNature(go.nextUShort(occidentary) / 0xa3e);
+                state.setNature(go.nextUShort<true>() / 0xa3e);
 
                 if (!filter.compareNature(state))
                 {
@@ -166,8 +167,8 @@ std::vector<UnownState4> UnownGenerator4::generateMethodJ(u32 seed) const
                 // Begin search for valid pid
                 do
                 {
-                    u16 low = go.nextUShort(occidentary);
-                    u16 high = go.nextUShort(occidentary);
+                    u16 low = go.nextUShort<true>();
+                    u16 high = go.nextUShort<true>();
                     pid = static_cast<u32>((high << 16) | low);
                 } while (pid % 25 != state.getNature());
             }
@@ -180,16 +181,16 @@ std::vector<UnownState4> UnownGenerator4::generateMethodJ(u32 seed) const
         state.setGender(pid & 255, genderRatio);
         state.setShiny<8>(tsv, (pid >> 16) ^ (pid & 0xffff));
 
-        u16 iv1 = go.nextUShort(occidentary);
-        u16 iv2 = go.nextUShort(occidentary);
+        u16 iv1 = go.nextUShort<true>();
+        u16 iv2 = go.nextUShort<true>();
 
-        go.nextUShort(occidentary);
+        go.nextUShort<true>();
         if (encounterArea == 0) {
-            state.setLetterIndex4(go.nextUShort(occidentary)%20);
+            state.setLetterIndex4(go.nextUShort<true>()%20);
         }
         else
         {
-            state.setLetterIndex4b(go.nextUShort(occidentary)%2);
+            state.setLetterIndex4b(go.nextUShort<true>()%2);
         }
 
         state.setIVs(iv1, iv2);
