@@ -22,9 +22,9 @@
 #include <Core/Enum/Game.hpp>
 #include <Core/Gen5/Generators/IDGenerator5.hpp>
 #include <Core/Gen5/Keypresses.hpp>
-#include <Core/Parents/ProfileLoader.hpp>
 #include <Core/Gen5/Searchers/IDSearcher5.hpp>
 #include <Core/Parents/Filters/IDFilter.hpp>
+#include <Core/Parents/ProfileLoader.hpp>
 #include <Core/RNG/SHA1.hpp>
 #include <Core/Util/Utilities.hpp>
 #include <Forms/Gen5/Profile/ProfileManager5.hpp>
@@ -105,6 +105,7 @@ void IDs5::setupModels()
     connect(ui->pushButtonFind, &QPushButton::clicked, this, &IDs5::find);
     connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &IDs5::profileManager);
     connect(ui->tableView, &QTableView::customContextMenuRequested, this, &IDs5::tableViewContextMenu);
+    connect(ui->checkBoxPID, &QCheckBox::clicked, this, &IDs5::setXOR);
 
     QSettings setting;
     setting.beginGroup("id5");
@@ -113,6 +114,12 @@ void IDs5::setupModels()
         this->restoreGeometry(setting.value("geometry").toByteArray());
     }
     setting.endGroup();
+}
+
+void IDs5::setXOR(bool checked)
+{
+    ui->checkBoxXOR->setChecked(false);
+    ui->checkBoxXOR->setEnabled(checked);
 }
 
 void IDs5::search()
@@ -125,6 +132,7 @@ void IDs5::search()
 
     u32 pid = ui->textBoxPID->getUInt();
     bool usePID = ui->checkBoxPID->isChecked();
+    bool useXOR = ui->checkBoxXOR->isChecked();
 
     std::vector<u16> tid;
     if (ui->checkBoxTID->isChecked())
@@ -144,7 +152,7 @@ void IDs5::search()
     IDFilter filter(tid, sid, {});
     IDGenerator5 generator(0, ui->textBoxMaxAdvances->getUInt(), filter);
 
-    auto *searcher = new IDSearcher5(currentProfile, pid, usePID);
+    auto *searcher = new IDSearcher5(currentProfile, usePID, useXOR, pid);
 
     int maxProgress = Keypresses::getKeyPresses(currentProfile.getKeypresses(), currentProfile.getSkipLR()).size();
     maxProgress *= (start.daysTo(end) + 1);

@@ -264,7 +264,8 @@ void Wild4::generate()
                        ui->filterGenerator->getDisableFilters(), ui->filterGenerator->getMinIVs(), ui->filterGenerator->getMaxIVs(),
                        ui->filterGenerator->getNatures(), ui->filterGenerator->getHiddenPowers(), ui->filterGenerator->getEncounterSlots());
 
-    WildGenerator4 generator(initialAdvances, maxAdvances, tid, sid, genderRatio, method, filter);
+    WildGenerator4 generator(initialAdvances, maxAdvances, tid, sid, genderRatio, method, filter,
+                             currentProfile.getVersion() & Game::Platinum);
     generator.setOffset(offset);
     generator.setEncounter(static_cast<Encounter>(ui->comboBoxGeneratorEncounter->getCurrentInt()));
 

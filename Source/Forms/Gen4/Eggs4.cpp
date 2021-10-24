@@ -192,9 +192,9 @@ void Eggs4::generate()
     Daycare daycare = ui->eggSettingsGenerator->getDaycareSettings();
     if (method == Method::Gen4Normal)
     {
-        if (daycare.getMasuada())
+        if (daycare.getMasuda())
         {
-            method = Method::Gen4Masuada;
+            method = Method::Gen4Masuda;
         }
     }
     else
@@ -233,7 +233,7 @@ void Eggs4::search()
         methodModel = (currentProfile.getVersion() & Game::HGSS) ? Method::HGSSIVs : Method::DPPtIVs;
         break;
     case 1:
-        methodModel = daycare.getMasuada() ? Method::Gen4Masuada : Method::Gen4Normal;
+        methodModel = daycare.getMasuda() ? Method::Gen4Masuda : Method::Gen4Normal;
         break;
     case 2:
         methodModel = Method::Gen4Combined;
@@ -262,7 +262,7 @@ void Eggs4::search()
     Method methodIV = (currentProfile.getVersion() & Game::HGSS) ? Method::HGSSIVs : Method::DPPtIVs;
     EggGenerator4 generatorIV(minAdvanceIV, maxAdvanceIV, tid, sid, genderRatio, methodIV, filter, daycare);
 
-    Method methodPID = daycare.getMasuada() ? Method::Gen4Masuada : Method::Gen4Normal;
+    Method methodPID = daycare.getMasuda() ? Method::Gen4Masuda : Method::Gen4Normal;
     EggGenerator4 generatorPID(minAdvancePID, maxAdvancePID, tid, sid, genderRatio, methodPID, filter, daycare);
 
     ui->progressBar->setValue(0);

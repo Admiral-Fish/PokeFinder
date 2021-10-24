@@ -50,6 +50,7 @@
 #include <Forms/Gen5/DreamRadar.hpp>
 #include <Forms/Gen5/Eggs5.hpp>
 #include <Forms/Gen5/Event5.hpp>
+#include <Forms/Gen5/HiddenGrotto.hpp>
 #include <Forms/Gen5/IDs5.hpp>
 #include <Forms/Gen5/Profile/ProfileCalibrator5.hpp>
 #include <Forms/Gen5/Profile/ProfileManager5.hpp>
@@ -59,13 +60,13 @@
 #include <Forms/Util/IVtoPID.hpp>
 #include <Forms/Util/Researcher.hpp>
 #include <Forms/Util/Settings.hpp>
-#include <version.h>
 #include <QDate>
 #include <QDesktopServices>
 #include <QFile>
 #include <QSettings>
 #include <QTimer>
 #include <QtNetwork>
+#include <version.h>
 
 MainWindow::MainWindow(bool profile, QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow)
 {
@@ -73,11 +74,12 @@ MainWindow::MainWindow(bool profile, QWidget *parent) : QMainWindow(parent), ui(
     setWindowTitle(QString("Finder ToolBox (PokeFinder)"));
 
     setupModels();
-    
+
     QTimer::singleShot(1000, [this, &profile] {
         if (!profile)
         {
-            QMessageBox message(QMessageBox::Warning, tr("Unable to locate profiles"), tr("Please update path to your profiles file to restore existing profiles."));
+            QMessageBox message(QMessageBox::Warning, tr("Unable to locate profiles"),
+                                tr("Please update path to your profiles file to restore existing profiles."));
             message.exec();
         }
 
@@ -105,6 +107,7 @@ MainWindow::~MainWindow()
     delete stationary5;
     delete event5;
     delete dreamRadar;
+    delete hiddenGrotto;
     delete egg5;
     delete ids5;
 }
@@ -146,6 +149,7 @@ void MainWindow::setupModels()
     connect(ui->pushButtonStationary5, &QPushButton::clicked, this, &MainWindow::openStationary5);
     connect(ui->pushButtonEvent5, &QPushButton::clicked, this, &MainWindow::openEvent5);
     connect(ui->pushButtonDreamRadar, &QPushButton::clicked, this, &MainWindow::openDreamRadar);
+    connect(ui->pushButtonHiddenGrotto, &QPushButton::clicked, this, &MainWindow::openHiddenGrotto);
     connect(ui->pushButtonEgg5, &QPushButton::clicked, this, &MainWindow::openEgg5);
     connect(ui->pushButtonIDs5, &QPushButton::clicked, this, &MainWindow::openIDs5);
     connect(ui->actionProfileCalibrator, &QAction::triggered, this, &MainWindow::openProfileCalibrator);
@@ -258,6 +262,14 @@ void MainWindow::updateProfiles(int num)
         if (ids5)
         {
             ids5->updateProfiles();
+        }
+        if (egg5)
+        {
+            egg5->updateProfiles();
+        }
+        if (hiddenGrotto)
+        {
+            hiddenGrotto->updateProfiles();
         }
     }
 }
@@ -568,6 +580,25 @@ void MainWindow::openDreamRadar()
     }
 }
 
+void MainWindow::openHiddenGrotto()
+{
+    if (!hiddenGrotto)
+    {
+        hiddenGrotto = new HiddenGrotto();
+        connect(hiddenGrotto, &HiddenGrotto::alertProfiles, this, &MainWindow::updateProfiles);
+    }
+    hiddenGrotto->show();
+    hiddenGrotto->raise();
+
+    if (!hiddenGrotto->hasProfiles())
+    {
+        QMessageBox message(QMessageBox::Warning, tr("No profiles found"),
+                            tr("Please use the Profile Calibrator under Gen 5 Tools to create one."));
+        message.exec();
+        hiddenGrotto->close();
+    }
+}
+
 void MainWindow::openEgg5()
 {
     if (!egg5)
@@ -623,13 +654,9 @@ void MainWindow::openProfileManager5()
 
 void MainWindow::openAbout()
 {
-    QStringList info = 
-    {
-        QString("Version: %1").arg(POKEFINDER_VERSION),
-        QString("Branch: %1").arg(GIT_BRANCH),
-        QString("Commit: %1").arg(GIT_COMMIT)
-    };
-    
+    QStringList info
+        = { QString("Version: %1").arg(POKEFINDER_VERSION), QString("Branch: %1").arg(GIT_BRANCH), QString("Commit: %1").arg(GIT_COMMIT) };
+
     QMessageBox about(QMessageBox::Information, tr("About"), info.join("\n"), QMessageBox::Close);
     about.exec();
 }

@@ -21,30 +21,70 @@
 #define PERSONALINFO_HPP
 
 #include <Core/Util/Global.hpp>
-#include <vector>
+#include <array>
 
 class PersonalInfo
 {
 public:
-    PersonalInfo() = default;
-    PersonalInfo(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, u8 gender, u16 ability1, u16 ability2, u16 abilityH = 0, u8 formCount = 1,
-                 u16 formStatIndex = 0);
-    static std::vector<PersonalInfo> loadPersonal(u8 gen);
-    std::vector<u8> getBaseStats() const;
-    u16 getGender() const;
-    u16 getAbility1() const;
-    u16 getAbility2() const;
-    u16 getAbilityH() const;
-    u8 getFormCount() const;
-    u16 getFormStatIndex() const;
+    constexpr PersonalInfo(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, u8 gender, u16 ability1, u16 ability2, u16 abilityH, u8 formCount,
+                           u16 formStatIndex) :
+        hp(hp),
+        atk(atk),
+        def(def),
+        spa(spa),
+        spd(spd),
+        spe(spe),
+        gender(gender),
+        ability1(ability1),
+        ability2(ability2),
+        abilityH(abilityH),
+        formCount(formCount),
+        formStatIndex(formStatIndex)
+    {
+    }
+
+    std::array<u8, 6> getBaseStats() const
+    {
+        return { hp, atk, def, spa, spd, spe };
+    }
+
+    u16 getGender() const
+    {
+        return gender;
+    }
+
+    u16 getAbility1() const
+    {
+        return ability1;
+    }
+
+    u16 getAbility2() const
+    {
+        return ability2;
+    }
+
+    u16 getAbilityH() const
+    {
+        return abilityH;
+    }
+
+    u8 getFormCount() const
+    {
+        return formCount;
+    }
+
+    u16 getFormStatIndex() const
+    {
+        return formStatIndex;
+    }
 
 private:
-    u8 baseHP;
-    u8 baseAtk;
-    u8 baseDef;
-    u8 baseSpA;
-    u8 baseSpD;
-    u8 baseSpe;
+    u8 hp;
+    u8 atk;
+    u8 def;
+    u8 spa;
+    u8 spd;
+    u8 spe;
     u8 gender;
     u16 ability1;
     u16 ability2;

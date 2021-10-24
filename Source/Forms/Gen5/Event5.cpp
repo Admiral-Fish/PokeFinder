@@ -23,9 +23,10 @@
 #include <Core/Enum/Method.hpp>
 #include <Core/Gen5/Generators/EventGenerator5.hpp>
 #include <Core/Gen5/Keypresses.hpp>
-#include <Core/Parents/ProfileLoader.hpp>
 #include <Core/Gen5/Searchers/EventSearcher5.hpp>
 #include <Core/Parents/PersonalInfo.hpp>
+#include <Core/Parents/PersonalLoader.hpp>
+#include <Core/Parents/ProfileLoader.hpp>
 #include <Core/Util/Translator.hpp>
 #include <Core/Util/Utilities.hpp>
 #include <Forms/Gen5/Profile/ProfileManager5.hpp>
@@ -322,7 +323,7 @@ void Event5::generatorImportEvent()
 
             ui->checkBoxGeneratorEgg->setChecked(pgf.isEgg());
 
-            ui->filterGenerator->setGenderRatio(PersonalInfo::loadPersonal(5)[pgf.getSpecies()].getGender());
+            ui->filterGenerator->setGenderRatio(PersonalLoader5::getPersonal()[pgf.getSpecies()].getGender());
         }
         else
         {
@@ -392,7 +393,7 @@ void Event5::searcherImportEvent()
 
             ui->checkBoxSearcherEgg->setChecked(pgf.isEgg());
 
-            ui->filterSearcher->setGenderRatio(PersonalInfo::loadPersonal(5)[pgf.getSpecies()].getGender());
+            ui->filterSearcher->setGenderRatio(PersonalLoader5::getPersonal()[pgf.getSpecies()].getGender());
         }
         else
         {

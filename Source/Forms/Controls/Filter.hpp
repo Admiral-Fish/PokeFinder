@@ -64,6 +64,7 @@ public:
     bool useDelay() const;
     u32 getDelay() const;
     bool getDisableFilters();
+    void enableControls(u16 control);
     void disableControls(u16 control);
     void setGenderRatio(u8 genderRatio);
     void enableHiddenAbility();

@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This file is part of PokéFinder
  * Copyright (C) 2017-2021 by Admiral_Fish, bumba, and EzPzStreamz
  *
@@ -24,22 +24,29 @@
 // Game has all of these + 1, removed for simplicity
 constexpr u32 grottoSlots[11] = { 0, 4, 19, 20, 24, 34, 59, 60, 64, 74, 99 };
 
-HiddenGrottoGenerator::HiddenGrottoGenerator(u32 initialAdvances, u32 maxAdvances, u8 genderRatio, const HiddenGrottoFilter &filter) :
-    initialAdvances(initialAdvances), maxAdvances(maxAdvances), genderRatio(genderRatio), filter(filter)
+HiddenGrottoGenerator::HiddenGrottoGenerator(u32 initialAdvances, u32 maxAdvances, u8 genderRatio, u8 powerLevel,
+                                             const HiddenGrottoFilter &filter) :
+    initialAdvances(initialAdvances), maxAdvances(maxAdvances), genderRatio(genderRatio), powerLevel(powerLevel), filter(filter)
 {
 }
 
-std::vector<HiddenGrottoState> HiddenGrottoGenerator::generate(u64 seed)
+void HiddenGrottoGenerator::setInitialAdvances(u32 initialAdvances)
+{
+    this->initialAdvances = initialAdvances;
+}
+
+std::vector<HiddenGrottoState> HiddenGrottoGenerator::generate(u64 seed) const
 {
     std::vector<HiddenGrottoState> states;
 
     BWRNG rng(seed);
+    rng.advance(initialAdvances);
 
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rng.next())
     {
         BWRNG go(rng.getSeed());
-
-        if (go.nextUInt(100) < 5)
+        u32 seed = ((go.getSeed() >> 32) * 0x1FFF) >> 32;
+        if (go.nextUInt(100) < powerLevel)
         {
             u8 group = go.nextUInt(4);
 
@@ -53,7 +60,7 @@ std::vector<HiddenGrottoState> HiddenGrottoGenerator::generate(u64 seed)
 
             u8 gender = go.nextUInt(100) < genderRatio;
 
-            HiddenGrottoState state(initialAdvances + cnt, group, slot, gender);
+            HiddenGrottoState state(seed, initialAdvances + cnt, group, slot, gender);
             if (filter.compareState(state))
             {
                 states.emplace_back(state);

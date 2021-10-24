@@ -17,51 +17,39 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef STATIONARYMODEL5_HPP
-#define STATIONARYMODEL5_HPP
+#ifndef HIDDENGROTTOMODEL_HPP
+#define HIDDENGROTTOMODEL_HPP
 
+#include <Core/Gen5/States/HiddenGrottoState.hpp>
 #include <Core/Gen5/States/SearcherState5.hpp>
-#include <Core/Parents/States/StationaryState.hpp>
 #include <Forms/Models/TableModel.hpp>
 
-enum Method : u8;
-
-class StationaryGeneratorModel5 : public TableModel<StationaryState>
+class HiddenGrottoGeneratorModel5 : public TableModel<HiddenGrottoState>
 {
     Q_OBJECT
 public:
-    explicit StationaryGeneratorModel5(QObject *parent, Method method);
-    void setMethod(Method method);
+    explicit HiddenGrottoGeneratorModel5(QObject *parent);
     int columnCount(const QModelIndex &parent = QModelIndex()) const override;
     QVariant data(const QModelIndex &index, int role) const override;
     QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
 
 private:
-    Method method;
-    QStringList header = { tr("Advances"), tr("Chatot"), tr("PID"), tr("Shiny"), tr("Nature"), tr("Ability"), tr("HP"),    tr("Atk"),
-                           tr("Def"),      tr("SpA"),    tr("SpD"), tr("Spe"),   tr("Hidden"), tr("Power"),   tr("Gender") };
-
-    int getColumn(int column) const;
+    QStringList header = { tr("Advances"), tr("Chatot"), tr("Group"), tr("Slot"), tr("Gender") };
 };
 
-class StationarySearcherModel5 : public TableModel<SearcherState5<StationaryState>>
+class HiddenGrottoSearcherModel5 : public TableModel<SearcherState5<HiddenGrottoState>>
 {
     Q_OBJECT
 public:
-    explicit StationarySearcherModel5(QObject *parent, Method method);
-    void setMethod(Method method);
+    explicit HiddenGrottoSearcherModel5(QObject *parent);
     void sort(int column, Qt::SortOrder order) override;
     int columnCount(const QModelIndex &parent = QModelIndex()) const override;
     QVariant data(const QModelIndex &index, int role) const override;
     QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
 
 private:
-    Method method;
-    QStringList header = { tr("Seed"),  tr("Advances"), tr("Lead"),      tr("PID"),    tr("Shiny"),  tr("Nature"), tr("Ability"),
-                           tr("HP"),    tr("Atk"),      tr("Def"),       tr("SpA"),    tr("SpD"),    tr("Spe"),    tr("Hidden"),
-                           tr("Power"), tr("Gender"),   tr("Date/Time"), tr("Timer0"), tr("Buttons") };
-
-    int getColumn(int column) const;
+    QStringList header
+        = { tr("Seed"), tr("Advances"), tr("Group"), tr("Slot"), tr("Gender"), tr("Date/Time"), tr("Timer0"), tr("Buttons") };
 };
 
-#endif // STATIONARYMODEL5_HPP
+#endif // HIDDENGROTTOMODEL_HPP

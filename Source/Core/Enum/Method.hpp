@@ -57,7 +57,7 @@ enum Method : u8
     ChainedShiny,
     WondercardIVs,
     Gen4Normal,
-    Gen4Masuada,
+    Gen4Masuda,
     PokeWalkerPID,
     PokeWalkerIVs,
     DPPtIVs,

@@ -20,6 +20,7 @@
 #ifndef HIDDENGROTTOSTATE_HPP
 #define HIDDENGROTTOSTATE_HPP
 
+#include <Core/Parents/States/State.hpp>
 #include <Core/Util/Global.hpp>
 
 class HiddenGrottoState
@@ -27,8 +28,14 @@ class HiddenGrottoState
 public:
     HiddenGrottoState() = default;
 
-    HiddenGrottoState(u32 advances, u8 group, u8 slot, u8 gender) : advances(advances), group(group), slot(slot), gender(gender)
+    HiddenGrottoState(u32 seed, u32 advances, u8 group, u8 slot, u8 gender) :
+        seed(seed), advances(advances), group(group), slot(slot), gender(gender)
     {
+    }
+
+    u32 getSeed() const
+    {
+        return seed;
     }
 
     u32 getAdvances() const
@@ -52,6 +59,7 @@ public:
     }
 
 private:
+    u32 seed;
     u32 advances;
     u8 group;
     u8 slot;

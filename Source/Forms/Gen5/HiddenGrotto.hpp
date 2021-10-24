@@ -17,36 +17,38 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef STATIONARY5_HPP
-#define STATIONARY5_HPP
+#ifndef HIDDENGROTTO_HPP
+#define HIDDENGROTTO_HPP
 
+#include <Core/Gen5/Generators/HiddenGrottoGenerator.hpp>
 #include <Core/Gen5/Profile5.hpp>
 #include <QMenu>
 
-class StationaryGeneratorModel5;
-class StationarySearcherModel5;
+class HiddenGrottoGeneratorModel5;
+class HiddenGrottoSearcherModel5;
 
 namespace Ui
 {
-    class Stationary5;
+    class HiddenGrotto;
 }
 
-class Stationary5 : public QWidget
+class HiddenGrotto : public QWidget
 {
     Q_OBJECT
+
 signals:
     void alertProfiles(int);
 
 public:
-    explicit Stationary5(QWidget *parent = nullptr);
-    ~Stationary5() override;
+    explicit HiddenGrotto(QWidget *parent = nullptr);
+    ~HiddenGrotto() override;
     void updateProfiles();
     bool hasProfiles() const;
 
 private:
-    Ui::Stationary5 *ui;
-    StationaryGeneratorModel5 *generatorModel = nullptr;
-    StationarySearcherModel5 *searcherModel = nullptr;
+    Ui::HiddenGrotto *ui;
+    HiddenGrottoGeneratorModel5 *generatorModel = nullptr;
+    HiddenGrottoSearcherModel5 *searcherModel = nullptr;
     std::vector<Profile5> profiles;
     Profile5 currentProfile;
     QMenu *generatorMenu = nullptr;
@@ -58,13 +60,10 @@ private slots:
     void generate();
     void search();
     void profileIndexChanged(int index);
-    void generatorLead();
     void calculateInitialAdvances();
-    void generatorMethodIndexChanged(int index);
-    void searcherMethodIndexChanged(int index);
-    void tableViewGeneratorContextMenu(const QPoint &pos);
-    void tableViewSearcherContextMenu(const QPoint &pos);
+    void tableViewGeneratorContextMenu(QPoint pos);
+    void tableViewSearcherContextMenu(QPoint pos);
     void profileManager();
 };
 
-#endif // STATIONARY5_HPP
+#endif // HIDDENGROTTO_HPP

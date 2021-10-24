@@ -17,37 +17,37 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef IDSEARCHER5_HPP
-#define IDSEARCHER5_HPP
+#ifndef HIDDENGROTTOSEARCHER_HPP
+#define HIDDENGROTTOSEARCHER_HPP
 
-#include <Core/Gen5/Generators/IDGenerator5.hpp>
+#include <Core/Gen5/Generators/HiddenGrottoGenerator.hpp>
 #include <Core/Gen5/Profile5.hpp>
+#include <Core/Gen5/States/HiddenGrottoState.hpp>
+#include <Core/Gen5/States/SearcherState5.hpp>
+#include <Core/Util/DateTime.hpp>
 #include <Core/Util/Global.hpp>
 #include <atomic>
 #include <mutex>
 
-class IDSearcher5
+class HiddenGrottoSearcher
 {
 public:
-    IDSearcher5() = default;
-    explicit IDSearcher5(const Profile5 &profile, u32 pid, bool checkPID, bool checkXOR);
-    void startSearch(const IDGenerator5 &generator, int threads, Date start, const Date &end);
+    HiddenGrottoSearcher() = default;
+    explicit HiddenGrottoSearcher(const Profile5 &profile);
+    void startSearch(const HiddenGrottoGenerator &generator, int threads, Date start, const Date &end);
     void cancelSearch();
-    std::vector<IDState5> getResults();
+    std::vector<SearcherState5<HiddenGrottoState>> getResults();
     int getProgress() const;
 
 private:
     Profile5 profile;
-    u32 pid;
-    bool checkPID;
-    bool checkXOR;
 
     bool searching;
     std::atomic<int> progress;
-    std::vector<IDState5> results;
+    std::vector<SearcherState5<HiddenGrottoState>> results;
     std::mutex mutex;
 
-    void search(IDGenerator5 generator, const Date &start, const Date &end);
+    void search(const HiddenGrottoGenerator generator, const Date &start, const Date &end);
 };
 
-#endif // IDSEARCHER5_HPP
+#endif // HIDDENGROTTOSEARCHER_HPP

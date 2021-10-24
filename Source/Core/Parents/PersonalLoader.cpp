@@ -17,39 +17,29 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include "Slot.hpp"
+#include "PersonalLoader.hpp"
+#include <Core/Resources/Resources.hpp>
 
-Slot::Slot(u16 specie, u8 minLevel, u8 maxLevel, const PersonalInfo &info) :
-    minLevel(minLevel), maxLevel(maxLevel), specie(specie), info(info)
+namespace PersonalLoader3
 {
+    const PersonalInfo *getPersonal()
+    {
+        return personal3.data();
+    }
 }
 
-Slot::Slot(u16 specie, u8 level, const PersonalInfo &info) : minLevel(level), maxLevel(level), specie(specie), info(info)
+namespace PersonalLoader4
 {
+    const PersonalInfo *getPersonal()
+    {
+        return personal4.data();
+    }
 }
 
-u8 Slot::getMinLevel() const
+namespace PersonalLoader5
 {
-    return minLevel;
-}
-
-u8 Slot::getMaxLevel() const
-{
-    return maxLevel;
-}
-
-u16 Slot::getSpecie() const
-{
-    return specie;
-}
-
-PersonalInfo Slot::getInfo() const
-{
-    return info;
-}
-
-void Slot::setSpecie(u16 specie, const PersonalInfo &info)
-{
-    this->specie = specie;
-    this->info = info;
+    const PersonalInfo *getPersonal()
+    {
+        return personal5.data();
+    }
 }

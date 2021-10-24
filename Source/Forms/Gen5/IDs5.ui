@@ -395,7 +395,7 @@
         </property>
        </widget>
       </item>
-      <item row="5" column="0" colspan="3">
+      <item row="6" column="0" colspan="3">
        <layout class="QHBoxLayout" name="horizontalLayout">
         <item>
          <widget class="QPushButton" name="pushButtonSearch">
@@ -426,6 +426,16 @@
         </property>
        </widget>
       </item>
+      <item row="0" column="2">
+       <widget class="QCheckBox" name="checkBoxXOR">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="text">
+         <string>Stationary/Wild</string>
+        </property>
+       </widget>
+      </item>
       <item row="2" column="0">
        <widget class="QCheckBox" name="checkBoxSID">
         <property name="text">
@@ -433,7 +443,7 @@
         </property>
        </widget>
       </item>
-      <item row="0" column="1" colspan="2">
+      <item row="0" column="1">
        <widget class="TextBox" name="textBoxPID"/>
       </item>
       <item row="3" column="0">
@@ -477,6 +487,7 @@
   <tabstop>pushButtonProfileManager</tabstop>
   <tabstop>checkBoxPID</tabstop>
   <tabstop>textBoxPID</tabstop>
+  <tabstop>checkBoxXOR</tabstop>
   <tabstop>checkBoxTID</tabstop>
   <tabstop>textBoxTID</tabstop>
   <tabstop>checkBoxSID</tabstop>

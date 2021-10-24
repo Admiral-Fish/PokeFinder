@@ -23,13 +23,13 @@
 
 Daycare::Daycare(const std::array<std::array<u8, 6>, 2> &parentIVs, const std::array<u8, 2> &parentAbility,
                  const std::array<u8, 2> &parentGender, const std::array<u8, 2> &parentItem, const std::array<u8, 2> &parentNature,
-                 bool masuada, bool nidoranVolbeat) :
+                 bool masuda, bool nidoranVolbeat) :
     parentIVs(parentIVs),
     parentAbility(parentAbility),
     parentGender(parentGender),
     parentItem(parentItem),
     parentNature(parentNature),
-    masuada(masuada),
+    masuda(masuda),
     nidoranVolbeat(nidoranVolbeat)
 {
 }
@@ -106,9 +106,9 @@ bool Daycare::getDitto() const
     return std::any_of(parentGender.begin(), parentGender.end(), [](u8 gender) { return gender == 3; });
 }
 
-bool Daycare::getMasuada() const
+bool Daycare::getMasuda() const
 {
-    return masuada;
+    return masuda;
 }
 
 bool Daycare::getNidoranVolbeat() const

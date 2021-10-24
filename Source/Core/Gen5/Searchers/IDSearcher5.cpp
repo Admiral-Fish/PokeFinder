@@ -25,8 +25,8 @@
 #include <Core/Util/Utilities.hpp>
 #include <future>
 
-IDSearcher5::IDSearcher5(const Profile5 &profile, u32 pid, bool checkPID) :
-    profile(profile), pid(pid), checkPID(checkPID), searching(false), progress(0)
+IDSearcher5::IDSearcher5(const Profile5 &profile, u32 pid, bool checkPID, bool checkXOR) :
+    profile(profile), pid(pid), checkPID(checkPID), checkXOR(checkXOR), searching(false), progress(0)
 {
 }
 
@@ -114,7 +114,7 @@ void IDSearcher5::search(IDGenerator5 generator, const Date &start, const Date &
                         u64 seed = sha.hashSeed();
 
                         generator.setInitialAdvances(flag ? Utilities::initialAdvancesBWID(seed) : Utilities::initialAdvancesBW2ID(seed));
-                        auto states = generator.generate(seed, pid, checkPID);
+                        auto states = generator.generate(seed, pid, checkPID, checkXOR);
 
                         if (!states.empty())
                         {

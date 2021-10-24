@@ -119,6 +119,70 @@ bool Filter::getDisableFilters()
     return ui->checkBoxDisableFilters->isChecked();
 }
 
+void Filter::enableControls(u16 control)
+{
+    if (control & Controls::IVs)
+    {
+        ui->ivFilter->setVisible(true);
+    }
+
+    if (control & Controls::Ability)
+    {
+        ui->labelAbility->setVisible(true);
+        ui->comboBoxAbility->setVisible(true);
+    }
+
+    if (control & Controls::Gender)
+    {
+        ui->labelGender->setVisible(true);
+        ui->comboBoxGender->setVisible(true);
+    }
+
+    if (control & Controls::GenderRatio)
+    {
+        ui->labelGenderRatio->setVisible(true);
+        ui->comboBoxGenderRatio->setVisible(true);
+    }
+
+    if (control & Controls::EncounterSlots)
+    {
+        ui->labelEncounterSlot->setVisible(true);
+        ui->checkListEncounterSlot->setVisible(true);
+        ui->pushButtonEncounterSlotAny->setVisible(true);
+    }
+
+    if (control & Controls::HiddenPowers)
+    {
+        ui->labelHiddenPower->setVisible(true);
+        ui->checkListHiddenPower->setVisible(true);
+        ui->pushButtonHiddenPowerAny->setVisible(true);
+    }
+
+    if (control & Controls::Natures)
+    {
+        ui->labelNature->setVisible(true);
+        ui->checkListNature->setVisible(true);
+        ui->pushButtonNatureAny->setVisible(true);
+    }
+
+    if (control & Controls::Shiny)
+    {
+        ui->labelShiny->setVisible(true);
+        ui->comboBoxShiny->setVisible(true);
+    }
+
+    if (control & Controls::UseDelay)
+    {
+        ui->checkBoxUseDelay->setVisible(true);
+        ui->textBoxDelay->setVisible(true);
+    }
+
+    if (control & Controls::DisableFilter)
+    {
+        ui->checkBoxDisableFilters->setVisible(true);
+    }
+}
+
 void Filter::disableControls(u16 control)
 {
     if (control & Controls::IVs)

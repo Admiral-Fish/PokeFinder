@@ -204,12 +204,17 @@ std::array<bool, 10> Researcher::getHexCheck()
     return hex;
 }
 
-template <class RNGType>
+template <class RNGType, bool lcrng = true>
 std::vector<u64> getStates(RNGType rng, u32 initial, u32 max)
 {
     std::vector<u64> states;
 
     rng.advance(initial);
+    if constexpr (lcrng)
+    {
+        states.emplace_back(rng.getSeed());
+    }
+
     for (u32 i = 0; i < max; i++)
     {
         states.emplace_back(rng.next());
@@ -241,27 +246,21 @@ void Researcher::generate()
         {
         case 0:
             rngStates = getStates(PokeRNG(seed), initialAdvances, maxAdvances);
-            rngStates.insert(rngStates.begin(), seed);
             break;
         case 1:
             rngStates = getStates(PokeRNGR(seed), initialAdvances, maxAdvances);
-            rngStates.insert(rngStates.begin(), seed);
             break;
         case 2:
             rngStates = getStates(XDRNG(seed), initialAdvances, maxAdvances);
-            rngStates.insert(rngStates.begin(), seed);
             break;
         case 3:
             rngStates = getStates(XDRNGR(seed), initialAdvances, maxAdvances);
-            rngStates.insert(rngStates.begin(), seed);
             break;
         case 4:
             rngStates = getStates(ARNG(seed), initialAdvances, maxAdvances);
-            rngStates.insert(rngStates.begin(), seed);
             break;
         case 5:
             rngStates = getStates(ARNGR(seed), initialAdvances, maxAdvances);
-            rngStates.insert(rngStates.begin(), seed);
             break;
         case 6:
             rngStates = getStates(MRNG(seed), initialAdvances, maxAdvances);
@@ -272,7 +271,7 @@ void Researcher::generate()
             rngStates.insert(rngStates.begin(), seed);
             break;
         case 8:
-            rngStates = getStates(MT(seed), initialAdvances, maxAdvances);
+            rngStates = getStates<MT, false>(MT(seed), initialAdvances, maxAdvances);
             break;
         }
     }
@@ -282,18 +281,16 @@ void Researcher::generate()
         {
         case 0:
             rngStates = getStates(BWRNG(seed), initialAdvances, maxAdvances);
-            rngStates.insert(rngStates.begin(), seed);
             break;
         case 1:
             rngStates = getStates(BWRNGR(seed), initialAdvances, maxAdvances);
-            rngStates.insert(rngStates.begin(), seed);
             break;
         case 2:
             if (seed > 0xffffffff)
             {
                 seed >>= 32;
             }
-            rngStates = getStates(SFMT(seed), initialAdvances, maxAdvances);
+            rngStates = getStates<SFMT, false>(SFMT(seed), initialAdvances, maxAdvances);
             break;
         }
     }
@@ -304,11 +301,11 @@ void Researcher::generate()
 
         if (std::all_of(std::begin(status), std::end(status), [](u32 x) { return x == 0; }))
         {
-            rngStates = getStates(TinyMT(seed), initialAdvances, maxAdvances);
+            rngStates = getStates<TinyMT, false>(TinyMT(seed), initialAdvances, maxAdvances);
         }
         else
         {
-            rngStates = getStates(TinyMT(status), initialAdvances, maxAdvances);
+            rngStates = getStates<TinyMT, false>(TinyMT(status), initialAdvances, maxAdvances);
         }
     }
 

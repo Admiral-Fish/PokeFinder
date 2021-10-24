@@ -49,7 +49,7 @@ void EggSettings::setup(Game version)
         ui->comboBoxParentBNature->setVisible(version & Game::Emerald);
 
         ui->checkBoxNidoranVolbeat->setVisible(false);
-        ui->checkBoxMasuada->setVisible(false);
+        ui->checkBoxMasuda->setVisible(false);
     }
     else if ((version & Game::DPPt) || (version & Game::HGSS))
     {
@@ -109,10 +109,10 @@ Daycare EggSettings::getDaycareSettings() const
     std::array<u8, 2> parentNature
         = { static_cast<u8>(ui->comboBoxParentANature->currentIndex()), static_cast<u8>(ui->comboBoxParentBNature->currentIndex()) };
 
-    bool masuada = ui->checkBoxMasuada->isChecked();
+    bool masuda = ui->checkBoxMasuda->isChecked();
     bool nidoranVolbeat = ui->checkBoxNidoranVolbeat->isChecked();
 
-    return Daycare(parentIVs, parentAbility, parentGender, parentItem, parentNature, masuada, nidoranVolbeat);
+    return Daycare(parentIVs, parentAbility, parentGender, parentItem, parentNature, masuda, nidoranVolbeat);
 }
 
 bool EggSettings::compatibleParents() const

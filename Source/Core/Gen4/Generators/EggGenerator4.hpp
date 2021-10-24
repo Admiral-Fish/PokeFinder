@@ -33,7 +33,7 @@ public:
 
 private:
     std::vector<EggState4> generateNormal(u32 seed) const;
-    std::vector<EggState4> generateMasuada(u32 seed) const;
+    std::vector<EggState4> generateMasuda(u32 seed) const;
     std::vector<EggState4> generateDPPtIVs(u32 seed) const;
     std::vector<EggState4> generateHGSSIVs(u32 seed) const;
 };

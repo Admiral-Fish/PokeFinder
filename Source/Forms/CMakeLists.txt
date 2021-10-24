@@ -30,7 +30,7 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
 
-find_package(Qt5 COMPONENTS Core LinguistTools Network Widgets REQUIRED)
+find_package(Qt6 COMPONENTS Core LinguistTools Network Widgets REQUIRED)
 
 set(PROJECT_TS
     i18n/PokeFinder_fr.ts
@@ -89,6 +89,7 @@ set(PROJECT_UI
     Gen5/DreamRadar.ui
     Gen5/Eggs5.ui
     Gen5/Event5.ui
+    Gen5/HiddenGrotto.ui
     Gen5/IDs5.ui
     Gen5/Profile/ProfileCalibrator5.ui
     Gen5/Profile/ProfileEditor5.ui
@@ -152,6 +153,7 @@ set(PROJECT_SOURCES
     Gen5/DreamRadar.cpp
     Gen5/Eggs5.cpp
     Gen5/Event5.cpp
+    Gen5/HiddenGrotto.cpp
     Gen5/IDs5.cpp
     Gen5/Profile/ProfileCalibrator5.cpp
     Gen5/Profile/ProfileEditor5.cpp
@@ -182,6 +184,7 @@ set(PROJECT_SOURCES
     Models/Gen5/DreamRadarModel.cpp
     Models/Gen5/EggModel5.cpp
     Models/Gen5/EventModel5.cpp
+    Models/Gen5/HiddenGrottoModel.cpp
     Models/Gen5/IDModel5.cpp
     Models/Gen5/ProfileModel5.cpp
     Models/Gen5/ProfileSearcherModel5.cpp
@@ -195,7 +198,7 @@ set(PROJECT_SOURCES
     main.cpp
 )
 
-qt5_add_translation(PROJECT_QM ${PROJECT_TS} OPTIONS -nounfinished -removeidentical)
+qt_add_translation(PROJECT_QM ${PROJECT_TS} OPTIONS -nounfinished -removeidentical)
 include(EmbedTranslations)
 embed_translations(PROJECT_I18N ${PROJECT_QM})
 
@@ -231,4 +234,4 @@ else ()
     )
 endif ()
 
-target_link_libraries(PokeFinder PRIVATE PokeFinderCore Qt5::Core Qt5::Network Qt5::Widgets)
+target_link_libraries(PokeFinder PRIVATE PokeFinderCore Qt6::Core Qt6::Network Qt6::Widgets)

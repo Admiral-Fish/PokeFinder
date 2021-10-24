@@ -17,20 +17,17 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include "StationarySearcher5.hpp"
-#include <Core/Enum/Game.hpp>
-#include <Core/Enum/Method.hpp>
+#include "HiddenGrottoSearcher.hpp"
 #include <Core/Gen5/Keypresses.hpp>
 #include <Core/RNG/SHA1.hpp>
 #include <Core/Util/Utilities.hpp>
 #include <future>
 
-StationarySearcher5::StationarySearcher5(const Profile5 &profile, Method method) :
-    profile(profile), method(method), searching(false), progress(0)
+HiddenGrottoSearcher::HiddenGrottoSearcher(const Profile5 &profile) : profile(profile)
 {
 }
 
-void StationarySearcher5::startSearch(const StationaryGenerator5 &generator, int threads, Date start, const Date &end)
+void HiddenGrottoSearcher::startSearch(const HiddenGrottoGenerator &generator, int threads, Date start, const Date &end)
 {
     searching = true;
 
@@ -40,11 +37,6 @@ void StationarySearcher5::startSearch(const StationaryGenerator5 &generator, int
         threads = days;
     }
 
-    if (threads <= 0)
-    {
-        threads = 1;
-    }
-
     std::vector<std::future<void>> threadContainer;
 
     auto daysSplit = days / threads;
@@ -52,12 +44,12 @@ void StationarySearcher5::startSearch(const StationaryGenerator5 &generator, int
     {
         if (i == threads - 1)
         {
-            threadContainer.emplace_back(std::async([=] { search(generator, start, end); }));
+            threadContainer.emplace_back(std::async(std::launch::async, [=] { search(generator, start, end); }));
         }
         else
         {
             Date mid = start.addDays(daysSplit - 1);
-            threadContainer.emplace_back(std::async([=] { search(generator, start, mid); }));
+            threadContainer.emplace_back(std::async(std::launch::async, [=] { search(generator, start, mid); }));
         }
         start = start.addDays(daysSplit);
     }
@@ -68,27 +60,25 @@ void StationarySearcher5::startSearch(const StationaryGenerator5 &generator, int
     }
 }
 
-void StationarySearcher5::cancelSearch()
+void HiddenGrottoSearcher::cancelSearch()
 {
     searching = false;
 }
 
-std::vector<SearcherState5<StationaryState>> StationarySearcher5::getResults()
+std::vector<SearcherState5<HiddenGrottoState>> HiddenGrottoSearcher::getResults()
 {
     std::lock_guard<std::mutex> lock(mutex);
     auto data = std::move(results);
     return data;
 }
 
-int StationarySearcher5::getProgress() const
+int HiddenGrottoSearcher::getProgress() const
 {
     return progress;
 }
 
-void StationarySearcher5::search(StationaryGenerator5 generator, const Date &start, const Date &end)
+void HiddenGrottoSearcher::search(HiddenGrottoGenerator generator, const Date &start, const Date &end)
 {
-    bool flag = profile.getVersion() & Game::BW;
-
     SHA1 sha(profile);
     auto buttons = Keypresses::getKeyPresses(profile.getKeypresses(), profile.getSkipLR());
     auto values = Keypresses::getValues(buttons);
@@ -96,12 +86,10 @@ void StationarySearcher5::search(StationaryGenerator5 generator, const Date &sta
     for (u16 timer0 = profile.getTimer0Min(); timer0 <= profile.getTimer0Max(); timer0++)
     {
         sha.setTimer0(timer0, profile.getVCount());
-
         for (Date date = start; date <= end; date = date.addDays(1))
         {
             sha.setDate(date);
             sha.precompute();
-
             for (size_t i = 0; i < values.size(); i++)
             {
                 sha.setButton(values[i]);
@@ -116,25 +104,15 @@ void StationarySearcher5::search(StationaryGenerator5 generator, const Date &sta
                             {
                                 return;
                             }
-
                             sha.setTime(hour, minute, second, profile.getDSType());
                             u64 seed = sha.hashSeed();
 
-                            if (method == Method::Method5)
-                            {
-                                generator.setInitialAdvances(flag ? Utilities::initialAdvancesBW(seed)
-                                                                  : Utilities::initialAdvancesBW2(seed, profile.getMemoryLink()));
-                            }
-                            else
-                            {
-                                generator.setOffset(flag ? 0 : 2);
-                            }
+                            generator.setInitialAdvances(Utilities::initialAdvancesBW2(seed, profile.getMemoryLink()));
 
                             auto states = generator.generate(seed);
-
                             if (!states.empty())
                             {
-                                std::vector<SearcherState5<StationaryState>> displayStates;
+                                std::vector<SearcherState5<HiddenGrottoState>> displayStates;
                                 displayStates.reserve(states.size());
 
                                 DateTime dt(date, Time(hour, minute, second));

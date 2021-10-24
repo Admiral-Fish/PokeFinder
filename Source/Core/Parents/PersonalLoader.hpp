@@ -17,24 +17,24 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef HIDDENGROTTOFILTER_HPP
-#define HIDDENGROTTOFILTER_HPP
+#ifndef PERSONALLOADER_HPP
+#define PERSONALLOADER_HPP
 
-#include <Core/Util/Global.hpp>
-#include <vector>
+class PersonalInfo;
 
-class HiddenGrottoState;
-
-class HiddenGrottoFilter
+namespace PersonalLoader3
 {
-public:
-    HiddenGrottoFilter(const std::vector<bool> &groups, const std::vector<bool> &encounterSlots, const std::vector<bool> &genders);
-    bool compareState(const HiddenGrottoState &state) const;
+    const PersonalInfo *getPersonal();
+}
 
-private:
-    std::vector<bool> groups;
-    std::vector<bool> encounterSlots;
-    std::vector<bool> genders;
-};
+namespace PersonalLoader4
+{
+    const PersonalInfo *getPersonal();
+}
 
-#endif // HIDDENGROTTOFILTER_HPP
+namespace PersonalLoader5
+{
+    const PersonalInfo *getPersonal();
+}
+
+#endif // PERSONALLOADER_HPP

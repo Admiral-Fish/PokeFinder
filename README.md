@@ -101,7 +101,7 @@ MacOS
 Linux
 - Install the dependencies
   - sudo apt-get update -qq
-  - sudo apt-get install -y build-essential qtbase5-dev qt5-qmake qt5-default qttools5-dev-tools
+  - sudo apt-get install -y build-essential qtbase5-dev qt5-qmake qt5-default qttools5-dev-tools qttools5-dev
 - Build
   - git submodule update
   - mkdir build

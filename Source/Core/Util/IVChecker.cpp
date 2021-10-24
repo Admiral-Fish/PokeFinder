@@ -29,7 +29,7 @@ constexpr u8 ivOrder[6] = { 0, 1, 2, 5, 3, 4 };
 
 namespace
 {
-    std::vector<std::vector<u8>> calculateIVs(const std::vector<u8> &baseStats, const std::vector<u16> &stats, u8 level, u8 nature,
+    std::vector<std::vector<u8>> calculateIVs(const std::array<u8, 6> &baseStats, const std::vector<u16> &stats, u8 level, u8 nature,
                                               u8 characteristic)
     {
         std::vector<u8> minIVs(6, 31);
@@ -94,7 +94,7 @@ namespace
     }
 }
 
-std::vector<std::vector<u8>> IVChecker::calculateIVRange(const std::vector<u8> &baseStats, const std::vector<std::vector<u16>> &stats,
+std::vector<std::vector<u8>> IVChecker::calculateIVRange(const std::array<u8, 6> &baseStats, const std::vector<std::vector<u16>> &stats,
                                                          const std::vector<u8> &level, u8 nature, u8 characteristic, u8 hiddenPower)
 {
     std::vector<std::vector<u8>> ivs(6);

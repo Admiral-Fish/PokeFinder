@@ -52,6 +52,7 @@ private:
     void setupModels();
 
 private slots:
+    void setXOR(bool checked);
     void search();
     void find();
     void profileIndexChanged(int index);

@@ -21,13 +21,14 @@
 #define IVCHECKER_HPP
 
 #include <Core/Util/Global.hpp>
+#include <array>
 #include <vector>
 
 class PersonalInfo;
 
 namespace IVChecker
 {
-    std::vector<std::vector<u8>> calculateIVRange(const std::vector<u8> &baseStats, const std::vector<std::vector<u16>> &stats,
+    std::vector<std::vector<u8>> calculateIVRange(const std::array<u8, 6> &baseStats, const std::vector<std::vector<u16>> &stats,
                                                   const std::vector<u8> &level, u8 nature, u8 characteristic, u8 hiddenPower);
 };
 
