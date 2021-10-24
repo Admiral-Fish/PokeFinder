@@ -74,6 +74,7 @@ public:
         }
         return seed;
     }
+    
     static u32 advance(u32 prng, u32 advances)
     {
         for (u32 advance = 0; advance < advances; advance++)
@@ -102,12 +103,6 @@ public:
     u16 nextHalfUShort()
     {
         return (next<flag>() >> 16) & 0x7FFF;
-    }
-
-    u16 nextUShort(u32 &count)
-    {
-        count++;
-        return next<flag>() >> 16;
     }
 
     void setSeed(u32 seed)
