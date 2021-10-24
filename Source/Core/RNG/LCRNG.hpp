@@ -74,7 +74,7 @@ public:
         }
         return seed;
     }
-    
+
     static u32 advance(u32 prng, u32 advances)
     {
         for (u32 advance = 0; advance < advances; advance++)
@@ -100,6 +100,7 @@ public:
         return next<flag>() >> 16;
     }
 
+    template <bool flag = false>
     u16 nextHalfUShort()
     {
         return (next<flag>() >> 16) & 0x7FFF;
