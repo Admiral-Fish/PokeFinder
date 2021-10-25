@@ -17,6 +17,34 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD:Source/Core/Parents/Generators/UnownGenerator.cpp
+#include "UnownGenerator.hpp"
+#include <Core/Enum/Lead.hpp>
+
+UnownGenerator::UnownGenerator(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, Method method,
+                             const StateFilter &filter) :
+    Generator(initialAdvances, maxAdvances, tid, sid, genderRatio, method, filter), lead(Lead::None)
+{
+}
+
+void UnownGenerator::setEncounter(Encounter encounter)
+{
+    this->encounter = encounter;
+}
+
+void UnownGenerator::setLead(Lead lead)
+{
+    this->lead = lead;
+}
+
+void UnownGenerator::setSynchNature(u8 synchNature)
+{
+    this->synchNature = synchNature;
+}
+=======
+>>>>>>> 2774aec6ede85294050891aeae671819c22373ae
 #ifndef PERSONALLOADER_HPP
 #define PERSONALLOADER_HPP
 
@@ -38,3 +66,7 @@ namespace PersonalLoader5
 }
 
 #endif // PERSONALLOADER_HPP
+<<<<<<< HEAD
+=======
+>>>>>>> 2774aec6ede85294050891aeae671819c22373ae:Source/Core/Parents/PersonalLoader.hpp
+>>>>>>> 2774aec6ede85294050891aeae671819c22373ae
