@@ -30,17 +30,11 @@ public:
     {
     }
 
-<<<<<<< HEAD
     u32 modpow32(u32 base, u32 exp)
-=======
-    template <bool flag = false>
-    u32 advance(u32 advances)
->>>>>>> 2774aec6ede85294050891aeae671819c22373ae
     {
         u32 result = 1;
         while (exp > 0)
         {
-<<<<<<< HEAD
             if (exp & 1)
             result = result * base;
             base = base * base;
@@ -83,15 +77,6 @@ public:
 
     static u32 advance(u32 prng, u32 advances)
     {
-=======
-            next<flag>();
-        }
-        return seed;
-    }
-
-    static u32 advance(u32 prng, u32 advances)
-    {
->>>>>>> 2774aec6ede85294050891aeae671819c22373ae
         for (u32 advance = 0; advance < advances; advance++)
         {
             prng = prng * mult + add;
@@ -113,15 +98,12 @@ public:
     u16 nextUShort()
     {
         return next<flag>() >> 16;
-<<<<<<< HEAD
     }
 
     template <bool flag = false>
     u16 nextHalfUShort()
     {
         return (next<flag>() >> 16) & 0x7FFF;
-=======
->>>>>>> 2774aec6ede85294050891aeae671819c22373ae
     }
 
     void setSeed(u32 seed)

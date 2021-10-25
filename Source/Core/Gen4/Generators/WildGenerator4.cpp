@@ -294,10 +294,7 @@ std::vector<WildState4> WildGenerator4::generateMethodK(u32 seed) const
         PokeRNG go(rng.getSeed(), &occidentary);
 
         u16 first = go.nextUShort<true>(); // Encounter slot, nibble for fishing, blank or item for rock smash
-<<<<<<< HEAD
         u8 loops = 1;
-=======
->>>>>>> 2774aec6ede85294050891aeae671819c22373ae
 
         switch (encounter)
         {
@@ -354,32 +351,13 @@ std::vector<WildState4> WildGenerator4::generateMethodK(u32 seed) const
             state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), go.nextUShort<true>()));
             occidentary += 1; // Compensate for the game's advances after the battle ends
             break;
-<<<<<<< HEAD
         case Encounter::BugCatchingContest:
             state.setEncounterSlot(EncounterSlot::kSlot(first, encounter));
             if (!filter.compareEncounterSlot(state))
-=======
-        case Encounter::HeadButt: // TODO
-        case Encounter::BugCatchingContest: // TODO
-        default:
-            break;
-        }
-
-        u32 pid = 0;
-        switch (lead)
-        {
-        case Lead::None:
-        case Lead::SuctionCups:
-            // Get hunt nature
-            state.setNature(go.nextUShort<true>() % 25);
-
-            if (!filter.compareNature(state))
->>>>>>> 2774aec6ede85294050891aeae671819c22373ae
             {
                 continue;
             }
 
-<<<<<<< HEAD
             state.setLevel(0);
             occidentary += 1; // Compensate for the game's advances after the battle ends
             go.nextUShort<true>();
@@ -388,33 +366,10 @@ std::vector<WildState4> WildGenerator4::generateMethodK(u32 seed) const
         case Encounter::SafariZoneHGSS:
             state.setEncounterSlot(EncounterSlot::kSlot(first, encounter));
             if (!filter.compareEncounterSlot(state))
-=======
-            // Begin search for valid pid
-            do
-            {
-                u16 low = go.nextUShort<true>();
-                u16 high = go.nextUShort<true>();
-                pid = static_cast<u32>((high << 16) | low);
-            } while (pid % 25 != state.getNature());
-
-            break;
-        case Lead::Synchronize:
-            if ((go.nextUShort<true>() & 1) == 0) // Successful synch
-            {
-                state.setNature(synchNature);
-            }
-            else // Failed synch
-            {
-                state.setNature(go.nextUShort<true>() % 25);
-            }
-
-            if (!filter.compareNature(state))
->>>>>>> 2774aec6ede85294050891aeae671819c22373ae
             {
                 continue;
             }
 
-<<<<<<< HEAD
             state.setLevel(0);
             occidentary += 1; // Compensate for the game's advances after the battle ends
             loops = 4;
@@ -429,19 +384,6 @@ std::vector<WildState4> WildGenerator4::generateMethodK(u32 seed) const
         {
             pid = 0;
             switch (lead)
-=======
-            // Begin search for valid pid
-            do
-            {
-                u16 low = go.nextUShort<true>();
-                u16 high = go.nextUShort<true>();
-                pid = static_cast<u32>((high << 16) | low);
-            } while (pid % 25 != state.getNature());
-
-            break;
-        default: // Default to cover all cute charm cases
-            if ((go.nextUShort<true>() % 3) != 0) // Successfull cute charm
->>>>>>> 2774aec6ede85294050891aeae671819c22373ae
             {
             case Lead::None:
             case Lead::SuctionCups:
@@ -453,7 +395,6 @@ std::vector<WildState4> WildGenerator4::generateMethodK(u32 seed) const
                     continue;
                 }
 
-<<<<<<< HEAD
                 // Begin search for valid pid
                 do
                 {
@@ -472,14 +413,6 @@ std::vector<WildState4> WildGenerator4::generateMethodK(u32 seed) const
                 {
                     state.setNature(go.nextUShort<true>() % 25);
                 }
-=======
-                pid = buffer + state.getNature();
-            }
-            else // Failed cutecharm
-            {
-                // Get hunt nature
-                state.setNature(go.nextUShort<true>() % 25);
->>>>>>> 2774aec6ede85294050891aeae671819c22373ae
 
                 if (!filter.compareNature(state))
                 {
@@ -538,13 +471,8 @@ std::vector<WildState4> WildGenerator4::generateMethodK(u32 seed) const
             u16 iv1 = go.nextUShort<true>();
             u16 iv2 = go.nextUShort<true>();
 
-<<<<<<< HEAD
             state.setIVs(iv1, iv2);
             state.calculateHiddenPower();
-=======
-        u16 iv1 = go.nextUShort<true>();
-        u16 iv2 = go.nextUShort<true>();
->>>>>>> 2774aec6ede85294050891aeae671819c22373ae
 
             bool skip = true;
             for (u8 in = 0; in < 6; in++)
@@ -560,10 +488,6 @@ std::vector<WildState4> WildGenerator4::generateMethodK(u32 seed) const
                 break;
             }
         }
-
-        u8 item = go.nextUShort<true>() % 100;
-
-        state.setItem(item);
 
         u8 item = go.nextUShort<true>() % 100;
 

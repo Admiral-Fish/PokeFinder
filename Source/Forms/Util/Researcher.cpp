@@ -263,7 +263,6 @@ void Researcher::generate()
             rngStates = getStates(ARNGR(seed), initialAdvances, maxAdvances);
             break;
         case 6:
-<<<<<<< HEAD
             rngStates = getStates(MRNG(seed), initialAdvances, maxAdvances);
             rngStates.insert(rngStates.begin(), seed);
             break;
@@ -272,8 +271,6 @@ void Researcher::generate()
             rngStates.insert(rngStates.begin(), seed);
             break;
         case 8:
-=======
->>>>>>> 2774aec6ede85294050891aeae671819c22373ae
             rngStates = getStates<MT, false>(MT(seed), initialAdvances, maxAdvances);
             break;
         }
