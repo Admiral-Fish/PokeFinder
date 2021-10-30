@@ -152,7 +152,7 @@ void IDs5::search()
     IDFilter filter(tid, sid, {});
     IDGenerator5 generator(0, ui->textBoxMaxAdvances->getUInt(), filter);
 
-    auto *searcher = new IDSearcher5(currentProfile, usePID, useXOR, pid);
+    auto *searcher = new IDSearcher5(currentProfile, pid, usePID, useXOR);
 
     int maxProgress = Keypresses::getKeyPresses(currentProfile.getKeypresses(), currentProfile.getSkipLR()).size();
     maxProgress *= (start.daysTo(end) + 1);
