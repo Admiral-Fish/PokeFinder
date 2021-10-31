@@ -349,6 +349,16 @@ void Wild3::profilesIndexChanged(int index)
         ui->comboBoxGeneratorEncounter->addItem(tr("Super Rod"), Encounter::SuperRod);
         ui->comboBoxSearcherEncounter->addItem(tr("Super Rod"), Encounter::SuperRod);
 
+        if (currentProfile.getVersion() & Game::Emerald)
+        {
+            ui->toolButtonGeneratorLead->setEnabled(true);
+        }
+        else
+        {
+            ui->toolButtonGeneratorLead->clearSelection();
+            ui->toolButtonGeneratorLead->setEnabled(false);
+        }
+
         updateLocationsSearcher();
         updateLocationsGenerator();
     }

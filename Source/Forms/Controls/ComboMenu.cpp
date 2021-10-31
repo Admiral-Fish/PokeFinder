@@ -114,3 +114,10 @@ void ComboMenu::actionChanged(QAction *action)
 
     setText(title);
 }
+
+void ComboMenu::clearSelection()
+{
+    QAction *action = actionGroup->actions()[0];
+    action->setChecked(true);
+    actionChanged(action);
+}

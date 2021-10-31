@@ -33,6 +33,7 @@ public:
     void addMenu(const QString &menuText, const std::vector<std::string> &actions, const std::vector<int> &data = {});
     void addMenu(const QString &menuText, const std::vector<QString> &actions, const std::vector<int> &data = {});
     int getData() const;
+    void clearSelection();
 
 private:
     QActionGroup *actionGroup;
