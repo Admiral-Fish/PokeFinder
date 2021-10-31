@@ -37,8 +37,8 @@ Stationary3::Stationary3(QWidget *parent) : QWidget(parent), ui(new Ui::Stationa
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
 
-    updateProfiles();
     setupModels();
+    updateProfiles();
 }
 
 Stationary3::~Stationary3()
@@ -54,8 +54,6 @@ Stationary3::~Stationary3()
 
 void Stationary3::updateProfiles()
 {
-    connect(ui->comboBoxProfiles, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &Stationary3::profilesIndexChanged);
-
     profiles = { Profile3() };
     auto completeProfiles = ProfileLoader3::getProfiles();
     std::copy_if(completeProfiles.begin(), completeProfiles.end(), std::back_inserter(profiles),
@@ -108,6 +106,7 @@ void Stationary3::setupModels()
     connect(outputTXTSearcher, &QAction::triggered, this, [=] { ui->tableViewSearcher->outputModel(); });
     connect(outputCSVSearcher, &QAction::triggered, this, [=] { ui->tableViewSearcher->outputModel(true); });
 
+    connect(ui->comboBoxProfiles, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &Stationary3::profilesIndexChanged);
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Stationary3::generate);
     connect(ui->pushButtonSearch, &QPushButton::clicked, this, &Stationary3::search);
     connect(ui->tableViewGenerator, &QTableView::customContextMenuRequested, this, &Stationary3::tableViewGeneratorContextMenu);

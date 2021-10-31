@@ -64,7 +64,6 @@ private slots:
     void generate();
     void search();
     void profilesIndexChanged(int index);
-    void generatorLead();
     void generatorEncounterIndexChanged(int index);
     void searcherEncounterIndexChanged(int index);
     void generatorLocationIndexChanged(int index);

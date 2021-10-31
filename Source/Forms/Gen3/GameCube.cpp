@@ -44,8 +44,8 @@ GameCube::GameCube(QWidget *parent) : QWidget(parent), ui(new Ui::GameCube)
     ui->labelGeneratorType->setVisible(false);
     ui->comboBoxGeneratorType->setVisible(false);
 
-    updateProfiles();
     setupModels();
+    updateProfiles();
 }
 
 GameCube::~GameCube()
@@ -61,8 +61,6 @@ GameCube::~GameCube()
 
 void GameCube::updateProfiles()
 {
-    connect(ui->comboBoxProfiles, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &GameCube::profilesIndexChanged);
-
     profiles = { Profile3("-", Game::Gales, 12345, 54321) };
     auto completeProfiles = ProfileLoader3::getProfiles();
     std::copy_if(completeProfiles.begin(), completeProfiles.end(), std::back_inserter(profiles),
@@ -115,6 +113,7 @@ void GameCube::setupModels()
     connect(outputTXTSearcher, &QAction::triggered, this, [=] { ui->tableViewSearcher->outputModel(); });
     connect(outputCSVSearcher, &QAction::triggered, this, [=] { ui->tableViewSearcher->outputModel(true); });
 
+    connect(ui->comboBoxProfiles, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &GameCube::profilesIndexChanged);
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &GameCube::generate);
     connect(ui->pushButtonSearch, &QPushButton::clicked, this, &GameCube::search);
     connect(ui->comboBoxGeneratorMethod, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &GameCube::generatorMethodIndexChanged);

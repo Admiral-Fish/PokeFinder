@@ -312,16 +312,6 @@
             </property>
            </widget>
           </item>
-          <item row="5" column="1">
-           <widget class="ComboBox" name="comboBoxGeneratorLead"/>
-          </item>
-          <item row="5" column="0">
-           <widget class="QPushButton" name="pushButtonGeneratorLead">
-            <property name="text">
-             <string>Cute Charm</string>
-            </property>
-           </widget>
-          </item>
           <item row="0" column="1">
            <widget class="ComboBox" name="comboBoxGeneratorMethod"/>
           </item>
@@ -387,6 +377,32 @@
           </item>
           <item row="3" column="1">
            <widget class="ComboBox" name="comboBoxGeneratorPokemon"/>
+          </item>
+          <item row="5" column="0">
+           <widget class="QLabel" name="labelGeneratorLead">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>Lead</string>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="1">
+           <widget class="ComboMenu" name="toolButtonGeneratorLead">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="popupMode">
+             <enum>QToolButton::InstantPopup</enum>
+            </property>
+           </widget>
           </item>
          </layout>
         </widget>
@@ -747,6 +763,11 @@
    <header>Forms/Controls/Filter.hpp</header>
    <container>1</container>
   </customwidget>
+  <customwidget>
+   <class>ComboMenu</class>
+   <extends>QToolButton</extends>
+   <header>Forms/Controls/ComboMenu.hpp</header>
+  </customwidget>
  </customwidgets>
  <tabstops>
   <tabstop>comboBoxProfiles</tabstop>
@@ -757,8 +778,6 @@
   <tabstop>comboBoxGeneratorTime</tabstop>
   <tabstop>comboBoxGeneratorPokemon</tabstop>
   <tabstop>comboBoxGeneratorEncounter</tabstop>
-  <tabstop>pushButtonGeneratorLead</tabstop>
-  <tabstop>comboBoxGeneratorLead</tabstop>
   <tabstop>textBoxGeneratorStartingAdvance</tabstop>
   <tabstop>textBoxGeneratorMaxAdvances</tabstop>
   <tabstop>textBoxGeneratorSeed</tabstop>

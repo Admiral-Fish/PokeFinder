@@ -17,36 +17,29 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef CHECKLIST
-#define CHECKLIST
+#ifndef COMBOMENU_HPP
+#define COMBOMENU_HPP
 
-#include <QComboBox>
+#include <QActionGroup>
+#include <QToolButton>
 
-class QStandardItemModel;
-
-class CheckList : public QComboBox
+class ComboMenu : public QToolButton
 {
     Q_OBJECT
 public:
-    explicit CheckList(QWidget *parent = nullptr);
-    void setup(const std::vector<std::string> &items = std::vector<std::string>());
-    std::vector<bool> getChecked() const;
-    void setChecks(std::vector<bool> flags);
-
-public slots:
-    void resetChecks();
-
-protected:
-    bool eventFilter(QObject *object, QEvent *event) override;
+    ComboMenu(QWidget *parent = nullptr);
+    void addAction(const QString &actionText, int data, QMenu *menu = nullptr);
+    void removeAction(const QString &name);
+    void addMenu(const QString &menuText, const std::vector<std::string> &actions, const std::vector<int> &data = {});
+    void addMenu(const QString &menuText, const std::vector<QString> &actions, const std::vector<int> &data = {});
+    int getData() const;
 
 private:
-    QStandardItemModel *model;
-
-    int checkState() const;
+    QActionGroup *actionGroup;
+    QMenu *topMenu;
 
 private slots:
-    void modelDataChanged();
-    void itemPressed(const QModelIndex &index);
+    void actionChanged(QAction *action);
 };
 
-#endif // CHECKLIST
+#endif // COMBOMENU_HPP

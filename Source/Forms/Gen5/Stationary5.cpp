@@ -40,8 +40,8 @@ Stationary5::Stationary5(QWidget *parent) : QWidget(parent), ui(new Ui::Stationa
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
 
-    updateProfiles();
     setupModels();
+    updateProfiles();
 }
 
 Stationary5::~Stationary5()
@@ -54,8 +54,6 @@ Stationary5::~Stationary5()
 
 void Stationary5::updateProfiles()
 {
-    connect(ui->comboBoxProfiles, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &Stationary5::profileIndexChanged);
-
     profiles = ProfileLoader5::getProfiles();
 
     ui->comboBoxProfiles->clear();
@@ -126,6 +124,7 @@ void Stationary5::setupModels()
     connect(outputTXTSearcher, &QAction::triggered, [=]() { ui->tableViewSearcher->outputModel(false); });
     connect(outputCSVSearcher, &QAction::triggered, [=]() { ui->tableViewSearcher->outputModel(true); });
 
+    connect(ui->comboBoxProfiles, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &Stationary5::profileIndexChanged);
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Stationary5::generate);
     connect(ui->pushButtonSearch, &QPushButton::clicked, this, &Stationary5::search);
     connect(ui->pushButtonGeneratorLead, &QPushButton::clicked, this, &Stationary5::generatorLead);

@@ -25,8 +25,8 @@
 #include <Core/Enum/Method.hpp>
 #include <Core/Gen3/Encounters3.hpp>
 #include <Core/Gen3/Generators/WildGenerator3.hpp>
-#include <Core/Parents/ProfileLoader.hpp>
 #include <Core/Gen3/Searchers/WildSearcher3.hpp>
+#include <Core/Parents/ProfileLoader.hpp>
 #include <Core/Parents/States/WildState.hpp>
 #include <Core/Util/Nature.hpp>
 #include <Core/Util/Translator.hpp>
@@ -43,8 +43,8 @@ Wild3::Wild3(QWidget *parent) : QWidget(parent), ui(new Ui::Wild3)
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
 
-    updateProfiles();
     setupModels();
+    updateProfiles();
 }
 
 Wild3::~Wild3()
@@ -60,8 +60,6 @@ Wild3::~Wild3()
 
 void Wild3::updateProfiles()
 {
-    connect(ui->comboBoxProfiles, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &Wild3::profilesIndexChanged);
-
     profiles = { Profile3() };
     auto completeProfiles = ProfileLoader3::getProfiles();
     std::copy_if(completeProfiles.begin(), completeProfiles.end(), std::back_inserter(profiles),
@@ -101,9 +99,16 @@ void Wild3::setupModels()
 
     ui->filterSearcher->disableControls(Controls::UseDelay | Controls::DisableFilter);
 
-    generatorLead();
-
     ui->comboBoxSearcherLead->setup({ Lead::Search, Lead::Synchronize, Lead::CuteCharm, Lead::None });
+
+    ui->toolButtonGeneratorLead->addAction(tr("None"), Lead::None);
+    ui->toolButtonGeneratorLead->addMenu(tr("Synchronize"), Translator::getNatures());
+    ui->toolButtonGeneratorLead->addMenu(tr("Cute Charm"),
+                                         { tr("♂ Lead (50% ♀ Target)"), tr("♂ Lead (75% ♀ Target)"), tr("♂ Lead (25% ♀ Target)"),
+                                           tr("♂ Lead (12.5% ♀ Target)"), tr("♀ Lead (50% ♂ Target)"), tr("♀ Lead (75% ♂ Target)"),
+                                           tr("♀ Lead (25% ♂ Target)"), tr("♀ Lead (87.5% ♂ Target)") },
+                                         { Lead::CuteCharm50F, Lead::CuteCharm75F, Lead::CuteCharm25F, Lead::CuteCharm125F,
+                                           Lead::CuteCharm50M, Lead::CuteCharm75M, Lead::CuteCharm25M, Lead::CuteCharm875M });
 
     QAction *outputTXTGenerator = generatorMenu->addAction(tr("Output Results to TXT"));
     QAction *outputCSVGenerator = generatorMenu->addAction(tr("Output Results to CSV"));
@@ -117,11 +122,11 @@ void Wild3::setupModels()
     connect(outputTXTSearcher, &QAction::triggered, [=] { ui->tableViewSearcher->outputModel(); });
     connect(outputCSVSearcher, &QAction::triggered, [=] { ui->tableViewSearcher->outputModel(true); });
 
+    connect(ui->comboBoxProfiles, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &Wild3::profilesIndexChanged);
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Wild3::generate);
     connect(ui->pushButtonSearch, &QPushButton::clicked, this, &Wild3::search);
     connect(ui->tableViewGenerator, &QTableView::customContextMenuRequested, this, &Wild3::tableViewGeneratorContextMenu);
     connect(ui->tableViewSearcher, &QTableView::customContextMenuRequested, this, &Wild3::tableViewSearcherContextMenu);
-    connect(ui->pushButtonGeneratorLead, &QPushButton::clicked, this, &Wild3::generatorLead);
     connect(ui->comboBoxGeneratorEncounter, QOverload<int>::of(&QComboBox::currentIndexChanged), this,
             &Wild3::generatorEncounterIndexChanged);
     connect(ui->comboBoxSearcherEncounter, QOverload<int>::of(&QComboBox::currentIndexChanged), this,
@@ -240,21 +245,14 @@ void Wild3::generate()
     generator.setEncounter(static_cast<Encounter>(ui->comboBoxGeneratorEncounter->currentData().toInt()));
     generator.setOffset(offset);
 
-    if (ui->pushButtonGeneratorLead->text() == tr("Cute Charm"))
+    if (ui->toolButtonGeneratorLead->text().contains(tr("Synchronize")))
     {
-        generator.setLead(static_cast<Lead>(ui->comboBoxGeneratorLead->currentData().toInt()));
+        generator.setLead(Lead::Synchronize);
+        generator.setSynchNature(ui->toolButtonGeneratorLead->getData());
     }
     else
     {
-        if (ui->comboBoxGeneratorLead->currentIndex() == 0)
-        {
-            generator.setLead(Lead::None);
-        }
-        else
-        {
-            generator.setLead(Lead::Synchronize);
-            generator.setSynchNature(static_cast<u8>(ui->comboBoxGeneratorLead->currentIndex() - 1));
-        }
+        generator.setLead(static_cast<Lead>(ui->toolButtonGeneratorLead->getData()));
     }
 
     auto states = generator.generate(seed, encounterGenerator[ui->comboBoxGeneratorLocation->currentData().toInt()]);
@@ -381,35 +379,6 @@ void Wild3::seedToTime()
     auto *seedToTime = new SeedTime3(seed);
     seedToTime->show();
     seedToTime->raise();
-}
-
-void Wild3::generatorLead()
-{
-    ui->comboBoxGeneratorLead->clear();
-    QString text = ui->pushButtonGeneratorLead->text();
-    if (text == tr("Synchronize"))
-    {
-        ui->pushButtonGeneratorLead->setText(tr("Cute Charm"));
-
-        ui->comboBoxGeneratorLead->addItem(tr("♂ Lead (50% ♀ Target)"), Lead::CuteCharm50F);
-        ui->comboBoxGeneratorLead->addItem(tr("♂ Lead (75% ♀ Target)"), Lead::CuteCharm75F);
-        ui->comboBoxGeneratorLead->addItem(tr("♂ Lead (25% ♀ Target)"), Lead::CuteCharm25F);
-        ui->comboBoxGeneratorLead->addItem(tr("♂ Lead (12.5% ♀ Target)"), Lead::CuteCharm125F);
-        ui->comboBoxGeneratorLead->addItem(tr("♀ Lead (50% ♂ Target)"), Lead::CuteCharm50M);
-        ui->comboBoxGeneratorLead->addItem(tr("♀ Lead (75% ♂ Target)"), Lead::CuteCharm75M);
-        ui->comboBoxGeneratorLead->addItem(tr("♀ Lead (25% ♂ Target)"), Lead::CuteCharm25M);
-        ui->comboBoxGeneratorLead->addItem(tr("♀ Lead (87.5% ♂ Target)"), Lead::CuteCharm875M);
-    }
-    else
-    {
-        ui->pushButtonGeneratorLead->setText(tr("Synchronize"));
-
-        ui->comboBoxGeneratorLead->addItem(tr("None"));
-        for (const std::string &nature : Translator::getNatures())
-        {
-            ui->comboBoxGeneratorLead->addItem(QString::fromStdString(nature));
-        }
-    }
 }
 
 void Wild3::generatorEncounterIndexChanged(int index)

@@ -101,7 +101,28 @@ bool CheckList::eventFilter(QObject *object, QEvent *event)
     return false;
 }
 
-void CheckList::updateText()
+int CheckList::checkState() const
+{
+    int total = model->rowCount();
+    int checked = 0;
+    int unchecked = 0;
+
+    for (int i = 0; i < total; i++)
+    {
+        if (model->item(i)->checkState() == Qt::Checked)
+        {
+            checked++;
+        }
+        else if (model->item(i)->checkState() == Qt::Unchecked)
+        {
+            unchecked++;
+        }
+    }
+
+    return checked == total ? Qt::Checked : unchecked == total ? Qt::Unchecked : Qt::PartiallyChecked;
+}
+
+void CheckList::modelDataChanged()
 {
     QString text;
 
@@ -130,32 +151,6 @@ void CheckList::updateText()
     }
 
     lineEdit()->setText(text);
-}
-
-int CheckList::checkState() const
-{
-    int total = model->rowCount();
-    int checked = 0;
-    int unchecked = 0;
-
-    for (int i = 0; i < total; i++)
-    {
-        if (model->item(i)->checkState() == Qt::Checked)
-        {
-            checked++;
-        }
-        else if (model->item(i)->checkState() == Qt::Unchecked)
-        {
-            unchecked++;
-        }
-    }
-
-    return checked == total ? Qt::Checked : unchecked == total ? Qt::Unchecked : Qt::PartiallyChecked;
-}
-
-void CheckList::modelDataChanged()
-{
-    updateText();
 }
 
 void CheckList::itemPressed(const QModelIndex &index)

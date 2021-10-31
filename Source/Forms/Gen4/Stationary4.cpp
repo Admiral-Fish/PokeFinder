@@ -39,8 +39,8 @@ Stationary4::Stationary4(QWidget *parent) : QWidget(parent), ui(new Ui::Stationa
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
 
-    updateProfiles();
     setupModels();
+    updateProfiles();
 }
 
 Stationary4::~Stationary4()
@@ -60,8 +60,6 @@ Stationary4::~Stationary4()
 
 void Stationary4::updateProfiles()
 {
-    connect(ui->comboBoxProfiles, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &Stationary4::profileIndexChanged);
-
     profiles = ProfileLoader4::getProfiles();
     profiles.insert(profiles.begin(), Profile4());
 
@@ -105,7 +103,13 @@ void Stationary4::setupModels()
     ui->filterGenerator->disableControls(Controls::EncounterSlots);
     ui->filterSearcher->disableControls(Controls::EncounterSlots | Controls::UseDelay | Controls::DisableFilter);
 
-    generatorLead();
+    ui->toolButtonGeneratorLead->addAction(tr("None"), Lead::None);
+    ui->toolButtonGeneratorLead->addMenu(tr("Synchronize"), Translator::getNatures());
+    ui->toolButtonGeneratorLead->addMenu(
+        tr("Cute Charm"),
+        { tr("♂ Lead"), tr("♀ Lead (50% ♂ Target)"), tr("♀ Lead (75% ♂ Target)"), tr("♀ Lead (25% ♂ Target)"),
+          tr("♀ Lead (87.5% ♂ Target)") },
+        { Lead::CuteCharmFemale, Lead::CuteCharm50M, Lead::CuteCharm75M, Lead::CuteCharm25M, Lead::CuteCharm875M });
 
     QAction *outputTXTGenerator = generatorMenu->addAction(tr("Output Results to TXT"));
     QAction *outputCSVGenerator = generatorMenu->addAction(tr("Output Results to CSV"));
@@ -119,9 +123,9 @@ void Stationary4::setupModels()
     connect(outputTXTSearcher, &QAction::triggered, [=] { ui->tableViewSearcher->outputModel(); });
     connect(outputCSVSearcher, &QAction::triggered, [=] { ui->tableViewSearcher->outputModel(true); });
 
+    connect(ui->comboBoxProfiles, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &Stationary4::profileIndexChanged);
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Stationary4::generate);
     connect(ui->pushButtonSearch, &QPushButton::clicked, this, &Stationary4::search);
-    connect(ui->pushButtonGeneratorLead, &QPushButton::clicked, this, &Stationary4::generatorLead);
     connect(ui->tableViewGenerator, &QTableView::customContextMenuRequested, this, &Stationary4::tableViewGeneratorContextMenu);
     connect(ui->tableViewSearcher, &QTableView::customContextMenuRequested, this, &Stationary4::tableViewSearcherContextMenu);
     connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &Stationary4::profileManager);
@@ -176,22 +180,14 @@ void Stationary4::generate()
     StationaryGenerator4 generator(initialAdvances, maxAdvances, tid, sid, genderRatio, method, filter);
     generator.setOffset(offset);
 
-    if (ui->pushButtonGeneratorLead->text() == tr("Cute Charm"))
+    if (ui->toolButtonGeneratorLead->text() == tr("Sychronize"))
     {
-        generator.setLead(static_cast<Lead>(ui->comboBoxGeneratorLead->currentData().toInt()));
+        generator.setLead(Lead::Synchronize);
+        generator.setSynchNature(ui->toolButtonGeneratorLead->getData());
     }
     else
     {
-        int num = ui->comboBoxGeneratorLead->currentIndex();
-        if (num == 0)
-        {
-            generator.setLead(Lead::None);
-        }
-        else
-        {
-            generator.setLead(Lead::Synchronize);
-            generator.setSynchNature(static_cast<u8>(ui->comboBoxGeneratorLead->currentIndex() - 1));
-        }
+        generator.setLead(static_cast<Lead>(ui->toolButtonGeneratorLead->getData()));
     }
 
     auto states = generator.generate(seed);
@@ -273,33 +269,6 @@ void Stationary4::profileIndexChanged(int index)
         ui->comboBoxSearcherMethod->addItem(tr("Method 1"), Method::Method1);
         ui->comboBoxSearcherMethod->addItem(flag ? tr("Method K") : tr("Method J"), flag ? Method::MethodK : Method::MethodJ);
         ui->comboBoxSearcherMethod->addItem(tr("Wondercard IVs"), Method::WondercardIVs);
-    }
-}
-
-void Stationary4::generatorLead()
-{
-    ui->comboBoxGeneratorLead->clear();
-    QString text = ui->pushButtonGeneratorLead->text();
-    if (text == tr("Synchronize"))
-    {
-        ui->pushButtonGeneratorLead->setText(tr("Cute Charm"));
-        ui->comboBoxGeneratorLead->setEnabled(true);
-
-        ui->comboBoxGeneratorLead->addItem(tr("♂ Lead"), Lead::CuteCharmFemale);
-        ui->comboBoxGeneratorLead->addItem(tr("♀ Lead (50% ♂ Target)"), Lead::CuteCharm50M);
-        ui->comboBoxGeneratorLead->addItem(tr("♀ Lead (75% ♂ Target)"), Lead::CuteCharm75M);
-        ui->comboBoxGeneratorLead->addItem(tr("♀ Lead (25% ♂ Target)"), Lead::CuteCharm25M);
-        ui->comboBoxGeneratorLead->addItem(tr("♀ Lead (87.5% ♂ Target)"), Lead::CuteCharm875M);
-    }
-    else
-    {
-        ui->pushButtonGeneratorLead->setText(tr("Synchronize"));
-
-        ui->comboBoxGeneratorLead->addItem(tr("None"));
-        for (const std::string &nature : Translator::getNatures())
-        {
-            ui->comboBoxGeneratorLead->addItem(QString::fromStdString(nature));
-        }
     }
 }
 

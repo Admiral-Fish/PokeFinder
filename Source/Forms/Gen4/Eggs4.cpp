@@ -40,8 +40,8 @@ Eggs4::Eggs4(QWidget *parent) : QWidget(parent), ui(new Ui::Eggs4)
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
 
-    setupModels();
     updateProfiles();
+    setupModels();
 }
 
 Eggs4::~Eggs4()
@@ -63,8 +63,6 @@ Eggs4::~Eggs4()
 
 void Eggs4::updateProfiles()
 {
-    connect(ui->comboBoxProfiles, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &Eggs4::profilesIndexChanged);
-
     profiles = ProfileLoader4::getProfiles();
     profiles.insert(profiles.begin(), Profile4());
 
@@ -128,6 +126,7 @@ void Eggs4::setupModels()
     connect(outputTXTSearcher, &QAction::triggered, [=] { ui->tableViewSearcher->outputModel(); });
     connect(outputCSVSearcher, &QAction::triggered, [=] { ui->tableViewSearcher->outputModel(true); });
 
+    connect(ui->comboBoxProfiles, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &Eggs4::profilesIndexChanged);
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Eggs4::generate);
     connect(ui->pushButtonSearch, &QPushButton::clicked, this, &Eggs4::search);
     connect(ui->tableViewGenerator, &QTableView::customContextMenuRequested, this, &Eggs4::tableViewGeneratorContextMenu);

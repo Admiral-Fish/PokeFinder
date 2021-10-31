@@ -24,9 +24,9 @@
 #include <Core/Enum/Method.hpp>
 #include <Core/Gen4/Encounters4.hpp>
 #include <Core/Gen4/Generators/WildGenerator4.hpp>
-#include <Core/Parents/ProfileLoader.hpp>
 #include <Core/Gen4/Searchers/WildSearcher4.hpp>
 #include <Core/Parents/Filters/StateFilter.hpp>
+#include <Core/Parents/ProfileLoader.hpp>
 #include <Core/Parents/States/WildState.hpp>
 #include <Core/Util/Nature.hpp>
 #include <Core/Util/Translator.hpp>
@@ -43,8 +43,8 @@ Wild4::Wild4(QWidget *parent) : QWidget(parent), ui(new Ui::Wild4)
 
     setAttribute(Qt::WA_QuitOnClose, false);
 
-    updateProfiles();
     setupModels();
+    updateProfiles();
 }
 
 Wild4::~Wild4()
@@ -106,7 +106,13 @@ void Wild4::setupModels()
 
     ui->filterSearcher->disableControls(Controls::UseDelay | Controls::DisableFilter);
 
-    generatorLead();
+    ui->toolButtonGeneratorLead->addAction(tr("None"), Lead::None);
+    ui->toolButtonGeneratorLead->addMenu(tr("Synchronize"), Translator::getNatures());
+    ui->toolButtonGeneratorLead->addMenu(
+        tr("Cute Charm"),
+        { tr("♂ Lead"), tr("♀ Lead (50% ♂ Target)"), tr("♀ Lead (75% ♂ Target)"), tr("♀ Lead (25% ♂ Target)"),
+          tr("♀ Lead (87.5% ♂ Target)") },
+        { Lead::CuteCharmFemale, Lead::CuteCharm50M, Lead::CuteCharm75M, Lead::CuteCharm25M, Lead::CuteCharm875M });
 
     QAction *outputTXTGenerator = generatorMenu->addAction(tr("Output Results to TXT"));
     QAction *outputCSVGenerator = generatorMenu->addAction(tr("Output Results to CSV"));
@@ -122,7 +128,6 @@ void Wild4::setupModels()
 
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Wild4::generate);
     connect(ui->pushButtonSearch, &QPushButton::clicked, this, &Wild4::search);
-    connect(ui->pushButtonGeneratorLead, &QPushButton::clicked, this, &Wild4::generatorLead);
     connect(ui->comboBoxGeneratorEncounter, QOverload<int>::of(&QComboBox::currentIndexChanged), this,
             &Wild4::generatorEncounterIndexChanged);
     connect(ui->comboBoxSearcherEncounter, QOverload<int>::of(&QComboBox::currentIndexChanged), this,
@@ -269,26 +274,14 @@ void Wild4::generate()
     generator.setOffset(offset);
     generator.setEncounter(static_cast<Encounter>(ui->comboBoxGeneratorEncounter->getCurrentInt()));
 
-    if (ui->pushButtonGeneratorLead->text() == tr("Cute Charm"))
+    if (ui->toolButtonGeneratorLead->text().contains(tr("Synchronize")))
     {
-        generator.setLead((static_cast<Lead>(ui->comboBoxGeneratorLead->getCurrentInt())));
-    }
-    else if (ui->pushButtonGeneratorLead->text() == tr("Suction Cups"))
-    {
-        generator.setLead(Lead::SuctionCups);
+        generator.setLead(Lead::Synchronize);
+        generator.setSynchNature(ui->toolButtonGeneratorLead->getData());
     }
     else
     {
-        int num = ui->comboBoxGeneratorLead->currentIndex();
-        if (num == 0)
-        {
-            generator.setLead(Lead::None);
-        }
-        else
-        {
-            generator.setLead(Lead::Synchronize);
-            generator.setSynchNature(static_cast<u8>(ui->comboBoxGeneratorLead->currentIndex() - 1));
-        }
+        generator.setLead(static_cast<Lead>(ui->toolButtonGeneratorLead->getData()));
     }
     generator.setEncounterArea(encounterGenerator[ui->comboBoxGeneratorLocation->currentData().toInt()]);
 
@@ -404,62 +397,17 @@ void Wild4::profilesIndexChanged(int index)
         ui->comboBoxSearcherLead->addItem(tr("Cute Charm"), Lead::CuteCharm);
         if (flag)
         {
-            ui->comboBoxSearcherLead->addItem("Suction Cups", Lead::SuctionCups);
-        }
-        ui->comboBoxSearcherLead->addItem(tr("None"), Lead::None);
-
-        ui->pushButtonGeneratorLead->setText(tr("Cute Charm"));
-        generatorLead();
-
-        updateLocationsSearcher();
-        updateLocationsGenerator();
-    }
-}
-
-void Wild4::generatorLead()
-{
-    ui->comboBoxGeneratorLead->clear();
-    QString text = ui->pushButtonGeneratorLead->text();
-    if (text == tr("Synchronize"))
-    {
-        bool flag = currentProfile.getVersion() & Game::HGSS;
-        if (flag)
-        {
-            ui->pushButtonGeneratorLead->setText(tr("Suction Cups"));
-            ui->comboBoxGeneratorLead->setEnabled(false);
+            ui->toolButtonGeneratorLead->addAction(tr("Suction Cups"), Lead::SuctionCups);
+            ui->comboBoxSearcherLead->addItem(tr("Suction Cups"), Lead::SuctionCups);
         }
         else
         {
-            ui->pushButtonGeneratorLead->setText(tr("Cute Charm"));
-            ui->comboBoxGeneratorLead->setEnabled(true);
-
-            ui->comboBoxGeneratorLead->addItem(tr("♂ Lead"), Lead::CuteCharmFemale);
-            ui->comboBoxGeneratorLead->addItem(tr("♀ Lead (50% ♂ Target)"), Lead::CuteCharm50M);
-            ui->comboBoxGeneratorLead->addItem(tr("♀ Lead (75% ♂ Target)"), Lead::CuteCharm75M);
-            ui->comboBoxGeneratorLead->addItem(tr("♀ Lead (25% ♂ Target)"), Lead::CuteCharm25M);
-            ui->comboBoxGeneratorLead->addItem(tr("♀ Lead (87.5% ♂ Target)"), Lead::CuteCharm875M);
+            ui->toolButtonGeneratorLead->removeAction(tr("Suction Cups"));
         }
-    }
-    else if (text == tr("Suction Cups"))
-    {
-        ui->pushButtonGeneratorLead->setText(tr("Cute Charm"));
-        ui->comboBoxGeneratorLead->setEnabled(true);
+        ui->comboBoxSearcherLead->addItem(tr("None"), Lead::None);
 
-        ui->comboBoxGeneratorLead->addItem(tr("♂ Lead"), Lead::CuteCharmFemale);
-        ui->comboBoxGeneratorLead->addItem(tr("♀ Lead (50% ♂ Target)"), Lead::CuteCharm50M);
-        ui->comboBoxGeneratorLead->addItem(tr("♀ Lead (75% ♂ Target)"), Lead::CuteCharm75M);
-        ui->comboBoxGeneratorLead->addItem(tr("♀ Lead (25% ♂ Target)"), Lead::CuteCharm25M);
-        ui->comboBoxGeneratorLead->addItem(tr("♀ Lead (87.5% ♂ Target)"), Lead::CuteCharm875M);
-    }
-    else
-    {
-        ui->pushButtonGeneratorLead->setText(tr("Synchronize"));
-
-        ui->comboBoxGeneratorLead->addItem(tr("None"));
-        for (const std::string &nature : Translator::getNatures())
-        {
-            ui->comboBoxGeneratorLead->addItem(QString::fromStdString(nature));
-        }
+        updateLocationsSearcher();
+        updateLocationsGenerator();
     }
 }
 

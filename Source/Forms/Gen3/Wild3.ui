@@ -23,9 +23,6 @@
    <iconset>
     <normaloff>../../pokefinder.ico</normaloff>../../pokefinder.ico</iconset>
   </property>
-  <property name="layoutDirection">
-   <enum>Qt::LeftToRight</enum>
-  </property>
   <layout class="QGridLayout" name="gridLayout_7">
    <item row="0" column="0">
     <widget class="QGroupBox" name="groupBoxProfile">
@@ -127,8 +124,8 @@
           <string>RNG Info</string>
          </property>
          <layout class="QGridLayout" name="gridLayout_3">
-          <item row="7" column="0">
-           <widget class="QLabel" name="labelGeneratorSeed">
+          <item row="6" column="0">
+           <widget class="QLabel" name="labelGeneratorMaxAdvances">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
               <horstretch>0</horstretch>
@@ -136,7 +133,56 @@
              </sizepolicy>
             </property>
             <property name="text">
-             <string>Seed</string>
+             <string>Max Advances</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="ComboBox" name="comboBoxGeneratorMethod">
+            <item>
+             <property name="text">
+              <string>Method H1</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Method H2</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Method H4</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="labelGeneratorPokemon">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>Pokémon</string>
+            </property>
+           </widget>
+          </item>
+          <item row="6" column="1">
+           <widget class="TextBox" name="textBoxGeneratorMaxAdvances">
+            <property name="inputMask">
+             <string/>
+            </property>
+            <property name="text">
+             <string notr="true">100000</string>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="1">
+           <widget class="TextBox" name="textBoxGeneratorInitialAdvances">
+            <property name="text">
+             <string notr="true">0</string>
             </property>
            </widget>
           </item>
@@ -153,8 +199,11 @@
             </property>
            </widget>
           </item>
-          <item row="2" column="0">
-           <widget class="QLabel" name="labelGeneratorPokemon">
+          <item row="7" column="1">
+           <widget class="TextBox" name="textBoxGeneratorSeed"/>
+          </item>
+          <item row="7" column="0">
+           <widget class="QLabel" name="labelGeneratorSeed">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
               <horstretch>0</horstretch>
@@ -162,7 +211,43 @@
              </sizepolicy>
             </property>
             <property name="text">
-             <string>Pokémon</string>
+             <string>Seed</string>
+            </property>
+           </widget>
+          </item>
+          <item row="9" column="0" colspan="2">
+           <widget class="QPushButton" name="pushButtonGenerate">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
+            <property name="text">
+             <string>Generate</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0">
+           <widget class="QLabel" name="labelGeneratorMethod">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>Method</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="labelGeneratorLocation">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>Location</string>
             </property>
            </widget>
           </item>
@@ -182,137 +267,27 @@
           <item row="3" column="1">
            <widget class="QComboBox" name="comboBoxGeneratorEncounter"/>
           </item>
-          <item row="0" column="1">
-           <widget class="ComboBox" name="comboBoxGeneratorMethod">
-            <property name="layoutDirection">
-             <enum>Qt::LeftToRight</enum>
-            </property>
-            <property name="editable">
-             <bool>false</bool>
-            </property>
-            <property name="frame">
-             <bool>true</bool>
-            </property>
-            <item>
-             <property name="text">
-              <string>Method H1</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Method H2</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Method H4</string>
-             </property>
-            </item>
-           </widget>
-          </item>
-          <item row="6" column="1">
-           <widget class="TextBox" name="textBoxGeneratorMaxAdvances">
-            <property name="inputMask">
-             <string/>
-            </property>
-            <property name="text">
-             <string notr="true">100000</string>
-            </property>
-           </widget>
-          </item>
-          <item row="8" column="0" colspan="2">
-           <widget class="QPushButton" name="pushButtonGenerate">
-            <property name="enabled">
-             <bool>true</bool>
-            </property>
-            <property name="text">
-             <string>Generate</string>
-            </property>
-            <property name="checkable">
-             <bool>false</bool>
-            </property>
-            <property name="autoDefault">
-             <bool>false</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="7" column="1">
-           <widget class="TextBox" name="textBoxGeneratorSeed">
-            <property name="inputMask">
-             <string/>
-            </property>
-            <property name="text">
-             <string/>
-            </property>
-            <property name="cursorPosition">
-             <number>0</number>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignCenter</set>
-            </property>
-            <property name="clearButtonEnabled">
-             <bool>false</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="5" column="1">
-           <widget class="TextBox" name="textBoxGeneratorInitialAdvances">
-            <property name="inputMask">
-             <string/>
-            </property>
-            <property name="text">
-             <string notr="true">0</string>
-            </property>
-           </widget>
-          </item>
           <item row="2" column="1">
-           <widget class="QComboBox" name="comboBoxGeneratorPokemon">
-            <property name="maxCount">
-             <number>2147483647</number>
-            </property>
-           </widget>
-          </item>
-          <item row="4" column="1">
-           <widget class="QComboBox" name="comboBoxGeneratorLead"/>
-          </item>
-          <item row="1" column="0">
-           <widget class="QLabel" name="labelGeneratorLocation">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="text">
-             <string>Location</string>
-            </property>
-           </widget>
-          </item>
-          <item row="4" column="0">
-           <widget class="QPushButton" name="pushButtonGeneratorLead">
-            <property name="text">
-             <string>Cute Charm</string>
-            </property>
-           </widget>
+           <widget class="QComboBox" name="comboBoxGeneratorPokemon"/>
           </item>
           <item row="1" column="1">
            <widget class="QComboBox" name="comboBoxGeneratorLocation"/>
           </item>
-          <item row="0" column="0">
-           <widget class="QLabel" name="labelGeneratorMethod">
+          <item row="4" column="1">
+           <widget class="ComboMenu" name="toolButtonGeneratorLead">
             <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
-            <property name="text">
-             <string>Method</string>
+            <property name="popupMode">
+             <enum>QToolButton::InstantPopup</enum>
             </property>
            </widget>
           </item>
-          <item row="6" column="0">
-           <widget class="QLabel" name="labelGeneratorMaxAdvances">
+          <item row="4" column="0">
+           <widget class="QLabel" name="label">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
               <horstretch>0</horstretch>
@@ -320,7 +295,7 @@
              </sizepolicy>
             </property>
             <property name="text">
-             <string>Max Advances</string>
+             <string>Lead</string>
             </property>
            </widget>
           </item>
@@ -437,12 +412,6 @@
               <property name="text">
                <string>Search</string>
               </property>
-              <property name="checkable">
-               <bool>false</bool>
-              </property>
-              <property name="autoDefault">
-               <bool>false</bool>
-              </property>
              </widget>
             </item>
             <item>
@@ -459,15 +428,6 @@
           </item>
           <item row="0" column="1">
            <widget class="ComboBox" name="comboBoxSearcherMethod">
-            <property name="layoutDirection">
-             <enum>Qt::LeftToRight</enum>
-            </property>
-            <property name="editable">
-             <bool>false</bool>
-            </property>
-            <property name="frame">
-             <bool>true</bool>
-            </property>
             <item>
              <property name="text">
               <string>Method H1</string>
@@ -555,11 +515,7 @@
            </widget>
           </item>
           <item row="1" column="1">
-           <widget class="QComboBox" name="comboBoxSearcherLocation">
-            <property name="maxVisibleItems">
-             <number>10</number>
-            </property>
-           </widget>
+           <widget class="QComboBox" name="comboBoxSearcherLocation"/>
           </item>
           <item row="4" column="0">
            <widget class="QLabel" name="labelSearcherLead">
@@ -630,6 +586,11 @@
    <header>Forms/Controls/Filter.hpp</header>
    <container>1</container>
   </customwidget>
+  <customwidget>
+   <class>ComboMenu</class>
+   <extends>QToolButton</extends>
+   <header>Forms/Controls/ComboMenu.hpp</header>
+  </customwidget>
  </customwidgets>
  <tabstops>
   <tabstop>comboBoxProfiles</tabstop>
@@ -639,8 +600,7 @@
   <tabstop>comboBoxGeneratorLocation</tabstop>
   <tabstop>comboBoxGeneratorPokemon</tabstop>
   <tabstop>comboBoxGeneratorEncounter</tabstop>
-  <tabstop>pushButtonGeneratorLead</tabstop>
-  <tabstop>comboBoxGeneratorLead</tabstop>
+  <tabstop>toolButtonGeneratorLead</tabstop>
   <tabstop>textBoxGeneratorInitialAdvances</tabstop>
   <tabstop>textBoxGeneratorMaxAdvances</tabstop>
   <tabstop>textBoxGeneratorSeed</tabstop>

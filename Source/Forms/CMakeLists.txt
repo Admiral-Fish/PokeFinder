@@ -97,6 +97,7 @@ set(PROJECT_UI
 set(PROJECT_SOURCES
     Controls/CheckList.cpp
     Controls/ComboBox.cpp
+    Controls/ComboMenu.cpp
     Controls/DateEdit.cpp
     Controls/DateTimeEdit.cpp
     Controls/EggSettings.cpp

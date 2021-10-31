@@ -42,8 +42,8 @@ Event5::Event5(QWidget *parent) : QWidget(parent), ui(new Ui::Event5)
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
 
-    updateProfiles();
     setupModels();
+    updateProfiles();
 }
 
 Event5::~Event5()
@@ -59,8 +59,6 @@ Event5::~Event5()
 
 void Event5::updateProfiles()
 {
-    connect(ui->comboBoxProfiles, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &Event5::profileIndexChanged);
-
     profiles = ProfileLoader5::getProfiles();
 
     ui->comboBoxProfiles->clear();
@@ -133,6 +131,7 @@ void Event5::setupModels()
     connect(outputTXTSearcher, &QAction::triggered, [=]() { ui->tableViewSearcher->outputModel(false); });
     connect(outputCSVSearcher, &QAction::triggered, [=]() { ui->tableViewSearcher->outputModel(true); });
 
+    connect(ui->comboBoxProfiles, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &Event5::profileIndexChanged);
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Event5::generate);
     connect(ui->pushButtonSearch, &QPushButton::clicked, this, &Event5::search);
     connect(ui->pushButtonCalculateInitialAdvances, &QPushButton::clicked, this, &Event5::calculateInitialAdvances);

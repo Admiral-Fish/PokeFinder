@@ -40,8 +40,8 @@ HiddenGrotto::HiddenGrotto(QWidget *parent) : QWidget(parent), ui(new Ui::Hidden
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
 
-    updateProfiles();
     setupModels();
+    updateProfiles();
 }
 
 HiddenGrotto::~HiddenGrotto()
@@ -57,8 +57,6 @@ HiddenGrotto::~HiddenGrotto()
 
 void HiddenGrotto::updateProfiles()
 {
-    connect(ui->comboBoxProfiles, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &HiddenGrotto::profileIndexChanged);
-
     profiles.clear();
     auto completeProfiles = ProfileLoader5::getProfiles();
     std::copy_if(completeProfiles.begin(), completeProfiles.end(), std::back_inserter(profiles),
@@ -139,6 +137,7 @@ void HiddenGrotto::setupModels()
     connect(outputTXTSearcher, &QAction::triggered, [=]() { ui->tableViewSearcher->outputModel(false); });
     connect(outputCSVSearcher, &QAction::triggered, [=]() { ui->tableViewSearcher->outputModel(true); });
 
+    connect(ui->comboBoxProfiles, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &HiddenGrotto::profileIndexChanged);
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &HiddenGrotto::generate);
     connect(ui->pushButtonSearch, &QPushButton::clicked, this, &HiddenGrotto::search);
     connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &HiddenGrotto::profileManager);

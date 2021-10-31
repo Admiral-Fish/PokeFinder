@@ -36,8 +36,8 @@ Eggs3::Eggs3(QWidget *parent) : QWidget(parent), ui(new Ui::Eggs3)
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
 
-    updateProfiles();
     setupModels();
+    updateProfiles();
 }
 
 Eggs3::~Eggs3()
@@ -53,8 +53,6 @@ Eggs3::~Eggs3()
 
 void Eggs3::updateProfiles()
 {
-    connect(ui->comboBoxProfiles, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &Eggs3::profilesIndexChanged);
-
     profiles = ProfileLoader3::getProfiles();
     profiles.insert(profiles.begin(), Profile3());
 
@@ -138,6 +136,7 @@ void Eggs3::setupModels()
     connect(outputTXTFRLG, &QAction::triggered, this, [=] { ui->tableViewFRLG->outputModel(); });
     connect(outputCSVFRLG, &QAction::triggered, this, [=] { ui->tableViewFRLG->outputModel(true); });
 
+    connect(ui->comboBoxProfiles, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &Eggs3::profilesIndexChanged);
     connect(ui->pushButtonEmeraldGenerate, &QPushButton::clicked, this, &Eggs3::emeraldGenerate);
     connect(ui->pushButtonRSGenerate, &QPushButton::clicked, this, &Eggs3::rsGenerate);
     connect(ui->pushButtonFRLGGenerate, &QPushButton::clicked, this, &Eggs3::frlgGenerate);
