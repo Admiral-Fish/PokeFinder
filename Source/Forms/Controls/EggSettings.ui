@@ -10,9 +10,6 @@
     <height>230</height>
    </rect>
   </property>
-  <property name="windowTitle">
-   <string>Form</string>
-  </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
     <widget class="QScrollArea" name="scrollArea">
@@ -30,8 +27,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>380</width>
-        <height>210</height>
+        <width>363</width>
+        <height>216</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout_4">

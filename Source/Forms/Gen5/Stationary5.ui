@@ -342,15 +342,6 @@
           </item>
           <item row="0" column="1">
            <widget class="ComboBox" name="comboBoxGeneratorMethod">
-            <property name="layoutDirection">
-             <enum>Qt::LeftToRight</enum>
-            </property>
-            <property name="editable">
-             <bool>false</bool>
-            </property>
-            <property name="frame">
-             <bool>true</bool>
-            </property>
             <item>
              <property name="text">
               <string>IVs</string>
@@ -614,15 +605,6 @@
           </item>
           <item row="0" column="2" colspan="4">
            <widget class="ComboBox" name="comboBoxSearcherMethod">
-            <property name="layoutDirection">
-             <enum>Qt::LeftToRight</enum>
-            </property>
-            <property name="editable">
-             <bool>false</bool>
-            </property>
-            <property name="frame">
-             <bool>true</bool>
-            </property>
             <item>
              <property name="text">
               <string>IVs</string>

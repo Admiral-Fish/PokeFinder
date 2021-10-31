@@ -242,15 +242,6 @@
           </item>
           <item row="0" column="1">
            <widget class="ComboBox" name="comboBoxGeneratorMethod">
-            <property name="layoutDirection">
-             <enum>Qt::LeftToRight</enum>
-            </property>
-            <property name="editable">
-             <bool>false</bool>
-            </property>
-            <property name="frame">
-             <bool>true</bool>
-            </property>
             <item>
              <property name="text">
               <string>Method 1</string>
@@ -380,76 +371,63 @@
          <property name="title">
           <string>RNG Info</string>
          </property>
-         <layout class="QGridLayout" name="gridLayout_8">
+         <layout class="QGridLayout" name="gridLayout_2">
           <item row="0" column="0">
-           <layout class="QGridLayout" name="gridLayout_2">
-            <item row="0" column="0">
-             <widget class="QLabel" name="labelSearcherMethod">
-              <property name="text">
-               <string>Method</string>
-              </property>
-             </widget>
+           <widget class="QLabel" name="labelSearcherMethod">
+            <property name="text">
+             <string>Method</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="ComboBox" name="comboBoxSearcherMethod">
+            <item>
+             <property name="text">
+              <string>Method 1</string>
+             </property>
             </item>
-            <item row="1" column="0">
-             <widget class="QPushButton" name="pushButtonSearch">
-              <property name="enabled">
-               <bool>true</bool>
-              </property>
-              <property name="text">
-               <string>Search</string>
-              </property>
-              <property name="checkable">
-               <bool>false</bool>
-              </property>
-              <property name="autoDefault">
-               <bool>false</bool>
-              </property>
-             </widget>
+            <item>
+             <property name="text">
+              <string>Method 1 Reverse</string>
+             </property>
             </item>
-            <item row="1" column="1">
-             <widget class="QPushButton" name="pushButtonCancel">
-              <property name="enabled">
-               <bool>false</bool>
-              </property>
-              <property name="text">
-               <string>Cancel</string>
-              </property>
-             </widget>
+            <item>
+             <property name="text">
+              <string>Method 2</string>
+             </property>
             </item>
-            <item row="0" column="1">
-             <widget class="ComboBox" name="comboBoxSearcherMethod">
-              <property name="layoutDirection">
-               <enum>Qt::LeftToRight</enum>
-              </property>
-              <property name="editable">
-               <bool>false</bool>
-              </property>
-              <property name="frame">
-               <bool>true</bool>
-              </property>
-              <item>
-               <property name="text">
-                <string>Method 1</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>Method 1 Reverse</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>Method 2</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>Method 4</string>
-               </property>
-              </item>
-             </widget>
+            <item>
+             <property name="text">
+              <string>Method 4</string>
+             </property>
             </item>
-           </layout>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QPushButton" name="pushButtonSearch">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
+            <property name="text">
+             <string>Search</string>
+            </property>
+            <property name="checkable">
+             <bool>false</bool>
+            </property>
+            <property name="autoDefault">
+             <bool>false</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QPushButton" name="pushButtonCancel">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="text">
+             <string>Cancel</string>
+            </property>
+           </widget>
           </item>
          </layout>
         </widget>
