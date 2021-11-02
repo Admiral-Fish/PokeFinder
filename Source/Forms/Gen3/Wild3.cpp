@@ -352,11 +352,14 @@ void Wild3::profilesIndexChanged(int index)
         if (currentProfile.getVersion() & Game::Emerald)
         {
             ui->toolButtonGeneratorLead->setEnabled(true);
+            ui->comboBoxSearcherLead->setEnabled(true);
         }
         else
         {
             ui->toolButtonGeneratorLead->clearSelection();
             ui->toolButtonGeneratorLead->setEnabled(false);
+            ui->comboBoxSearcherLead->setCurrentIndex(3);
+            ui->comboBoxSearcherLead->setEnabled(false);
         }
 
         updateLocationsSearcher();
