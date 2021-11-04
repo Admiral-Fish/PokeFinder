@@ -113,6 +113,7 @@ void Wild4::setupModels()
         { tr("♂ Lead"), tr("♀ Lead (50% ♂ Target)"), tr("♀ Lead (75% ♂ Target)"), tr("♀ Lead (25% ♂ Target)"),
           tr("♀ Lead (87.5% ♂ Target)") },
         { Lead::CuteCharmFemale, Lead::CuteCharm50M, Lead::CuteCharm75M, Lead::CuteCharm25M, Lead::CuteCharm875M });
+    ui->toolButtonGeneratorLead->addAction(tr("Compound Eyes"), Lead::CompoundEyes);
 
     QAction *outputTXTGenerator = generatorMenu->addAction(tr("Output Results to TXT"));
     QAction *outputCSVGenerator = generatorMenu->addAction(tr("Output Results to CSV"));
@@ -395,6 +396,7 @@ void Wild4::profilesIndexChanged(int index)
         ui->comboBoxSearcherLead->addItem(tr("Any"), Lead::Search);
         ui->comboBoxSearcherLead->addItem(tr("Synchronize"), Lead::Synchronize);
         ui->comboBoxSearcherLead->addItem(tr("Cute Charm"), Lead::CuteCharm);
+        ui->comboBoxSearcherLead->addItem(tr("Compound Eyes"), Lead::CompoundEyes);
         if (flag)
         {
             ui->toolButtonGeneratorLead->addAction(tr("Suction Cups"), Lead::SuctionCups);

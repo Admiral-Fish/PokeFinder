@@ -64,7 +64,14 @@ QVariant WildGeneratorModel4::data(const QModelIndex &index, int role) const
         case 2:
         {
             u8 item = state.getItem();
-            return item < 45 ? "No" : item < 95? "50%" : "5%";
+            if (state.getLead() == Lead::CompoundEyes)
+            {
+                return item < 20 ? "No" : item < 80? "60%" : "20%";
+            }
+            else
+            {
+                return item < 45 ? "No" : item < 95? "50%" : "5%";
+            }
         }
         case 3:
         {
@@ -269,6 +276,8 @@ QVariant WildSearcherModel4::data(const QModelIndex &index, int role) const
                 return tr("Synchronize");
             case Lead::SuctionCups:
                 return tr("Suction Cups");
+            case Lead::CompoundEyes:
+                return tr("Compound Eyes");
             case Lead::CuteCharmFemale:
                 return tr("Cute Charm (♀)");
             case Lead::CuteCharm25M:
@@ -284,7 +293,14 @@ QVariant WildSearcherModel4::data(const QModelIndex &index, int role) const
         case 3:
         {
             u8 item = state.getItem();
-            return item < 45 ? "No" : item < 95? "50%" : "5%";
+            if (state.getLead() == Lead::CompoundEyes)
+            {
+                return item < 20 ? "No" : item < 80? "60%" : "20%";
+            }
+            else
+            {
+                return item < 45 ? "No" : item < 95? "50%" : "5%";
+            }
         }
         case 4:
             return state.getEncounterSlot();
