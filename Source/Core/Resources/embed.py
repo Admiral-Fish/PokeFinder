@@ -89,7 +89,7 @@ def embed_strings(paths):
     for path in paths:
         mapping = {}
 
-        files = glob.glob(f"{path}/**/*.txt", recursive=True)
+        files = glob.glob(f"i18n/{path}/*.txt", recursive=True)
         for file in files:
             with open(file, "r", encoding="utf-8") as f:
                 data = f.read().split("\n")
@@ -150,8 +150,7 @@ def main():
     personal = embed_personal()
     write_data(encounters + personal)
 
-    embed_strings(["i18n\de", "i18n\en", "i18n\es", "i18n\\fr",
-                   "i18n\it", "i18n\ja", "i18n\ko", "i18n\zh", ])
+    embed_strings(["de", "en", "es", "fr", "it", "ja", "ko", "zh"])
 
 
 if __name__ == "__main__":
