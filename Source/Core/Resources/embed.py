@@ -141,6 +141,9 @@ def write_strings(maps):
 
 
 def main():
+    import pathlib
+    os.chdir(pathlib.Path(__file__).parent.absolute())
+
     encounters = embed_encounters()
     personal = embed_personal()
     write_data(encounters + personal)
