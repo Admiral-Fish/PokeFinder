@@ -76,6 +76,7 @@ private:
 
     void setupModels();
     void checkUpdates();
+    QByteArray downloadFile(const QString &url);
 
 private slots:
     void updateProfiles(int num);
@@ -111,6 +112,7 @@ private slots:
     void openRaids();
     void openWild8();
     void openDenMap();
+    void downloadEventData();
     void openAbout();
     void openEncounterLookup();
     void openIVCalculator();

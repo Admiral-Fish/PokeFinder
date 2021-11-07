@@ -19,6 +19,7 @@
 
 #include "MainWindow.hpp"
 #include "ui_MainWindow.h"
+#include <Core/Util/Translator.hpp>
 #include <Forms/Gen3/Eggs3.hpp>
 #include <Forms/Gen3/GameCube.hpp>
 #include <Forms/Gen3/IDs3.hpp>
@@ -47,9 +48,9 @@
 #include <Forms/Gen5/Profile/ProfileCalibrator5.hpp>
 #include <Forms/Gen5/Profile/ProfileManager5.hpp>
 #include <Forms/Gen5/Stationary5.hpp>
+#include <Forms/Gen8/DenMap.hpp>
 #include <Forms/Gen8/Raids.hpp>
 #include <Forms/Gen8/Wild8.hpp>
-#include <Forms/Gen8/DenMap.hpp>
 #include <Forms/Util/EncounterLookup.hpp>
 #include <Forms/Util/IVCalculator.hpp>
 #include <Forms/Util/IVtoPID.hpp>
@@ -58,6 +59,7 @@
 #include <QDate>
 #include <QDesktopServices>
 #include <QFile>
+#include <QInputDialog>
 #include <QSettings>
 #include <QTimer>
 #include <QtNetwork>
@@ -145,6 +147,7 @@ void MainWindow::setupModels()
     connect(ui->pushButtonRaid, &QPushButton::clicked, this, &MainWindow::openRaids);
     connect(ui->pushButtonWild8, &QPushButton::clicked, this, &MainWindow::openWild8);
     connect(ui->actionDenMap, &QAction::triggered, this, &MainWindow::openDenMap);
+    connect(ui->actionDownloadEventData, &QAction::triggered, this, &MainWindow::downloadEventData);
 
     connect(ui->actionAbout, &QAction::triggered, this, &MainWindow::openAbout);
     connect(ui->actionEncounterLookup, &QAction::triggered, this, &MainWindow::openEncounterLookup);
@@ -167,15 +170,7 @@ void MainWindow::checkUpdates()
 
     if (lastOpened.daysTo(today) > 0)
     {
-        QNetworkAccessManager manager;
-        QNetworkRequest request(QUrl("https://api.github.com/repos/Admiral-Fish/PokeFinder/releases/latest"));
-        QScopedPointer<QNetworkReply> reply(manager.get(request));
-
-        QEventLoop loop;
-        connect(reply.data(), &QNetworkReply::finished, &loop, &QEventLoop::quit);
-        loop.exec();
-
-        auto json = QJsonDocument::fromJson(reply->readAll()).object();
+        auto json = QJsonDocument::fromJson(downloadFile("https://api.github.com/repos/Admiral-Fish/PokeFinder/releases/latest")).object();
         QString webVersion = json["tag_name"].toString().right(5);
         if (!webVersion.isEmpty() && POKEFINDER_VERSION != webVersion)
         {
@@ -190,6 +185,19 @@ void MainWindow::checkUpdates()
     }
 
     setting.setValue("settings/lastOpened", today);
+}
+
+QByteArray MainWindow::downloadFile(const QString &url)
+{
+    QNetworkAccessManager manager;
+    QNetworkRequest request(url);
+    QScopedPointer<QNetworkReply> reply(manager.get(request));
+
+    QEventLoop loop;
+    connect(reply.data(), &QNetworkReply::finished, &loop, &QEventLoop::quit);
+    loop.exec();
+
+    return reply->readAll();
 }
 
 void MainWindow::updateProfiles(int num)
@@ -563,6 +571,21 @@ void MainWindow::openIDs5()
     }
 }
 
+void MainWindow::openProfileCalibrator()
+{
+    auto *calibrator = new ProfileCalibrator5();
+    connect(calibrator, &ProfileCalibrator5::alertProfiles, this, &MainWindow::updateProfiles);
+    calibrator->show();
+    calibrator->raise();
+}
+
+void MainWindow::openProfileManager5()
+{
+    auto *manager = new ProfileManager5();
+    connect(manager, &ProfileManager5::updateProfiles, this, [=] { updateProfiles(5); });
+    manager->show();
+}
+
 void MainWindow::openRaids()
 {
     if (!raids)
@@ -591,19 +614,69 @@ void MainWindow::openDenMap()
     map->show();
 }
 
-void MainWindow::openProfileCalibrator()
+void MainWindow::downloadEventData()
 {
-    auto *calibrator = new ProfileCalibrator5();
-    connect(calibrator, &ProfileCalibrator5::alertProfiles, this, &MainWindow::updateProfiles);
-    calibrator->show();
-    calibrator->raise();
-}
+    auto fileResponse
+        = downloadFile("https://raw.githubusercontent.com/Admiral-Fish/RaidFinder/master/Resources/Encounters/Event/files.txt");
+    if (fileResponse.isEmpty())
+    {
+        QMessageBox error(QMessageBox::Critical, tr("Download failed"),
+                          tr("Make sure you are connected to the internet and have OpenSSL setup"), QMessageBox::Ok);
+        error.exec();
+        return;
+    }
 
-void MainWindow::openProfileManager5()
-{
-    auto *manager = new ProfileManager5();
-    connect(manager, &ProfileManager5::updateProfiles, this, [=] { updateProfiles(5); });
-    manager->show();
+    QStringList infos = QString(fileResponse).split('\n');
+    QStringList files;
+    QStringList entries;
+    for (const QString &info : infos)
+    {
+        QStringList data = info.split(',');
+        QString file = data.at(0);
+        u16 specie = data.at(1).toUShort();
+
+        files.prepend(file);
+
+        file = file.left(file.indexOf('_'));
+        file.insert(2, '-');
+        file.insert(5, '-');
+
+        entries.prepend(QString("%1: %2").arg(file, QString::fromStdString(Translator::getSpecies(specie))));
+    }
+
+    bool flag;
+    QString item = QInputDialog::getItem(this, tr("Download Event Data"), tr("Event"), entries, 0, false, &flag,
+                                         Qt::WindowTitleHint | Qt::WindowCloseButtonHint);
+    if (!flag)
+    {
+        return;
+    }
+
+    int index = entries.indexOf(item);
+    auto eventResponse
+        = downloadFile("https://raw.githubusercontent.com/Admiral-Fish/RaidFinder/master/Resources/Encounters/Event/" + files.at(index));
+    if (eventResponse.isEmpty())
+    {
+        QMessageBox error(QMessageBox::Critical, tr("Download failed"),
+                          tr("Make sure you are connected to the internet and have OpenSSL setup"), QMessageBox::Ok);
+        error.exec();
+        return;
+    }
+
+    QFile f(QApplication::applicationDirPath() + "/nests_event.json");
+    if (f.open(QIODevice::WriteOnly))
+    {
+        f.write(qUncompress(eventResponse));
+        f.close();
+
+        QMessageBox message(QMessageBox::Question, tr("Download finished"), tr("Restart to see event data. Restart now?"),
+                            QMessageBox::Yes | QMessageBox::No);
+        if (message.exec() == QMessageBox::Yes)
+        {
+            QProcess::startDetached(QApplication::applicationFilePath());
+            QApplication::quit();
+        }
+    }
 }
 
 void MainWindow::openAbout()

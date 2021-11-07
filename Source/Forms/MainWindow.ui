@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>358</width>
-    <height>268</height>
+    <height>292</height>
    </rect>
   </property>
   <property name="windowIcon">
@@ -191,7 +191,7 @@
      <x>0</x>
      <y>0</y>
      <width>358</width>
-     <height>20</height>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuTools">
@@ -245,6 +245,7 @@
      <string>Gen 8 Tools</string>
     </property>
     <addaction name="actionDenMap"/>
+    <addaction name="actionDownloadEventData"/>
    </widget>
    <addaction name="menuGen3Tools"/>
    <addaction name="menuGen4Tools"/>
@@ -355,6 +356,11 @@
   <action name="actionDenMap">
    <property name="text">
     <string>Den Map</string>
+   </property>
+  </action>
+  <action name="actionDownloadEventData">
+   <property name="text">
+    <string>Download Event Data</string>
    </property>
   </action>
  </widget>
