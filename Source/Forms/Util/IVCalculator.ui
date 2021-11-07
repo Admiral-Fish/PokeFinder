@@ -107,6 +107,11 @@
           <string>Gen 5</string>
          </property>
         </item>
+        <item>
+         <property name="text">
+          <string>Gen 8</string>
+         </property>
+        </item>
        </widget>
       </item>
       <item row="5" column="0" colspan="3">

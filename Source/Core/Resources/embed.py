@@ -85,12 +85,12 @@ def embed_encounters():
 def embed_personal():
     arrays = []
 
-    for index in ("3", "4", "5", "8"):
+    for index in (3, 4, 5, 8):
         file = f"Personal/Gen{index}/personal{index}.bin"
         with open(file, "rb") as f:
             data = f.read()
             size = len(data)
-            offset = 0x1c if index == "3" else 0x2c if index == "4" else 0x4c if index == "5" else 0xb0
+            offset = 0x1c if index == 3 else 0x2c if index == 4 else 0x4c if index == 5 else 0xb0
 
         name = os.path.basename(f.name).replace(".bin", "")
 
@@ -105,7 +105,7 @@ def embed_personal():
             spa = data[i+0x4]
             spd = data[i+0x5]
 
-            if index == "3":
+            if index == 3:
                 gender = data[i+0x10]
                 ability1 = data[i+0x16]
                 ability2 = data[i+0x17]
@@ -113,7 +113,7 @@ def embed_personal():
                 form_count = 1
                 form_stat_index = 0
                 present = 1
-            elif index == "4":
+            elif index == 4:
                 gender = data[i+0x10]
                 ability1 = data[i+0x16]
                 ability2 = data[i+0x17]
@@ -121,7 +121,7 @@ def embed_personal():
                 form_count = data[i+0x29]
                 form_stat_index = (data[i+0x2b] << 8) | data[i+0x2a]
                 present = 1
-            elif index == "5":
+            elif index == 5:
                 gender = data[i+0x12]
                 ability1 = data[i+0x18]
                 ability2 = data[i+0x19]
@@ -129,7 +129,7 @@ def embed_personal():
                 form_count = data[i+0x20]
                 form_stat_index = (data[i+0x1d] << 8) | data[i+0x1c]
                 present = 1
-            elif index == "8":
+            elif index == 8:
                 gender = data[i+0x12]
                 ability1 = (data[i+0x19] << 8) | data[i+0x18]
                 ability2 = (data[i+0x1b] << 8) | data[i+0x1a]

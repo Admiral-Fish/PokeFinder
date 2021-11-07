@@ -221,7 +221,7 @@ void IVCalculator::findIVs()
     u8 nature = static_cast<u8>(ui->comboBoxNature->currentIndex());
     u8 hiddenPower = static_cast<u8>(ui->comboBoxHiddenPower->currentIndex() - 1);
     u8 characteristic = static_cast<u8>(ui->comboBoxCharacteristic->currentIndex() - 1);
-    auto base = personalInfo[ui->comboBoxPokemon->currentIndex() + 1];
+    auto base = personalInfo[ui->comboBoxPokemon->currentData().toUInt()];
 
     auto ivs = IVChecker::calculateIVRange(getPersonalInfo(base).getBaseStats(), stats, levels, nature, characteristic, hiddenPower);
 
@@ -237,7 +237,7 @@ void IVCalculator::pokemonIndexChanged(int index)
 {
     if (index >= 0 && personalInfo != nullptr)
     {
-        PersonalInfo base = personalInfo[index + 1];
+        PersonalInfo base = personalInfo[ui->comboBoxPokemon->currentData().toUInt()];
         u8 formCount = base.getFormCount();
 
         ui->labelAltForm->setVisible(formCount > 1);
@@ -255,9 +255,9 @@ void IVCalculator::altformIndexChanged(int index)
 {
     if (index >= 0)
     {
-        u16 specie = static_cast<u16>(ui->comboBoxPokemon->currentIndex());
+        u16 specie = ui->comboBoxPokemon->currentData().toUInt();
 
-        auto base = personalInfo[specie + 1];
+        auto base = personalInfo[specie];
         auto info = getPersonalInfo(base);
 
         std::array<u8, 6> stats = info.getBaseStats();
@@ -290,14 +290,31 @@ void IVCalculator::generationIndexChanged(int index)
             personalInfo = PersonalLoader5::getPersonal();
             max = 649;
         }
+        else if (index == 3)
+        {
+            personalInfo = PersonalLoader8::getPersonal();
+        }
 
         std::vector<u16> species(max);
-        std::iota(species.begin(), species.end(), 1);
+        if (index != 3)
+        {
+            std::iota(species.begin(), species.end(), 1);
+        }
+        else
+        {
+            for (int i = 1; i <= 898; i++)
+            {
+                if (personalInfo[i].getPresent())
+                {
+                    species.push_back(i);
+                }
+            }
+        }
 
         ui->comboBoxPokemon->clear();
-        for (const std::string &specie : Translator::getSpecies(species))
+        for (u16 specie : species)
         {
-            ui->comboBoxPokemon->addItem(QString::fromStdString(specie));
+            ui->comboBoxPokemon->addItem(QString::fromStdString(Translator::getSpecies(specie)), specie);
         }
     }
 }
