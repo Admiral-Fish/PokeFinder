@@ -6,15 +6,9 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>490</width>
-    <height>110</height>
+    <width>378</width>
+    <height>98</height>
    </rect>
-  </property>
-  <property name="minimumSize">
-   <size>
-    <width>490</width>
-    <height>110</height>
-   </size>
   </property>
   <property name="windowTitle">
    <string>Profile Editor Gen 3</string>

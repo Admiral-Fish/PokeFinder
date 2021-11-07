@@ -18,7 +18,7 @@
  */
 
 #include "PersonalLoader.hpp"
-#include <Core/Resources/Resources.hpp>
+#include <Core/Resources/Personal.hpp>
 
 namespace PersonalLoader3
 {
@@ -41,5 +41,27 @@ namespace PersonalLoader5
     const PersonalInfo *getPersonal()
     {
         return personal5.data();
+    }
+}
+
+namespace PersonalLoader8
+{
+    const PersonalInfo *getPersonal()
+    {
+        return personal8.data();
+    }
+
+    PersonalInfo getPersonal(u16 species, u8 form)
+    {
+        PersonalInfo base = personal8[species];
+
+        u16 formIndex = base.getFormStatIndex();
+
+        if (form == 0 || formIndex == 0)
+        {
+            return base;
+        }
+
+        return personal8[formIndex + form - 1];
     }
 }

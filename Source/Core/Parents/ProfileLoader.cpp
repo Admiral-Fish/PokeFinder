@@ -360,3 +360,88 @@ namespace ProfileLoader5
         }
     }
 }
+
+namespace ProfileLoader8
+{
+    namespace
+    {
+        Profile getProfile(const json &j)
+        {
+            std::string name = j["name"].get<std::string>();
+            Game version = j["version"].get<Game>();
+            u16 tid = j["tid"].get<u16>();
+            u16 sid = j["sid"].get<u16>();
+
+            return Profile(name, version, tid, sid);
+        }
+
+        json getJson(const Profile &profile)
+        {
+            json j;
+            j["name"] = profile.getName();
+            j["version"] = profile.getVersion();
+            j["tid"] = profile.getTID();
+            j["sid"] = profile.getSID();
+            return j;
+        }
+    }
+
+    std::vector<Profile> getProfiles()
+    {
+        std::vector<Profile> profiles;
+
+        json j = readJson();
+        const auto &gen8 = j["gen8"];
+        std::transform(gen8.begin(), gen8.end(), std::back_inserter(profiles), [](const json &j) { return getProfile(j); });
+
+        return profiles;
+    }
+
+    void addProfile(const Profile &profile)
+    {
+        json j = readJson();
+
+        auto &gen8 = j["gen8"];
+        gen8.emplace_back(getJson(profile));
+
+        writeJson(j);
+    }
+
+    void removeProfile(const Profile &remove)
+    {
+        json j = readJson();
+
+        auto &gen8 = j["gen8"];
+        for (size_t i = 0; i < gen8.size(); i++)
+        {
+            Profile profile = getProfile(gen8[i]);
+
+            if (profile == remove)
+            {
+                gen8.erase(gen8.begin() + i);
+
+                writeJson(j);
+                break;
+            }
+        }
+    }
+
+    void updateProfile(const Profile &update, const Profile &original)
+    {
+        json j = readJson();
+
+        auto &gen8 = j["gen8"];
+        for (auto &i : gen8)
+        {
+            Profile profile = getProfile(i);
+
+            if (original == profile && original != update)
+            {
+                i = getJson(update);
+
+                writeJson(j);
+                break;
+            }
+        }
+    }
+}

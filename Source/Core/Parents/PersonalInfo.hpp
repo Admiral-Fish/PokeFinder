@@ -27,7 +27,7 @@ class PersonalInfo
 {
 public:
     constexpr PersonalInfo(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, u8 gender, u16 ability1, u16 ability2, u16 abilityH, u8 formCount,
-                           u16 formStatIndex) :
+                           u16 formStatIndex, bool present) :
         hp(hp),
         atk(atk),
         def(def),
@@ -39,7 +39,8 @@ public:
         ability2(ability2),
         abilityH(abilityH),
         formCount(formCount),
-        formStatIndex(formStatIndex)
+        formStatIndex(formStatIndex),
+        present(present)
     {
     }
 
@@ -78,6 +79,11 @@ public:
         return formStatIndex;
     }
 
+    bool getPresent() const
+    {
+        return present;
+    }
+
 private:
     u8 hp;
     u8 atk;
@@ -91,6 +97,7 @@ private:
     u16 abilityH;
     u8 formCount;
     u16 formStatIndex;
+    bool present;
 };
 
 #endif // PERSONALINFO_HPP

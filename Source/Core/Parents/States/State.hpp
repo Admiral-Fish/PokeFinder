@@ -109,6 +109,11 @@ public:
         ivs[5] = spe;
     }
 
+    void setIV(u8 index, u8 iv)
+    {
+        ivs[index] = iv;
+    }
+
     u8 getAbility() const
     {
         return ability;

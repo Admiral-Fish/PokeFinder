@@ -10,12 +10,6 @@
     <height>350</height>
    </rect>
   </property>
-  <property name="minimumSize">
-   <size>
-    <width>550</width>
-    <height>350</height>
-   </size>
-  </property>
   <property name="windowTitle">
    <string>Channel Jirachi Pattern</string>
   </property>
@@ -52,26 +46,8 @@
    </item>
    <item row="2" column="0" colspan="3">
     <widget class="TableView" name="tableView">
-     <property name="editTriggers">
-      <set>QAbstractItemView::NoEditTriggers</set>
-     </property>
-     <property name="sortingEnabled">
-      <bool>false</bool>
-     </property>
-     <attribute name="horizontalHeaderVisible">
-      <bool>true</bool>
-     </attribute>
-     <attribute name="horizontalHeaderDefaultSectionSize">
-      <number>100</number>
-     </attribute>
      <attribute name="verticalHeaderVisible">
       <bool>false</bool>
-     </attribute>
-     <attribute name="verticalHeaderMinimumSectionSize">
-      <number>20</number>
-     </attribute>
-     <attribute name="verticalHeaderDefaultSectionSize">
-      <number>21</number>
      </attribute>
     </widget>
    </item>

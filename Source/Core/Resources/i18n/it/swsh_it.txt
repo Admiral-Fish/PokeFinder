@@ -1,0 +1,44 @@
+0,Occhio del Lago Axew
+1,Piana dei Ponti
+2,Boschetto Ombraluce
+3,Conca delle Sabbie
+4,Lago Axew (est)
+5,Berretto del Gigante
+6,Specchio del Gigante
+7,Sedia del Gigante
+8,Colle Knuckleburgh
+9,Lago Dragofuria
+10,Fiume di Steamington
+11,Lago Milotic (nord)
+12,Pianura Serena
+13,Lago Milotic (sud)
+14,Landa delle Pietre
+15,Torre Diroccata
+16,Lago Axew (ovest)
+17,Fields of Honor
+18,Soothing Wetlands
+19,Forest of Focus
+20,Challenge Beach
+21,Brawlers' Cave
+22,Challenge Road
+23,Courageous Cavern
+24,Loop Lagoon
+25,Training Lowlands
+26,Potbottom Desert
+27,Workout Sea
+28,Stepping-Stone Sea
+29,Insular Sea
+30,Honeycalm Sea
+31,Honeycalm Island
+32,Slippery Slope
+33,Frostpoint Field
+34,Giant's Bed
+35,Old Cemetery
+36,Snowslide Slope
+37,Path to the Peak
+38,Crown Shrine
+39,Giant's Foot
+40,Frigid Sea
+41,Three-Point Pass
+42,Ballimere Lake
+43,Dyna Tree Hill

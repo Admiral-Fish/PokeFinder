@@ -24,7 +24,7 @@
 #include <string>
 #include <vector>
 
-enum Game : u16;
+enum Game : u32;
 
 namespace Translator
 {
@@ -32,6 +32,7 @@ namespace Translator
     std::vector<std::string> getCharacteristic();
     std::vector<std::string> getNatures();
     std::string getNature(u8 nature);
+    std::string getAbility(u16 ability);
     std::vector<std::string> getHiddenPowers();
     std::string getHiddenPower(u8 power);
     std::string getSpecies(u16 specie);

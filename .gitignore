@@ -10,5 +10,6 @@ CMakeLists.txt.user*
 CMakeSettings.json
 
 # Resource files
-I18n.hpp
-Resources.hpp
+i18n.hpp
+Encounters.hpp
+Personal.hpp

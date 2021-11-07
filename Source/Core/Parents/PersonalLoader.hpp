@@ -20,6 +20,8 @@
 #ifndef PERSONALLOADER_HPP
 #define PERSONALLOADER_HPP
 
+#include <Core/Util/Global.hpp>
+
 class PersonalInfo;
 
 namespace PersonalLoader3
@@ -35,6 +37,12 @@ namespace PersonalLoader4
 namespace PersonalLoader5
 {
     const PersonalInfo *getPersonal();
+}
+
+namespace PersonalLoader8
+{
+    const PersonalInfo *getPersonal();
+    PersonalInfo getPersonal(u16 species, u8 form);
 }
 
 #endif // PERSONALLOADER_HPP

@@ -23,7 +23,7 @@
 #include <Core/Util/Global.hpp>
 #include <string>
 
-enum Game : u16;
+enum Game : u32;
 
 class Profile
 {
@@ -31,10 +31,26 @@ public:
     Profile();
     Profile(const std::string &name, Game version, u16 tid, u16 sid);
     std::string getVersionString() const;
-    Game getVersion() const;
-    std::string getName() const;
-    u16 getTID() const;
-    u16 getSID() const;
+
+    Game getVersion() const
+    {
+        return version;
+    }
+
+    std::string getName() const
+    {
+        return name;
+    }
+
+    u16 getTID() const
+    {
+        return tid;
+    }
+
+    u16 getSID() const
+    {
+        return sid;
+    }
 
 protected:
     std::string name;
@@ -42,5 +58,8 @@ protected:
     u16 tid;
     u16 sid;
 };
+
+bool operator==(const Profile &left, const Profile &right);
+bool operator!=(const Profile &left, const Profile &right);
 
 #endif // PROFILE_HPP

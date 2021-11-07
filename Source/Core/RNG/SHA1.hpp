@@ -23,7 +23,7 @@
 #include <Core/Util/Global.hpp>
 
 enum DSType : u8;
-enum Game : u16;
+enum Game : u32;
 enum Language : u8;
 class Date;
 class Profile5;

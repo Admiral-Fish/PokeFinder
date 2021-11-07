@@ -29,7 +29,7 @@
 #include <vector>
 
 enum Buttons : u16;
-enum Game : u16;
+enum Game : u32;
 enum Language : u8;
 enum DSType : u8;
 

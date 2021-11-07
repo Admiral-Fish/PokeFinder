@@ -19,7 +19,7 @@
 
 #include "Translator.hpp"
 #include <Core/Enum/Game.hpp>
-#include <Core/Resources/I18n.hpp>
+#include <Core/Resources/i18n.hpp>
 #include <algorithm>
 #include <map>
 #include <sstream>
@@ -29,6 +29,7 @@ namespace
     std::string language;
     std::vector<std::string> characteristics;
     std::vector<std::string> natures;
+    std::vector<std::string> abilities;
     std::vector<std::string> hiddenPowers;
     std::vector<std::string> species;
     const std::vector<std::string> genders = { "♂", "♀", "-" };
@@ -50,6 +51,11 @@ namespace
             {
                 data = natures_de.data();
                 size = natures_de.size();
+            }
+            else if (name == "abilities")
+            {
+                data = abilities_de.data();
+                size = abilities_de.size();
             }
             else if (name == "powers")
             {
@@ -81,6 +87,11 @@ namespace
                 data = hgss_de.data();
                 size = hgss_de.size();
             }
+            else if (name == "swsh")
+            {
+                data = swsh_de.data();
+                size = swsh_de.size();
+            }
         }
         else if (language == "en")
         {
@@ -93,6 +104,11 @@ namespace
             {
                 data = natures_en.data();
                 size = natures_en.size();
+            }
+            else if (name == "abilities")
+            {
+                data = abilities_en.data();
+                size = abilities_en.size();
             }
             else if (name == "powers")
             {
@@ -124,6 +140,11 @@ namespace
                 data = hgss_en.data();
                 size = hgss_en.size();
             }
+            else if (name == "swsh")
+            {
+                data = swsh_en.data();
+                size = swsh_en.size();
+            }
         }
         else if (language == "es")
         {
@@ -136,6 +157,11 @@ namespace
             {
                 data = natures_es.data();
                 size = natures_es.size();
+            }
+            else if (name == "abilities")
+            {
+                data = abilities_es.data();
+                size = abilities_es.size();
             }
             else if (name == "powers")
             {
@@ -167,6 +193,11 @@ namespace
                 data = hgss_es.data();
                 size = hgss_es.size();
             }
+            else if (name == "swsh")
+            {
+                data = swsh_es.data();
+                size = swsh_es.size();
+            }
         }
         else if (language == "fr")
         {
@@ -179,6 +210,11 @@ namespace
             {
                 data = natures_fr.data();
                 size = natures_fr.size();
+            }
+            else if (name == "abilities")
+            {
+                data = abilities_fr.data();
+                size = abilities_fr.size();
             }
             else if (name == "powers")
             {
@@ -210,6 +246,11 @@ namespace
                 data = hgss_fr.data();
                 size = hgss_fr.size();
             }
+            else if (name == "swsh")
+            {
+                data = swsh_fr.data();
+                size = swsh_fr.size();
+            }
         }
         else if (language == "it")
         {
@@ -222,6 +263,11 @@ namespace
             {
                 data = natures_it.data();
                 size = natures_it.size();
+            }
+            else if (name == "abilities")
+            {
+                data = abilities_it.data();
+                size = abilities_it.size();
             }
             else if (name == "powers")
             {
@@ -253,6 +299,11 @@ namespace
                 data = hgss_it.data();
                 size = hgss_it.size();
             }
+            else if (name == "swsh")
+            {
+                data = swsh_it.data();
+                size = swsh_it.size();
+            }
         }
         else if (language == "ja")
         {
@@ -265,6 +316,11 @@ namespace
             {
                 data = natures_ja.data();
                 size = natures_ja.size();
+            }
+            else if (name == "abilities")
+            {
+                data = abilities_ja.data();
+                size = abilities_ja.size();
             }
             else if (name == "powers")
             {
@@ -296,6 +352,11 @@ namespace
                 data = hgss_ja.data();
                 size = hgss_ja.size();
             }
+            else if (name == "swsh")
+            {
+                data = swsh_ja.data();
+                size = swsh_ja.size();
+            }
         }
         else if (language == "ko")
         {
@@ -308,6 +369,11 @@ namespace
             {
                 data = natures_ko.data();
                 size = natures_ko.size();
+            }
+            else if (name == "abilities")
+            {
+                data = abilities_ko.data();
+                size = abilities_ko.size();
             }
             else if (name == "powers")
             {
@@ -339,6 +405,11 @@ namespace
                 data = hgss_ko.data();
                 size = hgss_ko.size();
             }
+            else if (name == "swsh")
+            {
+                data = swsh_ko.data();
+                size = swsh_ko.size();
+            }
         }
         else if (language == "zh")
         {
@@ -351,6 +422,11 @@ namespace
             {
                 data = natures_zh.data();
                 size = natures_zh.size();
+            }
+            else if (name == "abilities")
+            {
+                data = abilities_zh.data();
+                size = abilities_zh.size();
             }
             else if (name == "powers")
             {
@@ -382,6 +458,11 @@ namespace
                 data = hgss_zh.data();
                 size = hgss_zh.size();
             }
+            else if (name == "swsh")
+            {
+                data = swsh_zh.data();
+                size = swsh_zh.size();
+            }
         }
 
         std::vector<std::string> strings;
@@ -407,6 +488,7 @@ namespace Translator
 
         characteristics = readFile("characteristic");
         natures = readFile("natures");
+        abilities = readFile("abilities");
         hiddenPowers = readFile("powers");
         species = readFile("species");
     }
@@ -424,6 +506,11 @@ namespace Translator
     std::string getNature(u8 nature)
     {
         return natures[nature];
+    }
+
+    std::string getAbility(u16 ability)
+    {
+        return abilities[ability];
     }
 
     std::vector<std::string> getHiddenPowers()
@@ -473,9 +560,13 @@ namespace Translator
         {
             strings = readFile("dppt");
         }
-        else
+        else if (game & Game::HGSS)
         {
             strings = readFile("hgss");
+        }
+        else
+        {
+            strings = readFile("swsh");
         }
 
         std::map<int, std::string> map;

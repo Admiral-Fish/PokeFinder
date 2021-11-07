@@ -22,7 +22,7 @@
 #include <Core/Enum/Game.hpp>
 #include <Core/Gen5/EncounterArea5.hpp>
 #include <Core/Parents/PersonalLoader.hpp>
-#include <Core/Resources/Resources.hpp>
+#include <Core/Resources/Encounters.hpp>
 #include <algorithm>
 #include <cstring>
 #include <iterator>

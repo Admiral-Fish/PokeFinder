@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import glob
+import json
 import os
 
 
@@ -25,18 +26,71 @@ def embed_encounters():
         string += " };"
         arrays.append(string)
 
-    return arrays
+    # Handle raids seperately
+    with open("Encounters/Gen8/nests.json") as f:
+        data = json.load(f)
+        tables : list = data["Tables"]
+
+        name = os.path.basename(f.name).replace(".json", "")
+
+        string = f"constexpr std::array<Den, {len(tables)}> {name} ="
+        string += " { "
+
+        tables.sort(key=lambda den: int(f"0x{den['TableID']}", 16))
+        for i, table in enumerate(tables):
+            string += f"Den(0x{table['TableID']}, "
+            
+            string += "std::array<Raid, 12> {"
+            sword = table["SwordEntries"]
+            for j, raid in enumerate(sword):
+                ability = raid["Ability"]
+                altform = raid["AltForm"]
+                iv_count = raid["FlawlessIVs"]
+                gender = raid["Gender"]
+                gigantamax = int(raid["IsGigantamax"])
+                species = raid["Species"]
+                stars = raid["Stars"]
+                star_string = "std::array<bool, 5> {" + f"{int(stars[0])}, {int(stars[1])}, {int(stars[2])}, {int(stars[3])}, {int(stars[4])}" + "}"
+
+                string += f"Raid({ability}, {altform}, {iv_count}, {gender}, {gigantamax}, {species}, personal8[{species}], {star_string})"
+                if j != len(sword) - 1:
+                    string += ", "
+            string += "}, "
+
+            string += "std::array<Raid, 12> {"
+            shield = table["ShieldEntries"]
+            for j, raid in enumerate(shield):
+                ability = raid["Ability"]
+                altform = raid["AltForm"]
+                iv_count = raid["FlawlessIVs"]
+                gender = raid["Gender"]
+                gigantamax = int(raid["IsGigantamax"])
+                species = raid["Species"]
+                stars = raid["Stars"]
+                star_string = "std::array<bool, 5> {" + f"{int(stars[0])}, {int(stars[1])}, {int(stars[2])}, {int(stars[3])}, {int(stars[4])}" + "}"
+
+                string += f"Raid({ability}, {altform}, {iv_count}, {gender}, {gigantamax}, {species}, personal8[{species}], {star_string})"
+                if j != len(sword) - 1:
+                    string += ", "
+            string += "})"
+            if i != len(tables) - 1:
+                string += ", "
+        string += "};"
+
+        arrays.append(string)
+
+    write_data(arrays, "Encounters.hpp", ("Core/Gen8/Den.hpp", "Core/Util/Global.hpp", "Core/Resources/Personal.hpp", "array"))
 
 
 def embed_personal():
     arrays = []
 
-    for index in ("3", "4", "5"):
+    for index in ("3", "4", "5", "8"):
         file = f"Personal/Gen{index}/personal{index}.bin"
         with open(file, "rb") as f:
             data = f.read()
             size = len(data)
-            offset = 0x1c if index == "3" else 0x2c if index == "4" else 0x4c
+            offset = 0x1c if index == "3" else 0x2c if index == "4" else 0x4c if index == "5" else 0xb0
 
         name = os.path.basename(f.name).replace(".bin", "")
 
@@ -55,25 +109,36 @@ def embed_personal():
                 gender = data[i+0x10]
                 ability1 = data[i+0x16]
                 ability2 = data[i+0x17]
-                form_count = 1
                 abilityH = 0
+                form_count = 1
                 form_stat_index = 0
+                present = 1
             elif index == "4":
                 gender = data[i+0x10]
                 ability1 = data[i+0x16]
                 ability2 = data[i+0x17]
-                form_count = data[i+0x29]
                 abilityH = 0
+                form_count = data[i+0x29]
                 form_stat_index = (data[i+0x2b] << 8) | data[i+0x2a]
+                present = 1
             elif index == "5":
                 gender = data[i+0x12]
                 ability1 = data[i+0x18]
                 ability2 = data[i+0x19]
-                form_count = data[i+0x20]
                 abilityH = data[i+0x1a]
+                form_count = data[i+0x20]
                 form_stat_index = (data[i+0x1d] << 8) | data[i+0x1c]
+                present = 1
+            elif index == "8":
+                gender = data[i+0x12]
+                ability1 = (data[i+0x19] << 8) | data[i+0x18]
+                ability2 = (data[i+0x1b] << 8) | data[i+0x1a]
+                abilityH = (data[i+0x1d] << 8) | data[i+0x1c]
+                form_count = data[i+0x20]
+                form_stat_index = (data[i+0x1f] << 8) | data[i+0x1e]
+                present = (data[i+0x21] >> 6) & 1
 
-            personal = f"PersonalInfo({hp}, {atk}, {defense}, {spa}, {spd}, {spe}, {gender}, {ability1}, {ability2}, {abilityH}, {form_count}, {form_stat_index})"
+            personal = f"PersonalInfo({hp}, {atk}, {defense}, {spa}, {spd}, {spe}, {gender}, {ability1}, {ability2}, {abilityH}, {form_count}, {form_stat_index}, {present})"
             string += personal
             if i != size - offset:
                 string += ", "
@@ -81,7 +146,7 @@ def embed_personal():
         string += " };"
         arrays.append(string)
 
-    return arrays
+    write_data(arrays, "Personal.hpp", ("Core/Parents/PersonalInfo.hpp", "array"))
 
 
 def embed_strings(paths):
@@ -120,19 +185,19 @@ def embed_strings(paths):
     write_strings(arrays)
 
 
-def write_data(arrays):
-    f = open("Resources.hpp", "w")
+def write_data(arrays, file, includes):
+    f = open(file, "w")
 
-    f.write("#include <Core/Parents/PersonalInfo.hpp>\n")
-    f.write("#include <Core/Util/Global.hpp>\n")
-    f.write("#include <array>\n\n")
+    for include in includes:
+        f.write(f"#include <{include}>\n")
+    f.write("\n")
 
     for array in arrays:
         f.write(f"{array}\n\n")
 
 
 def write_strings(maps):
-    f = open("I18n.hpp", "w", encoding="utf-8")
+    f = open("i18n.hpp", "w", encoding="utf-8")
 
     f.write("#include <Core/Util/Global.hpp>\n")
     f.write("#include <array>\n\n")
@@ -146,10 +211,8 @@ def main():
     import pathlib
     os.chdir(pathlib.Path(__file__).parent.absolute())
 
-    encounters = embed_encounters()
-    personal = embed_personal()
-    write_data(encounters + personal)
-
+    embed_encounters()
+    embed_personal()
     embed_strings(["de", "en", "es", "fr", "it", "ja", "ko", "zh"])
 
 

@@ -43,6 +43,8 @@ class DreamRadar;
 class HiddenGrotto;
 class Eggs5;
 class IDs5;
+class Raids;
+class Wild8;
 
 class MainWindow : public QMainWindow
 {
@@ -69,6 +71,8 @@ private:
     HiddenGrotto *hiddenGrotto = nullptr;
     Eggs5 *egg5 = nullptr;
     IDs5 *ids5 = nullptr;
+    Raids *raids = nullptr;
+    Wild8 *wild8 = nullptr;
 
     void setupModels();
     void checkUpdates();
@@ -104,6 +108,8 @@ private slots:
     void openIDs5();
     void openProfileCalibrator();
     void openProfileManager5();
+    void openRaids();
+    void openWild8();
     void openAbout();
     void openEncounterLookup();
     void openIVCalculator();

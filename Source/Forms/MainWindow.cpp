@@ -47,6 +47,8 @@
 #include <Forms/Gen5/Profile/ProfileCalibrator5.hpp>
 #include <Forms/Gen5/Profile/ProfileManager5.hpp>
 #include <Forms/Gen5/Stationary5.hpp>
+#include <Forms/Gen8/Raids.hpp>
+#include <Forms/Gen8/Wild8.hpp>
 #include <Forms/Util/EncounterLookup.hpp>
 #include <Forms/Util/IVCalculator.hpp>
 #include <Forms/Util/IVtoPID.hpp>
@@ -100,6 +102,8 @@ MainWindow::~MainWindow()
     delete hiddenGrotto;
     delete egg5;
     delete ids5;
+    delete raids;
+    // delete wild8;
 }
 
 void MainWindow::setupModels()
@@ -136,6 +140,9 @@ void MainWindow::setupModels()
     connect(ui->pushButtonIDs5, &QPushButton::clicked, this, &MainWindow::openIDs5);
     connect(ui->actionProfileCalibrator, &QAction::triggered, this, &MainWindow::openProfileCalibrator);
     connect(ui->actionProfileManager5, &QAction::triggered, this, &MainWindow::openProfileManager5);
+
+    connect(ui->pushButtonRaid, &QPushButton::clicked, this, &MainWindow::openRaids);
+    connect(ui->pushButtonWild8, &QPushButton::clicked, this, &MainWindow::openWild8);
 
     connect(ui->actionAbout, &QAction::triggered, this, &MainWindow::openAbout);
     connect(ui->actionEncounterLookup, &QAction::triggered, this, &MainWindow::openEncounterLookup);
@@ -245,6 +252,17 @@ void MainWindow::updateProfiles(int num)
         {
             hiddenGrotto->updateProfiles();
         }
+    }
+    else if (num == 8)
+    {
+        if (raids)
+        {
+            raids->updateProfiles();
+        }
+        /*if (wild8)
+        {
+            wild8->updateProfiles();
+        }*/
     }
 }
 
@@ -541,6 +559,28 @@ void MainWindow::openIDs5()
         message.exec();
         ids5->close();
     }
+}
+
+void MainWindow::openRaids()
+{
+    if (!raids)
+    {
+        raids = new Raids();
+        connect(raids, &Raids::alertProfiles, this, &MainWindow::updateProfiles);
+    }
+    raids->show();
+    raids->raise();
+}
+
+void MainWindow::openWild8()
+{
+    if (!wild8)
+    {
+        wild8 = new Wild8();
+        // connect(raids, &Wild8::alertProfiles, this, &MainWindow::updateProfiles);
+    }
+    raids->show();
+    raids->raise();
 }
 
 void MainWindow::openProfileCalibrator()

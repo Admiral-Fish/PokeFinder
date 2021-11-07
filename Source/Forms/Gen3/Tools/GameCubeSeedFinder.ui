@@ -7,14 +7,8 @@
     <x>0</x>
     <y>0</y>
     <width>640</width>
-    <height>270</height>
+    <height>314</height>
    </rect>
-  </property>
-  <property name="minimumSize">
-   <size>
-    <width>640</width>
-    <height>270</height>
-   </size>
   </property>
   <property name="windowTitle">
    <string>GameCube Seed Finder</string>
@@ -342,12 +336,6 @@
          <layout class="QGridLayout" name="gridLayout_11">
           <item row="0" column="0">
            <widget class="QTextEdit" name="textEditInputs">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
             <property name="readOnly">
              <bool>false</bool>
             </property>

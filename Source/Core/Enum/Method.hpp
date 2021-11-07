@@ -61,8 +61,9 @@ enum Method : u8
     BWBred,
     BW2Bred,
     DreamRadar,
-    Method5Event
+    Method5Event,
     // TODO: Add Gen 5 egg/events
+    DenRaid
 };
 
 #endif // METHOD_HPP

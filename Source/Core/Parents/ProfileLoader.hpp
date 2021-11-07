@@ -54,4 +54,12 @@ namespace ProfileLoader5
     void updateProfile(const Profile5 &update, const Profile5 &original);
 }
 
+namespace ProfileLoader8
+{
+    std::vector<Profile> getProfiles();
+    void addProfile(const Profile &profile);
+    void removeProfile(const Profile &remove);
+    void updateProfile(const Profile &update, const Profile &original);
+}
+
 #endif // PROFILELOADER_HPP

@@ -26,6 +26,7 @@
 
 class DreamRadarGeneratorModel5;
 class DreamRadarSearcherModel5;
+struct DreamRadarSlot;
 
 namespace Ui
 {

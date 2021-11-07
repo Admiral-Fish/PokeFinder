@@ -32,7 +32,7 @@
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap resource="../../../resources.qrc">:/images/roamers.png</pixmap>
+      <pixmap resource="../../resources.qrc">:/images/roamers.png</pixmap>
      </property>
     </widget>
    </item>
@@ -48,7 +48,7 @@
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap resource="../../../resources.qrc">:/images/entei.png</pixmap>
+      <pixmap resource="../../resources.qrc">:/images/entei.png</pixmap>
      </property>
     </widget>
    </item>
@@ -74,7 +74,7 @@
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap resource="../../../resources.qrc">:/images/raikou.png</pixmap>
+      <pixmap resource="../../resources.qrc">:/images/raikou.png</pixmap>
      </property>
     </widget>
    </item>
@@ -100,7 +100,7 @@
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap resource="../../../resources.qrc">:/images/latias.png</pixmap>
+      <pixmap resource="../../resources.qrc">:/images/latias.png</pixmap>
      </property>
     </widget>
    </item>
@@ -116,7 +116,7 @@
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap resource="../../../resources.qrc">:/images/latios.png</pixmap>
+      <pixmap resource="../../resources.qrc">:/images/latios.png</pixmap>
      </property>
     </widget>
    </item>
@@ -133,6 +133,7 @@
   </layout>
  </widget>
  <resources>
+  <include location="../../resources.qrc"/>
   <include location="../../../resources.qrc"/>
  </resources>
  <connections/>

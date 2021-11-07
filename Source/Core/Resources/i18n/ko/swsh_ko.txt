@@ -1,0 +1,44 @@
+0,Axew's Eye
+1,Bridge Field
+2,Dappled Grove
+3,Dusty Bowl
+4,East Lake Axewell
+5,Giant's Cap
+6,Giant's Mirror
+7,Giant's Seat
+8,Hammerlocke Hills
+9,Lake of Outrage
+10,Motostoke Riverbank
+11,North Lake Miloch
+12,Rolling Fields
+13,South Lake Miloch
+14,Stony Wilderness
+15,Watchtower Ruins
+16,West Lake Axewell
+17,Fields of Honor
+18,Soothing Wetlands
+19,Forest of Focus
+20,Challenge Beach
+21,Brawlers' Cave
+22,Challenge Road
+23,Courageous Cavern
+24,Loop Lagoon
+25,Training Lowlands
+26,Potbottom Desert
+27,Workout Sea
+28,Stepping-Stone Sea
+29,Insular Sea
+30,Honeycalm Sea
+31,Honeycalm Island
+32,Slippery Slope
+33,Frostpoint Field
+34,Giant's Bed
+35,Old Cemetery
+36,Snowslide Slope
+37,Path to the Peak
+38,Crown Shrine
+39,Giant's Foot
+40,Frigid Sea
+41,Three-Point Pass
+42,Ballimere Lake
+43,Dyna Tree Hill

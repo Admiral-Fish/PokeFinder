@@ -20,7 +20,7 @@
 #include "ShadowTeam.hpp"
 #include <Core/Enum/Method.hpp>
 #include <Core/Enum/ShadowType.hpp>
-#include <Core/Resources/Resources.hpp>
+#include <Core/Resources/Encounters.hpp>
 
 std::vector<ShadowTeam> ShadowTeam::loadShadowTeams(Method version)
 {

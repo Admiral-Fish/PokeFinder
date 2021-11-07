@@ -245,13 +245,6 @@
           <string>RNG Info</string>
          </property>
          <layout class="QGridLayout" name="gridLayout_6">
-          <item row="0" column="0">
-           <widget class="QLabel" name="labelGeneratorInitialAdvances">
-            <property name="text">
-             <string>Initial Advances</string>
-            </property>
-           </widget>
-          </item>
           <item row="0" column="1">
            <widget class="TextBox" name="textBoxGeneratorInitialAdvances">
             <property name="inputMask">
@@ -259,13 +252,6 @@
             </property>
             <property name="text">
              <string notr="true">0</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="0">
-           <widget class="QLabel" name="labelGeneratorMaxAdvances">
-            <property name="text">
-             <string>Max Advances</string>
             </property>
            </widget>
           </item>
@@ -283,6 +269,13 @@
            <widget class="QLabel" name="labelGeneratorSeed">
             <property name="text">
              <string>Seed</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="labelGeneratorMaxAdvances">
+            <property name="text">
+             <string>Max Advances</string>
             </property>
            </widget>
           </item>
@@ -332,6 +325,13 @@
             </item>
            </layout>
           </item>
+          <item row="0" column="0">
+           <widget class="QLabel" name="labelGeneratorInitialAdvances">
+            <property name="text">
+             <string>Initial Advances</string>
+            </property>
+           </widget>
+          </item>
          </layout>
         </widget>
        </item>
@@ -358,23 +358,8 @@
          <property name="contextMenuPolicy">
           <enum>Qt::CustomContextMenu</enum>
          </property>
-         <property name="editTriggers">
-          <set>QAbstractItemView::NoEditTriggers</set>
-         </property>
-         <property name="sortingEnabled">
-          <bool>false</bool>
-         </property>
-         <attribute name="horizontalHeaderDefaultSectionSize">
-          <number>100</number>
-         </attribute>
          <attribute name="verticalHeaderVisible">
           <bool>false</bool>
-         </attribute>
-         <attribute name="verticalHeaderMinimumSectionSize">
-          <number>20</number>
-         </attribute>
-         <attribute name="verticalHeaderDefaultSectionSize">
-          <number>21</number>
          </attribute>
         </widget>
        </item>
@@ -429,23 +414,11 @@
          <property name="contextMenuPolicy">
           <enum>Qt::CustomContextMenu</enum>
          </property>
-         <property name="editTriggers">
-          <set>QAbstractItemView::NoEditTriggers</set>
-         </property>
          <property name="sortingEnabled">
           <bool>true</bool>
          </property>
-         <attribute name="horizontalHeaderDefaultSectionSize">
-          <number>100</number>
-         </attribute>
          <attribute name="verticalHeaderVisible">
           <bool>false</bool>
-         </attribute>
-         <attribute name="verticalHeaderMinimumSectionSize">
-          <number>20</number>
-         </attribute>
-         <attribute name="verticalHeaderDefaultSectionSize">
-          <number>21</number>
          </attribute>
         </widget>
        </item>
@@ -468,20 +441,6 @@
           <string>RNG Info</string>
          </property>
          <layout class="QGridLayout" name="gridLayout_2">
-          <item row="0" column="0">
-           <widget class="QLabel" name="labelSearcherMaxAdvances">
-            <property name="text">
-             <string>Max Advances</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="1">
-           <widget class="TextBox" name="textBoxSearcherMaxAdvances">
-            <property name="text">
-             <string notr="true">100</string>
-            </property>
-           </widget>
-          </item>
           <item row="1" column="0">
            <widget class="QLabel" name="labelSearcherStartDate">
             <property name="text">
@@ -489,8 +448,8 @@
             </property>
            </widget>
           </item>
-          <item row="1" column="1">
-           <widget class="DateEdit" name="dateEditSearcherStartDate">
+          <item row="2" column="1">
+           <widget class="DateEdit" name="dateEditSearcherEndDate">
             <property name="maximumDateTime">
              <datetime>
               <hour>23</hour>
@@ -523,8 +482,22 @@
             </property>
            </widget>
           </item>
-          <item row="2" column="1">
-           <widget class="DateEdit" name="dateEditSearcherEndDate">
+          <item row="0" column="0">
+           <widget class="QLabel" name="labelSearcherMaxAdvances">
+            <property name="text">
+             <string>Max Advances</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="TextBox" name="textBoxSearcherMaxAdvances">
+            <property name="text">
+             <string notr="true">100</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="DateEdit" name="dateEditSearcherStartDate">
             <property name="maximumDateTime">
              <datetime>
               <hour>23</hour>

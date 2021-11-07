@@ -22,7 +22,7 @@
 
 #include <Core/Util/Global.hpp>
 
-enum Game : u16
+enum Game : u32
 {
     Blank = 0, // Placeholder
     Ruby = 1 << 0,
@@ -48,7 +48,10 @@ enum Game : u16
     BW = Black | White,
     Black2 = 1 << 14,
     White2 = 1 << 15,
-    BW2 = Black2 | White2
+    BW2 = Black2 | White2,
+    Sword = 1 << 16,
+    Shield = 1 << 17,
+    SwSh = Sword | Shield
 };
 
 #endif // GAME_HPP

@@ -24,7 +24,7 @@
 #include <Core/Gen4/Profile4.hpp>
 #include <Core/Parents/PersonalLoader.hpp>
 #include <Core/Parents/Slot.hpp>
-#include <Core/Resources/Resources.hpp>
+#include <Core/Resources/Encounters.hpp>
 #include <algorithm>
 #include <cstring>
 #include <iterator>

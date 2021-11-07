@@ -69,22 +69,13 @@ std::string Profile::getVersionString() const
     }
 }
 
-Game Profile::getVersion() const
+bool operator==(const Profile &left, const Profile &right)
 {
-    return version;
+    return left.getName() == right.getName() && left.getVersion() == right.getVersion()
+        && left.getTID() == right.getTID() && left.getSID() == right.getSID();
 }
 
-std::string Profile::getName() const
+bool operator!=(const Profile &left, const Profile &right)
 {
-    return name;
-}
-
-u16 Profile::getTID() const
-{
-    return tid;
-}
-
-u16 Profile::getSID() const
-{
-    return sid;
+    return !(left == right);
 }

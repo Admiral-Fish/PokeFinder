@@ -10,12 +10,6 @@
     <height>700</height>
    </rect>
   </property>
-  <property name="minimumSize">
-   <size>
-    <width>1200</width>
-    <height>700</height>
-   </size>
-  </property>
   <property name="windowTitle">
    <string>Gen 4 Eggs</string>
   </property>
@@ -427,14 +421,11 @@
        </item>
        <item row="2" column="0" colspan="3">
         <widget class="TableView" name="tableViewSearcher">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-           <horstretch>1</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
          <property name="contextMenuPolicy">
           <enum>Qt::CustomContextMenu</enum>
+         </property>
+         <property name="sortingEnabled">
+          <bool>true</bool>
          </property>
          <attribute name="verticalHeaderVisible">
           <bool>false</bool>

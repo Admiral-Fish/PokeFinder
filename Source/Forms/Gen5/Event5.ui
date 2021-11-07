@@ -329,6 +329,13 @@
           <string>Settings</string>
          </property>
          <layout class="QGridLayout" name="gridLayout_11">
+          <item row="0" column="2">
+           <widget class="QPushButton" name="pushButtonGeneratorImport">
+            <property name="text">
+             <string>Import</string>
+            </property>
+           </widget>
+          </item>
           <item row="0" column="0">
            <widget class="QLabel" name="labelGeneratorSpecies">
             <property name="text">
@@ -348,24 +355,10 @@
               </property>
              </widget>
             </item>
-            <item row="0" column="1">
-             <widget class="QSpinBox" name="spinBoxGeneratorHP">
-              <property name="maximum">
-               <number>31</number>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="0">
-             <widget class="QCheckBox" name="checkBoxGeneratorAtk">
+            <item row="4" column="0">
+             <widget class="QCheckBox" name="checkBoxGeneratorSpD">
               <property name="text">
-               <string>Atk</string>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="1">
-             <widget class="QSpinBox" name="spinBoxGeneratorAtk">
-              <property name="maximum">
-               <number>31</number>
+               <string>SpD</string>
               </property>
              </widget>
             </item>
@@ -376,8 +369,8 @@
               </property>
              </widget>
             </item>
-            <item row="2" column="1">
-             <widget class="QSpinBox" name="spinBoxGeneratorDef">
+            <item row="3" column="1">
+             <widget class="QSpinBox" name="spinBoxGeneratorSpA">
               <property name="maximum">
                <number>31</number>
               </property>
@@ -390,17 +383,31 @@
               </property>
              </widget>
             </item>
-            <item row="3" column="1">
-             <widget class="QSpinBox" name="spinBoxGeneratorSpA">
+            <item row="0" column="1">
+             <widget class="QSpinBox" name="spinBoxGeneratorHP">
               <property name="maximum">
                <number>31</number>
               </property>
              </widget>
             </item>
-            <item row="4" column="0">
-             <widget class="QCheckBox" name="checkBoxGeneratorSpD">
-              <property name="text">
-               <string>SpD</string>
+            <item row="2" column="1">
+             <widget class="QSpinBox" name="spinBoxGeneratorDef">
+              <property name="maximum">
+               <number>31</number>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="1">
+             <widget class="QSpinBox" name="spinBoxGeneratorAtk">
+              <property name="maximum">
+               <number>31</number>
+              </property>
+             </widget>
+            </item>
+            <item row="5" column="1">
+             <widget class="QSpinBox" name="spinBoxGeneratorSpe">
+              <property name="maximum">
+               <number>31</number>
               </property>
              </widget>
             </item>
@@ -418,10 +425,10 @@
               </property>
              </widget>
             </item>
-            <item row="5" column="1">
-             <widget class="QSpinBox" name="spinBoxGeneratorSpe">
-              <property name="maximum">
-               <number>31</number>
+            <item row="1" column="0">
+             <widget class="QCheckBox" name="checkBoxGeneratorAtk">
+              <property name="text">
+               <string>Atk</string>
               </property>
              </widget>
             </item>
@@ -429,10 +436,36 @@
           </item>
           <item row="1" column="2">
            <layout class="QGridLayout" name="gridLayout_10">
-            <item row="0" column="0">
-             <widget class="QLabel" name="labelGeneratorAbility">
+            <item row="3" column="1">
+             <widget class="QComboBox" name="comboBoxGeneratorShiny">
+              <item>
+               <property name="text">
+                <string>Force non-shiny</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Random</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Force shiny</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+            <item row="6" column="0">
+             <widget class="QCheckBox" name="checkBoxGeneratorEgg">
               <property name="text">
-               <string>Ability</string>
+               <string>Egg</string>
+              </property>
+             </widget>
+            </item>
+            <item row="5" column="0">
+             <widget class="QLabel" name="labelGeneratorEventSID">
+              <property name="text">
+               <string>Event SID</string>
               </property>
              </widget>
             </item>
@@ -460,12 +493,8 @@
               </item>
              </widget>
             </item>
-            <item row="1" column="0">
-             <widget class="QLabel" name="labelGeneratorGender">
-              <property name="text">
-               <string>Gender</string>
-              </property>
-             </widget>
+            <item row="4" column="1">
+             <widget class="TextBox" name="textBoxGeneratorEventTID"/>
             </item>
             <item row="1" column="1">
              <widget class="QComboBox" name="comboBoxGeneratorGender">
@@ -493,6 +522,20 @@
               </property>
              </widget>
             </item>
+            <item row="1" column="0">
+             <widget class="QLabel" name="labelGeneratorGender">
+              <property name="text">
+               <string>Gender</string>
+              </property>
+             </widget>
+            </item>
+            <item row="4" column="0">
+             <widget class="QLabel" name="labelGeneratorEventTID">
+              <property name="text">
+               <string>Event TID</string>
+              </property>
+             </widget>
+            </item>
             <item row="2" column="1">
              <widget class="QComboBox" name="comboBoxGeneratorNature"/>
             </item>
@@ -503,60 +546,17 @@
               </property>
              </widget>
             </item>
-            <item row="3" column="1">
-             <widget class="QComboBox" name="comboBoxGeneratorShiny">
-              <item>
-               <property name="text">
-                <string>Force non-shiny</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>Random</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>Force shiny</string>
-               </property>
-              </item>
-             </widget>
-            </item>
-            <item row="4" column="0">
-             <widget class="QLabel" name="labelGeneratorEventTID">
+            <item row="0" column="0">
+             <widget class="QLabel" name="labelGeneratorAbility">
               <property name="text">
-               <string>Event TID</string>
-              </property>
-             </widget>
-            </item>
-            <item row="4" column="1">
-             <widget class="TextBox" name="textBoxGeneratorEventTID"/>
-            </item>
-            <item row="5" column="0">
-             <widget class="QLabel" name="labelGeneratorEventSID">
-              <property name="text">
-               <string>Event SID</string>
+               <string>Ability</string>
               </property>
              </widget>
             </item>
             <item row="5" column="1">
              <widget class="TextBox" name="textBoxGeneratorEventSID"/>
             </item>
-            <item row="6" column="0">
-             <widget class="QCheckBox" name="checkBoxGeneratorEgg">
-              <property name="text">
-               <string>Egg</string>
-              </property>
-             </widget>
-            </item>
            </layout>
-          </item>
-          <item row="0" column="2">
-           <widget class="QPushButton" name="pushButtonGeneratorImport">
-            <property name="text">
-             <string>Import</string>
-            </property>
-           </widget>
           </item>
          </layout>
         </widget>
@@ -584,23 +584,8 @@
          <property name="contextMenuPolicy">
           <enum>Qt::CustomContextMenu</enum>
          </property>
-         <property name="editTriggers">
-          <set>QAbstractItemView::NoEditTriggers</set>
-         </property>
-         <property name="sortingEnabled">
-          <bool>false</bool>
-         </property>
-         <attribute name="horizontalHeaderDefaultSectionSize">
-          <number>100</number>
-         </attribute>
          <attribute name="verticalHeaderVisible">
           <bool>false</bool>
-         </attribute>
-         <attribute name="verticalHeaderMinimumSectionSize">
-          <number>20</number>
-         </attribute>
-         <attribute name="verticalHeaderDefaultSectionSize">
-          <number>21</number>
          </attribute>
         </widget>
        </item>
@@ -881,23 +866,11 @@
          <property name="contextMenuPolicy">
           <enum>Qt::CustomContextMenu</enum>
          </property>
-         <property name="editTriggers">
-          <set>QAbstractItemView::NoEditTriggers</set>
-         </property>
          <property name="sortingEnabled">
           <bool>true</bool>
          </property>
-         <attribute name="horizontalHeaderDefaultSectionSize">
-          <number>100</number>
-         </attribute>
          <attribute name="verticalHeaderVisible">
           <bool>false</bool>
-         </attribute>
-         <attribute name="verticalHeaderMinimumSectionSize">
-          <number>20</number>
-         </attribute>
-         <attribute name="verticalHeaderDefaultSectionSize">
-          <number>21</number>
          </attribute>
         </widget>
        </item>
