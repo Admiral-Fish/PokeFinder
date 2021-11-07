@@ -49,6 +49,7 @@
 #include <Forms/Gen5/Stationary5.hpp>
 #include <Forms/Gen8/Raids.hpp>
 #include <Forms/Gen8/Wild8.hpp>
+#include <Forms/Gen8/DenMap.hpp>
 #include <Forms/Util/EncounterLookup.hpp>
 #include <Forms/Util/IVCalculator.hpp>
 #include <Forms/Util/IVtoPID.hpp>
@@ -143,6 +144,7 @@ void MainWindow::setupModels()
 
     connect(ui->pushButtonRaid, &QPushButton::clicked, this, &MainWindow::openRaids);
     connect(ui->pushButtonWild8, &QPushButton::clicked, this, &MainWindow::openWild8);
+    connect(ui->actionDenMap, &QAction::triggered, this, &MainWindow::openDenMap);
 
     connect(ui->actionAbout, &QAction::triggered, this, &MainWindow::openAbout);
     connect(ui->actionEncounterLookup, &QAction::triggered, this, &MainWindow::openEncounterLookup);
@@ -581,6 +583,12 @@ void MainWindow::openWild8()
     }
     raids->show();
     raids->raise();
+}
+
+void MainWindow::openDenMap()
+{
+    auto *map = new DenMap();
+    map->show();
 }
 
 void MainWindow::openProfileCalibrator()

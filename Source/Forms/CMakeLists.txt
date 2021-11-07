@@ -86,6 +86,7 @@ set(PROJECT_UI
     Gen5/Profile/ProfileEditor5.ui
     Gen5/Profile/ProfileManager5.ui
     Gen5/Stationary5.ui
+    Gen8/DenMap.ui
     Gen8/Profile/ProfileEditor8.ui
     Gen8/Profile/ProfileManager8.ui
     Gen8/Raids.ui
@@ -146,6 +147,7 @@ set(PROJECT_SOURCES
     Gen5/Profile/ProfileEditor5.cpp
     Gen5/Profile/ProfileManager5.cpp
     Gen5/Stationary5.cpp
+    Gen8/DenMap.cpp
     Gen8/Profile/ProfileEditor8.cpp
     Gen8/Profile/ProfileManager8.cpp
     Gen8/Raids.cpp

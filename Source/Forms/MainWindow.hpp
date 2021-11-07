@@ -110,6 +110,7 @@ private slots:
     void openProfileManager5();
     void openRaids();
     void openWild8();
+    void openDenMap();
     void openAbout();
     void openEncounterLookup();
     void openIVCalculator();

@@ -13,5 +13,7 @@
         <file alias="spinda_spot2.png">Images/spinda_spot2.png</file>
         <file alias="spinda_spot3.png">Images/spinda_spot3.png</file>
         <file alias="spinda_spot4.png">Images/spinda_spot4.png</file>
+        <file alias="map.png">Images/map.png</file>
+        <file alias="map_ioa.png">Images/map_ioa.png</file>
     </qresource>
 </RCC>
