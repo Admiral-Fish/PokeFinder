@@ -18,7 +18,7 @@
  */
 
 #include "RaidGenerator.hpp"
-#include <Core/RNG/XoroShiro.hpp>
+#include <Core/RNG/Xoroshiro.hpp>
 #include <Core/Enum/Method.hpp>
 
 constexpr u8 toxtricityAmpedNatures[13] = { 3, 4, 2, 8, 9, 19, 22, 11, 13, 14, 0, 6, 24 };
