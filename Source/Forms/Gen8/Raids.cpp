@@ -77,6 +77,7 @@ void Raids::setupModels()
     menu = new QMenu(ui->tableView);
 
     ui->filter->disableControls(Controls::EncounterSlots | Controls::HiddenPowers | Controls::UseDelay | Controls::GenderRatio);
+    ui->filter->enableHiddenAbility();
 
     ui->comboBoxAbilityType->setItemData(0, 0);
     ui->comboBoxAbilityType->setItemData(1, 1);

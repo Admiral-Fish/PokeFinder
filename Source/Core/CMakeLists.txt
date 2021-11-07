@@ -107,10 +107,12 @@ add_library(PokeFinderCore STATIC
     Util/Utilities.cpp
 )
 
-find_package(Python3 COMPONENTS Interpreter REQUIRED)
-add_custom_target(
-    Resources ALL
-    COMMAND ${PYTHON3_EXECUTABLE} ${CMAKE_CURRENT_LIST_DIR}/Resources/embed.py
-)
+if (NOT EXISTS ${CMAKE_CURRENT_LIST_DIR}/Resources/Encounters.hpp)
+    find_package(Python3 COMPONENTS Interpreter REQUIRED)
+    add_custom_target(
+        Resources ALL
+        COMMAND ${PYTHON3_EXECUTABLE} ${CMAKE_CURRENT_LIST_DIR}/Resources/embed.py
+    )
 
-add_dependencies(PokeFinderCore Resources)
+    add_dependencies(PokeFinderCore Resources)
+endif ()

@@ -3,6 +3,7 @@
 import glob
 import json
 import os
+import re
 
 
 def embed_encounters():
@@ -29,7 +30,17 @@ def embed_encounters():
     # Handle raids seperately
     with open("Encounters/Gen8/nests.json") as f:
         data = json.load(f)
-        tables : list = data["Tables"]
+        tables = data["Tables"]
+
+        # Since some raids have altform of non 0
+        # We need to dynamically adjust the index we lookup in the personal table
+        with open("Personal.hpp", "r") as f_personal:
+            data = f_personal.readlines()
+            for line in data:
+                if "personal8" in line:
+                    personal = re.findall(r"PersonalInfo\(.+?\)", line)
+                    for i in range(len(personal)):
+                        personal[i] = re.search(r"\((.+?)\)", personal[i]).group(1).split(", ")
 
         name = os.path.basename(f.name).replace(".json", "")
 
@@ -52,7 +63,12 @@ def embed_encounters():
                 stars = raid["Stars"]
                 star_string = "std::array<bool, 5> {" + f"{int(stars[0])}, {int(stars[1])}, {int(stars[2])}, {int(stars[3])}, {int(stars[4])}" + "}"
 
-                string += f"Raid({ability}, {altform}, {iv_count}, {gender}, {gigantamax}, {species}, personal8[{species}], {star_string})"
+                personal_index = species
+                if altform != 0:
+                    altform_index = int(personal[species][11])
+                    personal_index = altform_index + altform - 1 
+
+                string += f"Raid({ability}, {altform}, {iv_count}, {gender}, {gigantamax}, {species}, personal8[{personal_index}], {star_string})"
                 if j != len(sword) - 1:
                     string += ", "
             string += "}, "
@@ -69,7 +85,12 @@ def embed_encounters():
                 stars = raid["Stars"]
                 star_string = "std::array<bool, 5> {" + f"{int(stars[0])}, {int(stars[1])}, {int(stars[2])}, {int(stars[3])}, {int(stars[4])}" + "}"
 
-                string += f"Raid({ability}, {altform}, {iv_count}, {gender}, {gigantamax}, {species}, personal8[{species}], {star_string})"
+                personal_index = species
+                if altform != 0:
+                    altform_index = int(personal[species][11])
+                    personal_index = altform_index + altform - 1 
+
+                string += f"Raid({ability}, {altform}, {iv_count}, {gender}, {gigantamax}, {species}, personal8[{personal_index}], {star_string})"
                 if j != len(sword) - 1:
                     string += ", "
             string += "})"
@@ -211,8 +232,8 @@ def main():
     import pathlib
     os.chdir(pathlib.Path(__file__).parent.absolute())
 
-    embed_encounters()
     embed_personal()
+    embed_encounters()
     embed_strings(["de", "en", "es", "fr", "it", "ja", "ko", "zh"])
 
 

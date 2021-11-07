@@ -293,21 +293,16 @@ void IVCalculator::generationIndexChanged(int index)
         else if (index == 3)
         {
             personalInfo = PersonalLoader8::getPersonal();
+            max = 898;
         }
 
-        std::vector<u16> species(max);
-        if (index != 3)
+        std::vector<u16> species;
+        species.reserve(max);
+        for (int i = 1; i <= max; i++)
         {
-            std::iota(species.begin(), species.end(), 1);
-        }
-        else
-        {
-            for (int i = 1; i <= 898; i++)
+            if (personalInfo[i].getPresent())
             {
-                if (personalInfo[i].getPresent())
-                {
-                    species.push_back(i);
-                }
+                species.emplace_back(i);
             }
         }
 
