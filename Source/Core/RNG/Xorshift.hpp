@@ -17,44 +17,42 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef GAME_HPP
-#define GAME_HPP
+#ifndef XORSHIFT_HPP
+#define XORSHIFT_HPP
 
 #include <Core/Util/Global.hpp>
 
-enum Game : u32
+class Xorshift
 {
-    Blank = 0, // Placeholder
-    Ruby = 1 << 0,
-    Sapphire = 1 << 1,
-    RS = Ruby | Sapphire,
-    Emerald = 1 << 2,
-    RSE = RS | Emerald,
-    FireRed = 1 << 3,
-    LeafGreen = 1 << 4,
-    FRLG = FireRed | LeafGreen,
-    Gales = 1 << 5,
-    Colosseum = 1 << 6,
-    GC = Gales | Colosseum,
-    Diamond = 1 << 7,
-    Pearl = 1 << 8,
-    Platinum = 1 << 9,
-    DPPt = Diamond | Pearl | Platinum,
-    HeartGold = 1 << 10,
-    SoulSilver = 1 << 11,
-    HGSS = HeartGold | SoulSilver,
-    Black = 1 << 12,
-    White = 1 << 13,
-    BW = Black | White,
-    Black2 = 1 << 14,
-    White2 = 1 << 15,
-    BW2 = Black2 | White2,
-    Sword = 1 << 24,
-    Shield = 1 << 25,
-    SwSh = Sword | Shield,
-    BD = 1 << 26,
-    SP = 1 << 27,
-    BDSP = BD | SP
+public:
+    Xorshift(u64 seed0, u64 seed1) : state { seed0 >> 32, seed0 & 0xffffffff, seed1 >> 32, seed1 & 0xffffffff}
+    {
+    }
+
+    u32 nextInt()
+    {
+        u32 t = state[1];
+        u32 s = state[2];
+
+        t ^= t << 11;
+        t ^= t >> 8;
+        t ^= s ^ (s >> 19);
+
+        state[1] = state[0];
+        state[0] = state[3];
+        state[3] = state[2];
+        state[2] = t;
+
+        return (t % 0xffffffff) + 0x80000000;
+    }
+
+    u32 nextInt(u32 max)
+    {
+        return nextInt() % max;
+    }
+
+public:
+    u32 state[4];
 };
 
-#endif // GAME_HPP
+#endif // XORSHIFT_HPP
