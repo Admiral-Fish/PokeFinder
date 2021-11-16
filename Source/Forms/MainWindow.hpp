@@ -45,6 +45,7 @@ class Eggs5;
 class IDs5;
 class Raids;
 class Wild8;
+class Eggs8;
 
 class MainWindow : public QMainWindow
 {
@@ -73,6 +74,7 @@ private:
     IDs5 *ids5 = nullptr;
     Raids *raids = nullptr;
     Wild8 *wild8 = nullptr;
+    Eggs8 *egg8 = nullptr;
 
     void setupModels();
     void checkUpdates();
@@ -111,6 +113,7 @@ private slots:
     void openProfileManager5();
     void openRaids();
     void openWild8();
+    void openEgg8();
     void openDenMap();
     void downloadEventData();
     void openAbout();

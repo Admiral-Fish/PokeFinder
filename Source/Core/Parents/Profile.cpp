@@ -64,6 +64,14 @@ std::string Profile::getVersionString() const
         return "Black 2";
     case Game::White2:
         return "White 2";
+    case Game::Sword:
+        return "Sword";
+    case Game::Shield:
+        return "Shield";
+    case Game::BD:
+        return "Brilliant Diamond";
+    case Game::SP:
+        return "Shining Pearl";
     default:
         return "-";
     }

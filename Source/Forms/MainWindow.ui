@@ -162,13 +162,6 @@
         <string>Gen 8</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_9">
-        <item row="0" column="0">
-         <widget class="QPushButton" name="pushButtonRaid">
-          <property name="text">
-           <string>Raid</string>
-          </property>
-         </widget>
-        </item>
         <item row="1" column="0">
          <widget class="QPushButton" name="pushButtonWild8">
           <property name="enabled">
@@ -176,6 +169,20 @@
           </property>
           <property name="text">
            <string>Wild</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="0">
+         <widget class="QPushButton" name="pushButtonRaid">
+          <property name="text">
+           <string>Raid</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="QPushButton" name="pushButtonEgg8">
+          <property name="text">
+           <string>Egg</string>
           </property>
          </widget>
         </item>

@@ -20,7 +20,7 @@
 #ifndef RAIDS_HPP
 #define RAIDS_HPP
 
-#include <Core/Parents/Profile.hpp>
+#include <Core/Gen8/Profile8.hpp>
 #include <QMenu>
 
 class RaidModel;
@@ -44,8 +44,8 @@ public:
 private:
     Ui::Raids *ui;
     RaidModel *model = nullptr;
-    std::vector<Profile> profiles;
-    Profile currentProfile;
+    std::vector<Profile8> profiles;
+    Profile8 currentProfile;
     QMenu *menu = nullptr;
 
     void setupModels();

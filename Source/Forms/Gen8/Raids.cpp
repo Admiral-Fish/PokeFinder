@@ -52,8 +52,11 @@ Raids::~Raids()
 
 void Raids::updateProfiles()
 {
-    profiles = ProfileLoader8::getProfiles();
-    profiles.insert(profiles.begin(), Profile("-", Game::Sword, 12345, 54321));
+    profiles.clear();
+    auto completeProfiles = ProfileLoader8::getProfiles();
+    std::copy_if(completeProfiles.begin(), completeProfiles.end(), std::back_inserter(profiles),
+                 [](const Profile &profile) { return profile.getVersion() & Game::SwSh; });
+    profiles.insert(profiles.begin(), Profile8());
 
     ui->comboBoxProfiles->clear();
     for (const auto &profile : profiles)
@@ -143,7 +146,7 @@ void Raids::generate()
     u16 sid = currentProfile.getSID();
 
     StateFilter filter(ui->filter->getGender(), ui->filter->getAbility(), ui->filter->getShiny(), ui->filter->getDisableFilters(),
-                       ui->filter->getMinIVs(), ui->filter->getMaxIVs(), ui->filter->getNatures(), std::vector<bool>(16, true), {});
+                       ui->filter->getMinIVs(), ui->filter->getMaxIVs(), ui->filter->getNatures(), {}, {});
 
     RaidGenerator generator(initialAdvances, maxAdvances, tid, sid, filter, raid);
 

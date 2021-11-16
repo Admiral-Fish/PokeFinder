@@ -17,41 +17,17 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef PROFILEEDITOR8_HPP
-#define PROFILEEDITOR8_HPP
+#include <Core/Parents/Generators/EggGenerator.hpp>
+#include <Core/Parents/States/EggState.hpp>
 
-#include <Core/Gen8/Profile8.hpp>
-#include <QDialog>
-
-namespace Ui
+class EggGenerator8 : public EggGenerator
 {
-    class ProfileEditor8;
-}
-
-class ProfileEditor8 : public QDialog
-{
-    Q_OBJECT
-signals:
-    void newProfile(Profile8);
-    void editProfile(Profile8, Profile8);
-
 public:
-    explicit ProfileEditor8(QWidget *parent = nullptr);
-    explicit ProfileEditor8(const Profile8 &profile, QWidget *parent = nullptr);
-    ~ProfileEditor8() override;
-    Profile8 getNewProfile();
-    Profile8 getOriginal();
+    EggGenerator8() = default;
+    EggGenerator8(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, const StateFilter &filter, const Daycare &daycare,
+                  bool shinyCharm);
+    std::vector<EggState> generate(u64 seed0, u64 seed1) const;
 
 private:
-    Ui::ProfileEditor8 *ui;
-    bool isEditing = false;
-    Profile8 original;
-    Profile8 fresh;
-
-    void setupModels();
-
-private slots:
-    void okay();
+    bool shinyCharm;
 };
-
-#endif // PROFILEEDITOR8_HPP

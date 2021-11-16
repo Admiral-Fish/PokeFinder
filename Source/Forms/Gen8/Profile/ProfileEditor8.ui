@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>350</width>
+    <width>424</width>
     <height>72</height>
    </rect>
   </property>
@@ -14,10 +14,37 @@
    <string>Profile Editor Gen 8</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0">
+    <widget class="QLabel" name="labelProfile">
+     <property name="text">
+      <string>Profile Name</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="1">
+    <widget class="QLineEdit" name="lineEditProfile"/>
+   </item>
    <item row="0" column="2">
     <widget class="QLabel" name="labelTID">
      <property name="text">
       <string>TID</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="3">
+    <widget class="TextBox" name="textBoxTID"/>
+   </item>
+   <item row="0" column="4">
+    <widget class="QCheckBox" name="checkBoxShinyCharm">
+     <property name="text">
+      <string>Shiny Charm</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="5">
+    <widget class="QPushButton" name="pushButtonOkay">
+     <property name="text">
+      <string>Okay</string>
      </property>
     </widget>
    </item>
@@ -40,6 +67,16 @@
        <string>Shield</string>
       </property>
      </item>
+     <item>
+      <property name="text">
+       <string>Brilliant Diamond</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Shining Pearl</string>
+      </property>
+     </item>
     </widget>
    </item>
    <item row="1" column="2">
@@ -49,35 +86,15 @@
      </property>
     </widget>
    </item>
-   <item row="0" column="1">
-    <widget class="QLineEdit" name="lineEditProfile"/>
+   <item row="1" column="3">
+    <widget class="TextBox" name="textBoxSID"/>
    </item>
-   <item row="0" column="4">
-    <widget class="QPushButton" name="pushButtonOkay">
-     <property name="text">
-      <string>Okay</string>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="4">
+   <item row="1" column="5">
     <widget class="QPushButton" name="pushButtonCancel">
      <property name="text">
       <string>Cancel</string>
      </property>
     </widget>
-   </item>
-   <item row="0" column="0">
-    <widget class="QLabel" name="labelProfile">
-     <property name="text">
-      <string>Profile Name</string>
-     </property>
-    </widget>
-   </item>
-   <item row="0" column="3">
-    <widget class="TextBox" name="textBoxTID"/>
-   </item>
-   <item row="1" column="3">
-    <widget class="TextBox" name="textBoxSID"/>
    </item>
   </layout>
  </widget>
@@ -93,6 +110,7 @@
   <tabstop>comboBoxVersion</tabstop>
   <tabstop>textBoxTID</tabstop>
   <tabstop>textBoxSID</tabstop>
+  <tabstop>checkBoxShinyCharm</tabstop>
   <tabstop>pushButtonOkay</tabstop>
   <tabstop>pushButtonCancel</tabstop>
  </tabstops>

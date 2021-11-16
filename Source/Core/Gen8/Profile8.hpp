@@ -17,41 +17,30 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef PROFILEEDITOR8_HPP
-#define PROFILEEDITOR8_HPP
+#ifndef PROFILE8_HPP
+#define PROFILE8_HPP
 
-#include <Core/Gen8/Profile8.hpp>
-#include <QDialog>
+#include <Core/Enum/Game.hpp>
+#include <Core/Parents/Profile.hpp>
 
-namespace Ui
+class Profile8 : public Profile
 {
-    class ProfileEditor8;
-}
-
-class ProfileEditor8 : public QDialog
-{
-    Q_OBJECT
-signals:
-    void newProfile(Profile8);
-    void editProfile(Profile8, Profile8);
-
 public:
-    explicit ProfileEditor8(QWidget *parent = nullptr);
-    explicit ProfileEditor8(const Profile8 &profile, QWidget *parent = nullptr);
-    ~ProfileEditor8() override;
-    Profile8 getNewProfile();
-    Profile8 getOriginal();
+    Profile8(Game version = Game::Sword) : Profile("-", version, 12345, 54321)
+    {
+    }
+
+    Profile8(const std::string &name, Game version, u16 tid, u16 sid, bool shinyCharm) : Profile(name, version, tid, sid)
+    {
+    }
+
+    bool getShinyCharm() const
+    {
+        return shinyCharm;
+    }
 
 private:
-    Ui::ProfileEditor8 *ui;
-    bool isEditing = false;
-    Profile8 original;
-    Profile8 fresh;
-
-    void setupModels();
-
-private slots:
-    void okay();
+    bool shinyCharm;
 };
 
-#endif // PROFILEEDITOR8_HPP
+#endif // PROFILE8_HPP

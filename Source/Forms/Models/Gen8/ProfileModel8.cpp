@@ -19,14 +19,14 @@
 
 #include "ProfileModel8.hpp"
 
-ProfileModel8::ProfileModel8(QObject *parent) : TableModel<Profile>(parent)
+ProfileModel8::ProfileModel8(QObject *parent) : TableModel<Profile8>(parent)
 {
 }
 
 int ProfileModel8::columnCount(const QModelIndex &parent) const
 {
     (void)parent;
-    return 4;
+    return 5;
 }
 
 QVariant ProfileModel8::data(const QModelIndex &index, int role) const
@@ -44,6 +44,8 @@ QVariant ProfileModel8::data(const QModelIndex &index, int role) const
             return profile.getTID();
         case 3:
             return profile.getSID();
+        case 4:
+            return profile.getShinyCharm() ? tr("Yes") : tr("No");
         }
     }
     return QVariant();

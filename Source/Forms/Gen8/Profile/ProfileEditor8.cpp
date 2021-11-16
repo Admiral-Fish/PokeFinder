@@ -31,7 +31,7 @@ ProfileEditor8::ProfileEditor8(QWidget *parent) : QDialog(parent), ui(new Ui::Pr
     setupModels();
 }
 
-ProfileEditor8::ProfileEditor8(const Profile &profile, QWidget *parent) : QDialog(parent), ui(new Ui::ProfileEditor8)
+ProfileEditor8::ProfileEditor8(const Profile8 &profile, QWidget *parent) : QDialog(parent), ui(new Ui::ProfileEditor8)
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
@@ -55,12 +55,12 @@ ProfileEditor8::~ProfileEditor8()
     delete ui;
 }
 
-Profile ProfileEditor8::getNewProfile()
+Profile8 ProfileEditor8::getNewProfile()
 {
     return fresh;
 }
 
-Profile ProfileEditor8::getOriginal()
+Profile8 ProfileEditor8::getOriginal()
 {
     return original;
 }
@@ -70,13 +70,10 @@ void ProfileEditor8::setupModels()
     ui->textBoxTID->setValues(InputType::TIDSID);
     ui->textBoxSID->setValues(InputType::TIDSID);
 
-    ui->comboBoxVersion->setItemData(0, Game::Ruby);
-    ui->comboBoxVersion->setItemData(1, Game::Sapphire);
-    ui->comboBoxVersion->setItemData(2, Game::FireRed);
-    ui->comboBoxVersion->setItemData(3, Game::LeafGreen);
-    ui->comboBoxVersion->setItemData(4, Game::Emerald);
-    ui->comboBoxVersion->setItemData(5, Game::Gales);
-    ui->comboBoxVersion->setItemData(6, Game::Colosseum);
+    ui->comboBoxVersion->setItemData(0, Game::Sword);
+    ui->comboBoxVersion->setItemData(1, Game::Shield);
+    ui->comboBoxVersion->setItemData(2, Game::BD);
+    ui->comboBoxVersion->setItemData(3, Game::SP);
 
     connect(ui->pushButtonOkay, &QPushButton::clicked, this, &ProfileEditor8::okay);
 
@@ -98,8 +95,8 @@ void ProfileEditor8::okay()
         return;
     }
 
-    fresh = Profile(ui->lineEditProfile->text().toStdString(), static_cast<Game>(ui->comboBoxVersion->currentData().toInt()),
-                     ui->textBoxTID->getUShort(), ui->textBoxSID->getUShort());
+    fresh = Profile8(ui->lineEditProfile->text().toStdString(), static_cast<Game>(ui->comboBoxVersion->currentData().toInt()),
+                     ui->textBoxTID->getUShort(), ui->textBoxSID->getUShort(), ui->checkBoxShinyCharm->isChecked());
 
     done(QDialog::Accepted);
 }

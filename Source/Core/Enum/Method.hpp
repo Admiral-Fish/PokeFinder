@@ -24,6 +24,7 @@
 
 enum Method : u8
 {
+    Null,
     Method1,
     Method1Reverse,
     Method2,
@@ -63,7 +64,6 @@ enum Method : u8
     DreamRadar,
     Method5Event,
     // TODO: Add Gen 5 egg/events
-    DenRaid
 };
 
 #endif // METHOD_HPP

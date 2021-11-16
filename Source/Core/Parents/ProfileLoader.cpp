@@ -365,30 +365,32 @@ namespace ProfileLoader8
 {
     namespace
     {
-        Profile getProfile(const json &j)
+        Profile8 getProfile(const json &j)
         {
             std::string name = j["name"].get<std::string>();
             Game version = j["version"].get<Game>();
             u16 tid = j["tid"].get<u16>();
             u16 sid = j["sid"].get<u16>();
+            bool shinyCharm = j["shinyCharm"].get<bool>();
 
-            return Profile(name, version, tid, sid);
+            return Profile8(name, version, tid, sid, shinyCharm);
         }
 
-        json getJson(const Profile &profile)
+        json getJson(const Profile8 &profile)
         {
             json j;
             j["name"] = profile.getName();
             j["version"] = profile.getVersion();
             j["tid"] = profile.getTID();
             j["sid"] = profile.getSID();
+            j["shinyCharm"] = profile.getShinyCharm();
             return j;
         }
     }
 
-    std::vector<Profile> getProfiles()
+    std::vector<Profile8> getProfiles()
     {
-        std::vector<Profile> profiles;
+        std::vector<Profile8> profiles;
 
         json j = readJson();
         const auto &gen8 = j["gen8"];
@@ -397,7 +399,7 @@ namespace ProfileLoader8
         return profiles;
     }
 
-    void addProfile(const Profile &profile)
+    void addProfile(const Profile8 &profile)
     {
         json j = readJson();
 
@@ -407,14 +409,14 @@ namespace ProfileLoader8
         writeJson(j);
     }
 
-    void removeProfile(const Profile &remove)
+    void removeProfile(const Profile8 &remove)
     {
         json j = readJson();
 
         auto &gen8 = j["gen8"];
         for (size_t i = 0; i < gen8.size(); i++)
         {
-            Profile profile = getProfile(gen8[i]);
+            Profile8 profile = getProfile(gen8[i]);
 
             if (profile == remove)
             {
@@ -426,14 +428,14 @@ namespace ProfileLoader8
         }
     }
 
-    void updateProfile(const Profile &update, const Profile &original)
+    void updateProfile(const Profile8 &update, const Profile8 &original)
     {
         json j = readJson();
 
         auto &gen8 = j["gen8"];
         for (auto &i : gen8)
         {
-            Profile profile = getProfile(i);
+            Profile8 profile = getProfile(i);
 
             if (original == profile && original != update)
             {

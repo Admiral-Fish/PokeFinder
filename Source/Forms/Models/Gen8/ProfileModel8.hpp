@@ -20,10 +20,10 @@
 #ifndef PROFILEMODEL8_HPP
 #define PROFILEMODEL8_HPP
 
-#include <Core/Parents/Profile.hpp>
+#include <Core/Gen8/Profile8.hpp>
 #include <Forms/Models/TableModel.hpp>
 
-class ProfileModel8 : public TableModel<Profile>
+class ProfileModel8 : public TableModel<Profile8>
 {
     Q_OBJECT
 public:
@@ -33,7 +33,7 @@ public:
     QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
 
 private:
-    QStringList header = { tr("Profile Name"), tr("Version"), tr("TID"), tr("SID") };
+    QStringList header = { tr("Profile Name"), tr("Version"), tr("TID"), tr("SID"), tr("Shiny Charm") };
 };
 
 #endif // PROFILE8MODEL_HPP

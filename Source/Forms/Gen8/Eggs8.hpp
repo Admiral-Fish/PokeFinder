@@ -17,41 +17,44 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef PROFILEEDITOR8_HPP
-#define PROFILEEDITOR8_HPP
+#ifndef EGGS8_HPP
+#define EGGS8_HPP
 
 #include <Core/Gen8/Profile8.hpp>
-#include <QDialog>
+#include <QMenu>
+
+class EggModel8;
 
 namespace Ui
 {
-    class ProfileEditor8;
+    class Eggs8;
 }
 
-class ProfileEditor8 : public QDialog
+class Eggs8 : public QWidget
 {
     Q_OBJECT
 signals:
-    void newProfile(Profile8);
-    void editProfile(Profile8, Profile8);
+    void alertProfiles(int);
 
 public:
-    explicit ProfileEditor8(QWidget *parent = nullptr);
-    explicit ProfileEditor8(const Profile8 &profile, QWidget *parent = nullptr);
-    ~ProfileEditor8() override;
-    Profile8 getNewProfile();
-    Profile8 getOriginal();
+    explicit Eggs8(QWidget *parent = nullptr);
+    ~Eggs8() override;
+    void updateProfiles();
 
 private:
-    Ui::ProfileEditor8 *ui;
-    bool isEditing = false;
-    Profile8 original;
-    Profile8 fresh;
+    Ui::Eggs8 *ui;
+    EggModel8 *model = nullptr;
+    std::vector<Profile8> profiles;
+    Profile8 currentProfile;
+    QMenu *menu = nullptr;
 
     void setupModels();
 
 private slots:
-    void okay();
+    void generate();
+    void profileIndexChanged(int index);
+    void tableViewContextMenu(QPoint pos);
+    void profileManager();
 };
 
-#endif // PROFILEEDITOR8_HPP
+#endif // EGGS8_HPP

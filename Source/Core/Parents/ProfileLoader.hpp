@@ -23,6 +23,7 @@
 #include <Core/Gen3/Profile3.hpp>
 #include <Core/Gen4/Profile4.hpp>
 #include <Core/Gen5/Profile5.hpp>
+#include <Core/Gen8/Profile8.hpp>
 #include <vector>
 
 namespace ProfileLoader
@@ -56,10 +57,10 @@ namespace ProfileLoader5
 
 namespace ProfileLoader8
 {
-    std::vector<Profile> getProfiles();
-    void addProfile(const Profile &profile);
-    void removeProfile(const Profile &remove);
-    void updateProfile(const Profile &update, const Profile &original);
+    std::vector<Profile8> getProfiles();
+    void addProfile(const Profile8 &profile);
+    void removeProfile(const Profile8 &remove);
+    void updateProfile(const Profile8 &update, const Profile8 &original);
 }
 
 #endif // PROFILELOADER_HPP

@@ -87,6 +87,7 @@ set(PROJECT_UI
     Gen5/Profile/ProfileManager5.ui
     Gen5/Stationary5.ui
     Gen8/DenMap.ui
+    Gen8/Eggs8.ui
     Gen8/Profile/ProfileEditor8.ui
     Gen8/Profile/ProfileManager8.ui
     Gen8/Raids.ui
@@ -148,6 +149,7 @@ set(PROJECT_SOURCES
     Gen5/Profile/ProfileManager5.cpp
     Gen5/Stationary5.cpp
     Gen8/DenMap.cpp
+    Gen8/Eggs8.cpp
     Gen8/Profile/ProfileEditor8.cpp
     Gen8/Profile/ProfileManager8.cpp
     Gen8/Raids.cpp
@@ -177,6 +179,7 @@ set(PROJECT_SOURCES
     Models/Gen5/ProfileModel5.cpp
     Models/Gen5/ProfileSearcherModel5.cpp
     Models/Gen5/StationaryModel5.cpp
+    Models/Gen8/EggModel8.cpp
     Models/Gen8/ProfileModel8.cpp
     Models/Gen8/RaidModel.cpp
     Models/Util/ResearcherModel.cpp

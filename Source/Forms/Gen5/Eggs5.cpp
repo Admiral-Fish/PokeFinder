@@ -46,7 +46,7 @@ Eggs5::Eggs5(QWidget *parent) : QWidget(parent), ui(new Ui::Eggs5)
 Eggs5::~Eggs5()
 {
     QSettings setting;
-    setting.beginGroup("event5");
+    setting.beginGroup("egg5");
     setting.setValue("profile", ui->comboBoxProfiles->currentIndex());
     setting.setValue("geometry", this->saveGeometry());
     setting.endGroup();
@@ -66,7 +66,7 @@ void Eggs5::updateProfiles()
     }
 
     QSettings setting;
-    int val = setting.value("event5/profile", 0).toInt();
+    int val = setting.value("egg5/profile", 0).toInt();
     if (val < ui->comboBoxProfiles->count())
     {
         ui->comboBoxProfiles->setCurrentIndex(val);
@@ -122,7 +122,7 @@ void Eggs5::setupModels()
     connect(ui->tableViewSearcher, &QTableView::customContextMenuRequested, this, &Eggs5::tableViewSearcherContextMenu);
 
     QSettings setting;
-    setting.beginGroup("event5");
+    setting.beginGroup("egg5");
     if (setting.contains("geometry"))
     {
         this->restoreGeometry(setting.value("geometry").toByteArray());

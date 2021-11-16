@@ -49,6 +49,7 @@
 #include <Forms/Gen5/Profile/ProfileManager5.hpp>
 #include <Forms/Gen5/Stationary5.hpp>
 #include <Forms/Gen8/DenMap.hpp>
+#include <Forms/Gen8/Eggs8.hpp>
 #include <Forms/Gen8/Raids.hpp>
 #include <Forms/Gen8/Wild8.hpp>
 #include <Forms/Util/EncounterLookup.hpp>
@@ -146,6 +147,7 @@ void MainWindow::setupModels()
 
     connect(ui->pushButtonRaid, &QPushButton::clicked, this, &MainWindow::openRaids);
     connect(ui->pushButtonWild8, &QPushButton::clicked, this, &MainWindow::openWild8);
+    connect(ui->pushButtonEgg8, &QPushButton::clicked, this, &MainWindow::openEgg8);
     connect(ui->actionDenMap, &QAction::triggered, this, &MainWindow::openDenMap);
     connect(ui->actionDownloadEventData, &QAction::triggered, this, &MainWindow::downloadEventData);
 
@@ -606,6 +608,17 @@ void MainWindow::openWild8()
     }
     raids->show();
     raids->raise();
+}
+
+void MainWindow::openEgg8()
+{
+    if (!egg8)
+    {
+        egg8 = new Eggs8();
+        connect(egg8, &Eggs8::alertProfiles, this, &MainWindow::updateProfiles);
+    }
+    egg8->show();
+    egg8->raise();
 }
 
 void MainWindow::openDenMap()
