@@ -29,7 +29,11 @@ public:
     {
     }
 
-    u32 nextInt()
+    Xorshift(const Xorshift &other) : state {other.state[0], other.state[1], other.state[2], other.state[3]}
+    {
+    }
+
+    u32 next()
     {
         u32 t = state[1];
         u32 s = state[2];
@@ -46,9 +50,17 @@ public:
         return (t % 0xffffffff) + 0x80000000;
     }
 
-    u32 nextInt(u32 max)
+    u32 next(u32 max)
     {
-        return nextInt() % max;
+        return next() % max;
+    }
+    
+    void advance(u32 advances)
+    {
+        for (u32 advance = 0; advance < advances; advance++)
+        {
+            next();
+        }
     }
 
 public:

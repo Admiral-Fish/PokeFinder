@@ -85,6 +85,11 @@ void EggSettings::setup(Game version)
         ui->comboBoxParentAAbility->addItem("H");
         ui->comboBoxParentBAbility->addItem("H");
     }
+    else if (version & Game::BDSP)
+    {
+        ui->comboBoxParentAAbility->addItem("H");
+        ui->comboBoxParentBAbility->addItem("H");
+    }
 }
 
 Daycare EggSettings::getDaycareSettings() const

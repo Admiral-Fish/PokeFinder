@@ -39,7 +39,7 @@ std::vector<State> RaidGenerator::generate(u64 seed) const
 
     for (u32 advance = 0; advance <= maxAdvances; advance++, seed += 0x82A2B175229D6A5B)
     {
-        XoroShiro rng(seed);
+        Xoroshiro rng(seed);
         State result(initialAdvances + advance);
 
         u32 ec = rng.nextInt<0xffffffff>();

@@ -47,7 +47,7 @@ private:
     std::array<std::array<u8, 6>, 2> parentIVs;
     std::array<u8, 2> parentAbility;
     std::array<u8, 2> parentGender; // 3 - Ditto
-    std::array<u8, 2> parentItem; // 0 - No item, 1 - Everstone, 2-7 Power items
+    std::array<u8, 2> parentItem; // 0 - No item, 1 - Everstone, 2-7 Power items, 8 Destiny knot
     std::array<u8, 2> parentNature;
     bool masuda;
     bool nidoranVolbeat;

@@ -80,6 +80,8 @@ void Eggs8::setupModels()
     ui->textBoxSeed1->setValues(InputType::Seed64Bit);
     ui->textBoxInitialAdvances->setValues(InputType::Advance32Bit);
     ui->textBoxMaxAdvances->setValues(InputType::Advance32Bit);
+    
+    ui->comboBoxCompatibility->setup({ 20, 50, 70 });
 
     ui->filter->disableControls(Controls::EncounterSlots);
 
@@ -140,7 +142,7 @@ void Eggs8::generate()
                        ui->filter->getNatures(), {}, {});
 
     EggGenerator8 generator(initialAdvances, maxAdvances, tid, sid, genderRatio, filter,
-                            ui->eggSettings->getDaycareSettings(), currentProfile.getShinyCharm());
+                            ui->eggSettings->getDaycareSettings(), currentProfile.getShinyCharm(), ui->comboBoxCompatibility->getCurrentByte());
     generator.setOffset(offset);
 
     auto states = generator.generate(seed0, seed1);
