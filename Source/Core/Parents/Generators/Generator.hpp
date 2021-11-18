@@ -25,17 +25,39 @@
 #include <vector>
 
 enum Encounter : u8;
-enum Lead : u8;
 enum Method : u8;
 
 class Generator
 {
 public:
     Generator() = default;
-    Generator(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter);
-    StateFilter getFilter() const;
-    void setOffset(u32 offset);
-    void setInitialAdvances(u32 initialAdvances);
+
+    Generator(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter) :
+        initialAdvances(initialAdvances),
+        maxAdvances(maxAdvances),
+        tid(tid),
+        sid(sid),
+        tsv(tid ^ sid),
+        genderRatio(genderRatio),
+        method(method),
+        filter(filter)
+    {
+    }
+
+    StateFilter getFilter() const
+    {
+        return filter;
+    }
+
+    void setOffset(u32 offset)
+    {
+        this->offset = offset;
+    }
+
+    void setInitialAdvances(u32 initialAdvances)
+    {
+        this->initialAdvances = initialAdvances;
+    }
 
 protected:
     u32 initialAdvances;

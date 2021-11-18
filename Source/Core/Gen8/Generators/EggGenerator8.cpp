@@ -36,6 +36,16 @@ std::vector<EggState> EggGenerator8::generate(u64 seed0, u64 seed1) const
     Xorshift rng(seed0, seed1);
     rng.advance(initialAdvances + offset);
 
+    u8 pidRolls = 0;
+    if (daycare.getMasuda())
+    {
+        pidRolls += 6;
+    }
+    if (shinyCharm)
+    {
+        pidRolls += 2;
+    }
+
     std::vector<EggState> states;
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rng.next())
     {
@@ -103,11 +113,59 @@ std::vector<EggState> EggGenerator8::generate(u64 seed0, u64 seed1) const
             }
             state.setAbility(ability);
 
+            // Intentionally ignoring power items
             u8 inheritance = 3;
             if (daycare.getParentItem(0) == 8 || daycare.getParentItem(1) == 8)
             {
                 inheritance = 5;
             }
+
+            // Determine inheritance
+            for (u8 i = 0; i < inheritance;)
+            {
+                u8 index = gen.nextUInt(6);
+                if (state.getInheritance(index) == 0)
+                {
+                    state.setInheritance(index, gen.nextUInt(2) + 1);
+                    i++;
+                }
+            }
+
+            // Assign IVs and inheritance
+            for (u8 i = 0; i < 6; i++)
+            {
+                u8 iv = gen.nextUInt(32);
+                if (state.getInheritance(i) == 1)
+                {
+                    iv = daycare.getParentIV(0, i);
+                }
+                else if (state.getInheritance(i) == 2)
+                {
+                    iv = daycare.getParentIV(1, i);
+                }
+                state.setIV(i, iv);
+            }
+
+            // Encryption constant
+            gen.next();
+
+            // Assign PID if
+            u32 pid = 0;
+            u16 psv = 0;
+            for (u8 roll = 1; roll < pidRolls; roll++)
+            {
+                pid = gen.nextUInt(0xffffffff);
+                psv = (pid >> 16) ^ (pid & 0xffff);
+                if (psv ^ tsv < 16)
+                {
+                    break;
+                }
+            }
+            state.setPID(pid);
+            state.setShiny<16>(tsv, psv);
+
+            // Ball handling check
+            // Uses a rand call, maybe add later
 
             if (filter.comparePID(state) && filter.compareIV(state))
             {

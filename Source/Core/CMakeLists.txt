@@ -83,11 +83,6 @@ add_library(PokeFinderCore STATIC
     Parents/EncounterArea.cpp
     Parents/Filters/IDFilter.cpp
     Parents/Filters/StateFilter.cpp
-    Parents/Generators/EggGenerator.cpp
-    Parents/Generators/Generator.cpp
-    Parents/Generators/IDGenerator.cpp
-    Parents/Generators/StationaryGenerator.cpp
-    Parents/Generators/WildGenerator.cpp
     Parents/PersonalLoader.cpp
     Parents/Profile.cpp
     Parents/ProfileLoader.cpp

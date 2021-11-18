@@ -27,8 +27,12 @@ class EggGenerator : public Generator
 {
 public:
     EggGenerator() = default;
+
     EggGenerator(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter,
-                 const Daycare &daycare);
+                 const Daycare &daycare) :
+        Generator(initialAdvances, maxAdvances, tid, sid, genderRatio, method, filter), daycare(daycare)
+    {
+    }
 
 protected:
     Daycare daycare;

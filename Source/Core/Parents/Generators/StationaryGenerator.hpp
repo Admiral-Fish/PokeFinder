@@ -21,14 +21,27 @@
 #define STATIONARYGENERATOR_HPP
 
 #include <Core/Parents/Generators/Generator.hpp>
+#include <Core/Enum/Lead.hpp>
 
 class StationaryGenerator : public Generator
 {
 public:
     StationaryGenerator() = default;
-    StationaryGenerator(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter);
-    void setLead(Lead lead);
-    void setSynchNature(u8 synchNature);
+
+    StationaryGenerator(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter) :
+        Generator(initialAdvances, maxAdvances, tid, sid, genderRatio, method, filter), lead(Lead::None)
+    {
+    }
+
+    void setLead(Lead lead)
+    {
+        this->lead = lead;
+    }
+
+    void setSynchNature(u8 synchNature)
+    {
+        this->synchNature = synchNature;
+    }
 
 protected:
     Lead lead;

@@ -120,6 +120,8 @@ void Eggs5::setupModels()
     connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &Eggs5::profileManager);
     connect(ui->tableViewGenerator, &QTableView::customContextMenuRequested, this, &Eggs5::tableViewGeneratorContextMenu);
     connect(ui->tableViewSearcher, &QTableView::customContextMenuRequested, this, &Eggs5::tableViewSearcherContextMenu);
+    connect(ui->eggSettingsGenerator, &EggSettings::toggleInheritance, generatorModel, &EggGeneratorModel5::toggleInheritance);
+    connect(ui->eggSettingsSearcher, &EggSettings::toggleInheritance, searcherModel, &EggSearcherModel5::toggleInheritance);
 
     QSettings setting;
     setting.beginGroup("egg5");

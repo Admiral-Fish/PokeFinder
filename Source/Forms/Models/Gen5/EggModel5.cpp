@@ -21,7 +21,7 @@
 #include <Core/Util/Translator.hpp>
 #include <Core/Util/Utilities.hpp>
 
-EggGeneratorModel5::EggGeneratorModel5(QObject *parent) : TableModel<EggState>(parent)
+EggGeneratorModel5::EggGeneratorModel5(QObject *parent) : TableModel<EggState>(parent), showInheritance(false)
 {
 }
 
@@ -67,6 +67,14 @@ QVariant EggGeneratorModel5::data(const QModelIndex &index, int role) const
         case 9:
         case 10:
         case 11:
+            if (showInheritance)
+            {
+                u8 inh = state.getInheritance(static_cast<u8>(column - 6));
+                if (inh)
+                {
+                    return inh == 1 ? "A" : "B";
+                }
+            }
             return state.getIV(static_cast<u8>(column - 6));
         case 12:
             return QString::fromStdString(Translator::getHiddenPower(state.getHidden()));
@@ -89,7 +97,14 @@ QVariant EggGeneratorModel5::headerData(int section, Qt::Orientation orientation
     return QVariant();
 }
 
-EggSearcherModel5::EggSearcherModel5(QObject *parent) : TableModel<SearcherState5<EggState>>(parent)
+void EggGeneratorModel5::toggleInheritance(bool flag)
+{
+    beginResetModel();
+    showInheritance = flag;
+    endResetModel();
+}
+
+EggSearcherModel5::EggSearcherModel5(QObject *parent) : TableModel<SearcherState5<EggState>>(parent), showInheritance(false)
 {
 }
 
@@ -229,6 +244,14 @@ QVariant EggSearcherModel5::data(const QModelIndex &index, int role) const
         case 9:
         case 10:
         case 11:
+            if (showInheritance)
+            {
+                u8 inh = state.getInheritance(static_cast<u8>(column - 6));
+                if (inh)
+                {
+                    return inh == 1 ? "A" : "B";
+                }
+            }
             return state.getIV(static_cast<u8>(column - 6));
         case 12:
             return QString::fromStdString(Translator::getHiddenPower(state.getHidden()));
@@ -255,4 +278,11 @@ QVariant EggSearcherModel5::headerData(int section, Qt::Orientation orientation,
         return header[section];
     }
     return QVariant();
+}
+
+void EggSearcherModel5::toggleInheritance(bool flag)
+{
+    beginResetModel();
+    showInheritance = flag;
+    endResetModel();
 }

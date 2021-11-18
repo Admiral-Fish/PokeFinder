@@ -20,7 +20,7 @@
 #include "EggModel8.hpp"
 #include <Core/Util/Translator.hpp>
 
-EggModel8::EggModel8(QObject *parent) : TableModel<EggState>(parent)
+EggModel8::EggModel8(QObject *parent) : TableModel<EggState>(parent), showInheritance(false)
 {
 }
 
@@ -64,6 +64,14 @@ QVariant EggModel8::data(const QModelIndex &index, int role) const
         case 8:
         case 9:
         case 10:
+            if (showInheritance)
+            {
+                u8 inh = state.getInheritance(static_cast<u8>(column - 5));
+                if (inh)
+                {
+                    return inh == 1 ? "A" : "B";
+                }
+            }
             return state.getIV(static_cast<u8>(column - 5));
         case 11:
             return QString::fromStdString(Translator::getGender(state.getGender()));
@@ -80,4 +88,11 @@ QVariant EggModel8::headerData(int section, Qt::Orientation orientation, int rol
         return header[section];
     }
     return QVariant();
+}
+
+void EggModel8::toggleInheritance(bool flag)
+{
+    beginResetModel();
+    showInheritance = flag;
+    endResetModel();
 }

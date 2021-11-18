@@ -68,25 +68,28 @@ void EggSettings::setup(Game version)
     }
     else if ((version & Game::BW) || (version & Game::BW2))
     {
-        ui->comboBoxParentAItem->addItem(tr("Power Weight"));
-        ui->comboBoxParentAItem->addItem(tr("Power Bracer"));
-        ui->comboBoxParentAItem->addItem(tr("Power Belt"));
-        ui->comboBoxParentAItem->addItem(tr("Power Lens"));
-        ui->comboBoxParentAItem->addItem(tr("Power Band"));
-        ui->comboBoxParentAItem->addItem(tr("Power Anklet"));
+        ui->comboBoxParentAItem->addItem(tr("Power Weight"), 2);
+        ui->comboBoxParentAItem->addItem(tr("Power Bracer"), 3);
+        ui->comboBoxParentAItem->addItem(tr("Power Belt"), 4);
+        ui->comboBoxParentAItem->addItem(tr("Power Lens"), 5);
+        ui->comboBoxParentAItem->addItem(tr("Power Band"), 6);
+        ui->comboBoxParentAItem->addItem(tr("Power Anklet"), 7);
 
-        ui->comboBoxParentBItem->addItem(tr("Power Weight"));
-        ui->comboBoxParentBItem->addItem(tr("Power Bracer"));
-        ui->comboBoxParentBItem->addItem(tr("Power Belt"));
-        ui->comboBoxParentBItem->addItem(tr("Power Lens"));
-        ui->comboBoxParentBItem->addItem(tr("Power Band"));
-        ui->comboBoxParentBItem->addItem(tr("Power Anklet"));
+        ui->comboBoxParentBItem->addItem(tr("Power Weight"), 2);
+        ui->comboBoxParentBItem->addItem(tr("Power Bracer"), 3);
+        ui->comboBoxParentBItem->addItem(tr("Power Belt"), 4);
+        ui->comboBoxParentBItem->addItem(tr("Power Lens"), 5);
+        ui->comboBoxParentBItem->addItem(tr("Power Band"), 6);
+        ui->comboBoxParentBItem->addItem(tr("Power Anklet"), 7);
 
         ui->comboBoxParentAAbility->addItem("H");
         ui->comboBoxParentBAbility->addItem("H");
     }
     else if (version & Game::BDSP)
     {
+        ui->comboBoxParentAItem->addItem(tr("Destiny Knot"), 8);
+        ui->comboBoxParentBItem->addItem(tr("Destiny Knot"), 8);
+
         ui->comboBoxParentAAbility->addItem("H");
         ui->comboBoxParentBAbility->addItem("H");
     }
@@ -108,8 +111,7 @@ Daycare EggSettings::getDaycareSettings() const
     std::array<u8, 2> parentGender
         = { static_cast<u8>(ui->comboBoxParentAGender->currentIndex()), static_cast<u8>(ui->comboBoxParentBGender->currentIndex()) };
 
-    std::array<u8, 2> parentItem
-        = { static_cast<u8>(ui->comboBoxParentAItem->currentIndex()), static_cast<u8>(ui->comboBoxParentBItem->currentIndex()) };
+    std::array<u8, 2> parentItem = { ui->comboBoxParentAItem->getCurrentByte(), ui->comboBoxParentBItem->getCurrentByte() };
 
     std::array<u8, 2> parentNature
         = { static_cast<u8>(ui->comboBoxParentANature->currentIndex()), static_cast<u8>(ui->comboBoxParentBNature->currentIndex()) };
@@ -222,10 +224,10 @@ void EggSettings::setupModels()
     ui->comboBoxParentBAbility->addItem("2");
 
     ui->comboBoxParentAItem->addItem(tr("None"));
-    ui->comboBoxParentAItem->addItem(tr("Everstone"));
+    ui->comboBoxParentAItem->addItem(tr("Everstone"), 1);
 
     ui->comboBoxParentBItem->addItem(tr("None"));
-    ui->comboBoxParentBItem->addItem(tr("Everstone"));
+    ui->comboBoxParentBItem->addItem(tr("Everstone"), 1);
 
     connect(ui->checkBoxShowInheritance, &QCheckBox::clicked, this, &EggSettings::toggleInheritance);
 }

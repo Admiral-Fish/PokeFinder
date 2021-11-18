@@ -51,7 +51,11 @@ public:
     QVariant data(const QModelIndex &index, int role) const override;
     QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
 
+public slots:
+    void toggleInheritance(bool flag);
+
 private:
+    bool showInheritance;
     QStringList header = { tr("Advances"), tr("PID"), tr("Shiny"), tr("Nature"), tr("Ability"), tr("HP"),
                            tr("Atk"),      tr("Def"), tr("SpA"),   tr("SpD"),    tr("Spe"),     tr("Gender") };
 };

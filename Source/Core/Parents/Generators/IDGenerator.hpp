@@ -28,7 +28,11 @@ class IDGenerator
 {
 public:
     IDGenerator() = default;
-    IDGenerator(u32 initialAdvances, u32 maxAdvances, const IDFilter &filter);
+
+    IDGenerator(u32 initialAdvances, u32 maxAdvances, const IDFilter &filter) :
+        initialAdvances(initialAdvances), maxAdvances(maxAdvances), filter(filter)
+    {
+    }
 
 protected:
     u32 initialAdvances;

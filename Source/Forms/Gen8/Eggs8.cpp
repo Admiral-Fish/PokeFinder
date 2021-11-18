@@ -98,6 +98,7 @@ void Eggs8::setupModels()
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Eggs8::generate);
     connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &Eggs8::profileManager);
     connect(ui->tableView, &QTableView::customContextMenuRequested, this, &Eggs8::tableViewContextMenu);
+    connect(ui->eggSettings, &EggSettings::toggleInheritance, model, &EggModel8::toggleInheritance);
 
     QSettings setting;
     setting.beginGroup("egg8");
