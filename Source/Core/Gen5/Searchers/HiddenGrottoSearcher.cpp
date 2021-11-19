@@ -23,7 +23,7 @@
 #include <Core/Util/Utilities.hpp>
 #include <future>
 
-HiddenGrottoSearcher::HiddenGrottoSearcher(const Profile5 &profile) : profile(profile)
+HiddenGrottoSearcher::HiddenGrottoSearcher(const Profile5 &profile) : profile(profile), searching(false)
 {
 }
 

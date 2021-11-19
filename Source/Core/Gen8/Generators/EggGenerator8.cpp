@@ -156,7 +156,7 @@ std::vector<EggState> EggGenerator8::generate(u64 seed0, u64 seed1) const
             {
                 pid = gen.nextUInt(0xffffffff);
                 psv = (pid >> 16) ^ (pid & 0xffff);
-                if (psv ^ tsv < 16)
+                if ((psv ^ tsv) < 16)
                 {
                     break;
                 }

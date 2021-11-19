@@ -45,7 +45,7 @@ std::vector<HiddenGrottoState> HiddenGrottoGenerator::generate(u64 seed) const
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rng.next())
     {
         BWRNG go(rng.getSeed());
-        u32 seed = ((go.getSeed() >> 32) * 0x1FFF) >> 32;
+        u32 prng = ((go.getSeed() >> 32) * 0x1FFF) >> 32;
         if (go.nextUInt(100) < powerLevel)
         {
             u8 group = go.nextUInt(4);
@@ -60,7 +60,7 @@ std::vector<HiddenGrottoState> HiddenGrottoGenerator::generate(u64 seed) const
 
             u8 gender = go.nextUInt(100) < genderRatio;
 
-            HiddenGrottoState state(seed, initialAdvances + cnt, group, slot, gender);
+            HiddenGrottoState state(prng, initialAdvances + cnt, group, slot, gender);
             if (filter.compareState(state))
             {
                 states.emplace_back(state);
