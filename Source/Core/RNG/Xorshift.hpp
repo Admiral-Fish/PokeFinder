@@ -25,11 +25,13 @@
 class Xorshift
 {
 public:
-    Xorshift(u64 seed0, u64 seed1) : state { seed0 >> 32, seed0 & 0xffffffff, seed1 >> 32, seed1 & 0xffffffff}
+    Xorshift(u64 seed0, u64 seed1) :
+        state { static_cast<u32>(seed0 >> 32), static_cast<u32>(seed0 & 0xffffffff), static_cast<u32>(seed1 >> 32),
+                static_cast<u32>(seed1 & 0xffffffff) }
     {
     }
 
-    Xorshift(const Xorshift &other) : state {other.state[0], other.state[1], other.state[2], other.state[3]}
+    Xorshift(const Xorshift &other) : state { other.state[0], other.state[1], other.state[2], other.state[3] }
     {
     }
 
@@ -54,7 +56,7 @@ public:
     {
         return next() % max;
     }
-    
+
     void advance(u32 advances)
     {
         for (u32 advance = 0; advance < advances; advance++)
