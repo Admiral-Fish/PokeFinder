@@ -28,9 +28,21 @@ class WildSearcher : public Searcher
 {
 public:
     WildSearcher() = default;
-    WildSearcher(u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter);
-    void setEncounter(Encounter encounter);
-    void setLead(Lead lead);
+
+    WildSearcher(u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter) :
+        Searcher(tid, sid, genderRatio, method, filter)
+    {
+    }
+
+    void setEncounter(Encounter encounter)
+    {
+        this->encounter = encounter;
+    }
+
+    void setLead(Lead lead)
+    {
+        this->lead = lead;
+    }
 
 protected:
     Encounter encounter;

@@ -86,9 +86,6 @@ add_library(PokeFinderCore STATIC
     Parents/PersonalLoader.cpp
     Parents/Profile.cpp
     Parents/ProfileLoader.cpp
-    Parents/Searchers/Searcher.cpp
-    Parents/Searchers/StationarySearcher.cpp
-    Parents/Searchers/WildSearcher.cpp
     RNG/MT.cpp
     RNG/RNGCache.cpp
     RNG/RNGEuclidean.cpp

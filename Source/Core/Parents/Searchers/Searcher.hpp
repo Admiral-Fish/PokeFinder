@@ -30,7 +30,11 @@ class Searcher
 {
 public:
     Searcher() = default;
-    Searcher(u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter);
+
+    Searcher(u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter) :
+        tid(tid), sid(sid), tsv(tid ^ sid), genderRatio(genderRatio), method(method), filter(filter)
+    {
+    }
 
 protected:
     u16 tid;

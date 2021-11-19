@@ -27,8 +27,15 @@ class StationarySearcher : public Searcher
 {
 public:
     StationarySearcher() = default;
-    StationarySearcher(u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter);
-    void setLead(Lead lead);
+    StationarySearcher(u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter) :
+        Searcher(tid, sid, genderRatio, method, filter)
+    {
+    }
+
+    void setLead(Lead lead)
+    {
+        this->lead = lead;
+    }
 
 protected:
     Lead lead;
