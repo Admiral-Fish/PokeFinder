@@ -55,7 +55,6 @@ void Eggs8::updateProfiles()
     profiles.insert(profiles.begin(), Profile8(Game::BD));
 
     ui->comboBoxProfiles->clear();
-
     for (const auto &profile : profiles)
     {
         ui->comboBoxProfiles->addItem(QString::fromStdString(profile.getName()));

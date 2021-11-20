@@ -110,14 +110,8 @@
          <layout class="QGridLayout" name="gridLayout_6">
           <item row="2" column="1">
            <widget class="TextBox" name="textBoxGeneratorInitialAdvances">
-            <property name="inputMask">
-             <string/>
-            </property>
             <property name="text">
              <string notr="true">0</string>
-            </property>
-            <property name="maxLength">
-             <number>10</number>
             </property>
            </widget>
           </item>
@@ -144,23 +138,8 @@
           </item>
           <item row="4" column="1">
            <widget class="TextBox" name="textBoxGeneratorSeed">
-            <property name="inputMask">
-             <string/>
-            </property>
-            <property name="text">
-             <string/>
-            </property>
             <property name="maxLength">
              <number>8</number>
-            </property>
-            <property name="cursorPosition">
-             <number>0</number>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignCenter</set>
-            </property>
-            <property name="clearButtonEnabled">
-             <bool>false</bool>
             </property>
            </widget>
           </item>
@@ -176,14 +155,8 @@
           </item>
           <item row="3" column="1">
            <widget class="TextBox" name="textBoxGeneratorMaxAdvances">
-            <property name="inputMask">
-             <string/>
-            </property>
             <property name="text">
              <string notr="true">100000</string>
-            </property>
-            <property name="maxLength">
-             <number>10</number>
             </property>
            </widget>
           </item>
@@ -369,14 +342,8 @@
             </item>
             <item row="0" column="1">
              <widget class="TextBox" name="textBoxSearcherMinDelay">
-              <property name="inputMask">
-               <string/>
-              </property>
               <property name="text">
                <string notr="true">600</string>
-              </property>
-              <property name="maxLength">
-               <number>5</number>
               </property>
              </widget>
             </item>
@@ -389,14 +356,8 @@
             </item>
             <item row="0" column="3">
              <widget class="TextBox" name="textBoxSearcherMaxDelay">
-              <property name="inputMask">
-               <string/>
-              </property>
               <property name="text">
                <string notr="true">2000</string>
-              </property>
-              <property name="maxLength">
-               <number>5</number>
               </property>
              </widget>
             </item>
@@ -409,14 +370,8 @@
             </item>
             <item row="1" column="1">
              <widget class="TextBox" name="textBoxSearcherMinAdvance">
-              <property name="inputMask">
-               <string/>
-              </property>
               <property name="text">
                <string notr="true">0</string>
-              </property>
-              <property name="maxLength">
-               <number>5</number>
               </property>
              </widget>
             </item>
@@ -429,14 +384,8 @@
             </item>
             <item row="1" column="3">
              <widget class="TextBox" name="textBoxSearcherMaxAdvance">
-              <property name="inputMask">
-               <string/>
-              </property>
               <property name="text">
                <string notr="true">1000</string>
-              </property>
-              <property name="maxLength">
-               <number>5</number>
               </property>
              </widget>
             </item>
