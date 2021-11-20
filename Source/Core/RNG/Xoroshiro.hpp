@@ -87,7 +87,7 @@ public:
         auto splitmix = [](u64 seed, u64 state) {
             seed += state;
             seed = 0xBF58476D1CE4E5B9 * (seed ^ (seed >> 30));
-            seed = 0x94D049BB133111EB * (seed * (seed >> 27));
+            seed = 0x94D049BB133111EB * (seed ^ (seed >> 27));
             return seed ^ (seed >> 31);
         };
 
