@@ -275,6 +275,10 @@ void MainWindow::updateProfiles(int num)
         {
             wild8->updateProfiles();
         }*/
+        if (egg8)
+        {
+            egg8->updateProfiles();
+        }
     }
 }
 
