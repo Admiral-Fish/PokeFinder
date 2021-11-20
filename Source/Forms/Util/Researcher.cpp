@@ -443,12 +443,17 @@ void Researcher::selectionIndexChanged(int index)
     if (index >= 0)
     {
         ui->comboBoxSearch->clear();
-        QStringList items
-            = { tr("32Bit"),    tr("16Bit High"), tr("16Bit Low"), tr("Custom 1"), tr("Custom 2"), tr("Custom 3"), tr("Custom 4"),
-                tr("Custom 5"), tr("Custom 6"),   tr("Custom 7"),  tr("Custom 8"), tr("Custom 9"), tr("Custom 10") };
+        QStringList items = { tr("16Bit High"), tr("16Bit Low"), tr("Custom 1"), tr("Custom 2"), tr("Custom 3"), tr("Custom 4"),
+                              tr("Custom 5"),   tr("Custom 6"),  tr("Custom 7"), tr("Custom 8"), tr("Custom 9"), tr("Custom 10") };
         if (index == 1)
         {
+            items.prepend(tr("32Bit Low"));
+            items.prepend(tr("32Bit High"));
             items.prepend(tr("64Bit"));
+        }
+        else
+        {
+            items.prepend(tr("32Bit"));
         }
         ui->comboBoxSearch->addItems(items);
     }
