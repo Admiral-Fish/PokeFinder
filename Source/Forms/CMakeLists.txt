@@ -1,26 +1,29 @@
 project(PokeFinder VERSION 3.0.1 LANGUAGES CXX)
 
-execute_process(
-    COMMAND git rev-parse --abbrev-ref HEAD
-    WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
-    OUTPUT_VARIABLE GIT_BRANCH
-    OUTPUT_STRIP_TRAILING_WHITESPACE
-)
+if (NOT EXISTS ${CMAKE_BINARY_DIR}/generated/version.h)
+    execute_process(
+        COMMAND git rev-parse --abbrev-ref HEAD
+        WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+        OUTPUT_VARIABLE GIT_BRANCH
+        OUTPUT_STRIP_TRAILING_WHITESPACE
+    )
 
-execute_process(
-  COMMAND git rev-parse HEAD
-  WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
-  OUTPUT_VARIABLE GIT_COMMIT
-  OUTPUT_STRIP_TRAILING_WHITESPACE
-)
+    execute_process(
+        COMMAND git rev-parse HEAD
+        WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+        OUTPUT_VARIABLE GIT_COMMIT
+        OUTPUT_STRIP_TRAILING_WHITESPACE
+    )
 
-add_definitions("-DGIT_BRANCH=${GIT_BRANCH}")
-add_definitions("-DGIT_COMMIT=${GIT_COMMIT}")
+    add_definitions("-DGIT_BRANCH=${GIT_BRANCH}")
+    add_definitions("-DGIT_COMMIT=${GIT_COMMIT}")
 
-configure_file(
-    ${CMAKE_SOURCE_DIR}/Source/Forms/version.h.in
-    ${CMAKE_BINARY_DIR}/generated/version.h
-)
+    configure_file(
+        ${CMAKE_SOURCE_DIR}/Source/Forms/version.h.in
+        ${CMAKE_BINARY_DIR}/generated/version.h
+    )
+endif ()
+
 include_directories(${CMAKE_BINARY_DIR}/generated)
 
 set(CMAKE_CXX_STANDARD 17)
