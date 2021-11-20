@@ -55,14 +55,13 @@ std::vector<EggState> EggGenerator8::generate(u64 seed0, u64 seed1) const
             EggState state(initialAdvances + cnt);
             XoroshiroBDSP gen(check.next());
 
-            // Nidoran
-            // gen.next(2)
-
-            // Illumise/Volbeat
-            // gen.next(2)
-
-            // Indeedee
-            // gen.next(2)
+            // Nidoran, Illumise/Volbeat, Indeedee
+            if (daycare.getNidoranVolbeat())
+            {
+                // gen.next(2);
+                // Handle display result later
+                gen.next();
+            }
 
             if (genderRatio == 255)
             {
@@ -152,7 +151,7 @@ std::vector<EggState> EggGenerator8::generate(u64 seed0, u64 seed1) const
             // Assign PID if
             u32 pid = 0;
             u16 psv = 0;
-            for (u8 roll = 1; roll < pidRolls; roll++)
+            for (u8 roll = 0; roll < pidRolls; roll++)
             {
                 pid = gen.nextUInt(0xffffffff);
                 psv = (pid >> 16) ^ (pid & 0xffff);
