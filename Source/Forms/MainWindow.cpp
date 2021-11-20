@@ -50,6 +50,7 @@
 #include <Forms/Gen5/Stationary5.hpp>
 #include <Forms/Gen8/DenMap.hpp>
 #include <Forms/Gen8/Eggs8.hpp>
+#include <Forms/Gen8/Profile/ProfileManager8.hpp>
 #include <Forms/Gen8/Raids.hpp>
 #include <Forms/Gen8/Wild8.hpp>
 #include <Forms/Util/EncounterLookup.hpp>
@@ -150,6 +151,7 @@ void MainWindow::setupModels()
     connect(ui->pushButtonEgg8, &QPushButton::clicked, this, &MainWindow::openEgg8);
     connect(ui->actionDenMap, &QAction::triggered, this, &MainWindow::openDenMap);
     connect(ui->actionDownloadEventData, &QAction::triggered, this, &MainWindow::downloadEventData);
+    connect(ui->actionProfileManager8, &QAction::triggered, this, &MainWindow::openProfileManager8);
 
     connect(ui->actionAbout, &QAction::triggered, this, &MainWindow::openAbout);
     connect(ui->actionEncounterLookup, &QAction::triggered, this, &MainWindow::openEncounterLookup);
@@ -694,6 +696,13 @@ void MainWindow::downloadEventData()
             QApplication::quit();
         }
     }
+}
+
+void MainWindow::openProfileManager8()
+{
+    auto *manager = new ProfileManager8();
+    connect(manager, &ProfileManager8::updateProfiles, this, [=] { updateProfiles(8); });
+    manager->show();
 }
 
 void MainWindow::openAbout()

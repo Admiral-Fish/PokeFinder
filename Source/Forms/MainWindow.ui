@@ -253,6 +253,7 @@
     </property>
     <addaction name="actionDenMap"/>
     <addaction name="actionDownloadEventData"/>
+    <addaction name="actionProfileManager8"/>
    </widget>
    <addaction name="menuGen3Tools"/>
    <addaction name="menuGen4Tools"/>
@@ -368,6 +369,11 @@
   <action name="actionDownloadEventData">
    <property name="text">
     <string>Download Event Data</string>
+   </property>
+  </action>
+  <action name="actionProfileManager8">
+   <property name="text">
+    <string>Profile Manager</string>
    </property>
   </action>
  </widget>

@@ -116,6 +116,7 @@ private slots:
     void openEgg8();
     void openDenMap();
     void downloadEventData();
+    void openProfileManager8();
     void openAbout();
     void openEncounterLookup();
     void openIVCalculator();
