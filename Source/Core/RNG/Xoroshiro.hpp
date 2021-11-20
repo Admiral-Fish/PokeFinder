@@ -97,6 +97,14 @@ public:
         // state0 = (state0 | state1) == 0 ? 1 : state0;
     }
 
+    void advance(u32 advances)
+    {
+        for (u32 advance = 0; advance < advances; advance++)
+        {
+            next();
+        }
+    }
+
     u64 next()
     {
         const u64 s0 = state0;

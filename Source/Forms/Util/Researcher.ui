@@ -90,6 +90,11 @@
            <string>SFMT</string>
           </property>
          </item>
+         <item>
+          <property name="text">
+           <string>Xoroshiro (BDSP)</string>
+          </property>
+         </item>
         </widget>
        </item>
       </layout>
@@ -99,22 +104,8 @@
        <string>TinyMT</string>
       </attribute>
       <layout class="QGridLayout" name="gridLayout_3">
-       <item row="0" column="0" colspan="2">
-        <widget class="QLabel" name="labelStatus">
-         <property name="text">
-          <string>Status</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="0">
-        <widget class="QLabel" name="labelStatus3">
-         <property name="text">
-          <string notr="true">[3]</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="1">
-        <widget class="TextBox" name="textBoxStatus3">
+       <item row="1" column="3">
+        <widget class="TextBox" name="textBoxTinyMTSeed3">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
            <horstretch>0</horstretch>
@@ -124,14 +115,14 @@
         </widget>
        </item>
        <item row="1" column="2">
-        <widget class="QLabel" name="labelStatus2">
+        <widget class="QLabel" name="labelTinyMTSeed3">
          <property name="text">
-          <string notr="true">[2]</string>
+          <string notr="true">Seed 3</string>
          </property>
         </widget>
        </item>
-       <item row="1" column="3">
-        <widget class="TextBox" name="textBoxStatus2">
+       <item row="0" column="1">
+        <widget class="TextBox" name="textBoxTinyMTSeed0">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
            <horstretch>0</horstretch>
@@ -140,15 +131,29 @@
          </property>
         </widget>
        </item>
-       <item row="2" column="0">
-        <widget class="QLabel" name="labelStatus1">
+       <item row="0" column="2">
+        <widget class="QLabel" name="labelTinyMTSeed1">
          <property name="text">
-          <string notr="true">[1]</string>
+          <string notr="true">Seed 1</string>
          </property>
         </widget>
        </item>
-       <item row="2" column="1">
-        <widget class="TextBox" name="textBoxStatus1">
+       <item row="1" column="0">
+        <widget class="QLabel" name="labelTinyMTSeed2">
+         <property name="text">
+          <string notr="true">Seed 2</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QLabel" name="labelTinyMTSeed0">
+         <property name="text">
+          <string notr="true">Seed 0</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="TextBox" name="textBoxTinyMTSeed2">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
            <horstretch>0</horstretch>
@@ -157,15 +162,8 @@
          </property>
         </widget>
        </item>
-       <item row="2" column="2">
-        <widget class="QLabel" name="labelStatus0">
-         <property name="text">
-          <string notr="true">[0]</string>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="3">
-        <widget class="TextBox" name="textBoxStatus0">
+       <item row="0" column="3">
+        <widget class="TextBox" name="textBoxTinyMTSeed1">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
            <horstretch>0</horstretch>
@@ -173,6 +171,33 @@
           </sizepolicy>
          </property>
         </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tabXorshift">
+      <attribute name="title">
+       <string>Xorshift</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_8">
+       <item row="0" column="0">
+        <widget class="QLabel" name="labelXorshiftSeed0">
+         <property name="text">
+          <string>Seed 0</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="TextBox" name="textBoxXorshiftSeed0"/>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="labelXorshiftSeed1">
+         <property name="text">
+          <string>Seed 1</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="TextBox" name="textBoxXorshiftSeed1"/>
        </item>
       </layout>
      </widget>
@@ -2681,10 +2706,12 @@
   <tabstop>rngSelection</tabstop>
   <tabstop>comboBoxRNG32Bit</tabstop>
   <tabstop>comboBoxRNG64Bit</tabstop>
-  <tabstop>textBoxStatus3</tabstop>
-  <tabstop>textBoxStatus2</tabstop>
-  <tabstop>textBoxStatus1</tabstop>
-  <tabstop>textBoxStatus0</tabstop>
+  <tabstop>textBoxTinyMTSeed0</tabstop>
+  <tabstop>textBoxTinyMTSeed1</tabstop>
+  <tabstop>textBoxTinyMTSeed2</tabstop>
+  <tabstop>textBoxTinyMTSeed3</tabstop>
+  <tabstop>textBoxXorshiftSeed0</tabstop>
+  <tabstop>textBoxXorshiftSeed1</tabstop>
   <tabstop>textBoxInitialAdvances</tabstop>
   <tabstop>textBoxMaxAdvances</tabstop>
   <tabstop>textBoxSeed</tabstop>
