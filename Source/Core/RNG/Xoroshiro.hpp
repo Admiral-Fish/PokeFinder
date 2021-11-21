@@ -25,12 +25,11 @@
 class Xoroshiro
 {
 public:
-    Xoroshiro(u64 seed0, u64 seed1 = 0x82A2B175229D6A5B) : state0(seed0), state1(seed1)
-    {
-    }
+    Xoroshiro(u64 seed0, u64 seed1 = 0x82A2B175229D6A5B);
+    u64 next();
 
     template <u32 max>
-    u32 nextInt()
+    u32 nextUInt()
     {
         auto bitMask = [](u32 x) constexpr
         {
@@ -60,79 +59,23 @@ public:
     }
 
 private:
-    u64 state0;
-    u64 state1;
-
-    u64 next()
-    {
-        const u64 s0 = state0;
-        u64 s1 = state1;
-        const u64 result = s0 + s1;
-
-        auto rotl = [](u64 x, int k) { return (x << k) | (x >> (64 - k)); };
-
-        s1 ^= s0;
-        state0 = rotl(s0, 24) ^ s1 ^ (s1 << 16);
-        state1 = rotl(s1, 37);
-
-        return result;
-    }
+    u64 state[2];    
 };
 
 class XoroshiroBDSP
 {
 public:
-    XoroshiroBDSP(u64 seed)
+    XoroshiroBDSP(u64 seed);
+    void advance(u32 advances);
+    u32 next();
+
+    u32 next(u32 max)
     {
-        auto splitmix = [](u64 seed, u64 state) {
-            seed += state;
-            seed = 0xBF58476D1CE4E5B9 * (seed ^ (seed >> 30));
-            seed = 0x94D049BB133111EB * (seed ^ (seed >> 27));
-            return seed ^ (seed >> 31);
-        };
-
-        state0 = splitmix(seed, 0x9E3779B97F4A7C15);
-        state1 = splitmix(seed, 0x3C6EF372FE94F82A);
-        // Non-zero state check, doesn't seem possible with 32bit input seed
-        // state0 = (state0 | state1) == 0 ? 1 : state0;
-    }
-
-    void advance(u32 advances)
-    {
-        for (u32 advance = 0; advance < advances; advance++)
-        {
-            next();
-        }
-    }
-
-    u64 next()
-    {
-        const u64 s0 = state0;
-        u64 s1 = state1;
-        const u64 result = s0 + s1;
-
-        auto rotl = [](u64 x, int k) { return (x << k) | (x >> (64 - k)); };
-
-        s1 ^= s0;
-        state0 = rotl(s0, 24) ^ s1 ^ (s1 << 16);
-        state1 = rotl(s1, 37);
-
-        return result;
-    }
-
-    u32 nextUInt()
-    {
-        return next() >> 32;
-    }
-
-    u32 nextUInt(u32 max)
-    {
-        return nextUInt() % max;
+        return next() % max;
     }
 
 private:
-    u64 state0;
-    u64 state1;
+    u64 state[2];
 };
 
 #endif // XOROSHIRO_HPP

@@ -17,20 +17,35 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef XORSHIFT_HPP
-#define XORSHIFT_HPP
+#include "Xorshift.hpp"
 
-#include <Core/Util/Global.hpp>
-
-class Xorshift
+Xorshift::Xorshift(u64 seed0, u64 seed1) :
+    state { static_cast<u32>(seed0 >> 32), static_cast<u32>(seed0 & 0xffffffff), static_cast<u32>(seed1 >> 32),
+            static_cast<u32>(seed1 & 0xffffffff) }
 {
-public:
-    Xorshift(u64 seed0, u64 seed1);
-    void advance(u32 advances);
-    u32 next();
+}
 
-public:
-    u32 state[4];
-};
+void Xorshift::advance(u32 advances)
+{
+    for (u32 advance = 0; advance < advances; advance++)
+    {
+        next();
+    }
+}
 
-#endif // XORSHIFT_HPP
+u32 Xorshift::next()
+{
+    u32 t = state[1];
+    u32 s = state[2];
+
+    t ^= t << 11;
+    t ^= t >> 8;
+    t ^= s ^ (s >> 19);
+
+    state[1] = state[0];
+    state[0] = state[3];
+    state[3] = state[2];
+    state[2] = t;
+
+    return (t % 0xffffffff) + 0x80000000;
+}

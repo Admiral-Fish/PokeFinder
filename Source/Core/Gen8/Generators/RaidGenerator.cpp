@@ -42,11 +42,11 @@ std::vector<State> RaidGenerator::generate(u64 seed) const
         Xoroshiro rng(seed);
         State result(initialAdvances + advance);
 
-        u32 ec = rng.nextInt<0xffffffff>();
+        u32 ec = rng.nextUInt<0xffffffff>();
         // result.setEC(ec);
 
-        u32 sidtid = rng.nextInt<0xffffffff>();
-        u32 pid = rng.nextInt<0xffffffff>();
+        u32 sidtid = rng.nextUInt<0xffffffff>();
+        u32 pid = rng.nextUInt<0xffffffff>();
 
         if (raid.getShinyType() == 0) // Random shiny chance
         {
@@ -112,7 +112,7 @@ std::vector<State> RaidGenerator::generate(u64 seed) const
         // Set IVs that will be 31s
         for (u8 i = 0; i < raid.getIVCount();)
         {
-            u8 index = rng.nextInt<6>();
+            u8 index = rng.nextUInt<6>();
             if (result.getIV(index) == 255)
             {
                 result.setIV(index, 31);
@@ -125,17 +125,17 @@ std::vector<State> RaidGenerator::generate(u64 seed) const
         {
             if (result.getIV(i) == 255)
             {
-                result.setIV(i, rng.nextInt<32>());
+                result.setIV(i, rng.nextUInt<32>());
             }
         }
 
         if (raid.getAbility() == 4) // Allow hidden ability
         {
-            result.setAbility(rng.nextInt<3>());
+            result.setAbility(rng.nextUInt<3>());
         }
         else if (raid.getAbility() == 3) // No hidden ability
         {
-            result.setAbility(rng.nextInt<2>());
+            result.setAbility(rng.nextUInt<2>());
         }
         else // Locked ability
         {
@@ -160,7 +160,7 @@ std::vector<State> RaidGenerator::generate(u64 seed) const
             }
             else // Random
             {
-                result.setGender((rng.nextInt<253>() + 1) < genderRatio);
+                result.setGender((rng.nextUInt<253>() + 1) < genderRatio);
             }
         }
         else if (raid.getGender() == 1) // Male
@@ -178,17 +178,17 @@ std::vector<State> RaidGenerator::generate(u64 seed) const
 
         if (raid.getSpecies() != 849)
         {
-            result.setNature(rng.nextInt<25>());
+            result.setNature(rng.nextUInt<25>());
         }
         else
         {
             if (raid.getSpecies() == 0)
             {
-                result.setNature(toxtricityAmpedNatures[rng.nextInt<13>()]);
+                result.setNature(toxtricityAmpedNatures[rng.nextUInt<13>()]);
             }
             else
             {
-                result.setNature(toxtricityLowKeyNatures[rng.nextInt<12>()]);
+                result.setNature(toxtricityLowKeyNatures[rng.nextUInt<12>()]);
             }
         }
 

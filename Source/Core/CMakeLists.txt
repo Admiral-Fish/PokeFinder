@@ -92,6 +92,8 @@ add_library(PokeFinderCore STATIC
     RNG/SFMT.cpp
     RNG/SHA1.cpp
     RNG/TinyMT.cpp
+    RNG/Xoroshiro.cpp
+    RNG/Xorshift.cpp
     Util/DateTime.cpp
     Util/EncounterSlot.cpp
     Util/IVChecker.cpp

@@ -20,6 +20,7 @@
 #include "EggGenerator8.hpp"
 #include <Core/Enum/Game.hpp>
 #include <Core/Enum/Method.hpp>
+#include <Core/RNG/RNGList.hpp>
 #include <Core/RNG/Xoroshiro.hpp>
 #include <Core/RNG/Xorshift.hpp>
 
@@ -36,6 +37,8 @@ std::vector<EggState> EggGenerator8::generate(u64 seed0, u64 seed1) const
     Xorshift rng(seed0, seed1);
     rng.advance(initialAdvances + offset);
 
+    RNGList<u32, Xorshift, 2, 0> rngList(rng);
+
     u8 pidRolls = 0;
     if (daycare.getMasuda())
     {
@@ -47,14 +50,13 @@ std::vector<EggState> EggGenerator8::generate(u64 seed0, u64 seed1) const
     }
 
     std::vector<EggState> states;
-    for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rng.next())
+    for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rngList.advanceState())
     {
-        Xorshift check(rng);
-        if (check.next(100) < compatability)
+        if ((rngList.getValue() % 100) < compatability)
         {
             EggState state(initialAdvances + cnt);
             // Sign extend seed to signed 64bit
-            XoroshiroBDSP gen(static_cast<long>(check.next()));
+            XoroshiroBDSP gen(static_cast<long>(rngList.getValue()));
 
             // Nidoran, Illumise/Volbeat, Indeedee
             if (daycare.getNidoranVolbeat())
@@ -78,14 +80,14 @@ std::vector<EggState> EggGenerator8::generate(u64 seed0, u64 seed1) const
             }
             else
             {
-                u8 gender = gen.nextUInt(252) + 1 < genderRatio;
+                u8 gender = gen.next(252) + 1 < genderRatio;
                 state.setGender(gender);
             }
 
-            u8 nature = gen.nextUInt(25);
+            u8 nature = gen.next(25);
             if (daycare.getEverstoneCount(Game::BDSP) == 2)
             {
-                nature = daycare.getParentNature(gen.nextUInt(2));
+                nature = daycare.getParentNature(gen.next(2));
             }
             else if (daycare.getParentItem(0) == 1)
             {
@@ -97,7 +99,7 @@ std::vector<EggState> EggGenerator8::generate(u64 seed0, u64 seed1) const
             }
             state.setNature(nature);
 
-            u8 ability = gen.nextUInt(100);
+            u8 ability = gen.next(100);
             u8 parentAbility = daycare.getParentAbility(1);
             if (parentAbility == 2)
             {
@@ -123,10 +125,10 @@ std::vector<EggState> EggGenerator8::generate(u64 seed0, u64 seed1) const
             // Determine inheritance
             for (u8 i = 0; i < inheritance;)
             {
-                u8 index = gen.nextUInt(6);
+                u8 index = gen.next(6);
                 if (state.getInheritance(index) == 0)
                 {
-                    state.setInheritance(index, gen.nextUInt(2) + 1);
+                    state.setInheritance(index, gen.next(2) + 1);
                     i++;
                 }
             }
@@ -134,7 +136,7 @@ std::vector<EggState> EggGenerator8::generate(u64 seed0, u64 seed1) const
             // Assign IVs and inheritance
             for (u8 i = 0; i < 6; i++)
             {
-                u8 iv = gen.nextUInt(32);
+                u8 iv = gen.next(32);
                 if (state.getInheritance(i) == 1)
                 {
                     iv = daycare.getParentIV(0, i);
@@ -154,7 +156,7 @@ std::vector<EggState> EggGenerator8::generate(u64 seed0, u64 seed1) const
             u16 psv = 0;
             for (u8 roll = 0; roll < pidRolls; roll++)
             {
-                pid = gen.nextUInt(0xffffffff);
+                pid = gen.next(0xffffffff);
                 psv = (pid >> 16) ^ (pid & 0xffff);
                 if ((psv ^ tsv) < 16)
                 {
