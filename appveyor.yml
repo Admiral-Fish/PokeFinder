@@ -16,7 +16,7 @@ install:
     - sh: bash .ci/install.sh
     
 before_build:
-    - cmd: set PATH=%QTPATH%\bin;C:\Qt\Tools\QtCreator\bin;%PATH%
+    - cmd: set PATH=%QTPATH%\bin;C:\Qt\Tools\QtCreator\bin\jom;%PATH%
     - cmd: call %VCVARSALLPATH% %VCVARSALL%
     
 build_script:
