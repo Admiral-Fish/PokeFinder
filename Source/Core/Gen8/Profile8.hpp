@@ -26,11 +26,11 @@
 class Profile8 : public Profile
 {
 public:
-    Profile8(Game version = Game::Sword) : Profile("-", version, 12345, 54321), shinyCharm(false)
+    Profile8(Game version = Game::Sword) : Profile("-", version, 12345, 54321), shinyCharm(false), ovalCharm(false)
     {
     }
 
-    Profile8(const std::string &name, Game version, u16 tid, u16 sid, bool shinyCharm) : Profile(name, version, tid, sid), shinyCharm(shinyCharm)
+    Profile8(const std::string &name, Game version, u16 tid, u16 sid, bool shinyCharm, bool ovalCharm) : Profile(name, version, tid, sid), shinyCharm(shinyCharm), ovalCharm(ovalCharm)
     {
     }
 
@@ -39,8 +39,14 @@ public:
         return shinyCharm;
     }
 
+    bool getOvalCharm() const
+    {
+        return ovalCharm;
+    }
+
 private:
     bool shinyCharm;
+    bool ovalCharm;
 };
 
 #endif // PROFILE8_HPP

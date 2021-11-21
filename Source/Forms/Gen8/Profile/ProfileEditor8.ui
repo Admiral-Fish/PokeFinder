@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>424</width>
+    <width>480</width>
     <height>72</height>
    </rect>
   </property>
@@ -96,6 +96,13 @@
      </property>
     </widget>
    </item>
+   <item row="1" column="4">
+    <widget class="QCheckBox" name="checkBoxOvalCharm">
+     <property name="text">
+      <string>Oval Charm</string>
+     </property>
+    </widget>
+   </item>
   </layout>
  </widget>
  <customwidgets>
@@ -111,6 +118,7 @@
   <tabstop>textBoxTID</tabstop>
   <tabstop>textBoxSID</tabstop>
   <tabstop>checkBoxShinyCharm</tabstop>
+  <tabstop>checkBoxOvalCharm</tabstop>
   <tabstop>pushButtonOkay</tabstop>
   <tabstop>pushButtonCancel</tabstop>
  </tabstops>

@@ -19,10 +19,10 @@
 
 #include "Eggs8.hpp"
 #include "ui_Eggs8.h"
+#include <Core/Gen8/Generators/EggGenerator8.hpp>
 #include <Core/Parents/ProfileLoader.hpp>
 #include <Forms/Gen8/Profile/ProfileManager8.hpp>
 #include <Forms/Models/Gen8/EggModel8.hpp>
-#include <Core/Gen8/Generators/EggGenerator8.hpp>
 #include <QMessageBox>
 #include <QSettings>
 
@@ -79,7 +79,7 @@ void Eggs8::setupModels()
     ui->textBoxSeed1->setValues(InputType::Seed64Bit);
     ui->textBoxInitialAdvances->setValues(InputType::Advance32Bit);
     ui->textBoxMaxAdvances->setValues(InputType::Advance32Bit);
-    
+
     ui->comboBoxCompatibility->setup({ 20, 50, 70 });
 
     ui->filter->disableControls(Controls::EncounterSlots);
@@ -137,12 +137,17 @@ void Eggs8::generate()
         offset = ui->filter->getDelay();
     }
 
-    StateFilter filter(ui->filter->getGender(), ui->filter->getAbility(), ui->filter->getShiny(),
-                       ui->filter->getDisableFilters(), ui->filter->getMinIVs(), ui->filter->getMaxIVs(),
-                       ui->filter->getNatures(), {}, {});
+    u8 compatability = ui->comboBoxCompatibility->getCurrentByte();
+    if (currentProfile.getOvalCharm())
+    {
+        compatability = compatability == 20 ? 40 : compatability == 50 ? 80 : 88;
+    }
 
-    EggGenerator8 generator(initialAdvances, maxAdvances, tid, sid, genderRatio, filter,
-                            ui->eggSettings->getDaycareSettings(), currentProfile.getShinyCharm(), ui->comboBoxCompatibility->getCurrentByte());
+    StateFilter filter(ui->filter->getGender(), ui->filter->getAbility(), ui->filter->getShiny(), ui->filter->getDisableFilters(),
+                       ui->filter->getMinIVs(), ui->filter->getMaxIVs(), ui->filter->getNatures(), {}, {});
+
+    EggGenerator8 generator(initialAdvances, maxAdvances, tid, sid, genderRatio, filter, ui->eggSettings->getDaycareSettings(),
+                            currentProfile.getShinyCharm(), compatability);
     generator.setOffset(offset);
 
     auto states = generator.generate(seed0, seed1);
@@ -158,6 +163,8 @@ void Eggs8::profileIndexChanged(int index)
         ui->labelProfileTIDValue->setText(QString::number(currentProfile.getTID()));
         ui->labelProfileSIDValue->setText(QString::number(currentProfile.getSID()));
         ui->labelProfileGameValue->setText(QString::fromStdString(currentProfile.getVersionString()));
+        ui->labelProfileShinyCharmValue->setText(currentProfile.getShinyCharm() ? tr("Yes") : tr("No"));
+        ui->labelProfileOvalCharmValue->setText(currentProfile.getOvalCharm() ? tr("Yes") : tr("No"));
     }
 }
 
