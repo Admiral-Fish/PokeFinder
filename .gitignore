@@ -8,6 +8,7 @@ CMakeLists.txt.user*
 # VS
 .vs
 CMakeSettings.json
+out
 
 # Resource files
 i18n.hpp

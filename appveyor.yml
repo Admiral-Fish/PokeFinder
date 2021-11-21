@@ -16,14 +16,14 @@ install:
     - sh: bash .ci/install.sh
     
 before_build:
-    - cmd: set PATH=%QTPATH%\bin;C:\Qt\Tools\QtCreator\bin\jom;%PATH%
+    - cmd: set PATH=%QTPATH%\bin%PATH%
     - cmd: call %VCVARSALLPATH% %VCVARSALL%
     
 build_script:
     - mkdir build
     - cd build
-    - cmd: cmake -G"NMake Makefiles JOM" -DCMAKE_BUILD_TYPE=RELEASE -DTEST=ON ../
-    - cmd: jom -j %NUMBER_OF_PROCESSORS%
+    - cmd: cmake -G"Visual Studio 16 2019" -DCMAKE_BUILD_TYPE=RELEASE -DTEST=ON ../
+    - cmd: cmake --build . -j %NUMBER_OF_PROCESSORS%
     - sh: bash ../.ci/build.sh
     - ctest -V
     
