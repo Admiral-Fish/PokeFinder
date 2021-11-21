@@ -16,15 +16,15 @@ install:
     - sh: bash .ci/install.sh
     
 before_build:
-    - cmd: set PATH=%QTPATH%\bin%PATH%
+    - cmd: set PATH=%QTPATH%\bin;%PATH%
     - cmd: call %VCVARSALLPATH% %VCVARSALL%
     
 build_script:
     - mkdir build
     - cd build
-    - cmd: cmake -G"Visual Studio 16 2019" -DCMAKE_BUILD_TYPE=RELEASE -DCMAKE_PREFIX_PATH=%QTPATH% -DTEST=ON ../
-    - cmd: cmake --build . -j %NUMBER_OF_PROCESSORS%
+    - cmd: cmake -G"NMake Makefiles" -DCMAKE_BUILD_TYPE=RELEASE -DTEST=ON ../
     - sh: bash ../.ci/build.sh
+    - cmake --build . -j 4
     - ctest -V
     
 after_build:
