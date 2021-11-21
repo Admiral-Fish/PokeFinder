@@ -22,7 +22,7 @@ before_build:
 build_script:
     - mkdir build
     - cd build
-    - cmd: cmake -G"NMake Makefiles" -DCMAKE_BUILD_TYPE=RELEASE -DTEST=ON ../
+    - cmd: cmake -G"NMake Makefiles JOM" -DCMAKE_BUILD_TYPE=RELEASE -DTEST=ON ../
     - cmd: jom -j %NUMBER_OF_PROCESSORS%
     - sh: bash ../.ci/build.sh
     - ctest -V
