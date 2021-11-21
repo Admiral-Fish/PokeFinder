@@ -96,7 +96,7 @@ void ProfileEditor8::okay()
     }
 
     fresh = Profile8(ui->lineEditProfile->text().toStdString(), static_cast<Game>(ui->comboBoxVersion->currentData().toInt()),
-                     ui->textBoxTID->getUShort(), ui->textBoxSID->getUShort(), ui->checkBoxShinyCharm->isChecked());
+                     ui->textBoxTID->getUShort(), ui->textBoxSID->getUShort(), ui->checkBoxShinyCharm->isChecked(), ui->checkBoxOvalCharm->isChecked());
 
     done(QDialog::Accepted);
 }
