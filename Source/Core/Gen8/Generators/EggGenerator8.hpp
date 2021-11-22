@@ -18,7 +18,7 @@
  */
 
 #include <Core/Parents/Generators/EggGenerator.hpp>
-#include <Core/Parents/States/EggState.hpp>
+#include <Core/Parents/States/EggState8.hpp>
 
 class EggGenerator8 : public EggGenerator
 {
@@ -26,7 +26,7 @@ public:
     EggGenerator8() = default;
     EggGenerator8(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, const StateFilter &filter, const Daycare &daycare,
                   bool shinyCharm, u8 compatability);
-    std::vector<EggState> generate(u64 seed0, u64 seed1) const;
+    std::vector<EggState8> generate(u64 seed0, u64 seed1) const;
 
 private:
     bool shinyCharm;

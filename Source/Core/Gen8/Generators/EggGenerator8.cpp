@@ -32,7 +32,7 @@ EggGenerator8::EggGenerator8(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 
 {
 }
 
-std::vector<EggState> EggGenerator8::generate(u64 seed0, u64 seed1) const
+std::vector<EggState8> EggGenerator8::generate(u64 seed0, u64 seed1) const
 {
     Xorshift rng(seed0, seed1);
     rng.advance(initialAdvances + offset);
@@ -49,14 +49,15 @@ std::vector<EggState> EggGenerator8::generate(u64 seed0, u64 seed1) const
         pidRolls += 2;
     }
 
-    std::vector<EggState> states;
+    std::vector<EggState8> states;
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rngList.advanceState())
     {
         if ((rngList.getValue() % 100) < compatability)
         {
-            EggState state(initialAdvances + cnt);
+            EggState8 state(initialAdvances + cnt);
             // Sign extend seed to signed 64bit
-            XoroshiroBDSP gen(static_cast<long>(rngList.getValue()));
+            state.setSeed(rngList.getValue());
+            XoroshiroBDSP gen(static_cast<long>(state.getSeed()));
 
             // Nidoran, Illumise/Volbeat, Indeedee
             if (daycare.getNidoranVolbeat())

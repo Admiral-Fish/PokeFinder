@@ -39,10 +39,10 @@
 #ifndef EGGMODEL8_HPP
 #define EGGMODEL8_HPP
 
-#include <Core/Parents/States/EggState.hpp>
+#include <Core/Parents/States/EggState8.hpp>
 #include <Forms/Models/TableModel.hpp>
 
-class EggModel8 : public TableModel<EggState>
+class EggModel8 : public TableModel<EggState8>
 {
     Q_OBJECT
 public:
@@ -56,8 +56,8 @@ public slots:
 
 private:
     bool showInheritance;
-    QStringList header = { tr("Advances"), tr("PID"), tr("Shiny"), tr("Nature"), tr("Ability"), tr("HP"),
-                           tr("Atk"),      tr("Def"), tr("SpA"),   tr("SpD"),    tr("Spe"),     tr("Gender") };
+    QStringList header = { tr("Advances"), tr("Egg Seed"), tr("PID"), tr("Shiny"), tr("Nature"), tr("Ability"), tr("HP"),
+                           tr("Atk"),      tr("Def"),      tr("SpA"), tr("SpD"),   tr("Spe"),    tr("Gender") };
 };
 
 #endif // EGGMODEL8_HPP
