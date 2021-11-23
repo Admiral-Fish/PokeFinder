@@ -62,7 +62,6 @@ void DreamRadar::updateProfiles()
                  [](const Profile5 &profile) { return profile.getVersion() & Game::BW2; });
 
     ui->comboBoxProfiles->clear();
-
     for (const auto &profile : profiles)
     {
         if (profile.getVersion() & Game::BW2)

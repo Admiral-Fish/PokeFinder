@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Wild8</class>
- <widget class="QWidget" name="Wild8">
+ <class>Stationary8</class>
+ <widget class="QWidget" name="Stationary8">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Wild Gen 8</string>
+   <string>Stationary Gen 8</string>
   </property>
   <layout class="QGridLayout" name="gridLayout_2">
    <item row="1" column="0">

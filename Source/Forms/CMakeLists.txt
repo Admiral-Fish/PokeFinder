@@ -94,6 +94,7 @@ set(PROJECT_UI
     Gen8/Profile/ProfileEditor8.ui
     Gen8/Profile/ProfileManager8.ui
     Gen8/Raids.ui
+    Gen8/Stationary8.ui
     Gen8/Wild8.ui
     MainWindow.ui
     Util/EncounterLookup.ui
@@ -156,6 +157,7 @@ set(PROJECT_SOURCES
     Gen8/Profile/ProfileEditor8.cpp
     Gen8/Profile/ProfileManager8.cpp
     Gen8/Raids.cpp
+    Gen8/Stationary8.cpp
     Gen8/Wild8.cpp
     MainWindow.cpp
     Models/Gen3/EggModel3.cpp
@@ -185,6 +187,8 @@ set(PROJECT_SOURCES
     Models/Gen8/EggModel8.cpp
     Models/Gen8/ProfileModel8.cpp
     Models/Gen8/RaidModel.cpp
+    Models/Gen8/StationaryModel8.cpp
+    Models/Gen8/WildModel8.cpp
     Models/Util/ResearcherModel.cpp
     Util/EncounterLookup.cpp
     Util/IVCalculator.cpp

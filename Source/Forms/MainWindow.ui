@@ -164,9 +164,6 @@
        <layout class="QGridLayout" name="gridLayout_9">
         <item row="1" column="0">
          <widget class="QPushButton" name="pushButtonWild8">
-          <property name="enabled">
-           <bool>false</bool>
-          </property>
           <property name="text">
            <string>Wild</string>
           </property>

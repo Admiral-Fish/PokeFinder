@@ -39,8 +39,8 @@ IDs5::IDs5(QWidget *parent) : QWidget(parent), ui(new Ui::IDs5)
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
 
-    updateProfiles();
     setupModels();
+    updateProfiles();
 }
 
 IDs5::~IDs5()
@@ -56,12 +56,9 @@ IDs5::~IDs5()
 
 void IDs5::updateProfiles()
 {
-    connect(ui->comboBoxProfiles, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &IDs5::profileIndexChanged);
-
     profiles = ProfileLoader5::getProfiles();
 
     ui->comboBoxProfiles->clear();
-
     for (const auto &profile : profiles)
     {
         ui->comboBoxProfiles->addItem(QString::fromStdString(profile.getName()));
@@ -101,6 +98,7 @@ void IDs5::setupModels()
     connect(outputTXTGenerator, &QAction::triggered, [=]() { ui->tableView->outputModel(false); });
     connect(outputCSVGenerator, &QAction::triggered, [=]() { ui->tableView->outputModel(true); });
 
+    connect(ui->comboBoxProfiles, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &IDs5::profileIndexChanged);
     connect(ui->pushButtonSearch, &QPushButton::clicked, this, &IDs5::search);
     connect(ui->pushButtonFind, &QPushButton::clicked, this, &IDs5::find);
     connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &IDs5::profileManager);

@@ -17,6 +17,9 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+#ifndef EGGGENERATOR8_HPP
+#define EGGGENERATOR8_HPP
+
 #include <Core/Parents/Generators/EggGenerator.hpp>
 #include <Core/Parents/States/EggState.hpp>
 
@@ -32,3 +35,5 @@ private:
     bool shinyCharm;
     u8 compatability;
 };
+
+#endif // EGGGENERATOR8_HPP

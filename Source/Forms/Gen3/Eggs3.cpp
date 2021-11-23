@@ -57,7 +57,6 @@ void Eggs3::updateProfiles()
     profiles.insert(profiles.begin(), Profile3());
 
     ui->comboBoxProfiles->clear();
-
     for (const auto &profile : profiles)
     {
         ui->comboBoxProfiles->addItem(QString::fromStdString(profile.getName()));

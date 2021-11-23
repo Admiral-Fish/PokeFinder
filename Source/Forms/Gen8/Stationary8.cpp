@@ -17,16 +17,16 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include "Wild8.hpp"
-#include "ui_Wild8.h"
+#include "Stationary8.hpp"
+#include "ui_Stationary8.h"
 #include <Core/Enum/Lead.hpp>
 #include <Core/Parents/ProfileLoader.hpp>
 #include <Core/Util/Translator.hpp>
 #include <Forms/Gen8/Profile/ProfileManager8.hpp>
-#include <Forms/Models/Gen8/WildModel8.hpp>
+#include <Forms/Models/Gen8/StationaryModel8.hpp>
 #include <QSettings>
 
-Wild8::Wild8(QWidget *parent) : QWidget(parent), ui(new Ui::Wild8)
+Stationary8::Stationary8(QWidget *parent) : QWidget(parent), ui(new Ui::Stationary8)
 {
     ui->setupUi(this);
 
@@ -36,10 +36,10 @@ Wild8::Wild8(QWidget *parent) : QWidget(parent), ui(new Ui::Wild8)
     updateProfiles();
 }
 
-Wild8::~Wild8()
+Stationary8::~Stationary8()
 {
     QSettings setting;
-    setting.beginGroup("wild8");
+    setting.beginGroup("stationary8");
     setting.setValue("profile", ui->comboBoxProfiles->currentIndex());
     setting.setValue("geometry", this->saveGeometry());
     setting.endGroup();
@@ -47,7 +47,7 @@ Wild8::~Wild8()
     delete ui;
 }
 
-void Wild8::updateProfiles()
+void Stationary8::updateProfiles()
 {
     profiles.clear();
     auto completeProfiles = ProfileLoader8::getProfiles();
@@ -63,16 +63,16 @@ void Wild8::updateProfiles()
     }
 
     QSettings setting;
-    int val = setting.value("wild8/profile", 0).toInt();
+    int val = setting.value("stationary8/profile", 0).toInt();
     if (val < ui->comboBoxProfiles->count())
     {
         ui->comboBoxProfiles->setCurrentIndex(val);
     }
 }
 
-void Wild8::setupModels()
+void Stationary8::setupModels()
 {
-    model = new WildModel8(ui->tableView);
+    model = new StationaryModel8(ui->tableView);
 
     menu = new QMenu(ui->tableView);
 
@@ -91,22 +91,22 @@ void Wild8::setupModels()
     connect(outputTXTGenerator, &QAction::triggered, [=] { ui->tableView->outputModel(); });
     connect(outputCSVGenerator, &QAction::triggered, [=] { ui->tableView->outputModel(true); });
 
-    connect(ui->comboBoxProfiles, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &Wild8::profilesIndexChanged);
-    connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Wild8::generate);
+    connect(ui->comboBoxProfiles, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &Stationary8::profilesIndexChanged);
+    connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Stationary8::generate);
     /*connect(ui->comboBoxEncounter, QOverload<int>::of(&QComboBox::currentIndexChanged), this,
-            &Wild8::encounterIndexChanged);
+            &Stationary8::encounterIndexChanged);
     connect(ui->comboBoxLocation, QOverload<int>::of(&QComboBox::currentIndexChanged), this,
-            &Wild8::locationIndexChanged);
-    connect(ui->comboBoxPokemon, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &Wild8::pokemonIndexChanged);
-    connect(ui->comboBoxTime, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &Wild8::timeIndexChanged);*/
-    connect(ui->tableView, &QTableView::customContextMenuRequested, this, &Wild8::tableViewContextMenu);
-    connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &Wild8::profileManager);
+            &Stationary8::locationIndexChanged);
+    connect(ui->comboBoxPokemon, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &Stationary8::pokemonIndexChanged);
+    connect(ui->comboBoxTime, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &Stationary8::timeIndexChanged);*/
+    connect(ui->tableView, &QTableView::customContextMenuRequested, this, &Stationary8::tableViewContextMenu);
+    connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &Stationary8::profileManager);
 
     // generatorEncounterIndexChanged(0);
     // searcherEncounterIndexChanged(0);
 
     QSettings setting;
-    setting.beginGroup("wild8");
+    setting.beginGroup("stationary8");
     if (setting.contains("geometry"))
     {
         this->restoreGeometry(setting.value("geometry").toByteArray());
@@ -114,7 +114,7 @@ void Wild8::setupModels()
     setting.endGroup();
 }
 
-void Wild8::generate()
+void Stationary8::generate()
 {
     /*auto method = static_cast<Method>(ui->comboBoxGeneratorMethod->getCurrentInt());
     generatorModel->clearModel();
@@ -156,7 +156,7 @@ void Wild8::generate()
     generatorModel->addItems(states);*/
 }
 
-void Wild8::profilesIndexChanged(int index)
+void Stationary8::profilesIndexChanged(int index)
 {
     if (index >= 0)
     {
@@ -172,7 +172,7 @@ void Wild8::profilesIndexChanged(int index)
     }
 }
 
-void Wild8::tableViewContextMenu(QPoint pos)
+void Stationary8::tableViewContextMenu(QPoint pos)
 {
     if (model->rowCount() > 0)
     {
@@ -180,7 +180,7 @@ void Wild8::tableViewContextMenu(QPoint pos)
     }
 }
 
-void Wild8::profileManager()
+void Stationary8::profileManager()
 {
     auto *manager = new ProfileManager8();
     connect(manager, &ProfileManager8::updateProfiles, this, [=] { emit alertProfiles(8); });
