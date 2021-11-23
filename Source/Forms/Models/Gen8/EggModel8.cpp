@@ -68,13 +68,13 @@ QVariant EggModel8::data(const QModelIndex &index, int role) const
         case 11:
             if (showInheritance)
             {
-                u8 inh = state.getInheritance(static_cast<u8>(column - 5));
+                u8 inh = state.getInheritance(static_cast<u8>(column - 6));
                 if (inh)
                 {
                     return inh == 1 ? "A" : "B";
                 }
             }
-            return state.getIV(static_cast<u8>(column - 5));
+            return state.getIV(static_cast<u8>(column - 6));
         case 12:
             return QString::fromStdString(Translator::getGender(state.getGender()));
         }
