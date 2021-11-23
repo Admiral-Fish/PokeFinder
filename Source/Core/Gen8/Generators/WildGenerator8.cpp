@@ -17,23 +17,28 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef EGGGENERATOR8_HPP
-#define EGGGENERATOR8_HPP
+#include "WildGenerator8.hpp"
+#include <Core/Enum/Method.hpp>
+#include <Core/RNG/RNGList.hpp>
+#include <Core/RNG/Xorshift.hpp>
 
-#include <Core/Parents/Generators/EggGenerator.hpp>
-#include <Core/Parents/States/EggState8.hpp>
-
-class EggGenerator8 : public EggGenerator
+WildGenerator8::WildGenerator8(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, const StateFilter &filter) :
+    WildGenerator(initialAdvances, maxAdvances, tid, sid, genderRatio, Method::Null, filter)
 {
-public:
-    EggGenerator8() = default;
-    EggGenerator8(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, const StateFilter &filter, const Daycare &daycare,
-                  bool shinyCharm, u8 compatability);
-    std::vector<EggState8> generate(u64 seed0, u64 seed1) const;
+}
 
-private:
-    bool shinyCharm;
-    u8 compatability;
-};
+std::vector<WildState> WildGenerator8::generate(u64 seed0, u64 seed1) const
+{
+    Xorshift rng(seed0, seed1);
+    rng.advance(initialAdvances + offset);
 
-#endif // EGGGENERATOR8_HPP
+    RNGList<u32, Xorshift, 2, 0> rngList(rng);
+
+    std::vector<WildState> states;
+    for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rngList.advanceState())
+    {
+        
+    }
+
+    return states;
+}

@@ -17,23 +17,19 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef EGGGENERATOR8_HPP
-#define EGGGENERATOR8_HPP
+#ifndef STATIONARYGENERATOR8_HPP
+#define STATIONARYGENERATOR8_HPP
 
-#include <Core/Parents/Generators/EggGenerator.hpp>
-#include <Core/Parents/States/EggState8.hpp>
+#include <Core/Parents/Generators/StationaryGenerator.hpp>
+#include <Core/Parents/States/StationaryState.hpp>
 
-class EggGenerator8 : public EggGenerator
+class StationaryGenerator8 : public StationaryGenerator
 {
 public:
-    EggGenerator8() = default;
-    EggGenerator8(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, const StateFilter &filter, const Daycare &daycare,
-                  bool shinyCharm, u8 compatability);
-    std::vector<EggState8> generate(u64 seed0, u64 seed1) const;
-
-private:
-    bool shinyCharm;
-    u8 compatability;
+    StationaryGenerator8() = default;
+    StationaryGenerator8(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, const StateFilter &filter);
+    std::vector<StationaryState> generate(u64 seed0, u64 seed1) const;
+    std::vector<StationaryState> generateRoamer(u64 seed0, u64 seed1) const;
 };
 
-#endif // EGGGENERATOR8_HPP
+#endif // STATIONARYGENERATOR8_HPP

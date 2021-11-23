@@ -17,23 +17,18 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef EGGGENERATOR8_HPP
-#define EGGGENERATOR8_HPP
+#ifndef WILDGENERATOR8_HPP
+#define WILDGENERATOR8_HPP
 
-#include <Core/Parents/Generators/EggGenerator.hpp>
-#include <Core/Parents/States/EggState8.hpp>
+#include <Core/Parents/Generators/WildGenerator.hpp>
+#include <Core/Parents/States/WildState.hpp>
 
-class EggGenerator8 : public EggGenerator
+class WildGenerator8 : public WildGenerator
 {
 public:
-    EggGenerator8() = default;
-    EggGenerator8(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, const StateFilter &filter, const Daycare &daycare,
-                  bool shinyCharm, u8 compatability);
-    std::vector<EggState8> generate(u64 seed0, u64 seed1) const;
-
-private:
-    bool shinyCharm;
-    u8 compatability;
+    WildGenerator8() = default;
+    WildGenerator8(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, const StateFilter &filter);
+    std::vector<WildState> generate(u64 seed0, u64 seed1) const;
 };
 
-#endif // EGGGENERATOR8_HPP
+#endif // WILDGENERATOR8_HPP

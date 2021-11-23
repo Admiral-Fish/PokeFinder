@@ -17,23 +17,24 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef EGGGENERATOR8_HPP
-#define EGGGENERATOR8_HPP
+#ifndef WILDMODEL8_HPP
+#define WILDMODEL8_HPP
 
-#include <Core/Parents/Generators/EggGenerator.hpp>
-#include <Core/Parents/States/EggState8.hpp>
+#include <Core/Parents/States/WildState.hpp>
+#include <Forms/Models/TableModel.hpp>
 
-class EggGenerator8 : public EggGenerator
+class WildModel8 : public TableModel<WildState>
 {
+    Q_OBJECT
 public:
-    EggGenerator8() = default;
-    EggGenerator8(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, const StateFilter &filter, const Daycare &daycare,
-                  bool shinyCharm, u8 compatability);
-    std::vector<EggState8> generate(u64 seed0, u64 seed1) const;
+    explicit WildModel8(QObject *parent);
+    int columnCount(const QModelIndex &parent = QModelIndex()) const override;
+    QVariant data(const QModelIndex &index, int role) const override;
+    QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
 
 private:
-    bool shinyCharm;
-    u8 compatability;
+    QStringList header = { tr("Advances"), tr("PID"), tr("Shiny"), tr("Nature"), tr("Ability"), tr("HP"),
+                           tr("Atk"),      tr("Def"), tr("SpA"),   tr("SpD"),    tr("Spe"),     tr("Gender") };
 };
 
-#endif // EGGGENERATOR8_HPP
+#endif // WILDMODEL8_HPP

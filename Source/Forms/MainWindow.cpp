@@ -273,10 +273,10 @@ void MainWindow::updateProfiles(int num)
         {
             raids->updateProfiles();
         }
-        /*if (wild8)
+        if (wild8)
         {
             wild8->updateProfiles();
-        }*/
+        }
         if (egg8)
         {
             egg8->updateProfiles();
@@ -610,10 +610,10 @@ void MainWindow::openWild8()
     if (!wild8)
     {
         wild8 = new Wild8();
-        // connect(raids, &Wild8::alertProfiles, this, &MainWindow::updateProfiles);
+        connect(wild8, &Wild8::alertProfiles, this, &MainWindow::updateProfiles);
     }
-    raids->show();
-    raids->raise();
+    wild8->show();
+    wild8->raise();
 }
 
 void MainWindow::openEgg8()
