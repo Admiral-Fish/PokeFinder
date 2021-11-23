@@ -64,13 +64,10 @@ Wild4::~Wild4()
 
 void Wild4::updateProfiles()
 {
-    connect(ui->comboBoxProfiles, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &Wild4::profilesIndexChanged);
-
     profiles = ProfileLoader4::getProfiles();
     profiles.insert(profiles.begin(), Profile4());
 
     ui->comboBoxProfiles->clear();
-
     for (const auto &profile : profiles)
     {
         ui->comboBoxProfiles->addItem(QString::fromStdString(profile.getName()));
@@ -126,6 +123,7 @@ void Wild4::setupModels()
     connect(outputTXTSearcher, &QAction::triggered, [=] { ui->tableViewSearcher->outputModel(); });
     connect(outputCSVSearcher, &QAction::triggered, [=] { ui->tableViewSearcher->outputModel(true); });
 
+    connect(ui->comboBoxProfiles, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &Wild4::profilesIndexChanged);
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Wild4::generate);
     connect(ui->pushButtonSearch, &QPushButton::clicked, this, &Wild4::search);
     connect(ui->comboBoxGeneratorEncounter, QOverload<int>::of(&QComboBox::currentIndexChanged), this,

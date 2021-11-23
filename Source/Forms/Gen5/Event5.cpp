@@ -62,7 +62,6 @@ void Event5::updateProfiles()
     profiles = ProfileLoader5::getProfiles();
 
     ui->comboBoxProfiles->clear();
-
     for (const auto &profile : profiles)
     {
         ui->comboBoxProfiles->addItem(QString::fromStdString(profile.getName()));

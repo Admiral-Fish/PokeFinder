@@ -17,28 +17,28 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef EGGMODEL8_HPP
-#define EGGMODEL8_HPP
+#include "WildGenerator8.hpp"
+#include <Core/Enum/Method.hpp>
+#include <Core/RNG/RNGList.hpp>
+#include <Core/RNG/Xorshift.hpp>
 
-#include <Core/Parents/States/EggState8.hpp>
-#include <Forms/Models/TableModel.hpp>
-
-class EggModel8 : public TableModel<EggState8>
+WildGenerator8::WildGenerator8(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, const StateFilter &filter) :
+    WildGenerator(initialAdvances, maxAdvances, tid, sid, genderRatio, Method::Null, filter)
 {
-    Q_OBJECT
-public:
-    explicit EggModel8(QObject *parent);
-    int columnCount(const QModelIndex &parent = QModelIndex()) const override;
-    QVariant data(const QModelIndex &index, int role) const override;
-    QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
+}
 
-public slots:
-    void toggleInheritance(bool flag);
+std::vector<WildState> WildGenerator8::generate(u64 seed0, u64 seed1) const
+{
+    Xorshift rng(seed0, seed1);
+    rng.advance(initialAdvances + offset);
 
-private:
-    bool showInheritance;
-    QStringList header = { tr("Advances"), tr("Egg Seed"), tr("PID"), tr("Shiny"), tr("Nature"), tr("Ability"), tr("HP"),
-                           tr("Atk"),      tr("Def"),      tr("SpA"), tr("SpD"),   tr("Spe"),    tr("Gender") };
-};
+    RNGList<u32, Xorshift, 2, 0> rngList(rng);
 
-#endif // EGGMODEL8_HPP
+    std::vector<WildState> states;
+    for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rngList.advanceState())
+    {
+        
+    }
+
+    return states;
+}

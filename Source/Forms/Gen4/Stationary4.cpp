@@ -64,7 +64,6 @@ void Stationary4::updateProfiles()
     profiles.insert(profiles.begin(), Profile4());
 
     ui->comboBoxProfiles->clear();
-
     for (const auto &profile : profiles)
     {
         ui->comboBoxProfiles->addItem(QString::fromStdString(profile.getName()));

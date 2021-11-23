@@ -17,35 +17,35 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef WILD8_HPP
-#define WILD8_HPP
+#ifndef STATIONARY8_HPP
+#define STATIONARY8_HPP
 
 #include <QMenu>
 #include <Core/Gen8/Profile8.hpp>
 
-class WildModel8;
+class StationaryModel8;
 
 namespace Ui
 {
-    class Wild8;
+    class Stationary8;
 }
 
-class Wild8 : public QWidget
+class Stationary8 : public QWidget
 {
     Q_OBJECT
 signals:
     void alertProfiles(int);
 
 public:
-    explicit Wild8(QWidget *parent = nullptr);
-    ~Wild8() override;
+    explicit Stationary8(QWidget *parent = nullptr);
+    ~Stationary8() override;
     void updateProfiles();
 
 private:
-    Ui::Wild8 *ui;
+    Ui::Stationary8 *ui;
     std::vector<Profile8> profiles;
     Profile8 currentProfile;
-    WildModel8 *model = nullptr;
+    StationaryModel8 *model = nullptr;
     QMenu *menu = nullptr;
     //std::vector<EncounterArea8> encounters;
 
@@ -66,4 +66,4 @@ private slots:
     void profileManager();
 };
 
-#endif // WILD8_HPP
+#endif // STATIONARY8_HPP

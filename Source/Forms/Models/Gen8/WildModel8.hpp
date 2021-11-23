@@ -17,28 +17,24 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef EGGMODEL8_HPP
-#define EGGMODEL8_HPP
+#ifndef WILDMODEL8_HPP
+#define WILDMODEL8_HPP
 
-#include <Core/Parents/States/EggState8.hpp>
+#include <Core/Parents/States/WildState.hpp>
 #include <Forms/Models/TableModel.hpp>
 
-class EggModel8 : public TableModel<EggState8>
+class WildModel8 : public TableModel<WildState>
 {
     Q_OBJECT
 public:
-    explicit EggModel8(QObject *parent);
+    explicit WildModel8(QObject *parent);
     int columnCount(const QModelIndex &parent = QModelIndex()) const override;
     QVariant data(const QModelIndex &index, int role) const override;
     QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
 
-public slots:
-    void toggleInheritance(bool flag);
-
 private:
-    bool showInheritance;
-    QStringList header = { tr("Advances"), tr("Egg Seed"), tr("PID"), tr("Shiny"), tr("Nature"), tr("Ability"), tr("HP"),
-                           tr("Atk"),      tr("Def"),      tr("SpA"), tr("SpD"),   tr("Spe"),    tr("Gender") };
+    QStringList header = { tr("Advances"), tr("PID"), tr("Shiny"), tr("Nature"), tr("Ability"), tr("HP"),
+                           tr("Atk"),      tr("Def"), tr("SpA"),   tr("SpD"),    tr("Spe"),     tr("Gender") };
 };
 
-#endif // EGGMODEL8_HPP
+#endif // WILDMODEL8_HPP
