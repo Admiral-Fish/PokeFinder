@@ -20,7 +20,7 @@
 #include "EggModel8.hpp"
 #include <Core/Util/Translator.hpp>
 
-EggModel8::EggModel8(QObject *parent) : TableModel<EggState8>(parent), showInheritance(false)
+EggModel8::EggModel8(QObject *parent) : TableModel<EggState>(parent), showInheritance(false)
 {
 }
 

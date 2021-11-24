@@ -20,10 +20,10 @@
 #ifndef EGGMODEL8_HPP
 #define EGGMODEL8_HPP
 
-#include <Core/Parents/States/EggState8.hpp>
+#include <Core/Parents/States/EggState.hpp>
 #include <Forms/Models/TableModel.hpp>
 
-class EggModel8 : public TableModel<EggState8>
+class EggModel8 : public TableModel<EggState>
 {
     Q_OBJECT
 public:

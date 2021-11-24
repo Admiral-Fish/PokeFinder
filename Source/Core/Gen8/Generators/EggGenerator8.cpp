@@ -32,7 +32,7 @@ EggGenerator8::EggGenerator8(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 
 {
 }
 
-std::vector<EggState8> EggGenerator8::generate(u64 seed0, u64 seed1) const
+std::vector<EggState> EggGenerator8::generate(u64 seed0, u64 seed1) const
 {
     Xorshift rng(seed0, seed1);
     rng.advance(initialAdvances + offset);
@@ -49,12 +49,12 @@ std::vector<EggState8> EggGenerator8::generate(u64 seed0, u64 seed1) const
         pidRolls += 2;
     }
 
-    std::vector<EggState8> states;
+    std::vector<EggState> states;
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rngList.advanceState())
     {
         if ((rngList.getValue() % 100) < compatability)
         {
-            EggState8 state(initialAdvances + cnt);
+            EggState state(initialAdvances + cnt);
             // Sign extend seed to signed 64bit
             state.setSeed(rngList.getValue());
             XoroshiroBDSP gen(static_cast<long>(state.getSeed()));
