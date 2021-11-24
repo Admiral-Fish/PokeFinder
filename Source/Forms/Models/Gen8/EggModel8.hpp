@@ -37,8 +37,8 @@ public slots:
 
 private:
     bool showInheritance;
-    QStringList header = { tr("Advances"), tr("PID"), tr("Shiny"), tr("Nature"), tr("Ability"), tr("HP"),
-                           tr("Atk"),      tr("Def"), tr("SpA"),   tr("SpD"),    tr("Spe"),     tr("Gender") };
+    QStringList header = { tr("Advances"), tr("Egg Seed"), tr("PID"), tr("Shiny"), tr("Nature"), tr("Ability"), tr("HP"),
+                           tr("Atk"),      tr("Def"),      tr("SpA"), tr("SpD"),   tr("Spe"),    tr("Gender") };
 };
 
 #endif // EGGMODEL8_HPP
