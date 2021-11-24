@@ -56,4 +56,6 @@ std::vector<StationaryState> StationaryGenerator8::generateRoamer(u64 seed0, u64
         StationaryState state(initialAdvances + cnt);
         XoroshiroBDSP gen(rng.next());
     }
+
+    return states;
 }
