@@ -27,7 +27,7 @@ WildModel8::WildModel8(QObject *parent) : TableModel<WildState>(parent)
 int WildModel8::columnCount(const QModelIndex &parent) const
 {
     (void)parent;
-    return 12;
+    return 13;
 }
 
 QVariant WildModel8::data(const QModelIndex &index, int role) const
@@ -41,15 +41,20 @@ QVariant WildModel8::data(const QModelIndex &index, int role) const
         case 0:
             return state.getAdvances();
         case 1:
-            return QString::number(state.getPID(), 16).toUpper().rightJustified(8, '0');
+        {
+            u8 item = state.getItem();
+            return item < 50 ? "No" : item > 54 ? "50%" : "5%";
+        }
         case 2:
+            return QString::number(state.getPID(), 16).toUpper().rightJustified(8, '0');
+        case 3:
         {
             u8 shiny = state.getShiny();
             return shiny == 2 ? tr("Square") : shiny == 1 ? tr("Star") : tr("No");
         }
-        case 3:
-            return QString::fromStdString(Translator::getNature(state.getNature()));
         case 4:
+            return QString::fromStdString(Translator::getNature(state.getNature()));
+        case 5:
         {
             u8 ability = state.getAbility();
             if (ability == 0 || ability == 1)
@@ -58,14 +63,14 @@ QVariant WildModel8::data(const QModelIndex &index, int role) const
             }
             return "H";
         }
-        case 5:
         case 6:
         case 7:
         case 8:
         case 9:
         case 10:
-            return state.getIV(static_cast<u8>(column - 5));
         case 11:
+            return state.getIV(static_cast<u8>(column - 6));
+        case 12:
             return QString::fromStdString(Translator::getGender(state.getGender()));
         }
     }
