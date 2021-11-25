@@ -43,7 +43,7 @@ QVariant WildModel8::data(const QModelIndex &index, int role) const
         case 1:
         {
             u8 item = state.getItem();
-            return item < 50 ? "No" : item > 54 ? "50%" : "5%";
+            return item > 54 ? "No" : item < 50 ? "50%" : "5%";
         }
         case 2:
             return QString::number(state.getPID(), 16).toUpper().rightJustified(8, '0');
