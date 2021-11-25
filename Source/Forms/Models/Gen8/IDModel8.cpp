@@ -26,7 +26,7 @@ IDModel8::IDModel8(QObject *parent) : TableModel<IDState8>(parent)
 int IDModel8::columnCount(const QModelIndex &parent) const
 {
     (void)parent;
-    return 4;
+    return 5;
 }
 
 QVariant IDModel8::data(const QModelIndex &index, int role) const
@@ -39,10 +39,12 @@ QVariant IDModel8::data(const QModelIndex &index, int role) const
         case 0:
             return state.getAdvances();
         case 1:
-            return state.getTID();
+            return state.getG8TID();
         case 2:
-            return state.getSID();
+            return state.getTID();
         case 3:
+            return state.getSID();
+        case 4:
             return state.getTSV();
         }
     }

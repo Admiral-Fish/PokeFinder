@@ -30,7 +30,16 @@ public:
     IDState8(u32 advance, u16 tid, u16 sid) : IDState(advance, tid, sid)
     {
         tsv = (tid ^ sid) >> 4;
+        g8tid = u32((sid << 16) | tid) % 1000000;
     }
+
+    u32 getG8TID() const
+    {
+        return g8tid;
+    }
+
+protected:
+    u32 g8tid;
 };
 
-#endif // IDSTATE3_HPP
+#endif // IDSTATE8_HPP
