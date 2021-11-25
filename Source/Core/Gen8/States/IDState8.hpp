@@ -17,48 +17,20 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef TEXTBOX_HPP
-#define TEXTBOX_HPP
+#ifndef IDSTATE8_HPP
+#define IDSTATE8_HPP
 
-#include <Core/Util/Global.hpp>
-#include <QLineEdit>
-#include <QRegularExpression>
+#include <Core/Parents/States/IDState.hpp>
 
-enum class InputType : u8
+class IDState8 : public IDState
 {
-    Seed64Bit,
-    Advance64Bit,
-    Seed32Bit,
-    Advance32Bit,
-    Seed16Bit,
-    Delay,
-    TIDSID
-};
-
-class TextBox : public QLineEdit
-{
-    Q_OBJECT
 public:
-    explicit TextBox(QWidget *parent = nullptr);
-    void setValues(InputType type);
-    void setValues(u64 minValue, u64 maxValue, int length, int base);
-    int getInt() const;
-    u8 getUChar() const;
-    u16 getUShort() const;
-    u32 getUInt() const;
-    u64 getULong() const;
+    IDState8() = default;
 
-private:
-    bool setup;
-    u64 maxValue;
-    u64 minValue;
-    int base;
-    int length;
-    QRegularExpression filter;
-
-private slots:
-    void onTextEdited(QString string);
-    void onEditFinished();
+    IDState8(u32 advance, u16 tid, u16 sid) : IDState(advance, tid, sid)
+    {
+        tsv = (tid ^ sid) >> 4;
+    }
 };
 
-#endif // TEXTBOX_HPP
+#endif // IDSTATE3_HPP

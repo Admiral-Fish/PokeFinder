@@ -17,48 +17,23 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef TEXTBOX_HPP
-#define TEXTBOX_HPP
+#ifndef IDMODEL8_HPP
+#define IDMODEL8_HPP
 
-#include <Core/Util/Global.hpp>
-#include <QLineEdit>
-#include <QRegularExpression>
+#include <Core/Gen8/States/IDState8.hpp>
+#include <Forms/Models/TableModel.hpp>
 
-enum class InputType : u8
-{
-    Seed64Bit,
-    Advance64Bit,
-    Seed32Bit,
-    Advance32Bit,
-    Seed16Bit,
-    Delay,
-    TIDSID
-};
-
-class TextBox : public QLineEdit
+class IDModel8 : public TableModel<IDState8>
 {
     Q_OBJECT
 public:
-    explicit TextBox(QWidget *parent = nullptr);
-    void setValues(InputType type);
-    void setValues(u64 minValue, u64 maxValue, int length, int base);
-    int getInt() const;
-    u8 getUChar() const;
-    u16 getUShort() const;
-    u32 getUInt() const;
-    u64 getULong() const;
+    explicit IDModel8(QObject *parent);
+    int columnCount(const QModelIndex &parent = QModelIndex()) const override;
+    QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
+    QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
 
 private:
-    bool setup;
-    u64 maxValue;
-    u64 minValue;
-    int base;
-    int length;
-    QRegularExpression filter;
-
-private slots:
-    void onTextEdited(QString string);
-    void onEditFinished();
+    QStringList header = { tr("Advances"), tr("TID"), tr("SID"), tr("TSV") };
 };
 
-#endif // TEXTBOX_HPP
+#endif // IDMODEL3_HPP

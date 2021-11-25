@@ -162,10 +162,10 @@
         <string>Gen 8</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_9">
-        <item row="1" column="0">
-         <widget class="QPushButton" name="pushButtonWild8">
+        <item row="2" column="0">
+         <widget class="QPushButton" name="pushButtonEgg8">
           <property name="text">
-           <string>Wild</string>
+           <string>Egg</string>
           </property>
          </widget>
         </item>
@@ -176,10 +176,17 @@
           </property>
          </widget>
         </item>
-        <item row="2" column="0">
-         <widget class="QPushButton" name="pushButtonEgg8">
+        <item row="1" column="0">
+         <widget class="QPushButton" name="pushButtonWild8">
           <property name="text">
-           <string>Egg</string>
+           <string>Wild</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="0">
+         <widget class="QPushButton" name="pushButtonIDs8">
+          <property name="text">
+           <string>TID/SID</string>
           </property>
          </widget>
         </item>

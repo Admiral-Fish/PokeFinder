@@ -17,48 +17,31 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef TEXTBOX_HPP
-#define TEXTBOX_HPP
+#include "IDGenerator8.hpp"
+#include <Core/RNG/Xorshift.hpp>
 
-#include <Core/Util/Global.hpp>
-#include <QLineEdit>
-#include <QRegularExpression>
-
-enum class InputType : u8
+IDGenerator8::IDGenerator8(u32 initialAdvances, u32 maxAdvances, const IDFilter &filter) : IDGenerator(initialAdvances, maxAdvances, filter)
 {
-    Seed64Bit,
-    Advance64Bit,
-    Seed32Bit,
-    Advance32Bit,
-    Seed16Bit,
-    Delay,
-    TIDSID
-};
+}
 
-class TextBox : public QLineEdit
+std::vector<IDState8> IDGenerator8::generate(u64 seed0, u64 seed1)
 {
-    Q_OBJECT
-public:
-    explicit TextBox(QWidget *parent = nullptr);
-    void setValues(InputType type);
-    void setValues(u64 minValue, u64 maxValue, int length, int base);
-    int getInt() const;
-    u8 getUChar() const;
-    u16 getUShort() const;
-    u32 getUInt() const;
-    u64 getULong() const;
+    Xorshift rng(seed0, seed1);
+    rng.advance(initialAdvances);
 
-private:
-    bool setup;
-    u64 maxValue;
-    u64 minValue;
-    int base;
-    int length;
-    QRegularExpression filter;
+    std::vector<IDState8> states;
+    for (u32 cnt = 0; cnt < maxAdvances; cnt++)
+    {
+        u32 sidtid = rng.next();
+        u16 tid = sidtid & 0xffff;
+        u16 sid = sidtid >> 16;
 
-private slots:
-    void onTextEdited(QString string);
-    void onEditFinished();
-};
+        IDState8 state(initialAdvances + cnt, tid, sid);
+        if (filter.compare(state))
+        {
+            states.emplace_back(state);
+        }
+    }
 
-#endif // TEXTBOX_HPP
+    return states;
+}

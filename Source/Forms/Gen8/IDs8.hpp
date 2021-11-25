@@ -17,48 +17,41 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef TEXTBOX_HPP
-#define TEXTBOX_HPP
+#ifndef IDS8_HPP
+#define IDS8_HPP
 
-#include <Core/Util/Global.hpp>
-#include <QLineEdit>
-#include <QRegularExpression>
+#include <Core/Gen8/Profile8.hpp>
+#include <QWidget>
 
-enum class InputType : u8
+class IDModel8;
+
+namespace Ui
 {
-    Seed64Bit,
-    Advance64Bit,
-    Seed32Bit,
-    Advance32Bit,
-    Seed16Bit,
-    Delay,
-    TIDSID
-};
+    class IDs8;
+}
 
-class TextBox : public QLineEdit
+class IDs8 : public QWidget
 {
     Q_OBJECT
+signals:
+    void alertProfiles(int);
+
 public:
-    explicit TextBox(QWidget *parent = nullptr);
-    void setValues(InputType type);
-    void setValues(u64 minValue, u64 maxValue, int length, int base);
-    int getInt() const;
-    u8 getUChar() const;
-    u16 getUShort() const;
-    u32 getUInt() const;
-    u64 getULong() const;
+    explicit IDs8(QWidget *parent = nullptr);
+    ~IDs8() override;
+    void updateProfiles();
 
 private:
-    bool setup;
-    u64 maxValue;
-    u64 minValue;
-    int base;
-    int length;
-    QRegularExpression filter;
+    Ui::IDs8 *ui;
+    IDModel8 *model;
+    std::vector<Profile8> profiles;
+
+    void setupModel();
 
 private slots:
-    void onTextEdited(QString string);
-    void onEditFinished();
+    void generate();
+    void profileManager();
+    void profilesIndexChanged(int index);
 };
 
-#endif // TEXTBOX_HPP
+#endif // IDS8_HPP

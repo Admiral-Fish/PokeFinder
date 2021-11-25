@@ -17,48 +17,18 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef TEXTBOX_HPP
-#define TEXTBOX_HPP
+#ifndef IDGENERATOR8_HPP
+#define IDGENERATOR8_HPP
 
-#include <Core/Util/Global.hpp>
-#include <QLineEdit>
-#include <QRegularExpression>
+#include <Core/Gen8/States/IDState8.hpp>
+#include <Core/Parents/Generators/IDGenerator.hpp>
 
-enum class InputType : u8
+class IDGenerator8 : public IDGenerator
 {
-    Seed64Bit,
-    Advance64Bit,
-    Seed32Bit,
-    Advance32Bit,
-    Seed16Bit,
-    Delay,
-    TIDSID
-};
-
-class TextBox : public QLineEdit
-{
-    Q_OBJECT
 public:
-    explicit TextBox(QWidget *parent = nullptr);
-    void setValues(InputType type);
-    void setValues(u64 minValue, u64 maxValue, int length, int base);
-    int getInt() const;
-    u8 getUChar() const;
-    u16 getUShort() const;
-    u32 getUInt() const;
-    u64 getULong() const;
-
-private:
-    bool setup;
-    u64 maxValue;
-    u64 minValue;
-    int base;
-    int length;
-    QRegularExpression filter;
-
-private slots:
-    void onTextEdited(QString string);
-    void onEditFinished();
+    IDGenerator8() = default;
+    IDGenerator8(u32 initialAdvances, u32 maxAdvances, const IDFilter &filter);
+    std::vector<IDState8> generate(u64 seed0, u64 seed1);
 };
 
-#endif // TEXTBOX_HPP
+#endif // IDGENERATOR5_HPP
