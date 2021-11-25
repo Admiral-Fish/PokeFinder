@@ -56,15 +56,17 @@ std::vector<WildState> WildGenerator8::generate(u64 seed0, u64 seed1) const
 
         for (u8 i = 0; i < 6; i++)
         {
-            state.setIV(i, gen.nextUInt<32>());
+            u32 ivRand = gen.next();
+            state.setIV(i, ivRand - (ivRand / 32) * 32);
         }
 
-        state.setAbility(gen.nextUInt<2>());
+        gen.next(); // ability
+        state.setAbility(0); // TODO
 
-        if (false)
-        { // TODO: add unown check
-            gen.next(); // Form call (unown?)
-        }
+        // if (false)
+        //{ // TODO: add unown check
+        // gen.next(); // Form call (unown?)
+        //}
 
         if (genderRatio == 255)
         {
@@ -80,11 +82,19 @@ std::vector<WildState> WildGenerator8::generate(u64 seed0, u64 seed1) const
         }
         else
         {
-            u8 gender = gen.nextUInt<253>() + 1 < genderRatio;
+            u32 genderRand = gen.next();
+            u8 gender = (genderRand - (genderRand / 253) * 253) + 1 < genderRatio;
             state.setGender(gender);
         }
 
-        state.setNature(gen.nextUInt<25>());
+        u32 natureRand = gen.next();
+        state.setNature(natureRand - (natureRand / 25) * 25);
+
+        gen.next(); // friendship
+        gen.next(); // height
+        gen.next(); // weight
+
+        gen.next(); // item
 
         if (filter.comparePID(state) && filter.compareIV(state))
         {

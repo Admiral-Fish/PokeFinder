@@ -30,36 +30,6 @@ public:
     void advance(u32 advances);
     u32 next();
 
-    template <u32 max>
-    u32 nextUInt()
-    {
-        auto bitMask = [](u32 x) constexpr
-        {
-            x--;
-            x |= x >> 1;
-            x |= x >> 2;
-            x |= x >> 4;
-            x |= x >> 8;
-            x |= x >> 16;
-            return x;
-        };
-
-        constexpr u32 mask = bitMask(max);
-        if constexpr ((max - 1) == mask)
-        {
-            return next() & mask;
-        }
-        else
-        {
-            u32 result;
-            do
-            {
-                result = next() & mask;
-            } while (result >= max);
-            return result;
-        }
-    }
-
 public:
     u32 state[4];
 };
