@@ -20,6 +20,7 @@
 #include "Wild8.hpp"
 #include "ui_Wild8.h"
 #include <Core/Enum/Lead.hpp>
+#include <Core/Gen8/Generators/WildGenerator8.hpp>
 #include <Core/Parents/ProfileLoader.hpp>
 #include <Core/Util/Translator.hpp>
 #include <Forms/Gen8/Profile/ProfileManager8.hpp>
@@ -116,44 +117,41 @@ void Wild8::setupModels()
 
 void Wild8::generate()
 {
-    /*auto method = static_cast<Method>(ui->comboBoxGeneratorMethod->getCurrentInt());
-    generatorModel->clearModel();
-    generatorModel->setMethod(method);
+    model->clearModel();
 
-    u32 seed = ui->textBoxGeneratorSeed->getUInt();
-    u32 initialAdvances = ui->textBoxGeneratorStartingAdvance->getUInt();
-    u32 maxAdvances = ui->textBoxGeneratorMaxAdvances->getUInt();
+    u64 seed0 = ui->textBoxSeed0->getULong();
+    u64 seed1 = ui->textBoxSeed1->getULong();
+    u32 initialAdvances = ui->textBoxInitialAdvances->getUInt();
+    u32 maxAdvances = ui->textBoxMaxAdvances->getUInt();
     u16 tid = currentProfile.getTID();
     u16 sid = currentProfile.getSID();
-    u8 genderRatio = ui->filterGenerator->getGenderRatio();
+    u8 genderRatio = ui->filter->getGenderRatio();
     u32 offset = 0;
-    if (ui->filterGenerator->useDelay())
+    if (ui->filter->useDelay())
     {
-        offset = ui->filterGenerator->getDelay();
+        offset = ui->filter->getDelay();
     }
 
-    StateFilter filter(ui->filterGenerator->getGender(), ui->filterGenerator->getAbility(), ui->filterGenerator->getShiny(),
-                       ui->filterGenerator->getDisableFilters(), ui->filterGenerator->getMinIVs(), ui->filterGenerator->getMaxIVs(),
-                       ui->filterGenerator->getNatures(), ui->filterGenerator->getHiddenPowers(), ui->filterGenerator->getEncounterSlots());
+    StateFilter filter(ui->filter->getGender(), ui->filter->getAbility(), ui->filter->getShiny(), ui->filter->getDisableFilters(),
+                       ui->filter->getMinIVs(), ui->filter->getMaxIVs(), ui->filter->getNatures(), ui->filter->getHiddenPowers(),
+                       ui->filter->getEncounterSlots());
 
-    WildGenerator4 generator(initialAdvances, maxAdvances, tid, sid, genderRatio, method, filter,
-                             currentProfile.getVersion() & Game::Platinum);
+    WildGenerator8 generator(initialAdvances, maxAdvances, tid, sid, genderRatio, filter);
     generator.setOffset(offset);
-    generator.setEncounter(static_cast<Encounter>(ui->comboBoxGeneratorEncounter->getCurrentInt()));
+    generator.setEncounter(static_cast<Encounter>(ui->comboBoxEncounter->getCurrentInt()));
 
-    if (ui->toolButtonGeneratorLead->text().contains(tr("Synchronize")))
+    if (ui->toolButtonLead->text().contains(tr("Synchronize")))
     {
         generator.setLead(Lead::Synchronize);
-        generator.setSynchNature(ui->toolButtonGeneratorLead->getData());
+        generator.setSynchNature(ui->toolButtonLead->getData());
     }
     else
     {
-        generator.setLead(static_cast<Lead>(ui->toolButtonGeneratorLead->getData()));
+        generator.setLead(static_cast<Lead>(ui->toolButtonLead->getData()));
     }
-    generator.setEncounterArea(encounterGenerator[ui->comboBoxGeneratorLocation->currentData().toInt()]);
 
-    auto states = generator.generate(seed);
-    generatorModel->addItems(states);*/
+    auto states = generator.generate(seed0, seed1);
+    model->addItems(states);
 }
 
 void Wild8::profilesIndexChanged(int index)

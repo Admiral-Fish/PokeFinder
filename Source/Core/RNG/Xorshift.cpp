@@ -25,6 +25,14 @@ Xorshift::Xorshift(u64 seed0, u64 seed1) :
 {
 }
 
+Xorshift::Xorshift(const Xorshift &rng)
+{
+    state[0] = rng.state[0];
+    state[1] = rng.state[1];
+    state[2] = rng.state[2];
+    state[3] = rng.state[3];
+}
+
 void Xorshift::advance(u32 advances)
 {
     for (u32 advance = 0; advance < advances; advance++)

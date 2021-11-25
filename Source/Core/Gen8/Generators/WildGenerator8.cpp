@@ -32,12 +32,64 @@ std::vector<WildState> WildGenerator8::generate(u64 seed0, u64 seed1) const
     Xorshift rng(seed0, seed1);
     rng.advance(initialAdvances + offset);
 
-    RNGList<u32, Xorshift, 2, 0> rngList(rng);
-
     std::vector<WildState> states;
-    for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rngList.advanceState())
+    for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rng.next())
     {
-        
+        WildState state(initialAdvances + cnt);
+        Xorshift gen(rng);
+        gen.next(); // EC call
+        u32 sidtid = gen.next();
+        u32 pid = gen.next();
+        state.setPID(pid);
+
+        u16 fakeXor = (sidtid >> 16) ^ (sidtid & 0xffff) ^ (pid >> 16) ^ (pid & 0xffff);
+
+        if (fakeXor < 16) // Force shiny
+        {
+            u8 shinyType = fakeXor == 0 ? 2 : 1;
+            state.setShiny(shinyType);
+        }
+        else // Force non shiny
+        {
+            state.setShiny(0);
+        }
+
+        for (u8 i = 0; i < 6; i++)
+        {
+            state.setIV(i, gen.nextUInt<32>());
+        }
+
+        state.setAbility(gen.nextUInt<2>());
+
+        if (false)
+        { // TODO: add unown check
+            gen.next(); // Form call (unown?)
+        }
+
+        if (genderRatio == 255)
+        {
+            state.setGender(2);
+        }
+        else if (genderRatio == 254)
+        {
+            state.setGender(1);
+        }
+        else if (genderRatio == 0)
+        {
+            state.setGender(0);
+        }
+        else
+        {
+            u8 gender = gen.nextUInt<253>() + 1 < genderRatio;
+            state.setGender(gender);
+        }
+
+        state.setNature(gen.nextUInt<25>());
+
+        if (filter.comparePID(state) && filter.compareIV(state))
+        {
+            states.emplace_back(state);
+        }
     }
 
     return states;
