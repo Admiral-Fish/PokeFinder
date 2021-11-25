@@ -27,6 +27,7 @@
 #include <Core/Util/Translator.hpp>
 #include <Forms/Gen8/Profile/ProfileManager8.hpp>
 #include <Forms/Models/Gen8/RaidModel.hpp>
+#include <QFile>
 #include <QSettings>
 
 Raids::Raids(QWidget *parent) : QWidget(parent), ui(new Ui::Raids)
@@ -136,24 +137,35 @@ void Raids::setupModels()
 
 void Raids::generate()
 {
-    Den den = DenLoader::getDen(ui->comboBoxDen->currentData().toInt(), ui->comboBoxRarity->currentIndex());
-    Raid raid = den.getRaid(static_cast<u8>(ui->comboBoxSpecies->currentIndex()), currentProfile.getVersion());
     model->clearModel();
 
     u32 initialAdvances = ui->textBoxInitialAdvances->getUInt();
     u32 maxAdvances = ui->textBoxMaxAdvances->getUInt();
+    u64 seed = ui->textBoxSeed->getULong();
     u16 tid = currentProfile.getTID();
     u16 sid = currentProfile.getSID();
 
     StateFilter filter(ui->filter->getGender(), ui->filter->getAbility(), ui->filter->getShiny(), ui->filter->getDisableFilters(),
                        ui->filter->getMinIVs(), ui->filter->getMaxIVs(), ui->filter->getNatures(), {}, {});
 
-    RaidGenerator generator(initialAdvances, maxAdvances, tid, sid, filter, raid);
+    if (ui->comboBoxDen->currentData().toInt() == 65535)
+    {
+        DenEvent den = DenLoader::getEvent();
+        Raid raid = den.getRaid(static_cast<u8>(ui->comboBoxSpecies->currentIndex()), currentProfile.getVersion());
+        RaidGenerator generator(initialAdvances, maxAdvances, tid, sid, filter, raid);
 
-    u64 seed = ui->textBoxSeed->getULong();
+        auto states = generator.generate(seed);
+        model->addItems(states);
+    }
+    else
+    {
+        Den den = DenLoader::getDen(ui->comboBoxDen->currentData().toInt(), ui->comboBoxRarity->currentIndex());
+        Raid raid = den.getRaid(static_cast<u8>(ui->comboBoxSpecies->currentIndex()), currentProfile.getVersion());
+        RaidGenerator generator(initialAdvances, maxAdvances, tid, sid, filter, raid);
 
-    auto states = generator.generate(seed);
-    model->addItems(states);
+        auto states = generator.generate(seed);
+        model->addItems(states);
+    }
 }
 
 void Raids::profileIndexChanged(int index)
@@ -173,6 +185,11 @@ void Raids::locationIndexChanged(int index)
     if (index >= 0)
     {
         ui->comboBoxDen->clear();
+
+        if (QFile::exists(QApplication::applicationDirPath() + "/nests_event.json"))
+        {
+            ui->comboBoxDen->addItem(tr("Event"), 65535);
+        }
 
         u16 start, end, offset;
         if (index == 0)
@@ -211,14 +228,29 @@ void Raids::denIndexChanged(int index)
 {
     if (index >= 0)
     {
-        Den den = DenLoader::getDen(ui->comboBoxDen->currentData().toInt(), ui->comboBoxRarity->currentIndex());
-
         ui->comboBoxSpecies->clear();
-        auto raids = den.getRaids(currentProfile.getVersion());
-        for (const auto &raid : raids)
+
+        if (ui->comboBoxDen->currentData().toInt() == 65535)
         {
-            ui->comboBoxSpecies->addItem(QString("%1: %2").arg(QString::fromStdString(Translator::getSpecies(raid.getSpecies())),
-                                                               QString::fromStdString(raid.getStarDisplay())));
+            DenEvent den = DenLoader::getEvent();
+            auto raids = den.getRaids(currentProfile.getVersion());
+
+            for (const auto &raid : raids)
+            {
+                ui->comboBoxSpecies->addItem(QString("%1: %2").arg(QString::fromStdString(Translator::getSpecies(raid.getSpecies())),
+                                                                   QString::fromStdString(raid.getStarDisplay())));
+            }
+        }
+        else
+        {
+            Den den = DenLoader::getDen(ui->comboBoxDen->currentData().toInt(), ui->comboBoxRarity->currentIndex());
+            auto raids = den.getRaids(currentProfile.getVersion());
+
+            for (const auto &raid : raids)
+            {
+                ui->comboBoxSpecies->addItem(QString("%1: %2").arg(QString::fromStdString(Translator::getSpecies(raid.getSpecies())),
+                                                                   QString::fromStdString(raid.getStarDisplay())));
+            }
         }
     }
 }
@@ -235,36 +267,32 @@ void Raids::speciesIndexChanged(int index)
 {
     if (index >= 0)
     {
-        Den den = DenLoader::getDen(ui->comboBoxDen->currentData().toInt(), ui->comboBoxRarity->currentIndex());
-        Raid raid = den.getRaid(static_cast<u8>(index), currentProfile.getVersion());
-        PersonalInfo info = PersonalLoader8::getPersonal(raid.getSpecies(), raid.getAltForm());
-
-        ui->spinBoxIVCount->setValue(raid.getIVCount());
-        ui->comboBoxAbilityType->setCurrentIndex(ui->comboBoxAbilityType->findData(raid.getAbility()));
-        ui->comboBoxGenderType->setCurrentIndex(raid.getGender());
-        ui->comboBoxGenderRatio->setCurrentIndex(ui->comboBoxGenderRatio->findData(info.getGender()));
-        ui->comboBoxShinyType->setCurrentIndex(ui->comboBoxShinyType->findData(raid.getShinyType()));
-        ui->labelGigantamaxValue->setText(raid.getGigantamax() ? tr("Yes") : tr("No"));
-
-        // int abilityIndex = ui->comboBoxAbility->currentIndex();
-
-        // ui->comboBoxAbility->setItemText(1, "1: " + QString::fromStdString(Translator::getAbility(info.getAbility1())));
-        // ui->comboBoxAbility->setItemText(2, "2: " + QString::fromStdString(Translator::getAbility(info.getAbility2())));
-
-        /*ui->comboBoxAbility->removeItem(3);
-        if (raid.getAbility() == 2 || raid.getAbility() == 4)
+        if (ui->comboBoxDen->currentData().toInt() == 65535)
         {
-            ui->comboBoxAbility->addItem("H: " + QString::fromStdString(Translator::getAbility(info.getAbilityH())), 2);
-        }
+            DenEvent den = DenLoader::getEvent();
+            Raid raid = den.getRaid(static_cast<u8>(ui->comboBoxSpecies->currentIndex()), currentProfile.getVersion());
+            PersonalInfo info = PersonalLoader8::getPersonal(raid.getSpecies(), raid.getAltForm());
 
-        if (abilityIndex < ui->comboBoxAbility->count())
-        {
-            ui->comboBoxAbility->setCurrentIndex(abilityIndex);
+            ui->spinBoxIVCount->setValue(raid.getIVCount());
+            ui->comboBoxAbilityType->setCurrentIndex(ui->comboBoxAbilityType->findData(raid.getAbility()));
+            ui->comboBoxGenderType->setCurrentIndex(raid.getGender());
+            ui->comboBoxGenderRatio->setCurrentIndex(ui->comboBoxGenderRatio->findData(info.getGender()));
+            ui->comboBoxShinyType->setCurrentIndex(ui->comboBoxShinyType->findData(raid.getShinyType()));
+            ui->labelGigantamaxValue->setText(raid.getGigantamax() ? tr("Yes") : tr("No"));
         }
         else
         {
-            ui->comboBoxAbility->setCurrentIndex(0);
-        }*/
+            Den den = DenLoader::getDen(ui->comboBoxDen->currentData().toInt(), ui->comboBoxRarity->currentIndex());
+            Raid raid = den.getRaid(static_cast<u8>(ui->comboBoxSpecies->currentIndex()), currentProfile.getVersion());
+            PersonalInfo info = PersonalLoader8::getPersonal(raid.getSpecies(), raid.getAltForm());
+
+            ui->spinBoxIVCount->setValue(raid.getIVCount());
+            ui->comboBoxAbilityType->setCurrentIndex(ui->comboBoxAbilityType->findData(raid.getAbility()));
+            ui->comboBoxGenderType->setCurrentIndex(raid.getGender());
+            ui->comboBoxGenderRatio->setCurrentIndex(ui->comboBoxGenderRatio->findData(info.getGender()));
+            ui->comboBoxShinyType->setCurrentIndex(ui->comboBoxShinyType->findData(raid.getShinyType()));
+            ui->labelGigantamaxValue->setText(raid.getGigantamax() ? tr("Yes") : tr("No"));
+        }
     }
 }
 
