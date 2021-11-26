@@ -101,17 +101,15 @@ void Wild8::setupModels()
 
     connect(ui->comboBoxProfiles, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &Wild8::profilesIndexChanged);
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Wild8::generate);
-    /*connect(ui->comboBoxEncounter, QOverload<int>::of(&QComboBox::currentIndexChanged), this,
-            &Wild8::encounterIndexChanged);
-    connect(ui->comboBoxLocation, QOverload<int>::of(&QComboBox::currentIndexChanged), this,
+    connect(ui->comboBoxEncounter, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &Wild8::encounterIndexChanged);
+    /*connect(ui->comboBoxLocation, QOverload<int>::of(&QComboBox::currentIndexChanged), this,
             &Wild8::locationIndexChanged);
     connect(ui->comboBoxPokemon, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &Wild8::pokemonIndexChanged);
     connect(ui->comboBoxTime, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &Wild8::timeIndexChanged);*/
     connect(ui->tableView, &QTableView::customContextMenuRequested, this, &Wild8::tableViewContextMenu);
     connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &Wild8::profileManager);
 
-    // generatorEncounterIndexChanged(0);
-    // searcherEncounterIndexChanged(0);
+    encounterIndexChanged(0);
 
     QSettings setting;
     setting.beginGroup("wild8");
@@ -174,6 +172,36 @@ void Wild8::profilesIndexChanged(int index)
 
         // updateLocations();
         // updateLocations();
+    }
+}
+
+void Wild8::encounterIndexChanged(int index)
+{
+    if (index >= 0)
+    {
+        std::vector<std::string> t;
+        auto encounter = static_cast<Encounter>(ui->comboBoxEncounter->currentData().toInt());
+
+        switch (encounter)
+        {
+        case Encounter::Grass:
+            t = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11" };
+            break;
+        case Encounter::Surfing:
+        case Encounter::OldRod:
+        case Encounter::GoodRod:
+        case Encounter::SuperRod:
+            t = { "0", "1", "2", "3", "4" };
+            break;
+        case Encounter::RockSmash:
+            t = { "0", "1" };
+            break;
+        default:
+            break;
+        }
+
+        ui->filter->setEncounterSlots(t);
+        // updateLocationsGenerator();
     }
 }
 

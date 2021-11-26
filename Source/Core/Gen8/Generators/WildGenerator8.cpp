@@ -51,19 +51,20 @@ std::vector<WildState> WildGenerator8::generate(u64 seed0, u64 seed1) const
         {
         case Encounter::Grass:
             state.setEncounterSlot(EncounterSlot::jSlot(slotPercent * 656, encounter));
-            // if (!filter.compareEncounterSlot(state))
-            //{
-            //    continue;
-            //}
+            if (!filter.compareEncounterSlot(state))
+            {
+                continue;
+            }
+            rngList.advance(1);
 
             // state.setLevel(encounterArea.calcLevel(state.getEncounterSlot()));
             break;
         case Encounter::Surfing:
             state.setEncounterSlot(EncounterSlot::jSlot(slotPercent * 656, encounter));
-            // if (!filter.compareEncounterSlot(state))
-            //{
-            //    continue;
-            //}
+            if (!filter.compareEncounterSlot(state))
+            {
+                continue;
+            }
             rngList.advance(3);
 
             // state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), go.nextUShort<true>()));
