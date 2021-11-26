@@ -83,23 +83,7 @@
        </widget>
       </item>
       <item row="0" column="1">
-       <widget class="ComboBox" name="comboBoxEncounter">
-        <item>
-         <property name="text">
-          <string>Grass</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Surf</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Fishing</string>
-         </property>
-        </item>
-       </widget>
+       <widget class="ComboBox" name="comboBoxEncounter"/>
       </item>
       <item row="5" column="0">
        <widget class="QLabel" name="labelSeed1">
@@ -295,6 +279,11 @@
    <header>Forms/Controls/TextBox.hpp</header>
   </customwidget>
   <customwidget>
+   <class>ComboBox</class>
+   <extends>QComboBox</extends>
+   <header>Forms/Controls/ComboBox.hpp</header>
+  </customwidget>
+  <customwidget>
    <class>TableView</class>
    <extends>QTableView</extends>
    <header>Forms/Controls/TableView.hpp</header>
@@ -309,11 +298,6 @@
    <class>ComboMenu</class>
    <extends>QToolButton</extends>
    <header>Forms/Controls/ComboMenu.hpp</header>
-  </customwidget>
-  <customwidget>
-   <class>ComboBox</class>
-   <extends>QComboBox</extends>
-   <header>Forms/Controls/ComboBox.hpp</header>
   </customwidget>
  </customwidgets>
  <tabstops>

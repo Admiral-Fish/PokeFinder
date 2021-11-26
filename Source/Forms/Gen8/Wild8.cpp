@@ -87,6 +87,13 @@ void Wild8::setupModels()
     ui->toolButtonLead->addAction(tr("None"), Lead::None);
     ui->toolButtonLead->addMenu(tr("Synchronize"), Translator::getNatures());
 
+    ui->comboBoxEncounter->clear();
+    ui->comboBoxEncounter->addItem(tr("Grass"), Encounter::Grass);
+    ui->comboBoxEncounter->addItem(tr("Surfing"), Encounter::Surfing);
+    ui->comboBoxEncounter->addItem(tr("Old Rod"), Encounter::OldRod);
+    ui->comboBoxEncounter->addItem(tr("Good Rod"), Encounter::GoodRod);
+    ui->comboBoxEncounter->addItem(tr("Super Rod"), Encounter::SuperRod);
+
     QAction *outputTXTGenerator = menu->addAction(tr("Output Results to TXT"));
     QAction *outputCSVGenerator = menu->addAction(tr("Output Results to CSV"));
     connect(outputTXTGenerator, &QAction::triggered, [=] { ui->tableView->outputModel(); });
