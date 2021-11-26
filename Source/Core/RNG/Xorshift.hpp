@@ -29,7 +29,7 @@ public:
     Xorshift(const Xorshift &rng);
     void advance(u32 advances);
 
-    template <int min=-0x80000000, int max=0x7fffffff>
+    template <int min=0x80000000, int max=0x7fffffff>
     u32 next()
     {
         u32 t = nextState();
