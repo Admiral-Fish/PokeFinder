@@ -18,6 +18,7 @@
  */
 
 #include "Xorshift.hpp"
+#include <Core/RNG/SIMD.hpp>
 
 Xorshift::Xorshift(u64 seed0, u64 seed1) :
     state { static_cast<u32>(seed0 >> 32), static_cast<u32>(seed0 & 0xffffffff), static_cast<u32>(seed1 >> 32),
@@ -27,10 +28,7 @@ Xorshift::Xorshift(u64 seed0, u64 seed1) :
 
 Xorshift::Xorshift(const Xorshift &rng)
 {
-    state[0] = rng.state[0];
-    state[1] = rng.state[1];
-    state[2] = rng.state[2];
-    state[3] = rng.state[3];
+    v32x4_store(&state[0], v32x4_load(&rng.state[0]));
 }
 
 void Xorshift::advance(u32 advances)
