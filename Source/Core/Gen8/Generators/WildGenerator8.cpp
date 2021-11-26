@@ -38,7 +38,7 @@ std::vector<WildState> WildGenerator8::generate(u64 seed0, u64 seed1) const
     Xorshift rng(seed0, seed1);
     rng.advance(initialAdvances + offset);
 
-    RNGList<u32, Xorshift, 102, 0> rngList(rng);
+    RNGList<u32, Xorshift, 128, 0> rngList(rng);
 
     std::vector<WildState> states;
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rngList.advanceState())
