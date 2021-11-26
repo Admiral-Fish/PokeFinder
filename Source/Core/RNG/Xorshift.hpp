@@ -28,10 +28,20 @@ public:
     Xorshift(u64 seed0, u64 seed1);
     Xorshift(const Xorshift &rng);
     void advance(u32 advances);
-    u32 next();
+
+    template <int min=-0x80000000, int max=0x7fffffff>
+    u32 next()
+    {
+        u32 t = nextState();
+        int diff = max - min;
+
+        return (t % diff) + min;
+    }
 
 public:
     u32 state[4];
+
+    u32 nextState();
 };
 
 #endif // XORSHIFT_HPP

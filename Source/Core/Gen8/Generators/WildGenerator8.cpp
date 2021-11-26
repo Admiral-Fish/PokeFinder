@@ -43,7 +43,7 @@ std::vector<WildState> WildGenerator8::generate(u64 seed0, u64 seed1) const
     {
         WildState state(initialAdvances + cnt);
         Xorshift gen(rng);
-        u32 slotPercent = (gen.next() - 0x7FFFFF9C) % 100;
+        u32 slotPercent = gen.next<0, 100>();
         gen.advance(84);
         switch (encounter)
         {
