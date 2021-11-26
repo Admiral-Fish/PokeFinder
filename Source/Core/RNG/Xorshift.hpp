@@ -33,7 +33,7 @@ public:
     u32 next()
     {
         u32 t = nextState();
-        int diff = max - min;
+        u32 diff = max - min;
 
         return (t % diff) + min;
     }
