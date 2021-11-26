@@ -43,11 +43,6 @@ void Xorshift::advance(u32 advances)
 
 u32 Xorshift::next()
 {
-    return next(0x80000000);
-}
-
-u32 Xorshift::next(u32 max)
-{
     u32 t = state[1];
     u32 s = state[2];
 
@@ -60,5 +55,5 @@ u32 Xorshift::next(u32 max)
     state[3] = state[2];
     state[2] = t;
 
-    return (max == 0x80000000 ? (t % 0xffffffff) + max : (((t % 0xffffffff) + max) % max));
+    return (t % 0xffffffff) + 0x80000000;
 }

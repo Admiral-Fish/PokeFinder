@@ -38,15 +38,13 @@ std::vector<WildState> WildGenerator8::generate(u64 seed0, u64 seed1) const
     Xorshift rng(seed0, seed1);
     rng.advance(initialAdvances + offset);
 
-    RNGList<u32, Xorshift, 128, 0> rngList(rng);
-
     std::vector<WildState> states;
-    for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rngList.advanceState())
+    for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rng.next())
     {
         WildState state(initialAdvances + cnt);
         Xorshift gen(rng);
-        u32 slotPercent = rng.next(100);
-        rngList.advance(85);
+        u32 slotPercent = (gen.next() - 0x7FFFFF9C) % 100;
+        gen.advance(84);
         switch (encounter)
         {
         case Encounter::Grass:
@@ -64,7 +62,7 @@ std::vector<WildState> WildGenerator8::generate(u64 seed0, u64 seed1) const
             {
                 continue;
             }
-            rngList.advance(3);
+            gen.advance(3);
 
             // state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), go.nextUShort<true>()));
             break;
@@ -89,9 +87,9 @@ std::vector<WildState> WildGenerator8::generate(u64 seed0, u64 seed1) const
             break;
         }
 
-        rngList.getValue(); // EC call
-        u32 sidtid = rngList.getValue();
-        u32 pid = rngList.getValue();
+        gen.next(); // EC call
+        u32 sidtid = gen.next();
+        u32 pid = gen.next();
         state.setPID(pid);
 
         u16 fakeXor = (sidtid >> 16) ^ (sidtid & 0xffff) ^ (pid >> 16) ^ (pid & 0xffff);
@@ -108,11 +106,11 @@ std::vector<WildState> WildGenerator8::generate(u64 seed0, u64 seed1) const
 
         for (u8 i = 0; i < 6; i++)
         {
-            u32 ivRand = rngList.getValue();
+            u32 ivRand = gen.next();
             state.setIV(i, ivRand - (ivRand / 32) * 32);
         }
 
-        u32 abilityRand = rngList.getValue();
+        u32 abilityRand = gen.next();
         state.setAbility(abilityRand - (abilityRand / 2) * 2);
 
         // if (false)
@@ -134,19 +132,19 @@ std::vector<WildState> WildGenerator8::generate(u64 seed0, u64 seed1) const
         }
         else
         {
-            u32 genderRand = rngList.getValue();
+            u32 genderRand = gen.next();
             u8 gender = (genderRand - (genderRand / 253) * 253) + 1 < genderRatio;
             state.setGender(gender);
         }
 
-        u32 natureRand = rngList.getValue();
+        u32 natureRand = gen.next();
         state.setNature(natureRand - (natureRand / 25) * 25);
 
-        rngList.getValue(); // friendship
-        rngList.getValue(); // height
-        rngList.getValue(); // weight
+        gen.next(); // friendship
+        gen.next(); // height
+        gen.next(); // weight
 
-        u32 itemRand = rngList.getValue();
+        u32 itemRand = gen.next();
         state.setItem(itemRand - (itemRand / 100) * 100);
 
         if (filter.comparePID(state) && filter.compareIV(state))
