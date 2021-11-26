@@ -30,6 +30,8 @@ public:
     void advance(u32 advances);
     u32 next();
 
+    u32 next(u32 max);
+
 public:
     u32 state[4];
 };
