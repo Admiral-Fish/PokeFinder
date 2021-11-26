@@ -38,7 +38,7 @@ std::vector<WildState> WildGenerator8::generate(u64 seed0, u64 seed1) const
     Xorshift rng(seed0, seed1);
     rng.advance(initialAdvances + offset);
 
-    RNGList<u32, Xorshift, 16, 0> rngList(rng);
+    RNGList<u32, Xorshift, 102, 0> rngList(rng);
 
     std::vector<WildState> states;
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rngList.advanceState())
@@ -46,7 +46,7 @@ std::vector<WildState> WildGenerator8::generate(u64 seed0, u64 seed1) const
         WildState state(initialAdvances + cnt);
         u32 slotRand = rngList.getValue();
         u32 slotPercent = slotRand - (slotRand / 100) * 100;
-
+        rngList.advance(84);
         switch (encounter)
         {
         case Encounter::Grass:
