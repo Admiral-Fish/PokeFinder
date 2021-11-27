@@ -17,31 +17,25 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include "IDGenerator8.hpp"
-#include <Core/RNG/Xorshift.hpp>
+#ifndef IDFILTER8_HPP
+#define IDFILTER8_HPP
 
-IDGenerator8::IDGenerator8(u32 initialAdvances, u32 maxAdvances, const IDFilter8 &filter) : IDGenerator(initialAdvances, maxAdvances, filter)
+#include <Core/Parents/Filters/IDFilter.hpp>
+#include <Core/Util/Global.hpp>
+#include <vector>
+
+class IDState8;
+
+class IDFilter8 : public IDFilter
 {
-}
+public:
+    IDFilter8() = default;
+    IDFilter8(const std::vector<u16> &tidFilter, const std::vector<u16> &sidFilter, const std::vector<u16> &tsvFilter,
+              const std::vector<u32> &g8tidFilter);
+    bool compare(const IDState8 &state) const;
 
-std::vector<IDState8> IDGenerator8::generate(u64 seed0, u64 seed1)
-{
-    Xorshift rng(seed0, seed1);
-    rng.advance(initialAdvances);
+private:
+    std::vector<u32> g8tidFilter;
+};
 
-    std::vector<IDState8> states;
-    for (u32 cnt = 0; cnt < maxAdvances; cnt++)
-    {
-        u32 sidtid = rng.next();
-        u16 tid = sidtid & 0xffff;
-        u16 sid = sidtid >> 16;
-
-        IDState8 state(initialAdvances + cnt, tid, sid);
-        if (filter.compare(state))
-        {
-            states.emplace_back(state);
-        }
-    }
-
-    return states;
-}
+#endif // IDFILTER8_HPP

@@ -205,20 +205,6 @@
       <string>Filters</string>
      </property>
      <layout class="QGridLayout" name="gridLayout_7">
-      <item row="0" column="2">
-       <widget class="QLabel" name="labelTSV">
-        <property name="text">
-         <string>TSV</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="1" rowspan="4">
-       <widget class="QTextEdit" name="textEditFilter">
-        <property name="acceptRichText">
-         <bool>false</bool>
-        </property>
-       </widget>
-      </item>
       <item row="0" column="0">
        <widget class="QRadioButton" name="radioButtonTID">
         <property name="text">
@@ -229,6 +215,27 @@
         </property>
        </widget>
       </item>
+      <item row="1" column="0">
+       <widget class="QRadioButton" name="radioButtonSID">
+        <property name="text">
+         <string>SID</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="3" rowspan="5">
+       <widget class="QTextEdit" name="textEditTSVFilter">
+        <property name="acceptRichText">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="2">
+       <widget class="QLabel" name="labelTSV">
+        <property name="text">
+         <string>TSV</string>
+        </property>
+       </widget>
+      </item>
       <item row="2" column="0">
        <widget class="QRadioButton" name="radioButtonTIDSID">
         <property name="text">
@@ -236,17 +243,17 @@
         </property>
        </widget>
       </item>
-      <item row="0" column="3" rowspan="4">
-       <widget class="QTextEdit" name="textEditTSVFilter">
+      <item row="0" column="1" rowspan="5">
+       <widget class="QTextEdit" name="textEditFilter">
         <property name="acceptRichText">
          <bool>false</bool>
         </property>
        </widget>
       </item>
-      <item row="1" column="0">
-       <widget class="QRadioButton" name="radioButtonSID">
+      <item row="3" column="0">
+       <widget class="QRadioButton" name="radioButtonG8TID">
         <property name="text">
-         <string>SID</string>
+         <string>G8TID</string>
         </property>
        </widget>
       </item>

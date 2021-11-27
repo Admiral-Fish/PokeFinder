@@ -20,6 +20,7 @@
 #ifndef IDGENERATOR8_HPP
 #define IDGENERATOR8_HPP
 
+#include <Core/Gen8/Filters/IDFilter8.hpp>
 #include <Core/Gen8/States/IDState8.hpp>
 #include <Core/Parents/Generators/IDGenerator.hpp>
 
@@ -27,8 +28,8 @@ class IDGenerator8 : public IDGenerator
 {
 public:
     IDGenerator8() = default;
-    IDGenerator8(u32 initialAdvances, u32 maxAdvances, const IDFilter &filter);
+    IDGenerator8(u32 initialAdvances, u32 maxAdvances, const IDFilter8 &filter);
     std::vector<IDState8> generate(u64 seed0, u64 seed1);
 };
 
-#endif // IDGENERATOR5_HPP
+#endif // IDGENERATOR8_HPP

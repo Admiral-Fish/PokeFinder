@@ -97,6 +97,7 @@ void IDs8::generate()
     std::vector<u16> tidFilter;
     std::vector<u16> sidFilter;
     std::vector<u16> tsvFilter;
+    std::vector<u32> g8tidFilter;
 
     QString inputs = ui->textEditFilter->toPlainText();
     if (ui->radioButtonTID->isChecked())
@@ -130,6 +131,16 @@ void IDs8::generate()
             sidFilter.emplace_back(match.captured(2).toUShort());
         }
     }
+    else if (ui->radioButtonG8TID->isChecked())
+    {
+        QRegularExpression re("^\\d{1,6}$", QRegularExpression::MultilineOption);
+        auto matches = re.globalMatch(inputs);
+        while (matches.hasNext())
+        {
+            auto match = matches.next().captured();
+            g8tidFilter.emplace_back(match.toUInt());
+        }
+    }
 
     inputs = ui->textEditTSVFilter->toPlainText();
     QRegularExpression re("^\\d{1,5}$", QRegularExpression::MultilineOption);
@@ -140,7 +151,7 @@ void IDs8::generate()
         tsvFilter.emplace_back(match.toUShort());
     }
 
-    IDFilter filter(tidFilter, sidFilter, tsvFilter);
+    IDFilter8 filter(tidFilter, sidFilter, tsvFilter, g8tidFilter);
     IDGenerator8 generator(initialAdvances, maxAdvances, filter);
 
     auto states = generator.generate(seed0, seed1);
