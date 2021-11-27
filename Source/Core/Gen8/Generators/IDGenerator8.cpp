@@ -22,6 +22,7 @@
 
 IDGenerator8::IDGenerator8(u32 initialAdvances, u32 maxAdvances, const IDFilter8 &filter) : IDGenerator(initialAdvances, maxAdvances, filter)
 {
+    this->filter = filter;
 }
 
 std::vector<IDState8> IDGenerator8::generate(u64 seed0, u64 seed1)
