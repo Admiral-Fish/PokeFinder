@@ -43,12 +43,12 @@ std::vector<WildState> WildGenerator8::generate(u64 seed0, u64 seed1) const
     {
         WildState state(initialAdvances + cnt);
         Xorshift gen(rng);
-        u32 slotPercent = gen.next<0, 100>();
+        u8 slotPercent = gen.next<0, 100>();
         gen.advance(84);
         switch (encounter)
         {
         case Encounter::Grass:
-            state.setEncounterSlot(EncounterSlot::jSlot(slotPercent * 656, encounter));
+            state.setEncounterSlot(EncounterSlot::bdspSlot(slotPercent, encounter));
             if (!filter.compareEncounterSlot(state))
             {
                 continue;
@@ -57,7 +57,7 @@ std::vector<WildState> WildGenerator8::generate(u64 seed0, u64 seed1) const
             // state.setLevel(encounterArea.calcLevel(state.getEncounterSlot()));
             break;
         case Encounter::Surfing:
-            state.setEncounterSlot(EncounterSlot::jSlot(slotPercent * 656, encounter));
+            state.setEncounterSlot(EncounterSlot::bdspSlot(slotPercent, encounter));
             if (!filter.compareEncounterSlot(state))
             {
                 continue;
@@ -152,7 +152,6 @@ std::vector<WildState> WildGenerator8::generate(u64 seed0, u64 seed1) const
         u32 natureRand = gen.next();
         state.setNature(natureRand - (natureRand / 25) * 25);
 
-        gen.next(); // friendship
         gen.next(); // height
         gen.next(); // weight
 
