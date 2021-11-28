@@ -301,13 +301,14 @@
   </customwidget>
  </customwidgets>
  <tabstops>
-  <tabstop>comboBoxProfiles</tabstop>
   <tabstop>pushButtonProfileManager</tabstop>
+  <tabstop>comboBoxProfiles</tabstop>
   <tabstop>comboBoxEncounter</tabstop>
   <tabstop>toolButtonLead</tabstop>
   <tabstop>textBoxInitialAdvances</tabstop>
   <tabstop>textBoxMaxAdvances</tabstop>
   <tabstop>textBoxSeed0</tabstop>
+  <tabstop>textBoxSeed1</tabstop>
   <tabstop>pushButtonGenerate</tabstop>
   <tabstop>tableView</tabstop>
  </tabstops>
