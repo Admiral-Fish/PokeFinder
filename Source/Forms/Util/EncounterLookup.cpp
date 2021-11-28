@@ -94,7 +94,7 @@ std::set<std::pair<u8, QString>> EncounterLookup::getEncounters3(Game game, u16 
 
     for (const auto &type : types)
     {
-        auto areas = Encounters3::getEncounters(type, profile);
+        auto areas = Encounters3::getEncounters(type, profile.getVersion());
         for (const auto &area : areas)
         {
             std::vector<Slot> pokemon = area.getPokemon();

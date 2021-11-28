@@ -28,9 +28,9 @@
        </widget>
       </item>
       <item row="0" column="0">
-       <widget class="QLabel" name="labelGeneraiton">
+       <widget class="QLabel" name="labelGame">
         <property name="text">
-         <string>Generation</string>
+         <string>Game</string>
         </property>
        </widget>
       </item>
@@ -91,25 +91,60 @@
        <widget class="QComboBox" name="comboBoxNature"/>
       </item>
       <item row="1" column="0">
-       <widget class="QComboBox" name="comboBoxGeneration">
+       <widget class="ComboBox" name="comboBoxGame">
         <item>
          <property name="text">
-          <string>Gen 3</string>
+          <string>Emerald</string>
          </property>
         </item>
         <item>
          <property name="text">
-          <string>Gen 4</string>
+          <string>Ruby/Sapphire</string>
          </property>
         </item>
         <item>
          <property name="text">
-          <string>Gen 5</string>
+          <string>Fire Red</string>
          </property>
         </item>
         <item>
          <property name="text">
-          <string>Gen 8</string>
+          <string>Leaf Green</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Diamond/Pearl</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Platinum</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Heartgold/Soulsilver</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Black/White</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Black 2/White 2</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Sword/Shield</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Brilliant Diamond/Shining Pearl</string>
          </property>
         </item>
        </widget>
@@ -429,8 +464,15 @@
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>ComboBox</class>
+   <extends>QComboBox</extends>
+   <header>Forms/Controls/ComboBox.hpp</header>
+  </customwidget>
+ </customwidgets>
  <tabstops>
-  <tabstop>comboBoxGeneration</tabstop>
+  <tabstop>comboBoxGame</tabstop>
   <tabstop>comboBoxPokemon</tabstop>
   <tabstop>comboBoxAltForm</tabstop>
   <tabstop>comboBoxCharacteristic</tabstop>

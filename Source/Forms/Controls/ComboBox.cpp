@@ -41,6 +41,11 @@ u16 ComboBox::getCurrentUShort() const
     return static_cast<u16>(this->currentData().toUInt());
 }
 
+u32 ComboBox::getCurrentUInt() const
+{
+    return this->currentData().toUInt();
+}
+
 int ComboBox::getCurrentInt() const
 {
     return this->currentData().toInt();

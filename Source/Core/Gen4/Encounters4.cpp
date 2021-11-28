@@ -404,13 +404,13 @@ namespace Encounters4
 
     std::vector<EncounterArea4> getEncounters(Encounter encounter, int time, const Profile4 &profile)
     {
-        std::vector<EncounterArea4> encounters;
-        auto info = PersonalLoader4::getPersonal();
+        Game version = profile.getVersion();
+        auto info = PersonalLoader::getPersonal(version);
 
-        for (const auto &data : getData(profile.getVersion()))
+        std::vector<EncounterArea4> encounters;
+        for (const auto &data : getData(version))
         {
-            auto areas
-                = (profile.getVersion() & Game::HGSS) ? getHGSS(data, profile, info, encounter, time) : getDPPt(data, profile, info, time);
+            auto areas = (version & Game::HGSS) ? getHGSS(data, profile, info, encounter, time) : getDPPt(data, profile, info, time);
             std::copy_if(areas.begin(), areas.end(), std::back_inserter(encounters),
                          [&encounter](const EncounterArea4 &area) { return area.getEncounter() == encounter; });
         }

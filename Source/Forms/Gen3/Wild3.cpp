@@ -151,7 +151,7 @@ void Wild3::setupModels()
 void Wild3::updateLocationsGenerator()
 {
     auto encounter = static_cast<Encounter>(ui->comboBoxGeneratorEncounter->currentData().toInt());
-    encounterGenerator = Encounters3::getEncounters(encounter, currentProfile);
+    encounterGenerator = Encounters3::getEncounters(encounter, currentProfile.getVersion());
 
     std::vector<u8> locs;
     std::transform(encounterGenerator.begin(), encounterGenerator.end(), std::back_inserter(locs),
@@ -172,7 +172,7 @@ void Wild3::updateLocationsGenerator()
 void Wild3::updateLocationsSearcher()
 {
     auto encounter = static_cast<Encounter>(ui->comboBoxSearcherEncounter->currentData().toInt());
-    encounterSearcher = Encounters3::getEncounters(encounter, currentProfile);
+    encounterSearcher = Encounters3::getEncounters(encounter, currentProfile.getVersion());
 
     std::vector<u8> locs;
     std::transform(encounterSearcher.begin(), encounterSearcher.end(), std::back_inserter(locs),

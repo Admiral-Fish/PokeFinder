@@ -230,7 +230,7 @@ namespace Encounters5
     std::vector<EncounterArea5> getEncounters(Encounter encounter, u8 season, Game version)
     {
         std::vector<EncounterArea5> encounters;
-        auto info = PersonalLoader5::getPersonal();
+        auto info = PersonalLoader::getPersonal(version);
 
         const auto &encounterData = getData(version);
         for (size_t i = 0; i < encounterData.size(); i++)

@@ -237,7 +237,7 @@ void Raids::speciesIndexChanged(int index)
     {
         Den den = DenLoader::getDen(ui->comboBoxDen->currentData().toInt(), ui->comboBoxRarity->currentIndex());
         Raid raid = den.getRaid(static_cast<u8>(index), currentProfile.getVersion());
-        PersonalInfo info = PersonalLoader8::getPersonal(raid.getSpecies(), raid.getAltForm());
+        PersonalInfo info = PersonalLoader::getPersonal(Game::SwSh, raid.getSpecies(), raid.getAltForm());
 
         ui->spinBoxIVCount->setValue(raid.getIVCount());
         ui->comboBoxAbilityType->setCurrentIndex(ui->comboBoxAbilityType->findData(raid.getAbility()));

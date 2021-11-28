@@ -25,11 +25,11 @@
 
 class EncounterArea3;
 enum Encounter : u8;
-class Profile3;
+enum Game : u32;
 
 namespace Encounters3
 {
-    std::vector<EncounterArea3> getEncounters(Encounter encounter, const Profile3 &profile);
+    std::vector<EncounterArea3> getEncounters(Encounter encounter, Game version);
 };
 
 #endif // ENCOUNTERS3_HPP

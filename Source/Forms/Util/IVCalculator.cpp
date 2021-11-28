@@ -19,6 +19,7 @@
 
 #include "IVCalculator.hpp"
 #include "ui_IVCalculator.h"
+#include <Core/Enum/Game.hpp>
 #include <Core/Parents/PersonalInfo.hpp>
 #include <Core/Parents/PersonalLoader.hpp>
 #include <Core/Util/IVChecker.hpp>
@@ -64,6 +65,9 @@ void IVCalculator::setupModels()
     ui->comboBoxPokemon->setInsertPolicy(QComboBox::NoInsert);
     ui->comboBoxPokemon->completer()->setCompletionMode(QCompleter::PopupCompletion);
 
+    ui->comboBoxGame->setup({ Game::Emerald, Game::RS, Game::FireRed, Game::LeafGreen, Game::DP, Game::Platinum, Game::HGSS, Game::BW,
+                              Game::BW2, Game::SwSh, Game::BDSP });
+
     addEntry();
 
     connect(ui->pushButtonAddRow, &QPushButton::clicked, this, &IVCalculator::addEntry);
@@ -71,9 +75,9 @@ void IVCalculator::setupModels()
     connect(ui->pushButtonFindIVs, &QPushButton::clicked, this, &IVCalculator::findIVs);
     connect(ui->comboBoxPokemon, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &IVCalculator::pokemonIndexChanged);
     connect(ui->comboBoxAltForm, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &IVCalculator::altformIndexChanged);
-    connect(ui->comboBoxGeneration, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &IVCalculator::generationIndexChanged);
+    connect(ui->comboBoxGame, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &IVCalculator::gameIndexChanged);
 
-    generationIndexChanged(0);
+    gameIndexChanged(Game::Emerald);
 
     QSettings setting;
     if (setting.contains("ivCalculator/geometry"))
@@ -270,30 +274,33 @@ void IVCalculator::altformIndexChanged(int index)
     }
 }
 
-void IVCalculator::generationIndexChanged(int index)
+void IVCalculator::gameIndexChanged(int index)
 {
     if (index >= 0)
     {
+        Game version = static_cast<Game>(ui->comboBoxGame->getCurrentInt());
+        personalInfo = PersonalLoader::getPersonal(version);
+
         u16 max = 0;
-        if (index == 0)
+        if (version & Game::Gen3)
         {
-            personalInfo = PersonalLoader3::getPersonal();
             max = 386;
         }
-        else if (index == 1)
+        else if (version & Game::Gen4)
         {
-            personalInfo = PersonalLoader4::getPersonal();
             max = 493;
         }
-        else if (index == 2)
+        else if (version & Game::Gen5)
         {
-            personalInfo = PersonalLoader5::getPersonal();
             max = 649;
         }
-        else if (index == 3)
+        else if (version & Game::SwSh)
         {
-            personalInfo = PersonalLoader8::getPersonal();
             max = 898;
+        }
+        else
+        {
+            max = 493;
         }
 
         std::vector<u16> species;

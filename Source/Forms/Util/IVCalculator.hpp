@@ -52,7 +52,7 @@ private slots:
     void findIVs();
     void pokemonIndexChanged(int index);
     void altformIndexChanged(int index);
-    void generationIndexChanged(int index);
+    void gameIndexChanged(int index);
 };
 
 #endif // IVCALCULATOR_HPP
