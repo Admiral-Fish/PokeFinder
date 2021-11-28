@@ -28,7 +28,7 @@ enum Game : u32;
 namespace PersonalLoader
 {
     const PersonalInfo *getPersonal(Game version);
-    PersonalInfo getPersonal(Game version, u16 species, u8 form);
+    PersonalInfo getPersonal(Game version, u16 species, u8 form = 0);
 }
 
 #endif // PERSONALLOADER_HPP

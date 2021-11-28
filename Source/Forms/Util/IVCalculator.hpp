@@ -23,8 +23,6 @@
 #include <Core/Util/Global.hpp>
 #include <QLabel>
 
-class PersonalInfo;
-
 namespace Ui
 {
     class IVCalculator;
@@ -40,11 +38,9 @@ public:
 private:
     Ui::IVCalculator *ui;
     int rows = 0;
-    const PersonalInfo *personalInfo = nullptr;
 
     void setupModels();
     void displayIVs(QLabel *label, const std::vector<u8> &ivs);
-    PersonalInfo getPersonalInfo(const PersonalInfo &base);
 
 private slots:
     void addEntry();
