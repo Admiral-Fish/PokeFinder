@@ -118,7 +118,6 @@ std::vector<WildState> WildGenerator8::generate(u64 seed0, u64 seed1) const
 
         for (u8 i = 0; i < 6; i++)
         {
-            u32 ivRand = gen.next();
             state.setIV(i, gen.next() % 32);
         }
 
