@@ -22,7 +22,7 @@
 #include <Core/Util/Translator.hpp>
 #include <algorithm>
 
-EncounterArea::EncounterArea(u8 location, Encounter encounter, const std::vector<Slot> &pokemon) :
+EncounterArea::EncounterArea(u16 location, Encounter encounter, const std::vector<Slot> &pokemon) :
     pokemon(pokemon), location(location), encounter(encounter)
 {
 }
@@ -32,7 +32,7 @@ Encounter EncounterArea::getEncounter() const
     return encounter;
 }
 
-u8 EncounterArea::getLocation() const
+u16 EncounterArea::getLocation() const
 {
     return location;
 }

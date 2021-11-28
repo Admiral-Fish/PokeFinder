@@ -35,6 +35,8 @@ public:
     int getRadio() const;
     bool getRadar() const;
     bool getSwarm() const;
+    bool operator==(const Profile4 &other) const;
+    bool operator!=(const Profile4 &other) const;
 
 private:
     Game dual;
@@ -42,8 +44,5 @@ private:
     bool radar;
     bool swarm;
 };
-
-bool operator==(const Profile4 &left, const Profile4 &right);
-bool operator!=(const Profile4 &left, const Profile4 &right);
 
 #endif // PROFILE4_HPP

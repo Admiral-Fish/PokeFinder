@@ -181,18 +181,15 @@ std::string Profile5::getLanguageString() const
     return "-";
 }
 
-bool operator==(const Profile5 &left, const Profile5 &right)
+bool Profile5::operator==(const Profile5 &other) const
 {
-    return left.getName() == right.getName() && left.getVersion() == right.getVersion() && left.getTID() == right.getTID()
-        && left.getSID() == right.getSID() && left.getMac() == right.getMac() && left.getKeypresses() == right.getKeypresses()
-        && left.getVCount() == right.getVCount() && left.getGxStat() == right.getGxStat() && left.getVFrame() == right.getVFrame()
-        && left.getSkipLR() == right.getSkipLR() && left.getTimer0Min() == right.getTimer0Min()
-        && left.getTimer0Max() == right.getTimer0Max() && left.getSoftReset() == right.getSoftReset()
-        && left.getMemoryLink() == right.getMemoryLink() && left.getShinyCharm() == right.getShinyCharm()
-        && left.getDSType() == right.getDSType() && left.getLanguage() == right.getLanguage();
+    return Profile::operator==(other) && mac == other.mac && keypresses == other.keypresses && vcount == other.vcount
+        && gxstat == other.gxstat && vframe == other.vframe && skipLR == other.skipLR && timer0Min == other.timer0Min
+        && timer0Max == other.timer0Max && softReset == other.softReset && memoryLink == other.memoryLink && shinyCharm == other.shinyCharm
+        && dsType == other.dsType && language == other.language;
 }
 
-bool operator!=(const Profile5 &left, const Profile5 &right)
+bool Profile5::operator!=(const Profile5 &other) const
 {
-    return !(left == right);
+    return !(operator==(other));
 }

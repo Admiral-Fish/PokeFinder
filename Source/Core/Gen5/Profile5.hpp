@@ -49,6 +49,8 @@ public:
     std::string getDSTypeString() const;
     Language getLanguage() const;
     std::string getLanguageString() const;
+    bool operator==(const Profile5 &other) const;
+    bool operator!=(const Profile5 &other) const;
 
 private:
     u64 mac;
@@ -65,8 +67,5 @@ private:
     DSType dsType;
     Language language;
 };
-
-bool operator==(const Profile5 &left, const Profile5 &right);
-bool operator!=(const Profile5 &left, const Profile5 &right);
 
 #endif // PROFILE5_HPP

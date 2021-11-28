@@ -176,7 +176,7 @@ void Wild4::updateLocationsGenerator()
 
     encounterGenerator = Encounters4::getEncounters(encounter, time, currentProfile);
 
-    std::vector<u8> locs;
+    std::vector<u16> locs;
     std::transform(encounterGenerator.begin(), encounterGenerator.end(), std::back_inserter(locs),
                    [](const EncounterArea4 &area) { return area.getLocation(); });
 
@@ -199,7 +199,7 @@ void Wild4::updateLocationsSearcher()
 
     encounterSearcher = Encounters4::getEncounters(encounter, time, currentProfile);
 
-    std::vector<u8> locs;
+    std::vector<u16> locs;
     std::transform(encounterSearcher.begin(), encounterSearcher.end(), std::back_inserter(locs),
                    [](const EncounterArea4 &area) { return area.getLocation(); });
 

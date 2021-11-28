@@ -17,31 +17,19 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef TRANSLATOR_HPP
-#define TRANSLATOR_HPP
+#ifndef ENCOUNTERS8_HPP
+#define ENCOUNTERS8_HPP
 
 #include <Core/Util/Global.hpp>
-#include <string>
 #include <vector>
 
-enum Game : u32;
+class EncounterArea8;
+enum Encounter : u8;
+class Profile8;
 
-namespace Translator
+namespace Encounters8
 {
-    void init(const std::string &locale);
-    std::vector<std::string> getCharacteristic();
-    std::vector<std::string> getNatures();
-    std::string getNature(u8 nature);
-    std::string getAbility(u16 ability);
-    std::vector<std::string> getHiddenPowers();
-    std::string getHiddenPower(u8 power);
-    std::string getSpecies(u16 specie);
-    std::vector<std::string> getSpecies(const std::vector<u16> &nums);
-    std::string getGender(u8 gender);
-    std::vector<std::string> getGenders();
-    std::vector<std::string> getLocations(const std::vector<u16> &nums, Game game);
-    std::string getKeypress(u8 keypress);
-    std::string getKeypresses(u16 keypresses);
+    std::vector<EncounterArea8> getEncounters(Encounter encounter, int time, const Profile8 &profile);
 }
 
-#endif // TRANSLATOR_HPP
+#endif // ENCOUNTERS8_HPP

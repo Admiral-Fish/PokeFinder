@@ -83,9 +83,9 @@ void EncounterLookup::setupModels()
     }
 }
 
-std::set<std::pair<u8, QString>> EncounterLookup::getEncounters3(Game game, u16 specie)
+std::set<std::pair<u16, QString>> EncounterLookup::getEncounters3(Game game, u16 specie)
 {
-    std::set<std::pair<u8, QString>> encounters;
+    std::set<std::pair<u16, QString>> encounters;
     Profile3 profile("", game, 0, 0);
 
     // Encounter variables to iterate through
@@ -111,9 +111,9 @@ std::set<std::pair<u8, QString>> EncounterLookup::getEncounters3(Game game, u16 
     return encounters;
 }
 
-std::set<std::pair<u8, QString>> EncounterLookup::getEncounters4(Game game, u16 specie)
+std::set<std::pair<u16, QString>> EncounterLookup::getEncounters4(Game game, u16 specie)
 {
-    std::set<std::pair<u8, QString>> encounters;
+    std::set<std::pair<u16, QString>> encounters;
     std::vector<Profile4> profiles;
 
     // Encounter variables to iterate through
@@ -197,9 +197,9 @@ void EncounterLookup::find()
 {
     model->removeRows(0, model->rowCount());
 
-    Game game = static_cast<Game>(ui->comboBoxGame->currentData().toInt());
+    Game game = static_cast<Game>(ui->comboBoxGame->currentData().toUInt());
     u16 specie = static_cast<u16>(ui->comboBoxPokemon->currentIndex() + 1);
-    std::set<std::pair<u8, QString>> encounters;
+    std::set<std::pair<u16, QString>> encounters;
     std::vector<std::string> locationNames;
 
     if (game & Game::FRLG || game & Game::RSE)
@@ -211,7 +211,7 @@ void EncounterLookup::find()
         encounters = getEncounters4(game, specie);
     }
 
-    std::vector<u8> locations;
+    std::vector<u16> locations;
     std::transform(encounters.begin(), encounters.end(), std::back_inserter(locations),
                    [](const std::pair<u8, QString> &encounter) { return encounter.first; });
     locationNames = Translator::getLocations(locations, game);
@@ -230,7 +230,7 @@ void EncounterLookup::gameIndexChanged(int index)
 {
     if (index >= 0)
     {
-        Game game = static_cast<Game>(ui->comboBoxGame->currentData().toInt());
+        Game game = static_cast<Game>(ui->comboBoxGame->currentData().toUInt());
         u16 max = 0;
 
         if (game & Game::FRLG || game & Game::RSE)

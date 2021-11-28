@@ -77,6 +77,8 @@ add_library(PokeFinderCore STATIC
     Gen5/Searchers/ProfileSearcher5.cpp
     Gen5/Searchers/StationarySearcher5.cpp
     Gen8/DenLoader.cpp
+    Gen8/EncounterArea8.cpp
+    Gen8/Encounters8.cpp
     Gen8/Generators/EggGenerator8.cpp
     Gen8/Generators/RaidGenerator.cpp
     Gen8/Generators/StationaryGenerator8.cpp

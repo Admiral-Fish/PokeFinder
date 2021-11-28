@@ -26,11 +26,13 @@
 class Profile8 : public Profile
 {
 public:
-    Profile8(Game version = Game::Sword) : Profile("-", version, 12345, 54321), shinyCharm(false), ovalCharm(false)
+    Profile8(Game version = Game::Sword) :
+        Profile("-", version, 12345, 54321), shinyCharm(false), ovalCharm(false), radar(false), swarm(false)
     {
     }
 
-    Profile8(const std::string &name, Game version, u16 tid, u16 sid, bool shinyCharm, bool ovalCharm) : Profile(name, version, tid, sid), shinyCharm(shinyCharm), ovalCharm(ovalCharm)
+    Profile8(const std::string &name, Game version, u16 tid, u16 sid, bool shinyCharm, bool ovalCharm, bool radar, bool swarm) :
+        Profile(name, version, tid, sid), shinyCharm(shinyCharm), ovalCharm(ovalCharm), radar(radar), swarm(swarm)
     {
     }
 
@@ -44,9 +46,32 @@ public:
         return ovalCharm;
     }
 
+    bool getRadar() const
+    {
+        return radar;
+    }
+
+    bool getSwarm() const
+    {
+        return swarm;
+    }
+
+    bool operator==(const Profile8 &other) const
+    {
+        return Profile::operator==(other) && shinyCharm == other.shinyCharm && ovalCharm == other.shinyCharm && radar == other.radar
+            && swarm == other.swarm;
+    }
+
+    bool operator!=(const Profile8 &other) const
+    {
+        return !(operator==(other));
+    }
+
 private:
     bool shinyCharm;
     bool ovalCharm;
+    bool radar;
+    bool swarm;
 };
 
 #endif // PROFILE8_HPP

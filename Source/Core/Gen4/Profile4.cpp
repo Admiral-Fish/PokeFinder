@@ -81,14 +81,12 @@ bool Profile4::getSwarm() const
     return swarm;
 }
 
-bool operator==(const Profile4 &left, const Profile4 &right)
+bool Profile4::operator==(const Profile4 &other) const
 {
-    return left.getName() == right.getName() && left.getVersion() == right.getVersion() && left.getTID() == right.getTID()
-        && left.getSID() == right.getSID() && left.getDualSlot() == right.getDualSlot() && left.getRadio() == right.getRadio()
-        && left.getRadar() == right.getRadar() && left.getSwarm() == right.getSwarm();
+    return Profile::operator==(other) && dual == other.dual && radio == other.radio && radar == other.radar && swarm == other.swarm;
 }
 
-bool operator!=(const Profile4 &left, const Profile4 &right)
+bool Profile4::operator!=(const Profile4 &other) const
 {
-    return !(left == right);
+    return !(operator==(other));
 }

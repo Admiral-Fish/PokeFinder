@@ -148,7 +148,7 @@ void ProfileEditor5::okay()
         return;
     }
 
-    fresh = Profile5(ui->lineEditProfile->text().toStdString(), static_cast<Game>(ui->comboBoxVersion->currentData().toInt()),
+    fresh = Profile5(ui->lineEditProfile->text().toStdString(), static_cast<Game>(ui->comboBoxVersion->currentData().toUInt()),
                      ui->textBoxTID->getUShort(), ui->textBoxSID->getUShort(), ui->textBoxMAC->getULong(),
                      ui->comboBoxKeypresses->getChecked(), ui->textBoxVCount->getUChar(), ui->textBoxGxStat->getUChar(),
                      ui->textBoxVFrame->getUChar(), ui->checkBoxSkipLR->isChecked(), ui->textBoxTimer0Min->getUShort(),
@@ -172,7 +172,7 @@ void ProfileEditor5::versionIndexChanged(int index)
 {
     if (index >= 0)
     {
-        Game version = static_cast<Game>(ui->comboBoxVersion->currentData().toInt());
+        Game version = static_cast<Game>(ui->comboBoxVersion->currentData().toUInt());
         if (version & Game::BW2)
         {
             ui->checkBoxMemoryLink->setVisible(true);

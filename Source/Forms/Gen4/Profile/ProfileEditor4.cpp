@@ -111,8 +111,8 @@ void ProfileEditor4::okay()
     }
 
     fresh
-        = Profile4(ui->lineEditProfile->text().toStdString(), static_cast<Game>(ui->comboBoxVersion->currentData().toInt()),
-                   ui->textBoxTID->getUShort(), ui->textBoxSID->getUShort(), static_cast<Game>(ui->comboBoxDualSlot->currentData().toInt()),
+        = Profile4(ui->lineEditProfile->text().toStdString(), static_cast<Game>(ui->comboBoxVersion->currentData().toUInt()),
+                   ui->textBoxTID->getUShort(), ui->textBoxSID->getUShort(), static_cast<Game>(ui->comboBoxDualSlot->currentData().toUInt()),
                    ui->comboBoxRadio->currentIndex(), ui->checkBoxRadar->isChecked(), ui->checkBoxSwarm->isChecked());
 
     done(QDialog::Accepted);
@@ -122,7 +122,7 @@ void ProfileEditor4::versionIndexChanged(int index)
 {
     if (index >= 0)
     {
-        auto game = static_cast<Game>(ui->comboBoxVersion->currentData().toInt());
+        auto game = static_cast<Game>(ui->comboBoxVersion->currentData().toUInt());
         bool flag = game & Game::HGSS;
 
         ui->labelRadio->setVisible(flag);

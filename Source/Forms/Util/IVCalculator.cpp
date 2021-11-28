@@ -272,7 +272,7 @@ void IVCalculator::gameIndexChanged(int index)
 {
     if (index >= 0)
     {
-        Game version = static_cast<Game>(ui->comboBoxGame->getCurrentInt());
+        Game version = static_cast<Game>(ui->comboBoxGame->getCurrentUInt());
 
         const PersonalInfo *info = PersonalLoader::getPersonal(version);
 

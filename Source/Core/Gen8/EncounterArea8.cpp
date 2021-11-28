@@ -17,41 +17,18 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef ENCOUNTERLOOKUP_HPP
-#define ENCOUNTERLOOKUP_HPP
+#include "EncounterArea8.hpp"
 
-#include <Core/Util/Global.hpp>
-#include <QWidget>
-#include <set>
-
-class QStandardItemModel;
-enum Encounter : u8;
-enum Game : u32;
-
-namespace Ui
+EncounterArea8::EncounterArea8(u8 location, Encounter type, const std::vector<Slot> &pokemon) : EncounterArea(location, type, pokemon)
 {
-    class EncounterLookup;
 }
 
-class EncounterLookup : public QWidget
+u8 EncounterArea8::calcLevel(u8 index, u16 prng) const
 {
-    Q_OBJECT
-public:
-    explicit EncounterLookup(QWidget *parent = nullptr);
-    ~EncounterLookup() override;
+    return (prng % (pokemon[index].getMaxLevel() - pokemon[index].getMinLevel() + 1)) + pokemon[index].getMinLevel();
+}
 
-private:
-    Ui::EncounterLookup *ui;
-    QStandardItemModel *model = nullptr;
-
-    void setupModels();
-    std::set<std::pair<u16, QString>> getEncounters3(Game game, u16 specie);
-    std::set<std::pair<u16, QString>> getEncounters4(Game game, u16 specie);
-    QString getEncounterString(Encounter type);
-
-private slots:
-    void find();
-    void gameIndexChanged(int index);
-};
-
-#endif // ENCOUNTERLOOKUP_HPP
+u8 EncounterArea8::calcLevel(u8 index) const
+{
+    return pokemon[index].getMinLevel();
+}

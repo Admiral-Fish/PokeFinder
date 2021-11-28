@@ -545,7 +545,7 @@ namespace Translator
         return genders;
     }
 
-    std::vector<std::string> getLocations(const std::vector<u8> &nums, Game game)
+    std::vector<std::string> getLocations(const std::vector<u16> &nums, Game game)
     {
         std::vector<std::string> strings;
         if (game & Game::FRLG)
@@ -585,7 +585,7 @@ namespace Translator
         }
 
         std::vector<std::string> locations;
-        std::transform(nums.begin(), nums.end(), std::back_inserter(locations), [&map](u8 num) { return map[num]; });
+        std::transform(nums.begin(), nums.end(), std::back_inserter(locations), [&map](u16 num) { return map[num]; });
 
         return locations;
     }

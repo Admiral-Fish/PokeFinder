@@ -42,6 +42,10 @@ ProfileEditor8::ProfileEditor8(const Profile8 &profile, QWidget *parent) : QDial
     ui->comboBoxVersion->setCurrentIndex(ui->comboBoxVersion->findData(profile.getVersion()));
     ui->textBoxTID->setText(QString::number(profile.getTID()));
     ui->textBoxSID->setText(QString::number(profile.getSID()));
+    ui->checkBoxShinyCharm->setChecked(profile.getShinyCharm());
+    ui->checkBoxOvalCharm->setChecked(profile.getOvalCharm());
+    ui->checkBoxRadar->setChecked(profile.getRadar());
+    ui->checkBoxSwarm->setChecked(profile.getSwarm());
 
     isEditing = true;
     original = profile;
@@ -76,6 +80,7 @@ void ProfileEditor8::setupModels()
     ui->comboBoxVersion->setItemData(3, Game::SP);
 
     connect(ui->pushButtonOkay, &QPushButton::clicked, this, &ProfileEditor8::okay);
+    connect(ui->comboBoxVersion, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &ProfileEditor8::versionIndexChanged);
 
     QSettings setting;
     if (setting.contains("profileEditor8/geometry"))
@@ -95,8 +100,21 @@ void ProfileEditor8::okay()
         return;
     }
 
-    fresh = Profile8(ui->lineEditProfile->text().toStdString(), static_cast<Game>(ui->comboBoxVersion->currentData().toInt()),
-                     ui->textBoxTID->getUShort(), ui->textBoxSID->getUShort(), ui->checkBoxShinyCharm->isChecked(), ui->checkBoxOvalCharm->isChecked());
+    fresh = Profile8(ui->lineEditProfile->text().toStdString(), static_cast<Game>(ui->comboBoxVersion->currentData().toUInt()),
+                     ui->textBoxTID->getUShort(), ui->textBoxSID->getUShort(), ui->checkBoxShinyCharm->isChecked(),
+                     ui->checkBoxOvalCharm->isChecked(), ui->checkBoxRadar->isChecked(), ui->checkBoxSwarm->isChecked());
 
     done(QDialog::Accepted);
+}
+
+void ProfileEditor8::versionIndexChanged(int index)
+{
+    if (index >= 0)
+    {
+        auto game = static_cast<Game>(ui->comboBoxVersion->currentData().toUInt());
+        bool flag = game & Game::BDSP;
+
+        ui->checkBoxRadar->setVisible(flag);
+        ui->checkBoxSwarm->setVisible(flag);
+    }
 }

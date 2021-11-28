@@ -17,41 +17,18 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef ENCOUNTERLOOKUP_HPP
-#define ENCOUNTERLOOKUP_HPP
+#ifndef ENCOUNTERAREA8_HPP
+#define ENCOUNTERAREA8_HPP
 
-#include <Core/Util/Global.hpp>
-#include <QWidget>
-#include <set>
+#include <Core/Parents/EncounterArea.hpp>
 
-class QStandardItemModel;
-enum Encounter : u8;
-enum Game : u32;
-
-namespace Ui
+class EncounterArea8 : public EncounterArea
 {
-    class EncounterLookup;
-}
-
-class EncounterLookup : public QWidget
-{
-    Q_OBJECT
 public:
-    explicit EncounterLookup(QWidget *parent = nullptr);
-    ~EncounterLookup() override;
-
-private:
-    Ui::EncounterLookup *ui;
-    QStandardItemModel *model = nullptr;
-
-    void setupModels();
-    std::set<std::pair<u16, QString>> getEncounters3(Game game, u16 specie);
-    std::set<std::pair<u16, QString>> getEncounters4(Game game, u16 specie);
-    QString getEncounterString(Encounter type);
-
-private slots:
-    void find();
-    void gameIndexChanged(int index);
+    EncounterArea8() = default;
+    EncounterArea8(u8 location, Encounter type, const std::vector<Slot> &pokemon);
+    u8 calcLevel(u8 index, u16 prng) const;
+    u8 calcLevel(u8 index) const;
 };
 
-#endif // ENCOUNTERLOOKUP_HPP
+#endif // ENCOUNTERAREA8_HPP

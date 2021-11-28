@@ -52,14 +52,14 @@ public:
         return sid;
     }
 
+    bool operator==(const Profile &other) const;
+    bool operator!=(const Profile &other) const;
+
 protected:
     std::string name;
     Game version;
     u16 tid;
     u16 sid;
 };
-
-bool operator==(const Profile &left, const Profile &right);
-bool operator!=(const Profile &left, const Profile &right);
 
 #endif // PROFILE_HPP

@@ -100,7 +100,7 @@ void ProfileEditor3::okay()
         return;
     }
 
-    fresh = Profile3(ui->lineEditProfile->text().toStdString(), static_cast<Game>(ui->comboBoxVersion->currentData().toInt()),
+    fresh = Profile3(ui->lineEditProfile->text().toStdString(), static_cast<Game>(ui->comboBoxVersion->currentData().toUInt()),
                      ui->textBoxTID->getUShort(), ui->textBoxSID->getUShort(), ui->checkBoxDeadBattery->isChecked());
 
     done(QDialog::Accepted);
