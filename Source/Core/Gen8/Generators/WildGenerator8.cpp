@@ -152,11 +152,13 @@ std::vector<WildState> WildGenerator8::generate(u64 seed0, u64 seed1) const
         u32 natureRand = gen.next();
         state.setNature(natureRand - (natureRand / 25) * 25);
 
-        gen.next(); // height
-        gen.next(); // weight
+        gen.next(); // height 1
+        gen.next(); // height 2
+        gen.next(); // weight 1
+        gen.next(); // weight 2
 
-        u32 itemRand = gen.next();
-        state.setItem(itemRand - (itemRand / 100) * 100);
+        u32 itemRand = gen.next<0, 100>();
+        state.setItem(itemRand);
 
         if (filter.comparePID(state) && filter.compareIV(state))
         {
