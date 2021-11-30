@@ -23,7 +23,7 @@
 #include <Core/Gen4/States/IDState4.hpp>
 #include <Core/Parents/Generators/IDGenerator.hpp>
 
-class IDGenerator4 : public IDGenerator
+class IDGenerator4 : public IDGenerator<>
 {
 public:
     IDGenerator4(u32 minDelay, u32 maxDelay, u16 year, u8 month, u8 day, u8 hour, u8 minute);
