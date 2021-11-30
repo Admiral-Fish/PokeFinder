@@ -145,6 +145,11 @@ namespace
                 data = swsh_en.data();
                 size = swsh_en.size();
             }
+            else if (name == "bdsp")
+            {
+                data = bdsp_en.data();
+                size = bdsp_en.size();
+            }
         }
         else if (language == "es")
         {
@@ -564,9 +569,13 @@ namespace Translator
         {
             strings = readFile("hgss");
         }
-        else
+        else if (game & Game::SwSh)
         {
             strings = readFile("swsh");
+        }
+        else
+        {
+            strings = readFile("bdsp");
         }
 
         std::map<int, std::string> map;

@@ -20,6 +20,7 @@
 #include "Wild8.hpp"
 #include "ui_Wild8.h"
 #include <Core/Enum/Lead.hpp>
+#include <Core/Gen8/Encounters8.hpp>
 #include <Core/Gen8/Generators/WildGenerator8.hpp>
 #include <Core/Parents/ProfileLoader.hpp>
 #include <Core/Util/Translator.hpp>
@@ -33,8 +34,8 @@ Wild8::Wild8(QWidget *parent) : QWidget(parent), ui(new Ui::Wild8)
 
     setAttribute(Qt::WA_QuitOnClose, false);
 
-    setupModels();
     updateProfiles();
+    setupModels();
 }
 
 Wild8::~Wild8()
@@ -46,6 +47,11 @@ Wild8::~Wild8()
     setting.endGroup();
 
     delete ui;
+}
+
+bool Wild8::hasProfiles() const
+{
+    return !profiles.empty();
 }
 
 void Wild8::updateProfiles()
@@ -69,6 +75,8 @@ void Wild8::updateProfiles()
     {
         ui->comboBoxProfiles->setCurrentIndex(val);
     }
+
+    profilesIndexChanged(0);
 }
 
 void Wild8::setupModels()
@@ -102,10 +110,9 @@ void Wild8::setupModels()
     connect(ui->comboBoxProfiles, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &Wild8::profilesIndexChanged);
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Wild8::generate);
     connect(ui->comboBoxEncounter, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &Wild8::encounterIndexChanged);
-    /*connect(ui->comboBoxLocation, QOverload<int>::of(&QComboBox::currentIndexChanged), this,
-            &Wild8::locationIndexChanged);
+    connect(ui->comboBoxLocation, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &Wild8::locationIndexChanged);
     connect(ui->comboBoxPokemon, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &Wild8::pokemonIndexChanged);
-    connect(ui->comboBoxTime, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &Wild8::timeIndexChanged);*/
+    connect(ui->comboBoxTime, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &Wild8::timeIndexChanged);
     connect(ui->tableView, &QTableView::customContextMenuRequested, this, &Wild8::tableViewContextMenu);
     connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &Wild8::profileManager);
 
@@ -118,6 +125,44 @@ void Wild8::setupModels()
         this->restoreGeometry(setting.value("geometry").toByteArray());
     }
     setting.endGroup();
+}
+
+void Wild8::updateLocations()
+{
+    auto encounter = static_cast<Encounter>(ui->comboBoxEncounter->currentData().toInt());
+    int time = ui->comboBoxTime->currentIndex();
+
+    encounters = Encounters8::getEncounters(encounter, time, currentProfile);
+
+    std::vector<u16> locs;
+    std::transform(encounters.begin(), encounters.end(), std::back_inserter(locs),
+                   [](const EncounterArea8 &area) { return area.getLocation(); });
+
+    std::vector<std::string> locations = Translator::getLocations(locs, currentProfile.getVersion());
+    std::vector<int> indices(locations.size());
+    std::iota(indices.begin(), indices.end(), 0);
+    std::sort(indices.begin(), indices.end(), [&locations](int i, int j) { return locations[i] < locations[j]; });
+
+    ui->comboBoxLocation->clear();
+    for (int index : indices)
+    {
+        ui->comboBoxLocation->addItem(QString::fromStdString(locations[index]), index);
+    }
+}
+
+void Wild8::updatePokemon()
+{
+    auto area = encounters[ui->comboBoxLocation->currentData().toInt()];
+    std::vector<u16> species = area.getUniqueSpecies();
+
+    std::vector<std::string> names = area.getSpecieNames();
+
+    ui->comboBoxPokemon->clear();
+    ui->comboBoxPokemon->addItem("-");
+    for (size_t i = 0; i < species.size(); i++)
+    {
+        ui->comboBoxPokemon->addItem(QString::fromStdString(names[i]), species[i]);
+    }
 }
 
 void Wild8::generate()
@@ -170,8 +215,7 @@ void Wild8::profilesIndexChanged(int index)
         ui->labelProfileGameValue->setText(QString::fromStdString(currentProfile.getVersionString()));
         ui->labelProfileShinyCharmValue->setText(currentProfile.getShinyCharm() ? tr("Yes") : tr("No"));
 
-        // updateLocations();
-        // updateLocations();
+        updateLocations();
     }
 }
 
@@ -201,7 +245,40 @@ void Wild8::encounterIndexChanged(int index)
         }
 
         ui->filter->setEncounterSlots(t);
-        // updateLocationsGenerator();
+        updateLocations();
+    }
+}
+
+void Wild8::locationIndexChanged(int index)
+{
+    if (index >= 0)
+    {
+        updatePokemon();
+    }
+}
+
+void Wild8::pokemonIndexChanged(int index)
+{
+    if (index <= 0)
+    {
+        ui->filter->resetEncounterSlots();
+    }
+    else
+    {
+        u16 num = ui->comboBoxPokemon->getCurrentUShort();
+        std::vector<bool> flags = encounters[ui->comboBoxLocation->currentData().toInt()].getSlots(num);
+
+        ui->filter->toggleEncounterSlots(flags);
+    }
+}
+
+void Wild8::timeIndexChanged(int index)
+{
+    if (index >= 0)
+    {
+        int position = ui->comboBoxLocation->currentIndex();
+        updateLocations();
+        ui->comboBoxLocation->setCurrentIndex(position);
     }
 }
 

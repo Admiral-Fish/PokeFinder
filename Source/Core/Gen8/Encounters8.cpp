@@ -29,7 +29,7 @@
 #include <cstring>
 #include <iterator>
 
-namespace Encounters4
+namespace Encounters8
 {
     namespace
     {
@@ -39,13 +39,13 @@ namespace Encounters4
             size_t size;
             int offset;
 
-            if (game == Game::Diamond)
+            if (game == Game::BD)
             {
                 data = bd.data();
                 size = bd.size();
                 offset = 140;
             }
-            else if (game == Game::Pearl)
+            else if (game == Game::SP)
             {
                 data = sp.data();
                 size = sp.size();

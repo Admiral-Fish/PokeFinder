@@ -28,10 +28,10 @@ WildGenerator8::WildGenerator8(u32 initialAdvances, u32 maxAdvances, u16 tid, u1
 {
 }
 
-// void WildGenerator8::setEncounterArea(const EncounterArea8 &encounterArea)
-//{
-//    this->encounterArea = encounterArea;
-//}
+void WildGenerator8::setEncounterArea(const EncounterArea8 &encounterArea)
+{
+    this->encounterArea = encounterArea;
+}
 
 std::vector<WildState> WildGenerator8::generate(u64 seed0, u64 seed1) const
 {
@@ -54,7 +54,7 @@ std::vector<WildState> WildGenerator8::generate(u64 seed0, u64 seed1) const
                 continue;
             }
 
-            // state.setLevel(encounterArea.calcLevel(state.getEncounterSlot()));
+            state.setLevel(encounterArea.calcLevel(state.getEncounterSlot()));
             break;
         case Encounter::Surfing:
             state.setEncounterSlot(EncounterSlot::bdspSlot(slotPercent, encounter));
@@ -64,7 +64,7 @@ std::vector<WildState> WildGenerator8::generate(u64 seed0, u64 seed1) const
             }
             gen.advance(3);
 
-            // state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), go.nextUShort<true>()));
+            state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), gen.next() % 6));
             break;
         case Encounter::OldRod:
         case Encounter::GoodRod:
