@@ -122,10 +122,10 @@ std::vector<WildState> WildGenerator8::generate(u64 seed0, u64 seed1) const
 
         state.setAbility(gen.next() % 2);
 
-        // if (false)
-        //{ // TODO: add unown check
-        // gen.next(); // Form call
-        //}
+        if (encounterArea.getLocation() > 222 && encounterArea.getLocation() < 244)
+        { // TODO: add unown check
+            u32 unownForm = gen.next() % 28; // Form call
+        }
 
         if (genderRatio == 255)
         {
