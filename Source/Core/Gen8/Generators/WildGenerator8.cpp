@@ -25,7 +25,7 @@
 #include <Core/RNG/Xorshift.hpp>
 #include <Core/Util/EncounterSlot.hpp>
 
-WildGenerator8::WildGenerator8(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, const StateFilter &filter) :
+WildGenerator8::WildGenerator8(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, const StateFilter &filter) :
     WildGenerator(initialAdvances, maxAdvances, tid, sid, genderRatio, Method::Null, filter)
 {
 }
@@ -88,6 +88,8 @@ std::vector<WildState> WildGenerator8::generate(u64 seed0, u64 seed1) const
             break;
         }
 
+        PersonalInfo info = PersonalLoader::getPersonal(Game::BDSP, encounterArea.getPokemon()[state.getEncounterSlot()].getSpecie(), 0);
+
         gen.next(); // EC call
         u32 sidtid = gen.next();
         u32 pid = gen.next();
@@ -131,9 +133,7 @@ std::vector<WildState> WildGenerator8::generate(u64 seed0, u64 seed1) const
 
         if (lead == Lead::CuteCharm)
         {
-            u16 species = encounterArea.getPokemon()[state.getEncounterSlot()].getSpecie();
-            u8 genderVector = PersonalLoader::getPersonal(Game::BDSP, species, 0).getGender();
-            if (genderVector + 2 > 2)
+            if (info.getGender() + 2 > 2)
             {
                 u8 charmRand = gen.next() % 3;
                 if (charmRand > 0)
@@ -147,19 +147,39 @@ std::vector<WildState> WildGenerator8::generate(u64 seed0, u64 seed1) const
                         state.setGender(1);
                     }
                 }
+                else
+                {
+                    u8 gender = (gen.next() % 253) + 1 < genderRatio;
+                    state.setGender(gender);
+                }
+            }
+            else
+            {
+                if (info.getGender() == 255)
+                {
+                    state.setGender(2);
+                }
+                else if (info.getGender() == 254)
+                {
+                    state.setGender(1);
+                }
+                else if (info.getGender() == 0)
+                {
+                    state.setGender(0);
+                }
             }
         }
         else
         {
-            if (genderRatio == 255)
+            if (info.getGender() == 255)
             {
                 state.setGender(2);
             }
-            else if (genderRatio == 254)
+            else if (info.getGender() == 254)
             {
                 state.setGender(1);
             }
-            else if (genderRatio == 0)
+            else if (info.getGender() == 0)
             {
                 state.setGender(0);
             }

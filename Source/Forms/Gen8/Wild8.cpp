@@ -104,6 +104,8 @@ void Wild8::setupModels()
     ui->comboBoxEncounter->addItem(tr("Good Rod"), Encounter::GoodRod);
     ui->comboBoxEncounter->addItem(tr("Super Rod"), Encounter::SuperRod);
 
+    ui->filter->disableControls(Controls::GenderRatio);
+
     QAction *outputTXTGenerator = menu->addAction(tr("Output Results to TXT"));
     QAction *outputCSVGenerator = menu->addAction(tr("Output Results to CSV"));
     connect(outputTXTGenerator, &QAction::triggered, [=] { ui->tableView->outputModel(); });
@@ -177,7 +179,6 @@ void Wild8::generate()
     u32 maxAdvances = ui->textBoxMaxAdvances->getUInt();
     u16 tid = currentProfile.getTID();
     u16 sid = currentProfile.getSID();
-    u8 genderRatio = ui->filter->getGenderRatio();
     u32 offset = 0;
     if (ui->filter->useDelay())
     {
@@ -188,7 +189,7 @@ void Wild8::generate()
                        ui->filter->getMinIVs(), ui->filter->getMaxIVs(), ui->filter->getNatures(), ui->filter->getHiddenPowers(),
                        ui->filter->getEncounterSlots());
 
-    WildGenerator8 generator(initialAdvances, maxAdvances, tid, sid, genderRatio, filter);
+    WildGenerator8 generator(initialAdvances, maxAdvances, tid, sid, filter);
     generator.setOffset(offset);
     generator.setEncounter(static_cast<Encounter>(ui->comboBoxEncounter->getCurrentInt()));
     generator.setEncounterArea(encounters[ui->comboBoxLocation->currentData().toInt()]);
@@ -265,15 +266,12 @@ void Wild8::pokemonIndexChanged(int index)
     if (index <= 0)
     {
         ui->filter->resetEncounterSlots();
-        ui->filter->setGenderRatio(255);
     }
     else
     {
         u16 num = ui->comboBoxPokemon->getCurrentUShort();
         std::vector<bool> flags = encounters[ui->comboBoxLocation->currentData().toInt()].getSlots(num);
-        PersonalInfo info = PersonalLoader::getPersonal(Game::BDSP, ui->comboBoxPokemon->currentData().toUInt(), 0);
         ui->filter->toggleEncounterSlots(flags);
-        ui->filter->setGenderRatio(info.getGender());
     }
 }
 
