@@ -22,6 +22,7 @@
 #include <Core/Enum/Lead.hpp>
 #include <Core/Gen8/Encounters8.hpp>
 #include <Core/Gen8/Generators/WildGenerator8.hpp>
+#include <Core/Parents/PersonalLoader.hpp>
 #include <Core/Parents/ProfileLoader.hpp>
 #include <Core/Util/Translator.hpp>
 #include <Forms/Gen8/Profile/ProfileManager8.hpp>
@@ -263,13 +264,15 @@ void Wild8::pokemonIndexChanged(int index)
     if (index <= 0)
     {
         ui->filter->resetEncounterSlots();
+        ui->filter->setGenderRatio(255);
     }
     else
     {
         u16 num = ui->comboBoxPokemon->getCurrentUShort();
         std::vector<bool> flags = encounters[ui->comboBoxLocation->currentData().toInt()].getSlots(num);
-
+        PersonalInfo info = PersonalLoader::getPersonal(Game::BDSP, ui->comboBoxPokemon->currentData().toUInt(), 0);
         ui->filter->toggleEncounterSlots(flags);
+        ui->filter->setGenderRatio(info.getGender());
     }
 }
 
