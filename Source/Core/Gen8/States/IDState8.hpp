@@ -27,10 +27,9 @@ class IDState8 : public IDState
 public:
     IDState8() = default;
 
-    IDState8(u32 advance, u16 tid, u16 sid) : IDState(advance, tid, sid)
+    IDState8(u32 advance, u16 tid, u16 sid, u32 g8tid) : IDState(advance, tid, sid), g8tid(g8tid)
     {
         tsv = (tid ^ sid) >> 4;
-        g8tid = u32((sid << 16) | tid) % 1000000;
     }
 
     u32 getG8TID() const
@@ -38,7 +37,7 @@ public:
         return g8tid;
     }
 
-protected:
+private:
     u32 g8tid;
 };
 

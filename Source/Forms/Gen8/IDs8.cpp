@@ -102,38 +102,71 @@ void IDs8::generate()
     QString inputs = ui->textEditFilter->toPlainText();
     if (ui->radioButtonTID->isChecked())
     {
-        QRegularExpression re("^(\\d{1,4}|[1-5][0-9][0-9][0-9][0-9]|6[0-4][0-9][0-9][0-9]|65[0-4][0-9][0-9]|"
-                              "655[0-2][0-9]|6553[0-5])$", QRegularExpression::MultilineOption);
-        auto matches = re.globalMatch(inputs);
-        while (matches.hasNext())
-        {
-            auto match = matches.next();
-            tidFilter.emplace_back(match.captured().toUShort());
-        }
-    }
-    else if (ui->radioButtonSID->isChecked())
-    {
-        QRegularExpression re("^(\\d{1,4}|[1-5][0-9][0-9][0-9][0-9]|6[0-4][0-9][0-9][0-9]|65[0-4][0-9][0-9]|"
-                              "655[0-2][0-9]|6553[0-5])$", QRegularExpression::MultilineOption);
+        QRegularExpression re("^\\d{1,5}$", QRegularExpression::MultilineOption);
         auto matches = re.globalMatch(inputs);
         while (matches.hasNext())
         {
             auto match = matches.next().captured();
-            sidFilter.emplace_back(match.toUShort());
+
+            bool flag;
+            u16 tid = match.toUShort(&flag);
+            if (flag)
+            {
+                QMessageBox err(QMessageBox::Warning, ("Invalid input"), tr("%1 is invalid input").arg(match));
+                err.exec();
+                return;
+            }
+            tidFilter.emplace_back(tid);
+        }
+    }
+    else if (ui->radioButtonSID->isChecked())
+    {
+        QRegularExpression re("^\\d{1,5}$", QRegularExpression::MultilineOption);
+        auto matches = re.globalMatch(inputs);
+        while (matches.hasNext())
+        {
+            auto match = matches.next().captured();
+
+            bool flag;
+            u16 sid = match.toUShort(&flag);
+            if (flag)
+            {
+                QMessageBox err(QMessageBox::Warning, ("Invalid input"), tr("%1 is invalid input").arg(match));
+                err.exec();
+                return;
+            }
+            sidFilter.emplace_back(sid);
         }
     }
     else if (ui->radioButtonTIDSID->isChecked())
     {
-        QRegularExpression re("^(\\d{1,4}|[1-5][0-9][0-9][0-9][0-9]|6[0-4][0-9][0-9][0-9]|65[0-4][0-9][0-9]|"
-                              "655[0-2][0-9]|6553[0-5])/"
-                              "(\\d{1,4}|[1-5][0-9][0-9][0-9][0-9]|6[0-4][0-9][0-9][0-9]|65[0-4][0-9][0-9]|"
-                              "655[0-2][0-9]|6553[0-5])$", QRegularExpression::MultilineOption);
+        QRegularExpression re("^(\\d{1,5})/(\\d{1,5})$", QRegularExpression::MultilineOption);
         auto matches = re.globalMatch(inputs);
         while (matches.hasNext())
         {
             auto match = matches.next();
-            tidFilter.emplace_back(match.captured(1).toUShort());
-            sidFilter.emplace_back(match.captured(2).toUShort());
+            QString match1 = match.captured(1);
+            QString match2 = match.captured(2);
+
+            bool flag;
+            u16 tid = match1.toUShort(&flag);
+            if (flag)
+            {
+                QMessageBox err(QMessageBox::Warning, ("Invalid input"), tr("%1 is invalid input").arg(match1));
+                err.exec();
+                return;
+            }
+
+            u16 sid = match2.toUShort(&flag);
+            if (flag)
+            {
+                QMessageBox err(QMessageBox::Warning, ("Invalid input"), tr("%1 is invalid input").arg(match2));
+                err.exec();
+                return;
+            }
+
+            tidFilter.emplace_back(tid);
+            sidFilter.emplace_back(sid);
         }
     }
     else if (ui->radioButtonG8TID->isChecked())
@@ -143,16 +176,34 @@ void IDs8::generate()
         while (matches.hasNext())
         {
             auto match = matches.next().captured();
-            g8tidFilter.emplace_back(match.toUInt());
+
+            bool flag;
+            u32 g8tid = match.toUInt(&flag);
+            if (flag || (g8tid > 999999))
+            {
+                QMessageBox err(QMessageBox::Warning, ("Invalid input"), tr("%1 is invalid input").arg(match));
+                err.exec();
+                return;
+            }
+            g8tidFilter.emplace_back(g8tid);
         }
     }
 
     inputs = ui->textEditTSVFilter->toPlainText();
-    QRegularExpression re("^(\\d{1,3}|[1-3][0-9][0-9][0-9]|40[0-8][0-9]|409[0-5])$", QRegularExpression::MultilineOption);
+    QRegularExpression re("^\\d{1,5}$", QRegularExpression::MultilineOption);
     auto matches = re.globalMatch(inputs);
     while (matches.hasNext())
     {
         auto match = matches.next().captured();
+
+        bool flag;
+        u16 tsv = match.toUShort(&flag);
+        if (flag || (tsv > 4095))
+        {
+            QMessageBox err(QMessageBox::Warning, ("Invalid input"), tr("%1 is invalid input").arg(match));
+            err.exec();
+            return;
+        }
         tsvFilter.emplace_back(match.toUShort());
     }
 

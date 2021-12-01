@@ -36,8 +36,9 @@ std::vector<IDState8> IDGenerator8::generate(u64 seed0, u64 seed1)
         u32 sidtid = rng.next();
         u16 tid = sidtid & 0xffff;
         u16 sid = sidtid >> 16;
+        u32 g8tid = sidtid % 1000000;
 
-        IDState8 state(initialAdvances + cnt, tid, sid);
+        IDState8 state(initialAdvances + cnt, tid, sid, g8tid);
         if (filter.compare(state))
         {
             states.emplace_back(state);
