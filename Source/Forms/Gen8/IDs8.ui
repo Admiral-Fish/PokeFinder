@@ -285,6 +285,7 @@
   <tabstop>radioButtonTID</tabstop>
   <tabstop>radioButtonSID</tabstop>
   <tabstop>radioButtonTIDSID</tabstop>
+  <tabstop>radioButtonG8TID</tabstop>
   <tabstop>textEditFilter</tabstop>
   <tabstop>textEditTSVFilter</tabstop>
   <tabstop>tableView</tabstop>
