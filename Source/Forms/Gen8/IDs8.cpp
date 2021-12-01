@@ -102,7 +102,8 @@ void IDs8::generate()
     QString inputs = ui->textEditFilter->toPlainText();
     if (ui->radioButtonTID->isChecked())
     {
-        QRegularExpression re("^\\d{1,5}$", QRegularExpression::MultilineOption);
+        QRegularExpression re("^(\\d{1,4}|[1-5][0-9][0-9][0-9][0-9]|6[0-4][0-9][0-9][0-9]|65[0-4][0-9][0-9]|"
+                              "655[0-2][0-9]|6553[0-5])$", QRegularExpression::MultilineOption);
         auto matches = re.globalMatch(inputs);
         while (matches.hasNext())
         {
@@ -112,7 +113,8 @@ void IDs8::generate()
     }
     else if (ui->radioButtonSID->isChecked())
     {
-        QRegularExpression re("^\\d{1,5}$", QRegularExpression::MultilineOption);
+        QRegularExpression re("^(\\d{1,4}|[1-5][0-9][0-9][0-9][0-9]|6[0-4][0-9][0-9][0-9]|65[0-4][0-9][0-9]|"
+                              "655[0-2][0-9]|6553[0-5])$", QRegularExpression::MultilineOption);
         auto matches = re.globalMatch(inputs);
         while (matches.hasNext())
         {
@@ -122,7 +124,10 @@ void IDs8::generate()
     }
     else if (ui->radioButtonTIDSID->isChecked())
     {
-        QRegularExpression re("^(\\d{1,5})/(\\d{1,5})$", QRegularExpression::MultilineOption);
+        QRegularExpression re("^(\\d{1,4}|[1-5][0-9][0-9][0-9][0-9]|6[0-4][0-9][0-9][0-9]|65[0-4][0-9][0-9]|"
+                              "655[0-2][0-9]|6553[0-5])/"
+                              "(\\d{1,4}|[1-5][0-9][0-9][0-9][0-9]|6[0-4][0-9][0-9][0-9]|65[0-4][0-9][0-9]|"
+                              "655[0-2][0-9]|6553[0-5])$", QRegularExpression::MultilineOption);
         auto matches = re.globalMatch(inputs);
         while (matches.hasNext())
         {
@@ -143,7 +148,7 @@ void IDs8::generate()
     }
 
     inputs = ui->textEditTSVFilter->toPlainText();
-    QRegularExpression re("^\\d{1,5}$", QRegularExpression::MultilineOption);
+    QRegularExpression re("^(\\d{1,3}|[1-3][0-9][0-9][0-9]|40[0-8][0-9]|409[0-5])$", QRegularExpression::MultilineOption);
     auto matches = re.globalMatch(inputs);
     while (matches.hasNext())
     {
