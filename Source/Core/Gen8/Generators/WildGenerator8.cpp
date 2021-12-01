@@ -62,9 +62,8 @@ std::vector<WildState> WildGenerator8::generate(u64 seed0, u64 seed1) const
             {
                 continue;
             }
-            gen.advance(3);
 
-            state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), gen.next() % 6));
+            state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), gen.next<0, 10000>()));
             break;
         case Encounter::OldRod:
         case Encounter::GoodRod:
@@ -125,7 +124,7 @@ std::vector<WildState> WildGenerator8::generate(u64 seed0, u64 seed1) const
 
         // if (false)
         //{ // TODO: add unown check
-        // gen.next(); // Form call (unown?)
+        // gen.next(); // Form call
         //}
 
         if (genderRatio == 255)
