@@ -190,7 +190,7 @@ void IDs8::generate()
     }
 
     inputs = ui->textEditTSVFilter->toPlainText();
-    QRegularExpression re("^\\d{1,5}$", QRegularExpression::MultilineOption);
+    QRegularExpression re("^\\d{1,4}$", QRegularExpression::MultilineOption);
     auto matches = re.globalMatch(inputs);
     while (matches.hasNext())
     {
