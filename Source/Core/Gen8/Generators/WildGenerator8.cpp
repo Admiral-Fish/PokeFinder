@@ -18,7 +18,9 @@
  */
 
 #include "WildGenerator8.hpp"
+#include <Core/Enum/Game.hpp>
 #include <Core/Enum/Method.hpp>
+#include <Core/Parents/PersonalLoader.hpp>
 #include <Core/RNG/RNGList.hpp>
 #include <Core/RNG/Xorshift.hpp>
 #include <Core/Util/EncounterSlot.hpp>
@@ -127,22 +129,45 @@ std::vector<WildState> WildGenerator8::generate(u64 seed0, u64 seed1) const
             u32 unownForm = gen.next() % 28; // Form call
         }
 
-        if (genderRatio == 255)
+        if (lead == Lead::CuteCharm)
         {
-            state.setGender(2);
-        }
-        else if (genderRatio == 254)
-        {
-            state.setGender(1);
-        }
-        else if (genderRatio == 0)
-        {
-            state.setGender(0);
+            u16 species = encounterArea.getPokemon()[state.getEncounterSlot()].getSpecie();
+            u8 genderVector = PersonalLoader::getPersonal(Game::BDSP, species, 0).getGender();
+            if (genderVector + 2 > 2)
+            {
+                u8 charmRand = gen.next() % 3;
+                if (charmRand > 0)
+                {
+                    if (lead == Lead::CuteCharmFemale)
+                    {
+                        state.setGender(0);
+                    }
+                    else
+                    {
+                        state.setGender(1);
+                    }
+                }
+            }
         }
         else
         {
-            u8 gender = (gen.next() % 253) + 1 < genderRatio;
-            state.setGender(gender);
+            if (genderRatio == 255)
+            {
+                state.setGender(2);
+            }
+            else if (genderRatio == 254)
+            {
+                state.setGender(1);
+            }
+            else if (genderRatio == 0)
+            {
+                state.setGender(0);
+            }
+            else
+            {
+                u8 gender = (gen.next() % 253) + 1 < genderRatio;
+                state.setGender(gender);
+            }
         }
 
         if (lead == Lead::Synchronize)

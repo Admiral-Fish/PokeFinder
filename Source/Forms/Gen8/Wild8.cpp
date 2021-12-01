@@ -95,6 +95,7 @@ void Wild8::setupModels()
 
     ui->toolButtonLead->addAction(tr("None"), Lead::None);
     ui->toolButtonLead->addMenu(tr("Synchronize"), Translator::getNatures());
+    ui->toolButtonLead->addMenu(tr("Cute Charm"), { tr("♂ Lead"), tr("♀ Lead") }, { Lead::CuteCharm, Lead::CuteCharmFemale });
 
     ui->comboBoxEncounter->clear();
     ui->comboBoxEncounter->addItem(tr("Grass"), Encounter::Grass);
