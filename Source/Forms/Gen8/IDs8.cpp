@@ -110,7 +110,7 @@ void IDs8::generate()
 
             bool flag;
             u16 tid = match.toUShort(&flag);
-            if (flag)
+            if (!flag)
             {
                 QMessageBox err(QMessageBox::Warning, ("Invalid input"), tr("%1 is invalid input").arg(match));
                 err.exec();
@@ -129,7 +129,7 @@ void IDs8::generate()
 
             bool flag;
             u16 sid = match.toUShort(&flag);
-            if (flag)
+            if (!flag)
             {
                 QMessageBox err(QMessageBox::Warning, ("Invalid input"), tr("%1 is invalid input").arg(match));
                 err.exec();
@@ -150,7 +150,7 @@ void IDs8::generate()
 
             bool flag;
             u16 tid = match1.toUShort(&flag);
-            if (flag)
+            if (!flag)
             {
                 QMessageBox err(QMessageBox::Warning, ("Invalid input"), tr("%1 is invalid input").arg(match1));
                 err.exec();
@@ -158,7 +158,7 @@ void IDs8::generate()
             }
 
             u16 sid = match2.toUShort(&flag);
-            if (flag)
+            if (!flag)
             {
                 QMessageBox err(QMessageBox::Warning, ("Invalid input"), tr("%1 is invalid input").arg(match2));
                 err.exec();
@@ -179,7 +179,7 @@ void IDs8::generate()
 
             bool flag;
             u32 g8tid = match.toUInt(&flag);
-            if (flag || (g8tid > 999999))
+            if (!flag || (g8tid > 999999))
             {
                 QMessageBox err(QMessageBox::Warning, ("Invalid input"), tr("%1 is invalid input").arg(match));
                 err.exec();
@@ -198,7 +198,7 @@ void IDs8::generate()
 
         bool flag;
         u16 tsv = match.toUShort(&flag);
-        if (flag || (tsv > 4095))
+        if (!flag || (tsv > 4095))
         {
             QMessageBox err(QMessageBox::Warning, ("Invalid input"), tr("%1 is invalid input").arg(match));
             err.exec();
