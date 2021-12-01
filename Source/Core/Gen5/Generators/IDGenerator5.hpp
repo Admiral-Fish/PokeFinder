@@ -23,7 +23,7 @@
 #include <Core/Gen5/States/IDState5.hpp>
 #include <Core/Parents/Generators/IDGenerator.hpp>
 
-class IDGenerator5 : public IDGenerator
+class IDGenerator5 : public IDGenerator<>
 {
 public:
     IDGenerator5() = default;
