@@ -189,6 +189,7 @@ void Wild8::generate()
     WildGenerator8 generator(initialAdvances, maxAdvances, tid, sid, genderRatio, filter);
     generator.setOffset(offset);
     generator.setEncounter(static_cast<Encounter>(ui->comboBoxEncounter->getCurrentInt()));
+    generator.setEncounterArea(encounters[ui->comboBoxLocation->currentData().toInt()]);
 
     if (ui->toolButtonLead->text().contains(tr("Synchronize")))
     {

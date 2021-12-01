@@ -190,16 +190,6 @@
         </property>
        </widget>
       </item>
-      <item row="11" column="1" colspan="2">
-       <widget class="QPushButton" name="pushButtonGenerate">
-        <property name="enabled">
-         <bool>true</bool>
-        </property>
-        <property name="text">
-         <string>Generate</string>
-        </property>
-       </widget>
-      </item>
       <item row="2" column="1">
        <widget class="QLabel" name="labelTime">
         <property name="sizePolicy">
@@ -307,6 +297,16 @@
       <item row="4" column="3">
        <widget class="ComboBox" name="comboBoxPokemon"/>
       </item>
+      <item row="11" column="1" colspan="3">
+       <widget class="QPushButton" name="pushButtonGenerate">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="text">
+         <string>Generate</string>
+        </property>
+       </widget>
+      </item>
      </layout>
     </widget>
    </item>
@@ -359,9 +359,13 @@
   </customwidget>
  </customwidgets>
  <tabstops>
-  <tabstop>pushButtonProfileManager</tabstop>
   <tabstop>comboBoxProfiles</tabstop>
+  <tabstop>pushButtonProfileManager</tabstop>
   <tabstop>comboBoxEncounter</tabstop>
+  <tabstop>comboBoxLocation</tabstop>
+  <tabstop>comboBoxTime</tabstop>
+  <tabstop>comboBoxPokemon</tabstop>
+  <tabstop>toolButtonLead</tabstop>
   <tabstop>textBoxInitialAdvances</tabstop>
   <tabstop>textBoxMaxAdvances</tabstop>
   <tabstop>textBoxSeed0</tabstop>
