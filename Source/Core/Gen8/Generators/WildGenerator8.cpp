@@ -26,7 +26,7 @@
 #include <Core/Util/EncounterSlot.hpp>
 
 WildGenerator8::WildGenerator8(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, const StateFilter &filter) :
-    WildGenerator(initialAdvances, maxAdvances, tid, sid, genderRatio, Method::Null, filter)
+    WildGenerator(initialAdvances, maxAdvances, tid, sid, 0, Method::Null, filter)
 {
 }
 
@@ -59,6 +59,9 @@ std::vector<WildState> WildGenerator8::generate(u64 seed0, u64 seed1) const
             state.setLevel(encounterArea.calcLevel(state.getEncounterSlot()));
             break;
         case Encounter::Surfing:
+        case Encounter::OldRod:
+        case Encounter::GoodRod:
+        case Encounter::SuperRod:
             state.setEncounterSlot(EncounterSlot::bdspSlot(slotPercent, encounter));
             if (!filter.compareEncounterSlot(state))
             {
@@ -67,23 +70,6 @@ std::vector<WildState> WildGenerator8::generate(u64 seed0, u64 seed1) const
 
             state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), gen.next<0, 10000>()));
             break;
-        case Encounter::OldRod:
-        case Encounter::GoodRod:
-        case Encounter::SuperRod: // TODO fishing
-                                  // if ((first / 656) >= thresh)
-                                  //{
-                                  //    continue;
-                                  //}
-
-            // state.setEncounterSlot(EncounterSlot::jSlot(go.nextUShort<true>(), encounter));
-            // if (!filter.compareEncounterSlot(state))
-            //{
-            //    continue;
-            //}
-
-            // state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), go.nextUShort<true>()));
-            // occidentary += platinum ? 2 : 6; // Compensate for the game's advances after the battle ends
-            // break;
         default:
             break;
         }
@@ -149,7 +135,7 @@ std::vector<WildState> WildGenerator8::generate(u64 seed0, u64 seed1) const
                 }
                 else
                 {
-                    u8 gender = (gen.next() % 253) + 1 < genderRatio;
+                    u8 gender = (gen.next() % 253) + 1 < info.getGender();
                     state.setGender(gender);
                 }
             }
@@ -185,7 +171,7 @@ std::vector<WildState> WildGenerator8::generate(u64 seed0, u64 seed1) const
             }
             else
             {
-                u8 gender = (gen.next() % 253) + 1 < genderRatio;
+                u8 gender = (gen.next() % 253) + 1 < info.getGender();
                 state.setGender(gender);
             }
         }
