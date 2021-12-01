@@ -145,7 +145,14 @@ std::vector<WildState> WildGenerator8::generate(u64 seed0, u64 seed1) const
             state.setGender(gender);
         }
 
-        state.setNature(gen.next() % 25);
+        if (lead == Lead::Synchronize)
+        {
+            state.setNature(synchNature);
+        }
+        else
+        {
+            state.setNature(gen.next() % 25);
+        }
 
         gen.advance(4); // 2 calls height, 2 calls weight
 
