@@ -17,26 +17,23 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef IDGENERATOR4_HPP
-#define IDGENERATOR4_HPP
+#ifndef IDMODEL8_HPP
+#define IDMODEL8_HPP
 
-#include <Core/Gen4/States/IDState4.hpp>
-#include <Core/Parents/Generators/IDGenerator.hpp>
+#include <Core/Gen8/States/IDState8.hpp>
+#include <Forms/Models/TableModel.hpp>
 
-class IDGenerator4 : public IDGenerator<>
+class IDModel8 : public TableModel<IDState8>
 {
+    Q_OBJECT
 public:
-    IDGenerator4(u32 minDelay, u32 maxDelay, u16 year, u8 month, u8 day, u8 hour, u8 minute);
-    std::vector<IDState4> generate(const IDFilter &filter) const;
+    explicit IDModel8(QObject *parent);
+    int columnCount(const QModelIndex &parent = QModelIndex()) const override;
+    QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
+    QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
 
 private:
-    u32 minDelay;
-    u32 maxDelay;
-    u16 year;
-    u8 month;
-    u8 day;
-    u8 hour;
-    u8 minute;
+    QStringList header = { tr("Advances"), tr("G8TID"), tr("TID"), tr("SID"), tr("TSV") };
 };
 
-#endif // IDGENERATOR4_HPP
+#endif // IDMODEL8_HPP

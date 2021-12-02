@@ -55,6 +55,53 @@ std::vector<StationaryState> StationaryGenerator8::generateRoamer(u64 seed0, u64
     {
         StationaryState state(initialAdvances + cnt);
         XoroshiroBDSP gen(rng.next());
+
+        // Roamers are Cresselia and Mesprit
+        // Neither are shiny locked
+        u32 sidtid = gen.next(0xffffffff);
+        u32 pid = gen.next(0xffffffff);
+        
+        u16 fakeTSV = (sidtid >> 16) ^ (sidtid & 0xffff);
+        u16 psv = (pid >> 16) ^ (pid & 0xffff);
+        if ((fakeTSV ^ psv) < 16)
+        {
+            // Modify PID to trainer TID/SID
+
+        }
+        state.setPID(pid);
+        state.setShiny<16>(fakeTSV, psv);
+
+        for (int i = 0; i < 6;i++)
+        {
+            state.setIV(i, 255);
+        }
+
+        // Assign 3 31 IVs
+        for (int i = 0; i < 3; )
+        {
+            u8 index = gen.next(6);
+            if (state.getIV(index) == 255)
+            {
+                state.setIV(index, 31);
+                i++;
+            }
+        }
+
+        for (int i = 0; i < 6; i++)
+        {
+            if (state.getIV(i) == 255)
+            {
+                state.setIV(i, gen.next(32));
+            }
+        }
+
+        // No HA possible for roamers
+        state.setAbility(gen.next(2));
+
+        if (filter.comparePID(state) && filter.compareIV(state))
+        {
+            states.emplace_back(state);
+        }
     }
 
     return states;

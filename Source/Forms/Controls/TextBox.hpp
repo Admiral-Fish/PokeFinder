@@ -24,7 +24,7 @@
 #include <QLineEdit>
 #include <QRegularExpression>
 
-enum InputType : u8
+enum class InputType : u8
 {
     Seed64Bit,
     Advance64Bit,

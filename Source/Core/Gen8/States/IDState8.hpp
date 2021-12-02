@@ -17,26 +17,28 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef IDGENERATOR4_HPP
-#define IDGENERATOR4_HPP
+#ifndef IDSTATE8_HPP
+#define IDSTATE8_HPP
 
-#include <Core/Gen4/States/IDState4.hpp>
-#include <Core/Parents/Generators/IDGenerator.hpp>
+#include <Core/Parents/States/IDState.hpp>
 
-class IDGenerator4 : public IDGenerator<>
+class IDState8 : public IDState
 {
 public:
-    IDGenerator4(u32 minDelay, u32 maxDelay, u16 year, u8 month, u8 day, u8 hour, u8 minute);
-    std::vector<IDState4> generate(const IDFilter &filter) const;
+    IDState8() = default;
+
+    IDState8(u32 advance, u16 tid, u16 sid, u32 g8tid) : IDState(advance, tid, sid), g8tid(g8tid)
+    {
+        tsv = (tid ^ sid) >> 4;
+    }
+
+    u32 getG8TID() const
+    {
+        return g8tid;
+    }
 
 private:
-    u32 minDelay;
-    u32 maxDelay;
-    u16 year;
-    u8 month;
-    u8 day;
-    u8 hour;
-    u8 minute;
+    u32 g8tid;
 };
 
-#endif // IDGENERATOR4_HPP
+#endif // IDSTATE8_HPP

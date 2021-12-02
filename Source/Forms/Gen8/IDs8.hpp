@@ -17,26 +17,41 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef IDGENERATOR4_HPP
-#define IDGENERATOR4_HPP
+#ifndef IDS8_HPP
+#define IDS8_HPP
 
-#include <Core/Gen4/States/IDState4.hpp>
-#include <Core/Parents/Generators/IDGenerator.hpp>
+#include <Core/Gen8/Profile8.hpp>
+#include <QWidget>
 
-class IDGenerator4 : public IDGenerator<>
+class IDModel8;
+
+namespace Ui
 {
+    class IDs8;
+}
+
+class IDs8 : public QWidget
+{
+    Q_OBJECT
+signals:
+    void alertProfiles(int);
+
 public:
-    IDGenerator4(u32 minDelay, u32 maxDelay, u16 year, u8 month, u8 day, u8 hour, u8 minute);
-    std::vector<IDState4> generate(const IDFilter &filter) const;
+    explicit IDs8(QWidget *parent = nullptr);
+    ~IDs8() override;
+    void updateProfiles();
 
 private:
-    u32 minDelay;
-    u32 maxDelay;
-    u16 year;
-    u8 month;
-    u8 day;
-    u8 hour;
-    u8 minute;
+    Ui::IDs8 *ui;
+    IDModel8 *model;
+    std::vector<Profile8> profiles;
+
+    void setupModel();
+
+private slots:
+    void generate();
+    void profileManager();
+    void profilesIndexChanged(int index);
 };
 
-#endif // IDGENERATOR4_HPP
+#endif // IDS8_HPP
