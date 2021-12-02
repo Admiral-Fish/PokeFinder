@@ -405,7 +405,7 @@ namespace Encounters4
     std::vector<EncounterArea4> getEncounters(Encounter encounter, int time, const Profile4 &profile)
     {
         Game version = profile.getVersion();
-        auto info = PersonalLoader::getPersonal(version);
+        auto *info = PersonalLoader::getPersonal(version);
 
         std::vector<EncounterArea4> encounters;
         for (const auto &data : getData(version))
