@@ -20,7 +20,6 @@
 #include "WildGenerator8.hpp"
 #include <Core/Enum/Game.hpp>
 #include <Core/Enum/Method.hpp>
-#include <Core/Parents/PersonalLoader.hpp>
 #include <Core/RNG/RNGList.hpp>
 #include <Core/RNG/Xorshift.hpp>
 #include <Core/Util/EncounterSlot.hpp>
@@ -74,7 +73,7 @@ std::vector<WildState> WildGenerator8::generate(u64 seed0, u64 seed1) const
             break;
         }
 
-        PersonalInfo info = PersonalLoader::getPersonal(Game::BDSP, encounterArea.getPokemon()[state.getEncounterSlot()].getSpecie(), 0);
+        u8 genderRatio = encounterArea.getPokemon()[state.getEncounterSlot()].getInfo().getGender();
 
         gen.next(); // EC call
         u32 sidtid = gen.next();
@@ -117,63 +116,41 @@ std::vector<WildState> WildGenerator8::generate(u64 seed0, u64 seed1) const
             u32 unownForm = gen.next() % 28; // Form call
         }
 
-        if (lead == Lead::CuteCharm)
+        if (genderRatio == 255)
         {
-            if (info.getGender() + 2 > 2)
+            state.setGender(2);
+        }
+        else if (genderRatio == 254)
+        {
+            state.setGender(1);
+        }
+        else if (genderRatio == 0)
+        {
+            state.setGender(0);
+        }
+        else if (lead == Lead::CuteCharm)
+        {
+            if (gen.next() % 3 > 0)
             {
-                u8 charmRand = gen.next() % 3;
-                if (charmRand > 0)
+                if (lead == Lead::CuteCharmFemale)
                 {
-                    if (lead == Lead::CuteCharmFemale)
-                    {
-                        state.setGender(0);
-                    }
-                    else
-                    {
-                        state.setGender(1);
-                    }
+                    state.setGender(0);
                 }
                 else
                 {
-                    u8 gender = (gen.next() % 253) + 1 < info.getGender();
-                    state.setGender(gender);
+                    state.setGender(1);
                 }
             }
             else
             {
-                if (info.getGender() == 255)
-                {
-                    state.setGender(2);
-                }
-                else if (info.getGender() == 254)
-                {
-                    state.setGender(1);
-                }
-                else if (info.getGender() == 0)
-                {
-                    state.setGender(0);
-                }
+                u8 gender = (gen.next() % 253) + 1 < genderRatio;
+                state.setGender(gender);
             }
         }
         else
         {
-            if (info.getGender() == 255)
-            {
-                state.setGender(2);
-            }
-            else if (info.getGender() == 254)
-            {
-                state.setGender(1);
-            }
-            else if (info.getGender() == 0)
-            {
-                state.setGender(0);
-            }
-            else
-            {
-                u8 gender = (gen.next() % 253) + 1 < info.getGender();
-                state.setGender(gender);
-            }
+            u8 gender = (gen.next() % 253) + 1 < genderRatio;
+            state.setGender(gender);
         }
 
         if (lead == Lead::Synchronize)
