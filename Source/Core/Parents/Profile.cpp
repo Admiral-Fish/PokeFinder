@@ -77,13 +77,12 @@ std::string Profile::getVersionString() const
     }
 }
 
-bool operator==(const Profile &left, const Profile &right)
+bool Profile::operator==(const Profile &other) const
 {
-    return left.getName() == right.getName() && left.getVersion() == right.getVersion()
-        && left.getTID() == right.getTID() && left.getSID() == right.getSID();
+    return name == other.name && version == other.version && tid == other.tid && sid == other.sid;
 }
 
-bool operator!=(const Profile &left, const Profile &right)
+bool Profile::operator!=(const Profile &other) const
 {
-    return !(left == right);
+    return !(operator==(other));
 }

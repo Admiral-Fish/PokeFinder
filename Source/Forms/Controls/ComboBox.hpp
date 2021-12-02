@@ -30,6 +30,7 @@ public:
     void setup(const std::vector<QVariant> &data);
     u8 getCurrentByte() const;
     u16 getCurrentUShort() const;
+    u32 getCurrentUInt() const;
     int getCurrentInt() const;
 };
 

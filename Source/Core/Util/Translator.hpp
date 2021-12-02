@@ -39,7 +39,7 @@ namespace Translator
     std::vector<std::string> getSpecies(const std::vector<u16> &nums);
     std::string getGender(u8 gender);
     std::vector<std::string> getGenders();
-    std::vector<std::string> getLocations(const std::vector<u8> &nums, Game game);
+    std::vector<std::string> getLocations(const std::vector<u16> &nums, Game game);
     std::string getKeypress(u8 keypress);
     std::string getKeypresses(u16 keypresses);
 }

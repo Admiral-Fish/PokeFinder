@@ -29,6 +29,7 @@ namespace EncounterSlot
     u8 hSlot(u16 result, Encounter encounter);
     u8 jSlot(u16 result, Encounter encounter);
     u8 kSlot(u16 result, Encounter encounter);
+    u8 bdspSlot(u8 result, Encounter encounter);
 };
 
 #endif // ENCOUNTERSLOT_HPP

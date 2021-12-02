@@ -109,7 +109,7 @@ void ProfileCalibrator5::setupModels()
 
 void ProfileCalibrator5::updateParameters()
 {
-    auto version = static_cast<Game>(ui->comboBoxVersion->getCurrentInt());
+    auto version = static_cast<Game>(ui->comboBoxVersion->getCurrentUInt());
     auto dsType = static_cast<DSType>(ui->comboBoxDSType->getCurrentInt());
 
     switch (dsType)
@@ -176,7 +176,7 @@ void ProfileCalibrator5::search()
     u8 minVFrame = ui->textBoxMinVFrame->getUChar();
     u8 maxVFrame = ui->textBoxMaxVFrame->getUChar();
     bool softReset = ui->checkBoxSoftReset->isChecked();
-    auto version = static_cast<Game>(ui->comboBoxVersion->getCurrentInt());
+    auto version = static_cast<Game>(ui->comboBoxVersion->getCurrentUInt());
     auto language = static_cast<Language>(ui->comboBoxLanguage->getCurrentInt());
     auto dsType = static_cast<DSType>(ui->comboBoxDSType->getCurrentInt());
     u64 mac = ui->textBoxMACAddress->getULong();
@@ -304,7 +304,7 @@ void ProfileCalibrator5::createProfile()
         return;
     }
 
-    auto version = static_cast<Game>(ui->comboBoxVersion->getCurrentInt());
+    auto version = static_cast<Game>(ui->comboBoxVersion->getCurrentUInt());
     auto language = static_cast<Language>(ui->comboBoxLanguage->getCurrentInt());
     auto dsType = static_cast<DSType>(ui->comboBoxLanguage->getCurrentInt());
     u64 mac = ui->textBoxMACAddress->getULong();

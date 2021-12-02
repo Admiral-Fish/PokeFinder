@@ -373,8 +373,10 @@ namespace ProfileLoader8
             u16 sid = j["sid"].get<u16>();
             bool shinyCharm = j["shinyCharm"].get<bool>();
             bool ovalCharm = j["ovalCharm"].get<bool>();
+            bool radar = j["radar"].get<bool>();
+            bool swarm = j["swarm"].get<bool>();
 
-            return Profile8(name, version, tid, sid, shinyCharm, ovalCharm);
+            return Profile8(name, version, tid, sid, shinyCharm, ovalCharm, radar, swarm);
         }
 
         json getJson(const Profile8 &profile)
@@ -386,6 +388,8 @@ namespace ProfileLoader8
             j["sid"] = profile.getSID();
             j["shinyCharm"] = profile.getShinyCharm();
             j["ovalCharm"] = profile.getOvalCharm();
+            j["radar"] = profile.getRadar();
+            j["swarm"] = profile.getSwarm();
             return j;
         }
     }

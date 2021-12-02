@@ -35,13 +35,12 @@ bool Profile3::getDeadBattery() const
     return deadBattery;
 }
 
-bool operator==(const Profile3 &left, const Profile3 &right)
+bool Profile3::operator==(const Profile3 &other) const
 {
-    return left.getName() == right.getName() && left.getVersion() == right.getVersion() && left.getTID() == right.getTID()
-        && left.getSID() == right.getSID() && left.getDeadBattery() == right.getDeadBattery();
+    return Profile::operator==(other) && deadBattery == other.deadBattery;
 }
 
-bool operator!=(const Profile3 &left, const Profile3 &right)
+bool Profile3::operator!=(const Profile3 &other) const
 {
-    return !(left == right);
+    return !(operator==(other));
 }

@@ -31,9 +31,9 @@ class EncounterArea
 {
 public:
     EncounterArea() = default;
-    EncounterArea(u8 location, Encounter encounter, const std::vector<Slot> &pokemon);
+    EncounterArea(u16 location, Encounter encounter, const std::vector<Slot> &pokemon);
     Encounter getEncounter() const;
-    u8 getLocation() const;
+    u16 getLocation() const;
     std::vector<Slot> getPokemon() const;
     std::vector<u16> getUniqueSpecies() const;
     std::vector<bool> getSlots(u16 num) const;
@@ -42,7 +42,7 @@ public:
 
 protected:
     std::vector<Slot> pokemon;
-    u8 location;
+    u16 location;
     Encounter encounter;
 };
 

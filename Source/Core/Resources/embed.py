@@ -37,7 +37,7 @@ def embed_encounters():
         with open("Personal.hpp", "r") as f_personal:
             data = f_personal.readlines()
             for line in data:
-                if "personal8" in line:
+                if "personal_swsh" in line:
                     personal = re.findall(r"PersonalInfo\(.+?\)", line)
                     for i in range(len(personal)):
                         personal[i] = re.search(r"\((.+?)\)", personal[i]).group(1).split(", ")
@@ -68,7 +68,7 @@ def embed_encounters():
                     altform_index = int(personal[species][11])
                     personal_index = altform_index + altform - 1 
 
-                string += f"Raid({ability}, {altform}, {iv_count}, {gender}, {gigantamax}, {species}, personal8[{personal_index}], {star_string})"
+                string += f"Raid({ability}, {altform}, {iv_count}, {gender}, {gigantamax}, {species}, personal_swsh[{personal_index}], {star_string})"
                 if j != len(sword) - 1:
                     string += ", "
             string += "}, "
@@ -90,7 +90,7 @@ def embed_encounters():
                     altform_index = int(personal[species][11])
                     personal_index = altform_index + altform - 1 
 
-                string += f"Raid({ability}, {altform}, {iv_count}, {gender}, {gigantamax}, {species}, personal8[{personal_index}], {star_string})"
+                string += f"Raid({ability}, {altform}, {iv_count}, {gender}, {gigantamax}, {species}, personal_swsh[{personal_index}], {star_string})"
                 if j != len(sword) - 1:
                     string += ", "
             string += "})"
@@ -107,65 +107,78 @@ def embed_personal():
     arrays = []
 
     for index in (3, 4, 5, 8):
-        file = f"Personal/Gen{index}/personal{index}.bin"
-        with open(file, "rb") as f:
-            data = f.read()
-            size = len(data)
-            offset = 0x1c if index == 3 else 0x2c if index == 4 else 0x4c if index == 5 else 0xb0
+        for file in glob.glob(f"Personal/Gen{index}/*.bin"):        
+            with open(file, "rb") as f:
+                data = f.read()
+                size = len(data)
+                if index == 3:
+                    offset = 0x1c
+                elif index == 4:
+                    offset = 0x2c
+                elif index == 5:
+                    if "bw" in file:
+                        offset = 0x3c
+                    else:
+                        offset = 0x4c
+                elif index == 8:
+                    if "swsh" in file:
+                        offset = 0xb0
+                    else:
+                        offset = 0x44
 
-        name = os.path.basename(f.name).replace(".bin", "")
+            name = os.path.basename(f.name).replace(".bin", "")
 
-        string = f"constexpr std::array<PersonalInfo, {int(size/offset)}> {name} ="
-        string += " { "
+            string = f"constexpr std::array<PersonalInfo, {int(size/offset)}> {name} ="
+            string += " { "
 
-        for i in range(0, size, offset):
-            hp = data[i]
-            atk = data[i+0x1]
-            defense = data[i+0x2]
-            spe = data[i+0x3]
-            spa = data[i+0x4]
-            spd = data[i+0x5]
+            for i in range(0, size, offset):
+                hp = data[i]
+                atk = data[i+0x1]
+                defense = data[i+0x2]
+                spe = data[i+0x3]
+                spa = data[i+0x4]
+                spd = data[i+0x5]
 
-            if index == 3:
-                gender = data[i+0x10]
-                ability1 = data[i+0x16]
-                ability2 = data[i+0x17]
-                abilityH = 0
-                form_count = 1
-                form_stat_index = 0
-                present = 1
-            elif index == 4:
-                gender = data[i+0x10]
-                ability1 = data[i+0x16]
-                ability2 = data[i+0x17]
-                abilityH = 0
-                form_count = data[i+0x29]
-                form_stat_index = (data[i+0x2b] << 8) | data[i+0x2a]
-                present = 1
-            elif index == 5:
-                gender = data[i+0x12]
-                ability1 = data[i+0x18]
-                ability2 = data[i+0x19]
-                abilityH = data[i+0x1a]
-                form_count = data[i+0x20]
-                form_stat_index = (data[i+0x1d] << 8) | data[i+0x1c]
-                present = 1
-            elif index == 8:
-                gender = data[i+0x12]
-                ability1 = (data[i+0x19] << 8) | data[i+0x18]
-                ability2 = (data[i+0x1b] << 8) | data[i+0x1a]
-                abilityH = (data[i+0x1d] << 8) | data[i+0x1c]
-                form_count = data[i+0x20]
-                form_stat_index = (data[i+0x1f] << 8) | data[i+0x1e]
-                present = (data[i+0x21] >> 6) & 1
+                if index == 3:
+                    gender = data[i+0x10]
+                    ability1 = data[i+0x16]
+                    ability2 = data[i+0x17]
+                    abilityH = 0
+                    form_count = 1
+                    form_stat_index = 0
+                    present = 1
+                elif index == 4:
+                    gender = data[i+0x10]
+                    ability1 = data[i+0x16]
+                    ability2 = data[i+0x17]
+                    abilityH = 0
+                    form_count = data[i+0x29]
+                    form_stat_index = (data[i+0x2b] << 8) | data[i+0x2a]
+                    present = 1
+                elif index == 5:
+                    gender = data[i+0x12]
+                    ability1 = data[i+0x18]
+                    ability2 = data[i+0x19]
+                    abilityH = data[i+0x1a]
+                    form_count = data[i+0x20]
+                    form_stat_index = (data[i+0x1d] << 8) | data[i+0x1c]
+                    present = 1
+                elif index == 8:
+                    gender = data[i+0x12]
+                    ability1 = (data[i+0x19] << 8) | data[i+0x18]
+                    ability2 = (data[i+0x1b] << 8) | data[i+0x1a]
+                    abilityH = (data[i+0x1d] << 8) | data[i+0x1c]
+                    form_count = data[i+0x20]
+                    form_stat_index = (data[i+0x1f] << 8) | data[i+0x1e]
+                    present = (data[i+0x21] >> 6) & 1
 
-            personal = f"PersonalInfo({hp}, {atk}, {defense}, {spa}, {spd}, {spe}, {gender}, {ability1}, {ability2}, {abilityH}, {form_count}, {form_stat_index}, {present})"
-            string += personal
-            if i != size - offset:
-                string += ", "
+                personal = f"PersonalInfo({hp}, {atk}, {defense}, {spa}, {spd}, {spe}, {gender}, {ability1}, {ability2}, {abilityH}, {form_count}, {form_stat_index}, {present})"
+                string += personal
+                if i != size - offset:
+                    string += ", "
 
-        string += " };"
-        arrays.append(string)
+            string += " };"
+            arrays.append(string)
 
     write_data(arrays, "Personal.hpp", ("Core/Parents/PersonalInfo.hpp", "array"))
 

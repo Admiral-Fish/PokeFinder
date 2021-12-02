@@ -20,8 +20,9 @@
 #ifndef WILD8_HPP
 #define WILD8_HPP
 
-#include <QMenu>
+#include <Core/Gen8/EncounterArea8.hpp>
 #include <Core/Gen8/Profile8.hpp>
+#include <QMenu>
 
 class WildModel8;
 
@@ -40,6 +41,7 @@ public:
     explicit Wild8(QWidget *parent = nullptr);
     ~Wild8() override;
     void updateProfiles();
+    bool hasProfiles() const;
 
 private:
     Ui::Wild8 *ui;
@@ -47,21 +49,19 @@ private:
     Profile8 currentProfile;
     WildModel8 *model = nullptr;
     QMenu *menu = nullptr;
-    //std::vector<EncounterArea8> encounters;
+    std::vector<EncounterArea8> encounters;
 
     void setupModels();
-    //void updateLocationsGenerator();
-    //void updateLocationsSearcher();
-    //void updatePokemonGenerator();
-    //void updatePokemonSearcher();
+    void updateLocations();
+    void updatePokemon();
 
 private slots:
     void generate();
     void profilesIndexChanged(int index);
-    //void encounterIndexChanged(int index);
-    //void locationIndexChanged(int index);
-    //void pokemonIndexChanged(int index);
-    //void timeIndexChanged(int index);
+    void encounterIndexChanged(int index);
+    void locationIndexChanged(int index);
+    void pokemonIndexChanged(int index);
+    void timeIndexChanged(int index);
     void tableViewContextMenu(QPoint pos);
     void profileManager();
 };

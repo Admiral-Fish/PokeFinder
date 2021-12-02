@@ -20,6 +20,9 @@
 #include "Wild8.hpp"
 #include "ui_Wild8.h"
 #include <Core/Enum/Lead.hpp>
+#include <Core/Gen8/Encounters8.hpp>
+#include <Core/Gen8/Generators/WildGenerator8.hpp>
+#include <Core/Parents/PersonalLoader.hpp>
 #include <Core/Parents/ProfileLoader.hpp>
 #include <Core/Util/Translator.hpp>
 #include <Forms/Gen8/Profile/ProfileManager8.hpp>
@@ -32,8 +35,8 @@ Wild8::Wild8(QWidget *parent) : QWidget(parent), ui(new Ui::Wild8)
 
     setAttribute(Qt::WA_QuitOnClose, false);
 
-    setupModels();
     updateProfiles();
+    setupModels();
 }
 
 Wild8::~Wild8()
@@ -45,6 +48,11 @@ Wild8::~Wild8()
     setting.endGroup();
 
     delete ui;
+}
+
+bool Wild8::hasProfiles() const
+{
+    return !profiles.empty();
 }
 
 void Wild8::updateProfiles()
@@ -68,6 +76,8 @@ void Wild8::updateProfiles()
     {
         ui->comboBoxProfiles->setCurrentIndex(val);
     }
+
+    profilesIndexChanged(0);
 }
 
 void Wild8::setupModels()
@@ -85,6 +95,16 @@ void Wild8::setupModels()
 
     ui->toolButtonLead->addAction(tr("None"), Lead::None);
     ui->toolButtonLead->addMenu(tr("Synchronize"), Translator::getNatures());
+    ui->toolButtonLead->addMenu(tr("Cute Charm"), { tr("♂ Lead"), tr("♀ Lead") }, { Lead::CuteCharm, Lead::CuteCharmFemale });
+
+    ui->comboBoxEncounter->clear();
+    ui->comboBoxEncounter->addItem(tr("Grass"), Encounter::Grass);
+    ui->comboBoxEncounter->addItem(tr("Surfing"), Encounter::Surfing);
+    ui->comboBoxEncounter->addItem(tr("Old Rod"), Encounter::OldRod);
+    ui->comboBoxEncounter->addItem(tr("Good Rod"), Encounter::GoodRod);
+    ui->comboBoxEncounter->addItem(tr("Super Rod"), Encounter::SuperRod);
+
+    ui->filter->disableControls(Controls::GenderRatio);
 
     QAction *outputTXTGenerator = menu->addAction(tr("Output Results to TXT"));
     QAction *outputCSVGenerator = menu->addAction(tr("Output Results to CSV"));
@@ -93,17 +113,14 @@ void Wild8::setupModels()
 
     connect(ui->comboBoxProfiles, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &Wild8::profilesIndexChanged);
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Wild8::generate);
-    /*connect(ui->comboBoxEncounter, QOverload<int>::of(&QComboBox::currentIndexChanged), this,
-            &Wild8::encounterIndexChanged);
-    connect(ui->comboBoxLocation, QOverload<int>::of(&QComboBox::currentIndexChanged), this,
-            &Wild8::locationIndexChanged);
+    connect(ui->comboBoxEncounter, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &Wild8::encounterIndexChanged);
+    connect(ui->comboBoxLocation, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &Wild8::locationIndexChanged);
     connect(ui->comboBoxPokemon, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &Wild8::pokemonIndexChanged);
-    connect(ui->comboBoxTime, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &Wild8::timeIndexChanged);*/
+    connect(ui->comboBoxTime, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &Wild8::timeIndexChanged);
     connect(ui->tableView, &QTableView::customContextMenuRequested, this, &Wild8::tableViewContextMenu);
     connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &Wild8::profileManager);
 
-    // generatorEncounterIndexChanged(0);
-    // searcherEncounterIndexChanged(0);
+    encounterIndexChanged(0);
 
     QSettings setting;
     setting.beginGroup("wild8");
@@ -114,46 +131,81 @@ void Wild8::setupModels()
     setting.endGroup();
 }
 
+void Wild8::updateLocations()
+{
+    auto encounter = static_cast<Encounter>(ui->comboBoxEncounter->currentData().toInt());
+    int time = ui->comboBoxTime->currentIndex();
+
+    encounters = Encounters8::getEncounters(encounter, time, currentProfile);
+
+    std::vector<u16> locs;
+    std::transform(encounters.begin(), encounters.end(), std::back_inserter(locs),
+                   [](const EncounterArea8 &area) { return area.getLocation(); });
+
+    std::vector<std::string> locations = Translator::getLocations(locs, currentProfile.getVersion());
+    std::vector<int> indices(locations.size());
+    std::iota(indices.begin(), indices.end(), 0);
+    std::sort(indices.begin(), indices.end(), [&locations](int i, int j) { return locations[i] < locations[j]; });
+
+    ui->comboBoxLocation->clear();
+    for (int index : indices)
+    {
+        ui->comboBoxLocation->addItem(QString::fromStdString(locations[index]), index);
+    }
+}
+
+void Wild8::updatePokemon()
+{
+    auto area = encounters[ui->comboBoxLocation->currentData().toInt()];
+    std::vector<u16> species = area.getUniqueSpecies();
+
+    std::vector<std::string> names = area.getSpecieNames();
+
+    ui->comboBoxPokemon->clear();
+    ui->comboBoxPokemon->addItem("-");
+    for (size_t i = 0; i < species.size(); i++)
+    {
+        ui->comboBoxPokemon->addItem(QString::fromStdString(names[i]), species[i]);
+    }
+}
+
 void Wild8::generate()
 {
-    /*auto method = static_cast<Method>(ui->comboBoxGeneratorMethod->getCurrentInt());
-    generatorModel->clearModel();
-    generatorModel->setMethod(method);
+    model->clearModel();
 
-    u32 seed = ui->textBoxGeneratorSeed->getUInt();
-    u32 initialAdvances = ui->textBoxGeneratorStartingAdvance->getUInt();
-    u32 maxAdvances = ui->textBoxGeneratorMaxAdvances->getUInt();
+    u64 seed0 = ui->textBoxSeed0->getULong();
+    u64 seed1 = ui->textBoxSeed1->getULong();
+    u32 initialAdvances = ui->textBoxInitialAdvances->getUInt();
+    u32 maxAdvances = ui->textBoxMaxAdvances->getUInt();
     u16 tid = currentProfile.getTID();
     u16 sid = currentProfile.getSID();
-    u8 genderRatio = ui->filterGenerator->getGenderRatio();
     u32 offset = 0;
-    if (ui->filterGenerator->useDelay())
+    if (ui->filter->useDelay())
     {
-        offset = ui->filterGenerator->getDelay();
+        offset = ui->filter->getDelay();
     }
 
-    StateFilter filter(ui->filterGenerator->getGender(), ui->filterGenerator->getAbility(), ui->filterGenerator->getShiny(),
-                       ui->filterGenerator->getDisableFilters(), ui->filterGenerator->getMinIVs(), ui->filterGenerator->getMaxIVs(),
-                       ui->filterGenerator->getNatures(), ui->filterGenerator->getHiddenPowers(), ui->filterGenerator->getEncounterSlots());
+    StateFilter filter(ui->filter->getGender(), ui->filter->getAbility(), ui->filter->getShiny(), ui->filter->getDisableFilters(),
+                       ui->filter->getMinIVs(), ui->filter->getMaxIVs(), ui->filter->getNatures(), ui->filter->getHiddenPowers(),
+                       ui->filter->getEncounterSlots());
 
-    WildGenerator4 generator(initialAdvances, maxAdvances, tid, sid, genderRatio, method, filter,
-                             currentProfile.getVersion() & Game::Platinum);
+    WildGenerator8 generator(initialAdvances, maxAdvances, tid, sid, filter);
     generator.setOffset(offset);
-    generator.setEncounter(static_cast<Encounter>(ui->comboBoxGeneratorEncounter->getCurrentInt()));
+    generator.setEncounter(static_cast<Encounter>(ui->comboBoxEncounter->getCurrentInt()));
+    generator.setEncounterArea(encounters[ui->comboBoxLocation->currentData().toInt()]);
 
-    if (ui->toolButtonGeneratorLead->text().contains(tr("Synchronize")))
+    if (ui->toolButtonLead->text().contains(tr("Synchronize")))
     {
         generator.setLead(Lead::Synchronize);
-        generator.setSynchNature(ui->toolButtonGeneratorLead->getData());
+        generator.setSynchNature(ui->toolButtonLead->getData());
     }
     else
     {
-        generator.setLead(static_cast<Lead>(ui->toolButtonGeneratorLead->getData()));
+        generator.setLead(static_cast<Lead>(ui->toolButtonLead->getData()));
     }
-    generator.setEncounterArea(encounterGenerator[ui->comboBoxGeneratorLocation->currentData().toInt()]);
 
-    auto states = generator.generate(seed);
-    generatorModel->addItems(states);*/
+    auto states = generator.generate(seed0, seed1);
+    model->addItems(states);
 }
 
 void Wild8::profilesIndexChanged(int index)
@@ -167,8 +219,69 @@ void Wild8::profilesIndexChanged(int index)
         ui->labelProfileGameValue->setText(QString::fromStdString(currentProfile.getVersionString()));
         ui->labelProfileShinyCharmValue->setText(currentProfile.getShinyCharm() ? tr("Yes") : tr("No"));
 
-        // updateLocations();
-        // updateLocations();
+        updateLocations();
+    }
+}
+
+void Wild8::encounterIndexChanged(int index)
+{
+    if (index >= 0)
+    {
+        std::vector<std::string> t;
+        auto encounter = static_cast<Encounter>(ui->comboBoxEncounter->currentData().toInt());
+
+        switch (encounter)
+        {
+        case Encounter::Grass:
+            t = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11" };
+            break;
+        case Encounter::Surfing:
+        case Encounter::OldRod:
+        case Encounter::GoodRod:
+        case Encounter::SuperRod:
+            t = { "0", "1", "2", "3", "4" };
+            break;
+        case Encounter::RockSmash:
+            t = { "0", "1" };
+            break;
+        default:
+            break;
+        }
+
+        ui->filter->setEncounterSlots(t);
+        updateLocations();
+    }
+}
+
+void Wild8::locationIndexChanged(int index)
+{
+    if (index >= 0)
+    {
+        updatePokemon();
+    }
+}
+
+void Wild8::pokemonIndexChanged(int index)
+{
+    if (index <= 0)
+    {
+        ui->filter->resetEncounterSlots();
+    }
+    else
+    {
+        u16 num = ui->comboBoxPokemon->getCurrentUShort();
+        std::vector<bool> flags = encounters[ui->comboBoxLocation->currentData().toInt()].getSlots(num);
+        ui->filter->toggleEncounterSlots(flags);
+    }
+}
+
+void Wild8::timeIndexChanged(int index)
+{
+    if (index >= 0)
+    {
+        int position = ui->comboBoxLocation->currentIndex();
+        updateLocations();
+        ui->comboBoxLocation->setCurrentIndex(position);
     }
 }
 

@@ -297,7 +297,7 @@ std::vector<DreamRadarSlot> DreamRadar::getGeneratorSettings()
 
     std::array<u16, 3> genies = { 641, 642, 645 };
     std::array<u16, 5> legends = { 483, 484, 487, 249, 250 };
-    auto info = PersonalLoader5::getPersonal();
+    auto info = PersonalLoader::getPersonal(Game::BW2);
 
     std::array<QComboBox *, 6> species = { ui->comboBoxGeneratorSpecies1, ui->comboBoxGeneratorSpecies2, ui->comboBoxGeneratorSpecies3,
                                            ui->comboBoxGeneratorSpecies4, ui->comboBoxGeneratorSpecies5, ui->comboBoxGeneratorSpecies6 };
@@ -336,7 +336,7 @@ std::vector<DreamRadarSlot> DreamRadar::getSearcherSettings()
 
     std::array<u16, 3> genies = { 641, 642, 645 };
     std::array<u16, 5> legends = { 483, 484, 487, 249, 250 };
-    auto info = PersonalLoader5::getPersonal();
+    auto info = PersonalLoader::getPersonal(Game::BW2);
 
     std::array<QComboBox *, 6> species = { ui->comboBoxSearcherSpecies1, ui->comboBoxSearcherSpecies2, ui->comboBoxSearcherSpecies3,
                                            ui->comboBoxSearcherSpecies4, ui->comboBoxSearcherSpecies5, ui->comboBoxSearcherSpecies6 };

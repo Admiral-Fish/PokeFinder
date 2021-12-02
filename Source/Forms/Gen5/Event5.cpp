@@ -321,7 +321,7 @@ void Event5::generatorImportEvent()
 
             ui->checkBoxGeneratorEgg->setChecked(pgf.isEgg());
 
-            ui->filterGenerator->setGenderRatio(PersonalLoader5::getPersonal()[pgf.getSpecies()].getGender());
+            ui->filterGenerator->setGenderRatio(PersonalLoader::getPersonal(currentProfile.getVersion())[pgf.getSpecies()].getGender());
         }
         else
         {
@@ -391,7 +391,7 @@ void Event5::searcherImportEvent()
 
             ui->checkBoxSearcherEgg->setChecked(pgf.isEgg());
 
-            ui->filterSearcher->setGenderRatio(PersonalLoader5::getPersonal()[pgf.getSpecies()].getGender());
+            ui->filterSearcher->setGenderRatio(PersonalLoader::getPersonal(currentProfile.getVersion())[pgf.getSpecies()].getGender());
         }
         else
         {

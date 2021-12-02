@@ -158,12 +158,12 @@ namespace Encounters3
         }
     }
 
-    std::vector<EncounterArea3> getEncounters(Encounter encounter, const Profile3 &profile)
+    std::vector<EncounterArea3> getEncounters(Encounter encounter, Game version)
     {
-        std::vector<EncounterArea3> encounters;
-        const auto *info = PersonalLoader3::getPersonal();
+        const auto *info = PersonalLoader::getPersonal(version);
 
-        for (const auto &data : getData(profile.getVersion()))
+        std::vector<EncounterArea3> encounters;
+        for (const auto &data : getData(version))
         {
             auto areas = getArea(data, info);
             std::copy_if(areas.begin(), areas.end(), std::back_inserter(encounters),

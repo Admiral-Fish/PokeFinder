@@ -52,6 +52,7 @@ private:
 
 private slots:
     void okay();
+    void versionIndexChanged(int index);
 };
 
 #endif // PROFILEEDITOR8_HPP

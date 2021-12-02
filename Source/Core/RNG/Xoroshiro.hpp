@@ -59,7 +59,7 @@ public:
     }
 
 private:
-    u64 state[2];    
+    u64 state[2];
 };
 
 class XoroshiroBDSP

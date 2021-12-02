@@ -23,26 +23,12 @@
 #include <Core/Util/Global.hpp>
 
 class PersonalInfo;
+enum Game : u32;
 
-namespace PersonalLoader3
+namespace PersonalLoader
 {
-    const PersonalInfo *getPersonal();
-}
-
-namespace PersonalLoader4
-{
-    const PersonalInfo *getPersonal();
-}
-
-namespace PersonalLoader5
-{
-    const PersonalInfo *getPersonal();
-}
-
-namespace PersonalLoader8
-{
-    const PersonalInfo *getPersonal();
-    PersonalInfo getPersonal(u16 species, u8 form);
+    const PersonalInfo *getPersonal(Game version);
+    PersonalInfo getPersonal(Game version, u16 species, u8 form = 0);
 }
 
 #endif // PERSONALLOADER_HPP
