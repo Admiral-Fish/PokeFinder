@@ -128,7 +128,7 @@ std::vector<WildState> WildGenerator8::generate(u64 seed0, u64 seed1) const
         {
             state.setGender(0);
         }
-        else if (lead == Lead::CuteCharm)
+        else if (lead == Lead::CuteCharm || lead == Lead::CuteCharmFemale)
         {
             if (gen.next() % 3 > 0)
             {
