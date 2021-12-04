@@ -67,7 +67,6 @@ add_library(PokeFinderCore STATIC
     Gen5/Generators/StationaryGenerator5.cpp
     Gen5/Keypresses.cpp
     Gen5/Nazos.cpp
-    Gen5/PGF.cpp
     Gen5/Profile5.cpp
     Gen5/Searchers/DreamRadarSearcher.cpp
     Gen5/Searchers/EggSearcher5.cpp
