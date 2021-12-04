@@ -116,7 +116,7 @@ public:
 
     u8 getIV(u8 index) const
     {
-        return ivs[index]
+        return ivs[index];
     }
 
 private:
