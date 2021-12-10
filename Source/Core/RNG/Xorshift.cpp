@@ -41,17 +41,17 @@ void Xorshift::advance(u32 advances)
 
 u32 Xorshift::nextState()
 {
-    u32 t = state[1];
-    u32 s = state[2];
+    u32 t = state[0];
+    u32 s = state[3];
 
     t ^= t << 11;
     t ^= t >> 8;
     t ^= s ^ (s >> 19);
 
-    state[1] = state[0];
-    state[0] = state[3];
-    state[3] = state[2];
-    state[2] = t;
+    state[0] = state[1];
+    state[1] = state[2];
+    state[2] = state[3];
+    state[3] = t;
 
     return t;
 }
