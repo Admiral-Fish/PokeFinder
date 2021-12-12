@@ -60,15 +60,7 @@ EventGenerator8::EventGenerator8(u32 initialAdvances, u32 maxAdvances, u16 tid, 
         tsv = parameters.getTID() ^ parameters.getSID();
     }
 
-    for (u8 i = 0; i < 6; i++)
-    {
-        bool ivFlag = parameters.getIV(i) - 0xfc < 3;
-        if (ivFlag)
-        {
-            ivCount = parameters.getIV(i) - 0xfb;
-            break;
-        }
-    }
+    ivCount = parameters.getIVCount();
 }
 
 std::vector<State> EventGenerator8::generate(u64 seed0, u64 seed1) const
@@ -85,7 +77,7 @@ std::vector<State> EventGenerator8::generate(u64 seed0, u64 seed1) const
         Xorshift gen(rng);
 
         // Check for rand EC
-        if (parameters.getEC() != 0)
+        if (parameters.getEC() == 0)
         {
             gen.advance(1);
         }
@@ -109,7 +101,7 @@ std::vector<State> EventGenerator8::generate(u64 seed0, u64 seed1) const
 
         for (u8 i = 0; i < 6; i++)
         {
-            state.setIV(0, 255);
+            state.setIV(i, 255);
         }
 
         for (u8 i = 0; i < ivCount;)

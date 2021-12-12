@@ -50,6 +50,7 @@
 #include <Forms/Gen5/Stationary5.hpp>
 #include <Forms/Gen8/DenMap.hpp>
 #include <Forms/Gen8/Eggs8.hpp>
+#include <Forms/Gen8/Event8.hpp>
 #include <Forms/Gen8/IDs8.hpp>
 #include <Forms/Gen8/Profile/ProfileManager8.hpp>
 #include <Forms/Gen8/Raids.hpp>
@@ -110,6 +111,7 @@ MainWindow::~MainWindow()
     delete ids5;
     delete raids;
     delete wild8;
+    delete event8;
     delete egg8;
     delete ids8;
 }
@@ -151,6 +153,7 @@ void MainWindow::setupModels()
 
     connect(ui->pushButtonRaid, &QPushButton::clicked, this, &MainWindow::openRaids);
     connect(ui->pushButtonWild8, &QPushButton::clicked, this, &MainWindow::openWild8);
+    connect(ui->pushButtonEvent8, &QPushButton::clicked, this, &MainWindow::openEvent8);
     connect(ui->pushButtonEgg8, &QPushButton::clicked, this, &MainWindow::openEgg8);
     connect(ui->pushButtonIDs8, &QPushButton::clicked, this, &MainWindow::openIDs8);
     connect(ui->actionDenMap, &QAction::triggered, this, &MainWindow::openDenMap);
@@ -280,6 +283,10 @@ void MainWindow::updateProfiles(int num)
         if (wild8)
         {
             wild8->updateProfiles();
+        }
+        if (event8)
+        {
+            event8->updateProfiles();
         }
         if (egg8)
         {
@@ -622,6 +629,17 @@ void MainWindow::openWild8()
     }
     wild8->show();
     wild8->raise();
+}
+
+void MainWindow::openEvent8()
+{
+    if (!event8)
+    {
+        event8 = new Event8();
+        connect(event8, &Event8::alertProfiles, this, &MainWindow::updateProfiles);
+    }
+    event8->show();
+    event8->raise();
 }
 
 void MainWindow::openEgg8()

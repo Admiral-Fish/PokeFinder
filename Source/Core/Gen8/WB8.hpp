@@ -37,13 +37,14 @@ public:
         egg(data[0x28d] == 1),
         nature(data[0x28e]),
         abilityType(data[0x28f]),
-        pidType(data[0x290]),
-        ivs { data[0x2b2], data[0x2b3], data[0x2b4], data[0x2b6], data[0x2b7], data[0x2b5] }
+        pidType(data[0x290])
     {
+        // Look at HP IV for flag
+        bool ivFlag = data[0x2b2] - 0xfc < 3;
+        ivCount = ivFlag ? (data[0x2b2] - 0xfb) : 0;
     }
 
-    WB8(u16 tid, u16 sid, u32 ec, u32 pid, u16 species, u8 form, u8 gender, bool egg, u8 nature, u8 abilityType, u8 pidType, u8 hp, u8 atk,
-        u8 def, u8 spa, u8 spd, u8 spe) :
+    WB8(u16 tid, u16 sid, u32 ec, u32 pid, u16 species, u8 form, u8 gender, bool egg, u8 nature, u8 abilityType, u8 pidType, u8 ivCount) :
         tid(tid),
         sid(sid),
         ec(ec),
@@ -55,7 +56,7 @@ public:
         nature(nature),
         abilityType(abilityType),
         pidType(pidType),
-        ivs { hp, atk, def, spa, spd, spe }
+        ivCount(ivCount)
     {
     }
 
@@ -114,9 +115,9 @@ public:
         return pidType;
     }
 
-    u8 getIV(u8 index) const
+    u8 getIVCount() const
     {
-        return ivs[index];
+        return ivCount;
     }
 
 private:
@@ -131,7 +132,7 @@ private:
     u8 nature; // 0xff -> unset
     u8 abilityType; // 0: 0, 1: 1, 2: H, 3: 1/2, 4: 1/2/H
     u8 pidType; // 0: never, 1: random, 2: star, 3: square, 4: static
-    u8 ivs[6];
+    u8 ivCount;
 };
 
 #endif // WB8_HPP
