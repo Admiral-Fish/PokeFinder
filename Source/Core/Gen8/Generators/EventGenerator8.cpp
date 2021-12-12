@@ -20,6 +20,7 @@
 #include "EventGenerator8.hpp"
 #include <Core/Enum/Method.hpp>
 #include <Core/Parents/PersonalLoader.hpp>
+#include <Core/RNG/RNGList.hpp>
 #include <Core/RNG/Xorshift.hpp>
 
 void fixPID(u32 &pid, u16 tsv, u8 shinyType)
@@ -70,7 +71,9 @@ std::vector<State> EventGenerator8::generate(u64 seed0, u64 seed1) const
     Xorshift rng(seed0, seed1);
     rng.advance(initialAdvances + offset);
 
-    for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rng.next())
+    RNGList<u32, Xorshift, 32, 0> rngList(rng);
+
+    for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rngList.advanceState())
     {
         State state(initialAdvances + cnt);
 
@@ -79,7 +82,7 @@ std::vector<State> EventGenerator8::generate(u64 seed0, u64 seed1) const
         // Check for rand EC
         if (parameters.getEC() == 0)
         {
-            gen.advance(1);
+            rngList.advance(1);
         }
 
         u32 pid;
@@ -88,7 +91,7 @@ std::vector<State> EventGenerator8::generate(u64 seed0, u64 seed1) const
         case 0:
         case 1:
         case 2:
-            pid = gen.next();
+            pid = rngList.getValue();
             fixPID(pid, tsv, parameters.getPIDType());
             state.setShiny(parameters.getPIDType());
             break;
@@ -106,7 +109,7 @@ std::vector<State> EventGenerator8::generate(u64 seed0, u64 seed1) const
 
         for (u8 i = 0; i < ivCount;)
         {
-            u8 index = gen.next() % 6;
+            u8 index = rngList.getValue() % 6;
             if (state.getIV(index) == 255)
             {
                 state.setIV(index, 31);
@@ -118,7 +121,7 @@ std::vector<State> EventGenerator8::generate(u64 seed0, u64 seed1) const
         {
             if (state.getIV(i) == 255)
             {
-                state.setIV(i, gen.next() % 32);
+                state.setIV(i, rngList.getValue() % 32);
             }
         }
 
@@ -130,10 +133,10 @@ std::vector<State> EventGenerator8::generate(u64 seed0, u64 seed1) const
             state.setAbility(parameters.getAbilityType());
             break;
         case 3:
-            state.setAbility(gen.next() % 2);
+            state.setAbility(rngList.getValue() % 2);
             break;
         case 4:
-            state.setAbility(gen.next() % 3);
+            state.setAbility(rngList.getValue() % 3);
             break;
         }
 
@@ -146,7 +149,7 @@ std::vector<State> EventGenerator8::generate(u64 seed0, u64 seed1) const
             state.setGender(parameters.getGender());
             break;
         default:
-            state.setGender((gen.next() % 252) + 1 < parameters.getGender());
+            state.setGender((rngList.getValue() % 252) + 1 < parameters.getGender());
             break;
         }
 
@@ -154,7 +157,7 @@ std::vector<State> EventGenerator8::generate(u64 seed0, u64 seed1) const
 
         if (filter.comparePID(state) && filter.compareIV(state))
         {
-            states.emplace_back(state);
+            // states.emplace_back(state);
         }
     }
 
