@@ -157,7 +157,7 @@ std::vector<State> EventGenerator8::generate(u64 seed0, u64 seed1) const
 
         if (filter.comparePID(state) && filter.compareIV(state))
         {
-            // states.emplace_back(state);
+            states.emplace_back(state);
         }
     }
 
