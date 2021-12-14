@@ -77,8 +77,6 @@ std::vector<State> EventGenerator8::generate(u64 seed0, u64 seed1) const
     {
         State state(initialAdvances + cnt);
 
-        Xorshift gen(rng);
-
         // Check for rand EC
         if (parameters.getEC() == 0)
         {
@@ -153,7 +151,7 @@ std::vector<State> EventGenerator8::generate(u64 seed0, u64 seed1) const
             break;
         }
 
-        state.setNature(parameters.getNature() != 255 ? parameters.getNature() : gen.next() % 25);
+        state.setNature(parameters.getNature() != 255 ? parameters.getNature() : rngList.getValue() % 25);
 
         if (filter.comparePID(state) && filter.compareIV(state))
         {
