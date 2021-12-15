@@ -162,13 +162,6 @@
         <string>Gen 8</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_9">
-        <item row="2" column="0">
-         <widget class="QPushButton" name="pushButtonEgg8">
-          <property name="text">
-           <string>Egg</string>
-          </property>
-         </widget>
-        </item>
         <item row="0" column="0">
          <widget class="QPushButton" name="pushButtonRaid">
           <property name="text">
@@ -183,10 +176,24 @@
           </property>
          </widget>
         </item>
-        <item row="3" column="0">
+        <item row="4" column="0">
          <widget class="QPushButton" name="pushButtonIDs8">
           <property name="text">
            <string>TID/SID</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="0">
+         <widget class="QPushButton" name="pushButtonEgg8">
+          <property name="text">
+           <string>Egg</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="QPushButton" name="pushButtonEvent8">
+          <property name="text">
+           <string>Event</string>
           </property>
          </widget>
         </item>
@@ -381,6 +388,30 @@
    </property>
   </action>
  </widget>
+ <tabstops>
+  <tabstop>tabWidget</tabstop>
+  <tabstop>pushButtonStationary3</tabstop>
+  <tabstop>pushButtonWild3</tabstop>
+  <tabstop>pushButtonGameCube</tabstop>
+  <tabstop>pushButtonEgg3</tabstop>
+  <tabstop>pushButtonIDs3</tabstop>
+  <tabstop>pushButtonStationary4</tabstop>
+  <tabstop>pushButtonWild4</tabstop>
+  <tabstop>pushButtonEgg4</tabstop>
+  <tabstop>pushButtonIDs4</tabstop>
+  <tabstop>pushButtonStationary5</tabstop>
+  <tabstop>pushButtonWild5</tabstop>
+  <tabstop>pushButtonEvent5</tabstop>
+  <tabstop>pushButtonDreamRadar</tabstop>
+  <tabstop>pushButtonHiddenGrotto</tabstop>
+  <tabstop>pushButtonEgg5</tabstop>
+  <tabstop>pushButtonIDs5</tabstop>
+  <tabstop>pushButtonRaid</tabstop>
+  <tabstop>pushButtonWild8</tabstop>
+  <tabstop>pushButtonEvent8</tabstop>
+  <tabstop>pushButtonEgg8</tabstop>
+  <tabstop>pushButtonIDs8</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

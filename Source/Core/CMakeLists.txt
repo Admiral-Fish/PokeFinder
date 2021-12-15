@@ -80,6 +80,7 @@ add_library(PokeFinderCore STATIC
     Gen8/Encounters8.cpp
     Gen8/Filters/IDFilter8.cpp
     Gen8/Generators/EggGenerator8.cpp
+    Gen8/Generators/EventGenerator8.cpp
     Gen8/Generators/IDGenerator8.cpp
     Gen8/Generators/RaidGenerator.cpp
     Gen8/Generators/StationaryGenerator8.cpp
