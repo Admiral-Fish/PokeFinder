@@ -61,6 +61,7 @@ QVariant EggModel3::data(const QModelIndex &index, int role) const
         switch (column)
         {
         case 0:
+            return state.getAdvances();
         case 1:
             return state.getGenerateAdvance();
         case 2:
