@@ -25,7 +25,7 @@
 class TinyMT
 {
 public:
-    TinyMT(u32 seed = 0);
+    TinyMT(u32 seed);
     explicit TinyMT(const u32 state[4]);
     void advance(u32 advances);
     u32 next();

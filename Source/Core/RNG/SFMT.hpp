@@ -25,7 +25,7 @@
 class SFMT
 {
 public:
-    SFMT(u32 seed = 0);
+    SFMT(u32 seed);
     void advance(u32 advances);
     u64 next();
     u32 nextUInt();

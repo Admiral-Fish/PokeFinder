@@ -218,7 +218,7 @@ void IVCalculator::findIVs()
     u8 altform = ui->comboBoxAltForm->currentIndex();
     PersonalInfo info = PersonalLoader::getPersonal(version, specie, altform);
 
-    auto ivs = IVChecker::calculateIVRange(info.getBaseStats(), stats, levels, nature, characteristic, hiddenPower);
+    auto ivs = IVChecker::calculateIVRange(info.getStats(), stats, levels, nature, characteristic, hiddenPower);
 
     displayIVs(ui->labelHPIVValue, ivs[0]);
     displayIVs(ui->labelAtkIVValue, ivs[1]);
@@ -258,7 +258,7 @@ void IVCalculator::altformIndexChanged(int index)
 
         PersonalInfo info = PersonalLoader::getPersonal(version, specie, index);
 
-        std::array<u8, 6> stats = info.getBaseStats();
+        std::array<u8, 6> stats = info.getStats();
         ui->labelBaseHPValue->setText(QString::number(stats[0]));
         ui->labelBaseAtkValue->setText(QString::number(stats[1]));
         ui->labelBaseDefValue->setText(QString::number(stats[2]));

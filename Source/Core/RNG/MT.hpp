@@ -25,7 +25,7 @@
 class MT
 {
 public:
-    explicit MT(u32 seed = 0);
+    explicit MT(u32 seed);
     void advance(u32 advances);
     u32 next();
     u16 nextUShort();

@@ -26,7 +26,7 @@ template <u32 add, u32 mult>
 class LCRNG
 {
 public:
-    LCRNG(u32 seed = 0, u32 *count = nullptr) : seed(seed), count(count)
+    LCRNG(u32 seed, u32 *count = nullptr) : seed(seed), count(count)
     {
     }
 

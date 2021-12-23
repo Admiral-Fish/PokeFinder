@@ -28,12 +28,7 @@ class PersonalInfo
 public:
     constexpr PersonalInfo(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, u8 gender, u16 ability1, u16 ability2, u16 abilityH, u8 formCount,
                            u16 formStatIndex, bool present) :
-        hp(hp),
-        atk(atk),
-        def(def),
-        spa(spa),
-        spd(spd),
-        spe(spe),
+        stats { hp, atk, def, spa, spd, spe },
         gender(gender),
         ability1(ability1),
         ability2(ability2),
@@ -44,9 +39,9 @@ public:
     {
     }
 
-    std::array<u8, 6> getBaseStats() const
+    std::array<u8, 6> getStats() const
     {
-        return { hp, atk, def, spa, spd, spe };
+        return stats;
     }
 
     u16 getGender() const
@@ -85,12 +80,7 @@ public:
     }
 
 private:
-    u8 hp;
-    u8 atk;
-    u8 def;
-    u8 spa;
-    u8 spd;
-    u8 spe;
+    std::array<u8, 6> stats;
     u8 gender;
     u16 ability1;
     u16 ability2;

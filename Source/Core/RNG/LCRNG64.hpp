@@ -26,7 +26,7 @@ template <u64 add, u64 mult>
 class LCRNG64
 {
 public:
-    LCRNG64(u64 seed = 0) : seed(seed)
+    LCRNG64(u64 seed) : seed(seed)
     {
     }
 

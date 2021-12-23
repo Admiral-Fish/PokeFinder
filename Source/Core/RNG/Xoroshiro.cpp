@@ -24,7 +24,7 @@ inline u64 rotl(u64 x, int k)
     return (x << k) | (x >> (64 - k));
 }
 
-Xoroshiro::Xoroshiro(u64 seed0, u64 seed1) : state { seed0, seed1 }
+Xoroshiro::Xoroshiro(u64 seed) : state { seed, 0x82A2B175229D6A5B }
 {
 }
 

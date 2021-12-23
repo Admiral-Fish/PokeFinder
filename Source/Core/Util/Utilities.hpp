@@ -20,10 +20,10 @@
 #ifndef UTILITIES_HPP
 #define UTILITIES_HPP
 
-#include <Core/Util/DateTime.hpp>
 #include <Core/Util/Global.hpp>
 #include <string>
 
+class DateTime;
 class HGSSRoamer;
 
 namespace Utilities

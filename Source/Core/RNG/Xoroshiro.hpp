@@ -25,7 +25,7 @@
 class Xoroshiro
 {
 public:
-    Xoroshiro(u64 seed0, u64 seed1 = 0x82A2B175229D6A5B);
+    Xoroshiro(u64 seed);
     u64 next();
 
     template <u32 max>
