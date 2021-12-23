@@ -345,7 +345,8 @@ namespace DenLoader
                     if (std::any_of(std::begin(stars), std::end(stars), [](bool flag) { return flag; }))
                     {
                         swordRaids.emplace_back(ability, altform, ivCount, gender, gigantamax, species,
-                                                PersonalLoader::getPersonal(Game::SwSh, species, altform), stars, shinyType);
+                                                PersonalLoader::getPersonal(Game::SwSh, species, altform), stars,
+                                                static_cast<Shiny>(shinyType));
                     }
                 }
 
@@ -369,7 +370,8 @@ namespace DenLoader
                     if (std::any_of(std::begin(stars), std::end(stars), [](bool flag) { return flag; }))
                     {
                         shieldRaids.emplace_back(ability, altform, ivCount, gender, gigantamax, species,
-                                                 PersonalLoader::getPersonal(Game::SwSh, species, altform), stars, shinyType);
+                                                 PersonalLoader::getPersonal(Game::SwSh, species, altform), stars,
+                                                 static_cast<Shiny>(shinyType));
                     }
                 }
 

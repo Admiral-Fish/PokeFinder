@@ -20,6 +20,7 @@
 #ifndef RAID_HPP
 #define RAID_HPP
 
+#include <Core/Enum/Shiny.hpp>
 #include <Core/Parents/PersonalInfo.hpp>
 #include <Core/Util/Global.hpp>
 #include <array>
@@ -28,8 +29,8 @@
 class Raid
 {
 public:
-    constexpr Raid(u8 ability, u8 altform, u8 ivCount, u8 gender, bool gigantamax, u16 species, const PersonalInfo &info, const std::array<bool, 5> &star,
-                   u8 shinyType = 0) :
+    constexpr Raid(u8 ability, u8 altform, u8 ivCount, u8 gender, bool gigantamax, u16 species, const PersonalInfo &info,
+                   const std::array<bool, 5> &star, Shiny shinyType = Shiny::Random) :
         ability(ability),
         altform(altform),
         ivCount(ivCount),
@@ -77,7 +78,7 @@ public:
         return species;
     }
 
-    u8 getShinyType() const
+    Shiny getShinyType() const
     {
         return shinyType;
     }
@@ -118,7 +119,7 @@ private:
     u16 species;
     PersonalInfo info;
     std::array<bool, 5> star;
-    u8 shinyType;
+    Shiny shinyType;
 };
 
 #endif // RAID_HPP

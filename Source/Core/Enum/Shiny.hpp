@@ -17,21 +17,19 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef ENCOUNTERS8_HPP
-#define ENCOUNTERS8_HPP
+#ifndef SHINY_HPP
+#define SHINY_HPP
 
 #include <Core/Util/Global.hpp>
-#include <vector>
 
-class EncounterArea8;
-enum Encounter : u8;
-class Profile8;
-class StaticTemplate;
-
-namespace Encounters8
+enum Shiny : u8
 {
-    std::vector<EncounterArea8> getEncounters(Encounter encounter, int time, const Profile8 &profile);
-    const StaticTemplate *getStaticEncounter(int index, int &size);
-}
+    Random,
+    Never,
+    Always,
+    Star,
+    Square,
+    Static
+};
 
-#endif // ENCOUNTERS8_HPP
+#endif // SHINY_HPP
