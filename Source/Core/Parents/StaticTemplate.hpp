@@ -29,22 +29,22 @@ class StaticTemplate
 {
 public:
     constexpr StaticTemplate(Game version, u16 species, u8 level) :
-        version(version), species(species), form(0), level(level), ability(255), shiny(Shiny::Random), ivCount(0)
+        version(version), species(species), level(level), ability(255), shiny(Shiny::Random), ivCount(0)
     {
     }
 
     constexpr StaticTemplate(Game version, u16 species, u8 level, u8 ivCount) :
-        version(version), species(species), form(0), level(level), ability(255), shiny(Shiny::Random), ivCount(ivCount)
+        version(version), species(species), level(level), ability(255), shiny(Shiny::Random), ivCount(ivCount)
     {
     }
 
     constexpr StaticTemplate(Game version, u16 species, u8 level, u8 ability, Shiny shiny, u8 ivCount) :
-        version(version), species(species), form(0), level(level), ability(ability), shiny(shiny), ivCount(ivCount)
+        version(version), species(species), level(level), ability(ability), shiny(shiny), ivCount(ivCount)
     {
     }
 
     constexpr StaticTemplate(Game version, u16 species, u8 level, u8 ability, u8 ivCount) :
-        version(version), species(species), form(0), level(level), ability(ability), shiny(Shiny::Random), ivCount(ivCount)
+        version(version), species(species), level(level), ability(ability), shiny(Shiny::Random), ivCount(ivCount)
     {
     }
 
@@ -56,11 +56,6 @@ public:
     u16 getSpecies() const
     {
         return species;
-    }
-
-    u8 getForm() const
-    {
-        return form;
     }
 
     u8 getLevel() const
@@ -86,7 +81,6 @@ public:
 private:
     Game version;
     u16 species;
-    u8 form;
     u8 level;
     u8 ability; // 0: 0, 1: 1, 2: H, 3: 0/1, 4: 0/1/H
     Shiny shiny;
