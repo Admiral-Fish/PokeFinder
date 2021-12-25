@@ -17,24 +17,22 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef SHINY_HPP
-#define SHINY_HPP
+#ifndef STATICGENERATOR3_HPP
+#define STATICGENERATOR3_HPP
 
-#include <Core/Util/Global.hpp>
+#include <Core/Parents/Generators/StaticGenerator.hpp>
+#include <Core/Parents/States/State.hpp>
 
-enum class Shiny : u8
+class StaticGenerator3 : public StaticGenerator
 {
-    Random,
-    Never,
-    Always,
-    Star,
-    Square,
-    Static
+public:
+    StaticGenerator3() = default;
+    StaticGenerator3(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter);
+    std::vector<State> generate(u32 seed) const;
+
+private:
+    std::vector<State> generateMethod124(u32 seed) const;
+    std::vector<State> generateMethod1Reverse(u32 seed) const;
 };
 
-constexpr u8 toInt(Shiny val)
-{
-    return static_cast<u8>(val);
-};
-
-#endif // SHINY_HPP
+#endif // STATICGENERATOR3_HPP

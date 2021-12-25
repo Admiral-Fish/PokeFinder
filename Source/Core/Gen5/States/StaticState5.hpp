@@ -17,24 +17,33 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef SHINY_HPP
-#define SHINY_HPP
+#ifndef STATICSTATE5_HPP
+#define STATICSTATE5_HPP
 
-#include <Core/Util/Global.hpp>
+#include <Core/Gen5/States/State5.hpp>
+#include <Core/Parents/States/StaticState.hpp>
 
-enum class Shiny : u8
+class StaticState5 : public State5, public StaticState
 {
-    Random,
-    Never,
-    Always,
-    Star,
-    Square,
-    Static
+public:
+    StaticState5() = default;
+
+    explicit StaticState5(u32 advance) : StaticState(advance)
+    {
+    }
+
+    u32 getIVState() const
+    {
+        return ivState;
+    }
+
+    void setIVState(u32 ivState)
+    {
+        this->ivState = ivState;
+    }
+
+private:
+    u32 ivState;
 };
 
-constexpr u8 toInt(Shiny val)
-{
-    return static_cast<u8>(val);
-};
-
-#endif // SHINY_HPP
+#endif // STATICSTATE5_HPP

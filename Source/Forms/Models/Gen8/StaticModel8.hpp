@@ -17,24 +17,24 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef SHINY_HPP
-#define SHINY_HPP
+#ifndef STATICMODEL8_HPP
+#define STATICMODEL8_HPP
 
-#include <Core/Util/Global.hpp>
+#include <Core/Parents/States/StaticState.hpp>
+#include <Forms/Models/TableModel.hpp>
 
-enum class Shiny : u8
+class StaticModel8 : public TableModel<StaticState>
 {
-    Random,
-    Never,
-    Always,
-    Star,
-    Square,
-    Static
+    Q_OBJECT
+public:
+    explicit StaticModel8(QObject *parent);
+    int columnCount(const QModelIndex &parent = QModelIndex()) const override;
+    QVariant data(const QModelIndex &index, int role) const override;
+    QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
+
+private:
+    QStringList header = { tr("Advances"), tr("PID"), tr("Shiny"), tr("Nature"), tr("Ability"), tr("HP"),
+                           tr("Atk"),      tr("Def"), tr("SpA"),   tr("SpD"),    tr("Spe"),     tr("Gender") };
 };
 
-constexpr u8 toInt(Shiny val)
-{
-    return static_cast<u8>(val);
-};
-
-#endif // SHINY_HPP
+#endif // STATICMODEL8_HPP

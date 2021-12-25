@@ -8,14 +8,14 @@ This will be a RNG Tool for all main Pokémon games generations 3-7. It currentl
 
 # Features
 Gen 3
-- Stationary
+- Static
 - Wild
 - Egg
 - IDs
 - Gales/Colo/Channel
 
 Gen 4
-- Stationary
+- Static
 - Wild
 - Egg
 - IDs

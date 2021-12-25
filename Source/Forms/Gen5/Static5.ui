@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Eggs5</class>
- <widget class="QWidget" name="Eggs5">
+ <class>Static5</class>
+ <widget class="QWidget" name="Static5">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Gen 5 Eggs</string>
+   <string>Gen 5 Static</string>
   </property>
   <layout class="QGridLayout" name="gridLayout_7">
    <item row="0" column="0">
@@ -210,29 +210,11 @@
    </item>
    <item row="1" column="0">
     <widget class="QTabWidget" name="tabRNGSelector">
-     <widget class="QWidget" name="tabGenerator">
+     <widget class="QWidget" name="tabStatic">
       <attribute name="title">
        <string>Generator</string>
       </attribute>
-      <layout class="QGridLayout" name="gridLayout_12">
-       <item row="0" column="1">
-        <widget class="QGroupBox" name="groupBoxGeneratorSettings">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-           <horstretch>2</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="title">
-          <string>Settings</string>
-         </property>
-         <layout class="QGridLayout" name="gridLayout_11">
-          <item row="0" column="0">
-           <widget class="EggSettings" name="eggSettingsGenerator" native="true"/>
-          </item>
-         </layout>
-        </widget>
-       </item>
+      <layout class="QGridLayout" name="gridLayout_8">
        <item row="0" column="0">
         <widget class="QGroupBox" name="groupBoxGeneratorRNGInfo">
          <property name="sizePolicy">
@@ -245,38 +227,102 @@
           <string>RNG Info</string>
          </property>
          <layout class="QGridLayout" name="gridLayout_6">
-          <item row="0" column="1">
-           <widget class="TextBox" name="textBoxGeneratorInitialAdvances">
-            <property name="text">
-             <string notr="true">0</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="1">
-           <widget class="TextBox" name="textBoxGeneratorMaxAdvances">
-            <property name="text">
-             <string notr="true">100000</string>
-            </property>
-           </widget>
-          </item>
           <item row="2" column="0">
-           <widget class="QLabel" name="labelGeneratorSeed">
+           <widget class="QPushButton" name="pushButtonGeneratorLead">
             <property name="text">
-             <string>Seed</string>
+             <string>Synchronize</string>
             </property>
            </widget>
           </item>
-          <item row="1" column="0">
+          <item row="4" column="0">
            <widget class="QLabel" name="labelGeneratorMaxAdvances">
             <property name="text">
              <string>Max Advances</string>
             </property>
            </widget>
           </item>
-          <item row="2" column="1">
+          <item row="5" column="1">
            <widget class="TextBox" name="textBoxGeneratorSeed"/>
           </item>
-          <item row="3" column="0" colspan="2">
+          <item row="1" column="0">
+           <widget class="QLabel" name="labelGeneratorEncounter">
+            <property name="text">
+             <string>Encounter</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="ComboBox" name="comboBoxGeneratorEncounter">
+            <item>
+             <property name="text">
+              <string>Static</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Roamer</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item row="5" column="0">
+           <widget class="QLabel" name="labelGeneratorSeed">
+            <property name="text">
+             <string>Seed</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="QComboBox" name="comboBoxGeneratorLead"/>
+          </item>
+          <item row="3" column="0">
+           <widget class="QLabel" name="labelGeneratorInitialAdvances">
+            <property name="text">
+             <string>Initial Advances</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="1">
+           <widget class="TextBox" name="textBoxGeneratorInitialAdvances">
+            <property name="text">
+             <string notr="true">0</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="1">
+           <widget class="TextBox" name="textBoxGeneratorMaxAdvances">
+            <property name="text">
+             <string notr="true">100000</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0">
+           <widget class="QLabel" name="labelGeneratorMethod">
+            <property name="text">
+             <string>Method</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="ComboBox" name="comboBoxGeneratorMethod">
+            <item>
+             <property name="text">
+              <string>IVs</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>IVs C-Gear</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>PIDRNG</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item row="6" column="0" colspan="2">
            <layout class="QHBoxLayout" name="horizontalLayout_2">
             <item>
              <widget class="QPushButton" name="pushButtonGenerate">
@@ -303,21 +349,14 @@
             </item>
            </layout>
           </item>
-          <item row="0" column="0">
-           <widget class="QLabel" name="labelGeneratorInitialAdvances">
-            <property name="text">
-             <string>Initial Advances</string>
-            </property>
-           </widget>
-          </item>
          </layout>
         </widget>
        </item>
-       <item row="0" column="2">
+       <item row="0" column="1">
         <widget class="QGroupBox" name="groupBoxGeneratorFilters">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-           <horstretch>3</horstretch>
+           <horstretch>2</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
@@ -331,7 +370,7 @@
          </layout>
         </widget>
        </item>
-       <item row="1" column="0" colspan="3">
+       <item row="1" column="0" colspan="2">
         <widget class="TableView" name="tableViewGenerator">
          <property name="contextMenuPolicy">
           <enum>Qt::CustomContextMenu</enum>
@@ -343,37 +382,16 @@
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="tabSearcher">
-      <property name="enabled">
-       <bool>true</bool>
-      </property>
+     <widget class="QWidget" name="tabSpreadSearcher">
       <attribute name="title">
        <string>Searcher</string>
       </attribute>
-      <layout class="QGridLayout" name="gridLayout_3">
+      <layout class="QGridLayout" name="gridLayout_9">
        <item row="0" column="1">
-        <widget class="QGroupBox" name="groupBoxSearcherSettings">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-           <horstretch>2</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="title">
-          <string>Settings</string>
-         </property>
-         <layout class="QGridLayout" name="gridLayout_13">
-          <item row="0" column="0">
-           <widget class="EggSettings" name="eggSettingsSearcher" native="true"/>
-          </item>
-         </layout>
-        </widget>
-       </item>
-       <item row="0" column="2">
         <widget class="QGroupBox" name="groupBoxSearcherFilters">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-           <horstretch>3</horstretch>
+           <horstretch>2</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
@@ -387,7 +405,7 @@
          </layout>
         </widget>
        </item>
-       <item row="2" column="0" colspan="3">
+       <item row="2" column="0" colspan="2">
         <widget class="TableView" name="tableViewSearcher">
          <property name="contextMenuPolicy">
           <enum>Qt::CustomContextMenu</enum>
@@ -400,7 +418,7 @@
          </attribute>
         </widget>
        </item>
-       <item row="1" column="0" colspan="3">
+       <item row="1" column="0" colspan="2">
         <widget class="QProgressBar" name="progressBar">
          <property name="value">
           <number>0</number>
@@ -419,89 +437,28 @@
           <string>RNG Info</string>
          </property>
          <layout class="QGridLayout" name="gridLayout_2">
-          <item row="1" column="0">
+          <item row="2" column="1">
+           <widget class="QLabel" name="labelSearcherLead">
+            <property name="text">
+             <string>Lead</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="1">
            <widget class="QLabel" name="labelSearcherStartDate">
             <property name="text">
              <string>Start Date</string>
             </property>
            </widget>
           </item>
-          <item row="2" column="1">
-           <widget class="DateEdit" name="dateEditSearcherEndDate">
-            <property name="maximumDateTime">
-             <datetime>
-              <hour>23</hour>
-              <minute>59</minute>
-              <second>59</second>
-              <year>2099</year>
-              <month>12</month>
-              <day>31</day>
-             </datetime>
-            </property>
-            <property name="minimumDateTime">
-             <datetime>
-              <hour>0</hour>
-              <minute>0</minute>
-              <second>0</second>
-              <year>2000</year>
-              <month>1</month>
-              <day>1</day>
-             </datetime>
-            </property>
-            <property name="calendarPopup">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="0">
-           <widget class="QLabel" name="labelSearcherEndDate">
-            <property name="text">
-             <string>End Date</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="0">
-           <widget class="QLabel" name="labelSearcherMaxAdvances">
-            <property name="text">
-             <string>Max Advances</string>
-            </property>
-           </widget>
-          </item>
           <item row="0" column="1">
-           <widget class="TextBox" name="textBoxSearcherMaxAdvances">
+           <widget class="QLabel" name="labelSearcherMethod">
             <property name="text">
-             <string notr="true">100</string>
+             <string>Method</string>
             </property>
            </widget>
           </item>
-          <item row="1" column="1">
-           <widget class="DateEdit" name="dateEditSearcherStartDate">
-            <property name="maximumDateTime">
-             <datetime>
-              <hour>23</hour>
-              <minute>59</minute>
-              <second>59</second>
-              <year>2099</year>
-              <month>12</month>
-              <day>31</day>
-             </datetime>
-            </property>
-            <property name="minimumDateTime">
-             <datetime>
-              <hour>0</hour>
-              <minute>0</minute>
-              <second>0</second>
-              <year>2000</year>
-              <month>1</month>
-              <day>1</day>
-             </datetime>
-            </property>
-            <property name="calendarPopup">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="0" colspan="2">
+          <item row="6" column="1" colspan="5">
            <layout class="QHBoxLayout" name="horizontalLayout">
             <item>
              <widget class="QPushButton" name="pushButtonSearch">
@@ -531,6 +488,115 @@
             </item>
            </layout>
           </item>
+          <item row="5" column="1" colspan="5">
+           <layout class="QGridLayout" name="gridLayout_3">
+            <item row="0" column="0">
+             <widget class="QLabel" name="labelSearcherMinAdvance">
+              <property name="text">
+               <string>Min Advance</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="3">
+             <widget class="TextBox" name="textBoxSearcherMaxAdvances">
+              <property name="text">
+               <string notr="true">1000</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="2">
+             <widget class="QLabel" name="labelSearcherMaxAdvance">
+              <property name="text">
+               <string>Max Advance</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="1">
+             <widget class="TextBox" name="textBoxSearcherMinAdvances">
+              <property name="text">
+               <string notr="true">0</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item row="1" column="1">
+           <widget class="QLabel" name="labelSearcherEncounter">
+            <property name="text">
+             <string>Encounter</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="2" colspan="4">
+           <widget class="ComboBox" name="comboBoxSearcherMethod">
+            <item>
+             <property name="text">
+              <string>IVs</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>IVs C-Gear</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>PIDRNG</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item row="1" column="2" colspan="4">
+           <widget class="ComboBox" name="comboBoxSearcherEncounter">
+            <item>
+             <property name="text">
+              <string>Static</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Roamer</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item row="2" column="2" colspan="4">
+           <widget class="ComboBox" name="comboBoxSearcherLead">
+            <item>
+             <property name="text">
+              <string>Any</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Synchronize</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Cute Charm</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>None</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item row="4" column="1">
+           <widget class="QLabel" name="labelSearcherEndDate">
+            <property name="text">
+             <string>End Date</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="2" colspan="4">
+           <widget class="DateEdit" name="dateEditSearcherStartDate"/>
+          </item>
+          <item row="4" column="2" colspan="4">
+           <widget class="DateEdit" name="dateEditSearcherEndDate"/>
+          </item>
          </layout>
         </widget>
        </item>
@@ -552,36 +618,35 @@
    <header>Forms/Controls/TableView.hpp</header>
   </customwidget>
   <customwidget>
-   <class>DateEdit</class>
-   <extends>QDateEdit</extends>
-   <header>Forms/Controls/DateEdit.hpp</header>
-  </customwidget>
-  <customwidget>
    <class>Filter</class>
    <extends>QWidget</extends>
    <header>Forms/Controls/Filter.hpp</header>
    <container>1</container>
   </customwidget>
   <customwidget>
-   <class>EggSettings</class>
-   <extends>QWidget</extends>
-   <header>Forms/Controls/EggSettings.hpp</header>
-   <container>1</container>
+   <class>ComboBox</class>
+   <extends>QComboBox</extends>
+   <header>Forms/Controls/ComboBox.hpp</header>
+  </customwidget>
+  <customwidget>
+   <class>DateEdit</class>
+   <extends>QDateEdit</extends>
+   <header>Forms/Controls/DateEdit.hpp</header>
   </customwidget>
  </customwidgets>
  <tabstops>
   <tabstop>comboBoxProfiles</tabstop>
   <tabstop>pushButtonProfileManager</tabstop>
   <tabstop>tabRNGSelector</tabstop>
+  <tabstop>comboBoxGeneratorMethod</tabstop>
+  <tabstop>pushButtonGeneratorLead</tabstop>
+  <tabstop>comboBoxGeneratorLead</tabstop>
   <tabstop>textBoxGeneratorInitialAdvances</tabstop>
   <tabstop>textBoxGeneratorMaxAdvances</tabstop>
   <tabstop>textBoxGeneratorSeed</tabstop>
-  <tabstop>pushButtonGenerate</tabstop>
-  <tabstop>pushButtonCalculateInitialAdvances</tabstop>
   <tabstop>tableViewGenerator</tabstop>
+  <tabstop>textBoxSearcherMinAdvances</tabstop>
   <tabstop>textBoxSearcherMaxAdvances</tabstop>
-  <tabstop>dateEditSearcherStartDate</tabstop>
-  <tabstop>dateEditSearcherEndDate</tabstop>
   <tabstop>pushButtonSearch</tabstop>
   <tabstop>pushButtonCancel</tabstop>
   <tabstop>tableViewSearcher</tabstop>

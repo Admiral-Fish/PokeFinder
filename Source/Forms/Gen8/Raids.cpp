@@ -277,7 +277,7 @@ void Raids::speciesIndexChanged(int index)
             ui->comboBoxAbilityType->setCurrentIndex(ui->comboBoxAbilityType->findData(raid.getAbility()));
             ui->comboBoxGenderType->setCurrentIndex(raid.getGender());
             ui->comboBoxGenderRatio->setCurrentIndex(ui->comboBoxGenderRatio->findData(info.getGender()));
-            ui->comboBoxShinyType->setCurrentIndex(ui->comboBoxShinyType->findData(raid.getShinyType()));
+            ui->comboBoxShinyType->setCurrentIndex(ui->comboBoxShinyType->findData(toInt(raid.getShinyType())));
             ui->labelGigantamaxValue->setText(raid.getGigantamax() ? tr("Yes") : tr("No"));
         }
         else
@@ -290,7 +290,7 @@ void Raids::speciesIndexChanged(int index)
             ui->comboBoxAbilityType->setCurrentIndex(ui->comboBoxAbilityType->findData(raid.getAbility()));
             ui->comboBoxGenderType->setCurrentIndex(raid.getGender());
             ui->comboBoxGenderRatio->setCurrentIndex(ui->comboBoxGenderRatio->findData(info.getGender()));
-            ui->comboBoxShinyType->setCurrentIndex(ui->comboBoxShinyType->findData(raid.getShinyType()));
+            ui->comboBoxShinyType->setCurrentIndex(ui->comboBoxShinyType->findData(toInt(raid.getShinyType())));
             ui->labelGigantamaxValue->setText(raid.getGigantamax() ? tr("Yes") : tr("No"));
         }
     }

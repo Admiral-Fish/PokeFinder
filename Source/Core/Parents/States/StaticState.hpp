@@ -17,24 +17,33 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef SHINY_HPP
-#define SHINY_HPP
+#ifndef STATICSTATE_HPP
+#define STATICSTATE_HPP
 
-#include <Core/Util/Global.hpp>
+#include <Core/Enum/Lead.hpp>
+#include <Core/Parents/States/State.hpp>
 
-enum class Shiny : u8
+class StaticState : public State
 {
-    Random,
-    Never,
-    Always,
-    Star,
-    Square,
-    Static
+public:
+    StaticState() = default;
+
+    explicit StaticState(u32 advance) : State(advance), lead(Lead::None)
+    {
+    }
+
+    Lead getLead() const
+    {
+        return lead;
+    }
+
+    void setLead(Lead lead)
+    {
+        this->lead = lead;
+    }
+
+protected:
+    Lead lead;
 };
 
-constexpr u8 toInt(Shiny val)
-{
-    return static_cast<u8>(val);
-};
-
-#endif // SHINY_HPP
+#endif // STATICSTATE_HPP

@@ -210,7 +210,7 @@
    </item>
    <item row="1" column="0">
     <widget class="QTabWidget" name="tabRNGSelector">
-     <widget class="QWidget" name="tabStationary">
+     <widget class="QWidget" name="tabGenerator">
       <attribute name="title">
        <string>Generator</string>
       </attribute>

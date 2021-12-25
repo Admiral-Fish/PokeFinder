@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Wild3</class>
- <widget class="QWidget" name="Wild3">
+ <class>Static3</class>
+ <widget class="QWidget" name="Static3">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
     <width>1200</width>
-    <height>750</height>
+    <height>700</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Gen 3 Wild</string>
+   <string>Gen 3 Static</string>
   </property>
   <property name="windowIcon">
    <iconset>
-    <normaloff>../../pokefinder.ico</normaloff>../../pokefinder.ico</iconset>
+    <normaloff>:/pokefinder.ico</normaloff>:/pokefinder.ico</iconset>
   </property>
   <layout class="QGridLayout" name="gridLayout_7">
    <item row="0" column="0">
@@ -101,7 +101,7 @@
    </item>
    <item row="1" column="0">
     <widget class="QTabWidget" name="tabRNGSelector">
-     <widget class="QWidget" name="tabGenerator">
+     <widget class="QWidget" name="tabStatic">
       <attribute name="title">
        <string>Generator</string>
       </attribute>
@@ -117,9 +117,9 @@
          <property name="title">
           <string>RNG Info</string>
          </property>
-         <layout class="QGridLayout" name="gridLayout_3">
-          <item row="6" column="0">
-           <widget class="QLabel" name="labelGeneratorMaxAdvances">
+         <layout class="QGridLayout" name="gridLayout_6">
+          <item row="1" column="0">
+           <widget class="QLabel" name="labelGeneratorInitialAdvances">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
               <horstretch>0</horstretch>
@@ -127,73 +127,34 @@
              </sizepolicy>
             </property>
             <property name="text">
-             <string>Max Advances</string>
+             <string>Initial Advances</string>
             </property>
            </widget>
           </item>
-          <item row="0" column="1">
-           <widget class="ComboBox" name="comboBoxGeneratorMethod">
-            <item>
-             <property name="text">
-              <string>Method H1</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Method H2</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Method H4</string>
-             </property>
-            </item>
-           </widget>
-          </item>
-          <item row="2" column="0">
-           <widget class="QLabel" name="labelGeneratorPokemon">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="text">
-             <string>Pokémon</string>
-            </property>
-           </widget>
-          </item>
-          <item row="6" column="1">
-           <widget class="TextBox" name="textBoxGeneratorMaxAdvances">
-            <property name="text">
-             <string notr="true">100000</string>
-            </property>
-           </widget>
-          </item>
-          <item row="5" column="1">
+          <item row="1" column="1">
            <widget class="TextBox" name="textBoxGeneratorInitialAdvances">
             <property name="text">
              <string notr="true">0</string>
             </property>
            </widget>
           </item>
-          <item row="3" column="0">
-           <widget class="QLabel" name="labelGeneratorEncounter">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
+          <item row="4" column="0" colspan="2">
+           <widget class="QPushButton" name="pushButtonGenerate">
+            <property name="enabled">
+             <bool>true</bool>
             </property>
             <property name="text">
-             <string>Encounter</string>
+             <string>Generate</string>
+            </property>
+            <property name="checkable">
+             <bool>false</bool>
+            </property>
+            <property name="autoDefault">
+             <bool>false</bool>
             </property>
            </widget>
           </item>
-          <item row="7" column="1">
-           <widget class="TextBox" name="textBoxGeneratorSeed"/>
-          </item>
-          <item row="7" column="0">
+          <item row="3" column="0">
            <widget class="QLabel" name="labelGeneratorSeed">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
@@ -203,16 +164,6 @@
             </property>
             <property name="text">
              <string>Seed</string>
-            </property>
-           </widget>
-          </item>
-          <item row="9" column="0" colspan="2">
-           <widget class="QPushButton" name="pushButtonGenerate">
-            <property name="enabled">
-             <bool>true</bool>
-            </property>
-            <property name="text">
-             <string>Generate</string>
             </property>
            </widget>
           </item>
@@ -229,8 +180,8 @@
             </property>
            </widget>
           </item>
-          <item row="1" column="0">
-           <widget class="QLabel" name="labelGeneratorLocation">
+          <item row="2" column="0">
+           <widget class="QLabel" name="labelGeneratorMaxAdvances">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
               <horstretch>0</horstretch>
@@ -238,56 +189,42 @@
              </sizepolicy>
             </property>
             <property name="text">
-             <string>Location</string>
-            </property>
-           </widget>
-          </item>
-          <item row="5" column="0">
-           <widget class="QLabel" name="labelGeneratorInitialAdvances">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="text">
-             <string>Initial Advances</string>
+             <string>Max Advances</string>
             </property>
            </widget>
           </item>
           <item row="3" column="1">
-           <widget class="QComboBox" name="comboBoxGeneratorEncounter"/>
+           <widget class="TextBox" name="textBoxGeneratorSeed"/>
           </item>
           <item row="2" column="1">
-           <widget class="QComboBox" name="comboBoxGeneratorPokemon"/>
-          </item>
-          <item row="1" column="1">
-           <widget class="QComboBox" name="comboBoxGeneratorLocation"/>
-          </item>
-          <item row="4" column="1">
-           <widget class="ComboMenu" name="toolButtonGeneratorLead">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="popupMode">
-             <enum>QToolButton::InstantPopup</enum>
+           <widget class="TextBox" name="textBoxGeneratorMaxAdvances">
+            <property name="text">
+             <string notr="true">100000</string>
             </property>
            </widget>
           </item>
-          <item row="4" column="0">
-           <widget class="QLabel" name="label">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="text">
-             <string>Lead</string>
-            </property>
+          <item row="0" column="1">
+           <widget class="ComboBox" name="comboBoxGeneratorMethod">
+            <item>
+             <property name="text">
+              <string>Method 1</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Method 1 Reverse</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Method 2</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Method 4</string>
+             </property>
+            </item>
            </widget>
           </item>
          </layout>
@@ -327,7 +264,25 @@
       <attribute name="title">
        <string>Searcher</string>
       </attribute>
-      <layout class="QGridLayout" name="gridLayout_8">
+      <layout class="QGridLayout" name="gridLayout_9">
+       <item row="0" column="1">
+        <widget class="QGroupBox" name="groupBoxSearcherFilters">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>3</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="title">
+          <string>Filters</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_3">
+          <item row="0" column="0" rowspan="2">
+           <widget class="Filter" name="filterSearcher" native="true"/>
+          </item>
+         </layout>
+        </widget>
+       </item>
        <item row="2" column="0" colspan="2">
         <widget class="TableView" name="tableViewSearcher">
          <property name="contextMenuPolicy">
@@ -352,165 +307,63 @@
          <property name="title">
           <string>RNG Info</string>
          </property>
-         <layout class="QGridLayout" name="gridLayout_6">
+         <layout class="QGridLayout" name="gridLayout_2">
           <item row="0" column="0">
            <widget class="QLabel" name="labelSearcherMethod">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
             <property name="text">
              <string>Method</string>
             </property>
            </widget>
           </item>
-          <item row="5" column="0" colspan="2">
-           <layout class="QHBoxLayout" name="horizontalLayout">
-            <item>
-             <widget class="QPushButton" name="pushButtonSearch">
-              <property name="enabled">
-               <bool>true</bool>
-              </property>
-              <property name="text">
-               <string>Search</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QPushButton" name="pushButtonCancel">
-              <property name="enabled">
-               <bool>false</bool>
-              </property>
-              <property name="text">
-               <string>Cancel</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </item>
           <item row="0" column="1">
            <widget class="ComboBox" name="comboBoxSearcherMethod">
             <item>
              <property name="text">
-              <string>Method H1</string>
+              <string>Method 1</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string>Method H2</string>
+              <string>Method 1 Reverse</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string>Method H4</string>
-             </property>
-            </item>
-           </widget>
-          </item>
-          <item row="3" column="0">
-           <widget class="QLabel" name="labelSearcherEncounter">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="text">
-             <string>Encounter</string>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="1">
-           <widget class="QComboBox" name="comboBoxSearcherEncounter"/>
-          </item>
-          <item row="2" column="1">
-           <widget class="QComboBox" name="comboBoxSearcherPokemon"/>
-          </item>
-          <item row="2" column="0">
-           <widget class="QLabel" name="labelSearcherPokemon">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="text">
-             <string>Pokémon</string>
-            </property>
-           </widget>
-          </item>
-          <item row="4" column="1">
-           <widget class="ComboBox" name="comboBoxSearcherLead">
-            <item>
-             <property name="text">
-              <string>Any</string>
+              <string>Method 2</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string>Synchronize</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Cute Charm</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>None</string>
+              <string>Method 4</string>
              </property>
             </item>
            </widget>
           </item>
           <item row="1" column="0">
-           <widget class="QLabel" name="labelSearcherLocation">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
+           <widget class="QPushButton" name="pushButtonSearch">
+            <property name="enabled">
+             <bool>true</bool>
             </property>
             <property name="text">
-             <string>Location</string>
+             <string>Search</string>
+            </property>
+            <property name="checkable">
+             <bool>false</bool>
+            </property>
+            <property name="autoDefault">
+             <bool>false</bool>
             </property>
            </widget>
           </item>
           <item row="1" column="1">
-           <widget class="QComboBox" name="comboBoxSearcherLocation"/>
-          </item>
-          <item row="4" column="0">
-           <widget class="QLabel" name="labelSearcherLead">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
+           <widget class="QPushButton" name="pushButtonCancel">
+            <property name="enabled">
+             <bool>false</bool>
             </property>
             <property name="text">
-             <string>Lead</string>
+             <string>Cancel</string>
             </property>
            </widget>
-          </item>
-         </layout>
-        </widget>
-       </item>
-       <item row="0" column="1">
-        <widget class="QGroupBox" name="groupBoxSearcherFilters">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-           <horstretch>3</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="title">
-          <string>Filters</string>
-         </property>
-         <layout class="QGridLayout" name="gridLayout_2">
-          <item row="0" column="0" rowspan="2">
-           <widget class="Filter" name="filterSearcher" native="true"/>
           </item>
          </layout>
         </widget>
@@ -528,6 +381,7 @@
    </item>
   </layout>
  </widget>
+ <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
   <customwidget>
    <class>TextBox</class>
@@ -550,31 +404,18 @@
    <header>Forms/Controls/Filter.hpp</header>
    <container>1</container>
   </customwidget>
-  <customwidget>
-   <class>ComboMenu</class>
-   <extends>QToolButton</extends>
-   <header>Forms/Controls/ComboMenu.hpp</header>
-  </customwidget>
  </customwidgets>
  <tabstops>
   <tabstop>comboBoxProfiles</tabstop>
   <tabstop>pushButtonProfileManager</tabstop>
   <tabstop>tabRNGSelector</tabstop>
   <tabstop>comboBoxGeneratorMethod</tabstop>
-  <tabstop>comboBoxGeneratorLocation</tabstop>
-  <tabstop>comboBoxGeneratorPokemon</tabstop>
-  <tabstop>comboBoxGeneratorEncounter</tabstop>
-  <tabstop>toolButtonGeneratorLead</tabstop>
   <tabstop>textBoxGeneratorInitialAdvances</tabstop>
   <tabstop>textBoxGeneratorMaxAdvances</tabstop>
   <tabstop>textBoxGeneratorSeed</tabstop>
   <tabstop>pushButtonGenerate</tabstop>
   <tabstop>tableViewGenerator</tabstop>
   <tabstop>comboBoxSearcherMethod</tabstop>
-  <tabstop>comboBoxSearcherLocation</tabstop>
-  <tabstop>comboBoxSearcherPokemon</tabstop>
-  <tabstop>comboBoxSearcherEncounter</tabstop>
-  <tabstop>comboBoxSearcherLead</tabstop>
   <tabstop>pushButtonSearch</tabstop>
   <tabstop>pushButtonCancel</tabstop>
   <tabstop>tableViewSearcher</tabstop>

@@ -17,24 +17,19 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef SHINY_HPP
-#define SHINY_HPP
+#ifndef STATICGENERATOR8_HPP
+#define STATICGENERATOR8_HPP
 
-#include <Core/Util/Global.hpp>
+#include <Core/Parents/Generators/StaticGenerator.hpp>
+#include <Core/Parents/States/StaticState.hpp>
 
-enum class Shiny : u8
+class StaticGenerator8 : public StaticGenerator
 {
-    Random,
-    Never,
-    Always,
-    Star,
-    Square,
-    Static
+public:
+    StaticGenerator8() = default;
+    StaticGenerator8(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, const StateFilter &filter);
+    std::vector<StaticState> generate(u64 seed0, u64 seed1) const;
+    std::vector<StaticState> generateRoamer(u64 seed0, u64 seed1) const;
 };
 
-constexpr u8 toInt(Shiny val)
-{
-    return static_cast<u8>(val);
-};
-
-#endif // SHINY_HPP
+#endif // STATICGENERATOR8_HPP

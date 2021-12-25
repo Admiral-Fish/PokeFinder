@@ -51,7 +51,7 @@ std::vector<IDState5> IDGenerator5::generate(u64 seed, u32 pid, bool checkPID, b
         {
             bool shiny = (psv >> 3) == state.getTSV();
 
-            // Check if PID is possible with TID/SID combo if Wild/Stationary box is checked
+            // Check if PID is possible with TID/SID combo if Static/Wild box is checked
             if (shiny && checkXOR) // We need to do the check only if it was shiny first
             {
                 bool idbit = ((tid & 1) ^ (sid & 1));

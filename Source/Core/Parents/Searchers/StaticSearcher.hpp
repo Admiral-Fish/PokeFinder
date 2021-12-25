@@ -17,24 +17,28 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef SHINY_HPP
-#define SHINY_HPP
+#ifndef STATICSEARCHER_HPP
+#define STATICSEARCHER_HPP
 
-#include <Core/Util/Global.hpp>
+#include <Core/Enum/Lead.hpp>
+#include <Core/Parents/Searchers/Searcher.hpp>
 
-enum class Shiny : u8
+class StaticSearcher : public Searcher
 {
-    Random,
-    Never,
-    Always,
-    Star,
-    Square,
-    Static
+public:
+    StaticSearcher() = default;
+    StaticSearcher(u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter) :
+        Searcher(tid, sid, genderRatio, method, filter)
+    {
+    }
+
+    void setLead(Lead lead)
+    {
+        this->lead = lead;
+    }
+
+protected:
+    Lead lead;
 };
 
-constexpr u8 toInt(Shiny val)
-{
-    return static_cast<u8>(val);
-};
-
-#endif // SHINY_HPP
+#endif // STATICSEARCHER_HPP

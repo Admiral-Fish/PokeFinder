@@ -24,7 +24,7 @@
 #include <Forms/Gen3/GameCube.hpp>
 #include <Forms/Gen3/IDs3.hpp>
 #include <Forms/Gen3/Profile/ProfileManager3.hpp>
-#include <Forms/Gen3/Stationary3.hpp>
+#include <Forms/Gen3/Static3.hpp>
 #include <Forms/Gen3/Tools/GameCubeRTC.hpp>
 #include <Forms/Gen3/Tools/GameCubeSeedFinder.hpp>
 #include <Forms/Gen3/Tools/JirachiPattern.hpp>
@@ -36,7 +36,7 @@
 #include <Forms/Gen4/Eggs4.hpp>
 #include <Forms/Gen4/IDs4.hpp>
 #include <Forms/Gen4/Profile/ProfileManager4.hpp>
-#include <Forms/Gen4/Stationary4.hpp>
+#include <Forms/Gen4/Static4.hpp>
 #include <Forms/Gen4/Tools/ChainedSID.hpp>
 #include <Forms/Gen4/Tools/SeedtoTime4.hpp>
 #include <Forms/Gen4/Wild4.hpp>
@@ -47,7 +47,7 @@
 #include <Forms/Gen5/IDs5.hpp>
 #include <Forms/Gen5/Profile/ProfileCalibrator5.hpp>
 #include <Forms/Gen5/Profile/ProfileManager5.hpp>
-#include <Forms/Gen5/Stationary5.hpp>
+#include <Forms/Gen5/Static5.hpp>
 #include <Forms/Gen8/DenMap.hpp>
 #include <Forms/Gen8/Eggs8.hpp>
 #include <Forms/Gen8/Event8.hpp>
@@ -94,16 +94,16 @@ MainWindow::~MainWindow()
     setting.setValue("mainWindow/geometry", this->saveGeometry());
 
     delete ui;
-    delete stationary3;
+    delete static3;
     delete wild3;
     delete egg3;
     delete gamecube;
     delete ids3;
-    delete stationary4;
+    delete static4;
     delete wild4;
     delete egg4;
     delete ids4;
-    delete stationary5;
+    delete static5;
     delete event5;
     delete dreamRadar;
     delete hiddenGrotto;
@@ -118,7 +118,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::setupModels()
 {
-    connect(ui->pushButtonStationary3, &QPushButton::clicked, this, &MainWindow::openStationary3);
+    connect(ui->pushButtonStatic3, &QPushButton::clicked, this, &MainWindow::openStatic3);
     connect(ui->pushButtonWild3, &QPushButton::clicked, this, &MainWindow::openWild3);
     connect(ui->pushButtonGameCube, &QPushButton::clicked, this, &MainWindow::openGameCube);
     connect(ui->pushButtonEgg3, &QPushButton::clicked, this, &MainWindow::openEgg3);
@@ -133,7 +133,7 @@ void MainWindow::setupModels()
     connect(ui->actionSeedtoTime3, &QAction::triggered, this, &MainWindow::openSeedtoTime3);
     connect(ui->actionSpindaPainter, &QAction::triggered, this, &MainWindow::openSpindaPainter);
 
-    connect(ui->pushButtonStationary4, &QPushButton::clicked, this, &MainWindow::openStationary4);
+    connect(ui->pushButtonStatic4, &QPushButton::clicked, this, &MainWindow::openStatic4);
     connect(ui->pushButtonWild4, &QPushButton::clicked, this, &MainWindow::openWild4);
     connect(ui->pushButtonEgg4, &QPushButton::clicked, this, &MainWindow::openEgg4);
     connect(ui->pushButtonIDs4, &QPushButton::clicked, this, &MainWindow::openIDs4);
@@ -142,7 +142,7 @@ void MainWindow::setupModels()
     connect(ui->actionSeedtoTime4, &QAction::triggered, this, &MainWindow::openSeedtoTime4);
     connect(ui->actionSIDfromChainedShiny, &QAction::triggered, this, &MainWindow::openSIDFromChainedShiny);
 
-    connect(ui->pushButtonStationary5, &QPushButton::clicked, this, &MainWindow::openStationary5);
+    connect(ui->pushButtonStatic5, &QPushButton::clicked, this, &MainWindow::openStatic5);
     connect(ui->pushButtonEvent5, &QPushButton::clicked, this, &MainWindow::openEvent5);
     connect(ui->pushButtonDreamRadar, &QPushButton::clicked, this, &MainWindow::openDreamRadar);
     connect(ui->pushButtonHiddenGrotto, &QPushButton::clicked, this, &MainWindow::openHiddenGrotto);
@@ -215,9 +215,9 @@ void MainWindow::updateProfiles(int num)
 {
     if (num == 3)
     {
-        if (stationary3)
+        if (static3)
         {
-            stationary3->updateProfiles();
+            static3->updateProfiles();
         }
         if (wild3)
         {
@@ -234,9 +234,9 @@ void MainWindow::updateProfiles(int num)
     }
     else if (num == 4)
     {
-        if (stationary4)
+        if (static4)
         {
-            stationary4->updateProfiles();
+            static4->updateProfiles();
         }
         if (wild4)
         {
@@ -249,9 +249,9 @@ void MainWindow::updateProfiles(int num)
     }
     else if (num == 5)
     {
-        if (stationary5)
+        if (static5)
         {
-            stationary5->updateProfiles();
+            static5->updateProfiles();
         }
         if (event5)
         {
@@ -299,15 +299,15 @@ void MainWindow::updateProfiles(int num)
     }
 }
 
-void MainWindow::openStationary3()
+void MainWindow::openStatic3()
 {
-    if (!stationary3)
+    if (!static3)
     {
-        stationary3 = new Stationary3();
-        connect(stationary3, &Stationary3::alertProfiles, this, &MainWindow::updateProfiles);
+        static3 = new Static3();
+        connect(static3, &Static3::alertProfiles, this, &MainWindow::updateProfiles);
     }
-    stationary3->show();
-    stationary3->raise();
+    static3->show();
+    static3->raise();
 }
 
 void MainWindow::openWild3()
@@ -416,15 +416,15 @@ void MainWindow::openSpindaPainter()
     spinda->raise();
 }
 
-void MainWindow::openStationary4()
+void MainWindow::openStatic4()
 {
-    if (!stationary4)
+    if (!static4)
     {
-        stationary4 = new Stationary4();
-        connect(stationary4, &Stationary4::alertProfiles, this, &MainWindow::updateProfiles);
+        static4 = new Static4();
+        connect(static4, &Static4::alertProfiles, this, &MainWindow::updateProfiles);
     }
-    stationary4->show();
-    stationary4->raise();
+    static4->show();
+    static4->raise();
 }
 
 void MainWindow::openWild4()
@@ -480,22 +480,22 @@ void MainWindow::openSIDFromChainedShiny()
     chainedSID->raise();
 }
 
-void MainWindow::openStationary5()
+void MainWindow::openStatic5()
 {
-    if (!stationary5)
+    if (!static5)
     {
-        stationary5 = new Stationary5();
-        connect(stationary5, &Stationary5::alertProfiles, this, &MainWindow::updateProfiles);
+        static5 = new Static5();
+        connect(static5, &Static5::alertProfiles, this, &MainWindow::updateProfiles);
     }
-    stationary5->show();
-    stationary5->raise();
+    static5->show();
+    static5->raise();
 
-    if (!stationary5->hasProfiles())
+    if (!static5->hasProfiles())
     {
         QMessageBox message(QMessageBox::Warning, tr("No profiles found"),
                             tr("Please use the Profile Calibrator under Gen 5 Tools to create one."));
         message.exec();
-        stationary5->close();
+        static5->close();
     }
 }
 

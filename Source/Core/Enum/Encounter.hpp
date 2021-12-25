@@ -34,7 +34,7 @@ enum Encounter : u8
     GoodRod,
     SuperRod,
     SpecialSuperRod,
-    Stationary,
+    Static,
     SafariZone,
     BugCatchingContest,
     HeadButt,

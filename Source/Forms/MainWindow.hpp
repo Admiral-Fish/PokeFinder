@@ -28,16 +28,16 @@ namespace Ui
     class MainWindow;
 }
 
-class Stationary3;
+class Static3;
 class Wild3;
 class GameCube;
 class Eggs3;
 class IDs3;
-class Stationary4;
+class Static4;
 class Wild4;
 class Eggs4;
 class IDs4;
-class Stationary5;
+class Static5;
 class Event5;
 class DreamRadar;
 class HiddenGrotto;
@@ -59,16 +59,16 @@ public:
 private:
     Ui::MainWindow *ui;
 
-    Stationary3 *stationary3 = nullptr;
+    Static3 *static3 = nullptr;
     Wild3 *wild3 = nullptr;
     GameCube *gamecube = nullptr;
     Eggs3 *egg3 = nullptr;
     IDs3 *ids3 = nullptr;
-    Stationary4 *stationary4 = nullptr;
+    Static4 *static4 = nullptr;
     Wild4 *wild4 = nullptr;
     Eggs4 *egg4 = nullptr;
     IDs4 *ids4 = nullptr;
-    Stationary5 *stationary5 = nullptr;
+    Static5 *static5 = nullptr;
     Event5 *event5 = nullptr;
     DreamRadar *dreamRadar = nullptr;
     HiddenGrotto *hiddenGrotto = nullptr;
@@ -86,7 +86,7 @@ private:
 
 private slots:
     void updateProfiles(int num);
-    void openStationary3();
+    void openStatic3();
     void openWild3();
     void openGameCube();
     void openEgg3();
@@ -100,14 +100,14 @@ private slots:
     void openProfileManager3();
     void openSeedtoTime3();
     void openSpindaPainter();
-    void openStationary4();
+    void openStatic4();
     void openWild4();
     void openEgg4();
     void openIDs4();
     void openProfileManager4();
     void openSeedtoTime4();
     void openSIDFromChainedShiny();
-    void openStationary5();
+    void openStatic5();
     void openEvent5();
     void openDreamRadar();
     void openHiddenGrotto();
