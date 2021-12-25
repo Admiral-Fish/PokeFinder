@@ -27,6 +27,7 @@
 #include <Core/Parents/StaticTemplate.hpp>
 #include <Core/Resources/Encounters.hpp>
 #include <algorithm>
+#include <cstring>
 #include <iterator>
 
 constexpr std::array<StaticTemplate, 8> gifts = {
