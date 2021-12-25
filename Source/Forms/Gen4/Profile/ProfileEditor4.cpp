@@ -41,10 +41,10 @@ ProfileEditor4::ProfileEditor4(const Profile4 &profile, QWidget *parent) : QDial
     setupModels();
 
     ui->lineEditProfile->setText(QString::fromStdString(profile.getName()));
-    ui->comboBoxVersion->setCurrentIndex(ui->comboBoxVersion->findData(profile.getVersion()));
+    ui->comboBoxVersion->setCurrentIndex(ui->comboBoxVersion->findData(toInt(profile.getVersion())));
     ui->textBoxTID->setText(QString::number(profile.getTID()));
     ui->textBoxSID->setText(QString::number(profile.getSID()));
-    ui->comboBoxDualSlot->setCurrentIndex(ui->comboBoxDualSlot->findData(profile.getDualSlot()));
+    ui->comboBoxDualSlot->setCurrentIndex(ui->comboBoxDualSlot->findData(toInt(profile.getDualSlot())));
     ui->comboBoxRadio->setCurrentIndex(profile.getRadio());
     ui->checkBoxRadar->setChecked(profile.getRadar());
     ui->checkBoxSwarm->setChecked(profile.getSwarm());
@@ -76,18 +76,10 @@ void ProfileEditor4::setupModels()
     ui->textBoxTID->setValues(InputType::TIDSID);
     ui->textBoxSID->setValues(InputType::TIDSID);
 
-    ui->comboBoxVersion->setItemData(0, Game::Diamond);
-    ui->comboBoxVersion->setItemData(1, Game::Pearl);
-    ui->comboBoxVersion->setItemData(2, Game::Platinum);
-    ui->comboBoxVersion->setItemData(3, Game::HeartGold);
-    ui->comboBoxVersion->setItemData(4, Game::SoulSilver);
+    ui->comboBoxVersion->setup({ toInt(Game::Diamond), toInt(Game::Pearl), toInt(Game::HeartGold), toInt(Game::SoulSilver) });
 
-    ui->comboBoxDualSlot->setItemData(0, Game::Blank);
-    ui->comboBoxDualSlot->setItemData(1, Game::Ruby);
-    ui->comboBoxDualSlot->setItemData(2, Game::Sapphire);
-    ui->comboBoxDualSlot->setItemData(3, Game::FireRed);
-    ui->comboBoxDualSlot->setItemData(4, Game::LeafGreen);
-    ui->comboBoxDualSlot->setItemData(5, Game::Emerald);
+    ui->comboBoxDualSlot->setup({ toInt(Game::Blank), toInt(Game::Ruby), toInt(Game::Sapphire), toInt(Game::FireRed),
+                                  toInt(Game::LeafGreen), toInt(Game::Emerald) });
 
     connect(ui->pushButtonOkay, &QPushButton::clicked, this, &ProfileEditor4::okay);
     connect(ui->comboBoxVersion, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &ProfileEditor4::versionIndexChanged);
@@ -110,10 +102,10 @@ void ProfileEditor4::okay()
         return;
     }
 
-    fresh
-        = Profile4(ui->lineEditProfile->text().toStdString(), static_cast<Game>(ui->comboBoxVersion->currentData().toUInt()),
-                   ui->textBoxTID->getUShort(), ui->textBoxSID->getUShort(), static_cast<Game>(ui->comboBoxDualSlot->currentData().toUInt()),
-                   ui->comboBoxRadio->currentIndex(), ui->checkBoxRadar->isChecked(), ui->checkBoxSwarm->isChecked());
+    fresh = Profile4(ui->lineEditProfile->text().toStdString(), static_cast<Game>(ui->comboBoxVersion->currentData().toUInt()),
+                     ui->textBoxTID->getUShort(), ui->textBoxSID->getUShort(),
+                     static_cast<Game>(ui->comboBoxDualSlot->currentData().toUInt()), ui->comboBoxRadio->currentIndex(),
+                     ui->checkBoxRadar->isChecked(), ui->checkBoxSwarm->isChecked());
 
     done(QDialog::Accepted);
 }
@@ -123,7 +115,7 @@ void ProfileEditor4::versionIndexChanged(int index)
     if (index >= 0)
     {
         auto game = static_cast<Game>(ui->comboBoxVersion->currentData().toUInt());
-        bool flag = game & Game::HGSS;
+        bool flag = (game & Game::HGSS) == Game::HGSS;
 
         ui->labelRadio->setVisible(flag);
         ui->comboBoxRadio->setVisible(flag);

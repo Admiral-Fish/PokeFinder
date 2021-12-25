@@ -22,8 +22,8 @@
 #include <Core/Enum/Game.hpp>
 #include <Core/Enum/Method.hpp>
 #include <Core/Gen3/Generators/StaticGenerator3.hpp>
-#include <Core/Parents/ProfileLoader.hpp>
 #include <Core/Gen3/Searchers/StaticSearcher3.hpp>
+#include <Core/Parents/ProfileLoader.hpp>
 #include <Core/Util/Translator.hpp>
 #include <Forms/Gen3/Profile/ProfileManager3.hpp>
 #include <Forms/Gen3/Tools/SeedTime3.hpp>
@@ -57,7 +57,7 @@ void Static3::updateProfiles()
     profiles = { Profile3() };
     auto completeProfiles = ProfileLoader3::getProfiles();
     std::copy_if(completeProfiles.begin(), completeProfiles.end(), std::back_inserter(profiles),
-                 [](const Profile3 &profile) { return !(profile.getVersion() & Game::GC); });
+                 [](const Profile3 &profile) { return (profile.getVersion() & Game::GC) != Game::GC; });
 
     ui->comboBoxProfiles->clear();
     for (const auto &profile : profiles)
@@ -88,8 +88,10 @@ void Static3::setupModels()
     ui->textBoxGeneratorInitialAdvances->setValues(InputType::Advance32Bit);
     ui->textBoxGeneratorMaxAdvances->setValues(InputType::Advance32Bit);
 
-    ui->comboBoxGeneratorMethod->setup({ Method::Method1, Method::Method1Reverse, Method::Method2, Method::Method4 });
-    ui->comboBoxSearcherMethod->setup({ Method::Method1, Method::Method1Reverse, Method::Method2, Method::Method4 });
+    ui->comboBoxGeneratorMethod->setup(
+        { toInt(Method::Method1), toInt(Method::Method1Reverse), toInt(Method::Method2), toInt(Method::Method4) });
+    ui->comboBoxSearcherMethod->setup(
+        { toInt(Method::Method1), toInt(Method::Method1Reverse), toInt(Method::Method2), toInt(Method::Method4) });
 
     ui->filterGenerator->disableControls(Controls::EncounterSlots);
     ui->filterSearcher->disableControls(Controls::EncounterSlots | Controls::UseDelay | Controls::DisableFilter);

@@ -24,8 +24,8 @@
 #include <vector>
 
 class EncounterArea5;
-enum Encounter : u8;
-enum Game : u32;
+enum class Encounter : u8;
+enum class Game : u32;
 
 namespace Encounters5
 {

@@ -23,6 +23,8 @@
 #include <Core/Parents/States/IDState.hpp>
 #include <Core/Util/DateTime.hpp>
 
+enum class Buttons : u16;
+
 class IDState5 : public IDState
 {
 public:
@@ -53,12 +55,12 @@ public:
         return initialAdvances;
     }
 
-    void setKeypress(u16 keypress)
+    void setKeypress(Buttons keypress)
     {
         this->keypress = keypress;
     }
 
-    u16 getKeypress() const
+    Buttons getKeypress() const
     {
         return keypress;
     }
@@ -76,7 +78,7 @@ public:
 private:
     DateTime dt;
     u32 initialAdvances;
-    u16 keypress;
+    Buttons keypress;
     u64 seed;
 };
 

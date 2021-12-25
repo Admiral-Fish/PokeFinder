@@ -65,8 +65,9 @@ void IVCalculator::setupModels()
     ui->comboBoxPokemon->setInsertPolicy(QComboBox::NoInsert);
     ui->comboBoxPokemon->completer()->setCompletionMode(QCompleter::PopupCompletion);
 
-    ui->comboBoxGame->setup({ Game::Emerald, Game::RS, Game::FireRed, Game::LeafGreen, Game::DP, Game::Platinum, Game::HGSS, Game::BW,
-                              Game::BW2, Game::SwSh, Game::BDSP });
+    ui->comboBoxGame->setup({ toInt(Game::Emerald), toInt(Game::RS), toInt(Game::FireRed), toInt(Game::LeafGreen), toInt(Game::DP),
+                              toInt(Game::Platinum), toInt(Game::HGSS), toInt(Game::BW), toInt(Game::BW2), toInt(Game::SwSh),
+                              toInt(Game::BDSP) });
 
     addEntry();
 
@@ -77,7 +78,7 @@ void IVCalculator::setupModels()
     connect(ui->comboBoxAltForm, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &IVCalculator::altformIndexChanged);
     connect(ui->comboBoxGame, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &IVCalculator::gameIndexChanged);
 
-    gameIndexChanged(Game::Emerald);
+    gameIndexChanged(toInt(Game::Emerald));
 
     QSettings setting;
     if (setting.contains("ivCalculator/geometry"))
@@ -277,19 +278,19 @@ void IVCalculator::gameIndexChanged(int index)
         const PersonalInfo *info = PersonalLoader::getPersonal(version);
 
         u16 max = 0;
-        if (version & Game::Gen3)
+        if ((version & Game::Gen3) == Game::Gen3)
         {
             max = 386;
         }
-        else if (version & Game::Gen4)
+        else if ((version & Game::Gen4) == Game::Gen4)
         {
             max = 493;
         }
-        else if (version & Game::Gen5)
+        else if ((version & Game::Gen5) == Game::Gen5)
         {
             max = 649;
         }
-        else if (version & Game::SwSh)
+        else if ((version & Game::SwSh) == Game::SwSh)
         {
             max = 898;
         }

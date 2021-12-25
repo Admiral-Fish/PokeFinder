@@ -24,7 +24,8 @@
 #include <string>
 #include <vector>
 
-enum Game : u32;
+enum class Buttons: u16;
+enum class Game : u32;
 
 namespace Translator
 {
@@ -41,7 +42,7 @@ namespace Translator
     std::vector<std::string> getGenders();
     std::vector<std::string> getLocations(const std::vector<u16> &nums, Game game);
     std::string getKeypress(u8 keypress);
-    std::string getKeypresses(u16 keypresses);
+    std::string getKeypresses(Buttons keypresses);
 }
 
 #endif // TRANSLATOR_HPP

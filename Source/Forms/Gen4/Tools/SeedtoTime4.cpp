@@ -44,7 +44,7 @@ SeedtoTime4::SeedtoTime4(const QString &seed, const Profile4 &profile, QWidget *
 
     setupModels();
 
-    if (profile.getVersion() & Game::HGSS)
+    if ((profile.getVersion() & Game::HGSS) == Game::HGSS)
     {
         ui->tabWidget->setCurrentIndex(1);
         ui->textBoxHGSSSeed->setText(seed);

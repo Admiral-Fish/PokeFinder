@@ -23,7 +23,7 @@
 #include <Core/Gen4/States/WildState4.hpp>
 #include <Forms/Models/TableModel.hpp>
 
-enum Method : u8;
+enum class Method : u8;
 
 class WildGeneratorModel4 : public TableModel<WildState4>
 {

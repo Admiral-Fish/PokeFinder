@@ -26,7 +26,7 @@
 
 EggGenerator8::EggGenerator8(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, const StateFilter &filter,
                              const Daycare &daycare, bool shinyCharm, u8 compatability) :
-    EggGenerator(initialAdvances, maxAdvances, tid, sid, genderRatio, Method::Null, filter, daycare),
+    EggGenerator(initialAdvances, maxAdvances, tid, sid, genderRatio, Method::None, filter, daycare),
     shinyCharm(shinyCharm),
     compatability(compatability)
 {

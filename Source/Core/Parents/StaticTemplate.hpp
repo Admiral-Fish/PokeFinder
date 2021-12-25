@@ -23,7 +23,7 @@
 #include <Core/Enum/Shiny.hpp>
 #include <Core/Util/Global.hpp>
 
-enum Game : u32;
+enum class Game : u32;
 
 class StaticTemplate
 {

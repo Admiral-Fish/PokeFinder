@@ -22,9 +22,9 @@
 
 #include <Core/Util/Global.hpp>
 
-enum DSType : u8;
-enum Game : u32;
-enum Language : u8;
+enum class DSType : u8;
+enum class Game : u32;
+enum class Language : u8;
 class Date;
 class Profile5;
 

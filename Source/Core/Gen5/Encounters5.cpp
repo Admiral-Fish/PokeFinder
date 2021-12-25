@@ -65,7 +65,7 @@ namespace Encounters5
             for (size_t i = 0; i < size;)
             {
                 int length;
-                if (game & Game::BW)
+                if ((game & Game::BW) == Game::BW)
                 {
                     if (std::binary_search(std::begin(bwLocations), std::end(bwLocations), count))
                     {

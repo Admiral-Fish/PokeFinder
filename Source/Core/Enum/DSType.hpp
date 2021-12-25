@@ -22,11 +22,16 @@
 
 #include <Core/Util/Global.hpp>
 
-enum DSType : u8
+enum class DSType : u8
 {
-    DSOriginal,
+    DS,
     DSi,
     DS3
 };
+
+constexpr u8 toInt(DSType ds)
+{
+    return static_cast<u8>(ds);
+}
 
 #endif // DSTYPE_HPP

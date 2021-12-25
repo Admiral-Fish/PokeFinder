@@ -56,16 +56,16 @@ void EncounterLookup::setupModels()
     ui->tableView->setModel(model);
     ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
-    ui->comboBoxGame->addItem(tr("Ruby"), Game::Ruby);
-    ui->comboBoxGame->addItem(tr("Sapphire"), Game::Sapphire);
-    ui->comboBoxGame->addItem(tr("Fire Red"), Game::FireRed);
-    ui->comboBoxGame->addItem(tr("Leaf Green"), Game::LeafGreen);
-    ui->comboBoxGame->addItem(tr("Emerald"), Game::Emerald);
-    ui->comboBoxGame->addItem(tr("Diamond"), Game::Diamond);
-    ui->comboBoxGame->addItem(tr("Pearl"), Game::Pearl);
-    ui->comboBoxGame->addItem(tr("Platinum"), Game::Platinum);
-    ui->comboBoxGame->addItem(tr("Heart Gold"), Game::HeartGold);
-    ui->comboBoxGame->addItem(tr("Soul Silver"), Game::SoulSilver);
+    ui->comboBoxGame->addItem(tr("Ruby"), toInt(Game::Ruby));
+    ui->comboBoxGame->addItem(tr("Sapphire"), toInt(Game::Sapphire));
+    ui->comboBoxGame->addItem(tr("Fire Red"), toInt(Game::FireRed));
+    ui->comboBoxGame->addItem(tr("Leaf Green"), toInt(Game::LeafGreen));
+    ui->comboBoxGame->addItem(tr("Emerald"), toInt(Game::Emerald));
+    ui->comboBoxGame->addItem(tr("Diamond"), toInt(Game::Diamond));
+    ui->comboBoxGame->addItem(tr("Pearl"), toInt(Game::Pearl));
+    ui->comboBoxGame->addItem(tr("Platinum"), toInt(Game::Platinum));
+    ui->comboBoxGame->addItem(tr("Heart Gold"), toInt(Game::HeartGold));
+    ui->comboBoxGame->addItem(tr("Soul Silver"), toInt(Game::SoulSilver));
 
     ui->comboBoxPokemon->setEditable(true);
     ui->comboBoxPokemon->setInsertPolicy(QComboBox::NoInsert);
@@ -120,7 +120,7 @@ std::set<std::pair<u16, QString>> EncounterLookup::getEncounters4(Game game, u16
     auto types = { Encounter::Grass, Encounter::RockSmash, Encounter::OldRod, Encounter::GoodRod, Encounter::SuperRod };
 
     // Setup profiles to iterate through of the different combinations of possibilities depending on HGSS vs DPPt
-    if (game & Game::HGSS)
+    if ((game & Game::HGSS) == Game::HGSS)
     {
         for (const int radio : { 0, 1, 2 })
         {
@@ -202,11 +202,11 @@ void EncounterLookup::find()
     std::set<std::pair<u16, QString>> encounters;
     std::vector<std::string> locationNames;
 
-    if (game & Game::FRLG || game & Game::RSE)
+    if ((game & Game::Gen3) == Game::Gen3)
     {
         encounters = getEncounters3(game, specie);
     }
-    else if (game & Game::DPPt || game & Game::HGSS)
+    else if ((game & Game::Gen4) == Game::Gen4)
     {
         encounters = getEncounters4(game, specie);
     }
@@ -233,11 +233,11 @@ void EncounterLookup::gameIndexChanged(int index)
         Game game = static_cast<Game>(ui->comboBoxGame->currentData().toUInt());
         u16 max = 0;
 
-        if (game & Game::FRLG || game & Game::RSE)
+        if ((game & Game::Gen3) == Game::Gen3)
         {
             max = 386;
         }
-        else if (game & Game::HGSS || game & Game::DPPt)
+        else if ((game & Game::Gen4) == Game::Gen4)
         {
             max = 493;
         }

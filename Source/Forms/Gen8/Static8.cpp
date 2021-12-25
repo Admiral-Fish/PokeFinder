@@ -52,7 +52,7 @@ void Static8::updateProfiles()
     profiles.clear();
     auto completeProfiles = ProfileLoader8::getProfiles();
     std::copy_if(completeProfiles.begin(), completeProfiles.end(), std::back_inserter(profiles),
-                 [](const Profile &profile) { return profile.getVersion() & Game::BDSP; });
+                 [](const Profile &profile) { return (profile.getVersion() & Game::BDSP) == Game::BDSP; });
     profiles.insert(profiles.begin(), Profile8(Game::BD));
 
     ui->comboBoxProfiles->clear();
@@ -83,7 +83,7 @@ void Static8::setupModels()
     ui->textBoxInitialAdvances->setValues(InputType::Advance32Bit);
     ui->textBoxMaxAdvances->setValues(InputType::Advance32Bit);
 
-    ui->toolButtonLead->addAction(tr("None"), Lead::None);
+    ui->toolButtonLead->addAction(tr("None"), toInt(Lead::None));
     ui->toolButtonLead->addMenu(tr("Synchronize"), Translator::getNatures());
 
     QAction *outputTXTGenerator = menu->addAction(tr("Output Results to TXT"));

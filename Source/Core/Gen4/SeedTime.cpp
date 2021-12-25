@@ -35,7 +35,7 @@ SeedTime::SeedTime(const DateTime &dateTime, u32 delay, Game version, const HGSS
 
 std::string SeedTime::getSequence() const
 {
-    return (version & Game::HGSS) ? Utilities::getCalls(seed, info) : Utilities::coinFlips(seed);
+    return (version & Game::HGSS) == Game::HGSS ? Utilities::getCalls(seed, info) : Utilities::coinFlips(seed);
 }
 
 u32 SeedTime::getSeed() const

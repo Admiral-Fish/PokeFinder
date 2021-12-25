@@ -82,7 +82,7 @@ int IDSearcher5::getProgress() const
 
 void IDSearcher5::search(IDGenerator5 generator, const Date &start, const Date &end)
 {
-    bool flag = profile.getVersion() & Game::BW;
+    bool flag = (profile.getVersion() & Game::BW) == Game::BW;
 
     SHA1 sha(profile);
     auto buttons = Keypresses::getKeyPresses(profile.getKeypresses(), profile.getSkipLR());

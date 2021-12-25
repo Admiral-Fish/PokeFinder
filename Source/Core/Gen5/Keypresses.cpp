@@ -31,7 +31,7 @@ namespace Keypresses
     {
         bool valid(Buttons button, bool skipLR)
         {
-            return !(skipLR && (button & Buttons::L || button & Buttons::R));
+            return !(skipLR && ((button & Buttons::L) == Buttons::L || (button & Buttons::R) == Buttons::R));
         }
     }
 
@@ -41,7 +41,7 @@ namespace Keypresses
 
         if (keypresses[0])
         {
-            buttons.emplace_back(Buttons::No);
+            buttons.emplace_back(Buttons::None);
         }
 
         for (u8 i = 0; i < 8; i++)
@@ -115,7 +115,7 @@ namespace Keypresses
 
             for (int i = 0; i < 12; i++)
             {
-                if (button & (1 << i))
+                if (toInt(button) & (1 << i))
                 {
                     value -= buttonValues[i];
                 }

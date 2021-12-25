@@ -24,8 +24,8 @@
 #include <Core/Util/Global.hpp>
 #include <vector>
 
-enum Method : u8;
-enum ShadowType : u8;
+enum class Method : u8;
+enum class ShadowType : u8;
 
 class ShadowTeam
 {

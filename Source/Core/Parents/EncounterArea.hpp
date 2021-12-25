@@ -25,7 +25,7 @@
 #include <string>
 #include <vector>
 
-enum Encounter : u8;
+enum class Encounter : u8;
 
 class EncounterArea
 {

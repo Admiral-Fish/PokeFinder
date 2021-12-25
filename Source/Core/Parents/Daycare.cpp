@@ -63,7 +63,7 @@ u8 Daycare::getEverstoneCount(Game version) const
 {
     int count = 0;
 
-    if ((version & Game::Emerald) | (version & Game::DPPt))
+    if ((version & Game::Emerald) == Game::Emerald || (version & Game::DPPt) == Game::DPPt)
     {
         u8 parent;
 

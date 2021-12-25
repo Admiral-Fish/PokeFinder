@@ -35,23 +35,25 @@ EggSettings::~EggSettings()
 
 void EggSettings::setup(Game version)
 {
-    if ((version & Game::RSE) || (version & Game::FRLG))
+    if ((version & Game::RSE) == Game::RSE || (version & Game::FRLG) == Game::FRLG)
     {
+        bool flag = (version & Game::Emerald) == Game::Emerald;
+
         ui->labelAbility->setVisible(false);
-        ui->labelItem->setVisible(version & Game::Emerald);
-        ui->labelNature->setVisible(version & Game::Emerald);
+        ui->labelItem->setVisible(flag);
+        ui->labelNature->setVisible(flag);
 
         ui->comboBoxParentAAbility->setVisible(false);
         ui->comboBoxParentBAbility->setVisible(false);
-        ui->comboBoxParentAItem->setVisible(version & Game::Emerald);
-        ui->comboBoxParentBItem->setVisible(version & Game::Emerald);
-        ui->comboBoxParentANature->setVisible(version & Game::Emerald);
-        ui->comboBoxParentBNature->setVisible(version & Game::Emerald);
+        ui->comboBoxParentAItem->setVisible(flag);
+        ui->comboBoxParentBItem->setVisible(flag);
+        ui->comboBoxParentANature->setVisible(flag);
+        ui->comboBoxParentBNature->setVisible(flag);
 
         ui->checkBoxNidoranVolbeat->setVisible(false);
         ui->checkBoxMasuda->setVisible(false);
     }
-    else if ((version & Game::DPPt) || (version & Game::HGSS))
+    else if ((version & Game::DPPt) == Game::DPPt || (version & Game::HGSS) == Game::HGSS)
     {
         ui->labelAbility->setVisible(false);
         ui->labelItem->setVisible(false);
@@ -66,7 +68,7 @@ void EggSettings::setup(Game version)
 
         ui->checkBoxNidoranVolbeat->setVisible(false);
     }
-    else if ((version & Game::BW) || (version & Game::BW2))
+    else if ((version & Game::BW) == Game::BW || (version & Game::BW2) == Game::BW2)
     {
         ui->comboBoxParentAItem->addItem(tr("Power Weight"), 2);
         ui->comboBoxParentAItem->addItem(tr("Power Bracer"), 3);
@@ -85,7 +87,7 @@ void EggSettings::setup(Game version)
         ui->comboBoxParentAAbility->addItem("H");
         ui->comboBoxParentBAbility->addItem("H");
     }
-    else if (version & Game::BDSP)
+    else if ((version & Game::BDSP) == Game::BDSP)
     {
         ui->comboBoxParentAItem->addItem(tr("Destiny Knot"), 8);
         ui->comboBoxParentBItem->addItem(tr("Destiny Knot"), 8);

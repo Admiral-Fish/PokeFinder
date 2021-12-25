@@ -60,7 +60,7 @@ void Wild8::updateProfiles()
     profiles.clear();
     auto completeProfiles = ProfileLoader8::getProfiles();
     std::copy_if(completeProfiles.begin(), completeProfiles.end(), std::back_inserter(profiles),
-                 [](const Profile &profile) { return profile.getVersion() & Game::BDSP; });
+                 [](const Profile &profile) { return (profile.getVersion() & Game::BDSP) == Game::BDSP; });
     profiles.insert(profiles.begin(), Profile8(Game::BD));
 
     ui->comboBoxProfiles->clear();
@@ -93,16 +93,16 @@ void Wild8::setupModels()
     ui->textBoxInitialAdvances->setValues(InputType::Advance32Bit);
     ui->textBoxMaxAdvances->setValues(InputType::Advance32Bit);
 
-    ui->toolButtonLead->addAction(tr("None"), Lead::None);
+    ui->toolButtonLead->addAction(tr("None"), toInt(Lead::None));
     ui->toolButtonLead->addMenu(tr("Synchronize"), Translator::getNatures());
-    ui->toolButtonLead->addMenu(tr("Cute Charm"), { tr("♂ Lead"), tr("♀ Lead") }, { Lead::CuteCharm, Lead::CuteCharmFemale });
+    ui->toolButtonLead->addMenu(tr("Cute Charm"), { tr("♂ Lead"), tr("♀ Lead") }, { toInt(Lead::CuteCharm), toInt(Lead::CuteCharmFemale) });
 
     ui->comboBoxEncounter->clear();
-    ui->comboBoxEncounter->addItem(tr("Grass"), Encounter::Grass);
-    ui->comboBoxEncounter->addItem(tr("Surfing"), Encounter::Surfing);
-    ui->comboBoxEncounter->addItem(tr("Old Rod"), Encounter::OldRod);
-    ui->comboBoxEncounter->addItem(tr("Good Rod"), Encounter::GoodRod);
-    ui->comboBoxEncounter->addItem(tr("Super Rod"), Encounter::SuperRod);
+    ui->comboBoxEncounter->addItem(tr("Grass"), toInt(Encounter::Grass));
+    ui->comboBoxEncounter->addItem(tr("Surfing"), toInt(Encounter::Surfing));
+    ui->comboBoxEncounter->addItem(tr("Old Rod"), toInt(Encounter::OldRod));
+    ui->comboBoxEncounter->addItem(tr("Good Rod"), toInt(Encounter::GoodRod));
+    ui->comboBoxEncounter->addItem(tr("Super Rod"), toInt(Encounter::SuperRod));
 
     ui->filter->disableControls(Controls::GenderRatio);
 

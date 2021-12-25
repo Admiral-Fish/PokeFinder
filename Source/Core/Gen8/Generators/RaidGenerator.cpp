@@ -25,7 +25,7 @@ constexpr u8 toxtricityAmpedNatures[13] = { 3, 4, 2, 8, 9, 19, 22, 11, 13, 14, 0
 constexpr u8 toxtricityLowKeyNatures[12] = { 1, 5, 7, 10, 12, 15, 16, 17, 18, 20, 21, 23 };
 
 RaidGenerator::RaidGenerator(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, const StateFilter &filter, const Raid &raid) :
-    Generator(initialAdvances, maxAdvances, tid, sid, raid.getInfo().getGender(), Method::Null, filter),
+    Generator(initialAdvances, maxAdvances, tid, sid, raid.getInfo().getGender(), Method::None, filter),
     raid(raid)
 {
 }

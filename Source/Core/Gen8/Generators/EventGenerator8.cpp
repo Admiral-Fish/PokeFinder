@@ -54,7 +54,7 @@ void fixPID(u32 &pid, u16 tsv, u8 shinyType)
 }
 
 EventGenerator8::EventGenerator8(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, const StateFilter &filter, const WB8 &parameters) :
-    Generator(initialAdvances, maxAdvances, tid, sid, 0, Method::Null, filter), parameters(parameters), ivCount(0)
+    Generator(initialAdvances, maxAdvances, tid, sid, 0, Method::None, filter), parameters(parameters), ivCount(0)
 {
     if (!parameters.isEgg())
     {

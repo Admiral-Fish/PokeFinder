@@ -103,13 +103,13 @@ void Wild4::setupModels()
 
     ui->filterSearcher->disableControls(Controls::UseDelay | Controls::DisableFilter);
 
-    ui->toolButtonGeneratorLead->addAction(tr("None"), Lead::None);
+    ui->toolButtonGeneratorLead->addAction(tr("None"), toInt(Lead::None));
     ui->toolButtonGeneratorLead->addMenu(tr("Synchronize"), Translator::getNatures());
-    ui->toolButtonGeneratorLead->addMenu(
-        tr("Cute Charm"),
-        { tr("♂ Lead"), tr("♀ Lead (50% ♂ Target)"), tr("♀ Lead (75% ♂ Target)"), tr("♀ Lead (25% ♂ Target)"),
-          tr("♀ Lead (87.5% ♂ Target)") },
-        { Lead::CuteCharmFemale, Lead::CuteCharm50M, Lead::CuteCharm75M, Lead::CuteCharm25M, Lead::CuteCharm875M });
+    ui->toolButtonGeneratorLead->addMenu(tr("Cute Charm"),
+                                         { tr("♂ Lead"), tr("♀ Lead (50% ♂ Target)"), tr("♀ Lead (75% ♂ Target)"),
+                                           tr("♀ Lead (25% ♂ Target)"), tr("♀ Lead (87.5% ♂ Target)") },
+                                         { toInt(Lead::CuteCharmFemale), toInt(Lead::CuteCharm50M), toInt(Lead::CuteCharm75M),
+                                           toInt(Lead::CuteCharm25M), toInt(Lead::CuteCharm875M) });
 
     QAction *outputTXTGenerator = generatorMenu->addAction(tr("Output Results to TXT"));
     QAction *outputCSVGenerator = generatorMenu->addAction(tr("Output Results to CSV"));
@@ -268,7 +268,7 @@ void Wild4::generate()
                        ui->filterGenerator->getNatures(), ui->filterGenerator->getHiddenPowers(), ui->filterGenerator->getEncounterSlots());
 
     WildGenerator4 generator(initialAdvances, maxAdvances, tid, sid, genderRatio, method, filter,
-                             currentProfile.getVersion() & Game::Platinum);
+                             (currentProfile.getVersion() & Game::Platinum) == Game::Platinum);
     generator.setOffset(offset);
     generator.setEncounter(static_cast<Encounter>(ui->comboBoxGeneratorEncounter->getCurrentInt()));
 
@@ -357,52 +357,53 @@ void Wild4::profilesIndexChanged(int index)
         ui->labelProfilePokeRadarValue->setText(currentProfile.getRadar() ? tr("Yes") : tr("No"));
         ui->labelProfileSwarmValue->setText(currentProfile.getSwarm() ? tr("Yes") : tr("No"));
 
-        bool flag = currentProfile.getVersion() & Game::HGSS;
+        bool flag = (currentProfile.getVersion() & Game::HGSS) == Game::HGSS;
 
         ui->comboBoxGeneratorMethod->clear();
-        ui->comboBoxGeneratorMethod->addItem(flag ? tr("Method K") : tr("Method J"), flag ? Method::MethodK : Method::MethodJ);
-        ui->comboBoxGeneratorMethod->addItem(tr("Chained Shiny"), Method::ChainedShiny);
+        ui->comboBoxGeneratorMethod->addItem(flag ? tr("Method K") : tr("Method J"),
+                                             flag ? toInt(Method::MethodK) : toInt(Method::MethodJ));
+        ui->comboBoxGeneratorMethod->addItem(tr("Chained Shiny"), toInt(Method::ChainedShiny));
 
         ui->comboBoxSearcherMethod->clear();
-        ui->comboBoxSearcherMethod->addItem(flag ? tr("Method K") : tr("Method J"), flag ? Method::MethodK : Method::MethodJ);
-        ui->comboBoxSearcherMethod->addItem(tr("Chained Shiny"), Method::ChainedShiny);
+        ui->comboBoxSearcherMethod->addItem(flag ? tr("Method K") : tr("Method J"), flag ? toInt(Method::MethodK) : toInt(Method::MethodJ));
+        ui->comboBoxSearcherMethod->addItem(tr("Chained Shiny"), toInt(Method::ChainedShiny));
 
         ui->comboBoxGeneratorEncounter->clear();
-        ui->comboBoxGeneratorEncounter->addItem(tr("Grass"), Encounter::Grass);
+        ui->comboBoxGeneratorEncounter->addItem(tr("Grass"), toInt(Encounter::Grass));
         if (flag)
         {
-            ui->comboBoxGeneratorEncounter->addItem(tr("Rock Smash"), Encounter::RockSmash);
+            ui->comboBoxGeneratorEncounter->addItem(tr("Rock Smash"), toInt(Encounter::RockSmash));
         }
-        ui->comboBoxGeneratorEncounter->addItem(tr("Surfing"), Encounter::Surfing);
-        ui->comboBoxGeneratorEncounter->addItem(tr("Old Rod"), Encounter::OldRod);
-        ui->comboBoxGeneratorEncounter->addItem(tr("Good Rod"), Encounter::GoodRod);
-        ui->comboBoxGeneratorEncounter->addItem(tr("Super Rod"), Encounter::SuperRod);
+        ui->comboBoxGeneratorEncounter->addItem(tr("Surfing"), toInt(Encounter::Surfing));
+        ui->comboBoxGeneratorEncounter->addItem(tr("Old Rod"), toInt(Encounter::OldRod));
+        ui->comboBoxGeneratorEncounter->addItem(tr("Good Rod"), toInt(Encounter::GoodRod));
+        ui->comboBoxGeneratorEncounter->addItem(tr("Super Rod"), toInt(Encounter::SuperRod));
 
         ui->comboBoxSearcherEncounter->clear();
-        ui->comboBoxSearcherEncounter->addItem(tr("Grass"), Encounter::Grass);
+        ui->comboBoxSearcherEncounter->addItem(tr("Grass"), toInt(Encounter::Grass));
         if (flag)
         {
-            ui->comboBoxSearcherEncounter->addItem(tr("Rock Smash"), Encounter::RockSmash);
+            ui->comboBoxSearcherEncounter->addItem(tr("Rock Smash"), toInt(Encounter::RockSmash));
         }
-        ui->comboBoxSearcherEncounter->addItem(tr("Surfing"), Encounter::Surfing);
-        ui->comboBoxSearcherEncounter->addItem(tr("Old Rod"), Encounter::OldRod);
-        ui->comboBoxSearcherEncounter->addItem(tr("Good Rod"), Encounter::GoodRod);
-        ui->comboBoxSearcherEncounter->addItem(tr("Super Rod"), Encounter::SuperRod);
+        ui->comboBoxSearcherEncounter->addItem(tr("Surfing"), toInt(Encounter::Surfing));
+        ui->comboBoxSearcherEncounter->addItem(tr("Old Rod"), toInt(Encounter::OldRod));
+        ui->comboBoxSearcherEncounter->addItem(tr("Good Rod"), toInt(Encounter::GoodRod));
+        ui->comboBoxSearcherEncounter->addItem(tr("Super Rod"), toInt(Encounter::SuperRod));
 
         ui->comboBoxSearcherLead->clear();
-        ui->comboBoxSearcherLead->addItem(tr("Any"), Lead::Search);
-        ui->comboBoxSearcherLead->addItem(tr("Synchronize"), Lead::Synchronize);
-        ui->comboBoxSearcherLead->addItem(tr("Cute Charm"), Lead::CuteCharm);
+        ui->comboBoxSearcherLead->addItem(tr("Any"), toInt(Lead::Search));
+        ui->comboBoxSearcherLead->addItem(tr("Synchronize"), toInt(Lead::Synchronize));
+        ui->comboBoxSearcherLead->addItem(tr("Cute Charm"), toInt(Lead::CuteCharm));
         if (flag)
         {
-            ui->toolButtonGeneratorLead->addAction(tr("Suction Cups"), Lead::SuctionCups);
-            ui->comboBoxSearcherLead->addItem(tr("Suction Cups"), Lead::SuctionCups);
+            ui->toolButtonGeneratorLead->addAction(tr("Suction Cups"), toInt(Lead::SuctionCups));
+            ui->comboBoxSearcherLead->addItem(tr("Suction Cups"), toInt(Lead::SuctionCups));
         }
         else
         {
             ui->toolButtonGeneratorLead->removeAction(tr("Suction Cups"));
         }
-        ui->comboBoxSearcherLead->addItem(tr("None"), Lead::None);
+        ui->comboBoxSearcherLead->addItem(tr("None"), toInt(Lead::None));
 
         updateLocationsSearcher();
         updateLocationsGenerator();

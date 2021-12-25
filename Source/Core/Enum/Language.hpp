@@ -22,7 +22,7 @@
 
 #include <Core/Util/Global.hpp>
 
-enum Language : u8
+enum class Language : u8
 {
     English,
     French,
@@ -32,5 +32,10 @@ enum Language : u8
     Korean,
     Spanish
 };
+
+constexpr u8 toInt(Language language)
+{
+    return static_cast<u8>(language);
+}
 
 #endif // LANGUAGE_HPP

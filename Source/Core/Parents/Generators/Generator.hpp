@@ -24,8 +24,8 @@
 #include <Core/Util/Global.hpp>
 #include <vector>
 
-enum Encounter : u8;
-enum Method : u8;
+enum class Encounter : u8;
+enum class Method : u8;
 
 class Generator
 {

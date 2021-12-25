@@ -69,7 +69,7 @@
     </widget>
    </item>
    <item row="1" column="1">
-    <widget class="QComboBox" name="comboBoxVersion">
+    <widget class="ComboBox" name="comboBoxVersion">
      <item>
       <property name="text">
        <string>Black</string>
@@ -158,7 +158,7 @@
     </widget>
    </item>
    <item row="2" column="1">
-    <widget class="QComboBox" name="comboBoxLanguage">
+    <widget class="ComboBox" name="comboBoxLanguage">
      <item>
       <property name="text">
        <string>ENG</string>
@@ -224,7 +224,7 @@
     </widget>
    </item>
    <item row="3" column="1">
-    <widget class="QComboBox" name="comboBoxDSType">
+    <widget class="ComboBox" name="comboBoxDSType">
      <item>
       <property name="text">
        <string>DS Original/Lite</string>
@@ -302,6 +302,11 @@
    <slots>
     <slot>resetChecks()</slot>
    </slots>
+  </customwidget>
+  <customwidget>
+   <class>ComboBox</class>
+   <extends>QComboBox</extends>
+   <header>Forms/Controls/ComboBox.hpp</header>
   </customwidget>
  </customwidgets>
  <tabstops>

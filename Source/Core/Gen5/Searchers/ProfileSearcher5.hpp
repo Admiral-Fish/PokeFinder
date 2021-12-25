@@ -28,10 +28,10 @@
 #include <mutex>
 #include <vector>
 
-enum Buttons : u16;
-enum Game : u32;
-enum Language : u8;
-enum DSType : u8;
+enum class Buttons : u16;
+enum class Game : u32;
+enum class Language : u8;
+enum class DSType : u8;
 
 class ProfileSearcher5
 {

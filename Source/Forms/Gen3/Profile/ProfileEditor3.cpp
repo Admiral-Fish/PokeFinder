@@ -39,7 +39,7 @@ ProfileEditor3::ProfileEditor3(const Profile3 &profile, QWidget *parent) : QDial
     setupModels();
 
     ui->lineEditProfile->setText(QString::fromStdString(profile.getName()));
-    ui->comboBoxVersion->setCurrentIndex(ui->comboBoxVersion->findData(profile.getVersion()));
+    ui->comboBoxVersion->setCurrentIndex(ui->comboBoxVersion->findData(toInt(profile.getVersion())));
     ui->textBoxTID->setText(QString::number(profile.getTID()));
     ui->textBoxSID->setText(QString::number(profile.getSID()));
     ui->checkBoxDeadBattery->setChecked(profile.getDeadBattery());
@@ -71,13 +71,8 @@ void ProfileEditor3::setupModels()
     ui->textBoxTID->setValues(InputType::TIDSID);
     ui->textBoxSID->setValues(InputType::TIDSID);
 
-    ui->comboBoxVersion->setItemData(0, Game::Ruby);
-    ui->comboBoxVersion->setItemData(1, Game::Sapphire);
-    ui->comboBoxVersion->setItemData(2, Game::FireRed);
-    ui->comboBoxVersion->setItemData(3, Game::LeafGreen);
-    ui->comboBoxVersion->setItemData(4, Game::Emerald);
-    ui->comboBoxVersion->setItemData(5, Game::Gales);
-    ui->comboBoxVersion->setItemData(6, Game::Colosseum);
+    ui->comboBoxVersion->setup({ toInt(Game::Ruby), toInt(Game::Sapphire), toInt(Game::FireRed), toInt(Game::LeafGreen),
+                                 toInt(Game::Emerald), toInt(Game::Gales), toInt(Game::Colosseum) });
 
     connect(ui->pushButtonOkay, &QPushButton::clicked, this, &ProfileEditor3::okay);
     connect(ui->comboBoxVersion, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &ProfileEditor3::versionIndexChanged);
@@ -110,7 +105,7 @@ void ProfileEditor3::versionIndexChanged(int index)
 {
     if (index >= 0)
     {
-        bool flag = ui->comboBoxVersion->currentData().toInt() & Game::RS;
+        bool flag = (static_cast<Game>(ui->comboBoxVersion->currentData().toInt()) & Game::RS) == Game::RS;
         ui->checkBoxDeadBattery->setVisible(flag);
         if (!flag)
         {

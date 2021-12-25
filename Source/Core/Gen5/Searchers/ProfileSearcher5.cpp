@@ -151,7 +151,7 @@ ProfileIVSearcher5::ProfileIVSearcher5(const std::array<u8, 6> &minIVs, const st
                      version, language, dsType, mac, keypress),
     minIVs(minIVs),
     maxIVs(maxIVs),
-    offset(version & Game::BW2 ? 2 : 0)
+    offset((version & Game::BW2) == Game::BW2 ? 2 : 0)
 {
 }
 
@@ -180,7 +180,7 @@ ProfileNeedleSearcher5::ProfileNeedleSearcher5(const std::vector<u8> &needles, b
     needles(needles),
     unovaLink(unovaLink),
     memoryLink(memoryLink),
-    game(version & Game::BW)
+    game((version & Game::BW) == Game::BW)
 {
 }
 

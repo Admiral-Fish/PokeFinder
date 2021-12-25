@@ -22,7 +22,7 @@
 
 #include <Core/Util/Global.hpp>
 
-enum ShadowType : u8
+enum class ShadowType : u8
 {
     SingleLock,
     FirstShadow,

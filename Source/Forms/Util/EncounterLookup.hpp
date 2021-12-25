@@ -25,8 +25,8 @@
 #include <set>
 
 class QStandardItemModel;
-enum Encounter : u8;
-enum Game : u32;
+enum class Encounter : u8;
+enum class Game : u32;
 
 namespace Ui
 {

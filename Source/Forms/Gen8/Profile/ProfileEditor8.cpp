@@ -39,7 +39,7 @@ ProfileEditor8::ProfileEditor8(const Profile8 &profile, QWidget *parent) : QDial
     setupModels();
 
     ui->lineEditProfile->setText(QString::fromStdString(profile.getName()));
-    ui->comboBoxVersion->setCurrentIndex(ui->comboBoxVersion->findData(profile.getVersion()));
+    ui->comboBoxVersion->setCurrentIndex(ui->comboBoxVersion->findData(toInt(profile.getVersion())));
     ui->textBoxTID->setText(QString::number(profile.getTID()));
     ui->textBoxSID->setText(QString::number(profile.getSID()));
     ui->checkBoxShinyCharm->setChecked(profile.getShinyCharm());
@@ -74,10 +74,7 @@ void ProfileEditor8::setupModels()
     ui->textBoxTID->setValues(InputType::TIDSID);
     ui->textBoxSID->setValues(InputType::TIDSID);
 
-    ui->comboBoxVersion->setItemData(0, Game::Sword);
-    ui->comboBoxVersion->setItemData(1, Game::Shield);
-    ui->comboBoxVersion->setItemData(2, Game::BD);
-    ui->comboBoxVersion->setItemData(3, Game::SP);
+    ui->comboBoxVersion->setup({ toInt(Game::Sword), toInt(Game::Shield), toInt(Game::BD), toInt(Game::SP) });
 
     connect(ui->pushButtonOkay, &QPushButton::clicked, this, &ProfileEditor8::okay);
     connect(ui->comboBoxVersion, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &ProfileEditor8::versionIndexChanged);
@@ -112,7 +109,7 @@ void ProfileEditor8::versionIndexChanged(int index)
     if (index >= 0)
     {
         auto game = static_cast<Game>(ui->comboBoxVersion->currentData().toUInt());
-        bool flag = game & Game::BDSP;
+        bool flag = (game & Game::BDSP) == Game::BDSP;
 
         ui->checkBoxRadar->setVisible(flag);
         ui->checkBoxSwarm->setVisible(flag);

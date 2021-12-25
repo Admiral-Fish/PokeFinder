@@ -59,7 +59,7 @@
     </widget>
    </item>
    <item row="1" column="1">
-    <widget class="QComboBox" name="comboBoxVersion">
+    <widget class="ComboBox" name="comboBoxVersion">
      <item>
       <property name="text">
        <string>Diamond</string>
@@ -102,7 +102,7 @@
     </widget>
    </item>
    <item row="2" column="1">
-    <widget class="QComboBox" name="comboBoxDualSlot">
+    <widget class="ComboBox" name="comboBoxDualSlot">
      <item>
       <property name="text">
        <string>None</string>
@@ -185,6 +185,11 @@
    <class>TextBox</class>
    <extends>QLineEdit</extends>
    <header>Forms/Controls/TextBox.hpp</header>
+  </customwidget>
+  <customwidget>
+   <class>ComboBox</class>
+   <extends>QComboBox</extends>
+   <header>Forms/Controls/ComboBox.hpp</header>
   </customwidget>
  </customwidgets>
  <tabstops>

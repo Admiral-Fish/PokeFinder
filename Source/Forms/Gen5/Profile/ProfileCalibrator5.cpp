@@ -26,8 +26,8 @@
 #include <Core/Parents/ProfileLoader.hpp>
 #include <Core/Util/Translator.hpp>
 #include <Forms/Gen5/Profile/ProfileEditor5.hpp>
-#include <Forms/Util/IVCalculator.hpp>
 #include <Forms/Models/Gen5/ProfileSearcherModel5.hpp>
+#include <Forms/Util/IVCalculator.hpp>
 #include <QMessageBox>
 #include <QSettings>
 #include <QThread>
@@ -71,10 +71,10 @@ void ProfileCalibrator5::setupModels()
     ui->textBoxMaxVFrame->setValues(0, 99, 2, 16);
     ui->textBoxMACAddress->setValues(0, 0xFFFFFFFFFFFF, 12, 16);
 
-    ui->comboBoxVersion->setup({ Game::Black, Game::White, Game::Black2, Game::White2 });
-    ui->comboBoxLanguage->setup({ Language::English, Language::Spanish, Language::French, Language::Italian, Language::German,
-                                  Language::Japanese, Language::Korean });
-    ui->comboBoxDSType->setup({ DSType::DSOriginal, DSType::DSi, DSType::DS3 });
+    ui->comboBoxVersion->setup({ toInt(Game::Black), toInt(Game::White), toInt(Game::Black2), toInt(Game::White2) });
+    ui->comboBoxLanguage->setup({ toInt(Language::English), toInt(Language::Spanish), toInt(Language::French), toInt(Language::Italian),
+                                  toInt(Language::German), toInt(Language::Japanese), toInt(Language::Korean) });
+    ui->comboBoxDSType->setup({ toInt(DSType::DS), toInt(DSType::DSi), toInt(DSType::DS3) });
 
     ui->comboBoxKeypress1->addItem(tr("None"), 0);
     ui->comboBoxKeypress2->addItem(tr("None"), 0);
@@ -114,8 +114,8 @@ void ProfileCalibrator5::updateParameters()
 
     switch (dsType)
     {
-    case DSType::DSOriginal:
-        if (version & Game::BW)
+    case DSType::DS:
+        if ((version & Game::BW) == Game::BW)
         {
             ui->textBoxMinVCount->setText("50");
             ui->textBoxMaxVCount->setText("70");
@@ -132,7 +132,7 @@ void ProfileCalibrator5::updateParameters()
         break;
     case DSType::DSi:
     case DSType::DS3:
-        if (version & Game::BW)
+        if ((version & Game::BW) == Game::BW)
         {
             ui->textBoxMinVCount->setText("80");
             ui->textBoxMaxVCount->setText("92");

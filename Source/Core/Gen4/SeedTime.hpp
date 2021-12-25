@@ -23,7 +23,7 @@
 #include <Core/Gen4/HGSSRoamer.hpp>
 #include <Core/Util/DateTime.hpp>
 
-enum Game : u32;
+enum class Game : u32;
 
 class SeedTime
 {

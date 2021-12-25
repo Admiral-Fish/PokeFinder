@@ -92,13 +92,13 @@ std::array<u32, 5> Nazos::getNazo(Game version, Language language, DSType dsType
         switch (version)
         {
         case Game::Black:
-            return dsType == DSType::DSOriginal ? englishBlack : englishBlackDSi;
+            return dsType == DSType::DS ? englishBlack : englishBlackDSi;
         case Game::White:
-            return dsType == DSType::DSOriginal ? englishWhite : englishWhiteDSi;
+            return dsType == DSType::DS ? englishWhite : englishWhiteDSi;
         case Game::Black2:
-            return dsType == DSType::DSOriginal ? englishBlack2 : englishBlack2DSi;
+            return dsType == DSType::DS ? englishBlack2 : englishBlack2DSi;
         case Game::White2:
-            return dsType == DSType::DSOriginal ? englishWhite2 : englishWhite2DSi;
+            return dsType == DSType::DS ? englishWhite2 : englishWhite2DSi;
         default:
             break;
         }
@@ -107,13 +107,13 @@ std::array<u32, 5> Nazos::getNazo(Game version, Language language, DSType dsType
         switch (version)
         {
         case Game::Black:
-            return dsType == DSType::DSOriginal ? japaneseBlack : japaneseBlackDSi;
+            return dsType == DSType::DS ? japaneseBlack : japaneseBlackDSi;
         case Game::White:
-            return dsType == DSType::DSOriginal ? japaneseWhite : japaneseWhiteDSi;
+            return dsType == DSType::DS ? japaneseWhite : japaneseWhiteDSi;
         case Game::Black2:
-            return dsType == DSType::DSOriginal ? japaneseBlack2 : japaneseBlack2DSi;
+            return dsType == DSType::DS ? japaneseBlack2 : japaneseBlack2DSi;
         case Game::White2:
-            return dsType == DSType::DSOriginal ? japaneseWhite2 : japaneseWhite2DSi;
+            return dsType == DSType::DS ? japaneseWhite2 : japaneseWhite2DSi;
         default:
             break;
         }
@@ -122,13 +122,13 @@ std::array<u32, 5> Nazos::getNazo(Game version, Language language, DSType dsType
         switch (version)
         {
         case Game::Black:
-            return dsType == DSType::DSOriginal ? germanBlack : germanBlackDSi;
+            return dsType == DSType::DS ? germanBlack : germanBlackDSi;
         case Game::White:
-            return dsType == DSType::DSOriginal ? germanWhite : germanWhiteDSi;
+            return dsType == DSType::DS ? germanWhite : germanWhiteDSi;
         case Game::Black2:
-            return dsType == DSType::DSOriginal ? germanBlack2 : germanBlack2DSi;
+            return dsType == DSType::DS ? germanBlack2 : germanBlack2DSi;
         case Game::White2:
-            return dsType == DSType::DSOriginal ? germanWhite2 : germanWhite2DSi;
+            return dsType == DSType::DS ? germanWhite2 : germanWhite2DSi;
         default:
             break;
         }
@@ -137,13 +137,13 @@ std::array<u32, 5> Nazos::getNazo(Game version, Language language, DSType dsType
         switch (version)
         {
         case Game::Black:
-            return dsType == DSType::DSOriginal ? spanishBlack : spanishBlackDSi;
+            return dsType == DSType::DS ? spanishBlack : spanishBlackDSi;
         case Game::White:
-            return dsType == DSType::DSOriginal ? spanishWhite : spanishWhiteDSi;
+            return dsType == DSType::DS ? spanishWhite : spanishWhiteDSi;
         case Game::Black2:
-            return dsType == DSType::DSOriginal ? spanishBlack2 : spanishBlack2DSi;
+            return dsType == DSType::DS ? spanishBlack2 : spanishBlack2DSi;
         case Game::White2:
-            return dsType == DSType::DSOriginal ? spanishWhite2 : spanishWhite2DSi;
+            return dsType == DSType::DS ? spanishWhite2 : spanishWhite2DSi;
         default:
             break;
         }
@@ -152,13 +152,13 @@ std::array<u32, 5> Nazos::getNazo(Game version, Language language, DSType dsType
         switch (version)
         {
         case Game::Black:
-            return dsType == DSType::DSOriginal ? frenchBlack : frenchBlackDSi;
+            return dsType == DSType::DS ? frenchBlack : frenchBlackDSi;
         case Game::White:
-            return dsType == DSType::DSOriginal ? frenchWhite : frenchWhiteDSi;
+            return dsType == DSType::DS ? frenchWhite : frenchWhiteDSi;
         case Game::Black2:
-            return dsType == DSType::DSOriginal ? frenchBlack2 : frenchBlack2DSi;
+            return dsType == DSType::DS ? frenchBlack2 : frenchBlack2DSi;
         case Game::White2:
-            return dsType == DSType::DSOriginal ? frenchWhite2 : frenchWhite2DSi;
+            return dsType == DSType::DS ? frenchWhite2 : frenchWhite2DSi;
         default:
             break;
         }
@@ -167,13 +167,13 @@ std::array<u32, 5> Nazos::getNazo(Game version, Language language, DSType dsType
         switch (version)
         {
         case Game::Black:
-            return dsType == DSType::DSOriginal ? italianBlack : italianBlackDSi;
+            return dsType == DSType::DS ? italianBlack : italianBlackDSi;
         case Game::White:
-            return dsType == DSType::DSOriginal ? italianWhite : italianWhiteDSi;
+            return dsType == DSType::DS ? italianWhite : italianWhiteDSi;
         case Game::Black2:
-            return dsType == DSType::DSOriginal ? italianBlack2 : italianBlack2DSi;
+            return dsType == DSType::DS ? italianBlack2 : italianBlack2DSi;
         case Game::White2:
-            return dsType == DSType::DSOriginal ? italianWhite2 : italianWhite2DSi;
+            return dsType == DSType::DS ? italianWhite2 : italianWhite2DSi;
         default:
             break;
         }
@@ -182,13 +182,13 @@ std::array<u32, 5> Nazos::getNazo(Game version, Language language, DSType dsType
         switch (version)
         {
         case Game::Black:
-            return dsType == DSType::DSOriginal ? koreanBlack : koreanBlackDSi;
+            return dsType == DSType::DS ? koreanBlack : koreanBlackDSi;
         case Game::White:
-            return dsType == DSType::DSOriginal ? koreanWhite : koreanWhiteDSi;
+            return dsType == DSType::DS ? koreanWhite : koreanWhiteDSi;
         case Game::Black2:
-            return dsType == DSType::DSOriginal ? koreanBlack2 : koreanBlack2DSi;
+            return dsType == DSType::DS ? koreanBlack2 : koreanBlack2DSi;
         case Game::White2:
-            return dsType == DSType::DSOriginal ? koreanWhite2 : koreanWhite2DSi;
+            return dsType == DSType::DS ? koreanWhite2 : koreanWhite2DSi;
         default:
             break;
         }

@@ -22,9 +22,9 @@
 
 #include <Core/Util/Global.hpp>
 
-enum Buttons : u16
+enum class Buttons : u16
 {
-    No = 0,
+    None = 0,
     R = 1 << 0, // -0x10000
     L = 1 << 1, // -0x20000
     X = 1 << 2, // -0x40000
@@ -43,5 +43,20 @@ enum Buttons : u16
     RightDown = Right | Down,
     LeftDown = Left | Down
 };
+
+constexpr u16 toInt(Buttons button)
+{
+    return static_cast<u16>(button);
+}
+
+constexpr Buttons operator&(Buttons left, Buttons right)
+{
+    return static_cast<Buttons>(toInt(left) & toInt(right));
+}
+
+constexpr Buttons operator|(Buttons left, Buttons right)
+{
+    return static_cast<Buttons>(toInt(left) | toInt(right));
+}
 
 #endif // BUTTONS_HPP

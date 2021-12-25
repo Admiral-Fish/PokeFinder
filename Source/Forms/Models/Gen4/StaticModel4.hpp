@@ -24,7 +24,7 @@
 #include <Core/Parents/States/StaticState.hpp>
 #include <Forms/Models/TableModel.hpp>
 
-enum Method : u8;
+enum class Method : u8;
 
 class StaticGeneratorModel4 : public TableModel<State>
 {

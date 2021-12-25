@@ -25,7 +25,7 @@
 
 StaticGenerator8::StaticGenerator8(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio,
                                            const StateFilter &filter) :
-    StaticGenerator(initialAdvances, maxAdvances, tid, sid, genderRatio, Method::Null, filter)
+    StaticGenerator(initialAdvances, maxAdvances, tid, sid, genderRatio, Method::None, filter)
 {
 }
 

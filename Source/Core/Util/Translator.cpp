@@ -18,6 +18,7 @@
  */
 
 #include "Translator.hpp"
+#include <Core/Enum/Buttons.hpp>
 #include <Core/Enum/Game.hpp>
 #include <Core/Resources/i18n.hpp>
 #include <algorithm>
@@ -588,23 +589,23 @@ namespace Translator
     std::vector<std::string> getLocations(const std::vector<u16> &nums, Game game)
     {
         std::vector<std::string> strings;
-        if (game & Game::FRLG)
+        if ((game & Game::FRLG) == Game::FRLG)
         {
             strings = readFile("frlg");
         }
-        else if (game & Game::RSE)
+        else if ((game & Game::RSE) == Game::RSE)
         {
             strings = readFile("rse");
         }
-        else if (game & Game::DPPt)
+        else if ((game & Game::DPPt) == Game::DPPt)
         {
             strings = readFile("dppt");
         }
-        else if (game & Game::HGSS)
+        else if ((game & Game::HGSS) == Game::HGSS)
         {
             strings = readFile("hgss");
         }
-        else if (game & Game::SwSh)
+        else if ((game & Game::SwSh) == Game::SwSh)
         {
             strings = readFile("swsh");
         }
@@ -639,9 +640,9 @@ namespace Translator
         return buttons[keypress];
     }
 
-    std::string getKeypresses(u16 keypresses)
+    std::string getKeypresses(Buttons keypresses)
     {
-        if (keypresses == 0)
+        if (toInt(keypresses) == 0)
         {
             return "None";
         }
@@ -649,7 +650,7 @@ namespace Translator
         std::string result;
         for (int i = 0; i < 12; i++)
         {
-            if (keypresses & (1 << i))
+            if (toInt(keypresses) & (1 << i))
             {
                 if (!result.empty())
                 {

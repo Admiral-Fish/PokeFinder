@@ -22,7 +22,7 @@
 
 #include <Core/Util/Global.hpp>
 
-enum Game : u32
+enum class Game : u32
 {
     Blank = 0, // Placeholder
     Ruby = 1 << 0,
@@ -61,5 +61,15 @@ enum Game : u32
     BDSP = BD | SP,
     Gen8 = SwSh | BDSP
 };
+
+constexpr u32 toInt(Game game)
+{
+    return static_cast<u32>(game);
+}
+
+constexpr Game operator&(Game left, Game right)
+{
+    return static_cast<Game>(toInt(left) & toInt(right));
+}
 
 #endif // GAME_HPP

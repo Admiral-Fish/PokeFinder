@@ -22,9 +22,9 @@
 #include <Core/Enum/Lead.hpp>
 #include <Core/Enum/Method.hpp>
 #include <Core/Gen4/Generators/StaticGenerator4.hpp>
-#include <Core/Parents/ProfileLoader.hpp>
 #include <Core/Gen4/Searchers/StaticSearcher4.hpp>
 #include <Core/Parents/Filters/StateFilter.hpp>
+#include <Core/Parents/ProfileLoader.hpp>
 #include <Core/Parents/States/StaticState.hpp>
 #include <Core/Util/Translator.hpp>
 #include <Forms/Gen4/Profile/ProfileManager4.hpp>
@@ -97,18 +97,18 @@ void Static4::setupModels()
     ui->textBoxSearcherMinAdvance->setValues(InputType::Advance32Bit);
     ui->textBoxSearcherMaxAdvance->setValues(InputType::Advance32Bit);
 
-    ui->comboBoxSearcherLead->setup({ Lead::Search, Lead::Synchronize, Lead::CuteCharm, Lead::None });
+    ui->comboBoxSearcherLead->setup({ toInt(Lead::Search), toInt(Lead::Synchronize), toInt(Lead::CuteCharm), toInt(Lead::None) });
 
     ui->filterGenerator->disableControls(Controls::EncounterSlots);
     ui->filterSearcher->disableControls(Controls::EncounterSlots | Controls::UseDelay | Controls::DisableFilter);
 
-    ui->toolButtonGeneratorLead->addAction(tr("None"), Lead::None);
+    ui->toolButtonGeneratorLead->addAction(tr("None"), toInt(Lead::None));
     ui->toolButtonGeneratorLead->addMenu(tr("Synchronize"), Translator::getNatures());
-    ui->toolButtonGeneratorLead->addMenu(
-        tr("Cute Charm"),
-        { tr("♂ Lead"), tr("♀ Lead (50% ♂ Target)"), tr("♀ Lead (75% ♂ Target)"), tr("♀ Lead (25% ♂ Target)"),
-          tr("♀ Lead (87.5% ♂ Target)") },
-        { Lead::CuteCharmFemale, Lead::CuteCharm50M, Lead::CuteCharm75M, Lead::CuteCharm25M, Lead::CuteCharm875M });
+    ui->toolButtonGeneratorLead->addMenu(tr("Cute Charm"),
+                                         { tr("♂ Lead"), tr("♀ Lead (50% ♂ Target)"), tr("♀ Lead (75% ♂ Target)"),
+                                           tr("♀ Lead (25% ♂ Target)"), tr("♀ Lead (87.5% ♂ Target)") },
+                                         { toInt(Lead::CuteCharmFemale), toInt(Lead::CuteCharm50M), toInt(Lead::CuteCharm75M),
+                                           toInt(Lead::CuteCharm25M), toInt(Lead::CuteCharm875M) });
 
     QAction *outputTXTGenerator = generatorMenu->addAction(tr("Output Results to TXT"));
     QAction *outputCSVGenerator = generatorMenu->addAction(tr("Output Results to CSV"));
@@ -257,17 +257,18 @@ void Static4::profileIndexChanged(int index)
         ui->labelProfileSIDValue->setText(QString::number(currentProfile.getSID()));
         ui->labelProfileGameValue->setText(QString::fromStdString(currentProfile.getVersionString()));
 
-        bool flag = currentProfile.getVersion() & Game::HGSS;
+        bool flag = (currentProfile.getVersion() & Game::HGSS) == Game::HGSS;
 
         ui->comboBoxGeneratorMethod->clear();
-        ui->comboBoxGeneratorMethod->addItem(tr("Method 1"), Method::Method1);
-        ui->comboBoxGeneratorMethod->addItem(flag ? tr("Method K") : tr("Method J"), flag ? Method::MethodK : Method::MethodJ);
-        ui->comboBoxGeneratorMethod->addItem(tr("Wondercard IVs"), Method::WondercardIVs);
+        ui->comboBoxGeneratorMethod->addItem(tr("Method 1"), toInt(Method::Method1));
+        ui->comboBoxGeneratorMethod->addItem(flag ? tr("Method K") : tr("Method J"),
+                                             flag ? toInt(Method::MethodK) : toInt(Method::MethodJ));
+        ui->comboBoxGeneratorMethod->addItem(tr("Wondercard IVs"), toInt(Method::WondercardIVs));
 
         ui->comboBoxSearcherMethod->clear();
-        ui->comboBoxSearcherMethod->addItem(tr("Method 1"), Method::Method1);
-        ui->comboBoxSearcherMethod->addItem(flag ? tr("Method K") : tr("Method J"), flag ? Method::MethodK : Method::MethodJ);
-        ui->comboBoxSearcherMethod->addItem(tr("Wondercard IVs"), Method::WondercardIVs);
+        ui->comboBoxSearcherMethod->addItem(tr("Method 1"), toInt(Method::Method1));
+        ui->comboBoxSearcherMethod->addItem(flag ? tr("Method K") : tr("Method J"), flag ? toInt(Method::MethodK) : toInt(Method::MethodJ));
+        ui->comboBoxSearcherMethod->addItem(tr("Wondercard IVs"), toInt(Method::WondercardIVs));
     }
 }
 

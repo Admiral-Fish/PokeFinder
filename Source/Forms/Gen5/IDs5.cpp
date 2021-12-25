@@ -206,7 +206,7 @@ void IDs5::find()
     sha.setDate(date);
     sha.precompute();
 
-    bool flag = currentProfile.getVersion() & Game::BW;
+    bool flag = (currentProfile.getVersion() & Game::BW) == Game::BW;
 
     std::vector<IDState5> results;
     for (size_t i = 0; i < values.size(); i++)

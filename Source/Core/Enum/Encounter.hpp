@@ -22,7 +22,7 @@
 
 #include <Core/Util/Global.hpp>
 
-enum Encounter : u8
+enum class Encounter : u8
 {
     Grass,
     DoubleGrass,
@@ -44,5 +44,10 @@ enum Encounter : u8
     GiftEgg,
     HiddenGrotto
 };
+
+constexpr u8 toInt(Encounter encounter)
+{
+    return static_cast<u8>(encounter);
+}
 
 #endif // ENCOUNTER_HPP

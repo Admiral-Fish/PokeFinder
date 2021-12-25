@@ -23,7 +23,7 @@
 #include <Core/Util/Global.hpp>
 #include <string>
 
-enum Game : u32;
+enum class Game : u32;
 
 class Profile
 {

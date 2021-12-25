@@ -23,7 +23,7 @@
 #include <Core/Util/Global.hpp>
 
 class PersonalInfo;
-enum Game : u32;
+enum class Game : u32;
 
 namespace PersonalLoader
 {

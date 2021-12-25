@@ -60,15 +60,12 @@ void HiddenGrotto::updateProfiles()
     profiles.clear();
     auto completeProfiles = ProfileLoader5::getProfiles();
     std::copy_if(completeProfiles.begin(), completeProfiles.end(), std::back_inserter(profiles),
-                 [](const Profile5 &profile) { return profile.getVersion() & Game::BW2; });
+                 [](const Profile5 &profile) { return (profile.getVersion() & Game::BW2) == Game::BW2; });
 
     ui->comboBoxProfiles->clear();
     for (const auto &profile : profiles)
     {
-        if (profile.getVersion() & Game::BW2)
-        {
-            ui->comboBoxProfiles->addItem(QString::fromStdString(profile.getName()));
-        }
+        ui->comboBoxProfiles->addItem(QString::fromStdString(profile.getName()));
     }
 
     QSettings setting;

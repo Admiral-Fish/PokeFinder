@@ -24,7 +24,7 @@
 #include <vector>
 
 class EncounterArea8;
-enum Encounter : u8;
+enum class Encounter : u8;
 class Profile8;
 class StaticTemplate;
 

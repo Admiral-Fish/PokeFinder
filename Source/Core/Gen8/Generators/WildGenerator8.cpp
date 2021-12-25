@@ -25,7 +25,7 @@
 #include <Core/Util/EncounterSlot.hpp>
 
 WildGenerator8::WildGenerator8(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, const StateFilter &filter) :
-    WildGenerator(initialAdvances, maxAdvances, tid, sid, 0, Method::Null, filter)
+    WildGenerator(initialAdvances, maxAdvances, tid, sid, 0, Method::None, filter)
 {
 }
 

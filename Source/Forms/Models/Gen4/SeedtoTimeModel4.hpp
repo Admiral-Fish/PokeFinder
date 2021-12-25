@@ -28,8 +28,8 @@ class SeedtoTimeModel4 : public TableModel<SeedTime>
 {
     Q_OBJECT
 public:
-    explicit SeedtoTimeModel4(QObject *parent, bool flag = false, Game version = DPPt);
-    void setFlags(bool flag = false, Game version = Diamond);
+    explicit SeedtoTimeModel4(QObject *parent, bool flag = false, Game version = Game::DPPt);
+    void setFlags(bool flag = false, Game version = Game::Diamond);
     int columnCount(const QModelIndex &parent = QModelIndex()) const override;
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
     QVariant headerData(int section, Qt::Orientation orientation, int role) const override;

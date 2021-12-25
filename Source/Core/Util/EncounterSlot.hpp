@@ -22,7 +22,7 @@
 
 #include <Core/Util/Global.hpp>
 
-enum Encounter : u8;
+enum class Encounter : u8;
 
 namespace EncounterSlot
 {

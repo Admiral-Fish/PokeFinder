@@ -32,7 +32,7 @@ Profile5::Profile5() :
     softReset(false),
     memoryLink(false),
     shinyCharm(false),
-    dsType(DSType::DSOriginal),
+    dsType(DSType::DS),
     language(Language::English)
 {
     // Default parameters for White on desmume
@@ -144,7 +144,7 @@ std::string Profile5::getDSTypeString() const
 {
     switch (dsType)
     {
-    case DSType::DSOriginal:
+    case DSType::DS:
         return "DS Lite";
     case DSType::DSi:
         return "DSi";

@@ -25,43 +25,43 @@ namespace PersonalLoader
 {
     const PersonalInfo *getPersonal(Game version)
     {
-        if (version & Game::Emerald)
+        if ((version & Game::Emerald) == Game::Emerald)
         {
             return personal_e.data();
         }
-        else if (version & Game::RS)
+        else if ((version & Game::RS) == Game::RS)
         {
             return personal_rs.data();
         }
-        else if (version & Game::FireRed)
+        else if ((version & Game::FireRed) == Game::FireRed)
         {
             return personal_fr.data();
         }
-        else if (version & Game::LeafGreen)
+        else if ((version & Game::LeafGreen) == Game::LeafGreen)
         {
             return personal_lg.data();
         }
-        else if (version & Game::DP)
+        else if ((version & Game::DP) == Game::DP)
         {
             return personal_dp.data();
         }
-        else if (version & Game::Platinum)
+        else if ((version & Game::Platinum) == Game::Platinum)
         {
             return personal_pt.data();
         }
-        else if (version & Game::HGSS)
+        else if ((version & Game::HGSS) == Game::HGSS)
         {
             return personal_hgss.data();
         }
-        else if (version & Game::BW)
+        else if ((version & Game::BW) == Game::BW)
         {
             return personal_bw.data();
         }
-        else if (version & Game::BW2)
+        else if ((version & Game::BW2) == Game::BW2)
         {
             return personal_b2w2.data();
         }
-        else if (version & Game::SwSh)
+        else if ((version & Game::SwSh) == Game::SwSh)
         {
             return personal_swsh.data();
         }

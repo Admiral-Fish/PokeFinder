@@ -23,7 +23,7 @@
 #include <Core/Gen4/States/EggState4.hpp>
 #include <Forms/Models/TableModel.hpp>
 
-enum Method : u8;
+enum class Method : u8;
 
 class EggGeneratorModel4 : public TableModel<EggState4>
 {

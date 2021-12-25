@@ -22,7 +22,7 @@
 
 #include <Core/Util/Global.hpp>
 
-enum Method : u8;
+enum class Method : u8;
 
 class PIDIVState
 {

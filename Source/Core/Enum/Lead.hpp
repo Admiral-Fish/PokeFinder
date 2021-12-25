@@ -22,7 +22,7 @@
 
 #include <Core/Util/Global.hpp>
 
-enum Lead : u8
+enum class Lead : u8
 {
     None,
     Search,
@@ -39,5 +39,10 @@ enum Lead : u8
     CuteCharmFemale,
     SuctionCups
 };
+
+constexpr u8 toInt(Lead lead)
+{
+    return static_cast<u8>(lead);
+}
 
 #endif // LEAD_HPP

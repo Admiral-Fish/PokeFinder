@@ -96,8 +96,8 @@ void Eggs5::setupModels()
     ui->filterGenerator->disableControls(Controls::EncounterSlots);
     ui->filterSearcher->disableControls(Controls::EncounterSlots | Controls::DisableFilter | Controls::UseDelay);
 
-    ui->eggSettingsGenerator->setup(static_cast<Game>(Game::BW | Game::BW2));
-    ui->eggSettingsSearcher->setup(static_cast<Game>(Game::BW | Game::BW2));
+    ui->eggSettingsGenerator->setup(Game::Gen5);
+    ui->eggSettingsSearcher->setup(Game::Gen5);
 
     ui->filterGenerator->enableHiddenAbility();
     ui->filterSearcher->enableHiddenAbility();
@@ -146,7 +146,7 @@ void Eggs5::generate()
     }
 
     generatorModel->clearModel();
-    Method method = (currentProfile.getVersion() & Game::BW) ? Method::BWBred : Method::BW2Bred;
+    Method method = (currentProfile.getVersion() & Game::BW) == Game::BW ? Method::BWBred : Method::BW2Bred;
 
     u64 seed = ui->textBoxGeneratorSeed->getULong();
     u32 initialAdvances = ui->textBoxGeneratorInitialAdvances->getUInt();
@@ -187,7 +187,7 @@ void Eggs5::search()
     }
 
     searcherModel->clearModel();
-    Method method = (currentProfile.getVersion() & Game::BW) ? Method::BWBred : Method::BW2Bred;
+    Method method = (currentProfile.getVersion() & Game::BW) == Game::BW ? Method::BWBred : Method::BW2Bred;
 
     ui->pushButtonSearch->setEnabled(false);
     ui->pushButtonCancel->setEnabled(true);
@@ -246,7 +246,7 @@ void Eggs5::calculateInitialAdvances()
     Game version = currentProfile.getVersion();
 
     u8 initialAdvances;
-    if (version & Game::BW)
+    if ((version & Game::BW) == Game::BW)
     {
         initialAdvances = Utilities::initialAdvancesBW(ui->textBoxGeneratorSeed->getULong());
     }

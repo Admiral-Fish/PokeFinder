@@ -23,7 +23,7 @@
 #include <Core/Util/Global.hpp>
 #include <array>
 
-enum Game : u32;
+enum class Game : u32;
 
 class Daycare
 {

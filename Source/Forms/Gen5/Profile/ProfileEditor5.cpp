@@ -48,9 +48,9 @@ ProfileEditor5::ProfileEditor5(const Profile5 &profile, QWidget *parent) : QDial
     ui->textBoxTimer0Min->setText(QString::number(profile.getTimer0Min(), 16));
     ui->textBoxTimer0Max->setText(QString::number(profile.getTimer0Max(), 16));
 
-    ui->comboBoxVersion->setCurrentIndex(ui->comboBoxVersion->findData(profile.getVersion()));
-    ui->comboBoxLanguage->setCurrentIndex(ui->comboBoxLanguage->findData(profile.getLanguage()));
-    ui->comboBoxDSType->setCurrentIndex(ui->comboBoxDSType->findData(profile.getDSType()));
+    ui->comboBoxVersion->setCurrentIndex(ui->comboBoxVersion->findData(toInt(profile.getVersion())));
+    ui->comboBoxLanguage->setCurrentIndex(ui->comboBoxLanguage->findData(toInt(profile.getLanguage())));
+    ui->comboBoxDSType->setCurrentIndex(ui->comboBoxDSType->findData(toInt(profile.getDSType())));
     auto keypress = profile.getKeypresses();
     ui->comboBoxKeypresses->setChecks(std::vector<bool>(keypress.begin(), keypress.end()));
 
@@ -74,9 +74,9 @@ ProfileEditor5::ProfileEditor5(Game version, Language language, DSType dsType, u
 
     setupModels();
 
-    ui->comboBoxVersion->setCurrentIndex(ui->comboBoxVersion->findData(version));
-    ui->comboBoxLanguage->setCurrentIndex(ui->comboBoxLanguage->findData(language));
-    ui->comboBoxDSType->setCurrentIndex(ui->comboBoxDSType->findData(dsType));
+    ui->comboBoxVersion->setCurrentIndex(ui->comboBoxVersion->findData(toInt(version)));
+    ui->comboBoxLanguage->setCurrentIndex(ui->comboBoxLanguage->findData(toInt(language)));
+    ui->comboBoxDSType->setCurrentIndex(ui->comboBoxDSType->findData(toInt(dsType)));
     ui->textBoxMAC->setText(QString::number(mac, 16));
     ui->textBoxVCount->setText(QString::number(vcount, 16));
     ui->textBoxTimer0Min->setText(QString::number(timer0, 16));
@@ -113,22 +113,12 @@ void ProfileEditor5::setupModels()
     ui->textBoxTimer0Min->setValues(InputType::Seed16Bit);
     ui->textBoxTimer0Max->setValues(InputType::Seed16Bit);
 
-    ui->comboBoxVersion->setItemData(0, Game::Black);
-    ui->comboBoxVersion->setItemData(1, Game::White);
-    ui->comboBoxVersion->setItemData(2, Game::Black2);
-    ui->comboBoxVersion->setItemData(3, Game::White2);
+    ui->comboBoxVersion->setup({ toInt(Game::Black), toInt(Game::White), toInt(Game::Black2), toInt(Game::White2) });
 
-    ui->comboBoxDSType->setItemData(0, DSType::DSOriginal);
-    ui->comboBoxDSType->setItemData(1, DSType::DSi);
-    ui->comboBoxDSType->setItemData(2, DSType::DS3);
+    ui->comboBoxDSType->setup({ toInt(DSType::DS), toInt(DSType::DSi), 2, toInt(DSType::DS3) });
 
-    ui->comboBoxLanguage->setItemData(0, Language::English);
-    ui->comboBoxLanguage->setItemData(1, Language::Spanish);
-    ui->comboBoxLanguage->setItemData(2, Language::French);
-    ui->comboBoxLanguage->setItemData(3, Language::Italian);
-    ui->comboBoxLanguage->setItemData(4, Language::German);
-    ui->comboBoxLanguage->setItemData(5, Language::Japanese);
-    ui->comboBoxLanguage->setItemData(6, Language::Korean);
+    ui->comboBoxLanguage->setup({ toInt(Language::English), toInt(Language::Spanish), toInt(Language::French), toInt(Language::Italian),
+                                  toInt(Language::German), toInt(Language::Japanese), toInt(Language::Korean) });
 
     ui->comboBoxKeypresses->setup();
 
@@ -173,7 +163,7 @@ void ProfileEditor5::versionIndexChanged(int index)
     if (index >= 0)
     {
         Game version = static_cast<Game>(ui->comboBoxVersion->currentData().toUInt());
-        if (version & Game::BW2)
+        if ((version & Game::BW2) == Game::BW2)
         {
             ui->checkBoxMemoryLink->setVisible(true);
             ui->checkBoxShinyCharm->setVisible(true);

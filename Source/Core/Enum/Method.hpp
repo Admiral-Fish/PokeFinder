@@ -22,9 +22,9 @@
 
 #include <Core/Util/Global.hpp>
 
-enum Method : u8
+enum class Method : u8
 {
-    Null,
+    None,
     Method1,
     Method1Reverse,
     Method2,
@@ -63,7 +63,11 @@ enum Method : u8
     BW2Bred,
     DreamRadar,
     Method5Event,
-    // TODO: Add Gen 5 egg/events
 };
+
+constexpr u8 toInt(Method method)
+{
+    return static_cast<u8>(method);
+}
 
 #endif // METHOD_HPP

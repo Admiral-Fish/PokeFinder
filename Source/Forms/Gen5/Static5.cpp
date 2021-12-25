@@ -93,15 +93,14 @@ void Static5::setupModels()
     ui->textBoxSearcherMinAdvances->setValues(InputType::Advance32Bit);
     ui->textBoxSearcherMaxAdvances->setValues(InputType::Advance32Bit);
 
-    ui->comboBoxGeneratorMethod->setup({ Method::Method5IVs, Method::Method5CGear, Method::Method5 });
-    ui->comboBoxSearcherMethod->setup({ Method::Method5IVs, Method::Method5CGear, Method::Method5 });
-    connect(ui->comboBoxGeneratorMethod, QOverload<int>::of(&ComboBox::currentIndexChanged), this,
-            &Static5::generatorMethodIndexChanged);
+    ui->comboBoxGeneratorMethod->setup({ toInt(Method::Method5IVs), toInt(Method::Method5CGear), toInt(Method::Method5) });
+    ui->comboBoxSearcherMethod->setup({ toInt(Method::Method5IVs), toInt(Method::Method5CGear), toInt(Method::Method5) });
+    connect(ui->comboBoxGeneratorMethod, QOverload<int>::of(&ComboBox::currentIndexChanged), this, &Static5::generatorMethodIndexChanged);
     connect(ui->comboBoxSearcherMethod, QOverload<int>::of(&ComboBox::currentIndexChanged), this, &Static5::searcherMethodIndexChanged);
 
-    ui->comboBoxSearcherEncounter->setup({ Encounter::Static, Encounter::Roamer });
+    ui->comboBoxSearcherEncounter->setup({ toInt(Encounter::Static), toInt(Encounter::Roamer) });
 
-    ui->comboBoxSearcherLead->setup({ Lead::Search, Lead::Synchronize, Lead::CuteCharm, Lead::None });
+    ui->comboBoxSearcherLead->setup({ toInt(Lead::Search), toInt(Lead::Synchronize), toInt(Lead::CuteCharm), toInt(Lead::None) });
 
     ui->comboBoxGeneratorLead->addItem(tr("None"));
     for (const std::string &nature : Translator::getNatures())
@@ -251,23 +250,19 @@ void Static5::search()
     connect(ui->pushButtonCancel, &QPushButton::clicked, [searcher] { searcher->cancelSearch(); });
 
     auto *timer = new QTimer();
-    connect(timer, &QTimer::timeout,
-            [=]
-            {
-                searcherModel->addItems(searcher->getResults());
-                ui->progressBar->setValue(searcher->getProgress());
-            });
+    connect(timer, &QTimer::timeout, [=] {
+        searcherModel->addItems(searcher->getResults());
+        ui->progressBar->setValue(searcher->getProgress());
+    });
     connect(thread, &QThread::finished, timer, &QTimer::stop);
     connect(thread, &QThread::finished, timer, &QTimer::deleteLater);
-    connect(timer, &QTimer::destroyed,
-            [=]
-            {
-                ui->pushButtonSearch->setEnabled(true);
-                ui->pushButtonCancel->setEnabled(false);
-                searcherModel->addItems(searcher->getResults());
-                ui->progressBar->setValue(searcher->getProgress());
-                delete searcher;
-            });
+    connect(timer, &QTimer::destroyed, [=] {
+        ui->pushButtonSearch->setEnabled(true);
+        ui->pushButtonCancel->setEnabled(false);
+        searcherModel->addItems(searcher->getResults());
+        ui->progressBar->setValue(searcher->getProgress());
+        delete searcher;
+    });
 
     thread->start();
     timer->start(1000);
@@ -305,11 +300,11 @@ void Static5::generatorLead()
         ui->pushButtonGeneratorLead->setText(tr("Cute Charm"));
         ui->comboBoxGeneratorLead->setEnabled(true);
 
-        ui->comboBoxGeneratorLead->addItem(tr("♂ Lead"), Lead::CuteCharmFemale);
-        ui->comboBoxGeneratorLead->addItem(tr("♀ Lead (50% ♂ Target)"), Lead::CuteCharm50M);
-        ui->comboBoxGeneratorLead->addItem(tr("♀ Lead (75% ♂ Target)"), Lead::CuteCharm75M);
-        ui->comboBoxGeneratorLead->addItem(tr("♀ Lead (25% ♂ Target)"), Lead::CuteCharm25M);
-        ui->comboBoxGeneratorLead->addItem(tr("♀ Lead (87.5% ♂ Target)"), Lead::CuteCharm875M);
+        ui->comboBoxGeneratorLead->addItem(tr("♂ Lead"), toInt(Lead::CuteCharmFemale));
+        ui->comboBoxGeneratorLead->addItem(tr("♀ Lead (50% ♂ Target)"), toInt(Lead::CuteCharm50M));
+        ui->comboBoxGeneratorLead->addItem(tr("♀ Lead (75% ♂ Target)"), toInt(Lead::CuteCharm75M));
+        ui->comboBoxGeneratorLead->addItem(tr("♀ Lead (25% ♂ Target)"), toInt(Lead::CuteCharm25M));
+        ui->comboBoxGeneratorLead->addItem(tr("♀ Lead (87.5% ♂ Target)"), toInt(Lead::CuteCharm875M));
     }
     else if (text == tr("Cute Charm"))
     {
@@ -334,7 +329,7 @@ void Static5::calculateInitialAdvances()
     Game version = currentProfile.getVersion();
 
     u8 initialAdvances;
-    if (version & Game::BW)
+    if ((version & Game::BW) == Game::BW)
     {
         initialAdvances = Utilities::initialAdvancesBW(ui->textBoxGeneratorSeed->getULong());
     }
@@ -348,7 +343,7 @@ void Static5::calculateInitialAdvances()
 
 void Static5::generatorMethodIndexChanged(int index)
 {
-    u8 method = ui->comboBoxGeneratorMethod->getCurrentByte();
+    Method method = static_cast<Method>(ui->comboBoxGeneratorMethod->getCurrentByte());
 
     ui->comboBoxGeneratorEncounter->clear();
     if (currentProfile.getVersion() == Game::Black2 || currentProfile.getVersion() == Game::White2)
@@ -358,7 +353,7 @@ void Static5::generatorMethodIndexChanged(int index)
         case Method::Method5:
         {
             ui->comboBoxGeneratorEncounter->addItems({ tr("Static"), tr("Roamer"), tr("Hidden Grotto") });
-            ui->comboBoxGeneratorEncounter->setup({ Encounter::Static, Encounter::Roamer, Encounter::HiddenGrotto });
+            ui->comboBoxGeneratorEncounter->setup({ toInt(Encounter::Static), toInt(Encounter::Roamer), toInt(Encounter::HiddenGrotto) });
 
             ui->pushButtonCalculateInitialAdvances->setVisible(true);
 
@@ -372,7 +367,7 @@ void Static5::generatorMethodIndexChanged(int index)
         default:
         {
             ui->comboBoxGeneratorEncounter->addItems({ tr("Static"), tr("Roamer") });
-            ui->comboBoxGeneratorEncounter->setup({ Encounter::Static, Encounter::Roamer });
+            ui->comboBoxGeneratorEncounter->setup({ toInt(Encounter::Static), toInt(Encounter::Roamer) });
 
             ui->pushButtonCalculateInitialAdvances->setVisible(false);
 
@@ -389,7 +384,7 @@ void Static5::generatorMethodIndexChanged(int index)
         case Method::Method5:
         {
             ui->comboBoxGeneratorEncounter->addItems({ tr("Static"), tr("Roamer") });
-            ui->comboBoxGeneratorEncounter->setup({ Encounter::Static, Encounter::Roamer, Encounter::HiddenGrotto });
+            ui->comboBoxGeneratorEncounter->setup({ toInt(Encounter::Static), toInt(Encounter::Roamer) });
 
             ui->pushButtonCalculateInitialAdvances->setVisible(true);
 
@@ -403,7 +398,7 @@ void Static5::generatorMethodIndexChanged(int index)
         default:
         {
             ui->comboBoxGeneratorEncounter->addItems({ tr("Static"), tr("Roamer") });
-            ui->comboBoxGeneratorEncounter->setup({ Encounter::Static, Encounter::Roamer });
+            ui->comboBoxGeneratorEncounter->setup({ toInt(Encounter::Static), toInt(Encounter::Roamer) });
 
             ui->pushButtonCalculateInitialAdvances->setVisible(false);
 
@@ -417,7 +412,7 @@ void Static5::generatorMethodIndexChanged(int index)
 
 void Static5::searcherMethodIndexChanged(int index)
 {
-    u8 method = ui->comboBoxSearcherMethod->getCurrentByte();
+    Method method = static_cast<Method>(ui->comboBoxSearcherMethod->getCurrentByte());
     ui->comboBoxSearcherEncounter->clear();
     if (currentProfile.getVersion() == Game::Black2 || currentProfile.getVersion() == Game::White2)
     {
@@ -426,7 +421,7 @@ void Static5::searcherMethodIndexChanged(int index)
         case Method::Method5:
         {
             ui->comboBoxSearcherEncounter->addItems({ tr("Static"), tr("Roamer"), tr("Hidden Grotto") });
-            ui->comboBoxSearcherEncounter->setup({ Encounter::Static, Encounter::Roamer, Encounter::HiddenGrotto });
+            ui->comboBoxSearcherEncounter->setup({ toInt(Encounter::Static), toInt(Encounter::Roamer), toInt(Encounter::HiddenGrotto) });
 
             ui->filterSearcher->disableControls(Controls::IVs | Controls::HiddenPowers);
             ui->filterSearcher->enableControls(Controls::Ability | Controls::Shiny | Controls::Gender | Controls::GenderRatio
@@ -438,7 +433,7 @@ void Static5::searcherMethodIndexChanged(int index)
         default:
         {
             ui->comboBoxSearcherEncounter->addItems({ tr("Static"), tr("Roamer") });
-            ui->comboBoxSearcherEncounter->setup({ Encounter::Static, Encounter::Roamer });
+            ui->comboBoxSearcherEncounter->setup({ toInt(Encounter::Static), toInt(Encounter::Roamer) });
 
             ui->filterSearcher->enableControls(Controls::IVs | Controls::HiddenPowers);
             ui->filterSearcher->disableControls(Controls::Ability | Controls::Shiny | Controls::Gender | Controls::GenderRatio
@@ -453,7 +448,7 @@ void Static5::searcherMethodIndexChanged(int index)
         case Method::Method5:
         {
             ui->comboBoxSearcherEncounter->addItems({ tr("Static"), tr("Roamer") });
-            ui->comboBoxSearcherEncounter->setup({ Encounter::Static, Encounter::Roamer, Encounter::HiddenGrotto });
+            ui->comboBoxSearcherEncounter->setup({ toInt(Encounter::Static), toInt(Encounter::Roamer), toInt(Encounter::HiddenGrotto) });
 
             ui->filterSearcher->disableControls(Controls::IVs | Controls::HiddenPowers);
             ui->filterSearcher->enableControls(Controls::Ability | Controls::Shiny | Controls::Gender | Controls::GenderRatio
@@ -465,7 +460,7 @@ void Static5::searcherMethodIndexChanged(int index)
         default:
         {
             ui->comboBoxSearcherEncounter->addItems({ tr("Static"), tr("Roamer") });
-            ui->comboBoxSearcherEncounter->setup({ Encounter::Static, Encounter::Roamer });
+            ui->comboBoxSearcherEncounter->setup({ toInt(Encounter::Static), toInt(Encounter::Roamer) });
 
             ui->filterSearcher->enableControls(Controls::IVs | Controls::HiddenPowers);
             ui->filterSearcher->disableControls(Controls::Ability | Controls::Shiny | Controls::Gender | Controls::GenderRatio
