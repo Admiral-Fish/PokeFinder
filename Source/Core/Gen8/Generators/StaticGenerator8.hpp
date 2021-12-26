@@ -23,13 +23,15 @@
 #include <Core/Parents/Generators/StaticGenerator.hpp>
 #include <Core/Parents/States/StaticState.hpp>
 
+class StaticTemplate;
+
 class StaticGenerator8 : public StaticGenerator
 {
 public:
     StaticGenerator8() = default;
     StaticGenerator8(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, const StateFilter &filter);
-    std::vector<StaticState> generate(u64 seed0, u64 seed1) const;
-    std::vector<StaticState> generateRoamer(u64 seed0, u64 seed1) const;
+    std::vector<StaticState> generate(u64 seed0, u64 seed1, const StaticTemplate &parameters) const;
+    std::vector<StaticState> generateRoamer(u64 seed0, u64 seed1, const StaticTemplate &parameters) const;
 };
 
 #endif // STATICGENERATOR8_HPP

@@ -19,17 +19,17 @@
 
 #include "StaticGenerator8.hpp"
 #include <Core/Enum/Method.hpp>
+#include <Core/Parents/StaticTemplate.hpp>
 #include <Core/RNG/RNGList.hpp>
 #include <Core/RNG/Xoroshiro.hpp>
 #include <Core/RNG/Xorshift.hpp>
 
-StaticGenerator8::StaticGenerator8(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio,
-                                           const StateFilter &filter) :
+StaticGenerator8::StaticGenerator8(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, const StateFilter &filter) :
     StaticGenerator(initialAdvances, maxAdvances, tid, sid, genderRatio, Method::None, filter)
 {
 }
 
-std::vector<StaticState> StaticGenerator8::generate(u64 seed0, u64 seed1) const
+std::vector<StaticState> StaticGenerator8::generate(u64 seed0, u64 seed1, const StaticTemplate &parameters) const
 {
     Xorshift rng(seed0, seed1);
     rng.advance(initialAdvances + offset);
@@ -45,8 +45,11 @@ std::vector<StaticState> StaticGenerator8::generate(u64 seed0, u64 seed1) const
     return states;
 }
 
-std::vector<StaticState> StaticGenerator8::generateRoamer(u64 seed0, u64 seed1) const
+std::vector<StaticState> StaticGenerator8::generateRoamer(u64 seed0, u64 seed1, const StaticTemplate &parameters) const
 {
+    // Going to ignore the parameters
+    // Only roamers are Cresselia/Mesprit which have identical parameters
+
     Xorshift rng(seed0, seed1);
     rng.advance(initialAdvances + offset);
 
@@ -56,28 +59,42 @@ std::vector<StaticState> StaticGenerator8::generateRoamer(u64 seed0, u64 seed1) 
         StaticState state(initialAdvances + cnt);
         XoroshiroBDSP gen(rng.next());
 
-        // Roamers are Cresselia and Mesprit
-        // Neither are shiny locked
         u32 sidtid = gen.next(0xffffffff);
         u32 pid = gen.next(0xffffffff);
-        
-        u16 fakeTSV = (sidtid >> 16) ^ (sidtid & 0xffff);
-        u16 psv = (pid >> 16) ^ (pid & 0xffff);
-        if ((fakeTSV ^ psv) < 16)
-        {
-            // Modify PID to trainer TID/SID
 
+        u16 psv = (pid >> 16) ^ (pid & 0xffff);
+        u16 fakeXOR = (sidtid >> 16) ^ (sidtid & 0xffff) ^ psv;
+        if (fakeXOR < 16) // Force shiny
+        {
+            u8 fakeShinyType = fakeXOR == 0 ? 2 : 1;
+
+            u16 realXOR = psv ^ tsv;
+            u8 realShinyType = realXOR == 0 ? 2 : realXOR < 16 ? 1 : 0;
+
+            state.setShiny(fakeShinyType);
+            if (realShinyType != fakeShinyType)
+            {
+                u16 high = (pid & 0xFFFF) ^ tsv ^ (2 - fakeShinyType);
+                pid = (high << 16) | (pid & 0xFFFF);
+            }
+        }
+        else // Force non shiny
+        {
+            state.setShiny(0);
+            if (psv ^ tsv < 16)
+            {
+                pid ^= 0x10000000;
+            }
         }
         state.setPID(pid);
-        state.setShiny<16>(fakeTSV, psv);
 
-        for (int i = 0; i < 6;i++)
+        for (int i = 0; i < 6; i++)
         {
             state.setIV(i, 255);
         }
 
         // Assign 3 31 IVs
-        for (int i = 0; i < 3; )
+        for (int i = 0; i < 3;)
         {
             u8 index = gen.next(6);
             if (state.getIV(index) == 255)

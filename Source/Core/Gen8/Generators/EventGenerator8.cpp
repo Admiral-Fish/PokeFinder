@@ -57,40 +57,30 @@ std::vector<State> EventGenerator8::generate(u64 seed0, u64 seed1) const
         switch (parameters.getPIDType())
         {
         case 0:
+        {
+            pid = rngList.getValue();
+            u16 psv = (pid >> 16) & (pid & 0xffff);
+
+            if ((psv ^ tsv) < 16)
+            {
+                pid ^= 0x10000000;
+            }
+            state.setShiny(0);
+            break;
+        }
         case 1:
         case 2:
         {
             pid = rngList.getValue();
             u16 psv = (pid >> 16) & (pid & 0xffff);
 
-            if (parameters.getPIDType() == 0) // Force non-shiny
-            {
-                if (psv ^ tsv < 16)
-                {
-                    pid ^= 0x10000000;
-                }
-            }
-            else // Force shiny
-            {
-                u8 shinyType;
-                if ((psv ^ tsv) == 0)
-                {
-                    shinyType = 2;
-                }
-                else if ((psv ^ tsv) < 16)
-                {
-                    shinyType = 1;
-                }
-                else
-                {
-                    shinyType = 0;
-                }
+            u16 realXOR = psv ^ tsv;
+            u8 realShinyType = realXOR == 0 ? 2 : realXOR < 16 ? 1 : 0;
 
-                if (shinyType != parameters.getPIDType())
-                {
-                    u16 high = (pid & 0xFFFF) ^ tsv ^ (2 - shinyType);
-                    pid = (high << 16) | (pid & 0xFFFF);
-                }
+            if (realShinyType != parameters.getPIDType())
+            {
+                u16 high = (pid & 0xFFFF) ^ tsv ^ (2 - parameters.getPIDType());
+                pid = (high << 16) | (pid & 0xFFFF);
             }
 
             state.setShiny(parameters.getPIDType());
