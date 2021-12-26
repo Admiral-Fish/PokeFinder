@@ -257,7 +257,7 @@ void Static4::profileIndexChanged(int index)
         ui->labelProfileSIDValue->setText(QString::number(currentProfile.getSID()));
         ui->labelProfileGameValue->setText(QString::fromStdString(currentProfile.getVersionString()));
 
-        bool flag = (currentProfile.getVersion() & Game::HGSS) == Game::HGSS;
+        bool flag = (currentProfile.getVersion() & Game::HGSS) != Game::None;
 
         ui->comboBoxGeneratorMethod->clear();
         ui->comboBoxGeneratorMethod->addItem(tr("Method 1"), toInt(Method::Method1));

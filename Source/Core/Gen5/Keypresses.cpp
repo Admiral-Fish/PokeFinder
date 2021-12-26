@@ -31,7 +31,7 @@ namespace Keypresses
     {
         bool valid(Buttons button, bool skipLR)
         {
-            return !(skipLR && ((button & Buttons::L) == Buttons::L || (button & Buttons::R) == Buttons::R));
+            return !(skipLR && ((button & Buttons::L) != Buttons::None || (button & Buttons::R) != Buttons::None));
         }
     }
 
@@ -115,7 +115,7 @@ namespace Keypresses
 
             for (int i = 0; i < 12; i++)
             {
-                if (toInt(button) & (1 << i))
+                if ((button & static_cast<Buttons>(1 << i)) != Buttons::None)
                 {
                     value -= buttonValues[i];
                 }

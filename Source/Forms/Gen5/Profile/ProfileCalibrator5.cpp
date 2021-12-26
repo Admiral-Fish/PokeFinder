@@ -115,7 +115,7 @@ void ProfileCalibrator5::updateParameters()
     switch (dsType)
     {
     case DSType::DS:
-        if ((version & Game::BW) == Game::BW)
+        if ((version & Game::BW) != Game::None)
         {
             ui->textBoxMinVCount->setText("50");
             ui->textBoxMaxVCount->setText("70");
@@ -132,7 +132,7 @@ void ProfileCalibrator5::updateParameters()
         break;
     case DSType::DSi:
     case DSType::DS3:
-        if ((version & Game::BW) == Game::BW)
+        if ((version & Game::BW) != Game::None)
         {
             ui->textBoxMinVCount->setText("80");
             ui->textBoxMaxVCount->setText("92");

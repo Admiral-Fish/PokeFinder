@@ -85,7 +85,7 @@ int EventSearcher5::getProgress() const
 
 void EventSearcher5::search(EventGenerator5 generator, const Date &start, const Date &end)
 {
-    bool flag = (profile.getVersion() & Game::BW) == Game::BW;
+    bool flag = (profile.getVersion() & Game::BW) != Game::None;
 
     SHA1 sha(profile);
     auto buttons = Keypresses::getKeyPresses(profile.getKeypresses(), profile.getSkipLR());

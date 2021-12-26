@@ -78,7 +78,7 @@ void ProfileEditor4::setupModels()
 
     ui->comboBoxVersion->setup({ toInt(Game::Diamond), toInt(Game::Pearl), toInt(Game::HeartGold), toInt(Game::SoulSilver) });
 
-    ui->comboBoxDualSlot->setup({ toInt(Game::Blank), toInt(Game::Ruby), toInt(Game::Sapphire), toInt(Game::FireRed),
+    ui->comboBoxDualSlot->setup({ toInt(Game::None), toInt(Game::Ruby), toInt(Game::Sapphire), toInt(Game::FireRed),
                                   toInt(Game::LeafGreen), toInt(Game::Emerald) });
 
     connect(ui->pushButtonOkay, &QPushButton::clicked, this, &ProfileEditor4::okay);
@@ -115,7 +115,7 @@ void ProfileEditor4::versionIndexChanged(int index)
     if (index >= 0)
     {
         auto game = static_cast<Game>(ui->comboBoxVersion->currentData().toUInt());
-        bool flag = (game & Game::HGSS) == Game::HGSS;
+        bool flag = (game & Game::HGSS) != Game::None;
 
         ui->labelRadio->setVisible(flag);
         ui->comboBoxRadio->setVisible(flag);

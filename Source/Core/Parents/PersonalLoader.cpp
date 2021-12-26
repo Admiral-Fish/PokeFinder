@@ -25,43 +25,43 @@ namespace PersonalLoader
 {
     const PersonalInfo *getPersonal(Game version)
     {
-        if ((version & Game::Emerald) == Game::Emerald)
+        if ((version & Game::Emerald) != Game::None)
         {
             return personal_e.data();
         }
-        else if ((version & Game::RS) == Game::RS)
+        else if ((version & Game::RS) != Game::None)
         {
             return personal_rs.data();
         }
-        else if ((version & Game::FireRed) == Game::FireRed)
+        else if ((version & Game::FireRed) != Game::None)
         {
             return personal_fr.data();
         }
-        else if ((version & Game::LeafGreen) == Game::LeafGreen)
+        else if ((version & Game::LeafGreen) != Game::None)
         {
             return personal_lg.data();
         }
-        else if ((version & Game::DP) == Game::DP)
+        else if ((version & Game::DP) != Game::None)
         {
             return personal_dp.data();
         }
-        else if ((version & Game::Platinum) == Game::Platinum)
+        else if ((version & Game::Platinum) != Game::None)
         {
             return personal_pt.data();
         }
-        else if ((version & Game::HGSS) == Game::HGSS)
+        else if ((version & Game::HGSS) != Game::None)
         {
             return personal_hgss.data();
         }
-        else if ((version & Game::BW) == Game::BW)
+        else if ((version & Game::BW) != Game::None)
         {
             return personal_bw.data();
         }
-        else if ((version & Game::BW2) == Game::BW2)
+        else if ((version & Game::BW2) != Game::None)
         {
             return personal_b2w2.data();
         }
-        else if ((version & Game::SwSh) == Game::SwSh)
+        else if ((version & Game::SwSh) != Game::None)
         {
             return personal_swsh.data();
         }

@@ -24,6 +24,7 @@
 
 enum class Controls : u16
 {
+    None = 0,
     IVs = 1 << 0,
     Ability = 1 << 1,
     Gender = 1 << 2,

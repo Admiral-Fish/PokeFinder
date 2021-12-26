@@ -105,7 +105,7 @@ void ProfileEditor3::versionIndexChanged(int index)
 {
     if (index >= 0)
     {
-        bool flag = (static_cast<Game>(ui->comboBoxVersion->currentData().toInt()) & Game::RS) == Game::RS;
+        bool flag = (static_cast<Game>(ui->comboBoxVersion->currentData().toInt()) & Game::RS) != Game::None;
         ui->checkBoxDeadBattery->setVisible(flag);
         if (!flag)
         {

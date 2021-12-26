@@ -278,19 +278,19 @@ void IVCalculator::gameIndexChanged(int index)
         const PersonalInfo *info = PersonalLoader::getPersonal(version);
 
         u16 max = 0;
-        if ((version & Game::Gen3) == Game::Gen3)
+        if ((version & Game::Gen3) != Game::None)
         {
             max = 386;
         }
-        else if ((version & Game::Gen4) == Game::Gen4)
+        else if ((version & Game::Gen4) != Game::None)
         {
             max = 493;
         }
-        else if ((version & Game::Gen5) == Game::Gen5)
+        else if ((version & Game::Gen5) != Game::None)
         {
             max = 649;
         }
-        else if ((version & Game::SwSh) == Game::SwSh)
+        else if ((version & Game::SwSh) != Game::None)
         {
             max = 898;
         }

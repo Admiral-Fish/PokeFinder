@@ -45,7 +45,7 @@ QVariant ProfileModel3::data(const QModelIndex &index, int role) const
         case 3:
             return profile.getSID();
         case 4:
-            if ((profile.getVersion() & Game::RS) == Game::RS)
+            if ((profile.getVersion() & Game::RS) != Game::None)
             {
                 return profile.getDeadBattery() ? tr("Yes") : tr("No");
             }

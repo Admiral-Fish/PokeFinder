@@ -120,13 +120,13 @@ std::set<std::pair<u16, QString>> EncounterLookup::getEncounters4(Game game, u16
     auto types = { Encounter::Grass, Encounter::RockSmash, Encounter::OldRod, Encounter::GoodRod, Encounter::SuperRod };
 
     // Setup profiles to iterate through of the different combinations of possibilities depending on HGSS vs DPPt
-    if ((game & Game::HGSS) == Game::HGSS)
+    if ((game & Game::HGSS) != Game::None)
     {
         for (const int radio : { 0, 1, 2 })
         {
             for (const bool swarm : { false, true })
             {
-                profiles.emplace_back("", game, 0, 0, Game::Blank, radio, false, swarm);
+                profiles.emplace_back("", game, 0, 0, Game::None, radio, false, swarm);
             }
         }
     }
@@ -202,11 +202,11 @@ void EncounterLookup::find()
     std::set<std::pair<u16, QString>> encounters;
     std::vector<std::string> locationNames;
 
-    if ((game & Game::Gen3) == Game::Gen3)
+    if ((game & Game::Gen3) != Game::None)
     {
         encounters = getEncounters3(game, specie);
     }
-    else if ((game & Game::Gen4) == Game::Gen4)
+    else if ((game & Game::Gen4) != Game::None)
     {
         encounters = getEncounters4(game, specie);
     }
@@ -233,11 +233,11 @@ void EncounterLookup::gameIndexChanged(int index)
         Game game = static_cast<Game>(ui->comboBoxGame->currentData().toUInt());
         u16 max = 0;
 
-        if ((game & Game::Gen3) == Game::Gen3)
+        if ((game & Game::Gen3) != Game::None)
         {
             max = 386;
         }
-        else if ((game & Game::Gen4) == Game::Gen4)
+        else if ((game & Game::Gen4) != Game::None)
         {
             max = 493;
         }

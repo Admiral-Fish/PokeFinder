@@ -589,23 +589,23 @@ namespace Translator
     std::vector<std::string> getLocations(const std::vector<u16> &nums, Game game)
     {
         std::vector<std::string> strings;
-        if ((game & Game::FRLG) == Game::FRLG)
+        if ((game & Game::FRLG) != Game::None)
         {
             strings = readFile("frlg");
         }
-        else if ((game & Game::RSE) == Game::RSE)
+        else if ((game & Game::RSE) != Game::None)
         {
             strings = readFile("rse");
         }
-        else if ((game & Game::DPPt) == Game::DPPt)
+        else if ((game & Game::DPPt) != Game::None)
         {
             strings = readFile("dppt");
         }
-        else if ((game & Game::HGSS) == Game::HGSS)
+        else if ((game & Game::HGSS) != Game::None)
         {
             strings = readFile("hgss");
         }
-        else if ((game & Game::SwSh) == Game::SwSh)
+        else if ((game & Game::SwSh) != Game::None)
         {
             strings = readFile("swsh");
         }

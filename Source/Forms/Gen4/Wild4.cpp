@@ -268,7 +268,7 @@ void Wild4::generate()
                        ui->filterGenerator->getNatures(), ui->filterGenerator->getHiddenPowers(), ui->filterGenerator->getEncounterSlots());
 
     WildGenerator4 generator(initialAdvances, maxAdvances, tid, sid, genderRatio, method, filter,
-                             (currentProfile.getVersion() & Game::Platinum) == Game::Platinum);
+                             (currentProfile.getVersion() & Game::Platinum) != Game::None);
     generator.setOffset(offset);
     generator.setEncounter(static_cast<Encounter>(ui->comboBoxGeneratorEncounter->getCurrentInt()));
 
@@ -357,7 +357,7 @@ void Wild4::profilesIndexChanged(int index)
         ui->labelProfilePokeRadarValue->setText(currentProfile.getRadar() ? tr("Yes") : tr("No"));
         ui->labelProfileSwarmValue->setText(currentProfile.getSwarm() ? tr("Yes") : tr("No"));
 
-        bool flag = (currentProfile.getVersion() & Game::HGSS) == Game::HGSS;
+        bool flag = (currentProfile.getVersion() & Game::HGSS) != Game::None;
 
         ui->comboBoxGeneratorMethod->clear();
         ui->comboBoxGeneratorMethod->addItem(flag ? tr("Method K") : tr("Method J"),

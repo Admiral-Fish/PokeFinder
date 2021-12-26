@@ -19,7 +19,7 @@
 
 #include "Profile4.hpp"
 
-Profile4::Profile4() : dual(Game::Blank), radio(0), radar(false), swarm(false)
+Profile4::Profile4() : dual(Game::None), radio(0), radar(false), swarm(false)
 {
     version = Game::Diamond;
 }

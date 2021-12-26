@@ -329,7 +329,7 @@ void Static5::calculateInitialAdvances()
     Game version = currentProfile.getVersion();
 
     u8 initialAdvances;
-    if ((version & Game::BW) == Game::BW)
+    if ((version & Game::BW) != Game::None)
     {
         initialAdvances = Utilities::initialAdvancesBW(ui->textBoxGeneratorSeed->getULong());
     }

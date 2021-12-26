@@ -109,7 +109,7 @@ void ProfileEditor8::versionIndexChanged(int index)
     if (index >= 0)
     {
         auto game = static_cast<Game>(ui->comboBoxVersion->currentData().toUInt());
-        bool flag = (game & Game::BDSP) == Game::BDSP;
+        bool flag = (game & Game::BDSP) != Game::None;
 
         ui->checkBoxRadar->setVisible(flag);
         ui->checkBoxSwarm->setVisible(flag);

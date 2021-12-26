@@ -146,7 +146,7 @@ void Eggs5::generate()
     }
 
     generatorModel->clearModel();
-    Method method = (currentProfile.getVersion() & Game::BW) == Game::BW ? Method::BWBred : Method::BW2Bred;
+    Method method = (currentProfile.getVersion() & Game::BW) != Game::None ? Method::BWBred : Method::BW2Bred;
 
     u64 seed = ui->textBoxGeneratorSeed->getULong();
     u32 initialAdvances = ui->textBoxGeneratorInitialAdvances->getUInt();
@@ -187,7 +187,7 @@ void Eggs5::search()
     }
 
     searcherModel->clearModel();
-    Method method = (currentProfile.getVersion() & Game::BW) == Game::BW ? Method::BWBred : Method::BW2Bred;
+    Method method = (currentProfile.getVersion() & Game::BW) != Game::None ? Method::BWBred : Method::BW2Bred;
 
     ui->pushButtonSearch->setEnabled(false);
     ui->pushButtonCancel->setEnabled(true);
@@ -246,7 +246,7 @@ void Eggs5::calculateInitialAdvances()
     Game version = currentProfile.getVersion();
 
     u8 initialAdvances;
-    if ((version & Game::BW) == Game::BW)
+    if ((version & Game::BW) != Game::None)
     {
         initialAdvances = Utilities::initialAdvancesBW(ui->textBoxGeneratorSeed->getULong());
     }

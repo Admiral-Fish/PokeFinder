@@ -35,9 +35,9 @@ EggSettings::~EggSettings()
 
 void EggSettings::setup(Game version)
 {
-    if ((version & Game::RSE) == Game::RSE || (version & Game::FRLG) == Game::FRLG)
+    if ((version & Game::Gen3) != Game::None)
     {
-        bool flag = (version & Game::Emerald) == Game::Emerald;
+        bool flag = (version & Game::Emerald) != Game::None;
 
         ui->labelAbility->setVisible(false);
         ui->labelItem->setVisible(flag);
@@ -53,7 +53,7 @@ void EggSettings::setup(Game version)
         ui->checkBoxNidoranVolbeat->setVisible(false);
         ui->checkBoxMasuda->setVisible(false);
     }
-    else if ((version & Game::DPPt) == Game::DPPt || (version & Game::HGSS) == Game::HGSS)
+    else if ((version & Game::Gen4) != Game::None)
     {
         ui->labelAbility->setVisible(false);
         ui->labelItem->setVisible(false);
@@ -68,7 +68,7 @@ void EggSettings::setup(Game version)
 
         ui->checkBoxNidoranVolbeat->setVisible(false);
     }
-    else if ((version & Game::BW) == Game::BW || (version & Game::BW2) == Game::BW2)
+    else if ((version & Game::Gen5) != Game::None)
     {
         ui->comboBoxParentAItem->addItem(tr("Power Weight"), 2);
         ui->comboBoxParentAItem->addItem(tr("Power Bracer"), 3);
@@ -87,7 +87,7 @@ void EggSettings::setup(Game version)
         ui->comboBoxParentAAbility->addItem("H");
         ui->comboBoxParentBAbility->addItem("H");
     }
-    else if ((version & Game::BDSP) == Game::BDSP)
+    else if ((version & Game::BDSP) != Game::None)
     {
         ui->comboBoxParentAItem->addItem(tr("Destiny Knot"), 8);
         ui->comboBoxParentBItem->addItem(tr("Destiny Knot"), 8);

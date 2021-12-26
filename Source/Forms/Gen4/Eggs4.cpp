@@ -198,7 +198,7 @@ void Eggs4::generate()
     else
     {
         Game version = currentProfile.getVersion();
-        method = (version & Game::HGSS) == Game::HGSS ? Method::HGSSIVs : Method::DPPtIVs;
+        method = (version & Game::HGSS) != Game::None ? Method::HGSSIVs : Method::DPPtIVs;
     }
     generatorModel->setMethod(method);
 
@@ -228,7 +228,7 @@ void Eggs4::search()
     switch (ui->comboBoxSearcherMethod->currentIndex())
     {
     case 0:
-        methodModel = (currentProfile.getVersion() & Game::HGSS) == Game::HGSS ? Method::HGSSIVs : Method::DPPtIVs;
+        methodModel = (currentProfile.getVersion() & Game::HGSS) != Game::None ? Method::HGSSIVs : Method::DPPtIVs;
         break;
     case 1:
         methodModel = daycare.getMasuda() ? Method::Gen4Masuda : Method::Gen4Normal;
@@ -257,7 +257,7 @@ void Eggs4::search()
     u32 minAdvancePID = ui->textBoxSearcherPIDMinAdvance->getUInt();
     u32 maxAdvancePID = ui->textBoxSearcherPIDMaxAdvance->getUInt();
 
-    Method methodIV = (currentProfile.getVersion() & Game::HGSS) == Game::HGSS ? Method::HGSSIVs : Method::DPPtIVs;
+    Method methodIV = (currentProfile.getVersion() & Game::HGSS) != Game::None ? Method::HGSSIVs : Method::DPPtIVs;
     EggGenerator4 generatorIV(minAdvanceIV, maxAdvanceIV, tid, sid, genderRatio, methodIV, filter, daycare);
 
     Method methodPID = daycare.getMasuda() ? Method::Gen4Masuda : Method::Gen4Normal;

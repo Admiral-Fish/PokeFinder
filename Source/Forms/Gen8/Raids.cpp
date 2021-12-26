@@ -56,7 +56,7 @@ void Raids::updateProfiles()
     profiles.clear();
     auto completeProfiles = ProfileLoader8::getProfiles();
     std::copy_if(completeProfiles.begin(), completeProfiles.end(), std::back_inserter(profiles),
-                 [](const Profile &profile) { return (profile.getVersion() & Game::SwSh) == Game::SwSh; });
+                 [](const Profile &profile) { return (profile.getVersion() & Game::SwSh) != Game::None; });
     profiles.insert(profiles.begin(), Profile8());
 
     ui->comboBoxProfiles->clear();

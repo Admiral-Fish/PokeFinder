@@ -24,7 +24,7 @@
 
 enum class Game : u32
 {
-    Blank = 0, // Placeholder
+    None = 0,
     Ruby = 1 << 0,
     Sapphire = 1 << 1,
     RS = Ruby | Sapphire,

@@ -327,7 +327,7 @@ void Wild3::profilesIndexChanged(int index)
         ui->labelProfileSIDValue->setText(QString::number(currentProfile.getSID()));
         ui->labelProfileGameValue->setText(QString::fromStdString(currentProfile.getVersionString()));
 
-        bool flag = (currentProfile.getVersion() & Game::FRLG) == Game::FRLG;
+        bool flag = (currentProfile.getVersion() & Game::FRLG) != Game::None;
         ui->comboBoxGeneratorEncounter->clear();
         ui->comboBoxSearcherEncounter->clear();
 
@@ -349,7 +349,7 @@ void Wild3::profilesIndexChanged(int index)
         ui->comboBoxGeneratorEncounter->addItem(tr("Super Rod"), toInt(Encounter::SuperRod));
         ui->comboBoxSearcherEncounter->addItem(tr("Super Rod"), toInt(Encounter::SuperRod));
 
-        if ((currentProfile.getVersion() & Game::Emerald) == Game::Emerald)
+        if ((currentProfile.getVersion() & Game::Emerald) != Game::None)
         {
             ui->toolButtonGeneratorLead->setEnabled(true);
             ui->comboBoxSearcherLead->setEnabled(true);
