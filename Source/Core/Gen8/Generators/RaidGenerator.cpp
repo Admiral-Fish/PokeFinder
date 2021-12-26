@@ -33,7 +33,6 @@ RaidGenerator::RaidGenerator(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 
 std::vector<State> RaidGenerator::generate(u64 seed) const
 {
     std::vector<State> states;
-    u16 tsv = (tid ^ sid) >> 4;
 
     seed += 0x82A2B175229D6A5B * initialAdvances;
 
@@ -53,8 +52,8 @@ std::vector<State> RaidGenerator::generate(u64 seed) const
             // Game uses a fake TID/SID to determine shiny or not
             // PID is later modified using the actual TID/SID of trainer if necessary
             u16 fakeXor = (sidtid >> 16) ^ (sidtid & 0xffff) ^ (pid >> 16) ^ (pid & 0xffff);
-            u16 psv = ((pid >> 16) ^ (pid & 0xffff)) >> 4;
-            u16 realXor = (pid >> 16) ^ (pid & 0xffff) ^ tid ^ sid;
+            u16 psv = (pid >> 16) ^ (pid & 0xffff);
+            u16 realXor = (pid >> 16) ^ (pid & 0xffff) ^ tsv;
 
             if (fakeXor < 16) // Force shiny
             {
@@ -62,14 +61,14 @@ std::vector<State> RaidGenerator::generate(u64 seed) const
                 result.setShiny(shinyType);
                 if (fakeXor != realXor)
                 {
-                    u16 high = (pid & 0xFFFF) ^ tid ^ sid ^ (2 - shinyType);
+                    u16 high = (pid & 0xFFFF) ^ tsv ^ (2 - shinyType);
                     pid = (high << 16) | (pid & 0xFFFF);
                 }
             }
             else // Force non shiny
             {
                 result.setShiny(0);
-                if (psv == tsv)
+                if ((psv ^ tsv) < 16)
                 {
                     pid ^= 0x10000000;
                 }
@@ -79,7 +78,7 @@ std::vector<State> RaidGenerator::generate(u64 seed) const
         {
             result.setShiny(0);
             u16 psv = ((pid >> 16) ^ (pid & 0xffff)) >> 4;
-            if (psv == tsv)
+            if ((psv ^ tsv) < 16)
             {
                 pid ^= 0x10000000;
             }
@@ -87,11 +86,11 @@ std::vector<State> RaidGenerator::generate(u64 seed) const
         else // Force shiny
         {
             result.setShiny(2);
-            u16 realXor = (pid >> 16) ^ (pid & 0xffff) ^ tid ^ sid;
+            u16 realXor = (pid >> 16) ^ (pid & 0xffff) ^ tsv;
             if (realXor) // Check if PID is not normally square shiny
             {
                 // Force shiny (makes it square)
-                u16 high = (pid & 0xffff) ^ tid ^ sid;
+                u16 high = (pid & 0xffff) ^ tsv;
                 pid = (high << 16) | (pid & 0xffff);
             }
         }

@@ -81,7 +81,7 @@ std::vector<WildState> WildGenerator8::generate(u64 seed0, u64 seed1) const
 
         u16 fakeXor = (sidtid >> 16) ^ (sidtid & 0xffff) ^ (pid >> 16) ^ (pid & 0xffff);
         u16 psv = ((pid >> 16) ^ (pid & 0xffff)) >> 4;
-        u16 realXor = (pid >> 16) ^ (pid & 0xffff) ^ tid ^ sid;
+        u16 realXor = (pid >> 16) ^ (pid & 0xffff) ^ tsv;
 
         if (fakeXor < 16) // Force shiny
         {
@@ -89,14 +89,14 @@ std::vector<WildState> WildGenerator8::generate(u64 seed0, u64 seed1) const
             state.setShiny(shinyType);
             if (fakeXor != realXor)
             {
-                u16 high = (pid & 0xFFFF) ^ tid ^ sid ^ (2 - shinyType);
+                u16 high = (pid & 0xFFFF) ^ tsv ^ (2 - shinyType);
                 pid = (high << 16) | (pid & 0xFFFF);
             }
         }
         else // Force non shiny
         {
             state.setShiny(0);
-            if (psv == tsv)
+            if ((psv ^ tsv) < 16)
             {
                 pid ^= 0x10000000;
             }

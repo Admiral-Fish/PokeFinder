@@ -23,36 +23,6 @@
 #include <Core/RNG/RNGList.hpp>
 #include <Core/RNG/Xorshift.hpp>
 
-void fixPID(u32 &pid, u16 tsv, u8 shinyType)
-{
-    u16 psv = (pid >> 16) ^ (pid & 0xffff);
-    u8 currentShinyType;
-    if ((psv ^ tsv) == 0)
-    {
-        currentShinyType = 2;
-    }
-    else if ((psv ^ tsv) < 16)
-    {
-        currentShinyType = 1;
-    }
-    else
-    {
-        currentShinyType = 0;
-    }
-
-    // Force non-shiny
-    if (shinyType == 0 && currentShinyType != 0)
-    {
-        pid ^= 0x10000000;
-    }
-    // Force to the appropriate shiny type
-    else if (shinyType != 0 && currentShinyType != shinyType)
-    {
-        u16 high = (pid & 0xFFFF) ^ tsv ^ (2 - shinyType);
-        pid = (high << 16) | (pid & 0xFFFF);
-    }
-}
-
 EventGenerator8::EventGenerator8(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, const StateFilter &filter, const WB8 &parameters) :
     Generator(initialAdvances, maxAdvances, tid, sid, 0, Method::None, filter), parameters(parameters), ivCount(0)
 {
@@ -89,10 +59,43 @@ std::vector<State> EventGenerator8::generate(u64 seed0, u64 seed1) const
         case 0:
         case 1:
         case 2:
+        {
             pid = rngList.getValue();
-            fixPID(pid, tsv, parameters.getPIDType());
+            u16 psv = (pid >> 16) & (pid & 0xffff);
+
+            if (parameters.getPIDType() == 0) // Force non-shiny
+            {
+                if (psv ^ tsv < 16)
+                {
+                    pid ^= 0x10000000;
+                }
+            }
+            else // Force shiny
+            {
+                u8 shinyType;
+                if ((psv ^ tsv) == 0)
+                {
+                    shinyType = 2;
+                }
+                else if ((psv ^ tsv) < 16)
+                {
+                    shinyType = 1;
+                }
+                else
+                {
+                    shinyType = 0;
+                }
+
+                if (shinyType != parameters.getPIDType())
+                {
+                    u16 high = (pid & 0xFFFF) ^ tsv ^ (2 - shinyType);
+                    pid = (high << 16) | (pid & 0xFFFF);
+                }
+            }
+
             state.setShiny(parameters.getPIDType());
             break;
+        }
         case 4:
             pid = parameters.getPID();
             state.setShiny<16>(tsv, (pid >> 16) ^ (pid & 0xffff));
