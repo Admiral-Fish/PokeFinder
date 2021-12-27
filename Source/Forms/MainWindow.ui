@@ -16,7 +16,7 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
-    <item row="0" column="0" colspan="2">
+    <item row="0" column="0">
      <widget class="QTabWidget" name="tabWidget">
       <widget class="QWidget" name="tabGen3">
        <attribute name="title">
@@ -162,10 +162,17 @@
         <string>Gen 8</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_9">
-        <item row="0" column="0">
-         <widget class="QPushButton" name="pushButtonRaid">
+        <item row="3" column="0">
+         <widget class="QPushButton" name="pushButtonEvent8">
           <property name="text">
-           <string>Raid</string>
+           <string>Event</string>
+          </property>
+         </widget>
+        </item>
+        <item row="6" column="0">
+         <widget class="QPushButton" name="pushButtonIDs8">
+          <property name="text">
+           <string>TID/SID</string>
           </property>
          </widget>
         </item>
@@ -176,24 +183,24 @@
           </property>
          </widget>
         </item>
-        <item row="4" column="0">
-         <widget class="QPushButton" name="pushButtonIDs8">
-          <property name="text">
-           <string>TID/SID</string>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="0">
+        <item row="5" column="0">
          <widget class="QPushButton" name="pushButtonEgg8">
           <property name="text">
            <string>Egg</string>
           </property>
          </widget>
         </item>
-        <item row="2" column="0">
-         <widget class="QPushButton" name="pushButtonEvent8">
+        <item row="4" column="0">
+         <widget class="QPushButton" name="pushButtonRaid">
           <property name="text">
-           <string>Event</string>
+           <string>Raid</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="0">
+         <widget class="QPushButton" name="pushButtonStatic8">
+          <property name="text">
+           <string>Static</string>
           </property>
          </widget>
         </item>
@@ -406,9 +413,10 @@
   <tabstop>pushButtonHiddenGrotto</tabstop>
   <tabstop>pushButtonEgg5</tabstop>
   <tabstop>pushButtonIDs5</tabstop>
-  <tabstop>pushButtonRaid</tabstop>
+  <tabstop>pushButtonStatic8</tabstop>
   <tabstop>pushButtonWild8</tabstop>
   <tabstop>pushButtonEvent8</tabstop>
+  <tabstop>pushButtonRaid</tabstop>
   <tabstop>pushButtonEgg8</tabstop>
   <tabstop>pushButtonIDs8</tabstop>
  </tabstops>

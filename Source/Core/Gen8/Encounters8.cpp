@@ -42,7 +42,7 @@ constexpr std::array<StaticTemplate, 8> gifts = {
 };
 
 constexpr std::array<StaticTemplate, 7> fossils = {
-    StaticTemplate(Game::BDSP, 387, 1, 3), // Omanyte
+    StaticTemplate(Game::BDSP, 138, 1, 3), // Omanyte
     StaticTemplate(Game::BDSP, 140, 1, 3), // Kabuto
     StaticTemplate(Game::BDSP, 142, 1, 3), // Aerodactyl
     StaticTemplate(Game::BDSP, 345, 1, 3), // Lileep
@@ -256,7 +256,7 @@ namespace Encounters8
         return encounters;
     }
 
-    const StaticTemplate *getStaticEncounters(int index, int &size)
+    const StaticTemplate *getStaticEncounters(int index, size_t &size)
     {
         if (index == 0)
         {

@@ -43,9 +43,10 @@ class DreamRadar;
 class HiddenGrotto;
 class Eggs5;
 class IDs5;
-class Raids;
+class Static8;
 class Wild8;
 class Event8;
+class Raids;
 class Eggs8;
 class IDs8;
 
@@ -74,9 +75,10 @@ private:
     HiddenGrotto *hiddenGrotto = nullptr;
     Eggs5 *egg5 = nullptr;
     IDs5 *ids5 = nullptr;
-    Raids *raids = nullptr;
+    Static8 *static8 = nullptr;
     Wild8 *wild8 = nullptr;
     Event8 *event8 = nullptr;
+    Raids *raids = nullptr;
     Eggs8 *egg8 = nullptr;
     IDs8 *ids8 = nullptr;
 
@@ -115,9 +117,10 @@ private slots:
     void openIDs5();
     void openProfileCalibrator();
     void openProfileManager5();
-    void openRaids();
+    void openStatic8();
     void openWild8();
     void openEvent8();
+    void openRaids();
     void openEgg8();
     void openIDs8();
     void openDenMap();

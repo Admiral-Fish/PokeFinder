@@ -20,9 +20,12 @@
 #include "Static8.hpp"
 #include "ui_Static8.h"
 #include <Core/Enum/Lead.hpp>
+#include <Core/Gen8/Encounters8.hpp>
+#include <Core/Gen8/Generators/StaticGenerator8.hpp>
 #include <Core/Parents/ProfileLoader.hpp>
 #include <Core/Util/Translator.hpp>
 #include <Forms/Gen8/Profile/ProfileManager8.hpp>
+#include <Core/Parents/StaticTemplate.hpp>
 #include <Forms/Models/Gen8/StaticModel8.hpp>
 #include <QSettings>
 
@@ -85,6 +88,10 @@ void Static8::setupModels()
 
     ui->toolButtonLead->addAction(tr("None"), toInt(Lead::None));
     ui->toolButtonLead->addMenu(tr("Synchronize"), Translator::getNatures());
+    ui->toolButtonLead->addMenu(tr("Cute Charm"), { tr("♂ Lead"), tr("♀ Lead") }, { toInt(Lead::CuteCharm), toInt(Lead::CuteCharmFemale) });
+
+    ui->comboBoxShiny->setup({toInt(Shiny::Never), toInt(Shiny::Random)});
+    ui->comboBoxAbility->setup({0, 1, 2, 255});
 
     QAction *outputTXTGenerator = menu->addAction(tr("Output Results to TXT"));
     QAction *outputCSVGenerator = menu->addAction(tr("Output Results to CSV"));
@@ -93,17 +100,13 @@ void Static8::setupModels()
 
     connect(ui->comboBoxProfiles, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &Static8::profilesIndexChanged);
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Static8::generate);
-    /*connect(ui->comboBoxEncounter, QOverload<int>::of(&QComboBox::currentIndexChanged), this,
-            &Static8::encounterIndexChanged);
-    connect(ui->comboBoxLocation, QOverload<int>::of(&QComboBox::currentIndexChanged), this,
-            &Static8::locationIndexChanged);
+    connect(ui->comboBoxCategory, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &Static8::categoryIndexChanged);
     connect(ui->comboBoxPokemon, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &Static8::pokemonIndexChanged);
-    connect(ui->comboBoxTime, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &Static8::timeIndexChanged);*/
     connect(ui->tableView, &QTableView::customContextMenuRequested, this, &Static8::tableViewContextMenu);
     connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &Static8::profileManager);
 
-    // generatorEncounterIndexChanged(0);
-    // searcherEncounterIndexChanged(0);
+    categoryIndexChanged(0);
+    pokemonIndexChanged(0);
 
     QSettings setting;
     setting.beginGroup("static8");
@@ -116,44 +119,47 @@ void Static8::setupModels()
 
 void Static8::generate()
 {
-    /*auto method = static_cast<Method>(ui->comboBoxGeneratorMethod->getCurrentInt());
-    generatorModel->clearModel();
-    generatorModel->setMethod(method);
+    model->clearModel();
 
-    u32 seed = ui->textBoxGeneratorSeed->getUInt();
-    u32 initialAdvances = ui->textBoxGeneratorStartingAdvance->getUInt();
-    u32 maxAdvances = ui->textBoxGeneratorMaxAdvances->getUInt();
+    u64 seed0 = ui->textBoxSeed0->getULong();
+    u64 seed1 = ui->textBoxSeed1->getULong();
+    u32 initialAdvances = ui->textBoxInitialAdvances->getUInt();
+    u32 maxAdvances = ui->textBoxMaxAdvances->getUInt();
     u16 tid = currentProfile.getTID();
     u16 sid = currentProfile.getSID();
-    u8 genderRatio = ui->filterGenerator->getGenderRatio();
     u32 offset = 0;
-    if (ui->filterGenerator->useDelay())
+    if (ui->filter->useDelay())
     {
-        offset = ui->filterGenerator->getDelay();
+        offset = ui->filter->getDelay();
     }
 
-    StateFilter filter(ui->filterGenerator->getGender(), ui->filterGenerator->getAbility(), ui->filterGenerator->getShiny(),
-                       ui->filterGenerator->getDisableFilters(), ui->filterGenerator->getMinIVs(), ui->filterGenerator->getMaxIVs(),
-                       ui->filterGenerator->getNatures(), ui->filterGenerator->getHiddenPowers(), ui->filterGenerator->getEncounterSlots());
+    StateFilter filter(ui->filter->getGender(), ui->filter->getAbility(), ui->filter->getShiny(), ui->filter->getDisableFilters(),
+                       ui->filter->getMinIVs(), ui->filter->getMaxIVs(), ui->filter->getNatures(), ui->filter->getHiddenPowers(),
+                       ui->filter->getEncounterSlots());
 
-    WildGenerator4 generator(initialAdvances, maxAdvances, tid, sid, genderRatio, method, filter,
-                             currentProfile.getVersion() & Game::Platinum);
+    StaticGenerator8 generator(initialAdvances, maxAdvances, tid, sid, filter);
     generator.setOffset(offset);
-    generator.setEncounter(static_cast<Encounter>(ui->comboBoxGeneratorEncounter->getCurrentInt()));
 
-    if (ui->toolButtonGeneratorLead->text().contains(tr("Synchronize")))
+    if (ui->toolButtonLead->text().contains(tr("Synchronize")))
     {
         generator.setLead(Lead::Synchronize);
-        generator.setSynchNature(ui->toolButtonGeneratorLead->getData());
+        generator.setSynchNature(ui->toolButtonLead->getData());
     }
     else
     {
-        generator.setLead(static_cast<Lead>(ui->toolButtonGeneratorLead->getData()));
+        generator.setLead(static_cast<Lead>(ui->toolButtonLead->getData()));
     }
-    generator.setEncounterArea(encounterGenerator[ui->comboBoxGeneratorLocation->currentData().toInt()]);
 
-    auto states = generator.generate(seed);
-    generatorModel->addItems(states);*/
+    size_t size;
+    const StaticTemplate *templates = Encounters8::getStaticEncounters(ui->comboBoxCategory->currentIndex(), size);
+    if (ui->comboBoxCategory->currentIndex() == 3)
+    {
+        model->addItems(generator.generate(seed0, seed1, templates[ui->comboBoxPokemon->currentIndex()]));
+    }
+    else
+    {
+        model->addItems(generator.generate(seed0, seed1, templates[ui->comboBoxPokemon->currentIndex()]));
+    }
 }
 
 void Static8::profilesIndexChanged(int index)
@@ -165,10 +171,36 @@ void Static8::profilesIndexChanged(int index)
         ui->labelProfileTIDValue->setText(QString::number(currentProfile.getTID()));
         ui->labelProfileSIDValue->setText(QString::number(currentProfile.getSID()));
         ui->labelProfileGameValue->setText(QString::fromStdString(currentProfile.getVersionString()));
-        ui->labelProfileShinyCharmValue->setText(currentProfile.getShinyCharm() ? tr("Yes") : tr("No"));
+    }
+}
 
-        // updateLocations();
-        // updateLocations();
+void Static8::categoryIndexChanged(int index)
+{
+    if (index >= 0)
+    {
+        size_t size;
+        const StaticTemplate *templates = Encounters8::getStaticEncounters(index, size);
+
+        ui->comboBoxPokemon->clear();
+        for (size_t i = 0; i < size; i++)
+        {
+            ui->comboBoxPokemon->addItem(QString::fromStdString(Translator::getSpecies(templates[i].getSpecies())));
+        }
+    }
+}
+
+void Static8::pokemonIndexChanged(int index)
+{
+    if (index >= 0)
+    {
+        size_t size;
+        const StaticTemplate *templates = Encounters8::getStaticEncounters(ui->comboBoxCategory->currentIndex(), size);
+        StaticTemplate parameter = templates[index];
+
+        ui->spinBoxLevel->setValue(parameter.getLevel());
+        ui->comboBoxAbility->setCurrentIndex(ui->comboBoxAbility->findData(parameter.getAbility()));
+        ui->comboBoxShiny->setCurrentIndex(ui->comboBoxShiny->findData(toInt(parameter.getShiny())));
+        ui->spinBoxIVCount->setValue(parameter.getIVCount());
     }
 }
 

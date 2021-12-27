@@ -54,6 +54,7 @@
 #include <Forms/Gen8/IDs8.hpp>
 #include <Forms/Gen8/Profile/ProfileManager8.hpp>
 #include <Forms/Gen8/Raids.hpp>
+#include <Forms/Gen8/Static8.hpp>
 #include <Forms/Gen8/Wild8.hpp>
 #include <Forms/Util/EncounterLookup.hpp>
 #include <Forms/Util/IVCalculator.hpp>
@@ -109,9 +110,10 @@ MainWindow::~MainWindow()
     delete hiddenGrotto;
     delete egg5;
     delete ids5;
-    delete raids;
+    delete static8;
     delete wild8;
     delete event8;
+    delete raids;
     delete egg8;
     delete ids8;
 }
@@ -151,9 +153,10 @@ void MainWindow::setupModels()
     connect(ui->actionProfileCalibrator, &QAction::triggered, this, &MainWindow::openProfileCalibrator);
     connect(ui->actionProfileManager5, &QAction::triggered, this, &MainWindow::openProfileManager5);
 
-    connect(ui->pushButtonRaid, &QPushButton::clicked, this, &MainWindow::openRaids);
+    connect(ui->pushButtonStatic8, &QPushButton::clicked, this, &MainWindow::openStatic8);
     connect(ui->pushButtonWild8, &QPushButton::clicked, this, &MainWindow::openWild8);
     connect(ui->pushButtonEvent8, &QPushButton::clicked, this, &MainWindow::openEvent8);
+    connect(ui->pushButtonRaid, &QPushButton::clicked, this, &MainWindow::openRaids);
     connect(ui->pushButtonEgg8, &QPushButton::clicked, this, &MainWindow::openEgg8);
     connect(ui->pushButtonIDs8, &QPushButton::clicked, this, &MainWindow::openIDs8);
     connect(ui->actionDenMap, &QAction::triggered, this, &MainWindow::openDenMap);
@@ -276,9 +279,9 @@ void MainWindow::updateProfiles(int num)
     }
     else if (num == 8)
     {
-        if (raids)
+        if (static8)
         {
-            raids->updateProfiles();
+            static8->updateProfiles();
         }
         if (wild8)
         {
@@ -287,6 +290,10 @@ void MainWindow::updateProfiles(int num)
         if (event8)
         {
             event8->updateProfiles();
+        }
+        if (raids)
+        {
+            raids->updateProfiles();
         }
         if (egg8)
         {
@@ -609,15 +616,15 @@ void MainWindow::openProfileManager5()
     manager->show();
 }
 
-void MainWindow::openRaids()
+void MainWindow::openStatic8()
 {
-    if (!raids)
+    if (!static8)
     {
-        raids = new Raids();
-        connect(raids, &Raids::alertProfiles, this, &MainWindow::updateProfiles);
+        static8 = new Static8();
+        connect(static8, &Static8::alertProfiles, this, &MainWindow::updateProfiles);
     }
-    raids->show();
-    raids->raise();
+    static8->show();
+    static8->raise();
 }
 
 void MainWindow::openWild8()
@@ -640,6 +647,17 @@ void MainWindow::openEvent8()
     }
     event8->show();
     event8->raise();
+}
+
+void MainWindow::openRaids()
+{
+    if (!raids)
+    {
+        raids = new Raids();
+        connect(raids, &Raids::alertProfiles, this, &MainWindow::updateProfiles);
+    }
+    raids->show();
+    raids->raise();
 }
 
 void MainWindow::openEgg8()

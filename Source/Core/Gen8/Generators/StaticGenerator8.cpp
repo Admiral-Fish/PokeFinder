@@ -27,8 +27,8 @@
 #include <Core/RNG/Xoroshiro.hpp>
 #include <Core/RNG/Xorshift.hpp>
 
-StaticGenerator8::StaticGenerator8(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, const StateFilter &filter) :
-    StaticGenerator(initialAdvances, maxAdvances, tid, sid, genderRatio, Method::None, filter)
+StaticGenerator8::StaticGenerator8(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, const StateFilter &filter) :
+    StaticGenerator(initialAdvances, maxAdvances, tid, sid, 0, Method::None, filter)
 {
 }
 

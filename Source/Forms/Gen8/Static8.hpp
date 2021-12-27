@@ -47,21 +47,14 @@ private:
     Profile8 currentProfile;
     StaticModel8 *model = nullptr;
     QMenu *menu = nullptr;
-    //std::vector<EncounterArea8> encounters;
 
     void setupModels();
-    //void updateLocationsGenerator();
-    //void updateLocationsSearcher();
-    //void updatePokemonGenerator();
-    //void updatePokemonSearcher();
 
 private slots:
     void generate();
     void profilesIndexChanged(int index);
-    //void encounterIndexChanged(int index);
-    //void locationIndexChanged(int index);
-    //void pokemonIndexChanged(int index);
-    //void timeIndexChanged(int index);
+    void categoryIndexChanged(int index);
+    void pokemonIndexChanged(int index);
     void tableViewContextMenu(QPoint pos);
     void profileManager();
 };
