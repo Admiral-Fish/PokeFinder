@@ -51,27 +51,38 @@ std::vector<StaticState> StaticGenerator8::generate(u64 seed0, u64 seed1, const 
         u32 pid = rngList.getValue();
 
         u16 psv = (pid >> 16) ^ (pid & 0xffff);
-        u16 fakeXOR = (sidtid >> 16) ^ (sidtid & 0xffff) ^ psv;
-        if (fakeXOR < 16) // Force shiny
-        {
-            u8 fakeShinyType = fakeXOR == 0 ? 2 : 1;
-
-            u16 realXOR = psv ^ tsv;
-            u8 realShinyType = realXOR == 0 ? 2 : realXOR < 16 ? 1 : 0;
-
-            state.setShiny(fakeShinyType);
-            if (realShinyType != fakeShinyType)
-            {
-                u16 high = (pid & 0xFFFF) ^ tsv ^ (2 - fakeShinyType);
-                pid = (high << 16) | (pid & 0xFFFF);
-            }
-        }
-        else // Force non shiny
+        if (parameters.getShiny() == Shiny::Never)
         {
             state.setShiny(0);
-            if (psv ^ tsv < 16)
+            if ((psv ^ tsv) < 16)
             {
                 pid ^= 0x10000000;
+            }
+        }
+        else
+        {
+            u16 fakeXOR = (sidtid >> 16) ^ (sidtid & 0xffff) ^ psv;
+            if (fakeXOR < 16) // Force shiny
+            {
+                u8 fakeShinyType = fakeXOR == 0 ? 2 : 1;
+
+                u16 realXOR = psv ^ tsv;
+                u8 realShinyType = realXOR == 0 ? 2 : realXOR < 16 ? 1 : 0;
+
+                state.setShiny(fakeShinyType);
+                if (realShinyType != fakeShinyType)
+                {
+                    u16 high = (pid & 0xFFFF) ^ tsv ^ (2 - fakeShinyType);
+                    pid = (high << 16) | (pid & 0xFFFF);
+                }
+            }
+            else // Force non shiny
+            {
+                state.setShiny(0);
+                if (psv ^ tsv < 16)
+                {
+                    pid ^= 0x10000000;
+                }
             }
         }
         state.setPID(pid);
