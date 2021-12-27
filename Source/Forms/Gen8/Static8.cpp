@@ -154,7 +154,7 @@ void Static8::generate()
     const StaticTemplate *templates = Encounters8::getStaticEncounters(ui->comboBoxCategory->currentIndex(), size);
     if (ui->comboBoxCategory->currentIndex() == 3)
     {
-        model->addItems(generator.generate(seed0, seed1, templates[ui->comboBoxPokemon->currentIndex()]));
+        model->addItems(generator.generateRoamer(seed0, seed1, templates[ui->comboBoxPokemon->currentIndex()]));
     }
     else
     {
