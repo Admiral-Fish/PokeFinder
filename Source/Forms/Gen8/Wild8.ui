@@ -95,24 +95,10 @@
       <item row="0" column="1">
        <widget class="QComboBox" name="comboBoxProfiles"/>
       </item>
-      <item row="1" column="6">
-       <widget class="QLabel" name="labelProfileShinyCharm">
-        <property name="text">
-         <string>Shiny Charm</string>
-        </property>
-       </widget>
-      </item>
       <item row="1" column="2">
        <widget class="QLabel" name="labelProfileSID">
         <property name="text">
          <string>SID</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="7">
-       <widget class="QLabel" name="labelProfileShinyCharmValue">
-        <property name="text">
-         <string>No</string>
         </property>
        </widget>
       </item>
