@@ -114,7 +114,7 @@ std::string UnownSearcher3::getTargetLetter(u8 location, u8 slot) const
     }
     case 2:
     {
-        return slot < 60 ? "N" : slot < 90 ? "S" : slot < 98 ? "H" : "E";
+        return slot < 60 ? "N" : slot < 90 ? "S" : slot < 98 ? "I" : "E";
     }
     case 3:
     {
