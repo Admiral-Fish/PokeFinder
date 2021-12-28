@@ -23,9 +23,9 @@
 #include <Core/Gen8/Encounters8.hpp>
 #include <Core/Gen8/Generators/StaticGenerator8.hpp>
 #include <Core/Parents/ProfileLoader.hpp>
+#include <Core/Parents/StaticTemplate.hpp>
 #include <Core/Util/Translator.hpp>
 #include <Forms/Gen8/Profile/ProfileManager8.hpp>
-#include <Core/Parents/StaticTemplate.hpp>
 #include <Forms/Models/Gen8/StaticModel8.hpp>
 #include <QSettings>
 
@@ -37,6 +37,10 @@ Static8::Static8(QWidget *parent) : QWidget(parent), ui(new Ui::Static8)
 
     setupModels();
     updateProfiles();
+
+    // Do this after profiles are initialized
+    categoryIndexChanged(0);
+    pokemonIndexChanged(0);
 }
 
 Static8::~Static8()
@@ -90,8 +94,8 @@ void Static8::setupModels()
     ui->toolButtonLead->addMenu(tr("Synchronize"), Translator::getNatures());
     ui->toolButtonLead->addMenu(tr("Cute Charm"), { tr("♂ Lead"), tr("♀ Lead") }, { toInt(Lead::CuteCharm), toInt(Lead::CuteCharmFemale) });
 
-    ui->comboBoxShiny->setup({toInt(Shiny::Never), toInt(Shiny::Random)});
-    ui->comboBoxAbility->setup({0, 1, 2, 255});
+    ui->comboBoxShiny->setup({ toInt(Shiny::Never), toInt(Shiny::Random) });
+    ui->comboBoxAbility->setup({ 0, 1, 2, 255 });
 
     QAction *outputTXTGenerator = menu->addAction(tr("Output Results to TXT"));
     QAction *outputCSVGenerator = menu->addAction(tr("Output Results to CSV"));
@@ -104,9 +108,6 @@ void Static8::setupModels()
     connect(ui->comboBoxPokemon, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &Static8::pokemonIndexChanged);
     connect(ui->tableView, &QTableView::customContextMenuRequested, this, &Static8::tableViewContextMenu);
     connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &Static8::profileManager);
-
-    categoryIndexChanged(0);
-    pokemonIndexChanged(0);
 
     QSettings setting;
     setting.beginGroup("static8");
@@ -154,11 +155,11 @@ void Static8::generate()
     const StaticTemplate *templates = Encounters8::getStaticEncounters(ui->comboBoxCategory->currentIndex(), size);
     if (ui->comboBoxCategory->currentIndex() == 3)
     {
-        model->addItems(generator.generateRoamer(seed0, seed1, templates[ui->comboBoxPokemon->currentIndex()]));
+        model->addItems(generator.generateRoamer(seed0, seed1, templates[ui->comboBoxPokemon->currentData().toInt()]));
     }
     else
     {
-        model->addItems(generator.generate(seed0, seed1, templates[ui->comboBoxPokemon->currentIndex()]));
+        model->addItems(generator.generate(seed0, seed1, templates[ui->comboBoxPokemon->currentData().toInt()]));
     }
 }
 
@@ -184,7 +185,10 @@ void Static8::categoryIndexChanged(int index)
         ui->comboBoxPokemon->clear();
         for (size_t i = 0; i < size; i++)
         {
-            ui->comboBoxPokemon->addItem(QString::fromStdString(Translator::getSpecies(templates[i].getSpecies())));
+            if ((currentProfile.getVersion() & templates[i].getVersion()) != Game::None)
+            {
+                ui->comboBoxPokemon->addItem(QString::fromStdString(Translator::getSpecies(templates[i].getSpecies())), i);
+            }
         }
     }
 }
@@ -195,7 +199,7 @@ void Static8::pokemonIndexChanged(int index)
     {
         size_t size;
         const StaticTemplate *templates = Encounters8::getStaticEncounters(ui->comboBoxCategory->currentIndex(), size);
-        StaticTemplate parameter = templates[index];
+        StaticTemplate parameter = templates[ui->comboBoxPokemon->currentData().toInt()];
 
         ui->spinBoxLevel->setValue(parameter.getLevel());
         ui->comboBoxAbility->setCurrentIndex(ui->comboBoxAbility->findData(parameter.getAbility()));
