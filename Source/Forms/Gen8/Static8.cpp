@@ -151,8 +151,7 @@ void Static8::generate()
         generator.setLead(static_cast<Lead>(ui->toolButtonLead->getData()));
     }
 
-    size_t size;
-    const StaticTemplate *templates = Encounters8::getStaticEncounters(ui->comboBoxCategory->currentIndex(), size);
+    const StaticTemplate *templates = Encounters8::getStaticEncounters(ui->comboBoxCategory->currentIndex());
     if (ui->comboBoxCategory->currentIndex() == 3)
     {
         model->addItems(generator.generateRoamer(seed0, seed1, templates[ui->comboBoxPokemon->currentData().toInt()]));
@@ -179,11 +178,11 @@ void Static8::categoryIndexChanged(int index)
 {
     if (index >= 0)
     {
-        size_t size;
-        const StaticTemplate *templates = Encounters8::getStaticEncounters(index, size);
+        int size;
+        const StaticTemplate *templates = Encounters8::getStaticEncounters(index, &size);
 
         ui->comboBoxPokemon->clear();
-        for (size_t i = 0; i < size; i++)
+        for (int i = 0; i < size; i++)
         {
             if ((currentProfile.getVersion() & templates[i].getVersion()) != Game::None)
             {
@@ -197,8 +196,7 @@ void Static8::pokemonIndexChanged(int index)
 {
     if (index >= 0)
     {
-        size_t size;
-        const StaticTemplate *templates = Encounters8::getStaticEncounters(ui->comboBoxCategory->currentIndex(), size);
+        const StaticTemplate *templates = Encounters8::getStaticEncounters(ui->comboBoxCategory->currentIndex());
         StaticTemplate parameter = templates[ui->comboBoxPokemon->currentData().toInt()];
 
         ui->spinBoxLevel->setValue(parameter.getLevel());

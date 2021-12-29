@@ -256,41 +256,62 @@ namespace Encounters8
         return encounters;
     }
 
-    const StaticTemplate *getStaticEncounters(int index, size_t &size)
+    const StaticTemplate *getStaticEncounters(int index, int *size)
     {
         if (index == 0)
         {
-            size = gifts.size();
+            if (size)
+            {
+                *size = gifts.size();
+            }
             return gifts.data();
         }
         else if (index == 1)
         {
-            size = fossils.size();
+            if (size)
+            {
+                *size = fossils.size();
+            }
             return fossils.data();
         }
         else if (index == 2)
         {
-            size = stationary.size();
+            if (size)
+            {
+                *size = stationary.size();
+            }
             return stationary.data();
         }
         else if (index == 3)
         {
-            size = roamers.size();
+            if (size)
+            {
+                *size = roamers.size();
+            }
             return roamers.data();
         }
         else if (index == 4)
         {
-            size = legends.size();
+            if (size)
+            {
+                *size = legends.size();
+            }
             return legends.data();
         }
         else if (index == 5)
         {
-            size = ramanasParkPureSpace.size();
+            if (size)
+            {
+                *size = ramanasParkPureSpace.size();
+            }
             return ramanasParkPureSpace.data();
         }
         else
         {
-            size = ramanasParkStrangeSpace.size();
+            if (size)
+            {
+                *size = ramanasParkStrangeSpace.size();
+            }
             return ramanasParkStrangeSpace.data();
         }
     }

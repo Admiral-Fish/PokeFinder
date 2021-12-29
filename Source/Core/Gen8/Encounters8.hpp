@@ -31,7 +31,7 @@ class StaticTemplate;
 namespace Encounters8
 {
     std::vector<EncounterArea8> getEncounters(Encounter encounter, int time, const Profile8 &profile);
-    const StaticTemplate *getStaticEncounters(int index, size_t &size);
+    const StaticTemplate *getStaticEncounters(int index, int *size=nullptr);
 }
 
 #endif // ENCOUNTERS8_HPP
