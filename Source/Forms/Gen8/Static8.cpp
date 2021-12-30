@@ -97,6 +97,8 @@ void Static8::setupModels()
     ui->comboBoxShiny->setup({ toInt(Shiny::Never), toInt(Shiny::Random) });
     ui->comboBoxAbility->setup({ 0, 1, 2, 255 });
 
+    ui->filter->disableControls(Controls::GenderRatio | Controls::EncounterSlots | Controls::HiddenPowers);
+
     QAction *outputTXTGenerator = menu->addAction(tr("Output Results to TXT"));
     QAction *outputCSVGenerator = menu->addAction(tr("Output Results to CSV"));
     connect(outputTXTGenerator, &QAction::triggered, [=] { ui->tableView->outputModel(); });
