@@ -241,6 +241,15 @@ std::vector<StaticState> StaticGenerator8::generateRoamer(u64 seed0, u64 seed1, 
         // Each roamer has a fixed gender, set that now
         state.setGender(gender);
 
+        if (lead == Lead::Synchronize)
+        {
+            state.setNature(synchNature);
+        }
+        else
+        {
+            state.setNature(gen.next(25));
+        }
+
         if (filter.comparePID(state) && filter.compareIV(state))
         {
             states.emplace_back(state);
