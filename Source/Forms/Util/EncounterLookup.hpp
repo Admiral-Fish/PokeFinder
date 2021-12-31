@@ -47,6 +47,7 @@ private:
     void setupModels();
     std::set<std::pair<u16, QString>> getEncounters3(Game game, u16 specie);
     std::set<std::pair<u16, QString>> getEncounters4(Game game, u16 specie);
+    std::set<std::pair<u16, QString>> getEncounters8(Game game, u16 specie);
     QString getEncounterString(Encounter type);
 
 private slots:

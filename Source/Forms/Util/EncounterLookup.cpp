@@ -27,6 +27,9 @@
 #include <Core/Gen4/EncounterArea4.hpp>
 #include <Core/Gen4/Encounters4.hpp>
 #include <Core/Gen4/Profile4.hpp>
+#include <Core/Gen8/EncounterArea8.hpp>
+#include <Core/Gen8/Encounters8.hpp>
+#include <Core/Gen8/Profile8.hpp>
 #include <Core/Util/Translator.hpp>
 #include <QCompleter>
 #include <QSettings>
@@ -66,6 +69,8 @@ void EncounterLookup::setupModels()
     ui->comboBoxGame->addItem(tr("Platinum"), toInt(Game::Platinum));
     ui->comboBoxGame->addItem(tr("Heart Gold"), toInt(Game::HeartGold));
     ui->comboBoxGame->addItem(tr("Soul Silver"), toInt(Game::SoulSilver));
+    ui->comboBoxGame->addItem(tr("Brilliant Diamond"), toInt(Game::BD));
+    ui->comboBoxGame->addItem(tr("Shining Pearl"), toInt(Game::SP));
 
     ui->comboBoxPokemon->setEditable(true);
     ui->comboBoxPokemon->setInsertPolicy(QComboBox::NoInsert);
@@ -89,8 +94,8 @@ std::set<std::pair<u16, QString>> EncounterLookup::getEncounters3(Game game, u16
     Profile3 profile("", game, 0, 0);
 
     // Encounter variables to iterate through
-    auto types
-        = { Encounter::Grass, Encounter::SafariZone, Encounter::RockSmash, Encounter::OldRod, Encounter::GoodRod, Encounter::SuperRod };
+    auto types = { Encounter::Grass,   Encounter::SafariZone, Encounter::RockSmash, Encounter::OldRod,
+                   Encounter::GoodRod, Encounter::SuperRod,   Encounter::Surfing };
 
     for (const auto &type : types)
     {
@@ -117,9 +122,9 @@ std::set<std::pair<u16, QString>> EncounterLookup::getEncounters4(Game game, u16
     std::vector<Profile4> profiles;
 
     // Encounter variables to iterate through
-    auto types = { Encounter::Grass, Encounter::RockSmash, Encounter::OldRod, Encounter::GoodRod, Encounter::SuperRod };
+    auto types = { Encounter::Grass, Encounter::RockSmash, Encounter::OldRod, Encounter::GoodRod, Encounter::SuperRod, Encounter::Surfing };
 
-    // Setup profiles to iterate through of the different combinations of possibilities depending on HGSS vs DPPt
+    // Setup profiles to iterate through the different combinations of possibilities depending on HGSS vs DPPt
     if ((game & Game::HGSS) != Game::None)
     {
         for (const int radio : { 0, 1, 2 })
@@ -152,6 +157,48 @@ std::set<std::pair<u16, QString>> EncounterLookup::getEncounters4(Game game, u16
             for (const auto &time : { 0, 1, 2 })
             {
                 auto areas = Encounters4::getEncounters(type, time, profile);
+                for (const auto &area : areas)
+                {
+                    auto pokemon = area.getPokemon();
+                    if (std::any_of(pokemon.begin(), pokemon.end(), [specie](const auto &entry) { return entry.getSpecie() == specie; }))
+                    {
+                        QString info = getEncounterString(type);
+                        std::pair<u8, u8> range = area.getLevelRange(specie);
+                        info += QString("/%1-%2").arg(range.first).arg(range.second);
+                        encounters.insert(std::make_pair(area.getLocation(), info));
+                    }
+                }
+            }
+        }
+    }
+
+    return encounters;
+}
+
+std::set<std::pair<u16, QString>> EncounterLookup::getEncounters8(Game game, u16 specie)
+{
+    std::set<std::pair<u16, QString>> encounters;
+    std::vector<Profile8> profiles;
+
+    // Encounter variables to iterate through
+    auto types = { Encounter::Grass, Encounter::OldRod, Encounter::GoodRod, Encounter::SuperRod, Encounter::Surfing };
+
+    // Setup profiles to iterate through the different combinations of possibilities for BDSP
+    for (const bool swarm : { false, true })
+    {
+        for (const bool radar : { false, true })
+        {
+            profiles.emplace_back("", game, 0, 0, false, false, radar, swarm);
+        }
+    }
+
+    for (const auto &profile : profiles)
+    {
+        for (const auto type : types)
+        {
+            for (const auto &time : { 0, 1, 2 })
+            {
+                auto areas = Encounters8::getEncounters(type, time, profile);
                 for (const auto &area : areas)
                 {
                     auto pokemon = area.getPokemon();
@@ -210,10 +257,14 @@ void EncounterLookup::find()
     {
         encounters = getEncounters4(game, specie);
     }
+    else if ((game & Game::Gen8) != Game::None)
+    {
+        encounters = getEncounters8(game, specie);
+    }
 
     std::vector<u16> locations;
     std::transform(encounters.begin(), encounters.end(), std::back_inserter(locations),
-                   [](const std::pair<u8, QString> &encounter) { return encounter.first; });
+                   [](const std::pair<u16, QString> &encounter) { return encounter.first; });
     locationNames = Translator::getLocations(locations, game);
 
     u16 i = 0;
@@ -238,6 +289,10 @@ void EncounterLookup::gameIndexChanged(int index)
             max = 386;
         }
         else if ((game & Game::Gen4) != Game::None)
+        {
+            max = 493;
+        }
+        else if ((game & Game::BDSP) != Game::None)
         {
             max = 493;
         }
