@@ -79,7 +79,7 @@ std::vector<StaticState> StaticGenerator8::generate(u64 seed0, u64 seed1, const 
             else // Force non shiny
             {
                 state.setShiny(0);
-                if (psv ^ tsv < 16)
+                if ((psv ^ tsv) < 16)
                 {
                     pid ^= 0x10000000;
                 }
@@ -204,7 +204,7 @@ std::vector<StaticState> StaticGenerator8::generateRoamer(u64 seed0, u64 seed1, 
         else // Force non shiny
         {
             state.setShiny(0);
-            if (psv ^ tsv < 16)
+            if ((psv ^ tsv) < 16)
             {
                 pid ^= 0x10000000;
             }
