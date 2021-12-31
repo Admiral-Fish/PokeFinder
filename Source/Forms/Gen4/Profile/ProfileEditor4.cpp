@@ -76,10 +76,11 @@ void ProfileEditor4::setupModels()
     ui->textBoxTID->setValues(InputType::TIDSID);
     ui->textBoxSID->setValues(InputType::TIDSID);
 
-    ui->comboBoxVersion->setup({ toInt(Game::Diamond), toInt(Game::Pearl), toInt(Game::HeartGold), toInt(Game::SoulSilver) });
+    ui->comboBoxVersion->setup(
+        { toInt(Game::Diamond), toInt(Game::Pearl), toInt(Game::Platinum), toInt(Game::HeartGold), toInt(Game::SoulSilver) });
 
-    ui->comboBoxDualSlot->setup({ toInt(Game::None), toInt(Game::Ruby), toInt(Game::Sapphire), toInt(Game::FireRed),
-                                  toInt(Game::LeafGreen), toInt(Game::Emerald) });
+    ui->comboBoxDualSlot->setup({ toInt(Game::None), toInt(Game::Ruby), toInt(Game::Sapphire), toInt(Game::FireRed), toInt(Game::LeafGreen),
+                                  toInt(Game::Emerald) });
 
     connect(ui->pushButtonOkay, &QPushButton::clicked, this, &ProfileEditor4::okay);
     connect(ui->comboBoxVersion, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &ProfileEditor4::versionIndexChanged);
@@ -102,10 +103,9 @@ void ProfileEditor4::okay()
         return;
     }
 
-    fresh = Profile4(ui->lineEditProfile->text().toStdString(), static_cast<Game>(ui->comboBoxVersion->currentData().toUInt()),
-                     ui->textBoxTID->getUShort(), ui->textBoxSID->getUShort(),
-                     static_cast<Game>(ui->comboBoxDualSlot->currentData().toUInt()), ui->comboBoxRadio->currentIndex(),
-                     ui->checkBoxRadar->isChecked(), ui->checkBoxSwarm->isChecked());
+    fresh = Profile4(ui->lineEditProfile->text().toStdString(), static_cast<Game>(ui->comboBoxVersion->getCurrentUInt()),
+                     ui->textBoxTID->getUShort(), ui->textBoxSID->getUShort(), static_cast<Game>(ui->comboBoxDualSlot->getCurrentUInt()),
+                     ui->comboBoxRadio->currentIndex(), ui->checkBoxRadar->isChecked(), ui->checkBoxSwarm->isChecked());
 
     done(QDialog::Accepted);
 }
