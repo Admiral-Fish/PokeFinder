@@ -55,9 +55,16 @@ std::vector<EggState> EggGenerator8::generate(u64 seed0, u64 seed1) const
         if ((rngList.getValue() % 100) < compatability)
         {
             EggState state(initialAdvances + cnt);
-            // Sign extend seed to signed 64bit
             state.setSeed(rngList.getValue());
-            XoroshiroBDSP gen(static_cast<long>(state.getSeed()));
+
+            // Sign extend seed to signed 64bit
+            u64 seed = state.getSeed();
+            if (seed & 0x80000000)
+            {
+                seed |= 0xffffffff00000000;
+            }
+            
+            XoroshiroBDSP gen(seed);
 
             // Nidoran, Illumise/Volbeat, Indeedee
             if (daycare.getNidoranVolbeat())
