@@ -6,7 +6,7 @@ case $OS in
     mv build/Source/Forms/PokeFinder .
     tar czf PokeFinder-linux.tar.gz PokeFinder
     sha256sum PokeFinder-linux.tar.gz > PokeFinder-linux.tar.gz.sha256
-  } ;;  
+  } ;;
   macOS)
   {
     mv build/Source/Forms/PokeFinder.app .
