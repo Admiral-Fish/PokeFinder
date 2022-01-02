@@ -16,6 +16,9 @@ case $OS in
     cp $HOME/Qt/6.1/macos/plugins/platforms/libqcococa.dylib PokeFinder.app/Contents/PlugIns/platforms
     cp $HOME/Qt/6.1/macos/plugins/styles/libqmacstyle.dylib PokeFinder.app/Contents/PlugIns/styles
 
+    # Create qt.conf file
+    echo -e "[Paths]\nPlugins = PlugIns\n" > PokeFinder.app/Contents/Resources/qt.conf
+
     tar czf PokeFinder-macOS.tar.gz PokeFinder.app
     shasum -a 256 PokeFinder-macOS.tar.gz > PokeFinder-macOS.tar.gz.sha256
   } ;;
