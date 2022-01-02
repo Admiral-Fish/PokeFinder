@@ -8,10 +8,10 @@ environment:
     VCVARSALLPATH: C:\"Program Files (x86)\Microsoft Visual Studio"\2019\Community\VC\Auxiliary\Build\vcvarsall.bat
     VCVARSALL: x64
   - APPVEYOR_BUILD_WORKER_IMAGE: Ubuntu2004
-    OS: linux.tar.gz
+    OS: linux
     EXT: tar.gz
   - APPVEYOR_BUILD_WORKER_IMAGE: macos
-    OS: macOS.tar.gz
+    OS: macOS
     EXT: tar.gz
 
 install:
