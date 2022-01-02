@@ -3,13 +3,13 @@ environment:
   - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2019
     QTPATH: C:\Qt\6.2\msvc2019_64
     OpenSSL: C:\OpenSSL-v111-Win64\bin
-    OS: win
+    OS: win.zip
     VCVARSALLPATH: C:\"Program Files (x86)\Microsoft Visual Studio"\2019\Community\VC\Auxiliary\Build\vcvarsall.bat
     VCVARSALL: x64
   - APPVEYOR_BUILD_WORKER_IMAGE: Ubuntu2004
-    OS: linux
+    OS: linux.tar.gz
   - APPVEYOR_BUILD_WORKER_IMAGE: macos
-    OS: macOS
+    OS: macOS.tar.gz
 
 install:
     - git submodule update --init --recursive
@@ -42,14 +42,14 @@ after_build:
     - sh: bash .ci/after_build.sh
     
 artifacts:
-- path: PokeFinder-%OS%.zip
-- path: PokeFinder-%OS%.zip.sha256
+- path: PokeFinder-%OS%
+- path: PokeFinder-%OS%.sha256
 
 deploy:
     provider: GitHub
     description: ''
     auth_token:
         secure: SFsouaBlVG46u5QjtuDZMhTxq9FHVPr1BRF6YwNJhOtlj+vk707p3MEzHttr7Vep
-    artifact: PokeFinder-%OS%.zip,PokeFinder-%OS%.zip.sha256
+    artifact: PokeFinder-%OS%,PokeFinder-%OS%.sha256
     on:
         APPVEYOR_REPO_TAG: true
