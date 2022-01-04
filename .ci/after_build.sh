@@ -12,12 +12,14 @@ case $OS in
     mv build/Source/Forms/PokeFinder.app .
     PATH=$PATH:$HOME/Qt/6.1/macos/bin macdeployqt PokeFinder.app -no-plugins -verbose=3
 
-    # Copy over plugins we need
-    cp $HOME/Qt/6.1/macos/plugins/platforms/libqcococa.dylib PokeFinder.app/Contents/PlugIns/platforms
-    cp $HOME/Qt/6.1/macos/plugins/styles/libqmacstyle.dylib PokeFinder.app/Contents/PlugIns/styles
+    # Create plugins folder
+    mkdir PokeFinder.app/Contents/PlugIns
+    mkdir PokeFinder.app/Contents/PlugIns/platforms
+    mkdir PokeFinder.app/Contents/PlugIns/styles
 
-    # Create qt.conf file
-    echo -e "[Paths]\nPlugins = PlugIns\n" > PokeFinder.app/Contents/Resources/qt.conf
+    # Copy over plugins we need
+    cp $HOME/Qt/6.1/macos/plugins/platforms/libqcocoa.dylib PokeFinder.app/Contents/PlugIns/platforms
+    cp $HOME/Qt/6.1/macos/plugins/styles/libqmacstyle.dylib PokeFinder.app/Contents/PlugIns/styles
 
     tar czf PokeFinder-macOS.tar.gz PokeFinder.app
     shasum -a 256 PokeFinder-macOS.tar.gz > PokeFinder-macOS.tar.gz.sha256
