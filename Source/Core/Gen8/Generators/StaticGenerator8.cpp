@@ -111,13 +111,11 @@ std::vector<StaticState> StaticGenerator8::generate(u64 seed0, u64 seed1, const 
             }
         }
 
+        state.setAbility(rngList.getValue() % 2);
+
         if (parameters.getAbility() != 255)
         {
             state.setAbility(parameters.getAbility());
-        }
-        else
-        {
-            state.setAbility(rngList.getValue() % 2);
         }
 
         if (info.getGender() == 255)
