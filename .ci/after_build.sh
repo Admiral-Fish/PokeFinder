@@ -12,6 +12,9 @@ case $OS in
     mv build/Source/Forms/PokeFinder.app .
     PATH=$PATH:$HOME/Qt/6.1/macos/bin macdeployqt PokeFinder.app -no-plugins -verbose=3
 
+    # Fix rpath
+    install_name_tool -rpath /Users/appveyor/Qt/6.1/macos/lib @executable_path/../Frameworks PokeFinder.app/Contents/MacOS/PokeFinder
+
     # Create plugins folder
     mkdir PokeFinder.app/Contents/PlugIns
     mkdir PokeFinder.app/Contents/PlugIns/platforms
