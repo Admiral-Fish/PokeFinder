@@ -366,7 +366,7 @@ void GameCubeSeedFinder::coloSearch()
             std::vector<u32> seeds;
             seeds.resize(seedSizes[index]);
 
-            f.seek(offset * sizeof(u32) + sizeof(u32) * 25);
+            f.seek(offset * sizeof(u32) + sizeof(u32) * 24);
             f.read(reinterpret_cast<char *>(seeds.data()), sizeof(u32) * seedSizes[index]);
 
             updateColo(seeds);

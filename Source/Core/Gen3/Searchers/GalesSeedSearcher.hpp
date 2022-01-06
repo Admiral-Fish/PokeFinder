@@ -34,7 +34,7 @@ private:
     u16 tsv;
 
     void search(u32 start, u32 end);
-    void search(const std::vector<u32> &seeds);
+    void search(const std::vector<u32>::const_iterator &start, const std::vector<u32>::const_iterator &end);
     bool searchSeed(XDRNG &rng);
     void generatePokemon(XDRNG &rng) const;
     u8 generateEVs(XDRNG &rng);
