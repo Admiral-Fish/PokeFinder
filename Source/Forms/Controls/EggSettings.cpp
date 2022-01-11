@@ -225,10 +225,10 @@ void EggSettings::setupModels()
     ui->comboBoxParentBAbility->addItem("1");
     ui->comboBoxParentBAbility->addItem("2");
 
-    ui->comboBoxParentAItem->addItem(tr("None"));
+    ui->comboBoxParentAItem->addItem(tr("None"), 0);
     ui->comboBoxParentAItem->addItem(tr("Everstone"), 1);
 
-    ui->comboBoxParentBItem->addItem(tr("None"));
+    ui->comboBoxParentBItem->addItem(tr("None"), 0);
     ui->comboBoxParentBItem->addItem(tr("Everstone"), 1);
 
     connect(ui->checkBoxShowInheritance, &QCheckBox::clicked, this, &EggSettings::toggleInheritance);
