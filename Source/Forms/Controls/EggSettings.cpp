@@ -185,7 +185,7 @@ bool EggSettings::reorderParents()
         ui->spinBoxParentASpe->setValue(daycare.getParentIV(1, 5));
         ui->comboBoxParentAAbility->setCurrentIndex(daycare.getParentAbility(1));
         ui->comboBoxParentAGender->setCurrentIndex(daycare.getParentGender(1));
-        ui->comboBoxParentAItem->setCurrentIndex(daycare.getParentItem(1));
+        ui->comboBoxParentAItem->setCurrentIndex(ui->comboBoxParentAItem->findData(daycare.getParentItem(1)));
         ui->comboBoxParentANature->setCurrentIndex(daycare.getParentNature(1));
 
         ui->spinBoxParentBHP->setValue(daycare.getParentIV(0, 0));
@@ -196,7 +196,7 @@ bool EggSettings::reorderParents()
         ui->spinBoxParentBSpe->setValue(daycare.getParentIV(0, 5));
         ui->comboBoxParentBAbility->setCurrentIndex(daycare.getParentAbility(0));
         ui->comboBoxParentBGender->setCurrentIndex(daycare.getParentGender(0));
-        ui->comboBoxParentBItem->setCurrentIndex(daycare.getParentItem(0));
+        ui->comboBoxParentBItem->setCurrentIndex(ui->comboBoxParentBItem->findData(daycare.getParentItem(0)));
         ui->comboBoxParentBNature->setCurrentIndex(daycare.getParentNature(0));
     }
 
