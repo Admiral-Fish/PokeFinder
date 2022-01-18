@@ -20,9 +20,9 @@
 #ifndef PROFILECALIBRATOR5_HPP
 #define PROFILECALIBRATOR5_HPP
 
+#include <Core/Util/Global.hpp>
 #include <QAbstractButton>
 #include <QMenu>
-#include <vector>
 
 class ProfileSearcherModel5;
 
