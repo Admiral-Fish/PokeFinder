@@ -158,6 +158,7 @@ void ProfileCalibrator5::updateParameters()
 void ProfileCalibrator5::openIVCalculator()
 {
     auto *iv = new IVCalculator();
+    connect(iv, &IVCalculator::ivsCalculated, this, &ProfileCalibrator5::updateIVs);
     iv->show();
     iv->raise();
 }
@@ -371,4 +372,30 @@ void ProfileCalibrator5::removeNeedle()
 void ProfileCalibrator5::clearNeedles()
 {
     ui->lineEditNeedles->setText("");
+}
+
+void ProfileCalibrator5::updateIVs(const std::vector<std::vector<u8>> &ivs)
+{
+    QVector<QSpinBox *> minIVs
+        = { ui->spinBoxMinHP, ui->spinBoxMinAtk, ui->spinBoxMinDef, ui->spinBoxMinSpA, ui->spinBoxMinSpD, ui->spinBoxMinSpe };
+    QVector<QSpinBox *> maxIVs
+        = { ui->spinBoxMaxHP, ui->spinBoxMaxAtk, ui->spinBoxMaxDef, ui->spinBoxMaxSpA, ui->spinBoxMaxSpD, ui->spinBoxMaxSpe };
+
+    for (size_t i = 0; i < ivs.size(); i++)
+    {
+        std::vector<u8> iv = ivs[i];
+
+        u8 min = 0;
+        u8 max = 31;
+
+        // Vector is sorted, grab first/last as min/max
+        if (!ivs.empty())
+        {
+            min = iv.front();
+            max = iv.back();
+        }
+
+        minIVs[i]->setValue(min);
+        maxIVs[i]->setValue(max);
+    }
 }

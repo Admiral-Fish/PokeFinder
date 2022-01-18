@@ -227,6 +227,8 @@ void IVCalculator::findIVs()
     displayIVs(ui->labelSpAIVValue, ivs[3]);
     displayIVs(ui->labelSpDIVValue, ivs[4]);
     displayIVs(ui->labelSpeIVValue, ivs[5]);
+
+    emit ivsCalculated(ivs);
 }
 
 void IVCalculator::pokemonIndexChanged(int index)

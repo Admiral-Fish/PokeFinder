@@ -31,6 +31,9 @@ namespace Ui
 class IVCalculator : public QWidget
 {
     Q_OBJECT
+signals:
+    void ivsCalculated(std::vector<std::vector<u8>>);
+
 public:
     explicit IVCalculator(QWidget *parent = nullptr);
     ~IVCalculator() override;

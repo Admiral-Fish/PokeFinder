@@ -58,6 +58,7 @@ private slots:
     void addNeedle(QAbstractButton *button);
     void removeNeedle();
     void clearNeedles();
+    void updateIVs(const std::vector<std::vector<u8>> &ivs);
 };
 
 #endif // PROFILECALIBRATOR5_HPP
