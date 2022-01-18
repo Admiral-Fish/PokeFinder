@@ -22,6 +22,7 @@
 
 #include <QAbstractButton>
 #include <QMenu>
+#include <vector>
 
 class ProfileSearcherModel5;
 
