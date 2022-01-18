@@ -17,24 +17,32 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef WILDMODEL8_HPP
-#define WILDMODEL8_HPP
+#ifndef WILDSTATE8_HPP
+#define WILDSTATE8_HPP
 
-#include <Core/Gen8/States/WildState8.hpp>
-#include <Forms/Models/TableModel.hpp>
+#include <Core/Parents/States/WildState.hpp>
 
-class WildModel8 : public TableModel<WildState8>
+class WildState8 : public WildState
 {
-    Q_OBJECT
 public:
-    explicit WildModel8(QObject *parent);
-    int columnCount(const QModelIndex &parent = QModelIndex()) const override;
-    QVariant data(const QModelIndex &index, int role) const override;
-    QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
+    WildState8() = default;
+
+    explicit WildState8(u32 advance) : WildState(advance)
+    {
+    }
+
+    u8 getHook() const
+    {
+        return hook;
+    }
+
+    void setHook(u8 hook)
+    {
+        this->hook = hook;
+    }
 
 private:
-    QStringList header = { tr("Advances"), tr("Hook"), tr("Item"), tr("Slot"), tr("Level"), tr("PID"), tr("Shiny"), tr("Nature"),
-                           tr("Ability"),  tr("HP"),   tr("Atk"),  tr("Def"),  tr("SpA"),   tr("SpD"), tr("Spe"),   tr("Gender") };
+    u8 hook;
 };
 
-#endif // WILDMODEL8_HPP
+#endif // WILDSTATE8_HPP
