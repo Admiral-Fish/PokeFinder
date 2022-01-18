@@ -45,6 +45,7 @@ std::vector<WildState8> WildGenerator8::generate(u64 seed0, u64 seed1) const
         WildState8 state(initialAdvances + cnt);
         Xorshift gen(rng);
         u8 slotPercent;
+        u16 level;
         u8 thresh = encounter == Encounter::OldRod ? 25 : encounter == Encounter::GoodRod ? 50 : encounter == Encounter::SuperRod ? 75 : 0;
         switch (encounter)
         {
@@ -75,13 +76,15 @@ std::vector<WildState8> WildGenerator8::generate(u64 seed0, u64 seed1) const
         case Encounter::SuperRod:
             gen.next<0, 100>() < thresh? state.setHook(true) : state.setHook(false); // Nibble call for fishing
             slotPercent = gen.next<0, 100>();
-            state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), gen.next<0, 10000>()));
+            level = gen.next<0, 10000>();
             gen.advance(81);
             state.setEncounterSlot(EncounterSlot::bdspSlot(slotPercent, encounter));
             if (!filter.compareEncounterSlot(state))
             {
                 continue;
             }
+
+            state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), level));
             break;
         default:
             break;
