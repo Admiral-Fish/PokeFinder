@@ -19,7 +19,10 @@
 
 #include "EggSearcher5.hpp"
 #include <Core/Enum/Game.hpp>
+#include <Core/Gen5/Generators/EggGenerator5.hpp>
 #include <Core/Gen5/Keypresses.hpp>
+#include <Core/Gen5/States/SearcherState5.hpp>
+#include <Core/Parents/States/EggState.hpp>
 #include <Core/RNG/SHA1.hpp>
 #include <Core/Util/Utilities.hpp>
 #include <future>
@@ -28,7 +31,7 @@ EggSearcher5::EggSearcher5(const Profile5 &profile) : profile(profile), searchin
 {
 }
 
-void EggSearcher5::startSearch(const EggGenerator5 &generator, int threads, Date start, const Date &end)
+void EggSearcher5::startSearch(const EggGenerator5 &generator, int threads, const Date &start, const Date &end)
 {
     searching = true;
 
@@ -41,18 +44,19 @@ void EggSearcher5::startSearch(const EggGenerator5 &generator, int threads, Date
     std::vector<std::future<void>> threadContainer;
 
     auto daysSplit = days / threads;
+    Date day = start;
     for (int i = 0; i < threads; i++)
     {
         if (i == threads - 1)
         {
-            threadContainer.emplace_back(std::async([=] { search(generator, start, end); }));
+            threadContainer.emplace_back(std::async([=] { search(generator, day, end); }));
         }
         else
         {
-            Date mid = start.addDays(daysSplit - 1);
-            threadContainer.emplace_back(std::async([=] { search(generator, start, mid); }));
+            Date mid = day.addDays(daysSplit - 1);
+            threadContainer.emplace_back(std::async([=] { search(generator, day, mid); }));
         }
-        start = start.addDays(daysSplit);
+        day = day.addDays(daysSplit);
     }
 
     for (int i = 0; i < threads; i++)

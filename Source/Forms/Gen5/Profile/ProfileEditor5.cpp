@@ -19,8 +19,10 @@
 
 #include "ProfileEditor5.hpp"
 #include "ui_ProfileEditor5.h"
+#include <Core/Enum/DSType.hpp>
 #include <Core/Enum/Game.hpp>
 #include <Forms/Gen5/Profile/ProfileCalibrator5.hpp>
+#include <QMessageBox>
 
 ProfileEditor5::ProfileEditor5(QWidget *parent) : QDialog(parent), ui(new Ui::ProfileEditor5)
 {

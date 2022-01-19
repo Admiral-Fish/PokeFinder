@@ -19,6 +19,7 @@
 
 #include "EggSearcher4.hpp"
 #include <Core/Gen4/Generators/EggGenerator4.hpp>
+#include <Core/Gen4/States/EggState4.hpp>
 
 EggSearcher4::EggSearcher4(u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter) :
     Searcher(tid, sid, genderRatio, method, filter), searching(false), progress(0)

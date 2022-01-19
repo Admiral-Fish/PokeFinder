@@ -21,9 +21,10 @@
 #define GAMECUBESEARCHER_HPP
 
 #include <Core/Gen3/ShadowLock.hpp>
-#include <Core/Gen3/States/GameCubeState.hpp>
 #include <Core/Parents/Searchers/Searcher.hpp>
 #include <mutex>
+
+class GameCubeState;
 
 class GameCubeSearcher : public Searcher
 {

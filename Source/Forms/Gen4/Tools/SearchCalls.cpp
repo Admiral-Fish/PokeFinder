@@ -19,6 +19,7 @@
 
 #include "SearchCalls.hpp"
 #include "ui_SearchCalls.h"
+#include <Core/Gen4/SeedTime.hpp>
 #include <Core/Util/Utilities.hpp>
 #include <QSettings>
 #include <algorithm>

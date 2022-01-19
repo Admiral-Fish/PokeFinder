@@ -18,6 +18,7 @@
  */
 
 #include "EventGenerator5.hpp"
+#include <Core/Parents/States/State.hpp>
 #include <Core/RNG/LCRNG64.hpp>
 #include <Core/Util/Utilities.hpp>
 

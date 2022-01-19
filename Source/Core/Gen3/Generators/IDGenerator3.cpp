@@ -18,6 +18,7 @@
  */
 
 #include "IDGenerator3.hpp"
+#include <Core/Gen3/States/IDState3.hpp>
 #include <Core/Parents/Filters/IDFilter.hpp>
 #include <Core/RNG/LCRNG.hpp>
 

@@ -20,6 +20,7 @@
 #include "SpindaPainter.hpp"
 #include "ui_SpindaPainter.h"
 #include <Core/Util/Translator.hpp>
+#include <Forms/Controls/GraphicsPixmapItem.hpp>
 #include <QSettings>
 #include <array>
 

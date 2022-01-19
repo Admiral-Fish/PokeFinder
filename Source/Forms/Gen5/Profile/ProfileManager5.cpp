@@ -22,6 +22,7 @@
 #include <Core/Parents/ProfileLoader.hpp>
 #include <Forms/Gen5/Profile/ProfileEditor5.hpp>
 #include <Forms/Models/Gen5/ProfileModel5.hpp>
+#include <QMessageBox>
 
 ProfileManager5::ProfileManager5(QWidget *parent) : QWidget(parent), ui(new Ui::ProfileManager5)
 {

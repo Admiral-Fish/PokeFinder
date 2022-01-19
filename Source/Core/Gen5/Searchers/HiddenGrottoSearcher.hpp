@@ -20,21 +20,23 @@
 #ifndef HIDDENGROTTOSEARCHER_HPP
 #define HIDDENGROTTOSEARCHER_HPP
 
-#include <Core/Gen5/Generators/HiddenGrottoGenerator.hpp>
 #include <Core/Gen5/Profile5.hpp>
-#include <Core/Gen5/States/HiddenGrottoState.hpp>
-#include <Core/Gen5/States/SearcherState5.hpp>
-#include <Core/Util/DateTime.hpp>
 #include <Core/Util/Global.hpp>
 #include <atomic>
 #include <mutex>
+
+class Date;
+class HiddenGrottoGenerator;
+class HiddenGrottoState;
+template <class StateType>
+class SearcherState5;
 
 class HiddenGrottoSearcher
 {
 public:
     HiddenGrottoSearcher() = default;
     explicit HiddenGrottoSearcher(const Profile5 &profile);
-    void startSearch(const HiddenGrottoGenerator &generator, int threads, Date start, const Date &end);
+    void startSearch(const HiddenGrottoGenerator &generator, int threads, const Date &start, const Date &end);
     void cancelSearch();
     std::vector<SearcherState5<HiddenGrottoState>> getResults();
     int getProgress() const;

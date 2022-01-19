@@ -18,6 +18,7 @@
  */
 
 #include "DateEdit.hpp"
+#include <Core/Util/DateTime.hpp>
 
 DateEdit::DateEdit(QWidget *parent) : QDateEdit(parent)
 {

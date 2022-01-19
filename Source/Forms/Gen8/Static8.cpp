@@ -25,8 +25,10 @@
 #include <Core/Parents/ProfileLoader.hpp>
 #include <Core/Parents/StaticTemplate.hpp>
 #include <Core/Util/Translator.hpp>
+#include <Forms/Controls/Controls.hpp>
 #include <Forms/Gen8/Profile/ProfileManager8.hpp>
 #include <Forms/Models/Gen8/StaticModel8.hpp>
+#include <QMenu>
 #include <QSettings>
 
 Static8::Static8(QWidget *parent) : QWidget(parent), ui(new Ui::Static8)

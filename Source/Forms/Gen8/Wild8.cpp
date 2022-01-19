@@ -20,13 +20,17 @@
 #include "Wild8.hpp"
 #include "ui_Wild8.h"
 #include <Core/Enum/Lead.hpp>
+#include <Core/Gen8/EncounterArea8.hpp>
 #include <Core/Gen8/Encounters8.hpp>
 #include <Core/Gen8/Generators/WildGenerator8.hpp>
 #include <Core/Parents/PersonalLoader.hpp>
 #include <Core/Parents/ProfileLoader.hpp>
+#include <Core/Parents/Slot.hpp>
 #include <Core/Util/Translator.hpp>
+#include <Forms/Controls/Controls.hpp>
 #include <Forms/Gen8/Profile/ProfileManager8.hpp>
 #include <Forms/Models/Gen8/WildModel8.hpp>
+#include <QMenu>
 #include <QSettings>
 
 Wild8::Wild8(QWidget *parent) : QWidget(parent), ui(new Ui::Wild8)
@@ -192,7 +196,6 @@ void Wild8::generate()
     WildGenerator8 generator(initialAdvances, maxAdvances, tid, sid, filter);
     generator.setOffset(offset);
     generator.setEncounter(static_cast<Encounter>(ui->comboBoxEncounter->getCurrentInt()));
-    generator.setEncounterArea(encounters[ui->comboBoxLocation->currentData().toInt()]);
 
     if (ui->toolButtonLead->text().contains(tr("Synchronize")))
     {
@@ -204,7 +207,7 @@ void Wild8::generate()
         generator.setLead(static_cast<Lead>(ui->toolButtonLead->getData()));
     }
 
-    auto states = generator.generate(seed0, seed1);
+    auto states = generator.generate(seed0, seed1, encounters[ui->comboBoxLocation->currentData().toInt()]);
     model->addItems(states);
 }
 

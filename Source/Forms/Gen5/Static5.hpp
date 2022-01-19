@@ -21,10 +21,11 @@
 #define STATIC5_HPP
 
 #include <Core/Gen5/Profile5.hpp>
-#include <QMenu>
+#include <QWidget>
 
 class StaticGeneratorModel5;
 class StaticSearcherModel5;
+class QMenu;
 
 namespace Ui
 {
@@ -45,12 +46,12 @@ public:
 
 private:
     Ui::Static5 *ui;
-    StaticGeneratorModel5 *generatorModel = nullptr;
-    StaticSearcherModel5 *searcherModel = nullptr;
+    StaticGeneratorModel5 *generatorModel;
+    StaticSearcherModel5 *searcherModel;
     std::vector<Profile5> profiles;
     Profile5 currentProfile;
-    QMenu *generatorMenu = nullptr;
-    QMenu *searcherMenu = nullptr;
+    QMenu *generatorMenu;
+    QMenu *searcherMenu;
 
     void setupModels();
 

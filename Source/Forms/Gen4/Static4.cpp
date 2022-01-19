@@ -27,10 +27,12 @@
 #include <Core/Parents/ProfileLoader.hpp>
 #include <Core/Parents/States/StaticState.hpp>
 #include <Core/Util/Translator.hpp>
+#include <Forms/Controls/Controls.hpp>
 #include <Forms/Gen4/Profile/ProfileManager4.hpp>
 #include <Forms/Gen4/Tools/SeedtoTime4.hpp>
 #include <Forms/Models/Gen4/StaticModel4.hpp>
 #include <QSettings>
+#include <QMenu>
 #include <QThread>
 #include <QTimer>
 

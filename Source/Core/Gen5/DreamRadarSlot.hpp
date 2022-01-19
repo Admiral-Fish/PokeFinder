@@ -17,24 +17,39 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef IDFILTER8_HPP
-#define IDFILTER8_HPP
+#ifndef DREAMRADARSLOT_HPP
+#define DREAMRADARSLOT_HPP
 
-#include <Core/Parents/Filters/IDFilter.hpp>
 #include <Core/Util/Global.hpp>
 
-class IDState8;
-
-class IDFilter8 : public IDFilter
+class DreamRadarSlot
 {
 public:
-    IDFilter8() = default;
-    IDFilter8(const std::vector<u16> &tidFilter, const std::vector<u16> &sidFilter, const std::vector<u16> &tsvFilter,
-              const std::vector<u32> &g8tidFilter);
-    bool compare(const IDState8 &state) const;
+    DreamRadarSlot() = default;
+
+    DreamRadarSlot(u8 type, u8 gender, u8 genderRatio) : type(type), gender(gender), genderRatio(genderRatio)
+    {
+    }
+
+    u8 getType() const
+    {
+        return type;
+    }
+
+    u8 getGender() const
+    {
+        return gender;
+    }
+
+    u8 getGenderRatio() const
+    {
+        return genderRatio;
+    }
 
 private:
-    std::vector<u32> g8tidFilter;
+    u8 type; // 0: genie, 1: gen 4 legends, 2: non-legend
+    u8 gender;
+    u8 genderRatio;
 };
 
-#endif // IDFILTER8_HPP
+#endif // DREAMRADARSLOT_HPP

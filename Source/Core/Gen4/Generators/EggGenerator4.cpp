@@ -19,6 +19,7 @@
 
 #include "EggGenerator4.hpp"
 #include <Core/Enum/Method.hpp>
+#include <Core/Gen4/States/EggState4.hpp>
 #include <Core/Parents/Filters/StateFilter.hpp>
 #include <Core/RNG/LCRNG.hpp>
 #include <Core/RNG/MT.hpp>

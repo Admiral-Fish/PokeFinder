@@ -61,10 +61,12 @@
 #include <Forms/Util/IVtoPID.hpp>
 #include <Forms/Util/Researcher.hpp>
 #include <Forms/Util/Settings.hpp>
+#include <QActionGroup>
 #include <QDate>
 #include <QDesktopServices>
 #include <QFile>
 #include <QInputDialog>
+#include <QMessageBox>
 #include <QSettings>
 #include <QTimer>
 #include <QtNetwork>

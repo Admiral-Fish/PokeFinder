@@ -20,21 +20,10 @@
 #ifndef DREAMRADARGENERATOR_HPP
 #define DREAMRADARGENERATOR_HPP
 
-#include <Core/Gen5/States/DreamRadarState.hpp>
+#include <Core/Gen5/DreamRadarSlot.hpp>
 #include <Core/Parents/Generators/Generator.hpp>
 
-struct DreamRadarSlot
-{
-    u8 type; // 0: genie, 1: gen 4 legends, 2: non-legend
-    u8 gender;
-    u8 genderRatio;
-
-    DreamRadarSlot() = default;
-
-    DreamRadarSlot(u8 type, u8 gender, u8 genderRatio) : type(type), gender(gender), genderRatio(genderRatio)
-    {
-    }
-};
+class DreamRadarState;
 
 class DreamRadarGenerator : public Generator
 {

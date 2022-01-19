@@ -20,18 +20,21 @@
 #ifndef IDSEARCHER5_HPP
 #define IDSEARCHER5_HPP
 
-#include <Core/Gen5/Generators/IDGenerator5.hpp>
 #include <Core/Gen5/Profile5.hpp>
 #include <Core/Util/Global.hpp>
 #include <atomic>
 #include <mutex>
+
+class Date;
+class IDGenerator5;
+class IDState5;
 
 class IDSearcher5
 {
 public:
     IDSearcher5() = default;
     explicit IDSearcher5(const Profile5 &profile, u32 pid, bool checkPID, bool checkXOR);
-    void startSearch(const IDGenerator5 &generator, int threads, Date start, const Date &end);
+    void startSearch(const IDGenerator5 &generator, int threads, const Date &start, const Date &end);
     void cancelSearch();
     std::vector<IDState5> getResults();
     int getProgress() const;

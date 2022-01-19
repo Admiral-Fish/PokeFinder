@@ -21,9 +21,10 @@
 #define STATICSEARCHER4_HPP
 
 #include <Core/Parents/Searchers/StaticSearcher.hpp>
-#include <Core/Parents/States/StaticState.hpp>
 #include <Core/RNG/RNGCache.hpp>
 #include <mutex>
+
+class StaticState;
 
 class StaticSearcher4 : public StaticSearcher
 {

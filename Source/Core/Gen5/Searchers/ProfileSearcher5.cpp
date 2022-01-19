@@ -20,9 +20,11 @@
 #include "ProfileSearcher5.hpp"
 #include <Core/Enum/Game.hpp>
 #include <Core/Gen5/Keypresses.hpp>
+#include <Core/Gen5/States/ProfileSearcherState5.hpp>
 #include <Core/RNG/LCRNG64.hpp>
 #include <Core/RNG/MTFast.hpp>
 #include <Core/RNG/SHA1.hpp>
+#include <Core/Util/DateTime.hpp>
 #include <Core/Util/Utilities.hpp>
 #include <future>
 

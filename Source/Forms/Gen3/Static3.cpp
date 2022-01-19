@@ -25,9 +25,11 @@
 #include <Core/Gen3/Searchers/StaticSearcher3.hpp>
 #include <Core/Parents/ProfileLoader.hpp>
 #include <Core/Util/Translator.hpp>
+#include <Forms/Controls/Controls.hpp>
 #include <Forms/Gen3/Profile/ProfileManager3.hpp>
 #include <Forms/Gen3/Tools/SeedTime3.hpp>
 #include <Forms/Models/Gen3/StaticModel3.hpp>
+#include <QMenu>
 #include <QSettings>
 #include <QThread>
 #include <QTimer>

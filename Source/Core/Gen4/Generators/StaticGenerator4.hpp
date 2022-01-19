@@ -21,7 +21,8 @@
 #define STATICGENERATOR4_HPP
 
 #include <Core/Parents/Generators/StaticGenerator.hpp>
-#include <Core/Parents/States/State.hpp>
+
+class State;
 
 class StaticGenerator4 : public StaticGenerator
 {

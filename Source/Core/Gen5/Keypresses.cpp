@@ -18,6 +18,7 @@
  */
 
 #include "Keypresses.hpp"
+#include <Core/Enum/Buttons.hpp>
 
 constexpr Buttons keys[8] = { Buttons::R, Buttons::L, Buttons::X, Buttons::Y, Buttons::A, Buttons::B, Buttons::Select, Buttons::Start };
 constexpr Buttons directions[8] = { Buttons::Right,   Buttons::Left,   Buttons::Up,        Buttons::Down,

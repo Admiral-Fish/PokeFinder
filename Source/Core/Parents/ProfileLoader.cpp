@@ -18,6 +18,10 @@
  */
 
 #include "ProfileLoader.hpp"
+#include <Core/Gen3/Profile3.hpp>
+#include <Core/Gen4/Profile4.hpp>
+#include <Core/Gen5/Profile5.hpp>
+#include <Core/Gen8/Profile8.hpp>
 #include <filesystem>
 #include <fstream>
 #include <nlohmann/json.hpp>

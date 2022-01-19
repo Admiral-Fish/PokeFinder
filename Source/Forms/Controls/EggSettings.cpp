@@ -20,6 +20,7 @@
 #include "EggSettings.hpp"
 #include "ui_EggSettings.h"
 #include <Core/Enum/Game.hpp>
+#include <Core/Parents/Daycare.hpp>
 #include <Core/Util/Translator.hpp>
 
 EggSettings::EggSettings(QWidget *parent) : QWidget(parent), ui(new Ui::EggSettings)

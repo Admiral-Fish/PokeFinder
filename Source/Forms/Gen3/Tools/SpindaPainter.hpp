@@ -20,8 +20,12 @@
 #ifndef SPINDAPAINTER_HPP
 #define SPINDAPAINTER_HPP
 
-#include <Forms/Controls/GraphicsPixmapItem.hpp>
+#include <Core/Util/Global.hpp>
 #include <QWidget>
+
+class GraphicsPixmapItem;
+class QGraphicsScene;
+class QGraphicsPixmapItem;
 
 namespace Ui
 {
@@ -38,12 +42,12 @@ public:
 
 private:
     Ui::SpindaPainter *ui;
-    QGraphicsScene *scene = nullptr;
-    QGraphicsPixmapItem *spinda = nullptr;
-    GraphicsPixmapItem *spot1 = nullptr;
-    GraphicsPixmapItem *spot2 = nullptr;
-    GraphicsPixmapItem *spot3 = nullptr;
-    GraphicsPixmapItem *spot4 = nullptr;
+    QGraphicsScene *scene;
+    QGraphicsPixmapItem *spinda;
+    GraphicsPixmapItem *spot1;
+    GraphicsPixmapItem *spot2;
+    GraphicsPixmapItem *spot3;
+    GraphicsPixmapItem *spot4;
 
     void setupModels();
     void moveSpot(GraphicsPixmapItem *item, int index, u32 pid);

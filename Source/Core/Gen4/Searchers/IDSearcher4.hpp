@@ -20,10 +20,11 @@
 #ifndef IDSEARCHER4_HPP
 #define IDSEARCHER4_HPP
 
-#include <Core/Gen4/States/IDState4.hpp>
 #include <Core/Parents/Filters/IDFilter.hpp>
 #include <mutex>
 #include <vector>
+
+class IDState4;
 
 class IDSearcher4
 {

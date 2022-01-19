@@ -27,6 +27,8 @@
 #include <Core/RNG/Xoroshiro.hpp>
 #include <Core/RNG/Xorshift.hpp>
 #include <Forms/Models/Util/ResearcherModel.hpp>
+#include <QMenu>
+#include <QMessageBox>
 #include <QSettings>
 #include <array>
 #include <functional>

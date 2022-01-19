@@ -26,8 +26,10 @@
 #include <Core/Parents/ProfileLoader.hpp>
 #include <Core/Util/Nature.hpp>
 #include <Core/Util/Translator.hpp>
+#include <Forms/Controls/Controls.hpp>
 #include <Forms/Gen3/Profile/ProfileManager3.hpp>
 #include <Forms/Models/Gen3/EggModel3.hpp>
+#include <QMenu>
 #include <QMessageBox>
 #include <QSettings>
 

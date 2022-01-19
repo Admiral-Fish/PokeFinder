@@ -18,6 +18,7 @@
  */
 
 #include "Profile5.hpp"
+#include <Core/Enum/DSType.hpp>
 #include <Core/Enum/Game.hpp>
 
 Profile5::Profile5() :

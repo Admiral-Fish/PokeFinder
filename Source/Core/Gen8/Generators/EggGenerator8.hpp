@@ -21,7 +21,8 @@
 #define EGGGENERATOR8_HPP
 
 #include <Core/Parents/Generators/EggGenerator.hpp>
-#include <Core/Parents/States/EggState.hpp>
+
+class EggState;
 
 class EggGenerator8 : public EggGenerator
 {

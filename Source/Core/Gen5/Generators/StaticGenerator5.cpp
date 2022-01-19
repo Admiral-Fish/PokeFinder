@@ -22,6 +22,7 @@
 #include <Core/Enum/Lead.hpp>
 #include <Core/Enum/Method.hpp>
 #include <Core/Parents/Filters/StateFilter.hpp>
+#include <Core/Parents/States/StaticState.hpp>
 #include <Core/RNG/LCRNG64.hpp>
 #include <Core/RNG/MT.hpp>
 #include <Core/RNG/RNGList.hpp>

@@ -20,7 +20,6 @@
 #ifndef PROFILESEARCHER5_HPP
 #define PROFILESEARCHER5_HPP
 
-#include <Core/Gen5/States/ProfileSearcherState5.hpp>
 #include <Core/Util/DateTime.hpp>
 #include <Core/Util/Global.hpp>
 #include <array>
@@ -28,6 +27,7 @@
 #include <mutex>
 #include <vector>
 
+class ProfileSearcherState5;
 enum class Buttons : u16;
 enum class Game : u32;
 enum class Language : u8;

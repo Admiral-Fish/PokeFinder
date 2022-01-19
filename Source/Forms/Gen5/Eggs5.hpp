@@ -21,10 +21,11 @@
 #define EGGS5_HPP
 
 #include <Core/Gen5/Profile5.hpp>
-#include <QMenu>
+#include <QWidget>
 
 class EggGeneratorModel5;
 class EggSearcherModel5;
+class QMenu;
 
 namespace Ui
 {
@@ -45,12 +46,12 @@ public:
 
 private:
     Ui::Eggs5 *ui;
-    EggGeneratorModel5 *generatorModel = nullptr;
-    EggSearcherModel5 *searcherModel = nullptr;
+    EggGeneratorModel5 *generatorModel;
+    EggSearcherModel5 *searcherModel;
     std::vector<Profile5> profiles;
     Profile5 currentProfile;
-    QMenu *generatorMenu = nullptr;
-    QMenu *searcherMenu = nullptr;
+    QMenu *generatorMenu;
+    QMenu *searcherMenu;
 
     void setupModels();
 

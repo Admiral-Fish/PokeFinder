@@ -22,7 +22,8 @@
 
 #include <Core/Gen8/Raid.hpp>
 #include <Core/Parents/Generators/Generator.hpp>
-#include <Core/Parents/States/State.hpp>
+
+class State;
 
 class RaidGenerator : Generator
 {

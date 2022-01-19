@@ -20,6 +20,8 @@
 #include "GameCubeGenerator.hpp"
 #include <Core/Enum/Method.hpp>
 #include <Core/Enum/ShadowType.hpp>
+#include <Core/Gen3/LockInfo.hpp>
+#include <Core/Gen3/States/GameCubeState.hpp>
 #include <Core/Parents/Filters/StateFilter.hpp>
 #include <Core/RNG/LCRNG.hpp>
 

@@ -21,7 +21,6 @@
 #define IDGENERATOR8_HPP
 
 #include <Core/Gen8/Filters/IDFilter8.hpp>
-#include <Core/Gen8/States/IDState8.hpp>
 #include <Core/Parents/Generators/IDGenerator.hpp>
 
 class IDGenerator8 : public IDGenerator<IDFilter8>

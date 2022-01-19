@@ -20,10 +20,10 @@
 #ifndef IDS8_HPP
 #define IDS8_HPP
 
-#include <Core/Gen8/Profile8.hpp>
 #include <QWidget>
 
 class IDModel8;
+class Profile8;
 
 namespace Ui
 {

@@ -21,9 +21,9 @@
 #define WILDGENERATOR3_HPP
 
 #include <Core/Parents/Generators/WildGenerator.hpp>
-#include <Core/Parents/States/WildState.hpp>
 
 class EncounterArea3;
+class WildState;
 
 class WildGenerator3 : public WildGenerator
 {

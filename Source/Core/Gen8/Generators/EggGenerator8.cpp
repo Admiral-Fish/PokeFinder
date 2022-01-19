@@ -20,6 +20,7 @@
 #include "EggGenerator8.hpp"
 #include <Core/Enum/Game.hpp>
 #include <Core/Enum/Method.hpp>
+#include <Core/Parents/States/EggState.hpp>
 #include <Core/RNG/RNGList.hpp>
 #include <Core/RNG/Xoroshiro.hpp>
 #include <Core/RNG/Xorshift.hpp>
@@ -63,7 +64,7 @@ std::vector<EggState> EggGenerator8::generate(u64 seed0, u64 seed1) const
             {
                 seed |= 0xffffffff00000000;
             }
-            
+
             XoroshiroBDSP gen(seed);
 
             // Nidoran, Illumise/Volbeat, Indeedee

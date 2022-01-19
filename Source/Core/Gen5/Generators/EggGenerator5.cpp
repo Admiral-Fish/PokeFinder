@@ -19,6 +19,8 @@
 
 #include "EggGenerator5.hpp"
 #include <Core/Enum/Game.hpp>
+#include <Core/Parents/Daycare.hpp>
+#include <Core/Parents/States/EggState.hpp>
 #include <Core/Enum/Method.hpp>
 #include <Core/RNG/LCRNG64.hpp>
 #include <Core/RNG/MTFast.hpp>

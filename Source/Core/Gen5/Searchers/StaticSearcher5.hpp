@@ -20,20 +20,24 @@
 #ifndef STATICSEARCHER5_HPP
 #define STATICSEARCHER5_HPP
 
-#include <Core/Gen5/Generators/StaticGenerator5.hpp>
 #include <Core/Gen5/Profile5.hpp>
-#include <Core/Gen5/States/SearcherState5.hpp>
-#include <Core/Gen5/States/StaticState5.hpp>
 #include <atomic>
 #include <mutex>
 #include <unordered_map>
+
+class Date;
+class StaticGenerator5;
+class StaticState;
+template <class StateType>
+class SearcherState5;
+enum class Method : u8;
 
 class StaticSearcher5
 {
 public:
     StaticSearcher5() = default;
     explicit StaticSearcher5(const Profile5 &profile, Method method);
-    void startSearch(const StaticGenerator5 &generator, int threads, Date start, const Date &end);
+    void startSearch(const StaticGenerator5 &generator, int threads, const Date &start, const Date &end);
     void cancelSearch();
     std::vector<SearcherState5<StaticState>> getResults();
     int getProgress() const;

@@ -20,6 +20,7 @@
 #include "Static5.hpp"
 #include "ui_Static5.h"
 #include <Core/Enum/Encounter.hpp>
+#include <Core/Enum/Game.hpp>
 #include <Core/Enum/Lead.hpp>
 #include <Core/Enum/Method.hpp>
 #include <Core/Gen5/Generators/StaticGenerator5.hpp>
@@ -29,8 +30,10 @@
 #include <Core/Parents/States/StaticState.hpp>
 #include <Core/Util/Translator.hpp>
 #include <Core/Util/Utilities.hpp>
+#include <Forms/Controls/Controls.hpp>
 #include <Forms/Gen5/Profile/ProfileManager5.hpp>
 #include <Forms/Models/Gen5/StaticModel5.hpp>
+#include <QMenu>
 #include <QSettings>
 #include <QThread>
 #include <QTimer>

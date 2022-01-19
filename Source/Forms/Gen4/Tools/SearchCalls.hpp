@@ -20,8 +20,10 @@
 #ifndef SEARCHCALLS_HPP
 #define SEARCHCALLS_HPP
 
-#include <Core/Gen4/SeedTime.hpp>
+#include <Core/Util/Global.hpp>
 #include <QDialog>
+
+class SeedTime;
 
 namespace Ui
 {

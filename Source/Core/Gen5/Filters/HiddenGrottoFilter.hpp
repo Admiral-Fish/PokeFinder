@@ -20,7 +20,6 @@
 #ifndef HIDDENGROTTOFILTER_HPP
 #define HIDDENGROTTOFILTER_HPP
 
-#include <Core/Util/Global.hpp>
 #include <vector>
 
 class HiddenGrottoState;

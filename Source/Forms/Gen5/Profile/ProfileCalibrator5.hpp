@@ -21,10 +21,10 @@
 #define PROFILECALIBRATOR5_HPP
 
 #include <Core/Util/Global.hpp>
-#include <QAbstractButton>
 #include <QMenu>
 
 class ProfileSearcherModel5;
+class QAbstractButton;
 
 namespace Ui
 {
@@ -43,8 +43,8 @@ public:
 
 private:
     Ui::ProfileCalibrator5 *ui;
-    ProfileSearcherModel5 *model = nullptr;
-    QMenu *menu = nullptr;
+    ProfileSearcherModel5 *model;
+    QMenu *menu;
 
     void setupModels();
     void updateParameters();

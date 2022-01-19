@@ -26,10 +26,12 @@
 #include <Core/Parents/ProfileLoader.hpp>
 #include <Core/Parents/States/EggState.hpp>
 #include <Core/Util/Translator.hpp>
+#include <Forms/Controls/Controls.hpp>
 #include <Forms/Gen4/Profile/ProfileManager4.hpp>
 #include <Forms/Gen4/Tools/Poketch.hpp>
 #include <Forms/Gen4/Tools/SeedtoTime4.hpp>
 #include <Forms/Models/Gen4/EggModel4.hpp>
+#include <QMenu>
 #include <QMessageBox>
 #include <QSettings>
 #include <QThread>
@@ -274,23 +276,19 @@ void Eggs4::search()
     connect(ui->pushButtonCancel, &QPushButton::clicked, [searcher] { searcher->cancelSearch(); });
 
     auto *timer = new QTimer();
-    connect(timer, &QTimer::timeout,
-            [=]
-            {
-                searcherModel->addItems(searcher->getResults());
-                ui->progressBar->setValue(searcher->getProgress());
-            });
+    connect(timer, &QTimer::timeout, [=] {
+        searcherModel->addItems(searcher->getResults());
+        ui->progressBar->setValue(searcher->getProgress());
+    });
     connect(thread, &QThread::finished, timer, &QTimer::stop);
     connect(thread, &QThread::finished, timer, &QTimer::deleteLater);
-    connect(timer, &QTimer::destroyed,
-            [=]
-            {
-                ui->pushButtonSearch->setEnabled(true);
-                ui->pushButtonCancel->setEnabled(false);
-                searcherModel->addItems(searcher->getResults());
-                ui->progressBar->setValue(searcher->getProgress());
-                delete searcher;
-            });
+    connect(timer, &QTimer::destroyed, [=] {
+        ui->pushButtonSearch->setEnabled(true);
+        ui->pushButtonCancel->setEnabled(false);
+        searcherModel->addItems(searcher->getResults());
+        ui->progressBar->setValue(searcher->getProgress());
+        delete searcher;
+    });
 
     thread->start();
     timer->start(1000);

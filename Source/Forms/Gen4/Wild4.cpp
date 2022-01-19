@@ -27,15 +27,18 @@
 #include <Core/Gen4/Searchers/WildSearcher4.hpp>
 #include <Core/Parents/Filters/StateFilter.hpp>
 #include <Core/Parents/ProfileLoader.hpp>
+#include <Core/Parents/Slot.hpp>
 #include <Core/Parents/States/WildState.hpp>
 #include <Core/Util/Nature.hpp>
 #include <Core/Util/Translator.hpp>
+#include <Forms/Controls/Controls.hpp>
 #include <Forms/Gen4/Profile/ProfileManager4.hpp>
 #include <Forms/Gen4/Tools/SeedtoTime4.hpp>
 #include <Forms/Models/Gen4/WildModel4.hpp>
 #include <QSettings>
 #include <QThread>
 #include <QTimer>
+#include <QMenu>
 
 Wild4::Wild4(QWidget *parent) : QWidget(parent), ui(new Ui::Wild4)
 {
@@ -281,9 +284,8 @@ void Wild4::generate()
     {
         generator.setLead(static_cast<Lead>(ui->toolButtonGeneratorLead->getData()));
     }
-    generator.setEncounterArea(encounterGenerator[ui->comboBoxGeneratorLocation->currentData().toInt()]);
 
-    auto states = generator.generate(seed);
+    auto states = generator.generate(seed, encounterGenerator[ui->comboBoxGeneratorLocation->currentData().toInt()]);
     generatorModel->addItems(states);
 }
 

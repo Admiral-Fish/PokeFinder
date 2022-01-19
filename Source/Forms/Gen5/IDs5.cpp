@@ -29,7 +29,7 @@
 #include <Core/Util/Utilities.hpp>
 #include <Forms/Gen5/Profile/ProfileManager5.hpp>
 #include <Forms/Models/Gen5/IDModel5.hpp>
-#include <QDate>
+#include <QMenu>
 #include <QSettings>
 #include <QThread>
 #include <QTimer>

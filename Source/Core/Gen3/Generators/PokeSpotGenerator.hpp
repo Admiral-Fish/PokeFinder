@@ -20,8 +20,9 @@
 #ifndef POKESPOTGENERATOR_HPP
 #define POKESPOTGENERATOR_HPP
 
-#include <Core/Gen3/States/GameCubeState.hpp>
 #include <Core/Parents/Generators/Generator.hpp>
+
+class GameCubeState;
 
 class PokeSpotGenerator : public Generator
 {

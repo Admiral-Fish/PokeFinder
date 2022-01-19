@@ -21,9 +21,10 @@
 #define HIDDENGROTTOGENERATOR_HPP
 
 #include <Core/Gen5/Filters/HiddenGrottoFilter.hpp>
-#include <Core/Gen5/States/HiddenGrottoState.hpp>
-#include <Core/Parents/Generators/Generator.hpp>
+#include <Core/Util/Global.hpp>
 #include <vector>
+
+class HiddenGrottoState;
 
 class HiddenGrottoGenerator
 {

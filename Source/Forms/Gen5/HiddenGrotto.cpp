@@ -22,6 +22,7 @@
 #include <Core/Enum/Game.hpp>
 #include <Core/Enum/Method.hpp>
 #include <Core/Gen5/Filters/HiddenGrottoFilter.hpp>
+#include <Core/Gen5/Generators/HiddenGrottoGenerator.hpp>
 #include <Core/Gen5/Keypresses.hpp>
 #include <Core/Gen5/Searchers/HiddenGrottoSearcher.hpp>
 #include <Core/Parents/PersonalInfo.hpp>
@@ -30,6 +31,7 @@
 #include <Core/Util/Utilities.hpp>
 #include <Forms/Gen5/Profile/ProfileManager5.hpp>
 #include <Forms/Models/Gen5/HiddenGrottoModel.hpp>
+#include <QMenu>
 #include <QMessageBox>
 #include <QSettings>
 #include <QThread>
@@ -201,24 +203,20 @@ void HiddenGrotto::search()
     connect(ui->pushButtonCancel, &QPushButton::clicked, [searcher] { searcher->cancelSearch(); });
 
     auto *timer = new QTimer();
-    connect(timer, &QTimer::timeout,
-            [=]
-            {
-                searcherModel->addItems(searcher->getResults());
-                ui->progressBar->setValue(searcher->getProgress());
-            });
+    connect(timer, &QTimer::timeout, [=] {
+        searcherModel->addItems(searcher->getResults());
+        ui->progressBar->setValue(searcher->getProgress());
+    });
 
     connect(thread, &QThread::finished, timer, &QTimer::stop);
     connect(thread, &QThread::finished, timer, &QTimer::deleteLater);
-    connect(timer, &QTimer::destroyed,
-            [=]
-            {
-                ui->pushButtonSearch->setEnabled(true);
-                ui->pushButtonCancel->setEnabled(false);
-                searcherModel->addItems(searcher->getResults());
-                ui->progressBar->setValue(searcher->getProgress());
-                delete searcher;
-            });
+    connect(timer, &QTimer::destroyed, [=] {
+        ui->pushButtonSearch->setEnabled(true);
+        ui->pushButtonCancel->setEnabled(false);
+        searcherModel->addItems(searcher->getResults());
+        ui->progressBar->setValue(searcher->getProgress());
+        delete searcher;
+    });
 
     thread->start();
     timer->start(1000);

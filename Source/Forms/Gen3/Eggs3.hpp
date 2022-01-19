@@ -21,10 +21,10 @@
 #define EGGS3_HPP
 
 #include <Core/Gen3/Profile3.hpp>
-#include <QMenu>
 #include <QWidget>
 
 class EggModel3;
+class QMenu;
 
 namespace Ui
 {
@@ -46,12 +46,12 @@ private:
     Ui::Eggs3 *ui;
     std::vector<Profile3> profiles;
     Profile3 currentProfile;
-    EggModel3 *emerald = nullptr;
-    EggModel3 *rs = nullptr;
-    EggModel3 *frlg = nullptr;
-    QMenu *emeraldMenu = nullptr;
-    QMenu *rsMenu = nullptr;
-    QMenu *frlgMenu = nullptr;
+    EggModel3 *emerald;
+    EggModel3 *rs;
+    EggModel3 *frlg;
+    QMenu *emeraldMenu;
+    QMenu *rsMenu;
+    QMenu *frlgMenu;
 
     void setupModels();
 

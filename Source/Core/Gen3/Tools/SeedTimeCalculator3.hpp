@@ -20,8 +20,10 @@
 #ifndef SEEDTIMECALCULATOR3_HPP
 #define SEEDTIMECALCULATOR3_HPP
 
-#include <Core/Gen3/States/SeedTimeState3.hpp>
+#include <Core/Util/Global.hpp>
 #include <vector>
+
+class SeedTimeState3;
 
 namespace SeedTimeCalculator3
 {

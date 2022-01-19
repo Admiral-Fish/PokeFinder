@@ -20,11 +20,11 @@
 #ifndef ENCOUNTERAREA_HPP
 #define ENCOUNTERAREA_HPP
 
-#include <Core/Parents/Slot.hpp>
 #include <Core/Util/Global.hpp>
 #include <string>
 #include <vector>
 
+class Slot;
 enum class Encounter : u8;
 
 class EncounterArea

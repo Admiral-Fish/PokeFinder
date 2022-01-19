@@ -19,15 +19,18 @@
 
 #include "Raids.hpp"
 #include "ui_Raids.h"
+#include <Core/Gen8/Den.hpp>
 #include <Core/Gen8/DenLoader.hpp>
 #include <Core/Gen8/Generators/RaidGenerator.hpp>
 #include <Core/Parents/Filters/StateFilter.hpp>
 #include <Core/Parents/PersonalLoader.hpp>
 #include <Core/Parents/ProfileLoader.hpp>
 #include <Core/Util/Translator.hpp>
+#include <Forms/Controls/Controls.hpp>
 #include <Forms/Gen8/Profile/ProfileManager8.hpp>
 #include <Forms/Models/Gen8/RaidModel.hpp>
 #include <QFile>
+#include <QMenu>
 #include <QSettings>
 
 Raids::Raids(QWidget *parent) : QWidget(parent), ui(new Ui::Raids)

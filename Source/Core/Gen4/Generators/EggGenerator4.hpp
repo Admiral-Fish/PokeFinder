@@ -20,8 +20,9 @@
 #ifndef EGGGENERATOR4_HPP
 #define EGGGENERATOR4_HPP
 
-#include <Core/Gen4/States/EggState4.hpp>
 #include <Core/Parents/Generators/EggGenerator.hpp>
+
+class EggState4;
 
 class EggGenerator4 : public EggGenerator
 {

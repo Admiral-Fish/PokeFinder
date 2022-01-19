@@ -22,9 +22,10 @@
 
 #include <Core/Gen3/EncounterArea3.hpp>
 #include <Core/Parents/Searchers/WildSearcher.hpp>
-#include <Core/Parents/States/WildState.hpp>
 #include <Core/RNG/RNGCache.hpp>
 #include <mutex>
+
+class WildState;
 
 class WildSearcher3 : public WildSearcher
 {

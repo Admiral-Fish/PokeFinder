@@ -23,12 +23,14 @@
 #include <Core/Enum/Method.hpp>
 #include <Core/Gen5/Generators/EggGenerator5.hpp>
 #include <Core/Gen5/Keypresses.hpp>
-#include <Core/Parents/ProfileLoader.hpp>
 #include <Core/Gen5/Searchers/EggSearcher5.hpp>
+#include <Core/Parents/ProfileLoader.hpp>
 #include <Core/Util/Translator.hpp>
 #include <Core/Util/Utilities.hpp>
+#include <Forms/Controls/Controls.hpp>
 #include <Forms/Gen5/Profile/ProfileManager5.hpp>
 #include <Forms/Models/Gen5/EggModel5.hpp>
+#include <QMenu>
 #include <QMessageBox>
 #include <QSettings>
 #include <QThread>

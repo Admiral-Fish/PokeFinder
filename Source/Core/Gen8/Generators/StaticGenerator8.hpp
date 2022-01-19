@@ -21,8 +21,8 @@
 #define STATICGENERATOR8_HPP
 
 #include <Core/Parents/Generators/StaticGenerator.hpp>
-#include <Core/Parents/States/StaticState.hpp>
 
+class StaticState;
 class StaticTemplate;
 
 class StaticGenerator8 : public StaticGenerator

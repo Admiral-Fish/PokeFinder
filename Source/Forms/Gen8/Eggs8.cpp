@@ -21,8 +21,10 @@
 #include "ui_Eggs8.h"
 #include <Core/Gen8/Generators/EggGenerator8.hpp>
 #include <Core/Parents/ProfileLoader.hpp>
+#include <Forms/Controls/Controls.hpp>
 #include <Forms/Gen8/Profile/ProfileManager8.hpp>
 #include <Forms/Models/Gen8/EggModel8.hpp>
+#include <QMenu>
 #include <QMessageBox>
 #include <QSettings>
 

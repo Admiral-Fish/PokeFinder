@@ -1,7 +1,7 @@
 #ifndef POKETCH_HPP
 #define POKETCH_HPP
 
-#include <Core/Util/Utilities.hpp>
+#include <Core/Util/Global.hpp>
 #include <QWidget>
 
 namespace Ui

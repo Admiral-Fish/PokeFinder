@@ -20,8 +20,10 @@
 #ifndef PIDIVCALCULATOR_HPP
 #define PIDIVCALCULATOR_HPP
 
-#include <Core/Gen3/States/PIDIVState.hpp>
+#include <Core/Util/Global.hpp>
 #include <vector>
+
+class PIDIVState;
 
 namespace PIDIVCalculator
 {

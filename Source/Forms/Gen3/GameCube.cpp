@@ -22,12 +22,15 @@
 #include <Core/Enum/Game.hpp>
 #include <Core/Enum/Method.hpp>
 #include <Core/Gen3/Generators/GameCubeGenerator.hpp>
+#include <Core/Gen3/LockInfo.hpp>
 #include <Core/Gen3/Searchers/GameCubeSearcher.hpp>
 #include <Core/Parents/ProfileLoader.hpp>
 #include <Core/Util/Translator.hpp>
+#include <Forms/Controls/Controls.hpp>
 #include <Forms/Gen3/Profile/ProfileManager3.hpp>
 #include <Forms/Gen3/Tools/GameCubeRTC.hpp>
 #include <Forms/Models/Gen3/GameCubeModel.hpp>
+#include <QMenu>
 #include <QSettings>
 #include <QThread>
 #include <QTimer>

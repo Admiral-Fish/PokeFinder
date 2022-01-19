@@ -20,20 +20,17 @@
 #ifndef WILDGENERATOR8_HPP
 #define WILDGENERATOR8_HPP
 
-#include <Core/Gen8/EncounterArea8.hpp>
 #include <Core/Parents/Generators/WildGenerator.hpp>
-#include <Core/Parents/States/WildState.hpp>
+
+class EncounterArea8;
+class WildState;
 
 class WildGenerator8 : public WildGenerator
 {
 public:
     WildGenerator8() = default;
     WildGenerator8(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, const StateFilter &filter);
-    std::vector<WildState> generate(u64 seed0, u64 seed1) const;
-    void setEncounterArea(const EncounterArea8 &encounterArea);
-
-private:
-    EncounterArea8 encounterArea;
+    std::vector<WildState> generate(u64 seed0, u64 seed1, const EncounterArea8 &encounterArea) const;
 };
 
 #endif // WILDGENERATOR8_HPP

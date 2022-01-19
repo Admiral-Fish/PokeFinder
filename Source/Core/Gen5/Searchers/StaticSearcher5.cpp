@@ -20,17 +20,19 @@
 #include "StaticSearcher5.hpp"
 #include <Core/Enum/Game.hpp>
 #include <Core/Enum/Method.hpp>
+#include <Core/Gen5/Generators/StaticGenerator5.hpp>
 #include <Core/Gen5/Keypresses.hpp>
+#include <Core/Gen5/States/SearcherState5.hpp>
+#include <Core/Gen5/States/StaticState5.hpp>
 #include <Core/RNG/SHA1.hpp>
 #include <Core/Util/Utilities.hpp>
 #include <future>
 
-StaticSearcher5::StaticSearcher5(const Profile5 &profile, Method method) :
-    profile(profile), method(method), searching(false), progress(0)
+StaticSearcher5::StaticSearcher5(const Profile5 &profile, Method method) : profile(profile), method(method), searching(false), progress(0)
 {
 }
 
-void StaticSearcher5::startSearch(const StaticGenerator5 &generator, int threads, Date start, const Date &end)
+void StaticSearcher5::startSearch(const StaticGenerator5 &generator, int threads, const Date &start, const Date &end)
 {
     searching = true;
 
@@ -48,18 +50,19 @@ void StaticSearcher5::startSearch(const StaticGenerator5 &generator, int threads
     std::vector<std::future<void>> threadContainer;
 
     auto daysSplit = days / threads;
+    Date day = start;
     for (int i = 0; i < threads; i++)
     {
         if (i == threads - 1)
         {
-            threadContainer.emplace_back(std::async([=] { search(generator, start, end); }));
+            threadContainer.emplace_back(std::async([=] { search(generator, day, end); }));
         }
         else
         {
-            Date mid = start.addDays(daysSplit - 1);
-            threadContainer.emplace_back(std::async([=] { search(generator, start, mid); }));
+            Date mid = day.addDays(daysSplit - 1);
+            threadContainer.emplace_back(std::async([=] { search(generator, day, mid); }));
         }
-        start = start.addDays(daysSplit);
+        day = day.addDays(daysSplit);
     }
 
     for (int i = 0; i < threads; i++)

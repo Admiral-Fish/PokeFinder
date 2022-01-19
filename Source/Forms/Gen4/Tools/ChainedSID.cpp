@@ -22,6 +22,7 @@
 #include <Core/Gen4/Tools/ChainedSIDCalc.hpp>
 #include <Core/Util/Translator.hpp>
 #include <QSettings>
+#include <QStandardItemModel>
 
 ChainedSID::ChainedSID(QWidget *parent) : QWidget(parent), ui(new Ui::ChainedSID)
 {

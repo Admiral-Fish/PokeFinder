@@ -25,6 +25,7 @@
 #include <Core/Util/Nature.hpp>
 #include <Core/Util/Translator.hpp>
 #include <QSettings>
+#include <QStandardItemModel>
 
 IVtoPID::IVtoPID(QWidget *parent) : QWidget(parent), ui(new Ui::IVtoPID)
 {

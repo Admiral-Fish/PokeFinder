@@ -20,13 +20,13 @@
 #ifndef DREAMRADAR_HPP
 #define DREAMRADAR_HPP
 
-#include <Core/Gen5/Generators/DreamRadarGenerator.hpp>
 #include <Core/Gen5/Profile5.hpp>
-#include <QMenu>
+#include <Core/Gen5/DreamRadarSlot.hpp>
+#include <QWidget>
 
 class DreamRadarGeneratorModel5;
 class DreamRadarSearcherModel5;
-struct DreamRadarSlot;
+class QMenu;
 
 namespace Ui
 {
@@ -47,12 +47,12 @@ public:
 
 private:
     Ui::DreamRadar *ui;
-    DreamRadarGeneratorModel5 *generatorModel = nullptr;
-    DreamRadarSearcherModel5 *searcherModel = nullptr;
+    DreamRadarGeneratorModel5 *generatorModel;
+    DreamRadarSearcherModel5 *searcherModel;
     std::vector<Profile5> profiles;
     Profile5 currentProfile;
-    QMenu *generatorMenu = nullptr;
-    QMenu *searcherMenu = nullptr;
+    QMenu *generatorMenu;
+    QMenu *searcherMenu;
 
     void setupModels();
 

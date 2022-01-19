@@ -18,6 +18,7 @@
  */
 
 #include "IDGenerator4.hpp"
+#include <Core/Gen4/States/IDState4.hpp>
 #include <Core/Parents/Filters/IDFilter.hpp>
 #include <Core/RNG/MTFast.hpp>
 

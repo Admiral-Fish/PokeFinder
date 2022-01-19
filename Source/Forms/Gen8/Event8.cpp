@@ -20,11 +20,14 @@
 #include "Event8.hpp"
 #include "ui_Event8.h"
 #include <Core/Gen8/Generators/EventGenerator8.hpp>
+#include <Core/Gen8/WB8.hpp>
 #include <Core/Parents/ProfileLoader.hpp>
 #include <Core/Util/Translator.hpp>
+#include <Forms/Controls/Controls.hpp>
 #include <Forms/Gen8/Profile/ProfileManager8.hpp>
 #include <Forms/Models/Gen8/EventModel8.hpp>
 #include <QFileDialog>
+#include <QMenu>
 #include <QMessageBox>
 #include <QSettings>
 

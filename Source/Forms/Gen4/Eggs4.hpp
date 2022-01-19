@@ -21,10 +21,11 @@
 #define EGGS4_HPP
 
 #include <Core/Gen4/Profile4.hpp>
-#include <QMenu>
+#include <QWidget>
 
 class EggGeneratorModel4;
 class EggSearcherModel4;
+class QMenu;
 
 namespace Ui
 {
@@ -46,11 +47,11 @@ private:
     Ui::Eggs4 *ui;
     std::vector<Profile4> profiles;
     Profile4 currentProfile;
-    EggGeneratorModel4 *generatorModel = nullptr;
-    EggSearcherModel4 *searcherModel = nullptr;
-    QMenu *generatorMenu = nullptr;
-    QMenu *searcherMenu = nullptr;
-    QAction *calcPoketchGenerator = nullptr;
+    EggGeneratorModel4 *generatorModel;
+    EggSearcherModel4 *searcherModel;
+    QMenu *generatorMenu;
+    QMenu *searcherMenu;
+    QAction *calcPoketchGenerator;
 
     void setupModels();
 

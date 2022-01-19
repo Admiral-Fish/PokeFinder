@@ -18,6 +18,7 @@
  */
 
 #include "ComboMenu.hpp"
+#include <QActionGroup>
 #include <QMenu>
 
 ComboMenu::ComboMenu(QWidget *parent) : QToolButton(parent)

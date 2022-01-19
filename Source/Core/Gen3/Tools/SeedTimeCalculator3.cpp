@@ -18,6 +18,7 @@
  */
 
 #include "SeedTimeCalculator3.hpp"
+#include <Core/Gen3/States/SeedTimeState3.hpp>
 
 namespace SeedTimeCalculator3
 {

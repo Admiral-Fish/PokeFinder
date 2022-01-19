@@ -21,8 +21,8 @@
 #define GENERATOR5_HPP
 
 #include <Core/Parents/Generators/StaticGenerator.hpp>
-#include <Core/Parents/States/StaticState.hpp>
 
+class StaticState;
 enum class Encounter : u8;
 
 class StaticGenerator5 : public StaticGenerator

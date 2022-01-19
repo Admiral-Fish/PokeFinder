@@ -39,7 +39,7 @@ public:
 
 private:
     Ui::PIDIV *ui;
-    PIDIVModel *model = nullptr;
+    PIDIVModel *model;
 
     void setupModels();
 

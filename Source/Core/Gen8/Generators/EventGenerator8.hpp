@@ -22,7 +22,9 @@
 
 #include <Core/Gen8/WB8.hpp>
 #include <Core/Parents/Generators/Generator.hpp>
-#include <Core/Parents/States/State.hpp>
+
+class State;
+class WB8;
 
 class EventGenerator8 : public Generator
 {

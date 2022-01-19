@@ -22,7 +22,8 @@
 
 #include <Core/Gen5/PGF.hpp>
 #include <Core/Parents/Generators/Generator.hpp>
-#include <Core/Parents/States/State.hpp>
+
+class State;
 
 class EventGenerator5 : public Generator
 {

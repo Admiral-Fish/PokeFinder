@@ -21,7 +21,9 @@
 #define IVCALCULATOR_HPP
 
 #include <Core/Util/Global.hpp>
-#include <QLabel>
+#include <QWidget>
+
+class QLabel;
 
 namespace Ui
 {

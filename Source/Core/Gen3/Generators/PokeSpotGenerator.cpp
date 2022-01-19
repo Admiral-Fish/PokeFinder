@@ -19,6 +19,7 @@
 
 #include "PokeSpotGenerator.hpp"
 #include <Core/Enum/Method.hpp>
+#include <Core/Gen3/States/GameCubeState.hpp>
 #include <Core/Parents/Filters/StateFilter.hpp>
 #include <Core/RNG/LCRNG.hpp>
 

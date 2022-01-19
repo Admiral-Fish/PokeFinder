@@ -20,8 +20,9 @@
 #ifndef IDGENERATOR5_HPP
 #define IDGENERATOR5_HPP
 
-#include <Core/Gen5/States/IDState5.hpp>
 #include <Core/Parents/Generators/IDGenerator.hpp>
+
+class IDState5;
 
 class IDGenerator5 : public IDGenerator<>
 {

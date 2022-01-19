@@ -19,6 +19,7 @@
 
 #include "EncounterArea.hpp"
 #include <Core/Enum/Encounter.hpp>
+#include <Core/Parents/Slot.hpp>
 #include <Core/Util/Translator.hpp>
 #include <algorithm>
 

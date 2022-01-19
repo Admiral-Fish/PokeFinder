@@ -30,6 +30,7 @@
 #include <Core/Gen8/EncounterArea8.hpp>
 #include <Core/Gen8/Encounters8.hpp>
 #include <Core/Gen8/Profile8.hpp>
+#include <Core/Parents/Slot.hpp>
 #include <Core/Util/Translator.hpp>
 #include <QCompleter>
 #include <QSettings>

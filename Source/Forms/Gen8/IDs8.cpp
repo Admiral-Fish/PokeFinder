@@ -20,6 +20,7 @@
 #include "IDs8.hpp"
 #include "ui_IDs8.h"
 #include <Core/Gen8/Generators/IDGenerator8.hpp>
+#include <Core/Gen8/Profile8.hpp>
 #include <Core/Parents/ProfileLoader.hpp>
 #include <Forms/Gen8/Profile/ProfileManager8.hpp>
 #include <Forms/Models/Gen8/IDModel8.hpp>

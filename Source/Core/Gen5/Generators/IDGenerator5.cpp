@@ -18,6 +18,7 @@
  */
 
 #include "IDGenerator5.hpp"
+#include <Core/Gen5/States/IDState5.hpp>
 #include <Core/RNG/LCRNG64.hpp>
 
 IDGenerator5::IDGenerator5(u32 initialAdvances, u32 maxAdvances, const IDFilter &filter) : IDGenerator(initialAdvances, maxAdvances, filter)
