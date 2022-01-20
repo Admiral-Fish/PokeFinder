@@ -39,7 +39,7 @@ std::vector<EggState> EggGenerator8::generate(u64 seed0, u64 seed1) const
 
     RNGList<u32, Xorshift, 2, 0> rngList(rng);
 
-    u8 pidRolls = 0;
+    u8 pidRolls = 1;
     if (daycare.getMasuda())
     {
         pidRolls += 6;
