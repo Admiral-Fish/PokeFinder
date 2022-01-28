@@ -1154,7 +1154,7 @@ Volbeat</source>
         <location filename="../Controls/EggSettings.cpp" line="92"/>
         <location filename="../Controls/EggSettings.cpp" line="93"/>
         <source>Destiny Knot</source>
-        <translation type="unfinished"></translation>
+        <translation>红线</translation>
     </message>
     <message>
         <location filename="../Controls/EggSettings.cpp" line="228"/>
@@ -1166,12 +1166,12 @@ Volbeat</source>
         <location filename="../Controls/EggSettings.cpp" line="229"/>
         <location filename="../Controls/EggSettings.cpp" line="232"/>
         <source>Everstone</source>
-        <translation type="unfinished">不变之石</translation>
+        <translation>不变之石</translation>
     </message>
     <message>
         <location filename="../Controls/EggSettings.ui"/>
         <source>Masuda</source>
-        <translation type="unfinished"></translation>
+        <translation>异国</translation>
     </message>
 </context>
 <context>
@@ -1741,17 +1741,17 @@ Volbeat</source>
     <message>
         <location filename="../Gen8/Eggs8.ui"/>
         <source>The two don&apos;t seem to like each other</source>
-        <translation type="unfinished">它们似乎不喜欢对方</translation>
+        <translation>它们似乎不喜欢对方</translation>
     </message>
     <message>
         <location filename="../Gen8/Eggs8.ui"/>
         <source>The two seem to get along</source>
-        <translation type="unfinished">它们似乎合得来</translation>
+        <translation>它们似乎合得来</translation>
     </message>
     <message>
         <location filename="../Gen8/Eggs8.ui"/>
         <source>The two seem to get along very well</source>
-        <translation type="unfinished">他们相处得十分好</translation>
+        <translation>他们相处得十分好</translation>
     </message>
     <message>
         <location filename="../Gen8/Eggs8.ui"/>
@@ -1796,7 +1796,7 @@ Volbeat</source>
     <message>
         <location filename="../Gen8/Eggs8.ui"/>
         <source>Oval Charm</source>
-        <translation type="unfinished"></translation>
+        <translation>圆形护符</translation>
     </message>
     <message>
         <location filename="../Gen8/Eggs8.ui"/>
@@ -1818,7 +1818,7 @@ Volbeat</source>
     <message>
         <location filename="../Gen8/Eggs8.ui"/>
         <source>Shiny Charm</source>
-        <translation type="unfinished"></translation>
+        <translation>闪耀护符</translation>
     </message>
     <message>
         <location filename="../Gen8/Eggs8.cpp" line="91"/>
@@ -2380,7 +2380,7 @@ Volbeat</source>
     <message>
         <location filename="../Gen8/Event8.ui"/>
         <source>Static</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">定点乱数</translation>
     </message>
     <message>
         <location filename="../Gen8/Event8.ui"/>
@@ -4814,7 +4814,7 @@ Volbeat</source>
     <message>
         <location filename="../MainWindow.ui"/>
         <source>Gen 4 Tools</source>
-        <translation>第三世代工具 {4 ?}</translation>
+        <translation>第四世代工具</translation>
     </message>
     <message>
         <location filename="../MainWindow.ui"/>
@@ -4966,7 +4966,7 @@ Volbeat</source>
     <message>
         <location filename="../MainWindow.ui"/>
         <source>Gen 5</source>
-        <translation type="unfinished">第四世代 {5?}</translation>
+        <translation>第五世代</translation>
     </message>
     <message>
         <location filename="../MainWindow.ui"/>
@@ -4982,7 +4982,7 @@ Volbeat</source>
     <message>
         <location filename="../MainWindow.ui"/>
         <source>Gen 5 Tools</source>
-        <translation type="unfinished">第三世代工具 {4 ?} {5 ?}</translation>
+        <translation>第五世代工具</translation>
     </message>
     <message>
         <location filename="../MainWindow.ui"/>
@@ -5007,7 +5007,7 @@ Volbeat</source>
     <message>
         <location filename="../MainWindow.ui"/>
         <source>Gen 8</source>
-        <translation type="unfinished">第四世代 {8?}</translation>
+        <translation>第八世代</translation>
     </message>
     <message>
         <location filename="../MainWindow.ui"/>
@@ -5017,13 +5017,13 @@ Volbeat</source>
     <message>
         <location filename="../MainWindow.ui"/>
         <source>Gen 8 Tools</source>
-        <translation type="unfinished">第三世代工具 {4 ?} {8 ?}</translation>
+        <translation>第八世代工具</translation>
     </message>
     <message>
         <location filename="../MainWindow.ui"/>
         <location filename="../MainWindow.cpp" line="768"/>
         <source>About</source>
-        <translation type="unfinished"></translation>
+        <translation>关于</translation>
     </message>
     <message>
         <location filename="../MainWindow.ui"/>
@@ -6152,7 +6152,7 @@ Volbeat</source>
     <message>
         <location filename="../Gen5/Profile/ProfileEditor5.ui"/>
         <source>Shiny Charm</source>
-        <translation type="unfinished"></translation>
+        <translation>闪耀护符</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="136"/>
@@ -6175,7 +6175,7 @@ Volbeat</source>
     <message>
         <location filename="../Gen8/Profile/ProfileEditor8.ui"/>
         <source>Shiny Charm</source>
-        <translation type="unfinished"></translation>
+        <translation>闪耀护符</translation>
     </message>
     <message>
         <location filename="../Gen8/Profile/ProfileEditor8.ui"/>
@@ -6205,7 +6205,7 @@ Volbeat</source>
     <message>
         <location filename="../Gen8/Profile/ProfileEditor8.ui"/>
         <source>Oval Charm</source>
-        <translation type="unfinished"></translation>
+        <translation>圆形护符</translation>
     </message>
     <message>
         <location filename="../Gen8/Profile/ProfileEditor8.ui"/>
@@ -6230,7 +6230,7 @@ Volbeat</source>
     <message>
         <location filename="../Gen8/Profile/ProfileEditor8.ui"/>
         <source>Swarm</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">大量出现 {?}</translation>
     </message>
     <message>
         <location filename="../Gen8/Profile/ProfileEditor8.ui"/>
@@ -6608,7 +6608,7 @@ Volbeat</source>
     <message>
         <location filename="../Models/Gen5/ProfileModel5.hpp" line="38"/>
         <source>Shiny Charm</source>
-        <translation type="unfinished"></translation>
+        <translation>闪耀护符</translation>
     </message>
 </context>
 <context>
@@ -6652,12 +6652,12 @@ Volbeat</source>
     <message>
         <location filename="../Models/Gen8/ProfileModel8.hpp" line="36"/>
         <source>Shiny Charm</source>
-        <translation type="unfinished"></translation>
+        <translation>闪耀护符</translation>
     </message>
     <message>
         <location filename="../Models/Gen8/ProfileModel8.hpp" line="36"/>
         <source>Oval Charm</source>
-        <translation type="unfinished"></translation>
+        <translation>圆形护符</translation>
     </message>
     <message>
         <location filename="../Models/Gen8/ProfileModel8.hpp" line="36"/>
