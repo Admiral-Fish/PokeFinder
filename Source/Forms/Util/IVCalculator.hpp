@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2021 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -21,9 +21,9 @@
 #define IVCALCULATOR_HPP
 
 #include <Core/Util/Global.hpp>
-#include <QLabel>
+#include <QWidget>
 
-class PersonalInfo;
+class QLabel;
 
 namespace Ui
 {
@@ -33,6 +33,9 @@ namespace Ui
 class IVCalculator : public QWidget
 {
     Q_OBJECT
+signals:
+    void ivsCalculated(std::vector<std::vector<u8>>);
+
 public:
     explicit IVCalculator(QWidget *parent = nullptr);
     ~IVCalculator() override;
@@ -40,11 +43,9 @@ public:
 private:
     Ui::IVCalculator *ui;
     int rows = 0;
-    const PersonalInfo *personalInfo = nullptr;
 
     void setupModels();
     void displayIVs(QLabel *label, const std::vector<u8> &ivs);
-    PersonalInfo getPersonalInfo(const PersonalInfo &base);
 
 private slots:
     void addEntry();
@@ -52,7 +53,7 @@ private slots:
     void findIVs();
     void pokemonIndexChanged(int index);
     void altformIndexChanged(int index);
-    void generationIndexChanged(int index);
+    void gameIndexChanged(int index);
 };
 
 #endif // IVCALCULATOR_HPP

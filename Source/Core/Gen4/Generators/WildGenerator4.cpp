@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2021 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -21,6 +21,8 @@
 #include <Core/Enum/Encounter.hpp>
 #include <Core/Enum/Lead.hpp>
 #include <Core/Enum/Method.hpp>
+#include <Core/Gen4/EncounterArea4.hpp>
+#include <Core/Gen4/States/WildState4.hpp>
 #include <Core/Parents/Filters/StateFilter.hpp>
 #include <Core/RNG/LCRNG.hpp>
 #include <Core/Util/EncounterSlot.hpp>
@@ -32,27 +34,22 @@ WildGenerator4::WildGenerator4(u32 initialAdvances, u32 maxAdvances, u16 tid, u1
     this->platinum = platinum;
 }
 
-std::vector<WildState4> WildGenerator4::generate(u32 seed) const
+std::vector<WildState4> WildGenerator4::generate(u32 seed, const EncounterArea4 &encounterArea) const
 {
     switch (method)
     {
     case Method::MethodJ:
-        return generateMethodJ(seed);
+        return generateMethodJ(seed, encounterArea);
     case Method::MethodK:
-        return generateMethodK(seed);
+        return generateMethodK(seed, encounterArea);
     case Method::ChainedShiny:
-        return generateChainedShiny(seed);
+        return generateChainedShiny(seed, encounterArea);
     default:
         return std::vector<WildState4>();
     }
 }
 
-void WildGenerator4::setEncounterArea(const EncounterArea4 &encounterArea)
-{
-    this->encounterArea = encounterArea;
-}
-
-std::vector<WildState4> WildGenerator4::generateMethodJ(u32 seed) const
+std::vector<WildState4> WildGenerator4::generateMethodJ(u32 seed, const EncounterArea4 &encounterArea) const
 {
     std::vector<WildState4> states;
 
@@ -247,7 +244,7 @@ std::vector<WildState4> WildGenerator4::generateMethodJ(u32 seed) const
     return states;
 }
 
-std::vector<WildState4> WildGenerator4::generateMethodK(u32 seed) const
+std::vector<WildState4> WildGenerator4::generateMethodK(u32 seed, const EncounterArea4 &encounterArea) const
 {
     std::vector<WildState4> states;
 
@@ -473,7 +470,7 @@ std::vector<WildState4> WildGenerator4::generateMethodK(u32 seed) const
     return states;
 }
 
-std::vector<WildState4> WildGenerator4::generateChainedShiny(u32 seed) const
+std::vector<WildState4> WildGenerator4::generateChainedShiny(u32 seed, const EncounterArea4 &encounterArea) const
 {
     std::vector<WildState4> states;
 

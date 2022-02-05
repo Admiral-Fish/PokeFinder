@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2021 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -20,16 +20,33 @@
 #ifndef WILDGENERATOR_HPP
 #define WILDGENERATOR_HPP
 
+#include <Core/Enum/Lead.hpp>
 #include <Core/Parents/Generators/Generator.hpp>
 
 class WildGenerator : public Generator
 {
 public:
     WildGenerator() = default;
-    WildGenerator(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter);
-    void setEncounter(Encounter encounter);
-    void setLead(Lead lead);
-    void setSynchNature(u8 synchNature);
+
+    WildGenerator(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter) :
+        Generator(initialAdvances, maxAdvances, tid, sid, genderRatio, method, filter), lead(Lead::None)
+    {
+    }
+
+    void setEncounter(Encounter encounter)
+    {
+        this->encounter = encounter;
+    }
+
+    void setLead(Lead lead)
+    {
+        this->lead = lead;
+    }
+
+    void setSynchNature(u8 synchNature)
+    {
+        this->synchNature = synchNature;
+    }
 
 protected:
     Encounter encounter;

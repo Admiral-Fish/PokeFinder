@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2021 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -28,8 +28,8 @@ class SeedtoTimeModel4 : public TableModel<SeedTime>
 {
     Q_OBJECT
 public:
-    explicit SeedtoTimeModel4(QObject *parent, bool flag = false, Game version = DPPt);
-    void setFlags(bool flag = false, Game version = Diamond);
+    explicit SeedtoTimeModel4(QObject *parent, bool flag = false, Game version = Game::DPPt);
+    void setFlags(bool flag = false, Game version = Game::Diamond);
     int columnCount(const QModelIndex &parent = QModelIndex()) const override;
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
     QVariant headerData(int section, Qt::Orientation orientation, int role) const override;

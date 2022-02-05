@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2021 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -18,6 +18,7 @@
  */
 
 #include "IDGenerator3.hpp"
+#include <Core/Gen3/States/IDState3.hpp>
 #include <Core/Parents/Filters/IDFilter.hpp>
 #include <Core/RNG/LCRNG.hpp>
 

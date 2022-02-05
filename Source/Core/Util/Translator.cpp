@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2021 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -18,6 +18,7 @@
  */
 
 #include "Translator.hpp"
+#include <Core/Enum/Buttons.hpp>
 #include <Core/Enum/Game.hpp>
 #include <Core/Resources/i18n.hpp>
 #include <algorithm>
@@ -92,6 +93,11 @@ namespace
                 data = swsh_de.data();
                 size = swsh_de.size();
             }
+            else if (name == "bdsp")
+            {
+                data = bdsp_de.data();
+                size = bdsp_de.size();
+            }
         }
         else if (language == "en")
         {
@@ -144,6 +150,11 @@ namespace
             {
                 data = swsh_en.data();
                 size = swsh_en.size();
+            }
+            else if (name == "bdsp")
+            {
+                data = bdsp_en.data();
+                size = bdsp_en.size();
             }
         }
         else if (language == "es")
@@ -198,6 +209,11 @@ namespace
                 data = swsh_es.data();
                 size = swsh_es.size();
             }
+            else if (name == "bdsp")
+            {
+                data = bdsp_es.data();
+                size = bdsp_es.size();
+            }
         }
         else if (language == "fr")
         {
@@ -250,6 +266,11 @@ namespace
             {
                 data = swsh_fr.data();
                 size = swsh_fr.size();
+            }
+            else if (name == "bdsp")
+            {
+                data = bdsp_fr.data();
+                size = bdsp_fr.size();
             }
         }
         else if (language == "it")
@@ -304,6 +325,11 @@ namespace
                 data = swsh_it.data();
                 size = swsh_it.size();
             }
+            else if (name == "bdsp")
+            {
+                data = bdsp_it.data();
+                size = bdsp_it.size();
+            }
         }
         else if (language == "ja")
         {
@@ -356,6 +382,11 @@ namespace
             {
                 data = swsh_ja.data();
                 size = swsh_ja.size();
+            }
+            else if (name == "bdsp")
+            {
+                data = bdsp_ja.data();
+                size = bdsp_ja.size();
             }
         }
         else if (language == "ko")
@@ -410,6 +441,11 @@ namespace
                 data = swsh_ko.data();
                 size = swsh_ko.size();
             }
+            else if (name == "bdsp")
+            {
+                data = bdsp_ko.data();
+                size = bdsp_ko.size();
+            }
         }
         else if (language == "zh")
         {
@@ -462,6 +498,11 @@ namespace
             {
                 data = swsh_zh.data();
                 size = swsh_zh.size();
+            }
+            else if (name == "bdsp")
+            {
+                data = bdsp_zh.data();
+                size = bdsp_zh.size();
             }
         }
 
@@ -545,28 +586,32 @@ namespace Translator
         return genders;
     }
 
-    std::vector<std::string> getLocations(const std::vector<u8> &nums, Game game)
+    std::vector<std::string> getLocations(const std::vector<u16> &nums, Game game)
     {
         std::vector<std::string> strings;
-        if (game & Game::FRLG)
+        if ((game & Game::FRLG) != Game::None)
         {
             strings = readFile("frlg");
         }
-        else if (game & Game::RSE)
+        else if ((game & Game::RSE) != Game::None)
         {
             strings = readFile("rse");
         }
-        else if (game & Game::DPPt)
+        else if ((game & Game::DPPt) != Game::None)
         {
             strings = readFile("dppt");
         }
-        else if (game & Game::HGSS)
+        else if ((game & Game::HGSS) != Game::None)
         {
             strings = readFile("hgss");
         }
-        else
+        else if ((game & Game::SwSh) != Game::None)
         {
             strings = readFile("swsh");
+        }
+        else
+        {
+            strings = readFile("bdsp");
         }
 
         std::map<int, std::string> map;
@@ -585,7 +630,7 @@ namespace Translator
         }
 
         std::vector<std::string> locations;
-        std::transform(nums.begin(), nums.end(), std::back_inserter(locations), [&map](u8 num) { return map[num]; });
+        std::transform(nums.begin(), nums.end(), std::back_inserter(locations), [&map](u16 num) { return map[num]; });
 
         return locations;
     }
@@ -595,9 +640,9 @@ namespace Translator
         return buttons[keypress];
     }
 
-    std::string getKeypresses(u16 keypresses)
+    std::string getKeypresses(Buttons keypresses)
     {
-        if (keypresses == 0)
+        if (toInt(keypresses) == 0)
         {
             return "None";
         }
@@ -605,7 +650,7 @@ namespace Translator
         std::string result;
         for (int i = 0; i < 12; i++)
         {
-            if (keypresses & (1 << i))
+            if (toInt(keypresses) & (1 << i))
             {
                 if (!result.empty())
                 {

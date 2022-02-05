@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2021 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -19,7 +19,7 @@
 
 #include "Profile4.hpp"
 
-Profile4::Profile4() : dual(Game::Blank), radio(0), radar(false), swarm(false)
+Profile4::Profile4() : dual(Game::None), radio(0), radar(false), swarm(false)
 {
     version = Game::Diamond;
 }
@@ -81,14 +81,12 @@ bool Profile4::getSwarm() const
     return swarm;
 }
 
-bool operator==(const Profile4 &left, const Profile4 &right)
+bool Profile4::operator==(const Profile4 &other) const
 {
-    return left.getName() == right.getName() && left.getVersion() == right.getVersion() && left.getTID() == right.getTID()
-        && left.getSID() == right.getSID() && left.getDualSlot() == right.getDualSlot() && left.getRadio() == right.getRadio()
-        && left.getRadar() == right.getRadar() && left.getSwarm() == right.getSwarm();
+    return Profile::operator==(other) && dual == other.dual && radio == other.radio && radar == other.radar && swarm == other.swarm;
 }
 
-bool operator!=(const Profile4 &left, const Profile4 &right)
+bool Profile4::operator!=(const Profile4 &other) const
 {
-    return !(left == right);
+    return !(operator==(other));
 }

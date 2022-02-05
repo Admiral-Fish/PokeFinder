@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2021 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -19,6 +19,7 @@
 
 #include "DenMap.hpp"
 #include "ui_DenMap.h"
+#include <Core/Enum/Game.hpp>
 #include <Core/Gen8/DenLoader.hpp>
 #include <Core/Util/Translator.hpp>
 #include <QPainter>
@@ -57,7 +58,7 @@ void DenMap::locationIndexChanged(int index)
 
         for (u8 denID = start; denID < end; denID++)
         {
-            auto location = Translator::getLocations({DenLoader::getLocation(denID)}, Game::SwSh);
+            auto location = Translator::getLocations({ DenLoader::getLocation(denID) }, Game::SwSh);
             ui->comboBoxDen->addItem(QString("%1: %2").arg(denID + 1 - offset).arg(QString::fromStdString(location[0])));
         }
 

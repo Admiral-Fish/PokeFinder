@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2021 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -20,9 +20,10 @@
 #ifndef POKESPOT_HPP
 #define POKESPOT_HPP
 
-#include <QMenu>
+#include <QWidget>
 
 class PokeSpotModel;
+class QMenu;
 
 namespace Ui
 {
@@ -38,8 +39,8 @@ public:
 
 private:
     Ui::PokeSpot *ui;
-    PokeSpotModel *model = nullptr;
-    QMenu *menu = nullptr;
+    PokeSpotModel *model;
+    QMenu *menu;
 
     void setupModels();
 

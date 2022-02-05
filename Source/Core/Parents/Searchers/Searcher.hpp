@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2021 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,13 +24,17 @@
 #include <Core/Util/Global.hpp>
 #include <vector>
 
-enum Method : u8;
+enum class Method : u8;
 
 class Searcher
 {
 public:
     Searcher() = default;
-    Searcher(u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter);
+
+    Searcher(u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter) :
+        tid(tid), sid(sid), tsv(tid ^ sid), genderRatio(genderRatio), method(method), filter(filter)
+    {
+    }
 
 protected:
     u16 tid;

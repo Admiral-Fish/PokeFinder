@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2021 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -20,10 +20,11 @@
 #ifndef IDGENERATOR4_HPP
 #define IDGENERATOR4_HPP
 
-#include <Core/Gen4/States/IDState4.hpp>
 #include <Core/Parents/Generators/IDGenerator.hpp>
 
-class IDGenerator4 : public IDGenerator
+class IDState4;
+
+class IDGenerator4 : public IDGenerator<>
 {
 public:
     IDGenerator4(u32 minDelay, u32 maxDelay, u16 year, u8 month, u8 day, u8 hour, u8 minute);

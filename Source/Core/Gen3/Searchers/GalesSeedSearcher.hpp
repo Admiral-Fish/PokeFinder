@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2021 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -34,7 +34,7 @@ private:
     u16 tsv;
 
     void search(u32 start, u32 end);
-    void search(const std::vector<u32> &seeds);
+    void search(const std::vector<u32>::const_iterator &start, const std::vector<u32>::const_iterator &end);
     bool searchSeed(XDRNG &rng);
     void generatePokemon(XDRNG &rng) const;
     u8 generateEVs(XDRNG &rng);

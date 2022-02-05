@@ -1,6 +1,6 @@
 ﻿/*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2021 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -18,6 +18,7 @@
  */
 
 #include "HiddenGrottoGenerator.hpp"
+#include <Core/Gen5/States/HiddenGrottoState.hpp>
 #include <Core/RNG/LCRNG64.hpp>
 #include <Core/Util/Utilities.hpp>
 
@@ -45,7 +46,7 @@ std::vector<HiddenGrottoState> HiddenGrottoGenerator::generate(u64 seed) const
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rng.next())
     {
         BWRNG go(rng.getSeed());
-        u32 seed = ((go.getSeed() >> 32) * 0x1FFF) >> 32;
+        u32 prng = ((go.getSeed() >> 32) * 0x1FFF) >> 32;
         if (go.nextUInt(100) < powerLevel)
         {
             u8 group = go.nextUInt(4);
@@ -60,7 +61,7 @@ std::vector<HiddenGrottoState> HiddenGrottoGenerator::generate(u64 seed) const
 
             u8 gender = go.nextUInt(100) < genderRatio;
 
-            HiddenGrottoState state(seed, initialAdvances + cnt, group, slot, gender);
+            HiddenGrottoState state(prng, initialAdvances + cnt, group, slot, gender);
             if (filter.compareState(state))
             {
                 states.emplace_back(state);

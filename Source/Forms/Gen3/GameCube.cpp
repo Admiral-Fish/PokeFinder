@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2021 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -22,12 +22,15 @@
 #include <Core/Enum/Game.hpp>
 #include <Core/Enum/Method.hpp>
 #include <Core/Gen3/Generators/GameCubeGenerator.hpp>
-#include <Core/Parents/ProfileLoader.hpp>
+#include <Core/Gen3/LockInfo.hpp>
 #include <Core/Gen3/Searchers/GameCubeSearcher.hpp>
+#include <Core/Parents/ProfileLoader.hpp>
 #include <Core/Util/Translator.hpp>
+#include <Forms/Controls/Controls.hpp>
 #include <Forms/Gen3/Profile/ProfileManager3.hpp>
 #include <Forms/Gen3/Tools/GameCubeRTC.hpp>
 #include <Forms/Models/Gen3/GameCubeModel.hpp>
+#include <QMenu>
 #include <QSettings>
 #include <QThread>
 #include <QTimer>
@@ -64,7 +67,7 @@ void GameCube::updateProfiles()
     profiles = { Profile3("-", Game::Gales, 12345, 54321) };
     auto completeProfiles = ProfileLoader3::getProfiles();
     std::copy_if(completeProfiles.begin(), completeProfiles.end(), std::back_inserter(profiles),
-                 [](const Profile3 &profile) { return profile.getVersion() & Game::GC; });
+                 [](const Profile3 &profile) { return (profile.getVersion() & Game::GC) != Game::None; });
 
     ui->comboBoxProfiles->clear();
     for (const auto &profile : profiles)
@@ -95,8 +98,8 @@ void GameCube::setupModels()
     ui->textBoxGeneratorStartingAdvance->setValues(InputType::Advance32Bit);
     ui->textBoxGeneratorMaxAdvances->setValues(InputType::Advance32Bit);
 
-    ui->comboBoxGeneratorMethod->setup({ Method::XDColo, Method::XD, Method::Colo, Method::Channel });
-    ui->comboBoxSearcherMethod->setup({ Method::XDColo, Method::XD, Method::Colo, Method::Channel });
+    ui->comboBoxGeneratorMethod->setup({ toInt(Method::XDColo), toInt(Method::XD), toInt(Method::Colo), toInt(Method::Channel) });
+    ui->comboBoxSearcherMethod->setup({ toInt(Method::XDColo), toInt(Method::XD), toInt(Method::Colo), toInt(Method::Channel) });
 
     ui->filterGenerator->disableControls(Controls::EncounterSlots);
     ui->filterSearcher->disableControls(Controls::EncounterSlots | Controls::UseDelay | Controls::DisableFilter);

@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2021 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -18,8 +18,13 @@
  */
 
 #include "DenLoader.hpp"
+#include <Core/Parents/PersonalLoader.hpp>
 #include <Core/Resources/Encounters.hpp>
 #include <algorithm>
+#include <fstream>
+#include <nlohmann/json.hpp>
+
+using json = nlohmann::json;
 
 // Normal hash, rare hash, location, x, y
 constexpr u64 denInfo[276][5] = {
@@ -301,13 +306,90 @@ constexpr u64 denInfo[276][5] = {
     { 0x42b21efc37c7b974, 0x9d415f6a7a841dd9, 43, 0, 0 }, // 176 177
 };
 
+namespace
+{
+    DenEvent event;
+};
+
 namespace DenLoader
 {
+    void init(const std::string &path)
+    {
+        std::ifstream read(path + "/nests_event.json");
+        if (read.is_open())
+        {
+            json j = json::parse(read, nullptr, false);
+            if (!j.is_discarded())
+            {
+                nlohmann::json table = j["Tables"];
+                nlohmann::json swordEntries = table[0]["Entries"];
+                nlohmann::json shieldEntries = table[1]["Entries"];
+
+                std::vector<Raid> swordRaids;
+                for (auto raid : swordEntries)
+                {
+                    u8 ability = raid["Ability"].get<u8>();
+                    u8 altform = raid["AltForm"].get<u8>();
+                    u8 shinyType = raid["ShinyForced"].get<u8>();
+                    u8 ivCount = raid["FlawlessIVs"].get<u8>();
+                    u8 gender = raid["Gender"].get<u8>();
+                    bool gigantamax = raid["IsGigantamax"].get<bool>();
+                    u16 species = raid["Species"].get<u16>();
+
+                    std::array<bool, 5> stars;
+                    for (u8 i = 0; i < 5; i++)
+                    {
+                        stars[i] = raid["Probabilities"][i].get<u8>() > 0;
+                    }
+
+                    if (std::any_of(std::begin(stars), std::end(stars), [](bool flag) { return flag; }))
+                    {
+                        swordRaids.emplace_back(ability, altform, ivCount, gender, gigantamax, species,
+                                                PersonalLoader::getPersonal(Game::SwSh, species, altform), stars,
+                                                static_cast<Shiny>(shinyType));
+                    }
+                }
+
+                std::vector<Raid> shieldRaids;
+                for (auto raid : shieldEntries)
+                {
+                    u8 ability = raid["Ability"].get<u8>();
+                    u8 altform = raid["AltForm"].get<u8>();
+                    u8 shinyType = raid["ShinyForced"].get<u8>();
+                    u8 ivCount = raid["FlawlessIVs"].get<u8>();
+                    u8 gender = raid["Gender"].get<u8>();
+                    bool gigantamax = raid["IsGigantamax"].get<bool>();
+                    u16 species = raid["Species"].get<u16>();
+
+                    std::array<bool, 5> stars;
+                    for (u8 i = 0; i < 5; i++)
+                    {
+                        stars[i] = raid["Probabilities"][i].get<u8>() > 0;
+                    }
+
+                    if (std::any_of(std::begin(stars), std::end(stars), [](bool flag) { return flag; }))
+                    {
+                        shieldRaids.emplace_back(ability, altform, ivCount, gender, gigantamax, species,
+                                                 PersonalLoader::getPersonal(Game::SwSh, species, altform), stars,
+                                                 static_cast<Shiny>(shinyType));
+                    }
+                }
+
+                event = DenEvent(swordRaids, shieldRaids);
+            }
+        }
+    }
+
     Den getDen(u16 index, u8 rarity)
     {
         u64 tableHash = denInfo[index][rarity];
-        auto it = std::lower_bound(nests.begin(), nests.end(), tableHash, [](const Den& den, u64 hash) { return den.getHash() < hash; });
+        auto it = std::lower_bound(nests.begin(), nests.end(), tableHash, [](const Den &den, u64 hash) { return den.getHash() < hash; });
         return *it;
+    }
+
+    DenEvent getEvent()
+    {
+        return event;
     }
 
     u8 getLocation(u16 index)

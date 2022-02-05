@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2021 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -20,21 +20,10 @@
 #ifndef DREAMRADARGENERATOR_HPP
 #define DREAMRADARGENERATOR_HPP
 
-#include <Core/Gen5/States/DreamRadarState.hpp>
+#include <Core/Gen5/DreamRadarSlot.hpp>
 #include <Core/Parents/Generators/Generator.hpp>
 
-struct DreamRadarSlot
-{
-    u8 type; // 0: genie, 1: gen 4 legends, 2: non-legend
-    u8 gender;
-    u8 genderRatio;
-
-    DreamRadarSlot() = default;
-
-    DreamRadarSlot(u8 type, u8 gender, u8 genderRatio) : type(type), gender(gender), genderRatio(genderRatio)
-    {
-    }
-};
+class DreamRadarState;
 
 class DreamRadarGenerator : public Generator
 {

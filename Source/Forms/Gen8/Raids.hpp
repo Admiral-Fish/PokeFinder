@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2021 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -20,10 +20,11 @@
 #ifndef RAIDS_HPP
 #define RAIDS_HPP
 
-#include <Core/Parents/Profile.hpp>
-#include <QMenu>
+#include <Core/Gen8/Profile8.hpp>
+#include <QWidget>
 
 class RaidModel;
+class QMenu;
 
 namespace Ui
 {
@@ -43,10 +44,10 @@ public:
 
 private:
     Ui::Raids *ui;
-    RaidModel *model = nullptr;
-    std::vector<Profile> profiles;
-    Profile currentProfile;
-    QMenu *menu = nullptr;
+    RaidModel *model;
+    std::vector<Profile8> profiles;
+    Profile8 currentProfile;
+    QMenu *menu;
 
     void setupModels();
 

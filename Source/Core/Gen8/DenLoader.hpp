@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2021 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -20,11 +20,18 @@
 #ifndef DENLOADER_HPP
 #define DENLOADER_HPP
 
-#include <Core/Gen8/Den.hpp>
+#include <Core/Util/Global.hpp>
+#include <array>
+#include <string>
+
+class Den;
+class DenEvent;
 
 namespace DenLoader
 {
+    void init(const std::string &path);
     Den getDen(u16 index, u8 rarity);
+    DenEvent getEvent();
     u8 getLocation(u16 index);
     std::array<u16, 2> getCoordinates(u16 index);
 };

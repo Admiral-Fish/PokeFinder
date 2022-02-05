@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2021 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -26,7 +26,7 @@ template <u32 add, u32 mult>
 class LCRNG
 {
 public:
-    LCRNG(u32 seed = 0, u32 *count = nullptr) : seed(seed), count(count)
+    LCRNG(u32 seed, u32 *count = nullptr) : seed(seed), count(count)
     {
     }
 

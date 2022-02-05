@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2021 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -19,10 +19,11 @@
 
 #include "EncounterArea.hpp"
 #include <Core/Enum/Encounter.hpp>
+#include <Core/Parents/Slot.hpp>
 #include <Core/Util/Translator.hpp>
 #include <algorithm>
 
-EncounterArea::EncounterArea(u8 location, Encounter encounter, const std::vector<Slot> &pokemon) :
+EncounterArea::EncounterArea(u16 location, Encounter encounter, const std::vector<Slot> &pokemon) :
     pokemon(pokemon), location(location), encounter(encounter)
 {
 }
@@ -32,7 +33,7 @@ Encounter EncounterArea::getEncounter() const
     return encounter;
 }
 
-u8 EncounterArea::getLocation() const
+u16 EncounterArea::getLocation() const
 {
     return location;
 }

@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2021 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -20,12 +20,13 @@
 #ifndef WILD4_HPP
 #define WILD4_HPP
 
-#include <Core/Gen4/EncounterArea4.hpp>
 #include <Core/Gen4/Profile4.hpp>
-#include <QMenu>
+#include <QWidget>
 
+class EncounterArea4;
 class WildGeneratorModel4;
 class WildSearcherModel4;
+class QMenu;
 
 namespace Ui
 {
@@ -47,10 +48,10 @@ private:
     Ui::Wild4 *ui;
     std::vector<Profile4> profiles;
     Profile4 currentProfile;
-    WildGeneratorModel4 *generatorModel = nullptr;
-    WildSearcherModel4 *searcherModel = nullptr;
-    QMenu *generatorMenu = nullptr;
-    QMenu *searcherMenu = nullptr;
+    WildGeneratorModel4 *generatorModel;
+    WildSearcherModel4 *searcherModel;
+    QMenu *generatorMenu;
+    QMenu *searcherMenu;
     std::vector<EncounterArea4> encounterGenerator;
     std::vector<EncounterArea4> encounterSearcher;
 

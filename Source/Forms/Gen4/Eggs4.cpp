@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2021 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -26,10 +26,12 @@
 #include <Core/Parents/ProfileLoader.hpp>
 #include <Core/Parents/States/EggState.hpp>
 #include <Core/Util/Translator.hpp>
+#include <Forms/Controls/Controls.hpp>
 #include <Forms/Gen4/Profile/ProfileManager4.hpp>
 #include <Forms/Gen4/Tools/Poketch.hpp>
 #include <Forms/Gen4/Tools/SeedtoTime4.hpp>
 #include <Forms/Models/Gen4/EggModel4.hpp>
+#include <QMenu>
 #include <QMessageBox>
 #include <QSettings>
 #include <QThread>
@@ -67,7 +69,6 @@ void Eggs4::updateProfiles()
     profiles.insert(profiles.begin(), Profile4());
 
     ui->comboBoxProfiles->clear();
-
     for (const auto &profile : profiles)
     {
         ui->comboBoxProfiles->addItem(QString::fromStdString(profile.getName()));
@@ -103,13 +104,13 @@ void Eggs4::setupModels()
     ui->textBoxSearcherMinDelay->setValues(InputType::Advance32Bit);
     ui->textBoxSearcherMaxDelay->setValues(InputType::Advance32Bit);
 
-    ui->comboBoxGeneratorMethod->setup({ Method::DPPtIVs, Method::Gen4Normal });
+    ui->comboBoxGeneratorMethod->setup({ toInt(Method::DPPtIVs), toInt(Method::Gen4Normal) });
 
     ui->filterGenerator->disableControls(Controls::EncounterSlots);
     ui->filterSearcher->disableControls(Controls::EncounterSlots | Controls::UseDelay | Controls::DisableFilter);
 
-    ui->eggSettingsGenerator->setup(static_cast<Game>(Game::HGSS | Game::DPPt));
-    ui->eggSettingsSearcher->setup(static_cast<Game>(Game::HGSS | Game::DPPt));
+    ui->eggSettingsGenerator->setup(Game::Gen4);
+    ui->eggSettingsSearcher->setup(Game::Gen4);
 
     QAction *outputTXTGenerator = generatorMenu->addAction(tr("Output Results to TXT"));
     QAction *outputCSVGenerator = generatorMenu->addAction(tr("Output Results to CSV"));
@@ -199,7 +200,7 @@ void Eggs4::generate()
     else
     {
         Game version = currentProfile.getVersion();
-        method = (version & Game::HGSS) ? Method::HGSSIVs : Method::DPPtIVs;
+        method = (version & Game::HGSS) != Game::None ? Method::HGSSIVs : Method::DPPtIVs;
     }
     generatorModel->setMethod(method);
 
@@ -229,7 +230,7 @@ void Eggs4::search()
     switch (ui->comboBoxSearcherMethod->currentIndex())
     {
     case 0:
-        methodModel = (currentProfile.getVersion() & Game::HGSS) ? Method::HGSSIVs : Method::DPPtIVs;
+        methodModel = (currentProfile.getVersion() & Game::HGSS) != Game::None ? Method::HGSSIVs : Method::DPPtIVs;
         break;
     case 1:
         methodModel = daycare.getMasuda() ? Method::Gen4Masuda : Method::Gen4Normal;
@@ -258,7 +259,7 @@ void Eggs4::search()
     u32 minAdvancePID = ui->textBoxSearcherPIDMinAdvance->getUInt();
     u32 maxAdvancePID = ui->textBoxSearcherPIDMaxAdvance->getUInt();
 
-    Method methodIV = (currentProfile.getVersion() & Game::HGSS) ? Method::HGSSIVs : Method::DPPtIVs;
+    Method methodIV = (currentProfile.getVersion() & Game::HGSS) != Game::None ? Method::HGSSIVs : Method::DPPtIVs;
     EggGenerator4 generatorIV(minAdvanceIV, maxAdvanceIV, tid, sid, genderRatio, methodIV, filter, daycare);
 
     Method methodPID = daycare.getMasuda() ? Method::Gen4Masuda : Method::Gen4Normal;
@@ -275,23 +276,19 @@ void Eggs4::search()
     connect(ui->pushButtonCancel, &QPushButton::clicked, [searcher] { searcher->cancelSearch(); });
 
     auto *timer = new QTimer();
-    connect(timer, &QTimer::timeout,
-            [=]
-            {
-                searcherModel->addItems(searcher->getResults());
-                ui->progressBar->setValue(searcher->getProgress());
-            });
+    connect(timer, &QTimer::timeout, [=] {
+        searcherModel->addItems(searcher->getResults());
+        ui->progressBar->setValue(searcher->getProgress());
+    });
     connect(thread, &QThread::finished, timer, &QTimer::stop);
     connect(thread, &QThread::finished, timer, &QTimer::deleteLater);
-    connect(timer, &QTimer::destroyed,
-            [=]
-            {
-                ui->pushButtonSearch->setEnabled(true);
-                ui->pushButtonCancel->setEnabled(false);
-                searcherModel->addItems(searcher->getResults());
-                ui->progressBar->setValue(searcher->getProgress());
-                delete searcher;
-            });
+    connect(timer, &QTimer::destroyed, [=] {
+        ui->pushButtonSearch->setEnabled(true);
+        ui->pushButtonCancel->setEnabled(false);
+        searcherModel->addItems(searcher->getResults());
+        ui->progressBar->setValue(searcher->getProgress());
+        delete searcher;
+    });
 
     thread->start();
     timer->start(1000);

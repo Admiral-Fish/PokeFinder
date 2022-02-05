@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2021 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -23,7 +23,7 @@
 #include <Core/Util/Global.hpp>
 #include <array>
 
-enum Game : u32;
+enum class Game : u32;
 
 class Daycare
 {
@@ -47,7 +47,7 @@ private:
     std::array<std::array<u8, 6>, 2> parentIVs;
     std::array<u8, 2> parentAbility;
     std::array<u8, 2> parentGender; // 3 - Ditto
-    std::array<u8, 2> parentItem; // 0 - No item, 1 - Everstone, 2-7 Power items
+    std::array<u8, 2> parentItem; // 0 - No item, 1 - Everstone, 2-7 Power items, 8 Destiny knot
     std::array<u8, 2> parentNature;
     bool masuda;
     bool nidoranVolbeat;

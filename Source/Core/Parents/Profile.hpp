@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2021 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -23,7 +23,7 @@
 #include <Core/Util/Global.hpp>
 #include <string>
 
-enum Game : u32;
+enum class Game : u32;
 
 class Profile
 {
@@ -52,14 +52,14 @@ public:
         return sid;
     }
 
+    bool operator==(const Profile &other) const;
+    bool operator!=(const Profile &other) const;
+
 protected:
     std::string name;
     Game version;
     u16 tid;
     u16 sid;
 };
-
-bool operator==(const Profile &left, const Profile &right);
-bool operator!=(const Profile &left, const Profile &right);
 
 #endif // PROFILE_HPP

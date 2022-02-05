@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2021 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -22,15 +22,14 @@
 
 #include <Core/Util/Global.hpp>
 
-class XoroShiro
+class Xoroshiro
 {
 public:
-    XoroShiro(u64 seed0, u64 seed1=0x82A2B175229D6A5B) : state0(seed0), state1(seed1)
-    {
-    }
+    Xoroshiro(u64 seed);
+    u64 next();
 
     template <u32 max>
-    u32 nextInt()
+    u32 nextUInt()
     {
         auto bitMask = [](u32 x) constexpr
         {
@@ -60,23 +59,23 @@ public:
     }
 
 private:
-    u64 state0;
-    u64 state1;
+    u64 state[2];
+};
 
-    u64 next()
+class XoroshiroBDSP
+{
+public:
+    XoroshiroBDSP(u64 seed);
+    void advance(u32 advances);
+    u32 next();
+
+    u32 next(u32 max)
     {
-        const u64 s0 = state0;
-        u64 s1 = state1;
-        const u64 result = s0 + s1;
-
-        auto rotl = [](u64 x, int k) { return (x << k) | (x >> (64 - k)); };
-
-        s1 ^= s0;
-        state0 = rotl(s0, 24) ^ s1 ^ (s1 << 16);
-        state1 = rotl(s1, 37);
-
-        return result;
+        return next() % max;
     }
+
+private:
+    u64 state[2];
 };
 
 #endif // XOROSHIRO_HPP

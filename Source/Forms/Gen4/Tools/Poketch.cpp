@@ -17,7 +17,6 @@ void Poketch::setupModels(u32 advances)
 
     u32 coin = 0;
     u32 happy = 0;
-    u32 target = 0;
 
     if (advances < 12)
     {
@@ -26,7 +25,7 @@ void Poketch::setupModels(u32 advances)
     }
     else
     {
-        target = advances - 12;
+        u32 target = advances - 12;
         happy = target / 12;
         coin = target % 12;
 

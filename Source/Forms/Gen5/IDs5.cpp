@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2021 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -29,7 +29,7 @@
 #include <Core/Util/Utilities.hpp>
 #include <Forms/Gen5/Profile/ProfileManager5.hpp>
 #include <Forms/Models/Gen5/IDModel5.hpp>
-#include <QDate>
+#include <QMenu>
 #include <QSettings>
 #include <QThread>
 #include <QTimer>
@@ -39,8 +39,8 @@ IDs5::IDs5(QWidget *parent) : QWidget(parent), ui(new Ui::IDs5)
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
 
-    updateProfiles();
     setupModels();
+    updateProfiles();
 }
 
 IDs5::~IDs5()
@@ -56,12 +56,9 @@ IDs5::~IDs5()
 
 void IDs5::updateProfiles()
 {
-    connect(ui->comboBoxProfiles, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &IDs5::profileIndexChanged);
-
     profiles = ProfileLoader5::getProfiles();
 
     ui->comboBoxProfiles->clear();
-
     for (const auto &profile : profiles)
     {
         ui->comboBoxProfiles->addItem(QString::fromStdString(profile.getName()));
@@ -101,6 +98,7 @@ void IDs5::setupModels()
     connect(outputTXTGenerator, &QAction::triggered, [=]() { ui->tableView->outputModel(false); });
     connect(outputCSVGenerator, &QAction::triggered, [=]() { ui->tableView->outputModel(true); });
 
+    connect(ui->comboBoxProfiles, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &IDs5::profileIndexChanged);
     connect(ui->pushButtonSearch, &QPushButton::clicked, this, &IDs5::search);
     connect(ui->pushButtonFind, &QPushButton::clicked, this, &IDs5::find);
     connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &IDs5::profileManager);
@@ -208,7 +206,7 @@ void IDs5::find()
     sha.setDate(date);
     sha.precompute();
 
-    bool flag = currentProfile.getVersion() & Game::BW;
+    bool flag = (currentProfile.getVersion() & Game::BW) != Game::None;
 
     std::vector<IDState5> results;
     for (size_t i = 0; i < values.size(); i++)

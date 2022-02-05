@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2021 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -35,7 +35,7 @@ SeedTime::SeedTime(const DateTime &dateTime, u32 delay, Game version, const HGSS
 
 std::string SeedTime::getSequence() const
 {
-    return (version & Game::HGSS) ? Utilities::getCalls(seed, info) : Utilities::coinFlips(seed);
+    return (version & Game::HGSS) != Game::None ? Utilities::getCalls(seed, info) : Utilities::coinFlips(seed);
 }
 
 u32 SeedTime::getSeed() const

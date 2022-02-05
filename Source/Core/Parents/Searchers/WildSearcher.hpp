@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2021 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -28,9 +28,21 @@ class WildSearcher : public Searcher
 {
 public:
     WildSearcher() = default;
-    WildSearcher(u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter);
-    void setEncounter(Encounter encounter);
-    void setLead(Lead lead);
+
+    WildSearcher(u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter) :
+        Searcher(tid, sid, genderRatio, method, filter)
+    {
+    }
+
+    void setEncounter(Encounter encounter)
+    {
+        this->encounter = encounter;
+    }
+
+    void setLead(Lead lead)
+    {
+        this->lead = lead;
+    }
 
 protected:
     Encounter encounter;

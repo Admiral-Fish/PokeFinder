@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2021 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -27,13 +27,16 @@
 #include <Core/Gen3/Generators/WildGenerator3.hpp>
 #include <Core/Gen3/Searchers/WildSearcher3.hpp>
 #include <Core/Parents/ProfileLoader.hpp>
+#include <Core/Parents/Slot.hpp>
 #include <Core/Parents/States/WildState.hpp>
 #include <Core/Util/Nature.hpp>
 #include <Core/Util/Translator.hpp>
+#include <Forms/Controls/Controls.hpp>
 #include <Forms/Gen3/Profile/ProfileManager3.hpp>
 #include <Forms/Gen3/Tools/SeedTime3.hpp>
 #include <Forms/Models/Gen3/WildModel3.hpp>
 #include <QClipboard>
+#include <QMenu>
 #include <QSettings>
 #include <QThread>
 #include <QTimer>
@@ -63,7 +66,7 @@ void Wild3::updateProfiles()
     profiles = { Profile3() };
     auto completeProfiles = ProfileLoader3::getProfiles();
     std::copy_if(completeProfiles.begin(), completeProfiles.end(), std::back_inserter(profiles),
-                 [](const Profile3 &profile) { return !(profile.getVersion() & Game::GC); });
+                 [](const Profile3 &profile) { return (profile.getVersion() & Game::GC) != Game::GC; });
 
     ui->comboBoxProfiles->clear();
     for (const auto &profile : profiles)
@@ -94,21 +97,21 @@ void Wild3::setupModels()
     ui->textBoxGeneratorInitialAdvances->setValues(InputType::Advance32Bit);
     ui->textBoxGeneratorMaxAdvances->setValues(InputType::Advance32Bit);
 
-    ui->comboBoxGeneratorMethod->setup({ Method::MethodH1, Method::MethodH2, Method::MethodH4 });
-    ui->comboBoxSearcherMethod->setup({ Method::MethodH1, Method::MethodH2, Method::MethodH4 });
+    ui->comboBoxGeneratorMethod->setup({ toInt(Method::MethodH1), toInt(Method::MethodH2), toInt(Method::MethodH4) });
+    ui->comboBoxSearcherMethod->setup({ toInt(Method::MethodH1), toInt(Method::MethodH2), toInt(Method::MethodH4) });
 
     ui->filterSearcher->disableControls(Controls::UseDelay | Controls::DisableFilter);
 
-    ui->comboBoxSearcherLead->setup({ Lead::Search, Lead::Synchronize, Lead::CuteCharm, Lead::None });
+    ui->comboBoxSearcherLead->setup({ toInt(Lead::Search), toInt(Lead::Synchronize), toInt(Lead::CuteCharm), toInt(Lead::None) });
 
-    ui->toolButtonGeneratorLead->addAction(tr("None"), Lead::None);
+    ui->toolButtonGeneratorLead->addAction(tr("None"), toInt(Lead::None));
     ui->toolButtonGeneratorLead->addMenu(tr("Synchronize"), Translator::getNatures());
-    ui->toolButtonGeneratorLead->addMenu(tr("Cute Charm"),
-                                         { tr("♂ Lead (50% ♀ Target)"), tr("♂ Lead (75% ♀ Target)"), tr("♂ Lead (25% ♀ Target)"),
-                                           tr("♂ Lead (12.5% ♀ Target)"), tr("♀ Lead (50% ♂ Target)"), tr("♀ Lead (75% ♂ Target)"),
-                                           tr("♀ Lead (25% ♂ Target)"), tr("♀ Lead (87.5% ♂ Target)") },
-                                         { Lead::CuteCharm50F, Lead::CuteCharm75F, Lead::CuteCharm25F, Lead::CuteCharm125F,
-                                           Lead::CuteCharm50M, Lead::CuteCharm75M, Lead::CuteCharm25M, Lead::CuteCharm875M });
+    ui->toolButtonGeneratorLead->addMenu(
+        tr("Cute Charm"),
+        { tr("♂ Lead (50% ♀ Target)"), tr("♂ Lead (75% ♀ Target)"), tr("♂ Lead (25% ♀ Target)"), tr("♂ Lead (12.5% ♀ Target)"),
+          tr("♀ Lead (50% ♂ Target)"), tr("♀ Lead (75% ♂ Target)"), tr("♀ Lead (25% ♂ Target)"), tr("♀ Lead (87.5% ♂ Target)") },
+        { toInt(Lead::CuteCharm50F), toInt(Lead::CuteCharm75F), toInt(Lead::CuteCharm25F), toInt(Lead::CuteCharm125F),
+          toInt(Lead::CuteCharm50M), toInt(Lead::CuteCharm75M), toInt(Lead::CuteCharm25M), toInt(Lead::CuteCharm875M) });
 
     QAction *outputTXTGenerator = generatorMenu->addAction(tr("Output Results to TXT"));
     QAction *outputCSVGenerator = generatorMenu->addAction(tr("Output Results to CSV"));
@@ -151,9 +154,9 @@ void Wild3::setupModels()
 void Wild3::updateLocationsGenerator()
 {
     auto encounter = static_cast<Encounter>(ui->comboBoxGeneratorEncounter->currentData().toInt());
-    encounterGenerator = Encounters3::getEncounters(encounter, currentProfile);
+    encounterGenerator = Encounters3::getEncounters(encounter, currentProfile.getVersion());
 
-    std::vector<u8> locs;
+    std::vector<u16> locs;
     std::transform(encounterGenerator.begin(), encounterGenerator.end(), std::back_inserter(locs),
                    [](const EncounterArea3 &area) { return area.getLocation(); });
 
@@ -172,9 +175,9 @@ void Wild3::updateLocationsGenerator()
 void Wild3::updateLocationsSearcher()
 {
     auto encounter = static_cast<Encounter>(ui->comboBoxSearcherEncounter->currentData().toInt());
-    encounterSearcher = Encounters3::getEncounters(encounter, currentProfile);
+    encounterSearcher = Encounters3::getEncounters(encounter, currentProfile.getVersion());
 
-    std::vector<u8> locs;
+    std::vector<u16> locs;
     std::transform(encounterSearcher.begin(), encounterSearcher.end(), std::back_inserter(locs),
                    [](const EncounterArea3 &area) { return area.getLocation(); });
 
@@ -327,29 +330,29 @@ void Wild3::profilesIndexChanged(int index)
         ui->labelProfileSIDValue->setText(QString::number(currentProfile.getSID()));
         ui->labelProfileGameValue->setText(QString::fromStdString(currentProfile.getVersionString()));
 
-        bool flag = currentProfile.getVersion() & Game::FRLG;
+        bool flag = (currentProfile.getVersion() & Game::FRLG) != Game::None;
         ui->comboBoxGeneratorEncounter->clear();
         ui->comboBoxSearcherEncounter->clear();
 
-        ui->comboBoxGeneratorEncounter->addItem(tr("Grass"), Encounter::Grass);
-        ui->comboBoxSearcherEncounter->addItem(tr("Grass"), Encounter::Grass);
+        ui->comboBoxGeneratorEncounter->addItem(tr("Grass"), toInt(Encounter::Grass));
+        ui->comboBoxSearcherEncounter->addItem(tr("Grass"), toInt(Encounter::Grass));
         if (!flag)
         {
-            ui->comboBoxGeneratorEncounter->addItem(tr("Safari Zone"), Encounter::SafariZone);
-            ui->comboBoxSearcherEncounter->addItem(tr("Safari Zone"), Encounter::SafariZone);
+            ui->comboBoxGeneratorEncounter->addItem(tr("Safari Zone"), toInt(Encounter::SafariZone));
+            ui->comboBoxSearcherEncounter->addItem(tr("Safari Zone"), toInt(Encounter::SafariZone));
         }
-        ui->comboBoxGeneratorEncounter->addItem(tr("Rock Smash"), Encounter::RockSmash);
-        ui->comboBoxSearcherEncounter->addItem(tr("Rock Smash"), Encounter::RockSmash);
-        ui->comboBoxGeneratorEncounter->addItem(tr("Surfing"), Encounter::Surfing);
-        ui->comboBoxSearcherEncounter->addItem(tr("Surfing"), Encounter::Surfing);
-        ui->comboBoxGeneratorEncounter->addItem(tr("Old Rod"), Encounter::OldRod);
-        ui->comboBoxSearcherEncounter->addItem(tr("Old Rod"), Encounter::OldRod);
-        ui->comboBoxGeneratorEncounter->addItem(tr("Good Rod"), Encounter::GoodRod);
-        ui->comboBoxSearcherEncounter->addItem(tr("Good Rod"), Encounter::GoodRod);
-        ui->comboBoxGeneratorEncounter->addItem(tr("Super Rod"), Encounter::SuperRod);
-        ui->comboBoxSearcherEncounter->addItem(tr("Super Rod"), Encounter::SuperRod);
+        ui->comboBoxGeneratorEncounter->addItem(tr("Rock Smash"), toInt(Encounter::RockSmash));
+        ui->comboBoxSearcherEncounter->addItem(tr("Rock Smash"), toInt(Encounter::RockSmash));
+        ui->comboBoxGeneratorEncounter->addItem(tr("Surfing"), toInt(Encounter::Surfing));
+        ui->comboBoxSearcherEncounter->addItem(tr("Surfing"), toInt(Encounter::Surfing));
+        ui->comboBoxGeneratorEncounter->addItem(tr("Old Rod"), toInt(Encounter::OldRod));
+        ui->comboBoxSearcherEncounter->addItem(tr("Old Rod"), toInt(Encounter::OldRod));
+        ui->comboBoxGeneratorEncounter->addItem(tr("Good Rod"), toInt(Encounter::GoodRod));
+        ui->comboBoxSearcherEncounter->addItem(tr("Good Rod"), toInt(Encounter::GoodRod));
+        ui->comboBoxGeneratorEncounter->addItem(tr("Super Rod"), toInt(Encounter::SuperRod));
+        ui->comboBoxSearcherEncounter->addItem(tr("Super Rod"), toInt(Encounter::SuperRod));
 
-        if (currentProfile.getVersion() & Game::Emerald)
+        if ((currentProfile.getVersion() & Game::Emerald) != Game::None)
         {
             ui->toolButtonGeneratorLead->setEnabled(true);
             ui->comboBoxSearcherLead->setEnabled(true);

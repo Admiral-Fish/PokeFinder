@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2021 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -70,19 +70,17 @@ void GalesSeedSearcher::startSearch(int threads, const std::vector<u32> &seeds)
 
     std::vector<std::future<void>> threadContainer;
 
-    u32 split = seeds.size() / threads;
-    u32 start = 0;
+    size_t split = seeds.size() / threads;
+    size_t start = 0;
     for (int i = 0; i < threads; i++)
     {
         if (i == threads - 1)
         {
-            threadContainer.emplace_back(
-                std::async(std::launch::async, [=] { search(std::vector<u32>(seeds.cbegin() + start, seeds.cend())); }));
+            threadContainer.emplace_back(std::async(std::launch::async, [=] { search(seeds.cbegin() + start, seeds.cend()); }));
         }
         else
         {
-            threadContainer.emplace_back(
-                std::async(std::launch::async, [=] { search(std::vector<u32>(seeds.cbegin() + start, seeds.cbegin() + split)); }));
+            threadContainer.emplace_back(std::async(std::launch::async, [=] { search(seeds.cbegin() + start, seeds.cbegin() + split); }));
         }
         start += split;
     }
@@ -122,16 +120,16 @@ void GalesSeedSearcher::search(u32 start, u32 end)
     }
 }
 
-void GalesSeedSearcher::search(const std::vector<u32> &seeds)
+void GalesSeedSearcher::search(const std::vector<u32>::const_iterator &start, const std::vector<u32>::const_iterator &end)
 {
-    for (auto seed : seeds)
+    for (auto it = start; it != end; it++)
     {
         if (!searching)
         {
             return;
         }
 
-        XDRNG rng(seed);
+        XDRNG rng(*it);
         if (searchSeed(rng))
         {
             std::lock_guard<std::mutex> lock(mutex);

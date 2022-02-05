@@ -70,7 +70,7 @@
   <connection>
    <sender>pushButtonOk</sender>
    <signal>clicked()</signal>
-   <receiver>ProfileManager3</receiver>
+   <receiver>ProfileManager8</receiver>
    <slot>close()</slot>
    <hints>
     <hint type="sourcelabel">

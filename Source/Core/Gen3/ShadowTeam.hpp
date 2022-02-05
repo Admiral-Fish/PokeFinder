@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2021 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -20,12 +20,12 @@
 #ifndef SHADOWTEAM_HPP
 #define SHADOWTEAM_HPP
 
-#include <Core/Gen3/LockInfo.hpp>
 #include <Core/Util/Global.hpp>
 #include <vector>
 
-enum Method : u8;
-enum ShadowType : u8;
+class LockInfo;
+enum class Method : u8;
+enum class ShadowType : u8;
 
 class ShadowTeam
 {

@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2021 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -22,8 +22,9 @@
 
 #include <Core/Util/Global.hpp>
 
-enum Method : u8
+enum class Method : u8
 {
+    None,
     Method1,
     Method1Reverse,
     Method2,
@@ -62,8 +63,11 @@ enum Method : u8
     BW2Bred,
     DreamRadar,
     Method5Event,
-    // TODO: Add Gen 5 egg/events
-    DenRaid
 };
+
+constexpr u8 toInt(Method method)
+{
+    return static_cast<u8>(method);
+}
 
 #endif // METHOD_HPP

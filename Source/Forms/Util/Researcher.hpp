@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2021 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -22,11 +22,11 @@
 
 #include <Core/Util/Global.hpp>
 #include <QHash>
-#include <QMenu>
-#include <QMessageBox>
+#include <QWidget>
 
 class ResearcherState;
 class ResearcherModel;
+class QMenu;
 
 namespace Ui
 {
@@ -42,8 +42,8 @@ public:
 
 private:
     Ui::Researcher *ui;
-    ResearcherModel *model = nullptr;
-    QMenu *menu = nullptr;
+    ResearcherModel *model;
+    QMenu *menu;
     QHash<QString, u8> keys;
 
     void setupModels();

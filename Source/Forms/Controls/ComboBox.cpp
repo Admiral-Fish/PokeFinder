@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2021 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -39,6 +39,11 @@ u8 ComboBox::getCurrentByte() const
 u16 ComboBox::getCurrentUShort() const
 {
     return static_cast<u16>(this->currentData().toUInt());
+}
+
+u32 ComboBox::getCurrentUInt() const
+{
+    return this->currentData().toUInt();
 }
 
 int ComboBox::getCurrentInt() const

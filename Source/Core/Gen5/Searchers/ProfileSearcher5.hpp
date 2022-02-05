@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2021 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -20,7 +20,6 @@
 #ifndef PROFILESEARCHER5_HPP
 #define PROFILESEARCHER5_HPP
 
-#include <Core/Gen5/States/ProfileSearcherState5.hpp>
 #include <Core/Util/DateTime.hpp>
 #include <Core/Util/Global.hpp>
 #include <array>
@@ -28,10 +27,11 @@
 #include <mutex>
 #include <vector>
 
-enum Buttons : u16;
-enum Game : u32;
-enum Language : u8;
-enum DSType : u8;
+class ProfileSearcherState5;
+enum class Buttons : u16;
+enum class Game : u32;
+enum class Language : u8;
+enum class DSType : u8;
 
 class ProfileSearcher5
 {

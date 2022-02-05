@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2021 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -27,8 +27,12 @@ class EggGenerator : public Generator
 {
 public:
     EggGenerator() = default;
+
     EggGenerator(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter,
-                 const Daycare &daycare);
+                 const Daycare &daycare) :
+        Generator(initialAdvances, maxAdvances, tid, sid, genderRatio, method, filter), daycare(daycare)
+    {
+    }
 
 protected:
     Daycare daycare;

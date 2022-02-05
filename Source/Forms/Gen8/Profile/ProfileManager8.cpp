@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2021 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -64,7 +64,7 @@ void ProfileManager8::create()
     QScopedPointer<ProfileEditor8> dialog(new ProfileEditor8);
     if (dialog->exec() == QDialog::Accepted)
     {
-        Profile profile = dialog->getNewProfile();
+        Profile8 profile = dialog->getNewProfile();
         ProfileLoader8::addProfile(profile);
         model->addItem(profile);
         emit updateProfiles();
@@ -85,7 +85,7 @@ void ProfileManager8::edit()
     QScopedPointer<ProfileEditor8> dialog(new ProfileEditor8(model->getItem(row)));
     if (dialog->exec() == QDialog::Accepted)
     {
-        Profile profile = dialog->getNewProfile();
+        Profile8 profile = dialog->getNewProfile();
         ProfileLoader8::updateProfile(profile, dialog->getOriginal());
         model->updateItem(profile, row);
         emit updateProfiles();
@@ -107,7 +107,7 @@ void ProfileManager8::remove()
                         QMessageBox::Yes | QMessageBox::No);
     if (message.exec() == QMessageBox::Yes)
     {
-        Profile profile = model->getItem(row);
+        Profile8 profile = model->getItem(row);
         ProfileLoader8::removeProfile(profile);
         model->removeItem(row);
 

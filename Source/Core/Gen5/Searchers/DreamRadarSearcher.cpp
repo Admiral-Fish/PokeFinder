@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2021 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -18,8 +18,12 @@
  */
 
 #include "DreamRadarSearcher.hpp"
+#include <Core/Gen5/Generators/DreamRadarGenerator.hpp>
 #include <Core/Gen5/Keypresses.hpp>
+#include <Core/Gen5/States/DreamRadarState.hpp>
+#include <Core/Gen5/States/SearcherState5.hpp>
 #include <Core/RNG/SHA1.hpp>
+#include <Core/Util/DateTime.hpp>
 #include <Core/Util/Utilities.hpp>
 #include <future>
 
@@ -27,7 +31,7 @@ DreamRadarSearcher::DreamRadarSearcher(const Profile5 &profile) : profile(profil
 {
 }
 
-void DreamRadarSearcher::startSearch(const DreamRadarGenerator &generator, int threads, Date start, const Date &end)
+void DreamRadarSearcher::startSearch(const DreamRadarGenerator &generator, int threads, const Date &start, const Date &end)
 {
     searching = true;
 
@@ -40,18 +44,19 @@ void DreamRadarSearcher::startSearch(const DreamRadarGenerator &generator, int t
     std::vector<std::future<void>> threadContainer;
 
     auto daysSplit = days / threads;
+    Date day = start;
     for (int i = 0; i < threads; i++)
     {
         if (i == threads - 1)
         {
-            threadContainer.emplace_back(std::async(std::launch::async, [=] { search(generator, start, end); }));
+            threadContainer.emplace_back(std::async(std::launch::async, [=] { search(generator, day, end); }));
         }
         else
         {
-            Date mid = start.addDays(daysSplit - 1);
-            threadContainer.emplace_back(std::async(std::launch::async, [=] { search(generator, start, mid); }));
+            Date mid = day.addDays(daysSplit - 1);
+            threadContainer.emplace_back(std::async(std::launch::async, [=] { search(generator, day, mid); }));
         }
-        start = start.addDays(daysSplit);
+        day = day.addDays(daysSplit);
     }
 
     for (int i = 0; i < threads; i++)

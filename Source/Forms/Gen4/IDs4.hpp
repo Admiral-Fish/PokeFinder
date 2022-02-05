@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2021 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -38,9 +38,9 @@ public:
 
 private:
     Ui::IDs4 *ui;
-    IDModel4 *shinyPID = nullptr;
-    IDModel4 *tidSID = nullptr;
-    IDModel4 *seedFinder = nullptr;
+    IDModel4 *shinyPID;
+    IDModel4 *tidSID;
+    IDModel4 *seedFinder;
 
     void setupModels();
 

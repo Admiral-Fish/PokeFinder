@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2021 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -18,6 +18,7 @@
  */
 
 #include "Profile5.hpp"
+#include <Core/Enum/DSType.hpp>
 #include <Core/Enum/Game.hpp>
 
 Profile5::Profile5() :
@@ -32,7 +33,7 @@ Profile5::Profile5() :
     softReset(false),
     memoryLink(false),
     shinyCharm(false),
-    dsType(DSType::DSOriginal),
+    dsType(DSType::DS),
     language(Language::English)
 {
     // Default parameters for White on desmume
@@ -144,7 +145,7 @@ std::string Profile5::getDSTypeString() const
 {
     switch (dsType)
     {
-    case DSType::DSOriginal:
+    case DSType::DS:
         return "DS Lite";
     case DSType::DSi:
         return "DSi";
@@ -181,18 +182,15 @@ std::string Profile5::getLanguageString() const
     return "-";
 }
 
-bool operator==(const Profile5 &left, const Profile5 &right)
+bool Profile5::operator==(const Profile5 &other) const
 {
-    return left.getName() == right.getName() && left.getVersion() == right.getVersion() && left.getTID() == right.getTID()
-        && left.getSID() == right.getSID() && left.getMac() == right.getMac() && left.getKeypresses() == right.getKeypresses()
-        && left.getVCount() == right.getVCount() && left.getGxStat() == right.getGxStat() && left.getVFrame() == right.getVFrame()
-        && left.getSkipLR() == right.getSkipLR() && left.getTimer0Min() == right.getTimer0Min()
-        && left.getTimer0Max() == right.getTimer0Max() && left.getSoftReset() == right.getSoftReset()
-        && left.getMemoryLink() == right.getMemoryLink() && left.getShinyCharm() == right.getShinyCharm()
-        && left.getDSType() == right.getDSType() && left.getLanguage() == right.getLanguage();
+    return Profile::operator==(other) && mac == other.mac && keypresses == other.keypresses && vcount == other.vcount
+        && gxstat == other.gxstat && vframe == other.vframe && skipLR == other.skipLR && timer0Min == other.timer0Min
+        && timer0Max == other.timer0Max && softReset == other.softReset && memoryLink == other.memoryLink && shinyCharm == other.shinyCharm
+        && dsType == other.dsType && language == other.language;
 }
 
-bool operator!=(const Profile5 &left, const Profile5 &right)
+bool Profile5::operator!=(const Profile5 &other) const
 {
-    return !(left == right);
+    return !(operator==(other));
 }

@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2021 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -37,7 +37,7 @@ int SeedtoTimeModel4::columnCount(const QModelIndex & /*parent*/) const
 {
     if (calibrate)
     {
-        return (version & Game::HGSS) ? 5 : 4;
+        return (version & Game::HGSS) != Game::None ? 5 : 4;
     }
     return 2;
 }
@@ -86,7 +86,7 @@ QVariant SeedtoTimeModel4::headerData(int section, Qt::Orientation orientation, 
     {
         if (calibrate)
         {
-            return (version & Game::HGSS) ? header1[section] : header2[section];
+            return (version & Game::HGSS) != Game::None ? header1[section] : header2[section];
         }
         return header3[section];
     }

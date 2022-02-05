@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2021 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -31,7 +31,7 @@ ProfileEditor8::ProfileEditor8(QWidget *parent) : QDialog(parent), ui(new Ui::Pr
     setupModels();
 }
 
-ProfileEditor8::ProfileEditor8(const Profile &profile, QWidget *parent) : QDialog(parent), ui(new Ui::ProfileEditor8)
+ProfileEditor8::ProfileEditor8(const Profile8 &profile, QWidget *parent) : QDialog(parent), ui(new Ui::ProfileEditor8)
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
@@ -39,9 +39,13 @@ ProfileEditor8::ProfileEditor8(const Profile &profile, QWidget *parent) : QDialo
     setupModels();
 
     ui->lineEditProfile->setText(QString::fromStdString(profile.getName()));
-    ui->comboBoxVersion->setCurrentIndex(ui->comboBoxVersion->findData(profile.getVersion()));
+    ui->comboBoxVersion->setCurrentIndex(ui->comboBoxVersion->findData(toInt(profile.getVersion())));
     ui->textBoxTID->setText(QString::number(profile.getTID()));
     ui->textBoxSID->setText(QString::number(profile.getSID()));
+    ui->checkBoxShinyCharm->setChecked(profile.getShinyCharm());
+    ui->checkBoxOvalCharm->setChecked(profile.getOvalCharm());
+    ui->checkBoxRadar->setChecked(profile.getRadar());
+    ui->checkBoxSwarm->setChecked(profile.getSwarm());
 
     isEditing = true;
     original = profile;
@@ -55,12 +59,12 @@ ProfileEditor8::~ProfileEditor8()
     delete ui;
 }
 
-Profile ProfileEditor8::getNewProfile()
+Profile8 ProfileEditor8::getNewProfile()
 {
     return fresh;
 }
 
-Profile ProfileEditor8::getOriginal()
+Profile8 ProfileEditor8::getOriginal()
 {
     return original;
 }
@@ -70,15 +74,10 @@ void ProfileEditor8::setupModels()
     ui->textBoxTID->setValues(InputType::TIDSID);
     ui->textBoxSID->setValues(InputType::TIDSID);
 
-    ui->comboBoxVersion->setItemData(0, Game::Ruby);
-    ui->comboBoxVersion->setItemData(1, Game::Sapphire);
-    ui->comboBoxVersion->setItemData(2, Game::FireRed);
-    ui->comboBoxVersion->setItemData(3, Game::LeafGreen);
-    ui->comboBoxVersion->setItemData(4, Game::Emerald);
-    ui->comboBoxVersion->setItemData(5, Game::Gales);
-    ui->comboBoxVersion->setItemData(6, Game::Colosseum);
+    ui->comboBoxVersion->setup({ toInt(Game::Sword), toInt(Game::Shield), toInt(Game::BD), toInt(Game::SP) });
 
     connect(ui->pushButtonOkay, &QPushButton::clicked, this, &ProfileEditor8::okay);
+    connect(ui->comboBoxVersion, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &ProfileEditor8::versionIndexChanged);
 
     QSettings setting;
     if (setting.contains("profileEditor8/geometry"))
@@ -98,8 +97,21 @@ void ProfileEditor8::okay()
         return;
     }
 
-    fresh = Profile(ui->lineEditProfile->text().toStdString(), static_cast<Game>(ui->comboBoxVersion->currentData().toInt()),
-                     ui->textBoxTID->getUShort(), ui->textBoxSID->getUShort());
+    fresh = Profile8(ui->lineEditProfile->text().toStdString(), static_cast<Game>(ui->comboBoxVersion->currentData().toUInt()),
+                     ui->textBoxTID->getUShort(), ui->textBoxSID->getUShort(), ui->checkBoxShinyCharm->isChecked(),
+                     ui->checkBoxOvalCharm->isChecked(), ui->checkBoxRadar->isChecked(), ui->checkBoxSwarm->isChecked());
 
     done(QDialog::Accepted);
+}
+
+void ProfileEditor8::versionIndexChanged(int index)
+{
+    if (index >= 0)
+    {
+        auto game = static_cast<Game>(ui->comboBoxVersion->currentData().toUInt());
+        bool flag = (game & Game::BDSP) != Game::None;
+
+        ui->checkBoxRadar->setVisible(flag);
+        ui->checkBoxSwarm->setVisible(flag);
+    }
 }

@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>350</width>
+    <width>545</width>
     <height>72</height>
    </rect>
   </property>
@@ -14,22 +14,32 @@
    <string>Profile Editor Gen 8</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="0" column="2">
-    <widget class="QLabel" name="labelTID">
-     <property name="text">
-      <string>TID</string>
-     </property>
-    </widget>
-   </item>
    <item row="1" column="0">
-    <widget class="QLabel" name="labelVersion">
+    <widget class="QLabel" name="labelProfile">
      <property name="text">
-      <string>Version</string>
+      <string>Profile Name</string>
      </property>
     </widget>
    </item>
-   <item row="1" column="1">
-    <widget class="QComboBox" name="comboBoxVersion">
+   <item row="1" column="3">
+    <widget class="TextBox" name="textBoxTID"/>
+   </item>
+   <item row="1" column="4">
+    <widget class="QCheckBox" name="checkBoxShinyCharm">
+     <property name="text">
+      <string>Shiny Charm</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="6">
+    <widget class="QPushButton" name="pushButtonCancel">
+     <property name="text">
+      <string>Cancel</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="1">
+    <widget class="ComboBox" name="comboBoxVersion">
      <item>
       <property name="text">
        <string>Sword</string>
@@ -40,44 +50,72 @@
        <string>Shield</string>
       </property>
      </item>
+     <item>
+      <property name="text">
+       <string>Brilliant Diamond</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Shining Pearl</string>
+      </property>
+     </item>
     </widget>
    </item>
-   <item row="1" column="2">
+   <item row="2" column="4">
+    <widget class="QCheckBox" name="checkBoxOvalCharm">
+     <property name="text">
+      <string>Oval Charm</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="3">
+    <widget class="TextBox" name="textBoxSID"/>
+   </item>
+   <item row="2" column="2">
     <widget class="QLabel" name="labelSID">
      <property name="text">
       <string>SID</string>
      </property>
     </widget>
    </item>
-   <item row="0" column="1">
+   <item row="1" column="1">
     <widget class="QLineEdit" name="lineEditProfile"/>
    </item>
-   <item row="0" column="4">
+   <item row="2" column="0">
+    <widget class="QLabel" name="labelVersion">
+     <property name="text">
+      <string>Version</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="2">
+    <widget class="QLabel" name="labelTID">
+     <property name="text">
+      <string>TID</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="6">
     <widget class="QPushButton" name="pushButtonOkay">
      <property name="text">
       <string>Okay</string>
      </property>
     </widget>
    </item>
-   <item row="1" column="4">
-    <widget class="QPushButton" name="pushButtonCancel">
+   <item row="2" column="5">
+    <widget class="QCheckBox" name="checkBoxSwarm">
      <property name="text">
-      <string>Cancel</string>
+      <string>Swarm</string>
      </property>
     </widget>
    </item>
-   <item row="0" column="0">
-    <widget class="QLabel" name="labelProfile">
+   <item row="1" column="5">
+    <widget class="QCheckBox" name="checkBoxRadar">
      <property name="text">
-      <string>Profile Name</string>
+      <string>Radar</string>
      </property>
     </widget>
-   </item>
-   <item row="0" column="3">
-    <widget class="TextBox" name="textBoxTID"/>
-   </item>
-   <item row="1" column="3">
-    <widget class="TextBox" name="textBoxSID"/>
    </item>
   </layout>
  </widget>
@@ -87,12 +125,21 @@
    <extends>QLineEdit</extends>
    <header>Forms/Controls/TextBox.hpp</header>
   </customwidget>
+  <customwidget>
+   <class>ComboBox</class>
+   <extends>QComboBox</extends>
+   <header>Forms/Controls/ComboBox.hpp</header>
+  </customwidget>
  </customwidgets>
  <tabstops>
   <tabstop>lineEditProfile</tabstop>
   <tabstop>comboBoxVersion</tabstop>
   <tabstop>textBoxTID</tabstop>
   <tabstop>textBoxSID</tabstop>
+  <tabstop>checkBoxShinyCharm</tabstop>
+  <tabstop>checkBoxOvalCharm</tabstop>
+  <tabstop>checkBoxRadar</tabstop>
+  <tabstop>checkBoxSwarm</tabstop>
   <tabstop>pushButtonOkay</tabstop>
   <tabstop>pushButtonCancel</tabstop>
  </tabstops>

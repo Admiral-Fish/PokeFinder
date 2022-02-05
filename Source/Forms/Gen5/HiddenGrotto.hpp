@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2021 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -20,12 +20,12 @@
 #ifndef HIDDENGROTTO_HPP
 #define HIDDENGROTTO_HPP
 
-#include <Core/Gen5/Generators/HiddenGrottoGenerator.hpp>
 #include <Core/Gen5/Profile5.hpp>
-#include <QMenu>
+#include <QWidget>
 
 class HiddenGrottoGeneratorModel5;
 class HiddenGrottoSearcherModel5;
+class QMenu;
 
 namespace Ui
 {
@@ -47,12 +47,12 @@ public:
 
 private:
     Ui::HiddenGrotto *ui;
-    HiddenGrottoGeneratorModel5 *generatorModel = nullptr;
-    HiddenGrottoSearcherModel5 *searcherModel = nullptr;
+    HiddenGrottoGeneratorModel5 *generatorModel;
+    HiddenGrottoSearcherModel5 *searcherModel;
     std::vector<Profile5> profiles;
     Profile5 currentProfile;
-    QMenu *generatorMenu = nullptr;
-    QMenu *searcherMenu = nullptr;
+    QMenu *generatorMenu;
+    QMenu *searcherMenu;
 
     void setupModels();
 

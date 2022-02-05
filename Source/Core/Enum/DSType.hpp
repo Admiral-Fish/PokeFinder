@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2021 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -22,11 +22,16 @@
 
 #include <Core/Util/Global.hpp>
 
-enum DSType : u8
+enum class DSType : u8
 {
-    DSOriginal,
+    DS,
     DSi,
     DS3
 };
+
+constexpr u8 toInt(DSType ds)
+{
+    return static_cast<u8>(ds);
+}
 
 #endif // DSTYPE_HPP

@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2021 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -23,26 +23,12 @@
 #include <Core/Util/Global.hpp>
 
 class PersonalInfo;
+enum class Game : u32;
 
-namespace PersonalLoader3
+namespace PersonalLoader
 {
-    const PersonalInfo *getPersonal();
-}
-
-namespace PersonalLoader4
-{
-    const PersonalInfo *getPersonal();
-}
-
-namespace PersonalLoader5
-{
-    const PersonalInfo *getPersonal();
-}
-
-namespace PersonalLoader8
-{
-    const PersonalInfo *getPersonal();
-    PersonalInfo getPersonal(u16 species, u8 form);
+    const PersonalInfo *getPersonal(Game version);
+    PersonalInfo getPersonal(Game version, u16 species, u8 form = 0);
 }
 
 #endif // PERSONALLOADER_HPP

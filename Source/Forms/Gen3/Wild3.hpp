@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2021 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -20,12 +20,13 @@
 #ifndef WILD3_HPP
 #define WILD3_HPP
 
-#include <Core/Gen3/EncounterArea3.hpp>
 #include <Core/Gen3/Profile3.hpp>
-#include <QMenu>
+#include <QWidget>
 
+class EncounterArea3;
 class WildGeneratorModel3;
 class WildSearcherModel3;
+class QMenu;
 
 namespace Ui
 {
@@ -47,10 +48,10 @@ private:
     Ui::Wild3 *ui;
     std::vector<Profile3> profiles;
     Profile3 currentProfile;
-    WildGeneratorModel3 *generatorModel = nullptr;
-    WildSearcherModel3 *searcherModel = nullptr;
-    QMenu *generatorMenu = nullptr;
-    QMenu *searcherMenu = nullptr;
+    WildGeneratorModel3 *generatorModel;
+    WildSearcherModel3 *searcherModel;
+    QMenu *generatorMenu;
+    QMenu *searcherMenu;
     std::vector<EncounterArea3> encounterGenerator;
     std::vector<EncounterArea3> encounterSearcher;
 

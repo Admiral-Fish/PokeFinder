@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2021 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -26,7 +26,7 @@ template <u64 add, u64 mult>
 class LCRNG64
 {
 public:
-    LCRNG64(u64 seed = 0) : seed(seed)
+    LCRNG64(u64 seed) : seed(seed)
     {
     }
 

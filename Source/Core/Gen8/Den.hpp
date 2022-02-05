@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2021 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -22,6 +22,7 @@
 
 #include <Core/Enum/Game.hpp>
 #include <Core/Gen8/Raid.hpp>
+#include <vector>
 
 class Den
 {
@@ -50,6 +51,30 @@ private:
     u64 hash;
     std::array<Raid, 12> sword;
     std::array<Raid, 12> shield;
+};
+
+class DenEvent
+{
+public:
+    DenEvent() = default;
+
+    DenEvent(const std::vector<Raid> &sword, const std::vector<Raid> &shield) : sword(sword), shield(shield)
+    {
+    }
+
+    Raid getRaid(u8 index, Game version) const
+    {
+        return (version == Game::Sword) ? sword[index] : shield[index];
+    }
+
+    std::vector<Raid> getRaids(Game version) const
+    {
+        return (version == Game::Sword) ? sword : shield;
+    }
+
+private:
+    std::vector<Raid> sword;
+    std::vector<Raid> shield;
 };
 
 #endif // DEN_HPP

@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2021 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -18,6 +18,7 @@
  */
 
 #include "IDGenerator5.hpp"
+#include <Core/Gen5/States/IDState5.hpp>
 #include <Core/RNG/LCRNG64.hpp>
 
 IDGenerator5::IDGenerator5(u32 initialAdvances, u32 maxAdvances, const IDFilter &filter) : IDGenerator(initialAdvances, maxAdvances, filter)
@@ -51,7 +52,7 @@ std::vector<IDState5> IDGenerator5::generate(u64 seed, u32 pid, bool checkPID, b
         {
             bool shiny = (psv >> 3) == state.getTSV();
 
-            // Check if PID is possible with TID/SID combo if Wild/Stationary box is checked
+            // Check if PID is possible with TID/SID combo if Static/Wild box is checked
             if (shiny && checkXOR) // We need to do the check only if it was shiny first
             {
                 bool idbit = ((tid & 1) ^ (sid & 1));

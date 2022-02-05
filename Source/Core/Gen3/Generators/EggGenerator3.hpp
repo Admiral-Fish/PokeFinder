@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2021 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -20,8 +20,9 @@
 #ifndef EGGGENERATOR3_HPP
 #define EGGGENERATOR3_HPP
 
-#include <Core/Gen3/States/EggState3.hpp>
 #include <Core/Parents/Generators/EggGenerator.hpp>
+
+class EggState3;
 
 class EggGenerator3 : public EggGenerator
 {

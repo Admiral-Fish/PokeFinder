@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2021 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -21,14 +21,18 @@
 #include "ui_DreamRadar.h"
 #include <Core/Enum/Game.hpp>
 #include <Core/Enum/Method.hpp>
+#include <Core/Gen5/Generators/DreamRadarGenerator.hpp>
 #include <Core/Gen5/Keypresses.hpp>
 #include <Core/Gen5/Searchers/DreamRadarSearcher.hpp>
+#include <Core/Gen5/States/DreamRadarState.hpp>
 #include <Core/Parents/PersonalInfo.hpp>
 #include <Core/Parents/PersonalLoader.hpp>
 #include <Core/Parents/ProfileLoader.hpp>
 #include <Core/Util/Translator.hpp>
+#include <Forms/Controls/Controls.hpp>
 #include <Forms/Gen5/Profile/ProfileManager5.hpp>
 #include <Forms/Models/Gen5/DreamRadarModel.hpp>
+#include <QMenu>
 #include <QMessageBox>
 #include <QSettings>
 #include <QThread>
@@ -59,16 +63,12 @@ void DreamRadar::updateProfiles()
     profiles.clear();
     auto completeProfiles = ProfileLoader5::getProfiles();
     std::copy_if(completeProfiles.begin(), completeProfiles.end(), std::back_inserter(profiles),
-                 [](const Profile5 &profile) { return profile.getVersion() & Game::BW2; });
+                 [](const Profile5 &profile) { return (profile.getVersion() & Game::BW2) != Game::None; });
 
     ui->comboBoxProfiles->clear();
-
     for (const auto &profile : profiles)
     {
-        if (profile.getVersion() & Game::BW2)
-        {
-            ui->comboBoxProfiles->addItem(QString::fromStdString(profile.getName()));
-        }
+        ui->comboBoxProfiles->addItem(QString::fromStdString(profile.getName()));
     }
 
     QSettings setting;
@@ -298,7 +298,7 @@ std::vector<DreamRadarSlot> DreamRadar::getGeneratorSettings()
 
     std::array<u16, 3> genies = { 641, 642, 645 };
     std::array<u16, 5> legends = { 483, 484, 487, 249, 250 };
-    auto info = PersonalLoader5::getPersonal();
+    auto info = PersonalLoader::getPersonal(Game::BW2);
 
     std::array<QComboBox *, 6> species = { ui->comboBoxGeneratorSpecies1, ui->comboBoxGeneratorSpecies2, ui->comboBoxGeneratorSpecies3,
                                            ui->comboBoxGeneratorSpecies4, ui->comboBoxGeneratorSpecies5, ui->comboBoxGeneratorSpecies6 };
@@ -337,7 +337,7 @@ std::vector<DreamRadarSlot> DreamRadar::getSearcherSettings()
 
     std::array<u16, 3> genies = { 641, 642, 645 };
     std::array<u16, 5> legends = { 483, 484, 487, 249, 250 };
-    auto info = PersonalLoader5::getPersonal();
+    auto info = PersonalLoader::getPersonal(Game::BW2);
 
     std::array<QComboBox *, 6> species = { ui->comboBoxSearcherSpecies1, ui->comboBoxSearcherSpecies2, ui->comboBoxSearcherSpecies3,
                                            ui->comboBoxSearcherSpecies4, ui->comboBoxSearcherSpecies5, ui->comboBoxSearcherSpecies6 };

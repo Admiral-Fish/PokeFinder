@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2021 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,12 +24,12 @@
 #include <vector>
 
 class EncounterArea3;
-enum Encounter : u8;
-class Profile3;
+enum class Encounter : u8;
+enum class Game : u32;
 
 namespace Encounters3
 {
-    std::vector<EncounterArea3> getEncounters(Encounter encounter, const Profile3 &profile);
+    std::vector<EncounterArea3> getEncounters(Encounter encounter, Game version);
 };
 
 #endif // ENCOUNTERS3_HPP

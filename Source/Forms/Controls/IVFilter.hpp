@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2021 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -54,6 +54,8 @@ private slots:
     void changeCompareSpA(int type);
     void changeCompareSpD(int type);
     void changeCompareSpe(int type);
+    void openIVCalculator();
+    void updateIVs(const std::vector<std::vector<u8>> &ivs);
 };
 
 #endif // IVFILTER_HPP

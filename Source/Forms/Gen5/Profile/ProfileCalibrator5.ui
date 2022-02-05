@@ -413,7 +413,7 @@
           <item row="1" column="0">
            <widget class="QPushButton" name="pushButtonIVCalculator">
             <property name="text">
-             <string>Open IV Calculator</string>
+             <string>IV Calculator</string>
             </property>
            </widget>
           </item>
@@ -662,11 +662,11 @@
  <resources/>
  <connections/>
  <buttongroups>
+  <buttongroup name="buttonGroupNeedleType"/>
   <buttongroup name="buttonGroupNeedles">
    <property name="exclusive">
     <bool>false</bool>
    </property>
   </buttongroup>
-  <buttongroup name="buttonGroupNeedleType"/>
  </buttongroups>
 </ui>

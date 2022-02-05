@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2021 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -22,6 +22,7 @@
 #include <Core/Enum/Game.hpp>
 #include <Core/Gen5/EncounterArea5.hpp>
 #include <Core/Parents/PersonalLoader.hpp>
+#include <Core/Parents/Slot.hpp>
 #include <Core/Resources/Encounters.hpp>
 #include <algorithm>
 #include <cstring>
@@ -65,7 +66,7 @@ namespace Encounters5
             for (size_t i = 0; i < size;)
             {
                 int length;
-                if (game & Game::BW)
+                if ((game & Game::BW) != Game::None)
                 {
                     if (std::binary_search(std::begin(bwLocations), std::end(bwLocations), count))
                     {
@@ -104,18 +105,7 @@ namespace Encounters5
             return static_cast<u16>(data[offset + 1] << 8) | data[offset];
         }
 
-        PersonalInfo getInfo(const PersonalInfo *info, u16 species, u8 form)
-        {
-            auto personal = info[species];
-            if (form != 0 && personal.getFormStatIndex() != 0)
-            {
-                personal = info[personal.getFormStatIndex() + form - 1];
-            }
-            return personal;
-        }
-
-        std::vector<EncounterArea5> getAreas(const std::vector<u8> &data, Encounter encounter, const PersonalInfo *info, u8 location,
-                                             u8 season)
+        std::vector<EncounterArea5> getAreas(const std::vector<u8> &data, Encounter encounter, Game version, u8 location, u8 season)
         {
             std::vector<EncounterArea5> encounters;
 
@@ -134,7 +124,7 @@ namespace Encounters5
                     u16 species = getValue(data, offset + 8 + i * 4);
                     u8 min = data[offset + 10 + i * 4];
                     u8 max = data[offset + 11 + i * 4];
-                    grass.emplace_back(species & 0x7ff, min, max, getInfo(info, species & 0x7ff, species >> 11));
+                    grass.emplace_back(species & 0x7ff, min, max, PersonalLoader::getPersonal(version, species & 0x7ff, species >> 11));
                 }
                 encounters.emplace_back(location, Encounter::Grass, grass);
             }
@@ -148,7 +138,8 @@ namespace Encounters5
                     u16 species = getValue(data, offset + 56 + i * 4);
                     u8 min = data[offset + 58 + i * 4];
                     u8 max = data[offset + 59 + i * 4];
-                    doubleGrass.emplace_back(species & 0x7ff, min, max, getInfo(info, species & 0x7ff, species >> 11));
+                    doubleGrass.emplace_back(species & 0x7ff, min, max,
+                                             PersonalLoader::getPersonal(version, species & 0x7ff, species >> 11));
                 }
                 encounters.emplace_back(location, Encounter::DoubleGrass, doubleGrass);
             }
@@ -162,7 +153,8 @@ namespace Encounters5
                     u16 species = getValue(data, offset + 104 + i * 4);
                     u8 min = data[offset + 106 + i * 4];
                     u8 max = data[offset + 107 + i * 4];
-                    specialGrass.emplace_back(species & 0x7ff, min, max, getInfo(info, species & 0x7ff, species >> 11));
+                    specialGrass.emplace_back(species & 0x7ff, min, max,
+                                              PersonalLoader::getPersonal(version, species & 0x7ff, species >> 11));
                 }
                 encounters.emplace_back(location, Encounter::SpecialGrass, specialGrass);
             }
@@ -176,7 +168,7 @@ namespace Encounters5
                     u16 species = getValue(data, offset + 152 + i * 4);
                     u8 min = data[offset + 154 + i * 4];
                     u8 max = data[offset + 155 + i * 4];
-                    surf.emplace_back(species & 0x7ff, min, max, getInfo(info, species & 0x7ff, species >> 11));
+                    surf.emplace_back(species & 0x7ff, min, max, PersonalLoader::getPersonal(version, species & 0x7ff, species >> 11));
                 }
                 encounters.emplace_back(location, Encounter::Surfing, surf);
             }
@@ -190,7 +182,8 @@ namespace Encounters5
                     u16 species = getValue(data, offset + 172 + i * 4);
                     u8 min = data[offset + 174 + i * 4];
                     u8 max = data[offset + 175 + i * 4];
-                    specialSurf.emplace_back(species & 0x7ff, min, max, getInfo(info, species & 0x7ff, species >> 11));
+                    specialSurf.emplace_back(species & 0x7ff, min, max,
+                                             PersonalLoader::getPersonal(version, species & 0x7ff, species >> 11));
                 }
                 encounters.emplace_back(location, Encounter::SpecialSurf, specialSurf);
             }
@@ -204,7 +197,7 @@ namespace Encounters5
                     u16 species = getValue(data, offset + 192 + i * 4);
                     u8 min = data[offset + 194 + i * 4];
                     u8 max = data[offset + 195 + i * 4];
-                    fish.emplace_back(species & 0x7ff, min, max, getInfo(info, species & 0x7ff, species >> 11));
+                    fish.emplace_back(species & 0x7ff, min, max, PersonalLoader::getPersonal(version, species & 0x7ff, species >> 11));
                 }
                 encounters.emplace_back(location, Encounter::SuperRod, fish);
             }
@@ -218,7 +211,8 @@ namespace Encounters5
                     u16 species = getValue(data, offset + 212 + i * 4);
                     u8 min = data[offset + 214 + i * 4];
                     u8 max = data[offset + 215 + i * 4];
-                    specialFish.emplace_back(species & 0x7ff, min, max, getInfo(info, species & 0x7ff, species >> 11));
+                    specialFish.emplace_back(species & 0x7ff, min, max,
+                                             PersonalLoader::getPersonal(version, species & 0x7ff, species >> 11));
                 }
                 encounters.emplace_back(location, Encounter::SpecialSuperRod, specialFish);
             }
@@ -230,12 +224,11 @@ namespace Encounters5
     std::vector<EncounterArea5> getEncounters(Encounter encounter, u8 season, Game version)
     {
         std::vector<EncounterArea5> encounters;
-        auto info = PersonalLoader5::getPersonal();
 
         const auto &encounterData = getData(version);
         for (size_t i = 0; i < encounterData.size(); i++)
         {
-            auto areas = getAreas(encounterData[i], encounter, info, i, season);
+            auto areas = getAreas(encounterData[i], encounter, version, i, season);
             encounters.insert(encounters.end(), areas.begin(), areas.end());
         }
 

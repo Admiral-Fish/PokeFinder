@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2021 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -20,20 +20,20 @@
 #ifndef ENCOUNTERAREA_HPP
 #define ENCOUNTERAREA_HPP
 
-#include <Core/Parents/Slot.hpp>
 #include <Core/Util/Global.hpp>
 #include <string>
 #include <vector>
 
-enum Encounter : u8;
+class Slot;
+enum class Encounter : u8;
 
 class EncounterArea
 {
 public:
     EncounterArea() = default;
-    EncounterArea(u8 location, Encounter encounter, const std::vector<Slot> &pokemon);
+    EncounterArea(u16 location, Encounter encounter, const std::vector<Slot> &pokemon);
     Encounter getEncounter() const;
-    u8 getLocation() const;
+    u16 getLocation() const;
     std::vector<Slot> getPokemon() const;
     std::vector<u16> getUniqueSpecies() const;
     std::vector<bool> getSlots(u16 num) const;
@@ -42,7 +42,7 @@ public:
 
 protected:
     std::vector<Slot> pokemon;
-    u8 location;
+    u16 location;
     Encounter encounter;
 };
 

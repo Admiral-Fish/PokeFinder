@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2021 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -20,10 +20,11 @@
 #ifndef PROFILECALIBRATOR5_HPP
 #define PROFILECALIBRATOR5_HPP
 
-#include <QAbstractButton>
+#include <Core/Util/Global.hpp>
 #include <QMenu>
 
 class ProfileSearcherModel5;
+class QAbstractButton;
 
 namespace Ui
 {
@@ -42,8 +43,8 @@ public:
 
 private:
     Ui::ProfileCalibrator5 *ui;
-    ProfileSearcherModel5 *model = nullptr;
-    QMenu *menu = nullptr;
+    ProfileSearcherModel5 *model;
+    QMenu *menu;
 
     void setupModels();
     void updateParameters();
@@ -58,6 +59,7 @@ private slots:
     void addNeedle(QAbstractButton *button);
     void removeNeedle();
     void clearNeedles();
+    void updateIVs(const std::vector<std::vector<u8>> &ivs);
 };
 
 #endif // PROFILECALIBRATOR5_HPP

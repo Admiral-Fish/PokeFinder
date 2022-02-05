@@ -1,26 +1,29 @@
 project(PokeFinder VERSION 3.0.1 LANGUAGES CXX)
 
-execute_process(
-    COMMAND git rev-parse --abbrev-ref HEAD
-    WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
-    OUTPUT_VARIABLE GIT_BRANCH
-    OUTPUT_STRIP_TRAILING_WHITESPACE
-)
+if (NOT EXISTS ${CMAKE_BINARY_DIR}/generated/version.h)
+    execute_process(
+        COMMAND git rev-parse --abbrev-ref HEAD
+        WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+        OUTPUT_VARIABLE GIT_BRANCH
+        OUTPUT_STRIP_TRAILING_WHITESPACE
+    )
 
-execute_process(
-  COMMAND git rev-parse HEAD
-  WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
-  OUTPUT_VARIABLE GIT_COMMIT
-  OUTPUT_STRIP_TRAILING_WHITESPACE
-)
+    execute_process(
+        COMMAND git rev-parse HEAD
+        WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+        OUTPUT_VARIABLE GIT_COMMIT
+        OUTPUT_STRIP_TRAILING_WHITESPACE
+    )
 
-add_definitions("-DGIT_BRANCH=${GIT_BRANCH}")
-add_definitions("-DGIT_COMMIT=${GIT_COMMIT}")
+    add_definitions("-DGIT_BRANCH=${GIT_BRANCH}")
+    add_definitions("-DGIT_COMMIT=${GIT_COMMIT}")
 
-configure_file(
-    ${CMAKE_SOURCE_DIR}/Source/Forms/version.h.in
-    ${CMAKE_BINARY_DIR}/generated/version.h
-)
+    configure_file(
+        ${CMAKE_SOURCE_DIR}/Source/Forms/version.h.in
+        ${CMAKE_BINARY_DIR}/generated/version.h
+    )
+endif ()
+
 include_directories(${CMAKE_BINARY_DIR}/generated)
 
 set(CMAKE_CXX_STANDARD 17)
@@ -56,7 +59,7 @@ set(PROJECT_UI
     Gen3/IDs3.ui
     Gen3/Profile/ProfileEditor3.ui
     Gen3/Profile/ProfileManager3.ui
-    Gen3/Stationary3.ui
+    Gen3/Static3.ui
     Gen3/Tools/GameCubeRTC.ui
     Gen3/Tools/GameCubeSeedFinder.ui
     Gen3/Tools/JirachiPattern.ui
@@ -69,7 +72,7 @@ set(PROJECT_UI
     Gen4/IDs4.ui
     Gen4/Profile/ProfileEditor4.ui
     Gen4/Profile/ProfileManager4.ui
-    Gen4/Stationary4.ui
+    Gen4/Static4.ui
     Gen4/Tools/ChainedSID.ui
     Gen4/Tools/Poketch.ui
     Gen4/Tools/RoamerMap.ui
@@ -85,11 +88,15 @@ set(PROJECT_UI
     Gen5/Profile/ProfileCalibrator5.ui
     Gen5/Profile/ProfileEditor5.ui
     Gen5/Profile/ProfileManager5.ui
-    Gen5/Stationary5.ui
+    Gen5/Static5.ui
     Gen8/DenMap.ui
+    Gen8/Eggs8.ui
+    Gen8/Event8.ui
+    Gen8/IDs8.ui
     Gen8/Profile/ProfileEditor8.ui
     Gen8/Profile/ProfileManager8.ui
     Gen8/Raids.ui
+    Gen8/Static8.ui
     Gen8/Wild8.ui
     MainWindow.ui
     Util/EncounterLookup.ui
@@ -117,7 +124,7 @@ set(PROJECT_SOURCES
     Gen3/IDs3.cpp
     Gen3/Profile/ProfileEditor3.cpp
     Gen3/Profile/ProfileManager3.cpp
-    Gen3/Stationary3.cpp
+    Gen3/Static3.cpp
     Gen3/Tools/GameCubeRTC.cpp
     Gen3/Tools/GameCubeSeedFinder.cpp
     Gen3/Tools/JirachiPattern.cpp
@@ -130,7 +137,7 @@ set(PROJECT_SOURCES
     Gen4/IDs4.cpp
     Gen4/Profile/ProfileEditor4.cpp
     Gen4/Profile/ProfileManager4.cpp
-    Gen4/Stationary4.cpp
+    Gen4/Static4.cpp
     Gen4/Tools/ChainedSID.cpp
     Gen4/Tools/Poketch.cpp
     Gen4/Tools/RoamerMap.cpp
@@ -146,11 +153,15 @@ set(PROJECT_SOURCES
     Gen5/Profile/ProfileCalibrator5.cpp
     Gen5/Profile/ProfileEditor5.cpp
     Gen5/Profile/ProfileManager5.cpp
-    Gen5/Stationary5.cpp
+    Gen5/Static5.cpp
     Gen8/DenMap.cpp
+    Gen8/Eggs8.cpp
+    Gen8/Event8.cpp
+    Gen8/IDs8.cpp
     Gen8/Profile/ProfileEditor8.cpp
     Gen8/Profile/ProfileManager8.cpp
     Gen8/Raids.cpp
+    Gen8/Static8.cpp
     Gen8/Wild8.cpp
     MainWindow.cpp
     Models/Gen3/EggModel3.cpp
@@ -161,13 +172,13 @@ set(PROJECT_SOURCES
     Models/Gen3/PokeSpotModel.cpp
     Models/Gen3/ProfileModel3.cpp
     Models/Gen3/SeedTimeModel3.cpp
-    Models/Gen3/StationaryModel3.cpp
+    Models/Gen3/StaticModel3.cpp
     Models/Gen3/WildModel3.cpp
     Models/Gen4/EggModel4.cpp
     Models/Gen4/IDModel4.cpp
     Models/Gen4/ProfileModel4.cpp
     Models/Gen4/SeedtoTimeModel4.cpp
-    Models/Gen4/StationaryModel4.cpp
+    Models/Gen4/StaticModel4.cpp
     Models/Gen4/WildModel4.cpp
     Models/Gen5/DreamRadarModel.cpp
     Models/Gen5/EggModel5.cpp
@@ -176,9 +187,14 @@ set(PROJECT_SOURCES
     Models/Gen5/IDModel5.cpp
     Models/Gen5/ProfileModel5.cpp
     Models/Gen5/ProfileSearcherModel5.cpp
-    Models/Gen5/StationaryModel5.cpp
+    Models/Gen5/StaticModel5.cpp
+    Models/Gen8/EggModel8.cpp
+    Models/Gen8/EventModel8.cpp
+    Models/Gen8/IDModel8.cpp
     Models/Gen8/ProfileModel8.cpp
     Models/Gen8/RaidModel.cpp
+    Models/Gen8/StaticModel8.cpp
+    Models/Gen8/WildModel8.cpp
     Models/Util/ResearcherModel.cpp
     Util/EncounterLookup.cpp
     Util/IVCalculator.cpp

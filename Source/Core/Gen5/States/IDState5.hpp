@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2021 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -22,6 +22,8 @@
 
 #include <Core/Parents/States/IDState.hpp>
 #include <Core/Util/DateTime.hpp>
+
+enum class Buttons : u16;
 
 class IDState5 : public IDState
 {
@@ -53,12 +55,12 @@ public:
         return initialAdvances;
     }
 
-    void setKeypress(u16 keypress)
+    void setKeypress(Buttons keypress)
     {
         this->keypress = keypress;
     }
 
-    u16 getKeypress() const
+    Buttons getKeypress() const
     {
         return keypress;
     }
@@ -76,7 +78,7 @@ public:
 private:
     DateTime dt;
     u32 initialAdvances;
-    u16 keypress;
+    Buttons keypress;
     u64 seed;
 };
 

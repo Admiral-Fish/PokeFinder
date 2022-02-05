@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2021 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -63,7 +63,7 @@ u8 Daycare::getEverstoneCount(Game version) const
 {
     int count = 0;
 
-    if ((version & Game::Emerald) | (version & Game::DPPt))
+    if ((version & Game::Emerald) != Game::None || (version & Game::DPPt) != Game::None)
     {
         u8 parent;
 

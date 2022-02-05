@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2021 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -38,9 +38,9 @@ public:
 
 private:
     Ui::IDs3 *ui;
-    IDModel3 *xdcolo = nullptr;
-    IDModel3 *frlge = nullptr;
-    IDModel3 *rs = nullptr;
+    IDModel3 *xdcolo;
+    IDModel3 *frlge;
+    IDModel3 *rs;
 
     void setupModels();
 

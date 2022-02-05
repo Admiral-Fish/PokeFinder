@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2021 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -23,12 +23,14 @@
 #include <Core/Enum/Method.hpp>
 #include <Core/Gen5/Generators/EggGenerator5.hpp>
 #include <Core/Gen5/Keypresses.hpp>
-#include <Core/Parents/ProfileLoader.hpp>
 #include <Core/Gen5/Searchers/EggSearcher5.hpp>
+#include <Core/Parents/ProfileLoader.hpp>
 #include <Core/Util/Translator.hpp>
 #include <Core/Util/Utilities.hpp>
+#include <Forms/Controls/Controls.hpp>
 #include <Forms/Gen5/Profile/ProfileManager5.hpp>
 #include <Forms/Models/Gen5/EggModel5.hpp>
+#include <QMenu>
 #include <QMessageBox>
 #include <QSettings>
 #include <QThread>
@@ -46,7 +48,7 @@ Eggs5::Eggs5(QWidget *parent) : QWidget(parent), ui(new Ui::Eggs5)
 Eggs5::~Eggs5()
 {
     QSettings setting;
-    setting.beginGroup("event5");
+    setting.beginGroup("egg5");
     setting.setValue("profile", ui->comboBoxProfiles->currentIndex());
     setting.setValue("geometry", this->saveGeometry());
     setting.endGroup();
@@ -59,14 +61,13 @@ void Eggs5::updateProfiles()
     profiles = ProfileLoader5::getProfiles();
 
     ui->comboBoxProfiles->clear();
-
     for (const auto &profile : profiles)
     {
         ui->comboBoxProfiles->addItem(QString::fromStdString(profile.getName()));
     }
 
     QSettings setting;
-    int val = setting.value("event5/profile", 0).toInt();
+    int val = setting.value("egg5/profile", 0).toInt();
     if (val < ui->comboBoxProfiles->count())
     {
         ui->comboBoxProfiles->setCurrentIndex(val);
@@ -97,8 +98,8 @@ void Eggs5::setupModels()
     ui->filterGenerator->disableControls(Controls::EncounterSlots);
     ui->filterSearcher->disableControls(Controls::EncounterSlots | Controls::DisableFilter | Controls::UseDelay);
 
-    ui->eggSettingsGenerator->setup(static_cast<Game>(Game::BW | Game::BW2));
-    ui->eggSettingsSearcher->setup(static_cast<Game>(Game::BW | Game::BW2));
+    ui->eggSettingsGenerator->setup(Game::Gen5);
+    ui->eggSettingsSearcher->setup(Game::Gen5);
 
     ui->filterGenerator->enableHiddenAbility();
     ui->filterSearcher->enableHiddenAbility();
@@ -120,9 +121,11 @@ void Eggs5::setupModels()
     connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &Eggs5::profileManager);
     connect(ui->tableViewGenerator, &QTableView::customContextMenuRequested, this, &Eggs5::tableViewGeneratorContextMenu);
     connect(ui->tableViewSearcher, &QTableView::customContextMenuRequested, this, &Eggs5::tableViewSearcherContextMenu);
+    connect(ui->eggSettingsGenerator, &EggSettings::toggleInheritance, generatorModel, &EggGeneratorModel5::toggleInheritance);
+    connect(ui->eggSettingsSearcher, &EggSettings::toggleInheritance, searcherModel, &EggSearcherModel5::toggleInheritance);
 
     QSettings setting;
-    setting.beginGroup("event5");
+    setting.beginGroup("egg5");
     if (setting.contains("geometry"))
     {
         this->restoreGeometry(setting.value("geometry").toByteArray());
@@ -145,7 +148,7 @@ void Eggs5::generate()
     }
 
     generatorModel->clearModel();
-    Method method = (currentProfile.getVersion() & Game::BW) ? Method::BWBred : Method::BW2Bred;
+    Method method = (currentProfile.getVersion() & Game::BW) != Game::None ? Method::BWBred : Method::BW2Bred;
 
     u64 seed = ui->textBoxGeneratorSeed->getULong();
     u32 initialAdvances = ui->textBoxGeneratorInitialAdvances->getUInt();
@@ -186,7 +189,7 @@ void Eggs5::search()
     }
 
     searcherModel->clearModel();
-    Method method = (currentProfile.getVersion() & Game::BW) ? Method::BWBred : Method::BW2Bred;
+    Method method = (currentProfile.getVersion() & Game::BW) != Game::None ? Method::BWBred : Method::BW2Bred;
 
     ui->pushButtonSearch->setEnabled(false);
     ui->pushButtonCancel->setEnabled(true);
@@ -245,7 +248,7 @@ void Eggs5::calculateInitialAdvances()
     Game version = currentProfile.getVersion();
 
     u8 initialAdvances;
-    if (version & Game::BW)
+    if ((version & Game::BW) != Game::None)
     {
         initialAdvances = Utilities::initialAdvancesBW(ui->textBoxGeneratorSeed->getULong());
     }

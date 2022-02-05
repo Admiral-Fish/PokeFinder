@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2021 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -20,8 +20,9 @@
 #ifndef DATETIMEEDIT_HPP
 #define DATETIMEEDIT_HPP
 
-#include <Core/Util/DateTime.hpp>
 #include <QDateTimeEdit>
+
+class DateTime;
 
 class DateTimeEdit : public QDateTimeEdit
 {

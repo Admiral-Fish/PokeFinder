@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2021 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -22,7 +22,7 @@
 
 #include <Core/Util/Global.hpp>
 
-enum Encounter : u8
+enum class Encounter : u8
 {
     Grass,
     DoubleGrass,
@@ -34,7 +34,7 @@ enum Encounter : u8
     GoodRod,
     SuperRod,
     SpecialSuperRod,
-    Stationary,
+    Static,
     SafariZone,
     BugCatchingContest,
     HeadButt,
@@ -44,5 +44,10 @@ enum Encounter : u8
     GiftEgg,
     HiddenGrotto
 };
+
+constexpr u8 toInt(Encounter encounter)
+{
+    return static_cast<u8>(encounter);
+}
 
 #endif // ENCOUNTER_HPP

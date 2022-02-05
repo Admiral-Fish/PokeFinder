@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2021 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -20,19 +20,23 @@
 #ifndef EVENTSEARCHER5_HPP
 #define EVENTSEARCHER5_HPP
 
-#include <Core/Gen5/Generators/EventGenerator5.hpp>
 #include <Core/Gen5/Profile5.hpp>
-#include <Core/Gen5/States/SearcherState5.hpp>
 #include <Core/Util/Global.hpp>
 #include <atomic>
 #include <mutex>
+
+class Date;
+class EventGenerator5;
+class State;
+template <class StateType>
+class SearcherState5;
 
 class EventSearcher5
 {
 public:
     EventSearcher5() = default;
     explicit EventSearcher5(const Profile5 &profile);
-    void startSearch(const EventGenerator5 &generator, int threads, Date start, const Date &end);
+    void startSearch(const EventGenerator5 &generator, int threads, const Date &start, const Date &end);
     void cancelSearch();
     std::vector<SearcherState5<State>> getResults();
     int getProgress() const;

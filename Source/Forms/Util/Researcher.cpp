@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2021 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,7 +24,11 @@
 #include <Core/RNG/MT.hpp>
 #include <Core/RNG/SFMT.hpp>
 #include <Core/RNG/TinyMT.hpp>
+#include <Core/RNG/Xoroshiro.hpp>
+#include <Core/RNG/Xorshift.hpp>
 #include <Forms/Models/Util/ResearcherModel.hpp>
+#include <QMenu>
+#include <QMessageBox>
 #include <QSettings>
 #include <array>
 #include <functional>
@@ -59,10 +63,13 @@ void Researcher::setupModels()
     ui->textBoxSeed->setValues(InputType::Seed64Bit);
     ui->textBoxSearch->setValues(InputType::Seed64Bit);
 
-    ui->textBoxStatus3->setValues(InputType::Seed32Bit);
-    ui->textBoxStatus2->setValues(InputType::Seed32Bit);
-    ui->textBoxStatus1->setValues(InputType::Seed32Bit);
-    ui->textBoxStatus0->setValues(InputType::Seed32Bit);
+    ui->textBoxTinyMTSeed0->setValues(InputType::Seed32Bit);
+    ui->textBoxTinyMTSeed1->setValues(InputType::Seed32Bit);
+    ui->textBoxTinyMTSeed2->setValues(InputType::Seed32Bit);
+    ui->textBoxTinyMTSeed3->setValues(InputType::Seed32Bit);
+
+    ui->textBoxXorshiftSeed0->setValues(InputType::Seed64Bit);
+    ui->textBoxXorshiftSeed1->setValues(InputType::Seed64Bit);
 
     ui->lineEditRValue1->setValues(1, 0xffffffff, 10, 16);
     ui->lineEditRValue2->setValues(1, 0xffffffff, 10, 16);
@@ -284,12 +291,15 @@ void Researcher::generate()
             }
             rngStates = getStates<SFMT, false>(SFMT(seed), initialAdvances, maxAdvances);
             break;
+        case 3:
+            rngStates = getStates<XoroshiroBDSP, false>(XoroshiroBDSP(seed), initialAdvances, maxAdvances);
+            break;
         }
     }
-    else
+    else if (ui->rngSelection->currentIndex() == 2)
     {
-        u32 status[4] = { ui->textBoxStatus0->getUInt(), ui->textBoxStatus1->getUInt(), ui->textBoxStatus2->getUInt(),
-                          ui->textBoxStatus3->getUInt() };
+        u32 status[4] = { ui->textBoxTinyMTSeed0->getUInt(), ui->textBoxTinyMTSeed1->getUInt(), ui->textBoxTinyMTSeed2->getUInt(),
+                          ui->textBoxTinyMTSeed3->getUInt() };
 
         if (std::all_of(std::begin(status), std::end(status), [](u32 x) { return x == 0; }))
         {
@@ -299,6 +309,12 @@ void Researcher::generate()
         {
             rngStates = getStates<TinyMT, false>(TinyMT(status), initialAdvances, maxAdvances);
         }
+    }
+    else
+    {
+        u64 seed0 = ui->textBoxXorshiftSeed0->getULong();
+        u64 seed1 = ui->textBoxXorshiftSeed1->getULong();
+        rngStates = getStates<Xorshift, false>(Xorshift(seed0, seed1), initialAdvances, maxAdvances);
     }
 
     QHash<QString, std::function<u64(u64, u64)>> calc;
@@ -429,12 +445,17 @@ void Researcher::selectionIndexChanged(int index)
     if (index >= 0)
     {
         ui->comboBoxSearch->clear();
-        QStringList items
-            = { tr("32Bit"),    tr("16Bit High"), tr("16Bit Low"), tr("Custom 1"), tr("Custom 2"), tr("Custom 3"), tr("Custom 4"),
-                tr("Custom 5"), tr("Custom 6"),   tr("Custom 7"),  tr("Custom 8"), tr("Custom 9"), tr("Custom 10") };
+        QStringList items = { tr("16Bit High"), tr("16Bit Low"), tr("Custom 1"), tr("Custom 2"), tr("Custom 3"), tr("Custom 4"),
+                              tr("Custom 5"),   tr("Custom 6"),  tr("Custom 7"), tr("Custom 8"), tr("Custom 9"), tr("Custom 10") };
         if (index == 1)
         {
+            items.prepend(tr("32Bit Low"));
+            items.prepend(tr("32Bit High"));
             items.prepend(tr("64Bit"));
+        }
+        else
+        {
+            items.prepend(tr("32Bit"));
         }
         ui->comboBoxSearch->addItems(items);
     }

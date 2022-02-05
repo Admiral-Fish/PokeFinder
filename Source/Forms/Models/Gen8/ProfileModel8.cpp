@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2021 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -19,14 +19,14 @@
 
 #include "ProfileModel8.hpp"
 
-ProfileModel8::ProfileModel8(QObject *parent) : TableModel<Profile>(parent)
+ProfileModel8::ProfileModel8(QObject *parent) : TableModel<Profile8>(parent)
 {
 }
 
 int ProfileModel8::columnCount(const QModelIndex &parent) const
 {
     (void)parent;
-    return 4;
+    return 8;
 }
 
 QVariant ProfileModel8::data(const QModelIndex &index, int role) const
@@ -44,6 +44,14 @@ QVariant ProfileModel8::data(const QModelIndex &index, int role) const
             return profile.getTID();
         case 3:
             return profile.getSID();
+        case 4:
+            return profile.getShinyCharm() ? tr("Yes") : tr("No");
+        case 5:
+            return profile.getOvalCharm() ? tr("Yes") : tr("No");
+        case 6:
+            return profile.getRadar() ? tr("Yes") : tr("No");
+        case 7:
+            return profile.getSwarm() ? tr("Yes") : tr("No");
         }
     }
     return QVariant();

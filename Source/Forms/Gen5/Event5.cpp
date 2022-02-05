@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2021 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -29,9 +29,11 @@
 #include <Core/Parents/ProfileLoader.hpp>
 #include <Core/Util/Translator.hpp>
 #include <Core/Util/Utilities.hpp>
+#include <Forms/Controls/Controls.hpp>
 #include <Forms/Gen5/Profile/ProfileManager5.hpp>
 #include <Forms/Models/Gen5/EventModel5.hpp>
 #include <QFileDialog>
+#include <QMenu>
 #include <QMessageBox>
 #include <QSettings>
 #include <QThread>
@@ -62,7 +64,6 @@ void Event5::updateProfiles()
     profiles = ProfileLoader5::getProfiles();
 
     ui->comboBoxProfiles->clear();
-
     for (const auto &profile : profiles)
     {
         ui->comboBoxProfiles->addItem(QString::fromStdString(profile.getName()));
@@ -322,7 +323,7 @@ void Event5::generatorImportEvent()
 
             ui->checkBoxGeneratorEgg->setChecked(pgf.isEgg());
 
-            ui->filterGenerator->setGenderRatio(PersonalLoader5::getPersonal()[pgf.getSpecies()].getGender());
+            ui->filterGenerator->setGenderRatio(PersonalLoader::getPersonal(currentProfile.getVersion())[pgf.getSpecies()].getGender());
         }
         else
         {
@@ -392,7 +393,7 @@ void Event5::searcherImportEvent()
 
             ui->checkBoxSearcherEgg->setChecked(pgf.isEgg());
 
-            ui->filterSearcher->setGenderRatio(PersonalLoader5::getPersonal()[pgf.getSpecies()].getGender());
+            ui->filterSearcher->setGenderRatio(PersonalLoader::getPersonal(currentProfile.getVersion())[pgf.getSpecies()].getGender());
         }
         else
         {
@@ -409,7 +410,7 @@ void Event5::calculateInitialAdvances()
     Game version = currentProfile.getVersion();
 
     u8 initialAdvances;
-    if (version & Game::BW)
+    if ((version & Game::BW) != Game::None)
     {
         initialAdvances = Utilities::initialAdvancesBW(ui->textBoxGeneratorSeed->getULong());
     }

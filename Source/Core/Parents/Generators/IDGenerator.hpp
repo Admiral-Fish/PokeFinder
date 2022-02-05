@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2021 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,16 +24,21 @@
 #include <Core/Util/Global.hpp>
 #include <vector>
 
+template <class Filter = IDFilter>
 class IDGenerator
 {
 public:
     IDGenerator() = default;
-    IDGenerator(u32 initialAdvances, u32 maxAdvances, const IDFilter &filter);
+
+    IDGenerator(u32 initialAdvances, u32 maxAdvances, const Filter &filter) :
+        initialAdvances(initialAdvances), maxAdvances(maxAdvances), filter(filter)
+    {
+    }
 
 protected:
     u32 initialAdvances;
     u32 maxAdvances;
-    IDFilter filter;
+    Filter filter;
 };
 
 #endif // IDGENERATOR_HPP

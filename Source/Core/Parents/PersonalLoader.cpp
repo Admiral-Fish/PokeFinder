@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2021 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -19,41 +19,62 @@
 
 #include "PersonalLoader.hpp"
 #include <Core/Resources/Personal.hpp>
+#include <Core/Enum/Game.hpp>
 
-namespace PersonalLoader3
+namespace PersonalLoader
 {
-    const PersonalInfo *getPersonal()
+    const PersonalInfo *getPersonal(Game version)
     {
-        return personal3.data();
+        if ((version & Game::Emerald) != Game::None)
+        {
+            return personal_e.data();
+        }
+        else if ((version & Game::RS) != Game::None)
+        {
+            return personal_rs.data();
+        }
+        else if ((version & Game::FireRed) != Game::None)
+        {
+            return personal_fr.data();
+        }
+        else if ((version & Game::LeafGreen) != Game::None)
+        {
+            return personal_lg.data();
+        }
+        else if ((version & Game::DP) != Game::None)
+        {
+            return personal_dp.data();
+        }
+        else if ((version & Game::Platinum) != Game::None)
+        {
+            return personal_pt.data();
+        }
+        else if ((version & Game::HGSS) != Game::None)
+        {
+            return personal_hgss.data();
+        }
+        else if ((version & Game::BW) != Game::None)
+        {
+            return personal_bw.data();
+        }
+        else if ((version & Game::BW2) != Game::None)
+        {
+            return personal_b2w2.data();
+        }
+        else if ((version & Game::SwSh) != Game::None)
+        {
+            return personal_swsh.data();
+        }
+        else
+        {
+            return personal_bdsp.data();
+        }
     }
-}
 
-namespace PersonalLoader4
-{
-    const PersonalInfo *getPersonal()
+    PersonalInfo getPersonal(Game version, u16 species, u8 form)
     {
-        return personal4.data();
-    }
-}
-
-namespace PersonalLoader5
-{
-    const PersonalInfo *getPersonal()
-    {
-        return personal5.data();
-    }
-}
-
-namespace PersonalLoader8
-{
-    const PersonalInfo *getPersonal()
-    {
-        return personal8.data();
-    }
-
-    PersonalInfo getPersonal(u16 species, u8 form)
-    {
-        PersonalInfo base = personal8[species];
+        auto *info = getPersonal(version);
+        PersonalInfo base = info[species];
 
         u16 formIndex = base.getFormStatIndex();
 
@@ -62,6 +83,6 @@ namespace PersonalLoader8
             return base;
         }
 
-        return personal8[formIndex + form - 1];
+        return info[formIndex + form - 1];
     }
 }

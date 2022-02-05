@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2021 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -64,18 +64,25 @@ std::string Profile::getVersionString() const
         return "Black 2";
     case Game::White2:
         return "White 2";
+    case Game::Sword:
+        return "Sword";
+    case Game::Shield:
+        return "Shield";
+    case Game::BD:
+        return "Brilliant Diamond";
+    case Game::SP:
+        return "Shining Pearl";
     default:
         return "-";
     }
 }
 
-bool operator==(const Profile &left, const Profile &right)
+bool Profile::operator==(const Profile &other) const
 {
-    return left.getName() == right.getName() && left.getVersion() == right.getVersion()
-        && left.getTID() == right.getTID() && left.getSID() == right.getSID();
+    return name == other.name && version == other.version && tid == other.tid && sid == other.sid;
 }
 
-bool operator!=(const Profile &left, const Profile &right)
+bool Profile::operator!=(const Profile &other) const
 {
-    return !(left == right);
+    return !(operator==(other));
 }

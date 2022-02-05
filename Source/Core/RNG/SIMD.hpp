@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2020 by Admiral_Fish, bumba, Dark Kirb, and EzPzStreamz
+ * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -33,7 +33,7 @@ using vuint32x4 = uint32x4_t;
 using vuint32x4 = std::array<u32, 4>;
 #endif
 
-inline vuint32x4 v32x4_load(u32 *address)
+inline vuint32x4 v32x4_load(const u32 *address)
 {
 #if defined(__i386__) || defined(_M_IX86) || defined(__x86_64__) || defined(_M_AMD64)
     return _mm_loadu_si128((const vuint32x4 *)address);

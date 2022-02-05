@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2021 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -19,6 +19,7 @@
 
 #include "IVCalculator.hpp"
 #include "ui_IVCalculator.h"
+#include <Core/Enum/Game.hpp>
 #include <Core/Parents/PersonalInfo.hpp>
 #include <Core/Parents/PersonalLoader.hpp>
 #include <Core/Util/IVChecker.hpp>
@@ -64,6 +65,10 @@ void IVCalculator::setupModels()
     ui->comboBoxPokemon->setInsertPolicy(QComboBox::NoInsert);
     ui->comboBoxPokemon->completer()->setCompletionMode(QCompleter::PopupCompletion);
 
+    ui->comboBoxGame->setup({ toInt(Game::Emerald), toInt(Game::RS), toInt(Game::FireRed), toInt(Game::LeafGreen), toInt(Game::DP),
+                              toInt(Game::Platinum), toInt(Game::HGSS), toInt(Game::BW), toInt(Game::BW2), toInt(Game::SwSh),
+                              toInt(Game::BDSP) });
+
     addEntry();
 
     connect(ui->pushButtonAddRow, &QPushButton::clicked, this, &IVCalculator::addEntry);
@@ -71,9 +76,9 @@ void IVCalculator::setupModels()
     connect(ui->pushButtonFindIVs, &QPushButton::clicked, this, &IVCalculator::findIVs);
     connect(ui->comboBoxPokemon, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &IVCalculator::pokemonIndexChanged);
     connect(ui->comboBoxAltForm, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &IVCalculator::altformIndexChanged);
-    connect(ui->comboBoxGeneration, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &IVCalculator::generationIndexChanged);
+    connect(ui->comboBoxGame, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &IVCalculator::gameIndexChanged);
 
-    generationIndexChanged(0);
+    gameIndexChanged(toInt(Game::Emerald));
 
     QSettings setting;
     if (setting.contains("ivCalculator/geometry"))
@@ -129,19 +134,6 @@ void IVCalculator::displayIVs(QLabel *label, const std::vector<u8> &ivs)
     }
 
     label->setText(result);
-}
-
-PersonalInfo IVCalculator::getPersonalInfo(const PersonalInfo &base)
-{
-    u8 form = static_cast<u8>(ui->comboBoxAltForm->currentIndex());
-    u16 formIndex = base.getFormStatIndex();
-
-    if (form == 0 || formIndex == 0)
-    {
-        return base;
-    }
-
-    return personalInfo[formIndex + form - 1];
 }
 
 void IVCalculator::addEntry()
@@ -221,9 +213,13 @@ void IVCalculator::findIVs()
     u8 nature = static_cast<u8>(ui->comboBoxNature->currentIndex());
     u8 hiddenPower = static_cast<u8>(ui->comboBoxHiddenPower->currentIndex() - 1);
     u8 characteristic = static_cast<u8>(ui->comboBoxCharacteristic->currentIndex() - 1);
-    auto base = personalInfo[ui->comboBoxPokemon->currentData().toUInt()];
 
-    auto ivs = IVChecker::calculateIVRange(getPersonalInfo(base).getBaseStats(), stats, levels, nature, characteristic, hiddenPower);
+    Game version = static_cast<Game>(ui->comboBoxGame->getCurrentUInt());
+    u16 specie = ui->comboBoxPokemon->currentData().toUInt();
+    u8 altform = ui->comboBoxAltForm->currentIndex();
+    PersonalInfo info = PersonalLoader::getPersonal(version, specie, altform);
+
+    auto ivs = IVChecker::calculateIVRange(info.getStats(), stats, levels, nature, characteristic, hiddenPower);
 
     displayIVs(ui->labelHPIVValue, ivs[0]);
     displayIVs(ui->labelAtkIVValue, ivs[1]);
@@ -231,13 +227,18 @@ void IVCalculator::findIVs()
     displayIVs(ui->labelSpAIVValue, ivs[3]);
     displayIVs(ui->labelSpDIVValue, ivs[4]);
     displayIVs(ui->labelSpeIVValue, ivs[5]);
+
+    emit ivsCalculated(ivs);
 }
 
 void IVCalculator::pokemonIndexChanged(int index)
 {
-    if (index >= 0 && personalInfo != nullptr)
+    if (index >= 0)
     {
-        PersonalInfo base = personalInfo[ui->comboBoxPokemon->currentData().toUInt()];
+        Game version = static_cast<Game>(ui->comboBoxGame->getCurrentUInt());
+        u16 specie = ui->comboBoxPokemon->currentData().toUInt();
+
+        PersonalInfo base = PersonalLoader::getPersonal(version, specie);
         u8 formCount = base.getFormCount();
 
         ui->labelAltForm->setVisible(formCount > 1);
@@ -255,12 +256,12 @@ void IVCalculator::altformIndexChanged(int index)
 {
     if (index >= 0)
     {
+        Game version = static_cast<Game>(ui->comboBoxGame->getCurrentUInt());
         u16 specie = ui->comboBoxPokemon->currentData().toUInt();
 
-        auto base = personalInfo[specie];
-        auto info = getPersonalInfo(base);
+        PersonalInfo info = PersonalLoader::getPersonal(version, specie, index);
 
-        std::array<u8, 6> stats = info.getBaseStats();
+        std::array<u8, 6> stats = info.getStats();
         ui->labelBaseHPValue->setText(QString::number(stats[0]));
         ui->labelBaseAtkValue->setText(QString::number(stats[1]));
         ui->labelBaseDefValue->setText(QString::number(stats[2]));
@@ -270,37 +271,41 @@ void IVCalculator::altformIndexChanged(int index)
     }
 }
 
-void IVCalculator::generationIndexChanged(int index)
+void IVCalculator::gameIndexChanged(int index)
 {
     if (index >= 0)
     {
+        Game version = static_cast<Game>(ui->comboBoxGame->getCurrentUInt());
+
+        const PersonalInfo *info = PersonalLoader::getPersonal(version);
+
         u16 max = 0;
-        if (index == 0)
+        if ((version & Game::Gen3) != Game::None)
         {
-            personalInfo = PersonalLoader3::getPersonal();
             max = 386;
         }
-        else if (index == 1)
+        else if ((version & Game::Gen4) != Game::None)
         {
-            personalInfo = PersonalLoader4::getPersonal();
             max = 493;
         }
-        else if (index == 2)
+        else if ((version & Game::Gen5) != Game::None)
         {
-            personalInfo = PersonalLoader5::getPersonal();
             max = 649;
         }
-        else if (index == 3)
+        else if ((version & Game::SwSh) != Game::None)
         {
-            personalInfo = PersonalLoader8::getPersonal();
             max = 898;
+        }
+        else
+        {
+            max = 493;
         }
 
         std::vector<u16> species;
         species.reserve(max);
         for (int i = 1; i <= max; i++)
         {
-            if (personalInfo[i].getPresent())
+            if (info[i].getPresent())
             {
                 species.emplace_back(i);
             }

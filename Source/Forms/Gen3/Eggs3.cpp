@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2021 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -26,8 +26,10 @@
 #include <Core/Parents/ProfileLoader.hpp>
 #include <Core/Util/Nature.hpp>
 #include <Core/Util/Translator.hpp>
+#include <Forms/Controls/Controls.hpp>
 #include <Forms/Gen3/Profile/ProfileManager3.hpp>
 #include <Forms/Models/Gen3/EggModel3.hpp>
+#include <QMenu>
 #include <QMessageBox>
 #include <QSettings>
 
@@ -57,7 +59,6 @@ void Eggs3::updateProfiles()
     profiles.insert(profiles.begin(), Profile3());
 
     ui->comboBoxProfiles->clear();
-
     for (const auto &profile : profiles)
     {
         ui->comboBoxProfiles->addItem(QString::fromStdString(profile.getName()));
@@ -109,9 +110,11 @@ void Eggs3::setupModels()
     ui->comboBoxRSCompatibility->setup({ 20, 50, 70 });
     ui->comboBoxFRLGCompatibility->setup({ 20, 50, 70 });
 
-    ui->comboBoxEmeraldMethod->setup({ Method::EBredPID, Method::EBred, Method::EBredSplit, Method::EBredAlternate });
-    ui->comboBoxRSMethod->setup({ Method::RSBred, Method::RSBredSplit, Method::RSBredAlternate });
-    ui->comboBoxFRLGMethod->setup({ Method::FRLGBred, Method::FRLGBredSplit, Method::FRLGBredAlternate, Method::FRLGBredMixed });
+    ui->comboBoxEmeraldMethod->setup(
+        { toInt(Method::EBredPID), toInt(Method::EBred), toInt(Method::EBredSplit), toInt(Method::EBredAlternate) });
+    ui->comboBoxRSMethod->setup({ toInt(Method::RSBred), toInt(Method::RSBredSplit), toInt(Method::RSBredAlternate) });
+    ui->comboBoxFRLGMethod->setup(
+        { toInt(Method::FRLGBred), toInt(Method::FRLGBredSplit), toInt(Method::FRLGBredAlternate), toInt(Method::FRLGBredMixed) });
 
     ui->filterEmerald->disableControls(Controls::EncounterSlots | Controls::UseDelay | Controls::DisableFilter);
     ui->filterRS->disableControls(Controls::EncounterSlots | Controls::UseDelay | Controls::DisableFilter);

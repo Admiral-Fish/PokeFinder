@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2021 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -20,7 +20,7 @@
 #ifndef PROFILEEDITOR8_HPP
 #define PROFILEEDITOR8_HPP
 
-#include <Core/Parents/Profile.hpp>
+#include <Core/Gen8/Profile8.hpp>
 #include <QDialog>
 
 namespace Ui
@@ -32,26 +32,27 @@ class ProfileEditor8 : public QDialog
 {
     Q_OBJECT
 signals:
-    void newProfile(Profile);
-    void editProfile(Profile, Profile);
+    void newProfile(Profile8);
+    void editProfile(Profile8, Profile8);
 
 public:
     explicit ProfileEditor8(QWidget *parent = nullptr);
-    explicit ProfileEditor8(const Profile &profile, QWidget *parent = nullptr);
+    explicit ProfileEditor8(const Profile8 &profile, QWidget *parent = nullptr);
     ~ProfileEditor8() override;
-    Profile getNewProfile();
-    Profile getOriginal();
+    Profile8 getNewProfile();
+    Profile8 getOriginal();
 
 private:
     Ui::ProfileEditor8 *ui;
     bool isEditing = false;
-    Profile original;
-    Profile fresh;
+    Profile8 original;
+    Profile8 fresh;
 
     void setupModels();
 
 private slots:
     void okay();
+    void versionIndexChanged(int index);
 };
 
 #endif // PROFILEEDITOR8_HPP

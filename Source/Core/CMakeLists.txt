@@ -26,7 +26,7 @@ add_library(PokeFinderCore STATIC
     Gen3/Generators/GameCubeGenerator.cpp
     Gen3/Generators/IDGenerator3.cpp
     Gen3/Generators/PokeSpotGenerator.cpp
-    Gen3/Generators/StationaryGenerator3.cpp
+    Gen3/Generators/StaticGenerator3.cpp
     Gen3/Generators/WildGenerator3.cpp
     Gen3/Profile3.cpp
     Gen3/Searchers/ChannelSeedSearcher.cpp
@@ -35,7 +35,7 @@ add_library(PokeFinderCore STATIC
     Gen3/Searchers/GameCubeSearcher.cpp
     Gen3/Searchers/RTCSearcher.cpp
     Gen3/Searchers/SeedSearcher.cpp
-    Gen3/Searchers/StationarySearcher3.cpp
+    Gen3/Searchers/StaticSearcher3.cpp
     Gen3/Searchers/WildSearcher3.cpp
     Gen3/ShadowLock.cpp
     Gen3/ShadowTeam.cpp
@@ -46,13 +46,13 @@ add_library(PokeFinderCore STATIC
     Gen4/Encounters4.cpp
     Gen4/Generators/EggGenerator4.cpp
     Gen4/Generators/IDGenerator4.cpp
-    Gen4/Generators/StationaryGenerator4.cpp
+    Gen4/Generators/StaticGenerator4.cpp
     Gen4/Generators/WildGenerator4.cpp
     Gen4/HGSSRoamer.cpp
     Gen4/Profile4.cpp
     Gen4/Searchers/EggSearcher4.cpp
     Gen4/Searchers/IDSearcher4.cpp
-    Gen4/Searchers/StationarySearcher4.cpp
+    Gen4/Searchers/StaticSearcher4.cpp
     Gen4/Searchers/WildSearcher4.cpp
     Gen4/SeedTime.cpp
     Gen4/Tools/ChainedSIDCalc.cpp
@@ -64,10 +64,9 @@ add_library(PokeFinderCore STATIC
     Gen5/Generators/EventGenerator5.cpp
     Gen5/Generators/HiddenGrottoGenerator.cpp
     Gen5/Generators/IDGenerator5.cpp
-    Gen5/Generators/StationaryGenerator5.cpp
+    Gen5/Generators/StaticGenerator5.cpp
     Gen5/Keypresses.cpp
     Gen5/Nazos.cpp
-    Gen5/PGF.cpp
     Gen5/Profile5.cpp
     Gen5/Searchers/DreamRadarSearcher.cpp
     Gen5/Searchers/EggSearcher5.cpp
@@ -75,30 +74,32 @@ add_library(PokeFinderCore STATIC
     Gen5/Searchers/HiddenGrottoSearcher.cpp
     Gen5/Searchers/IDSearcher5.cpp
     Gen5/Searchers/ProfileSearcher5.cpp
-    Gen5/Searchers/StationarySearcher5.cpp
+    Gen5/Searchers/StaticSearcher5.cpp
     Gen8/DenLoader.cpp
+    Gen8/EncounterArea8.cpp
+    Gen8/Encounters8.cpp
+    Gen8/Filters/IDFilter8.cpp
+    Gen8/Generators/EggGenerator8.cpp
+    Gen8/Generators/EventGenerator8.cpp
+    Gen8/Generators/IDGenerator8.cpp
     Gen8/Generators/RaidGenerator.cpp
+    Gen8/Generators/StaticGenerator8.cpp
+    Gen8/Generators/WildGenerator8.cpp
     Parents/Daycare.cpp
     Parents/EncounterArea.cpp
     Parents/Filters/IDFilter.cpp
     Parents/Filters/StateFilter.cpp
-    Parents/Generators/EggGenerator.cpp
-    Parents/Generators/Generator.cpp
-    Parents/Generators/IDGenerator.cpp
-    Parents/Generators/StationaryGenerator.cpp
-    Parents/Generators/WildGenerator.cpp
     Parents/PersonalLoader.cpp
     Parents/Profile.cpp
     Parents/ProfileLoader.cpp
-    Parents/Searchers/Searcher.cpp
-    Parents/Searchers/StationarySearcher.cpp
-    Parents/Searchers/WildSearcher.cpp
     RNG/MT.cpp
     RNG/RNGCache.cpp
     RNG/RNGEuclidean.cpp
     RNG/SFMT.cpp
     RNG/SHA1.cpp
     RNG/TinyMT.cpp
+    RNG/Xoroshiro.cpp
+    RNG/Xorshift.cpp
     Util/DateTime.cpp
     Util/EncounterSlot.cpp
     Util/IVChecker.cpp

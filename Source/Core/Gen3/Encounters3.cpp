@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2021 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -158,12 +158,12 @@ namespace Encounters3
         }
     }
 
-    std::vector<EncounterArea3> getEncounters(Encounter encounter, const Profile3 &profile)
+    std::vector<EncounterArea3> getEncounters(Encounter encounter, Game version)
     {
-        std::vector<EncounterArea3> encounters;
-        const auto *info = PersonalLoader3::getPersonal();
+        const auto *info = PersonalLoader::getPersonal(version);
 
-        for (const auto &data : getData(profile.getVersion()))
+        std::vector<EncounterArea3> encounters;
+        for (const auto &data : getData(version))
         {
             auto areas = getArea(data, info);
             std::copy_if(areas.begin(), areas.end(), std::back_inserter(encounters),

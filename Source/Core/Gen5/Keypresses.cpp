@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2021 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -18,6 +18,7 @@
  */
 
 #include "Keypresses.hpp"
+#include <Core/Enum/Buttons.hpp>
 
 constexpr Buttons keys[8] = { Buttons::R, Buttons::L, Buttons::X, Buttons::Y, Buttons::A, Buttons::B, Buttons::Select, Buttons::Start };
 constexpr Buttons directions[8] = { Buttons::Right,   Buttons::Left,   Buttons::Up,        Buttons::Down,
@@ -31,7 +32,7 @@ namespace Keypresses
     {
         bool valid(Buttons button, bool skipLR)
         {
-            return !(skipLR && (button & Buttons::L || button & Buttons::R));
+            return !(skipLR && ((button & Buttons::L) != Buttons::None || (button & Buttons::R) != Buttons::None));
         }
     }
 
@@ -41,7 +42,7 @@ namespace Keypresses
 
         if (keypresses[0])
         {
-            buttons.emplace_back(Buttons::No);
+            buttons.emplace_back(Buttons::None);
         }
 
         for (u8 i = 0; i < 8; i++)
@@ -115,7 +116,7 @@ namespace Keypresses
 
             for (int i = 0; i < 12; i++)
             {
-                if (button & (1 << i))
+                if ((button & static_cast<Buttons>(1 << i)) != Buttons::None)
                 {
                     value -= buttonValues[i];
                 }

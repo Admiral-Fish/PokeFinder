@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2021 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -20,10 +20,10 @@
 #ifndef PROFILEMODEL8_HPP
 #define PROFILEMODEL8_HPP
 
-#include <Core/Parents/Profile.hpp>
+#include <Core/Gen8/Profile8.hpp>
 #include <Forms/Models/TableModel.hpp>
 
-class ProfileModel8 : public TableModel<Profile>
+class ProfileModel8 : public TableModel<Profile8>
 {
     Q_OBJECT
 public:
@@ -33,7 +33,7 @@ public:
     QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
 
 private:
-    QStringList header = { tr("Profile Name"), tr("Version"), tr("TID"), tr("SID") };
+    QStringList header = { tr("Profile Name"), tr("Version"), tr("TID"), tr("SID"), tr("Shiny Charm"), tr("Oval Charm"), tr("Pokeradar"), tr("Swarm") };
 };
 
 #endif // PROFILE8MODEL_HPP

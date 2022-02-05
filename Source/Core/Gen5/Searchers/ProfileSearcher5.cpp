@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2021 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -20,9 +20,11 @@
 #include "ProfileSearcher5.hpp"
 #include <Core/Enum/Game.hpp>
 #include <Core/Gen5/Keypresses.hpp>
+#include <Core/Gen5/States/ProfileSearcherState5.hpp>
 #include <Core/RNG/LCRNG64.hpp>
 #include <Core/RNG/MTFast.hpp>
 #include <Core/RNG/SHA1.hpp>
+#include <Core/Util/DateTime.hpp>
 #include <Core/Util/Utilities.hpp>
 #include <future>
 
@@ -151,7 +153,7 @@ ProfileIVSearcher5::ProfileIVSearcher5(const std::array<u8, 6> &minIVs, const st
                      version, language, dsType, mac, keypress),
     minIVs(minIVs),
     maxIVs(maxIVs),
-    offset(version & Game::BW2 ? 2 : 0)
+    offset((version & Game::BW2) != Game::None ? 2 : 0)
 {
 }
 
@@ -180,7 +182,7 @@ ProfileNeedleSearcher5::ProfileNeedleSearcher5(const std::vector<u8> &needles, b
     needles(needles),
     unovaLink(unovaLink),
     memoryLink(memoryLink),
-    game(version & Game::BW)
+    game((version & Game::BW) != Game::None)
 {
 }
 

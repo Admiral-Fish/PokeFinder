@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2021 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -20,19 +20,23 @@
 #ifndef EGGSEARCHER5_HPP
 #define EGGSEARCHER5_HPP
 
-#include <Core/Gen5/Generators/EggGenerator5.hpp>
 #include <Core/Gen5/Profile5.hpp>
-#include <Core/Gen5/States/SearcherState5.hpp>
 #include <Core/Util/Global.hpp>
 #include <atomic>
 #include <mutex>
+
+class Date;
+class EggGenerator5;
+class EggState;
+template <class StateType>
+class SearcherState5;
 
 class EggSearcher5
 {
 public:
     EggSearcher5() = default;
     explicit EggSearcher5(const Profile5 &profile);
-    void startSearch(const EggGenerator5 &generator, int threads, Date start, const Date &end);
+    void startSearch(const EggGenerator5 &generator, int threads, const Date &start, const Date &end);
     void cancelSearch();
     std::vector<SearcherState5<EggState>> getResults();
     int getProgress() const;

@@ -439,7 +439,7 @@
          <bool>false</bool>
         </property>
         <property name="text">
-         <string>Stationary/Wild</string>
+         <string>Static/Wild</string>
         </property>
        </widget>
       </item>

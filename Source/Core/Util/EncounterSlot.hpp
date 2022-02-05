@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2021 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -22,13 +22,14 @@
 
 #include <Core/Util/Global.hpp>
 
-enum Encounter : u8;
+enum class Encounter : u8;
 
 namespace EncounterSlot
 {
     u8 hSlot(u16 result, Encounter encounter);
     u8 jSlot(u16 result, Encounter encounter);
     u8 kSlot(u16 result, Encounter encounter);
+    u8 bdspSlot(u8 result, Encounter encounter);
 };
 
 #endif // ENCOUNTERSLOT_HPP

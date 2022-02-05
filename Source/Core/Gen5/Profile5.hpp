@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2021 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -20,10 +20,11 @@
 #ifndef PROFILE5_HPP
 #define PROFILE5_HPP
 
-#include <Core/Enum/DSType.hpp>
 #include <Core/Enum/Language.hpp>
 #include <Core/Parents/Profile.hpp>
 #include <vector>
+
+enum class DSType : u8;
 
 class Profile5 : public Profile
 {
@@ -49,6 +50,8 @@ public:
     std::string getDSTypeString() const;
     Language getLanguage() const;
     std::string getLanguageString() const;
+    bool operator==(const Profile5 &other) const;
+    bool operator!=(const Profile5 &other) const;
 
 private:
     u64 mac;
@@ -65,8 +68,5 @@ private:
     DSType dsType;
     Language language;
 };
-
-bool operator==(const Profile5 &left, const Profile5 &right);
-bool operator!=(const Profile5 &left, const Profile5 &right);
 
 #endif // PROFILE5_HPP

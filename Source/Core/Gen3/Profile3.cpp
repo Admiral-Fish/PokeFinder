@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2021 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -35,13 +35,12 @@ bool Profile3::getDeadBattery() const
     return deadBattery;
 }
 
-bool operator==(const Profile3 &left, const Profile3 &right)
+bool Profile3::operator==(const Profile3 &other) const
 {
-    return left.getName() == right.getName() && left.getVersion() == right.getVersion() && left.getTID() == right.getTID()
-        && left.getSID() == right.getSID() && left.getDeadBattery() == right.getDeadBattery();
+    return Profile::operator==(other) && deadBattery == other.deadBattery;
 }
 
-bool operator!=(const Profile3 &left, const Profile3 &right)
+bool Profile3::operator!=(const Profile3 &other) const
 {
-    return !(left == right);
+    return !(operator==(other));
 }

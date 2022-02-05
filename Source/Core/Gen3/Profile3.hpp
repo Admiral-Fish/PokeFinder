@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2021 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -27,13 +27,12 @@ class Profile3 : public Profile
 public:
     Profile3();
     Profile3(const std::string &name, Game version, u16 tid, u16 sid, bool deadBattery = false);
-    bool getDeadBattery() const;
+        bool getDeadBattery() const;
+    bool operator==(const Profile3 &other) const;
+    bool operator!=(const Profile3 &other) const;
 
 private:
     bool deadBattery;
 };
-
-bool operator==(const Profile3 &left, const Profile3 &right);
-bool operator!=(const Profile3 &left, const Profile3 &right);
 
 #endif // PROFILE3_HPP
