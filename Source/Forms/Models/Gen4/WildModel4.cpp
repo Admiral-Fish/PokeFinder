@@ -66,11 +66,11 @@ QVariant WildGeneratorModel4::data(const QModelIndex &index, int role) const
             u8 item = state.getItem();
             if (state.getLead() == Lead::CompoundEyes)
             {
-                return item < 20 ? "No" : item < 80? "60%" : "20%";
+                return item < 20 ? tr("None") : item < 80? "60%" : "20%";
             }
             else
             {
-                return item < 45 ? "No" : item < 95? "50%" : "5%";
+                return item < 45 ? tr("None") : item < 95? "50%" : "5%";
             }
         }
         case 3:
@@ -295,11 +295,11 @@ QVariant WildSearcherModel4::data(const QModelIndex &index, int role) const
             u8 item = state.getItem();
             if (state.getLead() == Lead::CompoundEyes)
             {
-                return item < 20 ? "No" : item < 80? "60%" : "20%";
+                return item < 20 ? tr("None") : item < 80? "60%" : "20%";
             }
             else
             {
-                return item < 45 ? "No" : item < 95? "50%" : "5%";
+                return item < 45 ? tr("None") : item < 95? "50%" : "5%";
             }
         }
         case 4:

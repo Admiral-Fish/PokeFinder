@@ -378,7 +378,7 @@ std::vector<WildState> WildSearcher4::searchInitialSeeds(const std::vector<WildS
 std::vector<WildState> WildSearcher4::normalMethodJ(WildState state, u32 seed) const
 {
     std::vector<WildState> states;
-    lead == Lead::CompoundEyes? state.setLead(Lead::CompoundEyes) : state.setLead(Lead::None);
+    state.setLead(lead);
 
     PokeRNGR rng(seed);
     u32 pid;
@@ -546,7 +546,7 @@ std::vector<WildState> WildSearcher4::normalMethodK(WildState state, u32 seed) c
     {
         if ((nextRNG % 25) == state.getNature())
         {
-            lead == Lead::CompoundEyes? state.setLead(Lead::CompoundEyes) : state.setLead(Lead::None);
+            state.setLead(lead);
             if (encounterMethodK(state, rng.getSeed()))
             {
                 states.emplace_back(state);
