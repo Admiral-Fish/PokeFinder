@@ -99,7 +99,6 @@ std::vector<WildState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 s
 
     bool rseSafariRockSmash = encounterArea.rseSafariZone() && rse && encounter == Encounter::RockSmash; // RockSmash encounters have different rng calls inside RSE Safari Zone,
                                                                                                          // so we set a flag to check if we're searching these kind of spreads
-
     auto seeds = cache.recoverLower16BitsIV(hp, atk, def, spa, spd, spe);
     for (const u32 val : seeds)
     {
