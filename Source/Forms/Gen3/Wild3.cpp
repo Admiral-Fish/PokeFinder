@@ -244,7 +244,8 @@ void Wild3::generate()
                        ui->filterGenerator->getDisableFilters(), ui->filterGenerator->getMinIVs(), ui->filterGenerator->getMaxIVs(),
                        ui->filterGenerator->getNatures(), ui->filterGenerator->getHiddenPowers(), ui->filterGenerator->getEncounterSlots());
 
-    WildGenerator3 generator(initialAdvances, maxAdvances, tid, sid, genderRatio, method, filter);
+    bool flag = (currentProfile.getVersion() & Game::RSE) != Game::None;
+    WildGenerator3 generator(initialAdvances, maxAdvances, tid, sid, genderRatio, method, filter, flag);
     generator.setEncounter(static_cast<Encounter>(ui->comboBoxGeneratorEncounter->currentData().toInt()));
     generator.setOffset(offset);
 
@@ -280,7 +281,8 @@ void Wild3::search()
     u8 genderRatio = ui->filterSearcher->getGenderRatio();
     auto method = static_cast<Method>(ui->comboBoxSearcherMethod->getCurrentInt());
 
-    auto *searcher = new WildSearcher3(tid, sid, genderRatio, method, filter);
+    bool flag = (currentProfile.getVersion() & Game::RSE) != Game::None;
+    auto *searcher = new WildSearcher3(tid, sid, genderRatio, method, filter, flag);
     searcher->setEncounter(static_cast<Encounter>(ui->comboBoxSearcherEncounter->currentData().toInt()));
     searcher->setLead(static_cast<Lead>(ui->comboBoxSearcherLead->currentData().toInt()));
     searcher->setEncounterArea(encounterSearcher[ui->comboBoxSearcherLocation->currentData().toInt()]);

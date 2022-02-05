@@ -24,9 +24,10 @@
 #include <Core/RNG/LCRNG.hpp>
 #include <Core/Util/EncounterSlot.hpp>
 
-WildSearcher3::WildSearcher3(u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter) :
+WildSearcher3::WildSearcher3(u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter, bool isRSEVersion) :
     WildSearcher(tid, sid, genderRatio, method, filter), cache(method), searching(false), progress(0)
 {
+    this-> isRSEVersion = isRSEVersion;
 }
 
 void WildSearcher3::setEncounterArea(const EncounterArea3 &encounterArea)
@@ -97,7 +98,7 @@ std::vector<WildState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 s
         return states;
     }
 
-    bool isRSESafariLocation = encounterArea.isRSESafariZone();
+    bool isRSESafariLocation = encounterArea.isRSESafariZone() && isRSEVersion;
     bool isRSESafariRockSmash = false;
     if (isRSESafariLocation) // RockSmash encounters have different rng calls inside RSE Safari Zone,
                              // so we set a flag to check if we're searching these kind of spreads
