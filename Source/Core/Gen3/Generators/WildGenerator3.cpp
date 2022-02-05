@@ -42,6 +42,8 @@ std::vector<WildState> WildGenerator3::generate(u32 seed, const EncounterArea3 &
     rng.advance(initialAdvances + offset);
 
     u16 rate = encounterArea.getEncounterRate() * 16;
+    bool isRSESafariLocation = encounterArea.isRSESafariZone(); // RockSmash encounters have different rng calls inside RSE Safari Zone,
+                                                                // so we set a flag to check if we're searching these kind of spreads
     bool rock = rate == 2880;
 
     bool cuteCharmFlag = false;
@@ -87,11 +89,11 @@ std::vector<WildState> WildGenerator3::generate(u32 seed, const EncounterArea3 &
         switch (encounter)
         {
         case Encounter::RockSmash:
-            if (!rock)
+            if (isRSESafariLocation || !rock) // account RockSmash extra rng call inside RSE Safari Zone
             {
                 go.next();
             }
-            if (((go.nextUShort()) % 2880) >= rate)
+            if ((go.nextUShort() % 2880) >= rate)
             {
                 continue;
             }
@@ -103,6 +105,11 @@ std::vector<WildState> WildGenerator3::generate(u32 seed, const EncounterArea3 &
             }
 
             state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), go.nextUShort()));
+            if (isRSESafariLocation) // account RockSmash extra rng call inside RSE Safari Zone
+            {
+                go.advance(1);
+            }
+
             break;
         case Encounter::SafariZone:
             state.setEncounterSlot(EncounterSlot::hSlot(go.nextUShort(), encounter));
