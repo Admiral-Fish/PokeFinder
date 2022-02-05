@@ -29,10 +29,9 @@
 #include <functional>
 
 WildGenerator3::WildGenerator3(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, Method method,
-                               const StateFilter &filter, bool isRSEVersion) :
-    WildGenerator(initialAdvances, maxAdvances, tid, sid, genderRatio, method, filter)
+                               const StateFilter &filter, bool rse) :
+    WildGenerator(initialAdvances, maxAdvances, tid, sid, genderRatio, method, filter), rse(rse)
 {
-    this-> isRSEVersion = isRSEVersion;
 }
 
 std::vector<WildState> WildGenerator3::generate(u32 seed, const EncounterArea3 &encounterArea) const
@@ -43,8 +42,8 @@ std::vector<WildState> WildGenerator3::generate(u32 seed, const EncounterArea3 &
     rng.advance(initialAdvances + offset);
 
     u16 rate = encounterArea.getEncounterRate() * 16;
-    bool isRSESafariLocation = encounterArea.isRSESafariZone() && isRSEVersion; // RockSmash encounters have different rng calls inside RSE Safari Zone,
-                                                                                // so we set a flag to check if we're searching these kind of spreads
+    bool rseLocation = encounterArea.rseSafariZone() && rse; // RockSmash encounters have different rng calls inside RSE Safari Zone,
+                                                             // so we set a flag to check if we're searching these kind of spreads
     bool rock = rate == 2880;
 
     bool cuteCharmFlag = false;
@@ -90,7 +89,7 @@ std::vector<WildState> WildGenerator3::generate(u32 seed, const EncounterArea3 &
         switch (encounter)
         {
         case Encounter::RockSmash:
-            if (isRSESafariLocation || !rock) // account RockSmash extra rng call inside RSE Safari Zone
+            if (rseLocation || !rock) // account RockSmash extra rng call inside RSE Safari Zone
             {
                 go.next();
             }
@@ -106,7 +105,7 @@ std::vector<WildState> WildGenerator3::generate(u32 seed, const EncounterArea3 &
             }
 
             state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), go.nextUShort()));
-            if (isRSESafariLocation) // account RockSmash extra rng call inside RSE Safari Zone
+            if (rseLocation) // account RockSmash extra rng call inside RSE Safari Zone
             {
                 go.advance(1);
             }
