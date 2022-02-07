@@ -22,6 +22,7 @@
 #include <Core/Enum/Lead.hpp>
 #include <Core/Enum/Method.hpp>
 #include <Core/Gen4/Generators/StaticGenerator4.hpp>
+#include <Core/Gen4/Profile4.hpp>
 #include <Core/Gen4/Searchers/StaticSearcher4.hpp>
 #include <Core/Parents/Filters/StateFilter.hpp>
 #include <Core/Parents/ProfileLoader.hpp>
@@ -31,8 +32,8 @@
 #include <Forms/Gen4/Profile/ProfileManager4.hpp>
 #include <Forms/Gen4/Tools/SeedtoTime4.hpp>
 #include <Forms/Models/Gen4/StaticModel4.hpp>
-#include <QSettings>
 #include <QMenu>
+#include <QSettings>
 #include <QThread>
 #include <QTimer>
 
@@ -165,8 +166,8 @@ void Static4::generate()
     u32 seed = ui->textBoxGeneratorSeed->getUInt();
     u32 initialAdvances = ui->textBoxGeneratorInitialAdvances->getUInt();
     u32 maxAdvances = ui->textBoxGeneratorMaxAdvances->getUInt();
-    u16 tid = currentProfile.getTID();
-    u16 sid = currentProfile.getSID();
+    u16 tid = currentProfile->getTID();
+    u16 sid = currentProfile->getSID();
     u8 genderRatio = ui->filterGenerator->getGenderRatio();
     u32 offset = 0;
     if (ui->filterGenerator->useDelay())
@@ -210,8 +211,8 @@ void Static4::search()
     StateFilter filter(ui->filterSearcher->getGender(), ui->filterSearcher->getAbility(), ui->filterSearcher->getShiny(), false, min, max,
                        ui->filterSearcher->getNatures(), ui->filterSearcher->getHiddenPowers(), {});
 
-    u16 tid = currentProfile.getTID();
-    u16 sid = currentProfile.getSID();
+    u16 tid = currentProfile->getTID();
+    u16 sid = currentProfile->getSID();
     u8 genderRatio = ui->filterSearcher->getGenderRatio();
 
     auto *searcher = new StaticSearcher4(tid, sid, genderRatio, method, filter);
@@ -253,13 +254,13 @@ void Static4::profileIndexChanged(int index)
 {
     if (index >= 0)
     {
-        currentProfile = profiles[index];
+        currentProfile = &profiles[index];
 
-        ui->labelProfileTIDValue->setText(QString::number(currentProfile.getTID()));
-        ui->labelProfileSIDValue->setText(QString::number(currentProfile.getSID()));
-        ui->labelProfileGameValue->setText(QString::fromStdString(currentProfile.getVersionString()));
+        ui->labelProfileTIDValue->setText(QString::number(currentProfile->getTID()));
+        ui->labelProfileSIDValue->setText(QString::number(currentProfile->getSID()));
+        ui->labelProfileGameValue->setText(QString::fromStdString(currentProfile->getVersionString()));
 
-        bool flag = (currentProfile.getVersion() & Game::HGSS) != Game::None;
+        bool flag = (currentProfile->getVersion() & Game::HGSS) != Game::None;
 
         ui->comboBoxGeneratorMethod->clear();
         ui->comboBoxGeneratorMethod->addItem(tr("Method 1"), toInt(Method::Method1));
@@ -277,7 +278,9 @@ void Static4::profileIndexChanged(int index)
 void Static4::seedToTime()
 {
     QModelIndex index = ui->tableViewSearcher->currentIndex();
-    auto *time = new SeedtoTime4(searcherModel->data(searcherModel->index(index.row(), 0), Qt::DisplayRole).toString(), currentProfile);
+    QString seed = searcherModel->data(searcherModel->index(index.row(), 0)).toString();
+
+    auto *time = new SeedtoTime4(seed, currentProfile->getVersion());
     time->show();
     time->raise();
 }

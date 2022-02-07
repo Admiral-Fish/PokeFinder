@@ -20,9 +20,9 @@
 #ifndef STATIC3_H
 #define STATIC3_H
 
-#include <Core/Gen3/Profile3.hpp>
 #include <QWidget>
 
+class Profile3;
 class StaticGeneratorModel3;
 class StaticSearcherModel3;
 class QMenu;
@@ -48,7 +48,7 @@ private:
     StaticGeneratorModel3 *generatorModel;
     StaticSearcherModel3 *searcherModel;
     std::vector<Profile3> profiles;
-    Profile3 currentProfile;
+    Profile3 *currentProfile;
     QMenu *generatorMenu;
     QMenu *searcherMenu;
 

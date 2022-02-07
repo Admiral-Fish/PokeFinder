@@ -20,9 +20,9 @@
 #ifndef STATIC4_HPP
 #define STATIC4_HPP
 
-#include <Core/Gen4/Profile4.hpp>
 #include <QWidget>
 
+class Profile4;
 class StaticGeneratorModel4;
 class StaticSearcherModel4;
 class QMenu;
@@ -48,7 +48,7 @@ private:
     StaticGeneratorModel4 *generatorModel;
     StaticSearcherModel4 *searcherModel;
     std::vector<Profile4> profiles;
-    Profile4 currentProfile;
+    Profile4 *currentProfile;
     QMenu *generatorMenu;
     QMenu *searcherMenu;
 

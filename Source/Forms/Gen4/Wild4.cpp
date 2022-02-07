@@ -24,6 +24,7 @@
 #include <Core/Enum/Method.hpp>
 #include <Core/Gen4/Encounters4.hpp>
 #include <Core/Gen4/Generators/WildGenerator4.hpp>
+#include <Core/Gen4/Profile4.hpp>
 #include <Core/Gen4/Searchers/WildSearcher4.hpp>
 #include <Core/Parents/Filters/StateFilter.hpp>
 #include <Core/Parents/ProfileLoader.hpp>
@@ -35,10 +36,10 @@
 #include <Forms/Gen4/Profile/ProfileManager4.hpp>
 #include <Forms/Gen4/Tools/SeedtoTime4.hpp>
 #include <Forms/Models/Gen4/WildModel4.hpp>
+#include <QMenu>
 #include <QSettings>
 #include <QThread>
 #include <QTimer>
-#include <QMenu>
 
 Wild4::Wild4(QWidget *parent) : QWidget(parent), ui(new Ui::Wild4)
 {
@@ -177,13 +178,13 @@ void Wild4::updateLocationsGenerator()
     auto encounter = static_cast<Encounter>(ui->comboBoxGeneratorEncounter->currentData().toInt());
     int time = ui->comboBoxGeneratorTime->currentIndex();
 
-    encounterGenerator = Encounters4::getEncounters(encounter, time, currentProfile);
+    encounterGenerator = Encounters4::getEncounters(encounter, time, *currentProfile);
 
     std::vector<u16> locs;
     std::transform(encounterGenerator.begin(), encounterGenerator.end(), std::back_inserter(locs),
                    [](const EncounterArea4 &area) { return area.getLocation(); });
 
-    std::vector<std::string> locations = Translator::getLocations(locs, currentProfile.getVersion());
+    std::vector<std::string> locations = Translator::getLocations(locs, currentProfile->getVersion());
     std::vector<int> indices(locations.size());
     std::iota(indices.begin(), indices.end(), 0);
     std::sort(indices.begin(), indices.end(), [&locations](int i, int j) { return locations[i] < locations[j]; });
@@ -200,13 +201,13 @@ void Wild4::updateLocationsSearcher()
     auto encounter = static_cast<Encounter>(ui->comboBoxSearcherEncounter->currentData().toInt());
     int time = ui->comboBoxSearcherTime->currentIndex();
 
-    encounterSearcher = Encounters4::getEncounters(encounter, time, currentProfile);
+    encounterSearcher = Encounters4::getEncounters(encounter, time, *currentProfile);
 
     std::vector<u16> locs;
     std::transform(encounterSearcher.begin(), encounterSearcher.end(), std::back_inserter(locs),
                    [](const EncounterArea4 &area) { return area.getLocation(); });
 
-    std::vector<std::string> locations = Translator::getLocations(locs, currentProfile.getVersion());
+    std::vector<std::string> locations = Translator::getLocations(locs, currentProfile->getVersion());
     std::vector<int> indices(locations.size());
     std::iota(indices.begin(), indices.end(), 0);
     std::sort(indices.begin(), indices.end(), [&locations](int i, int j) { return locations[i] < locations[j]; });
@@ -257,8 +258,8 @@ void Wild4::generate()
     u32 seed = ui->textBoxGeneratorSeed->getUInt();
     u32 initialAdvances = ui->textBoxGeneratorStartingAdvance->getUInt();
     u32 maxAdvances = ui->textBoxGeneratorMaxAdvances->getUInt();
-    u16 tid = currentProfile.getTID();
-    u16 sid = currentProfile.getSID();
+    u16 tid = currentProfile->getTID();
+    u16 sid = currentProfile->getSID();
     u8 genderRatio = ui->filterGenerator->getGenderRatio();
     u32 offset = 0;
     if (ui->filterGenerator->useDelay())
@@ -271,7 +272,7 @@ void Wild4::generate()
                        ui->filterGenerator->getNatures(), ui->filterGenerator->getHiddenPowers(), ui->filterGenerator->getEncounterSlots());
 
     WildGenerator4 generator(initialAdvances, maxAdvances, tid, sid, genderRatio, method, filter,
-                             (currentProfile.getVersion() & Game::Platinum) != Game::None);
+                             (currentProfile->getVersion() & Game::Platinum) != Game::None);
     generator.setOffset(offset);
     generator.setEncounter(static_cast<Encounter>(ui->comboBoxGeneratorEncounter->getCurrentInt()));
 
@@ -304,8 +305,8 @@ void Wild4::search()
     StateFilter filter(ui->filterSearcher->getGender(), ui->filterSearcher->getAbility(), ui->filterSearcher->getShiny(), false, min, max,
                        ui->filterSearcher->getNatures(), ui->filterSearcher->getHiddenPowers(), ui->filterSearcher->getEncounterSlots());
 
-    u16 tid = currentProfile.getTID();
-    u16 sid = currentProfile.getSID();
+    u16 tid = currentProfile->getTID();
+    u16 sid = currentProfile->getSID();
     u8 genderRatio = ui->filterSearcher->getGenderRatio();
 
     auto *searcher = new WildSearcher4(tid, sid, genderRatio, method, filter);
@@ -349,17 +350,17 @@ void Wild4::profilesIndexChanged(int index)
 {
     if (index >= 0)
     {
-        currentProfile = profiles[index];
+        currentProfile = &profiles[index];
 
-        ui->labelProfileTIDValue->setText(QString::number(currentProfile.getTID()));
-        ui->labelProfileSIDValue->setText(QString::number(currentProfile.getSID()));
-        ui->labelProfileGameValue->setText(QString::fromStdString(currentProfile.getVersionString()));
-        ui->labelProfileDualSlotValue->setText(QString::fromStdString(currentProfile.getDualSlotString()));
-        ui->labelProfileRadioValue->setText(QString::fromStdString(currentProfile.getRadioString()));
-        ui->labelProfilePokeRadarValue->setText(currentProfile.getRadar() ? tr("Yes") : tr("No"));
-        ui->labelProfileSwarmValue->setText(currentProfile.getSwarm() ? tr("Yes") : tr("No"));
+        ui->labelProfileTIDValue->setText(QString::number(currentProfile->getTID()));
+        ui->labelProfileSIDValue->setText(QString::number(currentProfile->getSID()));
+        ui->labelProfileGameValue->setText(QString::fromStdString(currentProfile->getVersionString()));
+        ui->labelProfileDualSlotValue->setText(QString::fromStdString(currentProfile->getDualSlotString()));
+        ui->labelProfileRadioValue->setText(QString::fromStdString(currentProfile->getRadioString()));
+        ui->labelProfilePokeRadarValue->setText(currentProfile->getRadar() ? tr("Yes") : tr("No"));
+        ui->labelProfileSwarmValue->setText(currentProfile->getSwarm() ? tr("Yes") : tr("No"));
 
-        bool flag = (currentProfile.getVersion() & Game::HGSS) != Game::None;
+        bool flag = (currentProfile->getVersion() & Game::HGSS) != Game::None;
 
         ui->comboBoxGeneratorMethod->clear();
         ui->comboBoxGeneratorMethod->addItem(flag ? tr("Method K") : tr("Method J"),
@@ -541,7 +542,9 @@ void Wild4::searcherTimeIndexChanged(int index)
 void Wild4::seedToTime()
 {
     QModelIndex index = ui->tableViewSearcher->currentIndex();
-    auto *time = new SeedtoTime4(searcherModel->data(searcherModel->index(index.row(), 0)).toString(), currentProfile);
+    QString seed = searcherModel->data(searcherModel->index(index.row(), 0)).toString();
+
+    auto *time = new SeedtoTime4(seed, currentProfile->getVersion());
     time->show();
     time->raise();
 }

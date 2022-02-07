@@ -20,6 +20,7 @@
 #include "Eggs8.hpp"
 #include "ui_Eggs8.h"
 #include <Core/Gen8/Generators/EggGenerator8.hpp>
+#include <Core/Gen8/Profile8.hpp>
 #include <Core/Parents/ProfileLoader.hpp>
 #include <Forms/Controls/Controls.hpp>
 #include <Forms/Gen8/Profile/ProfileManager8.hpp>
@@ -130,8 +131,8 @@ void Eggs8::generate()
     u64 seed1 = ui->textBoxSeed1->getULong();
     u32 initialAdvances = ui->textBoxInitialAdvances->getUInt();
     u32 maxAdvances = ui->textBoxMaxAdvances->getUInt();
-    u16 tid = currentProfile.getTID();
-    u16 sid = currentProfile.getSID();
+    u16 tid = currentProfile->getTID();
+    u16 sid = currentProfile->getSID();
     u8 genderRatio = ui->filter->getGenderRatio();
     u32 offset = 0;
     if (ui->filter->useDelay())
@@ -140,7 +141,7 @@ void Eggs8::generate()
     }
 
     u8 compatability = ui->comboBoxCompatibility->getCurrentByte();
-    if (currentProfile.getOvalCharm())
+    if (currentProfile->getOvalCharm())
     {
         compatability = compatability == 20 ? 40 : compatability == 50 ? 80 : 88;
     }
@@ -149,7 +150,7 @@ void Eggs8::generate()
                        ui->filter->getMinIVs(), ui->filter->getMaxIVs(), ui->filter->getNatures(), {}, {});
 
     EggGenerator8 generator(initialAdvances, maxAdvances, tid, sid, genderRatio, filter, ui->eggSettings->getDaycareSettings(),
-                            currentProfile.getShinyCharm(), compatability);
+                            currentProfile->getShinyCharm(), compatability);
     generator.setOffset(offset);
 
     auto states = generator.generate(seed0, seed1);
@@ -160,13 +161,13 @@ void Eggs8::profileIndexChanged(int index)
 {
     if (index >= 0)
     {
-        currentProfile = profiles[index];
+        currentProfile = &profiles[index];
 
-        ui->labelProfileTIDValue->setText(QString::number(currentProfile.getTID()));
-        ui->labelProfileSIDValue->setText(QString::number(currentProfile.getSID()));
-        ui->labelProfileGameValue->setText(QString::fromStdString(currentProfile.getVersionString()));
-        ui->labelProfileShinyCharmValue->setText(currentProfile.getShinyCharm() ? tr("Yes") : tr("No"));
-        ui->labelProfileOvalCharmValue->setText(currentProfile.getOvalCharm() ? tr("Yes") : tr("No"));
+        ui->labelProfileTIDValue->setText(QString::number(currentProfile->getTID()));
+        ui->labelProfileSIDValue->setText(QString::number(currentProfile->getSID()));
+        ui->labelProfileGameValue->setText(QString::fromStdString(currentProfile->getVersionString()));
+        ui->labelProfileShinyCharmValue->setText(currentProfile->getShinyCharm() ? tr("Yes") : tr("No"));
+        ui->labelProfileOvalCharmValue->setText(currentProfile->getOvalCharm() ? tr("Yes") : tr("No"));
     }
 }
 

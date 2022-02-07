@@ -20,10 +20,10 @@
 #ifndef EVENT8_HPP
 #define EVENT8_HPP
 
-#include <Core/Gen8/Profile8.hpp>
 #include <QWidget>
 
 class EventModel8;
+class Profile8;
 class WB8;
 class QMenu;
 
@@ -47,7 +47,7 @@ private:
     Ui::Event8 *ui;
     EventModel8 *model;
     std::vector<Profile8> profiles;
-    Profile8 currentProfile;
+    Profile8 *currentProfile;
     QMenu *menu;
 
     void setupModels();

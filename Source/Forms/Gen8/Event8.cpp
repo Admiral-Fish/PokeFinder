@@ -20,6 +20,7 @@
 #include "Event8.hpp"
 #include "ui_Event8.h"
 #include <Core/Gen8/Generators/EventGenerator8.hpp>
+#include <Core/Gen8/Profile8.hpp>
 #include <Core/Gen8/WB8.hpp>
 #include <Core/Parents/ProfileLoader.hpp>
 #include <Core/Util/Translator.hpp>
@@ -138,8 +139,8 @@ void Event8::generate()
     u64 seed1 = ui->textBoxSeed1->getULong();
     u32 initialAdvances = ui->textBoxInitialAdvances->getUInt();
     u32 maxAdvances = ui->textBoxMaxAdvances->getUInt();
-    u16 tid = currentProfile.getTID();
-    u16 sid = currentProfile.getSID();
+    u16 tid = currentProfile->getTID();
+    u16 sid = currentProfile->getSID();
     u8 genderRatio = ui->filter->getGenderRatio();
     u32 offset = 0;
     if (ui->filter->useDelay())
@@ -211,11 +212,11 @@ void Event8::profileIndexChanged(int index)
 {
     if (index >= 0)
     {
-        currentProfile = profiles[index];
+        currentProfile = &profiles[index];
 
-        ui->labelProfileTIDValue->setText(QString::number(currentProfile.getTID()));
-        ui->labelProfileSIDValue->setText(QString::number(currentProfile.getSID()));
-        ui->labelProfileGameValue->setText(QString::fromStdString(currentProfile.getVersionString()));
+        ui->labelProfileTIDValue->setText(QString::number(currentProfile->getTID()));
+        ui->labelProfileSIDValue->setText(QString::number(currentProfile->getSID()));
+        ui->labelProfileGameValue->setText(QString::fromStdString(currentProfile->getVersionString()));
     }
 }
 

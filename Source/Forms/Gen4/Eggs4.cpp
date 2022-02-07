@@ -21,6 +21,7 @@
 #include "ui_Eggs4.h"
 #include <Core/Enum/Method.hpp>
 #include <Core/Gen4/Generators/EggGenerator4.hpp>
+#include <Core/Gen4/Profile4.hpp>
 #include <Core/Gen4/Searchers/EggSearcher4.hpp>
 #include <Core/Parents/Filters/StateFilter.hpp>
 #include <Core/Parents/ProfileLoader.hpp>
@@ -135,8 +136,7 @@ void Eggs4::setupModels()
     connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &Eggs4::profileManager);
     connect(ui->eggSettingsGenerator, &EggSettings::toggleInheritance, generatorModel, &EggGeneratorModel4::toggleInheritance);
     connect(ui->eggSettingsSearcher, &EggSettings::toggleInheritance, searcherModel, &EggSearcherModel4::toggleInheritance);
-    connect(ui->comboBoxGeneratorMethod, QOverload<int>::of(&QComboBox::currentIndexChanged), this,
-            &Eggs4::on_comboBoxGeneratorMethod_currentIndexChanged);
+    connect(ui->comboBoxGeneratorMethod, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &Eggs4::generatorMethodChanged);
 
     QSettings setting;
     setting.beginGroup("eggs4");
@@ -185,8 +185,8 @@ void Eggs4::generate()
     u32 initialAdvances = ui->textBoxGeneratorInitialAdvances->getUInt();
     u32 maxAdvances = ui->textBoxGeneratorMaxAdvances->getUInt();
     u32 seed = ui->textBoxGeneratorSeed->getUInt();
-    u16 tid = currentProfile.getTID();
-    u16 sid = currentProfile.getSID();
+    u16 tid = currentProfile->getTID();
+    u16 sid = currentProfile->getSID();
 
     auto method = static_cast<Method>(ui->comboBoxGeneratorMethod->currentData().toInt());
     Daycare daycare = ui->eggSettingsGenerator->getDaycareSettings();
@@ -199,7 +199,7 @@ void Eggs4::generate()
     }
     else
     {
-        Game version = currentProfile.getVersion();
+        Game version = currentProfile->getVersion();
         method = (version & Game::HGSS) != Game::None ? Method::HGSSIVs : Method::DPPtIVs;
     }
     generatorModel->setMethod(method);
@@ -230,7 +230,7 @@ void Eggs4::search()
     switch (ui->comboBoxSearcherMethod->currentIndex())
     {
     case 0:
-        methodModel = (currentProfile.getVersion() & Game::HGSS) != Game::None ? Method::HGSSIVs : Method::DPPtIVs;
+        methodModel = (currentProfile->getVersion() & Game::HGSS) != Game::None ? Method::HGSSIVs : Method::DPPtIVs;
         break;
     case 1:
         methodModel = daycare.getMasuda() ? Method::Gen4Masuda : Method::Gen4Normal;
@@ -244,8 +244,8 @@ void Eggs4::search()
     ui->pushButtonSearch->setEnabled(false);
     ui->pushButtonCancel->setEnabled(true);
 
-    u16 tid = currentProfile.getTID();
-    u16 sid = currentProfile.getSID();
+    u16 tid = currentProfile->getTID();
+    u16 sid = currentProfile->getSID();
     u8 genderRatio = ui->filterSearcher->getGenderRatio();
 
     StateFilter filter(ui->filterSearcher->getGender(), ui->filterSearcher->getAbility(), ui->filterSearcher->getShiny(), false,
@@ -259,7 +259,7 @@ void Eggs4::search()
     u32 minAdvancePID = ui->textBoxSearcherPIDMinAdvance->getUInt();
     u32 maxAdvancePID = ui->textBoxSearcherPIDMaxAdvance->getUInt();
 
-    Method methodIV = (currentProfile.getVersion() & Game::HGSS) != Game::None ? Method::HGSSIVs : Method::DPPtIVs;
+    Method methodIV = (currentProfile->getVersion() & Game::HGSS) != Game::None ? Method::HGSSIVs : Method::DPPtIVs;
     EggGenerator4 generatorIV(minAdvanceIV, maxAdvanceIV, tid, sid, genderRatio, methodIV, filter, daycare);
 
     Method methodPID = daycare.getMasuda() ? Method::Gen4Masuda : Method::Gen4Normal;
@@ -298,16 +298,16 @@ void Eggs4::profilesIndexChanged(int index)
 {
     if (index >= 0)
     {
-        currentProfile = profiles[index];
+        currentProfile = &profiles[index];
 
-        ui->labelProfileTIDValue->setText(QString::number(currentProfile.getTID()));
-        ui->labelProfileSIDValue->setText(QString::number(currentProfile.getSID()));
-        ui->labelProfileGameValue->setText(QString::fromStdString(currentProfile.getVersionString()));
+        ui->labelProfileTIDValue->setText(QString::number(currentProfile->getTID()));
+        ui->labelProfileSIDValue->setText(QString::number(currentProfile->getSID()));
+        ui->labelProfileGameValue->setText(QString::fromStdString(currentProfile->getVersionString()));
 
         auto method = static_cast<Method>(ui->comboBoxGeneratorMethod->currentData().toInt());
         if (method == Method::Gen4Normal
-            && (currentProfile.getVersion() == Game::Diamond || currentProfile.getVersion() == Game::Pearl
-                || currentProfile.getVersion() == Game::Platinum))
+            && (currentProfile->getVersion() == Game::Diamond || currentProfile->getVersion() == Game::Pearl
+                || currentProfile->getVersion() == Game::Platinum))
         {
             calcPoketchGenerator->setVisible(true);
         }
@@ -339,7 +339,7 @@ void Eggs4::seedToTime()
     QModelIndex index = ui->tableViewSearcher->currentIndex();
     QString seed = searcherModel->data(searcherModel->index(index.row(), 0)).toString();
 
-    auto *time = new SeedtoTime4(seed, currentProfile);
+    auto *time = new SeedtoTime4(seed, currentProfile->getVersion());
     time->show();
     time->raise();
 }
@@ -361,12 +361,10 @@ void Eggs4::profileManager()
     manager->show();
 }
 
-void Eggs4::on_comboBoxGeneratorMethod_currentIndexChanged(int index)
+void Eggs4::generatorMethodChanged(int index)
 {
     auto method = static_cast<Method>(ui->comboBoxGeneratorMethod->currentData().toInt());
-    if (method == Method::Gen4Normal
-        && (currentProfile.getVersion() == Game::Diamond || currentProfile.getVersion() == Game::Pearl
-            || currentProfile.getVersion() == Game::Platinum))
+    if (method == Method::Gen4Normal && (currentProfile->getVersion() & Game::DPPt) != Game::None)
     {
         calcPoketchGenerator->setVisible(true);
     }

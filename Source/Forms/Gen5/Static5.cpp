@@ -25,6 +25,7 @@
 #include <Core/Enum/Method.hpp>
 #include <Core/Gen5/Generators/StaticGenerator5.hpp>
 #include <Core/Gen5/Keypresses.hpp>
+#include <Core/Gen5/Profile5.hpp>
 #include <Core/Gen5/Searchers/StaticSearcher5.hpp>
 #include <Core/Parents/ProfileLoader.hpp>
 #include <Core/Parents/States/StaticState.hpp>
@@ -160,8 +161,8 @@ void Static5::generate()
     u64 seed = ui->textBoxGeneratorSeed->getULong();
     u32 initialAdvances = ui->textBoxGeneratorInitialAdvances->getUInt();
     u32 maxAdvances = ui->textBoxGeneratorMaxAdvances->getUInt();
-    u16 tid = currentProfile.getTID();
-    u16 sid = currentProfile.getSID();
+    u16 tid = currentProfile->getTID();
+    u16 sid = currentProfile->getSID();
     u8 gender = ui->filterGenerator->getGender();
     u8 genderRatio = ui->filterGenerator->getGenderRatio();
     u32 offset = 0;
@@ -183,7 +184,7 @@ void Static5::generate()
         generator.setInitialAdvances(ui->textBoxSearcherMinAdvances->getUInt());
 
         // temp fix for IV and seed matchup?
-        generator.setOffset(offset + (currentProfile.getVersion() == Game::Black || currentProfile.getVersion() == Game::White ? 0 : 2));
+        generator.setOffset(offset + (currentProfile->getVersion() == Game::Black || currentProfile->getVersion() == Game::White ? 0 : 2));
     }
 
     if (ui->pushButtonGeneratorLead->text() == tr("Cute Charm"))
@@ -218,8 +219,8 @@ void Static5::search()
     ui->pushButtonCancel->setEnabled(true);
 
     u32 maxAdvances = ui->textBoxSearcherMaxAdvances->getUInt();
-    u16 tid = currentProfile.getTID();
-    u16 sid = currentProfile.getSID();
+    u16 tid = currentProfile->getTID();
+    u16 sid = currentProfile->getSID();
     u8 gender = ui->filterSearcher->getGender();
     u8 genderRatio = ui->filterSearcher->getGenderRatio();
     auto encounter = static_cast<Encounter>(ui->comboBoxSearcherEncounter->getCurrentInt());
@@ -235,14 +236,14 @@ void Static5::search()
         generator.setInitialAdvances(ui->textBoxSearcherMinAdvances->getUInt());
     }
 
-    auto *searcher = new StaticSearcher5(currentProfile, method);
+    auto *searcher = new StaticSearcher5(*currentProfile, method);
 
     Date start = ui->dateEditSearcherStartDate->getDate();
     Date end = ui->dateEditSearcherEndDate->getDate();
 
-    int maxProgress = Keypresses::getKeyPresses(currentProfile.getKeypresses(), currentProfile.getSkipLR()).size();
+    int maxProgress = Keypresses::getKeyPresses(currentProfile->getKeypresses(), currentProfile->getSkipLR()).size();
     maxProgress *= start.daysTo(end) + 1;
-    maxProgress *= (currentProfile.getTimer0Max() - currentProfile.getTimer0Min() + 1);
+    maxProgress *= (currentProfile->getTimer0Max() - currentProfile->getTimer0Min() + 1);
     ui->progressBar->setRange(0, maxProgress);
 
     QSettings settings;
@@ -275,19 +276,19 @@ void Static5::profileIndexChanged(int index)
 {
     if (index >= 0)
     {
-        currentProfile = profiles[index];
+        currentProfile = &profiles[index];
 
-        ui->labelProfileTIDValue->setText(QString::number(currentProfile.getTID()));
-        ui->labelProfileSIDValue->setText(QString::number(currentProfile.getSID()));
-        ui->labelProfileMACAddressValue->setText(QString::number(currentProfile.getMac(), 16));
-        ui->labelProfileDSTypeValue->setText(QString::fromStdString(currentProfile.getDSTypeString()));
-        ui->labelProfileVCountValue->setText(QString::number(currentProfile.getVCount(), 16));
-        ui->labelProfileTimer0Value->setText(QString::number(currentProfile.getTimer0Min(), 16) + "-"
-                                             + QString::number(currentProfile.getTimer0Max(), 16));
-        ui->labelProfileGxStatValue->setText(QString::number(currentProfile.getGxStat()));
-        ui->labelProfileVFrameValue->setText(QString::number(currentProfile.getVFrame()));
-        ui->labelProfileKeypressesValue->setText(QString::fromStdString(currentProfile.getKeypressesString()));
-        ui->labelProfileGameValue->setText(QString::fromStdString(currentProfile.getVersionString()));
+        ui->labelProfileTIDValue->setText(QString::number(currentProfile->getTID()));
+        ui->labelProfileSIDValue->setText(QString::number(currentProfile->getSID()));
+        ui->labelProfileMACAddressValue->setText(QString::number(currentProfile->getMac(), 16));
+        ui->labelProfileDSTypeValue->setText(QString::fromStdString(currentProfile->getDSTypeString()));
+        ui->labelProfileVCountValue->setText(QString::number(currentProfile->getVCount(), 16));
+        ui->labelProfileTimer0Value->setText(QString::number(currentProfile->getTimer0Min(), 16) + "-"
+                                             + QString::number(currentProfile->getTimer0Max(), 16));
+        ui->labelProfileGxStatValue->setText(QString::number(currentProfile->getGxStat()));
+        ui->labelProfileVFrameValue->setText(QString::number(currentProfile->getVFrame()));
+        ui->labelProfileKeypressesValue->setText(QString::fromStdString(currentProfile->getKeypressesString()));
+        ui->labelProfileGameValue->setText(QString::fromStdString(currentProfile->getVersionString()));
 
         generatorMethodIndexChanged(0);
         searcherMethodIndexChanged(0);
@@ -329,7 +330,7 @@ void Static5::generatorLead()
 
 void Static5::calculateInitialAdvances()
 {
-    Game version = currentProfile.getVersion();
+    Game version = currentProfile->getVersion();
 
     u8 initialAdvances;
     if ((version & Game::BW) != Game::None)
@@ -338,7 +339,7 @@ void Static5::calculateInitialAdvances()
     }
     else
     {
-        initialAdvances = Utilities::initialAdvancesBW2(ui->textBoxGeneratorSeed->getULong(), currentProfile.getMemoryLink());
+        initialAdvances = Utilities::initialAdvancesBW2(ui->textBoxGeneratorSeed->getULong(), currentProfile->getMemoryLink());
     }
 
     ui->textBoxGeneratorInitialAdvances->setText(QString::number(initialAdvances));
@@ -349,7 +350,7 @@ void Static5::generatorMethodIndexChanged(int index)
     Method method = static_cast<Method>(ui->comboBoxGeneratorMethod->getCurrentByte());
 
     ui->comboBoxGeneratorEncounter->clear();
-    if (currentProfile.getVersion() == Game::Black2 || currentProfile.getVersion() == Game::White2)
+    if (currentProfile->getVersion() == Game::Black2 || currentProfile->getVersion() == Game::White2)
     {
         switch (method)
         {
@@ -417,7 +418,7 @@ void Static5::searcherMethodIndexChanged(int index)
 {
     Method method = static_cast<Method>(ui->comboBoxSearcherMethod->getCurrentByte());
     ui->comboBoxSearcherEncounter->clear();
-    if (currentProfile.getVersion() == Game::Black2 || currentProfile.getVersion() == Game::White2)
+    if (currentProfile->getVersion() == Game::Black2 || currentProfile->getVersion() == Game::White2)
     {
         switch (method)
         {

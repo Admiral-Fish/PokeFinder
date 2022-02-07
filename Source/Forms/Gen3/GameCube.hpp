@@ -20,11 +20,11 @@
 #ifndef GAMECUBE_HPP
 #define GAMECUBE_HPP
 
-#include <Core/Gen3/Profile3.hpp>
 #include <QWidget>
 
 class GameCubeGeneratorModel;
 class GameCubeSearcherModel;
+class Profile3;
 class QMenu;
 
 namespace Ui
@@ -48,7 +48,7 @@ private:
     GameCubeGeneratorModel *generatorModel;
     GameCubeSearcherModel *searcherModel;
     std::vector<Profile3> profiles;
-    Profile3 currentProfile;
+    Profile3 *currentProfile;
     QMenu *generatorMenu;
     QMenu *searcherMenu;
 

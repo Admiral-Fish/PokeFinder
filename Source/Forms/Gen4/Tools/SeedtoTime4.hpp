@@ -20,11 +20,12 @@
 #ifndef SEEDTOTIME4_HPP
 #define SEEDTOTIME4_HPP
 
-#include <Core/Gen4/Profile4.hpp>
 #include <QWidget>
+#include <Core/Util/Global.hpp>
 
 class SeedTime;
 class SeedtoTimeModel4;
+enum class Game : u32;
 
 namespace Ui
 {
@@ -36,7 +37,7 @@ class SeedtoTime4 : public QWidget
     Q_OBJECT
 public:
     explicit SeedtoTime4(QWidget *parent = nullptr);
-    explicit SeedtoTime4(const QString &seed, const Profile4 &profile, QWidget *parent = nullptr);
+    explicit SeedtoTime4(const QString &seed, Game version, QWidget *parent = nullptr);
     ~SeedtoTime4() override;
 
 private:

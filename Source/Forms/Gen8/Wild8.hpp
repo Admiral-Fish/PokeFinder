@@ -20,10 +20,10 @@
 #ifndef WILD8_HPP
 #define WILD8_HPP
 
-#include <Core/Gen8/Profile8.hpp>
 #include <QWidget>
 
 class EncounterArea8;
+class Profile8;
 class WildModel8;
 class QMenu;
 
@@ -47,7 +47,7 @@ public:
 private:
     Ui::Wild8 *ui;
     std::vector<Profile8> profiles;
-    Profile8 currentProfile;
+    Profile8 *currentProfile;
     WildModel8 *model;
     QMenu *menu;
     std::vector<EncounterArea8> encounters;

@@ -20,10 +20,10 @@
 #ifndef EGGS8_HPP
 #define EGGS8_HPP
 
-#include <Core/Gen8/Profile8.hpp>
 #include <QWidget>
 
 class EggModel8;
+class Profile8;
 class QMenu;
 
 namespace Ui
@@ -46,7 +46,7 @@ private:
     Ui::Eggs8 *ui;
     EggModel8 *model;
     std::vector<Profile8> profiles;
-    Profile8 currentProfile;
+    Profile8 *currentProfile;
     QMenu *menu;
 
     void setupModels();

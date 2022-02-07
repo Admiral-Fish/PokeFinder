@@ -228,6 +228,7 @@ void IDs8::profilesIndexChanged(int index)
     if (index >= 0)
     {
         auto profile = profiles[index];
+
         ui->labelProfileTIDValue->setText(QString::number(profile.getTID()));
         ui->labelProfileSIDValue->setText(QString::number(profile.getSID()));
         ui->labelProfileGameValue->setText(QString::fromStdString(profile.getVersionString()));

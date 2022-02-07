@@ -22,6 +22,7 @@
 #include <Core/Enum/Game.hpp>
 #include <Core/Enum/Method.hpp>
 #include <Core/Gen3/Generators/EggGenerator3.hpp>
+#include <Core/Gen3/Profile3.hpp>
 #include <Core/Parents/Filters/StateFilter.hpp>
 #include <Core/Parents/ProfileLoader.hpp>
 #include <Core/Util/Nature.hpp>
@@ -173,8 +174,8 @@ void Eggs3::emeraldGenerate()
 
     u32 initialAdvances = ui->textBoxEmeraldInitialAdvances->getUInt();
     u32 maxAdvances = ui->textBoxEmeraldMaxAdvances->getUInt();
-    u16 tid = currentProfile.getTID();
-    u16 sid = currentProfile.getSID();
+    u16 tid = currentProfile->getTID();
+    u16 sid = currentProfile->getSID();
     u8 genderRatio = ui->filterEmerald->getGenderRatio();
 
     StateFilter filter(ui->filterEmerald->getGender(), ui->filterEmerald->getAbility(), ui->filterEmerald->getShiny(), false,
@@ -205,8 +206,8 @@ void Eggs3::rsGenerate()
 
     u32 initialAdvancesHeld = ui->textBoxRSInitialAdvancesHeld->getUInt();
     u32 maxAdvancesHeld = ui->textBoxRSMaxAdvancesHeld->getUInt();
-    u16 tid = currentProfile.getTID();
-    u16 sid = currentProfile.getSID();
+    u16 tid = currentProfile->getTID();
+    u16 sid = currentProfile->getSID();
     u8 genderRatio = ui->filterRS->getGenderRatio();
     auto method = static_cast<Method>(ui->comboBoxRSMethod->getCurrentInt());
     StateFilter filter(ui->filterRS->getGender(), ui->filterRS->getAbility(), ui->filterRS->getShiny(), false, ui->filterRS->getMinIVs(),
@@ -235,8 +236,8 @@ void Eggs3::frlgGenerate()
 
     u32 initialAdvancesHeld = ui->textBoxFRLGInitialAdvancesHeld->getUInt();
     u32 maxAdvancesHeld = ui->textBoxFRLGMaxAdvancesHeld->getUInt();
-    u16 tid = currentProfile.getTID();
-    u16 sid = currentProfile.getSID();
+    u16 tid = currentProfile->getTID();
+    u16 sid = currentProfile->getSID();
     u8 genderRatio = ui->filterFRLG->getGenderRatio();
     auto method = static_cast<Method>(ui->comboBoxFRLGMethod->currentData().toUInt());
 
@@ -258,17 +259,17 @@ void Eggs3::profilesIndexChanged(int index)
 {
     if (index >= 0)
     {
-        currentProfile = profiles[index];
+        currentProfile = &profiles[index];
 
-        if (currentProfile.getDeadBattery())
+        if (currentProfile->getDeadBattery())
         {
             ui->textBoxRSSeedHeld->setText("5a0");
             ui->textBoxRSSeedPickup->setText("5a0");
         }
 
-        ui->labelProfileTIDValue->setText(QString::number(currentProfile.getTID()));
-        ui->labelProfileSIDValue->setText(QString::number(currentProfile.getSID()));
-        ui->labelProfileGameValue->setText(QString::fromStdString(currentProfile.getVersionString()));
+        ui->labelProfileTIDValue->setText(QString::number(currentProfile->getTID()));
+        ui->labelProfileSIDValue->setText(QString::number(currentProfile->getSID()));
+        ui->labelProfileGameValue->setText(QString::fromStdString(currentProfile->getVersionString()));
     }
 }
 

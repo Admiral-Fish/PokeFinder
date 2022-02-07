@@ -20,12 +20,12 @@
 #ifndef DREAMRADAR_HPP
 #define DREAMRADAR_HPP
 
-#include <Core/Gen5/Profile5.hpp>
 #include <Core/Gen5/DreamRadarSlot.hpp>
 #include <QWidget>
 
 class DreamRadarGeneratorModel5;
 class DreamRadarSearcherModel5;
+class Profile5;
 class QMenu;
 
 namespace Ui
@@ -50,7 +50,7 @@ private:
     DreamRadarGeneratorModel5 *generatorModel;
     DreamRadarSearcherModel5 *searcherModel;
     std::vector<Profile5> profiles;
-    Profile5 currentProfile;
+    Profile5 *currentProfile;
     QMenu *generatorMenu;
     QMenu *searcherMenu;
 

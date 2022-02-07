@@ -36,7 +36,7 @@ SeedtoTime4::SeedtoTime4(QWidget *parent) : QWidget(parent), ui(new Ui::SeedtoTi
     setupModels();
 }
 
-SeedtoTime4::SeedtoTime4(const QString &seed, const Profile4 &profile, QWidget *parent) : QWidget(parent), ui(new Ui::SeedtoTime4)
+SeedtoTime4::SeedtoTime4(const QString &seed, Game version, QWidget *parent) : QWidget(parent), ui(new Ui::SeedtoTime4)
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
@@ -44,7 +44,7 @@ SeedtoTime4::SeedtoTime4(const QString &seed, const Profile4 &profile, QWidget *
 
     setupModels();
 
-    if ((profile.getVersion() & Game::HGSS) != Game::None)
+    if ((version & Game::HGSS) != Game::None)
     {
         ui->tabWidget->setCurrentIndex(1);
         ui->textBoxHGSSSeed->setText(seed);

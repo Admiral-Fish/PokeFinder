@@ -22,6 +22,7 @@
 #include <Core/Enum/Lead.hpp>
 #include <Core/Gen8/EncounterArea8.hpp>
 #include <Core/Gen8/Encounters8.hpp>
+#include <Core/Gen8/Profile8.hpp>
 #include <Core/Gen8/Generators/WildGenerator8.hpp>
 #include <Core/Parents/PersonalLoader.hpp>
 #include <Core/Parents/ProfileLoader.hpp>
@@ -140,13 +141,13 @@ void Wild8::updateLocations()
     auto encounter = static_cast<Encounter>(ui->comboBoxEncounter->currentData().toInt());
     int time = ui->comboBoxTime->currentIndex();
 
-    encounters = Encounters8::getEncounters(encounter, time, currentProfile);
+    encounters = Encounters8::getEncounters(encounter, time, *currentProfile);
 
     std::vector<u16> locs;
     std::transform(encounters.begin(), encounters.end(), std::back_inserter(locs),
                    [](const EncounterArea8 &area) { return area.getLocation(); });
 
-    std::vector<std::string> locations = Translator::getLocations(locs, currentProfile.getVersion());
+    std::vector<std::string> locations = Translator::getLocations(locs, currentProfile->getVersion());
     std::vector<int> indices(locations.size());
     std::iota(indices.begin(), indices.end(), 0);
     std::sort(indices.begin(), indices.end(), [&locations](int i, int j) { return locations[i] < locations[j]; });
@@ -181,8 +182,8 @@ void Wild8::generate()
     u64 seed1 = ui->textBoxSeed1->getULong();
     u32 initialAdvances = ui->textBoxInitialAdvances->getUInt();
     u32 maxAdvances = ui->textBoxMaxAdvances->getUInt();
-    u16 tid = currentProfile.getTID();
-    u16 sid = currentProfile.getSID();
+    u16 tid = currentProfile->getTID();
+    u16 sid = currentProfile->getSID();
     u32 offset = 0;
     if (ui->filter->useDelay())
     {
@@ -215,11 +216,11 @@ void Wild8::profilesIndexChanged(int index)
 {
     if (index >= 0)
     {
-        currentProfile = profiles[index];
+        currentProfile = &profiles[index];
 
-        ui->labelProfileTIDValue->setText(QString::number(currentProfile.getTID()));
-        ui->labelProfileSIDValue->setText(QString::number(currentProfile.getSID()));
-        ui->labelProfileGameValue->setText(QString::fromStdString(currentProfile.getVersionString()));
+        ui->labelProfileTIDValue->setText(QString::number(currentProfile->getTID()));
+        ui->labelProfileSIDValue->setText(QString::number(currentProfile->getSID()));
+        ui->labelProfileGameValue->setText(QString::fromStdString(currentProfile->getVersionString()));
 
         updateLocations();
     }

@@ -25,6 +25,7 @@
 #include <Core/Enum/Method.hpp>
 #include <Core/Gen3/Encounters3.hpp>
 #include <Core/Gen3/Generators/WildGenerator3.hpp>
+#include <Core/Gen3/Profile3.hpp>
 #include <Core/Gen3/Searchers/WildSearcher3.hpp>
 #include <Core/Parents/ProfileLoader.hpp>
 #include <Core/Parents/Slot.hpp>
@@ -154,13 +155,13 @@ void Wild3::setupModels()
 void Wild3::updateLocationsGenerator()
 {
     auto encounter = static_cast<Encounter>(ui->comboBoxGeneratorEncounter->currentData().toInt());
-    encounterGenerator = Encounters3::getEncounters(encounter, currentProfile.getVersion());
+    encounterGenerator = Encounters3::getEncounters(encounter, currentProfile->getVersion());
 
     std::vector<u16> locs;
     std::transform(encounterGenerator.begin(), encounterGenerator.end(), std::back_inserter(locs),
                    [](const EncounterArea3 &area) { return area.getLocation(); });
 
-    std::vector<std::string> locations = Translator::getLocations(locs, currentProfile.getVersion());
+    std::vector<std::string> locations = Translator::getLocations(locs, currentProfile->getVersion());
     std::vector<int> indices(locations.size());
     std::iota(indices.begin(), indices.end(), 0);
     std::sort(indices.begin(), indices.end(), [&locations](int i, int j) { return locations[i] < locations[j]; });
@@ -175,13 +176,13 @@ void Wild3::updateLocationsGenerator()
 void Wild3::updateLocationsSearcher()
 {
     auto encounter = static_cast<Encounter>(ui->comboBoxSearcherEncounter->currentData().toInt());
-    encounterSearcher = Encounters3::getEncounters(encounter, currentProfile.getVersion());
+    encounterSearcher = Encounters3::getEncounters(encounter, currentProfile->getVersion());
 
     std::vector<u16> locs;
     std::transform(encounterSearcher.begin(), encounterSearcher.end(), std::back_inserter(locs),
                    [](const EncounterArea3 &area) { return area.getLocation(); });
 
-    std::vector<std::string> locations = Translator::getLocations(locs, currentProfile.getVersion());
+    std::vector<std::string> locations = Translator::getLocations(locs, currentProfile->getVersion());
     std::vector<int> indices(locations.size());
     std::iota(indices.begin(), indices.end(), 0);
     std::sort(indices.begin(), indices.end(), [&locations](int i, int j) { return locations[i] < locations[j]; });
@@ -230,8 +231,8 @@ void Wild3::generate()
     u32 seed = ui->textBoxGeneratorSeed->getUInt();
     u32 initialAdvances = ui->textBoxGeneratorInitialAdvances->getUInt();
     u32 maxAdvances = ui->textBoxGeneratorMaxAdvances->getUInt();
-    u16 tid = currentProfile.getTID();
-    u16 sid = currentProfile.getSID();
+    u16 tid = currentProfile->getTID();
+    u16 sid = currentProfile->getSID();
     u8 genderRatio = ui->filterGenerator->getGenderRatio();
     auto method = static_cast<Method>(ui->comboBoxGeneratorMethod->getCurrentInt());
     u32 offset = 0;
@@ -275,8 +276,8 @@ void Wild3::search()
     StateFilter filter(ui->filterSearcher->getGender(), ui->filterSearcher->getAbility(), ui->filterSearcher->getShiny(), false, min, max,
                        ui->filterSearcher->getNatures(), ui->filterSearcher->getHiddenPowers(), ui->filterSearcher->getEncounterSlots());
 
-    u16 tid = currentProfile.getTID();
-    u16 sid = currentProfile.getSID();
+    u16 tid = currentProfile->getTID();
+    u16 sid = currentProfile->getSID();
     u8 genderRatio = ui->filterSearcher->getGenderRatio();
     auto method = static_cast<Method>(ui->comboBoxSearcherMethod->getCurrentInt());
 
@@ -319,18 +320,18 @@ void Wild3::profilesIndexChanged(int index)
 {
     if (index >= 0)
     {
-        currentProfile = profiles[index];
+        currentProfile = &profiles[index];
 
-        if (currentProfile.getDeadBattery())
+        if (currentProfile->getDeadBattery())
         {
             ui->textBoxGeneratorSeed->setText("5a0");
         }
 
-        ui->labelProfileTIDValue->setText(QString::number(currentProfile.getTID()));
-        ui->labelProfileSIDValue->setText(QString::number(currentProfile.getSID()));
-        ui->labelProfileGameValue->setText(QString::fromStdString(currentProfile.getVersionString()));
+        ui->labelProfileTIDValue->setText(QString::number(currentProfile->getTID()));
+        ui->labelProfileSIDValue->setText(QString::number(currentProfile->getSID()));
+        ui->labelProfileGameValue->setText(QString::fromStdString(currentProfile->getVersionString()));
 
-        bool flag = (currentProfile.getVersion() & Game::FRLG) != Game::None;
+        bool flag = (currentProfile->getVersion() & Game::FRLG) != Game::None;
         ui->comboBoxGeneratorEncounter->clear();
         ui->comboBoxSearcherEncounter->clear();
 
@@ -352,7 +353,7 @@ void Wild3::profilesIndexChanged(int index)
         ui->comboBoxGeneratorEncounter->addItem(tr("Super Rod"), toInt(Encounter::SuperRod));
         ui->comboBoxSearcherEncounter->addItem(tr("Super Rod"), toInt(Encounter::SuperRod));
 
-        if ((currentProfile.getVersion() & Game::Emerald) != Game::None)
+        if ((currentProfile->getVersion() & Game::Emerald) != Game::None)
         {
             ui->toolButtonGeneratorLead->setEnabled(true);
             ui->comboBoxSearcherLead->setEnabled(true);

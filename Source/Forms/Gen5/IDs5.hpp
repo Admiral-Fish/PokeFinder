@@ -20,10 +20,10 @@
 #ifndef IDS5_HPP
 #define IDS5_HPP
 
-#include <Core/Gen5/Profile5.hpp>
 #include <QWidget>
 
 class IDModel5;
+class Profile5;
 class QMenu;
 
 namespace Ui
@@ -47,7 +47,7 @@ private:
     Ui::IDs5 *ui;
     IDModel5 *model;
     std::vector<Profile5> profiles;
-    Profile5 currentProfile;
+    Profile5 *currentProfile;
     QMenu *menu;
 
     void setupModels();

@@ -20,11 +20,11 @@
 #ifndef HIDDENGROTTO_HPP
 #define HIDDENGROTTO_HPP
 
-#include <Core/Gen5/Profile5.hpp>
 #include <QWidget>
 
 class HiddenGrottoGeneratorModel5;
 class HiddenGrottoSearcherModel5;
+class Profile5;
 class QMenu;
 
 namespace Ui
@@ -50,7 +50,7 @@ private:
     HiddenGrottoGeneratorModel5 *generatorModel;
     HiddenGrottoSearcherModel5 *searcherModel;
     std::vector<Profile5> profiles;
-    Profile5 currentProfile;
+    Profile5 *currentProfile;
     QMenu *generatorMenu;
     QMenu *searcherMenu;
 

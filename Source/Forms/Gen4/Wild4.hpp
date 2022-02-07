@@ -20,10 +20,10 @@
 #ifndef WILD4_HPP
 #define WILD4_HPP
 
-#include <Core/Gen4/Profile4.hpp>
 #include <QWidget>
 
 class EncounterArea4;
+class Profile4;
 class WildGeneratorModel4;
 class WildSearcherModel4;
 class QMenu;
@@ -47,7 +47,7 @@ public:
 private:
     Ui::Wild4 *ui;
     std::vector<Profile4> profiles;
-    Profile4 currentProfile;
+    Profile4 *currentProfile;
     WildGeneratorModel4 *generatorModel;
     WildSearcherModel4 *searcherModel;
     QMenu *generatorMenu;

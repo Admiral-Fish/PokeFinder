@@ -24,6 +24,7 @@
 #include <Core/Gen5/Filters/HiddenGrottoFilter.hpp>
 #include <Core/Gen5/Generators/HiddenGrottoGenerator.hpp>
 #include <Core/Gen5/Keypresses.hpp>
+#include <Core/Gen5/Profile5.hpp>
 #include <Core/Gen5/Searchers/HiddenGrottoSearcher.hpp>
 #include <Core/Parents/PersonalInfo.hpp>
 #include <Core/Parents/ProfileLoader.hpp>
@@ -185,14 +186,14 @@ void HiddenGrotto::search()
                               ui->checkListSearcherGender->getChecked());
 
     HiddenGrottoGenerator generator(0, maxAdvances, genderRatio, powerLevel, filter);
-    auto *searcher = new HiddenGrottoSearcher(currentProfile);
+    auto *searcher = new HiddenGrottoSearcher(*currentProfile);
 
     Date start = ui->dateEditSearcherStartDate->getDate();
     Date end = ui->dateEditSearcherEndDate->getDate();
 
-    int maxProgress = Keypresses::getKeyPresses(currentProfile.getKeypresses(), currentProfile.getSkipLR()).size();
+    int maxProgress = Keypresses::getKeyPresses(currentProfile->getKeypresses(), currentProfile->getSkipLR()).size();
     maxProgress *= start.daysTo(end) + 1;
-    maxProgress *= currentProfile.getTimer0Max() - currentProfile.getTimer0Min() + 1;
+    maxProgress *= currentProfile->getTimer0Max() - currentProfile->getTimer0Min() + 1;
     ui->progressBar->setRange(0, maxProgress);
 
     QSettings settings;
@@ -226,26 +227,26 @@ void HiddenGrotto::profileIndexChanged(int index)
 {
     if (index >= 0)
     {
-        currentProfile = profiles[index];
+        currentProfile = &profiles[index];
 
-        ui->labelProfileTIDValue->setText(QString::number(currentProfile.getTID()));
-        ui->labelProfileSIDValue->setText(QString::number(currentProfile.getSID()));
-        ui->labelProfileMACAddressValue->setText(QString::number(currentProfile.getMac(), 16));
-        ui->labelProfileDSTypeValue->setText(QString::fromStdString(currentProfile.getDSTypeString()));
-        ui->labelProfileVCountValue->setText(QString::number(currentProfile.getVCount(), 16));
-        ui->labelProfileTimer0Value->setText(QString::number(currentProfile.getTimer0Min(), 16) + "-"
-                                             + QString::number(currentProfile.getTimer0Max(), 16));
-        ui->labelProfileGxStatValue->setText(QString::number(currentProfile.getGxStat()));
-        ui->labelProfileVFrameValue->setText(QString::number(currentProfile.getVFrame()));
-        ui->labelProfileKeypressesValue->setText(QString::fromStdString(currentProfile.getKeypressesString()));
-        ui->labelProfileGameValue->setText(QString::fromStdString(currentProfile.getVersionString()));
+        ui->labelProfileTIDValue->setText(QString::number(currentProfile->getTID()));
+        ui->labelProfileSIDValue->setText(QString::number(currentProfile->getSID()));
+        ui->labelProfileMACAddressValue->setText(QString::number(currentProfile->getMac(), 16));
+        ui->labelProfileDSTypeValue->setText(QString::fromStdString(currentProfile->getDSTypeString()));
+        ui->labelProfileVCountValue->setText(QString::number(currentProfile->getVCount(), 16));
+        ui->labelProfileTimer0Value->setText(QString::number(currentProfile->getTimer0Min(), 16) + "-"
+                                             + QString::number(currentProfile->getTimer0Max(), 16));
+        ui->labelProfileGxStatValue->setText(QString::number(currentProfile->getGxStat()));
+        ui->labelProfileVFrameValue->setText(QString::number(currentProfile->getVFrame()));
+        ui->labelProfileKeypressesValue->setText(QString::fromStdString(currentProfile->getKeypressesString()));
+        ui->labelProfileGameValue->setText(QString::fromStdString(currentProfile->getVersionString()));
     }
 }
 
 void HiddenGrotto::calculateInitialAdvances()
 {
     ui->textBoxGeneratorInitialAdvances->setText(
-        QString::number(Utilities::initialAdvancesBW2(ui->textBoxGeneratorSeed->getULong(), currentProfile.getMemoryLink())));
+        QString::number(Utilities::initialAdvancesBW2(ui->textBoxGeneratorSeed->getULong(), currentProfile->getMemoryLink())));
 }
 
 void HiddenGrotto::tableViewGeneratorContextMenu(QPoint pos)

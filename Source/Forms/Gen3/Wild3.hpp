@@ -20,10 +20,10 @@
 #ifndef WILD3_HPP
 #define WILD3_HPP
 
-#include <Core/Gen3/Profile3.hpp>
 #include <QWidget>
 
 class EncounterArea3;
+class Profile3;
 class WildGeneratorModel3;
 class WildSearcherModel3;
 class QMenu;
@@ -47,7 +47,7 @@ public:
 private:
     Ui::Wild3 *ui;
     std::vector<Profile3> profiles;
-    Profile3 currentProfile;
+    Profile3 *currentProfile;
     WildGeneratorModel3 *generatorModel;
     WildSearcherModel3 *searcherModel;
     QMenu *generatorMenu;

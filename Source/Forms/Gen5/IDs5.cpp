@@ -22,6 +22,7 @@
 #include <Core/Enum/Game.hpp>
 #include <Core/Gen5/Generators/IDGenerator5.hpp>
 #include <Core/Gen5/Keypresses.hpp>
+#include <Core/Gen5/Profile5.hpp>
 #include <Core/Gen5/Searchers/IDSearcher5.hpp>
 #include <Core/Parents/Filters/IDFilter.hpp>
 #include <Core/Parents/ProfileLoader.hpp>
@@ -150,9 +151,9 @@ void IDs5::search()
     IDFilter filter(tid, sid, {});
     IDGenerator5 generator(0, ui->textBoxMaxAdvances->getUInt(), filter);
 
-    auto *searcher = new IDSearcher5(currentProfile, pid, usePID, useXOR);
+    auto *searcher = new IDSearcher5(*currentProfile, pid, usePID, useXOR);
 
-    int maxProgress = Keypresses::getKeyPresses(currentProfile.getKeypresses(), currentProfile.getSkipLR()).size();
+    int maxProgress = Keypresses::getKeyPresses(currentProfile->getKeypresses(), currentProfile->getSkipLR()).size();
     maxProgress *= (start.daysTo(end) + 1);
     ui->progressBar->setRange(0, maxProgress);
 
@@ -198,15 +199,15 @@ void IDs5::find()
     IDFilter filter({ tid }, {}, {});
     IDGenerator5 generator(0, maxAdvance, filter);
 
-    auto buttons = Keypresses::getKeyPresses(currentProfile.getKeypresses(), currentProfile.getSkipLR());
+    auto buttons = Keypresses::getKeyPresses(currentProfile->getKeypresses(), currentProfile->getSkipLR());
     auto values = Keypresses::getValues(buttons);
 
-    SHA1 sha(currentProfile);
-    sha.setTimer0(currentProfile.getTimer0Min(), currentProfile.getVCount());
+    SHA1 sha(*currentProfile);
+    sha.setTimer0(currentProfile->getTimer0Min(), currentProfile->getVCount());
     sha.setDate(date);
     sha.precompute();
 
-    bool flag = (currentProfile.getVersion() & Game::BW) != Game::None;
+    bool flag = (currentProfile->getVersion() & Game::BW) != Game::None;
 
     std::vector<IDState5> results;
     for (size_t i = 0; i < values.size(); i++)
@@ -215,7 +216,7 @@ void IDs5::find()
 
         for (u8 second = minSecond; second <= maxSecond; second++)
         {
-            sha.setTime(hour, minute, second, currentProfile.getDSType());
+            sha.setTime(hour, minute, second, currentProfile->getDSType());
             u64 seed = sha.hashSeed();
 
             generator.setInitialAdvances(flag ? Utilities::initialAdvancesBWID(seed) : Utilities::initialAdvancesBW2ID(seed));
@@ -239,17 +240,17 @@ void IDs5::profileIndexChanged(int index)
 {
     if (index >= 0)
     {
-        currentProfile = profiles[index];
+        currentProfile = &profiles[index];
 
-        ui->labelProfileMACAddressValue->setText(QString::number(currentProfile.getMac(), 16));
-        ui->labelProfileDSTypeValue->setText(QString::fromStdString(currentProfile.getDSTypeString()));
-        ui->labelProfileVCountValue->setText(QString::number(currentProfile.getVCount(), 16));
-        ui->labelProfileTimer0Value->setText(QString::number(currentProfile.getTimer0Min(), 16) + "-"
-                                             + QString::number(currentProfile.getTimer0Max(), 16));
-        ui->labelProfileGxStatValue->setText(QString::number(currentProfile.getGxStat()));
-        ui->labelProfileVFrameValue->setText(QString::number(currentProfile.getVFrame()));
-        ui->labelProfileKeypressesValue->setText(QString::fromStdString(currentProfile.getKeypressesString()));
-        ui->labelProfileGameValue->setText(QString::fromStdString(currentProfile.getVersionString()));
+        ui->labelProfileMACAddressValue->setText(QString::number(currentProfile->getMac(), 16));
+        ui->labelProfileDSTypeValue->setText(QString::fromStdString(currentProfile->getDSTypeString()));
+        ui->labelProfileVCountValue->setText(QString::number(currentProfile->getVCount(), 16));
+        ui->labelProfileTimer0Value->setText(QString::number(currentProfile->getTimer0Min(), 16) + "-"
+                                             + QString::number(currentProfile->getTimer0Max(), 16));
+        ui->labelProfileGxStatValue->setText(QString::number(currentProfile->getGxStat()));
+        ui->labelProfileVFrameValue->setText(QString::number(currentProfile->getVFrame()));
+        ui->labelProfileKeypressesValue->setText(QString::fromStdString(currentProfile->getKeypressesString()));
+        ui->labelProfileGameValue->setText(QString::fromStdString(currentProfile->getVersionString()));
     }
 }
 
