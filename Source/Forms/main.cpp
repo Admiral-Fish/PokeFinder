@@ -23,10 +23,8 @@
 #include <Forms/MainWindow.hpp>
 #include <QApplication>
 #include <QFile>
-#include <QJsonDocument>
 #include <QSettings>
 #include <QStandardPaths>
-#include <QTextStream>
 #include <QThread>
 #include <QTranslator>
 
@@ -47,11 +45,6 @@ void validateSettings(QSettings &setting)
     {
         setting.setValue("settings/locale", "en");
     }
-    // TODO: remove this check in a later version
-    else if (setting.value("settings/locale").toString() == "zh_Hans_CN")
-    {
-        setting.setValue("settings/locale", "zh");
-    }
 
     if (!setting.contains("settings/threads") || (setting.value("settings/threads").toInt() > QThread::idealThreadCount()))
     {
@@ -70,21 +63,6 @@ int main(int argc, char *argv[])
 
     QString profilePath = setting.value("settings/profiles").toString();
     bool profile = ProfileLoader::init(profilePath.toStdString());
-
-    // Transfer profiles to new setup
-    // TODO: remove in a future version
-    if (setting.contains("profiles"))
-    {
-        QByteArray data = setting.value("profiles").toByteArray();
-        QJsonDocument profiles(QJsonDocument::fromJson(data));
-
-        QFile f(profilePath);
-        if (f.open(QIODevice::WriteOnly))
-        {
-            f.write(QJsonDocument(profiles).toJson());
-            setting.remove("profiles");
-        }
-    }
 
     QString style = setting.value("settings/style").toString();
     if (style == "dark")
