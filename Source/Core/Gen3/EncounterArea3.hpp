@@ -30,6 +30,7 @@ public:
     u8 calcLevel(u8 index, u16 prng) const;
     u8 calcLevel(u8 index) const;
     u8 getEncounterRate() const;
+    bool rseSafariZone() const;
 };
 
 #endif // ENCOUNTERAREA3_HPP
