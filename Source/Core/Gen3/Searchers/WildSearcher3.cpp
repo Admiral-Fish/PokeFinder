@@ -97,8 +97,28 @@ std::vector<WildState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 s
         return states;
     }
 
-    bool rseSafariRockSmash = encounterArea.rseSafariZone() && rse && encounter == Encounter::RockSmash; // RockSmash encounters have different rng calls inside RSE Safari Zone,
-                                                                                                         // so we set a flag to check if we're searching these kind of spreads
+    // RockSmash/Surfing/Fishing encounters have different rng calls inside RSE Safari Zone,
+    // so we set a flag to check if we're searching these kind of spreads
+    bool rseSafari = encounterArea.rseSafariZone() && rse;
+    bool rseSafariRockSmash = false;
+    bool rseSafariSurfingFishing = false;
+    if (rseSafari)
+    {
+        switch (encounter)
+        {
+        case Encounter::RockSmash:
+            rseSafariRockSmash = true;
+            break;
+        case Encounter::Surfing:
+        case Encounter::OldRod:
+        case Encounter::GoodRod:
+        case Encounter::SuperRod:
+            rseSafariSurfingFishing = true;
+            break;
+        default:
+            break;
+        }
+    }
     auto seeds = cache.recoverLower16BitsIV(hp, atk, def, spa, spd, spe);
     for (const u32 val : seeds)
     {
@@ -148,7 +168,7 @@ std::vector<WildState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 s
                         PokeRNGR temp(testRNG.getSeed());
                         u32 level = temp.getSeed();
                         u16 slot = temp.nextUShort();
-                        if (rseSafariRockSmash) // account RockSmash different rng calls inside RSE Safari Zone
+                        if (rseSafariRockSmash || rseSafariSurfingFishing) // account RockSmash/Surfing/Fishing different rng calls inside RSE Safari Zone
                         {
                             PokeRNGR temp2(level);
                             level = temp2.next();
@@ -171,7 +191,7 @@ std::vector<WildState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 s
                         PokeRNGR temp(testRNG.getSeed());
                         u32 level = temp.getSeed();
                         u16 slot = temp.nextUShort();
-                        if (rseSafariRockSmash) // account RockSmash different rng calls inside RSE Safari Zone
+                        if (rseSafariRockSmash || rseSafariSurfingFishing) // account RockSmash/Surfing/Fishing different rng calls inside RSE Safari Zone
                         {
                             PokeRNGR temp2(level);
                             level = temp2.next();
@@ -192,7 +212,7 @@ std::vector<WildState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 s
                         PokeRNGR temp(testRNG.getSeed());
                         u32 level = temp.getSeed();
                         u16 slot = temp.advance(2) >> 16;
-                        if (rseSafariRockSmash) // account RockSmash different rng calls inside RSE Safari Zone
+                        if (rseSafariRockSmash || rseSafariSurfingFishing) // account RockSmash/Surfing/Fishing different rng calls inside RSE Safari Zone
                         {
                             PokeRNGR temp2(level);
                             level = temp2.next();
@@ -214,7 +234,7 @@ std::vector<WildState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 s
                         PokeRNGR temp(testRNG.getSeed());
                         u32 level = temp.next();
                         u16 slot = temp.nextUShort();
-                        if (rseSafariRockSmash) // account RockSmash different rng calls inside RSE Safari Zone
+                        if (rseSafariRockSmash || rseSafariSurfingFishing) // account RockSmash/Surfing/Fishing different rng calls inside RSE Safari Zone
                         {
                             PokeRNGR temp2(level);
                             level = temp2.next();
@@ -238,7 +258,7 @@ std::vector<WildState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 s
                         PokeRNGR temp(testRNG.getSeed());
                         u32 level = temp.getSeed();
                         u16 slot = temp.nextUShort();
-                        if (rseSafariRockSmash) // account RockSmash different rng calls inside RSE Safari Zone
+                        if (rseSafariRockSmash || rseSafariSurfingFishing) // account RockSmash/Surfing/Fishing different rng calls inside RSE Safari Zone
                         {
                             PokeRNGR temp2(level);
                             level = temp2.next();
@@ -255,7 +275,7 @@ std::vector<WildState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 s
                         temp.setSeed(testRNG.getSeed());
                         level = temp.next();
                         slot = temp.nextUShort();
-                        if (rseSafariRockSmash) // account RockSmash different rng calls inside RSE Safari Zone
+                        if (rseSafariRockSmash || rseSafariSurfingFishing) // account RockSmash/Surfing/Fishing different rng calls inside RSE Safari Zone
                         {
                             PokeRNGR temp2(level);
                             level = temp2.next();
@@ -289,7 +309,7 @@ std::vector<WildState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 s
                         PokeRNGR temp(testRNG.getSeed());
                         u32 level = temp.getSeed();
                         u16 slot = temp.nextUShort();
-                        if (rseSafariRockSmash) // account RockSmash different rng calls inside RSE Safari Zone
+                        if (rseSafariRockSmash || rseSafariSurfingFishing) // account RockSmash/Surfing/Fishing different rng calls inside RSE Safari Zone
                         {
                             PokeRNGR temp2(level);
                             level = temp2.next();
