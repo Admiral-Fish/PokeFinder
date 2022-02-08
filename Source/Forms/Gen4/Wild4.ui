@@ -519,6 +519,11 @@
             </item>
             <item>
              <property name="text">
+              <string>Compound Eyes</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
               <string>Suction Cups</string>
              </property>
             </item>

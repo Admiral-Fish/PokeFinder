@@ -136,6 +136,11 @@ std::vector<WildState4> WildGenerator4::generateMethodJ(u32 seed, const Encounte
         switch (lead)
         {
         case Lead::None:
+        case Lead::CompoundEyes:
+            if (lead == Lead::CompoundEyes)
+            {
+                state.setLead(Lead::CompoundEyes);
+            }
             // Get hunt nature
             state.setNature(go.nextUShort<true>() / 0xa3e);
 
@@ -358,6 +363,11 @@ std::vector<WildState4> WildGenerator4::generateMethodK(u32 seed, const Encounte
         {
         case Lead::None:
         case Lead::SuctionCups:
+        case Lead::CompoundEyes:
+            if (lead == Lead::CompoundEyes)
+            {
+                state.setLead(Lead::CompoundEyes);
+            }
             // Get hunt nature
             state.setNature(go.nextUShort<true>() % 25);
 
