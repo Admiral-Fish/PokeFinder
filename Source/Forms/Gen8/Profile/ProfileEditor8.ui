@@ -60,6 +60,11 @@
        <string>Shining Pearl</string>
       </property>
      </item>
+     <item>
+      <property name="text">
+       <string>Legends Arceus</string>
+      </property>
+     </item>
     </widget>
    </item>
    <item row="2" column="4">

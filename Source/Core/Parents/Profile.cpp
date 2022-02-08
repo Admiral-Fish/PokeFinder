@@ -73,7 +73,7 @@ std::string Profile::getVersionString() const
     case Game::SP:
         return "Shining Pearl";
     case Game::PAL:
-        return "Arceus Legends";
+        return "Legends Arceus";
     default:
         return "-";
     }

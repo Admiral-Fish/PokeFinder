@@ -103,11 +103,26 @@ void WildPLA::generate()
     u32 maxAdvances = ui->textBoxMaxAdvances->getUInt();
     u16 tid = currentProfile->getTID();
     u16 sid = currentProfile->getSID();
+    u8 rolls = 1;
+    if (ui->comboBoxDexPage->currentIndex() > 0)
+    {
+        rolls += 1;
+        if (ui->comboBoxDexPage->currentIndex() == 2)
+        {
+            rolls += 2;
+        }
+    }
+
+    if (currentProfile->getShinyCharm())
+    {
+        rolls += 4;
+    }
 
     StateFilter filter(ui->filter->getGender(), ui->filter->getAbility(), ui->filter->getShiny(), ui->filter->getDisableFilters(),
                        ui->filter->getMinIVs(), ui->filter->getMaxIVs(), ui->filter->getNatures(), {}, {});
 
-    WildGeneratorPLA generator(initialAdvances, maxAdvances, tid, sid, ui->filter->getGenderRatio(), filter, 1, false);
+    WildGeneratorPLA generator(initialAdvances, maxAdvances, tid, sid, ui->filter->getGenderRatio(), filter, rolls,
+                               ui->checkBoxAlpha->isChecked());
 
     auto states = generator.generate(spawner0Seed);
     model->addItems(states);

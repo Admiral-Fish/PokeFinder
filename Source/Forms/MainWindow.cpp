@@ -56,6 +56,7 @@
 #include <Forms/Gen8/Raids.hpp>
 #include <Forms/Gen8/Static8.hpp>
 #include <Forms/Gen8/Wild8.hpp>
+#include <Forms/Gen8/WildPLA.hpp>
 #include <Forms/Util/EncounterLookup.hpp>
 #include <Forms/Util/IVCalculator.hpp>
 #include <Forms/Util/IVtoPID.hpp>
@@ -157,6 +158,7 @@ void MainWindow::setupModels()
 
     connect(ui->pushButtonStatic8, &QPushButton::clicked, this, &MainWindow::openStatic8);
     connect(ui->pushButtonWild8, &QPushButton::clicked, this, &MainWindow::openWild8);
+    connect(ui->pushButtonWildPLA, &QPushButton::clicked, this, &MainWindow::openWildPLA);
     connect(ui->pushButtonEvent8, &QPushButton::clicked, this, &MainWindow::openEvent8);
     connect(ui->pushButtonRaid, &QPushButton::clicked, this, &MainWindow::openRaids);
     connect(ui->pushButtonEgg8, &QPushButton::clicked, this, &MainWindow::openEgg8);
@@ -638,6 +640,17 @@ void MainWindow::openWild8()
     }
     wild8->show();
     wild8->raise();
+}
+
+void MainWindow::openWildPLA()
+{
+    if (!wildPLA)
+    {
+        wildPLA = new WildPLA();
+        connect(wildPLA, &WildPLA::alertProfiles, this, &MainWindow::updateProfiles);
+    }
+    wildPLA->show();
+    wildPLA->raise();
 }
 
 void MainWindow::openEvent8()

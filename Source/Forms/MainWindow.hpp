@@ -39,6 +39,7 @@ class Eggs5;
 class IDs5;
 class Static8;
 class Wild8;
+class WildPLA;
 class Event8;
 class Raids;
 class Eggs8;
@@ -77,6 +78,7 @@ private:
     IDs5 *ids5 = nullptr;
     Static8 *static8 = nullptr;
     Wild8 *wild8 = nullptr;
+    WildPLA *wildPLA = nullptr;
     Event8 *event8 = nullptr;
     Raids *raids = nullptr;
     Eggs8 *egg8 = nullptr;
@@ -119,6 +121,7 @@ private slots:
     void openProfileManager5();
     void openStatic8();
     void openWild8();
+    void openWildPLA();
     void openEvent8();
     void openRaids();
     void openEgg8();

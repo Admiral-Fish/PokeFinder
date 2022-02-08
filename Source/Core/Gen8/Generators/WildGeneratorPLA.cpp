@@ -25,9 +25,8 @@ std::vector<State> WildGeneratorPLA::generate(u64 seed) const
 
         Xoroshiro groupRng(spawnerSeed);
         groupRng.next(); // level
-        u64 fixedSeed = groupRng.next();
 
-        Xoroshiro fixedRng(fixedSeed);
+        Xoroshiro fixedRng(groupRng.next());
 
         u32 ec = fixedRng.nextUInt<0xffffffff>();
 
@@ -82,9 +81,9 @@ std::vector<State> WildGeneratorPLA::generate(u64 seed) const
             for (u8 i = 0; i < 3;)
             {
                 u8 index = fixedRng.nextUInt<6>();
-                if (result.getIV(i) == 255)
+                if (result.getIV(index) == 255)
                 {
-                    result.setIV(i, 31);
+                    result.setIV(index, 31);
                     i++;
                 }
             }
@@ -116,6 +115,8 @@ std::vector<State> WildGeneratorPLA::generate(u64 seed) const
         {
             result.setGender((fixedRng.nextUInt<253>() + 1) < genderRatio);
         }
+
+        result.setNature(fixedRng.nextUInt<25>());
 
         // Height (2 calls)
         // Weight (2 calls)

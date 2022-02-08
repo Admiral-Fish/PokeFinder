@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>358</width>
-    <height>292</height>
+    <height>293</height>
    </rect>
   </property>
   <property name="windowIcon">
@@ -18,6 +18,9 @@
    <layout class="QGridLayout" name="gridLayout">
     <item row="0" column="0">
      <widget class="QTabWidget" name="tabWidget">
+      <property name="currentIndex">
+       <number>3</number>
+      </property>
       <widget class="QWidget" name="tabGen3">
        <attribute name="title">
         <string>Gen 3</string>
@@ -162,10 +165,10 @@
         <string>Gen 8</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_9">
-        <item row="3" column="0">
-         <widget class="QPushButton" name="pushButtonEvent8">
+        <item row="5" column="0">
+         <widget class="QPushButton" name="pushButtonEgg8">
           <property name="text">
-           <string>Event</string>
+           <string>Egg</string>
           </property>
          </widget>
         </item>
@@ -176,20 +179,6 @@
           </property>
          </widget>
         </item>
-        <item row="1" column="0">
-         <widget class="QPushButton" name="pushButtonWild8">
-          <property name="text">
-           <string>Wild</string>
-          </property>
-         </widget>
-        </item>
-        <item row="5" column="0">
-         <widget class="QPushButton" name="pushButtonEgg8">
-          <property name="text">
-           <string>Egg</string>
-          </property>
-         </widget>
-        </item>
         <item row="4" column="0">
          <widget class="QPushButton" name="pushButtonRaid">
           <property name="text">
@@ -197,10 +186,31 @@
           </property>
          </widget>
         </item>
+        <item row="1" column="0">
+         <widget class="QPushButton" name="pushButtonWild8">
+          <property name="text">
+           <string>Wild</string>
+          </property>
+         </widget>
+        </item>
         <item row="0" column="0">
          <widget class="QPushButton" name="pushButtonStatic8">
           <property name="text">
            <string>Static</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="0">
+         <widget class="QPushButton" name="pushButtonEvent8">
+          <property name="text">
+           <string>Event</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="QPushButton" name="pushButtonWildPLA">
+          <property name="text">
+           <string>Wild PLA</string>
           </property>
          </widget>
         </item>
@@ -216,7 +226,7 @@
      <x>0</x>
      <y>0</y>
      <width>358</width>
-     <height>22</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuTools">

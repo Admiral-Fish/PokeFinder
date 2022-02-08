@@ -74,7 +74,7 @@ void ProfileEditor8::setupModels()
     ui->textBoxTID->setValues(InputType::TIDSID);
     ui->textBoxSID->setValues(InputType::TIDSID);
 
-    ui->comboBoxVersion->setup({ toInt(Game::Sword), toInt(Game::Shield), toInt(Game::BD), toInt(Game::SP) });
+    ui->comboBoxVersion->setup({ toInt(Game::Sword), toInt(Game::Shield), toInt(Game::BD), toInt(Game::SP), toInt(Game::PAL) });
 
     connect(ui->pushButtonOkay, &QPushButton::clicked, this, &ProfileEditor8::okay);
     connect(ui->comboBoxVersion, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &ProfileEditor8::versionIndexChanged);
@@ -113,5 +113,9 @@ void ProfileEditor8::versionIndexChanged(int index)
 
         ui->checkBoxRadar->setVisible(flag);
         ui->checkBoxSwarm->setVisible(flag);
+
+        flag = game != Game::PAL;
+
+        ui->checkBoxOvalCharm->setVisible(flag);
     }
 }
