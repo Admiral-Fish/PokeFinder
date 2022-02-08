@@ -98,6 +98,7 @@ set(PROJECT_UI
     Gen8/Raids.ui
     Gen8/Static8.ui
     Gen8/Wild8.ui
+    Gen8/WildPLA.ui
     MainWindow.ui
     Util/EncounterLookup.ui
     Util/IVCalculator.ui
@@ -163,6 +164,7 @@ set(PROJECT_SOURCES
     Gen8/Raids.cpp
     Gen8/Static8.cpp
     Gen8/Wild8.cpp
+    Gen8/WildPLA.cpp
     MainWindow.cpp
     Models/Gen3/EggModel3.cpp
     Models/Gen3/GameCubeModel.cpp

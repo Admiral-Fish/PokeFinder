@@ -85,6 +85,7 @@ add_library(PokeFinderCore STATIC
     Gen8/Generators/RaidGenerator.cpp
     Gen8/Generators/StaticGenerator8.cpp
     Gen8/Generators/WildGenerator8.cpp
+    Gen8/Generators/WildGeneratorPLA.cpp
     Parents/Daycare.cpp
     Parents/EncounterArea.cpp
     Parents/Filters/IDFilter.cpp

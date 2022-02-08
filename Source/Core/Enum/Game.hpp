@@ -59,7 +59,8 @@ enum class Game : u32
     BD = 1 << 26,
     SP = 1 << 27,
     BDSP = BD | SP,
-    Gen8 = SwSh | BDSP
+    Gen8 = SwSh | BDSP,
+    PAL = 1 << 28
 };
 
 constexpr u32 toInt(Game game)
