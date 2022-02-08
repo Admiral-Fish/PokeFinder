@@ -16,6 +16,15 @@ std::vector<State> WildGeneratorPLA::generate(u64 seed) const
 
     seed -= 0x82A2B175229D6A5B;
 
+    for (u32 advance = 0; advance < initialAdvances; advance++)
+    {
+        // Probably horrible implementation but I forget how RNGList works
+        Xoroshiro mainRng(seed);
+        mainRng.next();
+        mainRng.next();
+        seed = mainRng.next();
+    }
+
     for (u32 advance = 0; advance <= maxAdvances; advance++)
     {
         State result(initialAdvances + advance);
