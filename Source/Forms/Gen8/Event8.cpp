@@ -38,7 +38,6 @@ Event8::Event8(QWidget *parent) : QWidget(parent), ui(new Ui::Event8)
     setAttribute(Qt::WA_QuitOnClose, false);
 
     setupModels();
-    updateProfiles();
 }
 
 Event8::~Event8()
@@ -112,6 +111,8 @@ void Event8::setupModels()
     connect(ui->pushButtonImport, &QPushButton::clicked, this, &Event8::importEvent);
     connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &Event8::profileManager);
     connect(ui->tableView, &QTableView::customContextMenuRequested, this, &Event8::tableViewContextMenu);
+
+    updateProfiles();
 
     QSettings setting;
     setting.beginGroup("event8");

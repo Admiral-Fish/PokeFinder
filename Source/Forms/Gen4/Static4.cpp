@@ -43,7 +43,6 @@ Static4::Static4(QWidget *parent) : QWidget(parent), ui(new Ui::Static4)
     setAttribute(Qt::WA_QuitOnClose, false);
 
     setupModels();
-    updateProfiles();
 }
 
 Static4::~Static4()
@@ -131,6 +130,8 @@ void Static4::setupModels()
     connect(ui->tableViewGenerator, &QTableView::customContextMenuRequested, this, &Static4::tableViewGeneratorContextMenu);
     connect(ui->tableViewSearcher, &QTableView::customContextMenuRequested, this, &Static4::tableViewSearcherContextMenu);
     connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &Static4::profileManager);
+
+    updateProfiles();
 
     QSettings setting;
     setting.beginGroup("static4");

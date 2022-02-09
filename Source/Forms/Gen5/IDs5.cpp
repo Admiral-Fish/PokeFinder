@@ -41,7 +41,6 @@ IDs5::IDs5(QWidget *parent) : QWidget(parent), ui(new Ui::IDs5)
     setAttribute(Qt::WA_QuitOnClose, false);
 
     setupModels();
-    updateProfiles();
 }
 
 IDs5::~IDs5()
@@ -105,6 +104,8 @@ void IDs5::setupModels()
     connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &IDs5::profileManager);
     connect(ui->tableView, &QTableView::customContextMenuRequested, this, &IDs5::tableViewContextMenu);
     connect(ui->checkBoxPID, &QCheckBox::clicked, this, &IDs5::setXOR);
+
+    updateProfiles();
 
     QSettings setting;
     setting.beginGroup("id5");

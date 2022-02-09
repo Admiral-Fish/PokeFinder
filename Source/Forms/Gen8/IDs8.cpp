@@ -34,7 +34,6 @@ IDs8::IDs8(QWidget *parent) : QWidget(parent), ui(new Ui::IDs8)
     setAttribute(Qt::WA_QuitOnClose, false);
 
     setupModel();
-    updateProfiles();
 }
 
 IDs8::~IDs8()
@@ -78,6 +77,8 @@ void IDs8::setupModel()
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &IDs8::generate);
     connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &IDs8::profileManager);
     connect(ui->comboBoxProfiles, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &IDs8::profilesIndexChanged);
+
+    updateProfiles();
 
     QSettings setting;
     if (setting.contains("ids8/geometry"))

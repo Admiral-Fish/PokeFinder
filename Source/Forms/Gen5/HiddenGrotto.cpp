@@ -44,7 +44,6 @@ HiddenGrotto::HiddenGrotto(QWidget *parent) : QWidget(parent), ui(new Ui::Hidden
     setAttribute(Qt::WA_QuitOnClose, false);
 
     setupModels();
-    updateProfiles();
 }
 
 HiddenGrotto::~HiddenGrotto()
@@ -143,6 +142,8 @@ void HiddenGrotto::setupModels()
     connect(ui->pushButtonCalculateInitialAdvances, &QPushButton::clicked, this, &HiddenGrotto::calculateInitialAdvances);
     connect(ui->tableViewGenerator, &QTableView::customContextMenuRequested, this, &HiddenGrotto::tableViewGeneratorContextMenu);
     connect(ui->tableViewSearcher, &QTableView::customContextMenuRequested, this, &HiddenGrotto::tableViewSearcherContextMenu);
+
+    updateProfiles();
 
     QSettings setting;
     setting.beginGroup("hiddenGrotto");

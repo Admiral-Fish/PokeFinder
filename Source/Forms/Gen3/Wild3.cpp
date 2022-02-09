@@ -48,7 +48,6 @@ Wild3::Wild3(QWidget *parent) : QWidget(parent), ui(new Ui::Wild3)
     setAttribute(Qt::WA_QuitOnClose, false);
 
     setupModels();
-    updateProfiles();
 }
 
 Wild3::~Wild3()
@@ -142,6 +141,7 @@ void Wild3::setupModels()
     connect(ui->comboBoxSearcherPokemon, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &Wild3::searcherPokemonIndexChanged);
     connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &Wild3::profileManager);
 
+    updateProfiles();
     generatorEncounterIndexChanged(0);
     searcherEncounterIndexChanged(0);
 

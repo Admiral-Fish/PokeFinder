@@ -44,11 +44,9 @@
 Wild4::Wild4(QWidget *parent) : QWidget(parent), ui(new Ui::Wild4)
 {
     ui->setupUi(this);
-
     setAttribute(Qt::WA_QuitOnClose, false);
 
     setupModels();
-    updateProfiles();
 }
 
 Wild4::~Wild4()
@@ -146,6 +144,7 @@ void Wild4::setupModels()
     connect(ui->tableViewSearcher, &QTableView::customContextMenuRequested, this, &Wild4::tableViewSearcherContextMenu);
     connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &Wild4::profileManager);
 
+    updateProfiles();
     generatorEncounterIndexChanged(0);
     searcherEncounterIndexChanged(0);
 

@@ -41,7 +41,6 @@ Static3::Static3(QWidget *parent) : QWidget(parent), ui(new Ui::Static3)
     setAttribute(Qt::WA_QuitOnClose, false);
 
     setupModels();
-    updateProfiles();
 }
 
 Static3::~Static3()
@@ -117,6 +116,8 @@ void Static3::setupModels()
     connect(ui->tableViewGenerator, &QTableView::customContextMenuRequested, this, &Static3::tableViewGeneratorContextMenu);
     connect(ui->tableViewSearcher, &QTableView::customContextMenuRequested, this, &Static3::tableViewSearcherContextMenu);
     connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &Static3::profileManager);
+
+    updateProfiles();
 
     QSettings setting;
     if (setting.contains("static3/geometry"))

@@ -22,8 +22,8 @@
 #include <Core/Enum/Lead.hpp>
 #include <Core/Gen8/EncounterArea8.hpp>
 #include <Core/Gen8/Encounters8.hpp>
-#include <Core/Gen8/Profile8.hpp>
 #include <Core/Gen8/Generators/WildGenerator8.hpp>
+#include <Core/Gen8/Profile8.hpp>
 #include <Core/Parents/PersonalLoader.hpp>
 #include <Core/Parents/ProfileLoader.hpp>
 #include <Core/Parents/Slot.hpp>
@@ -37,10 +37,8 @@
 Wild8::Wild8(QWidget *parent) : QWidget(parent), ui(new Ui::Wild8)
 {
     ui->setupUi(this);
-
     setAttribute(Qt::WA_QuitOnClose, false);
 
-    updateProfiles();
     setupModels();
 }
 
@@ -81,8 +79,6 @@ void Wild8::updateProfiles()
     {
         ui->comboBoxProfiles->setCurrentIndex(val);
     }
-
-    profilesIndexChanged(0);
 }
 
 void Wild8::setupModels()
@@ -125,6 +121,7 @@ void Wild8::setupModels()
     connect(ui->tableView, &QTableView::customContextMenuRequested, this, &Wild8::tableViewContextMenu);
     connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &Wild8::profileManager);
 
+    updateProfiles();
     encounterIndexChanged(0);
 
     QSettings setting;

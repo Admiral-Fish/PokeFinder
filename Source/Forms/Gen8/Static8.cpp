@@ -22,9 +22,9 @@
 #include <Core/Enum/Lead.hpp>
 #include <Core/Gen8/Encounters8.hpp>
 #include <Core/Gen8/Generators/StaticGenerator8.hpp>
+#include <Core/Gen8/Profile8.hpp>
 #include <Core/Parents/ProfileLoader.hpp>
 #include <Core/Parents/StaticTemplate.hpp>
-#include <Core/Gen8/Profile8.hpp>
 #include <Core/Util/Translator.hpp>
 #include <Forms/Controls/Controls.hpp>
 #include <Forms/Gen8/Profile/ProfileManager8.hpp>
@@ -35,15 +35,9 @@
 Static8::Static8(QWidget *parent) : QWidget(parent), ui(new Ui::Static8)
 {
     ui->setupUi(this);
-
     setAttribute(Qt::WA_QuitOnClose, false);
 
     setupModels();
-    updateProfiles();
-
-    // Do this after profiles are initialized
-    categoryIndexChanged(0);
-    pokemonIndexChanged(0);
 }
 
 Static8::~Static8()
@@ -113,6 +107,10 @@ void Static8::setupModels()
     connect(ui->comboBoxPokemon, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &Static8::pokemonIndexChanged);
     connect(ui->tableView, &QTableView::customContextMenuRequested, this, &Static8::tableViewContextMenu);
     connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &Static8::profileManager);
+
+    updateProfiles();
+    categoryIndexChanged(0);
+    pokemonIndexChanged(0);
 
     QSettings setting;
     setting.beginGroup("static8");

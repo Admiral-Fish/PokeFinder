@@ -40,7 +40,6 @@ Eggs3::Eggs3(QWidget *parent) : QWidget(parent), ui(new Ui::Eggs3)
     setAttribute(Qt::WA_QuitOnClose, false);
 
     setupModels();
-    updateProfiles();
 }
 
 Eggs3::~Eggs3()
@@ -151,6 +150,8 @@ void Eggs3::setupModels()
     connect(ui->tableViewEmerald, &QTableView::customContextMenuRequested, this, &Eggs3::tableViewEmeraldContextMenu);
     connect(ui->tableViewRS, &QTableView::customContextMenuRequested, this, &Eggs3::tableViewRSContextMenu);
     connect(ui->tableViewFRLG, &QTableView::customContextMenuRequested, this, &Eggs3::tableViewFRLGContextMenu);
+
+    updateProfiles();
 
     QSettings setting;
     if (setting.contains("eggs3/geometry"))

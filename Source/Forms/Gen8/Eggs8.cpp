@@ -35,7 +35,6 @@ Eggs8::Eggs8(QWidget *parent) : QWidget(parent), ui(new Ui::Eggs8)
     setAttribute(Qt::WA_QuitOnClose, false);
 
     setupModels();
-    updateProfiles();
 }
 
 Eggs8::~Eggs8()
@@ -101,6 +100,8 @@ void Eggs8::setupModels()
     connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &Eggs8::profileManager);
     connect(ui->tableView, &QTableView::customContextMenuRequested, this, &Eggs8::tableViewContextMenu);
     connect(ui->eggSettings, &EggSettings::toggleInheritance, model, &EggModel8::toggleInheritance);
+
+    updateProfiles();
 
     QSettings setting;
     setting.beginGroup("egg8");

@@ -45,7 +45,6 @@ Static5::Static5(QWidget *parent) : QWidget(parent), ui(new Ui::Static5)
     setAttribute(Qt::WA_QuitOnClose, false);
 
     setupModels();
-    updateProfiles();
 }
 
 Static5::~Static5()
@@ -134,6 +133,8 @@ void Static5::setupModels()
     connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &Static5::profileManager);
     connect(ui->tableViewGenerator, &QTableView::customContextMenuRequested, this, &Static5::tableViewGeneratorContextMenu);
     connect(ui->tableViewSearcher, &QTableView::customContextMenuRequested, this, &Static5::tableViewSearcherContextMenu);
+
+    updateProfiles();
 
     QSettings setting;
     setting.beginGroup("static5");

@@ -41,15 +41,7 @@ GameCube::GameCube(QWidget *parent) : QWidget(parent), ui(new Ui::GameCube)
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
 
-    ui->labelSearcherShadow->setVisible(false);
-    ui->comboBoxSearcherShadow->setVisible(false);
-    ui->labelGeneratorShadow->setVisible(false);
-    ui->comboBoxGeneratorShadow->setVisible(false);
-    ui->labelGeneratorType->setVisible(false);
-    ui->comboBoxGeneratorType->setVisible(false);
-
     setupModels();
-    updateProfiles();
 }
 
 GameCube::~GameCube()
@@ -105,6 +97,13 @@ void GameCube::setupModels()
     ui->filterGenerator->disableControls(Controls::EncounterSlots);
     ui->filterSearcher->disableControls(Controls::EncounterSlots | Controls::UseDelay | Controls::DisableFilter);
 
+    ui->labelSearcherShadow->setVisible(false);
+    ui->comboBoxSearcherShadow->setVisible(false);
+    ui->labelGeneratorShadow->setVisible(false);
+    ui->comboBoxGeneratorShadow->setVisible(false);
+    ui->labelGeneratorType->setVisible(false);
+    ui->comboBoxGeneratorType->setVisible(false);
+
     QAction *outputTXTGenerator = generatorMenu->addAction(tr("Output Results to TXT"));
     QAction *outputCSVGenerator = generatorMenu->addAction(tr("Output Results to CSV"));
     connect(outputTXTGenerator, &QAction::triggered, this, [=] { ui->tableViewGenerator->outputModel(); });
@@ -126,6 +125,8 @@ void GameCube::setupModels()
     connect(ui->tableViewGenerator, &QTableView::customContextMenuRequested, this, &GameCube::tableViewGeneratorContextMenu);
     connect(ui->tableViewSearcher, &QTableView::customContextMenuRequested, this, &GameCube::tableViewSearcherContextMenu);
     connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &GameCube::profileManager);
+
+    updateProfiles();
 
     QSettings setting;
     if (setting.contains("gamecube/geometry"))

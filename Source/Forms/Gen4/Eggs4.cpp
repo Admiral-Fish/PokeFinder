@@ -44,7 +44,6 @@ Eggs4::Eggs4(QWidget *parent) : QWidget(parent), ui(new Ui::Eggs4)
     setAttribute(Qt::WA_QuitOnClose, false);
 
     updateProfiles();
-    setupModels();
 }
 
 Eggs4::~Eggs4()
@@ -137,6 +136,8 @@ void Eggs4::setupModels()
     connect(ui->eggSettingsGenerator, &EggSettings::toggleInheritance, generatorModel, &EggGeneratorModel4::toggleInheritance);
     connect(ui->eggSettingsSearcher, &EggSettings::toggleInheritance, searcherModel, &EggSearcherModel4::toggleInheritance);
     connect(ui->comboBoxGeneratorMethod, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &Eggs4::generatorMethodChanged);
+
+    setupModels();
 
     QSettings setting;
     setting.beginGroup("eggs4");

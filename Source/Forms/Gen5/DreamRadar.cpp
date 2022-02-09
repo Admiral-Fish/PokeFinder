@@ -45,7 +45,6 @@ DreamRadar::DreamRadar(QWidget *parent) : QWidget(parent), ui(new Ui::DreamRadar
     setAttribute(Qt::WA_QuitOnClose, false);
 
     setupModels();
-    updateProfiles();
 }
 
 DreamRadar::~DreamRadar()
@@ -184,6 +183,8 @@ void DreamRadar::setupModels()
     connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &DreamRadar::profileManager);
     connect(ui->tableViewGenerator, &QTableView::customContextMenuRequested, this, &DreamRadar::tableViewGeneratorContextMenu);
     connect(ui->tableViewSearcher, &QTableView::customContextMenuRequested, this, &DreamRadar::tableViewSearcherContextMenu);
+
+    updateProfiles();
 
     QSettings setting;
     setting.beginGroup("dreamRadar");
