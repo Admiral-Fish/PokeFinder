@@ -42,7 +42,7 @@ QVariant HiddenGrottoGeneratorModel5::data(const QModelIndex &index, int role) c
         case 0:
             return state.getAdvances();
         case 1:
-            return QString::fromStdString(Utilities::getChatot64(state.getSeed()));
+            return QString::fromStdString(Utilities5::getChatot(state.getSeed()));
         case 2:
             return state.getGroup();
         case 3:

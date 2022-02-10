@@ -42,7 +42,7 @@ QVariant EggGeneratorModel5::data(const QModelIndex &index, int role) const
         case 0:
             return state.getAdvances();
         case 1:
-            return QString::fromStdString(Utilities::getChatot64(state.getSeed()));
+            return QString::fromStdString(Utilities5::getChatot(state.getSeed()));
         case 2:
             return QString::number(state.getPID(), 16).toUpper().rightJustified(8, '0');
         case 3:

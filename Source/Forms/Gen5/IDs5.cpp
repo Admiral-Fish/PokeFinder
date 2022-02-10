@@ -219,7 +219,7 @@ void IDs5::find()
             sha.setTime(hour, minute, second, currentProfile->getDSType());
             u64 seed = sha.hashSeed();
 
-            generator.setInitialAdvances(flag ? Utilities::initialAdvancesBWID(seed) : Utilities::initialAdvancesBW2ID(seed));
+            generator.setInitialAdvances(flag ? Utilities5::initialAdvancesBWID(seed) : Utilities5::initialAdvancesBW2ID(seed));
             auto states = generator.generate(seed);
 
             DateTime dt(date, Time(hour, minute, second));

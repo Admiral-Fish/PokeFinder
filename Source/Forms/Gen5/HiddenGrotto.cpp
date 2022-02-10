@@ -246,7 +246,7 @@ void HiddenGrotto::profileIndexChanged(int index)
 void HiddenGrotto::calculateInitialAdvances()
 {
     ui->textBoxGeneratorInitialAdvances->setText(
-        QString::number(Utilities::initialAdvancesBW2(ui->textBoxGeneratorSeed->getULong(), currentProfile->getMemoryLink())));
+        QString::number(Utilities5::initialAdvancesBW2(ui->textBoxGeneratorSeed->getULong(), currentProfile->getMemoryLink())));
 }
 
 void HiddenGrotto::tableViewGeneratorContextMenu(QPoint pos)

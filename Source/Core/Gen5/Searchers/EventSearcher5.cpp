@@ -120,8 +120,8 @@ void EventSearcher5::search(EventGenerator5 generator, const Date &start, const 
                             sha.setTime(hour, minute, second, profile.getDSType());
                             u64 seed = sha.hashSeed();
 
-                            generator.setInitialAdvances(flag ? Utilities::initialAdvancesBW(seed)
-                                                              : Utilities::initialAdvancesBW2(seed, profile.getMemoryLink()));
+                            generator.setInitialAdvances(flag ? Utilities5::initialAdvancesBW(seed)
+                                                              : Utilities5::initialAdvancesBW2(seed, profile.getMemoryLink()));
                             auto states = generator.generate(seed);
 
                             if (!states.empty())

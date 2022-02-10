@@ -160,7 +160,7 @@ void IDs3::rsSearch()
     }
     else if (ui->radioButtonRSDate->isChecked())
     {
-        seed = Utilities::calcGen3Seed(ui->dateTimeEdit->getDateTime());
+        seed = Utilities3::calcSeed(ui->dateTimeEdit->getDateTime());
     }
     else
     {

@@ -190,7 +190,7 @@ bool ProfileNeedleSearcher5::valid(u64 seed)
 {
     BWRNG rng(seed);
 
-    u8 advances = game ? Utilities::initialAdvancesBW(seed) : Utilities::initialAdvancesBW2(seed, memoryLink);
+    u8 advances = game ? Utilities5::initialAdvancesBW(seed) : Utilities5::initialAdvancesBW2(seed, memoryLink);
 
     // Opening the menu advances 1
     if (unovaLink)

@@ -80,7 +80,7 @@ QVariant WildGeneratorModel4::data(const QModelIndex &index, int role) const
         }
         case 4:
         {
-            return QString::fromStdString(Utilities::getChatot(state.getSeed()));
+            return QString::fromStdString(Utilities4::getChatot(state.getSeed()));
         }
         case 5:
             return state.getEncounterSlot();

@@ -67,7 +67,7 @@ QVariant StaticGeneratorModel4::data(const QModelIndex &index, int role) const
         }
         case 2:
         {
-            return QString::fromStdString(Utilities::getChatot(state.getSeed()));
+            return QString::fromStdString(Utilities4::getChatot(state.getSeed()));
         }
         case 3:
             return QString::number(state.getPID(), 16).toUpper().rightJustified(8, '0');

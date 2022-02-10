@@ -255,7 +255,7 @@ std::vector<StaticState> StaticGenerator5::generateStatic(u64 seed) const
             else
             {
                 // TODO: fix hard coded gender
-                pid = Utilities::forceGender(pid, go.next(), 0, genderRatio);
+                pid = Utilities5::forceGender(pid, go.next(), 0, genderRatio);
                 state.setNature(go.nextUInt(25));
             }
         }
@@ -435,7 +435,7 @@ std::vector<StaticState> StaticGenerator5::generateHiddenGrotto(u64 seed) const
         }
         else
         {
-            pid = Utilities::forceGender(pid, go.nextUInt(), gender, genderRatio);
+            pid = Utilities5::forceGender(pid, go.nextUInt(), gender, genderRatio);
             state.setNature(go.nextUInt(25));
         }
 
