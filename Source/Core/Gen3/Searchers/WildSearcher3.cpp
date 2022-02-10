@@ -99,7 +99,7 @@ std::vector<WildState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 s
 
     // RSE encounters have different rng calls inside Safari Zone,
     // so we set a flag to check if we're searching these kind of spreads
-    bool rseSafari = encounterArea.rseSafariZone() & rse;
+    bool rseSafari = encounterArea.rseSafariZone() && rse;
 
     auto seeds = cache.recoverLower16BitsIV(hp, atk, def, spa, spd, spe);
     for (const u32 val : seeds)
