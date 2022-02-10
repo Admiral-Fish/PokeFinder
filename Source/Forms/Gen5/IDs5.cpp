@@ -24,7 +24,6 @@
 #include <Core/Gen5/Keypresses.hpp>
 #include <Core/Gen5/Profile5.hpp>
 #include <Core/Gen5/Searchers/IDSearcher5.hpp>
-#include <Core/Parents/Filters/IDFilter.hpp>
 #include <Core/Parents/ProfileLoader.hpp>
 #include <Core/RNG/SHA1.hpp>
 #include <Core/Util/Utilities.hpp>

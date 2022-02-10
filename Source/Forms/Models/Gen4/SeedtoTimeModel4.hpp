@@ -20,16 +20,17 @@
 #ifndef SEEDTOTIME4MODEL_HPP
 #define SEEDTOTIME4MODEL_HPP
 
-#include <Core/Enum/Game.hpp>
 #include <Core/Gen4/SeedTime.hpp>
 #include <Forms/Models/TableModel.hpp>
+
+enum class Game : u32;
 
 class SeedtoTimeModel4 : public TableModel<SeedTime>
 {
     Q_OBJECT
 public:
-    explicit SeedtoTimeModel4(QObject *parent, bool flag = false, Game version = Game::DPPt);
-    void setFlags(bool flag = false, Game version = Game::Diamond);
+    explicit SeedtoTimeModel4(QObject *parent, bool flag, Game version);
+    void setFlags(bool flag, Game version);
     int columnCount(const QModelIndex &parent = QModelIndex()) const override;
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
     QVariant headerData(int section, Qt::Orientation orientation, int role) const override;

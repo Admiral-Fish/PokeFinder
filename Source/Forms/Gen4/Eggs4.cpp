@@ -23,9 +23,7 @@
 #include <Core/Gen4/Generators/EggGenerator4.hpp>
 #include <Core/Gen4/Profile4.hpp>
 #include <Core/Gen4/Searchers/EggSearcher4.hpp>
-#include <Core/Parents/Filters/StateFilter.hpp>
 #include <Core/Parents/ProfileLoader.hpp>
-#include <Core/Parents/States/EggState.hpp>
 #include <Core/Util/Translator.hpp>
 #include <Forms/Controls/Controls.hpp>
 #include <Forms/Gen4/Profile/ProfileManager4.hpp>

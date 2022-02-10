@@ -21,7 +21,6 @@
 #include "EggGenerator3.hpp"
 #include <Core/Enum/Method.hpp>
 #include <Core/Gen3/States/EggState3.hpp>
-#include <Core/Parents/Filters/StateFilter.hpp>
 #include <Core/RNG/LCRNG.hpp>
 #include <algorithm>
 

@@ -18,7 +18,6 @@
  */
 
 #include "ResearcherModel.hpp"
-#include <functional>
 
 ResearcherModel::ResearcherModel(QObject *parent, bool flag) : TableModel<ResearcherState>(parent), flag(flag)
 {
@@ -103,7 +102,8 @@ QVariant ResearcherModel::headerData(int section, Qt::Orientation orientation, i
 QModelIndex ResearcherModel::search(const QString &string, u64 result, int row)
 {
     int column = 0;
-    std::function<u64(const ResearcherState &)> getResult;
+    u64 (*getResult)(const ResearcherState &);
+
     if (string == tr("64Bit"))
     {
         column = 1;
@@ -112,12 +112,12 @@ QModelIndex ResearcherModel::search(const QString &string, u64 result, int row)
     else if (string == tr("32Bit High"))
     {
         column = 2;
-        getResult = [](const ResearcherState &state) { return state.getHigh32(); };
+        getResult = [](const ResearcherState &state) { return static_cast<u64>(state.getHigh32()); };
     }
     else if (string == tr("32Bit Low"))
     {
         column = 3;
-        getResult = [](const ResearcherState &state) { return state.getLow32(); };
+        getResult = [](const ResearcherState &state) { return static_cast<u64>(state.getLow32()); };
     }
     else if (string == tr("32Bit"))
     {
@@ -127,12 +127,12 @@ QModelIndex ResearcherModel::search(const QString &string, u64 result, int row)
     else if (string == tr("16Bit High"))
     {
         column = flag ? 4 : 2;
-        getResult = [](const ResearcherState &state) { return state.getHigh16(); };
+        getResult = [](const ResearcherState &state) { return static_cast<u64>(state.getHigh16()); };
     }
     else if (string == tr("16Bit Low"))
     {
         column = flag ? 5 : 3;
-        getResult = [](const ResearcherState &state) { return state.getLow16(); };
+        getResult = [](const ResearcherState &state) { return static_cast<u64>(state.getLow16()); };
     }
     else if (string == tr("Custom 1"))
     {

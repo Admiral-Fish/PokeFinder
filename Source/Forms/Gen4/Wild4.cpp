@@ -26,10 +26,8 @@
 #include <Core/Gen4/Generators/WildGenerator4.hpp>
 #include <Core/Gen4/Profile4.hpp>
 #include <Core/Gen4/Searchers/WildSearcher4.hpp>
-#include <Core/Parents/Filters/StateFilter.hpp>
 #include <Core/Parents/ProfileLoader.hpp>
 #include <Core/Parents/Slot.hpp>
-#include <Core/Parents/States/WildState.hpp>
 #include <Core/Util/Nature.hpp>
 #include <Core/Util/Translator.hpp>
 #include <Forms/Controls/Controls.hpp>

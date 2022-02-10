@@ -28,7 +28,6 @@
 #include <Core/Gen5/Profile5.hpp>
 #include <Core/Gen5/Searchers/StaticSearcher5.hpp>
 #include <Core/Parents/ProfileLoader.hpp>
-#include <Core/Parents/States/StaticState.hpp>
 #include <Core/Util/Translator.hpp>
 #include <Core/Util/Utilities.hpp>
 #include <Forms/Controls/Controls.hpp>

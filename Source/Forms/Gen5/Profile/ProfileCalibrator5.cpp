@@ -32,7 +32,6 @@
 #include <QSettings>
 #include <QThread>
 #include <QTimer>
-#include <array>
 
 ProfileCalibrator5::ProfileCalibrator5(QWidget *parent) : QWidget(parent), ui(new Ui::ProfileCalibrator5)
 {
@@ -311,7 +310,7 @@ void ProfileCalibrator5::createProfile()
     u64 mac = ui->textBoxMACAddress->getULong();
     auto state = model->getItem(row);
 
-    QScopedPointer<ProfileEditor5> dialog(
+    std::unique_ptr<ProfileEditor5> dialog(
         new ProfileEditor5(version, language, dsType, mac, state.getVcount(), state.getTimer0(), state.getGxstat(), state.getVframe()));
     if (dialog->exec() == QDialog::Accepted)
     {

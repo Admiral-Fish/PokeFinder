@@ -22,6 +22,7 @@
 #include <Core/Gen5/Generators/EventGenerator5.hpp>
 #include <Core/Gen5/Keypresses.hpp>
 #include <Core/Gen5/States/SearcherState5.hpp>
+#include <Core/Parents/States/State.hpp>
 #include <Core/RNG/SHA1.hpp>
 #include <Core/Util/Utilities.hpp>
 #include <future>

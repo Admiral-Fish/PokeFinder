@@ -20,7 +20,6 @@
 #include "IVFilter.hpp"
 #include "ui_IVFilter.h"
 #include <Forms/Util/IVCalculator.hpp>
-#include <array>
 
 IVFilter::IVFilter(QWidget *parent) : QWidget(parent), ui(new Ui::IVFilter)
 {

@@ -23,7 +23,6 @@
 #include <Core/Gen5/Profile5.hpp>
 #include <Core/RNG/LCRNG64.hpp>
 #include <Core/Util/DateTime.hpp>
-#include <array>
 
 inline u32 changeEndian(u32 val)
 {

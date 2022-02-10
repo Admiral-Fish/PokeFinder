@@ -22,7 +22,6 @@
 #include <Core/Util/Translator.hpp>
 #include <Forms/Controls/GraphicsPixmapItem.hpp>
 #include <QSettings>
-#include <array>
 
 constexpr u8 coords[8] = { 0, 0, 24, 1, 6, 18, 18, 19 };
 constexpr u8 origin[2] = { 8, 6 };
@@ -111,7 +110,7 @@ void SpindaPainter::updatePID(const QList<QRectF> & /*region*/)
 {
     if (!text)
     {
-        std::array<double, 8> pos = { spot1->x(), spot1->y(), spot2->x(), spot2->y(), spot3->x(), spot3->y(), spot4->x(), spot4->y() };
+        double pos[8] = { spot1->x(), spot1->y(), spot2->x(), spot2->y(), spot3->x(), spot3->y(), spot4->x(), spot4->y() };
 
         u32 pid = 0;
         for (size_t i = 0; i < 4; i++)

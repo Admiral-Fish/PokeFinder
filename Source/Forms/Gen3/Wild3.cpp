@@ -29,14 +29,12 @@
 #include <Core/Gen3/Searchers/WildSearcher3.hpp>
 #include <Core/Parents/ProfileLoader.hpp>
 #include <Core/Parents/Slot.hpp>
-#include <Core/Parents/States/WildState.hpp>
 #include <Core/Util/Nature.hpp>
 #include <Core/Util/Translator.hpp>
 #include <Forms/Controls/Controls.hpp>
 #include <Forms/Gen3/Profile/ProfileManager3.hpp>
 #include <Forms/Gen3/Tools/SeedTime3.hpp>
 #include <Forms/Models/Gen3/WildModel3.hpp>
-#include <QClipboard>
 #include <QMenu>
 #include <QSettings>
 #include <QThread>

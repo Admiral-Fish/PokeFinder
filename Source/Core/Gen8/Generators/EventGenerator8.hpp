@@ -24,7 +24,6 @@
 #include <Core/Parents/Generators/Generator.hpp>
 
 class State;
-class WB8;
 
 class EventGenerator8 : public Generator
 {

@@ -18,7 +18,6 @@
  */
 
 #include "ColoSeedSearcher.hpp"
-#include <algorithm>
 #include <future>
 
 constexpr u8 natures[8][6]

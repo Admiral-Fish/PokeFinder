@@ -22,7 +22,6 @@
 #include <Core/Enum/ShadowType.hpp>
 #include <Core/Gen3/LockInfo.hpp>
 #include <Core/Gen3/States/GameCubeState.hpp>
-#include <Core/Parents/Filters/StateFilter.hpp>
 #include <Core/RNG/LCRNG.hpp>
 
 GameCubeGenerator::GameCubeGenerator(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, Method method,

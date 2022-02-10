@@ -21,7 +21,6 @@
 #include "ui_Filter.h"
 #include <Core/Util/Translator.hpp>
 #include <Forms/Controls/Controls.hpp>
-#include <array>
 
 Filter::Filter(QWidget *parent) : QWidget(parent), ui(new Ui::Filter)
 {

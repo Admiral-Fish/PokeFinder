@@ -22,7 +22,6 @@
 #include <Core/Gen4/SeedTime.hpp>
 #include <Core/Util/Utilities.hpp>
 #include <QSettings>
-#include <algorithm>
 
 SearchCalls::SearchCalls(const std::vector<SeedTime> &model, const std::vector<bool> &roamers, const std::vector<u8> &routes,
                          QWidget *parent) :

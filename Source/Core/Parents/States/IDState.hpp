@@ -61,4 +61,5 @@ protected:
     u16 sid;
     u16 tsv;
 };
+
 #endif // IDSTATE_HPP

@@ -23,7 +23,6 @@
 #include <Core/Gen5/Profile5.hpp>
 #include <atomic>
 #include <mutex>
-#include <unordered_map>
 
 class Date;
 class StaticGenerator5;

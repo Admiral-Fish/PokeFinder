@@ -22,11 +22,9 @@
 #include <Core/Enum/Lead.hpp>
 #include <Core/Enum/Method.hpp>
 #include <Core/Gen3/EncounterArea3.hpp>
-#include <Core/Parents/Filters/StateFilter.hpp>
 #include <Core/Parents/States/WildState.hpp>
 #include <Core/RNG/LCRNG.hpp>
 #include <Core/Util/EncounterSlot.hpp>
-#include <functional>
 
 WildGenerator3::WildGenerator3(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, Method method,
                                const StateFilter &filter, bool rse) :
@@ -47,7 +45,7 @@ std::vector<WildState> WildGenerator3::generate(u32 seed, const EncounterArea3 &
     bool rock = rate == 2880;
 
     bool cuteCharmFlag = false;
-    std::function<bool(u32)> cuteCharm;
+    bool (*cuteCharm)(u32);
     switch (lead)
     {
     case Lead::CuteCharm125F:

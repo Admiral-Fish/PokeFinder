@@ -19,6 +19,7 @@
 
 #include "SeedtoTime4.hpp"
 #include "ui_SeedtoTime4.h"
+#include <Core/Enum/Game.hpp>
 #include <Core/Util/Utilities.hpp>
 #include <Forms/Gen4/Tools/RoamerMap.hpp>
 #include <Forms/Gen4/Tools/SearchCalls.hpp>
@@ -79,10 +80,10 @@ SeedtoTime4::~SeedtoTime4()
 
 void SeedtoTime4::setupModels()
 {
-    dpptModel = new SeedtoTimeModel4(ui->tableViewDPPtSearch, false);
-    dpptCalibrateModel = new SeedtoTimeModel4(ui->tableViewDPPtCalibrate, true);
-    hgssModel = new SeedtoTimeModel4(ui->tableViewHGSSSearch, false, Game::HeartGold);
-    hgssCalibrateModel = new SeedtoTimeModel4(ui->tableViewHGSSCalibrate, true, Game::HeartGold);
+    dpptModel = new SeedtoTimeModel4(ui->tableViewDPPtSearch, false, Game::DPPt);
+    dpptCalibrateModel = new SeedtoTimeModel4(ui->tableViewDPPtCalibrate, true, Game::DPPt);
+    hgssModel = new SeedtoTimeModel4(ui->tableViewHGSSSearch, false, Game::HGSS);
+    hgssCalibrateModel = new SeedtoTimeModel4(ui->tableViewHGSSCalibrate, true, Game::HGSS);
 
     ui->textBoxDPPtSeed->setValues(InputType::Seed32Bit);
     ui->textBoxDPPtYear->setValues(2000, 2099, 4, 10);
@@ -353,7 +354,7 @@ void SeedtoTime4::searchFlips()
         return;
     }
 
-    QScopedPointer<SearchCoinFlips> search(new SearchCoinFlips(dpptCalibrateModel->getModel()));
+    std::unique_ptr<SearchCoinFlips> search(new SearchCoinFlips(dpptCalibrateModel->getModel()));
     if (search->exec() == QDialog::Rejected)
     {
         return;
@@ -389,7 +390,7 @@ void SeedtoTime4::searchCalls()
         = { static_cast<u8>(ui->lineEditHGSSRaikou->text().toUInt()), static_cast<u8>(ui->lineEditHGSSEntei->text().toUInt()),
             static_cast<u8>(ui->lineEditHGSSLati->text().toUInt()) };
 
-    QScopedPointer<SearchCalls> search(new SearchCalls(hgssCalibrateModel->getModel(), roamer, routes));
+    std::unique_ptr<SearchCalls> search(new SearchCalls(hgssCalibrateModel->getModel(), roamer, routes));
     if (search->exec() == QDialog::Rejected)
     {
         return;

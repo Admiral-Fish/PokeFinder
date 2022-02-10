@@ -23,15 +23,13 @@
 #include <Core/Enum/Method.hpp>
 #include <Core/Gen4/EncounterArea4.hpp>
 #include <Core/Gen4/States/WildState4.hpp>
-#include <Core/Parents/Filters/StateFilter.hpp>
 #include <Core/RNG/LCRNG.hpp>
 #include <Core/Util/EncounterSlot.hpp>
 
 WildGenerator4::WildGenerator4(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, Method method,
                                const StateFilter &filter, bool platinum) :
-    WildGenerator(initialAdvances, maxAdvances, tid, sid, genderRatio, method, filter)
+    WildGenerator(initialAdvances, maxAdvances, tid, sid, genderRatio, method, filter), platinum(platinum)
 {
-    this->platinum = platinum;
 }
 
 std::vector<WildState4> WildGenerator4::generate(u32 seed, const EncounterArea4 &encounterArea) const

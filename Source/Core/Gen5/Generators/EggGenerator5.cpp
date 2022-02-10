@@ -19,12 +19,11 @@
 
 #include "EggGenerator5.hpp"
 #include <Core/Enum/Game.hpp>
+#include <Core/Enum/Method.hpp>
 #include <Core/Parents/Daycare.hpp>
 #include <Core/Parents/States/EggState.hpp>
-#include <Core/Enum/Method.hpp>
 #include <Core/RNG/LCRNG64.hpp>
 #include <Core/RNG/MTFast.hpp>
-#include <algorithm>
 
 inline bool isShiny(u32 pid, u16 tsv)
 {
@@ -62,7 +61,10 @@ std::vector<EggState> EggGenerator5::generateBW(u64 seed) const
     MTFast<13, true> mt(seed >> 32, 7);
 
     u8 ivs[6];
-    std::generate(std::begin(ivs), std::end(ivs), [&mt] { return mt.next(); });
+    for (u8 &iv : ivs)
+    {
+        iv = mt.next();
+    }
 
     BWRNG rng(seed);
     rng.advance(initialAdvances + offset);

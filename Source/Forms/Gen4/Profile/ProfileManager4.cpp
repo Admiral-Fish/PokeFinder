@@ -61,7 +61,7 @@ void ProfileManager4::setupModels()
 
 void ProfileManager4::create()
 {
-    QScopedPointer<ProfileEditor4> dialog(new ProfileEditor4);
+    std::unique_ptr<ProfileEditor4> dialog(new ProfileEditor4);
     if (dialog->exec() == QDialog::Accepted)
     {
         Profile4 profile = dialog->getNewProfile();
@@ -82,7 +82,7 @@ void ProfileManager4::edit()
         return;
     }
 
-    QScopedPointer<ProfileEditor4> dialog(new ProfileEditor4(model->getItem(row)));
+    std::unique_ptr<ProfileEditor4> dialog(new ProfileEditor4(model->getItem(row)));
     if (dialog->exec() == QDialog::Accepted)
     {
         Profile4 profile = dialog->getNewProfile();

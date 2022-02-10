@@ -23,7 +23,6 @@
 #include <Core/Gen8/DenLoader.hpp>
 #include <Core/Gen8/Generators/RaidGenerator.hpp>
 #include <Core/Gen8/Profile8.hpp>
-#include <Core/Parents/Filters/StateFilter.hpp>
 #include <Core/Parents/PersonalLoader.hpp>
 #include <Core/Parents/ProfileLoader.hpp>
 #include <Core/Util/Translator.hpp>

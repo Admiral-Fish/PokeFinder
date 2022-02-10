@@ -21,7 +21,6 @@
 #include "ui_IDs4.h"
 #include <Core/Gen4/Generators/IDGenerator4.hpp>
 #include <Core/Gen4/Searchers/IDSearcher4.hpp>
-#include <Core/Gen4/States/EggState4.hpp>
 #include <Forms/Models/Gen4/IDModel4.hpp>
 #include <QSettings>
 #include <QThread>
