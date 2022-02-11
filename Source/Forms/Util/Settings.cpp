@@ -26,6 +26,7 @@
 #include <QMessageBox>
 #include <QProcess>
 #include <QSettings>
+#include <QThread>
 
 Settings::Settings(QWidget *parent) : QWidget(parent), ui(new Ui::Settings)
 {
