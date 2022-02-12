@@ -94,7 +94,7 @@ std::vector<EggState> EggGenerator8::generate(u64 seed0, u64 seed1) const
             }
 
             u8 nature = gen.next(25);
-            if (daycare.getEverstoneCount(Game::BDSP) == 2)
+            if (daycare.getEverstoneCount() == 2)
             {
                 nature = daycare.getParentNature(gen.next(2));
             }

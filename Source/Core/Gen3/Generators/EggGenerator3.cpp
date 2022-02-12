@@ -203,25 +203,19 @@ std::vector<EggState3> EggGenerator3::generateEmeraldPID() const
     u8 parent;
     for (u8 i = 0; i < 2; i++)
     {
-        if (daycare.getParentGender(i) == 1)
+        if (daycare.getParentGender(i) == 1 && daycare.getParentItem(i) == 1)
         {
-            if (daycare.getParentItem(i) == 1)
-            {
-                parent = i;
-                everstone = true;
-            }
+            parent = i;
+            everstone = true;
         }
     }
 
     for (u8 i = 0; i < 2; i++)
     {
-        if (daycare.getParentGender(i) == 3)
+        if (daycare.getParentGender(i) == 3 && daycare.getParentItem(i) == 1)
         {
-            if (daycare.getParentItem(i) == 1)
-            {
-                parent = i;
-                everstone = true;
-            }
+            parent = i;
+            everstone = true;
         }
     }
 

@@ -20,7 +20,6 @@
 #include "EggGenerator5.hpp"
 #include <Core/Enum/Game.hpp>
 #include <Core/Enum/Method.hpp>
-#include <Core/Parents/Daycare.hpp>
 #include <Core/Parents/States/EggState.hpp>
 #include <Core/RNG/LCRNG64.hpp>
 #include <Core/RNG/MTFast.hpp>
@@ -34,7 +33,7 @@ EggGenerator5::EggGenerator5(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 
                              const StateFilter &filter, const Daycare &daycare, bool shinyCharm) :
     EggGenerator(initialAdvances, maxAdvances, tid, sid, genderRatio, method, filter, daycare),
     rolls((shinyCharm ? 2 : 0) + (daycare.getMasuda() ? 5 : 0)),
-    everstone(daycare.getEverstoneCount(Game::BW)),
+    everstone(daycare.getEverstoneCount()),
     poweritem(daycare.getPowerItemCount()),
     ditto(daycare.getDitto()),
     parentAbility(daycare.getParentAbility(1))
@@ -87,14 +86,14 @@ std::vector<EggState> EggGenerator5::generateBW(u64 seed) const
         }
 
         u8 nature = go.nextUInt(25);
-        // Everstone
+        // Everstone, first check for presence of item and proc
         if (everstone != 0)
         {
             if ((go.nextUInt(2)) == 1)
             {
-                // 0->parent1 / 1->parent2
                 if (everstone == 2)
                 {
+                    // 0->parent1 / 1->parent2
                     nature = daycare.getParentNature(go.nextUInt(2));
                 }
                 else
@@ -269,18 +268,15 @@ EggState EggGenerator5::generateBW2Egg(u64 seed) const
 
     u8 nature = rng.nextUInt(25);
     // Everstone
-    if (everstone != 0)
+    if (everstone == 2)
     {
         // 0->parent1 / 1->parent2
-        if (everstone == 2)
-        {
-            nature = daycare.getParentNature(rng.nextUInt(2));
-        }
-        else
-        {
-            u8 parent = daycare.getParentItem(0) == 1 ? 0 : 1;
-            nature = daycare.getParentNature(parent);
-        }
+        nature = daycare.getParentNature(rng.nextUInt(2));
+    }
+    else if (everstone == 1)
+    {
+        u8 parent = daycare.getParentItem(0) == 1 ? 0 : 1;
+        nature = daycare.getParentNature(parent);
     }
     state.setNature(nature);
 
