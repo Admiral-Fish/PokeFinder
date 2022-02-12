@@ -48,7 +48,7 @@ QVariant HiddenGrottoGeneratorModel5::data(const QModelIndex &index, int role) c
         case 3:
             return state.getSlot();
         case 4:
-            return QString::fromStdString(Translator::getGender(state.getGender()));
+            return QString::fromStdString(*Translator::getGender(state.getGender()));
         }
     }
     return QVariant();
@@ -156,7 +156,7 @@ QVariant HiddenGrottoSearcherModel5::data(const QModelIndex &index, int role) co
         case 3:
             return state.getSlot();
         case 4:
-            return QString::fromStdString(Translator::getGender(state.getGender()));
+            return QString::fromStdString(*Translator::getGender(state.getGender()));
         case 5:
             return QString::fromStdString(display.getDateTime().toString());
         case 6:

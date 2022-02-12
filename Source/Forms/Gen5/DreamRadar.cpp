@@ -136,7 +136,7 @@ void DreamRadar::setupModels()
         }
     }
 
-    for (const std::string &gender : Translator::getGenders())
+    for (const std::string &gender : *Translator::getGenders())
     {
         ui->comboBoxGeneratorGender1->addItem(QString::fromStdString(gender));
         ui->comboBoxGeneratorGender2->addItem(QString::fromStdString(gender));

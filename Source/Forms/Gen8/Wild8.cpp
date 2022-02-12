@@ -95,7 +95,7 @@ void Wild8::setupModels()
     ui->textBoxMaxAdvances->setValues(InputType::Advance32Bit);
 
     ui->toolButtonLead->addAction(tr("None"), toInt(Lead::None));
-    ui->toolButtonLead->addMenu(tr("Synchronize"), Translator::getNatures());
+    ui->toolButtonLead->addMenu(tr("Synchronize"), *Translator::getNatures());
     ui->toolButtonLead->addMenu(tr("Cute Charm"), { tr("♂ Lead"), tr("♀ Lead") }, { toInt(Lead::CuteCharm), toInt(Lead::CuteCharmFemale) });
 
     ui->comboBoxEncounter->clear();
@@ -164,7 +164,7 @@ void Wild8::updatePokemon()
     std::vector<std::string> names = area.getSpecieNames();
 
     ui->comboBoxPokemon->clear();
-    ui->comboBoxPokemon->addItem("-");
+    ui->comboBoxPokemon->addItem(QString("-"));
     for (size_t i = 0; i < species.size(); i++)
     {
         ui->comboBoxPokemon->addItem(QString::fromStdString(names[i]), species[i]);

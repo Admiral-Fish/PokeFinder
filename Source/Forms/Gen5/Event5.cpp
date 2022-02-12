@@ -102,7 +102,7 @@ void Event5::setupModels()
     ui->textBoxSearcherEventTID->setValues(InputType::TIDSID);
     ui->textBoxSearcherEventSID->setValues(InputType::TIDSID);
 
-    for (const std::string &nature : Translator::getNatures())
+    for (const std::string &nature : *Translator::getNatures())
     {
         ui->comboBoxGeneratorNature->addItem(QString::fromStdString(nature));
         ui->comboBoxSearcherNature->addItem(QString::fromStdString(nature));

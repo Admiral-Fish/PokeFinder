@@ -95,7 +95,7 @@ void Event8::setupModels()
         ui->comboBoxSpecies->addItem(QString::fromStdString(specie));
     }
 
-    for (const std::string &nature : Translator::getNatures())
+    for (const std::string &nature : *Translator::getNatures())
     {
         ui->comboBoxNature->addItem(QString::fromStdString(nature));
     }

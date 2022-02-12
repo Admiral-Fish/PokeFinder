@@ -88,7 +88,7 @@ void Static8::setupModels()
     ui->textBoxMaxAdvances->setValues(InputType::Advance32Bit);
 
     ui->toolButtonLead->addAction(tr("None"), toInt(Lead::None));
-    ui->toolButtonLead->addMenu(tr("Synchronize"), Translator::getNatures());
+    ui->toolButtonLead->addMenu(tr("Synchronize"), *Translator::getNatures());
     ui->toolButtonLead->addMenu(tr("Cute Charm"), { tr("♂ Lead"), tr("♀ Lead") }, { toInt(Lead::CuteCharm), toInt(Lead::CuteCharmFemale) });
 
     ui->comboBoxShiny->setup({ toInt(Shiny::Never), toInt(Shiny::Random) });
@@ -189,7 +189,7 @@ void Static8::categoryIndexChanged(int index)
         {
             if ((currentProfile->getVersion() & templates[i].getVersion()) != Game::None)
             {
-                ui->comboBoxPokemon->addItem(QString::fromStdString(Translator::getSpecies(templates[i].getSpecies())), i);
+                ui->comboBoxPokemon->addItem(QString::fromStdString(*Translator::getSpecies(templates[i].getSpecies())), i);
             }
         }
     }

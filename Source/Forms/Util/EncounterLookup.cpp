@@ -106,9 +106,8 @@ std::set<std::pair<u16, QString>> EncounterLookup::getEncounters3(Game game, u16
             std::vector<Slot> pokemon = area.getPokemon();
             if (std::any_of(pokemon.begin(), pokemon.end(), [specie](const auto &entry) { return entry.getSpecie() == specie; }))
             {
-                QString info = getEncounterString(type);
                 std::pair<u8, u8> range = area.getLevelRange(specie);
-                info += QString("/%1-%2").arg(range.first).arg(range.second);
+                QString info = QString("%1/%2-%3").arg(getEncounterString(type)).arg(range.first).arg(range.second);
                 encounters.insert(std::make_pair(area.getLocation(), info));
             }
         }
@@ -163,9 +162,8 @@ std::set<std::pair<u16, QString>> EncounterLookup::getEncounters4(Game game, u16
                     auto pokemon = area.getPokemon();
                     if (std::any_of(pokemon.begin(), pokemon.end(), [specie](const auto &entry) { return entry.getSpecie() == specie; }))
                     {
-                        QString info = getEncounterString(type);
                         std::pair<u8, u8> range = area.getLevelRange(specie);
-                        info += QString("/%1-%2").arg(range.first).arg(range.second);
+                        QString info = QString("%1/%2-%3").arg(getEncounterString(type)).arg(range.first).arg(range.second);
                         encounters.insert(std::make_pair(area.getLocation(), info));
                     }
                 }
@@ -205,9 +203,8 @@ std::set<std::pair<u16, QString>> EncounterLookup::getEncounters8(Game game, u16
                     auto pokemon = area.getPokemon();
                     if (std::any_of(pokemon.begin(), pokemon.end(), [specie](const auto &entry) { return entry.getSpecie() == specie; }))
                     {
-                        QString info = getEncounterString(type);
                         std::pair<u8, u8> range = area.getLevelRange(specie);
-                        info += QString("/%1-%2").arg(range.first).arg(range.second);
+                        QString info = QString("%1/%2-%3").arg(getEncounterString(type)).arg(range.first).arg(range.second);
                         encounters.insert(std::make_pair(area.getLocation(), info));
                     }
                 }

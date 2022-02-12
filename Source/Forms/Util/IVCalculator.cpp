@@ -48,15 +48,15 @@ IVCalculator::~IVCalculator()
 
 void IVCalculator::setupModels()
 {
-    for (const std::string &nature : Translator::getNatures())
+    for (const std::string &nature : *Translator::getNatures())
     {
         ui->comboBoxNature->addItem(QString::fromStdString(nature));
     }
-    for (const std::string &hiddenPower : Translator::getHiddenPowers())
+    for (const std::string &hiddenPower : *Translator::getHiddenPowers())
     {
         ui->comboBoxHiddenPower->addItem(QString::fromStdString(hiddenPower));
     }
-    for (const std::string &characteristic : Translator::getCharacteristic())
+    for (const std::string &characteristic : *Translator::getCharacteristic())
     {
         ui->comboBoxCharacteristic->addItem(QString::fromStdString(characteristic));
     }
@@ -121,8 +121,7 @@ void IVCalculator::displayIVs(QLabel *label, const std::vector<u8> &ivs)
                     if (flag)
                     {
                         flag = false;
-                        result += QString("-%1").arg(ivs[i - 1]);
-                        result += QString(", %1").arg(ivs[i]);
+                        result += QString("-%1, %2").arg(ivs[i - 1]).arg(ivs[i]);
                     }
                     else
                     {
@@ -314,7 +313,7 @@ void IVCalculator::gameIndexChanged(int index)
         ui->comboBoxPokemon->clear();
         for (u16 specie : species)
         {
-            ui->comboBoxPokemon->addItem(QString::fromStdString(Translator::getSpecies(specie)), specie);
+            ui->comboBoxPokemon->addItem(QString::fromStdString(*Translator::getSpecies(specie)), specie);
         }
     }
 }

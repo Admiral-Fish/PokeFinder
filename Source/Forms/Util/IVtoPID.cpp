@@ -54,7 +54,7 @@ void IVtoPID::setupModels()
     ui->tableView->setModel(model);
 
     ui->textBoxTID->setValues(InputType::TIDSID);
-    for (const std::string &nature : Translator::getNatures())
+    for (const std::string &nature : *Translator::getNatures())
     {
         ui->comboBoxNature->addItem(QString::fromStdString(nature));
     }

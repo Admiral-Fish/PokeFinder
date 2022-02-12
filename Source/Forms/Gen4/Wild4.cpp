@@ -104,7 +104,7 @@ void Wild4::setupModels()
     ui->filterSearcher->disableControls(Controls::UseDelay | Controls::DisableFilter);
 
     ui->toolButtonGeneratorLead->addAction(tr("None"), toInt(Lead::None));
-    ui->toolButtonGeneratorLead->addMenu(tr("Synchronize"), Translator::getNatures());
+    ui->toolButtonGeneratorLead->addMenu(tr("Synchronize"), *Translator::getNatures());
     ui->toolButtonGeneratorLead->addMenu(tr("Cute Charm"),
                                          { tr("♂ Lead"), tr("♀ Lead (50% ♂ Target)"), tr("♀ Lead (75% ♂ Target)"),
                                            tr("♀ Lead (25% ♂ Target)"), tr("♀ Lead (87.5% ♂ Target)") },
@@ -225,7 +225,7 @@ void Wild4::updatePokemonGenerator()
     std::vector<std::string> names = area.getSpecieNames();
 
     ui->comboBoxGeneratorPokemon->clear();
-    ui->comboBoxGeneratorPokemon->addItem("-");
+    ui->comboBoxGeneratorPokemon->addItem(QString("-"));
     for (size_t i = 0; i < species.size(); i++)
     {
         ui->comboBoxGeneratorPokemon->addItem(QString::fromStdString(names[i]), species[i]);
@@ -240,7 +240,7 @@ void Wild4::updatePokemonSearcher()
     std::vector<std::string> names = area.getSpecieNames();
 
     ui->comboBoxSearcherPokemon->clear();
-    ui->comboBoxSearcherPokemon->addItem("-");
+    ui->comboBoxSearcherPokemon->addItem(QString("-"));
     for (size_t i = 0; i < species.size(); i++)
     {
         ui->comboBoxSearcherPokemon->addItem(QString::fromStdString(names[i]), species[i]);

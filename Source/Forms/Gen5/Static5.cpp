@@ -105,7 +105,7 @@ void Static5::setupModels()
     ui->comboBoxSearcherLead->setup({ toInt(Lead::Search), toInt(Lead::Synchronize), toInt(Lead::CuteCharm), toInt(Lead::None) });
 
     ui->comboBoxGeneratorLead->addItem(tr("None"));
-    for (const std::string &nature : Translator::getNatures())
+    for (const std::string &nature : *Translator::getNatures())
     {
         ui->comboBoxGeneratorLead->addItem(QString::fromStdString(nature));
     }
@@ -321,7 +321,7 @@ void Static5::generatorLead()
         ui->comboBoxGeneratorLead->setEnabled(true);
 
         ui->comboBoxGeneratorLead->addItem("None");
-        for (const std::string &nature : Translator::getNatures())
+        for (const std::string &nature : *Translator::getNatures())
         {
             ui->comboBoxGeneratorLead->addItem(QString::fromStdString(nature));
         }

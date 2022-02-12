@@ -29,8 +29,8 @@ Filter::Filter(QWidget *parent) : QWidget(parent), ui(new Ui::Filter)
     ui->comboBoxAbility->setup({ 255, 0, 1 });
     ui->comboBoxGender->setup({ 255, 0, 1 });
     ui->comboBoxGenderRatio->setup({ 255, 127, 191, 63, 31, 0, 254 });
-    ui->checkListHiddenPower->setup(Translator::getHiddenPowers());
-    ui->checkListNature->setup(Translator::getNatures());
+    ui->checkListHiddenPower->setup(*Translator::getHiddenPowers());
+    ui->checkListNature->setup(*Translator::getNatures());
     ui->comboBoxShiny->setup({ 255, 1, 2, 3 });
     ui->textBoxDelay->setValues(InputType::Advance32Bit);
 

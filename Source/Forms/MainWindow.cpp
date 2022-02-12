@@ -717,7 +717,7 @@ void MainWindow::downloadEventData()
         file.insert(2, '-');
         file.insert(5, '-');
 
-        entries.prepend(QString("%1: %2").arg(file, QString::fromStdString(Translator::getSpecies(specie))));
+        entries.prepend(QString("%1: %2").arg(file, QString::fromStdString(*Translator::getSpecies(specie))));
     }
 
     bool flag;

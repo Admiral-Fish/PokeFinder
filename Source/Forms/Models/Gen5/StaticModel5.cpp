@@ -68,7 +68,7 @@ QVariant StaticGeneratorModel5::data(const QModelIndex &index, int role) const
             return shiny == 2 ? tr("Square") : shiny == 1 ? tr("Star") : tr("No");
         }
         case 4:
-            return QString::fromStdString(Translator::getNature(state.getNature()));
+            return QString::fromStdString(*Translator::getNature(state.getNature()));
         case 5:
             return state.getAbility();
         case 6:
@@ -79,11 +79,11 @@ QVariant StaticGeneratorModel5::data(const QModelIndex &index, int role) const
         case 11:
             return state.getIV(static_cast<u8>(column - 6));
         case 12:
-            return QString::fromStdString(Translator::getHiddenPower(state.getHidden()));
+            return QString::fromStdString(*Translator::getHiddenPower(state.getHidden()));
         case 13:
             return state.getPower();
         case 14:
-            return QString::fromStdString(Translator::getGender(state.getGender()));
+            return QString::fromStdString(*Translator::getGender(state.getGender()));
         }
     }
     return QVariant();
@@ -188,7 +188,7 @@ QVariant StaticSearcherModel5::data(const QModelIndex &index, int role) const
             return shiny == 2 ? tr("Square") : shiny == 1 ? tr("Star") : tr("No");
         }
         case 5:
-            return QString::fromStdString(Translator::getNature(state.getNature()));
+            return QString::fromStdString(*Translator::getNature(state.getNature()));
         case 6:
             return state.getAbility();
         case 7:
@@ -199,11 +199,11 @@ QVariant StaticSearcherModel5::data(const QModelIndex &index, int role) const
         case 12:
             return state.getIV(static_cast<u8>(column - 7));
         case 13:
-            return QString::fromStdString(Translator::getHiddenPower(state.getHidden()));
+            return QString::fromStdString(*Translator::getHiddenPower(state.getHidden()));
         case 14:
             return state.getPower();
         case 15:
-            return QString::fromStdString(Translator::getGender(state.getGender()));
+            return QString::fromStdString(*Translator::getGender(state.getGender()));
         case 16:
             return QString::fromStdString(display.getDateTime().toString());
         case 17:

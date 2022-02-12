@@ -103,7 +103,7 @@ void Wild3::setupModels()
     ui->comboBoxSearcherLead->setup({ toInt(Lead::Search), toInt(Lead::Synchronize), toInt(Lead::CuteCharm), toInt(Lead::None) });
 
     ui->toolButtonGeneratorLead->addAction(tr("None"), toInt(Lead::None));
-    ui->toolButtonGeneratorLead->addMenu(tr("Synchronize"), Translator::getNatures());
+    ui->toolButtonGeneratorLead->addMenu(tr("Synchronize"), *Translator::getNatures());
     ui->toolButtonGeneratorLead->addMenu(
         tr("Cute Charm"),
         { tr("♂ Lead (50% ♀ Target)"), tr("♂ Lead (75% ♀ Target)"), tr("♂ Lead (25% ♀ Target)"), tr("♂ Lead (12.5% ♀ Target)"),

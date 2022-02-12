@@ -240,7 +240,7 @@ void Raids::denIndexChanged(int index)
 
             for (const auto &raid : raids)
             {
-                ui->comboBoxSpecies->addItem(QString("%1: %2").arg(QString::fromStdString(Translator::getSpecies(raid.getSpecies())),
+                ui->comboBoxSpecies->addItem(QString("%1: %2").arg(QString::fromStdString(*Translator::getSpecies(raid.getSpecies())),
                                                                    QString::fromStdString(raid.getStarDisplay())));
             }
         }
@@ -251,7 +251,7 @@ void Raids::denIndexChanged(int index)
 
             for (const auto &raid : raids)
             {
-                ui->comboBoxSpecies->addItem(QString("%1: %2").arg(QString::fromStdString(Translator::getSpecies(raid.getSpecies())),
+                ui->comboBoxSpecies->addItem(QString("%1: %2").arg(QString::fromStdString(*Translator::getSpecies(raid.getSpecies())),
                                                                    QString::fromStdString(raid.getStarDisplay())));
             }
         }

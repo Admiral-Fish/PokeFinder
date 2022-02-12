@@ -50,7 +50,7 @@ void ChainedSID::setupModels()
     ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
     ui->textBoxTID->setValues(InputType::TIDSID);
-    for (const std::string &nature : Translator::getNatures())
+    for (const std::string &nature : *Translator::getNatures())
     {
         ui->comboBoxNature->addItem(QString::fromStdString(nature));
     }
@@ -85,7 +85,7 @@ void ChainedSID::calculate()
 
     QList<QStandardItem *> row;
     row << new QStandardItem(QString("%1.%2.%3.%4.%5.%6").arg(hp).arg(atk).arg(def).arg(spa).arg(spd).arg(spe));
-    row << new QStandardItem(QString::fromStdString(Translator::getNature(nature)));
+    row << new QStandardItem(QString::fromStdString(*Translator::getNature(nature)));
     row << new QStandardItem(ui->comboBoxAbility->currentText());
     row << new QStandardItem(ui->comboBoxGender->currentText());
     model->appendRow(row);
