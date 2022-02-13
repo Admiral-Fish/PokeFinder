@@ -25,8 +25,6 @@
 class IDState
 {
 public:
-    IDState() = default;
-
     IDState(u32 advances, u16 tid, u16 sid) : advances(advances), tid(tid), sid(sid)
     {
     }

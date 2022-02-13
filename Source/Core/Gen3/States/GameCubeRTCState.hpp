@@ -26,8 +26,6 @@
 class GameCubeRTCState
 {
 public:
-    GameCubeRTCState() = default;
-
     GameCubeRTCState(const DateTime &dateTime, u32 seed, u32 advances) : dateTime(dateTime), seed(seed), advances(advances)
     {
     }

@@ -28,7 +28,6 @@ class WildState;
 class WildGenerator3 : public WildGenerator
 {
 public:
-    WildGenerator3() = default;
     WildGenerator3(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter, bool rse);
     std::vector<WildState> generate(u32 seed, const EncounterArea3 &encounterArea) const;
 

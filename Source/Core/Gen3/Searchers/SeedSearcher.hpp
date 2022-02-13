@@ -29,7 +29,6 @@ class SeedSearcher
 {
 public:
     explicit SeedSearcher(const std::vector<u32> &criteria);
-    virtual ~SeedSearcher() = default;
     std::vector<u32> getInitialSeeds();
     void cancelSearch();
     std::vector<u32> getResults() const;

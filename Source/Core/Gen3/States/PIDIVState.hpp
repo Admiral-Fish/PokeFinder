@@ -27,8 +27,6 @@ enum class Method : u8;
 class PIDIVState
 {
 public:
-    PIDIVState() = default;
-
     PIDIVState(u32 seed, Method method) : seed(seed), method(method)
     {
     }

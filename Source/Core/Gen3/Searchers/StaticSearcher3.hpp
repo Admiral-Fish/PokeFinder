@@ -29,7 +29,6 @@ class State;
 class StaticSearcher3 : public StaticSearcher
 {
 public:
-    StaticSearcher3() = default;
     StaticSearcher3(u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter);
     void startSearch(const std::array<u8, 6> &min, const std::array<u8, 6> &max);
     void cancelSearch();

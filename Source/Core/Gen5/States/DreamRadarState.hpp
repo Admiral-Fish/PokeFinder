@@ -26,8 +26,6 @@
 class DreamRadarState : public State
 {
 public:
-    DreamRadarState() = default;
-
     DreamRadarState(u32 advance) : State(advance)
     {
     }

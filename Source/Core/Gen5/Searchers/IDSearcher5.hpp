@@ -32,7 +32,6 @@ class IDState5;
 class IDSearcher5
 {
 public:
-    IDSearcher5() = default;
     explicit IDSearcher5(const Profile5 &profile, u32 pid, bool checkPID, bool checkXOR);
     void startSearch(const IDGenerator5 &generator, int threads, const Date &start, const Date &end);
     void cancelSearch();

@@ -34,7 +34,6 @@ class SearcherState5;
 class EggSearcher5
 {
 public:
-    EggSearcher5() = default;
     explicit EggSearcher5(const Profile5 &profile);
     void startSearch(const EggGenerator5 &generator, int threads, const Date &start, const Date &end);
     void cancelSearch();

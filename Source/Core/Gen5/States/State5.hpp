@@ -28,8 +28,6 @@ enum class Buttons : u16;
 class State5
 {
 public:
-    State5() = default;
-
     State5(const DateTime &dt, u64 initialSeed, Buttons buttons, u16 timer0) :
         dt(dt), initialSeed(initialSeed), buttons(buttons), timer0(timer0)
     {

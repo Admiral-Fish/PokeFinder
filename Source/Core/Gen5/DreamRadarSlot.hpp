@@ -25,8 +25,6 @@
 class DreamRadarSlot
 {
 public:
-    DreamRadarSlot() = default;
-
     DreamRadarSlot(u8 type, u8 gender, u8 genderRatio) : type(type), gender(gender), genderRatio(genderRatio)
     {
     }

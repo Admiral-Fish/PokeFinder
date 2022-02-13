@@ -28,7 +28,6 @@ enum class Encounter : u8;
 class StaticGenerator5 : public StaticGenerator
 {
 public:
-    StaticGenerator5() = default;
     StaticGenerator5(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 gender, u8 genderRatio, Method method,
                          Encounter encounter, const StateFilter &filter);
     std::vector<StaticState> generate(u64 seed) const;

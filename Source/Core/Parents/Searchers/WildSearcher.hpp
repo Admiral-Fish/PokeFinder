@@ -27,8 +27,6 @@
 class WildSearcher : public Searcher
 {
 public:
-    WildSearcher() = default;
-
     WildSearcher(u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter) :
         Searcher(tid, sid, genderRatio, method, filter)
     {

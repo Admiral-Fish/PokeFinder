@@ -30,7 +30,6 @@ class WildState;
 class WildSearcher4 : public WildSearcher
 {
 public:
-    WildSearcher4() = default;
     WildSearcher4(u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter);
     void setEncounterArea(const EncounterArea4 &encounterArea);
     void setDelay(u32 minDelay, u32 maxDelay);

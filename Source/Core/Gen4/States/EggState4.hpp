@@ -25,8 +25,6 @@
 class EggState4 : public EggState
 {
 public:
-    EggState4() = default;
-
     explicit EggState4(u32 advance) : EggState(advance)
     {
     }

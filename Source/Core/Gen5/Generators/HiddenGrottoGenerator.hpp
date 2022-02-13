@@ -29,7 +29,6 @@ class HiddenGrottoState;
 class HiddenGrottoGenerator
 {
 public:
-    HiddenGrottoGenerator() = default;
     HiddenGrottoGenerator(u32 initialAdvances, u32 maxAdvances, u8 genderRatio, u8 powerLevel, const HiddenGrottoFilter &filter);
     std::vector<HiddenGrottoState> generate(u64 seed) const;
     void setInitialAdvances(u32 initialAdvances);

@@ -27,7 +27,6 @@ class EggState3;
 class EggGenerator3 : public EggGenerator
 {
 public:
-    EggGenerator3() = default;
     EggGenerator3(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter,
                   const Daycare &daycare);
     std::vector<EggState3> generate(u32 seed = 0, u32 seed2 = 0) const;

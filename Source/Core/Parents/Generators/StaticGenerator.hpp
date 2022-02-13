@@ -26,8 +26,6 @@
 class StaticGenerator : public Generator
 {
 public:
-    StaticGenerator() = default;
-
     StaticGenerator(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter) :
         Generator(initialAdvances, maxAdvances, tid, sid, genderRatio, method, filter), lead(Lead::None)
     {
