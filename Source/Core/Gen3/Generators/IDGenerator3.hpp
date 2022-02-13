@@ -20,11 +20,12 @@
 #ifndef IDGENERATOR3_HPP
 #define IDGENERATOR3_HPP
 
+#include <Core/Parents/Filters/IDFilter.hpp>
 #include <Core/Parents/Generators/IDGenerator.hpp>
 
 class IDState3;
 
-class IDGenerator3 : public IDGenerator<>
+class IDGenerator3 : public IDGenerator<IDFilter>
 {
 public:
     IDGenerator3() = default;

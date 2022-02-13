@@ -195,9 +195,9 @@ void IDs4::seedFinderSearch()
     u32 minDelay = ui->textBoxSeedFinderMinDelay->getUInt() + year - 2000;
     u32 maxDelay = ui->textBoxSeedFinderMaxDelay->getUInt() + year - 2000;
 
-    IDGenerator4 generator(minDelay, maxDelay, year, month, day, hour, minute);
     IDFilter filter({ ui->textBoxSeedFinderTID->getUShort() }, std::vector<u16>(), std::vector<u16>());
+    IDGenerator4 generator(minDelay, maxDelay, year, month, day, hour, minute, filter);
 
-    auto states = generator.generate(filter);
+    auto states = generator.generate();
     seedFinder->addItems(states);
 }

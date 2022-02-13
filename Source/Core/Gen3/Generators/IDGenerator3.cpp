@@ -19,7 +19,6 @@
 
 #include "IDGenerator3.hpp"
 #include <Core/Gen3/States/IDState3.hpp>
-#include <Core/Parents/Filters/IDFilter.hpp>
 #include <Core/RNG/LCRNG.hpp>
 
 IDGenerator3::IDGenerator3(u32 initialAdvances, u32 maxAdvances, const IDFilter &filter) : IDGenerator(initialAdvances, maxAdvances, filter)

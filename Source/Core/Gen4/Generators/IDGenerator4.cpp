@@ -19,15 +19,14 @@
 
 #include "IDGenerator4.hpp"
 #include <Core/Gen4/States/IDState4.hpp>
-#include <Core/Parents/Filters/IDFilter.hpp>
 #include <Core/RNG/MTFast.hpp>
 
-IDGenerator4::IDGenerator4(u32 minDelay, u32 maxDelay, u16 year, u8 month, u8 day, u8 hour, u8 minute) :
-    minDelay(minDelay), maxDelay(maxDelay), year(year), month(month), day(day), hour(hour), minute(minute)
+IDGenerator4::IDGenerator4(u32 minDelay, u32 maxDelay, u16 year, u8 month, u8 day, u8 hour, u8 minute, const IDFilter &filter) :
+    IDGenerator(0, 0, filter), minDelay(minDelay), maxDelay(maxDelay), year(year), month(month), day(day), hour(hour), minute(minute)
 {
 }
 
-std::vector<IDState4> IDGenerator4::generate(const IDFilter &filter) const
+std::vector<IDState4> IDGenerator4::generate() const
 {
     std::vector<IDState4> states;
 

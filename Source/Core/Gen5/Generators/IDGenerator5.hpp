@@ -20,14 +20,14 @@
 #ifndef IDGENERATOR5_HPP
 #define IDGENERATOR5_HPP
 
+#include <Core/Parents/Filters/IDFilter.hpp>
 #include <Core/Parents/Generators/IDGenerator.hpp>
 
 class IDState5;
 
-class IDGenerator5 : public IDGenerator<>
+class IDGenerator5 : public IDGenerator<IDFilter>
 {
 public:
-    IDGenerator5() = default;
     IDGenerator5(u32 initialAdvances, u32 maxAdvances, const IDFilter &filter);
     std::vector<IDState5> generate(u64 seed, u32 pid = 0, bool checkPID = false, bool checkXOR = false);
     void setInitialAdvances(u32 initialAdvances);
