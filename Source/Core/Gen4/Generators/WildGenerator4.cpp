@@ -293,7 +293,7 @@ std::vector<WildState4> WildGenerator4::generateMethodK(u32 seed, const Encounte
         u32 occidentary = initialAdvances + cnt;
         PokeRNG go(rng.getSeed(), &occidentary);
 
-        u16 first = go.nextUShort<true>(); // Encounter slot, nibble for fishing, blank or item for rock smash
+        u16 first = go.nextUShort<true>(); // Encounter slot, nibble for fishing, nibble for rock smash
 
         switch (encounter)
         {
@@ -336,7 +336,7 @@ std::vector<WildState4> WildGenerator4::generateMethodK(u32 seed, const Encounte
             go.next();
             break;
         case Encounter::RockSmash:
-            if (((go.nextUShort<true>()) % 100) >= rate)
+            if ((first % 100) >= rate)
             {
                 continue;
             }

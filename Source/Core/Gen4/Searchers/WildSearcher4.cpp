@@ -699,7 +699,6 @@ bool WildSearcher4::encounterMethodK(WildState &state, u32 seed) const
         {
             state.setEncounterSlot(EncounterSlot::kSlot(slot, encounter));
             state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), seed >> 16));
-            rng.advance(1); // Blank (maybe item)
             state.setSeed(rng.next());
         }
         else
