@@ -181,7 +181,7 @@ void Static4::generate()
     StaticGenerator4 generator(initialAdvances, maxAdvances, tid, sid, genderRatio, method, filter);
     generator.setOffset(offset);
 
-    if (ui->toolButtonGeneratorLead->text() == tr("Sychronize"))
+    if (ui->toolButtonGeneratorLead->text().contains(tr("Synchronize")))
     {
         generator.setLead(Lead::Synchronize);
         generator.setSynchNature(ui->toolButtonGeneratorLead->getData());
