@@ -37,6 +37,7 @@
 #include <Forms/Gen4/Tools/SeedtoTime4.hpp>
 #include <Forms/Models/Gen4/WildModel4.hpp>
 #include <QMenu>
+#include <QMessageBox>
 #include <QSettings>
 #include <QThread>
 #include <QTimer>
@@ -296,11 +297,31 @@ void Wild4::search()
     searcherModel->clearModel();
     searcherModel->setMethod(method);
 
-    ui->pushButtonSearch->setEnabled(false);
-    ui->pushButtonCancel->setEnabled(true);
-
     std::array<u8, 6> min = ui->filterSearcher->getMinIVs();
     std::array<u8, 6> max = ui->filterSearcher->getMaxIVs();
+
+    auto encounter = static_cast<Encounter>(ui->comboBoxSearcherEncounter->currentData().toInt());
+    if (encounter == Encounter::BugCatchingContest)
+    {
+        bool flag = true;
+        for (u8 i = 0; i < 6; i++)
+        {
+            if (min[i] == 31)
+            {
+                flag = false;
+                break;
+            }
+        }
+        if (flag)
+        {
+            QMessageBox err(QMessageBox::Warning, ("Missing Flawless IV"), ("BCC Searcher needs at least one IV at 31"));
+            err.exec();
+            return;
+        }
+    }
+
+    ui->pushButtonSearch->setEnabled(false);
+    ui->pushButtonCancel->setEnabled(true);
 
     StateFilter filter(ui->filterSearcher->getGender(), ui->filterSearcher->getAbility(), ui->filterSearcher->getShiny(), false, min, max,
                        ui->filterSearcher->getNatures(), ui->filterSearcher->getHiddenPowers(), ui->filterSearcher->getEncounterSlots());
