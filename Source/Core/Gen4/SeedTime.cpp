@@ -21,7 +21,7 @@
 #include <Core/Enum/Game.hpp>
 #include <Core/Util/Utilities.hpp>
 
-SeedTime::SeedTime(const DateTime &dateTime, u32 delay, Game version, const std::vector<bool> &roamers, const std::vector<u8> &routes) :
+SeedTime::SeedTime(const DateTime &dateTime, u32 delay, Game version, const std::array<bool, 3> &roamers, const std::array<u8, 3> &routes) :
     seed(Utilities4::calcSeed(dateTime, delay)), delay(delay), dateTime(dateTime), version(version)
 {
     info = HGSSRoamer(seed, roamers, routes);

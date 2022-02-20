@@ -172,9 +172,9 @@ std::vector<SeedTime> SeedtoTime4::generate(u32 seed, u32 year, bool forceSecond
     u32 hour = cd > 23 ? 23 : cd;
     u32 delay = cd > 23 ? (efgh + (2000 - year)) + ((cd - 23) * 0x10000) : efgh + (2000 - year);
 
-    std::vector<bool> roamer
+    std::array<bool, 3> roamer
         = { ui->checkBoxHGSSRaikou->isChecked(), ui->checkBoxHGSSEntei->isChecked(), ui->checkBoxHGSSLati->isChecked() };
-    std::vector<u8> routes
+    std::array<u8, 3> routes
         = { static_cast<u8>(ui->lineEditHGSSRaikou->text().toUInt()), static_cast<u8>(ui->lineEditHGSSEntei->text().toUInt()),
             static_cast<u8>(ui->lineEditHGSSLati->text().toUInt()) };
 
@@ -251,7 +251,7 @@ void SeedtoTime4::dpptGenerate()
 
     dpptModel->clearModel();
 
-    std::vector<SeedTime> results = generate(seed, year, forceSecond, forcedSecond, Game::DPPt);
+    auto results = generate(seed, year, forceSecond, forcedSecond, Game::DPPt);
     ui->labelDPPtCoinFlips->setText(tr("Coin Flips: ") + QString::fromStdString(Utilities4::coinFlips(seed)));
 
     dpptModel->addItems(results);
@@ -278,7 +278,7 @@ void SeedtoTime4::dpptCalibrate()
     dpptCalibrateModel->clearModel();
 
     SeedTime target = dpptModel->getItem(index.row());
-    std::vector<SeedTime> results = calibrate(minusDelay, plusDelay, minusSecond, plusSecond, target);
+    auto results = calibrate(minusDelay, plusDelay, minusSecond, plusSecond, target);
 
     dpptCalibrateModel->addItems(results);
 
@@ -299,15 +299,15 @@ void SeedtoTime4::hgssGenerate()
     bool forceSecond = ui->checkBoxHGSSSecond->isChecked();
     int forcedSecond = ui->textBoxHGSSSecond->getInt();
 
-    std::vector<bool> roamer
+    std::array<bool, 3> roamer
         = { ui->checkBoxHGSSRaikou->isChecked(), ui->checkBoxHGSSEntei->isChecked(), ui->checkBoxHGSSLati->isChecked() };
-    std::vector<u8> routes
+    std::array<u8, 3> routes
         = { static_cast<u8>(ui->lineEditHGSSRaikou->text().toUInt()), static_cast<u8>(ui->lineEditHGSSEntei->text().toUInt()),
             static_cast<u8>(ui->lineEditHGSSLati->text().toUInt()) };
 
     HGSSRoamer info(seed, roamer, routes);
 
-    std::vector<SeedTime> results = generate(seed, year, forceSecond, forcedSecond, Game::HGSS);
+    auto results = generate(seed, year, forceSecond, forcedSecond, Game::HGSS);
     ui->labelHGSSElmCalls->setText(tr("Elm Calls: ") + QString::fromStdString(Utilities4::getCalls(seed, info)));
     std::string str = info.getRouteString();
     ui->labelHGSSRoamers->setText(tr("Roamers: ") + (str.empty() ? tr("No roamers") : QString::fromStdString(str)));
@@ -336,7 +336,7 @@ void SeedtoTime4::hgssCalibrate()
     hgssCalibrateModel->clearModel();
 
     SeedTime target = hgssModel->getItem(index.row());
-    std::vector<SeedTime> results = calibrate(minusDelay, plusDelay, minusSecond, plusSecond, target);
+    auto results = calibrate(minusDelay, plusDelay, minusSecond, plusSecond, target);
 
     hgssCalibrateModel->addItems(results);
 
@@ -360,11 +360,11 @@ void SeedtoTime4::searchFlips()
         return;
     }
 
-    std::vector<bool> results = search->possibleResults();
 
     ui->tableViewDPPtCalibrate->setSelectionMode(QAbstractItemView::MultiSelection);
     ui->tableViewDPPtCalibrate->clearSelection();
 
+    auto results = search->possibleResults();
     for (size_t i = 0; i < results.size(); i++)
     {
         if (results[i])
@@ -384,23 +384,16 @@ void SeedtoTime4::searchCalls()
         return;
     }
 
-    std::vector<bool> roamer
-        = { ui->checkBoxHGSSRaikou->isChecked(), ui->checkBoxHGSSEntei->isChecked(), ui->checkBoxHGSSLati->isChecked() };
-    std::vector<u8> routes
-        = { static_cast<u8>(ui->lineEditHGSSRaikou->text().toUInt()), static_cast<u8>(ui->lineEditHGSSEntei->text().toUInt()),
-            static_cast<u8>(ui->lineEditHGSSLati->text().toUInt()) };
-
-    std::unique_ptr<SearchCalls> search(new SearchCalls(hgssCalibrateModel->getModel(), roamer, routes));
+    std::unique_ptr<SearchCalls> search(new SearchCalls(hgssCalibrateModel->getModel()));
     if (search->exec() == QDialog::Rejected)
     {
         return;
     }
 
-    std::vector<bool> results = search->possibleResults();
-
     ui->tableViewHGSSCalibrate->setSelectionMode(QAbstractItemView::MultiSelection);
     ui->tableViewHGSSCalibrate->clearSelection();
 
+    auto results = search->possibleResults();
     for (size_t i = 0; i < results.size(); i++)
     {
         if (results[i])

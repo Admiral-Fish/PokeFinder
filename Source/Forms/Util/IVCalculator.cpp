@@ -189,7 +189,7 @@ void IVCalculator::removeEntry()
 
 void IVCalculator::findIVs()
 {
-    std::vector<std::vector<u16>> stats;
+    std::vector<std::array<u16, 6>> stats;
     std::vector<u8> levels;
 
     for (int row = 1; row <= rows; row++)
@@ -199,12 +199,12 @@ void IVCalculator::findIVs()
 
         levels.emplace_back(widget->value());
 
-        std::vector<u16> stat;
+        std::array<u16, 6> stat;
         for (int column = 1; column < 7; column++)
         {
             item = ui->gridLayoutEntry->itemAtPosition(row, column);
             widget = reinterpret_cast<QSpinBox *>(item->widget());
-            stat.emplace_back(widget->value());
+            stat[column - 1] = widget->value();
         }
         stats.emplace_back(stat);
     }

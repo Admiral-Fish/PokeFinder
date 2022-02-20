@@ -23,17 +23,11 @@
 #include <Core/Util/Utilities.hpp>
 #include <QSettings>
 
-SearchCalls::SearchCalls(const std::vector<SeedTime> &model, const std::vector<bool> &roamers, const std::vector<u8> &routes,
-                         QWidget *parent) :
-    QDialog(parent), ui(new Ui::SearchCalls)
+SearchCalls::SearchCalls(const std::vector<SeedTime> &model, QWidget *parent) : QDialog(parent), ui(new Ui::SearchCalls), data(model)
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
 
-    this->roamers = roamers;
-    this->routes = routes;
-
-    data = model;
     ui->labelPossibleResults->setText(tr("Possible Results: ") + QString::number(model.size()));
 
     connect(ui->pushButtonE, &QPushButton::clicked, this, &SearchCalls::e);

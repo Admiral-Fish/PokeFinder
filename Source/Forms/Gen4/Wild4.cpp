@@ -182,7 +182,7 @@ void Wild4::updateLocationsGenerator()
     std::transform(encounterGenerator.begin(), encounterGenerator.end(), std::back_inserter(locs),
                    [](const EncounterArea4 &area) { return area.getLocation(); });
 
-    std::vector<std::string> locations = Translator::getLocations(locs, currentProfile->getVersion());
+    auto locations = Translator::getLocations(locs, currentProfile->getVersion());
     std::vector<int> indices(locations.size());
     std::iota(indices.begin(), indices.end(), 0);
     std::sort(indices.begin(), indices.end(), [&locations](int i, int j) { return locations[i] < locations[j]; });
@@ -205,7 +205,7 @@ void Wild4::updateLocationsSearcher()
     std::transform(encounterSearcher.begin(), encounterSearcher.end(), std::back_inserter(locs),
                    [](const EncounterArea4 &area) { return area.getLocation(); });
 
-    std::vector<std::string> locations = Translator::getLocations(locs, currentProfile->getVersion());
+    auto locations = Translator::getLocations(locs, currentProfile->getVersion());
     std::vector<int> indices(locations.size());
     std::iota(indices.begin(), indices.end(), 0);
     std::sort(indices.begin(), indices.end(), [&locations](int i, int j) { return locations[i] < locations[j]; });
@@ -220,9 +220,8 @@ void Wild4::updateLocationsSearcher()
 void Wild4::updatePokemonGenerator()
 {
     auto area = encounterGenerator[ui->comboBoxGeneratorLocation->currentData().toInt()];
-    std::vector<u16> species = area.getUniqueSpecies();
-
-    std::vector<std::string> names = area.getSpecieNames();
+    auto species = area.getUniqueSpecies();
+    auto names = area.getSpecieNames();
 
     ui->comboBoxGeneratorPokemon->clear();
     ui->comboBoxGeneratorPokemon->addItem(QString("-"));
@@ -235,9 +234,8 @@ void Wild4::updatePokemonGenerator()
 void Wild4::updatePokemonSearcher()
 {
     auto area = encounterSearcher[ui->comboBoxSearcherLocation->currentData().toInt()];
-    std::vector<u16> species = area.getUniqueSpecies();
-
-    std::vector<std::string> names = area.getSpecieNames();
+    auto species = area.getUniqueSpecies();
+    auto names = area.getSpecieNames();
 
     ui->comboBoxSearcherPokemon->clear();
     ui->comboBoxSearcherPokemon->addItem(QString("-"));
@@ -497,8 +495,7 @@ void Wild4::generatorPokemonIndexChanged(int index)
     else
     {
         u16 num = ui->comboBoxGeneratorPokemon->getCurrentUShort();
-        std::vector<bool> flags = encounterGenerator[ui->comboBoxGeneratorLocation->currentData().toInt()].getSlots(num);
-
+        auto flags = encounterGenerator[ui->comboBoxGeneratorLocation->currentData().toInt()].getSlots(num);
         ui->filterGenerator->toggleEncounterSlots(flags);
     }
 }
@@ -512,8 +509,7 @@ void Wild4::searcherPokemonIndexChanged(int index)
     else
     {
         u16 num = ui->comboBoxSearcherPokemon->getCurrentUShort();
-        std::vector<bool> flags = encounterSearcher[ui->comboBoxSearcherLocation->currentData().toInt()].getSlots(num);
-
+        auto flags = encounterSearcher[ui->comboBoxSearcherLocation->currentData().toInt()].getSlots(num);
         ui->filterSearcher->toggleEncounterSlots(flags);
     }
 }

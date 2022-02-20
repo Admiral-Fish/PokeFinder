@@ -372,7 +372,7 @@ void ProfileCalibrator5::clearNeedles()
     ui->lineEditNeedles->setText("");
 }
 
-void ProfileCalibrator5::updateIVs(const std::vector<std::vector<u8>> &ivs)
+void ProfileCalibrator5::updateIVs(const std::array<std::vector<u8>, 6> &ivs)
 {
     QVector<QSpinBox *> minIVs
         = { ui->spinBoxMinHP, ui->spinBoxMinAtk, ui->spinBoxMinDef, ui->spinBoxMinSpA, ui->spinBoxMinSpD, ui->spinBoxMinSpe };
@@ -387,7 +387,7 @@ void ProfileCalibrator5::updateIVs(const std::vector<std::vector<u8>> &ivs)
         u8 max = 31;
 
         // Vector is sorted, grab first/last as min/max
-        if (!ivs.empty())
+        if (!iv.empty())
         {
             min = iv.front();
             max = iv.back();

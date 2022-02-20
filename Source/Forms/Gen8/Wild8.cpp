@@ -144,7 +144,7 @@ void Wild8::updateLocations()
     std::transform(encounters.begin(), encounters.end(), std::back_inserter(locs),
                    [](const EncounterArea8 &area) { return area.getLocation(); });
 
-    std::vector<std::string> locations = Translator::getLocations(locs, currentProfile->getVersion());
+    auto locations = Translator::getLocations(locs, currentProfile->getVersion());
     std::vector<int> indices(locations.size());
     std::iota(indices.begin(), indices.end(), 0);
     std::sort(indices.begin(), indices.end(), [&locations](int i, int j) { return locations[i] < locations[j]; });
@@ -159,9 +159,8 @@ void Wild8::updateLocations()
 void Wild8::updatePokemon()
 {
     auto area = encounters[ui->comboBoxLocation->currentData().toInt()];
-    std::vector<u16> species = area.getUniqueSpecies();
-
-    std::vector<std::string> names = area.getSpecieNames();
+    auto species = area.getUniqueSpecies();
+    auto names = area.getSpecieNames();
 
     ui->comboBoxPokemon->clear();
     ui->comboBoxPokemon->addItem(QString("-"));
@@ -270,7 +269,7 @@ void Wild8::pokemonIndexChanged(int index)
     else
     {
         u16 num = ui->comboBoxPokemon->getCurrentUShort();
-        std::vector<bool> flags = encounters[ui->comboBoxLocation->currentData().toInt()].getSlots(num);
+        auto flags = encounters[ui->comboBoxLocation->currentData().toInt()].getSlots(num);
         ui->filter->toggleEncounterSlots(flags);
     }
 }

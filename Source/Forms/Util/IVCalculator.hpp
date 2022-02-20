@@ -34,7 +34,7 @@ class IVCalculator : public QWidget
 {
     Q_OBJECT
 signals:
-    void ivsCalculated(std::vector<std::vector<u8>>);
+    void ivsCalculated(std::array<std::vector<u8>, 6>);
 
 public:
     explicit IVCalculator(QWidget *parent = nullptr);

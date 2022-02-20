@@ -53,8 +53,7 @@ ProfileEditor5::ProfileEditor5(const Profile5 &profile, QWidget *parent) : QDial
     ui->comboBoxVersion->setCurrentIndex(ui->comboBoxVersion->findData(toInt(profile.getVersion())));
     ui->comboBoxLanguage->setCurrentIndex(ui->comboBoxLanguage->findData(toInt(profile.getLanguage())));
     ui->comboBoxDSType->setCurrentIndex(ui->comboBoxDSType->findData(toInt(profile.getDSType())));
-    auto keypress = profile.getKeypresses();
-    ui->comboBoxKeypresses->setChecks(std::vector<bool>(keypress.begin(), keypress.end()));
+    ui->comboBoxKeypresses->setChecks(profile.getKeypresses());
 
     ui->checkBoxSkipLR->setChecked(profile.getSkipLR());
     ui->checkBoxSoftReset->setChecked(profile.getSoftReset());
