@@ -221,7 +221,6 @@ void IDs8::profileManager()
     auto *manager = new ProfileManager8();
     connect(manager, &ProfileManager8::updateProfiles, [=]() { emit alertProfiles(8); });
     manager->show();
-    manager->raise();
 }
 
 void IDs8::profilesIndexChanged(int index)

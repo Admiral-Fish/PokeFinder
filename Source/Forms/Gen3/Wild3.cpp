@@ -395,7 +395,6 @@ void Wild3::seedToTime()
     u32 seed = searcherModel->data(index).toString().toUInt(nullptr, 16);
     auto *seedToTime = new SeedTime3(seed);
     seedToTime->show();
-    seedToTime->raise();
 }
 
 void Wild3::generatorEncounterIndexChanged(int index)

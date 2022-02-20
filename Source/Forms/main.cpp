@@ -88,7 +88,6 @@ int main(int argc, char *argv[])
 
     MainWindow w(profile);
     w.show();
-    w.raise();
 
     return a.exec();
 }

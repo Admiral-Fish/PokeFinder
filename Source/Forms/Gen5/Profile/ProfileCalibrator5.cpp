@@ -159,7 +159,6 @@ void ProfileCalibrator5::openIVCalculator()
     auto *iv = new IVCalculator();
     connect(iv, &IVCalculator::ivsCalculated, this, &ProfileCalibrator5::updateIVs);
     iv->show();
-    iv->raise();
 }
 
 void ProfileCalibrator5::search()

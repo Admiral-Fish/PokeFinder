@@ -155,7 +155,6 @@ void ProfileEditor5::findParameters()
 {
     auto *calibrator = new ProfileCalibrator5();
     calibrator->show();
-    calibrator->raise();
 
     done(QDialog::Rejected);
 }

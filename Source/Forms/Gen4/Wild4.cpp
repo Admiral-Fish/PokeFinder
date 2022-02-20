@@ -545,7 +545,6 @@ void Wild4::seedToTime()
 
     auto *time = new SeedtoTime4(seed, currentProfile->getVersion());
     time->show();
-    time->raise();
 }
 
 void Wild4::tableViewGeneratorContextMenu(QPoint pos)

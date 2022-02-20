@@ -340,7 +340,6 @@ void Eggs4::seedToTime()
 
     auto *time = new SeedtoTime4(seed, currentProfile->getVersion());
     time->show();
-    time->raise();
 }
 
 void Eggs4::calcPoketch()
@@ -350,7 +349,6 @@ void Eggs4::calcPoketch()
 
     auto *poketch = new Poketch(advances);
     poketch->show();
-    poketch->raise();
 }
 
 void Eggs4::profileManager()

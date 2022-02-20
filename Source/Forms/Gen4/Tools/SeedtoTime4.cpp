@@ -417,5 +417,4 @@ void SeedtoTime4::map()
 {
     auto *roamerMap = new RoamerMap();
     roamerMap->show();
-    roamerMap->raise();
 }

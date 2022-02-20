@@ -415,7 +415,6 @@ void GameCube::seedToTime()
     u32 seed = searcherModel->data(index).toString().toUInt(nullptr, 16);
     auto *rtc = new GameCubeRTC(seed);
     rtc->show();
-    rtc->raise();
 }
 
 void GameCube::profileManager()
