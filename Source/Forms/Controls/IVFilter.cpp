@@ -246,7 +246,7 @@ void IVFilter::updateIVs(const std::vector<std::vector<u8>> &ivs)
         u8 max = 31;
 
         // Vector is sorted, grab first/last as min/max
-        if (!ivs.empty())
+        if (!iv.empty())
         {
             min = iv.front();
             max = iv.back();
