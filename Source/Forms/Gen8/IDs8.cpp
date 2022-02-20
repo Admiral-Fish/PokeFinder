@@ -104,7 +104,7 @@ void IDs8::generate()
     QString inputs = ui->textEditFilter->toPlainText();
     if (ui->radioButtonTID->isChecked())
     {
-        QRegularExpression re("^\\d{1,5}$", QRegularExpression::MultilineOption);
+        QRegularExpression re("^\\d+$", QRegularExpression::MultilineOption);
         auto matches = re.globalMatch(inputs);
         while (matches.hasNext())
         {
@@ -123,7 +123,7 @@ void IDs8::generate()
     }
     else if (ui->radioButtonSID->isChecked())
     {
-        QRegularExpression re("^\\d{1,5}$", QRegularExpression::MultilineOption);
+        QRegularExpression re("^\\d+$", QRegularExpression::MultilineOption);
         auto matches = re.globalMatch(inputs);
         while (matches.hasNext())
         {
@@ -142,7 +142,7 @@ void IDs8::generate()
     }
     else if (ui->radioButtonTIDSID->isChecked())
     {
-        QRegularExpression re("^(\\d{1,5})/(\\d{1,5})$", QRegularExpression::MultilineOption);
+        QRegularExpression re("^(\\d+)/(\\d+)$", QRegularExpression::MultilineOption);
         auto matches = re.globalMatch(inputs);
         while (matches.hasNext())
         {
@@ -173,7 +173,7 @@ void IDs8::generate()
     }
     else if (ui->radioButtonG8TID->isChecked())
     {
-        QRegularExpression re("^\\d{1,6}$", QRegularExpression::MultilineOption);
+        QRegularExpression re("^\\d+$", QRegularExpression::MultilineOption);
         auto matches = re.globalMatch(inputs);
         while (matches.hasNext())
         {
@@ -192,7 +192,7 @@ void IDs8::generate()
     }
 
     inputs = ui->textEditTSVFilter->toPlainText();
-    QRegularExpression re("^\\d{1,4}$", QRegularExpression::MultilineOption);
+    QRegularExpression re("^\\d+$", QRegularExpression::MultilineOption);
     auto matches = re.globalMatch(inputs);
     while (matches.hasNext())
     {
