@@ -18,6 +18,7 @@
  */
 
 #include "IDGenerator8.hpp"
+#include <Core/Gen8/States/IDState8.hpp>
 #include <Core/RNG/Xorshift.hpp>
 
 IDGenerator8::IDGenerator8(u32 initialAdvances, u32 maxAdvances, const IDFilter8 &filter) :

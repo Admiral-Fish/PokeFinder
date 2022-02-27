@@ -19,6 +19,7 @@
 
 #include "PIDIVCalculator.hpp"
 #include <Core/Enum/Method.hpp>
+#include <Core/Gen3/States/PIDIVState.hpp>
 #include <Core/RNG/LCRNG.hpp>
 #include <Core/RNG/RNGCache.hpp>
 #include <Core/RNG/RNGEuclidean.hpp>

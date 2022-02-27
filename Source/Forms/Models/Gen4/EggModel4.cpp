@@ -67,7 +67,7 @@ QVariant EggGeneratorModel4::data(const QModelIndex &index, int role) const
         }
         case 2:
         {
-            return QString::fromStdString(Utilities::getChatot(state.getSeed()));
+            return QString::fromStdString(Utilities4::getChatot(state.getSeed()));
         }
         case 3:
             return QString::number(state.getPID(), 16).toUpper().rightJustified(8, '0');
@@ -77,7 +77,7 @@ QVariant EggGeneratorModel4::data(const QModelIndex &index, int role) const
             return shiny == 2 ? tr("Square") : shiny == 1 ? tr("Star") : tr("No");
         }
         case 5:
-            return QString::fromStdString(Translator::getNature(state.getNature()));
+            return QString::fromStdString(*Translator::getNature(state.getNature()));
         case 6:
             return state.getAbility();
         case 7:
@@ -96,11 +96,11 @@ QVariant EggGeneratorModel4::data(const QModelIndex &index, int role) const
             }
             return state.getIV(static_cast<u8>(column - 7));
         case 13:
-            return QString::fromStdString(Translator::getHiddenPower(state.getHidden()));
+            return QString::fromStdString(*Translator::getHiddenPower(state.getHidden()));
         case 14:
             return state.getPower();
         case 15:
-            return QString::fromStdString(Translator::getGender(state.getGender()));
+            return QString::fromStdString(*Translator::getGender(state.getGender()));
         }
     }
 
@@ -269,7 +269,7 @@ QVariant EggSearcherModel4::data(const QModelIndex &index, int role) const
             return shiny == 2 ? tr("Square") : shiny == 1 ? tr("Star") : tr("No");
         }
         case 6:
-            return QString::fromStdString(Translator::getNature(state.getNature()));
+            return QString::fromStdString(*Translator::getNature(state.getNature()));
         case 7:
             return state.getAbility();
         case 8:
@@ -288,11 +288,11 @@ QVariant EggSearcherModel4::data(const QModelIndex &index, int role) const
             }
             return state.getIV(static_cast<u8>(column - 8));
         case 14:
-            return QString::fromStdString(Translator::getHiddenPower(state.getHidden()));
+            return QString::fromStdString(*Translator::getHiddenPower(state.getHidden()));
         case 15:
             return state.getPower();
         case 16:
-            return QString::fromStdString(Translator::getGender(state.getGender()));
+            return QString::fromStdString(*Translator::getGender(state.getGender()));
         }
     }
     return QVariant();

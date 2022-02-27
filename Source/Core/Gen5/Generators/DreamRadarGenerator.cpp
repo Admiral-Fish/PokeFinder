@@ -18,6 +18,7 @@
  */
 
 #include "DreamRadarGenerator.hpp"
+#include <Core/Gen5/States/DreamRadarState.hpp>
 #include <Core/RNG/LCRNG64.hpp>
 #include <Core/RNG/MT.hpp>
 #include <Core/RNG/RNGList.hpp>
@@ -33,7 +34,7 @@ DreamRadarGenerator::DreamRadarGenerator(u32 initialAdvances, u32 maxAdvances, u
     for (size_t i = 0; i < radarSlots.size(); i++)
     {
         auto slot = radarSlots[i];
-        if (slot.type == 0)
+        if (slot.getType() == 0)
         {
             pidAdvances += 5;
             ivAdvances += 13;
@@ -41,7 +42,7 @@ DreamRadarGenerator::DreamRadarGenerator(u32 initialAdvances, u32 maxAdvances, u
 
         if (i != (radarSlots.size() - 1))
         {
-            pidAdvances += (slot.genderRatio == 255) ? 4 : 5;
+            pidAdvances += (slot.getGenderRatio() == 255) ? 4 : 5;
             ivAdvances += 13;
         }
     }
@@ -52,7 +53,7 @@ std::vector<DreamRadarState> DreamRadarGenerator::generate(u64 seed, bool memory
     std::vector<DreamRadarState> states;
 
     BWRNG rng(seed);
-    u32 initialAdvancesBW2 = Utilities::initialAdvancesBW2(seed, memory);
+    u32 initialAdvancesBW2 = Utilities5::initialAdvancesBW2(seed, memory);
     rng.advance(initialAdvancesBW2 + (initialAdvances * 2));
     if (!memory)
     {
@@ -82,15 +83,15 @@ std::vector<DreamRadarState> DreamRadarGenerator::generate(u64 seed, bool memory
         u32 pid = go.nextUInt();
 
         // Gender modification
-        if (radarSlot.type == 0 || radarSlot.type == 1) // Genies already male, gen 4 legends also get assigned male pids
+        if (radarSlot.getType() == 0 || radarSlot.getType() == 1) // Genies already male, gen 4 legends also get assigned male pids
         {
-            pid = Utilities::forceGender(pid, go.next() >> 32, 0, 0);
-            state.setGender(radarSlot.gender);
+            pid = Utilities5::forceGender(pid, go.next() >> 32, 0, 0);
+            state.setGender(radarSlot.getGender());
         }
-        else if (radarSlot.gender == 0 || radarSlot.gender == 1)
+        else if (radarSlot.getGender() == 0 || radarSlot.getGender() == 1)
         {
-            pid = Utilities::forceGender(pid, go.next() >> 32, radarSlot.gender, radarSlot.genderRatio);
-            state.setGender(pid & 0xff, radarSlot.genderRatio);
+            pid = Utilities5::forceGender(pid, go.next() >> 32, radarSlot.getGender(), radarSlot.getGenderRatio());
+            state.setGender(pid & 0xff, radarSlot.getGenderRatio());
         }
         else
         {

@@ -20,16 +20,13 @@
 #ifndef IDGENERATOR_HPP
 #define IDGENERATOR_HPP
 
-#include <Core/Parents/Filters/IDFilter.hpp>
 #include <Core/Util/Global.hpp>
 #include <vector>
 
-template <class Filter = IDFilter>
+template <class Filter>
 class IDGenerator
 {
 public:
-    IDGenerator() = default;
-
     IDGenerator(u32 initialAdvances, u32 maxAdvances, const Filter &filter) :
         initialAdvances(initialAdvances), maxAdvances(maxAdvances), filter(filter)
     {

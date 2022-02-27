@@ -19,8 +19,10 @@
 
 #include "ProfileEditor5.hpp"
 #include "ui_ProfileEditor5.h"
+#include <Core/Enum/DSType.hpp>
 #include <Core/Enum/Game.hpp>
 #include <Forms/Gen5/Profile/ProfileCalibrator5.hpp>
+#include <QMessageBox>
 
 ProfileEditor5::ProfileEditor5(QWidget *parent) : QDialog(parent), ui(new Ui::ProfileEditor5)
 {
@@ -51,8 +53,7 @@ ProfileEditor5::ProfileEditor5(const Profile5 &profile, QWidget *parent) : QDial
     ui->comboBoxVersion->setCurrentIndex(ui->comboBoxVersion->findData(toInt(profile.getVersion())));
     ui->comboBoxLanguage->setCurrentIndex(ui->comboBoxLanguage->findData(toInt(profile.getLanguage())));
     ui->comboBoxDSType->setCurrentIndex(ui->comboBoxDSType->findData(toInt(profile.getDSType())));
-    auto keypress = profile.getKeypresses();
-    ui->comboBoxKeypresses->setChecks(std::vector<bool>(keypress.begin(), keypress.end()));
+    ui->comboBoxKeypresses->setChecks(profile.getKeypresses());
 
     ui->checkBoxSkipLR->setChecked(profile.getSkipLR());
     ui->checkBoxSoftReset->setChecked(profile.getSoftReset());
@@ -153,7 +154,6 @@ void ProfileEditor5::findParameters()
 {
     auto *calibrator = new ProfileCalibrator5();
     calibrator->show();
-    calibrator->raise();
 
     done(QDialog::Rejected);
 }

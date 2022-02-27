@@ -29,8 +29,8 @@ constexpr u8 ivOrder[6] = { 0, 1, 2, 5, 3, 4 };
 
 namespace
 {
-    std::vector<std::vector<u8>> calculateIVs(const std::array<u8, 6> &baseStats, const std::vector<u16> &stats, u8 level, u8 nature,
-                                              u8 characteristic)
+    std::array<std::vector<u8>, 6> calculateIVs(const std::array<u8, 6> &baseStats, const std::array<u16, 6> &stats, u8 level, u8 nature,
+                                                u8 characteristic)
     {
         std::vector<u8> minIVs(6, 31);
         std::vector<u8> maxIVs(6, 0);
@@ -57,7 +57,7 @@ namespace
             }
         }
 
-        std::vector<std::vector<u8>> possible(6);
+        std::array<std::vector<u8>, 6> possible;
         std::vector<u8> indexes = { 0, 1, 2, 3, 4, 5 };
 
         u8 characteristicHigh = 31;
@@ -94,10 +94,10 @@ namespace
     }
 }
 
-std::vector<std::vector<u8>> IVChecker::calculateIVRange(const std::array<u8, 6> &baseStats, const std::vector<std::vector<u16>> &stats,
-                                                         const std::vector<u8> &level, u8 nature, u8 characteristic, u8 hiddenPower)
+std::array<std::vector<u8>, 6> IVChecker::calculateIVRange(const std::array<u8, 6> &baseStats, const std::vector<std::array<u16, 6>> &stats,
+                                                           const std::vector<u8> &level, u8 nature, u8 characteristic, u8 hiddenPower)
 {
-    std::vector<std::vector<u8>> ivs(6);
+    std::array<std::vector<u8>, 6> ivs;
     for (size_t i = 0; i < stats.size(); i++)
     {
         auto current = calculateIVs(baseStats, stats[i], level[i], nature, characteristic);
@@ -108,7 +108,7 @@ std::vector<std::vector<u8>> IVChecker::calculateIVRange(const std::array<u8, 6>
         }
         else
         {
-            std::vector<std::vector<u8>> temp(6);
+            std::array<std::vector<u8>, 6> temp;
             for (size_t j = 0; j < 6; j++)
             {
                 std::set_intersection(ivs[j].begin(), ivs[j].end(), current[j].begin(), current[j].end(), std::back_inserter(temp[j]));

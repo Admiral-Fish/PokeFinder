@@ -20,9 +20,10 @@
 #ifndef KEYPRESSES_HPP
 #define KEYPRESSES_HPP
 
-#include <Core/Enum/Buttons.hpp>
 #include <Core/Util/Global.hpp>
 #include <vector>
+
+enum class Buttons : u16;
 
 namespace Keypresses
 {

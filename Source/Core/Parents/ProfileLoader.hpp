@@ -20,11 +20,13 @@
 #ifndef PROFILELOADER_HPP
 #define PROFILELOADER_HPP
 
-#include <Core/Gen3/Profile3.hpp>
-#include <Core/Gen4/Profile4.hpp>
-#include <Core/Gen5/Profile5.hpp>
-#include <Core/Gen8/Profile8.hpp>
+#include <string>
 #include <vector>
+
+class Profile3;
+class Profile4;
+class Profile5;
+class Profile8;
 
 namespace ProfileLoader
 {

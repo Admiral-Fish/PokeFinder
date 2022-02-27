@@ -20,10 +20,10 @@
 #ifndef SHADOWTEAM_HPP
 #define SHADOWTEAM_HPP
 
-#include <Core/Gen3/LockInfo.hpp>
 #include <Core/Util/Global.hpp>
 #include <vector>
 
+class LockInfo;
 enum class Method : u8;
 enum class ShadowType : u8;
 

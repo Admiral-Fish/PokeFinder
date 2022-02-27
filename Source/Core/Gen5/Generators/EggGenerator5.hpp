@@ -20,14 +20,14 @@
 #ifndef EGGGENERATOR5_HPP
 #define EGGGENERATOR5_HPP
 
-#include <Core/Parents/Daycare.hpp>
 #include <Core/Parents/Generators/EggGenerator.hpp>
-#include <Core/Parents/States/EggState.hpp>
+
+class Daycare;
+class EggState;
 
 class EggGenerator5 : public EggGenerator
 {
 public:
-    EggGenerator5() = default;
     EggGenerator5(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter,
                   const Daycare &daycare, bool shinyCharm);
     std::vector<EggState> generate(u64 seed) const;

@@ -4,12 +4,17 @@ include_directories("${CMAKE_SOURCE_DIR}/Externals")
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(SIMD on)
+
+if (SIMD)
+    add_definitions(-DSIMD)
+endif ()
 
 if (MSVC)
     add_compile_options(/Zc:inline)
 endif ()
 
-if (UNIX)
+if (UNIX AND SIMD)
     include(GetTargetArch)
     get_target_arch(ARCH)
     if ((ARCH STREQUAL "x86_64") OR (ARCH STREQUAL "i686"))
@@ -85,7 +90,6 @@ add_library(PokeFinderCore STATIC
     Gen8/Generators/RaidGenerator.cpp
     Gen8/Generators/StaticGenerator8.cpp
     Gen8/Generators/WildGenerator8.cpp
-    Parents/Daycare.cpp
     Parents/EncounterArea.cpp
     Parents/Filters/IDFilter.cpp
     Parents/Filters/StateFilter.cpp

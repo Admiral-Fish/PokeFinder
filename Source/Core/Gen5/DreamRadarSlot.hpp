@@ -17,38 +17,37 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef DREAMRADARSEARCHER_HPP
-#define DREAMRADARSEARCHER_HPP
+#ifndef DREAMRADARSLOT_HPP
+#define DREAMRADARSLOT_HPP
 
-#include <Core/Gen5/Profile5.hpp>
 #include <Core/Util/Global.hpp>
-#include <atomic>
-#include <mutex>
 
-class Date;
-class DreamRadarGenerator;
-class DreamRadarState;
-template <class StateType>
-class SearcherState5;
-
-class DreamRadarSearcher
+class DreamRadarSlot
 {
 public:
-    explicit DreamRadarSearcher(const Profile5 &profile);
-    void startSearch(const DreamRadarGenerator &generator, int threads, const Date &start, const Date &end);
-    void cancelSearch();
-    std::vector<SearcherState5<DreamRadarState>> getResults();
-    int getProgress() const;
+    DreamRadarSlot(u8 type, u8 gender, u8 genderRatio) : type(type), gender(gender), genderRatio(genderRatio)
+    {
+    }
+
+    u8 getType() const
+    {
+        return type;
+    }
+
+    u8 getGender() const
+    {
+        return gender;
+    }
+
+    u8 getGenderRatio() const
+    {
+        return genderRatio;
+    }
 
 private:
-    Profile5 profile;
-
-    bool searching;
-    std::atomic<int> progress;
-    std::vector<SearcherState5<DreamRadarState>> results;
-    std::mutex mutex;
-
-    void search(const DreamRadarGenerator &generator, const Date &start, const Date &end);
+    u8 type; // 0: genie, 1: gen 4 legends, 2: non-legend
+    u8 gender;
+    u8 genderRatio;
 };
 
-#endif // DREAMRADARSEARCHER_HPP
+#endif // DREAMRADARSLOT_HPP

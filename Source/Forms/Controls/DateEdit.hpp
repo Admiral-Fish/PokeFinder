@@ -20,8 +20,9 @@
 #ifndef DATEEDIT_HPP
 #define DATEEDIT_HPP
 
-#include <Core/Util/DateTime.hpp>
 #include <QDateEdit>
+
+class Date;
 
 class DateEdit : public QDateEdit
 {

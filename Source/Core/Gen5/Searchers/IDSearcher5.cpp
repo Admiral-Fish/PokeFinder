@@ -21,7 +21,9 @@
 #include <Core/Enum/Game.hpp>
 #include <Core/Gen5/Generators/IDGenerator5.hpp>
 #include <Core/Gen5/Keypresses.hpp>
+#include <Core/Gen5/States/IDState5.hpp>
 #include <Core/RNG/SHA1.hpp>
+#include <Core/Util/DateTime.hpp>
 #include <Core/Util/Utilities.hpp>
 #include <future>
 
@@ -30,7 +32,7 @@ IDSearcher5::IDSearcher5(const Profile5 &profile, u32 pid, bool checkPID, bool c
 {
 }
 
-void IDSearcher5::startSearch(const IDGenerator5 &generator, int threads, Date start, const Date &end)
+void IDSearcher5::startSearch(const IDGenerator5 &generator, int threads, const Date &start, const Date &end)
 {
     searching = true;
 
@@ -43,18 +45,19 @@ void IDSearcher5::startSearch(const IDGenerator5 &generator, int threads, Date s
     std::vector<std::future<void>> threadContainer;
 
     auto daysSplit = days / threads;
+    Date day = start;
     for (int i = 0; i < threads; i++)
     {
         if (i == threads - 1)
         {
-            threadContainer.emplace_back(std::async(std::launch::async, [=] { search(generator, start, end); }));
+            threadContainer.emplace_back(std::async(std::launch::async, [=] { search(generator, day, end); }));
         }
         else
         {
-            Date mid = start.addDays(daysSplit - 1);
-            threadContainer.emplace_back(std::async(std::launch::async, [=] { search(generator, start, mid); }));
+            Date mid = day.addDays(daysSplit - 1);
+            threadContainer.emplace_back(std::async(std::launch::async, [=] { search(generator, day, mid); }));
         }
-        start = start.addDays(daysSplit);
+        day = day.addDays(daysSplit);
     }
 
     for (int i = 0; i < threads; i++)
@@ -113,7 +116,7 @@ void IDSearcher5::search(IDGenerator5 generator, const Date &start, const Date &
                         sha.setTime(hour, minute, second, profile.getDSType());
                         u64 seed = sha.hashSeed();
 
-                        generator.setInitialAdvances(flag ? Utilities::initialAdvancesBWID(seed) : Utilities::initialAdvancesBW2ID(seed));
+                        generator.setInitialAdvances(flag ? Utilities5::initialAdvancesBWID(seed) : Utilities5::initialAdvancesBW2ID(seed));
                         auto states = generator.generate(seed, pid, checkPID, checkXOR);
 
                         if (!states.empty())

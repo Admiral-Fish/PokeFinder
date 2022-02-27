@@ -20,15 +20,15 @@
 #ifndef IDSEARCHER4_HPP
 #define IDSEARCHER4_HPP
 
-#include <Core/Gen4/States/IDState4.hpp>
 #include <Core/Parents/Filters/IDFilter.hpp>
 #include <mutex>
 #include <vector>
 
+class IDState4;
+
 class IDSearcher4
 {
 public:
-    IDSearcher4() = default;
     explicit IDSearcher4(const IDFilter &filter);
     void startSearch(bool infinite, u16 year, u32 minDelay, u32 maxDelay);
     void cancelSearch();

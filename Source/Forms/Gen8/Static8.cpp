@@ -22,25 +22,22 @@
 #include <Core/Enum/Lead.hpp>
 #include <Core/Gen8/Encounters8.hpp>
 #include <Core/Gen8/Generators/StaticGenerator8.hpp>
+#include <Core/Gen8/Profile8.hpp>
 #include <Core/Parents/ProfileLoader.hpp>
 #include <Core/Parents/StaticTemplate.hpp>
 #include <Core/Util/Translator.hpp>
+#include <Forms/Controls/Controls.hpp>
 #include <Forms/Gen8/Profile/ProfileManager8.hpp>
 #include <Forms/Models/Gen8/StaticModel8.hpp>
+#include <QMenu>
 #include <QSettings>
 
 Static8::Static8(QWidget *parent) : QWidget(parent), ui(new Ui::Static8)
 {
     ui->setupUi(this);
-
     setAttribute(Qt::WA_QuitOnClose, false);
 
     setupModels();
-    updateProfiles();
-
-    // Do this after profiles are initialized
-    categoryIndexChanged(0);
-    pokemonIndexChanged(0);
 }
 
 Static8::~Static8()
@@ -91,7 +88,7 @@ void Static8::setupModels()
     ui->textBoxMaxAdvances->setValues(InputType::Advance32Bit);
 
     ui->toolButtonLead->addAction(tr("None"), toInt(Lead::None));
-    ui->toolButtonLead->addMenu(tr("Synchronize"), Translator::getNatures());
+    ui->toolButtonLead->addMenu(tr("Synchronize"), *Translator::getNatures());
     ui->toolButtonLead->addMenu(tr("Cute Charm"), { tr("♂ Lead"), tr("♀ Lead") }, { toInt(Lead::CuteCharm), toInt(Lead::CuteCharmFemale) });
 
     ui->comboBoxShiny->setup({ toInt(Shiny::Never), toInt(Shiny::Random) });
@@ -111,6 +108,10 @@ void Static8::setupModels()
     connect(ui->tableView, &QTableView::customContextMenuRequested, this, &Static8::tableViewContextMenu);
     connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &Static8::profileManager);
 
+    updateProfiles();
+    categoryIndexChanged(0);
+    pokemonIndexChanged(0);
+
     QSettings setting;
     setting.beginGroup("static8");
     if (setting.contains("geometry"))
@@ -128,8 +129,8 @@ void Static8::generate()
     u64 seed1 = ui->textBoxSeed1->getULong();
     u32 initialAdvances = ui->textBoxInitialAdvances->getUInt();
     u32 maxAdvances = ui->textBoxMaxAdvances->getUInt();
-    u16 tid = currentProfile.getTID();
-    u16 sid = currentProfile.getSID();
+    u16 tid = currentProfile->getTID();
+    u16 sid = currentProfile->getSID();
     u32 offset = 0;
     if (ui->filter->useDelay())
     {
@@ -168,11 +169,11 @@ void Static8::profilesIndexChanged(int index)
 {
     if (index >= 0)
     {
-        currentProfile = profiles[index];
+        currentProfile = &profiles[index];
 
-        ui->labelProfileTIDValue->setText(QString::number(currentProfile.getTID()));
-        ui->labelProfileSIDValue->setText(QString::number(currentProfile.getSID()));
-        ui->labelProfileGameValue->setText(QString::fromStdString(currentProfile.getVersionString()));
+        ui->labelProfileTIDValue->setText(QString::number(currentProfile->getTID()));
+        ui->labelProfileSIDValue->setText(QString::number(currentProfile->getSID()));
+        ui->labelProfileGameValue->setText(QString::fromStdString(currentProfile->getVersionString()));
     }
 }
 
@@ -186,9 +187,9 @@ void Static8::categoryIndexChanged(int index)
         ui->comboBoxPokemon->clear();
         for (int i = 0; i < size; i++)
         {
-            if ((currentProfile.getVersion() & templates[i].getVersion()) != Game::None)
+            if ((currentProfile->getVersion() & templates[i].getVersion()) != Game::None)
             {
-                ui->comboBoxPokemon->addItem(QString::fromStdString(Translator::getSpecies(templates[i].getSpecies())), i);
+                ui->comboBoxPokemon->addItem(QString::fromStdString(*Translator::getSpecies(templates[i].getSpecies())), i);
             }
         }
     }

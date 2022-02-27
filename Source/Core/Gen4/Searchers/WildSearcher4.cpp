@@ -21,6 +21,8 @@
 #include <Core/Enum/Encounter.hpp>
 #include <Core/Enum/Lead.hpp>
 #include <Core/Enum/Method.hpp>
+#include <Core/Parents/Slot.hpp>
+#include <Core/Parents/States/WildState.hpp>
 #include <Core/RNG/LCRNG.hpp>
 #include <Core/Util/EncounterSlot.hpp>
 
@@ -186,7 +188,7 @@ std::vector<WildState> WildSearcher4::searchMethodJ(u8 hp, u8 atk, u8 def, u8 sp
                     continue;
                 }
 
-                if (lead == Lead::None)
+                if (lead == Lead::None || lead == Lead::CompoundEyes)
                 {
                     auto results = normalMethodJ(state, seed);
                     states.insert(states.begin(), results.begin(), results.end());
@@ -270,7 +272,7 @@ std::vector<WildState> WildSearcher4::searchMethodK(u8 hp, u8 atk, u8 def, u8 sp
                     continue;
                 }
 
-                if (lead == Lead::None || lead == Lead::SuctionCups)
+                if (lead == Lead::None || lead == Lead::SuctionCups || lead == Lead::CompoundEyes)
                 {
                     auto results = normalMethodK(state, seed);
                     states.insert(states.begin(), results.begin(), results.end());
@@ -376,7 +378,7 @@ std::vector<WildState> WildSearcher4::searchInitialSeeds(const std::vector<WildS
 std::vector<WildState> WildSearcher4::normalMethodJ(WildState state, u32 seed) const
 {
     std::vector<WildState> states;
-    state.setLead(Lead::None);
+    state.setLead(lead);
 
     PokeRNGR rng(seed);
     u32 pid;
@@ -544,7 +546,7 @@ std::vector<WildState> WildSearcher4::normalMethodK(WildState state, u32 seed) c
     {
         if ((nextRNG % 25) == state.getNature())
         {
-            state.setLead(Lead::None);
+            state.setLead(lead);
             if (encounterMethodK(state, rng.getSeed()))
             {
                 states.emplace_back(state);
@@ -697,7 +699,6 @@ bool WildSearcher4::encounterMethodK(WildState &state, u32 seed) const
         {
             state.setEncounterSlot(EncounterSlot::kSlot(slot, encounter));
             state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), seed >> 16));
-            rng.advance(1); // Blank (maybe item)
             state.setSeed(rng.next());
         }
         else

@@ -20,6 +20,7 @@
 #include "EventGenerator8.hpp"
 #include <Core/Enum/Method.hpp>
 #include <Core/Parents/PersonalLoader.hpp>
+#include <Core/Parents/States/State.hpp>
 #include <Core/RNG/RNGList.hpp>
 #include <Core/RNG/Xorshift.hpp>
 

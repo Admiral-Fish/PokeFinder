@@ -20,11 +20,14 @@
 #include "Event8.hpp"
 #include "ui_Event8.h"
 #include <Core/Gen8/Generators/EventGenerator8.hpp>
+#include <Core/Gen8/Profile8.hpp>
 #include <Core/Parents/ProfileLoader.hpp>
 #include <Core/Util/Translator.hpp>
+#include <Forms/Controls/Controls.hpp>
 #include <Forms/Gen8/Profile/ProfileManager8.hpp>
 #include <Forms/Models/Gen8/EventModel8.hpp>
 #include <QFileDialog>
+#include <QMenu>
 #include <QMessageBox>
 #include <QSettings>
 
@@ -34,7 +37,6 @@ Event8::Event8(QWidget *parent) : QWidget(parent), ui(new Ui::Event8)
     setAttribute(Qt::WA_QuitOnClose, false);
 
     setupModels();
-    updateProfiles();
 }
 
 Event8::~Event8()
@@ -93,7 +95,7 @@ void Event8::setupModels()
         ui->comboBoxSpecies->addItem(QString::fromStdString(specie));
     }
 
-    for (const std::string &nature : Translator::getNatures())
+    for (const std::string &nature : *Translator::getNatures())
     {
         ui->comboBoxNature->addItem(QString::fromStdString(nature));
     }
@@ -108,6 +110,8 @@ void Event8::setupModels()
     connect(ui->pushButtonImport, &QPushButton::clicked, this, &Event8::importEvent);
     connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &Event8::profileManager);
     connect(ui->tableView, &QTableView::customContextMenuRequested, this, &Event8::tableViewContextMenu);
+
+    updateProfiles();
 
     QSettings setting;
     setting.beginGroup("event8");
@@ -135,8 +139,8 @@ void Event8::generate()
     u64 seed1 = ui->textBoxSeed1->getULong();
     u32 initialAdvances = ui->textBoxInitialAdvances->getUInt();
     u32 maxAdvances = ui->textBoxMaxAdvances->getUInt();
-    u16 tid = currentProfile.getTID();
-    u16 sid = currentProfile.getSID();
+    u16 tid = currentProfile->getTID();
+    u16 sid = currentProfile->getSID();
     u8 genderRatio = ui->filter->getGenderRatio();
     u32 offset = 0;
     if (ui->filter->useDelay())
@@ -208,11 +212,11 @@ void Event8::profileIndexChanged(int index)
 {
     if (index >= 0)
     {
-        currentProfile = profiles[index];
+        currentProfile = &profiles[index];
 
-        ui->labelProfileTIDValue->setText(QString::number(currentProfile.getTID()));
-        ui->labelProfileSIDValue->setText(QString::number(currentProfile.getSID()));
-        ui->labelProfileGameValue->setText(QString::fromStdString(currentProfile.getVersionString()));
+        ui->labelProfileTIDValue->setText(QString::number(currentProfile->getTID()));
+        ui->labelProfileSIDValue->setText(QString::number(currentProfile->getSID()));
+        ui->labelProfileGameValue->setText(QString::fromStdString(currentProfile->getVersionString()));
     }
 }
 

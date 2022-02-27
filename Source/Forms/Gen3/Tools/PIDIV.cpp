@@ -21,7 +21,6 @@
 #include "ui_PIDIV.h"
 #include <Core/Gen3/Tools/PIDIVCalculator.hpp>
 #include <Forms/Models/Gen3/PIDIVModel.hpp>
-#include <QClipboard>
 #include <QSettings>
 
 PIDIV::PIDIV(QWidget *parent) : QWidget(parent), ui(new Ui::PIDIV)

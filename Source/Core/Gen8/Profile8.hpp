@@ -58,7 +58,7 @@ public:
 
     bool operator==(const Profile8 &other) const
     {
-        return Profile::operator==(other) && shinyCharm == other.shinyCharm && ovalCharm == other.shinyCharm && radar == other.radar
+        return Profile::operator==(other) && shinyCharm == other.shinyCharm && ovalCharm == other.ovalCharm && radar == other.radar
             && swarm == other.swarm;
     }
 

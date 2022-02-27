@@ -21,12 +21,12 @@
 #define STATICGENERATOR4_HPP
 
 #include <Core/Parents/Generators/StaticGenerator.hpp>
-#include <Core/Parents/States/State.hpp>
+
+class State;
 
 class StaticGenerator4 : public StaticGenerator
 {
 public:
-    StaticGenerator4() = default;
     StaticGenerator4(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter);
     std::vector<State> generate(u32 seed) const;
 

@@ -20,12 +20,13 @@
 #ifndef EVENT5_HPP
 #define EVENT5_HPP
 
-#include <Core/Gen5/PGF.hpp>
-#include <Core/Gen5/Profile5.hpp>
-#include <QMenu>
+#include <QWidget>
 
 class EventGeneratorModel5;
 class EventSearcherModel5;
+class PGF;
+class Profile5;
+class QMenu;
 
 namespace Ui
 {
@@ -46,12 +47,12 @@ public:
 
 private:
     Ui::Event5 *ui;
-    EventGeneratorModel5 *generatorModel = nullptr;
-    EventSearcherModel5 *searcherModel = nullptr;
+    EventGeneratorModel5 *generatorModel;
+    EventSearcherModel5 *searcherModel;
     std::vector<Profile5> profiles;
-    Profile5 currentProfile;
-    QMenu *generatorMenu = nullptr;
-    QMenu *searcherMenu = nullptr;
+    Profile5 *currentProfile;
+    QMenu *generatorMenu;
+    QMenu *searcherMenu;
 
     void setupModels();
     PGF getGeneratorParameters() const;

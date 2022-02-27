@@ -20,10 +20,10 @@
 #ifndef CHAINEDSID_HPP
 #define CHAINEDSID_HPP
 
-#include <QStandardItemModel>
 #include <QWidget>
 
 class ChainedSIDCalc;
+class QStandardItemModel;
 
 namespace Ui
 {
@@ -39,7 +39,7 @@ public:
 
 private:
     Ui::ChainedSID *ui;
-    QStandardItemModel *model = nullptr;
+    QStandardItemModel *model;
     ChainedSIDCalc *chainedCalc = nullptr;
 
     void setupModels();

@@ -20,7 +20,7 @@
 #include "IDs3.hpp"
 #include "ui_IDs3.h"
 #include <Core/Gen3/Generators/IDGenerator3.hpp>
-#include <Core/Parents/Filters/IDFilter.hpp>
+#include <Core/Util/DateTime.hpp>
 #include <Core/Util/Utilities.hpp>
 #include <Forms/Models/Gen3/IDModel3.hpp>
 #include <QSettings>
@@ -160,7 +160,7 @@ void IDs3::rsSearch()
     }
     else if (ui->radioButtonRSDate->isChecked())
     {
-        seed = Utilities::calcGen3Seed(ui->dateTimeEdit->getDateTime());
+        seed = Utilities3::calcSeed(ui->dateTimeEdit->getDateTime());
     }
     else
     {

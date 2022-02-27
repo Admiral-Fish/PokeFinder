@@ -19,11 +19,13 @@
 
 #include "WildSearcher3.hpp"
 #include <Core/Enum/Method.hpp>
+#include <Core/Parents/Slot.hpp>
+#include <Core/Parents/States/WildState.hpp>
 #include <Core/RNG/LCRNG.hpp>
 #include <Core/Util/EncounterSlot.hpp>
 
-WildSearcher3::WildSearcher3(u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter) :
-    WildSearcher(tid, sid, genderRatio, method, filter), cache(method), searching(false), progress(0)
+WildSearcher3::WildSearcher3(u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter, bool rse) :
+    WildSearcher(tid, sid, genderRatio, method, filter), cache(method), rse(rse), searching(false), progress(0)
 {
 }
 
@@ -95,6 +97,10 @@ std::vector<WildState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 s
         return states;
     }
 
+    // RSE encounters have different rng calls inside Safari Zone,
+    // so we set a flag to check if we're searching these kind of spreads
+    bool rseSafari = encounterArea.rseSafariZone() && rse;
+
     auto seeds = cache.recoverLower16BitsIV(hp, atk, def, spa, spd, spe);
     for (const u32 val : seeds)
     {
@@ -142,12 +148,17 @@ std::vector<WildState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 s
                     {
                         state.setLead(Lead::None);
                         PokeRNGR temp(testRNG.getSeed());
+                        if (rseSafari) // account RSE different rng calls inside Safari Zone
+                        {
+                            temp.advance(1);
+                        }
+                        u16 level = temp.getSeed() >> 16;
                         u16 slot = temp.nextUShort();
-                        state.setSeed(temp.advance(2));
+                        state.setSeed(temp.advance(rseSafari ? 1 : 2)); // account RSE different rng calls inside Safari Zone
                         state.setEncounterSlot(EncounterSlot::hSlot(slot, encounter));
                         if (filter.compareEncounterSlot(state))
                         {
-                            state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), testRNG.getSeed() >> 16));
+                            state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), level));
                             states.emplace_back(state);
                         }
                     }
@@ -158,12 +169,17 @@ std::vector<WildState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 s
                     {
                         state.setLead(Lead::Synchronize);
                         PokeRNGR temp(testRNG.getSeed());
+                        if (rseSafari) // account RSE different rng calls inside Safari Zone
+                        {
+                            temp.advance(1);
+                        }
+                        u16 level = temp.getSeed() >> 16;
                         u16 slot = temp.nextUShort();
-                        state.setSeed(temp.advance(2));
+                        state.setSeed(temp.advance(rseSafari ? 1 : 2)); // account RSE different rng calls inside Safari Zone
                         state.setEncounterSlot(EncounterSlot::hSlot(slot, encounter));
                         if (filter.compareEncounterSlot(state))
                         {
-                            state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), testRNG.getSeed() >> 16));
+                            state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), level));
                             states.emplace_back(state);
                         }
                     }
@@ -172,12 +188,17 @@ std::vector<WildState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 s
                     {
                         state.setLead(Lead::Synchronize);
                         PokeRNGR temp(testRNG.getSeed());
+                        if (rseSafari) // account RSE different rng calls inside Safari Zone
+                        {
+                            temp.advance(1);
+                        }
+                        u16 level = temp.getSeed() >> 16;
                         u16 slot = temp.advance(2) >> 16;
-                        state.setSeed(temp.advance(2));
+                        state.setSeed(temp.advance(rseSafari ? 1 : 2)); // account RSE different rng calls inside Safari Zone
                         state.setEncounterSlot(EncounterSlot::hSlot(slot, encounter));
                         if (filter.compareEncounterSlot(state))
                         {
-                            state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), testRNG.getSeed() >> 16));
+                            state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), level));
                             states.emplace_back(state);
                         }
                     }
@@ -187,12 +208,17 @@ std::vector<WildState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 s
                     {
                         state.setLead(Lead::CuteCharm);
                         PokeRNGR temp(testRNG.getSeed());
-                        u16 slot = temp.advance(2) >> 16;
-                        state.setSeed(temp.advance(2));
+                        if (rseSafari) // account RSE different rng calls inside Safari Zone
+                        {
+                            temp.advance(1);
+                        }
+                        u16 level = temp.nextUShort();
+                        u16 slot = temp.nextUShort();
+                        state.setSeed(temp.advance(rseSafari ? 1 : 2)); // account RSE different rng calls inside Safari Zone
                         state.setEncounterSlot(EncounterSlot::hSlot(slot, encounter));
                         if (filter.compareEncounterSlot(state))
                         {
-                            state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), testRNG.getSeed() >> 16));
+                            state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), level));
                             states.emplace_back(state);
                         }
                     }
@@ -204,22 +230,32 @@ std::vector<WildState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 s
                     {
                         state.setLead(Lead::None);
                         PokeRNGR temp(testRNG.getSeed());
+                        if (rseSafari) // account RSE different rng calls inside Safari Zone
+                        {
+                            temp.advance(1);
+                        }
+                        u16 level = temp.getSeed() >> 16;
                         u16 slot = temp.nextUShort();
-                        state.setSeed(temp.advance(2));
+                        state.setSeed(temp.advance(rseSafari ? 1 : 2)); // account RSE different rng calls inside Safari Zone
                         state.setEncounterSlot(EncounterSlot::hSlot(slot, encounter));
                         if (filter.compareEncounterSlot(state))
                         {
-                            state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), testRNG.getSeed() >> 16));
+                            state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), level));
                             states.emplace_back(state);
                         }
 
                         temp.setSeed(testRNG.getSeed());
-                        slot = temp.advance(2) >> 16;
-                        state.setSeed(temp.advance(2));
+                        if (rseSafari) // account RSE different rng calls inside Safari Zone
+                        {
+                            temp.advance(1);
+                        }
+                        level = temp.nextUShort();
+                        slot = temp.nextUShort();
+                        state.setSeed(temp.advance(rseSafari ? 1 : 2)); // account RSE different rng calls inside Safari Zone
                         state.setEncounterSlot(EncounterSlot::hSlot(slot, encounter));
                         if (filter.compareEncounterSlot(state))
                         {
-                            state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), testRNG.getSeed() >> 16));
+                            state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), level));
 
                             // Failed synch
                             if ((nextRNG2 & 1) == 1 && (nextRNG % 25) == state.getNature())
@@ -241,12 +277,17 @@ std::vector<WildState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 s
                     {
                         state.setLead(Lead::Synchronize);
                         PokeRNGR temp(testRNG.getSeed());
+                        if (rseSafari) // account RSE different rng calls inside Safari Zone
+                        {
+                            temp.advance(1);
+                        }
+                        u16 level = temp.getSeed() >> 16;
                         u16 slot = temp.nextUShort();
-                        state.setSeed(temp.advance(2));
+                        state.setSeed(temp.advance(rseSafari ? 1 : 2)); // account RSE different rng calls inside Safari Zone
                         state.setEncounterSlot(EncounterSlot::hSlot(slot, encounter));
                         if (filter.compareEncounterSlot(state))
                         {
-                            state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), testRNG.getSeed() >> 16));
+                            state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), level));
                             states.emplace_back(state);
                         }
                     }
@@ -270,14 +311,30 @@ std::vector<WildState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 s
         {
             for (size_t i = 0; i < states.size();)
             {
-                u16 check = PokeRNG(states[i].getSeed()).nextUShort();
+                u16 check;
+                if (rseSafari) // account RockSmash different rng calls inside RSE Safari Zone
+                {
+                    check = states[i].getSeed() >> 16;
+                }
+                else
+                {
+                    check = PokeRNG(states[i].getSeed()).nextUShort();
+                }
                 if ((check % 2880) >= rate)
                 {
                     states.erase(states.begin() + i);
                 }
                 else
                 {
-                    states[i].setSeed(PokeRNGR(states[i].getSeed()).next());
+                    if (rseSafari) // account RockSmash different rng calls inside RSE Safari Zone
+                    {
+                        PokeRNGR temp(states[i].getSeed());
+                        states[i].setSeed(temp.advance(2));
+                    }
+                    else
+                    {
+                        states[i].setSeed(PokeRNGR(states[i].getSeed()).next());
+                    }
                     i++;
                 }
             }

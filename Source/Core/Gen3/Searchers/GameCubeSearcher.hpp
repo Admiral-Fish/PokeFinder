@@ -21,14 +21,14 @@
 #define GAMECUBESEARCHER_HPP
 
 #include <Core/Gen3/ShadowLock.hpp>
-#include <Core/Gen3/States/GameCubeState.hpp>
 #include <Core/Parents/Searchers/Searcher.hpp>
 #include <mutex>
+
+class GameCubeState;
 
 class GameCubeSearcher : public Searcher
 {
 public:
-    GameCubeSearcher() = default;
     GameCubeSearcher(u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter);
     void startSearch(const std::array<u8, 6> &min, const std::array<u8, 6> &max);
     void cancelSearch();

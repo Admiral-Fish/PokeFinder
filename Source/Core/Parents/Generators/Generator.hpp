@@ -30,8 +30,6 @@ enum class Method : u8;
 class Generator
 {
 public:
-    Generator() = default;
-
     Generator(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter) :
         initialAdvances(initialAdvances),
         maxAdvances(maxAdvances),

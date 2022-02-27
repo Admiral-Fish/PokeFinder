@@ -21,14 +21,14 @@
 #define STATICSEARCHER4_HPP
 
 #include <Core/Parents/Searchers/StaticSearcher.hpp>
-#include <Core/Parents/States/StaticState.hpp>
 #include <Core/RNG/RNGCache.hpp>
 #include <mutex>
+
+class StaticState;
 
 class StaticSearcher4 : public StaticSearcher
 {
 public:
-    StaticSearcher4() = default;
     StaticSearcher4(u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter);
     void setDelay(u32 minDelay, u32 maxDelay);
     void setState(u32 minAdvance, u32 maxAdvance);

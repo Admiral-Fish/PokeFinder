@@ -21,21 +21,21 @@
 #include <Core/Enum/Game.hpp>
 #include <Core/Util/Utilities.hpp>
 
-SeedTime::SeedTime(const DateTime &dateTime, u32 delay, Game version, const std::vector<bool> &roamers, const std::vector<u8> &routes) :
-    seed(Utilities::calcGen4Seed(dateTime, delay)), delay(delay), dateTime(dateTime), version(version)
+SeedTime::SeedTime(const DateTime &dateTime, u32 delay, Game version, const std::array<bool, 3> &roamers, const std::array<u8, 3> &routes) :
+    seed(Utilities4::calcSeed(dateTime, delay)), delay(delay), dateTime(dateTime), version(version)
 {
     info = HGSSRoamer(seed, roamers, routes);
 }
 
 SeedTime::SeedTime(const DateTime &dateTime, u32 delay, Game version, const HGSSRoamer &info) :
-    seed(Utilities::calcGen4Seed(dateTime, delay)), delay(delay), dateTime(dateTime), version(version), info(info)
+    seed(Utilities4::calcSeed(dateTime, delay)), delay(delay), dateTime(dateTime), version(version), info(info)
 {
     this->info.recalculateRoamers(seed);
 }
 
 std::string SeedTime::getSequence() const
 {
-    return (version & Game::HGSS) != Game::None ? Utilities::getCalls(seed, info) : Utilities::coinFlips(seed);
+    return (version & Game::HGSS) != Game::None ? Utilities4::getCalls(seed, info) : Utilities4::coinFlips(seed);
 }
 
 u32 SeedTime::getSeed() const

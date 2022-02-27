@@ -20,13 +20,7 @@
 #ifndef MAINWINDOW_HPP
 #define MAINWINDOW_HPP
 
-#include <QActionGroup>
 #include <QMainWindow>
-
-namespace Ui
-{
-    class MainWindow;
-}
 
 class Static3;
 class Wild3;
@@ -49,6 +43,12 @@ class Event8;
 class Raids;
 class Eggs8;
 class IDs8;
+class QActionGroup;
+
+namespace Ui
+{
+    class MainWindow;
+}
 
 class MainWindow : public QMainWindow
 {

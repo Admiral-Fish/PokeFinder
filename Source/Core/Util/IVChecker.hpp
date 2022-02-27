@@ -26,8 +26,8 @@
 
 namespace IVChecker
 {
-    std::vector<std::vector<u8>> calculateIVRange(const std::array<u8, 6> &baseStats, const std::vector<std::vector<u16>> &stats,
-                                                  const std::vector<u8> &level, u8 nature, u8 characteristic, u8 hiddenPower);
+    std::array<std::vector<u8>, 6> calculateIVRange(const std::array<u8, 6> &baseStats, const std::vector<std::array<u16, 6>> &stats,
+                                                    const std::vector<u8> &level, u8 nature, u8 characteristic, u8 hiddenPower);
 };
 
 #endif // IVCHECKER_HPP

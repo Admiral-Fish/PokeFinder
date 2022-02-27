@@ -20,22 +20,25 @@
 #include "Wild8.hpp"
 #include "ui_Wild8.h"
 #include <Core/Enum/Lead.hpp>
+#include <Core/Gen8/EncounterArea8.hpp>
 #include <Core/Gen8/Encounters8.hpp>
 #include <Core/Gen8/Generators/WildGenerator8.hpp>
+#include <Core/Gen8/Profile8.hpp>
 #include <Core/Parents/PersonalLoader.hpp>
 #include <Core/Parents/ProfileLoader.hpp>
+#include <Core/Parents/Slot.hpp>
 #include <Core/Util/Translator.hpp>
+#include <Forms/Controls/Controls.hpp>
 #include <Forms/Gen8/Profile/ProfileManager8.hpp>
 #include <Forms/Models/Gen8/WildModel8.hpp>
+#include <QMenu>
 #include <QSettings>
 
 Wild8::Wild8(QWidget *parent) : QWidget(parent), ui(new Ui::Wild8)
 {
     ui->setupUi(this);
-
     setAttribute(Qt::WA_QuitOnClose, false);
 
-    updateProfiles();
     setupModels();
 }
 
@@ -76,8 +79,6 @@ void Wild8::updateProfiles()
     {
         ui->comboBoxProfiles->setCurrentIndex(val);
     }
-
-    profilesIndexChanged(0);
 }
 
 void Wild8::setupModels()
@@ -94,7 +95,7 @@ void Wild8::setupModels()
     ui->textBoxMaxAdvances->setValues(InputType::Advance32Bit);
 
     ui->toolButtonLead->addAction(tr("None"), toInt(Lead::None));
-    ui->toolButtonLead->addMenu(tr("Synchronize"), Translator::getNatures());
+    ui->toolButtonLead->addMenu(tr("Synchronize"), *Translator::getNatures());
     ui->toolButtonLead->addMenu(tr("Cute Charm"), { tr("♂ Lead"), tr("♀ Lead") }, { toInt(Lead::CuteCharm), toInt(Lead::CuteCharmFemale) });
 
     ui->comboBoxEncounter->clear();
@@ -120,6 +121,7 @@ void Wild8::setupModels()
     connect(ui->tableView, &QTableView::customContextMenuRequested, this, &Wild8::tableViewContextMenu);
     connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &Wild8::profileManager);
 
+    updateProfiles();
     encounterIndexChanged(0);
 
     QSettings setting;
@@ -136,13 +138,13 @@ void Wild8::updateLocations()
     auto encounter = static_cast<Encounter>(ui->comboBoxEncounter->currentData().toInt());
     int time = ui->comboBoxTime->currentIndex();
 
-    encounters = Encounters8::getEncounters(encounter, time, currentProfile);
+    encounters = Encounters8::getEncounters(encounter, time, *currentProfile);
 
     std::vector<u16> locs;
     std::transform(encounters.begin(), encounters.end(), std::back_inserter(locs),
                    [](const EncounterArea8 &area) { return area.getLocation(); });
 
-    std::vector<std::string> locations = Translator::getLocations(locs, currentProfile.getVersion());
+    auto locations = Translator::getLocations(locs, currentProfile->getVersion());
     std::vector<int> indices(locations.size());
     std::iota(indices.begin(), indices.end(), 0);
     std::sort(indices.begin(), indices.end(), [&locations](int i, int j) { return locations[i] < locations[j]; });
@@ -157,12 +159,11 @@ void Wild8::updateLocations()
 void Wild8::updatePokemon()
 {
     auto area = encounters[ui->comboBoxLocation->currentData().toInt()];
-    std::vector<u16> species = area.getUniqueSpecies();
-
-    std::vector<std::string> names = area.getSpecieNames();
+    auto species = area.getUniqueSpecies();
+    auto names = area.getSpecieNames();
 
     ui->comboBoxPokemon->clear();
-    ui->comboBoxPokemon->addItem("-");
+    ui->comboBoxPokemon->addItem(QString("-"));
     for (size_t i = 0; i < species.size(); i++)
     {
         ui->comboBoxPokemon->addItem(QString::fromStdString(names[i]), species[i]);
@@ -177,8 +178,8 @@ void Wild8::generate()
     u64 seed1 = ui->textBoxSeed1->getULong();
     u32 initialAdvances = ui->textBoxInitialAdvances->getUInt();
     u32 maxAdvances = ui->textBoxMaxAdvances->getUInt();
-    u16 tid = currentProfile.getTID();
-    u16 sid = currentProfile.getSID();
+    u16 tid = currentProfile->getTID();
+    u16 sid = currentProfile->getSID();
     u32 offset = 0;
     if (ui->filter->useDelay())
     {
@@ -192,7 +193,6 @@ void Wild8::generate()
     WildGenerator8 generator(initialAdvances, maxAdvances, tid, sid, filter);
     generator.setOffset(offset);
     generator.setEncounter(static_cast<Encounter>(ui->comboBoxEncounter->getCurrentInt()));
-    generator.setEncounterArea(encounters[ui->comboBoxLocation->currentData().toInt()]);
 
     if (ui->toolButtonLead->text().contains(tr("Synchronize")))
     {
@@ -204,7 +204,7 @@ void Wild8::generate()
         generator.setLead(static_cast<Lead>(ui->toolButtonLead->getData()));
     }
 
-    auto states = generator.generate(seed0, seed1);
+    auto states = generator.generate(seed0, seed1, encounters[ui->comboBoxLocation->currentData().toInt()]);
     model->addItems(states);
 }
 
@@ -212,11 +212,11 @@ void Wild8::profilesIndexChanged(int index)
 {
     if (index >= 0)
     {
-        currentProfile = profiles[index];
+        currentProfile = &profiles[index];
 
-        ui->labelProfileTIDValue->setText(QString::number(currentProfile.getTID()));
-        ui->labelProfileSIDValue->setText(QString::number(currentProfile.getSID()));
-        ui->labelProfileGameValue->setText(QString::fromStdString(currentProfile.getVersionString()));
+        ui->labelProfileTIDValue->setText(QString::number(currentProfile->getTID()));
+        ui->labelProfileSIDValue->setText(QString::number(currentProfile->getSID()));
+        ui->labelProfileGameValue->setText(QString::fromStdString(currentProfile->getVersionString()));
 
         updateLocations();
     }
@@ -269,7 +269,7 @@ void Wild8::pokemonIndexChanged(int index)
     else
     {
         u16 num = ui->comboBoxPokemon->getCurrentUShort();
-        std::vector<bool> flags = encounters[ui->comboBoxLocation->currentData().toInt()].getSlots(num);
+        auto flags = encounters[ui->comboBoxLocation->currentData().toInt()].getSlots(num);
         ui->filter->toggleEncounterSlots(flags);
     }
 }

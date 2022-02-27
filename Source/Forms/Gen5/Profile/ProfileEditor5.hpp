@@ -22,7 +22,6 @@
 
 #include <Core/Gen5/Profile5.hpp>
 #include <QDialog>
-#include <QMessageBox>
 
 namespace Ui
 {

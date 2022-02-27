@@ -20,10 +20,11 @@
 #ifndef PROFILE5_HPP
 #define PROFILE5_HPP
 
-#include <Core/Enum/DSType.hpp>
 #include <Core/Enum/Language.hpp>
 #include <Core/Parents/Profile.hpp>
 #include <vector>
+
+enum class DSType : u8;
 
 class Profile5 : public Profile
 {

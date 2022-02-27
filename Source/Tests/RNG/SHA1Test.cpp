@@ -18,6 +18,7 @@
  */
 
 #include "SHA1Test.hpp"
+#include <Core/Enum/DSType.hpp>
 #include <Core/Enum/Game.hpp>
 #include <Core/Gen5/Keypresses.hpp>
 #include <Core/Gen5/Profile5.hpp>

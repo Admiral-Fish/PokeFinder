@@ -28,8 +28,6 @@ enum class Buttons : u16;
 class IDState5 : public IDState
 {
 public:
-    IDState5() = default;
-
     IDState5(u32 advances, u16 tid, u16 sid) : IDState(advances, tid, sid)
     {
         tsv = (tid ^ sid) >> 3;

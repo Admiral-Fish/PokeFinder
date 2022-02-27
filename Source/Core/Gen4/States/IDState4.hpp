@@ -25,8 +25,6 @@
 class IDState4 : public IDState
 {
 public:
-    IDState4() = default;
-
     IDState4(u32 seed, u16 tid, u16 sid) : IDState(tid, sid), seed(seed)
     {
         tsv = (tid ^ sid) >> 3;

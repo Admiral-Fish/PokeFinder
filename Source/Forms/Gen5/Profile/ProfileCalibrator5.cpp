@@ -32,7 +32,6 @@
 #include <QSettings>
 #include <QThread>
 #include <QTimer>
-#include <array>
 
 ProfileCalibrator5::ProfileCalibrator5(QWidget *parent) : QWidget(parent), ui(new Ui::ProfileCalibrator5)
 {
@@ -81,9 +80,9 @@ void ProfileCalibrator5::setupModels()
     ui->comboBoxKeypress3->addItem(tr("None"), 0);
     for (int i = 0; i < 12; i++)
     {
-        ui->comboBoxKeypress1->addItem(QString::fromStdString(Translator::getKeypress(i)), 1 << i);
-        ui->comboBoxKeypress2->addItem(QString::fromStdString(Translator::getKeypress(i)), 1 << i);
-        ui->comboBoxKeypress3->addItem(QString::fromStdString(Translator::getKeypress(i)), 1 << i);
+        ui->comboBoxKeypress1->addItem(QString::fromStdString(*Translator::getKeypress(i)), 1 << i);
+        ui->comboBoxKeypress2->addItem(QString::fromStdString(*Translator::getKeypress(i)), 1 << i);
+        ui->comboBoxKeypress3->addItem(QString::fromStdString(*Translator::getKeypress(i)), 1 << i);
     }
 
     QAction *createProfile = menu->addAction("Create profile");
@@ -160,7 +159,6 @@ void ProfileCalibrator5::openIVCalculator()
     auto *iv = new IVCalculator();
     connect(iv, &IVCalculator::ivsCalculated, this, &ProfileCalibrator5::updateIVs);
     iv->show();
-    iv->raise();
 }
 
 void ProfileCalibrator5::search()
@@ -311,7 +309,7 @@ void ProfileCalibrator5::createProfile()
     u64 mac = ui->textBoxMACAddress->getULong();
     auto state = model->getItem(row);
 
-    QScopedPointer<ProfileEditor5> dialog(
+    std::unique_ptr<ProfileEditor5> dialog(
         new ProfileEditor5(version, language, dsType, mac, state.getVcount(), state.getTimer0(), state.getGxstat(), state.getVframe()));
     if (dialog->exec() == QDialog::Accepted)
     {
@@ -374,7 +372,7 @@ void ProfileCalibrator5::clearNeedles()
     ui->lineEditNeedles->setText("");
 }
 
-void ProfileCalibrator5::updateIVs(const std::vector<std::vector<u8>> &ivs)
+void ProfileCalibrator5::updateIVs(const std::array<std::vector<u8>, 6> &ivs)
 {
     QVector<QSpinBox *> minIVs
         = { ui->spinBoxMinHP, ui->spinBoxMinAtk, ui->spinBoxMinDef, ui->spinBoxMinSpA, ui->spinBoxMinSpD, ui->spinBoxMinSpe };
@@ -389,7 +387,7 @@ void ProfileCalibrator5::updateIVs(const std::vector<std::vector<u8>> &ivs)
         u8 max = 31;
 
         // Vector is sorted, grab first/last as min/max
-        if (!ivs.empty())
+        if (!iv.empty())
         {
             min = iv.front();
             max = iv.back();

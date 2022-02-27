@@ -41,7 +41,7 @@ public:
 
 private:
     Ui::ProfileManager8 *ui;
-    ProfileModel8 *model = nullptr;
+    ProfileModel8 *model;
 
     void setupModels();
 

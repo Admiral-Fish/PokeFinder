@@ -22,12 +22,12 @@
 
 #include <Core/Gen8/WB8.hpp>
 #include <Core/Parents/Generators/Generator.hpp>
-#include <Core/Parents/States/State.hpp>
+
+class State;
 
 class EventGenerator8 : public Generator
 {
 public:
-    EventGenerator8() = default;
     EventGenerator8(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, const StateFilter &filter, const WB8 &parameters);
     std::vector<State> generate(u64 seed0, u64 seed1) const;
 

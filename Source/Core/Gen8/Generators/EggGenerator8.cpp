@@ -20,6 +20,7 @@
 #include "EggGenerator8.hpp"
 #include <Core/Enum/Game.hpp>
 #include <Core/Enum/Method.hpp>
+#include <Core/Parents/States/EggState.hpp>
 #include <Core/RNG/RNGList.hpp>
 #include <Core/RNG/Xoroshiro.hpp>
 #include <Core/RNG/Xorshift.hpp>
@@ -63,7 +64,7 @@ std::vector<EggState> EggGenerator8::generate(u64 seed0, u64 seed1) const
             {
                 seed |= 0xffffffff00000000;
             }
-            
+
             XoroshiroBDSP gen(seed);
 
             // Nidoran, Illumise/Volbeat, Indeedee
@@ -93,7 +94,7 @@ std::vector<EggState> EggGenerator8::generate(u64 seed0, u64 seed1) const
             }
 
             u8 nature = gen.next(25);
-            if (daycare.getEverstoneCount(Game::BDSP) == 2)
+            if (daycare.getEverstoneCount() == 2)
             {
                 nature = daycare.getParentNature(gen.next(2));
             }
@@ -107,8 +108,9 @@ std::vector<EggState> EggGenerator8::generate(u64 seed0, u64 seed1) const
             }
             state.setNature(nature);
 
+            // If we have a ditto acting as the female, get the ability from the other parent (this will be slot 0)
+            u8 parentAbility = daycare.getParentAbility(daycare.getParentGender(1) == 3 ? 0 : 1);
             u8 ability = gen.next(100);
-            u8 parentAbility = daycare.getParentAbility(1);
             if (parentAbility == 2)
             {
                 ability = ability < 20 ? 0 : ability < 40 ? 1 : 2;

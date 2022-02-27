@@ -18,6 +18,7 @@
  */
 
 #include "EncounterArea3.hpp"
+#include <Core/Parents/Slot.hpp>
 
 EncounterArea3::EncounterArea3(u8 location, Encounter encounter, const std::vector<Slot> &pokemon) :
     EncounterArea(location, encounter, pokemon)
@@ -67,5 +68,21 @@ u8 EncounterArea3::getEncounterRate() const
         return 180;
     default:
         return 0;
+    }
+}
+
+bool EncounterArea3::rseSafariZone() const
+{
+    switch (location)
+    {
+    case 48: // Safari Zone 1
+    case 49: // Safari Zone 2
+    case 50: // Safari Zone 3
+    case 51: // Safari Zone 4
+    case 52: // Safari Zone 5
+    case 53: // Safari Zone 6
+        return true;
+    default:
+        return false;
     }
 }

@@ -22,6 +22,7 @@
 #include <Core/Enum/Game.hpp>
 #include <Core/Gen5/EncounterArea5.hpp>
 #include <Core/Parents/PersonalLoader.hpp>
+#include <Core/Parents/Slot.hpp>
 #include <Core/Resources/Encounters.hpp>
 #include <algorithm>
 #include <cstring>
@@ -104,8 +105,7 @@ namespace Encounters5
             return static_cast<u16>(data[offset + 1] << 8) | data[offset];
         }
 
-        std::vector<EncounterArea5> getAreas(const std::vector<u8> &data, Encounter encounter, Game version, u8 location,
-                                             u8 season)
+        std::vector<EncounterArea5> getAreas(const std::vector<u8> &data, Encounter encounter, Game version, u8 location, u8 season)
         {
             std::vector<EncounterArea5> encounters;
 
@@ -138,7 +138,8 @@ namespace Encounters5
                     u16 species = getValue(data, offset + 56 + i * 4);
                     u8 min = data[offset + 58 + i * 4];
                     u8 max = data[offset + 59 + i * 4];
-                    doubleGrass.emplace_back(species & 0x7ff, min, max, PersonalLoader::getPersonal(version, species & 0x7ff, species >> 11));
+                    doubleGrass.emplace_back(species & 0x7ff, min, max,
+                                             PersonalLoader::getPersonal(version, species & 0x7ff, species >> 11));
                 }
                 encounters.emplace_back(location, Encounter::DoubleGrass, doubleGrass);
             }
@@ -152,7 +153,8 @@ namespace Encounters5
                     u16 species = getValue(data, offset + 104 + i * 4);
                     u8 min = data[offset + 106 + i * 4];
                     u8 max = data[offset + 107 + i * 4];
-                    specialGrass.emplace_back(species & 0x7ff, min, max, PersonalLoader::getPersonal(version, species & 0x7ff, species >> 11));
+                    specialGrass.emplace_back(species & 0x7ff, min, max,
+                                              PersonalLoader::getPersonal(version, species & 0x7ff, species >> 11));
                 }
                 encounters.emplace_back(location, Encounter::SpecialGrass, specialGrass);
             }
@@ -180,7 +182,8 @@ namespace Encounters5
                     u16 species = getValue(data, offset + 172 + i * 4);
                     u8 min = data[offset + 174 + i * 4];
                     u8 max = data[offset + 175 + i * 4];
-                    specialSurf.emplace_back(species & 0x7ff, min, max, PersonalLoader::getPersonal(version, species & 0x7ff, species >> 11));
+                    specialSurf.emplace_back(species & 0x7ff, min, max,
+                                             PersonalLoader::getPersonal(version, species & 0x7ff, species >> 11));
                 }
                 encounters.emplace_back(location, Encounter::SpecialSurf, specialSurf);
             }
@@ -208,7 +211,8 @@ namespace Encounters5
                     u16 species = getValue(data, offset + 212 + i * 4);
                     u8 min = data[offset + 214 + i * 4];
                     u8 max = data[offset + 215 + i * 4];
-                    specialFish.emplace_back(species & 0x7ff, min, max, PersonalLoader::getPersonal(version, species & 0x7ff, species >> 11));
+                    specialFish.emplace_back(species & 0x7ff, min, max,
+                                             PersonalLoader::getPersonal(version, species & 0x7ff, species >> 11));
                 }
                 encounters.emplace_back(location, Encounter::SpecialSuperRod, specialFish);
             }

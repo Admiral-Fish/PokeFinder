@@ -26,8 +26,6 @@
 class HiddenGrottoState
 {
 public:
-    HiddenGrottoState() = default;
-
     HiddenGrottoState(u32 seed, u32 advances, u8 group, u8 slot, u8 gender) :
         seed(seed), advances(advances), group(group), slot(slot), gender(gender)
     {

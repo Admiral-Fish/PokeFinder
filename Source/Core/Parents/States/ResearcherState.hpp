@@ -25,8 +25,6 @@
 class ResearcherState
 {
 public:
-    ResearcherState() = default;
-
     ResearcherState(bool rng64Bit, u32 advances) : custom {}, rng64Bit(rng64Bit), advances(advances)
     {
     }

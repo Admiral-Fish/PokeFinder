@@ -25,6 +25,7 @@
 #include <Core/Util/Nature.hpp>
 #include <Core/Util/Translator.hpp>
 #include <QSettings>
+#include <QStandardItemModel>
 
 IVtoPID::IVtoPID(QWidget *parent) : QWidget(parent), ui(new Ui::IVtoPID)
 {
@@ -53,7 +54,7 @@ void IVtoPID::setupModels()
     ui->tableView->setModel(model);
 
     ui->textBoxTID->setValues(InputType::TIDSID);
-    for (const std::string &nature : Translator::getNatures())
+    for (const std::string &nature : *Translator::getNatures())
     {
         ui->comboBoxNature->addItem(QString::fromStdString(nature));
     }
@@ -228,7 +229,7 @@ std::vector<QList<QStandardItem *>> IVtoPID::getSeedsChannel(u8 hp, u8 atk, u8 d
 {
     std::vector<QList<QStandardItem *>> results;
 
-    std::vector<u32> seeds = RNGEuclidean::recoverLower27BitsChannel(hp, atk, def, spa, spd, spe);
+    auto seeds = RNGEuclidean::recoverLower27BitsChannel(hp, atk, def, spa, spd, spe);
     for (const u32 seed : seeds)
     {
         XDRNGR rng(seed);

@@ -20,15 +20,14 @@
 #ifndef GAMECUBEGENERATOR_HPP
 #define GAMECUBEGENERATOR_HPP
 
-#include <Core/Gen3/LockInfo.hpp>
 #include <Core/Gen3/ShadowTeam.hpp>
-#include <Core/Gen3/States/GameCubeState.hpp>
 #include <Core/Parents/Generators/Generator.hpp>
+
+class GameCubeState;
 
 class GameCubeGenerator : public Generator
 {
 public:
-    GameCubeGenerator() = default;
     GameCubeGenerator(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter);
     std::vector<GameCubeState> generate(u32 seed) const;
     void setShadowTeam(u8 index, u8 type);

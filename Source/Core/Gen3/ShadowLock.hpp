@@ -20,10 +20,10 @@
 #ifndef SHADOWLOCK_HPP
 #define SHADOWLOCK_HPP
 
-#include <Core/Gen3/LockInfo.hpp>
-#include <Core/RNG/LCRNG.hpp>
+#include <Core/Util/Global.hpp>
 #include <vector>
 
+class LockInfo;
 enum class Method : u8;
 enum class ShadowType : u8;
 

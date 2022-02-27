@@ -20,10 +20,12 @@
 #ifndef RTCSEARCHER_HPP
 #define RTCSEARCHER_HPP
 
-#include <Core/Gen3/States/GameCubeRTCState.hpp>
 #include <Core/Util/Global.hpp>
 #include <mutex>
 #include <vector>
+
+class Date;
+class GameCubeRTCState;
 
 class RTCSearcher
 {

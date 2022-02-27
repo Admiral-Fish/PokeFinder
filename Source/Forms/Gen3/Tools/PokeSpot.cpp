@@ -20,9 +20,10 @@
 #include "PokeSpot.hpp"
 #include "ui_PokeSpot.h"
 #include <Core/Gen3/Generators/PokeSpotGenerator.hpp>
-#include <Core/Parents/Filters/StateFilter.hpp>
 #include <Core/Util/Translator.hpp>
+#include <Forms/Controls/Controls.hpp>
 #include <Forms/Models/Gen3/PokeSpotModel.hpp>
+#include <QMenu>
 #include <QSettings>
 
 PokeSpot::PokeSpot(QWidget *parent) : QWidget(parent), ui(new Ui::PokeSpot)

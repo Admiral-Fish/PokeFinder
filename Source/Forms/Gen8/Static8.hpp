@@ -20,10 +20,11 @@
 #ifndef STATIC8_HPP
 #define STATIC8_HPP
 
-#include <QMenu>
-#include <Core/Gen8/Profile8.hpp>
+#include <QWidget>
 
+class Profile8;
 class StaticModel8;
+class QMenu;
 
 namespace Ui
 {
@@ -44,9 +45,9 @@ public:
 private:
     Ui::Static8 *ui;
     std::vector<Profile8> profiles;
-    Profile8 currentProfile;
-    StaticModel8 *model = nullptr;
-    QMenu *menu = nullptr;
+    Profile8 *currentProfile;
+    StaticModel8 *model;
+    QMenu *menu;
 
     void setupModels();
 

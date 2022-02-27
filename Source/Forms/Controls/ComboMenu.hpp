@@ -20,8 +20,9 @@
 #ifndef COMBOMENU_HPP
 #define COMBOMENU_HPP
 
-#include <QActionGroup>
 #include <QToolButton>
+
+class QActionGroup;
 
 class ComboMenu : public QToolButton
 {

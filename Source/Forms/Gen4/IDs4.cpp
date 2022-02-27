@@ -21,7 +21,6 @@
 #include "ui_IDs4.h"
 #include <Core/Gen4/Generators/IDGenerator4.hpp>
 #include <Core/Gen4/Searchers/IDSearcher4.hpp>
-#include <Core/Gen4/States/EggState4.hpp>
 #include <Forms/Models/Gen4/IDModel4.hpp>
 #include <QSettings>
 #include <QThread>
@@ -148,7 +147,7 @@ void IDs4::tidSIDSearch()
         sidList.emplace_back(ui->textBoxTIDSIDSID->getUShort());
     }
 
-    IDFilter filter(tidList, sidList, std::vector<u16>());
+    IDFilter filter(tidList, sidList, {});
 
     u16 year = ui->textBoxTIDSIDYear->getUShort();
     u32 minDelay = ui->textBoxTIDSIDMinDelay->getUInt() + year - 2000;
@@ -196,9 +195,9 @@ void IDs4::seedFinderSearch()
     u32 minDelay = ui->textBoxSeedFinderMinDelay->getUInt() + year - 2000;
     u32 maxDelay = ui->textBoxSeedFinderMaxDelay->getUInt() + year - 2000;
 
-    IDGenerator4 generator(minDelay, maxDelay, year, month, day, hour, minute);
-    IDFilter filter({ ui->textBoxSeedFinderTID->getUShort() }, std::vector<u16>(), std::vector<u16>());
+    IDFilter filter({ ui->textBoxSeedFinderTID->getUShort() }, {}, {});
+    IDGenerator4 generator(minDelay, maxDelay, year, month, day, hour, minute, filter);
 
-    auto states = generator.generate(filter);
+    auto states = generator.generate();
     seedFinder->addItems(states);
 }

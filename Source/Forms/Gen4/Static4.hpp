@@ -20,11 +20,12 @@
 #ifndef STATIC4_HPP
 #define STATIC4_HPP
 
-#include <Core/Gen4/Profile4.hpp>
-#include <QMenu>
+#include <QWidget>
 
+class Profile4;
 class StaticGeneratorModel4;
 class StaticSearcherModel4;
+class QMenu;
 
 namespace Ui
 {
@@ -44,12 +45,12 @@ public:
 
 private:
     Ui::Static4 *ui;
-    StaticGeneratorModel4 *generatorModel = nullptr;
-    StaticSearcherModel4 *searcherModel = nullptr;
+    StaticGeneratorModel4 *generatorModel;
+    StaticSearcherModel4 *searcherModel;
     std::vector<Profile4> profiles;
-    Profile4 currentProfile;
-    QMenu *generatorMenu = nullptr;
-    QMenu *searcherMenu = nullptr;
+    Profile4 *currentProfile;
+    QMenu *generatorMenu;
+    QMenu *searcherMenu;
 
     void setupModels();
 
