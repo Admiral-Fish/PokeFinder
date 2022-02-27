@@ -5,7 +5,7 @@ environment:
     OpenSSL: C:\OpenSSL-v111-Win64\bin
     OS: win
     EXT: zip
-    VCVARSALLPATH: C:\"Program Files (x86)\Microsoft Visual Studio"\2022\"Build Tools"\VC\Auxiliary\Build\vcvars64.bat
+    VCVARSALLPATH: C:\"Program Files\Microsoft Visual Studio"\2022\Community\VC\Auxiliary\Build\vcvars64.bat
   - APPVEYOR_BUILD_WORKER_IMAGE: Ubuntu2004
     QTVER: 6.1
     OS: linux
