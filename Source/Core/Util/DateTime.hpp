@@ -41,7 +41,6 @@ public:
     int dayOfWeek() const;
     std::array<int, 3> getParts() const;
     static int daysInMonth(int month, int year);
-    int weekDay() const;
     std::string toString() const;
 
     constexpr bool operator==(const Date &other) const

@@ -26,6 +26,8 @@ class DateTimeTest : public QObject
 {
     Q_OBJECT
 private slots:
+    void addSecs_data();
+    void addSecs();
 };
 
 class DateTest : public QObject
@@ -34,12 +36,16 @@ class DateTest : public QObject
 private slots:
     void getParts_data();
     void getParts();
+    void dayOfWeek_data();
+    void dayOfWeek();
 };
 
 class TimeTest : public QObject
 {
     Q_OBJECT
 private slots:
+    void addSeconds_data();
+    void addSeconds();
 };
 
 #endif // DATETIMETEST_HPP

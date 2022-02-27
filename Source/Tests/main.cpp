@@ -72,5 +72,10 @@ int main()
         qDebug() << fail;
     }
 
+    if (fails.empty())
+    {
+        qDebug() << "No failures";
+    }
+
     return status;
 }

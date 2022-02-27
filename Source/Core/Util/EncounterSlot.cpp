@@ -23,27 +23,24 @@
 
 namespace
 {
-    template <u32 size>
+    template <u32 size, bool greater = false>
     u8 calcSlot(u8 compare, const std::array<u8, size> &ranges)
     {
         for (size_t i = 0; i < size; i++)
         {
-            if (compare < ranges[i])
+            if constexpr (greater)
             {
-                return i;
+                if (compare >= ranges[i])
+                {
+                    return i;
+                }
             }
-        }
-        return 255;
-    }
-
-    template <u32 size>
-    u8 calcSlot(u8 compare, const std::array<std::pair<u8, u8>, size> &ranges)
-    {
-        for (size_t i = 0; i < size; i++)
-        {
-            if (compare >= ranges[i].first && compare <= ranges[i].second)
+            else
             {
-                return i;
+                if (compare < ranges[i])
+                {
+                    return i;
+                }
             }
         }
         return 255;
@@ -102,12 +99,7 @@ namespace EncounterSlot
         case Encounter::Surfing:
             return calcSlot<5>(compare, std::array<u8, 5> { 60, 90, 95, 99, 100 });
         case Encounter::BugCatchingContest:
-            return calcSlot<10>(compare,
-                                std::array<std::pair<u8, u8>, 10> { std::pair<u8, u8> { 80, 99 }, std::pair<u8, u8> { 60, 79 },
-                                                                    std::pair<u8, u8> { 50, 59 }, std::pair<u8, u8> { 40, 49 },
-                                                                    std::pair<u8, u8> { 30, 39 }, std::pair<u8, u8> { 20, 29 },
-                                                                    std::pair<u8, u8> { 15, 19 }, std::pair<u8, u8> { 10, 14 },
-                                                                    std::pair<u8, u8> { 5, 9 }, std::pair<u8, u8> { 0, 4 } });
+            return calcSlot<10, true>(compare, std::array<u8, 10> { 80, 60, 50, 40, 30, 20, 15, 10, 5, 0 });
         case Encounter::SafariZone:
             return compare % 10;
         case Encounter::HeadButt:
