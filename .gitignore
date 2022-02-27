@@ -8,6 +8,7 @@ CMakeLists.txt.user*
 # VS
 .vs
 CMakeSettings.json
+CppProperties.json
 out
 
 # Resource files
