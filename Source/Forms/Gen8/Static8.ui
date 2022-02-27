@@ -296,6 +296,11 @@
           <string>Ramanas Park (Strange Space)</string>
          </property>
         </item>
+        <item>
+         <property name="text">
+          <string>Mythics</string>
+         </property>
+        </item>
        </widget>
       </item>
       <item row="1" column="0">
