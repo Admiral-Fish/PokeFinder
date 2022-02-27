@@ -17,36 +17,17 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef DATETIMETEST_HPP
-#define DATETIMETEST_HPP
+#ifndef IVCHECKERTEST_HPP
+#define IVCHECKERTEST_HPP
 
 #include <QObject>
 
-class DateTimeTest : public QObject
+class IVCheckerTest : public QObject
 {
     Q_OBJECT
 private slots:
-    void addSecs_data();
-    void addSecs();
+    void calculateIVRange_data();
+    void calculateIVRange();
 };
 
-class DateTest : public QObject
-{
-    Q_OBJECT
-private slots:
-    void getParts_data();
-    void getParts();
-
-    void dayOfWeek_data();
-    void dayOfWeek();
-};
-
-class TimeTest : public QObject
-{
-    Q_OBJECT
-private slots:
-    void addSeconds_data();
-    void addSeconds();
-};
-
-#endif // DATETIMETEST_HPP
+#endif // IVCHECKERTEST_HPP

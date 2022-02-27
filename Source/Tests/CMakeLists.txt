@@ -18,6 +18,7 @@ add_executable(Tests
     RNG/TinyMTTest.cpp
     Util/DateTimeTest.cpp
     Util/EncounterSlotTest.cpp
+    Util/IVCheckerTest.cpp
     main.cpp
 )
 

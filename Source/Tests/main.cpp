@@ -29,6 +29,7 @@
 #include <Tests/RNG/TinyMTTest.hpp>
 #include <Tests/Util/DateTimeTest.hpp>
 #include <Tests/Util/EncounterSlotTest.hpp>
+#include <Tests/Util/IVCheckerTest.hpp>
 
 template <class Testname>
 int runTest(QStringList &fails)
@@ -64,6 +65,7 @@ int main()
     status += runTest<DateTimeTest>(fails);
     status += runTest<TimeTest>(fails);
     status += runTest<EncounterSlotTest>(fails);
+    status += runTest<IVCheckerTest>(fails);
 
     qDebug() << "";
     // Summary of failures at end for easy viewing

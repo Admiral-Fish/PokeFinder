@@ -39,4 +39,4 @@ private slots:
     void bdspSlot();
 };
 
-#endif // DATETIMETEST_HPP
+#endif // ENCOUNTERSLOTTEST_HPP
