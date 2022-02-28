@@ -109,9 +109,9 @@ namespace
     }
 }
 
-namespace Utilities
+namespace Utilities3
 {
-    u16 calcGen3Seed(const DateTime &dateTime)
+    u16 calcSeed(const DateTime &dateTime)
     {
         const Date &date = dateTime.getDate();
         const Time &time = dateTime.getTime();
@@ -124,8 +124,11 @@ namespace Utilities
         u32 seed = 1440 * d + 960 * (h / 10) + 60 * (h % 10) + 16 * (m / 10) + m % 10;
         return (seed >> 16) ^ (seed & 0xFFFF);
     }
+}
 
-    u32 calcGen4Seed(const DateTime &dateTime, u32 delay)
+namespace Utilities4
+{
+    u32 calcSeed(const DateTime &dateTime, u32 delay)
     {
         const Date &date = dateTime.getDate();
         const Time &time = dateTime.getTime();
@@ -192,8 +195,11 @@ namespace Utilities
     {
         return getPitch(((seed & 0x1fff) * 100) >> 13);
     }
+}
 
-    std::string getChatot64(u32 seed)
+namespace Utilities5
+{
+    std::string getChatot(u32 seed)
     {
         return getPitch(seed / 82);
     }

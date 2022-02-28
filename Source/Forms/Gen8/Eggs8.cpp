@@ -35,7 +35,6 @@ Eggs8::Eggs8(QWidget *parent) : QWidget(parent), ui(new Ui::Eggs8)
     setAttribute(Qt::WA_QuitOnClose, false);
 
     setupModels();
-    updateProfiles();
 }
 
 Eggs8::~Eggs8()
@@ -102,6 +101,8 @@ void Eggs8::setupModels()
     connect(ui->tableView, &QTableView::customContextMenuRequested, this, &Eggs8::tableViewContextMenu);
     connect(ui->eggSettings, &EggSettings::toggleInheritance, model, &EggModel8::toggleInheritance);
 
+    updateProfiles();
+
     QSettings setting;
     setting.beginGroup("egg8");
     if (setting.contains("geometry"))
@@ -125,10 +126,17 @@ void Eggs8::generate()
         box.exec();
     }
 
-    model->clearModel();
-
     u64 seed0 = ui->textBoxSeed0->getULong();
     u64 seed1 = ui->textBoxSeed1->getULong();
+    if (seed0 == 0 && seed1 == 0)
+    {
+        QMessageBox msg(QMessageBox::Warning, tr("Missing seeds"), tr("Please insert missing seed information"));
+        msg.exec();
+        return;
+    }
+
+    model->clearModel();
+
     u32 initialAdvances = ui->textBoxInitialAdvances->getUInt();
     u32 maxAdvances = ui->textBoxMaxAdvances->getUInt();
     u16 tid = currentProfile->getTID();

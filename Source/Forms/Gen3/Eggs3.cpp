@@ -23,7 +23,6 @@
 #include <Core/Enum/Method.hpp>
 #include <Core/Gen3/Generators/EggGenerator3.hpp>
 #include <Core/Gen3/Profile3.hpp>
-#include <Core/Parents/Filters/StateFilter.hpp>
 #include <Core/Parents/ProfileLoader.hpp>
 #include <Core/Util/Nature.hpp>
 #include <Core/Util/Translator.hpp>
@@ -40,7 +39,6 @@ Eggs3::Eggs3(QWidget *parent) : QWidget(parent), ui(new Ui::Eggs3)
     setAttribute(Qt::WA_QuitOnClose, false);
 
     setupModels();
-    updateProfiles();
 }
 
 Eggs3::~Eggs3()
@@ -151,6 +149,8 @@ void Eggs3::setupModels()
     connect(ui->tableViewEmerald, &QTableView::customContextMenuRequested, this, &Eggs3::tableViewEmeraldContextMenu);
     connect(ui->tableViewRS, &QTableView::customContextMenuRequested, this, &Eggs3::tableViewRSContextMenu);
     connect(ui->tableViewFRLG, &QTableView::customContextMenuRequested, this, &Eggs3::tableViewFRLGContextMenu);
+
+    updateProfiles();
 
     QSettings setting;
     if (setting.contains("eggs3/geometry"))

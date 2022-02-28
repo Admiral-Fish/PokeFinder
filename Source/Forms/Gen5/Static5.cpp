@@ -28,7 +28,6 @@
 #include <Core/Gen5/Profile5.hpp>
 #include <Core/Gen5/Searchers/StaticSearcher5.hpp>
 #include <Core/Parents/ProfileLoader.hpp>
-#include <Core/Parents/States/StaticState.hpp>
 #include <Core/Util/Translator.hpp>
 #include <Core/Util/Utilities.hpp>
 #include <Forms/Controls/Controls.hpp>
@@ -45,7 +44,6 @@ Static5::Static5(QWidget *parent) : QWidget(parent), ui(new Ui::Static5)
     setAttribute(Qt::WA_QuitOnClose, false);
 
     setupModels();
-    updateProfiles();
 }
 
 Static5::~Static5()
@@ -107,7 +105,7 @@ void Static5::setupModels()
     ui->comboBoxSearcherLead->setup({ toInt(Lead::Search), toInt(Lead::Synchronize), toInt(Lead::CuteCharm), toInt(Lead::None) });
 
     ui->comboBoxGeneratorLead->addItem(tr("None"));
-    for (const std::string &nature : Translator::getNatures())
+    for (const std::string &nature : *Translator::getNatures())
     {
         ui->comboBoxGeneratorLead->addItem(QString::fromStdString(nature));
     }
@@ -134,6 +132,8 @@ void Static5::setupModels()
     connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &Static5::profileManager);
     connect(ui->tableViewGenerator, &QTableView::customContextMenuRequested, this, &Static5::tableViewGeneratorContextMenu);
     connect(ui->tableViewSearcher, &QTableView::customContextMenuRequested, this, &Static5::tableViewSearcherContextMenu);
+
+    updateProfiles();
 
     QSettings setting;
     setting.beginGroup("static5");
@@ -321,7 +321,7 @@ void Static5::generatorLead()
         ui->comboBoxGeneratorLead->setEnabled(true);
 
         ui->comboBoxGeneratorLead->addItem("None");
-        for (const std::string &nature : Translator::getNatures())
+        for (const std::string &nature : *Translator::getNatures())
         {
             ui->comboBoxGeneratorLead->addItem(QString::fromStdString(nature));
         }
@@ -335,11 +335,11 @@ void Static5::calculateInitialAdvances()
     u8 initialAdvances;
     if ((version & Game::BW) != Game::None)
     {
-        initialAdvances = Utilities::initialAdvancesBW(ui->textBoxGeneratorSeed->getULong());
+        initialAdvances = Utilities5::initialAdvancesBW(ui->textBoxGeneratorSeed->getULong());
     }
     else
     {
-        initialAdvances = Utilities::initialAdvancesBW2(ui->textBoxGeneratorSeed->getULong(), currentProfile->getMemoryLink());
+        initialAdvances = Utilities5::initialAdvancesBW2(ui->textBoxGeneratorSeed->getULong(), currentProfile->getMemoryLink());
     }
 
     ui->textBoxGeneratorInitialAdvances->setText(QString::number(initialAdvances));

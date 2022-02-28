@@ -46,7 +46,6 @@ Event5::Event5(QWidget *parent) : QWidget(parent), ui(new Ui::Event5)
     setAttribute(Qt::WA_QuitOnClose, false);
 
     setupModels();
-    updateProfiles();
 }
 
 Event5::~Event5()
@@ -103,7 +102,7 @@ void Event5::setupModels()
     ui->textBoxSearcherEventTID->setValues(InputType::TIDSID);
     ui->textBoxSearcherEventSID->setValues(InputType::TIDSID);
 
-    for (const std::string &nature : Translator::getNatures())
+    for (const std::string &nature : *Translator::getNatures())
     {
         ui->comboBoxGeneratorNature->addItem(QString::fromStdString(nature));
         ui->comboBoxSearcherNature->addItem(QString::fromStdString(nature));
@@ -142,6 +141,8 @@ void Event5::setupModels()
     connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &Event5::profileManager);
     connect(ui->tableViewGenerator, &QTableView::customContextMenuRequested, this, &Event5::tableViewGeneratorContextMenu);
     connect(ui->tableViewSearcher, &QTableView::customContextMenuRequested, this, &Event5::tableViewSearcherContextMenu);
+
+    updateProfiles();
 
     QSettings setting;
     setting.beginGroup("event5");
@@ -413,11 +414,11 @@ void Event5::calculateInitialAdvances()
     u8 initialAdvances;
     if ((version & Game::BW) != Game::None)
     {
-        initialAdvances = Utilities::initialAdvancesBW(ui->textBoxGeneratorSeed->getULong());
+        initialAdvances = Utilities5::initialAdvancesBW(ui->textBoxGeneratorSeed->getULong());
     }
     else
     {
-        initialAdvances = Utilities::initialAdvancesBW2(ui->textBoxGeneratorSeed->getULong(), currentProfile->getMemoryLink());
+        initialAdvances = Utilities5::initialAdvancesBW2(ui->textBoxGeneratorSeed->getULong(), currentProfile->getMemoryLink());
     }
 
     ui->textBoxGeneratorInitialAdvances->setText(QString::number(initialAdvances));

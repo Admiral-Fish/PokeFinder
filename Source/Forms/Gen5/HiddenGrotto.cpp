@@ -21,7 +21,6 @@
 #include "ui_HiddenGrotto.h"
 #include <Core/Enum/Game.hpp>
 #include <Core/Enum/Method.hpp>
-#include <Core/Gen5/Filters/HiddenGrottoFilter.hpp>
 #include <Core/Gen5/Generators/HiddenGrottoGenerator.hpp>
 #include <Core/Gen5/Keypresses.hpp>
 #include <Core/Gen5/Profile5.hpp>
@@ -44,7 +43,6 @@ HiddenGrotto::HiddenGrotto(QWidget *parent) : QWidget(parent), ui(new Ui::Hidden
     setAttribute(Qt::WA_QuitOnClose, false);
 
     setupModels();
-    updateProfiles();
 }
 
 HiddenGrotto::~HiddenGrotto()
@@ -143,6 +141,8 @@ void HiddenGrotto::setupModels()
     connect(ui->pushButtonCalculateInitialAdvances, &QPushButton::clicked, this, &HiddenGrotto::calculateInitialAdvances);
     connect(ui->tableViewGenerator, &QTableView::customContextMenuRequested, this, &HiddenGrotto::tableViewGeneratorContextMenu);
     connect(ui->tableViewSearcher, &QTableView::customContextMenuRequested, this, &HiddenGrotto::tableViewSearcherContextMenu);
+
+    updateProfiles();
 
     QSettings setting;
     setting.beginGroup("hiddenGrotto");
@@ -246,7 +246,7 @@ void HiddenGrotto::profileIndexChanged(int index)
 void HiddenGrotto::calculateInitialAdvances()
 {
     ui->textBoxGeneratorInitialAdvances->setText(
-        QString::number(Utilities::initialAdvancesBW2(ui->textBoxGeneratorSeed->getULong(), currentProfile->getMemoryLink())));
+        QString::number(Utilities5::initialAdvancesBW2(ui->textBoxGeneratorSeed->getULong(), currentProfile->getMemoryLink())));
 }
 
 void HiddenGrotto::tableViewGeneratorContextMenu(QPoint pos)

@@ -47,7 +47,7 @@ QVariant StaticGeneratorModel3::data(const QModelIndex &index, int role) const
             return shiny == 2 ? tr("Square") : shiny == 1 ? tr("Star") : tr("No");
         }
         case 3:
-            return QString::fromStdString(Translator::getNature(state.getNature()));
+            return QString::fromStdString(*Translator::getNature(state.getNature()));
         case 4:
             return state.getAbility();
         case 5:
@@ -58,11 +58,11 @@ QVariant StaticGeneratorModel3::data(const QModelIndex &index, int role) const
         case 10:
             return state.getIV(static_cast<u8>(column - 5));
         case 11:
-            return QString::fromStdString(Translator::getHiddenPower(state.getHidden()));
+            return QString::fromStdString(*Translator::getHiddenPower(state.getHidden()));
         case 12:
             return state.getPower();
         case 13:
-            return QString::fromStdString(Translator::getGender(state.getGender()));
+            return QString::fromStdString(*Translator::getGender(state.getGender()));
         }
     }
     return QVariant();
@@ -170,7 +170,7 @@ QVariant StaticSearcherModel3::data(const QModelIndex &index, int role) const
             return shiny == 2 ? tr("Square") : shiny == 1 ? tr("Star") : tr("No");
         }
         case 3:
-            return QString::fromStdString(Translator::getNature(state.getNature()));
+            return QString::fromStdString(*Translator::getNature(state.getNature()));
         case 4:
             return state.getAbility();
         case 5:
@@ -181,11 +181,11 @@ QVariant StaticSearcherModel3::data(const QModelIndex &index, int role) const
         case 10:
             return state.getIV(static_cast<u8>(column - 5));
         case 11:
-            return QString::fromStdString(Translator::getHiddenPower(state.getHidden()));
+            return QString::fromStdString(*Translator::getHiddenPower(state.getHidden()));
         case 12:
             return state.getPower();
         case 13:
-            return QString::fromStdString(Translator::getGender(state.getGender()));
+            return QString::fromStdString(*Translator::getGender(state.getGender()));
         }
     }
     return QVariant();

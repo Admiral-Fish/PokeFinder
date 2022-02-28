@@ -34,8 +34,7 @@ class SearchCalls : public QDialog
 {
     Q_OBJECT
 public:
-    explicit SearchCalls(const std::vector<SeedTime> &model, const std::vector<bool> &roamers, const std::vector<u8> &routes,
-                         QWidget *parent = nullptr);
+    explicit SearchCalls(const std::vector<SeedTime> &model, QWidget *parent = nullptr);
     ~SearchCalls() override;
     std::vector<bool> possibleResults() const;
 
@@ -43,8 +42,6 @@ private:
     Ui::SearchCalls *ui;
     std::vector<SeedTime> data;
     std::vector<bool> possible;
-    std::vector<bool> roamers;
-    std::vector<u8> routes;
 
 private slots:
     void k();

@@ -20,14 +20,11 @@
 #ifndef STATICSTATE5_HPP
 #define STATICSTATE5_HPP
 
-#include <Core/Gen5/States/State5.hpp>
 #include <Core/Parents/States/StaticState.hpp>
 
-class StaticState5 : public State5, public StaticState
+class StaticState5 : public StaticState
 {
 public:
-    StaticState5() = default;
-
     explicit StaticState5(u32 advance) : StaticState(advance)
     {
     }

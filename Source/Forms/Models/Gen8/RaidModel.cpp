@@ -53,7 +53,7 @@ QVariant RaidModel::data(const QModelIndex &index, int role) const
             return shiny == 2 ? tr("Square") : shiny == 1 ? tr("Star") : tr("No");
         }
         case 8:
-            return QString::fromStdString(Translator::getNature(state.getNature()));
+            return QString::fromStdString(*Translator::getNature(state.getNature()));
         case 9:
         {
             u8 ability = state.getAbility();

@@ -21,7 +21,6 @@
 #include <Core/Enum/Encounter.hpp>
 #include <Core/Enum/Lead.hpp>
 #include <Core/Enum/Method.hpp>
-#include <Core/Parents/Filters/StateFilter.hpp>
 #include <Core/Parents/States/StaticState.hpp>
 #include <Core/RNG/LCRNG64.hpp>
 #include <Core/RNG/MT.hpp>
@@ -256,7 +255,7 @@ std::vector<StaticState> StaticGenerator5::generateStatic(u64 seed) const
             else
             {
                 // TODO: fix hard coded gender
-                pid = Utilities::forceGender(pid, go.next(), 0, genderRatio);
+                pid = Utilities5::forceGender(pid, go.next(), 0, genderRatio);
                 state.setNature(go.nextUInt(25));
             }
         }
@@ -436,7 +435,7 @@ std::vector<StaticState> StaticGenerator5::generateHiddenGrotto(u64 seed) const
         }
         else
         {
-            pid = Utilities::forceGender(pid, go.nextUInt(), gender, genderRatio);
+            pid = Utilities5::forceGender(pid, go.nextUInt(), gender, genderRatio);
             state.setNature(go.nextUInt(25));
         }
 

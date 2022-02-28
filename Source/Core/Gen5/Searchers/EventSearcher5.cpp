@@ -22,6 +22,7 @@
 #include <Core/Gen5/Generators/EventGenerator5.hpp>
 #include <Core/Gen5/Keypresses.hpp>
 #include <Core/Gen5/States/SearcherState5.hpp>
+#include <Core/Parents/States/State.hpp>
 #include <Core/RNG/SHA1.hpp>
 #include <Core/Util/Utilities.hpp>
 #include <future>
@@ -119,8 +120,8 @@ void EventSearcher5::search(EventGenerator5 generator, const Date &start, const 
                             sha.setTime(hour, minute, second, profile.getDSType());
                             u64 seed = sha.hashSeed();
 
-                            generator.setInitialAdvances(flag ? Utilities::initialAdvancesBW(seed)
-                                                              : Utilities::initialAdvancesBW2(seed, profile.getMemoryLink()));
+                            generator.setInitialAdvances(flag ? Utilities5::initialAdvancesBW(seed)
+                                                              : Utilities5::initialAdvancesBW2(seed, profile.getMemoryLink()));
                             auto states = generator.generate(seed);
 
                             if (!states.empty())

@@ -95,6 +95,10 @@ constexpr std::array<StaticTemplate, 6> ramanasParkStrangeSpace = {
     StaticTemplate(Game::BDSP, 384, 70, 3) // Rayquaza
 };
 
+constexpr std::array<StaticTemplate, 1> mythics = {
+    StaticTemplate(Game::BDSP, 492, 30, 3)
+};
+
 namespace Encounters8
 {
     namespace
@@ -306,13 +310,21 @@ namespace Encounters8
             }
             return ramanasParkPureSpace.data();
         }
-        else
+        else if (index == 6)
         {
             if (size)
             {
                 *size = ramanasParkStrangeSpace.size();
             }
             return ramanasParkStrangeSpace.data();
+        }
+        else
+        {
+            if(size)
+            {
+                *size = mythics.size();
+            }
+            return mythics.data();
         }
     }
 }

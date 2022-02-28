@@ -80,7 +80,7 @@ MainWindow::MainWindow(bool profile, QWidget *parent) : QMainWindow(parent), ui(
 
     setupModels();
 
-    QTimer::singleShot(1000, [this, profile] {
+    QTimer::singleShot(1000, this, [this, profile] {
         if (!profile)
         {
             QMessageBox message(QMessageBox::Warning, tr("Unable to locate profiles"),
@@ -209,10 +209,10 @@ QByteArray MainWindow::downloadFile(const QString &url)
 {
     QNetworkAccessManager manager;
     QNetworkRequest request(url);
-    QScopedPointer<QNetworkReply> reply(manager.get(request));
+    std::unique_ptr<QNetworkReply> reply(manager.get(request));
 
     QEventLoop loop;
-    connect(reply.data(), &QNetworkReply::finished, &loop, &QEventLoop::quit);
+    connect(reply.get(), &QNetworkReply::finished, &loop, &QEventLoop::quit);
     loop.exec();
 
     return reply->readAll();
@@ -322,7 +322,6 @@ void MainWindow::openStatic3()
         connect(static3, &Static3::alertProfiles, this, &MainWindow::updateProfiles);
     }
     static3->show();
-    static3->raise();
 }
 
 void MainWindow::openWild3()
@@ -333,7 +332,6 @@ void MainWindow::openWild3()
         connect(wild3, &Wild3::alertProfiles, this, &MainWindow::updateProfiles);
     }
     wild3->show();
-    wild3->raise();
 }
 
 void MainWindow::openGameCube()
@@ -344,7 +342,6 @@ void MainWindow::openGameCube()
         connect(gamecube, &GameCube::alertProfiles, this, &MainWindow::updateProfiles);
     }
     gamecube->show();
-    gamecube->raise();
 }
 
 void MainWindow::openEgg3()
@@ -355,7 +352,6 @@ void MainWindow::openEgg3()
         connect(egg3, &Eggs3::alertProfiles, this, &MainWindow::updateProfiles);
     }
     egg3->show();
-    egg3->raise();
 }
 
 void MainWindow::openIDs3()
@@ -365,49 +361,42 @@ void MainWindow::openIDs3()
         ids3 = new IDs3();
     }
     ids3->show();
-    ids3->raise();
 }
 
 void MainWindow::openGameCubeRTC()
 {
     auto *rtc = new GameCubeRTC();
     rtc->show();
-    rtc->raise();
 }
 
 void MainWindow::openGameCubeSeedFinder()
 {
     auto *finder = new GameCubeSeedFinder();
     finder->show();
-    finder->raise();
 }
 
 void MainWindow::openIVtoPID()
 {
     auto *ivToPID = new IVtoPID();
     ivToPID->show();
-    ivToPID->raise();
 }
 
 void MainWindow::openJirachiPattern()
 {
     auto *jirachi = new JirachiPattern();
     jirachi->show();
-    jirachi->raise();
 }
 
 void MainWindow::openPIDtoIV()
 {
     auto *pidToIV = new PIDIV();
     pidToIV->show();
-    pidToIV->raise();
 }
 
 void MainWindow::openPokeSpot()
 {
     auto *pokeSpot = new PokeSpot();
     pokeSpot->show();
-    pokeSpot->raise();
 }
 
 void MainWindow::openProfileManager3()
@@ -421,14 +410,12 @@ void MainWindow::openSeedtoTime3()
 {
     auto *seedToTime = new SeedTime3();
     seedToTime->show();
-    seedToTime->raise();
 }
 
 void MainWindow::openSpindaPainter()
 {
     auto *spinda = new SpindaPainter();
     spinda->show();
-    spinda->raise();
 }
 
 void MainWindow::openStatic4()
@@ -439,7 +426,6 @@ void MainWindow::openStatic4()
         connect(static4, &Static4::alertProfiles, this, &MainWindow::updateProfiles);
     }
     static4->show();
-    static4->raise();
 }
 
 void MainWindow::openWild4()
@@ -450,7 +436,6 @@ void MainWindow::openWild4()
         connect(wild4, &Wild4::alertProfiles, this, &MainWindow::updateProfiles);
     }
     wild4->show();
-    wild4->raise();
 }
 
 void MainWindow::openEgg4()
@@ -461,7 +446,6 @@ void MainWindow::openEgg4()
         connect(egg4, &Eggs4::alertProfiles, this, &MainWindow::updateProfiles);
     }
     egg4->show();
-    egg4->raise();
 }
 
 void MainWindow::openIDs4()
@@ -471,7 +455,6 @@ void MainWindow::openIDs4()
         ids4 = new IDs4();
     }
     ids4->show();
-    ids4->raise();
 }
 
 void MainWindow::openProfileManager4()
@@ -485,14 +468,12 @@ void MainWindow::openSeedtoTime4()
 {
     auto *seedToTime = new SeedtoTime4();
     seedToTime->show();
-    seedToTime->raise();
 }
 
 void MainWindow::openSIDFromChainedShiny()
 {
     auto *chainedSID = new ChainedSID();
     chainedSID->show();
-    chainedSID->raise();
 }
 
 void MainWindow::openStatic5()
@@ -503,7 +484,6 @@ void MainWindow::openStatic5()
         connect(static5, &Static5::alertProfiles, this, &MainWindow::updateProfiles);
     }
     static5->show();
-    static5->raise();
 
     if (!static5->hasProfiles())
     {
@@ -522,7 +502,6 @@ void MainWindow::openEvent5()
         connect(event5, &Event5::alertProfiles, this, &MainWindow::updateProfiles);
     }
     event5->show();
-    event5->raise();
 
     if (!event5->hasProfiles())
     {
@@ -541,7 +520,6 @@ void MainWindow::openDreamRadar()
         connect(dreamRadar, &DreamRadar::alertProfiles, this, &MainWindow::updateProfiles);
     }
     dreamRadar->show();
-    dreamRadar->raise();
 
     if (!dreamRadar->hasProfiles())
     {
@@ -560,7 +538,6 @@ void MainWindow::openHiddenGrotto()
         connect(hiddenGrotto, &HiddenGrotto::alertProfiles, this, &MainWindow::updateProfiles);
     }
     hiddenGrotto->show();
-    hiddenGrotto->raise();
 
     if (!hiddenGrotto->hasProfiles())
     {
@@ -579,7 +556,6 @@ void MainWindow::openEgg5()
         connect(egg5, &Eggs5::alertProfiles, this, &MainWindow::updateProfiles);
     }
     egg5->show();
-    egg5->raise();
 
     if (!egg5->hasProfiles())
     {
@@ -598,7 +574,6 @@ void MainWindow::openIDs5()
         connect(ids5, &IDs5::alertProfiles, this, &MainWindow::updateProfiles);
     }
     ids5->show();
-    ids5->raise();
 
     if (!ids5->hasProfiles())
     {
@@ -614,7 +589,6 @@ void MainWindow::openProfileCalibrator()
     auto *calibrator = new ProfileCalibrator5();
     connect(calibrator, &ProfileCalibrator5::alertProfiles, this, &MainWindow::updateProfiles);
     calibrator->show();
-    calibrator->raise();
 }
 
 void MainWindow::openProfileManager5()
@@ -632,7 +606,6 @@ void MainWindow::openStatic8()
         connect(static8, &Static8::alertProfiles, this, &MainWindow::updateProfiles);
     }
     static8->show();
-    static8->raise();
 }
 
 void MainWindow::openWild8()
@@ -643,7 +616,6 @@ void MainWindow::openWild8()
         connect(wild8, &Wild8::alertProfiles, this, &MainWindow::updateProfiles);
     }
     wild8->show();
-    wild8->raise();
 }
 
 void MainWindow::openWildPLA()
@@ -665,7 +637,6 @@ void MainWindow::openEvent8()
         connect(event8, &Event8::alertProfiles, this, &MainWindow::updateProfiles);
     }
     event8->show();
-    event8->raise();
 }
 
 void MainWindow::openRaids()
@@ -676,7 +647,6 @@ void MainWindow::openRaids()
         connect(raids, &Raids::alertProfiles, this, &MainWindow::updateProfiles);
     }
     raids->show();
-    raids->raise();
 }
 
 void MainWindow::openEgg8()
@@ -687,7 +657,6 @@ void MainWindow::openEgg8()
         connect(egg8, &Eggs8::alertProfiles, this, &MainWindow::updateProfiles);
     }
     egg8->show();
-    egg8->raise();
 }
 
 void MainWindow::openIDs8()
@@ -698,7 +667,6 @@ void MainWindow::openIDs8()
         connect(ids8, &IDs8::alertProfiles, this, &MainWindow::updateProfiles);
     }
     ids8->show();
-    ids8->raise();
 }
 
 void MainWindow::openDenMap()
@@ -734,7 +702,7 @@ void MainWindow::downloadEventData()
         file.insert(2, '-');
         file.insert(5, '-');
 
-        entries.prepend(QString("%1: %2").arg(file, QString::fromStdString(Translator::getSpecies(specie))));
+        entries.prepend(QString("%1: %2").arg(file, QString::fromStdString(*Translator::getSpecies(specie))));
     }
 
     bool flag;
@@ -792,26 +760,22 @@ void MainWindow::openEncounterLookup()
 {
     auto *lookup = new EncounterLookup();
     lookup->show();
-    lookup->raise();
 }
 
 void MainWindow::openIVCalculator()
 {
     auto *iv = new IVCalculator();
     iv->show();
-    iv->raise();
 }
 
 void MainWindow::openResearcher()
 {
     auto *r = new Researcher();
     r->show();
-    r->raise();
 }
 
 void MainWindow::openSettings()
 {
     auto *s = new Settings();
     s->show();
-    s->raise();
 }

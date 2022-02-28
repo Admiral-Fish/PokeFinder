@@ -23,7 +23,6 @@
 #include <Core/Gen8/DenLoader.hpp>
 #include <Core/Gen8/Generators/RaidGenerator.hpp>
 #include <Core/Gen8/Profile8.hpp>
-#include <Core/Parents/Filters/StateFilter.hpp>
 #include <Core/Parents/PersonalLoader.hpp>
 #include <Core/Parents/ProfileLoader.hpp>
 #include <Core/Util/Translator.hpp>
@@ -34,13 +33,12 @@
 #include <QMenu>
 #include <QSettings>
 
-Raids::Raids(QWidget *parent) : QWidget(parent), ui(new Ui::Raids)
+Raids::Raids(QWidget *parent) : QWidget(parent), ui(new Ui::Raids), currentProfile(nullptr)
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
 
     setupModels();
-    updateProfiles();
 }
 
 Raids::~Raids()
@@ -109,10 +107,6 @@ void Raids::setupModels()
     ui->comboBoxShinyType->setItemData(1, 1); // Forced non-shiny
     ui->comboBoxShinyType->setItemData(2, 2); // Forced shiny
 
-    locationIndexChanged(0);
-    denIndexChanged(0);
-    speciesIndexChanged(0);
-
     QAction *outputTXT = menu->addAction(tr("Output Results to TXT"));
     QAction *outputCSV = menu->addAction(tr("Output Results to CSV"));
     connect(outputTXT, &QAction::triggered, this, [=] { ui->tableView->outputModel(false); });
@@ -126,6 +120,11 @@ void Raids::setupModels()
     connect(ui->comboBoxRarity, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &Raids::rarityIndexChange);
     connect(ui->comboBoxSpecies, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &Raids::speciesIndexChanged);
     connect(ui->tableView, &QTableView::customContextMenuRequested, this, &Raids::tableViewContextMenu);
+
+    updateProfiles();
+    locationIndexChanged(0);
+    denIndexChanged(0);
+    speciesIndexChanged(0);
 
     QSettings setting;
     setting.beginGroup("raid");
@@ -241,7 +240,7 @@ void Raids::denIndexChanged(int index)
 
             for (const auto &raid : raids)
             {
-                ui->comboBoxSpecies->addItem(QString("%1: %2").arg(QString::fromStdString(Translator::getSpecies(raid.getSpecies())),
+                ui->comboBoxSpecies->addItem(QString("%1: %2").arg(QString::fromStdString(*Translator::getSpecies(raid.getSpecies())),
                                                                    QString::fromStdString(raid.getStarDisplay())));
             }
         }
@@ -252,7 +251,7 @@ void Raids::denIndexChanged(int index)
 
             for (const auto &raid : raids)
             {
-                ui->comboBoxSpecies->addItem(QString("%1: %2").arg(QString::fromStdString(Translator::getSpecies(raid.getSpecies())),
+                ui->comboBoxSpecies->addItem(QString("%1: %2").arg(QString::fromStdString(*Translator::getSpecies(raid.getSpecies())),
                                                                    QString::fromStdString(raid.getStarDisplay())));
             }
         }

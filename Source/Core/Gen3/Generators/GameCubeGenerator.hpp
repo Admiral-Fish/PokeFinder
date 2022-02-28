@@ -28,7 +28,6 @@ class GameCubeState;
 class GameCubeGenerator : public Generator
 {
 public:
-    GameCubeGenerator() = default;
     GameCubeGenerator(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter);
     std::vector<GameCubeState> generate(u32 seed) const;
     void setShadowTeam(u8 index, u8 type);

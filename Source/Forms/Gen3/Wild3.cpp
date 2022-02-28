@@ -29,14 +29,12 @@
 #include <Core/Gen3/Searchers/WildSearcher3.hpp>
 #include <Core/Parents/ProfileLoader.hpp>
 #include <Core/Parents/Slot.hpp>
-#include <Core/Parents/States/WildState.hpp>
 #include <Core/Util/Nature.hpp>
 #include <Core/Util/Translator.hpp>
 #include <Forms/Controls/Controls.hpp>
 #include <Forms/Gen3/Profile/ProfileManager3.hpp>
 #include <Forms/Gen3/Tools/SeedTime3.hpp>
 #include <Forms/Models/Gen3/WildModel3.hpp>
-#include <QClipboard>
 #include <QMenu>
 #include <QSettings>
 #include <QThread>
@@ -48,7 +46,6 @@ Wild3::Wild3(QWidget *parent) : QWidget(parent), ui(new Ui::Wild3)
     setAttribute(Qt::WA_QuitOnClose, false);
 
     setupModels();
-    updateProfiles();
 }
 
 Wild3::~Wild3()
@@ -106,7 +103,7 @@ void Wild3::setupModels()
     ui->comboBoxSearcherLead->setup({ toInt(Lead::Search), toInt(Lead::Synchronize), toInt(Lead::CuteCharm), toInt(Lead::None) });
 
     ui->toolButtonGeneratorLead->addAction(tr("None"), toInt(Lead::None));
-    ui->toolButtonGeneratorLead->addMenu(tr("Synchronize"), Translator::getNatures());
+    ui->toolButtonGeneratorLead->addMenu(tr("Synchronize"), *Translator::getNatures());
     ui->toolButtonGeneratorLead->addMenu(
         tr("Cute Charm"),
         { tr("♂ Lead (50% ♀ Target)"), tr("♂ Lead (75% ♀ Target)"), tr("♂ Lead (25% ♀ Target)"), tr("♂ Lead (12.5% ♀ Target)"),
@@ -142,6 +139,7 @@ void Wild3::setupModels()
     connect(ui->comboBoxSearcherPokemon, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &Wild3::searcherPokemonIndexChanged);
     connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &Wild3::profileManager);
 
+    updateProfiles();
     generatorEncounterIndexChanged(0);
     searcherEncounterIndexChanged(0);
 
@@ -161,7 +159,7 @@ void Wild3::updateLocationsGenerator()
     std::transform(encounterGenerator.begin(), encounterGenerator.end(), std::back_inserter(locs),
                    [](const EncounterArea3 &area) { return area.getLocation(); });
 
-    std::vector<std::string> locations = Translator::getLocations(locs, currentProfile->getVersion());
+    auto locations = Translator::getLocations(locs, currentProfile->getVersion());
     std::vector<int> indices(locations.size());
     std::iota(indices.begin(), indices.end(), 0);
     std::sort(indices.begin(), indices.end(), [&locations](int i, int j) { return locations[i] < locations[j]; });
@@ -182,7 +180,7 @@ void Wild3::updateLocationsSearcher()
     std::transform(encounterSearcher.begin(), encounterSearcher.end(), std::back_inserter(locs),
                    [](const EncounterArea3 &area) { return area.getLocation(); });
 
-    std::vector<std::string> locations = Translator::getLocations(locs, currentProfile->getVersion());
+    auto locations = Translator::getLocations(locs, currentProfile->getVersion());
     std::vector<int> indices(locations.size());
     std::iota(indices.begin(), indices.end(), 0);
     std::sort(indices.begin(), indices.end(), [&locations](int i, int j) { return locations[i] < locations[j]; });
@@ -197,9 +195,8 @@ void Wild3::updateLocationsSearcher()
 void Wild3::updatePokemonGenerator()
 {
     auto area = encounterGenerator[ui->comboBoxGeneratorLocation->currentData().toInt()];
-    std::vector<u16> species = area.getUniqueSpecies();
-
-    std::vector<std::string> names = area.getSpecieNames();
+    auto species = area.getUniqueSpecies();
+    auto names = area.getSpecieNames();
 
     ui->comboBoxGeneratorPokemon->clear();
     ui->comboBoxGeneratorPokemon->addItem("-");
@@ -212,9 +209,8 @@ void Wild3::updatePokemonGenerator()
 void Wild3::updatePokemonSearcher()
 {
     auto area = encounterSearcher[ui->comboBoxSearcherLocation->currentData().toInt()];
-    std::vector<u16> species = area.getUniqueSpecies();
-
-    std::vector<std::string> names = area.getSpecieNames();
+    auto species = area.getUniqueSpecies();
+    auto names = area.getSpecieNames();
 
     ui->comboBoxSearcherPokemon->clear();
     ui->comboBoxSearcherPokemon->addItem("-");
@@ -397,7 +393,6 @@ void Wild3::seedToTime()
     u32 seed = searcherModel->data(index).toString().toUInt(nullptr, 16);
     auto *seedToTime = new SeedTime3(seed);
     seedToTime->show();
-    seedToTime->raise();
 }
 
 void Wild3::generatorEncounterIndexChanged(int index)
@@ -490,8 +485,7 @@ void Wild3::generatorPokemonIndexChanged(int index)
     else
     {
         u16 num = static_cast<u16>(ui->comboBoxGeneratorPokemon->currentData().toUInt());
-        std::vector<bool> flags = encounterGenerator[ui->comboBoxGeneratorLocation->currentData().toInt()].getSlots(num);
-
+        auto flags = encounterGenerator[ui->comboBoxGeneratorLocation->currentData().toInt()].getSlots(num);
         ui->filterGenerator->toggleEncounterSlots(flags);
     }
 }
@@ -505,8 +499,7 @@ void Wild3::searcherPokemonIndexChanged(int index)
     else
     {
         u16 num = static_cast<u16>(ui->comboBoxSearcherPokemon->currentData().toUInt());
-        std::vector<bool> flags = encounterSearcher[ui->comboBoxSearcherLocation->currentData().toInt()].getSlots(num);
-
+        auto flags = encounterSearcher[ui->comboBoxSearcherLocation->currentData().toInt()].getSlots(num);
         ui->filterSearcher->toggleEncounterSlots(flags);
     }
 }

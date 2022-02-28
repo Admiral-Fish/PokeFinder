@@ -25,8 +25,6 @@
 class IDState8 : public IDState
 {
 public:
-    IDState8() = default;
-
     IDState8(u32 advance, u16 tid, u16 sid, u32 g8tid) : IDState(advance, tid, sid), g8tid(g8tid)
     {
         tsv = (tid ^ sid) >> 4;

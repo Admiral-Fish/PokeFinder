@@ -53,7 +53,7 @@ std::vector<DreamRadarState> DreamRadarGenerator::generate(u64 seed, bool memory
     std::vector<DreamRadarState> states;
 
     BWRNG rng(seed);
-    u32 initialAdvancesBW2 = Utilities::initialAdvancesBW2(seed, memory);
+    u32 initialAdvancesBW2 = Utilities5::initialAdvancesBW2(seed, memory);
     rng.advance(initialAdvancesBW2 + (initialAdvances * 2));
     if (!memory)
     {
@@ -85,12 +85,12 @@ std::vector<DreamRadarState> DreamRadarGenerator::generate(u64 seed, bool memory
         // Gender modification
         if (radarSlot.getType() == 0 || radarSlot.getType() == 1) // Genies already male, gen 4 legends also get assigned male pids
         {
-            pid = Utilities::forceGender(pid, go.next() >> 32, 0, 0);
+            pid = Utilities5::forceGender(pid, go.next() >> 32, 0, 0);
             state.setGender(radarSlot.getGender());
         }
         else if (radarSlot.getGender() == 0 || radarSlot.getGender() == 1)
         {
-            pid = Utilities::forceGender(pid, go.next() >> 32, radarSlot.getGender(), radarSlot.getGenderRatio());
+            pid = Utilities5::forceGender(pid, go.next() >> 32, radarSlot.getGender(), radarSlot.getGenderRatio());
             state.setGender(pid & 0xff, radarSlot.getGenderRatio());
         }
         else

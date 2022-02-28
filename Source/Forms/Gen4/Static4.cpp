@@ -24,9 +24,7 @@
 #include <Core/Gen4/Generators/StaticGenerator4.hpp>
 #include <Core/Gen4/Profile4.hpp>
 #include <Core/Gen4/Searchers/StaticSearcher4.hpp>
-#include <Core/Parents/Filters/StateFilter.hpp>
 #include <Core/Parents/ProfileLoader.hpp>
-#include <Core/Parents/States/StaticState.hpp>
 #include <Core/Util/Translator.hpp>
 #include <Forms/Controls/Controls.hpp>
 #include <Forms/Gen4/Profile/ProfileManager4.hpp>
@@ -43,7 +41,6 @@ Static4::Static4(QWidget *parent) : QWidget(parent), ui(new Ui::Static4)
     setAttribute(Qt::WA_QuitOnClose, false);
 
     setupModels();
-    updateProfiles();
 }
 
 Static4::~Static4()
@@ -106,7 +103,7 @@ void Static4::setupModels()
     ui->filterSearcher->disableControls(Controls::EncounterSlots | Controls::UseDelay | Controls::DisableFilter);
 
     ui->toolButtonGeneratorLead->addAction(tr("None"), toInt(Lead::None));
-    ui->toolButtonGeneratorLead->addMenu(tr("Synchronize"), Translator::getNatures());
+    ui->toolButtonGeneratorLead->addMenu(tr("Synchronize"), *Translator::getNatures());
     ui->toolButtonGeneratorLead->addMenu(tr("Cute Charm"),
                                          { tr("♂ Lead"), tr("♀ Lead (50% ♂ Target)"), tr("♀ Lead (75% ♂ Target)"),
                                            tr("♀ Lead (25% ♂ Target)"), tr("♀ Lead (87.5% ♂ Target)") },
@@ -131,6 +128,8 @@ void Static4::setupModels()
     connect(ui->tableViewGenerator, &QTableView::customContextMenuRequested, this, &Static4::tableViewGeneratorContextMenu);
     connect(ui->tableViewSearcher, &QTableView::customContextMenuRequested, this, &Static4::tableViewSearcherContextMenu);
     connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &Static4::profileManager);
+
+    updateProfiles();
 
     QSettings setting;
     setting.beginGroup("static4");
@@ -182,7 +181,7 @@ void Static4::generate()
     StaticGenerator4 generator(initialAdvances, maxAdvances, tid, sid, genderRatio, method, filter);
     generator.setOffset(offset);
 
-    if (ui->toolButtonGeneratorLead->text() == tr("Sychronize"))
+    if (ui->toolButtonGeneratorLead->text().contains(tr("Synchronize")))
     {
         generator.setLead(Lead::Synchronize);
         generator.setSynchNature(ui->toolButtonGeneratorLead->getData());
@@ -282,7 +281,6 @@ void Static4::seedToTime()
 
     auto *time = new SeedtoTime4(seed, currentProfile->getVersion());
     time->show();
-    time->raise();
 }
 
 void Static4::tableViewGeneratorContextMenu(QPoint pos)

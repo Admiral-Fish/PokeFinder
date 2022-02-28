@@ -21,32 +21,79 @@
 #define DAYCARE_HPP
 
 #include <Core/Util/Global.hpp>
+#include <algorithm>
 #include <array>
-
-enum class Game : u32;
 
 class Daycare
 {
 public:
-    Daycare() = default;
     Daycare(const std::array<std::array<u8, 6>, 2> &parentIVs, const std::array<u8, 2> &parentAbility,
             const std::array<u8, 2> &parentGender, const std::array<u8, 2> &parentItem, const std::array<u8, 2> &parentNature, bool masuda,
-            bool nidoranVolbeat);
-    u8 getParentIV(u8 parent, u8 index) const;
-    u8 getParentAbility(u8 parent) const;
-    u8 getParentGender(u8 parent) const;
-    u8 getParentItem(u8 parent) const;
-    u8 getParentNature(u8 parent) const;
-    u8 getEverstoneCount(Game version) const;
-    u8 getPowerItemCount() const;
-    bool getDitto() const;
-    bool getMasuda() const;
-    bool getNidoranVolbeat() const;
+            bool nidoranVolbeat) :
+        parentIVs(parentIVs),
+        parentAbility(parentAbility),
+        parentGender(parentGender),
+        parentItem(parentItem),
+        parentNature(parentNature),
+        masuda(masuda),
+        nidoranVolbeat(nidoranVolbeat)
+    {
+    }
+
+    u8 getParentIV(u8 parent, u8 index) const
+    {
+        return parentIVs[parent][index];
+    }
+
+    u8 getParentAbility(u8 parent) const
+    {
+        return parentAbility[parent];
+    }
+
+    u8 getParentGender(u8 parent) const
+    {
+        return parentGender[parent];
+    }
+
+    u8 getParentItem(u8 parent) const
+    {
+        return parentItem[parent];
+    }
+
+    u8 getParentNature(u8 parent) const
+    {
+        return parentNature[parent];
+    }
+
+    u8 getEverstoneCount() const
+    {
+        return std::count_if(parentItem.begin(), parentItem.end(), [](u8 item) { return item == 1; });
+    }
+
+    u8 getPowerItemCount() const
+    {
+        return std::count_if(parentItem.begin(), parentItem.end(), [](u8 item) { return item >= 2 && item <= 7; });
+    }
+
+    bool getDitto() const
+    {
+        return std::any_of(parentGender.begin(), parentGender.end(), [](u8 gender) { return gender == 3; });
+    }
+
+    bool getMasuda() const
+    {
+        return masuda;
+    }
+
+    bool getNidoranVolbeat() const
+    {
+        return nidoranVolbeat;
+    }
 
 private:
     std::array<std::array<u8, 6>, 2> parentIVs;
     std::array<u8, 2> parentAbility;
-    std::array<u8, 2> parentGender; // 3 - Ditto
+    std::array<u8, 2> parentGender; // 0 - Male, 1 - Female, 2 - Genderless, 3 - Ditto
     std::array<u8, 2> parentItem; // 0 - No item, 1 - Everstone, 2-7 Power items, 8 Destiny knot
     std::array<u8, 2> parentNature;
     bool masuda;

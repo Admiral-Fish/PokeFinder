@@ -34,7 +34,6 @@ class SearcherState5;
 class EventSearcher5
 {
 public:
-    EventSearcher5() = default;
     explicit EventSearcher5(const Profile5 &profile);
     void startSearch(const EventGenerator5 &generator, int threads, const Date &start, const Date &end);
     void cancelSearch();

@@ -20,7 +20,6 @@
 #include "StaticGenerator4.hpp"
 #include <Core/Enum/Lead.hpp>
 #include <Core/Enum/Method.hpp>
-#include <Core/Parents/Filters/StateFilter.hpp>
 #include <Core/Parents/States/State.hpp>
 #include <Core/RNG/LCRNG.hpp>
 

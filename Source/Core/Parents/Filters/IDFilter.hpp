@@ -28,7 +28,6 @@ class IDState;
 class IDFilter
 {
 public:
-    IDFilter() = default;
     IDFilter(const std::vector<u16> &tidFilter, const std::vector<u16> &sidFilter, const std::vector<u16> &tsvFilter);
     bool compare(const IDState &state) const;
 

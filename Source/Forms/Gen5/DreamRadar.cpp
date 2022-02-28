@@ -25,7 +25,6 @@
 #include <Core/Gen5/Keypresses.hpp>
 #include <Core/Gen5/Profile5.hpp>
 #include <Core/Gen5/Searchers/DreamRadarSearcher.hpp>
-#include <Core/Gen5/States/DreamRadarState.hpp>
 #include <Core/Parents/PersonalInfo.hpp>
 #include <Core/Parents/PersonalLoader.hpp>
 #include <Core/Parents/ProfileLoader.hpp>
@@ -45,7 +44,6 @@ DreamRadar::DreamRadar(QWidget *parent) : QWidget(parent), ui(new Ui::DreamRadar
     setAttribute(Qt::WA_QuitOnClose, false);
 
     setupModels();
-    updateProfiles();
 }
 
 DreamRadar::~DreamRadar()
@@ -138,7 +136,7 @@ void DreamRadar::setupModels()
         }
     }
 
-    for (const std::string &gender : Translator::getGenders())
+    for (const std::string &gender : *Translator::getGenders())
     {
         ui->comboBoxGeneratorGender1->addItem(QString::fromStdString(gender));
         ui->comboBoxGeneratorGender2->addItem(QString::fromStdString(gender));
@@ -184,6 +182,8 @@ void DreamRadar::setupModels()
     connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &DreamRadar::profileManager);
     connect(ui->tableViewGenerator, &QTableView::customContextMenuRequested, this, &DreamRadar::tableViewGeneratorContextMenu);
     connect(ui->tableViewSearcher, &QTableView::customContextMenuRequested, this, &DreamRadar::tableViewSearcherContextMenu);
+
+    updateProfiles();
 
     QSettings setting;
     setting.beginGroup("dreamRadar");

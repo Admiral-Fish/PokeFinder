@@ -24,7 +24,6 @@
 #include <Core/Gen5/Keypresses.hpp>
 #include <Core/Gen5/Profile5.hpp>
 #include <Core/Gen5/Searchers/IDSearcher5.hpp>
-#include <Core/Parents/Filters/IDFilter.hpp>
 #include <Core/Parents/ProfileLoader.hpp>
 #include <Core/RNG/SHA1.hpp>
 #include <Core/Util/Utilities.hpp>
@@ -41,7 +40,6 @@ IDs5::IDs5(QWidget *parent) : QWidget(parent), ui(new Ui::IDs5)
     setAttribute(Qt::WA_QuitOnClose, false);
 
     setupModels();
-    updateProfiles();
 }
 
 IDs5::~IDs5()
@@ -105,6 +103,8 @@ void IDs5::setupModels()
     connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &IDs5::profileManager);
     connect(ui->tableView, &QTableView::customContextMenuRequested, this, &IDs5::tableViewContextMenu);
     connect(ui->checkBoxPID, &QCheckBox::clicked, this, &IDs5::setXOR);
+
+    updateProfiles();
 
     QSettings setting;
     setting.beginGroup("id5");
@@ -219,7 +219,7 @@ void IDs5::find()
             sha.setTime(hour, minute, second, currentProfile->getDSType());
             u64 seed = sha.hashSeed();
 
-            generator.setInitialAdvances(flag ? Utilities::initialAdvancesBWID(seed) : Utilities::initialAdvancesBW2ID(seed));
+            generator.setInitialAdvances(flag ? Utilities5::initialAdvancesBWID(seed) : Utilities5::initialAdvancesBW2ID(seed));
             auto states = generator.generate(seed);
 
             DateTime dt(date, Time(hour, minute, second));

@@ -26,8 +26,6 @@
 class SeedTimeState3
 {
 public:
-    SeedTimeState3() = default;
-
     SeedTimeState3(const DateTime &dateTime, u32 advances) : dateTime(dateTime), advances(advances)
     {
     }

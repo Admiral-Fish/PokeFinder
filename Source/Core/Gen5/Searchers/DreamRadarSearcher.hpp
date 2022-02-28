@@ -34,7 +34,6 @@ class SearcherState5;
 class DreamRadarSearcher
 {
 public:
-    DreamRadarSearcher() = default;
     explicit DreamRadarSearcher(const Profile5 &profile);
     void startSearch(const DreamRadarGenerator &generator, int threads, const Date &start, const Date &end);
     void cancelSearch();

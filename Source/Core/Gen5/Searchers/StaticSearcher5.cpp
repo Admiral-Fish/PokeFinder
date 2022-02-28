@@ -125,8 +125,8 @@ void StaticSearcher5::search(StaticGenerator5 generator, const Date &start, cons
 
                             if (method == Method::Method5)
                             {
-                                generator.setInitialAdvances(flag ? Utilities::initialAdvancesBW(seed)
-                                                                  : Utilities::initialAdvancesBW2(seed, profile.getMemoryLink()));
+                                generator.setInitialAdvances(flag ? Utilities5::initialAdvancesBW(seed)
+                                                                  : Utilities5::initialAdvancesBW2(seed, profile.getMemoryLink()));
                             }
                             else
                             {

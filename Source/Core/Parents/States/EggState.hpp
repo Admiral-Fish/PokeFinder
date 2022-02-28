@@ -25,7 +25,6 @@
 class EggState : public State
 {
 public:
-    EggState() = default;
     explicit EggState(u32 advance) : State(advance), inheritance { 0, 0, 0, 0, 0, 0 }
     {
     }

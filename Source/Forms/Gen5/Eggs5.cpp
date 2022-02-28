@@ -43,7 +43,6 @@ Eggs5::Eggs5(QWidget *parent) : QWidget(parent), ui(new Ui::Eggs5)
     setAttribute(Qt::WA_QuitOnClose, false);
 
     setupModels();
-    updateProfiles();
 }
 
 Eggs5::~Eggs5()
@@ -124,6 +123,8 @@ void Eggs5::setupModels()
     connect(ui->tableViewSearcher, &QTableView::customContextMenuRequested, this, &Eggs5::tableViewSearcherContextMenu);
     connect(ui->eggSettingsGenerator, &EggSettings::toggleInheritance, generatorModel, &EggGeneratorModel5::toggleInheritance);
     connect(ui->eggSettingsSearcher, &EggSettings::toggleInheritance, searcherModel, &EggSearcherModel5::toggleInheritance);
+
+    updateProfiles();
 
     QSettings setting;
     setting.beginGroup("egg5");
@@ -251,11 +252,11 @@ void Eggs5::calculateInitialAdvances()
     u8 initialAdvances;
     if ((version & Game::BW) != Game::None)
     {
-        initialAdvances = Utilities::initialAdvancesBW(ui->textBoxGeneratorSeed->getULong());
+        initialAdvances = Utilities5::initialAdvancesBW(ui->textBoxGeneratorSeed->getULong());
     }
     else
     {
-        initialAdvances = Utilities::initialAdvancesBW2(ui->textBoxGeneratorSeed->getULong(), currentProfile->getMemoryLink());
+        initialAdvances = Utilities5::initialAdvancesBW2(ui->textBoxGeneratorSeed->getULong(), currentProfile->getMemoryLink());
     }
 
     ui->textBoxGeneratorInitialAdvances->setText(QString::number(initialAdvances));

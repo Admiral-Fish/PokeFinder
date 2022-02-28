@@ -1,12 +1,11 @@
 environment:
   matrix:
-  - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2019
+  - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2022
     QTPATH: C:\Qt\6.2\msvc2019_64
     OpenSSL: C:\OpenSSL-v111-Win64\bin
     OS: win
     EXT: zip
-    VCVARSALLPATH: C:\"Program Files (x86)\Microsoft Visual Studio"\2019\Community\VC\Auxiliary\Build\vcvarsall.bat
-    VCVARSALL: x64
+    VCVARSALLPATH: C:\"Program Files\Microsoft Visual Studio"\2022\Community\VC\Auxiliary\Build\vcvars64.bat
   - APPVEYOR_BUILD_WORKER_IMAGE: Ubuntu2004
     QTVER: 6.1
     OS: linux
@@ -22,7 +21,7 @@ install:
     
 before_build:
     - cmd: set PATH=%QTPATH%\bin;%PATH%
-    - cmd: call %VCVARSALLPATH% %VCVARSALL%
+    - cmd: call %VCVARSALLPATH%
     
 build_script:
     - mkdir build
