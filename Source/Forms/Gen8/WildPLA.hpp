@@ -22,7 +22,6 @@ public:
     explicit WildPLA(QWidget *parent = nullptr);
     ~WildPLA() override;
     void updateProfiles();
-    bool hasProfiles() const;
 
 private:
     Ui::WildPLA *ui;

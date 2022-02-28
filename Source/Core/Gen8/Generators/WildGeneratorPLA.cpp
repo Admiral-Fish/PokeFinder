@@ -14,6 +14,8 @@ std::vector<State> WildGeneratorPLA::generate(u64 seed) const
 {
     std::vector<State> states;
 
+    // Game does not store the previous "generator" seed so we do this to reverse the first spawner seed to get the previous and be able to
+    // also display the first however many advances.
     seed -= 0x82A2B175229D6A5B;
 
     for (u32 advance = 0; advance < initialAdvances; advance++)

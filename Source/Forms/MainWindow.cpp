@@ -291,6 +291,10 @@ void MainWindow::updateProfiles(int num)
         {
             wild8->updateProfiles();
         }
+        if (wildPLA)
+        {
+            wildPLA->updateProfiles();
+        }
         if (event8)
         {
             event8->updateProfiles();

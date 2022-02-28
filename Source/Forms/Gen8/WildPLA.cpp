@@ -16,7 +16,6 @@ WildPLA::WildPLA(QWidget *parent) : QWidget(parent), ui(new Ui::WildPLA)
 
     setAttribute(Qt::WA_QuitOnClose, false);
 
-    updateProfiles();
     setupModels();
 }
 
@@ -31,18 +30,13 @@ WildPLA::~WildPLA()
     delete ui;
 }
 
-bool WildPLA::hasProfiles() const
-{
-    return !profiles.empty();
-}
-
 void WildPLA::updateProfiles()
 {
     profiles.clear();
     auto completeProfiles = ProfileLoader8::getProfiles();
     std::copy_if(completeProfiles.begin(), completeProfiles.end(), std::back_inserter(profiles),
-                 [](const Profile &profile) { return profile.getVersion() == Game::PAL; });
-    profiles.insert(profiles.begin(), Profile8(Game::PAL));
+                 [](const Profile &profile) { return profile.getVersion() == Game::PLA; });
+    profiles.insert(profiles.begin(), Profile8(Game::PLA));
 
     ui->comboBoxProfiles->clear();
 
@@ -57,8 +51,6 @@ void WildPLA::updateProfiles()
     {
         ui->comboBoxProfiles->setCurrentIndex(val);
     }
-
-    profilesIndexChanged(0);
 }
 
 void WildPLA::setupModels()
@@ -84,6 +76,8 @@ void WildPLA::setupModels()
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &WildPLA::generate);
     connect(ui->tableView, &QTableView::customContextMenuRequested, this, &WildPLA::tableViewContextMenu);
     connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &WildPLA::profileManager);
+
+    updateProfiles();
 
     QSettings setting;
     setting.beginGroup("WildPLA");
