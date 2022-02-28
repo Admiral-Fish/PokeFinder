@@ -30,6 +30,7 @@
 #include <Forms/Gen8/Profile/ProfileManager8.hpp>
 #include <Forms/Models/Gen8/StaticModel8.hpp>
 #include <QMenu>
+#include <QMessageBox>
 #include <QSettings>
 
 Static8::Static8(QWidget *parent) : QWidget(parent), ui(new Ui::Static8)
@@ -123,10 +124,17 @@ void Static8::setupModels()
 
 void Static8::generate()
 {
-    model->clearModel();
-
     u64 seed0 = ui->textBoxSeed0->getULong();
     u64 seed1 = ui->textBoxSeed1->getULong();
+    if (seed0 == 0 && seed1 == 0)
+    {
+        QMessageBox msg(QMessageBox::Warning, tr("Missing seeds"), tr("Please insert missing seed information"));
+        msg.exec();
+        return;
+    }
+
+    model->clearModel();
+
     u32 initialAdvances = ui->textBoxInitialAdvances->getUInt();
     u32 maxAdvances = ui->textBoxMaxAdvances->getUInt();
     u16 tid = currentProfile->getTID();

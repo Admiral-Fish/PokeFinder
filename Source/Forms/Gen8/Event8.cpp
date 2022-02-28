@@ -133,10 +133,17 @@ WB8 Event8::getParameters() const
 
 void Event8::generate()
 {
-    model->clearModel();
-
     u64 seed0 = ui->textBoxSeed0->getULong();
     u64 seed1 = ui->textBoxSeed1->getULong();
+    if (seed0 == 0 && seed1 == 0)
+    {
+        QMessageBox msg(QMessageBox::Warning, tr("Missing seeds"), tr("Please insert missing seed information"));
+        msg.exec();
+        return;
+    }
+
+    model->clearModel();
+
     u32 initialAdvances = ui->textBoxInitialAdvances->getUInt();
     u32 maxAdvances = ui->textBoxMaxAdvances->getUInt();
     u16 tid = currentProfile->getTID();
