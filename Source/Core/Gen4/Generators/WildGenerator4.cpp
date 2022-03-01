@@ -379,7 +379,7 @@ std::vector<WildState4> WildGenerator4::generateMethodK(u32 seed, const Encounte
                 // Get hunt nature
                 state.setNature(go.nextUShort<true>() % 25);
 
-                if (!filter.compareNature(state) && encounter != Encounter::BugCatchingContest)
+                if (!filter.compareNature(state))
                 {
                     continue;
                 }
