@@ -118,7 +118,7 @@
 117,Cerulean Cave 1F
 118,Cerulean Cave 2F
 119,Cerulean Cave B1F
-120,Bug Contest
+120,Bug Contest (Pre National Dex)
 121,Bug Contest (Tuesday)
 122,Bug Contest (Thursday)
 123,Bug Contest (Saturday)
