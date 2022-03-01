@@ -81,6 +81,24 @@ namespace Encounters4
             return encounters;
         }
 
+        std::vector<std::vector<u8>> getBugCatchingContestData()
+        {
+
+            const u8 *data = heartgold_bug.data();
+            size_t size = heartgold_bug.size();
+            int offset = 41;
+
+            std::vector<std::vector<u8>> encounters;
+            for (size_t i = 0; i < size; i += offset)
+            {
+                std::vector<u8> entry(offset);
+                std::memcpy(entry.data(), data + i, offset);
+                encounters.emplace_back(entry);
+            }
+
+            return encounters;
+        }
+
         u16 getValue(const std::vector<u8> &data, int offset)
         {
             return static_cast<u16>(data[offset] << 8) | data[offset + 1];
@@ -224,6 +242,25 @@ namespace Encounters4
                 mons[0].setSpecie(species[0], info[species[0]]);
                 mons[1].setSpecie(species[1], info[species[1]]);
             }
+        }
+
+        std::vector<EncounterArea4> getBugCatchingContest(const std::vector<u8> &data, const PersonalInfo *info)
+        {
+            std::vector<EncounterArea4> encounters;
+            u8 location = data[0];
+
+            std::vector<Slot> bcc;
+            for (int i = 0; i < 10; i++)
+            {
+                u8 minLevel = data[1 + i * 4];
+                u8 maxLevel = data[2 + i * 4];
+                u16 specie = getValue(data, 3 + i * 4);
+                bcc.emplace_back(specie, minLevel, maxLevel, info[specie]);
+            }
+
+            encounters.emplace_back(location, Encounter::BugCatchingContest, bcc);
+
+            return encounters;
         }
 
         std::vector<EncounterArea4> getHGSS(const std::vector<u8> &data, const Profile4 &profile, const PersonalInfo *info,
@@ -410,11 +447,24 @@ namespace Encounters4
         auto *info = PersonalLoader::getPersonal(version);
 
         std::vector<EncounterArea4> encounters;
-        for (const auto &data : getData(version))
+
+        if (encounter == Encounter::BugCatchingContest)
         {
-            auto areas = (version & Game::HGSS) != Game::None ? getHGSS(data, profile, info, encounter, time) : getDPPt(data, profile, info, time);
-            std::copy_if(areas.begin(), areas.end(), std::back_inserter(encounters),
-                         [&encounter](const EncounterArea4 &area) { return area.getEncounter() == encounter; });
+            for (const auto &data : getBugCatchingContestData())
+            {
+                auto areas = getBugCatchingContest(data, info);
+                std::copy(areas.begin(), areas.end(), std::back_inserter(encounters));
+            }
+        }
+        else
+        {
+            for (const auto &data : getData(version))
+            {
+                auto areas = (version & Game::HGSS) != Game::None ? getHGSS(data, profile, info, encounter, time)
+                                                                  : getDPPt(data, profile, info, time);
+                std::copy_if(areas.begin(), areas.end(), std::back_inserter(encounters),
+                             [&encounter](const EncounterArea4 &area) { return area.getEncounter() == encounter; });
+            }
         }
 
         return encounters;
