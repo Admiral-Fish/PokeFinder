@@ -369,6 +369,27 @@ std::vector<WildState4> WildGenerator4::generateMethodK(u32 seed, const Encounte
         }
 
         u32 pid = 0;
+
+        bool cuteCharmSuccess = false;
+        if (lead == Lead::CuteCharmFemale || lead == Lead::CuteCharm25M || lead == Lead::CuteCharm50M || lead == Lead::CuteCharm75M
+            || lead == Lead::CuteCharm875M)
+        {
+            if ((go.nextUShort<true>() % 3) != 0) // Successfull cute charm
+            {
+                // Get hunt nature
+                state.setNature(go.nextUShort<true>() % 25);
+
+                if (!filter.compareNature(state) && encounter != Encounter::BugCatchingContest)
+                {
+                    continue;
+                }
+
+                loops = 1;
+                cuteCharmSuccess = true;
+                pid = buffer + state.getNature();
+            }
+        }
+
         for (u8 loop = 0; loop < loops; loop++)
         {
             switch (lead)
@@ -422,21 +443,9 @@ std::vector<WildState4> WildGenerator4::generateMethodK(u32 seed, const Encounte
 
                 break;
             default: // Default to cover all cute charm cases
-                if ((go.nextUShort<true>() % 3) != 0) // Successfull cute charm
+                // Get hunt nature
+                if (!cuteCharmSuccess)
                 {
-                    // Get hunt nature
-                    state.setNature(go.nextUShort<true>() % 25);
-
-                    if (!filter.compareNature(state) && encounter != Encounter::BugCatchingContest)
-                    {
-                        continue;
-                    }
-
-                    pid = buffer + state.getNature();
-                }
-                else // Failed cutecharm
-                {
-                    // Get hunt nature
                     state.setNature(go.nextUShort<true>() % 25);
 
                     if (!filter.compareNature(state) && encounter != Encounter::BugCatchingContest)
@@ -451,9 +460,8 @@ std::vector<WildState4> WildGenerator4::generateMethodK(u32 seed, const Encounte
                         u16 high = go.nextUShort<true>();
                         pid = static_cast<u32>((high << 16) | low);
                     } while (pid % 25 != state.getNature());
+                    break;
                 }
-
-                break;
             }
 
             state.setPID(pid);
