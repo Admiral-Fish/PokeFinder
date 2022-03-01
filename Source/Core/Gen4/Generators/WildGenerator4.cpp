@@ -361,8 +361,7 @@ std::vector<WildState4> WildGenerator4::generateMethodK(u32 seed, const Encounte
                 continue;
             }
 
-            state.setLevel(0);
-            go.nextUShort<true>();
+            state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), go.nextUShort<true>()));
             break;
         case Encounter::HeadButt: // TODO
         default:
