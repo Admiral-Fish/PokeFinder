@@ -669,7 +669,7 @@ bool WildSearcher4::encounterMethodK(WildState &state, u32 seed) const
         break;
     case Encounter::BugCatchingContest:
         state.setEncounterSlot(EncounterSlot::kSlot(rng.nextUShort(), encounter));
-        state.setLevel(0);
+        state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), seed >> 16));
         state.setSeed(rng.next());
         break;
     case Encounter::OldRod:
