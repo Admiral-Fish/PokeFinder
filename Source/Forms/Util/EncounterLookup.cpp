@@ -123,7 +123,8 @@ std::set<std::pair<u16, QString>> EncounterLookup::getEncounters4(Game game, u16
     std::vector<Profile4> profiles;
 
     // Encounter variables to iterate through
-    auto types = { Encounter::Grass, Encounter::RockSmash, Encounter::OldRod, Encounter::GoodRod, Encounter::SuperRod, Encounter::Surfing };
+    auto types = { Encounter::Grass,   Encounter::RockSmash,         Encounter::OldRod, Encounter::GoodRod, Encounter::SuperRod,
+                   Encounter::Surfing, Encounter::BugCatchingContest };
 
     // Setup profiles to iterate through the different combinations of possibilities depending on HGSS vs DPPt
     if ((game & Game::HGSS) != Game::None)
@@ -236,6 +237,8 @@ QString EncounterLookup::getEncounterString(Encounter type)
         return tr("Super Rod");
     case Encounter::RockSmash:
         return tr("Rock Smash");
+    case Encounter::BugCatchingContest:
+        return tr("Bug Catching Contest");
     default:
         return "-";
     }
