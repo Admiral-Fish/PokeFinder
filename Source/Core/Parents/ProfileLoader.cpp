@@ -78,11 +78,11 @@ namespace ProfileLoader3
     {
         Profile3 getProfile(const json &j)
         {
-            std::string name = j["name"].get<std::string>();
-            Game version = j["version"].get<Game>();
-            u16 tid = j["tid"].get<u16>();
-            u16 sid = j["sid"].get<u16>();
-            bool deadBattery = j["battery"].get<bool>();
+            std::string name = j.value("name", std::string("-"));
+            Game version = j.value("version", Game::LeafGreen);
+            u16 tid = j.value("tid", u16(0));
+            u16 sid = j.value("sid", u16(0));
+            u16 deadBattery = j.value("sid", false);
 
             return Profile3(name, version, tid, sid, deadBattery);
         }
@@ -165,15 +165,15 @@ namespace ProfileLoader4
     {
         Profile4 getProfile(const json &j)
         {
-            std::string name = j["name"].get<std::string>();
-            Game version = j["version"].get<Game>();
-            u16 tid = j["tid"].get<u16>();
-            u16 sid = j["sid"].get<u16>();
-            Game dual = j["dual"].get<Game>();
-            int radio = j["radio"].get<int>();
-            bool radar = j["radar"].get<bool>();
-            bool swarm = j["swarm"].get<bool>();
-            bool dex = j["dex"].get<bool>();
+            std::string name = j.value("name", std::string("-"));
+            Game version = j.value("version", Game::Diamond);
+            u16 tid = j.value("tid", u16(0));
+            u16 sid = j.value("sid", u16(0));
+            Game dual = j.value("dual", Game::Emerald);
+            int radio = j.value("radio", int(0));
+            bool radar = j.value("radar", false);
+            bool swarm = j.value("swarm", false);
+            bool dex = j.value("dex", false);
 
             return Profile4(name, version, tid, sid, dual, radio, radar, swarm, dex);
         }
@@ -260,23 +260,23 @@ namespace ProfileLoader5
     {
         Profile5 getProfile(const json &j)
         {
-            std::string name = j["name"].get<std::string>();
-            Game version = j["version"].get<Game>();
-            u16 tid = j["tid"].get<u16>();
-            u16 sid = j["sid"].get<u16>();
-            u64 mac = std::stoull(j["mac"].get<std::string>(), nullptr, 16);
-            std::vector<bool> keypresses = j["keypresses"].get<std::vector<bool>>();
-            u8 vcount = j["vcount"].get<u8>();
-            u8 gxstat = j["gxstat"].get<u8>();
-            u8 vframe = j["vframe"].get<u8>();
-            bool skipLR = j["skipLR"].get<bool>();
-            u16 timer0Min = j["timer0Min"].get<u16>();
-            u16 timer0Max = j["timer0Max"].get<u16>();
-            bool softReset = j["softReset"].get<bool>();
-            bool memoryLink = j["memoryLink"].get<bool>();
-            bool shinyCharm = j["shinyCharm"].get<bool>();
-            DSType dsType = j["dsType"].get<DSType>();
-            Language language = j["language"].get<Language>();
+            std::string name = j.value("name", std::string("-"));
+            Game version = j.value("version", Game::Diamond);
+            u16 tid = j.value("tid", u16(0));
+            u16 sid = j.value("sid", u16(0));
+            u64 mac = std::stoull(j.value("mac", std::string("000000000000")), nullptr, 16);
+            std::vector<bool> keypresses = j.value("keypresses", std::vector<bool> { false, false, false, false });
+            u8 vcount = j.value("vcount", u8(0));
+            u8 gxstat = j.value("gxstat", u8(0));
+            u8 vframe = j.value("vframe", u8(0));
+            bool skipLR = j.value("skipLR", false);
+            u16 timer0Min = j.value("timer0Min", u16(0));
+            u16 timer0Max = j.value("timer0Max", u16(0));
+            bool softReset = j.value("softReset", false);
+            bool memoryLink = j.value("memoryLink", false);
+            bool shinyCharm = j.value("shinyCharm", false);
+            DSType dsType = j.value("dsType", DSType(0));
+            Language language = j.value("dsType", Language::English);
             return Profile5(name, version, tid, sid, mac, keypresses, vcount, gxstat, vframe, skipLR, timer0Min, timer0Max, softReset,
                             memoryLink, shinyCharm, dsType, language);
         }
@@ -373,14 +373,14 @@ namespace ProfileLoader8
     {
         Profile8 getProfile(const json &j)
         {
-            std::string name = j["name"].get<std::string>();
-            Game version = j["version"].get<Game>();
-            u16 tid = j["tid"].get<u16>();
-            u16 sid = j["sid"].get<u16>();
-            bool shinyCharm = j["shinyCharm"].get<bool>();
-            bool ovalCharm = j["ovalCharm"].get<bool>();
-            bool radar = j["radar"].get<bool>();
-            bool swarm = j["swarm"].get<bool>();
+            std::string name = j.value("name", std::string("-"));
+            Game version = j.value("version", Game::Diamond);
+            u16 tid = j.value("tid", u16(0));
+            u16 sid = j.value("sid", u16(0));
+            bool shinyCharm = j.value("shinyCharm", false);
+            bool ovalCharm = j.value("ovalCharm", false);
+            bool radar = j.value("radar", false);
+            bool swarm = j.value("swarm", false);
 
             return Profile8(name, version, tid, sid, shinyCharm, ovalCharm, radar, swarm);
         }
