@@ -394,13 +394,26 @@ std::vector<WildState4> WildGenerator4::generateMethodK(u32 seed, const Encounte
         {
             switch (lead)
             {
-            case Lead::None:
-            case Lead::SuctionCups:
-            case Lead::CompoundEyes:
+            case Lead::Synchronize:
+                if ((go.nextUShort<true>() & 1) == 0) // Successful synch
+                {
+                    state.setNature(synchNature);
+                }
+                else // Failed synch
+                {
+                    state.setNature(go.nextUShort<true>() % 25);
+                }
+                break;
+            default: // Default to cover all other leads
                 if (lead == Lead::CompoundEyes)
                 {
                     state.setLead(Lead::CompoundEyes);
                 }
+                break;
+            }
+
+            if (!cuteCharmSuccess)
+            {
                 // Get hunt nature
                 state.setNature(go.nextUShort<true>() % 25);
 
@@ -416,52 +429,6 @@ std::vector<WildState4> WildGenerator4::generateMethodK(u32 seed, const Encounte
                     u16 high = go.nextUShort<true>();
                     pid = static_cast<u32>((high << 16) | low);
                 } while (pid % 25 != state.getNature());
-
-                break;
-            case Lead::Synchronize:
-                if ((go.nextUShort<true>() & 1) == 0) // Successful synch
-                {
-                    state.setNature(synchNature);
-                }
-                else // Failed synch
-                {
-                    state.setNature(go.nextUShort<true>() % 25);
-                }
-
-                if (!filter.compareNature(state) && encounter != Encounter::BugCatchingContest)
-                {
-                    continue;
-                }
-
-                // Begin search for valid pid
-                do
-                {
-                    u16 low = go.nextUShort<true>();
-                    u16 high = go.nextUShort<true>();
-                    pid = static_cast<u32>((high << 16) | low);
-                } while (pid % 25 != state.getNature());
-
-                break;
-            default: // Default to cover all cute charm cases
-                // Get hunt nature
-                if (!cuteCharmSuccess)
-                {
-                    state.setNature(go.nextUShort<true>() % 25);
-
-                    if (!filter.compareNature(state) && encounter != Encounter::BugCatchingContest)
-                    {
-                        continue;
-                    }
-
-                    // Begin search for valid pid
-                    do
-                    {
-                        u16 low = go.nextUShort<true>();
-                        u16 high = go.nextUShort<true>();
-                        pid = static_cast<u32>((high << 16) | low);
-                    } while (pid % 25 != state.getNature());
-                    break;
-                }
             }
 
             state.setPID(pid);
