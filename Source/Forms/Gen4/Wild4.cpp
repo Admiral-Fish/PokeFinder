@@ -394,15 +394,6 @@ void Wild4::profilesIndexChanged(int index)
         ui->comboBoxSearcherLead->addItem(tr("Synchronize"), toInt(Lead::Synchronize));
         ui->comboBoxSearcherLead->addItem(tr("Cute Charm"), toInt(Lead::CuteCharm));
         ui->comboBoxSearcherLead->addItem(tr("Compound Eyes"), toInt(Lead::CompoundEyes));
-        if (flag)
-        {
-            ui->toolButtonGeneratorLead->addAction(tr("Suction Cups"), toInt(Lead::SuctionCups));
-            ui->comboBoxSearcherLead->addItem(tr("Suction Cups"), toInt(Lead::SuctionCups));
-        }
-        else
-        {
-            ui->toolButtonGeneratorLead->removeAction(tr("Suction Cups"));
-        }
         ui->comboBoxSearcherLead->addItem(tr("None"), toInt(Lead::None));
 
         updateLocationsSearcher();
@@ -435,6 +426,16 @@ void Wild4::generatorEncounterIndexChanged(int index)
             break;
         }
 
+        if ((currentProfile->getVersion() & Game::HGSS) != Game::None && index > 2)
+        {
+            ui->toolButtonGeneratorLead->removeAction(tr("Suction Cups"));
+            ui->toolButtonGeneratorLead->addAction(tr("Suction Cups"), toInt(Lead::SuctionCups));
+        }
+        else
+        {
+            ui->toolButtonGeneratorLead->removeAction(tr("Suction Cups"));
+        }
+
         ui->filterGenerator->setEncounterSlots(t);
         updateLocationsGenerator();
     }
@@ -463,6 +464,16 @@ void Wild4::searcherEncounterIndexChanged(int index)
             break;
         default:
             break;
+        }
+
+        if ((currentProfile->getVersion() & Game::HGSS) != Game::None && index > 2)
+        {
+            ui->comboBoxSearcherLead->removeItem(ui->comboBoxSearcherLead->findData(toInt(Lead::SuctionCups)));
+            ui->comboBoxSearcherLead->addItem(tr("Suction Cups"), toInt(Lead::SuctionCups));
+        }
+        else
+        {
+            ui->comboBoxSearcherLead->removeItem(ui->comboBoxSearcherLead->findData(toInt(Lead::SuctionCups)));
         }
 
         ui->filterSearcher->setEncounterSlots(t);
