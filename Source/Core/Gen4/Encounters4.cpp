@@ -83,7 +83,6 @@ namespace Encounters4
 
         std::vector<std::vector<u8>> getBugCatchingContestData()
         {
-
             const u8 *data = heartgold_bug.data();
             size_t size = heartgold_bug.size();
             int offset = 41;
@@ -448,7 +447,7 @@ namespace Encounters4
 
         std::vector<EncounterArea4> encounters;
 
-        if (encounter == Encounter::BugCatchingContest)
+        if (encounter == Encounter::BugCatchingContest && (version & Game::HGSS) != Game::None)
         {
             for (const auto &data : getBugCatchingContestData())
             {
