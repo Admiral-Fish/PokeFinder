@@ -81,14 +81,14 @@ namespace Encounters4
             return encounters;
         }
 
-        std::vector<std::vector<u8>> getBugCatchingContestData()
+        std::vector<std::vector<u8>> getBugCatchingContestData(bool dex)
         {
             const u8 *data = heartgold_bug.data();
-            size_t size = heartgold_bug.size();
+            size_t size = dex ? heartgold_bug.size() : 41;
             int offset = 41;
 
             std::vector<std::vector<u8>> encounters;
-            for (size_t i = 0; i < size; i += offset)
+            for (size_t i = dex ? 41 : 0; i < size; i += offset)
             {
                 std::vector<u8> entry(offset);
                 std::memcpy(entry.data(), data + i, offset);
@@ -455,7 +455,7 @@ namespace Encounters4
 
         if ((version & Game::HGSS) != Game::None && encounter == Encounter::BugCatchingContest)
         {
-            for (const auto &data : getBugCatchingContestData())
+            for (const auto &data : getBugCatchingContestData(profile.getNationalDex()))
             {
                 auto areas = getBugCatchingContest(data, info);
                 std::copy(areas.begin(), areas.end(), std::back_inserter(encounters));

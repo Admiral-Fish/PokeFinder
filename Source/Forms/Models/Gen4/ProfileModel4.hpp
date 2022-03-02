@@ -34,7 +34,8 @@ public:
 
 private:
     QStringList header
-        = { tr("Profile Name"), tr("Version"), tr("TID"), tr("SID"), tr("Dual Slot"), tr("Radio"), tr("Pokeradar"), tr("Swarm") };
+        = { tr("Profile Name"), tr("Version"), tr("TID"), tr("SID"), tr("Dual Slot"), tr("Radio"), tr("Pokeradar"), tr("Swarm"),
+            tr("National Dex") };
 };
 
 #endif // PROFILE4MODEL_HPP

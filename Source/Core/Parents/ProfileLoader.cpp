@@ -173,8 +173,9 @@ namespace ProfileLoader4
             int radio = j["radio"].get<int>();
             bool radar = j["radar"].get<bool>();
             bool swarm = j["swarm"].get<bool>();
+            bool dex = j["dex"].get<bool>();
 
-            return Profile4(name, version, tid, sid, dual, radio, radar, swarm);
+            return Profile4(name, version, tid, sid, dual, radio, radar, swarm, dex);
         }
 
         json getJson(const Profile4 &profile)
@@ -188,6 +189,7 @@ namespace ProfileLoader4
             j["radio"] = profile.getRadio();
             j["radar"] = profile.getRadar();
             j["swarm"] = profile.getSwarm();
+            j["dex"] = profile.getNationalDex();
             return j;
         }
     }
