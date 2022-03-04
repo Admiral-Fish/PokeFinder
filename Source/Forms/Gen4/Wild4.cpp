@@ -433,7 +433,7 @@ void Wild4::generatorEncounterIndexChanged(int index)
                 ui->toolButtonGeneratorLead->addAction(tr("Suction Cups"), toInt(Lead::SuctionCups));
             }
         }
-        else
+        else if (ui->toolButtonGeneratorLead->findAction(tr("Suction Cups")))
         {
             ui->toolButtonGeneratorLead->removeAction(tr("Suction Cups"));
         }
@@ -475,7 +475,7 @@ void Wild4::searcherEncounterIndexChanged(int index)
                 ui->comboBoxSearcherLead->addItem(tr("Suction Cups"), toInt(Lead::SuctionCups));
             }
         }
-        else
+        else if (ui->comboBoxSearcherLead->findData(toInt(Lead::SuctionCups)) >= 0)
         {
             ui->comboBoxSearcherLead->removeItem(ui->comboBoxSearcherLead->findData(toInt(Lead::SuctionCups)));
         }
