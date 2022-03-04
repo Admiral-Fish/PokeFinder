@@ -294,8 +294,6 @@ void Wild4::generate()
 void Wild4::search()
 {
     auto method = static_cast<Method>(ui->comboBoxSearcherMethod->getCurrentInt());
-    searcherModel->clearModel();
-    searcherModel->setMethod(method);
 
     std::array<u8, 6> min = ui->filterSearcher->getMinIVs();
     std::array<u8, 6> max = ui->filterSearcher->getMaxIVs();
@@ -319,6 +317,9 @@ void Wild4::search()
             return;
         }
     }
+
+    searcherModel->clearModel();
+    searcherModel->setMethod(method);
 
     ui->pushButtonSearch->setEnabled(false);
     ui->pushButtonCancel->setEnabled(true);

@@ -78,10 +78,10 @@ namespace ProfileLoader3
     {
         Profile3 getProfile(const json &j)
         {
-            std::string name = j.value("name", std::string("-"));
+            std::string name = j.value("name", "-");
             Game version = j.value("version", Game::LeafGreen);
-            u16 tid = j.value("tid", u16(0));
-            u16 sid = j.value("sid", u16(0));
+            u16 tid = j.value("tid", 0);
+            u16 sid = j.value("sid", 0);
             u16 deadBattery = j.value("sid", false);
 
             return Profile3(name, version, tid, sid, deadBattery);
@@ -165,12 +165,12 @@ namespace ProfileLoader4
     {
         Profile4 getProfile(const json &j)
         {
-            std::string name = j.value("name", std::string("-"));
+            std::string name = j.value("name", "-");
             Game version = j.value("version", Game::Diamond);
-            u16 tid = j.value("tid", u16(0));
-            u16 sid = j.value("sid", u16(0));
+            u16 tid = j.value("tid", 0);
+            u16 sid = j.value("sid", 0);
             Game dual = j.value("dual", Game::Emerald);
-            int radio = j.value("radio", int(0));
+            int radio = j.value("radio", 0);
             bool radar = j.value("radar", false);
             bool swarm = j.value("swarm", false);
             bool dex = j.value("dex", false);
@@ -260,18 +260,18 @@ namespace ProfileLoader5
     {
         Profile5 getProfile(const json &j)
         {
-            std::string name = j.value("name", std::string("-"));
+            std::string name = j.value("name", "-");
             Game version = j.value("version", Game::Diamond);
-            u16 tid = j.value("tid", u16(0));
-            u16 sid = j.value("sid", u16(0));
-            u64 mac = std::stoull(j.value("mac", std::string("000000000000")), nullptr, 16);
+            u16 tid = j.value("tid", 0);
+            u16 sid = j.value("sid", 0);
+            u64 mac = std::stoull(j.value("mac", "000000000000"), nullptr, 16);
             std::vector<bool> keypresses = j.value("keypresses", std::vector<bool> { false, false, false, false });
-            u8 vcount = j.value("vcount", u8(0));
-            u8 gxstat = j.value("gxstat", u8(0));
-            u8 vframe = j.value("vframe", u8(0));
+            u8 vcount = j.value("vcount", 0);
+            u8 gxstat = j.value("gxstat", 0);
+            u8 vframe = j.value("vframe", 0);
             bool skipLR = j.value("skipLR", false);
-            u16 timer0Min = j.value("timer0Min", u16(0));
-            u16 timer0Max = j.value("timer0Max", u16(0));
+            u16 timer0Min = j.value("timer0Min", 0);
+            u16 timer0Max = j.value("timer0Max", 0);
             bool softReset = j.value("softReset", false);
             bool memoryLink = j.value("memoryLink", false);
             bool shinyCharm = j.value("shinyCharm", false);
