@@ -70,6 +70,21 @@ void ComboMenu::removeAction(const QString &name)
     }
 }
 
+bool ComboMenu::findAction(const QString &name)
+{
+    auto actions = actionGroup->actions();
+    for (size_t i = 1; i < actions.size(); i++)
+    {
+        QAction *action = actions[i];
+        if (action->text() == name)
+        {
+            return true;
+        }
+    }
+
+    return false;
+}
+
 void ComboMenu::addMenu(const QString &menuText, const std::vector<std::string> &actions, const std::vector<int> &data)
 {
     QMenu *menu = topMenu->addMenu(menuText);

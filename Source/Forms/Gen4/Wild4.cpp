@@ -426,10 +426,12 @@ void Wild4::generatorEncounterIndexChanged(int index)
             break;
         }
 
-        if ((currentProfile->getVersion() & Game::HGSS) != Game::None && index > 2)
+        if ((currentProfile->getVersion() & Game::HGSS) != Game::None && (encounter == Encounter::OldRod || encounter == Encounter::GoodRod || encounter == Encounter::SuperRod))
         {
-            ui->toolButtonGeneratorLead->removeAction(tr("Suction Cups"));
-            ui->toolButtonGeneratorLead->addAction(tr("Suction Cups"), toInt(Lead::SuctionCups));
+            if (!ui->toolButtonGeneratorLead->findAction(tr("Suction Cups")))
+            {
+                ui->toolButtonGeneratorLead->addAction(tr("Suction Cups"), toInt(Lead::SuctionCups));
+            }
         }
         else
         {
@@ -466,10 +468,12 @@ void Wild4::searcherEncounterIndexChanged(int index)
             break;
         }
 
-        if ((currentProfile->getVersion() & Game::HGSS) != Game::None && index > 2)
+        if ((currentProfile->getVersion() & Game::HGSS) != Game::None && (encounter == Encounter::OldRod || encounter == Encounter::GoodRod || encounter == Encounter::SuperRod))
         {
-            ui->comboBoxSearcherLead->removeItem(ui->comboBoxSearcherLead->findData(toInt(Lead::SuctionCups)));
-            ui->comboBoxSearcherLead->addItem(tr("Suction Cups"), toInt(Lead::SuctionCups));
+            if (ui->comboBoxSearcherLead->findData(toInt(Lead::SuctionCups)) < 0)
+            {
+                ui->comboBoxSearcherLead->addItem(tr("Suction Cups"), toInt(Lead::SuctionCups));
+            }
         }
         else
         {
