@@ -18,6 +18,7 @@
  */
 
 #include "ProfileLoader.hpp"
+#include <Core/Enum/DSType.hpp>
 #include <Core/Gen3/Profile3.hpp>
 #include <Core/Gen4/Profile4.hpp>
 #include <Core/Gen5/Profile5.hpp>
@@ -275,7 +276,7 @@ namespace ProfileLoader5
             bool softReset = j.value("softReset", false);
             bool memoryLink = j.value("memoryLink", false);
             bool shinyCharm = j.value("shinyCharm", false);
-            DSType dsType = j.value("dsType", DSType(0));
+            DSType dsType = j.value("dsType", DSType::DS);
             Language language = j.value("dsType", Language::English);
             return Profile5(name, version, tid, sid, mac, keypresses, vcount, gxstat, vframe, skipLR, timer0Min, timer0Max, softReset,
                             memoryLink, shinyCharm, dsType, language);

@@ -404,11 +404,8 @@ std::vector<WildState4> WildGenerator4::generateMethodK(u32 seed, const Encounte
                     state.setNature(go.nextUShort<true>() % 25);
                 }
                 break;
-            default: // Default to cover all other leads
-                if (lead == Lead::CompoundEyes)
-                {
-                    state.setLead(Lead::CompoundEyes);
-                }
+            case Lead::CompoundEyes:
+                state.setLead(Lead::CompoundEyes);
                 break;
             }
 
