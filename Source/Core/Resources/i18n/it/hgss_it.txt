@@ -118,3 +118,10 @@
 117,Grotta Celeste P1
 118,Grotta Celeste P2
 119,Grotta Celeste P1S
+120,Bug Contest
+121,Bug Contest (Tuesday)
+122,Bug Contest (Thursday)
+123,Bug Contest (Saturday)
+124,Pewter City
+125,Azalea Town
+126,Safari Zone Gate

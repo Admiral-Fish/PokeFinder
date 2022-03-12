@@ -350,7 +350,16 @@ std::vector<WildState4> WildGenerator4::generateMethodK(u32 seed, const Encounte
             state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), go.nextUShort<true>()));
             occidentary += 1; // Compensate for the game's advances after the battle ends
             break;
-        case Encounter::HeadButt: // TODO
+        case Encounter::HeadButt:
+            state.setEncounterSlot(EncounterSlot::kSlot(first, encounter));
+            if (!filter.compareEncounterSlot(state))
+            {
+                continue;
+            }
+
+            state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), go.nextUShort<true>()));
+            occidentary += 1; // Compensate for the game's advances after the battle ends
+            break;
         case Encounter::BugCatchingContest: // TODO
         default:
             break;

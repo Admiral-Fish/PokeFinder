@@ -19,7 +19,6 @@
 
 #include "Encounters4.hpp"
 #include <Core/Enum/Encounter.hpp>
-#include <Core/Enum/Game.hpp>
 #include <Core/Gen4/EncounterArea4.hpp>
 #include <Core/Gen4/Profile4.hpp>
 #include <Core/Parents/PersonalLoader.hpp>
@@ -31,6 +30,27 @@
 
 namespace Encounters4
 {
+    bool getHeadbuttSpecialFlag(Game game, int location)
+    {
+        const u8 *data = game == Game::HeartGold? heartgold_headbutt.data() : soulsilver_headbutt.data();
+        int offset = 0;
+        u8 specialTreesFlag;
+
+        for (size_t i = 0; i < 60; i++)
+        {
+            specialTreesFlag = data[offset + 1];
+
+            if (location == data[offset])
+            {
+                break;
+            }
+
+            offset += specialTreesFlag == 0? 52 : 77;
+        }
+
+        return specialTreesFlag == 1;
+    }
+
     namespace
     {
         std::vector<std::vector<u8>> getData(Game game)
@@ -76,6 +96,25 @@ namespace Encounters4
                 std::vector<u8> entry(offset);
                 std::memcpy(entry.data(), data + i, offset);
                 encounters.emplace_back(entry);
+            }
+
+            return encounters;
+        }
+
+        std::vector<std::vector<u8>> getHeadbuttData(Game game)
+        {
+            const u8 *data = game == Game::HeartGold? heartgold_headbutt.data() : soulsilver_headbutt.data();
+            int offset = 0;
+
+            std::vector<std::vector<u8>> encounters;
+            for (size_t i = 0; i < 60; i++)
+            {
+                u8 specialTreesFlag = data[offset + 1];
+                int range = specialTreesFlag == 0? 52 : 77;
+                std::vector<u8> entry(range);
+                std::memcpy(entry.data(), data + offset, range);
+                encounters.emplace_back(entry);
+                offset += range;
             }
 
             return encounters;
@@ -235,6 +274,27 @@ namespace Encounters4
             }
         }
 
+        std::vector<EncounterArea4> getHeadbutt(const std::vector<u8> &data, const PersonalInfo *info, int treesType)
+        {
+            std::vector<EncounterArea4> encounters;
+            u8 location = data[0];
+            u8 specialTreesFlag = data[1];
+            int offset = specialTreesFlag == 0 && treesType == 2? 0 : treesType;
+
+            std::vector<Slot> headbutt;
+            for (int i = 0; i < 6; i++)
+            {
+                u8 minLevel = data[(25 * offset) + 3 + i * 4];
+                u8 maxLevel = data[(25 * offset) + 4 + i * 4];
+                u16 specie = getValue(data, (25 * offset) + 5 + i * 4);
+                headbutt.emplace_back(specie, minLevel, maxLevel, info[specie]);
+            }
+
+            encounters.emplace_back(location, Encounter::HeadButt, headbutt);
+
+            return encounters;
+        }
+
         std::vector<EncounterArea4> getHGSS(const std::vector<u8> &data, const Profile4 &profile, const PersonalInfo *info,
                                             Encounter encounter, int time)
         {
@@ -247,6 +307,7 @@ namespace Encounters4
                 int timeOffset = (time * 2) + 1;
 
                 std::vector<Slot> grass;
+                std::vector<Slot> headbutt;
                 for (int i = 0; i < 12; i++)
                 {
                     u8 level = data[4 + i * 7];
@@ -258,6 +319,7 @@ namespace Encounters4
                 modifySwarmHGSS(grass, data, info, encounter, profile.getSwarm());
 
                 encounters.emplace_back(location, Encounter::Grass, grass);
+                encounters.emplace_back(location, Encounter::HeadButt, headbutt);
             }
 
             // Rock Smash
@@ -401,11 +463,22 @@ namespace Encounters4
         auto *info = PersonalLoader::getPersonal(version);
 
         std::vector<EncounterArea4> encounters;
-        for (const auto &data : getData(version))
+        if (encounter == Encounter::HeadButt)
         {
-            auto areas = (version & Game::HGSS) != Game::None ? getHGSS(data, profile, info, encounter, time) : getDPPt(data, profile, info, time);
-            std::copy_if(areas.begin(), areas.end(), std::back_inserter(encounters),
-                         [&encounter](const EncounterArea4 &area) { return area.getEncounter() == encounter; });
+            for (const auto &data : getHeadbuttData(version))
+            {
+                auto areas = getHeadbutt(data, info, time);
+                std::copy(areas.begin(), areas.end(), std::back_inserter(encounters));
+            }
+        }
+        else
+        {
+            for (const auto &data : getData(version))
+            {
+                auto areas = (version & Game::HGSS) != Game::None ? getHGSS(data, profile, info, encounter, time) : getDPPt(data, profile, info, time);
+                std::copy_if(areas.begin(), areas.end(), std::back_inserter(encounters),
+                             [&encounter](const EncounterArea4 &area) { return area.getEncounter() == encounter; });
+            }
         }
 
         return encounters;

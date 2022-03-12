@@ -118,3 +118,10 @@
 117,Cerulean Cave Planta baja
 118,Cerulean Cave Primer piso
 119,Cerulean Cave Sótano
+120,Bug Contest
+121,Bug Contest (Tuesday)
+122,Bug Contest (Thursday)
+123,Bug Contest (Saturday)
+124,Pewter City
+125,Azalea Town
+126,Safari Zone Gate
