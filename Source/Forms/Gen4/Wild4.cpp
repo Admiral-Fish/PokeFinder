@@ -188,7 +188,11 @@ void Wild4::updateLocationsGenerator()
     std::vector<std::string> locations = Translator::getLocations(locs, currentProfile->getVersion());
     std::vector<int> indices(locations.size());
     std::iota(indices.begin(), indices.end(), 0);
-    std::sort(indices.begin(), indices.end(), [&locations](int i, int j) { return locations[i] < locations[j]; });
+
+    if (encounter != Encounter::BugCatchingContest)
+    {
+        std::sort(indices.begin(), indices.end(), [&locations](int i, int j) { return locations[i] < locations[j]; });
+    }
 
     ui->comboBoxGeneratorLocation->clear();
     for (int index : indices)
@@ -211,7 +215,11 @@ void Wild4::updateLocationsSearcher()
     std::vector<std::string> locations = Translator::getLocations(locs, currentProfile->getVersion());
     std::vector<int> indices(locations.size());
     std::iota(indices.begin(), indices.end(), 0);
-    std::sort(indices.begin(), indices.end(), [&locations](int i, int j) { return locations[i] < locations[j]; });
+
+    if (encounter != Encounter::BugCatchingContest)
+    {
+        std::sort(indices.begin(), indices.end(), [&locations](int i, int j) { return locations[i] < locations[j]; });
+    }
 
     ui->comboBoxSearcherLocation->clear();
     for (int index : indices)
