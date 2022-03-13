@@ -138,6 +138,7 @@ void Wild4::setupModels()
     connect(ui->comboBoxGeneratorPokemon, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &Wild4::generatorPokemonIndexChanged);
     connect(ui->comboBoxSearcherPokemon, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &Wild4::searcherPokemonIndexChanged);
     connect(ui->comboBoxGeneratorTreesType, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &Wild4::generatorTreesTypeIndexChanged);
+    connect(ui->comboBoxSearcherTreesType, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &Wild4::searcherTreesTypeIndexChanged);
     connect(ui->comboBoxGeneratorTime, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &Wild4::generatorTimeIndexChanged);
     connect(ui->comboBoxSearcherTime, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &Wild4::searcherTimeIndexChanged);
     connect(ui->tableViewGenerator, &QTableView::customContextMenuRequested, this, &Wild4::tableViewGeneratorContextMenu);
@@ -199,7 +200,7 @@ void Wild4::updateLocationsGenerator()
 void Wild4::updateLocationsSearcher()
 {
     auto encounter = static_cast<Encounter>(ui->comboBoxSearcherEncounter->currentData().toInt());
-    int time = ui->comboBoxSearcherTime->currentIndex();
+    int time = encounter == Encounter::HeadButt? ui->comboBoxSearcherTreesType->currentIndex() : ui->comboBoxSearcherTime->currentIndex();
 
     encounterSearcher = Encounters4::getEncounters(encounter, time, *currentProfile);
 
@@ -259,6 +260,21 @@ void Wild4::updateTreesTypeGenerator()
     else
     {
         ui->comboBoxGeneratorTreesType->removeItem(ui->comboBoxGeneratorTreesType->findData(toInt(HeadbuttType::Special)));
+    }
+}
+
+void Wild4::updateTreesTypeSearcher()
+{
+    if (Encounters4::getHeadbuttSpecialFlag(currentProfile->getVersion(), encounterSearcher[ui->comboBoxSearcherLocation->currentData().toInt()].getLocation()))
+    {
+        if (ui->comboBoxSearcherTreesType->findData(toInt(HeadbuttType::Special)) < 0)
+        {
+            ui->comboBoxSearcherTreesType->addItem(tr("Special"), toInt(HeadbuttType::Special));
+        }
+    }
+    else
+    {
+        ui->comboBoxSearcherTreesType->removeItem(ui->comboBoxSearcherTreesType->findData(toInt(HeadbuttType::Special)));
     }
 }
 
@@ -405,6 +421,11 @@ void Wild4::profilesIndexChanged(int index)
         if (flag)
         {
             ui->comboBoxSearcherEncounter->addItem(tr("Rock Smash"), toInt(Encounter::RockSmash));
+            ui->comboBoxSearcherEncounter->addItem(tr("Headbutt"), toInt(Encounter::HeadButt));
+
+            ui->comboBoxSearcherTreesType->clear();
+            ui->comboBoxSearcherTreesType->addItem(tr("Normal 1"), toInt(HeadbuttType::Normal1));
+            ui->comboBoxSearcherTreesType->addItem(tr("Normal 2"), toInt(HeadbuttType::Normal2));
         }
         ui->comboBoxSearcherEncounter->addItem(tr("Surfing"), toInt(Encounter::Surfing));
         ui->comboBoxSearcherEncounter->addItem(tr("Old Rod"), toInt(Encounter::OldRod));
@@ -506,8 +527,28 @@ void Wild4::searcherEncounterIndexChanged(int index)
         case Encounter::RockSmash:
             t = { "0", "1" };
             break;
+        case Encounter::HeadButt:
+            t = { "0", "1", "2", "3", "4", "5" };
+            break;
         default:
             break;
+        }
+
+        if (encounter == Encounter::HeadButt)
+        {
+            ui->labelSearcherTreesType->setVisible(true);
+            ui->comboBoxSearcherTreesType->setVisible(true);
+
+            ui->labelSearcherTime->setVisible(false);
+            ui->comboBoxSearcherTime->setVisible(false);
+        }
+        else
+        {
+            ui->labelSearcherTreesType->setVisible(false);
+            ui->comboBoxSearcherTreesType->setVisible(false);
+
+            ui->labelSearcherTime->setVisible(true);
+            ui->comboBoxSearcherTime->setVisible(true);
         }
 
         if ((currentProfile->getVersion() & Game::HGSS) != Game::None && (encounter == Encounter::OldRod || encounter == Encounter::GoodRod || encounter == Encounter::SuperRod))
@@ -548,6 +589,14 @@ void Wild4::searcherLocationIndexChanged(int index)
     if (index >= 0)
     {
         updatePokemonSearcher();
+
+        if (static_cast<Encounter>(ui->comboBoxSearcherEncounter->currentData().toInt()) == Encounter::HeadButt)
+        {
+            if (ui->comboBoxSearcherTreesType->currentIndex() < 2)
+            {
+                updateTreesTypeSearcher();
+            }
+        }
     }
 }
 
@@ -586,6 +635,16 @@ void Wild4::generatorTreesTypeIndexChanged(int index)
         int position = ui->comboBoxGeneratorLocation->currentIndex();
         updateLocationsGenerator();
         ui->comboBoxGeneratorLocation->setCurrentIndex(position);
+    }
+}
+
+void Wild4::searcherTreesTypeIndexChanged(int index)
+{
+    if (index >= 0)
+    {
+        int position = ui->comboBoxSearcherLocation->currentIndex();
+        updateLocationsSearcher();
+        ui->comboBoxSearcherLocation->setCurrentIndex(position);
     }
 }
 
