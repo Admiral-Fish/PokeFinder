@@ -319,8 +319,7 @@ bool createPokemon(PokeRNG &go, WildState4 &state, u8 buffer, u8 synchNature, u8
             {
                 if (state.getIV(iv) == 31)
                 {
-                    loop = 4;
-                    break;
+                    return true;
                 }
             }
         }
