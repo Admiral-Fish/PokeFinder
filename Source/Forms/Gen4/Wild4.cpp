@@ -230,7 +230,7 @@ void Wild4::updateLocationsSearcher()
 
 void Wild4::updatePokemonGenerator()
 {
-    auto area = encounterGenerator[ui->comboBoxGeneratorLocation->currentData().toInt()];
+    auto &area = encounterGenerator[ui->comboBoxGeneratorLocation->currentData().toInt()];
     std::vector<u16> species = area.getUniqueSpecies();
 
     std::vector<std::string> names = area.getSpecieNames();
@@ -245,7 +245,7 @@ void Wild4::updatePokemonGenerator()
 
 void Wild4::updatePokemonSearcher()
 {
-    auto area = encounterSearcher[ui->comboBoxSearcherLocation->currentData().toInt()];
+    auto &area = encounterSearcher[ui->comboBoxSearcherLocation->currentData().toInt()];
     std::vector<u16> species = area.getUniqueSpecies();
 
     std::vector<std::string> names = area.getSpecieNames();
@@ -469,6 +469,7 @@ void Wild4::generatorEncounterIndexChanged(int index)
             break;
         case Encounter::BugCatchingContest:
             t = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+            break;
         default:
             break;
         }
@@ -501,6 +502,7 @@ void Wild4::searcherEncounterIndexChanged(int index)
             break;
         case Encounter::BugCatchingContest:
             t = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+            break;
         default:
             break;
         }
