@@ -1,0 +1,194 @@
+51,Abandoned Ship Hidden Floor Corridors
+148,Abandoned Ship Hidden Floor Corridors
+50,Abandoned Ship Rooms B1F
+147,Abandoned Ship Rooms B1F
+36,Cave Of Origin 1F
+133,Cave Of Origin 1F
+37,Cave Of Origin B1F
+134,Cave Of Origin B1F
+38,Cave Of Origin B2F
+135,Cave Of Origin B2F
+39,Cave Of Origin B3F
+136,Cave Of Origin B3F
+35,Cave Of Origin Entrance
+132,Cave Of Origin Entrance
+93,Dewford Town
+190,Dewford Town
+5,Ever Grande City
+102,Ever Grande City
+17,Fiery Path
+114,Fiery Path
+11,Granite Cave 1F
+108,Granite Cave 1F
+12,Granite Cave B1F
+109,Granite Cave B1F
+13,Granite Cave B2F
+110,Granite Cave B2F
+14,Granite Cave Stevens Room
+111,Granite Cave Stevens Room
+16,Jagged Pass
+113,Jagged Pass
+2,Lilycove City
+99,Lilycove City
+6,Meteor Falls 1F 1R
+103,Meteor Falls 1F 1R
+7,Meteor Falls 1F 2R
+104,Meteor Falls 1F 2R
+8,Meteor Falls B1F 1R
+105,Meteor Falls B1F 1R
+9,Meteor Falls B1F 2R
+106,Meteor Falls B1F 2R
+3,Mossdeep City
+100,Mossdeep City
+18,Mt Pyre 1F
+115,Mt Pyre 1F
+19,Mt Pyre 2F
+116,Mt Pyre 2F
+20,Mt Pyre 3F
+117,Mt Pyre 3F
+21,Mt Pyre 4F
+118,Mt Pyre 4F
+22,Mt Pyre 5F
+119,Mt Pyre 5F
+23,Mt Pyre 6F
+120,Mt Pyre 6F
+24,Mt Pyre Exterior
+121,Mt Pyre Exterior
+25,Mt Pyre Summit
+122,Mt Pyre Summit
+48,New Mauville Entrance
+145,New Mauville Entrance
+49,New Mauville Inside
+146,New Mauville Inside
+94,Pacifidlog Town
+191,Pacifidlog Town
+0,Petalburg City
+97,Petalburg City
+15,Petalburg Woods
+112,Petalburg Woods
+55,Route 101
+152,Route 101
+56,Route 102
+153,Route 102
+57,Route 103
+154,Route 103
+58,Route 104
+155,Route 104
+59,Route 105
+156,Route 105
+60,Route 106
+157,Route 106
+61,Route 107
+158,Route 107
+62,Route 108
+159,Route 108
+63,Route 109
+160,Route 109
+64,Route 110
+161,Route 110
+65,Route 111
+162,Route 111
+66,Route 112
+163,Route 112
+67,Route 113
+164,Route 113
+68,Route 114
+165,Route 114
+69,Route 115
+166,Route 115
+70,Route 116
+167,Route 116
+71,Route 117
+168,Route 117
+72,Route 118
+169,Route 118
+73,Route 119
+170,Route 119
+74,Route 120
+171,Route 120
+75,Route 121
+172,Route 121
+76,Route 122
+173,Route 122
+77,Route 123
+174,Route 123
+78,Route 124
+175,Route 124
+79,Route 125
+176,Route 125
+80,Route 126
+177,Route 126
+81,Route 127
+178,Route 127
+82,Route 128
+179,Route 128
+83,Route 129
+180,Route 129
+84,Route 130
+181,Route 130
+85,Route 131
+182,Route 131
+86,Route 132
+183,Route 132
+87,Route 133
+184,Route 133
+88,Route 134
+185,Route 134
+10,Rusturf Tunnel
+107,Rusturf Tunnel
+90,Safari Zone Northeast
+187,Safari Zone Northeast
+89,Safari Zone Northwest
+186,Safari Zone Northwest
+92,Safari Zone Southeast
+189,Safari Zone Southeast
+91,Safari Zone Southwest
+188,Safari Zone Southwest
+26,Seafloor Cavern Entrance
+123,Seafloor Cavern Entrance
+27,Seafloor Cavern Room 1
+124,Seafloor Cavern Room 1
+28,Seafloor Cavern Room 2
+125,Seafloor Cavern Room 2
+29,Seafloor Cavern Room 3
+126,Seafloor Cavern Room 3
+30,Seafloor Cavern Room 4
+127,Seafloor Cavern Room 4
+31,Seafloor Cavern Room 5
+128,Seafloor Cavern Room 5
+32,Seafloor Cavern Room 6
+129,Seafloor Cavern Room 6
+33,Seafloor Cavern Room 7
+130,Seafloor Cavern Room 7
+34,Seafloor Cavern Room 8
+131,Seafloor Cavern Room 8
+43,Shoal Cave Low Tide Entrance Room
+140,Shoal Cave Low Tide Entrance Room
+47,Shoal Cave Low Tide Ice Room
+144,Shoal Cave Low Tide Ice Room
+44,Shoal Cave Low Tide Inner Room
+141,Shoal Cave Low Tide Inner Room
+46,Shoal Cave Low Tide Lower Room
+143,Shoal Cave Low Tide Lower Room
+45,Shoal Cave Low Tide Stairs Room
+142,Shoal Cave Low Tide Stairs Room
+52,Sky Pillar 1F
+149,Sky Pillar 1F
+53,Sky Pillar 3F
+150,Sky Pillar 3F
+54,Sky Pillar 5F
+151,Sky Pillar 5F
+1,Slateport City
+98,Slateport City
+4,Sootopolis City
+101,Sootopolis City
+95,Underwater1
+192,Underwater1
+96,Underwater2
+193,Underwater2
+40,Victory Road 1F
+137,Victory Road 1F
+41,Victory Road B1F
+138,Victory Road B1F
+42,Victory Road B2F
+139,Victory Road B2F

@@ -68,15 +68,20 @@ namespace
                 data = species_de.data();
                 size = species_de.size();
             }
+            else if (name == "e")
+            {
+                data = e_de.data();
+                size = e_de.size();
+            }
             else if (name == "frlg")
             {
                 data = frlg_de.data();
                 size = frlg_de.size();
             }
-            else if (name == "rse")
+            else if (name == "rs")
             {
-                data = rse_de.data();
-                size = rse_de.size();
+                data = rs_de.data();
+                size = rs_de.size();
             }
             else if (name == "dppt")
             {
@@ -87,6 +92,16 @@ namespace
             {
                 data = hgss_de.data();
                 size = hgss_de.size();
+            }
+            else if (name == "bw")
+            {
+                data = bw_de.data();
+                size = bw_de.size();
+            }
+            else if (name == "bw2")
+            {
+                data = bw2_de.data();
+                size = bw2_de.size();
             }
             else if (name == "swsh")
             {
@@ -126,15 +141,20 @@ namespace
                 data = species_en.data();
                 size = species_en.size();
             }
+            else if (name == "e")
+            {
+                data = e_en.data();
+                size = e_en.size();
+            }
             else if (name == "frlg")
             {
                 data = frlg_en.data();
                 size = frlg_en.size();
             }
-            else if (name == "rse")
+            else if (name == "rs")
             {
-                data = rse_en.data();
-                size = rse_en.size();
+                data = rs_en.data();
+                size = rs_en.size();
             }
             else if (name == "dppt")
             {
@@ -145,6 +165,16 @@ namespace
             {
                 data = hgss_en.data();
                 size = hgss_en.size();
+            }
+            else if (name == "bw")
+            {
+                data = bw_en.data();
+                size = bw_en.size();
+            }
+            else if (name == "bw2")
+            {
+                data = bw2_en.data();
+                size = bw2_en.size();
             }
             else if (name == "swsh")
             {
@@ -184,15 +214,20 @@ namespace
                 data = species_es.data();
                 size = species_es.size();
             }
+            else if (name == "e")
+            {
+                data = e_es.data();
+                size = e_es.size();
+            }
             else if (name == "frlg")
             {
                 data = frlg_es.data();
                 size = frlg_es.size();
             }
-            else if (name == "rse")
+            else if (name == "rs")
             {
-                data = rse_es.data();
-                size = rse_es.size();
+                data = rs_es.data();
+                size = rs_es.size();
             }
             else if (name == "dppt")
             {
@@ -203,6 +238,16 @@ namespace
             {
                 data = hgss_es.data();
                 size = hgss_es.size();
+            }
+            else if (name == "bw")
+            {
+                data = bw_es.data();
+                size = bw_es.size();
+            }
+            else if (name == "bw2")
+            {
+                data = bw2_es.data();
+                size = bw2_es.size();
             }
             else if (name == "swsh")
             {
@@ -242,15 +287,20 @@ namespace
                 data = species_fr.data();
                 size = species_fr.size();
             }
+            else if (name == "e")
+            {
+                data = e_fr.data();
+                size = e_fr.size();
+            }
             else if (name == "frlg")
             {
                 data = frlg_fr.data();
                 size = frlg_fr.size();
             }
-            else if (name == "rse")
+            else if (name == "rs")
             {
-                data = rse_fr.data();
-                size = rse_fr.size();
+                data = rs_fr.data();
+                size = rs_fr.size();
             }
             else if (name == "dppt")
             {
@@ -261,6 +311,16 @@ namespace
             {
                 data = hgss_fr.data();
                 size = hgss_fr.size();
+            }
+            else if (name == "bw")
+            {
+                data = bw_fr.data();
+                size = bw_fr.size();
+            }
+            else if (name == "bw2")
+            {
+                data = bw2_fr.data();
+                size = bw2_fr.size();
             }
             else if (name == "swsh")
             {
@@ -300,15 +360,20 @@ namespace
                 data = species_it.data();
                 size = species_it.size();
             }
+            else if (name == "e")
+            {
+                data = e_it.data();
+                size = e_it.size();
+            }
             else if (name == "frlg")
             {
                 data = frlg_it.data();
                 size = frlg_it.size();
             }
-            else if (name == "rse")
+            else if (name == "rs")
             {
-                data = rse_it.data();
-                size = rse_it.size();
+                data = rs_it.data();
+                size = rs_it.size();
             }
             else if (name == "dppt")
             {
@@ -319,6 +384,16 @@ namespace
             {
                 data = hgss_it.data();
                 size = hgss_it.size();
+            }
+            else if (name == "bw")
+            {
+                data = bw_it.data();
+                size = bw_it.size();
+            }
+            else if (name == "bw2")
+            {
+                data = bw2_it.data();
+                size = bw2_it.size();
             }
             else if (name == "swsh")
             {
@@ -358,15 +433,20 @@ namespace
                 data = species_ja.data();
                 size = species_ja.size();
             }
+            else if (name == "e")
+            {
+                data = e_ja.data();
+                size = e_ja.size();
+            }
             else if (name == "frlg")
             {
                 data = frlg_ja.data();
                 size = frlg_ja.size();
             }
-            else if (name == "rse")
+            else if (name == "rs")
             {
-                data = rse_ja.data();
-                size = rse_ja.size();
+                data = rs_ja.data();
+                size = rs_ja.size();
             }
             else if (name == "dppt")
             {
@@ -377,6 +457,16 @@ namespace
             {
                 data = hgss_ja.data();
                 size = hgss_ja.size();
+            }
+            else if (name == "bw")
+            {
+                data = bw_ja.data();
+                size = bw_ja.size();
+            }
+            else if (name == "bw2")
+            {
+                data = bw2_ja.data();
+                size = bw2_ja.size();
             }
             else if (name == "swsh")
             {
@@ -416,15 +506,20 @@ namespace
                 data = species_ko.data();
                 size = species_ko.size();
             }
+            else if (name == "e")
+            {
+                data = e_ko.data();
+                size = e_ko.size();
+            }
             else if (name == "frlg")
             {
                 data = frlg_ko.data();
                 size = frlg_ko.size();
             }
-            else if (name == "rse")
+            else if (name == "rs")
             {
-                data = rse_ko.data();
-                size = rse_ko.size();
+                data = rs_ko.data();
+                size = rs_ko.size();
             }
             else if (name == "dppt")
             {
@@ -435,6 +530,16 @@ namespace
             {
                 data = hgss_ko.data();
                 size = hgss_ko.size();
+            }
+            else if (name == "bw")
+            {
+                data = bw_ko.data();
+                size = bw_ko.size();
+            }
+            else if (name == "bw2")
+            {
+                data = bw2_ko.data();
+                size = bw2_ko.size();
             }
             else if (name == "swsh")
             {
@@ -474,15 +579,20 @@ namespace
                 data = species_zh.data();
                 size = species_zh.size();
             }
+            else if (name == "e")
+            {
+                data = e_zh.data();
+                size = e_zh.size();
+            }
             else if (name == "frlg")
             {
                 data = frlg_zh.data();
                 size = frlg_zh.size();
             }
-            else if (name == "rse")
+            else if (name == "rs")
             {
-                data = rse_zh.data();
-                size = rse_zh.size();
+                data = rs_zh.data();
+                size = rs_zh.size();
             }
             else if (name == "dppt")
             {
@@ -594,13 +704,17 @@ namespace Translator
     std::vector<std::string> getLocations(const std::vector<u16> &nums, Game game)
     {
         std::vector<std::string> strings;
+        if ((game & Game::Emerald) != Game::None)
+        {
+            strings = readFile("e");
+        }
         if ((game & Game::FRLG) != Game::None)
         {
             strings = readFile("frlg");
         }
-        else if ((game & Game::RSE) != Game::None)
+        else if ((game & Game::RS) != Game::None)
         {
-            strings = readFile("rse");
+            strings = readFile("rs");
         }
         else if ((game & Game::DPPt) != Game::None)
         {
@@ -609,6 +723,14 @@ namespace Translator
         else if ((game & Game::HGSS) != Game::None)
         {
             strings = readFile("hgss");
+        }
+        else if ((game & Game::BW) != Game::None)
+        {
+            strings = readFile("bw");
+        }
+        else if ((game & Game::BW2) != Game::None)
+        {
+            strings = readFile("bw2");
         }
         else if ((game & Game::SwSh) != Game::None)
         {

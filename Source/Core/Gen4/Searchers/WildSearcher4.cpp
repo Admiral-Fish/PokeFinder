@@ -54,12 +54,7 @@ void WildSearcher4::startSearch(const std::array<u8, 6> &min, const std::array<u
 {
     searching = true;
 
-    thresh = encounter == Encounter::OldRod ? 25 : encounter == Encounter::GoodRod ? 50 : encounter == Encounter::SuperRod ? 75 : 0;
-    suctionCupThresh = encounter == Encounter::OldRod ? 90
-        : encounter == Encounter::GoodRod             ? 100
-        : encounter == Encounter::SuperRod            ? 100
-                                                      : 0;
-    rock = encounterArea.getEncounterRate();
+    thresh = encounterArea.getRate();
 
     for (u8 hp = min[0]; hp <= max[0]; hp++)
     {
@@ -679,7 +674,7 @@ bool WildSearcher4::encounterMethodK(WildState &state, u32 seed) const
             state.setLevel(encounterArea.calcLevel(state.getEncounterSlot()));
             state.setSeed(rng.next());
         }
-        else if (nibble < suctionCupThresh && (lead == Lead::SuctionCups || lead == Lead::Search))
+        else if (nibble < (thresh << 1) && (lead == Lead::SuctionCups || lead == Lead::Search))
         {
             state.setLead(Lead::SuctionCups);
             state.setEncounterSlot(EncounterSlot::kSlot(slot, encounter));
@@ -695,7 +690,7 @@ bool WildSearcher4::encounterMethodK(WildState &state, u32 seed) const
     case Encounter::RockSmash:
     {
         u16 slot = rng.nextUShort();
-        if ((rng.nextUShort() % 100) < rock)
+        if ((rng.nextUShort() % 100) < thresh)
         {
             state.setEncounterSlot(EncounterSlot::kSlot(slot, encounter));
             state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), seed >> 16));

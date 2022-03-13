@@ -1,120 +1,126 @@
-0,Pueblo Primavera
-1,Ruta 29
-2,Ciudad Cerezo
-3,Ruta 30
-4,Ruta 31
-5,Ciudad Malva
-6,Torre Bellsprout
-7,Ruta 32
-8,Ruinas Alfa (Exterior)
-9,Ruinas Alfa (Interior)
-10,Cueva Unión Planta baja
-11,Cueva Unión Sótano 1
-12,Cueva Unión Sótano 2
-13,Ruta 33
-14,Pozo Slowpoke Planta baja
-15,Pozo Slowpoke Sótano
-16,Encinar
-17,Ruta 34
-18,Ruta 35
-19,Parque Nacional
-20,Ruta 36
-21,Ruta 37
-22,Ciudad Iris
-23,Torre Quemada Planta baja
-24,Torre Quemada Sótano
-25,Torre Campana
-26,Ruta 38
-27,Ruta 39
-28,Ciudad Olivo
-29,Ruta 40
-30,Ruta 41
-31,Islas Remolino Planta baja
-32,Islas Remolino Sótano 1
-33,Islas Remolino Sótano 2
-34,Islas Remolino Sótano 3
-35,Ciudad Orquídea
-36,Ruta 42
-37,Monte Mortero Planta baja (entrada)
-38,Monte Mortero Planta baja (interior)
-39,Monte Mortero Primera planta
-40,Monte Mortero Sótano
-41,Ruta 43
-42,Lago de la Furia
-43,Ruta 44
-44,Ruta Helada Planta baja
-45,Ruta Helada Sótano 1
-46,Ruta Helada Sótano 2
-47,Ruta Helada Sótano 3
-48,Ciudad Endrino
-49,Guarida Dragón
-50,Ruta 45
-51,Ruta 46
-52,Cueva Oscura (Ruta 31)
-53,Cueva Oscura (Ruta 45)
-54,Ruta 47
-55,Monte Moon Interior
-56,Monte Moon Exterior (Plaza Monte Moon)
-57,Islas Espuma Zonas de acceso
-58,Islas Espuma Sótano 1
-59,Islas Espuma Sótano 2
-60,Islas Espuma Sótano 3
-61,Islas Espuma Sótano 4
-62,Cueva M Plateado Cueva con cascadas
-63,Monte Plateado Ladera verde
-64,Cueva M Plateado Cueva pequeña
-65,Paso Acantilado
-66,Cueva Acantilado
-67,Monte Plateado Exterior
-68,Cueva M Plateado Cueva espiral
-69,Monte Plateado Ladera nevada
-70,Cueva M Plateado Cueva final
-71,Cueva M Plateado Cueva de Moltres
-72,Ruta 12
-73,Ruta 19
-74,Ruta 20
-75,Pueblo Paleta
-76,Ciudad Verde
-77,Ciudad Celeste
-78,Ciudad Carmín
-79,Ciudad Azulona
-80,Ciudad Fucsia
-81,Isla Canela
-82,Ruta 48
-83,Ruta 26
-84,Ruta 27
-85,Ruta 28
-86,Monte Moon
-87,Túnel Roca Planta baja
-88,Túnel Roca Sótano
-89,Calle Victoria Entrada
-90,Ruta 1
-91,Ruta 2 (Sur)
-92,Ruta 3
-93,Ruta 4
-94,Ruta 5
-95,Ruta 6
-96,Ruta 7
-97,Ruta 8
-98,Ruta 9
-99,Ruta 10
-100,Ruta 11
-101,Ruta 13
-102,Ruta 14
-103,Ruta 15
-104,Ruta 16
-105,Ruta 17
-106,Ruta 18
-107,Ruta 21
-108,Ruta 22
-109,Ruta 24
-110,Ruta 25
-111,Cataratas Tohjo
-112,Cueva Diglett
-113,Calle Victoria Piso 1
-114,Calle Victoria Piso 2
-115,Ruta 2 (Norte)
-116,Bosque Verde
-117,Cerulean Cave Planta baja
-118,Cerulean Cave Primer piso
-119,Cerulean Cave Sótano
+30,Bell Tower
+65,Blackthorn City
+142,Bug Contest
+145,Bug Contest (Saturday)
+144,Bug Contest (Thursday)
+143,Bug Contest (Tuesday)
+28,Burned Tower 1F
+29,Burned Tower B1F
+99,Celadon City
+139,Cerulean Cave 1F
+140,Cerulean Cave 2F
+141,Cerulean Cave B1F
+97,Cerulean City
+2,Cherrygrove City
+51,Cianwood City
+101,Cinnabar Island
+83,Cliff Cave
+82,Cliff Edge Gate
+133,DIGLETT’s Cave
+69,Dark Cave (Route 31)
+70,Dark Cave (Route 45)
+66,Dragon’s Den
+27,Ecruteak City
+100,Fuchsia City
+60,Ice Path 1F
+61,Ice Path B1F
+62,Ice Path B2F
+63,Ice Path B3F
+20,Ilex Forest
+58,Lake of Rage
+106,Mt. Moon 1F
+72,Mt. Moon Square
+73,Mt. Moon Square (Clefairy Event)
+53,Mt. Mortar 1F
+54,Mt. Mortar 1F (Back)
+55,Mt. Mortar 2F
+56,Mt. Mortar B1F
+85,Mt. Silver
+86,Mt. Silver 1F
+88,Mt. Silver Cave (Export Belt)
+87,Mt. Silver Cave (Lower mountainside)
+79,Mt. Silver Cave (Moltres Chamber)
+89,Mt. Silver Cave (Upper mountainside)
+80,Mt. Silver Cave 2F
+81,Mt. Silver Cave 3F
+23,National Park
+24,National Park
+0,New Bark Town
+40,Olivine City
+95,Pallet Town
+108,Rock Tunnel 1F
+109,Rock Tunnel B1F
+111,Route 1
+120,Route 10
+121,Route 11
+92,Route 12
+122,Route 13
+123,Route 14
+124,Route 15
+125,Route 16
+126,Route 17
+127,Route 18
+93,Route 19
+136,Route 2 (North)
+112,Route 2 (South)
+94,Route 20
+128,Route 21
+129,Route 22
+130,Route 24
+131,Route 25
+103,Route 26
+104,Route 27
+105,Route 28
+1,Route 29
+113,Route 3
+3,Route 30
+4,Route 31
+8,Route 32
+17,Route 33
+21,Route 34
+22,Route 35
+25,Route 36
+26,Route 37
+38,Route 38
+39,Route 39
+114,Route 4
+41,Route 40
+42,Route 41
+52,Route 42
+57,Route 43
+59,Route 44
+67,Route 45
+68,Route 46
+71,Route 47
+102,Route 48
+115,Route 5
+116,Route 6
+117,Route 7
+118,Route 8
+119,Route 9
+10,Ruins of Alph (Inside)
+9,Ruins of Alph (Outside)
+18,SLOWPOKE Well B1F
+19,SLOWPOKE Well B2F
+91,Safari Zone
+74,Seafoam Islands 1F
+75,Seafoam Islands B1F
+76,Seafoam Islands B2F
+77,Seafoam Islands B3F
+78,Seafoam Islands B4F
+6,Sprout Tower
+132,Tohjo Falls
+14,Union Cave 1F
+15,Union Cave B1F
+16,Union Cave B2F
+98,Vermilion City
+110,Victory Road 1F
+134,Victory Road 2F
+135,Victory Road 3F
+5,Violet City
+96,Viridian City
+137,Viridian Forest
+43,Whirl Islands 1F
+44,Whirl Islands B1F
+46,Whirl Islands B2F
+48,Whirl Islands B3F

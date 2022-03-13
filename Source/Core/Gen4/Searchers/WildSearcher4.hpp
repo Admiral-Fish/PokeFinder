@@ -46,8 +46,7 @@ private:
     u32 maxDelay;
     u32 minAdvance;
     u32 maxAdvance;
-    u8 thresh, suctionCupThresh;
-    u16 rock;
+    u8 thresh;
 
     bool searching;
     int progress;

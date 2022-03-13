@@ -250,19 +250,10 @@ std::vector<WildState4> WildGenerator4::generateMethodK(u32 seed, const Encounte
     rng.advance(initialAdvances + offset);
 
     u8 buffer = 0;
-    u8 thresh = 0;
-    u16 rate = encounterArea.getEncounterRate();
-    if (encounter == Encounter::OldRod)
+    u16 rate = encounterArea.getRate();
+    if (lead == Lead::SuctionCups && (encounter == Encounter::OldRod || encounter == Encounter::GoodRod || encounter == Encounter::SuperRod))
     {
-        thresh = lead == Lead::SuctionCups ? 90 : 25;
-    }
-    else if (encounter == Encounter::GoodRod)
-    {
-        thresh = lead == Lead::SuctionCups ? 100 : 50;
-    }
-    else if (encounter == Encounter::SuperRod)
-    {
-        thresh = lead == Lead::SuctionCups ? 100 : 75;
+        rate <<= 1;
     }
 
     switch (lead)
@@ -320,7 +311,7 @@ std::vector<WildState4> WildGenerator4::generateMethodK(u32 seed, const Encounte
         case Encounter::OldRod:
         case Encounter::GoodRod:
         case Encounter::SuperRod:
-            if ((first % 100) >= thresh)
+            if ((first % 100) >= rate)
             {
                 continue;
             }

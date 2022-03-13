@@ -241,8 +241,7 @@ void Wild3::generate()
                        ui->filterGenerator->getDisableFilters(), ui->filterGenerator->getMinIVs(), ui->filterGenerator->getMaxIVs(),
                        ui->filterGenerator->getNatures(), ui->filterGenerator->getHiddenPowers(), ui->filterGenerator->getEncounterSlots());
 
-    bool flag = (currentProfile->getVersion() & Game::RSE) != Game::None;
-    WildGenerator3 generator(initialAdvances, maxAdvances, tid, sid, genderRatio, method, filter, flag);
+    WildGenerator3 generator(initialAdvances, maxAdvances, tid, sid, genderRatio, method, filter, currentProfile->getVersion());
     generator.setEncounter(static_cast<Encounter>(ui->comboBoxGeneratorEncounter->currentData().toInt()));
     generator.setOffset(offset);
 
@@ -278,8 +277,7 @@ void Wild3::search()
     u8 genderRatio = ui->filterSearcher->getGenderRatio();
     auto method = static_cast<Method>(ui->comboBoxSearcherMethod->getCurrentInt());
 
-    bool flag = (currentProfile->getVersion() & Game::RSE) != Game::None;
-    auto *searcher = new WildSearcher3(tid, sid, genderRatio, method, filter, flag);
+    auto *searcher = new WildSearcher3(tid, sid, genderRatio, method, filter, currentProfile->getVersion());
     searcher->setEncounter(static_cast<Encounter>(ui->comboBoxSearcherEncounter->currentData().toInt()));
     searcher->setLead(static_cast<Lead>(ui->comboBoxSearcherLead->currentData().toInt()));
     searcher->setEncounterArea(encounterSearcher[ui->comboBoxSearcherLocation->currentData().toInt()]);
@@ -335,11 +333,6 @@ void Wild3::profilesIndexChanged(int index)
 
         ui->comboBoxGeneratorEncounter->addItem(tr("Grass"), toInt(Encounter::Grass));
         ui->comboBoxSearcherEncounter->addItem(tr("Grass"), toInt(Encounter::Grass));
-        if (!flag)
-        {
-            ui->comboBoxGeneratorEncounter->addItem(tr("Safari Zone"), toInt(Encounter::SafariZone));
-            ui->comboBoxSearcherEncounter->addItem(tr("Safari Zone"), toInt(Encounter::SafariZone));
-        }
         ui->comboBoxGeneratorEncounter->addItem(tr("Rock Smash"), toInt(Encounter::RockSmash));
         ui->comboBoxSearcherEncounter->addItem(tr("Rock Smash"), toInt(Encounter::RockSmash));
         ui->comboBoxGeneratorEncounter->addItem(tr("Surfing"), toInt(Encounter::Surfing));
@@ -405,7 +398,6 @@ void Wild3::generatorEncounterIndexChanged(int index)
         switch (encounter)
         {
         case Encounter::Grass:
-        case Encounter::SafariZone:
             t = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11" };
             break;
         case Encounter::RockSmash:
@@ -438,7 +430,6 @@ void Wild3::searcherEncounterIndexChanged(int index)
         switch (encounter)
         {
         case Encounter::Grass:
-        case Encounter::SafariZone:
             t = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11" };
             break;
         case Encounter::RockSmash:

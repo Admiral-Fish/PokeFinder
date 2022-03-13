@@ -1,113 +1,115 @@
-0,Canalipoli
-1,Evopoli
-2,Pratopoli
-3,Arenipoli
-4,Lega Pokémon
-5,Cava Mineropoli P1
-6,Cava Mineropoli P1S
-7,Impianto Turbine
-8,Bosco Evopoli
-9,Fonderie Fuego
-10,Monte Corona (Entrata Percorso 207/208)
-11,Monte Corona P2
-12,Monte Corona P3
-13,Monte Corona - Neve
-14,Monte Corona P4
-15,Monte Corona P5
-16,Monte Corona P6
-17,Monte Corona P7
-18,Monte Corona - Grotta in Cima
-19,Monte Corona (Entrata Percorso 216)
-20,Monte Corona (Entrata Percorso 211)
-21,Monte Corona P1S
-22,Gran Palude - Area 1
-23,Gran Palude - Area 2
-24,Gran Palude - Area 3
-25,Gran Palude - Area 4
-26,Gran Palude - Area 5
-27,Gran Palude - Area 6
-28,Rovine Flemminia
-29,Via Vittoria - P1
-30,Via Vittoria - P2
-31,Via Vittoria - P1S
-32,Via Vittoria - Stanza sul Retro 1
-33,Via Vittoria - Stanza sul Retro 2
-34,Via Vittoria - Stanza sul Retro 3
-35,Cammino Roccioso
-36,Varco Mineropoli P1
-37,Varco Mineropoli P1S
-38,Monte Ostile
-39,Monte Ostile - Entrata
-40,Monte Ostile - Interno
-41,Fonte Saluto
-42,Grotta Ritorno - Entrata
-43,Grotta Ritorno - Pilastro 1
-44,Grotta Ritorno - Pilastro 2
-45,Tempio Nevepoli P1
-46,Tempio Nevepoli P1S
-47,Tempio Nevepoli P2S
-48,Tempio Nevepoli P3S
-49,Tempio Nevepoli P4S
-50,Tempio Nevepoli P5S
-51,Grotta Labirinto
-52,Grotta Labirinto (Segreto)
-53,Grotta Rovine (< 10 Unown)
-54,Grotta Rovine (> 10 Unown)
-55,Tunnel Rovine
-56,Giardino Trofeo
-57,Isola Ferrosa
-58,Isola Ferrosa P1
-59,Isola Ferrosa P1S
-60,Isola Ferrosa P2S (Sinistra)
-61,Isola Ferrosa P2S (Destra)
-62,Isola Ferrosa P3S
-63,Antico Chateau
-64,Antico Chateau - Stanza 5
-65,Lago Verità
-66,Lago Valore
-67,Lago Arguzia
-68,Riva Valore
-69,Riva Arguzia
-70,Percorso 201
-71,Percorso 202
-72,Percorso 203
-73,Percorso 204 (Sud)
-74,Percorso 204 (Nord)
-75,Percorso 205 (Sud)
-76,Percorso 205 (Nord)
-77,Percorso 206
-78,Percorso 207
-79,Percorso 208
-80,Percorso 209
-81,Torre Memoria P1
-82,Torre Memoria P2
-83,Torre Memoria P3
-84,Torre Memoria P4
-85,Torre Memoria P5
-86,Percorso 210 (Sud)
-87,Percorso 210 (Nord)
-88,Percorso 211 (Ovest)
-89,Percorso 211 (Est)
-90,Percorso 212 (Nord)
-91,Percorso 212 (Sud)
-92,Percorso 213
-93,Percorso 214
-94,Percorso 215
-95,Percorso 216
-96,Percorso 217
-97,Percorso 218
-98,Percorso 219
-99,Percorso 221
-100,Percorso 222
-101,Percorso 224
-102,Percorso 225
-103,Percorso 227
-104,Percorso 228
-105,Percorso 229
-106,Duefoglie
-107,Memoride
-108,Area Svago
-109,Percorso 220
-110,Percorso 223
-111,Percorso 226
-112,Percorso 230
+139,Acuity Lakefront
+0,Canalave City
+177,Celestic Town
+1,Eterna City
+8,Eterna Forest
+9,Fuego Ironworks
+23,Great Marsh Area 1
+24,Great Marsh Area 2
+25,Great Marsh Area 3
+26,Great Marsh Area 4
+27,Great Marsh Area 5
+28,Great Marsh Area 6
+118,Iron Island
+119,Iron Island 1F
+120,Iron Island B1F 1
+121,Iron Island B1F 2
+122,Iron Island B2F 1
+123,Iron Island B2F 2
+124,Iron Island B3F 1
+137,Lake Acuity
+136,Lake Valor
+135,Lake Verity (Post Team Galatic Event)
+134,Lake Verity (Pre Team Galatic Event)
+151,Lost Tower 1F
+152,Lost Tower 2F
+153,Lost Tower 3F
+154,Lost Tower 4F
+155,Lost Tower 5F
+116,Maniac Tunnel
+10,Mt. Coronet 1F 1
+19,Mt. Coronet 1F 2
+11,Mt. Coronet 2F
+12,Mt. Coronet 3F
+15,Mt. Coronet 4F 1-2
+16,Mt. Coronet 4F 3
+17,Mt. Coronet 5F
+18,Mt. Coronet 6F
+13,Mt. Coronet Summit
+21,Mt. Coronet Upper 1F 1
+20,Mt. Coronet Upper 1F 2
+22,Mt. Coronet Upper B1F
+125,Old Chateau
+132,Old Chateau 2F (Eye Room)
+54,Oreburgh Gate 1F
+55,Oreburgh Gate B1F
+5,Oreburgh Mine B1F
+6,Oreburgh Mine B2F
+2,Pastoria City
+4,Pokémon League
+53,Ravaged Path
+178,Resort Area
+140,Route 201
+141,Route 202
+142,Route 203
+144,Route 204 (North)
+143,Route 204 (South)
+145,Route 205 (South)
+146,Route 205 (South)
+147,Route 206
+148,Route 207
+149,Route 208
+150,Route 209
+157,Route 210 (North)
+156,Route 210 (South)
+159,Route 211 (East)
+158,Route 211 (West)
+160,Route 212 (North)
+161,Route 212 (South)
+162,Route 213
+163,Route 214
+164,Route 215
+165,Route 216
+166,Route 217
+167,Route 218
+168,Route 219
+179,Route 220
+169,Route 221
+170,Route 222
+180,Route 223
+171,Route 224
+172,Route 225
+181,Route 226
+173,Route 227
+174,Route 228
+175,Route 229
+182,Route 230
+114,Ruin Maniac Cave (< 10 Unown)
+115,Ruin Maniac Cave (> 10 Unown)
+59,Sendoff Spring
+106,Snowpoint Temple 1F
+107,Snowpoint Temple B1F
+108,Snowpoint Temple B2F
+109,Snowpoint Temple B3F
+110,Snowpoint Temple B4F
+111,Snowpoint Temple B5F
+29,Solaceon Ruins
+56,Stark Mountain
+57,Stark Mountain Interior 1
+58,Stark Mountain Interior 2
+3,Sunyshore City
+117,Trophy Garden
+69,Turnback 1st Pillar
+75,Turnback 2nd Pillar
+63,Turnback Cave Entrance
+176,Twinleaf Town
+7,Valley Windworks
+138,Valor Lakefront
+47,Victory Road 1F
+51,Victory Road 1F Back 1
+50,Victory Road 1F Back 2
+52,Victory Road 1F Back 3
+48,Victory Road 2F
+49,Victory Road B1F
+112,Wayward Cave 1F
+113,Wayward Cave B1F
