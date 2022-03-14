@@ -290,6 +290,7 @@ namespace Encounters4
                 headbutt.emplace_back(specie, minLevel, maxLevel, info[specie]);
             }
 
+            encounters.emplace_back(location, Encounter::Headbutt, headbutt);
 
             return encounters;
         }
