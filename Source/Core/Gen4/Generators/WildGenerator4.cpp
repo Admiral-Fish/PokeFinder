@@ -296,11 +296,6 @@ bool createPokemon(PokeRNG &go, WildState4 &state, u8 buffer, u8 synchNature, u8
                 break;
             }
 
-            if (!filter.compareNature(state))
-            {
-                return false;
-            }
-
             // Begin search for valid pid
             do
             {
