@@ -32,7 +32,7 @@ namespace Encounters4
 {
     bool getHeadbuttSpecialFlag(Game game, int location)
     {
-        const u8 *data = game == Game::HeartGold? heartgold_headbutt.data() : soulsilver_headbutt.data();
+        const u8 *data = game == Game::HeartGold ? heartgold_headbutt.data() : soulsilver_headbutt.data();
         int offset = 0;
         u8 specialTreesFlag;
 
@@ -45,7 +45,7 @@ namespace Encounters4
                 break;
             }
 
-            offset += specialTreesFlag == 0? 52 : 77;
+            offset += specialTreesFlag == 0 ? 52 : 77;
         }
 
         return specialTreesFlag == 1;
@@ -103,14 +103,14 @@ namespace Encounters4
 
         std::vector<std::vector<u8>> getHeadbuttData(Game game)
         {
-            const u8 *data = game == Game::HeartGold? heartgold_headbutt.data() : soulsilver_headbutt.data();
+            const u8 *data = game == Game::HeartGold ? heartgold_headbutt.data() : soulsilver_headbutt.data();
             int offset = 0;
 
             std::vector<std::vector<u8>> encounters;
             for (size_t i = 0; i < 60; i++)
             {
                 u8 specialTreesFlag = data[offset + 1];
-                int range = specialTreesFlag == 0? 52 : 77;
+                int range = specialTreesFlag == 0 ? 52 : 77;
                 std::vector<u8> entry(range);
                 std::memcpy(entry.data(), data + offset, range);
                 encounters.emplace_back(entry);
@@ -279,7 +279,7 @@ namespace Encounters4
             std::vector<EncounterArea4> encounters;
             u8 location = data[0];
             u8 specialTreesFlag = data[1];
-            int offset = specialTreesFlag == 0 && treesType == 2? 0 : treesType;
+            int offset = specialTreesFlag == 0 && treesType == 2 ? 0 : treesType;
 
             std::vector<Slot> headbutt;
             for (int i = 0; i < 6; i++)
@@ -463,7 +463,7 @@ namespace Encounters4
         auto *info = PersonalLoader::getPersonal(version);
 
         std::vector<EncounterArea4> encounters;
-        if (encounter == Encounter::HeadButt)
+        if ((version & Game::HGSS) != Game::None && encounter == Encounter::HeadButt)
         {
             for (const auto &data : getHeadbuttData(version))
             {
@@ -471,14 +471,13 @@ namespace Encounters4
                 std::copy(areas.begin(), areas.end(), std::back_inserter(encounters));
             }
         }
-        else
+
+        for (const auto &data : getData(version))
         {
-            for (const auto &data : getData(version))
-            {
-                auto areas = (version & Game::HGSS) != Game::None ? getHGSS(data, profile, info, encounter, time) : getDPPt(data, profile, info, time);
-                std::copy_if(areas.begin(), areas.end(), std::back_inserter(encounters),
-                             [&encounter](const EncounterArea4 &area) { return area.getEncounter() == encounter; });
-            }
+            auto areas
+                = (version & Game::HGSS) != Game::None ? getHGSS(data, profile, info, encounter, time) : getDPPt(data, profile, info, time);
+            std::copy_if(areas.begin(), areas.end(), std::back_inserter(encounters),
+                         [&encounter](const EncounterArea4 &area) { return area.getEncounter() == encounter; });
         }
 
         return encounters;
