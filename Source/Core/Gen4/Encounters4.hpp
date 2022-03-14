@@ -30,7 +30,7 @@ class Profile4;
 
 namespace Encounters4
 {
-    std::vector<EncounterArea4> getEncounters(Encounter encounter, int time, int treeType, const Profile4 &profile);
+    std::vector<EncounterArea4> getEncounters(Encounter encounter, int modifier, const Profile4 &profile);
     bool getHeadbuttSpecialFlag(Game game, int location);
 }
 

@@ -179,10 +179,10 @@ void Wild4::setupModels()
 void Wild4::updateLocationsGenerator()
 {
     auto encounter = static_cast<Encounter>(ui->comboBoxGeneratorEncounter->currentData().toInt());
-    int time = ui->comboBoxGeneratorTime->currentIndex();
-    int treeType = ui->comboBoxGeneratorTreesType->currentIndex();
+    int modifier
+        = encounter == Encounter::Headbutt ? ui->comboBoxGeneratorTreesType->currentIndex() : ui->comboBoxGeneratorTime->currentIndex();
 
-    encounterGenerator = Encounters4::getEncounters(encounter, time, treeType, *currentProfile);
+    encounterGenerator = Encounters4::getEncounters(encounter, modifier, *currentProfile);
 
     std::vector<u16> locs;
     std::transform(encounterGenerator.begin(), encounterGenerator.end(), std::back_inserter(locs),
@@ -203,10 +203,10 @@ void Wild4::updateLocationsGenerator()
 void Wild4::updateLocationsSearcher()
 {
     auto encounter = static_cast<Encounter>(ui->comboBoxSearcherEncounter->currentData().toInt());
-    int time = ui->comboBoxSearcherTime->currentIndex();
-    int treeType = ui->comboBoxSearcherTreesType->currentIndex();
+    int modifier
+        = encounter == Encounter::Headbutt ? ui->comboBoxSearcherTreesType->currentIndex() : ui->comboBoxSearcherTime->currentIndex();
 
-    encounterSearcher = Encounters4::getEncounters(encounter, time, treeType, *currentProfile);
+    encounterSearcher = Encounters4::getEncounters(encounter, modifier, *currentProfile);
 
     std::vector<u16> locs;
     std::transform(encounterSearcher.begin(), encounterSearcher.end(), std::back_inserter(locs),

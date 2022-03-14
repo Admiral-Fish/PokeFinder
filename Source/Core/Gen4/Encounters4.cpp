@@ -455,7 +455,7 @@ namespace Encounters4
         }
     }
 
-    std::vector<EncounterArea4> getEncounters(Encounter encounter, int time, int treeType, const Profile4 &profile)
+    std::vector<EncounterArea4> getEncounters(Encounter encounter, int modifier, const Profile4 &profile)
     {
         Game version = profile.getVersion();
         auto *info = PersonalLoader::getPersonal(version);
@@ -465,7 +465,7 @@ namespace Encounters4
         {
             for (const auto &data : getHeadbuttData(version))
             {
-                auto areas = getHeadbutt(data, info, treeType);
+                auto areas = getHeadbutt(data, info, modifier);
                 std::copy(areas.begin(), areas.end(), std::back_inserter(encounters));
             }
         }
@@ -473,8 +473,8 @@ namespace Encounters4
         {
             for (const auto &data : getData(version))
             {
-                auto areas = (version & Game::HGSS) != Game::None ? getHGSS(data, profile, info, encounter, time)
-                                                                  : getDPPt(data, profile, info, time);
+                auto areas = (version & Game::HGSS) != Game::None ? getHGSS(data, profile, info, encounter, modifier)
+                                                                  : getDPPt(data, profile, info, modifier);
                 std::copy_if(areas.begin(), areas.end(), std::back_inserter(encounters),
                              [&encounter](const EncounterArea4 &area) { return area.getEncounter() == encounter; });
             }

@@ -157,40 +157,17 @@ std::set<std::pair<u16, QString>> EncounterLookup::getEncounters4(Game game, u16
     {
         for (const auto type : types)
         {
-
-            if (type == Encounter::Headbutt)
+            for (const auto &modifier : { 0, 1, 2 })
             {
-                for (const auto &treeType : treeTypes)
+                auto areas = Encounters4::getEncounters(type, modifier, profile);
+                for (const auto &area : areas)
                 {
-                    auto areas = Encounters4::getEncounters(type, 0, toInt(treeType), profile);
-                    for (const auto &area : areas)
+                    auto pokemon = area.getPokemon();
+                    if (std::any_of(pokemon.begin(), pokemon.end(), [specie](const auto &entry) { return entry.getSpecie() == specie; }))
                     {
-                        auto pokemon = area.getPokemon();
-                        if (std::any_of(pokemon.begin(), pokemon.end(),
-                                        [specie](const auto &entry) { return entry.getSpecie() == specie; }))
-                        {
-                            std::pair<u8, u8> range = area.getLevelRange(specie);
-                            QString info = QString("%1/%2-%3").arg(getEncounterString(type)).arg(range.first).arg(range.second);
-                            encounters.insert(std::make_pair(area.getLocation(), info));
-                        }
-                    }
-                }
-            }
-            else
-            {
-                for (const auto &time : { 0, 1, 2 })
-                {
-                    auto areas = Encounters4::getEncounters(type, time, 0, profile);
-                    for (const auto &area : areas)
-                    {
-                        auto pokemon = area.getPokemon();
-                        if (std::any_of(pokemon.begin(), pokemon.end(),
-                                        [specie](const auto &entry) { return entry.getSpecie() == specie; }))
-                        {
-                            std::pair<u8, u8> range = area.getLevelRange(specie);
-                            QString info = QString("%1/%2-%3").arg(getEncounterString(type)).arg(range.first).arg(range.second);
-                            encounters.insert(std::make_pair(area.getLocation(), info));
-                        }
+                        std::pair<u8, u8> range = area.getLevelRange(specie);
+                        QString info = QString("%1/%2-%3").arg(getEncounterString(type)).arg(range.first).arg(range.second);
+                        encounters.insert(std::make_pair(area.getLocation(), info));
                     }
                 }
             }
