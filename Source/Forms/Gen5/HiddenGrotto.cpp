@@ -21,7 +21,6 @@
 #include "ui_HiddenGrotto.h"
 #include <Core/Enum/Game.hpp>
 #include <Core/Enum/Method.hpp>
-#include <Core/Gen5/Filters/HiddenGrottoFilter.hpp>
 #include <Core/Gen5/Generators/HiddenGrottoGenerator.hpp>
 #include <Core/Gen5/Keypresses.hpp>
 #include <Core/Gen5/Profile5.hpp>
@@ -247,7 +246,7 @@ void HiddenGrotto::profileIndexChanged(int index)
 void HiddenGrotto::calculateInitialAdvances()
 {
     ui->textBoxGeneratorInitialAdvances->setText(
-        QString::number(Utilities::initialAdvancesBW2(ui->textBoxGeneratorSeed->getULong(), currentProfile->getMemoryLink())));
+        QString::number(Utilities5::initialAdvancesBW2(ui->textBoxGeneratorSeed->getULong(), currentProfile->getMemoryLink())));
 }
 
 void HiddenGrotto::tableViewGeneratorContextMenu(QPoint pos)

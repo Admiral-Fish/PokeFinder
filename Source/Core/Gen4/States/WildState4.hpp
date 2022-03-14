@@ -25,8 +25,6 @@
 class WildState4 : public WildState
 {
 public:
-    WildState4() = default;
-
     explicit WildState4(u32 advance) : WildState(advance)
     {
     }

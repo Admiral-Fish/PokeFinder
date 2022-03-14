@@ -23,7 +23,6 @@
 #include <Core/Enum/Method.hpp>
 #include <Core/Gen3/Generators/EggGenerator3.hpp>
 #include <Core/Gen3/Profile3.hpp>
-#include <Core/Parents/Filters/StateFilter.hpp>
 #include <Core/Parents/ProfileLoader.hpp>
 #include <Core/Util/Nature.hpp>
 #include <Core/Util/Translator.hpp>

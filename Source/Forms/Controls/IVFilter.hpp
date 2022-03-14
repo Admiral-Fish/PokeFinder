@@ -55,7 +55,7 @@ private slots:
     void changeCompareSpD(int type);
     void changeCompareSpe(int type);
     void openIVCalculator();
-    void updateIVs(const std::vector<std::vector<u8>> &ivs);
+    void updateIVs(const std::array<std::vector<u8>, 6> &ivs);
 };
 
 #endif // IVFILTER_HPP

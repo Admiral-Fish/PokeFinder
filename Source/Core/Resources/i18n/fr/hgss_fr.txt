@@ -86,7 +86,7 @@
 85,Route 28
 86,Mt. Moon
 87,Rock Tunnel 1F
-88,Rock Tunnel 2F
+88,Rock Tunnel B1F
 89,Victory Road 1F
 90,Route 1
 91,Route 2 (South)

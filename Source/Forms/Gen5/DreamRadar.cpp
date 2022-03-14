@@ -25,7 +25,6 @@
 #include <Core/Gen5/Keypresses.hpp>
 #include <Core/Gen5/Profile5.hpp>
 #include <Core/Gen5/Searchers/DreamRadarSearcher.hpp>
-#include <Core/Gen5/States/DreamRadarState.hpp>
 #include <Core/Parents/PersonalInfo.hpp>
 #include <Core/Parents/PersonalLoader.hpp>
 #include <Core/Parents/ProfileLoader.hpp>
@@ -137,7 +136,7 @@ void DreamRadar::setupModels()
         }
     }
 
-    for (const std::string &gender : Translator::getGenders())
+    for (const std::string &gender : *Translator::getGenders())
     {
         ui->comboBoxGeneratorGender1->addItem(QString::fromStdString(gender));
         ui->comboBoxGeneratorGender2->addItem(QString::fromStdString(gender));

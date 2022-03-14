@@ -102,7 +102,7 @@ void Event5::setupModels()
     ui->textBoxSearcherEventTID->setValues(InputType::TIDSID);
     ui->textBoxSearcherEventSID->setValues(InputType::TIDSID);
 
-    for (const std::string &nature : Translator::getNatures())
+    for (const std::string &nature : *Translator::getNatures())
     {
         ui->comboBoxGeneratorNature->addItem(QString::fromStdString(nature));
         ui->comboBoxSearcherNature->addItem(QString::fromStdString(nature));
@@ -414,11 +414,11 @@ void Event5::calculateInitialAdvances()
     u8 initialAdvances;
     if ((version & Game::BW) != Game::None)
     {
-        initialAdvances = Utilities::initialAdvancesBW(ui->textBoxGeneratorSeed->getULong());
+        initialAdvances = Utilities5::initialAdvancesBW(ui->textBoxGeneratorSeed->getULong());
     }
     else
     {
-        initialAdvances = Utilities::initialAdvancesBW2(ui->textBoxGeneratorSeed->getULong(), currentProfile->getMemoryLink());
+        initialAdvances = Utilities5::initialAdvancesBW2(ui->textBoxGeneratorSeed->getULong(), currentProfile->getMemoryLink());
     }
 
     ui->textBoxGeneratorInitialAdvances->setText(QString::number(initialAdvances));

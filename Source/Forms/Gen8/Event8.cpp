@@ -21,7 +21,6 @@
 #include "ui_Event8.h"
 #include <Core/Gen8/Generators/EventGenerator8.hpp>
 #include <Core/Gen8/Profile8.hpp>
-#include <Core/Gen8/WB8.hpp>
 #include <Core/Parents/ProfileLoader.hpp>
 #include <Core/Util/Translator.hpp>
 #include <Forms/Controls/Controls.hpp>
@@ -96,7 +95,7 @@ void Event8::setupModels()
         ui->comboBoxSpecies->addItem(QString::fromStdString(specie));
     }
 
-    for (const std::string &nature : Translator::getNatures())
+    for (const std::string &nature : *Translator::getNatures())
     {
         ui->comboBoxNature->addItem(QString::fromStdString(nature));
     }
@@ -134,10 +133,17 @@ WB8 Event8::getParameters() const
 
 void Event8::generate()
 {
-    model->clearModel();
-
     u64 seed0 = ui->textBoxSeed0->getULong();
     u64 seed1 = ui->textBoxSeed1->getULong();
+    if (seed0 == 0 && seed1 == 0)
+    {
+        QMessageBox msg(QMessageBox::Warning, tr("Missing seeds"), tr("Please insert missing seed information"));
+        msg.exec();
+        return;
+    }
+
+    model->clearModel();
+
     u32 initialAdvances = ui->textBoxInitialAdvances->getUInt();
     u32 maxAdvances = ui->textBoxMaxAdvances->getUInt();
     u16 tid = currentProfile->getTID();

@@ -80,7 +80,7 @@ void GalesSeedSearcher::startSearch(int threads, const std::vector<u32> &seeds)
         }
         else
         {
-            threadContainer.emplace_back(std::async(std::launch::async, [=] { search(seeds.cbegin() + start, seeds.cbegin() + split); }));
+            threadContainer.emplace_back(std::async(std::launch::async, [=] { search(seeds.cbegin() + start, seeds.cbegin() + start + split); }));
         }
         start += split;
     }

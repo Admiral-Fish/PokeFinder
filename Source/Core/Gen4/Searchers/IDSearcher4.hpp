@@ -29,7 +29,6 @@ class IDState4;
 class IDSearcher4
 {
 public:
-    IDSearcher4() = default;
     explicit IDSearcher4(const IDFilter &filter);
     void startSearch(bool infinite, u16 year, u32 minDelay, u32 maxDelay);
     void cancelSearch();

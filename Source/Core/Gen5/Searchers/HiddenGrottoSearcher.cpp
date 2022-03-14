@@ -112,7 +112,7 @@ void HiddenGrottoSearcher::search(HiddenGrottoGenerator generator, const Date &s
                             sha.setTime(hour, minute, second, profile.getDSType());
                             u64 seed = sha.hashSeed();
 
-                            generator.setInitialAdvances(Utilities::initialAdvancesBW2(seed, profile.getMemoryLink()));
+                            generator.setInitialAdvances(Utilities5::initialAdvancesBW2(seed, profile.getMemoryLink()));
 
                             auto states = generator.generate(seed);
                             if (!states.empty())

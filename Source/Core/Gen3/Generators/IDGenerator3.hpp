@@ -20,14 +20,14 @@
 #ifndef IDGENERATOR3_HPP
 #define IDGENERATOR3_HPP
 
+#include <Core/Parents/Filters/IDFilter.hpp>
 #include <Core/Parents/Generators/IDGenerator.hpp>
 
 class IDState3;
 
-class IDGenerator3 : public IDGenerator<>
+class IDGenerator3 : public IDGenerator<IDFilter>
 {
 public:
-    IDGenerator3() = default;
     IDGenerator3(u32 initialAdvances, u32 maxAdvances, const IDFilter &filter);
     std::vector<IDState3> generateXDColo(u32 seed);
     std::vector<IDState3> generateFRLGE(u16 tid);

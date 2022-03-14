@@ -20,7 +20,6 @@
 #include "IVFilter.hpp"
 #include "ui_IVFilter.h"
 #include <Forms/Util/IVCalculator.hpp>
-#include <array>
 
 IVFilter::IVFilter(QWidget *parent) : QWidget(parent), ui(new Ui::IVFilter)
 {
@@ -232,7 +231,7 @@ void IVFilter::openIVCalculator()
     calculator->show();
 }
 
-void IVFilter::updateIVs(const std::vector<std::vector<u8>> &ivs)
+void IVFilter::updateIVs(const std::array<std::vector<u8>, 6> &ivs)
 {
     QVector<QSpinBox *> minIVs
         = { ui->spinBoxHPMin, ui->spinBoxAtkMin, ui->spinBoxDefMin, ui->spinBoxSpAMin, ui->spinBoxSpDMin, ui->spinBoxSpeMin };
@@ -241,13 +240,13 @@ void IVFilter::updateIVs(const std::vector<std::vector<u8>> &ivs)
 
     for (size_t i = 0; i < ivs.size(); i++)
     {
-        std::vector<u8> iv = ivs[i];
+        auto iv = ivs[i];
 
         u8 min = 0;
         u8 max = 31;
 
         // Vector is sorted, grab first/last as min/max
-        if (!ivs.empty())
+        if (!iv.empty())
         {
             min = iv.front();
             max = iv.back();

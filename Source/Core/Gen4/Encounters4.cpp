@@ -210,26 +210,35 @@ namespace Encounters4
                 if (encounter == Encounter::Grass)
                 {
                     specie = getValue(data, 184);
+                    mons[0].setSpecie(specie, info[specie]);
+                    mons[1].setSpecie(specie, info[specie]);
                 }
                 else if (encounter == Encounter::Surfing)
                 {
                     specie = getValue(data, 186);
+                    mons[0].setSpecie(specie, info[specie]);
+                }
+                else if (encounter == Encounter::OldRod)
+                {
+                    specie = getValue(data, 190);
+                    mons[2].setSpecie(specie, info[specie]);
                 }
                 else if (encounter == Encounter::GoodRod)
                 {
-                    specie = getValue(data, 188);
+                    specie = getValue(data, 190);
+                    for (int i : { 0, 2, 3 })
+                    {
+                        mons[i].setSpecie(specie, info[specie]);
+                    }
                 }
                 else if (encounter == Encounter::SuperRod)
                 {
                     specie = getValue(data, 190);
+                    for (int i = 0; i < 5; i++)
+                    {
+                        mons[i].setSpecie(specie, info[specie]);
+                    }
                 }
-                else
-                {
-                    return;
-                }
-
-                mons[0].setSpecie(specie, info[specie]);
-                mons[1].setSpecie(specie, info[specie]);
             }
         }
 
@@ -324,18 +333,10 @@ namespace Encounters4
                     max = data[145 + i * 4];
                     specie = getValue(data, 146 + i * 4);
 
-                    // Replace Corsula with Staryu at night
-                    // Replace slot 3 with Gyrados at Mt. Silver 2F at night
-                    if (time == 2)
+                    // Adjust time based slot
+                    if ((time == 0 || time == 1) && i == 3)
                     {
-                        if (specie == 222)
-                        {
-                            specie = 120;
-                        }
-                        else if (location == 68 && i == 3)
-                        {
-                            specie = 130;
-                        }
+                        specie = getValue(data, 188);
                     }
 
                     good.emplace_back(specie, min, max, info[specie]);
@@ -344,18 +345,10 @@ namespace Encounters4
                     max = data[165 + i * 4];
                     specie = getValue(data, 166 + i * 4);
 
-                    // Replace Corsula with Staryu at night
-                    // Replace slot 1 with Gyrados at Mt. Silver 2F at night
-                    if (time == 2)
+                    // Adjust time based slot
+                    if ((time == 0 || time == 1) && i == 1)
                     {
-                        if (specie == 222)
-                        {
-                            specie = 120;
-                        }
-                        else if (location == 68 && i == 1)
-                        {
-                            specie = 130;
-                        }
+                        specie = getValue(data, 188);
                     }
 
                     super.emplace_back(specie, min, max, info[specie]);

@@ -245,7 +245,6 @@ void Static3::seedToTime()
 
     auto *seedToTime = new SeedTime3(seed);
     seedToTime->show();
-    seedToTime->raise();
 }
 
 void Static3::profileManager()

@@ -34,7 +34,6 @@ class SearcherState5;
 class HiddenGrottoSearcher
 {
 public:
-    HiddenGrottoSearcher() = default;
     explicit HiddenGrottoSearcher(const Profile5 &profile);
     void startSearch(const HiddenGrottoGenerator &generator, int threads, const Date &start, const Date &end);
     void cancelSearch();

@@ -42,7 +42,7 @@ u16 EncounterArea4::getEncounterRate() const
     case 119: // Cerulean Cave B1F
         return 5;
     case 8: // Ruins of Alpha (Outside)
-    case 88: // Rock Tunnel 2F
+    case 88: // Rock Tunnel B1F
         return 20;
     case 35: // Cianwood City
     case 66: // Cliff Cave

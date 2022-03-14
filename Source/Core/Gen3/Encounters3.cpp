@@ -26,7 +26,6 @@
 #include <Core/Parents/Slot.hpp>
 #include <Core/Resources/Encounters.hpp>
 #include <algorithm>
-#include <array>
 #include <cstring>
 #include <iterator>
 

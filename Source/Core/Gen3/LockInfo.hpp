@@ -25,8 +25,6 @@
 class LockInfo
 {
 public:
-    LockInfo() = default;
-
     constexpr LockInfo(u8 nature, u8 genderLower, u8 genderUpper) :
         nature(nature), genderLower(genderLower), genderUpper(genderUpper), free(nature == 255 && genderLower == 255 && genderUpper == 255)
     {

@@ -22,11 +22,9 @@
 #include <Core/Enum/Lead.hpp>
 #include <Core/Enum/Method.hpp>
 #include <Core/Gen3/EncounterArea3.hpp>
-#include <Core/Parents/Filters/StateFilter.hpp>
 #include <Core/Parents/States/WildState.hpp>
 #include <Core/RNG/LCRNG.hpp>
 #include <Core/Util/EncounterSlot.hpp>
-#include <functional>
 
 WildGenerator3::WildGenerator3(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, Method method,
                                const StateFilter &filter, bool rse) :
@@ -42,12 +40,13 @@ std::vector<WildState> WildGenerator3::generate(u32 seed, const EncounterArea3 &
     rng.advance(initialAdvances + offset);
 
     u16 rate = encounterArea.getEncounterRate() * 16;
-    bool rseSafari = encounterArea.rseSafariZone() && rse; // RockSmash encounters have different rng calls inside RSE Safari Zone,
-                                                             // so we set a flag to check if we're searching these kind of spreads
+    // RockSmash/Surfing/Fishing encounters have different rng calls inside RSE Safari Zone,
+    // so we set a flag to check if we're searching these kind of spreads
+    bool rseSafari = encounterArea.rseSafariZone() && rse;
     bool rock = rate == 2880;
 
     bool cuteCharmFlag = false;
-    std::function<bool(u32)> cuteCharm;
+    bool (*cuteCharm)(u32);
     switch (lead)
     {
     case Lead::CuteCharm125F:
@@ -136,7 +135,10 @@ std::vector<WildState> WildGenerator3::generate(u32 seed, const EncounterArea3 &
         case Encounter::OldRod:
         case Encounter::GoodRod:
         case Encounter::SuperRod:
-            go.next();
+            if (!rseSafari) // account Surfing/Fishing extra rng call outside RSE Safari Zone
+            {
+                go.next();
+            }
             state.setEncounterSlot(EncounterSlot::hSlot(go.nextUShort(), encounter));
             if (!filter.compareEncounterSlot(state))
             {
@@ -144,6 +146,10 @@ std::vector<WildState> WildGenerator3::generate(u32 seed, const EncounterArea3 &
             }
 
             state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), go.nextUShort()));
+            if (rseSafari) // account Surfing/Fishing extra rng call inside RSE Safari Zone
+            {
+                go.next();
+            }
             break;
         default:
             break;

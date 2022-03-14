@@ -74,7 +74,7 @@ std::vector<State> EventGenerator5::generate(u64 seed) const
         if (parameters.getGender() == 0 || parameters.getGender() == 1)
         {
             u64 rand = go.nextUInt();
-            pid = Utilities::forceGender(pid, rand, parameters.getGender(), genderRatio);
+            pid = Utilities5::forceGender(pid, rand, parameters.getGender(), genderRatio);
             state.setGender(parameters.getGender());
         }
         else

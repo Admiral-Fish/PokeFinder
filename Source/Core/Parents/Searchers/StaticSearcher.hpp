@@ -26,7 +26,6 @@
 class StaticSearcher : public Searcher
 {
 public:
-    StaticSearcher() = default;
     StaticSearcher(u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter) :
         Searcher(tid, sid, genderRatio, method, filter)
     {

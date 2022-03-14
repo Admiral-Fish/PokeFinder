@@ -23,9 +23,7 @@
 #include <Core/Gen4/Generators/EggGenerator4.hpp>
 #include <Core/Gen4/Profile4.hpp>
 #include <Core/Gen4/Searchers/EggSearcher4.hpp>
-#include <Core/Parents/Filters/StateFilter.hpp>
 #include <Core/Parents/ProfileLoader.hpp>
-#include <Core/Parents/States/EggState.hpp>
 #include <Core/Util/Translator.hpp>
 #include <Forms/Controls/Controls.hpp>
 #include <Forms/Gen4/Profile/ProfileManager4.hpp>
@@ -43,7 +41,7 @@ Eggs4::Eggs4(QWidget *parent) : QWidget(parent), ui(new Ui::Eggs4)
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
 
-    updateProfiles();
+    setupModels();
 }
 
 Eggs4::~Eggs4()
@@ -137,7 +135,7 @@ void Eggs4::setupModels()
     connect(ui->eggSettingsSearcher, &EggSettings::toggleInheritance, searcherModel, &EggSearcherModel4::toggleInheritance);
     connect(ui->comboBoxGeneratorMethod, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &Eggs4::generatorMethodChanged);
 
-    setupModels();
+    updateProfiles();
 
     QSettings setting;
     setting.beginGroup("eggs4");
@@ -342,7 +340,6 @@ void Eggs4::seedToTime()
 
     auto *time = new SeedtoTime4(seed, currentProfile->getVersion());
     time->show();
-    time->raise();
 }
 
 void Eggs4::calcPoketch()
@@ -352,7 +349,6 @@ void Eggs4::calcPoketch()
 
     auto *poketch = new Poketch(advances);
     poketch->show();
-    poketch->raise();
 }
 
 void Eggs4::profileManager()

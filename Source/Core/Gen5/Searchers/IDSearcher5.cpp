@@ -116,7 +116,7 @@ void IDSearcher5::search(IDGenerator5 generator, const Date &start, const Date &
                         sha.setTime(hour, minute, second, profile.getDSType());
                         u64 seed = sha.hashSeed();
 
-                        generator.setInitialAdvances(flag ? Utilities::initialAdvancesBWID(seed) : Utilities::initialAdvancesBW2ID(seed));
+                        generator.setInitialAdvances(flag ? Utilities5::initialAdvancesBWID(seed) : Utilities5::initialAdvancesBW2ID(seed));
                         auto states = generator.generate(seed, pid, checkPID, checkXOR);
 
                         if (!states.empty())

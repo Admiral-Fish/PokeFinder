@@ -23,7 +23,6 @@
 #include <Core/Gen5/Profile5.hpp>
 #include <atomic>
 #include <mutex>
-#include <unordered_map>
 
 class Date;
 class StaticGenerator5;
@@ -35,7 +34,6 @@ enum class Method : u8;
 class StaticSearcher5
 {
 public:
-    StaticSearcher5() = default;
     explicit StaticSearcher5(const Profile5 &profile, Method method);
     void startSearch(const StaticGenerator5 &generator, int threads, const Date &start, const Date &end);
     void cancelSearch();
