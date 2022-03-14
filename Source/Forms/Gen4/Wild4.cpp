@@ -265,8 +265,6 @@ void Wild4::updateTreesTypeGenerator()
     {
         ui->comboBoxGeneratorTreesType->removeItem(ui->comboBoxGeneratorTreesType->findData(toInt(HeadbuttType::Special)));
     }
-
-    updatePokemonGenerator();
 }
 
 void Wild4::updateTreesTypeSearcher()
@@ -283,8 +281,6 @@ void Wild4::updateTreesTypeSearcher()
     {
         ui->comboBoxSearcherTreesType->removeItem(ui->comboBoxSearcherTreesType->findData(toInt(HeadbuttType::Special)));
     }
-
-    updatePokemonGenerator();
 }
 
 void Wild4::generate()
@@ -590,10 +586,7 @@ void Wild4::generatorLocationIndexChanged(int index)
                 updateTreesTypeGenerator();
             }
         }
-        else
-        {
-            updatePokemonGenerator();
-        }
+        updatePokemonGenerator();
     }
 }
 
@@ -608,10 +601,7 @@ void Wild4::searcherLocationIndexChanged(int index)
                 updateTreesTypeSearcher();
             }
         }
-        else
-        {
-            updatePokemonGenerator();
-        }
+        updatePokemonGenerator();
     }
 }
 
