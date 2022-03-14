@@ -21,6 +21,7 @@
 #include "ui_EncounterLookup.h"
 #include <Core/Enum/Encounter.hpp>
 #include <Core/Enum/Game.hpp>
+#include <Core/Enum/HeadbuttType.hpp>
 #include <Core/Gen3/EncounterArea3.hpp>
 #include <Core/Gen3/Encounters3.hpp>
 #include <Core/Gen3/Profile3.hpp>
@@ -122,7 +123,9 @@ std::set<std::pair<u16, QString>> EncounterLookup::getEncounters4(Game game, u16
     std::vector<Profile4> profiles;
 
     // Encounter variables to iterate through
-    auto types = { Encounter::Grass, Encounter::RockSmash, Encounter::OldRod, Encounter::GoodRod, Encounter::SuperRod, Encounter::Surfing };
+    auto types = { Encounter::Grass,    Encounter::RockSmash, Encounter::OldRod,  Encounter::GoodRod,
+                   Encounter::SuperRod, Encounter::Surfing,   Encounter::Headbutt };
+    auto treeTypes = { HeadbuttType::Normal1, HeadbuttType::Normal2, HeadbuttType::Special };
 
     // Setup profiles to iterate through the different combinations of possibilities depending on HGSS vs DPPt
     if ((game & Game::HGSS) != Game::None)
@@ -154,17 +157,40 @@ std::set<std::pair<u16, QString>> EncounterLookup::getEncounters4(Game game, u16
     {
         for (const auto type : types)
         {
-            for (const auto &time : { 0, 1, 2 })
+
+            if (type == Encounter::Headbutt)
             {
-                auto areas = Encounters4::getEncounters(type, time, profile);
-                for (const auto &area : areas)
+                for (const auto &treeType : treeTypes)
                 {
-                    auto pokemon = area.getPokemon();
-                    if (std::any_of(pokemon.begin(), pokemon.end(), [specie](const auto &entry) { return entry.getSpecie() == specie; }))
+                    auto areas = Encounters4::getEncounters(type, 0, toInt(treeType), profile);
+                    for (const auto &area : areas)
                     {
-                        std::pair<u8, u8> range = area.getLevelRange(specie);
-                        QString info = QString("%1/%2-%3").arg(getEncounterString(type)).arg(range.first).arg(range.second);
-                        encounters.insert(std::make_pair(area.getLocation(), info));
+                        auto pokemon = area.getPokemon();
+                        if (std::any_of(pokemon.begin(), pokemon.end(),
+                                        [specie](const auto &entry) { return entry.getSpecie() == specie; }))
+                        {
+                            std::pair<u8, u8> range = area.getLevelRange(specie);
+                            QString info = QString("%1/%2-%3").arg(getEncounterString(type)).arg(range.first).arg(range.second);
+                            encounters.insert(std::make_pair(area.getLocation(), info));
+                        }
+                    }
+                }
+            }
+            else
+            {
+                for (const auto &time : { 0, 1, 2 })
+                {
+                    auto areas = Encounters4::getEncounters(type, time, 0, profile);
+                    for (const auto &area : areas)
+                    {
+                        auto pokemon = area.getPokemon();
+                        if (std::any_of(pokemon.begin(), pokemon.end(),
+                                        [specie](const auto &entry) { return entry.getSpecie() == specie; }))
+                        {
+                            std::pair<u8, u8> range = area.getLevelRange(specie);
+                            QString info = QString("%1/%2-%3").arg(getEncounterString(type)).arg(range.first).arg(range.second);
+                            encounters.insert(std::make_pair(area.getLocation(), info));
+                        }
                     }
                 }
             }
@@ -233,6 +259,8 @@ QString EncounterLookup::getEncounterString(Encounter type)
         return tr("Super Rod");
     case Encounter::RockSmash:
         return tr("Rock Smash");
+    case Encounter::Headbutt:
+        return tr("Headbutt");
     default:
         return "-";
     }

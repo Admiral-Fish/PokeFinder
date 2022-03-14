@@ -290,7 +290,6 @@ namespace Encounters4
                 headbutt.emplace_back(specie, minLevel, maxLevel, info[specie]);
             }
 
-            encounters.emplace_back(location, Encounter::HeadButt, headbutt);
 
             return encounters;
         }
@@ -455,27 +454,29 @@ namespace Encounters4
         }
     }
 
-    std::vector<EncounterArea4> getEncounters(Encounter encounter, int time, const Profile4 &profile)
+    std::vector<EncounterArea4> getEncounters(Encounter encounter, int time, int treeType, const Profile4 &profile)
     {
         Game version = profile.getVersion();
         auto *info = PersonalLoader::getPersonal(version);
 
         std::vector<EncounterArea4> encounters;
-        if ((version & Game::HGSS) != Game::None && encounter == Encounter::HeadButt)
+        if ((version & Game::HGSS) != Game::None && encounter == Encounter::Headbutt)
         {
             for (const auto &data : getHeadbuttData(version))
             {
-                auto areas = getHeadbutt(data, info, time);
+                auto areas = getHeadbutt(data, info, treeType);
                 std::copy(areas.begin(), areas.end(), std::back_inserter(encounters));
             }
         }
-
-        for (const auto &data : getData(version))
+        else
         {
-            auto areas
-                = (version & Game::HGSS) != Game::None ? getHGSS(data, profile, info, encounter, time) : getDPPt(data, profile, info, time);
-            std::copy_if(areas.begin(), areas.end(), std::back_inserter(encounters),
-                         [&encounter](const EncounterArea4 &area) { return area.getEncounter() == encounter; });
+            for (const auto &data : getData(version))
+            {
+                auto areas = (version & Game::HGSS) != Game::None ? getHGSS(data, profile, info, encounter, time)
+                                                                  : getDPPt(data, profile, info, time);
+                std::copy_if(areas.begin(), areas.end(), std::back_inserter(encounters),
+                             [&encounter](const EncounterArea4 &area) { return area.getEncounter() == encounter; });
+            }
         }
 
         return encounters;

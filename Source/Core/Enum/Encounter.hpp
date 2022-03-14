@@ -37,7 +37,7 @@ enum class Encounter : u8
     Static,
     SafariZone,
     BugCatchingContest,
-    HeadButt,
+    Headbutt,
     Roamer,
     Gift,
     EntraLink,
