@@ -584,6 +584,7 @@ void Wild4::generatorLocationIndexChanged(int index)
         {
             updateTreesTypeGenerator();
         }
+
         updatePokemonGenerator();
     }
 }
@@ -596,7 +597,8 @@ void Wild4::searcherLocationIndexChanged(int index)
         {
             updateTreesTypeSearcher();
         }
-        updatePokemonGenerator();
+
+        updatePokemonSearcher();
     }
 }
 
@@ -634,6 +636,7 @@ void Wild4::generatorTreesTypeIndexChanged(int index)
     {
         auto encounter = static_cast<Encounter>(ui->comboBoxGeneratorEncounter->currentData().toInt());
         encounterGenerator = Encounters4::getEncounters(encounter, ui->comboBoxGeneratorTreesType->currentIndex(), *currentProfile);
+        updatePokemonGenerator();
     }
 }
 
@@ -643,6 +646,7 @@ void Wild4::searcherTreesTypeIndexChanged(int index)
     {
         auto encounter = static_cast<Encounter>(ui->comboBoxSearcherEncounter->currentData().toInt());
         encounterSearcher = Encounters4::getEncounters(encounter, ui->comboBoxSearcherTreesType->currentIndex(), *currentProfile);
+        updatePokemonSearcher();
     }
 }
 
