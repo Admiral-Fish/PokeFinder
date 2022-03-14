@@ -385,6 +385,7 @@ void Wild4::profilesIndexChanged(int index)
         ui->labelProfileRadioValue->setText(QString::fromStdString(currentProfile->getRadioString()));
         ui->labelProfilePokeRadarValue->setText(currentProfile->getRadar() ? tr("Yes") : tr("No"));
         ui->labelProfileSwarmValue->setText(currentProfile->getSwarm() ? tr("Yes") : tr("No"));
+        ui->labelProfileNationalDexValue->setText(currentProfile->getNationalDex() ? tr("Yes") : tr("No"));
 
         bool flag = (currentProfile->getVersion() & Game::HGSS) != Game::None;
 
