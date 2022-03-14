@@ -344,7 +344,8 @@ bool createPokemon(PokeRNG &go, WildState4 &state, u8 buffer, u8 synchNature, u8
                 return false;
             }
 
-            do // Begin search for valid pid
+            // Begin search for valid pid
+            do
             {
                 u16 low = go.nextUShort<true>();
                 u16 high = go.nextUShort<true>();
@@ -377,7 +378,8 @@ bool createPokemon(PokeRNG &go, WildState4 &state, u8 buffer, u8 synchNature, u8
                     return false;
                 }
 
-                do // Begin search for valid pid
+                // Begin search for valid pid
+                do
                 {
                     u16 low = go.nextUShort<true>();
                     u16 high = go.nextUShort<true>();
@@ -395,7 +397,8 @@ bool createPokemon(PokeRNG &go, WildState4 &state, u8 buffer, u8 synchNature, u8
                 return false;
             }
 
-            do // Begin search for valid pid
+            // Begin search for valid pid
+            do
             {
                 u16 low = go.nextUShort<true>();
                 u16 high = go.nextUShort<true>();
@@ -411,6 +414,7 @@ bool createPokemon(PokeRNG &go, WildState4 &state, u8 buffer, u8 synchNature, u8
 
         state.setIVs(iv1, iv2);
     }
+
     return true;
 }
 
