@@ -438,20 +438,22 @@ namespace Encounters4
 
         std::vector<EncounterArea4> encounters;
 
-        for (const auto &data : getData(version))
-        {
-            auto areas
-                = (version & Game::HGSS) != Game::None ? getHGSS(data, profile, info, encounter, time) : getDPPt(data, profile, info, time);
-            std::copy_if(areas.begin(), areas.end(), std::back_inserter(encounters),
-                         [&encounter](const EncounterArea4 &area) { return area.getEncounter() == encounter; });
-        }
-
         if ((version & Game::HGSS) != Game::None && encounter == Encounter::BugCatchingContest)
         {
             for (const auto &data : getBugCatchingContestData(profile.getNationalDex()))
             {
                 auto areas = getBugCatchingContest(data, info);
                 std::copy(areas.begin(), areas.end(), std::back_inserter(encounters));
+            }
+        }
+        else
+        {
+            for (const auto &data : getData(version))
+            {
+                auto areas = (version & Game::HGSS) != Game::None ? getHGSS(data, profile, info, encounter, time)
+                                                                  : getDPPt(data, profile, info, time);
+                std::copy_if(areas.begin(), areas.end(), std::back_inserter(encounters),
+                             [&encounter](const EncounterArea4 &area) { return area.getEncounter() == encounter; });
             }
         }
 
