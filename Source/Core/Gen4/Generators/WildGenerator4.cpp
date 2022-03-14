@@ -333,13 +333,23 @@ bool createPokemon(PokeRNG &go, WildState4 &state, u8 buffer, u8 synchNature, u8
             if ((go.nextUShort<true>() & 1) == 0) // Successful synch
             {
                 state.setNature(synchNature);
+
+                if (!filter.compareNature(state))
+                {
+                    return false;
+                }
             }
             else // Failed synch
             {
                 state.setNature(go.nextUShort<true>() % 25);
+
+                if (!filter.compareNature(state))
+                {
+                    return false;
+                }
             }
 
-            do
+            do // Begin search for valid pid
             {
                 u16 low = go.nextUShort<true>();
                 u16 high = go.nextUShort<true>();
@@ -355,13 +365,24 @@ bool createPokemon(PokeRNG &go, WildState4 &state, u8 buffer, u8 synchNature, u8
             {
                 // Get hunt nature
                 state.setNature(go.nextUShort<true>() % 25);
+
+                if (!filter.compareNature(state))
+                {
+                    return false;
+                }
+
                 pid = buffer + state.getNature();
             }
             else
             {
                 state.setNature(go.nextUShort<true>() % 25);
 
-                do
+                if (!filter.compareNature(state))
+                {
+                    return false;
+                }
+
+                do // Begin search for valid pid
                 {
                     u16 low = go.nextUShort<true>();
                     u16 high = go.nextUShort<true>();
@@ -374,7 +395,12 @@ bool createPokemon(PokeRNG &go, WildState4 &state, u8 buffer, u8 synchNature, u8
         default: // Falls through to set nature for all cases other than cute charm and synch
             state.setNature(go.nextUShort<true>() % 25);
 
-            do
+            if (!filter.compareNature(state))
+            {
+                return false;
+            }
+
+            do // Begin search for valid pid
             {
                 u16 low = go.nextUShort<true>();
                 u16 high = go.nextUShort<true>();
@@ -382,13 +408,6 @@ bool createPokemon(PokeRNG &go, WildState4 &state, u8 buffer, u8 synchNature, u8
             } while (pid % 25 != state.getNature());
             break;
         }
-
-        if (!filter.compareNature(state))
-        {
-            return false;
-        }
-
-        // Begin search for valid pid
 
         state.setPID(pid);
 
