@@ -333,20 +333,15 @@ bool createPokemon(PokeRNG &go, WildState4 &state, u8 buffer, u8 synchNature, u8
             if ((go.nextUShort<true>() & 1) == 0) // Successful synch
             {
                 state.setNature(synchNature);
-
-                if (!filter.compareNature(state))
-                {
-                    return false;
-                }
             }
             else // Failed synch
             {
                 state.setNature(go.nextUShort<true>() % 25);
+            }
 
-                if (!filter.compareNature(state))
-                {
-                    return false;
-                }
+            if (!filter.compareNature(state))
+            {
+                return false;
             }
 
             do // Begin search for valid pid
