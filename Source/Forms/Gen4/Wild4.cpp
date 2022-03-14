@@ -610,7 +610,7 @@ void Wild4::searcherLocationIndexChanged(int index)
         }
         else
         {
-            updatePokemonSearcher();
+            updatePokemonGenerator();
         }
     }
 }
@@ -647,7 +647,9 @@ void Wild4::generatorTreesTypeIndexChanged(int index)
 {
     if (index >= 0)
     {
-        updatePokemonGenerator();
+        int position = ui->comboBoxGeneratorLocation->currentIndex();
+        updateLocationsGenerator();
+        ui->comboBoxGeneratorLocation->setCurrentIndex(position);
     }
 }
 
@@ -655,7 +657,9 @@ void Wild4::searcherTreesTypeIndexChanged(int index)
 {
     if (index >= 0)
     {
-        updatePokemonSearcher();
+        int position = ui->comboBoxSearcherLocation->currentIndex();
+        updateLocationsSearcher();
+        ui->comboBoxSearcherLocation->setCurrentIndex(position);
     }
 }
 
