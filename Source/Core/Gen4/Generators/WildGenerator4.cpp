@@ -293,20 +293,18 @@ bool createPokemon(PokeRNG &go, WildState4 &state, u8 buffer, u8 synchNature, u8
                 break;
             case Lead::CompoundEyes:
                 state.setLead(Lead::CompoundEyes);
-                break;
-            default:
-                // Get hunt nature
+            default: // Falls through to set nature for all cases other than cute charm and synch
                 state.setNature(go.nextUShort<true>() % 25);
-
-                // Begin search for valid pid
-                do
-                {
-                    u16 low = go.nextUShort<true>();
-                    u16 high = go.nextUShort<true>();
-                    pid = static_cast<u32>((high << 16) | low);
-                } while (pid % 25 != state.getNature());
                 break;
             }
+
+            // Begin search for valid pid
+            do
+            {
+                u16 low = go.nextUShort<true>();
+                u16 high = go.nextUShort<true>();
+                pid = static_cast<u32>((high << 16) | low);
+            } while (pid % 25 != state.getNature());
 
             state.setPID(pid);
 
@@ -337,9 +335,13 @@ bool createPokemon(PokeRNG &go, WildState4 &state, u8 buffer, u8 synchNature, u8
             {
                 state.setNature(go.nextUShort<true>() % 25);
             }
-            break;
-        case Lead::CompoundEyes:
-            state.setLead(Lead::CompoundEyes);
+
+            do
+            {
+                u16 low = go.nextUShort<true>();
+                u16 high = go.nextUShort<true>();
+                pid = static_cast<u32>((high << 16) | low);
+            } while (pid % 25 != state.getNature());
             break;
         case Lead::CuteCharmFemale:
         case Lead::CuteCharm25M:
@@ -355,10 +357,26 @@ bool createPokemon(PokeRNG &go, WildState4 &state, u8 buffer, u8 synchNature, u8
             else
             {
                 state.setNature(go.nextUShort<true>() % 25);
+
+                do
+                {
+                    u16 low = go.nextUShort<true>();
+                    u16 high = go.nextUShort<true>();
+                    pid = static_cast<u32>((high << 16) | low);
+                } while (pid % 25 != state.getNature());
             }
             break;
-        default:
+        case Lead::CompoundEyes:
+            state.setLead(Lead::CompoundEyes);
+        default: // Falls through to set nature for all cases other than cute charm and synch
             state.setNature(go.nextUShort<true>() % 25);
+
+            do
+            {
+                u16 low = go.nextUShort<true>();
+                u16 high = go.nextUShort<true>();
+                pid = static_cast<u32>((high << 16) | low);
+            } while (pid % 25 != state.getNature());
             break;
         }
 
@@ -368,12 +386,6 @@ bool createPokemon(PokeRNG &go, WildState4 &state, u8 buffer, u8 synchNature, u8
         }
 
         // Begin search for valid pid
-        do
-        {
-            u16 low = go.nextUShort<true>();
-            u16 high = go.nextUShort<true>();
-            pid = static_cast<u32>((high << 16) | low);
-        } while (pid % 25 != state.getNature());
 
         state.setPID(pid);
 
