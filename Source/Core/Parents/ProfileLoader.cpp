@@ -83,7 +83,7 @@ namespace ProfileLoader3
             Game version = j.value("version", Game::LeafGreen);
             u16 tid = j.value("tid", 0);
             u16 sid = j.value("sid", 0);
-            u16 deadBattery = j.value("sid", false);
+            u16 deadBattery = j.value("battery", false);
 
             return Profile3(name, version, tid, sid, deadBattery);
         }
