@@ -224,15 +224,18 @@ namespace Encounters4
                 }
             }
 
-            if (encounter == Encounter::BugCatchingContest) {
+            if (encounter == Encounter::BugCatchingContest)
+            {
                 size_t size = profile.getNationalDex() ? heartgold_bug.size() : 41;
 
-                for (size_t offset = profile.getNationalDex() ? 41 : 0; offset < size; offset += 41) {
+                for (size_t offset = profile.getNationalDex() ? 41 : 0; offset < size; offset += 41)
+                {
                     const u8 *entry = heartgold_bug.data() + offset;
                     u8 location = entry[i];
 
                     std::vector<Slot> slots;
-                    for (int i = 0; i < 10; i++) {
+                    for (int i = 0; i < 10; i++)
+                    {
                         u8 min = entry[1 + (i * 4)];
                         u8 max = entry[2 + (i * 4)];
                         u16 specie = *reinterpret_cast<u16 *>(entry + 3 + (i * 4));
