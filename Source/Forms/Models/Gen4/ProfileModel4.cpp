@@ -25,7 +25,7 @@ ProfileModel4::ProfileModel4(QObject *parent) : TableModel<Profile4>(parent)
 
 int ProfileModel4::columnCount(const QModelIndex & /*parent*/) const
 {
-    return 8;
+    return 9;
 }
 
 QVariant ProfileModel4::data(const QModelIndex &index, int role) const
@@ -51,6 +51,8 @@ QVariant ProfileModel4::data(const QModelIndex &index, int role) const
             return profile.getRadar() ? tr("Yes") : tr("No");
         case 7:
             return profile.getSwarm() ? tr("Yes") : tr("No");
+        case 8:
+            return profile.getNationalDex() ? tr("Yes") : tr("No");
         }
     }
     return QVariant();

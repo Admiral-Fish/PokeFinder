@@ -65,9 +65,9 @@ namespace Encounters3
             }
 
             std::vector<EncounterArea3> encounters;
-            for (size_t i = 0; i < size; i += 121)
+            for (size_t offset = 0; offset < size; offset += 121)
             {
-                const u8 *entry = data + i;
+                const u8 *entry = data + offset;
 
                 u8 location = entry[0];
 

@@ -242,6 +242,182 @@ std::vector<WildState4> WildGenerator4::generateMethodJ(u32 seed, const Encounte
     return states;
 }
 
+template <bool bug>
+bool createPokemon(PokeRNG &go, WildState4 &state, u8 buffer, u8 synchNature, u8 genderRatio, u16 tsv, const Lead &lead,
+                   const StateFilter &filter)
+{
+    u32 pid = 0;
+    if constexpr (bug)
+    {
+        if (lead == Lead::CuteCharmFemale || lead == Lead::CuteCharm25M || lead == Lead::CuteCharm50M || lead == Lead::CuteCharm75M
+            || lead == Lead::CuteCharm875M)
+        {
+            if ((go.nextUShort<true>() % 3) != 0) // Successfull cute charm
+            {
+                // Get hunt nature
+                state.setNature(go.nextUShort<true>() % 25);
+
+                if (!filter.compareNature(state))
+                {
+                    return false;
+                }
+
+                pid = buffer + state.getNature();
+
+                state.setPID(pid);
+
+                u16 iv1 = go.nextUShort<true>();
+                u16 iv2 = go.nextUShort<true>();
+
+                state.setIVs(iv1, iv2);
+
+                return true;
+            }
+        }
+
+        for (u8 loop = 0; loop < 4; loop++)
+        {
+            switch (lead)
+            {
+            case Lead::Synchronize:
+                if ((go.nextUShort<true>() & 1) == 0) // Successful synch
+                {
+                    state.setNature(synchNature);
+                }
+                else // Failed synch
+                {
+                    state.setNature(go.nextUShort<true>() % 25);
+                }
+                break;
+            case Lead::CompoundEyes:
+                state.setLead(Lead::CompoundEyes);
+            default: // Falls through to set nature for all cases other than cute charm and synch
+                state.setNature(go.nextUShort<true>() % 25);
+                break;
+            }
+
+            // Begin search for valid pid
+            do
+            {
+                u16 low = go.nextUShort<true>();
+                u16 high = go.nextUShort<true>();
+                pid = static_cast<u32>((high << 16) | low);
+            } while (pid % 25 != state.getNature());
+
+            state.setPID(pid);
+
+            u16 iv1 = go.nextUShort<true>();
+            u16 iv2 = go.nextUShort<true>();
+
+            state.setIVs(iv1, iv2);
+
+            for (u8 iv = 0; iv < 6; iv++)
+            {
+                if (state.getIV(iv) == 31)
+                {
+                    return true;
+                }
+            }
+        }
+
+        if (!filter.compareNature(state))
+        {
+            return false;
+        }
+    }
+    else
+    {
+        switch (lead)
+        {
+        case Lead::Synchronize:
+            if ((go.nextUShort<true>() & 1) == 0) // Successful synch
+            {
+                state.setNature(synchNature);
+            }
+            else // Failed synch
+            {
+                state.setNature(go.nextUShort<true>() % 25);
+            }
+
+            if (!filter.compareNature(state))
+            {
+                return false;
+            }
+
+            // Begin search for valid pid
+            do
+            {
+                u16 low = go.nextUShort<true>();
+                u16 high = go.nextUShort<true>();
+                pid = static_cast<u32>((high << 16) | low);
+            } while (pid % 25 != state.getNature());
+            break;
+        case Lead::CuteCharmFemale:
+        case Lead::CuteCharm25M:
+        case Lead::CuteCharm50M:
+        case Lead::CuteCharm75M:
+        case Lead::CuteCharm875M:
+            if ((go.nextUShort<true>() % 3) != 0) // Successfull cute charm
+            {
+                // Get hunt nature
+                state.setNature(go.nextUShort<true>() % 25);
+
+                if (!filter.compareNature(state))
+                {
+                    return false;
+                }
+
+                pid = buffer + state.getNature();
+            }
+            else
+            {
+                state.setNature(go.nextUShort<true>() % 25);
+
+                if (!filter.compareNature(state))
+                {
+                    return false;
+                }
+
+                // Begin search for valid pid
+                do
+                {
+                    u16 low = go.nextUShort<true>();
+                    u16 high = go.nextUShort<true>();
+                    pid = static_cast<u32>((high << 16) | low);
+                } while (pid % 25 != state.getNature());
+            }
+            break;
+        case Lead::CompoundEyes:
+            state.setLead(Lead::CompoundEyes);
+        default: // Falls through to set nature for all cases other than cute charm and synch
+            state.setNature(go.nextUShort<true>() % 25);
+
+            if (!filter.compareNature(state))
+            {
+                return false;
+            }
+
+            // Begin search for valid pid
+            do
+            {
+                u16 low = go.nextUShort<true>();
+                u16 high = go.nextUShort<true>();
+                pid = static_cast<u32>((high << 16) | low);
+            } while (pid % 25 != state.getNature());
+            break;
+        }
+
+        state.setPID(pid);
+
+        u16 iv1 = go.nextUShort<true>();
+        u16 iv2 = go.nextUShort<true>();
+
+        state.setIVs(iv1, iv2);
+    }
+
+    return true;
+}
+
 std::vector<WildState4> WildGenerator4::generateMethodK(u32 seed, const EncounterArea4 &encounterArea) const
 {
     std::vector<WildState4> states;
@@ -297,6 +473,10 @@ std::vector<WildState4> WildGenerator4::generateMethodK(u32 seed, const Encounte
 
             state.setLevel(encounterArea.calcLevel(state.getEncounterSlot()));
             occidentary += 1; // Compensate for the game's advances after the battle ends
+            if (!createPokemon<false>(go, state, buffer, synchNature, genderRatio, tsv, lead, filter))
+            {
+                continue;
+            }
             break;
         case Encounter::Surfing:
             state.setEncounterSlot(EncounterSlot::kSlot(first, encounter));
@@ -307,6 +487,10 @@ std::vector<WildState4> WildGenerator4::generateMethodK(u32 seed, const Encounte
 
             state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), go.nextUShort<true>()));
             occidentary += 1; // Compensate for the game's advances after the battle ends
+            if (!createPokemon<false>(go, state, buffer, synchNature, genderRatio, tsv, lead, filter))
+            {
+                continue;
+            }
             break;
         case Encounter::OldRod:
         case Encounter::GoodRod:
@@ -325,6 +509,10 @@ std::vector<WildState4> WildGenerator4::generateMethodK(u32 seed, const Encounte
             state.setLevel(encounterArea.calcLevel(state.getEncounterSlot()));
             occidentary += 2; // Compensate for the game's advances after the battle ends
             go.next();
+            if (!createPokemon<false>(go, state, buffer, synchNature, genderRatio, tsv, lead, filter))
+            {
+                continue;
+            }
             break;
         case Encounter::RockSmash:
             if ((first % 100) >= rate)
@@ -340,108 +528,34 @@ std::vector<WildState4> WildGenerator4::generateMethodK(u32 seed, const Encounte
 
             state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), go.nextUShort<true>()));
             occidentary += 1; // Compensate for the game's advances after the battle ends
+            if (!createPokemon<false>(go, state, buffer, synchNature, genderRatio, tsv, lead, filter))
+            {
+                continue;
+            }
+            break;
+        case Encounter::BugCatchingContest:
+            state.setEncounterSlot(EncounterSlot::kSlot(first, encounter));
+            if (!filter.compareEncounterSlot(state))
+            {
+                continue;
+            }
+
+            state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), go.nextUShort<true>()));
+            if (!createPokemon<true>(go, state, buffer, synchNature, genderRatio, tsv, lead, filter))
+            {
+                continue;
+            }
             break;
         case Encounter::HeadButt: // TODO
-        case Encounter::BugCatchingContest: // TODO
         default:
             break;
         }
 
-        u32 pid = 0;
-        switch (lead)
-        {
-        case Lead::None:
-        case Lead::SuctionCups:
-        case Lead::CompoundEyes:
-            if (lead == Lead::CompoundEyes)
-            {
-                state.setLead(Lead::CompoundEyes);
-            }
-            // Get hunt nature
-            state.setNature(go.nextUShort<true>() % 25);
+        u32 pid = state.getPID();
 
-            if (!filter.compareNature(state))
-            {
-                continue;
-            }
-
-            // Begin search for valid pid
-            do
-            {
-                u16 low = go.nextUShort<true>();
-                u16 high = go.nextUShort<true>();
-                pid = static_cast<u32>((high << 16) | low);
-            } while (pid % 25 != state.getNature());
-
-            break;
-        case Lead::Synchronize:
-            if ((go.nextUShort<true>() & 1) == 0) // Successful synch
-            {
-                state.setNature(synchNature);
-            }
-            else // Failed synch
-            {
-                state.setNature(go.nextUShort<true>() % 25);
-            }
-
-            if (!filter.compareNature(state))
-            {
-                continue;
-            }
-
-            // Begin search for valid pid
-            do
-            {
-                u16 low = go.nextUShort<true>();
-                u16 high = go.nextUShort<true>();
-                pid = static_cast<u32>((high << 16) | low);
-            } while (pid % 25 != state.getNature());
-
-            break;
-        default: // Default to cover all cute charm cases
-            if ((go.nextUShort<true>() % 3) != 0) // Successfull cute charm
-            {
-                // Get hunt nature
-                state.setNature(go.nextUShort<true>() % 25);
-
-                if (!filter.compareNature(state))
-                {
-                    continue;
-                }
-
-                pid = buffer + state.getNature();
-            }
-            else // Failed cutecharm
-            {
-                // Get hunt nature
-                state.setNature(go.nextUShort<true>() % 25);
-
-                if (!filter.compareNature(state))
-                {
-                    continue;
-                }
-
-                // Begin search for valid pid
-                do
-                {
-                    u16 low = go.nextUShort<true>();
-                    u16 high = go.nextUShort<true>();
-                    pid = static_cast<u32>((high << 16) | low);
-                } while (pid % 25 != state.getNature());
-            }
-
-            break;
-        }
-
-        state.setPID(pid);
         state.setAbility(pid & 1);
         state.setGender(pid & 255, genderRatio);
         state.setShiny<8>(tsv, (pid >> 16) ^ (pid & 0xffff));
-
-        u16 iv1 = go.nextUShort<true>();
-        u16 iv2 = go.nextUShort<true>();
-
-        state.setIVs(iv1, iv2);
         state.calculateHiddenPower();
 
         u8 item = go.nextUShort<true>() % 100;

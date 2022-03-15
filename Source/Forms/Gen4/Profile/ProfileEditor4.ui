@@ -178,6 +178,13 @@
      </property>
     </widget>
    </item>
+   <item row="2" column="4" colspan="2">
+    <widget class="QCheckBox" name="checkBoxNationalDex">
+     <property name="text">
+      <string>National Dex</string>
+     </property>
+    </widget>
+   </item>
   </layout>
  </widget>
  <customwidgets>
@@ -201,6 +208,7 @@
   <tabstop>checkBoxSwarm</tabstop>
   <tabstop>textBoxTID</tabstop>
   <tabstop>textBoxSID</tabstop>
+  <tabstop>checkBoxNationalDex</tabstop>
   <tabstop>pushButtonOkay</tabstop>
   <tabstop>pushButtonCancel</tabstop>
  </tabstops>

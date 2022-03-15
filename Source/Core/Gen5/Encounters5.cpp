@@ -62,9 +62,9 @@ namespace Encounters5
             }
 
             std::vector<EncounterArea5> encounters;
-            for (size_t i = 0; i < size;)
+            for (size_t offset = 0; offset < size;)
             {
-                const u8 *entry = data + i;
+                const u8 *entry = data + offset;
 
                 u8 location = entry[0];
 
@@ -180,7 +180,7 @@ namespace Encounters5
                     encounters.emplace_back(location, fishSpecial, Encounter::SpecialSuperRod, slots);
                 }
 
-                i += length;
+                offset += length;
             }
             return encounters;
         }

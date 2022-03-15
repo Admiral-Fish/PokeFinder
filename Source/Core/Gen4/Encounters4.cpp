@@ -115,9 +115,9 @@ namespace Encounters4
             }
 
             std::vector<EncounterArea4> encounters;
-            for (size_t i = 0; i < size; i += 195)
+            for (size_t offset = 0; offset < size; offset += 195)
             {
-                u8 const *entry = data + i;
+                u8 const *entry = data + offset;
 
                 u8 location = entry[0];
 
@@ -223,6 +223,25 @@ namespace Encounters4
                     }
                 }
             }
+
+            if (encounter == Encounter::BugCatchingContest) {
+                size_t size = profile.getNationalDex() ? heartgold_bug.size() : 41;
+
+                for (size_t offset = profile.getNationalDex() ? 41 : 0; offset < size; offset += 41) {
+                    const u8 *entry = heartgold_bug.data() + offset;
+                    u8 location = entry[i];
+
+                    std::vector<Slot> slots;
+                    for (int i = 0; i < 10; i++) {
+                        u8 min = entry[1 + (i * 4)];
+                        u8 max = entry[2 + (i * 4)];
+                        u16 specie = *reinterpret_cast<u16 *>(entry + 3 + (i * 4));
+                        slots.emplace_back(specie, min, max, info[specie]);
+                    }
+                    encounters.emplace_back(location, 0, Encounter::BugCatchingContest, slots);
+                }
+            }
+
             return encounters;
         }
 
@@ -333,9 +352,9 @@ namespace Encounters4
             }
 
             std::vector<EncounterArea4> encounters;
-            for (size_t i = 0; i < size; i += 163)
+            for (size_t offset = 0; offset < size; offset += 163)
             {
-                const u8 *entry = data + i;
+                const u8 *entry = data + offset;
 
                 u8 location = entry[0];
 
