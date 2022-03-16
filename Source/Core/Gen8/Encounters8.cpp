@@ -95,8 +95,9 @@ constexpr std::array<StaticTemplate, 6> ramanasParkStrangeSpace = {
     StaticTemplate(Game::BDSP, 384, 70, 3) // Rayquaza
 };
 
-constexpr std::array<StaticTemplate, 1> mythics = {
-    StaticTemplate(Game::BDSP, 492, 30, 3) // Shaymin
+constexpr std::array<StaticTemplate, 2> mythics = {
+    StaticTemplate(Game::BDSP, 492, 30, 3), // Shaymin
+    StaticTemplate(Game::BDSP, 493, 80, 3) // Arceus
 };
 
 namespace Encounters8
