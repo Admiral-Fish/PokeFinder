@@ -155,7 +155,6 @@ namespace Encounters8
         {
             const u8 *data;
             size_t size;
-            int offset;
 
             if (profile.getVersion() == Game::BD)
             {
@@ -169,9 +168,9 @@ namespace Encounters8
             }
 
             std::vector<EncounterArea8> encounters;
-            for (size_t i = 0; i < size; i += 142)
+            for (size_t offset = 0; offset < size; offset += 142)
             {
-                const u8 *entry = data + i;
+                const u8 *entry = data + offset;
 
                 u8 location = entry[0];
 
