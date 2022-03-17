@@ -708,7 +708,7 @@ namespace Translator
         {
             strings = readFile("e");
         }
-        if ((game & Game::FRLG) != Game::None)
+        else if ((game & Game::FRLG) != Game::None)
         {
             strings = readFile("frlg");
         }
