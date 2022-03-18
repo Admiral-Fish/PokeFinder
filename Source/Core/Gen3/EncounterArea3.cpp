@@ -20,8 +20,8 @@
 #include "EncounterArea3.hpp"
 #include <Core/Parents/Slot.hpp>
 
-EncounterArea3::EncounterArea3(u8 location, Encounter encounter, const std::vector<Slot> &pokemon) :
-    EncounterArea(location, encounter, pokemon)
+EncounterArea3::EncounterArea3(u8 location, u8 rate, Encounter encounter, const std::vector<Slot> &pokemon) :
+    EncounterArea(location, rate, encounter, pokemon)
 {
 }
 
@@ -35,52 +35,26 @@ u8 EncounterArea3::calcLevel(u8 index) const
     return pokemon[index].getMinLevel();
 }
 
-// Only for Rock Smash since all other encounters can be forced
-u8 EncounterArea3::getEncounterRate() const
-{
-    switch (location)
-    {
-    case 18: // Route 111
-    case 21: // Route 114
-    case 47: // Granite Cave B2F
-    case 72: // Victory Road B1F (RSE)
-        return 20;
-    case 51: // Safari Zone 4
-    case 53: // Safari Zone 6
-        return 25;
-    // FRLG doesn't force encounter
-    // No location collisions after encounter structure change
-    // Might want to add game version as a parameter in the future, but for now this is fine
-    case 48: // Rock Tunnel B1F (50)
-    case 59: // Cerulean Cave 1F  (50)
-    case 60: // Cerulean Cave 2F (50)
-    case 61: // Cerulean Cave B1F (50)
-    case 66: // Kindle Road (25)
-    case 81: // Sevault Canyon (25)
-    case 83: // Mt. Ember (50)
-    case 85: // Mt. Ember Room 2 (50)
-    case 87: // Mt. Ember 1F (50)
-    case 88: // Mt. Ember B1F (50)
-    case 89: // Mt. Ember B2F (50)
-    case 90: // Mt. Ember B3F (50)
-    case 91: // Mt. Ember B4F (50)
-    case 92: // Mt. Ember B5F (50)
-        return 180;
-    default:
-        return 0;
-    }
-}
-
 bool EncounterArea3::rseSafariZone() const
 {
     switch (location)
     {
-    case 48: // Safari Zone 1
-    case 49: // Safari Zone 2
-    case 50: // Safari Zone 3
-    case 51: // Safari Zone 4
-    case 52: // Safari Zone 5
-    case 53: // Safari Zone 6
+    // Ruby/Sapphire
+    case 90: // Safari Zone Northeast
+    case 187: // Safari Zone Northeast
+    case 89: // Safari Zone Northwest
+    case 186: // Safari Zone Northwest
+    case 92: // Safari Zone Southeast
+    case 189: // Safari Zone Southeast
+    case 91: // Safari Zone Southwest
+    case 188: // Safari Zone Southwest
+    // Emerald
+    case 73: // Safari Zone North
+    case 98: // Safari Zone Northeast
+    case 74: // Safari Zone Northwest
+    case 20: // Safari Zone South
+    case 97: // Safari Zone Southeast
+    case 72: // Safari Zone Southwest
         return true;
     default:
         return false;

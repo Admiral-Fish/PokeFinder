@@ -3,111 +3,113 @@
 2,Pratopoli
 3,Arenipoli
 4,Lega Pokémon
-5,Cava Mineropoli P1
-6,Cava Mineropoli P1S
+5,Cava Mineropoli P1S
+6,Oreburgh Mine B2F
 7,Impianto Turbine
 8,Bosco Evopoli
 9,Fonderie Fuego
-10,Monte Corona (Entrata Percorso 207/208)
+10,Mt. Coronet 1F 1
 11,Monte Corona P2
 12,Monte Corona P3
-13,Monte Corona - Neve
-14,Monte Corona P4
-15,Monte Corona P5
-16,Monte Corona P6
-17,Monte Corona P7
-18,Monte Corona - Grotta in Cima
-19,Monte Corona (Entrata Percorso 216)
-20,Monte Corona (Entrata Percorso 211)
-21,Monte Corona P1S
-22,Gran Palude - Area 1
-23,Gran Palude - Area 2
-24,Gran Palude - Area 3
-25,Gran Palude - Area 4
-26,Gran Palude - Area 5
-27,Gran Palude - Area 6
-28,Rovine Flemminia
-29,Via Vittoria - P1
-30,Via Vittoria - P2
-31,Via Vittoria - P1S
-32,Via Vittoria - Stanza sul Retro 1
-33,Via Vittoria - Stanza sul Retro 2
-34,Via Vittoria - Stanza sul Retro 3
-35,Cammino Roccioso
-36,Varco Mineropoli P1
-37,Varco Mineropoli P1S
-38,Monte Ostile
-39,Monte Ostile - Entrata
-40,Monte Ostile - Interno
-41,Fonte Saluto
-42,Grotta Ritorno - Entrata
-43,Grotta Ritorno - Pilastro 1
-44,Grotta Ritorno - Pilastro 2
-45,Tempio Nevepoli P1
-46,Tempio Nevepoli P1S
-47,Tempio Nevepoli P2S
-48,Tempio Nevepoli P3S
-49,Tempio Nevepoli P4S
-50,Tempio Nevepoli P5S
-51,Grotta Labirinto
-52,Grotta Labirinto (Segreto)
-53,Grotta Rovine (< 10 Unown)
-54,Grotta Rovine (> 10 Unown)
-55,Tunnel Rovine
-56,Giardino Trofeo
-57,Isola Ferrosa
-58,Isola Ferrosa P1
-59,Isola Ferrosa P1S
-60,Isola Ferrosa P2S (Sinistra)
-61,Isola Ferrosa P2S (Destra)
-62,Isola Ferrosa P3S
-63,Antico Chateau
-64,Antico Chateau - Stanza 5
-65,Lago Verità
-66,Lago Valore
-67,Lago Arguzia
-68,Riva Valore
-69,Riva Arguzia
-70,Percorso 201
-71,Percorso 202
-72,Percorso 203
-73,Percorso 204 (Sud)
-74,Percorso 204 (Nord)
-75,Percorso 205 (Sud)
-76,Percorso 205 (Nord)
-77,Percorso 206
-78,Percorso 207
-79,Percorso 208
-80,Percorso 209
-81,Torre Memoria P1
-82,Torre Memoria P2
-83,Torre Memoria P3
-84,Torre Memoria P4
-85,Torre Memoria P5
-86,Percorso 210 (Sud)
-87,Percorso 210 (Nord)
-88,Percorso 211 (Ovest)
-89,Percorso 211 (Est)
-90,Percorso 212 (Nord)
-91,Percorso 212 (Sud)
-92,Percorso 213
-93,Percorso 214
-94,Percorso 215
-95,Percorso 216
-96,Percorso 217
-97,Percorso 218
-98,Percorso 219
-99,Percorso 221
-100,Percorso 222
-101,Percorso 224
-102,Percorso 225
-103,Percorso 227
-104,Percorso 228
-105,Percorso 229
-106,Duefoglie
-107,Memoride
-108,Area Svago
-109,Percorso 220
-110,Percorso 223
-111,Percorso 226
-112,Percorso 230
+13,Mt. Coronet Summit
+15,Mt. Coronet 4F 1-2
+16,Mt. Coronet 4F 3
+17,Monte Corona P5
+18,Monte Corona P6
+19,Mt. Coronet 1F 2
+20,Mt. Coronet Upper 1F 2
+21,Mt. Coronet Upper 1F 1
+22,Mt. Coronet Upper B1F
+23,Gran Palude - Area 1
+24,Gran Palude - Area 2
+25,Gran Palude - Area 3
+26,Gran Palude - Area 4
+27,Gran Palude - Area 5
+28,Gran Palude - Area 6
+29,Rovine Flemminia
+47,Via Vittoria - P1
+48,Via Vittoria - P2
+49,Via Vittoria - P1S
+50,Victory Road 1F Back 2
+51,Victory Road 1F Back 1
+52,Victory Road 1F Back 3
+53,Cammino Roccioso
+54,Varco Mineropoli P1
+55,Varco Mineropoli P1S
+56,Monte Ostile
+57,Stark Mountain Interior 1
+58,Stark Mountain Interior 2
+59,Fonte Saluto
+63,Grotta Ritorno - Entrata
+69,Turnback 1st Pillar
+75,Turnback 2nd Pillar
+106,Tempio Nevepoli P1
+107,Tempio Nevepoli P1S
+108,Tempio Nevepoli P2S
+109,Tempio Nevepoli P3S
+110,Tempio Nevepoli P4S
+111,Tempio Nevepoli P5S
+112,Wayward Cave 1F
+113,Wayward Cave B1F
+114,Grotta Rovine (< 10 Unown)
+115,Grotta Rovine (> 10 Unown)
+116,Tunnel Rovine
+117,Giardino Trofeo
+118,Isola Ferrosa
+119,Isola Ferrosa P1
+120,Iron Island B1F 1
+121,Iron Island B1F 2
+122,Iron Island B2F 1
+123,Iron Island B2F 2
+124,Iron Island B3F 1
+125,Antico Chateau
+132,Old Chateau 2F (Eye Room)
+134,Lake Verity (Pre Team Galatic Event)
+135,Lake Verity (Post Team Galatic Event)
+136,Lago Valore
+137,Lago Arguzia
+138,Riva Valore
+139,Riva Arguzia
+140,Percorso 201
+141,Percorso 202
+142,Percorso 203
+143,Percorso 204 (Sud)
+144,Percorso 204 (Nord)
+145,Percorso 205 (Sud)
+146,Percorso 205 (South)
+147,Percorso 206
+148,Percorso 207
+149,Percorso 208
+150,Percorso 209
+151,Torre Memoria P1
+152,Torre Memoria P2
+153,Torre Memoria P3
+154,Torre Memoria P4
+155,Torre Memoria P5
+156,Percorso 210 (Sud)
+157,Percorso 210 (Nord)
+158,Percorso 211 (Ovest)
+159,Percorso 211 (Est)
+160,Percorso 212 (Nord)
+161,Percorso 212 (Sud)
+162,Percorso 213
+163,Percorso 214
+164,Percorso 215
+165,Percorso 216
+166,Percorso 217
+167,Percorso 218
+168,Percorso 219
+169,Percorso 221
+170,Percorso 222
+171,Percorso 224
+172,Percorso 225
+173,Percorso 227
+174,Percorso 228
+175,Percorso 229
+176,Duefoglie
+177,Memoride
+178,Area Svago
+179,Percorso 220
+180,Percorso 223
+181,Percorso 226
+182,Percorso 230

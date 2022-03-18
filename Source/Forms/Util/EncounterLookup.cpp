@@ -95,8 +95,7 @@ std::set<std::pair<u16, QString>> EncounterLookup::getEncounters3(Game game, u16
     Profile3 profile("", game, 0, 0);
 
     // Encounter variables to iterate through
-    auto types = { Encounter::Grass,   Encounter::SafariZone, Encounter::RockSmash, Encounter::OldRod,
-                   Encounter::GoodRod, Encounter::SuperRod,   Encounter::Surfing };
+    auto types = { Encounter::Grass, Encounter::RockSmash, Encounter::OldRod, Encounter::GoodRod, Encounter::SuperRod, Encounter::Surfing };
 
     for (const auto &type : types)
     {
@@ -222,8 +221,6 @@ QString EncounterLookup::getEncounterString(Encounter type)
     {
     case Encounter::Grass:
         return tr("Grass");
-    case Encounter::SafariZone:
-        return tr("Safari Zone");
     case Encounter::Surfing:
         return tr("Surfing");
     case Encounter::OldRod:

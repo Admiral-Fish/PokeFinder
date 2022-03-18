@@ -1,158 +1,117 @@
-24,水脉市
-54,百代市
-110,野原市
-142,滨海市
-167,宝可梦联盟
-195,黑金炭坑 1F
-196,黑金炭坑 B1F
-197,山谷发电厂
-200,百代森林
-201,多多罗钢铁厂
-203,天冠山 (Route 207/208 Entrance)
-204,天冠山 2F
-205,天冠山 3F
-206,天冠山 Snow Area
-207,天冠山 Top
-208,天冠山 4F
-209,天冠山 5F
-210,天冠山 6F
-211,天冠山 7F
-212,天冠山 Top Cave
-213,天冠山 (Route 216 Entrance)
-214,天冠山 (Route 211 Entrance)
-215,天冠山 B1F
-219,大湿地 Area 1
-220,大湿地 Area 2
-221,大湿地 Area 3
-222,大湿地 Area 4
-223,大湿地 Area 5
-224,大湿地 Area 6
-225,随意遗迹(1)
-227,随意遗迹(2)
-228,随意遗迹(3)
-229,随意遗迹(4)
-230,随意遗迹(5)
-231,随意遗迹(6)
-232,随意遗迹(7)
-233,随意遗迹(8)
-234,随意遗迹(9)
-235,随意遗迹(10)
-236,随意遗迹(11)
-237,随意遗迹(12)
-238,随意遗迹(13)
-239,随意遗迹(14)
-240,随意遗迹(15)
-241,随意遗迹(16)
-242,随意遗迹(17)
-243,随意遗迹(18)
-244,冠军之路 1F
-245,冠军之路 2F
-246,冠军之路 B1F
-247,冠军之路 Back Room 1
-248,冠军之路 Back Room 2
-249,冠军之路 Back Room 3
-252,荒芜小道
-255,黑金闸口 1F
-256,黑金闸口 B1F
-259,严酷山
-260,严酷山 Entrance
-261,严酷山 Interior
-263,送行之泉
-264,归途洞窟 (Between 1st and 2nd Pillars)
-265,归途洞窟 (Between 1st and 2nd Pillars)
-266,归途洞窟 (Between 1st and 2nd Pillars)
-267,归途洞窟 (Between Entrance and 1st Pillar)
-268,归途洞窟 (Between Entrance and 1st Pillar)
-269,归途洞窟 (Between Entrance and 1st Pillar) 
-270,归途洞窟 (Between Entrance and 1st Pillar)
-271,归途洞窟 (Between Entrance and 1st Pillar)
-272,归途洞窟 (Between Entrance and 1st Pillar)
-273,归途洞窟 (Between 1st and 2nd Pillars)
-274,归途洞窟 (Between 1st and 2nd Pillars)
-275,归途洞窟 (Between 1st and 2nd Pillars)
-276,归途洞窟 (Between 1st and 2nd Pillars)
-277,归途洞窟 (Between 1st and 2nd Pillars)
-278,归途洞窟 (Between 1st and 2nd Pillars)
-279,归途洞窟 (Between 2nd and 3rd Pillars)
-280,归途洞窟 (Between 2nd and 3rd Pillars)
-281,归途洞窟 (Between 2nd and 3rd Pillars)
-282,归途洞窟 (Between 2nd and 3rd Pillars)
-283,归途洞窟 (Between 2nd and 3rd Pillars)
-284,归途洞窟 (Between 2nd and 3rd Pillars)
-286,雪峰神殿 1F
-287,雪峰神殿 B1F
-288,雪峰神殿 B2F
-289,雪峰神殿 B3F
-290,雪峰神殿 B4F
-291,雪峰神殿 B5F
-292,Wayward Cave
-293,Wayward Cave (Secret)
-294,Ruin Maniac Cave (< 10 Unown)
-295,Ruin Maniac Cave (> 10 Unown)
-296,Maniac Tunnel
-297,Trophy Garden
-298,Iron Island
-299,Iron Island 1F
-300,Iron Island B1F (Left)
-301,Iron Island B1F (Right)
-302,Iron Island B2F (Left)
-303,Iron Island B2F (Right)
-304,Iron Island B3F
-306,Old Chateau Entrance
-307,Old Chateau 2F
-308,Old Chateau 2F Room 1
-309,Old Chateau 2F Room 2
-310,Old Chateau 2F Room 3
-311,Old Chateau 2F Room 4
-312,Old Chateau 2F Room 5
-313,Old Chateau 2F Rightmost Room
-314,Old Chateau Dining Room
-323,Lake Verity (Before Galactic)
-324,Lake Verity (After Galactic)
-327,Lake Valor
-330,Lake Acuity
-347,Valor Lakefront
-351,Acuity Lakefront
-354,Route 201
-355,Route 202
-356,Route 203
-357,Route 204 (South)
-358,Route 204 (North)
-359,Route 205 (South)
-361,Route 205 (North)
-362,Route 206
-364,Route 207
-365,Route 208
-367,Route 209
-368,Lost Tower 1F
-369,Lost Tower 2F
-370,Lost Tower 3F
-371,Lost Tower 4F
-372,Lost Tower 5F
-373,Route 210 (South)
-375,Route 210 (North)
-377,Route 211 (West)
-378,Route 211 (East)
-379,Route 212 (North)
-383,Route 212 (South)
-385,Route 213
-392,Route 214
-394,Route 215
-395,Route 216
-397,Route 217
-400,Route 218
-403,Route 219
-404,Route 221
-407,Route 222
-411,Route 224
-412,Route 225
-414,Route 227
-416,Route 228
-420,Route 229
-422,Twinleaf Town
-456,Celestic Town
-473,Resort Area
-485,Route 220
-486,Route 223
-487,Route 226
-489,Route 230
+139,Acuity Lakefront
+0,Canalave City
+177,Celestic Town
+1,Eterna City
+8,Eterna Forest
+9,Fuego Ironworks
+23,Great Marsh Area 1
+24,Great Marsh Area 2
+25,Great Marsh Area 3
+26,Great Marsh Area 4
+27,Great Marsh Area 5
+28,Great Marsh Area 6
+118,Iron Island
+119,Iron Island 1F
+120,Iron Island B1F 1
+121,Iron Island B1F 2
+122,Iron Island B2F 1
+123,Iron Island B2F 2
+124,Iron Island B3F 1
+137,Lake Acuity
+136,Lake Valor
+135,Lake Verity (Post Team Galatic Event)
+134,Lake Verity (Pre Team Galatic Event)
+151,Lost Tower 1F
+152,Lost Tower 2F
+153,Lost Tower 3F
+154,Lost Tower 4F
+155,Lost Tower 5F
+116,Maniac Tunnel
+10,Mt. Coronet 1F 1
+19,Mt. Coronet 1F 2
+11,Mt. Coronet 2F
+12,Mt. Coronet 3F
+15,Mt. Coronet 4F 1-2
+16,Mt. Coronet 4F 3
+17,Mt. Coronet 5F
+18,Mt. Coronet 6F
+13,Mt. Coronet Summit
+21,Mt. Coronet Upper 1F 1
+20,Mt. Coronet Upper 1F 2
+22,Mt. Coronet Upper B1F
+125,Old Chateau
+54,Oreburgh Gate 1F
+55,Oreburgh Gate B1F
+5,Oreburgh Mine B1F
+6,Oreburgh Mine B2F
+2,Pastoria City
+4,Pokémon League
+53,Ravaged Path
+178,Resort Area
+140,Route 201
+141,Route 202
+142,Route 203
+144,Route 204 (North)
+143,Route 204 (South)
+145,Route 205 (South)
+146,Route 205 (South)
+147,Route 206
+148,Route 207
+149,Route 208
+150,Route 209
+157,Route 210 (North)
+156,Route 210 (South)
+159,Route 211 (East)
+158,Route 211 (West)
+160,Route 212 (North)
+161,Route 212 (South)
+162,Route 213
+163,Route 214
+164,Route 215
+165,Route 216
+166,Route 217
+167,Route 218
+168,Route 219
+179,Route 220
+169,Route 221
+170,Route 222
+180,Route 223
+171,Route 224
+172,Route 225
+181,Route 226
+173,Route 227
+174,Route 228
+175,Route 229
+182,Route 230
+114,Ruin Maniac Cave (< 10 Unown)
+115,Ruin Maniac Cave (> 10 Unown)
+59,Sendoff Spring
+106,Snowpoint Temple 1F
+107,Snowpoint Temple B1F
+108,Snowpoint Temple B2F
+109,Snowpoint Temple B3F
+110,Snowpoint Temple B4F
+111,Snowpoint Temple B5F
+29,Solaceon Ruins
+56,Stark Mountain
+57,Stark Mountain Interior 1
+58,Stark Mountain Interior 2
+3,Sunyshore City
+117,Trophy Garden
+69,Turnback 1st Pillar
+75,Turnback 2nd Pillar
+60,Turnback Cave
+61,Turnback Cave
+62,Turnback Cave
+63,Turnback Cave Entrance
+176,Twinleaf Town
+7,Valley Windworks
+138,Valor Lakefront
+47,Victory Road 1F
+51,Victory Road 1F Back 1
+50,Victory Road 1F Back 2
+52,Victory Road 1F Back 3
+48,Victory Road 2F
+49,Victory Road B1F
+112,Wayward Cave 1F
+113,Wayward Cave B1F

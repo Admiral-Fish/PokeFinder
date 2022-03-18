@@ -33,7 +33,7 @@ namespace Encounters3
 {
     namespace
     {
-        std::vector<std::array<u8, 120>> getData(Game game)
+        std::vector<EncounterArea3> getAreas(Encounter encounter, Game game, const PersonalInfo *info)
         {
             const u8 *data;
             size_t size;
@@ -64,94 +64,87 @@ namespace Encounters3
                 size = sapphire.size();
             }
 
-            std::vector<std::array<u8, 120>> encounters;
-            for (size_t i = 0; i < size; i += 120)
-            {
-                std::array<u8, 120> entry;
-                std::memcpy(entry.data(), data + i, 120);
-                encounters.emplace_back(entry);
-            }
-
-            return encounters;
-        }
-
-        u16 getValue(const std::array<u8, 120> &data, int offset)
-        {
-            return static_cast<u16>(data[offset] << 8) | data[offset + 1];
-        }
-
-        std::vector<EncounterArea3> getArea(const std::array<u8, 120> &data, const PersonalInfo *info)
-        {
             std::vector<EncounterArea3> encounters;
-
-            u8 location = data[0];
-
-            if (data[1] == 1 || data[1] == 2)
+            for (size_t offset = 0; offset < size; offset += 121)
             {
-                std::vector<Slot> grass;
-                for (u8 i = 0; i < 12; i++)
-                {
-                    u8 level = data[4 + i * 3];
-                    u16 specie = getValue(data, 5 + i * 3);
-                    grass.emplace_back(specie, level, info[specie]);
+                const u8 *entry = data + offset;
+
+                u8 location = entry[0];
+
+                u8 grass = entry[1];
+                if (grass != 0 && encounter == Encounter::Grass) {
+                    std::vector<Slot> slots;
+                    for (int i = 0; i < 12; i++) {
+                        u8 level = entry[5 + (i * 3)];
+                        u16 specie = *reinterpret_cast<const u16 *>(entry + 6 + (i * 3));
+                        slots.emplace_back(specie, level, info[specie]);
+                    }
+                    encounters.emplace_back(location, grass, encounter, slots);
                 }
 
-                u8 val = data[1];
-                encounters.emplace_back(location, val == 1 ? Encounter::Grass : Encounter::SafariZone, grass);
-            }
-            if (data[2] == 1)
-            {
-                std::vector<Slot> rock;
-                for (u8 i = 0; i < 5; i++)
-                {
-                    u8 minLevel = data[40 + i * 4];
-                    u8 maxLevel = data[41 + i * 4];
-                    u16 specie = getValue(data, 42 + i * 4);
-                    rock.emplace_back(specie, minLevel, maxLevel, info[specie]);
+                u8 water = entry[2];
+                if (water != 0 && encounter == Encounter::Surfing) {
+                    std::vector<Slot> slots;
+                    for (int i = 0; i < 5; i++)
+                    {
+                        u8 min = entry[41 + (i * 4)];
+                        u8 max = entry[42 + (i * 4)];
+                        u16 specie = *reinterpret_cast<const u16 *>(entry + 43 + (i * 4));
+                        slots.emplace_back(specie, min, max, info[specie]);
+                    }
+                    encounters.emplace_back(location, water, encounter, slots);
                 }
-                encounters.emplace_back(location, Encounter::RockSmash, rock);
-            }
-            if (data[3] == 1)
-            {
-                std::vector<Slot> surf;
-                for (u8 i = 0; i < 5; i++)
-                {
-                    u8 minLevel = data[60 + i * 4];
-                    u8 maxLevel = data[61 + i * 4];
-                    u16 specie = getValue(data, 62 + i * 4);
-                    surf.emplace_back(specie, minLevel, maxLevel, info[specie]);
-                }
-                encounters.emplace_back(location, Encounter::Surfing, surf);
 
-                std::vector<Slot> old;
-                for (u8 i = 0; i < 2; i++)
-                {
-                    u8 minLevel = data[80 + i * 4];
-                    u8 maxLevel = data[81 + i * 4];
-                    u16 specie = getValue(data, 82 + i * 4);
-                    old.emplace_back(specie, minLevel, maxLevel, info[specie]);
+                u8 rock = entry[3];
+                if (rock != 0 && encounter == Encounter::RockSmash) {
+                    std::vector<Slot> slots;
+                    for (int i = 0; i < 5; i++)
+                    {
+                        u8 min = entry[61 + (i * 4)];
+                        u8 max = entry[62 + (i * 4)];
+                        u16 specie = *reinterpret_cast<const u16 *>(entry + 63 + (i * 4));
+                        slots.emplace_back(specie, min, max, info[specie]);
+                    }
+                    encounters.emplace_back(location, rock, encounter, slots);
                 }
-                encounters.emplace_back(location, Encounter::OldRod, old);
 
-                std::vector<Slot> good;
-                for (u8 i = 0; i < 3; i++)
-                {
-                    u8 minLevel = data[88 + i * 4];
-                    u8 maxLevel = data[89 + i * 4];
-                    u16 specie = getValue(data, 90 + i * 4);
-                    good.emplace_back(specie, minLevel, maxLevel, info[specie]);
+                u8 fish = entry[4];
+                if (fish != 0) {
+                    if (encounter == Encounter::OldRod) {
+                        std::vector<Slot> slots;
+                        for (int i = 0; i < 2; i++)
+                        {
+                            u8 min = entry[81 + (i * 4)];
+                            u8 max = entry[82 + (i * 4)];
+                            u16 specie = *reinterpret_cast<const u16 *>(entry + 83 + (i * 4));
+                            slots.emplace_back(specie, min, max, info[specie]);
+                        }
+                        encounters.emplace_back(location, fish, encounter, slots);
+                    }
+                    else if (encounter == Encounter::GoodRod) {
+                        std::vector<Slot> slots;
+                        for (int i = 0; i < 3; i++)
+                        {
+                            u8 min = entry[89 + (i * 4)];
+                            u8 max = entry[90 + (i * 4)];
+                            u16 specie = *reinterpret_cast<const u16 *>(entry + 91 + (i * 4));
+                            slots.emplace_back(specie, min, max, info[specie]);
+                        }
+                        encounters.emplace_back(location, fish, encounter, slots);
+                    }
+                    else if (encounter == Encounter::SuperRod)
+                    {
+                        std::vector<Slot> slots;
+                        for (int i = 0; i < 5; i++)
+                        {
+                            u8 min = entry[101 + (i * 4)];
+                            u8 max = entry[102 + (i * 4)];
+                            u16 specie = *reinterpret_cast<const u16 *>(entry + 103 + (i * 4));
+                            slots.emplace_back(specie, min, max, info[specie]);
+                        }
+                        encounters.emplace_back(location, fish, encounter, slots);
+                    }
                 }
-                encounters.emplace_back(location, Encounter::GoodRod, good);
-
-                std::vector<Slot> super;
-                for (u8 i = 0; i < 5; i++)
-                {
-                    u8 minLevel = data[100 + i * 4];
-                    u8 maxLevel = data[101 + i * 4];
-                    u16 specie = getValue(data, 102 + i * 4);
-                    super.emplace_back(specie, minLevel, maxLevel, info[specie]);
-                }
-                encounters.emplace_back(location, Encounter::SuperRod, super);
             }
             return encounters;
         }
@@ -160,15 +153,6 @@ namespace Encounters3
     std::vector<EncounterArea3> getEncounters(Encounter encounter, Game version)
     {
         const auto *info = PersonalLoader::getPersonal(version);
-
-        std::vector<EncounterArea3> encounters;
-        for (const auto &data : getData(version))
-        {
-            auto areas = getArea(data, info);
-            std::copy_if(areas.begin(), areas.end(), std::back_inserter(encounters),
-                         [&encounter](const EncounterArea3 &area) { return area.getEncounter() == encounter; });
-        }
-
-        return encounters;
+        return getAreas(encounter, version, info);
     }
 }
