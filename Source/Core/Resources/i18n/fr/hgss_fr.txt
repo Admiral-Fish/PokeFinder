@@ -1,126 +1,126 @@
-30,Bell Tower
-65,Blackthorn City
-142,Bug Contest
-145,Bug Contest (Saturday)
-144,Bug Contest (Thursday)
-143,Bug Contest (Tuesday)
+0,New Bark Town
+1,Route 29
+2,Cherrygrove City
+3,Route 30
+4,Route 31
+5,Violet City
+6,Sprout Tower
+8,Route 32
+9,Ruins of Alph (Outside)
+10,Ruins of Alph (Inside)
+14,Union Cave 1F
+15,Union Cave B1F
+16,Union Cave B2F
+17,Route 33
+18,SLOWPOKE Well B1F
+19,SLOWPOKE Well B2F
+20,Ilex Forest
+21,Route 34
+22,Route 35
+23,National Park
+24,National Park
+25,Route 36
+26,Route 37
+27,Ecruteak City
 28,Burned Tower 1F
 29,Burned Tower B1F
-99,Celadon City
-139,Cerulean Cave 1F
-140,Cerulean Cave 2F
-141,Cerulean Cave B1F
-97,Cerulean City
-2,Cherrygrove City
+30,Bell Tower
+38,Route 38
+39,Route 39
+40,Olivine City
+41,Route 40
+42,Route 41
+43,Whirl Islands 1F
+44,Whirl Islands B1F
+46,Whirl Islands B2F
+48,Whirl Islands B3F
 51,Cianwood City
-101,Cinnabar Island
-83,Cliff Cave
-82,Cliff Edge Gate
-133,DIGLETT’s Cave
-69,Dark Cave (Route 31)
-70,Dark Cave (Route 45)
-66,Dragon’s Den
-27,Ecruteak City
-100,Fuchsia City
-60,Ice Path 1F
-61,Ice Path B1F
-62,Ice Path B2F
-63,Ice Path B3F
-20,Ilex Forest
-58,Lake of Rage
-106,Mt. Moon 1F
-72,Mt. Moon Square
-73,Mt. Moon Square (Clefairy Event)
+52,Route 42
 53,Mt. Mortar 1F
 54,Mt. Mortar 1F (Back)
 55,Mt. Mortar 2F
 56,Mt. Mortar B1F
-85,Mt. Silver
-86,Mt. Silver 1F
-88,Mt. Silver Cave (Export Belt)
-87,Mt. Silver Cave (Lower mountainside)
+57,Route 43
+58,Lake of Rage
+59,Route 44
+60,Ice Path 1F
+61,Ice Path B1F
+62,Ice Path B2F
+63,Ice Path B3F
+65,Blackthorn City
+66,Dragon’s Den
+67,Route 45
+68,Route 46
+69,Dark Cave (Route 31)
+70,Dark Cave (Route 45)
+71,Route 47
+72,Mt. Moon Square
+73,Mt. Moon Square (Clefairy Event)
+74,Seafoam Islands 1F
+75,Seafoam Islands B1F
+76,Seafoam Islands B2F
+77,Seafoam Islands B3F
+78,Seafoam Islands B4F
 79,Mt. Silver Cave (Moltres Chamber)
-89,Mt. Silver Cave (Upper mountainside)
 80,Mt. Silver Cave 2F
 81,Mt. Silver Cave 3F
-23,National Park
-24,National Park
-0,New Bark Town
-40,Olivine City
+82,Cliff Edge Gate
+83,Cliff Cave
+85,Mt. Silver
+86,Mt. Silver 1F
+87,Mt. Silver Cave (Lower mountainside)
+88,Mt. Silver Cave (Export Belt)
+89,Mt. Silver Cave (Upper mountainside)
+91,Safari Zone
+92,Route 12
+93,Route 19
+94,Route 20
 95,Pallet Town
+96,Viridian City
+97,Cerulean City
+98,Vermilion City
+99,Celadon City
+100,Fuchsia City
+101,Cinnabar Island
+102,Route 48
+103,Route 26
+104,Route 27
+105,Route 28
+106,Mt. Moon 1F
 108,Rock Tunnel 1F
 109,Rock Tunnel B1F
+110,Victory Road 1F
 111,Route 1
+112,Route 2 (South)
+113,Route 3
+114,Route 4
+115,Route 5
+116,Route 6
+117,Route 7
+118,Route 8
+119,Route 9
 120,Route 10
 121,Route 11
-92,Route 12
 122,Route 13
 123,Route 14
 124,Route 15
 125,Route 16
 126,Route 17
 127,Route 18
-93,Route 19
-136,Route 2 (North)
-112,Route 2 (South)
-94,Route 20
 128,Route 21
 129,Route 22
 130,Route 24
 131,Route 25
-103,Route 26
-104,Route 27
-105,Route 28
-1,Route 29
-113,Route 3
-3,Route 30
-4,Route 31
-8,Route 32
-17,Route 33
-21,Route 34
-22,Route 35
-25,Route 36
-26,Route 37
-38,Route 38
-39,Route 39
-114,Route 4
-41,Route 40
-42,Route 41
-52,Route 42
-57,Route 43
-59,Route 44
-67,Route 45
-68,Route 46
-71,Route 47
-102,Route 48
-115,Route 5
-116,Route 6
-117,Route 7
-118,Route 8
-119,Route 9
-10,Ruins of Alph (Inside)
-9,Ruins of Alph (Outside)
-18,SLOWPOKE Well B1F
-19,SLOWPOKE Well B2F
-91,Safari Zone
-74,Seafoam Islands 1F
-75,Seafoam Islands B1F
-76,Seafoam Islands B2F
-77,Seafoam Islands B3F
-78,Seafoam Islands B4F
-6,Sprout Tower
 132,Tohjo Falls
-14,Union Cave 1F
-15,Union Cave B1F
-16,Union Cave B2F
-98,Vermilion City
-110,Victory Road 1F
+133,DIGLETT’s Cave
 134,Victory Road 2F
 135,Victory Road 3F
-5,Violet City
-96,Viridian City
+136,Route 2 (North)
 137,Viridian Forest
-43,Whirl Islands 1F
-44,Whirl Islands B1F
-46,Whirl Islands B2F
-48,Whirl Islands B3F
+139,Cerulean Cave 1F
+140,Cerulean Cave 2F
+141,Cerulean Cave B1F
+142,Bug Contest
+143,Bug Contest (Tuesday)
+144,Bug Contest (Thursday)
+145,Bug Contest (Saturday)

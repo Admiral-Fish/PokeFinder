@@ -1,39 +1,41 @@
-56,Abandoned Ship Hidden Floor Corridors
-22,Abandoned Ship Rooms B1F
-114,Altering Cave
-113,Artisan Cave 1F
-112,Artisan Cave B1F
-67,Cave Of Origin 1F
-66,Cave Of Origin Entrance
-111,Desert Underpass
-85,Dewford Town
-89,Ever Grande City
-24,Fiery Path
+0,Route 101
+1,Route 102
+2,Route 103
+3,Route 104
+4,Route 105
+5,Route 110
+6,Route 111
+7,Route 112
+8,Route 113
+9,Route 114
+10,Route 116
+11,Route 117
+12,Route 118
+13,Route 124
+14,Petalburg Woods
+15,Rusturf Tunnel
 16,Granite Cave 1F
 17,Granite Cave B1F
-23,Granite Cave B2F
-45,Granite Cave Stevens Room
-26,Jagged Pass
-84,Lilycove City
-99,Magma Hideout 1F
-100,Magma Hideout 2F 1R
-101,Magma Hideout 2F 2R
-106,Magma Hideout 2F 3R
-102,Magma Hideout 3F 1R
-103,Magma Hideout 3F 2R
-105,Magma Hideout 3F 3R
-104,Magma Hideout 4F
-77,Meteor Falls 1F 1R
-78,Meteor Falls 1F 2R
-79,Meteor Falls B1F 1R
-25,Meteor Falls B1F 2R
-123,Meteor Falls Stevens Cave
-107,Mirage Tower 1F
-108,Mirage Tower 2F
-109,Mirage Tower 3F
-110,Mirage Tower 4F
-87,Mossdeep City
 18,Mt Pyre 1F
+19,Victory Road 1F
+20,Safari Zone South
+21,Underwater Route 126
+22,Abandoned Ship Rooms B1F
+23,Granite Cave B2F
+24,Fiery Path
+25,Meteor Falls B1F 2R
+26,Jagged Pass
+27,Route 106
+28,Route 107
+29,Route 108
+30,Route 109
+31,Route 115
+32,New Mauville Inside
+33,Route 119
+34,Route 120
+35,Route 121
+36,Route 122
+37,Route 123
 38,Mt Pyre 2F
 39,Mt Pyre 3F
 40,Mt Pyre 4F
@@ -41,35 +43,7 @@
 42,Mt Pyre 6F
 43,Mt Pyre Exterior
 44,Mt Pyre Summit
-71,New Mauville Entrance
-32,New Mauville Inside
-88,Pacifidlog Town
-90,Petalburg City
-14,Petalburg Woods
-0,Route 101
-1,Route 102
-2,Route 103
-3,Route 104
-4,Route 105
-27,Route 106
-28,Route 107
-29,Route 108
-30,Route 109
-5,Route 110
-6,Route 111
-7,Route 112
-8,Route 113
-9,Route 114
-31,Route 115
-10,Route 116
-11,Route 117
-12,Route 118
-33,Route 119
-34,Route 120
-35,Route 121
-36,Route 122
-37,Route 123
-13,Route 124
+45,Granite Cave Stevens Room
 46,Route 125
 47,Route 126
 48,Route 127
@@ -80,14 +54,7 @@
 53,Route 132
 54,Route 133
 55,Route 134
-15,Rusturf Tunnel
-73,Safari Zone North
-98,Safari Zone Northeast
-74,Safari Zone Northwest
-20,Safari Zone South
-97,Safari Zone Southeast
-72,Safari Zone Southwest
-65,Seafloor Cavern Entrance
+56,Abandoned Ship Hidden Floor Corridors
 57,Seafloor Cavern Room 1
 58,Seafloor Cavern Room 2
 59,Seafloor Cavern Room 3
@@ -96,18 +63,51 @@
 62,Seafloor Cavern Room 6
 63,Seafloor Cavern Room 7
 64,Seafloor Cavern Room 8
-83,Shoal Cave Low Tide Entrance Room
-92,Shoal Cave Low Tide Ice Room
-82,Shoal Cave Low Tide Inner Room
-81,Shoal Cave Low Tide Lower Room
-80,Shoal Cave Low Tide Stairs Room
-93,Sky Pillar 1F
-95,Sky Pillar 3F
-96,Sky Pillar 5F
-86,Slateport City
-94,Sootopolis City
-91,Underwater Route 124
-21,Underwater Route 126
-19,Victory Road 1F
+65,Seafloor Cavern Entrance
+66,Cave Of Origin Entrance
+67,Cave Of Origin 1F
+71,New Mauville Entrance
+72,Safari Zone Southwest
+73,Safari Zone North
+74,Safari Zone Northwest
 75,Victory Road B1F
 76,Victory Road B2F
+77,Meteor Falls 1F 1R
+78,Meteor Falls 1F 2R
+79,Meteor Falls B1F 1R
+80,Shoal Cave Low Tide Stairs Room
+81,Shoal Cave Low Tide Lower Room
+82,Shoal Cave Low Tide Inner Room
+83,Shoal Cave Low Tide Entrance Room
+84,Lilycove City
+85,Dewford Town
+86,Slateport City
+87,Mossdeep City
+88,Pacifidlog Town
+89,Ever Grande City
+90,Petalburg City
+91,Underwater Route 124
+92,Shoal Cave Low Tide Ice Room
+93,Sky Pillar 1F
+94,Sootopolis City
+95,Sky Pillar 3F
+96,Sky Pillar 5F
+97,Safari Zone Southeast
+98,Safari Zone Northeast
+99,Magma Hideout 1F
+100,Magma Hideout 2F 1R
+101,Magma Hideout 2F 2R
+102,Magma Hideout 3F 1R
+103,Magma Hideout 3F 2R
+104,Magma Hideout 4F
+105,Magma Hideout 3F 3R
+106,Magma Hideout 2F 3R
+107,Mirage Tower 1F
+108,Mirage Tower 2F
+109,Mirage Tower 3F
+110,Mirage Tower 4F
+111,Desert Underpass
+112,Artisan Cave B1F
+113,Artisan Cave 1F
+114,Altering Cave
+123,Meteor Falls Stevens Cave
