@@ -494,6 +494,7 @@ void Wild4::generatorEncounterIndexChanged(int index)
     {
         std::vector<std::string> t;
         auto encounter = static_cast<Encounter>(ui->comboBoxGeneratorEncounter->currentData().toInt());
+        bool flag = false;
 
         switch (encounter)
         {
@@ -511,6 +512,7 @@ void Wild4::generatorEncounterIndexChanged(int index)
             break;
         case Encounter::Headbutt:
             t = { "0", "1", "2", "3", "4", "5" };
+            flag = true;
             break;
         case Encounter::BugCatchingContest:
             t = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" };
@@ -519,22 +521,10 @@ void Wild4::generatorEncounterIndexChanged(int index)
             break;
         }
 
-        if (encounter == Encounter::Headbutt)
-        {
-            ui->labelGeneratorTreesType->setVisible(true);
-            ui->comboBoxGeneratorTreesType->setVisible(true);
-
-            ui->labelGeneratorTime->setVisible(false);
-            ui->comboBoxGeneratorTime->setVisible(false);
-        }
-        else
-        {
-            ui->labelGeneratorTreesType->setVisible(false);
-            ui->comboBoxGeneratorTreesType->setVisible(false);
-
-            ui->labelGeneratorTime->setVisible(true);
-            ui->comboBoxGeneratorTime->setVisible(true);
-        }
+        ui->labelGeneratorTreesType->setVisible(flag);
+        ui->comboBoxGeneratorTreesType->setVisible(flag);
+        ui->labelGeneratorTime->setVisible(!flag);
+        ui->comboBoxGeneratorTime->setVisible(!flag);
 
         if ((currentProfile->getVersion() & Game::HGSS) != Game::None
             && (encounter == Encounter::OldRod || encounter == Encounter::GoodRod || encounter == Encounter::SuperRod))
@@ -560,6 +550,7 @@ void Wild4::searcherEncounterIndexChanged(int index)
     {
         std::vector<std::string> t;
         auto encounter = static_cast<Encounter>(ui->comboBoxSearcherEncounter->currentData().toInt());
+        bool flag = false;
 
         switch (encounter)
         {
@@ -585,22 +576,10 @@ void Wild4::searcherEncounterIndexChanged(int index)
             break;
         }
 
-        if (encounter == Encounter::Headbutt)
-        {
-            ui->labelSearcherTreesType->setVisible(true);
-            ui->comboBoxSearcherTreesType->setVisible(true);
-
-            ui->labelSearcherTime->setVisible(false);
-            ui->comboBoxSearcherTime->setVisible(false);
-        }
-        else
-        {
-            ui->labelSearcherTreesType->setVisible(false);
-            ui->comboBoxSearcherTreesType->setVisible(false);
-
-            ui->labelSearcherTime->setVisible(true);
-            ui->comboBoxSearcherTime->setVisible(true);
-        }
+        ui->labelSearcherTreesType->setVisible(flag);
+        ui->comboBoxSearcherTreesType->setVisible(flag);
+        ui->labelSearcherTime->setVisible(!flag);
+        ui->comboBoxSearcherTime->setVisible(!flag);
 
         if ((currentProfile->getVersion() & Game::HGSS) != Game::None
             && (encounter == Encounter::OldRod || encounter == Encounter::GoodRod || encounter == Encounter::SuperRod))
