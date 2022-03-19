@@ -28,13 +28,14 @@ class Profile4 : public Profile
 public:
     Profile4();
     Profile4(const std::string &profileName, Game version, u16 tid, u16 sid, Game dual = Game::None, int radio = 0, bool radar = false,
-             bool swarm = false);
+             bool swarm = false, bool dex = false);
     std::string getDualSlotString() const;
     Game getDualSlot() const;
     std::string getRadioString() const;
     int getRadio() const;
     bool getRadar() const;
     bool getSwarm() const;
+    bool getNationalDex() const;
     bool operator==(const Profile4 &other) const;
     bool operator!=(const Profile4 &other) const;
 
@@ -43,6 +44,7 @@ private:
     int radio;
     bool radar;
     bool swarm;
+    bool dex;
 };
 
 #endif // PROFILE4_HPP

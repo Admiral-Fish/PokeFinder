@@ -24,15 +24,16 @@
 
 class EncounterArea3;
 class WildState;
+enum class Game : u32;
 
 class WildGenerator3 : public WildGenerator
 {
 public:
-    WildGenerator3(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter, bool rse);
+    WildGenerator3(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter, Game version);
     std::vector<WildState> generate(u32 seed, const EncounterArea3 &encounterArea) const;
 
 private:
-    bool rse;
+    Game version;
 };
 
 #endif // WILDGENERATOR3_HPP

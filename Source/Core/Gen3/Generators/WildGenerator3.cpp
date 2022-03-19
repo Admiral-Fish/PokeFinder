@@ -19,6 +19,7 @@
 
 #include "WildGenerator3.hpp"
 #include <Core/Enum/Encounter.hpp>
+#include <Core/Enum/Game.hpp>
 #include <Core/Enum/Lead.hpp>
 #include <Core/Enum/Method.hpp>
 #include <Core/Gen3/EncounterArea3.hpp>
@@ -27,8 +28,8 @@
 #include <Core/Util/EncounterSlot.hpp>
 
 WildGenerator3::WildGenerator3(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, Method method,
-                               const StateFilter &filter, bool rse) :
-    WildGenerator(initialAdvances, maxAdvances, tid, sid, genderRatio, method, filter), rse(rse)
+                               const StateFilter &filter, Game version) :
+    WildGenerator(initialAdvances, maxAdvances, tid, sid, genderRatio, method, filter), version(version)
 {
 }
 
@@ -39,11 +40,11 @@ std::vector<WildState> WildGenerator3::generate(u32 seed, const EncounterArea3 &
     PokeRNG rng(seed);
     rng.advance(initialAdvances + offset);
 
-    u16 rate = encounterArea.getEncounterRate() * 16;
+    u16 rate = encounterArea.getRate() * 16;
     // RockSmash/Surfing/Fishing encounters have different rng calls inside RSE Safari Zone,
     // so we set a flag to check if we're searching these kind of spreads
-    bool rseSafari = encounterArea.rseSafariZone() && rse;
-    bool rock = rate == 2880;
+    bool rseSafari = encounterArea.rseSafariZone() && (version & Game::RSE) != Game::None;
+    bool rock = (version & Game::FRLG) != Game::None;
 
     bool cuteCharmFlag = false;
     bool (*cuteCharm)(u32);
@@ -110,16 +111,6 @@ std::vector<WildState> WildGenerator3::generate(u32 seed, const EncounterArea3 &
             }
 
             break;
-        case Encounter::SafariZone:
-            state.setEncounterSlot(EncounterSlot::hSlot(go.nextUShort(), encounter));
-            if (!filter.compareEncounterSlot(state))
-            {
-                continue;
-            }
-
-            state.setLevel(encounterArea.calcLevel(state.getEncounterSlot()));
-            go.advance(2);
-            break;
         case Encounter::Grass:
             go.next();
             state.setEncounterSlot(EncounterSlot::hSlot(go.nextUShort(), encounter));
@@ -129,7 +120,7 @@ std::vector<WildState> WildGenerator3::generate(u32 seed, const EncounterArea3 &
             }
 
             state.setLevel(encounterArea.calcLevel(state.getEncounterSlot()));
-            go.advance(1);
+            go.advance(rseSafari ? 2 : 1);
             break;
         case Encounter::Surfing:
         case Encounter::OldRod:

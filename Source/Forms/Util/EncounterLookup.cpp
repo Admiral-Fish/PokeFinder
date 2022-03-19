@@ -96,8 +96,7 @@ std::set<std::pair<u16, QString>> EncounterLookup::getEncounters3(Game game, u16
     Profile3 profile("", game, 0, 0);
 
     // Encounter variables to iterate through
-    auto types = { Encounter::Grass,   Encounter::SafariZone, Encounter::RockSmash, Encounter::OldRod,
-                   Encounter::GoodRod, Encounter::SuperRod,   Encounter::Surfing };
+    auto types = { Encounter::Grass, Encounter::RockSmash, Encounter::OldRod, Encounter::GoodRod, Encounter::SuperRod, Encounter::Surfing };
 
     for (const auto &type : types)
     {
@@ -123,8 +122,8 @@ std::set<std::pair<u16, QString>> EncounterLookup::getEncounters4(Game game, u16
     std::vector<Profile4> profiles;
 
     // Encounter variables to iterate through
-    auto types = { Encounter::Grass,    Encounter::RockSmash, Encounter::OldRod,  Encounter::GoodRod,
-                   Encounter::SuperRod, Encounter::Surfing,   Encounter::Headbutt };
+    auto types = { Encounter::Grass,   Encounter::RockSmash,          Encounter::OldRod,  Encounter::GoodRod, Encounter::SuperRod,
+                   Encounter::Surfing, Encounter::BugCatchingContest, Encounter::Headbutt };
     auto treeTypes = { HeadbuttType::Normal1, HeadbuttType::Normal2, HeadbuttType::Special };
 
     // Setup profiles to iterate through the different combinations of possibilities depending on HGSS vs DPPt
@@ -224,8 +223,6 @@ QString EncounterLookup::getEncounterString(Encounter type)
     {
     case Encounter::Grass:
         return tr("Grass");
-    case Encounter::SafariZone:
-        return tr("Safari Zone");
     case Encounter::Surfing:
         return tr("Surfing");
     case Encounter::OldRod:
@@ -238,6 +235,8 @@ QString EncounterLookup::getEncounterString(Encounter type)
         return tr("Rock Smash");
     case Encounter::Headbutt:
         return tr("Headbutt");
+    case Encounter::BugCatchingContest:
+        return tr("Bug Catching Contest");
     default:
         return "-";
     }

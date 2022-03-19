@@ -95,72 +95,39 @@ constexpr std::array<StaticTemplate, 6> ramanasParkStrangeSpace = {
     StaticTemplate(Game::BDSP, 384, 70, 3) // Rayquaza
 };
 
-constexpr std::array<StaticTemplate, 1> mythics = {
-    StaticTemplate(Game::BDSP, 492, 30, 3)
+constexpr std::array<StaticTemplate, 2> mythics = {
+    StaticTemplate(Game::BDSP, 492, 30, 3), // Shaymin
+    StaticTemplate(Game::BDSP, 493, 80, 3) // Arceus
 };
 
 namespace Encounters8
 {
     namespace
     {
-        std::vector<std::vector<u8>> getData(Game game)
-        {
-            const u8 *data;
-            size_t size;
-            int offset;
 
-            if (game == Game::BD)
-            {
-                data = bd.data();
-                size = bd.size();
-                offset = 140;
-            }
-            else if (game == Game::SP)
-            {
-                data = sp.data();
-                size = sp.size();
-                offset = 140;
-            }
-
-            std::vector<std::vector<u8>> encounters;
-            for (size_t i = 0; i < size; i += offset)
-            {
-                std::vector<u8> entry(offset);
-                std::memcpy(entry.data(), data + i, offset);
-                encounters.emplace_back(entry);
-            }
-
-            return encounters;
-        }
-
-        u16 getValue(const std::vector<u8> &data, int offset)
-        {
-            return static_cast<u16>(data[offset] << 8) | data[offset + 1];
-        }
-
-        void modifySwarm(std::vector<Slot> &mons, const std::vector<u8> &data, const PersonalInfo *info, bool swarm)
+        void modifySwarm(std::vector<Slot> &mons, const u8 *data, const PersonalInfo *info, bool swarm)
         {
             if (swarm)
             {
-                u16 species[2] = { getValue(data, 40), getValue(data, 42) };
+                u16 species[2] = { *reinterpret_cast<const u16 *>(data + 38), *reinterpret_cast<const u16 *>(data + 40) };
                 mons[0].setSpecie(species[0], info[species[0]]);
                 mons[1].setSpecie(species[1], info[species[1]]);
             }
         }
 
-        void modifyTime(std::vector<Slot> &mons, const std::vector<u8> &data, const PersonalInfo *info, int time)
+        void modifyTime(std::vector<Slot> &mons, const u8 *data, const PersonalInfo *info, int time)
         {
             u16 specie1;
             u16 specie2;
             if (time == 1)
             {
-                specie1 = getValue(data, 44);
-                specie2 = getValue(data, 46);
+                specie1 = *reinterpret_cast<const u16 *>(data + 42);
+                specie2 = *reinterpret_cast<const u16 *>(data + 44);
             }
             else if (time == 2)
             {
-                specie1 = getValue(data, 48);
-                specie2 = getValue(data, 50);
+                specie1 = *reinterpret_cast<const u16 *>(data + 46);
+                specie2 = *reinterpret_cast<const u16 *>(data + 48);
             }
             else
             {
@@ -171,11 +138,12 @@ namespace Encounters8
             mons[3].setSpecie(specie2, info[specie2]);
         }
 
-        void modifyRadar(std::vector<Slot> &mons, const std::vector<u8> &data, const PersonalInfo *info, bool radar)
+        void modifyRadar(std::vector<Slot> &mons, const u8 *data, const PersonalInfo *info, bool radar)
         {
             if (radar)
             {
-                u16 species[4] = { getValue(data, 52), getValue(data, 54), getValue(data, 56), getValue(data, 58) };
+                u16 species[4] = { *reinterpret_cast<const u16 *>(data + 50), *reinterpret_cast<const u16 *>(data + 52),
+                                   *reinterpret_cast<const u16 *>(data + 54), *reinterpret_cast<const u16 *>(data + 56) };
                 mons[4].setSpecie(species[0], info[species[0]]);
                 mons[5].setSpecie(species[1], info[species[1]]);
                 mons[10].setSpecie(species[2], info[species[2]]);
@@ -183,63 +151,98 @@ namespace Encounters8
             }
         }
 
-        std::vector<EncounterArea8> getBDSP(const std::vector<u8> &data, const PersonalInfo *info, const Profile8 &profile, int time)
+        std::vector<EncounterArea8> getBDSP(Encounter encounter, const PersonalInfo *info, const Profile8 &profile, int time)
         {
-            std::vector<EncounterArea8> encounters;
-            u16 location = getValue(data, 0);
+            const u8 *data;
+            size_t size;
 
-            // Grass
-            if (data[2] == 1)
+            if (profile.getVersion() == Game::BD)
             {
-                std::vector<Slot> grass;
-                for (int i = 0; i < 12; i++)
-                {
-                    u8 level = data[4 + i * 3];
-                    u16 specie = getValue(data, 5 + i * 3);
-                    grass.emplace_back(specie, level, info[specie]);
-                }
-
-                modifyTime(grass, data, info, time);
-                modifyRadar(grass, data, info, profile.getRadar());
-                modifySwarm(grass, data, info, profile.getSwarm());
-
-                encounters.emplace_back(location, Encounter::Grass, grass);
+                data = bd.data();
+                size = bd.size();
+            }
+            else
+            {
+                data = sp.data();
+                size = sp.size();
             }
 
-            // Water
-            if (data[3] == 1)
+            std::vector<EncounterArea8> encounters;
+            for (size_t offset = 0; offset < size; offset += 142)
             {
-                std::vector<Slot> surf;
-                std::vector<Slot> old;
-                std::vector<Slot> good;
-                std::vector<Slot> super;
-                for (int i = 0; i < 5; i++)
+                const u8 *entry = data + offset;
+
+                u8 location = entry[0];
+
+                u8 grass = entry[1];
+                if (grass != 0 && encounter == Encounter::Grass)
                 {
-                    u8 min = data[60 + i * 4];
-                    u8 max = data[61 + i * 4];
-                    u16 specie = getValue(data, 62 + i * 4);
-                    surf.emplace_back(specie, min, max, info[specie]);
-
-                    min = data[80 + i * 4];
-                    max = data[81 + i * 4];
-                    specie = getValue(data, 82 + i * 4);
-                    old.emplace_back(specie, min, max, info[specie]);
-
-                    min = data[100 + i * 4];
-                    max = data[101 + i * 4];
-                    specie = getValue(data, 102 + i * 4);
-                    good.emplace_back(specie, min, max, info[specie]);
-
-                    min = data[120 + i * 4];
-                    max = data[121 + i * 4];
-                    specie = getValue(data, 122 + i * 4);
-                    super.emplace_back(specie, min, max, info[specie]);
+                    std::vector<Slot> slots;
+                    for (int i = 0; i < 12; i++)
+                    {
+                        u8 level = entry[2 + (i * 3)];
+                        u16 specie = *reinterpret_cast<const u16 *>(entry + 3 + (i * 3));
+                        slots.emplace_back(specie, level, info[specie]);
+                    }
+                    modifySwarm(slots, entry, info, profile.getSwarm());
+                    modifyTime(slots, entry, info, time);
+                    modifyRadar(slots, entry, info, profile.getRadar());
+                    encounters.emplace_back(location, grass, Encounter::Grass, slots);
                 }
 
-                encounters.emplace_back(location, Encounter::Surfing, surf);
-                encounters.emplace_back(location, Encounter::OldRod, old);
-                encounters.emplace_back(location, Encounter::GoodRod, good);
-                encounters.emplace_back(location, Encounter::SuperRod, super);
+                u8 surf = entry[58];
+                if (surf != 0 && encounter == Encounter::Surfing) {
+                    std::vector<Slot> slots;
+                    for (int i = 0; i < 5; i++) {
+                        u8 max = entry[59 + (i * 4)];
+                        u8 min = entry[60 + (i * 4)];
+                        u16 specie = *reinterpret_cast<const u16 *>(entry + 61 + (i * 4));
+                        slots.emplace_back(specie, min, max, info[specie]);
+                    }
+                    encounters.emplace_back(location, surf, Encounter::Surfing, slots);
+                }
+
+                u8 old = entry[79];
+                if (old != 0 && encounter == Encounter::OldRod)
+                {
+                    std::vector<Slot> slots;
+                    for (int i = 0; i < 5; i++)
+                    {
+                        u8 max = entry[80 + (i * 4)];
+                        u8 min = entry[81 + (i * 4)];
+                        u16 specie = *reinterpret_cast<const u16 *>(entry + 82 + (i * 4));
+                        slots.emplace_back(specie, min, max, info[specie]);
+                    }
+                    encounters.emplace_back(location, old, Encounter::OldRod, slots);
+                }
+
+                u8 good = entry[100];
+                if (good != 0 && encounter == Encounter::GoodRod)
+                {
+                    std::vector<Slot> slots;
+                    for (int i = 0; i < 5; i++)
+                    {
+                        u8 max = entry[101 + (i * 4)];
+                        u8 min = entry[102 + (i * 4)];
+                        u16 specie = *reinterpret_cast<const u16 *>(entry + 103 + (i * 4));
+                        slots.emplace_back(specie, min, max, info[specie]);
+                    }
+                    encounters.emplace_back(location, good, Encounter::GoodRod, slots);
+                }
+
+                u8 super = entry[121];
+                if (super != 0 && encounter == Encounter::SuperRod)
+                {
+                    std::vector<Slot> slots;
+                    for (int i = 0; i < 5; i++)
+                    {
+                        u8 max = entry[122 + (i * 4)];
+                        u8 min = entry[123 + (i * 4)];
+                        u16 specie = *reinterpret_cast<const u16 *>(entry + 124 + (i * 4));
+                        slots.emplace_back(specie, min, max, info[specie]);
+                    }
+                    encounters.emplace_back(location, super, Encounter::SuperRod, slots);
+                }
             }
             return encounters;
         }
@@ -248,16 +251,7 @@ namespace Encounters8
     std::vector<EncounterArea8> getEncounters(Encounter encounter, int time, const Profile8 &profile)
     {
         auto *info = PersonalLoader::getPersonal(profile.getVersion());
-
-        std::vector<EncounterArea8> encounters;
-        for (const auto &data : getData(profile.getVersion()))
-        {
-            auto areas = getBDSP(data, info, profile, time);
-            std::copy_if(areas.begin(), areas.end(), std::back_inserter(encounters),
-                         [&encounter](const EncounterArea8 &area) { return area.getEncounter() == encounter; });
-        }
-
-        return encounters;
+        return getBDSP(encounter, info, profile, time);
     }
 
     const StaticTemplate *getStaticEncounters(int index, int *size)
@@ -320,7 +314,7 @@ namespace Encounters8
         }
         else
         {
-            if(size)
+            if (size)
             {
                 *size = mythics.size();
             }

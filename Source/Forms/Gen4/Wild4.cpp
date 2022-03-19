@@ -36,6 +36,7 @@
 #include <Forms/Gen4/Tools/SeedtoTime4.hpp>
 #include <Forms/Models/Gen4/WildModel4.hpp>
 #include <QMenu>
+#include <QMessageBox>
 #include <QSettings>
 #include <QThread>
 #include <QTimer>
@@ -191,7 +192,11 @@ void Wild4::updateLocationsGenerator()
     auto locations = Translator::getLocations(locs, currentProfile->getVersion());
     std::vector<int> indices(locations.size());
     std::iota(indices.begin(), indices.end(), 0);
-    std::sort(indices.begin(), indices.end(), [&locations](int i, int j) { return locations[i] < locations[j]; });
+
+    if (encounter != Encounter::BugCatchingContest)
+    {
+        std::sort(indices.begin(), indices.end(), [&locations](int i, int j) { return locations[i] < locations[j]; });
+    }
 
     ui->comboBoxGeneratorLocation->clear();
     for (int index : indices)
@@ -215,7 +220,11 @@ void Wild4::updateLocationsSearcher()
     auto locations = Translator::getLocations(locs, currentProfile->getVersion());
     std::vector<int> indices(locations.size());
     std::iota(indices.begin(), indices.end(), 0);
-    std::sort(indices.begin(), indices.end(), [&locations](int i, int j) { return locations[i] < locations[j]; });
+
+    if (encounter != Encounter::BugCatchingContest)
+    {
+        std::sort(indices.begin(), indices.end(), [&locations](int i, int j) { return locations[i] < locations[j]; });
+    }
 
     ui->comboBoxSearcherLocation->clear();
     for (int index : indices)
@@ -226,7 +235,7 @@ void Wild4::updateLocationsSearcher()
 
 void Wild4::updatePokemonGenerator()
 {
-    auto area = encounterGenerator[ui->comboBoxGeneratorLocation->currentData().toInt()];
+    auto &area = encounterGenerator[ui->comboBoxGeneratorLocation->currentData().toInt()];
     auto species = area.getUniqueSpecies();
     auto names = area.getSpecieNames();
 
@@ -240,7 +249,7 @@ void Wild4::updatePokemonGenerator()
 
 void Wild4::updatePokemonSearcher()
 {
-    auto area = encounterSearcher[ui->comboBoxSearcherLocation->currentData().toInt()];
+    auto &area = encounterSearcher[ui->comboBoxSearcherLocation->currentData().toInt()];
     auto species = area.getUniqueSpecies();
     auto names = area.getSpecieNames();
 
@@ -332,14 +341,36 @@ void Wild4::generate()
 void Wild4::search()
 {
     auto method = static_cast<Method>(ui->comboBoxSearcherMethod->getCurrentInt());
+
+    std::array<u8, 6> min = ui->filterSearcher->getMinIVs();
+    std::array<u8, 6> max = ui->filterSearcher->getMaxIVs();
+
+    auto encounter = static_cast<Encounter>(ui->comboBoxSearcherEncounter->currentData().toInt());
+    if (encounter == Encounter::BugCatchingContest)
+    {
+        bool flag = true;
+        for (u8 i = 0; i < 6; i++)
+        {
+            if (min[i] == 31)
+            {
+                flag = false;
+                break;
+            }
+        }
+        if (flag)
+        {
+            QMessageBox err(QMessageBox::Warning, tr("Missing Flawless IV"),
+                            tr("Bug Catching Contest Searcher needs at least one IV at 31"));
+            err.exec();
+            return;
+        }
+    }
+
     searcherModel->clearModel();
     searcherModel->setMethod(method);
 
     ui->pushButtonSearch->setEnabled(false);
     ui->pushButtonCancel->setEnabled(true);
-
-    std::array<u8, 6> min = ui->filterSearcher->getMinIVs();
-    std::array<u8, 6> max = ui->filterSearcher->getMaxIVs();
 
     StateFilter filter(ui->filterSearcher->getGender(), ui->filterSearcher->getAbility(), ui->filterSearcher->getShiny(), false, min, max,
                        ui->filterSearcher->getNatures(), ui->filterSearcher->getHiddenPowers(), ui->filterSearcher->getEncounterSlots());
@@ -398,6 +429,7 @@ void Wild4::profilesIndexChanged(int index)
         ui->labelProfileRadioValue->setText(QString::fromStdString(currentProfile->getRadioString()));
         ui->labelProfilePokeRadarValue->setText(currentProfile->getRadar() ? tr("Yes") : tr("No"));
         ui->labelProfileSwarmValue->setText(currentProfile->getSwarm() ? tr("Yes") : tr("No"));
+        ui->labelProfileNationalDexValue->setText(currentProfile->getNationalDex() ? tr("Yes") : tr("No"));
 
         bool flag = (currentProfile->getVersion() & Game::HGSS) != Game::None;
 
@@ -416,6 +448,7 @@ void Wild4::profilesIndexChanged(int index)
         {
             ui->comboBoxGeneratorEncounter->addItem(tr("Rock Smash"), toInt(Encounter::RockSmash));
             ui->comboBoxGeneratorEncounter->addItem(tr("Headbutt"), toInt(Encounter::Headbutt));
+            ui->comboBoxGeneratorEncounter->addItem(tr("Bug Catching Contest"), toInt(Encounter::BugCatchingContest));
 
             ui->comboBoxGeneratorTreesType->clear();
             ui->comboBoxGeneratorTreesType->addItem(tr("Normal 1"), toInt(HeadbuttType::Normal1));
@@ -432,6 +465,7 @@ void Wild4::profilesIndexChanged(int index)
         {
             ui->comboBoxSearcherEncounter->addItem(tr("Rock Smash"), toInt(Encounter::RockSmash));
             ui->comboBoxSearcherEncounter->addItem(tr("Headbutt"), toInt(Encounter::Headbutt));
+            ui->comboBoxSearcherEncounter->addItem(tr("Bug Catching Contest"), toInt(Encounter::BugCatchingContest));
 
             ui->comboBoxSearcherTreesType->clear();
             ui->comboBoxSearcherTreesType->addItem(tr("Normal 1"), toInt(HeadbuttType::Normal1));
@@ -477,6 +511,9 @@ void Wild4::generatorEncounterIndexChanged(int index)
             break;
         case Encounter::Headbutt:
             t = { "0", "1", "2", "3", "4", "5" };
+            break;
+        case Encounter::BugCatchingContest:
+            t = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" };
             break;
         default:
             break;
@@ -540,6 +577,9 @@ void Wild4::searcherEncounterIndexChanged(int index)
             break;
         case Encounter::Headbutt:
             t = { "0", "1", "2", "3", "4", "5" };
+            break;
+        case Encounter::BugCatchingContest:
+            t = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" };
             break;
         default:
             break;
