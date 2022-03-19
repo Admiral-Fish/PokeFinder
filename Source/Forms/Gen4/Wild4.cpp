@@ -266,6 +266,8 @@ void Wild4::updateTreesTypeGenerator()
     {
         ui->comboBoxGeneratorTreesType->removeItem(ui->comboBoxGeneratorTreesType->findData(toInt(HeadbuttType::Special)));
     }
+
+    ui->comboBoxGeneratorTreesType->setCurrentIndex(0);
 }
 
 void Wild4::updateTreesTypeSearcher()
@@ -282,6 +284,8 @@ void Wild4::updateTreesTypeSearcher()
     {
         ui->comboBoxSearcherTreesType->removeItem(ui->comboBoxSearcherTreesType->findData(toInt(HeadbuttType::Special)));
     }
+
+    ui->comboBoxSearcherTreesType->setCurrentIndex(0);
 }
 
 void Wild4::generate()
