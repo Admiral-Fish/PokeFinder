@@ -32,15 +32,15 @@ namespace Encounters4
 {
     bool getHeadbuttSpecialFlag(Game game, int location)
     {
-        const u8 *data = game == Game::HeartGold ? heartgold_headbutt.data() : soulsilver_headbutt.data();
         int offset = 0;
         u8 specialTreesFlag;
 
-        for (size_t i = 0; i < 60; i++)
+        for (size_t i = 0; i < 59; i++)
         {
-            specialTreesFlag = data[offset + 1];
+            const u8 *entry = (game == Game::HeartGold ? heartgold_headbutt.data() : soulsilver_headbutt.data()) + offset;
+            specialTreesFlag = entry[1];
 
-            if (location == data[offset])
+            if (location == entry[0])
             {
                 break;
             }
@@ -267,21 +267,28 @@ namespace Encounters4
 
             if (encounter == Encounter::Headbutt)
             {
-                const u8 *entry = version == Game::HeartGold ? heartgold_headbutt.data() : soulsilver_headbutt.data();
+                int offset = 0;
 
-                u8 location = entry[0];
-                u8 specialTreesFlag = data[1];
-                int offset = specialTreesFlag == 0 && modifier == 2 ? 0 : modifier;
-
-                std::vector<Slot> slots;
-                for (int i = 0; i < 6; i++)
+                for (int i = 0; i < 59; i++)
                 {
-                    u8 min = entry[(25 * offset) + 3 + i * 4];
-                    u8 max = entry[(25 * offset) + 4 + i * 4];
-                    u16 specie = *reinterpret_cast<const u16 *>(entry + (25 * offset) + 5 + i * 4);
-                    slots.emplace_back(specie, min, max, info[specie]);
+                    const u8 *entry = (version == Game::HeartGold ? heartgold_headbutt.data() : soulsilver_headbutt.data()) + offset;
+
+                    u8 location = entry[0];
+                    u8 specialTreesFlag = entry[1];
+                    u8 treesType = specialTreesFlag == 0 && modifier == 2 ? 0 : modifier;
+
+                    std::vector<Slot> slots;
+                    for (int h = 0; h < 6; h++)
+                    {
+                        u8 min = entry[(25 * treesType) + 3 + (h * 4)];
+                        u8 max = entry[(25 * treesType) + 4 + (h * 4)];
+                        u16 specie = *reinterpret_cast<const u16 *>(entry + (25 * treesType) + 5 + (h * 4));
+                        slots.emplace_back(specie, min, max, info[specie]);
+                    }
+                    encounters.emplace_back(location, 0, Encounter::Headbutt, slots);
+
+                    offset += specialTreesFlag == 0 ? 52 : 77;
                 }
-                encounters.emplace_back(location, 0, Encounter::Headbutt, slots);
             }
 
             return encounters;
