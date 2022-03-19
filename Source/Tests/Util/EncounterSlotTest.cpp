@@ -83,7 +83,7 @@ void EncounterSlotTest::kSlot_data()
     QTest::newRow("Surfing") << Encounter::Surfing << QVector<u16> { 0xF583, 0x0A70, 0xA855, 0xECB4, 0x16A7 };
     QTest::newRow("Bug Contest") << Encounter::BugCatchingContest
                                  << QVector<u16> { 0x34A9, 0x2D93, 0x7D3A, 0xBE03, 0x44E5, 0x87A9, 0x7BE7, 0xFC00, 0x4B09, 0x8728 };
-    QTest::newRow("Head Butt") << Encounter::HeadButt << QVector<u16> { 0x4744, 0x34F8, 0xA58B, 0xE7F9, 0xA341, 0xECB4 };
+    QTest::newRow("Head Butt") << Encounter::Headbutt << QVector<u16> { 0x4744, 0x34F8, 0xA58B, 0xE7F9, 0xA341, 0xECB4 };
     QTest::newRow("Rock Smash") << Encounter::RockSmash << QVector<u16> { 0xA1E0, 0x112D };
     QTest::newRow("Grass") << Encounter::Grass << QVector<u16> { 0x0966, 0x172E, 0xD8F5, 0x109F, 0xB585, 0xA58B,
                                                                  0xD217, 0xF60B, 0xBE34, 0xECB4, 0x4522, 0x16A7 };
