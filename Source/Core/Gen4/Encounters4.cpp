@@ -37,7 +37,7 @@ namespace Encounters4
 
         for (size_t i = 0; i < 59; i++)
         {
-            const u8 *entry = (game == Game::HeartGold ? heartgold_headbutt.data() : soulsilver_headbutt.data()) + offset;
+            const u8 *entry = (game == Game::HeartGold ? hg_headbutt.data() : ss_headbutt.data()) + offset;
             specialTreesFlag = entry[1];
 
             if (location == entry[0])
@@ -45,7 +45,7 @@ namespace Encounters4
                 break;
             }
 
-            offset += specialTreesFlag == 0 ? 52 : 77;
+            offset += specialTreesFlag == 0 ? 50 : 74;
         }
 
         return specialTreesFlag == 1;
@@ -244,6 +244,32 @@ namespace Encounters4
                 }
             }
 
+            if (encounter == Encounter::Headbutt)
+            {
+                int offset = 0;
+
+                for (int i = 0; i < 59; i++)
+                {
+                    const u8 *entry = (version == Game::HeartGold ? hg_headbutt.data() : ss_headbutt.data()) + offset;
+
+                    u8 location = entry[0];
+                    u8 specialTreesFlag = entry[1];
+                    u8 treesType = specialTreesFlag == 0 && modifier == 2 ? 0 : modifier;
+
+                    std::vector<Slot> slots;
+                    for (int h = 0; h < 6; h++)
+                    {
+                        u16 specie = *reinterpret_cast<const u16 *>(entry + (24 * treesType) + 2 + (h * 4));
+                        u8 min = entry[(24 * treesType) + 4 + (h * 4)];
+                        u8 max = entry[(24 * treesType) + 5 + (h * 4)];
+                        slots.emplace_back(specie, min, max, info[specie]);
+                    }
+                    encounters.emplace_back(location, 0, Encounter::Headbutt, slots);
+
+                    offset += specialTreesFlag == 0 ? 50 : 74;
+                }
+            }
+
             if (encounter == Encounter::BugCatchingContest)
             {
                 size_t size = profile.getNationalDex() ? hgss_bug.size() : 41;
@@ -262,32 +288,6 @@ namespace Encounters4
                         slots.emplace_back(specie, min, max, info[specie]);
                     }
                     encounters.emplace_back(location, 0, Encounter::BugCatchingContest, slots);
-                }
-            }
-
-            if (encounter == Encounter::Headbutt)
-            {
-                int offset = 0;
-
-                for (int i = 0; i < 59; i++)
-                {
-                    const u8 *entry = (version == Game::HeartGold ? heartgold_headbutt.data() : soulsilver_headbutt.data()) + offset;
-
-                    u8 location = entry[0];
-                    u8 specialTreesFlag = entry[1];
-                    u8 treesType = specialTreesFlag == 0 && modifier == 2 ? 0 : modifier;
-
-                    std::vector<Slot> slots;
-                    for (int h = 0; h < 6; h++)
-                    {
-                        u8 min = entry[(25 * treesType) + 3 + (h * 4)];
-                        u8 max = entry[(25 * treesType) + 4 + (h * 4)];
-                        u16 specie = *reinterpret_cast<const u16 *>(entry + (25 * treesType) + 5 + (h * 4));
-                        slots.emplace_back(specie, min, max, info[specie]);
-                    }
-                    encounters.emplace_back(location, 0, Encounter::Headbutt, slots);
-
-                    offset += specialTreesFlag == 0 ? 52 : 77;
                 }
             }
 
