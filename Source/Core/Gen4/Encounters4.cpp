@@ -226,19 +226,19 @@ namespace Encounters4
 
             if (encounter == Encounter::BugCatchingContest)
             {
-                size_t size = profile.getNationalDex() ? heartgold_bug.size() : 41;
+                size_t size = profile.getNationalDex() ? hgss_bug.size() : 41;
 
                 for (size_t offset = profile.getNationalDex() ? 41 : 0; offset < size; offset += 41)
                 {
-                    const u8 *entry = heartgold_bug.data() + offset;
+                    const u8 *entry = hgss_bug.data() + offset;
                     u8 location = entry[0];
 
                     std::vector<Slot> slots;
                     for (int i = 0; i < 10; i++)
                     {
-                        u8 min = entry[1 + (i * 4)];
-                        u8 max = entry[2 + (i * 4)];
-                        u16 specie = *reinterpret_cast<const u16 *>(entry + 3 + (i * 4));
+                        u16 specie = *reinterpret_cast<const u16 *>(entry + (i * 4));
+                        u8 min = entry[2 + (i * 4)];
+                        u8 max = entry[3 + (i * 4)];
                         slots.emplace_back(specie, min, max, info[specie]);
                     }
                     encounters.emplace_back(location, 0, Encounter::BugCatchingContest, slots);
