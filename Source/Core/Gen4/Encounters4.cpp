@@ -30,27 +30,6 @@
 
 namespace Encounters4
 {
-    bool getHeadbuttSpecialFlag(Game game, int location)
-    {
-        int offset = 0;
-        u8 specialTreesFlag;
-
-        for (size_t i = 0; i < 59; i++)
-        {
-            const u8 *entry = (game == Game::HeartGold ? hg_headbutt.data() : ss_headbutt.data()) + offset;
-            specialTreesFlag = entry[1];
-
-            if (location == entry[0])
-            {
-                break;
-            }
-
-            offset += specialTreesFlag == 0 ? 50 : 74;
-        }
-
-        return specialTreesFlag == 1;
-    }
-
     namespace
     {
         void modifyRadio(std::vector<Slot> &mons, const u8 *data, const PersonalInfo *info, int radio)
@@ -246,9 +225,9 @@ namespace Encounters4
 
             if (encounter == Encounter::Headbutt)
             {
-                int offset = 0;
+                size_t size = hg_headbutt.size();
 
-                for (int i = 0; i < 59; i++)
+                for (size_t offset = 0; offset < size; )
                 {
                     const u8 *entry = (version == Game::HeartGold ? hg_headbutt.data() : ss_headbutt.data()) + offset;
 
@@ -496,5 +475,26 @@ namespace Encounters4
         {
             return getHGSS(version, encounter, profile, info, modifier);
         }
+    }
+
+    bool getHeadbuttSpecialFlag(Game game, int location)
+    {
+        u8 specialTreesFlag;
+        size_t size = hg_headbutt.size();
+
+        for (size_t offset = 0; offset < size; )
+        {
+            const u8 *entry = (game == Game::HeartGold ? hg_headbutt.data() : ss_headbutt.data()) + offset;
+            specialTreesFlag = entry[1];
+
+            if (location == entry[0])
+            {
+                break;
+            }
+
+            offset += specialTreesFlag == 0 ? 50 : 74;
+        }
+
+        return specialTreesFlag == 1;
     }
 }

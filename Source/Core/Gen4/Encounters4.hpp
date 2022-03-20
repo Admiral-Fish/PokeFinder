@@ -20,12 +20,12 @@
 #ifndef ENCOUNTERS4_HPP
 #define ENCOUNTERS4_HPP
 
-#include <Core/Enum/Game.hpp>
 #include <Core/Util/Global.hpp>
 #include <vector>
 
 class EncounterArea4;
 enum class Encounter : u8;
+enum class Game : u32;
 class Profile4;
 
 namespace Encounters4
