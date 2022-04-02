@@ -95,7 +95,8 @@ constexpr std::array<StaticTemplate, 6> ramanasParkStrangeSpace = {
     StaticTemplate(Game::BDSP, 384, 70, 3) // Rayquaza
 };
 
-constexpr std::array<StaticTemplate, 2> mythics = {
+constexpr std::array<StaticTemplate, 3> mythics = {
+    StaticTemplate(Game::BDSP, 491, 50, 3), // Darkrai
     StaticTemplate(Game::BDSP, 492, 30, 3), // Shaymin
     StaticTemplate(Game::BDSP, 493, 80, 3) // Arceus
 };
