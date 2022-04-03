@@ -19,6 +19,7 @@
 
 #include "DenMap.hpp"
 #include "ui_DenMap.h"
+#include <Core/Enum/Game.hpp>
 #include <Core/Gen8/DenLoader.hpp>
 #include <Core/Util/Translator.hpp>
 #include <QPainter>
@@ -57,7 +58,7 @@ void DenMap::locationIndexChanged(int index)
 
         for (u8 denID = start; denID < end; denID++)
         {
-            auto location = Translator::getLocations({DenLoader::getLocation(denID)}, Game::SwSh);
+            auto location = Translator::getLocations({ DenLoader::getLocation(denID) }, Game::SwSh);
             ui->comboBoxDen->addItem(QString("%1: %2").arg(denID + 1 - offset).arg(QString::fromStdString(location[0])));
         }
 

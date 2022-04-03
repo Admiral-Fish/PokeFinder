@@ -28,8 +28,7 @@ enum class Game : u32;
 class SeedTime
 {
 public:
-    SeedTime() = default;
-    SeedTime(const DateTime &dateTime, u32 delay, Game version, const std::vector<bool> &roamers, const std::vector<u8> &routes);
+    SeedTime(const DateTime &dateTime, u32 delay, Game version, const std::array<bool, 3> &roamers, const std::array<u8, 3> &routes);
     SeedTime(const DateTime &dateTime, u32 delay, Game version, const HGSSRoamer &info);
     std::string getSequence() const;
     u32 getSeed() const;

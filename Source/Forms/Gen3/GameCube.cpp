@@ -22,12 +22,16 @@
 #include <Core/Enum/Game.hpp>
 #include <Core/Enum/Method.hpp>
 #include <Core/Gen3/Generators/GameCubeGenerator.hpp>
+#include <Core/Gen3/LockInfo.hpp>
+#include <Core/Gen3/Profile3.hpp>
 #include <Core/Gen3/Searchers/GameCubeSearcher.hpp>
 #include <Core/Parents/ProfileLoader.hpp>
 #include <Core/Util/Translator.hpp>
+#include <Forms/Controls/Controls.hpp>
 #include <Forms/Gen3/Profile/ProfileManager3.hpp>
 #include <Forms/Gen3/Tools/GameCubeRTC.hpp>
 #include <Forms/Models/Gen3/GameCubeModel.hpp>
+#include <QMenu>
 #include <QSettings>
 #include <QThread>
 #include <QTimer>
@@ -37,15 +41,7 @@ GameCube::GameCube(QWidget *parent) : QWidget(parent), ui(new Ui::GameCube)
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
 
-    ui->labelSearcherShadow->setVisible(false);
-    ui->comboBoxSearcherShadow->setVisible(false);
-    ui->labelGeneratorShadow->setVisible(false);
-    ui->comboBoxGeneratorShadow->setVisible(false);
-    ui->labelGeneratorType->setVisible(false);
-    ui->comboBoxGeneratorType->setVisible(false);
-
     setupModels();
-    updateProfiles();
 }
 
 GameCube::~GameCube()
@@ -101,6 +97,13 @@ void GameCube::setupModels()
     ui->filterGenerator->disableControls(Controls::EncounterSlots);
     ui->filterSearcher->disableControls(Controls::EncounterSlots | Controls::UseDelay | Controls::DisableFilter);
 
+    ui->labelSearcherShadow->setVisible(false);
+    ui->comboBoxSearcherShadow->setVisible(false);
+    ui->labelGeneratorShadow->setVisible(false);
+    ui->comboBoxGeneratorShadow->setVisible(false);
+    ui->labelGeneratorType->setVisible(false);
+    ui->comboBoxGeneratorType->setVisible(false);
+
     QAction *outputTXTGenerator = generatorMenu->addAction(tr("Output Results to TXT"));
     QAction *outputCSVGenerator = generatorMenu->addAction(tr("Output Results to CSV"));
     connect(outputTXTGenerator, &QAction::triggered, this, [=] { ui->tableViewGenerator->outputModel(); });
@@ -123,6 +126,8 @@ void GameCube::setupModels()
     connect(ui->tableViewSearcher, &QTableView::customContextMenuRequested, this, &GameCube::tableViewSearcherContextMenu);
     connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &GameCube::profileManager);
 
+    updateProfiles();
+
     QSettings setting;
     if (setting.contains("gamecube/geometry"))
     {
@@ -137,8 +142,8 @@ void GameCube::generate()
     u32 seed = ui->textBoxGeneratorSeed->getUInt();
     u32 initialAdvances = ui->textBoxGeneratorStartingAdvance->getUInt();
     u32 maxAdvances = ui->textBoxGeneratorMaxAdvances->getUInt();
-    u16 tid = currentProfile.getTID();
-    u16 sid = currentProfile.getSID();
+    u16 tid = currentProfile->getTID();
+    u16 sid = currentProfile->getSID();
     u8 genderRatio = ui->filterGenerator->getGenderRatio();
     auto method = static_cast<Method>(ui->comboBoxGeneratorMethod->getCurrentInt());
     u32 offset = 0;
@@ -179,8 +184,8 @@ void GameCube::search()
     StateFilter filter(ui->filterSearcher->getGender(), ui->filterSearcher->getAbility(), ui->filterSearcher->getShiny(), false, min, max,
                        ui->filterSearcher->getNatures(), ui->filterSearcher->getHiddenPowers(), {});
 
-    u16 tid = currentProfile.getTID();
-    u16 sid = currentProfile.getSID();
+    u16 tid = currentProfile->getTID();
+    u16 sid = currentProfile->getSID();
     u8 genderRatio = ui->filterSearcher->getGenderRatio();
 
     auto *searcher = new GameCubeSearcher(tid, sid, genderRatio, method, filter);
@@ -231,11 +236,11 @@ void GameCube::profilesIndexChanged(int index)
 {
     if (index >= 0)
     {
-        currentProfile = profiles[index];
+        currentProfile = &profiles[index];
 
-        ui->labelProfileTIDValue->setText(QString::number(currentProfile.getTID()));
-        ui->labelProfileSIDValue->setText(QString::number(currentProfile.getSID()));
-        ui->labelProfileGameValue->setText(QString::fromStdString(currentProfile.getVersionString()));
+        ui->labelProfileTIDValue->setText(QString::number(currentProfile->getTID()));
+        ui->labelProfileSIDValue->setText(QString::number(currentProfile->getSID()));
+        ui->labelProfileGameValue->setText(QString::fromStdString(currentProfile->getVersionString()));
     }
 }
 
@@ -248,7 +253,7 @@ void GameCube::generatorMethodIndexChanged(int index)
 
         if (method == Method::XD)
         {
-            std::vector<std::string> species = Translator::getSpecies(
+            auto species = Translator::getSpecies(
                 { 334, 24,  354, 12,  113, 301, 85,  149, 51,  355, 125, 83,  55,  88,  58,  316, 316, 316, 107, 106, 97, 115, 131, 165,
                   108, 337, 219, 126, 82,  296, 310, 105, 303, 52,  122, 177, 299, 322, 46,  17,  204, 127, 62,  261, 57, 280, 78,  20,
                   315, 302, 373, 123, 273, 273, 273, 86,  285, 143, 361, 338, 21,  363, 363, 363, 167, 121, 220, 114, 49, 100, 37,  70 });
@@ -281,7 +286,7 @@ void GameCube::generatorMethodIndexChanged(int index)
         }
         else if (method == Method::Colo)
         {
-            std::vector<std::string> species = Translator::getSpecies({ 207, 214, 296, 179, 198, 212, 175, 217 });
+            auto species = Translator::getSpecies({ 207, 214, 296, 179, 198, 212, 175, 217 });
             for (size_t i = 0; i < species.size(); i++)
             {
                 QString specie = QString::fromStdString(species[i]);
@@ -337,7 +342,7 @@ void GameCube::searcherMethodIndexChanged(int index)
 
         if (method == Method::XD)
         {
-            std::vector<std::string> species = Translator::getSpecies(
+            auto species = Translator::getSpecies(
                 { 334, 24,  354, 12,  113, 301, 85,  149, 51,  355, 125, 83,  55,  88,  58,  316, 316, 316, 107, 106, 97, 115, 131, 165,
                   108, 337, 219, 126, 82,  296, 310, 105, 303, 52,  122, 177, 299, 322, 46,  17,  204, 127, 62,  261, 57, 280, 78,  20,
                   315, 302, 373, 123, 273, 273, 273, 86,  285, 143, 361, 338, 21,  363, 363, 363, 167, 121, 220, 114, 49, 100, 37,  70 });
@@ -364,7 +369,7 @@ void GameCube::searcherMethodIndexChanged(int index)
         }
         else if (method == Method::Colo)
         {
-            std::vector<std::string> species = Translator::getSpecies({ 207, 214, 296, 179, 198, 212, 175, 217 });
+            auto species = Translator::getSpecies({ 207, 214, 296, 179, 198, 212, 175, 217 });
             for (size_t i = 0; i < species.size(); i++)
             {
                 QString specie = QString::fromStdString(species[i]);
@@ -410,7 +415,6 @@ void GameCube::seedToTime()
     u32 seed = searcherModel->data(index).toString().toUInt(nullptr, 16);
     auto *rtc = new GameCubeRTC(seed);
     rtc->show();
-    rtc->raise();
 }
 
 void GameCube::profileManager()

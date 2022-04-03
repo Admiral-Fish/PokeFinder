@@ -20,10 +20,11 @@
 #ifndef PROFILECALIBRATOR5_HPP
 #define PROFILECALIBRATOR5_HPP
 
-#include <QAbstractButton>
+#include <Core/Util/Global.hpp>
 #include <QMenu>
 
 class ProfileSearcherModel5;
+class QAbstractButton;
 
 namespace Ui
 {
@@ -42,8 +43,8 @@ public:
 
 private:
     Ui::ProfileCalibrator5 *ui;
-    ProfileSearcherModel5 *model = nullptr;
-    QMenu *menu = nullptr;
+    ProfileSearcherModel5 *model;
+    QMenu *menu;
 
     void setupModels();
     void updateParameters();
@@ -58,6 +59,7 @@ private slots:
     void addNeedle(QAbstractButton *button);
     void removeNeedle();
     void clearNeedles();
+    void updateIVs(const std::array<std::vector<u8>, 6> &ivs);
 };
 
 #endif // PROFILECALIBRATOR5_HPP

@@ -27,9 +27,9 @@
 #include <Core/RNG/Xoroshiro.hpp>
 #include <Core/RNG/Xorshift.hpp>
 #include <Forms/Models/Util/ResearcherModel.hpp>
+#include <QMenu>
+#include <QMessageBox>
 #include <QSettings>
-#include <array>
-#include <functional>
 
 Researcher::Researcher(QWidget *parent) : QWidget(parent), ui(new Ui::Researcher)
 {
@@ -315,7 +315,7 @@ void Researcher::generate()
         rngStates = getStates<Xorshift, false>(Xorshift(seed0, seed1), initialAdvances, maxAdvances);
     }
 
-    QHash<QString, std::function<u64(u64, u64)>> calc;
+    QHash<QString, u64 (*)(u64, u64)> calc;
     calc["/"] = [](u64 x, u64 y) { return y == 0 ? 0 : x / y; };
     calc["%"] = [](u64 x, u64 y) { return x % y; };
     calc[">>"] = [](u64 x, u64 y) { return x >> y; };
@@ -330,7 +330,7 @@ void Researcher::generate()
     std::array<bool, 10> calcCustom;
     std::array<u64, 10> customRValue;
     std::array<bool, 10> pass;
-    std::array<std::function<u64(u64, u64)>, 10> calculators;
+    std::array<u64 (*)(u64, u64), 10> calculators;
 
     calcCustom[0] = ui->lineEditRValue1->text() != "";
     calcCustom[1] = ui->lineEditRValue2->text() != "" || ui->comboBoxRValue2->currentIndex() != 0;

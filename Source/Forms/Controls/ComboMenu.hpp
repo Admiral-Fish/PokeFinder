@@ -20,8 +20,9 @@
 #ifndef COMBOMENU_HPP
 #define COMBOMENU_HPP
 
-#include <QActionGroup>
 #include <QToolButton>
+
+class QActionGroup;
 
 class ComboMenu : public QToolButton
 {
@@ -30,6 +31,7 @@ public:
     ComboMenu(QWidget *parent = nullptr);
     void addAction(const QString &actionText, int data, QMenu *menu = nullptr);
     void removeAction(const QString &name);
+    bool findAction(const QString &name);
     void addMenu(const QString &menuText, const std::vector<std::string> &actions, const std::vector<int> &data = {});
     void addMenu(const QString &menuText, const std::vector<QString> &actions, const std::vector<int> &data = {});
     int getData() const;

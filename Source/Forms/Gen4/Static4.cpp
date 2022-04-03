@@ -22,14 +22,15 @@
 #include <Core/Enum/Lead.hpp>
 #include <Core/Enum/Method.hpp>
 #include <Core/Gen4/Generators/StaticGenerator4.hpp>
+#include <Core/Gen4/Profile4.hpp>
 #include <Core/Gen4/Searchers/StaticSearcher4.hpp>
-#include <Core/Parents/Filters/StateFilter.hpp>
 #include <Core/Parents/ProfileLoader.hpp>
-#include <Core/Parents/States/StaticState.hpp>
 #include <Core/Util/Translator.hpp>
+#include <Forms/Controls/Controls.hpp>
 #include <Forms/Gen4/Profile/ProfileManager4.hpp>
 #include <Forms/Gen4/Tools/SeedtoTime4.hpp>
 #include <Forms/Models/Gen4/StaticModel4.hpp>
+#include <QMenu>
 #include <QSettings>
 #include <QThread>
 #include <QTimer>
@@ -40,7 +41,6 @@ Static4::Static4(QWidget *parent) : QWidget(parent), ui(new Ui::Static4)
     setAttribute(Qt::WA_QuitOnClose, false);
 
     setupModels();
-    updateProfiles();
 }
 
 Static4::~Static4()
@@ -103,7 +103,7 @@ void Static4::setupModels()
     ui->filterSearcher->disableControls(Controls::EncounterSlots | Controls::UseDelay | Controls::DisableFilter);
 
     ui->toolButtonGeneratorLead->addAction(tr("None"), toInt(Lead::None));
-    ui->toolButtonGeneratorLead->addMenu(tr("Synchronize"), Translator::getNatures());
+    ui->toolButtonGeneratorLead->addMenu(tr("Synchronize"), *Translator::getNatures());
     ui->toolButtonGeneratorLead->addMenu(tr("Cute Charm"),
                                          { tr("♂ Lead"), tr("♀ Lead (50% ♂ Target)"), tr("♀ Lead (75% ♂ Target)"),
                                            tr("♀ Lead (25% ♂ Target)"), tr("♀ Lead (87.5% ♂ Target)") },
@@ -128,6 +128,8 @@ void Static4::setupModels()
     connect(ui->tableViewGenerator, &QTableView::customContextMenuRequested, this, &Static4::tableViewGeneratorContextMenu);
     connect(ui->tableViewSearcher, &QTableView::customContextMenuRequested, this, &Static4::tableViewSearcherContextMenu);
     connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &Static4::profileManager);
+
+    updateProfiles();
 
     QSettings setting;
     setting.beginGroup("static4");
@@ -163,8 +165,8 @@ void Static4::generate()
     u32 seed = ui->textBoxGeneratorSeed->getUInt();
     u32 initialAdvances = ui->textBoxGeneratorInitialAdvances->getUInt();
     u32 maxAdvances = ui->textBoxGeneratorMaxAdvances->getUInt();
-    u16 tid = currentProfile.getTID();
-    u16 sid = currentProfile.getSID();
+    u16 tid = currentProfile->getTID();
+    u16 sid = currentProfile->getSID();
     u8 genderRatio = ui->filterGenerator->getGenderRatio();
     u32 offset = 0;
     if (ui->filterGenerator->useDelay())
@@ -179,7 +181,7 @@ void Static4::generate()
     StaticGenerator4 generator(initialAdvances, maxAdvances, tid, sid, genderRatio, method, filter);
     generator.setOffset(offset);
 
-    if (ui->toolButtonGeneratorLead->text() == tr("Sychronize"))
+    if (ui->toolButtonGeneratorLead->text().contains(tr("Synchronize")))
     {
         generator.setLead(Lead::Synchronize);
         generator.setSynchNature(ui->toolButtonGeneratorLead->getData());
@@ -208,8 +210,8 @@ void Static4::search()
     StateFilter filter(ui->filterSearcher->getGender(), ui->filterSearcher->getAbility(), ui->filterSearcher->getShiny(), false, min, max,
                        ui->filterSearcher->getNatures(), ui->filterSearcher->getHiddenPowers(), {});
 
-    u16 tid = currentProfile.getTID();
-    u16 sid = currentProfile.getSID();
+    u16 tid = currentProfile->getTID();
+    u16 sid = currentProfile->getSID();
     u8 genderRatio = ui->filterSearcher->getGenderRatio();
 
     auto *searcher = new StaticSearcher4(tid, sid, genderRatio, method, filter);
@@ -251,13 +253,13 @@ void Static4::profileIndexChanged(int index)
 {
     if (index >= 0)
     {
-        currentProfile = profiles[index];
+        currentProfile = &profiles[index];
 
-        ui->labelProfileTIDValue->setText(QString::number(currentProfile.getTID()));
-        ui->labelProfileSIDValue->setText(QString::number(currentProfile.getSID()));
-        ui->labelProfileGameValue->setText(QString::fromStdString(currentProfile.getVersionString()));
+        ui->labelProfileTIDValue->setText(QString::number(currentProfile->getTID()));
+        ui->labelProfileSIDValue->setText(QString::number(currentProfile->getSID()));
+        ui->labelProfileGameValue->setText(QString::fromStdString(currentProfile->getVersionString()));
 
-        bool flag = (currentProfile.getVersion() & Game::HGSS) != Game::None;
+        bool flag = (currentProfile->getVersion() & Game::HGSS) != Game::None;
 
         ui->comboBoxGeneratorMethod->clear();
         ui->comboBoxGeneratorMethod->addItem(tr("Method 1"), toInt(Method::Method1));
@@ -275,9 +277,10 @@ void Static4::profileIndexChanged(int index)
 void Static4::seedToTime()
 {
     QModelIndex index = ui->tableViewSearcher->currentIndex();
-    auto *time = new SeedtoTime4(searcherModel->data(searcherModel->index(index.row(), 0), Qt::DisplayRole).toString(), currentProfile);
+    QString seed = searcherModel->data(searcherModel->index(index.row(), 0)).toString();
+
+    auto *time = new SeedtoTime4(seed, currentProfile->getVersion());
     time->show();
-    time->raise();
 }
 
 void Static4::tableViewGeneratorContextMenu(QPoint pos)

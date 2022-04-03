@@ -18,6 +18,7 @@
  */
 
 #include "ShadowTeam.hpp"
+#include <Core/Gen3/LockInfo.hpp>
 #include <Core/Enum/Method.hpp>
 #include <Core/Enum/ShadowType.hpp>
 #include <Core/Resources/Encounters.hpp>

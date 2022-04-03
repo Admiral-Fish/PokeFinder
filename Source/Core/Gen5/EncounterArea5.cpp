@@ -18,8 +18,10 @@
  */
 
 #include "EncounterArea5.hpp"
+#include <Core/Parents/Slot.hpp>
 
-EncounterArea5::EncounterArea5(u8 location, Encounter type, const std::vector<Slot> &pokemon) : EncounterArea(location, type, pokemon)
+EncounterArea5::EncounterArea5(u8 location, u8 rate, Encounter type, const std::vector<Slot> &pokemon) :
+    EncounterArea(location, rate, type, pokemon)
 {
 }
 

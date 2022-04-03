@@ -20,10 +20,11 @@
 #ifndef RAIDS_HPP
 #define RAIDS_HPP
 
-#include <Core/Gen8/Profile8.hpp>
-#include <QMenu>
+#include <QWidget>
 
+class Profile8;
 class RaidModel;
+class QMenu;
 
 namespace Ui
 {
@@ -43,10 +44,10 @@ public:
 
 private:
     Ui::Raids *ui;
-    RaidModel *model = nullptr;
+    RaidModel *model;
     std::vector<Profile8> profiles;
-    Profile8 currentProfile;
-    QMenu *menu = nullptr;
+    Profile8 *currentProfile;
+    QMenu *menu;
 
     void setupModels();
 

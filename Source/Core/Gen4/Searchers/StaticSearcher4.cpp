@@ -20,6 +20,7 @@
 #include "StaticSearcher4.hpp"
 #include <Core/Enum/Lead.hpp>
 #include <Core/Enum/Method.hpp>
+#include <Core/Parents/States/StaticState.hpp>
 #include <Core/RNG/LCRNG.hpp>
 
 constexpr u8 genderThreshHolds[5] = { 0, 0x96, 0xC8, 0x4B, 0x32 };

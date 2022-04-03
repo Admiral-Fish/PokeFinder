@@ -22,15 +22,16 @@
 
 #include <Core/Gen3/EncounterArea3.hpp>
 #include <Core/Parents/Searchers/WildSearcher.hpp>
-#include <Core/Parents/States/WildState.hpp>
 #include <Core/RNG/RNGCache.hpp>
 #include <mutex>
+
+class WildState;
+enum class Game : u32;
 
 class WildSearcher3 : public WildSearcher
 {
 public:
-    WildSearcher3() = default;
-    WildSearcher3(u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter);
+    WildSearcher3(u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter, Game version);
     void setEncounterArea(const EncounterArea3 &encounterArea);
     void startSearch(const std::array<u8, 6> &min, const std::array<u8, 6> &max);
     void cancelSearch();
@@ -40,6 +41,7 @@ public:
 private:
     RNGCache cache;
     EncounterArea3 encounterArea;
+    Game version;
 
     bool searching;
     int progress;

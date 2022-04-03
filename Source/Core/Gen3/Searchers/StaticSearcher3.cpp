@@ -19,6 +19,7 @@
 
 #include "StaticSearcher3.hpp"
 #include <Core/Enum/Method.hpp>
+#include <Core/Parents/States/State.hpp>
 #include <Core/RNG/LCRNG.hpp>
 
 StaticSearcher3::StaticSearcher3(u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter) :

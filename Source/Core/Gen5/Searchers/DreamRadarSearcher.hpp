@@ -20,21 +20,22 @@
 #ifndef DREAMRADARSEARCHER_HPP
 #define DREAMRADARSEARCHER_HPP
 
-#include <Core/Gen5/Generators/DreamRadarGenerator.hpp>
 #include <Core/Gen5/Profile5.hpp>
-#include <Core/Gen5/States/DreamRadarState.hpp>
-#include <Core/Gen5/States/SearcherState5.hpp>
-#include <Core/Util/DateTime.hpp>
 #include <Core/Util/Global.hpp>
 #include <atomic>
 #include <mutex>
 
+class Date;
+class DreamRadarGenerator;
+class DreamRadarState;
+template <class StateType>
+class SearcherState5;
+
 class DreamRadarSearcher
 {
 public:
-    DreamRadarSearcher() = default;
     explicit DreamRadarSearcher(const Profile5 &profile);
-    void startSearch(const DreamRadarGenerator &generator, int threads, Date start, const Date &end);
+    void startSearch(const DreamRadarGenerator &generator, int threads, const Date &start, const Date &end);
     void cancelSearch();
     std::vector<SearcherState5<DreamRadarState>> getResults();
     int getProgress() const;

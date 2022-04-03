@@ -20,8 +20,11 @@
 #ifndef EGGSETTINGS_HPP
 #define EGGSETTINGS_HPP
 
-#include <Core/Parents/Daycare.hpp>
+#include <Core/Util/Global.hpp>
 #include <QWidget>
+
+class Daycare;
+enum class Game : u32;
 
 namespace Ui
 {

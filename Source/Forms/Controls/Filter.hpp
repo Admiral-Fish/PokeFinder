@@ -22,7 +22,8 @@
 
 #include <Core/Util/Global.hpp>
 #include <QWidget>
-#include <Forms/Controls/Controls.hpp>
+
+enum class Controls : u16;
 
 namespace Ui
 {

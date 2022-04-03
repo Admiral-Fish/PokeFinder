@@ -19,11 +19,12 @@
 
 #include "EncounterArea.hpp"
 #include <Core/Enum/Encounter.hpp>
+#include <Core/Parents/Slot.hpp>
 #include <Core/Util/Translator.hpp>
 #include <algorithm>
 
-EncounterArea::EncounterArea(u16 location, Encounter encounter, const std::vector<Slot> &pokemon) :
-    pokemon(pokemon), location(location), encounter(encounter)
+EncounterArea::EncounterArea(u8 location, u8 rate, Encounter encounter, const std::vector<Slot> &pokemon) :
+    location(location), rate(rate), encounter(encounter), pokemon(pokemon)
 {
 }
 
@@ -32,9 +33,14 @@ Encounter EncounterArea::getEncounter() const
     return encounter;
 }
 
-u16 EncounterArea::getLocation() const
+u8 EncounterArea::getLocation() const
 {
     return location;
+}
+
+u8 EncounterArea::getRate() const
+{
+    return rate;
 }
 
 std::vector<Slot> EncounterArea::getPokemon() const
@@ -69,7 +75,7 @@ std::vector<bool> EncounterArea::getSlots(u16 num) const
 std::pair<u8, u8> EncounterArea::getLevelRange(u16 specie) const
 {
     std::pair<u8, u8> range = std::make_pair(100, 0);
-    for (auto slot : pokemon)
+    for (auto &slot : pokemon)
     {
         if (slot.getSpecie() == specie)
         {

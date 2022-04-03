@@ -64,7 +64,14 @@ QVariant WildGeneratorModel4::data(const QModelIndex &index, int role) const
         case 2:
         {
             u8 item = state.getItem();
-            return item < 45 ? "No" : item < 95? "50%" : "5%";
+            if (state.getLead() == Lead::CompoundEyes)
+            {
+                return item < 20 ? tr("None") : item < 80? "60%" : "20%";
+            }
+            else
+            {
+                return item < 45 ? tr("None") : item < 95? "50%" : "5%";
+            }
         }
         case 3:
         {
@@ -73,7 +80,7 @@ QVariant WildGeneratorModel4::data(const QModelIndex &index, int role) const
         }
         case 4:
         {
-            return QString::fromStdString(Utilities::getChatot(state.getSeed()));
+            return QString::fromStdString(Utilities4::getChatot(state.getSeed()));
         }
         case 5:
             return state.getEncounterSlot();
@@ -87,7 +94,7 @@ QVariant WildGeneratorModel4::data(const QModelIndex &index, int role) const
             return shiny == 2 ? tr("Square") : shiny == 1 ? tr("Star") : tr("No");
         }
         case 9:
-            return QString::fromStdString(Translator::getNature(state.getNature()));
+            return QString::fromStdString(*Translator::getNature(state.getNature()));
         case 10:
             return state.getAbility();
         case 11:
@@ -98,11 +105,11 @@ QVariant WildGeneratorModel4::data(const QModelIndex &index, int role) const
         case 16:
             return state.getIV(static_cast<u8>(column - 11));
         case 17:
-            return QString::fromStdString(Translator::getHiddenPower(state.getHidden()));
+            return QString::fromStdString(*Translator::getHiddenPower(state.getHidden()));
         case 18:
             return state.getPower();
         case 19:
-            return QString::fromStdString(Translator::getGender(state.getGender()));
+            return QString::fromStdString(*Translator::getGender(state.getGender()));
         }
     }
     return QVariant();
@@ -269,6 +276,8 @@ QVariant WildSearcherModel4::data(const QModelIndex &index, int role) const
                 return tr("Synchronize");
             case Lead::SuctionCups:
                 return tr("Suction Cups");
+            case Lead::CompoundEyes:
+                return tr("Compound Eyes");
             case Lead::CuteCharmFemale:
                 return tr("Cute Charm (♀)");
             case Lead::CuteCharm25M:
@@ -284,7 +293,14 @@ QVariant WildSearcherModel4::data(const QModelIndex &index, int role) const
         case 3:
         {
             u8 item = state.getItem();
-            return item < 45 ? "No" : item < 95? "50%" : "5%";
+            if (state.getLead() == Lead::CompoundEyes)
+            {
+                return item < 20 ? tr("None") : item < 80? "60%" : "20%";
+            }
+            else
+            {
+                return item < 45 ? tr("None") : item < 95? "50%" : "5%";
+            }
         }
         case 4:
             return state.getEncounterSlot();
@@ -298,7 +314,7 @@ QVariant WildSearcherModel4::data(const QModelIndex &index, int role) const
             return shiny == 2 ? tr("Square") : shiny == 1 ? tr("Star") : tr("No");
         }
         case 8:
-            return QString::fromStdString(Translator::getNature(state.getNature()));
+            return QString::fromStdString(*Translator::getNature(state.getNature()));
         case 9:
             return state.getAbility();
         case 10:
@@ -309,11 +325,11 @@ QVariant WildSearcherModel4::data(const QModelIndex &index, int role) const
         case 15:
             return state.getIV(static_cast<u8>(column - 10));
         case 16:
-            return QString::fromStdString(Translator::getHiddenPower(state.getHidden()));
+            return QString::fromStdString(*Translator::getHiddenPower(state.getHidden()));
         case 17:
             return state.getPower();
         case 18:
-            return QString::fromStdString(Translator::getGender(state.getGender()));
+            return QString::fromStdString(*Translator::getGender(state.getGender()));
         }
     }
     return QVariant();

@@ -20,14 +20,16 @@
 #ifndef IDGENERATOR4_HPP
 #define IDGENERATOR4_HPP
 
-#include <Core/Gen4/States/IDState4.hpp>
+#include <Core/Parents/Filters/IDFilter.hpp>
 #include <Core/Parents/Generators/IDGenerator.hpp>
 
-class IDGenerator4 : public IDGenerator<>
+class IDState4;
+
+class IDGenerator4 : public IDGenerator<IDFilter>
 {
 public:
-    IDGenerator4(u32 minDelay, u32 maxDelay, u16 year, u8 month, u8 day, u8 hour, u8 minute);
-    std::vector<IDState4> generate(const IDFilter &filter) const;
+    IDGenerator4(u32 minDelay, u32 maxDelay, u16 year, u8 month, u8 day, u8 hour, u8 minute, const IDFilter &filter);
+    std::vector<IDState4> generate() const;
 
 private:
     u32 minDelay;

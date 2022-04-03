@@ -38,9 +38,9 @@ public:
 
 private:
     Ui::IDs4 *ui;
-    IDModel4 *shinyPID = nullptr;
-    IDModel4 *tidSID = nullptr;
-    IDModel4 *seedFinder = nullptr;
+    IDModel4 *shinyPID;
+    IDModel4 *tidSID;
+    IDModel4 *seedFinder;
 
     void setupModels();
 

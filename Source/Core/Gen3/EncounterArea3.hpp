@@ -26,10 +26,10 @@ class EncounterArea3 : public EncounterArea
 {
 public:
     EncounterArea3() = default;
-    EncounterArea3(u8 location, Encounter encounter, const std::vector<Slot> &pokemon);
+    EncounterArea3(u8 location, u8 rate, Encounter encounter, const std::vector<Slot> &pokemon);
     u8 calcLevel(u8 index, u16 prng) const;
     u8 calcLevel(u8 index) const;
-    u8 getEncounterRate() const;
+    bool rseSafariZone() const;
 };
 
 #endif // ENCOUNTERAREA3_HPP

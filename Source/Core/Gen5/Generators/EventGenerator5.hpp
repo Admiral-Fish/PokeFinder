@@ -22,12 +22,12 @@
 
 #include <Core/Gen5/PGF.hpp>
 #include <Core/Parents/Generators/Generator.hpp>
-#include <Core/Parents/States/State.hpp>
+
+class State;
 
 class EventGenerator5 : public Generator
 {
 public:
-    EventGenerator5() = default;
     EventGenerator5(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter,
                     const PGF &parameters);
     std::vector<State> generate(u64 seed) const;

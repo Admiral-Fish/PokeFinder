@@ -19,7 +19,7 @@
 
 #include "IVFilter.hpp"
 #include "ui_IVFilter.h"
-#include <array>
+#include <Forms/Util/IVCalculator.hpp>
 
 IVFilter::IVFilter(QWidget *parent) : QWidget(parent), ui(new Ui::IVFilter)
 {
@@ -42,6 +42,7 @@ IVFilter::IVFilter(QWidget *parent) : QWidget(parent), ui(new Ui::IVFilter)
     connect(ui->labelSpA, &Label::pressed, this, &IVFilter::changeCompareSpA);
     connect(ui->labelSpD, &Label::pressed, this, &IVFilter::changeCompareSpD);
     connect(ui->labelSpe, &Label::pressed, this, &IVFilter::changeCompareSpe);
+    connect(ui->pushButtonIVCalculator, &QPushButton::clicked, this, &IVFilter::openIVCalculator);
 }
 
 IVFilter::~IVFilter()
@@ -220,5 +221,38 @@ void IVFilter::changeCompareSpe(int type)
     else if (type & Qt::ControlModifier && type & Qt::AltModifier)
     {
         changeSpe(0, 0);
+    }
+}
+
+void IVFilter::openIVCalculator()
+{
+    auto *calculator = new IVCalculator();
+    connect(calculator, &IVCalculator::ivsCalculated, this, &IVFilter::updateIVs);
+    calculator->show();
+}
+
+void IVFilter::updateIVs(const std::array<std::vector<u8>, 6> &ivs)
+{
+    QVector<QSpinBox *> minIVs
+        = { ui->spinBoxHPMin, ui->spinBoxAtkMin, ui->spinBoxDefMin, ui->spinBoxSpAMin, ui->spinBoxSpDMin, ui->spinBoxSpeMin };
+    QVector<QSpinBox *> maxIVs
+        = { ui->spinBoxHPMax, ui->spinBoxAtkMax, ui->spinBoxDefMax, ui->spinBoxSpAMax, ui->spinBoxSpDMax, ui->spinBoxSpeMax };
+
+    for (size_t i = 0; i < ivs.size(); i++)
+    {
+        auto iv = ivs[i];
+
+        u8 min = 0;
+        u8 max = 31;
+
+        // Vector is sorted, grab first/last as min/max
+        if (!iv.empty())
+        {
+            min = iv.front();
+            max = iv.back();
+        }
+
+        minIVs[i]->setValue(min);
+        maxIVs[i]->setValue(max);
     }
 }

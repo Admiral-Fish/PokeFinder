@@ -62,7 +62,7 @@ QVariant WildModel8::data(const QModelIndex &index, int role) const
             return shiny == 2 ? tr("Square") : shiny == 1 ? tr("Star") : tr("No");
         }
         case 7:
-            return QString::fromStdString(Translator::getNature(state.getNature()));
+            return QString::fromStdString(*Translator::getNature(state.getNature()));
         case 8:
         {
             u8 ability = state.getAbility();
@@ -80,7 +80,7 @@ QVariant WildModel8::data(const QModelIndex &index, int role) const
         case 14:
             return state.getIV(static_cast<u8>(column - 9));
         case 15:
-            return QString::fromStdString(Translator::getGender(state.getGender()));
+            return QString::fromStdString(*Translator::getGender(state.getGender()));
         }
     }
 

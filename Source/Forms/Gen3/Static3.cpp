@@ -22,12 +22,15 @@
 #include <Core/Enum/Game.hpp>
 #include <Core/Enum/Method.hpp>
 #include <Core/Gen3/Generators/StaticGenerator3.hpp>
+#include <Core/Gen3/Profile3.hpp>
 #include <Core/Gen3/Searchers/StaticSearcher3.hpp>
 #include <Core/Parents/ProfileLoader.hpp>
 #include <Core/Util/Translator.hpp>
+#include <Forms/Controls/Controls.hpp>
 #include <Forms/Gen3/Profile/ProfileManager3.hpp>
 #include <Forms/Gen3/Tools/SeedTime3.hpp>
 #include <Forms/Models/Gen3/StaticModel3.hpp>
+#include <QMenu>
 #include <QSettings>
 #include <QThread>
 #include <QTimer>
@@ -38,7 +41,6 @@ Static3::Static3(QWidget *parent) : QWidget(parent), ui(new Ui::Static3)
     setAttribute(Qt::WA_QuitOnClose, false);
 
     setupModels();
-    updateProfiles();
 }
 
 Static3::~Static3()
@@ -115,6 +117,8 @@ void Static3::setupModels()
     connect(ui->tableViewSearcher, &QTableView::customContextMenuRequested, this, &Static3::tableViewSearcherContextMenu);
     connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &Static3::profileManager);
 
+    updateProfiles();
+
     QSettings setting;
     if (setting.contains("static3/geometry"))
     {
@@ -129,8 +133,8 @@ void Static3::generate()
     u32 seed = ui->textBoxGeneratorSeed->getUInt();
     u32 initialAdvances = ui->textBoxGeneratorInitialAdvances->getUInt();
     u32 maxAdvances = ui->textBoxGeneratorMaxAdvances->getUInt();
-    u16 tid = currentProfile.getTID();
-    u16 sid = currentProfile.getSID();
+    u16 tid = currentProfile->getTID();
+    u16 sid = currentProfile->getSID();
     u8 genderRatio = ui->filterGenerator->getGenderRatio();
     auto method = static_cast<Method>(ui->comboBoxGeneratorMethod->getCurrentInt());
     u32 offset = 0;
@@ -163,8 +167,8 @@ void Static3::search()
     StateFilter filter(ui->filterSearcher->getGender(), ui->filterSearcher->getAbility(), ui->filterSearcher->getShiny(), false, min, max,
                        ui->filterSearcher->getNatures(), ui->filterSearcher->getHiddenPowers(), {});
 
-    u16 tid = currentProfile.getTID();
-    u16 sid = currentProfile.getSID();
+    u16 tid = currentProfile->getTID();
+    u16 sid = currentProfile->getSID();
     u8 genderRatio = ui->filterSearcher->getGenderRatio();
     auto method = static_cast<Method>(ui->comboBoxSearcherMethod->getCurrentInt());
 
@@ -204,16 +208,16 @@ void Static3::profilesIndexChanged(int index)
 {
     if (index >= 0)
     {
-        currentProfile = profiles[index];
+        currentProfile = &profiles[index];
 
-        if (currentProfile.getDeadBattery())
+        if (currentProfile->getDeadBattery())
         {
             ui->textBoxGeneratorSeed->setText("5a0");
         }
 
-        ui->labelProfileTIDValue->setText(QString::number(currentProfile.getTID()));
-        ui->labelProfileSIDValue->setText(QString::number(currentProfile.getSID()));
-        ui->labelProfileGameValue->setText(QString::fromStdString(currentProfile.getVersionString()));
+        ui->labelProfileTIDValue->setText(QString::number(currentProfile->getTID()));
+        ui->labelProfileSIDValue->setText(QString::number(currentProfile->getSID()));
+        ui->labelProfileGameValue->setText(QString::fromStdString(currentProfile->getVersionString()));
     }
 }
 
@@ -241,7 +245,6 @@ void Static3::seedToTime()
 
     auto *seedToTime = new SeedTime3(seed);
     seedToTime->show();
-    seedToTime->raise();
 }
 
 void Static3::profileManager()

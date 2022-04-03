@@ -18,6 +18,7 @@
  */
 
 #include "RTCSearcher.hpp"
+#include <Core/Gen3/States/GameCubeRTCState.hpp>
 #include <Core/RNG/LCRNG.hpp>
 
 RTCSearcher::RTCSearcher() : searching(false)

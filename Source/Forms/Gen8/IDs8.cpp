@@ -20,6 +20,7 @@
 #include "IDs8.hpp"
 #include "ui_IDs8.h"
 #include <Core/Gen8/Generators/IDGenerator8.hpp>
+#include <Core/Gen8/Profile8.hpp>
 #include <Core/Parents/ProfileLoader.hpp>
 #include <Forms/Gen8/Profile/ProfileManager8.hpp>
 #include <Forms/Models/Gen8/IDModel8.hpp>
@@ -33,7 +34,6 @@ IDs8::IDs8(QWidget *parent) : QWidget(parent), ui(new Ui::IDs8)
     setAttribute(Qt::WA_QuitOnClose, false);
 
     setupModel();
-    updateProfiles();
 }
 
 IDs8::~IDs8()
@@ -78,6 +78,8 @@ void IDs8::setupModel()
     connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &IDs8::profileManager);
     connect(ui->comboBoxProfiles, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &IDs8::profilesIndexChanged);
 
+    updateProfiles();
+
     QSettings setting;
     if (setting.contains("ids8/geometry"))
     {
@@ -87,12 +89,19 @@ void IDs8::setupModel()
 
 void IDs8::generate()
 {
+    u64 seed0 = ui->textBoxSeed0->getULong();
+    u64 seed1 = ui->textBoxSeed1->getULong();
+    if (seed0 == 0 && seed1 == 0)
+    {
+        QMessageBox msg(QMessageBox::Warning, tr("Missing seeds"), tr("Please insert missing seed information"));
+        msg.exec();
+        return;
+    }
+
     model->clearModel();
 
     u32 initialAdvances = ui->textBoxInitialAdvances->getUInt();
     u32 maxAdvances = ui->textBoxMaxAdvances->getUInt();
-    u64 seed0 = ui->textBoxSeed0->getULong();
-    u64 seed1 = ui->textBoxSeed1->getULong();
 
     std::vector<u16> tidFilter;
     std::vector<u16> sidFilter;
@@ -102,7 +111,7 @@ void IDs8::generate()
     QString inputs = ui->textEditFilter->toPlainText();
     if (ui->radioButtonTID->isChecked())
     {
-        QRegularExpression re("^\\d{1,5}$", QRegularExpression::MultilineOption);
+        QRegularExpression re("^\\d+$", QRegularExpression::MultilineOption);
         auto matches = re.globalMatch(inputs);
         while (matches.hasNext())
         {
@@ -121,7 +130,7 @@ void IDs8::generate()
     }
     else if (ui->radioButtonSID->isChecked())
     {
-        QRegularExpression re("^\\d{1,5}$", QRegularExpression::MultilineOption);
+        QRegularExpression re("^\\d+$", QRegularExpression::MultilineOption);
         auto matches = re.globalMatch(inputs);
         while (matches.hasNext())
         {
@@ -140,7 +149,7 @@ void IDs8::generate()
     }
     else if (ui->radioButtonTIDSID->isChecked())
     {
-        QRegularExpression re("^(\\d{1,5})/(\\d{1,5})$", QRegularExpression::MultilineOption);
+        QRegularExpression re("^(\\d+)/(\\d+)$", QRegularExpression::MultilineOption);
         auto matches = re.globalMatch(inputs);
         while (matches.hasNext())
         {
@@ -171,7 +180,7 @@ void IDs8::generate()
     }
     else if (ui->radioButtonG8TID->isChecked())
     {
-        QRegularExpression re("^\\d{1,6}$", QRegularExpression::MultilineOption);
+        QRegularExpression re("^\\d+$", QRegularExpression::MultilineOption);
         auto matches = re.globalMatch(inputs);
         while (matches.hasNext())
         {
@@ -190,7 +199,7 @@ void IDs8::generate()
     }
 
     inputs = ui->textEditTSVFilter->toPlainText();
-    QRegularExpression re("^\\d{1,4}$", QRegularExpression::MultilineOption);
+    QRegularExpression re("^\\d+$", QRegularExpression::MultilineOption);
     auto matches = re.globalMatch(inputs);
     while (matches.hasNext())
     {
@@ -219,7 +228,6 @@ void IDs8::profileManager()
     auto *manager = new ProfileManager8();
     connect(manager, &ProfileManager8::updateProfiles, [=]() { emit alertProfiles(8); });
     manager->show();
-    manager->raise();
 }
 
 void IDs8::profilesIndexChanged(int index)
@@ -227,6 +235,7 @@ void IDs8::profilesIndexChanged(int index)
     if (index >= 0)
     {
         auto profile = profiles[index];
+
         ui->labelProfileTIDValue->setText(QString::number(profile.getTID()));
         ui->labelProfileSIDValue->setText(QString::number(profile.getSID()));
         ui->labelProfileGameValue->setText(QString::fromStdString(profile.getVersionString()));

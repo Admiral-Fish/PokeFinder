@@ -20,6 +20,9 @@
 #include "WildGenerator8.hpp"
 #include <Core/Enum/Game.hpp>
 #include <Core/Enum/Method.hpp>
+#include <Core/Gen8/EncounterArea8.hpp>
+#include <Core/Parents/Slot.hpp>
+#include <Core/Parents/States/WildState.hpp>
 #include <Core/RNG/RNGList.hpp>
 #include <Core/RNG/Xorshift.hpp>
 #include <Core/Util/EncounterSlot.hpp>
@@ -29,12 +32,7 @@ WildGenerator8::WildGenerator8(u32 initialAdvances, u32 maxAdvances, u16 tid, u1
 {
 }
 
-void WildGenerator8::setEncounterArea(const EncounterArea8 &encounterArea)
-{
-    this->encounterArea = encounterArea;
-}
-
-std::vector<WildState8> WildGenerator8::generate(u64 seed0, u64 seed1) const
+std::vector<WildState8> WildGenerator8::generate(u64 seed0, u64 seed1, const EncounterArea8 &encounterArea) const
 {
     Xorshift rng(seed0, seed1);
     rng.advance(initialAdvances + offset);

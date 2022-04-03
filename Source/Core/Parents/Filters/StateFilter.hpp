@@ -30,7 +30,6 @@ class WildState;
 class StateFilter
 {
 public:
-    StateFilter() = default;
     StateFilter(u8 gender, u8 ability, u8 shiny, bool skip, const std::array<u8, 6> &min, const std::array<u8, 6> &max,
                 const std::vector<bool> &natures, const std::vector<bool> &powers, const std::vector<bool> &encounters);
     bool compareState(const State &state) const;

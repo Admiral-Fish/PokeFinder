@@ -21,7 +21,9 @@
 #define IVCALCULATOR_HPP
 
 #include <Core/Util/Global.hpp>
-#include <QLabel>
+#include <QWidget>
+
+class QLabel;
 
 namespace Ui
 {
@@ -31,6 +33,9 @@ namespace Ui
 class IVCalculator : public QWidget
 {
     Q_OBJECT
+signals:
+    void ivsCalculated(std::array<std::vector<u8>, 6>);
+
 public:
     explicit IVCalculator(QWidget *parent = nullptr);
     ~IVCalculator() override;

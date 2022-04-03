@@ -40,7 +40,7 @@ public:
 
 private:
     Ui::GameCubeRTC *ui;
-    GameCubeRTCModel *model = nullptr;
+    GameCubeRTCModel *model;
 
     void setupModels();
 

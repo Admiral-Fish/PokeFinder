@@ -20,8 +20,9 @@
 #ifndef SEARCHCOINFLIPS_HPP
 #define SEARCHCOINFLIPS_HPP
 
-#include <Core/Gen4/SeedTime.hpp>
 #include <QDialog>
+
+class SeedTime;
 
 namespace Ui
 {

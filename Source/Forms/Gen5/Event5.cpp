@@ -23,15 +23,18 @@
 #include <Core/Enum/Method.hpp>
 #include <Core/Gen5/Generators/EventGenerator5.hpp>
 #include <Core/Gen5/Keypresses.hpp>
+#include <Core/Gen5/Profile5.hpp>
 #include <Core/Gen5/Searchers/EventSearcher5.hpp>
 #include <Core/Parents/PersonalInfo.hpp>
 #include <Core/Parents/PersonalLoader.hpp>
 #include <Core/Parents/ProfileLoader.hpp>
 #include <Core/Util/Translator.hpp>
 #include <Core/Util/Utilities.hpp>
+#include <Forms/Controls/Controls.hpp>
 #include <Forms/Gen5/Profile/ProfileManager5.hpp>
 #include <Forms/Models/Gen5/EventModel5.hpp>
 #include <QFileDialog>
+#include <QMenu>
 #include <QMessageBox>
 #include <QSettings>
 #include <QThread>
@@ -43,7 +46,6 @@ Event5::Event5(QWidget *parent) : QWidget(parent), ui(new Ui::Event5)
     setAttribute(Qt::WA_QuitOnClose, false);
 
     setupModels();
-    updateProfiles();
 }
 
 Event5::~Event5()
@@ -100,7 +102,7 @@ void Event5::setupModels()
     ui->textBoxSearcherEventTID->setValues(InputType::TIDSID);
     ui->textBoxSearcherEventSID->setValues(InputType::TIDSID);
 
-    for (const std::string &nature : Translator::getNatures())
+    for (const std::string &nature : *Translator::getNatures())
     {
         ui->comboBoxGeneratorNature->addItem(QString::fromStdString(nature));
         ui->comboBoxSearcherNature->addItem(QString::fromStdString(nature));
@@ -139,6 +141,8 @@ void Event5::setupModels()
     connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &Event5::profileManager);
     connect(ui->tableViewGenerator, &QTableView::customContextMenuRequested, this, &Event5::tableViewGeneratorContextMenu);
     connect(ui->tableViewSearcher, &QTableView::customContextMenuRequested, this, &Event5::tableViewSearcherContextMenu);
+
+    updateProfiles();
 
     QSettings setting;
     setting.beginGroup("event5");
@@ -188,8 +192,8 @@ void Event5::generate()
     u64 seed = ui->textBoxGeneratorSeed->getULong();
     u32 initialAdvances = ui->textBoxGeneratorInitialAdvances->getUInt();
     u32 maxAdvances = ui->textBoxGeneratorMaxAdvances->getUInt();
-    u16 tid = currentProfile.getTID();
-    u16 sid = currentProfile.getSID();
+    u16 tid = currentProfile->getTID();
+    u16 sid = currentProfile->getSID();
     u8 genderRatio = ui->filterGenerator->getGenderRatio();
     u32 offset = 0;
     if (ui->filterGenerator->useDelay())
@@ -216,8 +220,8 @@ void Event5::search()
     ui->pushButtonCancel->setEnabled(true);
 
     u32 maxAdvances = ui->textBoxSearcherMaxAdvances->getUInt();
-    u16 tid = currentProfile.getTID();
-    u16 sid = currentProfile.getSID();
+    u16 tid = currentProfile->getTID();
+    u16 sid = currentProfile->getSID();
     u8 genderRatio = ui->filterSearcher->getGenderRatio();
 
     StateFilter filter(ui->filterSearcher->getGender(), ui->filterSearcher->getAbility(), ui->filterSearcher->getShiny(),
@@ -227,14 +231,14 @@ void Event5::search()
     EventGenerator5 generator(0, maxAdvances, tid, sid, genderRatio, Method::Method5Event, filter, getSearcherParameters());
     generator.setOffset(0);
 
-    auto *searcher = new EventSearcher5(currentProfile);
+    auto *searcher = new EventSearcher5(*currentProfile);
 
     Date start = ui->dateEditSearcherStartDate->getDate();
     Date end = ui->dateEditSearcherEndDate->getDate();
 
-    int maxProgress = Keypresses::getKeyPresses(currentProfile.getKeypresses(), currentProfile.getSkipLR()).size();
+    int maxProgress = Keypresses::getKeyPresses(currentProfile->getKeypresses(), currentProfile->getSkipLR()).size();
     maxProgress *= start.daysTo(end) + 1;
-    maxProgress *= (currentProfile.getTimer0Max() - currentProfile.getTimer0Min() + 1);
+    maxProgress *= (currentProfile->getTimer0Max() - currentProfile->getTimer0Min() + 1);
     ui->progressBar->setRange(0, maxProgress);
 
     QSettings settings;
@@ -321,7 +325,7 @@ void Event5::generatorImportEvent()
 
             ui->checkBoxGeneratorEgg->setChecked(pgf.isEgg());
 
-            ui->filterGenerator->setGenderRatio(PersonalLoader::getPersonal(currentProfile.getVersion())[pgf.getSpecies()].getGender());
+            ui->filterGenerator->setGenderRatio(PersonalLoader::getPersonal(currentProfile->getVersion())[pgf.getSpecies()].getGender());
         }
         else
         {
@@ -391,7 +395,7 @@ void Event5::searcherImportEvent()
 
             ui->checkBoxSearcherEgg->setChecked(pgf.isEgg());
 
-            ui->filterSearcher->setGenderRatio(PersonalLoader::getPersonal(currentProfile.getVersion())[pgf.getSpecies()].getGender());
+            ui->filterSearcher->setGenderRatio(PersonalLoader::getPersonal(currentProfile->getVersion())[pgf.getSpecies()].getGender());
         }
         else
         {
@@ -405,16 +409,16 @@ void Event5::searcherImportEvent()
 
 void Event5::calculateInitialAdvances()
 {
-    Game version = currentProfile.getVersion();
+    Game version = currentProfile->getVersion();
 
     u8 initialAdvances;
     if ((version & Game::BW) != Game::None)
     {
-        initialAdvances = Utilities::initialAdvancesBW(ui->textBoxGeneratorSeed->getULong());
+        initialAdvances = Utilities5::initialAdvancesBW(ui->textBoxGeneratorSeed->getULong());
     }
     else
     {
-        initialAdvances = Utilities::initialAdvancesBW2(ui->textBoxGeneratorSeed->getULong(), currentProfile.getMemoryLink());
+        initialAdvances = Utilities5::initialAdvancesBW2(ui->textBoxGeneratorSeed->getULong(), currentProfile->getMemoryLink());
     }
 
     ui->textBoxGeneratorInitialAdvances->setText(QString::number(initialAdvances));
@@ -424,19 +428,19 @@ void Event5::profileIndexChanged(int index)
 {
     if (index >= 0)
     {
-        currentProfile = profiles[index];
+        currentProfile = &profiles[index];
 
-        ui->labelProfileTIDValue->setText(QString::number(currentProfile.getTID()));
-        ui->labelProfileSIDValue->setText(QString::number(currentProfile.getSID()));
-        ui->labelProfileMACAddressValue->setText(QString::number(currentProfile.getMac(), 16));
-        ui->labelProfileDSTypeValue->setText(QString::fromStdString(currentProfile.getDSTypeString()));
-        ui->labelProfileVCountValue->setText(QString::number(currentProfile.getVCount(), 16));
-        ui->labelProfileTimer0Value->setText(QString::number(currentProfile.getTimer0Min(), 16) + "-"
-                                             + QString::number(currentProfile.getTimer0Max(), 16));
-        ui->labelProfileGxStatValue->setText(QString::number(currentProfile.getGxStat()));
-        ui->labelProfileVFrameValue->setText(QString::number(currentProfile.getVFrame()));
-        ui->labelProfileKeypressesValue->setText(QString::fromStdString(currentProfile.getKeypressesString()));
-        ui->labelProfileGameValue->setText(QString::fromStdString(currentProfile.getVersionString()));
+        ui->labelProfileTIDValue->setText(QString::number(currentProfile->getTID()));
+        ui->labelProfileSIDValue->setText(QString::number(currentProfile->getSID()));
+        ui->labelProfileMACAddressValue->setText(QString::number(currentProfile->getMac(), 16));
+        ui->labelProfileDSTypeValue->setText(QString::fromStdString(currentProfile->getDSTypeString()));
+        ui->labelProfileVCountValue->setText(QString::number(currentProfile->getVCount(), 16));
+        ui->labelProfileTimer0Value->setText(QString::number(currentProfile->getTimer0Min(), 16) + "-"
+                                             + QString::number(currentProfile->getTimer0Max(), 16));
+        ui->labelProfileGxStatValue->setText(QString::number(currentProfile->getGxStat()));
+        ui->labelProfileVFrameValue->setText(QString::number(currentProfile->getVFrame()));
+        ui->labelProfileKeypressesValue->setText(QString::fromStdString(currentProfile->getKeypressesString()));
+        ui->labelProfileGameValue->setText(QString::fromStdString(currentProfile->getVersionString()));
     }
 }
 

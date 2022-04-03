@@ -20,7 +20,8 @@
 #include "EncounterArea4.hpp"
 #include <Core/Parents/Slot.hpp>
 
-EncounterArea4::EncounterArea4(u8 location, Encounter type, const std::vector<Slot> &pokemon) : EncounterArea(location, type, pokemon)
+EncounterArea4::EncounterArea4(u8 location, u8 rate, Encounter type, const std::vector<Slot> &pokemon) :
+    EncounterArea(location, rate, type, pokemon)
 {
 }
 
@@ -32,28 +33,4 @@ u8 EncounterArea4::calcLevel(u8 index, u16 prng) const
 u8 EncounterArea4::calcLevel(u8 index) const
 {
     return pokemon[index].getMinLevel();
-}
-
-u16 EncounterArea4::getEncounterRate() const
-{
-    switch (location)
-    {
-    case 117: // Cerulean Cave 1F
-    case 119: // Cerulean Cave B1F
-        return 5;
-    case 8: // Ruins of Alpha (Outside)
-    case 88: // Rock Tunnel 2F
-        return 20;
-    case 35: // Cianwood City
-    case 66: // Cliff Cave
-    case 73: // Route 19
-        return 30;
-    case 78: // Vermillion City
-    case 114: // Victory Road 3F
-        return 40;
-    case 52: // Dark Cave (Route 31)
-        return 50;
-    default:
-        return 0;
-    }
 }

@@ -42,7 +42,7 @@ public:
 
 private:
     Ui::EncounterLookup *ui;
-    QStandardItemModel *model = nullptr;
+    QStandardItemModel *model;
 
     void setupModels();
     std::set<std::pair<u16, QString>> getEncounters3(Game game, u16 specie);

@@ -29,7 +29,6 @@ class EggState4;
 class EggSearcher4 : public Searcher
 {
 public:
-    EggSearcher4() = default;
     EggSearcher4(u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter);
     void startSearch(u32 minDelay, u32 maxDelay, int type, const EggGenerator4 &generatorIV, const EggGenerator4 &generatorPID);
     void cancelSearch();

@@ -20,9 +20,12 @@
 #include "Eggs8.hpp"
 #include "ui_Eggs8.h"
 #include <Core/Gen8/Generators/EggGenerator8.hpp>
+#include <Core/Gen8/Profile8.hpp>
 #include <Core/Parents/ProfileLoader.hpp>
+#include <Forms/Controls/Controls.hpp>
 #include <Forms/Gen8/Profile/ProfileManager8.hpp>
 #include <Forms/Models/Gen8/EggModel8.hpp>
+#include <QMenu>
 #include <QMessageBox>
 #include <QSettings>
 
@@ -32,7 +35,6 @@ Eggs8::Eggs8(QWidget *parent) : QWidget(parent), ui(new Ui::Eggs8)
     setAttribute(Qt::WA_QuitOnClose, false);
 
     setupModels();
-    updateProfiles();
 }
 
 Eggs8::~Eggs8()
@@ -99,6 +101,8 @@ void Eggs8::setupModels()
     connect(ui->tableView, &QTableView::customContextMenuRequested, this, &Eggs8::tableViewContextMenu);
     connect(ui->eggSettings, &EggSettings::toggleInheritance, model, &EggModel8::toggleInheritance);
 
+    updateProfiles();
+
     QSettings setting;
     setting.beginGroup("egg8");
     if (setting.contains("geometry"))
@@ -122,14 +126,21 @@ void Eggs8::generate()
         box.exec();
     }
 
-    model->clearModel();
-
     u64 seed0 = ui->textBoxSeed0->getULong();
     u64 seed1 = ui->textBoxSeed1->getULong();
+    if (seed0 == 0 && seed1 == 0)
+    {
+        QMessageBox msg(QMessageBox::Warning, tr("Missing seeds"), tr("Please insert missing seed information"));
+        msg.exec();
+        return;
+    }
+
+    model->clearModel();
+
     u32 initialAdvances = ui->textBoxInitialAdvances->getUInt();
     u32 maxAdvances = ui->textBoxMaxAdvances->getUInt();
-    u16 tid = currentProfile.getTID();
-    u16 sid = currentProfile.getSID();
+    u16 tid = currentProfile->getTID();
+    u16 sid = currentProfile->getSID();
     u8 genderRatio = ui->filter->getGenderRatio();
     u32 offset = 0;
     if (ui->filter->useDelay())
@@ -138,7 +149,7 @@ void Eggs8::generate()
     }
 
     u8 compatability = ui->comboBoxCompatibility->getCurrentByte();
-    if (currentProfile.getOvalCharm())
+    if (currentProfile->getOvalCharm())
     {
         compatability = compatability == 20 ? 40 : compatability == 50 ? 80 : 88;
     }
@@ -147,7 +158,7 @@ void Eggs8::generate()
                        ui->filter->getMinIVs(), ui->filter->getMaxIVs(), ui->filter->getNatures(), {}, {});
 
     EggGenerator8 generator(initialAdvances, maxAdvances, tid, sid, genderRatio, filter, ui->eggSettings->getDaycareSettings(),
-                            currentProfile.getShinyCharm(), compatability);
+                            currentProfile->getShinyCharm(), compatability);
     generator.setOffset(offset);
 
     auto states = generator.generate(seed0, seed1);
@@ -158,13 +169,13 @@ void Eggs8::profileIndexChanged(int index)
 {
     if (index >= 0)
     {
-        currentProfile = profiles[index];
+        currentProfile = &profiles[index];
 
-        ui->labelProfileTIDValue->setText(QString::number(currentProfile.getTID()));
-        ui->labelProfileSIDValue->setText(QString::number(currentProfile.getSID()));
-        ui->labelProfileGameValue->setText(QString::fromStdString(currentProfile.getVersionString()));
-        ui->labelProfileShinyCharmValue->setText(currentProfile.getShinyCharm() ? tr("Yes") : tr("No"));
-        ui->labelProfileOvalCharmValue->setText(currentProfile.getOvalCharm() ? tr("Yes") : tr("No"));
+        ui->labelProfileTIDValue->setText(QString::number(currentProfile->getTID()));
+        ui->labelProfileSIDValue->setText(QString::number(currentProfile->getSID()));
+        ui->labelProfileGameValue->setText(QString::fromStdString(currentProfile->getVersionString()));
+        ui->labelProfileShinyCharmValue->setText(currentProfile->getShinyCharm() ? tr("Yes") : tr("No"));
+        ui->labelProfileOvalCharmValue->setText(currentProfile->getOvalCharm() ? tr("Yes") : tr("No"));
     }
 }
 

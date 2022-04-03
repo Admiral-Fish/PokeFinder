@@ -37,7 +37,8 @@ enum class Lead : u8
     CuteCharm25F,
     CuteCharm125F,
     CuteCharmFemale,
-    SuctionCups
+    SuctionCups,
+    CompoundEyes
 };
 
 constexpr u8 toInt(Lead lead)

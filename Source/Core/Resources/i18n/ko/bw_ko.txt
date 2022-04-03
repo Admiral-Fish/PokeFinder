@@ -1,0 +1,85 @@
+0,Striaton City
+1,Driftveil City
+2,Icirrus City
+3,Dreamyard (Ruins)
+4,Dreamyard (Basement)
+5,Pinwheel Forest (Exterior)
+6,Pinwheel Forest (Interior)
+7,Desert Resort (Entrance)
+8,Desert Resort (Desert)
+9,Relic Castle 1F-B1F
+11,Relic Castle B2F-B6F
+15,Relic Castle (Lowest Floor)
+30,Relic Castle (Volcarona)
+40,Cold Storage
+41,Chargestone Cave 1F
+42,Chargestone Cave B1F
+43,Chargestone Cave B2F
+44,Twist Mountain (Upper Level)
+45,Twist Mountain (Middle Level)
+46,Twist Mountain (Lower Level)
+47,Twist Mountain (Lowest Level)
+48,Dragonspiral Tower (Entrance)
+49,Dragonspiral Tower (Outside)
+50,Dragonspiral Tower 1F
+51,Dragonspiral Tower 2F
+52,Victory Road
+53,Victory Road 1F (Middle)
+54,Victory Road 2F (Left)
+55,Victory Road 3F (Middle)
+56,Victory Road 4F (Middle)
+57,Victory Road 2F (Right)
+58,Victory Road 1F (Right)
+59,Victory Road 3F (Right)
+60,Victory Road 1F (Left)
+61,Victory Road 3F (Left)
+62,Victory Road 4F (Left)
+63,Victory Road 5F
+64,Victory Road 6F
+65,Victory Road 4F (Right)
+66,Victory Road 7F
+67,Trial Chamber
+68,Giant Chasm (Entrance)
+69,Giant Chasm (Cave)
+70,Giant Chasm (Crater Forest)
+71,Giant Chasm (Cave Depths)
+72,P2 Laboratory
+73,Undella Bay
+74,Driftveil Drawbridge
+75,Village Bridge
+76,Marvelous Bridge
+77,Route 1
+78,Route 2
+79,Route 3
+80,Wellspring Cave 1F
+81,Wellspring Cave B1F
+82,Route 4
+83,Route 5
+84,Route 6
+85,Mistralton Cave 1F
+86,Mistralton Cave 2F
+87,Guidance Chamber
+88,Route 7
+89,Celestial Tower 2F
+90,Celestial Tower 3F
+91,Celestial Tower 4F
+92,Celestial Tower 5F
+93,Route 8
+94,Moor of Icirrus
+95,Route 9
+96,Challenger's Cave 1F
+97,Challenger's Cave B1F
+98,Challenger's Cave B2F
+99,Route 10
+100,Route 10 (Basic Badge Gate)
+101,Route 11
+102,Route 12
+103,Route 13
+104,Route 14
+105,Abundant Shrine
+106,Route 15
+107,Route 16
+108,Lostlorn Forest
+109,Route 18
+110,Undella Town
+111,Route 17

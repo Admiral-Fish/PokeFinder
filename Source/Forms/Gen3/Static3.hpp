@@ -20,11 +20,12 @@
 #ifndef STATIC3_H
 #define STATIC3_H
 
-#include <Core/Gen3/Profile3.hpp>
-#include <QMenu>
+#include <QWidget>
 
+class Profile3;
 class StaticGeneratorModel3;
 class StaticSearcherModel3;
+class QMenu;
 
 namespace Ui
 {
@@ -44,12 +45,12 @@ public:
 
 private:
     Ui::Static3 *ui;
-    StaticGeneratorModel3 *generatorModel = nullptr;
-    StaticSearcherModel3 *searcherModel = nullptr;
+    StaticGeneratorModel3 *generatorModel;
+    StaticSearcherModel3 *searcherModel;
     std::vector<Profile3> profiles;
-    Profile3 currentProfile;
-    QMenu *generatorMenu = nullptr;
-    QMenu *searcherMenu = nullptr;
+    Profile3 *currentProfile;
+    QMenu *generatorMenu;
+    QMenu *searcherMenu;
 
     void setupModels();
 

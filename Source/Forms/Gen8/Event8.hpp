@@ -20,11 +20,12 @@
 #ifndef EVENT8_HPP
 #define EVENT8_HPP
 
-#include <Core/Gen8/WB8.hpp>
-#include <Core/Gen8/Profile8.hpp>
-#include <QMenu>
+#include <QWidget>
 
 class EventModel8;
+class Profile8;
+class WB8;
+class QMenu;
 
 namespace Ui
 {
@@ -44,10 +45,10 @@ public:
 
 private:
     Ui::Event8 *ui;
-    EventModel8 *model = nullptr;
+    EventModel8 *model;
     std::vector<Profile8> profiles;
-    Profile8 currentProfile;
-    QMenu *menu = nullptr;
+    Profile8 *currentProfile;
+    QMenu *menu;
 
     void setupModels();
     WB8 getParameters() const;

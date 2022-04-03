@@ -18,7 +18,9 @@
  */
 
 #include "ShadowLock.hpp"
+#include <Core/Gen3/LockInfo.hpp>
 #include <Core/Gen3/ShadowTeam.hpp>
+#include <Core/RNG/LCRNG.hpp>
 
 /* Each non-shadow before a shadow has to match
  * a specific gender/nature and these preset

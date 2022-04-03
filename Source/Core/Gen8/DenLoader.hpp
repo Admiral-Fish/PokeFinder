@@ -20,7 +20,12 @@
 #ifndef DENLOADER_HPP
 #define DENLOADER_HPP
 
-#include <Core/Gen8/Den.hpp>
+#include <Core/Util/Global.hpp>
+#include <array>
+#include <string>
+
+class Den;
+class DenEvent;
 
 namespace DenLoader
 {

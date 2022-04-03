@@ -18,6 +18,7 @@
  */
 
 #include "HiddenGrottoGenerator.hpp"
+#include <Core/Gen5/States/HiddenGrottoState.hpp>
 #include <Core/RNG/LCRNG64.hpp>
 #include <Core/Util/Utilities.hpp>
 

@@ -30,6 +30,7 @@
 #include <Core/Gen8/EncounterArea8.hpp>
 #include <Core/Gen8/Encounters8.hpp>
 #include <Core/Gen8/Profile8.hpp>
+#include <Core/Parents/Slot.hpp>
 #include <Core/Util/Translator.hpp>
 #include <QCompleter>
 #include <QSettings>
@@ -94,20 +95,18 @@ std::set<std::pair<u16, QString>> EncounterLookup::getEncounters3(Game game, u16
     Profile3 profile("", game, 0, 0);
 
     // Encounter variables to iterate through
-    auto types = { Encounter::Grass,   Encounter::SafariZone, Encounter::RockSmash, Encounter::OldRod,
-                   Encounter::GoodRod, Encounter::SuperRod,   Encounter::Surfing };
+    auto types = { Encounter::Grass, Encounter::RockSmash, Encounter::OldRod, Encounter::GoodRod, Encounter::SuperRod, Encounter::Surfing };
 
     for (const auto &type : types)
     {
         auto areas = Encounters3::getEncounters(type, profile.getVersion());
         for (const auto &area : areas)
         {
-            std::vector<Slot> pokemon = area.getPokemon();
+            auto pokemon = area.getPokemon();
             if (std::any_of(pokemon.begin(), pokemon.end(), [specie](const auto &entry) { return entry.getSpecie() == specie; }))
             {
-                QString info = getEncounterString(type);
                 std::pair<u8, u8> range = area.getLevelRange(specie);
-                info += QString("/%1-%2").arg(range.first).arg(range.second);
+                QString info = QString("%1/%2-%3").arg(getEncounterString(type)).arg(range.first).arg(range.second);
                 encounters.insert(std::make_pair(area.getLocation(), info));
             }
         }
@@ -122,7 +121,8 @@ std::set<std::pair<u16, QString>> EncounterLookup::getEncounters4(Game game, u16
     std::vector<Profile4> profiles;
 
     // Encounter variables to iterate through
-    auto types = { Encounter::Grass, Encounter::RockSmash, Encounter::OldRod, Encounter::GoodRod, Encounter::SuperRod, Encounter::Surfing };
+    auto types = { Encounter::Grass,   Encounter::RockSmash,         Encounter::OldRod, Encounter::GoodRod, Encounter::SuperRod,
+                   Encounter::Surfing, Encounter::BugCatchingContest };
 
     // Setup profiles to iterate through the different combinations of possibilities depending on HGSS vs DPPt
     if ((game & Game::HGSS) != Game::None)
@@ -162,9 +162,8 @@ std::set<std::pair<u16, QString>> EncounterLookup::getEncounters4(Game game, u16
                     auto pokemon = area.getPokemon();
                     if (std::any_of(pokemon.begin(), pokemon.end(), [specie](const auto &entry) { return entry.getSpecie() == specie; }))
                     {
-                        QString info = getEncounterString(type);
                         std::pair<u8, u8> range = area.getLevelRange(specie);
-                        info += QString("/%1-%2").arg(range.first).arg(range.second);
+                        QString info = QString("%1/%2-%3").arg(getEncounterString(type)).arg(range.first).arg(range.second);
                         encounters.insert(std::make_pair(area.getLocation(), info));
                     }
                 }
@@ -204,9 +203,8 @@ std::set<std::pair<u16, QString>> EncounterLookup::getEncounters8(Game game, u16
                     auto pokemon = area.getPokemon();
                     if (std::any_of(pokemon.begin(), pokemon.end(), [specie](const auto &entry) { return entry.getSpecie() == specie; }))
                     {
-                        QString info = getEncounterString(type);
                         std::pair<u8, u8> range = area.getLevelRange(specie);
-                        info += QString("/%1-%2").arg(range.first).arg(range.second);
+                        QString info = QString("%1/%2-%3").arg(getEncounterString(type)).arg(range.first).arg(range.second);
                         encounters.insert(std::make_pair(area.getLocation(), info));
                     }
                 }
@@ -223,8 +221,6 @@ QString EncounterLookup::getEncounterString(Encounter type)
     {
     case Encounter::Grass:
         return tr("Grass");
-    case Encounter::SafariZone:
-        return tr("Safari Zone");
     case Encounter::Surfing:
         return tr("Surfing");
     case Encounter::OldRod:
@@ -235,6 +231,8 @@ QString EncounterLookup::getEncounterString(Encounter type)
         return tr("Super Rod");
     case Encounter::RockSmash:
         return tr("Rock Smash");
+    case Encounter::BugCatchingContest:
+        return tr("Bug Catching Contest");
     default:
         return "-";
     }
@@ -247,7 +245,6 @@ void EncounterLookup::find()
     Game game = static_cast<Game>(ui->comboBoxGame->currentData().toUInt());
     u16 specie = static_cast<u16>(ui->comboBoxPokemon->currentIndex() + 1);
     std::set<std::pair<u16, QString>> encounters;
-    std::vector<std::string> locationNames;
 
     if ((game & Game::Gen3) != Game::None)
     {
@@ -263,6 +260,8 @@ void EncounterLookup::find()
     }
 
     std::vector<u16> locations;
+    std::vector<std::string> locationNames;
+
     std::transform(encounters.begin(), encounters.end(), std::back_inserter(locations),
                    [](const std::pair<u16, QString> &encounter) { return encounter.first; });
     locationNames = Translator::getLocations(locations, game);

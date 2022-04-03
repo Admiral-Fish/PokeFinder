@@ -29,6 +29,7 @@ ProfileEditor4::ProfileEditor4(QWidget *parent) : QDialog(parent), ui(new Ui::Pr
 
     ui->labelRadio->setVisible(false);
     ui->comboBoxRadio->setVisible(false);
+    ui->checkBoxNationalDex->setVisible(false);
 
     setupModels();
 }
@@ -48,6 +49,7 @@ ProfileEditor4::ProfileEditor4(const Profile4 &profile, QWidget *parent) : QDial
     ui->comboBoxRadio->setCurrentIndex(profile.getRadio());
     ui->checkBoxRadar->setChecked(profile.getRadar());
     ui->checkBoxSwarm->setChecked(profile.getSwarm());
+    ui->checkBoxNationalDex->setChecked(profile.getNationalDex());
 
     isEditing = true;
     original = profile;
@@ -105,7 +107,8 @@ void ProfileEditor4::okay()
 
     fresh = Profile4(ui->lineEditProfile->text().toStdString(), static_cast<Game>(ui->comboBoxVersion->getCurrentUInt()),
                      ui->textBoxTID->getUShort(), ui->textBoxSID->getUShort(), static_cast<Game>(ui->comboBoxDualSlot->getCurrentUInt()),
-                     ui->comboBoxRadio->currentIndex(), ui->checkBoxRadar->isChecked(), ui->checkBoxSwarm->isChecked());
+                     ui->comboBoxRadio->currentIndex(), ui->checkBoxRadar->isChecked(), ui->checkBoxSwarm->isChecked(),
+                     ui->checkBoxNationalDex->isChecked());
 
     done(QDialog::Accepted);
 }
@@ -125,6 +128,8 @@ void ProfileEditor4::versionIndexChanged(int index)
         ui->labelDualSlot->setVisible(!flag);
         ui->comboBoxDualSlot->setVisible(!flag);
 
+        ui->checkBoxNationalDex->setVisible(flag);
+
         if (flag)
         {
             ui->comboBoxDualSlot->setCurrentIndex(0);
@@ -133,6 +138,7 @@ void ProfileEditor4::versionIndexChanged(int index)
         else
         {
             ui->comboBoxRadio->setCurrentIndex(0);
+            ui->checkBoxNationalDex->setChecked(false);
         }
     }
 }
