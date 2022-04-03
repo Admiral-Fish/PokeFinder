@@ -22,7 +22,7 @@
 #include <Core/Enum/Method.hpp>
 #include <Core/Gen8/EncounterArea8.hpp>
 #include <Core/Parents/Slot.hpp>
-#include <Core/Parents/States/WildState.hpp>
+#include <Core/Gen8/States/WildState8.hpp>
 #include <Core/RNG/RNGList.hpp>
 #include <Core/RNG/Xorshift.hpp>
 #include <Core/Util/EncounterSlot.hpp>
