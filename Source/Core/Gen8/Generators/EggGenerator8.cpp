@@ -72,25 +72,31 @@ std::vector<EggState> EggGenerator8::generate(u64 seed0, u64 seed1) const
             {
                 // gen.next(2);
                 // Handle display result later
-                gen.next();
-            }
-
-            if (genderRatio == 255)
-            {
-                state.setGender(2);
-            }
-            else if (genderRatio == 254)
-            {
-                state.setGender(1);
-            }
-            else if (genderRatio == 0)
-            {
-                state.setGender(0);
+                state.setGender(gen.next(2));
+                if (genderRatio != 255 && genderRatio != 254 && genderRatio != 0)
+                {
+                    gen.next();
+                }
             }
             else
             {
-                u8 gender = gen.next(252) + 1 < genderRatio;
-                state.setGender(gender);
+                if (genderRatio == 255)
+                {
+                    state.setGender(2);
+                }
+                else if (genderRatio == 254)
+                {
+                    state.setGender(1);
+                }
+                else if (genderRatio == 0)
+                {
+                    state.setGender(0);
+                }
+                else
+                {
+                    u8 gender = gen.next(252) + 1 < genderRatio;
+                    state.setGender(gender);
+                }
             }
 
             u8 nature = gen.next(25);
