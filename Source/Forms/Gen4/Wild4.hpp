@@ -60,8 +60,8 @@ private:
     void updateLocationsSearcher();
     void updatePokemonGenerator();
     void updatePokemonSearcher();
-    void updateTreesTypeGenerator();
-    void updateTreesTypeSearcher();
+    void updateTreeTypeGenerator();
+    void updateTreeTypeSearcher();
 
 private slots:
     void generate();
@@ -73,8 +73,8 @@ private slots:
     void searcherLocationIndexChanged(int index);
     void generatorPokemonIndexChanged(int index);
     void searcherPokemonIndexChanged(int index);
-    void generatorTreesTypeIndexChanged(int index);
-    void searcherTreesTypeIndexChanged(int index);
+    void generatorTreeTypeIndexChanged(int index);
+    void searcherTreeTypeIndexChanged(int index);
     void generatorTimeIndexChanged(int index);
     void searcherTimeIndexChanged(int index);
     void seedToTime();
