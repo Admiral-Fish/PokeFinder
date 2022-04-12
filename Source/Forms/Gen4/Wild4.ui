@@ -367,7 +367,7 @@
            </widget>
           </item>
           <item row="2" column="1">
-           <widget class="QComboBox" name="comboBoxGeneratorTreesType"/>
+           <widget class="QComboBox" name="comboBoxGeneratorTreeType"/>
           </item>
           <item row="2" column="0">
            <widget class="QLabel" name="labelGeneratorTreesType">
@@ -652,7 +652,7 @@
            </layout>
           </item>
           <item row="2" column="1">
-           <widget class="QComboBox" name="comboBoxSearcherTreesType"/>
+           <widget class="QComboBox" name="comboBoxSearcherTreeType"/>
           </item>
           <item row="2" column="0">
            <widget class="QLabel" name="labelSearcherTreesType">
@@ -729,7 +729,7 @@
   <tabstop>tabRNGSelector</tabstop>
   <tabstop>comboBoxGeneratorMethod</tabstop>
   <tabstop>comboBoxGeneratorLocation</tabstop>
-  <tabstop>comboBoxGeneratorTreesType</tabstop>
+  <tabstop>comboBoxGeneratorTreeType</tabstop>
   <tabstop>comboBoxGeneratorTime</tabstop>
   <tabstop>comboBoxGeneratorPokemon</tabstop>
   <tabstop>comboBoxGeneratorEncounter</tabstop>
@@ -741,7 +741,7 @@
   <tabstop>tableViewGenerator</tabstop>
   <tabstop>comboBoxSearcherMethod</tabstop>
   <tabstop>comboBoxSearcherLocation</tabstop>
-  <tabstop>comboBoxSearcherTreesType</tabstop>
+  <tabstop>comboBoxSearcherTreeType</tabstop>
   <tabstop>comboBoxSearcherTime</tabstop>
   <tabstop>comboBoxSearcherPokemon</tabstop>
   <tabstop>comboBoxSearcherEncounter</tabstop>

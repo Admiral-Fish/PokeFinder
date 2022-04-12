@@ -138,9 +138,9 @@ void Wild4::setupModels()
     connect(ui->comboBoxSearcherLocation, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &Wild4::searcherLocationIndexChanged);
     connect(ui->comboBoxGeneratorPokemon, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &Wild4::generatorPokemonIndexChanged);
     connect(ui->comboBoxSearcherPokemon, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &Wild4::searcherPokemonIndexChanged);
-    connect(ui->comboBoxGeneratorTreesType, QOverload<int>::of(&QComboBox::currentIndexChanged), this,
+    connect(ui->comboBoxGeneratorTreeType, QOverload<int>::of(&QComboBox::currentIndexChanged), this,
             &Wild4::generatorTreesTypeIndexChanged);
-    connect(ui->comboBoxSearcherTreesType, QOverload<int>::of(&QComboBox::currentIndexChanged), this,
+    connect(ui->comboBoxSearcherTreeType, QOverload<int>::of(&QComboBox::currentIndexChanged), this,
             &Wild4::searcherTreesTypeIndexChanged);
     connect(ui->comboBoxGeneratorTime, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &Wild4::generatorTimeIndexChanged);
     connect(ui->comboBoxSearcherTime, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &Wild4::searcherTimeIndexChanged);
@@ -181,7 +181,7 @@ void Wild4::updateLocationsGenerator()
 {
     auto encounter = static_cast<Encounter>(ui->comboBoxGeneratorEncounter->currentData().toInt());
     int modifier
-        = encounter == Encounter::Headbutt ? ui->comboBoxGeneratorTreesType->currentIndex() : ui->comboBoxGeneratorTime->currentIndex();
+        = encounter == Encounter::Headbutt ? ui->comboBoxGeneratorTreeType->currentIndex() : ui->comboBoxGeneratorTime->currentIndex();
 
     encounterGenerator = Encounters4::getEncounters(encounter, modifier, *currentProfile);
 
@@ -209,7 +209,7 @@ void Wild4::updateLocationsSearcher()
 {
     auto encounter = static_cast<Encounter>(ui->comboBoxSearcherEncounter->currentData().toInt());
     int modifier
-        = encounter == Encounter::Headbutt ? ui->comboBoxSearcherTreesType->currentIndex() : ui->comboBoxSearcherTime->currentIndex();
+        = encounter == Encounter::Headbutt ? ui->comboBoxSearcherTreeType->currentIndex() : ui->comboBoxSearcherTime->currentIndex();
 
     encounterSearcher = Encounters4::getEncounters(encounter, modifier, *currentProfile);
 
@@ -266,17 +266,17 @@ void Wild4::updateTreesTypeGenerator()
     if (Encounters4::getHeadbuttSpecialFlag(currentProfile->getVersion(),
                                             encounterGenerator[ui->comboBoxGeneratorLocation->currentData().toInt()].getLocation()))
     {
-        if (ui->comboBoxGeneratorTreesType->findData(toInt(HeadbuttType::Special)) == -1)
+        if (ui->comboBoxGeneratorTreeType->findData(toInt(HeadbuttType::Special)) == -1)
         {
-            ui->comboBoxGeneratorTreesType->addItem(tr("Special"), toInt(HeadbuttType::Special));
+            ui->comboBoxGeneratorTreeType->addItem(tr("Special"), toInt(HeadbuttType::Special));
         }
     }
     else
     {
-        ui->comboBoxGeneratorTreesType->removeItem(ui->comboBoxGeneratorTreesType->findData(toInt(HeadbuttType::Special)));
+        ui->comboBoxGeneratorTreeType->removeItem(ui->comboBoxGeneratorTreeType->findData(toInt(HeadbuttType::Special)));
     }
 
-    ui->comboBoxGeneratorTreesType->setCurrentIndex(0);
+    ui->comboBoxGeneratorTreeType->setCurrentIndex(0);
 }
 
 void Wild4::updateTreesTypeSearcher()
@@ -284,17 +284,17 @@ void Wild4::updateTreesTypeSearcher()
     if (Encounters4::getHeadbuttSpecialFlag(currentProfile->getVersion(),
                                             encounterSearcher[ui->comboBoxSearcherLocation->currentData().toInt()].getLocation()))
     {
-        if (ui->comboBoxSearcherTreesType->findData(toInt(HeadbuttType::Special)) == -1)
+        if (ui->comboBoxSearcherTreeType->findData(toInt(HeadbuttType::Special)) == -1)
         {
-            ui->comboBoxSearcherTreesType->addItem(tr("Special"), toInt(HeadbuttType::Special));
+            ui->comboBoxSearcherTreeType->addItem(tr("Special"), toInt(HeadbuttType::Special));
         }
     }
     else
     {
-        ui->comboBoxSearcherTreesType->removeItem(ui->comboBoxSearcherTreesType->findData(toInt(HeadbuttType::Special)));
+        ui->comboBoxSearcherTreeType->removeItem(ui->comboBoxSearcherTreeType->findData(toInt(HeadbuttType::Special)));
     }
 
-    ui->comboBoxSearcherTreesType->setCurrentIndex(0);
+    ui->comboBoxSearcherTreeType->setCurrentIndex(0);
 }
 
 void Wild4::generate()
@@ -450,9 +450,9 @@ void Wild4::profilesIndexChanged(int index)
             ui->comboBoxGeneratorEncounter->addItem(tr("Headbutt"), toInt(Encounter::Headbutt));
             ui->comboBoxGeneratorEncounter->addItem(tr("Bug Catching Contest"), toInt(Encounter::BugCatchingContest));
 
-            ui->comboBoxGeneratorTreesType->clear();
-            ui->comboBoxGeneratorTreesType->addItem(tr("Normal 1"), toInt(HeadbuttType::Normal1));
-            ui->comboBoxGeneratorTreesType->addItem(tr("Normal 2"), toInt(HeadbuttType::Normal2));
+            ui->comboBoxGeneratorTreeType->clear();
+            ui->comboBoxGeneratorTreeType->addItem(tr("Normal 1"), toInt(HeadbuttType::Normal1));
+            ui->comboBoxGeneratorTreeType->addItem(tr("Normal 2"), toInt(HeadbuttType::Normal2));
         }
         ui->comboBoxGeneratorEncounter->addItem(tr("Surfing"), toInt(Encounter::Surfing));
         ui->comboBoxGeneratorEncounter->addItem(tr("Old Rod"), toInt(Encounter::OldRod));
@@ -467,9 +467,9 @@ void Wild4::profilesIndexChanged(int index)
             ui->comboBoxSearcherEncounter->addItem(tr("Headbutt"), toInt(Encounter::Headbutt));
             ui->comboBoxSearcherEncounter->addItem(tr("Bug Catching Contest"), toInt(Encounter::BugCatchingContest));
 
-            ui->comboBoxSearcherTreesType->clear();
-            ui->comboBoxSearcherTreesType->addItem(tr("Normal 1"), toInt(HeadbuttType::Normal1));
-            ui->comboBoxSearcherTreesType->addItem(tr("Normal 2"), toInt(HeadbuttType::Normal2));
+            ui->comboBoxSearcherTreeType->clear();
+            ui->comboBoxSearcherTreeType->addItem(tr("Normal 1"), toInt(HeadbuttType::Normal1));
+            ui->comboBoxSearcherTreeType->addItem(tr("Normal 2"), toInt(HeadbuttType::Normal2));
         }
         ui->comboBoxSearcherEncounter->addItem(tr("Surfing"), toInt(Encounter::Surfing));
         ui->comboBoxSearcherEncounter->addItem(tr("Old Rod"), toInt(Encounter::OldRod));
@@ -522,7 +522,7 @@ void Wild4::generatorEncounterIndexChanged(int index)
         }
 
         ui->labelGeneratorTreesType->setVisible(flag);
-        ui->comboBoxGeneratorTreesType->setVisible(flag);
+        ui->comboBoxGeneratorTreeType->setVisible(flag);
         ui->labelGeneratorTime->setVisible(!flag);
         ui->comboBoxGeneratorTime->setVisible(!flag);
 
@@ -578,7 +578,7 @@ void Wild4::searcherEncounterIndexChanged(int index)
         }
 
         ui->labelSearcherTreesType->setVisible(flag);
-        ui->comboBoxSearcherTreesType->setVisible(flag);
+        ui->comboBoxSearcherTreeType->setVisible(flag);
         ui->labelSearcherTime->setVisible(!flag);
         ui->comboBoxSearcherTime->setVisible(!flag);
 
@@ -659,7 +659,7 @@ void Wild4::generatorTreesTypeIndexChanged(int index)
     if (index >= 0)
     {
         auto encounter = static_cast<Encounter>(ui->comboBoxGeneratorEncounter->currentData().toInt());
-        encounterGenerator = Encounters4::getEncounters(encounter, ui->comboBoxGeneratorTreesType->currentIndex(), *currentProfile);
+        encounterGenerator = Encounters4::getEncounters(encounter, ui->comboBoxGeneratorTreeType->currentIndex(), *currentProfile);
         updatePokemonGenerator();
     }
 }
@@ -669,7 +669,7 @@ void Wild4::searcherTreesTypeIndexChanged(int index)
     if (index >= 0)
     {
         auto encounter = static_cast<Encounter>(ui->comboBoxSearcherEncounter->currentData().toInt());
-        encounterSearcher = Encounters4::getEncounters(encounter, ui->comboBoxSearcherTreesType->currentIndex(), *currentProfile);
+        encounterSearcher = Encounters4::getEncounters(encounter, ui->comboBoxSearcherTreeType->currentIndex(), *currentProfile);
         updatePokemonSearcher();
     }
 }
