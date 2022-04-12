@@ -124,7 +124,6 @@ std::set<std::pair<u16, QString>> EncounterLookup::getEncounters4(Game game, u16
     // Encounter variables to iterate through
     auto types = { Encounter::Grass,   Encounter::RockSmash,          Encounter::OldRod,  Encounter::GoodRod, Encounter::SuperRod,
                    Encounter::Surfing, Encounter::BugCatchingContest, Encounter::Headbutt };
-    auto treeTypes = { HeadbuttType::Normal1, HeadbuttType::Normal2, HeadbuttType::Special };
 
     // Setup profiles to iterate through the different combinations of possibilities depending on HGSS vs DPPt
     if ((game & Game::HGSS) != Game::None)

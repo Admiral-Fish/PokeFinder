@@ -266,7 +266,7 @@ void Wild4::updateTreesTypeGenerator()
     if (Encounters4::getHeadbuttSpecialFlag(currentProfile->getVersion(),
                                             encounterGenerator[ui->comboBoxGeneratorLocation->currentData().toInt()].getLocation()))
     {
-        if (ui->comboBoxGeneratorTreesType->findData(toInt(HeadbuttType::Special)) < 0)
+        if (ui->comboBoxGeneratorTreesType->findData(toInt(HeadbuttType::Special)) == -1)
         {
             ui->comboBoxGeneratorTreesType->addItem(tr("Special"), toInt(HeadbuttType::Special));
         }
@@ -284,7 +284,7 @@ void Wild4::updateTreesTypeSearcher()
     if (Encounters4::getHeadbuttSpecialFlag(currentProfile->getVersion(),
                                             encounterSearcher[ui->comboBoxSearcherLocation->currentData().toInt()].getLocation()))
     {
-        if (ui->comboBoxSearcherTreesType->findData(toInt(HeadbuttType::Special)) < 0)
+        if (ui->comboBoxSearcherTreesType->findData(toInt(HeadbuttType::Special)) == -1)
         {
             ui->comboBoxSearcherTreesType->addItem(tr("Special"), toInt(HeadbuttType::Special));
         }
@@ -568,6 +568,7 @@ void Wild4::searcherEncounterIndexChanged(int index)
             break;
         case Encounter::Headbutt:
             t = { "0", "1", "2", "3", "4", "5" };
+            flag = true;
             break;
         case Encounter::BugCatchingContest:
             t = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" };
@@ -584,7 +585,7 @@ void Wild4::searcherEncounterIndexChanged(int index)
         if ((currentProfile->getVersion() & Game::HGSS) != Game::None
             && (encounter == Encounter::OldRod || encounter == Encounter::GoodRod || encounter == Encounter::SuperRod))
         {
-            if (ui->comboBoxSearcherLead->findData(toInt(Lead::SuctionCups)) < 0)
+            if (ui->comboBoxSearcherLead->findData(toInt(Lead::SuctionCups)) == -1)
             {
                 ui->comboBoxSearcherLead->addItem(tr("Suction Cups"), toInt(Lead::SuctionCups));
             }
