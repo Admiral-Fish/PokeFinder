@@ -375,7 +375,7 @@
              <bool>true</bool>
             </property>
             <property name="text">
-             <string>Trees Type</string>
+             <string>Tree Type</string>
             </property>
            </widget>
           </item>
@@ -657,7 +657,7 @@
           <item row="2" column="0">
            <widget class="QLabel" name="labelSearcherTreesType">
             <property name="text">
-             <string>Trees Type</string>
+             <string>Tree Type</string>
             </property>
            </widget>
           </item>
@@ -733,6 +733,7 @@
   <tabstop>comboBoxGeneratorTime</tabstop>
   <tabstop>comboBoxGeneratorPokemon</tabstop>
   <tabstop>comboBoxGeneratorEncounter</tabstop>
+  <tabstop>toolButtonGeneratorLead</tabstop>
   <tabstop>textBoxGeneratorStartingAdvance</tabstop>
   <tabstop>textBoxGeneratorMaxAdvances</tabstop>
   <tabstop>textBoxGeneratorSeed</tabstop>
@@ -752,7 +753,6 @@
   <tabstop>pushButtonSearch</tabstop>
   <tabstop>pushButtonCancel</tabstop>
   <tabstop>tableViewSearcher</tabstop>
-  <tabstop>toolButtonGeneratorLead</tabstop>
  </tabstops>
  <resources/>
  <connections/>

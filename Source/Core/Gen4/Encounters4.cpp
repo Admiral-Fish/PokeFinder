@@ -236,11 +236,11 @@ namespace Encounters4
                     u8 treesType = specialTreesFlag == 0 && modifier == 2 ? 0 : modifier;
 
                     std::vector<Slot> slots;
-                    for (int h = 0; h < 6; h++)
+                    for (int i = 0; i < 6; i++)
                     {
-                        u16 specie = *reinterpret_cast<const u16 *>(entry + (24 * treesType) + 2 + (h * 4));
-                        u8 min = entry[(24 * treesType) + 4 + (h * 4)];
-                        u8 max = entry[(24 * treesType) + 5 + (h * 4)];
+                        u16 specie = *reinterpret_cast<const u16 *>(entry + (24 * treesType) + 2 + (i * 4));
+                        u8 min = entry[(24 * treesType) + 4 + (i * 4)];
+                        u8 max = entry[(24 * treesType) + 5 + (i * 4)];
                         slots.emplace_back(specie, min, max, info[specie]);
                     }
                     encounters.emplace_back(location, 0, Encounter::Headbutt, slots);
