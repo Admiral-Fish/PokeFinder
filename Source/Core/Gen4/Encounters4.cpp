@@ -195,7 +195,7 @@ namespace Encounters4
                         // Adjust time based slot
                         if ((time == 0 || time == 1) && i == 3)
                         {
-                            specie = *reinterpret_cast<const u16 *>(data + 191);
+                            specie = *reinterpret_cast<const u16 *>(entry + 191);
                         }
 
                         slots.emplace_back(specie, min, max, info[specie]);
@@ -216,11 +216,13 @@ namespace Encounters4
                         // Adjust time based slot
                         if ((time == 0 || time == 1) && i == 1)
                         {
-                            specie = *reinterpret_cast<const u16 *>(data + 191);
+                            specie = *reinterpret_cast<const u16 *>(entry + 191);
                         }
 
                         slots.emplace_back(specie, min, max, info[specie]);
                     }
+                    modifySwarmHGSS(slots, entry, info, encounter, profile.getSwarm());
+                    encounters.emplace_back(location, super, Encounter::SuperRod, slots);
                 }
             }
 
