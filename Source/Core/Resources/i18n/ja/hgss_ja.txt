@@ -124,3 +124,6 @@
 143,Bug Contest (Tuesday)
 144,Bug Contest (Thursday)
 145,Bug Contest (Saturday)
+146,Azalea Town
+147,Pewter City
+148,Safari Zone Gate

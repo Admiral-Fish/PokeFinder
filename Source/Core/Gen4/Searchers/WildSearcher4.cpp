@@ -707,6 +707,11 @@ bool WildSearcher4::encounterMethodK(WildState &state, u32 seed) const
         }
     }
     break;
+    case Encounter::Headbutt:
+        state.setEncounterSlot(EncounterSlot::kSlot(rng.nextUShort(), encounter));
+        state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), seed >> 16));
+        state.setSeed(rng.next());
+        break;
     default:
         break;
     }

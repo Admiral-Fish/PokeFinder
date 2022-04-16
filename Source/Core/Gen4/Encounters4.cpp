@@ -19,7 +19,6 @@
 
 #include "Encounters4.hpp"
 #include <Core/Enum/Encounter.hpp>
-#include <Core/Enum/Game.hpp>
 #include <Core/Gen4/EncounterArea4.hpp>
 #include <Core/Gen4/Profile4.hpp>
 #include <Core/Parents/PersonalLoader.hpp>
@@ -98,7 +97,8 @@ namespace Encounters4
             }
         }
 
-        std::vector<EncounterArea4> getHGSS(Game version, Encounter encounter, const Profile4 &profile, const PersonalInfo *info, int time)
+        std::vector<EncounterArea4> getHGSS(Game version, Encounter encounter, const Profile4 &profile, const PersonalInfo *info,
+                                            int modifier)
         {
             const u8 *data;
             size_t size;
@@ -120,7 +120,6 @@ namespace Encounters4
                 u8 const *entry = data + offset;
 
                 u8 location = entry[0];
-
                 u8 grass = entry[1];
                 u8 surf = entry[2];
                 u8 rock = entry[3];
@@ -134,7 +133,7 @@ namespace Encounters4
                     for (int i = 0; i < 12; i++)
                     {
                         u8 level = entry[7 + i];
-                        u16 specie = *reinterpret_cast<const u16 *>(entry + 19 + (i * 2) + (time * 24));
+                        u16 specie = *reinterpret_cast<const u16 *>(entry + 19 + (i * 2) + (modifier * 24));
                         slots.emplace_back(specie, level, info[specie]);
                     }
                     modifyRadio(slots, entry, info, profile.getRadio());
@@ -193,7 +192,7 @@ namespace Encounters4
                         u16 specie = *reinterpret_cast<const u16 *>(entry + 149 + (i * 4));
 
                         // Adjust time based slot
-                        if ((time == 0 || time == 1) && i == 3)
+                        if ((modifier == 0 || modifier == 1) && i == 3)
                         {
                             specie = *reinterpret_cast<const u16 *>(entry + 191);
                         }
@@ -214,7 +213,7 @@ namespace Encounters4
                         u16 specie = *reinterpret_cast<const u16 *>(entry + 169 + (i * 4));
 
                         // Adjust time based slot
-                        if ((time == 0 || time == 1) && i == 1)
+                        if ((modifier == 0 || modifier == 1) && i == 1)
                         {
                             specie = *reinterpret_cast<const u16 *>(entry + 191);
                         }
@@ -223,6 +222,32 @@ namespace Encounters4
                     }
                     modifySwarmHGSS(slots, entry, info, encounter, profile.getSwarm());
                     encounters.emplace_back(location, super, Encounter::SuperRod, slots);
+                }
+            }
+
+            if (encounter == Encounter::Headbutt)
+            {
+                size_t size = hg_headbutt.size();
+
+                for (size_t offset = 0; offset < size; )
+                {
+                    const u8 *entry = (version == Game::HeartGold ? hg_headbutt.data() : ss_headbutt.data()) + offset;
+
+                    u8 location = entry[0];
+                    u8 specialTreesFlag = entry[1];
+                    u8 treesType = specialTreesFlag == 0 && modifier == 2 ? 0 : modifier;
+
+                    std::vector<Slot> slots;
+                    for (int i = 0; i < 6; i++)
+                    {
+                        u16 specie = *reinterpret_cast<const u16 *>(entry + (24 * treesType) + 2 + (i * 4));
+                        u8 min = entry[(24 * treesType) + 4 + (i * 4)];
+                        u8 max = entry[(24 * treesType) + 5 + (i * 4)];
+                        slots.emplace_back(specie, min, max, info[specie]);
+                    }
+                    encounters.emplace_back(location, 0, Encounter::Headbutt, slots);
+
+                    offset += specialTreesFlag == 0 ? 50 : 74;
                 }
             }
 
@@ -403,6 +428,7 @@ namespace Encounters4
                         u8 max = entry[101 + (i * 4)];
                         u8 min = entry[102 + (i * 4)];
                         u16 specie = *reinterpret_cast<const u16 *>(entry + 103 + (i * 4));
+                        slots.emplace_back(specie, min, max, info[specie]);
                     }
                     encounters.emplace_back(location, old, Encounter::OldRod, slots);
                 }
@@ -416,6 +442,7 @@ namespace Encounters4
                         u8 max = entry[122 + (i * 4)];
                         u8 min = entry[123 + (i * 4)];
                         u16 specie = *reinterpret_cast<const u16 *>(entry + 124 + (i * 4));
+                        slots.emplace_back(specie, min, max, info[specie]);
                     }
                     encounters.emplace_back(location, good, Encounter::GoodRod, slots);
                 }
@@ -429,6 +456,7 @@ namespace Encounters4
                         u8 max = entry[143 + (i * 4)];
                         u8 min = entry[144 + (i * 4)];
                         u16 specie = *reinterpret_cast<const u16 *>(entry + 145 + (i * 4));
+                        slots.emplace_back(specie, min, max, info[specie]);
                     }
                     encounters.emplace_back(location, super, Encounter::SuperRod, slots);
                 }
@@ -437,17 +465,38 @@ namespace Encounters4
         }
     }
 
-    std::vector<EncounterArea4> getEncounters(Encounter encounter, int time, const Profile4 &profile)
+    std::vector<EncounterArea4> getEncounters(Encounter encounter, int modifier, const Profile4 &profile)
     {
         Game version = profile.getVersion();
         auto *info = PersonalLoader::getPersonal(version);
         if ((version & Game::DPPt) != Game::None)
         {
-            return getDPPt(version, encounter, profile, info, time);
+            return getDPPt(version, encounter, profile, info, modifier);
         }
         else
         {
-            return getHGSS(version, encounter, profile, info, time);
+            return getHGSS(version, encounter, profile, info, modifier);
         }
+    }
+
+    bool getHeadbuttSpecialFlag(Game game, int location)
+    {
+        u8 specialTreesFlag;
+        size_t size = hg_headbutt.size();
+
+        for (size_t offset = 0; offset < size; )
+        {
+            const u8 *entry = (game == Game::HeartGold ? hg_headbutt.data() : ss_headbutt.data()) + offset;
+            specialTreesFlag = entry[1];
+
+            if (location == entry[0])
+            {
+                break;
+            }
+
+            offset += specialTreesFlag == 0 ? 50 : 74;
+        }
+
+        return specialTreesFlag == 1;
     }
 }
