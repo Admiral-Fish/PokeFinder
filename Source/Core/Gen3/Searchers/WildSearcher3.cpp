@@ -155,7 +155,7 @@ std::vector<WildState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 s
                         }
                         u16 level = temp.getSeed() >> 16;
                         u16 slot = temp.nextUShort();
-                        state.setSeed(temp.advance(rseSafari ? 1 : 2)); // account RSE different rng calls inside Safari Zone
+                        state.setSeed(temp.advance(rseSafari && encounter != Encounter::Grass ? 1 : 2)); // account RSE different rng calls inside Safari Zone
                         state.setEncounterSlot(EncounterSlot::hSlot(slot, encounter));
                         if (filter.compareEncounterSlot(state))
                         {
@@ -176,7 +176,7 @@ std::vector<WildState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 s
                         }
                         u16 level = temp.getSeed() >> 16;
                         u16 slot = temp.nextUShort();
-                        state.setSeed(temp.advance(rseSafari ? 1 : 2)); // account RSE different rng calls inside Safari Zone
+                        state.setSeed(temp.advance(rseSafari && encounter != Encounter::Grass ? 1 : 2)); // account RSE different rng calls inside Safari Zone
                         state.setEncounterSlot(EncounterSlot::hSlot(slot, encounter));
                         if (filter.compareEncounterSlot(state))
                         {
@@ -195,7 +195,7 @@ std::vector<WildState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 s
                         }
                         u16 level = temp.getSeed() >> 16;
                         u16 slot = temp.advance(2) >> 16;
-                        state.setSeed(temp.advance(rseSafari ? 1 : 2)); // account RSE different rng calls inside Safari Zone
+                        state.setSeed(temp.advance(rseSafari && encounter != Encounter::Grass ? 1 : 2)); // account RSE different rng calls inside Safari Zone
                         state.setEncounterSlot(EncounterSlot::hSlot(slot, encounter));
                         if (filter.compareEncounterSlot(state))
                         {
@@ -215,7 +215,7 @@ std::vector<WildState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 s
                         }
                         u16 level = temp.nextUShort();
                         u16 slot = temp.nextUShort();
-                        state.setSeed(temp.advance(rseSafari ? 1 : 2)); // account RSE different rng calls inside Safari Zone
+                        state.setSeed(temp.advance(rseSafari && encounter != Encounter::Grass ? 1 : 2)); // account RSE different rng calls inside Safari Zone
                         state.setEncounterSlot(EncounterSlot::hSlot(slot, encounter));
                         if (filter.compareEncounterSlot(state))
                         {
@@ -237,7 +237,7 @@ std::vector<WildState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 s
                         }
                         u16 level = temp.getSeed() >> 16;
                         u16 slot = temp.nextUShort();
-                        state.setSeed(temp.advance(rseSafari ? 1 : 2)); // account RSE different rng calls inside Safari Zone
+                        state.setSeed(temp.advance(rseSafari && encounter != Encounter::Grass ? 1 : 2)); // account RSE different rng calls inside Safari Zone
                         state.setEncounterSlot(EncounterSlot::hSlot(slot, encounter));
                         if (filter.compareEncounterSlot(state))
                         {
@@ -252,7 +252,7 @@ std::vector<WildState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 s
                         }
                         level = temp.nextUShort();
                         slot = temp.nextUShort();
-                        state.setSeed(temp.advance(rseSafari ? 1 : 2)); // account RSE different rng calls inside Safari Zone
+                        state.setSeed(temp.advance(rseSafari && encounter != Encounter::Grass ? 1 : 2)); // account RSE different rng calls inside Safari Zone
                         state.setEncounterSlot(EncounterSlot::hSlot(slot, encounter));
                         if (filter.compareEncounterSlot(state))
                         {
@@ -284,7 +284,7 @@ std::vector<WildState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 s
                         }
                         u16 level = temp.getSeed() >> 16;
                         u16 slot = temp.nextUShort();
-                        state.setSeed(temp.advance(rseSafari ? 1 : 2)); // account RSE different rng calls inside Safari Zone
+                        state.setSeed(temp.advance(rseSafari && encounter != Encounter::Grass ? 1 : 2)); // account RSE different rng calls inside Safari Zone
                         state.setEncounterSlot(EncounterSlot::hSlot(slot, encounter));
                         if (filter.compareEncounterSlot(state))
                         {
