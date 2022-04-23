@@ -7,11 +7,11 @@ environment:
     EXT: zip
     VCVARSALLPATH: C:\"Program Files\Microsoft Visual Studio"\2022\Community\VC\Auxiliary\Build\vcvars64.bat
   - APPVEYOR_BUILD_WORKER_IMAGE: Ubuntu2004
-    QTVER: 6.1
+    QTVER: 6.2
     OS: linux
     EXT: tar.gz
   - APPVEYOR_BUILD_WORKER_IMAGE: macos
-    QTVER: 6.1
+    QTVER: 6.2
     OS: macOS
     EXT: tar.gz
 
