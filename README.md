@@ -32,6 +32,21 @@ Gen 8
 - Egg
 - IDs
 
+# Supported Platforms
+
+Windows
+- Windows 10
+- Windows 11
+
+MacOS
+- MacOS Catalina
+- MacOS Big Sur
+- MacOS Monterey
+
+Linux
+- Ubuntu 20.04
+- Ubuntu 22.04
+
 # Installing
 
 Windows
@@ -44,6 +59,9 @@ MacOS
 - Extract PokéFinder from the zip folder
 
 Linux
+- Install Qt 6
+  - [Qt website](https://www.qt.io/download)
+  - sudo apt install qt6-base-dev
 - Download the linux zip folder from the [releases page](https://github.com/Admiral-Fish/PokeFinder/releases/latest)
 - Extract PokéFinder from the zip folder
 
@@ -73,7 +91,7 @@ MacOS
   - git submodule update
   - mkdir build
   - cd build
-  - PATH="PATH=$PATH:$HOME/Qt/6.1/macos/bin" cmake -G"Unix Makefiles" -DCMAKE_BUILD_TYPE=RELEASE ../
+  - PATH="PATH=$PATH:$HOME/Qt/6.2/macos/bin" cmake -G"Unix Makefiles" -DCMAKE_BUILD_TYPE=RELEASE ../
     - Replace Qt path/version as necessary
   - cmake --build .
 - Bundle
@@ -81,13 +99,15 @@ MacOS
 
 Linux
 - Install the dependencies
-  - Qt 6 (via the [Qt website](https://www.qt.io/download))
-  - [build-essential](https://packages.ubuntu.com/focal/build-essential)
+  - Qt 6
+    - [Qt website](https://www.qt.io/download)
+    - sudo apt install qt6-base-dev qt6-tools-dev qt6-tools-dev-tools qt6-l10n-tools
+  - sudo apt install build-essential libgl1-mesa-dev
 - Build
   - git submodule update
   - mkdir build
   - cd build
-  - cmake -G"Unix Makefiles" -DCMAKE_BUILD_TYPE=RELEASE -DCMAKE_PREFIX_PATH=$HOME/Qt/6.1/gcc_64 -DTEST=ON ../
+  - cmake -G"Unix Makefiles" -DCMAKE_BUILD_TYPE=RELEASE -DCMAKE_PREFIX_PATH=$HOME/Qt/6.2/gcc_64 ../
     - Replace Qt path/version as necessary
   - cmake --build .
 
