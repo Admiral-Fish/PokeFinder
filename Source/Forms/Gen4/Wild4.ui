@@ -424,7 +424,20 @@
           <string>RNG Info</string>
          </property>
          <layout class="QGridLayout" name="gridLayout_6">
-          <item row="3" column="1">
+          <item row="7" column="0">
+           <widget class="QLabel" name="labelSearcherLead">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>Lead</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="1">
            <widget class="QComboBox" name="comboBoxSearcherTime">
             <item>
              <property name="text">
@@ -443,7 +456,57 @@
             </item>
            </widget>
           </item>
-          <item row="6" column="1">
+          <item row="1" column="1">
+           <widget class="QComboBox" name="comboBoxSearcherLocation">
+            <property name="maxVisibleItems">
+             <number>10</number>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="labelSearcherLocation">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>Location</string>
+            </property>
+           </widget>
+          </item>
+          <item row="9" column="0" colspan="2">
+           <layout class="QHBoxLayout" name="horizontalLayout">
+            <item>
+             <widget class="QPushButton" name="pushButtonSearch">
+              <property name="enabled">
+               <bool>true</bool>
+              </property>
+              <property name="text">
+               <string>Search</string>
+              </property>
+              <property name="checkable">
+               <bool>false</bool>
+              </property>
+              <property name="autoDefault">
+               <bool>false</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="pushButtonCancel">
+              <property name="enabled">
+               <bool>false</bool>
+              </property>
+              <property name="text">
+               <string>Cancel</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item row="7" column="1">
            <widget class="ComboBox" name="comboBoxSearcherLead">
             <item>
              <property name="text">
@@ -477,8 +540,18 @@
             </item>
            </widget>
           </item>
-          <item row="0" column="1">
-           <widget class="ComboBox" name="comboBoxSearcherMethod"/>
+          <item row="6" column="0">
+           <widget class="QLabel" name="labelSearcherEncounter">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>Encounter</string>
+            </property>
+           </widget>
           </item>
           <item row="0" column="0">
            <widget class="QLabel" name="labelSearcherMethod">
@@ -493,27 +566,13 @@
             </property>
            </widget>
           </item>
-          <item row="1" column="1">
-           <widget class="QComboBox" name="comboBoxSearcherLocation">
-            <property name="maxVisibleItems">
-             <number>10</number>
-            </property>
-           </widget>
+          <item row="6" column="1">
+           <widget class="ComboBox" name="comboBoxSearcherEncounter"/>
           </item>
-          <item row="6" column="0">
-           <widget class="QLabel" name="labelSearcherLead">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="text">
-             <string>Lead</string>
-            </property>
-           </widget>
+          <item row="5" column="1">
+           <widget class="ComboBox" name="comboBoxSearcherPokemon"/>
           </item>
-          <item row="4" column="0">
+          <item row="5" column="0">
            <widget class="QLabel" name="labelSearcherPokemon">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
@@ -526,82 +585,7 @@
             </property>
            </widget>
           </item>
-          <item row="5" column="0">
-           <widget class="QLabel" name="labelSearcherEncounter">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="text">
-             <string>Encounter</string>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="0">
-           <widget class="QLabel" name="labelSearcherTime">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="text">
-             <string>Time</string>
-            </property>
-           </widget>
-          </item>
-          <item row="4" column="1">
-           <widget class="ComboBox" name="comboBoxSearcherPokemon"/>
-          </item>
           <item row="8" column="0" colspan="2">
-           <layout class="QHBoxLayout" name="horizontalLayout">
-            <item>
-             <widget class="QPushButton" name="pushButtonSearch">
-              <property name="enabled">
-               <bool>true</bool>
-              </property>
-              <property name="text">
-               <string>Search</string>
-              </property>
-              <property name="checkable">
-               <bool>false</bool>
-              </property>
-              <property name="autoDefault">
-               <bool>false</bool>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QPushButton" name="pushButtonCancel">
-              <property name="enabled">
-               <bool>false</bool>
-              </property>
-              <property name="text">
-               <string>Cancel</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </item>
-          <item row="5" column="1">
-           <widget class="ComboBox" name="comboBoxSearcherEncounter"/>
-          </item>
-          <item row="1" column="0">
-           <widget class="QLabel" name="labelSearcherLocation">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="text">
-             <string>Location</string>
-            </property>
-           </widget>
-          </item>
-          <item row="7" column="0" colspan="2">
            <layout class="QGridLayout" name="gridLayout_2">
             <item row="0" column="0">
              <widget class="QLabel" name="labelSearcherMinDelay">
@@ -661,6 +645,22 @@
             </item>
            </layout>
           </item>
+          <item row="4" column="0">
+           <widget class="QLabel" name="labelSearcherTime">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>Time</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="ComboBox" name="comboBoxSearcherMethod"/>
+          </item>
           <item row="2" column="1">
            <widget class="QComboBox" name="comboBoxSearcherTreeType"/>
           </item>
@@ -668,6 +668,16 @@
            <widget class="QLabel" name="labelSearcherTreeType">
             <property name="text">
              <string>Tree Type</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="1">
+           <widget class="QComboBox" name="comboBoxSearcherSafariEncounter"/>
+          </item>
+          <item row="3" column="0">
+           <widget class="QLabel" name="labelSearcherSafariEncounter">
+            <property name="text">
+             <string>Safari Encounter</string>
             </property>
            </widget>
           </item>
@@ -753,6 +763,7 @@
   <tabstop>comboBoxSearcherMethod</tabstop>
   <tabstop>comboBoxSearcherLocation</tabstop>
   <tabstop>comboBoxSearcherTreeType</tabstop>
+  <tabstop>comboBoxSearcherSafariEncounter</tabstop>
   <tabstop>comboBoxSearcherTime</tabstop>
   <tabstop>comboBoxSearcherPokemon</tabstop>
   <tabstop>comboBoxSearcherEncounter</tabstop>

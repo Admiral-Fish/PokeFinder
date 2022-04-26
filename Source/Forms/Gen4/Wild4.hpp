@@ -63,6 +63,7 @@ private:
     void updateTreeTypeGenerator();
     void updateTreeTypeSearcher();
     void updateSafariEncounterGenerator();
+    void updateSafariEncounterSearcher();
 
 private slots:
     void generate();
@@ -77,6 +78,7 @@ private slots:
     void generatorTreeTypeIndexChanged(int index);
     void searcherTreeTypeIndexChanged(int index);
     void generatorSafariEncounterIndexChanged(int index);
+    void searcherSafariEncounterIndexChanged(int index);
     void generatorTimeIndexChanged(int index);
     void searcherTimeIndexChanged(int index);
     void seedToTime();

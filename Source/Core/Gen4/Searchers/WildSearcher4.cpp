@@ -712,6 +712,11 @@ bool WildSearcher4::encounterMethodK(WildState &state, u32 seed) const
         state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), seed >> 16));
         state.setSeed(rng.next());
         break;
+    case Encounter::SafariZone:
+        state.setEncounterSlot(EncounterSlot::kSlot(rng.getSeed() >> 16, encounter));
+        state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), seed >> 16));
+        state.setSeed(rng.next());
+        break;
     default:
         break;
     }

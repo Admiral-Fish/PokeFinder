@@ -144,6 +144,8 @@ void Wild4::setupModels()
             &Wild4::searcherTreeTypeIndexChanged);
     connect(ui->comboBoxGeneratorSafariEncounter, QOverload<int>::of(&QComboBox::currentIndexChanged), this,
             &Wild4::generatorSafariEncounterIndexChanged);
+    connect(ui->comboBoxSearcherSafariEncounter, QOverload<int>::of(&QComboBox::currentIndexChanged), this,
+            &Wild4::searcherSafariEncounterIndexChanged);
     connect(ui->comboBoxGeneratorTime, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &Wild4::generatorTimeIndexChanged);
     connect(ui->comboBoxSearcherTime, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &Wild4::searcherTimeIndexChanged);
     connect(ui->tableViewGenerator, &QTableView::customContextMenuRequested, this, &Wild4::tableViewGeneratorContextMenu);
@@ -324,6 +326,29 @@ void Wild4::updateSafariEncounterGenerator()
     ui->comboBoxGeneratorSafariEncounter->setCurrentIndex(0);
 }
 
+void Wild4::updateSafariEncounterSearcher()
+{
+    if (Encounters4::getSafariWaterFlag(encounterSearcher[ui->comboBoxSearcherLocation->currentData().toInt()].getLocation()))
+    {
+        if (ui->comboBoxSearcherSafariEncounter->findData(toInt(Encounter::Surfing)) == -1)
+        {
+            ui->comboBoxSearcherSafariEncounter->addItem(tr("Surfing"), toInt(Encounter::Surfing));
+            ui->comboBoxSearcherSafariEncounter->addItem(tr("Old Rod"), toInt(Encounter::OldRod));
+            ui->comboBoxSearcherSafariEncounter->addItem(tr("Good Rod"), toInt(Encounter::GoodRod));
+            ui->comboBoxSearcherSafariEncounter->addItem(tr("Super Rod"), toInt(Encounter::SuperRod));
+        }
+    }
+    else
+    {
+        ui->comboBoxSearcherSafariEncounter->removeItem(ui->comboBoxSearcherSafariEncounter->findData(toInt(Encounter::Surfing)));
+        ui->comboBoxSearcherSafariEncounter->removeItem(ui->comboBoxSearcherSafariEncounter->findData(toInt(Encounter::OldRod)));
+        ui->comboBoxSearcherSafariEncounter->removeItem(ui->comboBoxSearcherSafariEncounter->findData(toInt(Encounter::GoodRod)));
+        ui->comboBoxSearcherSafariEncounter->removeItem(ui->comboBoxSearcherSafariEncounter->findData(toInt(Encounter::SuperRod)));
+    }
+
+    ui->comboBoxSearcherSafariEncounter->setCurrentIndex(0);
+}
+
 void Wild4::generate()
 {
     auto method = static_cast<Method>(ui->comboBoxGeneratorMethod->getCurrentInt());
@@ -373,7 +398,7 @@ void Wild4::search()
     std::array<u8, 6> max = ui->filterSearcher->getMaxIVs();
 
     auto encounter = static_cast<Encounter>(ui->comboBoxSearcherEncounter->currentData().toInt());
-    if (encounter == Encounter::BugCatchingContest)
+    if (encounter == Encounter::BugCatchingContest || encounter == Encounter::SafariZone)
     {
         bool flag = true;
         for (u8 i = 0; i < 6; i++)
@@ -387,7 +412,7 @@ void Wild4::search()
         if (flag)
         {
             QMessageBox err(QMessageBox::Warning, tr("Missing Flawless IV"),
-                            tr("Bug Catching Contest Searcher needs at least one IV at 31"));
+                            tr("Bug Catching Contest/Safari Zone Searcher needs at least one IV at 31"));
             err.exec();
             return;
         }
@@ -497,10 +522,14 @@ void Wild4::profilesIndexChanged(int index)
             ui->comboBoxSearcherEncounter->addItem(tr("Rock Smash"), toInt(Encounter::RockSmash));
             ui->comboBoxSearcherEncounter->addItem(tr("Headbutt"), toInt(Encounter::Headbutt));
             ui->comboBoxSearcherEncounter->addItem(tr("Bug Catching Contest"), toInt(Encounter::BugCatchingContest));
+            ui->comboBoxSearcherEncounter->addItem(tr("Safari Zone"), toInt(Encounter::SafariZone));
 
             ui->comboBoxSearcherTreeType->clear();
             ui->comboBoxSearcherTreeType->addItem(tr("Normal 1"), toInt(HeadbuttType::Normal1));
             ui->comboBoxSearcherTreeType->addItem(tr("Normal 2"), toInt(HeadbuttType::Normal2));
+
+            ui->comboBoxSearcherSafariEncounter->clear();
+            ui->comboBoxSearcherSafariEncounter->addItem(tr("Grass"), toInt(Encounter::Grass));
         }
         ui->comboBoxSearcherEncounter->addItem(tr("Surfing"), toInt(Encounter::Surfing));
         ui->comboBoxSearcherEncounter->addItem(tr("Old Rod"), toInt(Encounter::OldRod));
@@ -525,7 +554,7 @@ void Wild4::generatorEncounterIndexChanged(int index)
     {
         std::vector<std::string> t;
         auto encounter = static_cast<Encounter>(ui->comboBoxGeneratorEncounter->currentData().toInt());
-        bool bcc = false;
+        bool headbutt = false;
         bool safari = false;
 
         switch (encounter)
@@ -544,7 +573,7 @@ void Wild4::generatorEncounterIndexChanged(int index)
             break;
         case Encounter::Headbutt:
             t = { "0", "1", "2", "3", "4", "5" };
-            bcc = true;
+            headbutt = true;
             break;
         case Encounter::BugCatchingContest:
             t = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" };
@@ -557,10 +586,10 @@ void Wild4::generatorEncounterIndexChanged(int index)
             break;
         }
 
-        ui->labelGeneratorTreeType->setVisible(bcc);
-        ui->comboBoxGeneratorTreeType->setVisible(bcc);
-        ui->labelGeneratorTime->setVisible(!bcc);
-        ui->comboBoxGeneratorTime->setVisible(!bcc);
+        ui->labelGeneratorTreeType->setVisible(headbutt);
+        ui->comboBoxGeneratorTreeType->setVisible(headbutt);
+        ui->labelGeneratorTime->setVisible(!headbutt);
+        ui->comboBoxGeneratorTime->setVisible(!headbutt);
 
         ui->labelGeneratorSafariEncounter->setVisible(safari);
         ui->comboBoxGeneratorSafariEncounter->setVisible(safari);
@@ -589,7 +618,8 @@ void Wild4::searcherEncounterIndexChanged(int index)
     {
         std::vector<std::string> t;
         auto encounter = static_cast<Encounter>(ui->comboBoxSearcherEncounter->currentData().toInt());
-        bool flag = false;
+        bool headbutt = false;
+        bool safari = false;
 
         switch (encounter)
         {
@@ -607,19 +637,26 @@ void Wild4::searcherEncounterIndexChanged(int index)
             break;
         case Encounter::Headbutt:
             t = { "0", "1", "2", "3", "4", "5" };
-            flag = true;
+            headbutt = true;
             break;
         case Encounter::BugCatchingContest:
             t = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+            break;
+        case Encounter::SafariZone:
+            t = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+            safari = true;
             break;
         default:
             break;
         }
 
-        ui->labelSearcherTreeType->setVisible(flag);
-        ui->comboBoxSearcherTreeType->setVisible(flag);
-        ui->labelSearcherTime->setVisible(!flag);
-        ui->comboBoxSearcherTime->setVisible(!flag);
+        ui->labelSearcherTreeType->setVisible(headbutt);
+        ui->comboBoxSearcherTreeType->setVisible(headbutt);
+        ui->labelSearcherTime->setVisible(!headbutt);
+        ui->comboBoxSearcherTime->setVisible(!headbutt);
+
+        ui->labelSearcherSafariEncounter->setVisible(safari);
+        ui->comboBoxSearcherSafariEncounter->setVisible(safari);
 
         if ((currentProfile->getVersion() & Game::HGSS) != Game::None
             && (encounter == Encounter::OldRod || encounter == Encounter::GoodRod || encounter == Encounter::SuperRod))
@@ -663,6 +700,10 @@ void Wild4::searcherLocationIndexChanged(int index)
         if (static_cast<Encounter>(ui->comboBoxSearcherEncounter->currentData().toInt()) == Encounter::Headbutt)
         {
             updateTreeTypeSearcher();
+        }
+        else if (static_cast<Encounter>(ui->comboBoxSearcherEncounter->currentData().toInt()) == Encounter::SafariZone)
+        {
+            updateSafariEncounterSearcher();
         }
 
         updatePokemonSearcher();
@@ -730,6 +771,18 @@ void Wild4::generatorSafariEncounterIndexChanged(int index)
         encounterGenerator = Encounters4::getEncounters(encounter, ui->comboBoxGeneratorSafariEncounter->currentIndex(), *currentProfile,
                                                         safariEncounter);
         updatePokemonGenerator();
+    }
+}
+
+void Wild4::searcherSafariEncounterIndexChanged(int index)
+{
+    if (index >= 0)
+    {
+        auto encounter = static_cast<Encounter>(ui->comboBoxSearcherEncounter->currentData().toInt());
+        auto safariEncounter = static_cast<Encounter>(ui->comboBoxSearcherSafariEncounter->currentData().toInt());
+        encounterSearcher = Encounters4::getEncounters(encounter, ui->comboBoxSearcherSafariEncounter->currentIndex(), *currentProfile,
+                                                        safariEncounter);
+        updatePokemonSearcher();
     }
 }
 
