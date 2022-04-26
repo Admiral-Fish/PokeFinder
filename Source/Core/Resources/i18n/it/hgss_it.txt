@@ -127,3 +127,15 @@
 146,Azalina
 147,Plumbeopoli
 148,Ingresso Safari
+149,Safari Zone (Pianure)
+150,Safari Zone (Fiori)
+151,Safari Zone (Savana)
+152,Safari Zone (Rocce)
+153,Safari Zone (Scogli)
+154,Safari Zone (Palude)
+155,Safari Zone (Bosco)
+156,Safari Zone (Pini)
+157,Safari Zone (Stagno)
+158,Safari Zone (Terra selvaggia)
+159,Safari Zone (Area montana)
+160,Safari Zone (Deserto)

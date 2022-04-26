@@ -142,6 +142,16 @@ public:
             return level;
         }
     }
+
+    /**
+     * @brief Checks if the location in RSE is in the Safari Zone
+     *
+     * @param version Game version
+     *
+     * @return true Location is Safari Zone in RSE
+     * @return false Location is not Safari Zone in RSE
+     */
+    bool safariZone(Game version) const;
 };
 
 #endif // ENCOUNTERAREA4_HPP

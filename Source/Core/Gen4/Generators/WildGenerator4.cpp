@@ -209,6 +209,7 @@ std::vector<WildGeneratorState4> WildGenerator4::generateMethodK(u32 seed, const
         rate *= 2;
     }
     std::vector<u8> modifiedSlots = encounterArea.getSlots(lead);
+    bool safari = encounterArea.safariZone(version);
 
     PokeRNG rng(seed, initialAdvances + offset);
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
@@ -232,7 +233,14 @@ std::vector<WildGeneratorState4> WildGenerator4::generateMethodK(u32 seed, const
         }
         else
         {
-            encounterSlot = EncounterSlot::kSlot(go.nextUShort(100, &occidentary), encounter);
+            if (safari)
+            {
+                encounterSlot = go.nextUShort(10, &occidentary);
+            }
+            else
+            {
+                encounterSlot = EncounterSlot::kSlot(go.nextUShort(100, &occidentary), encounter);
+            }
         }
 
         if (!filter.compareEncounterSlot(encounterSlot))
@@ -242,7 +250,7 @@ std::vector<WildGeneratorState4> WildGenerator4::generateMethodK(u32 seed, const
         }
 
         u8 level;
-        if (encounter == Encounter::Grass)
+        if (encounter == Encounter::Grass || safari)
         {
             level = encounterArea.calculateLevel<false, true>(encounterSlot, go, &occidentary, lead == Lead::Pressure);
         }
@@ -294,7 +302,7 @@ std::vector<WildGeneratorState4> WildGenerator4::generateMethodK(u32 seed, const
         }
         else
         {
-            if (encounter == Encounter::BugCatchingContest)
+            if (encounter == Encounter::BugCatchingContest || safari)
             {
                 for (u8 i = 0; i < 4; i++)
                 {

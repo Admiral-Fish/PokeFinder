@@ -68,6 +68,7 @@ add_library(PokeFinderCore STATIC
     Gen3/States/State3.hpp
     Gen3/States/WildState3.cpp
     Gen3/States/WildState3.hpp
+    Gen4/EncounterArea4.cpp
     Gen4/EncounterArea4.hpp
     Gen4/Encounters4.cpp
     Gen4/Encounters4.hpp

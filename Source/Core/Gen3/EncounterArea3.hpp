@@ -40,7 +40,10 @@ public:
      * @param encounter Encounter type of the area
      * @param pokemon Available pokemon of the area
      */
-    EncounterArea3(u8 location, u8 rate, Encounter encounter, const std::vector<Slot> &pokemon);
+    EncounterArea3(u8 location, u8 rate, Encounter encounter, const std::vector<Slot> &pokemon) :
+        EncounterArea(location, rate, encounter, pokemon)
+    {
+    }
 
     /**
      * @brief Calculates the level of a pokemon. Takes into account any modification from Pressure

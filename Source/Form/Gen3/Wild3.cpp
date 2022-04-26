@@ -166,7 +166,7 @@ void Wild3::generatorEncounterIndexChanged(int index)
     if (index >= 0)
     {
         std::vector<std::string> t;
-        Encounter encounter = static_cast<Encounter>(ui->comboBoxGeneratorEncounter->currentData().toInt());
+        auto encounter = ui->comboBoxGeneratorEncounter->getEnum<Encounter>();
         switch (encounter)
         {
         case Encounter::Grass:
@@ -211,7 +211,7 @@ void Wild3::generatorLocationIndexChanged(int index)
 {
     if (index >= 0)
     {
-        auto area = encounterGenerator[ui->comboBoxGeneratorLocation->currentData().toInt()];
+        auto area = encounterGenerator[ui->comboBoxGeneratorLocation->getCurrentInt()];
         auto species = area.getUniqueSpecies();
         auto names = area.getSpecieNames();
 
@@ -232,7 +232,7 @@ void Wild3::generatorPokemonIndexChanged(int index)
     }
     else
     {
-        u16 num = static_cast<u16>(ui->comboBoxGeneratorPokemon->currentData().toUInt());
+        u16 num = ui->comboBoxGeneratorPokemon->getCurrentUShort();
         auto flags = encounterGenerator[ui->comboBoxGeneratorLocation->getCurrentInt()].getSlots(num);
         ui->filterGenerator->toggleEncounterSlots(flags);
     }
@@ -342,7 +342,7 @@ void Wild3::searcherEncounterIndexChanged(int index)
     if (index >= 0)
     {
         std::vector<std::string> t;
-        Encounter encounter = static_cast<Encounter>(ui->comboBoxSearcherEncounter->currentData().toInt());
+        auto encounter = ui->comboBoxSearcherEncounter->getEnum<Encounter>();
         switch (encounter)
         {
         case Encounter::Grass:
@@ -387,7 +387,7 @@ void Wild3::searcherLocationIndexChanged(int index)
 {
     if (index >= 0)
     {
-        auto area = encounterSearcher[ui->comboBoxSearcherLocation->currentData().toInt()];
+        auto area = encounterSearcher[ui->comboBoxSearcherLocation->getCurrentInt()];
         auto species = area.getUniqueSpecies();
         auto names = area.getSpecieNames();
 

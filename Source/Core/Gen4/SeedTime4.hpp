@@ -21,6 +21,7 @@
 #define SEEDTIME_HPP
 
 #include <Core/Util/DateTime.hpp>
+#include <array>
 
 class HGSSRoamer;
 enum class Game : u32;

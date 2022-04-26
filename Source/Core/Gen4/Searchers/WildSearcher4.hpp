@@ -88,6 +88,7 @@ private:
     u32 maxDelay;
     u32 minDelay;
     u16 thresh;
+    bool safari;
     bool searching;
     bool shiny;
 

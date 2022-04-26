@@ -267,6 +267,160 @@ namespace Encounters4
         }
 
         /**
+         * @brief Gets the encounter area for HGSS Safari zone
+         *
+         * @param encounter Encounter type
+         * @param time Time modifier
+         * @param blocks Active pokeblocks in the safari
+         * @param info Personal info array pointer
+         *
+         * @return Vector of encounter areas
+         */
+        std::vector<EncounterArea4> getHGSSSafari(Encounter encounter, int time, const std::array<u8, 5> &blocks, const PersonalInfo *info)
+        {
+            const u8 *compressedData = hgss_safari.data();
+            size_t compressedSize = hgss_safari.size();
+
+            u8 *data;
+            u32 size;
+
+            std::vector<EncounterArea4> encounters;
+            data = decompress(compressedData, compressedSize, size);
+            for (size_t offset = 0; offset < size;)
+            {
+                const u8 *entry = data + offset;
+
+                u8 location = entry[0];
+                bool water = entry[1];
+                size_t block = 0;
+
+                std::vector<Slot> slots;
+                slots.reserve(10);
+                switch (encounter)
+                {
+                case Encounter::Grass:
+                    for (size_t i = 0; i < 10; i++)
+                    {
+                        u16 specie = *reinterpret_cast<const u16 *>(entry + 2 + (i * 3) + (30 * time));
+                        u8 level = entry[4 + (i * 3) + (30 * time)];
+                        for (; block < 10; block++)
+                        {
+                            if (blocks[entry[182 + (4 * block)]] >= entry[183 + (4 * block)]
+                                && blocks[entry[184 + (4 * block)]] >= entry[185 + (4 * block)])
+                            {
+                                specie = *reinterpret_cast<const u16 *>(entry + 92 + (3 * block) + (30 * time));
+                                level = entry[94 + (3 * block) + (30 * time)];
+                                block++;
+                                break;
+                            }
+                        }
+                        slots.emplace_back(specie, level, level, &info[specie]);
+                    }
+                    encounters.emplace_back(location, 0, encounter, slots);
+                    break;
+                case Encounter::Surfing:
+                    if (water)
+                    {
+                        for (size_t i = 0; i < 10; i++)
+                        {
+                            u16 specie = *reinterpret_cast<const u16 *>(entry + 222 + (i * 3) + (30 * time));
+                            u8 level = entry[224 + (i * 3) + (30 * time)];
+                            for (; block < 3; block++)
+                            {
+                                if (blocks[entry[339 + (4 * block)]] >= entry[340 + (4 * block)]
+                                    && blocks[entry[341 + (4 * block)]] >= entry[342 + (4 * block)])
+                                {
+                                    specie = *reinterpret_cast<const u16 *>(entry + 312 + (3 * block) + (30 * time));
+                                    level = entry[314 + (3 * block) + (30 * time)];
+                                    block++;
+                                    break;
+                                }
+                            }
+                            slots.emplace_back(specie, level, level, &info[specie]);
+                        }
+                        encounters.emplace_back(location, 0, encounter, slots);
+                    }
+                    break;
+                case Encounter::OldRod:
+                    if (water)
+                    {
+                        for (size_t i = 0; i < 10; i++)
+                        {
+                            u16 specie = *reinterpret_cast<const u16 *>(entry + 351 + (i * 3) + (30 * time));
+                            u8 level = entry[353 + (i * 3) + (30 * time)];
+                            for (; block < 2; block++)
+                            {
+                                if (blocks[entry[459 + (4 * block)]] >= entry[460 + (4 * block)]
+                                    && blocks[entry[461 + (4 * block)]] >= entry[462 + (4 * block)])
+                                {
+                                    specie = *reinterpret_cast<const u16 *>(entry + 441 + (3 * block) + (30 * time));
+                                    level = entry[443 + (3 * block) + (30 * time)];
+                                    block++;
+                                    break;
+                                }
+                            }
+                            slots.emplace_back(specie, level, level, &info[specie]);
+                        }
+                        encounters.emplace_back(location, 25, encounter, slots);
+                    }
+                    break;
+                case Encounter::GoodRod:
+                    if (water)
+                    {
+                        for (size_t i = 0; i < 10; i++)
+                        {
+                            u16 specie = *reinterpret_cast<const u16 *>(entry + 467 + (i * 3) + (30 * time));
+                            u8 level = entry[469 + (i * 3) + (30 * time)];
+                            for (; block < 2; block++)
+                            {
+                                if (blocks[entry[575 + (4 * block)]] >= entry[576 + (4 * block)]
+                                    && blocks[entry[577 + (4 * block)]] >= entry[578 + (4 * block)])
+                                {
+                                    specie = *reinterpret_cast<const u16 *>(entry + 557 + (3 * block) + (30 * time));
+                                    level = entry[559 + (3 * block) + (30 * time)];
+                                    block++;
+                                    break;
+                                }
+                            }
+                            slots.emplace_back(specie, level, level, &info[specie]);
+                        }
+                        encounters.emplace_back(location, 50, encounter, slots);
+                    }
+                    break;
+                case Encounter::SuperRod:
+                    if (water)
+                    {
+                        for (size_t i = 0; i < 10; i++)
+                        {
+                            u16 specie = *reinterpret_cast<const u16 *>(entry + 583 + (i * 3) + (30 * time));
+                            u8 level = entry[585 + (i * 3) + (30 * time)];
+                            for (; block < 2; block++)
+                            {
+                                if (blocks[entry[691 + (4 * block)]] >= entry[692 + (4 * block)]
+                                    && blocks[entry[693 + (4 * block)]] >= entry[694 + (4 * block)])
+                                {
+                                    specie = *reinterpret_cast<const u16 *>(entry + 673 + (3 * block) + (30 * time));
+                                    level = entry[675 + (3 * block) + (30 * time)];
+                                    block++;
+                                    break;
+                                }
+                            }
+                            slots.emplace_back(specie, level, level, &info[specie]);
+                        }
+                        encounters.emplace_back(location, 75, encounter, slots);
+                    }
+                    break;
+                default:
+                    break;
+                }
+                offset += water ? 699 : 222;
+            }
+
+            delete[] data;
+            return encounters;
+        }
+
+        /**
          * @brief Gets the encounter area for HGSS
          *
          * @param version Game version
@@ -275,12 +429,14 @@ namespace Encounters4
          * @param radio Radio station
          * @param swarm Whether swarm is active
          * @param time Time modifier
+         * @param safari Whether the encounter is in the safari zone
+         * @param blocks Active pokeblocks in the safari
          * @param info Personal info array pointer
          *
          * @return Vector of encounter areas
          */
         std::vector<EncounterArea4> getHGSS(Game version, Encounter encounter, int radio, bool swarm, bool dex, int time,
-                                            const PersonalInfo *info)
+                                            const std::array<u8, 5> &blocks, const PersonalInfo *info)
         {
             const u8 *compressedData;
             size_t compressedSize;
@@ -494,6 +650,9 @@ namespace Encounters4
                         break;
                     }
                 }
+
+                std::vector<EncounterArea4> safariEncounters = getHGSSSafari(encounter, time, blocks, info);
+                encounters.insert(encounters.end(), safariEncounters.begin(), safariEncounters.end());
             }
 
             delete[] data;
@@ -757,7 +916,7 @@ namespace Encounters4
     }
 
     std::vector<EncounterArea4> getEncounters(Encounter encounter, int time, Game dual, bool radar, int radio, bool swarm,
-                                              const Profile4 *profile)
+                                              const std::array<u8, 5> &blocks, const Profile4 *profile)
     {
         Game version = profile->getVersion();
         const auto *info = PersonalLoader::getPersonal(version);
@@ -765,7 +924,7 @@ namespace Encounters4
         {
             return getDPPt(version, encounter, dual, radar, swarm, time, info);
         }
-        return getHGSS(version, encounter, radio, swarm, profile->getNationalDex(), time, info);
+        return getHGSS(version, encounter, radio, swarm, profile->getNationalDex(), time, blocks, info);
     }
 
     const StaticTemplate4 *getStaticEncounters(int type, size_t *size)

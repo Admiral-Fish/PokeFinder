@@ -95,9 +95,11 @@ void WildSearcher4Test::searchMethodJ()
     std::array<bool, 12> encounterSlots;
     encounterSlots.fill(true);
 
+    std::array<u8, 5> blocks = { 0, 0, 0, 0, 0 };
+
     Profile4 profile("", version, 12345, 54321, false);
 
-    std::vector<EncounterArea4> encounterAreas = Encounters4::getEncounters(encounter, 0, Game::None, false, 0, false, &profile);
+    std::vector<EncounterArea4> encounterAreas = Encounters4::getEncounters(encounter, 0, Game::None, false, 0, false, blocks, &profile);
     auto encounterArea = std::find_if(encounterAreas.begin(), encounterAreas.end(),
                                       [location](const EncounterArea4 &encounterArea) { return encounterArea.getLocation() == location; });
 
@@ -168,9 +170,10 @@ void WildSearcher4Test::searchMethodK()
     std::array<bool, 12> encounterSlots;
     encounterSlots.fill(true);
 
+    std::array<u8, 5> blocks = { 0, 0, 0, 0, 0 };
     Profile4 profile("", version, 12345, 54321, false);
 
-    std::vector<EncounterArea4> encounterAreas = Encounters4::getEncounters(encounter, 0, Game::None, false, 0, false, &profile);
+    std::vector<EncounterArea4> encounterAreas = Encounters4::getEncounters(encounter, 0, Game::None, false, 0, false, blocks, &profile);
     auto encounterArea = std::find_if(encounterAreas.begin(), encounterAreas.end(),
                                       [location](const EncounterArea4 &encounterArea) { return encounterArea.getLocation() == location; });
 
@@ -246,9 +249,11 @@ void WildSearcher4Test::searchPokeRadar()
     std::array<bool, 12> encounterSlots;
     encounterSlots.fill(true);
 
+    std::array<u8, 5> blocks = { 0, 0, 0, 0, 0 };
+
     Profile4 profile("", version, 12345, 54321, false);
 
-    std::vector<EncounterArea4> encounterAreas = Encounters4::getEncounters(encounter, 0, Game::None, true, 0, false, &profile);
+    std::vector<EncounterArea4> encounterAreas = Encounters4::getEncounters(encounter, 0, Game::None, true, 0, false, blocks, &profile);
     auto encounterArea = std::find_if(encounterAreas.begin(), encounterAreas.end(),
                                       [location](const EncounterArea4 &encounterArea) { return encounterArea.getLocation() == location; });
 

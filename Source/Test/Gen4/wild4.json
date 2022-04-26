@@ -7718,6 +7718,356 @@
                         ]
                     }
                 ]
+            },
+            {
+                "name": "Safari Zone (Plains)",
+                "seed": 0,
+                "version": 1024,
+                "encounter": 0,
+                "lead": 255,
+                "location": 149,
+                "results": [
+                    {
+                        "ability": 1,
+                        "abilityIndex": 62,
+                        "advances": 0,
+                        "call": 0,
+                        "chatot": 0,
+                        "encounterSlot": 0,
+                        "gender": 0,
+                        "hiddenPower": 10,
+                        "hiddenPowerStrength": 63,
+                        "item": 0,
+                        "ivs": [
+                            24,
+                            4,
+                            11,
+                            2,
+                            19,
+                            25
+                        ],
+                        "level": 15,
+                        "nature": 0,
+                        "occidentary": 238,
+                        "pid": 312824725,
+                        "shiny": 0,
+                        "specie": 19,
+                        "stats": [
+                            37,
+                            22,
+                            17,
+                            12,
+                            18,
+                            30
+                        ]
+                    },
+                    {
+                        "ability": 1,
+                        "abilityIndex": 39,
+                        "advances": 1,
+                        "call": 2,
+                        "chatot": 29,
+                        "encounterSlot": 4,
+                        "gender": 0,
+                        "hiddenPower": 9,
+                        "hiddenPowerStrength": 68,
+                        "item": 0,
+                        "ivs": [
+                            12,
+                            25,
+                            27,
+                            2,
+                            31,
+                            30
+                        ],
+                        "level": 16,
+                        "nature": 5,
+                        "occidentary": 12,
+                        "pid": 4231227355,
+                        "shiny": 0,
+                        "specie": 63,
+                        "stats": [
+                            35,
+                            13,
+                            15,
+                            38,
+                            27,
+                            38
+                        ]
+                    },
+                    {
+                        "ability": 0,
+                        "abilityIndex": 39,
+                        "advances": 2,
+                        "call": 0,
+                        "chatot": 57,
+                        "encounterSlot": 5,
+                        "gender": 1,
+                        "hiddenPower": 12,
+                        "hiddenPowerStrength": 36,
+                        "item": 0,
+                        "ivs": [
+                            4,
+                            30,
+                            9,
+                            29,
+                            13,
+                            2
+                        ],
+                        "level": 16,
+                        "nature": 11,
+                        "occidentary": 90,
+                        "pid": 3430949986,
+                        "shiny": 0,
+                        "specie": 203,
+                        "stats": [
+                            49,
+                            35,
+                            24,
+                            38,
+                            27,
+                            35
+                        ]
+                    },
+                    {
+                        "ability": 0,
+                        "abilityIndex": 50,
+                        "advances": 3,
+                        "call": 0,
+                        "chatot": 55,
+                        "encounterSlot": 0,
+                        "gender": 0,
+                        "hiddenPower": 0,
+                        "hiddenPowerStrength": 49,
+                        "item": 0,
+                        "ivs": [
+                            28,
+                            2,
+                            7,
+                            18,
+                            8,
+                            2
+                        ],
+                        "level": 15,
+                        "nature": 8,
+                        "occidentary": 93,
+                        "pid": 2824189858,
+                        "shiny": 0,
+                        "specie": 19,
+                        "stats": [
+                            38,
+                            22,
+                            17,
+                            13,
+                            16,
+                            26
+                        ]
+                    },
+                    {
+                        "ability": 1,
+                        "abilityIndex": 48,
+                        "advances": 4,
+                        "call": 1,
+                        "chatot": 44,
+                        "encounterSlot": 8,
+                        "gender": 0,
+                        "hiddenPower": 12,
+                        "hiddenPowerStrength": 55,
+                        "item": 0,
+                        "ivs": [
+                            25,
+                            20,
+                            29,
+                            9,
+                            31,
+                            26
+                        ],
+                        "level": 17,
+                        "nature": 0,
+                        "occidentary": 126,
+                        "pid": 3026616025,
+                        "shiny": 0,
+                        "specie": 203,
+                        "stats": [
+                            55,
+                            35,
+                            32,
+                            37,
+                            32,
+                            38
+                        ]
+                    },
+                    {
+                        "ability": 0,
+                        "abilityIndex": 50,
+                        "advances": 5,
+                        "call": 1,
+                        "chatot": 8,
+                        "encounterSlot": 0,
+                        "gender": 0,
+                        "hiddenPower": 3,
+                        "hiddenPowerStrength": 68,
+                        "item": 0,
+                        "ivs": [
+                            27,
+                            17,
+                            19,
+                            18,
+                            22,
+                            31
+                        ],
+                        "level": 15,
+                        "nature": 22,
+                        "occidentary": 48,
+                        "pid": 2489114822,
+                        "shiny": 0,
+                        "specie": 19,
+                        "stats": [
+                            38,
+                            24,
+                            18,
+                            15,
+                            19,
+                            27
+                        ]
+                    },
+                    {
+                        "ability": 0,
+                        "abilityIndex": 28,
+                        "advances": 6,
+                        "call": 0,
+                        "chatot": 49,
+                        "encounterSlot": 7,
+                        "gender": 0,
+                        "hiddenPower": 14,
+                        "hiddenPowerStrength": 61,
+                        "item": 0,
+                        "ivs": [
+                            14,
+                            1,
+                            29,
+                            15,
+                            3,
+                            5
+                        ],
+                        "level": 17,
+                        "nature": 2,
+                        "occidentary": 242,
+                        "pid": 2329912202,
+                        "shiny": 0,
+                        "specie": 63,
+                        "stats": [
+                            37,
+                            12,
+                            15,
+                            43,
+                            24,
+                            32
+                        ]
+                    },
+                    {
+                        "ability": 1,
+                        "abilityIndex": 39,
+                        "advances": 7,
+                        "call": 1,
+                        "chatot": 24,
+                        "encounterSlot": 7,
+                        "gender": 0,
+                        "hiddenPower": 2,
+                        "hiddenPowerStrength": 43,
+                        "item": 0,
+                        "ivs": [
+                            15,
+                            28,
+                            18,
+                            18,
+                            28,
+                            17
+                        ],
+                        "level": 17,
+                        "nature": 2,
+                        "occidentary": 151,
+                        "pid": 745504927,
+                        "shiny": 0,
+                        "specie": 63,
+                        "stats": [
+                            38,
+                            17,
+                            13,
+                            43,
+                            28,
+                            34
+                        ]
+                    },
+                    {
+                        "ability": 1,
+                        "abilityIndex": 62,
+                        "advances": 8,
+                        "call": 0,
+                        "chatot": 88,
+                        "encounterSlot": 3,
+                        "gender": 1,
+                        "hiddenPower": 13,
+                        "hiddenPowerStrength": 33,
+                        "item": 0,
+                        "ivs": [
+                            16,
+                            15,
+                            30,
+                            13,
+                            1,
+                            17
+                        ],
+                        "level": 16,
+                        "nature": 13,
+                        "occidentary": 130,
+                        "pid": 1089256963,
+                        "shiny": 0,
+                        "specie": 19,
+                        "stats": [
+                            38,
+                            25,
+                            21,
+                            13,
+                            16,
+                            33
+                        ]
+                    },
+                    {
+                        "ability": 0,
+                        "abilityIndex": 39,
+                        "advances": 9,
+                        "call": 1,
+                        "chatot": 47,
+                        "encounterSlot": 8,
+                        "gender": 0,
+                        "hiddenPower": 4,
+                        "hiddenPowerStrength": 46,
+                        "item": 156,
+                        "ivs": [
+                            5,
+                            30,
+                            20,
+                            31,
+                            16,
+                            10
+                        ],
+                        "level": 17,
+                        "nature": 16,
+                        "occidentary": 43,
+                        "pid": 2861117866,
+                        "shiny": 0,
+                        "specie": 203,
+                        "stats": [
+                            51,
+                            37,
+                            27,
+                            44,
+                            29,
+                            35
+                        ]
+                    }
+                ]
             }
         ],
         "generatePokeRadar": [
@@ -10593,6 +10943,34 @@
                 "encounter": 12,
                 "lead": 255,
                 "location": 146,
+                "results": 65
+            },
+            {
+                "name": "Safari Zone (Plains)",
+                "min": [
+                    31,
+                    31,
+                    31,
+                    31,
+                    31,
+                    31
+                ],
+                "max": [
+                    31,
+                    31,
+                    31,
+                    31,
+                    31,
+                    31
+                ],
+                "minAdvance": 0,
+                "maxAdvance": 1000,
+                "minDelay": 600,
+                "maxDelay": 2000,
+                "version": 1024,
+                "encounter": 0,
+                "lead": 255,
+                "location": 149,
                 "results": 65
             }
         ],

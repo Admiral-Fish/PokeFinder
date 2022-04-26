@@ -21,6 +21,7 @@
 #define ENCOUNTERS4_HPP
 
 #include <Core/Global.hpp>
+#include <array>
 #include <vector>
 
 class EncounterArea4;
@@ -40,12 +41,13 @@ namespace Encounters4
      * @param radar Whether pokeradar is active
      * @param radio Radio station
      * @param swarm Whether swarm is active
+     * @param blocks Active pokeblocks in the safari
      * @param profile Profile information
      *
      * @return Vector of wild encounters
      */
     std::vector<EncounterArea4> getEncounters(Encounter encounter, int time, Game dual, bool radar, int radio, bool swarm,
-                                              const Profile4 *profile);
+                                              const std::array<u8, 5> &blocks, const Profile4 *profile);
 
     /**
      * @brief Gets static encounters from the \p type
