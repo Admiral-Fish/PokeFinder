@@ -36,6 +36,7 @@ enum class Encounter : u8
     SpecialSuperRod,
     Static,
     BugCatchingContest,
+    SafariZone,
     Headbutt,
     Roamer,
     Gift,

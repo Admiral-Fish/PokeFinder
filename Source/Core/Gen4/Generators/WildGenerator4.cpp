@@ -461,7 +461,8 @@ std::vector<WildState4> WildGenerator4::generateMethodK(u32 seed, const Encounte
         u32 occidentary = initialAdvances + cnt;
         PokeRNG go(rng.getSeed(), &occidentary);
 
-        u16 first = go.nextUShort<true>(); // Encounter slot, nibble for fishing, nibble for rock smash
+        u16 first = encounter == Encounter::SafariZone ?
+                    go.getSeed() >> 16 : go.nextUShort<true>(); // Encounter slot, nibble for fishing, nibble for rock smash
 
         switch (encounter)
         {
@@ -542,6 +543,19 @@ std::vector<WildState4> WildGenerator4::generateMethodK(u32 seed, const Encounte
             }
 
             state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), go.nextUShort<true>()));
+            if (!createPokemon<true>(go, state, buffer, synchNature, genderRatio, tsv, lead, filter))
+            {
+                continue;
+            }
+            break;
+        case Encounter::SafariZone:
+            state.setEncounterSlot(EncounterSlot::kSlot(go.nextUShort<true>(), encounter));
+            if (!filter.compareEncounterSlot(state))
+            {
+                continue;
+            }
+
+            state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), go.getSeed()));
             if (!createPokemon<true>(go, state, buffer, synchNature, genderRatio, tsv, lead, filter))
             {
                 continue;

@@ -122,8 +122,8 @@ std::set<std::pair<u16, QString>> EncounterLookup::getEncounters4(Game game, u16
     std::vector<Profile4> profiles;
 
     // Encounter variables to iterate through
-    auto types = { Encounter::Grass,   Encounter::RockSmash,          Encounter::OldRod,  Encounter::GoodRod, Encounter::SuperRod,
-                   Encounter::Surfing, Encounter::BugCatchingContest, Encounter::Headbutt };
+    auto types = { Encounter::Grass,   Encounter::RockSmash,          Encounter::OldRod,   Encounter::GoodRod, Encounter::SuperRod,
+                   Encounter::Surfing, Encounter::BugCatchingContest, Encounter::Headbutt, Encounter::SafariZone };
 
     // Setup profiles to iterate through the different combinations of possibilities depending on HGSS vs DPPt
     if ((game & Game::HGSS) != Game::None)
@@ -157,7 +157,7 @@ std::set<std::pair<u16, QString>> EncounterLookup::getEncounters4(Game game, u16
         {
             for (const auto &modifier : { 0, 1, 2 })
             {
-                auto areas = Encounters4::getEncounters(type, modifier, profile);
+                auto areas = Encounters4::getEncounters(type, modifier, profile, Encounter::Grass);
                 for (const auto &area : areas)
                 {
                     auto pokemon = area.getPokemon();
@@ -236,6 +236,8 @@ QString EncounterLookup::getEncounterString(Encounter type)
         return tr("Headbutt");
     case Encounter::BugCatchingContest:
         return tr("Bug Catching Contest");
+    case Encounter::SafariZone:
+        return tr("Safari Zone");
     default:
         return "-";
     }

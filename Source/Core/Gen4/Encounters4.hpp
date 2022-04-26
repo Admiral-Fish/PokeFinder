@@ -30,8 +30,9 @@ class Profile4;
 
 namespace Encounters4
 {
-    std::vector<EncounterArea4> getEncounters(Encounter encounter, int modifier, const Profile4 &profile);
+    std::vector<EncounterArea4> getEncounters(Encounter encounter, int modifier, const Profile4 &profile, Encounter safariEncounter);
     bool getHeadbuttSpecialFlag(Game game, int location);
+    bool getSafariWaterFlag(int location);
 }
 
 #endif // ENCOUNTERS4_HPP

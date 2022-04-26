@@ -98,7 +98,7 @@ namespace Encounters4
         }
 
         std::vector<EncounterArea4> getHGSS(Game version, Encounter encounter, const Profile4 &profile, const PersonalInfo *info,
-                                            int modifier)
+                                            int modifier, Encounter safariEncounter)
         {
             const u8 *data;
             size_t size;
@@ -269,6 +269,53 @@ namespace Encounters4
                         slots.emplace_back(specie, min, max, info[specie]);
                     }
                     encounters.emplace_back(location, 0, Encounter::BugCatchingContest, slots);
+                }
+            }
+
+            if (encounter == Encounter::SafariZone)
+            {
+                size_t size = hgss_safari.size();
+
+                for (size_t offset = 0; offset < size; )
+                {
+                    const u8 *entry = hgss_safari.data() + offset;
+
+                    u8 location = entry[0];
+                    u8 waterFlag = entry[1];
+
+                    std::vector<Slot> slots;
+                    for (int i = 0; i < 10; i++)
+                    {
+                        u16 specie = *reinterpret_cast<const u16 *>(entry + (30 * modifier) + 2 + (i * 3));
+                        u8 level = entry[(30 * modifier) + 4 + (i * 3)];
+
+                        // Adjust slot according to Safari encounter type
+                        if (waterFlag != 0 && safariEncounter == Encounter::Surfing)
+                        {
+                            specie = *reinterpret_cast<const u16 *>(entry + (i * 3) + 222);
+                            level = entry[(i * 3) + 224];
+                        }
+                        else if (waterFlag != 0 && safariEncounter == Encounter::OldRod)
+                        {
+                            specie = *reinterpret_cast<const u16 *>(entry + (i * 3) + 273);
+                            level = entry[(i * 3) + 275];
+                        }
+                        else if (waterFlag != 0 && safariEncounter == Encounter::GoodRod)
+                        {
+                            specie = *reinterpret_cast<const u16 *>(entry + (i * 3) + 317);
+                            level = entry[(i * 3) + 319];
+                        }
+                        else if (waterFlag != 0 && safariEncounter == Encounter::SuperRod)
+                        {
+                            specie = *reinterpret_cast<const u16 *>(entry + (i * 3) + 361);
+                            level = entry[(i * 3) + 363];
+                        }
+
+                        slots.emplace_back(specie, level, level, info[specie]);
+                    }
+                    encounters.emplace_back(location, 0, Encounter::SafariZone, slots);
+
+                    offset += waterFlag == 0 ? 222 : 405;
                 }
             }
 
@@ -465,7 +512,7 @@ namespace Encounters4
         }
     }
 
-    std::vector<EncounterArea4> getEncounters(Encounter encounter, int modifier, const Profile4 &profile)
+    std::vector<EncounterArea4> getEncounters(Encounter encounter, int modifier, const Profile4 &profile, Encounter safariEncounter)
     {
         Game version = profile.getVersion();
         auto *info = PersonalLoader::getPersonal(version);
@@ -475,7 +522,7 @@ namespace Encounters4
         }
         else
         {
-            return getHGSS(version, encounter, profile, info, modifier);
+            return getHGSS(version, encounter, profile, info, modifier, safariEncounter);
         }
     }
 
@@ -498,5 +545,26 @@ namespace Encounters4
         }
 
         return specialTreesFlag == 1;
+    }
+
+    bool getSafariWaterFlag(int location)
+    {
+        u8 waterFlag;
+        size_t size = hgss_safari.size();
+
+        for (size_t offset = 0; offset < size; )
+        {
+            const u8 *entry = hgss_safari.data() + offset;
+            waterFlag = entry[1];
+
+            if (location == entry[0])
+            {
+                break;
+            }
+
+            offset += waterFlag == 0 ? 222 : 405;
+        }
+
+        return waterFlag == 1;
     }
 }

@@ -220,23 +220,17 @@
           <string>RNG Info</string>
          </property>
          <layout class="QGridLayout" name="gridLayout_3">
-          <item row="4" column="1">
-           <widget class="ComboBox" name="comboBoxGeneratorPokemon"/>
+          <item row="1" column="1">
+           <widget class="QComboBox" name="comboBoxGeneratorLocation"/>
           </item>
-          <item row="6" column="0">
-           <widget class="QLabel" name="labelGeneratorLead">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
+          <item row="9" column="1">
+           <widget class="TextBox" name="textBoxGeneratorMaxAdvances">
             <property name="text">
-             <string>Lead</string>
+             <string notr="true">100000</string>
             </property>
            </widget>
           </item>
-          <item row="6" column="1">
+          <item row="7" column="1">
            <widget class="ComboMenu" name="toolButtonGeneratorLead">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
@@ -249,15 +243,59 @@
             </property>
            </widget>
           </item>
-          <item row="9" column="0">
+          <item row="5" column="0">
+           <widget class="QLabel" name="labelGeneratorPokemon">
+            <property name="text">
+             <string>Pokémon</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="0">
+           <widget class="QLabel" name="labelGeneratorTime">
+            <property name="text">
+             <string>Time</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="QComboBox" name="comboBoxGeneratorTreeType"/>
+          </item>
+          <item row="8" column="1">
+           <widget class="TextBox" name="textBoxGeneratorStartingAdvance">
+            <property name="text">
+             <string notr="true">0</string>
+            </property>
+           </widget>
+          </item>
+          <item row="10" column="0">
            <widget class="QLabel" name="labelGeneratorSeed">
             <property name="text">
              <string>Seed</string>
             </property>
            </widget>
           </item>
-          <item row="1" column="1">
-           <widget class="QComboBox" name="comboBoxGeneratorLocation"/>
+          <item row="7" column="0">
+           <widget class="QLabel" name="labelGeneratorLead">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>Lead</string>
+            </property>
+           </widget>
+          </item>
+          <item row="6" column="0">
+           <widget class="QLabel" name="labelGeneratorEncounter">
+            <property name="text">
+             <string>Encounter</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="ComboBox" name="comboBoxGeneratorMethod"/>
           </item>
           <item row="1" column="0">
            <widget class="QLabel" name="labelGeneratorLocation">
@@ -266,14 +304,10 @@
             </property>
            </widget>
           </item>
-          <item row="7" column="1">
-           <widget class="TextBox" name="textBoxGeneratorStartingAdvance">
-            <property name="text">
-             <string notr="true">0</string>
-            </property>
-           </widget>
+          <item row="5" column="1">
+           <widget class="ComboBox" name="comboBoxGeneratorPokemon"/>
           </item>
-          <item row="10" column="0" colspan="2">
+          <item row="11" column="0" colspan="2">
            <widget class="QPushButton" name="pushButtonGenerate">
             <property name="enabled">
              <bool>true</bool>
@@ -289,14 +323,7 @@
             </property>
            </widget>
           </item>
-          <item row="7" column="0">
-           <widget class="QLabel" name="labelGeneratorStartingAdvance">
-            <property name="text">
-             <string>Initial Advances</string>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="1">
+          <item row="4" column="1">
            <widget class="QComboBox" name="comboBoxGeneratorTime">
             <item>
              <property name="text">
@@ -315,42 +342,8 @@
             </item>
            </widget>
           </item>
-          <item row="5" column="0">
-           <widget class="QLabel" name="labelGeneratorEncounter">
-            <property name="text">
-             <string>Encounter</string>
-            </property>
-           </widget>
-          </item>
-          <item row="5" column="1">
-           <widget class="ComboBox" name="comboBoxGeneratorEncounter"/>
-          </item>
-          <item row="8" column="1">
-           <widget class="TextBox" name="textBoxGeneratorMaxAdvances">
-            <property name="text">
-             <string notr="true">100000</string>
-            </property>
-           </widget>
-          </item>
-          <item row="9" column="1">
+          <item row="10" column="1">
            <widget class="TextBox" name="textBoxGeneratorSeed"/>
-          </item>
-          <item row="8" column="0">
-           <widget class="QLabel" name="labelGeneratorMaxAdvances">
-            <property name="text">
-             <string>Max Advances</string>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="0">
-           <widget class="QLabel" name="labelGeneratorTime">
-            <property name="text">
-             <string>Time</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="1">
-           <widget class="ComboBox" name="comboBoxGeneratorMethod"/>
           </item>
           <item row="0" column="0">
            <widget class="QLabel" name="labelGeneratorMethod">
@@ -359,16 +352,6 @@
             </property>
            </widget>
           </item>
-          <item row="4" column="0">
-           <widget class="QLabel" name="labelGeneratorPokemon">
-            <property name="text">
-             <string>Pokémon</string>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="1">
-           <widget class="QComboBox" name="comboBoxGeneratorTreeType"/>
-          </item>
           <item row="2" column="0">
            <widget class="QLabel" name="labelGeneratorTreeType">
             <property name="enabled">
@@ -376,6 +359,33 @@
             </property>
             <property name="text">
              <string>Tree Type</string>
+            </property>
+           </widget>
+          </item>
+          <item row="9" column="0">
+           <widget class="QLabel" name="labelGeneratorMaxAdvances">
+            <property name="text">
+             <string>Max Advances</string>
+            </property>
+           </widget>
+          </item>
+          <item row="8" column="0">
+           <widget class="QLabel" name="labelGeneratorStartingAdvance">
+            <property name="text">
+             <string>Initial Advances</string>
+            </property>
+           </widget>
+          </item>
+          <item row="6" column="1">
+           <widget class="ComboBox" name="comboBoxGeneratorEncounter"/>
+          </item>
+          <item row="3" column="1">
+           <widget class="QComboBox" name="comboBoxGeneratorSafariEncounter"/>
+          </item>
+          <item row="3" column="0">
+           <widget class="QLabel" name="labelGeneratorSafariEncounter">
+            <property name="text">
+             <string>Safari Encounter</string>
             </property>
            </widget>
           </item>
@@ -730,6 +740,7 @@
   <tabstop>comboBoxGeneratorMethod</tabstop>
   <tabstop>comboBoxGeneratorLocation</tabstop>
   <tabstop>comboBoxGeneratorTreeType</tabstop>
+  <tabstop>comboBoxGeneratorSafariEncounter</tabstop>
   <tabstop>comboBoxGeneratorTime</tabstop>
   <tabstop>comboBoxGeneratorPokemon</tabstop>
   <tabstop>comboBoxGeneratorEncounter</tabstop>
