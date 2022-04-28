@@ -98,7 +98,7 @@ namespace Encounters4
         }
 
         std::vector<EncounterArea4> getHGSS(Game version, Encounter encounter, const Profile4 &profile, const PersonalInfo *info,
-                                            int modifier, Encounter safariEncounter)
+                                            int modifier, Encounter safariEncounter, const u8 blocks[])
         {
             const u8 *data;
             size_t size;
@@ -279,6 +279,8 @@ namespace Encounters4
                 for (size_t offset = 0; offset < size; )
                 {
                     const u8 *entry = hgss_safari.data() + offset;
+                    int grassBlockSlot = 0;
+                    int waterBlockSlot = 0;
 
                     u8 location = entry[0];
                     u8 waterFlag = entry[1];
@@ -289,26 +291,96 @@ namespace Encounters4
                         u16 specie = *reinterpret_cast<const u16 *>(entry + (30 * modifier) + 2 + (i * 3));
                         u8 level = entry[(30 * modifier) + 4 + (i * 3)];
 
+                        while (grassBlockSlot < 10)
+                        {
+                            if (blocks[entry[182 + (grassBlockSlot * 4)]] >= entry[183 + (grassBlockSlot * 4)] &&
+                                    blocks[entry[184 + (grassBlockSlot * 4)]] >= entry[185 + (grassBlockSlot * 4)])
+                            {
+                                specie = *reinterpret_cast<const u16 *>(entry + (30 * modifier) + (grassBlockSlot * 3) + 92);
+                                level = entry[(30 * modifier) + (grassBlockSlot * 3) + 94];
+                                grassBlockSlot++;
+                                break;
+                            }
+
+                            grassBlockSlot++;
+                        }
+
                         // Adjust slot according to Safari encounter type
                         if (waterFlag != 0 && safariEncounter == Encounter::Surfing)
                         {
                             specie = *reinterpret_cast<const u16 *>(entry + (i * 3) + 222);
                             level = entry[(i * 3) + 224];
+
+                            while (waterBlockSlot < 3)
+                            {
+                                if (blocks[entry[261 + (waterBlockSlot * 4)]] >= entry[262 + (waterBlockSlot * 4)] &&
+                                        blocks[entry[263 + (waterBlockSlot * 4)]] >= entry[264 + (waterBlockSlot * 4)])
+                                {
+                                    specie = *reinterpret_cast<const u16 *>(entry + (waterBlockSlot * 3) + 252);
+                                    level = entry[(waterBlockSlot * 3) + 254];
+                                    waterBlockSlot++;
+                                    break;
+                                }
+
+                                waterBlockSlot++;
+                            }
                         }
                         else if (waterFlag != 0 && safariEncounter == Encounter::OldRod)
                         {
                             specie = *reinterpret_cast<const u16 *>(entry + (i * 3) + 273);
                             level = entry[(i * 3) + 275];
+
+                            while (waterBlockSlot < 2)
+                            {
+                                if (blocks[entry[309 + (waterBlockSlot * 4)]] >= entry[310 + (waterBlockSlot * 4)] &&
+                                        blocks[entry[311 + (waterBlockSlot * 4)]] >= entry[312 + (waterBlockSlot * 4)])
+                                {
+                                    specie = *reinterpret_cast<const u16 *>(entry + (waterBlockSlot * 3) + 303);
+                                    level = entry[(waterBlockSlot * 3) + 305];
+                                    waterBlockSlot++;
+                                    break;
+                                }
+
+                                waterBlockSlot++;
+                            }
                         }
                         else if (waterFlag != 0 && safariEncounter == Encounter::GoodRod)
                         {
                             specie = *reinterpret_cast<const u16 *>(entry + (i * 3) + 317);
                             level = entry[(i * 3) + 319];
+
+                            while (waterBlockSlot < 2)
+                            {
+                                if (blocks[entry[353 + (waterBlockSlot * 4)]] >= entry[354 + (waterBlockSlot * 4)] &&
+                                        blocks[entry[355 + (waterBlockSlot * 4)]] >= entry[356 + (waterBlockSlot * 4)])
+                                {
+                                    specie = *reinterpret_cast<const u16 *>(entry + (waterBlockSlot * 3) + 347);
+                                    level = entry[(waterBlockSlot * 3) + 349];
+                                    waterBlockSlot++;
+                                    break;
+                                }
+
+                                waterBlockSlot++;
+                            }
                         }
                         else if (waterFlag != 0 && safariEncounter == Encounter::SuperRod)
                         {
                             specie = *reinterpret_cast<const u16 *>(entry + (i * 3) + 361);
                             level = entry[(i * 3) + 363];
+
+                            while (waterBlockSlot < 2)
+                            {
+                                if (blocks[entry[397 + (waterBlockSlot * 4)]] >= entry[398 + (waterBlockSlot * 4)] &&
+                                        blocks[entry[399 + (waterBlockSlot * 4)]] >= entry[400 + (waterBlockSlot * 4)])
+                                {
+                                    specie = *reinterpret_cast<const u16 *>(entry + (waterBlockSlot * 3) + 391);
+                                    level = entry[(waterBlockSlot * 3) + 393];
+                                    waterBlockSlot++;
+                                    break;
+                                }
+
+                                waterBlockSlot++;
+                            }
                         }
 
                         slots.emplace_back(specie, level, level, info[specie]);
@@ -512,7 +584,8 @@ namespace Encounters4
         }
     }
 
-    std::vector<EncounterArea4> getEncounters(Encounter encounter, int modifier, const Profile4 &profile, Encounter safariEncounter)
+    std::vector<EncounterArea4> getEncounters(Encounter encounter, int modifier, const Profile4 &profile, Encounter safariEncounter,
+                                              const u8 blocks[])
     {
         Game version = profile.getVersion();
         auto *info = PersonalLoader::getPersonal(version);
@@ -522,7 +595,7 @@ namespace Encounters4
         }
         else
         {
-            return getHGSS(version, encounter, profile, info, modifier, safariEncounter);
+            return getHGSS(version, encounter, profile, info, modifier, safariEncounter, blocks);
         }
     }
 

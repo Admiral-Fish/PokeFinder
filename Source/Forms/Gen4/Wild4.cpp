@@ -146,6 +146,22 @@ void Wild4::setupModels()
             &Wild4::generatorSafariEncounterIndexChanged);
     connect(ui->comboBoxSearcherSafariEncounter, QOverload<int>::of(&QComboBox::currentIndexChanged), this,
             &Wild4::searcherSafariEncounterIndexChanged);
+    connect(ui->spinBoxGeneratorPlainsBlocks, QOverload<int>::of(&QSpinBox::valueChanged), this,
+            &Wild4::generatorSafariBlocksValueChanged);
+    connect(ui->spinBoxGeneratorForestBlocks, QOverload<int>::of(&QSpinBox::valueChanged), this,
+            &Wild4::generatorSafariBlocksValueChanged);
+    connect(ui->spinBoxGeneratorPeakBlocks, QOverload<int>::of(&QSpinBox::valueChanged), this,
+            &Wild4::generatorSafariBlocksValueChanged);
+    connect(ui->spinBoxGeneratorWaterBlocks, QOverload<int>::of(&QSpinBox::valueChanged), this,
+            &Wild4::generatorSafariBlocksValueChanged);
+    connect(ui->spinBoxSearcherPlainsBlocks, QOverload<int>::of(&QSpinBox::valueChanged), this,
+            &Wild4::searcherSafariBlocksValueChanged);
+    connect(ui->spinBoxSearcherForestBlocks, QOverload<int>::of(&QSpinBox::valueChanged), this,
+            &Wild4::searcherSafariBlocksValueChanged);
+    connect(ui->spinBoxSearcherPeakBlocks, QOverload<int>::of(&QSpinBox::valueChanged), this,
+            &Wild4::searcherSafariBlocksValueChanged);
+    connect(ui->spinBoxSearcherWaterBlocks, QOverload<int>::of(&QSpinBox::valueChanged), this,
+            &Wild4::searcherSafariBlocksValueChanged);
     connect(ui->comboBoxGeneratorTime, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &Wild4::generatorTimeIndexChanged);
     connect(ui->comboBoxSearcherTime, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &Wild4::searcherTimeIndexChanged);
     connect(ui->tableViewGenerator, &QTableView::customContextMenuRequested, this, &Wild4::tableViewGeneratorContextMenu);
@@ -187,8 +203,12 @@ void Wild4::updateLocationsGenerator()
     auto safariEncounter = static_cast<Encounter>(ui->comboBoxGeneratorSafariEncounter->currentData().toInt());
     int modifier
         = encounter == Encounter::Headbutt ? ui->comboBoxGeneratorTreeType->currentIndex() : ui->comboBoxGeneratorTime->currentIndex();
-
-    encounterGenerator = Encounters4::getEncounters(encounter, modifier, *currentProfile, safariEncounter);
+    u8 plainsBlocks = ui->spinBoxGeneratorPlainsBlocks->value();
+    u8 forestBlocks = ui->spinBoxGeneratorForestBlocks->value();
+    u8 peakBlocks = ui->spinBoxGeneratorPeakBlocks->value();
+    u8 waterBlocks = ui->spinBoxGeneratorWaterBlocks->value();
+    const u8 blocks[] = {0, plainsBlocks, forestBlocks, peakBlocks, waterBlocks};
+    encounterGenerator = Encounters4::getEncounters(encounter, modifier, *currentProfile, safariEncounter, blocks);
 
     std::vector<u16> locs;
     std::transform(encounterGenerator.begin(), encounterGenerator.end(), std::back_inserter(locs),
@@ -213,11 +233,15 @@ void Wild4::updateLocationsGenerator()
 void Wild4::updateLocationsSearcher()
 {
     auto encounter = static_cast<Encounter>(ui->comboBoxSearcherEncounter->currentData().toInt());
-    auto safariEncounter = static_cast<Encounter>(ui->comboBoxGeneratorSafariEncounter->currentData().toInt());
+    auto safariEncounter = static_cast<Encounter>(ui->comboBoxSearcherSafariEncounter->currentData().toInt());
     int modifier
         = encounter == Encounter::Headbutt ? ui->comboBoxSearcherTreeType->currentIndex() : ui->comboBoxSearcherTime->currentIndex();
-
-    encounterSearcher = Encounters4::getEncounters(encounter, modifier, *currentProfile, safariEncounter);
+    u8 plainsBlocks = ui->spinBoxSearcherPlainsBlocks->value();
+    u8 forestBlocks = ui->spinBoxSearcherForestBlocks->value();
+    u8 peakBlocks = ui->spinBoxSearcherPeakBlocks->value();
+    u8 waterBlocks = ui->spinBoxSearcherWaterBlocks->value();
+    const u8 blocks[] = {0, plainsBlocks, forestBlocks, peakBlocks, waterBlocks};
+    encounterSearcher = Encounters4::getEncounters(encounter, modifier, *currentProfile, safariEncounter, blocks);
 
     std::vector<u16> locs;
     std::transform(encounterSearcher.begin(), encounterSearcher.end(), std::back_inserter(locs),
@@ -593,6 +617,14 @@ void Wild4::generatorEncounterIndexChanged(int index)
 
         ui->labelGeneratorSafariEncounter->setVisible(safari);
         ui->comboBoxGeneratorSafariEncounter->setVisible(safari);
+        ui->labelGeneratorPlainsBlocks->setVisible(safari);
+        ui->spinBoxGeneratorPlainsBlocks->setVisible(safari);
+        ui->labelGeneratorForestBlocks->setVisible(safari);
+        ui->spinBoxGeneratorForestBlocks->setVisible(safari);
+        ui->labelGeneratorPeakBlocks->setVisible(safari);
+        ui->spinBoxGeneratorPeakBlocks->setVisible(safari);
+        ui->labelGeneratorWaterBlocks->setVisible(safari);
+        ui->spinBoxGeneratorWaterBlocks->setVisible(safari);
 
         if ((currentProfile->getVersion() & Game::HGSS) != Game::None
             && (encounter == Encounter::OldRod || encounter == Encounter::GoodRod || encounter == Encounter::SuperRod))
@@ -657,6 +689,14 @@ void Wild4::searcherEncounterIndexChanged(int index)
 
         ui->labelSearcherSafariEncounter->setVisible(safari);
         ui->comboBoxSearcherSafariEncounter->setVisible(safari);
+        ui->labelSearcherPlainsBlocks->setVisible(safari);
+        ui->spinBoxSearcherPlainsBlocks->setVisible(safari);
+        ui->labelSearcherForestBlocks->setVisible(safari);
+        ui->spinBoxSearcherForestBlocks->setVisible(safari);
+        ui->labelSearcherPeakBlocks->setVisible(safari);
+        ui->spinBoxSearcherPeakBlocks->setVisible(safari);
+        ui->labelSearcherWaterBlocks->setVisible(safari);
+        ui->spinBoxSearcherWaterBlocks->setVisible(safari);
 
         if ((currentProfile->getVersion() & Game::HGSS) != Game::None
             && (encounter == Encounter::OldRod || encounter == Encounter::GoodRod || encounter == Encounter::SuperRod))
@@ -743,9 +783,9 @@ void Wild4::generatorTreeTypeIndexChanged(int index)
     if (index >= 0)
     {
         auto encounter = static_cast<Encounter>(ui->comboBoxGeneratorEncounter->currentData().toInt());
-        auto safariEncounter = static_cast<Encounter>(ui->comboBoxGeneratorSafariEncounter->currentData().toInt());
+        const u8 blocks[] = {0, 0, 0, 0, 0};
         encounterGenerator = Encounters4::getEncounters(encounter, ui->comboBoxGeneratorTreeType->currentIndex(), *currentProfile,
-                                                        safariEncounter);
+                                                        Encounter::Grass, blocks);
         updatePokemonGenerator();
     }
 }
@@ -755,9 +795,9 @@ void Wild4::searcherTreeTypeIndexChanged(int index)
     if (index >= 0)
     {
         auto encounter = static_cast<Encounter>(ui->comboBoxSearcherEncounter->currentData().toInt());
-        auto safariEncounter = static_cast<Encounter>(ui->comboBoxGeneratorSafariEncounter->currentData().toInt());
+        const u8 blocks[] = {0, 0, 0, 0, 0};
         encounterSearcher = Encounters4::getEncounters(encounter, ui->comboBoxSearcherTreeType->currentIndex(), *currentProfile,
-                                                       safariEncounter);
+                                                       Encounter::Grass, blocks);
         updatePokemonSearcher();
     }
 }
@@ -768,8 +808,22 @@ void Wild4::generatorSafariEncounterIndexChanged(int index)
     {
         auto encounter = static_cast<Encounter>(ui->comboBoxGeneratorEncounter->currentData().toInt());
         auto safariEncounter = static_cast<Encounter>(ui->comboBoxGeneratorSafariEncounter->currentData().toInt());
-        encounterGenerator = Encounters4::getEncounters(encounter, ui->comboBoxGeneratorSafariEncounter->currentIndex(), *currentProfile,
-                                                        safariEncounter);
+        u8 plainsBlocks = ui->spinBoxGeneratorPlainsBlocks->value();
+        u8 forestBlocks = ui->spinBoxGeneratorForestBlocks->value();
+        u8 peakBlocks = ui->spinBoxGeneratorPeakBlocks->value();
+        u8 waterBlocks = ui->spinBoxGeneratorWaterBlocks->value();
+        const u8 blocks[] = {0, plainsBlocks, forestBlocks, peakBlocks, waterBlocks};
+        encounterGenerator = Encounters4::getEncounters(encounter, ui->comboBoxGeneratorTime->currentIndex(), *currentProfile,
+                                                        safariEncounter, blocks);
+        if (safariEncounter != Encounter::Grass)
+        {
+            ui->comboBoxGeneratorTime->setEnabled(false);
+        }
+        else
+        {
+            ui->comboBoxGeneratorTime->setEnabled(true);
+        }
+
         updatePokemonGenerator();
     }
 }
@@ -780,10 +834,54 @@ void Wild4::searcherSafariEncounterIndexChanged(int index)
     {
         auto encounter = static_cast<Encounter>(ui->comboBoxSearcherEncounter->currentData().toInt());
         auto safariEncounter = static_cast<Encounter>(ui->comboBoxSearcherSafariEncounter->currentData().toInt());
-        encounterSearcher = Encounters4::getEncounters(encounter, ui->comboBoxSearcherSafariEncounter->currentIndex(), *currentProfile,
-                                                        safariEncounter);
+        u8 plainsBlocks = ui->spinBoxSearcherPlainsBlocks->value();
+        u8 forestBlocks = ui->spinBoxSearcherForestBlocks->value();
+        u8 peakBlocks = ui->spinBoxSearcherPeakBlocks->value();
+        u8 waterBlocks = ui->spinBoxSearcherWaterBlocks->value();
+        const u8 blocks[] = {0, plainsBlocks, forestBlocks, peakBlocks, waterBlocks};
+        encounterSearcher = Encounters4::getEncounters(encounter, ui->comboBoxSearcherTime->currentIndex(), *currentProfile,
+                                                        safariEncounter, blocks);
+        if (safariEncounter != Encounter::Grass)
+        {
+            ui->comboBoxSearcherTime->setEnabled(false);
+        }
+        else
+        {
+            ui->comboBoxSearcherTime->setEnabled(true);
+        }
+
         updatePokemonSearcher();
     }
+}
+
+void Wild4::generatorSafariBlocksValueChanged()
+{
+    auto encounter = static_cast<Encounter>(ui->comboBoxGeneratorEncounter->currentData().toInt());
+    auto safariEncounter = static_cast<Encounter>(ui->comboBoxGeneratorSafariEncounter->currentData().toInt());
+    u8 plainsBlocks = ui->spinBoxGeneratorPlainsBlocks->value();
+    u8 forestBlocks = ui->spinBoxGeneratorForestBlocks->value();
+    u8 peakBlocks = ui->spinBoxGeneratorPeakBlocks->value();
+    u8 waterBlocks = ui->spinBoxGeneratorWaterBlocks->value();
+    const u8 blocks[] = {0, plainsBlocks, forestBlocks, peakBlocks, waterBlocks};
+    encounterGenerator = Encounters4::getEncounters(encounter, ui->comboBoxGeneratorTime->currentIndex(), *currentProfile,
+                                                    safariEncounter, blocks);
+
+    updatePokemonGenerator();
+}
+
+void Wild4::searcherSafariBlocksValueChanged()
+{
+    auto encounter = static_cast<Encounter>(ui->comboBoxSearcherEncounter->currentData().toInt());
+    auto safariEncounter = static_cast<Encounter>(ui->comboBoxSearcherSafariEncounter->currentData().toInt());
+    u8 plainsBlocks = ui->spinBoxSearcherPlainsBlocks->value();
+    u8 forestBlocks = ui->spinBoxSearcherForestBlocks->value();
+    u8 peakBlocks = ui->spinBoxSearcherPeakBlocks->value();
+    u8 waterBlocks = ui->spinBoxSearcherWaterBlocks->value();
+    const u8 blocks[] = {0, plainsBlocks, forestBlocks, peakBlocks, waterBlocks};
+    encounterSearcher = Encounters4::getEncounters(encounter, ui->comboBoxSearcherTime->currentIndex(), *currentProfile,
+                                                    safariEncounter, blocks);
+
+    updatePokemonSearcher();
 }
 
 void Wild4::generatorTimeIndexChanged(int index)

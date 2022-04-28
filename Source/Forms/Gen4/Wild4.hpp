@@ -79,6 +79,8 @@ private slots:
     void searcherTreeTypeIndexChanged(int index);
     void generatorSafariEncounterIndexChanged(int index);
     void searcherSafariEncounterIndexChanged(int index);
+    void generatorSafariBlocksValueChanged();
+    void searcherSafariBlocksValueChanged();
     void generatorTimeIndexChanged(int index);
     void searcherTimeIndexChanged(int index);
     void seedToTime();
