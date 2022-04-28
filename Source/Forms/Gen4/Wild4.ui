@@ -848,6 +848,10 @@
   <tabstop>comboBoxSearcherLocation</tabstop>
   <tabstop>comboBoxSearcherTreeType</tabstop>
   <tabstop>comboBoxSearcherSafariEncounter</tabstop>
+  <tabstop>spinBoxSearcherPlainsBlocks</tabstop>
+  <tabstop>spinBoxSearcherForestBlocks</tabstop>
+  <tabstop>spinBoxSearcherPeakBlocks</tabstop>
+  <tabstop>spinBoxSearcherWaterBlocks</tabstop>
   <tabstop>comboBoxSearcherTime</tabstop>
   <tabstop>comboBoxSearcherPokemon</tabstop>
   <tabstop>comboBoxSearcherEncounter</tabstop>
