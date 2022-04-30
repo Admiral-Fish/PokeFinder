@@ -308,16 +308,16 @@ namespace Encounters4
                         // Adjust slot according to Safari encounter type
                         if (waterFlag != 0 && safariEncounter == Encounter::Surfing)
                         {
-                            specie = *reinterpret_cast<const u16 *>(entry + (i * 3) + 222);
-                            level = entry[(i * 3) + 224];
+                            specie = *reinterpret_cast<const u16 *>(entry + (30 * modifier) + (i * 3) + 222);
+                            level = entry[(30 * modifier) + (i * 3) + 224];
 
                             while (waterBlockSlot < 3)
                             {
-                                if (blocks[entry[261 + (waterBlockSlot * 4)]] >= entry[262 + (waterBlockSlot * 4)] &&
-                                        blocks[entry[263 + (waterBlockSlot * 4)]] >= entry[264 + (waterBlockSlot * 4)])
+                                if (blocks[entry[339 + (waterBlockSlot * 4)]] >= entry[340 + (waterBlockSlot * 4)] &&
+                                        blocks[entry[341 + (waterBlockSlot * 4)]] >= entry[342 + (waterBlockSlot * 4)])
                                 {
-                                    specie = *reinterpret_cast<const u16 *>(entry + (waterBlockSlot * 3) + 252);
-                                    level = entry[(waterBlockSlot * 3) + 254];
+                                    specie = *reinterpret_cast<const u16 *>(entry + (9 * modifier) + (waterBlockSlot * 3) + 312);
+                                    level = entry[(9 * modifier) + (waterBlockSlot * 3) + 314];
                                     waterBlockSlot++;
                                     break;
                                 }
@@ -327,16 +327,16 @@ namespace Encounters4
                         }
                         else if (waterFlag != 0 && safariEncounter == Encounter::OldRod)
                         {
-                            specie = *reinterpret_cast<const u16 *>(entry + (i * 3) + 273);
-                            level = entry[(i * 3) + 275];
+                            specie = *reinterpret_cast<const u16 *>(entry + (30 * modifier) + (i * 3) + 351);
+                            level = entry[(30 * modifier) + (i * 3) + 353];
 
                             while (waterBlockSlot < 2)
                             {
-                                if (blocks[entry[309 + (waterBlockSlot * 4)]] >= entry[310 + (waterBlockSlot * 4)] &&
-                                        blocks[entry[311 + (waterBlockSlot * 4)]] >= entry[312 + (waterBlockSlot * 4)])
+                                if (blocks[entry[459 + (waterBlockSlot * 4)]] >= entry[460 + (waterBlockSlot * 4)] &&
+                                        blocks[entry[461 + (waterBlockSlot * 4)]] >= entry[462 + (waterBlockSlot * 4)])
                                 {
-                                    specie = *reinterpret_cast<const u16 *>(entry + (waterBlockSlot * 3) + 303);
-                                    level = entry[(waterBlockSlot * 3) + 305];
+                                    specie = *reinterpret_cast<const u16 *>(entry + (6 * modifier) + (waterBlockSlot * 3) + 441);
+                                    level = entry[(6 * modifier) + (waterBlockSlot * 3) + 443];
                                     waterBlockSlot++;
                                     break;
                                 }
@@ -346,16 +346,16 @@ namespace Encounters4
                         }
                         else if (waterFlag != 0 && safariEncounter == Encounter::GoodRod)
                         {
-                            specie = *reinterpret_cast<const u16 *>(entry + (i * 3) + 317);
-                            level = entry[(i * 3) + 319];
+                            specie = *reinterpret_cast<const u16 *>(entry + (30 * modifier) + (i * 3) + 467);
+                            level = entry[(30 * modifier) + (i * 3) + 469];
 
                             while (waterBlockSlot < 2)
                             {
-                                if (blocks[entry[353 + (waterBlockSlot * 4)]] >= entry[354 + (waterBlockSlot * 4)] &&
-                                        blocks[entry[355 + (waterBlockSlot * 4)]] >= entry[356 + (waterBlockSlot * 4)])
+                                if (blocks[entry[575 + (waterBlockSlot * 4)]] >= entry[576 + (waterBlockSlot * 4)] &&
+                                        blocks[entry[577 + (waterBlockSlot * 4)]] >= entry[578 + (waterBlockSlot * 4)])
                                 {
-                                    specie = *reinterpret_cast<const u16 *>(entry + (waterBlockSlot * 3) + 347);
-                                    level = entry[(waterBlockSlot * 3) + 349];
+                                    specie = *reinterpret_cast<const u16 *>(entry + (6 * modifier) + (waterBlockSlot * 3) + 557);
+                                    level = entry[(6 * modifier) + (waterBlockSlot * 3) + 559];
                                     waterBlockSlot++;
                                     break;
                                 }
@@ -365,16 +365,16 @@ namespace Encounters4
                         }
                         else if (waterFlag != 0 && safariEncounter == Encounter::SuperRod)
                         {
-                            specie = *reinterpret_cast<const u16 *>(entry + (i * 3) + 361);
-                            level = entry[(i * 3) + 363];
+                            specie = *reinterpret_cast<const u16 *>(entry + (30 * modifier) + (i * 3) + 583);
+                            level = entry[(30 * modifier) + (i * 3) + 585];
 
                             while (waterBlockSlot < 2)
                             {
-                                if (blocks[entry[397 + (waterBlockSlot * 4)]] >= entry[398 + (waterBlockSlot * 4)] &&
-                                        blocks[entry[399 + (waterBlockSlot * 4)]] >= entry[400 + (waterBlockSlot * 4)])
+                                if (blocks[entry[691 + (waterBlockSlot * 4)]] >= entry[692 + (waterBlockSlot * 4)] &&
+                                        blocks[entry[693 + (waterBlockSlot * 4)]] >= entry[694 + (waterBlockSlot * 4)])
                                 {
-                                    specie = *reinterpret_cast<const u16 *>(entry + (waterBlockSlot * 3) + 391);
-                                    level = entry[(waterBlockSlot * 3) + 393];
+                                    specie = *reinterpret_cast<const u16 *>(entry + (6 * modifier) + (waterBlockSlot * 3) + 673);
+                                    level = entry[(6 * modifier) + (waterBlockSlot * 3) + 675];
                                     waterBlockSlot++;
                                     break;
                                 }
@@ -387,7 +387,7 @@ namespace Encounters4
                     }
                     encounters.emplace_back(location, 0, Encounter::SafariZone, slots);
 
-                    offset += waterFlag == 0 ? 222 : 405;
+                    offset += waterFlag == 0 ? 222 : 699;
                 }
             }
 
@@ -635,7 +635,7 @@ namespace Encounters4
                 break;
             }
 
-            offset += waterFlag == 0 ? 222 : 405;
+            offset += waterFlag == 0 ? 222 : 699;
         }
 
         return waterFlag == 1;

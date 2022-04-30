@@ -815,14 +815,6 @@ void Wild4::generatorSafariEncounterIndexChanged(int index)
         const u8 blocks[] = {0, plainsBlocks, forestBlocks, peakBlocks, waterBlocks};
         encounterGenerator = Encounters4::getEncounters(encounter, ui->comboBoxGeneratorTime->currentIndex(), *currentProfile,
                                                         safariEncounter, blocks);
-        if (safariEncounter != Encounter::Grass)
-        {
-            ui->comboBoxGeneratorTime->setEnabled(false);
-        }
-        else
-        {
-            ui->comboBoxGeneratorTime->setEnabled(true);
-        }
 
         updatePokemonGenerator();
     }
@@ -841,14 +833,6 @@ void Wild4::searcherSafariEncounterIndexChanged(int index)
         const u8 blocks[] = {0, plainsBlocks, forestBlocks, peakBlocks, waterBlocks};
         encounterSearcher = Encounters4::getEncounters(encounter, ui->comboBoxSearcherTime->currentIndex(), *currentProfile,
                                                         safariEncounter, blocks);
-        if (safariEncounter != Encounter::Grass)
-        {
-            ui->comboBoxSearcherTime->setEnabled(false);
-        }
-        else
-        {
-            ui->comboBoxSearcherTime->setEnabled(true);
-        }
 
         updatePokemonSearcher();
     }
@@ -889,8 +873,10 @@ void Wild4::generatorTimeIndexChanged(int index)
     if (index >= 0)
     {
         int position = ui->comboBoxGeneratorLocation->currentIndex();
+        int safariPosition = ui->comboBoxGeneratorSafariEncounter->currentIndex();
         updateLocationsGenerator();
         ui->comboBoxGeneratorLocation->setCurrentIndex(position);
+        ui->comboBoxGeneratorSafariEncounter->setCurrentIndex(safariPosition);
     }
 }
 
@@ -899,8 +885,10 @@ void Wild4::searcherTimeIndexChanged(int index)
     if (index >= 0)
     {
         int position = ui->comboBoxSearcherLocation->currentIndex();
+        int safariPosition = ui->comboBoxSearcherSafariEncounter->currentIndex();
         updateLocationsSearcher();
         ui->comboBoxSearcherLocation->setCurrentIndex(position);
+        ui->comboBoxSearcherSafariEncounter->setCurrentIndex(safariPosition);
     }
 }
 
