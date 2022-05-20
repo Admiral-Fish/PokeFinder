@@ -293,7 +293,8 @@ std::vector<GameCubeState> GameCubeGenerator::generateChannel(u32 seed) const
         // u16 game = go.nextUShort() >> 12; If >= 8 ruby, else sapphire
         // u16 gender = go.nextUShort() >> 11; If >= 16 female, else male
 
-        if ((low > 7 ? 0 : 1) != (high ^ 40122 ^ sid))
+        // Failed non-shiny check due to operator precedence
+        if (40122 ^ sid ^ high ^ low < 8)
         {
             high ^= 0x8000;
         }
