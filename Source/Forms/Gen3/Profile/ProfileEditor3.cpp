@@ -31,7 +31,8 @@ ProfileEditor3::ProfileEditor3(QWidget *parent) : QDialog(parent), ui(new Ui::Pr
     setupModels();
 }
 
-ProfileEditor3::ProfileEditor3(const Profile3 &profile, QWidget *parent) : QDialog(parent), ui(new Ui::ProfileEditor3)
+ProfileEditor3::ProfileEditor3(const Profile3 &profile, QWidget *parent) :
+    QDialog(parent), ui(new Ui::ProfileEditor3), isEditing(true), original(profile)
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
@@ -43,9 +44,6 @@ ProfileEditor3::ProfileEditor3(const Profile3 &profile, QWidget *parent) : QDial
     ui->textBoxTID->setText(QString::number(profile.getTID()));
     ui->textBoxSID->setText(QString::number(profile.getSID()));
     ui->checkBoxDeadBattery->setChecked(profile.getDeadBattery());
-
-    isEditing = true;
-    original = profile;
 }
 
 ProfileEditor3::~ProfileEditor3()

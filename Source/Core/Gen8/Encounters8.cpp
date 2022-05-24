@@ -251,7 +251,7 @@ namespace Encounters8
 
     std::vector<EncounterArea8> getEncounters(Encounter encounter, int time, const Profile8 &profile)
     {
-        auto *info = PersonalLoader::getPersonal(profile.getVersion());
+        const auto *info = PersonalLoader::getPersonal(profile.getVersion());
         return getBDSP(encounter, info, profile, time);
     }
 

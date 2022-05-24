@@ -21,10 +21,8 @@
 #include <Core/Enum/Method.hpp>
 #include <Core/Util/Translator.hpp>
 
-EggModel3::EggModel3(QObject *parent, Method method) : TableModel<EggState3>(parent)
+EggModel3::EggModel3(QObject *parent, Method method) : TableModel<EggState3>(parent), method(method), showInheritance(false)
 {
-    this->method = method;
-    showInheritance = false;
 }
 
 void EggModel3::setMethod(Method method)

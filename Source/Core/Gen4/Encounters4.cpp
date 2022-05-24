@@ -140,8 +140,7 @@ namespace Encounters4
                     modifySwarmHGSS(slots, entry, info, encounter, profile.getSwarm());
                     encounters.emplace_back(location, grass, Encounter::Grass, slots);
                 }
-
-                if (surf != 0 && encounter == Encounter::Surfing)
+                else if (surf != 0 && encounter == Encounter::Surfing)
                 {
                     std::vector<Slot> slots;
                     for (int i = 0; i < 5; i++)
@@ -154,8 +153,7 @@ namespace Encounters4
                     modifySwarmHGSS(slots, entry, info, encounter, profile.getSwarm());
                     encounters.emplace_back(location, surf, Encounter::Surfing, slots);
                 }
-
-                if (rock != 0 && encounter == Encounter::RockSmash)
+                else if (rock != 0 && encounter == Encounter::RockSmash)
                 {
                     std::vector<Slot> slots;
                     for (int i = 0; i < 2; i++)
@@ -167,8 +165,7 @@ namespace Encounters4
                     }
                     encounters.emplace_back(location, rock, Encounter::RockSmash, slots);
                 }
-
-                if (old != 0 && encounter == Encounter::OldRod)
+                else if (old != 0 && encounter == Encounter::OldRod)
                 {
                     std::vector<Slot> slots;
                     for (int i = 0; i < 5; i++)
@@ -181,8 +178,7 @@ namespace Encounters4
                     modifySwarmHGSS(slots, entry, info, encounter, profile.getSwarm());
                     encounters.emplace_back(location, old, Encounter::OldRod, slots);
                 }
-
-                if (good != 0 && encounter == Encounter::GoodRod)
+                else if (good != 0 && encounter == Encounter::GoodRod)
                 {
                     std::vector<Slot> slots;
                     for (int i = 0; i < 5; i++)
@@ -202,8 +198,7 @@ namespace Encounters4
                     modifySwarmHGSS(slots, entry, info, encounter, profile.getSwarm());
                     encounters.emplace_back(location, good, Encounter::GoodRod, slots);
                 }
-
-                if (super != 0 && encounter == Encounter::SuperRod)
+                else if (super != 0 && encounter == Encounter::SuperRod)
                 {
                     std::vector<Slot> slots;
                     for (int i = 0; i < 5; i++)
@@ -227,11 +222,20 @@ namespace Encounters4
 
             if (encounter == Encounter::Headbutt)
             {
-                size_t size = hg_headbutt.size();
+                if (version == Game::HeartGold)
+                {
+                    data = hg_headbutt.data();
+                    size = hg_headbutt.size();
+                }
+                else
+                {
+                    data = ss_headbutt.data();
+                    size = ss_headbutt.size();
+                }
 
                 for (size_t offset = 0; offset < size; )
                 {
-                    const u8 *entry = (version == Game::HeartGold ? hg_headbutt.data() : ss_headbutt.data()) + offset;
+                    const u8 *entry = data + offset;
 
                     u8 location = entry[0];
                     u8 specialTreesFlag = entry[1];
@@ -250,11 +254,9 @@ namespace Encounters4
                     offset += specialTreesFlag == 0 ? 50 : 74;
                 }
             }
-
-            if (encounter == Encounter::BugCatchingContest)
+            else if (encounter == Encounter::BugCatchingContest)
             {
-                size_t size = profile.getNationalDex() ? hgss_bug.size() : 41;
-
+                size = profile.getNationalDex() ? hgss_bug.size() : 41;
                 for (size_t offset = profile.getNationalDex() ? 41 : 0; offset < size; offset += 41)
                 {
                     const u8 *entry = hgss_bug.data() + offset;
@@ -468,15 +470,12 @@ namespace Encounters4
     std::vector<EncounterArea4> getEncounters(Encounter encounter, int modifier, const Profile4 &profile)
     {
         Game version = profile.getVersion();
-        auto *info = PersonalLoader::getPersonal(version);
+        const auto *info = PersonalLoader::getPersonal(version);
         if ((version & Game::DPPt) != Game::None)
         {
             return getDPPt(version, encounter, profile, info, modifier);
         }
-        else
-        {
-            return getHGSS(version, encounter, profile, info, modifier);
-        }
+        return getHGSS(version, encounter, profile, info, modifier);
     }
 
     bool getHeadbuttSpecialFlag(Game game, int location)

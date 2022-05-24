@@ -70,11 +70,16 @@ namespace Encounters3
                 const u8 *entry = data + offset;
 
                 u8 location = entry[0];
-
                 u8 grass = entry[1];
-                if (grass != 0 && encounter == Encounter::Grass) {
+                u8 water = entry[2];
+                u8 rock = entry[3];
+                u8 fish = entry[4];
+
+                if (grass != 0 && encounter == Encounter::Grass)
+                {
                     std::vector<Slot> slots;
-                    for (int i = 0; i < 12; i++) {
+                    for (int i = 0; i < 12; i++)
+                    {
                         u8 level = entry[5 + (i * 3)];
                         u16 specie = *reinterpret_cast<const u16 *>(entry + 6 + (i * 3));
                         slots.emplace_back(specie, level, info[specie]);
@@ -82,8 +87,8 @@ namespace Encounters3
                     encounters.emplace_back(location, grass, encounter, slots);
                 }
 
-                u8 water = entry[2];
-                if (water != 0 && encounter == Encounter::Surfing) {
+                if (water != 0 && encounter == Encounter::Surfing)
+                {
                     std::vector<Slot> slots;
                     for (int i = 0; i < 5; i++)
                     {
@@ -95,8 +100,8 @@ namespace Encounters3
                     encounters.emplace_back(location, water, encounter, slots);
                 }
 
-                u8 rock = entry[3];
-                if (rock != 0 && encounter == Encounter::RockSmash) {
+                if (rock != 0 && encounter == Encounter::RockSmash)
+                {
                     std::vector<Slot> slots;
                     for (int i = 0; i < 5; i++)
                     {
@@ -108,9 +113,10 @@ namespace Encounters3
                     encounters.emplace_back(location, rock, encounter, slots);
                 }
 
-                u8 fish = entry[4];
-                if (fish != 0) {
-                    if (encounter == Encounter::OldRod) {
+                if (fish != 0)
+                {
+                    if (encounter == Encounter::OldRod)
+                    {
                         std::vector<Slot> slots;
                         for (int i = 0; i < 2; i++)
                         {
@@ -121,7 +127,8 @@ namespace Encounters3
                         }
                         encounters.emplace_back(location, fish, encounter, slots);
                     }
-                    else if (encounter == Encounter::GoodRod) {
+                    else if (encounter == Encounter::GoodRod)
+                    {
                         std::vector<Slot> slots;
                         for (int i = 0; i < 3; i++)
                         {
