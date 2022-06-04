@@ -338,13 +338,13 @@
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="tabRS">
+     <widget class="QWidget" name="tabRSFRLG">
       <attribute name="title">
-       <string>Ruby/Sapphire</string>
+       <string>RS/FRLG</string>
       </attribute>
       <layout class="QGridLayout" name="gridLayout_15">
        <item row="0" column="0">
-        <widget class="QGroupBox" name="groupBoxRSRNGInfo">
+        <widget class="QGroupBox" name="groupBoxRNGInfoRSFRLG">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
            <horstretch>1</horstretch>
@@ -358,7 +358,7 @@
           <item row="0" column="0" colspan="2">
            <layout class="QGridLayout" name="gridLayout_6">
             <item row="0" column="0">
-             <widget class="QLabel" name="labelRSSeed">
+             <widget class="QLabel" name="labelSeedRSFRLG">
               <property name="sizePolicy">
                <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
                 <horstretch>0</horstretch>
@@ -371,21 +371,21 @@
              </widget>
             </item>
             <item row="0" column="1">
-             <widget class="TextBox" name="textBoxRSSeedHeld">
+             <widget class="TextBox" name="textBoxSeedHeldRSFRLG">
               <property name="text">
-               <string notr="true">5A0</string>
+               <string notr="true"/>
               </property>
              </widget>
             </item>
             <item row="0" column="2">
-             <widget class="TextBox" name="textBoxRSSeedPickup">
+             <widget class="TextBox" name="textBoxSeedPickupRSFRLG">
               <property name="text">
-               <string notr="true">5A0</string>
+               <string notr="true"/>
               </property>
              </widget>
             </item>
             <item row="1" column="0">
-             <widget class="QLabel" name="labelRSAdvanceHeld">
+             <widget class="QLabel" name="labelAdvanceHeldRSFRLG">
               <property name="sizePolicy">
                <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
                 <horstretch>0</horstretch>
@@ -398,21 +398,21 @@
              </widget>
             </item>
             <item row="1" column="1">
-             <widget class="TextBox" name="textBoxRSInitialAdvancesHeld">
+             <widget class="TextBox" name="textBoxInitialAdvancesHeldRSFRLG">
               <property name="text">
                <string notr="true">1000</string>
               </property>
              </widget>
             </item>
             <item row="1" column="2">
-             <widget class="TextBox" name="textBoxRSMaxAdvancesHeld">
+             <widget class="TextBox" name="textBoxMaxAdvancesHeldRSFRLG">
               <property name="text">
                <string notr="true">5000</string>
               </property>
              </widget>
             </item>
             <item row="2" column="0">
-             <widget class="QLabel" name="labelRSPickupAdvance">
+             <widget class="QLabel" name="labelPickupAdvanceRSFRLG">
               <property name="sizePolicy">
                <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
                 <horstretch>0</horstretch>
@@ -425,14 +425,14 @@
              </widget>
             </item>
             <item row="2" column="1">
-             <widget class="TextBox" name="textBoxRSInitialAdvancesPickup">
+             <widget class="TextBox" name="textBoxInitialAdvancesPickupRSFRLG">
               <property name="text">
                <string notr="true">1000</string>
               </property>
              </widget>
             </item>
             <item row="2" column="2">
-             <widget class="TextBox" name="textBoxRSMaxAdvancesPickup">
+             <widget class="TextBox" name="textBoxMaxAdvancesPickupRSFRLG">
               <property name="text">
                <string notr="true">5000</string>
               </property>
@@ -454,223 +454,7 @@
            </widget>
           </item>
           <item row="1" column="1">
-           <widget class="ComboBox" name="comboBoxRSMethod">
-            <item>
-             <property name="text">
-              <string>Normal</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Split</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Alternate</string>
-             </property>
-            </item>
-           </widget>
-          </item>
-          <item row="2" column="0">
-           <widget class="QLabel" name="labelRSCompatibility">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="text">
-             <string>Compatibility</string>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="1">
-           <widget class="ComboBox" name="comboBoxRSCompatibility">
-            <item>
-             <property name="text">
-              <string>The two don't seem to like each other</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>The two seem to get along</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>The two seem to get along very well</string>
-             </property>
-            </item>
-           </widget>
-          </item>
-          <item row="3" column="0" colspan="2">
-           <widget class="QPushButton" name="pushButtonRSGenerate">
-            <property name="text">
-             <string>Generate</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </widget>
-       </item>
-       <item row="0" column="1">
-        <widget class="QGroupBox" name="groupBoxRSSettings">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-           <horstretch>2</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="title">
-          <string>Settings</string>
-         </property>
-         <layout class="QGridLayout" name="gridLayout_7">
-          <item row="0" column="0">
-           <widget class="EggSettings" name="eggSettingsRS" native="true"/>
-          </item>
-         </layout>
-        </widget>
-       </item>
-       <item row="0" column="2">
-        <widget class="QGroupBox" name="groupBoxFiltersRS">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-           <horstretch>2</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="title">
-          <string>Filters</string>
-         </property>
-         <layout class="QGridLayout" name="gridLayout_3">
-          <item row="0" column="0" rowspan="3" colspan="2">
-           <widget class="Filter" name="filterRS" native="true"/>
-          </item>
-         </layout>
-        </widget>
-       </item>
-       <item row="1" column="0" colspan="3">
-        <widget class="TableView" name="tableViewRS">
-         <property name="contextMenuPolicy">
-          <enum>Qt::CustomContextMenu</enum>
-         </property>
-         <attribute name="verticalHeaderVisible">
-          <bool>false</bool>
-         </attribute>
-        </widget>
-       </item>
-      </layout>
-     </widget>
-     <widget class="QWidget" name="tabFRLG">
-      <attribute name="title">
-       <string>Fire Red/Leaf Green</string>
-      </attribute>
-      <layout class="QGridLayout" name="gridLayout_16">
-       <item row="0" column="0">
-        <widget class="QGroupBox" name="groupBoxFRLGRNGInfo">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-           <horstretch>1</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="title">
-          <string>RNG Info</string>
-         </property>
-         <layout class="QGridLayout" name="gridLayout_12">
-          <item row="0" column="0" colspan="2">
-           <layout class="QGridLayout" name="gridLayout_8">
-            <item row="0" column="0">
-             <widget class="QLabel" name="labelFRLGSeed">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
-              <property name="text">
-               <string>Seed (Held / Pickup)</string>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="1">
-             <widget class="TextBox" name="textBoxFRLGSeedHeld"/>
-            </item>
-            <item row="0" column="2">
-             <widget class="TextBox" name="textBoxFRLGSeedPickup"/>
-            </item>
-            <item row="1" column="0">
-             <widget class="QLabel" name="labelFRLGAdvanceHeld">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
-              <property name="text">
-               <string>Held Advances</string>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="1">
-             <widget class="TextBox" name="textBoxFRLGInitialAdvancesHeld">
-              <property name="text">
-               <string notr="true">1000</string>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="2">
-             <widget class="TextBox" name="textBoxFRLGMaxAdvancesHeld">
-              <property name="text">
-               <string notr="true">5000</string>
-              </property>
-             </widget>
-            </item>
-            <item row="2" column="0">
-             <widget class="QLabel" name="labelFRLGPickupAdvance">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
-              <property name="text">
-               <string>Pickup Advances</string>
-              </property>
-             </widget>
-            </item>
-            <item row="2" column="1">
-             <widget class="TextBox" name="textBoxFRLGInitialAdvancesPickup">
-              <property name="text">
-               <string notr="true">1000</string>
-              </property>
-             </widget>
-            </item>
-            <item row="2" column="2">
-             <widget class="TextBox" name="textBoxFRLGMaxAdvancesPickup">
-              <property name="text">
-               <string notr="true">5000</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </item>
-          <item row="1" column="0">
-           <widget class="QLabel" name="labelFRLGMethod">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="text">
-             <string>Method</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="1">
-           <widget class="ComboBox" name="comboBoxFRLGMethod">
+           <widget class="ComboBox" name="comboBoxMethodRSFRLG">
             <item>
              <property name="text">
               <string>Normal</string>
@@ -694,7 +478,7 @@
            </widget>
           </item>
           <item row="2" column="0">
-           <widget class="QLabel" name="labelFRLGCompatibility">
+           <widget class="QLabel" name="labelCompatibilityRSFRLG">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
               <horstretch>0</horstretch>
@@ -707,7 +491,7 @@
            </widget>
           </item>
           <item row="2" column="1">
-           <widget class="ComboBox" name="comboBoxFRLGCompatibility">
+           <widget class="ComboBox" name="comboBoxCompatibilityRSFRLG">
             <item>
              <property name="text">
               <string>The two don't seem to like each other</string>
@@ -726,7 +510,7 @@
            </widget>
           </item>
           <item row="3" column="0" colspan="2">
-           <widget class="QPushButton" name="pushButtonFRLGGenerate">
+           <widget class="QPushButton" name="pushButtonGenerateRSFRLG">
             <property name="text">
              <string>Generate</string>
             </property>
@@ -736,7 +520,7 @@
         </widget>
        </item>
        <item row="0" column="1">
-        <widget class="QGroupBox" name="groupBoxFRLGSettings">
+        <widget class="QGroupBox" name="groupBoxSettingsRSFRLG">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
            <horstretch>2</horstretch>
@@ -746,15 +530,15 @@
          <property name="title">
           <string>Settings</string>
          </property>
-         <layout class="QGridLayout" name="gridLayout_9">
+         <layout class="QGridLayout" name="gridLayout_7">
           <item row="0" column="0">
-           <widget class="EggSettings" name="eggSettingsFRLG" native="true"/>
+           <widget class="EggSettings" name="eggSettingsRSFRLG" native="true"/>
           </item>
          </layout>
         </widget>
        </item>
        <item row="0" column="2">
-        <widget class="QGroupBox" name="groupBoxFRLGFilter">
+        <widget class="QGroupBox" name="groupBoxFiltersRSFRLG">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
            <horstretch>2</horstretch>
@@ -764,15 +548,15 @@
          <property name="title">
           <string>Filters</string>
          </property>
-         <layout class="QGridLayout" name="gridLayout_10">
+         <layout class="QGridLayout" name="gridLayout_3">
           <item row="0" column="0" rowspan="3" colspan="2">
-           <widget class="Filter" name="filterFRLG" native="true"/>
+           <widget class="Filter" name="filterRSFRLG" native="true"/>
           </item>
          </layout>
         </widget>
        </item>
        <item row="1" column="0" colspan="3">
-        <widget class="TableView" name="tableViewFRLG">
+        <widget class="TableView" name="tableViewRSFRLG">
          <property name="contextMenuPolicy">
           <enum>Qt::CustomContextMenu</enum>
          </property>
@@ -829,26 +613,16 @@
   <tabstop>comboBoxEmeraldCompatibility</tabstop>
   <tabstop>pushButtonEmeraldGenerate</tabstop>
   <tabstop>tableViewEmerald</tabstop>
-  <tabstop>textBoxRSSeedHeld</tabstop>
-  <tabstop>textBoxRSSeedPickup</tabstop>
-  <tabstop>textBoxRSInitialAdvancesHeld</tabstop>
-  <tabstop>textBoxRSMaxAdvancesHeld</tabstop>
-  <tabstop>textBoxRSInitialAdvancesPickup</tabstop>
-  <tabstop>textBoxRSMaxAdvancesPickup</tabstop>
-  <tabstop>comboBoxRSMethod</tabstop>
-  <tabstop>comboBoxRSCompatibility</tabstop>
-  <tabstop>pushButtonRSGenerate</tabstop>
-  <tabstop>tableViewRS</tabstop>
-  <tabstop>textBoxFRLGSeedHeld</tabstop>
-  <tabstop>textBoxFRLGSeedPickup</tabstop>
-  <tabstop>textBoxFRLGInitialAdvancesHeld</tabstop>
-  <tabstop>textBoxFRLGMaxAdvancesHeld</tabstop>
-  <tabstop>textBoxFRLGInitialAdvancesPickup</tabstop>
-  <tabstop>textBoxFRLGMaxAdvancesPickup</tabstop>
-  <tabstop>comboBoxFRLGMethod</tabstop>
-  <tabstop>comboBoxFRLGCompatibility</tabstop>
-  <tabstop>pushButtonFRLGGenerate</tabstop>
-  <tabstop>tableViewFRLG</tabstop>
+  <tabstop>textBoxSeedHeldRSFRLG</tabstop>
+  <tabstop>textBoxSeedPickupRSFRLG</tabstop>
+  <tabstop>textBoxInitialAdvancesHeldRSFRLG</tabstop>
+  <tabstop>textBoxMaxAdvancesHeldRSFRLG</tabstop>
+  <tabstop>textBoxInitialAdvancesPickupRSFRLG</tabstop>
+  <tabstop>textBoxMaxAdvancesPickupRSFRLG</tabstop>
+  <tabstop>comboBoxMethodRSFRLG</tabstop>
+  <tabstop>comboBoxCompatibilityRSFRLG</tabstop>
+  <tabstop>pushButtonGenerateRSFRLG</tabstop>
+  <tabstop>tableViewRSFRLG</tabstop>
  </tabstops>
  <resources/>
  <connections/>

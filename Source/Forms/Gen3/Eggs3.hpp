@@ -47,22 +47,18 @@ private:
     std::vector<Profile3> profiles;
     Profile3 *currentProfile;
     EggModel3 *emerald;
-    EggModel3 *rs;
-    EggModel3 *frlg;
+    EggModel3 *rsfrlg;
     QMenu *emeraldMenu;
-    QMenu *rsMenu;
-    QMenu *frlgMenu;
+    QMenu *rsfrlgMenu;
 
     void setupModels();
 
 private slots:
     void emeraldGenerate();
-    void rsGenerate();
-    void frlgGenerate();
+    void rsfrlgGenerate();
     void profilesIndexChanged(int index);
     void tableViewEmeraldContextMenu(QPoint pos);
-    void tableViewRSContextMenu(QPoint pos);
-    void tableViewFRLGContextMenu(QPoint pos);
+    void tableViewRSFRLGContextMenu(QPoint pos);
     void profileManager();
 };
 

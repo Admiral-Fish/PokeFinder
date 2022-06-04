@@ -35,8 +35,7 @@ int EggModel3::columnCount(const QModelIndex & /*parent*/) const
 {
     switch (method)
     {
-    case Method::RSBred:
-    case Method::FRLGBred:
+    case Method::RSFRLGBred:
         return 15;
     case Method::EBred:
     case Method::EBredAlternate:
@@ -125,8 +124,7 @@ int EggModel3::getColumn(int column) const
 {
     switch (method)
     {
-    case Method::RSBred:
-    case Method::FRLGBred:
+    case Method::RSFRLGBred:
         return column > 1 ? column + 2 : column + 1;
     case Method::EBred:
     case Method::EBredAlternate:

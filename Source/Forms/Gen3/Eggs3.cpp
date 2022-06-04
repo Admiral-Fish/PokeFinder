@@ -74,16 +74,13 @@ void Eggs3::updateProfiles()
 void Eggs3::setupModels()
 {
     emerald = new EggModel3(ui->tableViewEmerald, Method::EBred);
-    rs = new EggModel3(ui->tableViewRS, Method::RSBred);
-    frlg = new EggModel3(ui->tableViewFRLG, Method::FRLGBred);
+    rsfrlg = new EggModel3(ui->tableViewRSFRLG, Method::RSFRLGBred);
 
     emeraldMenu = new QMenu(ui->tableViewEmerald);
-    rsMenu = new QMenu(ui->tableViewRS);
-    frlgMenu = new QMenu(ui->tableViewFRLG);
+    rsfrlgMenu = new QMenu(ui->tableViewRSFRLG);
 
     ui->tableViewEmerald->setModel(emerald);
-    ui->tableViewRS->setModel(rs);
-    ui->tableViewFRLG->setModel(frlg);
+    ui->tableViewRSFRLG->setModel(rsfrlg);
 
     ui->textBoxEmeraldInitialAdvances->setValues(InputType::Advance32Bit);
     ui->textBoxEmeraldMaxAdvances->setValues(InputType::Advance32Bit);
@@ -91,64 +88,45 @@ void Eggs3::setupModels()
     ui->textBoxMaxRedraws->setValues(0, 255, 3, 10);
     ui->textBoxCalibration->setValues(0, 255, 3, 10);
 
-    ui->textBoxRSSeedHeld->setValues(InputType::Seed16Bit);
-    ui->textBoxRSSeedPickup->setValues(InputType::Seed16Bit);
-    ui->textBoxRSInitialAdvancesHeld->setValues(InputType::Advance32Bit);
-    ui->textBoxRSMaxAdvancesHeld->setValues(InputType::Advance32Bit);
-    ui->textBoxRSInitialAdvancesPickup->setValues(InputType::Advance32Bit);
-    ui->textBoxRSMaxAdvancesPickup->setValues(InputType::Advance32Bit);
-
-    ui->textBoxFRLGSeedHeld->setValues(InputType::Seed16Bit);
-    ui->textBoxFRLGSeedPickup->setValues(InputType::Seed16Bit);
-    ui->textBoxFRLGInitialAdvancesHeld->setValues(InputType::Advance32Bit);
-    ui->textBoxFRLGMaxAdvancesHeld->setValues(InputType::Advance32Bit);
-    ui->textBoxFRLGInitialAdvancesPickup->setValues(InputType::Advance32Bit);
-    ui->textBoxFRLGMaxAdvancesPickup->setValues(InputType::Advance32Bit);
+    ui->textBoxSeedHeldRSFRLG->setValues(InputType::Seed16Bit);
+    ui->textBoxSeedPickupRSFRLG->setValues(InputType::Seed16Bit);
+    ui->textBoxInitialAdvancesHeldRSFRLG->setValues(InputType::Advance32Bit);
+    ui->textBoxMaxAdvancesHeldRSFRLG->setValues(InputType::Advance32Bit);
+    ui->textBoxInitialAdvancesPickupRSFRLG->setValues(InputType::Advance32Bit);
+    ui->textBoxMaxAdvancesPickupRSFRLG->setValues(InputType::Advance32Bit);
 
     ui->comboBoxEmeraldCompatibility->setup({ 20, 50, 70 });
-    ui->comboBoxRSCompatibility->setup({ 20, 50, 70 });
-    ui->comboBoxFRLGCompatibility->setup({ 20, 50, 70 });
+    ui->comboBoxCompatibilityRSFRLG->setup({ 20, 50, 70 });
 
     ui->comboBoxEmeraldMethod->setup(
         { toInt(Method::EBredPID), toInt(Method::EBred), toInt(Method::EBredSplit), toInt(Method::EBredAlternate) });
-    ui->comboBoxRSMethod->setup({ toInt(Method::RSBred), toInt(Method::RSBredSplit), toInt(Method::RSBredAlternate) });
-    ui->comboBoxFRLGMethod->setup(
-        { toInt(Method::FRLGBred), toInt(Method::FRLGBredSplit), toInt(Method::FRLGBredAlternate), toInt(Method::FRLGBredMixed) });
+    ui->comboBoxMethodRSFRLG->setup(
+        { toInt(Method::RSFRLGBred), toInt(Method::RSFRLGBredSplit), toInt(Method::RSFRLGBredAlternate), toInt(Method::RSFRLGBredMixed) });
 
     ui->filterEmerald->disableControls(Controls::EncounterSlots | Controls::UseDelay | Controls::DisableFilter);
-    ui->filterRS->disableControls(Controls::EncounterSlots | Controls::UseDelay | Controls::DisableFilter);
-    ui->filterFRLG->disableControls(Controls::EncounterSlots | Controls::UseDelay | Controls::DisableFilter);
+    ui->filterRSFRLG->disableControls(Controls::EncounterSlots | Controls::UseDelay | Controls::DisableFilter);
 
     ui->eggSettingsEmerald->setup(Game::Emerald);
-    ui->eggSettingsRS->setup(Game::RS);
-    ui->eggSettingsFRLG->setup(Game::FRLG);
+    ui->eggSettingsRSFRLG->setup(Game::RS | Game::FRLG);
 
     QAction *outputTXTEmerald = emeraldMenu->addAction(tr("Output Results to TXT"));
     QAction *outputCSVEmerald = emeraldMenu->addAction(tr("Output Results to CSV"));
     connect(outputTXTEmerald, &QAction::triggered, this, [=] { ui->tableViewEmerald->outputModel(); });
     connect(outputCSVEmerald, &QAction::triggered, this, [=] { ui->tableViewEmerald->outputModel(true); });
 
-    QAction *outputTXTRS = rsMenu->addAction(tr("Output Results to TXT"));
-    QAction *outputCSVRS = rsMenu->addAction(tr("Output Results to CSV"));
-    connect(outputTXTRS, &QAction::triggered, this, [=] { ui->tableViewRS->outputModel(); });
-    connect(outputCSVRS, &QAction::triggered, this, [=] { ui->tableViewRS->outputModel(true); });
-
-    QAction *outputTXTFRLG = frlgMenu->addAction(tr("Output Results to TXT"));
-    QAction *outputCSVFRLG = frlgMenu->addAction(tr("Output Results to CSV"));
-    connect(outputTXTFRLG, &QAction::triggered, this, [=] { ui->tableViewFRLG->outputModel(); });
-    connect(outputCSVFRLG, &QAction::triggered, this, [=] { ui->tableViewFRLG->outputModel(true); });
+    QAction *outputTXTRS = rsfrlgMenu->addAction(tr("Output Results to TXT"));
+    QAction *outputCSVRS = rsfrlgMenu->addAction(tr("Output Results to CSV"));
+    connect(outputTXTRS, &QAction::triggered, this, [=] { ui->tableViewRSFRLG->outputModel(); });
+    connect(outputCSVRS, &QAction::triggered, this, [=] { ui->tableViewRSFRLG->outputModel(true); });
 
     connect(ui->comboBoxProfiles, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &Eggs3::profilesIndexChanged);
     connect(ui->pushButtonEmeraldGenerate, &QPushButton::clicked, this, &Eggs3::emeraldGenerate);
-    connect(ui->pushButtonRSGenerate, &QPushButton::clicked, this, &Eggs3::rsGenerate);
-    connect(ui->pushButtonFRLGGenerate, &QPushButton::clicked, this, &Eggs3::frlgGenerate);
+    connect(ui->pushButtonGenerateRSFRLG, &QPushButton::clicked, this, &Eggs3::rsfrlgGenerate);
     connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &Eggs3::profileManager);
     connect(ui->eggSettingsEmerald, &EggSettings::toggleInheritance, emerald, &EggModel3::toggleInheritance);
-    connect(ui->eggSettingsRS, &EggSettings::toggleInheritance, rs, &EggModel3::toggleInheritance);
-    connect(ui->eggSettingsFRLG, &EggSettings::toggleInheritance, frlg, &EggModel3::toggleInheritance);
+    connect(ui->eggSettingsRSFRLG, &EggSettings::toggleInheritance, rsfrlg, &EggModel3::toggleInheritance);
     connect(ui->tableViewEmerald, &QTableView::customContextMenuRequested, this, &Eggs3::tableViewEmeraldContextMenu);
-    connect(ui->tableViewRS, &QTableView::customContextMenuRequested, this, &Eggs3::tableViewRSContextMenu);
-    connect(ui->tableViewFRLG, &QTableView::customContextMenuRequested, this, &Eggs3::tableViewFRLGContextMenu);
+    connect(ui->tableViewRSFRLG, &QTableView::customContextMenuRequested, this, &Eggs3::tableViewRSFRLGContextMenu);
 
     updateProfiles();
 
@@ -193,66 +171,35 @@ void Eggs3::emeraldGenerate()
     emerald->addItems(states);
 }
 
-void Eggs3::rsGenerate()
+void Eggs3::rsfrlgGenerate()
 {
-    if (!ui->eggSettingsRS->compatibleParents())
+    if (!ui->eggSettingsRSFRLG->compatibleParents())
     {
         QMessageBox box(QMessageBox::Warning, tr("Incompatible Parents"), tr("Gender of selected parents are not compatible for breeding"));
         box.exec();
         return;
     }
 
-    rs->clearModel();
+    rsfrlg->clearModel();
 
-    u32 initialAdvancesHeld = ui->textBoxRSInitialAdvancesHeld->getUInt();
-    u32 maxAdvancesHeld = ui->textBoxRSMaxAdvancesHeld->getUInt();
+    u32 initialAdvancesHeld = ui->textBoxInitialAdvancesHeldRSFRLG->getUInt();
+    u32 maxAdvancesHeld = ui->textBoxMaxAdvancesHeldRSFRLG->getUInt();
     u16 tid = currentProfile->getTID();
     u16 sid = currentProfile->getSID();
-    u8 genderRatio = ui->filterRS->getGenderRatio();
-    auto method = static_cast<Method>(ui->comboBoxRSMethod->getCurrentInt());
-    StateFilter filter(ui->filterRS->getGender(), ui->filterRS->getAbility(), ui->filterRS->getShiny(), false, ui->filterRS->getMinIVs(),
-                       ui->filterRS->getMaxIVs(), ui->filterRS->getNatures(), ui->filterRS->getHiddenPowers(), {});
+    u8 genderRatio = ui->filterRSFRLG->getGenderRatio();
+    auto method = static_cast<Method>(ui->comboBoxMethodRSFRLG->getCurrentInt());
+    StateFilter filter(ui->filterRSFRLG->getGender(), ui->filterRSFRLG->getAbility(), ui->filterRSFRLG->getShiny(), false,
+                       ui->filterRSFRLG->getMinIVs(), ui->filterRSFRLG->getMaxIVs(), ui->filterRSFRLG->getNatures(),
+                       ui->filterRSFRLG->getHiddenPowers(), {});
 
     EggGenerator3 generator(initialAdvancesHeld, maxAdvancesHeld, tid, sid, genderRatio, method, filter,
-                            ui->eggSettingsRS->getDaycareSettings());
-    generator.setCompatability(static_cast<u8>(ui->comboBoxRSCompatibility->currentData().toUInt()));
-    generator.setInitialAdvancesPickup(ui->textBoxRSInitialAdvancesPickup->getUInt());
-    generator.setMaxAdvancesPickup(ui->textBoxRSMaxAdvancesPickup->getUInt());
+                            ui->eggSettingsRSFRLG->getDaycareSettings());
+    generator.setCompatability(static_cast<u8>(ui->comboBoxCompatibilityRSFRLG->currentData().toUInt()));
+    generator.setInitialAdvancesPickup(ui->textBoxInitialAdvancesPickupRSFRLG->getUInt());
+    generator.setMaxAdvancesPickup(ui->textBoxMaxAdvancesPickupRSFRLG->getUInt());
 
-    auto states = generator.generate(ui->textBoxRSSeedHeld->getUInt(), ui->textBoxRSSeedPickup->getUInt());
-    rs->addItems(states);
-}
-
-void Eggs3::frlgGenerate()
-{
-    if (!ui->eggSettingsFRLG->compatibleParents())
-    {
-        QMessageBox box(QMessageBox::Warning, tr("Incompatible Parents"), tr("Gender of selected parents are not compatible for breeding"));
-        box.exec();
-        return;
-    }
-
-    frlg->clearModel();
-
-    u32 initialAdvancesHeld = ui->textBoxFRLGInitialAdvancesHeld->getUInt();
-    u32 maxAdvancesHeld = ui->textBoxFRLGMaxAdvancesHeld->getUInt();
-    u16 tid = currentProfile->getTID();
-    u16 sid = currentProfile->getSID();
-    u8 genderRatio = ui->filterFRLG->getGenderRatio();
-    auto method = static_cast<Method>(ui->comboBoxFRLGMethod->currentData().toUInt());
-
-    StateFilter filter(ui->filterFRLG->getGender(), ui->filterFRLG->getAbility(), ui->filterFRLG->getShiny(), false,
-                       ui->filterFRLG->getMinIVs(), ui->filterFRLG->getMaxIVs(), ui->filterFRLG->getNatures(),
-                       ui->filterFRLG->getHiddenPowers(), {});
-
-    EggGenerator3 generator(initialAdvancesHeld, maxAdvancesHeld, tid, sid, genderRatio, method, filter,
-                            ui->eggSettingsFRLG->getDaycareSettings());
-    generator.setCompatability(static_cast<u8>(ui->comboBoxFRLGCompatibility->currentData().toUInt()));
-    generator.setInitialAdvancesPickup(ui->textBoxFRLGInitialAdvancesPickup->getUInt());
-    generator.setMaxAdvancesPickup(ui->textBoxFRLGMaxAdvancesPickup->getUInt());
-
-    auto states = generator.generate(ui->textBoxFRLGSeedHeld->getUInt(), ui->textBoxFRLGSeedPickup->getUInt());
-    frlg->addItems(states);
+    auto states = generator.generate(ui->textBoxSeedHeldRSFRLG->getUInt(), ui->textBoxSeedPickupRSFRLG->getUInt());
+    rsfrlg->addItems(states);
 }
 
 void Eggs3::profilesIndexChanged(int index)
@@ -263,8 +210,8 @@ void Eggs3::profilesIndexChanged(int index)
 
         if (currentProfile->getDeadBattery())
         {
-            ui->textBoxRSSeedHeld->setText("5a0");
-            ui->textBoxRSSeedPickup->setText("5a0");
+            ui->textBoxSeedHeldRSFRLG->setText("5a0");
+            ui->textBoxSeedPickupRSFRLG->setText("5a0");
         }
 
         ui->labelProfileTIDValue->setText(QString::number(currentProfile->getTID()));
@@ -281,19 +228,11 @@ void Eggs3::tableViewEmeraldContextMenu(QPoint pos)
     }
 }
 
-void Eggs3::tableViewRSContextMenu(QPoint pos)
+void Eggs3::tableViewRSFRLGContextMenu(QPoint pos)
 {
-    if (rs->rowCount() > 0)
+    if (rsfrlg->rowCount() > 0)
     {
-        rsMenu->popup(ui->tableViewRS->viewport()->mapToGlobal(pos));
-    }
-}
-
-void Eggs3::tableViewFRLGContextMenu(QPoint pos)
-{
-    if (frlg->rowCount() > 0)
-    {
-        frlgMenu->popup(ui->tableViewFRLG->viewport()->mapToGlobal(pos));
+        rsfrlgMenu->popup(ui->tableViewRSFRLG->viewport()->mapToGlobal(pos));
     }
 }
 
