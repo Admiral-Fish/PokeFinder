@@ -419,9 +419,10 @@ void GameCubeSearcher::searchChannel(u8 minSpD, u8 maxSpD)
             u16 low = rng.nextUShort();
             u16 high = rng.nextUShort();
             u16 sid = rng.nextUShort();
+            constexpr u16 tid = 40122;
 
             // Failed non-shiny check due to operator precedence
-            if (40122 ^ sid ^ high ^ low < 8)
+            if (tid ^ sid ^ high ^ low < 8)
             {
                 high ^= 0x8000;
             }
