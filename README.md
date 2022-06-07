@@ -1,3 +1,5 @@
+[![Build status](https://ci.appveyor.com/api/projects/status/github/Admiral-Fish/PokeFinder?branch=master&svg=true)](https://ci.appveyor.com/project/Admiral-Fish/pokefinder)
+
 # PokéFinder
 
 Join the PokéFinder Discord server to talk about development and contribute.
