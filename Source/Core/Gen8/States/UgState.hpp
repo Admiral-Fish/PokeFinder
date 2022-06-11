@@ -17,37 +17,54 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef ENCOUNTER_HPP
-#define ENCOUNTER_HPP
+#ifndef UGSTATE_HPP
+#define UGSTATE_HPP
 
-#include <Core/Util/Global.hpp>
+#include <Core/Parents/States/State.hpp>
 
-enum class Encounter : u8
+class UgState : public State
 {
-    Grass,
-    DoubleGrass,
-    SpecialGrass,
-    RockSmash,
-    Surfing,
-    SpecialSurf,
-    OldRod,
-    GoodRod,
-    SuperRod,
-    SpecialSuperRod,
-    Static,
-    BugCatchingContest,
-    Headbutt,
-    Roamer,
-    Gift,
-    EntraLink,
-    GiftEgg,
-    HiddenGrotto,
-    GrandUnderground
+public:
+    UgState() = default;
+
+    explicit UgState(u32 advance) : State(advance)
+    {
+    }
+
+    u16 getSpecies() const
+    {
+        return species;
+    }
+
+    void setSpecies(u16 species)
+    {
+        this->species = species;
+    }
+
+    u8 getItem() const
+    {
+        return item;
+    }
+
+    void setItem(u8 item)
+    {
+        this->item = item;
+    }
+
+    u16 getEggMove() const
+    {
+        return eggMove;
+    }
+
+    void setEggMove(u16 eggMove)
+    {
+        this->eggMove = eggMove;
+    }
+
+private:
+    u16 species;
+    u8 item;
+    u16 eggMove;
 };
 
-constexpr u8 toInt(Encounter encounter)
-{
-    return static_cast<u8>(encounter);
-}
-
-#endif // ENCOUNTER_HPP
+#endif // IDSTATE8_HPP
