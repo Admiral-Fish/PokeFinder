@@ -120,7 +120,10 @@
 139,Grotta Celeste P1
 140,Grotta Celeste P2
 141,Grotta Celeste P1S
-142,Bug Contest
-143,Bug Contest (Tuesday)
-144,Bug Contest (Thursday)
-145,Bug Contest (Saturday)
+142,Gara Pigliamosche
+143,Gara Pigliamosche (Martedì)
+144,Gara Pigliamosche (Giovedì)
+145,Gara Pigliamosche (Sabato)
+146,Azalina
+147,Plumbeopoli
+148,Ingresso Safari

@@ -106,28 +106,25 @@ EggGenerator3::EggGenerator3(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 
         inh = 2;
         // par = 0;
         break;
-    case Method::RSBred:
-    case Method::FRLGBred:
+    case Method::RSFRLGBred:
         iv1 = 1;
         iv2 = 0;
         inh = 1;
         // par = 0;
         break;
-    case Method::RSBredSplit:
-    case Method::FRLGBredSplit:
+    case Method::RSFRLGBredSplit:
         iv1 = 0;
         iv2 = 1;
         inh = 1;
         // par = 0;
         break;
-    case Method::RSBredAlternate:
-    case Method::FRLGBredAlternate:
+    case Method::RSFRLGBredAlternate:
         iv1 = 1;
         iv2 = 0;
         inh = 2;
         // par = 0;
         break;
-    case Method::FRLGBredMixed:
+    case Method::RSFRLGBredMixed:
         iv1 = 0;
         iv2 = 0;
         inh = 2;
@@ -148,13 +145,10 @@ std::vector<EggState3> EggGenerator3::generate(u32 seed, u32 seed2) const
     case Method::EBredSplit:
     case Method::EBredAlternate:
         return generateEmeraldIVs();
-    case Method::RSBred:
-    case Method::RSBredAlternate:
-    case Method::RSBredSplit:
-    case Method::FRLGBredSplit:
-    case Method::FRLGBred:
-    case Method::FRLGBredAlternate:
-    case Method::FRLGBredMixed:
+    case Method::RSFRLGBredSplit:
+    case Method::RSFRLGBred:
+    case Method::RSFRLGBredAlternate:
+    case Method::RSFRLGBredMixed:
     {
         auto lower = generateLower(seed);
         return lower.empty() ? std::vector<EggState3>() : generateUpper(seed2, lower);

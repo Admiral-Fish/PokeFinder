@@ -70,48 +70,62 @@ namespace Encounters3
                 const u8 *entry = data + offset;
 
                 u8 location = entry[0];
-
                 u8 grass = entry[1];
-                if (grass != 0 && encounter == Encounter::Grass) {
-                    std::vector<Slot> slots;
-                    for (int i = 0; i < 12; i++) {
-                        u8 level = entry[5 + (i * 3)];
-                        u16 specie = *reinterpret_cast<const u16 *>(entry + 6 + (i * 3));
-                        slots.emplace_back(specie, level, info[specie]);
-                    }
-                    encounters.emplace_back(location, grass, encounter, slots);
-                }
-
                 u8 water = entry[2];
-                if (water != 0 && encounter == Encounter::Surfing) {
-                    std::vector<Slot> slots;
-                    for (int i = 0; i < 5; i++)
-                    {
-                        u8 min = entry[41 + (i * 4)];
-                        u8 max = entry[42 + (i * 4)];
-                        u16 specie = *reinterpret_cast<const u16 *>(entry + 43 + (i * 4));
-                        slots.emplace_back(specie, min, max, info[specie]);
-                    }
-                    encounters.emplace_back(location, water, encounter, slots);
-                }
-
                 u8 rock = entry[3];
-                if (rock != 0 && encounter == Encounter::RockSmash) {
-                    std::vector<Slot> slots;
-                    for (int i = 0; i < 5; i++)
-                    {
-                        u8 min = entry[61 + (i * 4)];
-                        u8 max = entry[62 + (i * 4)];
-                        u16 specie = *reinterpret_cast<const u16 *>(entry + 63 + (i * 4));
-                        slots.emplace_back(specie, min, max, info[specie]);
-                    }
-                    encounters.emplace_back(location, rock, encounter, slots);
-                }
-
                 u8 fish = entry[4];
-                if (fish != 0) {
-                    if (encounter == Encounter::OldRod) {
+
+                switch (encounter)
+                {
+                case Encounter::Grass:
+                    if (grass != 0)
+                    {
                         std::vector<Slot> slots;
+                        slots.reserve(12);
+                        for (int i = 0; i < 12; i++)
+                        {
+                            u8 level = entry[5 + (i * 3)];
+                            u16 specie = *reinterpret_cast<const u16 *>(entry + 6 + (i * 3));
+                            slots.emplace_back(specie, level, info[specie]);
+                        }
+                        encounters.emplace_back(location, grass, encounter, slots);
+                    }
+                    break;
+                case Encounter::Surfing:
+                    if (water != 0)
+                    {
+                        std::vector<Slot> slots;
+                        slots.reserve(5);
+                        for (int i = 0; i < 5; i++)
+                        {
+                            u8 min = entry[41 + (i * 4)];
+                            u8 max = entry[42 + (i * 4)];
+                            u16 specie = *reinterpret_cast<const u16 *>(entry + 43 + (i * 4));
+                            slots.emplace_back(specie, min, max, info[specie]);
+                        }
+                        encounters.emplace_back(location, water, encounter, slots);
+                    }
+                    break;
+                case Encounter::RockSmash:
+                    if (rock != 0)
+                    {
+                        std::vector<Slot> slots;
+                        slots.reserve(5);
+                        for (int i = 0; i < 5; i++)
+                        {
+                            u8 min = entry[61 + (i * 4)];
+                            u8 max = entry[62 + (i * 4)];
+                            u16 specie = *reinterpret_cast<const u16 *>(entry + 63 + (i * 4));
+                            slots.emplace_back(specie, min, max, info[specie]);
+                        }
+                        encounters.emplace_back(location, rock, encounter, slots);
+                    }
+                    break;
+                case Encounter::OldRod:
+                    if (fish != 0)
+                    {
+                        std::vector<Slot> slots;
+                        slots.reserve(2);
                         for (int i = 0; i < 2; i++)
                         {
                             u8 min = entry[81 + (i * 4)];
@@ -121,8 +135,12 @@ namespace Encounters3
                         }
                         encounters.emplace_back(location, fish, encounter, slots);
                     }
-                    else if (encounter == Encounter::GoodRod) {
+                    break;
+                case Encounter::GoodRod:
+                    if (fish != 0)
+                    {
                         std::vector<Slot> slots;
+                        slots.reserve(3);
                         for (int i = 0; i < 3; i++)
                         {
                             u8 min = entry[89 + (i * 4)];
@@ -132,9 +150,12 @@ namespace Encounters3
                         }
                         encounters.emplace_back(location, fish, encounter, slots);
                     }
-                    else if (encounter == Encounter::SuperRod)
+                    break;
+                case Encounter::SuperRod:
+                    if (fish != 0)
                     {
                         std::vector<Slot> slots;
+                        slots.reserve(5);
                         for (int i = 0; i < 5; i++)
                         {
                             u8 min = entry[101 + (i * 4)];
@@ -144,6 +165,9 @@ namespace Encounters3
                         }
                         encounters.emplace_back(location, fish, encounter, slots);
                     }
+                    break;
+                default:
+                    break;
                 }
             }
             return encounters;

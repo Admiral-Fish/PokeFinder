@@ -94,8 +94,8 @@ void IDs5::setupModels()
 
     QAction *outputTXTGenerator = menu->addAction(tr("Output Results to TXT"));
     QAction *outputCSVGenerator = menu->addAction(tr("Output Results to CSV"));
-    connect(outputTXTGenerator, &QAction::triggered, [=]() { ui->tableView->outputModel(false); });
-    connect(outputCSVGenerator, &QAction::triggered, [=]() { ui->tableView->outputModel(true); });
+    connect(outputTXTGenerator, &QAction::triggered, this, [=] { ui->tableView->outputModel(false); });
+    connect(outputCSVGenerator, &QAction::triggered, this, [=] { ui->tableView->outputModel(true); });
 
     connect(ui->comboBoxProfiles, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &IDs5::profileIndexChanged);
     connect(ui->pushButtonSearch, &QPushButton::clicked, this, &IDs5::search);
@@ -165,13 +165,13 @@ void IDs5::search()
     connect(ui->pushButtonCancel, &QPushButton::clicked, [searcher] { searcher->cancelSearch(); });
 
     auto *timer = new QTimer();
-    connect(timer, &QTimer::timeout, [=] {
+    connect(timer, &QTimer::timeout, this, [=] {
         model->addItems(searcher->getResults());
         ui->progressBar->setValue(searcher->getProgress());
     });
     connect(thread, &QThread::finished, timer, &QTimer::stop);
     connect(thread, &QThread::finished, timer, &QTimer::deleteLater);
-    connect(timer, &QTimer::destroyed, [=] {
+    connect(timer, &QTimer::destroyed, this, [=] {
         ui->pushButtonSearch->setEnabled(true);
         ui->pushButtonFind->setEnabled(true);
         ui->pushButtonCancel->setEnabled(false);

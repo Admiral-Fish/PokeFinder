@@ -120,8 +120,8 @@ void Wild3::setupModels()
     QAction *outputTXTSearcher = searcherMenu->addAction(tr("Output Results to TXT"));
     QAction *outputCSVSearcher = searcherMenu->addAction(tr("Output Results to CSV"));
     connect(seedToTime, &QAction::triggered, this, &Wild3::seedToTime);
-    connect(outputTXTSearcher, &QAction::triggered, [=] { ui->tableViewSearcher->outputModel(); });
-    connect(outputCSVSearcher, &QAction::triggered, [=] { ui->tableViewSearcher->outputModel(true); });
+    connect(outputTXTSearcher, &QAction::triggered, this, [=] { ui->tableViewSearcher->outputModel(); });
+    connect(outputCSVSearcher, &QAction::triggered, this, [=] { ui->tableViewSearcher->outputModel(true); });
 
     connect(ui->comboBoxProfiles, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &Wild3::profilesIndexChanged);
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Wild3::generate);
@@ -294,13 +294,13 @@ void Wild3::search()
     connect(ui->pushButtonCancel, &QPushButton::clicked, [searcher] { searcher->cancelSearch(); });
 
     auto *timer = new QTimer();
-    connect(timer, &QTimer::timeout, [=] {
+    connect(timer, &QTimer::timeout, this, [=] {
         searcherModel->addItems(searcher->getResults());
         ui->progressBar->setValue(searcher->getProgress());
     });
     connect(thread, &QThread::finished, timer, &QTimer::stop);
     connect(thread, &QThread::finished, timer, &QTimer::deleteLater);
-    connect(timer, &QTimer::destroyed, [=] {
+    connect(timer, &QTimer::destroyed, this, [=] {
         ui->pushButtonSearch->setEnabled(true);
         ui->pushButtonCancel->setEnabled(false);
         searcherModel->addItems(searcher->getResults());
@@ -327,7 +327,6 @@ void Wild3::profilesIndexChanged(int index)
         ui->labelProfileSIDValue->setText(QString::number(currentProfile->getSID()));
         ui->labelProfileGameValue->setText(QString::fromStdString(currentProfile->getVersionString()));
 
-        bool flag = (currentProfile->getVersion() & Game::FRLG) != Game::None;
         ui->comboBoxGeneratorEncounter->clear();
         ui->comboBoxSearcherEncounter->clear();
 

@@ -34,7 +34,8 @@ ProfileEditor4::ProfileEditor4(QWidget *parent) : QDialog(parent), ui(new Ui::Pr
     setupModels();
 }
 
-ProfileEditor4::ProfileEditor4(const Profile4 &profile, QWidget *parent) : QDialog(parent), ui(new Ui::ProfileEditor4)
+ProfileEditor4::ProfileEditor4(const Profile4 &profile, QWidget *parent) :
+    QDialog(parent), ui(new Ui::ProfileEditor4), isEditing(true), original(profile)
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
@@ -50,9 +51,6 @@ ProfileEditor4::ProfileEditor4(const Profile4 &profile, QWidget *parent) : QDial
     ui->checkBoxRadar->setChecked(profile.getRadar());
     ui->checkBoxSwarm->setChecked(profile.getSwarm());
     ui->checkBoxNationalDex->setChecked(profile.getNationalDex());
-
-    isEditing = true;
-    original = profile;
 }
 
 ProfileEditor4::~ProfileEditor4()

@@ -31,7 +31,8 @@ ProfileEditor8::ProfileEditor8(QWidget *parent) : QDialog(parent), ui(new Ui::Pr
     setupModels();
 }
 
-ProfileEditor8::ProfileEditor8(const Profile8 &profile, QWidget *parent) : QDialog(parent), ui(new Ui::ProfileEditor8)
+ProfileEditor8::ProfileEditor8(const Profile8 &profile, QWidget *parent) :
+    QDialog(parent), ui(new Ui::ProfileEditor8), isEditing(true), original(profile)
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
@@ -46,9 +47,6 @@ ProfileEditor8::ProfileEditor8(const Profile8 &profile, QWidget *parent) : QDial
     ui->checkBoxOvalCharm->setChecked(profile.getOvalCharm());
     ui->checkBoxRadar->setChecked(profile.getRadar());
     ui->checkBoxSwarm->setChecked(profile.getSwarm());
-
-    isEditing = true;
-    original = profile;
 }
 
 ProfileEditor8::~ProfileEditor8()

@@ -23,6 +23,7 @@
 #include <Core/Gen3/LockInfo.hpp>
 #include <Core/Gen3/States/GameCubeState.hpp>
 #include <Core/RNG/LCRNG.hpp>
+#include <algorithm>
 
 GameCubeGenerator::GameCubeGenerator(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, Method method,
                                      const StateFilter &filter) :
@@ -283,7 +284,19 @@ std::vector<GameCubeState> GameCubeGenerator::generateChannel(u32 seed) const
         GameCubeState state(initialAdvances + cnt);
         XDRNG go(rng.getSeed());
 
-        // u16 tid = 40122;
+        // Advance through menu pattern
+        for (u8 mask = 0; (mask & 14) != 14;)
+        {
+            mask |= 1 << (go.next() >> 30);
+        }
+
+        // Advance jirachi pattern
+        constexpr std::array<u16, 2> threshHolds = { 0x4000, 0x547a };
+        go.advance(4);
+        bool flag = std::any_of(threshHolds.begin(), threshHolds.end(), [&go](u16 thresh) { return go.nextUShort() <= thresh; });
+        go.advance(flag ? 1 : 2);
+
+        constexpr u16 tid = 40122;
         u16 sid = go.nextUShort();
         u16 high = go.nextUShort();
         u16 low = go.nextUShort();
@@ -293,7 +306,8 @@ std::vector<GameCubeState> GameCubeGenerator::generateChannel(u32 seed) const
         // u16 game = go.nextUShort() >> 12; If >= 8 ruby, else sapphire
         // u16 gender = go.nextUShort() >> 11; If >= 16 female, else male
 
-        if ((low > 7 ? 0 : 1) != (high ^ 40122 ^ sid))
+        // Failed non-shiny check due to operator precedence
+        if (tid ^ sid ^ high ^ low < 8)
         {
             high ^= 0x8000;
         }

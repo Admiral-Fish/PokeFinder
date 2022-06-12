@@ -33,7 +33,8 @@ ProfileEditor5::ProfileEditor5(QWidget *parent) : QDialog(parent), ui(new Ui::Pr
     versionIndexChanged(ui->comboBoxVersion->currentIndex());
 }
 
-ProfileEditor5::ProfileEditor5(const Profile5 &profile, QWidget *parent) : QDialog(parent), ui(new Ui::ProfileEditor5)
+ProfileEditor5::ProfileEditor5(const Profile5 &profile, QWidget *parent) :
+    QDialog(parent), ui(new Ui::ProfileEditor5), isEditing(true), original(profile)
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
@@ -59,9 +60,6 @@ ProfileEditor5::ProfileEditor5(const Profile5 &profile, QWidget *parent) : QDial
     ui->checkBoxSoftReset->setChecked(profile.getSoftReset());
     ui->checkBoxMemoryLink->setChecked(profile.getMemoryLink());
     ui->checkBoxShinyCharm->setChecked(profile.getShinyCharm());
-
-    isEditing = true;
-    original = profile;
 
     versionIndexChanged(ui->comboBoxVersion->currentIndex());
 }

@@ -120,7 +120,10 @@
 139,Cerulean Cave Planta baja
 140,Cerulean Cave Primer piso
 141,Cerulean Cave Sótano
-142,Bug Contest
-143,Bug Contest (Tuesday)
-144,Bug Contest (Thursday)
-145,Bug Contest (Saturday)
+142,Concurso de Bichos
+143,Concurso de Bichos (Martes)
+144,Concurso de Bichos (Jueves)
+145,Concurso de Bichos (Sábado)
+146,Pueblo Azalea
+147,Ciudad Plateada
+148,Entrada Safari

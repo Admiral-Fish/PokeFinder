@@ -17,35 +17,21 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include "GraphicsPixmapItem.hpp"
+#ifndef HEADBUTTTYPE_HPP
+#define HEADBUTTTYPE_HPP
 
-GraphicsPixmapItem::GraphicsPixmapItem(const QPixmap &pixmap, u16 minX, u16 minY, u16 maxX, u16 maxY) :
-    minX(minX), minY(minY), maxX(maxX), maxY(maxY)
+#include <Core/Util/Global.hpp>
+
+enum class HeadbuttType : u8
 {
-    setPixmap(pixmap);
-    setX(minX);
-    setY(minY);
+    Normal1,
+    Normal2,
+    Special,
+};
+
+constexpr u8 toInt(HeadbuttType headbutt)
+{
+    return static_cast<u8>(headbutt);
 }
 
-void GraphicsPixmapItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
-{
-    QGraphicsPixmapItem::mouseMoveEvent(event);
-
-    if (x() < minX)
-    {
-        setX(minX);
-    }
-    else if (x() > maxX)
-    {
-        setX(maxX);
-    }
-
-    if (y() < minY)
-    {
-        setY(minY);
-    }
-    else if (y() > maxY)
-    {
-        setY(maxY);
-    }
-}
+#endif // HEADBUTTTYPE_HPP

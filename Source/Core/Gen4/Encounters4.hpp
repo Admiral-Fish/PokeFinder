@@ -25,11 +25,13 @@
 
 class EncounterArea4;
 enum class Encounter : u8;
+enum class Game : u32;
 class Profile4;
 
 namespace Encounters4
 {
-    std::vector<EncounterArea4> getEncounters(Encounter encounter, int time, const Profile4 &profile);
+    std::vector<EncounterArea4> getEncounters(Encounter encounter, int modifier, const Profile4 &profile);
+    bool getHeadbuttSpecialFlag(Game game, int location);
 }
 
 #endif // ENCOUNTERS4_HPP

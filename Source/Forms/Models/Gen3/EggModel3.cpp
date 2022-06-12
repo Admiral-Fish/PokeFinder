@@ -21,10 +21,8 @@
 #include <Core/Enum/Method.hpp>
 #include <Core/Util/Translator.hpp>
 
-EggModel3::EggModel3(QObject *parent, Method method) : TableModel<EggState3>(parent)
+EggModel3::EggModel3(QObject *parent, Method method) : TableModel<EggState3>(parent), method(method), showInheritance(false)
 {
-    this->method = method;
-    showInheritance = false;
 }
 
 void EggModel3::setMethod(Method method)
@@ -37,8 +35,7 @@ int EggModel3::columnCount(const QModelIndex & /*parent*/) const
 {
     switch (method)
     {
-    case Method::RSBred:
-    case Method::FRLGBred:
+    case Method::RSFRLGBred:
         return 15;
     case Method::EBred:
     case Method::EBredAlternate:
@@ -127,8 +124,7 @@ int EggModel3::getColumn(int column) const
 {
     switch (method)
     {
-    case Method::RSBred:
-    case Method::FRLGBred:
+    case Method::RSFRLGBred:
         return column > 1 ? column + 2 : column + 1;
     case Method::EBred:
     case Method::EBredAlternate:

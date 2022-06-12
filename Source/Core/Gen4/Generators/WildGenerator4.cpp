@@ -427,7 +427,8 @@ std::vector<WildState4> WildGenerator4::generateMethodK(u32 seed, const Encounte
 
     u8 buffer = 0;
     u16 rate = encounterArea.getRate();
-    if (lead == Lead::SuctionCups && (encounter == Encounter::OldRod || encounter == Encounter::GoodRod || encounter == Encounter::SuperRod))
+    if (lead == Lead::SuctionCups
+        && (encounter == Encounter::OldRod || encounter == Encounter::GoodRod || encounter == Encounter::SuperRod))
     {
         rate <<= 1;
     }
@@ -546,7 +547,20 @@ std::vector<WildState4> WildGenerator4::generateMethodK(u32 seed, const Encounte
                 continue;
             }
             break;
-        case Encounter::HeadButt: // TODO
+        case Encounter::Headbutt:
+            state.setEncounterSlot(EncounterSlot::kSlot(first, encounter));
+            if (!filter.compareEncounterSlot(state))
+            {
+                continue;
+            }
+
+            state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), go.nextUShort<true>()));
+            occidentary += 1; // Compensate for the game's advances after the battle ends
+            if (!createPokemon<false>(go, state, buffer, synchNature, genderRatio, tsv, lead, filter))
+            {
+                continue;
+            }
+            break;
         default:
             break;
         }

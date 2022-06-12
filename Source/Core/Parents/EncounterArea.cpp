@@ -75,7 +75,7 @@ std::vector<bool> EncounterArea::getSlots(u16 num) const
 std::pair<u8, u8> EncounterArea::getLevelRange(u16 specie) const
 {
     std::pair<u8, u8> range = std::make_pair(100, 0);
-    for (auto &slot : pokemon)
+    for (const auto &slot : pokemon)
     {
         if (slot.getSpecie() == specie)
         {

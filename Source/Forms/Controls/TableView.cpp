@@ -30,7 +30,7 @@ TableView::TableView(QWidget *parent) : QTableView(parent)
     QHeaderView *header = this->horizontalHeader();
     header->setSectionResizeMode(QHeaderView::Interactive);
 
-    QTimer::singleShot(500, [header] { header->resizeSections(QHeaderView::Stretch); });
+    QTimer::singleShot(500, this, [header] { header->resizeSections(QHeaderView::Stretch); });
 }
 
 void TableView::mouseDoubleClickEvent(QMouseEvent *event)

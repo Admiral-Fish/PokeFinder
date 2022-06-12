@@ -116,13 +116,13 @@ void Static5::setupModels()
 
     QAction *outputTXTGenerator = generatorMenu->addAction(tr("Output Results to TXT"));
     QAction *outputCSVGenerator = generatorMenu->addAction(tr("Output Results to CSV"));
-    connect(outputTXTGenerator, &QAction::triggered, [=]() { ui->tableViewGenerator->outputModel(false); });
-    connect(outputCSVGenerator, &QAction::triggered, [=]() { ui->tableViewGenerator->outputModel(true); });
+    connect(outputTXTGenerator, &QAction::triggered, this, [=] { ui->tableViewGenerator->outputModel(false); });
+    connect(outputCSVGenerator, &QAction::triggered, this, [=] { ui->tableViewGenerator->outputModel(true); });
 
     QAction *outputTXTSearcher = searcherMenu->addAction(tr("Output Results to TXT"));
     QAction *outputCSVSearcher = searcherMenu->addAction(tr("Output Results to CSV"));
-    connect(outputTXTSearcher, &QAction::triggered, [=]() { ui->tableViewSearcher->outputModel(false); });
-    connect(outputCSVSearcher, &QAction::triggered, [=]() { ui->tableViewSearcher->outputModel(true); });
+    connect(outputTXTSearcher, &QAction::triggered, this, [=] { ui->tableViewSearcher->outputModel(false); });
+    connect(outputCSVSearcher, &QAction::triggered, this, [=] { ui->tableViewSearcher->outputModel(true); });
 
     connect(ui->comboBoxProfiles, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &Static5::profileIndexChanged);
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Static5::generate);
@@ -254,13 +254,13 @@ void Static5::search()
     connect(ui->pushButtonCancel, &QPushButton::clicked, [searcher] { searcher->cancelSearch(); });
 
     auto *timer = new QTimer();
-    connect(timer, &QTimer::timeout, [=] {
+    connect(timer, &QTimer::timeout, this, [=] {
         searcherModel->addItems(searcher->getResults());
         ui->progressBar->setValue(searcher->getProgress());
     });
     connect(thread, &QThread::finished, timer, &QTimer::stop);
     connect(thread, &QThread::finished, timer, &QTimer::deleteLater);
-    connect(timer, &QTimer::destroyed, [=] {
+    connect(timer, &QTimer::destroyed, this, [=] {
         ui->pushButtonSearch->setEnabled(true);
         ui->pushButtonCancel->setEnabled(false);
         searcherModel->addItems(searcher->getResults());
@@ -347,8 +347,7 @@ void Static5::calculateInitialAdvances()
 
 void Static5::generatorMethodIndexChanged(int index)
 {
-    Method method = static_cast<Method>(ui->comboBoxGeneratorMethod->getCurrentByte());
-
+    auto method = static_cast<Method>(ui->comboBoxGeneratorMethod->getCurrentByte());
     ui->comboBoxGeneratorEncounter->clear();
     if (currentProfile->getVersion() == Game::Black2 || currentProfile->getVersion() == Game::White2)
     {
@@ -416,7 +415,7 @@ void Static5::generatorMethodIndexChanged(int index)
 
 void Static5::searcherMethodIndexChanged(int index)
 {
-    Method method = static_cast<Method>(ui->comboBoxSearcherMethod->getCurrentByte());
+    auto method = static_cast<Method>(ui->comboBoxSearcherMethod->getCurrentByte());
     ui->comboBoxSearcherEncounter->clear();
     if (currentProfile->getVersion() == Game::Black2 || currentProfile->getVersion() == Game::White2)
     {
