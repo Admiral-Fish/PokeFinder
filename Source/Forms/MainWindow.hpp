@@ -42,6 +42,7 @@ class Wild8;
 class Event8;
 class Raids;
 class Eggs8;
+class Underground;
 class IDs8;
 class QActionGroup;
 
@@ -80,6 +81,7 @@ private:
     Event8 *event8 = nullptr;
     Raids *raids = nullptr;
     Eggs8 *egg8 = nullptr;
+    Underground *underground = nullptr;
     IDs8 *ids8 = nullptr;
 
     void setupModels();
@@ -122,6 +124,7 @@ private slots:
     void openEvent8();
     void openRaids();
     void openEgg8();
+    void openUnderground();
     void openIDs8();
     void openDenMap();
     void downloadEventData();

@@ -146,6 +146,7 @@ def embed_personal():
                     abilityH = 0
                     form_count = 1
                     form_stat_index = 0
+                    hatch_species = 0
                     present = 1
                 elif index == 4:
                     gender = data[i+0x10]
@@ -154,6 +155,7 @@ def embed_personal():
                     abilityH = 0
                     form_count = data[i+0x29]
                     form_stat_index = (data[i+0x2b] << 8) | data[i+0x2a]
+                    hatch_species = 0
                     present = 1
                 elif index == 5:
                     gender = data[i+0x12]
@@ -162,6 +164,7 @@ def embed_personal():
                     abilityH = data[i+0x1a]
                     form_count = data[i+0x20]
                     form_stat_index = (data[i+0x1d] << 8) | data[i+0x1c]
+                    hatch_species = 0
                     present = 1
                 elif index == 8:
                     gender = data[i+0x12]
@@ -170,9 +173,10 @@ def embed_personal():
                     abilityH = (data[i+0x1d] << 8) | data[i+0x1c]
                     form_count = data[i+0x20]
                     form_stat_index = (data[i+0x1f] << 8) | data[i+0x1e]
+                    hatch_species = (data[i+0x3f] << 8) | data[i+0x3e]
                     present = (data[i+0x21] >> 6) & 1
 
-                personal = f"PersonalInfo({hp}, {atk}, {defense}, {spa}, {spd}, {spe}, {gender}, {ability1}, {ability2}, {abilityH}, {form_count}, {form_stat_index}, {present})"
+                personal = f"PersonalInfo({hp}, {atk}, {defense}, {spa}, {spd}, {spe}, {gender}, {ability1}, {ability2}, {abilityH}, {form_count}, {form_stat_index}, {hatch_species}, {present})"
                 string += personal
                 if i != size - offset:
                     string += ", "

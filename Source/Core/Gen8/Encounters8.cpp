@@ -154,115 +154,165 @@ namespace Encounters8
 
         std::vector<EncounterArea8> getBDSP(Encounter encounter, const PersonalInfo *info, const Profile8 &profile, int time)
         {
-            const u8 *data;
-            size_t size;
 
-            if (profile.getVersion() == Game::BD)
+            std::vector<EncounterArea8> encounters;
+            if (encounter == Encounter::GrandUnderground)
             {
-                data = bd.data();
-                size = bd.size();
+                const u8 *randMarkData = ug_rand_mark.data();
+                size_t randMarkSize = ug_rand_mark.size();
+
+                const u8 *encountData = ug_encount.data();
+                size_t encountSize = ug_encount.size();
+
+                const u8 *specialEncountData = ug_special_pokemon.data();
+                size_t specialEncountSize = ug_special_pokemon.size();
+
+                u8 version = 2;
+                if (profile.getVersion() == Game::SP)
+                {
+                    version = 3;
+                }
+
+                for (size_t offset = 0; offset < randMarkSize; offset += 26)
+                {
+                    const u8 *entry = randMarkData + offset;
+                    std::vector<Slot> slots;
+                    u8 location = entry[0] + 181;
+                    for (size_t offset2 = 0; offset2 < encountSize; offset2 += 5)
+                    {
+                        const u8 *encount = encountData + offset2;
+
+                        if (encount[0] == entry[1] && (encount[3] == 1 || encount[3] == version))
+                        {
+                            u16 specie = *reinterpret_cast<const u16 *>(encount + 1);
+                            slots.emplace_back(specie, 16, 63, info[specie]);
+                        }
+                    }
+
+                    for (size_t offset2 = 0; offset2 < specialEncountSize; offset2 += 8)
+                    {
+                        const u8 *special = specialEncountData + offset2;
+                        if (special[0] == entry[0] && (special[3] == 1 || special[3] == version))
+                        {
+                            u16 specie = *reinterpret_cast<const u16 *>(special + 1);
+                            slots.emplace_back(specie, 16, 63, info[specie]);
+                        }
+                    }
+                    encounters.emplace_back(location, 0, Encounter::GrandUnderground, slots);
+                }
             }
             else
             {
-                data = sp.data();
-                size = sp.size();
-            }
+                const u8 *data;
+                size_t size;
 
-            std::vector<EncounterArea8> encounters;
-            for (size_t offset = 0; offset < size; offset += 142)
-            {
-                const u8 *entry = data + offset;
-
-                u8 location = entry[0];
-                u8 grass = entry[1];
-                u8 surf = entry[58];
-                u8 old = entry[79];
-                u8 good = entry[100];
-                u8 super = entry[121];
-
-                switch (encounter)
+                if (profile.getVersion() == Game::BD)
                 {
-                case Encounter::Grass:
-                    if (grass != 0)
+                    data = bd.data();
+                    size = bd.size();
+                }
+                else
+                {
+                    data = sp.data();
+                    size = sp.size();
+                }
+
+                for (size_t offset = 0; offset < size; offset += 142)
+                {
+                    const u8 *entry = data + offset;
+
+                    u8 location = entry[0];
+                    u8 grass = entry[1];
+                    u8 surf = entry[58];
+                    u8 old = entry[79];
+                    u8 good = entry[100];
+                    u8 super = entry[121];
+
+                    switch (encounter)
                     {
-                        std::vector<Slot> slots;
-                        slots.reserve(12);
-                        for (int i = 0; i < 12; i++)
+                    case Encounter::Grass:
+                        if (grass != 0)
                         {
-                            u8 level = entry[2 + (i * 3)];
-                            u16 specie = *reinterpret_cast<const u16 *>(entry + 3 + (i * 3));
-                            slots.emplace_back(specie, level, info[specie]);
+                            std::vector<Slot> slots;
+                            slots.reserve(12);
+                            for (int i = 0; i < 12; i++)
+                            {
+                                u8 level = entry[2 + (i * 3)];
+                                u16 specie = *reinterpret_cast<const u16 *>(entry + 3 + (i * 3));
+                                slots.emplace_back(specie, level, info[specie]);
+                            }
+                            modifySwarm(slots, entry, info, profile.getSwarm());
+                            modifyTime(slots, entry, info, time);
+                            modifyRadar(slots, entry, info, profile.getRadar());
+                            encounters.emplace_back(location, grass, encounter, slots);
                         }
-                        modifySwarm(slots, entry, info, profile.getSwarm());
-                        modifyTime(slots, entry, info, time);
-                        modifyRadar(slots, entry, info, profile.getRadar());
-                        encounters.emplace_back(location, grass, encounter, slots);
-                    }
-                    break;
-                case Encounter::Surfing:
-                    if (surf != 0)
-                    {
-                        std::vector<Slot> slots;
-                        slots.reserve(5);
-                        for (int i = 0; i < 5; i++)
+                        break;
+                    case Encounter::Surfing:
+                        if (surf != 0)
                         {
-                            u8 max = entry[59 + (i * 4)];
-                            u8 min = entry[60 + (i * 4)];
-                            u16 specie = *reinterpret_cast<const u16 *>(entry + 61 + (i * 4));
-                            slots.emplace_back(specie, min, max, info[specie]);
+                            std::vector<Slot> slots;
+                            slots.reserve(5);
+                            for (int i = 0; i < 5; i++)
+                            {
+                                u8 max = entry[59 + (i * 4)];
+                                u8 min = entry[60 + (i * 4)];
+                                u16 specie = *reinterpret_cast<const u16 *>(entry + 61 + (i * 4));
+                                slots.emplace_back(specie, min, max, info[specie]);
+                            }
+                            encounters.emplace_back(location, surf, encounter, slots);
                         }
-                        encounters.emplace_back(location, surf, encounter, slots);
-                    }
-                    break;
-                case Encounter::OldRod:
-                    if (old != 0)
-                    {
-                        std::vector<Slot> slots;
-                        slots.reserve(5);
-                        for (int i = 0; i < 5; i++)
+                        break;
+                    case Encounter::OldRod:
+                        if (old != 0)
                         {
-                            u8 max = entry[80 + (i * 4)];
-                            u8 min = entry[81 + (i * 4)];
-                            u16 specie = *reinterpret_cast<const u16 *>(entry + 82 + (i * 4));
-                            slots.emplace_back(specie, min, max, info[specie]);
+                            std::vector<Slot> slots;
+                            slots.reserve(5);
+                            for (int i = 0; i < 5; i++)
+                            {
+                                u8 max = entry[80 + (i * 4)];
+                                u8 min = entry[81 + (i * 4)];
+                                u16 specie = *reinterpret_cast<const u16 *>(entry + 82 + (i * 4));
+                                slots.emplace_back(specie, min, max, info[specie]);
+                            }
+                            encounters.emplace_back(location, old, encounter, slots);
                         }
-                        encounters.emplace_back(location, old, encounter, slots);
-                    }
-                    break;
-                case Encounter::GoodRod:
-                    if (good != 0)
-                    {
-                        std::vector<Slot> slots;
-                        slots.reserve(5);
-                        for (int i = 0; i < 5; i++)
+                        break;
+                    case Encounter::GoodRod:
+                        if (good != 0)
                         {
-                            u8 max = entry[101 + (i * 4)];
-                            u8 min = entry[102 + (i * 4)];
-                            u16 specie = *reinterpret_cast<const u16 *>(entry + 103 + (i * 4));
-                            slots.emplace_back(specie, min, max, info[specie]);
+                            std::vector<Slot> slots;
+                            slots.reserve(5);
+                            for (int i = 0; i < 5; i++)
+                            {
+                                u8 max = entry[101 + (i * 4)];
+                                u8 min = entry[102 + (i * 4)];
+                                u16 specie = *reinterpret_cast<const u16 *>(entry + 103 + (i * 4));
+                                slots.emplace_back(specie, min, max, info[specie]);
+                            }
+                            encounters.emplace_back(location, good, encounter, slots);
                         }
-                        encounters.emplace_back(location, good, encounter, slots);
-                    }
-                    break;
-                case Encounter::SuperRod:
-                    if (super != 0)
-                    {
-                        std::vector<Slot> slots;
-                        slots.reserve(5);
-                        for (int i = 0; i < 5; i++)
+                        break;
+                    case Encounter::SuperRod:
+                        if (super != 0)
                         {
-                            u8 max = entry[122 + (i * 4)];
-                            u8 min = entry[123 + (i * 4)];
-                            u16 specie = *reinterpret_cast<const u16 *>(entry + 124 + (i * 4));
-                            slots.emplace_back(specie, min, max, info[specie]);
+                            std::vector<Slot> slots;
+                            slots.reserve(5);
+                            for (int i = 0; i < 5; i++)
+                            {
+                                u8 max = entry[122 + (i * 4)];
+                                u8 min = entry[123 + (i * 4)];
+                                u16 specie = *reinterpret_cast<const u16 *>(entry + 124 + (i * 4));
+                                slots.emplace_back(specie, min, max, info[specie]);
+                            }
+                            encounters.emplace_back(location, super, Encounter::SuperRod, slots);
                         }
-                        encounters.emplace_back(location, super, Encounter::SuperRod, slots);
+                        break;
+                    default:
+                        break;
                     }
-                    break;
-                default:
-                    break;
                 }
             }
+
             return encounters;
         }
     }

@@ -181,7 +181,8 @@ std::set<std::pair<u16, QString>> EncounterLookup::getEncounters8(Game game, u16
     std::vector<Profile8> profiles;
 
     // Encounter variables to iterate through
-    auto types = { Encounter::Grass, Encounter::OldRod, Encounter::GoodRod, Encounter::SuperRod, Encounter::Surfing };
+    auto types
+        = { Encounter::Grass, Encounter::OldRod, Encounter::GoodRod, Encounter::SuperRod, Encounter::Surfing, Encounter::GrandUnderground };
 
     // Setup profiles to iterate through the different combinations of possibilities for BDSP
     for (const bool swarm : { false, true })
@@ -236,6 +237,8 @@ QString EncounterLookup::getEncounterString(Encounter type)
         return tr("Headbutt");
     case Encounter::BugCatchingContest:
         return tr("Bug Catching Contest");
+    case Encounter::GrandUnderground:
+        return tr("Grand Underground");
     default:
         return "-";
     }

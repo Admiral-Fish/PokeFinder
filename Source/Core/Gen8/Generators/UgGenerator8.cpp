@@ -4,8 +4,14 @@
 #include <algorithm>
 #include <cmath>
 
-UgGenerator8::UgGenerator8(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, const StateFilter &filter, bool bonus) :
-    Generator(initialAdvances, maxAdvances, tid, sid, 0, Method::None, filter), bonus(bonus)
+UgGenerator8::UgGenerator8(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 randMarkID, u8 storyFlag, Game version, u16 species,
+                           const StateFilter &filter, bool bonus) :
+    Generator(initialAdvances, maxAdvances, tid, sid, 0, Method::None, filter),
+    randMarkID(randMarkID),
+    storyFlag(storyFlag),
+    version(version),
+    species(species),
+    bonus(bonus)
 {
 }
 
@@ -36,9 +42,14 @@ struct TypeRate
 {
     u8 type;
     u16 rate;
+
+    bool operator>(const TypeRate &a) const
+    {
+        return rate > a.rate;
+    }
 };
 
-std::vector<UgState> UgGenerator8::generate(u64 seed0, u64 seed1, u8 randMarkID, u8 storyFlag, const Profile8 &profile) const
+std::vector<UgState> UgGenerator8::generate(u64 seed0, u64 seed1) const
 {
     Xorshift rng(seed0, seed1);
     rng.advance(initialAdvances + offset);
@@ -56,7 +67,7 @@ std::vector<UgState> UgGenerator8::generate(u64 seed0, u64 seed1, u8 randMarkID,
         {
             PokeRate rate;
             rate.monsNo = *reinterpret_cast<const u16 *>(entry + 1);
-            if (profile.getVersion() == Game::BD)
+            if (version == Game::BD)
             {
                 rate.rate = *reinterpret_cast<const u16 *>(entry + 4);
             }
@@ -86,27 +97,28 @@ std::vector<UgState> UgGenerator8::generate(u64 seed0, u64 seed1, u8 randMarkID,
         }
     }
 
-    std::vector<const u8 *> enabledPokemon;
+    std::vector<u16> enabledPokemon;
 
     const u8 *ugEncountData = ug_encount.data();
     size_t ugEncountSize = ug_encount.size();
 
-    u8 version;
-    if (profile.getVersion() == Game::BD)
+    u8 romCode;
+    if (version == Game::BD)
     {
-        version = 2;
+        romCode = 2;
     }
     else
     {
-        version = 3;
+        romCode = 3;
     }
 
     for (size_t offset = 0; offset < ugEncountSize; offset += 5)
     {
         const u8 *entry = ugEncountData + offset;
-        if (entry[0] == randMarkInfo[0] && (entry[3] == 1 || entry[3] == version) && entry[4] <= storyFlag)
+        if (entry[0] == randMarkInfo[1] && (entry[3] == 1 || entry[3] == romCode) && entry[4] <= storyFlag)
         {
-            enabledPokemon.emplace_back(entry);
+            u16 species = *reinterpret_cast<const u16 *>(entry + 1);
+            enabledPokemon.emplace_back(species);
         }
     }
 
@@ -115,14 +127,13 @@ std::vector<UgState> UgGenerator8::generate(u64 seed0, u64 seed1, u8 randMarkID,
     const u8 *ugPokemonData = ug_pokemon_data.data();
     size_t ugPokemonSize = ug_pokemon_data.size();
 
-    for (auto &pokemon : enabledPokemon)
+    for (u16 species : enabledPokemon)
     {
         TypeAndSize ts;
-        u16 monsno = *reinterpret_cast<const u16 *>(pokemon + 1);
         for (size_t offset = 0; offset < ugPokemonSize; offset += 12)
         {
             const u8 *entry = offset + ugPokemonData;
-            if (monsno == *reinterpret_cast<const u16 *>(entry))
+            if (species == *reinterpret_cast<const u16 *>(entry))
             {
                 ts.size = entry[4];
                 ts.type = entry[2];
@@ -133,7 +144,7 @@ std::vector<UgState> UgGenerator8::generate(u64 seed0, u64 seed1, u8 randMarkID,
                     TypeAndSize ts2;
                     ts2.size = entry[4];
                     ts2.type = entry[3];
-                    ts.value = std::pow(10.0, entry[4]) + entry[3];
+                    ts2.value = std::pow(10.0, entry[4]) + entry[3];
                     monsDataIndexs.emplace_back(ts2);
                 }
             }
@@ -155,6 +166,8 @@ std::vector<UgState> UgGenerator8::generate(u64 seed0, u64 seed1, u8 randMarkID,
             typeRates.emplace_back(tr);
         }
     }
+
+    std::sort(typeRates.begin(), typeRates.end(), std::greater<TypeRate>());
 
     std::vector<u8> sizes;
     u8 smax = randMarkInfo[4];
@@ -189,7 +202,6 @@ std::vector<UgState> UgGenerator8::generate(u64 seed0, u64 seed1, u8 randMarkID,
     std::vector<UgState> states;
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rng.next())
     {
-        UgState state(initialAdvances + cnt);
         u8 spawnCount = randMarkInfo[2];
         Xorshift gen(rng);
         u32 rareRand = gen.next<0, 100>();
@@ -197,7 +209,7 @@ std::vector<UgState> UgGenerator8::generate(u64 seed0, u64 seed1, u8 randMarkID,
         if (rareRand < 50)
         {
             float rareESRand = gen.nextf(0.0, specialRatesSum);
-            for (auto &p : specialPokemonRates)
+            for (auto p : specialPokemonRates)
             {
                 if (rareESRand < p.rate)
                 {
@@ -225,7 +237,7 @@ std::vector<UgState> UgGenerator8::generate(u64 seed0, u64 seed1, u8 randMarkID,
         {
             u8 type = 0;
             float typeRand = gen.nextf(0.0, typeRatesSum);
-            for (auto &tr : typeRates)
+            for (auto tr : typeRates)
             {
                 if (typeRand < tr.rate)
                 {
@@ -237,7 +249,7 @@ std::vector<UgState> UgGenerator8::generate(u64 seed0, u64 seed1, u8 randMarkID,
 
             std::vector<u8> existSizeList;
 
-            for (auto &ts : monsDataIndexs)
+            for (auto ts : monsDataIndexs)
             {
                 if (ts.type == type && std::count(existSizeList.begin(), existSizeList.end(), ts.size) == 0)
                 {
@@ -248,15 +260,14 @@ std::vector<UgState> UgGenerator8::generate(u64 seed0, u64 seed1, u8 randMarkID,
             if (std::all_of(sizes.begin(), sizes.end(),
                             [&](u8 i) { return std::find(existSizeList.begin(), existSizeList.end(), i) != existSizeList.end(); }))
             {
-                sizes.erase(std::remove_if(sizes.begin(), sizes.end(), [&](u8 i) {
-                    return std::find(existSizeList.begin(), existSizeList.end(), i) == existSizeList.end();
-                }));
+                sizes.clear();
             }
             else
             {
-                sizes.erase(std::remove_if(sizes.begin(), sizes.end(), [&](u8 i) {
-                    return std::find(existSizeList.begin(), existSizeList.end(), i) != existSizeList.end();
-                }));
+                sizes.erase(std::remove_if(
+                                sizes.begin(), sizes.end(),
+                                [&](u8 i) { return !(std::find(existSizeList.begin(), existSizeList.end(), i) != existSizeList.end()); }),
+                            sizes.end());
             }
 
             u8 size = 0;
@@ -280,16 +291,27 @@ std::vector<UgState> UgGenerator8::generate(u64 seed0, u64 seed1, u8 randMarkID,
             pokeSlots.emplace_back(ts);
         }
 
-        for (auto &ts : pokeSlots)
+        for (auto ts : pokeSlots)
         {
+            UgState state(initialAdvances + cnt);
             std::vector<PokeRate> pokeRates;
-            u16 pokeRatesSum = 0;
-            for (auto &p : enabledPokemon)
+
+            std::vector<TypeAndSize> tmpList;
+
+            for (auto ts2 : monsDataIndexs)
             {
-                const u8 *pokemonData = ugPokemonData + (*reinterpret_cast<const u16 *>(p + 1)) * 12;
-                if (std::any_of(monsDataIndexs.begin(), monsDataIndexs.end(), [&](TypeAndSize ts2) {
-                        return ts2.value == ts.value && (ts.type == pokemonData[2] || ts.type == pokemonData[3])
-                            && ts.size == pokemonData[4];
+                if (ts2.value == ts.value)
+                {
+                    tmpList.emplace_back(ts2);
+                }
+            }
+
+            u16 pokeRatesSum = 0;
+            for (auto p : enabledPokemon)
+            {
+                const u8 *pokemonData = ugPokemonData + ((p - 1) * 12);
+                if (std::any_of(tmpList.begin(), tmpList.end(), [&](TypeAndSize ts2) {
+                        return (ts2.type == pokemonData[2] || ts2.type == pokemonData[3]) && ts2.size == pokemonData[4];
                     }))
                 {
                     PokeRate pr;
@@ -311,7 +333,7 @@ std::vector<UgState> UgGenerator8::generate(u64 seed0, u64 seed1, u8 randMarkID,
 
             u16 species = 0;
             float slotRand = gen.nextf(0.0, pokeRatesSum);
-            for (auto &pr : pokeRates)
+            for (auto pr : pokeRates)
             {
                 if (slotRand < pr.rate)
                 {
@@ -321,16 +343,18 @@ std::vector<UgState> UgGenerator8::generate(u64 seed0, u64 seed1, u8 randMarkID,
                 slotRand -= pr.rate;
             }
 
+            state.setSpecies(species);
+
             gen.next(); // Level
             gen.next(); // EC
             u32 sidtid = gen.next();
-            u32 pid;
+            u32 pid = 0;
             u8 pidRolls = bonus ? 2 : 1;
             for (auto i = 0; i < pidRolls; i++)
             {
-                u32 tmpPID = gen.next();
+                pid = gen.next();
 
-                u16 psv = (tmpPID >> 16) ^ (tmpPID & 0xffff);
+                u16 psv = (pid >> 16) ^ (pid & 0xffff);
                 u16 fakeXor = (sidtid >> 16) ^ (sidtid & 0xffff) ^ psv;
 
                 if (fakeXor < 16) // Force shiny
@@ -343,8 +367,8 @@ std::vector<UgState> UgGenerator8::generate(u64 seed0, u64 seed1, u8 randMarkID,
                     state.setShiny(fakeShinyType);
                     if (realShinyType != fakeShinyType)
                     {
-                        u16 high = (tmpPID & 0xFFFF) ^ tsv ^ (2 - fakeShinyType);
-                        pid = (high << 16) | (tmpPID & 0xFFFF);
+                        u16 high = (pid & 0xFFFF) ^ tsv ^ (2 - fakeShinyType);
+                        pid = (high << 16) | (pid & 0xFFFF);
                     }
                     break;
                 }
@@ -367,7 +391,7 @@ std::vector<UgState> UgGenerator8::generate(u64 seed0, u64 seed1, u8 randMarkID,
 
             state.setAbility(gen.next() % 2);
 
-            PersonalInfo info = PersonalLoader::getPersonal(profile.getVersion(), species);
+            PersonalInfo info = PersonalLoader::getPersonal(version, species);
 
             u8 genderRatio = info.getGender();
 
@@ -395,21 +419,81 @@ std::vector<UgState> UgGenerator8::generate(u64 seed0, u64 seed1, u8 randMarkID,
 
             state.setItem(gen.next<0, 100>());
 
-            states.emplace_back(state);
+            u16 hatchSpecies = info.getHatchSpecies();
+
+            const u8 *tamagoWazaData = tamago_waza_table.data();
+            size_t tamagoWazaSize = tamago_waza_table.size();
+
+            const u8 *tamagoWazaIgnoreData = tamago_waza_ignore_table.data();
+            size_t tamagoWazaIgnoreSize = tamago_waza_ignore_table.size();
+
+            u8 ignoreCount = 0;
+
+            for (size_t offset = 0; offset < tamagoWazaIgnoreSize; offset += 10)
+            {
+                const u8 *entry = tamagoWazaIgnoreData + offset;
+                u16 species = *reinterpret_cast<const u16 *>(entry);
+                if (species == hatchSpecies)
+                {
+                    const u8 *waza = entry + 2;
+                    for (size_t offset2 = 0; offset2 < 8; offset2 += 2)
+                    {
+                        u16 wazaNo = *reinterpret_cast<const u16 *>(waza + offset2);
+                        if (wazaNo != 0)
+                        {
+                            ignoreCount += 1;
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    }
+                    break;
+                }
+            }
+
+            for (size_t offset = 0; offset < tamagoWazaSize; offset += 4)
+            {
+                const u8 *entry = tamagoWazaData + offset;
+                u16 species = *reinterpret_cast<const u16 *>(entry);
+                u8 wazaCount = entry[3];
+
+                if (species == hatchSpecies)
+                {
+                    if (wazaCount - ignoreCount > 0)
+                    {
+                        gen.next(); // Egg Move
+                    }
+                    break;
+                }
+                offset += wazaCount * 2;
+            }
+
+            if (this->species != 0 && this->species != species)
+            {
+                continue;
+            }
+
+            if (filter.comparePID(state) && filter.compareIV(state))
+            {
+                states.emplace_back(state);
+            }
         }
 
         if (rareRand < 50)
         {
+            UgState state(initialAdvances + cnt);
+            state.setSpecies(rareMonsNo);
             gen.next(); // Level
             gen.next(); // EC
             u32 sidtid = gen.next();
-            u32 pid;
+            u32 pid = 0;
             u8 pidRolls = bonus ? 2 : 1;
             for (auto i = 0; i < pidRolls; i++)
             {
-                u32 tmpPID = gen.next();
+                pid = gen.next();
 
-                u16 psv = (tmpPID >> 16) ^ (tmpPID & 0xffff);
+                u16 psv = (pid >> 16) ^ (pid & 0xffff);
                 u16 fakeXor = (sidtid >> 16) ^ (sidtid & 0xffff) ^ psv;
 
                 if (fakeXor < 16) // Force shiny
@@ -422,8 +506,8 @@ std::vector<UgState> UgGenerator8::generate(u64 seed0, u64 seed1, u8 randMarkID,
                     state.setShiny(fakeShinyType);
                     if (realShinyType != fakeShinyType)
                     {
-                        u16 high = (tmpPID & 0xFFFF) ^ tsv ^ (2 - fakeShinyType);
-                        pid = (high << 16) | (tmpPID & 0xFFFF);
+                        u16 high = (pid & 0xFFFF) ^ tsv ^ (2 - fakeShinyType);
+                        pid = (high << 16) | (pid & 0xFFFF);
                     }
                     break;
                 }
@@ -446,7 +530,7 @@ std::vector<UgState> UgGenerator8::generate(u64 seed0, u64 seed1, u8 randMarkID,
 
             state.setAbility(gen.next() % 2);
 
-            PersonalInfo info = PersonalLoader::getPersonal(profile.getVersion(), rareMonsNo);
+            PersonalInfo info = PersonalLoader::getPersonal(version, rareMonsNo);
 
             u8 genderRatio = info.getGender();
 
@@ -474,7 +558,15 @@ std::vector<UgState> UgGenerator8::generate(u64 seed0, u64 seed1, u8 randMarkID,
 
             state.setItem(gen.next<0, 100>());
 
-            states.emplace_back(state);
+            if (this->species != 0 && this->species != rareMonsNo)
+            {
+                continue;
+            }
+
+            if (filter.comparePID(state) && filter.compareIV(state))
+            {
+                states.emplace_back(state);
+            }
         }
     }
 

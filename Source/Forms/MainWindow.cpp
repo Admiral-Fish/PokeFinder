@@ -55,6 +55,7 @@
 #include <Forms/Gen8/Profile/ProfileManager8.hpp>
 #include <Forms/Gen8/Raids.hpp>
 #include <Forms/Gen8/Static8.hpp>
+#include <Forms/Gen8/Underground.hpp>
 #include <Forms/Gen8/Wild8.hpp>
 #include <Forms/Util/EncounterLookup.hpp>
 #include <Forms/Util/IVCalculator.hpp>
@@ -160,6 +161,7 @@ void MainWindow::setupModels()
     connect(ui->pushButtonEvent8, &QPushButton::clicked, this, &MainWindow::openEvent8);
     connect(ui->pushButtonRaid, &QPushButton::clicked, this, &MainWindow::openRaids);
     connect(ui->pushButtonEgg8, &QPushButton::clicked, this, &MainWindow::openEgg8);
+    connect(ui->pushButtonUnderground, &QPushButton::clicked, this, &MainWindow::openUnderground);
     connect(ui->pushButtonIDs8, &QPushButton::clicked, this, &MainWindow::openIDs8);
     connect(ui->actionDenMap, &QAction::triggered, this, &MainWindow::openDenMap);
     connect(ui->actionDownloadEventData, &QAction::triggered, this, &MainWindow::downloadEventData);
@@ -640,6 +642,16 @@ void MainWindow::openEgg8()
         connect(egg8, &Eggs8::alertProfiles, this, &MainWindow::updateProfiles);
     }
     egg8->show();
+}
+
+void MainWindow::openUnderground()
+{
+    if (!underground)
+    {
+        underground = new Underground();
+        connect(underground, &Underground::alertProfiles, this, &MainWindow::updateProfiles);
+    }
+    underground->show();
 }
 
 void MainWindow::openIDs8()
