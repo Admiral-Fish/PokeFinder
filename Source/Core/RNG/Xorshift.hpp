@@ -38,6 +38,20 @@ public:
         return (t % diff) + min;
     }
 
+    u32 next(int min, int max)
+    {
+        u32 t = nextState();
+        u32 diff = max - min;
+
+        return (t % diff) + min;
+    }
+
+    float nextf(float min, float max)
+    {
+        float t = (next() & 0x7fffff) / 8388607.0;
+        return t * min + (1.0 - t) * max;
+    }
+
 public:
     u32 state[4];
 
