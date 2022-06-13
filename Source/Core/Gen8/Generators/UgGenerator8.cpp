@@ -328,9 +328,9 @@ std::vector<UgState> UgGenerator8::generate(u64 seed0, u64 seed1, u8 randMarkID,
             u8 pidRolls = bonus ? 2 : 1;
             for (auto i = 0; i < pidRolls; i++)
             {
-                u32 pid = gen.next();
+                u32 tmpPID = gen.next();
 
-                u16 psv = (pid >> 16) ^ (pid & 0xffff);
+                u16 psv = (tmpPID >> 16) ^ (tmpPID & 0xffff);
                 u16 fakeXor = (sidtid >> 16) ^ (sidtid & 0xffff) ^ psv;
 
                 if (fakeXor < 16) // Force shiny
@@ -343,8 +343,8 @@ std::vector<UgState> UgGenerator8::generate(u64 seed0, u64 seed1, u8 randMarkID,
                     state.setShiny(fakeShinyType);
                     if (realShinyType != fakeShinyType)
                     {
-                        u16 high = (pid & 0xFFFF) ^ tsv ^ (2 - fakeShinyType);
-                        pid = (high << 16) | (pid & 0xFFFF);
+                        u16 high = (tmpPID & 0xFFFF) ^ tsv ^ (2 - fakeShinyType);
+                        pid = (high << 16) | (tmpPID & 0xFFFF);
                     }
                     break;
                 }
