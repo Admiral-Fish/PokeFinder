@@ -21,6 +21,7 @@
 #include "ui_ProfileEditor5.h"
 #include <Core/Enum/DSType.hpp>
 #include <Core/Enum/Game.hpp>
+#include <Core/Gen5/Profile5.hpp>
 #include <Forms/Gen5/Profile/ProfileCalibrator5.hpp>
 #include <QMessageBox>
 
@@ -33,8 +34,7 @@ ProfileEditor5::ProfileEditor5(QWidget *parent) : QDialog(parent), ui(new Ui::Pr
     versionIndexChanged(ui->comboBoxVersion->currentIndex());
 }
 
-ProfileEditor5::ProfileEditor5(const Profile5 &profile, QWidget *parent) :
-    QDialog(parent), ui(new Ui::ProfileEditor5), isEditing(true), original(profile)
+ProfileEditor5::ProfileEditor5(const Profile5 &profile, QWidget *parent) : QDialog(parent), ui(new Ui::ProfileEditor5)
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
@@ -91,14 +91,15 @@ ProfileEditor5::~ProfileEditor5()
     delete ui;
 }
 
-Profile5 ProfileEditor5::getNewProfile()
+Profile5 ProfileEditor5::getProfile()
 {
-    return fresh;
-}
-
-Profile5 ProfileEditor5::getOriginal()
-{
-    return original;
+    return Profile5(ui->lineEditProfile->text().toStdString(), static_cast<Game>(ui->comboBoxVersion->getCurrentUInt()),
+                    ui->textBoxTID->getUShort(), ui->textBoxSID->getUShort(), ui->textBoxMAC->getULong(),
+                    ui->comboBoxKeypresses->getChecked(), ui->textBoxVCount->getUChar(), ui->textBoxGxStat->getUChar(),
+                    ui->textBoxVFrame->getUChar(), ui->checkBoxSkipLR->isChecked(), ui->textBoxTimer0Min->getUShort(),
+                    ui->textBoxTimer0Max->getUShort(), ui->checkBoxSoftReset->isChecked(), ui->checkBoxMemoryLink->isChecked(),
+                    ui->checkBoxShinyCharm->isChecked(), static_cast<DSType>(ui->comboBoxDSType->getCurrentByte()),
+                    static_cast<Language>(ui->comboBoxLanguage->getCurrentByte()));
 }
 
 void ProfileEditor5::setupModels()
@@ -136,14 +137,6 @@ void ProfileEditor5::okay()
         error.exec();
         return;
     }
-
-    fresh = Profile5(ui->lineEditProfile->text().toStdString(), static_cast<Game>(ui->comboBoxVersion->currentData().toUInt()),
-                     ui->textBoxTID->getUShort(), ui->textBoxSID->getUShort(), ui->textBoxMAC->getULong(),
-                     ui->comboBoxKeypresses->getChecked(), ui->textBoxVCount->getUChar(), ui->textBoxGxStat->getUChar(),
-                     ui->textBoxVFrame->getUChar(), ui->checkBoxSkipLR->isChecked(), ui->textBoxTimer0Min->getUShort(),
-                     ui->textBoxTimer0Max->getUShort(), ui->checkBoxSoftReset->isChecked(), ui->checkBoxMemoryLink->isChecked(),
-                     ui->checkBoxShinyCharm->isChecked(), static_cast<DSType>(ui->comboBoxDSType->currentData().toInt()),
-                     static_cast<Language>(ui->comboBoxLanguage->currentData().toInt()));
 
     done(QDialog::Accepted);
 }

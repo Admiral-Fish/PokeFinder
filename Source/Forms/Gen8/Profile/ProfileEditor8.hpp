@@ -20,7 +20,6 @@
 #ifndef PROFILEEDITOR8_HPP
 #define PROFILEEDITOR8_HPP
 
-#include <Core/Gen8/Profile8.hpp>
 #include <QDialog>
 
 namespace Ui
@@ -28,25 +27,19 @@ namespace Ui
     class ProfileEditor8;
 }
 
+class Profile8;
+
 class ProfileEditor8 : public QDialog
 {
     Q_OBJECT
-signals:
-    void newProfile(Profile8);
-    void editProfile(Profile8, Profile8);
-
 public:
     explicit ProfileEditor8(QWidget *parent = nullptr);
     explicit ProfileEditor8(const Profile8 &profile, QWidget *parent = nullptr);
     ~ProfileEditor8() override;
-    Profile8 getNewProfile();
-    Profile8 getOriginal();
+    Profile8 getProfile();
 
 private:
     Ui::ProfileEditor8 *ui;
-    bool isEditing = false;
-    Profile8 original;
-    Profile8 fresh;
 
     void setupModels();
 

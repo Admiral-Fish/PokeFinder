@@ -103,37 +103,30 @@ namespace ProfileLoader3
     std::vector<Profile3> getProfiles()
     {
         std::vector<Profile3> profiles;
-
         json j = readJson();
         const auto &gen3 = j["gen3"];
         std::transform(gen3.begin(), gen3.end(), std::back_inserter(profiles), [](const json &j) { return getProfile(j); });
-
         return profiles;
     }
 
     void addProfile(const Profile3 &profile)
     {
         json j = readJson();
-
         auto &gen3 = j["gen3"];
         gen3.emplace_back(getJson(profile));
-
         writeJson(j);
     }
 
     void removeProfile(const Profile3 &remove)
     {
         json j = readJson();
-
         auto &gen3 = j["gen3"];
         for (size_t i = 0; i < gen3.size(); i++)
         {
             Profile3 profile = getProfile(gen3[i]);
-
             if (profile == remove)
             {
                 gen3.erase(gen3.begin() + i);
-
                 writeJson(j);
                 break;
             }
@@ -142,19 +135,19 @@ namespace ProfileLoader3
 
     void updateProfile(const Profile3 &update, const Profile3 &original)
     {
-        json j = readJson();
-
-        auto &gen3 = j["gen3"];
-        for (auto &i : gen3)
+        if (update != original)
         {
-            Profile3 profile = getProfile(i);
-
-            if (original == profile && original != update)
+            json j = readJson();
+            auto &gen3 = j["gen3"];
+            for (auto &i : gen3)
             {
-                i = getJson(update);
-
-                writeJson(j);
-                break;
+                Profile3 profile = getProfile(i);
+                if (profile == original)
+                {
+                    i = getJson(update);
+                    writeJson(j);
+                    break;
+                }
             }
         }
     }
@@ -175,7 +168,6 @@ namespace ProfileLoader4
             bool radar = j.value("radar", false);
             bool swarm = j.value("swarm", false);
             bool dex = j.value("dex", false);
-
             return Profile4(name, version, tid, sid, dual, radio, radar, swarm, dex);
         }
 
@@ -198,37 +190,30 @@ namespace ProfileLoader4
     std::vector<Profile4> getProfiles()
     {
         std::vector<Profile4> profiles;
-
         json j = readJson();
         const auto &gen4 = j["gen4"];
         std::transform(gen4.begin(), gen4.end(), std::back_inserter(profiles), [](const json &j) { return getProfile(j); });
-
         return profiles;
     }
 
     void addProfile(const Profile4 &profile)
     {
         json j = readJson();
-
         auto &gen4 = j["gen4"];
         gen4.emplace_back(getJson(profile));
-
         writeJson(j);
     }
 
     void removeProfile(const Profile4 &remove)
     {
         json j = readJson();
-
         auto &gen4 = j["gen4"];
         for (size_t i = 0; i < gen4.size(); i++)
         {
             Profile4 profile = getProfile(gen4[i]);
-
             if (profile == remove)
             {
                 gen4.erase(gen4.begin() + i);
-
                 writeJson(j);
                 break;
             }
@@ -237,19 +222,19 @@ namespace ProfileLoader4
 
     void updateProfile(const Profile4 &update, const Profile4 &original)
     {
-        json j = readJson();
-
-        auto &gen4 = j["gen4"];
-        for (auto &i : gen4)
+        if (update != original)
         {
-            Profile4 profile = getProfile(i);
-
-            if (original == profile && original != update)
+            json j = readJson();
+            auto &gen4 = j["gen4"];
+            for (auto &i : gen4)
             {
-                i = getJson(update);
-
-                writeJson(j);
-                break;
+                Profile4 profile = getProfile(i);
+                if (profile == original)
+                {
+                    i = getJson(update);
+                    writeJson(j);
+                    break;
+                }
             }
         }
     }
@@ -311,37 +296,30 @@ namespace ProfileLoader5
     std::vector<Profile5> getProfiles()
     {
         std::vector<Profile5> profiles;
-
         json j = readJson();
         const auto &gen5 = j["gen5"];
         std::transform(gen5.begin(), gen5.end(), std::back_inserter(profiles), [](const json &j) { return getProfile(j); });
-
         return profiles;
     }
 
     void addProfile(const Profile5 &profile)
     {
         json j = readJson();
-
         auto &gen5 = j["gen5"];
         gen5.emplace_back(getJson(profile));
-
         writeJson(j);
     }
 
     void removeProfile(const Profile5 &remove)
     {
         json j = readJson();
-
         auto &gen5 = j["gen5"];
         for (size_t i = 0; i < gen5.size(); i++)
         {
             Profile5 profile = getProfile(gen5[i]);
-
             if (profile == remove)
             {
                 gen5.erase(gen5.begin() + i);
-
                 writeJson(j);
                 break;
             }
@@ -350,19 +328,19 @@ namespace ProfileLoader5
 
     void updateProfile(const Profile5 &update, const Profile5 &original)
     {
-        json j = readJson();
-
-        auto &gen5 = j["gen5"];
-        for (auto &i : gen5)
+        if (update != original)
         {
-            Profile5 profile = getProfile(i);
-
-            if (original == profile && original != update)
+            json j = readJson();
+            auto &gen5 = j["gen5"];
+            for (auto &i : gen5)
             {
-                i = getJson(update);
-
-                writeJson(j);
-                break;
+                Profile5 profile = getProfile(i);
+                if (profile == original)
+                {
+                    i = getJson(update);
+                    writeJson(j);
+                    break;
+                }
             }
         }
     }
@@ -382,7 +360,6 @@ namespace ProfileLoader8
             bool ovalCharm = j.value("ovalCharm", false);
             bool radar = j.value("radar", false);
             bool swarm = j.value("swarm", false);
-
             return Profile8(name, version, tid, sid, shinyCharm, ovalCharm, radar, swarm);
         }
 
@@ -404,37 +381,30 @@ namespace ProfileLoader8
     std::vector<Profile8> getProfiles()
     {
         std::vector<Profile8> profiles;
-
         json j = readJson();
         const auto &gen8 = j["gen8"];
         std::transform(gen8.begin(), gen8.end(), std::back_inserter(profiles), [](const json &j) { return getProfile(j); });
-
         return profiles;
     }
 
     void addProfile(const Profile8 &profile)
     {
         json j = readJson();
-
         auto &gen8 = j["gen8"];
         gen8.emplace_back(getJson(profile));
-
         writeJson(j);
     }
 
     void removeProfile(const Profile8 &remove)
     {
         json j = readJson();
-
         auto &gen8 = j["gen8"];
         for (size_t i = 0; i < gen8.size(); i++)
         {
             Profile8 profile = getProfile(gen8[i]);
-
             if (profile == remove)
             {
                 gen8.erase(gen8.begin() + i);
-
                 writeJson(j);
                 break;
             }
@@ -443,19 +413,19 @@ namespace ProfileLoader8
 
     void updateProfile(const Profile8 &update, const Profile8 &original)
     {
-        json j = readJson();
-
-        auto &gen8 = j["gen8"];
-        for (auto &i : gen8)
+        if (update != original)
         {
-            Profile8 profile = getProfile(i);
-
-            if (original == profile && original != update)
+            json j = readJson();
+            auto &gen8 = j["gen8"];
+            for (auto &i : gen8)
             {
-                i = getJson(update);
-
-                writeJson(j);
-                break;
+                Profile8 profile = getProfile(i);
+                if (profile == original)
+                {
+                    i = getJson(update);
+                    writeJson(j);
+                    break;
+                }
             }
         }
     }
