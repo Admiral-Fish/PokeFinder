@@ -1,0 +1,44 @@
+0,Ojo de Axew
+1,Valle Entrepuentes
+2,Arboleda Claroscuro
+3,Cuenca Polvorienta
+4,Lago Axew (este)
+5,Gorro del Gigante
+6,Espejo del Gigante
+7,Silla del Gigante
+8,Cornisa de Artejo
+9,Lago del Enfado
+10,Ribera de Pistón
+11,Lago Milotic (norte)
+12,Pradera Radiante
+13,Lago Milotic (sur)
+14,Llanura Pétrea
+15,Antigua Atalaya
+16,Lago Axew (oeste)
+17,Fields of Honor
+18,Soothing Wetlands
+19,Forest of Focus
+20,Challenge Beach
+21,Brawlers' Cave
+22,Challenge Road
+23,Courageous Cavern
+24,Loop Lagoon
+25,Training Lowlands
+26,Potbottom Desert
+27,Workout Sea
+28,Stepping-Stone Sea
+29,Insular Sea
+30,Honeycalm Sea
+31,Honeycalm Island
+32,Slippery Slope
+33,Frostpoint Field
+34,Giant's Bed
+35,Old Cemetery
+36,Snowslide Slope
+37,Path to the Peak
+38,Crown Shrine
+39,Giant's Foot
+40,Frigid Sea
+41,Three-Point Pass
+42,Ballimere Lake
+43,Dyna Tree Hill

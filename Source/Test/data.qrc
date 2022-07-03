@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/data">
+    <file alias="gen3.json">Gen3/gen3.json</file>
+        <file alias="rng.json">RNG/rng.json</file>
+    </qresource>
+</RCC>

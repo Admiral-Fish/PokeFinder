@@ -1,0 +1,44 @@
+0,Milza-See (Auge)
+1,Brückental
+2,Wipfelscheinwald
+3,Sandsturmkessel
+4,Milza-See (Osten)
+5,Hut des Giganten
+6,Spiegel des Giganten
+7,Sitz des Giganten
+8,Claw-Plateau
+9,Wutanfall-See
+10,Engine-Flussufer
+11,Milotic-See (Norden)
+12,Wonnewiesen
+13,Milotic-See (Süden)
+14,Megalithen-Ebene
+15,Wachturmruine
+16,Milza-See (Westen)
+17,Grußgefilde
+18,Balsamsumpf
+19,Fokusforst
+20,Strand der Prüfung
+21,Kämpfergrotte
+22,Pfad der Prüfung
+23,Tapferkeitshöhle
+24,Ringbucht
+25,Fleißebene
+26,Wüstensenke
+27,Fitnessmeer
+28,Inselkettenmeer
+29,Fernarchipel
+30,Wabenmeer
+31,Wabeninsel
+32,Schlitterfeld
+33,Frostfeld
+34,Bett des Giganten
+35,Uralter Friedhof
+36,Schneeschlucht
+37,Schneegipfelpfad
+38,Kronentempel
+39,Sohle des Giganten
+40,Schollenmeer
+41,Dreiwegpass
+42,Ballsee-Ufer
+43,Hügel des Dyna-Baums

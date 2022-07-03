@@ -1,0 +1,17 @@
+# CMake
+build
+CMakeLists.txt.user*
+
+# VS Code
+.vscode
+
+# VS
+.vs
+CMakeSettings.json
+CppProperties.json
+out
+
+# Resource files
+i18n.hpp
+Encounters.hpp
+Personal.hpp

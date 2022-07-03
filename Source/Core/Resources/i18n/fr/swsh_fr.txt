@@ -1,0 +1,44 @@
+0,Œil du Lac
+1,Prairie Entre-Ponts
+2,Bois de Clairjour
+3,Fosse des Sables
+4,Lac Coupenotte Est
+5,Coiffe du Géant
+6,Miroir du Géant
+7,Siège du Géant
+8,Plateau de Kickenham
+9,Lac Ouragan
+10,Berges de Motorby
+11,Lac Milobellus Nord
+12,Plaine Verdoyante
+13,Lac Milobellus Sud
+14,Plaine Rocheuse
+15,Tour en ruines
+16,Lac Coupenotte Ouest
+17,Fields of Honor
+18,Soothing Wetlands
+19,Forest of Focus
+20,Challenge Beach
+21,Brawlers' Cave
+22,Challenge Road
+23,Courageous Cavern
+24,Loop Lagoon
+25,Training Lowlands
+26,Potbottom Desert
+27,Workout Sea
+28,Stepping-Stone Sea
+29,Insular Sea
+30,Honeycalm Sea
+31,Honeycalm Island
+32,Slippery Slope
+33,Frostpoint Field
+34,Giant's Bed
+35,Old Cemetery
+36,Snowslide Slope
+37,Path to the Peak
+38,Crown Shrine
+39,Giant's Foot
+40,Frigid Sea
+41,Three-Point Pass
+42,Ballimere Lake
+43,Dyna Tree Hill

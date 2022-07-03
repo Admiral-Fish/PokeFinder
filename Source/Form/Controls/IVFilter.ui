@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>IVFilter</class>
+ <widget class="QWidget" name="IVFilter">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>120</width>
+    <height>210</height>
+   </rect>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="5" column="2">
+    <widget class="QSpinBox" name="spinBoxSpeMax">
+     <property name="maximum">
+      <number>31</number>
+     </property>
+     <property name="value">
+      <number>31</number>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="1">
+    <widget class="QSpinBox" name="spinBoxHPMin">
+     <property name="maximum">
+      <number>31</number>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="0">
+    <widget class="Label" name="labelSpD">
+     <property name="text">
+      <string>SpD</string>
+     </property>
+    </widget>
+   </item>
+   <item row="5" column="0">
+    <widget class="Label" name="labelSpe">
+     <property name="text">
+      <string>Spe</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="2">
+    <widget class="QSpinBox" name="spinBoxHPMax">
+     <property name="maximum">
+      <number>31</number>
+     </property>
+     <property name="value">
+      <number>31</number>
+     </property>
+    </widget>
+   </item>
+   <item row="5" column="1">
+    <widget class="QSpinBox" name="spinBoxSpeMin">
+     <property name="maximum">
+      <number>31</number>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="2">
+    <widget class="QSpinBox" name="spinBoxDefMax">
+     <property name="maximum">
+      <number>31</number>
+     </property>
+     <property name="value">
+      <number>31</number>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="2">
+    <widget class="QSpinBox" name="spinBoxSpDMax">
+     <property name="maximum">
+      <number>31</number>
+     </property>
+     <property name="value">
+      <number>31</number>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="1">
+    <widget class="QSpinBox" name="spinBoxSpDMin">
+     <property name="maximum">
+      <number>31</number>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="0">
+    <widget class="Label" name="labelSpA">
+     <property name="text">
+      <string>SpA</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="1">
+    <widget class="QSpinBox" name="spinBoxDefMin">
+     <property name="maximum">
+      <number>31</number>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0">
+    <widget class="Label" name="labelAtk">
+     <property name="text">
+      <string>Atk</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="1">
+    <widget class="QSpinBox" name="spinBoxAtkMin">
+     <property name="maximum">
+      <number>31</number>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="0">
+    <widget class="Label" name="labelDef">
+     <property name="text">
+      <string>Def</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="0">
+    <widget class="Label" name="labelHP">
+     <property name="text">
+      <string>HP</string>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="1">
+    <widget class="QSpinBox" name="spinBoxSpAMin">
+     <property name="maximum">
+      <number>31</number>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="2">
+    <widget class="QSpinBox" name="spinBoxSpAMax">
+     <property name="maximum">
+      <number>31</number>
+     </property>
+     <property name="value">
+      <number>31</number>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="2">
+    <widget class="QSpinBox" name="spinBoxAtkMax">
+     <property name="maximum">
+      <number>31</number>
+     </property>
+     <property name="value">
+      <number>31</number>
+     </property>
+    </widget>
+   </item>
+   <item row="6" column="1" colspan="2">
+    <widget class="QPushButton" name="pushButtonIVCalculator">
+     <property name="text">
+      <string>IV Calculator</string>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>Label</class>
+   <extends>QLabel</extends>
+   <header>Form/Controls/Label.hpp</header>
+   <slots>
+    <signal>pressed(int)</signal>
+   </slots>
+  </customwidget>
+ </customwidgets>
+ <tabstops>
+  <tabstop>spinBoxHPMin</tabstop>
+  <tabstop>spinBoxHPMax</tabstop>
+  <tabstop>spinBoxAtkMin</tabstop>
+  <tabstop>spinBoxAtkMax</tabstop>
+  <tabstop>spinBoxDefMin</tabstop>
+  <tabstop>spinBoxDefMax</tabstop>
+  <tabstop>spinBoxSpAMin</tabstop>
+  <tabstop>spinBoxSpAMax</tabstop>
+  <tabstop>spinBoxSpDMin</tabstop>
+  <tabstop>spinBoxSpDMax</tabstop>
+  <tabstop>spinBoxSpeMin</tabstop>
+  <tabstop>spinBoxSpeMax</tabstop>
+ </tabstops>
+ <resources/>
+ <connections/>
+ <slots>
+  <slot>changeCompareHP(int)</slot>
+  <slot>changeCompareAtk(int)</slot>
+  <slot>changeCompareDef(int)</slot>
+  <slot>changeCompareSpA(int)</slot>
+  <slot>changeCompareSpD(int)</slot>
+  <slot>changeCompareSpe(int)</slot>
+ </slots>
+</ui>

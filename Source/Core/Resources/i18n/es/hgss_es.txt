@@ -1,0 +1,129 @@
+0,Pueblo Primavera
+1,Ruta 29
+2,Ciudad Cerezo
+3,Ruta 30
+4,Ruta 31
+5,Ciudad Malva
+6,Torre Bellsprout
+8,Ruta 32
+9,Ruinas Alfa (Exterior)
+10,Ruinas Alfa (Interior)
+14,Cueva Unión Planta baja
+15,Cueva Unión Sótano 1
+16,Cueva Unión Sótano 2
+17,Ruta 33
+18,Pozo Slowpoke Sótano
+19,SLOWPOKE Well B2F
+20,Encinar
+21,Ruta 34
+22,Ruta 35
+23,Parque Nacional
+24,National Park
+25,Ruta 36
+26,Ruta 37
+27,Ciudad Iris
+28,Torre Quemada Planta baja
+29,Torre Quemada Sótano
+30,Torre Campana
+38,Ruta 38
+39,Ruta 39
+40,Ciudad Olivo
+41,Ruta 40
+42,Ruta 41
+43,Islas Remolino Planta baja
+44,Islas Remolino Sótano 1
+46,Islas Remolino Sótano 2
+48,Whirl Islands B3F
+51,Ciudad Orquídea
+52,Ruta 42
+53,Monte Mortero Planta baja (entrada)
+54,Monte Mortero Planta baja (interior)
+55,Monte Mortero Primera planta
+56,Monte Mortero Sótano
+57,Ruta 43
+58,Lago de la Furia
+59,Ruta 44
+60,Ruta Helada Planta baja
+61,Ruta Helada Sótano 1
+62,Ruta Helada Sótano 2
+63,Ruta Helada Sótano 3
+65,Ciudad Endrino
+66,Guarida Dragón
+67,Ruta 45
+68,Ruta 46
+69,Cueva Oscura (Ruta 31)
+70,Cueva Oscura (Ruta 45)
+71,Ruta 47
+72,Mt. Moon Square
+73,Mt. Moon Square (Clefairy Event)
+74,Islas Espuma Zonas de acceso
+75,Islas Espuma Sótano 1
+76,Islas Espuma Sótano 2
+77,Islas Espuma Sótano 3
+78,Islas Espuma Sótano 4
+79,Mt. Silver Cave (Moltres Chamber)
+80,Mt. Silver Cave 2F
+81,Cueva M Plateado Cueva final
+82,Paso Acantilado
+83,Cueva Acantilado
+85,Monte Plateado Exterior
+86,Cueva M Plateado Cueva con cascadas
+87,Mt. Silver Cave (Lower mountainside)
+88,Mt. Silver Cave (Export Belt)
+89,Mt. Silver Cave (Upper mountainside)
+91,Safari Zone
+92,Ruta 12
+93,Ruta 19
+94,Ruta 20
+95,Pueblo Paleta
+96,Ciudad Verde
+97,Ciudad Celeste
+98,Ciudad Carmín
+99,Ciudad Azulona
+100,Ciudad Fucsia
+101,Isla Canela
+102,Ruta 48
+103,Ruta 26
+104,Ruta 27
+105,Ruta 28
+106,Mt. Moon 1F
+108,Túnel Roca Planta baja
+109,Túnel Roca Sótano
+110,Calle Victoria Entrada
+111,Ruta 1
+112,Ruta 2 (Sur)
+113,Ruta 3
+114,Ruta 4
+115,Ruta 5
+116,Ruta 6
+117,Ruta 7
+118,Ruta 8
+119,Ruta 9
+120,Ruta 10
+121,Ruta 11
+122,Ruta 13
+123,Ruta 14
+124,Ruta 15
+125,Ruta 16
+126,Ruta 17
+127,Ruta 18
+128,Ruta 21
+129,Ruta 22
+130,Ruta 24
+131,Ruta 25
+132,Cataratas Tohjo
+133,Cueva Diglett
+134,Calle Victoria Piso 1
+135,Calle Victoria Piso 2
+136,Ruta 2 (Norte)
+137,Bosque Verde
+139,Cerulean Cave Planta baja
+140,Cerulean Cave Primer piso
+141,Cerulean Cave Sótano
+142,Concurso de Bichos
+143,Concurso de Bichos (Martes)
+144,Concurso de Bichos (Jueves)
+145,Concurso de Bichos (Sábado)
+146,Pueblo Azalea
+147,Ciudad Plateada
+148,Entrada Safari

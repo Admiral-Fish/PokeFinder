@@ -1,0 +1,16 @@
+Kampf
+Flug
+Gift
+Boden
+Gestein
+Käfer
+Geist
+Stahl
+Feuer
+Wasser
+Pflanze
+Elektro
+Psycho
+Eis
+Drache
+Unlicht

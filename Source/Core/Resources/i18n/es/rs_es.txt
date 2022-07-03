@@ -1,0 +1,97 @@
+0,Petalburg City
+1,Ciudad Portual
+2,Lilycove City
+3,Mossdeep City
+4,Arrecípolis
+5,Ever Grande City
+6,Cascada Meteoro Entrada (zona 1)
+7,Meteor Falls 1F 2R
+8,Meteor Falls B1F 1R
+9,Meteor Falls B1F 2R
+10,Rusturf Tunnel
+11,Cueva Granito Planta baja (zona 1)
+12,Granite Cave B1F
+13,Cueva Granito Sótano 2
+14,Granite Cave Stevens Room
+15,Petalburg Woods
+16,Jagged Pass
+17,Fiery Path
+18,Mt Pyre 1F
+19,Mt Pyre 2F
+20,Mt Pyre 3F
+21,Mt Pyre 4F
+22,Mt Pyre 5F
+23,Mt Pyre 6F
+24,Mt Pyre Exterior
+25,Mt Pyre Summit
+26,Seafloor Cavern Entrance
+27,Seafloor Cavern Room 1
+28,Seafloor Cavern Room 2
+29,Seafloor Cavern Room 3
+30,Seafloor Cavern Room 4
+31,Seafloor Cavern Room 5
+32,Seafloor Cavern Room 6
+33,Seafloor Cavern Room 7
+34,Seafloor Cavern Room 8
+35,Cave Of Origin Entrance
+36,Cave Of Origin 1F
+37,Cave Of Origin B1F
+38,Cave Of Origin B2F
+39,Cave Of Origin B3F
+40,Calle Victoria Planta baja
+41,Calle Victoria Sótano 1
+42,Calle Victoria Sótano 2
+43,Shoal Cave Low Tide Entrance Room
+44,Shoal Cave Low Tide Inner Room
+45,Shoal Cave Low Tide Stairs Room
+46,Shoal Cave Low Tide Lower Room
+47,Shoal Cave Low Tide Ice Room
+48,New Mauville Entrance
+49,New Mauville Inside
+50,Abandoned Ship Rooms B1F
+51,Abandoned Ship Hidden Floor Corridors
+52,Pilar Celeste Planta baja
+53,Sky Pillar 3F
+54,Sky Pillar 5F
+55,Ruta 101
+56,Ruta 102
+57,Ruta 103
+58,Ruta 104
+59,Ruta 105
+60,Ruta 106
+61,Ruta 107
+62,Ruta 108
+63,Ruta 109
+64,Ruta 110
+65,Ruta 111
+66,Ruta 112
+67,Ruta 113
+68,Ruta 114
+69,Ruta 115
+70,Ruta 116
+71,Ruta 117
+72,Ruta 118
+73,Ruta 119
+74,Ruta 120
+75,Ruta 121
+76,Ruta 122
+77,Ruta 123
+78,Ruta 124
+79,Ruta 125
+80,Ruta 126
+81,Ruta 127
+82,Ruta 128
+83,Ruta 129
+84,Ruta 130
+85,Ruta 131
+86,Ruta 132
+87,Ruta 133
+88,Ruta 134
+89,Safari Zone Northwest
+90,Safari Zone Northeast
+91,Safari Zone Southwest
+92,Safari Zone Southeast
+93,Pueblo Azuliza
+94,Pacifidlog Town
+95,Underwater1
+96,Underwater2

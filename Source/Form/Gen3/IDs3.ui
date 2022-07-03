@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>IDs3</class>
+ <widget class="QWidget" name="IDs3">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>710</width>
+    <height>570</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Gen 3 TID\SID</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout_9">
+   <item row="0" column="0">
+    <widget class="QGroupBox" name="groupBoxRNGInfo">
+     <property name="title">
+      <string>RNG Info</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout">
+      <item row="0" column="0">
+       <widget class="QTabWidget" name="tabWidget">
+        <widget class="QWidget" name="tabXDColo">
+         <attribute name="title">
+          <string>XD/Colo</string>
+         </attribute>
+         <layout class="QGridLayout" name="gridLayout_6">
+          <item row="0" column="0">
+           <widget class="QLabel" name="labelSeedXDColo">
+            <property name="text">
+             <string>Seed</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="TextBox" name="textBoxSeedXDColo"/>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="labelInitialAdvancesXDColo">
+            <property name="text">
+             <string>Initial Advances</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="TextBox" name="textBoxInitialAdvancesXDColo">
+            <property name="text">
+             <string>0</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="labelMaxAdvancesXDColo">
+            <property name="text">
+             <string>Max Advances</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="TextBox" name="textBoxMaxAdvancesXDColo">
+            <property name="text">
+             <string>100000</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0" colspan="2">
+           <widget class="QPushButton" name="pushButtonGenerateXDColo">
+            <property name="text">
+             <string>Generate</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QWidget" name="tabFRLGE">
+         <attribute name="title">
+          <string>FRLGE</string>
+         </attribute>
+         <layout class="QGridLayout" name="gridLayout_7">
+          <item row="0" column="0">
+           <widget class="QLabel" name="labelTIDFRLGE">
+            <property name="text">
+             <string>TID</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="TextBox" name="textBoxTIDFRLGE"/>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="labelInitialAdvancesFRLGE">
+            <property name="text">
+             <string>Initial Advances</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="TextBox" name="textBoxInitialAdvancesFRLGE">
+            <property name="text">
+             <string>0</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="labelMaxAdvancesFRLGE">
+            <property name="text">
+             <string>Max Advances</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="TextBox" name="textBoxMaxAdvancesFRLGE">
+            <property name="text">
+             <string>100000</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0" colspan="2">
+           <widget class="QPushButton" name="pushButtonGenerateFRLGE">
+            <property name="text">
+             <string>Generate</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QWidget" name="tabRS">
+         <attribute name="title">
+          <string>RS</string>
+         </attribute>
+         <layout class="QGridLayout" name="gridLayout_8">
+          <item row="0" column="0">
+           <widget class="QCheckBox" name="checkBoxDeadBatteryRS">
+            <property name="text">
+             <string>Dead Battery</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QRadioButton" name="radioButtonDateTimeRS">
+            <property name="text">
+             <string>Date/Time</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="DateTimeEdit" name="dateTimeEditRS"/>
+          </item>
+          <item row="2" column="0">
+           <widget class="QRadioButton" name="radioButtonSeedRS">
+            <property name="text">
+             <string>Seed</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="TextBox" name="textBoxSeedRS"/>
+          </item>
+          <item row="3" column="0">
+           <widget class="QLabel" name="labelInitialAdvancesRS">
+            <property name="text">
+             <string>Initial Advances</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="1">
+           <widget class="TextBox" name="textBoxInitialAdvancesRS">
+            <property name="text">
+             <string>0</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="0">
+           <widget class="QLabel" name="labelMaxAdvances">
+            <property name="text">
+             <string>Max Advances</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="1">
+           <widget class="TextBox" name="textBoxMaxAdvancesRS">
+            <property name="text">
+             <string>100000</string>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="0" colspan="2">
+           <widget class="QPushButton" name="pushButtonGenerateRS">
+            <property name="text">
+             <string>Generate</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="0" column="1">
+    <widget class="QGroupBox" name="groupBoxFilters">
+     <property name="title">
+      <string>Filters</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_2">
+      <item row="0" column="0">
+       <widget class="IDsFilter" name="idFilter" native="true"/>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="1" column="0" colspan="2">
+    <widget class="TableView" name="tableView"/>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>TextBox</class>
+   <extends>QLineEdit</extends>
+   <header>Form/Controls/TextBox.hpp</header>
+  </customwidget>
+  <customwidget>
+   <class>DateTimeEdit</class>
+   <extends>QDateTimeEdit</extends>
+   <header>Form/Controls/DateTimeEdit.hpp</header>
+  </customwidget>
+  <customwidget>
+   <class>IDsFilter</class>
+   <extends>QWidget</extends>
+   <header>Form/Controls/IDsFilter.hpp</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>TableView</class>
+   <extends>QTableView</extends>
+   <header>Form/Controls/TableView.hpp</header>
+  </customwidget>
+ </customwidgets>
+ <tabstops>
+  <tabstop>tabWidget</tabstop>
+  <tabstop>tableView</tabstop>
+  <tabstop>textBoxSeedXDColo</tabstop>
+  <tabstop>textBoxInitialAdvancesXDColo</tabstop>
+  <tabstop>textBoxMaxAdvancesXDColo</tabstop>
+  <tabstop>pushButtonGenerateXDColo</tabstop>
+  <tabstop>textBoxTIDFRLGE</tabstop>
+  <tabstop>textBoxInitialAdvancesFRLGE</tabstop>
+  <tabstop>textBoxMaxAdvancesFRLGE</tabstop>
+  <tabstop>pushButtonGenerateFRLGE</tabstop>
+  <tabstop>checkBoxDeadBatteryRS</tabstop>
+  <tabstop>radioButtonDateTimeRS</tabstop>
+  <tabstop>dateTimeEditRS</tabstop>
+  <tabstop>radioButtonSeedRS</tabstop>
+  <tabstop>textBoxSeedRS</tabstop>
+  <tabstop>textBoxInitialAdvancesRS</tabstop>
+  <tabstop>textBoxMaxAdvancesRS</tabstop>
+  <tabstop>pushButtonGenerateRS</tabstop>
+ </tabstops>
+ <resources/>
+ <connections/>
+</ui>

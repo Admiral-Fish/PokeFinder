@@ -1,0 +1,113 @@
+0,Percorso 101
+1,Percorso 102
+2,Percorso 103
+3,Percorso 104
+4,Percorso 105
+5,Percorso 110
+6,Percorso 111
+7,Percorso 112
+8,Percorso 113
+9,Percorso 114
+10,Percorso 116
+11,Percorso 117
+12,Percorso 118
+13,Percorso 124
+14,Bosco Petalo
+15,Tunnel Menferro
+16,Grotta Pietrosa P1
+17,Grotta Pietrosa P1S
+18,Mt Pyre 1F
+19,Via Vittoria P1
+20,Safari Zone South
+21,Underwater Route 126
+22,Abandoned Ship Rooms B1F
+23,Grotta Pietrosa P2S
+24,Cammino Ardente
+25,Cascate Meteora P1S 2S
+26,Passo Selvaggio
+27,Percorso 106
+28,Percorso 107
+29,Percorso 108
+30,Percorso 109
+31,Percorso 115
+32,New Mauville Inside
+33,Percorso 119
+34,Percorso 120
+35,Percorso 121
+36,Percorso 122
+37,Percorso 123
+38,Mt Pyre 2F
+39,Mt Pyre 3F
+40,Mt Pyre 4F
+41,Mt Pyre 5F
+42,Mt Pyre 6F
+43,Mt Pyre Exterior
+44,Mt Pyre Summit
+45,Granite Cave Stevens Room
+46,Percorso 125
+47,Percorso 126
+48,Percorso 127
+49,Percorso 128
+50,Percorso 129
+51,Percorso 130
+52,Percorso 131
+53,Percorso 132
+54,Percorso 133
+55,Percorso 134
+56,Abandoned Ship Hidden Floor Corridors
+57,Seafloor Cavern Room 1
+58,Seafloor Cavern Room 2
+59,Seafloor Cavern Room 3
+60,Seafloor Cavern Room 4
+61,Seafloor Cavern Room 5
+62,Seafloor Cavern Room 6
+63,Seafloor Cavern Room 7
+64,Seafloor Cavern Room 8
+65,Seafloor Cavern Entrance
+66,Cave Of Origin Entrance
+67,Cave Of Origin 1F
+71,New Mauville Entrance
+72,Safari Zone Southwest
+73,Safari Zone North
+74,Safari Zone Northwest
+75,Via Vittoria P1S
+76,Victory Road B2F
+77,Cascate Meteora P1 1S
+78,Cascate Meteora P1 2S
+79,Cascate Meteora P1S 1S
+80,Shoal Cave Low Tide Stairs Room
+81,Shoal Cave Low Tide Lower Room
+82,Shoal Cave Low Tide Inner Room
+83,Shoal Cave Low Tide Entrance Room
+84,Porto Alghepoli
+85,Bluruvia
+86,Porto Selcepoli
+87,Verdeazzupoli
+88,Orocea
+89,Iridopoli
+90,Petalipoli
+91,Underwater Route 124
+92,Shoal Cave Low Tide Ice Room
+93,Torre dei Cieli P1
+94,Ceneride
+95,Torre dei Cieli P3
+96,Torre dei Cieli P5
+97,Safari Zone Southeast
+98,Safari Zone Northeast
+99,Magma Hideout 1F
+100,Magma Hideout 2F 1R
+101,Magma Hideout 2F 2R
+102,Magma Hideout 3F 1R
+103,Magma Hideout 3F 2R
+104,Magma Hideout 4F
+105,Magma Hideout 3F 3R
+106,Magma Hideout 2F 3R
+107,Mirage Tower 1F
+108,Mirage Tower 2F
+109,Mirage Tower 3F
+110,Mirage Tower 4F
+111,Galleria Deserto
+112,Artisan Cave B1F
+113,Artisan Cave 1F
+114,Altering Cave
+123,Meteor Falls Stevens Cave
