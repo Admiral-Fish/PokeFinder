@@ -28,15 +28,14 @@ Filter::Filter(QWidget *parent) : QWidget(parent), ui(new Ui::Filter)
 
     ui->comboBoxAbility->setup({ 255, 0, 1 });
     ui->comboBoxGender->setup({ 255, 0, 1 });
-    ui->comboBoxGenderRatio->setup({ 255, 127, 191, 63, 31, 0, 254 });
     ui->checkListHiddenPower->setup(*Translator::getHiddenPowers());
     ui->checkListNature->setup(*Translator::getNatures());
     ui->comboBoxShiny->setup({ 255, 1, 2, 3 });
     ui->textBoxDelay->setValues(InputType::Advance32Bit);
 
-    connect(ui->pushButtonEncounterSlotAny, &QPushButton::clicked, ui->checkListEncounterSlot, &CheckList::resetChecks);
-    connect(ui->pushButtonHiddenPowerAny, &QPushButton::clicked, ui->checkListHiddenPower, &CheckList::resetChecks);
-    connect(ui->pushButtonNatureAny, &QPushButton::clicked, ui->checkListNature, &CheckList::resetChecks);
+    connect(ui->pushButtonEncounterSlot, &QPushButton::clicked, ui->checkListEncounterSlot, &CheckList::resetChecks);
+    connect(ui->pushButtonHiddenPower, &QPushButton::clicked, ui->checkListHiddenPower, &CheckList::resetChecks);
+    connect(ui->pushButtonNature, &QPushButton::clicked, ui->checkListNature, &CheckList::resetChecks);
 }
 
 Filter::~Filter()
@@ -62,11 +61,6 @@ u8 Filter::getAbility() const
 u8 Filter::getGender() const
 {
     return ui->comboBoxGender->getCurrentByte();
-}
-
-u8 Filter::getGenderRatio() const
-{
-    return ui->comboBoxGenderRatio->getCurrentByte();
 }
 
 std::vector<bool> Filter::getEncounterSlots()
@@ -106,7 +100,7 @@ u8 Filter::getShiny() const
 
 bool Filter::useDelay() const
 {
-    return ui->checkBoxUseDelay->isChecked();
+    return ui->checkBoxDelay->isChecked();
 }
 
 u32 Filter::getDelay() const
@@ -114,7 +108,7 @@ u32 Filter::getDelay() const
     return ui->textBoxDelay->getUInt();
 }
 
-bool Filter::getDisableFilters()
+bool Filter::getDisableFilters() const
 {
     return ui->checkBoxDisableFilters->isChecked();
 }
@@ -138,31 +132,25 @@ void Filter::enableControls(Controls control)
         ui->comboBoxGender->setVisible(true);
     }
 
-    if ((control & Controls::GenderRatio) != Controls::None)
-    {
-        ui->labelGenderRatio->setVisible(true);
-        ui->comboBoxGenderRatio->setVisible(true);
-    }
-
     if ((control & Controls::EncounterSlots) != Controls::None)
     {
         ui->labelEncounterSlot->setVisible(true);
         ui->checkListEncounterSlot->setVisible(true);
-        ui->pushButtonEncounterSlotAny->setVisible(true);
+        ui->pushButtonEncounterSlot->setVisible(true);
     }
 
     if ((control & Controls::HiddenPowers) != Controls::None)
     {
         ui->labelHiddenPower->setVisible(true);
         ui->checkListHiddenPower->setVisible(true);
-        ui->pushButtonHiddenPowerAny->setVisible(true);
+        ui->pushButtonHiddenPower->setVisible(true);
     }
 
     if ((control & Controls::Natures) != Controls::None)
     {
         ui->labelNature->setVisible(true);
         ui->checkListNature->setVisible(true);
-        ui->pushButtonNatureAny->setVisible(true);
+        ui->pushButtonNature->setVisible(true);
     }
 
     if ((control & Controls::Shiny) != Controls::None)
@@ -173,7 +161,7 @@ void Filter::enableControls(Controls control)
 
     if ((control & Controls::UseDelay) != Controls::None)
     {
-        ui->checkBoxUseDelay->setVisible(true);
+        ui->checkBoxDelay->setVisible(true);
         ui->textBoxDelay->setVisible(true);
     }
 
@@ -202,31 +190,25 @@ void Filter::disableControls(Controls control)
         ui->comboBoxGender->setVisible(false);
     }
 
-    if ((control & Controls::GenderRatio) != Controls::None)
-    {
-        ui->labelGenderRatio->setVisible(false);
-        ui->comboBoxGenderRatio->setVisible(false);
-    }
-
     if ((control & Controls::EncounterSlots) != Controls::None)
     {
         ui->labelEncounterSlot->setVisible(false);
         ui->checkListEncounterSlot->setVisible(false);
-        ui->pushButtonEncounterSlotAny->setVisible(false);
+        ui->pushButtonEncounterSlot->setVisible(false);
     }
 
     if ((control & Controls::HiddenPowers) != Controls::None)
     {
         ui->labelHiddenPower->setVisible(false);
         ui->checkListHiddenPower->setVisible(false);
-        ui->pushButtonHiddenPowerAny->setVisible(false);
+        ui->pushButtonHiddenPower->setVisible(false);
     }
 
     if ((control & Controls::Natures) != Controls::None)
     {
         ui->labelNature->setVisible(false);
         ui->checkListNature->setVisible(false);
-        ui->pushButtonNatureAny->setVisible(false);
+        ui->pushButtonNature->setVisible(false);
     }
 
     if ((control & Controls::Shiny) != Controls::None)
@@ -237,7 +219,7 @@ void Filter::disableControls(Controls control)
 
     if ((control & Controls::UseDelay) != Controls::None)
     {
-        ui->checkBoxUseDelay->setVisible(false);
+        ui->checkBoxDelay->setVisible(false);
         ui->textBoxDelay->setVisible(false);
     }
 
@@ -245,11 +227,6 @@ void Filter::disableControls(Controls control)
     {
         ui->checkBoxDisableFilters->setVisible(false);
     }
-}
-
-void Filter::setGenderRatio(u8 genderRatio)
-{
-    ui->comboBoxGenderRatio->setCurrentIndex(ui->comboBoxGenderRatio->findData(genderRatio));
 }
 
 void Filter::enableHiddenAbility()

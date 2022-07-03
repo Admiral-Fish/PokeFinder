@@ -20,7 +20,6 @@
 #include "DateTimeTest.hpp"
 #include <Core/Util/DateTime.hpp>
 #include <QTest>
-#include <QVector>
 
 void DateTimeTest::addSecs_data()
 {

@@ -28,33 +28,85 @@ namespace Ui
     class IVFilter;
 }
 
+/**
+ * @brief Provides selection of filters for IVs
+ */
 class IVFilter : public QWidget
 {
     Q_OBJECT
 public:
+    /**
+     * @brief Creates a new IDsFilter
+     * @param parent Parent widget, which takes memory ownership
+     */
     explicit IVFilter(QWidget *parent = nullptr);
+
+    /**
+     * @brief Destructor
+     */
     ~IVFilter() override;
+
+    /**
+     * @brief Gets lower bound IVs to filter by
+     * @return Array of minimum IVs
+     */
     std::array<u8, 6> getLower() const;
+
+    /**
+     * @brief Gets upper bound IVs to filter by
+     * @return Array of maximum IVs
+     */
     std::array<u8, 6> getUpper() const;
 
 private:
     Ui::IVFilter *ui;
 
-    void changeHP(int min, int max);
-    void changeAtk(int min, int max);
-    void changeDef(int min, int max);
-    void changeSpA(int min, int max);
-    void changeSpD(int min, int max);
-    void changeSpe(int min, int max);
-
 private slots:
+    /**
+     * @brief Updates min/max HP based on control keys selected
+     * @param type Control keys
+     */
     void changeCompareHP(int type);
+
+    /**
+     * @brief Updates min/max Atk based on control keys selected
+     * @param type Control keys
+     */
     void changeCompareAtk(int type);
+
+    /**
+     * @brief Updates min/max Def based on control keys selected
+     * @param type Control keys
+     */
     void changeCompareDef(int type);
+
+    /**
+     * @brief Updates min/max SpA based on control keys selected
+     * @param type Control keys
+     */
     void changeCompareSpA(int type);
+
+    /**
+     * @brief Updates min/max SpD based on control keys selected
+     * @param type Control keys
+     */
     void changeCompareSpD(int type);
+
+    /**
+     * @brief Updates min/max Spe based on control keys selected
+     * @param type Control keys
+     */
     void changeCompareSpe(int type);
+
+    /**
+     * @brief Opens IV calculator to determine IV minimum/maximum
+     */
     void openIVCalculator();
+
+    /**
+     * @brief Updates min/max IV values based upon calculation from IV Calculator
+     * @param ivs Possible IV ranges
+     */
     void updateIVs(const std::array<std::vector<u8>, 6> &ivs);
 };
 

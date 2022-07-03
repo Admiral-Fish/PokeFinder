@@ -28,20 +28,48 @@ namespace Ui
     class IDsFilter;
 }
 
+/**
+ * @brief Provides selection of filters for TID/SID RNG
+ */
 class IDsFilter : public QWidget
 {
     Q_OBJECT
 public:
+    /**
+     * @brief Creates a new IDsFilter
+     * @param parent Parent widget, which takes memory ownership
+     */
     explicit IDsFilter(QWidget *parent = nullptr);
+
+    /**
+     * @brief Destructor
+     */
     ~IDsFilter();
+
+    /**
+     * @brief Gets settings to filter by
+     * @return Filter information
+     */
     IDFilter getFilter() const;
+
+    /**
+     * @brief Enables of disables showing of the Display TID filter settings
+     * @param flag True if enabled, false otherwise
+     */
     void enableDisplayTID(bool flag);
 
 private:
     Ui::IDsFilter *ui;
 
 private slots:
+    /**
+     * @brief Validates text allowed for TID, SID, TID/SID, or Display TID
+     */
     void textEditIDsTextChanged();
+
+    /**
+     * @brief Validates text allowed for TSV
+     */
     void textEditTSVTextChanged();
 };
 

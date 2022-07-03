@@ -68,160 +68,196 @@ std::array<u8, 6> IVFilter::getUpper() const
     return high;
 }
 
-void IVFilter::changeHP(int min, int max)
+void IVFilter::changeCompareHP(int type)
 {
+    int min, max;
+    if (type == Qt::NoModifier)
+    {
+        min = 0;
+        max = 31;
+    }
+    else if (type == Qt::ControlModifier)
+    {
+        min = 31;
+        max = 31;
+    }
+    else if (type == Qt::AltModifier)
+    {
+        min = 30;
+        max = 31;
+    }
+    else if (type & Qt::ControlModifier && type & Qt::AltModifier)
+    {
+        min = 0;
+        max = 0;
+    }
+    else
+    {
+        return;
+    }
+
     ui->spinBoxHPMin->setValue(min);
     ui->spinBoxHPMax->setValue(max);
 }
 
-void IVFilter::changeAtk(int min, int max)
+void IVFilter::changeCompareAtk(int type)
 {
+    int min, max;
+    if (type == Qt::NoModifier)
+    {
+        min = 0;
+        max = 31;
+    }
+    else if (type == Qt::ControlModifier)
+    {
+        min = 31;
+        max = 31;
+    }
+    else if (type == Qt::AltModifier)
+    {
+        min = 30;
+        max = 31;
+    }
+    else if (type & Qt::ControlModifier && type & Qt::AltModifier)
+    {
+        min = 0;
+        max = 0;
+    }
+    else
+    {
+        return;
+    }
+
     ui->spinBoxAtkMin->setValue(min);
     ui->spinBoxAtkMax->setValue(max);
 }
 
-void IVFilter::changeDef(int min, int max)
+void IVFilter::changeCompareDef(int type)
 {
+    int min, max;
+    if (type == Qt::NoModifier)
+    {
+        min = 0;
+        max = 31;
+    }
+    else if (type == Qt::ControlModifier)
+    {
+        min = 31;
+        max = 31;
+    }
+    else if (type == Qt::AltModifier)
+    {
+        min = 30;
+        max = 31;
+    }
+    else if (type & Qt::ControlModifier && type & Qt::AltModifier)
+    {
+        min = 0;
+        max = 0;
+    }
+    else
+    {
+        return;
+    }
+
     ui->spinBoxDefMin->setValue(min);
     ui->spinBoxDefMax->setValue(max);
 }
 
-void IVFilter::changeSpA(int min, int max)
+void IVFilter::changeCompareSpA(int type)
 {
+    int min, max;
+    if (type == Qt::NoModifier)
+    {
+        min = 0;
+        max = 31;
+    }
+    else if (type == Qt::ControlModifier)
+    {
+        min = 31;
+        max = 31;
+    }
+    else if (type == Qt::AltModifier)
+    {
+        min = 30;
+        max = 31;
+    }
+    else if (type & Qt::ControlModifier && type & Qt::AltModifier)
+    {
+        min = 0;
+        max = 0;
+    }
+    else
+    {
+        return;
+    }
+
     ui->spinBoxSpAMin->setValue(min);
     ui->spinBoxSpAMax->setValue(max);
 }
 
-void IVFilter::changeSpD(int min, int max)
+void IVFilter::changeCompareSpD(int type)
 {
+    int min, max;
+    if (type == Qt::NoModifier)
+    {
+        min = 0;
+        max = 31;
+    }
+    else if (type == Qt::ControlModifier)
+    {
+        min = 31;
+        max = 31;
+    }
+    else if (type == Qt::AltModifier)
+    {
+        min = 30;
+        max = 31;
+    }
+    else if (type & Qt::ControlModifier && type & Qt::AltModifier)
+    {
+        min = 0;
+        max = 0;
+    }
+    else
+    {
+        return;
+    }
+
     ui->spinBoxSpDMin->setValue(min);
     ui->spinBoxSpDMax->setValue(max);
 }
 
-void IVFilter::changeSpe(int min, int max)
-{
-    ui->spinBoxSpeMin->setValue(min);
-    ui->spinBoxSpeMax->setValue(max);
-}
-
-void IVFilter::changeCompareHP(int type)
-{
-    if (type == Qt::NoModifier)
-    {
-        changeHP(0, 31);
-    }
-    else if (type == Qt::ControlModifier)
-    {
-        changeHP(31, 31);
-    }
-    else if (type == Qt::AltModifier)
-    {
-        changeHP(30, 31);
-    }
-    else if (type & Qt::ControlModifier && type & Qt::AltModifier)
-    {
-        changeHP(0, 0);
-    }
-}
-
-void IVFilter::changeCompareAtk(int type)
-{
-    if (type == Qt::NoModifier)
-    {
-        changeAtk(0, 31);
-    }
-    else if (type == Qt::ControlModifier)
-    {
-        changeAtk(31, 31);
-    }
-    else if (type == Qt::AltModifier)
-    {
-        changeAtk(30, 31);
-    }
-    else if (type & Qt::ControlModifier && type & Qt::AltModifier)
-    {
-        changeAtk(0, 0);
-    }
-}
-
-void IVFilter::changeCompareDef(int type)
-{
-    if (type == Qt::NoModifier)
-    {
-        changeDef(0, 31);
-    }
-    else if (type == Qt::ControlModifier)
-    {
-        changeDef(31, 31);
-    }
-    else if (type == Qt::AltModifier)
-    {
-        changeDef(30, 31);
-    }
-    else if (type & Qt::ControlModifier && type & Qt::AltModifier)
-    {
-        changeDef(0, 0);
-    }
-}
-
-void IVFilter::changeCompareSpA(int type)
-{
-    if (type == Qt::NoModifier)
-    {
-        changeSpA(0, 31);
-    }
-    else if (type == Qt::ControlModifier)
-    {
-        changeSpA(31, 31);
-    }
-    else if (type == Qt::AltModifier)
-    {
-        changeSpA(30, 31);
-    }
-    else if (type & Qt::ControlModifier && type & Qt::AltModifier)
-    {
-        changeSpA(0, 0);
-    }
-}
-
-void IVFilter::changeCompareSpD(int type)
-{
-    if (type == Qt::NoModifier)
-    {
-        changeSpD(0, 31);
-    }
-    else if (type == Qt::ControlModifier)
-    {
-        changeSpD(31, 31);
-    }
-    else if (type == Qt::AltModifier)
-    {
-        changeSpD(30, 31);
-    }
-    else if (type & Qt::ControlModifier && type & Qt::AltModifier)
-    {
-        changeSpD(0, 0);
-    }
-}
-
 void IVFilter::changeCompareSpe(int type)
 {
+    int min, max;
     if (type == Qt::NoModifier)
     {
-        changeSpe(0, 31);
+        min = 0;
+        max = 31;
     }
     else if (type == Qt::ControlModifier)
     {
-        changeSpe(31, 31);
+        min = 31;
+        max = 31;
     }
     else if (type == Qt::AltModifier)
     {
-        changeSpe(30, 31);
+        min = 30;
+        max = 31;
     }
     else if (type & Qt::ControlModifier && type & Qt::AltModifier)
     {
-        changeSpe(0, 0);
+        min = 0;
+        max = 0;
     }
+    else
+    {
+        return;
+    }
+
+    ui->spinBoxSpeMin->setValue(min);
+    ui->spinBoxSpeMax->setValue(max);
 }
 
 void IVFilter::openIVCalculator()
@@ -234,9 +270,9 @@ void IVFilter::openIVCalculator()
 
 void IVFilter::updateIVs(const std::array<std::vector<u8>, 6> &ivs)
 {
-    QVector<QSpinBox *> minIVs
+    QList<QSpinBox *> minIVs
         = { ui->spinBoxHPMin, ui->spinBoxAtkMin, ui->spinBoxDefMin, ui->spinBoxSpAMin, ui->spinBoxSpDMin, ui->spinBoxSpeMin };
-    QVector<QSpinBox *> maxIVs
+    QList<QSpinBox *> maxIVs
         = { ui->spinBoxHPMax, ui->spinBoxAtkMax, ui->spinBoxDefMax, ui->spinBoxSpAMax, ui->spinBoxSpDMax, ui->spinBoxSpeMax };
 
     for (size_t i = 0; i < ivs.size(); i++)

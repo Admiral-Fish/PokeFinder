@@ -23,7 +23,6 @@ TextBox::TextBox(QWidget *parent) : QLineEdit(parent)
 {
     blockSignals(true);
     connect(this, &TextBox::textEdited, this, &TextBox::onTextEdited);
-    connect(this, &TextBox::editingFinished, this, &TextBox::onEditFinished);
 }
 
 void TextBox::setValues(InputType type)
@@ -128,18 +127,11 @@ void TextBox::onTextEdited(QString string)
     string = string.toUpper();
     string.remove(filter);
 
-    int position = this->cursorPosition();
-    this->setText(string);
-    this->setCursorPosition(position);
-}
-
-void TextBox::onEditFinished()
-{
-    QString string = this->text();
-
+    // Bound value
     u64 value = string.toULongLong(nullptr, base);
     value = qBound(minValue, value, maxValue);
 
-    string = QString::number(value, base);
-    setText(string);
+    int position = this->cursorPosition();
+    this->setText(QString::number(value, base));
+    this->setCursorPosition(position);
 }

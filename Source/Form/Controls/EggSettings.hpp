@@ -32,13 +32,16 @@ namespace Ui
 }
 
 /**
- * @brief The EggSettings class
+ * @brief Provides selection of settings for parents and other relevant daycare options
  */
 class EggSettings : public QWidget
 {
     Q_OBJECT
 
 signals:
+    /**
+     * @brief Emits whether inheritance should be shown
+     */
     void toggleInheritance(bool);
 
 public:
@@ -51,29 +54,29 @@ public:
     /**
      * @brief Destructor
      */
-    ~EggSettings();
+    ~EggSettings() override;
 
     /**
-     * @brief setup
-     * @param version
+     * @brief Configures what should be shown and enabled based on the provided game
+     * @param version Game
      */
     void setup(Game version);
 
     /**
-     * @brief getDaycareSettings
-     * @return
+     * @brief Gets various parent information: IVs, ability, gender, item masuda, etc.
+     * @return Parent information
      */
     Daycare getDaycareSettings() const;
 
     /**
-     * @brief compatibleParents
-     * @return
+     * @brief Determines if selected settings for valid for parents in the daycare
+     * @return True if compatible, false otherwise
      */
     bool compatibleParents() const;
 
     /**
-     * @brief reorderParents
-     * @return
+     * @brief Changes order of the parents to match what the game does
+     * @return True if the order was changed, false otherwise
      */
     bool reorderParents();
 
@@ -82,8 +85,8 @@ private:
 
 private slots:
     /**
-     * @brief showInheritance
-     * @param checked
+     * @brief Shows inherited IVs if selected or IV value if not selected
+     * @param checked Whether or not the check box is selected
      */
     void showInheritance(bool checked);
 };

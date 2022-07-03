@@ -32,6 +32,10 @@
 class TableView : public QTableView
 {
 public:
+    /**
+     * @brief Creates a new TableView
+     * @param parent Parent widget, which takes memory ownership
+     */
     explicit TableView(QWidget *parent = nullptr);
 
     /**

@@ -35,17 +35,63 @@ enum class InputType : u8
     TIDSID
 };
 
+/**
+ * @brief Provides a line edit purely for numbers and validates the contents based on regex for number base and minimum/maximum bounding
+ * values
+ */
 class TextBox : public QLineEdit
 {
     Q_OBJECT
 public:
+    /**
+     * @brief Creates a new TextBox
+     * @param parent Parent widget, which takes memory ownership
+     */
     explicit TextBox(QWidget *parent = nullptr);
+
+    /**
+     * @brief Sets regex and min/max bounding values
+     * @param type Predefined validation type
+     */
     void setValues(InputType type);
+
+    /**
+     * @brief Sets regex and min/max bounding values
+     * @param minValue Minimum bounding value
+     * @param maxValue Maximum bounding value
+     * @param length Maximum allowed length
+     * @param base Number base
+     */
     void setValues(u64 minValue, u64 maxValue, int length, int base);
+
+    /**
+     * @brief Gets current text as int
+     * @return Value as int
+     */
     int getInt() const;
+
+    /**
+     * @brief Gets current text as u8
+     * @return Value as u8
+     */
     u8 getUChar() const;
+
+    /**
+     * @brief Gets current text as u16
+     * @return Value as u16
+     */
     u16 getUShort() const;
+
+    /**
+     * @brief Gets current text as u32
+     * @return Value as u32
+     */
     u32 getUInt() const;
+
+    /**
+     * @brief Gets current text as u64
+     * @return Value as u64
+     */
     u64 getULong() const;
 
 private:
@@ -56,8 +102,11 @@ private:
     QRegularExpression filter;
 
 private slots:
+    /**
+     * @brief Validates text based on regex and min/max bounding values
+     * @param string Newly edited text
+     */
     void onTextEdited(QString string);
-    void onEditFinished();
 };
 
 #endif // TEXTBOX_HPP

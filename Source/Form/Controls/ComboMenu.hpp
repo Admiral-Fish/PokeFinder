@@ -25,7 +25,7 @@
 class QActionGroup;
 
 /**
- * @brief The ComboMenu class
+ * @brief Provides exclusion item selection via menu selection where sub menus can act as combo boxes
  */
 class ComboMenu : public QToolButton
 {
@@ -35,7 +35,7 @@ public:
      * @brief Creates a new ComboMenu
      * @param parent Parent widget, which takes memory ownership
      */
-    ComboMenu(QWidget *parent = nullptr);
+    explicit ComboMenu(QWidget *parent = nullptr);
 
     /**
      * @brief Adds new action to either the main menu or a provided sub menu

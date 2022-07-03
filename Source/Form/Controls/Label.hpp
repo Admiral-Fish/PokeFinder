@@ -22,14 +22,29 @@
 
 #include <QLabel>
 
+/**
+ * @brief Utility class that emits control keys that are selected when the QLabel is clicked
+ */
 class Label : public QLabel
 {
     Q_OBJECT
 signals:
+    /**
+     * @brief Emits control keys when clicked
+     */
     void pressed(int);
 
 public:
+    /**
+     * @brief Creates a new Label
+     * @param parent Parent widget, which takes memory ownership
+     */
     explicit Label(QWidget *parent = nullptr);
+
+    /**
+     * @brief Handles mouse event to emit selected control keys
+     * @param event Contains mouse event information
+     */
     void mousePressEvent(QMouseEvent *event) override;
 };
 

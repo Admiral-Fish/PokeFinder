@@ -42,6 +42,8 @@ TableView::TableView(QWidget *parent) : QTableView(parent)
 
 void TableView::mouseDoubleClickEvent(QMouseEvent *event)
 {
+    QTableView::mouseDoubleClickEvent(event);
+
     if (event && event->type() == QMouseEvent::MouseButtonDblClick)
     {
         setSelectionToClipBoard();

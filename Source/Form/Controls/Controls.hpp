@@ -28,13 +28,12 @@ enum class Controls : u16
     IVs = 1 << 0,
     Ability = 1 << 1,
     Gender = 1 << 2,
-    GenderRatio = 1 << 3,
-    EncounterSlots = 1 << 4,
-    HiddenPowers = 1 << 5,
-    Natures = 1 << 6,
-    Shiny = 1 << 7,
-    UseDelay = 1 << 8,
-    DisableFilter = 1 << 9
+    EncounterSlots = 1 << 3,
+    HiddenPowers = 1 << 4,
+    Natures = 1 << 5,
+    Shiny = 1 << 6,
+    UseDelay = 1 << 7,
+    DisableFilter = 1 << 8
 };
 
 constexpr Controls operator|(Controls left, Controls right)

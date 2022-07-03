@@ -23,10 +23,26 @@
 #include <Core/Global.hpp>
 #include <QGraphicsPixmapItem>
 
+/**
+ * @brief Utility class that bounds X and Y position of QGraphicsPixmapItem
+ */
 class GraphicsPixmapItem : public QGraphicsPixmapItem
 {
 public:
+    /**
+     * @brief Creates a new DateEdit
+     * @param pixmap Image to display
+     * @param minX Minimum X position
+     * @param minY Minimum Y position
+     * @param maxX Maximum X position
+     * @param maxY Maximum X position
+     */
     explicit GraphicsPixmapItem(const QPixmap &pixmap, u16 minX = 0, u16 minY = 0, u16 maxX = 0, u16 maxY = 0);
+
+    /**
+     * @brief Handles bounding the item with the min/max X/Y position when it is moved
+     * @param event Contains mouse event information
+     */
     void mouseMoveEvent(QGraphicsSceneMouseEvent *event) override;
 
 private:
