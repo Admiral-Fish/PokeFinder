@@ -1,0 +1,356 @@
+{
+    "starters": [
+        {
+            "description": "Turtwig",
+            "version": "Game::BDSP",
+            "specie": 387,
+            "level": 5
+        },
+        {
+            "description": "Chimchar",
+            "version": "Game::BDSP",
+            "specie": 390,
+            "level": 5
+        },
+        {
+            "description": "Piplup",
+            "version": "Game::BDSP",
+            "specie": 393,
+            "level": 5
+        }
+    ],
+    "gifts": [
+        {
+            "description": "Eevee",
+            "version": "Game::BDSP",
+            "specie": 133,
+            "level": 5
+        },
+        {
+            "description": "Happiny egg",
+            "version": "Game::BDSP",
+            "specie": 440,
+            "level": 1
+        },
+        {
+            "description": "Riolu egg",
+            "version": "Game::BDSP",
+            "specie": 447,
+            "level": 1
+        }
+    ],
+    "fossils": [
+        {
+            "description": "Omanyte",
+            "version": "Game::BDSP",
+            "specie": 138,
+            "level": 1,
+            "ivCount": 3
+        },
+        {
+            "description": "Kabuto",
+            "version": "Game::BDSP",
+            "specie": 140,
+            "level": 1,
+            "ivCount": 3
+        },
+        {
+            "description": "Aerodactyl",
+            "version": "Game::BDSP",
+            "specie": 142,
+            "level": 1,
+            "ivCount": 3
+        },
+        {
+            "description": "Lileep",
+            "version": "Game::BDSP",
+            "specie": 345,
+            "level": 1,
+            "ivCount": 3
+        },
+        {
+            "description": "Anorith",
+            "version": "Game::BDSP",
+            "specie": 347,
+            "level": 1,
+            "ivCount": 3
+        },
+        {
+            "description": "Cranidos",
+            "version": "Game::BDSP",
+            "specie": 408,
+            "level": 1,
+            "ivCount": 3
+        },
+        {
+            "description": "Shieldon",
+            "version": "Game::BDSP",
+            "specie": 410,
+            "level": 1,
+            "ivCount": 3
+        }
+    ],
+    "stationary": [
+        {
+            "description": "Drifloon",
+            "version": "Game::BDSP",
+            "specie": 425,
+            "level": 22
+        },
+        {
+            "description": "Spiritomb",
+            "version": "Game::BDSP",
+            "specie": 442,
+            "level": 25
+        },
+        {
+            "description": "Rotom",
+            "version": "Game::BDSP",
+            "specie": 479,
+            "level": 15
+        }
+    ],
+    "roamers": [
+        {
+            "description": "Mespirit",
+            "version": "Game::BDSP",
+            "specie": 481,
+            "level": 50,
+            "ivCount": 3
+        },
+        {
+            "description": "Cresselia",
+            "version": "Game::BDSP",
+            "specie": 488,
+            "level": 50,
+            "ivCount": 3
+        }
+    ],
+    "legends": [
+        {
+            "description": "Uxie",
+            "version": "Game::BDSP",
+            "specie": 480,
+            "level": 50,
+            "ivCount": 3
+        },
+        {
+            "description": "Azelf",
+            "version": "Game::BDSP",
+            "specie": 482,
+            "level": 50,
+            "ivCount": 3
+        },
+        {
+            "description": "Dialga",
+            "version": "Game::BD",
+            "specie": 483,
+            "level": 47,
+            "ivCount": 3
+        },
+        {
+            "description": "Palkia",
+            "version": "Game::SP",
+            "specie": 484,
+            "level": 47,
+            "ivCount": 3
+        },
+        {
+            "description": "Heatran",
+            "version": "Game::BDSP",
+            "specie": 485,
+            "level": 70,
+            "ivCount": 3
+        },
+        {
+            "description": "Regigigas",
+            "version": "Game::BDSP",
+            "specie": 486,
+            "level": 70,
+            "ivCount": 3
+        },
+        {
+            "description": "Giratina",
+            "version": "Game::BDSP",
+            "specie": 487,
+            "level": 70,
+            "ivCount": 3
+        }
+    ],
+    "ramanasParkPureSpace": [
+        {
+            "description": "Articuno",
+            "version": "Game::SP",
+            "specie": 144,
+            "level": 70,
+            "ability": 2,
+            "ivCount": 3
+        },
+        {
+            "description": "Zapdos",
+            "version": "Game::SP",
+            "specie": 145,
+            "level": 70,
+            "ability": 2,
+            "ivCount": 3
+        },
+        {
+            "description": "Moltres",
+            "version": "Game::SP",
+            "specie": 146,
+            "level": 70,
+            "ability": 2,
+            "ivCount": 3
+        },
+        {
+            "description": "Raikou",
+            "version": "Game::BD",
+            "specie": 243,
+            "level": 70,
+            "ability": 2,
+            "ivCount": 3
+        },
+        {
+            "description": "Entei",
+            "version": "Game::BD",
+            "specie": 244,
+            "level": 70,
+            "ability": 2,
+            "ivCount": 3
+        },
+        {
+            "description": "Suicune",
+            "version": "Game::BD",
+            "specie": 245,
+            "level": 70,
+            "ability": 2,
+            "ivCount": 3
+        },
+        {
+            "description": "Regirock",
+            "version": "Game::BDSP",
+            "specie": 377,
+            "level": 70,
+            "ability": 2,
+            "ivCount": 3
+        },
+        {
+            "description": "Regice",
+            "version": "Game::BDSP",
+            "specie": 378,
+            "level": 70,
+            "ability": 2,
+            "ivCount": 3
+        },
+        {
+            "description": "Registeel",
+            "version": "Game::BDSP",
+            "specie": 379,
+            "level": 70,
+            "ability": 2,
+            "ivCount": 3
+        },
+        {
+            "description": "Latias",
+            "version": "Game::BDSP",
+            "specie": 380,
+            "level": 70,
+            "ivCount": 3
+        },
+        {
+            "description": "Latios",
+            "version": "Game::BDSP",
+            "specie": 381,
+            "level": 70,
+            "ivCount": 3
+        }
+    ],
+    "ramanasParkStrangeSpace": [
+        {
+            "description": "Mewtwo",
+            "version": "Game::BDSP",
+            "specie": 150,
+            "level": 70,
+            "ability": 2,
+            "ivCount": 3
+        },
+        {
+            "description": "Lugia",
+            "version": "Game::SP",
+            "specie": 249,
+            "level": 70,
+            "ability": 2,
+            "ivCount": 3
+        },
+        {
+            "description": "Ho-Oh",
+            "version": "Game::BD",
+            "specie": 250,
+            "level": 70,
+            "ability": 2,
+            "ivCount": 3
+        },
+        {
+            "description": "Kyogre",
+            "version": "Game::BDSP",
+            "specie": 382,
+            "level": 70,
+            "ivCount": 3
+        },
+        {
+            "description": "Groudon",
+            "version": "Game::BDSP",
+            "specie": 383,
+            "level": 70,
+            "ivCount": 3
+        },
+        {
+            "description": "Rayquaza",
+            "version": "Game::BDSP",
+            "specie": 384,
+            "level": 70,
+            "ivCount": 3
+        }
+    ],
+    "mythics": [
+        {
+            "description": "Mew",
+            "version": "Game::BDSP",
+            "specie": 151,
+            "level": 1,
+            "ability": 1,
+            "shiny": "Shiny::Never",
+            "ivCount": 3
+        },
+        {
+            "description": "Jirachi",
+            "version": "Game::BDSP",
+            "specie": 385,
+            "level": 5,
+            "ability": 1,
+            "shiny": "Shiny::Never",
+            "ivCount": 3
+        },
+        {
+            "description": "Darkrai",
+            "version": "Game::BDSP",
+            "specie": 491,
+            "level": 50,
+            "ivCount": 3
+        },
+        {
+            "description": "Shaymin",
+            "version": "Game::BDSP",
+            "specie": 492,
+            "level": 30,
+            "ivCount": 3
+        },
+        {
+            "description": "Arceus",
+            "version": "Game::BDSP",
+            "specie": 493,
+            "level": 80,
+            "ivCount": 3
+        }
+    ]
+}

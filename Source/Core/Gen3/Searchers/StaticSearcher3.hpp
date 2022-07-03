@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -20,33 +20,77 @@
 #ifndef STATICSEARCHER3_HPP
 #define STATICSEARCHER3_HPP
 
+#include <Core/Gen3/Filters/StateFilter3.hpp>
+#include <Core/Gen3/Profile3.hpp>
 #include <Core/Parents/Searchers/StaticSearcher.hpp>
-#include <Core/RNG/RNGCache.hpp>
 #include <mutex>
 
-class State;
+class StaticTemplate;
 
-class StaticSearcher3 : public StaticSearcher
+/**
+ * @brief Static encounter searcher for Gen3
+ */
+class StaticSearcher3 : public StaticSearcher<Profile3, StateFilter3>
 {
 public:
-    StaticSearcher3(u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter);
-    void startSearch(const std::array<u8, 6> &min, const std::array<u8, 6> &max);
+    /**
+     * @brief Construct a new StaticSearcher3 object
+     *
+     * @param method Encounter method
+     * @param profile Profile Information
+     * @param filter State filter
+     */
+    StaticSearcher3(Method method, const Profile3 &profile, const StateFilter3 &filter);
+
+    /**
+     * @brief Cancels the running search
+     */
     void cancelSearch();
-    std::vector<State> getResults();
+
+    /**
+     * @brief Returns the progress of the running search
+     *
+     * @return Progress
+     */
     int getProgress() const;
 
+    /**
+     * @brief Returns the states of the running search
+     *
+     * @return Vector of computed states
+     */
+    std::vector<SearcherState> getResults();
+
+    /**
+     * @brief Starts the search
+     *
+     * @param min Minimum IVs
+     * @param max Maximum IVs
+     * @param staticTemplate Pokemon template
+     */
+    void startSearch(const std::array<u8, 6> &min, const std::array<u8, 6> &max, const StaticTemplate *staticTemplate);
+
 private:
-    RNGCache cache;
-    u8 ivAdvance;
-
-    bool searching;
-    int progress;
-    std::vector<State> results;
     std::mutex mutex;
+    std::vector<SearcherState> results;
+    int progress;
+    bool ivAdvance;
+    bool searching;
 
-    std::vector<State> search(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const;
-    std::vector<State> searchMethod124(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const;
-    std::vector<State> searchMethod1Reverse(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const;
+    /**
+     * @brief Searches for matching states from provided IVs
+     *
+     * @param hp HP IV
+     * @param atk Atk IV
+     * @param def Def IV
+     * @param spa SpA IV
+     * @param spd SpD IV
+     * @param spe Spe IV
+     * @param staticTemplate Pokemon template
+     *
+     * @return Vector of computed states
+     */
+    std::vector<SearcherState> search(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, const StaticTemplate *staticTemplate) const;
 };
 
 #endif // STATICSEARCHER3_HPP

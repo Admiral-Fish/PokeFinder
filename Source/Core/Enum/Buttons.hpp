@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -20,8 +20,11 @@
 #ifndef BUTTONS_HPP
 #define BUTTONS_HPP
 
-#include <Core/Util/Global.hpp>
+#include <Core/Global.hpp>
 
+/**
+ * @brief Enum to encompass keypresses for Gen5
+ */
 enum class Buttons : u16
 {
     None = 0,
@@ -44,16 +47,39 @@ enum class Buttons : u16
     LeftDown = Left | Down
 };
 
+/**
+ * @brief Converts enum to number
+ *
+ * @param button Input button
+ *
+ * @return Converted number
+ */
 constexpr u16 toInt(Buttons button)
 {
     return static_cast<u16>(button);
 }
 
+/**
+ * @brief Computes bitwise AND of two \ref Buttons
+ *
+ * @param left First button
+ * @param right Second button
+ *
+ * @return Computed bitwise AND button
+ */
 constexpr Buttons operator&(Buttons left, Buttons right)
 {
     return static_cast<Buttons>(toInt(left) & toInt(right));
 }
 
+/**
+ * @brief Computes bitwise OR of two \ref Buttons
+ *
+ * @param left First button
+ * @param right Second button
+ *
+ * @return Computed bitwise OR button
+ */
 constexpr Buttons operator|(Buttons left, Buttons right)
 {
     return static_cast<Buttons>(toInt(left) | toInt(right));

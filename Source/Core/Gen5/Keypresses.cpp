@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -19,6 +19,7 @@
 
 #include "Keypresses.hpp"
 #include <Core/Enum/Buttons.hpp>
+#include <Core/Gen5/Profile5.hpp>
 
 constexpr Buttons keys[8] = { Buttons::R, Buttons::L, Buttons::X, Buttons::Y, Buttons::A, Buttons::B, Buttons::Select, Buttons::Start };
 constexpr Buttons directions[8] = { Buttons::Right,   Buttons::Left,   Buttons::Up,        Buttons::Down,
@@ -26,19 +27,19 @@ constexpr Buttons directions[8] = { Buttons::Right,   Buttons::Left,   Buttons::
 constexpr u32 buttonValues[12]
     = { 0x10000, 0x20000, 0x40000, 0x80000, 0x1000000, 0x2000000, 0x4000000, 0x8000000, 0x10000000, 0x20000000, 0x40000000, 0x80000000 };
 
+static bool valid(Buttons button, bool skipLR)
+{
+    return !(skipLR && ((button & Buttons::L) != Buttons::None || (button & Buttons::R) != Buttons::None));
+}
+
 namespace Keypresses
 {
-    namespace
-    {
-        bool valid(Buttons button, bool skipLR)
-        {
-            return !(skipLR && ((button & Buttons::L) != Buttons::None || (button & Buttons::R) != Buttons::None));
-        }
-    }
-
-    std::vector<Buttons> getKeyPresses(const std::vector<bool> &keypresses, bool skipLR)
+    std::vector<Buttons> getKeyPresses(const Profile5 &profile)
     {
         std::vector<Buttons> buttons;
+
+        auto keypresses = profile.getKeypresses();
+        bool skipLR = profile.getSkipLR();
 
         if (keypresses[0])
         {
@@ -69,9 +70,9 @@ namespace Keypresses
                     }
                 }
 
-                for (u8 j = 0; j < 8; j++)
+                for (Buttons direction : directions)
                 {
-                    Buttons combo = keys[i] | directions[j];
+                    Buttons combo = keys[i] | direction;
                     if (valid(combo, skipLR))
                     {
                         buttons.emplace_back(combo);
@@ -92,9 +93,9 @@ namespace Keypresses
                         }
                     }
 
-                    for (u8 k = 0; k < 8; k++)
+                    for (Buttons direction : directions)
                     {
-                        Buttons combo = keys[i] | keys[j] | directions[k];
+                        Buttons combo = keys[i] | keys[j] | direction;
                         if (valid(combo, skipLR))
                         {
                             buttons.emplace_back(combo);

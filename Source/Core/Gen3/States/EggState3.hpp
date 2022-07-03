@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -22,36 +22,103 @@
 
 #include <Core/Parents/States/EggState.hpp>
 
-class EggState3 : public EggState
+/**
+ * @brief State class for Gen3 egg generator encounters
+ */
+class EggState3 : public EggGeneratorState
 {
 public:
-    explicit EggState3(u32 advance) : EggState(advance)
+    /**
+     * @brief Construct a new EggState3 object
+     *
+     * @param advances Advances of the state
+     * @param redraws Redraws of the state
+     * @param pid Pokemon PID
+     * @param gender Pokemon gender
+     * @param shiny Pokemon shininess
+     * @param info Pokemon information
+     */
+    EggState3(u32 advances, u8 redraws, u32 pid, u8 gender, u8 shiny, const PersonalInfo *info) :
+        EggGeneratorState(advances, pid, { 0, 0, 0, 0, 0, 0 }, pid & 1, gender, 5, pid % 25, shiny, { 0, 0, 0, 0, 0, 0 }, info),
+        redraws(redraws)
     {
     }
 
-    u32 getGenerateAdvance() const
+    /**
+     * @brief Construct a new EggState3 object
+     *
+     * @param advances Advances of the state
+     * @param low Pokemon PID low
+     * @param gender Pokemon gender
+     * @param shiny Pokemon shininess
+     * @param info Pokemon information
+     */
+    EggState3(u32 advances, u16 low, u8 gender, const PersonalInfo *info) :
+        EggGeneratorState(advances, low, { 0, 0, 0, 0, 0, 0 }, low & 1, gender, 5, 0, 0, { 0, 0, 0, 0, 0, 0 }, info), redraws(0)
     {
-        return generateAdvance;
     }
 
-    void setGenerateAdvance(u32 generateAdvance)
+    /**
+     * @brief Returns the advances of the state
+     *
+     * @return State advances
+     */
+    u32 getPickupAdvances() const
     {
-        this->generateAdvance = generateAdvance;
+        return pickupAdvances;
     }
 
-    u8 getRedraw() const
+    /**
+     * @brief Returns the redraws of the state
+     *
+     * @return State redraws
+     */
+    u8 getRedraws() const
     {
-        return redraw;
+        return redraws;
     }
 
-    void setRedraw(u8 redraw)
+    /**
+     * @brief Updates egg with things that are calculated on pickup in Emerald
+     *
+     * @param advances Advances of the state
+     * @param ivs Pokemon IVs
+     * @param inheritance Pokemon IV inheritance
+     * @param info Pokemon information
+     */
+    void update(u32 advances, const std::array<u8, 6> &ivs, const std::array<u8, 6> &inheritance, const PersonalInfo *info)
     {
-        this->redraw = redraw;
+        pickupAdvances = advances;
+        this->ivs = ivs;
+        this->inheritance = inheritance;
+        updateStats(info);
+    }
+
+    /**
+     * @brief Updates egg with things that are calculated on pickup in RS/FRLG
+     *
+     * @param advances Advances of the state
+     * @param pid Pokemon PID
+     * @param shiny Pokemon shininess
+     * @param ivs Pokemon IVs
+     * @param inheritance Pokemon IV inheritance
+     * @param info Pokemon information
+     */
+    void update(u32 advances, u32 pid, u8 shiny, const std::array<u8, 6> &ivs, const std::array<u8, 6> &inheritance,
+                const PersonalInfo *info)
+    {
+        pickupAdvances = advances;
+        this->pid = pid;
+        nature = pid % 25;
+        this->shiny = shiny;
+        this->ivs = ivs;
+        this->inheritance = inheritance;
+        updateStats(info);
     }
 
 private:
-    u32 generateAdvance;
-    u8 redraw;
+    u32 pickupAdvances;
+    u8 redraws;
 };
 
 #endif // EGGSTATE3_HPP

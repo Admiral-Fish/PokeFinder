@@ -1,0 +1,284 @@
+{
+    "generate": [
+        {
+            "name": "Test 1",
+            "seed0": 4611686018427387904,
+            "seed1": 4611686018427387904,
+            "results": [
+                {
+                    "advances": 0,
+                    "displayTID": 419776,
+                    "sid": 49216,
+                    "tid": 0,
+                    "tsv": 3076
+                },
+                {
+                    "advances": 1,
+                    "displayTID": 421832,
+                    "sid": 49216,
+                    "tid": 2056,
+                    "tsv": 3204
+                },
+                {
+                    "advances": 2,
+                    "displayTID": 483648,
+                    "sid": 32768,
+                    "tid": 0,
+                    "tsv": 2048
+                },
+                {
+                    "advances": 3,
+                    "displayTID": 483648,
+                    "sid": 32768,
+                    "tid": 0,
+                    "tsv": 2048
+                },
+                {
+                    "advances": 4,
+                    "displayTID": 241856,
+                    "sid": 49152,
+                    "tid": 16384,
+                    "tsv": 2048
+                },
+                {
+                    "advances": 5,
+                    "displayTID": 678016,
+                    "sid": 32832,
+                    "tid": 64,
+                    "tsv": 2048
+                },
+                {
+                    "advances": 6,
+                    "displayTID": 678024,
+                    "sid": 32832,
+                    "tid": 72,
+                    "tsv": 2048
+                },
+                {
+                    "advances": 7,
+                    "displayTID": 678016,
+                    "sid": 32832,
+                    "tid": 64,
+                    "tsv": 2048
+                },
+                {
+                    "advances": 8,
+                    "displayTID": 927368,
+                    "sid": 49666,
+                    "tid": 16392,
+                    "tsv": 2080
+                }
+            ]
+        },
+        {
+            "name": "Test 2",
+            "seed0": 9223372036854775808,
+            "seed1": 9223372036854775808,
+            "results": [
+                {
+                    "advances": 0,
+                    "displayTID": 388608,
+                    "sid": 128,
+                    "tid": 0,
+                    "tsv": 8
+                },
+                {
+                    "advances": 1,
+                    "displayTID": 392720,
+                    "sid": 128,
+                    "tid": 4112,
+                    "tsv": 265
+                },
+                {
+                    "advances": 2,
+                    "displayTID": 483648,
+                    "sid": 32768,
+                    "tid": 0,
+                    "tsv": 2048
+                },
+                {
+                    "advances": 3,
+                    "displayTID": 483648,
+                    "sid": 32768,
+                    "tid": 0,
+                    "tsv": 2048
+                },
+                {
+                    "advances": 4,
+                    "displayTID": 32768,
+                    "sid": 0,
+                    "tid": 32768,
+                    "tsv": 2048
+                },
+                {
+                    "advances": 5,
+                    "displayTID": 872384,
+                    "sid": 32896,
+                    "tid": 128,
+                    "tsv": 2048
+                },
+                {
+                    "advances": 6,
+                    "displayTID": 872400,
+                    "sid": 32896,
+                    "tid": 144,
+                    "tsv": 2049
+                },
+                {
+                    "advances": 7,
+                    "displayTID": 872384,
+                    "sid": 32896,
+                    "tid": 128,
+                    "tsv": 2048
+                },
+                {
+                    "advances": 8,
+                    "displayTID": 403792,
+                    "sid": 1028,
+                    "tid": 32784,
+                    "tsv": 2113
+                }
+            ]
+        },
+        {
+            "name": "Test 3",
+            "seed0": 13835058055282163712,
+            "seed1": 13835058055282163712,
+            "results": [
+                {
+                    "advances": 0,
+                    "displayTID": 324736,
+                    "sid": 16576,
+                    "tid": 0,
+                    "tsv": 1036
+                },
+                {
+                    "advances": 1,
+                    "displayTID": 330904,
+                    "sid": 16576,
+                    "tid": 6168,
+                    "tsv": 1421
+                },
+                {
+                    "advances": 2,
+                    "displayTID": 483648,
+                    "sid": 32768,
+                    "tid": 0,
+                    "tsv": 2048
+                },
+                {
+                    "advances": 3,
+                    "displayTID": 483648,
+                    "sid": 32768,
+                    "tid": 0,
+                    "tsv": 2048
+                },
+                {
+                    "advances": 4,
+                    "displayTID": 790976,
+                    "sid": 16384,
+                    "tid": 49152,
+                    "tsv": 2048
+                },
+                {
+                    "advances": 5,
+                    "displayTID": 66752,
+                    "sid": 32960,
+                    "tid": 192,
+                    "tsv": 2048
+                },
+                {
+                    "advances": 6,
+                    "displayTID": 66776,
+                    "sid": 32960,
+                    "tid": 216,
+                    "tsv": 2049
+                },
+                {
+                    "advances": 7,
+                    "displayTID": 66752,
+                    "sid": 32960,
+                    "tid": 192,
+                    "tsv": 2048
+                },
+                {
+                    "advances": 8,
+                    "displayTID": 847512,
+                    "sid": 17926,
+                    "tid": 49176,
+                    "tsv": 2145
+                }
+            ]
+        },
+        {
+            "name": "Test 4",
+            "seed0": 18446744073709551615,
+            "seed1": 18446744073709551615,
+            "results": [
+                {
+                    "advances": 0,
+                    "displayTID": 477496,
+                    "sid": 32767,
+                    "tid": 59384,
+                    "tsv": 2432
+                },
+                {
+                    "advances": 1,
+                    "displayTID": 483648,
+                    "sid": 32768,
+                    "tid": 0,
+                    "tsv": 2048
+                },
+                {
+                    "advances": 2,
+                    "displayTID": 477496,
+                    "sid": 32767,
+                    "tid": 59384,
+                    "tsv": 2432
+                },
+                {
+                    "advances": 3,
+                    "displayTID": 483648,
+                    "sid": 32768,
+                    "tid": 0,
+                    "tsv": 2048
+                },
+                {
+                    "advances": 4,
+                    "displayTID": 837215,
+                    "sid": 32575,
+                    "tid": 2015,
+                    "tsv": 1934
+                },
+                {
+                    "advances": 5,
+                    "displayTID": 843328,
+                    "sid": 32575,
+                    "tid": 8128,
+                    "tsv": 1551
+                },
+                {
+                    "advances": 6,
+                    "displayTID": 477496,
+                    "sid": 32767,
+                    "tid": 59384,
+                    "tsv": 2432
+                },
+                {
+                    "advances": 7,
+                    "displayTID": 483648,
+                    "sid": 32768,
+                    "tid": 0,
+                    "tsv": 2048
+                },
+                {
+                    "advances": 8,
+                    "displayTID": 592096,
+                    "sid": 30969,
+                    "tid": 7712,
+                    "tsv": 1645
+                }
+            ]
+        }
+    ]
+}

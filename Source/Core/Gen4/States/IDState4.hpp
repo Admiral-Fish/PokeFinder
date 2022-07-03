@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -22,47 +22,71 @@
 
 #include <Core/Parents/States/IDState.hpp>
 
+/**
+ * @brief State class for Gen4 TID/SID
+ */
 class IDState4 : public IDState
 {
 public:
-    IDState4(u32 seed, u16 tid, u16 sid) : IDState(tid, sid), seed(seed)
+    /**
+     * @brief Construct a new IDState4 object
+     *
+     * @param seed State seed
+     * @param delay State delay
+     * @param tid Trainer ID
+     * @param sid Secret ID
+     * @param seconds State seconds
+     */
+    IDState4(u32 seed, u32 delay, u16 tid, u16 sid, u8 seconds) :
+        IDState(tid, sid, (tid ^ sid) >> 3), delay(delay), seed(seed), seconds(seconds)
     {
-        tsv = (tid ^ sid) >> 3;
     }
 
-    u32 getSeed() const
+    /**
+     * @brief Construct a new IDState4 object
+     *
+     * @param seed State seed
+     * @param delay State delay
+     * @param tid Trainer ID
+     * @param sid Secret ID
+     */
+    IDState4(u32 seed, u32 delay, u16 tid, u16 sid) : IDState(tid, sid, (tid ^ sid) >> 3), delay(delay), seed(seed)
     {
-        return seed;
     }
 
-    void setSeed(u32 seed)
-    {
-        this->seed = seed;
-    }
-
+    /**
+     * @brief Returns the delay of the state
+     *
+     * @return State delay
+     */
     u32 getDelay() const
     {
         return delay;
     }
 
-    void setDelay(u32 delay)
-    {
-        this->delay = delay;
-    }
-
+    /**
+     * @brief Returns the seconds of the state
+     *
+     * @return State seconds
+     */
     u8 getSeconds() const
     {
         return seconds;
     }
 
-    void setSeconds(u8 seconds)
+    /**
+     * @brief Returns the seed of the state
+     *
+     * @return State seed
+     */
+    u32 getSeed() const
     {
-        this->seconds = seconds;
+        return seed;
     }
 
 private:
-    u32 seed;
     u32 delay;
+    u32 seed;
     u8 seconds;
 };
 

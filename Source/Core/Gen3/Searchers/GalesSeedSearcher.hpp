@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -23,21 +23,88 @@
 #include <Core/Gen3/Searchers/SeedSearcher.hpp>
 #include <Core/RNG/LCRNG.hpp>
 
-class GalesSeedSearcher : public SeedSearcher
+struct GalesCriteria
+{
+    u16 enemyHP[2];
+    u16 playerHP[2];
+    u8 enemyIndex;
+    u8 playerIndex;
+};
+
+/**
+ * @brief Searches for candidate PRNG states
+ */
+class GalesSeedSearcher final : public SeedSearcher<GalesCriteria>
 {
 public:
-    GalesSeedSearcher(const std::vector<u32> &criteria, u16 tsv);
+    /**
+     * @brief Construct a new GalesSeedSearcher object
+     *
+     * @param criteria Filtering data
+     * @param tsv Trainer shiny value
+     */
+    GalesSeedSearcher(const GalesCriteria &criteria);
+
+    /**
+     * @brief Starts the search
+     *
+     * @param threads Number of threads to search with
+     */
     void startSearch(int threads);
-    void startSearch(int threads, const std::vector<u32> &seeds);
+
+    /**
+     * @brief Starts the search
+     *
+     * @param seeds Candidiate PRNG states to search from
+     */
+    void startSearch(const std::vector<u32> &seeds);
 
 private:
-    u16 tsv;
+    /**
+     * @brief Generates EVs for a pokemon
+     *
+     * @param rng Starting PRNG state
+     *
+     * @return EV for the HP stat
+     */
+    u8 generateEVs(XDRNG &rng) const;
 
+    /**
+     * @brief Generates a pokemon
+     *
+     * @param rng Starting PRNG state
+     *
+     * @return Pokemon HP IV
+     */
+    u8 generatePokemon(XDRNG &rng, u16 tsv) const;
+
+    /**
+     * @brief Searches over a range of PRNG states for valid candidate seeds
+     *
+     * @param start Lower PRNG state
+     * @param end Upper PRNG state
+     */
     void search(u32 start, u32 end);
-    void search(const std::vector<u32>::const_iterator &start, const std::vector<u32>::const_iterator &end);
-    bool searchSeed(XDRNG &rng);
-    void generatePokemon(XDRNG &rng) const;
-    u8 generateEVs(XDRNG &rng);
+
+    /**
+     * @brief Determines if PRNG state is valid for the criteria
+     *
+     * @param rng Starting PRNG state
+     *
+     * @return true PRNG state is valid
+     * @return false PRNG state is not valid
+     */
+    bool searchSeed(XDRNG &rng) const;
+
+    /**
+     * @brief Determines if PRNG state is valid for the criteria
+     *
+     * @param rng Starting PRNG state
+     *
+     * @return true PRNG state is valid
+     * @return false PRNG state is not valid
+     */
+    bool searchSeedSkip(XDRNG &rng) const;
 };
 
 #endif // GALESSEEDSEARCHER_HPP

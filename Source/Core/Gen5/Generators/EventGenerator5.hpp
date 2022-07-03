@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -20,20 +20,42 @@
 #ifndef EVENTGENERATOR5_HPP
 #define EVENTGENERATOR5_HPP
 
+#include <Core/Gen5/Filters/StateFilter5.hpp>
 #include <Core/Gen5/PGF.hpp>
+#include <Core/Gen5/Profile5.hpp>
 #include <Core/Parents/Generators/Generator.hpp>
 
-class State;
+class State5;
 
-class EventGenerator5 : public Generator
+/**
+ * @brief Event generator for Gen 5
+ */
+class EventGenerator5 : public Generator<Profile5, StateFilter5>
 {
 public:
-    EventGenerator5(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter,
-                    const PGF &parameters);
-    std::vector<State> generate(u64 seed) const;
+    /**
+     * @brief Construct a new EventGenerator5 object
+     *
+     * @param initialAdvances Initial number of advances
+     * @param maxAdvances Maximum number of advances
+     * @param delay Number of advances to offset
+     * @param pgf Pokemon template
+     * @param profile Profile Information
+     * @param filter State filter
+     */
+    EventGenerator5(u32 initialAdvances, u32 maxAdvances, u32 delay, const PGF &pgf, const Profile5 &profile, const StateFilter5 &filter);
+
+    /**
+     * @brief Generates states
+     *
+     * @param seed Starting PRNG state
+     *
+     * @return Vector of computed states
+     */
+    std::vector<State5> generate(u64 seed) const;
 
 private:
-    PGF parameters;
+    PGF pgf;
     u8 wondercardAdvances;
 };
 

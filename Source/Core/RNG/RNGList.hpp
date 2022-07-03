@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -21,26 +21,71 @@
 #ifndef RNGLIST_HPP
 #define RNGLIST_HPP
 
-#include <Core/Util/Global.hpp>
+#include <Core/Global.hpp>
+#include <cassert>
 
-template <typename Integer, class RNG, u16 size, u8 shift>
+/**
+ * @brief Provides a storage container to reuse RNG calculations and cycle out old states with new states
+ *
+ * @tparam Integer Integer type that is being stored
+ * @tparam RNG RNG class used to generate states
+ * @tparam size Size of the storage container (must be a perfect multiple of two)
+ * @tparam generate Function pointer to modify generated PRNG states
+ */
+template <typename Integer, class RNG, u16 size, Integer (*generate)(RNG &) = nullptr>
 class RNGList
 {
-public:
-    explicit RNGList(RNG &rng) : rng(rng), head(0), pointer(0)
-    {
-        static_assert(size && ((size & (size - 1)) == 0), "Number is not a perfect multiple of two");
+    static_assert(size && ((size & (size - 1)) == 0), "Number is not a perfect multiple of two");
 
-        for (Integer &x : list)
-        {
-            x = this->rng.next() >> shift;
-        }
+public:
+    /**
+     * @brief Construct a new RNGList object
+     *
+     * @param seed Starting PRNG state
+     * @param advances Initial advances
+     */
+    RNGList(u32 seed, u32 advances) : rng(seed, advances), head(0), pointer(0)
+    {
+        init();
     }
 
+    /**
+     * @brief Construct a new RNGList object
+     *
+     * @param seed0 Starting PRNG state0
+     * @param seed1 Starting PRNG state1
+     * @param advances Initial advances
+     */
+    RNGList(u64 seed0, u64 seed1, u32 advances) : rng(seed0, seed1, advances), head(0), pointer(0)
+    {
+        init();
+    }
+
+    /**
+     * @brief Deleted copy constructor
+     */
     RNGList(const RNGList &) = delete;
 
+    /**
+     * @brief Deleted move constructor
+     */
+    RNGList(RNGList &&) = delete;
+
+    /**
+     * @brief Deleted copy assignment
+     */
     void operator=(const RNGList &) = delete;
 
+    /**
+     * @brief Deleted move assignment
+     */
+    RNGList &operator=(RNGList &&) = delete;
+
+    /**
+     * @brief Advances the RNG by \p advances amount
+     *
+     * @param advances Number of advances
+     */
     void advanceStates(u32 advances)
     {
         for (u32 i = 0; i < advances; i++)
@@ -49,26 +94,72 @@ public:
         }
     }
 
+    /**
+     * @brief Advances the RNG by 1
+     */
     void advanceState()
     {
-        list[head++] = rng.next() >> shift;
-        head &= size - 1;
+        if constexpr (generate != nullptr)
+        {
+            list[head++] = generate(rng);
+        }
+        else
+        {
+            list[head++] = rng.next();
+        }
+        head %= size;
 
         pointer = head;
     }
 
+    /**
+     * @brief Advances the internal state by \p advances amount
+     *
+     * @param advances Number of advances
+     */
     void advance(u32 advances)
     {
-        pointer = (pointer + advances) & (size - 1);
+        pointer = (pointer + advances) % size;
     }
 
-    Integer getValue()
+    /**
+     * @brief Gets the next PRNG state
+     *
+     *
+     * @return PRNG state
+     */
+    Integer next()
     {
         Integer result = list[pointer++];
-        pointer &= size - 1;
+        pointer %= size;
+
+        // Debug assert to help discover if the array is too small
+        // Only check on bigger sizes. Smaller sizes are prone to false positives if we use size number of prng calls
+        if constexpr (size > 8)
+        {
+            assert(pointer != head);
+        }
+
         return result;
     }
 
+    /**
+     * @brief Gets the next PRNG state
+     *
+     * @tparam Ret Return value type
+     * @param value Function pointer to modify returned PRNG state
+     *
+     * @return PRNG state
+     */
+    template <typename Ret>
+    Ret next(Ret (*value)(Integer))
+    {
+        return value(next());
+    }
+
+    /**
+     * @brief Resets the current internal state
+     */
     void resetState()
     {
         pointer = head;
@@ -78,6 +169,24 @@ private:
     RNG rng;
     Integer list[size];
     u16 head, pointer;
+
+    /**
+     * @brief Populates the list with PRNG states
+     */
+    void init()
+    {
+        for (Integer &x : list)
+        {
+            if constexpr (generate != nullptr)
+            {
+                x = generate(rng);
+            }
+            else
+            {
+                x = rng.next();
+            }
+        }
+    }
 };
 
 #endif // RNGLIST_HPP

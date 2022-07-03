@@ -1,0 +1,3076 @@
+{
+    "starters": [
+        {
+            "description": "Chikorita @ Littleroot Town",
+            "version": "Game::Emerald",
+            "specie": 152,
+            "level": 5
+        },
+        {
+            "description": "Cyndaquil @ Littleroot Town",
+            "version": "Game::Emerald",
+            "specie": 155,
+            "level": 5
+        },
+        {
+            "description": "Totodile @ Littleroot Town",
+            "version": "Game::Emerald",
+            "specie": 158,
+            "level": 5
+        },
+        {
+            "description": "Treecko @ Route 101",
+            "version": "Game::RSE",
+            "specie": 252,
+            "level": 5
+        },
+        {
+            "description": "Torchic @ Route 101",
+            "version": "Game::RSE",
+            "specie": 255,
+            "level": 5
+        },
+        {
+            "description": "Mudkip @ Route 101",
+            "version": "Game::RSE",
+            "specie": 258,
+            "level": 5
+        },
+        {
+            "description": "Bulbasaur @ Pallet Town",
+            "version": "Game::FRLG",
+            "specie": 1,
+            "level": 5
+        },
+        {
+            "description": "Squirtle @ Pallet Town",
+            "version": "Game::FRLG",
+            "specie": 4,
+            "level": 5
+        },
+        {
+            "description": "Charmander @ Pallet Town",
+            "version": "Game::FRLG",
+            "specie": 7,
+            "level": 5
+        }
+    ],
+    "fossils": [
+        {
+            "description": "Lileep @ Rustboro City",
+            "version": "Game::RSE",
+            "specie": 345,
+            "level": 20
+        },
+        {
+            "description": "Anorith @ Rustboro City",
+            "version": "Game::RSE",
+            "specie": 347,
+            "level": 20
+        },
+        {
+            "description": "Omanyte @ Cinnabar Islands",
+            "version": "Game::FRLG",
+            "specie": 138,
+            "level": 5
+        },
+        {
+            "description": "Kabuto @ Cinnabar Islands",
+            "version": "Game::FRLG",
+            "specie": 140,
+            "level": 5
+        },
+        {
+            "description": "Aerodactyl @ Cinnabar Islands",
+            "version": "Game::FRLG",
+            "specie": 142,
+            "level": 5
+        }
+    ],
+    "gifts": [
+        {
+            "description": "Castform @ Weather Institute",
+            "version": "Game::RSE",
+            "specie": 351,
+            "level": 25
+        },
+        {
+            "description": "Beldum @ Mossdeep City",
+            "version": "Game::RSE",
+            "specie": 374,
+            "level": 5
+        },
+        {
+            "description": "Wynaut Egg",
+            "version": "Game::RSE",
+            "specie": 360,
+            "level": 5
+        },
+        {
+            "description": "Hitmonlee @ Saffron City",
+            "version": "Game::FRLG",
+            "specie": 106,
+            "level": 25
+        },
+        {
+            "description": "Hitmonchan @ Saffron City",
+            "version": "Game::FRLG",
+            "specie": 107,
+            "level": 25
+        },
+        {
+            "description": "Magikarp @ Route 4",
+            "version": "Game::FRLG",
+            "specie": 129,
+            "level": 5
+        },
+        {
+            "description": "Lapras @ Silph Co.",
+            "version": "Game::FRLG",
+            "specie": 131,
+            "level": 25
+        },
+        {
+            "description": "Eevee @ Celadon City",
+            "version": "Game::FRLG",
+            "specie": 133,
+            "level": 25
+        },
+        {
+            "description": "Togepi Egg",
+            "version": "Game::FRLG",
+            "specie": 175,
+            "level": 5
+        }
+    ],
+    "gameCorner": [
+        {
+            "description": "Abra @ Celadon City",
+            "version": "Game::FireRed",
+            "specie": 63,
+            "level": 9
+        },
+        {
+            "description": "Clefairy @ Celadon City",
+            "version": "Game::FireRed",
+            "specie": 35,
+            "level": 8
+        },
+        {
+            "description": "Scyther @ Celadon City",
+            "version": "Game::FireRed",
+            "specie": 123,
+            "level": 25
+        },
+        {
+            "description": "Dratini @ Celadon City",
+            "version": "Game::FireRed",
+            "specie": 147,
+            "level": 18
+        },
+        {
+            "description": "Porygon @ Celadon City",
+            "version": "Game::FireRed",
+            "specie": 137,
+            "level": 26
+        },
+        {
+            "description": "Abra @ Celadon City",
+            "version": "Game::LeafGreen",
+            "specie": 63,
+            "level": 7
+        },
+        {
+            "description": "Clefairy @ Celadon City",
+            "version": "Game::LeafGreen",
+            "specie": 35,
+            "level": 12
+        },
+        {
+            "description": "Pinsir @ Celadon City",
+            "version": "Game::LeafGreen",
+            "specie": 127,
+            "level": 18
+        },
+        {
+            "description": "Dratini @ Celadon City",
+            "version": "Game::LeafGreen",
+            "specie": 147,
+            "level": 24
+        },
+        {
+            "description": "Porygon @ Celadon City",
+            "version": "Game::LeafGreen",
+            "specie": 137,
+            "level": 18
+        }
+    ],
+    "stationary": [
+        {
+            "description": "Kecleon @ Route 119/120",
+            "version": "Game::RSE",
+            "specie": 352,
+            "level": 30
+        },
+        {
+            "description": "Electrode @ Magma/Aqua Hideout",
+            "version": "Game::RSE",
+            "specie": 101,
+            "level": 30
+        },
+        {
+            "description": "Sudowoodo @ Battle Frontier",
+            "version": "Game::Emerald",
+            "specie": 185,
+            "level": 40
+        },
+        {
+            "description": "Snorlax @ Route 12/16",
+            "version": "Game::FRLG",
+            "specie": 143,
+            "level": 30
+        },
+        {
+            "description": "Electrode @ Power Plant",
+            "version": "Game::FRLG",
+            "specie": 101,
+            "level": 34
+        },
+        {
+            "description": "Hypno @ Berry Forest",
+            "version": "Game::FRLG",
+            "specie": 97,
+            "level": 30
+        }
+    ],
+    "legends": [
+        {
+            "description": "Regirock @ Desert Ruins",
+            "version": "Game::RSE",
+            "specie": 377,
+            "level": 40
+        },
+        {
+            "description": "Regice @ Desert Ruins",
+            "version": "Game::RSE",
+            "specie": 378,
+            "level": 40
+        },
+        {
+            "description": "Registeel @ Desert Ruins",
+            "version": "Game::RSE",
+            "specie": 379,
+            "level": 40
+        },
+        {
+            "description": "Latias @ Southern Island",
+            "version": "Game::Emerald | Game::Ruby",
+            "specie": 380,
+            "level": 50
+        },
+        {
+            "description": "Latios @ Southern Island",
+            "version": "Game::Emerald | Game::Sapphire",
+            "specie": 381,
+            "level": 50
+        },
+        {
+            "description": "Kyogre @ Cave of Origin",
+            "version": "Game::Sapphire",
+            "specie": 382,
+            "level": 45
+        },
+        {
+            "description": "Kyogre @ Marine Cave",
+            "version": "Game::Emerald",
+            "specie": 382,
+            "level": 70
+        },
+        {
+            "description": "Groudon @ Cave of Origin",
+            "version": "Game::Ruby",
+            "specie": 383,
+            "level": 45
+        },
+        {
+            "description": "Groudon @ Terra Cave",
+            "version": "Game::Emerald",
+            "specie": 383,
+            "level": 70
+        },
+        {
+            "description": "Rayquaza @ Sky Pillar",
+            "version": "Game::RSE",
+            "specie": 384,
+            "level": 70
+        },
+        {
+            "description": "Articuno @ Seafoam Islands",
+            "version": "Game::FRLG",
+            "specie": 144,
+            "level": 50
+        },
+        {
+            "description": "Zapdos @ Power Plant",
+            "version": "Game::FRLG",
+            "specie": 145,
+            "level": 50
+        },
+        {
+            "description": "Moltres @ Mt. Ember",
+            "version": "Game::FRLG",
+            "specie": 146,
+            "level": 50
+        },
+        {
+            "description": "Mewtwo @ Cerulean Cave",
+            "version": "Game::FRLG",
+            "specie": 150,
+            "level": 70
+        }
+    ],
+    "events": [
+        {
+            "description": "Mew @ Faraway Island",
+            "version": "Game::Emerald",
+            "specie": 151,
+            "level": 30
+        },
+        {
+            "description": "Deoxys @ Birth Islands",
+            "version": "Game::Emerald",
+            "specie": 386,
+            "form": 3,
+            "level": 30
+        },
+        {
+            "description": "Deoxys @ Birth Islands",
+            "version": "Game::FireRed",
+            "specie": 386,
+            "form": 1,
+            "level": 30
+        },
+        {
+            "description": "Deoxys @ Birth Islands",
+            "version": "Game::LeafGreen",
+            "specie": 386,
+            "form": 2,
+            "level": 30
+        },
+        {
+            "description": "Lugia @ Navel Rock",
+            "version": "Game::Emerald | Game::FRLG",
+            "specie": 249,
+            "level": 70
+        },
+        {
+            "description": "Ho-Oh @ Navel Rock",
+            "version": "Game::Emerald | Game::FRLG",
+            "specie": 250,
+            "level": 70
+        }
+    ],
+    "galesColo": [
+        {
+            "description": "Umbreon",
+            "version": "Game::Colosseum",
+            "specie": 197,
+            "level": 26,
+            "shiny": "Shiny::Never"
+        },
+        {
+            "description": "Espeon",
+            "version": "Game::Colosseum",
+            "specie": 196,
+            "level": 25,
+            "shiny": "Shiny::Never"
+        },
+        {
+            "description": "Mattle Ho-Oh",
+            "version": "Game::Colosseum",
+            "specie": 250,
+            "level": 70,
+            "shiny": "Shiny::Never"
+        },
+        {
+            "description": "Ageto Celebi",
+            "version": "Game::Colosseum",
+            "specie": 251,
+            "level": 10,
+            "shiny": "Shiny::Never"
+        },
+        {
+            "description": "Ageto Pikachu",
+            "version": "Game::Colosseum",
+            "specie": 25,
+            "level": 10,
+            "shiny": "Shiny::Never"
+        },
+        {
+            "description": "Eevee",
+            "version": "Game::Gales",
+            "specie": 133,
+            "level": 10
+        },
+        {
+            "description": "Chikorita",
+            "version": "Game::Gales",
+            "specie": 152,
+            "level": 5
+        },
+        {
+            "description": "Cyndaquil",
+            "version": "Game::Gales",
+            "specie": 155,
+            "level": 5
+        },
+        {
+            "description": "Totodile",
+            "version": "Game::Gales",
+            "specie": 158,
+            "level": 5
+        },
+        {
+            "description": "Bayleef",
+            "version": "Game::Colosseum",
+            "specie": 153,
+            "level": 30
+        },
+        {
+            "description": "Quilava",
+            "version": "Game::Colosseum",
+            "specie": 156,
+            "level": 30
+        },
+        {
+            "description": "Croconaw",
+            "version": "Game::Colosseum",
+            "specie": 159,
+            "level": 30
+        },
+        {
+            "description": "Noctowl",
+            "version": "Game::Colosseum",
+            "specie": 164,
+            "level": 30
+        },
+        {
+            "description": "Flaaffy",
+            "version": "Game::Colosseum",
+            "specie": 180,
+            "level": 30
+        },
+        {
+            "description": "Skiploom",
+            "version": "Game::Colosseum",
+            "specie": 188,
+            "level": 30
+        },
+        {
+            "description": "Quagsire",
+            "version": "Game::Colosseum",
+            "specie": 195,
+            "level": 30
+        },
+        {
+            "description": "Misdreavus",
+            "version": "Game::Colosseum",
+            "specie": 200,
+            "level": 30
+        },
+        {
+            "description": "Yanma",
+            "version": "Game::Colosseum",
+            "specie": 193,
+            "level": 33
+        },
+        {
+            "description": "Furret",
+            "version": "Game::Colosseum",
+            "specie": 162,
+            "level": 33
+        },
+        {
+            "description": "Slugma",
+            "version": "Game::Colosseum",
+            "specie": 218,
+            "level": 30
+        },
+        {
+            "description": "Remoraid",
+            "version": "Game::Colosseum",
+            "specie": 223,
+            "level": 20
+        },
+        {
+            "description": "Mantine",
+            "version": "Game::Colosseum",
+            "specie": 226,
+            "level": 33
+        },
+        {
+            "description": "Qwilfish",
+            "version": "Game::Colosseum",
+            "specie": 211,
+            "level": 33
+        },
+        {
+            "description": "Meditite",
+            "version": "Game::Colosseum",
+            "specie": 307,
+            "level": 33
+        },
+        {
+            "description": "Dunsparce",
+            "version": "Game::Colosseum",
+            "specie": 206,
+            "level": 33
+        },
+        {
+            "description": "Swablu",
+            "version": "Game::Colosseum",
+            "specie": 333,
+            "level": 33
+        },
+        {
+            "description": "Sudowoodo",
+            "version": "Game::Colosseum",
+            "specie": 185,
+            "level": 35
+        },
+        {
+            "description": "Hitmontop",
+            "version": "Game::Colosseum",
+            "specie": 237,
+            "level": 38
+        },
+        {
+            "description": "Entei",
+            "version": "Game::Colosseum",
+            "specie": 244,
+            "level": 40
+        },
+        {
+            "description": "Ledian",
+            "version": "Game::Colosseum",
+            "specie": 166,
+            "level": 40
+        },
+        {
+            "description": "Suicune",
+            "version": "Game::Colosseum",
+            "specie": 245,
+            "level": 40
+        },
+        {
+            "description": "Stantler",
+            "version": "Game::Colosseum",
+            "specie": 234,
+            "level": 43
+        },
+        {
+            "description": "Piloswine",
+            "version": "Game::Colosseum",
+            "specie": 221,
+            "level": 43
+        },
+        {
+            "description": "Sneasel",
+            "version": "Game::Colosseum",
+            "specie": 215,
+            "level": 43
+        },
+        {
+            "description": "Aipom",
+            "version": "Game::Colosseum",
+            "specie": 190,
+            "level": 43
+        },
+        {
+            "description": "Forretress",
+            "version": "Game::Colosseum",
+            "specie": 205,
+            "level": 43
+        },
+        {
+            "description": "Granbull",
+            "version": "Game::Colosseum",
+            "specie": 210,
+            "level": 43
+        },
+        {
+            "description": "Vibrava",
+            "version": "Game::Colosseum",
+            "specie": 329,
+            "level": 43
+        },
+        {
+            "description": "Ariados",
+            "version": "Game::Colosseum",
+            "specie": 168,
+            "level": 43
+        },
+        {
+            "description": "Raikou",
+            "version": "Game::Colosseum",
+            "specie": 243,
+            "level": 40
+        },
+        {
+            "description": "Sunflora",
+            "version": "Game::Colosseum",
+            "specie": 192,
+            "level": 45
+        },
+        {
+            "description": "Delibird",
+            "version": "Game::Colosseum",
+            "specie": 225,
+            "level": 45
+        },
+        {
+            "description": "Skarmory",
+            "version": "Game::Colosseum",
+            "specie": 227,
+            "level": 47
+        },
+        {
+            "description": "Miltank",
+            "version": "Game::Colosseum",
+            "specie": 241,
+            "level": 48
+        },
+        {
+            "description": "Absol",
+            "version": "Game::Colosseum",
+            "specie": 359,
+            "level": 48
+        },
+        {
+            "description": "Houndoom",
+            "version": "Game::Colosseum",
+            "specie": 229,
+            "level": 48
+        },
+        {
+            "description": "Tropius",
+            "version": "Game::Colosseum",
+            "specie": 357,
+            "level": 49
+        },
+        {
+            "description": "Metagross",
+            "version": "Game::Colosseum",
+            "specie": 376,
+            "level": 50
+        },
+        {
+            "description": "Tyranitar",
+            "version": "Game::Colosseum",
+            "specie": 248,
+            "level": 55
+        },
+        {
+            "description": "Smeargle",
+            "version": "Game::Colosseum",
+            "specie": 235,
+            "level": 45
+        },
+        {
+            "description": "Shuckle",
+            "version": "Game::Colosseum",
+            "specie": 213,
+            "level": 45
+        },
+        {
+            "description": "Toegtic",
+            "version": "Game::Colosseum",
+            "specie": 176,
+            "level": 20
+        },
+        {
+            "description": "Teddiursa",
+            "version": "Game::Gales",
+            "specie": 216,
+            "level": 11,
+            "shiny": "Shiny::Never"
+        },
+        {
+            "description": "Baltoy",
+            "version": "Game::Gales",
+            "specie": 343,
+            "level": 17,
+            "shiny": "Shiny::Never"
+        },
+        {
+            "description": "Mareep",
+            "version": "Game::Gales",
+            "specie": 179,
+            "level": 17,
+            "shiny": "Shiny::Never"
+        },
+        {
+            "description": "Carvanha",
+            "version": "Game::Gales",
+            "specie": 318,
+            "level": 15,
+            "shiny": "Shiny::Never"
+        },
+        {
+            "description": "Houndour",
+            "version": "Game::Gales",
+            "specie": 228,
+            "level": 17,
+            "shiny": "Shiny::Never"
+        },
+        {
+            "description": "Zangoose",
+            "version": "Game::Gales",
+            "specie": 335,
+            "level": 28,
+            "shiny": "Shiny::Never"
+        },
+        {
+            "description": "Togepi",
+            "version": "Game::Gales",
+            "specie": 175,
+            "level": 25,
+            "shiny": "Shiny::Never"
+        },
+        {
+            "description": "Shellder",
+            "version": "Game::Gales",
+            "specie": 90,
+            "level": 29,
+            "shiny": "Shiny::Never"
+        },
+        {
+            "description": "Beedrill",
+            "version": "Game::Gales",
+            "specie": 15,
+            "level": 30,
+            "shiny": "Shiny::Never"
+        },
+        {
+            "description": "Swellow",
+            "version": "Game::Gales",
+            "specie": 277,
+            "level": 43,
+            "shiny": "Shiny::Never"
+        },
+        {
+            "description": "Lugia",
+            "version": "Game::Gales",
+            "specie": 249,
+            "level": 50,
+            "shiny": "Shiny::Never"
+        },
+        {
+            "description": "Rhydon",
+            "version": "Game::Gales",
+            "specie": 112,
+            "level": 46,
+            "shiny": "Shiny::Never"
+        },
+        {
+            "description": "Moltres",
+            "version": "Game::Gales",
+            "specie": 146,
+            "level": 50,
+            "shiny": "Shiny::Never"
+        },
+        {
+            "description": "Exeggutor",
+            "version": "Game::Gales",
+            "specie": 103,
+            "level": 46,
+            "shiny": "Shiny::Never"
+        },
+        {
+            "description": "Tauros",
+            "version": "Game::Gales",
+            "specie": 128,
+            "level": 46,
+            "shiny": "Shiny::Never"
+        },
+        {
+            "description": "Articuno",
+            "version": "Game::Gales",
+            "specie": 144,
+            "level": 50,
+            "shiny": "Shiny::Never"
+        },
+        {
+            "description": "Zapdos",
+            "version": "Game::Gales",
+            "specie": 145,
+            "level": 50,
+            "shiny": "Shiny::Never"
+        }
+    ],
+    "galesColoShadow": [
+        {
+            "description": "Makuhita",
+            "version": "Game::Colosseum",
+            "specie": 296,
+            "level": 30,
+            "locks": [
+                {
+                    "description": "Duskull (M) (Quirky)",
+                    "nature": 24,
+                    "gender": 0,
+                    "genderRatio": 127
+                },
+                {
+                    "description": "Spinarak (F) (Hardy)",
+                    "nature": 0,
+                    "gender": 1,
+                    "genderRatio": 127
+                }
+            ],
+            "count": 2,
+            "type": "ShadowType::FirstShadow"
+        },
+        {
+            "description": "Gligar",
+            "version": "Game::Colosseum",
+            "specie": 207,
+            "level": 43,
+            "locks": [
+                {
+                    "description": "Teddiursa (M) (Serious)",
+                    "nature": 12,
+                    "gender": 0,
+                    "genderRatio": 127
+                },
+                {
+                    "description": "Jigglypuff (F) (Docile)",
+                    "nature": 6,
+                    "gender": 1,
+                    "genderRatio": 191
+                },
+                {
+                    "description": "Shroomish (M) (Bashful)",
+                    "nature": 18,
+                    "gender": 0,
+                    "genderRatio": 127
+                }
+            ],
+            "count": 2,
+            "type": "ShadowType::FirstShadow"
+        },
+        {
+            "description": "Murkrow",
+            "version": "Game::Colosseum",
+            "specie": 198,
+            "level": 43,
+            "locks": [
+                {
+                    "description": "Carvanha (M) (Docile)",
+                    "nature": 6,
+                    "gender": 0,
+                    "genderRatio": 127
+                },
+                {
+                    "description": "Nuzleaf (F) (Serious)",
+                    "nature": 12,
+                    "gender": 1,
+                    "genderRatio": 127
+                },
+                {
+                    "description": "Houndour (M) (Bashful)",
+                    "nature": 18,
+                    "gender": 0,
+                    "genderRatio": 127
+                }
+            ],
+            "count": 3,
+            "type": "ShadowType::FirstShadow"
+        },
+        {
+            "description": "Heracross",
+            "version": "Game::Colosseum",
+            "specie": 214,
+            "level": 45,
+            "locks": [
+                {
+                    "description": "Masquerain (M) (Hardy)",
+                    "nature": 0,
+                    "gender": 0,
+                    "genderRatio": 127
+                },
+                {
+                    "description": "Ariados (F) (Hardy)",
+                    "nature": 0,
+                    "gender": 1,
+                    "genderRatio": 127
+                }
+            ],
+            "count": 2,
+            "type": "ShadowType::FirstShadow"
+        },
+        {
+            "description": "Ursaring",
+            "version": "Game::Colosseum",
+            "specie": 217,
+            "level": 45,
+            "locks": [
+                {
+                    "description": "Machoke (F) (Calm)",
+                    "nature": 20,
+                    "gender": 1,
+                    "genderRatio": 63
+                },
+                {
+                    "description": "Marshtomp (M) (Mild)",
+                    "nature": 16,
+                    "gender": 0,
+                    "genderRatio": 31
+                },
+                {
+                    "description": "Shiftry (F) (Gentle)",
+                    "nature": 21,
+                    "gender": 1,
+                    "genderRatio": 127
+                }
+            ],
+            "count": 3,
+            "type": "ShadowType::FirstShadow"
+        },
+        {
+            "description": "Toegpi",
+            "version": "Game::Colosseum",
+            "specie": 175,
+            "level": 20,
+            "locks": [
+                {
+                    "description": "Sableye (M) (Careful)",
+                    "nature": 23,
+                    "gender": 0,
+                    "genderRatio": 127
+                },
+                {
+                    "description": "Grimer (M) (Impish)",
+                    "nature": 8,
+                    "gender": 0,
+                    "genderRatio": 127
+                },
+                {
+                    "description": "Gulpin (M) (Quirky)",
+                    "nature": 24,
+                    "gender": 0,
+                    "genderRatio": 127
+                },
+                {
+                    "description": "Togepi (F) (Sassy)",
+                    "nature": 22,
+                    "gender": 1,
+                    "genderRatio": 31
+                }
+            ],
+            "count": 4,
+            "type": "ShadowType::EReader"
+        },
+        {
+            "description": "Mareep",
+            "version": "Game::Colosseum",
+            "specie": 179,
+            "level": 37,
+            "locks": [
+                {
+                    "description": "Skitty (F) (Naughty)",
+                    "nature": 4,
+                    "gender": 1,
+                    "genderRatio": 191
+                },
+                {
+                    "description": "Qwilfish (F) (Timid)",
+                    "nature": 10,
+                    "gender": 1,
+                    "genderRatio": 127
+                },
+                {
+                    "description": "Duskull (F) (Serious)",
+                    "nature": 12,
+                    "gender": 1,
+                    "genderRatio": 127
+                },
+                {
+                    "description": "Mareep (F) (Mild)",
+                    "nature": 16,
+                    "gender": 1,
+                    "genderRatio": 127
+                }
+            ],
+            "count": 4,
+            "type": "ShadowType::EReader"
+        },
+        {
+            "description": "Scizor",
+            "version": "Game::Colosseum",
+            "specie": 212,
+            "level": 50,
+            "locks": [
+                {
+                    "description": "Murkow (F) (Jolly)",
+                    "nature": 13,
+                    "gender": 1,
+                    "genderRatio": 191
+                },
+                {
+                    "description": "Claydol (-) (Brave)",
+                    "nature": 2,
+                    "gender": 2,
+                    "genderRatio": 255
+                },
+                {
+                    "description": "Steelix (M) (Adamant)",
+                    "nature": 3,
+                    "gender": 0,
+                    "genderRatio": 127
+                },
+                {
+                    "description": "Scizor (M) (Hasty)",
+                    "nature": 11,
+                    "gender": 0,
+                    "genderRatio": 127
+                }
+            ],
+            "count": 4,
+            "type": "ShadowType::EReader"
+        },
+        {
+            "description": "Ledyba",
+            "version": "Game::Gales",
+            "specie": 165,
+            "level": 10,
+            "shiny": "Shiny::Never",
+            "locks": [
+                {
+                    "description": "Taillow (F) (Hardy)",
+                    "nature": 0,
+                    "gender": 1,
+                    "genderRatio": 127
+                }
+            ],
+            "count": 1,
+            "type": "ShadowType::SingleLock"
+        },
+        {
+            "description": "Poochyena",
+            "version": "Game::Gales",
+            "specie": 261,
+            "level": 10,
+            "shiny": "Shiny::Never",
+            "locks": [
+                {
+                    "description": "Zubat (F) (Serious)",
+                    "nature": 12,
+                    "gender": 1,
+                    "genderRatio": 127
+                }
+            ],
+            "count": 1,
+            "type": "ShadowType::SingleLock"
+        },
+        {
+            "description": "Spheal @ Lab",
+            "version": "Game::Gales",
+            "specie": 363,
+            "level": 17,
+            "shiny": "Shiny::Never",
+            "locks": [
+                {
+                    "description": "Horsea (M) (Quirky)",
+                    "nature": 24,
+                    "gender": 0,
+                    "genderRatio": 63
+                },
+                {
+                    "description": "Goldeen (F) (Serious)",
+                    "nature": 12,
+                    "gender": 1,
+                    "genderRatio": 127
+                }
+            ],
+            "count": 2,
+            "type": "ShadowType::FirstShadow"
+        },
+        {
+            "description": "Spheal @ Phenac/Citadark",
+            "version": "Game::Gales",
+            "specie": 363,
+            "level": 17,
+            "shiny": "Shiny::Never",
+            "locks": [
+                {
+                    "description": "Horsea (M) (Quirky)",
+                    "nature": 24,
+                    "gender": 0,
+                    "genderRatio": 63
+                },
+                {
+                    "description": "Goldeen (F) (Serious)",
+                    "nature": 12,
+                    "gender": 1,
+                    "genderRatio": 127
+                },
+                {
+                    "description": "Beldum (-) (Hardy)",
+                    "nature": 0,
+                    "gender": 2,
+                    "genderRatio": 255
+                }
+            ],
+            "count": 3,
+            "type": "ShadowType::FirstShadow"
+        },
+        {
+            "description": "Gulpin",
+            "version": "Game::Gales",
+            "specie": 316,
+            "level": 17,
+            "shiny": "Shiny::Never",
+            "locks": [
+                {
+                    "description": "Koffing (F) (Serious)",
+                    "nature": 12,
+                    "gender": 1,
+                    "genderRatio": 127
+                },
+                {
+                    "description": "Grimer (M) (Docile)",
+                    "nature": 6,
+                    "gender": 0,
+                    "genderRatio": 127
+                }
+            ],
+            "count": 2,
+            "type": "ShadowType::FirstShadow"
+        },
+        {
+            "description": "Seedot ",
+            "version": "Game::Gales",
+            "specie": 273,
+            "level": 17,
+            "shiny": "Shiny::Never",
+            "locks": [
+                {
+                    "description": "Oddish (M) (Docile)",
+                    "nature": 6,
+                    "gender": 0,
+                    "genderRatio": 127
+                },
+                {
+                    "description": "Cacnea (F) (Quirky)",
+                    "nature": 24,
+                    "gender": 1,
+                    "genderRatio": 127
+                },
+                {
+                    "description": "Shroomish (F) (Bashful)",
+                    "nature": 18,
+                    "gender": 1,
+                    "genderRatio": 127
+                },
+                {
+                    "description": "Lotad (M) (Hardy)",
+                    "nature": 0,
+                    "gender": 0,
+                    "genderRatio": 127
+                },
+                {
+                    "description": "Pineco (M) (Serious)",
+                    "nature": 12,
+                    "gender": 0,
+                    "genderRatio": 127
+                }
+            ],
+            "count": 5,
+            "type": "ShadowType::FirstShadow"
+        },
+        {
+            "description": "Seedot ",
+            "version": "Game::Gales",
+            "specie": 273,
+            "level": 17,
+            "shiny": "Shiny::Never",
+            "locks": [
+                {
+                    "description": "Oddish (M) (Docile)",
+                    "nature": 6,
+                    "gender": 0,
+                    "genderRatio": 127
+                },
+                {
+                    "description": "Cacnea (F) (Quirky)",
+                    "nature": 24,
+                    "gender": 1,
+                    "genderRatio": 127
+                },
+                {
+                    "description": "Shroomish (F) (Hardy)",
+                    "nature": 0,
+                    "gender": 1,
+                    "genderRatio": 127
+                },
+                {
+                    "description": "Lotad (F) (Hardy)",
+                    "nature": 0,
+                    "gender": 1,
+                    "genderRatio": 127
+                },
+                {
+                    "description": "Pineco (M) (Docile)",
+                    "nature": 6,
+                    "gender": 0,
+                    "genderRatio": 127
+                }
+            ],
+            "count": 5,
+            "type": "ShadowType::FirstShadow"
+        },
+        {
+            "description": "Seedot ",
+            "version": "Game::Gales",
+            "specie": 273,
+            "level": 17,
+            "shiny": "Shiny::Never",
+            "locks": [
+                {
+                    "description": "Vileplume (M) (Docile)",
+                    "nature": 6,
+                    "gender": 0,
+                    "genderRatio": 127
+                },
+                {
+                    "description": "Cacturne (F) (Quirky)",
+                    "nature": 24,
+                    "gender": 1,
+                    "genderRatio": 127
+                },
+                {
+                    "description": "Breloom (F) (Hardy)",
+                    "nature": 0,
+                    "gender": 1,
+                    "genderRatio": 127
+                },
+                {
+                    "description": "Lombre (M) (Hardy)",
+                    "nature": 0,
+                    "gender": 0,
+                    "genderRatio": 127
+                },
+                {
+                    "description": "Forretress (M) (Serious)",
+                    "nature": 12,
+                    "gender": 0,
+                    "genderRatio": 127
+                }
+            ],
+            "count": 5,
+            "type": "ShadowType::FirstShadow"
+        },
+        {
+            "description": "Spinarak",
+            "version": "Game::Gales",
+            "specie": 167,
+            "level": 14,
+            "shiny": "Shiny::Never",
+            "locks": [
+                {
+                    "description": "Swinub (F) (Serious)",
+                    "nature": 12,
+                    "gender": 1,
+                    "genderRatio": 127
+                },
+                {
+                    "description": "Shuppet (M) (Docile)",
+                    "nature": 6,
+                    "gender": 0,
+                    "genderRatio": 127
+                }
+            ],
+            "count": 2,
+            "type": "ShadowType::FirstShadow"
+        },
+        {
+            "description": "Numel",
+            "version": "Game::Gales",
+            "specie": 322,
+            "level": 14,
+            "shiny": "Shiny::Never",
+            "locks": [
+                {
+                    "description": "Ralts (M) (Docile)",
+                    "nature": 6,
+                    "gender": 0,
+                    "genderRatio": 127
+                },
+                {
+                    "description": "Voltorb (-) (Hardy)",
+                    "nature": 0,
+                    "gender": 2,
+                    "genderRatio": 255
+                },
+                {
+                    "description": "Bagon (F) (Quirky)",
+                    "nature": 24,
+                    "gender": 1,
+                    "genderRatio": 127
+                }
+            ],
+            "count": 3,
+            "type": "ShadowType::FirstShadow"
+        },
+        {
+            "description": "Shroomish",
+            "version": "Game::Gales",
+            "specie": 285,
+            "level": 14,
+            "shiny": "Shiny::Never",
+            "locks": [
+                {
+                    "description": "Snubbull (F) (Quirky)",
+                    "nature": 24,
+                    "gender": 1,
+                    "genderRatio": 191
+                },
+                {
+                    "description": "Kecleon (F) (Hardy)",
+                    "nature": 0,
+                    "gender": 1,
+                    "genderRatio": 127
+                }
+            ],
+            "count": 2,
+            "type": "ShadowType::FirstShadow"
+        },
+        {
+            "description": "Delcatty",
+            "version": "Game::Gales",
+            "specie": 301,
+            "level": 18,
+            "shiny": "Shiny::Never",
+            "locks": [
+                {
+                    "description": "Luvdisc (F) (Docile)",
+                    "nature": 6,
+                    "gender": 1,
+                    "genderRatio": 191
+                },
+                {
+                    "description": "Beautifly (M) (Hardy)",
+                    "nature": 0,
+                    "gender": 0,
+                    "genderRatio": 127
+                },
+                {
+                    "description": "Roselia (M) (Quirky)",
+                    "nature": 24,
+                    "gender": 0,
+                    "genderRatio": 127
+                }
+            ],
+            "count": 3,
+            "type": "ShadowType::FirstShadow"
+        },
+        {
+            "description": "Voltorb",
+            "version": "Game::Gales",
+            "specie": 100,
+            "level": 19,
+            "shiny": "Shiny::Never",
+            "locks": [
+                {
+                    "description": "Lombre (M) (Hardy)",
+                    "nature": 0,
+                    "gender": 0,
+                    "genderRatio": 127
+                },
+                {
+                    "description": "Lombre (M) (Bashful)",
+                    "nature": 18,
+                    "gender": 0,
+                    "genderRatio": 127
+                },
+                {
+                    "description": "Lombre (F) (Serious)",
+                    "nature": 12,
+                    "gender": 1,
+                    "genderRatio": 127
+                }
+            ],
+            "count": 3,
+            "type": "ShadowType::FirstShadow"
+        },
+        {
+            "description": "Makuhita",
+            "version": "Game::Gales",
+            "specie": 296,
+            "level": 18,
+            "shiny": "Shiny::Never",
+            "locks": [
+                {
+                    "description": "Kecleon (M) (Docile)",
+                    "nature": 6,
+                    "gender": 0,
+                    "genderRatio": 127
+                },
+                {
+                    "description": "Surskit (F) (Bashful)",
+                    "nature": 18,
+                    "gender": 1,
+                    "genderRatio": 127
+                }
+            ],
+            "count": 2,
+            "type": "ShadowType::FirstShadow"
+        },
+        {
+            "description": "Vulpix",
+            "version": "Game::Gales",
+            "specie": 37,
+            "level": 18,
+            "shiny": "Shiny::Never",
+            "locks": [
+                {
+                    "description": "Spinarak (M) (Hardy)",
+                    "nature": 0,
+                    "gender": 0,
+                    "genderRatio": 127
+                },
+                {
+                    "description": "Beautifly (F) (Docile)",
+                    "nature": 6,
+                    "gender": 1,
+                    "genderRatio": 127
+                },
+                {
+                    "description": "Dustox (M) (Bashful)",
+                    "nature": 18,
+                    "gender": 0,
+                    "genderRatio": 127
+                }
+            ],
+            "count": 3,
+            "type": "ShadowType::FirstShadow"
+        },
+        {
+            "description": "Duskull",
+            "version": "Game::Gales",
+            "specie": 355,
+            "level": 19,
+            "shiny": "Shiny::Never",
+            "locks": [
+                {
+                    "description": "Sneasel (M) (Serious)",
+                    "nature": 12,
+                    "gender": 0,
+                    "genderRatio": 127
+                },
+                {
+                    "description": "Yanma (F) (Bashful)",
+                    "nature": 18,
+                    "gender": 1,
+                    "genderRatio": 127
+                },
+                {
+                    "description": "Misdreavus (M) (Quirky)",
+                    "nature": 24,
+                    "gender": 0,
+                    "genderRatio": 127
+                }
+            ],
+            "count": 3,
+            "type": "ShadowType::FirstShadow"
+        },
+        {
+            "description": "Ralts",
+            "version": "Game::Gales",
+            "specie": 280,
+            "level": 20,
+            "shiny": "Shiny::Never",
+            "locks": [
+                {
+                    "description": "Kadabra (M) (Hardy)",
+                    "nature": 0,
+                    "gender": 0,
+                    "genderRatio": 63
+                },
+                {
+                    "description": "Flaaffy (F) (Docile)",
+                    "nature": 6,
+                    "gender": 1,
+                    "genderRatio": 127
+                },
+                {
+                    "description": "Vigoroth (M) (Bashful)",
+                    "nature": 18,
+                    "gender": 0,
+                    "genderRatio": 127
+                }
+            ],
+            "count": 3,
+            "type": "ShadowType::FirstShadow"
+        },
+        {
+            "description": "Mawile",
+            "version": "Game::Gales",
+            "specie": 303,
+            "level": 22,
+            "shiny": "Shiny::Never",
+            "locks": [
+                {
+                    "description": "Loudred (M) (Docile)",
+                    "nature": 6,
+                    "gender": 0,
+                    "genderRatio": 127
+                },
+                {
+                    "description": "Girafarig (F) (Bashful)",
+                    "nature": 18,
+                    "gender": 1,
+                    "genderRatio": 127
+                }
+            ],
+            "count": 2,
+            "type": "ShadowType::FirstShadow"
+        },
+        {
+            "description": "Snorunt",
+            "version": "Game::Gales",
+            "specie": 361,
+            "level": 20,
+            "shiny": "Shiny::Never",
+            "locks": [
+                {
+                    "description": "Seviper (F) (Docile)",
+                    "nature": 6,
+                    "gender": 1,
+                    "genderRatio": 127
+                }
+            ],
+            "count": 1,
+            "type": "ShadowType::SingleLock"
+        },
+        {
+            "description": "Pineco",
+            "version": "Game::Gales",
+            "specie": 361,
+            "level": 20,
+            "shiny": "Shiny::Never",
+            "locks": [
+                {
+                    "description": "Murkrow (M) (Docile)",
+                    "nature": 6,
+                    "gender": 0,
+                    "genderRatio": 127
+                }
+            ],
+            "count": 1,
+            "type": "ShadowType::SingleLock"
+        },
+        {
+            "description": "Natu",
+            "version": "Game::Gales",
+            "specie": 177,
+            "level": 22,
+            "shiny": "Shiny::Never",
+            "locks": [
+                {
+                    "description": "Kirlia (M) (Hardy)",
+                    "nature": 0,
+                    "gender": 0,
+                    "genderRatio": 127
+                },
+                {
+                    "description": "Linoone (F) (Hardy)",
+                    "nature": 0,
+                    "gender": 1,
+                    "genderRatio": 127
+                }
+            ],
+            "count": 2,
+            "type": "ShadowType::FirstShadow"
+        },
+        {
+            "description": "Roselia",
+            "version": "Game::Gales",
+            "specie": 177,
+            "level": 22,
+            "shiny": "Shiny::Never",
+            "locks": [
+                {
+                    "description": "Remoraid (M) (Docile)",
+                    "nature": 6,
+                    "gender": 0,
+                    "genderRatio": 127
+                },
+                {
+                    "description": "Golbat (M) (Bashful)",
+                    "nature": 18,
+                    "gender": 0,
+                    "genderRatio": 127
+                }
+            ],
+            "count": 2,
+            "type": "ShadowType::FirstShadow"
+        },
+        {
+            "description": "Meowth",
+            "version": "Game::Gales",
+            "specie": 52,
+            "level": 22,
+            "shiny": "Shiny::Never",
+            "locks": [
+                {
+                    "description": "Kadabra (M) (Docile)",
+                    "nature": 6,
+                    "gender": 0,
+                    "genderRatio": 63
+                },
+                {
+                    "description": "Sneasel (F) (Hardy)",
+                    "nature": 0,
+                    "gender": 1,
+                    "genderRatio": 127
+                },
+                {
+                    "description": "Misdreavus (F) (Bashful)",
+                    "nature": 18,
+                    "gender": 1,
+                    "genderRatio": 127
+                }
+            ],
+            "count": 3,
+            "type": "ShadowType::FirstShadow"
+        },
+        {
+            "description": "Swinub",
+            "version": "Game::Gales",
+            "specie": 220,
+            "level": 22,
+            "shiny": "Shiny::Never",
+            "locks": [
+                {
+                    "description": "Torkoal (F) (Bashful)",
+                    "nature": 18,
+                    "gender": 1,
+                    "genderRatio": 127
+                },
+                {
+                    "description": "Nuzleaf (M) (Hardy)",
+                    "nature": 0,
+                    "gender": 0,
+                    "genderRatio": 127
+                }
+            ],
+            "count": 2,
+            "type": "ShadowType::FirstShadow"
+        },
+        {
+            "description": "Spearow",
+            "version": "Game::Gales",
+            "specie": 21,
+            "level": 22,
+            "shiny": "Shiny::Never",
+            "locks": [
+                {
+                    "description": "Pelipper (M) (Bashful)",
+                    "nature": 18,
+                    "gender": 0,
+                    "genderRatio": 127
+                },
+                {
+                    "description": "Electrike (F) (Docile)",
+                    "nature": 6,
+                    "gender": 1,
+                    "genderRatio": 127
+                }
+            ],
+            "count": 2,
+            "type": "ShadowType::FirstShadow"
+        },
+        {
+            "description": "Grimer",
+            "version": "Game::Gales",
+            "specie": 88,
+            "level": 23,
+            "shiny": "Shiny::Never",
+            "locks": [
+                {
+                    "description": "Chimecho (M) (Serious)",
+                    "nature": 12,
+                    "gender": 0,
+                    "genderRatio": 127
+                },
+                {
+                    "description": "Stantler (M) (Bashful)",
+                    "nature": 18,
+                    "gender": 0,
+                    "genderRatio": 127
+                }
+            ],
+            "count": 2,
+            "type": "ShadowType::FirstShadow"
+        },
+        {
+            "description": "Seel",
+            "version": "Game::Gales",
+            "specie": 86,
+            "level": 23,
+            "shiny": "Shiny::Never",
+            "locks": [
+                {
+                    "description": "Hoothoot (M) (Docile)",
+                    "nature": 6,
+                    "gender": 0,
+                    "genderRatio": 127
+                },
+                {
+                    "description": "Graveler (M) (Bashful)",
+                    "nature": 18,
+                    "gender": 0,
+                    "genderRatio": 127
+                },
+                {
+                    "description": "Gulpin (F) (Bashful)",
+                    "nature": 18,
+                    "gender": 1,
+                    "genderRatio": 127
+                }
+            ],
+            "count": 3,
+            "type": "ShadowType::FirstShadow"
+        },
+        {
+            "description": "Lunatone",
+            "version": "Game::Gales",
+            "specie": 337,
+            "level": 25,
+            "shiny": "Shiny::Never",
+            "locks": [
+                {
+                    "description": "Lanturn (F) (Hardy)",
+                    "nature": 0,
+                    "gender": 1,
+                    "genderRatio": 127
+                },
+                {
+                    "description": "Quagsire (M) (Bashful)",
+                    "nature": 18,
+                    "gender": 0,
+                    "genderRatio": 127
+                }
+            ],
+            "count": 2,
+            "type": "ShadowType::FirstShadow"
+        },
+        {
+            "description": "Nosepass",
+            "version": "Game::Gales",
+            "specie": 299,
+            "level": 26,
+            "shiny": "Shiny::Never",
+            "locks": [
+                {
+                    "description": "Lombre (M) (Hardy)",
+                    "nature": 0,
+                    "gender": 0,
+                    "genderRatio": 127
+                },
+                {
+                    "description": "Lombre (M) (Bashful)",
+                    "nature": 18,
+                    "gender": 0,
+                    "genderRatio": 127
+                },
+                {
+                    "description": "Lombre (F) (Serious)",
+                    "nature": 12,
+                    "gender": 1,
+                    "genderRatio": 127
+                }
+            ],
+            "count": 3,
+            "type": "ShadowType::FirstShadow"
+        },
+        {
+            "description": "Paras",
+            "version": "Game::Gales",
+            "specie": 46,
+            "level": 28,
+            "shiny": "Shiny::Never",
+            "locks": [
+                {
+                    "description": "Seviper (M) (Quirky)",
+                    "nature": 24,
+                    "gender": 0,
+                    "genderRatio": 127
+                },
+                {
+                    "description": "Murkrow (F) (Docile)",
+                    "nature": 6,
+                    "gender": 1,
+                    "genderRatio": 127
+                }
+            ],
+            "count": 2,
+            "type": "ShadowType::FirstShadow"
+        },
+        {
+            "description": "Growlithe",
+            "version": "Game::Gales",
+            "specie": 58,
+            "level": 28,
+            "shiny": "Shiny::Never",
+            "locks": [
+                {
+                    "description": "Seviper (M) (Quirky)",
+                    "nature": 24,
+                    "gender": 0,
+                    "genderRatio": 127
+                },
+                {
+                    "description": "Murkrow (F) (Docile)",
+                    "nature": 6,
+                    "gender": 1,
+                    "genderRatio": 127
+                },
+                {
+                    "description": "Shadow Paras",
+                    "nature": 0,
+                    "gender": 0,
+                    "genderRatio": 0
+                }
+            ],
+            "count": 3,
+            "type": "ShadowType::SecondShadow"
+        },
+        {
+            "description": "Pidgeotto",
+            "version": "Game::Gales",
+            "specie": 17,
+            "level": 30,
+            "shiny": "Shiny::Never",
+            "locks": [
+                {
+                    "description": "Shadow Beedrill",
+                    "nature": 0,
+                    "gender": 0,
+                    "genderRatio": 0
+                },
+                {
+                    "description": "Furret (M) (Serious)",
+                    "nature": 12,
+                    "gender": 0,
+                    "genderRatio": 127
+                },
+                {
+                    "description": "Togetic (M) (Bashful)",
+                    "nature": 18,
+                    "gender": 0,
+                    "genderRatio": 31
+                }
+            ],
+            "count": 3,
+            "type": "ShadowType::FirstShadow"
+        },
+        {
+            "description": "Tangela",
+            "version": "Game::Gales",
+            "specie": 114,
+            "level": 30,
+            "shiny": "Shiny::Never",
+            "locks": [
+                {
+                    "description": "Ninetales (F) (Serious)",
+                    "nature": 12,
+                    "gender": 1,
+                    "genderRatio": 191
+                },
+                {
+                    "description": "Jumpluff (M) (Docile)",
+                    "nature": 6,
+                    "gender": 0,
+                    "genderRatio": 127
+                },
+                {
+                    "description": "Azumarill (F) (Hardy)",
+                    "nature": 0,
+                    "gender": 1,
+                    "genderRatio": 127
+                }
+            ],
+            "count": 3,
+            "type": "ShadowType::FirstShadow"
+        },
+        {
+            "description": "Butterfree",
+            "version": "Game::Gales",
+            "specie": 12,
+            "level": 30,
+            "shiny": "Shiny::Never",
+            "locks": [
+                {
+                    "description": "Ninetales (F) (Serious)",
+                    "nature": 12,
+                    "gender": 1,
+                    "genderRatio": 191
+                },
+                {
+                    "description": "Jumpluff (M) (Docile)",
+                    "nature": 6,
+                    "gender": 0,
+                    "genderRatio": 127
+                },
+                {
+                    "description": "Azumarill (F) (Hardy)",
+                    "nature": 0,
+                    "gender": 1,
+                    "genderRatio": 127
+                },
+                {
+                    "description": "Shadow Tangela",
+                    "nature": 0,
+                    "gender": 0,
+                    "genderRatio": 0
+                }
+            ],
+            "count": 4,
+            "type": "ShadowType::SecondShadow"
+        },
+        {
+            "description": "Magneton",
+            "version": "Game::Gales",
+            "specie": 82,
+            "level": 30,
+            "shiny": "Shiny::Never",
+            "locks": [
+                {
+                    "description": "Shedinja (-) (Bashful)",
+                    "nature": 18,
+                    "gender": 2,
+                    "genderRatio": 255
+                },
+                {
+                    "description": "Wobbuffet (M) (Hardy)",
+                    "nature": 0,
+                    "gender": 0,
+                    "genderRatio": 127
+                },
+                {
+                    "description": "Vibrava (F) (Serious)",
+                    "nature": 12,
+                    "gender": 1,
+                    "genderRatio": 127
+                }
+            ],
+            "count": 3,
+            "type": "ShadowType::FirstShadow"
+        },
+        {
+            "description": "Venomoth",
+            "version": "Game::Gales",
+            "specie": 49,
+            "level": 32,
+            "shiny": "Shiny::Never",
+            "locks": [
+                {
+                    "description": "Golduck (F) (Bashful)",
+                    "nature": 18,
+                    "gender": 1,
+                    "genderRatio": 127
+                },
+                {
+                    "description": "Hitmontop (M) (Quirky)",
+                    "nature": 24,
+                    "gender": 0,
+                    "genderRatio": 0
+                },
+                {
+                    "description": "Hariyama (M) (Serious)",
+                    "nature": 12,
+                    "gender": 0,
+                    "genderRatio": 63
+                }
+            ],
+            "count": 3,
+            "type": "ShadowType::FirstShadow"
+        },
+        {
+            "description": "Weepinbell",
+            "version": "Game::Gales",
+            "specie": 70,
+            "level": 32,
+            "shiny": "Shiny::Never",
+            "locks": [
+                {
+                    "description": "Golduck (F) (Bashful)",
+                    "nature": 18,
+                    "gender": 1,
+                    "genderRatio": 127
+                },
+                {
+                    "description": "Hitmontop (M) (Quirky)",
+                    "nature": 24,
+                    "gender": 0,
+                    "genderRatio": 0
+                },
+                {
+                    "description": "Hariyama (M) (Serious)",
+                    "nature": 12,
+                    "gender": 0,
+                    "genderRatio": 63
+                },
+                {
+                    "description": "Shadow Venomoth",
+                    "nature": 0,
+                    "gender": 0,
+                    "genderRatio": 0
+                }
+            ],
+            "count": 4,
+            "type": "ShadowType::SecondShadow"
+        },
+        {
+            "description": "Arbok",
+            "version": "Game::Gales",
+            "specie": 24,
+            "level": 33,
+            "shiny": "Shiny::Never",
+            "locks": [
+                {
+                    "description": "Huntail (M) (Docile)",
+                    "nature": 6,
+                    "gender": 0,
+                    "genderRatio": 127
+                },
+                {
+                    "description": "Cacturne (F) (Hardy)",
+                    "nature": 0,
+                    "gender": 1,
+                    "genderRatio": 127
+                },
+                {
+                    "description": "Weezing (F) (Serious)",
+                    "nature": 12,
+                    "gender": 1,
+                    "genderRatio": 127
+                },
+                {
+                    "description": "Ursaring (F) (Bashful)",
+                    "nature": 18,
+                    "gender": 1,
+                    "genderRatio": 127
+                }
+            ],
+            "count": 4,
+            "type": "ShadowType::FirstShadow"
+        },
+        {
+            "description": "Primeape",
+            "version": "Game::Gales",
+            "specie": 57,
+            "level": 34,
+            "shiny": "Shiny::Never",
+            "locks": [
+                {
+                    "description": "Lairon (F) (Bashful)",
+                    "nature": 18,
+                    "gender": 1,
+                    "genderRatio": 127
+                },
+                {
+                    "description": "Sealeo (F) (Serious)",
+                    "nature": 12,
+                    "gender": 1,
+                    "genderRatio": 127
+                },
+                {
+                    "description": "Slowking (F) (Docile)",
+                    "nature": 6,
+                    "gender": 1,
+                    "genderRatio": 127
+                },
+                {
+                    "description": "Ursaring (M) (Quirky)",
+                    "nature": 24,
+                    "gender": 0,
+                    "genderRatio": 127
+                }
+            ],
+            "count": 4,
+            "type": "ShadowType::FirstShadow"
+        },
+        {
+            "description": "Hypno",
+            "version": "Game::Gales",
+            "specie": 97,
+            "level": 34,
+            "shiny": "Shiny::Never",
+            "locks": [
+                {
+                    "description": "Lairon (F) (Bashful)",
+                    "nature": 18,
+                    "gender": 1,
+                    "genderRatio": 127
+                },
+                {
+                    "description": "Sealeo (F) (Serious)",
+                    "nature": 12,
+                    "gender": 1,
+                    "genderRatio": 127
+                },
+                {
+                    "description": "Slowking (F) (Docile)",
+                    "nature": 6,
+                    "gender": 1,
+                    "genderRatio": 127
+                },
+                {
+                    "description": "Ursaring (M) (Quirky)",
+                    "nature": 24,
+                    "gender": 0,
+                    "genderRatio": 127
+                },
+                {
+                    "description": "Shadow Primeape",
+                    "nature": 0,
+                    "gender": 0,
+                    "genderRatio": 0
+                }
+            ],
+            "count": 5,
+            "type": "ShadowType::SecondShadow"
+        },
+        {
+            "description": "Golduck",
+            "version": "Game::Gales",
+            "specie": 55,
+            "level": 33,
+            "shiny": "Shiny::Never",
+            "locks": [
+                {
+                    "description": "Crawdaunt (M) (Quirky)",
+                    "nature": 24,
+                    "gender": 0,
+                    "genderRatio": 127
+                },
+                {
+                    "description": "Pelipper (F) (Docile)",
+                    "nature": 6,
+                    "gender": 1,
+                    "genderRatio": 127
+                },
+                {
+                    "description": "Mantine (F) (Bashful)",
+                    "nature": 18,
+                    "gender": 1,
+                    "genderRatio": 127
+                }
+            ],
+            "count": 3,
+            "type": "ShadowType::FirstShadow"
+        },
+        {
+            "description": "Sableye",
+            "version": "Game::Gales",
+            "specie": 302,
+            "level": 33,
+            "shiny": "Shiny::Never",
+            "locks": [
+                {
+                    "description": "Crawdaunt (M) (Quirky)",
+                    "nature": 24,
+                    "gender": 0,
+                    "genderRatio": 127
+                },
+                {
+                    "description": "Pelipper (F) (Docile)",
+                    "nature": 6,
+                    "gender": 1,
+                    "genderRatio": 127
+                },
+                {
+                    "description": "Mantine (F) (Bashful)",
+                    "nature": 18,
+                    "gender": 1,
+                    "genderRatio": 127
+                },
+                {
+                    "description": "Shadow Golduck",
+                    "nature": 0,
+                    "gender": 0,
+                    "genderRatio": 0
+                }
+            ],
+            "count": 4,
+            "type": "ShadowType::SecondShadow"
+        },
+        {
+            "description": "Dodrio",
+            "version": "Game::Gales",
+            "specie": 85,
+            "level": 34,
+            "shiny": "Shiny::Never",
+            "locks": [
+                {
+                    "description": "Xatu (F) (Bashful)",
+                    "nature": 18,
+                    "gender": 1,
+                    "genderRatio": 127
+                }
+            ],
+            "count": 1,
+            "type": "ShadowType::SingleLock"
+        },
+        {
+            "description": "Raticate",
+            "version": "Game::Gales",
+            "specie": 20,
+            "level": 34,
+            "shiny": "Shiny::Never",
+            "locks": [
+                {
+                    "description": "Xatu (F) (Bashful)",
+                    "nature": 18,
+                    "gender": 1,
+                    "genderRatio": 127
+                },
+                {
+                    "description": "Shadow Dodrio",
+                    "nature": 0,
+                    "gender": 0,
+                    "genderRatio": 0
+                },
+                {
+                    "description": "Whiscash (M) (Bashful)",
+                    "nature": 18,
+                    "gender": 0,
+                    "genderRatio": 127
+                }
+            ],
+            "count": 3,
+            "type": "ShadowType::FirstShadow"
+        },
+        {
+            "description": "Farfetch",
+            "version": "Game::Gales",
+            "specie": 83,
+            "level": 36,
+            "shiny": "Shiny::Never",
+            "locks": [
+                {
+                    "description": "Gardevoir (M) (Serious)",
+                    "nature": 12,
+                    "gender": 0,
+                    "genderRatio": 127
+                },
+                {
+                    "description": "Gorebyss (F) (Hardy)",
+                    "nature": 0,
+                    "gender": 1,
+                    "genderRatio": 127
+                },
+                {
+                    "description": "Roselia (M) (Quirky)",
+                    "nature": 24,
+                    "gender": 0,
+                    "genderRatio": 127
+                }
+            ],
+            "count": 3,
+            "type": "ShadowType::FirstShadow"
+        },
+        {
+            "description": "Altaria",
+            "version": "Game::Gales",
+            "specie": 334,
+            "level": 36,
+            "shiny": "Shiny::Never",
+            "locks": [
+                {
+                    "description": "Gardevoir (M) (Serious)",
+                    "nature": 12,
+                    "gender": 0,
+                    "genderRatio": 127
+                },
+                {
+                    "description": "Gorebyss (F) (Hardy)",
+                    "nature": 0,
+                    "gender": 1,
+                    "genderRatio": 127
+                },
+                {
+                    "description": "Roselia (M) (Quirky)",
+                    "nature": 24,
+                    "gender": 0,
+                    "genderRatio": 127
+                },
+                {
+                    "description": "Shadow Farfetch'd",
+                    "nature": 0,
+                    "gender": 0,
+                    "genderRatio": 0
+                }
+            ],
+            "count": 4,
+            "type": "ShadowType::SecondShadow"
+        },
+        {
+            "description": "Kangaskhan",
+            "version": "Game::Gales",
+            "specie": 115,
+            "level": 35,
+            "shiny": "Shiny::Never",
+            "locks": [
+                {
+                    "description": "Electrode (-) (Hardy)",
+                    "nature": 0,
+                    "gender": 0,
+                    "genderRatio": 0
+                },
+                {
+                    "description": "Misdreavus (F) (Bashful)",
+                    "nature": 18,
+                    "gender": 1,
+                    "genderRatio": 127
+                },
+                {
+                    "description": "Claydol (-) (Serious)",
+                    "nature": 12,
+                    "gender": 2,
+                    "genderRatio": 255
+                }
+            ],
+            "count": 3,
+            "type": "ShadowType::FirstShadow"
+        },
+        {
+            "description": "Banette",
+            "version": "Game::Gales",
+            "specie": 354,
+            "level": 37,
+            "shiny": "Shiny::Never",
+            "locks": [
+                {
+                    "description": "Electrode (-) (Hardy)",
+                    "nature": 0,
+                    "gender": 2,
+                    "genderRatio": 255
+                },
+                {
+                    "description": "Misdreavus (F) (Bashful)",
+                    "nature": 18,
+                    "gender": 1,
+                    "genderRatio": 127
+                },
+                {
+                    "description": "Claydol (-) (Serious)",
+                    "nature": 12,
+                    "gender": 2,
+                    "genderRatio": 255
+                },
+                {
+                    "description": "Shadow Kangaskhan",
+                    "nature": 0,
+                    "gender": 0,
+                    "genderRatio": 0
+                }
+            ],
+            "count": 4,
+            "type": "ShadowType::SecondShadow"
+        },
+        {
+            "description": "Magmar",
+            "version": "Game::Gales",
+            "specie": 126,
+            "level": 36,
+            "shiny": "Shiny::Never",
+            "locks": [
+                {
+                    "description": "Houndoom (M) (Bashful)",
+                    "nature": 18,
+                    "gender": 0,
+                    "genderRatio": 127
+                },
+                {
+                    "description": "Ninetales (M) (Bashful)",
+                    "nature": 18,
+                    "gender": 0,
+                    "genderRatio": 191
+                },
+                {
+                    "description": "Vileplume (F) (Hardy)",
+                    "nature": 0,
+                    "gender": 1,
+                    "genderRatio": 127
+                }
+            ],
+            "count": 3,
+            "type": "ShadowType::FirstShadow"
+        },
+        {
+            "description": "Pinsir",
+            "version": "Game::Gales",
+            "specie": 127,
+            "level": 35,
+            "shiny": "Shiny::Never",
+            "locks": [
+                {
+                    "description": "Houndoom (M) (Bashful)",
+                    "nature": 18,
+                    "gender": 0,
+                    "genderRatio": 127
+                },
+                {
+                    "description": "Ninetales (M) (Bashful)",
+                    "nature": 18,
+                    "gender": 0,
+                    "genderRatio": 191
+                },
+                {
+                    "description": "Vileplume (F) (Hardy)",
+                    "nature": 0,
+                    "gender": 1,
+                    "genderRatio": 127
+                },
+                {
+                    "description": "Shadow Magmar",
+                    "nature": 0,
+                    "gender": 0,
+                    "genderRatio": 0
+                }
+            ],
+            "count": 4,
+            "type": "ShadowType::SecondShadow"
+        },
+        {
+            "description": "Rapidash",
+            "version": "Game::Gales",
+            "specie": 78,
+            "level": 40,
+            "shiny": "Shiny::Never",
+            "locks": [
+                {
+                    "description": "Camerupt (M) (Quirky)",
+                    "nature": 24,
+                    "gender": 0,
+                    "genderRatio": 127
+                },
+                {
+                    "description": "Weezing (M) (Docile)",
+                    "nature": 6,
+                    "gender": 0,
+                    "genderRatio": 127
+                },
+                {
+                    "description": "Muk (F) (Serious)",
+                    "nature": 12,
+                    "gender": 1,
+                    "genderRatio": 127
+                }
+            ],
+            "count": 3,
+            "type": "ShadowType::FirstShadow"
+        },
+        {
+            "description": "Magcargo",
+            "version": "Game::Gales",
+            "specie": 219,
+            "level": 38,
+            "shiny": "Shiny::Never",
+            "locks": [
+                {
+                    "description": "Camerupt (M) (Quirky)",
+                    "nature": 24,
+                    "gender": 0,
+                    "genderRatio": 127
+                },
+                {
+                    "description": "Weezing (M) (Docile)",
+                    "nature": 6,
+                    "gender": 0,
+                    "genderRatio": 127
+                },
+                {
+                    "description": "Muk (F) (Serious)",
+                    "nature": 12,
+                    "gender": 1,
+                    "genderRatio": 127
+                },
+                {
+                    "description": "Shadow Rapidash",
+                    "nature": 0,
+                    "gender": 0,
+                    "genderRatio": 0
+                }
+            ],
+            "count": 4,
+            "type": "ShadowType::SecondShadow"
+        },
+        {
+            "description": "Hitmonchan",
+            "version": "Game::Gales",
+            "specie": 107,
+            "level": 38,
+            "shiny": "Shiny::Never",
+            "locks": [
+                {
+                    "description": "Medicham (M) (Quirky)",
+                    "nature": 24,
+                    "gender": 0,
+                    "genderRatio": 127
+                },
+                {
+                    "description": "Golem (F) (Docile)",
+                    "nature": 6,
+                    "gender": 1,
+                    "genderRatio": 127
+                },
+                {
+                    "description": "Xatu (F) (Bashful)",
+                    "nature": 18,
+                    "gender": 1,
+                    "genderRatio": 127
+                }
+            ],
+            "count": 3,
+            "type": "ShadowType::FirstShadow"
+        },
+        {
+            "description": "Hitmonlee",
+            "version": "Game::Gales",
+            "specie": 106,
+            "level": 38,
+            "shiny": "Shiny::Never",
+            "locks": [
+                {
+                    "description": "Grumpig (M) (Bashful)",
+                    "nature": 18,
+                    "gender": 0,
+                    "genderRatio": 127
+                },
+                {
+                    "description": "Skarmory (F) (Serious)",
+                    "nature": 12,
+                    "gender": 1,
+                    "genderRatio": 127
+                },
+                {
+                    "description": "Metang (-) (Docile)",
+                    "nature": 6,
+                    "gender": 2,
+                    "genderRatio": 255
+                },
+                {
+                    "description": "Hariyama (F) (Quirky)",
+                    "nature": 24,
+                    "gender": 1,
+                    "genderRatio": 63
+                }
+            ],
+            "count": 4,
+            "type": "ShadowType::FirstShadow"
+        },
+        {
+            "description": "Lickitung",
+            "version": "Game::Gales",
+            "specie": 108,
+            "level": 38,
+            "shiny": "Shiny::Never",
+            "locks": [
+                {
+                    "description": "Lanturn (M) (Quirky)",
+                    "nature": 24,
+                    "gender": 0,
+                    "genderRatio": 127
+                },
+                {
+                    "description": "Magneton (-) (Docile)",
+                    "nature": 6,
+                    "gender": 2,
+                    "genderRatio": 255
+                }
+            ],
+            "count": 2,
+            "type": "ShadowType::FirstShadow"
+        },
+        {
+            "description": "Scyther",
+            "version": "Game::Gales",
+            "specie": 123,
+            "level": 40,
+            "shiny": "Shiny::Never",
+            "locks": [
+                {
+                    "description": "Stantler (F) (Docile)",
+                    "nature": 6,
+                    "gender": 1,
+                    "genderRatio": 127
+                },
+                {
+                    "description": "Exploud (M) (Quirky)",
+                    "nature": 24,
+                    "gender": 0,
+                    "genderRatio": 127
+                }
+            ],
+            "count": 2,
+            "type": "ShadowType::FirstShadow"
+        },
+        {
+            "description": "Chansey",
+            "version": "Game::Gales",
+            "specie": 113,
+            "level": 39,
+            "shiny": "Shiny::Never",
+            "locks": [
+                {
+                    "description": "Stantler (F) (Docile)",
+                    "nature": 6,
+                    "gender": 1,
+                    "genderRatio": 127
+                },
+                {
+                    "description": "Exploud (M) (Quirky)",
+                    "nature": 24,
+                    "gender": 0,
+                    "genderRatio": 127
+                },
+                {
+                    "description": "Shadow Scyther",
+                    "nature": 0,
+                    "gender": 0,
+                    "genderRatio": 0
+                }
+            ],
+            "count": 3,
+            "type": "ShadowType::SecondShadow"
+        },
+        {
+            "description": "Solrock",
+            "version": "Game::Gales",
+            "specie": 338,
+            "level": 41,
+            "shiny": "Shiny::Never",
+            "locks": [
+                {
+                    "description": "Metang (-) (Quirky)",
+                    "nature": 24,
+                    "gender": 2,
+                    "genderRatio": 255
+                },
+                {
+                    "description": "Quagsire (M) (Docile)",
+                    "nature": 6,
+                    "gender": 0,
+                    "genderRatio": 127
+                },
+                {
+                    "description": "Scizor (F) (Hardy)",
+                    "nature": 0,
+                    "gender": 1,
+                    "genderRatio": 127
+                }
+            ],
+            "count": 3,
+            "type": "ShadowType::FirstShadow"
+        },
+        {
+            "description": "Starmie",
+            "version": "Game::Gales",
+            "specie": 121,
+            "level": 41,
+            "shiny": "Shiny::Never",
+            "locks": [
+                {
+                    "description": "Metang (-) (Quirky)",
+                    "nature": 24,
+                    "gender": 2,
+                    "genderRatio": 255
+                },
+                {
+                    "description": "Quagsire (M) (Docile)",
+                    "nature": 6,
+                    "gender": 0,
+                    "genderRatio": 127
+                },
+                {
+                    "description": "Scizor (F) (Hardy)",
+                    "nature": 0,
+                    "gender": 1,
+                    "genderRatio": 127
+                },
+                {
+                    "description": "Shadow Solrock",
+                    "nature": 0,
+                    "gender": 0,
+                    "genderRatio": 0
+                },
+                {
+                    "description": "Castform (M) (Bashful)",
+                    "nature": 18,
+                    "gender": 0,
+                    "genderRatio": 127
+                }
+            ],
+            "count": 5,
+            "type": "ShadowType::FirstShadow"
+        },
+        {
+            "description": "Electabuzz",
+            "version": "Game::Gales",
+            "specie": 125,
+            "level": 43,
+            "shiny": "Shiny::Never",
+            "locks": [
+                {
+                    "description": "Shadow Swellow",
+                    "nature": 0,
+                    "gender": 0,
+                    "genderRatio": 0
+                },
+                {
+                    "description": "Alakazam (M) (Quirky)",
+                    "nature": 24,
+                    "gender": 0,
+                    "genderRatio": 63
+                },
+                {
+                    "description": "Kingdra (F) (Docile)",
+                    "nature": 6,
+                    "gender": 1,
+                    "genderRatio": 127
+                },
+                {
+                    "description": "Heracross (F) (Bashful)",
+                    "nature": 18,
+                    "gender": 1,
+                    "genderRatio": 127
+                }
+            ],
+            "count": 4,
+            "type": "ShadowType::FirstShadow"
+        },
+        {
+            "description": "Snorlax",
+            "version": "Game::Gales",
+            "specie": 143,
+            "level": 43,
+            "shiny": "Shiny::Never",
+            "locks": [
+                {
+                    "description": "Shadow Swellow",
+                    "nature": 0,
+                    "gender": 0,
+                    "genderRatio": 0
+                },
+                {
+                    "description": "Alakazam (M) (Quirky)",
+                    "nature": 24,
+                    "gender": 0,
+                    "genderRatio": 63
+                },
+                {
+                    "description": "Kingdra (F) (Docile)",
+                    "nature": 6,
+                    "gender": 1,
+                    "genderRatio": 127
+                },
+                {
+                    "description": "Heracross (F) (Bashful)",
+                    "nature": 18,
+                    "gender": 1,
+                    "genderRatio": 127
+                },
+                {
+                    "description": "Shadow Electabuzz",
+                    "nature": 0,
+                    "gender": 0,
+                    "genderRatio": 0
+                }
+            ],
+            "count": 5,
+            "type": "ShadowType::SecondShadow"
+        },
+        {
+            "description": "Poliwrath",
+            "version": "Game::Gales",
+            "specie": 62,
+            "level": 42,
+            "shiny": "Shiny::Never",
+            "locks": [
+                {
+                    "description": "Slowking (M) (Bashful)",
+                    "nature": 18,
+                    "gender": 0,
+                    "genderRatio": 127
+                },
+                {
+                    "description": "Ursaring (M) (Bashful)",
+                    "nature": 18,
+                    "gender": 0,
+                    "genderRatio": 127
+                },
+                {
+                    "description": "Aggron (M) (Quirky)",
+                    "nature": 24,
+                    "gender": 0,
+                    "genderRatio": 127
+                },
+                {
+                    "description": "Walrein (F) (Docile)",
+                    "nature": 6,
+                    "gender": 1,
+                    "genderRatio": 127
+                }
+            ],
+            "count": 4,
+            "type": "ShadowType::FirstShadow"
+        },
+        {
+            "description": "Mr. Mime",
+            "version": "Game::Gales",
+            "specie": 122,
+            "level": 42,
+            "shiny": "Shiny::Never",
+            "locks": [
+                {
+                    "description": "Slowking (M) (Bashful)",
+                    "nature": 18,
+                    "gender": 0,
+                    "genderRatio": 127
+                },
+                {
+                    "description": "Ursaring (M) (Bashful)",
+                    "nature": 18,
+                    "gender": 0,
+                    "genderRatio": 127
+                },
+                {
+                    "description": "Aggron (M) (Quirky)",
+                    "nature": 24,
+                    "gender": 0,
+                    "genderRatio": 127
+                },
+                {
+                    "description": "Walrein (F) (Docile)",
+                    "nature": 6,
+                    "gender": 1,
+                    "genderRatio": 127
+                },
+                {
+                    "description": "Shadow Poliwrath",
+                    "nature": 0,
+                    "gender": 0,
+                    "genderRatio": 0
+                }
+            ],
+            "count": 5,
+            "type": "ShadowType::SecondShadow"
+        },
+        {
+            "description": "Dugtrio",
+            "version": "Game::Gales",
+            "specie": 51,
+            "level": 40,
+            "shiny": "Shiny::Never",
+            "locks": [
+                {
+                    "description": "Glalie (M) (Hardy)",
+                    "nature": 0,
+                    "gender": 0,
+                    "genderRatio": 127
+                },
+                {
+                    "description": "Ampharos (M) (Bashful)",
+                    "nature": 18,
+                    "gender": 0,
+                    "genderRatio": 127
+                },
+                {
+                    "description": "Breloom (F) (Docile)",
+                    "nature": 6,
+                    "gender": 1,
+                    "genderRatio": 127
+                },
+                {
+                    "description": "Donphan (M) (Serious)",
+                    "nature": 12,
+                    "gender": 0,
+                    "genderRatio": 127
+                }
+            ],
+            "count": 4,
+            "type": "ShadowType::FirstShadow"
+        },
+        {
+            "description": "Manetric",
+            "version": "Game::Gales",
+            "specie": 310,
+            "level": 44,
+            "shiny": "Shiny::Never",
+            "locks": [
+                {
+                    "description": "Ninjask (F) (Docile)",
+                    "nature": 6,
+                    "gender": 1,
+                    "genderRatio": 127
+                }
+            ],
+            "count": 1,
+            "type": "ShadowType::FirstShadow"
+        },
+        {
+            "description": "Salamence",
+            "version": "Game::Gales",
+            "specie": 373,
+            "level": 50,
+            "shiny": "Shiny::Never",
+            "locks": [
+                {
+                    "description": "Ninjask (F) (Docile)",
+                    "nature": 6,
+                    "gender": 1,
+                    "genderRatio": 127
+                },
+                {
+                    "description": "Shadow Manetric",
+                    "nature": 0,
+                    "gender": 0,
+                    "genderRatio": 0
+                }
+            ],
+            "count": 2,
+            "type": "ShadowType::Salamence"
+        },
+        {
+            "description": "Marowak",
+            "version": "Game::Gales",
+            "specie": 105,
+            "level": 44,
+            "shiny": "Shiny::Never",
+            "locks": [
+                {
+                    "description": "Ninjask (F) (Docile)",
+                    "nature": 6,
+                    "gender": 1,
+                    "genderRatio": 127
+                },
+                {
+                    "description": "Shadow Manectric",
+                    "nature": 0,
+                    "gender": 0,
+                    "genderRatio": 0
+                },
+                {
+                    "description": "Shadow Salamence",
+                    "nature": 0,
+                    "gender": 0,
+                    "genderRatio": 0
+                },
+                {
+                    "description": "Flygon (M) (Quirky)",
+                    "nature": 24,
+                    "gender": 0,
+                    "genderRatio": 127
+                }
+            ],
+            "count": 4,
+            "type": "ShadowType::FirstShadow"
+        },
+        {
+            "description": "Lapras",
+            "version": "Game::Gales",
+            "specie": 131,
+            "level": 44,
+            "shiny": "Shiny::Never",
+            "locks": [
+                {
+                    "description": "Ninjask (F) (Docile)",
+                    "nature": 6,
+                    "gender": 1,
+                    "genderRatio": 127
+                },
+                {
+                    "description": "Shadow Manectric",
+                    "nature": 0,
+                    "gender": 0,
+                    "genderRatio": 0
+                },
+                {
+                    "description": "Shadow Salamence",
+                    "nature": 0,
+                    "gender": 0,
+                    "genderRatio": 0
+                },
+                {
+                    "description": "Flygon (M) (Quirky)",
+                    "nature": 24,
+                    "gender": 0,
+                    "genderRatio": 127
+                },
+                {
+                    "description": "Shadow Marowak",
+                    "nature": 0,
+                    "gender": 0,
+                    "genderRatio": 0
+                }
+            ],
+            "count": 5,
+            "type": "ShadowType::SecondShadow"
+        },
+        {
+            "description": "Dragonite",
+            "version": "Game::Gales",
+            "specie": 149,
+            "level": 55,
+            "shiny": "Shiny::Never",
+            "locks": [
+                {
+                    "description": "Ludicolo (M) (Hardy)",
+                    "nature": 0,
+                    "gender": 0,
+                    "genderRatio": 127
+                },
+                {
+                    "description": "Ludicolo (M) (Bashful)",
+                    "nature": 18,
+                    "gender": 0,
+                    "genderRatio": 127
+                },
+                {
+                    "description": "Ludicolo (F) (Serious)",
+                    "nature": 12,
+                    "gender": 1,
+                    "genderRatio": 127
+                },
+                {
+                    "description": "Ludicolo (F) (Serious)",
+                    "nature": 12,
+                    "gender": 1,
+                    "genderRatio": 127
+                },
+                {
+                    "description": "Ludicolo (M) (Hardy)",
+                    "nature": 0,
+                    "gender": 0,
+                    "genderRatio": 127
+                }
+            ],
+            "count": 5,
+            "type": "ShadowType::FirstShadow"
+        }
+    ],
+    "channel": [
+        {
+            "description": "Jirachi",
+            "version": "Game::GC",
+            "specie": 385,
+            "level": 5
+        }
+    ]
+}

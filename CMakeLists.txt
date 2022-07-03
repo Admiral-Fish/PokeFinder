@@ -1,11 +1,15 @@
-cmake_minimum_required(VERSION 3.16.0)
+cmake_minimum_required(VERSION 3.16)
 
 project(PokeFinder)
 
-list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake")
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/CMake")
+
+option(TEST "Run Tests" OFF)
 
 if (TEST)
+    add_compile_definitions(TEST)
     enable_testing()
 endif ()
 
+add_subdirectory(External)
 add_subdirectory(Source)

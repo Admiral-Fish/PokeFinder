@@ -1,0 +1,300 @@
+{
+    "hSlot": [
+        {
+            "name": "Old Rod",
+            "encounter": "OldRod",
+            "rand": [
+                58060,
+                26587
+            ]
+        },
+        {
+            "name": "Good Rod",
+            "encounter": "GoodRod",
+            "rand": [
+                10150,
+                14173,
+                33497
+            ]
+        },
+        {
+            "name": "Super Rod",
+            "encounter": "SuperRod",
+            "rand": [
+                11019,
+                52064,
+                36187,
+                4397,
+                5799
+            ]
+        },
+        {
+            "name": "Surfing",
+            "encounter": "Surfing",
+            "rand": [
+                62851,
+                2672,
+                43093,
+                60596,
+                5799
+            ]
+        },
+        {
+            "name": "Rock Smash",
+            "encounter": "RockSmash",
+            "rand": [
+                62851,
+                2672,
+                43093,
+                60596,
+                5799
+            ]
+        },
+        {
+            "name": "Grass",
+            "encounter": "Grass",
+            "rand": [
+                2406,
+                5934,
+                55541,
+                4255,
+                46469,
+                42379,
+                53783,
+                62987,
+                48692,
+                60596,
+                17698,
+                5799
+            ]
+        }
+    ],
+    "jSlot": [
+        {
+            "name": "Old Rod",
+            "encounter": "OldRod",
+            "rand": [
+                21105,
+                58060,
+                61449,
+                63947,
+                65255
+            ]
+        },
+        {
+            "name": "Good Rod",
+            "encounter": "GoodRod",
+            "rand": [
+                25502,
+                37480,
+                57251,
+                64291,
+                65255
+            ]
+        },
+        {
+            "name": "Super Rod",
+            "encounter": "SuperRod",
+            "rand": [
+                25502,
+                37480,
+                57251,
+                64291,
+                65255
+            ]
+        },
+        {
+            "name": "Surfing",
+            "encounter": "Surfing",
+            "rand": [
+                21105,
+                58060,
+                61449,
+                63947,
+                65255
+            ]
+        },
+        {
+            "name": "Grass",
+            "encounter": "Grass",
+            "rand": [
+                7465,
+                25238,
+                28163,
+                37480,
+                41879,
+                50154,
+                54213,
+                57542,
+                61449,
+                63947,
+                64563,
+                65255
+            ]
+        }
+    ],
+    "kSlot": [
+        {
+            "name": "Old Rod",
+            "encounter": "OldRod",
+            "rand": [
+                12416,
+                65255,
+                18683,
+                64291,
+                4397
+            ]
+        },
+        {
+            "name": "Good Rod",
+            "encounter": "GoodRod",
+            "rand": [
+                12416,
+                65255,
+                18683,
+                64291,
+                4397
+            ]
+        },
+        {
+            "name": "Super Rod",
+            "encounter": "SuperRod",
+            "rand": [
+                12416,
+                65255,
+                18683,
+                64291,
+                4397
+            ]
+        },
+        {
+            "name": "Surfing",
+            "encounter": "Surfing",
+            "rand": [
+                62851,
+                2672,
+                43093,
+                60596,
+                5799
+            ]
+        },
+        {
+            "name": "Bug Contest",
+            "encounter": "BugCatchingContest",
+            "rand": [
+                13481,
+                11667,
+                32058,
+                48643,
+                17637,
+                34729,
+                31719,
+                64512,
+                19209,
+                34600
+            ]
+        },
+        {
+            "name": "Head Butt",
+            "encounter": "Headbutt",
+            "rand": [
+                18244,
+                13560,
+                42379,
+                59385,
+                41793,
+                60596
+            ]
+        },
+        {
+            "name": "Rock Smash",
+            "encounter": "RockSmash",
+            "rand": [
+                41440,
+                4397
+            ]
+        },
+        {
+            "name": "Grass",
+            "encounter": "Grass",
+            "rand": [
+                2406,
+                5934,
+                55541,
+                4255,
+                46469,
+                42379,
+                53783,
+                62987,
+                48692,
+                60596,
+                17698,
+                5799
+            ]
+        }
+    ],
+    "bdsp": [
+        {
+            "name": "Old Rod",
+            "encounter": "OldRod",
+            "rand": [
+                53,
+                85,
+                93,
+                96,
+                99
+            ]
+        },
+        {
+            "name": "Good Rod",
+            "encounter": "GoodRod",
+            "rand": [
+                28,
+                55,
+                88,
+                97,
+                99
+            ]
+        },
+        {
+            "name": "Super Rod",
+            "encounter": "SuperRod",
+            "rand": [
+                28,
+                55,
+                88,
+                97,
+                99
+            ]
+        },
+        {
+            "name": "Surfing",
+            "encounter": "Surfing",
+            "rand": [
+                53,
+                85,
+                93,
+                96,
+                99
+            ]
+        },
+        {
+            "name": "Grass",
+            "encounter": "Grass",
+            "rand": [
+                15,
+                34,
+                46,
+                53,
+                66,
+                73,
+                82,
+                87,
+                92,
+                96,
+                98,
+                99
+            ]
+        }
+    ]
+}

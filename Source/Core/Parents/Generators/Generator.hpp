@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -20,53 +20,51 @@
 #ifndef GENERATOR_HPP
 #define GENERATOR_HPP
 
-#include <Core/Parents/Filters/StateFilter.hpp>
-#include <Core/Util/Global.hpp>
+#include <Core/Global.hpp>
 #include <vector>
 
 enum class Encounter : u8;
 enum class Method : u8;
 
+/**
+ * @brief Parent generator class that stores common attributes
+ *
+ * @tparam Profile Profile class that is used by the generator
+ * @tparam Filter Filter class that is used by the generator
+ */
+template <class Profile, class Filter>
 class Generator
 {
 public:
-    Generator(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter) :
+    /**
+     * @brief Construct a new Generator object
+     *
+     * @param initialAdvances Initial number of advances
+     * @param maxAdvances Maximum number of advances
+     * @param delay Number of advances to offset
+     * @param method Encounter method
+     * @param profile Profile Information
+     * @param filter State filter
+     */
+    Generator(u32 initialAdvances, u32 maxAdvances, u32 delay, Method method, const Profile &profile, const Filter &filter) :
+        profile(profile),
         initialAdvances(initialAdvances),
         maxAdvances(maxAdvances),
-        tid(tid),
-        sid(sid),
-        tsv(tid ^ sid),
-        genderRatio(genderRatio),
+        delay(delay),
+        tsv(profile.getTID() ^ profile.getSID()),
         method(method),
         filter(filter)
     {
     }
 
-    StateFilter getFilter() const
-    {
-        return filter;
-    }
-
-    void setOffset(u32 offset)
-    {
-        this->offset = offset;
-    }
-
-    void setInitialAdvances(u32 initialAdvances)
-    {
-        this->initialAdvances = initialAdvances;
-    }
-
 protected:
+    Profile profile;
     u32 initialAdvances;
     u32 maxAdvances;
-    u32 offset;
-    u16 tid;
-    u16 sid;
+    u32 delay;
     u16 tsv;
-    u8 genderRatio;
+    Filter filter;
     Method method;
-    StateFilter filter;
 };
 
 #endif // GENERATOR_HPP

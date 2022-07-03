@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -21,13 +21,94 @@
 #define ENCOUNTERAREA8_HPP
 
 #include <Core/Parents/EncounterArea.hpp>
+#include <Core/Parents/Slot.hpp>
+#include <Core/RNG/RNGList.hpp>
+#include <Core/RNG/Xorshift.hpp>
 
+/**
+ * @brief Contains information about the encounters for an area. This includes location, rate, and the slots.
+ */
 class EncounterArea8 : public EncounterArea
 {
 public:
-    EncounterArea8(u8 location, u8 rate, Encounter type, const std::vector<Slot> &pokemon);
-    u8 calcLevel(u8 index, u32 prng) const;
-    u8 calcLevel(u8 index) const;
+    /**
+     * @brief Construct a new EncounterArea8 object
+     *
+     * @param location Location number
+     * @param rate Encounter rate of the area
+     * @param encounter Encounter type of the area
+     * @param pokemon Available pokemon of the area
+     */
+    EncounterArea8(u8 location, u8 rate, Encounter type, const std::vector<Slot> &pokemon) : EncounterArea(location, rate, type, pokemon)
+    {
+    }
+
+    /**
+     * @brief Calculates the level of a pokemon. Takes into account any modification from Pressure
+     *
+     * @tparam diff Whether min and max levels are different
+     * @param encounterSlot Pokemon slot
+     * @param rngList RNG object
+     * @param force Whether Pressure lead is being used
+     *
+     * @return Level of the encounter
+     */
+    template <bool diff>
+    u8 calculateLevel(u8 encounterSlot, RNGList<u32, Xorshift, 128> &rngList, bool force) const
+    {
+        if constexpr (diff)
+        {
+            const Slot &slot = pokemon[encounterSlot];
+
+            u8 min = slot.getMinLevel();
+            u8 max = slot.getMaxLevel();
+            u8 range = max - min + 1;
+
+            u8 rand = rngList.next() % range;
+            if (force && (rngList.next() % 2) != 0)
+            {
+                return max;
+            }
+
+            return min + rand;
+        }
+        else
+        {
+            const Slot &slot = pokemon[encounterSlot];
+            u8 level = slot.getMaxLevel();
+            if (force && (rngList.next() % 2) != 0)
+            {
+                for (const Slot &s : pokemon)
+                {
+                    if (s.getSpecie() == slot.getSpecie())
+                    {
+                        level = std::max(level, s.getMaxLevel());
+                    }
+                }
+            }
+            return level;
+        }
+    }
+
+    /**
+     * @brief Checks if the location is in the Great Marsh
+     *
+     * @param version Game version
+     *
+     * @return true Location is Great Marsh
+     * @return false Location is not Great Marsh
+     */
+    bool greatMarsh(Game version) const;
+
+    /**
+     * @brief Checks if the location is in the Trophy Garden
+     *
+     * @param version Game version
+     *
+     * @return true Location is Trophy Garden
+     * @return false Location is not Trophy Garden
+     */
+    bool trophyGarden(Game version) const;
 };
 
 #endif // ENCOUNTERAREA8_HPP

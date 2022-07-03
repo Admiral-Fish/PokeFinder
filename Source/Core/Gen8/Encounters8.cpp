@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -22,255 +22,280 @@
 #include <Core/Enum/Game.hpp>
 #include <Core/Gen8/EncounterArea8.hpp>
 #include <Core/Gen8/Profile8.hpp>
+#include <Core/Gen8/UndergroundArea.hpp>
+#include <Core/Parents/PersonalInfo.hpp>
 #include <Core/Parents/PersonalLoader.hpp>
 #include <Core/Parents/Slot.hpp>
-#include <Core/Parents/StaticTemplate.hpp>
-#include <Core/Resources/Encounters.hpp>
+#include <Core/Resources/EncounterData8.hpp>
+#include <Core/Util/Utilities.hpp>
 #include <algorithm>
-#include <cstring>
+#include <cmath>
 #include <iterator>
 
-constexpr std::array<StaticTemplate, 8> gifts = {
-    StaticTemplate(Game::BDSP, 387, 5), // Turtwig
-    StaticTemplate(Game::BDSP, 390, 5), // Chimchar
-    StaticTemplate(Game::BDSP, 393, 5), // Piplup
-    StaticTemplate(Game::BDSP, 133, 5), // Eevee
-    StaticTemplate(Game::BDSP, 440, 1), // Happiny egg
-    StaticTemplate(Game::BDSP, 447, 1), // Riolu egg
-    StaticTemplate(Game::BDSP, 151, 1, 1, Shiny::Never, 3), // Mew
-    StaticTemplate(Game::BDSP, 385, 5, 1, Shiny::Never, 3) // Jirachi
-};
+constexpr std::array<u16, 14> greatMarsh = { 55, 183, 194, 195, 298, 315, 397, 399, 400, 451, 453, 455 };
+constexpr std::array<u16, 14> greatMarshDex = { 46, 55, 102, 115, 193, 285, 315, 316, 397, 451, 452, 453, 454, 455 };
 
-constexpr std::array<StaticTemplate, 7> fossils = {
-    StaticTemplate(Game::BDSP, 138, 1, 3), // Omanyte
-    StaticTemplate(Game::BDSP, 140, 1, 3), // Kabuto
-    StaticTemplate(Game::BDSP, 142, 1, 3), // Aerodactyl
-    StaticTemplate(Game::BDSP, 345, 1, 3), // Lileep
-    StaticTemplate(Game::BDSP, 347, 1, 3), // Anorith
-    StaticTemplate(Game::BDSP, 408, 1, 3), // Cranidos
-    StaticTemplate(Game::BDSP, 410, 1, 3) // Shieldon
-};
+constexpr std::array<u16, 16> trophyGarden = { 35, 39, 52, 113, 133, 137, 173, 174, 183, 298, 311, 312, 351, 438, 439, 440 };
 
-constexpr std::array<StaticTemplate, 3> stationary = {
-    StaticTemplate(Game::BDSP, 425, 22), // Drifloon
-    StaticTemplate(Game::BDSP, 442, 25), // Spiritomb
-    StaticTemplate(Game::BDSP, 479, 15) // Rotom
-};
+/**
+ * @brief Modifies encounter slots based on the Great Marsh
+ *
+ * @param pokemon Vector of original encounters
+ * @param replacement Replacement pokemon
+ * @param info Personal info array pointer
+ * @param location Encounter location
+ */
+static void modifyGreatMarsh(std::vector<Slot> &pokemon, const std::array<u16, 2> &replacement, const PersonalInfo *info, u8 location)
+{
+    if (location >= 23 && location <= 28 && replacement[0] != 0)
+    {
+        u16 specie = replacement[0];
+        pokemon[6].setSpecie(specie, &info[specie]);
+        pokemon[7].setSpecie(specie, &info[specie]);
+    }
+}
 
-constexpr std::array<StaticTemplate, 2> roamers = {
-    StaticTemplate(Game::BDSP, 481, 50, 3), // Mespirit
-    StaticTemplate(Game::BDSP, 488, 50, 3) // Cresselia
-};
+/**
+ * @brief Modifies encounter slots based on the pokeradar
+ *
+ * @param pokemon Vector of original encounters
+ * @param data Encounter area data
+ * @param info Personal info array pointer
+ * @param radar Whether pokeradar is active or not
+ */
+static void modifyRadar(std::vector<Slot> &mons, const u8 *data, const PersonalInfo *info, bool radar)
+{
+    if (radar)
+    {
+        u16 species[4] = { *reinterpret_cast<const u16 *>(data + 50), *reinterpret_cast<const u16 *>(data + 52),
+                           *reinterpret_cast<const u16 *>(data + 54), *reinterpret_cast<const u16 *>(data + 56) };
+        mons[4].setSpecie(species[0], &info[species[0]]);
+        mons[5].setSpecie(species[1], &info[species[1]]);
+        mons[10].setSpecie(species[2], &info[species[2]]);
+        mons[11].setSpecie(species[3], &info[species[3]]);
+    }
+}
 
-constexpr std::array<StaticTemplate, 7> legends = {
-    StaticTemplate(Game::BDSP, 480, 50, 3), // Uxie
-    StaticTemplate(Game::BDSP, 482, 50, 3), // Azelf
-    StaticTemplate(Game::BD, 483, 47, 3), // Dialga
-    StaticTemplate(Game::SP, 484, 47, 3), // Palkia
-    StaticTemplate(Game::BDSP, 485, 70, 3), // Heatran
-    StaticTemplate(Game::BDSP, 486, 70, 3), // Regigigas
-    StaticTemplate(Game::BDSP, 487, 70, 3) // Giratina
-};
+/**
+ * @brief Modifies encounter slots based on the swarm
+ *
+ * @param pokemon Vector of original encounters
+ * @param data Encounter area data
+ * @param info Personal info array pointer
+ * @param swarm Whether swarm is active or not
+ */
+static void modifySwarm(std::vector<Slot> &mons, const u8 *data, const PersonalInfo *info, bool swarm)
+{
+    if (swarm)
+    {
+        u16 species[2] = { *reinterpret_cast<const u16 *>(data + 38), *reinterpret_cast<const u16 *>(data + 40) };
+        mons[0].setSpecie(species[0], &info[species[0]]);
+        mons[1].setSpecie(species[1], &info[species[1]]);
+    }
+}
 
-constexpr std::array<StaticTemplate, 11> ramanasParkPureSpace = {
-    StaticTemplate(Game::SP, 144, 70, 2, 3), // Articuno
-    StaticTemplate(Game::SP, 145, 70, 2, 3), // Zapdos
-    StaticTemplate(Game::SP, 146, 70, 2, 3), // Moltres
-    StaticTemplate(Game::BD, 243, 70, 2, 3), // Raikou
-    StaticTemplate(Game::BD, 244, 70, 2, 3), // Entei
-    StaticTemplate(Game::BD, 245, 70, 2, 3), // Suicune
-    StaticTemplate(Game::BDSP, 377, 70, 2, 3), // Regirock
-    StaticTemplate(Game::BDSP, 378, 70, 2, 3), // Regice
-    StaticTemplate(Game::BDSP, 379, 70, 2, 3), // Registeel
-    StaticTemplate(Game::BDSP, 380, 70, 3), // Latias
-    StaticTemplate(Game::BDSP, 381, 70, 3) // Latios
-};
+/**
+ * @brief Modifies encounter slots based on the time
+ *
+ * @param pokemon Vector of original encounters
+ * @param data Encounter area data
+ * @param info Personal info array pointer
+ * @param time Time of day
+ */
+static void modifyTime(std::vector<Slot> &mons, const u8 *data, const PersonalInfo *info, int time)
+{
+    u16 specie1;
+    u16 specie2;
+    if (time == 1)
+    {
+        specie1 = *reinterpret_cast<const u16 *>(data + 42);
+        specie2 = *reinterpret_cast<const u16 *>(data + 44);
+    }
+    else if (time == 2)
+    {
+        specie1 = *reinterpret_cast<const u16 *>(data + 46);
+        specie2 = *reinterpret_cast<const u16 *>(data + 48);
+    }
+    else
+    {
+        return;
+    }
 
-constexpr std::array<StaticTemplate, 6> ramanasParkStrangeSpace = {
-    StaticTemplate(Game::BDSP, 150, 70, 2, 3), // Mewtwo
-    StaticTemplate(Game::SP, 249, 70, 2, 3), // Lugia
-    StaticTemplate(Game::BD, 250, 70, 2, 3), // Ho-Oh
-    StaticTemplate(Game::BDSP, 382, 70, 3), // Kyogre
-    StaticTemplate(Game::BDSP, 383, 70, 3), // Groudon
-    StaticTemplate(Game::BDSP, 384, 70, 3) // Rayquaza
-};
+    mons[2].setSpecie(specie1, &info[specie1]);
+    mons[3].setSpecie(specie2, &info[specie2]);
+}
 
-constexpr std::array<StaticTemplate, 3> mythics = {
-    StaticTemplate(Game::BDSP, 491, 50, 3), // Darkrai
-    StaticTemplate(Game::BDSP, 492, 30, 3), // Shaymin
-    StaticTemplate(Game::BDSP, 493, 80, 3) // Arceus
-};
+/**
+ * @brief Modifies encounter slots based on the Trophy Garden
+ *
+ * @param pokemon Vector of original encounters
+ * @param replacement Replacement pokemon
+ * @param info Personal info array pointer
+ * @param location Encounter location
+ */
+static void modifyTrophyGarden(std::vector<Slot> &pokemon, const std::array<u16, 2> &replacement, const PersonalInfo *info, u8 location)
+{
+    if (location == 117 && replacement[0] != 0 && replacement[1] != 0)
+    {
+        u16 specie1 = replacement[0];
+        u16 specie2 = replacement[1];
+        pokemon[6].setSpecie(specie1, &info[specie1]);
+        pokemon[7].setSpecie(specie2, &info[specie2]);
+    }
+}
+
+/**
+ * @brief Gets the encounter area for DPPt
+ *
+ * @param encounter Encounter type
+ * @param time Time modifier
+ * @param radar Whether pokeradar is active
+ * @param swarm Whether swarm is active
+ * @param version Game version
+ * @param replacement Replacement slots used by Great Marsh and Trophy Garden
+ * @param info Personal info array pointer
+ *
+ * @return Vector of encounter areas
+ */
+static std::vector<EncounterArea8> getBDSP(Encounter encounter, int time, bool radar, bool swarm, Game version,
+                                           const std::array<u16, 2> &replacement, const PersonalInfo *info)
+{
+    const u8 *compressedData;
+    size_t compressedLength;
+    if (version == Game::BD)
+    {
+        compressedData = bd.data();
+        compressedLength = bd.size();
+    }
+    else
+    {
+        compressedData = sp.data();
+        compressedLength = sp.size();
+    }
+
+    u32 length;
+    u8 *data = Utilities::decompress(compressedData, compressedLength, length);
+
+    std::vector<EncounterArea8> encounters;
+    for (size_t offset = 0; offset < length; offset += 142)
+    {
+        const u8 *entry = data + offset;
+
+        u8 location = entry[0];
+        u8 grass = entry[1];
+        u8 surf = entry[58];
+        u8 old = entry[79];
+        u8 good = entry[100];
+        u8 super = entry[121];
+
+        switch (encounter)
+        {
+        case Encounter::Grass:
+            if (grass != 0)
+            {
+                std::vector<Slot> slots;
+                slots.reserve(12);
+                for (size_t i = 0; i < 12; i++)
+                {
+                    u8 level = entry[2 + (i * 3)];
+                    u16 specie = *reinterpret_cast<const u16 *>(entry + 3 + (i * 3));
+                    slots.emplace_back(specie, level, &info[specie]);
+                }
+                modifySwarm(slots, entry, info, swarm);
+                modifyTime(slots, entry, info, time);
+                modifyRadar(slots, entry, info, radar);
+                modifyGreatMarsh(slots, replacement, info, location);
+                modifyTrophyGarden(slots, replacement, info, location);
+                encounters.emplace_back(location, grass, encounter, slots);
+            }
+            break;
+        case Encounter::Surfing:
+            if (surf != 0)
+            {
+                std::vector<Slot> slots;
+                slots.reserve(5);
+                for (size_t i = 0; i < 5; i++)
+                {
+                    u8 max = entry[59 + (i * 4)];
+                    u8 min = entry[60 + (i * 4)];
+                    u16 specie = *reinterpret_cast<const u16 *>(entry + 61 + (i * 4));
+                    slots.emplace_back(specie, min, max, &info[specie]);
+                }
+                encounters.emplace_back(location, surf, encounter, slots);
+            }
+            break;
+        case Encounter::OldRod:
+            if (old != 0)
+            {
+                std::vector<Slot> slots;
+                slots.reserve(5);
+                for (size_t i = 0; i < 5; i++)
+                {
+                    u8 max = entry[80 + (i * 4)];
+                    u8 min = entry[81 + (i * 4)];
+                    u16 specie = *reinterpret_cast<const u16 *>(entry + 82 + (i * 4));
+                    slots.emplace_back(specie, min, max, &info[specie]);
+                }
+                encounters.emplace_back(location, old, encounter, slots);
+            }
+            break;
+        case Encounter::GoodRod:
+            if (good != 0)
+            {
+                std::vector<Slot> slots;
+                slots.reserve(5);
+                for (size_t i = 0; i < 5; i++)
+                {
+                    u8 max = entry[101 + (i * 4)];
+                    u8 min = entry[102 + (i * 4)];
+                    u16 specie = *reinterpret_cast<const u16 *>(entry + 103 + (i * 4));
+                    slots.emplace_back(specie, min, max, &info[specie]);
+                }
+                encounters.emplace_back(location, good, encounter, slots);
+            }
+            break;
+        case Encounter::SuperRod:
+            if (super != 0)
+            {
+                std::vector<Slot> slots;
+                slots.reserve(5);
+                for (size_t i = 0; i < 5; i++)
+                {
+                    u8 max = entry[122 + (i * 4)];
+                    u8 min = entry[123 + (i * 4)];
+                    u16 specie = *reinterpret_cast<const u16 *>(entry + 124 + (i * 4));
+                    slots.emplace_back(specie, min, max, &info[specie]);
+                }
+                encounters.emplace_back(location, super, Encounter::SuperRod, slots);
+            }
+            break;
+        default:
+            break;
+        }
+    }
+    delete[] data;
+    return encounters;
+}
 
 namespace Encounters8
 {
-    namespace
+    std::vector<EncounterArea8> getEncounters(Encounter encounter, int time, bool radar, bool swarm, const std::array<u16, 2> &replacement,
+                                              const Profile8 *profile)
     {
-
-        void modifySwarm(std::vector<Slot> &mons, const u8 *data, const PersonalInfo *info, bool swarm)
-        {
-            if (swarm)
-            {
-                u16 species[2] = { *reinterpret_cast<const u16 *>(data + 38), *reinterpret_cast<const u16 *>(data + 40) };
-                mons[0].setSpecie(species[0], info[species[0]]);
-                mons[1].setSpecie(species[1], info[species[1]]);
-            }
-        }
-
-        void modifyTime(std::vector<Slot> &mons, const u8 *data, const PersonalInfo *info, int time)
-        {
-            u16 specie1;
-            u16 specie2;
-            if (time == 1)
-            {
-                specie1 = *reinterpret_cast<const u16 *>(data + 42);
-                specie2 = *reinterpret_cast<const u16 *>(data + 44);
-            }
-            else if (time == 2)
-            {
-                specie1 = *reinterpret_cast<const u16 *>(data + 46);
-                specie2 = *reinterpret_cast<const u16 *>(data + 48);
-            }
-            else
-            {
-                return;
-            }
-
-            mons[2].setSpecie(specie1, info[specie1]);
-            mons[3].setSpecie(specie2, info[specie2]);
-        }
-
-        void modifyRadar(std::vector<Slot> &mons, const u8 *data, const PersonalInfo *info, bool radar)
-        {
-            if (radar)
-            {
-                u16 species[4] = { *reinterpret_cast<const u16 *>(data + 50), *reinterpret_cast<const u16 *>(data + 52),
-                                   *reinterpret_cast<const u16 *>(data + 54), *reinterpret_cast<const u16 *>(data + 56) };
-                mons[4].setSpecie(species[0], info[species[0]]);
-                mons[5].setSpecie(species[1], info[species[1]]);
-                mons[10].setSpecie(species[2], info[species[2]]);
-                mons[11].setSpecie(species[3], info[species[3]]);
-            }
-        }
-
-        std::vector<EncounterArea8> getBDSP(Encounter encounter, const PersonalInfo *info, const Profile8 &profile, int time)
-        {
-            const u8 *data;
-            size_t size;
-
-            if (profile.getVersion() == Game::BD)
-            {
-                data = bd.data();
-                size = bd.size();
-            }
-            else
-            {
-                data = sp.data();
-                size = sp.size();
-            }
-
-            std::vector<EncounterArea8> encounters;
-            for (size_t offset = 0; offset < size; offset += 142)
-            {
-                const u8 *entry = data + offset;
-
-                u8 location = entry[0];
-                u8 grass = entry[1];
-                u8 surf = entry[58];
-                u8 old = entry[79];
-                u8 good = entry[100];
-                u8 super = entry[121];
-
-                switch (encounter)
-                {
-                case Encounter::Grass:
-                    if (grass != 0)
-                    {
-                        std::vector<Slot> slots;
-                        slots.reserve(12);
-                        for (int i = 0; i < 12; i++)
-                        {
-                            u8 level = entry[2 + (i * 3)];
-                            u16 specie = *reinterpret_cast<const u16 *>(entry + 3 + (i * 3));
-                            slots.emplace_back(specie, level, info[specie]);
-                        }
-                        modifySwarm(slots, entry, info, profile.getSwarm());
-                        modifyTime(slots, entry, info, time);
-                        modifyRadar(slots, entry, info, profile.getRadar());
-                        encounters.emplace_back(location, grass, encounter, slots);
-                    }
-                    break;
-                case Encounter::Surfing:
-                    if (surf != 0)
-                    {
-                        std::vector<Slot> slots;
-                        slots.reserve(5);
-                        for (int i = 0; i < 5; i++)
-                        {
-                            u8 max = entry[59 + (i * 4)];
-                            u8 min = entry[60 + (i * 4)];
-                            u16 specie = *reinterpret_cast<const u16 *>(entry + 61 + (i * 4));
-                            slots.emplace_back(specie, min, max, info[specie]);
-                        }
-                        encounters.emplace_back(location, surf, encounter, slots);
-                    }
-                    break;
-                case Encounter::OldRod:
-                    if (old != 0)
-                    {
-                        std::vector<Slot> slots;
-                        slots.reserve(5);
-                        for (int i = 0; i < 5; i++)
-                        {
-                            u8 max = entry[80 + (i * 4)];
-                            u8 min = entry[81 + (i * 4)];
-                            u16 specie = *reinterpret_cast<const u16 *>(entry + 82 + (i * 4));
-                            slots.emplace_back(specie, min, max, info[specie]);
-                        }
-                        encounters.emplace_back(location, old, encounter, slots);
-                    }
-                    break;
-                case Encounter::GoodRod:
-                    if (good != 0)
-                    {
-                        std::vector<Slot> slots;
-                        slots.reserve(5);
-                        for (int i = 0; i < 5; i++)
-                        {
-                            u8 max = entry[101 + (i * 4)];
-                            u8 min = entry[102 + (i * 4)];
-                            u16 specie = *reinterpret_cast<const u16 *>(entry + 103 + (i * 4));
-                            slots.emplace_back(specie, min, max, info[specie]);
-                        }
-                        encounters.emplace_back(location, good, encounter, slots);
-                    }
-                    break;
-                case Encounter::SuperRod:
-                    if (super != 0)
-                    {
-                        std::vector<Slot> slots;
-                        slots.reserve(5);
-                        for (int i = 0; i < 5; i++)
-                        {
-                            u8 max = entry[122 + (i * 4)];
-                            u8 min = entry[123 + (i * 4)];
-                            u16 specie = *reinterpret_cast<const u16 *>(entry + 124 + (i * 4));
-                            slots.emplace_back(specie, min, max, info[specie]);
-                        }
-                        encounters.emplace_back(location, super, Encounter::SuperRod, slots);
-                    }
-                    break;
-                default:
-                    break;
-                }
-            }
-            return encounters;
-        }
+        const auto *info = PersonalLoader::getPersonal(profile->getVersion());
+        return getBDSP(encounter, time, radar, swarm, profile->getVersion(), replacement, info);
     }
 
-    std::vector<EncounterArea8> getEncounters(Encounter encounter, int time, const Profile8 &profile)
+    std::array<u16, 14> getGreatMarshPokemon(const Profile8 *profile)
     {
-        const auto *info = PersonalLoader::getPersonal(profile.getVersion());
-        return getBDSP(encounter, info, profile, time);
+        if (profile->getNationalDex())
+        {
+            return greatMarshDex;
+        }
+        else
+        {
+            return greatMarsh;
+        }
     }
 
     const StaticTemplate *getStaticEncounters(int index, int *size)
@@ -279,11 +304,19 @@ namespace Encounters8
         {
             if (size)
             {
+                *size = starters.size();
+            }
+            return starters.data();
+        }
+        else if (index == 1)
+        {
+            if (size)
+            {
                 *size = gifts.size();
             }
             return gifts.data();
         }
-        else if (index == 1)
+        else if (index == 2)
         {
             if (size)
             {
@@ -291,7 +324,7 @@ namespace Encounters8
             }
             return fossils.data();
         }
-        else if (index == 2)
+        else if (index == 3)
         {
             if (size)
             {
@@ -299,7 +332,7 @@ namespace Encounters8
             }
             return stationary.data();
         }
-        else if (index == 3)
+        else if (index == 4)
         {
             if (size)
             {
@@ -307,7 +340,7 @@ namespace Encounters8
             }
             return roamers.data();
         }
-        else if (index == 4)
+        else if (index == 5)
         {
             if (size)
             {
@@ -315,7 +348,7 @@ namespace Encounters8
             }
             return legends.data();
         }
-        else if (index == 5)
+        else if (index == 6)
         {
             if (size)
             {
@@ -323,7 +356,7 @@ namespace Encounters8
             }
             return ramanasParkPureSpace.data();
         }
-        else if (index == 6)
+        else if (index == 7)
         {
             if (size)
             {
@@ -339,5 +372,105 @@ namespace Encounters8
             }
             return mythics.data();
         }
+    }
+
+    const StaticTemplate *getStaticEncounter(int type, int index)
+    {
+        const StaticTemplate *templates = getStaticEncounters(type);
+        return &templates[index];
+    }
+
+    std::array<u16, 16> getTrophyGardenPokemon()
+    {
+        return trophyGarden;
+    }
+
+    std::vector<UndergroundArea> getUndergroundEncounters(int storyFlag, bool diglett, const Profile8 *profile)
+    {
+        const u8 *compressedData;
+        size_t compressedLength;
+
+        Game version = profile->getVersion();
+        if (version == Game::BD)
+        {
+            compressedData = bd_underground.data();
+            compressedLength = bd_underground.size();
+        }
+        else
+        {
+            compressedData = sp_underground.data();
+            compressedLength = sp_underground.size();
+        }
+
+        u32 length;
+        u8 *data = Utilities::decompress(compressedData, compressedLength, length);
+
+        std::vector<UndergroundArea> encounters;
+        const PersonalInfo *base = PersonalLoader::getPersonal(profile->getVersion());
+        for (size_t offset = 0; offset < length;)
+        {
+            const u8 *entry = data + offset;
+            size_t index = 0;
+
+            u8 location = entry[index++];
+
+            u8 specialCount = entry[index++];
+            std::vector<SpecialPokemon> specialPokemon;
+            for (u8 i = 0; i < specialCount; i++, index += 4)
+            {
+                u16 specie = *reinterpret_cast<const u16 *>(entry + index);
+                u16 rate = *reinterpret_cast<const u16 *>(entry + index + 2);
+                SpecialPokemon special = { specie, rate };
+                specialPokemon.emplace_back(special);
+            }
+
+            u8 min = entry[index++];
+            u8 max = entry[index++];
+
+            std::array<u8, 18> rates;
+            std::generate(rates.begin(), rates.end(), [entry, &index] { return entry[index++]; });
+
+            std::vector<Pokemon> pokemon;
+            std::vector<TypeSize> types;
+            u8 pokemonCount = entry[index++];
+            for (u8 i = 0; i < pokemonCount; i++)
+            {
+                u8 flag = entry[index++];
+                if (flag <= storyFlag)
+                {
+                    u16 specie = *reinterpret_cast<const u16 *>(entry + index);
+                    index += 2;
+                    const PersonalInfo *info = &base[specie];
+
+                    u8 size = entry[index++];
+                    u8 typeCount = info->getType(0) == info->getType(1) ? 1 : 2;
+                    for (u8 j = 0; j < typeCount; j++)
+                    {
+                        u8 type = info->getType(j);
+                        u16 value = type + std::pow(10, size);
+
+                        TypeSize typeSize = { value, size, type };
+                        types.emplace_back(typeSize);
+                    }
+
+                    std::array<u8, 6> flagRates;
+                    std::generate(flagRates.begin(), flagRates.end(), [entry, &index] { return entry[index++]; });
+                    u8 rateup = entry[index++];
+
+                    u16 flagRate = diglett ? flagRates[storyFlag - 1] * rateup : flagRates[storyFlag - 1];
+                    Pokemon mon = { flagRate, specie, size, info->getType(0), info->getType(1) };
+                    pokemon.emplace_back(mon);
+                }
+                else
+                {
+                    index += 10;
+                }
+            }
+
+            encounters.emplace_back(location, min, max, pokemon, specialPokemon, rates, types);
+            offset += index;
+        }
+        delete[] data;
+        return encounters;
     }
 }

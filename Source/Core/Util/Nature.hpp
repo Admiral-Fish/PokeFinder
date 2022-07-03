@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -20,11 +20,23 @@
 #ifndef NATURE_HPP
 #define NATURE_HPP
 
-#include <Core/Util/Global.hpp>
+#include <Core/Global.hpp>
 
+/**
+ * @brief Computes stats that get modified from the nature
+ */
 namespace Nature
 {
-    double getNatureModifier(u8 nature, u8 stat);
+    /**
+     * @brief Computes the stat based upon the \p nature and stat \p index
+     *
+     * @param stat Unmodified stat
+     * @param nature Pokemon nature
+     * @param index Pokemon stat index
+     *
+     * @return Computed modified stat
+     */
+    u16 computeStat(u16 stat, u8 nature, u8 index);
 }
 
 #endif // NATURE_HPP

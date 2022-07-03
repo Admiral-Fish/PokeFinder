@@ -1,0 +1,76 @@
+{
+    "advance": [
+        {
+            "name": "Advance 1",
+            "seed": 0,
+            "advances": 5,
+            "result": 2371835568
+        },
+        {
+            "name": "Advance 2",
+            "seed": 0,
+            "advances": 10,
+            "result": 1125491363
+        },
+        {
+            "name": "Advance 3",
+            "seed": 2147483648,
+            "advances": 5,
+            "result": 1280171388
+        },
+        {
+            "name": "Advance 4",
+            "seed": 2147483648,
+            "advances": 10,
+            "result": 1383690714
+        }
+    ],
+    "jump": [
+        {
+            "name": "Jump 1",
+            "seed": 0,
+            "advances": 1073741824,
+            "result": 3568660884
+        },
+        {
+            "name": "Jump 2",
+            "seed": 0,
+            "advances": 2147483648,
+            "result": 2137342240
+        },
+        {
+            "name": "Jump 3",
+            "seed": 0,
+            "advances": 3221225472,
+            "result": 4127451365
+        },
+        {
+            "name": "Jump 4",
+            "seed": 0,
+            "advances": 4294967295,
+            "result": 797622225
+        }
+    ],
+    "next": [
+        {
+            "name": "Next 1",
+            "seed": 0,
+            "result": 2081790247
+        },
+        {
+            "name": "Next 2",
+            "seed": 1073741824,
+            "result": 686751916
+        },
+        {
+            "name": "Next 3",
+            "seed": 2147483648,
+            "result": 3419458402
+        },
+        {
+            "name": "Next 4",
+            "seed": 3221225472,
+            "result": 3177296466
+        }
+    ]
+}

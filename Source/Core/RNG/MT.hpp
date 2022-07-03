@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -20,20 +20,58 @@
 #ifndef MT_HPP
 #define MT_HPP
 
-#include <Core/Util/Global.hpp>
+#include <Core/Global.hpp>
+#include <Core/RNG/SIMD.hpp>
 
+/**
+ * @brief Provides random numbers via the Mersenne Twister algorithm.
+ */
 class MT
 {
 public:
-    explicit MT(u32 seed);
+    /**
+     * @brief Construct a new MT object
+     *
+     * @param seed Starting PRNG state
+     */
+    MT(u32 seed);
+
+    /**
+     * @brief Construct a new MT object
+     *
+     * @param seed Starting PRNG state
+     * @param advances Number of initial advances
+     */
+    MT(u32 seed, u32 advances);
+
+    /**
+     * @brief Advances the RNG by \p advances amount
+     *
+     * @param advances Number of advances
+     */
     void advance(u32 advances);
+
+    /**
+     * @brief Gets the next 32bit PRNG state
+     *
+     * @return PRNG value
+     */
     u32 next();
+
+    /**
+     * @brief Gets the next 16bit PRNG state
+     *
+     * @return PRNG value
+     */
     u16 nextUShort();
 
 private:
-    alignas(16) u32 mt[624];
+    alignas(16) vuint128 state[156];
     u16 index;
 
+    /**
+     * @brief Generates the next MT state after all 624 states have been consumed
+     */
     void shuffle();
 };
 

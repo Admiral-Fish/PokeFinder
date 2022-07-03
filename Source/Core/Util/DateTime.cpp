@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -19,9 +19,17 @@
 
 #include "DateTime.hpp"
 
-constexpr int monthDays[13] = { 0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+constexpr int monthDays[12] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 
-inline bool isLeapYear(int year)
+/**
+ * @brief Determines if the year is a leap year.
+ *
+ * @param year Year to check
+ *
+ * @return true Year is a leap year
+ * @return false Year is not a leap year
+ */
+static inline bool isLeapYear(int year)
 {
     // Since we know the years are bound between 2000 and 2099, we can simplify this check
     // return ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0));
@@ -41,24 +49,18 @@ Date Date::addDays(int days) const
     return Date(jd + days);
 }
 
-int Date::daysTo(const Date &other) const
-{
-    return other.jd - jd;
-}
-
-int Date::year() const
-{
-    return getParts()[0];
-}
-
-int Date::month() const
-{
-    return getParts()[1];
-}
-
 int Date::day() const
 {
-    return getParts()[2];
+    return getParts().day;
+}
+
+int Date::daysInMonth(int month, int year)
+{
+    if (month == 2 && isLeapYear(year))
+    {
+        return 29;
+    }
+    return monthDays[month - 1];
 }
 
 int Date::dayOfWeek() const
@@ -66,7 +68,12 @@ int Date::dayOfWeek() const
     return (jd + 1) % 7;
 }
 
-std::array<int, 3> Date::getParts() const
+int Date::daysTo(const Date &other) const
+{
+    return other.jd - jd;
+}
+
+DateParts Date::getParts() const
 {
     int a = jd + 32044;
     int b = (4 * a + 3) / 146097;
@@ -76,9 +83,6 @@ std::array<int, 3> Date::getParts() const
     int e = c - (1461 * d) / 4;
     int m = (5 * e + 2) / 153;
 
-    // int y = 100 * b + d - 4800 + (m / 10);
-    // int year = y > 0 ? y : y - 1;
-
     int year = 100 * b + d - 4800 + (m / 10);
     int month = m + 3 - 12 * (m / 10);
     int day = e - ((153 * m + 2) / 5) + 1;
@@ -86,28 +90,29 @@ std::array<int, 3> Date::getParts() const
     return { year, month, day };
 }
 
-int Date::daysInMonth(int month, int year)
+int Date::month() const
 {
-    if (month == 2 && isLeapYear(year))
-    {
-        return 29;
-    }
-    return monthDays[month];
+    return getParts().month;
 }
 
 std::string Date::toString() const
 {
     auto parts = getParts();
 
-    std::string y = std::to_string(parts[0]);
+    std::string y = std::to_string(parts.year);
 
-    std::string m = std::to_string(parts[1]);
+    std::string m = std::to_string(parts.month);
     m.insert(m.begin(), 2 - m.size(), '0');
 
-    std::string d = std::to_string(parts[2]);
+    std::string d = std::to_string(parts.day);
     d.insert(d.begin(), 2 - d.size(), '0');
 
     return y + "-" + m + "-" + d;
+}
+
+int Date::year() const
+{
+    return getParts().year;
 }
 
 int Time::addSeconds(int seconds)
@@ -152,8 +157,7 @@ std::string Time::toString() const
     return h + ":" + m + ":" + s;
 }
 
-DateTime::DateTime(int year, int month, int day, int hour, int minute, int second) :
-    date(Date(year, month, day)), time(Time(hour, minute, second))
+DateTime::DateTime(int year, int month, int day, int hour, int minute, int second) : date(year, month, day), time(hour, minute, second)
 {
 }
 

@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -21,24 +21,44 @@
 #define HIDDENGROTTOGENERATOR_HPP
 
 #include <Core/Gen5/Filters/HiddenGrottoFilter.hpp>
-#include <Core/Util/Global.hpp>
-#include <vector>
+#include <Core/Gen5/HiddenGrottoArea.hpp>
+#include <Core/Gen5/Profile5.hpp>
+#include <Core/Parents/Generators/Generator.hpp>
 
 class HiddenGrottoState;
 
-class HiddenGrottoGenerator
+/**
+ * @brief Hidden grotto generator for Gen 5
+ */
+class HiddenGrottoGenerator : public Generator<Profile5, HiddenGrottoFilter>
 {
 public:
-    HiddenGrottoGenerator(u32 initialAdvances, u32 maxAdvances, u8 genderRatio, u8 powerLevel, const HiddenGrottoFilter &filter);
+    /**
+     * @brief Construct a new HiddenGrottoGenerator object
+     *
+     * @param initialAdvances Initial number of advances
+     * @param maxAdvances Maximum number of advances
+     * @param delay Number of advances to offset
+     * @param powerLevel Hidden grotto encounter rate
+     * @param encounterArea Hidden grotto information
+     * @param profile Profile Information
+     * @param filter State filter
+     */
+    HiddenGrottoGenerator(u32 initialAdvances, u32 maxAdvances, u32 delay, u8 powerLevel, const HiddenGrottoArea &encounterArea,
+                          const Profile5 &profile, const HiddenGrottoFilter &filter);
+
+    /**
+     * @brief Generates states
+     *
+     * @param seed Starting PRNG state
+     *
+     * @return Vector of computed states
+     */
     std::vector<HiddenGrottoState> generate(u64 seed) const;
-    void setInitialAdvances(u32 initialAdvances);
 
 private:
-    u32 initialAdvances;
-    u32 maxAdvances;
-    u8 genderRatio;
+    HiddenGrottoArea encounterArea;
     u8 powerLevel;
-    HiddenGrottoFilter filter;
 };
 
 #endif // HIDDENGROTTOGENERATOR_HPP

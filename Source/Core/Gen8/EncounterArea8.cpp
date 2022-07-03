@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -18,19 +18,31 @@
  */
 
 #include "EncounterArea8.hpp"
-#include <Core/Parents/Slot.hpp>
+#include <Core/Enum/Game.hpp>
 
-EncounterArea8::EncounterArea8(u8 location, u8 rate, Encounter type, const std::vector<Slot> &pokemon) :
-    EncounterArea(location, rate, type, pokemon)
+bool EncounterArea8::greatMarsh(Game version) const
 {
+    if ((version & Game::BDSP) != Game::None)
+    {
+        switch (location)
+        {
+        case 23: // Great Marsh Area 1
+        case 24: // Great Marsh Area 2
+        case 25: // Great Marsh Area 3
+        case 26: // Great Marsh Area 4
+        case 27: // Great Marsh Area 5
+        case 28: // Great Marsh Area 6
+            return true;
+        }
+    }
+    return false;
 }
 
-u8 EncounterArea8::calcLevel(u8 index, u32 prng) const
+bool EncounterArea8::trophyGarden(Game version) const
 {
-    return prng % (pokemon[index].getMaxLevel() - pokemon[index].getMinLevel() + 1) + pokemon[index].getMinLevel();
-}
-
-u8 EncounterArea8::calcLevel(u8 index) const
-{
-    return pokemon[index].getMinLevel();
+    if ((version & Game::BDSP) != Game::None)
+    {
+        return location == 117;
+    }
+    return false;
 }

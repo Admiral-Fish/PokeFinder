@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -18,94 +18,104 @@
  */
 
 #include "Utilities.hpp"
-#include <Core/Gen4/HGSSRoamer.hpp>
+#include <Core/Enum/Game.hpp>
+#include <Core/Gen5/Profile5.hpp>
 #include <Core/RNG/LCRNG.hpp>
-#include <Core/RNG/LCRNG64.hpp>
 #include <Core/RNG/MT.hpp>
 #include <Core/Util/DateTime.hpp>
+#include <bzlib.h>
 
-namespace
+static u32 advanceProbabilityTable(BWRNG &rng)
 {
-    u32 advanceProbabilityTable(BWRNG &rng)
+    u32 count = 0;
+
+    // Round 1
+    rng.advance(1, &count);
+
+    // Round 2
+    if (rng.nextUInt(101, &count) > 50)
     {
-        u32 count = 0;
-
-        // Round 1
-        count++;
-        rng.advance(1);
-
-        // Round 2
-        count++;
-        if (rng.nextUInt(101) > 50)
-        {
-            count++;
-            rng.advance(1);
-        }
-
-        // Round 3
-        count++;
-        if (rng.nextUInt(101) > 30)
-        {
-            count++;
-            rng.advance(1);
-        }
-
-        // Round 4
-        count++;
-        if (rng.nextUInt(101) > 25)
-        {
-            count++;
-            if (rng.nextUInt(101) > 30)
-            {
-                count++;
-                rng.advance(1);
-            }
-        }
-
-        // Round 5
-        count++;
-        if (rng.nextUInt(101) > 20)
-        {
-            count++;
-            if (rng.nextUInt(101) > 25)
-            {
-                count++;
-                if (rng.nextUInt(101) > 33)
-                {
-                    count++;
-                    rng.advance(1);
-                }
-            }
-        }
-
-        return count;
+        rng.advance(1, &count);
     }
 
-    std::string getPitch(u8 result)
+    // Round 3
+    if (rng.nextUInt(101, &count) > 30)
     {
-        std::string pitch;
-        if (result < 20)
-        {
-            pitch = "L ";
-        }
-        else if (result < 40)
-        {
-            pitch = "ML ";
-        }
-        else if (result < 60)
-        {
-            pitch = "M ";
-        }
-        else if (result < 80)
-        {
-            pitch = "MH ";
-        }
-        else
-        {
-            pitch = "H ";
-        }
+        rng.advance(1, &count);
+    }
 
-        return pitch + std::to_string(result);
+    // Round 4
+    if (rng.nextUInt(101, &count) > 25)
+    {
+        if (rng.nextUInt(101, &count) > 30)
+        {
+            rng.advance(1, &count);
+        }
+    }
+
+    // Round 5
+    if (rng.nextUInt(101, &count) > 20)
+    {
+        if (rng.nextUInt(101, &count) > 25)
+        {
+            if (rng.nextUInt(101, &count) > 33)
+            {
+                rng.advance(1, &count);
+            }
+        }
+    }
+
+    return count;
+}
+
+static std::string getPitch(u8 result)
+{
+    std::string pitch;
+    if (result < 20)
+    {
+        pitch = "L ";
+    }
+    else if (result < 40)
+    {
+        pitch = "ML ";
+    }
+    else if (result < 60)
+    {
+        pitch = "M ";
+    }
+    else if (result < 80)
+    {
+        pitch = "MH ";
+    }
+    else
+    {
+        pitch = "H ";
+    }
+
+    return pitch + std::to_string(result);
+}
+
+namespace Utilities
+{
+    char *decompress(const char *compressedData, u32 compressedSize, u32 &size)
+    {
+        size = *reinterpret_cast<const u16 *>(compressedData);
+        char *data = new char[size];
+
+        BZ2_bzBuffToBuffDecompress(data, &size, const_cast<char *>(compressedData + sizeof(u16)), compressedSize, 0, 0);
+
+        return data;
+    }
+
+    u8 *decompress(const u8 *compressedData, u32 compressedSize, u32 &size)
+    {
+        size = *reinterpret_cast<const u16 *>(compressedData);
+        u8 *data = new u8[size];
+
+        BZ2_bzBuffToBuffDecompress(reinterpret_cast<char *>(data), &size,
+                                   reinterpret_cast<char *>(const_cast<u8 *>(compressedData + sizeof(u16))), compressedSize, 0, 0);
+
+        return data;
     }
 }
 
@@ -122,7 +132,7 @@ namespace Utilities3
         u32 m = time.minute();
 
         u32 seed = 1440 * d + 960 * (h / 10) + 60 * (h % 10) + 16 * (m / 10) + m % 10;
-        return (seed >> 16) ^ (seed & 0xFFFF);
+        return (seed >> 16) ^ (seed & 0xffff);
     }
 }
 
@@ -135,10 +145,10 @@ namespace Utilities4
 
         auto parts = date.getParts();
 
-        u8 ab = static_cast<u8>(parts[1] * parts[2] + time.minute() + time.second());
+        u8 ab = static_cast<u8>(parts.month * parts.day + time.minute() + time.second());
         u8 cd = static_cast<u8>(time.hour());
 
-        return static_cast<u32>(((ab << 24) | (cd << 16))) + delay + parts[0] - 2000;
+        return static_cast<u32>(((ab << 24) | (cd << 16))) + delay + parts.year - 2000;
     }
 
     std::string coinFlips(u32 seed)
@@ -158,21 +168,19 @@ namespace Utilities4
         return coins;
     }
 
-    std::string getCalls(u32 seed, const HGSSRoamer &info)
+    std::string getCalls(u32 seed, u8 skips)
     {
         std::string calls;
 
-        u8 skips = info.getSkips();
         if (skips > 0)
         {
             calls += "(";
         }
 
         PokeRNG rng(seed);
-
         for (u8 i = 0; i < 20 + skips; i++)
         {
-            u8 call = rng.nextUShort() % 3;
+            u8 call = rng.nextUShort(3);
 
             calls += call == 0 ? "E" : call == 1 ? "K" : "P";
 
@@ -191,17 +199,60 @@ namespace Utilities4
         return calls;
     }
 
-    std::string getChatot(u32 seed)
+    std::string getChatot(u8 prng)
     {
-        return getPitch(((seed & 0x1fff) * 100) >> 13);
+        return getPitch(prng);
     }
 }
 
 namespace Utilities5
 {
-    std::string getChatot(u32 seed)
+    u32 forceGender(u32 pid, BWRNG &rng, u8 gender, u8 genderRatio)
     {
-        return getPitch(seed / 82);
+        u8 val;
+        switch (genderRatio)
+        {
+        case 0: // Male only
+            val = rng.nextUInt(0xf6) + 8;
+            break;
+        case 254: // Female Only
+            val = rng.nextUInt(8) + 1;
+            break;
+        default:
+            if (gender == 0) // Male
+            {
+                val = rng.nextUInt(0xfe - genderRatio) + genderRatio;
+            }
+            else if (gender == 1) // Female
+            {
+                val = rng.nextUInt(genderRatio - 1) + 1;
+            }
+            else
+            {
+                rng.advance(1);
+                val = 0;
+            }
+            break;
+        }
+
+        return (pid & 0xffffff00) | val;
+    }
+
+    std::string getChatot(u8 prng)
+    {
+        return getPitch(prng);
+    }
+
+    u32 initialAdvances(u64 seed, const Profile5 &profile)
+    {
+        if ((profile.getVersion() & Game::BW) != Game::None)
+        {
+            return initialAdvancesBW(seed);
+        }
+        else
+        {
+            return initialAdvancesBW2(seed, profile.getMemoryLink());
+        }
     }
 
     u32 initialAdvancesBW(u64 seed)
@@ -295,39 +346,15 @@ namespace Utilities5
         return count;
     }
 
-    u32 forceGender(u32 pid, u64 rand, u8 gender, u8 genderRatio)
+    u32 initialAdvancesID(u64 seed, Game version)
     {
-        pid &= 0xffffff00;
-
-        if (genderRatio == 0) // Male only
+        if ((version & Game::BW) != Game::None)
         {
-            u8 val = ((rand * 0xF6) >> 32) + 8;
-            pid |= val;
+            return initialAdvancesBWID(seed);
         }
-        else if (genderRatio == 254) // Female only
+        else
         {
-            u8 val = ((rand * 0x8) >> 32) + 1;
-            pid |= val;
+            return initialAdvancesBW2ID(seed);
         }
-        else // Gender ratio
-        {
-            if (gender == 0) // Male
-            {
-                u8 val = ((rand * (0xFE - genderRatio)) >> 32) + genderRatio;
-                pid |= val;
-            }
-            else if (gender == 1) // Female
-            {
-                u8 val = ((rand * (genderRatio - 1)) >> 32) + 1;
-                pid |= val;
-            }
-            else
-            {
-                u8 val = rand >> 32;
-                pid |= val;
-            }
-        }
-
-        return pid;
     }
 }

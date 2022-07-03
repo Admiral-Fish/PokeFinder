@@ -1,0 +1,72 @@
+{
+    "advance": [
+        {
+            "name": "Advance 1",
+            "seed": 0,
+            "advances": 312,
+            "result": 9588053816190298373
+        },
+        {
+            "name": "Advance 2",
+            "seed": 0,
+            "advances": 624,
+            "result": 14927454118222438905
+        },
+        {
+            "name": "Advance 3",
+            "seed": 2147483648,
+            "advances": 312,
+            "result": 10024173918031204033
+        },
+        {
+            "name": "Advance 4",
+            "seed": 2147483648,
+            "advances": 624,
+            "result": 4155070475069981568
+        }
+    ],
+    "next": [
+        {
+            "name": "Next 1",
+            "seed": 0,
+            "result": 1139168856888879704
+        },
+        {
+            "name": "Next 2",
+            "seed": 1073741824,
+            "result": 16904603280325073948
+        },
+        {
+            "name": "Next 3",
+            "seed": 2147483648,
+            "result": 10086397636629762885
+        },
+        {
+            "name": "Next 4",
+            "seed": 3221225472,
+            "result": 17594728912160310879
+        }
+    ],
+    "nextUInt": [
+        {
+            "name": "Next 1",
+            "seed": 0,
+            "result": 772581976
+        },
+        {
+            "name": "Next 2",
+            "seed": 1073741824,
+            "result": 2024659996
+        },
+        {
+            "name": "Next 3",
+            "seed": 2147483648,
+            "result": 3802665797
+        },
+        {
+            "name": "Next 4",
+            "seed": 3221225472,
+            "result": 2291943007
+        }
+    ]
+}

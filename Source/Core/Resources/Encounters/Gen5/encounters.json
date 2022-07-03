@@ -1,0 +1,611 @@
+{
+    "dreamRadar": [
+        {
+            "description": "Slowpoke",
+            "specie": 79,
+            "ability": 2
+        },
+        {
+            "description": "Staryu",
+            "specie": 120,
+            "ability": 2
+        },
+        {
+            "description": "Porygon",
+            "specie": 137,
+            "ability": 2
+        },
+        {
+            "description": "Hoothoot",
+            "specie": 163,
+            "ability": 2
+        },
+        {
+            "description": "Igglybuff",
+            "specie": 174,
+            "ability": 2
+        },
+        {
+            "description": "Togepi",
+            "specie": 175,
+            "ability": 2
+        },
+        {
+            "description": "Shuckle",
+            "specie": 213,
+            "ability": 2
+        },
+        {
+            "description": "Smoochum",
+            "specie": 238,
+            "ability": 2
+        },
+        {
+            "description": "Lugia",
+            "specie": 249,
+            "ability": 2
+        },
+        {
+            "description": "Ho-Oh",
+            "specie": 250,
+            "ability": 2
+        },
+        {
+            "description": "Ralts",
+            "specie": 280,
+            "ability": 2
+        },
+        {
+            "description": "Swablu",
+            "specie": 333,
+            "ability": 2
+        },
+        {
+            "description": "Beldum",
+            "specie": 374,
+            "ability": 2
+        },
+        {
+            "description": "Drifloon",
+            "specie": 425,
+            "ability": 2
+        },
+        {
+            "description": "Bronzor",
+            "specie": 436,
+            "ability": 2
+        },
+        {
+            "description": "Spiritomb",
+            "specie": 442,
+            "ability": 2
+        },
+        {
+            "description": "Riolu",
+            "specie": 447,
+            "ability": 2
+        },
+        {
+            "description": "Rotom",
+            "specie": 479,
+            "ability": 255
+        },
+        {
+            "description": "Dialga",
+            "specie": 483,
+            "ability": 2
+        },
+        {
+            "description": "Palkia",
+            "specie": 484,
+            "ability": 2
+        },
+        {
+            "description": "Giratina",
+            "specie": 487,
+            "ability": 2
+        },
+        {
+            "description": "Munna",
+            "specie": 517,
+            "ability": 2
+        },
+        {
+            "description": "Sigilyph",
+            "specie": 561,
+            "ability": 2
+        },
+        {
+            "description": "Tornadus",
+            "specie": 641,
+            "ability": 2,
+            "form": 1
+        },
+        {
+            "description": "Thundurus",
+            "specie": 642,
+            "ability": 2,
+            "form": 1
+        },
+        {
+            "description": "Landorus",
+            "specie": 645,
+            "ability": 2,
+            "form": 1
+        }
+    ],
+    "starters": [
+        {
+            "description": "Snivy @ Nuvema Town / Aspertia City",
+            "version": "Game::Gen5",
+            "specie": 495,
+            "level": 5
+        },
+        {
+            "description": "Tepig @ Nuvema Town / Aspertia City",
+            "version": "Game::Gen5",
+            "specie": 498,
+            "level": 5
+        },
+        {
+            "description": "Oshawott @ Nuvema Town / Aspertia City",
+            "version": "Game::Gen5",
+            "specie": 501,
+            "level": 5
+        }
+    ],
+    "fossils": [
+        {
+            "description": "Omanyte @ Nacrene City",
+            "version": "Game::Gen5",
+            "specie": 138,
+            "level": 25
+        },
+        {
+            "description": "Kabuto @ Nacrene City",
+            "version": "Game::Gen5",
+            "specie": 140,
+            "level": 25
+        },
+        {
+            "description": "Aerodactyl @ Nacrene City",
+            "version": "Game::Gen5",
+            "specie": 142,
+            "level": 25
+        },
+        {
+            "description": "Lileep @ Nacrene City",
+            "version": "Game::Gen5",
+            "specie": 345,
+            "level": 25
+        },
+        {
+            "description": "Anorith @ Nacrene City",
+            "version": "Game::Gen5",
+            "specie": 347,
+            "level": 25
+        },
+        {
+            "description": "Cranidos @ Nacrene City",
+            "version": "Game::Gen5",
+            "specie": 408,
+            "level": 25
+        },
+        {
+            "description": "Shieldon @ Nacrene City",
+            "version": "Game::Gen5",
+            "specie": 410,
+            "level": 25
+        },
+        {
+            "description": "Tirtouga @ Nacrene City",
+            "version": "Game::Gen5",
+            "specie": 564,
+            "level": 25
+        },
+        {
+            "description": "Archen @ Nacrene City",
+            "version": "Game::Gen5",
+            "specie": 566,
+            "level": 25
+        }
+    ],
+    "gifts": [
+        {
+            "description": "Pansage @ Dreamyard",
+            "version": "Game::BW",
+            "specie": 511,
+            "level": 10
+        },
+        {
+            "description": "Pansear @ Dreamyard",
+            "version": "Game::BW",
+            "specie": 513,
+            "level": 10
+        },
+        {
+            "description": "Panpour @ Dreamyard",
+            "version": "Game::BW",
+            "specie": 515,
+            "level": 10
+        },
+        {
+            "description": "Larvesta Egg from Treasure Hunter",
+            "version": "Game::BW",
+            "specie": 636,
+            "level": 1
+        },
+        {
+            "description": "Eevee @ Castelia City",
+            "version": "Game::BW2",
+            "specie": 133,
+            "level": 10,
+            "ability": 2
+        },
+        {
+            "description": "Deerling @ Route 6",
+            "version": "Game::BW2",
+            "specie": 585,
+            "level": 30,
+            "ability": 2
+        },
+        {
+            "description": "Shiny Gible @ Floccesy Town",
+            "version": "Game::Black2",
+            "specie": 443,
+            "level": 1,
+            "ability": 2,
+            "gender": 0,
+            "shiny": "Shiny::Always"
+        },
+        {
+            "description": "Shiny Dratini @ Floccesy Town",
+            "version": "Game::Black2",
+            "specie": 147,
+            "level": 1,
+            "ability": 2,
+            "gender": 0,
+            "shiny": "Shiny::Always"
+        },
+        {
+            "description": "Happiny Egg from PKMN Breeder",
+            "version": "Game::BW2",
+            "specie": 440,
+            "level": 1
+        },
+        {
+            "description": "Magikarp @ Marvelous Bridge",
+            "version": "Game::Gen5",
+            "specie": 129,
+            "level": 5
+        }
+    ],
+    "stationary": [
+        {
+            "description": "Musharna @ Dreamyard Friday Only",
+            "version": "Game::BW",
+            "specie": 518,
+            "level": 50,
+            "ability": 2
+        },
+        {
+            "description": "Foongus @ Route 6",
+            "version": "Game::BW",
+            "specie": 590,
+            "level": 20
+        },
+        {
+            "description": "Foongus @ Route 6",
+            "version": "Game::BW",
+            "specie": 590,
+            "level": 30
+        },
+        {
+            "description": "Amoonguss @ Route 6",
+            "version": "Game::BW",
+            "specie": 591,
+            "level": 40
+        },
+        {
+            "description": "Darmanitan @ Desert Resort",
+            "version": "Game::BW",
+            "specie": 555,
+            "level": 35,
+            "ability": 2
+        },
+        {
+            "description": "Volcarona @ Relic Castle",
+            "version": "Game::BW",
+            "specie": 637,
+            "level": 70
+        },
+        {
+            "description": "Foongus @ Route 6",
+            "version": "Game::BW2",
+            "specie": 590,
+            "level": 29
+        },
+        {
+            "description": "Amoonguss @ Route 6",
+            "version": "Game::BW2",
+            "specie": 591,
+            "level": 43
+        },
+        {
+            "description": "Amoonguss @ Route 6",
+            "version": "Game::BW2",
+            "specie": 591,
+            "level": 47
+        },
+        {
+            "description": "Amoonguss @ Route 6",
+            "version": "Game::BW2",
+            "specie": 591,
+            "level": 56
+        },
+        {
+            "description": "Jellicent @ Undella Bay Mon Only",
+            "version": "Game::Black2",
+            "specie": 593,
+            "level": 40,
+            "ability": 2,
+            "gender": 0
+        },
+        {
+            "description": "Jellicent @ Undella Bay Thurs Only",
+            "version": "Game::White2",
+            "specie": 593,
+            "level": 40,
+            "ability": 2,
+            "gender": 1
+        },
+        {
+            "description": "Braviary @ Route 4 Mon Only",
+            "version": "Game::White2",
+            "specie": 628,
+            "level": 25,
+            "ability": 2,
+            "gender": 0
+        },
+        {
+            "description": "Mandibuzz @ Route 4 Thurs Only",
+            "version": "Game::Black2",
+            "specie": 630,
+            "level": 25,
+            "ability": 2,
+            "gender": 1
+        },
+        {
+            "description": "Volcarona @ Relic Castle",
+            "version": "Game::BW2",
+            "specie": 637,
+            "level": 35
+        },
+        {
+            "description": "Volcarona @ Relic Castle",
+            "version": "Game::BW2",
+            "specie": 637,
+            "level": 65
+        },
+        {
+            "description": "Crustle @ Seaside Cave",
+            "version": "Game::BW2",
+            "specie": 558,
+            "level": 42
+        },
+        {
+            "description": "Naxorus @ Nature Preserve",
+            "version": "Game::BW2",
+            "specie": 612,
+            "level": 60,
+            "shiny": "Shiny::Always"
+        }
+    ],
+    "legends": [
+        {
+            "description": "Cobalion @ Guidance Chamber",
+            "version": "Game::BW",
+            "specie": 638,
+            "level": 42
+        },
+        {
+            "description": "Terrakion @ Trial Chamber",
+            "version": "Game::BW",
+            "specie": 639,
+            "level": 42
+        },
+        {
+            "description": "Virizion @ Rumination Field",
+            "version": "Game::BW",
+            "specie": 640,
+            "level": 42
+        },
+        {
+            "description": "Reshiram @ N's Castle / Dragonspiral Tower",
+            "version": "Game::Black",
+            "specie": 643,
+            "level": 50,
+            "shiny": "Shiny::Never"
+        },
+        {
+            "description": "Zekrom @ N's Castle / Dragonspiral Tower",
+            "version": "Game::White",
+            "specie": 644,
+            "level": 50,
+            "shiny": "Shiny::Never"
+        },
+        {
+            "description": "Landorus @ Abundant Shrine",
+            "version": "Game::BW",
+            "specie": 645,
+            "level": 70
+        },
+        {
+            "description": "Kyurem @ Giant Chasm",
+            "version": "Game::BW",
+            "specie": 646,
+            "level": 75
+        },
+        {
+            "description": "Regirock @ Rock Peak Chamber",
+            "version": "Game::BW2",
+            "specie": 377,
+            "level": 65
+        },
+        {
+            "description": "Regice @ Iceberg Chamber",
+            "version": "Game::BW2",
+            "specie": 378,
+            "level": 65
+        },
+        {
+            "description": "Registeel @ Iron Chamber",
+            "version": "Game::BW2",
+            "specie": 379,
+            "level": 65
+        },
+        {
+            "description": "Latias @ Dreamyard",
+            "version": "Game::White2",
+            "specie": 380,
+            "level": 68
+        },
+        {
+            "description": "Latios @ Dreamyard",
+            "version": "Game::Black2",
+            "specie": 381,
+            "level": 68
+        },
+        {
+            "description": "Uxie @ Nacrene City",
+            "version": "Game::BW2",
+            "specie": 480,
+            "level": 65
+        },
+        {
+            "description": "Mesprit @ Celestial Tower",
+            "version": "Game::BW2",
+            "specie": 481,
+            "level": 65
+        },
+        {
+            "description": "Azelf @ Route 23",
+            "version": "Game::BW2",
+            "specie": 482,
+            "level": 65
+        },
+        {
+            "description": "Heatran @ Reversal Mountain",
+            "version": "Game::BW2",
+            "specie": 485,
+            "level": 68
+        },
+        {
+            "description": "Regigigas @ Twist Mountain",
+            "version": "Game::BW2",
+            "specie": 486,
+            "level": 68
+        },
+        {
+            "description": "Cresselia @ Marvelous Bridge",
+            "version": "Game::BW2",
+            "specie": 488,
+            "level": 68
+        },
+        {
+            "description": "Cobalion @ Route 13",
+            "version": "Game::BW2",
+            "specie": 638,
+            "level": 45
+        },
+        {
+            "description": "Cobalion @ Route 13",
+            "version": "Game::BW2",
+            "specie": 638,
+            "level": 65
+        },
+        {
+            "description": "Terrakion @ Route 22",
+            "version": "Game::BW2",
+            "specie": 639,
+            "level": 45
+        },
+        {
+            "description": "Terrakion @ Route 22",
+            "version": "Game::BW2",
+            "specie": 639,
+            "level": 65
+        },
+        {
+            "description": "Virizion @ Route 11",
+            "version": "Game::BW2",
+            "specie": 640,
+            "level": 45
+        },
+        {
+            "description": "Virizion @ Route 11",
+            "version": "Game::BW2",
+            "specie": 640,
+            "level": 65
+        },
+        {
+            "description": "Reshiram @ Dragonspiral Tower",
+            "version": "Game::White2",
+            "specie": 643,
+            "level": 70,
+            "shiny": "Shiny::Never"
+        },
+        {
+            "description": "Zekrom @ Dragonspiral Tower",
+            "version": "Game::Black2",
+            "specie": 644,
+            "level": 70,
+            "shiny": "Shiny::Never"
+        },
+        {
+            "description": "Kyurem @ Giant Chasm",
+            "version": "Game::BW2",
+            "specie": 646,
+            "level": 70
+        }
+    ],
+    "events": [
+        {
+            "description": "Victini @ Liberty Garden",
+            "version": "Game::BW",
+            "specie": 494,
+            "level": 15,
+            "shiny": "Shiny::Never"
+        },
+        {
+            "description": "Zorua @ Castelia City",
+            "version": "Game::BW",
+            "specie": 570,
+            "level": 10,
+            "gender": 0,
+            "shiny": "Shiny::Never"
+        },
+        {
+            "description": "Zoroark @ Lostlorn Forest",
+            "version": "Game::BW",
+            "specie": 571,
+            "level": 25,
+            "gender": 1,
+            "shiny": "Shiny::Never"
+        }
+    ],
+    "roamers": [
+        {
+            "description": "Tornadus",
+            "version": "Game::Black",
+            "specie": 641,
+            "level": 40
+        },
+        {
+            "description": "Thundurus",
+            "version": "Game::White",
+            "specie": 642,
+            "level": 40
+        }
+    ]
+}

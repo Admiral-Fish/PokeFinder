@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -20,8 +20,11 @@
 #ifndef ENCOUNTER_HPP
 #define ENCOUNTER_HPP
 
-#include <Core/Util/Global.hpp>
+#include <Core/Global.hpp>
 
+/**
+ * @brief Enum to encompass different encounter types
+ */
 enum class Encounter : u8
 {
     Grass,
@@ -37,6 +40,8 @@ enum class Encounter : u8
     Static,
     BugCatchingContest,
     Headbutt,
+    HeadbuttAlt,
+    HeadbuttSpecial,
     Roamer,
     Gift,
     EntraLink,
@@ -44,6 +49,13 @@ enum class Encounter : u8
     HiddenGrotto
 };
 
+/**
+ * @brief Converts enum to number
+ *
+ * @param encounter Input encounter
+ *
+ * @return Converted number
+ */
 constexpr u8 toInt(Encounter encounter)
 {
     return static_cast<u8>(encounter);

@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -18,365 +18,325 @@
  */
 
 #include "ShadowLock.hpp"
-#include <Core/Gen3/LockInfo.hpp>
-#include <Core/Gen3/ShadowTeam.hpp>
+#include <Core/Gen3/ShadowTemplate.hpp>
 #include <Core/RNG/LCRNG.hpp>
 
 /* Each non-shadow before a shadow has to match
  * a specific gender/nature and these preset
  * values directly impact what spreads are available */
 
-inline bool isShiny(u32 pid, u16 tsv)
+static inline bool isShiny(u32 pid, u16 tsv)
 {
     return ((pid >> 16) ^ (pid & 0xffff) ^ tsv) < 8;
 }
 
-inline u32 getPIDBackward(XDRNGR &rng)
+static inline u32 getPIDBackward(XDRNGR &rng)
 {
     u32 pid = rng.nextUShort();
     pid |= rng.next() & 0xffff0000;
     return pid;
 }
 
-inline u32 getPIDForward(XDRNG &rng)
+static inline u32 getPIDForward(XDRNG &rng)
 {
     u32 pid = rng.next() & 0xffff0000;
     pid |= rng.nextUShort();
     return pid;
 }
 
-ShadowLock::ShadowLock(u8 num, Method version)
+namespace ShadowLock
 {
-    switchLock(num, version);
-}
-
-ShadowType ShadowLock::getType()
-{
-    return type;
-}
-
-bool ShadowLock::singleNL(u32 seed, u16 tsv)
-{
-    XDRNGR backward(seed);
-    backward.advance(1);
-
-    // Build PID of non-shadow
-    u32 pid = getPIDBackward(backward);
-
-    // Backwards nature lock check
-    return locks.front().compare(pid) && !isShiny(pid, tsv);
-}
-
-// Working backwards it is hard to know what PID would get rerolled from shiny lock
-// Only check shiny lock working forwards which should be good enough
-bool ShadowLock::firstShadowNormal(u32 seed, u16 tsv)
-{
-    XDRNGR backward(seed);
-    backward.advance(1);
-
-    // Grab PID from first non-shadow going backwards
-    // If it doesn't match spread fails
-    u32 pidOriginal = getPIDBackward(backward);
-    auto backwardLock = locks.cbegin();
-    if (!backwardLock->compare(pidOriginal))
+    bool coloShadow(u32 seed, const ShadowTemplate *shadowTemplate)
     {
-        return false;
-    }
+        XDRNGR backward(seed);
+        backward.advance(1);
 
-    u32 pid;
-    for (backwardLock++; backwardLock != locks.cend(); backwardLock++)
-    {
-        backward.advance(5);
-
-        // If lock is a shadow assume PID is already set
-        if (!backwardLock->getFree())
+        // Grab PID from first non-shadow going backwards
+        // If it doesn't match spread fails
+        u32 pidOriginal = getPIDBackward(backward);
+        s8 index = shadowTemplate->getCount() - 1;
+        if (!shadowTemplate->getLock(index).compare(pidOriginal))
         {
-            do
-            {
-                pid = getPIDBackward(backward);
-            } while (!backwardLock->compare(pid));
+            return false;
         }
-    }
 
-    XDRNG forward(backward.getSeed());
-    forward.advance(1);
-
-    auto forwardLock = locks.crbegin();
-    for (forwardLock++; forwardLock != locks.crend(); forwardLock++)
-    {
-        forward.advance(5);
-
-        // If lock is a shadow assume PID is already set
-        if (!forwardLock->getFree())
+        u32 pid;
+        for (index--; index >= 0; index--)
         {
-            do
-            {
-                pid = getPIDForward(forward);
-            } while (!forwardLock->compare(pid) || isShiny(pid, tsv));
-        }
-    }
-
-    // Check if we end on the same PID as first non-shadow going backwards
-    return pidOriginal == pid;
-}
-
-// Working backwards it is hard to know what PID would get rerolled from shiny lock
-// Only check shiny lock working forwards which should be good enough
-bool ShadowLock::firstShadowSet(u32 seed, u16 tsv)
-{
-    XDRNGR backward(seed);
-    backward.advance(6);
-
-    // Grab PID from first non-shadow going backwards
-    // If it doesn't match spread fails
-    u32 pidOriginal = getPIDBackward(backward);
-    auto backwardLock = locks.cbegin();
-    if (!backwardLock->compare(pidOriginal))
-    {
-        return false;
-    }
-
-    u32 pid;
-    for (backwardLock++; backwardLock != locks.cend(); backwardLock++)
-    {
-        backward.advance(5);
-
-        // If lock is a shadow assume PID is already set
-        if (!backwardLock->getFree())
-        {
-            do
-            {
-                pid = getPIDBackward(backward);
-            } while (!backwardLock->compare(pid));
-        }
-    }
-
-    XDRNG forward(backward.getSeed());
-    forward.advance(1);
-
-    auto forwardLock = locks.crbegin();
-    for (forwardLock++; forwardLock != locks.crend(); forwardLock++)
-    {
-        forward.advance(5);
-
-        // If lock is a shadow assume PID is already set
-        if (!forwardLock->getFree())
-        {
-            do
-            {
-                pid = getPIDForward(forward);
-            } while (!forwardLock->compare(pid) || isShiny(pid, tsv));
-        }
-    }
-
-    // Check if we end on the same PID as first non-shadow going backwards
-    return pidOriginal == pid;
-}
-
-// Working backwards it is hard to know what PID would get rerolled from shiny lock
-// Only check shiny lock working forwards which should be good enough
-bool ShadowLock::firstShadowUnset(u32 seed, u16 tsv)
-{
-    XDRNGR backward(seed);
-    backward.advance(3);
-
-    // Shiny lock test for first shadow
-    XDRNGR test(backward.getSeed());
-    u16 shadowPSV = test.nextUShort() ^ test.nextUShort();
-    while ((shadowPSV ^ tsv) < 8)
-    {
-        backward.setSeed(test.getSeed());
-        shadowPSV = test.nextUShort() ^ test.nextUShort();
-    }
-
-    backward.advance(5);
-
-    // Grab PID from first non-shadow going backwards
-    // If it doesn't match spread fails
-    u32 pidOriginal = getPIDBackward(backward);
-    auto backwardLock = locks.cbegin();
-    if (!backwardLock->compare(pidOriginal))
-    {
-        return false;
-    }
-
-    u32 pid;
-    for (backwardLock++; backwardLock != locks.cend(); backwardLock++)
-    {
-        backward.advance(5);
-
-        // If lock is a shadow assume PID is already set
-        if (!backwardLock->getFree())
-        {
-            do
-            {
-                pid = getPIDBackward(backward);
-            } while (!backwardLock->compare(pid));
-        }
-    }
-
-    XDRNG forward(backward.getSeed());
-    forward.advance(1);
-
-    auto forwardLock = locks.crbegin();
-    for (forwardLock++; forwardLock != locks.crend(); forwardLock++)
-    {
-        forward.advance(5);
-
-        // If lock is a shadow assume PID is already set
-        if (!forwardLock->getFree())
-        {
-            do
-            {
-                pid = getPIDForward(forward);
-            } while (!forwardLock->compare(pid) || isShiny(pid, tsv));
-        }
-    }
-
-    // Check if we end on the same PID as first non-shadow going backwards
-    return pidOriginal == pid;
-}
-
-bool ShadowLock::salamenceSet(u32 seed, u16 tsv)
-{
-    XDRNGR backward(seed);
-    backward.advance(6);
-
-    // Build PID of non-shadow
-    u32 pid = getPIDBackward(backward);
-
-    return locks.front().compare(pid) && !isShiny(pid, tsv);
-}
-
-bool ShadowLock::salamenceUnset(u32 seed, u16 tsv)
-{
-    XDRNGR backward(seed);
-    backward.advance(3);
-
-    // Shiny lock test for first shadow
-    XDRNGR test(backward.getSeed());
-    u16 shadowPSV = test.nextUShort() ^ test.nextUShort();
-    while ((shadowPSV ^ tsv) < 8)
-    {
-        backward.setSeed(test.getSeed());
-        shadowPSV = test.nextUShort() ^ test.nextUShort();
-    }
-
-    backward.advance(5);
-
-    // Build PID of non-shadow
-    u32 pid = getPIDBackward(backward);
-
-    // Backwards nature lock check
-    return locks.front().compare(pid) && !isShiny(pid, tsv);
-}
-
-// The following is technically shiny locked by the trainer TID/SID
-// It is extremely hard to know what that value is working from only IVs
-// Assume that the shiny lock won't play a significant factor
-bool ShadowLock::coloShadow(u32 seed)
-{
-    XDRNGR backward(seed);
-    backward.advance(1);
-
-    // Grab PID from first non-shadow going backwards
-    // If it doesn't match spread fails
-    u32 pidOriginal = getPIDBackward(backward);
-    auto backwardLock = locks.cbegin();
-    if (!backwardLock->compare(pidOriginal))
-    {
-        return false;
-    }
-
-    u32 pid;
-    for (backwardLock++; backwardLock != locks.cend(); backwardLock++)
-    {
-        backward.advance(5);
-
-        // If lock is a shadow assume PID is already set
-        if (!backwardLock->getFree())
-        {
-            do
-            {
-                pid = getPIDBackward(backward);
-            } while (!backwardLock->compare(pid));
-        }
-    }
-
-    XDRNG forward(backward.getSeed());
-    forward.advance(1);
-
-    auto forwardLock = locks.crbegin();
-    for (forwardLock++; forwardLock != locks.crend(); forwardLock++)
-    {
-        forward.advance(5);
-
-        // If lock is a shadow assume PID is already set
-        if (!forwardLock->getFree())
-        {
-            do
-            {
-                pid = getPIDForward(forward);
-            } while (!forwardLock->compare(pid));
-        }
-    }
-
-    // Check if we end on the same PID as first non-shadow going backwards
-    return pidOriginal == pid;
-}
-
-// The following is technically shiny locked by the trainer TID/SID
-// It is extremely hard to know what that value is working from only IVs
-// Assume that the shiny lock won't play a significant factor
-bool ShadowLock::ereader(u32 seed, u32 readerPID)
-{
-    // Check if PID is even valid for E-Reader
-    // E-Reader have set nature/gender
-    auto backwardLock = locks.cbegin();
-    if (!backwardLock->compare(readerPID))
-    {
-        return false;
-    }
-
-    XDRNGR backward(seed);
-    backward.advance(1);
-
-    u32 pid;
-    for (backwardLock++; backwardLock != locks.cend(); backwardLock++)
-    {
-        if (backwardLock != locks.cbegin() + 1)
-        {
+            const LockInfo &lock = shadowTemplate->getLock(index);
             backward.advance(5);
+            if (!lock.getIgnore())
+            {
+                do
+                {
+                    pid = getPIDBackward(backward);
+                } while (!lock.compare(pid));
+            }
         }
 
-        do
+        XDRNG forward(backward);
+        forward.advance(1);
+
+        for (index = 1; index < shadowTemplate->getCount(); index++)
         {
-            pid = getPIDBackward(backward);
-        } while (!backwardLock->compare(pid));
+            const LockInfo &lock = shadowTemplate->getLock(index);
+            forward.advance(5);
+            if (!lock.getIgnore())
+            {
+                do
+                {
+                    pid = getPIDForward(forward);
+                } while (!lock.compare(pid));
+            }
+        }
+
+        // Check if we end on the same PID as first non-shadow going backwards
+        return pidOriginal == pid;
     }
 
-    XDRNG forward(backward.getSeed());
-    forward.advance(1);
-
-    auto forwardLock = locks.crbegin();
-    for (forwardLock++; forwardLock != locks.crend(); forwardLock++)
+    bool ereader(u32 seed, u32 readerPID, const ShadowTemplate *shadowTemplate)
     {
-        forward.advance(5);
-
-        do
+        // Check if PID is even valid for E-Reader
+        // E-Reader have set nature/gender
+        s8 index = shadowTemplate->getCount() - 1;
+        if (!shadowTemplate->getLock(index).compare(readerPID))
         {
-            pid = getPIDForward(forward);
-        } while (!forwardLock->compare(pid));
+            return false;
+        }
+
+        XDRNGR backward(seed);
+        backward.advance(1);
+
+        u32 pid;
+        for (index--; index >= 0; index--)
+        {
+            const LockInfo &lock = shadowTemplate->getLock(index);
+            if (index != shadowTemplate->getCount() - 2)
+            {
+                backward.advance(5);
+            }
+
+            do
+            {
+                pid = getPIDBackward(backward);
+            } while (!lock.compare(pid));
+        }
+
+        XDRNG forward(backward);
+        forward.advance(1);
+
+        for (index = 1; index < shadowTemplate->getCount(); index++)
+        {
+            const LockInfo &lock = shadowTemplate->getLock(index);
+            forward.advance(5);
+            do
+            {
+                pid = getPIDForward(forward);
+            } while (!lock.compare(pid));
+        }
+
+        // Checks if PID matches original
+        return pid == readerPID;
     }
 
-    // Checks if PID matches original
-    return pid == readerPID;
-}
+    bool firstShadowNormal(u32 seed, u16 tsv, const ShadowTemplate *shadowTemplate)
+    {
+        XDRNGR backward(seed);
+        backward.advance(1);
 
-void ShadowLock::switchLock(u8 lockNum, Method version)
-{
-    auto team = ShadowTeam::loadShadowTeams(version)[lockNum];
+        // Grab PID from first non-shadow going backwards
+        // If it doesn't match spread fails
+        u32 pidOriginal = getPIDBackward(backward);
+        s8 index = shadowTemplate->getCount() - 1;
+        if (!shadowTemplate->getLock(index).compare(pidOriginal))
+        {
+            return false;
+        }
 
-    locks = team.getLocks();
-    type = team.getType();
+        u32 pid;
+        for (index--; index >= 0; index--)
+        {
+            const LockInfo &lock = shadowTemplate->getLock(index);
+            backward.advance(5);
+            if (!lock.getIgnore())
+            {
+                do
+                {
+                    pid = getPIDBackward(backward);
+                } while (!lock.compare(pid));
+            }
+        }
+
+        XDRNG forward(backward);
+        forward.advance(1);
+
+        for (index = 1; index < shadowTemplate->getCount(); index++)
+        {
+            const LockInfo &lock = shadowTemplate->getLock(index);
+            forward.advance(5);
+            if (!lock.getIgnore())
+            {
+                do
+                {
+                    pid = getPIDForward(forward);
+                } while (!lock.compare(pid) || isShiny(pid, tsv));
+            }
+        }
+
+        // Check if we end on the same PID as first non-shadow going backwards
+        return pidOriginal == pid;
+    }
+
+    bool firstShadowSet(u32 seed, u16 tsv, const ShadowTemplate *shadowTemplate)
+    {
+        XDRNGR backward(seed);
+        backward.advance(6);
+
+        // Grab PID from first non-shadow going backwards
+        // If it doesn't match spread fails
+        u32 pidOriginal = getPIDBackward(backward);
+        s8 index = shadowTemplate->getCount() - 2;
+        if (!shadowTemplate->getLock(index).compare(pidOriginal))
+        {
+            return false;
+        }
+
+        u32 pid;
+        for (index--; index >= 0; index--)
+        {
+            const LockInfo &lock = shadowTemplate->getLock(index);
+            backward.advance(5);
+            if (!lock.getIgnore())
+            {
+                do
+                {
+                    pid = getPIDBackward(backward);
+                } while (!lock.compare(pid));
+            }
+        }
+
+        XDRNG forward(backward);
+        forward.advance(1);
+
+        for (index = 1; index < shadowTemplate->getCount(); index++)
+        {
+            const LockInfo &lock = shadowTemplate->getLock(index);
+            forward.advance(5);
+            if (!lock.getIgnore())
+            {
+                do
+                {
+                    pid = getPIDForward(forward);
+                } while (!lock.compare(pid) || isShiny(pid, tsv));
+            }
+        }
+
+        // Check if we end on the same PID as first non-shadow going backwards
+        return pidOriginal == pid;
+    }
+
+    bool firstShadowUnset(u32 seed, u16 tsv, const ShadowTemplate *shadowTemplate)
+    {
+        XDRNGR backward(seed);
+        backward.advance(3);
+
+        // Shiny lock test for first shadow
+        XDRNGR test(backward);
+        u16 shadowPSV = test.nextUShort() ^ test.nextUShort();
+        while ((shadowPSV ^ tsv) < 8)
+        {
+            backward.setSeed(test.getSeed());
+            shadowPSV = test.nextUShort() ^ test.nextUShort();
+        }
+
+        backward.advance(5);
+
+        // Grab PID from first non-shadow going backwards
+        // If it doesn't match spread fails
+        u32 pidOriginal = getPIDBackward(backward);
+        s8 index = shadowTemplate->getCount() - 2;
+        if (!shadowTemplate->getLock(index).compare(pidOriginal))
+        {
+            return false;
+        }
+
+        u32 pid;
+        for (index--; index >= 0; index--)
+        {
+            const LockInfo &lock = shadowTemplate->getLock(index);
+            backward.advance(5);
+            if (!lock.getIgnore())
+            {
+                do
+                {
+                    pid = getPIDBackward(backward);
+                } while (!lock.compare(pid));
+            }
+        }
+
+        XDRNG forward(backward);
+        forward.advance(1);
+
+        for (index = 1; index < shadowTemplate->getCount(); index++)
+        {
+            const LockInfo &lock = shadowTemplate->getLock(index);
+            forward.advance(5);
+            if (!lock.getIgnore())
+            {
+                do
+                {
+                    pid = getPIDForward(forward);
+                } while (!lock.compare(pid) || isShiny(pid, tsv));
+            }
+        }
+
+        // Check if we end on the same PID as first non-shadow going backwards
+        return pidOriginal == pid;
+    }
+
+    bool salamenceSet(u32 seed, u16 tsv, const ShadowTemplate *shadowTemplate)
+    {
+        XDRNGR backward(seed);
+        backward.advance(6);
+
+        // Build PID of non-shadow
+        u32 pid = getPIDBackward(backward);
+
+        return shadowTemplate->getLock(0).compare(pid) && !isShiny(pid, tsv);
+    }
+
+    bool salamenceUnset(u32 seed, u16 tsv, const ShadowTemplate *shadowTemplate)
+    {
+        XDRNGR backward(seed);
+        backward.advance(3);
+
+        // Shiny lock test for first shadow
+        XDRNGR test(backward);
+        u16 shadowPSV = test.nextUShort() ^ test.nextUShort();
+        while ((shadowPSV ^ tsv) < 8)
+        {
+            backward.setSeed(test.getSeed());
+            shadowPSV = test.nextUShort() ^ test.nextUShort();
+        }
+
+        backward.advance(5);
+
+        // Build PID of non-shadow
+        u32 pid = getPIDBackward(backward);
+
+        // Backwards nature lock check
+        return shadowTemplate->getLock(0).compare(pid) && !isShiny(pid, tsv);
+    }
+
+    bool singleNL(u32 seed, u16 tsv, const ShadowTemplate *shadowTemplate)
+    {
+        XDRNGR backward(seed);
+        backward.advance(1);
+
+        // Build PID of non-shadow
+        u32 pid = getPIDBackward(backward);
+
+        // Backwards nature lock check
+        return shadowTemplate->getLock(0).compare(pid) && !isShiny(pid, tsv);
+    }
 }

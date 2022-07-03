@@ -1,4 +1,3 @@
-Nessuna
 Adora mangiare
 Si addormenta spesso
 Dorme a lungo
@@ -8,24 +7,24 @@ La forza è il suo vanto
 Adora dimenarsi
 Si arrabbia facilmente
 Adora combattere
-Facilmente irritabile
+È facilmente irritabile
 Ha un corpo robusto
-Forte in attacco
-Molto ostinato
-Molto paziente
-Molto tenace
+È forte in attacco
+È molto ostinato
+È molto paziente
+È molto tenace
 Adora correre
 Fa attenzione ai suoni
-Irruente e semplice
-Una specie di buffone
+È irruente e semplice
+È una specie di buffone
 Sa fuggire velocemente
-Grande ficcanaso
-Alquanto vivace
-Estremamente sagace
+È un grande ficcanaso
+È alquanto vivace
+È estremamente sagace
 Si perde nel suo mondo
-Molto esigente
+È molto esigente
 Sa il fatto suo
-Abbastanza superficiale
-Molto insolente
+È abbastanza superficiale
+È molto insolente
 Non sopporta perdere
-Un po' testardo
+È un po’ testardo

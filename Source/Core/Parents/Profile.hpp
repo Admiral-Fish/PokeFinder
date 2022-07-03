@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -20,46 +20,80 @@
 #ifndef PROFILE_HPP
 #define PROFILE_HPP
 
-#include <Core/Util/Global.hpp>
+#include <Core/Global.hpp>
 #include <string>
 
 enum class Game : u32;
 
+/**
+ * @brief Provides per generation storage to keep track of relevant information
+ */
 class Profile
 {
 public:
-    Profile();
+    /**
+     * @brief Construct a new Profile object
+     *
+     * @param name Profile name
+     * @param version Game version
+     * @param tid Trainer ID
+     * @param sid Secret ID
+     */
     Profile(const std::string &name, Game version, u16 tid, u16 sid);
-    std::string getVersionString() const;
 
-    Game getVersion() const
-    {
-        return version;
-    }
+    /**
+     * @brief Returns the profile name
+     *
+     * @return Profile name
+     */
+    std::string getName() const;
 
-    std::string getName() const
-    {
-        return name;
-    }
+    /**
+     * @brief Returns the profile secret ID
+     *
+     * @return Profile SID
+     */
+    u16 getSID() const;
 
-    u16 getTID() const
-    {
-        return tid;
-    }
+    /**
+     * @brief Returns the profile trainer ID
+     *
+     * @return Profile TID
+     */
+    u16 getTID() const;
 
-    u16 getSID() const
-    {
-        return sid;
-    }
+    /**
+     * @brief Returns the profile game version
+     *
+     * @return Profile game version
+     */
+    Game getVersion() const;
 
+    /**
+     * @brief Checks if two profiles are equal
+     *
+     * @param other Profile to compare
+     *
+     * @return true Profiles are equal
+     * @return false Profiles are not equal
+     */
     bool operator==(const Profile &other) const;
+
+    /**
+     * @brief Checks if two profiles are not equal
+     *
+     * @param other Profile to compare
+     *
+     * @return true Profiles are not equal
+     * @return false Profiles are equal
+     */
     bool operator!=(const Profile &other) const;
 
 protected:
     std::string name;
     Game version;
-    u16 tid;
     u16 sid;
+    u16 tid;
 };
 
 #endif // PROFILE_HPP
