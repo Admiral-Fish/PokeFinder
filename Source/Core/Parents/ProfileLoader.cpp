@@ -262,7 +262,7 @@ namespace ProfileLoader5
             bool memoryLink = j.value("memoryLink", false);
             bool shinyCharm = j.value("shinyCharm", false);
             DSType dsType = j.value("dsType", DSType::DS);
-            Language language = j.value("dsType", Language::English);
+            Language language = j.value("language", Language::English);
             return Profile5(name, version, tid, sid, mac, keypresses, vcount, gxstat, vframe, skipLR, timer0Min, timer0Max, softReset,
                             memoryLink, shinyCharm, dsType, language);
         }
