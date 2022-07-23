@@ -35,6 +35,9 @@ namespace
         std::vector<u8> minIVs(6, 31);
         std::vector<u8> maxIVs(6, 0);
 
+        std::array<std::vector<u8>, 6> possible;
+        std::vector<u8> indexes = { 0, 1, 2, 3, 4, 5 };
+
         for (u8 i = 0; i < 6; i++)
         {
             for (u8 iv = 0; iv < 32; iv++)
@@ -44,11 +47,25 @@ namespace
                 {
                     stat = std::floor(((2 * baseStats[i] + iv) * level) / 100.0) + level + 10;
                 }
-                else
+                else if (nature != 255)
                 {
                     stat = (std::floor(((2 * baseStats[i] + iv) * level) / 100.0) + 5) * Nature::getNatureModifier(nature, i);
                 }
-
+                else
+                {
+                    if (static_cast<u16>((std::floor(((2 * baseStats[i] + iv) * level) / 100.0) + 5) * 0.9) == stats[i])
+                    {
+                        possible[i].emplace_back(iv);
+                    }
+                    else if (static_cast<u16>((std::floor(((2 * baseStats[i] + iv) * level) / 100.0) + 5) * 1.0) == stats[i])
+                    {
+                        possible[i].emplace_back(iv);
+                    }
+                    else if (static_cast<u16>((std::floor(((2 * baseStats[i] + iv) * level) / 100.0) + 5) * 1.1) == stats[i])
+                    {
+                        possible[i].emplace_back(iv);
+                    }
+                }
                 if (static_cast<u16>(stat) == stats[i])
                 {
                     minIVs[i] = std::min(iv, minIVs[i]);
@@ -56,9 +73,6 @@ namespace
                 }
             }
         }
-
-        std::array<std::vector<u8>, 6> possible;
-        std::vector<u8> indexes = { 0, 1, 2, 3, 4, 5 };
 
         u8 characteristicHigh = 31;
         if (characteristic != 255)

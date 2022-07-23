@@ -209,7 +209,7 @@ void IVCalculator::findIVs()
         stats.emplace_back(stat);
     }
 
-    u8 nature = static_cast<u8>(ui->comboBoxNature->currentIndex());
+    u8 nature = static_cast<u8>(ui->comboBoxNature->currentIndex() - 1);
     u8 hiddenPower = static_cast<u8>(ui->comboBoxHiddenPower->currentIndex() - 1);
     u8 characteristic = static_cast<u8>(ui->comboBoxCharacteristic->currentIndex() - 1);
 
