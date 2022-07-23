@@ -26,7 +26,7 @@ namespace
     template <u32 size, bool greater = false>
     u8 calcSlot(u8 compare, const std::array<u8, size> &ranges)
     {
-        for (size_t i = 0; i < size; i++)
+        for (std::size_t i = 0; i < size; i++)
         {
             if constexpr (greater)
             {

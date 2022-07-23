@@ -15,3 +15,6 @@ out
 i18n.hpp
 Encounters.hpp
 Personal.hpp
+
+# Nix
+result/
