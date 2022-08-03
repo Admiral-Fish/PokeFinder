@@ -36,14 +36,10 @@ TableView::TableView(QWidget *parent) : QTableView(parent)
 
     QHeaderView *header = this->horizontalHeader();
     header->setSectionResizeMode(QHeaderView::Interactive);
-
-    QTimer::singleShot(500, this, [header] { header->resizeSections(QHeaderView::Stretch); });
 }
 
 void TableView::mouseDoubleClickEvent(QMouseEvent *event)
 {
-    QTableView::mouseDoubleClickEvent(event);
-
     if (event && event->type() == QMouseEvent::MouseButtonDblClick)
     {
         setSelectionToClipBoard();
@@ -52,11 +48,24 @@ void TableView::mouseDoubleClickEvent(QMouseEvent *event)
 
 void TableView::keyPressEvent(QKeyEvent *event)
 {
-    QTableView::keyPressEvent(event);
-
     if (event && (event->key() == Qt::Key_C) && (event->modifiers() == Qt::ControlModifier))
     {
         setSelectionToClipBoard();
+    }
+}
+
+void TableView::resizeEvent(QResizeEvent *event)
+{
+    // Only resize when width changes
+    // This accounts for taking up too much width and adding a horizontal scroll bar which only changes the height
+    if (event->size().width() != event->oldSize().width())
+    {
+        QHeaderView *header = this->horizontalHeader();
+        int width = event->size().width() / header->count();
+        for (int i = 0; i < header->count(); i++)
+        {
+            this->setColumnWidth(i, width);
+        }
     }
 }
 

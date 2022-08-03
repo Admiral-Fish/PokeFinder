@@ -50,6 +50,12 @@ public:
      */
     void keyPressEvent(QKeyEvent *event) override;
 
+    /**
+     * @brief Handles resize event to resize the columns of the horizontal header
+     * @param event Contains resize event information
+     */
+    void resizeEvent(QResizeEvent *event) override;
+
 private:
     /**
      * @brief Outputs model data to file
