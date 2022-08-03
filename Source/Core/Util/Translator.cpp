@@ -25,9 +25,75 @@
 #include <map>
 #include <sstream>
 
+enum class Language
+{
+    German,
+    English,
+    Spanish,
+    French,
+    Italian,
+    Japanese,
+    Korean,
+    Chinese
+};
+
+enum class Translation
+{
+    Characteristic,
+    Nature,
+    Ability,
+    Power,
+    Specie,
+    E,
+    FRLG,
+    RS,
+    DPPt,
+    HGSS,
+    BW,
+    BW2,
+    SwSh,
+    BDSP
+};
+
+const static u8 *datas[8][14]
+    = { { characteristic_de.data(), natures_de.data(), abilities_de.data(), powers_de.data(), species_de.data(), e_de.data(),
+          frlg_de.data(), rs_de.data(), dppt_de.data(), hgss_de.data(), bw_de.data(), bw2_de.data(), swsh_de.data(), bdsp_de.data() },
+        { characteristic_en.data(), natures_en.data(), abilities_en.data(), powers_en.data(), species_en.data(), e_en.data(),
+          frlg_en.data(), rs_en.data(), dppt_en.data(), hgss_en.data(), bw_en.data(), bw2_en.data(), swsh_en.data(), bdsp_en.data() },
+        { characteristic_es.data(), natures_es.data(), abilities_es.data(), powers_es.data(), species_es.data(), e_es.data(),
+          frlg_es.data(), rs_es.data(), dppt_es.data(), hgss_es.data(), bw_es.data(), bw2_es.data(), swsh_es.data(), bdsp_es.data() },
+        { characteristic_fr.data(), natures_fr.data(), abilities_fr.data(), powers_fr.data(), species_fr.data(), e_fr.data(),
+          frlg_fr.data(), rs_fr.data(), dppt_fr.data(), hgss_fr.data(), bw_fr.data(), bw2_fr.data(), swsh_fr.data(), bdsp_fr.data() },
+        { characteristic_it.data(), natures_it.data(), abilities_it.data(), powers_it.data(), species_it.data(), e_it.data(),
+          frlg_it.data(), rs_it.data(), dppt_it.data(), hgss_it.data(), bw_it.data(), bw2_it.data(), swsh_it.data(), bdsp_it.data() },
+        { characteristic_ja.data(), natures_ja.data(), abilities_ja.data(), powers_ja.data(), species_ja.data(), e_ja.data(),
+          frlg_ja.data(), rs_ja.data(), dppt_ja.data(), hgss_ja.data(), bw_ja.data(), bw2_ja.data(), swsh_ja.data(), bdsp_ja.data() },
+        { characteristic_ko.data(), natures_ko.data(), abilities_ko.data(), powers_ko.data(), species_ko.data(), e_ko.data(),
+          frlg_ko.data(), rs_ko.data(), dppt_ko.data(), hgss_ko.data(), bw_ko.data(), bw2_ko.data(), swsh_ko.data(), bdsp_ko.data() },
+        { characteristic_zh.data(), natures_zh.data(), abilities_zh.data(), powers_zh.data(), species_zh.data(), e_zh.data(),
+          frlg_zh.data(), rs_zh.data(), dppt_zh.data(), hgss_zh.data(), bw_zh.data(), bw2_zh.data(), swsh_zh.data(), bdsp_zh.data() } };
+
+constexpr size_t sizes[8][14]
+    = { { characteristic_de.size(), natures_de.size(), abilities_de.size(), powers_de.size(), species_de.size(), e_de.size(),
+          frlg_de.size(), rs_de.size(), dppt_de.size(), hgss_de.size(), bw_de.size(), bw2_de.size(), swsh_de.size(), bdsp_de.size() },
+        { characteristic_en.size(), natures_en.size(), abilities_en.size(), powers_en.size(), species_en.size(), e_en.size(),
+          frlg_en.size(), rs_en.size(), dppt_en.size(), hgss_en.size(), bw_en.size(), bw2_en.size(), swsh_en.size(), bdsp_en.size() },
+        { characteristic_es.size(), natures_es.size(), abilities_es.size(), powers_es.size(), species_es.size(), e_es.size(),
+          frlg_es.size(), rs_es.size(), dppt_es.size(), hgss_es.size(), bw_es.size(), bw2_es.size(), swsh_es.size(), bdsp_es.size() },
+        { characteristic_fr.size(), natures_fr.size(), abilities_fr.size(), powers_fr.size(), species_fr.size(), e_fr.size(),
+          frlg_fr.size(), rs_fr.size(), dppt_fr.size(), hgss_fr.size(), bw_fr.size(), bw2_fr.size(), swsh_fr.size(), bdsp_fr.size() },
+        { characteristic_it.size(), natures_it.size(), abilities_it.size(), powers_it.size(), species_it.size(), e_it.size(),
+          frlg_it.size(), rs_it.size(), dppt_it.size(), hgss_it.size(), bw_it.size(), bw2_it.size(), swsh_it.size(), bdsp_it.size() },
+        { characteristic_ja.size(), natures_ja.size(), abilities_ja.size(), powers_ja.size(), species_ja.size(), e_ja.size(),
+          frlg_ja.size(), rs_ja.size(), dppt_ja.size(), hgss_ja.size(), bw_ja.size(), bw2_ja.size(), swsh_ja.size(), bdsp_ja.size() },
+        { characteristic_ko.size(), natures_ko.size(), abilities_ko.size(), powers_ko.size(), species_ko.size(), e_ko.size(),
+          frlg_ko.size(), rs_ko.size(), dppt_ko.size(), hgss_ko.size(), bw_ko.size(), bw2_ko.size(), swsh_ko.size(), bdsp_ko.size() },
+        { characteristic_zh.size(), natures_zh.size(), abilities_zh.size(), powers_zh.size(), species_zh.size(), e_zh.size(),
+          frlg_zh.size(), rs_zh.size(), dppt_zh.size(), hgss_zh.size(), bw_zh.size(), bw2_zh.size(), swsh_zh.size(), bdsp_zh.size() } };
+
 namespace
 {
-    std::string language;
+    Language language;
     std::vector<std::string> characteristics;
     std::vector<std::string> natures;
     std::vector<std::string> abilities;
@@ -36,585 +102,10 @@ namespace
     std::vector<std::string> genders = { "♂", "♀", "-" };
     std::vector<std::string> buttons = { "R", "L", "X", "Y", "A", "B", "Select", "Start", "Right", "Left", "Up", "Down" };
 
-    std::vector<std::string> readFile(const std::string &name)
+    std::vector<std::string> readFile(Translation translation)
     {
-        const u8 *data;
-        size_t size = 0;
-
-        if (language == "de")
-        {
-            if (name == "characteristic")
-            {
-                data = characteristic_de.data();
-                size = characteristic_de.size();
-            }
-            else if (name == "natures")
-            {
-                data = natures_de.data();
-                size = natures_de.size();
-            }
-            else if (name == "abilities")
-            {
-                data = abilities_de.data();
-                size = abilities_de.size();
-            }
-            else if (name == "powers")
-            {
-                data = powers_de.data();
-                size = powers_de.size();
-            }
-            else if (name == "species")
-            {
-                data = species_de.data();
-                size = species_de.size();
-            }
-            else if (name == "e")
-            {
-                data = e_de.data();
-                size = e_de.size();
-            }
-            else if (name == "frlg")
-            {
-                data = frlg_de.data();
-                size = frlg_de.size();
-            }
-            else if (name == "rs")
-            {
-                data = rs_de.data();
-                size = rs_de.size();
-            }
-            else if (name == "dppt")
-            {
-                data = dppt_de.data();
-                size = dppt_de.size();
-            }
-            else if (name == "hgss")
-            {
-                data = hgss_de.data();
-                size = hgss_de.size();
-            }
-            else if (name == "bw")
-            {
-                data = bw_de.data();
-                size = bw_de.size();
-            }
-            else if (name == "bw2")
-            {
-                data = bw2_de.data();
-                size = bw2_de.size();
-            }
-            else if (name == "swsh")
-            {
-                data = swsh_de.data();
-                size = swsh_de.size();
-            }
-            else if (name == "bdsp")
-            {
-                data = bdsp_de.data();
-                size = bdsp_de.size();
-            }
-        }
-        else if (language == "en")
-        {
-            if (name == "characteristic")
-            {
-                data = characteristic_en.data();
-                size = characteristic_en.size();
-            }
-            else if (name == "natures")
-            {
-                data = natures_en.data();
-                size = natures_en.size();
-            }
-            else if (name == "abilities")
-            {
-                data = abilities_en.data();
-                size = abilities_en.size();
-            }
-            else if (name == "powers")
-            {
-                data = powers_en.data();
-                size = powers_en.size();
-            }
-            else if (name == "species")
-            {
-                data = species_en.data();
-                size = species_en.size();
-            }
-            else if (name == "e")
-            {
-                data = e_en.data();
-                size = e_en.size();
-            }
-            else if (name == "frlg")
-            {
-                data = frlg_en.data();
-                size = frlg_en.size();
-            }
-            else if (name == "rs")
-            {
-                data = rs_en.data();
-                size = rs_en.size();
-            }
-            else if (name == "dppt")
-            {
-                data = dppt_en.data();
-                size = dppt_en.size();
-            }
-            else if (name == "hgss")
-            {
-                data = hgss_en.data();
-                size = hgss_en.size();
-            }
-            else if (name == "bw")
-            {
-                data = bw_en.data();
-                size = bw_en.size();
-            }
-            else if (name == "bw2")
-            {
-                data = bw2_en.data();
-                size = bw2_en.size();
-            }
-            else if (name == "swsh")
-            {
-                data = swsh_en.data();
-                size = swsh_en.size();
-            }
-            else if (name == "bdsp")
-            {
-                data = bdsp_en.data();
-                size = bdsp_en.size();
-            }
-        }
-        else if (language == "es")
-        {
-            if (name == "characteristic")
-            {
-                data = characteristic_es.data();
-                size = characteristic_es.size();
-            }
-            else if (name == "natures")
-            {
-                data = natures_es.data();
-                size = natures_es.size();
-            }
-            else if (name == "abilities")
-            {
-                data = abilities_es.data();
-                size = abilities_es.size();
-            }
-            else if (name == "powers")
-            {
-                data = powers_es.data();
-                size = powers_es.size();
-            }
-            else if (name == "species")
-            {
-                data = species_es.data();
-                size = species_es.size();
-            }
-            else if (name == "e")
-            {
-                data = e_es.data();
-                size = e_es.size();
-            }
-            else if (name == "frlg")
-            {
-                data = frlg_es.data();
-                size = frlg_es.size();
-            }
-            else if (name == "rs")
-            {
-                data = rs_es.data();
-                size = rs_es.size();
-            }
-            else if (name == "dppt")
-            {
-                data = dppt_es.data();
-                size = dppt_es.size();
-            }
-            else if (name == "hgss")
-            {
-                data = hgss_es.data();
-                size = hgss_es.size();
-            }
-            else if (name == "bw")
-            {
-                data = bw_es.data();
-                size = bw_es.size();
-            }
-            else if (name == "bw2")
-            {
-                data = bw2_es.data();
-                size = bw2_es.size();
-            }
-            else if (name == "swsh")
-            {
-                data = swsh_es.data();
-                size = swsh_es.size();
-            }
-            else if (name == "bdsp")
-            {
-                data = bdsp_es.data();
-                size = bdsp_es.size();
-            }
-        }
-        else if (language == "fr")
-        {
-            if (name == "characteristic")
-            {
-                data = characteristic_fr.data();
-                size = characteristic_fr.size();
-            }
-            else if (name == "natures")
-            {
-                data = natures_fr.data();
-                size = natures_fr.size();
-            }
-            else if (name == "abilities")
-            {
-                data = abilities_fr.data();
-                size = abilities_fr.size();
-            }
-            else if (name == "powers")
-            {
-                data = powers_fr.data();
-                size = powers_fr.size();
-            }
-            else if (name == "species")
-            {
-                data = species_fr.data();
-                size = species_fr.size();
-            }
-            else if (name == "e")
-            {
-                data = e_fr.data();
-                size = e_fr.size();
-            }
-            else if (name == "frlg")
-            {
-                data = frlg_fr.data();
-                size = frlg_fr.size();
-            }
-            else if (name == "rs")
-            {
-                data = rs_fr.data();
-                size = rs_fr.size();
-            }
-            else if (name == "dppt")
-            {
-                data = dppt_fr.data();
-                size = dppt_fr.size();
-            }
-            else if (name == "hgss")
-            {
-                data = hgss_fr.data();
-                size = hgss_fr.size();
-            }
-            else if (name == "bw")
-            {
-                data = bw_fr.data();
-                size = bw_fr.size();
-            }
-            else if (name == "bw2")
-            {
-                data = bw2_fr.data();
-                size = bw2_fr.size();
-            }
-            else if (name == "swsh")
-            {
-                data = swsh_fr.data();
-                size = swsh_fr.size();
-            }
-            else if (name == "bdsp")
-            {
-                data = bdsp_fr.data();
-                size = bdsp_fr.size();
-            }
-        }
-        else if (language == "it")
-        {
-            if (name == "characteristic")
-            {
-                data = characteristic_it.data();
-                size = characteristic_it.size();
-            }
-            else if (name == "natures")
-            {
-                data = natures_it.data();
-                size = natures_it.size();
-            }
-            else if (name == "abilities")
-            {
-                data = abilities_it.data();
-                size = abilities_it.size();
-            }
-            else if (name == "powers")
-            {
-                data = powers_it.data();
-                size = powers_it.size();
-            }
-            else if (name == "species")
-            {
-                data = species_it.data();
-                size = species_it.size();
-            }
-            else if (name == "e")
-            {
-                data = e_it.data();
-                size = e_it.size();
-            }
-            else if (name == "frlg")
-            {
-                data = frlg_it.data();
-                size = frlg_it.size();
-            }
-            else if (name == "rs")
-            {
-                data = rs_it.data();
-                size = rs_it.size();
-            }
-            else if (name == "dppt")
-            {
-                data = dppt_it.data();
-                size = dppt_it.size();
-            }
-            else if (name == "hgss")
-            {
-                data = hgss_it.data();
-                size = hgss_it.size();
-            }
-            else if (name == "bw")
-            {
-                data = bw_it.data();
-                size = bw_it.size();
-            }
-            else if (name == "bw2")
-            {
-                data = bw2_it.data();
-                size = bw2_it.size();
-            }
-            else if (name == "swsh")
-            {
-                data = swsh_it.data();
-                size = swsh_it.size();
-            }
-            else if (name == "bdsp")
-            {
-                data = bdsp_it.data();
-                size = bdsp_it.size();
-            }
-        }
-        else if (language == "ja")
-        {
-            if (name == "characteristic")
-            {
-                data = characteristic_ja.data();
-                size = characteristic_ja.size();
-            }
-            else if (name == "natures")
-            {
-                data = natures_ja.data();
-                size = natures_ja.size();
-            }
-            else if (name == "abilities")
-            {
-                data = abilities_ja.data();
-                size = abilities_ja.size();
-            }
-            else if (name == "powers")
-            {
-                data = powers_ja.data();
-                size = powers_ja.size();
-            }
-            else if (name == "species")
-            {
-                data = species_ja.data();
-                size = species_ja.size();
-            }
-            else if (name == "e")
-            {
-                data = e_ja.data();
-                size = e_ja.size();
-            }
-            else if (name == "frlg")
-            {
-                data = frlg_ja.data();
-                size = frlg_ja.size();
-            }
-            else if (name == "rs")
-            {
-                data = rs_ja.data();
-                size = rs_ja.size();
-            }
-            else if (name == "dppt")
-            {
-                data = dppt_ja.data();
-                size = dppt_ja.size();
-            }
-            else if (name == "hgss")
-            {
-                data = hgss_ja.data();
-                size = hgss_ja.size();
-            }
-            else if (name == "bw")
-            {
-                data = bw_ja.data();
-                size = bw_ja.size();
-            }
-            else if (name == "bw2")
-            {
-                data = bw2_ja.data();
-                size = bw2_ja.size();
-            }
-            else if (name == "swsh")
-            {
-                data = swsh_ja.data();
-                size = swsh_ja.size();
-            }
-            else if (name == "bdsp")
-            {
-                data = bdsp_ja.data();
-                size = bdsp_ja.size();
-            }
-        }
-        else if (language == "ko")
-        {
-            if (name == "characteristic")
-            {
-                data = characteristic_ko.data();
-                size = characteristic_ko.size();
-            }
-            else if (name == "natures")
-            {
-                data = natures_ko.data();
-                size = natures_ko.size();
-            }
-            else if (name == "abilities")
-            {
-                data = abilities_ko.data();
-                size = abilities_ko.size();
-            }
-            else if (name == "powers")
-            {
-                data = powers_ko.data();
-                size = powers_ko.size();
-            }
-            else if (name == "species")
-            {
-                data = species_ko.data();
-                size = species_ko.size();
-            }
-            else if (name == "e")
-            {
-                data = e_ko.data();
-                size = e_ko.size();
-            }
-            else if (name == "frlg")
-            {
-                data = frlg_ko.data();
-                size = frlg_ko.size();
-            }
-            else if (name == "rs")
-            {
-                data = rs_ko.data();
-                size = rs_ko.size();
-            }
-            else if (name == "dppt")
-            {
-                data = dppt_ko.data();
-                size = dppt_ko.size();
-            }
-            else if (name == "hgss")
-            {
-                data = hgss_ko.data();
-                size = hgss_ko.size();
-            }
-            else if (name == "bw")
-            {
-                data = bw_ko.data();
-                size = bw_ko.size();
-            }
-            else if (name == "bw2")
-            {
-                data = bw2_ko.data();
-                size = bw2_ko.size();
-            }
-            else if (name == "swsh")
-            {
-                data = swsh_ko.data();
-                size = swsh_ko.size();
-            }
-            else if (name == "bdsp")
-            {
-                data = bdsp_ko.data();
-                size = bdsp_ko.size();
-            }
-        }
-        else if (language == "zh")
-        {
-            if (name == "characteristic")
-            {
-                data = characteristic_zh.data();
-                size = characteristic_zh.size();
-            }
-            else if (name == "natures")
-            {
-                data = natures_zh.data();
-                size = natures_zh.size();
-            }
-            else if (name == "abilities")
-            {
-                data = abilities_zh.data();
-                size = abilities_zh.size();
-            }
-            else if (name == "powers")
-            {
-                data = powers_zh.data();
-                size = powers_zh.size();
-            }
-            else if (name == "species")
-            {
-                data = species_zh.data();
-                size = species_zh.size();
-            }
-            else if (name == "e")
-            {
-                data = e_zh.data();
-                size = e_zh.size();
-            }
-            else if (name == "frlg")
-            {
-                data = frlg_zh.data();
-                size = frlg_zh.size();
-            }
-            else if (name == "rs")
-            {
-                data = rs_zh.data();
-                size = rs_zh.size();
-            }
-            else if (name == "dppt")
-            {
-                data = dppt_zh.data();
-                size = dppt_zh.size();
-            }
-            else if (name == "hgss")
-            {
-                data = hgss_zh.data();
-                size = hgss_zh.size();
-            }
-            else if (name == "swsh")
-            {
-                data = swsh_zh.data();
-                size = swsh_zh.size();
-            }
-            else if (name == "bdsp")
-            {
-                data = bdsp_zh.data();
-                size = bdsp_zh.size();
-            }
-        }
+        const u8 *data = datas[static_cast<int>(language)][static_cast<int>(translation)];
+        size_t size = sizes[static_cast<int>(language)][static_cast<int>(translation)];
 
         std::vector<std::string> strings;
         for (size_t i = 0, start = 0; i < size; i++)
@@ -635,13 +126,44 @@ namespace Translator
 {
     void init(const std::string &locale)
     {
-        language = locale;
+        if (locale == "de")
+        {
+            language = Language::German;
+        }
+        else if (locale == "en")
+        {
+            language = Language::English;
+        }
+        else if (locale == "es")
+        {
+            language = Language::Spanish;
+        }
+        else if (locale == "it")
+        {
+            language = Language::Italian;
+        }
+        else if (locale == "fr")
+        {
+            language = Language::French;
+        }
+        else if (locale == "ja")
+        {
+            language = Language::Japanese;
+        }
+        else if (locale == "ko")
+        {
+            language = Language::Korean;
+        }
+        else if (locale == "zh")
+        {
+            language = Language::Chinese;
+        }
 
-        characteristics = readFile("characteristic");
-        natures = readFile("natures");
-        abilities = readFile("abilities");
-        hiddenPowers = readFile("powers");
-        species = readFile("species");
+        characteristics = readFile(Translation::Characteristic);
+        natures = readFile(Translation::Nature);
+        abilities = readFile(Translation::Ability);
+        hiddenPowers = readFile(Translation::Power);
+        species = readFile(Translation::Specie);
     }
 
     std::vector<std::string> *getCharacteristic()
@@ -706,39 +228,39 @@ namespace Translator
         std::vector<std::string> strings;
         if ((game & Game::Emerald) != Game::None)
         {
-            strings = readFile("e");
+            strings = readFile(Translation::E);
         }
         else if ((game & Game::FRLG) != Game::None)
         {
-            strings = readFile("frlg");
+            strings = readFile(Translation::FRLG);
         }
         else if ((game & Game::RS) != Game::None)
         {
-            strings = readFile("rs");
+            strings = readFile(Translation::RS);
         }
         else if ((game & Game::DPPt) != Game::None)
         {
-            strings = readFile("dppt");
+            strings = readFile(Translation::DPPt);
         }
         else if ((game & Game::HGSS) != Game::None)
         {
-            strings = readFile("hgss");
+            strings = readFile(Translation::HGSS);
         }
         else if ((game & Game::BW) != Game::None)
         {
-            strings = readFile("bw");
+            strings = readFile(Translation::BW);
         }
         else if ((game & Game::BW2) != Game::None)
         {
-            strings = readFile("bw2");
+            strings = readFile(Translation::BW2);
         }
         else if ((game & Game::SwSh) != Game::None)
         {
-            strings = readFile("swsh");
+            strings = readFile(Translation::SwSh);
         }
         else
         {
-            strings = readFile("bdsp");
+            strings = readFile(Translation::BDSP);
         }
 
         std::map<int, std::string> map;
