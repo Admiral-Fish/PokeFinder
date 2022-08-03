@@ -29,25 +29,60 @@ namespace Ui
     class IDs3;
 }
 
+/**
+ * @brief Provides settings and filters to RNG TID/SID in Gen 3 games
+ */
 class IDs3 : public QWidget
 {
     Q_OBJECT
 public:
+    /**
+     * @brief Creates a new IDs3
+     * @param parent Parent widget, which takes memory ownership
+     */
     explicit IDs3(QWidget *parent = nullptr);
+
+    /**
+     * @brief Destructor
+     */
     ~IDs3() override;
 
 private:
     Ui::IDs3 *ui;
     IDModel3 *model;
 
-    void setupModels();
-
 private slots:
+    /**
+     * @brief Generates and display results for XD/Colo
+     */
     void generateXDColo();
+
+    /**
+     * @brief Generates and display results for FRLG/E
+     */
     void generateFRLGE();
+
+    /**
+     * @brief Generates and display results for RS
+     */
     void generateRS();
+
+    /**
+     * @brief Toggles whether controls related to dead battery are enabled or not
+     * @param checked True if dead battery is enabled, false otherwise
+     */
     void toggleDeadBatteryRS(bool checked);
+
+    /**
+     * @brief Toggles whether date/time is enabled or not
+     * @param checked True if date/time is enabled, false otherwise
+     */
     void toggleDateTimeRS(bool checked);
+
+    /**
+     * @brief Toggles whether seed is enabled or not
+     * @param checked True if seed is enabled, false otherwise
+     */
     void toggleSeedRS(bool checked);
 };
 

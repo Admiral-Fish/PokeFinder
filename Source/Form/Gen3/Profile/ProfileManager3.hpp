@@ -29,25 +29,48 @@ namespace Ui
     class ProfileManager3;
 }
 
+/**
+ * @brief Provides interface to view/edit/delete existing profiles and create new ones
+ */
 class ProfileManager3 : public QWidget
 {
     Q_OBJECT
 signals:
-    void updateProfiles();
+    /**
+     * @brief Emits signal when profiles have been updated
+     */
+    void updateProfiles(int);
 
 public:
+    /**
+     * @brief Creates a new ProfileManager3
+     * @param parent Parent widget, which takes memory ownership
+     */
     explicit ProfileManager3(QWidget *parent = nullptr);
+
+    /**
+     * @brief Destructor
+     */
     ~ProfileManager3() override;
 
 private:
     Ui::ProfileManager3 *ui;
     ProfileModel3 *model;
 
-    void setupModels();
-
 private slots:
+    /**
+     * @brief Opens dialog to create a new profile
+     */
     void create();
+
+    /**
+     * @brief Opens dialog to edit an existing profile
+     */
     void edit();
+
+    /**
+     * @brief Opens dialog to confirm deletion of existing profile
+     */
     void remove();
 };
 

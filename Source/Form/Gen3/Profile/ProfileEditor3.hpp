@@ -29,22 +29,50 @@ namespace Ui
 
 class Profile3;
 
+/**
+ * @brief Provides dialog to view/edit fields of a profile
+ */
 class ProfileEditor3 : public QDialog
 {
     Q_OBJECT
 public:
+    /**
+     * @brief Creates a new ProfileEditor3
+     * @param parent Parent widget, which takes memory ownership
+     */
     explicit ProfileEditor3(QWidget *parent = nullptr);
+
+    /**
+     * @brief Creates a new ProfileEditor3
+     * @param profile Existing profile to populate the dialog
+     * @param parent Parent widget, which takes memory ownership
+     */
     explicit ProfileEditor3(const Profile3 &profile, QWidget *parent = nullptr);
+
+    /**
+     * @brief Destructor
+     */
     ~ProfileEditor3() override;
+
+    /**
+     * @brief Creates finalized profile based on input fields
+     * @return Profile information
+     */
     Profile3 getProfile();
 
 private:
     Ui::ProfileEditor3 *ui;
 
-    void setupModels();
-
 private slots:
+    /**
+     * @brief Validates that a profile name exists before allowing the dialog to be closed
+     */
     void okay();
+
+    /**
+     * @brief Toggles whether dead battery is enabled based on selected Game
+     * @param index Current index of combo box
+     */
     void versionIndexChanged(int index);
 };
 

@@ -174,7 +174,7 @@ MainWindow::~MainWindow()
     // delete ids8;
 }
 
-void MainWindow::checkUpdates()
+void MainWindow::checkUpdates() const
 {
     QSettings setting;
     QDate today = QDate::currentDate();
@@ -199,7 +199,7 @@ void MainWindow::checkUpdates()
     setting.setValue("settings/lastOpened", today);
 }
 
-QByteArray MainWindow::downloadFile(const QString &url)
+QByteArray MainWindow::downloadFile(const QString &url) const
 {
     QNetworkAccessManager manager;
     QNetworkRequest request(url);
@@ -392,7 +392,7 @@ void MainWindow::openPokeSpot()
 void MainWindow::openProfileManager3()
 {
     auto *manager = new ProfileManager3();
-    connect(manager, &ProfileManager3::updateProfiles, this, [=] { updateProfiles(3); });
+    connect(manager, &ProfileManager3::updateProfiles, this, &MainWindow::updateProfiles);
     manager->show();
 }
 
@@ -726,7 +726,7 @@ void MainWindow::openProfileManager8()
     manager->show();
 }*/
 
-void MainWindow::openAbout()
+void MainWindow::openAbout() const
 {
     QStringList info
         = { QString("Version: %1").arg(POKEFINDER_VERSION), QString("Branch: %1").arg(GIT_BRANCH), QString("Commit: %1").arg(GIT_COMMIT) };

@@ -50,11 +50,23 @@ namespace Ui
     class MainWindow;
 }
 
+/**
+ * @brief Provides a central hub to access the various windows for RNG
+ */
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
 public:
+    /**
+     * @brief Creates a new MainWindow
+     * @param profile True if profiles file is located, false otherwise
+     * @param parent Parent widget, which takes memory ownership
+     */
     explicit MainWindow(bool profile, QWidget *parent = nullptr);
+
+    /**
+     * @brief Destructor
+     */
     ~MainWindow() override;
 
 private:
@@ -82,23 +94,47 @@ private:
     Eggs8 *egg8 = nullptr;
     IDs8 *ids8 = nullptr;
 
-    void checkUpdates();
-    QByteArray downloadFile(const QString &url);
+    /**
+     * @brief Checks if any application updates are available
+     */
+    void checkUpdates() const;
+
+    /**
+     * @brief Downloads webpage from given url
+     * @param url Link to download from
+     * @return Byte array of downloaded url
+     */
+    QByteArray downloadFile(const QString &url) const;
 
 private slots:
+    /**
+     * @brief Informs open windows that they need to refresh profiles
+     * @param num Which generation profiles were updated
+     */
     void updateProfiles(int num);
+
     // void openStatic3();
     // void openWild3();
-    //  void openGameCube();
+    // void openGameCube();
     // void openEgg3();
+
+    /**
+     * @brief Opens the Gen 3 TID/SID window
+     */
     void openIDs3();
+
     // void openGameCubeRTC();
     // void openGameCubeSeedFinder();
     // void openIVtoPID();
     // void openJirachiPattern();
     // void openPIDtoIV();
     // void openPokeSpot();
+
+    /**
+     * @brief Opens the Gen 3 Profile Manager window
+     */
     void openProfileManager3();
+
     // void openSeedtoTime3();
     // void openSpindaPainter();
     // void openStatic4();
@@ -125,7 +161,12 @@ private slots:
     // void openDenMap();
     // void downloadEventData();
     // void openProfileManager8();
-    void openAbout();
+
+    /**
+     * @brief Open the About window
+     */
+    void openAbout() const;
+
     // void openEncounterLookup();
     // void openIVCalculator();
     // void openResearcher();

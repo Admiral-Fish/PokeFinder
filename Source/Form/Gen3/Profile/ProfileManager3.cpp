@@ -25,26 +25,12 @@
 #include <QMessageBox>
 #include <QSettings>
 
-ProfileManager3::ProfileManager3(QWidget *parent) : QWidget(parent), ui(new Ui::ProfileManager3)
+ProfileManager3::ProfileManager3(QWidget *parent) : QWidget(parent), ui(new Ui::ProfileManager3), model(new ProfileModel3(this))
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
     setAttribute(Qt::WA_DeleteOnClose);
 
-    setupModels();
-}
-
-ProfileManager3::~ProfileManager3()
-{
-    QSettings setting;
-    setting.setValue("profileManager3/geometry", this->saveGeometry());
-
-    delete ui;
-}
-
-void ProfileManager3::setupModels()
-{
-    model = new ProfileModel3(ui->tableView);
     model->addItems(ProfileLoader3::getProfiles());
     ui->tableView->setModel(model);
 
@@ -59,6 +45,14 @@ void ProfileManager3::setupModels()
     }
 }
 
+ProfileManager3::~ProfileManager3()
+{
+    QSettings setting;
+    setting.setValue("profileManager3/geometry", this->saveGeometry());
+
+    delete ui;
+}
+
 void ProfileManager3::create()
 {
     std::unique_ptr<ProfileEditor3> dialog(new ProfileEditor3);
@@ -67,7 +61,7 @@ void ProfileManager3::create()
         Profile3 profile = dialog->getProfile();
         ProfileLoader3::addProfile(profile);
         model->addItem(profile);
-        emit updateProfiles();
+        emit updateProfiles(3);
     }
 }
 
@@ -88,7 +82,7 @@ void ProfileManager3::edit()
         Profile3 update = dialog->getProfile();
         ProfileLoader3::updateProfile(update, original);
         model->updateItem(update, row);
-        emit updateProfiles();
+        emit updateProfiles(3);
     }
 }
 
@@ -109,6 +103,6 @@ void ProfileManager3::remove()
         Profile3 profile = model->getItem(row);
         ProfileLoader3::removeProfile(profile);
         model->removeItem(row);
-        emit updateProfiles();
+        emit updateProfiles(3);
     }
 }

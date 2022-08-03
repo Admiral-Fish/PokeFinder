@@ -29,16 +29,24 @@ ProfileEditor3::ProfileEditor3(QWidget *parent) : QDialog(parent), ui(new Ui::Pr
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
 
-    setupModels();
+    ui->textBoxTID->setValues(InputType::TIDSID);
+    ui->textBoxSID->setValues(InputType::TIDSID);
+
+    ui->comboBoxVersion->setup({ toInt(Game::Ruby), toInt(Game::Sapphire), toInt(Game::FireRed), toInt(Game::LeafGreen),
+                                 toInt(Game::Emerald), toInt(Game::Gales), toInt(Game::Colosseum) });
+
+    connect(ui->pushButtonOkay, &QPushButton::clicked, this, &ProfileEditor3::okay);
+    connect(ui->comboBoxVersion, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &ProfileEditor3::versionIndexChanged);
+
+    QSettings setting;
+    if (setting.contains("profileEditor3/geometry"))
+    {
+        this->restoreGeometry(setting.value("profileEditor3/geometry").toByteArray());
+    }
 }
 
-ProfileEditor3::ProfileEditor3(const Profile3 &profile, QWidget *parent) : QDialog(parent), ui(new Ui::ProfileEditor3)
+ProfileEditor3::ProfileEditor3(const Profile3 &profile, QWidget *parent) : ProfileEditor3(parent)
 {
-    ui->setupUi(this);
-    setAttribute(Qt::WA_QuitOnClose, false);
-
-    setupModels();
-
     ui->lineEditProfile->setText(QString::fromStdString(profile.getName()));
     ui->comboBoxVersion->setCurrentIndex(ui->comboBoxVersion->findData(toInt(profile.getVersion())));
     ui->textBoxTID->setText(QString::number(profile.getTID()));
@@ -58,24 +66,6 @@ Profile3 ProfileEditor3::getProfile()
 {
     return Profile3(ui->lineEditProfile->text().toStdString(), ui->comboBoxVersion->getEnum<Game>(), ui->textBoxTID->getUShort(),
                     ui->textBoxSID->getUShort(), ui->checkBoxDeadBattery->isChecked());
-}
-
-void ProfileEditor3::setupModels()
-{
-    ui->textBoxTID->setValues(InputType::TIDSID);
-    ui->textBoxSID->setValues(InputType::TIDSID);
-
-    ui->comboBoxVersion->setup({ toInt(Game::Ruby), toInt(Game::Sapphire), toInt(Game::FireRed), toInt(Game::LeafGreen),
-                                 toInt(Game::Emerald), toInt(Game::Gales), toInt(Game::Colosseum) });
-
-    connect(ui->pushButtonOkay, &QPushButton::clicked, this, &ProfileEditor3::okay);
-    connect(ui->comboBoxVersion, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &ProfileEditor3::versionIndexChanged);
-
-    QSettings setting;
-    if (setting.contains("profileEditor3/geometry"))
-    {
-        this->restoreGeometry(setting.value("profileEditor3/geometry").toByteArray());
-    }
 }
 
 void ProfileEditor3::okay()

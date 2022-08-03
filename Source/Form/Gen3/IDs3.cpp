@@ -25,25 +25,11 @@
 #include <Model/Gen3/IDModel3.hpp>
 #include <QSettings>
 
-IDs3::IDs3(QWidget *parent) : QWidget(parent), ui(new Ui::IDs3)
+IDs3::IDs3(QWidget *parent) : QWidget(parent), ui(new Ui::IDs3), model(new IDModel3(this))
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
 
-    setupModels();
-}
-
-IDs3::~IDs3()
-{
-    QSettings setting;
-    setting.setValue("ids3/geometry", this->saveGeometry());
-
-    delete ui;
-}
-
-void IDs3::setupModels()
-{
-    model = new IDModel3(ui->tableView);
     ui->tableView->setModel(model);
 
     ui->textBoxTIDFRLGE->setValues(InputType::TIDSID);
@@ -72,6 +58,14 @@ void IDs3::setupModels()
     {
         this->restoreGeometry(setting.value("ids3/geometry").toByteArray());
     }
+}
+
+IDs3::~IDs3()
+{
+    QSettings setting;
+    setting.setValue("ids3/geometry", this->saveGeometry());
+
+    delete ui;
 }
 
 void IDs3::generateXDColo()
