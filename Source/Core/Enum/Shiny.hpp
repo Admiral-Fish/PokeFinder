@@ -20,16 +20,19 @@
 #ifndef SHINY_HPP
 #define SHINY_HPP
 
-#include <Core/Util/Global.hpp>
+#include <Core/Global.hpp>
 
+/**
+ * @brief Impacts PID generation
+ */
 enum class Shiny : u8
 {
-    Random,
-    Never,
-    Always,
-    Star,
-    Square,
-    Static
+    Random, /// PID is random, not locked
+    Never, /// PID is random, forced to not be shiny
+    Always, /// PID is random, forced to shiny
+    Star, /// PID is random, forced to be star shiny
+    Square, /// PID is random, forced to be square shiny
+    Static /// PID is set to a fixed value
 };
 
 constexpr u8 toInt(Shiny val)

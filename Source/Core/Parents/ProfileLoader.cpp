@@ -34,6 +34,10 @@ namespace
 {
     std::string path;
 
+    /**
+     * @brief Reads provided profiles file
+     * @return json object with profile information
+     */
     json readJson()
     {
         json j;
@@ -47,6 +51,10 @@ namespace
         return j.is_discarded() ? json() : j;
     }
 
+    /**
+     * @brief Writes json object with profile information to profiles file
+     * @param j json object with profile information
+     */
     void writeJson(const json &j)
     {
         std::ofstream write(path);

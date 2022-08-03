@@ -27,7 +27,20 @@ enum class Game : u32;
 
 namespace PersonalLoader
 {
+    /**
+     * @brief Gets pointer to PersonalInfo array for specified \p version
+     * @param version Game version
+     * @return Pointer to PersonalInfo array
+     */
     const PersonalInfo *getPersonal(Game version);
+
+    /**
+     * @brief Gets PersonalInfo for given \p species and \p form based on the \p version
+     * @param version Game version
+     * @param species Pokemon species
+     * @param form Pokemon form
+     * @return PersonalInfo entry
+     */
     PersonalInfo getPersonal(Game version, u16 species, u8 form = 0);
 }
 

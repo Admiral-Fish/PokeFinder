@@ -76,13 +76,12 @@ namespace PersonalLoader
         const auto *info = getPersonal(version);
         PersonalInfo base = info[species];
 
+        // Determine if we need to offset the index based off form
         u16 formIndex = base.getFormStatIndex();
-
         if (form == 0 || formIndex == 0)
         {
             return base;
         }
-
         return info[formIndex + form - 1];
     }
 }
