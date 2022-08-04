@@ -291,7 +291,7 @@ namespace Translator
 
     std::string getKeypresses(Buttons keypresses)
     {
-        if (toInt(keypresses) == 0)
+        if (keypresses == Buttons::None)
         {
             return "None";
         }
