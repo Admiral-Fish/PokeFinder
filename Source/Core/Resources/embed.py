@@ -15,9 +15,7 @@ def embed_encounters():
             data = f.read()
 
         name = os.path.basename(f.name).replace(".bin", "")
-
-        string = f"constexpr std::array<u8, {len(data)}> {name} ="
-        string += " { "
+        string = f"constexpr std::array<u8, {len(data)}> {name} = {{ "
 
         for i in range(len(data)):
             string += str(data[i])
@@ -43,9 +41,7 @@ def embed_encounters():
                         personal[i] = re.search(r"\((.+?)\)", personal[i]).group(1).split(", ")
 
         name = os.path.basename(f.name).replace(".json", "")
-
-        string = f"constexpr std::array<Den, {len(tables)}> {name} ="
-        string += " { "
+        string = f"constexpr std::array<Den, {len(tables)}> {name} = {{ "
 
         tables.sort(key=lambda den: int(f"0x{den['TableID']}", 16))
         for i, table in enumerate(tables):
@@ -127,9 +123,7 @@ def embed_personal():
                         offset = 0x44
 
             name = os.path.basename(f.name).replace(".bin", "")
-
-            string = f"constexpr std::array<PersonalInfo, {int(size/offset)}> {name} ="
-            string += " { "
+            string = f"constexpr std::array<PersonalInfo, {int(size/offset)}> {name} = {{ "
 
             for i in range(0, size, offset):
                 hp = data[i]
@@ -203,11 +197,10 @@ def embed_strings(paths):
                     string_data.append(x)
                 string_data.append(0)
 
-            string = f"constexpr std::array<u8, {len(string_data)}> {name} ="
-            string += " { "
+            string = f"constexpr std::array<u8, {len(string_data)}> {name} = {{ "
 
-            for i in range(len(string_data)):
-                string += str(string_data[i])
+            for i, char in enumerate(string_data):
+                string += str(char)
                 if i != len(string_data) - 1:
                     string += ", "
 
@@ -215,6 +208,32 @@ def embed_strings(paths):
             mapping[name] = string
 
         arrays.append(mapping)
+    
+    languages = f"const static u8 *languages[{len(arrays)}][{len(arrays[0])}] = {{ "
+    sizes = f"constexpr size_t sizes[{len(arrays)}][{len(arrays[0])}] = {{ "
+    for i, language in enumerate(arrays):
+        languages += "{ "
+        sizes += "{ "
+        for j, category in enumerate(language.keys()):
+            languages += f"{category}.data()"
+            sizes += f"{category}.size()"
+
+            if j != len(language) - 1:
+                languages += ", "
+                sizes += ", "
+
+        languages += " }"
+        sizes += " }"
+
+        if i != len(arrays) - 1:
+            languages += ", "
+            sizes += ", "
+
+    languages += " };"
+    sizes += " };"
+
+    arrays.append(languages)
+    arrays.append(sizes)
 
     write_strings(arrays)
 
@@ -237,8 +256,11 @@ def write_strings(maps):
     f.write("#include <array>\n\n")
 
     for map in maps:
-        for string in map.values():
-            f.write(f"{string}\n\n")
+        if type(map) is str:
+            f.write(f"{map}\n\n")
+        else:
+            for string in map.values():
+                f.write(f"{string}\n\n")
 
 
 def main():
@@ -247,7 +269,7 @@ def main():
 
     embed_personal()
     embed_encounters()
-    embed_strings(["de", "en", "es", "fr", "it", "ja", "ko", "zh"])
+    embed_strings(("de", "en", "es", "fr", "it", "ja", "ko", "zh"))
 
 
 if __name__ == "__main__":
