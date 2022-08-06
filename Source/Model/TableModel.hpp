@@ -22,14 +22,25 @@
 
 #include <QAbstractTableModel>
 
+/**
+ * @brief Provides a templated implementation for children to add/edit/remove their data to a table model
+ */
 template <class Item>
 class TableModel : public QAbstractTableModel
 {
 public:
+    /**
+     * @brief Creates a new TableModel
+     * @param parent Parent object, which takes memory ownership
+     */
     TableModel(QObject *parent = nullptr) : QAbstractTableModel(parent)
     {
     }
 
+    /**
+     * @brief Add a collection of items to the model
+     * @param items Vector of items to add
+     */
     void addItems(const std::vector<Item> &items)
     {
         if (!items.empty())
@@ -41,6 +52,10 @@ public:
         }
     }
 
+    /**
+     * @brief Add a item to the model
+     * @param item Item to add
+     */
     void addItem(const Item &item)
     {
         int i = rowCount();
@@ -49,12 +64,21 @@ public:
         emit endInsertRows();
     }
 
+    /**
+     * @brief Updates a item in the model
+     * @param item Updated item
+     * @param row Row to edit
+     */
     void updateItem(const Item &item, int row)
     {
         model[row] = item;
         emit dataChanged(index(row, 0), index(row, columnCount()));
     }
 
+    /**
+     * @brief Removes an item from the model
+     * @param row Row to remove
+     */
     void removeItem(int row)
     {
         emit beginRemoveRows(QModelIndex(), row, row);
@@ -63,16 +87,28 @@ public:
         emit endRemoveRows();
     }
 
+    /**
+     * @brief Returns the item from the indicated item
+     * @param row Row to get
+     * @return Item data of the model
+     */
     Item getItem(int row) const
     {
         return model[row];
     }
 
+    /**
+     * @brief Returns the underlying model data
+     * @return Vector of Items of the model
+     */
     std::vector<Item> getModel() const
     {
         return model;
     }
 
+    /**
+     * @brief Removes all items from the model
+     */
     void clearModel()
     {
         if (!model.empty())
@@ -84,6 +120,11 @@ public:
         }
     }
 
+    /**
+     * @brief Returns the number of rows in the model
+     * @param parent Unused parent index
+     * @return Number of rows
+     */
     int rowCount(const QModelIndex &parent = QModelIndex()) const override
     {
         (void)parent;

@@ -46,7 +46,6 @@ QVariant IDModel3::data(const QModelIndex &index, int role) const
             return state.getTSV();
         }
     }
-
     return QVariant();
 }
 
