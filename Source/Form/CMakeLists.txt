@@ -47,6 +47,7 @@ set(PROJECT_TS
 
 set(PROJECT_QRC
     "${CMAKE_SOURCE_DIR}/External/QDarkStyleSheet/qdarkstyle/dark/style.qrc"
+    "${CMAKE_SOURCE_DIR}/External/QDarkStyleSheet/qdarkstyle/light/style.qrc"
 )
 
 set(PROJECT_UI

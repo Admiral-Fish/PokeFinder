@@ -74,15 +74,11 @@ int main(int argc, char *argv[])
     QString profilePath = setting.value("settings/profiles").toString();
     bool profile = ProfileLoader::init(profilePath.toStdString());
 
-    QString style = setting.value("settings/style").toString();
-    if (style == "dark")
+    QFile file(QString(":/qdarkstyle/%1/style.qss").arg(setting.value("settings/style").toString()));
+    if (file.open(QIODevice::ReadOnly | QIODevice::Text))
     {
-        QFile file(":/qdarkstyle/dark/style.qss");
-        if (file.open(QIODevice::ReadOnly | QIODevice::Text))
-        {
-            QTextStream ts(&file);
-            a.setStyleSheet(ts.readAll());
-        }
+        QTextStream ts(&file);
+        a.setStyleSheet(ts.readAll());
     }
 
     QString locale = setting.value("settings/locale").toString();
