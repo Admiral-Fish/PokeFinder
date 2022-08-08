@@ -40,14 +40,14 @@ public:
         return seed;
     }
 
+    u64 getSeed() const
+    {
+        return seed;
+    }
+
     u64 next()
     {
         return seed = seed * mult + add;
-    }
-
-    u32 nextUInt(u32 max)
-    {
-        return ((next() >> 32) * max) >> 32;
     }
 
     u32 nextUInt()
@@ -55,9 +55,9 @@ public:
         return next() >> 32;
     }
 
-    u64 getSeed() const
+    u32 nextUInt(u32 max)
     {
-        return seed;
+        return ((next() >> 32) * max) >> 32;
     }
 
 private:

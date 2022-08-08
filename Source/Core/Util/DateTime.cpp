@@ -41,29 +41,28 @@ Date Date::addDays(int days) const
     return Date(jd + days);
 }
 
-int Date::daysTo(const Date &other) const
-{
-    return other.jd - jd;
-}
-
-int Date::year() const
-{
-    return getParts()[0];
-}
-
-int Date::month() const
-{
-    return getParts()[1];
-}
-
 int Date::day() const
 {
     return getParts()[2];
 }
 
+int Date::daysInMonth(int month, int year)
+{
+    if (month == 2 && isLeapYear(year))
+    {
+        return 29;
+    }
+    return monthDays[month];
+}
+
 int Date::dayOfWeek() const
 {
     return (jd + 1) % 7;
+}
+
+int Date::daysTo(const Date &other) const
+{
+    return other.jd - jd;
 }
 
 std::array<int, 3> Date::getParts() const
@@ -86,13 +85,9 @@ std::array<int, 3> Date::getParts() const
     return { year, month, day };
 }
 
-int Date::daysInMonth(int month, int year)
+int Date::month() const
 {
-    if (month == 2 && isLeapYear(year))
-    {
-        return 29;
-    }
-    return monthDays[month];
+    return getParts()[1];
 }
 
 std::string Date::toString() const
@@ -108,6 +103,11 @@ std::string Date::toString() const
     d.insert(d.begin(), 2 - d.size(), '0');
 
     return y + "-" + m + "-" + d;
+}
+
+int Date::year() const
+{
+    return getParts()[0];
 }
 
 int Time::addSeconds(int seconds)

@@ -38,6 +38,18 @@ public:
     }
 
     /**
+     * @brief Add a item to the model
+     * @param item Item to add
+     */
+    void addItem(const Item &item)
+    {
+        int i = rowCount();
+        emit beginInsertRows(QModelIndex(), i, i);
+        model.emplace_back(item);
+        emit endInsertRows();
+    }
+
+    /**
      * @brief Add a collection of items to the model
      * @param items Vector of items to add
      */
@@ -53,38 +65,17 @@ public:
     }
 
     /**
-     * @brief Add a item to the model
-     * @param item Item to add
+     * @brief Removes all items from the model
      */
-    void addItem(const Item &item)
+    void clearModel()
     {
-        int i = rowCount();
-        emit beginInsertRows(QModelIndex(), i, i);
-        model.emplace_back(item);
-        emit endInsertRows();
-    }
-
-    /**
-     * @brief Updates a item in the model
-     * @param item Updated item
-     * @param row Row to edit
-     */
-    void updateItem(const Item &item, int row)
-    {
-        model[row] = item;
-        emit dataChanged(index(row, 0), index(row, columnCount()));
-    }
-
-    /**
-     * @brief Removes an item from the model
-     * @param row Row to remove
-     */
-    void removeItem(int row)
-    {
-        emit beginRemoveRows(QModelIndex(), row, row);
-        model.erase(model.begin() + row);
-        model.shrink_to_fit();
-        emit endRemoveRows();
+        if (!model.empty())
+        {
+            emit beginRemoveRows(QModelIndex(), 0, rowCount() - 1);
+            model.clear();
+            model.shrink_to_fit();
+            emit endRemoveRows();
+        }
     }
 
     /**
@@ -107,20 +98,6 @@ public:
     }
 
     /**
-     * @brief Removes all items from the model
-     */
-    void clearModel()
-    {
-        if (!model.empty())
-        {
-            emit beginRemoveRows(QModelIndex(), 0, rowCount() - 1);
-            model.clear();
-            model.shrink_to_fit();
-            emit endRemoveRows();
-        }
-    }
-
-    /**
      * @brief Returns the number of rows in the model
      * @param parent Unused parent index
      * @return Number of rows
@@ -129,6 +106,29 @@ public:
     {
         (void)parent;
         return static_cast<int>(model.size());
+    }
+
+    /**
+     * @brief Removes an item from the model
+     * @param row Row to remove
+     */
+    void removeItem(int row)
+    {
+        emit beginRemoveRows(QModelIndex(), row, row);
+        model.erase(model.begin() + row);
+        model.shrink_to_fit();
+        emit endRemoveRows();
+    }
+
+    /**
+     * @brief Updates a item in the model
+     * @param item Updated item
+     * @param row Row to edit
+     */
+    void updateItem(const Item &item, int row)
+    {
+        model[row] = item;
+        emit dataChanged(index(row, 0), index(row, columnCount()));
     }
 
 protected:

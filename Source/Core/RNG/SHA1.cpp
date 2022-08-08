@@ -24,6 +24,14 @@
 #include <Core/RNG/LCRNG64.hpp>
 #include <Core/Util/DateTime.hpp>
 
+inline u8 bcd(u8 value)
+{
+    u8 tens = value / 10;
+    u8 ones = value % 10;
+
+    return static_cast<u8>(tens << 4) | ones;
+}
+
 inline u32 changeEndian(u32 val)
 {
     val = ((val << 8) & 0xFF00FF00) | ((val >> 8) & 0xFF00FF);
@@ -38,14 +46,6 @@ inline u32 rotateLeft(u32 val, u8 count)
 inline u32 rotateRight(u32 val, u8 count)
 {
     return (val << (32 - count)) | (val >> count);
-}
-
-inline u8 bcd(u8 value)
-{
-    u8 tens = value / 10;
-    u8 ones = value % 10;
-
-    return static_cast<u8>(tens << 4) | ones;
 }
 
 SHA1::SHA1(const Profile5 &profile) /*:
@@ -244,9 +244,9 @@ void SHA1::precompute()
     calcW(30);
 }
 
-void SHA1::setTimer0(u32 timer0, u8 vcount)
+void SHA1::setButton(u32 button)
 {
-    data[5] = changeEndian(static_cast<u32>(vcount << 16) | timer0);
+    data[12] = button;
 }
 
 void SHA1::setDate(const Date &date)
@@ -256,6 +256,11 @@ void SHA1::setDate(const Date &date)
     data[8] = val;
 }
 
+void SHA1::setTimer0(u32 timer0, u8 vcount)
+{
+    data[5] = changeEndian(static_cast<u32>(vcount << 16) | timer0);
+}
+
 void SHA1::setTime(u8 hour, u8 minute, u8 second, DSType dsType)
 {
     u32 h = static_cast<u32>((bcd(hour) + (hour >= 12 && dsType != DSType::DS3 ? 0x40 : 0)) << 24);
@@ -263,9 +268,4 @@ void SHA1::setTime(u8 hour, u8 minute, u8 second, DSType dsType)
     u32 s = static_cast<u32>(bcd(second) << 8);
     u32 val = h | m | s;
     data[9] = val;
-}
-
-void SHA1::setButton(u32 button)
-{
-    data[12] = button;
 }

@@ -34,14 +34,14 @@ public:
     }
     Date(int year, int month, int day);
     Date addDays(int days) const;
-    int daysTo(const Date &other) const;
-    int year() const;
-    int month() const;
     int day() const;
-    int dayOfWeek() const;
-    std::array<int, 3> getParts() const;
     static int daysInMonth(int month, int year);
+    int dayOfWeek() const;
+    int daysTo(const Date &other) const;
+    std::array<int, 3> getParts() const;
+    int month() const;
     std::string toString() const;
+    int year() const;
 
     constexpr bool operator==(const Date &other) const
     {

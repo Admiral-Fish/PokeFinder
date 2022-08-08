@@ -35,14 +35,14 @@ public:
     SHA1(Game version, Language language, DSType type, u64 mac, bool softReset, u8 vFrame, u8 gxStat);
     u64 hashSeed();
     void precompute();
-    void setTimer0(u32 timer0, u8 vcount);
-    void setDate(const Date &date);
-    void setTime(u8 hour, u8 minute, u8 second, DSType dsType);
     void setButton(u32 button);
+    void setDate(const Date &date);
+    void setTimer0(u32 timer0, u8 vcount);
+    void setTime(u8 hour, u8 minute, u8 second, DSType dsType);
 
 private:
-    u32 data[80];
     u32 alpha[5];
+    u32 data[80];
 };
 
 #endif // SHA1_HPP

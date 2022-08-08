@@ -49,6 +49,11 @@ public:
         return prng;
     }
 
+    u32 getSeed() const
+    {
+        return seed;
+    }
+
     template <bool flag = false>
     u32 next()
     {
@@ -70,14 +75,9 @@ public:
         this->seed = seed;
     }
 
-    u32 getSeed() const
-    {
-        return seed;
-    }
-
 private:
-    u32 seed;
     u32 *count;
+    u32 seed;
 };
 
 using ARNG = LCRNG<0x01, 0x6C078965>;
