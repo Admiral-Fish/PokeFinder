@@ -22,6 +22,7 @@
 #include <Core/Enum/Game.hpp>
 #include <Core/Resources/i18n.hpp>
 #include <algorithm>
+#include <bit>
 #include <map>
 #include <sstream>
 
@@ -39,29 +40,31 @@ enum class Language
 
 enum class Translation
 {
-    Characteristic,
-    Nature,
     Ability,
-    Power,
-    Specie,
-    E,
-    FRLG,
-    RS,
-    DPPt,
-    HGSS,
+    BDSP,
     BW,
     BW2,
-    SwSh,
-    BDSP
+    Characteristic,
+    DPPt,
+    E,
+    FRLG,
+    Game,
+    HGSS,
+    Nature,
+    Power,
+    RS,
+    Specie,
+    SwSh
 };
 
 namespace
 {
     Language language;
-    std::vector<std::string> characteristics;
-    std::vector<std::string> natures;
     std::vector<std::string> abilities;
+    std::vector<std::string> characteristics;
+    std::vector<std::string> games;
     std::vector<std::string> hiddenPowers;
+    std::vector<std::string> natures;
     std::vector<std::string> species;
     std::vector<std::string> genders = { "♂", "♀", "-" };
     std::vector<std::string> buttons = { "R", "L", "X", "Y", "A", "B", "Select", "Start", "Right", "Left", "Up", "Down" };
@@ -84,55 +87,14 @@ namespace
 
         return strings;
     }
+
 }
 
 namespace Translator
 {
-    void init(const std::string &locale)
+    std::string *getAbility(u16 ability)
     {
-        if (locale == "de")
-        {
-            language = Language::German;
-        }
-        else if (locale == "en")
-        {
-            language = Language::English;
-        }
-        else if (locale == "es")
-        {
-            language = Language::Spanish;
-        }
-        else if (locale == "it")
-        {
-            language = Language::Italian;
-        }
-        else if (locale == "fr")
-        {
-            language = Language::French;
-        }
-        else if (locale == "ja")
-        {
-            language = Language::Japanese;
-        }
-        else if (locale == "ko")
-        {
-            language = Language::Korean;
-        }
-        else if (locale == "zh")
-        {
-            language = Language::Chinese;
-        }
-
-        characteristics = readFile(Translation::Characteristic);
-        natures = readFile(Translation::Nature);
-        abilities = readFile(Translation::Ability);
-        hiddenPowers = readFile(Translation::Power);
-        species = readFile(Translation::Specie);
-    }
-
-    std::vector<std::string> *getCharacteristic()
-    {
-        return &characteristics;
+        return &abilities[ability];
     }
 
     std::string *getCharacteristic(u8 characteristic)
@@ -140,41 +102,16 @@ namespace Translator
         return &characteristics[characteristic];
     }
 
-    std::vector<std::string> *getNatures()
+    std::vector<std::string> *getCharacteristics()
     {
-        return &natures;
+        return &characteristics;
     }
 
-    std::string *getNature(u8 nature)
+    std::string *getGame(Game version)
     {
-        return &natures[nature];
-    }
-
-    std::string *getAbility(u16 ability)
-    {
-        return &abilities[ability];
-    }
-
-    std::vector<std::string> *getHiddenPowers()
-    {
-        return &hiddenPowers;
-    }
-
-    std::string *getHiddenPower(u8 power)
-    {
-        return &hiddenPowers[power];
-    }
-
-    std::string *getSpecies(u16 specie)
-    {
-        return &species[specie - 1];
-    }
-
-    std::vector<std::string> getSpecies(const std::vector<u16> &nums)
-    {
-        std::vector<std::string> s;
-        std::transform(nums.begin(), nums.end(), std::back_inserter(s), [](u16 num) { return species[num - 1]; });
-        return s;
+        // Strings are ordered to match the enum
+        // Use countr_zero to get the bit that is set
+        return &games[std::countr_zero(toInt(version))];
     }
 
     std::string *getGender(u8 gender)
@@ -185,6 +122,45 @@ namespace Translator
     std::vector<std::string> *getGenders()
     {
         return &genders;
+    }
+
+    std::string *getHiddenPower(u8 power)
+    {
+        return &hiddenPowers[power];
+    }
+
+    std::vector<std::string> *getHiddenPowers()
+    {
+        return &hiddenPowers;
+    }
+
+    std::string *getKeypress(u8 keypress)
+    {
+        return &buttons[keypress];
+    }
+
+    std::string getKeypresses(Buttons keypresses)
+    {
+        if (keypresses == Buttons::None)
+        {
+            return "None";
+        }
+
+        std::string result;
+        for (int i = 0; i < 12; i++)
+        {
+            if (toInt(keypresses) & (1 << i))
+            {
+                if (!result.empty())
+                {
+                    result += " + ";
+                }
+
+                result += buttons[i];
+            }
+        }
+
+        return result;
     }
 
     std::vector<std::string> getLocations(const std::vector<u16> &nums, Game game)
@@ -248,32 +224,68 @@ namespace Translator
         return locations;
     }
 
-    std::string *getKeypress(u8 keypress)
+    std::string *getNature(u8 nature)
     {
-        return &buttons[keypress];
+        return &natures[nature];
     }
 
-    std::string getKeypresses(Buttons keypresses)
+    std::vector<std::string> *getNatures()
     {
-        if (keypresses == Buttons::None)
+        return &natures;
+    }
+
+    std::string *getSpecie(u16 specie)
+    {
+        return &species[specie - 1];
+    }
+
+    std::vector<std::string> getSpecies(const std::vector<u16> &specie)
+    {
+        std::vector<std::string> s;
+        std::transform(specie.begin(), specie.end(), std::back_inserter(s), [](u16 num) { return species[num - 1]; });
+        return s;
+    }
+
+    void init(const std::string &locale)
+    {
+        if (locale == "de")
         {
-            return "None";
+            language = Language::German;
+        }
+        else if (locale == "en")
+        {
+            language = Language::English;
+        }
+        else if (locale == "es")
+        {
+            language = Language::Spanish;
+        }
+        else if (locale == "it")
+        {
+            language = Language::Italian;
+        }
+        else if (locale == "fr")
+        {
+            language = Language::French;
+        }
+        else if (locale == "ja")
+        {
+            language = Language::Japanese;
+        }
+        else if (locale == "ko")
+        {
+            language = Language::Korean;
+        }
+        else if (locale == "zh")
+        {
+            language = Language::Chinese;
         }
 
-        std::string result;
-        for (int i = 0; i < 12; i++)
-        {
-            if (toInt(keypresses) & (1 << i))
-            {
-                if (!result.empty())
-                {
-                    result += " + ";
-                }
-
-                result += buttons[i];
-            }
-        }
-
-        return result;
+        abilities = readFile(Translation::Ability);
+        characteristics = readFile(Translation::Characteristic);
+        games = readFile(Translation::Game);
+        hiddenPowers = readFile(Translation::Power);
+        natures = readFile(Translation::Nature);
+        species = readFile(Translation::Specie);
     }
 }
