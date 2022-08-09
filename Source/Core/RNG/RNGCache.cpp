@@ -21,9 +21,6 @@
 #include <Core/Enum/Method.hpp>
 #include <cstring>
 
-// See https://crypto.stackexchange.com/a/10609 for how the following math works
-// Uses a brute force meet in the middle attack using precomputated data
-
 RNGCache::RNGCache(Method method)
 {
     if (method == Method::Method4 || method == Method::MethodH4)
@@ -54,7 +51,6 @@ RNGCache::RNGCache(Method method)
     }
 }
 
-// Recovers origin seeds for two 16 bit calls(15 bits known) with or without gap based on the cache
 std::vector<u32> RNGCache::recoverLower16BitsIV(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const
 {
     std::vector<u32> origin;
@@ -94,7 +90,6 @@ std::vector<u32> RNGCache::recoverLower16BitsIV(u8 hp, u8 atk, u8 def, u8 spa, u
     return origin;
 }
 
-// Recovers origin seeds for two 16 bit calls based on the cache
 std::vector<u32> RNGCache::recoverLower16BitsPID(u32 pid) const
 {
     std::vector<u32> origin;

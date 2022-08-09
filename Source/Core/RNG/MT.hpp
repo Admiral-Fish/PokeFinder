@@ -22,18 +22,43 @@
 
 #include <Core/Global.hpp>
 
+/**
+ * @brief Provides random numbers via the Mersenne Twister algorithm.
+ */
 class MT
 {
 public:
+    /**
+     * @brief Creates a new MT
+     * @param seed Starting PRNG state
+     */
     explicit MT(u32 seed);
+
+    /**
+     * @brief Advances the RNG by provided amount
+     * @param advances Number of advances
+     */
     void advance(u32 advances);
+
+    /**
+     * @brief Gets the next 32bit PRNG state
+     * @return PRNG value
+     */
     u32 next();
+
+    /**
+     * @brief Gets the next 16bit PRNG state
+     * @return PRNG value
+     */
     u16 nextUShort();
 
 private:
     u16 index;
     alignas(16) u32 mt[624];
 
+    /**
+     * @brief Generates the next MT state after all 624 states have been consumed
+     */
     void shuffle();
 };
 

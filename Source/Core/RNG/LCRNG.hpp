@@ -22,14 +22,29 @@
 
 #include <Core/Global.hpp>
 
+/**
+ * @brief Provides random numbers via the LCRNG algorithm. Most commonly used ones are defined at the bottom of the file.
+ */
 template <u32 add, u32 mult>
 class LCRNG
 {
 public:
+    /**
+     * @brief Creates a new LCRNG
+     * @param seed Starting PRNG value
+     * @param advances Number of initial advances
+     * @param count Pointer to keep track of advance count
+     */
     LCRNG(u32 seed, u64 advances = 0, u32 *count = nullptr) : seed(seed), count(count)
     {
     }
 
+    /**
+     * @brief Advances the RNG by provided amount
+     * @param flag Whether count should be incremented or not
+     * @param advances Number of advances
+     * @return PRNG value after the advances
+     */
     template <bool flag = false>
     u32 advance(u64 advances)
     {
@@ -40,6 +55,12 @@ public:
         return seed;
     }
 
+    /**
+     * @brief Advances the RNG by provided amount
+     * @param prng PRNG state
+     * @param advances Number of advances
+     * @return PRNG value after the advances
+     */
     static u32 advance(u32 prng, u64 advances)
     {
         for (u64 advance = 0; advance < advances; advance++)
@@ -49,11 +70,20 @@ public:
         return prng;
     }
 
+    /**
+     * @brief Returns the current PRNG state
+     * @return PRNG value
+     */
     u32 getSeed() const
     {
         return seed;
     }
 
+    /**
+     * @brief Gets the next 32bit PRNG state
+     * @param flag Whether count should be incremented or not
+     * @return PRNG value
+     */
     template <bool flag = false>
     u32 next()
     {
@@ -64,12 +94,21 @@ public:
         return seed = seed * mult + add;
     }
 
+    /**
+     * @brief Gets the next 16bit PRNG state
+     * @param flag Whether count should be incremented or not
+     * @return PRNG value
+     */
     template <bool flag = false>
     u16 nextUShort()
     {
         return next<flag>() >> 16;
     }
 
+    /**
+     * @brief Sets the PRNG state
+     * @param seed PRNG state
+     */
     void setSeed(u32 seed)
     {
         this->seed = seed;

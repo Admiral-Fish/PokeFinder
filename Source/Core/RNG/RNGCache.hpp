@@ -25,11 +25,36 @@
 
 enum class Method : u8;
 
+/**
+ * @brief Provides a way to compute origin seed given IVs or PID for Method 1/2/4.
+ * See https://crypto.stackexchange.com/a/10609 for how the following math works
+ */
 class RNGCache
 {
 public:
+    /**
+     * @brief Creates a new RNGCache
+     * @param method Generation method
+     */
     explicit RNGCache(Method method);
+
+    /**
+     * @brief Recovers origin seeds for two 16 bit calls(15 bits known) with or without gap based on the cache
+     * @param hp HP iv
+     * @param atk Atk iv
+     * @param def Def iv
+     * @param spa SpA iv
+     * @param spd SpD iv
+     * @param spe Spe iv
+     * @return Vector of origin seeds
+     */
     std::vector<u32> recoverLower16BitsIV(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const;
+
+    /**
+     * @brief Recovers origin seeds for two 16 bit calls based on the cache
+     * @param pid PID value
+     * @return Vector of origin seeds
+     */
     std::vector<u32> recoverLower16BitsPID(u32 pid) const;
 
 private:

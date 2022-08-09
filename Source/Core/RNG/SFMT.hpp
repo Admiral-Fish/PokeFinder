@@ -22,18 +22,43 @@
 
 #include <Core/Global.hpp>
 
+/**
+ * @brief Provides random numbers via the SIMD-oriented Fast Mersenne Twister algorithm.
+ */
 class SFMT
 {
 public:
+    /**
+     * @brief Creates a new SFMT
+     * @param seed Starting PRNG state
+     */
     SFMT(u32 seed);
+
+    /**
+     * @brief Advances the RNG by provided amount
+     * @param advances Number of advances
+     */
     void advance(u32 advances);
+
+    /**
+     * @brief Gets the next 64bit PRNG state
+     * @return PRNG value
+     */
     u64 next();
+
+    /**
+     * @brief Gets the next 32bit PRNG state
+     * @return PRNG value
+     */
     u32 nextUInt();
 
 private:
     u16 index;
     alignas(16) u32 sfmt[624];
 
+    /**
+     * @brief Generates the next SFMT state after all 624 states have been consumed
+     */
     void shuffle();
 };
 

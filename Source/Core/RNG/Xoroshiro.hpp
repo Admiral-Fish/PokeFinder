@@ -22,12 +22,29 @@
 
 #include <Core/Global.hpp>
 
+/**
+ * @brief Provides random numbers via the Xoroshiro algorithm.
+ */
 class Xoroshiro
 {
 public:
+    /**
+     * @brief Creates a new Xoroshiro
+     * @param seed Starting PRNG state
+     */
     Xoroshiro(u64 seed);
+
+    /**
+     * @brief Gets the next 64bit PRNG state
+     * @return PRNG value
+     */
     u64 next();
 
+    /**
+     * @brief Gets the next 32bit PRNG state bounded by the max value
+     * @param max Max value
+     * @return PRNG value
+     */
     template <u32 max>
     u32 nextUInt()
     {
@@ -62,13 +79,36 @@ private:
     u64 state[2];
 };
 
+/**
+ * @brief Provides random numbers via the Xoroshiro algorithm with modified construction.
+ */
 class XoroshiroBDSP
 {
 public:
+    /**
+     * @brief Creates a new XoroshiroBDSP
+     * @param seed Starting PRNG state
+     * Uses splitmix to initalize the PRNG state
+     */
     XoroshiroBDSP(u64 seed);
+
+    /**
+     * @brief Advances the RNG by provided amount
+     * @param advances Number of advances
+     */
     void advance(u32 advances);
+
+    /**
+     * @brief Gets the next 32bit PRNG state
+     * @return PRNG value
+     */
     u32 next();
 
+    /**
+     * @brief Gets the next 32bit PRNG state bounded by the max value
+     * @param max Max value
+     * @return PRNG value
+     */
     u32 next(u32 max)
     {
         return next() % max;

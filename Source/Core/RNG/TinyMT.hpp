@@ -22,19 +22,54 @@
 
 #include <Core/Global.hpp>
 
+/**
+ * @brief Provides random numbers via the Tiny Mersenne Twister algorithm.
+ */
 class TinyMT
 {
 public:
+    /**
+     * @brief Creates a new TinyMT
+     * @param seed Starting PRNG value
+     */
     TinyMT(u32 seed);
+
+    /**
+     * @brief Creates a new TinyMT
+     * @param state Starting PRNG state
+     */
     explicit TinyMT(const u32 *state);
+
+    /**
+     * @brief Advances the RNG by provided amount
+     * @param advances Number of advances
+     */
     void advance(u32 advances);
+
+    /**
+     * @brief Gets the next 32bit PRNG state
+     * @return PRNG value
+     */
     u32 next();
+
+    /**
+     * @brief Gets the next 16bit PRNG state
+     * @return PRNG value
+     */
     u16 nextUShort();
 
 private:
     u32 state[4];
 
+    /**
+     * @brief Advances the RNG to the next PRNG state
+     */
     void nextState();
+
+    /**
+     * @brief Generates the PRNG value from the current PRNG state
+     * @return PRNG value
+     */
     u32 temper();
 };
 

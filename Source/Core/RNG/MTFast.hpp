@@ -20,19 +20,27 @@
 #ifndef MTFAST_HPP
 #define MTFAST_HPP
 
+#include <Core/Global.hpp>
 #include <Core/RNG/SIMD.hpp>
-#include <Core/Util/Global.hpp>
 
-// The assumptions of MTFast allow some simplifications to be made from normal MT
-// 1. computing less of the internal MT array
-// 2. storing less of the internal MT array
-// 3. skipping the shuffle check when generating numbers for use
-// 4. if the fast parameter is true skip the last bit shift operation and shift by 27 during shuffle (only in gen 5)
-// 5. Temper the results in the initial shuffle to take advantage of SIMD
+/**
+ * @brief Provides random numbers via the Mersenne Twister algorithm.
+ * The assumptions of MTFast allow some simplifications to be made from normal MT
+ * 1. Computing less of the internal MT array
+ * 2. Storing less of the internal MT array
+ * 3. Skipping the shuffle check when generating numbers for use
+ * 4. If the fast parameter is true skip the last bit shift operation and shift by 27 during shuffle (only in gen 5)
+ * 5. Temper the results in the initial shuffle to take advantage of SIMD
+ */
 template <u16 size, bool fast = false>
 class MTFast
 {
 public:
+    /**
+     * @brief Creates a new MTFast
+     * @param seed Starting PRNG state
+     * @param advances Number of initial advances
+     */
     MTFast(u32 seed, u32 advances = 0) : index(advances)
     {
         static_assert(size < 227, "Size exceeds range of MTFast");
@@ -130,14 +138,18 @@ public:
         }
     }
 
+    /**
+     * @brief Gets the next 32bit PRNG state
+     * @return PRNG value
+     */
     u32 next()
     {
         return mt[index++];
     }
 
 private:
-    alignas(16) u32 mt[size + 1];
     u16 index;
+    alignas(16) u32 mt[size + 1];
 };
 
 #endif // MTFAST_HPP

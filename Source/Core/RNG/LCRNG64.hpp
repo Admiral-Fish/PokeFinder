@@ -22,15 +22,28 @@
 
 #include <Core/Global.hpp>
 
+/**
+ * @brief Provides random numbers via the LCRNG algorithm. Most commonly used ones are defined at the bottom of the file.
+ */
 template <u64 add, u64 mult>
 class LCRNG64
 {
 public:
+    /**
+     * @brief Creates a new LCRNG64
+     * @param seed Starting PRNG state
+     * @param advances Initial number of advances
+     */
     LCRNG64(u64 seed, u64 advances = 0) : seed(seed)
     {
         advance(advances);
     }
 
+    /**
+     * @brief Advances the RNG by provided amount
+     * @param advances Number of advances
+     * @return PRNG value after the advances
+     */
     u64 advance(u64 advances)
     {
         for (u64 advance = 0; advance < advances; advance++)
@@ -40,21 +53,38 @@ public:
         return seed;
     }
 
+    /**
+     * @brief Returns the current PRNG state
+     * @return PRNG value
+     */
     u64 getSeed() const
     {
         return seed;
     }
 
+    /**
+     * @brief Gets the next 64bit PRNG state
+     * @return PRNG value
+     */
     u64 next()
     {
         return seed = seed * mult + add;
     }
 
+    /**
+     * @brief Gets the next 32bit PRNG state
+     * @return PRNG value
+     */
     u32 nextUInt()
     {
         return next() >> 32;
     }
 
+    /**
+     * @brief Gets the next 32bit PRNG state bounded by the specified max value
+     * @param max Max value
+     * @return PRNG value
+     */
     u32 nextUInt(u32 max)
     {
         return ((next() >> 32) * max) >> 32;

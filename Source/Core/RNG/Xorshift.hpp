@@ -22,13 +22,35 @@
 
 #include <Core/Global.hpp>
 
+/**
+ * @brief Provides random numbers via the Xoroshift algorithm.
+ */
 class Xorshift
 {
 public:
+    /**
+     * @brief Creates a new Xorshift
+     * @param seed0 Starting PRNG state0
+     * @param seed1 Starting PRNG state1
+     */
     Xorshift(u64 seed0, u64 seed1);
+
+    /**
+     * @brief Creates a new Xorshift
+     * @param rng Xorshift to copy
+     */
     Xorshift(const Xorshift &rng);
+
+    /**
+     * @brief Advances the RNG by provided amount
+     * @param advances Number of advances
+     */
     void advance(u32 advances);
 
+    /**
+     * @brief Gets the next 32bit PRNG state bounded by the min/max values
+     * @return PRNG value
+     */
     template <int min = -0x7fffffff - 1, int max = 0x7fffffff>
     u32 next()
     {
@@ -41,6 +63,10 @@ public:
 public:
     u32 state[4];
 
+    /**
+     * @brief Gets the next 32bit PRNG state
+     * @return PRNG value
+     */
     u32 nextState();
 };
 
