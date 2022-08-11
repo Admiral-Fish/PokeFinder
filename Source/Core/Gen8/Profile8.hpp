@@ -23,22 +23,67 @@
 #include <Core/Enum/Game.hpp>
 #include <Core/Parents/Profile.hpp>
 
+/**
+ * @brief Provides additional storage specific to Gen8
+ */
 class Profile8 : public Profile
 {
 public:
-    Profile8();
+    /**
+     * @brief Creates a new Profile8
+     * @param name Profile name
+     * @param version Game version
+     * @param tid Trainer ID
+     * @param sid Secret ID
+     * @param shinyCharm Whether shiny charm is obtained
+     * @param ovalCharm Whether oval charm is obtained
+     * @param radar Whether pokeradar is enabled
+     * @param swarm Whether swarms are enabled
+     */
     Profile8(const std::string &name, Game version, u16 tid, u16 sid, bool shinyCharm, bool ovalCharm, bool radar, bool swarm);
-    bool getShinyCharm() const;
+
+    /**
+     * @brief Returns whether the profile has the oval charm
+     * @return True if oval charm is obtained, false otherwise
+     */
     bool getOvalCharm() const;
+
+    /**
+     * @brief Returns whether the profile is using the pokeradar
+     * @return True if pokeradar is enabled, false otherwise
+     */
     bool getRadar() const;
+
+    /**
+     * @brief Returns whether the profile has the shiny charm
+     * @return True if shiny charm is obtained, false otherwise
+     */
+    bool getShinyCharm() const;
+
+    /**
+     * @brief Returns whether the profile is using a swarm
+     * @return True if swarm is enabled, false otherwise
+     */
     bool getSwarm() const;
+
+    /**
+     * @brief Checks if two profiles are equal
+     * @param other Profile to compare
+     * @return True if equal, false otherwise
+     */
     bool operator==(const Profile8 &other) const;
+
+    /**
+     * @brief Checks if two profiles are not equal
+     * @param other Profile to compare
+     * @return True if not equal, false otherwise
+     */
     bool operator!=(const Profile8 &other) const;
 
 private:
-    bool shinyCharm;
     bool ovalCharm;
     bool radar;
+    bool shinyCharm;
     bool swarm;
 };
 

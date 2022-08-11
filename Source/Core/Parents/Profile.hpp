@@ -25,24 +25,64 @@
 
 enum class Game : u32;
 
+/**
+ * @brief Provides per generation storage to keep track of relevant information
+ */
 class Profile
 {
 public:
-    Profile();
+    /**
+     * @brief Creates a new Profile
+     * @param name Profile name
+     * @param version Game version
+     * @param tid Trainer ID
+     * @param sid Secret ID
+     */
     Profile(const std::string &name, Game version, u16 tid, u16 sid);
-    std::string getVersionString() const;
-    Game getVersion() const;
+
+    /**
+     * @brief Returns the profile name
+     * @return Profile name
+     */
     std::string getName() const;
-    u16 getTID() const;
+
+    /**
+     * @brief Returns the profile secret ID
+     * @return Profile SID
+     */
     u16 getSID() const;
+
+    /**
+     * @brief Returns the profile trainer ID
+     * @return Profile TID
+     */
+    u16 getTID() const;
+
+    /**
+     * @brief Returns the profile game version
+     * @return Profile game version
+     */
+    Game getVersion() const;
+
+    /**
+     * @brief Checks if two profiles are equal
+     * @param other Profile to compare
+     * @return True if equal, false otherwise
+     */
     bool operator==(const Profile &other) const;
+
+    /**
+     * @brief Checks if two profiles are not equal
+     * @param other Profile to compare
+     * @return True if not equal, false otherwise
+     */
     bool operator!=(const Profile &other) const;
 
 protected:
-    std::string name;
-    Game version;
-    u16 tid;
     u16 sid;
+    u16 tid;
+    Game version;
+    std::string name;
 };
 
 #endif // PROFILE_HPP

@@ -19,19 +19,9 @@
 
 #include "Profile8.hpp"
 
-Profile8::Profile8() : shinyCharm(false), ovalCharm(false), radar(false), swarm(false)
-{
-    version = Game::Sword;
-}
-
 Profile8::Profile8(const std::string &name, Game version, u16 tid, u16 sid, bool shinyCharm, bool ovalCharm, bool radar, bool swarm) :
-    Profile(name, version, tid, sid), shinyCharm(shinyCharm), ovalCharm(ovalCharm), radar(radar), swarm(swarm)
+    Profile(name, version, tid, sid), ovalCharm(ovalCharm), radar(radar), shinyCharm(shinyCharm), swarm(swarm)
 {
-}
-
-bool Profile8::getShinyCharm() const
-{
-    return shinyCharm;
 }
 
 bool Profile8::getOvalCharm() const
@@ -42,6 +32,11 @@ bool Profile8::getOvalCharm() const
 bool Profile8::getRadar() const
 {
     return radar;
+}
+
+bool Profile8::getShinyCharm() const
+{
+    return shinyCharm;
 }
 
 bool Profile8::getSwarm() const

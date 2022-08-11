@@ -20,31 +20,89 @@
 #ifndef PROFILE4_HPP
 #define PROFILE4_HPP
 
-#include <Core/Enum/Game.hpp>
 #include <Core/Parents/Profile.hpp>
 
+enum class Game : u32;
+
+/**
+ * @brief Provides additional storage specific to Gen4
+ */
 class Profile4 : public Profile
 {
 public:
-    Profile4();
-    Profile4(const std::string &profileName, Game version, u16 tid, u16 sid, Game dual = Game::None, int radio = 0, bool radar = false,
-             bool swarm = false, bool dex = false);
-    std::string getDualSlotString() const;
+    /**
+     * @brief Profile4
+     * @param name Profile name
+     * @param version Game version
+     * @param tid Trainer ID
+     * @param sid Secret ID
+     * @param dual Dual slot game version
+     * @param radio Radio station
+     * @param radar Whether pokeradar is enabled
+     * @param swarm Whether swarms are enabled
+     * @param dex Whether national pokedex is obtained
+     */
+    Profile4(const std::string &profileName, Game version, u16 tid, u16 sid, Game dual, int radio, bool radar, bool swarm, bool dex);
+
+    /**
+     * @brief Returns the dual slot game version
+     * @return Game version
+     */
     Game getDualSlot() const;
-    std::string getRadioString() const;
-    int getRadio() const;
-    bool getRadar() const;
-    bool getSwarm() const;
+
+    /**
+     * @brief Returns whether the profile has the national pokedex
+     * @return True if national pokedex is obtained, false otherwise
+     */
     bool getNationalDex() const;
+
+    /**
+     * @brief Returns whether the profile is using the pokeradar
+     * @return True if pokeradar is enabled, false otherwise
+     */
+    bool getRadar() const;
+
+    /**
+     * @brief Returns the active radio station
+     * @return Radio number
+     * 0: No radio
+     * 1: Hoenn sound
+     * 2: Sinnoh sound
+     */
+    int getRadio() const;
+
+    /**
+     * @brief Returns the string representation for the current radio station
+     * @return Radio string
+     */
+    std::string getRadioString() const;
+
+    /**
+     * @brief Returns whether the profile is using a swarm
+     * @return True if swarm is enabled, false otherwise
+     */
+    bool getSwarm() const;
+
+    /**
+     * @brief Checks if two profiles are equal
+     * @param other Profile to compare
+     * @return True if equal, false otherwise
+     */
     bool operator==(const Profile4 &other) const;
+
+    /**
+     * @brief Checks if two profiles are not equal
+     * @param other Profile to compare
+     * @return True if not equal, false otherwise
+     */
     bool operator!=(const Profile4 &other) const;
 
 private:
-    Game dual;
-    int radio;
+    bool dex;
     bool radar;
     bool swarm;
-    bool dex;
+    Game dual;
+    int radio;
 };
 
 #endif // PROFILE4_HPP

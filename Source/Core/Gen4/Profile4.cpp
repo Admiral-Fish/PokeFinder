@@ -19,38 +19,29 @@
 
 #include "Profile4.hpp"
 
-Profile4::Profile4() : dual(Game::None), radio(0), radar(false), swarm(false), dex(false)
-{
-    version = Game::Diamond;
-}
-
 Profile4::Profile4(const std::string &profileName, Game version, u16 tid, u16 sid, Game dual, int radio, bool radar, bool swarm, bool dex) :
-    Profile(profileName, version, tid, sid), dual(dual), radio(radio), radar(radar), swarm(swarm), dex(dex)
+    Profile(profileName, version, tid, sid), dex(dex), radar(radar), swarm(swarm), dual(dual), radio(radio)
 {
-}
-
-std::string Profile4::getDualSlotString() const
-{
-    switch (dual)
-    {
-    case Game::Ruby:
-        return "Ruby";
-    case Game::Sapphire:
-        return "Sapphire";
-    case Game::FireRed:
-        return "Fire Red";
-    case Game::LeafGreen:
-        return "Leaf Green";
-    case Game::Emerald:
-        return "Emerald";
-    default:
-        return "None";
-    }
 }
 
 Game Profile4::getDualSlot() const
 {
     return dual;
+}
+
+bool Profile4::getNationalDex() const
+{
+    return dex;
+}
+
+bool Profile4::getRadar() const
+{
+    return radar;
+}
+
+int Profile4::getRadio() const
+{
+    return radio;
 }
 
 std::string Profile4::getRadioString() const
@@ -66,24 +57,9 @@ std::string Profile4::getRadioString() const
     }
 }
 
-int Profile4::getRadio() const
-{
-    return radio;
-}
-
-bool Profile4::getRadar() const
-{
-    return radar;
-}
-
 bool Profile4::getSwarm() const
 {
     return swarm;
-}
-
-bool Profile4::getNationalDex() const
-{
-    return dex;
 }
 
 bool Profile4::operator==(const Profile4 &other) const
