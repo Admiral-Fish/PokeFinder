@@ -376,6 +376,7 @@ namespace ProfileLoader8
         {
             std::string name = j.value("name", std::string("-"));
             Game version = j.value("version", Game::Diamond);
+            u8 storyFlag = j.value("storyFlag", u8(1));
             u16 tid = j.value("tid", u16(0));
             u16 sid = j.value("sid", u16(0));
             bool shinyCharm = j.value("shinyCharm", false);
@@ -383,7 +384,7 @@ namespace ProfileLoader8
             bool radar = j.value("radar", false);
             bool swarm = j.value("swarm", false);
 
-            return Profile8(name, version, tid, sid, shinyCharm, ovalCharm, radar, swarm);
+            return Profile8(name, version, tid, sid, shinyCharm, ovalCharm, radar, swarm, storyFlag);
         }
 
         json getJson(const Profile8 &profile)
@@ -391,6 +392,7 @@ namespace ProfileLoader8
             json j;
             j["name"] = profile.getName();
             j["version"] = profile.getVersion();
+            j["storyFlag"] = profile.getStoryFlag();
             j["tid"] = profile.getTID();
             j["sid"] = profile.getSID();
             j["shinyCharm"] = profile.getShinyCharm();

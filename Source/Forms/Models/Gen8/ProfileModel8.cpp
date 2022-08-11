@@ -26,12 +26,12 @@ ProfileModel8::ProfileModel8(QObject *parent) : TableModel<Profile8>(parent)
 int ProfileModel8::columnCount(const QModelIndex &parent) const
 {
     (void)parent;
-    return 8;
+    return 9;
 }
 
 QVariant ProfileModel8::data(const QModelIndex &index, int role) const
 {
-        if (role == Qt::DisplayRole)
+    if (role == Qt::DisplayRole)
     {
         const auto &profile = model[index.row()];
         switch (index.column())
@@ -52,6 +52,8 @@ QVariant ProfileModel8::data(const QModelIndex &index, int role) const
             return profile.getRadar() ? tr("Yes") : tr("No");
         case 7:
             return profile.getSwarm() ? tr("Yes") : tr("No");
+        case 8:
+            return QString::fromStdString(profile.getStoryFlagString());
         }
     }
     return QVariant();

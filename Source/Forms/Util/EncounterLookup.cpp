@@ -189,7 +189,7 @@ std::set<std::pair<u16, QString>> EncounterLookup::getEncounters8(Game game, u16
     {
         for (const bool radar : { false, true })
         {
-            profiles.emplace_back("", game, 0, 0, false, false, radar, swarm);
+            profiles.emplace_back("", game, 0, 0, false, false, radar, swarm, 6);
         }
     }
 

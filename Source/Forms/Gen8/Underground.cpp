@@ -183,8 +183,8 @@ void Underground::generate()
                        ui->filter->getMinIVs(), ui->filter->getMaxIVs(), ui->filter->getNatures(), ui->filter->getHiddenPowers(),
                        ui->filter->getEncounterSlots());
 
-    UgGenerator8 generator(initialAdvances, maxAdvances, tid, sid, ui->comboBoxLocation->currentData().toInt(), 6,
-                           currentProfile->getVersion(), ui->comboBoxPokemon->currentData().toInt(), filter,
+    UgGenerator8 generator(initialAdvances, maxAdvances, tid, sid, ui->comboBoxLocation->currentData().toInt(),
+                           currentProfile->getStoryFlag(), currentProfile->getVersion(), ui->comboBoxPokemon->currentData().toInt(), filter,
                            ui->checkBoxDiglettBonus->isChecked());
     generator.setOffset(offset);
 

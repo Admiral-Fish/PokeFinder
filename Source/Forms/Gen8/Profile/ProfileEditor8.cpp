@@ -41,6 +41,7 @@ ProfileEditor8::ProfileEditor8(const Profile8 &profile, QWidget *parent) :
 
     ui->lineEditProfile->setText(QString::fromStdString(profile.getName()));
     ui->comboBoxVersion->setCurrentIndex(ui->comboBoxVersion->findData(toInt(profile.getVersion())));
+    ui->comboBoxStoryFlag->setCurrentIndex(ui->comboBoxStoryFlag->findData(profile.getStoryFlag()));
     ui->textBoxTID->setText(QString::number(profile.getTID()));
     ui->textBoxSID->setText(QString::number(profile.getSID()));
     ui->checkBoxShinyCharm->setChecked(profile.getShinyCharm());
@@ -73,6 +74,7 @@ void ProfileEditor8::setupModels()
     ui->textBoxSID->setValues(InputType::TIDSID);
 
     ui->comboBoxVersion->setup({ toInt(Game::Sword), toInt(Game::Shield), toInt(Game::BD), toInt(Game::SP) });
+    ui->comboBoxStoryFlag->setup({ 1, 2, 3, 4, 5, 6 });
 
     connect(ui->pushButtonOkay, &QPushButton::clicked, this, &ProfileEditor8::okay);
     connect(ui->comboBoxVersion, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &ProfileEditor8::versionIndexChanged);
@@ -97,7 +99,8 @@ void ProfileEditor8::okay()
 
     fresh = Profile8(ui->lineEditProfile->text().toStdString(), static_cast<Game>(ui->comboBoxVersion->currentData().toUInt()),
                      ui->textBoxTID->getUShort(), ui->textBoxSID->getUShort(), ui->checkBoxShinyCharm->isChecked(),
-                     ui->checkBoxOvalCharm->isChecked(), ui->checkBoxRadar->isChecked(), ui->checkBoxSwarm->isChecked());
+                     ui->checkBoxOvalCharm->isChecked(), ui->checkBoxRadar->isChecked(), ui->checkBoxSwarm->isChecked(),
+                     ui->comboBoxStoryFlag->currentData().toUInt());
 
     done(QDialog::Accepted);
 }
@@ -111,5 +114,7 @@ void ProfileEditor8::versionIndexChanged(int index)
 
         ui->checkBoxRadar->setVisible(flag);
         ui->checkBoxSwarm->setVisible(flag);
+        ui->comboBoxStoryFlag->setVisible(flag);
+        ui->labelStoryFlag->setVisible(flag);
     }
 }

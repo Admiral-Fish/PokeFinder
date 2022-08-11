@@ -27,12 +27,13 @@ class Profile8 : public Profile
 {
 public:
     Profile8(Game version = Game::Sword) :
-        Profile("-", version, 12345, 54321), shinyCharm(false), ovalCharm(false), radar(false), swarm(false)
+        Profile("-", version, 12345, 54321), shinyCharm(false), ovalCharm(false), radar(false), swarm(false), storyFlag(1)
     {
     }
 
-    Profile8(const std::string &name, Game version, u16 tid, u16 sid, bool shinyCharm, bool ovalCharm, bool radar, bool swarm) :
-        Profile(name, version, tid, sid), shinyCharm(shinyCharm), ovalCharm(ovalCharm), radar(radar), swarm(swarm)
+    Profile8(const std::string &name, Game version, u16 tid, u16 sid, bool shinyCharm, bool ovalCharm, bool radar, bool swarm,
+             u8 storyFlag) :
+        Profile(name, version, tid, sid), shinyCharm(shinyCharm), ovalCharm(ovalCharm), radar(radar), swarm(swarm), storyFlag(storyFlag)
     {
     }
 
@@ -56,10 +57,15 @@ public:
         return swarm;
     }
 
+    u8 getStoryFlag() const
+    {
+        return storyFlag;
+    }
+
     bool operator==(const Profile8 &other) const
     {
         return Profile::operator==(other) && shinyCharm == other.shinyCharm && ovalCharm == other.ovalCharm && radar == other.radar
-            && swarm == other.swarm;
+            && swarm == other.swarm && storyFlag == other.storyFlag;
     }
 
     bool operator!=(const Profile8 &other) const
@@ -67,11 +73,33 @@ public:
         return !(operator==(other));
     }
 
+    std::string getStoryFlagString() const
+    {
+        switch (storyFlag)
+        {
+        case 1:
+            return "Underground Unlocked";
+        case 2:
+            return "Strength Obtained";
+        case 3:
+            return "Defog Obtained";
+        case 4:
+            return "7 Badges";
+        case 5:
+            return "Waterfall Obtained";
+        case 6:
+            return "National Dex";
+        default:
+            return "-";
+        }
+    }
+
 private:
     bool shinyCharm;
     bool ovalCharm;
     bool radar;
     bool swarm;
+    u8 storyFlag;
 };
 
 #endif // PROFILE8_HPP
