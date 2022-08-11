@@ -169,36 +169,6 @@ std::vector<UgState> UgGenerator8::generate(u64 seed0, u64 seed1) const
 
     std::sort(typeRates.begin(), typeRates.end(), std::greater<TypeRate>());
 
-    std::vector<u8> sizes;
-    u8 smax = randMarkInfo[4];
-    u8 mmax = randMarkInfo[5];
-    u8 lmax = randMarkInfo[6];
-    u8 llmax = randMarkInfo[7];
-
-    while (smax > 0)
-    {
-        sizes.emplace_back(0);
-        smax--;
-    }
-
-    while (mmax > 0)
-    {
-        sizes.emplace_back(1);
-        mmax--;
-    }
-
-    while (lmax > 0)
-    {
-        sizes.emplace_back(2);
-        lmax--;
-    }
-
-    while (llmax > 0)
-    {
-        sizes.emplace_back(3);
-        llmax--;
-    }
-
     std::vector<UgState> states;
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rng.next())
     {
@@ -257,31 +227,8 @@ std::vector<UgState> UgGenerator8::generate(u64 seed0, u64 seed1) const
                 }
             }
 
-            if (std::all_of(sizes.begin(), sizes.end(),
-                            [&](u8 i) { return std::find(existSizeList.begin(), existSizeList.end(), i) != existSizeList.end(); }))
-            {
-                sizes.clear();
-            }
-            else
-            {
-                sizes.erase(std::remove_if(
-                                sizes.begin(), sizes.end(),
-                                [&](u8 i) { return !(std::find(existSizeList.begin(), existSizeList.end(), i) != existSizeList.end()); }),
-                            sizes.end());
-            }
-
-            u8 size = 0;
-            if (sizes.size() != 0)
-            {
-                u32 sizeRand = gen.next(0, sizes.size());
-                size = sizes[sizeRand];
-                sizes.erase(std::next(sizes.begin(), sizeRand));
-            }
-            else
-            {
-                u32 sizeRand = gen.next(0, existSizeList.size());
-                size = existSizeList[sizeRand];
-            }
+            u32 sizeRand = gen.next(0, existSizeList.size());
+            u8 size = existSizeList[sizeRand];
 
             TypeAndSize ts;
             ts.type = type;
