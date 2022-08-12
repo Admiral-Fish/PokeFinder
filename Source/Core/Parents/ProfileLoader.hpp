@@ -41,16 +41,16 @@ namespace ProfileLoader
 namespace ProfileLoader3
 {
     /**
-     * @brief Reads profiles from stored json file
-     * @return Vector of profiles
-     */
-    std::vector<Profile3> getProfiles();
-
-    /**
      * @brief Adds a profile to the stored json file
      * @param profile Profile being added
      */
     void addProfile(const Profile3 &profile);
+
+    /**
+     * @brief Reads profiles from stored json file
+     * @return Vector of profiles
+     */
+    std::vector<Profile3> getProfiles();
 
     /**
      * @brief Deletes a profile from the stored json file
@@ -69,16 +69,16 @@ namespace ProfileLoader3
 namespace ProfileLoader4
 {
     /**
-     * @brief Reads profiles from stored json file
-     * @return Vector of profiles
-     */
-    std::vector<Profile4> getProfiles();
-
-    /**
      * @brief Adds a profile to the stored json file
      * @param profile Profile being added
      */
     void addProfile(const Profile4 &profile);
+
+    /**
+     * @brief Reads profiles from stored json file
+     * @return Vector of profiles
+     */
+    std::vector<Profile4> getProfiles();
 
     /**
      * @brief Deletes a profile from the stored json file
@@ -97,16 +97,16 @@ namespace ProfileLoader4
 namespace ProfileLoader5
 {
     /**
-     * @brief Reads profiles from stored json file
-     * @return Vector of profiles
-     */
-    std::vector<Profile5> getProfiles();
-
-    /**
      * @brief Adds a profile to the stored json file
      * @param profile Profile being added
      */
     void addProfile(const Profile5 &profile);
+
+    /**
+     * @brief Reads profiles from stored json file
+     * @return Vector of profiles
+     */
+    std::vector<Profile5> getProfiles();
 
     /**
      * @brief Deletes a profile from the stored json file
@@ -125,16 +125,16 @@ namespace ProfileLoader5
 namespace ProfileLoader8
 {
     /**
-     * @brief Reads profiles from stored json file
-     * @return Vector of profiles
-     */
-    std::vector<Profile8> getProfiles();
-
-    /**
      * @brief Adds a profile to the stored json file
      * @param profile Profile being added
      */
     void addProfile(const Profile8 &profile);
+
+    /**
+     * @brief Reads profiles from stored json file
+     * @return Vector of profiles
+     */
+    std::vector<Profile8> getProfiles();
 
     /**
      * @brief Deletes a profile from the stored json file

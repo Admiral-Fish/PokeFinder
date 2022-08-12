@@ -69,6 +69,11 @@ namespace
     std::vector<std::string> genders = { "♂", "♀", "-" };
     std::vector<std::string> buttons = { "R", "L", "X", "Y", "A", "B", "Select", "Start", "Right", "Left", "Up", "Down" };
 
+    /**
+     * @brief Reads strings from the specified translation in the languaged specified by Translator::init()
+     * @param translation String category to read from
+     * @return Vector of translated strings
+     */
     std::vector<std::string> readFile(Translation translation)
     {
         const u8 *data = languages[static_cast<int>(language)][static_cast<int>(translation)];
@@ -87,7 +92,6 @@ namespace
 
         return strings;
     }
-
 }
 
 namespace Translator
