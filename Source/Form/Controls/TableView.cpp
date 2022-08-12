@@ -18,6 +18,7 @@
  */
 
 #include "TableView.hpp"
+#include <QAction>
 #include <QApplication>
 #include <QClipboard>
 #include <QFileDialog>
@@ -40,7 +41,7 @@ TableView::TableView(QWidget *parent) : QTableView(parent)
 
 void TableView::mouseDoubleClickEvent(QMouseEvent *event)
 {
-    if (event && event->type() == QMouseEvent::MouseButtonDblClick)
+    if (event->type() == QMouseEvent::MouseButtonDblClick)
     {
         setSelectionToClipBoard();
     }
@@ -48,7 +49,7 @@ void TableView::mouseDoubleClickEvent(QMouseEvent *event)
 
 void TableView::keyPressEvent(QKeyEvent *event)
 {
-    if (event && (event->key() == Qt::Key_C) && (event->modifiers() == Qt::ControlModifier))
+    if ((event->key() == Qt::Key_C) && (event->modifiers() == Qt::ControlModifier))
     {
         setSelectionToClipBoard();
     }
@@ -92,7 +93,7 @@ void TableView::outputModel(bool csv) const
 
         for (int i = 0; i < columns; i++)
         {
-            ts << model->headerData(i, Qt::Horizontal, 0).toString();
+            ts << model->headerData(i, Qt::Horizontal, Qt::DisplayRole).toString();
             if (i != columns - 1)
             {
                 ts << (csv ? "," : "\t");
