@@ -18,7 +18,6 @@
  */
 
 #include "TableView.hpp"
-#include <QAction>
 #include <QApplication>
 #include <QClipboard>
 #include <QFileDialog>
@@ -28,8 +27,12 @@
 
 TableView::TableView(QWidget *parent) : QTableView(parent)
 {
-    QAction *outputTXT = addAction(tr("Output Results to TXT"));
-    QAction *outputCSV = addAction(tr("Output Results to CSV"));
+    QAction *outputTXT = new QAction(tr("Output Results to TXT"), this);
+    addAction(outputTXT);
+
+    QAction *outputCSV = new QAction(tr("Output Results to CSV"), this);
+    addAction(outputCSV);
+
     connect(outputTXT, &QAction::triggered, this, [=] { outputModel(); });
     connect(outputCSV, &QAction::triggered, this, [=] { outputModel(true); });
 
