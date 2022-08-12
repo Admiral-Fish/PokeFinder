@@ -38,8 +38,8 @@ EggSettings::EggSettings(QWidget *parent) : QWidget(parent), ui(new Ui::EggSetti
         ui->comboBoxParentAGender->addItem(QString::fromStdString(gender));
         ui->comboBoxParentBGender->addItem(QString::fromStdString(gender));
     }
-    ui->comboBoxParentAGender->addItem(QString::fromStdString(*Translator::getSpecies(132)));
-    ui->comboBoxParentBGender->addItem(QString::fromStdString(*Translator::getSpecies(132)));
+    ui->comboBoxParentAGender->addItem(QString::fromStdString(*Translator::getSpecie(132)));
+    ui->comboBoxParentBGender->addItem(QString::fromStdString(*Translator::getSpecie(132)));
 
     ui->comboBoxParentAAbility->addItem("1");
     ui->comboBoxParentAAbility->addItem("2");
