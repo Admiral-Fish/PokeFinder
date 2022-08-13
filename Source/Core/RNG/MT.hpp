@@ -29,25 +29,29 @@ class MT
 {
 public:
     /**
-     * @brief Creates a new MT
+     * @brief Construct a new MT object
+     * 
      * @param seed Starting PRNG state
      */
-    explicit MT(u32 seed);
+    MT(u32 seed);
 
     /**
-     * @brief Advances the RNG by provided amount
+     * @brief Advances the RNG by \p advances amount
+     * 
      * @param advances Number of advances
      */
     void advance(u32 advances);
 
     /**
      * @brief Gets the next 32bit PRNG state
+     * 
      * @return PRNG value
      */
     u32 next();
 
     /**
      * @brief Gets the next 16bit PRNG state
+     * 
      * @return PRNG value
      */
     u16 nextUShort();

@@ -30,7 +30,8 @@ class PersonalInfo
 {
 public:
     /**
-     * @brief Creates a new StaticTemplate
+     * @brief Construct a new PersonalInfo object
+     *
      * @param hp Base HP
      * @param atk Base Atk
      * @param def Base Def
@@ -60,6 +61,7 @@ public:
 
     /**
      * @brief Base stats of the pokemon
+     *
      * @return Array of base stats
      */
     std::array<u8, 6> getStats() const
@@ -69,6 +71,7 @@ public:
 
     /**
      * @brief Gender ratio of the pokemon
+     *
      * @return Gender ratio value
      * - 0: Male only
      * - 31: 12.5% female
@@ -85,6 +88,7 @@ public:
 
     /**
      * @brief First pokemon ability
+     *
      * @return Ability 1
      */
     u16 getAbility1() const
@@ -94,6 +98,7 @@ public:
 
     /**
      * @brief Second pokemon ability
+     *
      * @return Ability 2
      */
     u16 getAbility2() const
@@ -103,6 +108,7 @@ public:
 
     /**
      * @brief Hidden pokemon ability
+     *
      * @return Hidden ability
      */
     u16 getAbilityH() const
@@ -112,6 +118,7 @@ public:
 
     /**
      * @brief Number of alternate forms the pokemon has
+     *
      * @return Form count
      */
     u8 getFormCount() const
@@ -121,6 +128,7 @@ public:
 
     /**
      * @brief Base index for the alternative form
+     *
      * @return Form index
      */
     u16 getFormStatIndex() const
@@ -130,7 +138,9 @@ public:
 
     /**
      * @brief Determines whether the pokemon is obtainable or not
-     * @return True if present, otherwise false
+     *
+     * @return true Pokemon is obtainable
+     * @return false Pokemon is not obtainable
      */
     bool getPresent() const
     {

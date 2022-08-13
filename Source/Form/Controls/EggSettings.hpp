@@ -46,37 +46,44 @@ signals:
 
 public:
     /**
-     * @brief Creates a new DateTimeEdit
+     * @brief Construct a new EggSettings object
+     *
      * @param parent Parent widget, which takes memory ownership
      */
     explicit EggSettings(QWidget *parent = nullptr);
 
     /**
-     * @brief Destructor
+     * @brief Destroy the EggSettings object
      */
     ~EggSettings() override;
 
     /**
-     * @brief Configures what should be shown and enabled based on the provided game
-     * @param version Game
+     * @brief Configures what should be shown and enabled based on the \p game
+     *
+     * @param game Game
      */
-    void setup(Game version);
+    void setup(Game game);
 
     /**
      * @brief Gets various parent information: IVs, ability, gender, item masuda, etc.
+     *
      * @return Parent information
      */
     Daycare getDaycareSettings() const;
 
     /**
      * @brief Determines if selected settings for valid for parents in the daycare
-     * @return True if compatible, false otherwise
+     *
+     * @return true Parents are compatible
+     * @return false Parents are not compatible
      */
     bool compatibleParents() const;
 
     /**
      * @brief Changes order of the parents to match what the game does
-     * @return True if the order was changed, false otherwise
+     *
+     * @return true Parents were reordered
+     * @return false Parents were not reordered
      */
     bool reorderParents();
 
@@ -86,6 +93,7 @@ private:
 private slots:
     /**
      * @brief Shows inherited IVs if selected or IV value if not selected
+     *
      * @param checked Whether or not the check box is selected
      */
     void showInheritance(bool checked);

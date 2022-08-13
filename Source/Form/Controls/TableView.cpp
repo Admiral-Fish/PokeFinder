@@ -19,6 +19,7 @@
 
 #include "TableView.hpp"
 #include <QApplication>
+#include <QAction>
 #include <QClipboard>
 #include <QFileDialog>
 #include <QHeaderView>

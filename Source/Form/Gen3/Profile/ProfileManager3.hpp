@@ -43,13 +43,14 @@ signals:
 
 public:
     /**
-     * @brief Creates a new ProfileManager3
+     * @brief Construct a new ProfileManager3 object
+     *
      * @param parent Parent widget, which takes memory ownership
      */
     explicit ProfileManager3(QWidget *parent = nullptr);
 
     /**
-     * @brief Destructor
+     * @brief Destroy the ProfileManager3 object
      */
     ~ProfileManager3() override;
 

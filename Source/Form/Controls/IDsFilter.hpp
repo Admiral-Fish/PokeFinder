@@ -36,24 +36,27 @@ class IDsFilter : public QWidget
     Q_OBJECT
 public:
     /**
-     * @brief Creates a new IDsFilter
+     * @brief Construct a new IDsFilter object
+     *
      * @param parent Parent widget, which takes memory ownership
      */
     explicit IDsFilter(QWidget *parent = nullptr);
 
     /**
-     * @brief Destructor
+     * @brief Destroy the IDsFilter object
      */
     ~IDsFilter();
 
     /**
      * @brief Gets settings to filter by
+     *
      * @return Filter information
      */
     IDFilter getFilter() const;
 
     /**
      * @brief Enables of disables showing of the Display TID filter settings
+     *
      * @param flag True if enabled, false otherwise
      */
     void enableDisplayTID(bool flag);

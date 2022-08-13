@@ -30,6 +30,7 @@
 
 /**
  * @brief Sets default settings for initial open or if settings get deleted
+ *
  * @param setting Contains application settings
  */
 void validateSettings(QSettings &setting)
@@ -58,8 +59,10 @@ void validateSettings(QSettings &setting)
 
 /**
  * @brief Setups theme, translation, etc. before opening application
+ *
  * @param argc Number of arguments
  * @param argv Char array of arguments
+ *
  * @return Exit code
  */
 int main(int argc, char *argv[])

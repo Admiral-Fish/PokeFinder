@@ -32,25 +32,29 @@ class CheckList : public QComboBox
     Q_OBJECT
 public:
     /**
-     * @brief Creates a new CheckList
+     * @brief Construct a new CheckList object
+     *
      * @param parent Parent widget, which takes memory ownership
      */
     explicit CheckList(QWidget *parent = nullptr);
 
     /**
      * @brief Setups the model of check boxes to be checkable by the user
+     *
      * @param items List of items that should be added to the combo box
      */
     void setup(const std::vector<std::string> &items = std::vector<std::string>());
 
     /**
      * @brief Determines which of the check boxes are checked
+     *
      * @return Vector of true/false to signify which check boxes are checked
      */
     std::vector<bool> getChecked() const;
 
     /**
      * @brief Sets which of the check boxes are checked
+     *
      * @param flags Vector detailing which check boxes are to be checked and unchecked
      */
     void setChecks(std::vector<bool> flags);
@@ -64,9 +68,12 @@ public slots:
 protected:
     /**
      * @brief Shows the combo box model when clicked
+     *
      * @param object Object that is part of triggered event
      * @param event Contains information about the triggered event
-     * @return True if we should show the model, and false otherwise
+     *
+     * @return true Model should be shown
+     * @return false Model should not be shown
      */
     bool eventFilter(QObject *object, QEvent *event) override;
 
@@ -75,6 +82,7 @@ private:
 
     /**
      * @brief Determines the check state of the check boxes
+     *
      * @return Checked if all check boxes are checked, PartiallyChecked if some of the check boxes are checked, and Unchecked otherwise
      */
     Qt::CheckState checkState() const;
@@ -87,6 +95,7 @@ private slots:
 
     /**
      * @brief Updates the checked status of the check box that is selected
+     *
      * @param index Index of the check box
      */
     void itemPressed(const QModelIndex &index);

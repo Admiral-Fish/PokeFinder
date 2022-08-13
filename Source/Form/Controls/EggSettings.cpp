@@ -61,11 +61,11 @@ EggSettings::~EggSettings()
     delete ui;
 }
 
-void EggSettings::setup(Game version)
+void EggSettings::setup(Game game)
 {
-    if ((version & Game::Gen3) != Game::None)
+    if ((game & Game::Gen3) != Game::None)
     {
-        bool flag = (version & Game::Emerald) != Game::None;
+        bool flag = (game & Game::Emerald) != Game::None;
 
         ui->labelAbility->setVisible(false);
         ui->labelItem->setVisible(flag);
@@ -81,7 +81,7 @@ void EggSettings::setup(Game version)
         ui->checkBoxNidoranVolbeat->setVisible(false);
         ui->checkBoxMasuda->setVisible(false);
     }
-    else if ((version & Game::Gen4) != Game::None)
+    else if ((game & Game::Gen4) != Game::None)
     {
         ui->labelAbility->setVisible(false);
         ui->labelItem->setVisible(false);
@@ -96,7 +96,7 @@ void EggSettings::setup(Game version)
 
         ui->checkBoxNidoranVolbeat->setVisible(false);
     }
-    else if ((version & Game::Gen5) != Game::None)
+    else if ((game & Game::Gen5) != Game::None)
     {
         ui->comboBoxParentAItem->addItem(tr("Power Weight"), 2);
         ui->comboBoxParentAItem->addItem(tr("Power Bracer"), 3);
@@ -115,7 +115,7 @@ void EggSettings::setup(Game version)
         ui->comboBoxParentAAbility->addItem("H");
         ui->comboBoxParentBAbility->addItem("H");
     }
-    else if ((version & Game::BDSP) != Game::None)
+    else if ((game & Game::BDSP) != Game::None)
     {
         ui->comboBoxParentAItem->addItem(tr("Destiny Knot"), 8);
         ui->comboBoxParentBItem->addItem(tr("Destiny Knot"), 8);

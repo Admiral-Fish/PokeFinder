@@ -37,6 +37,7 @@ namespace
 
     /**
      * @brief Reads provided profiles file
+     *
      * @return json object with profile information
      */
     json readJson()
@@ -54,6 +55,7 @@ namespace
 
     /**
      * @brief Writes json object with profile information to profiles file
+     *
      * @param j json object with profile information
      */
     void writeJson(const json &j)
@@ -177,7 +179,9 @@ namespace ProfileLoader4
     {
         /**
          * @brief Converts profile to JSON
+         *
          * @param profile Profile to convert
+         *
          * @return Profile JSON representation
          */
         json getJson(const Profile4 &profile)
@@ -197,7 +201,9 @@ namespace ProfileLoader4
 
         /**
          * @brief Converts JSON data to profile
+         *
          * @param j JSON to convert
+         *
          * @return Converted profile
          */
         Profile4 getProfile(const json &j)
@@ -274,7 +280,9 @@ namespace ProfileLoader5
     {
         /**
          * @brief Converts profile to JSON
+         *
          * @param profile Profile to convert
+         *
          * @return Profile JSON representation
          */
         json getJson(const Profile5 &profile)
@@ -302,7 +310,9 @@ namespace ProfileLoader5
 
         /**
          * @brief Converts JSON data to profile
+         *
          * @param j JSON to convert
+         *
          * @return Converted profile
          */
         Profile5 getProfile(const json &j)
@@ -389,7 +399,9 @@ namespace ProfileLoader8
     {
         /**
          * @brief Converts profile to JSON
+         *
          * @param profile Profile to convert
+         *
          * @return Profile JSON representation
          */
         json getJson(const Profile8 &profile)
@@ -408,7 +420,9 @@ namespace ProfileLoader8
 
         /**
          * @brief Converts JSON data to profile
+         *
          * @param j JSON to convert
+         *
          * @return Converted profile
          */
         Profile8 getProfile(const json &j)

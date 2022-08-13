@@ -20,8 +20,8 @@
 #ifndef GENERATOR_HPP
 #define GENERATOR_HPP
 
+#include <Core/Global.hpp>
 #include <Core/Parents/Filters/StateFilter.hpp>
-#include <Core/Util/Global.hpp>
 #include <vector>
 
 enum class Encounter : u8;

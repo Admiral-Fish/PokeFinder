@@ -29,7 +29,8 @@ class Profile3 : public Profile
 {
 public:
     /**
-     * @brief Creates a new Profile3
+     * @brief Construct a new Profile3 object
+     *
      * @param name Profile name
      * @param version Game version
      * @param tid Trainer ID
@@ -40,21 +41,29 @@ public:
 
     /**
      * @brief Returns the profiles dead battery status
-     * @return True if profile has a dead battery, false otherwise
+     *
+     * @return true Dead battery is enabled
+     * @return false Dead battery is not enabled
      */
     bool getDeadBattery() const;
 
     /**
      * @brief Checks if two profiles are equal
+     *
      * @param other Profile to compare
-     * @return True if equal, false otherwise
+     *
+     * @return true Profiles are equal
+     * @return false Profiles are not equal
      */
     bool operator==(const Profile3 &other) const;
 
     /**
      * @brief Checks if two profiles are not equal
+     *
      * @param other Profile to compare
-     * @return True if not equal, false otherwise
+     *
+     * @return true Profiles are not equal
+     * @return false Profiles are equal
      */
     bool operator!=(const Profile3 &other) const;
 

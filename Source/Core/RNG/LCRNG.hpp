@@ -24,13 +24,17 @@
 
 /**
  * @brief Provides random numbers via the LCRNG algorithm. Most commonly used ones are defined at the bottom of the file.
+ *
+ * @tparam add LCRNG addition value
+ * @tparam mult LCRNG multiplication value
  */
 template <u32 add, u32 mult>
 class LCRNG
 {
 public:
     /**
-     * @brief Creates a new LCRNG
+     * @brief Construct a new LCRNG object
+     *
      * @param seed Starting PRNG value
      * @param advances Number of initial advances
      * @param count Pointer to keep track of advance count
@@ -40,9 +44,11 @@ public:
     }
 
     /**
-     * @brief Advances the RNG by provided amount
-     * @param flag Whether count should be incremented or not
+     * @brief Advances the RNG by \p advances amount
+     *
+     * @tparam flag Whether count should be incremented or not
      * @param advances Number of advances
+     * 
      * @return PRNG value after the advances
      */
     template <bool flag = false>
@@ -56,9 +62,11 @@ public:
     }
 
     /**
-     * @brief Advances the RNG by provided amount
+     * @brief Advances the RNG by \p advances amount
+     * 
      * @param prng PRNG state
      * @param advances Number of advances
+     * 
      * @return PRNG value after the advances
      */
     static u32 advance(u32 prng, u64 advances)
@@ -72,6 +80,7 @@ public:
 
     /**
      * @brief Returns the current PRNG state
+     * 
      * @return PRNG value
      */
     u32 getSeed() const
@@ -81,7 +90,9 @@ public:
 
     /**
      * @brief Gets the next 32bit PRNG state
-     * @param flag Whether count should be incremented or not
+     * 
+     * @tparam flag Whether count should be incremented or not
+     * 
      * @return PRNG value
      */
     template <bool flag = false>
@@ -96,7 +107,9 @@ public:
 
     /**
      * @brief Gets the next 16bit PRNG state
-     * @param flag Whether count should be incremented or not
+     * 
+     * @tparam flag Whether count should be incremented or not
+     * 
      * @return PRNG value
      */
     template <bool flag = false>
@@ -107,6 +120,7 @@ public:
 
     /**
      * @brief Sets the PRNG state
+     * 
      * @param seed PRNG state
      */
     void setSeed(u32 seed)

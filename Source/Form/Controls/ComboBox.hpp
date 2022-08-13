@@ -30,44 +30,53 @@ class ComboBox : public QComboBox
 {
 public:
     /**
-     * @brief Creates a new ComboBox
+     * @brief Construct a new ComboBox object
+     *
      * @param parent Parent widget, which takes memory ownership
      */
     explicit ComboBox(QWidget *parent);
 
     /**
      * @brief Sets the data for each item in the combo box
+     *
      * @param data Vector of data to set
      */
     void setup(const std::vector<QVariant> &data);
 
     /**
      * @brief Gets current selected index data as u8
-     * @return Current data as u8
+     *
+     * @return Current data
      */
     u8 getCurrentByte() const;
 
     /**
      * @brief Gets current selected index data as u16
-     * @return Current data as u16
+     *
+     * @return Current data
      */
     u16 getCurrentUShort() const;
 
     /**
      * @brief Gets current selected index data as u32
-     * @return Current data as u32
+     *
+     * @return Current data
      */
     u32 getCurrentUInt() const;
 
     /**
      * @brief Gets current selected index data as int
-     * @return Current data as int
+     *
+     * @return Current data
      */
     int getCurrentInt() const;
 
     /**
      * @brief Gets current selected index data as templated enum type
-     * @return Current data as templated enum type
+     *
+     * @tparam Enum Enum type to convert data too
+     *
+     * @return Current data as
      */
     template <typename Enum>
     constexpr Enum getEnum() const

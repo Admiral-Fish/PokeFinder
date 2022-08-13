@@ -22,6 +22,9 @@
 
 #include <Core/Global.hpp>
 
+/**
+ * @brief Enum to encompass different headbutt encounter types
+ */
 enum class HeadbuttType : u8
 {
     Normal1,
@@ -29,6 +32,13 @@ enum class HeadbuttType : u8
     Special,
 };
 
+/**
+ * @brief Converts enum to number
+ *
+ * @param headbutt Input headbutt type
+ *
+ * @return Converted number
+ */
 constexpr u8 toInt(HeadbuttType headbutt)
 {
     return static_cast<u8>(headbutt);

@@ -31,7 +31,8 @@ class Profile4 : public Profile
 {
 public:
     /**
-     * @brief Profile4
+     * @brief Construct a new Profile4 object
+     *
      * @param name Profile name
      * @param version Game version
      * @param tid Trainer ID
@@ -46,24 +47,30 @@ public:
 
     /**
      * @brief Returns the dual slot game version
+     *
      * @return Game version
      */
     Game getDualSlot() const;
 
     /**
-     * @brief Returns whether the profile has the national pokedex
-     * @return True if national pokedex is obtained, false otherwise
+     * @brief Get the National Dex object
+     *
+     * @return true National pokedex is obtained
+     * @return false National pokedex is not obtained
      */
     bool getNationalDex() const;
 
     /**
      * @brief Returns whether the profile is using the pokeradar
-     * @return True if pokeradar is enabled, false otherwise
+     *
+     * @return true Pokeradar is enabled
+     * @return false Pokeradar is not enabled
      */
     bool getRadar() const;
 
     /**
      * @brief Returns the active radio station
+     *
      * @return Radio number
      * 0: No radio
      * 1: Hoenn sound
@@ -73,27 +80,36 @@ public:
 
     /**
      * @brief Returns the string representation for the current radio station
+     *
      * @return Radio string
      */
     std::string getRadioString() const;
 
     /**
      * @brief Returns whether the profile is using a swarm
-     * @return True if swarm is enabled, false otherwise
+     *
+     * @return true Swarm is enabled
+     * @return false Swarm is not enabled
      */
     bool getSwarm() const;
 
     /**
      * @brief Checks if two profiles are equal
+     *
      * @param other Profile to compare
-     * @return True if equal, false otherwise
+     *
+     * @return true Profiles are equal
+     * @return false Profiles are not equal
      */
     bool operator==(const Profile4 &other) const;
 
     /**
      * @brief Checks if two profiles are not equal
+     *
      * @param other Profile to compare
-     * @return True if not equal, false otherwise
+     *
+     * @return true Profiles are not equal
+     * @return false Profiles are equal
      */
     bool operator!=(const Profile4 &other) const;
 

@@ -22,6 +22,9 @@
 
 #include <Core/Global.hpp>
 
+/**
+ * @brief Enum to encompass keypresses for Gen5
+ */
 enum class Buttons : u16
 {
     None = 0,
@@ -44,16 +47,39 @@ enum class Buttons : u16
     LeftDown = Left | Down
 };
 
+/**
+ * @brief Converts enum to number
+ *
+ * @param button Input button
+ *
+ * @return Converted number
+ */
 constexpr u16 toInt(Buttons button)
 {
     return static_cast<u16>(button);
 }
 
+/**
+ * @brief Computes bitwise AND of two \ref Buttons
+ *
+ * @param left First button
+ * @param right Second button
+ *
+ * @return Computed bitwise AND button
+ */
 constexpr Buttons operator&(Buttons left, Buttons right)
 {
     return static_cast<Buttons>(toInt(left) & toInt(right));
 }
 
+/**
+ * @brief Computes bitwise OR of two \ref Buttons
+ *
+ * @param left First button
+ * @param right Second button
+ *
+ * @return Computed bitwise OR button
+ */
 constexpr Buttons operator|(Buttons left, Buttons right)
 {
     return static_cast<Buttons>(toInt(left) | toInt(right));

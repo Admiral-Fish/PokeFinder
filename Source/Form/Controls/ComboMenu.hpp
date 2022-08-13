@@ -32,13 +32,15 @@ class ComboMenu : public QToolButton
     Q_OBJECT
 public:
     /**
-     * @brief Creates a new ComboMenu
+     * @brief Construct a new ComboMenu object
+     *
      * @param parent Parent widget, which takes memory ownership
      */
     explicit ComboMenu(QWidget *parent = nullptr);
 
     /**
      * @brief Adds new action to either the main menu or a provided sub menu
+     *
      * @param actionText Display text for the action
      * @param data Data to be associated with the action
      * @param menu Sub menu for action to be added to if provided
@@ -47,19 +49,31 @@ public:
 
     /**
      * @brief Removes an action
+     *
      * @param name Action title to search by
      */
     void removeAction(const QString &name);
 
     /**
      * @brief Determines if an action is present
+     *
      * @param name Action title to search by
      * @return
+     */
+
+    /**
+     * @brief Determines if an action is present
+     *
+     * @param name Action title to search by
+     *
+     * @return true Action is present
+     * @return false Action is not present
      */
     bool findAction(const QString &name);
 
     /**
      * @brief Adds a new sub menu and set of actions
+     *
      * @param menuText Display text for the menu
      * @param actions Collection of actions to add
      * @param data Collection of data for the added actions
@@ -68,6 +82,7 @@ public:
 
     /**
      * @brief Adds a new sub menu and set of actions
+     *
      * @param menuText Display text for the menu
      * @param actions Collection of actions to add
      * @param data Collection of data for the added actions
@@ -76,7 +91,8 @@ public:
 
     /**
      * @brief Gets data of the currently selected action
-     * @return Current action data as int
+     *
+     * @return Current action data
      */
     int getData() const;
 
@@ -91,7 +107,8 @@ private:
 
 private slots:
     /**
-     * @brief Updates display text of the ComboMenu
+     * @brief Updates display text of the \ref ComboMenu
+     *
      * @param action Action that is being selected
      */
     void actionChanged(QAction *action);

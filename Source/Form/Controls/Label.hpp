@@ -36,13 +36,15 @@ signals:
 
 public:
     /**
-     * @brief Creates a new Label
+     * @brief Construct a new Label object
+     *
      * @param parent Parent widget, which takes memory ownership
      */
     explicit Label(QWidget *parent = nullptr);
 
     /**
      * @brief Handles mouse event to emit selected control keys
+     *
      * @param event Contains mouse event information
      */
     void mousePressEvent(QMouseEvent *event) override;

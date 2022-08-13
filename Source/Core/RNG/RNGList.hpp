@@ -21,13 +21,26 @@
 #ifndef RNGLIST_HPP
 #define RNGLIST_HPP
 
-#include <Core/Util/Global.hpp>
+#include <Core/Global.hpp>
 
+/**
+ * @brief Provides a storage container to reuse RNG calculations and cycle out old states with new states
+ * 
+ * @tparam Integer Integer type that is being stored
+ * @tparam RNG RNG class used to generate states
+ * @tparam size Size of the storage container (must be a perfect multiple of two)
+ * @tparam shift Value to bit shift right generated states by
+ */
 template <typename Integer, class RNG, u16 size, u8 shift>
 class RNGList
 {
 public:
-    explicit RNGList(RNG &rng) : rng(rng), head(0), pointer(0)
+    /**
+     * @brief Construct a new RNGList object
+     * 
+     * @param rng RNG object to generate states
+     */
+    RNGList(RNG &rng) : rng(rng), head(0), pointer(0)
     {
         static_assert(size && ((size & (size - 1)) == 0), "Number is not a perfect multiple of two");
 
@@ -37,10 +50,21 @@ public:
         }
     }
 
+    /**
+     * @brief Deleted copy constructor
+     */
     RNGList(const RNGList &) = delete;
 
+    /**
+     * @brief Deleted assignment constructor 
+     */
     void operator=(const RNGList &) = delete;
 
+    /**
+     * @brief Advances the RNG by \p advances amount
+     * 
+     * @param advances Number of advances
+     */
     void advanceStates(u32 advances)
     {
         for (u32 i = 0; i < advances; i++)
@@ -49,6 +73,9 @@ public:
         }
     }
 
+    /**
+     * @brief Advances the RNG by 1 
+     */
     void advanceState()
     {
         list[head++] = rng.next() >> shift;
@@ -57,11 +84,21 @@ public:
         pointer = head;
     }
 
+    /**
+     * @brief Advances the internal state by \p advances amount
+     * 
+     * @param advances Number of advances
+     */
     void advance(u32 advances)
     {
         pointer = (pointer + advances) & (size - 1);
     }
 
+    /**
+     * @brief Gets the next PRNG state
+     * 
+     * @return PRNG state 
+     */
     Integer getValue()
     {
         Integer result = list[pointer++];
@@ -69,6 +106,9 @@ public:
         return result;
     }
 
+    /**
+     * @brief Resets the current internal state 
+     */
     void resetState()
     {
         pointer = head;

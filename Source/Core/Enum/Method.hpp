@@ -22,6 +22,9 @@
 
 #include <Core/Global.hpp>
 
+/**
+ * @brief Enum to encompass different encounter methods
+ */
 enum class Method : u8
 {
     None,
@@ -62,6 +65,13 @@ enum class Method : u8
     Method5Event,
 };
 
+/**
+ * @brief Converts enum to number
+ *
+ * @param method Input method
+ *
+ * @return Converted number
+ */
 constexpr u8 toInt(Method method)
 {
     return static_cast<u8>(method);

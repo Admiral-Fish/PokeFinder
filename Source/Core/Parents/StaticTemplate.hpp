@@ -32,7 +32,8 @@ class StaticTemplate
 {
 public:
     /**
-     * @brief Creates a new StaticTemplate
+     * @brief Construct a new StaticTemplate object
+     *
      * @param version Game the template appears in
      * @param species Species of the template
      * @param level Level of the template
@@ -43,7 +44,8 @@ public:
     }
 
     /**
-     * @brief Creates a new StaticTemplate
+     * @brief Construct a new StaticTemplate object
+     *
      * @param version Game the template appears in
      * @param species Species of the template
      * @param level Level of the template
@@ -55,7 +57,8 @@ public:
     }
 
     /**
-     * @brief Creates a new StaticTemplate
+     * @brief Construct a new StaticTemplate object
+     *
      * @param version Game the template appears in
      * @param species Species of the template
      * @param level Level of the template
@@ -69,7 +72,8 @@ public:
     }
 
     /**
-     * @brief Creates a new StaticTemplate
+     * @brief Construct a new StaticTemplate object
+     *
      * @param version Game the template appears in
      * @param species Species of the template
      * @param level Level of the template
@@ -83,6 +87,7 @@ public:
 
     /**
      * @brief Determines what game the template should appear in
+     *
      * @return Template game version
      */
     Game getVersion() const
@@ -92,6 +97,7 @@ public:
 
     /**
      * @brief Determines what species the template should have
+     *
      * @return Template species
      */
     u16 getSpecies() const
@@ -101,6 +107,7 @@ public:
 
     /**
      * @brief Determines what level the template should have
+     *
      * @return Template level
      */
     u8 getLevel() const
@@ -110,6 +117,7 @@ public:
 
     /**
      * @brief Determines what ability locking the template should have
+     *
      * @return Template ability
      * - 0: 0
      * - 1: 1
@@ -124,6 +132,7 @@ public:
 
     /**
      * @brief Determines what shiny locking the template should have
+     *
      * @return Template Shiny value
      */
     Shiny getShiny() const
@@ -133,6 +142,7 @@ public:
 
     /**
      * @brief Determines how many 31 IVs the template should have
+     *
      * @return Template 31 IV count
      */
     u8 getIVCount() const

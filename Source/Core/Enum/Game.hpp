@@ -22,6 +22,9 @@
 
 #include <Core/Global.hpp>
 
+/**
+ * @brief Enum to encompass different game versions
+ */
 enum class Game : u32
 {
     None = 0,
@@ -76,16 +79,39 @@ enum class Game : u32
     Gen8 = SwSh | BDSP
 };
 
+/**
+ * @brief Converts enum to number
+ *
+ * @param game Input game
+ *
+ * @return Converted number
+ */
 constexpr u32 toInt(Game game)
 {
     return static_cast<u32>(game);
 }
 
+/**
+ * @brief Computes bitwise AND of two \ref Game
+ *
+ * @param left First game
+ * @param right Second game
+ *
+ * @return Computed bitwise AND game
+ */
 constexpr Game operator&(Game left, Game right)
 {
     return static_cast<Game>(toInt(left) & toInt(right));
 }
 
+/**
+ * @brief Computes bitwise OR of two \ref Game
+ *
+ * @param left First game
+ * @param right Second game
+ *
+ * @return Computed bitwise OR game
+ */
 constexpr Game operator|(Game left, Game right)
 {
     return static_cast<Game>(toInt(left) | toInt(right));

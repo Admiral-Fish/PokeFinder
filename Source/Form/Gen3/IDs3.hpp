@@ -37,13 +37,14 @@ class IDs3 : public QWidget
     Q_OBJECT
 public:
     /**
-     * @brief Creates a new IDs3
+     * @brief Construct a new IDs3 object
+     *
      * @param parent Parent widget, which takes memory ownership
      */
     explicit IDs3(QWidget *parent = nullptr);
 
     /**
-     * @brief Destructor
+     * @brief Destroy the IDs3 object
      */
     ~IDs3() override;
 
@@ -69,18 +70,21 @@ private slots:
 
     /**
      * @brief Toggles whether controls related to dead battery are enabled or not
+     *
      * @param checked True if dead battery is enabled, false otherwise
      */
     void toggleDeadBatteryRS(bool checked);
 
     /**
      * @brief Toggles whether date/time is enabled or not
+     *
      * @param checked True if date/time is enabled, false otherwise
      */
     void toggleDateTimeRS(bool checked);
 
     /**
      * @brief Toggles whether seed is enabled or not
+     *
      * @param checked True if seed is enabled, false otherwise
      */
     void toggleSeedRS(bool checked);

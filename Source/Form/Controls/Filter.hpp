@@ -38,54 +38,62 @@ class Filter : public QWidget
     Q_OBJECT
 public:
     /**
-     * @brief Creates a new Filter
+     * @brief Construct a new Filter object
+     *
      * @param parent Parent widget, which takes memory ownership
      */
     explicit Filter(QWidget *parent = nullptr);
 
     /**
-     * @brief Destructor
+     * @brief Destroy the Filter object
      */
     ~Filter() override;
 
     /**
      * @brief Gets lower bound IVs to filter by
+     *
      * @return Array of minimum IVs
      */
     std::array<u8, 6> getMinIVs() const;
 
     /**
      * @brief Gets upper bound IVs to filter by
+     *
      * @return Array of maximum IVs
      */
     std::array<u8, 6> getMaxIVs() const;
 
     /**
      * @brief Gets ability to filter by
+     *
      * @return Ability value
      */
     u8 getAbility() const;
 
     /**
      * @brief Gets gender to filter by
+     *
      * @return Gender value
      */
     u8 getGender() const;
 
     /**
      * @brief Gets encounter slots to filter by
+     *
      * @return Vector of encounter slots
      */
     std::vector<bool> getEncounterSlots();
 
     /**
      * @brief Sets encounter slots that are available
+     *
      * @param encounterSlots Vector of encounter slots
      */
     void setEncounterSlots(const std::vector<std::string> &encounterSlots) const;
 
     /**
      * @brief Sets encounter slots that are checked and not checked
+     *
      * @param encounterSlots Vector of encounter slots
      */
     void toggleEncounterSlots(const std::vector<bool> &encounterSlots) const;
@@ -97,48 +105,58 @@ public:
 
     /**
      * @brief Gets hidden powers to filter by
+     *
      * @return Vector of hidden powers
      */
     std::vector<bool> getHiddenPowers();
 
     /**
      * @brief Get natures to filter by
+     *
      * @return Vector of natures
      */
     std::vector<bool> getNatures();
 
     /**
      * @brief Gets shiny status to filter by
+     *
      * @return Shiny value
      */
     u8 getShiny() const;
 
     /**
      * @brief Gets if delay should be added
-     * @return True if delay is enabled, false otherwise
+     *
+     * @return true Delay is enabled
+     * @return false Delay is not enabled
      */
     bool useDelay() const;
 
     /**
      * @brief Gets delay to add
+     *
      * @return Delay value
      */
     u32 getDelay() const;
 
     /**
      * @brief Checks if filters should be ignored
-     * @return True if filters should be disabled, false otherwise
+     *
+     * @return true Filters are disabled
+     * @return false Filters are not disabled
      */
     bool getDisableFilters() const;
 
     /**
      * @brief Enables specified controls
+     *
      * @param control Controls value
      */
     void enableControls(Controls control);
 
     /**
      * @brief Disables specified controls
+     *
      * @param control Controls value
      */
     void disableControls(Controls control);

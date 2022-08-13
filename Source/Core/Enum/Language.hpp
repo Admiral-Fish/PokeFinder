@@ -22,6 +22,10 @@
 
 #include <Core/Global.hpp>
 
+/**
+ * @brief Enum that encompasses language settings for Gen5
+ *
+ */
 enum class Language : u8
 {
     English,
@@ -33,6 +37,13 @@ enum class Language : u8
     Spanish
 };
 
+/**
+ * @brief Converts enum to number
+ *
+ * @param language Input language
+ *
+ * @return Converted number
+ */
 constexpr u8 toInt(Language language)
 {
     return static_cast<u8>(language);

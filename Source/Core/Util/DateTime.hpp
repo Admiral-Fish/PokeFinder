@@ -32,16 +32,18 @@ class Date
 {
 public:
     /**
-     * @brief Creates a new Date
-     * @param jd Initial julian date
+     * @brief Construct a new Date object
      * Defaults to January 1, 2000
+     *
+     * @param jd Initial julian date
      */
     constexpr Date(int jd = 2451545) : jd(jd)
     {
     }
 
     /**
-     * @brief Creates a new Date
+     * @brief Construct a new Date object
+     *
      * @param year Initial year
      * @param month Initial month
      * @param day Initial day
@@ -50,27 +52,33 @@ public:
 
     /**
      * @brief Calculates a new date by adding a number of days
+     *
      * @param days Days to add
+     *
      * @return New calculated date
      */
     Date addDays(int days) const;
 
     /**
      * @brief Converts the Julian date to a Gregorian date and returns the day
+     *
      * @return Day of the date
      */
     int day() const;
 
     /**
      * @brief Calculates how many days are in the month for a given year
+     *
      * @param month Month to calculate for
      * @param year Year to calculate for
+     *
      * @return How many days are in the month/year
      */
     static int daysInMonth(int month, int year);
 
     /**
      * @brief Calculates the Gregorian day of the week
+     *
      * @return Day of week
      * 0: Sunday
      * 1: Monday
@@ -84,39 +92,48 @@ public:
 
     /**
      * @brief Computes the number of days between two dates
+     *
      * @param other Date to compare too
+     *
      * @return Day difference
      */
     int daysTo(const Date &other) const;
 
     /**
      * @brief Converts the Julian date to a Gregorian date
+     *
      * @return Year, month, and day
      */
     std::array<int, 3> getParts() const;
 
     /**
      * @brief Converts the Julian date to a Gregorian date and returns the month
+     *
      * @return Month of the date
      */
     int month() const;
 
     /**
      * @brief Converts the date to a ISO 8601 string
+     *
      * @return Date string
      */
     std::string toString() const;
 
     /**
      * @brief Converts the Julian date to a Gregorian date and returns the month
+     *
      * @return Year of the date
      */
     int year() const;
 
     /**
      * @brief Checks if two dates are equal
+     *
      * @param other Date to compare
-     * @return True if equal, false otherwise
+     *
+     * @return true Dates are equal
+     * @return false Dates are not equal
      */
     constexpr bool operator==(const Date &other) const
     {
@@ -125,8 +142,11 @@ public:
 
     /**
      * @brief Checks if this date is less than or equal to the other date
+     *
      * @param other Date to compare
-     * @return True if less than or equal to, false otherwise
+     *
+     * @return true This date is less than or equal to \p other
+     * @return false This date is not less than or equal to \p other
      */
     constexpr bool operator<=(const Date &other) const
     {
@@ -135,8 +155,11 @@ public:
 
     /**
      * @brief Checks if this date is less than to the other date
+     *
      * @param other Date to compare
-     * @return True if less than, false otherwise
+     *
+     * @return true This date is less than \p other
+     * @return false This date is not less than \p other
      */
     constexpr bool operator<(const Date &other) const
     {
@@ -145,8 +168,11 @@ public:
 
     /**
      * @brief Checks if this date is greater than to the other date
+     *
      * @param other Date to compare
-     * @return True if greater than, false otherwise
+     *
+     * @return true This date is greater than \p other
+     * @return false This date is not greater than \p other
      */
     constexpr bool operator>(const Date &other) const
     {
@@ -166,7 +192,8 @@ class Time
 {
 public:
     /**
-     * @brief Creates a new Time
+     * @brief Construct a new Time object
+     *
      * @param seconds Initial seconds
      */
     constexpr Time(int seconds = 0) : md(seconds)
@@ -174,7 +201,8 @@ public:
     }
 
     /**
-     * @brief Creates a new Time
+     * @brief Construct a new Time object
+     *
      * @param hour Initialize hour
      * @param minute Initial minute
      * @param second Initial second
@@ -185,39 +213,48 @@ public:
 
     /**
      * @brief Adds a number of seconds to the Time
+     *
      * @param seconds Seconds to add
+     *
      * @return How many days passed
      */
     int addSeconds(int seconds);
 
     /**
      * @brief Computes hour field
+     *
      * @return Hour of the time
      */
     int hour() const;
 
     /**
      * @brief Computes minute field
+     *
      * @return Minute of the time
      */
     int minute() const;
 
     /**
      * @brief Computes second field
+     *
      * @return Second of the time
      */
     int second() const;
 
     /**
      * @brief Converts the time to a string
+     *
      * @return Time string
      */
     std::string toString() const;
 
     /**
      * @brief Checks if two times are equal
+     *
      * @param other Time to compare
-     * @return True if equal, false otherwise
+     *
+     * @return true Times are equal
+     * @return false Times are not equal
      */
     constexpr bool operator==(const Time &other) const
     {
@@ -226,8 +263,11 @@ public:
 
     /**
      * @brief Checks if this time is less than or equal to the other time
+     *
      * @param other Time to compare
-     * @return True if less than or equal to, false otherwise
+     *
+     * @return true Time is less than or equal to \p other
+     * @return false Time is not less than or equal to \p other
      */
     constexpr bool operator<=(const Time &other) const
     {
@@ -236,8 +276,11 @@ public:
 
     /**
      * @brief Checks if this time is less than to the other time
+     *
      * @param other Time to compare
-     * @return True if less than, false otherwise
+     *
+     * @return true This time is less than \p other
+     * @return false This time is not less than \p other
      */
     constexpr bool operator<(const Time &other) const
     {
@@ -246,8 +289,11 @@ public:
 
     /**
      * @brief Checks if this time is greater than to the other time
+     *
      * @param other Time to compare
-     * @return True if greater than, false otherwise
+     *
+     * @return true This time is greater than \p other
+     * @return false This time is not greater than \p other
      */
     constexpr bool operator>(const Time &other) const
     {
@@ -267,14 +313,15 @@ class DateTime
 {
 public:
     /**
-     * @brief Creates a new DateTime
+     * @brief Construct a new DateTime object
      */
     constexpr DateTime() : date(Date()), time(Time())
     {
     }
 
     /**
-     * @brief Creates a new DateTime
+     * @brief Construct a new DateTime object
+     *
      * @param date Initial Date
      * @param time Initial Time
      */
@@ -283,7 +330,8 @@ public:
     }
 
     /**
-     * @brief Creates a new DateTime
+     * @brief Construct a new DateTime object
+     *
      * @param jd Initial julian day
      * @param seconds Initial seconds for time
      */
@@ -292,7 +340,8 @@ public:
     }
 
     /**
-     * @brief Creates a new DateTime
+     * @brief Construct a new DateTime object
+     *
      * @param year Initial year
      * @param month Initial month
      * @param day Initial day
@@ -304,40 +353,48 @@ public:
 
     /**
      * @brief Adds a number of seconds to the DateTime
+     * This also internally handles updating the \ref Date if the \ref Time goes over 86400
+     *
      * @param seconds Seconds to add
-     * This also internally handles updating the Date if the Time goes over 86400
      */
     void addSeconds(int seconds);
 
     /**
      * @brief Adds a number of seconds to the DateTime
+     *
      * @param seconds Seconds to add
+     *
      * @return Computed DateTime
      */
     DateTime addSecs(int seconds);
 
     /**
-     * @brief Returns the Date component
+     * @brief Returns the \ref Date component
+     *
      * @return Date
      */
     Date getDate() const;
 
     /**
-     * @brief Returns the Time component
+     * @brief Returns the \ref Time component
      * @return Time
      */
     Time getTime() const;
 
     /**
      * @brief Converts the date/time to a ISO 8601 string
+     *
      * @return DateTime string
      */
     std::string toString() const;
 
     /**
      * @brief Checks if two date/times are equal
+     *
      * @param other DateTime to compare
-     * @return True if equal, false otherwise
+     *
+     * @return true DateTimes are equal
+     * @return false DateTimes are not equal
      */
     constexpr bool operator==(const DateTime &other) const
     {
@@ -346,8 +403,11 @@ public:
 
     /**
      * @brief Checks if this date/time is less than or equal to the other date/time
+     *
      * @param other DateTime to compare
-     * @return True if less than or equal to, false otherwise
+     *
+     * @return true This DateTime is less than or equal to \p other
+     * @return false This DateTime is not less than or equal to \p other
      */
     constexpr bool operator<=(const DateTime &other) const
     {
@@ -356,8 +416,11 @@ public:
 
     /**
      * @brief Checks if this date/time is less than to the other date/time
+     *
      * @param other DateTime to compare
-     * @return True if less than, false otherwise
+     *
+     * @return true This DateTime is less than \p other
+     * @return false This DateTime is not less than \p other
      */
     constexpr bool operator<(const DateTime &other) const
     {
@@ -366,8 +429,11 @@ public:
 
     /**
      * @brief Checks if this date/time is greater than to the other date/time
+     *
      * @param other DateTime to compare
-     * @return True if greater than, false otherwise
+     *
+     * @return true This DateTime is greater than \p other
+     * @return false This DateTime is not greater than \p other
      */
     constexpr bool operator>(const DateTime &other) const
     {

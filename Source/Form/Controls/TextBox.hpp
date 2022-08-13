@@ -24,6 +24,9 @@
 #include <QLineEdit>
 #include <QRegularExpression>
 
+/**
+ * @brief Enum that encompasses the different common input types for the \ref TextBox
+ */
 enum class InputType : u8
 {
     Seed64Bit,
@@ -37,26 +40,29 @@ enum class InputType : u8
 
 /**
  * @brief Provides a line edit purely for numbers and validates the contents based on regex for number base and minimum/maximum bounding
- * values
+ * values.
  */
 class TextBox : public QLineEdit
 {
     Q_OBJECT
 public:
     /**
-     * @brief Creates a new TextBox
+     * @brief Construct a new TextBox object
+     *
      * @param parent Parent widget, which takes memory ownership
      */
     explicit TextBox(QWidget *parent = nullptr);
 
     /**
      * @brief Sets regex and min/max bounding values
+     *
      * @param type Predefined validation type
      */
     void setValues(InputType type);
 
     /**
      * @brief Sets regex and min/max bounding values
+     *
      * @param minValue Minimum bounding value
      * @param maxValue Maximum bounding value
      * @param length Maximum allowed length
@@ -66,31 +72,36 @@ public:
 
     /**
      * @brief Gets current text as int
-     * @return Value as int
+     *
+     * @return Converted value
      */
     int getInt() const;
 
     /**
      * @brief Gets current text as u8
-     * @return Value as u8
+     *
+     * @return Converted value
      */
     u8 getUChar() const;
 
     /**
      * @brief Gets current text as u16
-     * @return Value as u16
+     *
+     * @return Converted value
      */
     u16 getUShort() const;
 
     /**
      * @brief Gets current text as u32
-     * @return Value as u32
+     *
+     * @return Converted value
      */
     u32 getUInt() const;
 
     /**
      * @brief Gets current text as u64
-     * @return Value as u64
+     *
+     * @return Converted value
      */
     u64 getULong() const;
 
@@ -104,6 +115,7 @@ private:
 private slots:
     /**
      * @brief Validates text based on regex and min/max bounding values
+     *
      * @param string Newly edited text
      */
     void onTextEdited(QString string);

@@ -31,13 +31,15 @@ class DateEdit : public QDateEdit
 {
 public:
     /**
-     * @brief Creates a new DateEdit
+     * @brief Construct a new DateEdit object
+     *
      * @param parent Parent widget, which takes memory ownership
      */
     explicit DateEdit(QWidget *parent = nullptr);
 
     /**
-     * @brief Converts QDate to Date
+     * @brief Converts QDate to \ref Date
+     *
      * @return Date information
      */
     Date getDate() const;

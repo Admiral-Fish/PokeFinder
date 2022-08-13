@@ -58,14 +58,15 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 public:
     /**
-     * @brief Creates a new MainWindow
+     * @brief Construct a new MainWindow object
+     *
      * @param profile True if profiles file is located, false otherwise
      * @param parent Parent widget, which takes memory ownership
      */
     explicit MainWindow(bool profile, QWidget *parent = nullptr);
 
     /**
-     * @brief Destructor
+     * @brief Destroy the MainWindow object
      */
     ~MainWindow() override;
 
@@ -100,15 +101,18 @@ private:
     void checkUpdates() const;
 
     /**
-     * @brief Downloads webpage from given url
+     * @brief Downloads webpage from \p url
+     *
      * @param url Link to download from
-     * @return Byte array of downloaded url
+     *
+     * @return Byte array of downloaded \p url
      */
     QByteArray downloadFile(const QString &url) const;
 
 private slots:
     /**
      * @brief Informs open windows that they need to refresh profiles
+     *
      * @param num Which generation profiles were updated
      */
     void updateProfiles(int num);

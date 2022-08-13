@@ -29,20 +29,24 @@ class Xoroshiro
 {
 public:
     /**
-     * @brief Creates a new Xoroshiro
+     * @brief Construct a new Xoroshiro object
+     * 
      * @param seed Starting PRNG state
      */
     Xoroshiro(u64 seed);
 
     /**
      * @brief Gets the next 64bit PRNG state
+     * 
      * @return PRNG value
      */
     u64 next();
 
     /**
-     * @brief Gets the next 32bit PRNG state bounded by the max value
-     * @param max Max value
+     * @brief Gets the next 32bit PRNG state bounded by the \p max value
+     * 
+     * @tparam max Max value
+     * 
      * @return PRNG value
      */
     template <u32 max>
@@ -86,27 +90,32 @@ class XoroshiroBDSP
 {
 public:
     /**
-     * @brief Creates a new XoroshiroBDSP
-     * @param seed Starting PRNG state
+     * @brief Construct a new XoroshiroBDSP object
      * Uses splitmix to initalize the PRNG state
+     * 
+     * @param seed Starting PRNG state
      */
     XoroshiroBDSP(u64 seed);
 
     /**
-     * @brief Advances the RNG by provided amount
+     * @brief Advances the RNG by \p advances amount
+     * 
      * @param advances Number of advances
      */
     void advance(u32 advances);
 
     /**
      * @brief Gets the next 32bit PRNG state
+     * 
      * @return PRNG value
      */
     u32 next();
 
     /**
-     * @brief Gets the next 32bit PRNG state bounded by the max value
+     * @brief Gets the next 32bit PRNG state bounded by the \p max value
+     * 
      * @param max Max value
+     * 
      * @return PRNG value
      */
     u32 next(u32 max)

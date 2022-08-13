@@ -32,7 +32,8 @@ class Profile
 {
 public:
     /**
-     * @brief Creates a new Profile
+     * @brief Construct a new Profile object
+     *
      * @param name Profile name
      * @param version Game version
      * @param tid Trainer ID
@@ -42,38 +43,46 @@ public:
 
     /**
      * @brief Returns the profile name
+     *
      * @return Profile name
      */
     std::string getName() const;
 
     /**
      * @brief Returns the profile secret ID
+     *
      * @return Profile SID
      */
     u16 getSID() const;
 
     /**
      * @brief Returns the profile trainer ID
+     *
      * @return Profile TID
      */
     u16 getTID() const;
 
     /**
      * @brief Returns the profile game version
+     *
      * @return Profile game version
      */
     Game getVersion() const;
 
     /**
      * @brief Checks if two profiles are equal
+     *
      * @param other Profile to compare
+     *
      * @return True if equal, false otherwise
      */
     bool operator==(const Profile &other) const;
 
     /**
      * @brief Checks if two profiles are not equal
+     *
      * @param other Profile to compare
+     *
      * @return True if not equal, false otherwise
      */
     bool operator!=(const Profile &other) const;

@@ -22,6 +22,9 @@
 
 #include <Core/Global.hpp>
 
+/**
+ * @brief Enum to encompass different leads
+ */
 enum class Lead : u8
 {
     None,
@@ -31,6 +34,13 @@ enum class Lead : u8
     CompoundEyes
 };
 
+/**
+ * @brief Converts enum to number
+ *
+ * @param lead Input lead
+ *
+ * @return Converted number
+ */
 constexpr u8 toInt(Lead lead)
 {
     return static_cast<u8>(lead);

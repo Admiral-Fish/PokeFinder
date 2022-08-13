@@ -23,7 +23,7 @@
 #include <Core/Global.hpp>
 
 /**
- * @brief Impacts PID generation
+ * @brief Enum that encompasses different PID locking mechanisms
  */
 enum class Shiny : u8
 {
@@ -35,9 +35,16 @@ enum class Shiny : u8
     Static /// PID is set to a fixed value
 };
 
-constexpr u8 toInt(Shiny val)
+/**
+ * @brief Converts enum to number
+ *
+ * @param shiny Input shiny type
+ *
+ * @return Converted number
+ */
+constexpr u8 toInt(Shiny shiny)
 {
-    return static_cast<u8>(val);
+    return static_cast<u8>(shiny);
 };
 
 #endif // SHINY_HPP

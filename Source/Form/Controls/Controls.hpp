@@ -22,6 +22,9 @@
 
 #include <Core/Global.hpp>
 
+/**
+ * @brief Enum that encompasses which controls can be enabled/disabled
+ */
 enum class Controls : u16
 {
     None = 0,
@@ -36,14 +39,30 @@ enum class Controls : u16
     DisableFilter = 1 << 8
 };
 
-constexpr Controls operator|(Controls left, Controls right)
-{
-    return static_cast<Controls>(static_cast<u16>(left) | static_cast<u16>(right));
-};
-
+/**
+ * @brief Computes bitwise AND of two \ref Controls
+ *
+ * @param left First control
+ * @param right Second control
+ *
+ * @return Computed bitwise AND control
+ */
 constexpr Controls operator&(Controls left, Controls right)
 {
     return static_cast<Controls>(static_cast<u16>(left) & static_cast<u16>(right));
+};
+
+/**
+ * @brief Computes bitwise OR of two \ref Controls
+ *
+ * @param left First control
+ * @param right Second control
+ *
+ * @return Computed bitwise OR control
+ */
+constexpr Controls operator|(Controls left, Controls right)
+{
+    return static_cast<Controls>(static_cast<u16>(left) | static_cast<u16>(right));
 };
 
 #endif // CONTROLS_HPP

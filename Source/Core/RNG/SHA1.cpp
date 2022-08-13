@@ -203,7 +203,6 @@ u64 SHA1::hashSeed()
 
 void SHA1::precompute()
 {
-    // For hashes computed on the same date, the first 8 rounds will be the same
     u32 a = 0x67452301;
     u32 b = 0xEFCDAB89;
     u32 c = 0x98BADCFE;

@@ -30,7 +30,8 @@ class Slot
 {
 public:
     /**
-     * @brief Creates a new Slot
+     * @brief Construct a new Slot object
+     *
      * @param specie Species of the pokemon
      * @param minLevel Minimum level of the pokemon
      * @param maxLevel Maximum level of the pokemon
@@ -42,7 +43,8 @@ public:
     }
 
     /**
-     * @brief Creates a new Slot
+     * @brief Construct a new Slot object
+     *
      * @param specie Species of the pokemon
      * @param level Level of the pokemon
      * @param info Pokemon information
@@ -53,6 +55,7 @@ public:
 
     /**
      * @brief Determines the minimum level of the pokemon
+     *
      * @return Minimum level
      */
     u8 getMinLevel() const
@@ -62,6 +65,7 @@ public:
 
     /**
      * @brief Determines the maximum level of the pokemon
+     *
      * @return Maximum level
      */
     u8 getMaxLevel() const
@@ -71,6 +75,7 @@ public:
 
     /**
      * @brief Determines the species of the pokemon
+     *
      * @return Pokemon species
      */
     u16 getSpecie() const
@@ -80,6 +85,7 @@ public:
 
     /**
      * @brief Determines the information of the pokemon
+     *
      * @return Pokemon information
      */
     PersonalInfo getInfo() const
@@ -89,6 +95,7 @@ public:
 
     /**
      * @brief Allows the specie to be changed. Typically due to some modifier (radar, swarms, etc.)
+     *
      * @param specie Pokemon species
      * @param info Pokemon information
      */

@@ -34,7 +34,8 @@ class EncounterArea
 {
 public:
     /**
-     * @brief Creates a new EncounterArea
+     * @brief Construct a new Encounter Area object
+     *
      * @param location Location number
      * @param rate Encounter rate of the area
      * @param encounter Encounter type of the area
@@ -44,65 +45,79 @@ public:
 
     /**
      * @brief Calculates the level of a pokemon that has a range
+     *
      * @param index Pokemon index to use
      * @param prng Random value
+     *
      * @return Level of the encounter
      */
     u8 calcLevel(u8 index, u16 prng) const;
 
     /**
      * @brief Calculates the level of a pokemon that has no range
+     *
      * @param index Pokemon index to use
+     *
      * @return Level of the encounter
      */
     u8 calcLevel(u8 index) const;
 
     /**
      * @brief Returns the type of encounter of the area
+     *
      * @return Encounter type
      */
     Encounter getEncounter() const;
 
     /**
      * @brief Returns the location of the area
+     *
      * @return Location number
      */
     u8 getLocation() const;
 
     /**
      * @brief Return the encounter rate of the area
+     *
      * @return Encounter rate
      */
     u8 getRate() const;
 
     /**
      * @brief Return the pokemon of the area
+     *
      * @return Vector of pokemon
      */
     std::vector<Slot> getPokemon() const;
 
     /**
      * @brief Return the species numbers of unique pokemon of the area
+     *
      * @return Vector of pokemon species
      */
     std::vector<u16> getUniqueSpecies() const;
 
     /**
-     * @brief Return vector of true/false which indicate slots that match the provided species
+     * @brief Return vector of true/false which indicate slots that match the \p specie
+     *
      * @param specie Species number
+     *
      * @return Vector of true/false for matching slots
      */
     std::vector<bool> getSlots(u16 specie) const;
 
     /**
-     * @brief Calculates the level range of a given pokemon across all possible slots it can be encountered
+     * @brief Calculates the level range of a \p specie across all possible slots it can be encountered
+     *
      * @param specie Species number
+     *
      * @return Pair of level range
      */
     std::pair<u8, u8> getLevelRange(u16 specie) const;
 
     /**
      * @brief Return vector of names of all pokemon slots
+     *
      * @return Vector of pokemon name
      */
     std::vector<std::string> getSpecieNames() const;

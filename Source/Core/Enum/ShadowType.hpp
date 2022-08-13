@@ -20,8 +20,11 @@
 #ifndef SHADOWTYPE_HPP
 #define SHADOWTYPE_HPP
 
-#include <Core/Util/Global.hpp>
+#include <Core/Global.hpp>
 
+/**
+ * @brief Enum that encompasses different shadow pokemon types
+ */
 enum class ShadowType : u8
 {
     SingleLock,

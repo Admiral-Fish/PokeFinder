@@ -30,7 +30,8 @@ class Profile8 : public Profile
 {
 public:
     /**
-     * @brief Creates a new Profile8
+     * @brief Construct a new Profile8 object
+     *
      * @param name Profile name
      * @param version Game version
      * @param tid Trainer ID
@@ -44,39 +45,53 @@ public:
 
     /**
      * @brief Returns whether the profile has the oval charm
-     * @return True if oval charm is obtained, false otherwise
+     *
+     * @return true Oval charm is obtained
+     * @return false Oval charm is not obtained
      */
     bool getOvalCharm() const;
 
     /**
      * @brief Returns whether the profile is using the pokeradar
-     * @return True if pokeradar is enabled, false otherwise
+     *
+     * @return true Pokeradar is enabled
+     * @return false Pokeradar is not enabled
      */
     bool getRadar() const;
 
     /**
      * @brief Returns whether the profile has the shiny charm
-     * @return True if shiny charm is obtained, false otherwise
+     *
+     * @return true Shiny charm is obtained
+     * @return false Shiny charm is not obtained
      */
     bool getShinyCharm() const;
 
     /**
      * @brief Returns whether the profile is using a swarm
-     * @return True if swarm is enabled, false otherwise
+     *
+     * @return true Swarm is enabled
+     * @return false Swarm is not enabled
      */
     bool getSwarm() const;
 
     /**
      * @brief Checks if two profiles are equal
+     *
      * @param other Profile to compare
-     * @return True if equal, false otherwise
+     *
+     * @return true Profiles are equal
+     * @return false Profils are not equal
      */
     bool operator==(const Profile8 &other) const;
 
     /**
      * @brief Checks if two profiles are not equal
+     *
      * @param other Profile to compare
-     * @return True if not equal, false otherwise
+     *
+     * @return true Profiles are not equal
+     * @return false Profiles are equal
      */
     bool operator!=(const Profile8 &other) const;
 

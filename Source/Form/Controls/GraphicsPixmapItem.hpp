@@ -30,7 +30,8 @@ class GraphicsPixmapItem : public QGraphicsPixmapItem
 {
 public:
     /**
-     * @brief Creates a new DateEdit
+     * @brief Construct a new GraphicsPixmapItem object
+     *
      * @param pixmap Image to display
      * @param minX Minimum X position
      * @param minY Minimum Y position
@@ -41,6 +42,7 @@ public:
 
     /**
      * @brief Handles bounding the item with the min/max X/Y position when it is moved
+     *
      * @param event Contains mouse event information
      */
     void mouseMoveEvent(QGraphicsSceneMouseEvent *event) override;

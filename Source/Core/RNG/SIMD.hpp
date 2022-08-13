@@ -35,8 +35,10 @@ using vuint32x4 = std::array<u32, 4>;
 
 /**
  * @brief Computers the bitwise AND of each 32bit number pair in the vector
+ * 
  * @param x First operand
  * @param y Second operand
+ * 
  * @return Computed bitwise AND vector
  */
 inline vuint32x4 v32x4_and(vuint32x4 x, vuint32x4 y)
@@ -56,8 +58,10 @@ inline vuint32x4 v32x4_and(vuint32x4 x, vuint32x4 y)
 
 /**
  * @brief Compares each 32bit number pair in the vector for equality. Assigns 0xFFFFFFFF on equal and 0 when not
+ * 
  * @param x First operand
  * @param y Second operand
+ * 
  * @return Computed equality vector
  */
 inline vuint32x4 v32x4_cmpeq(vuint32x4 x, vuint32x4 y)
@@ -77,9 +81,11 @@ inline vuint32x4 v32x4_cmpeq(vuint32x4 x, vuint32x4 y)
 
 /**
  * @brief Inserts specified number in the vector at the given lane
- * @param lane Index to insert to
+ * 
+ * @tparam lane Index to insert to
  * @param value Input vector
  * @param insert Input value
+ * 
  * @return Computed insertion vector
  */
 template <int lane>
@@ -98,8 +104,10 @@ inline vuint32x4 v32x4_insert(vuint32x4 value, u32 insert)
 
 /**
  * @brief Loads vector from memory
- * @param aligned Whether memory is aligned or not
+ * 
+ * @tparam aligned Whether memory is aligned or not
  * @param address Memory address
+ * 
  * @return Loaded vector
  */
 template <bool aligned = true>
@@ -123,8 +131,10 @@ inline vuint32x4 v32x4_load(const u32 *address)
 
 /**
  * @brief Computers the bitwise OR of each 32bit number pair in the vector
+ * 
  * @param x First operand
  * @param y Second operand
+ * 
  * @return Computed bitwise OR vector
  */
 inline vuint32x4 v32x4_or(vuint32x4 x, vuint32x4 y)
@@ -144,7 +154,9 @@ inline vuint32x4 v32x4_or(vuint32x4 x, vuint32x4 y)
 
 /**
  * @brief Initalizes a vector with the given number
+ * 
  * @param x Initalization number
+ * 
  * @return Initalized vector
  */
 inline vuint32x4 v32x4_set(u32 x)
@@ -160,10 +172,12 @@ inline vuint32x4 v32x4_set(u32 x)
 
 /**
  * @brief Inializes a vector with the given numbers
+ * 
  * @param x0 Initalization number0
  * @param x1 Initalization number1
  * @param x2 Initalization number2
  * @param x3 Initalization number3
+ * 
  * @return Initalized vector
  */
 inline vuint32x4 v32x4_set(u32 x0, u32 x1, u32 x2, u32 x3)
@@ -180,8 +194,10 @@ inline vuint32x4 v32x4_set(u32 x0, u32 x1, u32 x2, u32 x3)
 
 /**
  * @brief Computers the bitwise left shift of each 32bit number pair in the vector
- * @param shift Amount to shift by
+ * 
+ * @tparam shift Amount to shift by
  * @param value Input vector
+ * 
  * @return Computed bitwise left shift vector
  */
 template <int shift>
@@ -202,8 +218,10 @@ inline vuint32x4 v32x4_shl(vuint32x4 value)
 
 /**
  * @brief Computers the bitwise right shift of each 32bit number pair in the vector
- * @param shift Amount to shift by
+ * 
+ * @tparam shift Amount to shift by
  * @param value Input vector
+ * 
  * @return Computed bitwise right shift vector
  */
 template <int shift>
@@ -224,8 +242,10 @@ inline vuint32x4 v32x4_shr(vuint32x4 value)
 
 /**
  * @brief Store vector into memory
- * @param aligned Whether memory is aligned or not
+ * 
+ * @tparam aligned Whether memory is aligned or not
  * @param address Memory address
+ * 
  * @param value Vector to store
  */
 template <bool aligned = true>
@@ -252,8 +272,10 @@ inline void v32x4_store(u32 *address, vuint32x4 value)
 
 /**
  * @brief Computers the bitwise XOR of each 32bit number pair in the vector
+ * 
  * @param x First operand
  * @param y Second operand
+ * 
  * @return Computed bitwise XOR vector
  */
 inline vuint32x4 v32x4_xor(vuint32x4 x, vuint32x4 y)
@@ -273,8 +295,10 @@ inline vuint32x4 v32x4_xor(vuint32x4 x, vuint32x4 y)
 
 /**
  * @brief Computes the bitwise left shift of a 128bit number
- * @param shift Amount to shift by
+ * 
+ * @tparam shift Amount to shift by
  * @param x Input vector
+ * 
  * @return Computed bitwise left shift vector
  */
 template <int shift>
@@ -303,8 +327,10 @@ inline vuint32x4 v128_shl(vuint32x4 x)
 
 /**
  * @brief Computes the bitwise right shift of a 128bit number
- * @param shift Amount to shift by
+ * 
+ * @tparam shift Amount to shift by
  * @param x Input vector
+ * 
  * @return Computed bitwise right shift vector
  */
 template <int shift>

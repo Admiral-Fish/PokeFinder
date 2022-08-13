@@ -29,26 +29,30 @@ class Xorshift
 {
 public:
     /**
-     * @brief Creates a new Xorshift
+     * @brief Construct a new Xorshift object
+     *
      * @param seed0 Starting PRNG state0
      * @param seed1 Starting PRNG state1
      */
     Xorshift(u64 seed0, u64 seed1);
 
     /**
-     * @brief Creates a new Xorshift
+     * @brief Construct a new Xorshift object
+     *
      * @param rng Xorshift to copy
      */
     Xorshift(const Xorshift &rng);
 
     /**
-     * @brief Advances the RNG by provided amount
+     * @brief Advances the RNG by \p advances amount
+     *
      * @param advances Number of advances
      */
     void advance(u32 advances);
 
     /**
      * @brief Gets the next 32bit PRNG state bounded by the min/max values
+     *
      * @return PRNG value
      */
     template <int min = -0x7fffffff - 1, int max = 0x7fffffff>
@@ -65,6 +69,7 @@ public:
 
     /**
      * @brief Gets the next 32bit PRNG state
+     *
      * @return PRNG value
      */
     u32 nextState();

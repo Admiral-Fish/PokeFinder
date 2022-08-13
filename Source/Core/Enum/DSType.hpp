@@ -22,6 +22,9 @@
 
 #include <Core/Global.hpp>
 
+/**
+ * @brief Enum to encompass differen type of DS models
+ */
 enum class DSType : u8
 {
     DS,
@@ -29,6 +32,13 @@ enum class DSType : u8
     DS3
 };
 
+/**
+ * @brief Converts enum to number
+ *
+ * @param ds Input ds type
+ *
+ * @return Converted number
+ */
 constexpr u8 toInt(DSType ds)
 {
     return static_cast<u8>(ds);

@@ -24,7 +24,6 @@
 
 /**
  * @brief Provides automatic horizontal header sizing and action handling
- *
  * The TableView class automatically resizes the horizontal header to use all available space then allows the user to manually resize each
  * column. It also provides a context menu with default actions to output the data to txt/csv. This menu can be provided additional
  * developer defined actions.
@@ -33,25 +32,29 @@ class TableView : public QTableView
 {
 public:
     /**
-     * @brief Creates a new TableView
+     * @brief Construct a new TableView object
+     *
      * @param parent Parent widget, which takes memory ownership
      */
     explicit TableView(QWidget *parent = nullptr);
 
     /**
      * @brief Handles double click mouse event to copy selection to clipboard
+     *
      * @param event Contains mouse event information
      */
     void mouseDoubleClickEvent(QMouseEvent *event) override;
 
     /**
      * @brief Handles ctr+c key inputs to copy selection to clipboard
+     *
      * @param event Contains keyboard event information
      */
     void keyPressEvent(QKeyEvent *event) override;
 
     /**
      * @brief Handles resize event to resize the columns of the horizontal header
+     *
      * @param event Contains resize event information
      */
     void resizeEvent(QResizeEvent *event) override;
@@ -59,6 +62,7 @@ public:
 private:
     /**
      * @brief Outputs model data to file
+     *
      * @param csv Whether the output format is txt or csv
      */
     void outputModel(bool csv = false) const;

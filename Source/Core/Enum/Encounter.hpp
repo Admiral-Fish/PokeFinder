@@ -22,6 +22,9 @@
 
 #include <Core/Global.hpp>
 
+/**
+ * @brief Enum to encompass different encounter types
+ */
 enum class Encounter : u8
 {
     Grass,
@@ -44,6 +47,13 @@ enum class Encounter : u8
     HiddenGrotto
 };
 
+/**
+ * @brief Converts enum to number
+ *
+ * @param encounter Input encounter
+ *
+ * @return Converted number
+ */
 constexpr u8 toInt(Encounter encounter)
 {
     return static_cast<u8>(encounter);

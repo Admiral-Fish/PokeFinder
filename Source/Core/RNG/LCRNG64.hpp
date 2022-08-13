@@ -24,13 +24,17 @@
 
 /**
  * @brief Provides random numbers via the LCRNG algorithm. Most commonly used ones are defined at the bottom of the file.
+ * 
+ * @tparam add LCRNG64 addition value
+ * @tparam mult LCRNG64 multiplication value
  */
 template <u64 add, u64 mult>
 class LCRNG64
 {
 public:
     /**
-     * @brief Creates a new LCRNG64
+     * @brief Construct a new LCRNG64 object
+     * 
      * @param seed Starting PRNG state
      * @param advances Initial number of advances
      */
@@ -40,8 +44,10 @@ public:
     }
 
     /**
-     * @brief Advances the RNG by provided amount
+     * @brief Advances the RNG by \p advances amount
+     * 
      * @param advances Number of advances
+     * 
      * @return PRNG value after the advances
      */
     u64 advance(u64 advances)
@@ -55,6 +61,7 @@ public:
 
     /**
      * @brief Returns the current PRNG state
+     * 
      * @return PRNG value
      */
     u64 getSeed() const
@@ -64,6 +71,7 @@ public:
 
     /**
      * @brief Gets the next 64bit PRNG state
+     * 
      * @return PRNG value
      */
     u64 next()
@@ -73,6 +81,7 @@ public:
 
     /**
      * @brief Gets the next 32bit PRNG state
+     * 
      * @return PRNG value
      */
     u32 nextUInt()
@@ -81,8 +90,10 @@ public:
     }
 
     /**
-     * @brief Gets the next 32bit PRNG state bounded by the specified max value
+     * @brief Gets the next 32bit PRNG state bounded by the \p max value
+     * 
      * @param max Max value
+     * 
      * @return PRNG value
      */
     u32 nextUInt(u32 max)

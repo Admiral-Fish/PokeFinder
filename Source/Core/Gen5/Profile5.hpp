@@ -34,7 +34,8 @@ class Profile5 : public Profile
 
 public:
     /**
-     * @brief Profile5
+     * @brief Construct a new Profile5 object
+     *
      * @param name Profile name
      * @param version Game version
      * @param tid Trainer ID
@@ -59,111 +60,137 @@ public:
 
     /**
      * @brief Returns the DS type of the profile
+     *
      * @return DS type
      */
     DSType getDSType() const;
 
     /**
      * @brief Returns the string representation of the DS type
+     *
      * @return DS type string
      */
     std::string getDSTypeString() const;
 
     /**
      * @brief Returns the GxStat value of the profile
+     *
      * @return GxStat value
      */
     u8 getGxStat() const;
 
     /**
      * @brief Returns the keypresses selected of the profile
+     *
      * @return Vector of keypress where true indicates that value is used and false means that value is not used
      */
     std::vector<bool> getKeypresses() const;
 
     /**
      * @brief Returns the string representation of the keypresses
+     *
      * @return Keypresses string
      */
     std::string getKeypressesString() const;
 
     /**
      * @brief Returns language value of the profile
+     *
      * @return Language value
      */
     Language getLanguage() const;
 
     /**
      * @brief Returns the string representation of the language
+     *
      * @return Language string
      */
     std::string getLanguageString() const;
 
     /**
      * @brief Returns the MAC address of the profile
+     *
      * @return MAC address
      */
     u64 getMac() const;
 
     /**
      * @brief Returns if memory link is activated or not
-     * @return True if memory link is activated, false otherwise
+     *
+     * @return true Memory link is activated
+     * @return false Memory link is not activated
      */
     bool getMemoryLink() const;
 
     /**
      * @brief Returns if shiny charm is obtained
-     * @return True if shiny charm is obtained, false otherwise
+     *
+     * @return true Shiny charm is obtained
+     * @return false Shiny charm is not obtained
      */
     bool getShinyCharm() const;
 
     /**
      * @brief Returns if the LR buttons should be skipped
-     * @return True if the LR buttons should be skipped, false otherwise
+     *
+     * @return true LR buttons should be skipped
+     * @return false LR buttons should not be skipped
      */
     bool getSkipLR() const;
 
     /**
      * @brief Returns if soft resetting is used
-     * @return True if soft resetting is used, false otherwise
+     *
+     * @return true Soft resetting is used
+     * @return false Soft resetting is not used
      */
     bool getSoftReset() const;
 
     /**
      * @brief Returns the maximum Timer0 value
+     *
      * @return Maximum Timer0 value
      */
     u16 getTimer0Max() const;
 
     /**
      * @brief Returns the minimum Timer0 value
+     *
      * @return Minimum Timer0 value
      */
     u16 getTimer0Min() const;
 
     /**
      * @brief Returns the VCount value
+     *
      * @return VCount value
      */
     u8 getVCount() const;
 
     /**
      * @brief Returns the VFrame value
+     *
      * @return VFrame value
      */
     u8 getVFrame() const;
 
     /**
      * @brief Checks if two profiles are equal
+     *
      * @param other Profile to compare
-     * @return True if equal, false otherwise
+     *
+     * @return true Profiles are equal
+     * @return false Profiles are not equal
      */
     bool operator==(const Profile5 &other) const;
 
     /**
      * @brief Checks if two profiles are not equal
+     *
      * @param other Profile to compare
-     * @return True if not equal, false otherwise
+     *
+     * @return true Profiles are not equal
+     * @return false Profiles are equal
      */
     bool operator!=(const Profile5 &other) const;
 

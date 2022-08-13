@@ -37,25 +37,28 @@ class ProfileEditor3 : public QDialog
     Q_OBJECT
 public:
     /**
-     * @brief Creates a new ProfileEditor3
+     * @brief Construct a new ProfileEditor3 object
+     *
      * @param parent Parent widget, which takes memory ownership
      */
     explicit ProfileEditor3(QWidget *parent = nullptr);
 
     /**
-     * @brief Creates a new ProfileEditor3
+     * @brief Construct a new ProfileEditor3 object
+     *
      * @param profile Existing profile to populate the dialog
      * @param parent Parent widget, which takes memory ownership
      */
     explicit ProfileEditor3(const Profile3 &profile, QWidget *parent = nullptr);
 
     /**
-     * @brief Destructor
+     * @brief Destroy the ProfileEditor3 object
      */
     ~ProfileEditor3() override;
 
     /**
      * @brief Creates finalized profile based on input fields
+     *
      * @return Profile information
      */
     Profile3 getProfile();
@@ -71,6 +74,7 @@ private slots:
 
     /**
      * @brief Toggles whether dead battery is enabled based on selected Game
+     *
      * @param index Current index of combo box
      */
     void versionIndexChanged(int index);
