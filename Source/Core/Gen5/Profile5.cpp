@@ -115,6 +115,8 @@ std::string Profile5::getLanguageString() const
         return "KOR";
     case Language::Spanish:
         return "SPA";
+    default:
+        return "-";
     }
 }
 
