@@ -35,14 +35,14 @@ public:
     bool compareIV(std::array<u8, 6> ivs) const;
 
 private:
-    std::array<u8, 6> min;
-    std::array<u8, 6> max;
-    u8 gender;
-    u8 ability;
     std::array<bool, 25> natures;
     std::array<bool, 16> powers;
-    u8 shiny;
+    std::array<u8, 6> max;
+    std::array<u8, 6> min;
     bool skip;
+    u8 ability;
+    u8 gender;
+    u8 shiny;
 };
 
 #endif // STATEFILTER_HPP

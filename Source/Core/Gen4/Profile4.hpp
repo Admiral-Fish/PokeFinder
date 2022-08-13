@@ -114,11 +114,11 @@ public:
     bool operator!=(const Profile4 &other) const;
 
 private:
+    Game dual;
+    int radio;
     bool dex;
     bool radar;
     bool swarm;
-    Game dual;
-    int radio;
 };
 
 #endif // PROFILE4_HPP

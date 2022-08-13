@@ -30,7 +30,7 @@ class MT
 public:
     /**
      * @brief Construct a new MT object
-     * 
+     *
      * @param seed Starting PRNG state
      */
     MT(u32 seed);
@@ -57,8 +57,8 @@ public:
     u16 nextUShort();
 
 private:
-    u16 index;
     alignas(16) u32 mt[624];
+    u16 index;
 
     /**
      * @brief Generates the next MT state after all 624 states have been consumed

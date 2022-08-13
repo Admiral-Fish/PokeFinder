@@ -322,7 +322,7 @@ namespace ProfileLoader5
             u16 tid = j.value("tid", 0);
             u16 sid = j.value("sid", 0);
             u64 mac = j.value("mac", 0);
-            std::vector<bool> keypresses = j.value("keypresses", std::vector<bool> { false, false, false, false });
+            std::array<bool, 4> keypresses = j.value("keypresses", std::array<bool, 4> { false, false, false, false });
             u8 vcount = j.value("vcount", 0);
             u8 gxstat = j.value("gxstat", 0);
             u8 vframe = j.value("vframe", 0);

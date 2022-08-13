@@ -33,10 +33,10 @@ public:
     bool compare(const IDState &state) const;
 
 protected:
-    std::vector<u16> tidFilter;
-    std::vector<u16> sidFilter;
-    std::vector<u16> tsvFilter;
     std::vector<u32> displayFilter;
+    std::vector<u16> sidFilter;
+    std::vector<u16> tidFilter;
+    std::vector<u16> tsvFilter;
 };
 
 #endif // IDFILTER_HPP

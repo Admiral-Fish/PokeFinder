@@ -88,10 +88,10 @@ public:
     bool operator!=(const Profile &other) const;
 
 protected:
+    std::string name;
+    Game version;
     u16 sid;
     u16 tid;
-    Game version;
-    std::string name;
 };
 
 #endif // PROFILE_HPP

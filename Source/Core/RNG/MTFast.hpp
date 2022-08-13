@@ -153,8 +153,8 @@ public:
     }
 
 private:
-    u16 index;
     alignas(16) u32 mt[size + 1];
+    u16 index;
 };
 
 #endif // MTFAST_HPP

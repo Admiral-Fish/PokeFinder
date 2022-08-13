@@ -57,8 +57,8 @@ public:
     u32 nextUInt();
 
 private:
-    u16 index;
     alignas(16) u32 sfmt[624];
+    u16 index;
 
     /**
      * @brief Generates the next SFMT state after all 624 states have been consumed

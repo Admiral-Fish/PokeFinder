@@ -123,10 +123,10 @@ public:
     std::vector<std::string> getSpecieNames() const;
 
 protected:
+    std::vector<Slot> pokemon;
+    Encounter encounter;
     u8 location;
     u8 rate;
-    Encounter encounter;
-    std::vector<Slot> pokemon;
 };
 
 #endif // ENCOUNTERAREA_HPP
