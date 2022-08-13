@@ -48,8 +48,10 @@ public:
     void mouseMoveEvent(QGraphicsSceneMouseEvent *event) override;
 
 private:
-    u16 minX, maxX;
-    u16 minY, maxY;
+    u16 maxX;
+    u16 maxY;
+    u16 minX;
+    u16 minY;
 };
 
 #endif // GRAPHICSPIXMAPITEM_HPP

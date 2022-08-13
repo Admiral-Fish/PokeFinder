@@ -73,27 +73,34 @@ public:
 private:
     Ui::MainWindow *ui;
 
+    // Gen 3
+    Eggs3 *egg3 = nullptr;
+    GameCube *gamecube = nullptr;
+    IDs3 *ids3 = nullptr;
     Static3 *static3 = nullptr;
     Wild3 *wild3 = nullptr;
-    GameCube *gamecube = nullptr;
-    Eggs3 *egg3 = nullptr;
-    IDs3 *ids3 = nullptr;
-    Static4 *static4 = nullptr;
-    Wild4 *wild4 = nullptr;
+
+    // Gen 4
     Eggs4 *egg4 = nullptr;
     IDs4 *ids4 = nullptr;
-    Static5 *static5 = nullptr;
-    Event5 *event5 = nullptr;
+    Static4 *static4 = nullptr;
+    Wild4 *wild4 = nullptr;
+
+    // Gen 5
     DreamRadar *dreamRadar = nullptr;
-    HiddenGrotto *hiddenGrotto = nullptr;
     Eggs5 *egg5 = nullptr;
+    Event5 *event5 = nullptr;
+    HiddenGrotto *hiddenGrotto = nullptr;
     IDs5 *ids5 = nullptr;
+    Static5 *static5 = nullptr;
+
+    // Gen 8
+    Eggs8 *egg8 = nullptr;
+    Event8 *event8 = nullptr;
+    IDs8 *ids8 = nullptr;
+    Raids *raids = nullptr;
     Static8 *static8 = nullptr;
     Wild8 *wild8 = nullptr;
-    Event8 *event8 = nullptr;
-    Raids *raids = nullptr;
-    Eggs8 *egg8 = nullptr;
-    IDs8 *ids8 = nullptr;
 
     /**
      * @brief Checks if any application updates are available

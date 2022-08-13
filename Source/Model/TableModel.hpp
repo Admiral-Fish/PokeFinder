@@ -30,7 +30,8 @@ class TableModel : public QAbstractTableModel
 {
 public:
     /**
-     * @brief Creates a new TableModel
+     * @brief Construct a new TableModel object
+     *
      * @param parent Parent object, which takes memory ownership
      */
     TableModel(QObject *parent = nullptr) : QAbstractTableModel(parent)
@@ -38,7 +39,8 @@ public:
     }
 
     /**
-     * @brief Add a item to the model
+     * @brief Add a \p item to the model
+     *
      * @param item Item to add
      */
     void addItem(const Item &item)
@@ -50,7 +52,8 @@ public:
     }
 
     /**
-     * @brief Add a collection of items to the model
+     * @brief Add a collection of \p items to the model
+     *
      * @param items Vector of items to add
      */
     void addItems(const std::vector<Item> &items)
@@ -79,8 +82,10 @@ public:
     }
 
     /**
-     * @brief Returns the item from the indicated item
+     * @brief Returns the item from the \p row
+     *
      * @param row Row to get
+     *
      * @return Item data of the model
      */
     Item getItem(int row) const
@@ -90,6 +95,7 @@ public:
 
     /**
      * @brief Returns the underlying model data
+     *
      * @return Vector of Items of the model
      */
     std::vector<Item> getModel() const
@@ -99,7 +105,9 @@ public:
 
     /**
      * @brief Returns the number of rows in the model
+     *
      * @param parent Unused parent index
+     *
      * @return Number of rows
      */
     int rowCount(const QModelIndex &parent = QModelIndex()) const override
@@ -110,6 +118,7 @@ public:
 
     /**
      * @brief Removes an item from the model
+     *
      * @param row Row to remove
      */
     void removeItem(int row)
@@ -121,8 +130,10 @@ public:
     }
 
     /**
-     * @brief Updates a item in the model
+     * @brief Updates a \p item in the model
+     *
      * @param item Updated item
+     *
      * @param row Row to edit
      */
     void updateItem(const Item &item, int row)

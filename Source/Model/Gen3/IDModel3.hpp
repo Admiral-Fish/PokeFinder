@@ -31,31 +31,38 @@ class IDModel3 : public TableModel<IDState>
     Q_OBJECT
 public:
     /**
-     * @brief Creates a new IDModel3
+     * @brief Construct a new IDModel3 object
+     *
      * @param parent Parent object, which takes memory ownership
      */
     explicit IDModel3(QObject *parent);
 
     /**
      * @brief Returns the number of columns in the model
+     *
      * @param parent Unused parent index
+     *
      * @return Number of columns
      */
     int columnCount(const QModelIndex &parent = QModelIndex()) const override;
 
     /**
-     * @brief Returns data at the specified row/column and role
+     * @brief Returns data at the \p index with \p role
+     *
      * @param index Row/column index
      * @param role Model data role
+     *
      * @return Data at index
      */
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
 
     /**
-     * @brief Returns header text at the specified column and role
+     * @brief Returns header text at the \p section, \p orientation, and \p role
+     *
      * @param section Column index
      * @param orientation Header position
      * @param role Model data role
+     *
      * @return Header text at column
      */
     QVariant headerData(int section, Qt::Orientation orientation, int role) const override;

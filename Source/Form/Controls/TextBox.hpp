@@ -106,11 +106,11 @@ public:
     u64 getULong() const;
 
 private:
+    QRegularExpression filter;
     u64 maxValue;
     u64 minValue;
     int base;
     int length;
-    QRegularExpression filter;
 
 private slots:
     /**

@@ -56,6 +56,7 @@ public:
 
 private:
     Ui::ProfileManager3 *ui;
+
     ProfileModel3 *model;
 
 private slots:

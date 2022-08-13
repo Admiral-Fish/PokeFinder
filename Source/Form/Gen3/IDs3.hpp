@@ -50,6 +50,7 @@ public:
 
 private:
     Ui::IDs3 *ui;
+
     IDModel3 *model;
 
 private slots:
