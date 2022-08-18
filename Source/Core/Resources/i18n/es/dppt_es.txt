@@ -76,7 +76,7 @@
 143,Ruta 204 (Sur)
 144,Ruta 204 (Norte)
 145,Ruta 205 (Sur)
-146,Route 205 (South)
+146,Route 205 (North)
 147,Ruta 206
 148,Ruta 207
 149,Ruta 208
