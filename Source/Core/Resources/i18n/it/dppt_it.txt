@@ -76,7 +76,7 @@
 143,Percorso 204 (Sud)
 144,Percorso 204 (Nord)
 145,Percorso 205 (Sud)
-146,Percorso 205 (South)
+146,Percorso 205 (Nord)
 147,Percorso 206
 148,Percorso 207
 149,Percorso 208
