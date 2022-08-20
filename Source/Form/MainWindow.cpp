@@ -24,7 +24,7 @@
 //#include <Forms/Gen3/GameCube.hpp>
 #include <Form/Gen3/IDs3.hpp>
 #include <Form/Gen3/Profile/ProfileManager3.hpp>
-//#include <Forms/Gen3/Static3.hpp>
+#include <Form/Gen3/Static3.hpp>
 //#include <Forms/Gen3/Tools/GameCubeRTC.hpp>
 //#include <Forms/Gen3/Tools/GameCubeSeedFinder.hpp>
 //#include <Forms/Gen3/Tools/JirachiPattern.hpp>
@@ -78,18 +78,18 @@ MainWindow::MainWindow(bool profile, QWidget *parent) : QMainWindow(parent), ui(
     ui->setupUi(this);
     setWindowTitle(QString("Pok\303\251Finder %1").arg(POKEFINDER_VERSION));
 
-    // connect(ui->pushButtonStatic3, &QPushButton::clicked, this, &MainWindow::openStatic3);
+    connect(ui->pushButtonIDs3, &QPushButton::clicked, this, &MainWindow::openIDs3);
+    connect(ui->pushButtonStatic3, &QPushButton::clicked, this, &MainWindow::openStatic3);
     // connect(ui->pushButtonWild3, &QPushButton::clicked, this, &MainWindow::openWild3);
     //  connect(ui->pushButtonGameCube, &QPushButton::clicked, this, &MainWindow::openGameCube);
     // connect(ui->pushButtonEgg3, &QPushButton::clicked, this, &MainWindow::openEgg3);
-    connect(ui->pushButtonIDs3, &QPushButton::clicked, this, &MainWindow::openIDs3);
+    connect(ui->actionProfileManager3, &QAction::triggered, this, &MainWindow::openProfileManager3);
     // connect(ui->actionGameCubeRTC, &QAction::triggered, this, &MainWindow::openGameCubeRTC);
     // connect(ui->actionGameCubeSeedFinder, &QAction::triggered, this, &MainWindow::openGameCubeSeedFinder);
     // connect(ui->actionIVtoPID3, &QAction::triggered, this, &MainWindow::openIVtoPID);
     // connect(ui->actionJirachiPattern, &QAction::triggered, this, &MainWindow::openJirachiPattern);
     // connect(ui->actionPIDtoIV, &QAction::triggered, this, &MainWindow::openPIDtoIV);
     // connect(ui->actionPokeSpot, &QAction::triggered, this, &MainWindow::openPokeSpot);
-    connect(ui->actionProfileManager3, &QAction::triggered, this, &MainWindow::openProfileManager3);
     // connect(ui->actionSeedtoTime3, &QAction::triggered, this, &MainWindow::openSeedtoTime3);
     // connect(ui->actionSpindaPainter, &QAction::triggered, this, &MainWindow::openSpindaPainter);
 
@@ -121,7 +121,7 @@ MainWindow::MainWindow(bool profile, QWidget *parent) : QMainWindow(parent), ui(
     // connect(ui->actionDownloadEventData, &QAction::triggered, this, &MainWindow::downloadEventData);
     // connect(ui->actionProfileManager8, &QAction::triggered, this, &MainWindow::openProfileManager8);
 
-    // connect(ui->actionAbout, &QAction::triggered, this, &MainWindow::openAbout);
+    connect(ui->actionAbout, &QAction::triggered, this, &MainWindow::openAbout);
     // connect(ui->actionEncounterLookup, &QAction::triggered, this, &MainWindow::openEncounterLookup);
     // connect(ui->actionIVCalculator, &QAction::triggered, this, &MainWindow::openIVCalculator);
     // connect(ui->actionResearcher, &QAction::triggered, this, &MainWindow::openResearcher);
@@ -151,21 +151,25 @@ MainWindow::~MainWindow()
     setting.setValue("mainWindow/geometry", this->saveGeometry());
 
     delete ui;
-    // delete static3;
+
+    delete ids3;
+    delete static3;
     // delete wild3;
     // delete egg3;
-    //  delete gamecube;
-    delete ids3;
+    // delete gamecube;
+
     // delete static4;
     // delete wild4;
     // delete egg4;
     // delete ids4;
+
     // delete static5;
     // delete event5;
     // delete dreamRadar;
     // delete hiddenGrotto;
     // delete egg5;
     // delete ids5;
+
     // delete static8;
     // delete wild8;
     // delete event8;
@@ -212,99 +216,23 @@ QByteArray MainWindow::downloadFile(const QString &url) const
     return reply->readAll();
 }
 
-void MainWindow::updateProfiles(int num)
+void MainWindow::openIDs3()
 {
-    /*if (num == 3)
+    if (!ids3)
     {
-        if (static3)
-        {
-            static3->updateProfiles();
-        }
-        if (wild3)
-        {
-            wild3->updateProfiles();
-        }
-        if (gamecube)
-        {
-            // gamecube->updateProfiles();
-        }
-        if (egg3)
-        {
-            egg3->updateProfiles();
-        }
+        ids3 = new IDs3();
     }
-    else if (num == 4)
-    {
-        if (static4)
-        {
-            static4->updateProfiles();
-        }
-        if (wild4)
-        {
-            wild4->updateProfiles();
-        }
-        if (egg4)
-        {
-            egg4->updateProfiles();
-        }
-    }
-    else if (num == 5)
-    {
-        if (static5)
-        {
-            static5->updateProfiles();
-        }
-        if (event5)
-        {
-            event5->updateProfiles();
-        }
-        if (dreamRadar)
-        {
-            dreamRadar->updateProfiles();
-        }
-        if (ids5)
-        {
-            ids5->updateProfiles();
-        }
-        if (egg5)
-        {
-            egg5->updateProfiles();
-        }
-        if (hiddenGrotto)
-        {
-            hiddenGrotto->updateProfiles();
-        }
-    }
-    else if (num == 8)
-    {
-        if (static8)
-        {
-            static8->updateProfiles();
-        }
-        if (wild8)
-        {
-            wild8->updateProfiles();
-        }
-        if (event8)
-        {
-            event8->updateProfiles();
-        }
-        if (raids)
-        {
-            raids->updateProfiles();
-        }
-        if (egg8)
-        {
-            egg8->updateProfiles();
-        }
-        if (ids8)
-        {
-            ids8->updateProfiles();
-        }
-    }*/
+    ids3->show();
 }
 
-/*void MainWindow::openStatic3()
+void MainWindow::openProfileManager3()
+{
+    auto *manager = new ProfileManager3();
+    connect(manager, &ProfileManager3::updateProfiles, this, &MainWindow::updateProfiles);
+    manager->show();
+}
+
+void MainWindow::openStatic3()
 {
     if (!static3)
     {
@@ -314,7 +242,7 @@ void MainWindow::updateProfiles(int num)
     static3->show();
 }
 
-void MainWindow::openWild3()
+/*void MainWindow::openWild3()
 {
     if (!wild3)
     {
@@ -342,18 +270,9 @@ void MainWindow::openEgg3()
         connect(egg3, &Eggs3::alertProfiles, this, &MainWindow::updateProfiles);
     }
     egg3->show();
-}*/
-
-void MainWindow::openIDs3()
-{
-    if (!ids3)
-    {
-        ids3 = new IDs3();
-    }
-    ids3->show();
 }
 
-/*void MainWindow::openGameCubeRTC()
+void MainWindow::openGameCubeRTC()
 {
     auto *rtc = new GameCubeRTC();
     rtc->show();
@@ -387,16 +306,9 @@ void MainWindow::openPokeSpot()
 {
     auto *pokeSpot = new PokeSpot();
     pokeSpot->show();
-}*/
-
-void MainWindow::openProfileManager3()
-{
-    auto *manager = new ProfileManager3();
-    connect(manager, &ProfileManager3::updateProfiles, this, &MainWindow::updateProfiles);
-    manager->show();
 }
 
-/*void MainWindow::openSeedtoTime3()
+void MainWindow::openSeedtoTime3()
 {
     auto *seedToTime = new SeedTime3();
     seedToTime->show();
@@ -694,8 +606,8 @@ void MainWindow::downloadEventData()
 
     int index = entries.indexOf(item);
     auto eventResponse
-        = downloadFile("https://raw.githubusercontent.com/Admiral-Fish/RaidFinder/master/Resources/Encounters/Event/" + files.at(index));
-    if (eventResponse.isEmpty())
+        = downloadFile("https://raw.githubusercontent.com/Admiral-Fish/RaidFinder/master/Resources/Encounters/Event/" +
+files.at(index)); if (eventResponse.isEmpty())
     {
         QMessageBox error(QMessageBox::Critical, tr("Download failed"),
                           tr("Make sure you are connected to the internet and have OpenSSL setup"), QMessageBox::Ok);
@@ -758,3 +670,95 @@ void MainWindow::openSettings()
     auto *s = new Settings();
     s->show();
 }*/
+
+void MainWindow::updateProfiles(int num)
+{
+    if (num == 3)
+    {
+        if (static3)
+        {
+            static3->updateProfiles();
+        }
+        /* if (wild3)
+        {
+            wild3->updateProfiles();
+        }
+        if (gamecube)
+        {
+            gamecube->updateProfiles();
+        }
+        if (egg3)
+        {
+            egg3->updateProfiles();
+        }*/
+    }
+    /*else if (num == 4)
+    {
+        if (static4)
+        {
+            static4->updateProfiles();
+        }
+        if (wild4)
+        {
+            wild4->updateProfiles();
+        }
+        if (egg4)
+        {
+            egg4->updateProfiles();
+        }
+    }
+    else if (num == 5)
+    {
+        if (static5)
+        {
+            static5->updateProfiles();
+        }
+        if (event5)
+        {
+            event5->updateProfiles();
+        }
+        if (dreamRadar)
+        {
+            dreamRadar->updateProfiles();
+        }
+        if (ids5)
+        {
+            ids5->updateProfiles();
+        }
+        if (egg5)
+        {
+            egg5->updateProfiles();
+        }
+        if (hiddenGrotto)
+        {
+            hiddenGrotto->updateProfiles();
+        }
+    }
+    else if (num == 8)
+    {
+        if (static8)
+        {
+            static8->updateProfiles();
+        }
+        if (wild8)
+        {
+            wild8->updateProfiles();
+        }
+        if (event8)
+        {
+            event8->updateProfiles();
+        }
+        if (raids)
+        {
+            raids->updateProfiles();
+        }
+        if (egg8)
+        {
+            egg8->updateProfiles();
+        }
+        if (ids8)
+        {
+            ids8->updateProfiles();
+        }
+    }*/
+}

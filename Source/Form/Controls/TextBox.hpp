@@ -51,7 +51,7 @@ public:
      *
      * @param parent Parent widget, which takes memory ownership
      */
-    explicit TextBox(QWidget *parent = nullptr);
+    TextBox(QWidget *parent = nullptr);
 
     /**
      * @brief Sets regex and min/max bounding values

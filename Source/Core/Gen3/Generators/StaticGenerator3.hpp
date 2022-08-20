@@ -17,59 +17,44 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef GENERATOR_HPP
-#define GENERATOR_HPP
+#ifndef STATICGENERATOR3_HPP
+#define STATICGENERATOR3_HPP
 
-#include <Core/Global.hpp>
-#include <vector>
+#include <Core/Gen3/Filters/StateFilter3.hpp>
+#include <Core/Parents/Generators/StaticGenerator.hpp>
 
-enum class Encounter : u8;
-enum class Game : u32;
-enum class Method : u8;
+class StaticTemplate;
 
 /**
- * @brief Parent generator class that stores common attributes
- *
- * @tparam Filter Filter class that is used by the generator
+ * @brief Static encounter generator for Gen3
  */
-template <class Filter>
-class Generator
+class StaticGenerator3 : public StaticGenerator<StateFilter3>
 {
 public:
     /**
-     * @brief Construct a new Generator object
+     * @brief Construct a new StaticGenerator3 object
      *
      * @param initialAdvances Initial number of advances
      * @param maxAdvances Maximum number of advances
      * @param offset Number of advances to offset
      * @param tid Trainer ID
      * @param sid Secret ID
+     * @param version Game version
      * @param method Encounter method
      * @param filter State filter
      */
-    Generator(u32 initialAdvances, u32 maxAdvances, u32 offset, u16 tid, u16 sid, Game version, Method method, const Filter &filter) :
-        version(version),
-        initialAdvances(initialAdvances),
-        maxAdvances(maxAdvances),
-        offset(offset),
-        sid(sid),
-        tid(tid),
-        tsv(tid ^ sid),
-        method(method),
-        filter(filter)
-    {
-    }
+    StaticGenerator3(u32 initialAdvances, u32 maxAdvances, u32 offset, u16 tid, u16 sid, Game version, Method method,
+                     const StateFilter3 &filter);
 
-protected:
-    Game version;
-    u32 initialAdvances;
-    u32 maxAdvances;
-    u32 offset;
-    u16 sid;
-    u16 tid;
-    u16 tsv;
-    Method method;
-    Filter filter;
+    /**
+     * @brief Generates states for the \p staticTemplate
+     *
+     * @param seed Starting PRNG state
+     * @param staticTemplate Pokemon template
+     *
+     * @return Vector of computed states
+     */
+    std::vector<GeneratorState3> generate(u32 seed, const StaticTemplate *staticTemplate) const;
 };
 
-#endif // GENERATOR_HPP
+#endif // STATICGENERATOR3_HPP

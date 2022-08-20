@@ -117,37 +117,36 @@ private:
     QByteArray downloadFile(const QString &url) const;
 
 private slots:
-    /**
-     * @brief Informs open windows that they need to refresh profiles
-     *
-     * @param num Which generation profiles were updated
-     */
-    void updateProfiles(int num);
-
-    // void openStatic3();
-    // void openWild3();
-    // void openGameCube();
-    // void openEgg3();
+    // Gen 3
 
     /**
-     * @brief Opens the Gen 3 TID/SID window
+     * @brief Opens the Gen 3 IDs window
      */
     void openIDs3();
-
-    // void openGameCubeRTC();
-    // void openGameCubeSeedFinder();
-    // void openIVtoPID();
-    // void openJirachiPattern();
-    // void openPIDtoIV();
-    // void openPokeSpot();
 
     /**
      * @brief Opens the Gen 3 Profile Manager window
      */
     void openProfileManager3();
 
+    /**
+     * @brief Opens the Gen 3 Static window
+     */
+    void openStatic3();
+
+    // void openGameCubeRTC();
+    // void openWild3();
+    // void openGameCube();
+    // void openEgg3();
+    // void openGameCubeSeedFinder();
+    // void openIVtoPID();
+    // void openJirachiPattern();
+    // void openPIDtoIV();
+    // void openPokeSpot();
     // void openSeedtoTime3();
     // void openSpindaPainter();
+
+    // Gen 4
     // void openStatic4();
     // void openWild4();
     // void openEgg4();
@@ -155,6 +154,8 @@ private slots:
     // void openProfileManager4();
     // void openSeedtoTime4();
     // void openSIDFromChainedShiny();
+
+    // Gen 5
     // void openStatic5();
     // void openEvent5();
     // void openDreamRadar();
@@ -163,6 +164,8 @@ private slots:
     // void openIDs5();
     // void openProfileCalibrator();
     // void openProfileManager5();
+
+    // Gen 8
     // void openStatic8();
     // void openWild8();
     // void openEvent8();
@@ -173,10 +176,19 @@ private slots:
     // void downloadEventData();
     // void openProfileManager8();
 
+    // General tools and settings
+
     /**
      * @brief Open the About window
      */
     void openAbout() const;
+
+    /**
+     * @brief Informs open windows that they need to refresh profiles
+     *
+     * @param num Which generation profiles were updated
+     */
+    void updateProfiles(int num);
 
     // void openEncounterLookup();
     // void openIVCalculator();

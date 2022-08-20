@@ -37,7 +37,6 @@ RNGCache::RNGCache(Method method)
         add = 0x6073; // pokerng constant
     }
 
-    std::memset(low, 0, sizeof(low));
     std::memset(flags, false, sizeof(flags));
     for (u16 i = 0; i < 256; i++)
     {

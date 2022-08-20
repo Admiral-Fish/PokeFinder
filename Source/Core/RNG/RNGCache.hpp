@@ -34,30 +34,30 @@ class RNGCache
 public:
     /**
      * @brief Construct a new RNGCache object
-     * 
+     *
      * @param method Generation method
      */
     RNGCache(Method method);
 
     /**
      * @brief Recovers origin seeds for two 16 bit calls(15 bits known) with or without gap based on the cache
-     * 
+     *
      * @param hp HP iv
      * @param atk Atk iv
      * @param def Def iv
      * @param spa SpA iv
      * @param spd SpD iv
      * @param spe Spe iv
-     * 
+     *
      * @return Vector of origin seeds
      */
     std::vector<u32> recoverLower16BitsIV(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const;
 
     /**
      * @brief Recovers origin seeds for two 16 bit calls based on the cache
-     * 
+     *
      * @param pid PID value
-     * 
+     *
      * @return Vector of origin seeds
      */
     std::vector<u32> recoverLower16BitsPID(u32 pid) const;

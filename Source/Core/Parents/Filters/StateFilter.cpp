@@ -21,7 +21,7 @@
 
 StateFilter::StateFilter(u8 gender, u8 ability, u8 shiny, bool skip, const std::array<u8, 6> &min, const std::array<u8, 6> &max,
                          const std::array<bool, 25> &natures, const std::array<bool, 16> &powers) :
-    min(min), max(max), gender(gender), ability(ability), natures(natures), powers(powers), shiny(shiny), skip(skip)
+    natures(natures), powers(powers), max(max), min(min), skip(skip), ability(ability), gender(gender), shiny(shiny)
 {
 }
 
@@ -35,14 +35,9 @@ bool StateFilter::compareGender(u8 gender) const
     return skip || this->gender == 255 || this->gender == gender;
 }
 
-bool StateFilter::compareNature(u8 nature) const
+bool StateFilter::compareHiddenPower(u8 hiddenPower) const
 {
-    return skip || natures[nature];
-}
-
-bool StateFilter::compareShiny(u8 shiny) const
-{
-    return skip || this->shiny == 255 || (this->shiny & shiny);
+    return skip || powers[hiddenPower];
 }
 
 bool StateFilter::compareIV(std::array<u8, 6> ivs) const
@@ -62,4 +57,14 @@ bool StateFilter::compareIV(std::array<u8, 6> ivs) const
     }
 
     return true;
+}
+
+bool StateFilter::compareNature(u8 nature) const
+{
+    return skip || natures[nature];
+}
+
+bool StateFilter::compareShiny(u8 shiny) const
+{
+    return skip || this->shiny == 255 || (this->shiny & shiny);
 }

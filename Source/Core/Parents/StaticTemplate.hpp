@@ -22,6 +22,8 @@
 
 #include <Core/Enum/Shiny.hpp>
 #include <Core/Global.hpp>
+#include <Core/Parents/PersonalInfo.hpp>
+#include <Core/Parents/PersonalLoader.hpp>
 
 enum class Game : u32;
 
@@ -35,11 +37,11 @@ public:
      * @brief Construct a new StaticTemplate object
      *
      * @param version Game the template appears in
-     * @param species Species of the template
+     * @param specie Specie of the template
      * @param level Level of the template
      */
-    constexpr StaticTemplate(Game version, u16 species, u8 level) :
-        version(version), species(species), level(level), ability(255), shiny(Shiny::Random), ivCount(0)
+    constexpr StaticTemplate(Game version, u16 specie, u8 level) :
+        version(version), specie(specie), level(level), ability(255), shiny(Shiny::Random), ivCount(0)
     {
     }
 
@@ -47,12 +49,12 @@ public:
      * @brief Construct a new StaticTemplate object
      *
      * @param version Game the template appears in
-     * @param species Species of the template
+     * @param specie Specie of the template
      * @param level Level of the template
      * @param ivCount 31 IV count of the template
      */
-    constexpr StaticTemplate(Game version, u16 species, u8 level, u8 ivCount) :
-        version(version), species(species), level(level), ability(255), shiny(Shiny::Random), ivCount(ivCount)
+    constexpr StaticTemplate(Game version, u16 specie, u8 level, u8 ivCount) :
+        version(version), specie(specie), level(level), ability(255), shiny(Shiny::Random), ivCount(ivCount)
     {
     }
 
@@ -60,14 +62,14 @@ public:
      * @brief Construct a new StaticTemplate object
      *
      * @param version Game the template appears in
-     * @param species Species of the template
+     * @param specie Specie of the template
      * @param level Level of the template
      * @param ability Ability of the template
      * @param shiny Shiny of the template
      * @param ivCount 31 IV count of the template
      */
-    constexpr StaticTemplate(Game version, u16 species, u8 level, u8 ability, Shiny shiny, u8 ivCount) :
-        version(version), species(species), level(level), ability(ability), shiny(shiny), ivCount(ivCount)
+    constexpr StaticTemplate(Game version, u16 specie, u8 level, u8 ability, Shiny shiny, u8 ivCount) :
+        version(version), specie(specie), level(level), ability(ability), shiny(shiny), ivCount(ivCount)
     {
     }
 
@@ -75,13 +77,13 @@ public:
      * @brief Construct a new StaticTemplate object
      *
      * @param version Game the template appears in
-     * @param species Species of the template
+     * @param specie Specie of the template
      * @param level Level of the template
      * @param ability Ability of the template
      * @param ivCount 31 IV count of the template
      */
-    constexpr StaticTemplate(Game version, u16 species, u8 level, u8 ability, u8 ivCount) :
-        version(version), species(species), level(level), ability(ability), shiny(Shiny::Random), ivCount(ivCount)
+    constexpr StaticTemplate(Game version, u16 specie, u8 level, u8 ability, u8 ivCount) :
+        version(version), specie(specie), level(level), ability(ability), shiny(Shiny::Random), ivCount(ivCount)
     {
     }
 
@@ -96,13 +98,13 @@ public:
     }
 
     /**
-     * @brief Determines what species the template should have
+     * @brief Determines what specie the template should have
      *
-     * @return Template species
+     * @return Template specie
      */
-    u16 getSpecies() const
+    u16 getSpecie() const
     {
-        return species;
+        return specie;
     }
 
     /**
@@ -152,10 +154,10 @@ public:
 
 private:
     Game version;
-    u16 species;
-    u8 level;
-    u8 ability;
+    u16 specie;
     Shiny shiny;
+    u8 ability;
+    u8 level;
     u8 ivCount;
 };
 

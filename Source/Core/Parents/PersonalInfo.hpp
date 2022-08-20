@@ -48,42 +48,15 @@ public:
      */
     constexpr PersonalInfo(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, u8 gender, u16 ability1, u16 ability2, u16 abilityH, u8 formCount,
                            u16 formStatIndex, bool present) :
-        stats { hp, atk, def, spa, spd, spe },
-        gender(gender),
         ability1(ability1),
         ability2(ability2),
         abilityH(abilityH),
-        formCount(formCount),
         formStatIndex(formStatIndex),
-        present(present)
+        stats { hp, atk, def, spa, spd, spe },
+        present(present),
+        formCount(formCount),
+        gender(gender)
     {
-    }
-
-    /**
-     * @brief Base stats of the pokemon
-     *
-     * @return Array of base stats
-     */
-    std::array<u8, 6> getStats() const
-    {
-        return stats;
-    }
-
-    /**
-     * @brief Gender ratio of the pokemon
-     *
-     * @return Gender ratio value
-     * - 0: Male only
-     * - 31: 12.5% female
-     * - 63: 25% female
-     * - 127: 50% female
-     * - 191: 75% female
-     * - 254: Female only
-     * - 255: Genderless
-     */
-    u16 getGender() const
-    {
-        return gender;
     }
 
     /**
@@ -137,6 +110,23 @@ public:
     }
 
     /**
+     * @brief Gender ratio of the pokemon
+     *
+     * @return Gender ratio value
+     * - 0: Male only
+     * - 31: 12.5% female
+     * - 63: 25% female
+     * - 127: 50% female
+     * - 191: 75% female
+     * - 254: Female only
+     * - 255: Genderless
+     */
+    u8 getGender() const
+    {
+        return gender;
+    }
+
+    /**
      * @brief Determines whether the pokemon is obtainable or not
      *
      * @return true Pokemon is obtainable
@@ -147,15 +137,37 @@ public:
         return present;
     }
 
+    /**
+     * @brief Base stats of the pokemon
+     *
+     * @return Array of base stats
+     */
+    std::array<u8, 6> getStats() const
+    {
+        return stats;
+    }
+
+    /**
+     * @brief Individual base stat of the pokemon
+     *
+     * @param index Base stat index
+     *
+     * @return Base stat
+     */
+    u8 getStat(int index) const
+    {
+        return stats[index];
+    }
+
 private:
-    std::array<u8, 6> stats;
-    u8 gender;
     u16 ability1;
     u16 ability2;
     u16 abilityH;
-    u8 formCount;
     u16 formStatIndex;
+    std::array<u8, 6> stats;
     bool present;
+    u8 formCount;
+    u8 gender;
 };
 
 #endif // PERSONALINFO_HPP

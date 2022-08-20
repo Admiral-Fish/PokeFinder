@@ -58,6 +58,7 @@ set(PROJECT_UI
     Gen3/IDs3.ui
     Gen3/Profile/ProfileEditor3.ui
     Gen3/Profile/ProfileManager3.ui
+    Gen3/Static3.ui
     MainWindow.ui
 )
 
@@ -78,6 +79,7 @@ set(PROJECT_SOURCES
     Gen3/IDs3.cpp
     Gen3/Profile/ProfileEditor3.cpp
     Gen3/Profile/ProfileManager3.cpp
+    Gen3/Static3.cpp
     main.cpp
     MainWindow.cpp
 )

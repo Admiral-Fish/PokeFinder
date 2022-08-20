@@ -20,13 +20,19 @@ if (UNIX)
 endif ()
 
 add_library(PokeFinderCore STATIC
+    Gen3/Encounters3.cpp
+    Gen3/Filters/StateFilter3.cpp
     Gen3/Generators/IDGenerator3.cpp
+    Gen3/Generators/StaticGenerator3.cpp
+    Gen3/Searchers/StaticSearcher3.cpp
     Gen3/Profile3.cpp
+    Gen3/States/State3.cpp
     Gen4/Profile4.cpp
     Gen5/Profile5.cpp
     Gen8/Profile8.cpp
     Parents/Filters/IDFilter.cpp
     Parents/Filters/StateFilter.cpp
+    Parents/EncounterArea.cpp
     Parents/PersonalLoader.cpp
     Parents/Profile.cpp
     Parents/ProfileLoader.cpp
@@ -39,6 +45,7 @@ add_library(PokeFinderCore STATIC
     RNG/Xoroshiro.cpp
     RNG/Xorshift.cpp
     Util/DateTime.cpp
+    Util/Nature.cpp
     Util/Translator.cpp
     Util/Utilities.cpp
 )

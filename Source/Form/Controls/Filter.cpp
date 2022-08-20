@@ -36,139 +36,12 @@ Filter::Filter(QWidget *parent) : QWidget(parent), ui(new Ui::Filter)
     connect(ui->pushButtonEncounterSlot, &QPushButton::clicked, ui->checkListEncounterSlot, &CheckList::resetChecks);
     connect(ui->pushButtonHiddenPower, &QPushButton::clicked, ui->checkListHiddenPower, &CheckList::resetChecks);
     connect(ui->pushButtonNature, &QPushButton::clicked, ui->checkListNature, &CheckList::resetChecks);
+    connect(ui->ivFilter, &IVFilter::showStatsChanged, this, [&](bool flag) { emit showStatsChanged(flag); });
 }
 
 Filter::~Filter()
 {
     delete ui;
-}
-
-std::array<u8, 6> Filter::getMinIVs() const
-{
-    return ui->ivFilter->getLower();
-}
-
-std::array<u8, 6> Filter::getMaxIVs() const
-{
-    return ui->ivFilter->getUpper();
-}
-
-u8 Filter::getAbility() const
-{
-    return ui->comboBoxAbility->getCurrentByte();
-}
-
-u8 Filter::getGender() const
-{
-    return ui->comboBoxGender->getCurrentByte();
-}
-
-std::vector<bool> Filter::getEncounterSlots()
-{
-    return ui->checkListEncounterSlot->getChecked();
-}
-
-void Filter::setEncounterSlots(const std::vector<std::string> &encounterSlots) const
-{
-    ui->checkListEncounterSlot->setup(encounterSlots);
-}
-
-void Filter::toggleEncounterSlots(const std::vector<bool> &encounterSlots) const
-{
-    ui->checkListEncounterSlot->setChecks(encounterSlots);
-}
-
-void Filter::resetEncounterSlots() const
-{
-    ui->checkListEncounterSlot->resetChecks();
-}
-
-std::vector<bool> Filter::getHiddenPowers()
-{
-    return ui->checkListHiddenPower->getChecked();
-}
-
-std::vector<bool> Filter::getNatures()
-{
-    return ui->checkListNature->getChecked();
-}
-
-u8 Filter::getShiny() const
-{
-    return ui->comboBoxShiny->getCurrentByte();
-}
-
-bool Filter::useDelay() const
-{
-    return ui->checkBoxDelay->isChecked();
-}
-
-u32 Filter::getDelay() const
-{
-    return ui->textBoxDelay->getUInt();
-}
-
-bool Filter::getDisableFilters() const
-{
-    return ui->checkBoxDisableFilters->isChecked();
-}
-
-void Filter::enableControls(Controls control)
-{
-    if ((control & Controls::IVs) != Controls::None)
-    {
-        ui->ivFilter->setVisible(true);
-    }
-
-    if ((control & Controls::Ability) != Controls::None)
-    {
-        ui->labelAbility->setVisible(true);
-        ui->comboBoxAbility->setVisible(true);
-    }
-
-    if ((control & Controls::Gender) != Controls::None)
-    {
-        ui->labelGender->setVisible(true);
-        ui->comboBoxGender->setVisible(true);
-    }
-
-    if ((control & Controls::EncounterSlots) != Controls::None)
-    {
-        ui->labelEncounterSlot->setVisible(true);
-        ui->checkListEncounterSlot->setVisible(true);
-        ui->pushButtonEncounterSlot->setVisible(true);
-    }
-
-    if ((control & Controls::HiddenPowers) != Controls::None)
-    {
-        ui->labelHiddenPower->setVisible(true);
-        ui->checkListHiddenPower->setVisible(true);
-        ui->pushButtonHiddenPower->setVisible(true);
-    }
-
-    if ((control & Controls::Natures) != Controls::None)
-    {
-        ui->labelNature->setVisible(true);
-        ui->checkListNature->setVisible(true);
-        ui->pushButtonNature->setVisible(true);
-    }
-
-    if ((control & Controls::Shiny) != Controls::None)
-    {
-        ui->labelShiny->setVisible(true);
-        ui->comboBoxShiny->setVisible(true);
-    }
-
-    if ((control & Controls::UseDelay) != Controls::None)
-    {
-        ui->checkBoxDelay->setVisible(true);
-        ui->textBoxDelay->setVisible(true);
-    }
-
-    if ((control & Controls::DisableFilter) != Controls::None)
-    {
-        ui->checkBoxDisableFilters->setVisible(true);
-    }
 }
 
 void Filter::disableControls(Controls control)
@@ -229,7 +102,141 @@ void Filter::disableControls(Controls control)
     }
 }
 
+void Filter::enableControls(Controls control)
+{
+    if ((control & Controls::IVs) != Controls::None)
+    {
+        ui->ivFilter->setVisible(true);
+    }
+
+    if ((control & Controls::Ability) != Controls::None)
+    {
+        ui->labelAbility->setVisible(true);
+        ui->comboBoxAbility->setVisible(true);
+    }
+
+    if ((control & Controls::Gender) != Controls::None)
+    {
+        ui->labelGender->setVisible(true);
+        ui->comboBoxGender->setVisible(true);
+    }
+
+    if ((control & Controls::EncounterSlots) != Controls::None)
+    {
+        ui->labelEncounterSlot->setVisible(true);
+        ui->checkListEncounterSlot->setVisible(true);
+        ui->pushButtonEncounterSlot->setVisible(true);
+    }
+
+    if ((control & Controls::HiddenPowers) != Controls::None)
+    {
+        ui->labelHiddenPower->setVisible(true);
+        ui->checkListHiddenPower->setVisible(true);
+        ui->pushButtonHiddenPower->setVisible(true);
+    }
+
+    if ((control & Controls::Natures) != Controls::None)
+    {
+        ui->labelNature->setVisible(true);
+        ui->checkListNature->setVisible(true);
+        ui->pushButtonNature->setVisible(true);
+    }
+
+    if ((control & Controls::Shiny) != Controls::None)
+    {
+        ui->labelShiny->setVisible(true);
+        ui->comboBoxShiny->setVisible(true);
+    }
+
+    if ((control & Controls::UseDelay) != Controls::None)
+    {
+        ui->checkBoxDelay->setVisible(true);
+        ui->textBoxDelay->setVisible(true);
+    }
+
+    if ((control & Controls::DisableFilter) != Controls::None)
+    {
+        ui->checkBoxDisableFilters->setVisible(true);
+    }
+}
+
 void Filter::enableHiddenAbility()
 {
     ui->comboBoxAbility->addItem("H", 2);
+}
+
+u8 Filter::getAbility() const
+{
+    return ui->comboBoxAbility->getCurrentByte();
+}
+
+u32 Filter::getDelay() const
+{
+    return ui->textBoxDelay->getUInt();
+}
+
+bool Filter::getDisableFilters() const
+{
+    return ui->checkBoxDisableFilters->isChecked();
+}
+
+std::vector<bool> Filter::getEncounterSlots()
+{
+    return ui->checkListEncounterSlot->getChecked();
+}
+
+u8 Filter::getGender() const
+{
+    return ui->comboBoxGender->getCurrentByte();
+}
+
+std::array<bool, 16> Filter::getHiddenPowers()
+{
+    std::array<bool, 16> hiddenPowers;
+    std::vector<bool> checked = ui->checkListHiddenPower->getChecked();
+    std::copy(checked.begin(), checked.end(), hiddenPowers.begin());
+    return hiddenPowers;
+}
+
+std::array<u8, 6> Filter::getMaxIVs() const
+{
+    return ui->ivFilter->getUpper();
+}
+
+std::array<u8, 6> Filter::getMinIVs() const
+{
+    return ui->ivFilter->getLower();
+}
+
+std::array<bool, 25> Filter::getNatures()
+{
+    std::array<bool, 25> natures;
+    std::vector<bool> checked = ui->checkListNature->getChecked();
+    std::copy(checked.begin(), checked.end(), natures.begin());
+    return natures;
+}
+
+u8 Filter::getShiny() const
+{
+    return ui->comboBoxShiny->getCurrentByte();
+}
+
+void Filter::resetEncounterSlots() const
+{
+    ui->checkListEncounterSlot->resetChecks();
+}
+
+void Filter::setEncounterSlots(const std::vector<std::string> &encounterSlots) const
+{
+    ui->checkListEncounterSlot->setup(encounterSlots);
+}
+
+void Filter::toggleEncounterSlots(const std::vector<bool> &encounterSlots) const
+{
+    ui->checkListEncounterSlot->setChecks(encounterSlots);
+}
+
+bool Filter::useDelay() const
+{
+    return ui->checkBoxDelay->isChecked();
 }

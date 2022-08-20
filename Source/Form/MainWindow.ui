@@ -23,38 +23,38 @@
         <string>Gen 3</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_2">
-        <item row="0" column="0">
-         <widget class="QPushButton" name="pushButtonStatic3">
-          <property name="text">
-           <string>Static</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="0">
+        <item row="7" column="0">
          <widget class="QPushButton" name="pushButtonWild3">
           <property name="text">
            <string>Wild</string>
           </property>
          </widget>
         </item>
-        <item row="2" column="0">
-         <widget class="QPushButton" name="pushButtonGameCube">
+        <item row="4" column="0">
+         <widget class="QPushButton" name="pushButtonStatic3">
           <property name="text">
-           <string>GameCube</string>
+           <string>Static</string>
           </property>
          </widget>
         </item>
-        <item row="3" column="0">
+        <item row="2" column="0">
+         <widget class="QPushButton" name="pushButtonIDs3">
+          <property name="text">
+           <string>IDs</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="0">
          <widget class="QPushButton" name="pushButtonEgg3">
           <property name="text">
            <string>Egg</string>
           </property>
          </widget>
         </item>
-        <item row="4" column="0">
-         <widget class="QPushButton" name="pushButtonIDs3">
+        <item row="1" column="0">
+         <widget class="QPushButton" name="pushButtonGameCube">
           <property name="text">
-           <string>TID/SID</string>
+           <string>GameCube</string>
           </property>
          </widget>
         </item>
@@ -65,31 +65,31 @@
         <string>Gen 4</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_3">
-        <item row="0" column="0">
+        <item row="2" column="0">
          <widget class="QPushButton" name="pushButtonStatic4">
           <property name="text">
            <string>Static</string>
           </property>
          </widget>
         </item>
-        <item row="1" column="0">
+        <item row="3" column="0">
          <widget class="QPushButton" name="pushButtonWild4">
           <property name="text">
            <string>Wild</string>
           </property>
          </widget>
         </item>
-        <item row="2" column="0">
+        <item row="0" column="0">
          <widget class="QPushButton" name="pushButtonEgg4">
           <property name="text">
            <string>Egg</string>
           </property>
          </widget>
         </item>
-        <item row="3" column="0">
+        <item row="1" column="0">
          <widget class="QPushButton" name="pushButtonIDs4">
           <property name="text">
-           <string>TID/SID</string>
+           <string>IDs</string>
           </property>
          </widget>
         </item>
@@ -100,14 +100,7 @@
         <string>Gen 5</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_4">
-        <item row="0" column="0">
-         <widget class="QPushButton" name="pushButtonStatic5">
-          <property name="text">
-           <string>Static</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="0">
+        <item row="6" column="0">
          <widget class="QPushButton" name="pushButtonWild5">
           <property name="text">
            <string>Wild</string>
@@ -121,31 +114,38 @@
           </property>
          </widget>
         </item>
-        <item row="3" column="0">
-         <widget class="QPushButton" name="pushButtonDreamRadar">
-          <property name="text">
-           <string>Dream Radar</string>
-          </property>
-         </widget>
-        </item>
         <item row="4" column="0">
-         <widget class="QPushButton" name="pushButtonHiddenGrotto">
+         <widget class="QPushButton" name="pushButtonIDs5">
           <property name="text">
-           <string>Hidden Grotto</string>
+           <string>IDs</string>
           </property>
          </widget>
         </item>
-        <item row="5" column="0">
+        <item row="1" column="0">
          <widget class="QPushButton" name="pushButtonEgg5">
           <property name="text">
            <string>Egg</string>
           </property>
          </widget>
         </item>
-        <item row="6" column="0">
-         <widget class="QPushButton" name="pushButtonIDs5">
+        <item row="5" column="0">
+         <widget class="QPushButton" name="pushButtonStatic5">
           <property name="text">
-           <string>TID/SID</string>
+           <string>Static</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="0">
+         <widget class="QPushButton" name="pushButtonDreamRadar">
+          <property name="text">
+           <string>Dream Radar</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="0">
+         <widget class="QPushButton" name="pushButtonHiddenGrotto">
+          <property name="text">
+           <string>Hidden Grotto</string>
           </property>
          </widget>
         </item>
@@ -156,7 +156,14 @@
         <string>Gen 8</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_5">
-        <item row="0" column="0">
+        <item row="5" column="0">
+         <widget class="QPushButton" name="pushButtonWild8">
+          <property name="text">
+           <string>Wild</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="0">
          <widget class="QPushButton" name="pushButtonStatic8">
           <property name="text">
            <string>Static</string>
@@ -164,16 +171,23 @@
          </widget>
         </item>
         <item row="1" column="0">
-         <widget class="QPushButton" name="pushButtonWild8">
+         <widget class="QPushButton" name="pushButtonEvent8">
           <property name="text">
-           <string>Wild</string>
+           <string>Event</string>
           </property>
          </widget>
         </item>
         <item row="2" column="0">
-         <widget class="QPushButton" name="pushButtonEvent8">
+         <widget class="QPushButton" name="pushButtonIDs8">
           <property name="text">
-           <string>Event</string>
+           <string>IDs</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="0">
+         <widget class="QPushButton" name="pushButtonEgg8">
+          <property name="text">
+           <string>Egg</string>
           </property>
          </widget>
         </item>
@@ -181,20 +195,6 @@
          <widget class="QPushButton" name="pushButtonRaid">
           <property name="text">
            <string>Raid</string>
-          </property>
-         </widget>
-        </item>
-        <item row="4" column="0">
-         <widget class="QPushButton" name="pushButtonEgg8">
-          <property name="text">
-           <string>Egg</string>
-          </property>
-         </widget>
-        </item>
-        <item row="5" column="0">
-         <widget class="QPushButton" name="pushButtonIDs8">
-          <property name="text">
-           <string>TID/SID</string>
           </property>
          </widget>
         </item>
@@ -389,6 +389,31 @@
    </property>
   </action>
  </widget>
+ <tabstops>
+  <tabstop>tabWidget</tabstop>
+  <tabstop>pushButtonEgg3</tabstop>
+  <tabstop>pushButtonGameCube</tabstop>
+  <tabstop>pushButtonIDs3</tabstop>
+  <tabstop>pushButtonStatic3</tabstop>
+  <tabstop>pushButtonWild3</tabstop>
+  <tabstop>pushButtonEgg4</tabstop>
+  <tabstop>pushButtonIDs4</tabstop>
+  <tabstop>pushButtonStatic4</tabstop>
+  <tabstop>pushButtonWild4</tabstop>
+  <tabstop>pushButtonDreamRadar</tabstop>
+  <tabstop>pushButtonEgg5</tabstop>
+  <tabstop>pushButtonEvent5</tabstop>
+  <tabstop>pushButtonHiddenGrotto</tabstop>
+  <tabstop>pushButtonIDs5</tabstop>
+  <tabstop>pushButtonStatic5</tabstop>
+  <tabstop>pushButtonWild5</tabstop>
+  <tabstop>pushButtonEgg8</tabstop>
+  <tabstop>pushButtonEvent8</tabstop>
+  <tabstop>pushButtonIDs8</tabstop>
+  <tabstop>pushButtonRaid</tabstop>
+  <tabstop>pushButtonStatic8</tabstop>
+  <tabstop>pushButtonWild8</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

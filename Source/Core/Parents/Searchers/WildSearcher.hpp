@@ -17,34 +17,34 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef JIRACHIPATTERN_HPP
-#define JIRACHIPATTERN_HPP
+#ifndef WILDSEARCHER_HPP
+#define WILDSEARCHER_HPP
 
-#include <Core/Util/Global.hpp>
-#include <QWidget>
+#include <Core/Enum/Encounter.hpp>
+#include <Core/Enum/Lead.hpp>
+#include <Core/Parents/Searchers/Searcher.hpp>
 
-class QStandardItemModel;
-
-namespace Ui
+class WildSearcher : public Searcher
 {
-    class JirachiPattern;
-}
-
-class JirachiPattern : public QWidget
-{
-    Q_OBJECT
 public:
-    explicit JirachiPattern(QWidget *parent = nullptr);
-    ~JirachiPattern() override;
+    WildSearcher(u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter) :
+        Searcher(tid, sid, genderRatio, method, filter)
+    {
+    }
 
-private:
-    Ui::JirachiPattern *ui;
-    QStandardItemModel *model;
+    void setEncounter(Encounter encounter)
+    {
+        this->encounter = encounter;
+    }
 
-    void setupModels();
+    void setLead(Lead lead)
+    {
+        this->lead = lead;
+    }
 
-private slots:
-    void generate();
+protected:
+    Encounter encounter;
+    Lead lead;
 };
 
-#endif // JIRACHIPATTERN_HPP
+#endif // WILDSEARCHER_HPP

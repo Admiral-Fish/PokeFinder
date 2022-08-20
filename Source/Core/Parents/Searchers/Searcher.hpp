@@ -17,43 +17,45 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef IDSTATE_HPP
-#define IDSTATE_HPP
+#ifndef SEARCHER_HPP
+#define SEARCHER_HPP
 
 #include <Core/Global.hpp>
+#include <vector>
 
-class IDState
+enum class Game : u32;
+enum class Method : u8;
+
+/**
+ * @brief Parent generator class that stores common attributes
+ *
+ * @tparam Filter Filter class used by the searcher
+ */
+template <class Filter>
+class Searcher
 {
 public:
-    IDState(u64 advances, u16 tid, u16 sid, u16 tsv) : advances(advances), sid(sid), tid(tid), tsv(tsv)
+    /**
+     * @brief Construct a new Searcher object
+     *
+     * @param tid Trainer ID
+     * @param sid Secret ID
+     * @param game Game version
+     * @param method Encounter method
+     * @param filter State filter
+     */
+    Searcher(u16 tid, u16 sid, Game version, Method method, const Filter &filter) :
+        version(version), sid(sid), tid(tid), tsv(tid ^ sid), method(method), filter(filter)
     {
-    }
-
-    u64 getAdvances() const
-    {
-        return advances;
-    }
-
-    u16 getSID() const
-    {
-        return sid;
-    }
-
-    u16 getTID() const
-    {
-        return tid;
-    }
-
-    u16 getTSV() const
-    {
-        return tsv;
     }
 
 protected:
-    u64 advances;
+    Game version;
     u16 sid;
     u16 tid;
     u16 tsv;
+    Method method;
+    Filter filter;
 };
 
-#endif // IDSTATE_HPP
+#endif // SEARCHER_HPP

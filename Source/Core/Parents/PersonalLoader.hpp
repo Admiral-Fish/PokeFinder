@@ -43,9 +43,9 @@ namespace PersonalLoader
      * @param species Pokemon species
      * @param form Pokemon form
      *
-     * @return PersonalInfo entry
+     * @return PersonalInfo entry pointer
      */
-    PersonalInfo getPersonal(Game version, u16 species, u8 form = 0);
+    const PersonalInfo *getPersonal(Game version, u16 species, u8 form = 0);
 }
 
 #endif // PERSONALLOADER_HPP

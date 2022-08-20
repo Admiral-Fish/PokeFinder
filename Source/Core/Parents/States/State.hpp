@@ -21,65 +21,183 @@
 #define STATE_HPP
 
 #include <Core/Global.hpp>
+#include <array>
 
+/**
+ * @brief Parent state that contains all the common information for a Pokemon across each game
+ */
 class State
 {
 public:
-    State() = default;
-
-    explicit State(u64 advances) : advances(advances)
-    {
-    }
-
-    u64 getAdvances() const
-    {
-        return advances;
-    }
-
-    u32 getPID() const
-    {
-        return pid;
-    }
-
-    u8 getIV(u8 index) const
-    {
-        return ivs[index];
-    }
-
+    /**
+     * @brief Returns the ability of the pokemon
+     *
+     * @return Pokemon ability
+     */
     u8 getAbility() const
     {
         return ability;
     }
 
+    /**
+     * @brief Returns the gender of the pokemon
+     *
+     * @return Pokemon gender
+     */
     u8 getGender() const
     {
         return gender;
     }
 
-    u8 getNature() const
+    u8 getHiddenPower() const
     {
-        return nature;
+        return hiddenPower;
     }
 
+    /**
+     * @brief Returns the specified IV of the pokemon
+     *
+     * @param index IV index to get
+     *
+     * @return Pokemon IV
+     */
+    u8 getIV(int index) const
+    {
+        return ivs[index];
+    }
+
+    /**
+     * @brief Returns the IVs of the pokemon
+     *
+     * @return Pokemon IVs
+     */
+    std::array<u8, 6> getIVs() const
+    {
+        return ivs;
+    }
+
+    /**
+     * @brief Returns the level of the pokemon
+     *
+     * @return Pokemon level
+     */
     u8 getLevel() const
     {
         return level;
     }
 
+    /**
+     * @brief Returns the nature of the pokemon
+     *
+     * @return Pokemon nature
+     */
+    u8 getNature() const
+    {
+        return nature;
+    }
+
+    /**
+     * @brief Returns the PID of the pokemon
+     *
+     * @return Pokemon PID
+     */
+    u32 getPID() const
+    {
+        return pid;
+    }
+
+    /**
+     * @brief Returns the shininess of the pokemon
+     *
+     * @return Pokemon shininess
+     */
     u8 getShiny() const
     {
         return shiny;
     }
 
+    /**
+     * @brief Returns the specified stat of the pokemon
+     *
+     * @param index Stat index to get
+     *
+     * @return Pokemon stat
+     */
+    u16 getStat(int index) const
+    {
+        return stats[index];
+    }
+
 protected:
-    u64 advances;
     u32 pid;
-    u8 ivs[6];
+    std::array<u16, 6> stats;
+    std::array<u8, 6> ivs;
     u8 ability;
     u8 gender;
+    u8 hiddenPower;
     u8 nature;
     u8 level;
     u8 shiny;
+};
+
+/**
+ * @brief Parent state class that provides additional information from the generator
+ */
+class GeneratorState : public State
+{
+public:
+    /**
+     * @brief Construct a new GeneratorState object
+     *
+     * @param advances Advances of the state
+     */
+    GeneratorState(u32 advances) : advances(advances)
+    {
+    }
+
+    /**
+     * @brief Returns the advances of the state
+     *
+     * @return State advances
+     */
+    u32 getAdvances() const
+    {
+        return advances;
+    }
+
+private:
+    u32 advances;
+};
+
+/**
+ * @brief Parent state class that provides additional information from the searcher
+ *
+ * @tparam Integer Integer type of the seed
+ */
+template <typename Integer>
+class SearcherState : public State
+{
+public:
+    /**
+     * @brief Construct a new SearcherState object
+     * @param seed Seed of the state
+     */
+    SearcherState(Integer seed) : seed(seed)
+    {
+    }
+
+    /**
+     * @brief Returns the seed of the state
+     *
+     * @return State seed
+     */
+    Integer getSeed() const
+    {
+        return seed;
+    }
+
+protected:
+    Integer seed;
 };
 
 #endif // STATE_HPP

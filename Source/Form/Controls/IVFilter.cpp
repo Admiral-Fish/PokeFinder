@@ -42,6 +42,7 @@ IVFilter::IVFilter(QWidget *parent) : QWidget(parent), ui(new Ui::IVFilter)
     connect(ui->labelSpA, &Label::pressed, this, &IVFilter::changeCompareSpA);
     connect(ui->labelSpD, &Label::pressed, this, &IVFilter::changeCompareSpD);
     connect(ui->labelSpe, &Label::pressed, this, &IVFilter::changeCompareSpe);
+    connect(ui->checkBoxShowStats, &QCheckBox::stateChanged, this, [&](int state) { emit showStatsChanged(state == Qt::Checked); });
     connect(ui->pushButtonIVCalculator, &QPushButton::clicked, this, &IVFilter::openIVCalculator);
 }
 

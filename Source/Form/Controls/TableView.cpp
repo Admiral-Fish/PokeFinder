@@ -28,11 +28,11 @@
 
 TableView::TableView(QWidget *parent) : QTableView(parent)
 {
-    QAction *outputTXT = new QAction(tr("Output Results to TXT"), this);
-    addAction(outputTXT);
+    auto *outputTXT = new QAction(tr("Output Results to TXT"), this);
+    addAction(outputTXT); // TODO: use convenience function when moving to Qt 6.3
 
-    QAction *outputCSV = new QAction(tr("Output Results to CSV"), this);
-    addAction(outputCSV);
+    auto *outputCSV = new QAction(tr("Output Results to CSV"), this);
+    addAction(outputCSV); // TODO: use convenience function when moving to Qt 6.3
 
     connect(outputTXT, &QAction::triggered, this, [=] { outputModel(); });
     connect(outputCSV, &QAction::triggered, this, [=] { outputModel(true); });

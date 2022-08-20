@@ -34,13 +34,16 @@ namespace Ui
 class IVFilter : public QWidget
 {
     Q_OBJECT
+signals:
+    void showStatsChanged(bool);
+
 public:
     /**
      * @brief Construct a new IVFilter object
      *
      * @param parent Parent widget, which takes memory ownership
      */
-    explicit IVFilter(QWidget *parent = nullptr);
+    IVFilter(QWidget *parent = nullptr);
 
     /**
      * @brief Destroy the IVFilter object

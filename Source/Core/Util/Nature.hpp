@@ -17,34 +17,25 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef PIDTOIVS_HPP
-#define PIDTOIVS_HPP
+#ifndef NATURE_HPP
+#define NATURE_HPP
 
-#include <Core/Util/Global.hpp>
-#include <QWidget>
+#include <Core/Global.hpp>
 
-class PIDIVModel;
-
-namespace Ui
+/**
+ * @brief Contains the nature modifiers that get applied to stats
+ */
+namespace Nature
 {
-    class PIDIV;
+    /**
+     * @brief Returns the modifier for the given \p nature and \p index
+     *
+     * @param nature Pokemon nature
+     * @param index Pokemon stat index
+     *
+     * @return Nature stat modifier
+     */
+    float getNatureModifier(u8 nature, u8 index);
 }
 
-class PIDIV : public QWidget
-{
-    Q_OBJECT
-public:
-    explicit PIDIV(QWidget *parent = nullptr);
-    ~PIDIV() override;
-
-private:
-    Ui::PIDIV *ui;
-    PIDIVModel *model;
-
-    void setupModels();
-
-private slots:
-    void generate();
-};
-
-#endif // PIDTOIVS_HPP
+#endif // NATURE_HPP

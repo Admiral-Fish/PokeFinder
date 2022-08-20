@@ -20,22 +20,50 @@
 #ifndef STATICGENERATOR_HPP
 #define STATICGENERATOR_HPP
 
-#include <Core/Parents/Generators/Generator.hpp>
 #include <Core/Enum/Lead.hpp>
+#include <Core/Parents/Generators/Generator.hpp>
 
-class StaticGenerator : public Generator
+/**
+ * @brief Parent generator class for static encounters
+ *
+ * @tparam Filter Filter class that is used by the generator
+ */
+template <class Filter>
+class StaticGenerator : public Generator<Filter>
 {
 public:
-    StaticGenerator(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter) :
-        Generator(initialAdvances, maxAdvances, tid, sid, genderRatio, method, filter), lead(Lead::None)
+    /**
+     * @brief Construct a new StaticGenerator object
+     *
+     * @param initialAdvances Initial number of advances
+     * @param maxAdvances Maximum number of advances
+     * @param offset Number of advances to offset
+     * @param tid Trainer ID
+     * @param sid Secret ID
+     * @param version Game version
+     * @param method Encounter method
+     * @param filter State filter
+     */
+    StaticGenerator(u32 initialAdvances, u32 maxAdvances, u32 offset, u16 tid, u16 sid, Game version, Method method, const Filter &filter) :
+        Generator<Filter>(initialAdvances, maxAdvances, offset, tid, sid, version, method, filter), lead(Lead::None)
     {
     }
 
+    /**
+     * @brief Sets the lead type used by the generator
+     *
+     * @param lead Lead type
+     */
     void setLead(Lead lead)
     {
         this->lead = lead;
     }
 
+    /**
+     * @brief Sets the synchronize nature used by the generator
+     *
+     * @param synchNature Synchronize nature
+     */
     void setSynchNature(u8 synchNature)
     {
         this->synchNature = synchNature;

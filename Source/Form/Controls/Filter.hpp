@@ -36,6 +36,9 @@ namespace Ui
 class Filter : public QWidget
 {
     Q_OBJECT
+signals:
+    void showStatsChanged(bool);
+
 public:
     /**
      * @brief Construct a new Filter object
@@ -50,18 +53,23 @@ public:
     ~Filter() override;
 
     /**
-     * @brief Gets lower bound IVs to filter by
+     * @brief Disables specified controls
      *
-     * @return Array of minimum IVs
+     * @param control Controls value
      */
-    std::array<u8, 6> getMinIVs() const;
+    void disableControls(Controls control);
 
     /**
-     * @brief Gets upper bound IVs to filter by
+     * @brief Enables specified controls
      *
-     * @return Array of maximum IVs
+     * @param control Controls value
      */
-    std::array<u8, 6> getMaxIVs() const;
+    void enableControls(Controls control);
+
+    /**
+     * @brief Enables showing the hidden ability
+     */
+    void enableHiddenAbility();
 
     /**
      * @brief Gets ability to filter by
@@ -69,68 +77,6 @@ public:
      * @return Ability value
      */
     u8 getAbility() const;
-
-    /**
-     * @brief Gets gender to filter by
-     *
-     * @return Gender value
-     */
-    u8 getGender() const;
-
-    /**
-     * @brief Gets encounter slots to filter by
-     *
-     * @return Vector of encounter slots
-     */
-    std::vector<bool> getEncounterSlots();
-
-    /**
-     * @brief Sets encounter slots that are available
-     *
-     * @param encounterSlots Vector of encounter slots
-     */
-    void setEncounterSlots(const std::vector<std::string> &encounterSlots) const;
-
-    /**
-     * @brief Sets encounter slots that are checked and not checked
-     *
-     * @param encounterSlots Vector of encounter slots
-     */
-    void toggleEncounterSlots(const std::vector<bool> &encounterSlots) const;
-
-    /**
-     * @brief Unchecks all encounter slots
-     */
-    void resetEncounterSlots() const;
-
-    /**
-     * @brief Gets hidden powers to filter by
-     *
-     * @return Vector of hidden powers
-     */
-    std::vector<bool> getHiddenPowers();
-
-    /**
-     * @brief Get natures to filter by
-     *
-     * @return Vector of natures
-     */
-    std::vector<bool> getNatures();
-
-    /**
-     * @brief Gets shiny status to filter by
-     *
-     * @return Shiny value
-     */
-    u8 getShiny() const;
-
-    /**
-     * @brief Gets if delay should be added
-     *
-     * @return true Delay is enabled
-     * @return false Delay is not enabled
-     */
-    bool useDelay() const;
 
     /**
      * @brief Gets delay to add
@@ -148,23 +94,80 @@ public:
     bool getDisableFilters() const;
 
     /**
-     * @brief Enables specified controls
+     * @brief Gets encounter slots to filter by
      *
-     * @param control Controls value
+     * @return Vector of encounter slots
      */
-    void enableControls(Controls control);
+    std::vector<bool> getEncounterSlots();
 
     /**
-     * @brief Disables specified controls
+     * @brief Gets gender to filter by
      *
-     * @param control Controls value
+     * @return Gender value
      */
-    void disableControls(Controls control);
+    u8 getGender() const;
 
     /**
-     * @brief Enables showing the hidden ability
+     * @brief Gets hidden powers to filter by
+     *
+     * @return Vector of hidden powers
      */
-    void enableHiddenAbility();
+    std::array<bool, 16> getHiddenPowers();
+
+    /**
+     * @brief Gets upper bound IVs to filter by
+     *
+     * @return Array of maximum IVs
+     */
+    std::array<u8, 6> getMaxIVs() const;
+
+    /**
+     * @brief Gets lower bound IVs to filter by
+     *
+     * @return Array of minimum IVs
+     */
+    std::array<u8, 6> getMinIVs() const;
+
+    /**
+     * @brief Get natures to filter by
+     *
+     * @return Vector of natures
+     */
+    std::array<bool, 25> getNatures();
+
+    /**
+     * @brief Gets shiny status to filter by
+     *
+     * @return Shiny value
+     */
+    u8 getShiny() const;
+
+    /**
+     * @brief Unchecks all encounter slots
+     */
+    void resetEncounterSlots() const;
+
+    /**
+     * @brief Sets encounter slots that are available
+     *
+     * @param encounterSlots Vector of encounter slots
+     */
+    void setEncounterSlots(const std::vector<std::string> &encounterSlots) const;
+
+    /**
+     * @brief Sets encounter slots that are checked and not checked
+     *
+     * @param encounterSlots Vector of encounter slots
+     */
+    void toggleEncounterSlots(const std::vector<bool> &encounterSlots) const;
+
+    /**
+     * @brief Gets if delay should be added
+     *
+     * @return true Delay is enabled
+     * @return false Delay is not enabled
+     */
+    bool useDelay() const;
 
 private:
     Ui::Filter *ui;

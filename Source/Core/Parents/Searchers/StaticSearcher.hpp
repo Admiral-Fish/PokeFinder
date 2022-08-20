@@ -17,59 +17,47 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef GENERATOR_HPP
-#define GENERATOR_HPP
+#ifndef STATICSEARCHER_HPP
+#define STATICSEARCHER_HPP
 
-#include <Core/Global.hpp>
-#include <vector>
-
-enum class Encounter : u8;
-enum class Game : u32;
-enum class Method : u8;
+#include <Core/Enum/Lead.hpp>
+#include <Core/Parents/Searchers/Searcher.hpp>
 
 /**
- * @brief Parent generator class that stores common attributes
+ * @brief Parent searcher class for static encounters
  *
- * @tparam Filter Filter class that is used by the generator
+ * @tparam Filter Filter class that is used by the searcher
  */
 template <class Filter>
-class Generator
+class StaticSearcher : public Searcher<Filter>
 {
 public:
     /**
-     * @brief Construct a new Generator object
+     * @brief Construct a new StaticGenerator object
      *
-     * @param initialAdvances Initial number of advances
-     * @param maxAdvances Maximum number of advances
-     * @param offset Number of advances to offset
      * @param tid Trainer ID
      * @param sid Secret ID
+     * @param version Game version
      * @param method Encounter method
      * @param filter State filter
      */
-    Generator(u32 initialAdvances, u32 maxAdvances, u32 offset, u16 tid, u16 sid, Game version, Method method, const Filter &filter) :
-        version(version),
-        initialAdvances(initialAdvances),
-        maxAdvances(maxAdvances),
-        offset(offset),
-        sid(sid),
-        tid(tid),
-        tsv(tid ^ sid),
-        method(method),
-        filter(filter)
+    StaticSearcher(u16 tid, u16 sid, Game version, Method method, const Filter &filter) :
+        Searcher<Filter>(tid, sid, version, method, filter)
     {
     }
 
+    /**
+     * @brief Sets the lead type used by the generator
+     *
+     * @param lead Lead type
+     */
+    void setLead(Lead lead)
+    {
+        this->lead = lead;
+    }
+
 protected:
-    Game version;
-    u32 initialAdvances;
-    u32 maxAdvances;
-    u32 offset;
-    u16 sid;
-    u16 tid;
-    u16 tsv;
-    Method method;
-    Filter filter;
+    Lead lead;
 };
 
-#endif // GENERATOR_HPP
+#endif // STATICSEARCHER_HPP

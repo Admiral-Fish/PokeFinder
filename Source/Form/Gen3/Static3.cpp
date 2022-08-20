@@ -21,15 +21,16 @@
 #include "ui_Static3.h"
 #include <Core/Enum/Game.hpp>
 #include <Core/Enum/Method.hpp>
+#include <Core/Gen3/Encounters3.hpp>
 #include <Core/Gen3/Generators/StaticGenerator3.hpp>
 #include <Core/Gen3/Profile3.hpp>
 #include <Core/Gen3/Searchers/StaticSearcher3.hpp>
 #include <Core/Parents/ProfileLoader.hpp>
+#include <Core/Parents/StaticTemplate.hpp>
 #include <Core/Util/Translator.hpp>
-#include <Forms/Controls/Controls.hpp>
-#include <Forms/Gen3/Profile/ProfileManager3.hpp>
-#include <Forms/Gen3/Tools/SeedTime3.hpp>
-#include <Forms/Models/Gen3/StaticModel3.hpp>
+#include <Form/Controls/Controls.hpp>
+#include <Form/Gen3/Profile/ProfileManager3.hpp>
+#include <Model/Gen3/StaticModel3.hpp>
 #include <QMenu>
 #include <QSettings>
 #include <QThread>
@@ -40,48 +41,8 @@ Static3::Static3(QWidget *parent) : QWidget(parent), ui(new Ui::Static3)
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
 
-    setupModels();
-}
-
-Static3::~Static3()
-{
-    QSettings setting;
-    setting.beginGroup("static3");
-    setting.setValue("profile", ui->comboBoxProfiles->currentIndex());
-    setting.setValue("geometry", this->saveGeometry());
-    setting.endGroup();
-
-    delete ui;
-}
-
-void Static3::updateProfiles()
-{
-    profiles = { Profile3() };
-    auto completeProfiles = ProfileLoader3::getProfiles();
-    std::copy_if(completeProfiles.begin(), completeProfiles.end(), std::back_inserter(profiles),
-                 [](const Profile3 &profile) { return (profile.getVersion() & Game::GC) != Game::GC; });
-
-    ui->comboBoxProfiles->clear();
-    for (const auto &profile : profiles)
-    {
-        ui->comboBoxProfiles->addItem(QString::fromStdString(profile.getName()));
-    }
-
-    QSettings setting;
-    int val = setting.value("static3/profile", 0).toInt();
-    if (val < ui->comboBoxProfiles->count())
-    {
-        ui->comboBoxProfiles->setCurrentIndex(val);
-    }
-}
-
-void Static3::setupModels()
-{
     generatorModel = new StaticGeneratorModel3(ui->tableViewGenerator);
     searcherModel = new StaticSearcherModel3(ui->tableViewSearcher);
-
-    generatorMenu = new QMenu(ui->tableViewGenerator);
-    searcherMenu = new QMenu(ui->tableViewSearcher);
 
     ui->tableViewGenerator->setModel(generatorModel);
     ui->tableViewSearcher->setModel(searcherModel);
@@ -98,31 +59,64 @@ void Static3::setupModels()
     ui->filterGenerator->disableControls(Controls::EncounterSlots);
     ui->filterSearcher->disableControls(Controls::EncounterSlots | Controls::UseDelay | Controls::DisableFilter);
 
-    QAction *outputTXTGenerator = generatorMenu->addAction(tr("Output Results to TXT"));
-    QAction *outputCSVGenerator = generatorMenu->addAction(tr("Output Results to CSV"));
-    connect(outputTXTGenerator, &QAction::triggered, this, [=] { ui->tableViewGenerator->outputModel(); });
-    connect(outputCSVGenerator, &QAction::triggered, this, [=] { ui->tableViewGenerator->outputModel(true); });
+    auto *seedTime = new QAction(tr("Generate times for seed"), ui->tableViewSearcher);
+    ui->tableViewSearcher->addAction(seedTime); // TODO: use convenience function when moving to Qt 6.3
 
-    QAction *seedToTime = searcherMenu->addAction(tr("Generate times for seed"));
-    QAction *outputTXTSearcher = searcherMenu->addAction(tr("Output Results to TXT"));
-    QAction *outputCSVSearcher = searcherMenu->addAction(tr("Output Results to CSV"));
-    connect(seedToTime, &QAction::triggered, this, &Static3::seedToTime);
-    connect(outputTXTSearcher, &QAction::triggered, this, [=] { ui->tableViewSearcher->outputModel(); });
-    connect(outputCSVSearcher, &QAction::triggered, this, [=] { ui->tableViewSearcher->outputModel(true); });
-
-    connect(ui->comboBoxProfiles, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &Static3::profilesIndexChanged);
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Static3::generate);
     connect(ui->pushButtonSearch, &QPushButton::clicked, this, &Static3::search);
-    connect(ui->tableViewGenerator, &QTableView::customContextMenuRequested, this, &Static3::tableViewGeneratorContextMenu);
-    connect(ui->tableViewSearcher, &QTableView::customContextMenuRequested, this, &Static3::tableViewSearcherContextMenu);
     connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &Static3::profileManager);
+    connect(ui->comboBoxProfiles, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &Static3::profilesIndexChanged);
+    connect(ui->comboBoxGeneratorCategory, QOverload<int>::of(&QComboBox::currentIndexChanged), this,
+            &Static3::generatorCategoryIndexChanged);
+    connect(ui->comboBoxGeneratorPokemon, QOverload<int>::of(&QComboBox::currentIndexChanged), this,
+            &Static3::generatorPokemonIndexChanged);
+    connect(ui->comboBoxSearcherCategory, QOverload<int>::of(&QComboBox::currentIndexChanged), this,
+            &Static3::searcherCategoryIndexChanged);
+    connect(ui->comboBoxSearcherPokemon, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &Static3::searcherPokemonIndexChanged);
+    connect(ui->comboBoxProfiles, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &Static3::profilesIndexChanged);
+    connect(ui->filterGenerator, &Filter::showStatsChanged, generatorModel, &StaticGeneratorModel3::setShowStats);
+    connect(ui->filterSearcher, &Filter::showStatsChanged, searcherModel, &StaticSearcherModel3::setShowStats);
 
     updateProfiles();
+    generatorCategoryIndexChanged(0);
+    searcherCategoryIndexChanged(0);
 
     QSettings setting;
     if (setting.contains("static3/geometry"))
     {
         this->restoreGeometry(setting.value("static3/geometry").toByteArray());
+    }
+}
+
+Static3::~Static3()
+{
+    QSettings setting;
+    setting.beginGroup("static3");
+    setting.setValue("profile", ui->comboBoxProfiles->currentIndex());
+    setting.setValue("geometry", this->saveGeometry());
+    setting.endGroup();
+
+    delete ui;
+}
+
+void Static3::updateProfiles()
+{
+    profiles = { Profile3("None", Game::Emerald, 12345, 54321, false) };
+    auto completeProfiles = ProfileLoader3::getProfiles();
+    std::copy_if(completeProfiles.begin(), completeProfiles.end(), std::back_inserter(profiles),
+                 [](const Profile3 &profile) { return (profile.getVersion() & Game::GC) == Game::None; });
+
+    ui->comboBoxProfiles->clear();
+    for (const auto &profile : profiles)
+    {
+        ui->comboBoxProfiles->addItem(QString::fromStdString(profile.getName()));
+    }
+
+    QSettings setting;
+    int val = setting.value("static3/profile", 0).toInt();
+    if (val < ui->comboBoxProfiles->count())
+    {
+        ui->comboBoxProfiles->setCurrentIndex(val);
     }
 }
 
@@ -135,23 +129,93 @@ void Static3::generate()
     u32 maxAdvances = ui->textBoxGeneratorMaxAdvances->getUInt();
     u16 tid = currentProfile->getTID();
     u16 sid = currentProfile->getSID();
-    u8 genderRatio = ui->filterGenerator->getGenderRatio();
-    auto method = static_cast<Method>(ui->comboBoxGeneratorMethod->getCurrentInt());
+    auto method = ui->comboBoxGeneratorMethod->getEnum<Method>();
     u32 offset = 0;
     if (ui->filterGenerator->useDelay())
     {
         offset = ui->filterGenerator->getDelay();
     }
 
-    StateFilter filter(ui->filterGenerator->getGender(), ui->filterGenerator->getAbility(), ui->filterGenerator->getShiny(),
-                       ui->filterGenerator->getDisableFilters(), ui->filterGenerator->getMinIVs(), ui->filterGenerator->getMaxIVs(),
-                       ui->filterGenerator->getNatures(), ui->filterGenerator->getHiddenPowers(), {});
+    StateFilter3 filter(ui->filterGenerator->getGender(), ui->filterGenerator->getAbility(), ui->filterGenerator->getShiny(),
+                        ui->filterGenerator->getDisableFilters(), ui->filterGenerator->getMinIVs(), ui->filterGenerator->getMaxIVs(),
+                        ui->filterGenerator->getNatures(), ui->filterGenerator->getHiddenPowers());
 
-    StaticGenerator3 generator(initialAdvances, maxAdvances, tid, sid, genderRatio, method, filter);
-    generator.setOffset(offset);
+    StaticGenerator3 generator(initialAdvances, maxAdvances, offset, tid, sid, currentProfile->getVersion(), method, filter);
 
-    auto states = generator.generate(seed);
+    const StaticTemplate *staticTemplate
+        = Encounters3::getStaticEncounter(ui->comboBoxGeneratorCategory->currentIndex(), ui->comboBoxGeneratorPokemon->getCurrentInt());
+
+    auto states = generator.generate(seed, staticTemplate);
     generatorModel->addItems(states);
+}
+
+void Static3::generatorCategoryIndexChanged(int index)
+{
+    if (index >= 0)
+    {
+        size_t size;
+        const StaticTemplate *templates = Encounters3::getStaticEncounters(index, &size);
+
+        ui->comboBoxGeneratorPokemon->clear();
+        for (size_t i = 0; i < size; i++)
+        {
+            if ((currentProfile->getVersion() & templates[i].getVersion()) != Game::None)
+            {
+                ui->comboBoxGeneratorPokemon->addItem(QString::fromStdString(*Translator::getSpecie(templates[i].getSpecie())), i);
+            }
+        }
+    }
+}
+
+void Static3::generatorPokemonIndexChanged(int index)
+{
+    if (index >= 0)
+    {
+        const StaticTemplate *staticTemplate
+            = Encounters3::getStaticEncounter(ui->comboBoxGeneratorCategory->currentIndex(), ui->comboBoxGeneratorPokemon->getCurrentInt());
+        ui->spinBoxGeneratorLevel->setValue(staticTemplate->getLevel());
+    }
+}
+
+void Static3::profileManager()
+{
+    auto *manager = new ProfileManager3();
+    connect(manager, &ProfileManager3::updateProfiles, this, [=] { emit alertProfiles(3); });
+    manager->show();
+}
+
+void Static3::profilesIndexChanged(int index)
+{
+    if (index >= 0)
+    {
+        currentProfile = &profiles[index];
+
+        if (currentProfile->getDeadBattery())
+        {
+            ui->textBoxGeneratorSeed->setText("5a0");
+        }
+
+        ui->labelProfileTIDValue->setText(QString::number(currentProfile->getTID()));
+        ui->labelProfileSIDValue->setText(QString::number(currentProfile->getSID()));
+        ui->labelProfileGameValue->setText(QString::fromStdString(*Translator::getGame(currentProfile->getVersion())));
+
+        if ((currentProfile->getVersion() & Game::RS) != Game::None)
+        {
+            ui->comboBoxGeneratorCategory->removeItem(3);
+            ui->comboBoxSearcherCategory->removeItem(3);
+        }
+        else
+        {
+            if (ui->comboBoxGeneratorCategory->count() == 3)
+            {
+                ui->comboBoxGeneratorCategory->addItem(tr("Mythics"));
+            }
+            if (ui->comboBoxSearcherCategory->count() == 3)
+            {
+                ui->comboBoxSearcherCategory->addItem(tr("Mythics"));
+            }
+        }
+    }
 }
 
 void Static3::search()
@@ -164,15 +228,16 @@ void Static3::search()
     std::array<u8, 6> min = ui->filterSearcher->getMinIVs();
     std::array<u8, 6> max = ui->filterSearcher->getMaxIVs();
 
-    StateFilter filter(ui->filterSearcher->getGender(), ui->filterSearcher->getAbility(), ui->filterSearcher->getShiny(), false, min, max,
-                       ui->filterSearcher->getNatures(), ui->filterSearcher->getHiddenPowers(), {});
+    StateFilter3 filter(ui->filterSearcher->getGender(), ui->filterSearcher->getAbility(), ui->filterSearcher->getShiny(), false, min, max,
+                        ui->filterSearcher->getNatures(), ui->filterSearcher->getHiddenPowers());
 
     u16 tid = currentProfile->getTID();
     u16 sid = currentProfile->getSID();
-    u8 genderRatio = ui->filterSearcher->getGenderRatio();
-    auto method = static_cast<Method>(ui->comboBoxSearcherMethod->getCurrentInt());
+    auto method = ui->comboBoxSearcherMethod->getEnum<Method>();
+    const StaticTemplate *staticTemplate
+        = Encounters3::getStaticEncounter(ui->comboBoxSearcherCategory->currentIndex(), ui->comboBoxSearcherPokemon->getCurrentInt());
 
-    auto *searcher = new StaticSearcher3(tid, sid, genderRatio, method, filter);
+    auto *searcher = new StaticSearcher3(tid, sid, currentProfile->getVersion(), method, filter);
 
     int maxProgress = 1;
     for (u8 i = 0; i < 6; i++)
@@ -181,7 +246,7 @@ void Static3::search()
     }
     ui->progressBar->setRange(0, maxProgress);
 
-    auto *thread = QThread::create([=] { searcher->startSearch(min, max); });
+    auto *thread = QThread::create([=] { searcher->startSearch(min, max, staticTemplate); });
     connect(thread, &QThread::finished, thread, &QThread::deleteLater);
     connect(ui->pushButtonCancel, &QPushButton::clicked, [searcher] { searcher->cancelSearch(); });
 
@@ -204,52 +269,30 @@ void Static3::search()
     timer->start(1000);
 }
 
-void Static3::profilesIndexChanged(int index)
+void Static3::searcherCategoryIndexChanged(int index)
 {
     if (index >= 0)
     {
-        currentProfile = &profiles[index];
+        size_t size;
+        const StaticTemplate *templates = Encounters3::getStaticEncounters(index, &size);
 
-        if (currentProfile->getDeadBattery())
+        ui->comboBoxSearcherPokemon->clear();
+        for (size_t i = 0; i < size; i++)
         {
-            ui->textBoxGeneratorSeed->setText("5a0");
+            if ((currentProfile->getVersion() & templates[i].getVersion()) != Game::None)
+            {
+                ui->comboBoxSearcherPokemon->addItem(QString::fromStdString(*Translator::getSpecie(templates[i].getSpecie())), i);
+            }
         }
-
-        ui->labelProfileTIDValue->setText(QString::number(currentProfile->getTID()));
-        ui->labelProfileSIDValue->setText(QString::number(currentProfile->getSID()));
-        ui->labelProfileGameValue->setText(QString::fromStdString(currentProfile->getVersionString()));
     }
 }
 
-void Static3::tableViewGeneratorContextMenu(QPoint pos)
+void Static3::searcherPokemonIndexChanged(int index)
 {
-    if (generatorModel->rowCount() > 0)
+    if (index >= 0)
     {
-        generatorMenu->popup(ui->tableViewGenerator->viewport()->mapToGlobal(pos));
+        const StaticTemplate *staticTemplate
+            = Encounters3::getStaticEncounter(ui->comboBoxSearcherCategory->currentIndex(), ui->comboBoxSearcherPokemon->getCurrentInt());
+        ui->spinBoxSearcherLevel->setValue(staticTemplate->getLevel());
     }
-}
-
-void Static3::tableViewSearcherContextMenu(QPoint pos)
-{
-    if (searcherModel->rowCount() > 0)
-    {
-        searcherMenu->popup(ui->tableViewSearcher->viewport()->mapToGlobal(pos));
-    }
-}
-
-void Static3::seedToTime()
-{
-    QModelIndex index = ui->tableViewSearcher->currentIndex();
-    index = searcherModel->index(index.row(), 0);
-    u32 seed = searcherModel->data(index).toString().toUInt(nullptr, 16);
-
-    auto *seedToTime = new SeedTime3(seed);
-    seedToTime->show();
-}
-
-void Static3::profileManager()
-{
-    auto *manager = new ProfileManager3();
-    connect(manager, &ProfileManager3::updateProfiles, this, [=] { emit alertProfiles(3); });
-    manager->show();
 }

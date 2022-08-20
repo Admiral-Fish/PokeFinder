@@ -54,9 +54,16 @@ void CheckList::setup(const std::vector<std::string> &items)
 std::vector<bool> CheckList::getChecked() const
 {
     std::vector<bool> result;
-    for (int i = 0; i < model->rowCount(); i++)
+    if (checkState() == Qt::PartiallyChecked)
     {
-        result.emplace_back(model->item(i)->checkState() == Qt::Checked);
+        for (int i = 0; i < model->rowCount(); i++)
+        {
+            result.emplace_back(model->item(i)->checkState() == Qt::Checked);
+        }
+    }
+    else
+    {
+        result = std::vector<bool>(model->rowCount(), true);
     }
     return result;
 }
