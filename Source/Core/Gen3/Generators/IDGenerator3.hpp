@@ -27,7 +27,7 @@ class IDState;
 class IDGenerator3 : public IDGenerator
 {
 public:
-    IDGenerator3(u64 initialAdvances, u64 maxAdvances, const IDFilter &filter);
+    IDGenerator3(u32 initialAdvances, u32 maxAdvances, const IDFilter &filter);
     std::vector<IDState> generateXDColo(u32 seed);
     std::vector<IDState> generateFRLGE(u16 tid);
     std::vector<IDState> generateRS(u16 seed);

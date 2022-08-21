@@ -12,6 +12,8 @@ set(CMAKE_AUTORCC ON)
 
 add_executable(PokeFinderTest
     Gen3/IDGenerator3Test.cpp
+    Gen3/StaticGenerator3Test.cpp
+    Gen3/StaticSearcher3Test.cpp
     RNG/LCRNGTest.cpp
     RNG/LCRNG64Test.cpp
     RNG/MTTest.cpp

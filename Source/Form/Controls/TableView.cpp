@@ -57,6 +57,10 @@ void TableView::keyPressEvent(QKeyEvent *event)
     {
         setSelectionToClipBoard();
     }
+    else
+    {
+        QTableView::keyPressEvent(event);
+    }
 }
 
 void TableView::resizeEvent(QResizeEvent *event)

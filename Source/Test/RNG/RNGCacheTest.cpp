@@ -31,7 +31,7 @@ void RNGCacheTest::ivs_data()
     QTest::addColumn<std::vector<u8>>("ivs");
     QTest::addColumn<std::vector<u32>>("results");
 
-    nlohmann::json data = readData("rng", "rngcache", "ivs");
+    json data = readData("rng", "rngcache", "ivs");
     for (const auto &d : data)
     {
         QTest::newRow(d["name"].get<std::string>().data())
@@ -55,7 +55,7 @@ void RNGCacheTest::pid_data()
     QTest::addColumn<u32>("pid");
     QTest::addColumn<std::vector<u32>>("results");
 
-    nlohmann::json data = readData("rng", "rngcache", "pid");
+    json data = readData("rng", "rngcache", "pid");
     for (const auto &d : data)
     {
         QTest::newRow(d["name"].get<std::string>().data())

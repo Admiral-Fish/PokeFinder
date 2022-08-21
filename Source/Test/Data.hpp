@@ -22,6 +22,8 @@
 
 #include <nlohmann/json.hpp>
 
-nlohmann::json readData(const std::string &file, const std::string &test, const std::string &category);
+using json = nlohmann::json;
+
+json readData(const std::string &file, const std::string &test, const std::string &category);
 
 #endif // DATA_HPP

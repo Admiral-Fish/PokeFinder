@@ -20,6 +20,8 @@
 #include <QDebug>
 #include <QTest>
 #include <Test/Gen3/IDGenerator3Test.hpp>
+#include <Test/Gen3/StaticGenerator3Test.hpp>
+#include <Test/Gen3/StaticSearcher3Test.hpp>
 #include <Test/RNG/LCRNG64Test.hpp>
 #include <Test/RNG/LCRNGTest.hpp>
 #include <Test/RNG/MTTest.hpp>
@@ -53,6 +55,8 @@ int main()
 
     // Gen 3
     status += runTest<IDGenerator3Test>(fails);
+    status += runTest<StaticGenerator3Test>(fails);
+    status += runTest<StaticSearcher3Test>(fails);
 
     // RNG Tests
     status += runTest<LCRNGTest>(fails);

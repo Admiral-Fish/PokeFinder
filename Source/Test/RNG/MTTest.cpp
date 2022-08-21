@@ -28,7 +28,7 @@ void MTTest::advance_data()
     QTest::addColumn<u32>("advances");
     QTest::addColumn<u32>("result");
 
-    nlohmann::json data = readData("rng", "mt", "advance");
+    json data = readData("rng", "mt", "advance");
     for (const auto &d : data)
     {
         QTest::newRow(d["name"].get<std::string>().data()) << d["seed"].get<u32>() << d["advances"].get<u32>() << d["result"].get<u32>();
@@ -51,7 +51,7 @@ void MTTest::next_data()
     QTest::addColumn<u32>("seed");
     QTest::addColumn<u32>("result");
 
-    nlohmann::json data = readData("rng", "mt", "next");
+    json data = readData("rng", "mt", "next");
     for (const auto &d : data)
     {
         QTest::newRow(d["name"].get<std::string>().data()) << d["seed"].get<u32>() << d["result"].get<u32>();

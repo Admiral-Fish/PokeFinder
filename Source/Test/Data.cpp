@@ -20,9 +20,9 @@
 #include "Data.hpp"
 #include <QFile>
 
-nlohmann::json readData(const std::string &file, const std::string &test, const std::string &category)
+json readData(const std::string &file, const std::string &test, const std::string &category)
 {
-    nlohmann::json j;
+    json j;
 
     QFile f(QString(":/data/%1.json").arg(QString::fromStdString(file)));
     if (f.open(QIODevice::ReadOnly))

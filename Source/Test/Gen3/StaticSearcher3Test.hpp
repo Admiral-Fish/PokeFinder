@@ -17,25 +17,17 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef IDGENERATOR_HPP
-#define IDGENERATOR_HPP
+#ifndef STATICSEARCHER3TEST_HPP
+#define STATICSEARCHER3TEST_HPP
 
-#include <Core/Global.hpp>
-#include <Core/Parents/Filters/IDFilter.hpp>
-#include <vector>
+#include <QObject>
 
-class IDGenerator
+class StaticSearcher3Test : public QObject
 {
-public:
-    IDGenerator(u32 initialAdvances, u32 maxAdvances, const IDFilter &filter) :
-        filter(filter), initialAdvances(initialAdvances), maxAdvances(maxAdvances)
-    {
-    }
-
-protected:
-    IDFilter filter;
-    u32 initialAdvances;
-    u32 maxAdvances;
+    Q_OBJECT
+private slots:
+    void generate_data();
+    void generate();
 };
 
-#endif // IDGENERATOR_HPP
+#endif // STATICSEARCHER3TEST_HPP

@@ -1,0 +1,155 @@
+{
+    "datetime": {
+        "addSecs": [
+            {
+                "name": "1 second",
+                "seconds": 1,
+                "year": 2000,
+                "month": 1,
+                "day": 1,
+                "hour": 0,
+                "minute": 0,
+                "second": 1
+            },
+            {
+                "name": "1 minute",
+                "seconds": 60,
+                "year": 2000,
+                "month": 1,
+                "day": 1,
+                "hour": 0,
+                "minute": 1,
+                "second": 0
+            },
+            {
+                "name": "1 hour",
+                "seconds": 3600,
+                "year": 2000,
+                "month": 1,
+                "day": 1,
+                "hour": 1,
+                "minute": 0,
+                "second": 0
+            },
+            {
+                "name": "1 day",
+                "seconds": 86400,
+                "year": 2000,
+                "month": 1,
+                "day": 2,
+                "hour": 0,
+                "minute": 0,
+                "second": 0
+            }
+        ]
+    },
+    "date": {
+        "getParts": [
+            {
+                "name": "Jan 1, 2000",
+                "jd": 2451545,
+                "results": [
+                    2000,
+                    1,
+                    1
+                ]
+            },
+            {
+                "name": "Dec 31, 2099",
+                "jd": 2488069,
+                "results": [
+                    2099,
+                    12,
+                    31
+                ]
+            }
+        ],
+        "dayOfWeek": [
+            {
+                "name": "Monday",
+                "year": 2000,
+                "month": 1,
+                "day": 3,
+                "result": 1
+            },
+            {
+                "name": "Tuesday",
+                "year": 2000,
+                "month": 1,
+                "day": 4,
+                "result": 2
+            },
+            {
+                "name": "Wednesday",
+                "year": 2000,
+                "month": 1,
+                "day": 5,
+                "result": 3
+            },
+            {
+                "name": "Thursday",
+                "year": 2000,
+                "month": 1,
+                "day": 6,
+                "result": 4
+            },
+            {
+                "name": "Friday",
+                "year": 2000,
+                "month": 1,
+                "day": 7,
+                "result": 5
+            },
+            {
+                "name": "Saturday",
+                "year": 2000,
+                "month": 1,
+                "day": 8,
+                "result": 6
+            },
+            {
+                "name": "Sunday",
+                "year": 2000,
+                "month": 1,
+                "day": 9,
+                "result": 0
+            }
+        ]
+    },
+    "time": {
+        "addSeconds": [
+            {
+                "name": "1 second",
+                "seconds": 1,
+                "expectedDays": 0,
+                "hour": 0,
+                "minute": 0,
+                "second": 1
+            },
+            {
+                "name": "1 minute",
+                "seconds": 60,
+                "expectedDays": 0,
+                "hour": 0,
+                "minute": 1,
+                "second": 0
+            },
+            {
+                "name": "1 hour",
+                "seconds": 3600,
+                "expectedDays": 0,
+                "hour": 1,
+                "minute": 0,
+                "second": 0
+            },
+            {
+                "name": "1 day",
+                "seconds": 86400,
+                "expectedDays": 1,
+                "hour": 0,
+                "minute": 0,
+                "second": 0
+            }
+        ]
+    }
+}

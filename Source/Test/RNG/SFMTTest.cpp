@@ -28,7 +28,7 @@ void SFMTTest::advance_data()
     QTest::addColumn<u32>("advances");
     QTest::addColumn<u64>("result");
 
-    nlohmann::json data = readData("rng", "sfmt", "advance");
+    json data = readData("rng", "sfmt", "advance");
     for (const auto &d : data)
     {
         QTest::newRow(d["name"].get<std::string>().data()) << d["seed"].get<u32>() << d["advances"].get<u32>() << d["result"].get<u64>();
@@ -51,7 +51,7 @@ void SFMTTest::next_data()
     QTest::addColumn<u32>("seed");
     QTest::addColumn<u64>("result");
 
-    nlohmann::json data = readData("rng", "sfmt", "next");
+    json data = readData("rng", "sfmt", "next");
     for (const auto &d : data)
     {
         QTest::newRow(d["name"].get<std::string>().data()) << d["seed"].get<u32>() << d["result"].get<u64>();
@@ -72,7 +72,7 @@ void SFMTTest::nextUInt_data()
     QTest::addColumn<u32>("seed");
     QTest::addColumn<u32>("result");
 
-    nlohmann::json data = readData("rng", "sfmt", "next");
+    json data = readData("rng", "sfmt", "next");
     for (const auto &d : data)
     {
         QTest::newRow(d["name"].get<std::string>().data()) << d["seed"].get<u32>() << d["result"].get<u32>();

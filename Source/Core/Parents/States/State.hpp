@@ -128,6 +128,16 @@ public:
         return stats[index];
     }
 
+    /**
+     * @brief Returns the stats of the pokemon
+     *
+     * @return Pokemon stats
+     */
+    std::array<u16, 6> getStats() const
+    {
+        return stats;
+    }
+
 protected:
     u32 pid;
     std::array<u16, 6> stats;

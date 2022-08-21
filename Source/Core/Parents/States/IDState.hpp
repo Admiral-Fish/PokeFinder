@@ -25,11 +25,11 @@
 class IDState
 {
 public:
-    IDState(u64 advances, u16 tid, u16 sid, u16 tsv) : advances(advances), sid(sid), tid(tid), tsv(tsv)
+    IDState(u32 advances, u16 tid, u16 sid, u16 tsv) : advances(advances), sid(sid), tid(tid), tsv(tsv)
     {
     }
 
-    u64 getAdvances() const
+    u32 getAdvances() const
     {
         return advances;
     }
@@ -50,7 +50,7 @@ public:
     }
 
 protected:
-    u64 advances;
+    u32 advances;
     u16 sid;
     u16 tid;
     u16 tsv;

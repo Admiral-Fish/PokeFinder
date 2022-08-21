@@ -21,7 +21,7 @@
 #include <Core/Parents/States/IDState.hpp>
 #include <Core/RNG/LCRNG.hpp>
 
-IDGenerator3::IDGenerator3(u64 initialAdvances, u64 maxAdvances, const IDFilter &filter) : IDGenerator(initialAdvances, maxAdvances, filter)
+IDGenerator3::IDGenerator3(u32 initialAdvances, u32 maxAdvances, const IDFilter &filter) : IDGenerator(initialAdvances, maxAdvances, filter)
 {
 }
 
@@ -30,7 +30,7 @@ std::vector<IDState> IDGenerator3::generateXDColo(u32 seed)
     std::vector<IDState> states;
 
     XDRNG rng(seed, initialAdvances);
-    for (u64 cnt = 0; cnt <= maxAdvances; cnt++, rng.next())
+    for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rng.next())
     {
         XDRNG go(rng);
 
@@ -53,7 +53,7 @@ std::vector<IDState> IDGenerator3::generateFRLGE(u16 tid)
     std::vector<IDState> states;
 
     PokeRNG rng(tid, initialAdvances);
-    for (u64 cnt = 0; cnt <= maxAdvances; cnt++)
+    for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
     {
         u16 sid = rng.nextUShort();
         u16 tsv = (tid ^ sid) >> 3;
@@ -73,7 +73,7 @@ std::vector<IDState> IDGenerator3::generateRS(u16 seed)
     std::vector<IDState> states;
 
     PokeRNG rng(seed, initialAdvances);
-    for (u64 cnt = 0; cnt <= maxAdvances; cnt++, rng.next())
+    for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rng.next())
     {
         PokeRNG go(rng);
 

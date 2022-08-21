@@ -27,7 +27,7 @@ void RNGEuclideanTest::ivs_data()
     QTest::addColumn<std::vector<u8>>("ivs");
     QTest::addColumn<std::vector<std::pair<u32, u32>>>("results");
 
-    nlohmann::json data = readData("rng", "rngeuclidean", "ivs");
+    json data = readData("rng", "rngeuclidean", "ivs");
     for (const auto &d : data)
     {
         QTest::newRow(d["name"].get<std::string>().data())
@@ -50,7 +50,7 @@ void RNGEuclideanTest::pid_data()
     QTest::addColumn<u32>("pid");
     QTest::addColumn<std::vector<std::pair<u32, u32>>>("results");
 
-    nlohmann::json data = readData("rng", "rngeuclidean", "pid");
+    json data = readData("rng", "rngeuclidean", "pid");
     for (const auto &d : data)
     {
         QTest::newRow(d["name"].get<std::string>().data()) << d["pid"].get<u32>() << d["results"].get<std::vector<std::pair<u32, u32>>>();
@@ -72,7 +72,7 @@ void RNGEuclideanTest::ivsChannel_data()
     QTest::addColumn<std::vector<u8>>("ivs");
     QTest::addColumn<std::vector<u32>>("results");
 
-    nlohmann::json data = readData("rng", "rngeuclidean", "ivsChannel");
+    json data = readData("rng", "rngeuclidean", "ivsChannel");
     for (const auto &d : data)
     {
         QTest::newRow(d["name"].get<std::string>().data()) << d["ivs"].get<std::vector<u8>>() << d["results"].get<std::vector<u32>>();
