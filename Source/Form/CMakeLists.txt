@@ -60,28 +60,50 @@ set(PROJECT_UI
     Gen3/Profile/ProfileManager3.ui
     Gen3/Static3.ui
     MainWindow.ui
+    Util/IVCalculator.ui
 )
 
 set(PROJECT_SOURCES
     Controls/CheckList.cpp
+    Controls/CheckList.hpp
     Controls/ComboBox.cpp
+    Controls/ComboBox.hpp
     Controls/ComboMenu.cpp
+    Controls/ComboMenu.hpp
+    Controls/Controls.hpp
     Controls/DateEdit.cpp
+    Controls/DateEdit.hpp
     Controls/DateTimeEdit.cpp
+    Controls/DateTimeEdit.hpp
     Controls/EggSettings.cpp
+    Controls/EggSettings.hpp
     Controls/Filter.cpp
+    Controls/Filter.hpp
     Controls/GraphicsPixmapItem.cpp
+    Controls/GraphicsPixmapItem.hpp
     Controls/IDsFilter.cpp
+    Controls/IDsFilter.hpp
     Controls/IVFilter.cpp
+    Controls/IVFilter.hpp
     Controls/Label.cpp
+    Controls/Label.hpp
     Controls/TableView.cpp
+    Controls/TableView.hpp
     Controls/TextBox.cpp
+    Controls/TextBox.hpp
     Gen3/IDs3.cpp
+    Gen3/IDs3.hpp
     Gen3/Profile/ProfileEditor3.cpp
+    Gen3/Profile/ProfileEditor3.hpp
     Gen3/Profile/ProfileManager3.cpp
+    Gen3/Profile/ProfileManager3.hpp
     Gen3/Static3.cpp
+    Gen3/Static3.hpp
     main.cpp
     MainWindow.cpp
+    MainWindow.hpp
+    Util/IVCalculator.cpp
+    Util/IVCalculator.hpp
 )
 
 if (WIN32)
