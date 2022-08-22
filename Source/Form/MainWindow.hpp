@@ -63,7 +63,7 @@ public:
      * @param profile True if profiles file is located, false otherwise
      * @param parent Parent widget, which takes memory ownership
      */
-    explicit MainWindow(bool profile, QWidget *parent = nullptr);
+    MainWindow(bool profile, QWidget *parent = nullptr);
 
     /**
      * @brief Destroy the MainWindow object
@@ -189,6 +189,11 @@ private slots:
     void openIVCalculator() const;
 
     /**
+     * @brief Opens the Settings window
+     */
+    void openSettings() const;
+
+    /**
      * @brief Informs open windows that they need to refresh profiles
      *
      * @param num Which generation profiles were updated
@@ -197,7 +202,6 @@ private slots:
 
     // void openEncounterLookup();
     // void openResearcher();
-    // void openSettings();
 };
 
 #endif // MAINWINDOW_HPP

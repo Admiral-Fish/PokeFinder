@@ -24,6 +24,7 @@
 #include <Form/Gen3/Profile/ProfileManager3.hpp>
 #include <Form/Gen3/Static3.hpp>
 #include <Form/Util/IVCalculator.hpp>
+#include <Form/Util/Settings.hpp>
 #include <QActionGroup>
 #include <QDate>
 #include <QDesktopServices>
@@ -72,7 +73,6 @@
 //#include <Forms/Util/EncounterLookup.hpp>
 //#include <Forms/Util/IVtoPID.hpp>
 //#include <Forms/Util/Researcher.hpp>
-//#include <Forms/Util/Settings.hpp>
 
 MainWindow::MainWindow(bool profile, QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow)
 {
@@ -664,13 +664,13 @@ void MainWindow::openResearcher()
 {
     auto *r = new Researcher();
     r->show();
-}
+}*/
 
-void MainWindow::openSettings()
+void MainWindow::openSettings() const
 {
     auto *s = new Settings();
     s->show();
-}*/
+}
 
 void MainWindow::updateProfiles(int num)
 {

@@ -61,6 +61,7 @@ set(PROJECT_UI
     Gen3/Static3.ui
     MainWindow.ui
     Util/IVCalculator.ui
+    Util/Settings.ui
 )
 
 set(PROJECT_SOURCES
@@ -104,6 +105,8 @@ set(PROJECT_SOURCES
     MainWindow.hpp
     Util/IVCalculator.cpp
     Util/IVCalculator.hpp
+    Util/Settings.cpp
+    Util/Settings.hpp
 )
 
 if (WIN32)
