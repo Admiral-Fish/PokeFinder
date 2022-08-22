@@ -19,7 +19,7 @@
 
 #include "IVFilter.hpp"
 #include "ui_IVFilter.h"
-//#include <Forms/Util/IVCalculator.hpp>
+#include <Form/Util/IVCalculator.hpp>
 
 IVFilter::IVFilter(QWidget *parent) : QWidget(parent), ui(new Ui::IVFilter)
 {
@@ -71,7 +71,8 @@ std::array<u8, 6> IVFilter::getUpper() const
 
 void IVFilter::changeCompareHP(int type)
 {
-    int min, max;
+    int min;
+    int max;
     if (type == Qt::NoModifier)
     {
         min = 0;
@@ -103,7 +104,8 @@ void IVFilter::changeCompareHP(int type)
 
 void IVFilter::changeCompareAtk(int type)
 {
-    int min, max;
+    int min;
+    int max;
     if (type == Qt::NoModifier)
     {
         min = 0;
@@ -135,7 +137,8 @@ void IVFilter::changeCompareAtk(int type)
 
 void IVFilter::changeCompareDef(int type)
 {
-    int min, max;
+    int min;
+    int max;
     if (type == Qt::NoModifier)
     {
         min = 0;
@@ -167,7 +170,8 @@ void IVFilter::changeCompareDef(int type)
 
 void IVFilter::changeCompareSpA(int type)
 {
-    int min, max;
+    int min;
+    int max;
     if (type == Qt::NoModifier)
     {
         min = 0;
@@ -199,7 +203,8 @@ void IVFilter::changeCompareSpA(int type)
 
 void IVFilter::changeCompareSpD(int type)
 {
-    int min, max;
+    int min;
+    int max;
     if (type == Qt::NoModifier)
     {
         min = 0;
@@ -231,7 +236,8 @@ void IVFilter::changeCompareSpD(int type)
 
 void IVFilter::changeCompareSpe(int type)
 {
-    int min, max;
+    int min;
+    int max;
     if (type == Qt::NoModifier)
     {
         min = 0;
@@ -261,12 +267,11 @@ void IVFilter::changeCompareSpe(int type)
     ui->spinBoxSpeMax->setValue(max);
 }
 
-void IVFilter::openIVCalculator()
+void IVFilter::openIVCalculator() const
 {
-    // TODO
-    // auto *calculator = new IVCalculator();
-    // connect(calculator, &IVCalculator::ivsCalculated, this, &IVFilter::updateIVs);
-    // calculator->show();
+    auto *calculator = new IVCalculator();
+    connect(calculator, &IVCalculator::ivsCalculated, this, &IVFilter::updateIVs);
+    calculator->show();
 }
 
 void IVFilter::updateIVs(const std::array<std::vector<u8>, 6> &ivs)

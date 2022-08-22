@@ -127,7 +127,7 @@ private slots:
     /**
      * @brief Opens the Gen 3 Profile Manager window
      */
-    void openProfileManager3();
+    void openProfileManager3() const;
 
     /**
      * @brief Opens the Gen 3 Static window
@@ -184,6 +184,11 @@ private slots:
     void openAbout() const;
 
     /**
+     * @brief Opens the IV Calculator
+     */
+    void openIVCalculator() const;
+
+    /**
      * @brief Informs open windows that they need to refresh profiles
      *
      * @param num Which generation profiles were updated
@@ -191,7 +196,6 @@ private slots:
     void updateProfiles(int num);
 
     // void openEncounterLookup();
-    // void openIVCalculator();
     // void openResearcher();
     // void openSettings();
 };

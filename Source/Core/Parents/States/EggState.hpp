@@ -25,7 +25,7 @@
 class EggState : public State
 {
 public:
-    explicit EggState(u64 advance) : State(advance), inheritance { 0, 0, 0, 0, 0, 0 }
+    EggState(u64 advance) : State(advance), inheritance { 0, 0, 0, 0, 0, 0 }
     {
     }
 

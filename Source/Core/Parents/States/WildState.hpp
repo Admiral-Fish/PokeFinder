@@ -25,9 +25,7 @@
 class WildState : public State
 {
 public:
-    WildState() = default;
-
-    explicit WildState(u64 advance) : State(advance)
+    WildState(u64 advance) : State(advance)
     {
     }
 

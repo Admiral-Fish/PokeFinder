@@ -113,7 +113,7 @@ private slots:
     /**
      * @brief Opens IV calculator to determine IV minimum/maximum
      */
-    void openIVCalculator();
+    void openIVCalculator() const;
 
     /**
      * @brief Updates min/max IV values based upon calculation from IV Calculator

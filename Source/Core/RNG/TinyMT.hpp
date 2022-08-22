@@ -40,7 +40,7 @@ public:
      * 
      * @param state Starting PRNG state
      */
-    explicit TinyMT(const u32 *state);
+    TinyMT(const u32 *state);
 
     /**
      * @brief Advances the RNG by \p advances amount
