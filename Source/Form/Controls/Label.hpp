@@ -40,7 +40,7 @@ public:
      *
      * @param parent Parent widget, which takes memory ownership
      */
-    explicit Label(QWidget *parent = nullptr);
+    Label(QWidget *parent = nullptr);
 
     /**
      * @brief Handles mouse event to emit selected control keys

@@ -64,7 +64,7 @@ public:
         return (t % diff) + min;
     }
 
-public:
+private:
     u32 state[4];
 
     /**

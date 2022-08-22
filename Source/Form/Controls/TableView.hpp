@@ -36,7 +36,7 @@ public:
      *
      * @param parent Parent widget, which takes memory ownership
      */
-    explicit TableView(QWidget *parent = nullptr);
+    TableView(QWidget *parent = nullptr);
 
     /**
      * @brief Handles double click mouse event to copy selection to clipboard

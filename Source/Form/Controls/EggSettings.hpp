@@ -50,7 +50,7 @@ public:
      *
      * @param parent Parent widget, which takes memory ownership
      */
-    explicit EggSettings(QWidget *parent = nullptr);
+    EggSettings(QWidget *parent = nullptr);
 
     /**
      * @brief Destroy the EggSettings object

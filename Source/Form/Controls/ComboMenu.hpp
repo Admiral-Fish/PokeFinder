@@ -36,7 +36,7 @@ public:
      *
      * @param parent Parent widget, which takes memory ownership
      */
-    explicit ComboMenu(QWidget *parent = nullptr);
+    ComboMenu(QWidget *parent = nullptr);
 
     /**
      * @brief Adds new action to either the main menu or a provided sub menu

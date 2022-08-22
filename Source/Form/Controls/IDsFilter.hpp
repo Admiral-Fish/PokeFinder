@@ -40,7 +40,7 @@ public:
      *
      * @param parent Parent widget, which takes memory ownership
      */
-    explicit IDsFilter(QWidget *parent = nullptr);
+    IDsFilter(QWidget *parent = nullptr);
 
     /**
      * @brief Destroy the IDsFilter object

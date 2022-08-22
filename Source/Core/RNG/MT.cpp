@@ -74,8 +74,8 @@ void MT::shuffle()
     for (int i = 0; i < 224; i += 4)
     {
         vuint32x4 m0 = v32x4_load(&mt[i]);
-        vuint32x4 m1 = v32x4_load(&mt[i + 1]);
-        vuint32x4 m2 = v32x4_load(&mt[i + 397]);
+        vuint32x4 m1 = v32x4_load<false>(&mt[i + 1]);
+        vuint32x4 m2 = v32x4_load<false>(&mt[i + 397]);
 
         vuint32x4 y = v32x4_or(v32x4_and(m0, upperMask), v32x4_and(m1, lowerMask));
         vuint32x4 y1 = v32x4_shr<1>(y);
@@ -84,10 +84,10 @@ void MT::shuffle()
         v32x4_store(&mt[i], v32x4_xor(v32x4_xor(y1, mag01), m2));
     }
 
-    vuint32x4 last = v32x4_insert<3>(v32x4_load(&mt[621]), mt[0]);
+    vuint32x4 last = v32x4_insert<3>(v32x4_load<false>(&mt[621]), mt[0]);
     {
         vuint32x4 m0 = v32x4_load(&mt[224]);
-        vuint32x4 m1 = v32x4_load(&mt[225]);
+        vuint32x4 m1 = v32x4_load<false>(&mt[225]);
 
         vuint32x4 y = v32x4_or(v32x4_and(m0, upperMask), v32x4_and(m1, lowerMask));
         vuint32x4 y1 = v32x4_shr<1>(y);
@@ -99,8 +99,8 @@ void MT::shuffle()
     for (int i = 228; i < 620; i += 4)
     {
         vuint32x4 m0 = v32x4_load(&mt[i]);
-        vuint32x4 m1 = v32x4_load(&mt[i + 1]);
-        vuint32x4 m2 = v32x4_load(&mt[i - 227]);
+        vuint32x4 m1 = v32x4_load<false>(&mt[i + 1]);
+        vuint32x4 m2 = v32x4_load<false>(&mt[i - 227]);
 
         vuint32x4 y = v32x4_or(v32x4_and(m0, upperMask), v32x4_and(m1, lowerMask));
         vuint32x4 y1 = v32x4_shr<1>(y);
@@ -111,7 +111,7 @@ void MT::shuffle()
 
     {
         vuint32x4 m0 = v32x4_load(&mt[620]);
-        vuint32x4 m2 = v32x4_load(&mt[393]);
+        vuint32x4 m2 = v32x4_load<false>(&mt[393]);
 
         vuint32x4 y = v32x4_or(v32x4_and(m0, upperMask), v32x4_and(last, lowerMask));
         vuint32x4 y1 = v32x4_shr<1>(y);

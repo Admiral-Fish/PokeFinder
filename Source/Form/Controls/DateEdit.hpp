@@ -35,7 +35,7 @@ public:
      *
      * @param parent Parent widget, which takes memory ownership
      */
-    explicit DateEdit(QWidget *parent = nullptr);
+    DateEdit(QWidget *parent = nullptr);
 
     /**
      * @brief Converts QDate to \ref Date

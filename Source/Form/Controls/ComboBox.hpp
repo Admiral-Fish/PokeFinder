@@ -34,7 +34,7 @@ public:
      *
      * @param parent Parent widget, which takes memory ownership
      */
-    explicit ComboBox(QWidget *parent);
+    ComboBox(QWidget *parent);
 
     /**
      * @brief Sets the data for each item in the combo box

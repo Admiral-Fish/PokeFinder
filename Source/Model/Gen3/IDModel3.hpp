@@ -35,7 +35,7 @@ public:
      *
      * @param parent Parent object, which takes memory ownership
      */
-    explicit IDModel3(QObject *parent);
+    IDModel3(QObject *parent);
 
     /**
      * @brief Returns the number of columns in the model

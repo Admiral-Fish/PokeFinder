@@ -47,7 +47,7 @@ public:
      *
      * @param parent Parent widget, which takes memory ownership
      */
-    explicit ProfileManager3(QWidget *parent = nullptr);
+    ProfileManager3(QWidget *parent = nullptr);
 
     /**
      * @brief Destroy the ProfileManager3 object

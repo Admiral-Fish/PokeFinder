@@ -36,7 +36,7 @@ public:
      *
      * @param parent Parent widget, which takes memory ownership
      */
-    explicit CheckList(QWidget *parent = nullptr);
+    CheckList(QWidget *parent = nullptr);
 
     /**
      * @brief Setups the model of check boxes to be checkable by the user

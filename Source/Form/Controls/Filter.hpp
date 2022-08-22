@@ -45,7 +45,7 @@ public:
      *
      * @param parent Parent widget, which takes memory ownership
      */
-    explicit Filter(QWidget *parent = nullptr);
+    Filter(QWidget *parent = nullptr);
 
     /**
      * @brief Destroy the Filter object
