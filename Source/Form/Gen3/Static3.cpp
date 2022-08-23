@@ -31,6 +31,7 @@
 #include <Form/Controls/Controls.hpp>
 #include <Form/Gen3/Profile/ProfileManager3.hpp>
 #include <Model/Gen3/StaticModel3.hpp>
+#include <QListView>
 #include <QMenu>
 #include <QSettings>
 #include <QThread>
@@ -51,10 +52,8 @@ Static3::Static3(QWidget *parent) : QWidget(parent), ui(new Ui::Static3)
     ui->textBoxGeneratorInitialAdvances->setValues(InputType::Advance32Bit);
     ui->textBoxGeneratorMaxAdvances->setValues(InputType::Advance32Bit);
 
-    ui->comboBoxGeneratorMethod->setup(
-        { toInt(Method::Method1), toInt(Method::Method1Reverse), toInt(Method::Method2), toInt(Method::Method4) });
-    ui->comboBoxSearcherMethod->setup(
-        { toInt(Method::Method1), toInt(Method::Method1Reverse), toInt(Method::Method2), toInt(Method::Method4) });
+    ui->comboBoxGeneratorMethod->setup({ toInt(Method::Method1), toInt(Method::Method4) });
+    ui->comboBoxSearcherMethod->setup({ toInt(Method::Method1), toInt(Method::Method4) });
 
     ui->filterGenerator->disableControls(Controls::EncounterSlots);
     ui->filterSearcher->disableControls(Controls::EncounterSlots | Controls::UseDelay | Controls::DisableFilter);
@@ -199,22 +198,14 @@ void Static3::profilesIndexChanged(int index)
         ui->labelProfileSIDValue->setText(QString::number(currentProfile->getSID()));
         ui->labelProfileGameValue->setText(QString::fromStdString(*Translator::getGame(currentProfile->getVersion())));
 
-        if ((currentProfile->getVersion() & Game::RS) != Game::None)
-        {
-            ui->comboBoxGeneratorCategory->removeItem(3);
-            ui->comboBoxSearcherCategory->removeItem(3);
-        }
-        else
-        {
-            if (ui->comboBoxGeneratorCategory->count() == 3)
-            {
-                ui->comboBoxGeneratorCategory->addItem(tr("Mythics"));
-            }
-            if (ui->comboBoxSearcherCategory->count() == 3)
-            {
-                ui->comboBoxSearcherCategory->addItem(tr("Mythics"));
-            }
-        }
+        ui->comboBoxGeneratorCategory->setCurrentIndex(0);
+        ui->comboBoxSearcherCategory->setCurrentIndex(0);
+
+        bool flag = (currentProfile->getVersion() & Game::RS) != Game::None;
+        auto *generatorView = qobject_cast<QListView *>(ui->comboBoxGeneratorCategory->view());
+        auto *searcherView = qobject_cast<QListView *>(ui->comboBoxSearcherCategory->view());
+        generatorView->setRowHidden(3, flag);
+        searcherView->setRowHidden(3, flag);
     }
 }
 
