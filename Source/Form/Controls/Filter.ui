@@ -26,9 +26,6 @@
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout_2">
-       <item row="0" column="0" rowspan="3">
-        <widget class="IVFilter" name="ivFilter" native="true"/>
-       </item>
        <item row="0" column="1">
         <widget class="QLabel" name="labelAbility">
          <property name="text">
@@ -187,6 +184,9 @@
        <item row="0" column="5">
         <widget class="CheckList" name="checkListEncounterSlot"/>
        </item>
+       <item row="0" column="0" rowspan="4">
+        <widget class="IVFilter" name="ivFilter" native="true"/>
+       </item>
       </layout>
      </widget>
     </widget>
@@ -200,17 +200,17 @@
    <header>Form/Controls/TextBox.hpp</header>
   </customwidget>
   <customwidget>
+   <class>ComboBox</class>
+   <extends>QComboBox</extends>
+   <header>Form/Controls/ComboBox.hpp</header>
+  </customwidget>
+  <customwidget>
    <class>CheckList</class>
    <extends>QComboBox</extends>
    <header>Form/Controls/CheckList.hpp</header>
    <slots>
     <slot>resetChecks()</slot>
    </slots>
-  </customwidget>
-  <customwidget>
-   <class>ComboBox</class>
-   <extends>QComboBox</extends>
-   <header>Form/Controls/ComboBox.hpp</header>
   </customwidget>
   <customwidget>
    <class>IVFilter</class>

@@ -24,6 +24,7 @@
 #include <Form/Gen3/Profile/ProfileManager3.hpp>
 #include <Form/Gen3/Static3.hpp>
 #include <Form/Util/IVCalculator.hpp>
+#include <Form/Util/Researcher.hpp>
 #include <Form/Util/Settings.hpp>
 #include <QActionGroup>
 #include <QDate>
@@ -72,7 +73,6 @@
 //#include <Forms/Gen8/Wild8.hpp>
 //#include <Forms/Util/EncounterLookup.hpp>
 //#include <Forms/Util/IVtoPID.hpp>
-//#include <Forms/Util/Researcher.hpp>
 
 MainWindow::MainWindow(bool profile, QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow)
 {
@@ -125,8 +125,8 @@ MainWindow::MainWindow(bool profile, QWidget *parent) : QMainWindow(parent), ui(
     connect(ui->actionAbout, &QAction::triggered, this, &MainWindow::openAbout);
     // connect(ui->actionEncounterLookup, &QAction::triggered, this, &MainWindow::openEncounterLookup);
     connect(ui->actionIVCalculator, &QAction::triggered, this, &MainWindow::openIVCalculator);
-    // connect(ui->actionResearcher, &QAction::triggered, this, &MainWindow::openResearcher);
-    // connect(ui->actionSettings, &QAction::triggered, this, &MainWindow::openSettings);
+    connect(ui->actionResearcher, &QAction::triggered, this, &MainWindow::openResearcher);
+    connect(ui->actionSettings, &QAction::triggered, this, &MainWindow::openSettings);
 
     QSettings setting;
     if (setting.contains("mainWindow/geometry"))
@@ -658,13 +658,13 @@ void MainWindow::openIVCalculator() const
 {
     auto *lookup = new EncounterLookup();
     lookup->show();
-}
+}*/
 
-void MainWindow::openResearcher()
+void MainWindow::openResearcher() const
 {
     auto *r = new Researcher();
     r->show();
-}*/
+}
 
 void MainWindow::openSettings() const
 {

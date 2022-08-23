@@ -189,6 +189,11 @@ private slots:
     void openIVCalculator() const;
 
     /**
+     * @brief Opens the Researcher window
+     */
+    void openResearcher() const;
+
+    /**
      * @brief Opens the Settings window
      */
     void openSettings() const;
@@ -201,7 +206,6 @@ private slots:
     void updateProfiles(int num);
 
     // void openEncounterLookup();
-    // void openResearcher();
 };
 
 #endif // MAINWINDOW_HPP

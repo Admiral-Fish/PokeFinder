@@ -15,6 +15,8 @@ add_library(PokeFinderModel STATIC
     Gen3/StaticModel3.cpp
     Gen3/StaticModel3.hpp
     TableModel.hpp
+    Util/ResearcherModel.cpp
+    Util/ResearcherModel.hpp
 )
 
 target_link_libraries(PokeFinderModel PRIVATE PokeFinderCore Qt6::Core)
