@@ -48,9 +48,7 @@ public:
      */
     constexpr PersonalInfo(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, u8 gender, u16 ability1, u16 ability2, u16 abilityH, u8 formCount,
                            u16 formStatIndex, bool present) :
-        ability1(ability1),
-        ability2(ability2),
-        abilityH(abilityH),
+        ability { ability1, ability2, abilityH },
         formStatIndex(formStatIndex),
         stats { hp, atk, def, spa, spd, spe },
         present(present),
@@ -60,13 +58,25 @@ public:
     }
 
     /**
+     * @brief Returns the ability specified by \p index
+     *
+     * @param index Ability index
+     *
+     * @return Ability
+     */
+    u16 getAbility(int index) const
+    {
+        return ability[index];
+    }
+
+    /**
      * @brief First pokemon ability
      *
      * @return Ability 1
      */
     u16 getAbility1() const
     {
-        return ability1;
+        return ability[0];
     }
 
     /**
@@ -76,7 +86,7 @@ public:
      */
     u16 getAbility2() const
     {
-        return ability2;
+        return ability[1];
     }
 
     /**
@@ -86,7 +96,7 @@ public:
      */
     u16 getAbilityH() const
     {
-        return abilityH;
+        return ability[2];
     }
 
     /**
@@ -160,9 +170,7 @@ public:
     }
 
 private:
-    u16 ability1;
-    u16 ability2;
-    u16 abilityH;
+    u16 ability[3];
     u16 formStatIndex;
     std::array<u8, 6> stats;
     bool present;

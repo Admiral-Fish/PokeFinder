@@ -30,6 +30,8 @@ add_library(PokeFinderCore STATIC
     Enum/Method.hpp
     Enum/ShadowType.hpp
     Enum/Shiny.hpp
+    Gen3/EncounterArea3.cpp
+    Gen3/EncounterArea3.hpp
     Gen3/Encounters3.cpp
     Gen3/Encounters3.hpp
     Gen3/Filters/StateFilter3.cpp
@@ -38,12 +40,18 @@ add_library(PokeFinderCore STATIC
     Gen3/Generators/IDGenerator3.hpp
     Gen3/Generators/StaticGenerator3.cpp
     Gen3/Generators/StaticGenerator3.hpp
+    Gen3/Generators/WildGenerator3.cpp
+    Gen3/Generators/WildGenerator3.hpp
     Gen3/Searchers/StaticSearcher3.cpp
     Gen3/Searchers/StaticSearcher3.hpp
+    Gen3/Searchers/WildSearcher3.cpp
+    Gen3/Searchers/WildSearcher3.hpp
     Gen3/Profile3.cpp
     Gen3/Profile3.hpp
     Gen3/States/State3.cpp
     Gen3/States/State3.hpp
+    Gen3/States/WildState3.cpp
+    Gen3/States/WildState3.hpp
     Gen4/Profile4.cpp
     Gen4/Profile4.hpp
     Gen5/Profile5.cpp
@@ -103,6 +111,8 @@ add_library(PokeFinderCore STATIC
     RNG/Xorshift.hpp
     Util/DateTime.cpp
     Util/DateTime.hpp
+    Util/EncounterSlot.cpp
+    Util/EncounterSlot.hpp
     Util/IVChecker.cpp
     Util/IVChecker.hpp
     Util/Nature.cpp

@@ -25,8 +25,8 @@
 #include <Core/Parents/StaticTemplate.hpp>
 #include <Core/RNG/LCRNG.hpp>
 
-StaticSearcher3::StaticSearcher3(u16 tid, u16 sid, Game version, Method method, const StateFilter3 &filter) :
-    StaticSearcher(tid, sid, version, method, filter),
+StaticSearcher3::StaticSearcher3(u16 tid, u16 sid, Game version, Method method, Lead lead, const StateFilter3 &filter) :
+    StaticSearcher(tid, sid, version, method, lead, filter),
     progress(0),
     cache(method),
     searching(false),
@@ -103,14 +103,14 @@ std::vector<SearcherState3> StaticSearcher3::search(u8 hp, u8 atk, u8 def, u8 sp
         u16 low = rng.nextUShort();
 
         // Setup normal state
-        SearcherState3 state(seed, high, low, ivs, tsv, level, info);
+        SearcherState3 state(rng.next(), high, low, ivs, tsv, level, info);
         if (filter.compareState(state))
         {
             states.emplace_back(state);
         }
 
         // Setup XORed state
-        state.xorState();
+        state.xorState(info);
         if (filter.compareState(state))
         {
             states.emplace_back(state);

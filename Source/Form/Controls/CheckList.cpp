@@ -70,7 +70,7 @@ std::vector<bool> CheckList::getChecked() const
 
 void CheckList::setChecks(std::vector<bool> flags)
 {
-    for (int i = 0; i < model->rowCount(); i++)
+    for (size_t i = 0; i < flags.size(); i++)
     {
         model->item(i)->setCheckState(flags[i] ? Qt::Checked : Qt::Unchecked);
     }

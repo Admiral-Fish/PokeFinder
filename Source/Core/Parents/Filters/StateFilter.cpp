@@ -68,3 +68,15 @@ bool StateFilter::compareShiny(u8 shiny) const
 {
     return skip || this->shiny == 255 || (this->shiny & shiny);
 }
+
+WildStateFilter::WildStateFilter(u8 gender, u8 ability, u8 shiny, bool skip, const std::array<u8, 6> &min, const std::array<u8, 6> &max,
+                                 const std::array<bool, 25> &natures, const std::array<bool, 16> &powers,
+                                 const std::vector<bool> &encounterSlots) :
+    StateFilter(gender, ability, shiny, skip, min, max, natures, powers), encounterSlots(encounterSlots)
+{
+}
+
+bool WildStateFilter::compareEncounterSlot(u8 encounterSlot) const
+{
+    return skip || encounterSlots[encounterSlot];
+}

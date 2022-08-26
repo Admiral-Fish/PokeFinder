@@ -139,7 +139,7 @@ void Static3::generate()
                         ui->filterGenerator->getDisableFilters(), ui->filterGenerator->getMinIVs(), ui->filterGenerator->getMaxIVs(),
                         ui->filterGenerator->getNatures(), ui->filterGenerator->getHiddenPowers());
 
-    StaticGenerator3 generator(initialAdvances, maxAdvances, offset, tid, sid, currentProfile->getVersion(), method, filter);
+    StaticGenerator3 generator(initialAdvances, maxAdvances, offset, tid, sid, currentProfile->getVersion(), method, Lead::None, filter);
 
     const StaticTemplate *staticTemplate
         = Encounters3::getStaticEncounter(ui->comboBoxGeneratorCategory->currentIndex(), ui->comboBoxGeneratorPokemon->getCurrentInt());
@@ -176,13 +176,6 @@ void Static3::generatorPokemonIndexChanged(int index)
     }
 }
 
-void Static3::profileManager()
-{
-    auto *manager = new ProfileManager3();
-    connect(manager, &ProfileManager3::updateProfiles, this, [=] { emit alertProfiles(3); });
-    manager->show();
-}
-
 void Static3::profilesIndexChanged(int index)
 {
     if (index >= 0)
@@ -209,6 +202,13 @@ void Static3::profilesIndexChanged(int index)
     }
 }
 
+void Static3::profileManager()
+{
+    auto *manager = new ProfileManager3();
+    connect(manager, &ProfileManager3::updateProfiles, this, [=] { emit alertProfiles(3); });
+    manager->show();
+}
+
 void Static3::search()
 {
     searcherModel->clearModel();
@@ -228,7 +228,7 @@ void Static3::search()
     const StaticTemplate *staticTemplate
         = Encounters3::getStaticEncounter(ui->comboBoxSearcherCategory->currentIndex(), ui->comboBoxSearcherPokemon->getCurrentInt());
 
-    auto *searcher = new StaticSearcher3(tid, sid, currentProfile->getVersion(), method, filter);
+    auto *searcher = new StaticSearcher3(tid, sid, currentProfile->getVersion(), method, Lead::None, filter);
 
     int maxProgress = 1;
     for (u8 i = 0; i < 6; i++)

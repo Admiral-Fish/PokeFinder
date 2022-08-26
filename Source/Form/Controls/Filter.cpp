@@ -102,64 +102,6 @@ void Filter::disableControls(Controls control)
     }
 }
 
-void Filter::enableControls(Controls control)
-{
-    if ((control & Controls::IVs) != Controls::None)
-    {
-        ui->ivFilter->setVisible(true);
-    }
-
-    if ((control & Controls::Ability) != Controls::None)
-    {
-        ui->labelAbility->setVisible(true);
-        ui->comboBoxAbility->setVisible(true);
-    }
-
-    if ((control & Controls::Gender) != Controls::None)
-    {
-        ui->labelGender->setVisible(true);
-        ui->comboBoxGender->setVisible(true);
-    }
-
-    if ((control & Controls::EncounterSlots) != Controls::None)
-    {
-        ui->labelEncounterSlot->setVisible(true);
-        ui->checkListEncounterSlot->setVisible(true);
-        ui->pushButtonEncounterSlot->setVisible(true);
-    }
-
-    if ((control & Controls::HiddenPowers) != Controls::None)
-    {
-        ui->labelHiddenPower->setVisible(true);
-        ui->checkListHiddenPower->setVisible(true);
-        ui->pushButtonHiddenPower->setVisible(true);
-    }
-
-    if ((control & Controls::Natures) != Controls::None)
-    {
-        ui->labelNature->setVisible(true);
-        ui->checkListNature->setVisible(true);
-        ui->pushButtonNature->setVisible(true);
-    }
-
-    if ((control & Controls::Shiny) != Controls::None)
-    {
-        ui->labelShiny->setVisible(true);
-        ui->comboBoxShiny->setVisible(true);
-    }
-
-    if ((control & Controls::UseDelay) != Controls::None)
-    {
-        ui->checkBoxDelay->setVisible(true);
-        ui->textBoxDelay->setVisible(true);
-    }
-
-    if ((control & Controls::DisableFilter) != Controls::None)
-    {
-        ui->checkBoxDisableFilters->setVisible(true);
-    }
-}
-
 void Filter::enableHiddenAbility()
 {
     ui->comboBoxAbility->addItem("H", 2);

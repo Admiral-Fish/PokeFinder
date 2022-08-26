@@ -18,6 +18,7 @@
  */
 
 #include "StaticGenerator3Test.hpp"
+#include <Core/Enum/Lead.hpp>
 #include <Core/Gen3/Encounters3.hpp>
 #include <Core/Gen3/Generators/StaticGenerator3.hpp>
 #include <Core/Gen3/States/State3.hpp>
@@ -29,6 +30,7 @@ struct GeneratorStaticResult3
 {
     u32 pid;
     std::array<u16, 6> stats;
+    u16 abilityIndex;
     std::array<u8, 6> ivs;
     u8 ability;
     u8 gender;
@@ -39,16 +41,17 @@ struct GeneratorStaticResult3
     u32 advances;
     u8 hiddenPowerStrength;
 };
-NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(GeneratorStaticResult3, pid, stats, ivs, ability, gender, hiddenPower, nature, level, shiny, advances,
-                                   hiddenPowerStrength);
+NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(GeneratorStaticResult3, pid, stats, abilityIndex, ivs, ability, gender, hiddenPower, nature, level,
+                                   shiny, advances, hiddenPowerStrength);
 static_assert(sizeof(GeneratorStaticResult3) == sizeof(GeneratorState3));
 
 bool operator==(const GeneratorStaticResult3 &result, const GeneratorState3 &state)
 {
-    return state.getPID() == result.pid && state.getStats() == result.stats && state.getIVs() == result.ivs
-        && state.getAbility() == result.ability && state.getGender() == result.gender && state.getHiddenPower() == result.hiddenPower
-        && state.getNature() == result.nature && state.getLevel() == result.level && state.getShiny() == result.shiny
-        && state.getAdvances() == result.advances && state.getHiddenPowerStrength() == result.hiddenPowerStrength;
+    return result.pid == state.getPID() && result.stats == state.getStats() && result.abilityIndex == state.getAbilityIndex()
+        && result.ivs == state.getIVs() && result.ability == state.getAbility() && result.gender == state.getGender()
+        && result.hiddenPower == state.getHiddenPower() && result.nature == state.getNature() && result.level == state.getLevel()
+        && state.getShiny() == result.shiny && state.getAdvances() == result.advances
+        && result.hiddenPowerStrength == state.getHiddenPowerStrength();
 }
 
 void StaticGenerator3Test::generate_data()
@@ -92,7 +95,7 @@ void StaticGenerator3Test::generate()
 
     const StaticTemplate *staticTemplate = Encounters3::getStaticEncounter(category, pokemon);
     StateFilter3 filter(255, 255, 255, false, min, max, natures, powers);
-    StaticGenerator3 generator(0, 9, 0, 12345, 54321, version, method, filter);
+    StaticGenerator3 generator(0, 9, 0, 12345, 54321, version, method, Lead::None, filter);
 
     auto states = generator.generate(seed, staticTemplate);
     QCOMPARE(states.size(), results.size());

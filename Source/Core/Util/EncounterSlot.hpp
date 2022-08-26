@@ -17,34 +17,19 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef LEAD_HPP
-#define LEAD_HPP
+#ifndef ENCOUNTERSLOT_HPP
+#define ENCOUNTERSLOT_HPP
 
 #include <Core/Global.hpp>
 
-/**
- * @brief Enum to encompass different leads
- */
-enum class Lead : u8
+enum class Encounter : u8;
+
+namespace EncounterSlot
 {
-    None,
-    CompoundEyes,
-    CuteCharmF,
-    CuteCharmM,
-    Synchronize,
-    SuctionCups,
+    u8 hSlot(u16 result, Encounter encounter);
+    u8 jSlot(u16 result, Encounter encounter);
+    u8 kSlot(u16 result, Encounter encounter);
+    u8 bdspSlot(u8 result, Encounter encounter);
 };
 
-/**
- * @brief Converts enum to number
- *
- * @param lead Input lead
- *
- * @return Converted number
- */
-constexpr u8 toInt(Lead lead)
-{
-    return static_cast<u8>(lead);
-}
-
-#endif // LEAD_HPP
+#endif // ENCOUNTERSLOT_HPP

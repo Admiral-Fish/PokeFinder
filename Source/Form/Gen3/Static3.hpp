@@ -75,26 +75,29 @@ private slots:
 
     /**
      * @brief Updates the pokemon listed
+     *
      * @param index Category index
      */
     void generatorCategoryIndexChanged(int index);
 
     /**
      * @brief Updates the displayed information for a pokemon
+     *
      * @param index Pokemon index
      */
     void generatorPokemonIndexChanged(int index);
 
     /**
-     * @brief Opens the profile manager
-     */
-    void profileManager();
-
-    /**
      * @brief Updates displayed information for a profile
+     *
      * @param index Profile index
      */
     void profilesIndexChanged(int index);
+
+    /**
+     * @brief Opens the profile manager
+     */
+    void profileManager();
 
     /**
      * @brief Searches static encounters from the provided IVs
@@ -103,12 +106,14 @@ private slots:
 
     /**
      * @brief Updates the pokemon listed
+     *
      * @param index Category index
      */
     void searcherCategoryIndexChanged(int index);
 
     /**
      * @brief Updates the displayed information for a pokemon
+     *
      * @param index Pokemon index
      */
     void searcherPokemonIndexChanged(int index);

@@ -40,6 +40,16 @@ public:
     }
 
     /**
+     * @brief Returns the ability index of the pokemon
+     *
+     * @return Pokemon ability index
+     */
+    u16 getAbilityIndex() const
+    {
+        return abilityIndex;
+    }
+
+    /**
      * @brief Returns the gender of the pokemon
      *
      * @return Pokemon gender
@@ -141,6 +151,7 @@ public:
 protected:
     u32 pid;
     std::array<u16, 6> stats;
+    u16 abilityIndex;
     std::array<u8, 6> ivs;
     u8 ability;
     u8 gender;

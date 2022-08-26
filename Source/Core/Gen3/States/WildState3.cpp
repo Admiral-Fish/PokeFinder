@@ -17,25 +17,26 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include "State3.hpp"
+#include "WildState3.hpp"
 #include <Core/Parents/PersonalInfo.hpp>
-#include <Core/Parents/PersonalLoader.hpp>
 #include <Core/Util/Nature.hpp>
-#include <cmath>
 
 constexpr int order[6] = { 0, 1, 2, 5, 3, 4 };
 
-GeneratorState3::GeneratorState3(u32 advances, u16 high, u16 low, u16 iv1, u16 iv2, u16 tsv, u8 level, const PersonalInfo *info) :
-    GeneratorState(advances)
+WildGeneratorState3::WildGeneratorState3(u32 advances, u32 pid, u16 iv1, u16 iv2, u16 tsv, u8 level, u8 encounterSlot, u16 specie,
+                                         const PersonalInfo *info) :
+    WildGeneratorState(advances)
 {
     this->level = level;
+    this->encounterSlot = encounterSlot;
+    this->specie = specie;
 
-    pid = (high << 16) | low;
-    ability = low & 1;
+    this->pid = pid;
+    ability = pid & 1;
     abilityIndex = info->getAbility(ability);
     nature = pid % 25;
 
-    u16 psv = (high ^ low);
+    u16 psv = ((pid >> 16) ^ (pid & 0xffff));
     if (tsv == psv)
     {
         shiny = 2; // Square
@@ -61,7 +62,7 @@ GeneratorState3::GeneratorState3(u32 advances, u16 high, u16 low, u16 iv1, u16 i
         gender = 0;
         break;
     default: // Random gender
-        gender = (low & 255) < info->getGender();
+        gender = (pid & 255) < info->getGender();
         break;
     }
 
@@ -94,17 +95,20 @@ GeneratorState3::GeneratorState3(u32 advances, u16 high, u16 low, u16 iv1, u16 i
     hiddenPowerStrength = 30 + (p * 40 / 63);
 }
 
-SearcherState3::SearcherState3(u32 seed, u16 high, u16 low, std::array<u8, 6> ivs, u16 tsv, u8 level, const PersonalInfo *info) :
-    SearcherState(seed)
+WildSearcherState3::WildSearcherState3(u32 seed, u32 pid, u8 nature, std::array<u8, 6> ivs, u16 tsv, u8 level, u8 encounterSlot, u16 specie,
+                                       const PersonalInfo *info) :
+    WildSearcherState(seed)
 {
     this->level = level;
+    this->encounterSlot = encounterSlot;
+    this->specie = specie;
 
-    pid = (high << 16) | low;
-    ability = low & 1;
+    this->pid = pid;
+    ability = pid & 1;
     abilityIndex = info->getAbility(ability);
-    nature = pid % 25;
+    this->nature = nature;
 
-    u16 psv = (high ^ low);
+    u16 psv = ((pid >> 16) ^ (pid & 0xffff));
     if (tsv == psv)
     {
         shiny = 2; // Square
@@ -130,7 +134,7 @@ SearcherState3::SearcherState3(u32 seed, u16 high, u16 low, std::array<u8, 6> iv
         gender = 0;
         break;
     default: // Random gender
-        gender = (low & 255) < info->getGender();
+        gender = (pid & 255) < info->getGender();
         break;
     }
 
@@ -156,17 +160,4 @@ SearcherState3::SearcherState3(u32 seed, u16 high, u16 low, std::array<u8, 6> iv
 
     hiddenPower = h * 15 / 63;
     hiddenPowerStrength = 30 + (p * 40 / 63);
-}
-
-void SearcherState3::xorState(const PersonalInfo *info)
-{
-    seed ^= 0x80000000;
-    pid ^= 0x80008000;
-    nature = pid % 25;
-
-    // Don't need to recompute HP
-    for (int i = 1; i < 6; i++)
-    {
-        stats[i] = ((((2 * info->getStat(i) + ivs[i]) * level) / 100) + 5) * Nature::getNatureModifier(nature, i);
-    }
 }

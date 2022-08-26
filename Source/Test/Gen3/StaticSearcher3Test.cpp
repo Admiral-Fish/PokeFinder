@@ -19,6 +19,7 @@
 
 #include "StaticSearcher3Test.hpp"
 #include <Core/Gen3/Encounters3.hpp>
+#include <Core/Gen3/Generators/StaticGenerator3.hpp>
 #include <Core/Gen3/Searchers/StaticSearcher3.hpp>
 #include <Core/Gen3/States/State3.hpp>
 #include <Core/Parents/StaticTemplate.hpp>
@@ -31,6 +32,7 @@ struct SearcherStaticResult3
 {
     u32 pid;
     std::array<u16, 6> stats;
+    u16 abilityIndex;
     std::array<u8, 6> ivs;
     u8 ability;
     u8 gender;
@@ -41,19 +43,28 @@ struct SearcherStaticResult3
     u32 seed;
     u8 hiddenPowerStrength;
 };
-NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(SearcherStaticResult3, pid, stats, ivs, ability, gender, hiddenPower, nature, level, shiny, seed,
-                                   hiddenPowerStrength);
+NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(SearcherStaticResult3, pid, stats, abilityIndex, ivs, ability, gender, hiddenPower, nature, level, shiny,
+                                   seed, hiddenPowerStrength);
 static_assert(sizeof(SearcherStaticResult3) == sizeof(SearcherState3));
 
 bool operator==(const SearcherStaticResult3 &result, const SearcherState3 &state)
 {
-    return state.getPID() == result.pid && state.getStats() == result.stats && state.getIVs() == result.ivs
-        && state.getAbility() == result.ability && state.getGender() == result.gender && state.getHiddenPower() == result.hiddenPower
-        && state.getNature() == result.nature && state.getLevel() == result.level && state.getShiny() == result.shiny
-        && state.getSeed() == result.seed && state.getHiddenPowerStrength() == result.hiddenPowerStrength;
+    return result.pid == state.getPID() && result.stats == state.getStats() && result.abilityIndex == state.getAbilityIndex()
+        && result.ivs == state.getIVs() && result.ability == state.getAbility() && result.gender == state.getGender()
+        && result.hiddenPower == state.getHiddenPower() && result.nature == state.getNature() && result.level == state.getLevel()
+        && result.shiny == state.getShiny() && result.seed == state.getSeed()
+        && result.hiddenPowerStrength == state.getHiddenPowerStrength();
 }
 
-void StaticSearcher3Test::generate_data()
+bool operator==(const SearcherState3 &result, const GeneratorState3 &state)
+{
+    return result.getPID() == state.getPID() && result.getStats() == state.getStats() && result.getAbilityIndex() == state.getAbilityIndex()
+        && result.getIVs() == state.getIVs() && result.getAbility() == state.getAbility() && result.getGender() == state.getGender()
+        && result.getHiddenPower() == state.getHiddenPower() && result.getNature() == state.getNature()
+        && result.getLevel() == state.getLevel() && result.getHiddenPowerStrength() == state.getHiddenPowerStrength();
+}
+
+void StaticSearcher3Test::search_data()
 {
     QTest::addColumn<IVs>("min");
     QTest::addColumn<IVs>("max");
@@ -72,7 +83,7 @@ void StaticSearcher3Test::generate_data()
     }
 }
 
-void StaticSearcher3Test::generate()
+void StaticSearcher3Test::search()
 {
     QFETCH(IVs, min);
     QFETCH(IVs, max);
@@ -90,18 +101,23 @@ void StaticSearcher3Test::generate()
 
     const StaticTemplate *staticTemplate = Encounters3::getStaticEncounter(category, pokemon);
     StateFilter3 filter(255, 255, 255, false, min, max, natures, powers);
-    StaticSearcher3 searcher(12345, 54321, version, method, filter);
+    StaticSearcher3 searcher(12345, 54321, version, method, Lead::None, filter);
 
     searcher.startSearch(min, max, staticTemplate);
     auto states = searcher.getResults();
     QCOMPARE(states.size(), results.size());
 
-    QString str;
     for (size_t i = 0; i < states.size(); i++)
     {
         const auto &state = states[i];
         const auto &result = results[i];
         QCOMPARE(state, result);
+
+        // Ensure generator agrees
+        StaticGenerator3 generator(0, 0, 0, 12345, 54321, version, method, Lead::None, filter);
+        auto generatorStates = generator.generate(state.getSeed(), staticTemplate);
+
+        QCOMPARE(generatorStates.size(), 1);
+        QCOMPARE(state, generatorStates[0]);
     }
-    qDebug() << str;
 }

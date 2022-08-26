@@ -811,6 +811,7 @@
                 "results": [
                     {
                         "ability": 0,
+                        "abilityIndex": 70,
                         "advances": 0,
                         "gender": 2,
                         "hiddenPower": 8,
@@ -838,6 +839,7 @@
                     },
                     {
                         "ability": 0,
+                        "abilityIndex": 70,
                         "advances": 1,
                         "gender": 2,
                         "hiddenPower": 0,
@@ -865,6 +867,7 @@
                     },
                     {
                         "ability": 1,
+                        "abilityIndex": 70,
                         "advances": 2,
                         "gender": 2,
                         "hiddenPower": 10,
@@ -892,6 +895,7 @@
                     },
                     {
                         "ability": 0,
+                        "abilityIndex": 70,
                         "advances": 3,
                         "gender": 2,
                         "hiddenPower": 9,
@@ -919,6 +923,7 @@
                     },
                     {
                         "ability": 0,
+                        "abilityIndex": 70,
                         "advances": 4,
                         "gender": 2,
                         "hiddenPower": 14,
@@ -946,6 +951,7 @@
                     },
                     {
                         "ability": 0,
+                        "abilityIndex": 70,
                         "advances": 5,
                         "gender": 2,
                         "hiddenPower": 12,
@@ -973,6 +979,7 @@
                     },
                     {
                         "ability": 1,
+                        "abilityIndex": 70,
                         "advances": 6,
                         "gender": 2,
                         "hiddenPower": 9,
@@ -1000,6 +1007,7 @@
                     },
                     {
                         "ability": 1,
+                        "abilityIndex": 70,
                         "advances": 7,
                         "gender": 2,
                         "hiddenPower": 3,
@@ -1027,6 +1035,7 @@
                     },
                     {
                         "ability": 1,
+                        "abilityIndex": 70,
                         "advances": 8,
                         "gender": 2,
                         "hiddenPower": 0,
@@ -1054,6 +1063,7 @@
                     },
                     {
                         "ability": 0,
+                        "abilityIndex": 70,
                         "advances": 9,
                         "gender": 2,
                         "hiddenPower": 5,
@@ -1091,6 +1101,7 @@
                 "results": [
                     {
                         "ability": 1,
+                        "abilityIndex": 67,
                         "advances": 0,
                         "gender": 1,
                         "hiddenPower": 13,
@@ -1118,6 +1129,7 @@
                     },
                     {
                         "ability": 1,
+                        "abilityIndex": 67,
                         "advances": 1,
                         "gender": 0,
                         "hiddenPower": 9,
@@ -1145,6 +1157,7 @@
                     },
                     {
                         "ability": 1,
+                        "abilityIndex": 67,
                         "advances": 2,
                         "gender": 0,
                         "hiddenPower": 8,
@@ -1172,6 +1185,7 @@
                     },
                     {
                         "ability": 0,
+                        "abilityIndex": 67,
                         "advances": 3,
                         "gender": 0,
                         "hiddenPower": 14,
@@ -1199,6 +1213,7 @@
                     },
                     {
                         "ability": 0,
+                        "abilityIndex": 67,
                         "advances": 4,
                         "gender": 1,
                         "hiddenPower": 3,
@@ -1226,6 +1241,7 @@
                     },
                     {
                         "ability": 0,
+                        "abilityIndex": 67,
                         "advances": 5,
                         "gender": 0,
                         "hiddenPower": 0,
@@ -1253,6 +1269,7 @@
                     },
                     {
                         "ability": 1,
+                        "abilityIndex": 67,
                         "advances": 6,
                         "gender": 0,
                         "hiddenPower": 11,
@@ -1280,6 +1297,7 @@
                     },
                     {
                         "ability": 1,
+                        "abilityIndex": 67,
                         "advances": 7,
                         "gender": 0,
                         "hiddenPower": 3,
@@ -1307,6 +1325,7 @@
                     },
                     {
                         "ability": 0,
+                        "abilityIndex": 67,
                         "advances": 8,
                         "gender": 0,
                         "hiddenPower": 0,
@@ -1334,6 +1353,7 @@
                     },
                     {
                         "ability": 0,
+                        "abilityIndex": 67,
                         "advances": 9,
                         "gender": 0,
                         "hiddenPower": 13,
@@ -1371,6 +1391,7 @@
                 "results": [
                     {
                         "ability": 0,
+                        "abilityIndex": 46,
                         "advances": 0,
                         "gender": 2,
                         "hiddenPower": 12,
@@ -1398,6 +1419,7 @@
                     },
                     {
                         "ability": 0,
+                        "abilityIndex": 46,
                         "advances": 1,
                         "gender": 2,
                         "hiddenPower": 1,
@@ -1425,6 +1447,7 @@
                     },
                     {
                         "ability": 0,
+                        "abilityIndex": 46,
                         "advances": 2,
                         "gender": 2,
                         "hiddenPower": 3,
@@ -1452,6 +1475,7 @@
                     },
                     {
                         "ability": 0,
+                        "abilityIndex": 46,
                         "advances": 3,
                         "gender": 2,
                         "hiddenPower": 13,
@@ -1479,6 +1503,7 @@
                     },
                     {
                         "ability": 0,
+                        "abilityIndex": 46,
                         "advances": 4,
                         "gender": 2,
                         "hiddenPower": 11,
@@ -1506,6 +1531,7 @@
                     },
                     {
                         "ability": 0,
+                        "abilityIndex": 46,
                         "advances": 5,
                         "gender": 2,
                         "hiddenPower": 14,
@@ -1533,6 +1559,7 @@
                     },
                     {
                         "ability": 1,
+                        "abilityIndex": 46,
                         "advances": 6,
                         "gender": 2,
                         "hiddenPower": 9,
@@ -1560,6 +1587,7 @@
                     },
                     {
                         "ability": 1,
+                        "abilityIndex": 46,
                         "advances": 7,
                         "gender": 2,
                         "hiddenPower": 12,
@@ -1587,6 +1615,7 @@
                     },
                     {
                         "ability": 1,
+                        "abilityIndex": 46,
                         "advances": 8,
                         "gender": 2,
                         "hiddenPower": 9,
@@ -1614,6 +1643,7 @@
                     },
                     {
                         "ability": 0,
+                        "abilityIndex": 46,
                         "advances": 9,
                         "gender": 2,
                         "hiddenPower": 6,
@@ -1670,6 +1700,7 @@
                 "results": [
                     {
                         "ability": 1,
+                        "abilityIndex": 70,
                         "gender": 2,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -1684,7 +1715,7 @@
                         "level": 45,
                         "nature": 15,
                         "pid": 3095800965,
-                        "seed": 2147439333,
+                        "seed": 861500176,
                         "shiny": 0,
                         "stats": [
                             158,
@@ -1697,6 +1728,7 @@
                     },
                     {
                         "ability": 1,
+                        "abilityIndex": 70,
                         "gender": 2,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -1711,19 +1743,20 @@
                         "level": 45,
                         "nature": 10,
                         "pid": 948350085,
-                        "seed": 4294922981,
+                        "seed": 3008983824,
                         "shiny": 0,
                         "stats": [
                             158,
                             137,
                             144,
-                            118,
+                            108,
                             99,
-                            99
+                            108
                         ]
                     },
                     {
                         "ability": 0,
+                        "abilityIndex": 70,
                         "gender": 2,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -1738,7 +1771,7 @@
                         "level": 45,
                         "nature": 14,
                         "pid": 2572860564,
-                        "seed": 2147454318,
+                        "seed": 2867376661,
                         "shiny": 0,
                         "stats": [
                             158,
@@ -1751,6 +1784,7 @@
                     },
                     {
                         "ability": 0,
+                        "abilityIndex": 70,
                         "gender": 2,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -1765,15 +1799,15 @@
                         "level": 45,
                         "nature": 23,
                         "pid": 425344148,
-                        "seed": 4294937966,
+                        "seed": 719893013,
                         "shiny": 0,
                         "stats": [
                             158,
                             153,
                             144,
+                            97,
                             108,
-                            89,
-                            108
+                            99
                         ]
                     }
                 ]
@@ -1803,6 +1837,7 @@
                 "results": [
                     {
                         "ability": 1,
+                        "abilityIndex": 67,
                         "gender": 0,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -1817,7 +1852,7 @@
                         "level": 5,
                         "nature": 15,
                         "pid": 1750077865,
-                        "seed": 2147430490,
+                        "seed": 2063878353,
                         "shiny": 0,
                         "stats": [
                             21,
@@ -1830,6 +1865,7 @@
                     },
                     {
                         "ability": 1,
+                        "abilityIndex": 67,
                         "gender": 0,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -1844,19 +1880,20 @@
                         "level": 5,
                         "nature": 6,
                         "pid": 3897594281,
-                        "seed": 4294914138,
+                        "seed": 4211362001,
                         "shiny": 0,
                         "stats": [
                             21,
-                            11,
+                            13,
                             12,
-                            11,
+                            10,
                             11,
                             10
                         ]
                     },
                     {
                         "ability": 0,
+                        "abilityIndex": 67,
                         "gender": 0,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -1871,7 +1908,7 @@
                         "level": 5,
                         "nature": 15,
                         "pid": 4181880690,
-                        "seed": 2147457069,
+                        "seed": 1184872504,
                         "shiny": 0,
                         "stats": [
                             21,
@@ -1884,6 +1921,7 @@
                     },
                     {
                         "ability": 0,
+                        "abilityIndex": 67,
                         "gender": 0,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -1898,19 +1936,20 @@
                         "level": 5,
                         "nature": 10,
                         "pid": 2034429810,
-                        "seed": 4294940717,
+                        "seed": 3332356152,
                         "shiny": 0,
                         "stats": [
                             21,
                             11,
                             12,
+                            10,
                             11,
-                            11,
-                            10
+                            11
                         ]
                     },
                     {
                         "ability": 0,
+                        "abilityIndex": 67,
                         "gender": 0,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -1925,7 +1964,7 @@
                         "level": 5,
                         "nature": 20,
                         "pid": 3912718920,
-                        "seed": 2147481953,
+                        "seed": 3600075036,
                         "shiny": 0,
                         "stats": [
                             21,
@@ -1938,6 +1977,7 @@
                     },
                     {
                         "ability": 0,
+                        "abilityIndex": 67,
                         "gender": 0,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -1952,14 +1992,14 @@
                         "level": 5,
                         "nature": 15,
                         "pid": 1765268040,
-                        "seed": 4294965601,
+                        "seed": 1452591388,
                         "shiny": 0,
                         "stats": [
                             21,
                             11,
                             12,
-                            10,
-                            12,
+                            11,
+                            11,
                             10
                         ]
                     }
@@ -1990,6 +2030,7 @@
                 "results": [
                     {
                         "ability": 1,
+                        "abilityIndex": 46,
                         "gender": 2,
                         "hiddenPower": 14,
                         "hiddenPowerStrength": 68,
@@ -2004,7 +2045,7 @@
                         "level": 70,
                         "nature": 4,
                         "pid": 4224271929,
-                        "seed": 2082409964,
+                        "seed": 74866011,
                         "shiny": 0,
                         "stats": [
                             250,
@@ -2017,6 +2058,7 @@
                     },
                     {
                         "ability": 1,
+                        "abilityIndex": 46,
                         "gender": 2,
                         "hiddenPower": 14,
                         "hiddenPowerStrength": 68,
@@ -2031,19 +2073,20 @@
                         "level": 70,
                         "nature": 24,
                         "pid": 2076821049,
-                        "seed": 4229893612,
+                        "seed": 2222349659,
                         "shiny": 0,
                         "stats": [
                             250,
-                            144,
+                            131,
                             208,
                             152,
-                            217,
+                            242,
                             180
                         ]
                     },
                     {
                         "ability": 1,
+                        "abilityIndex": 46,
                         "gender": 2,
                         "hiddenPower": 14,
                         "hiddenPowerStrength": 68,
@@ -2058,7 +2101,7 @@
                         "level": 70,
                         "nature": 20,
                         "pid": 2361172995,
-                        "seed": 2082436543,
+                        "seed": 3490827458,
                         "shiny": 0,
                         "stats": [
                             250,
@@ -2071,6 +2114,7 @@
                     },
                     {
                         "ability": 1,
+                        "abilityIndex": 46,
                         "gender": 2,
                         "hiddenPower": 14,
                         "hiddenPowerStrength": 68,
@@ -2085,14 +2129,14 @@
                         "level": 70,
                         "nature": 4,
                         "pid": 213656579,
-                        "seed": 4229920191,
+                        "seed": 1343343810,
                         "shiny": 0,
                         "stats": [
                             250,
-                            117,
+                            144,
                             208,
                             152,
-                            266,
+                            217,
                             180
                         ]
                     }

@@ -23,7 +23,7 @@
 #include <Core/Global.hpp>
 #include <vector>
 
-class EncounterArea;
+class EncounterArea3;
 class StaticTemplate;
 enum class Encounter : u8;
 enum class Game : u32;
@@ -38,7 +38,7 @@ namespace Encounters3
      *
      * @return Vector of wild encounters
      */
-    std::vector<EncounterArea> getEncounters(Encounter encounter, Game version);
+    std::vector<EncounterArea3> getEncounters(Encounter encounter, Game version);
 
     /**
      * @brief Gets static encounters from the \p type

@@ -48,28 +48,11 @@ public:
     void addAction(const QString &actionText, int data, QMenu *menu = nullptr);
 
     /**
-     * @brief Removes an action
-     *
-     * @param name Action title to search by
-     */
-    void removeAction(const QString &name);
-
-    /**
      * @brief Determines if an action is present
      *
      * @param name Action title to search by
      * @return
      */
-
-    /**
-     * @brief Determines if an action is present
-     *
-     * @param name Action title to search by
-     *
-     * @return true Action is present
-     * @return false Action is not present
-     */
-    bool findAction(const QString &name);
 
     /**
      * @brief Adds a new sub menu and set of actions
@@ -90,16 +73,35 @@ public:
     void addMenu(const QString &menuText, const std::vector<QString> &actions, const std::vector<int> &data = {});
 
     /**
-     * @brief Gets data of the currently selected action
-     *
-     * @return Current action data
-     */
-    int getData() const;
-
-    /**
      * @brief Defaults selected action to first one of the menu
      */
     void clearSelection();
+
+    /**
+     * @brief Determines if an action is present
+     *
+     * @param name Action title to search by
+     *
+     * @return true Action is present
+     * @return false Action is not present
+     */
+    bool findAction(const QString &name);
+
+    /**
+     * @brief Gets data of the currently selected action
+     *
+     * @param parent Whether to look at the parent menu for the data
+     *
+     * @return Current action data
+     */
+    int getData(bool parent = false) const;
+
+    /**
+     * @brief Removes an action
+     *
+     * @param name Action title to search by
+     */
+    void removeAction(const QString &name);
 
 private:
     QActionGroup *actionGroup;

@@ -60,13 +60,6 @@ public:
     void disableControls(Controls control);
 
     /**
-     * @brief Enables specified controls
-     *
-     * @param control Controls value
-     */
-    void enableControls(Controls control);
-
-    /**
      * @brief Enables showing the hidden ability
      */
     void enableHiddenAbility();

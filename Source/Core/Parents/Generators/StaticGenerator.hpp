@@ -20,8 +20,9 @@
 #ifndef STATICGENERATOR_HPP
 #define STATICGENERATOR_HPP
 
-#include <Core/Enum/Lead.hpp>
 #include <Core/Parents/Generators/Generator.hpp>
+
+enum class Lead : u8;
 
 /**
  * @brief Parent generator class for static encounters
@@ -42,21 +43,13 @@ public:
      * @param sid Secret ID
      * @param version Game version
      * @param method Encounter method
+     * @param lead Encounter lead
      * @param filter State filter
      */
-    StaticGenerator(u32 initialAdvances, u32 maxAdvances, u32 offset, u16 tid, u16 sid, Game version, Method method, const Filter &filter) :
-        Generator<Filter>(initialAdvances, maxAdvances, offset, tid, sid, version, method, filter), lead(Lead::None)
+    StaticGenerator(u32 initialAdvances, u32 maxAdvances, u32 offset, u16 tid, u16 sid, Game version, Method method, Lead lead,
+                    const Filter &filter) :
+        Generator<Filter>(initialAdvances, maxAdvances, offset, tid, sid, version, method, filter), lead(lead)
     {
-    }
-
-    /**
-     * @brief Sets the lead type used by the generator
-     *
-     * @param lead Lead type
-     */
-    void setLead(Lead lead)
-    {
-        this->lead = lead;
     }
 
     /**

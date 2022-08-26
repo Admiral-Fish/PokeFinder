@@ -17,32 +17,31 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef STATE3_HPP
-#define STATE3_HPP
+#ifndef WILDSTATE3_HPP
+#define WILDSTATE3_HPP
 
-#include <Core/Parents/States/State.hpp>
+#include <Core/Parents/States/WildState.hpp>
 
 class PersonalInfo;
 
 /**
  * @brief State class for Gen3 static generator encounters
  */
-class GeneratorState3 : public GeneratorState
+class WildGeneratorState3 : public WildGeneratorState
 {
 public:
     /**
      * @brief Construct a new GeneratorState3 object
      *
      * @param advances State advances
-     * @param high High 16bits of PID
-     * @param low Low 16bits of PID
+     * @param pid PID value
      * @param iv1 First IV call
      * @param iv2 Second IV call
      * @param tsv Trainer shiny value
      * @param level Pokemon level
      * @param info Pokemon personal information
      */
-    GeneratorState3(u32 advances, u16 high, u16 low, u16 iv1, u16 iv2, u16 tsv, u8 level, const PersonalInfo *info);
+    WildGeneratorState3(u32 advances, u32 pid, u16 iv1, u16 iv2, u16 tsv, u8 level, u8 encounterSlot, u16 specie, const PersonalInfo *info);
 
     /**
      * @brief Returns the hidden power strength
@@ -61,7 +60,7 @@ private:
 /**
  * @brief State class for Gen3 static searcher encounters
  */
-class SearcherState3 : public SearcherState<u32>
+class WildSearcherState3 : public WildSearcherState<u32>
 {
 public:
     /**
@@ -73,9 +72,10 @@ public:
      * @param ivs Pokemon IVs
      * @param tsv Trainer shiny value
      * @param level Pokemon level
-     * @param info Pokemon info
+     * @param info Pokemon personal information
      */
-    SearcherState3(u32 seed, u16 high, u16 low, std::array<u8, 6> ivs, u16 tsv, u8 level, const PersonalInfo *info);
+    WildSearcherState3(u32 seed, u32 pid, u8 nature, std::array<u8, 6> ivs, u16 tsv, u8 level, u8 encounterSlot, u16 specie,
+                       const PersonalInfo *info);
 
     /**
      * @brief Returns the hidden power strength
@@ -87,15 +87,13 @@ public:
         return hiddenPowerStrength;
     }
 
-    /**
-     * @brief XORs the state to get the sister spread
-     *
-     * @param info Pokemon info
-     */
-    void xorState(const PersonalInfo *info);
+    void setSeed(u32 seed)
+    {
+        this->seed = seed;
+    }
 
 private:
     u8 hiddenPowerStrength;
 };
 
-#endif // STATE3_HPP
+#endif // WILDSTATE3_HPP

@@ -24,6 +24,7 @@
 #include <string>
 #include <vector>
 
+class PersonalInfo;
 class Slot;
 enum class Encounter : u8;
 
@@ -34,7 +35,7 @@ class EncounterArea
 {
 public:
     /**
-     * @brief Construct a new Encounter Area object
+     * @brief Construct a new EncounterArea object
      *
      * @param location Location number
      * @param rate Encounter rate of the area
@@ -70,6 +71,15 @@ public:
     Encounter getEncounter() const;
 
     /**
+     * @brief Calculates the level range of a \p specie across all possible slots it can be encountered
+     *
+     * @param specie Species number
+     *
+     * @return Pair of level range
+     */
+    std::pair<u8, u8> getLevelRange(u16 specie) const;
+
+    /**
      * @brief Returns the location of the area
      *
      * @return Location number
@@ -77,25 +87,20 @@ public:
     u8 getLocation() const;
 
     /**
+     * @brief Return the pokemon at the specifie \p index
+     *
+     * @param index Pokemon index
+     *
+     * @return Pokemon
+     */
+    Slot getPokemon(int index) const;
+
+    /**
      * @brief Return the encounter rate of the area
      *
      * @return Encounter rate
      */
     u8 getRate() const;
-
-    /**
-     * @brief Return the pokemon of the area
-     *
-     * @return Vector of pokemon
-     */
-    std::vector<Slot> getPokemon() const;
-
-    /**
-     * @brief Return the species numbers of unique pokemon of the area
-     *
-     * @return Vector of pokemon species
-     */
-    std::vector<u16> getUniqueSpecies() const;
 
     /**
      * @brief Return vector of true/false which indicate slots that match the \p specie
@@ -107,20 +112,18 @@ public:
     std::vector<bool> getSlots(u16 specie) const;
 
     /**
-     * @brief Calculates the level range of a \p specie across all possible slots it can be encountered
-     *
-     * @param specie Species number
-     *
-     * @return Pair of level range
-     */
-    std::pair<u8, u8> getLevelRange(u16 specie) const;
-
-    /**
      * @brief Return vector of names of all pokemon slots
      *
      * @return Vector of pokemon name
      */
     std::vector<std::string> getSpecieNames() const;
+
+    /**
+     * @brief Return the species numbers of unique pokemon of the area
+     *
+     * @return Vector of pokemon species
+     */
+    std::vector<u16> getUniqueSpecies() const;
 
 protected:
     std::vector<Slot> pokemon;

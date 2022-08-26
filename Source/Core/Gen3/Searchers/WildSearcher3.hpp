@@ -17,11 +17,12 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef STATICSEARCHER3_HPP
-#define STATICSEARCHER3_HPP
+#ifndef WILDSEARCHER3_HPP
+#define WILDSEARCHER3_HPP
 
+#include <Core/Gen3/EncounterArea3.hpp>
 #include <Core/Gen3/Filters/StateFilter3.hpp>
-#include <Core/Parents/Searchers/StaticSearcher.hpp>
+#include <Core/Parents/Searchers/WildSearcher.hpp>
 #include <Core/RNG/RNGCache.hpp>
 #include <mutex>
 
@@ -29,22 +30,24 @@ class PersonalInfo;
 class StaticTemplate;
 
 /**
- * @brief Static encounter searcher for Gen3
+ * @brief Wild encounter searcher for Gen3
  */
-class StaticSearcher3 : public StaticSearcher<StateFilter3>
+class WildSearcher3 : public WildSearcher<WildStateFilter3>
 {
 public:
     /**
-     * @brief Construct a new StaticGenerator object
+     * @brief Construct a new WildSearcher3 object
      *
      * @param tid Trainer ID
      * @param sid Secret ID
      * @param version Game version
      * @param method Encounter method
+     * @param encounter Encounter type
      * @param lead Encounter lead
      * @param filter State filter
      */
-    StaticSearcher3(u16 tid, u16 sid, Game version, Method method, Lead lead, const StateFilter3 &filter);
+    WildSearcher3(u16 tid, u16 sid, Game version, Method method, Encounter encounter, Lead lead, const EncounterArea3 &encounterArea,
+                  const WildStateFilter3 &filter);
 
     /**
      * @brief Cancels the running search
@@ -63,24 +66,23 @@ public:
      *
      * @return Vector of computed states
      */
-    std::vector<SearcherState3> getResults();
+    std::vector<WildSearcherState3> getResults();
 
     /**
      * @brief Starts the search
      *
      * @param min Minimum IVs
      * @param max Maximum IVs
-     * @param staticTemplate Pokemon template
      */
-    void startSearch(const std::array<u8, 6> &min, const std::array<u8, 6> &max, const StaticTemplate *staticTemplate);
+    void startSearch(const std::array<u8, 6> &min, const std::array<u8, 6> &max);
 
 private:
+    EncounterArea3 encounterArea;
     std::mutex mutex;
-    std::vector<SearcherState3> results;
+    std::vector<WildSearcherState3> results;
     int progress;
     RNGCache cache;
     bool searching;
-    u8 ivAdvance;
 
     /**
      * @brief Searches for matching states from provided IVs
@@ -91,12 +93,11 @@ private:
      * @param spa SpA IV
      * @param spd SpD IV
      * @param spe Spe IV
-     * @param level Pokemon level
-     * @param info Pokemon information
+     * @param safari Whether the encounter location is the Safari Zone in RSE
      *
      * @return Vector of computed states
      */
-    std::vector<SearcherState3> search(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, u8 level, const PersonalInfo *info) const;
+    std::vector<WildSearcherState3> search(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, bool safari) const;
 };
 
-#endif // STATICSEARCHER3_HPP
+#endif // WILDSEARCHER3_HPP

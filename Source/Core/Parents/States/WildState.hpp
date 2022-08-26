@@ -22,26 +22,106 @@
 
 #include <Core/Parents/States/State.hpp>
 
+/**
+ * @brief Parent state class that provides additional wild information
+ */
 class WildState : public State
 {
 public:
-    WildState(u64 advance) : State(advance)
+    /**
+     * @brief Returns the specie
+     *
+     * @return State specie
+     */
+    u16 getSpecie() const
     {
+        return specie;
     }
 
+    /**
+     * @brief Returns the encounter slot of the state
+     *
+     * @return State encounter slot
+     */
     u8 getEncounterSlot() const
     {
         return encounterSlot;
     }
 
+    /**
+     * @brief Returns the item of the state
+     *
+     * @return State item
+     */
     u8 getItem() const
     {
         return item;
     }
 
 protected:
+    u16 specie;
     u8 encounterSlot;
     u8 item;
+};
+
+/**
+ * @brief Parent state class that provides additional information from the generator
+ */
+class WildGeneratorState : public WildState
+{
+public:
+    /**
+     * @brief Construct a new WildGeneratorState object
+     *
+     * @param advances Advances of the state
+     */
+    WildGeneratorState(u32 advances) : advances(advances)
+    {
+    }
+
+    /**
+     * @brief Returns the advances of the state
+     *
+     * @return State advances
+     */
+    u32 getAdvances() const
+    {
+        return advances;
+    }
+
+private:
+    u32 advances;
+};
+
+/**
+ * @brief Parent state class that provides additional information from the searcher
+ *
+ * @tparam Integer Integer type of the seed
+ */
+template <typename Integer>
+class WildSearcherState : public WildState
+{
+public:
+    /**
+     * @brief Construct a new WildSearcherState object
+     * @param seed Seed of the state
+     */
+    WildSearcherState(Integer seed) : seed(seed)
+    {
+    }
+
+    /**
+     * @brief Returns the seed of the state
+     *
+     * @return State seed
+     */
+    Integer getSeed() const
+    {
+        return seed;
+    }
+
+protected:
+    Integer seed;
 };
 
 #endif // WILDSTATE_HPP

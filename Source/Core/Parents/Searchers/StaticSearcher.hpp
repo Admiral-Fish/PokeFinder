@@ -33,27 +33,18 @@ class StaticSearcher : public Searcher<Filter>
 {
 public:
     /**
-     * @brief Construct a new StaticGenerator object
+     * @brief Construct a new StaticSearcher object
      *
      * @param tid Trainer ID
      * @param sid Secret ID
      * @param version Game version
      * @param method Encounter method
+     * @param lead Encounter lead
      * @param filter State filter
      */
-    StaticSearcher(u16 tid, u16 sid, Game version, Method method, const Filter &filter) :
-        Searcher<Filter>(tid, sid, version, method, filter)
+    StaticSearcher(u16 tid, u16 sid, Game version, Method method, Lead lead, const Filter &filter) :
+        Searcher<Filter>(tid, sid, version, method, filter), lead(lead)
     {
-    }
-
-    /**
-     * @brief Sets the lead type used by the generator
-     *
-     * @param lead Lead type
-     */
-    void setLead(Lead lead)
-    {
-        this->lead = lead;
     }
 
 protected:

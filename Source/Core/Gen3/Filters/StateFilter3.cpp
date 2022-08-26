@@ -19,6 +19,7 @@
 
 #include "StateFilter3.hpp"
 #include <Core/Gen3/States/State3.hpp>
+#include <Core/Gen3/States/WildState3.hpp>
 
 StateFilter3::StateFilter3(u8 gender, u8 ability, u8 shiny, bool skip, const std::array<u8, 6> &min, const std::array<u8, 6> &max,
                            const std::array<bool, 25> &natures, const std::array<bool, 16> &powers) :
@@ -72,6 +73,43 @@ bool StateFilter3::compareState(const GeneratorState3 &state) const
 
 bool StateFilter3::compareState(const SearcherState3 &state) const
 {
+    if (ability != 255 && ability != state.getAbility())
+    {
+        return false;
+    }
+
+    if (gender != 255 && gender != state.getGender())
+    {
+        return false;
+    }
+
+    if (!powers[state.getHiddenPower()])
+    {
+        return false;
+    }
+
+    if (!natures[state.getNature()])
+    {
+        return false;
+    }
+
+    if (shiny != 255 && !(shiny & state.getShiny()))
+    {
+        return false;
+    }
+
+    return true;
+}
+
+WildStateFilter3::WildStateFilter3(u8 gender, u8 ability, u8 shiny, bool skip, const std::array<u8, 6> &min, const std::array<u8, 6> &max,
+                                   const std::array<bool, 25> &natures, const std::array<bool, 16> &powers,
+                                   const std::vector<bool> &encounterSlots) :
+    WildStateFilter(gender, ability, shiny, skip, min, max, natures, powers, encounterSlots)
+{
+}
+
+bool WildStateFilter3::compareState(const WildGeneratorState3 &state) const
+{
     if (skip)
     {
         return true;
@@ -92,7 +130,36 @@ bool StateFilter3::compareState(const SearcherState3 &state) const
         return false;
     }
 
-    if (!natures[state.getNature()])
+    if (shiny != 255 && !(shiny & state.getShiny()))
+    {
+        return false;
+    }
+
+    for (int i = 0; i < 6; i++)
+    {
+        u8 iv = state.getIV(i);
+        if (iv < min[i] || iv > max[i])
+        {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+bool WildStateFilter3::compareState(const WildSearcherState3 &state) const
+{
+    if (ability != 255 && ability != state.getAbility())
+    {
+        return false;
+    }
+
+    if (gender != 255 && gender != state.getGender())
+    {
+        return false;
+    }
+
+    if (!powers[state.getHiddenPower()])
     {
         return false;
     }

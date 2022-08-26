@@ -20,8 +20,8 @@
 #include "Encounters3.hpp"
 #include <Core/Enum/Encounter.hpp>
 #include <Core/Enum/Game.hpp>
+#include <Core/Gen3/EncounterArea3.hpp>
 #include <Core/Gen3/Profile3.hpp>
-#include <Core/Parents/EncounterArea.hpp>
 #include <Core/Parents/PersonalLoader.hpp>
 #include <Core/Parents/Slot.hpp>
 #include <Core/Parents/StaticTemplate.hpp>
@@ -139,7 +139,7 @@ namespace
      *
      * @return Vector of wild encounters
      */
-    std::vector<EncounterArea> getAreas(Encounter encounter, Game game, const PersonalInfo *info)
+    std::vector<EncounterArea3> getAreas(Encounter encounter, Game game, const PersonalInfo *info)
     {
         const u8 *data;
         size_t size;
@@ -170,7 +170,7 @@ namespace
             size = sapphire.size();
         }
 
-        std::vector<EncounterArea> encounters;
+        std::vector<EncounterArea3> encounters;
         for (size_t offset = 0; offset < size; offset += 121)
         {
             const u8 *entry = data + offset;
@@ -192,7 +192,7 @@ namespace
                     {
                         u8 level = entry[5 + (i * 3)];
                         u16 specie = *reinterpret_cast<const u16 *>(entry + 6 + (i * 3));
-                        slots.emplace_back(specie, level, info[specie]);
+                        slots.emplace_back(specie, level, &info[specie]);
                     }
                     encounters.emplace_back(location, grass, encounter, slots);
                 }
@@ -207,7 +207,7 @@ namespace
                         u8 min = entry[41 + (i * 4)];
                         u8 max = entry[42 + (i * 4)];
                         u16 specie = *reinterpret_cast<const u16 *>(entry + 43 + (i * 4));
-                        slots.emplace_back(specie, min, max, info[specie]);
+                        slots.emplace_back(specie, min, max, &info[specie]);
                     }
                     encounters.emplace_back(location, water, encounter, slots);
                 }
@@ -222,7 +222,7 @@ namespace
                         u8 min = entry[61 + (i * 4)];
                         u8 max = entry[62 + (i * 4)];
                         u16 specie = *reinterpret_cast<const u16 *>(entry + 63 + (i * 4));
-                        slots.emplace_back(specie, min, max, info[specie]);
+                        slots.emplace_back(specie, min, max, &info[specie]);
                     }
                     encounters.emplace_back(location, rock, encounter, slots);
                 }
@@ -237,7 +237,7 @@ namespace
                         u8 min = entry[81 + (i * 4)];
                         u8 max = entry[82 + (i * 4)];
                         u16 specie = *reinterpret_cast<const u16 *>(entry + 83 + (i * 4));
-                        slots.emplace_back(specie, min, max, info[specie]);
+                        slots.emplace_back(specie, min, max, &info[specie]);
                     }
                     encounters.emplace_back(location, fish, encounter, slots);
                 }
@@ -252,7 +252,7 @@ namespace
                         u8 min = entry[89 + (i * 4)];
                         u8 max = entry[90 + (i * 4)];
                         u16 specie = *reinterpret_cast<const u16 *>(entry + 91 + (i * 4));
-                        slots.emplace_back(specie, min, max, info[specie]);
+                        slots.emplace_back(specie, min, max, &info[specie]);
                     }
                     encounters.emplace_back(location, fish, encounter, slots);
                 }
@@ -267,7 +267,7 @@ namespace
                         u8 min = entry[101 + (i * 4)];
                         u8 max = entry[102 + (i * 4)];
                         u16 specie = *reinterpret_cast<const u16 *>(entry + 103 + (i * 4));
-                        slots.emplace_back(specie, min, max, info[specie]);
+                        slots.emplace_back(specie, min, max, &info[specie]);
                     }
                     encounters.emplace_back(location, fish, encounter, slots);
                 }
@@ -282,7 +282,7 @@ namespace
 
 namespace Encounters3
 {
-    std::vector<EncounterArea> getEncounters(Encounter encounter, Game version)
+    std::vector<EncounterArea3> getEncounters(Encounter encounter, Game version)
     {
         return getAreas(encounter, version, PersonalLoader::getPersonal(version));
     }

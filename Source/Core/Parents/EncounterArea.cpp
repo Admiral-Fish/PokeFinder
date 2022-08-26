@@ -30,7 +30,8 @@ EncounterArea::EncounterArea(u8 location, u8 rate, Encounter encounter, const st
 
 u8 EncounterArea::calcLevel(u8 index, u16 prng) const
 {
-    return (prng % (pokemon[index].getMaxLevel() - pokemon[index].getMinLevel() + 1)) + pokemon[index].getMinLevel();
+    u16 range = pokemon[index].getMaxLevel() - pokemon[index].getMinLevel() + 1;
+    return (prng % range) + pokemon[index].getMinLevel();
 }
 
 u8 EncounterArea::calcLevel(u8 index) const
@@ -41,41 +42,6 @@ u8 EncounterArea::calcLevel(u8 index) const
 Encounter EncounterArea::getEncounter() const
 {
     return encounter;
-}
-
-u8 EncounterArea::getLocation() const
-{
-    return location;
-}
-
-u8 EncounterArea::getRate() const
-{
-    return rate;
-}
-
-std::vector<Slot> EncounterArea::getPokemon() const
-{
-    return pokemon;
-}
-
-std::vector<u16> EncounterArea::getUniqueSpecies() const
-{
-    std::vector<u16> nums;
-    for (const auto &mon : pokemon)
-    {
-        if (std::find(nums.begin(), nums.end(), mon.getSpecie()) == nums.end())
-        {
-            nums.emplace_back(mon.getSpecie());
-        }
-    }
-    return nums;
-}
-
-std::vector<bool> EncounterArea::getSlots(u16 specie) const
-{
-    std::vector<bool> flags(pokemon.size());
-    std::transform(pokemon.begin(), pokemon.end(), flags.begin(), [specie](const auto &mon) { return mon.getSpecie() == specie; });
-    return flags;
 }
 
 std::pair<u8, u8> EncounterArea::getLevelRange(u16 specie) const
@@ -92,7 +58,42 @@ std::pair<u8, u8> EncounterArea::getLevelRange(u16 specie) const
     return range;
 }
 
+u8 EncounterArea::getLocation() const
+{
+    return location;
+}
+
+Slot EncounterArea::getPokemon(int index) const
+{
+    return pokemon[index];
+}
+
+u8 EncounterArea::getRate() const
+{
+    return rate;
+}
+
+std::vector<bool> EncounterArea::getSlots(u16 specie) const
+{
+    std::vector<bool> flags(pokemon.size());
+    std::transform(pokemon.begin(), pokemon.end(), flags.begin(), [specie](const auto &mon) { return mon.getSpecie() == specie; });
+    return flags;
+}
+
 std::vector<std::string> EncounterArea::getSpecieNames() const
 {
     return Translator::getSpecies(getUniqueSpecies());
+}
+
+std::vector<u16> EncounterArea::getUniqueSpecies() const
+{
+    std::vector<u16> nums;
+    for (const auto &mon : pokemon)
+    {
+        if (std::find(nums.begin(), nums.end(), mon.getSpecie()) == nums.end())
+        {
+            nums.emplace_back(mon.getSpecie());
+        }
+    }
+    return nums;
 }

@@ -59,6 +59,7 @@ set(PROJECT_UI
     Gen3/Profile/ProfileEditor3.ui
     Gen3/Profile/ProfileManager3.ui
     Gen3/Static3.ui
+    Gen3/Wild3.ui
     MainWindow.ui
     Util/IVCalculator.ui
     Util/Researcher.ui
@@ -101,6 +102,8 @@ set(PROJECT_SOURCES
     Gen3/Profile/ProfileManager3.hpp
     Gen3/Static3.cpp
     Gen3/Static3.hpp
+    Gen3/Wild3.cpp
+    Gen3/Wild3.hpp
     main.cpp
     MainWindow.cpp
     MainWindow.hpp

@@ -26,13 +26,15 @@ class EncounterArea3;
 class Profile3;
 class WildGeneratorModel3;
 class WildSearcherModel3;
-class QMenu;
 
 namespace Ui
 {
     class Wild3;
 }
 
+/**
+ * @brief Provides settings and filters to RNG static encounters in Gen 3 games
+ */
 class Wild3 : public QWidget
 {
     Q_OBJECT
@@ -40,41 +42,107 @@ signals:
     void alertProfiles(int);
 
 public:
-    explicit Wild3(QWidget *parent = nullptr);
+    /**
+     * @brief Construct a new Wild3 object
+     *
+     * @param parent Parent widget, which takes memory ownership
+     */
+    Wild3(QWidget *parent = nullptr);
+
+    /**
+     * @brief Destroy the Static3 object
+     */
     ~Wild3() override;
+
+    /**
+     * @brief Reloads profiles
+     */
     void updateProfiles();
 
 private:
     Ui::Wild3 *ui;
-    std::vector<Profile3> profiles;
+
     Profile3 *currentProfile;
-    WildGeneratorModel3 *generatorModel;
-    WildSearcherModel3 *searcherModel;
-    QMenu *generatorMenu;
-    QMenu *searcherMenu;
     std::vector<EncounterArea3> encounterGenerator;
     std::vector<EncounterArea3> encounterSearcher;
+    std::vector<Profile3> profiles;
+    WildGeneratorModel3 *generatorModel;
+    WildSearcherModel3 *searcherModel;
 
-    void setupModels();
+    /**
+     * @brief Updates the generator locations
+     */
     void updateLocationsGenerator();
+
+    /**
+     * @brief Updates the searcher locations
+     */
     void updateLocationsSearcher();
-    void updatePokemonGenerator();
-    void updatePokemonSearcher();
 
 private slots:
+    /**
+     * @brief Generates wild encounters from a starting seed
+     */
     void generate();
-    void search();
-    void profilesIndexChanged(int index);
-    void tableViewGeneratorContextMenu(QPoint pos);
-    void tableViewSearcherContextMenu(QPoint pos);
-    void seedToTime();
+
+    /**
+     * @brief Updates the locations listed
+     *
+     * @param index Encounter index
+     */
     void generatorEncounterIndexChanged(int index);
-    void searcherEncounterIndexChanged(int index);
+
+    /**
+     * @brief Updates the pokemon listed
+     *
+     * @param index Location index
+     */
     void generatorLocationIndexChanged(int index);
-    void searcherLocationIndexChanged(int index);
+
+    /**
+     * @brief Updates the encounter slot filter based on the pokemon
+     *
+     * @param index Pokemon index
+     */
     void generatorPokemonIndexChanged(int index);
-    void searcherPokemonIndexChanged(int index);
+
+    /**
+     * @brief Updates displayed information for a profile
+     *
+     * @param index Profile index
+     */
+    void profilesIndexChanged(int index);
+
+    /**
+     * @brief Opens the profile manager
+     */
     void profileManager();
+
+    /**
+     * @brief Searches static encounters from the provided IVs
+     */
+    void search();
+
+    /**
+     * @brief Updates the locations listed
+     *
+     * @param index Encounter index
+     */
+    void searcherEncounterIndexChanged(int index);
+
+    /**
+     * @brief Updates the pokemon listed
+     *
+     * @param index Location index
+     */
+    void searcherLocationIndexChanged(int index);
+
+    /**
+     * @brief Updates the encounter slot filter based on the pokemon
+     *
+     * @param index Pokemon index
+     */
+    void searcherPokemonIndexChanged(int index);
 };
 
 #endif // WILD3_HPP

@@ -24,22 +24,28 @@
 #include <Core/Enum/Lead.hpp>
 #include <Core/Parents/Searchers/Searcher.hpp>
 
-class WildSearcher : public Searcher
+/**
+ * @brief Parent searcher class for wild encounters
+ *
+ * @tparam Filter Filter class that is used by the searcher
+ */
+template <class Filter>
+class WildSearcher : public Searcher<Filter>
 {
 public:
-    WildSearcher(u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter) :
-        Searcher(tid, sid, genderRatio, method, filter)
+    /**
+     * @brief Construct a new WildSearcher object
+     *
+     * @param tid Trainer ID
+     * @param sid Secret ID
+     * @param version Game version
+     * @param method Encounter method
+     * @param lead Encounter lead
+     * @param filter State filter
+     */
+    WildSearcher(u16 tid, u16 sid, Game version, Method method, Encounter encounter, Lead lead, const Filter &filter) :
+        Searcher<Filter>(tid, sid, version, method, filter), encounter(encounter), lead(lead)
     {
-    }
-
-    void setEncounter(Encounter encounter)
-    {
-        this->encounter = encounter;
-    }
-
-    void setLead(Lead lead)
-    {
-        this->lead = lead;
     }
 
 protected:

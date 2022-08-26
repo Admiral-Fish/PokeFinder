@@ -25,8 +25,8 @@
 #include <Core/RNG/LCRNG.hpp>
 
 StaticGenerator3::StaticGenerator3(u32 initialAdvances, u32 maxAdvances, u32 offset, u16 tid, u16 sid, Game version, Method method,
-                                   const StateFilter3 &filter) :
-    StaticGenerator(initialAdvances, maxAdvances, offset, tid, sid, version, method, filter)
+                                   Lead lead, const StateFilter3 &filter) :
+    StaticGenerator(initialAdvances, maxAdvances, offset, tid, sid, version, method, lead, filter)
 {
 }
 
@@ -37,10 +37,6 @@ std::vector<GeneratorState3> StaticGenerator3::generate(u32 seed, const StaticTe
 
     PokeRNG rng(seed);
     rng.advance(initialAdvances + offset);
-
-    // Method 1 [SEED] [PID] [PID] [IVS] [IVS]
-    // Method 2 [SEED] [PID] [PID] [BLANK] [IVS] [IVS]
-    // Method 4 [SEED] [PID] [PID] [IVS] [BLANK] [IVS]
 
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rng.next())
     {

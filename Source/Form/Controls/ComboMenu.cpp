@@ -43,6 +43,58 @@ void ComboMenu::addAction(const QString &actionText, int data, QMenu *menu)
     }
 }
 
+void ComboMenu::addMenu(const QString &menuText, const std::vector<std::string> &actions, const std::vector<int> &data)
+{
+    QMenu *menu = topMenu->addMenu(menuText);
+    for (size_t i = 0; i < actions.size(); i++)
+    {
+        int value = data.empty() ? i : data[i];
+        addAction(QString::fromStdString(actions[i]), value, menu);
+    }
+}
+
+void ComboMenu::addMenu(const QString &menuText, const std::vector<QString> &actions, const std::vector<int> &data)
+{
+    QMenu *menu = topMenu->addMenu(menuText);
+    for (size_t i = 0; i < actions.size(); i++)
+    {
+        int value = data.empty() ? i : data[i];
+        addAction(actions[i], value, menu);
+    }
+}
+
+void ComboMenu::clearSelection()
+{
+    QAction *action = actionGroup->actions().constFirst();
+    action->setChecked(true);
+    actionChanged(action);
+}
+
+bool ComboMenu::findAction(const QString &name)
+{
+    auto actions = actionGroup->actions();
+    for (size_t i = 1; i < actions.size(); i++)
+    {
+        QAction *action = actions[i];
+        if (action->text() == name)
+        {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+int ComboMenu::getData(bool parent) const
+{
+    QAction *action = actionGroup->checkedAction();
+    if (parent)
+    {
+        QMenu *menu = action->menu();
+    }
+    return action->data().toInt();
+}
+
 void ComboMenu::removeAction(const QString &name)
 {
     auto actions = actionGroup->actions();
@@ -67,47 +119,6 @@ void ComboMenu::removeAction(const QString &name)
     }
 }
 
-bool ComboMenu::findAction(const QString &name)
-{
-    auto actions = actionGroup->actions();
-    for (size_t i = 1; i < actions.size(); i++)
-    {
-        QAction *action = actions[i];
-        if (action->text() == name)
-        {
-            return true;
-        }
-    }
-
-    return false;
-}
-
-void ComboMenu::addMenu(const QString &menuText, const std::vector<std::string> &actions, const std::vector<int> &data)
-{
-    QMenu *menu = topMenu->addMenu(menuText);
-    for (size_t i = 0; i < actions.size(); i++)
-    {
-        int value = data.empty() ? i : data[i];
-        addAction(QString::fromStdString(actions[i]), value, menu);
-    }
-}
-
-void ComboMenu::addMenu(const QString &menuText, const std::vector<QString> &actions, const std::vector<int> &data)
-{
-    QMenu *menu = topMenu->addMenu(menuText);
-    for (size_t i = 0; i < actions.size(); i++)
-    {
-        int value = data.empty() ? i : data[i];
-        addAction(actions[i], value, menu);
-    }
-}
-
-int ComboMenu::getData() const
-{
-    QAction *action = actionGroup->checkedAction();
-    return action->data().toInt();
-}
-
 void ComboMenu::actionChanged(QAction *action)
 {
     auto *parent = qobject_cast<QMenu *>(action->parentWidget());
@@ -119,11 +130,4 @@ void ComboMenu::actionChanged(QAction *action)
     {
         setText(action->text());
     }
-}
-
-void ComboMenu::clearSelection()
-{
-    QAction *action = actionGroup->actions().constFirst();
-    action->setChecked(true);
-    actionChanged(action);
 }

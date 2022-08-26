@@ -21,10 +21,16 @@
 #define STATEFILTER3_HPP
 
 #include <Core/Parents/Filters/StateFilter.hpp>
+#include <vector>
 
 class GeneratorState3;
 class SearcherState3;
+class WildGeneratorState3;
+class WildSearcherState3;
 
+/**
+ * @brief Checks if static encounters match the filter criteria
+ */
 class StateFilter3 : public StateFilter
 {
 public:
@@ -62,6 +68,48 @@ public:
      * @return false State does not pass the filter
      */
     bool compareState(const SearcherState3 &state) const;
+};
+
+/**
+ * @brief Checks if wild encounters match the filter criteria
+ */
+class WildStateFilter3 : public WildStateFilter
+{
+public:
+    /**
+     * @brief Construct a new StateFilter3 object
+     *
+     * @param gender Gender value to filter by
+     * @param ability Ability value to filter by
+     * @param shiny Shiny value to filter by
+     * @param skip If filters should be skipped
+     * @param min Minimum IV thresholds
+     * @param max Maximum IV thresholds
+     * @param natures Natures to filter by
+     * @param powers Hidden powers to filter by
+     */
+    WildStateFilter3(u8 gender, u8 ability, u8 shiny, bool skip, const std::array<u8, 6> &min, const std::array<u8, 6> &max,
+                     const std::array<bool, 25> &natures, const std::array<bool, 16> &powers, const std::vector<bool> &encounterSlots);
+
+    /**
+     * @brief Determines if the \p state meets the filter criteria
+     *
+     * @param state State to compare
+     *
+     * @return true State passes the filter
+     * @return false State does not pass the filter
+     */
+    bool compareState(const WildGeneratorState3 &state) const;
+
+    /**
+     * @brief Determines if the \p state meets the filter criteria
+     *
+     * @param state State to compare
+     *
+     * @return true State passes the filter
+     * @return false State does not pass the filter
+     */
+    bool compareState(const WildSearcherState3 &state) const;
 };
 
 #endif // STATEFILTER3_HPP

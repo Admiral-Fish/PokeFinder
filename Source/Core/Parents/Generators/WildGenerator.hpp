@@ -23,22 +23,28 @@
 #include <Core/Enum/Lead.hpp>
 #include <Core/Parents/Generators/Generator.hpp>
 
-class WildGenerator : public Generator
+template <class Filter>
+class WildGenerator : public Generator<Filter>
 {
 public:
-    WildGenerator(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter) :
-        Generator(initialAdvances, maxAdvances, tid, sid, genderRatio, method, filter), lead(Lead::None)
+    /**
+     * @brief Construct a new WildGenerator object
+     *
+     * @param initialAdvances Initial number of advances
+     * @param maxAdvances Maximum number of advances
+     * @param offset Number of advances to offset
+     * @param tid Trainer ID
+     * @param sid Secret ID
+     * @param version Game version
+     * @param encounter Encounter type
+     * @param method Encounter method
+     * @param lead Encounter lead
+     * @param filter State filter
+     */
+    WildGenerator(u32 initialAdvances, u32 maxAdvances, u32 offset, u16 tid, u16 sid, Game version, Method method, Encounter encounter,
+                  Lead lead, const Filter &filter) :
+        Generator<Filter>(initialAdvances, maxAdvances, offset, tid, sid, version, method, filter), encounter(encounter), lead(lead)
     {
-    }
-
-    void setEncounter(Encounter encounter)
-    {
-        this->encounter = encounter;
-    }
-
-    void setLead(Lead lead)
-    {
-        this->lead = lead;
     }
 
     void setSynchNature(u8 synchNature)

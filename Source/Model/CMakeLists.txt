@@ -14,6 +14,8 @@ add_library(PokeFinderModel STATIC
     Gen3/ProfileModel3.hpp
     Gen3/StaticModel3.cpp
     Gen3/StaticModel3.hpp
+    Gen3/WildModel3.cpp
+    Gen3/WildModel3.hpp
     TableModel.hpp
     Util/ResearcherModel.cpp
     Util/ResearcherModel.hpp

@@ -23,6 +23,7 @@
 #include <Form/Gen3/IDs3.hpp>
 #include <Form/Gen3/Profile/ProfileManager3.hpp>
 #include <Form/Gen3/Static3.hpp>
+#include <Form/Gen3/Wild3.hpp>
 #include <Form/Util/IVCalculator.hpp>
 #include <Form/Util/Researcher.hpp>
 #include <Form/Util/Settings.hpp>
@@ -47,7 +48,6 @@
 //#include <Forms/Gen3/Tools/PokeSpot.hpp>
 //#include <Forms/Gen3/Tools/SeedTime3.hpp>
 //#include <Forms/Gen3/Tools/SpindaPainter.hpp>
-//#include <Forms/Gen3/Wild3.hpp>
 //#include <Forms/Gen4/Eggs4.hpp>
 //#include <Forms/Gen4/IDs4.hpp>
 //#include <Forms/Gen4/Profile/ProfileManager4.hpp>
@@ -81,7 +81,7 @@ MainWindow::MainWindow(bool profile, QWidget *parent) : QMainWindow(parent), ui(
 
     connect(ui->pushButtonIDs3, &QPushButton::clicked, this, &MainWindow::openIDs3);
     connect(ui->pushButtonStatic3, &QPushButton::clicked, this, &MainWindow::openStatic3);
-    // connect(ui->pushButtonWild3, &QPushButton::clicked, this, &MainWindow::openWild3);
+    connect(ui->pushButtonWild3, &QPushButton::clicked, this, &MainWindow::openWild3);
     //  connect(ui->pushButtonGameCube, &QPushButton::clicked, this, &MainWindow::openGameCube);
     // connect(ui->pushButtonEgg3, &QPushButton::clicked, this, &MainWindow::openEgg3);
     connect(ui->actionProfileManager3, &QAction::triggered, this, &MainWindow::openProfileManager3);
@@ -153,30 +153,30 @@ MainWindow::~MainWindow()
 
     delete ui;
 
-    delete ids3;
-    delete static3;
-    // delete wild3;
     // delete egg3;
     // delete gamecube;
+    delete ids3;
+    delete static3;
+    delete wild3;
 
-    // delete static4;
-    // delete wild4;
     // delete egg4;
     // delete ids4;
+    // delete static4;
+    // delete wild4;
 
-    // delete static5;
-    // delete event5;
     // delete dreamRadar;
-    // delete hiddenGrotto;
     // delete egg5;
+    // delete event5;
+    // delete hiddenGrotto;
     // delete ids5;
+    // delete static5;
 
+    // delete egg8;
+    // delete event8;
+    // delete ids8;
+    // delete raids;
     // delete static8;
     // delete wild8;
-    // delete event8;
-    // delete raids;
-    // delete egg8;
-    // delete ids8;
 }
 
 void MainWindow::checkUpdates() const
@@ -243,7 +243,7 @@ void MainWindow::openStatic3()
     static3->show();
 }
 
-/*void MainWindow::openWild3()
+void MainWindow::openWild3()
 {
     if (!wild3)
     {
@@ -253,7 +253,7 @@ void MainWindow::openStatic3()
     wild3->show();
 }
 
-void MainWindow::openGameCube()
+/*void MainWindow::openGameCube()
 {
     if (!gamecube)
     {

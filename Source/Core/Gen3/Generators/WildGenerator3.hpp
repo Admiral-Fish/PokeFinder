@@ -17,22 +17,24 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef STATICGENERATOR3_HPP
-#define STATICGENERATOR3_HPP
+#ifndef WILDGENERATOR3_HPP
+#define WILDGENERATOR3_HPP
 
 #include <Core/Gen3/Filters/StateFilter3.hpp>
-#include <Core/Parents/Generators/StaticGenerator.hpp>
+#include <Core/Parents/Generators/WildGenerator.hpp>
 
-class StaticTemplate;
+class EncounterArea3;
+class WildGeneratorState3;
+enum class Game : u32;
 
 /**
- * @brief Static encounter generator for Gen3
+ * @brief Wild encounter generator for Gen3
  */
-class StaticGenerator3 : public StaticGenerator<StateFilter3>
+class WildGenerator3 : public WildGenerator<WildStateFilter3>
 {
 public:
     /**
-     * @brief Construct a new StaticGenerator3 object
+     * @brief Construct a new WildGenerator3 object
      *
      * @param initialAdvances Initial number of advances
      * @param maxAdvances Maximum number of advances
@@ -40,22 +42,23 @@ public:
      * @param tid Trainer ID
      * @param sid Secret ID
      * @param version Game version
+     * @param encounter Encounter type
      * @param method Encounter method
      * @param lead Encounter lead
      * @param filter State filter
      */
-    StaticGenerator3(u32 initialAdvances, u32 maxAdvances, u32 offset, u16 tid, u16 sid, Game version, Method method, Lead lead,
-                     const StateFilter3 &filter);
+    WildGenerator3(u32 initialAdvances, u32 maxAdvances, u32 offset, u16 tid, u16 sid, Game version, Method method, Encounter encounter,
+                   Lead lead, const WildStateFilter3 &filter);
 
     /**
-     * @brief Generates states for the \p staticTemplate
+     * @brief Generates states for the \p encounterArea
      *
      * @param seed Starting PRNG state
-     * @param staticTemplate Pokemon template
+     * @param encounterArea Wild pokemon info
      *
      * @return Vector of computed states
      */
-    std::vector<GeneratorState3> generate(u32 seed, const StaticTemplate *staticTemplate) const;
+    std::vector<WildGeneratorState3> generate(u32 seed, const EncounterArea3 &encounterArea) const;
 };
 
-#endif // STATICGENERATOR3_HPP
+#endif // WILDGENERATOR3_HPP

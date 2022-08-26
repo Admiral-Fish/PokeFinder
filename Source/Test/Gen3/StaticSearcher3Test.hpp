@@ -26,8 +26,8 @@ class StaticSearcher3Test : public QObject
 {
     Q_OBJECT
 private slots:
-    void generate_data();
-    void generate();
+    void search_data();
+    void search();
 };
 
 #endif // STATICSEARCHER3TEST_HPP

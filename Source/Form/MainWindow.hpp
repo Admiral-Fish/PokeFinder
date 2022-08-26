@@ -134,8 +134,12 @@ private slots:
      */
     void openStatic3();
 
+    /**
+     * @brief Opens the Gen 3 Wild window
+     */
+    void openWild3();
+
     // void openGameCubeRTC();
-    // void openWild3();
     // void openGameCube();
     // void openEgg3();
     // void openGameCubeSeedFinder();

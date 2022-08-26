@@ -63,11 +63,11 @@ public:
     std::vector<u32> recoverLower16BitsPID(u32 pid) const;
 
 private:
-    bool flags[0x10000];
-    u8 low[0x10000];
     u32 add;
     u32 k;
     u32 mult;
+    bool flags[0x10000];
+    u8 low[0x10000];
 };
 
 #endif // RNGCACHE_HPP
