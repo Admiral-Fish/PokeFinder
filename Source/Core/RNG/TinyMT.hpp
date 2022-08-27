@@ -30,35 +30,35 @@ class TinyMT
 public:
     /**
      * @brief Construct a new TinyMT object
-     * 
+     *
      * @param seed Starting PRNG value
      */
     TinyMT(u32 seed);
 
     /**
      * @brief Construct a new TinyMT object
-     * 
+     *
      * @param state Starting PRNG state
      */
     TinyMT(const u32 *state);
 
     /**
      * @brief Advances the RNG by \p advances amount
-     * 
+     *
      * @param advances Number of advances
      */
     void advance(u32 advances);
 
     /**
      * @brief Gets the next 32bit PRNG state
-     * 
+     *
      * @return PRNG value
      */
     u32 next();
 
     /**
      * @brief Gets the next 16bit PRNG state
-     * 
+     *
      * @return PRNG value
      */
     u16 nextUShort();
@@ -73,7 +73,7 @@ private:
 
     /**
      * @brief Generates the PRNG value from the current PRNG state
-     * 
+     *
      * @return PRNG value
      */
     u32 temper();

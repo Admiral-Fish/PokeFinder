@@ -36,14 +36,14 @@ class SHA1
 public:
     /**
      * @brief Construct a new SHA1 object
-     * 
+     *
      * @param profile Profile input parameters
      */
     SHA1(const Profile5 &profile);
 
     /**
      * @brief Construct a new SHA1 object
-     * 
+     *
      * @param version Game version parameter
      * @param language Language parameter
      * @param type DS type parameter
@@ -56,7 +56,7 @@ public:
 
     /**
      * @brief Hashes input parameters. Must call \ref precompute() first
-     * 
+     *
      * @return Hashed seed
      */
     u64 hashSeed();
@@ -69,21 +69,21 @@ public:
 
     /**
      * @brief Sets the SHA1 parameter based on \p button
-     * 
+     *
      * @param button Keypress parameter
      */
     void setButton(u32 button);
 
     /**
      * @brief Sets the SHA1 parameter based on \p date
-     * 
+     *
      * @param date Date parameter
      */
     void setDate(const Date &date);
 
     /**
      * @brief Sets the SHA1 parameter based on \p timer0 and \p vcount
-     * 
+     *
      * @param timer0 Timer0 parameter
      * @param vcount VCount parameter
      */
@@ -91,7 +91,7 @@ public:
 
     /**
      * @brief Sets the SHA1 parameter based on time and \p dsType
-     * 
+     *
      * @param hour Hour parameter
      * @param minute Minute parameter
      * @param second Second parameter

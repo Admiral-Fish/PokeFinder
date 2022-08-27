@@ -30,28 +30,28 @@ class SFMT
 public:
     /**
      * @brief Construct a new SFMT object
-     * 
+     *
      * @param seed Starting PRNG state
      */
     SFMT(u32 seed);
 
     /**
      * @brief Advances the RNG by \p advances amount
-     * 
+     *
      * @param advances Number of advances
      */
     void advance(u32 advances);
 
     /**
      * @brief Gets the next 64bit PRNG state
-     * 
+     *
      * @return PRNG value
      */
     u64 next();
 
     /**
      * @brief Gets the next 32bit PRNG state
-     * 
+     *
      * @return PRNG value
      */
     u32 nextUInt();

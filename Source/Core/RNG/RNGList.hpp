@@ -25,7 +25,7 @@
 
 /**
  * @brief Provides a storage container to reuse RNG calculations and cycle out old states with new states
- * 
+ *
  * @tparam Integer Integer type that is being stored
  * @tparam RNG RNG class used to generate states
  * @tparam size Size of the storage container (must be a perfect multiple of two)
@@ -37,7 +37,7 @@ class RNGList
 public:
     /**
      * @brief Construct a new RNGList object
-     * 
+     *
      * @param rng RNG object to generate states
      */
     RNGList(RNG &rng) : rng(rng), head(0), pointer(0)
@@ -56,13 +56,13 @@ public:
     RNGList(const RNGList &) = delete;
 
     /**
-     * @brief Deleted assignment constructor 
+     * @brief Deleted assignment constructor
      */
     void operator=(const RNGList &) = delete;
 
     /**
      * @brief Advances the RNG by \p advances amount
-     * 
+     *
      * @param advances Number of advances
      */
     void advanceStates(u32 advances)
@@ -74,7 +74,7 @@ public:
     }
 
     /**
-     * @brief Advances the RNG by 1 
+     * @brief Advances the RNG by 1
      */
     void advanceState()
     {
@@ -86,7 +86,7 @@ public:
 
     /**
      * @brief Advances the internal state by \p advances amount
-     * 
+     *
      * @param advances Number of advances
      */
     void advance(u32 advances)
@@ -96,8 +96,8 @@ public:
 
     /**
      * @brief Gets the next PRNG state
-     * 
-     * @return PRNG state 
+     *
+     * @return PRNG state
      */
     Integer getValue()
     {
@@ -107,7 +107,7 @@ public:
     }
 
     /**
-     * @brief Resets the current internal state 
+     * @brief Resets the current internal state
      */
     void resetState()
     {

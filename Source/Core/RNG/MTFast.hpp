@@ -31,7 +31,7 @@
  * 3. Skipping the shuffle check when generating numbers for use
  * 4. If the fast parameter is true skip the last bit shift operation and shift by 27 during shuffle (only in gen 5)
  * 5. Temper the results in the initial shuffle to take advantage of SIMD
- * 
+ *
  * @tparam size Number of values to have generated
  * @tparam fast Whether to skip last bit shift operations
  */
@@ -41,7 +41,7 @@ class MTFast
 public:
     /**
      * @brief Construct a new MTFast object
-     * 
+     *
      * @param seed Starting PRNG state
      * @param advances Number of initial advances
      */
@@ -144,7 +144,7 @@ public:
 
     /**
      * @brief Gets the next 32bit PRNG state
-     * 
+     *
      * @return PRNG value
      */
     u32 next()

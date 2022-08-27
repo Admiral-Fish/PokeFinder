@@ -33,7 +33,7 @@ public:
     {
         return inheritance[index];
     }
-    
+
     void setInheritance(u8 index, u8 val)
     {
         inheritance[index] = val;

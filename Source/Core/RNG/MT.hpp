@@ -37,21 +37,21 @@ public:
 
     /**
      * @brief Advances the RNG by \p advances amount
-     * 
+     *
      * @param advances Number of advances
      */
     void advance(u32 advances);
 
     /**
      * @brief Gets the next 32bit PRNG state
-     * 
+     *
      * @return PRNG value
      */
     u32 next();
 
     /**
      * @brief Gets the next 16bit PRNG state
-     * 
+     *
      * @return PRNG value
      */
     u16 nextUShort();

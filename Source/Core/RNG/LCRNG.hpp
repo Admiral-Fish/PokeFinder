@@ -48,7 +48,7 @@ public:
      *
      * @tparam flag Whether count should be incremented or not
      * @param advances Number of advances
-     * 
+     *
      * @return PRNG value after the advances
      */
     template <bool flag = false>
@@ -63,10 +63,10 @@ public:
 
     /**
      * @brief Advances the RNG by \p advances amount
-     * 
+     *
      * @param prng PRNG state
      * @param advances Number of advances
-     * 
+     *
      * @return PRNG value after the advances
      */
     static u32 advance(u32 prng, u64 advances)
@@ -80,7 +80,7 @@ public:
 
     /**
      * @brief Returns the current PRNG state
-     * 
+     *
      * @return PRNG value
      */
     u32 getSeed() const
@@ -90,9 +90,9 @@ public:
 
     /**
      * @brief Gets the next 32bit PRNG state
-     * 
+     *
      * @tparam flag Whether count should be incremented or not
-     * 
+     *
      * @return PRNG value
      */
     template <bool flag = false>
@@ -107,9 +107,9 @@ public:
 
     /**
      * @brief Gets the next 16bit PRNG state
-     * 
+     *
      * @tparam flag Whether count should be incremented or not
-     * 
+     *
      * @return PRNG value
      */
     template <bool flag = false>
@@ -120,7 +120,7 @@ public:
 
     /**
      * @brief Sets the PRNG state
-     * 
+     *
      * @param seed PRNG state
      */
     void setSeed(u32 seed)
