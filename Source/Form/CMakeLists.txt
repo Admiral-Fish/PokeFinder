@@ -1,4 +1,4 @@
-project(PokeFinder VERSION 4.1.0 LANGUAGES CXX)
+project(PokeFinderForm)
 
 if (NOT EXISTS ${CMAKE_BINARY_DIR}/generated/version.h)
     execute_process(
@@ -43,11 +43,6 @@ set(PROJECT_TS
     i18n/PokeFinder_ja.ts
     i18n/PokeFinder_ko.ts
     i18n/PokeFinder_zh.ts
-)
-
-set(PROJECT_QRC
-    "${CMAKE_SOURCE_DIR}/External/QDarkStyleSheet/qdarkstyle/dark/style.qrc"
-    "${CMAKE_SOURCE_DIR}/External/QDarkStyleSheet/qdarkstyle/light/style.qrc"
 )
 
 set(PROJECT_UI
@@ -104,7 +99,6 @@ set(PROJECT_SOURCES
     Gen3/Static3.hpp
     Gen3/Wild3.cpp
     Gen3/Wild3.hpp
-    main.cpp
     MainWindow.cpp
     MainWindow.hpp
     Util/IVCalculator.cpp
@@ -115,36 +109,10 @@ set(PROJECT_SOURCES
     Util/Settings.hpp
 )
 
-if (WIN32)
-    add_executable(PokeFinder
-        WIN32
-        ${PROJECT_I18N}
-        ${PROJECT_QRC}
-        ${PROJECT_UI}
-        ${PROJECT_SOURCES}
-        appicon.rc
-    )
-elseif (APPLE)
-    set(MACOSX_BUNDLE_ICON_FILE pokefinder.icns)
-    set(APP_ICON_MACOSX ${CMAKE_CURRENT_SOURCE_DIR}/Images/pokefinder.icns)
-    set_source_files_properties(${APP_ICON_MACOSX} PROPERTIES MACOSX_PACKAGE_LOCATION "Resources")
+add_library(PokeFinderForm STATIC
+    ${PROJECT_I18N}
+    ${PROJECT_UI}
+    ${PROJECT_SOURCES}
+)
 
-    add_executable(PokeFinder
-        MACOSX_BUNDLE
-        ${PROJECT_I18N}
-        ${PROJECT_QRC}
-        ${PROJECT_UI}
-        ${PROJECT_SOURCES}
-        ${APP_ICON_MACOSX}
-    )
-else ()
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread")
-    add_executable(PokeFinder
-        ${PROJECT_I18N}
-        ${PROJECT_QRC}
-        ${PROJECT_UI}
-        ${PROJECT_SOURCES}
-    )
-endif ()
-
-target_link_libraries(PokeFinder PRIVATE PokeFinderCore PokeFinderModel Qt6::Core Qt6::Network Qt6::Widgets)
+target_link_libraries(PokeFinderForm PRIVATE PokeFinderCore PokeFinderModel Qt6::Core Qt6::Network Qt6::Widgets)
