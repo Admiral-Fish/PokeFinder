@@ -45,7 +45,6 @@ std::vector<GeneratorState3> StaticGenerator3::generate(u32 seed, const StaticTe
         u16 low = go.nextUShort();
         u16 high = go.nextUShort();
 
-        go.advance(method == Method::Method2);
         u16 iv1 = go.nextUShort();
         go.advance(method == Method::Method4);
         u16 iv2 = go.nextUShort();
