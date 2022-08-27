@@ -123,6 +123,8 @@ add_library(PokeFinderCore STATIC
     Util/Utilities.hpp
 )
 
+target_link_libraries(PokeFinderCore bz2_static)
+
 if (NOT EXISTS ${CMAKE_CURRENT_LIST_DIR}/Resources/Encounters.hpp)
     find_package(Python3 COMPONENTS Interpreter REQUIRED)
     add_custom_target(

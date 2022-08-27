@@ -27,6 +27,7 @@
 #include <Core/Parents/StaticTemplate.hpp>
 #include <Core/Resources/Encounters.hpp>
 #include <algorithm>
+#include <bzlib.h>
 #include <cstring>
 #include <iterator>
 
@@ -141,34 +142,40 @@ namespace
      */
     std::vector<EncounterArea3> getAreas(Encounter encounter, Game game, const PersonalInfo *info)
     {
-        const u8 *data;
-        size_t size;
+        const u8 *compressedData;
+        size_t compressedSize;
 
         if (game == Game::Emerald)
         {
-            data = emerald.data();
-            size = emerald.size();
+            compressedData = emerald.data();
+            compressedSize = emerald.size();
         }
         else if (game == Game::FireRed)
         {
-            data = firered.data();
-            size = firered.size();
+            compressedData = firered.data();
+            compressedSize = firered.size();
         }
         else if (game == Game::LeafGreen)
         {
-            data = leafgreen.data();
-            size = leafgreen.size();
+            compressedData = leafgreen.data();
+            compressedSize = leafgreen.size();
         }
         else if (game == Game::Ruby)
         {
-            data = ruby.data();
-            size = ruby.size();
+            compressedData = ruby.data();
+            compressedSize = ruby.size();
         }
         else
         {
-            data = sapphire.data();
-            size = sapphire.size();
+            compressedData = sapphire.data();
+            compressedSize = sapphire.size();
         }
+
+        u32 size = *reinterpret_cast<const u16 *>(compressedData);
+        u8 *data = new u8[size];
+
+        BZ2_bzBuffToBuffDecompress(reinterpret_cast<char *>(data), &size,
+                                   reinterpret_cast<char *>(const_cast<u8 *>(compressedData + sizeof(u16))), compressedSize, 0, 0);
 
         std::vector<EncounterArea3> encounters;
         for (size_t offset = 0; offset < size; offset += 121)
@@ -276,6 +283,7 @@ namespace
                 break;
             }
         }
+        delete[] data;
         return encounters;
     }
 }

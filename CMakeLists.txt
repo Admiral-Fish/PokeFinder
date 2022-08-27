@@ -9,4 +9,5 @@ if (TEST)
     enable_testing()
 endif ()
 
+add_subdirectory(External)
 add_subdirectory(Source)

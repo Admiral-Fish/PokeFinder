@@ -1,3 +1,6 @@
-[submodule "QDarkStyleSheet"]
+[submodule "External/bzip2"]
+	path = External/bzip2
+	url = https://gitlab.com/bzip2/bzip2
+[submodule "External/QDarkStyleSheet"]
 	path = External/QDarkStyleSheet
 	url = https://github.com/ColinDuquesnoy/QDarkStyleSheet

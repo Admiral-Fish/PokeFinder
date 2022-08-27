@@ -23,6 +23,7 @@
 #include <Core/Resources/i18n.hpp>
 #include <algorithm>
 #include <bit>
+#include <bzlib.h>
 #include <map>
 #include <sstream>
 
@@ -76,20 +77,26 @@ namespace
      */
     std::vector<std::string> readFile(Translation translation)
     {
-        const u8 *data = languages[static_cast<int>(language)][static_cast<int>(translation)];
-        size_t size = sizes[static_cast<int>(language)][static_cast<int>(translation)];
+        const u8 *compressedData = languages[static_cast<int>(language)][static_cast<int>(translation)];
+        size_t compressedSize = sizes[static_cast<int>(language)][static_cast<int>(translation)];
+
+        u32 size = *reinterpret_cast<const u16 *>(compressedData);
+        char *data = new char[size];
+
+        BZ2_bzBuffToBuffDecompress(data, &size, reinterpret_cast<char *>(const_cast<u8 *>(compressedData + sizeof(u16))), compressedSize, 0,
+                                   0);
 
         std::vector<std::string> strings;
         for (size_t i = 0, start = 0; i < size; i++)
         {
             if (data[i] == 0)
             {
-                std::string t(reinterpret_cast<const char *>(&data[start]), i - start);
-                strings.emplace_back(reinterpret_cast<const char *>(&data[start]), i - start);
+                strings.emplace_back(&data[start], i - start);
                 start = i + 1;
             }
         }
 
+        delete[] data;
         return strings;
     }
 }
@@ -98,7 +105,7 @@ namespace Translator
 {
     std::string *getAbility(u16 ability)
     {
-        return &abilities[ability];
+        return &abilities[ability - 1];
     }
 
     std::string *getCharacteristic(u8 characteristic)

@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import bz2
 import glob
 import json
 import os
@@ -8,11 +9,14 @@ import re
 
 def embed_encounters():
     arrays = []
-
     files = glob.glob("Encounters/**/*.bin", recursive=True)
     for file in files:
         with open(file, "rb") as f:
             data = f.read()
+
+        size = len(data)
+        data = bz2.compress(data, 9)
+        data = size.to_bytes(2, byteorder="little") + data
 
         name = os.path.basename(f.name).replace(".bin", "")
         string = f"constexpr std::array<u8, {len(data)}> {name} = {{ "
@@ -46,7 +50,7 @@ def embed_encounters():
         tables.sort(key=lambda den: int(f"0x{den['TableID']}", 16))
         for i, table in enumerate(tables):
             string += f"Den(0x{table['TableID']}, "
-            
+
             string += "std::array<Raid, 12> {"
             sword = table["SwordEntries"]
             for j, raid in enumerate(sword):
@@ -57,12 +61,12 @@ def embed_encounters():
                 gigantamax = int(raid["IsGigantamax"])
                 species = raid["Species"]
                 stars = raid["Stars"]
-                star_string = "std::array<bool, 5> {" + f"{int(stars[0])}, {int(stars[1])}, {int(stars[2])}, {int(stars[3])}, {int(stars[4])}" + "}"
+                star_string = f"std::array<bool, 5> {{{int(stars[0])}, {int(stars[1])}, {int(stars[2])}, {int(stars[3])}, {int(stars[4])}}}"
 
                 personal_index = species
                 if altform != 0:
                     altform_index = int(personal[species][11])
-                    personal_index = altform_index + altform - 1 
+                    personal_index = altform_index + altform - 1
 
                 string += f"Raid({ability}, {altform}, {iv_count}, {gender}, {gigantamax}, {species}, personal_swsh[{personal_index}], {star_string})"
                 if j != len(sword) - 1:
@@ -79,12 +83,12 @@ def embed_encounters():
                 gigantamax = int(raid["IsGigantamax"])
                 species = raid["Species"]
                 stars = raid["Stars"]
-                star_string = "std::array<bool, 5> {" + f"{int(stars[0])}, {int(stars[1])}, {int(stars[2])}, {int(stars[3])}, {int(stars[4])}" + "}"
+                star_string = f"std::array<bool, 5> {{{int(stars[0])}, {int(stars[1])}, {int(stars[2])}, {int(stars[3])}, {int(stars[4])}}}"
 
                 personal_index = species
                 if altform != 0:
                     altform_index = int(personal[species][11])
-                    personal_index = altform_index + altform - 1 
+                    personal_index = altform_index + altform - 1
 
                 string += f"Raid({ability}, {altform}, {iv_count}, {gender}, {gigantamax}, {species}, personal_swsh[{personal_index}], {star_string})"
                 if j != len(sword) - 1:
@@ -101,9 +105,8 @@ def embed_encounters():
 
 def embed_personal():
     arrays = []
-
     for index in (3, 4, 5, 8):
-        for file in glob.glob(f"Personal/Gen{index}/*.bin"):        
+        for file in glob.glob(f"Personal/Gen{index}/*.bin"):
             with open(file, "rb") as f:
                 data = f.read()
                 size = len(data)
@@ -189,13 +192,14 @@ def embed_strings(paths):
 
             name = os.path.basename(f.name).replace(".txt", "")
 
-            string_data = []
+            string_data = bytes()
             for line in data:
-                line = line.replace('\r', '').replace('\n', '')
+                string_data += bytes(line, encoding="utf-8")
+                string_data += b"\x00"
 
-                for x in [int(y) for y in bytearray(line, encoding="utf-8")]:
-                    string_data.append(x)
-                string_data.append(0)
+            size = len(string_data)
+            string_data = bz2.compress(string_data, 9)
+            string_data = size.to_bytes(2, byteorder="little") + string_data
 
             string = f"constexpr std::array<u8, {len(string_data)}> {name} = {{ "
 
@@ -208,7 +212,7 @@ def embed_strings(paths):
             mapping[name] = string
 
         arrays.append(mapping)
-    
+
     languages = f"const static u8 *languages[{len(arrays)}][{len(arrays[0])}] = {{ "
     sizes = f"constexpr size_t sizes[{len(arrays)}][{len(arrays[0])}] = {{ "
     for i, language in enumerate(arrays):
