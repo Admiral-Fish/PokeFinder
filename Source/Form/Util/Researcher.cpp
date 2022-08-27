@@ -442,13 +442,13 @@ void Researcher::rngSelectionIndexChanged(int index)
             if (i != 1)
             {
                 auto *boxR = ui->groupBoxCustoms->findChild<ComboBox *>(QString("comboBoxRValue%1").arg(i));
-                boxR->setCurrentIndex(flag ? 1 : 0);
+                boxR->setCurrentIndex(0);
 
                 auto *viewR = qobject_cast<QListView *>(boxR->view());
-                viewR->setRowHidden(0, flag);
-                viewR->setRowHidden(1, !flag);
-                viewR->setRowHidden(2, flag);
+                viewR->setRowHidden(1, flag);
+                viewR->setRowHidden(2, !flag);
                 viewR->setRowHidden(3, flag);
+                viewR->setRowHidden(4, flag);
             }
         }
     }
