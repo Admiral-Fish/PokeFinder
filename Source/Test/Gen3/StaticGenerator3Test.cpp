@@ -104,6 +104,6 @@ void StaticGenerator3Test::generate()
     {
         const auto &state = states[i];
         const auto &result = results[i];
-        QCOMPARE(state, result);
+        QVERIFY(state == result);
     }
 }

@@ -20,10 +20,11 @@
 #include "EncounterSlot.hpp"
 #include <Core/Enum/Encounter.hpp>
 #include <array>
+#include <cstddef>
 
 namespace
 {
-    template <u32 size, bool greater = false>
+    template <size_t size, bool greater = false>
     u8 calcSlot(u8 compare, const std::array<u8, size> &ranges)
     {
         for (size_t i = 0; i < size; i++)

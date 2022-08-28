@@ -186,7 +186,7 @@ def embed_strings(paths):
         mapping = {}
 
         files = glob.glob(f"i18n/{path}/*.txt", recursive=True)
-        for file in files:
+        for file in sorted(files):
             with open(file, "r", encoding="utf-8") as f:
                 data = f.read().split("\n")
 

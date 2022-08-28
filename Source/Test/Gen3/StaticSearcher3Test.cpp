@@ -112,13 +112,13 @@ void StaticSearcher3Test::search()
     {
         const auto &state = states[i];
         const auto &result = results[i];
-        QCOMPARE(state, result);
+        QVERIFY(state == result);
 
         // Ensure generator agrees
         StaticGenerator3 generator(0, 0, 0, 12345, 54321, version, method, Lead::None, filter);
         auto generatorStates = generator.generate(state.getSeed(), staticTemplate);
 
         QCOMPARE(generatorStates.size(), 1);
-        QCOMPARE(state, generatorStates[0]);
+        QVERIFY(state == generatorStates[0]);
     }
 }

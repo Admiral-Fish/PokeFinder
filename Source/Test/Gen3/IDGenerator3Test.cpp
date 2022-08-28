@@ -66,7 +66,7 @@ void IDGenerator3Test::xdcolo()
     {
         const auto &state = states[i];
         const auto &result = results[i];
-        QCOMPARE(state, result);
+        QVERIFY(state == result);
     }
 }
 
@@ -97,7 +97,7 @@ void IDGenerator3Test::frgle()
     {
         const auto &state = states[i];
         const auto &result = results[i];
-        QCOMPARE(state, result);
+        QVERIFY(state == result);
     }
 }
 
@@ -128,6 +128,6 @@ void IDGenerator3Test::rs()
     {
         const auto &state = states[i];
         const auto &result = results[i];
-        QCOMPARE(state, result);
+        QVERIFY(state == result);
     }
 }
