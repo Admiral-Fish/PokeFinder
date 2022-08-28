@@ -72,8 +72,8 @@ int main()
     status += runTest<DateTest>(fails);
     status += runTest<DateTimeTest>(fails);
     status += runTest<TimeTest>(fails);
-    // status += runTest<EncounterSlotTest>(fails);
-    // status += runTest<IVCheckerTest>(fails);
+    status += runTest<EncounterSlotTest>(fails);
+    status += runTest<IVCheckerTest>(fails);
 
     qDebug() << "";
     // Summary of failures at end for easy viewing

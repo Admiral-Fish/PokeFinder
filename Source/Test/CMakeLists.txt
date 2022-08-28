@@ -39,8 +39,10 @@ add_executable(PokeFinderTest
     RNG/TinyMTTest.hpp
     Util/DateTimeTest.cpp
     Util/DateTimeTest.hpp
-    #Util/EncounterSlotTest.cpp
-    #Util/IVCheckerTest.cpp
+    Util/EncounterSlotTest.cpp
+    Util/EncounterSlotTest.hpp
+    Util/IVCheckerTest.cpp
+    Util/IVCheckerTest.hpp
 )
 
 add_test(NAME Test COMMAND PokeFinderTest)

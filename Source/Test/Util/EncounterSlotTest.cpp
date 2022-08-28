@@ -21,26 +21,24 @@
 #include <Core/Enum/Encounter.hpp>
 #include <Core/Util/EncounterSlot.hpp>
 #include <QTest>
-#include <QVector>
+#include <Test/Data.hpp>
 
 void EncounterSlotTest::hSlot_data()
 {
     QTest::addColumn<Encounter>("encounter");
-    QTest::addColumn<QVector<u16>>("rand");
+    QTest::addColumn<std::vector<u16>>("rand");
 
-    QTest::newRow("Old Rod") << Encounter::OldRod << QVector<u16> { 0xE2CC, 0x67DB };
-    QTest::newRow("Good Rod") << Encounter::GoodRod << QVector<u16> { 0x27A6, 0x375D, 0x82D9 };
-    QTest::newRow("Super Rod") << Encounter::SuperRod << QVector<u16> { 0x2B0B, 0xCB60, 0x8D5B, 0x112D, 0x16A7 };
-    QTest::newRow("Surfing") << Encounter::Surfing << QVector<u16> { 0xF583, 0x0A70, 0xA855, 0xECB4, 0x16A7 };
-    QTest::newRow("Rock Smash") << Encounter::RockSmash << QVector<u16> { 0xF583, 0x0A70, 0xA855, 0xECB4, 0x16A7 };
-    QTest::newRow("Grass") << Encounter::Grass << QVector<u16> { 0x0966, 0x172E, 0xD8F5, 0x109F, 0xB585, 0xA58B,
-                                                                 0xD217, 0xF60B, 0xBE34, 0xECB4, 0x4522, 0x16A7 };
+    json data = readData("util", "encounterslot", "hSlot");
+    for (const auto &d : data)
+    {
+        QTest::newRow(d["name"].get<std::string>().data()) << d["encounter"].get<Encounter>() << d["rand"].get<std::vector<u16>>();
+    }
 }
 
 void EncounterSlotTest::hSlot()
 {
     QFETCH(Encounter, encounter);
-    QFETCH(QVector<u16>, rand);
+    QFETCH(std::vector<u16>, rand);
 
     for (size_t i = 0; i < rand.size(); i++)
     {
@@ -51,20 +49,19 @@ void EncounterSlotTest::hSlot()
 void EncounterSlotTest::jSlot_data()
 {
     QTest::addColumn<Encounter>("encounter");
-    QTest::addColumn<QVector<u16>>("rand");
+    QTest::addColumn<std::vector<u16>>("rand");
 
-    QTest::newRow("Old Rod") << Encounter::OldRod << QVector<u16> { 0x5271, 0xE2CC, 0xF009, 0xF9CB, 0xFEE7 };
-    QTest::newRow("Good Rod") << Encounter::GoodRod << QVector<u16> { 0x639E, 0x9268, 0xDFA3, 0xFB23, 0xFEE7 };
-    QTest::newRow("Super Rod") << Encounter::SuperRod << QVector<u16> { 0x639E, 0x9268, 0xDFA3, 0xFB23, 0xFEE7 };
-    QTest::newRow("Surfing") << Encounter::Surfing << QVector<u16> { 0x5271, 0xE2CC, 0xF009, 0xF9CB, 0xFEE7 };
-    QTest::newRow("Grass") << Encounter::Grass << QVector<u16> { 0x1D29, 0x6296, 0x6E03, 0x9268, 0xA397, 0xC3EA,
-                                                                 0xD3C5, 0xE0C6, 0xF009, 0xF9CB, 0xFC33, 0xFEE7 };
+    json data = readData("util", "encounterslot", "jSlot");
+    for (const auto &d : data)
+    {
+        QTest::newRow(d["name"].get<std::string>().data()) << d["encounter"].get<Encounter>() << d["rand"].get<std::vector<u16>>();
+    }
 }
 
 void EncounterSlotTest::jSlot()
 {
     QFETCH(Encounter, encounter);
-    QFETCH(QVector<u16>, rand);
+    QFETCH(std::vector<u16>, rand);
 
     for (size_t i = 0; i < rand.size(); i++)
     {
@@ -75,24 +72,19 @@ void EncounterSlotTest::jSlot()
 void EncounterSlotTest::kSlot_data()
 {
     QTest::addColumn<Encounter>("encounter");
-    QTest::addColumn<QVector<u16>>("rand");
+    QTest::addColumn<std::vector<u16>>("rand");
 
-    QTest::newRow("Old Rod") << Encounter::OldRod << QVector<u16> { 0x3080, 0xFEE7, 0x48FB, 0xFB23, 0x112D };
-    QTest::newRow("Good Rod") << Encounter::GoodRod << QVector<u16> { 0x3080, 0xFEE7, 0x48FB, 0xFB23, 0x112D };
-    QTest::newRow("Super Rod") << Encounter::SuperRod << QVector<u16> { 0x3080, 0xFEE7, 0x48FB, 0xFB23, 0x112D };
-    QTest::newRow("Surfing") << Encounter::Surfing << QVector<u16> { 0xF583, 0x0A70, 0xA855, 0xECB4, 0x16A7 };
-    QTest::newRow("Bug Contest") << Encounter::BugCatchingContest
-                                 << QVector<u16> { 0x34A9, 0x2D93, 0x7D3A, 0xBE03, 0x44E5, 0x87A9, 0x7BE7, 0xFC00, 0x4B09, 0x8728 };
-    QTest::newRow("Head Butt") << Encounter::Headbutt << QVector<u16> { 0x4744, 0x34F8, 0xA58B, 0xE7F9, 0xA341, 0xECB4 };
-    QTest::newRow("Rock Smash") << Encounter::RockSmash << QVector<u16> { 0xA1E0, 0x112D };
-    QTest::newRow("Grass") << Encounter::Grass << QVector<u16> { 0x0966, 0x172E, 0xD8F5, 0x109F, 0xB585, 0xA58B,
-                                                                 0xD217, 0xF60B, 0xBE34, 0xECB4, 0x4522, 0x16A7 };
+    json data = readData("util", "encounterslot", "kSlot");
+    for (const auto &d : data)
+    {
+        QTest::newRow(d["name"].get<std::string>().data()) << d["encounter"].get<Encounter>() << d["rand"].get<std::vector<u16>>();
+    }
 }
 
 void EncounterSlotTest::kSlot()
 {
     QFETCH(Encounter, encounter);
-    QFETCH(QVector<u16>, rand);
+    QFETCH(std::vector<u16>, rand);
 
     for (size_t i = 0; i < rand.size(); i++)
     {
@@ -103,19 +95,19 @@ void EncounterSlotTest::kSlot()
 void EncounterSlotTest::bdspSlot_data()
 {
     QTest::addColumn<Encounter>("encounter");
-    QTest::addColumn<QVector<u8>>("rand");
+    QTest::addColumn<std::vector<u8>>("rand");
 
-    QTest::newRow("Old Rod") << Encounter::OldRod << QVector<u8> { 53, 85, 93, 96, 99 };
-    QTest::newRow("Good Rod") << Encounter::GoodRod << QVector<u8> { 28, 55, 88, 97, 99 };
-    QTest::newRow("Super Rod") << Encounter::SuperRod << QVector<u8> { 28, 55, 88, 97, 99 };
-    QTest::newRow("Surfing") << Encounter::Surfing << QVector<u8> { 53, 85, 93, 96, 99 };
-    QTest::newRow("Grass") << Encounter::Grass << QVector<u8> { 15, 34, 46, 53, 66, 73, 82, 87, 92, 96, 98, 99 };
+    json data = readData("util", "encounterslot", "bdsp");
+    for (const auto &d : data)
+    {
+        QTest::newRow(d["name"].get<std::string>().data()) << d["encounter"].get<Encounter>() << d["rand"].get<std::vector<u8>>();
+    }
 }
 
 void EncounterSlotTest::bdspSlot()
 {
     QFETCH(Encounter, encounter);
-    QFETCH(QVector<u8>, rand);
+    QFETCH(std::vector<u8>, rand);
 
     for (size_t i = 0; i < rand.size(); i++)
     {
