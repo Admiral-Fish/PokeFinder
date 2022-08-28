@@ -160,7 +160,8 @@ void Static3::generatorCategoryIndexChanged(int index)
         {
             if ((currentProfile->getVersion() & templates[i].getVersion()) != Game::None)
             {
-                ui->comboBoxGeneratorPokemon->addItem(QString::fromStdString(*Translator::getSpecie(templates[i].getSpecie())), i);
+                ui->comboBoxGeneratorPokemon->addItem(QString::fromStdString(*Translator::getSpecie(templates[i].getSpecie())),
+                                                      QVariant::fromValue(i));
             }
         }
     }
@@ -272,7 +273,8 @@ void Static3::searcherCategoryIndexChanged(int index)
         {
             if ((currentProfile->getVersion() & templates[i].getVersion()) != Game::None)
             {
-                ui->comboBoxSearcherPokemon->addItem(QString::fromStdString(*Translator::getSpecie(templates[i].getSpecie())), i);
+                ui->comboBoxSearcherPokemon->addItem(QString::fromStdString(*Translator::getSpecie(templates[i].getSpecie())),
+                                                     QVariant::fromValue(i));
             }
         }
     }
