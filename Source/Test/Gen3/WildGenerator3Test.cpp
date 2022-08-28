@@ -50,14 +50,19 @@ NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(WildStaticResult3, pid, stats, abilityIndex, 
                                    specie, encounterSlot, advances, hiddenPowerStrength);
 static_assert(sizeof(WildStaticResult3) == sizeof(WildGeneratorState3));
 
-bool operator==(const WildStaticResult3 &result, const WildGeneratorState3 &state)
+bool operator==(const WildStaticResult3 &left, const WildGeneratorState3 &right)
 {
     // Intentionally not comparing item
-    return result.pid == state.getPID() && result.stats == state.getStats() && result.abilityIndex == state.getAbilityIndex()
-        && result.ivs == state.getIVs() && result.ability == state.getAbility() && result.gender == state.getGender()
-        && result.hiddenPower == state.getHiddenPower() && result.nature == state.getNature() && result.level == state.getLevel()
-        && state.getShiny() == result.shiny && result.specie == state.getSpecie() && result.encounterSlot == state.getEncounterSlot()
-        && state.getAdvances() == result.advances && result.hiddenPowerStrength == state.getHiddenPowerStrength();
+    return left.pid == right.getPID() && left.stats == right.getStats() && left.abilityIndex == right.getAbilityIndex()
+        && left.ivs == right.getIVs() && left.ability == right.getAbility() && left.gender == right.getGender()
+        && left.hiddenPower == right.getHiddenPower() && left.nature == right.getNature() && left.level == right.getLevel()
+        && right.getShiny() == left.shiny && left.specie == right.getSpecie() && left.encounterSlot == right.getEncounterSlot()
+        && right.getAdvances() == left.advances && left.hiddenPowerStrength == right.getHiddenPowerStrength();
+}
+
+bool operator==(const WildGeneratorState3 &left, const WildStaticResult3 &right)
+{
+    return operator==(right, left);
 }
 
 void WildGenerator3Test::generate_data()

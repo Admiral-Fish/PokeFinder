@@ -51,22 +51,31 @@ NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(SearcherWildResult3, pid, stats, abilityIndex
                                    specie, encounterSlot, seed, hiddenPowerStrength);
 static_assert(sizeof(SearcherWildResult3) == sizeof(WildSearcherState3));
 
-bool operator==(const SearcherWildResult3 &result, const WildSearcherState3 &state)
+bool operator==(const SearcherWildResult3 &left, const WildSearcherState3 &right)
 {
-    return result.pid == state.getPID() && result.stats == state.getStats() && result.abilityIndex == state.getAbilityIndex()
-        && result.ivs == state.getIVs() && result.ability == state.getAbility() && result.gender == state.getGender()
-        && result.hiddenPower == state.getHiddenPower() && result.nature == state.getNature() && result.level == state.getLevel()
-        && result.shiny == state.getShiny() && result.seed == state.getSeed()
-        && result.hiddenPowerStrength == state.getHiddenPowerStrength();
+    return left.pid == right.getPID() && left.stats == right.getStats() && left.abilityIndex == right.getAbilityIndex()
+        && left.ivs == right.getIVs() && left.ability == right.getAbility() && left.gender == right.getGender()
+        && left.hiddenPower == right.getHiddenPower() && left.nature == right.getNature() && left.level == right.getLevel()
+        && left.shiny == right.getShiny() && left.seed == right.getSeed() && left.hiddenPowerStrength == right.getHiddenPowerStrength();
 }
 
-bool operator==(const WildSearcherState3 &result, const WildGeneratorState3 &state)
+bool operator==(const WildSearcherState3 &left, const SearcherWildResult3 &right)
 {
-    return result.getPID() == state.getPID() && result.getStats() == state.getStats() && result.getAbilityIndex() == state.getAbilityIndex()
-        && result.getIVs() == state.getIVs() && result.getAbility() == state.getAbility() && result.getGender() == state.getGender()
-        && result.getHiddenPower() == state.getHiddenPower() && result.getNature() == state.getNature()
-        && result.getLevel() == state.getLevel() && result.getShiny() == state.getShiny() && result.getSpecie() == state.getSpecie()
-        && result.getEncounterSlot() == state.getEncounterSlot() && result.getHiddenPowerStrength() == state.getHiddenPowerStrength();
+    return operator==(right, left);
+}
+
+bool operator==(const WildSearcherState3 &left, const WildGeneratorState3 &right)
+{
+    return left.getPID() == right.getPID() && left.getStats() == right.getStats() && left.getAbilityIndex() == right.getAbilityIndex()
+        && left.getIVs() == right.getIVs() && left.getAbility() == right.getAbility() && left.getGender() == right.getGender()
+        && left.getHiddenPower() == right.getHiddenPower() && left.getNature() == right.getNature() && left.getLevel() == right.getLevel()
+        && left.getShiny() == right.getShiny() && left.getSpecie() == right.getSpecie()
+        && left.getEncounterSlot() == right.getEncounterSlot() && left.getHiddenPowerStrength() == right.getHiddenPowerStrength();
+}
+
+bool operator==(const WildGeneratorState3 &left, const WildSearcherState3 &right)
+{
+    return operator==(right, left);
 }
 
 void WildSearcher3Test::search_data()

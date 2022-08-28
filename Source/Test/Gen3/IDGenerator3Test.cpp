@@ -33,10 +33,14 @@ struct IDResult
 NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(IDResult, advances, tid, sid, tsv);
 static_assert(sizeof(IDResult) == sizeof(IDState));
 
-bool operator==(const IDState &state, const IDResult &result)
+bool operator==(const IDState &left, const IDResult &right)
 {
-    return state.getAdvances() == result.advances && state.getTID() == result.tid && state.getSID() == result.sid
-        && state.getTSV() == result.tsv;
+    return left.getAdvances() == right.advances && left.getTID() == right.tid && left.getSID() == right.sid && left.getTSV() == right.tsv;
+}
+
+bool operator==(const IDResult &left, const IDState &right)
+{
+    return operator==(right, left);
 }
 
 void IDGenerator3Test::xdcolo_data()

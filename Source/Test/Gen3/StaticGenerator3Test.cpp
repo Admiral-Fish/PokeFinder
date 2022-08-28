@@ -45,13 +45,18 @@ NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(GeneratorStaticResult3, pid, stats, abilityIn
                                    shiny, advances, hiddenPowerStrength);
 static_assert(sizeof(GeneratorStaticResult3) == sizeof(GeneratorState3));
 
-bool operator==(const GeneratorStaticResult3 &result, const GeneratorState3 &state)
+bool operator==(const GeneratorStaticResult3 &left, const GeneratorState3 &right)
 {
-    return result.pid == state.getPID() && result.stats == state.getStats() && result.abilityIndex == state.getAbilityIndex()
-        && result.ivs == state.getIVs() && result.ability == state.getAbility() && result.gender == state.getGender()
-        && result.hiddenPower == state.getHiddenPower() && result.nature == state.getNature() && result.level == state.getLevel()
-        && state.getShiny() == result.shiny && state.getAdvances() == result.advances
-        && result.hiddenPowerStrength == state.getHiddenPowerStrength();
+    return left.pid == right.getPID() && left.stats == right.getStats() && left.abilityIndex == right.getAbilityIndex()
+        && left.ivs == right.getIVs() && left.ability == right.getAbility() && left.gender == right.getGender()
+        && left.hiddenPower == right.getHiddenPower() && left.nature == right.getNature() && left.level == right.getLevel()
+        && right.getShiny() == left.shiny && right.getAdvances() == left.advances
+        && left.hiddenPowerStrength == right.getHiddenPowerStrength();
+}
+
+bool operator==(const GeneratorState3 &left, const GeneratorStaticResult3 &right)
+{
+    return operator==(right, left);
 }
 
 void StaticGenerator3Test::generate_data()
