@@ -17,18 +17,19 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include "StaticSearcher3Test.hpp"
+#include "WildSearcher3Test.hpp"
+#include <Core/Gen3/EncounterArea3.hpp>
 #include <Core/Gen3/Encounters3.hpp>
-#include <Core/Gen3/Generators/StaticGenerator3.hpp>
-#include <Core/Gen3/Searchers/StaticSearcher3.hpp>
-#include <Core/Gen3/States/State3.hpp>
-#include <Core/Parents/StaticTemplate.hpp>
+#include <Core/Gen3/Generators/WildGenerator3.hpp>
+#include <Core/Gen3/Searchers/WildSearcher3.hpp>
+#include <Core/Gen3/States/WildState3.hpp>
+#include <Core/Parents/Slot.hpp>
 #include <QTest>
 #include <Test/Data.hpp>
 
 using IVs = std::array<u8, 6>;
 
-struct SearcherStaticResult3
+struct SearcherWildResult3
 {
     u32 pid;
     std::array<u16, 6> stats;
@@ -40,14 +41,17 @@ struct SearcherStaticResult3
     u8 nature;
     u8 level;
     u8 shiny;
+    u16 specie;
+    u8 encounterSlot;
+    u8 item;
     u32 seed;
     u8 hiddenPowerStrength;
 };
-NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(SearcherStaticResult3, pid, stats, abilityIndex, ivs, ability, gender, hiddenPower, nature, level, shiny,
-                                   seed, hiddenPowerStrength);
-static_assert(sizeof(SearcherStaticResult3) == sizeof(SearcherState3));
+NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(SearcherWildResult3, pid, stats, abilityIndex, ivs, ability, gender, hiddenPower, nature, level, shiny,
+                                   specie, encounterSlot, seed, hiddenPowerStrength);
+static_assert(sizeof(SearcherWildResult3) == sizeof(WildSearcherState3));
 
-bool operator==(const SearcherStaticResult3 &result, const SearcherState3 &state)
+bool operator==(const SearcherWildResult3 &result, const WildSearcherState3 &state)
 {
     return result.pid == state.getPID() && result.stats == state.getStats() && result.abilityIndex == state.getAbilityIndex()
         && result.ivs == state.getIVs() && result.ability == state.getAbility() && result.gender == state.getGender()
@@ -56,43 +60,46 @@ bool operator==(const SearcherStaticResult3 &result, const SearcherState3 &state
         && result.hiddenPowerStrength == state.getHiddenPowerStrength();
 }
 
-bool operator==(const SearcherState3 &result, const GeneratorState3 &state)
+bool operator==(const WildSearcherState3 &result, const WildGeneratorState3 &state)
 {
     return result.getPID() == state.getPID() && result.getStats() == state.getStats() && result.getAbilityIndex() == state.getAbilityIndex()
         && result.getIVs() == state.getIVs() && result.getAbility() == state.getAbility() && result.getGender() == state.getGender()
         && result.getHiddenPower() == state.getHiddenPower() && result.getNature() == state.getNature()
-        && result.getLevel() == state.getLevel() && result.getShiny() == state.getShiny()
-        && result.getHiddenPowerStrength() == state.getHiddenPowerStrength();
+        && result.getLevel() == state.getLevel() && result.getShiny() == state.getShiny() && result.getSpecie() == state.getSpecie()
+        && result.getEncounterSlot() == state.getEncounterSlot() && result.getHiddenPowerStrength() == state.getHiddenPowerStrength();
 }
 
-void StaticSearcher3Test::search_data()
+void WildSearcher3Test::search_data()
 {
     QTest::addColumn<IVs>("min");
     QTest::addColumn<IVs>("max");
     QTest::addColumn<Game>("version");
     QTest::addColumn<Method>("method");
-    QTest::addColumn<int>("category");
-    QTest::addColumn<int>("pokemon");
-    QTest::addColumn<std::vector<SearcherStaticResult3>>("results");
+    QTest::addColumn<Encounter>("encounter");
+    QTest::addColumn<Lead>("lead");
+    QTest::addColumn<int>("location");
+    QTest::addColumn<std::vector<SearcherWildResult3>>("results");
 
-    json data = readData("gen3", "staticsearcher3", "search");
+    json data = readData("gen3", "wildsearcher3", "search");
     for (const auto &d : data)
     {
         QTest::newRow(d["name"].get<std::string>().data())
             << d["min"].get<IVs>() << d["max"].get<IVs>() << d["version"].get<Game>() << d["method"].get<Method>()
-            << d["category"].get<int>() << d["pokemon"].get<int>() << d["results"].get<std::vector<SearcherStaticResult3>>();
+            << d["encounter"].get<Encounter>() << d["lead"].get<Lead>() << d["location"].get<int>()
+            << d["results"].get<std::vector<SearcherWildResult3>>();
     }
 }
 
-void StaticSearcher3Test::search()
+void WildSearcher3Test::search()
 {
     QFETCH(IVs, min);
     QFETCH(IVs, max);
     QFETCH(Game, version);
     QFETCH(Method, method);
-    QFETCH(int, category);
-    QFETCH(int, pokemon);
-    QFETCH(std::vector<SearcherStaticResult3>, results);
+    QFETCH(Encounter, encounter);
+    QFETCH(Lead, lead);
+    QFETCH(int, location);
+    QFETCH(std::vector<SearcherWildResult3>, results);
 
     std::array<bool, 25> natures;
     natures.fill(true);
@@ -100,11 +107,16 @@ void StaticSearcher3Test::search()
     std::array<bool, 16> powers;
     powers.fill(true);
 
-    const StaticTemplate *staticTemplate = Encounters3::getStaticEncounter(category, pokemon);
-    StateFilter3 filter(255, 255, 255, false, min, max, natures, powers);
-    StaticSearcher3 searcher(12345, 54321, version, method, Lead::None, filter);
+    std::vector<bool> encounterSlots(12, true);
 
-    searcher.startSearch(min, max, staticTemplate);
+    std::vector<EncounterArea3> encounterAreas = Encounters3::getEncounters(encounter, version);
+    auto encounterArea = std::find_if(encounterAreas.begin(), encounterAreas.end(),
+                                      [location](const EncounterArea3 &encounterArea) { return encounterArea.getLocation() == location; });
+
+    WildStateFilter3 filter(255, 255, 255, false, min, max, natures, powers, encounterSlots);
+    WildSearcher3 searcher(12345, 54321, version, method, encounter, lead, *encounterArea, filter);
+
+    searcher.startSearch(min, max);
     auto states = searcher.getResults();
     QCOMPARE(states.size(), results.size());
 
@@ -115,8 +127,12 @@ void StaticSearcher3Test::search()
         QCOMPARE(state, result);
 
         // Ensure generator agrees
-        StaticGenerator3 generator(0, 0, 0, 12345, 54321, version, method, Lead::None, filter);
-        auto generatorStates = generator.generate(state.getSeed(), staticTemplate);
+        WildGenerator3 generator(0, 0, 0, 12345, 54321, version, method, encounter, lead, filter);
+        if (lead == Lead::Synchronize)
+        {
+            generator.setSynchNature(state.getNature());
+        }
+        auto generatorStates = generator.generate(state.getSeed(), *encounterArea);
 
         QCOMPARE(generatorStates.size(), 1);
         QCOMPARE(state, generatorStates[0]);

@@ -28,7 +28,7 @@ namespace RNGEuclidean
         origin.reserve(3);
 
         constexpr u32 sub1 = 0x343fd; // XDRNG mult (>= 2^16)
-        constexpr u32 sub2 = 0x259ec4; // (-)XDRNG add + 0x10000 - 1
+        constexpr u32 sub2 = 0x259ec4; // XDRNG add - 0x10000 + 1
         constexpr u64 base = 0x343fabc02; // 0xffff * (XDRNG mult + 1)
 
         u32 first = static_cast<u32>((hp | (atk << 5) | (def << 10)) << 16);
@@ -55,7 +55,7 @@ namespace RNGEuclidean
         std::vector<std::pair<u32, u32>> origin;
 
         constexpr u32 sub1 = 0x343fd; // XDRNG mult (>= 2^16)
-        constexpr u32 sub2 = 0x259ec4; // (-)XDRNG add + 0x10000 - 1
+        constexpr u32 sub2 = 0x259ec4; // XDRNG add - 0x10000 + 1
         constexpr u64 base = 0x343fabc02; // 0xffff * (XDRNG mult + 1)
 
         u32 first = pid & 0xffff0000;
@@ -89,7 +89,7 @@ namespace RNGEuclidean
         // Add(j) = Add * (Mult^0 + Mult^1 + ... + Mult^(j-1))
         // Using j = 5 and XDRNG gives Mult = 0x284A930D and Add = 0xa2974c77
         constexpr u32 sub1 = 0x284A930D; // Modified mult (>= 2^27)
-        constexpr u32 sub2 = 0x9A974C78; // (-)Modified add + 0x8000000 - 1
+        constexpr u32 sub2 = 0x9A974C78; // Modified add - 0x8000000 + 1
         constexpr u64 base = 0x142549847b56cf2; // 0x7ffffff * (Modified mult + 1)
 
         u32 first = hp << 27;

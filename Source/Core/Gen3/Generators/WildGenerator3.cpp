@@ -121,25 +121,10 @@ std::vector<WildGeneratorState3> WildGenerator3::generate(u32 seed, const Encoun
             pid = (high << 16) | low;
         } while (pid % 25 != nature || (cuteCharmFlag && !cuteCharm(info, pid)));
 
-        u16 iv1;
-        u16 iv2;
-        if (method == Method::MethodH1)
-        {
-            iv1 = go.nextUShort();
-            iv2 = go.nextUShort();
-        }
-        else if (method == Method::MethodH2)
-        {
-            go.next();
-            iv1 = go.nextUShort();
-            iv2 = go.nextUShort();
-        }
-        else
-        {
-            iv1 = go.nextUShort();
-            go.next();
-            iv2 = go.nextUShort();
-        }
+        go.advance(method == Method::MethodH2);
+        u16 iv1 = go.nextUShort();
+        go.advance(method == Method::MethodH4);
+        u16 iv2 = go.nextUShort();
 
         WildGeneratorState3 state(initialAdvances + cnt, pid, iv1, iv2, tsv, level, encounterSlot, slot.getSpecie(), info);
         if (filter.compareState(state))

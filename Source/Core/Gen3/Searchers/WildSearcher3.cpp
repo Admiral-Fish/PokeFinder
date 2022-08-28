@@ -223,7 +223,7 @@ std::vector<WildSearcherState3> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 
                     }
                 }
 
-                testNature = ((nextRNG << 16) | nextRNG2) % 25;
+                testNature = static_cast<u32>((nextRNG << 16) | nextRNG2) % 25;
                 nextRNG = testRNG.nextUShort();
                 nextRNG2 = testRNG.nextUShort();
             } while (testNature != nature);

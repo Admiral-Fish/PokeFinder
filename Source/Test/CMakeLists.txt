@@ -20,6 +20,10 @@ add_executable(PokeFinderTest
     Gen3/StaticGenerator3Test.hpp
     Gen3/StaticSearcher3Test.cpp
     Gen3/StaticSearcher3Test.hpp
+    Gen3/WildGenerator3Test.cpp
+    Gen3/WildGenerator3Test.hpp
+    Gen3/WildSearcher3Test.cpp
+    Gen3/WildSearcher3Test.hpp
     main.cpp
     RNG/LCRNGTest.cpp
     RNG/LCRNGTest.hpp
