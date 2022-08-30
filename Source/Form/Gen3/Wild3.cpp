@@ -65,11 +65,15 @@ Wild3::Wild3(QWidget *parent) : QWidget(parent), ui(new Ui::Wild3)
     ui->filterSearcher->disableControls(Controls::UseDelay | Controls::DisableFilter);
 
     ui->toolButtonGeneratorLead->addAction(tr("None"), toInt(Lead::None));
-    ui->toolButtonGeneratorLead->addMenu(tr("Synchronize"), *Translator::getNatures());
     ui->toolButtonGeneratorLead->addMenu(tr("Cute Charm"), { tr("♂ Lead"), tr("♀ Lead") },
                                          { toInt(Lead::CuteCharmM), toInt(Lead::CuteCharmF) });
+    ui->toolButtonGeneratorLead->addAction(tr("Magnet Pull"), toInt(Lead::MagnetPull));
+    ui->toolButtonGeneratorLead->addAction(tr("Pressure"), toInt(Lead::Pressure));
+    ui->toolButtonGeneratorLead->addAction(tr("Static"), toInt(Lead::Static));
+    ui->toolButtonGeneratorLead->addMenu(tr("Synchronize"), *Translator::getNatures());
 
-    ui->comboBoxSearcherLead->setup({ toInt(Lead::None), toInt(Lead::CuteCharmM), toInt(Lead::CuteCharmF), toInt(Lead::Synchronize) });
+    ui->comboBoxSearcherLead->setup({ toInt(Lead::None), toInt(Lead::CuteCharmM), toInt(Lead::CuteCharmF), toInt(Lead::MagnetPull),
+                                      toInt(Lead::Pressure), toInt(Lead::Static), toInt(Lead::Synchronize) });
 
     connect(ui->comboBoxProfiles, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &Wild3::profilesIndexChanged);
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Wild3::generate);
@@ -183,15 +187,7 @@ void Wild3::generate()
     u16 sid = currentProfile->getSID();
     auto method = ui->comboBoxGeneratorMethod->getEnum<Method>();
     auto encounter = ui->comboBoxGeneratorEncounter->getEnum<Encounter>();
-    Lead lead;
-    if (ui->toolButtonGeneratorLead->text().contains(tr("Synchronize")))
-    {
-        lead = Lead::Synchronize;
-    }
-    else
-    {
-        lead = static_cast<Lead>(ui->toolButtonGeneratorLead->getData());
-    }
+    Lead lead = static_cast<Lead>(ui->toolButtonGeneratorLead->getData());
 
     u32 offset = 0;
     if (ui->filterGenerator->useDelay())
@@ -205,10 +201,6 @@ void Wild3::generate()
                             ui->filterGenerator->getEncounterSlots());
 
     WildGenerator3 generator(initialAdvances, maxAdvances, offset, tid, sid, currentProfile->getVersion(), method, encounter, lead, filter);
-    if (lead == Lead::Synchronize)
-    {
-        generator.setSynchNature(ui->toolButtonGeneratorLead->getData());
-    }
 
     auto states = generator.generate(seed, encounterGenerator[ui->comboBoxGeneratorLocation->getCurrentInt()]);
     generatorModel->addItems(states);

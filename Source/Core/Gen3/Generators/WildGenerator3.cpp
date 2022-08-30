@@ -58,6 +58,8 @@ std::vector<WildGeneratorState3> WildGenerator3::generate(u32 seed, const Encoun
         cuteCharm = [](const PersonalInfo *info, u32 pid) { return (pid & 0xff) >= info->getGender(); };
     }
 
+    std::vector<u8> modifiedSlots = encounterArea.getSlots(lead);
+
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rng.next())
     {
         PokeRNG go(rng.getSeed());
@@ -68,12 +70,23 @@ std::vector<WildGeneratorState3> WildGenerator3::generate(u32 seed, const Encoun
             continue;
         }
 
-        u8 encounterSlot = EncounterSlot::hSlot(go.nextUShort(), encounter);
+        u8 encounterSlot;
+        if ((lead == Lead::MagnetPull || lead == Lead::Static) && (go.nextUShort() % 2) == 0 && !modifiedSlots.empty())
+        {
+            encounterSlot = modifiedSlots[go.nextUShort() % modifiedSlots.size()];
+        }
+        else
+        {
+            encounterSlot = EncounterSlot::hSlot(go.nextUShort(), encounter);
+        }
+
         if (!filter.compareEncounterSlot(encounterSlot))
         {
             continue;
         }
-        u8 level = encounterArea.calcLevel(encounterSlot, go.nextUShort());
+
+        // Modify level based on pressure if necessary
+        u8 level = encounterArea.calculateLevel<PokeRNG>(encounterSlot, go, lead == Lead::Pressure);
 
         const Slot &slot = encounterArea.getPokemon(encounterSlot);
         const PersonalInfo *info = slot.getInfo();
@@ -99,9 +112,9 @@ std::vector<WildGeneratorState3> WildGenerator3::generate(u32 seed, const Encoun
         }
 
         u8 nature;
-        if (lead == Lead::Synchronize)
+        if (lead >= Lead::Synchronize && lead <= Lead::SynchronizeEnd)
         {
-            nature = (go.nextUShort() & 1) == 0 ? synchNature : go.nextUShort() % 25;
+            nature = (go.nextUShort() & 1) == 0 ? toInt(lead) : go.nextUShort() % 25;
         }
         else
         {

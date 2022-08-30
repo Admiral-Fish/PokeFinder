@@ -21,6 +21,7 @@
 #define ENCOUNTERAREA3_HPP
 
 #include <Core/Parents/EncounterArea.hpp>
+#include <Core/Parents/Slot.hpp>
 
 enum class Game : u32;
 
@@ -39,6 +40,28 @@ public:
      * @param pokemon Available pokemon of the area
      */
     EncounterArea3(u8 location, u8 rate, Encounter encounter, const std::vector<Slot> &pokemon);
+
+    template <class RNG>
+    u8 calculateLevel(u8 encounterSlot, RNG &rng, bool force) const
+    {
+        const Slot &slot = pokemon[encounterSlot];
+
+        u8 min = slot.getMinLevel();
+        u8 max = slot.getMaxLevel();
+        u8 range = max - min + 1;
+
+        u8 rand = rng.nextUShort() % range;
+        if (force)
+        {
+            if ((rng.nextUShort() % 2) == 0)
+            {
+                return max;
+            }
+            rand = rand == 0 ? rand : rand - 1;
+        }
+
+        return min + rand;
+    }
 
     /**
      * @brief Checks if the location in RSE is in the Safari Zone

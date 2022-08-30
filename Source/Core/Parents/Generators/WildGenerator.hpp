@@ -47,15 +47,9 @@ public:
     {
     }
 
-    void setSynchNature(u8 synchNature)
-    {
-        this->synchNature = synchNature;
-    }
-
 protected:
     Encounter encounter;
     Lead lead;
-    u8 synchNature;
 };
 
 #endif // WILDGENERATOR_HPP

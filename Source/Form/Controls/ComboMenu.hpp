@@ -94,7 +94,7 @@ public:
      *
      * @return Current action data
      */
-    int getData(bool parent = false) const;
+    int getData() const;
 
     /**
      * @brief Removes an action

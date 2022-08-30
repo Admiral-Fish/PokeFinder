@@ -78,6 +78,11 @@ bool operator==(const WildGeneratorState3 &left, const WildSearcherState3 &right
     return operator==(right, left);
 }
 
+constexpr Lead operator+(Lead lead, u8 val)
+{
+    return static_cast<Lead>(toInt(lead) + val);
+}
+
 void WildSearcher3Test::search_data()
 {
     QTest::addColumn<IVs>("min");
@@ -136,11 +141,8 @@ void WildSearcher3Test::search()
         QVERIFY(state == result);
 
         // Ensure generator agrees
-        WildGenerator3 generator(0, 0, 0, 12345, 54321, version, method, encounter, lead, filter);
-        if (lead == Lead::Synchronize)
-        {
-            generator.setSynchNature(state.getNature());
-        }
+        WildGenerator3 generator(0, 0, 0, 12345, 54321, version, method, encounter,
+                                 lead != Lead::Synchronize ? lead : lead + state.getNature(), filter);
         auto generatorStates = generator.generate(state.getSeed(), *encounterArea);
 
         QCOMPARE(generatorStates.size(), 1);

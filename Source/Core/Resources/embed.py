@@ -135,6 +135,8 @@ def embed_personal():
                 spe = data[i+0x3]
                 spa = data[i+0x4]
                 spd = data[i+0x5]
+                type1 = data[i+0x6]
+                type2 = data[i+0x7]
 
                 if index == 3:
                     gender = data[i+0x10]
@@ -169,7 +171,7 @@ def embed_personal():
                     form_stat_index = (data[i+0x1f] << 8) | data[i+0x1e]
                     present = (data[i+0x21] >> 6) & 1
 
-                personal = f"PersonalInfo({hp}, {atk}, {defense}, {spa}, {spd}, {spe}, {gender}, {ability1}, {ability2}, {abilityH}, {form_count}, {form_stat_index}, {present})"
+                personal = f"PersonalInfo({hp}, {atk}, {defense}, {spa}, {spd}, {spe}, {type1}, {type2}, {gender}, {ability1}, {ability2}, {abilityH}, {form_count}, {form_stat_index}, {present})"
                 string += personal
                 if i != size - offset:
                     string += ", "

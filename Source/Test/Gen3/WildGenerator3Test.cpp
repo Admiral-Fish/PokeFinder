@@ -114,10 +114,6 @@ void WildGenerator3Test::generate()
 
     WildStateFilter3 filter(255, 255, 255, false, min, max, natures, powers, encounterSlots);
     WildGenerator3 generator(0, 9, 0, 12345, 54321, version, method, encounter, lead, filter);
-    if (lead == Lead::Synchronize)
-    {
-        generator.setSynchNature(0);
-    }
 
     auto states = generator.generate(seed, *encounterArea);
     QCOMPARE(states.size(), results.size());

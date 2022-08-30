@@ -38,6 +38,8 @@ public:
      * @param spa Base SpA
      * @param spd Base SpD
      * @param spe Base Spe
+     * @param type1 1st type
+     * @param type2 2nd type
      * @param gender Gender ratio
      * @param ability1 1st Ability
      * @param ability2 2nd Ability
@@ -46,14 +48,15 @@ public:
      * @param formStatIndex Alternate form index
      * @param present Obtainable in-game
      */
-    constexpr PersonalInfo(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, u8 gender, u16 ability1, u16 ability2, u16 abilityH, u8 formCount,
-                           u16 formStatIndex, bool present) :
+    constexpr PersonalInfo(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, u8 type1, u8 type2, u8 gender, u16 ability1, u16 ability2,
+                           u16 abilityH, u8 formCount, u16 formStatIndex, bool present) :
         ability { ability1, ability2, abilityH },
+        formCount(formCount),
         formStatIndex(formStatIndex),
         stats { hp, atk, def, spa, spd, spe },
         present(present),
-        formCount(formCount),
-        gender(gender)
+        gender(gender),
+        types { type1, type2 }
     {
     }
 
@@ -169,13 +172,26 @@ public:
         return stats[index];
     }
 
+    /**
+     * @brief Type of the pokemon
+     *
+     * @param index Type index
+     *
+     * @return Pokemon type
+     */
+    u8 getType(int index) const
+    {
+        return types[index];
+    }
+
 private:
     u16 ability[3];
-    u16 formStatIndex;
+    u16 formCount : 5;
+    u16 formStatIndex : 11;
     std::array<u8, 6> stats;
     bool present;
-    u8 formCount;
     u8 gender;
+    u8 types[2];
 };
 
 #endif // PERSONALINFO_HPP

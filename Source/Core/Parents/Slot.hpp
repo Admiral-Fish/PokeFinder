@@ -38,7 +38,7 @@ public:
      * @param info Pokemon information
      */
     Slot(u16 specie, u8 minLevel, u8 maxLevel, const PersonalInfo *info) :
-        minLevel(minLevel), maxLevel(maxLevel), specie(specie), info(info)
+        info(info), specie(specie), maxLevel(maxLevel), minLevel(minLevel)
     {
     }
 
@@ -49,7 +49,7 @@ public:
      * @param level Level of the pokemon
      * @param info Pokemon information
      */
-    Slot(u16 specie, u8 level, const PersonalInfo *info) : minLevel(level), maxLevel(level), specie(specie), info(info)
+    Slot(u16 specie, u8 level, const PersonalInfo *info) : info(info), specie(specie), maxLevel(level), minLevel(level)
     {
     }
 
@@ -107,9 +107,9 @@ public:
 
 private:
     const PersonalInfo *info;
+    u16 specie;
     u8 minLevel;
     u8 maxLevel;
-    u16 specie;
 };
 
 #endif // SLOT_HPP

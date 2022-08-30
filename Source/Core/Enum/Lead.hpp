@@ -27,12 +27,16 @@
  */
 enum class Lead : u8
 {
-    None,
-    CompoundEyes,
+    None = 255,
+    Synchronize = 0,
+    SynchronizeEnd = 25,
     CuteCharmF,
     CuteCharmM,
-    Synchronize,
+    MagnetPull,
+    Static,
+    Pressure,
     SuctionCups,
+    CompoundEyes
 };
 
 /**

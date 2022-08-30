@@ -27,6 +27,7 @@
 class PersonalInfo;
 class Slot;
 enum class Encounter : u8;
+enum class Lead : u8;
 
 /**
  * @brief Contains information about the encounters for an area. This includes location, rate, and the slots.
@@ -52,7 +53,7 @@ public:
      *
      * @return Level of the encounter
      */
-    u8 calcLevel(u8 index, u16 prng) const;
+    u8 calculateLevel(u8 index, u16 prng) const;
 
     /**
      * @brief Calculates the level of a pokemon that has no range
@@ -61,7 +62,7 @@ public:
      *
      * @return Level of the encounter
      */
-    u8 calcLevel(u8 index) const;
+    u8 calculateLevel(u8 index) const;
 
     /**
      * @brief Returns the type of encounter of the area
@@ -110,6 +111,15 @@ public:
      * @return Vector of true/false for matching slots
      */
     std::vector<bool> getSlots(u16 specie) const;
+
+    /**
+     * @brief Returns the indexes of the slots that match the type of the \p lead
+     *
+     * @param lead Type lead
+     *
+     * @return Vector of matching indexes
+     */
+    std::vector<u8> getSlots(Lead lead) const;
 
     /**
      * @brief Return vector of names of all pokemon slots

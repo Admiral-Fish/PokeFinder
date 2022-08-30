@@ -85,13 +85,9 @@ bool ComboMenu::findAction(const QString &name)
     return false;
 }
 
-int ComboMenu::getData(bool parent) const
+int ComboMenu::getData() const
 {
     QAction *action = actionGroup->checkedAction();
-    if (parent)
-    {
-        QMenu *menu = action->menu();
-    }
     return action->data().toInt();
 }
 

@@ -79,6 +79,7 @@ public:
 private:
     EncounterArea3 encounterArea;
     std::mutex mutex;
+    std::vector<u8> modifiedSlots;
     std::vector<WildSearcherState3> results;
     int progress;
     RNGCache cache;

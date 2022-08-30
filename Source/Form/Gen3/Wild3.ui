@@ -407,6 +407,21 @@
             </item>
             <item>
              <property name="text">
+              <string>Magnet Pull</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Pressure</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Static</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
               <string>Synchronize</string>
              </property>
             </item>

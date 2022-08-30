@@ -50,6 +50,7 @@ WildSearcher3::WildSearcher3(u16 tid, u16 sid, Game version, Method method, Enco
                              const EncounterArea3 &encounterArea, const WildStateFilter3 &filter) :
     WildSearcher<WildStateFilter3>(tid, sid, version, method, encounter, lead, filter),
     encounterArea(encounterArea),
+    modifiedSlots(encounterArea.getSlots(lead)),
     progress(0),
     cache(method),
     searching(false)
@@ -163,29 +164,7 @@ std::vector<WildSearcherState3> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 
                     {
                         u16 prng = safari ? temp.nextUShort() : nextRNG2;
                         encounterSlot = EncounterSlot::hSlot(temp.nextUShort(), encounter);
-                        level = encounterArea.calcLevel(encounterSlot, prng);
-                        valid = filter.compareEncounterSlot(encounterSlot);
-                    }
-                    break;
-                case Lead::Synchronize:
-                    // Successful synch
-                    if ((nextRNG & 1) == 0)
-                    {
-                        u16 prng = safari ? temp.nextUShort() : nextRNG2;
-                        encounterSlot = EncounterSlot::hSlot(temp.nextUShort(), encounter);
-                        level = encounterArea.calcLevel(encounterSlot, prng);
-                        valid = filter.compareEncounterSlot(encounterSlot);
-                    }
-                    // Failed synch
-                    else if ((nextRNG2 & 1) == 1 && (nextRNG % 25) == nature)
-                    {
-                        if (safari)
-                        {
-                            temp.next();
-                        }
-                        u16 prng = temp.nextUShort();
-                        encounterSlot = EncounterSlot::hSlot(temp.nextUShort(), encounter);
-                        level = encounterArea.calcLevel(encounterSlot, prng);
+                        level = encounterArea.EncounterArea::calculateLevel(encounterSlot, prng);
                         valid = filter.compareEncounterSlot(encounterSlot);
                     }
                     break;
@@ -200,10 +179,52 @@ std::vector<WildSearcherState3> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 
                         }
                         u16 prng = temp.nextUShort();
                         encounterSlot = EncounterSlot::hSlot(temp.nextUShort(), encounter);
-                        level = encounterArea.calcLevel(encounterSlot, prng);
+                        level = encounterArea.EncounterArea::calculateLevel(encounterSlot, prng);
                         cuteCharmFlag = (nextRNG2 % 3) > 0;
                         valid = filter.compareEncounterSlot(encounterSlot);
                     }
+                    break;
+                case Lead::Synchronize:
+                    // Successful synch
+                    if ((nextRNG & 1) == 0)
+                    {
+                        u16 prng = safari ? temp.nextUShort() : nextRNG2;
+                        encounterSlot = EncounterSlot::hSlot(temp.nextUShort(), encounter);
+                        level = encounterArea.EncounterArea::calculateLevel(encounterSlot, prng);
+                        valid = filter.compareEncounterSlot(encounterSlot);
+                    }
+                    // Failed synch
+                    else if ((nextRNG2 & 1) == 1 && (nextRNG % 25) == nature)
+                    {
+                        if (safari)
+                        {
+                            temp.next();
+                        }
+                        u16 prng = temp.nextUShort();
+                        encounterSlot = EncounterSlot::hSlot(temp.nextUShort(), encounter);
+                        level = encounterArea.EncounterArea::calculateLevel(encounterSlot, prng);
+                        valid = filter.compareEncounterSlot(encounterSlot);
+                    }
+                    break;
+                case Lead::MagnetPull:
+                case Lead::Static:
+                    if ((nextRNG % 25) == nature)
+                    {
+                        u16 levelRand = safari ? temp.nextUShort() : nextRNG2;
+                        u16 encounterRand = temp.nextUShort();
+                        if ((temp.nextUShort() % 2) == 0 && !modifiedSlots.empty())
+                        {
+                            encounterSlot = modifiedSlots[encounterRand % modifiedSlots.size()];
+                        }
+                        else
+                        {
+                            encounterSlot = EncounterSlot::hSlot(encounterRand, encounter);
+                        }
+                        level = encounterArea.EncounterArea::calculateLevel(encounterSlot, levelRand);
+                        valid = filter.compareEncounterSlot(encounterSlot);
+                    }
+                    break;
+                case Lead::Pressure:
                     break;
                 default:
                     break;
