@@ -106,7 +106,8 @@ void WildGenerator3Test::generate()
     std::array<bool, 16> powers;
     powers.fill(true);
 
-    std::vector<bool> encounterSlots(12, true);
+    std::array<bool, 12> encounterSlots;
+    encounterSlots.fill(true);
 
     std::vector<EncounterArea3> encounterAreas = Encounters3::getEncounters(encounter, version);
     auto encounterArea = std::find_if(encounterAreas.begin(), encounterAreas.end(),

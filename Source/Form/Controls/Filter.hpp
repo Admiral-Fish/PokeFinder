@@ -89,9 +89,9 @@ public:
     /**
      * @brief Gets encounter slots to filter by
      *
-     * @return Vector of encounter slots
+     * @return Array of encounter slots
      */
-    std::vector<bool> getEncounterSlots();
+    std::array<bool, 12> getEncounterSlots();
 
     /**
      * @brief Gets gender to filter by
@@ -103,7 +103,7 @@ public:
     /**
      * @brief Gets hidden powers to filter by
      *
-     * @return Vector of hidden powers
+     * @return Array of hidden powers
      */
     std::array<bool, 16> getHiddenPowers();
 
@@ -124,7 +124,7 @@ public:
     /**
      * @brief Get natures to filter by
      *
-     * @return Vector of natures
+     * @return Array of natures
      */
     std::array<bool, 25> getNatures();
 

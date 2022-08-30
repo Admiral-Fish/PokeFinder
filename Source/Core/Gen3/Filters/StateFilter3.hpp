@@ -89,7 +89,7 @@ public:
      * @param powers Hidden powers to filter by
      */
     WildStateFilter3(u8 gender, u8 ability, u8 shiny, bool skip, const std::array<u8, 6> &min, const std::array<u8, 6> &max,
-                     const std::array<bool, 25> &natures, const std::array<bool, 16> &powers, const std::vector<bool> &encounterSlots);
+                     const std::array<bool, 25> &natures, const std::array<bool, 16> &powers, const std::array<bool, 12> &encounterSlots);
 
     /**
      * @brief Determines if the \p state meets the filter criteria

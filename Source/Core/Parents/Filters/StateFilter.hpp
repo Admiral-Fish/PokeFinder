@@ -22,7 +22,6 @@
 
 #include <Core/Global.hpp>
 #include <array>
-#include <vector>
 
 /**
  * @brief Provides ways to determine if the given \ref State meets the given criteria
@@ -135,7 +134,7 @@ public:
      * @param powers Hidden powers to filter by
      */
     WildStateFilter(u8 gender, u8 ability, u8 shiny, bool skip, const std::array<u8, 6> &min, const std::array<u8, 6> &max,
-                    const std::array<bool, 25> &natures, const std::array<bool, 16> &powers, const std::vector<bool> &encounterSlots);
+                    const std::array<bool, 25> &natures, const std::array<bool, 16> &powers, const std::array<bool, 12> &encounterSlots);
 
     /**
      * @brief Determines if the \p encounterSlot meets the filter criteria
@@ -148,7 +147,7 @@ public:
     bool compareEncounterSlot(u8 encounterSlot) const;
 
 protected:
-    std::vector<bool> encounterSlots;
+    std::array<bool, 12> encounterSlots;
 };
 
 #endif // STATEFILTER_HPP
