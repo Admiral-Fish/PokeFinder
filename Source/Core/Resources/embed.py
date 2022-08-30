@@ -183,65 +183,45 @@ def embed_personal():
 
 
 def embed_strings(paths):
-    arrays = []
+    strings = bytes()
+    indexes = []
+    index = 0
     for path in paths:
-        mapping = {}
-
         files = glob.glob(f"i18n/{path}/*.txt", recursive=True)
         for file in sorted(files):
             with open(file, "r", encoding="utf-8") as f:
                 data = f.read().split("\n")
-
-            name = os.path.basename(f.name).replace(".txt", "")
 
             string_data = bytes()
             for line in data:
                 string_data += bytes(line, encoding="utf-8")
                 string_data += b"\x00"
 
-            size = len(string_data)
+            size = len(string_data).to_bytes(2, byteorder="little")
             string_data = bz2.compress(string_data, 9)
-            string_data = size.to_bytes(2, byteorder="little") + string_data
+            string_data = size + string_data
 
-            string = f"constexpr std::array<u8, {len(string_data)}> {name} = {{ "
+            indexes.append(index)
+            index += len(string_data)
 
-            for i, char in enumerate(string_data):
-                string += str(char)
-                if i != len(string_data) - 1:
-                    string += ", "
+            strings += string_data
+    indexes.append(index)
 
-            string += " };"
-            mapping[name] = string
+    string = f"constexpr u8 i18n[{len(strings)}] = {{ "
+    for i, char in enumerate(strings):
+        string += str(char)
+        if i != len(strings) - 1:
+            string += ", "
+    string += " };"
 
-        arrays.append(mapping)
+    index_string = f"constexpr u32 indexes[{len(indexes)}] = {{ "
+    for i, index in enumerate(indexes):
+        index_string += str(index)
+        if i != len(indexes) - 1:
+            index_string += ", "
+    index_string += " };"
 
-    languages = f"const static u8 *languages[{len(arrays)}][{len(arrays[0])}] = {{ "
-    sizes = f"constexpr size_t sizes[{len(arrays)}][{len(arrays[0])}] = {{ "
-    for i, language in enumerate(arrays):
-        languages += "{ "
-        sizes += "{ "
-        for j, category in enumerate(language.keys()):
-            languages += f"{category}.data()"
-            sizes += f"{category}.size()"
-
-            if j != len(language) - 1:
-                languages += ", "
-                sizes += ", "
-
-        languages += " }"
-        sizes += " }"
-
-        if i != len(arrays) - 1:
-            languages += ", "
-            sizes += ", "
-
-    languages += " };"
-    sizes += " };"
-
-    arrays.append(languages)
-    arrays.append(sizes)
-
-    write_strings(arrays)
+    write_strings((string, index_string))
 
 
 def write_data(arrays, file, includes):

@@ -38,13 +38,13 @@ CheckList::CheckList(QWidget *parent) : QComboBox(parent), model(new QStandardIt
 
 void CheckList::setup(const std::vector<std::string> &items)
 {
-    for (const std::string &item : items)
-    {
-        addItem(QString::fromStdString(item));
-    }
+    // Empty list in case this is not the first call to setup
+    clear();
 
-    for (int i = 0; i < model->rowCount(); i++)
+    for (int i = 0; i < items.size(); i++)
     {
+        addItem(QString::fromStdString(items[i]));
+
         QStandardItem *item = model->item(i);
         item->setCheckState(Qt::Unchecked);
         item->setFlags(Qt::ItemIsUserCheckable | Qt::ItemIsEnabled);

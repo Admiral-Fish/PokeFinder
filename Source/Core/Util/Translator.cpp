@@ -36,7 +36,8 @@ enum class Language
     Italian,
     Japanese,
     Korean,
-    Chinese
+    Chinese,
+    Count
 };
 
 enum class Translation
@@ -55,7 +56,8 @@ enum class Translation
     Power,
     RS,
     Specie,
-    SwSh
+    SwSh,
+    Count
 };
 
 namespace
@@ -77,8 +79,12 @@ namespace
      */
     std::vector<std::string> readFile(Translation translation)
     {
-        const u8 *compressedData = languages[static_cast<int>(language)][static_cast<int>(translation)];
-        size_t compressedSize = sizes[static_cast<int>(language)][static_cast<int>(translation)];
+        int index = (static_cast<int>(language) * static_cast<int>(Translation::Count)) + static_cast<int>(translation);
+        u32 start = indexes[index];
+        u32 end = indexes[index + 1];
+
+        const u8 *compressedData = i18n + start;
+        u32 compressedSize = end - start;
 
         u32 size = *reinterpret_cast<const u16 *>(compressedData);
         char *data = new char[size];
@@ -87,13 +93,12 @@ namespace
                                    0);
 
         std::vector<std::string> strings;
-        for (size_t i = 0, start = 0; i < size; i++)
+        for (u32 i = 0; i < size;)
         {
-            if (data[i] == 0)
-            {
-                strings.emplace_back(&data[start], i - start);
-                start = i + 1;
-            }
+            char *it = std::find(data + i, data + size, 0);
+            u32 len = it - &data[i];
+            strings.emplace_back(data + i, len);
+            i += len + 1;
         }
 
         delete[] data;
