@@ -225,6 +225,14 @@ std::vector<WildSearcherState3> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 
                     }
                     break;
                 case Lead::Pressure:
+                    if ((nextRNG % 25) == nature)
+                    {
+                        u16 rand = safari ? temp.nextUShort() : nextRNG2;
+                        u16 levelRand = temp.nextUShort();
+                        encounterSlot = EncounterSlot::hSlot(temp.nextUShort(), encounter);
+                        level = encounterArea.calculateLevel(encounterSlot, levelRand, (rand & 1) == 0);
+                        valid = filter.compareEncounterSlot(encounterSlot);
+                    }
                     break;
                 default:
                     break;

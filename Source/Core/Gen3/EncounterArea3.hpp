@@ -22,6 +22,7 @@
 
 #include <Core/Parents/EncounterArea.hpp>
 #include <Core/Parents/Slot.hpp>
+#include <Core/RNG/LCRNG.hpp>
 
 enum class Game : u32;
 
@@ -41,8 +42,16 @@ public:
      */
     EncounterArea3(u8 location, u8 rate, Encounter encounter, const std::vector<Slot> &pokemon);
 
-    template <class RNG>
-    u8 calculateLevel(u8 encounterSlot, RNG &rng, bool force) const
+    /**
+     * @brief Calculates the level of a pokemon. Takes into account any modification from Pressure
+     *
+     * @param encounterSlot Pokemon slot
+     * @param rng RNG object
+     * @param force Whether Pressure lead is being used
+     *
+     * @return Level of the encounter
+     */
+    u8 calculateLevel(u8 encounterSlot, PokeRNG &rng, bool force) const
     {
         const Slot &slot = pokemon[encounterSlot];
 
@@ -53,10 +62,40 @@ public:
         u8 rand = rng.nextUShort() % range;
         if (force)
         {
-            if ((rng.nextUShort() % 2) == 0)
+            if ((rng.nextUShort() & 1) == 0)
             {
                 return max;
             }
+            rand = rand == 0 ? rand : rand - 1;
+        }
+
+        return min + rand;
+    }
+
+    /**
+     * @brief Calculates the level of a pokemon. Used by WildSearcher3 and assume Pressure is being used
+     *
+     * @param encounterSlot Pokemon slot
+     * @param levelRand PRNG call for the level
+     * @param force PRNG call for Pressure
+     *
+     * @return Level of the encounter
+     */
+    u8 calculateLevel(u8 encounterSlot, u16 levelRand, bool force) const
+    {
+        const Slot &slot = pokemon[encounterSlot];
+
+        u8 min = slot.getMinLevel();
+        u8 max = slot.getMaxLevel();
+        u8 range = max - min + 1;
+
+        u8 rand = levelRand % range;
+        if (force)
+        {
+            return max;
+        }
+        else
+        {
             rand = rand == 0 ? rand : rand - 1;
         }
 
