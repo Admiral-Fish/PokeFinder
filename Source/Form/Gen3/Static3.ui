@@ -280,7 +280,7 @@
             </item>
             <item>
              <property name="text">
-              <string>Mythics</string>
+              <string>Events</string>
              </property>
             </item>
            </widget>
@@ -480,7 +480,7 @@
             </item>
             <item>
              <property name="text">
-              <string>Mythics</string>
+              <string>Events</string>
              </property>
             </item>
            </widget>

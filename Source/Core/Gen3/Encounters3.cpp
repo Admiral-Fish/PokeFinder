@@ -32,7 +32,6 @@
 #include <iterator>
 
 constexpr std::array<StaticTemplate, 33> gifts = {
-    // RSE
     // Starters @ Littleroot Town
     StaticTemplate(Game::Emerald, 152, 5), // Chikorita
     StaticTemplate(Game::Emerald, 155, 5), // Cyndaquil
@@ -52,7 +51,6 @@ constexpr std::array<StaticTemplate, 33> gifts = {
     StaticTemplate(Game::RSE, 374, 5), // Beldum @ Mossdeep City
     StaticTemplate(Game::RSE, 360, 5), // Wynaut Egg
 
-    // FRLG
     // Starters @ Pallet Town
     StaticTemplate(Game::FRLG, 1, 5), // Bulbasaur
     StaticTemplate(Game::FRLG, 4, 5), // Squirtle
@@ -85,19 +83,16 @@ constexpr std::array<StaticTemplate, 33> gifts = {
 };
 
 constexpr std::array<StaticTemplate, 6> stationary = {
-    // RSE
     StaticTemplate(Game::RSE, 352, 30), // Kecleon @ Route 119/120
     StaticTemplate(Game::RSE, 101, 30), // Electrode @ Magma/Aqua Hideout
     StaticTemplate(Game::Emerald, 185, 40), // Sudowoodo @ Battle Frontier
 
-    // FRLG
     StaticTemplate(Game::FRLG, 143, 30), // Snorlax @ Route 12/16
     StaticTemplate(Game::FRLG, 101, 34), // Electrode @ Power Plant
     StaticTemplate(Game::FRLG, 97, 30) // Hypno @ Berry Forest
 };
 
 constexpr std::array<StaticTemplate, 14> legends = {
-    // RSE
     StaticTemplate(Game::RSE, 377, 40), // Regirock @ Desert Ruins
     StaticTemplate(Game::RSE, 378, 40), // Regice @ Island Cave
     StaticTemplate(Game::RSE, 379, 40), // Registeel @ Ancient Tomb
@@ -109,21 +104,18 @@ constexpr std::array<StaticTemplate, 14> legends = {
     StaticTemplate(Game::Emerald, 383, 70), // Groudon @ Terra Cave
     StaticTemplate(Game::RSE, 384, 70), // Rayquaza @ Sky Pillar
 
-    // FRLG
     StaticTemplate(Game::FRLG, 144, 50), // Articuno @ Seafoam Islands
     StaticTemplate(Game::FRLG, 145, 50), // Zapdos @ Power Plant
     StaticTemplate(Game::FRLG, 146, 50), // Moltres @ Mt. Ember
     StaticTemplate(Game::FRLG, 150, 70) // Mewtwo @ Cerulean Cave
 };
 
-constexpr std::array<StaticTemplate, 7> mythics = {
-    // RSE
+constexpr std::array<StaticTemplate, 7> events = {
     StaticTemplate(Game::Emerald, 151, 30), // Mew @ Faraway Island
     StaticTemplate(Game::Emerald, 249, 70), // Lugia @ Navel Rock
     StaticTemplate(Game::Emerald, 250, 70), // Ho-Oh @ Navel Rock
     StaticTemplate(Game::Emerald, 386, 30), // Deoxys @ Birth Island
 
-    // FRLG
     StaticTemplate(Game::FRLG, 249, 70), // Lugia @ Navel Rock
     StaticTemplate(Game::FRLG, 250, 70), // Ho-Oh @ Navel Rock
     StaticTemplate(Game::FRLG, 386, 30) // Deoxys @ Birth Islands
@@ -325,9 +317,9 @@ namespace Encounters3
         {
             if (size)
             {
-                *size = mythics.size();
+                *size = events.size();
             }
-            return mythics.data();
+            return events.data();
         }
     }
 
