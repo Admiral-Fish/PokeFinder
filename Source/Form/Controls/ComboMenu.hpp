@@ -20,9 +20,9 @@
 #ifndef COMBOMENU_HPP
 #define COMBOMENU_HPP
 
+#include <Core/Global.hpp>
+#include <QActionGroup>
 #include <QToolButton>
-
-class QActionGroup;
 
 /**
  * @brief Provides exclusion item selection via menu selection where sub menus can act as combo boxes
@@ -46,13 +46,6 @@ public:
      * @param menu Sub menu for action to be added to if provided
      */
     void addAction(const QString &actionText, int data, QMenu *menu = nullptr);
-
-    /**
-     * @brief Determines if an action is present
-     *
-     * @param name Action title to search by
-     * @return
-     */
 
     /**
      * @brief Adds a new sub menu and set of actions
@@ -88,13 +81,27 @@ public:
     bool findAction(const QString &name);
 
     /**
-     * @brief Gets data of the currently selected action
+     * @brief Gets current selected index data as templated enum type
      *
-     * @param parent Whether to look at the parent menu for the data
+     * @tparam Enum Enum type to convert data too
      *
-     * @return Current action data
+     * @return Current data as enum type
      */
-    int getData() const;
+    template <typename Enum>
+    constexpr Enum getEnum() const
+    {
+        static_assert(std::is_same<u8, typename std::underlying_type<Enum>::type>::value, "Unsupported enum base type");
+
+        QAction *action = actionGroup->checkedAction();
+        if constexpr (std::is_same<u8, typename std::underlying_type<Enum>::type>::value)
+        {
+            return static_cast<Enum>(action->data().toUInt());
+        }
+        else
+        {
+            return static_cast<Enum>(0);
+        }
+    }
 
     /**
      * @brief Removes an action

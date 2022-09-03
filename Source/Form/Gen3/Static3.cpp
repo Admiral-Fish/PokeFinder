@@ -31,7 +31,6 @@
 #include <Form/Controls/Controls.hpp>
 #include <Form/Gen3/Profile/ProfileManager3.hpp>
 #include <Model/Gen3/StaticModel3.hpp>
-#include <QListView>
 #include <QMenu>
 #include <QSettings>
 #include <QThread>
@@ -195,11 +194,14 @@ void Static3::profilesIndexChanged(int index)
         ui->comboBoxGeneratorCategory->setCurrentIndex(0);
         ui->comboBoxSearcherCategory->setCurrentIndex(0);
 
-        bool flag = (currentProfile->getVersion() & Game::RS) != Game::None;
-        auto *generatorView = qobject_cast<QListView *>(ui->comboBoxGeneratorCategory->view());
-        auto *searcherView = qobject_cast<QListView *>(ui->comboBoxSearcherCategory->view());
-        generatorView->setRowHidden(3, flag);
-        searcherView->setRowHidden(3, flag);
+        bool frlg = (currentProfile->getVersion() & Game::FRLG) != Game::None;
+        bool rs = (currentProfile->getVersion() & Game::RS) != Game::None;
+
+        ui->comboBoxGeneratorCategory->setItemHidden(3, !frlg);
+        ui->comboBoxGeneratorCategory->setItemHidden(6, rs);
+
+        ui->comboBoxSearcherCategory->setItemHidden(3, !frlg);
+        ui->comboBoxSearcherCategory->setItemHidden(6, rs);
     }
 }
 

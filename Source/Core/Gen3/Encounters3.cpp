@@ -31,46 +31,44 @@
 #include <cstring>
 #include <iterator>
 
-constexpr std::array<StaticTemplate, 33> gifts = {
-    // Starters @ Littleroot Town
-    StaticTemplate(Game::Emerald, 152, 5), // Chikorita
+constexpr std::array<StaticTemplate, 9> starters = {
+    StaticTemplate(Game::Emerald, 152, 5), // Chikorita @ Littleroot Town
     StaticTemplate(Game::Emerald, 155, 5), // Cyndaquil
     StaticTemplate(Game::Emerald, 158, 5), // Totodile
 
-    // Starters @ Route 101
-    StaticTemplate(Game::RSE, 252, 5), // Treecko
+    StaticTemplate(Game::RSE, 252, 5), // Treecko @ Route 101
     StaticTemplate(Game::RSE, 255, 5), // Torchic
     StaticTemplate(Game::RSE, 258, 5), // Mudkip
 
-    // Fossils
-    StaticTemplate(Game::RSE, 345, 20), // Lileep
+    StaticTemplate(Game::FRLG, 1, 5), // Bulbasaur @ Pallet Town
+    StaticTemplate(Game::FRLG, 4, 5), // Squirtle
+    StaticTemplate(Game::FRLG, 7, 5), // Charmander
+};
+
+constexpr std::array<StaticTemplate, 5> fossils = {
+    StaticTemplate(Game::RSE, 345, 20), // Lileep @ Rustboro City
     StaticTemplate(Game::RSE, 347, 20), // Anorith
 
-    // Gift
+    StaticTemplate(Game::FRLG, 138, 5), // Omanyte @ Cinnabar Islands
+    StaticTemplate(Game::FRLG, 140, 5), // Kabuto
+    StaticTemplate(Game::FRLG, 142, 5) // Aerodactyl
+};
+
+constexpr std::array<StaticTemplate, 9> gifts = {
     StaticTemplate(Game::RSE, 351, 25), // Castform @ Weather Institute
     StaticTemplate(Game::RSE, 374, 5), // Beldum @ Mossdeep City
     StaticTemplate(Game::RSE, 360, 5), // Wynaut Egg
 
-    // Starters @ Pallet Town
-    StaticTemplate(Game::FRLG, 1, 5), // Bulbasaur
-    StaticTemplate(Game::FRLG, 4, 5), // Squirtle
-    StaticTemplate(Game::FRLG, 7, 5), // Charmander
-
-    // Fossils @ Cinnabar Island
-    StaticTemplate(Game::FRLG, 138, 5), // Omanyte
-    StaticTemplate(Game::FRLG, 140, 5), // Kabuto
-    StaticTemplate(Game::FRLG, 142, 5), // Aerodactyl
-
-    // Gift
     StaticTemplate(Game::FRLG, 106, 25), // Hitmonlee @ Saffron City
     StaticTemplate(Game::FRLG, 107, 25), // Hitmonchan @ Saffron City
     StaticTemplate(Game::FRLG, 129, 5), // Magikarp @ Route 4
     StaticTemplate(Game::FRLG, 131, 25), // Lapras @ Silph Co.
     StaticTemplate(Game::FRLG, 133, 25), // Eevee @ Celadon City
-    StaticTemplate(Game::FRLG, 175, 5), // Togepi Egg
+    StaticTemplate(Game::FRLG, 175, 5) // Togepi Egg
+};
 
-    // Celadon City Game Corner
-    StaticTemplate(Game::FireRed, 63, 9), // Abra
+constexpr std::array<StaticTemplate, 10> gameCorner = {
+    StaticTemplate(Game::FireRed, 63, 9), // Abra @ Celadon City
     StaticTemplate(Game::FireRed, 35, 8), // Clefairy
     StaticTemplate(Game::FireRed, 123, 25), // Scyther
     StaticTemplate(Game::FireRed, 147, 18), // Dratini
@@ -110,15 +108,12 @@ constexpr std::array<StaticTemplate, 14> legends = {
     StaticTemplate(Game::FRLG, 150, 70) // Mewtwo @ Cerulean Cave
 };
 
-constexpr std::array<StaticTemplate, 7> events = {
+constexpr std::array<StaticTemplate, 4> events = {
     StaticTemplate(Game::Emerald, 151, 30), // Mew @ Faraway Island
-    StaticTemplate(Game::Emerald, 249, 70), // Lugia @ Navel Rock
-    StaticTemplate(Game::Emerald, 250, 70), // Ho-Oh @ Navel Rock
-    StaticTemplate(Game::Emerald, 386, 30), // Deoxys @ Birth Island
 
-    StaticTemplate(Game::FRLG, 249, 70), // Lugia @ Navel Rock
-    StaticTemplate(Game::FRLG, 250, 70), // Ho-Oh @ Navel Rock
-    StaticTemplate(Game::FRLG, 386, 30) // Deoxys @ Birth Islands
+    StaticTemplate(Game::Emerald | Game::FRLG, 249, 70), // Lugia @ Navel Rock
+    StaticTemplate(Game::Emerald | Game::FRLG, 250, 70), // Ho-Oh @ Navel Rock
+    StaticTemplate(Game::Emerald | Game::FRLG, 386, 30) // Deoxys @ Birth Islands
 };
 
 namespace
@@ -293,11 +288,35 @@ namespace Encounters3
         {
             if (size)
             {
+                *size = starters.size();
+            }
+            return starters.data();
+        }
+        else if (type == 1)
+        {
+            if (size)
+            {
+                *size = fossils.size();
+            }
+            return fossils.data();
+        }
+        else if (type == 2)
+        {
+            if (size)
+            {
                 *size = gifts.size();
             }
             return gifts.data();
         }
-        else if (type == 1)
+        else if (type == 3)
+        {
+            if (size)
+            {
+                *size = gameCorner.size();
+            }
+            return gameCorner.data();
+        }
+        else if (type == 4)
         {
             if (size)
             {
@@ -305,7 +324,7 @@ namespace Encounters3
             }
             return stationary.data();
         }
-        else if (type == 2)
+        else if (type == 5)
         {
             if (size)
             {

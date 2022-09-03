@@ -44,10 +44,13 @@ namespace Encounters3
      * @brief Gets static encounters from the \p type
      *
      * @param type Static encounter type
-     * 0: gifts
-     * 1: stationary
-     * 2: legends
-     * 3: mythics
+     * 0: starters
+     * 1: fossils
+     * 2: gifts
+     * 3: game corner
+     * 4: stationary
+     * 5: legends
+     * 6: events
      * @param size Pointer to set number of encounters if not nullptr
      *
      * @return Pointer to static encounters area
@@ -58,10 +61,13 @@ namespace Encounters3
      * @brief getStaticEncounter
      *
      * @param type Static encounter type
-     * 0: gifts
-     * 1: stationary
-     * 2: legends
-     * 3: mythics
+     * 0: starters
+     * 1: fossils
+     * 2: gifts
+     * 3: game corner
+     * 4: stationary
+     * 5: legends
+     * 6: events
      * @param index Pokemon index
      *
      * @return Pointer to static encounter

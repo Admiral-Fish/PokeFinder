@@ -806,7 +806,7 @@
                 "seed": 0,
                 "version": 1,
                 "method": 4,
-                "category": 2,
+                "category": 5,
                 "pokemon": 7,
                 "results": [
                     {
@@ -1386,8 +1386,8 @@
                 "seed": 2863311530,
                 "version": 8,
                 "method": 1,
-                "category": 3,
-                "pokemon": 4,
+                "category": 6,
+                "pokemon": 1,
                 "results": [
                     {
                         "ability": 0,
@@ -1695,7 +1695,7 @@
                 ],
                 "version": 1,
                 "method": 4,
-                "category": 2,
+                "category": 5,
                 "pokemon": 7,
                 "results": [
                     {
@@ -2025,8 +2025,8 @@
                 ],
                 "version": 8,
                 "method": 1,
-                "category": 3,
-                "pokemon": 4,
+                "category": 6,
+                "pokemon": 1,
                 "results": [
                     {
                         "ability": 1,

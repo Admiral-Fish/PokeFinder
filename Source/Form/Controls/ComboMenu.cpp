@@ -18,7 +18,6 @@
  */
 
 #include "ComboMenu.hpp"
-#include <QActionGroup>
 #include <QMenu>
 
 ComboMenu::ComboMenu(QWidget *parent) : QToolButton(parent), actionGroup(new QActionGroup(this)), topMenu(new QMenu(this))
@@ -83,12 +82,6 @@ bool ComboMenu::findAction(const QString &name)
     }
 
     return false;
-}
-
-int ComboMenu::getData() const
-{
-    QAction *action = actionGroup->checkedAction();
-    return action->data().toInt();
 }
 
 void ComboMenu::removeAction(const QString &name)

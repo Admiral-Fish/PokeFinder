@@ -262,10 +262,25 @@
            </widget>
           </item>
           <item row="0" column="1">
-           <widget class="QComboBox" name="comboBoxGeneratorCategory">
+           <widget class="ComboBox" name="comboBoxGeneratorCategory">
+            <item>
+             <property name="text">
+              <string>Starters</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Fossils</string>
+             </property>
+            </item>
             <item>
              <property name="text">
               <string>Gifts</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Game Corner</string>
              </property>
             </item>
             <item>
@@ -462,10 +477,25 @@
            </widget>
           </item>
           <item row="0" column="1" colspan="2">
-           <widget class="QComboBox" name="comboBoxSearcherCategory">
+           <widget class="ComboBox" name="comboBoxSearcherCategory">
+            <item>
+             <property name="text">
+              <string>Starters</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Fossils</string>
+             </property>
+            </item>
             <item>
              <property name="text">
               <string>Gifts</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Game Corner</string>
              </property>
             </item>
             <item>

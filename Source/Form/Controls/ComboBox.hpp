@@ -76,7 +76,7 @@ public:
      *
      * @tparam Enum Enum type to convert data too
      *
-     * @return Current data as
+     * @return Current data as enum type
      */
     template <typename Enum>
     constexpr Enum getEnum() const
@@ -103,6 +103,14 @@ public:
             return static_cast<Enum>(0);
         }
     }
+
+    /**
+     * @brief Enables/disables and hide/unhides the item in \p row
+     *
+     * @param row Item row
+     * @param hide Whether item should be hidden
+     */
+    void setItemHidden(int row, bool hide);
 };
 
 #endif // COMBOBOX_HPP

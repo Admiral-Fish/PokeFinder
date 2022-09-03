@@ -27,7 +27,6 @@
 #include <Core/RNG/Xoroshiro.hpp>
 #include <Core/RNG/Xorshift.hpp>
 #include <Model/Util/ResearcherModel.hpp>
-#include <QListView>
 #include <QMenu>
 #include <QMessageBox>
 #include <QSettings>
@@ -422,33 +421,30 @@ void Researcher::rngSelectionIndexChanged(int index)
         bool flag = index != 1;
         ui->comboBoxSearch->setCurrentIndex(flag ? 1 : 0);
 
-        auto *view = qobject_cast<QListView *>(ui->comboBoxSearch->view());
-        view->setRowHidden(0, flag);
-        view->setRowHidden(1, !flag);
-        view->setRowHidden(2, flag);
-        view->setRowHidden(3, flag);
+        ui->comboBoxSearch->setItemHidden(0, flag);
+        ui->comboBoxSearch->setItemHidden(1, !flag);
+        ui->comboBoxSearch->setItemHidden(2, flag);
+        ui->comboBoxSearch->setItemHidden(3, flag);
 
         for (int i = 1; i <= 10; i++)
         {
             auto *boxL = ui->groupBoxCustoms->findChild<ComboBox *>(QString("comboBoxLValue%1").arg(i));
             boxL->setCurrentIndex(flag ? 1 : 0);
 
-            auto *viewL = qobject_cast<QListView *>(boxL->view());
-            viewL->setRowHidden(0, flag);
-            viewL->setRowHidden(1, !flag);
-            viewL->setRowHidden(2, flag);
-            viewL->setRowHidden(3, flag);
+            boxL->setItemHidden(0, flag);
+            boxL->setItemHidden(1, !flag);
+            boxL->setItemHidden(2, flag);
+            boxL->setItemHidden(3, flag);
 
             if (i != 1)
             {
                 auto *boxR = ui->groupBoxCustoms->findChild<ComboBox *>(QString("comboBoxRValue%1").arg(i));
                 boxR->setCurrentIndex(0);
 
-                auto *viewR = qobject_cast<QListView *>(boxR->view());
-                viewR->setRowHidden(1, flag);
-                viewR->setRowHidden(2, !flag);
-                viewR->setRowHidden(3, flag);
-                viewR->setRowHidden(4, flag);
+                boxR->setItemHidden(1, flag);
+                boxR->setItemHidden(2, !flag);
+                boxR->setItemHidden(3, flag);
+                boxR->setItemHidden(4, flag);
             }
         }
     }

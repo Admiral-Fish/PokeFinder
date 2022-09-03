@@ -187,7 +187,7 @@ void Wild3::generate()
     u16 sid = currentProfile->getSID();
     auto method = ui->comboBoxGeneratorMethod->getEnum<Method>();
     auto encounter = ui->comboBoxGeneratorEncounter->getEnum<Encounter>();
-    Lead lead = static_cast<Lead>(ui->toolButtonGeneratorLead->getData());
+    auto lead = ui->toolButtonGeneratorLead->getEnum<Lead>();
 
     u32 offset = 0;
     if (ui->filterGenerator->useDelay())

@@ -18,6 +18,8 @@
  */
 
 #include "ComboBox.hpp"
+#include <QListView>
+#include <QStandardItemModel>
 
 ComboBox::ComboBox(QWidget *parent) : QComboBox(parent)
 {
@@ -49,4 +51,13 @@ u32 ComboBox::getCurrentUInt() const
 int ComboBox::getCurrentInt() const
 {
     return this->currentData().toInt();
+}
+
+void ComboBox::setItemHidden(int row, bool hide)
+{
+    auto *model = qobject_cast<QStandardItemModel *>(this->model());
+    auto *view = qobject_cast<QListView *>(this->view());
+
+    model->item(row)->setEnabled(!hide);
+    view->setRowHidden(row, hide);
 }
