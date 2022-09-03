@@ -25,13 +25,13 @@
 
 Q_DECLARE_METATYPE(Method)
 
-void RNGCacheTest::ivs_data()
+void RNGCacheTest::recoverPokeRNGIV_data()
 {
     QTest::addColumn<Method>("method");
     QTest::addColumn<std::vector<u8>>("ivs");
     QTest::addColumn<std::vector<u32>>("results");
 
-    json data = readData("rng", "rngcache", "ivs");
+    json data = readData("rng", "rngcache", "recoverPokeRNGIV");
     for (const auto &d : data)
     {
         QTest::newRow(d["name"].get<std::string>().data())
@@ -39,23 +39,30 @@ void RNGCacheTest::ivs_data()
     }
 }
 
-void RNGCacheTest::ivs()
+void RNGCacheTest::recoverPokeRNGIV()
 {
     QFETCH(Method, method);
     QFETCH(std::vector<u8>, ivs);
     QFETCH(std::vector<u32>, results);
 
     RNGCache cache(method);
-    QCOMPARE(cache.recoverLower16BitsIV(ivs[0], ivs[1], ivs[2], ivs[3], ivs[4], ivs[5]), results);
+    u32 seeds[6];
+    int size = cache.recoverPokeRNGIV(ivs[0], ivs[1], ivs[2], ivs[3], ivs[4], ivs[5], seeds);
+
+    QCOMPARE(size, results.size());
+    for (int i = 0; i < size; i++)
+    {
+        QCOMPARE(seeds[i], results[i]);
+    }
 }
 
-void RNGCacheTest::pid_data()
+void RNGCacheTest::recoverPokeRNGPID_data()
 {
     QTest::addColumn<Method>("method");
     QTest::addColumn<u32>("pid");
     QTest::addColumn<std::vector<u32>>("results");
 
-    json data = readData("rng", "rngcache", "pid");
+    json data = readData("rng", "rngcache", "recoverPokeRNGPID_data");
     for (const auto &d : data)
     {
         QTest::newRow(d["name"].get<std::string>().data())
@@ -63,12 +70,19 @@ void RNGCacheTest::pid_data()
     }
 }
 
-void RNGCacheTest::pid()
+void RNGCacheTest::recoverPokeRNGPID()
 {
     QFETCH(Method, method);
     QFETCH(u32, pid);
     QFETCH(std::vector<u32>, results);
 
     RNGCache cache(method);
-    QCOMPARE(cache.recoverLower16BitsPID(pid), std::vector<u32>(results.begin(), results.end()));
+    u32 seeds[3];
+    int size = cache.recoverPokeRNGPID(pid, seeds);
+
+    QCOMPARE(size, results.size());
+    for (int i = 0; i < size; i++)
+    {
+        QCOMPARE(seeds[i], results[i]);
+    }
 }

@@ -157,16 +157,3 @@ SearcherState3::SearcherState3(u32 seed, u16 high, u16 low, std::array<u8, 6> iv
     hiddenPower = h * 15 / 63;
     hiddenPowerStrength = 30 + (p * 40 / 63);
 }
-
-void SearcherState3::xorState(const PersonalInfo *info)
-{
-    seed ^= 0x80000000;
-    pid ^= 0x80008000;
-    nature = pid % 25;
-
-    // Don't need to recompute HP
-    for (int i = 1; i < 6; i++)
-    {
-        stats[i] = ((((2 * info->getStat(i) + ivs[i]) * level) / 100) + 5) * Nature::getNatureModifier(nature, i);
-    }
-}

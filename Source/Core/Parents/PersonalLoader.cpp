@@ -71,10 +71,10 @@ namespace PersonalLoader
         }
     }
 
-    const PersonalInfo *getPersonal(Game version, u16 species, u8 form)
+    const PersonalInfo *getPersonal(Game version, u16 specie, u8 form)
     {
         const PersonalInfo *info = getPersonal(version);
-        const PersonalInfo *base = &info[species];
+        const PersonalInfo *base = &info[specie];
 
         // Determine if we need to offset the index based off form
         u16 formIndex = base->getFormStatIndex();

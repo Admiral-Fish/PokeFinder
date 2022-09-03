@@ -20,7 +20,6 @@
 #include "StaticGenerator3.hpp"
 #include <Core/Enum/Method.hpp>
 #include <Core/Gen3/States/State3.hpp>
-#include <Core/Parents/PersonalLoader.hpp>
 #include <Core/Parents/StaticTemplate.hpp>
 #include <Core/RNG/LCRNG.hpp>
 
@@ -33,7 +32,7 @@ StaticGenerator3::StaticGenerator3(u32 initialAdvances, u32 maxAdvances, u32 off
 std::vector<GeneratorState3> StaticGenerator3::generate(u32 seed, const StaticTemplate *staticTemplate) const
 {
     std::vector<GeneratorState3> states;
-    const PersonalInfo *info = PersonalLoader::getPersonal(version, staticTemplate->getSpecie());
+    const PersonalInfo *info = staticTemplate->getInfo();
 
     PokeRNG rng(seed);
     rng.advance(initialAdvances + offset);

@@ -21,7 +21,6 @@
 #define RNGCACHE_HPP
 
 #include <Core/Global.hpp>
-#include <vector>
 
 enum class Method : u8;
 
@@ -48,19 +47,21 @@ public:
      * @param spa SpA iv
      * @param spd SpD iv
      * @param spe Spe iv
+     * @param seeds Array to write results
      *
-     * @return Vector of origin seeds
+     * @return Number of origin seeds (Won't be higher than 6)
      */
-    std::vector<u32> recoverLower16BitsIV(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const;
+    int recoverPokeRNGIV(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, u32 *seeds) const;
 
     /**
      * @brief Recovers origin seeds for two 16 bit calls based on the cache
      *
      * @param pid PID value
+     * @param seeds Array to write results
      *
-     * @return Vector of origin seeds
+     * @return Number of origin seeds (Won't be higher than 3)
      */
-    std::vector<u32> recoverLower16BitsPID(u32 pid) const;
+    int recoverPokeRNGPID(u32 pid, u32 *seeds) const;
 
 private:
     u32 add;

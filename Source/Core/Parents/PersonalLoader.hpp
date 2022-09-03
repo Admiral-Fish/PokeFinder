@@ -37,15 +37,15 @@ namespace PersonalLoader
     const PersonalInfo *getPersonal(Game version);
 
     /**
-     * @brief Gets PersonalInfo for \p species and \p form based on the \p version
+     * @brief Gets PersonalInfo for \p specie and \p form based on the \p version
      *
      * @param version Game version
-     * @param species Pokemon species
+     * @param specie Pokemon specie
      * @param form Pokemon form
      *
      * @return PersonalInfo entry pointer
      */
-    const PersonalInfo *getPersonal(Game version, u16 species, u8 form = 0);
+    const PersonalInfo *getPersonal(Game version, u16 specie, u8 form = 0);
 }
 
 #endif // PERSONALLOADER_HPP

@@ -21,7 +21,6 @@
 #include <Core/Enum/Method.hpp>
 #include <Core/Gen3/States/State3.hpp>
 #include <Core/Parents/PersonalInfo.hpp>
-#include <Core/Parents/PersonalLoader.hpp>
 #include <Core/Parents/StaticTemplate.hpp>
 #include <Core/RNG/LCRNG.hpp>
 
@@ -30,7 +29,7 @@ StaticSearcher3::StaticSearcher3(u16 tid, u16 sid, Game version, Method method, 
     progress(0),
     cache(method),
     searching(false),
-    ivAdvance(method == Method::Method2 ? 1 : 0)
+    ivAdvance(method == Method::Method2)
 {
 }
 
@@ -39,7 +38,7 @@ void StaticSearcher3::startSearch(const std::array<u8, 6> &min, const std::array
     searching = true;
 
     u8 level = staticTemplate->getLevel();
-    const PersonalInfo *info = PersonalLoader::getPersonal(version, staticTemplate->getSpecie());
+    const PersonalInfo *info = staticTemplate->getInfo();
 
     for (u8 hp = min[0]; hp <= max[0]; hp++)
     {
@@ -93,24 +92,18 @@ std::vector<SearcherState3> StaticSearcher3::search(u8 hp, u8 atk, u8 def, u8 sp
     std::vector<SearcherState3> states;
 
     std::array<u8, 6> ivs = { hp, atk, def, spa, spd, spe };
-    auto seeds = cache.recoverLower16BitsIV(hp, atk, def, spa, spd, spe);
-    for (const u32 seed : seeds)
+
+    u32 seeds[6];
+    int size = cache.recoverPokeRNGIV(hp, atk, def, spa, spd, spe, seeds);
+    for (int i = 0; i < size; i++)
     {
-        PokeRNGR rng(seed);
+        PokeRNGR rng(seeds[i]);
         rng.advance(ivAdvance);
 
         u16 high = rng.nextUShort();
         u16 low = rng.nextUShort();
 
-        // Setup normal state
         SearcherState3 state(rng.next(), high, low, ivs, tsv, level, info);
-        if (filter.compareState(state))
-        {
-            states.emplace_back(state);
-        }
-
-        // Setup XORed state
-        state.xorState(info);
         if (filter.compareState(state))
         {
             states.emplace_back(state);

@@ -26,14 +26,14 @@ class RNGEuclideanTest : public QObject
 {
     Q_OBJECT
 private slots:
-    void ivs_data();
-    void ivs();
+    void recoverChannelIV_data();
+    void recoverChannelIV();
 
-    void pid_data();
-    void pid();
+    void recoverXDRNGIV_data();
+    void recoverXDRNGIV();
 
-    void ivsChannel_data();
-    void ivsChannel();
+    void recoverXDRNGPID_data();
+    void recoverXDRNGPID();
 };
 
 #endif // RNGEUCLIDEANTEST_HPP

@@ -26,11 +26,11 @@ class RNGCacheTest : public QObject
 {
     Q_OBJECT
 private slots:
-    void ivs_data();
-    void ivs();
+    void recoverPokeRNGIV_data();
+    void recoverPokeRNGIV();
 
-    void pid_data();
-    void pid();
+    void recoverPokeRNGPID_data();
+    void recoverPokeRNGPID();
 };
 
 #endif // RNGCACHETEST_HPP

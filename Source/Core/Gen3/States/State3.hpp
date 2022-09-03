@@ -87,13 +87,6 @@ public:
         return hiddenPowerStrength;
     }
 
-    /**
-     * @brief XORs the state to get the sister spread
-     *
-     * @param info Pokemon info
-     */
-    void xorState(const PersonalInfo *info);
-
 private:
     u8 hiddenPowerStrength;
 };

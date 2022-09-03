@@ -22,67 +22,85 @@
 #include <QTest>
 #include <Test/Data.hpp>
 
-void RNGEuclideanTest::ivs_data()
+using IVs = std::array<u8, 6>;
+
+void RNGEuclideanTest::recoverChannelIV_data()
 {
-    QTest::addColumn<std::vector<u8>>("ivs");
-    QTest::addColumn<std::vector<std::pair<u32, u32>>>("results");
-
-    json data = readData("rng", "rngeuclidean", "ivs");
-    for (const auto &d : data)
-    {
-        QTest::newRow(d["name"].get<std::string>().data())
-            << d["ivs"].get<std::vector<u8>>() << d["results"].get<std::vector<std::pair<u32, u32>>>();
-    }
-}
-
-void RNGEuclideanTest::ivs()
-{
-    using Results = std::vector<std::pair<u32, u32>>;
-
-    QFETCH(std::vector<u8>, ivs);
-    QFETCH(Results, results);
-
-    QCOMPARE(RNGEuclidean::recoverLower16BitsIV(ivs[0], ivs[1], ivs[2], ivs[3], ivs[4], ivs[5]), results);
-}
-
-void RNGEuclideanTest::pid_data()
-{
-    QTest::addColumn<u32>("pid");
-    QTest::addColumn<std::vector<std::pair<u32, u32>>>("results");
-
-    json data = readData("rng", "rngeuclidean", "pid");
-    for (const auto &d : data)
-    {
-        QTest::newRow(d["name"].get<std::string>().data()) << d["pid"].get<u32>() << d["results"].get<std::vector<std::pair<u32, u32>>>();
-    }
-}
-
-void RNGEuclideanTest::pid()
-{
-    using Results = std::vector<std::pair<u32, u32>>;
-
-    QFETCH(u32, pid);
-    QFETCH(Results, results);
-
-    QCOMPARE(RNGEuclidean::recoverLower16BitsPID(pid), results);
-}
-
-void RNGEuclideanTest::ivsChannel_data()
-{
-    QTest::addColumn<std::vector<u8>>("ivs");
+    QTest::addColumn<IVs>("ivs");
     QTest::addColumn<std::vector<u32>>("results");
 
-    json data = readData("rng", "rngeuclidean", "ivsChannel");
+    json data = readData("rng", "rngeuclidean", "recoverChannelIV");
     for (const auto &d : data)
     {
-        QTest::newRow(d["name"].get<std::string>().data()) << d["ivs"].get<std::vector<u8>>() << d["results"].get<std::vector<u32>>();
+        QTest::newRow(d["name"].get<std::string>().data()) << d["ivs"].get<IVs>() << d["results"].get<std::vector<u32>>();
     }
 }
 
-void RNGEuclideanTest::ivsChannel()
+void RNGEuclideanTest::recoverChannelIV()
 {
-    QFETCH(std::vector<u8>, ivs);
+    QFETCH(IVs, ivs);
     QFETCH(std::vector<u32>, results);
 
-    QCOMPARE(RNGEuclidean::recoverLower27BitsChannel(ivs[0], ivs[1], ivs[2], ivs[3], ivs[4], ivs[5]), results);
+    u32 seeds[12];
+    int size = RNGEuclidean::recoverChannelIV(ivs[0], ivs[1], ivs[2], ivs[3], ivs[4], ivs[5], seeds);
+
+    QCOMPARE(size, results.size());
+    for (int i = 0; i < size; i++)
+    {
+        QCOMPARE(seeds[i], results[i]);
+    }
+}
+
+void RNGEuclideanTest::recoverXDRNGIV_data()
+{
+    QTest::addColumn<IVs>("ivs");
+    QTest::addColumn<std::vector<u32>>("results");
+
+    json data = readData("rng", "rngeuclidean", "recoverXDRNGIV");
+    for (const auto &d : data)
+    {
+        QTest::newRow(d["name"].get<std::string>().data()) << d["ivs"].get<IVs>() << d["results"].get<std::vector<u32>>();
+    }
+}
+
+void RNGEuclideanTest::recoverXDRNGIV()
+{
+    QFETCH(IVs, ivs);
+    QFETCH(std::vector<u32>, results);
+
+    u32 seeds[6];
+    int size = RNGEuclidean::recoverXDRNGIV(ivs[0], ivs[1], ivs[2], ivs[3], ivs[4], ivs[5], seeds);
+
+    QCOMPARE(size, results.size());
+    for (int i = 0; i < size; i++)
+    {
+        QCOMPARE(seeds[i], results[i]);
+    }
+}
+
+void RNGEuclideanTest::recoverXDRNGPID_data()
+{
+    QTest::addColumn<u32>("pid");
+    QTest::addColumn<std::vector<u32>>("results");
+
+    json data = readData("rng", "rngeuclidean", "recoverXDRNGPID");
+    for (const auto &d : data)
+    {
+        QTest::newRow(d["name"].get<std::string>().data()) << d["pid"].get<u32>() << d["results"].get<std::vector<u32>>();
+    }
+}
+
+void RNGEuclideanTest::recoverXDRNGPID()
+{
+    QFETCH(u32, pid);
+    QFETCH(std::vector<u32>, results);
+
+    u32 seeds[2];
+    int size = RNGEuclidean::recoverXDRNGPID(pid, seeds);
+
+    QCOMPARE(size, results.size());
+    for (int i = 0; i < size; i++)
+    {
+        QCOMPARE(seeds[i], results[i]);
+    }
 }

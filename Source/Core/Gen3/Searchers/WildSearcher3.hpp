@@ -84,6 +84,7 @@ private:
     int progress;
     RNGCache cache;
     bool searching;
+    u8 ivAdvance;
 
     /**
      * @brief Searches for matching states from provided IVs
