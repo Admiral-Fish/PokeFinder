@@ -98,7 +98,7 @@ namespace Encounters4
         }
 
         std::vector<EncounterArea4> getHGSS(Game version, Encounter encounter, const Profile4 &profile, const PersonalInfo *info,
-                                            int modifier, Encounter safariEncounter, const u8 blocks[])
+                                            int modifier, Encounter safariEncounter, std::array<u8, 5> blocks)
         {
             const u8 *data;
             size_t size;
@@ -585,7 +585,7 @@ namespace Encounters4
     }
 
     std::vector<EncounterArea4> getEncounters(Encounter encounter, int modifier, const Profile4 &profile, Encounter safariEncounter,
-                                              const u8 blocks[])
+                                              std::array<u8, 5> blocks)
     {
         Game version = profile.getVersion();
         auto *info = PersonalLoader::getPersonal(version);

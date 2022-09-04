@@ -31,7 +31,7 @@ class Profile4;
 namespace Encounters4
 {
     std::vector<EncounterArea4> getEncounters(Encounter encounter, int modifier, const Profile4 &profile, Encounter safariEncounter,
-                                              const u8 blocks[]);
+                                              std::array<u8, 5> blocks);
     bool getHeadbuttSpecialFlag(Game game, int location);
     bool getSafariWaterFlag(int location);
 }

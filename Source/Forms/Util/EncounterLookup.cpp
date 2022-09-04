@@ -157,7 +157,7 @@ std::set<std::pair<u16, QString>> EncounterLookup::getEncounters4(Game game, u16
         {
             for (const auto &modifier : { 0, 1, 2 })
             {
-                const u8 blocks[] = {0, 0, 0, 0, 0};
+                std::array<u8, 5> blocks = {0, 0, 0, 0, 0};
                 auto areas = Encounters4::getEncounters(type, modifier, profile, Encounter::Grass, blocks);
                 for (const auto &area : areas)
                 {
