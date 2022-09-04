@@ -56,16 +56,14 @@ int RNGCache::recoverPokeRNGIV(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, u3
 
     u32 first = static_cast<u32>((hp | (atk << 5) | (def << 10)) << 16);
     u32 second = static_cast<u32>((spe | (spa << 5) | (spd << 10)) << 16);
+    u32 search = second - first * mult;
 
-    // Check with the top bit of the first call both flipped and unflipped to account for only knowing 15 bits
-    u32 search1 = second - first * mult;
-    u32 search2 = second - (first ^ 0x80000000) * mult;
-
-    for (u32 i = 0; i < 0x10000; i += 0x100, search1 -= k, search2 -= k)
+    for (u32 i = 0; i < 0x10000; i += 0x100, search -= k)
     {
-        if (flags[search1 >> 16])
+        u16 val = search >> 16;
+        if (flags[val])
         {
-            u32 seed = first | i | low[search1 >> 16];
+            u32 seed = first | i | low[val];
             if (((seed * mult + add) & 0x7fff0000) == second)
             {
                 seeds[size++] = seed;
@@ -73,9 +71,11 @@ int RNGCache::recoverPokeRNGIV(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, u3
             }
         }
 
-        if (flags[search2 >> 16])
+        // Check again with top bit flipped
+        val ^= 0x8000;
+        if (flags[val])
         {
-            u32 seed = first | i | low[search2 >> 16];
+            u32 seed = first | i | low[val];
             if (((seed * mult + add) & 0x7fff0000) == second)
             {
                 seeds[size++] = seed;
@@ -92,7 +92,7 @@ int RNGCache::recoverPokeRNGPID(u32 pid, u32 *seeds) const
     int size = 0;
 
     u32 first = pid << 16;
-    u32 second = pid & 0xFFFF0000;
+    u32 second = pid & 0xffff0000;
     u32 search = second - first * mult;
 
     for (u32 i = 0; i < 0x10000; i += 0x100, search -= k)
