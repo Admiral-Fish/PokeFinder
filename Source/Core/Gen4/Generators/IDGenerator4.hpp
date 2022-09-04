@@ -17,54 +17,49 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef IDGENERATOR3_HPP
-#define IDGENERATOR3_HPP
+#ifndef IDGENERATOR4_HPP
+#define IDGENERATOR4_HPP
 
+#include <Core/Parents/Filters/IDFilter.hpp>
 #include <Core/Parents/Generators/IDGenerator.hpp>
 
-class IDState;
+class IDState4;
 
 /**
- * @brief TID/SID generator for Gen3
+ * @brief TID/SID generator for Gen4
  */
-class IDGenerator3 : public IDGenerator
+class IDGenerator4 : public IDGenerator
 {
 public:
     /**
-     * @brief Construct a new IDGenerator3 object
+     * @brief Construct a new IDGenerator4 object
      *
-     * @param initialAdvances Initial number of advances
-     * @param maxAdvances Maximum number of advances
+     * @param minDelay Minimum delay
+     * @param maxDelay Maximum delay
+     * @param year Search year
+     * @param month Search month
+     * @param day Search day
+     * @param hour Seach hour
+     * @param minute Search minute
      * @param filter State filter
      */
-    IDGenerator3(u32 initialAdvances, u32 maxAdvances, const IDFilter &filter);
+    IDGenerator4(u32 minDelay, u32 maxDelay, u16 year, u8 month, u8 day, u8 hour, u8 minute, const IDFilter &filter);
 
     /**
-     * @brief Generates states for XD/Colo
-     *
-     * @param seed Starting PRNG state
+     * @brief Generates states
      *
      * @return Vector of computed states
      */
-    std::vector<IDState> generateXDColo(u32 seed);
+    std::vector<IDState4> generate() const;
 
-    /**
-     * @brief Generates states for FRLGE
-     *
-     * @param tid Starting PRNG state
-     *
-     * @return Vector of computed states
-     */
-    std::vector<IDState> generateFRLGE(u16 tid);
-
-    /**
-     * @brief Generates states for RS
-     *
-     * @param seed Starting PRNG state
-     *
-     * @return Vector of computed states
-     */
-    std::vector<IDState> generateRS(u16 seed);
+private:
+    u32 maxDelay;
+    u32 minDelay;
+    u16 year;
+    u8 day;
+    u8 hour;
+    u8 minute;
+    u8 month;
 };
 
-#endif // IDGENERATOR3_HPP
+#endif // IDGENERATOR4_HPP

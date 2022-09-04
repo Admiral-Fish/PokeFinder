@@ -17,34 +17,53 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef IDGENERATOR_HPP
-#define IDGENERATOR_HPP
+#ifndef IDS4_HPP
+#define IDS4_HPP
 
-#include <Core/Global.hpp>
-#include <Core/Parents/Filters/IDFilter.hpp>
-#include <vector>
-/**
- * @brief Parent generator class for TID/SID generation
- */
-class IDGenerator
+#include <QWidget>
+
+class IDModel4;
+
+namespace Ui
 {
+    class IDs4;
+}
+
+/**
+ * @brief Provides settings and filters to RNG TID/SID in Gen 4 games
+ */
+class IDs4 : public QWidget
+{
+    Q_OBJECT
 public:
     /**
-     * @brief Construct a new IDGenerator object
+     * @brief Construct a new IDs3 object
      *
-     * @param initialAdvances Initial number of advances
-     * @param maxAdvances Maximum number of advances
-     * @param filter State filter
+     * @param parent Parent widget, which takes memory ownership
      */
-    IDGenerator(u32 initialAdvances, u32 maxAdvances, const IDFilter &filter) :
-        filter(filter), initialAdvances(initialAdvances), maxAdvances(maxAdvances)
-    {
-    }
+    explicit IDs4(QWidget *parent = nullptr);
 
-protected:
-    IDFilter filter;
-    u32 initialAdvances;
-    u32 maxAdvances;
+    /**
+     * @brief Destroy the IDs3 object
+     */
+    ~IDs4() override;
+
+private:
+    Ui::IDs4 *ui;
+
+    IDModel4 *searcherModel;
+    IDModel4 *seedFinderModel;
+
+private slots:
+    /**
+     * @brief Lists possible candidates for the TID obtained
+     */
+    void find();
+
+    /**
+     * @brief Searches and displays results
+     */
+    void search();
 };
 
-#endif // IDGENERATOR_HPP
+#endif // IDS4_HPP

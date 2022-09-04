@@ -17,34 +17,41 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef IDGENERATOR_HPP
-#define IDGENERATOR_HPP
+#ifndef STATICTEMPLATE4_HPP
+#define STATICTEMPLATE4_HPP
 
-#include <Core/Global.hpp>
-#include <Core/Parents/Filters/IDFilter.hpp>
-#include <vector>
+#include <Core/Parents/StaticTemplate.hpp>
+
 /**
- * @brief Parent generator class for TID/SID generation
+ * @brief Contains additional information for Gen4 static encounters
  */
-class IDGenerator
+class StaticTemplate4 : public StaticTemplate
 {
 public:
     /**
-     * @brief Construct a new IDGenerator object
+     * @brief Construct a new StaticTemplate object
      *
-     * @param initialAdvances Initial number of advances
-     * @param maxAdvances Maximum number of advances
-     * @param filter State filter
+     * @param version Game the template appears in
+     * @param specie Specie of the template
+     * @param level Level of the template
+     * @param form Form of the template
      */
-    IDGenerator(u32 initialAdvances, u32 maxAdvances, const IDFilter &filter) :
-        filter(filter), initialAdvances(initialAdvances), maxAdvances(maxAdvances)
+    constexpr StaticTemplate4(Game version, u16 specie, u8 level, u8 form = 0) : StaticTemplate(version, specie, level), form(form)
     {
     }
 
-protected:
-    IDFilter filter;
-    u32 initialAdvances;
-    u32 maxAdvances;
+    /**
+     * @brief Determines what form the template should have
+     *
+     * @return Template form
+     */
+    u8 getForm() const
+    {
+        return form;
+    }
+
+private:
+    u8 form;
 };
 
-#endif // IDGENERATOR_HPP
+#endif // STATICTEMPLATE4_HPP

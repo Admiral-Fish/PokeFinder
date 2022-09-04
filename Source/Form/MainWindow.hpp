@@ -118,7 +118,6 @@ private:
 
 private slots:
     // Gen 3
-
     /**
      * @brief Opens the Gen 3 IDs window
      */
@@ -151,10 +150,13 @@ private slots:
     // void openSpindaPainter();
 
     // Gen 4
+    /**
+     * @brief Opens the Gen 4 IDs window
+     */
+    void openIDs4();
     // void openStatic4();
     // void openWild4();
     // void openEgg4();
-    // void openIDs4();
     // void openProfileManager4();
     // void openSeedtoTime4();
     // void openSIDFromChainedShiny();

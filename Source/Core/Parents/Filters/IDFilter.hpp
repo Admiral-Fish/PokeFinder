@@ -25,11 +25,31 @@
 
 class IDState;
 
+/**
+ * @brief Provides ways to determine if the given \ref IDState meets the given criteria
+ */
 class IDFilter
 {
 public:
+    /**
+     * @brief IDFilter
+     *
+     * @param tidFilter
+     * @param sidFilter
+     * @param tsvFilter
+     * @param displayFilter
+     */
     IDFilter(const std::vector<u16> &tidFilter, const std::vector<u16> &sidFilter, const std::vector<u16> &tsvFilter,
              const std::vector<u32> &displayFilter);
+
+    /**
+     * @brief Determines if the \p state meets the filter criteria
+     *
+     * @param state State to compare
+     *
+     * @return true State passes the filter
+     * @return false State does not pass the filter
+     */
     bool compare(const IDState &state) const;
 
 protected:

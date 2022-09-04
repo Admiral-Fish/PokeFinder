@@ -17,85 +17,77 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef IDSTATE_HPP
-#define IDSTATE_HPP
+#ifndef IDSTATE4_HPP
+#define IDSTATE4_HPP
 
-#include <Core/Global.hpp>
+#include <Core/Parents/States/IDState.hpp>
 
 /**
- * @brief Parent state that contains all the common information for TID/SID across each game
+ * @brief State class for Gen4 TID/SID
  */
-class IDState
+class IDState4 : public IDState
 {
 public:
     /**
-     * @brief Construct a new IDState object
+     * @brief Construct a new IDState4 object
      *
+     * @param seed State seed
+     * @param delay State delay
      * @param tid Trainer ID
      * @param sid Secret ID
-     * @param tsv Trainer shiny value
+     * @param seconds State seconds
      */
-    IDState(u16 tid, u16 sid, u16 tsv) : sid(sid), tid(tid), tsv(tsv)
+    IDState4(u32 seed, u32 delay, u16 tid, u16 sid, u8 seconds) :
+        IDState(tid, sid, (tid ^ sid) >> 3), delay(delay), seed(seed), seconds(seconds)
     {
     }
 
     /**
-     * @brief Construct a new IDState object
+     * @brief Construct a new IDState4 object
      *
-     * @param advances
+     * @param seed State seed
+     * @param delay State delay
      * @param tid Trainer ID
      * @param sid Secret ID
-     * @param tsv Trainer shiny value
      */
-    IDState(u32 advances, u16 tid, u16 sid, u16 tsv) : advances(advances), sid(sid), tid(tid), tsv(tsv)
+    IDState4(u32 seed, u32 delay, u16 tid, u16 sid) : IDState(tid, sid, (tid ^ sid) >> 3), delay(delay), seed(seed)
     {
     }
 
     /**
-     * @brief Returns the advances of the state
+     * @brief Returns the delay of the state
      *
-     * @return State advances
+     * @return State delay
      */
-    u32 getAdvances() const
+    u32 getDelay() const
     {
-        return advances;
+        return delay;
     }
 
     /**
-     * @brief Returns the SID of the state
+     * @brief Returns the seconds of the state
      *
-     * @return State SID
+     * @return State seconds
      */
-    u16 getSID() const
+    u8 getSeconds() const
     {
-        return sid;
+        return seconds;
     }
 
     /**
-     * @brief Returns the TID of the state
+     * @brief Returns the seed of the state
      *
-     * @return State TID
+     * @return State seed
      */
-    u16 getTID() const
+    u32 getSeed() const
     {
-        return tid;
+        return seed;
     }
 
-    /**
-     * @brief Returns the TSV of the state
-     *
-     * @return State TSV
-     */
-    u16 getTSV() const
-    {
-        return tsv;
-    }
-
-protected:
-    u32 advances;
-    u16 sid;
-    u16 tid;
-    u16 tsv;
+private:
+    u32 delay;
+    u32 seed;
+    u8 seconds;
 };
 
-#endif // IDSTATE_HPP
+#endif // IDSTATE4_HPP
