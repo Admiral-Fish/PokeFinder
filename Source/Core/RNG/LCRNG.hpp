@@ -123,7 +123,7 @@ public:
      * @return PRNG value after the advances
      */
     template <bool flag = false>
-    u32 advance(u64 advances)
+    u32 advance(u32 advances)
     {
         if constexpr (flag)
         {
@@ -165,7 +165,7 @@ public:
             multTable = XDRNGRMultTable;
         }
 
-        for (int i = 0; advances && i < 32; advances >>= 1, i++)
+        for (int i = 0; advances; advances >>= 1, i++)
         {
             if (advances & 1)
             {
@@ -185,7 +185,7 @@ public:
      *
      * @return PRNG value after the advances
      */
-    template <u64 advances, bool flag = false>
+    template <u32 advances, bool flag = false>
     u32 advance()
     {
         for (u64 advance = 0; advance < advances; advance++)

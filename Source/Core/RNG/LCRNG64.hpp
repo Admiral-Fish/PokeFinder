@@ -126,7 +126,7 @@ public:
             multTable = BWRNGRMultTable;
         }
 
-        for (int i = 0; advances && i < 64; advances >>= 1, i++)
+        for (int i = 0; advances; advances >>= 1, i++)
         {
             if (advances & 1)
             {
