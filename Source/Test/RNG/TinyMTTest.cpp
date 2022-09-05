@@ -46,6 +46,30 @@ void TinyMTTest::advance()
     QCOMPARE(rng.next(), result);
 }
 
+void TinyMTTest::jump_data()
+{
+    QTest::addColumn<u32>("seed");
+    QTest::addColumn<u32>("advances");
+    QTest::addColumn<u32>("result");
+
+    json data = readData("rng", "tinymt", "advance");
+    for (const auto &d : data)
+    {
+        QTest::newRow(d["name"].get<std::string>().data()) << d["seed"].get<u32>() << d["advances"].get<u32>() << d["result"].get<u32>();
+    }
+}
+
+void TinyMTTest::jump()
+{
+    QFETCH(u32, seed);
+    QFETCH(u32, advances);
+    QFETCH(u32, result);
+
+    TinyMT rng(seed);
+    rng.jump(advances - 1);
+    QCOMPARE(rng.next(), result);
+}
+
 void TinyMTTest::next_data()
 {
     QTest::addColumn<u32>("seed");

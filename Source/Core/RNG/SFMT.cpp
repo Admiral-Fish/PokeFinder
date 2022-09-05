@@ -43,13 +43,13 @@ SFMT::SFMT(u32 seed) : index(624)
 
 void SFMT::advance(u32 advances)
 {
-    advances = (advances * 2) + index;
-    while (advances >= 624)
+    u64 advance = (advances * 2) + index;
+    while (advance >= 624)
     {
         shuffle();
-        advances -= 624;
+        advance -= 624;
     }
-    index = advances;
+    index = advance;
 }
 
 u64 SFMT::next()

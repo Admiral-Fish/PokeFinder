@@ -49,6 +49,33 @@ void LCRNG64Test::advance()
     QCOMPARE(bwrngr.advance(advances), results[1]);
 }
 
+void LCRNG64Test::jump_data()
+{
+    QTest::addColumn<u64>("seed");
+    QTest::addColumn<u32>("advances");
+    QTest::addColumn<std::vector<u64>>("results");
+
+    json data = readData("rng", "lcrng64", "advance");
+    for (const auto &d : data)
+    {
+        QTest::newRow(d["name"].get<std::string>().data())
+            << d["seed"].get<u64>() << d["advances"].get<u32>() << d["results"].get<std::vector<u64>>();
+    }
+}
+
+void LCRNG64Test::jump()
+{
+    QFETCH(u64, seed);
+    QFETCH(u32, advances);
+    QFETCH(std::vector<u64>, results);
+
+    BWRNG bwrng(seed);
+    QCOMPARE(bwrng.jump(advances), results[0]);
+
+    BWRNGR bwrngr(seed);
+    QCOMPARE(bwrngr.jump(advances), results[1]);
+}
+
 void LCRNG64Test::next_data()
 {
     QTest::addColumn<u64>("seed");

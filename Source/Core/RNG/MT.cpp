@@ -33,13 +33,13 @@ MT::MT(u32 seed) : index(624)
 
 void MT::advance(u32 advances)
 {
-    advances += index;
-    while (advances >= 624)
+    u64 advance = advances + index;
+    while (advance >= 624)
     {
         shuffle();
-        advances -= 624;
+        advance -= 624;
     }
-    index = advances;
+    index = advance;
 }
 
 u32 MT::next()

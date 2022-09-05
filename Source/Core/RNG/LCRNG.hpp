@@ -28,7 +28,7 @@ struct JumpTable
     u32 mult[32];
 };
 
-consteval JumpTable computeJumpTable(u32 add, u32 mult)
+constexpr JumpTable computeJumpTable(u32 add, u32 mult)
 {
     JumpTable table;
     table.add[0] = add;
@@ -93,7 +93,7 @@ public:
     template <bool flag = false>
     u32 advance(u32 advances)
     {
-        for (u32 advance = 0; advance < advances; advance++)
+        for (u64 advance = 0; advance < advances; advance++)
         {
             next<flag>();
         }

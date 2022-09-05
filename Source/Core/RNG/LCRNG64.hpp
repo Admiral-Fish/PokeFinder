@@ -28,7 +28,7 @@ struct JumpTable64
     u64 mult[32];
 };
 
-consteval JumpTable64 computeJumpTable64(u64 add, u64 mult)
+constexpr JumpTable64 computeJumpTable64(u64 add, u64 mult)
 {
     JumpTable64 table;
     table.add[0] = add;
@@ -86,7 +86,7 @@ public:
      */
     u64 advance(u32 advances)
     {
-        for (u32 advance = 0; advance < advances; advance++)
+        for (u64 advance = 0; advance < advances; advance++)
         {
             next();
         }

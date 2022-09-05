@@ -47,9 +47,11 @@ static std::vector<u64> getStates(RNGType rng, u32 initial, u32 max)
 {
     std::vector<u64> states;
 
-    if constexpr (std::is_same<RNGType, ARNG>::value || std::is_same<RNGType, ARNGR>::value || std::is_same<RNGType, PokeRNG>::value
-                  || std::is_same<RNGType, PokeRNGR>::value || std::is_same<RNGType, XDRNG>::value || std::is_same<RNGType, XDRNGR>::value
-                  || std::is_same<RNGType, BWRNG>::value || std::is_same<RNGType, BWRNGR>::value || std::is_same<RNGType, Xorshift>::value)
+    if constexpr (std::is_same<RNGType, ARNG>::value || std::is_same<RNGType, ARNGR>::value || std::is_same<RNGType, BWRNG>::value
+                  || std::is_same<RNGType, BWRNGR>::value || std::is_same<RNGType, PokeRNG>::value || std::is_same<RNGType, PokeRNGR>::value
+                  || std::is_same<RNGType, TinyMT>::value || std::is_same<RNGType, XDRNG>::value || std::is_same<RNGType, XDRNGR>::value
+                  || std::is_same<RNGType, Xorshift>::value || std::is_same<RNGType, Xoroshiro>::value
+                  || std::is_same<RNGType, XoroshiroBDSP>::value)
     {
         rng.jump(initial);
     }

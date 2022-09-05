@@ -51,6 +51,14 @@ public:
     void advance(u32 advances);
 
     /**
+     * @brief Jumps the RNG by \p advances amount
+     * Uses a precomputed jump table to complete in O(4096)
+     *
+     * @param advances Number of advances
+     */
+    void jump(u32 advances);
+
+    /**
      * @brief Gets the next 32bit PRNG state bounded by the min/max values
      *
      * @return PRNG value
@@ -64,16 +72,8 @@ public:
         return (t % diff) + min;
     }
 
-    /**
-     * @brief Jumps the RNG by \p advances amount
-     * Uses a precomputed jump table to complete in O(4096)
-     *
-     * @param advances Number of advances
-     */
-    void jump(u32 advances);
-
 private:
-    u32 state[4];
+    alignas(16) u32 state[4];
 
     /**
      * @brief Gets the next 32bit PRNG state

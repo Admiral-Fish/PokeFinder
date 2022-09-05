@@ -61,6 +61,45 @@ void LCRNGTest::advance()
     QCOMPARE(xdrngr.advance(advances), results[5]);
 }
 
+void LCRNGTest::jump_data()
+{
+    QTest::addColumn<u32>("seed");
+    QTest::addColumn<u32>("advances");
+    QTest::addColumn<std::vector<u32>>("results");
+
+    json data = readData("rng", "lcrng", "advance");
+    for (const auto &d : data)
+    {
+        QTest::newRow(d["name"].get<std::string>().data())
+            << d["seed"].get<u32>() << d["advances"].get<u32>() << d["results"].get<std::vector<u32>>();
+    }
+}
+
+void LCRNGTest::jump()
+{
+    QFETCH(u32, seed);
+    QFETCH(u32, advances);
+    QFETCH(std::vector<u32>, results);
+
+    ARNG arng(seed);
+    QCOMPARE(arng.jump(advances), results[0]);
+
+    ARNGR arngr(seed);
+    QCOMPARE(arngr.jump(advances), results[1]);
+
+    PokeRNG pokerng(seed);
+    QCOMPARE(pokerng.jump(advances), results[2]);
+
+    PokeRNGR pokerngr(seed);
+    QCOMPARE(pokerngr.jump(advances), results[3]);
+
+    XDRNG xdrng(seed);
+    QCOMPARE(xdrng.jump(advances), results[4]);
+
+    XDRNGR xdrngr(seed);
+    QCOMPARE(xdrngr.jump(advances), results[5]);
+}
+
 void LCRNGTest::next_data()
 {
     QTest::addColumn<u32>("seed");
