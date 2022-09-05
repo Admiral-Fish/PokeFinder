@@ -62,7 +62,8 @@ Profile8 ProfileEditor8::getProfile()
 {
     return Profile8(ui->lineEditProfile->text().toStdString(), static_cast<Game>(ui->comboBoxVersion->getCurrentUInt()),
                     ui->textBoxTID->getUShort(), ui->textBoxSID->getUShort(), ui->checkBoxShinyCharm->isChecked(),
-                    ui->checkBoxOvalCharm->isChecked(), ui->checkBoxRadar->isChecked(), ui->checkBoxSwarm->isChecked());
+                    ui->checkBoxOvalCharm->isChecked(), ui->checkBoxRadar->isChecked(), ui->checkBoxSwarm->isChecked(),
+                    ui->comboBoxStoryFlag->getCurrentByte());
 }
 
 void ProfileEditor8::setupModels()
