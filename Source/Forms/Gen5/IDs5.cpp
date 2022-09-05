@@ -107,7 +107,7 @@ void IDs5::setupModels()
     updateProfiles();
 
     QSettings setting;
-    setting.beginGroup("id5");
+    setting.beginGroup("ids5");
     if (setting.contains("geometry"))
     {
         this->restoreGeometry(setting.value("geometry").toByteArray());

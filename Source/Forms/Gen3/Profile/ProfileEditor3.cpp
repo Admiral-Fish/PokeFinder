@@ -20,6 +20,7 @@
 #include "ProfileEditor3.hpp"
 #include "ui_ProfileEditor3.h"
 #include <Core/Enum/Game.hpp>
+#include <Core/Gen3/Profile3.hpp>
 #include <QMessageBox>
 #include <QSettings>
 
@@ -31,8 +32,7 @@ ProfileEditor3::ProfileEditor3(QWidget *parent) : QDialog(parent), ui(new Ui::Pr
     setupModels();
 }
 
-ProfileEditor3::ProfileEditor3(const Profile3 &profile, QWidget *parent) :
-    QDialog(parent), ui(new Ui::ProfileEditor3), isEditing(true), original(profile)
+ProfileEditor3::ProfileEditor3(const Profile3 &profile, QWidget *parent) : QDialog(parent), ui(new Ui::ProfileEditor3)
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
@@ -54,14 +54,10 @@ ProfileEditor3::~ProfileEditor3()
     delete ui;
 }
 
-Profile3 ProfileEditor3::getNewProfile()
+Profile3 ProfileEditor3::getProfile()
 {
-    return fresh;
-}
-
-Profile3 ProfileEditor3::getOriginal()
-{
-    return original;
+    return Profile3(ui->lineEditProfile->text().toStdString(), static_cast<Game>(ui->comboBoxVersion->getCurrentUInt()),
+                    ui->textBoxTID->getUShort(), ui->textBoxSID->getUShort(), ui->checkBoxDeadBattery->isChecked());
 }
 
 void ProfileEditor3::setupModels()
@@ -92,9 +88,6 @@ void ProfileEditor3::okay()
         error.exec();
         return;
     }
-
-    fresh = Profile3(ui->lineEditProfile->text().toStdString(), static_cast<Game>(ui->comboBoxVersion->currentData().toUInt()),
-                     ui->textBoxTID->getUShort(), ui->textBoxSID->getUShort(), ui->checkBoxDeadBattery->isChecked());
 
     done(QDialog::Accepted);
 }

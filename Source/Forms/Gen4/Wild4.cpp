@@ -86,7 +86,7 @@ void Wild4::updateProfiles()
 void Wild4::setupModels()
 {
     generatorModel = new WildGeneratorModel4(ui->tableViewGenerator, Method::MethodJ);
-    searcherModel = new WildSearcherModel4(ui->tableViewSearcher, Method::Method1);
+    searcherModel = new WildSearcherModel4(ui->tableViewSearcher, Method::MethodJ);
 
     generatorMenu = new QMenu(ui->tableViewGenerator);
     searcherMenu = new QMenu(ui->tableViewSearcher);

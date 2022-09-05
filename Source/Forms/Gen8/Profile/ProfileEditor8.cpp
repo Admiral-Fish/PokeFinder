@@ -20,6 +20,7 @@
 #include "ProfileEditor8.hpp"
 #include "ui_ProfileEditor8.h"
 #include <Core/Enum/Game.hpp>
+#include <Core/Gen8/Profile8.hpp>
 #include <QMessageBox>
 #include <QSettings>
 
@@ -31,8 +32,7 @@ ProfileEditor8::ProfileEditor8(QWidget *parent) : QDialog(parent), ui(new Ui::Pr
     setupModels();
 }
 
-ProfileEditor8::ProfileEditor8(const Profile8 &profile, QWidget *parent) :
-    QDialog(parent), ui(new Ui::ProfileEditor8), isEditing(true), original(profile)
+ProfileEditor8::ProfileEditor8(const Profile8 &profile, QWidget *parent) : QDialog(parent), ui(new Ui::ProfileEditor8)
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
@@ -58,14 +58,11 @@ ProfileEditor8::~ProfileEditor8()
     delete ui;
 }
 
-Profile8 ProfileEditor8::getNewProfile()
+Profile8 ProfileEditor8::getProfile()
 {
-    return fresh;
-}
-
-Profile8 ProfileEditor8::getOriginal()
-{
-    return original;
+    return Profile8(ui->lineEditProfile->text().toStdString(), static_cast<Game>(ui->comboBoxVersion->getCurrentUInt()),
+                    ui->textBoxTID->getUShort(), ui->textBoxSID->getUShort(), ui->checkBoxShinyCharm->isChecked(),
+                    ui->checkBoxOvalCharm->isChecked(), ui->checkBoxRadar->isChecked(), ui->checkBoxSwarm->isChecked());
 }
 
 void ProfileEditor8::setupModels()
@@ -96,11 +93,6 @@ void ProfileEditor8::okay()
         error.exec();
         return;
     }
-
-    fresh = Profile8(ui->lineEditProfile->text().toStdString(), static_cast<Game>(ui->comboBoxVersion->currentData().toUInt()),
-                     ui->textBoxTID->getUShort(), ui->textBoxSID->getUShort(), ui->checkBoxShinyCharm->isChecked(),
-                     ui->checkBoxOvalCharm->isChecked(), ui->checkBoxRadar->isChecked(), ui->checkBoxSwarm->isChecked(),
-                     ui->comboBoxStoryFlag->currentData().toUInt());
 
     done(QDialog::Accepted);
 }
