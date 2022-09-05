@@ -100,26 +100,27 @@ std::vector<UgState> UgGenerator8::generate(u64 seed0, u64 seed1) const
     std::vector<u16> enabledPokemon;
 
     const u8 *ugEncountData = ug_encount.data();
-    size_t ugEncountSize = ug_encount.size();
 
-    u8 romCode;
-    if (version == Game::BD)
+    u8 romCode = version == Game::BD ? 2 : 3;
+
+    const u8 *entry = ugEncountData;
+    u8 encount_id = randMarkInfo[1];
+    for (u8 i = 2; i < encount_id; i += 1)
     {
-        romCode = 2;
-    }
-    else
-    {
-        romCode = 3;
+        entry += entry[0] * 4 + 1;
     }
 
-    for (size_t offset = 0; offset < ugEncountSize; offset += 5)
+    u8 ugEncountSize = entry[0];
+    entry += 1;
+
+    for (size_t offset = 0; offset < ugEncountSize; offset += 1)
     {
-        const u8 *entry = ugEncountData + offset;
-        if (entry[0] == randMarkInfo[1] && (entry[3] == 1 || entry[3] == romCode) && entry[4] <= storyFlag)
+        if ((entry[2] == 1 || entry[2] == romCode) && entry[3] <= storyFlag)
         {
-            u16 species = *reinterpret_cast<const u16 *>(entry + 1);
+            u16 species = *reinterpret_cast<const u16 *>(entry);
             enabledPokemon.emplace_back(species);
         }
+        entry += 4;
     }
 
     std::vector<TypeAndSize> monsDataIndexs;

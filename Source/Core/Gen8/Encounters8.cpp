@@ -178,7 +178,7 @@ namespace Encounters8
 
                     for (size_t i = 2; i < encount_id; i += 1)
                     {
-                        encount_start = encount_start + encount_start[0] * 4 + 1;
+                        encount_start += encount_start[0] * 4 + 1;
                     }
 
                     size_t encountSize = encount_start[0];
