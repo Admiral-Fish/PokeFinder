@@ -162,31 +162,36 @@ namespace Encounters8
                 size_t randMarkSize = ug_rand_mark.size();
 
                 const u8 *encountData = ug_encount.data();
-                size_t encountSize = ug_encount.size();
 
                 const u8 *specialEncountData = ug_special_pokemon.data();
                 size_t specialEncountSize = ug_special_pokemon.size();
 
-                u8 version = 2;
-                if (profile.getVersion() == Game::SP)
-                {
-                    version = 3;
-                }
+                u8 version = profile.getVersion() == Game::BD ? 2 : 3;
 
                 for (size_t offset = 0; offset < randMarkSize; offset += 26)
                 {
                     const u8 *entry = randMarkData + offset;
                     std::vector<Slot> slots;
                     u8 location = entry[0] + 181;
-                    for (size_t offset2 = 0; offset2 < encountSize; offset2 += 5)
-                    {
-                        const u8 *encount = encountData + offset2;
+                    u8 encount_id = entry[1];
+                    const u8 *encount_start = encountData;
 
-                        if (encount[0] == entry[1] && (encount[3] == 1 || encount[3] == version))
+                    for (size_t i = 2; i < encount_id; i += 1)
+                    {
+                        encount_start = encount_start + encount_start[0] * 4 + 1;
+                    }
+
+                    size_t encountSize = encount_start[0];
+                    const u8 *encount = encount_start + 1;
+
+                    for (size_t i = 0; i < encountSize; i += 1)
+                    {
+                        if (encount[2] == 1 || encount[2] == version)
                         {
-                            u16 specie = *reinterpret_cast<const u16 *>(encount + 1);
+                            u16 specie = *reinterpret_cast<const u16 *>(encount);
                             slots.emplace_back(specie, 16, 63, info[specie]);
                         }
+                        encount += 4;
                     }
 
                     for (size_t offset2 = 0; offset2 < specialEncountSize; offset2 += 8)
