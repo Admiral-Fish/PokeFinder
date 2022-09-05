@@ -186,7 +186,7 @@ namespace Encounters8
 
                     for (size_t i = 0; i < encountSize; i += 1)
                     {
-                        if (encount[2] == 1 || encount[2] == version)
+                        if ((encount[2] == 1 || encount[2] == version) && encount[3] <= profile.getStoryFlag())
                         {
                             u16 specie = *reinterpret_cast<const u16 *>(encount);
                             slots.emplace_back(specie, 16, 63, info[specie]);
