@@ -28,7 +28,7 @@ struct JumpTable64
     u64 mult[32];
 };
 
-constexpr JumpTable64 computeJumpTable64(u64 add, u64 mult)
+consteval JumpTable64 computeJumpTable64(u64 add, u64 mult)
 {
     JumpTable64 table;
     table.add[0] = add;
