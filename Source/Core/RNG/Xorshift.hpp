@@ -64,6 +64,14 @@ public:
         return (t % diff) + min;
     }
 
+    /**
+     * @brief Jumps the RNG by \p advances amount
+     * Uses a precomputed jump table to complete in O(4096)
+     *
+     * @param advances Number of advances
+     */
+    void jump(u32 advances);
+
 private:
     u32 state[4];
 

@@ -64,16 +64,26 @@ public:
      * @brief Construct a new LCRNG object
      *
      * @param seed Starting PRNG value
-     * @param advances Number of initial advances
      * @param count Pointer to keep track of advance count
      */
-    LCRNG(u32 seed, u64 advances = 0, u32 *count = nullptr) : seed(seed), count(count)
+    LCRNG(u32 seed, u32 *count = nullptr) : count(count), seed(seed)
     {
     }
 
     /**
+     * @brief Construct a new LCRNG object
+     *
+     * @param seed Starting PRNG value
+     * @param advances Number of initial advances
+     * @param count Pointer to keep track of advance count
+     */
+    LCRNG(u32 seed, u32 advances, u32 *count = nullptr) : count(count), seed(seed)
+    {
+        jump(advances);
+    }
+
+    /**
      * @brief Advances the RNG by \p advances amount
-     * This function uses a jump ahead table to advance any amount in just O(32)
      *
      * @tparam flag Whether count should be incremented or not
      * @param advances Number of advances
@@ -83,13 +93,41 @@ public:
     template <bool flag = false>
     u32 advance(u32 advances)
     {
+        for (u32 advance = 0; advance < advances; advance++)
+        {
+            next<flag>();
+        }
+        return seed;
+    }
+
+    /**
+     * @brief Returns the current PRNG state
+     *
+     * @return PRNG value
+     */
+    u32 getSeed() const
+    {
+        return seed;
+    }
+
+    /**
+     * @brief Jumps the RNG by \p advances amount
+     * This function uses a jump ahead table to advance any amount in just O(32)
+     *
+     * @tparam flag Whether count should be incremented or not
+     * @param advances Number of advances
+     *
+     * @return PRNG value after the advances
+     */
+    template <bool flag = false>
+    u32 jump(u32 advances)
+    {
         if constexpr (flag)
         {
             *count += advances;
         }
 
         const JumpTable *table;
-
         if constexpr (add == 0x01) // ARNG
         {
             table = &ARNGTable;
@@ -124,35 +162,6 @@ public:
             }
         }
 
-        return seed;
-    }
-
-    /**
-     * @brief Advances the RNG by \p advances amount
-     * This function is called when the number of advances is predetermined and allows the compiler to optimize to the final mult/add
-     *
-     * @tparam advances Number of advances
-     * @tparam flag Whether count should be incremented or not
-     *
-     * @return PRNG value after the advances
-     */
-    template <u32 advances, bool flag = false>
-    u32 advance()
-    {
-        for (u64 advance = 0; advance < advances; advance++)
-        {
-            next<flag>();
-        }
-        return seed;
-    }
-
-    /**
-     * @brief Returns the current PRNG state
-     *
-     * @return PRNG value
-     */
-    u32 getSeed() const
-    {
         return seed;
     }
 

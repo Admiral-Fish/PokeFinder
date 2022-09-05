@@ -28,8 +28,8 @@ StaticSearcher3::StaticSearcher3(u16 tid, u16 sid, Game version, Method method, 
     StaticSearcher(tid, sid, version, method, lead, filter),
     progress(0),
     cache(method),
-    searching(false),
-    ivAdvance(method == Method::Method2)
+    ivAdvance(method == Method::Method2),
+    searching(false)
 {
 }
 
@@ -98,7 +98,10 @@ std::vector<SearcherState3> StaticSearcher3::search(u8 hp, u8 atk, u8 def, u8 sp
     for (int i = 0; i < size; i++)
     {
         PokeRNGR rng(seeds[i]);
-        rng.advance(ivAdvance);
+        if (ivAdvance)
+        {
+            rng.next();
+        }
 
         u16 high = rng.nextUShort();
         u16 low = rng.nextUShort();

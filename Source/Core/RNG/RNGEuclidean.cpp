@@ -65,7 +65,7 @@ namespace RNGEuclidean
                 {
                     if ((rng.next() >> 27) == def)
                     {
-                        if ((rng.advance<2>() >> 27) == spa)
+                        if ((rng.advance(2) >> 27) == spa)
                         {
                             if ((rng.next() >> 27) == spd)
                             {

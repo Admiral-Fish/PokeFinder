@@ -34,9 +34,7 @@ std::vector<GeneratorState3> StaticGenerator3::generate(u32 seed, const StaticTe
     std::vector<GeneratorState3> states;
     const PersonalInfo *info = staticTemplate->getInfo();
 
-    PokeRNG rng(seed);
-    rng.advance(initialAdvances + offset);
-
+    PokeRNG rng(seed, initialAdvances + offset);
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rng.next())
     {
         PokeRNG go(rng.getSeed());
@@ -45,7 +43,10 @@ std::vector<GeneratorState3> StaticGenerator3::generate(u32 seed, const StaticTe
         u16 high = go.nextUShort();
 
         u16 iv1 = go.nextUShort();
-        go.advance(method == Method::Method4);
+        if (method == Method::Method4)
+        {
+            go.next();
+        }
         u16 iv2 = go.nextUShort();
 
         GeneratorState3 state(initialAdvances + cnt, high, low, iv1, iv2, tsv, staticTemplate->getLevel(), info);

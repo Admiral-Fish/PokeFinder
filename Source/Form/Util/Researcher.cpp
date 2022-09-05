@@ -47,7 +47,17 @@ static std::vector<u64> getStates(RNGType rng, u32 initial, u32 max)
 {
     std::vector<u64> states;
 
-    rng.advance(initial);
+    if constexpr (std::is_same<RNGType, ARNG>::value || std::is_same<RNGType, ARNGR>::value || std::is_same<RNGType, PokeRNG>::value
+                  || std::is_same<RNGType, PokeRNGR>::value || std::is_same<RNGType, XDRNG>::value || std::is_same<RNGType, XDRNGR>::value
+                  || std::is_same<RNGType, BWRNG>::value || std::is_same<RNGType, BWRNGR>::value || std::is_same<RNGType, Xorshift>::value)
+    {
+        rng.jump(initial);
+    }
+    else
+    {
+        rng.advance(initial);
+    }
+
     if constexpr (lcrng)
     {
         states.emplace_back(rng.getSeed());
@@ -70,10 +80,13 @@ Researcher::Researcher(QWidget *parent) : QWidget(parent), ui(new Ui::Researcher
     model = new ResearcherModel(ui->tableView, false);
     ui->tableView->setModel(model);
 
-    ui->textBoxInitialAdvances->setValues(InputType::Advance64Bit);
-    ui->textBoxMaxAdvances->setValues(InputType::Advance64Bit);
-    ui->textBoxSeed->setValues(InputType::Seed64Bit);
+    ui->textBoxInitialAdvances->setValues(InputType::Advance32Bit);
+    ui->textBoxMaxAdvances->setValues(InputType::Advance32Bit);
     ui->textBoxSearch->setValues(InputType::Seed64Bit);
+
+    ui->textBox32BitSeed->setValues(InputType::Seed32Bit);
+
+    ui->textBox64BitSeed->setValues(InputType::Seed64Bit);
 
     ui->textBoxTinyMTSeed0->setValues(InputType::Seed32Bit);
     ui->textBoxTinyMTSeed1->setValues(InputType::Seed32Bit);
@@ -195,18 +208,13 @@ void Researcher::generate()
     model->clearModel();
     model->setFlag(rng64Bit);
 
-    u64 seed = ui->textBoxSeed->text().toULongLong(nullptr, 16);
     u32 initialAdvances = ui->textBoxInitialAdvances->getUInt();
     u32 maxAdvances = ui->textBoxMaxAdvances->getUInt();
-
-    if (ui->rngSelection->currentIndex() != 1 && (seed > 0xffffffff))
-    {
-        seed >>= 32;
-    }
 
     std::vector<u64> rngStates;
     if (ui->rngSelection->currentIndex() == 0)
     {
+        u32 seed = ui->textBox32BitSeed->getUInt();
         switch (ui->comboBoxRNG32Bit->currentIndex())
         {
         case 0:
@@ -234,6 +242,7 @@ void Researcher::generate()
     }
     else if (ui->rngSelection->currentIndex() == 1)
     {
+        u64 seed = ui->textBox64BitSeed->getULong();
         switch (ui->comboBoxRNG64Bit->currentIndex())
         {
         case 0:
@@ -258,15 +267,7 @@ void Researcher::generate()
     {
         u32 status[4] = { ui->textBoxTinyMTSeed0->getUInt(), ui->textBoxTinyMTSeed1->getUInt(), ui->textBoxTinyMTSeed2->getUInt(),
                           ui->textBoxTinyMTSeed3->getUInt() };
-
-        if (std::all_of(std::begin(status), std::end(status), [](u32 x) { return x == 0; }))
-        {
-            rngStates = getStates<TinyMT, false>(TinyMT(seed), initialAdvances, maxAdvances);
-        }
-        else
-        {
-            rngStates = getStates<TinyMT, false>(TinyMT(status), initialAdvances, maxAdvances);
-        }
+        rngStates = getStates<TinyMT, false>(TinyMT(status), initialAdvances, maxAdvances);
     }
     else
     {

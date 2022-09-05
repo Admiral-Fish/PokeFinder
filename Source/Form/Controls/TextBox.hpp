@@ -30,7 +30,6 @@
 enum class InputType : u8
 {
     Seed64Bit,
-    Advance64Bit,
     Seed32Bit,
     Advance32Bit,
     Seed16Bit,

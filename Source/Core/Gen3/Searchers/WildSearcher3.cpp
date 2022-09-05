@@ -53,7 +53,6 @@ WildSearcher3::WildSearcher3(u16 tid, u16 sid, Game version, Method method, Enco
     modifiedSlots(encounterArea.getSlots(lead)),
     progress(0),
     cache(method),
-    searching(false),
     ivAdvance(method == Method::MethodH2)
 {
 }
@@ -122,7 +121,10 @@ std::vector<WildSearcherState3> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 
     for (int i = 0; i < size; i++)
     {
         PokeRNGR rng(seeds[i]);
-        rng.advance(ivAdvance);
+        if (ivAdvance)
+        {
+            rng.next();
+        }
 
         u16 high = rng.nextUShort();
         u16 low = rng.nextUShort();

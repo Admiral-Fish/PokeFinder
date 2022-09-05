@@ -14,196 +14,187 @@
    <string notr="true">Researcher</string>
   </property>
   <layout class="QGridLayout" name="gridLayout_7">
-   <item row="0" column="0">
-    <widget class="QTabWidget" name="rngSelection">
-     <widget class="QWidget" name="tab32Bit">
-      <attribute name="title">
-       <string>32Bit</string>
-      </attribute>
-      <layout class="QGridLayout" name="gridLayout">
-       <item row="0" column="0">
-        <widget class="QComboBox" name="comboBoxRNG32Bit">
-         <item>
-          <property name="text">
-           <string>LCRNG</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>LCRNG[R]</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>XDRNG</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>XDRNG[R]</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>ARNG</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>ARNG[R]</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>Mersenne Twister</string>
-          </property>
-         </item>
-        </widget>
-       </item>
-      </layout>
-     </widget>
-     <widget class="QWidget" name="tab64Bit">
-      <attribute name="title">
-       <string>64Bit</string>
-      </attribute>
-      <layout class="QGridLayout" name="gridLayout_2">
-       <item row="0" column="0">
-        <widget class="QComboBox" name="comboBoxRNG64Bit">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <item>
-          <property name="text">
-           <string>BWRNG</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>BWRNG[R]</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>SFMT</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>Xoroshiro (BDSP)</string>
-          </property>
-         </item>
-        </widget>
-       </item>
-      </layout>
-     </widget>
-     <widget class="QWidget" name="tabTiny">
-      <attribute name="title">
-       <string>TinyMT</string>
-      </attribute>
-      <layout class="QGridLayout" name="gridLayout_3">
-       <item row="1" column="3">
-        <widget class="TextBox" name="textBoxTinyMTSeed3">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="2">
-        <widget class="QLabel" name="labelTinyMTSeed3">
+   <item row="3" column="0">
+    <widget class="QGroupBox" name="groupBoxSearch">
+     <property name="title">
+      <string>Search</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_4">
+      <item row="0" column="1" colspan="2">
+       <widget class="TextBox" name="textBoxSearch"/>
+      </item>
+      <item row="0" column="3">
+       <widget class="ComboBox" name="comboBoxSearch">
+        <item>
          <property name="text">
-          <string notr="true">Seed 3</string>
+          <string>64Bit</string>
          </property>
-        </widget>
-       </item>
-       <item row="0" column="1">
-        <widget class="TextBox" name="textBoxTinyMTSeed0">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="2">
-        <widget class="QLabel" name="labelTinyMTSeed1">
+        </item>
+        <item>
          <property name="text">
-          <string notr="true">Seed 1</string>
+          <string>32Bit</string>
          </property>
-        </widget>
-       </item>
-       <item row="1" column="0">
-        <widget class="QLabel" name="labelTinyMTSeed2">
+        </item>
+        <item>
          <property name="text">
-          <string notr="true">Seed 2</string>
+          <string>32Bit High</string>
          </property>
-        </widget>
-       </item>
-       <item row="0" column="0">
-        <widget class="QLabel" name="labelTinyMTSeed0">
+        </item>
+        <item>
          <property name="text">
-          <string notr="true">Seed 0</string>
+          <string>32Bit Low</string>
          </property>
-        </widget>
-       </item>
-       <item row="1" column="1">
-        <widget class="TextBox" name="textBoxTinyMTSeed2">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="3">
-        <widget class="TextBox" name="textBoxTinyMTSeed1">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </widget>
-     <widget class="QWidget" name="tabXorshift">
-      <attribute name="title">
-       <string>Xorshift</string>
-      </attribute>
-      <layout class="QGridLayout" name="gridLayout_8">
-       <item row="0" column="0">
-        <widget class="QLabel" name="labelXorshiftSeed0">
+        </item>
+        <item>
          <property name="text">
-          <string>Seed 0</string>
+          <string>16Bit High</string>
          </property>
-        </widget>
-       </item>
-       <item row="0" column="1">
-        <widget class="TextBox" name="textBoxXorshiftSeed0"/>
-       </item>
-       <item row="1" column="0">
-        <widget class="QLabel" name="labelXorshiftSeed1">
+        </item>
+        <item>
          <property name="text">
-          <string>Seed 1</string>
+          <string>16Bit Low</string>
          </property>
-        </widget>
-       </item>
-       <item row="1" column="1">
-        <widget class="TextBox" name="textBoxXorshiftSeed1"/>
-       </item>
-      </layout>
-     </widget>
+        </item>
+        <item>
+         <property name="text">
+          <string>Custom 1</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Custom 2</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Custom 3</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Custom 4</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Custom 5</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Custom 6</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Custom 7</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Custom 8</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Custom 9</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Custom 10</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="1" column="0" colspan="2">
+       <widget class="QPushButton" name="pushButtonSearch">
+        <property name="text">
+         <string>Search</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="2" colspan="2">
+       <widget class="QPushButton" name="pushButtonNext">
+        <property name="text">
+         <string>Next</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0">
+       <widget class="QCheckBox" name="checkBoxSearch">
+        <property name="text">
+         <string>Value (Hex)</string>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </widget>
    </item>
-   <item row="0" column="1" rowspan="3">
+   <item row="2" column="0">
+    <widget class="QGroupBox" name="groupBoxParameters">
+     <property name="title">
+      <string>Parameters</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_6">
+      <item row="0" column="0">
+       <widget class="QLabel" name="labelInitialAdvances">
+        <property name="text">
+         <string>Initial Advances</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="TextBox" name="textBoxInitialAdvances">
+        <property name="text">
+         <string notr="true">0</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="labelMaxAdvances">
+        <property name="text">
+         <string>Max Advances</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="TextBox" name="textBoxMaxAdvances">
+        <property name="text">
+         <string notr="true">1000</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0" colspan="2">
+       <widget class="QPushButton" name="pushButtonGenerate">
+        <property name="text">
+         <string>Generate</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="4" column="0" colspan="2">
+    <widget class="TableView" name="tableView">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+       <horstretch>0</horstretch>
+       <verstretch>2</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="contextMenuPolicy">
+      <enum>Qt::CustomContextMenu</enum>
+     </property>
+     <attribute name="verticalHeaderVisible">
+      <bool>false</bool>
+     </attribute>
+    </widget>
+   </item>
+   <item row="0" column="1" rowspan="4">
     <widget class="QGroupBox" name="groupBoxCustoms">
      <property name="title">
       <string>Customs</string>
@@ -2004,193 +1995,212 @@
     </widget>
    </item>
    <item row="1" column="0">
-    <widget class="QGroupBox" name="groupBoxParameters">
-     <property name="title">
-      <string>Parameters</string>
-     </property>
-     <layout class="QGridLayout" name="gridLayout_6">
-      <item row="0" column="0">
-       <widget class="QLabel" name="labelInitialAdvances">
-        <property name="text">
-         <string>Initial Advances</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="1">
-       <widget class="TextBox" name="textBoxInitialAdvances">
-        <property name="text">
-         <string notr="true">0</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="0">
-       <widget class="QLabel" name="labelMaxAdvances">
-        <property name="text">
-         <string>Max Advances</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="1">
-       <widget class="TextBox" name="textBoxMaxAdvances">
-        <property name="text">
-         <string notr="true">1000</string>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="0">
-       <widget class="QLabel" name="labelSeed">
-        <property name="text">
-         <string>Seed</string>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="1">
-       <widget class="TextBox" name="textBoxSeed"/>
-      </item>
-      <item row="2" column="2">
-       <widget class="QPushButton" name="pushButtonGenerate">
-        <property name="text">
-         <string>Generate</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </widget>
-   </item>
-   <item row="2" column="0">
-    <widget class="QGroupBox" name="groupBoxSearch">
-     <property name="title">
-      <string>Search</string>
-     </property>
-     <layout class="QGridLayout" name="gridLayout_4">
-      <item row="0" column="1" colspan="2">
-       <widget class="TextBox" name="textBoxSearch"/>
-      </item>
-      <item row="0" column="3">
-       <widget class="ComboBox" name="comboBoxSearch">
-        <item>
+    <widget class="QTabWidget" name="rngSelection">
+     <widget class="QWidget" name="tab32Bit">
+      <attribute name="title">
+       <string>32Bit</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout">
+       <item row="1" column="0">
+        <widget class="QLabel" name="label32BitSeed">
          <property name="text">
-          <string>64Bit</string>
+          <string>Seed</string>
          </property>
-        </item>
-        <item>
+        </widget>
+       </item>
+       <item row="0" column="0" colspan="2">
+        <widget class="QComboBox" name="comboBoxRNG32Bit">
+         <item>
+          <property name="text">
+           <string>LCRNG</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>LCRNG[R]</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>XDRNG</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>XDRNG[R]</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>ARNG</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>ARNG[R]</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Mersenne Twister</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="TextBox" name="textBox32BitSeed"/>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tab64Bit">
+      <attribute name="title">
+       <string>64Bit</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_2">
+       <item row="0" column="0" colspan="2">
+        <widget class="QComboBox" name="comboBoxRNG64Bit">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <item>
+          <property name="text">
+           <string>BWRNG</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>BWRNG[R]</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>SFMT</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Xoroshiro (BDSP)</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="label64BitSeed">
          <property name="text">
-          <string>32Bit</string>
+          <string>Seed</string>
          </property>
-        </item>
-        <item>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="TextBox" name="textBox64BitSeed"/>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tabTiny">
+      <attribute name="title">
+       <string>TinyMT</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_3">
+       <item row="1" column="3">
+        <widget class="TextBox" name="textBoxTinyMTSeed3">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="2">
+        <widget class="QLabel" name="labelTinyMTSeed3">
          <property name="text">
-          <string>32Bit High</string>
+          <string notr="true">Seed 3</string>
          </property>
-        </item>
-        <item>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="TextBox" name="textBoxTinyMTSeed0">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="2">
+        <widget class="QLabel" name="labelTinyMTSeed1">
          <property name="text">
-          <string>32Bit Low</string>
+          <string notr="true">Seed 1</string>
          </property>
-        </item>
-        <item>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="labelTinyMTSeed2">
          <property name="text">
-          <string>16Bit High</string>
+          <string notr="true">Seed 2</string>
          </property>
-        </item>
-        <item>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QLabel" name="labelTinyMTSeed0">
          <property name="text">
-          <string>16Bit Low</string>
+          <string notr="true">Seed 0</string>
          </property>
-        </item>
-        <item>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="TextBox" name="textBoxTinyMTSeed2">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="3">
+        <widget class="TextBox" name="textBoxTinyMTSeed1">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tabXorshift">
+      <attribute name="title">
+       <string>Xorshift</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_8">
+       <item row="0" column="0">
+        <widget class="QLabel" name="labelXorshiftSeed0">
          <property name="text">
-          <string>Custom 1</string>
+          <string>Seed 0</string>
          </property>
-        </item>
-        <item>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="TextBox" name="textBoxXorshiftSeed0"/>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="labelXorshiftSeed1">
          <property name="text">
-          <string>Custom 2</string>
+          <string>Seed 1</string>
          </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Custom 3</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Custom 4</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Custom 5</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Custom 6</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Custom 7</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Custom 8</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Custom 9</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Custom 10</string>
-         </property>
-        </item>
-       </widget>
-      </item>
-      <item row="1" column="0" colspan="2">
-       <widget class="QPushButton" name="pushButtonSearch">
-        <property name="text">
-         <string>Search</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="2" colspan="2">
-       <widget class="QPushButton" name="pushButtonNext">
-        <property name="text">
-         <string>Next</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="0">
-       <widget class="QCheckBox" name="checkBoxSearch">
-        <property name="text">
-         <string>Value (Hex)</string>
-        </property>
-        <property name="checked">
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </widget>
-   </item>
-   <item row="3" column="0" colspan="2">
-    <widget class="TableView" name="tableView">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-       <horstretch>0</horstretch>
-       <verstretch>2</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="contextMenuPolicy">
-      <enum>Qt::CustomContextMenu</enum>
-     </property>
-     <attribute name="verticalHeaderVisible">
-      <bool>false</bool>
-     </attribute>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="TextBox" name="textBoxXorshiftSeed1"/>
+       </item>
+      </layout>
+     </widget>
     </widget>
    </item>
   </layout>
@@ -2215,7 +2225,9 @@
  <tabstops>
   <tabstop>rngSelection</tabstop>
   <tabstop>comboBoxRNG32Bit</tabstop>
+  <tabstop>textBox32BitSeed</tabstop>
   <tabstop>comboBoxRNG64Bit</tabstop>
+  <tabstop>textBox64BitSeed</tabstop>
   <tabstop>textBoxTinyMTSeed0</tabstop>
   <tabstop>textBoxTinyMTSeed1</tabstop>
   <tabstop>textBoxTinyMTSeed2</tabstop>
@@ -2224,7 +2236,6 @@
   <tabstop>textBoxXorshiftSeed1</tabstop>
   <tabstop>textBoxInitialAdvances</tabstop>
   <tabstop>textBoxMaxAdvances</tabstop>
-  <tabstop>textBoxSeed</tabstop>
   <tabstop>pushButtonGenerate</tabstop>
   <tabstop>checkBoxSearch</tabstop>
   <tabstop>textBoxSearch</tabstop>

@@ -24,8 +24,8 @@
 
 struct JumpTable64
 {
-    u64 add[64];
-    u64 mult[64];
+    u64 add[32];
+    u64 mult[32];
 };
 
 consteval JumpTable64 computeJumpTable64(u64 add, u64 mult)
@@ -34,7 +34,7 @@ consteval JumpTable64 computeJumpTable64(u64 add, u64 mult)
     table.add[0] = add;
     table.mult[0] = mult;
 
-    for (int i = 1; i < 64; i++)
+    for (int i = 1; i < 32; i++)
     {
         table.add[i] = table.add[i - 1] * (table.mult[i - 1] + 1);
         table.mult[i] = table.mult[i - 1] * table.mult[i - 1];
@@ -60,24 +60,60 @@ public:
      * @brief Construct a new LCRNG64 object
      *
      * @param seed Starting PRNG state
-     * @param advances Initial number of advances
      */
     LCRNG64(u64 seed) : seed(seed)
     {
     }
 
     /**
+     * @brief Construct a new LCRNG64 object
+     *
+     * @param seed Starting PRNG state
+     * @param advances Initial number of advances
+     */
+    LCRNG64(u64 seed, u32 advances) : seed(seed)
+    {
+        jump(advances);
+    }
+
+    /**
      * @brief Advances the RNG by \p advances amount
-     * This function uses a jump ahead table to advance any amount in just O(64)
+     * This function is called when the number of advances is predetermined and allows the compiler to optimize to the final mult/add
      *
      * @param advances Number of advances
      *
      * @return PRNG value after the advances
      */
-    u64 advance(u64 advances)
+    u64 advance(u32 advances)
+    {
+        for (u32 advance = 0; advance < advances; advance++)
+        {
+            next();
+        }
+        return seed;
+    }
+
+    /**
+     * @brief Returns the current PRNG state
+     *
+     * @return PRNG value
+     */
+    u64 getSeed() const
+    {
+        return seed;
+    }
+
+    /**
+     * @brief Jumps the RNG by \p advances amount
+     * This function uses a jump ahead table to advance any amount in just O(32)
+     *
+     * @param advances Number of advances
+     *
+     * @return PRNG value after the advances
+     */
+    u64 jump(u32 advances)
     {
         const JumpTable64 *table;
-
         if constexpr (add == 0x269ec3) // BWRNG
         {
             table = &BWRNGTable;
@@ -96,34 +132,6 @@ public:
             }
         }
 
-        return seed;
-    }
-
-    /**
-     * @brief Advances the RNG by \p advances amount
-     * This function is called when the number of advances is predetermined and allows the compiler to optimize to the final mult/add
-     *
-     * @tparam advances Number of advances
-     *
-     * @return PRNG value after the advances
-     */
-    template <u64 advances>
-    u64 advance()
-    {
-        for (u64 advance = 0; advance < advances; advance++)
-        {
-            next();
-        }
-        return seed;
-    }
-
-    /**
-     * @brief Returns the current PRNG state
-     *
-     * @return PRNG value
-     */
-    u64 getSeed() const
-    {
         return seed;
     }
 

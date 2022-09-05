@@ -40,12 +40,10 @@ std::vector<WildGeneratorState3> WildGenerator3::generate(u32 seed, const Encoun
 {
     std::vector<WildGeneratorState3> states;
 
-    PokeRNG rng(seed);
-    rng.advance(initialAdvances + offset);
-
+    std::vector<u8> modifiedSlots = encounterArea.getSlots(lead);
     u16 rate = encounterArea.getRate() * 16;
-    bool rse = (version & Game::RSE) != Game::None;
     bool safari = encounterArea.safariZone(version);
+    bool rse = (version & Game::RSE) != Game::None;
 
     bool cuteCharmFlag = false;
     bool (*cuteCharm)(const PersonalInfo *, u32);
@@ -58,8 +56,7 @@ std::vector<WildGeneratorState3> WildGenerator3::generate(u32 seed, const Encoun
         cuteCharm = [](const PersonalInfo *info, u32 pid) { return (pid & 0xff) >= info->getGender(); };
     }
 
-    std::vector<u8> modifiedSlots = encounterArea.getSlots(lead);
-
+    PokeRNG rng(seed, initialAdvances + offset);
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rng.next())
     {
         PokeRNG go(rng.getSeed());
@@ -134,9 +131,15 @@ std::vector<WildGeneratorState3> WildGenerator3::generate(u32 seed, const Encoun
             pid = (high << 16) | low;
         } while (pid % 25 != nature || (cuteCharmFlag && !cuteCharm(info, pid)));
 
-        go.advance(method == Method::MethodH2);
+        if (method == Method::MethodH2)
+        {
+            go.next();
+        }
         u16 iv1 = go.nextUShort();
-        go.advance(method == Method::MethodH4);
+        if (method == Method::MethodH4)
+        {
+            go.next();
+        }
         u16 iv2 = go.nextUShort();
 
         WildGeneratorState3 state(initialAdvances + cnt, pid, iv1, iv2, tsv, level, encounterSlot, slot.getSpecie(), info);

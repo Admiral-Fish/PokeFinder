@@ -83,8 +83,8 @@ private:
     std::vector<WildSearcherState3> results;
     int progress;
     RNGCache cache;
+    bool ivAdvance;
     bool searching;
-    u8 ivAdvance;
 
     /**
      * @brief Searches for matching states from provided IVs
