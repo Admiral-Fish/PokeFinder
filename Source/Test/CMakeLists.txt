@@ -24,6 +24,10 @@ add_executable(PokeFinderTest
     Gen3/WildGenerator3Test.hpp
     Gen3/WildSearcher3Test.cpp
     Gen3/WildSearcher3Test.hpp
+    Gen4/IDGenerator4Test.cpp
+    Gen4/IDGenerator4Test.hpp
+    Gen4/IDSearcher4Test.cpp
+    Gen4/IDSearcher4Test.hpp
     main.cpp
     RNG/LCRNGTest.cpp
     RNG/LCRNGTest.hpp

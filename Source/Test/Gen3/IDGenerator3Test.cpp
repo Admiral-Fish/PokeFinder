@@ -26,16 +26,16 @@
 struct IDResult
 {
     u32 advances;
-    u16 tid;
     u16 sid;
+    u16 tid;
     u16 tsv;
 };
-NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(IDResult, advances, tid, sid, tsv);
+NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(IDResult, advances, sid, tid, tsv);
 static_assert(sizeof(IDResult) == sizeof(IDState));
 
 bool operator==(const IDState &left, const IDResult &right)
 {
-    return left.getAdvances() == right.advances && left.getTID() == right.tid && left.getSID() == right.sid && left.getTSV() == right.tsv;
+    return left.getAdvances() == right.advances && left.getSID() == right.sid && left.getTID() == right.tid && left.getTSV() == right.tsv;
 }
 
 bool operator==(const IDResult &left, const IDState &right)
