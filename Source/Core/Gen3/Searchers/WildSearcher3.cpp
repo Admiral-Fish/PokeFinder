@@ -37,11 +37,11 @@ static bool cuteCharmGender(const PersonalInfo *info, u32 pid, Lead lead)
     default:
         if (lead == Lead::CuteCharmF)
         {
-            return (pid & 255) < info->getGender();
+            return (pid & 255) >= info->getGender();
         }
         else
         {
-            return (pid & 255) >= info->getGender();
+            return (pid & 255) < info->getGender();
         }
     }
 }

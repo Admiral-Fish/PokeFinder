@@ -2778,33 +2778,33 @@
                 "location": 6,
                 "results": [
                     {
-                        "ability": 0,
-                        "abilityIndex": 52,
+                        "ability": 1,
+                        "abilityIndex": 71,
                         "advances": 0,
                         "encounterSlot": 7,
-                        "gender": 1,
-                        "hiddenPower": 11,
-                        "hiddenPowerStrength": 56,
+                        "gender": 0,
+                        "hiddenPower": 8,
+                        "hiddenPowerStrength": 41,
                         "ivs": [
-                            0,
-                            3,
-                            12,
-                            25,
-                            11,
-                            10
+                            4,
+                            26,
+                            17,
+                            2,
+                            21,
+                            4
                         ],
                         "level": 19,
                         "nature": 6,
-                        "pid": 46618406,
+                        "pid": 2018095781,
                         "shiny": 0,
                         "specie": 328,
                         "stats": [
                             46,
-                            43,
-                            24,
+                            47,
+                            25,
+                            22,
                             26,
-                            24,
-                            10
+                            9
                         ]
                     },
                     {
@@ -2958,33 +2958,33 @@
                         ]
                     },
                     {
-                        "ability": 0,
+                        "ability": 1,
                         "abilityIndex": 8,
                         "advances": 6,
                         "encounterSlot": 0,
-                        "gender": 1,
-                        "hiddenPower": 7,
-                        "hiddenPowerStrength": 32,
+                        "gender": 0,
+                        "hiddenPower": 2,
+                        "hiddenPowerStrength": 52,
                         "ivs": [
-                            20,
-                            1,
-                            11,
-                            21,
-                            12,
-                            5
+                            8,
+                            4,
+                            19,
+                            24,
+                            26,
+                            25
                         ],
                         "level": 20,
                         "nature": 23,
-                        "pid": 2832860948,
+                        "pid": 23124223,
                         "shiny": 0,
                         "specie": 27,
                         "stats": [
-                            54,
+                            51,
                             35,
-                            41,
+                            42,
                             15,
-                            20,
-                            22
+                            24,
+                            26
                         ]
                     },
                     {
@@ -3048,32 +3048,32 @@
                         ]
                     },
                     {
-                        "ability": 1,
+                        "ability": 0,
                         "abilityIndex": 8,
                         "advances": 9,
                         "encounterSlot": 2,
-                        "gender": 1,
-                        "hiddenPower": 4,
-                        "hiddenPowerStrength": 53,
+                        "gender": 0,
+                        "hiddenPower": 14,
+                        "hiddenPowerStrength": 61,
                         "ivs": [
-                            19,
-                            25,
-                            18,
                             29,
-                            2,
-                            20
+                            18,
+                            5,
+                            7,
+                            15,
+                            21
                         ],
                         "level": 21,
                         "nature": 9,
-                        "pid": 1126473809,
+                        "pid": 3640232884,
                         "shiny": 0,
                         "specie": 27,
                         "stats": [
-                            55,
-                            41,
-                            48,
-                            19,
-                            16,
+                            58,
+                            40,
+                            45,
+                            14,
+                            18,
                             26
                         ]
                     }
@@ -5639,7 +5639,7 @@
                     {
                         "ability": 1,
                         "abilityIndex": 26,
-                        "encounterSlot": 343,
+                        "encounterSlot": 5,
                         "gender": 2,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -5669,7 +5669,7 @@
                     {
                         "ability": 1,
                         "abilityIndex": 8,
-                        "encounterSlot": 27,
+                        "encounterSlot": 2,
                         "gender": 0,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -5699,7 +5699,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 8,
-                        "encounterSlot": 27,
+                        "encounterSlot": 0,
                         "gender": 1,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -5729,7 +5729,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 52,
-                        "encounterSlot": 328,
+                        "encounterSlot": 3,
                         "gender": 1,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -5759,7 +5759,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 52,
-                        "encounterSlot": 328,
+                        "encounterSlot": 3,
                         "gender": 1,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -5789,7 +5789,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 26,
-                        "encounterSlot": 343,
+                        "encounterSlot": 8,
                         "gender": 2,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -5819,7 +5819,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 52,
-                        "encounterSlot": 328,
+                        "encounterSlot": 1,
                         "gender": 1,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -5849,7 +5849,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 8,
-                        "encounterSlot": 27,
+                        "encounterSlot": 0,
                         "gender": 1,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -5879,7 +5879,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 52,
-                        "encounterSlot": 328,
+                        "encounterSlot": 3,
                         "gender": 1,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -5909,7 +5909,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 8,
-                        "encounterSlot": 27,
+                        "encounterSlot": 0,
                         "gender": 1,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -5939,7 +5939,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 26,
-                        "encounterSlot": 343,
+                        "encounterSlot": 4,
                         "gender": 2,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -5969,7 +5969,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 52,
-                        "encounterSlot": 328,
+                        "encounterSlot": 1,
                         "gender": 1,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -5999,7 +5999,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 52,
-                        "encounterSlot": 328,
+                        "encounterSlot": 1,
                         "gender": 1,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -6029,7 +6029,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 26,
-                        "encounterSlot": 343,
+                        "encounterSlot": 5,
                         "gender": 2,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -6059,7 +6059,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 8,
-                        "encounterSlot": 27,
+                        "encounterSlot": 0,
                         "gender": 1,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -6089,7 +6089,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 8,
-                        "encounterSlot": 27,
+                        "encounterSlot": 6,
                         "gender": 1,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -6119,7 +6119,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 52,
-                        "encounterSlot": 328,
+                        "encounterSlot": 3,
                         "gender": 1,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -6149,7 +6149,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 8,
-                        "encounterSlot": 27,
+                        "encounterSlot": 2,
                         "gender": 1,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -6179,7 +6179,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 8,
-                        "encounterSlot": 331,
+                        "encounterSlot": 9,
                         "gender": 1,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -6209,7 +6209,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 26,
-                        "encounterSlot": 343,
+                        "encounterSlot": 4,
                         "gender": 2,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -6265,7 +6265,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 26,
-                        "encounterSlot": 343,
+                        "encounterSlot": 5,
                         "gender": 2,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -6295,7 +6295,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 52,
-                        "encounterSlot": 328,
+                        "encounterSlot": 3,
                         "gender": 1,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -6325,7 +6325,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 8,
-                        "encounterSlot": 27,
+                        "encounterSlot": 2,
                         "gender": 1,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -6355,7 +6355,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 26,
-                        "encounterSlot": 343,
+                        "encounterSlot": 5,
                         "gender": 2,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -6385,7 +6385,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 8,
-                        "encounterSlot": 27,
+                        "encounterSlot": 0,
                         "gender": 1,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -6415,7 +6415,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 26,
-                        "encounterSlot": 343,
+                        "encounterSlot": 4,
                         "gender": 2,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -6445,7 +6445,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 52,
-                        "encounterSlot": 328,
+                        "encounterSlot": 3,
                         "gender": 1,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -6475,7 +6475,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 26,
-                        "encounterSlot": 343,
+                        "encounterSlot": 4,
                         "gender": 2,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -6505,7 +6505,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 8,
-                        "encounterSlot": 27,
+                        "encounterSlot": 2,
                         "gender": 1,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -6535,7 +6535,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 52,
-                        "encounterSlot": 328,
+                        "encounterSlot": 1,
                         "gender": 1,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -6565,7 +6565,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 26,
-                        "encounterSlot": 343,
+                        "encounterSlot": 5,
                         "gender": 2,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -6595,7 +6595,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 8,
-                        "encounterSlot": 27,
+                        "encounterSlot": 0,
                         "gender": 1,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -6625,7 +6625,7 @@
                     {
                         "ability": 1,
                         "abilityIndex": 8,
-                        "encounterSlot": 27,
+                        "encounterSlot": 0,
                         "gender": 0,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -6655,7 +6655,7 @@
                     {
                         "ability": 1,
                         "abilityIndex": 71,
-                        "encounterSlot": 328,
+                        "encounterSlot": 3,
                         "gender": 0,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -6685,7 +6685,7 @@
                     {
                         "ability": 1,
                         "abilityIndex": 8,
-                        "encounterSlot": 27,
+                        "encounterSlot": 2,
                         "gender": 0,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -6715,7 +6715,7 @@
                     {
                         "ability": 1,
                         "abilityIndex": 8,
-                        "encounterSlot": 27,
+                        "encounterSlot": 0,
                         "gender": 0,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -6745,7 +6745,7 @@
                     {
                         "ability": 1,
                         "abilityIndex": 8,
-                        "encounterSlot": 27,
+                        "encounterSlot": 2,
                         "gender": 0,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -6775,7 +6775,7 @@
                     {
                         "ability": 1,
                         "abilityIndex": 26,
-                        "encounterSlot": 343,
+                        "encounterSlot": 8,
                         "gender": 2,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -6805,7 +6805,7 @@
                     {
                         "ability": 1,
                         "abilityIndex": 26,
-                        "encounterSlot": 343,
+                        "encounterSlot": 5,
                         "gender": 2,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -6835,7 +6835,7 @@
                     {
                         "ability": 1,
                         "abilityIndex": 8,
-                        "encounterSlot": 27,
+                        "encounterSlot": 6,
                         "gender": 0,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -6865,7 +6865,7 @@
                     {
                         "ability": 1,
                         "abilityIndex": 71,
-                        "encounterSlot": 328,
+                        "encounterSlot": 1,
                         "gender": 0,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -6895,7 +6895,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 52,
-                        "encounterSlot": 328,
+                        "encounterSlot": 1,
                         "gender": 0,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -6925,7 +6925,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 26,
-                        "encounterSlot": 343,
+                        "encounterSlot": 5,
                         "gender": 2,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -6955,7 +6955,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 8,
-                        "encounterSlot": 27,
+                        "encounterSlot": 0,
                         "gender": 0,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -6985,7 +6985,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 52,
-                        "encounterSlot": 328,
+                        "encounterSlot": 1,
                         "gender": 0,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -7015,7 +7015,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 8,
-                        "encounterSlot": 27,
+                        "encounterSlot": 0,
                         "gender": 0,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -7045,7 +7045,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 26,
-                        "encounterSlot": 343,
+                        "encounterSlot": 5,
                         "gender": 2,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -7075,7 +7075,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 26,
-                        "encounterSlot": 343,
+                        "encounterSlot": 4,
                         "gender": 2,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -7105,7 +7105,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 52,
-                        "encounterSlot": 328,
+                        "encounterSlot": 3,
                         "gender": 0,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -7135,7 +7135,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 26,
-                        "encounterSlot": 343,
+                        "encounterSlot": 4,
                         "gender": 2,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -7165,7 +7165,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 8,
-                        "encounterSlot": 27,
+                        "encounterSlot": 0,
                         "gender": 0,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -7195,7 +7195,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 8,
-                        "encounterSlot": 27,
+                        "encounterSlot": 0,
                         "gender": 0,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -7225,7 +7225,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 52,
-                        "encounterSlot": 328,
+                        "encounterSlot": 1,
                         "gender": 0,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -7255,7 +7255,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 8,
-                        "encounterSlot": 27,
+                        "encounterSlot": 0,
                         "gender": 0,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -7285,7 +7285,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 8,
-                        "encounterSlot": 27,
+                        "encounterSlot": 6,
                         "gender": 0,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -7315,7 +7315,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 8,
-                        "encounterSlot": 27,
+                        "encounterSlot": 2,
                         "gender": 0,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -7345,7 +7345,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 8,
-                        "encounterSlot": 27,
+                        "encounterSlot": 0,
                         "gender": 0,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -7375,7 +7375,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 52,
-                        "encounterSlot": 328,
+                        "encounterSlot": 1,
                         "gender": 0,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -7405,7 +7405,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 52,
-                        "encounterSlot": 328,
+                        "encounterSlot": 1,
                         "gender": 0,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -7435,7 +7435,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 26,
-                        "encounterSlot": 343,
+                        "encounterSlot": 4,
                         "gender": 2,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -7465,7 +7465,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 8,
-                        "encounterSlot": 27,
+                        "encounterSlot": 2,
                         "gender": 0,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -7495,7 +7495,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 26,
-                        "encounterSlot": 343,
+                        "encounterSlot": 4,
                         "gender": 2,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -7525,7 +7525,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 52,
-                        "encounterSlot": 328,
+                        "encounterSlot": 1,
                         "gender": 0,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -7555,7 +7555,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 26,
-                        "encounterSlot": 343,
+                        "encounterSlot": 4,
                         "gender": 2,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -7585,7 +7585,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 8,
-                        "encounterSlot": 331,
+                        "encounterSlot": 9,
                         "gender": 0,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -7615,7 +7615,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 8,
-                        "encounterSlot": 27,
+                        "encounterSlot": 0,
                         "gender": 0,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -7645,7 +7645,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 26,
-                        "encounterSlot": 343,
+                        "encounterSlot": 4,
                         "gender": 2,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -7675,7 +7675,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 8,
-                        "encounterSlot": 27,
+                        "encounterSlot": 0,
                         "gender": 0,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -7705,7 +7705,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 52,
-                        "encounterSlot": 328,
+                        "encounterSlot": 1,
                         "gender": 0,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -7735,7 +7735,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 8,
-                        "encounterSlot": 27,
+                        "encounterSlot": 0,
                         "gender": 0,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -7765,7 +7765,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 26,
-                        "encounterSlot": 343,
+                        "encounterSlot": 5,
                         "gender": 2,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -7795,7 +7795,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 52,
-                        "encounterSlot": 328,
+                        "encounterSlot": 7,
                         "gender": 0,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -7825,7 +7825,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 26,
-                        "encounterSlot": 343,
+                        "encounterSlot": 5,
                         "gender": 2,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -7855,7 +7855,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 8,
-                        "encounterSlot": 27,
+                        "encounterSlot": 0,
                         "gender": 0,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -7910,8 +7910,38 @@
                 "results": [
                     {
                         "ability": 1,
+                        "abilityIndex": 71,
+                        "encounterSlot": 1,
+                        "gender": 0,
+                        "hiddenPower": 15,
+                        "hiddenPowerStrength": 70,
+                        "ivs": [
+                            31,
+                            31,
+                            31,
+                            31,
+                            31,
+                            31
+                        ],
+                        "level": 20,
+                        "nature": 10,
+                        "pid": 948350085,
+                        "seed": 184804956,
+                        "shiny": 0,
+                        "specie": 328,
+                        "stats": [
+                            54,
+                            45,
+                            29,
+                            29,
+                            29,
+                            16
+                        ]
+                    },
+                    {
+                        "ability": 1,
                         "abilityIndex": 8,
-                        "encounterSlot": 27,
+                        "encounterSlot": 0,
                         "gender": 0,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -7936,6 +7966,66 @@
                             19,
                             23,
                             29
+                        ]
+                    },
+                    {
+                        "ability": 0,
+                        "abilityIndex": 8,
+                        "encounterSlot": 0,
+                        "gender": 0,
+                        "hiddenPower": 15,
+                        "hiddenPowerStrength": 70,
+                        "ivs": [
+                            31,
+                            31,
+                            31,
+                            31,
+                            31,
+                            31
+                        ],
+                        "level": 20,
+                        "nature": 23,
+                        "pid": 425344148,
+                        "seed": 2999666487,
+                        "shiny": 0,
+                        "specie": 27,
+                        "stats": [
+                            56,
+                            41,
+                            45,
+                            17,
+                            25,
+                            27
+                        ]
+                    },
+                    {
+                        "ability": 0,
+                        "abilityIndex": 52,
+                        "encounterSlot": 1,
+                        "gender": 0,
+                        "hiddenPower": 15,
+                        "hiddenPowerStrength": 70,
+                        "ivs": [
+                            31,
+                            31,
+                            31,
+                            31,
+                            31,
+                            31
+                        ],
+                        "level": 20,
+                        "nature": 23,
+                        "pid": 425344148,
+                        "seed": 1151023661,
+                        "shiny": 0,
+                        "specie": 328,
+                        "stats": [
+                            54,
+                            51,
+                            29,
+                            26,
+                            31,
+                            15
                         ]
                     }
                 ]
@@ -8173,7 +8263,7 @@
                     {
                         "ability": 1,
                         "abilityIndex": 5,
-                        "encounterSlot": 74,
+                        "encounterSlot": 1,
                         "gender": 0,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -8203,7 +8293,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 69,
-                        "encounterSlot": 74,
+                        "encounterSlot": 0,
                         "gender": 1,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -8259,7 +8349,7 @@
                     {
                         "ability": 1,
                         "abilityIndex": 37,
-                        "encounterSlot": 183,
+                        "encounterSlot": 1,
                         "gender": 0,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -8289,7 +8379,7 @@
                     {
                         "ability": 1,
                         "abilityIndex": 37,
-                        "encounterSlot": 183,
+                        "encounterSlot": 0,
                         "gender": 0,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -8319,7 +8409,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 47,
-                        "encounterSlot": 183,
+                        "encounterSlot": 0,
                         "gender": 1,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -8349,7 +8439,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 47,
-                        "encounterSlot": 183,
+                        "encounterSlot": 0,
                         "gender": 1,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -8379,7 +8469,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 47,
-                        "encounterSlot": 183,
+                        "encounterSlot": 0,
                         "gender": 1,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -8409,7 +8499,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 47,
-                        "encounterSlot": 183,
+                        "encounterSlot": 2,
                         "gender": 1,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -8439,7 +8529,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 47,
-                        "encounterSlot": 183,
+                        "encounterSlot": 0,
                         "gender": 1,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -8469,7 +8559,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 47,
-                        "encounterSlot": 183,
+                        "encounterSlot": 0,
                         "gender": 1,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -8499,7 +8589,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 47,
-                        "encounterSlot": 183,
+                        "encounterSlot": 0,
                         "gender": 1,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -8529,7 +8619,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 47,
-                        "encounterSlot": 183,
+                        "encounterSlot": 0,
                         "gender": 1,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -8559,7 +8649,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 47,
-                        "encounterSlot": 183,
+                        "encounterSlot": 1,
                         "gender": 1,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -8589,7 +8679,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 47,
-                        "encounterSlot": 183,
+                        "encounterSlot": 0,
                         "gender": 1,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -8619,7 +8709,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 47,
-                        "encounterSlot": 183,
+                        "encounterSlot": 0,
                         "gender": 1,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -8649,7 +8739,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 47,
-                        "encounterSlot": 183,
+                        "encounterSlot": 1,
                         "gender": 1,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -8679,7 +8769,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 47,
-                        "encounterSlot": 183,
+                        "encounterSlot": 0,
                         "gender": 1,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -8709,7 +8799,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 47,
-                        "encounterSlot": 183,
+                        "encounterSlot": 1,
                         "gender": 1,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -8739,7 +8829,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 47,
-                        "encounterSlot": 183,
+                        "encounterSlot": 0,
                         "gender": 1,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -8769,7 +8859,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 47,
-                        "encounterSlot": 183,
+                        "encounterSlot": 0,
                         "gender": 1,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -8799,7 +8889,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 47,
-                        "encounterSlot": 183,
+                        "encounterSlot": 2,
                         "gender": 1,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -8829,7 +8919,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 47,
-                        "encounterSlot": 183,
+                        "encounterSlot": 1,
                         "gender": 1,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -10137,7 +10227,7 @@
                     {
                         "ability": 1,
                         "abilityIndex": 41,
-                        "encounterSlot": 118,
+                        "encounterSlot": 1,
                         "gender": 0,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -10167,7 +10257,7 @@
                     {
                         "ability": 1,
                         "abilityIndex": 33,
-                        "encounterSlot": 129,
+                        "encounterSlot": 0,
                         "gender": 0,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -10197,7 +10287,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 33,
-                        "encounterSlot": 129,
+                        "encounterSlot": 0,
                         "gender": 1,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -10227,7 +10317,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 33,
-                        "encounterSlot": 129,
+                        "encounterSlot": 0,
                         "gender": 1,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -10257,7 +10347,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 33,
-                        "encounterSlot": 129,
+                        "encounterSlot": 0,
                         "gender": 1,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -10287,7 +10377,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 33,
-                        "encounterSlot": 118,
+                        "encounterSlot": 1,
                         "gender": 1,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -10317,7 +10407,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 33,
-                        "encounterSlot": 129,
+                        "encounterSlot": 0,
                         "gender": 1,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -10347,7 +10437,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 33,
-                        "encounterSlot": 129,
+                        "encounterSlot": 0,
                         "gender": 1,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -10377,7 +10467,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 33,
-                        "encounterSlot": 129,
+                        "encounterSlot": 0,
                         "gender": 1,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -10407,7 +10497,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 33,
-                        "encounterSlot": 129,
+                        "encounterSlot": 0,
                         "gender": 1,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -10437,7 +10527,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 33,
-                        "encounterSlot": 129,
+                        "encounterSlot": 0,
                         "gender": 1,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -10467,7 +10557,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 33,
-                        "encounterSlot": 129,
+                        "encounterSlot": 0,
                         "gender": 1,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -10497,7 +10587,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 33,
-                        "encounterSlot": 129,
+                        "encounterSlot": 0,
                         "gender": 1,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -10527,7 +10617,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 33,
-                        "encounterSlot": 118,
+                        "encounterSlot": 1,
                         "gender": 1,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -10557,7 +10647,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 33,
-                        "encounterSlot": 129,
+                        "encounterSlot": 0,
                         "gender": 1,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -10587,7 +10677,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 33,
-                        "encounterSlot": 118,
+                        "encounterSlot": 1,
                         "gender": 1,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -10617,7 +10707,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 33,
-                        "encounterSlot": 129,
+                        "encounterSlot": 0,
                         "gender": 1,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -10647,7 +10737,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 33,
-                        "encounterSlot": 129,
+                        "encounterSlot": 0,
                         "gender": 1,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -10677,7 +10767,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 33,
-                        "encounterSlot": 118,
+                        "encounterSlot": 1,
                         "gender": 1,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -10707,7 +10797,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 33,
-                        "encounterSlot": 129,
+                        "encounterSlot": 0,
                         "gender": 1,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -10763,7 +10853,7 @@
                     {
                         "ability": 1,
                         "abilityIndex": 41,
-                        "encounterSlot": 118,
+                        "encounterSlot": 1,
                         "gender": 0,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -10793,7 +10883,7 @@
                     {
                         "ability": 1,
                         "abilityIndex": 33,
-                        "encounterSlot": 129,
+                        "encounterSlot": 0,
                         "gender": 0,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -10823,7 +10913,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 33,
-                        "encounterSlot": 129,
+                        "encounterSlot": 0,
                         "gender": 1,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -10853,7 +10943,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 33,
-                        "encounterSlot": 129,
+                        "encounterSlot": 0,
                         "gender": 1,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -10883,7 +10973,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 33,
-                        "encounterSlot": 129,
+                        "encounterSlot": 0,
                         "gender": 1,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -10913,7 +11003,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 12,
-                        "encounterSlot": 339,
+                        "encounterSlot": 2,
                         "gender": 1,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -10943,7 +11033,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 33,
-                        "encounterSlot": 129,
+                        "encounterSlot": 0,
                         "gender": 1,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -10973,7 +11063,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 33,
-                        "encounterSlot": 129,
+                        "encounterSlot": 0,
                         "gender": 1,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -11003,7 +11093,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 33,
-                        "encounterSlot": 129,
+                        "encounterSlot": 0,
                         "gender": 1,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -11033,7 +11123,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 33,
-                        "encounterSlot": 129,
+                        "encounterSlot": 0,
                         "gender": 1,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -11063,7 +11153,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 33,
-                        "encounterSlot": 118,
+                        "encounterSlot": 1,
                         "gender": 1,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -11093,7 +11183,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 33,
-                        "encounterSlot": 129,
+                        "encounterSlot": 0,
                         "gender": 1,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -11123,7 +11213,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 33,
-                        "encounterSlot": 129,
+                        "encounterSlot": 0,
                         "gender": 1,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -11153,7 +11243,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 33,
-                        "encounterSlot": 118,
+                        "encounterSlot": 1,
                         "gender": 1,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -11183,7 +11273,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 33,
-                        "encounterSlot": 129,
+                        "encounterSlot": 0,
                         "gender": 1,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -11213,7 +11303,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 12,
-                        "encounterSlot": 339,
+                        "encounterSlot": 2,
                         "gender": 1,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -11243,7 +11333,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 33,
-                        "encounterSlot": 129,
+                        "encounterSlot": 0,
                         "gender": 1,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -11273,7 +11363,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 33,
-                        "encounterSlot": 129,
+                        "encounterSlot": 0,
                         "gender": 1,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -11303,7 +11393,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 12,
-                        "encounterSlot": 339,
+                        "encounterSlot": 2,
                         "gender": 1,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -11333,7 +11423,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 33,
-                        "encounterSlot": 118,
+                        "encounterSlot": 1,
                         "gender": 1,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -11389,7 +11479,7 @@
                     {
                         "ability": 1,
                         "abilityIndex": 12,
-                        "encounterSlot": 339,
+                        "encounterSlot": 1,
                         "gender": 0,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -11419,7 +11509,7 @@
                     {
                         "ability": 1,
                         "abilityIndex": 12,
-                        "encounterSlot": 339,
+                        "encounterSlot": 1,
                         "gender": 0,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -11449,7 +11539,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 12,
-                        "encounterSlot": 339,
+                        "encounterSlot": 0,
                         "gender": 1,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -11479,7 +11569,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 12,
-                        "encounterSlot": 339,
+                        "encounterSlot": 1,
                         "gender": 1,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -11509,7 +11599,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 12,
-                        "encounterSlot": 339,
+                        "encounterSlot": 1,
                         "gender": 1,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -11539,7 +11629,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 12,
-                        "encounterSlot": 339,
+                        "encounterSlot": 2,
                         "gender": 1,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -11569,7 +11659,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 12,
-                        "encounterSlot": 339,
+                        "encounterSlot": 0,
                         "gender": 1,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -11599,7 +11689,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 12,
-                        "encounterSlot": 339,
+                        "encounterSlot": 0,
                         "gender": 1,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -11629,7 +11719,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 12,
-                        "encounterSlot": 339,
+                        "encounterSlot": 1,
                         "gender": 1,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -11659,7 +11749,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 12,
-                        "encounterSlot": 339,
+                        "encounterSlot": 0,
                         "gender": 1,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -11689,7 +11779,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 12,
-                        "encounterSlot": 339,
+                        "encounterSlot": 1,
                         "gender": 1,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -11719,7 +11809,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 12,
-                        "encounterSlot": 339,
+                        "encounterSlot": 0,
                         "gender": 1,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -11749,7 +11839,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 12,
-                        "encounterSlot": 339,
+                        "encounterSlot": 0,
                         "gender": 1,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -11779,7 +11869,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 12,
-                        "encounterSlot": 339,
+                        "encounterSlot": 1,
                         "gender": 1,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -11809,7 +11899,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 12,
-                        "encounterSlot": 339,
+                        "encounterSlot": 0,
                         "gender": 1,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -11839,7 +11929,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 12,
-                        "encounterSlot": 339,
+                        "encounterSlot": 2,
                         "gender": 1,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -11869,7 +11959,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 12,
-                        "encounterSlot": 339,
+                        "encounterSlot": 1,
                         "gender": 1,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -11899,7 +11989,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 12,
-                        "encounterSlot": 339,
+                        "encounterSlot": 1,
                         "gender": 1,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -11929,7 +12019,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 12,
-                        "encounterSlot": 339,
+                        "encounterSlot": 2,
                         "gender": 1,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -11959,7 +12049,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 12,
-                        "encounterSlot": 339,
+                        "encounterSlot": 1,
                         "gender": 1,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -12015,7 +12105,7 @@
                     {
                         "ability": 1,
                         "abilityIndex": 5,
-                        "encounterSlot": 75,
+                        "encounterSlot": 1,
                         "gender": 0,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -12045,7 +12135,7 @@
                     {
                         "ability": 1,
                         "abilityIndex": 5,
-                        "encounterSlot": 74,
+                        "encounterSlot": 0,
                         "gender": 0,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -12075,7 +12165,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 69,
-                        "encounterSlot": 74,
+                        "encounterSlot": 0,
                         "gender": 1,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -12105,7 +12195,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 69,
-                        "encounterSlot": 74,
+                        "encounterSlot": 0,
                         "gender": 1,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -12135,7 +12225,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 69,
-                        "encounterSlot": 74,
+                        "encounterSlot": 0,
                         "gender": 1,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -12165,7 +12255,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 69,
-                        "encounterSlot": 75,
+                        "encounterSlot": 2,
                         "gender": 1,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -12195,7 +12285,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 69,
-                        "encounterSlot": 74,
+                        "encounterSlot": 0,
                         "gender": 1,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -12225,7 +12315,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 69,
-                        "encounterSlot": 74,
+                        "encounterSlot": 0,
                         "gender": 1,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -12255,7 +12345,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 69,
-                        "encounterSlot": 74,
+                        "encounterSlot": 0,
                         "gender": 1,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -12285,7 +12375,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 69,
-                        "encounterSlot": 74,
+                        "encounterSlot": 0,
                         "gender": 1,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -12315,7 +12405,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 69,
-                        "encounterSlot": 75,
+                        "encounterSlot": 1,
                         "gender": 1,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -12345,7 +12435,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 69,
-                        "encounterSlot": 74,
+                        "encounterSlot": 0,
                         "gender": 1,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -12375,7 +12465,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 69,
-                        "encounterSlot": 74,
+                        "encounterSlot": 0,
                         "gender": 1,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -12405,7 +12495,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 69,
-                        "encounterSlot": 75,
+                        "encounterSlot": 1,
                         "gender": 1,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -12435,7 +12525,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 69,
-                        "encounterSlot": 74,
+                        "encounterSlot": 0,
                         "gender": 1,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -12465,7 +12555,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 69,
-                        "encounterSlot": 75,
+                        "encounterSlot": 1,
                         "gender": 1,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -12495,7 +12585,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 69,
-                        "encounterSlot": 74,
+                        "encounterSlot": 0,
                         "gender": 1,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -12525,7 +12615,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 69,
-                        "encounterSlot": 74,
+                        "encounterSlot": 0,
                         "gender": 1,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -12555,7 +12645,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 69,
-                        "encounterSlot": 75,
+                        "encounterSlot": 2,
                         "gender": 1,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,
@@ -12585,7 +12675,7 @@
                     {
                         "ability": 0,
                         "abilityIndex": 69,
-                        "encounterSlot": 75,
+                        "encounterSlot": 1,
                         "gender": 1,
                         "hiddenPower": 15,
                         "hiddenPowerStrength": 70,

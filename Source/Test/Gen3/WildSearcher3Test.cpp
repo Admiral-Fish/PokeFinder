@@ -56,7 +56,8 @@ bool operator==(const SearcherWildResult3 &left, const WildSearcherState3 &right
     return left.pid == right.getPID() && left.stats == right.getStats() && left.abilityIndex == right.getAbilityIndex()
         && left.ivs == right.getIVs() && left.ability == right.getAbility() && left.gender == right.getGender()
         && left.hiddenPower == right.getHiddenPower() && left.nature == right.getNature() && left.level == right.getLevel()
-        && left.shiny == right.getShiny() && left.seed == right.getSeed() && left.hiddenPowerStrength == right.getHiddenPowerStrength();
+        && left.shiny == right.getShiny() && left.specie == right.getSpecie() && left.encounterSlot == right.getEncounterSlot()
+        && left.seed == right.getSeed() && left.hiddenPowerStrength == right.getHiddenPowerStrength();
 }
 
 bool operator==(const WildSearcherState3 &left, const SearcherWildResult3 &right)

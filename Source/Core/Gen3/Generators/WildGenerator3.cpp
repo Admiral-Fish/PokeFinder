@@ -49,11 +49,11 @@ std::vector<WildGeneratorState3> WildGenerator3::generate(u32 seed, const Encoun
     bool (*cuteCharm)(const PersonalInfo *, u32);
     if (lead == Lead::CuteCharmF)
     {
-        cuteCharm = [](const PersonalInfo *info, u32 pid) { return (pid & 0xff) < info->getGender(); };
+        cuteCharm = [](const PersonalInfo *info, u32 pid) { return (pid & 0xff) >= info->getGender(); };
     }
     else if (lead == Lead::CuteCharmM)
     {
-        cuteCharm = [](const PersonalInfo *info, u32 pid) { return (pid & 0xff) >= info->getGender(); };
+        cuteCharm = [](const PersonalInfo *info, u32 pid) { return (pid & 0xff) < info->getGender(); };
     }
 
     PokeRNG rng(seed, initialAdvances + offset);
