@@ -55,7 +55,7 @@ void LCRNG64Test::jump_data()
     QTest::addColumn<u32>("advances");
     QTest::addColumn<std::vector<u64>>("results");
 
-    json data = readData("rng", "lcrng64", "advance");
+    json data = readData("rng", "lcrng64", "jump");
     for (const auto &d : data)
     {
         QTest::newRow(d["name"].get<std::string>().data())
