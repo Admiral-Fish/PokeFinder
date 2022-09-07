@@ -33,7 +33,7 @@ class SearchCoinFlips : public QDialog
 {
     Q_OBJECT
 public:
-    explicit SearchCoinFlips(const std::vector<SeedTime> &model, QWidget *parent = nullptr);
+    explicit SearchCoinFlips(const std::vector<SeedTime> &data, QWidget *parent = nullptr);
     ~SearchCoinFlips() override;
     std::vector<bool> possibleResults() const;
 

@@ -64,7 +64,7 @@ void ProfileManager8::create()
     std::unique_ptr<ProfileEditor8> dialog(new ProfileEditor8);
     if (dialog->exec() == QDialog::Accepted)
     {
-        Profile8 profile = dialog->getNewProfile();
+        Profile8 profile = dialog->getProfile();
         ProfileLoader8::addProfile(profile);
         model->addItem(profile);
         emit updateProfiles();
@@ -82,12 +82,13 @@ void ProfileManager8::edit()
         return;
     }
 
-    std::unique_ptr<ProfileEditor8> dialog(new ProfileEditor8(model->getItem(row)));
+    Profile8 original = model->getItem(row);
+    std::unique_ptr<ProfileEditor8> dialog(new ProfileEditor8(original));
     if (dialog->exec() == QDialog::Accepted)
     {
-        Profile8 profile = dialog->getNewProfile();
-        ProfileLoader8::updateProfile(profile, dialog->getOriginal());
-        model->updateItem(profile, row);
+        Profile8 update = dialog->getProfile();
+        ProfileLoader8::updateProfile(update, original);
+        model->updateItem(update, row);
         emit updateProfiles();
     }
 }
@@ -110,7 +111,6 @@ void ProfileManager8::remove()
         Profile8 profile = model->getItem(row);
         ProfileLoader8::removeProfile(profile);
         model->removeItem(row);
-
         emit updateProfiles();
     }
 }

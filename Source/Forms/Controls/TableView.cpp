@@ -29,8 +29,6 @@ TableView::TableView(QWidget *parent) : QTableView(parent)
 {
     QHeaderView *header = this->horizontalHeader();
     header->setSectionResizeMode(QHeaderView::Interactive);
-
-    QTimer::singleShot(500, [header] { header->resizeSections(QHeaderView::Stretch); });
 }
 
 void TableView::mouseDoubleClickEvent(QMouseEvent *event)
@@ -43,11 +41,22 @@ void TableView::mouseDoubleClickEvent(QMouseEvent *event)
 
 void TableView::keyPressEvent(QKeyEvent *event)
 {
-    QTableView::keyPressEvent(event);
-
     if (event && (event->key() == Qt::Key_C) && (event->modifiers() == Qt::ControlModifier))
     {
         setSelectionToClipBoard();
+    }
+}
+
+void TableView::resizeEvent(QResizeEvent *event)
+{
+    if (event->size().width() != event->oldSize().width())
+    {
+        QHeaderView *header = this->horizontalHeader();
+        int width = event->size().width() / header->count();
+        for (int i = 0; i < header->count(); i++)
+        {
+            this->setColumnWidth(i, width);
+        }
     }
 }
 

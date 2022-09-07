@@ -92,8 +92,8 @@ void Eggs8::setupModels()
 
     QAction *outputTXT = menu->addAction(tr("Output Results to TXT"));
     QAction *outputCSV = menu->addAction(tr("Output Results to CSV"));
-    connect(outputTXT, &QAction::triggered, [=]() { ui->tableView->outputModel(false); });
-    connect(outputCSV, &QAction::triggered, [=]() { ui->tableView->outputModel(true); });
+    connect(outputTXT, &QAction::triggered, this, [=] { ui->tableView->outputModel(false); });
+    connect(outputCSV, &QAction::triggered, this, [=] { ui->tableView->outputModel(true); });
 
     connect(ui->comboBoxProfiles, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &Eggs8::profileIndexChanged);
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Eggs8::generate);

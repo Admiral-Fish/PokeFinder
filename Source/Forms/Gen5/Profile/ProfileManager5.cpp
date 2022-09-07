@@ -54,7 +54,7 @@ void ProfileManager5::create()
     std::unique_ptr<ProfileEditor5> dialog(new ProfileEditor5);
     if (dialog->exec() == QDialog::Accepted)
     {
-        Profile5 profile = dialog->getNewProfile();
+        Profile5 profile = dialog->getProfile();
         ProfileLoader5::addProfile(profile);
         model->addItem(profile);
         emit updateProfiles();
@@ -73,12 +73,13 @@ void ProfileManager5::edit()
         return;
     }
 
-    std::unique_ptr<ProfileEditor5> dialog(new ProfileEditor5(model->getItem(row)));
+    Profile5 original = model->getItem(row);
+    std::unique_ptr<ProfileEditor5> dialog(new ProfileEditor5(original));
     if (dialog->exec() == QDialog::Accepted)
     {
-        Profile5 profile = dialog->getNewProfile();
-        ProfileLoader5::updateProfile(profile, dialog->getOriginal());
-        model->updateItem(profile, row);
+        Profile5 update = dialog->getProfile();
+        ProfileLoader5::updateProfile(update, original);
+        model->updateItem(update, row);
         emit updateProfiles();
     }
 }
@@ -102,7 +103,6 @@ void ProfileManager5::remove()
         Profile5 profile = model->getItem(row);
         ProfileLoader5::removeProfile(profile);
         model->removeItem(row);
-
         emit updateProfiles();
     }
 }

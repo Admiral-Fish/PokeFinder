@@ -21,12 +21,9 @@
 #include <QActionGroup>
 #include <QMenu>
 
-ComboMenu::ComboMenu(QWidget *parent) : QToolButton(parent)
+ComboMenu::ComboMenu(QWidget *parent) : QToolButton(parent), actionGroup(new QActionGroup(this)), topMenu(new QMenu(this))
 {
-    actionGroup = new QActionGroup(this);
     actionGroup->setExclusive(true);
-
-    topMenu = new QMenu(this);
     QToolButton::setMenu(topMenu);
 
     connect(actionGroup, &QActionGroup::triggered, this, &ComboMenu::actionChanged);
@@ -115,7 +112,7 @@ int ComboMenu::getData() const
 
 void ComboMenu::actionChanged(QAction *action)
 {
-    QMenu *parent = static_cast<QMenu *>(action->parentWidget());
+    auto *parent = dynamic_cast<QMenu *>(action->parentWidget());
     QString parentTitle = parent->title();
 
     QString title;
@@ -133,7 +130,7 @@ void ComboMenu::actionChanged(QAction *action)
 
 void ComboMenu::clearSelection()
 {
-    QAction *action = actionGroup->actions()[0];
+    QAction *action = actionGroup->actions().constFirst();
     action->setChecked(true);
     actionChanged(action);
 }

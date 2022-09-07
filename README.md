@@ -6,6 +6,12 @@ Join the PokéFinder Discord server to talk about development and contribute.
 
 This will be a RNG Tool for all main Pokémon games generations 3-7. It currently supports generations 3/4 and parts of generation 5/8.
 
+# Download
+
+[Latest Official Release](https://github.com/Admiral-Fish/PokeFinder/releases/latest)
+
+[Latest Nightly Build](https://ci.appveyor.com/project/Admiral-Fish/pokefinder)
+
 # Features
 Gen 3
 - Static

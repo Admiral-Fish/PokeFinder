@@ -114,13 +114,13 @@ void IDs4::shinyPIDSearch()
     connect(ui->pushButtonShinyPIDCancel, &QPushButton::clicked, [searcher] { searcher->cancelSearch(); });
 
     auto *timer = new QTimer();
-    connect(timer, &QTimer::timeout, [=] {
+    connect(timer, &QTimer::timeout, this, [=] {
         shinyPID->addItems(searcher->getResults());
         ui->progressBarShinyPID->setValue(searcher->getProgress());
     });
     connect(thread, &QThread::finished, timer, &QTimer::stop);
     connect(thread, &QThread::finished, timer, &QTimer::deleteLater);
-    connect(timer, &QTimer::destroyed, [=] {
+    connect(timer, &QTimer::destroyed, this, [=] {
         ui->pushButtonShinyPIDSearch->setEnabled(true);
         ui->pushButtonShinyPIDCancel->setEnabled(false);
         shinyPID->addItems(searcher->getResults());
@@ -164,13 +164,13 @@ void IDs4::tidSIDSearch()
     connect(ui->pushButtonTIDSIDCancel, &QPushButton::clicked, [searcher] { searcher->cancelSearch(); });
 
     auto *timer = new QTimer();
-    connect(timer, &QTimer::timeout, [=] {
+    connect(timer, &QTimer::timeout, this, [=] {
         tidSID->addItems(searcher->getResults());
         ui->progressBarTIDSID->setValue(searcher->getProgress());
     });
     connect(thread, &QThread::finished, timer, &QTimer::stop);
     connect(thread, &QThread::finished, timer, &QTimer::deleteLater);
-    connect(timer, &QTimer::destroyed, [=] {
+    connect(timer, &QTimer::destroyed, this, [=] {
         ui->pushButtonTIDSIDSearch->setEnabled(true);
         ui->pushButtonTIDSIDCancel->setEnabled(false);
         tidSID->addItems(searcher->getResults());

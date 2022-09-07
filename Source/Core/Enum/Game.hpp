@@ -72,4 +72,9 @@ constexpr Game operator&(Game left, Game right)
     return static_cast<Game>(toInt(left) & toInt(right));
 }
 
+constexpr Game operator|(Game left, Game right)
+{
+    return static_cast<Game>(toInt(left) | toInt(right));
+}
+
 #endif // GAME_HPP

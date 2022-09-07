@@ -23,13 +23,13 @@
 #include <Core/Util/Utilities.hpp>
 #include <QSettings>
 
-SearchCoinFlips::SearchCoinFlips(const std::vector<SeedTime> &model, QWidget *parent) : QDialog(parent), ui(new Ui::SearchCoinFlips)
+SearchCoinFlips::SearchCoinFlips(const std::vector<SeedTime> &data, QWidget *parent) :
+    QDialog(parent), ui(new Ui::SearchCoinFlips), data(data)
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
 
-    data = model;
-    ui->labelPossibleResults->setText(tr("Possible Results: ") + QString::number(model.size()));
+    ui->labelPossibleResults->setText(tr("Possible Results: ") + QString::number(data.size()));
 
     connect(ui->pushButtonHeads, &QPushButton::clicked, this, &SearchCoinFlips::heads);
     connect(ui->pushButtonTails, &QPushButton::clicked, this, &SearchCoinFlips::tails);

@@ -110,8 +110,8 @@ void Wild8::setupModels()
 
     QAction *outputTXTGenerator = menu->addAction(tr("Output Results to TXT"));
     QAction *outputCSVGenerator = menu->addAction(tr("Output Results to CSV"));
-    connect(outputTXTGenerator, &QAction::triggered, [=] { ui->tableView->outputModel(); });
-    connect(outputCSVGenerator, &QAction::triggered, [=] { ui->tableView->outputModel(true); });
+    connect(outputTXTGenerator, &QAction::triggered, this, [=] { ui->tableView->outputModel(); });
+    connect(outputCSVGenerator, &QAction::triggered, this, [=] { ui->tableView->outputModel(true); });
 
     connect(ui->comboBoxProfiles, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &Wild8::profilesIndexChanged);
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Wild8::generate);

@@ -73,7 +73,7 @@ namespace PersonalLoader
 
     PersonalInfo getPersonal(Game version, u16 species, u8 form)
     {
-        auto *info = getPersonal(version);
+        const auto *info = getPersonal(version);
         PersonalInfo base = info[species];
 
         u16 formIndex = base.getFormStatIndex();

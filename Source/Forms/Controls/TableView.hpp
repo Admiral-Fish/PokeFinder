@@ -28,6 +28,7 @@ public:
     explicit TableView(QWidget *parent = nullptr);
     void mouseDoubleClickEvent(QMouseEvent *event) override;
     void keyPressEvent(QKeyEvent *event) override;
+    void resizeEvent(QResizeEvent *event) override;
     void outputModel(bool csv = false) const;
 
 private:

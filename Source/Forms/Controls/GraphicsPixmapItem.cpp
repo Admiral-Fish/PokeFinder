@@ -19,14 +19,10 @@
 
 #include "GraphicsPixmapItem.hpp"
 
-GraphicsPixmapItem::GraphicsPixmapItem(const QPixmap &pixmap, u16 minX, u16 minY, u16 maxX, u16 maxY)
+GraphicsPixmapItem::GraphicsPixmapItem(const QPixmap &pixmap, u16 minX, u16 minY, u16 maxX, u16 maxY) :
+    minX(minX), minY(minY), maxX(maxX), maxY(maxY)
 {
     setPixmap(pixmap);
-    this->minX = minX;
-    this->minY = minY;
-    this->maxX = maxX;
-    this->maxY = maxY;
-
     setX(minX);
     setY(minY);
 }

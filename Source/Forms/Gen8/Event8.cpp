@@ -102,8 +102,8 @@ void Event8::setupModels()
 
     QAction *outputTXT = menu->addAction(tr("Output Results to TXT"));
     QAction *outputCSV = menu->addAction(tr("Output Results to CSV"));
-    connect(outputTXT, &QAction::triggered, [=]() { ui->tableView->outputModel(false); });
-    connect(outputCSV, &QAction::triggered, [=]() { ui->tableView->outputModel(true); });
+    connect(outputTXT, &QAction::triggered, this, [=] { ui->tableView->outputModel(false); });
+    connect(outputCSV, &QAction::triggered, this, [=] { ui->tableView->outputModel(true); });
 
     connect(ui->comboBoxProfiles, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &Event8::profileIndexChanged);
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Event8::generate);
@@ -148,7 +148,6 @@ void Event8::generate()
     u32 maxAdvances = ui->textBoxMaxAdvances->getUInt();
     u16 tid = currentProfile->getTID();
     u16 sid = currentProfile->getSID();
-    u8 genderRatio = ui->filter->getGenderRatio();
     u32 offset = 0;
     if (ui->filter->useDelay())
     {

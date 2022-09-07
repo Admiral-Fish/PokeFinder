@@ -60,9 +60,18 @@ namespace Keypresses
 
             if (keypresses[2])
             {
+                for (u8 j = i + 1; j < 8; j++)
+                {
+                    Buttons combo = keys[i] | keys[j];
+                    if (valid(combo, skipLR))
+                    {
+                        buttons.emplace_back(combo);
+                    }
+                }
+
                 for (u8 j = 0; j < 8; j++)
                 {
-                    Buttons combo = static_cast<Buttons>(keys[i] | directions[j]);
+                    Buttons combo = keys[i] | directions[j];
                     if (valid(combo, skipLR))
                     {
                         buttons.emplace_back(combo);
@@ -70,31 +79,22 @@ namespace Keypresses
                 }
             }
 
-            for (u8 j = i + 1; j < 8; j++)
+            if (keypresses[3])
             {
-                if (keypresses[2])
+                for (u8 j = i + 1; j < 8; j++)
                 {
-                    Buttons combo = static_cast<Buttons>(keys[i] | keys[j]);
-                    if (valid(combo, skipLR))
+                    for (u8 k = j + 1; k < 8; k++)
                     {
-                        buttons.emplace_back(combo);
-                    }
-                }
-
-                if (keypresses[3])
-                {
-                    for (u8 k = 0; k < 8; k++)
-                    {
-                        Buttons combo = static_cast<Buttons>(keys[i] | keys[j] | directions[k]);
+                        Buttons combo = keys[i] | keys[j] | keys[k];
                         if (valid(combo, skipLR))
                         {
                             buttons.emplace_back(combo);
                         }
                     }
 
-                    for (u8 k = j + 1; k < 8; k++)
+                    for (u8 k = 0; k < 8; k++)
                     {
-                        Buttons combo = static_cast<Buttons>(keys[i] | keys[j] | keys[k]);
+                        Buttons combo = keys[i] | keys[j] | directions[k];
                         if (valid(combo, skipLR))
                         {
                             buttons.emplace_back(combo);

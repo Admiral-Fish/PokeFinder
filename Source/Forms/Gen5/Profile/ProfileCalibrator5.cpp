@@ -22,6 +22,7 @@
 #include <Core/Enum/DSType.hpp>
 #include <Core/Enum/Game.hpp>
 #include <Core/Enum/Language.hpp>
+#include <Core/Gen5/Profile5.hpp>
 #include <Core/Gen5/Searchers/ProfileSearcher5.hpp>
 #include <Core/Parents/ProfileLoader.hpp>
 #include <Core/Util/Translator.hpp>
@@ -274,13 +275,13 @@ void ProfileCalibrator5::search()
     connect(ui->pushButtonCancel, &QPushButton::clicked, [searcher] { searcher->cancelSearch(); });
 
     auto *timer = new QTimer();
-    connect(timer, &QTimer::timeout, [=] {
+    connect(timer, &QTimer::timeout, this, [=] {
         model->addItems(searcher->getResults());
         ui->progressBar->setValue(searcher->getProgress());
     });
     connect(thread, &QThread::finished, timer, &QTimer::stop);
     connect(thread, &QThread::finished, timer, &QTimer::deleteLater);
-    connect(timer, &QTimer::destroyed, [=] {
+    connect(timer, &QTimer::destroyed, this, [=] {
         ui->pushButtonSearch->setEnabled(true);
         ui->pushButtonCancel->setEnabled(false);
         model->addItems(searcher->getResults());
@@ -313,7 +314,7 @@ void ProfileCalibrator5::createProfile()
         new ProfileEditor5(version, language, dsType, mac, state.getVcount(), state.getTimer0(), state.getGxstat(), state.getVframe()));
     if (dialog->exec() == QDialog::Accepted)
     {
-        Profile5 profile = dialog->getNewProfile();
+        Profile5 profile = dialog->getProfile();
         ProfileLoader5::addProfile(profile);
         emit alertProfiles(5);
     }

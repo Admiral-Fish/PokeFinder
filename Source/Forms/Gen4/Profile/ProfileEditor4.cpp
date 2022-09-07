@@ -19,6 +19,7 @@
 
 #include "ProfileEditor4.hpp"
 #include "ui_ProfileEditor4.h"
+#include <Core/Gen4/Profile4.hpp>
 #include <QMessageBox>
 #include <QSettings>
 
@@ -50,9 +51,6 @@ ProfileEditor4::ProfileEditor4(const Profile4 &profile, QWidget *parent) : QDial
     ui->checkBoxRadar->setChecked(profile.getRadar());
     ui->checkBoxSwarm->setChecked(profile.getSwarm());
     ui->checkBoxNationalDex->setChecked(profile.getNationalDex());
-
-    isEditing = true;
-    original = profile;
 }
 
 ProfileEditor4::~ProfileEditor4()
@@ -63,14 +61,12 @@ ProfileEditor4::~ProfileEditor4()
     delete ui;
 }
 
-Profile4 ProfileEditor4::getNewProfile()
+Profile4 ProfileEditor4::getProfile()
 {
-    return fresh;
-}
-
-Profile4 ProfileEditor4::getOriginal()
-{
-    return original;
+    return Profile4(ui->lineEditProfile->text().toStdString(), static_cast<Game>(ui->comboBoxVersion->getCurrentUInt()),
+                    ui->textBoxTID->getUShort(), ui->textBoxSID->getUShort(), static_cast<Game>(ui->comboBoxDualSlot->getCurrentUInt()),
+                    ui->comboBoxRadio->currentIndex(), ui->checkBoxRadar->isChecked(), ui->checkBoxSwarm->isChecked(),
+                    ui->checkBoxNationalDex->isChecked());
 }
 
 void ProfileEditor4::setupModels()
@@ -104,11 +100,6 @@ void ProfileEditor4::okay()
         error.exec();
         return;
     }
-
-    fresh = Profile4(ui->lineEditProfile->text().toStdString(), static_cast<Game>(ui->comboBoxVersion->getCurrentUInt()),
-                     ui->textBoxTID->getUShort(), ui->textBoxSID->getUShort(), static_cast<Game>(ui->comboBoxDualSlot->getCurrentUInt()),
-                     ui->comboBoxRadio->currentIndex(), ui->checkBoxRadar->isChecked(), ui->checkBoxSwarm->isChecked(),
-                     ui->checkBoxNationalDex->isChecked());
 
     done(QDialog::Accepted);
 }

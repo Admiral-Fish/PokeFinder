@@ -20,7 +20,7 @@
 #ifndef PROFILEEDITOR5_HPP
 #define PROFILEEDITOR5_HPP
 
-#include <Core/Gen5/Profile5.hpp>
+#include <Core/Util/Global.hpp>
 #include <QDialog>
 
 namespace Ui
@@ -28,28 +28,24 @@ namespace Ui
     class ProfileEditor5;
 }
 
+class Profile5;
+enum class DSType : u8;
+enum class Game : u32;
+enum class Language : u8;
+
 class ProfileEditor5 : public QDialog
 {
     Q_OBJECT
-
-signals:
-    void newProfile(Profile5);
-    void editProfile(Profile5, Profile5);
-
 public:
     explicit ProfileEditor5(QWidget *parent = nullptr);
     explicit ProfileEditor5(const Profile5 &profile, QWidget *parent = nullptr);
     ProfileEditor5(Game version, Language language, DSType dsType, u64 mac, u8 vcount, u16 timer0, u8 gxstat, u8 vframe,
                    QWidget *parent = nullptr);
     ~ProfileEditor5() override;
-    Profile5 getNewProfile();
-    Profile5 getOriginal();
+    Profile5 getProfile();
 
 private:
     Ui::ProfileEditor5 *ui;
-    bool isEditing = false;
-    Profile5 original;
-    Profile5 fresh;
 
     void setupModels();
 

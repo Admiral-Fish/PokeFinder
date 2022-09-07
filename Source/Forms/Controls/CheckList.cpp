@@ -23,9 +23,8 @@
 #include <QListView>
 #include <QStandardItemModel>
 
-CheckList::CheckList(QWidget *parent) : QComboBox(parent)
+CheckList::CheckList(QWidget *parent) : QComboBox(parent), model(new QStandardItemModel(this))
 {
-    model = new QStandardItemModel(this);
     setModel(model);
 
     setEditable(true);

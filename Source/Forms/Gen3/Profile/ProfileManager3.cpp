@@ -64,7 +64,7 @@ void ProfileManager3::create()
     std::unique_ptr<ProfileEditor3> dialog(new ProfileEditor3);
     if (dialog->exec() == QDialog::Accepted)
     {
-        Profile3 profile = dialog->getNewProfile();
+        Profile3 profile = dialog->getProfile();
         ProfileLoader3::addProfile(profile);
         model->addItem(profile);
         emit updateProfiles();
@@ -82,12 +82,13 @@ void ProfileManager3::edit()
         return;
     }
 
-    std::unique_ptr<ProfileEditor3> dialog(new ProfileEditor3(model->getItem(row)));
+    Profile3 original = model->getItem(row);
+    std::unique_ptr<ProfileEditor3> dialog(new ProfileEditor3(original));
     if (dialog->exec() == QDialog::Accepted)
     {
-        Profile3 profile = dialog->getNewProfile();
-        ProfileLoader3::updateProfile(profile, dialog->getOriginal());
-        model->updateItem(profile, row);
+        Profile3 update = dialog->getProfile();
+        ProfileLoader3::updateProfile(update, original);
+        model->updateItem(update, row);
         emit updateProfiles();
     }
 }
@@ -110,7 +111,6 @@ void ProfileManager3::remove()
         Profile3 profile = model->getItem(row);
         ProfileLoader3::removeProfile(profile);
         model->removeItem(row);
-
         emit updateProfiles();
     }
 }

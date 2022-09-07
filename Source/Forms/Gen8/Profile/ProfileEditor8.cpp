@@ -20,6 +20,7 @@
 #include "ProfileEditor8.hpp"
 #include "ui_ProfileEditor8.h"
 #include <Core/Enum/Game.hpp>
+#include <Core/Gen8/Profile8.hpp>
 #include <QMessageBox>
 #include <QSettings>
 
@@ -46,9 +47,6 @@ ProfileEditor8::ProfileEditor8(const Profile8 &profile, QWidget *parent) : QDial
     ui->checkBoxOvalCharm->setChecked(profile.getOvalCharm());
     ui->checkBoxRadar->setChecked(profile.getRadar());
     ui->checkBoxSwarm->setChecked(profile.getSwarm());
-
-    isEditing = true;
-    original = profile;
 }
 
 ProfileEditor8::~ProfileEditor8()
@@ -59,14 +57,11 @@ ProfileEditor8::~ProfileEditor8()
     delete ui;
 }
 
-Profile8 ProfileEditor8::getNewProfile()
+Profile8 ProfileEditor8::getProfile()
 {
-    return fresh;
-}
-
-Profile8 ProfileEditor8::getOriginal()
-{
-    return original;
+    return Profile8(ui->lineEditProfile->text().toStdString(), static_cast<Game>(ui->comboBoxVersion->getCurrentUInt()),
+                    ui->textBoxTID->getUShort(), ui->textBoxSID->getUShort(), ui->checkBoxShinyCharm->isChecked(),
+                    ui->checkBoxOvalCharm->isChecked(), ui->checkBoxRadar->isChecked(), ui->checkBoxSwarm->isChecked());
 }
 
 void ProfileEditor8::setupModels()
@@ -96,10 +91,6 @@ void ProfileEditor8::okay()
         error.exec();
         return;
     }
-
-    fresh = Profile8(ui->lineEditProfile->text().toStdString(), static_cast<Game>(ui->comboBoxVersion->currentData().toUInt()),
-                     ui->textBoxTID->getUShort(), ui->textBoxSID->getUShort(), ui->checkBoxShinyCharm->isChecked(),
-                     ui->checkBoxOvalCharm->isChecked(), ui->checkBoxRadar->isChecked(), ui->checkBoxSwarm->isChecked());
 
     done(QDialog::Accepted);
 }

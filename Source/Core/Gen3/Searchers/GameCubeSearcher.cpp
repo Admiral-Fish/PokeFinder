@@ -419,9 +419,10 @@ void GameCubeSearcher::searchChannel(u8 minSpD, u8 maxSpD)
             u16 low = rng.nextUShort();
             u16 high = rng.nextUShort();
             u16 sid = rng.nextUShort();
+            constexpr u16 tid = 40122;
 
-            // Determine if PID needs to be XORed
-            if ((low > 7 ? 0 : 1) != (high ^ sid ^ 40122))
+            // Failed non-shiny check due to operator precedence
+            if (tid ^ sid ^ high ^ low < 8)
             {
                 high ^= 0x8000;
             }

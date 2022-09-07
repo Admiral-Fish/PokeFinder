@@ -111,7 +111,7 @@ void IDs8::generate()
     QString inputs = ui->textEditFilter->toPlainText();
     if (ui->radioButtonTID->isChecked())
     {
-        QRegularExpression re("^\\d+$", QRegularExpression::MultilineOption);
+        static QRegularExpression re("^\\d+$", QRegularExpression::MultilineOption);
         auto matches = re.globalMatch(inputs);
         while (matches.hasNext())
         {
@@ -130,7 +130,7 @@ void IDs8::generate()
     }
     else if (ui->radioButtonSID->isChecked())
     {
-        QRegularExpression re("^\\d+$", QRegularExpression::MultilineOption);
+        static QRegularExpression re("^\\d+$", QRegularExpression::MultilineOption);
         auto matches = re.globalMatch(inputs);
         while (matches.hasNext())
         {
@@ -149,7 +149,7 @@ void IDs8::generate()
     }
     else if (ui->radioButtonTIDSID->isChecked())
     {
-        QRegularExpression re("^(\\d+)/(\\d+)$", QRegularExpression::MultilineOption);
+        static QRegularExpression re("^(\\d+)/(\\d+)$", QRegularExpression::MultilineOption);
         auto matches = re.globalMatch(inputs);
         while (matches.hasNext())
         {
@@ -180,7 +180,7 @@ void IDs8::generate()
     }
     else if (ui->radioButtonG8TID->isChecked())
     {
-        QRegularExpression re("^\\d+$", QRegularExpression::MultilineOption);
+        static QRegularExpression re("^\\d+$", QRegularExpression::MultilineOption);
         auto matches = re.globalMatch(inputs);
         while (matches.hasNext())
         {
@@ -199,7 +199,7 @@ void IDs8::generate()
     }
 
     inputs = ui->textEditTSVFilter->toPlainText();
-    QRegularExpression re("^\\d+$", QRegularExpression::MultilineOption);
+    static QRegularExpression re("^\\d+$", QRegularExpression::MultilineOption);
     auto matches = re.globalMatch(inputs);
     while (matches.hasNext())
     {
@@ -226,7 +226,7 @@ void IDs8::generate()
 void IDs8::profileManager()
 {
     auto *manager = new ProfileManager8();
-    connect(manager, &ProfileManager8::updateProfiles, [=]() { emit alertProfiles(8); });
+    connect(manager, &ProfileManager8::updateProfiles, this, [=] { emit alertProfiles(8); });
     manager->show();
 }
 

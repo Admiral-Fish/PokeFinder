@@ -64,7 +64,7 @@ void ProfileManager4::create()
     std::unique_ptr<ProfileEditor4> dialog(new ProfileEditor4);
     if (dialog->exec() == QDialog::Accepted)
     {
-        Profile4 profile = dialog->getNewProfile();
+        Profile4 profile = dialog->getProfile();
         ProfileLoader4::addProfile(profile);
         model->addItem(profile);
         emit updateProfiles();
@@ -82,12 +82,13 @@ void ProfileManager4::edit()
         return;
     }
 
-    std::unique_ptr<ProfileEditor4> dialog(new ProfileEditor4(model->getItem(row)));
+    Profile4 original = model->getItem(row);
+    std::unique_ptr<ProfileEditor4> dialog(new ProfileEditor4(original));
     if (dialog->exec() == QDialog::Accepted)
     {
-        Profile4 profile = dialog->getNewProfile();
-        ProfileLoader4::updateProfile(profile, dialog->getOriginal());
-        model->updateItem(profile, row);
+        Profile4 update = dialog->getProfile();
+        ProfileLoader4::updateProfile(update, original);
+        model->updateItem(update, row);
         emit updateProfiles();
     }
 }
@@ -110,7 +111,6 @@ void ProfileManager4::remove()
         Profile4 profile = model->getItem(row);
         ProfileLoader4::removeProfile(profile);
         model->removeItem(row);
-
         emit updateProfiles();
     }
 }
