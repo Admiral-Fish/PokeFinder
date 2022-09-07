@@ -229,7 +229,7 @@ namespace Encounters4
             {
                 size_t size = hg_headbutt.size();
 
-                for (size_t offset = 0; offset < size; )
+                for (size_t offset = 0; offset < size;)
                 {
                     const u8 *entry = (version == Game::HeartGold ? hg_headbutt.data() : ss_headbutt.data()) + offset;
 
@@ -276,7 +276,7 @@ namespace Encounters4
             {
                 size_t size = hgss_safari.size();
 
-                for (size_t offset = 0; offset < size; )
+                for (size_t offset = 0; offset < size;)
                 {
                     const u8 *entry = hgss_safari.data() + offset;
                     int grassBlockSlot = 0;
@@ -293,8 +293,8 @@ namespace Encounters4
 
                         while (grassBlockSlot < 10)
                         {
-                            if (blocks[entry[182 + (grassBlockSlot * 4)]] >= entry[183 + (grassBlockSlot * 4)] &&
-                                    blocks[entry[184 + (grassBlockSlot * 4)]] >= entry[185 + (grassBlockSlot * 4)])
+                            if (blocks[entry[182 + (grassBlockSlot * 4)]] >= entry[183 + (grassBlockSlot * 4)]
+                                && blocks[entry[184 + (grassBlockSlot * 4)]] >= entry[185 + (grassBlockSlot * 4)])
                             {
                                 specie = *reinterpret_cast<const u16 *>(entry + (30 * modifier) + (grassBlockSlot * 3) + 92);
                                 level = entry[(30 * modifier) + (grassBlockSlot * 3) + 94];
@@ -313,8 +313,8 @@ namespace Encounters4
 
                             while (waterBlockSlot < 3)
                             {
-                                if (blocks[entry[339 + (waterBlockSlot * 4)]] >= entry[340 + (waterBlockSlot * 4)] &&
-                                        blocks[entry[341 + (waterBlockSlot * 4)]] >= entry[342 + (waterBlockSlot * 4)])
+                                if (blocks[entry[339 + (waterBlockSlot * 4)]] >= entry[340 + (waterBlockSlot * 4)]
+                                    && blocks[entry[341 + (waterBlockSlot * 4)]] >= entry[342 + (waterBlockSlot * 4)])
                                 {
                                     specie = *reinterpret_cast<const u16 *>(entry + (9 * modifier) + (waterBlockSlot * 3) + 312);
                                     level = entry[(9 * modifier) + (waterBlockSlot * 3) + 314];
@@ -332,8 +332,8 @@ namespace Encounters4
 
                             while (waterBlockSlot < 2)
                             {
-                                if (blocks[entry[459 + (waterBlockSlot * 4)]] >= entry[460 + (waterBlockSlot * 4)] &&
-                                        blocks[entry[461 + (waterBlockSlot * 4)]] >= entry[462 + (waterBlockSlot * 4)])
+                                if (blocks[entry[459 + (waterBlockSlot * 4)]] >= entry[460 + (waterBlockSlot * 4)]
+                                    && blocks[entry[461 + (waterBlockSlot * 4)]] >= entry[462 + (waterBlockSlot * 4)])
                                 {
                                     specie = *reinterpret_cast<const u16 *>(entry + (6 * modifier) + (waterBlockSlot * 3) + 441);
                                     level = entry[(6 * modifier) + (waterBlockSlot * 3) + 443];
@@ -351,8 +351,8 @@ namespace Encounters4
 
                             while (waterBlockSlot < 2)
                             {
-                                if (blocks[entry[575 + (waterBlockSlot * 4)]] >= entry[576 + (waterBlockSlot * 4)] &&
-                                        blocks[entry[577 + (waterBlockSlot * 4)]] >= entry[578 + (waterBlockSlot * 4)])
+                                if (blocks[entry[575 + (waterBlockSlot * 4)]] >= entry[576 + (waterBlockSlot * 4)]
+                                    && blocks[entry[577 + (waterBlockSlot * 4)]] >= entry[578 + (waterBlockSlot * 4)])
                                 {
                                     specie = *reinterpret_cast<const u16 *>(entry + (6 * modifier) + (waterBlockSlot * 3) + 557);
                                     level = entry[(6 * modifier) + (waterBlockSlot * 3) + 559];
@@ -370,8 +370,8 @@ namespace Encounters4
 
                             while (waterBlockSlot < 2)
                             {
-                                if (blocks[entry[691 + (waterBlockSlot * 4)]] >= entry[692 + (waterBlockSlot * 4)] &&
-                                        blocks[entry[693 + (waterBlockSlot * 4)]] >= entry[694 + (waterBlockSlot * 4)])
+                                if (blocks[entry[691 + (waterBlockSlot * 4)]] >= entry[692 + (waterBlockSlot * 4)]
+                                    && blocks[entry[693 + (waterBlockSlot * 4)]] >= entry[694 + (waterBlockSlot * 4)])
                                 {
                                     specie = *reinterpret_cast<const u16 *>(entry + (6 * modifier) + (waterBlockSlot * 3) + 673);
                                     level = entry[(6 * modifier) + (waterBlockSlot * 3) + 675];
@@ -604,7 +604,7 @@ namespace Encounters4
         u8 specialTreesFlag;
         size_t size = hg_headbutt.size();
 
-        for (size_t offset = 0; offset < size; )
+        for (size_t offset = 0; offset < size;)
         {
             const u8 *entry = (game == Game::HeartGold ? hg_headbutt.data() : ss_headbutt.data()) + offset;
             specialTreesFlag = entry[1];
@@ -625,7 +625,7 @@ namespace Encounters4
         u8 waterFlag;
         size_t size = hgss_safari.size();
 
-        for (size_t offset = 0; offset < size; )
+        for (size_t offset = 0; offset < size;)
         {
             const u8 *entry = hgss_safari.data() + offset;
             waterFlag = entry[1];

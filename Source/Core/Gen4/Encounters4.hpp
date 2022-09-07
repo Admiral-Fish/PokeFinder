@@ -21,6 +21,7 @@
 #define ENCOUNTERS4_HPP
 
 #include <Core/Util/Global.hpp>
+#include <array>
 #include <vector>
 
 class EncounterArea4;
