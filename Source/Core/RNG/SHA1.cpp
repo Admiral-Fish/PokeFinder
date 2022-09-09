@@ -24,7 +24,7 @@
 #include <Core/RNG/LCRNG64.hpp>
 #include <Core/Util/DateTime.hpp>
 
-inline u8 bcd(u8 value)
+static inline u8 bcd(u8 value)
 {
     u8 tens = value / 10;
     u8 ones = value % 10;
@@ -32,18 +32,18 @@ inline u8 bcd(u8 value)
     return static_cast<u8>(tens << 4) | ones;
 }
 
-inline u32 changeEndian(u32 val)
+static inline u32 changeEndian(u32 val)
 {
     val = ((val << 8) & 0xFF00FF00) | ((val >> 8) & 0xFF00FF);
     return (val << 16) | (val >> 16);
 }
 
-inline u32 rotateLeft(u32 val, u8 count)
+static inline u32 rotateLeft(u32 val, u8 count)
 {
     return (val << count) | (val >> (32 - count));
 }
 
-inline u32 rotateRight(u32 val, u8 count)
+static inline u32 rotateRight(u32 val, u8 count)
 {
     return (val << (32 - count)) | (val >> count);
 }

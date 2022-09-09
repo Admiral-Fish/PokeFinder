@@ -20,15 +20,8 @@
 #include "Xoroshiro.hpp"
 #include <Core/RNG/SIMD.hpp>
 
-constexpr u64 jumpTable[32][2]
-    = { /*{ 0x0, 0x2 },
-        { 0x0, 0x4 },
-        { 0x0, 0x10 },
-        { 0x0, 0x100 },
-        { 0x0, 0x10000 },
-        { 0x0, 0x100000000 },
-        { 0x1, 0x0 },*/
-        { 0x8828e513b43d5, 0x95b8f76579aa001 },     { 0x7a8ff5b1c465a931, 0x162ad6ec01b26eae }, { 0xb18b0d36cd81a8f5, 0xb4fbaa5c54ee8b8f },
+constexpr u64 jumpTable[25][2]
+    = { { 0x8828e513b43d5, 0x95b8f76579aa001 },     { 0x7a8ff5b1c465a931, 0x162ad6ec01b26eae }, { 0xb18b0d36cd81a8f5, 0xb4fbaa5c54ee8b8f },
         { 0x23ac5e0ba1cecb29, 0x1207a1706bebb202 }, { 0xbb18e9c8d463bb1b, 0x2c88ef71166bc53d }, { 0xe3fbe606ef4e8e09, 0xc3865bb154e9be10 },
         { 0x28faaaebb31ee2db, 0x1a9fc99fa7818274 }, { 0x30a7c4eef203c7eb, 0x588abd4c2ce2ba80 }, { 0xa425003f3220a91d, 0x9c90debc053e8cef },
         { 0x81e1dd96586cf985, 0xb82ca99a09a4e71e }, { 0x4f7fd3dfbb820bfb, 0x35d69e118698a31d }, { 0xfee2760ef3a900b3, 0x49613606c466efd3 },
@@ -36,15 +29,14 @@ constexpr u64 jumpTable[32][2]
         { 0xfd7027fe6d2f6764, 0x75d8e7dbceda609c }, { 0x28eff231ad438124, 0xde2cba60cd3332b5 }, { 0x1808760d0a0909a1, 0x377e64c4e80a06fa },
         { 0xb9a362fafedfe9d2, 0xcf0a2225da7fb95 },  { 0xf57881ab117349fd, 0x2bab58a3cadfc0a3 }, { 0x849272241425c996, 0x8d51ecdb9ed82455 },
         { 0xf1ccb8898cbc07cd, 0x521b29d0a57326c1 }, { 0x61179e44214caafa, 0xfbe65017abec72dd }, { 0xd9aa6b1e93fbb6e4, 0x6c446b9bc95c267b },
-        { 0x86e3772194563f6d, 0x64f80248d23655c6 }
-      };
+        { 0x86e3772194563f6d, 0x64f80248d23655c6 } };
 
-inline u64 rotl(u64 x, int k)
+static inline u64 rotl(u64 x, int k)
 {
     return (x << k) | (x >> (64 - k));
 }
 
-inline u64 splitmix(u64 seed, u64 state)
+static inline u64 splitmix(u64 seed, u64 state)
 {
     seed += state;
     seed = 0xBF58476D1CE4E5B9 * (seed ^ (seed >> 30));
@@ -79,24 +71,17 @@ void Xoroshiro::jump(u32 advances)
         {
             vuint32x4 jump = v32x4_set(0);
 
-            u64 val = jumpTable[i][1];
-            for (int j = 0; j < 64; j++, val >>= 1)
+            for (int j = 1; j >= 0; j--)
             {
-                if (val & 1)
+                u64 val = jumpTable[i][j];
+                for (int k = 0; k < 64; k++, val >>= 1)
                 {
-                    jump = v32x4_xor(jump, v32x4_load(reinterpret_cast<u32 *>(&state[0])));
+                    if (val & 1)
+                    {
+                        jump = v32x4_xor(jump, v32x4_load(reinterpret_cast<u32 *>(&state[0])));
+                    }
+                    next();
                 }
-                next();
-            }
-
-            val = jumpTable[i][0];
-            for (; val; val >>= 1)
-            {
-                if (val & 1)
-                {
-                    jump = v32x4_xor(jump, v32x4_load(reinterpret_cast<u32 *>(&state[0])));
-                }
-                next();
             }
 
             v32x4_store(reinterpret_cast<u32 *>(&state[0]), jump);
