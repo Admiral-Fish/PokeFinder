@@ -38,7 +38,7 @@ public:
      * @param specie Specie of the template
      * @param level Level of the template
      */
-    constexpr StaticTemplate(Game version, u16 specie, u8 level) : version(version), specie(specie), level(level)
+    constexpr StaticTemplate(Game version, u16 specie, u8 level, u8 form = 0) : version(version), specie(specie), form(form), level(level)
     {
     }
 
@@ -49,7 +49,7 @@ public:
      */
     const PersonalInfo *getInfo() const
     {
-        return PersonalLoader::getPersonal(version, specie);
+        return PersonalLoader::getPersonal(version, specie, form);
     }
 
     /**
@@ -82,9 +82,10 @@ public:
         return version;
     }
 
-private:
+protected:
     Game version;
     u16 specie;
+    u8 form;
     u8 level;
 };
 

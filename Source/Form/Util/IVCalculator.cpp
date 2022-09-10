@@ -52,9 +52,8 @@ IVCalculator::IVCalculator(QWidget *parent) : QWidget(parent), ui(new Ui::IVCalc
     ui->comboBoxPokemon->setInsertPolicy(QComboBox::NoInsert);
     ui->comboBoxPokemon->completer()->setCompletionMode(QCompleter::PopupCompletion);
 
-    ui->comboBoxGame->setup({ toInt(Game::Emerald), toInt(Game::RS), toInt(Game::FireRed), toInt(Game::LeafGreen), toInt(Game::DP),
-                              toInt(Game::Platinum), toInt(Game::HGSS), toInt(Game::BW), toInt(Game::BW2), toInt(Game::SwSh),
-                              toInt(Game::BDSP) });
+    ui->comboBoxGame->setup({ toInt(Game::Gen3), toInt(Game::DP), toInt(Game::Platinum), toInt(Game::HGSS), toInt(Game::BW),
+                              toInt(Game::BW2), toInt(Game::SwSh), toInt(Game::BDSP) });
 
     connect(ui->pushButtonAddRow, &QPushButton::clicked, this, &IVCalculator::addEntry);
     connect(ui->pushButtonRemoveRow, &QPushButton::clicked, this, &IVCalculator::removeEntry);

@@ -143,8 +143,13 @@ def embed_personal():
                     ability1 = data[i+0x16]
                     ability2 = data[i+0x17]
                     abilityH = 0
-                    form_count = 1
-                    form_stat_index = 0
+                    # Only difference in Gen 3 tables is Deoxys
+                    if i >= (386 * offset):
+                        form_count = 4
+                        form_stat_index = 387
+                    else:
+                        form_count = 1
+                        form_stat_index = 0
                     present = 1
                 elif index == 4:
                     gender = data[i+0x10]

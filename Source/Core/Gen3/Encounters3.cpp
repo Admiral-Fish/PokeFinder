@@ -108,12 +108,15 @@ constexpr std::array<StaticTemplate, 14> legends = {
     StaticTemplate(Game::FRLG, 150, 70) // Mewtwo @ Cerulean Cave
 };
 
-constexpr std::array<StaticTemplate, 4> events = {
+constexpr std::array<StaticTemplate, 6> events = {
     StaticTemplate(Game::Emerald, 151, 30), // Mew @ Faraway Island
+    StaticTemplate(Game::Emerald, 386, 30, 3), // Deoxys @ Birth Islands
+
+    StaticTemplate(Game::FireRed, 386, 30, 1), // Deoxys @ Birth Islands
+    StaticTemplate(Game::LeafGreen, 386, 30, 2), // Deoxys @ Birth Islands
 
     StaticTemplate(Game::Emerald | Game::FRLG, 249, 70), // Lugia @ Navel Rock
-    StaticTemplate(Game::Emerald | Game::FRLG, 250, 70), // Ho-Oh @ Navel Rock
-    StaticTemplate(Game::Emerald | Game::FRLG, 386, 30) // Deoxys @ Birth Islands
+    StaticTemplate(Game::Emerald | Game::FRLG, 250, 70) // Ho-Oh @ Navel Rock
 };
 
 namespace

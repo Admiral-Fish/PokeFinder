@@ -94,22 +94,7 @@
        <widget class="ComboBox" name="comboBoxGame">
         <item>
          <property name="text">
-          <string>Emerald</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Ruby/Sapphire</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Fire Red</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Leaf Green</string>
+          <string>Emerald/RS/FRLG</string>
          </property>
         </item>
         <item>
