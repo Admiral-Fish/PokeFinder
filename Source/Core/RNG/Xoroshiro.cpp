@@ -18,7 +18,6 @@
  */
 
 #include "Xoroshiro.hpp"
-#include <Core/RNG/SIMD.hpp>
 
 constexpr u64 jumpTable[25][2]
     = { { 0x8828e513b43d5, 0x95b8f76579aa001 },     { 0x7a8ff5b1c465a931, 0x162ad6ec01b26eae }, { 0xb18b0d36cd81a8f5, 0xb4fbaa5c54ee8b8f },
@@ -44,12 +43,15 @@ static inline u64 splitmix(u64 seed, u64 state)
     return seed ^ (seed >> 31);
 }
 
-Xoroshiro::Xoroshiro(u64 seed) : state { seed, 0x82A2B175229D6A5B }
+Xoroshiro::Xoroshiro(u64 seed) : Xoroshiro(seed, 0x82A2B175229D6A5B)
 {
 }
 
-Xoroshiro::Xoroshiro(u64 seed0, u64 seed1) : state { seed0, seed1 }
+Xoroshiro::Xoroshiro(u64 seed0, u64 seed1)
 {
+    u64 *ptr = &state.u64[0];
+    ptr[0] = seed0;
+    ptr[1] = seed1;
 }
 
 void Xoroshiro::advance(u32 advances)
@@ -78,26 +80,27 @@ void Xoroshiro::jump(u32 advances)
                 {
                     if (val & 1)
                     {
-                        jump = v32x4_xor(jump, v32x4_load(reinterpret_cast<u32 *>(&state[0])));
+                        jump = v32x4_xor(jump, state.si);
                     }
                     next();
                 }
             }
 
-            v32x4_store(reinterpret_cast<u32 *>(&state[0]), jump);
+            state.si = jump;
         }
     }
 }
 
 u64 Xoroshiro::next()
 {
-    const u64 s0 = state[0];
-    u64 s1 = state[1];
-    const u64 result = s0 + s1;
+    u64 *ptr = &state.u64[0];
+    u64 s0 = ptr[0];
+    u64 s1 = ptr[1];
+    u64 result = s0 + s1;
 
     s1 ^= s0;
-    state[0] = rotl(s0, 24) ^ s1 ^ (s1 << 16);
-    state[1] = rotl(s1, 37);
+    ptr[0] = rotl(s0, 24) ^ s1 ^ (s1 << 16);
+    ptr[1] = rotl(s1, 37);
 
     return result;
 }

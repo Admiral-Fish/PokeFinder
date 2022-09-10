@@ -23,22 +23,23 @@
 SFMT::SFMT(u32 seed) : index(624)
 {
     u32 inner = seed & 1;
-    sfmt[0] = seed;
+    u32 *ptr = &state[0].u[0];
+    ptr[0] = seed;
 
     for (u32 i = 1; i < 624; i++)
     {
         seed = 0x6C078965 * (seed ^ (seed >> 30)) + i;
-        sfmt[i] = seed;
+        ptr[i] = seed;
     }
 
-    inner ^= sfmt[3] & 0x13c9e684;
+    inner ^= ptr[3] & 0x13c9e684;
     inner ^= inner >> 16;
     inner ^= inner >> 8;
     inner ^= inner >> 4;
     inner ^= inner >> 2;
     inner ^= inner >> 1;
 
-    sfmt[0] ^= ~inner & 1;
+    ptr[0] ^= ~inner & 1;
 }
 
 void SFMT::advance(u32 advances)
@@ -60,8 +61,9 @@ u64 SFMT::next()
         index = 0;
     }
 
-    u32 low = sfmt[index++];
-    u32 high = sfmt[index++];
+    u32 *ptr = &state[0].u[0];
+    u32 low = ptr[index++];
+    u32 high = ptr[index++];
     return low | (static_cast<u64>(high) << 32);
 }
 
@@ -73,13 +75,14 @@ u32 SFMT::nextUInt()
         index = 0;
     }
 
-    return sfmt[index++];
+    u32 *ptr = &state[0].u[0];
+    return ptr[index++];
 }
 
 void SFMT::shuffle()
 {
-    vuint32x4 c = v32x4_load(&sfmt[616]);
-    vuint32x4 d = v32x4_load(&sfmt[620]);
+    vuint32x4 c = state[154].si;
+    vuint32x4 d = state[155].si;
     vuint32x4 mask = v32x4_set(0xdfffffef, 0xddfecb7f, 0xbffaffff, 0xbffffff6);
 
     auto mm_recursion = [&mask](vuint32x4 &a, const vuint32x4 &b, const vuint32x4 &c, const vuint32x4 &d) {
@@ -92,25 +95,25 @@ void SFMT::shuffle()
         a = v32x4_xor(v32x4_xor(v32x4_xor(v32x4_xor(a, x), b1), y), d1);
     };
 
-    for (int i = 0; i < 136; i += 4)
+    for (int i = 0; i < 34; i++)
     {
-        vuint32x4 a = v32x4_load(&sfmt[i]);
-        vuint32x4 b = v32x4_load(&sfmt[i + 488]);
+        vuint32x4 a = state[i].si;
+        vuint32x4 b = state[i + 122].si;
 
         mm_recursion(a, b, c, d);
-        v32x4_store(&sfmt[i], a);
+        state[i].si = a;
 
         c = d;
         d = a;
     }
 
-    for (int i = 136; i < 624; i += 4)
+    for (int i = 34; i < 156; i++)
     {
-        vuint32x4 a = v32x4_load(&sfmt[i]);
-        vuint32x4 b = v32x4_load(&sfmt[i - 136]);
+        vuint32x4 a = state[i].si;
+        vuint32x4 b = state[i - 34].si;
 
         mm_recursion(a, b, c, d);
-        v32x4_store(&sfmt[i], a);
+        state[i].si = a;
 
         c = d;
         d = a;

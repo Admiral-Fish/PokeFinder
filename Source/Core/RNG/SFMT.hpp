@@ -21,6 +21,7 @@
 #define SFMT_HPP
 
 #include <Core/Global.hpp>
+#include <Core/RNG/SIMD.hpp>
 
 /**
  * @brief Provides random numbers via the SIMD-oriented Fast Mersenne Twister algorithm.
@@ -57,7 +58,7 @@ public:
     u32 nextUInt();
 
 private:
-    alignas(16) u32 sfmt[624];
+    alignas(16) vuint128 state[156];
     u16 index;
 
     /**

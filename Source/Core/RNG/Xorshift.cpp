@@ -18,7 +18,6 @@
  */
 
 #include "Xorshift.hpp"
-#include <Core/RNG/SIMD.hpp>
 
 constexpr u64 jumpTable[25][2]
     = { { 0x10046d8b3, 0xf985d65ffd3c8001 },        { 0x956c89fbfa6b67e9, 0xa42ca9aeb1e10da6 }, { 0xff7aa97c47ec17c7, 0x1a0988e988f8a56e },
@@ -31,15 +30,11 @@ constexpr u64 jumpTable[25][2]
         { 0xdaf387cab4ef5c18, 0x686287302b5cd38c }, { 0xffaf82745790af3e, 0xbb7d371f547cca1e }, { 0x7b932849fe573afa, 0xeb96acd6c88829f9 },
         { 0x8cedf8dfe2d6e821, 0xb4fd2c6573bf7047 } };
 
-Xorshift::Xorshift(u64 seed0, u64 seed1) :
-    state { static_cast<u32>(seed0 >> 32), static_cast<u32>(seed0 & 0xffffffff), static_cast<u32>(seed1 >> 32),
-            static_cast<u32>(seed1 & 0xffffffff) }
+Xorshift::Xorshift(u64 seed0, u64 seed1)
 {
-}
-
-Xorshift::Xorshift(const Xorshift &rng)
-{
-    v32x4_store(&state[0], v32x4_load(&rng.state[0]));
+    u64 *ptr = &state.u64[0];
+    ptr[0] = seed0;
+    ptr[1] = seed1;
 }
 
 void Xorshift::advance(u32 advances)
@@ -68,30 +63,31 @@ void Xorshift::jump(u32 advances)
                 {
                     if (val & 1)
                     {
-                        jump = v32x4_xor(jump, v32x4_load(&state[0]));
+                        jump = v32x4_xor(jump, state.si);
                     }
                     nextState();
                 }
             }
 
-            v32x4_store(&state[0], jump);
+            state.si = jump;
         }
     }
 }
 
 u32 Xorshift::nextState()
 {
-    u32 t = state[0];
-    u32 s = state[3];
+    u32 *ptr = &state.u[0];
+    u32 t = ptr[0];
+    u32 s = ptr[3];
 
     t ^= t << 11;
     t ^= t >> 8;
     t ^= s ^ (s >> 19);
 
-    state[0] = state[1];
-    state[1] = state[2];
-    state[2] = state[3];
-    state[3] = t;
+    ptr[0] = ptr[1];
+    ptr[1] = ptr[2];
+    ptr[2] = ptr[3];
+    ptr[3] = t;
 
     return t;
 }

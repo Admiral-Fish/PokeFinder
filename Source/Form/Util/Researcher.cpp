@@ -267,9 +267,9 @@ void Researcher::generate()
     }
     else if (ui->rngSelection->currentIndex() == 2)
     {
-        u32 status[4] = { ui->textBoxTinyMTSeed0->getUInt(), ui->textBoxTinyMTSeed1->getUInt(), ui->textBoxTinyMTSeed2->getUInt(),
-                          ui->textBoxTinyMTSeed3->getUInt() };
-        rngStates = getStates<TinyMT, false>(TinyMT(status), initialAdvances, maxAdvances);
+        rngStates = getStates<TinyMT, false>(TinyMT(ui->textBoxTinyMTSeed0->getUInt(), ui->textBoxTinyMTSeed1->getUInt(),
+                                                    ui->textBoxTinyMTSeed2->getUInt(), ui->textBoxTinyMTSeed3->getUInt()),
+                                             initialAdvances, maxAdvances);
     }
     else
     {

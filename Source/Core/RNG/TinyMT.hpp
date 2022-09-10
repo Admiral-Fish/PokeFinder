@@ -21,6 +21,7 @@
 #define TINYMT_HPP
 
 #include <Core/Global.hpp>
+#include <Core/RNG/SIMD.hpp>
 
 /**
  * @brief Provides random numbers via the Tiny Mersenne Twister algorithm.
@@ -38,9 +39,12 @@ public:
     /**
      * @brief Construct a new TinyMT object
      *
-     * @param state Starting PRNG state
+     * @param seed0 Starting PRNG value 0
+     * @param seed1 Starting PRNG value 1
+     * @param seed2 Starting PRNG value 2
+     * @param seed3 Starting PRNG value 3
      */
-    TinyMT(const u32 *state);
+    TinyMT(u32 seed0, u32 seed1, u32 seed2, u32 seed3);
 
     /**
      * @brief Advances the RNG by \p advances amount
@@ -72,7 +76,7 @@ public:
     u16 nextUShort();
 
 private:
-    alignas(16) u32 state[4];
+    alignas(16) vuint128 state;
 
     /**
      * @brief Advances the RNG to the next PRNG state

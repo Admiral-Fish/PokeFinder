@@ -21,6 +21,7 @@
 #define MT_HPP
 
 #include <Core/Global.hpp>
+#include <Core/RNG/SIMD.hpp>
 
 /**
  * @brief Provides random numbers via the Mersenne Twister algorithm.
@@ -57,7 +58,7 @@ public:
     u16 nextUShort();
 
 private:
-    alignas(16) u32 mt[624];
+    alignas(16) vuint128 state[156];
     u16 index;
 
     /**

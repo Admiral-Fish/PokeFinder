@@ -33,25 +33,25 @@ constexpr u64 jumpTable[25][2]
 
 TinyMT::TinyMT(u32 seed) : state { seed, 0x8f7011ee, 0xfc78ff1f, 0x3793fdff }
 {
+    u32 *ptr = &state.u[0];
     for (u32 i = 1; i < 8; i++)
     {
-        state[i & 3] ^= 0x6c078965 * (state[(i - 1) & 3] ^ (state[(i - 1) & 3] >> 30)) + i;
+        ptr[i & 3] ^= 0x6c078965 * (ptr[(i - 1) & 3] ^ (ptr[(i - 1) & 3] >> 30)) + i;
     }
 
-    if ((state[0] & 0x7FFFFFFF) == 0 && state[1] == 0 && state[2] == 0 && state[3] == 0)
+    if ((ptr[0] & 0x7FFFFFFF) == 0 && ptr[1] == 0 && ptr[2] == 0 && ptr[3] == 0)
     {
-        state[0] = 'T';
-        state[1] = 'I';
-        state[2] = 'N';
-        state[3] = 'Y';
+        ptr[0] = 'T';
+        ptr[1] = 'I';
+        ptr[2] = 'N';
+        ptr[3] = 'Y';
     }
 
     advance(8);
 }
 
-TinyMT::TinyMT(const u32 *state)
+TinyMT::TinyMT(u32 seed0, u32 seed1, u32 seed2, u32 seed3) : state { seed0, seed1, seed2, seed3 }
 {
-    v32x4_store(&this->state[0], v32x4_load(state));
 }
 
 void TinyMT::advance(u32 advances)
@@ -80,13 +80,13 @@ void TinyMT::jump(u32 advances)
                 {
                     if (val & 1)
                     {
-                        jump = v32x4_xor(jump, v32x4_load(&state[0]));
+                        jump = v32x4_xor(jump, state.si);
                     }
                     nextState();
                 }
             }
 
-            v32x4_store(&state[0], jump);
+            state.si = jump;
         }
     }
 }
@@ -104,22 +104,24 @@ u16 TinyMT::nextUShort()
 
 void TinyMT::nextState()
 {
-    u32 y = state[3];
-    u32 x = (state[0] & 0x7FFFFFFF) ^ state[1] ^ state[2];
+    u32 *ptr = &state.u[0];
+    u32 y = ptr[3];
+    u32 x = (ptr[0] & 0x7FFFFFFF) ^ ptr[1] ^ ptr[2];
 
     x ^= (x << 1);
     y ^= (y >> 1) ^ x;
 
-    state[0] = state[1];
-    state[1] = state[2] ^ ((y & 1) * 0x8f7011ee);
-    state[2] = x ^ (y << 10) ^ ((y & 1) * 0xfc78ff1f);
-    state[3] = y;
+    state.u[0] = ptr[1];
+    state.u[1] = ptr[2] ^ ((y & 1) * 0x8f7011ee);
+    state.u[2] = x ^ (y << 10) ^ ((y & 1) * 0xfc78ff1f);
+    state.u[3] = y;
 }
 
 u32 TinyMT::temper()
 {
-    u32 t0 = state[3];
-    u32 t1 = state[0] + (state[2] >> 8);
+    u32 *ptr = &state.u[0];
+    u32 t0 = ptr[3];
+    u32 t1 = ptr[0] + (ptr[2] >> 8);
 
     t0 ^= t1;
     if (t1 & 1)

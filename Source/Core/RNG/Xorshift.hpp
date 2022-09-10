@@ -21,6 +21,7 @@
 #define XORSHIFT_HPP
 
 #include <Core/Global.hpp>
+#include <Core/RNG/SIMD.hpp>
 
 /**
  * @brief Provides random numbers via the Xoroshift algorithm.
@@ -35,13 +36,6 @@ public:
      * @param seed1 Starting PRNG state1
      */
     Xorshift(u64 seed0, u64 seed1);
-
-    /**
-     * @brief Construct a new Xorshift object
-     *
-     * @param rng Xorshift to copy
-     */
-    Xorshift(const Xorshift &rng);
 
     /**
      * @brief Advances the RNG by \p advances amount
@@ -73,7 +67,7 @@ public:
     }
 
 private:
-    alignas(16) u32 state[4];
+    alignas(16) vuint128 state;
 
     /**
      * @brief Gets the next 32bit PRNG state

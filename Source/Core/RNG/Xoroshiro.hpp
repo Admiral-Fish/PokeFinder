@@ -21,6 +21,7 @@
 #define XOROSHIRO_HPP
 
 #include <Core/Global.hpp>
+#include <Core/RNG/SIMD.hpp>
 
 /**
  * @brief Provides random numbers via the Xoroshiro algorithm.
@@ -103,7 +104,7 @@ public:
     }
 
 private:
-    alignas(16) u64 state[2];
+    alignas(16) vuint128 state;
 };
 
 /**
