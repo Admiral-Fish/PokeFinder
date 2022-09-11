@@ -17,25 +17,25 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef PROFILE3MODEL_HPP
-#define PROFILE3MODEL_HPP
+#ifndef PROFILE4MODEL_HPP
+#define PROFILE4MODEL_HPP
 
-#include <Core/Gen3/Profile3.hpp>
+#include <Core/Gen4/Profile4.hpp>
 #include <Model/TableModel.hpp>
 
 /**
- * @brief Provides a table model implementation to show profile information for Gen 3
+ * @brief Provides a table model implementation to show profile information for Gen 4
  */
-class ProfileModel3 : public TableModel<Profile3>
+class ProfileModel4 : public TableModel<Profile4>
 {
     Q_OBJECT
 public:
     /**
-     * @brief Construct a new ProfileModel3 object
+     * @brief Construct a new ProfileModel4 object
      *
      * @param parent Parent object, which takes memory ownership
      */
-    ProfileModel3(QObject *parent);
+    ProfileModel4(QObject *parent);
 
     /**
      * @brief Returns the number of columns in the model
@@ -68,7 +68,9 @@ public:
     QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
 
 private:
-    QStringList header = { tr("Profile Name"), tr("Version"), tr("TID"), tr("SID"), tr("Dead Battery") };
+    QStringList header
+        = { tr("Profile Name"), tr("Version"), tr("TID"), tr("SID"), tr("Dual Slot"), tr("Radio"), tr("Pokeradar"), tr("Swarm"),
+            tr("National Dex") };
 };
 
-#endif // PROFILE3MODEL_HPP
+#endif // PROFILE4MODEL_HPP

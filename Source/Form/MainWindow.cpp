@@ -25,6 +25,7 @@
 #include <Form/Gen3/Static3.hpp>
 #include <Form/Gen3/Wild3.hpp>
 #include <Form/Gen4/IDs4.hpp>
+#include <Form/Gen4/Profile/ProfileManager4.hpp>
 #include <Form/Util/IVCalculator.hpp>
 #include <Form/Util/Researcher.hpp>
 #include <Form/Util/Settings.hpp>
@@ -50,7 +51,6 @@
 //#include <Forms/Gen3/Tools/SeedTime3.hpp>
 //#include <Forms/Gen3/Tools/SpindaPainter.hpp>
 //#include <Forms/Gen4/Eggs4.hpp>
-//#include <Forms/Gen4/Profile/ProfileManager4.hpp>
 //#include <Forms/Gen4/Static4.hpp>
 //#include <Forms/Gen4/Tools/ChainedSID.hpp>
 //#include <Forms/Gen4/Tools/SeedtoTime4.hpp>
@@ -98,7 +98,7 @@ MainWindow::MainWindow(bool profile, QWidget *parent) : QMainWindow(parent), ui(
     connect(ui->pushButtonIDs4, &QPushButton::clicked, this, &MainWindow::openIDs4);
     // connect(ui->pushButtonStatic4, &QPushButton::clicked, this, &MainWindow::openStatic4);
     // connect(ui->pushButtonWild4, &QPushButton::clicked, this, &MainWindow::openWild4);
-    // connect(ui->actionProfileManager4, &QAction::triggered, this, &MainWindow::openProfileManager4);
+    connect(ui->actionProfileManager4, &QAction::triggered, this, &MainWindow::openProfileManager4);
     // connect(ui->actionIVtoPID4, &QAction::triggered, this, &MainWindow::openIVtoPID);
     // connect(ui->actionSeedtoTime4, &QAction::triggered, this, &MainWindow::openSeedtoTime4);
     // connect(ui->actionSIDfromChainedShiny, &QAction::triggered, this, &MainWindow::openSIDFromChainedShiny);
@@ -253,15 +253,6 @@ void MainWindow::openWild3()
     wild3->show();
 }
 
-void MainWindow::openIDs4()
-{
-    if (!ids4)
-    {
-        ids4 = new IDs4();
-    }
-    ids4->show();
-}
-
 /*void MainWindow::openGameCube()
 {
     if (!gamecube)
@@ -328,9 +319,25 @@ void MainWindow::openSpindaPainter()
 {
     auto *spinda = new SpindaPainter();
     spinda->show();
+}*/
+
+void MainWindow::openIDs4()
+{
+    if (!ids4)
+    {
+        ids4 = new IDs4();
+    }
+    ids4->show();
 }
 
-void MainWindow::openStatic4()
+void MainWindow::openProfileManager4() const
+{
+    auto *manager = new ProfileManager4();
+    connect(manager, &ProfileManager4::updateProfiles, this, &MainWindow::updateProfiles);
+    manager->show();
+}
+
+/*void MainWindow::openStatic4()
 {
     if (!static4)
     {
@@ -358,13 +365,6 @@ void MainWindow::openEgg4()
         connect(egg4, &Eggs4::alertProfiles, this, &MainWindow::updateProfiles);
     }
     egg4->show();
-}
-
-void MainWindow::openProfileManager4()
-{
-    auto *manager = new ProfileManager4();
-    connect(manager, &ProfileManager4::updateProfiles, this, [=] { updateProfiles(4); });
-    manager->show();
 }
 
 void MainWindow::openSeedtoTime4()

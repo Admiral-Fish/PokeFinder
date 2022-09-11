@@ -127,7 +127,12 @@ namespace Translator
     {
         // Strings are ordered to match the enum
         // Use countr_zero to get the bit that is set
-        return &games[std::countr_zero(toInt(version))];
+        int index = std::countr_zero(toInt(version));
+        if (index == 32)
+        {
+            return &games[games.size() - 1];
+        }
+        return &games[index];
     }
 
     std::string *getGender(u8 gender)

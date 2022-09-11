@@ -154,10 +154,14 @@ private slots:
      * @brief Opens the Gen 4 IDs window
      */
     void openIDs4();
+
+    /**
+     * @brief Opens the Gen 3 Profile Manager window
+     */
+    void openProfileManager4() const;
     // void openStatic4();
     // void openWild4();
     // void openEgg4();
-    // void openProfileManager4();
     // void openSeedtoTime4();
     // void openSIDFromChainedShiny();
 

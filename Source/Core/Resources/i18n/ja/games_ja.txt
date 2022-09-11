@@ -26,3 +26,4 @@ Sword
 Shield
 Brilliant Diamond
 Shining Pearl
+None
