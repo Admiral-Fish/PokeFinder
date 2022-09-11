@@ -148,8 +148,7 @@ def embed_personal():
                     ability1 = data[i+0x16]
                     ability2 = data[i+0x17]
                     abilityH = 0
-                    # Only difference in Gen 3 tables is Deoxys
-                    if i >= (386 * offset):
+                    if int(i/offset) in (386,387,388,389): # Deoxys
                         form_count = 4
                         form_stat_index = 387
                     else:
@@ -162,10 +161,26 @@ def embed_personal():
                     item3 = 0
                     gender = data[i+0x10]
                     ability1 = data[i+0x16]
-                    ability2 = data[i+0x17]
+                    ability2 = data[i+0x17] or ability1
                     abilityH = 0
-                    form_count = data[i+0x29]
-                    form_stat_index, = read.unpack(data[i+0x2a:i+0x2c])
+                    if int(i/offset) in (386, 496, 497, 498): # Deoxys
+                        form_count = 4
+                        form_stat_index = 496
+                    elif int(i/offset) in (413, 499, 500): # Wormadam
+                        form_count = 3
+                        form_stat_index = 499
+                    elif int(i/offset) in (487, 501): # Giratina
+                        form_count = 2
+                        form_stat_index = 501
+                    elif int(i/offset) in (492, 502): # Shaymin
+                        form_count = 2
+                        form_stat_index = 502
+                    elif int(i/offset) in (479, 503, 504, 505, 506, 507): # Rotom
+                        form_count = 6
+                        form_stat_index = 503
+                    else:
+                        form_count = 1
+                        form_stat_index = 0
                     present = 1
                 elif index == 5:
                     item1, = read.unpack(data[i+0xc:i+0xe])
@@ -173,8 +188,8 @@ def embed_personal():
                     item3, = read.unpack(data[i+0x10:i+0x12])
                     gender = data[i+0x12]
                     ability1 = data[i+0x18]
-                    ability2 = data[i+0x19]
-                    abilityH = data[i+0x1a]
+                    ability2 = data[i+0x19] or ability1
+                    abilityH = data[i+0x1a] or ability1
                     form_count = data[i+0x20]
                     form_stat_index, = read.unpack(data[i+0x1c:i+0x1e])
                     present = 1

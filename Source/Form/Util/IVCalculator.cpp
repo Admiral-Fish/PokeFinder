@@ -52,8 +52,8 @@ IVCalculator::IVCalculator(QWidget *parent) : QWidget(parent), ui(new Ui::IVCalc
     ui->comboBoxPokemon->setInsertPolicy(QComboBox::NoInsert);
     ui->comboBoxPokemon->completer()->setCompletionMode(QCompleter::PopupCompletion);
 
-    ui->comboBoxGame->setup({ toInt(Game::Gen3), toInt(Game::DP), toInt(Game::Platinum), toInt(Game::HGSS), toInt(Game::BW),
-                              toInt(Game::BW2), toInt(Game::SwSh), toInt(Game::BDSP) });
+    ui->comboBoxGame->setup(
+        { toInt(Game::Gen3), toInt(Game::Platinum), toInt(Game::HGSS), toInt(Game::BW2), toInt(Game::SwSh), toInt(Game::BDSP) });
 
     connect(ui->pushButtonAddRow, &QPushButton::clicked, this, &IVCalculator::addEntry);
     connect(ui->pushButtonRemoveRow, &QPushButton::clicked, this, &IVCalculator::removeEntry);
@@ -63,7 +63,7 @@ IVCalculator::IVCalculator(QWidget *parent) : QWidget(parent), ui(new Ui::IVCalc
     connect(ui->comboBoxGame, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &IVCalculator::gameIndexChanged);
 
     addEntry();
-    gameIndexChanged(toInt(Game::Emerald));
+    gameIndexChanged(0);
 
     QSettings setting;
     if (setting.contains("ivCalculator/geometry"))

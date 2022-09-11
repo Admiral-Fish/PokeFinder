@@ -99,12 +99,7 @@
         </item>
         <item>
          <property name="text">
-          <string>Diamond/Pearl</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Platinum</string>
+          <string>Diamond/Pearl/Platinum</string>
          </property>
         </item>
         <item>
@@ -114,12 +109,7 @@
         </item>
         <item>
          <property name="text">
-          <string>Black/White</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Black 2/White 2</string>
+          <string>Black/White/Black 2/White 2</string>
          </property>
         </item>
         <item>

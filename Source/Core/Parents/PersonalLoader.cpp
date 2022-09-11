@@ -29,9 +29,17 @@ namespace PersonalLoader
         {
             return personal_rsefrlg.data();
         }
-        else if ((version & Game::DPPt) != Game::None)
+        else if ((version & Game::Diamond) != Game::None)
         {
-            return personal_dppt.data();
+            return personal_d.data();
+        }
+        else if ((version & Game::Pearl) != Game::None)
+        {
+            return personal_p.data();
+        }
+        else if ((version & Game::Platinum) != Game::None)
+        {
+            return personal_pt.data();
         }
         else if ((version & Game::HGSS) != Game::None)
         {
