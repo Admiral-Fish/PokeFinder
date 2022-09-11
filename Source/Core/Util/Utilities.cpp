@@ -172,7 +172,7 @@ namespace Utilities3
 
         for (u8 i = 0; i < 20 + skips; i++)
         {
-            u8 call = rng.nextUShort() % 3;
+            u8 call = rng.nextUShort(3);
 
             calls += call == 0 ? "E" : call == 1 ? "K" : "P";
 

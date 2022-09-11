@@ -158,7 +158,7 @@ public:
     /**
      * @brief Gets the next 32bit PRNG state bounded by the \p max value
      *
-     * @param max Max value
+     * @param max Max bounding value
      *
      * @return PRNG value
      */

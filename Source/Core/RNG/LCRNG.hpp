@@ -64,9 +64,8 @@ public:
      * @brief Construct a new LCRNG object
      *
      * @param seed Starting PRNG value
-     * @param count Pointer to keep track of advance count
      */
-    LCRNG(u32 seed, u32 *count = nullptr) : count(count), seed(seed)
+    LCRNG(u32 seed) : seed(seed)
     {
     }
 
@@ -75,9 +74,8 @@ public:
      *
      * @param seed Starting PRNG value
      * @param advances Number of initial advances
-     * @param count Pointer to keep track of advance count
      */
-    LCRNG(u32 seed, u32 advances, u32 *count = nullptr) : count(count), seed(seed)
+    LCRNG(u32 seed, u32 advances) : seed(seed)
     {
         jump(advances);
     }
@@ -85,17 +83,16 @@ public:
     /**
      * @brief Advances the RNG by \p advances amount
      *
-     * @tparam flag Whether count should be incremented or not
      * @param advances Number of advances
+     * @param count Pointer to keep track of advance count
      *
      * @return PRNG value after the advances
      */
-    template <bool flag = false>
-    u32 advance(u32 advances)
+    u32 advance(u32 advances, u32 *count = nullptr)
     {
         for (u64 advance = 0; advance < advances; advance++)
         {
-            next<flag>();
+            next(count);
         }
         return seed;
     }
@@ -114,19 +111,12 @@ public:
      * @brief Jumps the RNG by \p advances amount
      * This function uses a jump ahead table to advance any amount in just O(32)
      *
-     * @tparam flag Whether count should be incremented or not
      * @param advances Number of advances
      *
      * @return PRNG value after the advances
      */
-    template <bool flag = false>
     u32 jump(u32 advances)
     {
-        if constexpr (flag)
-        {
-            *count += advances;
-        }
-
         const JumpTable *table;
         if constexpr (add == 0x01) // ARNG
         {
@@ -168,14 +158,13 @@ public:
     /**
      * @brief Gets the next 32bit PRNG state
      *
-     * @tparam flag Whether count should be incremented or not
+     * @param count Pointer to keep track of advance count
      *
      * @return PRNG value
      */
-    template <bool flag = false>
-    u32 next()
+    u32 next(u32 *count = nullptr)
     {
-        if constexpr (flag)
+        if (count)
         {
             (*count)++;
         }
@@ -185,14 +174,36 @@ public:
     /**
      * @brief Gets the next 16bit PRNG state
      *
-     * @tparam flag Whether count should be incremented or not
+     * @param count Pointer to keep track of advance count
      *
      * @return PRNG value
      */
-    template <bool flag = false>
-    u16 nextUShort()
+    u16 nextUShort(u32 *count = nullptr)
     {
-        return next<flag>() >> 16;
+        return next(count) >> 16;
+    }
+
+    /**
+     * @brief Gets the next 16bit PRNG state
+     *
+     * @tparam mod Whether the max calculation is done without mod
+     * @param max Max bounding value
+     * @param count Pointer to keep track of advance count
+     *
+     * @return PRNG value
+     */
+    template <bool mod = true>
+    u16 nextUShort(u16 max, u32 *count = nullptr)
+    {
+        u16 rand = next(count) >> 16;
+        if constexpr (mod)
+        {
+            return rand % max;
+        }
+        else
+        {
+            return rand / ((0xffff + max) + 1);
+        }
     }
 
     /**
@@ -206,7 +217,6 @@ public:
     }
 
 private:
-    u32 *count;
     u32 seed;
 };
 

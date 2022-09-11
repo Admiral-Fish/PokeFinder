@@ -59,10 +59,10 @@ public:
         u8 max = slot.getMaxLevel();
         u8 range = max - min + 1;
 
-        u8 rand = rng.nextUShort() % range;
+        u8 rand = rng.nextUShort(range);
         if (force)
         {
-            if ((rng.nextUShort() & 1) == 0)
+            if (rng.nextUShort(2) == 0)
             {
                 return max;
             }

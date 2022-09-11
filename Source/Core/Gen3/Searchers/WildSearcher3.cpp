@@ -53,7 +53,8 @@ WildSearcher3::WildSearcher3(u16 tid, u16 sid, Game version, Method method, Enco
     modifiedSlots(encounterArea.getSlots(lead)),
     progress(0),
     cache(method),
-    ivAdvance(method == Method::MethodH2)
+    ivAdvance(method == Method::MethodH2),
+    searching(false)
 {
 }
 
@@ -206,7 +207,7 @@ std::vector<WildSearcherState3> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 
                 {
                     u16 levelRand = safari ? temp.nextUShort() : nextRNG2;
                     u16 encounterRand = temp.nextUShort();
-                    if ((temp.nextUShort() % 2) == 0 && !modifiedSlots.empty())
+                    if (temp.nextUShort(2) == 0 && !modifiedSlots.empty())
                     {
                         encounterSlot = modifiedSlots[encounterRand % modifiedSlots.size()];
                     }

@@ -62,15 +62,15 @@ std::vector<WildGeneratorState3> WildGenerator3::generate(u32 seed, const Encoun
         PokeRNG go(rng.getSeed());
 
         // RSE uses the main rng to check for rock smash encounters
-        if (rse && encounter == Encounter::RockSmash && (go.nextUShort() % 2880) >= rate)
+        if (rse && encounter == Encounter::RockSmash && go.nextUShort(2880) >= rate)
         {
             continue;
         }
 
         u8 encounterSlot;
-        if ((lead == Lead::MagnetPull || lead == Lead::Static) && (go.nextUShort() & 1) == 0 && !modifiedSlots.empty())
+        if ((lead == Lead::MagnetPull || lead == Lead::Static) && go.nextUShort(2) == 0 && !modifiedSlots.empty())
         {
-            encounterSlot = modifiedSlots[go.nextUShort() % modifiedSlots.size()];
+            encounterSlot = modifiedSlots[go.nextUShort(modifiedSlots.size())];
         }
         else
         {
@@ -97,7 +97,7 @@ std::vector<WildGeneratorState3> WildGenerator3::generate(u32 seed, const Encoun
                 cuteCharmFlag = false;
                 break;
             default:
-                cuteCharmFlag = (go.nextUShort() % 3) > 0;
+                cuteCharmFlag = go.nextUShort(3) != 0;
                 break;
             }
         }
@@ -111,11 +111,11 @@ std::vector<WildGeneratorState3> WildGenerator3::generate(u32 seed, const Encoun
         u8 nature;
         if (lead <= Lead::SynchronizeEnd)
         {
-            nature = (go.nextUShort() & 1) == 0 ? toInt(lead) : go.nextUShort() % 25;
+            nature = go.nextUShort(2) == 0 ? toInt(lead) : go.nextUShort(25);
         }
         else
         {
-            nature = go.nextUShort() % 25;
+            nature = go.nextUShort(25);
         }
 
         if (!filter.compareNature(nature))
