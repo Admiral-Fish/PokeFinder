@@ -40,6 +40,9 @@ public:
      * @param spe Base Spe
      * @param type1 1st type
      * @param type2 2nd type
+     * @param item1 1st item
+     * @param item2 2nd item
+     * @param item3 3rd item
      * @param gender Gender ratio
      * @param ability1 1st Ability
      * @param ability2 2nd Ability
@@ -48,9 +51,10 @@ public:
      * @param formStatIndex Alternate form index
      * @param present Obtainable in-game
      */
-    constexpr PersonalInfo(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, u8 type1, u8 type2, u8 gender, u16 ability1, u16 ability2,
-                           u16 abilityH, u8 formCount, u16 formStatIndex, bool present) :
+    constexpr PersonalInfo(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, u8 type1, u8 type2, u16 item1, u16 item2, u16 item3, u8 gender,
+                           u16 ability1, u16 ability2, u16 abilityH, u8 formCount, u16 formStatIndex, bool present) :
         ability { ability1, ability2, abilityH },
+        item { item1, item2, item3 },
         formCount(formCount),
         formStatIndex(formStatIndex),
         stats { hp, atk, def, spa, spd, spe },
@@ -100,6 +104,11 @@ public:
     u16 getAbilityH() const
     {
         return ability[2];
+    }
+
+    u16 getItem(int index) const
+    {
+        return item[index];
     }
 
     /**
@@ -186,6 +195,7 @@ public:
 
 private:
     u16 ability[3];
+    u16 item[3];
     u16 formCount : 5;
     u16 formStatIndex : 11;
     std::array<u8, 6> stats;

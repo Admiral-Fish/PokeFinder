@@ -5,6 +5,7 @@ import glob
 import json
 import os
 import re
+import struct
 
 
 def embed_encounters():
@@ -105,6 +106,7 @@ def embed_encounters():
 
 def embed_personal():
     arrays = []
+    read = struct.Struct("<H")
     for index in (3, 4, 5, 8):
         for file in glob.glob(f"Personal/Gen{index}/*.bin"):
             with open(file, "rb") as f:
@@ -139,6 +141,9 @@ def embed_personal():
                 type2 = data[i+0x7]
 
                 if index == 3:
+                    item1 = 0
+                    item2 = 0
+                    item3 = 0
                     gender = data[i+0x10]
                     ability1 = data[i+0x16]
                     ability2 = data[i+0x17]
@@ -152,31 +157,40 @@ def embed_personal():
                         form_stat_index = 0
                     present = 1
                 elif index == 4:
+                    item1, = read.unpack(data[i+0xc:i+0xe])
+                    item2, = read.unpack(data[i+0xe:i+0x10])
+                    item3 = 0
                     gender = data[i+0x10]
                     ability1 = data[i+0x16]
                     ability2 = data[i+0x17]
                     abilityH = 0
                     form_count = data[i+0x29]
-                    form_stat_index = (data[i+0x2b] << 8) | data[i+0x2a]
+                    form_stat_index, = read.unpack(data[i+0x2a:i+0x2c])
                     present = 1
                 elif index == 5:
+                    item1, = read.unpack(data[i+0xc:i+0xe])
+                    item2, = read.unpack(data[i+0xe:i+0x10])
+                    item3, = read.unpack(data[i+0x10:i+0x12])
                     gender = data[i+0x12]
                     ability1 = data[i+0x18]
                     ability2 = data[i+0x19]
                     abilityH = data[i+0x1a]
                     form_count = data[i+0x20]
-                    form_stat_index = (data[i+0x1d] << 8) | data[i+0x1c]
+                    form_stat_index, = read.unpack(data[i+0x1c:i+0x1e])
                     present = 1
                 elif index == 8:
+                    item1, = read.unpack(data[i+0xc:i+0xe])
+                    item2, = read.unpack(data[i+0xe:i+0x10])
+                    item3, = read.unpack(data[i+0x10:i+0x12])
                     gender = data[i+0x12]
-                    ability1 = (data[i+0x19] << 8) | data[i+0x18]
-                    ability2 = (data[i+0x1b] << 8) | data[i+0x1a]
-                    abilityH = (data[i+0x1d] << 8) | data[i+0x1c]
+                    ability1, = read.unpack(data[i+0x18:i+0x1a])
+                    ability2, = read.unpack(data[i+0x1a:i+0x1c])
+                    abilityH, = read.unpack(data[i+0x1c:i+0x1e])
                     form_count = data[i+0x20]
-                    form_stat_index = (data[i+0x1f] << 8) | data[i+0x1e]
+                    form_stat_index, = read.unpack(data[i+0x1e:i+0x20])
                     present = (data[i+0x21] >> 6) & 1
 
-                personal = f"PersonalInfo({hp}, {atk}, {defense}, {spa}, {spd}, {spe}, {type1}, {type2}, {gender}, {ability1}, {ability2}, {abilityH}, {form_count}, {form_stat_index}, {present})"
+                personal = f"PersonalInfo({hp}, {atk}, {defense}, {spa}, {spd}, {spe}, {type1}, {type2}, {item1}, {item2}, {item3}, {gender}, {ability1}, {ability2}, {abilityH}, {form_count}, {form_stat_index}, {present})"
                 string += personal
                 if i != size - offset:
                     string += ", "
