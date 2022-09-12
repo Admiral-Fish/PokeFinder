@@ -17,17 +17,17 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include "StateFilter3.hpp"
-#include <Core/Gen3/States/State3.hpp>
-#include <Core/Gen3/States/WildState3.hpp>
+#include "StateFilter4.hpp"
+#include <Core/Gen4/States/State4.hpp>
+#include <Core/Gen4/States/WildState4.hpp>
 
-StateFilter3::StateFilter3(u8 gender, u8 ability, u8 shiny, bool skip, const std::array<u8, 6> &min, const std::array<u8, 6> &max,
+StateFilter4::StateFilter4(u8 gender, u8 ability, u8 shiny, bool skip, const std::array<u8, 6> &min, const std::array<u8, 6> &max,
                            const std::array<bool, 25> &natures, const std::array<bool, 16> &powers) :
     StateFilter(gender, ability, shiny, skip, min, max, natures, powers)
 {
 }
 
-bool StateFilter3::compareState(const GeneratorState3 &state) const
+bool StateFilter4::compareState(const GeneratorState4 &state) const
 {
     if (skip)
     {
@@ -71,7 +71,7 @@ bool StateFilter3::compareState(const GeneratorState3 &state) const
     return true;
 }
 
-bool StateFilter3::compareState(const SearcherState3 &state) const
+bool StateFilter4::compareState(const SearcherState4 &state) const
 {
     if (ability != 255 && ability != state.getAbility())
     {
@@ -96,14 +96,14 @@ bool StateFilter3::compareState(const SearcherState3 &state) const
     return true;
 }
 
-WildStateFilter3::WildStateFilter3(u8 gender, u8 ability, u8 shiny, bool skip, const std::array<u8, 6> &min, const std::array<u8, 6> &max,
+WildStateFilter4::WildStateFilter4(u8 gender, u8 ability, u8 shiny, bool skip, const std::array<u8, 6> &min, const std::array<u8, 6> &max,
                                    const std::array<bool, 25> &natures, const std::array<bool, 16> &powers,
                                    const std::array<bool, 12> &encounterSlots) :
     WildStateFilter(gender, ability, shiny, skip, min, max, natures, powers, encounterSlots)
 {
 }
 
-bool WildStateFilter3::compareState(const WildGeneratorState3 &state) const
+bool WildStateFilter4::compareState(const WildGeneratorState4 &state) const
 {
     if (skip)
     {
@@ -142,7 +142,7 @@ bool WildStateFilter3::compareState(const WildGeneratorState3 &state) const
     return true;
 }
 
-bool WildStateFilter3::compareState(const WildSearcherState3 &state) const
+bool WildStateFilter4::compareState(const WildSearcherState4 &state) const
 {
     if (ability != 255 && ability != state.getAbility())
     {

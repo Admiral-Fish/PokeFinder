@@ -37,9 +37,6 @@ void StaticSearcher3::startSearch(const std::array<u8, 6> &min, const std::array
 {
     searching = true;
 
-    u8 level = staticTemplate->getLevel();
-    const PersonalInfo *info = staticTemplate->getInfo();
-
     for (u8 hp = min[0]; hp <= max[0]; hp++)
     {
         for (u8 atk = min[1]; atk <= max[1]; atk++)
@@ -57,7 +54,7 @@ void StaticSearcher3::startSearch(const std::array<u8, 6> &min, const std::array
                                 return;
                             }
 
-                            auto states = search(hp, atk, def, spa, spd, spe, level, info);
+                            auto states = search(hp, atk, def, spa, spd, spe, staticTemplate);
 
                             std::lock_guard<std::mutex> guard(mutex);
                             results.insert(results.end(), states.begin(), states.end());
@@ -87,10 +84,10 @@ std::vector<SearcherState3> StaticSearcher3::getResults()
     return data;
 }
 
-std::vector<SearcherState3> StaticSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, u8 level, const PersonalInfo *info) const
+std::vector<SearcherState3> StaticSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe,
+                                                    const StaticTemplate *staticTemplate) const
 {
     std::vector<SearcherState3> states;
-
     std::array<u8, 6> ivs = { hp, atk, def, spa, spd, spe };
 
     u32 seeds[6];
@@ -103,10 +100,16 @@ std::vector<SearcherState3> StaticSearcher3::search(u8 hp, u8 atk, u8 def, u8 sp
             rng.next();
         }
 
-        u16 high = rng.nextUShort();
-        u16 low = rng.nextUShort();
+        u32 pid = rng.nextUShort() << 16;
+        pid |= rng.nextUShort();
 
-        SearcherState3 state(rng.next(), high, low, ivs, tsv, level, info);
+        u8 nature = pid % 25;
+        if (!filter.compareNature(nature))
+        {
+            continue;
+        }
+
+        SearcherState3 state(rng.next(), pid, nature, ivs, tsv, staticTemplate->getLevel(), staticTemplate->getInfo());
         if (filter.compareState(state))
         {
             states.emplace_back(state);

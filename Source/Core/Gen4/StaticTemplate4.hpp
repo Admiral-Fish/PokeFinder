@@ -22,6 +22,8 @@
 
 #include <Core/Parents/StaticTemplate.hpp>
 
+enum class Method : u8;
+
 /**
  * @brief Contains additional information for Gen4 static encounters
  */
@@ -36,22 +38,35 @@ public:
      * @param level Level of the template
      * @param form Form of the template
      */
-    constexpr StaticTemplate4(Game version, u16 specie, u8 level, u8 form = 0) : StaticTemplate(version, specie, level), form(form)
+    constexpr StaticTemplate4(Game version, u16 specie, u8 level, Method method) : StaticTemplate(version, specie, level), method(method)
     {
     }
 
     /**
-     * @brief Determines what form the template should have
+     * @brief Construct a new StaticTemplate object
      *
-     * @return Template form
+     * @param version Game the template appears in
+     * @param specie Specie of the template
+     * @param level Level of the template
+     * @param shiny Shiny of the template
      */
-    u8 getForm() const
+    constexpr StaticTemplate4(Game version, u16 specie, u8 level, Method method, u8 form) :
+        StaticTemplate(version, specie, level, form), method(method)
     {
-        return form;
+    }
+
+    constexpr StaticTemplate4(Game version, u16 specie, u8 level, Method method, Shiny shiny) :
+        StaticTemplate(version, specie, level, shiny), method(method)
+    {
+    }
+
+    Method getMethod() const
+    {
+        return method;
     }
 
 private:
-    u8 form;
+    Method method;
 };
 
 #endif // STATICTEMPLATE4_HPP

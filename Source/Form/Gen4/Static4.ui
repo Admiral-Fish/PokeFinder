@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Static3</class>
- <widget class="QWidget" name="Static3">
+ <class>Static4</class>
+ <widget class="QWidget" name="Static4">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -11,11 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Gen 3 Static</string>
-  </property>
-  <property name="windowIcon">
-   <iconset>
-    <normaloff>:/pokefinder.ico</normaloff>:/pokefinder.ico</iconset>
+   <string>Gen 4 Static</string>
   </property>
   <layout class="QGridLayout" name="gridLayout_7">
    <item row="0" column="0">
@@ -23,11 +19,11 @@
      <property name="title">
       <string>Profile</string>
      </property>
-     <layout class="QGridLayout" name="gridLayout_4">
-      <item row="0" column="4" rowspan="2">
-       <widget class="Line" name="line">
-        <property name="orientation">
-         <enum>Qt::Vertical</enum>
+     <layout class="QGridLayout" name="gridLayout_5">
+      <item row="0" column="0">
+       <widget class="QLabel" name="labelProfile">
+        <property name="text">
+         <string>Profile</string>
         </property>
        </widget>
       </item>
@@ -41,7 +37,7 @@
       <item row="0" column="6">
        <widget class="QLabel" name="labelProfileGameValue">
         <property name="text">
-         <string>Emerald</string>
+         <string>Diamond</string>
         </property>
        </widget>
       </item>
@@ -52,10 +48,34 @@
         </property>
        </widget>
       </item>
+      <item row="1" column="1">
+       <widget class="QPushButton" name="pushButtonProfileManager">
+        <property name="text">
+         <string>Manager</string>
+        </property>
+       </widget>
+      </item>
       <item row="0" column="3">
        <widget class="QLabel" name="labelProfileTIDValue">
         <property name="text">
          <string notr="true">12345</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QComboBox" name="comboBoxProfiles"/>
+      </item>
+      <item row="1" column="2">
+       <widget class="QLabel" name="labelProfileSID">
+        <property name="text">
+         <string>SID</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="4" rowspan="2">
+       <widget class="Line" name="line">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
         </property>
        </widget>
       </item>
@@ -66,36 +86,6 @@
         </property>
        </widget>
       </item>
-      <item row="1" column="1">
-       <widget class="QPushButton" name="pushButtonProfileManager">
-        <property name="text">
-         <string>Manager</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="0">
-       <widget class="QLabel" name="labelProfile">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="text">
-         <string>Profile</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="2">
-       <widget class="QLabel" name="labelProfileSID">
-        <property name="text">
-         <string>SID</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="1">
-       <widget class="QComboBox" name="comboBoxProfiles"/>
-      </item>
      </layout>
     </widget>
    </item>
@@ -105,47 +95,88 @@
       <attribute name="title">
        <string>Generator</string>
       </attribute>
-      <layout class="QGridLayout" name="gridLayout_5">
+      <layout class="QGridLayout" name="gridLayout_10">
        <item row="0" column="0">
         <widget class="QGroupBox" name="groupBoxGeneratorRNGInfo">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>1</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
          <property name="title">
           <string>RNG Info</string>
          </property>
          <layout class="QGridLayout" name="gridLayout_6">
-          <item row="4" column="1">
+          <item row="3" column="0">
+           <widget class="QLabel" name="labelGeneratorSeed">
+            <property name="text">
+             <string>Seed</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0">
+           <widget class="QLabel" name="labelGeneratorLead">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>Lead</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="ComboMenu" name="toolButtonGeneratorLead">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="popupMode">
+             <enum>QToolButton::InstantPopup</enum>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="1">
+           <widget class="TextBox" name="textBoxGeneratorSeed">
+            <property name="maxLength">
+             <number>8</number>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
            <widget class="TextBox" name="textBoxGeneratorMaxAdvances">
             <property name="text">
              <string notr="true">100000</string>
             </property>
            </widget>
           </item>
-          <item row="4" column="0">
+          <item row="2" column="0">
            <widget class="QLabel" name="labelGeneratorMaxAdvances">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
             <property name="text">
              <string>Max Advances</string>
             </property>
            </widget>
           </item>
-          <item row="3" column="0">
-           <widget class="QLabel" name="labelGeneratorInitialAdvances">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
+          <item row="1" column="1">
+           <widget class="TextBox" name="textBoxGeneratorInitialAdvances">
+            <property name="text">
+             <string notr="true">0</string>
             </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="labelGeneratorInitialAdvances">
             <property name="text">
              <string>Initial Advances</string>
             </property>
            </widget>
           </item>
-          <item row="6" column="0" colspan="2">
+          <item row="4" column="0" colspan="2">
            <widget class="QPushButton" name="pushButtonGenerate">
             <property name="enabled">
              <bool>true</bool>
@@ -160,90 +191,6 @@
              <bool>false</bool>
             </property>
            </widget>
-          </item>
-          <item row="2" column="0">
-           <widget class="QLabel" name="labelGeneratorSeed">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="text">
-             <string>Seed</string>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="1">
-           <widget class="TextBox" name="textBoxGeneratorInitialAdvances">
-            <property name="text">
-             <string notr="true">0</string>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="1">
-           <widget class="TextBox" name="textBoxGeneratorSeed"/>
-          </item>
-          <item row="1" column="0">
-           <widget class="QLabel" name="labelGeneratorMethod">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="text">
-             <string>Method</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="1">
-           <widget class="ComboBox" name="comboBoxGeneratorMethod">
-            <item>
-             <property name="text">
-              <string>Method 1</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Method 4</string>
-             </property>
-            </item>
-           </widget>
-          </item>
-         </layout>
-        </widget>
-       </item>
-       <item row="1" column="0" colspan="3">
-        <widget class="TableView" name="tableViewGenerator">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-           <horstretch>0</horstretch>
-           <verstretch>1</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="contextMenuPolicy">
-          <enum>Qt::CustomContextMenu</enum>
-         </property>
-         <attribute name="verticalHeaderVisible">
-          <bool>false</bool>
-         </attribute>
-        </widget>
-       </item>
-       <item row="0" column="2">
-        <widget class="QGroupBox" name="groupBoxGeneratorFilters">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-           <horstretch>1</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="title">
-          <string>Filters</string>
-         </property>
-         <layout class="QGridLayout" name="gridLayout">
-          <item row="0" column="0" rowspan="2">
-           <widget class="Filter" name="filterGenerator" native="true"/>
           </item>
          </layout>
         </widget>
@@ -298,6 +245,11 @@
               <string>Events</string>
              </property>
             </item>
+            <item>
+             <property name="text">
+              <string>Roamers</string>
+             </property>
+            </item>
            </widget>
           </item>
           <item row="1" column="0">
@@ -334,6 +286,34 @@
          </layout>
         </widget>
        </item>
+       <item row="0" column="2">
+        <widget class="QGroupBox" name="groupBoxGeneratorFilters">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>3</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="title">
+          <string>Filters</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout">
+          <item row="0" column="0" rowspan="2">
+           <widget class="Filter" name="filterGenerator" native="true"/>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="1" column="0" colspan="3">
+        <widget class="TableView" name="tableViewGenerator">
+         <property name="contextMenuPolicy">
+          <enum>Qt::CustomContextMenu</enum>
+         </property>
+         <attribute name="verticalHeaderVisible">
+          <bool>false</bool>
+         </attribute>
+        </widget>
+       </item>
       </layout>
      </widget>
      <widget class="QWidget" name="tabSpreadSearcher">
@@ -343,34 +323,79 @@
       <layout class="QGridLayout" name="gridLayout_9">
        <item row="0" column="0">
         <widget class="QGroupBox" name="groupBoxSearcherRNGInfo">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>1</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
          <property name="title">
           <string>RNG Info</string>
          </property>
-         <layout class="QGridLayout" name="gridLayout_11">
-          <item row="0" column="0">
-           <widget class="QLabel" name="labelSearcherMethod">
-            <property name="text">
-             <string>Method</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="1">
-           <widget class="ComboBox" name="comboBoxSearcherMethod">
-            <item>
-             <property name="text">
-              <string>Method 1</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Method 4</string>
-             </property>
-            </item>
-           </widget>
-          </item>
+         <layout class="QGridLayout" name="gridLayout_2">
           <item row="1" column="0" colspan="2">
-           <layout class="QGridLayout" name="gridLayout_2">
+           <layout class="QGridLayout" name="gridLayout_3">
             <item row="0" column="0">
+             <widget class="QLabel" name="labelSearcherMinDelay">
+              <property name="text">
+               <string>Min Delay</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="1">
+             <widget class="TextBox" name="textBoxSearcherMinDelay">
+              <property name="text">
+               <string notr="true">600</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="2">
+             <widget class="QLabel" name="labelSearcherMaxDelay">
+              <property name="text">
+               <string>Max Delay</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="3">
+             <widget class="TextBox" name="textBoxSearcherMaxDelay">
+              <property name="text">
+               <string notr="true">2000</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="0">
+             <widget class="QLabel" name="labelSearcherMinAdvance">
+              <property name="text">
+               <string>Min Advance</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="1">
+             <widget class="TextBox" name="textBoxSearcherMinAdvance">
+              <property name="text">
+               <string notr="true">0</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="2">
+             <widget class="QLabel" name="labelSearcherMaxAdvance">
+              <property name="text">
+               <string>Max Advance</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="3">
+             <widget class="TextBox" name="textBoxSearcherMaxAdvance">
+              <property name="text">
+               <string notr="true">1000</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item row="2" column="0" colspan="2">
+           <layout class="QHBoxLayout" name="horizontalLayout">
+            <item>
              <widget class="QPushButton" name="pushButtonSearch">
               <property name="enabled">
                <bool>true</bool>
@@ -386,7 +411,7 @@
               </property>
              </widget>
             </item>
-            <item row="0" column="1">
+            <item>
              <widget class="QPushButton" name="pushButtonCancel">
               <property name="enabled">
                <bool>false</bool>
@@ -398,45 +423,56 @@
             </item>
            </layout>
           </item>
+          <item row="0" column="0">
+           <widget class="QLabel" name="labelSearcherLead">
+            <property name="text">
+             <string>Lead</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="ComboBox" name="comboBoxSearcherLead">
+            <item>
+             <property name="text">
+              <string>None</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Cute Charm ♂</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Cute Charm ♀</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Synchronize</string>
+             </property>
+            </item>
+           </widget>
+          </item>
          </layout>
-        </widget>
-       </item>
-       <item row="2" column="0" colspan="3">
-        <widget class="TableView" name="tableViewSearcher">
-         <property name="contextMenuPolicy">
-          <enum>Qt::CustomContextMenu</enum>
-         </property>
-         <property name="sortingEnabled">
-          <bool>true</bool>
-         </property>
-         <attribute name="verticalHeaderVisible">
-          <bool>false</bool>
-         </attribute>
         </widget>
        </item>
        <item row="0" column="2">
         <widget class="QGroupBox" name="groupBoxSearcherFilters">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-           <horstretch>1</horstretch>
+           <horstretch>3</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
          <property name="title">
           <string>Filters</string>
          </property>
-         <layout class="QGridLayout" name="gridLayout_3">
+         <layout class="QGridLayout" name="gridLayout_4">
           <item row="0" column="0" rowspan="2">
            <widget class="Filter" name="filterSearcher" native="true"/>
           </item>
          </layout>
-        </widget>
-       </item>
-       <item row="1" column="0" colspan="3">
-        <widget class="QProgressBar" name="progressBar">
-         <property name="value">
-          <number>0</number>
-         </property>
         </widget>
        </item>
        <item row="0" column="1">
@@ -444,7 +480,7 @@
          <property name="title">
           <string>Settings</string>
          </property>
-         <layout class="QGridLayout" name="gridLayout_10">
+         <layout class="QGridLayout" name="gridLayout_11">
           <item row="0" column="0">
            <widget class="QLabel" name="labelSearcherCategory">
             <property name="text">
@@ -525,13 +561,32 @@
          </layout>
         </widget>
        </item>
+       <item row="1" column="0" colspan="3">
+        <widget class="QProgressBar" name="progressBar">
+         <property name="value">
+          <number>0</number>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0" colspan="3">
+        <widget class="TableView" name="tableViewSearcher">
+         <property name="contextMenuPolicy">
+          <enum>Qt::CustomContextMenu</enum>
+         </property>
+         <property name="sortingEnabled">
+          <bool>true</bool>
+         </property>
+         <attribute name="verticalHeaderVisible">
+          <bool>false</bool>
+         </attribute>
+        </widget>
+       </item>
       </layout>
      </widget>
     </widget>
    </item>
   </layout>
  </widget>
- <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
   <customwidget>
    <class>TableView</class>
@@ -554,26 +609,29 @@
    <header>Form/Controls/Filter.hpp</header>
    <container>1</container>
   </customwidget>
+  <customwidget>
+   <class>ComboMenu</class>
+   <extends>QToolButton</extends>
+   <header>Form/Controls/ComboMenu.hpp</header>
+  </customwidget>
  </customwidgets>
  <tabstops>
   <tabstop>comboBoxProfiles</tabstop>
   <tabstop>pushButtonProfileManager</tabstop>
   <tabstop>tabRNGSelector</tabstop>
-  <tabstop>comboBoxGeneratorMethod</tabstop>
-  <tabstop>textBoxGeneratorSeed</tabstop>
+  <tabstop>toolButtonGeneratorLead</tabstop>
   <tabstop>textBoxGeneratorInitialAdvances</tabstop>
   <tabstop>textBoxGeneratorMaxAdvances</tabstop>
+  <tabstop>textBoxGeneratorSeed</tabstop>
   <tabstop>pushButtonGenerate</tabstop>
-  <tabstop>comboBoxGeneratorCategory</tabstop>
-  <tabstop>comboBoxGeneratorPokemon</tabstop>
-  <tabstop>spinBoxGeneratorLevel</tabstop>
   <tabstop>tableViewGenerator</tabstop>
-  <tabstop>comboBoxSearcherMethod</tabstop>
+  <tabstop>comboBoxSearcherLead</tabstop>
+  <tabstop>textBoxSearcherMinDelay</tabstop>
+  <tabstop>textBoxSearcherMaxDelay</tabstop>
+  <tabstop>textBoxSearcherMinAdvance</tabstop>
+  <tabstop>textBoxSearcherMaxAdvance</tabstop>
   <tabstop>pushButtonSearch</tabstop>
   <tabstop>pushButtonCancel</tabstop>
-  <tabstop>comboBoxSearcherCategory</tabstop>
-  <tabstop>comboBoxSearcherPokemon</tabstop>
-  <tabstop>spinBoxSearcherLevel</tabstop>
   <tabstop>tableViewSearcher</tabstop>
  </tabstops>
  <resources/>

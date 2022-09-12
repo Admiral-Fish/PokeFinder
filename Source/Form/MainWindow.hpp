@@ -159,7 +159,12 @@ private slots:
      * @brief Opens the Gen 3 Profile Manager window
      */
     void openProfileManager4() const;
-    // void openStatic4();
+
+    /**
+     * @brief Opens the Gen 4 Static window
+     */
+    void openStatic4();
+
     // void openWild4();
     // void openEgg4();
     // void openSeedtoTime4();

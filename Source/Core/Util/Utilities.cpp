@@ -24,7 +24,7 @@
 #include <Core/RNG/MT.hpp>
 #include <Core/Util/DateTime.hpp>
 
-/*namespace
+namespace
 {
     u32 advanceProbabilityTable(BWRNG &rng)
     {
@@ -107,7 +107,7 @@
 
         return pitch + std::to_string(result);
     }
-}*/
+}
 
 namespace Utilities3
 {
@@ -126,7 +126,7 @@ namespace Utilities3
     }
 }
 
-/*namespace Utilities4
+namespace Utilities4
 {
     u32 calcSeed(const DateTime &dateTime, u32 delay)
     {
@@ -158,7 +158,7 @@ namespace Utilities3
         return coins;
     }
 
-    std::string getCalls(u32 seed, const HGSSRoamer &info)
+    /*std::string getCalls(u32 seed, const HGSSRoamer &info)
     {
         std::string calls;
 
@@ -189,15 +189,15 @@ namespace Utilities3
             }
         }
         return calls;
-    }
+    }*/
 
-    std::string getChatot(u32 seed)
+    std::string getChatot(u8 prng)
     {
-        return getPitch(((seed & 0x1fff) * 100) >> 13);
+        return getPitch(prng);
     }
 }
 
-namespace Utilities5
+/*namespace Utilities5
 {
     std::string getChatot(u32 seed)
     {

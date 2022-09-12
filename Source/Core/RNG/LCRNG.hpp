@@ -202,7 +202,7 @@ public:
         }
         else
         {
-            return rand / ((0xffff + max) + 1);
+            return rand / ((0xffff / max) + 1);
         }
     }
 

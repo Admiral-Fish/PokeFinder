@@ -17,7 +17,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include "State3.hpp"
+#include "State4.hpp"
 #include <Core/Parents/PersonalInfo.hpp>
 #include <Core/Parents/PersonalLoader.hpp>
 #include <Core/Util/Nature.hpp>
@@ -25,17 +25,17 @@
 
 constexpr int order[6] = { 0, 1, 2, 5, 3, 4 };
 
-GeneratorState3::GeneratorState3(u32 advances, u16 high, u16 low, u16 iv1, u16 iv2, u16 tsv, u8 level, const PersonalInfo *info) :
-    GeneratorState(advances)
+GeneratorState4::GeneratorState4(u16 prng, u32 advances, u32 pid, u16 iv1, u16 iv2, u16 tsv, u8 level, const PersonalInfo *info) :
+    GeneratorState(advances), call(prng % 3), chatot(((prng % 8192) * 100) >> 13)
 {
     this->level = level;
 
-    pid = (high << 16) | low;
-    ability = low & 1;
+    this->pid = pid;
+    ability = pid & 1;
     abilityIndex = info->getAbility(ability);
     nature = pid % 25;
 
-    u16 psv = (high ^ low);
+    u16 psv = ((pid >> 16) ^ (pid & 0xffff));
     if (tsv == psv)
     {
         shiny = 2; // Square
@@ -61,7 +61,7 @@ GeneratorState3::GeneratorState3(u32 advances, u16 high, u16 low, u16 iv1, u16 i
         gender = 0;
         break;
     default: // Random gender
-        gender = (low & 255) < info->getGender();
+        gender = (pid & 255) < info->getGender();
         break;
     }
 
@@ -94,7 +94,7 @@ GeneratorState3::GeneratorState3(u32 advances, u16 high, u16 low, u16 iv1, u16 i
     hiddenPowerStrength = 30 + (p * 40 / 63);
 }
 
-SearcherState3::SearcherState3(u32 seed, u32 pid, u8 nature, std::array<u8, 6> ivs, u16 tsv, u8 level, const PersonalInfo *info) :
+SearcherState4::SearcherState4(u32 seed, u32 pid, u8 nature, std::array<u8, 6> ivs, u16 tsv, u8 level, const PersonalInfo *info) :
     SearcherState(seed)
 {
     this->level = level;

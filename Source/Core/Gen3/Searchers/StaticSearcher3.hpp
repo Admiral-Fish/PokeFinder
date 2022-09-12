@@ -25,7 +25,6 @@
 #include <Core/RNG/RNGCache.hpp>
 #include <mutex>
 
-class PersonalInfo;
 class StaticTemplate;
 
 /**
@@ -35,7 +34,7 @@ class StaticSearcher3 : public StaticSearcher<StateFilter3>
 {
 public:
     /**
-     * @brief Construct a new StaticGenerator object
+     * @brief Construct a new StaticSearcher3 object
      *
      * @param tid Trainer ID
      * @param sid Secret ID
@@ -91,12 +90,11 @@ private:
      * @param spa SpA IV
      * @param spd SpD IV
      * @param spe Spe IV
-     * @param level Pokemon level
-     * @param info Pokemon information
+     * @param staticTemplate Pokemon template
      *
      * @return Vector of computed states
      */
-    std::vector<SearcherState3> search(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, u8 level, const PersonalInfo *info) const;
+    std::vector<SearcherState3> search(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, const StaticTemplate *staticTemplate) const;
 };
 
 #endif // STATICSEARCHER3_HPP

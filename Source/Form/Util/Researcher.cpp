@@ -42,7 +42,7 @@
  *
  * @return Vector of PRNG states
  */
-template <class RNGType, bool lcrng = true>
+template <class RNGType>
 static std::vector<u64> getStates(RNGType rng, u32 initial, u32 max)
 {
     std::vector<u64> states;
@@ -58,11 +58,6 @@ static std::vector<u64> getStates(RNGType rng, u32 initial, u32 max)
     else
     {
         rng.advance(initial);
-    }
-
-    if constexpr (lcrng)
-    {
-        states.emplace_back(rng.getSeed());
     }
 
     for (u32 i = 0; i < max; i++)
@@ -238,7 +233,7 @@ void Researcher::generate()
             rngStates = getStates(ARNGR(seed), initialAdvances, maxAdvances);
             break;
         case 6:
-            rngStates = getStates<MT, false>(MT(seed), initialAdvances, maxAdvances);
+            rngStates = getStates<MT>(MT(seed), initialAdvances, maxAdvances);
             break;
         }
     }
@@ -258,24 +253,24 @@ void Researcher::generate()
             {
                 seed >>= 32;
             }
-            rngStates = getStates<SFMT, false>(SFMT(seed), initialAdvances, maxAdvances);
+            rngStates = getStates<SFMT>(SFMT(seed), initialAdvances, maxAdvances);
             break;
         case 3:
-            rngStates = getStates<XoroshiroBDSP, false>(XoroshiroBDSP(seed), initialAdvances, maxAdvances);
+            rngStates = getStates<XoroshiroBDSP>(XoroshiroBDSP(seed), initialAdvances, maxAdvances);
             break;
         }
     }
     else if (ui->rngSelection->currentIndex() == 2)
     {
-        rngStates = getStates<TinyMT, false>(TinyMT(ui->textBoxTinyMTSeed0->getUInt(), ui->textBoxTinyMTSeed1->getUInt(),
-                                                    ui->textBoxTinyMTSeed2->getUInt(), ui->textBoxTinyMTSeed3->getUInt()),
-                                             initialAdvances, maxAdvances);
+        rngStates = getStates<TinyMT>(TinyMT(ui->textBoxTinyMTSeed0->getUInt(), ui->textBoxTinyMTSeed1->getUInt(),
+                                             ui->textBoxTinyMTSeed2->getUInt(), ui->textBoxTinyMTSeed3->getUInt()),
+                                      initialAdvances, maxAdvances);
     }
     else
     {
         u64 seed0 = ui->textBoxXorshiftSeed0->getULong();
         u64 seed1 = ui->textBoxXorshiftSeed1->getULong();
-        rngStates = getStates<Xorshift, false>(Xorshift(seed0, seed1), initialAdvances, maxAdvances);
+        rngStates = getStates<Xorshift>(Xorshift(seed0, seed1), initialAdvances, maxAdvances);
     }
 
     QHash<QString, u64 (*)(u64, u64)> calc;

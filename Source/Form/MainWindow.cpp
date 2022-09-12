@@ -26,6 +26,7 @@
 #include <Form/Gen3/Wild3.hpp>
 #include <Form/Gen4/IDs4.hpp>
 #include <Form/Gen4/Profile/ProfileManager4.hpp>
+#include <Form/Gen4/Static4.hpp>
 #include <Form/Util/IVCalculator.hpp>
 #include <Form/Util/Researcher.hpp>
 #include <Form/Util/Settings.hpp>
@@ -51,7 +52,6 @@
 //#include <Forms/Gen3/Tools/SeedTime3.hpp>
 //#include <Forms/Gen3/Tools/SpindaPainter.hpp>
 //#include <Forms/Gen4/Eggs4.hpp>
-//#include <Forms/Gen4/Static4.hpp>
 //#include <Forms/Gen4/Tools/ChainedSID.hpp>
 //#include <Forms/Gen4/Tools/SeedtoTime4.hpp>
 //#include <Forms/Gen4/Wild4.hpp>
@@ -96,7 +96,7 @@ MainWindow::MainWindow(bool profile, QWidget *parent) : QMainWindow(parent), ui(
 
     // connect(ui->pushButtonEgg4, &QPushButton::clicked, this, &MainWindow::openEgg4);
     connect(ui->pushButtonIDs4, &QPushButton::clicked, this, &MainWindow::openIDs4);
-    // connect(ui->pushButtonStatic4, &QPushButton::clicked, this, &MainWindow::openStatic4);
+    connect(ui->pushButtonStatic4, &QPushButton::clicked, this, &MainWindow::openStatic4);
     // connect(ui->pushButtonWild4, &QPushButton::clicked, this, &MainWindow::openWild4);
     connect(ui->actionProfileManager4, &QAction::triggered, this, &MainWindow::openProfileManager4);
     // connect(ui->actionIVtoPID4, &QAction::triggered, this, &MainWindow::openIVtoPID);
@@ -161,7 +161,7 @@ MainWindow::~MainWindow()
 
     // delete egg4;
     delete ids4;
-    // delete static4;
+    delete static4;
     // delete wild4;
 
     // delete dreamRadar;
@@ -337,7 +337,7 @@ void MainWindow::openProfileManager4() const
     manager->show();
 }
 
-/*void MainWindow::openStatic4()
+void MainWindow::openStatic4()
 {
     if (!static4)
     {
@@ -347,7 +347,7 @@ void MainWindow::openProfileManager4() const
     static4->show();
 }
 
-void MainWindow::openWild4()
+/*void MainWindow::openWild4()
 {
     if (!wild4)
     {
@@ -693,22 +693,22 @@ void MainWindow::updateProfiles(int num)
             egg3->updateProfiles();
         }*/
     }
-    /*else if (num == 4)
+    else if (num == 4)
     {
         if (static4)
         {
             static4->updateProfiles();
         }
-        if (wild4)
+        /*if (wild4)
         {
             wild4->updateProfiles();
         }
         if (egg4)
         {
             egg4->updateProfiles();
-        }
+        }*/
     }
-    else if (num == 5)
+    /*else if (num == 5)
     {
         if (static5)
         {

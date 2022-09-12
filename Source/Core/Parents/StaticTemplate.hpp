@@ -20,6 +20,7 @@
 #ifndef STATICTEMPLATE_HPP
 #define STATICTEMPLATE_HPP
 
+#include <Core/Enum/Shiny.hpp>
 #include <Core/Global.hpp>
 #include <Core/Parents/PersonalLoader.hpp>
 
@@ -31,6 +32,11 @@ enum class Game : u32;
 class StaticTemplate
 {
 public:
+    constexpr StaticTemplate(Game version, u16 specie, u8 level) :
+        version(version), specie(specie), shiny(Shiny::Random), form(0), level(level)
+    {
+    }
+
     /**
      * @brief Construct a new StaticTemplate object
      *
@@ -38,7 +44,13 @@ public:
      * @param specie Specie of the template
      * @param level Level of the template
      */
-    constexpr StaticTemplate(Game version, u16 specie, u8 level, u8 form = 0) : version(version), specie(specie), form(form), level(level)
+    constexpr StaticTemplate(Game version, u16 specie, u8 level, u8 form) :
+        version(version), specie(specie), shiny(Shiny::Random), form(form), level(level)
+    {
+    }
+
+    constexpr StaticTemplate(Game version, u16 specie, u8 level, Shiny shiny) :
+        version(version), specie(specie), shiny(shiny), form(0), level(level)
     {
     }
 
@@ -60,6 +72,16 @@ public:
     u8 getLevel() const
     {
         return level;
+    }
+
+    /**
+     * @brief Determines what shiny the template should have
+     *
+     * @return Template shiny
+     */
+    Shiny getShiny() const
+    {
+        return shiny;
     }
 
     /**
@@ -85,6 +107,7 @@ public:
 protected:
     Game version;
     u16 specie;
+    Shiny shiny;
     u8 form;
     u8 level;
 };
