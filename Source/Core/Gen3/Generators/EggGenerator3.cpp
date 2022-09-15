@@ -193,25 +193,24 @@ std::vector<EggState3> EggGenerator3::generateEmeraldPID() const
     std::vector<EggState3> states;
 
     // Determine if female parent is holding everstone
-    bool everstone = false;
     u8 parent;
     for (u8 i = 0; i < 2; i++)
     {
-        if (daycare.getParentGender(i) == 1 && daycare.getParentItem(i) == 1)
+        if (daycare.getParentGender(i) == 1)
         {
             parent = i;
-            everstone = true;
         }
     }
 
     for (u8 i = 0; i < 2; i++)
     {
-        if (daycare.getParentGender(i) == 3 && daycare.getParentItem(i) == 1)
+        if (daycare.getParentGender(i) == 3)
         {
             parent = i;
-            everstone = true;
         }
     }
+
+    bool everstone = daycare.getParentItem(parent) == 1;
 
     PokeRNG rng(0);
     rng.advance(initialAdvances);
@@ -233,7 +232,7 @@ std::vector<EggState3> EggGenerator3::generateEmeraldPID() const
 
                 PokeRNG trng((val - offset) & 0xFFFF);
 
-                u32 pid = 0;
+                u32 pid;
                 if (!flag)
                 {
                     pid = ((go.nextUShort() % 0xFFFE) + 1) | (trng.next() & 0xFFFF0000);
