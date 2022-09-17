@@ -63,20 +63,20 @@ void Xorshift::jump(u32 advances)
                 {
                     if (val & 1)
                     {
-                        jump = v32x4_xor(jump, state.si);
+                        jump = v32x4_xor(jump, state.u128);
                     }
                     nextState();
                 }
             }
 
-            state.si = jump;
+            state.u128 = jump;
         }
     }
 }
 
 u32 Xorshift::nextState()
 {
-    u32 *ptr = &state.u[0];
+    u32 *ptr = &state.u32[0];
     u32 t = ptr[0];
     u32 s = ptr[3];
 

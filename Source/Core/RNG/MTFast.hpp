@@ -50,7 +50,7 @@ public:
         static_assert(size < 227, "Size exceeds range of MTFast");
 
         u32 i = 1;
-        u32 *ptr = &state[0].u[0];
+        u32 *ptr = &state[0].u32[0];
         for (; i < size + 2; i++)
         {
             ptr[i - 1] = seed;
@@ -150,7 +150,7 @@ public:
      */
     u32 next()
     {
-        u32 *ptr = &state[0].u[0];
+        u32 *ptr = &state[0].u32[0];
         return ptr[index++];
     }
 

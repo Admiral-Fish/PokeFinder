@@ -80,13 +80,13 @@ void Xoroshiro::jump(u32 advances)
                 {
                     if (val & 1)
                     {
-                        jump = v32x4_xor(jump, state.si);
+                        jump = v32x4_xor(jump, state.u128);
                     }
                     next();
                 }
             }
 
-            state.si = jump;
+            state.u128 = jump;
         }
     }
 }
