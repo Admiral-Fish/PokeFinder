@@ -71,16 +71,6 @@ public:
     void clearSelection();
 
     /**
-     * @brief Determines if an action is present
-     *
-     * @param name Action title to search by
-     *
-     * @return true Action is present
-     * @return false Action is not present
-     */
-    bool findAction(const QString &name);
-
-    /**
      * @brief Gets current selected index data as templated enum type
      *
      * @tparam Enum Enum type to convert data too
@@ -104,11 +94,12 @@ public:
     }
 
     /**
-     * @brief Removes an action
+     * @brief Sets the visibility of the action
      *
-     * @param name Action title to search by
+     * @param data Data to search action by
+     * @param hide Whether or not to hide the action
      */
-    void removeAction(const QString &name);
+    void hideAction(const QVariant &data, bool hide);
 
 private:
     QActionGroup *actionGroup;

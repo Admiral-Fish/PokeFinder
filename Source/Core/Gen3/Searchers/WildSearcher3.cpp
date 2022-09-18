@@ -154,7 +154,7 @@ std::vector<WildSearcherState3> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 
                 if ((nextRNG % 25) == nature)
                 {
                     u16 prng = safari ? test.nextUShort() : nextRNG2;
-                    encounterSlot = EncounterSlot::hSlot(test.nextUShort(), encounter);
+                    encounterSlot = EncounterSlot::hSlot(test.nextUShort(100), encounter);
                     level = encounterArea.EncounterArea::calculateLevel(encounterSlot, prng);
                     valid = filter.compareEncounterSlot(encounterSlot);
                 }
@@ -169,7 +169,7 @@ std::vector<WildSearcherState3> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 
                         test.next();
                     }
                     u16 prng = test.nextUShort();
-                    encounterSlot = EncounterSlot::hSlot(test.nextUShort(), encounter);
+                    encounterSlot = EncounterSlot::hSlot(test.nextUShort(100), encounter);
                     level = encounterArea.EncounterArea::calculateLevel(encounterSlot, prng);
                     cuteCharmFlag = (nextRNG2 % 3) > 0;
                     valid = filter.compareEncounterSlot(encounterSlot);
@@ -179,7 +179,7 @@ std::vector<WildSearcherState3> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 
                 if ((nextRNG & 1) == 0)
                 {
                     u16 prng = safari ? test.nextUShort() : nextRNG2;
-                    encounterSlot = EncounterSlot::hSlot(test.nextUShort(), encounter);
+                    encounterSlot = EncounterSlot::hSlot(test.nextUShort(100), encounter);
                     level = encounterArea.EncounterArea::calculateLevel(encounterSlot, prng);
                     valid = filter.compareEncounterSlot(encounterSlot);
                 }
@@ -190,7 +190,7 @@ std::vector<WildSearcherState3> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 
                         test.next();
                     }
                     u16 prng = test.nextUShort();
-                    encounterSlot = EncounterSlot::hSlot(test.nextUShort(), encounter);
+                    encounterSlot = EncounterSlot::hSlot(test.nextUShort(100), encounter);
                     level = encounterArea.EncounterArea::calculateLevel(encounterSlot, prng);
                     valid = filter.compareEncounterSlot(encounterSlot);
                 }
@@ -207,7 +207,7 @@ std::vector<WildSearcherState3> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 
                     }
                     else
                     {
-                        encounterSlot = EncounterSlot::hSlot(encounterRand, encounter);
+                        encounterSlot = EncounterSlot::hSlot(encounterRand % 100, encounter);
                     }
                     level = encounterArea.EncounterArea::calculateLevel(encounterSlot, levelRand);
                     valid = filter.compareEncounterSlot(encounterSlot);
@@ -218,7 +218,7 @@ std::vector<WildSearcherState3> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 
                 {
                     u16 rand = safari ? test.nextUShort() : nextRNG2;
                     u16 levelRand = test.nextUShort();
-                    encounterSlot = EncounterSlot::hSlot(test.nextUShort(), encounter);
+                    encounterSlot = EncounterSlot::hSlot(test.nextUShort(100), encounter);
                     level = encounterArea.calculateLevel(encounterSlot, levelRand, (rand & 1) == 0);
                     valid = filter.compareEncounterSlot(encounterSlot);
                 }

@@ -25,6 +25,8 @@ ComboMenu::ComboMenu(QWidget *parent) : QToolButton(parent), actionGroup(new QAc
     actionGroup->setExclusive(true);
     QToolButton::setMenu(topMenu);
 
+    setPopupMode(QToolButton::InstantPopup);
+
     connect(actionGroup, &QActionGroup::triggered, this, &ComboMenu::actionChanged);
 }
 
@@ -69,41 +71,19 @@ void ComboMenu::clearSelection()
     actionChanged(action);
 }
 
-bool ComboMenu::findAction(const QString &name)
+void ComboMenu::hideAction(const QVariant &data, bool hide)
 {
     auto actions = actionGroup->actions();
     for (size_t i = 1; i < actions.size(); i++)
     {
         QAction *action = actions[i];
-        if (action->text() == name)
+        if (action->data() == data)
         {
-            return true;
-        }
-    }
-
-    return false;
-}
-
-void ComboMenu::removeAction(const QString &name)
-{
-    auto actions = actionGroup->actions();
-    for (size_t i = 1; i < actions.size(); i++)
-    {
-        QAction *action = actions[i];
-        if (action->text() == name)
-        {
-            // Action we are removing is checked
-            // Check the first action for no weird behavior
+            action->setVisible(!hide);
             if (action->isChecked())
             {
-                actions[0]->setChecked(true);
-                actionChanged(actions[0]);
+                clearSelection();
             }
-
-            topMenu->removeAction(action);
-            actionGroup->removeAction(action);
-            delete action;
-            break;
         }
     }
 }

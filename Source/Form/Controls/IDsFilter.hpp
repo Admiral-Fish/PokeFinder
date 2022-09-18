@@ -45,7 +45,7 @@ public:
     /**
      * @brief Destroy the IDsFilter object
      */
-    ~IDsFilter();
+    ~IDsFilter() override;
 
     /**
      * @brief Gets settings to filter by

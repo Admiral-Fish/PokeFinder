@@ -26,12 +26,6 @@
      <layout class="QGridLayout" name="gridLayout_4">
       <item row="0" column="0">
        <widget class="QLabel" name="labelProfile">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
         <property name="text">
          <string>Profile</string>
         </property>
@@ -142,12 +136,6 @@
          <layout class="QGridLayout" name="gridLayout_3">
           <item row="0" column="0">
            <widget class="QLabel" name="labelGeneratorMethod">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
             <property name="text">
              <string>Method</string>
             </property>
@@ -155,12 +143,6 @@
           </item>
           <item row="3" column="0">
            <widget class="QLabel" name="label">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
             <property name="text">
              <string>Lead</string>
             </property>
@@ -217,19 +199,10 @@
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
-            <property name="popupMode">
-             <enum>QToolButton::InstantPopup</enum>
-            </property>
            </widget>
           </item>
           <item row="5" column="0">
            <widget class="QLabel" name="labelGeneratorInitialAdvances">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
             <property name="text">
              <string>Initial Advances</string>
             </property>
@@ -237,12 +210,6 @@
           </item>
           <item row="6" column="0">
            <widget class="QLabel" name="labelGeneratorMaxAdvances">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
             <property name="text">
              <string>Max Advances</string>
             </property>
@@ -250,12 +217,6 @@
           </item>
           <item row="4" column="0">
            <widget class="QLabel" name="labelGeneratorSeed">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
             <property name="text">
              <string>Seed</string>
             </property>
@@ -275,12 +236,6 @@
          <layout class="QGridLayout" name="gridLayout_9">
           <item row="0" column="0">
            <widget class="QLabel" name="labelGeneratorEncounter">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
             <property name="text">
              <string>Encounter</string>
             </property>
@@ -322,12 +277,6 @@
           </item>
           <item row="3" column="0">
            <widget class="QLabel" name="labelGeneratorPokemon">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
             <property name="text">
              <string>Pokémon</string>
             </property>
@@ -335,12 +284,6 @@
           </item>
           <item row="1" column="0">
            <widget class="QLabel" name="labelGeneratorLocation">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
             <property name="text">
              <string>Location</string>
             </property>
@@ -377,12 +320,6 @@
          <layout class="QGridLayout" name="gridLayout_6">
           <item row="0" column="0">
            <widget class="QLabel" name="labelSearcherMethod">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
             <property name="text">
              <string>Method</string>
             </property>
@@ -429,12 +366,6 @@
           </item>
           <item row="3" column="0">
            <widget class="QLabel" name="labelSearcherLead">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
             <property name="text">
              <string>Lead</string>
             </property>
@@ -525,12 +456,6 @@
          <layout class="QGridLayout" name="gridLayout_10">
           <item row="0" column="0">
            <widget class="QLabel" name="labelSearcherEncounter">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
             <property name="text">
              <string>Encounter</string>
             </property>
@@ -538,12 +463,6 @@
           </item>
           <item row="2" column="0">
            <widget class="QLabel" name="labelSearcherPokemon">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
             <property name="text">
              <string>Pokémon</string>
             </property>
@@ -588,12 +507,6 @@
           </item>
           <item row="1" column="0">
            <widget class="QLabel" name="labelSearcherLocation">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
             <property name="text">
              <string>Location</string>
             </property>

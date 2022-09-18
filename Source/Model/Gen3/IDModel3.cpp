@@ -25,7 +25,6 @@ IDModel3::IDModel3(QObject *parent) : TableModel<IDState>(parent)
 
 int IDModel3::columnCount(const QModelIndex &parent) const
 {
-    (void)parent;
     return 4;
 }
 

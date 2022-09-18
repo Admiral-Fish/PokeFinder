@@ -315,7 +315,7 @@ public:
     /**
      * @brief Construct a new DateTime object
      */
-    constexpr DateTime() : date(Date()), time(Time())
+    constexpr DateTime() : date(), time()
     {
     }
 

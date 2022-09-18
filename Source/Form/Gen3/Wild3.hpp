@@ -33,7 +33,7 @@ namespace Ui
 }
 
 /**
- * @brief Provides settings and filters to RNG static encounters in Gen 3 games
+ * @brief Provides settings and filters to RNG wild encounters in Gen 3 games
  */
 class Wild3 : public QWidget
 {
@@ -50,7 +50,7 @@ public:
     Wild3(QWidget *parent = nullptr);
 
     /**
-     * @brief Destroy the Static3 object
+     * @brief Destroy the Wild3 object
      */
     ~Wild3() override;
 
@@ -68,16 +68,6 @@ private:
     std::vector<Profile3> profiles;
     WildGeneratorModel3 *generatorModel;
     WildSearcherModel3 *searcherModel;
-
-    /**
-     * @brief Updates the generator locations
-     */
-    void updateLocationsGenerator();
-
-    /**
-     * @brief Updates the searcher locations
-     */
-    void updateLocationsSearcher();
 
 private slots:
     /**

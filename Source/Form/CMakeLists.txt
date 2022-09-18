@@ -59,6 +59,7 @@ set(PROJECT_UI
     Gen4/Profile/ProfileEditor4.ui
     Gen4/Profile/ProfileManager4.ui
     Gen4/Static4.ui
+    Gen4/Wild4.ui
     MainWindow.ui
     Util/IVCalculator.ui
     Util/Researcher.ui
@@ -111,6 +112,8 @@ set(PROJECT_SOURCES
     Gen4/Profile/ProfileManager4.hpp
     Gen4/Static4.cpp
     Gen4/Static4.hpp
+    Gen4/Wild4.cpp
+    Gen4/Wild4.hpp
     MainWindow.cpp
     MainWindow.hpp
     Util/IVCalculator.cpp

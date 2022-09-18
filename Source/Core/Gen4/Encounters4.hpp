@@ -23,10 +23,11 @@
 #include <Core/Global.hpp>
 #include <vector>
 
-class EncounterArea;
+class EncounterArea4;
 class Profile4;
 class StaticTemplate4;
 enum class Encounter : u8;
+enum class Game : u32;
 
 namespace Encounters4
 {
@@ -34,12 +35,17 @@ namespace Encounters4
      * @brief Gets wild encounters for the \p encouner and \p profile
      *
      * @param encounter Encounter type
-     * @param modifier
+     * @param time Time modifier
+     * @param dual Dual slot version
+     * @param radar Whether pokeradar is active
+     * @param radio Radio station
+     * @param swarm Whether swarm is active
      * @param profile Profile information
      *
      * @return Vector of wild encounters
      */
-    std::vector<EncounterArea> getEncounters(Encounter encounter, int modifier, const Profile4 &profile);
+    std::vector<EncounterArea4> getEncounters(Encounter encounter, int time, Game dual, bool radar, int radio, bool swarm,
+                                              const Profile4 *profile);
 
     /**
      * @brief Gets static encounters from the \p type

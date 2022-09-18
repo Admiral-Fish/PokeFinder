@@ -30,7 +30,6 @@ StaticGeneratorModel4::StaticGeneratorModel4(QObject *parent, Method method) :
 
 int StaticGeneratorModel4::columnCount(const QModelIndex &parent) const
 {
-    (void)parent;
     switch (method)
     {
     case Method::Method1:
@@ -54,13 +53,9 @@ QVariant StaticGeneratorModel4::data(const QModelIndex &index, int role) const
         case 0:
             return state.getAdvances();
         case 1:
-        {
             return state.getCall() == 0 ? "E" : state.getCall() == 1 ? "K" : "P";
-        }
         case 2:
-        {
             return QString::fromStdString(Utilities4::getChatot(state.getChatot()));
-        }
         case 3:
             return QString::number(state.getPID(), 16).toUpper().rightJustified(8, '0');
         case 4:

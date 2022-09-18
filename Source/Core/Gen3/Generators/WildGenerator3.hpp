@@ -24,8 +24,6 @@
 #include <Core/Parents/Generators/WildGenerator.hpp>
 
 class EncounterArea3;
-class WildGeneratorState3;
-enum class Game : u32;
 
 /**
  * @brief Wild encounter generator for Gen3

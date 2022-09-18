@@ -26,9 +26,9 @@ enum class Encounter : u8;
 
 namespace EncounterSlot
 {
-    u8 hSlot(u16 result, Encounter encounter);
-    u8 jSlot(u16 result, Encounter encounter);
-    u8 kSlot(u16 result, Encounter encounter);
+    u8 hSlot(u8 result, Encounter encounter);
+    u8 jSlot(u8 result, Encounter encounter);
+    u8 kSlot(u8 result, Encounter encounter);
     u8 bdspSlot(u8 result, Encounter encounter);
 };
 

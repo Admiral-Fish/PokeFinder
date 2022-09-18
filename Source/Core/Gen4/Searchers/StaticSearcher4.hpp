@@ -106,6 +106,15 @@ private:
     std::vector<SearcherState4> search(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, const StaticTemplate4 *staticTemplate) const;
 
     /**
+     * @brief Searches for initial seeds within min/max advances and min/max delay
+     *
+     * @param results Original results
+     *
+     * @return Computed results
+     */
+    std::vector<SearcherState4> searchInitialSeeds(const std::vector<SearcherState4> &results) const;
+
+    /**
      * @brief Searches for matching states from provided IVs via Method 1
      *
      * @param hp HP IV
@@ -149,15 +158,6 @@ private:
      * @return Vector of computed states
      */
     std::vector<SearcherState4> searchMethodK(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, const StaticTemplate4 *staticTemplate) const;
-
-    /**
-     * @brief Searches for initial seeds within min/max advances and min/max delay
-     *
-     * @param results Original results
-     *
-     * @return Computed results
-     */
-    std::vector<SearcherState4> searchInitialSeeds(const std::vector<SearcherState4> &results) const;
 };
 
 #endif // STATICSEARCHER4_HPP

@@ -40,6 +40,8 @@ enum class Encounter : u8
     Static,
     BugCatchingContest,
     Headbutt,
+    HeadbuttAlt,
+    HeadbuttSpecial,
     Roamer,
     Gift,
     EntraLink,

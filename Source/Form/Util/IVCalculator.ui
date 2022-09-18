@@ -141,12 +141,6 @@
          <layout class="QGridLayout" name="gridLayoutEntry">
           <item row="0" column="0">
            <widget class="QLabel" name="labelLevel">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
             <property name="text">
              <string>Level</string>
             </property>
@@ -154,12 +148,6 @@
           </item>
           <item row="0" column="1">
            <widget class="QLabel" name="labelHP">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
             <property name="text">
              <string>HP</string>
             </property>
@@ -167,12 +155,6 @@
           </item>
           <item row="0" column="2">
            <widget class="QLabel" name="labelAtk">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
             <property name="text">
              <string>Atk</string>
             </property>
@@ -180,12 +162,6 @@
           </item>
           <item row="0" column="3">
            <widget class="QLabel" name="labelDef">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
             <property name="text">
              <string>Def</string>
             </property>
@@ -193,12 +169,6 @@
           </item>
           <item row="0" column="4">
            <widget class="QLabel" name="labelSpA">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
             <property name="text">
              <string>SpA</string>
             </property>
@@ -206,12 +176,6 @@
           </item>
           <item row="0" column="5">
            <widget class="QLabel" name="labelSpD">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
             <property name="text">
              <string>SpD</string>
             </property>
@@ -219,12 +183,6 @@
           </item>
           <item row="0" column="6">
            <widget class="QLabel" name="labelSpe">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
             <property name="text">
              <string>Speed</string>
             </property>

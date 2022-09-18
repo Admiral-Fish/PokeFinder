@@ -41,11 +41,20 @@ struct SearcherWildResult3
     u8 nature;
     u8 level;
     u8 shiny;
-    u16 specie;
-    u8 encounterSlot;
-    u8 item;
-    u32 seed;
-    u8 hiddenPowerStrength;
+    struct
+    {
+        u16 item;
+        u16 specie;
+        u8 encounterSlot;
+        struct
+        {
+            u32 seed;
+            struct
+            {
+                u8 hiddenPowerStrength;
+            };
+        };
+    };
 };
 NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(SearcherWildResult3, pid, stats, abilityIndex, ivs, ability, gender, hiddenPower, nature, level, shiny,
                                    specie, encounterSlot, seed, hiddenPowerStrength);

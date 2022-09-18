@@ -49,7 +49,7 @@ enum class Method : u8
     RSFRLGBredMixed,
     MethodJ,
     MethodK,
-    ChainedShiny,
+    PokeRadar,
     WondercardIVs,
     Gen4Normal,
     Gen4Masuda,

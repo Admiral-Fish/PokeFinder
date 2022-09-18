@@ -36,7 +36,7 @@ ProfileEditor3::ProfileEditor3(QWidget *parent) : QDialog(parent), ui(new Ui::Pr
                                  toInt(Game::Emerald), toInt(Game::Gales), toInt(Game::Colosseum) });
 
     connect(ui->pushButtonOkay, &QPushButton::clicked, this, &ProfileEditor3::okay);
-    connect(ui->comboBoxVersion, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &ProfileEditor3::versionIndexChanged);
+    connect(ui->comboBoxVersion, &QComboBox::currentIndexChanged, this, &ProfileEditor3::versionIndexChanged);
 
     QSettings setting;
     if (setting.contains("profileEditor3/geometry"))
@@ -73,9 +73,8 @@ void ProfileEditor3::okay()
     QString input = ui->lineEditProfile->text().trimmed();
     if (input.isEmpty())
     {
-        QMessageBox error;
-        error.setText(tr("Enter a Profile Name."));
-        error.exec();
+        QMessageBox msg(QMessageBox::Warning, tr("Missing name"), tr("Enter a profile name"));
+        msg.exec();
         return;
     }
 

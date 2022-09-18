@@ -99,6 +99,15 @@ namespace Translator
     std::vector<std::string> *getHiddenPowers();
 
     /**
+     * @brief Gets the string for the \p item
+     *
+     * @param item Item number
+     *
+     * @return Item string
+     */
+    std::string *getItem(u16 item);
+
+    /**
      * @brief Gets the string for the \p keypress
      *
      * @param keypress Keypress number

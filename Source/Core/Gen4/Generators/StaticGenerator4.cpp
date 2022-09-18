@@ -119,7 +119,6 @@ std::vector<GeneratorState4> StaticGenerator4::generateMethodJ(u32 seed, const S
     {
         PokeRNG go(rng.getSeed());
 
-        u8 nature;
         if (lead == Lead::CuteCharmM || lead == Lead::CuteCharmF)
         {
             switch (info->getGender())
@@ -135,6 +134,7 @@ std::vector<GeneratorState4> StaticGenerator4::generateMethodJ(u32 seed, const S
             }
         }
 
+        u8 nature;
         if (lead <= Lead::SynchronizeEnd)
         {
             nature = go.nextUShort<false>(2) == 0 ? toInt(lead) : go.nextUShort<false>(25);

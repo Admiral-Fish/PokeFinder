@@ -25,7 +25,6 @@
 #include <Core/Util/IVChecker.hpp>
 #include <Core/Util/Translator.hpp>
 #include <QCompleter>
-#include <QMessageBox>
 #include <QSettings>
 #include <QSpinBox>
 
@@ -58,9 +57,9 @@ IVCalculator::IVCalculator(QWidget *parent) : QWidget(parent), ui(new Ui::IVCalc
     connect(ui->pushButtonAddRow, &QPushButton::clicked, this, &IVCalculator::addEntry);
     connect(ui->pushButtonRemoveRow, &QPushButton::clicked, this, &IVCalculator::removeEntry);
     connect(ui->pushButtonFindIVs, &QPushButton::clicked, this, &IVCalculator::findIVs);
-    connect(ui->comboBoxPokemon, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &IVCalculator::pokemonIndexChanged);
-    connect(ui->comboBoxAltForm, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &IVCalculator::altformIndexChanged);
-    connect(ui->comboBoxGame, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &IVCalculator::gameIndexChanged);
+    connect(ui->comboBoxPokemon, &QComboBox::currentIndexChanged, this, &IVCalculator::pokemonIndexChanged);
+    connect(ui->comboBoxAltForm, &QComboBox::currentIndexChanged, this, &IVCalculator::altformIndexChanged);
+    connect(ui->comboBoxGame, &QComboBox::currentIndexChanged, this, &IVCalculator::gameIndexChanged);
 
     addEntry();
     gameIndexChanged(0);

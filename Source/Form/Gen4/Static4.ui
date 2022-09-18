@@ -98,12 +98,6 @@
       <layout class="QGridLayout" name="gridLayout_10">
        <item row="0" column="0">
         <widget class="QGroupBox" name="groupBoxGeneratorRNGInfo">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-           <horstretch>1</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
          <property name="title">
           <string>RNG Info</string>
          </property>
@@ -117,12 +111,6 @@
           </item>
           <item row="0" column="0">
            <widget class="QLabel" name="labelGeneratorLead">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
             <property name="text">
              <string>Lead</string>
             </property>
@@ -135,9 +123,6 @@
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
-            </property>
-            <property name="popupMode">
-             <enum>QToolButton::InstantPopup</enum>
             </property>
            </widget>
           </item>
@@ -290,7 +275,7 @@
         <widget class="QGroupBox" name="groupBoxGeneratorFilters">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-           <horstretch>3</horstretch>
+           <horstretch>1</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
@@ -323,12 +308,6 @@
       <layout class="QGridLayout" name="gridLayout_9">
        <item row="0" column="0">
         <widget class="QGroupBox" name="groupBoxSearcherRNGInfo">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-           <horstretch>1</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
          <property name="title">
           <string>RNG Info</string>
          </property>
@@ -461,7 +440,7 @@
         <widget class="QGroupBox" name="groupBoxSearcherFilters">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-           <horstretch>3</horstretch>
+           <horstretch>1</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
@@ -589,11 +568,6 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>TableView</class>
-   <extends>QTableView</extends>
-   <header>Form/Controls/TableView.hpp</header>
-  </customwidget>
-  <customwidget>
    <class>TextBox</class>
    <extends>QLineEdit</extends>
    <header>Form/Controls/TextBox.hpp</header>
@@ -602,6 +576,11 @@
    <class>ComboBox</class>
    <extends>QComboBox</extends>
    <header>Form/Controls/ComboBox.hpp</header>
+  </customwidget>
+  <customwidget>
+   <class>TableView</class>
+   <extends>QTableView</extends>
+   <header>Form/Controls/TableView.hpp</header>
   </customwidget>
   <customwidget>
    <class>Filter</class>

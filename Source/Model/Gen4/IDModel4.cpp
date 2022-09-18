@@ -25,7 +25,6 @@ IDModel4::IDModel4(QObject *parent, bool flag) : TableModel<IDState4>(parent), s
 
 int IDModel4::columnCount(const QModelIndex &parent) const
 {
-    (void)parent;
     return showSeconds ? 6 : 5;
 }
 

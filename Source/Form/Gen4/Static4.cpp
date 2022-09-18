@@ -74,14 +74,11 @@ Static4::Static4(QWidget *parent) : QWidget(parent), ui(new Ui::Static4)
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Static4::generate);
     connect(ui->pushButtonSearch, &QPushButton::clicked, this, &Static4::search);
     connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &Static4::profileManager);
-    connect(ui->comboBoxProfiles, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &Static4::profilesIndexChanged);
-    connect(ui->comboBoxGeneratorCategory, QOverload<int>::of(&QComboBox::currentIndexChanged), this,
-            &Static4::generatorCategoryIndexChanged);
-    connect(ui->comboBoxGeneratorPokemon, QOverload<int>::of(&QComboBox::currentIndexChanged), this,
-            &Static4::generatorPokemonIndexChanged);
-    connect(ui->comboBoxSearcherCategory, QOverload<int>::of(&QComboBox::currentIndexChanged), this,
-            &Static4::searcherCategoryIndexChanged);
-    connect(ui->comboBoxSearcherPokemon, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &Static4::searcherPokemonIndexChanged);
+    connect(ui->comboBoxProfiles, &QComboBox::currentIndexChanged, this, &Static4::profilesIndexChanged);
+    connect(ui->comboBoxGeneratorCategory, &QComboBox::currentIndexChanged, this, &Static4::generatorCategoryIndexChanged);
+    connect(ui->comboBoxGeneratorPokemon, &QComboBox::currentIndexChanged, this, &Static4::generatorPokemonIndexChanged);
+    connect(ui->comboBoxSearcherCategory, &QComboBox::currentIndexChanged, this, &Static4::searcherCategoryIndexChanged);
+    connect(ui->comboBoxSearcherPokemon, &QComboBox::currentIndexChanged, this, &Static4::searcherPokemonIndexChanged);
     connect(ui->filterGenerator, &Filter::showStatsChanged, generatorModel, &StaticGeneratorModel4::setShowStats);
     connect(ui->filterSearcher, &Filter::showStatsChanged, searcherModel, &StaticSearcherModel4::setShowStats);
 
@@ -132,7 +129,7 @@ Static4::~Static4()
 void Static4::updateProfiles()
 {
     profiles = ProfileLoader4::getProfiles();
-    profiles.insert(profiles.begin(), Profile4("None", Game::Diamond, 12345, 54321, Game::None, 0, false, false, false));
+    profiles.insert(profiles.begin(), Profile4("None", Game::Diamond, 12345, 54321, false));
 
     ui->comboBoxProfiles->clear();
     for (const auto &profile : profiles)
@@ -231,6 +228,8 @@ void Static4::profilesIndexChanged(int index)
         ui->comboBoxSearcherCategory->setCurrentIndex(0);
 
         bool hgss = (currentProfile->getVersion() & Game::HGSS) != Game::None;
+
+        // Game Corner
         ui->comboBoxGeneratorCategory->setItemHidden(3, !hgss);
         ui->comboBoxSearcherCategory->setItemHidden(3, !hgss);
     }
@@ -340,7 +339,7 @@ void Static4::searcherPokemonIndexChanged(int index)
 void Static4::seedToTime()
 {
     QModelIndex index = ui->tableViewSearcher->currentIndex();
-    QString seed = searcherModel->data(searcherModel->index(index.row(), 0)).toString();
+    const auto &state = searcherModel->getItem(index.row());
 
     // auto *time = new SeedtoTime4(seed, currentProfile->getVersion());
     // time->show();

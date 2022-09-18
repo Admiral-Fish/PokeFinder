@@ -27,6 +27,7 @@
 #include <Form/Gen4/IDs4.hpp>
 #include <Form/Gen4/Profile/ProfileManager4.hpp>
 #include <Form/Gen4/Static4.hpp>
+#include <Form/Gen4/Wild4.hpp>
 #include <Form/Util/IVCalculator.hpp>
 #include <Form/Util/Researcher.hpp>
 #include <Form/Util/Settings.hpp>
@@ -54,7 +55,6 @@
 //#include <Forms/Gen4/Eggs4.hpp>
 //#include <Forms/Gen4/Tools/ChainedSID.hpp>
 //#include <Forms/Gen4/Tools/SeedtoTime4.hpp>
-//#include <Forms/Gen4/Wild4.hpp>
 //#include <Forms/Gen5/DreamRadar.hpp>
 //#include <Forms/Gen5/Eggs5.hpp>
 //#include <Forms/Gen5/Event5.hpp>
@@ -97,7 +97,7 @@ MainWindow::MainWindow(bool profile, QWidget *parent) : QMainWindow(parent), ui(
     // connect(ui->pushButtonEgg4, &QPushButton::clicked, this, &MainWindow::openEgg4);
     connect(ui->pushButtonIDs4, &QPushButton::clicked, this, &MainWindow::openIDs4);
     connect(ui->pushButtonStatic4, &QPushButton::clicked, this, &MainWindow::openStatic4);
-    // connect(ui->pushButtonWild4, &QPushButton::clicked, this, &MainWindow::openWild4);
+    connect(ui->pushButtonWild4, &QPushButton::clicked, this, &MainWindow::openWild4);
     connect(ui->actionProfileManager4, &QAction::triggered, this, &MainWindow::openProfileManager4);
     // connect(ui->actionIVtoPID4, &QAction::triggered, this, &MainWindow::openIVtoPID);
     // connect(ui->actionSeedtoTime4, &QAction::triggered, this, &MainWindow::openSeedtoTime4);
@@ -137,9 +137,9 @@ MainWindow::MainWindow(bool profile, QWidget *parent) : QMainWindow(parent), ui(
     QTimer::singleShot(1000, this, [this, profile] {
         if (!profile)
         {
-            QMessageBox message(QMessageBox::Warning, tr("Unable to locate profiles"),
-                                tr("Please update path to your profiles file to restore existing profiles."));
-            message.exec();
+            QMessageBox msg(QMessageBox::Warning, tr("Unable to locate profiles"),
+                            tr("Please update path to your profiles file to restore existing profiles."));
+            msg.exec();
         }
 
         checkUpdates();
@@ -162,7 +162,7 @@ MainWindow::~MainWindow()
     // delete egg4;
     delete ids4;
     delete static4;
-    // delete wild4;
+    delete wild4;
 
     // delete dreamRadar;
     // delete egg5;
@@ -191,10 +191,10 @@ void MainWindow::checkUpdates() const
         QString webVersion = json["tag_name"].toString().right(5);
         if (!webVersion.isEmpty() && POKEFINDER_VERSION != webVersion)
         {
-            QMessageBox info(QMessageBox::Question, tr("Update Check"),
-                             tr("An update is available. Would you like to download the newest version?"),
-                             QMessageBox::Yes | QMessageBox::No);
-            if (info.exec() == QMessageBox::Yes)
+            QMessageBox msg(QMessageBox::Question, tr("Update Check"),
+                            tr("An update is available. Would you like to download the newest version?"),
+                            QMessageBox::Yes | QMessageBox::No);
+            if (msg.exec() == QMessageBox::Yes)
             {
                 QDesktopServices::openUrl(QUrl("https://github.com/Admiral-Fish/PokeFinder/releases/latest"));
             }
@@ -347,7 +347,7 @@ void MainWindow::openStatic4()
     static4->show();
 }
 
-/*void MainWindow::openWild4()
+void MainWindow::openWild4()
 {
     if (!wild4)
     {
@@ -357,7 +357,7 @@ void MainWindow::openStatic4()
     wild4->show();
 }
 
-void MainWindow::openEgg4()
+/*void MainWindow::openEgg4()
 {
     if (!egg4)
     {
@@ -390,9 +390,9 @@ void MainWindow::openStatic5()
 
     if (!static5->hasProfiles())
     {
-        QMessageBox message(QMessageBox::Warning, tr("No profiles found"),
+        QMessageBox msg(QMessageBox::Warning, tr("No profiles found"),
                             tr("Please use the Profile Calibrator under Gen 5 Tools to create one."));
-        message.exec();
+        msg.exec();
         static5->close();
     }
 }
@@ -408,9 +408,9 @@ void MainWindow::openEvent5()
 
     if (!event5->hasProfiles())
     {
-        QMessageBox message(QMessageBox::Warning, tr("No profiles found"),
+        QMessageBox msg(QMessageBox::Warning, tr("No profiles found"),
                             tr("Please use the Profile Calibrator under Gen 5 Tools to create one."));
-        message.exec();
+        msg.exec();
         event5->close();
     }
 }
@@ -426,9 +426,9 @@ void MainWindow::openDreamRadar()
 
     if (!dreamRadar->hasProfiles())
     {
-        QMessageBox message(QMessageBox::Warning, tr("No profiles found"),
+        QMessageBox msg(QMessageBox::Warning, tr("No profiles found"),
                             tr("Please use the Profile Calibrator under Gen 5 Tools to create one."));
-        message.exec();
+        msg.exec();
         dreamRadar->close();
     }
 }
@@ -444,9 +444,9 @@ void MainWindow::openHiddenGrotto()
 
     if (!hiddenGrotto->hasProfiles())
     {
-        QMessageBox message(QMessageBox::Warning, tr("No profiles found"),
+        QMessageBox msg(QMessageBox::Warning, tr("No profiles found"),
                             tr("Please use the Profile Calibrator under Gen 5 Tools to create one."));
-        message.exec();
+        msg.exec();
         hiddenGrotto->close();
     }
 }
@@ -480,9 +480,9 @@ void MainWindow::openIDs5()
 
     if (!ids5->hasProfiles())
     {
-        QMessageBox message(QMessageBox::Warning, tr("No profiles found"),
+        QMessageBox msg(QMessageBox::Warning, tr("No profiles found"),
                             tr("Please use the Profile Calibrator under Gen 5 Tools to create one."));
-        message.exec();
+        msg.exec();
         ids5->close();
     }
 }
@@ -573,9 +573,9 @@ void MainWindow::downloadEventData()
         = downloadFile("https://raw.githubusercontent.com/Admiral-Fish/RaidFinder/master/Resources/Encounters/Event/files.txt");
     if (fileResponse.isEmpty())
     {
-        QMessageBox error(QMessageBox::Critical, tr("Download failed"),
-                          tr("Make sure you are connected to the internet and have OpenSSL setup"), QMessageBox::Ok);
-        error.exec();
+        QMessageBox msg(QMessageBox::Critical, tr("Download failed"),
+                          tr("Make sure you are connected to the internet and have OpenSSL setup"));
+        msg.exec();
         return;
     }
 
@@ -610,9 +610,9 @@ void MainWindow::downloadEventData()
         = downloadFile("https://raw.githubusercontent.com/Admiral-Fish/RaidFinder/master/Resources/Encounters/Event/" +
 files.at(index)); if (eventResponse.isEmpty())
     {
-        QMessageBox error(QMessageBox::Critical, tr("Download failed"),
-                          tr("Make sure you are connected to the internet and have OpenSSL setup"), QMessageBox::Ok);
-        error.exec();
+        QMessageBox msg(QMessageBox::Critical, tr("Download failed"),
+                          tr("Make sure you are connected to the internet and have OpenSSL setup"));
+        msg.exec();
         return;
     }
 
@@ -622,9 +622,9 @@ files.at(index)); if (eventResponse.isEmpty())
         f.write(qUncompress(eventResponse));
         f.close();
 
-        QMessageBox message(QMessageBox::Question, tr("Download finished"), tr("Restart to see event data. Restart now?"),
+        QMessageBox msg(QMessageBox::Question, tr("Download finished"), tr("Restart to see event data. Restart now?"),
                             QMessageBox::Yes | QMessageBox::No);
-        if (message.exec() == QMessageBox::Yes)
+        if (msg.exec() == QMessageBox::Yes)
         {
             QProcess::startDetached(QApplication::applicationFilePath());
             QApplication::quit();
@@ -644,8 +644,8 @@ void MainWindow::openAbout() const
     QStringList info
         = { QString("Version: %1").arg(POKEFINDER_VERSION), QString("Branch: %1").arg(GIT_BRANCH), QString("Commit: %1").arg(GIT_COMMIT) };
 
-    QMessageBox about(QMessageBox::Information, tr("About"), info.join("\n"), QMessageBox::Close);
-    about.exec();
+    QMessageBox msg(QMessageBox::Information, tr("About"), info.join("\n"));
+    msg.exec();
 }
 
 void MainWindow::openIVCalculator() const
@@ -699,11 +699,11 @@ void MainWindow::updateProfiles(int num)
         {
             static4->updateProfiles();
         }
-        /*if (wild4)
+        if (wild4)
         {
             wild4->updateProfiles();
         }
-        if (egg4)
+        /*if (egg4)
         {
             egg4->updateProfiles();
         }*/

@@ -29,8 +29,6 @@ ProfileEditor4::ProfileEditor4(QWidget *parent) : QDialog(parent), ui(new Ui::Pr
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
 
-    ui->labelRadio->setVisible(false);
-    ui->comboBoxRadio->setVisible(false);
     ui->checkBoxNationalDex->setVisible(false);
     ui->textBoxTID->setValues(InputType::TIDSID);
     ui->textBoxSID->setValues(InputType::TIDSID);
@@ -38,11 +36,8 @@ ProfileEditor4::ProfileEditor4(QWidget *parent) : QDialog(parent), ui(new Ui::Pr
     ui->comboBoxVersion->setup(
         { toInt(Game::Diamond), toInt(Game::Pearl), toInt(Game::Platinum), toInt(Game::HeartGold), toInt(Game::SoulSilver) });
 
-    ui->comboBoxDualSlot->setup({ toInt(Game::None), toInt(Game::Ruby), toInt(Game::Sapphire), toInt(Game::FireRed), toInt(Game::LeafGreen),
-                                  toInt(Game::Emerald) });
-
     connect(ui->pushButtonOkay, &QPushButton::clicked, this, &ProfileEditor4::okay);
-    connect(ui->comboBoxVersion, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &ProfileEditor4::versionIndexChanged);
+    connect(ui->comboBoxVersion, &QComboBox::currentIndexChanged, this, &ProfileEditor4::versionIndexChanged);
 
     QSettings setting;
     if (setting.contains("profileEditor4/geometry"))
@@ -57,10 +52,6 @@ ProfileEditor4::ProfileEditor4(const Profile4 &profile, QWidget *parent) : Profi
     ui->comboBoxVersion->setCurrentIndex(ui->comboBoxVersion->findData(toInt(profile.getVersion())));
     ui->textBoxTID->setText(QString::number(profile.getTID()));
     ui->textBoxSID->setText(QString::number(profile.getSID()));
-    ui->comboBoxDualSlot->setCurrentIndex(ui->comboBoxDualSlot->findData(toInt(profile.getDualSlot())));
-    ui->comboBoxRadio->setCurrentIndex(profile.getRadio());
-    ui->checkBoxRadar->setChecked(profile.getRadar());
-    ui->checkBoxSwarm->setChecked(profile.getSwarm());
     ui->checkBoxNationalDex->setChecked(profile.getNationalDex());
 }
 
@@ -75,8 +66,7 @@ ProfileEditor4::~ProfileEditor4()
 Profile4 ProfileEditor4::getProfile()
 {
     return Profile4(ui->lineEditProfile->text().toStdString(), ui->comboBoxVersion->getEnum<Game>(), ui->textBoxTID->getUShort(),
-                    ui->textBoxSID->getUShort(), ui->comboBoxDualSlot->getEnum<Game>(), ui->comboBoxRadio->currentIndex(),
-                    ui->checkBoxRadar->isChecked(), ui->checkBoxSwarm->isChecked(), ui->checkBoxNationalDex->isChecked());
+                    ui->textBoxSID->getUShort(), ui->checkBoxNationalDex->isChecked());
 }
 
 void ProfileEditor4::okay()
@@ -84,9 +74,8 @@ void ProfileEditor4::okay()
     QString input = ui->lineEditProfile->text().trimmed();
     if (input.isEmpty())
     {
-        QMessageBox error;
-        error.setText(tr("Enter a profile name"));
-        error.exec();
+        QMessageBox msg(QMessageBox::Warning, tr("Missing name"), tr("Enter a profile name"));
+        msg.exec();
         return;
     }
 
@@ -99,26 +88,6 @@ void ProfileEditor4::versionIndexChanged(int index)
     {
         auto game = ui->comboBoxVersion->getEnum<Game>();
         bool flag = (game & Game::HGSS) != Game::None;
-
-        ui->labelRadio->setVisible(flag);
-        ui->comboBoxRadio->setVisible(flag);
-
-        ui->checkBoxRadar->setVisible(!flag);
-
-        ui->labelDualSlot->setVisible(!flag);
-        ui->comboBoxDualSlot->setVisible(!flag);
-
         ui->checkBoxNationalDex->setVisible(flag);
-
-        if (flag)
-        {
-            ui->comboBoxDualSlot->setCurrentIndex(0);
-            ui->checkBoxRadar->setChecked(false);
-        }
-        else
-        {
-            ui->comboBoxRadio->setCurrentIndex(0);
-            ui->checkBoxNationalDex->setChecked(false);
-        }
     }
 }

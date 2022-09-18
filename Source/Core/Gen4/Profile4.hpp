@@ -37,20 +37,9 @@ public:
      * @param version Game version
      * @param tid Trainer ID
      * @param sid Secret ID
-     * @param dual Dual slot game version
-     * @param radio Radio station
-     * @param radar Whether pokeradar is enabled
-     * @param swarm Whether swarms are enabled
      * @param dex Whether national pokedex is obtained
      */
-    Profile4(const std::string &profileName, Game version, u16 tid, u16 sid, Game dual, int radio, bool radar, bool swarm, bool dex);
-
-    /**
-     * @brief Returns the dual slot game version
-     *
-     * @return Game version
-     */
-    Game getDualSlot() const;
+    Profile4(const std::string &profileName, Game version, u16 tid, u16 sid, bool dex);
 
     /**
      * @brief Get the National Dex object
@@ -59,39 +48,6 @@ public:
      * @return false National pokedex is not obtained
      */
     bool getNationalDex() const;
-
-    /**
-     * @brief Returns whether the profile is using the pokeradar
-     *
-     * @return true Pokeradar is enabled
-     * @return false Pokeradar is not enabled
-     */
-    bool getRadar() const;
-
-    /**
-     * @brief Returns the active radio station
-     *
-     * @return Radio number
-     * 0: No radio
-     * 1: Hoenn sound
-     * 2: Sinnoh sound
-     */
-    int getRadio() const;
-
-    /**
-     * @brief Returns the string representation for the current radio station
-     *
-     * @return Radio string
-     */
-    std::string getRadioString() const;
-
-    /**
-     * @brief Returns whether the profile is using a swarm
-     *
-     * @return true Swarm is enabled
-     * @return false Swarm is not enabled
-     */
-    bool getSwarm() const;
 
     /**
      * @brief Checks if two profiles are equal
@@ -114,11 +70,7 @@ public:
     bool operator!=(const Profile4 &other) const;
 
 private:
-    Game dual;
-    int radio;
     bool dex;
-    bool radar;
-    bool swarm;
 };
 
 #endif // PROFILE4_HPP

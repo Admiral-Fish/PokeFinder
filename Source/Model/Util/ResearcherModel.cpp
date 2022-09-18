@@ -36,7 +36,6 @@ void ResearcherModel::setHex(const std::array<bool, 10> &hex)
 
 int ResearcherModel::columnCount(const QModelIndex &index) const
 {
-    (void)index;
     return flag ? 16 : 14;
 }
 

@@ -75,18 +75,15 @@ Wild3::Wild3(QWidget *parent) : QWidget(parent), ui(new Ui::Wild3)
     ui->comboBoxSearcherLead->setup({ toInt(Lead::None), toInt(Lead::CuteCharmM), toInt(Lead::CuteCharmF), toInt(Lead::MagnetPull),
                                       toInt(Lead::Pressure), toInt(Lead::Static), toInt(Lead::Synchronize) });
 
-    connect(ui->comboBoxProfiles, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &Wild3::profilesIndexChanged);
+    connect(ui->comboBoxProfiles, &QComboBox::currentIndexChanged, this, &Wild3::profilesIndexChanged);
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Wild3::generate);
     connect(ui->pushButtonSearch, &QPushButton::clicked, this, &Wild3::search);
-    connect(ui->comboBoxGeneratorEncounter, QOverload<int>::of(&QComboBox::currentIndexChanged), this,
-            &Wild3::generatorEncounterIndexChanged);
-    connect(ui->comboBoxSearcherEncounter, QOverload<int>::of(&QComboBox::currentIndexChanged), this,
-            &Wild3::searcherEncounterIndexChanged);
-    connect(ui->comboBoxGeneratorLocation, QOverload<int>::of(&QComboBox::currentIndexChanged), this,
-            &Wild3::generatorLocationIndexChanged);
-    connect(ui->comboBoxSearcherLocation, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &Wild3::searcherLocationIndexChanged);
-    connect(ui->comboBoxGeneratorPokemon, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &Wild3::generatorPokemonIndexChanged);
-    connect(ui->comboBoxSearcherPokemon, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &Wild3::searcherPokemonIndexChanged);
+    connect(ui->comboBoxGeneratorEncounter, &QComboBox::currentIndexChanged, this, &Wild3::generatorEncounterIndexChanged);
+    connect(ui->comboBoxSearcherEncounter, &QComboBox::currentIndexChanged, this, &Wild3::searcherEncounterIndexChanged);
+    connect(ui->comboBoxGeneratorLocation, &QComboBox::currentIndexChanged, this, &Wild3::generatorLocationIndexChanged);
+    connect(ui->comboBoxSearcherLocation, &QComboBox::currentIndexChanged, this, &Wild3::searcherLocationIndexChanged);
+    connect(ui->comboBoxGeneratorPokemon, &QComboBox::currentIndexChanged, this, &Wild3::generatorPokemonIndexChanged);
+    connect(ui->comboBoxSearcherPokemon, &QComboBox::currentIndexChanged, this, &Wild3::searcherPokemonIndexChanged);
     connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &Wild3::profileManager);
     connect(ui->filterGenerator, &Filter::showStatsChanged, generatorModel, &WildGeneratorModel3::setShowStats);
     connect(ui->filterSearcher, &Filter::showStatsChanged, searcherModel, &WildSearcherModel3::setShowStats);
@@ -134,48 +131,6 @@ void Wild3::updateProfiles()
     }
 }
 
-void Wild3::updateLocationsGenerator()
-{
-    auto encounter = static_cast<Encounter>(ui->comboBoxGeneratorEncounter->currentData().toInt());
-    encounterGenerator = Encounters3::getEncounters(encounter, currentProfile->getVersion());
-
-    std::vector<u16> locs;
-    std::transform(encounterGenerator.begin(), encounterGenerator.end(), std::back_inserter(locs),
-                   [](const EncounterArea3 &area) { return area.getLocation(); });
-
-    auto locations = Translator::getLocations(locs, currentProfile->getVersion());
-    std::vector<int> indices(locations.size());
-    std::iota(indices.begin(), indices.end(), 0);
-    std::sort(indices.begin(), indices.end(), [&locations](int i, int j) { return locations[i] < locations[j]; });
-
-    ui->comboBoxGeneratorLocation->clear();
-    for (int index : indices)
-    {
-        ui->comboBoxGeneratorLocation->addItem(QString::fromStdString(locations[index]), index);
-    }
-}
-
-void Wild3::updateLocationsSearcher()
-{
-    auto encounter = static_cast<Encounter>(ui->comboBoxSearcherEncounter->currentData().toInt());
-    encounterSearcher = Encounters3::getEncounters(encounter, currentProfile->getVersion());
-
-    std::vector<u16> locs;
-    std::transform(encounterSearcher.begin(), encounterSearcher.end(), std::back_inserter(locs),
-                   [](const EncounterArea3 &area) { return area.getLocation(); });
-
-    auto locations = Translator::getLocations(locs, currentProfile->getVersion());
-    std::vector<int> indices(locations.size());
-    std::iota(indices.begin(), indices.end(), 0);
-    std::sort(indices.begin(), indices.end(), [&locations](int i, int j) { return locations[i] < locations[j]; });
-
-    ui->comboBoxSearcherLocation->clear();
-    for (int index : indices)
-    {
-        ui->comboBoxSearcherLocation->addItem(QString::fromStdString(locations[index]), index);
-    }
-}
-
 void Wild3::generate()
 {
     generatorModel->clearModel();
@@ -212,7 +167,6 @@ void Wild3::generatorEncounterIndexChanged(int index)
     {
         std::vector<std::string> t;
         Encounter encounter = static_cast<Encounter>(ui->comboBoxGeneratorEncounter->currentData().toInt());
-
         switch (encounter)
         {
         case Encounter::Grass:
@@ -232,9 +186,24 @@ void Wild3::generatorEncounterIndexChanged(int index)
         default:
             break;
         }
-
         ui->filterGenerator->setEncounterSlots(t);
-        updateLocationsGenerator();
+
+        encounterGenerator = Encounters3::getEncounters(encounter, currentProfile->getVersion());
+
+        std::vector<u16> locs;
+        std::transform(encounterGenerator.begin(), encounterGenerator.end(), std::back_inserter(locs),
+                       [](const EncounterArea3 &area) { return area.getLocation(); });
+
+        auto locations = Translator::getLocations(locs, currentProfile->getVersion());
+        std::vector<int> indices(locations.size());
+        std::iota(indices.begin(), indices.end(), 0);
+        std::sort(indices.begin(), indices.end(), [&locations](int i, int j) { return locations[i] < locations[j]; });
+
+        ui->comboBoxGeneratorLocation->clear();
+        for (int i : indices)
+        {
+            ui->comboBoxGeneratorLocation->addItem(QString::fromStdString(locations[i]), i);
+        }
     }
 }
 
@@ -264,7 +233,7 @@ void Wild3::generatorPokemonIndexChanged(int index)
     else
     {
         u16 num = static_cast<u16>(ui->comboBoxGeneratorPokemon->currentData().toUInt());
-        auto flags = encounterGenerator[ui->comboBoxGeneratorLocation->currentData().toInt()].getSlots(num);
+        auto flags = encounterGenerator[ui->comboBoxGeneratorLocation->getCurrentInt()].getSlots(num);
         ui->filterGenerator->toggleEncounterSlots(flags);
     }
 }
@@ -297,8 +266,8 @@ void Wild3::profilesIndexChanged(int index)
             ui->comboBoxSearcherLead->setEnabled(false);
         }
 
-        updateLocationsSearcher();
-        updateLocationsGenerator();
+        generatorEncounterIndexChanged(0);
+        searcherEncounterIndexChanged(0);
     }
 }
 
@@ -368,7 +337,6 @@ void Wild3::searcherEncounterIndexChanged(int index)
     {
         std::vector<std::string> t;
         Encounter encounter = static_cast<Encounter>(ui->comboBoxSearcherEncounter->currentData().toInt());
-
         switch (encounter)
         {
         case Encounter::Grass:
@@ -389,7 +357,23 @@ void Wild3::searcherEncounterIndexChanged(int index)
             break;
         }
         ui->filterSearcher->setEncounterSlots(t);
-        updateLocationsSearcher();
+
+        encounterSearcher = Encounters3::getEncounters(encounter, currentProfile->getVersion());
+
+        std::vector<u16> locs;
+        std::transform(encounterSearcher.begin(), encounterSearcher.end(), std::back_inserter(locs),
+                       [](const EncounterArea3 &area) { return area.getLocation(); });
+
+        auto locations = Translator::getLocations(locs, currentProfile->getVersion());
+        std::vector<int> indices(locations.size());
+        std::iota(indices.begin(), indices.end(), 0);
+        std::sort(indices.begin(), indices.end(), [&locations](int i, int j) { return locations[i] < locations[j]; });
+
+        ui->comboBoxSearcherLocation->clear();
+        for (int i : indices)
+        {
+            ui->comboBoxSearcherLocation->addItem(QString::fromStdString(locations[i]), i);
+        }
     }
 }
 

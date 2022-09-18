@@ -165,7 +165,11 @@ private slots:
      */
     void openStatic4();
 
-    // void openWild4();
+    /**
+     * @brief Opens the Gen 4 Wild window
+     */
+    void openWild4();
+
     // void openEgg4();
     // void openSeedtoTime4();
     // void openSIDFromChainedShiny();

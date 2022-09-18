@@ -24,8 +24,8 @@
 #include <algorithm>
 #include <bit>
 #include <bzlib.h>
+#include <iterator>
 #include <map>
-#include <sstream>
 
 enum class Language
 {
@@ -52,6 +52,7 @@ enum class Translation
     FRLG,
     Game,
     HGSS,
+    Item,
     Nature,
     Power,
     RS,
@@ -67,14 +68,17 @@ namespace
     std::vector<std::string> characteristics;
     std::vector<std::string> games;
     std::vector<std::string> hiddenPowers;
+    std::map<u16, std::string> items;
     std::vector<std::string> natures;
     std::vector<std::string> species;
     std::vector<std::string> genders = { "♂", "♀", "-" };
     std::vector<std::string> buttons = { "R", "L", "X", "Y", "A", "B", "Select", "Start", "Right", "Left", "Up", "Down" };
 
     /**
-     * @brief Reads strings from the specified translation in the languaged specified by Translator::init()
+     * @brief Reads strings from the \p translation in the languaged specified by Translator::init()
+     *
      * @param translation String category to read from
+     *
      * @return Vector of translated strings
      */
     std::vector<std::string> readFile(Translation translation)
@@ -83,14 +87,13 @@ namespace
         u32 start = indexes[index];
         u32 end = indexes[index + 1];
 
-        const u8 *compressedData = i18n + start;
+        char *compressedData = reinterpret_cast<char *>(const_cast<u8 *>(i18n + start));
         u32 compressedSize = end - start;
 
         u32 size = *reinterpret_cast<const u16 *>(compressedData);
         char *data = new char[size];
 
-        BZ2_bzBuffToBuffDecompress(data, &size, reinterpret_cast<char *>(const_cast<u8 *>(compressedData + sizeof(u16))), compressedSize, 0,
-                                   0);
+        BZ2_bzBuffToBuffDecompress(data, &size, compressedData + sizeof(u16), compressedSize, 0, 0);
 
         std::vector<std::string> strings;
         for (u32 i = 0; i < size;)
@@ -98,6 +101,44 @@ namespace
             char *it = std::find(data + i, data + size, 0);
             u32 len = it - &data[i];
             strings.emplace_back(data + i, len);
+            i += len + 1;
+        }
+
+        delete[] data;
+        return strings;
+    }
+
+    /**
+     * @brief Reads string mapping from the \p translation in the languaged specified by Translator::init()
+     *
+     * @param translation String category to read from
+     *
+     * @return Vector of translated strings
+     */
+    std::map<u16, std::string> readFileMap(Translation translation)
+    {
+        int index = (static_cast<int>(language) * static_cast<int>(Translation::Count)) + static_cast<int>(translation);
+        u32 start = indexes[index];
+        u32 end = indexes[index + 1];
+
+        char *compressedData = reinterpret_cast<char *>(const_cast<u8 *>(i18n + start));
+        u32 compressedSize = end - start;
+
+        u32 size = *reinterpret_cast<const u16 *>(compressedData);
+        char *data = new char[size];
+
+        BZ2_bzBuffToBuffDecompress(data, &size, compressedData + sizeof(u16), compressedSize, 0, 0);
+
+        std::map<u16, std::string> strings;
+        for (u32 i = 0; i < size;)
+        {
+            char *it = std::find(data + i, data + size, 0);
+            u32 len = it - &data[i];
+
+            char *word;
+            u16 num = std::strtoul(&data[i], &word, 10);
+            strings[num] = std::string(word + 1, it - word - 1);
+
             i += len + 1;
         }
 
@@ -155,6 +196,11 @@ namespace Translator
         return &hiddenPowers;
     }
 
+    std::string *getItem(u16 item)
+    {
+        return &items[item];
+    }
+
     std::string *getKeypress(u8 keypress)
     {
         return &buttons[keypress];
@@ -186,62 +232,47 @@ namespace Translator
 
     std::vector<std::string> getLocations(const std::vector<u16> &nums, Game game)
     {
-        std::vector<std::string> strings;
+        Translation translation;
         if ((game & Game::Emerald) != Game::None)
         {
-            strings = readFile(Translation::E);
+            translation = Translation::E;
         }
         else if ((game & Game::FRLG) != Game::None)
         {
-            strings = readFile(Translation::FRLG);
+            translation = Translation::FRLG;
         }
         else if ((game & Game::RS) != Game::None)
         {
-            strings = readFile(Translation::RS);
+            translation = Translation::RS;
         }
         else if ((game & Game::DPPt) != Game::None)
         {
-            strings = readFile(Translation::DPPt);
+            translation = Translation::DPPt;
         }
         else if ((game & Game::HGSS) != Game::None)
         {
-            strings = readFile(Translation::HGSS);
+            translation = Translation::HGSS;
         }
         else if ((game & Game::BW) != Game::None)
         {
-            strings = readFile(Translation::BW);
+            translation = Translation::BW;
         }
         else if ((game & Game::BW2) != Game::None)
         {
-            strings = readFile(Translation::BW2);
+            translation = Translation::BW2;
         }
         else if ((game & Game::SwSh) != Game::None)
         {
-            strings = readFile(Translation::SwSh);
+            translation = Translation::SwSh;
         }
         else
         {
-            strings = readFile(Translation::BDSP);
+            translation = Translation::BDSP;
         }
 
-        std::map<int, std::string> map;
-        for (const std::string &string : strings)
-        {
-            std::vector<std::string> entry;
-
-            std::string token;
-            std::istringstream stream(string);
-            while (std::getline(stream, token, ','))
-            {
-                entry.emplace_back(token);
-            }
-
-            map.emplace(std::stoi(entry[0]), entry[1]);
-        }
-
+        std::map<u16, std::string> map = readFileMap(translation);
         std::vector<std::string> locations;
         std::transform(nums.begin(), nums.end(), std::back_inserter(locations), [&map](u16 num) { return map[num]; });
-
         return locations;
     }
 
@@ -306,6 +337,7 @@ namespace Translator
         characteristics = readFile(Translation::Characteristic);
         games = readFile(Translation::Game);
         hiddenPowers = readFile(Translation::Power);
+        items = readFileMap(Translation::Item);
         natures = readFile(Translation::Nature);
         species = readFile(Translation::Specie);
     }

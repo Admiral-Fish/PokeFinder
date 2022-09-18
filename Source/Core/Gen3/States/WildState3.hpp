@@ -25,23 +25,26 @@
 class PersonalInfo;
 
 /**
- * @brief State class for Gen3 static generator encounters
+ * @brief State class for Gen3 wild generator encounters
  */
 class WildGeneratorState3 : public WildGeneratorState
 {
 public:
     /**
-     * @brief Construct a new GeneratorState3 object
+     * @brief Construct a new WildGeneratorState3 object
      *
      * @param advances State advances
      * @param pid PID value
+     * @param nature Pokemon nature
      * @param iv1 First IV call
      * @param iv2 Second IV call
      * @param tsv Trainer shiny value
      * @param level Pokemon level
+     * @param specie Pokemon specie
      * @param info Pokemon personal information
      */
-    WildGeneratorState3(u32 advances, u32 pid, u16 iv1, u16 iv2, u16 tsv, u8 level, u8 encounterSlot, u16 specie, const PersonalInfo *info);
+    WildGeneratorState3(u32 advances, u32 pid, u8 nature, u16 iv1, u16 iv2, u16 tsv, u8 level, u8 encounterSlot, u16 specie,
+                        const PersonalInfo *info);
 
     /**
      * @brief Returns the hidden power strength
@@ -58,20 +61,22 @@ private:
 };
 
 /**
- * @brief State class for Gen3 static searcher encounters
+ * @brief State class for Gen3 wild searcher encounters
  */
 class WildSearcherState3 : public WildSearcherState<u32>
 {
 public:
     /**
-     * @brief Construct a new SearcherState3 object
+     * @brief Construct a new WildSearcherState3 object
      *
      * @param seed State seed
-     * @param high High 16bits of PID
-     * @param low Low 16bits of PID
+     * @param pid PID value
+     * @param nature Pokemon nature
      * @param ivs Pokemon IVs
      * @param tsv Trainer shiny value
      * @param level Pokemon level
+     * @param encounterSlot Pokemon encounter slot
+     * @param specie Pokemon specie
      * @param info Pokemon personal information
      */
     WildSearcherState3(u32 seed, u32 pid, u8 nature, std::array<u8, 6> ivs, u16 tsv, u8 level, u8 encounterSlot, u16 specie,
@@ -87,6 +92,11 @@ public:
         return hiddenPowerStrength;
     }
 
+    /**
+     * @brief Sets the state seed
+     *
+     * @param seed State seed
+     */
     void setSeed(u32 seed)
     {
         this->seed = seed;

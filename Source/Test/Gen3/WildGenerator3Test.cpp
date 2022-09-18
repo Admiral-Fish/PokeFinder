@@ -40,11 +40,20 @@ struct WildStaticResult3
     u8 nature;
     u8 level;
     u8 shiny;
-    u16 specie;
-    u8 encounterSlot;
-    u8 item;
-    u32 advances;
-    u8 hiddenPowerStrength;
+    struct
+    {
+        u16 item;
+        u16 specie;
+        u8 encounterSlot;
+        struct
+        {
+            u32 advances;
+            struct
+            {
+                u8 hiddenPowerStrength;
+            };
+        };
+    };
 };
 NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(WildStaticResult3, pid, stats, abilityIndex, ivs, ability, gender, hiddenPower, nature, level, shiny,
                                    specie, encounterSlot, advances, hiddenPowerStrength);

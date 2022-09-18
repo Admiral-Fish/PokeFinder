@@ -20,9 +20,9 @@
 #include "Encounters4.hpp"
 #include <Core/Enum/Encounter.hpp>
 #include <Core/Enum/Method.hpp>
+#include <Core/Gen4/EncounterArea4.hpp>
 #include <Core/Gen4/Profile4.hpp>
 #include <Core/Gen4/StaticTemplate4.hpp>
-#include <Core/Parents/EncounterArea.hpp>
 #include <Core/Parents/PersonalLoader.hpp>
 #include <Core/Parents/Slot.hpp>
 #include <Core/Resources/Encounters.hpp>
@@ -165,7 +165,7 @@ namespace Encounters4
     namespace
     {
         /**
-         * @brief Decompressed provided data
+         * @brief Decompress provided data
          *
          * @param compressedData Compressed data
          * @param compressedSize Size of compressed data
@@ -272,161 +272,230 @@ namespace Encounters4
          * @param version Game version
          * @param encounter Encounter type
          * @param profile Profile information
+         * @param radio Radio station
+         * @param swarm Whether swarm is active
+         * @param time Time modifier
          * @param info Personal info array pointer
-         * @param modifier Time modifier
          *
          * @return Vector of encounter areas
          */
-        std::vector<EncounterArea> getHGSS(Game version, Encounter encounter, const Profile4 &profile, const PersonalInfo *info,
-                                           int modifier)
+        std::vector<EncounterArea4> getHGSS(Game version, Encounter encounter, int radio, bool swarm, bool dex, int time,
+                                            const PersonalInfo *info)
         {
             const u8 *compressedData;
             size_t compressedSize;
 
-            if (version == Game::HeartGold)
-            {
-                compressedData = heartgold.data();
-                compressedSize = heartgold.size();
-            }
-            else
-            {
-                compressedData = soulsilver.data();
-                compressedSize = soulsilver.size();
-            }
-
             u8 *data;
             u32 size;
 
-            data = decompress(compressedData, compressedSize, size);
-
-            std::vector<EncounterArea> encounters;
-            for (size_t offset = 0; offset < size; offset += 195)
+            std::vector<EncounterArea4> encounters;
+            if (encounter == Encounter::BugCatchingContest)
             {
-                u8 const *entry = data + offset;
+                compressedData = hgss_bug.data();
+                compressedSize = hgss_bug.size();
 
-                u8 location = entry[0];
-                u8 grass = entry[1];
-                u8 surf = entry[2];
-                u8 rock = entry[3];
-                u8 old = entry[4];
-                u8 good = entry[5];
-                u8 super = entry[6];
-
-                switch (encounter)
+                data = decompress(compressedData, compressedSize, size);
+                size = dex ? size : 41;
+                for (size_t offset = dex ? 41 : 0; offset < size; offset += 41)
                 {
-                case Encounter::Grass:
-                    if (grass != 0)
-                    {
-                        std::vector<Slot> slots;
-                        slots.reserve(12);
-                        for (int i = 0; i < 12; i++)
-                        {
-                            u8 level = entry[7 + i];
-                            u16 specie = *reinterpret_cast<const u16 *>(entry + 19 + (i * 2) + (modifier * 24));
-                            slots.emplace_back(specie, level, &info[specie]);
-                        }
-                        modifyRadio(slots, entry, info, profile.getRadio());
-                        modifySwarmHGSS(slots, entry, info, encounter, profile.getSwarm());
-                        encounters.emplace_back(location, grass, encounter, slots);
-                    }
-                    break;
-                case Encounter::Surfing:
-                    if (surf != 0)
-                    {
-                        std::vector<Slot> slots;
-                        slots.reserve(5);
-                        for (int i = 0; i < 5; i++)
-                        {
-                            u8 min = entry[99 + (i * 4)];
-                            u8 max = entry[100 + (i * 4)];
-                            u16 specie = *reinterpret_cast<const u16 *>(entry + 101 + (i * 4));
-                            slots.emplace_back(specie, min, max, &info[specie]);
-                        }
-                        modifySwarmHGSS(slots, entry, info, encounter, profile.getSwarm());
-                        encounters.emplace_back(location, surf, encounter, slots);
-                    }
-                    break;
-                case Encounter::RockSmash:
-                    if (rock != 0)
-                    {
-                        std::vector<Slot> slots;
-                        slots.reserve(2);
-                        for (int i = 0; i < 2; i++)
-                        {
-                            u8 min = entry[119 + (i * 4)];
-                            u8 max = entry[120 + (i * 4)];
-                            u16 specie = *reinterpret_cast<const u16 *>(entry + 121 + (i * 4));
-                            slots.emplace_back(specie, min, max, &info[specie]);
-                        }
-                        encounters.emplace_back(location, rock, encounter, slots);
-                    }
-                    break;
-                case Encounter::OldRod:
-                    if (old != 0)
-                    {
-                        std::vector<Slot> slots;
-                        slots.reserve(5);
-                        for (int i = 0; i < 5; i++)
-                        {
-                            u8 min = entry[127 + (i * 4)];
-                            u8 max = entry[128 + (i * 4)];
-                            u16 specie = *reinterpret_cast<const u16 *>(entry + 129 + (i * 4));
-                            slots.emplace_back(specie, min, max, &info[specie]);
-                        }
-                        modifySwarmHGSS(slots, entry, info, encounter, profile.getSwarm());
-                        encounters.emplace_back(location, old, encounter, slots);
-                    }
-                    break;
-                case Encounter::GoodRod:
-                    if (good != 0)
-                    {
-                        std::vector<Slot> slots;
-                        slots.reserve(5);
-                        for (int i = 0; i < 5; i++)
-                        {
-                            u8 min = entry[147 + (i * 4)];
-                            u8 max = entry[148 + (i * 4)];
-                            u16 specie = *reinterpret_cast<const u16 *>(entry + 149 + (i * 4));
+                    const u8 *entry = data + offset;
 
-                            // Adjust time based slot
-                            if ((modifier == 0 || modifier == 1) && i == 3)
-                            {
-                                specie = *reinterpret_cast<const u16 *>(entry + 191);
-                            }
+                    u8 location = entry[0];
 
-                            slots.emplace_back(specie, min, max, &info[specie]);
-                        }
-                        modifySwarmHGSS(slots, entry, info, encounter, profile.getSwarm());
-                        encounters.emplace_back(location, good, encounter, slots);
-                    }
-                    break;
-                case Encounter::SuperRod:
-                    if (super != 0)
+                    std::vector<Slot> slots;
+                    slots.reserve(10);
+                    for (int i = 0; i < 10; i++)
                     {
-                        std::vector<Slot> slots;
-                        slots.reserve(5);
-                        for (int i = 0; i < 5; i++)
-                        {
-                            u8 min = entry[167 + (i * 4)];
-                            u8 max = entry[168 + (i * 4)];
-                            u16 specie = *reinterpret_cast<const u16 *>(entry + 169 + (i * 4));
-
-                            // Adjust time based slot
-                            if ((modifier == 0 || modifier == 1) && i == 1)
-                            {
-                                specie = *reinterpret_cast<const u16 *>(entry + 191);
-                            }
-
-                            slots.emplace_back(specie, min, max, &info[specie]);
-                        }
-                        modifySwarmHGSS(slots, entry, info, encounter, profile.getSwarm());
-                        encounters.emplace_back(location, super, encounter, slots);
+                        u16 specie = *reinterpret_cast<const u16 *>(entry + 1 + (i * 4));
+                        u8 min = entry[3 + (i * 4)];
+                        u8 max = entry[4 + (i * 4)];
+                        slots.emplace_back(specie, min, max, &info[specie]);
                     }
-                    break;
-                default:
-                    break;
+                    encounters.emplace_back(location, 0, encounter, slots);
                 }
             }
+            else if (encounter == Encounter::Headbutt || encounter == Encounter::HeadbuttAlt || encounter == Encounter::HeadbuttSpecial)
+            {
+                if (version == Game::HeartGold)
+                {
+                    compressedData = hg_headbutt.data();
+                    compressedSize = hg_headbutt.size();
+                }
+                else
+                {
+                    compressedData = ss_headbutt.data();
+                    compressedSize = ss_headbutt.size();
+                }
+
+                data = decompress(compressedData, compressedSize, size);
+                for (size_t offset = 0; offset < size;)
+                {
+                    const u8 *entry = data + offset;
+
+                    u8 location = entry[0];
+                    bool special = entry[1];
+                    u8 tree = toInt(encounter) - toInt(Encounter::Headbutt);
+
+                    if (encounter != Encounter::HeadbuttSpecial || special)
+                    {
+                        std::vector<Slot> slots;
+                        slots.reserve(6);
+                        for (int i = 0; i < 6; i++)
+                        {
+                            u16 specie = *reinterpret_cast<const u16 *>(entry + 2 + (i * 4) + (24 * tree));
+                            u8 min = entry[4 + (i * 4) + (24 * tree)];
+                            u8 max = entry[5 + (i * 4) + (24 * tree)];
+                            slots.emplace_back(specie, min, max, &info[specie]);
+                        }
+                        encounters.emplace_back(location, 0, encounter, slots);
+                    }
+
+                    offset += special == 0 ? 50 : 74;
+                }
+            }
+            else
+            {
+                if (version == Game::HeartGold)
+                {
+                    compressedData = heartgold.data();
+                    compressedSize = heartgold.size();
+                }
+                else
+                {
+                    compressedData = soulsilver.data();
+                    compressedSize = soulsilver.size();
+                }
+
+                data = decompress(compressedData, compressedSize, size);
+                for (size_t offset = 0; offset < size; offset += 195)
+                {
+                    const u8 *entry = data + offset;
+
+                    u8 location = entry[0];
+                    u8 grass = entry[1];
+                    u8 surf = entry[2];
+                    u8 rock = entry[3];
+                    u8 old = entry[4];
+                    u8 good = entry[5];
+                    u8 super = entry[6];
+
+                    switch (encounter)
+                    {
+                    case Encounter::Grass:
+                        if (grass != 0)
+                        {
+                            std::vector<Slot> slots;
+                            slots.reserve(12);
+                            for (int i = 0; i < 12; i++)
+                            {
+                                u8 level = entry[7 + i];
+                                u16 specie = *reinterpret_cast<const u16 *>(entry + 19 + (i * 2) + (time * 24));
+                                slots.emplace_back(specie, level, &info[specie]);
+                            }
+                            modifyRadio(slots, entry, info, radio);
+                            modifySwarmHGSS(slots, entry, info, encounter, swarm);
+                            encounters.emplace_back(location, grass, encounter, slots);
+                        }
+                        break;
+                    case Encounter::Surfing:
+                        if (surf != 0)
+                        {
+                            std::vector<Slot> slots;
+                            slots.reserve(5);
+                            for (int i = 0; i < 5; i++)
+                            {
+                                u8 min = entry[99 + (i * 4)];
+                                u8 max = entry[100 + (i * 4)];
+                                u16 specie = *reinterpret_cast<const u16 *>(entry + 101 + (i * 4));
+                                slots.emplace_back(specie, min, max, &info[specie]);
+                            }
+                            modifySwarmHGSS(slots, entry, info, encounter, swarm);
+                            encounters.emplace_back(location, surf, encounter, slots);
+                        }
+                        break;
+                    case Encounter::RockSmash:
+                        if (rock != 0)
+                        {
+                            std::vector<Slot> slots;
+                            slots.reserve(2);
+                            for (int i = 0; i < 2; i++)
+                            {
+                                u8 min = entry[119 + (i * 4)];
+                                u8 max = entry[120 + (i * 4)];
+                                u16 specie = *reinterpret_cast<const u16 *>(entry + 121 + (i * 4));
+                                slots.emplace_back(specie, min, max, &info[specie]);
+                            }
+                            encounters.emplace_back(location, rock, encounter, slots);
+                        }
+                        break;
+                    case Encounter::OldRod:
+                        if (old != 0)
+                        {
+                            std::vector<Slot> slots;
+                            slots.reserve(5);
+                            for (int i = 0; i < 5; i++)
+                            {
+                                u8 min = entry[127 + (i * 4)];
+                                u8 max = entry[128 + (i * 4)];
+                                u16 specie = *reinterpret_cast<const u16 *>(entry + 129 + (i * 4));
+                                slots.emplace_back(specie, min, max, &info[specie]);
+                            }
+                            modifySwarmHGSS(slots, entry, info, encounter, swarm);
+                            encounters.emplace_back(location, old, encounter, slots);
+                        }
+                        break;
+                    case Encounter::GoodRod:
+                        if (good != 0)
+                        {
+                            std::vector<Slot> slots;
+                            slots.reserve(5);
+                            for (int i = 0; i < 5; i++)
+                            {
+                                u8 min = entry[147 + (i * 4)];
+                                u8 max = entry[148 + (i * 4)];
+                                u16 specie = *reinterpret_cast<const u16 *>(entry + 149 + (i * 4));
+
+                                // Adjust time based slot
+                                if ((time == 0 || time == 1) && i == 3)
+                                {
+                                    specie = *reinterpret_cast<const u16 *>(entry + 191);
+                                }
+
+                                slots.emplace_back(specie, min, max, &info[specie]);
+                            }
+                            modifySwarmHGSS(slots, entry, info, encounter, swarm);
+                            encounters.emplace_back(location, good, encounter, slots);
+                        }
+                        break;
+                    case Encounter::SuperRod:
+                        if (super != 0)
+                        {
+                            std::vector<Slot> slots;
+                            slots.reserve(5);
+                            for (int i = 0; i < 5; i++)
+                            {
+                                u8 min = entry[167 + (i * 4)];
+                                u8 max = entry[168 + (i * 4)];
+                                u16 specie = *reinterpret_cast<const u16 *>(entry + 169 + (i * 4));
+
+                                // Adjust time based slot
+                                if ((time == 0 || time == 1) && i == 1)
+                                {
+                                    specie = *reinterpret_cast<const u16 *>(entry + 191);
+                                }
+
+                                slots.emplace_back(specie, min, max, &info[specie]);
+                            }
+                            modifySwarmHGSS(slots, entry, info, encounter, swarm);
+                            encounters.emplace_back(location, super, encounter, slots);
+                        }
+                        break;
+                    default:
+                        break;
+                    }
+                }
+            }
+
             delete[] data;
             return encounters;
         }
@@ -553,13 +622,16 @@ namespace Encounters4
          *
          * @param version Game version
          * @param encounter Encounter type
-         * @param profile Profile information
-         * @param info Personal info array pointer
+         * @param dual Dual slot version
+         * @param radar Whether pokeradar is active
+         * @param swarm Whether swarm is active
          * @param time Time modifier
+         * @param info Personal info array pointer
          *
          * @return Vector of encounter areas
          */
-        std::vector<EncounterArea> getDPPt(Game version, Encounter encounter, const Profile4 &profile, const PersonalInfo *info, int time)
+        std::vector<EncounterArea4> getDPPt(Game version, Encounter encounter, Game dual, bool radar, bool swarm, int time,
+                                            const PersonalInfo *info)
         {
             const u8 *compressedData;
             size_t compressedSize;
@@ -583,7 +655,7 @@ namespace Encounters4
             }
 
             data = decompress(compressedData, compressedSize, size);
-            std::vector<EncounterArea> encounters;
+            std::vector<EncounterArea4> encounters;
             for (size_t offset = 0; offset < size; offset += 163)
             {
                 const u8 *entry = data + offset;
@@ -607,10 +679,10 @@ namespace Encounters4
                             u16 specie = *reinterpret_cast<const u16 *>(entry + 3 + (i * 3));
                             slots.emplace_back(specie, level, &info[specie]);
                         }
-                        modifySwarmDPPt(slots, entry, info, profile.getSwarm());
+                        modifySwarmDPPt(slots, entry, info, swarm);
                         modifyTime(slots, entry, info, time);
-                        modifyRadar(slots, entry, info, profile.getRadar());
-                        modifyDual(slots, entry, info, profile.getDualSlot());
+                        modifyRadar(slots, entry, info, radar);
+                        modifyDual(slots, entry, info, dual);
                         encounters.emplace_back(location, grass, encounter, slots);
                     }
                     break;
@@ -679,15 +751,16 @@ namespace Encounters4
         }
     }
 
-    std::vector<EncounterArea> getEncounters(Encounter encounter, int modifier, const Profile4 &profile)
+    std::vector<EncounterArea4> getEncounters(Encounter encounter, int time, Game dual, bool radar, int radio, bool swarm,
+                                              const Profile4 *profile)
     {
-        Game version = profile.getVersion();
+        Game version = profile->getVersion();
         const auto *info = PersonalLoader::getPersonal(version);
         if ((version & Game::DPPt) != Game::None)
         {
-            return getDPPt(version, encounter, profile, info, modifier);
+            return getDPPt(version, encounter, dual, radar, swarm, time, info);
         }
-        return getHGSS(version, encounter, profile, info, modifier);
+        return getHGSS(version, encounter, radio, swarm, profile->getNationalDex(), time, info);
     }
 
     const StaticTemplate4 *getStaticEncounters(int type, size_t *size)

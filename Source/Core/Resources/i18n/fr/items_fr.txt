@@ -1,0 +1,113 @@
+0,Aucun
+17,Potion
+28,Rappel
+29,Rappel Max
+33,Lait Meumeu
+43,Jus de Baie
+44,Cendre Sacrée
+80,Pierre Soleil
+81,Pierre Lune
+86,Petit Champi
+87,Gros Champi
+88,Perle
+89,Grande Perle
+90,Poussière Étoile
+91,Morceau d'Étoile
+92,Pépite
+93,Écaille Cœur
+94,Miel
+106,Os Rare
+110,Pierre Ovale
+149,Baie Ceriz
+150,Baie Maron
+151,Baie Pêcha
+152,Baie Fraive
+153,Baie Willia
+154,Baie Mepo
+155,Baie Oran
+156,Baie Kika
+157,Baie Prine
+158,Baie Sitrus
+184,Baie Chocco
+185,Baie Pocpoc
+186,Baie Parma
+187,Baie Ratam
+188,Baie Nanone
+189,Baie Pomroz
+190,Baie Kébia
+191,Baie Jouca
+192,Baie Cobaba
+193,Baie Yapap
+194,Baie Panga
+195,Baie Charti
+196,Baie Sédra
+197,Baie Fraigo
+198,Baie Lampou
+199,Baie Babiri
+200,Baie Zalis
+213,Poudre Claire
+217,Vive Griffe
+219,Herbe Mental
+221,Roche Royale
+222,Poudre Argentée
+224,Rune Purifiante
+226,Dent Océan
+227,Écaille Océan
+228,Boule Fumée
+229,Pierre Stase
+230,Bandeau
+231,Œuf Chance
+233,Peau Métal
+234,Restes
+235,Écaille Draco
+236,Balle Lumière
+237,Sable Doux
+238,Pierre Dure
+239,Graine Miracle
+240,Lunettes Noires
+241,Ceinture Noire
+242,Aimant
+243,Eau Mystique
+244,Bec Pointu
+245,Pic Venin
+246,Glace Éternelle
+247,Rune Sort
+248,Cuillère Tordue
+249,Charbon
+250,Croc Dragon
+251,Mouchoir Soie
+256,Poing Chance
+257,Poudre Métal
+258,Masse Os
+259,Poireau
+265,Loupe
+268,Ceinture Pro
+269,Lumargile
+271,Herbe Pouvoir
+272,Orbe Toxique
+273,Orbe Flamme
+274,Poudre Vite
+277,Métronome
+278,Balle Fer
+279,Ralentiqueue
+281,Boue Noire
+286,Accro Griffe
+288,Piquants
+295,Carapace Mue
+296,Grosse Racine
+322,Électriseur
+323,Magmariseur
+326,Griffe Rasoir
+541,Ballon
+545,Bulbe
+546,Pile
+571,Jolie Plume
+580,Champi Suave
+581,Maxi Pépite
+583,Morceau Comète
+648,Lichen Lumineux
+649,Boule de Neige
+881,Graine Électrik
+882,Graine Psychique
+883,Graine Brume
+884,Graine Herbe

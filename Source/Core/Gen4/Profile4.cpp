@@ -19,14 +19,9 @@
 
 #include "Profile4.hpp"
 
-Profile4::Profile4(const std::string &profileName, Game version, u16 tid, u16 sid, Game dual, int radio, bool radar, bool swarm, bool dex) :
-    Profile(profileName, version, tid, sid), dex(dex), radar(radar), swarm(swarm), dual(dual), radio(radio)
+Profile4::Profile4(const std::string &profileName, Game version, u16 tid, u16 sid, bool dex) :
+    Profile(profileName, version, tid, sid), dex(dex)
 {
-}
-
-Game Profile4::getDualSlot() const
-{
-    return dual;
 }
 
 bool Profile4::getNationalDex() const
@@ -34,37 +29,9 @@ bool Profile4::getNationalDex() const
     return dex;
 }
 
-bool Profile4::getRadar() const
-{
-    return radar;
-}
-
-int Profile4::getRadio() const
-{
-    return radio;
-}
-
-std::string Profile4::getRadioString() const
-{
-    switch (radio)
-    {
-    case 1:
-        return "Hoenn Sound";
-    case 2:
-        return "Sinnoh Sound";
-    default:
-        return "None";
-    }
-}
-
-bool Profile4::getSwarm() const
-{
-    return swarm;
-}
-
 bool Profile4::operator==(const Profile4 &other) const
 {
-    return Profile::operator==(other) && dual == other.dual && radio == other.radio && radar == other.radar && swarm == other.swarm && dex == other.dex;
+    return Profile::operator==(other) && dex == other.dex;
 }
 
 bool Profile4::operator!=(const Profile4 &other) const

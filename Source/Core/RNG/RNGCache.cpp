@@ -44,7 +44,8 @@ RNGCache::RNGCache(Method method)
         u16 val = right >> 16;
 
         flags[val] = true;
-        low[val--] = static_cast<u8>(i);
+        low[val] = static_cast<u8>(i);
+        val--;
         flags[val] = true;
         low[val] = static_cast<u8>(i);
     }

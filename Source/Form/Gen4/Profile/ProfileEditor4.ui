@@ -14,50 +14,6 @@
    <string>Profile Editor Gen 4</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="1" column="0">
-    <widget class="QLabel" name="labelVersion">
-     <property name="text">
-      <string>Version</string>
-     </property>
-    </widget>
-   </item>
-   <item row="0" column="5">
-    <widget class="TextBox" name="textBoxTID"/>
-   </item>
-   <item row="0" column="1">
-    <widget class="QLineEdit" name="lineEditProfile"/>
-   </item>
-   <item row="1" column="6">
-    <widget class="QPushButton" name="pushButtonCancel">
-     <property name="text">
-      <string>Cancel</string>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="4">
-    <widget class="QLabel" name="labelSID">
-     <property name="text">
-      <string>SID</string>
-     </property>
-    </widget>
-   </item>
-   <item row="0" column="6">
-    <widget class="QPushButton" name="pushButtonOkay">
-     <property name="text">
-      <string>Okay</string>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="5">
-    <widget class="TextBox" name="textBoxSID"/>
-   </item>
-   <item row="0" column="4">
-    <widget class="QLabel" name="labelTID">
-     <property name="text">
-      <string>TID</string>
-     </property>
-    </widget>
-   </item>
    <item row="1" column="1">
     <widget class="ComboBox" name="comboBoxVersion">
      <item>
@@ -87,6 +43,20 @@
      </item>
     </widget>
    </item>
+   <item row="1" column="0">
+    <widget class="QLabel" name="labelVersion">
+     <property name="text">
+      <string>Version</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="4">
+    <widget class="QPushButton" name="pushButtonOkay">
+     <property name="text">
+      <string>Okay</string>
+     </property>
+    </widget>
+   </item>
    <item row="0" column="0">
     <widget class="QLabel" name="labelProfile">
      <property name="text">
@@ -94,91 +64,37 @@
      </property>
     </widget>
    </item>
-   <item row="2" column="0">
-    <widget class="QLabel" name="labelDualSlot">
-     <property name="text">
-      <string>Dual Slot</string>
-     </property>
-    </widget>
+   <item row="0" column="3">
+    <widget class="TextBox" name="textBoxTID"/>
    </item>
-   <item row="2" column="1">
-    <widget class="ComboBox" name="comboBoxDualSlot">
-     <item>
-      <property name="text">
-       <string>None</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Ruby</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Sapphire</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Fire Red</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Leaf Green</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Emerald</string>
-      </property>
-     </item>
-    </widget>
-   </item>
-   <item row="0" column="2" colspan="2">
-    <widget class="QCheckBox" name="checkBoxRadar">
+   <item row="0" column="2">
+    <widget class="QLabel" name="labelTID">
      <property name="text">
-      <string>PokeRadar</string>
+      <string>TID</string>
      </property>
     </widget>
    </item>
    <item row="1" column="2">
-    <widget class="QLabel" name="labelRadio">
+    <widget class="QLabel" name="labelSID">
      <property name="text">
-      <string>Radio</string>
+      <string>SID</string>
      </property>
     </widget>
    </item>
    <item row="1" column="3">
-    <widget class="QComboBox" name="comboBoxRadio">
-     <property name="enabled">
-      <bool>true</bool>
-     </property>
-     <item>
-      <property name="text">
-       <string>None</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Hoenn Sound</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Sinnoh Sound</string>
-      </property>
-     </item>
-    </widget>
+    <widget class="TextBox" name="textBoxSID"/>
    </item>
-   <item row="2" column="2" colspan="2">
-    <widget class="QCheckBox" name="checkBoxSwarm">
+   <item row="1" column="4">
+    <widget class="QPushButton" name="pushButtonCancel">
      <property name="text">
-      <string>Swarm</string>
+      <string>Cancel</string>
      </property>
     </widget>
    </item>
-   <item row="2" column="4" colspan="2">
+   <item row="0" column="1">
+    <widget class="QLineEdit" name="lineEditProfile"/>
+   </item>
+   <item row="2" column="3">
     <widget class="QCheckBox" name="checkBoxNationalDex">
      <property name="text">
       <string>National Dex</string>
@@ -202,13 +118,8 @@
  <tabstops>
   <tabstop>lineEditProfile</tabstop>
   <tabstop>comboBoxVersion</tabstop>
-  <tabstop>comboBoxDualSlot</tabstop>
-  <tabstop>checkBoxRadar</tabstop>
-  <tabstop>comboBoxRadio</tabstop>
-  <tabstop>checkBoxSwarm</tabstop>
   <tabstop>textBoxTID</tabstop>
   <tabstop>textBoxSID</tabstop>
-  <tabstop>checkBoxNationalDex</tabstop>
   <tabstop>pushButtonOkay</tabstop>
   <tabstop>pushButtonCancel</tabstop>
  </tabstops>

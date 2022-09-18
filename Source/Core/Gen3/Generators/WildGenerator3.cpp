@@ -74,7 +74,7 @@ std::vector<WildGeneratorState3> WildGenerator3::generate(u32 seed, const Encoun
         }
         else
         {
-            encounterSlot = EncounterSlot::hSlot(go.nextUShort(), encounter);
+            encounterSlot = EncounterSlot::hSlot(go.nextUShort(100), encounter);
         }
 
         if (!filter.compareEncounterSlot(encounterSlot))
@@ -142,7 +142,7 @@ std::vector<WildGeneratorState3> WildGenerator3::generate(u32 seed, const Encoun
         }
         u16 iv2 = go.nextUShort();
 
-        WildGeneratorState3 state(initialAdvances + cnt, pid, iv1, iv2, tsv, level, encounterSlot, slot.getSpecie(), info);
+        WildGeneratorState3 state(initialAdvances + cnt, pid, nature, iv1, iv2, tsv, level, encounterSlot, slot.getSpecie(), info);
         if (filter.compareState(state))
         {
             states.emplace_back(state);

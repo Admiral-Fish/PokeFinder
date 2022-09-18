@@ -83,9 +83,9 @@ Settings::Settings(QWidget *parent) : QWidget(parent), ui(new Ui::Settings)
 
     setting.endGroup();
 
-    connect(ui->comboBoxLanguage, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &Settings::languageIndexChanged);
-    connect(ui->comboBoxStyle, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &Settings::styleIndexChanged);
-    connect(ui->comboBoxThreads, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &Settings::threadsIndexChanged);
+    connect(ui->comboBoxLanguage, &QComboBox::currentIndexChanged, this, &Settings::languageIndexChanged);
+    connect(ui->comboBoxStyle, &QComboBox::currentIndexChanged, this, &Settings::styleIndexChanged);
+    connect(ui->comboBoxThreads, &QComboBox::currentIndexChanged, this, &Settings::threadsIndexChanged);
     connect(ui->pushButtonProfile, &QPushButton::clicked, this, &Settings::changeProfiles);
     connect(ui->pushButtonIVBin, &QPushButton::clicked, this, &Settings::changeIVs);
 
@@ -114,8 +114,8 @@ void Settings::changeIVs()
             QByteArray hash = QCryptographicHash::hash(f.readAll(), QCryptographicHash::Sha256).toHex();
             if (hash != "c49210a31edb77ae54ddce028f8e4081947b0b5315c70e6eefda8ff88d3d70c1")
             {
-                QMessageBox message(QMessageBox::Information, tr("IV bin"), tr("Invalid IV bin file was provided"), QMessageBox::Ok);
-                message.exec();
+                QMessageBox msg(QMessageBox::Information, tr("IV bin"), tr("Invalid IV bin file was provided"));
+                msg.exec();
                 return;
             }
 
@@ -126,9 +126,8 @@ void Settings::changeIVs()
         }
         else
         {
-            QMessageBox message(QMessageBox::Information, tr("IV bin"), tr("There was a problem opening the file"), QMessageBox::Ok);
-            message.exec();
-            return;
+            QMessageBox msg(QMessageBox::Information, tr("IV bin"), tr("There was a problem opening the file"));
+            msg.exec();
         }
     }
 }
@@ -143,9 +142,8 @@ void Settings::changeProfiles()
             QFile f(fileName);
             if (!f.open(QIODevice::WriteOnly))
             {
-                QMessageBox message(QMessageBox::Information, tr("Profile File"), tr("There was a problem creating the file"),
-                                    QMessageBox::Ok);
-                message.exec();
+                QMessageBox msg(QMessageBox::Information, tr("Profile File"), tr("There was a problem creating the file"));
+                msg.exec();
                 return;
             }
         }
@@ -171,9 +169,9 @@ void Settings::languageIndexChanged(int index)
         {
             setting.setValue("settings/locale", language);
 
-            QMessageBox message(QMessageBox::Question, tr("Language update"), tr("Restart for changes to take effect. Restart now?"),
-                                QMessageBox::Yes | QMessageBox::No);
-            if (message.exec() == QMessageBox::Yes)
+            QMessageBox msg(QMessageBox::Question, tr("Language update"), tr("Restart for changes to take effect. Restart now?"),
+                            QMessageBox::Yes | QMessageBox::No);
+            if (msg.exec() == QMessageBox::Yes)
             {
                 QProcess::startDetached(QApplication::applicationFilePath());
                 QApplication::quit();
@@ -193,9 +191,9 @@ void Settings::styleIndexChanged(int index)
         {
             setting.setValue("settings/style", style);
 
-            QMessageBox message(QMessageBox::Question, tr("Style change"), tr("Restart for changes to take effect. Restart now?"),
-                                QMessageBox::Yes | QMessageBox::No);
-            if (message.exec() == QMessageBox::Yes)
+            QMessageBox msg(QMessageBox::Question, tr("Style change"), tr("Restart for changes to take effect. Restart now?"),
+                            QMessageBox::Yes | QMessageBox::No);
+            if (msg.exec() == QMessageBox::Yes)
             {
                 QProcess::startDetached(QApplication::applicationFilePath());
                 QApplication::quit();

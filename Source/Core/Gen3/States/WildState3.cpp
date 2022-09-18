@@ -23,8 +23,8 @@
 
 constexpr int order[6] = { 0, 1, 2, 5, 3, 4 };
 
-WildGeneratorState3::WildGeneratorState3(u32 advances, u32 pid, u16 iv1, u16 iv2, u16 tsv, u8 level, u8 encounterSlot, u16 specie,
-                                         const PersonalInfo *info) :
+WildGeneratorState3::WildGeneratorState3(u32 advances, u32 pid, u8 nature, u16 iv1, u16 iv2, u16 tsv, u8 level, u8 encounterSlot,
+                                         u16 specie, const PersonalInfo *info) :
     WildGeneratorState(advances)
 {
     this->level = level;
@@ -34,7 +34,7 @@ WildGeneratorState3::WildGeneratorState3(u32 advances, u32 pid, u16 iv1, u16 iv2
     this->pid = pid;
     ability = pid & 1;
     abilityIndex = info->getAbility(ability);
-    nature = pid % 25;
+    this->nature = nature;
 
     u16 psv = ((pid >> 16) ^ (pid & 0xffff));
     if (tsv == psv)

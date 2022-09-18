@@ -191,10 +191,6 @@ namespace ProfileLoader4
             j["version"] = profile.getVersion();
             j["tid"] = profile.getTID();
             j["sid"] = profile.getSID();
-            j["dual"] = profile.getDualSlot();
-            j["radio"] = profile.getRadio();
-            j["radar"] = profile.getRadar();
-            j["swarm"] = profile.getSwarm();
             j["dex"] = profile.getNationalDex();
             return j;
         }
@@ -212,12 +208,8 @@ namespace ProfileLoader4
             Game version = j.value("version", Game::Diamond);
             u16 tid = j.value("tid", 0);
             u16 sid = j.value("sid", 0);
-            Game dual = j.value("dual", Game::Emerald);
-            int radio = j.value("radio", 0);
-            bool radar = j.value("radar", false);
-            bool swarm = j.value("swarm", false);
             bool dex = j.value("dex", false);
-            return Profile4(name, version, tid, sid, dual, radio, radar, swarm, dex);
+            return Profile4(name, version, tid, sid, dex);
         }
     }
 

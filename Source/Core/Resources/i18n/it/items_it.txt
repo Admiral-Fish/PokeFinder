@@ -1,0 +1,113 @@
+0,Niente
+17,Pozione
+28,Revitalizzante
+29,Revitalizz. Max
+33,Latte Mumu
+43,Succodibacca
+44,Ceneremagica
+80,Pietrasolare
+81,Pietralunare
+86,Minifungo
+87,Grande Fungo
+88,Perla
+89,Grande Perla
+90,Polvostella
+91,Pezzo Stella
+92,Pepita
+93,Squama Cuore
+94,Miele
+106,Osso Raro
+110,Pietraovale
+149,Baccaliegia
+150,Baccastagna
+151,Baccapesca
+152,Baccafrago
+153,Baccaperina
+154,Baccamela
+155,Baccarancia
+156,Baccaki
+157,Baccaprugna
+158,Baccacedro
+184,Baccacao
+185,Baccapasflo
+186,Baccaparmen
+187,Baccarindo
+188,Baccamoya
+189,Baccarosmel
+190,Baccakebia
+191,Baccanaca
+192,Baccababa
+193,Baccapayapa
+194,Baccaitan
+195,Baccaciofo
+196,Baccacitrus
+197,Baccahaban
+198,Baccaxan
+199,Baccababiri
+200,Baccacinlan
+213,Luminpolvere
+217,Rapidartigli
+219,Mentalerba
+221,Roccia di Re
+222,Argenpolvere
+224,Velopuro
+226,Dente Abissi
+227,Squamabissi
+228,Palla Fumo
+229,Pietrastante
+230,Bandana
+231,Fortunuovo
+233,Metalcoperta
+234,Avanzi
+235,Squama Drago
+236,Elettropalla
+237,Sabbia Soffice
+238,Pietradura
+239,Miracolseme
+240,Occhialineri
+241,Cinturanera
+242,Calamita
+243,Acqua Magica
+244,Beccaffilato
+245,Velenaculeo
+246,Gelomai
+247,Spettrotarga
+248,Cucchiaio Torto
+249,Carbonella
+250,Dentedidrago
+251,Sciarpa Seta
+256,Fortunpugno
+257,Metalpolvere
+258,Ossospesso
+259,Gambo
+265,Grandelente
+268,Abilcintura
+269,Creta Luce
+271,Vigorerba
+272,Tossicsfera
+273,Fiammosfera
+274,Velopolvere
+277,Plessimetro
+278,Ferropalla
+279,Rallentocoda
+281,Fangopece
+286,Presartigli
+288,Vischiopunta
+295,Disfoguscio
+296,Granradice
+322,Elettritore
+323,Magmatore
+326,Affilartigli
+541,Palloncino
+545,Bulbo
+546,Ricaripila
+571,Piumabella
+580,Profumfungo
+581,Granpepita
+583,Pezzo Cometa
+648,Muschioluce
+649,Palla di neve
+881,Elettroseme
+882,Psicoseme
+883,Nebbiaseme
+884,Erbaseme

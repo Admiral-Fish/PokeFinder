@@ -71,6 +71,7 @@ public:
 
     /**
      * @brief Sets current \p method of the model
+     *
      * @param method Method
      */
     void setMethod(Method method);

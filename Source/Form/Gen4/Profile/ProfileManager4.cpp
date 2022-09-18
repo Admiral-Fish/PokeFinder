@@ -97,9 +97,9 @@ void ProfileManager4::remove()
         return;
     }
 
-    QMessageBox message(QMessageBox::Question, tr("Delete profile"), tr("Are you sure you wish to delete this profile?"),
-                        QMessageBox::Yes | QMessageBox::No);
-    if (message.exec() == QMessageBox::Yes)
+    QMessageBox msg(QMessageBox::Question, tr("Delete profile"), tr("Are you sure you wish to delete this profile?"),
+                    QMessageBox::Yes | QMessageBox::No);
+    if (msg.exec() == QMessageBox::Yes)
     {
         Profile4 profile = model->getItem(row);
         ProfileLoader4::removeProfile(profile);

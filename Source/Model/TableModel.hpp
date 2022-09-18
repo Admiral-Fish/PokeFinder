@@ -112,7 +112,6 @@ public:
      */
     int rowCount(const QModelIndex &parent = QModelIndex()) const override
     {
-        (void)parent;
         return static_cast<int>(model.size());
     }
 

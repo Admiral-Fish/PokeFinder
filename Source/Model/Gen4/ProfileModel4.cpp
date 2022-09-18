@@ -26,7 +26,7 @@ ProfileModel4::ProfileModel4(QObject *parent) : TableModel<Profile4>(parent)
 
 int ProfileModel4::columnCount(const QModelIndex & /*parent*/) const
 {
-    return 9;
+    return 5;
 }
 
 QVariant ProfileModel4::data(const QModelIndex &index, int role) const
@@ -45,14 +45,6 @@ QVariant ProfileModel4::data(const QModelIndex &index, int role) const
         case 3:
             return profile.getSID();
         case 4:
-            return QString::fromStdString(*Translator::getGame(profile.getDualSlot()));
-        case 5:
-            return QString::fromStdString(profile.getRadioString());
-        case 6:
-            return profile.getRadar() ? tr("Yes") : tr("No");
-        case 7:
-            return profile.getSwarm() ? tr("Yes") : tr("No");
-        case 8:
             return profile.getNationalDex() ? tr("Yes") : tr("No");
         }
     }

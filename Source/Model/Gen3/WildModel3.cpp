@@ -94,7 +94,6 @@ WildSearcherModel3::WildSearcherModel3(QObject *parent) : TableModel<WildSearche
 
 int WildSearcherModel3::columnCount(const QModelIndex &parent) const
 {
-    (void)parent;
     return 16;
 }
 

@@ -314,9 +314,9 @@ void Researcher::generate()
 
         if (calcCustom[i] && (!pass && customR[i] == Custom::None))
         {
-            QMessageBox error(QMessageBox::Warning, tr("Missing setting"),
-                              tr("You must check the Hex box in order to use hexadecimal values for Custom %1").arg(i + 1));
-            error.exec();
+            QMessageBox msg(QMessageBox::Warning, tr("Missing setting"),
+                            tr("You must check the Hex box in order to use hexadecimal values for Custom %1").arg(i + 1));
+            msg.exec();
             return;
         }
     }
@@ -379,10 +379,8 @@ void Researcher::next()
     }
     else
     {
-        QMessageBox error;
-        error.setText(tr("No result found"));
-        error.exec();
-        return;
+        QMessageBox msg(QMessageBox::Information, tr("No result"), tr("Unable to find a result"));
+        msg.exec();
     }
 }
 
@@ -405,10 +403,8 @@ void Researcher::search()
     }
     else
     {
-        QMessageBox error;
-        error.setText(tr("No result found"));
-        error.exec();
-        return;
+        QMessageBox msg(QMessageBox::Information, tr("No result"), tr("Unable to find a result"));
+        msg.exec();
     }
 }
 

@@ -53,15 +53,15 @@ public:
      *
      * @return State item
      */
-    u8 getItem() const
+    u16 getItem() const
     {
         return item;
     }
 
 protected:
+    u16 item;
     u16 specie;
     u8 encounterSlot;
-    u8 item;
 };
 
 /**

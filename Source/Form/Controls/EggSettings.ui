@@ -13,12 +13,6 @@
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
     <widget class="QScrollArea" name="scrollArea">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
      <property name="widgetResizable">
       <bool>true</bool>
      </property>
@@ -34,13 +28,6 @@
       <layout class="QGridLayout" name="gridLayout_4">
        <item row="0" column="0">
         <layout class="QGridLayout" name="gridLayout_3">
-         <item row="0" column="1">
-          <widget class="QLabel" name="labelParentAIVs">
-           <property name="text">
-            <string>Parent A</string>
-           </property>
-          </widget>
-         </item>
          <item row="0" column="2">
           <widget class="QLabel" name="labelParentBIVs">
            <property name="text">
@@ -48,14 +35,36 @@
            </property>
           </widget>
          </item>
+         <item row="5" column="0">
+          <widget class="QLabel" name="labelSpD">
+           <property name="text">
+            <string>SpD</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="labelAtk">
+           <property name="text">
+            <string>Atk</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QLabel" name="labelParentAIVs">
+           <property name="text">
+            <string>Parent A</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="0">
+          <widget class="QLabel" name="labelDef">
+           <property name="text">
+            <string>Def</string>
+           </property>
+          </widget>
+         </item>
          <item row="1" column="0">
           <widget class="QLabel" name="labelHP">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
            <property name="text">
             <string>HP</string>
            </property>
@@ -71,62 +80,6 @@
            </property>
           </widget>
          </item>
-         <item row="1" column="2">
-          <widget class="QSpinBox" name="spinBoxParentBHP">
-           <property name="maximum">
-            <number>31</number>
-           </property>
-           <property name="value">
-            <number>31</number>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="0">
-          <widget class="QLabel" name="labelAtk">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="text">
-            <string>Atk</string>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="1">
-          <widget class="QSpinBox" name="spinBoxParentAAtk">
-           <property name="maximum">
-            <number>31</number>
-           </property>
-           <property name="value">
-            <number>31</number>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="2">
-          <widget class="QSpinBox" name="spinBoxParentBAtk">
-           <property name="maximum">
-            <number>31</number>
-           </property>
-           <property name="value">
-            <number>31</number>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="0">
-          <widget class="QLabel" name="labelDef">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="text">
-            <string>Def</string>
-           </property>
-          </widget>
-         </item>
          <item row="3" column="1">
           <widget class="QSpinBox" name="spinBoxParentADef">
            <property name="maximum">
@@ -137,31 +90,8 @@
            </property>
           </widget>
          </item>
-         <item row="3" column="2">
-          <widget class="QSpinBox" name="spinBoxParentBDef">
-           <property name="maximum">
-            <number>31</number>
-           </property>
-           <property name="value">
-            <number>31</number>
-           </property>
-          </widget>
-         </item>
-         <item row="4" column="0">
-          <widget class="QLabel" name="labelSpA">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="text">
-            <string>SpA</string>
-           </property>
-          </widget>
-         </item>
-         <item row="4" column="1">
-          <widget class="QSpinBox" name="spinBoxParentASpA">
+         <item row="6" column="2">
+          <widget class="QSpinBox" name="spinBoxParentBSpe">
            <property name="maximum">
             <number>31</number>
            </property>
@@ -180,21 +110,48 @@
            </property>
           </widget>
          </item>
-         <item row="5" column="0">
-          <widget class="QLabel" name="labelSpD">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
+         <item row="3" column="2">
+          <widget class="QSpinBox" name="spinBoxParentBDef">
+           <property name="maximum">
+            <number>31</number>
            </property>
-           <property name="text">
-            <string>SpD</string>
+           <property name="value">
+            <number>31</number>
            </property>
           </widget>
          </item>
          <item row="5" column="1">
           <widget class="QSpinBox" name="spinBoxParentASpD">
+           <property name="maximum">
+            <number>31</number>
+           </property>
+           <property name="value">
+            <number>31</number>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="2">
+          <widget class="QSpinBox" name="spinBoxParentBAtk">
+           <property name="maximum">
+            <number>31</number>
+           </property>
+           <property name="value">
+            <number>31</number>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="2">
+          <widget class="QSpinBox" name="spinBoxParentBHP">
+           <property name="maximum">
+            <number>31</number>
+           </property>
+           <property name="value">
+            <number>31</number>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="1">
+          <widget class="QSpinBox" name="spinBoxParentASpA">
            <property name="maximum">
             <number>31</number>
            </property>
@@ -215,12 +172,6 @@
          </item>
          <item row="6" column="0">
           <widget class="QLabel" name="labelSpe">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
            <property name="text">
             <string>Spe</string>
            </property>
@@ -236,13 +187,20 @@
            </property>
           </widget>
          </item>
-         <item row="6" column="2">
-          <widget class="QSpinBox" name="spinBoxParentBSpe">
+         <item row="2" column="1">
+          <widget class="QSpinBox" name="spinBoxParentAAtk">
            <property name="maximum">
             <number>31</number>
            </property>
            <property name="value">
             <number>31</number>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="0">
+          <widget class="QLabel" name="labelSpA">
+           <property name="text">
+            <string>SpA</string>
            </property>
           </widget>
          </item>
@@ -252,12 +210,6 @@
         <layout class="QGridLayout" name="gridLayout_2">
          <item row="0" column="1">
           <widget class="QLabel" name="labelParentA">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
            <property name="text">
             <string>Parent A</string>
            </property>
@@ -265,12 +217,6 @@
          </item>
          <item row="0" column="2">
           <widget class="QLabel" name="labelParentB">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
            <property name="text">
             <string>Parent B</string>
            </property>
@@ -278,12 +224,6 @@
          </item>
          <item row="1" column="0">
           <widget class="QLabel" name="labelAbility">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
            <property name="text">
             <string>Ability</string>
            </property>
@@ -297,12 +237,6 @@
          </item>
          <item row="2" column="0">
           <widget class="QLabel" name="labelGender">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
            <property name="text">
             <string>Gender</string>
            </property>
@@ -316,12 +250,6 @@
          </item>
          <item row="3" column="0">
           <widget class="QLabel" name="labelItem">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
            <property name="text">
             <string>Item</string>
            </property>
@@ -335,12 +263,6 @@
          </item>
          <item row="4" column="0">
           <widget class="QLabel" name="labelNature">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
            <property name="text">
             <string>Nature</string>
            </property>

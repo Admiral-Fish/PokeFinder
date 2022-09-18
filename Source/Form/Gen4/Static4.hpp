@@ -114,6 +114,9 @@ private slots:
      */
     void searcherPokemonIndexChanged(int index);
 
+    /**
+     * @brief Opens seed to time. Provides current game version and seed from the selected tableview row.
+     */
     void seedToTime();
 };
 

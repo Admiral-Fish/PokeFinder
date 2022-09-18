@@ -121,6 +121,35 @@ std::vector<SearcherState4> StaticSearcher4::search(u8 hp, u8 atk, u8 def, u8 sp
     return searchInitialSeeds(states);
 }
 
+std::vector<SearcherState4> StaticSearcher4::searchInitialSeeds(const std::vector<SearcherState4> &results) const
+{
+    std::vector<SearcherState4> states;
+
+    for (SearcherState4 result : results)
+    {
+        u32 seed = result.getSeed();
+        PokeRNGR rng(seed, minAdvance);
+
+        for (u32 cnt = minAdvance; cnt <= maxAdvance; cnt++)
+        {
+            u8 hour = (seed >> 16) & 0xFF;
+            u16 delay = seed & 0xFFFF;
+
+            // Check if seed matches a valid gen 4 format
+            if (hour < 24 && delay >= minDelay && delay <= maxDelay)
+            {
+                result.setAdvances(cnt);
+                result.setSeed(seed);
+                states.emplace_back(result);
+            }
+
+            seed = rng.next();
+        }
+    }
+
+    return states;
+}
+
 std::vector<SearcherState4> StaticSearcher4::searchMethod1(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe,
                                                            const StaticTemplate4 *staticTemplate) const
 {
@@ -348,35 +377,6 @@ std::vector<SearcherState4> StaticSearcher4::searchMethodK(u8 hp, u8 atk, u8 def
                 nextRNG = rng.nextUShort();
                 nextRNG2 = rng.nextUShort();
             } while (huntNature != nature);
-        }
-    }
-
-    return states;
-}
-
-std::vector<SearcherState4> StaticSearcher4::searchInitialSeeds(const std::vector<SearcherState4> &results) const
-{
-    std::vector<SearcherState4> states;
-
-    for (SearcherState4 result : results)
-    {
-        u32 seed = result.getSeed();
-        PokeRNGR rng(seed, minAdvance);
-
-        for (u32 cnt = minAdvance; cnt <= maxAdvance; cnt++)
-        {
-            u8 hour = (seed >> 16) & 0xFF;
-            u16 delay = seed & 0xFFFF;
-
-            // Check if seed matches a valid gen 4 format
-            if (hour < 24 && delay >= minDelay && delay <= maxDelay)
-            {
-                result.setAdvances(cnt);
-                result.setSeed(seed);
-                states.emplace_back(result);
-            }
-
-            seed = rng.next();
         }
     }
 

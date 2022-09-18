@@ -25,7 +25,7 @@
 class PersonalInfo;
 
 /**
- * @brief State class for Gen3 static generator encounters
+ * @brief State class for Gen4 static generator encounters
  */
 class GeneratorState4 : public GeneratorState
 {

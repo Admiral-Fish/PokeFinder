@@ -63,15 +63,12 @@ Static3::Static3(QWidget *parent) : QWidget(parent), ui(new Ui::Static3)
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Static3::generate);
     connect(ui->pushButtonSearch, &QPushButton::clicked, this, &Static3::search);
     connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &Static3::profileManager);
-    connect(ui->comboBoxProfiles, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &Static3::profilesIndexChanged);
-    connect(ui->comboBoxGeneratorCategory, QOverload<int>::of(&QComboBox::currentIndexChanged), this,
-            &Static3::generatorCategoryIndexChanged);
-    connect(ui->comboBoxGeneratorPokemon, QOverload<int>::of(&QComboBox::currentIndexChanged), this,
-            &Static3::generatorPokemonIndexChanged);
-    connect(ui->comboBoxSearcherCategory, QOverload<int>::of(&QComboBox::currentIndexChanged), this,
-            &Static3::searcherCategoryIndexChanged);
-    connect(ui->comboBoxSearcherPokemon, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &Static3::searcherPokemonIndexChanged);
-    connect(ui->comboBoxProfiles, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &Static3::profilesIndexChanged);
+    connect(ui->comboBoxProfiles, &QComboBox::currentIndexChanged, this, &Static3::profilesIndexChanged);
+    connect(ui->comboBoxGeneratorCategory, &QComboBox::currentIndexChanged, this, &Static3::generatorCategoryIndexChanged);
+    connect(ui->comboBoxGeneratorPokemon, &QComboBox::currentIndexChanged, this, &Static3::generatorPokemonIndexChanged);
+    connect(ui->comboBoxSearcherCategory, &QComboBox::currentIndexChanged, this, &Static3::searcherCategoryIndexChanged);
+    connect(ui->comboBoxSearcherPokemon, &QComboBox::currentIndexChanged, this, &Static3::searcherPokemonIndexChanged);
+    connect(ui->comboBoxProfiles, &QComboBox::currentIndexChanged, this, &Static3::profilesIndexChanged);
     connect(ui->filterGenerator, &Filter::showStatsChanged, generatorModel, &StaticGeneratorModel3::setShowStats);
     connect(ui->filterSearcher, &Filter::showStatsChanged, searcherModel, &StaticSearcherModel3::setShowStats);
 
@@ -197,10 +194,12 @@ void Static3::profilesIndexChanged(int index)
         bool frlg = (currentProfile->getVersion() & Game::FRLG) != Game::None;
         bool rs = (currentProfile->getVersion() & Game::RS) != Game::None;
 
+        // Game Corner
         ui->comboBoxGeneratorCategory->setItemHidden(3, !frlg);
-        ui->comboBoxGeneratorCategory->setItemHidden(6, rs);
-
         ui->comboBoxSearcherCategory->setItemHidden(3, !frlg);
+
+        // Event
+        ui->comboBoxGeneratorCategory->setItemHidden(6, rs);
         ui->comboBoxSearcherCategory->setItemHidden(6, rs);
     }
 }

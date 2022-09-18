@@ -19,7 +19,6 @@
 
 #include "EncounterArea3.hpp"
 #include <Core/Enum/Game.hpp>
-#include <Core/Parents/Slot.hpp>
 
 EncounterArea3::EncounterArea3(u8 location, u8 rate, Encounter encounter, const std::vector<Slot> &pokemon) :
     EncounterArea(location, rate, encounter, pokemon)

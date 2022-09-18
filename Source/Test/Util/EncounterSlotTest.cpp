@@ -42,7 +42,7 @@ void EncounterSlotTest::hSlot()
 
     for (size_t i = 0; i < rand.size(); i++)
     {
-        QCOMPARE(EncounterSlot::hSlot(rand[i], encounter), i);
+        QCOMPARE(EncounterSlot::hSlot(rand[i] % 100, encounter), i);
     }
 }
 
@@ -65,7 +65,7 @@ void EncounterSlotTest::jSlot()
 
     for (size_t i = 0; i < rand.size(); i++)
     {
-        QCOMPARE(EncounterSlot::jSlot(rand[i], encounter), i);
+        QCOMPARE(EncounterSlot::jSlot(rand[i] / 656, encounter), i);
     }
 }
 
@@ -88,7 +88,7 @@ void EncounterSlotTest::kSlot()
 
     for (size_t i = 0; i < rand.size(); i++)
     {
-        QCOMPARE(EncounterSlot::kSlot(rand[i], encounter), i);
+        QCOMPARE(EncounterSlot::kSlot(rand[i] % 100, encounter), i);
     }
 }
 

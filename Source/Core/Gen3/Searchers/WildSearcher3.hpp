@@ -26,8 +26,6 @@
 #include <Core/RNG/RNGCache.hpp>
 #include <mutex>
 
-class PersonalInfo;
-class StaticTemplate;
 
 /**
  * @brief Wild encounter searcher for Gen3
