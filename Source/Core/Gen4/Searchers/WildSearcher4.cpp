@@ -60,10 +60,10 @@ WildSearcher4::WildSearcher4(u32 minAdvance, u32 maxAdvance, u32 minDelay, u32 m
     minAdvance(minAdvance),
     maxDelay(maxDelay),
     minDelay(minDelay),
+    thresh(encounterArea.getRate()),
     searching(false),
     shiny(shiny)
 {
-    thresh = encounterArea.getRate();
     if (lead == Lead::SuctionCups
         && (encounter == Encounter::OldRod || encounter == Encounter::GoodRod || encounter == Encounter::SuperRod))
     {
@@ -148,8 +148,8 @@ std::vector<WildSearcherState4> WildSearcher4::searchInitialSeeds(const std::vec
 
     for (WildSearcherState4 result : results)
     {
-        u32 seed = result.getSeed();
-        PokeRNGR rng(seed, minAdvance);
+        PokeRNGR rng(result.getSeed(), minAdvance);
+        u32 seed = rng.getSeed();
         for (u32 cnt = minAdvance; cnt <= maxAdvance; cnt++)
         {
             u8 hour = (seed >> 16) & 0xFF;
@@ -624,15 +624,13 @@ std::vector<WildSearcherState4> WildSearcher4::searchPokeRadar(u8 hp, u8 atk, u8
         break;
     }
 
-    bool (*cuteCharmCheck)(const PersonalInfo *, u32);
-    if (lead == Lead::CuteCharmF)
-    {
-        cuteCharmCheck = [](const PersonalInfo *info, u32 pid) { return (pid & 0xff) >= info->getGender(); };
-    }
-    else if (lead == Lead::CuteCharmM)
-    {
-        cuteCharmCheck = [](const PersonalInfo *info, u32 pid) { return (pid & 0xff) < info->getGender(); };
-    }
+    auto cuteCharmCheck = [this](const PersonalInfo *info, u32 pid) {
+        if (lead == Lead::CuteCharmF)
+        {
+            return (pid & 0xff) >= info->getGender();
+        }
+        return (pid & 0xff) < info->getGender();
+    };
 
     u32 seeds[6];
     int size = cache.recoverPokeRNGIV(hp, atk, def, spa, spd, spe, seeds);

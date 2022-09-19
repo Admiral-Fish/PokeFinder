@@ -127,9 +127,8 @@ std::vector<SearcherState4> StaticSearcher4::searchInitialSeeds(const std::vecto
 
     for (SearcherState4 result : results)
     {
-        u32 seed = result.getSeed();
-        PokeRNGR rng(seed, minAdvance);
-
+        PokeRNGR rng(result.getSeed(), minAdvance);
+        u32 seed = rng.getSeed();
         for (u32 cnt = minAdvance; cnt <= maxAdvance; cnt++)
         {
             u8 hour = (seed >> 16) & 0xFF;
@@ -138,8 +137,8 @@ std::vector<SearcherState4> StaticSearcher4::searchInitialSeeds(const std::vecto
             // Check if seed matches a valid gen 4 format
             if (hour < 24 && delay >= minDelay && delay <= maxDelay)
             {
-                result.setAdvances(cnt);
                 result.setSeed(seed);
+                result.setAdvances(cnt);
                 states.emplace_back(result);
             }
 

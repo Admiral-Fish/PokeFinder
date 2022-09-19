@@ -45,16 +45,14 @@ std::vector<WildGeneratorState3> WildGenerator3::generate(u32 seed, const Encoun
     bool safari = encounterArea.safariZone(version);
     bool rse = (version & Game::RSE) != Game::None;
 
-    bool cuteCharmFlag = false;
-    bool (*cuteCharm)(const PersonalInfo *, u32);
-    if (lead == Lead::CuteCharmF)
-    {
-        cuteCharm = [](const PersonalInfo *info, u32 pid) { return (pid & 0xff) >= info->getGender(); };
-    }
-    else if (lead == Lead::CuteCharmM)
-    {
-        cuteCharm = [](const PersonalInfo *info, u32 pid) { return (pid & 0xff) < info->getGender(); };
-    }
+    bool cuteCharm = false;
+    auto cuteCharmCheck = [this](const PersonalInfo *info, u32 pid) {
+        if (lead == Lead::CuteCharmF)
+        {
+            return (pid & 0xff) >= info->getGender();
+        }
+        return (pid & 0xff) < info->getGender();
+    };
 
     PokeRNG rng(seed, initialAdvances + offset);
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rng.next())
@@ -94,10 +92,10 @@ std::vector<WildGeneratorState3> WildGenerator3::generate(u32 seed, const Encoun
             case 0:
             case 254:
             case 255:
-                cuteCharmFlag = false;
+                cuteCharm = false;
                 break;
             default:
-                cuteCharmFlag = go.nextUShort(3) != 0;
+                cuteCharm = go.nextUShort(3) != 0;
                 break;
             }
         }
@@ -129,7 +127,7 @@ std::vector<WildGeneratorState3> WildGenerator3::generate(u32 seed, const Encoun
             u16 low = go.nextUShort();
             u16 high = go.nextUShort();
             pid = (high << 16) | low;
-        } while (pid % 25 != nature || (cuteCharmFlag && !cuteCharm(info, pid)));
+        } while (pid % 25 != nature || (cuteCharm && !cuteCharmCheck(info, pid)));
 
         if (method == Method::MethodH2)
         {

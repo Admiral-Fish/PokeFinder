@@ -195,7 +195,7 @@ std::vector<WildGeneratorState4> WildGenerator4::generateMethodK(u32 seed, const
     if (lead == Lead::SuctionCups
         && (encounter == Encounter::OldRod || encounter == Encounter::GoodRod || encounter == Encounter::SuperRod))
     {
-        rate <<= 1;
+        rate *= 2;
     }
     std::vector<u8> modifiedSlots = encounterArea.getSlots(lead);
 
@@ -389,17 +389,6 @@ std::vector<WildGeneratorState4> WildGenerator4::generatePokeRadar(u32 seed, con
     case 0:
     case 254:
     case 255:
-        switch (info->getGender())
-        {
-        case 0:
-        case 254:
-        case 255:
-            break;
-        default:
-            cuteCharm = true;
-            buffer = 25 + ((info->getGender() / 25) + 1);
-            break;
-        }
         break;
     default:
         cuteCharm = true;
@@ -407,15 +396,13 @@ std::vector<WildGeneratorState4> WildGenerator4::generatePokeRadar(u32 seed, con
         break;
     }
 
-    bool (*cuteCharmCheck)(const PersonalInfo *, u32);
-    if (lead == Lead::CuteCharmF)
-    {
-        cuteCharmCheck = [](const PersonalInfo *info, u32 pid) { return (pid & 0xff) >= info->getGender(); };
-    }
-    else if (lead == Lead::CuteCharmM)
-    {
-        cuteCharmCheck = [](const PersonalInfo *info, u32 pid) { return (pid & 0xff) < info->getGender(); };
-    }
+    auto cuteCharmCheck = [this](const PersonalInfo *info, u32 pid) {
+        if (lead == Lead::CuteCharmF)
+        {
+            return (pid & 0xff) >= info->getGender();
+        }
+        return (pid & 0xff) < info->getGender();
+    };
 
     PokeRNG rng(seed, initialAdvances + offset);
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
