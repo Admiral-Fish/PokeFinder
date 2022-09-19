@@ -66,6 +66,7 @@ Wild4::Wild4(QWidget *parent) : QWidget(parent), ui(new Ui::Wild4)
     ui->filterSearcher->disableControls(Controls::UseDelay | Controls::DisableFilter);
 
     ui->toolButtonGeneratorLead->addAction(tr("None"), toInt(Lead::None));
+    ui->toolButtonGeneratorLead->addAction(tr("Arena Trap"), toInt(Lead::ArenaTrap));
     ui->toolButtonGeneratorLead->addAction(tr("Compound Eyes"), toInt(Lead::CompoundEyes));
     ui->toolButtonGeneratorLead->addMenu(tr("Cute Charm"), { tr("♂ Lead"), tr("♀ Lead") },
                                          { toInt(Lead::CuteCharmM), toInt(Lead::CuteCharmF) });
@@ -75,9 +76,9 @@ Wild4::Wild4(QWidget *parent) : QWidget(parent), ui(new Ui::Wild4)
     ui->toolButtonGeneratorLead->addAction(tr("Suction Cups"), toInt(Lead::SuctionCups));
     ui->toolButtonGeneratorLead->addMenu(tr("Synchronize"), *Translator::getNatures());
 
-    ui->comboBoxSearcherLead->setup({ toInt(Lead::None), toInt(Lead::CuteCharmM), toInt(Lead::CuteCharmF), toInt(Lead::CompoundEyes),
-                                      toInt(Lead::MagnetPull), toInt(Lead::Pressure), toInt(Lead::Static), toInt(Lead::SuctionCups),
-                                      toInt(Lead::Synchronize) });
+    ui->comboBoxSearcherLead->setup({ toInt(Lead::None), toInt(Lead::ArenaTrap), toInt(Lead::CuteCharmM), toInt(Lead::CuteCharmF),
+                                      toInt(Lead::CompoundEyes), toInt(Lead::MagnetPull), toInt(Lead::Pressure), toInt(Lead::Static),
+                                      toInt(Lead::SuctionCups), toInt(Lead::Synchronize) });
 
     ui->comboBoxGeneratorEncounter->setup({ toInt(Encounter::Grass), toInt(Encounter::RockSmash), toInt(Encounter::BugCatchingContest),
                                             toInt(Encounter::Headbutt), toInt(Encounter::HeadbuttAlt), toInt(Encounter::HeadbuttSpecial),
@@ -94,6 +95,9 @@ Wild4::Wild4(QWidget *parent) : QWidget(parent), ui(new Ui::Wild4)
 
     ui->comboBoxSearcherDualSlot->setup(
         { toInt(Game::Ruby), toInt(Game::Sapphire), toInt(Game::FireRed), toInt(Game::LeafGreen), toInt(Game::Emerald) });
+
+    ui->checkBoxGeneratorPokeRadarShiny->setVisible(false);
+    ui->checkBoxSearcherPokeRadarShiny->setVisible(false);
 
     // QAction *seedToTime = searcherMenu->addAction(tr("Generate times for seed"));
 
@@ -325,7 +329,6 @@ void Wild4::generatorEncounterIndexChanged(int index)
         }
 
         ui->checkBoxGeneratorPokeRadar->setVisible(!hgss && grass);
-        ui->checkBoxGeneratorPokeRadarShiny->setVisible(!hgss && grass);
         if (!ui->checkBoxGeneratorPokeRadar->isVisible())
         {
             ui->checkBoxGeneratorPokeRadar->setChecked(false);
@@ -433,15 +436,13 @@ void Wild4::profilesIndexChanged(int index)
 
         bool hgss = (currentProfile->getVersion() & Game::HGSS) != Game::None;
 
-        ui->comboBoxGeneratorEncounter->setCurrentIndex(0);
-        ui->comboBoxSearcherEncounter->setCurrentIndex(0);
-
         ui->comboBoxGeneratorEncounter->setItemHidden(ui->comboBoxGeneratorEncounter->findData(toInt(Encounter::RockSmash)), !hgss);
         ui->comboBoxGeneratorEncounter->setItemHidden(ui->comboBoxGeneratorEncounter->findData(toInt(Encounter::BugCatchingContest)),
                                                       !hgss);
         ui->comboBoxGeneratorEncounter->setItemHidden(ui->comboBoxGeneratorEncounter->findData(toInt(Encounter::Headbutt)), !hgss);
         ui->comboBoxGeneratorEncounter->setItemHidden(ui->comboBoxGeneratorEncounter->findData(toInt(Encounter::HeadbuttAlt)), !hgss);
         ui->comboBoxGeneratorEncounter->setItemHidden(ui->comboBoxGeneratorEncounter->findData(toInt(Encounter::HeadbuttSpecial)), !hgss);
+        ui->toolButtonGeneratorLead->hideAction(toInt(Lead::ArenaTrap), !hgss);
         ui->toolButtonGeneratorLead->hideAction(toInt(Lead::SuctionCups), !hgss);
 
         ui->comboBoxSearcherEncounter->setItemHidden(ui->comboBoxSearcherEncounter->findData(toInt(Encounter::RockSmash)), !hgss);
@@ -449,6 +450,7 @@ void Wild4::profilesIndexChanged(int index)
         ui->comboBoxSearcherEncounter->setItemHidden(ui->comboBoxSearcherEncounter->findData(toInt(Encounter::Headbutt)), !hgss);
         ui->comboBoxSearcherEncounter->setItemHidden(ui->comboBoxSearcherEncounter->findData(toInt(Encounter::HeadbuttAlt)), !hgss);
         ui->comboBoxSearcherEncounter->setItemHidden(ui->comboBoxSearcherEncounter->findData(toInt(Encounter::HeadbuttSpecial)), !hgss);
+        ui->comboBoxSearcherLead->setItemHidden(ui->comboBoxSearcherLead->findData(toInt(Lead::ArenaTrap)), !hgss);
         ui->comboBoxSearcherLead->setItemHidden(ui->comboBoxSearcherLead->findData(toInt(Lead::SuctionCups)), !hgss);
 
         generatorEncounterIndexChanged(0);
@@ -603,7 +605,6 @@ void Wild4::searcherEncounterIndexChanged(int index)
         }
 
         ui->checkBoxSearcherPokeRadar->setVisible(!hgss && grass);
-        ui->checkBoxSearcherPokeRadarShiny->setVisible(!hgss && grass);
         if (!ui->checkBoxSearcherPokeRadar->isVisible())
         {
             ui->checkBoxSearcherPokeRadar->setChecked(false);
@@ -693,7 +694,6 @@ void Wild4::searcherPokeRadarStateChanged(int state)
     {
         ui->checkBoxSearcherPokeRadarShiny->setChecked(false);
     }
-    ui->comboBoxSearcherLead->setCurrentIndex(0);
     ui->comboBoxSearcherLead->setItemHidden(ui->comboBoxSearcherLead->findData(toInt(Lead::MagnetPull)), state == Qt::Checked);
     ui->comboBoxSearcherLead->setItemHidden(ui->comboBoxSearcherLead->findData(toInt(Lead::Pressure)), state == Qt::Checked);
     ui->comboBoxSearcherLead->setItemHidden(ui->comboBoxSearcherLead->findData(toInt(Lead::Static)), state == Qt::Checked);

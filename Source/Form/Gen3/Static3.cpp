@@ -188,9 +188,6 @@ void Static3::profilesIndexChanged(int index)
         ui->labelProfileSIDValue->setText(QString::number(currentProfile->getSID()));
         ui->labelProfileGameValue->setText(QString::fromStdString(*Translator::getGame(currentProfile->getVersion())));
 
-        ui->comboBoxGeneratorCategory->setCurrentIndex(0);
-        ui->comboBoxSearcherCategory->setCurrentIndex(0);
-
         bool frlg = (currentProfile->getVersion() & Game::FRLG) != Game::None;
         bool rs = (currentProfile->getVersion() & Game::RS) != Game::None;
 

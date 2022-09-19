@@ -55,6 +55,12 @@ int ComboBox::getCurrentInt() const
 
 void ComboBox::setItemHidden(int row, bool hide)
 {
+    // Clear selected index if we are hiding the selected one
+    if (this->currentIndex() == row)
+    {
+        this->setCurrentIndex(0);
+    }
+
     auto *model = qobject_cast<QStandardItemModel *>(this->model());
     auto *view = qobject_cast<QListView *>(this->view());
 

@@ -36,7 +36,8 @@ enum class Lead : u8
     Static,
     Pressure,
     SuctionCups,
-    CompoundEyes
+    CompoundEyes,
+    ArenaTrap
 };
 
 /**

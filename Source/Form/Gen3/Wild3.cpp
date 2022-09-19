@@ -115,7 +115,7 @@ void Wild3::updateProfiles()
     profiles = { Profile3("None", Game::Emerald, 12345, 54321, false) };
     auto completeProfiles = ProfileLoader3::getProfiles();
     std::copy_if(completeProfiles.begin(), completeProfiles.end(), std::back_inserter(profiles),
-                 [](const Profile3 &profile) { return (profile.getVersion() & Game::GC) != Game::GC; });
+                 [](const Profile3 &profile) { return (profile.getVersion() & Game::GC) == Game::None; });
 
     ui->comboBoxProfiles->clear();
     for (const auto &profile : profiles)
@@ -255,15 +255,21 @@ void Wild3::profilesIndexChanged(int index)
 
         if ((currentProfile->getVersion() & Game::Emerald) != Game::None)
         {
-            ui->toolButtonGeneratorLead->setEnabled(true);
-            ui->comboBoxSearcherLead->setEnabled(true);
+            ui->labelGeneratorLead->setVisible(true);
+            ui->toolButtonGeneratorLead->setVisible(true);
+
+            ui->labelSearcherLead->setVisible(true);
+            ui->comboBoxSearcherLead->setVisible(true);
         }
         else
         {
             ui->toolButtonGeneratorLead->clearSelection();
-            ui->toolButtonGeneratorLead->setEnabled(false);
+            ui->labelGeneratorLead->setVisible(false);
+            ui->toolButtonGeneratorLead->setVisible(false);
+
             ui->comboBoxSearcherLead->setCurrentIndex(0);
-            ui->comboBoxSearcherLead->setEnabled(false);
+            ui->labelSearcherLead->setVisible(false);
+            ui->comboBoxSearcherLead->setVisible(false);
         }
 
         generatorEncounterIndexChanged(0);

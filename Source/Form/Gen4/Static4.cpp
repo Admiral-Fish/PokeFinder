@@ -205,11 +205,13 @@ void Static4::generatorPokemonIndexChanged(int index)
         if (staticTemplate->getMethod() == Method::Method1)
         {
             ui->toolButtonGeneratorLead->clearSelection();
-            ui->toolButtonGeneratorLead->setEnabled(false);
+            ui->labelGeneratorLead->setVisible(false);
+            ui->toolButtonGeneratorLead->setVisible(false);
         }
         else
         {
-            ui->toolButtonGeneratorLead->setEnabled(true);
+            ui->labelGeneratorLead->setVisible(true);
+            ui->toolButtonGeneratorLead->setVisible(true);
         }
     }
 }
@@ -223,9 +225,6 @@ void Static4::profilesIndexChanged(int index)
         ui->labelProfileTIDValue->setText(QString::number(currentProfile->getTID()));
         ui->labelProfileSIDValue->setText(QString::number(currentProfile->getSID()));
         ui->labelProfileGameValue->setText(QString::fromStdString(*Translator::getGame(currentProfile->getVersion())));
-
-        ui->comboBoxGeneratorCategory->setCurrentIndex(0);
-        ui->comboBoxSearcherCategory->setCurrentIndex(0);
 
         bool hgss = (currentProfile->getVersion() & Game::HGSS) != Game::None;
 
@@ -327,11 +326,13 @@ void Static4::searcherPokemonIndexChanged(int index)
         if (staticTemplate->getMethod() == Method::Method1)
         {
             ui->comboBoxSearcherLead->setCurrentIndex(0);
-            ui->comboBoxSearcherLead->setEnabled(false);
+            ui->labelSearcherLead->setVisible(false);
+            ui->comboBoxSearcherLead->setVisible(false);
         }
         else
         {
-            ui->comboBoxSearcherLead->setEnabled(true);
+            ui->labelSearcherLead->setVisible(true);
+            ui->comboBoxSearcherLead->setVisible(true);
         }
     }
 }

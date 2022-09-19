@@ -69,6 +69,10 @@ WildSearcher4::WildSearcher4(u32 minAdvance, u32 maxAdvance, u32 minDelay, u32 m
     {
         thresh *= 2;
     }
+    else if (lead == Lead::ArenaTrap && encounter == Encounter::RockSmash)
+    {
+        thresh *= 2;
+    }
 }
 
 void WildSearcher4::cancelSearch()
@@ -474,6 +478,7 @@ std::vector<WildSearcherState4> WildSearcher4::searchMethodK(u8 hp, u8 atk, u8 d
                 switch (lead)
                 {
                 case Lead::None:
+                case Lead::ArenaTrap:
                 case Lead::CompoundEyes:
                 case Lead::SuctionCups:
                     if ((nextRNG % 25) == nature)

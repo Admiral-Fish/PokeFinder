@@ -543,6 +543,11 @@
             </item>
             <item>
              <property name="text">
+              <string>Arena Trap</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
               <string>Cute Charm ♂</string>
              </property>
             </item>

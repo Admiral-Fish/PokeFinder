@@ -197,6 +197,10 @@ std::vector<WildGeneratorState4> WildGenerator4::generateMethodK(u32 seed, const
     {
         rate *= 2;
     }
+    else if (lead == Lead::ArenaTrap && encounter == Encounter::RockSmash)
+    {
+        rate *= 2;
+    }
     std::vector<u8> modifiedSlots = encounterArea.getSlots(lead);
 
     PokeRNG rng(seed, initialAdvances + offset);
