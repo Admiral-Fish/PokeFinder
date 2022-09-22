@@ -45,6 +45,10 @@ set(PROJECT_TS
     i18n/PokeFinder_zh.ts
 )
 
+set(PROJECT_QRC
+    resources.qrc
+)
+
 set(PROJECT_UI
     Controls/EggSettings.ui
     Controls/Filter.ui
@@ -59,6 +63,10 @@ set(PROJECT_UI
     Gen4/Profile/ProfileEditor4.ui
     Gen4/Profile/ProfileManager4.ui
     Gen4/Static4.ui
+    Gen4/Tools/RoamerMap.ui
+    Gen4/Tools/SearchCalls.ui
+    Gen4/Tools/SearchCoinFlips.ui
+    Gen4/Tools/SeedToTime4.ui
     Gen4/Wild4.ui
     MainWindow.ui
     Util/IVCalculator.ui
@@ -112,6 +120,14 @@ set(PROJECT_SOURCES
     Gen4/Profile/ProfileManager4.hpp
     Gen4/Static4.cpp
     Gen4/Static4.hpp
+    Gen4/Tools/RoamerMap.cpp
+    Gen4/Tools/RoamerMap.hpp
+    Gen4/Tools/SearchCalls.cpp
+    Gen4/Tools/SearchCalls.hpp
+    Gen4/Tools/SearchCoinFlips.cpp
+    Gen4/Tools/SearchCoinFlips.hpp
+    Gen4/Tools/SeedToTime4.cpp
+    Gen4/Tools/SeedToTime4.hpp
     Gen4/Wild4.cpp
     Gen4/Wild4.hpp
     MainWindow.cpp
@@ -126,6 +142,7 @@ set(PROJECT_SOURCES
 
 add_library(PokeFinderForm STATIC
     ${PROJECT_I18N}
+    ${PROJECT_QRC}
     ${PROJECT_UI}
     ${PROJECT_SOURCES}
 )

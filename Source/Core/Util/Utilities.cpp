@@ -18,7 +18,7 @@
  */
 
 #include "Utilities.hpp"
-//#include <Core/Gen4/HGSSRoamer.hpp>
+#include <Core/Gen4/HGSSRoamer.hpp>
 #include <Core/RNG/LCRNG.hpp>
 #include <Core/RNG/LCRNG64.hpp>
 #include <Core/RNG/MT.hpp>
@@ -158,18 +158,16 @@ namespace Utilities4
         return coins;
     }
 
-    /*std::string getCalls(u32 seed, const HGSSRoamer &info)
+    std::string getCalls(u32 seed, u8 skips)
     {
         std::string calls;
 
-        u8 skips = info.getSkips();
         if (skips > 0)
         {
             calls += "(";
         }
 
         PokeRNG rng(seed);
-
         for (u8 i = 0; i < 20 + skips; i++)
         {
             u8 call = rng.nextUShort(3);
@@ -189,7 +187,7 @@ namespace Utilities4
             }
         }
         return calls;
-    }*/
+    }
 
     std::string getChatot(u8 prng)
     {

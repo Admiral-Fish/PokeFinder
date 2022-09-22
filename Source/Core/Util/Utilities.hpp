@@ -24,7 +24,6 @@
 #include <string>
 
 class DateTime;
-// class HGSSRoamer;
 
 namespace Utilities3
 {
@@ -59,7 +58,15 @@ namespace Utilities4
      */
     std::string coinFlips(u32 seed);
 
-    // std::string getCalls(u32 seed, const HGSSRoamer &info);
+    /**
+     * @brief Calculates the call sequence from the \p seed and \p info
+     *
+     * @param seed PRNG state
+     * @param info Roamer information
+     *
+     * @return Call sequence string
+     */
+    std::string getCalls(u32 seed, u8 skips);
 
     /**
      * @brief Returns the chatot pitch

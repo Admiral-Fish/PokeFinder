@@ -34,14 +34,14 @@
 #include <Core/Util/Translator.hpp>
 #include <Form/Controls/Controls.hpp>
 #include <Form/Gen4/Profile/ProfileManager4.hpp>
-#include <algorithm>
-//#include <Form/Gen4/Tools/SeedtoTime4.hpp>
+#include <Form/Gen4/Tools/SeedToTime4.hpp>
 #include <Model/Gen4/WildModel4.hpp>
 #include <QMenu>
 #include <QMessageBox>
 #include <QSettings>
 #include <QThread>
 #include <QTimer>
+#include <algorithm>
 
 Wild4::Wild4(QWidget *parent) : QWidget(parent), ui(new Ui::Wild4)
 {
@@ -99,7 +99,9 @@ Wild4::Wild4(QWidget *parent) : QWidget(parent), ui(new Ui::Wild4)
     ui->checkBoxGeneratorPokeRadarShiny->setVisible(false);
     ui->checkBoxSearcherPokeRadarShiny->setVisible(false);
 
-    // QAction *seedToTime = searcherMenu->addAction(tr("Generate times for seed"));
+    auto *seedToTime = new QAction(tr("Generate times for seed"), ui->tableViewSearcher);
+    connect(seedToTime, &QAction::triggered, this, &Wild4::seedToTime);
+    ui->tableViewSearcher->addAction(seedToTime);
 
     connect(ui->comboBoxProfiles, &QComboBox::currentIndexChanged, this, &Wild4::profilesIndexChanged);
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Wild4::generate);
@@ -704,6 +706,6 @@ void Wild4::seedToTime()
     QModelIndex index = ui->tableViewSearcher->currentIndex();
     const auto &state = searcherModel->getItem(index.row());
 
-    // auto *time = new SeedtoTime4(seed, currentProfile->getVersion());
-    // time->show();
+    auto *time = new SeedToTime4(state.getSeed(), currentProfile->getVersion());
+    time->show();
 }

@@ -31,7 +31,7 @@
 #include <Core/Util/Translator.hpp>
 #include <Form/Controls/Controls.hpp>
 #include <Form/Gen4/Profile/ProfileManager4.hpp>
-//#include <Form/Gen4/Tools/SeedtoTime4.hpp>
+#include <Form/Gen4/Tools/SeedToTime4.hpp>
 #include <Model/Gen4/StaticModel4.hpp>
 #include <QMenu>
 #include <QSettings>
@@ -68,8 +68,9 @@ Static4::Static4(QWidget *parent) : QWidget(parent), ui(new Ui::Static4)
 
     ui->comboBoxSearcherLead->setup({ toInt(Lead::None), toInt(Lead::CuteCharmM), toInt(Lead::CuteCharmF), toInt(Lead::Synchronize) });
 
-    // QAction *seedToTime = searcherMenu->addAction(tr("Generate times for seed"));
-    // connect(seedToTime, &QAction::triggered, this, &Static4::seedToTime);
+    auto *seedToTime = new QAction(tr("Generate times for seed"), ui->tableViewSearcher);
+    connect(seedToTime, &QAction::triggered, this, &Static4::seedToTime);
+    ui->tableViewSearcher->addAction(seedToTime);
 
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Static4::generate);
     connect(ui->pushButtonSearch, &QPushButton::clicked, this, &Static4::search);
@@ -342,6 +343,6 @@ void Static4::seedToTime()
     QModelIndex index = ui->tableViewSearcher->currentIndex();
     const auto &state = searcherModel->getItem(index.row());
 
-    // auto *time = new SeedtoTime4(seed, currentProfile->getVersion());
-    // time->show();
+    auto *time = new SeedToTime4(state.getSeed(), currentProfile->getVersion());
+    time->show();
 }

@@ -20,6 +20,8 @@ add_library(PokeFinderModel STATIC
     Gen4/IDModel4.hpp
     Gen4/ProfileModel4.cpp
     Gen4/ProfileModel4.hpp
+    Gen4/SeedTimeModel4.cpp
+    Gen4/SeedTimeModel4.hpp
     Gen4/StaticModel4.cpp
     Gen4/StaticModel4.hpp
     Gen4/WildModel4.cpp

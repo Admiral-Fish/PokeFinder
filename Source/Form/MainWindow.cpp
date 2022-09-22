@@ -27,6 +27,7 @@
 #include <Form/Gen4/IDs4.hpp>
 #include <Form/Gen4/Profile/ProfileManager4.hpp>
 #include <Form/Gen4/Static4.hpp>
+#include <Form/Gen4/Tools/SeedToTime4.hpp>
 #include <Form/Gen4/Wild4.hpp>
 #include <Form/Util/IVCalculator.hpp>
 #include <Form/Util/Researcher.hpp>
@@ -54,7 +55,6 @@
 //#include <Forms/Gen3/Tools/SpindaPainter.hpp>
 //#include <Forms/Gen4/Eggs4.hpp>
 //#include <Forms/Gen4/Tools/ChainedSID.hpp>
-//#include <Forms/Gen4/Tools/SeedtoTime4.hpp>
 //#include <Forms/Gen5/DreamRadar.hpp>
 //#include <Forms/Gen5/Eggs5.hpp>
 //#include <Forms/Gen5/Event5.hpp>
@@ -100,7 +100,7 @@ MainWindow::MainWindow(bool profile, QWidget *parent) : QMainWindow(parent), ui(
     connect(ui->pushButtonWild4, &QPushButton::clicked, this, &MainWindow::openWild4);
     connect(ui->actionProfileManager4, &QAction::triggered, this, &MainWindow::openProfileManager4);
     // connect(ui->actionIVtoPID4, &QAction::triggered, this, &MainWindow::openIVtoPID);
-    // connect(ui->actionSeedtoTime4, &QAction::triggered, this, &MainWindow::openSeedtoTime4);
+    connect(ui->actionSeedtoTime4, &QAction::triggered, this, &MainWindow::openSeedToTime4);
     // connect(ui->actionSIDfromChainedShiny, &QAction::triggered, this, &MainWindow::openSIDFromChainedShiny);
 
     // connect(ui->pushButtonStatic5, &QPushButton::clicked, this, &MainWindow::openStatic5);
@@ -357,6 +357,12 @@ void MainWindow::openWild4()
     wild4->show();
 }
 
+void MainWindow::openSeedToTime4() const
+{
+    auto *seedToTime = new SeedToTime4();
+    seedToTime->show();
+}
+
 /*void MainWindow::openEgg4()
 {
     if (!egg4)
@@ -365,12 +371,6 @@ void MainWindow::openWild4()
         connect(egg4, &Eggs4::alertProfiles, this, &MainWindow::updateProfiles);
     }
     egg4->show();
-}
-
-void MainWindow::openSeedtoTime4()
-{
-    auto *seedToTime = new SeedtoTime4();
-    seedToTime->show();
 }
 
 void MainWindow::openSIDFromChainedShiny()

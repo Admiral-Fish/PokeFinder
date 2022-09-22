@@ -170,8 +170,12 @@ private slots:
      */
     void openWild4();
 
+    /**
+     * @brief Opens the Gen 4 Seed to Time window
+     */
+    void openSeedToTime4() const;
+
     // void openEgg4();
-    // void openSeedtoTime4();
     // void openSIDFromChainedShiny();
 
     // Gen 5

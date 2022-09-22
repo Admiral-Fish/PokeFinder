@@ -62,8 +62,12 @@ add_library(PokeFinderCore STATIC
     Gen4/Generators/StaticGenerator4.hpp
     Gen4/Generators/WildGenerator4.cpp
     Gen4/Generators/WildGenerator4.hpp
+    Gen4/HGSSRoamer.cpp
+    Gen4/HGSSRoamer.hpp
     Gen4/Profile4.cpp
     Gen4/Profile4.hpp
+    Gen4/SeedTime4.cpp
+    Gen4/SeedTime4.hpp
     Gen4/Searchers/IDSearcher4.cpp
     Gen4/Searchers/IDSearcher4.hpp
     Gen4/Searchers/StaticSearcher4.cpp
