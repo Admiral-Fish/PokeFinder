@@ -71,6 +71,8 @@ int main(int argc, char *argv[])
     a.setApplicationName("PokeFinder");
     a.setOrganizationName("PokeFinder Team");
 
+    Q_INIT_RESOURCE(resources);
+
     QSettings setting;
     validateSettings(setting);
 
