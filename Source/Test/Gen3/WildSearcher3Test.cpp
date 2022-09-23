@@ -29,49 +29,14 @@
 
 using IVs = std::array<u8, 6>;
 
-struct SearcherWildResult3
+bool operator==(const WildSearcherState3 &left, const WildSearcherState3 &right)
 {
-    u32 pid;
-    std::array<u16, 6> stats;
-    u16 abilityIndex;
-    std::array<u8, 6> ivs;
-    u8 ability;
-    u8 gender;
-    u8 hiddenPower;
-    u8 nature;
-    u8 level;
-    u8 shiny;
-    struct
-    {
-        u16 item;
-        u16 specie;
-        u8 encounterSlot;
-        struct
-        {
-            u32 seed;
-            struct
-            {
-                u8 hiddenPowerStrength;
-            };
-        };
-    };
-};
-NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(SearcherWildResult3, pid, stats, abilityIndex, ivs, ability, gender, hiddenPower, nature, level, shiny,
-                                   specie, encounterSlot, seed, hiddenPowerStrength);
-static_assert(sizeof(SearcherWildResult3) == sizeof(WildSearcherState3));
-
-bool operator==(const SearcherWildResult3 &left, const WildSearcherState3 &right)
-{
-    return left.pid == right.getPID() && left.stats == right.getStats() && left.abilityIndex == right.getAbilityIndex()
-        && left.ivs == right.getIVs() && left.ability == right.getAbility() && left.gender == right.getGender()
-        && left.hiddenPower == right.getHiddenPower() && left.nature == right.getNature() && left.level == right.getLevel()
-        && left.shiny == right.getShiny() && left.specie == right.getSpecie() && left.encounterSlot == right.getEncounterSlot()
-        && left.seed == right.getSeed() && left.hiddenPowerStrength == right.getHiddenPowerStrength();
-}
-
-bool operator==(const WildSearcherState3 &left, const SearcherWildResult3 &right)
-{
-    return operator==(right, left);
+    return left.getPID() == right.getPID() && left.getStats() == right.getStats() && left.getAbilityIndex() == right.getAbilityIndex()
+        && left.getIVs() == right.getIVs() && left.getAbility() == right.getAbility() && left.getGender() == right.getGender()
+        && left.getHiddenPower() == right.getHiddenPower() && left.getNature() == right.getNature() && left.getLevel() == right.getLevel()
+        && left.getShiny() == right.getShiny() && left.getSpecie() == right.getSpecie()
+        && left.getEncounterSlot() == right.getEncounterSlot() && left.getSeed() == right.getSeed()
+        && left.getHiddenPowerStrength() == right.getHiddenPowerStrength();
 }
 
 bool operator==(const WildSearcherState3 &left, const WildGeneratorState3 &right)
@@ -102,7 +67,7 @@ void WildSearcher3Test::search_data()
     QTest::addColumn<Encounter>("encounter");
     QTest::addColumn<Lead>("lead");
     QTest::addColumn<int>("location");
-    QTest::addColumn<std::vector<SearcherWildResult3>>("results");
+    QTest::addColumn<std::vector<WildSearcherState3>>("results");
 
     json data = readData("gen3", "wildsearcher3", "search");
     for (const auto &d : data)
@@ -110,7 +75,7 @@ void WildSearcher3Test::search_data()
         QTest::newRow(d["name"].get<std::string>().data())
             << d["min"].get<IVs>() << d["max"].get<IVs>() << d["version"].get<Game>() << d["method"].get<Method>()
             << d["encounter"].get<Encounter>() << d["lead"].get<Lead>() << d["location"].get<int>()
-            << d["results"].get<std::vector<SearcherWildResult3>>();
+            << d["results"].get<std::vector<WildSearcherState3>>();
     }
 }
 
@@ -123,7 +88,7 @@ void WildSearcher3Test::search()
     QFETCH(Encounter, encounter);
     QFETCH(Lead, lead);
     QFETCH(int, location);
-    QFETCH(std::vector<SearcherWildResult3>, results);
+    QFETCH(std::vector<WildSearcherState3>, results);
 
     std::array<bool, 25> natures;
     natures.fill(true);

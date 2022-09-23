@@ -1,7 +1,5 @@
 project(PokeFinderCore)
 
-include_directories("${CMAKE_SOURCE_DIR}/External")
-
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
@@ -149,6 +147,7 @@ add_library(PokeFinderCore STATIC
     Util/Utilities.hpp
 )
 
+target_include_directories(PokeFinderCore PUBLIC "${CMAKE_SOURCE_DIR}/External")
 target_link_libraries(PokeFinderCore bz2_static)
 
 if (NOT EXISTS ${CMAKE_CURRENT_LIST_DIR}/Resources/Encounters.hpp)

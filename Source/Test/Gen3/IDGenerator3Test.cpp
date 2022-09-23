@@ -23,42 +23,28 @@
 #include <QTest>
 #include <Test/Data.hpp>
 
-struct IDResult
+bool operator==(const IDState &left, const IDState &right)
 {
-    u32 advances;
-    u16 sid;
-    u16 tid;
-    u16 tsv;
-};
-NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(IDResult, advances, sid, tid, tsv);
-static_assert(sizeof(IDResult) == sizeof(IDState));
-
-bool operator==(const IDState &left, const IDResult &right)
-{
-    return left.getAdvances() == right.advances && left.getSID() == right.sid && left.getTID() == right.tid && left.getTSV() == right.tsv;
-}
-
-bool operator==(const IDResult &left, const IDState &right)
-{
-    return operator==(right, left);
+    return left.getAdvances() == right.getAdvances() && left.getSID() == right.getSID() && left.getTID() == right.getTID()
+        && left.getTSV() == right.getTSV();
 }
 
 void IDGenerator3Test::xdcolo_data()
 {
     QTest::addColumn<u32>("seed");
-    QTest::addColumn<std::vector<IDResult>>("results");
+    QTest::addColumn<std::vector<IDState>>("results");
 
     json data = readData("gen3", "idgenerator3", "xdcolo");
     for (const auto &d : data)
     {
-        QTest::newRow(d["name"].get<std::string>().data()) << d["seed"].get<u32>() << d["results"].get<std::vector<IDResult>>();
+        QTest::newRow(d["name"].get<std::string>().data()) << d["seed"].get<u32>() << d["results"].get<std::vector<IDState>>();
     }
 }
 
 void IDGenerator3Test::xdcolo()
 {
     QFETCH(u32, seed);
-    QFETCH(std::vector<IDResult>, results);
+    QFETCH(std::vector<IDState>, results);
 
     IDFilter filter({}, {}, {}, {});
     IDGenerator3 generator(0, 9, filter);
@@ -77,19 +63,19 @@ void IDGenerator3Test::xdcolo()
 void IDGenerator3Test::frgle_data()
 {
     QTest::addColumn<u16>("tid");
-    QTest::addColumn<std::vector<IDResult>>("results");
+    QTest::addColumn<std::vector<IDState>>("results");
 
     json data = readData("gen3", "idgenerator3", "frlge");
     for (const auto &d : data)
     {
-        QTest::newRow(d["name"].get<std::string>().data()) << d["tid"].get<u16>() << d["results"].get<std::vector<IDResult>>();
+        QTest::newRow(d["name"].get<std::string>().data()) << d["tid"].get<u16>() << d["results"].get<std::vector<IDState>>();
     }
 }
 
 void IDGenerator3Test::frgle()
 {
     QFETCH(u16, tid);
-    QFETCH(std::vector<IDResult>, results);
+    QFETCH(std::vector<IDState>, results);
 
     IDFilter filter({}, {}, {}, {});
     IDGenerator3 generator(0, 9, filter);
@@ -108,19 +94,19 @@ void IDGenerator3Test::frgle()
 void IDGenerator3Test::rs_data()
 {
     QTest::addColumn<u16>("seed");
-    QTest::addColumn<std::vector<IDResult>>("results");
+    QTest::addColumn<std::vector<IDState>>("results");
 
     json data = readData("gen3", "idgenerator3", "rs");
     for (const auto &d : data)
     {
-        QTest::newRow(d["name"].get<std::string>().data()) << d["seed"].get<u16>() << d["results"].get<std::vector<IDResult>>();
+        QTest::newRow(d["name"].get<std::string>().data()) << d["seed"].get<u16>() << d["results"].get<std::vector<IDState>>();
     }
 }
 
 void IDGenerator3Test::rs()
 {
     QFETCH(u16, seed);
-    QFETCH(std::vector<IDResult>, results);
+    QFETCH(std::vector<IDState>, results);
 
     IDFilter filter({}, {}, {}, {});
     IDGenerator3 generator(0, 9, filter);

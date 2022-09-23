@@ -1,14 +1,11 @@
 project(PokeFinderTest LANGUAGES CXX)
 
-include_directories("${CMAKE_SOURCE_DIR}/External")
-
 find_package(Qt6 COMPONENTS Core Test REQUIRED)
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set(CMAKE_AUTOMOC ON)
-set(CMAKE_AUTORCC ON)
 
 add_executable(PokeFinderTest
     Data.cpp
@@ -56,4 +53,3 @@ add_executable(PokeFinderTest
 add_test(NAME Test COMMAND PokeFinderTest)
 
 target_link_libraries(PokeFinderTest PRIVATE PokeFinderCore Qt6::Core Qt6::Test)
-

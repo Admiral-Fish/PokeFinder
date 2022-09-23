@@ -23,28 +23,10 @@
 #include <QTest>
 #include <Test/Data.hpp>
 
-struct IDResult4
+static bool operator==(const IDState4 &left, const IDState4 &right)
 {
-    u32 advances;
-    u16 sid;
-    u16 tid;
-    u16 tsv;
-    u32 delay;
-    u32 seed;
-    u8 seconds;
-};
-NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(IDResult4, sid, tid, tsv, delay, seed);
-static_assert(sizeof(IDResult4) == sizeof(IDState4));
-
-static bool operator==(const IDState4 &left, const IDResult4 &right)
-{
-    return left.getSID() == right.sid && left.getTID() == right.tid && left.getTSV() == right.tsv && left.getDelay() == right.delay
-        && left.getSeed() == right.seed;
-}
-
-static bool operator==(const IDResult4 &left, const IDState4 &right)
-{
-    return operator==(right, left);
+    return left.getSID() == right.getSID() && left.getTID() == right.getTID() && left.getTSV() == right.getTSV()
+        && left.getDelay() == right.getDelay() && left.getSeed() == right.getSeed();
 }
 
 void IDSearcher4Test::search_data()
@@ -53,13 +35,13 @@ void IDSearcher4Test::search_data()
     QTest::addColumn<u32>("maxDelay");
     QTest::addColumn<u32>("minDelay");
     QTest::addColumn<u16>("year");
-    QTest::addColumn<std::vector<IDResult4>>("results");
+    QTest::addColumn<std::vector<IDState4>>("results");
 
     json data = readData("gen4", "idsearcher4", "search");
     for (const auto &d : data)
     {
         QTest::newRow(d["name"].get<std::string>().data()) << d["tid"].get<u16>() << d["maxDelay"].get<u32>() << d["minDelay"].get<u32>()
-                                                           << d["year"].get<u16>() << d["results"].get<std::vector<IDResult4>>();
+                                                           << d["year"].get<u16>() << d["results"].get<std::vector<IDState4>>();
     }
 }
 
@@ -69,7 +51,7 @@ void IDSearcher4Test::search()
     QFETCH(u32, maxDelay);
     QFETCH(u32, minDelay);
     QFETCH(u16, year);
-    QFETCH(std::vector<IDResult4>, results);
+    QFETCH(std::vector<IDState4>, results);
 
     IDFilter filter({ tid }, {}, {}, {});
     IDSearcher4 searcher(filter);

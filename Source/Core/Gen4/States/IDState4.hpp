@@ -22,12 +22,21 @@
 
 #include <Core/Parents/States/IDState.hpp>
 
+#ifdef TEST
+#include <nlohmann/json.hpp>
+#endif
+
 /**
  * @brief State class for Gen4 TID/SID
  */
 class IDState4 : public IDState
 {
 public:
+#ifdef TEST
+    IDState4() = default;
+    NLOHMANN_DEFINE_TYPE_INTRUSIVE(IDState4, sid, tid, tsv, delay, seed, seconds);
+#endif
+
     /**
      * @brief Construct a new IDState4 object
      *

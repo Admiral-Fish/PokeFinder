@@ -167,6 +167,10 @@ protected:
 class GeneratorState : public State
 {
 public:
+#ifdef TEST
+    GeneratorState() = default;
+#endif
+
     /**
      * @brief Construct a new GeneratorState object
      *
@@ -186,7 +190,7 @@ public:
         return advances;
     }
 
-private:
+protected:
     u32 advances;
 };
 
@@ -199,6 +203,10 @@ template <typename Integer>
 class SearcherState : public State
 {
 public:
+#ifdef TEST
+    SearcherState() = default;
+#endif
+
     /**
      * @brief Construct a new SearcherState object
      * @param seed Seed of the state

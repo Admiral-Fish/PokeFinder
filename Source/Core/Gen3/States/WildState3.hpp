@@ -22,6 +22,10 @@
 
 #include <Core/Parents/States/WildState.hpp>
 
+#ifdef TEST
+#include <nlohmann/json.hpp>
+#endif
+
 class PersonalInfo;
 
 /**
@@ -30,6 +34,12 @@ class PersonalInfo;
 class WildGeneratorState3 : public WildGeneratorState
 {
 public:
+#ifdef TEST
+    WildGeneratorState3() = default;
+    NLOHMANN_DEFINE_TYPE_INTRUSIVE(WildGeneratorState3, pid, stats, abilityIndex, ivs, ability, gender, hiddenPower, nature, level, shiny,
+                                   specie, encounterSlot, advances, hiddenPowerStrength);
+#endif
+
     /**
      * @brief Construct a new WildGeneratorState3 object
      *
@@ -66,6 +76,12 @@ private:
 class WildSearcherState3 : public WildSearcherState<u32>
 {
 public:
+#ifdef TEST
+    WildSearcherState3() = default;
+    NLOHMANN_DEFINE_TYPE_INTRUSIVE(WildSearcherState3, pid, stats, abilityIndex, ivs, ability, gender, hiddenPower, nature, level, shiny,
+                                   specie, encounterSlot, seed, hiddenPowerStrength);
+#endif
+
     /**
      * @brief Construct a new WildSearcherState3 object
      *

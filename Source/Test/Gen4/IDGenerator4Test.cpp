@@ -23,28 +23,10 @@
 #include <QTest>
 #include <Test/Data.hpp>
 
-struct IDResult4
+static bool operator==(const IDState4 &left, const IDState4 &right)
 {
-    u32 advances;
-    u16 sid;
-    u16 tid;
-    u16 tsv;
-    u32 delay;
-    u32 seed;
-    u8 seconds;
-};
-NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(IDResult4, sid, tid, tsv, delay, seed, seconds);
-static_assert(sizeof(IDResult4) == sizeof(IDState4));
-
-static bool operator==(const IDState4 &left, const IDResult4 &right)
-{
-    return left.getSID() == right.sid && left.getTID() == right.tid && left.getTSV() == right.tsv && left.getDelay() == right.delay
-        && left.getSeed() == right.seed && left.getSeconds() == right.seconds;
-}
-
-static bool operator==(const IDResult4 &left, const IDState4 &right)
-{
-    return operator==(right, left);
+    return left.getSID() == right.getSID() && left.getTID() == right.getTID() && left.getTSV() == right.getTSV()
+        && left.getDelay() == right.getDelay() && left.getSeed() == right.getSeed() && left.getSeconds() == right.getSeconds();
 }
 
 void IDGenerator4Test::generate_data()
@@ -57,14 +39,14 @@ void IDGenerator4Test::generate_data()
     QTest::addColumn<u8>("day");
     QTest::addColumn<u8>("hour");
     QTest::addColumn<u8>("minute");
-    QTest::addColumn<std::vector<IDResult4>>("results");
+    QTest::addColumn<std::vector<IDState4>>("results");
 
     json data = readData("gen4", "idgenerator4", "generate");
     for (const auto &d : data)
     {
         QTest::newRow(d["name"].get<std::string>().data())
             << d["tid"].get<u16>() << d["maxDelay"].get<u32>() << d["minDelay"].get<u32>() << d["year"].get<u16>() << d["month"].get<u8>()
-            << d["day"].get<u8>() << d["hour"].get<u8>() << d["minute"].get<u8>() << d["results"].get<std::vector<IDResult4>>();
+            << d["day"].get<u8>() << d["hour"].get<u8>() << d["minute"].get<u8>() << d["results"].get<std::vector<IDState4>>();
     }
 }
 
@@ -78,7 +60,7 @@ void IDGenerator4Test::generate()
     QFETCH(u8, day);
     QFETCH(u8, hour);
     QFETCH(u8, minute);
-    QFETCH(std::vector<IDResult4>, results);
+    QFETCH(std::vector<IDState4>, results);
 
     IDFilter filter({ tid }, {}, {}, {});
     IDGenerator4 generator(minDelay, maxDelay, year, month, day, hour, minute, filter);

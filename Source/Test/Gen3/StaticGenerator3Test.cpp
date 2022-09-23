@@ -26,37 +26,13 @@
 #include <QTest>
 #include <Test/Data.hpp>
 
-struct GeneratorStaticResult3
+bool operator==(const GeneratorState3 &left, const GeneratorState3 &right)
 {
-    u32 pid;
-    std::array<u16, 6> stats;
-    u16 abilityIndex;
-    std::array<u8, 6> ivs;
-    u8 ability;
-    u8 gender;
-    u8 hiddenPower;
-    u8 nature;
-    u8 level;
-    u8 shiny;
-    u32 advances;
-    u8 hiddenPowerStrength;
-};
-NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(GeneratorStaticResult3, pid, stats, abilityIndex, ivs, ability, gender, hiddenPower, nature, level,
-                                   shiny, advances, hiddenPowerStrength);
-static_assert(sizeof(GeneratorStaticResult3) == sizeof(GeneratorState3));
-
-bool operator==(const GeneratorStaticResult3 &left, const GeneratorState3 &right)
-{
-    return left.pid == right.getPID() && left.stats == right.getStats() && left.abilityIndex == right.getAbilityIndex()
-        && left.ivs == right.getIVs() && left.ability == right.getAbility() && left.gender == right.getGender()
-        && left.hiddenPower == right.getHiddenPower() && left.nature == right.getNature() && left.level == right.getLevel()
-        && right.getShiny() == left.shiny && right.getAdvances() == left.advances
-        && left.hiddenPowerStrength == right.getHiddenPowerStrength();
-}
-
-bool operator==(const GeneratorState3 &left, const GeneratorStaticResult3 &right)
-{
-    return operator==(right, left);
+    return left.getPID() == right.getPID() && left.getStats() == right.getStats() && left.getAbilityIndex() == right.getAbilityIndex()
+        && left.getIVs() == right.getIVs() && left.getAbility() == right.getAbility() && left.getGender() == right.getGender()
+        && left.getHiddenPower() == right.getHiddenPower() && left.getNature() == right.getNature() && left.getLevel() == right.getLevel()
+        && left.getShiny() == right.getShiny() && left.getAdvances() == right.getAdvances()
+        && left.getHiddenPowerStrength() == right.getHiddenPowerStrength();
 }
 
 void StaticGenerator3Test::generate_data()
@@ -66,14 +42,14 @@ void StaticGenerator3Test::generate_data()
     QTest::addColumn<Method>("method");
     QTest::addColumn<int>("category");
     QTest::addColumn<int>("pokemon");
-    QTest::addColumn<std::vector<GeneratorStaticResult3>>("results");
+    QTest::addColumn<std::vector<GeneratorState3>>("results");
 
     json data = readData("gen3", "staticgenerator3", "generate");
     for (const auto &d : data)
     {
         QTest::newRow(d["name"].get<std::string>().data())
             << d["seed"].get<u32>() << d["version"].get<Game>() << d["method"].get<Method>() << d["category"].get<int>()
-            << d["pokemon"].get<int>() << d["results"].get<std::vector<GeneratorStaticResult3>>();
+            << d["pokemon"].get<int>() << d["results"].get<std::vector<GeneratorState3>>();
     }
 }
 
@@ -84,7 +60,7 @@ void StaticGenerator3Test::generate()
     QFETCH(Method, method);
     QFETCH(int, category);
     QFETCH(int, pokemon);
-    QFETCH(std::vector<GeneratorStaticResult3>, results);
+    QFETCH(std::vector<GeneratorState3>, results);
 
     std::array<u8, 6> min;
     min.fill(0);

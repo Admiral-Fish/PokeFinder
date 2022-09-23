@@ -70,6 +70,10 @@ protected:
 class WildGeneratorState : public WildState
 {
 public:
+#ifdef TEST
+    WildGeneratorState() = default;
+#endif
+
     /**
      * @brief Construct a new WildGeneratorState object
      *
@@ -89,7 +93,7 @@ public:
         return advances;
     }
 
-private:
+protected:
     u32 advances;
 };
 
@@ -102,6 +106,10 @@ template <typename Integer>
 class WildSearcherState : public WildState
 {
 public:
+#ifdef TEST
+    WildSearcherState() = default;
+#endif
+
     /**
      * @brief Construct a new WildSearcherState object
      * @param seed Seed of the state

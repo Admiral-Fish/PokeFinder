@@ -23,8 +23,6 @@
 #include <QTest>
 #include <Test/Data.hpp>
 
-Q_DECLARE_METATYPE(Method)
-
 void RNGCacheTest::recoverPokeRNGIV_data()
 {
     QTest::addColumn<Method>("method");

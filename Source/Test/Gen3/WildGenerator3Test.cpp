@@ -28,50 +28,15 @@
 #include <QTest>
 #include <Test/Data.hpp>
 
-struct WildStaticResult3
-{
-    u32 pid;
-    std::array<u16, 6> stats;
-    u16 abilityIndex;
-    std::array<u8, 6> ivs;
-    u8 ability;
-    u8 gender;
-    u8 hiddenPower;
-    u8 nature;
-    u8 level;
-    u8 shiny;
-    struct
-    {
-        u16 item;
-        u16 specie;
-        u8 encounterSlot;
-        struct
-        {
-            u32 advances;
-            struct
-            {
-                u8 hiddenPowerStrength;
-            };
-        };
-    };
-};
-NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(WildStaticResult3, pid, stats, abilityIndex, ivs, ability, gender, hiddenPower, nature, level, shiny,
-                                   specie, encounterSlot, advances, hiddenPowerStrength);
-static_assert(sizeof(WildStaticResult3) == sizeof(WildGeneratorState3));
-
-bool operator==(const WildStaticResult3 &left, const WildGeneratorState3 &right)
+bool operator==(const WildGeneratorState3 &left, const WildGeneratorState3 &right)
 {
     // Intentionally not comparing item
-    return left.pid == right.getPID() && left.stats == right.getStats() && left.abilityIndex == right.getAbilityIndex()
-        && left.ivs == right.getIVs() && left.ability == right.getAbility() && left.gender == right.getGender()
-        && left.hiddenPower == right.getHiddenPower() && left.nature == right.getNature() && left.level == right.getLevel()
-        && right.getShiny() == left.shiny && left.specie == right.getSpecie() && left.encounterSlot == right.getEncounterSlot()
-        && right.getAdvances() == left.advances && left.hiddenPowerStrength == right.getHiddenPowerStrength();
-}
-
-bool operator==(const WildGeneratorState3 &left, const WildStaticResult3 &right)
-{
-    return operator==(right, left);
+    return left.getPID() == right.getPID() && left.getStats() == right.getStats() && left.getAbilityIndex() == right.getAbilityIndex()
+        && left.getIVs() == right.getIVs() && left.getAbility() == right.getAbility() && left.getGender() == right.getGender()
+        && left.getHiddenPower() == right.getHiddenPower() && left.getNature() == right.getNature() && left.getLevel() == right.getLevel()
+        && left.getShiny() == right.getShiny() && left.getSpecie() == right.getSpecie()
+        && left.getEncounterSlot() == right.getEncounterSlot() && left.getAdvances() == right.getAdvances()
+        && left.getHiddenPowerStrength() == right.getHiddenPowerStrength();
 }
 
 void WildGenerator3Test::generate_data()
@@ -82,14 +47,14 @@ void WildGenerator3Test::generate_data()
     QTest::addColumn<Encounter>("encounter");
     QTest::addColumn<Lead>("lead");
     QTest::addColumn<int>("location");
-    QTest::addColumn<std::vector<WildStaticResult3>>("results");
+    QTest::addColumn<std::vector<WildGeneratorState3>>("results");
 
     json data = readData("gen3", "wildgenerator3", "generate");
     for (const auto &d : data)
     {
         QTest::newRow(d["name"].get<std::string>().data())
             << d["seed"].get<u32>() << d["version"].get<Game>() << d["method"].get<Method>() << d["encounter"].get<Encounter>()
-            << d["lead"].get<Lead>() << d["location"].get<int>() << d["results"].get<std::vector<WildStaticResult3>>();
+            << d["lead"].get<Lead>() << d["location"].get<int>() << d["results"].get<std::vector<WildGeneratorState3>>();
     }
 }
 
@@ -101,7 +66,7 @@ void WildGenerator3Test::generate()
     QFETCH(Encounter, encounter);
     QFETCH(Lead, lead);
     QFETCH(int, location);
-    QFETCH(std::vector<WildStaticResult3>, results);
+    QFETCH(std::vector<WildGeneratorState3>, results);
 
     std::array<u8, 6> min;
     min.fill(0);
