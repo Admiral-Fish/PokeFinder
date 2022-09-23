@@ -18,7 +18,6 @@
  */
 
 #include "Utilities.hpp"
-#include <Core/Gen4/HGSSRoamer.hpp>
 #include <Core/RNG/LCRNG.hpp>
 #include <Core/RNG/LCRNG64.hpp>
 #include <Core/RNG/MT.hpp>

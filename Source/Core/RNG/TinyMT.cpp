@@ -33,7 +33,7 @@ constexpr u64 jumpTable[25][2]
 
 TinyMT::TinyMT(u32 seed) : state { seed, 0x8f7011ee, 0xfc78ff1f, 0x3793fdff }
 {
-    u32 *ptr = &state.u32[0];
+    u32 *ptr = &state.uint32[0];
     for (u32 i = 1; i < 8; i++)
     {
         ptr[i & 3] ^= 0x6c078965 * (ptr[(i - 1) & 3] ^ (ptr[(i - 1) & 3] >> 30)) + i;
@@ -80,13 +80,13 @@ void TinyMT::jump(u32 advances)
                 {
                     if (val & 1)
                     {
-                        jump = v32x4_xor(jump, state.u128);
+                        jump = v32x4_xor(jump, state.uint128);
                     }
                     nextState();
                 }
             }
 
-            state.u128 = jump;
+            state.uint128 = jump;
         }
     }
 }
@@ -104,22 +104,22 @@ u16 TinyMT::nextUShort()
 
 void TinyMT::nextState()
 {
-    u32 *ptr = &state.u32[0];
+    u32 *ptr = &state.uint32[0];
     u32 y = ptr[3];
     u32 x = (ptr[0] & 0x7FFFFFFF) ^ ptr[1] ^ ptr[2];
 
     x ^= (x << 1);
     y ^= (y >> 1) ^ x;
 
-    state.u32[0] = ptr[1];
-    state.u32[1] = ptr[2] ^ ((y & 1) * 0x8f7011ee);
-    state.u32[2] = x ^ (y << 10) ^ ((y & 1) * 0xfc78ff1f);
-    state.u32[3] = y;
+    state.uint32[0] = ptr[1];
+    state.uint32[1] = ptr[2] ^ ((y & 1) * 0x8f7011ee);
+    state.uint32[2] = x ^ (y << 10) ^ ((y & 1) * 0xfc78ff1f);
+    state.uint32[3] = y;
 }
 
 u32 TinyMT::temper()
 {
-    u32 *ptr = &state.u32[0];
+    u32 *ptr = &state.uint32[0];
     u32 t0 = ptr[3];
     u32 t1 = ptr[0] + (ptr[2] >> 8);
 

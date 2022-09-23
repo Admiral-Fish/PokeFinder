@@ -23,7 +23,7 @@
 SFMT::SFMT(u32 seed) : index(624)
 {
     u32 inner = seed & 1;
-    u32 *ptr = &state[0].u32[0];
+    u32 *ptr = &state[0].uint32[0];
     ptr[0] = seed;
 
     for (u32 i = 1; i < 624; i++)
@@ -61,7 +61,7 @@ u64 SFMT::next()
         index = 0;
     }
 
-    u32 *ptr = &state[0].u32[0];
+    u32 *ptr = &state[0].uint32[0];
     u32 low = ptr[index++];
     u32 high = ptr[index++];
     return low | (static_cast<u64>(high) << 32);
@@ -75,14 +75,14 @@ u32 SFMT::nextUInt()
         index = 0;
     }
 
-    u32 *ptr = &state[0].u32[0];
+    u32 *ptr = &state[0].uint32[0];
     return ptr[index++];
 }
 
 void SFMT::shuffle()
 {
-    vuint32x4 c = state[154].u128;
-    vuint32x4 d = state[155].u128;
+    vuint32x4 c = state[154].uint128;
+    vuint32x4 d = state[155].uint128;
     vuint32x4 mask = v32x4_set(0xdfffffef, 0xddfecb7f, 0xbffaffff, 0xbffffff6);
 
     auto mm_recursion = [&mask](vuint32x4 &a, const vuint32x4 &b, const vuint32x4 &c, const vuint32x4 &d) {
@@ -97,11 +97,11 @@ void SFMT::shuffle()
 
     for (int i = 0; i < 34; i++)
     {
-        vuint32x4 a = state[i].u128;
-        vuint32x4 b = state[i + 122].u128;
+        vuint32x4 a = state[i].uint128;
+        vuint32x4 b = state[i + 122].uint128;
 
         mm_recursion(a, b, c, d);
-        state[i].u128 = a;
+        state[i].uint128 = a;
 
         c = d;
         d = a;
@@ -109,11 +109,11 @@ void SFMT::shuffle()
 
     for (int i = 34; i < 156; i++)
     {
-        vuint32x4 a = state[i].u128;
-        vuint32x4 b = state[i - 34].u128;
+        vuint32x4 a = state[i].uint128;
+        vuint32x4 b = state[i - 34].uint128;
 
         mm_recursion(a, b, c, d);
-        state[i].u128 = a;
+        state[i].uint128 = a;
 
         c = d;
         d = a;

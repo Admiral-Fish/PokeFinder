@@ -36,9 +36,9 @@ using vuint32x4 = std::array<u32, 4>;
 #endif
 
 union vuint128 {
-    u32 u32[4];
-    u64 u64[2];
-    vuint32x4 u128;
+    u32 uint32[4];
+    u64 uint64[2];
+    vuint32x4 uint128;
 };
 
 /**

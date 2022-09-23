@@ -49,7 +49,7 @@ Xoroshiro::Xoroshiro(u64 seed) : Xoroshiro(seed, 0x82A2B175229D6A5B)
 
 Xoroshiro::Xoroshiro(u64 seed0, u64 seed1)
 {
-    u64 *ptr = &state.u64[0];
+    u64 *ptr = &state.uint64[0];
     ptr[0] = seed0;
     ptr[1] = seed1;
 }
@@ -80,20 +80,20 @@ void Xoroshiro::jump(u32 advances)
                 {
                     if (val & 1)
                     {
-                        jump = v32x4_xor(jump, state.u128);
+                        jump = v32x4_xor(jump, state.uint128);
                     }
                     next();
                 }
             }
 
-            state.u128 = jump;
+            state.uint128 = jump;
         }
     }
 }
 
 u64 Xoroshiro::next()
 {
-    u64 *ptr = &state.u64[0];
+    u64 *ptr = &state.uint64[0];
     u64 s0 = ptr[0];
     u64 s1 = ptr[1];
     u64 result = s0 + s1;
