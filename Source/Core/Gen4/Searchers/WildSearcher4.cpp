@@ -26,9 +26,9 @@
 #include <Core/RNG/LCRNG.hpp>
 #include <Core/Util/EncounterSlot.hpp>
 
-static u16 getItem(u16 rand, Lead lead, const PersonalInfo *info)
+static u16 getItem(u8 rand, Lead lead, const PersonalInfo *info)
 {
-    constexpr u16 ItemTableRange[2][2] = { { 45, 95 }, { 20, 80 } };
+    constexpr u8 ItemTableRange[2][2] = { { 45, 95 }, { 20, 80 } };
 
     if (info->getItem(0) == info->getItem(1) && info->getItem(0) != 0)
     {
