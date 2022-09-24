@@ -22,10 +22,6 @@
 
 #include <Core/Parents/States/State.hpp>
 
-#ifdef TEST
-#include <nlohmann/json.hpp>
-#endif
-
 class PersonalInfo;
 
 /**
@@ -34,12 +30,6 @@ class PersonalInfo;
 class GeneratorState3 : public GeneratorState
 {
 public:
-#ifdef TEST
-    GeneratorState3() = default;
-    NLOHMANN_DEFINE_TYPE_INTRUSIVE(GeneratorState3, pid, stats, abilityIndex, ivs, ability, gender, hiddenPower, nature, level, shiny,
-                                   advances, hiddenPowerStrength);
-#endif
-
     /**
      * @brief Construct a new GeneratorState3 object
      *
@@ -74,12 +64,6 @@ private:
 class SearcherState3 : public SearcherState<u32>
 {
 public:
-#ifdef TEST
-    SearcherState3() = default;
-    NLOHMANN_DEFINE_TYPE_INTRUSIVE(SearcherState3, pid, stats, abilityIndex, ivs, ability, gender, hiddenPower, nature, level, shiny, seed,
-                                   hiddenPowerStrength);
-#endif
-
     /**
      * @brief Construct a new SearcherState3 object
      *

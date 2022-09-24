@@ -22,21 +22,12 @@
 
 #include <Core/Global.hpp>
 
-#ifdef TEST
-#include <nlohmann/json.hpp>
-#endif
-
 /**
  * @brief Parent state that contains all the common information for TID/SID across each game
  */
 class IDState
 {
 public:
-#ifdef TEST
-    IDState() = default;
-    NLOHMANN_DEFINE_TYPE_INTRUSIVE(IDState, advances, sid, tid, tsv);
-#endif
-
     /**
      * @brief Construct a new IDState object
      *

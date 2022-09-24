@@ -23,10 +23,11 @@
 #include <QTest>
 #include <Test/Data.hpp>
 
-static bool operator==(const IDState4 &left, const IDState4 &right)
+static bool operator==(const IDState4 &left, const json &right)
 {
-    return left.getSID() == right.getSID() && left.getTID() == right.getTID() && left.getTSV() == right.getTSV()
-        && left.getDelay() == right.getDelay() && left.getSeed() == right.getSeed() && left.getSeconds() == right.getSeconds();
+    return left.getSID() == right["sid"].get<u16>() && left.getTID() == right["tid"].get<u16>() && left.getTSV() == right["tsv"].get<u16>()
+        && left.getDelay() == right["delay"].get<u32>() && left.getSeed() == right["seed"].get<u32>()
+        && left.getSeconds() == right["seconds"].get<u8>();
 }
 
 void IDGenerator4Test::generate_data()
@@ -39,14 +40,14 @@ void IDGenerator4Test::generate_data()
     QTest::addColumn<u8>("day");
     QTest::addColumn<u8>("hour");
     QTest::addColumn<u8>("minute");
-    QTest::addColumn<std::vector<IDState4>>("results");
+    QTest::addColumn<std::string>("results");
 
     json data = readData("gen4", "idgenerator4", "generate");
     for (const auto &d : data)
     {
         QTest::newRow(d["name"].get<std::string>().data())
             << d["tid"].get<u16>() << d["maxDelay"].get<u32>() << d["minDelay"].get<u32>() << d["year"].get<u16>() << d["month"].get<u8>()
-            << d["day"].get<u8>() << d["hour"].get<u8>() << d["minute"].get<u8>() << d["results"].get<std::vector<IDState4>>();
+            << d["day"].get<u8>() << d["hour"].get<u8>() << d["minute"].get<u8>() << d["results"].get<json>().dump();
     }
 }
 
@@ -60,18 +61,19 @@ void IDGenerator4Test::generate()
     QFETCH(u8, day);
     QFETCH(u8, hour);
     QFETCH(u8, minute);
-    QFETCH(std::vector<IDState4>, results);
+    QFETCH(std::string, results);
+
+    json j = json::parse(results);
 
     IDFilter filter({ tid }, {}, {}, {});
     IDGenerator4 generator(minDelay, maxDelay, year, month, day, hour, minute, filter);
 
     auto states = generator.generate();
-    QCOMPARE(states.size(), results.size());
+    QCOMPARE(states.size(), j.size());
 
     for (size_t i = 0; i < states.size(); i++)
     {
         const auto &state = states[i];
-        const auto &result = results[i];
-        QVERIFY(state == result);
+        QVERIFY(state == j[i]);
     }
 }

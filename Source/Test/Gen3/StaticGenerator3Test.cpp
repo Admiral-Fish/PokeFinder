@@ -26,13 +26,14 @@
 #include <QTest>
 #include <Test/Data.hpp>
 
-bool operator==(const GeneratorState3 &left, const GeneratorState3 &right)
+static bool operator==(const GeneratorState3 &left, const json &right)
 {
-    return left.getPID() == right.getPID() && left.getStats() == right.getStats() && left.getAbilityIndex() == right.getAbilityIndex()
-        && left.getIVs() == right.getIVs() && left.getAbility() == right.getAbility() && left.getGender() == right.getGender()
-        && left.getHiddenPower() == right.getHiddenPower() && left.getNature() == right.getNature() && left.getLevel() == right.getLevel()
-        && left.getShiny() == right.getShiny() && left.getAdvances() == right.getAdvances()
-        && left.getHiddenPowerStrength() == right.getHiddenPowerStrength();
+    return left.getPID() == right["pid"].get<u32>() && left.getStats() == right["stats"].get<std::array<u16, 6>>()
+        && left.getAbilityIndex() == right["abilityIndex"].get<u16>() && left.getIVs() == right["ivs"].get<std::array<u8, 6>>()
+        && left.getAbility() == right["ability"].get<u8>() && left.getGender() == right["gender"].get<u8>()
+        && left.getHiddenPower() == right["hiddenPower"].get<u8>() && left.getNature() == right["nature"].get<u8>()
+        && left.getLevel() == right["level"].get<u8>() && left.getShiny() == right["shiny"].get<u8>()
+        && left.getAdvances() == right["advances"].get<u32>() && left.getHiddenPowerStrength() == right["hiddenPowerStrength"].get<u8>();
 }
 
 void StaticGenerator3Test::generate_data()
@@ -42,14 +43,14 @@ void StaticGenerator3Test::generate_data()
     QTest::addColumn<Method>("method");
     QTest::addColumn<int>("category");
     QTest::addColumn<int>("pokemon");
-    QTest::addColumn<std::vector<GeneratorState3>>("results");
+    QTest::addColumn<std::string>("results");
 
     json data = readData("gen3", "staticgenerator3", "generate");
     for (const auto &d : data)
     {
         QTest::newRow(d["name"].get<std::string>().data())
             << d["seed"].get<u32>() << d["version"].get<Game>() << d["method"].get<Method>() << d["category"].get<int>()
-            << d["pokemon"].get<int>() << d["results"].get<std::vector<GeneratorState3>>();
+            << d["pokemon"].get<int>() << d["results"].get<json>().dump();
     }
 }
 
@@ -60,7 +61,9 @@ void StaticGenerator3Test::generate()
     QFETCH(Method, method);
     QFETCH(int, category);
     QFETCH(int, pokemon);
-    QFETCH(std::vector<GeneratorState3>, results);
+    QFETCH(std::string, results);
+
+    json j = json::parse(results);
 
     std::array<u8, 6> min;
     min.fill(0);
@@ -79,12 +82,11 @@ void StaticGenerator3Test::generate()
     StaticGenerator3 generator(0, 9, 0, 12345, 54321, version, method, Lead::None, filter);
 
     auto states = generator.generate(seed, staticTemplate);
-    QCOMPARE(states.size(), results.size());
+    QCOMPARE(states.size(), j.size());
 
     for (size_t i = 0; i < states.size(); i++)
     {
         const auto &state = states[i];
-        const auto &result = results[i];
-        QVERIFY(state == result);
+        QVERIFY(state == j[i]);
     }
 }

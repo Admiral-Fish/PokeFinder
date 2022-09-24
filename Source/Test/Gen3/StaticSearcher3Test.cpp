@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This file is part of PokéFinder
  * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
  *
@@ -28,26 +28,22 @@
 
 using IVs = std::array<u8, 6>;
 
-bool operator==(const SearcherState3 &left, const SearcherState3 &right)
+static bool operator==(const SearcherState3 &left, const json &right)
 {
-    return left.getPID() == right.getPID() && left.getStats() == right.getStats() && left.getAbilityIndex() == right.getAbilityIndex()
-        && left.getIVs() == right.getIVs() && left.getAbility() == right.getAbility() && left.getGender() == right.getGender()
-        && left.getHiddenPower() == right.getHiddenPower() && left.getNature() == right.getNature() && left.getLevel() == right.getLevel()
-        && left.getShiny() == right.getShiny() && left.getSeed() == right.getSeed()
-        && left.getHiddenPowerStrength() == right.getHiddenPowerStrength();
+    return left.getPID() == right["pid"].get<u32>() && left.getStats() == right["stats"].get<std::array<u16, 6>>()
+        && left.getAbilityIndex() == right["abilityIndex"].get<u16>() && left.getIVs() == right["ivs"].get<std::array<u8, 6>>()
+        && left.getAbility() == right["ability"].get<u8>() && left.getGender() == right["gender"].get<u8>()
+        && left.getHiddenPower() == right["hiddenPower"].get<u8>() && left.getNature() == right["nature"].get<u8>()
+        && left.getLevel() == right["level"].get<u8>() && left.getShiny() == right["shiny"].get<u8>()
+        && left.getSeed() == right["seed"].get<u32>() && left.getHiddenPowerStrength() == right["hiddenPowerStrength"].get<u8>();
 }
 
-bool operator==(const SearcherState3 &left, const GeneratorState3 &right)
+static bool operator==(const SearcherState3 &left, const GeneratorState3 &right)
 {
     return left.getPID() == right.getPID() && left.getStats() == right.getStats() && left.getAbilityIndex() == right.getAbilityIndex()
         && left.getIVs() == right.getIVs() && left.getAbility() == right.getAbility() && left.getGender() == right.getGender()
         && left.getHiddenPower() == right.getHiddenPower() && left.getNature() == right.getNature() && left.getLevel() == right.getLevel()
         && left.getShiny() == right.getShiny() && left.getHiddenPowerStrength() == right.getHiddenPowerStrength();
-}
-
-bool operator==(const GeneratorState3 &left, const SearcherState3 &right)
-{
-    return operator==(right, left);
 }
 
 void StaticSearcher3Test::search_data()
@@ -58,14 +54,14 @@ void StaticSearcher3Test::search_data()
     QTest::addColumn<Method>("method");
     QTest::addColumn<int>("category");
     QTest::addColumn<int>("pokemon");
-    QTest::addColumn<std::vector<SearcherState3>>("results");
+    QTest::addColumn<std::string>("results");
 
     json data = readData("gen3", "staticsearcher3", "search");
     for (const auto &d : data)
     {
         QTest::newRow(d["name"].get<std::string>().data())
             << d["min"].get<IVs>() << d["max"].get<IVs>() << d["version"].get<Game>() << d["method"].get<Method>()
-            << d["category"].get<int>() << d["pokemon"].get<int>() << d["results"].get<std::vector<SearcherState3>>();
+            << d["category"].get<int>() << d["pokemon"].get<int>() << d["results"].get<json>().dump();
     }
 }
 
@@ -77,7 +73,9 @@ void StaticSearcher3Test::search()
     QFETCH(Method, method);
     QFETCH(int, category);
     QFETCH(int, pokemon);
-    QFETCH(std::vector<SearcherState3>, results);
+    QFETCH(std::string, results);
+
+    json j = json::parse(results);
 
     std::array<bool, 25> natures;
     natures.fill(true);
@@ -91,13 +89,12 @@ void StaticSearcher3Test::search()
 
     searcher.startSearch(min, max, staticTemplate);
     auto states = searcher.getResults();
-    QCOMPARE(states.size(), results.size());
+    QCOMPARE(states.size(), j.size());
 
     for (size_t i = 0; i < states.size(); i++)
     {
         const auto &state = states[i];
-        const auto &result = results[i];
-        QVERIFY(state == result);
+        QVERIFY(state == j[i]);
 
         // Ensure generator agrees
         StaticGenerator3 generator(0, 0, 0, 12345, 54321, version, method, Lead::None, filter);

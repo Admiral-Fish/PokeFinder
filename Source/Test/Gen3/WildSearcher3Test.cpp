@@ -29,17 +29,18 @@
 
 using IVs = std::array<u8, 6>;
 
-bool operator==(const WildSearcherState3 &left, const WildSearcherState3 &right)
+static bool operator==(const WildSearcherState3 &left, const json &right)
 {
-    return left.getPID() == right.getPID() && left.getStats() == right.getStats() && left.getAbilityIndex() == right.getAbilityIndex()
-        && left.getIVs() == right.getIVs() && left.getAbility() == right.getAbility() && left.getGender() == right.getGender()
-        && left.getHiddenPower() == right.getHiddenPower() && left.getNature() == right.getNature() && left.getLevel() == right.getLevel()
-        && left.getShiny() == right.getShiny() && left.getSpecie() == right.getSpecie()
-        && left.getEncounterSlot() == right.getEncounterSlot() && left.getSeed() == right.getSeed()
-        && left.getHiddenPowerStrength() == right.getHiddenPowerStrength();
+    return left.getPID() == right["pid"].get<u32>() && left.getStats() == right["stats"].get<std::array<u16, 6>>()
+        && left.getAbilityIndex() == right["abilityIndex"].get<u16>() && left.getIVs() == right["ivs"].get<std::array<u8, 6>>()
+        && left.getAbility() == right["ability"].get<u8>() && left.getGender() == right["gender"].get<u8>()
+        && left.getHiddenPower() == right["hiddenPower"].get<u8>() && left.getNature() == right["nature"].get<u8>()
+        && left.getLevel() == right["level"].get<u8>() && left.getShiny() == right["shiny"].get<u8>()
+        && left.getSpecie() == right["specie"].get<u16>() && left.getEncounterSlot() == right["encounterSlot"].get<u8>()
+        && left.getSeed() == right["seed"].get<u32>() && left.getHiddenPowerStrength() == right["hiddenPowerStrength"].get<u8>();
 }
 
-bool operator==(const WildSearcherState3 &left, const WildGeneratorState3 &right)
+static bool operator==(const WildSearcherState3 &left, const WildGeneratorState3 &right)
 {
     return left.getPID() == right.getPID() && left.getStats() == right.getStats() && left.getAbilityIndex() == right.getAbilityIndex()
         && left.getIVs() == right.getIVs() && left.getAbility() == right.getAbility() && left.getGender() == right.getGender()
@@ -48,12 +49,7 @@ bool operator==(const WildSearcherState3 &left, const WildGeneratorState3 &right
         && left.getEncounterSlot() == right.getEncounterSlot() && left.getHiddenPowerStrength() == right.getHiddenPowerStrength();
 }
 
-bool operator==(const WildGeneratorState3 &left, const WildSearcherState3 &right)
-{
-    return operator==(right, left);
-}
-
-constexpr Lead operator+(Lead lead, u8 val)
+static constexpr Lead operator+(Lead lead, u8 val)
 {
     return static_cast<Lead>(toInt(lead) + val);
 }
@@ -67,15 +63,14 @@ void WildSearcher3Test::search_data()
     QTest::addColumn<Encounter>("encounter");
     QTest::addColumn<Lead>("lead");
     QTest::addColumn<int>("location");
-    QTest::addColumn<std::vector<WildSearcherState3>>("results");
+    QTest::addColumn<std::string>("results");
 
     json data = readData("gen3", "wildsearcher3", "search");
     for (const auto &d : data)
     {
         QTest::newRow(d["name"].get<std::string>().data())
             << d["min"].get<IVs>() << d["max"].get<IVs>() << d["version"].get<Game>() << d["method"].get<Method>()
-            << d["encounter"].get<Encounter>() << d["lead"].get<Lead>() << d["location"].get<int>()
-            << d["results"].get<std::vector<WildSearcherState3>>();
+            << d["encounter"].get<Encounter>() << d["lead"].get<Lead>() << d["location"].get<int>() << d["results"].get<json>().dump();
     }
 }
 
@@ -88,7 +83,9 @@ void WildSearcher3Test::search()
     QFETCH(Encounter, encounter);
     QFETCH(Lead, lead);
     QFETCH(int, location);
-    QFETCH(std::vector<WildSearcherState3>, results);
+    QFETCH(std::string, results);
+
+    json j = json::parse(results);
 
     std::array<bool, 25> natures;
     natures.fill(true);
@@ -108,13 +105,12 @@ void WildSearcher3Test::search()
 
     searcher.startSearch(min, max);
     auto states = searcher.getResults();
-    QCOMPARE(states.size(), results.size());
+    QCOMPARE(states.size(), j.size());
 
     for (size_t i = 0; i < states.size(); i++)
     {
         const auto &state = states[i];
-        const auto &result = results[i];
-        QVERIFY(state == result);
+        QVERIFY(state == j[i]);
 
         // Ensure generator agrees
         WildGenerator3 generator(0, 0, 0, 12345, 54321, version, method, encounter,

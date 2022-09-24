@@ -23,101 +23,104 @@
 #include <QTest>
 #include <Test/Data.hpp>
 
-bool operator==(const IDState &left, const IDState &right)
+static bool operator==(const IDState &left, const json &right)
 {
-    return left.getAdvances() == right.getAdvances() && left.getSID() == right.getSID() && left.getTID() == right.getTID()
-        && left.getTSV() == right.getTSV();
+    return left.getAdvances() == right["advances"].get<u32>() && left.getSID() == right["sid"].get<u16>()
+        && left.getTID() == right["tid"].get<u16>() && left.getTSV() == right["tsv"].get<u16>();
 }
 
 void IDGenerator3Test::xdcolo_data()
 {
     QTest::addColumn<u32>("seed");
-    QTest::addColumn<std::vector<IDState>>("results");
+    QTest::addColumn<std::string>("results");
 
     json data = readData("gen3", "idgenerator3", "xdcolo");
     for (const auto &d : data)
     {
-        QTest::newRow(d["name"].get<std::string>().data()) << d["seed"].get<u32>() << d["results"].get<std::vector<IDState>>();
+        QTest::newRow(d["name"].get<std::string>().data()) << d["seed"].get<u32>() << d["results"].get<json>().dump();
     }
 }
 
 void IDGenerator3Test::xdcolo()
 {
     QFETCH(u32, seed);
-    QFETCH(std::vector<IDState>, results);
+    QFETCH(std::string, results);
+
+    json j = json::parse(results);
 
     IDFilter filter({}, {}, {}, {});
     IDGenerator3 generator(0, 9, filter);
 
     auto states = generator.generateXDColo(seed);
-    QCOMPARE(states.size(), results.size());
+    QCOMPARE(states.size(), j.size());
 
     for (size_t i = 0; i < states.size(); i++)
     {
         const auto &state = states[i];
-        const auto &result = results[i];
-        QVERIFY(state == result);
+        QVERIFY(state == j[i]);
     }
 }
 
 void IDGenerator3Test::frgle_data()
 {
     QTest::addColumn<u16>("tid");
-    QTest::addColumn<std::vector<IDState>>("results");
+    QTest::addColumn<std::string>("results");
 
     json data = readData("gen3", "idgenerator3", "frlge");
     for (const auto &d : data)
     {
-        QTest::newRow(d["name"].get<std::string>().data()) << d["tid"].get<u16>() << d["results"].get<std::vector<IDState>>();
+        QTest::newRow(d["name"].get<std::string>().data()) << d["tid"].get<u16>() << d["results"].get<json>().dump();
     }
 }
 
 void IDGenerator3Test::frgle()
 {
     QFETCH(u16, tid);
-    QFETCH(std::vector<IDState>, results);
+    QFETCH(std::string, results);
+
+    json j = json::parse(results);
 
     IDFilter filter({}, {}, {}, {});
     IDGenerator3 generator(0, 9, filter);
 
     auto states = generator.generateFRLGE(tid);
-    QCOMPARE(states.size(), results.size());
+    QCOMPARE(states.size(), j.size());
 
     for (size_t i = 0; i < states.size(); i++)
     {
         const auto &state = states[i];
-        const auto &result = results[i];
-        QVERIFY(state == result);
+        QVERIFY(state == j[i]);
     }
 }
 
 void IDGenerator3Test::rs_data()
 {
     QTest::addColumn<u16>("seed");
-    QTest::addColumn<std::vector<IDState>>("results");
+    QTest::addColumn<std::string>("results");
 
     json data = readData("gen3", "idgenerator3", "rs");
     for (const auto &d : data)
     {
-        QTest::newRow(d["name"].get<std::string>().data()) << d["seed"].get<u16>() << d["results"].get<std::vector<IDState>>();
+        QTest::newRow(d["name"].get<std::string>().data()) << d["seed"].get<u16>() << d["results"].get<json>().dump();
     }
 }
 
 void IDGenerator3Test::rs()
 {
     QFETCH(u16, seed);
-    QFETCH(std::vector<IDState>, results);
+    QFETCH(std::string, results);
+
+    json j = json::parse(results);
 
     IDFilter filter({}, {}, {}, {});
     IDGenerator3 generator(0, 9, filter);
 
     auto states = generator.generateRS(seed);
-    QCOMPARE(states.size(), results.size());
+    QCOMPARE(states.size(), j.size());
 
     for (size_t i = 0; i < states.size(); i++)
     {
         const auto &state = states[i];
-        const auto &result = results[i];
-        QVERIFY(state == result);
+        QVERIFY(state == j[i]);
     }
 }
