@@ -92,7 +92,7 @@ std::vector<WildGeneratorState4> WildGenerator4::generateMethodJ(u32 seed, const
         }
 
         u8 encounterSlot;
-        if ((lead == Lead::MagnetPull || lead == Lead::Static) && go.nextUShort<false>(2, &occidentary) && !modifiedSlots.empty())
+        if ((lead == Lead::MagnetPull || lead == Lead::Static) && go.nextUShort<false>(2, &occidentary) == 0 && !modifiedSlots.empty())
         {
             encounterSlot = modifiedSlots[go.nextUShort(modifiedSlots.size(), &occidentary)];
         }
@@ -132,8 +132,8 @@ std::vector<WildGeneratorState4> WildGenerator4::generateMethodJ(u32 seed, const
                 cuteCharmFlag = false;
                 break;
             default:
-                cuteCharmFlag = rng.nextUShort<false>(3, &occidentary) != 0;
-                if (lead == Lead::CuteCharmM)
+                cuteCharmFlag = go.nextUShort<false>(3, &occidentary) != 0;
+                if (lead == Lead::CuteCharmF)
                 {
                     buffer = 25 * ((info->getGender() / 25) + 1);
                 }
@@ -219,7 +219,7 @@ std::vector<WildGeneratorState4> WildGenerator4::generateMethodK(u32 seed, const
         }
 
         u8 encounterSlot;
-        if ((lead == Lead::MagnetPull || lead == Lead::Static) && go.nextUShort(2, &occidentary) && !modifiedSlots.empty())
+        if ((lead == Lead::MagnetPull || lead == Lead::Static) && go.nextUShort(2, &occidentary) == 0 && !modifiedSlots.empty())
         {
             encounterSlot = modifiedSlots[go.nextUShort(modifiedSlots.size(), &occidentary)];
         }
@@ -259,8 +259,8 @@ std::vector<WildGeneratorState4> WildGenerator4::generateMethodK(u32 seed, const
                 cuteCharmFlag = false;
                 break;
             default:
-                cuteCharmFlag = rng.nextUShort(3, &occidentary) != 0;
-                if (lead == Lead::CuteCharmM)
+                cuteCharmFlag = go.nextUShort(3, &occidentary) != 0;
+                if (lead == Lead::CuteCharmF)
                 {
                     buffer = 25 * ((info->getGender() / 25) + 1);
                 }
@@ -396,7 +396,10 @@ std::vector<WildGeneratorState4> WildGenerator4::generatePokeRadar(u32 seed, con
         break;
     default:
         cuteCharm = true;
-        buffer = 25 + ((info->getGender() / 25) + 1);
+        if (lead == Lead::CuteCharmF)
+        {
+            buffer = 25 + ((info->getGender() / 25) + 1);
+        }
         break;
     }
 

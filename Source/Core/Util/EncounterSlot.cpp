@@ -99,6 +99,8 @@ namespace EncounterSlot
         case Encounter::BugCatchingContest:
             return calcSlot<10, true>(result, std::array<u8, 10> { 80, 60, 50, 40, 30, 20, 15, 10, 5, 0 });
         case Encounter::Headbutt:
+        case Encounter::HeadbuttAlt:
+        case Encounter::HeadbuttSpecial:
             return calcSlot<6>(result, std::array<u8, 6> { 50, 65, 80, 90, 95, 100 });
         case Encounter::RockSmash:
             return calcSlot<2>(result, std::array<u8, 2> { 80, 100 });

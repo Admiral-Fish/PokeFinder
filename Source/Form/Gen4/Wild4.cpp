@@ -142,6 +142,8 @@ Wild4::Wild4(QWidget *parent) : QWidget(parent), ui(new Ui::Wild4)
     connect(ui->buttonGroupGenerator, &QButtonGroup::buttonClicked, this, [=] { searcherEncounterUpdate(); });
     connect(ui->checkBoxGeneratorPokeRadar, &QCheckBox::stateChanged, this, &Wild4::generatorPokeRadarStateChanged);
     connect(ui->checkBoxSearcherPokeRadar, &QCheckBox::stateChanged, this, &Wild4::searcherPokeRadarStateChanged);
+    connect(ui->filterGenerator, &Filter::showStatsChanged, generatorModel, &WildGeneratorModel4::setShowStats);
+    connect(ui->filterSearcher, &Filter::showStatsChanged, searcherModel, &WildSearcherModel4::setShowStats);
     connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &Wild4::profileManager);
 
     updateProfiles();
@@ -311,6 +313,11 @@ void Wild4::generatorEncounterIndexChanged(int index)
             break;
         case Encounter::BugCatchingContest:
             t = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+            break;
+        case Encounter::Headbutt:
+        case Encounter::HeadbuttAlt:
+        case Encounter::HeadbuttSpecial:
+            t = { "0", "1", "2", "3", "4", "5" };
             break;
         default:
             break;
@@ -587,6 +594,11 @@ void Wild4::searcherEncounterIndexChanged(int index)
             break;
         case Encounter::BugCatchingContest:
             t = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+            break;
+        case Encounter::Headbutt:
+        case Encounter::HeadbuttAlt:
+        case Encounter::HeadbuttSpecial:
+            t = { "0", "1", "2", "3", "4", "5" };
             break;
         default:
             break;

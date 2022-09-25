@@ -65,7 +65,7 @@ std::vector<SearcherState4> StaticSearcher4::getResults()
 void StaticSearcher4::startSearch(const std::array<u8, 6> &min, const std::array<u8, 6> &max, const StaticTemplate4 *staticTemplate)
 {
     searching = true;
-    if (lead == Lead::CuteCharmM)
+    if (lead == Lead::CuteCharmF)
     {
         buffer = 25 * ((staticTemplate->getInfo()->getGender() / 25) + 1);
     }

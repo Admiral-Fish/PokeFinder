@@ -211,7 +211,7 @@ std::vector<WildSearcherState4> WildSearcher4::searchMethodJ(u8 hp, u8 atk, u8 d
                 case 255:
                     continue;
                 default:
-                    if (lead == Lead::CuteCharmM)
+                    if (lead == Lead::CuteCharmF)
                     {
                         buffer = 25 + ((info->getGender() / 25) + 1);
                     }
@@ -426,7 +426,7 @@ std::vector<WildSearcherState4> WildSearcher4::searchMethodK(u8 hp, u8 atk, u8 d
                 case 255:
                     continue;
                 default:
-                    if (lead == Lead::CuteCharmM)
+                    if (lead == Lead::CuteCharmF)
                     {
                         buffer = 25 + ((info->getGender() / 25) + 1);
                     }
@@ -625,7 +625,10 @@ std::vector<WildSearcherState4> WildSearcher4::searchPokeRadar(u8 hp, u8 atk, u8
         break;
     default:
         cuteCharm = true;
-        buffer = 25 + ((info->getGender() / 25) + 1);
+        if (lead == Lead::CuteCharmF)
+        {
+            buffer = 25 + ((info->getGender() / 25) + 1);
+        }
         break;
     }
 

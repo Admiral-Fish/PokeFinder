@@ -258,7 +258,7 @@ namespace Encounters4
                 else if (encounter == Encounter::SuperRod)
                 {
                     specie = *reinterpret_cast<const u16 *>(data + 193);
-                    for (int i = 0; i < 5; i++)
+                    for (size_t i = 0; i < 5; i++)
                     {
                         pokemon[i].setSpecie(specie, &info[specie]);
                     }
@@ -304,7 +304,7 @@ namespace Encounters4
 
                     std::vector<Slot> slots;
                     slots.reserve(10);
-                    for (int i = 0; i < 10; i++)
+                    for (size_t i = 0; i < 10; i++)
                     {
                         u16 specie = *reinterpret_cast<const u16 *>(entry + 1 + (i * 4));
                         u8 min = entry[3 + (i * 4)];
@@ -340,7 +340,7 @@ namespace Encounters4
                     {
                         std::vector<Slot> slots;
                         slots.reserve(6);
-                        for (int i = 0; i < 6; i++)
+                        for (size_t i = 0; i < 6; i++)
                         {
                             u16 specie = *reinterpret_cast<const u16 *>(entry + 2 + (i * 4) + (24 * tree));
                             u8 min = entry[4 + (i * 4) + (24 * tree)];
@@ -386,7 +386,7 @@ namespace Encounters4
                         {
                             std::vector<Slot> slots;
                             slots.reserve(12);
-                            for (int i = 0; i < 12; i++)
+                            for (size_t i = 0; i < 12; i++)
                             {
                                 u8 level = entry[7 + i];
                                 u16 specie = *reinterpret_cast<const u16 *>(entry + 19 + (i * 2) + (time * 24));
@@ -402,7 +402,7 @@ namespace Encounters4
                         {
                             std::vector<Slot> slots;
                             slots.reserve(5);
-                            for (int i = 0; i < 5; i++)
+                            for (size_t i = 0; i < 5; i++)
                             {
                                 u8 min = entry[99 + (i * 4)];
                                 u8 max = entry[100 + (i * 4)];
@@ -418,7 +418,7 @@ namespace Encounters4
                         {
                             std::vector<Slot> slots;
                             slots.reserve(2);
-                            for (int i = 0; i < 2; i++)
+                            for (size_t i = 0; i < 2; i++)
                             {
                                 u8 min = entry[119 + (i * 4)];
                                 u8 max = entry[120 + (i * 4)];
@@ -433,7 +433,7 @@ namespace Encounters4
                         {
                             std::vector<Slot> slots;
                             slots.reserve(5);
-                            for (int i = 0; i < 5; i++)
+                            for (size_t i = 0; i < 5; i++)
                             {
                                 u8 min = entry[127 + (i * 4)];
                                 u8 max = entry[128 + (i * 4)];
@@ -449,7 +449,7 @@ namespace Encounters4
                         {
                             std::vector<Slot> slots;
                             slots.reserve(5);
-                            for (int i = 0; i < 5; i++)
+                            for (size_t i = 0; i < 5; i++)
                             {
                                 u8 min = entry[147 + (i * 4)];
                                 u8 max = entry[148 + (i * 4)];
@@ -472,7 +472,7 @@ namespace Encounters4
                         {
                             std::vector<Slot> slots;
                             slots.reserve(5);
-                            for (int i = 0; i < 5; i++)
+                            for (size_t i = 0; i < 5; i++)
                             {
                                 u8 min = entry[167 + (i * 4)];
                                 u8 max = entry[168 + (i * 4)];
@@ -673,7 +673,8 @@ namespace Encounters4
                     if (grass != 0)
                     {
                         std::vector<Slot> slots;
-                        for (int i = 0; i < 12; i++)
+                        slots.reserve(12);
+                        for (size_t i = 0; i < 12; i++)
                         {
                             u8 level = entry[2 + (i * 3)];
                             u16 specie = *reinterpret_cast<const u16 *>(entry + 3 + (i * 3));
@@ -690,7 +691,8 @@ namespace Encounters4
                     if (surf != 0)
                     {
                         std::vector<Slot> slots;
-                        for (int i = 0; i < 5; i++)
+                        slots.reserve(5);
+                        for (size_t i = 0; i < 5; i++)
                         {
                             u8 max = entry[80 + (i * 4)];
                             u8 min = entry[81 + (i * 4)];
@@ -704,7 +706,8 @@ namespace Encounters4
                     if (old != 0)
                     {
                         std::vector<Slot> slots;
-                        for (int i = 0; i < 5; i++)
+                        slots.reserve(5);
+                        for (size_t i = 0; i < 5; i++)
                         {
                             u8 max = entry[101 + (i * 4)];
                             u8 min = entry[102 + (i * 4)];
@@ -718,7 +721,8 @@ namespace Encounters4
                     if (good != 0)
                     {
                         std::vector<Slot> slots;
-                        for (int i = 0; i < 5; i++)
+                        slots.reserve(5);
+                        for (size_t i = 0; i < 5; i++)
                         {
                             u8 max = entry[122 + (i * 4)];
                             u8 min = entry[123 + (i * 4)];
@@ -732,7 +736,8 @@ namespace Encounters4
                     if (super != 0)
                     {
                         std::vector<Slot> slots;
-                        for (int i = 0; i < 5; i++)
+                        slots.reserve(5);
+                        for (size_t i = 0; i < 5; i++)
                         {
                             u8 max = entry[143 + (i * 4)];
                             u8 min = entry[144 + (i * 4)];

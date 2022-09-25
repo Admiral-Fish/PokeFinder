@@ -109,7 +109,7 @@ std::vector<GeneratorState4> StaticGenerator4::generateMethodJ(u32 seed, const S
 
     bool cuteCharmFlag = false;
     u8 buffer = 0;
-    if (lead == Lead::CuteCharmM)
+    if (lead == Lead::CuteCharmF)
     {
         buffer = 25 * ((info->getGender() / 25) + 1);
     }
@@ -179,7 +179,7 @@ std::vector<GeneratorState4> StaticGenerator4::generateMethodK(u32 seed, const S
 
     bool cuteCharmFlag = false;
     u8 buffer = 0;
-    if (lead == Lead::CuteCharmM)
+    if (lead == Lead::CuteCharmF)
     {
         buffer = 25 * ((info->getGender() / 25) + 1);
     }
