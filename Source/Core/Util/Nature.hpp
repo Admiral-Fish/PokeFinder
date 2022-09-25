@@ -23,19 +23,20 @@
 #include <Core/Global.hpp>
 
 /**
- * @brief Contains the nature modifiers that get applied to stats
+ * @brief Computes stats that get modified from the nature
  */
 namespace Nature
 {
     /**
-     * @brief Returns the modifier for the given \p nature and \p index
+     * @brief Computes the stat based upon the \p nature and stat \p index
      *
+     * @param stat Unmodified stat
      * @param nature Pokemon nature
      * @param index Pokemon stat index
      *
-     * @return Nature stat modifier
+     * @return Computed modified stat
      */
-    float getNatureModifier(u8 nature, u8 index);
+    u16 computeStat(u16 stat, u8 nature, u8 index);
 }
 
 #endif // NATURE_HPP

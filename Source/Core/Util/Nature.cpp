@@ -49,8 +49,8 @@ constexpr float modifiers[25][5] = {
 
 namespace Nature
 {
-    float getNatureModifier(u8 nature, u8 index)
+    u16 computeStat(u16 stat, u8 nature, u8 index)
     {
-        return modifiers[nature][index - 1];
+        return stat * modifiers[nature][index - 1];
     }
 }

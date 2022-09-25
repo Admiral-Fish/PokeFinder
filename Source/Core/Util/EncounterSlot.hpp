@@ -26,10 +26,45 @@ enum class Encounter : u8;
 
 namespace EncounterSlot
 {
-    u8 hSlot(u8 result, Encounter encounter);
-    u8 jSlot(u8 result, Encounter encounter);
-    u8 kSlot(u8 result, Encounter encounter);
-    u8 bdspSlot(u8 result, Encounter encounter);
+    /**
+     * @brief Calculates the encounter slot for Gen 3
+     *
+     * @param rand PRNG call
+     * @param encounter Encounter type
+     *
+     * @return Encounter slot
+     */
+    u8 hSlot(u8 rand, Encounter encounter);
+
+    /**
+     * @brief Calculates the encounter slot for DPPt
+     *
+     * @param rand PRNG call
+     * @param encounter Encounter type
+     *
+     * @return Encounter slot
+     */
+    u8 jSlot(u8 rand, Encounter encounter);
+
+    /**
+     * @brief Calculates the encounter slot for HGSS
+     *
+     * @param rand PRNG call
+     * @param encounter Encounter type
+     *
+     * @return Encounter slot
+     */
+    u8 kSlot(u8 rand, Encounter encounter);
+
+    /**
+     * @brief Calculates the encounter slot for BDSP
+     *
+     * @param rand PRNG call
+     * @param encounter Encounter type
+     *
+     * @return Encounter slot
+     */
+    u8 bdspSlot(u8 rand, Encounter encounter);
 };
 
 #endif // ENCOUNTERSLOT_HPP

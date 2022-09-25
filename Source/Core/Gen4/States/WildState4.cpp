@@ -88,7 +88,7 @@ WildGeneratorState4::WildGeneratorState4(u16 prng, u32 advances, u32 occidentary
         }
         else
         {
-            stats[i] = (stat + 5) * Nature::getNatureModifier(nature, i);
+            stats[i] = Nature::computeStat(stat + 5, nature, i);
         }
     }
 
@@ -156,7 +156,7 @@ WildSearcherState4::WildSearcherState4(u32 seed, u32 pid, u8 nature, std::array<
         }
         else
         {
-            stats[i] = (stat + 5) * Nature::getNatureModifier(nature, i);
+            stats[i] = Nature::computeStat(stat + 5, nature, i);
         }
     }
 

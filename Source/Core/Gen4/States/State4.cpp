@@ -86,7 +86,7 @@ GeneratorState4::GeneratorState4(u16 prng, u32 advances, u32 pid, u16 iv1, u16 i
         }
         else
         {
-            stats[i] = (stat + 5) * Nature::getNatureModifier(nature, i);
+            stats[i] = Nature::computeStat(stat + 5, nature, i);
         }
     }
 
@@ -150,7 +150,7 @@ SearcherState4::SearcherState4(u32 seed, u32 pid, u8 nature, std::array<u8, 6> i
         }
         else
         {
-            stats[i] = (stat + 5) * Nature::getNatureModifier(nature, i);
+            stats[i] = Nature::computeStat(stat + 5, nature, i);
         }
     }
 

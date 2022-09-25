@@ -56,7 +56,7 @@ namespace
                 }
                 else
                 {
-                    stat = (stat + 5) * Nature::getNatureModifier(nature, i);
+                    stat = Nature::computeStat(stat + 5, nature, i);
                 }
 
                 if (stat == stats[i])
