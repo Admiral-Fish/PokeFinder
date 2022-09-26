@@ -398,7 +398,7 @@ std::vector<WildGeneratorState4> WildGenerator4::generatePokeRadar(u32 seed, con
         cuteCharm = true;
         if (lead == Lead::CuteCharmF)
         {
-            buffer = 25 + ((info->getGender() / 25) + 1);
+            buffer = 25 * ((info->getGender() / 25) + 1);
         }
         break;
     }

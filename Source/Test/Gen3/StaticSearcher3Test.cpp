@@ -28,16 +28,6 @@
 
 using IVs = std::array<u8, 6>;
 
-static bool operator==(const SearcherState3 &left, const json &right)
-{
-    return left.getPID() == right["pid"].get<u32>() && left.getStats() == right["stats"].get<std::array<u16, 6>>()
-        && left.getAbilityIndex() == right["abilityIndex"].get<u16>() && left.getIVs() == right["ivs"].get<std::array<u8, 6>>()
-        && left.getAbility() == right["ability"].get<u8>() && left.getGender() == right["gender"].get<u8>()
-        && left.getHiddenPower() == right["hiddenPower"].get<u8>() && left.getNature() == right["nature"].get<u8>()
-        && left.getLevel() == right["level"].get<u8>() && left.getShiny() == right["shiny"].get<u8>()
-        && left.getSeed() == right["seed"].get<u32>() && left.getHiddenPowerStrength() == right["hiddenPowerStrength"].get<u8>();
-}
-
 static bool operator==(const SearcherState3 &left, const GeneratorState3 &right)
 {
     return left.getPID() == right.getPID() && left.getStats() == right.getStats() && left.getAbilityIndex() == right.getAbilityIndex()
@@ -54,14 +44,14 @@ void StaticSearcher3Test::search_data()
     QTest::addColumn<Method>("method");
     QTest::addColumn<int>("category");
     QTest::addColumn<int>("pokemon");
-    QTest::addColumn<std::string>("results");
+    QTest::addColumn<int>("results");
 
     json data = readData("static3", "staticsearcher3", "search");
     for (const auto &d : data)
     {
         QTest::newRow(d["name"].get<std::string>().data())
             << d["min"].get<IVs>() << d["max"].get<IVs>() << d["version"].get<Game>() << d["method"].get<Method>()
-            << d["category"].get<int>() << d["pokemon"].get<int>() << d["results"].get<json>().dump();
+            << d["category"].get<int>() << d["pokemon"].get<int>() << d["results"].get<int>();
     }
 }
 
@@ -73,9 +63,7 @@ void StaticSearcher3Test::search()
     QFETCH(Method, method);
     QFETCH(int, category);
     QFETCH(int, pokemon);
-    QFETCH(std::string, results);
-
-    json j = json::parse(results);
+    QFETCH(int, results);
 
     std::array<bool, 25> natures;
     natures.fill(true);
@@ -89,13 +77,10 @@ void StaticSearcher3Test::search()
 
     searcher.startSearch(min, max, staticTemplate);
     auto states = searcher.getResults();
-    QCOMPARE(states.size(), j.size());
+    QCOMPARE(states.size(), results);
 
-    for (size_t i = 0; i < states.size(); i++)
+    for (const auto &state : states)
     {
-        const auto &state = states[i];
-        QVERIFY(state == j[i]);
-
         // Ensure generator agrees
         StaticGenerator3 generator(0, 0, 0, 12345, 54321, version, method, Lead::None, filter);
         auto generatorStates = generator.generate(state.getSeed(), staticTemplate);

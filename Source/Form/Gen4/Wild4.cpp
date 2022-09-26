@@ -139,7 +139,7 @@ Wild4::Wild4(QWidget *parent) : QWidget(parent), ui(new Ui::Wild4)
         }
     });
     connect(ui->buttonGroupGenerator, &QButtonGroup::buttonClicked, this, [=] { generatorEncounterUpdate(); });
-    connect(ui->buttonGroupGenerator, &QButtonGroup::buttonClicked, this, [=] { searcherEncounterUpdate(); });
+    connect(ui->buttonGroupSearcher, &QButtonGroup::buttonClicked, this, [=] { searcherEncounterUpdate(); });
     connect(ui->checkBoxGeneratorPokeRadar, &QCheckBox::stateChanged, this, &Wild4::generatorPokeRadarStateChanged);
     connect(ui->checkBoxSearcherPokeRadar, &QCheckBox::stateChanged, this, &Wild4::searcherPokeRadarStateChanged);
     connect(ui->filterGenerator, &Filter::showStatsChanged, generatorModel, &WildGeneratorModel4::setShowStats);
@@ -211,7 +211,7 @@ void Wild4::updateProfiles()
 
 void Wild4::updateEncounterGenerator()
 {
-    auto encounter = static_cast<Encounter>(ui->comboBoxGeneratorEncounter->currentData().toInt());
+    auto encounter = ui->comboBoxGeneratorEncounter->getEnum<Encounter>();
     int modifier = ui->comboBoxGeneratorTime->currentIndex();
     Game dual = ui->checkBoxGeneratorDualSlot->isChecked() ? ui->comboBoxGeneratorDualSlot->getEnum<Game>() : Game::None;
     bool radar = ui->checkBoxGeneratorPokeRadar->isChecked();
@@ -222,7 +222,7 @@ void Wild4::updateEncounterGenerator()
 
 void Wild4::updateEncounterSearcher()
 {
-    auto encounter = static_cast<Encounter>(ui->comboBoxSearcherEncounter->currentData().toInt());
+    auto encounter = ui->comboBoxSearcherEncounter->getEnum<Encounter>();
     int modifier = ui->comboBoxSearcherTime->currentIndex();
     Game dual = ui->checkBoxSearcherDualSlot->isChecked() ? ui->comboBoxSearcherDualSlot->getEnum<Game>() : Game::None;
     bool radar = ui->checkBoxSearcherPokeRadar->isChecked();

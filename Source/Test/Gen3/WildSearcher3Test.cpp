@@ -29,17 +29,6 @@
 
 using IVs = std::array<u8, 6>;
 
-static bool operator==(const WildSearcherState3 &left, const json &right)
-{
-    return left.getPID() == right["pid"].get<u32>() && left.getStats() == right["stats"].get<std::array<u16, 6>>()
-        && left.getAbilityIndex() == right["abilityIndex"].get<u16>() && left.getIVs() == right["ivs"].get<std::array<u8, 6>>()
-        && left.getAbility() == right["ability"].get<u8>() && left.getGender() == right["gender"].get<u8>()
-        && left.getHiddenPower() == right["hiddenPower"].get<u8>() && left.getNature() == right["nature"].get<u8>()
-        && left.getLevel() == right["level"].get<u8>() && left.getShiny() == right["shiny"].get<u8>()
-        && left.getSpecie() == right["specie"].get<u16>() && left.getEncounterSlot() == right["encounterSlot"].get<u8>()
-        && left.getSeed() == right["seed"].get<u32>() && left.getHiddenPowerStrength() == right["hiddenPowerStrength"].get<u8>();
-}
-
 static bool operator==(const WildSearcherState3 &left, const WildGeneratorState3 &right)
 {
     return left.getPID() == right.getPID() && left.getStats() == right.getStats() && left.getAbilityIndex() == right.getAbilityIndex()
@@ -63,14 +52,14 @@ void WildSearcher3Test::search_data()
     QTest::addColumn<Encounter>("encounter");
     QTest::addColumn<Lead>("lead");
     QTest::addColumn<int>("location");
-    QTest::addColumn<std::string>("results");
+    QTest::addColumn<int>("results");
 
     json data = readData("wild3", "wildsearcher3", "search");
     for (const auto &d : data)
     {
         QTest::newRow(d["name"].get<std::string>().data())
             << d["min"].get<IVs>() << d["max"].get<IVs>() << d["version"].get<Game>() << d["method"].get<Method>()
-            << d["encounter"].get<Encounter>() << d["lead"].get<Lead>() << d["location"].get<int>() << d["results"].get<json>().dump();
+            << d["encounter"].get<Encounter>() << d["lead"].get<Lead>() << d["location"].get<int>() << d["results"].get<int>();
     }
 }
 
@@ -83,9 +72,7 @@ void WildSearcher3Test::search()
     QFETCH(Encounter, encounter);
     QFETCH(Lead, lead);
     QFETCH(int, location);
-    QFETCH(std::string, results);
-
-    json j = json::parse(results);
+    QFETCH(int, results);
 
     std::array<bool, 25> natures;
     natures.fill(true);
@@ -105,13 +92,10 @@ void WildSearcher3Test::search()
 
     searcher.startSearch(min, max);
     auto states = searcher.getResults();
-    QCOMPARE(states.size(), j.size());
+    QCOMPARE(states.size(), results);
 
-    for (size_t i = 0; i < states.size(); i++)
+    for (const auto &state : states)
     {
-        const auto &state = states[i];
-        QVERIFY(state == j[i]);
-
         // Ensure generator agrees
         WildGenerator3 generator(0, 0, 0, 12345, 54321, version, method, encounter,
                                  lead != Lead::Synchronize ? lead : lead + state.getNature(), filter);
