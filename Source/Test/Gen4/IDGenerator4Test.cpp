@@ -42,7 +42,7 @@ void IDGenerator4Test::generate_data()
     QTest::addColumn<u8>("minute");
     QTest::addColumn<std::string>("results");
 
-    json data = readData("gen4", "idgenerator4", "generate");
+    json data = readData("id4", "idgenerator4", "generate");
     for (const auto &d : data)
     {
         QTest::newRow(d["name"].get<std::string>().data())

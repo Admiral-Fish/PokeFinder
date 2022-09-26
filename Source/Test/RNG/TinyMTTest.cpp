@@ -28,7 +28,7 @@ void TinyMTTest::advance_data()
     QTest::addColumn<u32>("advances");
     QTest::addColumn<u32>("result");
 
-    json data = readData("rng", "tinymt", "advance");
+    json data = readData("tinymt", "advance");
     for (const auto &d : data)
     {
         QTest::newRow(d["name"].get<std::string>().data()) << d["seed"].get<u32>() << d["advances"].get<u32>() << d["result"].get<u32>();
@@ -52,7 +52,7 @@ void TinyMTTest::jump_data()
     QTest::addColumn<u32>("advances");
     QTest::addColumn<u32>("result");
 
-    json data = readData("rng", "tinymt", "jump");
+    json data = readData("tinymt", "jump");
     for (const auto &d : data)
     {
         QTest::newRow(d["name"].get<std::string>().data()) << d["seed"].get<u32>() << d["advances"].get<u32>() << d["result"].get<u32>();
@@ -75,7 +75,7 @@ void TinyMTTest::next_data()
     QTest::addColumn<u32>("seed");
     QTest::addColumn<u32>("result");
 
-    json data = readData("rng", "tinymt", "next");
+    json data = readData("tinymt", "next");
     for (const auto &d : data)
     {
         QTest::newRow(d["name"].get<std::string>().data()) << d["seed"].get<u32>() << d["result"].get<u32>();

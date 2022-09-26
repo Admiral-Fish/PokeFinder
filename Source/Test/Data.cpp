@@ -20,16 +20,21 @@
 #include "Data.hpp"
 #include <QFile>
 
+static json readFile(const std::string &file)
+{
+    QFile f(QString(":/data/%1.json").arg(QString::fromStdString(file)));
+    f.open(QIODevice::ReadOnly);
+    return nlohmann::json::parse(f.readAll().toStdString(), nullptr, false);
+}
+
+json readData(const std::string &file, const std::string &test)
+{
+    json j = readFile(file);
+    return j[test];
+}
+
 json readData(const std::string &file, const std::string &test, const std::string &category)
 {
-    json j;
-
-    QFile f(QString(":/data/%1.json").arg(QString::fromStdString(file)));
-    if (f.open(QIODevice::ReadOnly))
-    {
-        j = nlohmann::json::parse(f.readAll().toStdString(), nullptr, false);
-        j = j[test][category];
-    }
-
-    return j;
+    json j = readFile(file);
+    return j[test][category];
 }

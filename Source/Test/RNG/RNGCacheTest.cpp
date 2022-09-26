@@ -29,7 +29,7 @@ void RNGCacheTest::recoverPokeRNGIV_data()
     QTest::addColumn<std::vector<u8>>("ivs");
     QTest::addColumn<std::vector<u32>>("results");
 
-    json data = readData("rng", "rngcache", "recoverPokeRNGIV");
+    json data = readData("rngcache", "recoverPokeRNGIV");
     for (const auto &d : data)
     {
         QTest::newRow(d["name"].get<std::string>().data())
@@ -60,7 +60,7 @@ void RNGCacheTest::recoverPokeRNGPID_data()
     QTest::addColumn<u32>("pid");
     QTest::addColumn<std::vector<u32>>("results");
 
-    json data = readData("rng", "rngcache", "recoverPokeRNGPID_data");
+    json data = readData("rngcache", "recoverPokeRNGPID_data");
     for (const auto &d : data)
     {
         QTest::newRow(d["name"].get<std::string>().data())

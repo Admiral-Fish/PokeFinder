@@ -50,7 +50,7 @@ void WildGenerator3Test::generate_data()
     QTest::addColumn<int>("location");
     QTest::addColumn<std::string>("results");
 
-    json data = readData("gen3", "wildgenerator3", "generate");
+    json data = readData("wild3", "wildgenerator3", "generate");
     for (const auto &d : data)
     {
         QTest::newRow(d["name"].get<std::string>().data())

@@ -45,7 +45,7 @@ void StaticGenerator3Test::generate_data()
     QTest::addColumn<int>("pokemon");
     QTest::addColumn<std::string>("results");
 
-    json data = readData("gen3", "staticgenerator3", "generate");
+    json data = readData("static3", "staticgenerator3", "generate");
     for (const auto &d : data)
     {
         QTest::newRow(d["name"].get<std::string>().data())

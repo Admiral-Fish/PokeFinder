@@ -28,7 +28,7 @@ void LCRNG64Test::advance_data()
     QTest::addColumn<u32>("advances");
     QTest::addColumn<std::vector<u64>>("results");
 
-    json data = readData("rng", "lcrng64", "advance");
+    json data = readData("lcrng64", "advance");
     for (const auto &d : data)
     {
         QTest::newRow(d["name"].get<std::string>().data())
@@ -55,7 +55,7 @@ void LCRNG64Test::jump_data()
     QTest::addColumn<u32>("advances");
     QTest::addColumn<std::vector<u64>>("results");
 
-    json data = readData("rng", "lcrng64", "jump");
+    json data = readData("lcrng64", "jump");
     for (const auto &d : data)
     {
         QTest::newRow(d["name"].get<std::string>().data())
@@ -81,7 +81,7 @@ void LCRNG64Test::next_data()
     QTest::addColumn<u64>("seed");
     QTest::addColumn<std::vector<u64>>("results");
 
-    json data = readData("rng", "lcrng64", "next");
+    json data = readData("lcrng64", "next");
     for (const auto &d : data)
     {
         QTest::newRow(d["name"].get<std::string>().data()) << d["seed"].get<u64>() << d["results"].get<std::vector<u64>>();

@@ -37,7 +37,7 @@ void IDSearcher4Test::search_data()
     QTest::addColumn<u16>("year");
     QTest::addColumn<std::string>("results");
 
-    json data = readData("gen4", "idsearcher4", "search");
+    json data = readData("id4", "idsearcher4", "search");
     for (const auto &d : data)
     {
         QTest::newRow(d["name"].get<std::string>().data()) << d["tid"].get<u16>() << d["maxDelay"].get<u32>() << d["minDelay"].get<u32>()

@@ -29,7 +29,7 @@ void RNGEuclideanTest::recoverChannelIV_data()
     QTest::addColumn<IVs>("ivs");
     QTest::addColumn<std::vector<u32>>("results");
 
-    json data = readData("rng", "rngeuclidean", "recoverChannelIV");
+    json data = readData("rngeuclidean", "recoverChannelIV");
     for (const auto &d : data)
     {
         QTest::newRow(d["name"].get<std::string>().data()) << d["ivs"].get<IVs>() << d["results"].get<std::vector<u32>>();
@@ -56,7 +56,7 @@ void RNGEuclideanTest::recoverXDRNGIV_data()
     QTest::addColumn<IVs>("ivs");
     QTest::addColumn<std::vector<u32>>("results");
 
-    json data = readData("rng", "rngeuclidean", "recoverXDRNGIV");
+    json data = readData("rngeuclidean", "recoverXDRNGIV");
     for (const auto &d : data)
     {
         QTest::newRow(d["name"].get<std::string>().data()) << d["ivs"].get<IVs>() << d["results"].get<std::vector<u32>>();
@@ -83,7 +83,7 @@ void RNGEuclideanTest::recoverXDRNGPID_data()
     QTest::addColumn<u32>("pid");
     QTest::addColumn<std::vector<u32>>("results");
 
-    json data = readData("rng", "rngeuclidean", "recoverXDRNGPID");
+    json data = readData("rngeuclidean", "recoverXDRNGPID");
     for (const auto &d : data)
     {
         QTest::newRow(d["name"].get<std::string>().data()) << d["pid"].get<u32>() << d["results"].get<std::vector<u32>>();

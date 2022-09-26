@@ -41,7 +41,7 @@ void IVCheckerTest::calculateIVRange_data()
     QTest::addColumn<u8>("hiddenPower");
     QTest::addColumn<Results>("results");
 
-    json data = readData("util", "ivchecker", "calculateIVRange");
+    json data = readData("ivchecker", "calculateIVRange");
     for (const auto &d : data)
     {
         QTest::newRow(d["name"].get<std::string>().data())

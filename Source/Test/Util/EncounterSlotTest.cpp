@@ -28,7 +28,7 @@ void EncounterSlotTest::hSlot_data()
     QTest::addColumn<Encounter>("encounter");
     QTest::addColumn<std::vector<u16>>("rand");
 
-    json data = readData("util", "encounterslot", "hSlot");
+    json data = readData("encounterslot", "hSlot");
     for (const auto &d : data)
     {
         QTest::newRow(d["name"].get<std::string>().data()) << d["encounter"].get<Encounter>() << d["rand"].get<std::vector<u16>>();
@@ -51,7 +51,7 @@ void EncounterSlotTest::jSlot_data()
     QTest::addColumn<Encounter>("encounter");
     QTest::addColumn<std::vector<u16>>("rand");
 
-    json data = readData("util", "encounterslot", "jSlot");
+    json data = readData("encounterslot", "jSlot");
     for (const auto &d : data)
     {
         QTest::newRow(d["name"].get<std::string>().data()) << d["encounter"].get<Encounter>() << d["rand"].get<std::vector<u16>>();
@@ -74,7 +74,7 @@ void EncounterSlotTest::kSlot_data()
     QTest::addColumn<Encounter>("encounter");
     QTest::addColumn<std::vector<u16>>("rand");
 
-    json data = readData("util", "encounterslot", "kSlot");
+    json data = readData("encounterslot", "kSlot");
     for (const auto &d : data)
     {
         QTest::newRow(d["name"].get<std::string>().data()) << d["encounter"].get<Encounter>() << d["rand"].get<std::vector<u16>>();
@@ -97,7 +97,7 @@ void EncounterSlotTest::bdspSlot_data()
     QTest::addColumn<Encounter>("encounter");
     QTest::addColumn<std::vector<u8>>("rand");
 
-    json data = readData("util", "encounterslot", "bdsp");
+    json data = readData("encounterslot", "bdsp");
     for (const auto &d : data)
     {
         QTest::newRow(d["name"].get<std::string>().data()) << d["encounter"].get<Encounter>() << d["rand"].get<std::vector<u8>>();

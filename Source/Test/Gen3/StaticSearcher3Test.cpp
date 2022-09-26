@@ -56,7 +56,7 @@ void StaticSearcher3Test::search_data()
     QTest::addColumn<int>("pokemon");
     QTest::addColumn<std::string>("results");
 
-    json data = readData("gen3", "staticsearcher3", "search");
+    json data = readData("static3", "staticsearcher3", "search");
     for (const auto &d : data)
     {
         QTest::newRow(d["name"].get<std::string>().data())

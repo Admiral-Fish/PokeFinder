@@ -34,7 +34,7 @@ void IDGenerator3Test::xdcolo_data()
     QTest::addColumn<u32>("seed");
     QTest::addColumn<std::string>("results");
 
-    json data = readData("gen3", "idgenerator3", "xdcolo");
+    json data = readData("id3", "xdcolo");
     for (const auto &d : data)
     {
         QTest::newRow(d["name"].get<std::string>().data()) << d["seed"].get<u32>() << d["results"].get<json>().dump();
@@ -66,7 +66,7 @@ void IDGenerator3Test::frgle_data()
     QTest::addColumn<u16>("tid");
     QTest::addColumn<std::string>("results");
 
-    json data = readData("gen3", "idgenerator3", "frlge");
+    json data = readData("id3", "frlge");
     for (const auto &d : data)
     {
         QTest::newRow(d["name"].get<std::string>().data()) << d["tid"].get<u16>() << d["results"].get<json>().dump();
@@ -98,7 +98,7 @@ void IDGenerator3Test::rs_data()
     QTest::addColumn<u16>("seed");
     QTest::addColumn<std::string>("results");
 
-    json data = readData("gen3", "idgenerator3", "rs");
+    json data = readData("id3", "rs");
     for (const auto &d : data)
     {
         QTest::newRow(d["name"].get<std::string>().data()) << d["seed"].get<u16>() << d["results"].get<json>().dump();
