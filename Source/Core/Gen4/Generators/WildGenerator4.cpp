@@ -64,7 +64,14 @@ std::vector<WildGeneratorState4> WildGenerator4::generate(u32 seed, const Encoun
     case Method::MethodK:
         return generateMethodK(seed, encounterArea);
     case Method::PokeRadar:
-        return generatePokeRadar(seed, encounterArea, index);
+        if (shiny)
+        {
+            return generatePokeRadarShiny(seed, encounterArea, index);
+        }
+        else
+        {
+            return generatePokeRadar(seed, encounterArea, index);
+        }
     default:
         return std::vector<WildGeneratorState4>();
     }
@@ -403,6 +410,84 @@ std::vector<WildGeneratorState4> WildGenerator4::generatePokeRadar(u32 seed, con
         break;
     }
 
+    PokeRNG rng(seed, initialAdvances + offset);
+    for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
+    {
+        u32 occidentary = initialAdvances + cnt;
+        PokeRNG go(rng.getSeed());
+
+        u8 nature;
+        u32 pid;
+
+        bool cuteCharmFlag = false;
+        if ((lead == Lead::CuteCharmF || lead == Lead::CuteCharmM) && cuteCharm)
+        {
+            cuteCharmFlag = go.nextUShort<false>(3, &occidentary) != 0;
+        }
+
+        if (lead <= Lead::SynchronizeEnd)
+        {
+            nature = go.nextUShort<false>(2, &occidentary) == 0 ? toInt(lead) : go.nextUShort<false>(25, &occidentary);
+        }
+        else
+        {
+            nature = go.nextUShort<false>(25, &occidentary);
+        }
+
+        if (!filter.compareNature(nature))
+        {
+            rng.next();
+            continue;
+        }
+
+        if (cuteCharmFlag)
+        {
+            pid = buffer + nature;
+        }
+        else
+        {
+            do
+            {
+                u16 low = go.nextUShort(&occidentary);
+                u16 high = go.nextUShort(&occidentary);
+                pid = (high << 16) | low;
+            } while (pid % 25 != nature);
+        }
+
+        u16 iv1 = go.nextUShort(&occidentary);
+        u16 iv2 = go.nextUShort(&occidentary);
+        u16 item = getItem(go.nextUShort(100, &occidentary), lead, info);
+
+        WildGeneratorState4 state(rng.nextUShort(), initialAdvances + cnt, occidentary, pid, nature, iv1, iv2, tsv, slot.getMaxLevel(),
+                                  index, item, slot.getSpecie(), info);
+        if (filter.compareState(state))
+        {
+            states.emplace_back(state);
+        }
+    }
+
+    return states;
+}
+
+std::vector<WildGeneratorState4> WildGenerator4::generatePokeRadarShiny(u32 seed, const EncounterArea4 &encounterArea, u8 index) const
+{
+    std::vector<WildGeneratorState4> states;
+
+    const Slot &slot = encounterArea.getPokemon(index);
+    const PersonalInfo *info = slot.getInfo();
+
+    bool cuteCharm = false;
+    switch (info->getGender())
+    {
+    case 0:
+    case 254:
+    case 255:
+        break;
+    default:
+        cuteCharm = true;
+        break;
+    }
+
     auto cuteCharmCheck = [this](const PersonalInfo *info, u32 pid) {
         if (lead == Lead::CuteCharmF)
         {
@@ -419,81 +504,42 @@ std::vector<WildGeneratorState4> WildGenerator4::generatePokeRadar(u32 seed, con
 
         u8 nature;
         u32 pid;
-        if (shiny)
-        {
-            auto shinyPID = [this, &go, &occidentary]() {
-                u16 low = go.nextUShort(8, &occidentary);
-                u16 high = go.nextUShort(8, &occidentary);
-                for (int i = 3; i < 16; i++)
-                {
-                    low |= (go.nextUShort(&occidentary) & 1) << i;
-                }
-                high |= (tsv ^ low) & 0xfff8;
-                return static_cast<u32>((high << 16) | low);
-            };
 
-            if ((lead == Lead::CuteCharmF || lead == Lead::CuteCharmM) && cuteCharm && go.nextUShort<false>(3, &occidentary) != 0)
+        auto shinyPID = [this, &go, &occidentary]() {
+            u16 low = go.nextUShort(8, &occidentary);
+            u16 high = go.nextUShort(8, &occidentary);
+            for (int i = 3; i < 16; i++)
             {
-                do
-                {
-                    pid = shinyPID();
-                } while (!cuteCharmCheck(info, pid));
+                low |= (go.nextUShort(&occidentary) & 1) << i;
             }
-            else if (lead <= Lead::SynchronizeEnd && go.nextUShort<false>(2, &occidentary) == 0)
-            {
-                do
-                {
-                    pid = shinyPID();
-                } while (pid % 25 != toInt(lead));
-            }
-            else
+            high |= (tsv ^ low) & 0xfff8;
+            return static_cast<u32>((high << 16) | low);
+        };
+
+        if ((lead == Lead::CuteCharmF || lead == Lead::CuteCharmM) && cuteCharm && go.nextUShort<false>(3, &occidentary) != 0)
+        {
+            do
             {
                 pid = shinyPID();
-            }
-
-            nature = pid % 25;
-            if (!filter.compareNature(nature))
+            } while (!cuteCharmCheck(info, pid));
+        }
+        else if (lead <= Lead::SynchronizeEnd && go.nextUShort<false>(2, &occidentary) == 0)
+        {
+            do
             {
-                rng.next();
-                continue;
-            }
+                pid = shinyPID();
+            } while (pid % 25 != toInt(lead));
         }
         else
         {
-            bool cuteCharmFlag = false;
-            if ((lead == Lead::CuteCharmF || lead == Lead::CuteCharmM) && cuteCharm)
-            {
-                cuteCharmFlag = go.nextUShort<false>(3, &occidentary) != 0;
-            }
+            pid = shinyPID();
+        }
 
-            if (lead <= Lead::SynchronizeEnd)
-            {
-                nature = go.nextUShort<false>(2, &occidentary) == 0 ? toInt(lead) : go.nextUShort<false>(25, &occidentary);
-            }
-            else
-            {
-                nature = go.nextUShort<false>(25, &occidentary);
-            }
-
-            if (!filter.compareNature(nature))
-            {
-                rng.next();
-                continue;
-            }
-
-            if (cuteCharmFlag)
-            {
-                pid = buffer + nature;
-            }
-            else
-            {
-                do
-                {
-                    u16 low = go.nextUShort(&occidentary);
-                    u16 high = go.nextUShort(&occidentary);
-                    pid = (high << 16) | low;
-                } while (pid % 25 != nature);
-            }
+        nature = pid % 25;
+        if (!filter.compareNature(nature))
+        {
+            rng.next();
+            continue;
         }
 
         u16 iv1 = go.nextUShort(&occidentary);

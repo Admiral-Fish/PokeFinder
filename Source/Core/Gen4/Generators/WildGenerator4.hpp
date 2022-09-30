@@ -93,6 +93,17 @@ private:
      * @return Vector of computed states
      */
     std::vector<WildGeneratorState4> generatePokeRadar(u32 seed, const EncounterArea4 &encounterArea, u8 index) const;
+
+    /**
+     * @brief Generates states for the \p encounterArea via Poke Radar chained shiny
+     *
+     * @param seed Starting PRNG state
+     * @param encounterArea Wild pokemon info
+     * @param index Pokeradar slot index
+     *
+     * @return Vector of computed states
+     */
+    std::vector<WildGeneratorState4> generatePokeRadarShiny(u32 seed, const EncounterArea4 &encounterArea, u8 index) const;
 };
 
 #endif // WILDGENERATOR4_HPP

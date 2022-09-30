@@ -158,6 +158,20 @@ private:
      * @return Vector of computed states
      */
     std::vector<WildSearcherState4> searchPokeRadar(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, u8 index) const;
+
+    /**
+     * @brief Searches for matching states from provided IVs via Poke Radar chained shiny
+     *
+     * @param hp HP IV
+     * @param atk Atk IV
+     * @param def Def IV
+     * @param spa SpA IV
+     * @param spd SpD IV
+     * @param spe Spe IV
+     *
+     * @return Vector of computed states
+     */
+    std::vector<WildSearcherState4> searchPokeRadarShiny(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, u8 index) const;
 };
 
 #endif // WILDSEARCHER4_HPP
