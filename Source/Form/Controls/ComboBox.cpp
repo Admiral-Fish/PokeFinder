@@ -55,15 +55,22 @@ int ComboBox::getCurrentInt() const
 
 void ComboBox::setItemHidden(int row, bool hide)
 {
-    // Clear selected index if we are hiding the selected one
-    if (this->currentIndex() == row)
-    {
-        this->setCurrentIndex(0);
-    }
-
     auto *model = qobject_cast<QStandardItemModel *>(this->model());
     auto *view = qobject_cast<QListView *>(this->view());
 
     model->item(row)->setEnabled(!hide);
     view->setRowHidden(row, hide);
+
+    // Select first non-hidden index if the current one is hidden
+    if (hide && this->currentIndex() == row)
+    {
+        for (int i = 0; i < this->count(); i++)
+        {
+            if (!view->isRowHidden(i))
+            {
+                this->setCurrentIndex(i);
+                break;
+            }
+        }
+    }
 }
