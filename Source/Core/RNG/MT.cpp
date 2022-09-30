@@ -73,29 +73,29 @@ void MT::shuffle()
     vuint32x4 matrix = v32x4_set(0x9908b0df);
     vuint32x4 one = v32x4_set(1);
 
+    auto mm_recursion = [&upperMask, &lowerMask, &matrix, &one](vuint32x4 m0, vuint32x4 m1, vuint32x4 m2) {
+        vuint32x4 y = v32x4_or(v32x4_and(m0, upperMask), v32x4_and(m1, lowerMask));
+        vuint32x4 y1 = v32x4_shr<1>(y);
+        vuint32x4 mag01 = v32x4_and(v32x4_cmpeq(v32x4_and(y, one), one), matrix);
+        return v32x4_xor(v32x4_xor(y1, mag01), m2);
+    };
+
     for (int i = 0; i < 224; i += 4)
     {
         vuint32x4 m0 = state[i / 4].uint128;
         vuint32x4 m1 = v32x4_load(ptr + i + 1);
         vuint32x4 m2 = v32x4_load(ptr + i + 397);
-
-        vuint32x4 y = v32x4_or(v32x4_and(m0, upperMask), v32x4_and(m1, lowerMask));
-        vuint32x4 y1 = v32x4_shr<1>(y);
-        vuint32x4 mag01 = v32x4_and(v32x4_cmpeq(v32x4_and(y, one), one), matrix);
-
-        state[i / 4].uint128 = v32x4_xor(v32x4_xor(y1, mag01), m2);
+        state[i / 4].uint128 = mm_recursion(m0, m1, m2);
     }
 
+    // This technically reads out of bounds of the array
+    // This is okay however since it will read our MT index plus the additional padding
+    // The out of bounds read is immediately replaced with valid data from mt[0]
     vuint32x4 last = v32x4_insert<3>(v32x4_load(ptr + 621), ptr[0]);
     {
         vuint32x4 m0 = state[56].uint128;
         vuint32x4 m1 = v32x4_load(ptr + 225);
-
-        vuint32x4 y = v32x4_or(v32x4_and(m0, upperMask), v32x4_and(m1, lowerMask));
-        vuint32x4 y1 = v32x4_shr<1>(y);
-        vuint32x4 mag01 = v32x4_and(v32x4_cmpeq(v32x4_and(y, one), one), matrix);
-
-        state[56].uint128 = v32x4_xor(v32x4_xor(y1, mag01), last);
+        state[56].uint128 = mm_recursion(m0, m1, last);
     }
 
     for (int i = 228; i < 620; i += 4)
@@ -103,22 +103,12 @@ void MT::shuffle()
         vuint32x4 m0 = state[i / 4].uint128;
         vuint32x4 m1 = v32x4_load(ptr + i + 1);
         vuint32x4 m2 = v32x4_load(ptr + i - 227);
-
-        vuint32x4 y = v32x4_or(v32x4_and(m0, upperMask), v32x4_and(m1, lowerMask));
-        vuint32x4 y1 = v32x4_shr<1>(y);
-        vuint32x4 mag01 = v32x4_and(v32x4_cmpeq(v32x4_and(y, one), one), matrix);
-
-        state[i / 4].uint128 = v32x4_xor(v32x4_xor(y1, mag01), m2);
+        state[i / 4].uint128 = mm_recursion(m0, m1, m2);
     }
 
     {
         vuint32x4 m0 = state[155].uint128;
         vuint32x4 m2 = v32x4_load(ptr + 393);
-
-        vuint32x4 y = v32x4_or(v32x4_and(m0, upperMask), v32x4_and(last, lowerMask));
-        vuint32x4 y1 = v32x4_shr<1>(y);
-        vuint32x4 mag01 = v32x4_and(v32x4_cmpeq(v32x4_and(y, one), one), matrix);
-
-        state[155].uint128 = v32x4_xor(v32x4_xor(y1, mag01), m2);
+        state[155].uint128 = mm_recursion(m0, last, m2);
     }
 }

@@ -99,7 +99,6 @@ inline vuint32x4 v32x4_cmpeq(vuint32x4 x, vuint32x4 y)
 template <int lane>
 inline vuint32x4 v32x4_insert(vuint32x4 value, u32 insert)
 {
-    static_assert(lane == 3, "Only usage has a value of 3");
 #if defined(SIMD_X86)
     return _mm_insert_epi32(value, insert, lane);
 #elif defined(SIMD_ARM)
@@ -294,7 +293,6 @@ inline vuint32x4 v32x4_xor(vuint32x4 x, vuint32x4 y)
 template <int shift>
 inline vuint32x4 v128_shl(vuint32x4 x)
 {
-    static_assert(shift == 1, "Only usage has a value of 1");
 #if defined(SIMD_X86)
     return _mm_slli_si128(x, shift);
 #elif defined(SIMD_ARM)
@@ -326,7 +324,6 @@ inline vuint32x4 v128_shl(vuint32x4 x)
 template <int shift>
 inline vuint32x4 v128_shr(vuint32x4 x)
 {
-    static_assert(shift == 1, "Only usage has a value of 1");
 #if defined(SIMD_X86)
     return _mm_srli_si128(x, shift);
 #elif defined(SIMD_ARM)

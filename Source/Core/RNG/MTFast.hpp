@@ -102,7 +102,7 @@ public:
                     y = v32x4_xor(y, v32x4_shr<18>(y));
                 }
 
-                state[j] = y;
+                state[j].uint128 = y;
             }
         }
 

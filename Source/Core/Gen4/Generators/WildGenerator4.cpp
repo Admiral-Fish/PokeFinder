@@ -421,7 +421,7 @@ std::vector<WildGeneratorState4> WildGenerator4::generatePokeRadar(u32 seed, con
         u32 pid;
         if (shiny)
         {
-            auto shinyPID = [&go, &occidentary](u16 tsv) {
+            auto shinyPID = [this, &go, &occidentary]() {
                 u16 low = go.nextUShort(8, &occidentary);
                 u16 high = go.nextUShort(8, &occidentary);
                 for (int i = 3; i < 16; i++)
@@ -432,20 +432,23 @@ std::vector<WildGeneratorState4> WildGenerator4::generatePokeRadar(u32 seed, con
                 return static_cast<u32>((high << 16) | low);
             };
 
-            pid = shinyPID(tsv);
             if ((lead == Lead::CuteCharmF || lead == Lead::CuteCharmM) && cuteCharm && go.nextUShort<false>(3, &occidentary) != 0)
             {
-                while (!cuteCharmCheck(info, pid))
+                do
                 {
-                    pid = shinyPID(tsv);
-                }
+                    pid = shinyPID();
+                } while (!cuteCharmCheck(info, pid));
             }
             else if (lead <= Lead::SynchronizeEnd && go.nextUShort<false>(2, &occidentary) == 0)
             {
-                while (pid % 25 != toInt(lead))
+                do
                 {
-                    pid = shinyPID(tsv);
-                }
+                    pid = shinyPID();
+                } while (pid % 25 != toInt(lead));
+            }
+            else
+            {
+                pid = shinyPID();
             }
 
             nature = pid % 25;
