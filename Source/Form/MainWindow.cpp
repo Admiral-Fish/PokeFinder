@@ -33,6 +33,7 @@
 #include <Form/Util/Researcher.hpp>
 #include <Form/Util/Settings.hpp>
 #include <QActionGroup>
+#include <QClipboard>
 #include <QDate>
 #include <QDesktopServices>
 #include <QFile>
@@ -641,11 +642,16 @@ void MainWindow::openProfileManager8()
 
 void MainWindow::openAbout() const
 {
-    QStringList info
-        = { QString("Version: %1").arg(POKEFINDER_VERSION), QString("Branch: %1").arg(GIT_BRANCH), QString("Commit: %1").arg(GIT_COMMIT) };
+    QStringList info = { tr("Version: %1").arg(POKEFINDER_VERSION), tr("Branch: %1").arg(GIT_BRANCH), tr("Commit: %1").arg(GIT_COMMIT) };
 
-    QMessageBox msg(QMessageBox::Information, tr("About"), info.join("\n"));
+    QMessageBox msg(QMessageBox::Information, tr("About"), info.join('\n'), QMessageBox::Close);
+    QAbstractButton *copy = msg.addButton(tr("Copy"), QMessageBox::NoRole);
     msg.exec();
+    if (msg.clickedButton() == copy)
+    {
+        QApplication::clipboard()->setText(info.join('\n'));
+    }
+    delete copy;
 }
 
 void MainWindow::openIVCalculator() const
