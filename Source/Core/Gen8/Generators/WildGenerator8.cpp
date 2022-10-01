@@ -22,7 +22,7 @@
 #include <Core/Enum/Method.hpp>
 #include <Core/Gen8/EncounterArea8.hpp>
 #include <Core/Parents/Slot.hpp>
-#include <Core/Parents/States/WildState.hpp>
+#include <Core/Gen8/States/WildState8.hpp>
 #include <Core/RNG/RNGList.hpp>
 #include <Core/RNG/Xorshift.hpp>
 #include <Core/Util/EncounterSlot.hpp>
@@ -32,21 +32,24 @@ WildGenerator8::WildGenerator8(u32 initialAdvances, u32 maxAdvances, u16 tid, u1
 {
 }
 
-std::vector<WildState> WildGenerator8::generate(u64 seed0, u64 seed1, const EncounterArea8 &encounterArea) const
+std::vector<WildState8> WildGenerator8::generate(u64 seed0, u64 seed1, const EncounterArea8 &encounterArea) const
 {
     Xorshift rng(seed0, seed1);
     rng.advance(initialAdvances + offset);
 
-    std::vector<WildState> states;
+    std::vector<WildState8> states;
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rng.next())
     {
-        WildState state(initialAdvances + cnt);
+        WildState8 state(initialAdvances + cnt);
         Xorshift gen(rng);
-        u8 slotPercent = gen.next<0, 100>();
-        gen.advance(84);
+        u8 slotPercent;
+        u16 level;
+        u8 thresh = encounter == Encounter::OldRod ? 25 : encounter == Encounter::GoodRod ? 50 : encounter == Encounter::SuperRod ? 75 : 0;
         switch (encounter)
         {
         case Encounter::Grass:
+            slotPercent = gen.next<0, 100>();
+            gen.advance(84);
             state.setEncounterSlot(EncounterSlot::bdspSlot(slotPercent, encounter));
             if (!filter.compareEncounterSlot(state))
             {
@@ -56,9 +59,8 @@ std::vector<WildState> WildGenerator8::generate(u64 seed0, u64 seed1, const Enco
             state.setLevel(encounterArea.calcLevel(state.getEncounterSlot()));
             break;
         case Encounter::Surfing:
-        case Encounter::OldRod:
-        case Encounter::GoodRod:
-        case Encounter::SuperRod:
+            slotPercent = gen.next<0, 100>();
+            gen.advance(84);
             state.setEncounterSlot(EncounterSlot::bdspSlot(slotPercent, encounter));
             if (!filter.compareEncounterSlot(state))
             {
@@ -66,6 +68,21 @@ std::vector<WildState> WildGenerator8::generate(u64 seed0, u64 seed1, const Enco
             }
 
             state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), gen.next<0, 10000>()));
+            break;
+        case Encounter::OldRod:
+        case Encounter::GoodRod:
+        case Encounter::SuperRod:
+            gen.next<0, 100>() < thresh? state.setHook(true) : state.setHook(false); // Nibble call for fishing
+            slotPercent = gen.next<0, 100>();
+            level = gen.next<0, 10000>();
+            gen.advance(81);
+            state.setEncounterSlot(EncounterSlot::bdspSlot(slotPercent, encounter));
+            if (!filter.compareEncounterSlot(state))
+            {
+                continue;
+            }
+
+            state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), level));
             break;
         default:
             break;

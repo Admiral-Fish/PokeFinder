@@ -17,19 +17,32 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef WILDGENERATOR8_HPP
-#define WILDGENERATOR8_HPP
+#ifndef WILDSTATE8_HPP
+#define WILDSTATE8_HPP
 
-#include <Core/Parents/Generators/WildGenerator.hpp>
+#include <Core/Parents/States/WildState.hpp>
 
-class EncounterArea8;
-class WildState8;
-
-class WildGenerator8 : public WildGenerator
+class WildState8 : public WildState
 {
 public:
-    WildGenerator8(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, const StateFilter &filter);
-    std::vector<WildState8> generate(u64 seed0, u64 seed1, const EncounterArea8 &encounterArea) const;
+    WildState8() = default;
+
+    explicit WildState8(u32 advance) : WildState(advance)
+    {
+    }
+
+    u8 getHook() const
+    {
+        return hook;
+    }
+
+    void setHook(u8 hook)
+    {
+        this->hook = hook;
+    }
+
+private:
+    u8 hook;
 };
 
-#endif // WILDGENERATOR8_HPP
+#endif // WILDSTATE8_HPP

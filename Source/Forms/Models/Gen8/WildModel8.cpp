@@ -20,14 +20,14 @@
 #include "WildModel8.hpp"
 #include <Core/Util/Translator.hpp>
 
-WildModel8::WildModel8(QObject *parent) : TableModel<WildState>(parent)
+WildModel8::WildModel8(QObject *parent) : TableModel<WildState8>(parent)
 {
 }
 
 int WildModel8::columnCount(const QModelIndex &parent) const
 {
     (void)parent;
-    return 15;
+    return 16;
 }
 
 QVariant WildModel8::data(const QModelIndex &index, int role) const
@@ -42,23 +42,28 @@ QVariant WildModel8::data(const QModelIndex &index, int role) const
             return state.getAdvances();
         case 1:
         {
+            bool hook = state.getHook();
+            return hook? "Yes" : "No";
+        }
+        case 2:
+        {
             u8 item = state.getItem();
             return item > 54 ? "No" : item < 50 ? "50%" : "5%";
         }
-        case 2:
-            return state.getEncounterSlot();
         case 3:
-            return state.getLevel();
+            return state.getEncounterSlot();
         case 4:
-            return QString::number(state.getPID(), 16).toUpper().rightJustified(8, '0');
+            return state.getLevel();
         case 5:
+            return QString::number(state.getPID(), 16).toUpper().rightJustified(8, '0');
+        case 6:
         {
             u8 shiny = state.getShiny();
             return shiny == 2 ? tr("Square") : shiny == 1 ? tr("Star") : tr("No");
         }
-        case 6:
-            return QString::fromStdString(*Translator::getNature(state.getNature()));
         case 7:
+            return QString::fromStdString(*Translator::getNature(state.getNature()));
+        case 8:
         {
             u8 ability = state.getAbility();
             if (ability == 0 || ability == 1)
@@ -67,14 +72,14 @@ QVariant WildModel8::data(const QModelIndex &index, int role) const
             }
             return "H";
         }
-        case 8:
         case 9:
         case 10:
         case 11:
         case 12:
         case 13:
-            return state.getIV(static_cast<u8>(column - 8));
         case 14:
+            return state.getIV(static_cast<u8>(column - 9));
+        case 15:
             return QString::fromStdString(*Translator::getGender(state.getGender()));
         }
     }
