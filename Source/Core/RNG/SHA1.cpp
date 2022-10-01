@@ -19,8 +19,8 @@
 
 #include "SHA1.hpp"
 #include <Core/Enum/DSType.hpp>
-//#include <Core/Gen5/Nazos.hpp>
-//#include <Core/Gen5/Profile5.hpp>
+#include <Core/Gen5/Nazos.hpp>
+#include <Core/Gen5/Profile5.hpp>
 #include <Core/RNG/LCRNG64.hpp>
 #include <Core/Util/DateTime.hpp>
 
@@ -48,15 +48,15 @@ static inline u32 rotateRight(u32 val, u8 count)
     return (val << (32 - count)) | (val >> count);
 }
 
-SHA1::SHA1(const Profile5 &profile) /*:
+SHA1::SHA1(const Profile5 &profile) :
     SHA1(profile.getVersion(), profile.getLanguage(), profile.getDSType(), profile.getMac(), profile.getSoftReset(), profile.getVFrame(),
-         profile.getGxStat())*/
+         profile.getGxStat())
 {
 }
 
 SHA1::SHA1(Game version, Language language, DSType type, u64 mac, bool softReset, u8 vFrame, u8 gxStat)
 {
-    /*auto nazos = Nazos::getNazo(version, language, type);
+    auto nazos = Nazos::getNazo(version, language, type);
     std::copy(nazos.begin(), nazos.end(), data);
 
     data[6] = mac & 0xFFFF;
@@ -74,7 +74,7 @@ SHA1::SHA1(Game version, Language language, DSType type, u64 mac, bool softReset
     data[15] = 0x000001A0;
 
     // Precompute data[18]
-    data[18] = rotateLeft(data[15] ^ data[10] ^ data[4] ^ data[2], 1);*/
+    data[18] = rotateLeft(data[15] ^ data[10] ^ data[4] ^ data[2], 1);
 }
 
 u64 SHA1::hashSeed()

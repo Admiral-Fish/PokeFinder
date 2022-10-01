@@ -12,6 +12,7 @@
     <file alias="rngcache.json">RNG/rngcache.json</file>
     <file alias="rngeuclidean.json">RNG/rngeuclidean.json</file>
     <file alias="sfmt.json">RNG/sfmt.json</file>
+    <file alias="sha1.json">RNG/sha1.json</file>
     <file alias="tinymt.json">RNG/tinymt.json</file>
     <file alias="datetime.json">Util/datetime.json</file>
     <file alias="encounterslot.json">Util/encounterslot.json</file>

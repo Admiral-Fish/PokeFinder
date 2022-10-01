@@ -21,55 +21,65 @@
 #include <Core/Enum/DSType.hpp>
 #include <Core/Enum/Game.hpp>
 #include <Core/Gen5/Keypresses.hpp>
-#include <Core/Gen5/Profile5.hpp>
 #include <Core/RNG/SHA1.hpp>
 #include <Core/Util/DateTime.hpp>
 #include <QTest>
+#include <Test/Data.hpp>
 
-Q_DECLARE_METATYPE(DateTime)
-Q_DECLARE_METATYPE(Profile5)
+using KeyPresses = std::array<bool, 4>;
 
 void SHA1Test::hash_data()
 {
-    QTest::addColumn<DateTime>("dateTime");
-    QTest::addColumn<Profile5>("profile");
+    QTest::addColumn<KeyPresses>("keypresses");
+    QTest::addColumn<bool>("skipLR");
+    QTest::addColumn<Game>("version");
+    QTest::addColumn<Language>("language");
+    QTest::addColumn<u64>("mac");
+    QTest::addColumn<bool>("softReset");
+    QTest::addColumn<u8>("vFrame");
+    QTest::addColumn<u8>("gxStat");
+    QTest::addColumn<u32>("timer0");
+    QTest::addColumn<u8>("vCount");
+    QTest::addColumn<DSType>("dsType");
     QTest::addColumn<u64>("seed");
 
-    QTest::newRow("Black 1") << DateTime(2000, 1, 1)
-                             << Profile5("", Game::Black, 0, 0, 0x9BF123456, { true, false, false, false }, 0x2e, 0x6, 0x5, false, 0x608,
-                                         0x608, false, false, false, DSType::DS)
-                             << 0x5E89803C95FE8240ULL;
-    QTest::newRow("White 1") << DateTime(2000, 1, 1)
-                             << Profile5("", Game::White, 0, 0, 0x9BF123456, { true, false, false, false }, 0x2f, 0x6, 0x5, false, 0x621,
-                                         0x621, false, false, false, DSType::DS)
-                             << 0xb082b4a755192171ULL;
-    QTest::newRow("Black 2") << DateTime(2000, 1, 1)
-                             << Profile5("", Game::Black2, 0, 0, 0x9BF123456, { true, false, false, false }, 0x48, 0x6, 0x5, false, 0x972,
-                                         0x972, false, false, false, DSType::DS)
-                             << 0x490EABDA126D5432ULL;
-    QTest::newRow("White 2") << DateTime(2000, 1, 1)
-                             << Profile5("", Game::White2, 0, 0, 0x9BF123456, { true, false, false, false }, 0x48, 0x6, 0x5, false, 0x96f,
-                                         0x96f, false, false, false, DSType::DS)
-                             << 0xE299A7D5D949A38EULL;
+    json data = readData("sha1", "hash");
+    for (const auto &d : data)
+    {
+        QTest::newRow(d["name"].get<std::string>().data())
+            << d["keypresses"].get<KeyPresses>() << d["skipLR"].get<bool>() << d["version"].get<Game>() << d["language"].get<Language>()
+            << d["mac"].get<u64>() << d["softReset"].get<bool>() << d["vFrame"].get<u8>() << d["gxStat"].get<u8>() << d["timer0"].get<u32>()
+            << d["vCount"].get<u8>() << d["dsType"].get<DSType>() << d["seed"].get<u64>();
+    }
 }
 
 void SHA1Test::hash()
 {
-    QFETCH(DateTime, dateTime);
-    QFETCH(Profile5, profile);
+    QFETCH(KeyPresses, keypresses);
+    QFETCH(bool, skipLR);
+    QFETCH(Game, version);
+    QFETCH(Language, language);
+    QFETCH(u64, mac);
+    QFETCH(bool, softReset);
+    QFETCH(u8, vFrame);
+    QFETCH(u8, gxStat);
+    QFETCH(u32, timer0);
+    QFETCH(u8, vCount);
+    QFETCH(DSType, dsType);
     QFETCH(u64, seed);
 
-    auto buttons = Keypresses::getKeyPresses(profile.getKeypresses(), profile.getSkipLR());
+    auto buttons = Keypresses::getKeyPresses(keypresses, skipLR);
     auto values = Keypresses::getValues(buttons);
 
+    DateTime dateTime;
     const Date &date = dateTime.getDate();
     const Time &time = dateTime.getTime();
 
-    SHA1 sha(profile);
+    SHA1 sha(version, language, dsType, mac, softReset, vFrame, gxStat);
     sha.setButton(values.front());
     sha.setDate(date);
-    sha.setTime(time.hour(), time.minute(), time.second(), profile.getDSType());
-    sha.setTimer0(profile.getTimer0Min(), profile.getVCount());
+    sha.setTime(time.hour(), time.minute(), time.second(), dsType);
+    sha.setTimer0(timer0, vCount);
 
     sha.precompute();
     QCOMPARE(sha.hashSeed(), seed);

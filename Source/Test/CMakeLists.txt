@@ -47,8 +47,8 @@ add_executable(PokeFinderTest
     RNG/RNGEuclideanTest.hpp
     RNG/SFMTTest.cpp
     RNG/SFMTTest.hpp
-    #RNG/SHA1Test.cpp
-    #RNG/SHA1Test.hpp
+    RNG/SHA1Test.cpp
+    RNG/SHA1Test.hpp
     RNG/TinyMTTest.cpp
     RNG/TinyMTTest.hpp
     Util/DateTimeTest.cpp

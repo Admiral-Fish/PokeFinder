@@ -36,7 +36,7 @@
 #include <Test/RNG/RNGCacheTest.hpp>
 #include <Test/RNG/RNGEuclideanTest.hpp>
 #include <Test/RNG/SFMTTest.hpp>
-//#include <Test/RNG/SHA1Test.hpp>
+#include <Test/RNG/SHA1Test.hpp>
 #include <Test/RNG/TinyMTTest.hpp>
 #include <Test/Util/DateTimeTest.hpp>
 #include <Test/Util/EncounterSlotTest.hpp>
@@ -83,7 +83,7 @@ int main()
     status += runTest<RNGCacheTest>(fails);
     status += runTest<RNGEuclideanTest>(fails);
     status += runTest<SFMTTest>(fails);
-    // status += runTest<SHA1Test>(fails);
+    status += runTest<SHA1Test>(fails);
     status += runTest<TinyMTTest>(fails);
 
     // Util Tests
