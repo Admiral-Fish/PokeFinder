@@ -4,6 +4,7 @@
     <file alias="static3.json">Gen3/static3.json</file>
     <file alias="wild3.json">Gen3/wild3.json</file>
     <file alias="id4.json">Gen4/id4.json</file>
+    <file alias="static4.json">Gen4/static4.json</file>
     <file alias="wild4.json">Gen4/wild4.json</file>
     <file alias="lcrng.json">RNG/lcrng.json</file>
     <file alias="lcrng64.json">RNG/lcrng64.json</file>

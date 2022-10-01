@@ -66,7 +66,7 @@ QVariant StaticGeneratorModel4::data(const QModelIndex &index, int role) const
         case 5:
             return QString::fromStdString(*Translator::getNature(state.getNature()));
         case 6:
-            return state.getAbility();
+            return QString("%1 (%2)").arg(state.getAbility()).arg(QString::fromStdString(*Translator::getAbility(state.getAbilityIndex())));
         case 7:
         case 8:
         case 9:
@@ -152,7 +152,7 @@ QVariant StaticSearcherModel4::data(const QModelIndex &index, int role) const
         case 4:
             return QString::fromStdString(*Translator::getNature(state.getNature()));
         case 5:
-            return state.getAbility();
+            return QString("%1 (%2)").arg(state.getAbility()).arg(QString::fromStdString(*Translator::getAbility(state.getAbilityIndex())));
         case 6:
         case 7:
         case 8:
