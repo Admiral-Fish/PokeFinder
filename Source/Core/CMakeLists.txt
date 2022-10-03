@@ -39,10 +39,14 @@ add_library(PokeFinderCore STATIC
     Gen3/Generators/StaticGenerator3.hpp
     Gen3/Generators/WildGenerator3.cpp
     Gen3/Generators/WildGenerator3.hpp
+    Gen3/LockInfo.hpp
     Gen3/Searchers/StaticSearcher3.cpp
     Gen3/Searchers/StaticSearcher3.hpp
     Gen3/Searchers/WildSearcher3.cpp
     Gen3/Searchers/WildSearcher3.hpp
+    Gen3/ShadowLock.cpp
+    Gen3/ShadowLock.hpp
+    Gen3/ShadowTemplate.hpp
     Gen3/Profile3.cpp
     Gen3/Profile3.hpp
     Gen3/States/State3.cpp

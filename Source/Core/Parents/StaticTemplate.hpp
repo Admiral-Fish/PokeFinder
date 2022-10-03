@@ -32,6 +32,13 @@ enum class Game : u32;
 class StaticTemplate
 {
 public:
+    /**
+     * @brief Construct a new StaticTemplate object
+     *
+     * @param version Game the template appears in
+     * @param specie Specie of the template
+     * @param level Level of the template
+     */
     constexpr StaticTemplate(Game version, u16 specie, u8 level) :
         version(version), specie(specie), shiny(Shiny::Random), form(0), level(level)
     {
@@ -43,12 +50,21 @@ public:
      * @param version Game the template appears in
      * @param specie Specie of the template
      * @param level Level of the template
+     * @param form Form of the template
      */
     constexpr StaticTemplate(Game version, u16 specie, u8 level, u8 form) :
         version(version), specie(specie), shiny(Shiny::Random), form(form), level(level)
     {
     }
 
+    /**
+     * @brief Construct a new StaticTemplate object
+     *
+     * @param version Game the template appears in
+     * @param specie Specie of the template
+     * @param level Level of the template
+     * @param shiny Shiny state of the template
+     */
     constexpr StaticTemplate(Game version, u16 specie, u8 level, Shiny shiny) :
         version(version), specie(specie), shiny(shiny), form(0), level(level)
     {

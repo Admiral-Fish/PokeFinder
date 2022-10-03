@@ -24,6 +24,7 @@
 #include <vector>
 
 class EncounterArea3;
+class ShadowTemplate;
 class StaticTemplate;
 enum class Encounter : u8;
 enum class Game : u32;
@@ -40,6 +41,8 @@ namespace Encounters3
      */
     std::vector<EncounterArea3> getEncounters(Encounter encounter, Game version);
 
+    const ShadowTemplate *getShadowTeams(size_t *size = nullptr);
+
     /**
      * @brief Gets static encounters from the \p type
      *
@@ -51,6 +54,7 @@ namespace Encounters3
      * 4: stationary
      * 5: legends
      * 6: events
+     * 7: gamecube
      * @param size Pointer to set number of encounters if not nullptr
      *
      * @return Pointer to static encounters area
@@ -68,6 +72,7 @@ namespace Encounters3
      * 4: stationary
      * 5: legends
      * 6: events
+     * 7: gamecube
      * @param index Pokemon index
      *
      * @return Pointer to static encounter

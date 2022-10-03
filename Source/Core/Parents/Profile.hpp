@@ -74,7 +74,8 @@ public:
      *
      * @param other Profile to compare
      *
-     * @return True if equal, false otherwise
+     * @return true Profiles are equal
+     * @return false Profiles are not equal
      */
     bool operator==(const Profile &other) const;
 
@@ -83,7 +84,8 @@ public:
      *
      * @param other Profile to compare
      *
-     * @return True if not equal, false otherwise
+     * @return true Profiles are not equal
+     * @return false Profiles are equal
      */
     bool operator!=(const Profile &other) const;
 
