@@ -42,6 +42,7 @@ public:
      * @param initialAdvances Initial number of advances
      * @param maxAdvances Maximum number of advances
      * @param offset Number of advances to offset
+     * @param version Game version
      * @param tid Trainer ID
      * @param sid Secret ID
      * @param method Encounter method

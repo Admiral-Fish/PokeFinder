@@ -122,10 +122,10 @@ constexpr std::array<StaticTemplate, 6> events = {
     StaticTemplate(Game::Emerald | Game::FRLG, 250, 70) // Ho-Oh @ Navel Rock
 };
 
-constexpr std::array<StaticTemplate, 69> gamecube = {
+constexpr std::array<StaticTemplate, 69> galesColo = {
     // Non-shadows
-    StaticTemplate(Game::Colosseum, 196, 25, Shiny::Never), // Espeon
     StaticTemplate(Game::Colosseum, 197, 26, Shiny::Never), // Umbreon
+    StaticTemplate(Game::Colosseum, 196, 25, Shiny::Never), // Espeon
     StaticTemplate(Game::Colosseum, 250, 70, Shiny::Never), // Mattle Ho-Oh
     StaticTemplate(Game::Colosseum, 251, 10, Shiny::Never), // Ageto Celebi
     StaticTemplate(Game::Colosseum, 25, 10, Shiny::Never), // Ageto Pikachu
@@ -199,7 +199,7 @@ constexpr std::array<StaticTemplate, 69> gamecube = {
     StaticTemplate(Game::Gales, 145, 50, Shiny::Never) // Zapdos
 };
 
-constexpr std::array<ShadowTemplate, 77> gamecubeShadows = {
+constexpr std::array<ShadowTemplate, 77> galesColoShadow = {
     ShadowTemplate(Game::Colosseum, 296, 30,
                    std::array<LockInfo, 5> {
                        LockInfo(24, 0, 127), // Duskull (M) (Quirky)
@@ -750,6 +750,10 @@ constexpr std::array<ShadowTemplate, 77> gamecubeShadows = {
                    5, ShadowType::FirstShadow) // Dragonite
 };
 
+constexpr std::array<StaticTemplate, 1> channel = {
+    StaticTemplate(Game::GC, 385, 5) // Jirachi
+};
+
 namespace
 {
     /**
@@ -920,9 +924,15 @@ namespace Encounters3
     {
         if (size)
         {
-            *size = gamecubeShadows.size();
+            *size = galesColoShadow.size();
         }
-        return gamecubeShadows.data();
+        return galesColoShadow.data();
+    }
+
+    const ShadowTemplate *getShadowTeam(int index)
+    {
+        const ShadowTemplate *templates = getShadowTeams();
+        return &templates[index];
     }
 
     const StaticTemplate *getStaticEncounters(int type, size_t *size)
@@ -983,13 +993,21 @@ namespace Encounters3
             }
             return events.data();
         }
+        else if (type == 7)
+        {
+            if (size)
+            {
+                *size = galesColo.size();
+            }
+            return galesColo.data();
+        }
         else
         {
             if (size)
             {
-                *size = gamecube.size();
+                *size = channel.size();
             }
-            return gamecube.data();
+            return channel.data();
         }
     }
 

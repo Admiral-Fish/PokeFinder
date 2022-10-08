@@ -20,6 +20,7 @@
 #include "MainWindow.hpp"
 #include "ui_MainWindow.h"
 #include <Core/Util/Translator.hpp>
+#include <Form/Gen3/GameCube.hpp>
 #include <Form/Gen3/IDs3.hpp>
 #include <Form/Gen3/Profile/ProfileManager3.hpp>
 #include <Form/Gen3/Static3.hpp>
@@ -46,8 +47,6 @@
 #include <version.h>
 
 //#include <Forms/Gen3/Eggs3.hpp>
-//#include <Forms/Gen3/GameCube.hpp>
-//#include <Forms/Gen3/Tools/GameCubeRTC.hpp>
 //#include <Forms/Gen3/Tools/GameCubeSeedFinder.hpp>
 //#include <Forms/Gen3/Tools/JirachiPattern.hpp>
 //#include <Forms/Gen3/Tools/PIDIV.hpp>
@@ -81,12 +80,11 @@ MainWindow::MainWindow(bool profile, QWidget *parent) : QMainWindow(parent), ui(
     setWindowTitle(QString("Pok\303\251Finder %1").arg(POKEFINDER_VERSION));
 
     // connect(ui->pushButtonEgg3, &QPushButton::clicked, this, &MainWindow::openEgg3);
-    // connect(ui->pushButtonGameCube, &QPushButton::clicked, this, &MainWindow::openGameCube);
+    connect(ui->pushButtonGameCube, &QPushButton::clicked, this, &MainWindow::openGameCube);
     connect(ui->pushButtonIDs3, &QPushButton::clicked, this, &MainWindow::openIDs3);
     connect(ui->pushButtonStatic3, &QPushButton::clicked, this, &MainWindow::openStatic3);
     connect(ui->pushButtonWild3, &QPushButton::clicked, this, &MainWindow::openWild3);
     connect(ui->actionProfileManager3, &QAction::triggered, this, &MainWindow::openProfileManager3);
-    // connect(ui->actionGameCubeRTC, &QAction::triggered, this, &MainWindow::openGameCubeRTC);
     // connect(ui->actionGameCubeSeedFinder, &QAction::triggered, this, &MainWindow::openGameCubeSeedFinder);
     // connect(ui->actionIVtoPID3, &QAction::triggered, this, &MainWindow::openIVtoPID);
     // connect(ui->actionJirachiPattern, &QAction::triggered, this, &MainWindow::openJirachiPattern);
@@ -155,7 +153,7 @@ MainWindow::~MainWindow()
     delete ui;
 
     // delete egg3;
-    // delete gamecube;
+    delete gamecube;
     delete ids3;
     delete static3;
     delete wild3;
@@ -227,6 +225,16 @@ void MainWindow::openIDs3()
     ids3->show();
 }
 
+void MainWindow::openGameCube()
+{
+    if (!gamecube)
+    {
+        gamecube = new GameCube();
+        connect(gamecube, &GameCube::alertProfiles, this, &MainWindow::updateProfiles);
+    }
+    gamecube->show();
+}
+
 void MainWindow::openProfileManager3() const
 {
     auto *manager = new ProfileManager3();
@@ -254,17 +262,7 @@ void MainWindow::openWild3()
     wild3->show();
 }
 
-/*void MainWindow::openGameCube()
-{
-    if (!gamecube)
-    {
-        gamecube = new GameCube();
-        connect(gamecube, &GameCube::alertProfiles, this, &MainWindow::updateProfiles);
-    }
-    gamecube->show();
-}
-
-void MainWindow::openEgg3()
+/*void MainWindow::openEgg3()
 {
     if (!egg3)
     {

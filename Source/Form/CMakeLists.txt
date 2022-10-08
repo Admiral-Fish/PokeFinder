@@ -55,6 +55,7 @@ set(PROJECT_UI
     Controls/IDsFilter.ui
     Controls/IVFilter.ui
     Gen3/IDs3.ui
+    Gen3/GameCube.ui
     Gen3/Profile/ProfileEditor3.ui
     Gen3/Profile/ProfileManager3.ui
     Gen3/Static3.ui
@@ -104,6 +105,8 @@ set(PROJECT_SOURCES
     Controls/TextBox.hpp
     Gen3/IDs3.cpp
     Gen3/IDs3.hpp
+    Gen3/GameCube.cpp
+    Gen3/GameCube.hpp
     Gen3/Profile/ProfileEditor3.cpp
     Gen3/Profile/ProfileEditor3.hpp
     Gen3/Profile/ProfileManager3.cpp

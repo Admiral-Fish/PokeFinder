@@ -94,6 +94,141 @@ GeneratorState3::GeneratorState3(u32 advances, u16 high, u16 low, u16 iv1, u16 i
     hiddenPowerStrength = 30 + (p * 40 / 63);
 }
 
+GeneratorState3::GeneratorState3(u32 advances, u16 high, u16 low, u8 ability, u16 iv1, u16 iv2, u16 tsv, u8 level,
+                                 const PersonalInfo *info) :
+    GeneratorState(advances)
+{
+    this->level = level;
+
+    pid = (high << 16) | low;
+    this->ability = ability == 1 && info->getAbility(0) != info->getAbility(1);
+    abilityIndex = info->getAbility(this->ability);
+    nature = pid % 25;
+
+    u16 psv = (high ^ low);
+    if (tsv == psv)
+    {
+        shiny = 2; // Square
+    }
+    else if ((tsv ^ psv) < 8)
+    {
+        shiny = 1; // Star
+    }
+    else
+    {
+        shiny = 0;
+    }
+
+    switch (info->getGender())
+    {
+    case 255: // Genderless
+        gender = 2;
+        break;
+    case 254: // Female
+        gender = 1;
+        break;
+    case 0: // Male
+        gender = 0;
+        break;
+    default: // Random gender
+        gender = (low & 255) < info->getGender();
+        break;
+    }
+
+    ivs[0] = iv1 & 31;
+    ivs[1] = (iv1 >> 5) & 31;
+    ivs[2] = (iv1 >> 10) & 31;
+    ivs[3] = (iv2 >> 5) & 31;
+    ivs[4] = (iv2 >> 10) & 31;
+    ivs[5] = iv2 & 31;
+
+    u8 h = 0;
+    u8 p = 0;
+    for (int i = 0; i < 6; i++)
+    {
+        h += (ivs[order[i]] & 1) << i;
+        p += ((ivs[order[i]] >> 1) & 1) << i;
+
+        u16 stat = ((2 * info->getStat(i) + ivs[i]) * level) / 100;
+        if (i == 0)
+        {
+            stats[i] = stat + level + 10;
+        }
+        else
+        {
+            stats[i] = Nature::computeStat(stat + 5, nature, i);
+        }
+    }
+
+    hiddenPower = h * 15 / 63;
+    hiddenPowerStrength = 30 + (p * 40 / 63);
+}
+
+GeneratorState3::GeneratorState3(u32 advances, u16 high, u16 low, const std::array<u8, 6> &ivs, u16 tsv, u8 level,
+                                 const PersonalInfo *info) :
+    GeneratorState(advances)
+{
+    this->level = level;
+
+    pid = (high << 16) | low;
+    ability = low & 1;
+    abilityIndex = info->getAbility(ability);
+    nature = pid % 25;
+
+    u16 psv = (high ^ low);
+    if (tsv == psv)
+    {
+        shiny = 2; // Square
+    }
+    else if ((tsv ^ psv) < 8)
+    {
+        shiny = 1; // Star
+    }
+    else
+    {
+        shiny = 0;
+    }
+
+    switch (info->getGender())
+    {
+    case 255: // Genderless
+        gender = 2;
+        break;
+    case 254: // Female
+        gender = 1;
+        break;
+    case 0: // Male
+        gender = 0;
+        break;
+    default: // Random gender
+        gender = (low & 255) < info->getGender();
+        break;
+    }
+
+    this->ivs = ivs;
+
+    u8 h = 0;
+    u8 p = 0;
+    for (int i = 0; i < 6; i++)
+    {
+        h += (ivs[order[i]] & 1) << i;
+        p += ((ivs[order[i]] >> 1) & 1) << i;
+
+        u16 stat = ((2 * info->getStat(i) + ivs[i]) * level) / 100;
+        if (i == 0)
+        {
+            stats[i] = stat + level + 10;
+        }
+        else
+        {
+            stats[i] = Nature::computeStat(stat + 5, nature, i);
+        }
+    }
+
+    hiddenPower = h * 15 / 63;
+    hiddenPowerStrength = 30 + (p * 40 / 63);
+}
+
 SearcherState3::SearcherState3(u32 seed, u32 pid, u8 nature, std::array<u8, 6> ivs, u16 tsv, u8 level, const PersonalInfo *info) :
     SearcherState(seed)
 {
@@ -102,6 +237,71 @@ SearcherState3::SearcherState3(u32 seed, u32 pid, u8 nature, std::array<u8, 6> i
     this->pid = pid;
     ability = pid & 1;
     abilityIndex = info->getAbility(ability);
+    this->nature = nature;
+
+    u16 psv = ((pid >> 16) ^ (pid & 0xffff));
+    if (tsv == psv)
+    {
+        shiny = 2; // Square
+    }
+    else if ((tsv ^ psv) < 8)
+    {
+        shiny = 1; // Star
+    }
+    else
+    {
+        shiny = 0;
+    }
+
+    switch (info->getGender())
+    {
+    case 255: // Genderless
+        gender = 2;
+        break;
+    case 254: // Female
+        gender = 1;
+        break;
+    case 0: // Male
+        gender = 0;
+        break;
+    default: // Random gender
+        gender = (pid & 255) < info->getGender();
+        break;
+    }
+
+    this->ivs = ivs;
+
+    u8 h = 0;
+    u8 p = 0;
+    for (int i = 0; i < 6; i++)
+    {
+        h += (ivs[order[i]] & 1) << i;
+        p += ((ivs[order[i]] >> 1) & 1) << i;
+
+        u16 stat = ((2 * info->getStat(i) + ivs[i]) * level) / 100;
+        if (i == 0)
+        {
+            stats[i] = stat + level + 10;
+        }
+        else
+        {
+            stats[i] = Nature::computeStat(stat + 5, nature, i);
+        }
+    }
+
+    hiddenPower = h * 15 / 63;
+    hiddenPowerStrength = 30 + (p * 40 / 63);
+}
+
+SearcherState3::SearcherState3(u32 seed, u32 pid, u8 ability, u8 nature, std::array<u8, 6> ivs, u16 tsv, u8 level,
+                               const PersonalInfo *info) :
+    SearcherState(seed)
+{
+    this->level = level;
+
+    this->pid = pid;
+    this->ability = ability == 1 && info->getAbility(0) != info->getAbility(1);
+    abilityIndex = info->getAbility(this->ability);
     this->nature = nature;
 
     u16 psv = ((pid >> 16) ^ (pid & 0xffff));

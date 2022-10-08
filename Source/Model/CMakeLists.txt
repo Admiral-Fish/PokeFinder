@@ -10,6 +10,8 @@ find_package(Qt6 REQUIRED COMPONENTS Core)
 add_library(PokeFinderModel STATIC
     Gen3/IDModel3.cpp
     Gen3/IDModel3.hpp
+    Gen3/GameCubeModel.cpp
+    Gen3/GameCubeModel.hpp
     Gen3/ProfileModel3.cpp
     Gen3/ProfileModel3.hpp
     Gen3/StaticModel3.cpp

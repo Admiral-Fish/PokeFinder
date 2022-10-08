@@ -33,6 +33,8 @@ add_library(PokeFinderCore STATIC
     Gen3/Encounters3.hpp
     Gen3/Filters/StateFilter3.cpp
     Gen3/Filters/StateFilter3.hpp
+    Gen3/Generators/GameCubeGenerator.cpp
+    Gen3/Generators/GameCubeGenerator.hpp
     Gen3/Generators/IDGenerator3.cpp
     Gen3/Generators/IDGenerator3.hpp
     Gen3/Generators/StaticGenerator3.cpp
@@ -40,6 +42,8 @@ add_library(PokeFinderCore STATIC
     Gen3/Generators/WildGenerator3.cpp
     Gen3/Generators/WildGenerator3.hpp
     Gen3/LockInfo.hpp
+    Gen3/Searchers/GameCubeSearcher.cpp
+    Gen3/Searchers/GameCubeSearcher.hpp
     Gen3/Searchers/StaticSearcher3.cpp
     Gen3/Searchers/StaticSearcher3.hpp
     Gen3/Searchers/WildSearcher3.cpp

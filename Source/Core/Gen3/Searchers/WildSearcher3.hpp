@@ -26,7 +26,6 @@
 #include <Core/RNG/RNGCache.hpp>
 #include <mutex>
 
-
 /**
  * @brief Wild encounter searcher for Gen3
  */

@@ -41,7 +41,23 @@ namespace Encounters3
      */
     std::vector<EncounterArea3> getEncounters(Encounter encounter, Game version);
 
+    /**
+     * @brief Gets shadow teams
+     *
+     * @param size Pointer to set number of encounters if not nullptr
+     *
+     * @return Pointer to shadow teams
+     */
     const ShadowTemplate *getShadowTeams(size_t *size = nullptr);
+
+    /**
+     * @brief Gets shadow team from the \p index
+     *
+     * @param index Pokemon index
+     *
+     * @return Pointer to shadow team
+     */
+    const ShadowTemplate *getShadowTeam(int index);
 
     /**
      * @brief Gets static encounters from the \p type
@@ -54,7 +70,8 @@ namespace Encounters3
      * 4: stationary
      * 5: legends
      * 6: events
-     * 7: gamecube
+     * 7: gales/colo
+     * 8: channel
      * @param size Pointer to set number of encounters if not nullptr
      *
      * @return Pointer to static encounters area
@@ -62,7 +79,7 @@ namespace Encounters3
     const StaticTemplate *getStaticEncounters(int type, size_t *size = nullptr);
 
     /**
-     * @brief getStaticEncounter
+     * @brief Gets the static encounter from the \p type and \p index
      *
      * @param type Static encounter type
      * 0: starters
@@ -72,7 +89,8 @@ namespace Encounters3
      * 4: stationary
      * 5: legends
      * 6: events
-     * 7: gamecube
+     * 7: gales/colo
+     * 8: channel
      * @param index Pokemon index
      *
      * @return Pointer to static encounter

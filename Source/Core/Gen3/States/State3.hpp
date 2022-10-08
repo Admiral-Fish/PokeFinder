@@ -45,6 +45,34 @@ public:
     GeneratorState3(u32 advances, u16 high, u16 low, u16 iv1, u16 iv2, u16 tsv, u8 level, const PersonalInfo *info);
 
     /**
+     * @brief Construct a new GeneratorState3 object
+     *
+     * @param advances State advances
+     * @param high High 16bits of PID
+     * @param low Low 16bits of PID
+     * @param ability Pokemon ability
+     * @param iv1 First IV call
+     * @param iv2 Second IV call
+     * @param tsv Trainer shiny value
+     * @param level Pokemon level
+     * @param info Pokemon personal information
+     */
+    GeneratorState3(u32 advances, u16 high, u16 low, u8 ability, u16 iv1, u16 iv2, u16 tsv, u8 level, const PersonalInfo *info);
+
+    /**
+     * @brief Construct a new GeneratorState3 object
+     *
+     * @param advances State advances
+     * @param high High 16bits of PID
+     * @param low Low 16bits of PID
+     * @param ivs Pokemon IVs
+     * @param tsv Trainer shiny value
+     * @param level Pokemon level
+     * @param info Pokemon personal information
+     */
+    GeneratorState3(u32 advances, u16 high, u16 low, const std::array<u8, 6> &ivs, u16 tsv, u8 level, const PersonalInfo *info);
+
+    /**
      * @brief Returns the hidden power strength
      *
      * @return Hidden power strength
@@ -76,6 +104,20 @@ public:
      * @param info Pokemon info
      */
     SearcherState3(u32 seed, u32 pid, u8 nature, std::array<u8, 6> ivs, u16 tsv, u8 level, const PersonalInfo *info);
+
+    /**
+     * @brief Construct a new SearcherState3 object
+     *
+     * @param seed State seed
+     * @param pid PID value
+     * @param ability Pokemon ability
+     * @param nature Pokemon nature
+     * @param ivs Pokemon IVs
+     * @param tsv Trainer shiny value
+     * @param level Pokemon level
+     * @param info Pokemon info
+     */
+    SearcherState3(u32 seed, u32 pid, u8 ability, u8 nature, std::array<u8, 6> ivs, u16 tsv, u8 level, const PersonalInfo *info);
 
     /**
      * @brief Returns the hidden power strength

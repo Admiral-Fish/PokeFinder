@@ -124,6 +124,11 @@ private slots:
     void openIDs3();
 
     /**
+     * @brief Opens the GameCube window
+     */
+    void openGameCube();
+
+    /**
      * @brief Opens the Gen 3 Profile Manager window
      */
     void openProfileManager3() const;
@@ -138,8 +143,6 @@ private slots:
      */
     void openWild3();
 
-    // void openGameCubeRTC();
-    // void openGameCube();
     // void openEgg3();
     // void openGameCubeSeedFinder();
     // void openIVtoPID();

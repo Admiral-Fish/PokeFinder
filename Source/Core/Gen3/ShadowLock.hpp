@@ -28,27 +28,20 @@ class ShadowTemplate;
 /**
  * @brief Computes whether a origin seed for a PID/IV combination passes the shadow locks of the target
  */
-class ShadowLock
+namespace ShadowLock
 {
-public:
-    /**
-     * @brief Construct a new ShadowLock object
-     *
-     * @param shadowTemplate Shadow pokemon template
-     */
-    ShadowLock(const ShadowTemplate *shadowTemplate);
-
     /**
      * @brief Determines whether the \p seed matches the lock criteria for Colosseum
      * The following is technically shiny locked by the trainer TID/SID.  It is extremely hard to know what that value is working from only
      * IVs. Assume that the shiny lock won't play a significant factor.
      *
      * @param seed Origin seed
+     * @param shadowTemplate Pokemon template
      *
      * @return true Seed matches the lock criteria
      * @return false Seed does not match the lock criteria
      */
-    bool coloShadow(u32 seed) const;
+    bool coloShadow(u32 seed, const ShadowTemplate *shadowTemplate);
 
     /**
      * @brief Determines whether the \p seed matches the lock criteria for Colosseum E-Reader
@@ -57,11 +50,12 @@ public:
      *
      * @param seed Origin seed
      * @param readerPID PID of the E-Reader pokemon
+     * @param shadowTemplate Pokemon template
      *
      * @return true Seed matches the lock criteria
      * @return false Seed does not match the lock criteria
      */
-    bool ereader(u32 seed, u32 readerPID) const;
+    bool ereader(u32 seed, u32 readerPID, const ShadowTemplate *shadowTemplate);
 
     /**
      * @brief firstShadowNormal
@@ -70,69 +64,72 @@ public:
      *
      * @param seed Origin seed
      * @param tsv Trainer shiny value
+     * @param shadowTemplate Pokemon template
      *
      * @return true Seed matches the lock criteria
      * @return false Seed does not match the lock criteria
      */
-    bool firstShadowNormal(u32 seed, u16 tsv) const;
+    bool firstShadowNormal(u32 seed, u16 tsv, const ShadowTemplate *shadowTemplate);
 
     /**
      * @brief firstShadowSet
      *
      * @param seed Origin seed
      * @param tsv Trainer shiny value
+     * @param shadowTemplate Pokemon template
      *
      * @return true Seed matches the lock criteria
      * @return false Seed does not match the lock criteria
      */
-    bool firstShadowSet(u32 seed, u16 tsv) const;
+    bool firstShadowSet(u32 seed, u16 tsv, const ShadowTemplate *shadowTemplate);
 
     /**
      * @brief firstShadowUnset
      *
      * @param seed Origin seed
      * @param tsv Trainer shiny value
+     * @param shadowTemplate Pokemon template
      *
      * @return true Seed matches the lock criteria
      * @return false Seed does not match the lock criteria
      */
-    bool firstShadowUnset(u32 seed, u16 tsv) const;
+    bool firstShadowUnset(u32 seed, u16 tsv, const ShadowTemplate *shadowTemplate);
 
     /**
      * @brief salamenceSet
      *
      * @param seed Origin seed
      * @param tsv Trainer shiny value
+     * @param shadowTemplate Pokemon template
      *
      * @return true Seed matches the lock criteria
      * @return false Seed does not match the lock criteria
      */
-    bool salamenceSet(u32 seed, u16 tsv) const;
+    bool salamenceSet(u32 seed, u16 tsv, const ShadowTemplate *shadowTemplate);
 
     /**
      * @brief salamenceUnset
      *
      * @param seed Origin seed
      * @param tsv Trainer shiny value
+     * @param shadowTemplate Pokemon template
      *
      * @return true Seed matches the lock criteria
      * @return false Seed does not match the lock criteria
      */
-    bool salamenceUnset(u32 seed, u16 tsv) const;
+    bool salamenceUnset(u32 seed, u16 tsv, const ShadowTemplate *shadowTemplate);
 
     /**
      * @brief singleNL
      *
      * @param seed Origin seed
      * @param tsv Trainer shiny value
+     * @param shadowTemplate Pokemon template
      *
      * @return true Seed matches the lock criteria
      * @return false Seed does not match the lock criteria
      */
-    bool singleNL(u32 seed, u16 tsv) const;
-
-private:
-    const ShadowTemplate *shadowTemplate;
+    bool singleNL(u32 seed, u16 tsv, const ShadowTemplate *shadowTemplate);
 };
 
 #endif // SHADOWLOCK_HPP

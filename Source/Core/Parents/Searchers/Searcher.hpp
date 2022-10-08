@@ -40,7 +40,7 @@ public:
      *
      * @param tid Trainer ID
      * @param sid Secret ID
-     * @param game Game version
+     * @param version Game version
      * @param method Encounter method
      * @param filter State filter
      */

@@ -232,6 +232,9 @@ void Static4::profilesIndexChanged(int index)
         // Game Corner
         ui->comboBoxGeneratorCategory->setItemHidden(3, !hgss);
         ui->comboBoxSearcherCategory->setItemHidden(3, !hgss);
+
+        generatorCategoryIndexChanged(ui->comboBoxGeneratorCategory->currentIndex());
+        searcherCategoryIndexChanged(ui->comboBoxSearcherCategory->currentIndex());
     }
 }
 
