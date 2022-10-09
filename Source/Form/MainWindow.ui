@@ -227,20 +227,11 @@
     <property name="title">
      <string>Gen 3 Tools</string>
     </property>
-    <widget class="QMenu" name="menuGameCube">
-     <property name="title">
-      <string>GameCube</string>
-     </property>
-     <addaction name="actionGameCubeRTC"/>
-     <addaction name="actionGameCubeSeedFinder"/>
-     <addaction name="actionJirachiPattern"/>
-     <addaction name="actionPokeSpot"/>
-    </widget>
-    <addaction name="menuGameCube"/>
+    <addaction name="actionGameCubeSeedFinder"/>
     <addaction name="actionIVtoPID3"/>
     <addaction name="actionPIDtoIV"/>
+    <addaction name="actionPokeSpot"/>
     <addaction name="actionProfileManager3"/>
-    <addaction name="actionSeedtoTime3"/>
     <addaction name="actionSpindaPainter"/>
    </widget>
    <widget class="QMenu" name="menuGen4Tools">

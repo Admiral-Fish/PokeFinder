@@ -71,8 +71,8 @@ namespace
     std::map<u16, std::string> items;
     std::vector<std::string> natures;
     std::vector<std::string> species;
-    std::vector<std::string> genders = { "♂", "♀", "-" };
-    std::vector<std::string> buttons = { "R", "L", "X", "Y", "A", "B", "Select", "Start", "Right", "Left", "Up", "Down" };
+    std::array<std::string, 3> genders = { "♂", "♀", "-" };
+    std::array<std::string, 12> buttons = { "R", "L", "X", "Y", "A", "B", "Select", "Start", "Right", "Left", "Up", "Down" };
 
     /**
      * @brief Reads strings from the \p translation in the languaged specified by Translator::init()
@@ -149,22 +149,22 @@ namespace
 
 namespace Translator
 {
-    std::string *getAbility(u16 ability)
+    const std::string *getAbility(u16 ability)
     {
         return &abilities[ability - 1];
     }
 
-    std::string *getCharacteristic(u8 characteristic)
+    const std::string *getCharacteristic(u8 characteristic)
     {
         return &characteristics[characteristic];
     }
 
-    std::vector<std::string> *getCharacteristics()
+    const std::vector<std::string> *getCharacteristics()
     {
         return &characteristics;
     }
 
-    std::string *getGame(Game version)
+    const std::string *getGame(Game version)
     {
         // Strings are ordered to match the enum
         // Use countr_zero to get the bit that is set
@@ -176,32 +176,32 @@ namespace Translator
         return &games[index];
     }
 
-    std::string *getGender(u8 gender)
+    const std::string *getGender(u8 gender)
     {
         return &genders[gender];
     }
 
-    std::vector<std::string> *getGenders()
+    const std::array<std::string, 3> *getGenders()
     {
         return &genders;
     }
 
-    std::string *getHiddenPower(u8 power)
+    const std::string *getHiddenPower(u8 power)
     {
         return &hiddenPowers[power];
     }
 
-    std::vector<std::string> *getHiddenPowers()
+    const std::vector<std::string> *getHiddenPowers()
     {
         return &hiddenPowers;
     }
 
-    std::string *getItem(u16 item)
+    const std::string *getItem(u16 item)
     {
         return &items[item];
     }
 
-    std::string *getKeypress(u8 keypress)
+    const std::string *getKeypress(u8 keypress)
     {
         return &buttons[keypress];
     }
@@ -276,17 +276,17 @@ namespace Translator
         return locations;
     }
 
-    std::string *getNature(u8 nature)
+    const std::string *getNature(u8 nature)
     {
         return &natures[nature];
     }
 
-    std::vector<std::string> *getNatures()
+    const std::vector<std::string> *getNatures()
     {
         return &natures;
     }
 
-    std::string *getSpecie(u16 specie)
+    const std::string *getSpecie(u16 specie)
     {
         return &species[specie - 1];
     }

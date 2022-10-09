@@ -24,6 +24,7 @@
 #include <Form/Gen3/IDs3.hpp>
 #include <Form/Gen3/Profile/ProfileManager3.hpp>
 #include <Form/Gen3/Static3.hpp>
+#include <Form/Gen3/Tools/GameCubeSeedFinder.hpp>
 #include <Form/Gen3/Wild3.hpp>
 #include <Form/Gen4/IDs4.hpp>
 #include <Form/Gen4/Profile/ProfileManager4.hpp>
@@ -47,8 +48,6 @@
 #include <version.h>
 
 //#include <Forms/Gen3/Eggs3.hpp>
-//#include <Forms/Gen3/Tools/GameCubeSeedFinder.hpp>
-//#include <Forms/Gen3/Tools/JirachiPattern.hpp>
 //#include <Forms/Gen3/Tools/PIDIV.hpp>
 //#include <Forms/Gen3/Tools/PokeSpot.hpp>
 //#include <Forms/Gen3/Tools/SeedTime3.hpp>
@@ -85,9 +84,8 @@ MainWindow::MainWindow(bool profile, QWidget *parent) : QMainWindow(parent), ui(
     connect(ui->pushButtonStatic3, &QPushButton::clicked, this, &MainWindow::openStatic3);
     connect(ui->pushButtonWild3, &QPushButton::clicked, this, &MainWindow::openWild3);
     connect(ui->actionProfileManager3, &QAction::triggered, this, &MainWindow::openProfileManager3);
-    // connect(ui->actionGameCubeSeedFinder, &QAction::triggered, this, &MainWindow::openGameCubeSeedFinder);
+    connect(ui->actionGameCubeSeedFinder, &QAction::triggered, this, &MainWindow::openGameCubeSeedFinder);
     // connect(ui->actionIVtoPID3, &QAction::triggered, this, &MainWindow::openIVtoPID);
-    // connect(ui->actionJirachiPattern, &QAction::triggered, this, &MainWindow::openJirachiPattern);
     // connect(ui->actionPIDtoIV, &QAction::triggered, this, &MainWindow::openPIDtoIV);
     // connect(ui->actionPokeSpot, &QAction::triggered, this, &MainWindow::openPokeSpot);
     // connect(ui->actionSeedtoTime3, &QAction::triggered, this, &MainWindow::openSeedtoTime3);
@@ -235,6 +233,12 @@ void MainWindow::openGameCube()
     gamecube->show();
 }
 
+void MainWindow::openGameCubeSeedFinder()
+{
+    auto *finder = new GameCubeSeedFinder();
+    finder->show();
+}
+
 void MainWindow::openProfileManager3() const
 {
     auto *manager = new ProfileManager3();
@@ -270,18 +274,6 @@ void MainWindow::openWild3()
         connect(egg3, &Eggs3::alertProfiles, this, &MainWindow::updateProfiles);
     }
     egg3->show();
-}
-
-void MainWindow::openGameCubeRTC()
-{
-    auto *rtc = new GameCubeRTC();
-    rtc->show();
-}
-
-void MainWindow::openGameCubeSeedFinder()
-{
-    auto *finder = new GameCubeSeedFinder();
-    finder->show();
 }
 
 void MainWindow::openIVtoPID()

@@ -39,7 +39,7 @@ namespace Translator
      *
      * @return Ability string
      */
-    std::string *getAbility(u16 ability);
+    const std::string *getAbility(u16 ability);
 
     /**
      * @brief Gets the string for the \p characteristic
@@ -48,14 +48,14 @@ namespace Translator
      *
      * @return Characteristic string
      */
-    std::string *getCharacteristic(u8 characteristic);
+    const std::string *getCharacteristic(u8 characteristic);
 
     /**
      * @brief Gets all the characteristic strings
      *
      * @return Vector of characteristic strings
      */
-    std::vector<std::string> *getCharacteristics();
+    const std::vector<std::string> *getCharacteristics();
 
     /**
      * @brief Gets the string for the \p game
@@ -64,7 +64,7 @@ namespace Translator
      *
      * @return Game string
      */
-    std::string *getGame(Game version);
+    const std::string *getGame(Game version);
 
     /**
      * @brief Gets the string for the \p gender
@@ -73,14 +73,14 @@ namespace Translator
      *
      * @return Gender string
      */
-    std::string *getGender(u8 gender);
+    const std::string *getGender(u8 gender);
 
     /**
      * @brief Gets all the gender strings
      *
      * @return Vector of gender strings
      */
-    std::vector<std::string> *getGenders();
+    const std::array<std::string, 3> *getGenders();
 
     /**
      * @brief Gets the string for the \p power
@@ -89,14 +89,14 @@ namespace Translator
      *
      * @return Hidden power string
      */
-    std::string *getHiddenPower(u8 power);
+    const std::string *getHiddenPower(u8 power);
 
     /**
      * @brief Gets all the hidden power strings
      *
      * @return Vector of hidden power strings
      */
-    std::vector<std::string> *getHiddenPowers();
+    const std::vector<std::string> *getHiddenPowers();
 
     /**
      * @brief Gets the string for the \p item
@@ -105,7 +105,7 @@ namespace Translator
      *
      * @return Item string
      */
-    std::string *getItem(u16 item);
+    const std::string *getItem(u16 item);
 
     /**
      * @brief Gets the string for the \p keypress
@@ -114,7 +114,7 @@ namespace Translator
      *
      * @return Keypress string
      */
-    std::string *getKeypress(u8 keypress);
+    const std::string *getKeypress(u8 keypress);
 
     /**
      * @brief Gets the strings for the \p keypresses
@@ -142,14 +142,14 @@ namespace Translator
      *
      * @return Nature string
      */
-    std::string *getNature(u8 nature);
+    const std::string *getNature(u8 nature);
 
     /**
      * @brief Gets all the nature strings
      *
      * @return Vector of nature strings
      */
-    std::vector<std::string> *getNatures();
+    const std::vector<std::string> *getNatures();
 
     /**
      * @brief Gets the string for the \p specie
@@ -158,7 +158,7 @@ namespace Translator
      *
      * @return Specie string
      */
-    std::string *getSpecie(u16 specie);
+    const std::string *getSpecie(u16 specie);
 
     /**
      * @brief Gets the the strings for the \p species

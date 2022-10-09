@@ -1,0 +1,557 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>GameCubeSeedFinder</class>
+ <widget class="QWidget" name="GameCubeSeedFinder">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>640</width>
+    <height>335</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>GameCube Seed Finder</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0">
+    <widget class="QTabWidget" name="tabWidget">
+     <widget class="QWidget" name="tabGales">
+      <attribute name="title">
+       <string>Gales</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_6">
+       <item row="1" column="0" colspan="3">
+        <widget class="QProgressBar" name="progressBarGales">
+         <property name="value">
+          <number>0</number>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QGroupBox" name="groupBoxGalesPokemon">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>2</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="title">
+          <string>Settings</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_8">
+          <item row="0" column="0">
+           <widget class="QLabel" name="labelGalesYourLead">
+            <property name="text">
+             <string>Your lead</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QComboBox" name="comboBoxGalesYourLead"/>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="labelGalesTSV">
+            <property name="text">
+             <string>TSV</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="TextBox" name="textBoxGalesTSV"/>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="labelGalesEnemyLead">
+            <property name="text">
+             <string>Enemy Lead</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="QComboBox" name="comboBoxGalesEnemyLead"/>
+          </item>
+          <item row="0" column="2" rowspan="3">
+           <layout class="QGridLayout" name="gridLayout_5">
+            <item row="0" column="0">
+             <widget class="QLabel" name="labelGalesTopLeft">
+              <property name="text">
+               <string>Top Left HP</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="1">
+             <widget class="QLabel" name="labelGalesTopRight">
+              <property name="text">
+               <string>Top Right HP</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="0">
+             <widget class="TextBox" name="textBoxGalesTopLeft"/>
+            </item>
+            <item row="1" column="1">
+             <widget class="TextBox" name="textBoxGalesTopRight"/>
+            </item>
+            <item row="2" column="0">
+             <widget class="QLabel" name="labelGalesBottomLeft">
+              <property name="text">
+               <string>Bottom Left HP</string>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="1">
+             <widget class="QLabel" name="labelGalesBottomRight">
+              <property name="text">
+               <string>Bottom Right HP</string>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="0">
+             <widget class="TextBox" name="textBoxGalesBottomLeft"/>
+            </item>
+            <item row="3" column="1">
+             <widget class="TextBox" name="textBoxGalesBottomRight"/>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QGroupBox" name="groupBoxGalesSearch">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>1</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="title">
+          <string>Search</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_7">
+          <item row="0" column="0">
+           <widget class="QLabel" name="labelGalesRound">
+            <property name="text">
+             <string>Round #1</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="labelGalesResults">
+            <property name="text">
+             <string>Possible Results:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QPushButton" name="pushButtonGalesSearch">
+            <property name="text">
+             <string>Search</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0">
+           <widget class="QPushButton" name="pushButtonGalesCancel">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="text">
+             <string>Cancel</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="0">
+           <widget class="QPushButton" name="pushButtonGalesReset">
+            <property name="text">
+             <string>Reset</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tabColo">
+      <attribute name="title">
+       <string>Colo</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_2">
+       <item row="0" column="0">
+        <widget class="QGroupBox" name="groupBoxColoSearch">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>1</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="title">
+          <string>Search</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_3">
+          <item row="2" column="0">
+           <widget class="QPushButton" name="pushButtonColoSearch">
+            <property name="text">
+             <string>Search</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0">
+           <widget class="QPushButton" name="pushButtonColoCancel">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="text">
+             <string>Cancel</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="labelColoResults">
+            <property name="text">
+             <string>Possible Results:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="0">
+           <widget class="QPushButton" name="pushButtonColoReset">
+            <property name="text">
+             <string>Reset</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0">
+           <widget class="QLabel" name="labelColoRound">
+            <property name="text">
+             <string>Round #1</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="1" column="0" colspan="3">
+        <widget class="QProgressBar" name="progressBarColo">
+         <property name="value">
+          <number>0</number>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QGroupBox" name="groupBoxColoTrainer">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>2</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="title">
+          <string>Settings</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_4">
+          <item row="0" column="0">
+           <widget class="QLabel" name="labelColoTrainer">
+            <property name="text">
+             <string>Trainer</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QComboBox" name="comboBoxColoTrainer">
+            <item>
+             <property name="text">
+              <string>Wes</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Seth</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Thomas</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="labelColoPartyLead">
+            <property name="text">
+             <string>Party Lead</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QComboBox" name="comboBoxColoPartyLead"/>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tabChannel">
+      <attribute name="title">
+       <string>Channel</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_13">
+       <item row="0" column="0">
+        <widget class="QGroupBox" name="groupBoxChannelSearch">
+         <property name="title">
+          <string>Search</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_14">
+          <item row="0" column="0">
+           <widget class="QLabel" name="labelChannelResult">
+            <property name="text">
+             <string>Result:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QPushButton" name="pushButtonChannelSearch">
+            <property name="text">
+             <string>Search</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QPushButton" name="pushButtonChannelCancel">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="text">
+             <string>Cancel</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="0" column="2">
+        <widget class="QGroupBox" name="groupBoxInputs">
+         <property name="title">
+          <string>Inputs</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_11">
+          <item row="0" column="0">
+           <widget class="QTextEdit" name="textEditInputs">
+            <property name="readOnly">
+             <bool>false</bool>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QGroupBox" name="groupBoxChannelSettings">
+         <property name="title">
+          <string>Settings</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_12">
+          <item row="0" column="0" colspan="2">
+           <layout class="QGridLayout" name="gridLayout_10">
+            <item row="0" column="0">
+             <widget class="QRadioButton" name="radioButtonSNOC">
+              <property name="text">
+               <string>S-&gt;N-&gt;O-&gt;C</string>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroupChannel</string>
+              </attribute>
+             </widget>
+            </item>
+            <item row="0" column="1">
+             <widget class="QRadioButton" name="radioButtonNSOC">
+              <property name="text">
+               <string>N-&gt;S-&gt;O-&gt;C</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroupChannel</string>
+              </attribute>
+             </widget>
+            </item>
+            <item row="1" column="0">
+             <widget class="QRadioButton" name="radioButtonONSC">
+              <property name="text">
+               <string>O-&gt;N-&gt;S-&gt;C</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroupChannel</string>
+              </attribute>
+             </widget>
+            </item>
+            <item row="1" column="1">
+             <widget class="QRadioButton" name="radioButtonNOSC">
+              <property name="text">
+               <string>N-&gt;O-&gt;S-&gt;C</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroupChannel</string>
+              </attribute>
+             </widget>
+            </item>
+            <item row="2" column="0">
+             <widget class="QRadioButton" name="radioButtonSNCO">
+              <property name="text">
+               <string>S-&gt;N-&gt;C-&gt;O</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroupChannel</string>
+              </attribute>
+             </widget>
+            </item>
+            <item row="2" column="1">
+             <widget class="QRadioButton" name="radioButtonNSCO">
+              <property name="text">
+               <string>N-&gt;S-&gt;C-&gt;O</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroupChannel</string>
+              </attribute>
+             </widget>
+            </item>
+            <item row="3" column="0">
+             <widget class="QRadioButton" name="radioButtonCNSO">
+              <property name="text">
+               <string>C-&gt;N-&gt;S-&gt;O</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroupChannel</string>
+              </attribute>
+             </widget>
+            </item>
+            <item row="3" column="1">
+             <widget class="QRadioButton" name="radioButtonNCSO">
+              <property name="text">
+               <string>N-&gt;C-&gt;S-&gt;O</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroupChannel</string>
+              </attribute>
+             </widget>
+            </item>
+            <item row="4" column="0">
+             <widget class="QRadioButton" name="radioButtonONCS">
+              <property name="text">
+               <string>O-&gt;N-&gt;C-&gt;S</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroupChannel</string>
+              </attribute>
+             </widget>
+            </item>
+            <item row="4" column="1">
+             <widget class="QRadioButton" name="radioButtonNOCS">
+              <property name="text">
+               <string>N-&gt;O-&gt;C-&gt;S</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroupChannel</string>
+              </attribute>
+             </widget>
+            </item>
+            <item row="5" column="0">
+             <widget class="QRadioButton" name="radioButtonCNOS">
+              <property name="text">
+               <string>C-&gt;N-&gt;O-&gt;S</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroupChannel</string>
+              </attribute>
+             </widget>
+            </item>
+            <item row="5" column="1">
+             <widget class="QRadioButton" name="radioButtonNCOS">
+              <property name="text">
+               <string>N-&gt;C-&gt;O-&gt;S</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">buttonGroupChannel</string>
+              </attribute>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item row="1" column="0">
+           <widget class="QPushButton" name="pushButtonChannelAdd">
+            <property name="text">
+             <string>Add</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QPushButton" name="pushButtonChannelRemove">
+            <property name="text">
+             <string>Remove</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="1" column="0" colspan="3">
+        <widget class="QProgressBar" name="progressBarChannel">
+         <property name="value">
+          <number>0</number>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>TextBox</class>
+   <extends>QLineEdit</extends>
+   <header>Form/Controls/TextBox.hpp</header>
+  </customwidget>
+ </customwidgets>
+ <tabstops>
+  <tabstop>tabWidget</tabstop>
+  <tabstop>pushButtonGalesSearch</tabstop>
+  <tabstop>pushButtonGalesCancel</tabstop>
+  <tabstop>pushButtonGalesReset</tabstop>
+  <tabstop>comboBoxGalesYourLead</tabstop>
+  <tabstop>textBoxGalesTSV</tabstop>
+  <tabstop>comboBoxGalesEnemyLead</tabstop>
+  <tabstop>textBoxGalesTopLeft</tabstop>
+  <tabstop>textBoxGalesBottomLeft</tabstop>
+  <tabstop>textBoxGalesTopRight</tabstop>
+  <tabstop>textBoxGalesBottomRight</tabstop>
+  <tabstop>pushButtonColoSearch</tabstop>
+  <tabstop>pushButtonColoCancel</tabstop>
+  <tabstop>pushButtonColoReset</tabstop>
+  <tabstop>comboBoxColoTrainer</tabstop>
+  <tabstop>comboBoxColoPartyLead</tabstop>
+  <tabstop>pushButtonChannelSearch</tabstop>
+  <tabstop>pushButtonChannelCancel</tabstop>
+  <tabstop>radioButtonSNOC</tabstop>
+  <tabstop>radioButtonONSC</tabstop>
+  <tabstop>radioButtonSNCO</tabstop>
+  <tabstop>radioButtonCNSO</tabstop>
+  <tabstop>radioButtonONCS</tabstop>
+  <tabstop>radioButtonCNOS</tabstop>
+  <tabstop>radioButtonNSOC</tabstop>
+  <tabstop>radioButtonNOSC</tabstop>
+  <tabstop>radioButtonNSCO</tabstop>
+  <tabstop>radioButtonNCSO</tabstop>
+  <tabstop>radioButtonNOCS</tabstop>
+  <tabstop>radioButtonNCOS</tabstop>
+  <tabstop>pushButtonChannelAdd</tabstop>
+  <tabstop>pushButtonChannelRemove</tabstop>
+  <tabstop>textEditInputs</tabstop>
+ </tabstops>
+ <resources/>
+ <connections/>
+ <buttongroups>
+  <buttongroup name="buttonGroupChannel"/>
+ </buttongroups>
+</ui>

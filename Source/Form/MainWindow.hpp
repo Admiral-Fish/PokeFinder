@@ -127,6 +127,10 @@ private slots:
      * @brief Opens the GameCube window
      */
     void openGameCube();
+    /**
+     * @brief Opens the GameCube Seed Finder window
+     */
+    void openGameCubeSeedFinder();
 
     /**
      * @brief Opens the Gen 3 Profile Manager window
@@ -144,9 +148,7 @@ private slots:
     void openWild3();
 
     // void openEgg3();
-    // void openGameCubeSeedFinder();
     // void openIVtoPID();
-    // void openJirachiPattern();
     // void openPIDtoIV();
     // void openPokeSpot();
     // void openSeedtoTime3();

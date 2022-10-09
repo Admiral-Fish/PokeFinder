@@ -42,6 +42,12 @@ add_library(PokeFinderCore STATIC
     Gen3/Generators/WildGenerator3.cpp
     Gen3/Generators/WildGenerator3.hpp
     Gen3/LockInfo.hpp
+    Gen3/Searchers/ChannelSeedSearcher.cpp
+    Gen3/Searchers/ChannelSeedSearcher.hpp
+    Gen3/Searchers/ColoSeedSearcher.cpp
+    Gen3/Searchers/ColoSeedSearcher.hpp
+    Gen3/Searchers/GalesSeedSearcher.cpp
+    Gen3/Searchers/GalesSeedSearcher.hpp
     Gen3/Searchers/GameCubeSearcher.cpp
     Gen3/Searchers/GameCubeSearcher.hpp
     Gen3/Searchers/StaticSearcher3.cpp
