@@ -321,7 +321,7 @@ void GameCubeSeedFinder::coloSearch()
     QThread *thread;
     if (coloRound == 1)
     {
-        ui->progressBarColo->setRange(0, 0x20000000);
+        ui->progressBarColo->setRange(0, 0x10000);
         thread = QThread::create([=] { searcher->startSearch(threads); });
     }
     else
@@ -446,7 +446,7 @@ void GameCubeSeedFinder::galesSearch()
     QThread *thread;
     if (galesRound == 1)
     {
-        ui->progressBarGales->setRange(0, 0x33330000);
+        ui->progressBarGales->setRange(0, 0x10000);
         thread = QThread::create([=] { searcher->startSearch(threads); });
     }
     else

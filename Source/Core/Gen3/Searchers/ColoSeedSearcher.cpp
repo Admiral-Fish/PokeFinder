@@ -153,9 +153,9 @@ void ColoSeedSearcher::generatePokemon(XDRNG &rng, u16 tsv, u8 nature, u8 gender
 void ColoSeedSearcher::search(u32 start, u32 end)
 {
     std::vector<u32> seeds;
-    for (u32 low = start; low < end; low++)
+    for (u32 low = start; low < end; low++, progress++)
     {
-        for (u32 high = criteria.lead; high < 0x10000; high += 8, progress++)
+        for (u32 high = criteria.lead; high < 0x10000; high += 8)
         {
             if (!searching)
             {

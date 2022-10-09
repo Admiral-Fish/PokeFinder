@@ -184,9 +184,9 @@ void GalesSeedSearcher::generatePokemon(XDRNG &rng) const
 void GalesSeedSearcher::search(u32 start, u32 end)
 {
     std::vector<u32> seeds;
-    for (u32 low = start; low < end; low++)
+    for (u32 low = start; low < end; low++, progress++)
     {
-        for (u32 high = criteria.playerIndex; high < 0x10000; high += 5, progress++)
+        for (u32 high = criteria.playerIndex; high < 0x10000; high += 5)
         {
             if (!searching)
             {
