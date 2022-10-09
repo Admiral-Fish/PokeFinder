@@ -26,6 +26,32 @@
 
 constexpr u8 ivOrder[6] = { 0, 1, 2, 5, 3, 4 };
 
+/**
+ * @brief Calculates the stat value
+ *
+ * @param statIndex Pokemon stat index
+ * @param baseStat Pokemon stat
+ * @param iv IV value
+ * @param level Pokemon level
+ * @param nature Pokemon nature
+ *
+ * @return Calculated stat
+ *
+ */
+static u16 calculateStat(u8 statIndex, u16 baseStat, u8 iv, u8 level, u8 nature)
+{
+    u16 stat = ((2 * baseStat + iv) * level) / 100;
+    if (statIndex == 0)
+    {
+        stat += level + 10;
+    }
+    else
+    {
+        stat = Nature::computeStat(stat + 5, nature, statIndex);
+    }
+    return stat;
+}
+
 namespace
 {
     /**
@@ -49,16 +75,7 @@ namespace
         {
             for (u8 iv = 0; iv < 32; iv++)
             {
-                u16 stat = ((2 * baseStats[i] + iv) * level) / 100;
-                if (i == 0)
-                {
-                    stat += level + 10;
-                }
-                else
-                {
-                    stat = Nature::computeStat(stat + 5, nature, i);
-                }
-
+                u16 stat = calculateStat(i, baseStats[i], iv, level, nature);
                 if (stat == stats[i])
                 {
                     minIVs[i] = std::min(iv, minIVs[i]);
@@ -135,30 +152,52 @@ std::array<std::vector<u8>, 6> IVChecker::calculateIVRange(const std::array<u8, 
 
     if (hiddenPower != 255)
     {
-        std::vector<std::set<u8>> temp(6);
-        for (u8 hp : ivs[0])
+        std::array<std::vector<u8>, 6> possibility;
+        for (int i = 0; i < 6; i++)
         {
-            for (u8 atk : ivs[1])
+            if (std::find_if(ivs[i].begin(), ivs[i].end(), [](u8 iv) { return (iv % 2) == 0; }) != ivs[i].end())
             {
-                for (u8 def : ivs[2])
+                possibility[i].emplace_back(0);
+            }
+            if (std::find_if(ivs[i].begin(), ivs[i].end(), [](u8 iv) { return (iv % 2) == 1; }) != ivs[i].end())
+            {
+                possibility[i].emplace_back(1);
+            }
+        }
+
+        std::array<std::vector<u8>, 6> temp;
+        for (u8 hp : possibility[0])
+        {
+            u8 hpVal = hp;
+            for (u8 atk : possibility[1])
+            {
+                u8 atkVal = hpVal + 2 * (atk);
+                for (u8 def : possibility[2])
                 {
-                    for (u8 spa : ivs[3])
+                    u8 defVal = atkVal + 4 * (def);
+                    for (u8 spa : possibility[3])
                     {
-                        for (u8 spd : ivs[4])
+                        u8 spaVal = defVal + 16 * (spa);
+                        for (u8 spd : possibility[4])
                         {
-                            for (u8 spe : ivs[5])
+                            u8 spdVal = spaVal + 32 * (spd);
+                            for (u8 spe : possibility[5])
                             {
-                                u8 hpType
-                                    = ((((hp & 1) + 2 * (atk & 1) + 4 * (def & 1) + 8 * (spe & 1) + 16 * (spa & 1) + 32 * (spd & 1)) * 15)
-                                       / 63);
-                                if (hpType == hiddenPower)
+                                u8 type = ((spdVal + 8 * (spe)) * 15) / 63;
+                                if (type == hiddenPower)
                                 {
-                                    temp[0].insert(hp);
-                                    temp[1].insert(atk);
-                                    temp[2].insert(def);
-                                    temp[3].insert(spa);
-                                    temp[4].insert(spd);
-                                    temp[5].insert(spe);
+                                    std::copy_if(ivs[0].begin(), ivs[0].end(), std::back_inserter(temp[0]),
+                                                 [hp](u8 iv) { return (iv % 2) == hp; });
+                                    std::copy_if(ivs[1].begin(), ivs[1].end(), std::back_inserter(temp[1]),
+                                                 [atk](u8 iv) { return (iv % 2) == atk; });
+                                    std::copy_if(ivs[2].begin(), ivs[2].end(), std::back_inserter(temp[2]),
+                                                 [def](u8 iv) { return (iv % 2) == def; });
+                                    std::copy_if(ivs[3].begin(), ivs[3].end(), std::back_inserter(temp[3]),
+                                                 [spa](u8 iv) { return (iv % 2) == spa; });
+                                    std::copy_if(ivs[4].begin(), ivs[4].end(), std::back_inserter(temp[4]),
+                                                 [spd](u8 iv) { return (iv % 2) == spd; });
+                                    std::copy_if(ivs[5].begin(), ivs[5].end(), std::back_inserter(temp[5]),
+                                                 [spe](u8 iv) { return (iv % 2) == spe; });
                                 }
                             }
                         }
@@ -169,9 +208,45 @@ std::array<std::vector<u8>, 6> IVChecker::calculateIVRange(const std::array<u8, 
 
         for (size_t i = 0; i < 6; i++)
         {
-            ivs[i].assign(temp[i].begin(), temp[i].end());
+            std::sort(temp[i].begin(), temp[i].end());
+            temp[i].erase(std::unique(temp[i].begin(), temp[i].end()), temp[i].end());
+            ivs[i] = temp[i];
         }
     }
 
     return ivs;
+}
+
+std::array<u8, 6> IVChecker::nextLevel(const std::array<u8, 6> &baseStats, const std::array<std::vector<u8>, 6> &ivs, u8 level, u8 nature)
+{
+    std::array<u8, 6> levels;
+
+    for (int i = 0; i < 6; i++)
+    {
+        const std::vector<u8> &statIVs = ivs[i];
+        if (statIVs.size() > 1)
+        {
+            u8 maxLevel = 0;
+            for (u8 l = level; maxLevel == 0 && l <= 100; l++)
+            {
+                for (size_t j = 1; j < statIVs.size(); j++)
+                {
+                    u16 previous = calculateStat(i, baseStats[i], statIVs[j - 1], l, nature);
+                    u16 current = calculateStat(i, baseStats[i], statIVs[j], l, nature);
+                    if (previous < current)
+                    {
+                        maxLevel = l;
+                        break;
+                    }
+                }
+            }
+            levels[i] = maxLevel;
+        }
+        else
+        {
+            levels[i] = level;
+        }
+    }
+
+    return levels;
 }

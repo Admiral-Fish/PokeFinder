@@ -43,6 +43,18 @@ namespace IVChecker
      */
     std::array<std::vector<u8>, 6> calculateIVRange(const std::array<u8, 6> &baseStats, const std::vector<std::array<u16, 6>> &stats,
                                                     const std::vector<u8> &level, u8 nature, u8 characteristic, u8 hiddenPower);
+
+    /**
+     * @brief nextLevel
+     *
+     * @param baseStats Pokemon base stats
+     * @param ivs Pokemon candidate IVs
+     * @param level Pokemon level
+     * @param nature Pokemon nature
+     *
+     * @return Next level that will narrow down \p ivs more
+     */
+    std::array<u8, 6> nextLevel(const std::array<u8, 6> &baseStats, const std::array<std::vector<u8>, 6> &ivs, u8 level, u8 nature);
 };
 
 #endif // IVCHECKER_HPP

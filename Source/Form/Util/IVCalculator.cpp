@@ -219,6 +219,15 @@ void IVCalculator::findIVs()
     displayIVs(ui->labelSpDIVValue, ivs[4]);
     displayIVs(ui->labelSpeIVValue, ivs[5]);
 
+    auto nextLevel = IVChecker::nextLevel(info->getStats(), ivs, levels.back(), nature);
+    ui->labelNextLevelValue->setText(QString("%1, %2, %3, %4, %5, %6")
+                                         .arg(nextLevel[0])
+                                         .arg(nextLevel[1])
+                                         .arg(nextLevel[2])
+                                         .arg(nextLevel[3])
+                                         .arg(nextLevel[4])
+                                         .arg(nextLevel[5]));
+
     emit ivsCalculated(ivs);
 }
 
