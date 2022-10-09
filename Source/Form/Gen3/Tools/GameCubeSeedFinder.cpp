@@ -214,7 +214,7 @@ void GameCubeSeedFinder::channelSearch()
     connect(thread, &QThread::finished, thread, &QThread::deleteLater);
 
     auto *timer = new QTimer();
-    connect(timer, &QTimer::timeout, this, [=] { updateChannelProgress(searcher->getProgress()); });
+    timer->callOnTimeout(this, [=] { updateChannelProgress(searcher->getProgress()); });
     connect(thread, &QThread::finished, timer, &QTimer::stop);
     connect(thread, &QThread::finished, timer, &QTimer::deleteLater);
     connect(timer, &QTimer::destroyed, this, [=] {
@@ -333,7 +333,7 @@ void GameCubeSeedFinder::coloSearch()
     connect(thread, &QThread::finished, thread, &QThread::deleteLater);
 
     auto *timer = new QTimer();
-    connect(timer, &QTimer::timeout, this, [=] { updateColoProgress(searcher->getProgress()); });
+    timer->callOnTimeout(this, [=] { updateColoProgress(searcher->getProgress()); });
     connect(thread, &QThread::finished, timer, &QTimer::stop);
     connect(thread, &QThread::finished, timer, &QTimer::deleteLater);
     connect(timer, &QTimer::destroyed, this, [=] {
@@ -458,7 +458,7 @@ void GameCubeSeedFinder::galesSearch()
     connect(thread, &QThread::finished, thread, &QThread::deleteLater);
 
     auto *timer = new QTimer();
-    connect(timer, &QTimer::timeout, this, [=] { updateGalesProgress(searcher->getProgress()); });
+    timer->callOnTimeout(this, [=] { updateGalesProgress(searcher->getProgress()); });
     connect(thread, &QThread::finished, timer, &QTimer::stop);
     connect(thread, &QThread::finished, timer, &QTimer::deleteLater);
     connect(timer, &QTimer::destroyed, this, [=] {
