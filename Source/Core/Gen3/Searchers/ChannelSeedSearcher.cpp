@@ -21,7 +21,7 @@
 #include <algorithm>
 #include <future>
 
-ChannelSeedSearcher::ChannelSeedSearcher(const std::vector<u16> &criteria) : criteria(criteria), progress(0), searching(false)
+ChannelSeedSearcher::ChannelSeedSearcher(const std::vector<u8> &criteria) : criteria(criteria), progress(0), searching(false)
 {
 }
 
@@ -93,7 +93,7 @@ void ChannelSeedSearcher::search(u32 start, u32 end)
 
 bool ChannelSeedSearcher::searchSeed(XDRNG &rng) const
 {
-    for (u32 compare : criteria)
+    for (u8 compare : criteria)
     {
         u8 mask = 0;
         u8 shift = 0;

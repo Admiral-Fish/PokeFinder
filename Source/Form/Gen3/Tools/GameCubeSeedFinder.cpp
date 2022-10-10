@@ -197,7 +197,7 @@ void GameCubeSeedFinder::channelSearch()
         return;
     }
 
-    std::vector<u16> criteria;
+    std::vector<u8> criteria;
     std::transform(inputs.begin(), inputs.end(), std::back_inserter(criteria), [](const QString &input) { return patterns.at(input); });
 
     ui->pushButtonChannelSearch->setEnabled(false);
@@ -312,22 +312,22 @@ void GameCubeSeedFinder::coloSearch()
 
     auto *searcher = new ColoSeedSearcher({ partyLead, trainer });
 
-    QSettings setting;
-    int threads = setting.value("settings/threads", QThread::idealThreadCount()).toInt();
-
     ui->pushButtonColoSearch->setEnabled(false);
     ui->pushButtonColoCancel->setEnabled(true);
 
     QThread *thread;
     if (coloRound == 1)
     {
+        QSettings setting;
+        int threads = setting.value("settings/threads", QThread::idealThreadCount()).toInt();
+
         ui->progressBarColo->setRange(0, 0x10000);
         thread = QThread::create([=] { searcher->startSearch(threads); });
     }
     else
     {
         ui->progressBarColo->setRange(0, coloSeeds.size());
-        thread = QThread::create([=] { searcher->startSearch(threads, coloSeeds); });
+        thread = QThread::create([=] { searcher->startSearch(coloSeeds); });
     }
     connect(ui->pushButtonColoCancel, &QPushButton::clicked, [=] { searcher->cancelSearch(); });
     connect(thread, &QThread::finished, thread, &QThread::deleteLater);
@@ -440,19 +440,19 @@ void GameCubeSeedFinder::galesSearch()
     GalesCriteria criteria = { { enemyHP1, enemyHP2 }, { playerHP1, playerHP2 }, enemyIndex, playerIndex };
     auto *searcher = new GalesSeedSearcher(criteria, tsv);
 
-    QSettings setting;
-    int threads = setting.value("settings/threads", QThread::idealThreadCount()).toInt();
-
     QThread *thread;
     if (galesRound == 1)
     {
+        QSettings setting;
+        int threads = setting.value("settings/threads", QThread::idealThreadCount()).toInt();
+
         ui->progressBarGales->setRange(0, 0x10000);
         thread = QThread::create([=] { searcher->startSearch(threads); });
     }
     else
     {
         ui->progressBarGales->setRange(0, galeSeeds.size());
-        thread = QThread::create([=] { searcher->startSearch(threads, galeSeeds); });
+        thread = QThread::create([=] { searcher->startSearch(galeSeeds); });
     }
     connect(ui->pushButtonGalesCancel, &QPushButton::clicked, [=] { searcher->cancelSearch(); });
     connect(thread, &QThread::finished, thread, &QThread::deleteLater);

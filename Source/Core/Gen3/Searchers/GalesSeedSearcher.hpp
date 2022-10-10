@@ -75,10 +75,9 @@ public:
     /**
      * @brief Starts the search
      *
-     * @param threads Number of threads to search with
      * @param seeds Candidiate PRNG states to search from
      */
-    void startSearch(int threads, const std::vector<u32> &seeds);
+    void startSearch(const std::vector<u32> &seeds);
 
 private:
     std::mutex mutex;
@@ -101,8 +100,10 @@ private:
      * @brief Generates a pokemon
      *
      * @param rng Starting PRNG state
+     *
+     * @return Pokemon HP IV
      */
-    void generatePokemon(XDRNG &rng) const;
+    u8 generatePokemon(XDRNG &rng) const;
 
     /**
      * @brief Searches over a range of PRNG states for valid candidate seeds
@@ -111,14 +112,6 @@ private:
      * @param end Upper PRNG state
      */
     void search(u32 start, u32 end);
-
-    /**
-     * @brief Searches over a range of PRNG states for valid candidate seeds
-     *
-     * @param start Lower PRNG state iterator
-     * @param end Upper PRNG state iterator
-     */
-    void search(const std::vector<u32>::const_iterator &start, const std::vector<u32>::const_iterator &end);
 
     /**
      * @brief Determines if PRNG state is valid for the criteria

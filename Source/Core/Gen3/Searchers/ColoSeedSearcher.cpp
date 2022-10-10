@@ -83,35 +83,24 @@ void ColoSeedSearcher::startSearch(int threads)
     results.erase(std::unique(results.begin(), results.end()), results.end());
 }
 
-void ColoSeedSearcher::startSearch(int threads, const std::vector<u32> &seeds)
+void ColoSeedSearcher::startSearch(const std::vector<u32> &seeds)
 {
     searching = true;
 
-    if (seeds.size() < threads)
+    for (u32 seed : seeds)
     {
-        threads = seeds.size();
-    }
-
-    std::vector<std::future<void>> threadContainer;
-
-    size_t split = seeds.size() / threads;
-    size_t start = 0;
-    for (int i = 0; i < threads; i++)
-    {
-        if (i == threads - 1)
+        if (!searching)
         {
-            threadContainer.emplace_back(std::async(std::launch::async, [=] { search(seeds.cbegin() + start, seeds.cend()); }));
+            return;
         }
-        else
-        {
-            threadContainer.emplace_back(std::async(std::launch::async, [=] { search(seeds.cbegin() + start, seeds.cbegin() + start + split); }));
-        }
-        start += split;
-    }
 
-    for (int i = 0; i < threads; i++)
-    {
-        threadContainer[i].wait();
+        XDRNG rng(seed);
+        if (searchSeed(rng))
+        {
+            results.emplace_back(rng.getSeed());
+        }
+
+        progress++;
     }
 
     std::sort(results.begin(), results.end());
@@ -143,7 +132,7 @@ void ColoSeedSearcher::generatePokemon(XDRNG &rng, u16 tsv, u8 nature, u8 gender
             continue;
         }
 
-        if ((high ^ low ^ tsv) < 8)
+        if ((high ^ low ^ tsv) >= 8)
         {
             break;
         }
@@ -174,26 +163,6 @@ void ColoSeedSearcher::search(u32 start, u32 end)
     results.insert(results.end(), seeds.begin(), seeds.end());
 }
 
-void ColoSeedSearcher::search(const std::vector<u32>::const_iterator &start, const std::vector<u32>::const_iterator &end)
-{
-    std::vector<u32> seeds;
-    for (auto it = start; it != end; it++, progress++)
-    {
-        if (!searching)
-        {
-            return;
-        }
-
-        XDRNG rng(*it);
-        if (searchSeed(rng))
-        {
-            seeds.emplace_back(rng.getSeed());
-        }
-    }
-
-    std::lock_guard<std::mutex> lock(mutex);
-    results.insert(results.end(), seeds.begin(), seeds.end());
-}
 
 bool ColoSeedSearcher::searchSeed(XDRNG &rng) const
 {

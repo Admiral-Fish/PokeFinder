@@ -35,7 +35,7 @@ public:
      *
      * @param criteria Filtering data
      */
-    explicit ChannelSeedSearcher(const std::vector<u16> &criteria);
+    ChannelSeedSearcher(const std::vector<u8> &criteria);
 
     /**
      * @brief Cancels the running search
@@ -65,7 +65,7 @@ public:
 
 private:
     std::mutex mutex;
-    std::vector<u16> criteria;
+    std::vector<u8> criteria;
     std::vector<u32> results;
     std::atomic<u32> progress;
     bool searching;
