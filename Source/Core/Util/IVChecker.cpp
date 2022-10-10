@@ -141,47 +141,47 @@ std::array<std::vector<u8>, 6> IVChecker::calculateIVRange(const std::array<u8, 
         }
         else
         {
-            std::array<std::vector<u8>, 6> temp;
             for (size_t j = 0; j < 6; j++)
             {
-                std::set_intersection(ivs[j].begin(), ivs[j].end(), current[j].begin(), current[j].end(), std::back_inserter(temp[j]));
+                std::vector<u8> temp;
+                std::set_intersection(ivs[j].begin(), ivs[j].end(), current[j].begin(), current[j].end(), std::back_inserter(temp));
+                ivs[j] = temp;
             }
-            ivs = temp;
         }
     }
 
     if (hiddenPower != 255)
     {
-        std::array<std::vector<u8>, 6> possibility;
+        std::array<std::vector<u8>, 6> possible;
         for (int i = 0; i < 6; i++)
         {
             if (std::find_if(ivs[i].begin(), ivs[i].end(), [](u8 iv) { return (iv % 2) == 0; }) != ivs[i].end())
             {
-                possibility[i].emplace_back(0);
+                possible[i].emplace_back(0);
             }
             if (std::find_if(ivs[i].begin(), ivs[i].end(), [](u8 iv) { return (iv % 2) == 1; }) != ivs[i].end())
             {
-                possibility[i].emplace_back(1);
+                possible[i].emplace_back(1);
             }
         }
 
         std::array<std::vector<u8>, 6> temp;
-        for (u8 hp : possibility[0])
+        for (u8 hp : possible[0])
         {
             u8 hpVal = hp;
-            for (u8 atk : possibility[1])
+            for (u8 atk : possible[1])
             {
                 u8 atkVal = hpVal + 2 * (atk);
-                for (u8 def : possibility[2])
+                for (u8 def : possible[2])
                 {
                     u8 defVal = atkVal + 4 * (def);
-                    for (u8 spa : possibility[3])
+                    for (u8 spa : possible[3])
                     {
                         u8 spaVal = defVal + 16 * (spa);
-                        for (u8 spd : possibility[4])
+                        for (u8 spd : possible[4])
                         {
                             u8 spdVal = spaVal + 32 * (spd);
-                            for (u8 spe : possibility[5])
+                            for (u8 spe : possible[5])
                             {
                                 u8 type = ((spdVal + 8 * (spe)) * 15) / 63;
                                 if (type == hiddenPower)
@@ -220,31 +220,28 @@ std::array<std::vector<u8>, 6> IVChecker::calculateIVRange(const std::array<u8, 
 std::array<u8, 6> IVChecker::nextLevel(const std::array<u8, 6> &baseStats, const std::array<std::vector<u8>, 6> &ivs, u8 level, u8 nature)
 {
     std::array<u8, 6> levels;
+    std::memset(levels.data(), level, sizeof(levels));
 
     for (int i = 0; i < 6; i++)
     {
         const std::vector<u8> &statIVs = ivs[i];
-        if (statIVs.size() > 1)
+        if (statIVs.size() < 2)
         {
-            u8 maxLevel = 0;
-            for (u8 l = level; maxLevel == 0 && l <= 100; l++)
+            continue;
+        }
+
+        for (u8 l = level + 1; levels[i] == level && l <= 100; l++)
+        {
+            for (size_t j = 1; j < statIVs.size(); j++)
             {
-                for (size_t j = 1; j < statIVs.size(); j++)
+                u16 previous = calculateStat(i, baseStats[i], statIVs[j - 1], l, nature);
+                u16 current = calculateStat(i, baseStats[i], statIVs[j], l, nature);
+                if (previous < current)
                 {
-                    u16 previous = calculateStat(i, baseStats[i], statIVs[j - 1], l, nature);
-                    u16 current = calculateStat(i, baseStats[i], statIVs[j], l, nature);
-                    if (previous < current)
-                    {
-                        maxLevel = l;
-                        break;
-                    }
+                    levels[i] = l;
+                    break;
                 }
             }
-            levels[i] = maxLevel;
-        }
-        else
-        {
-            levels[i] = level;
         }
     }
 
