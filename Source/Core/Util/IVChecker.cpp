@@ -20,9 +20,8 @@
 #include "IVChecker.hpp"
 #include <Core/Util/Nature.hpp>
 #include <algorithm>
-#include <cmath>
+#include <cstring>
 #include <iterator>
-#include <set>
 
 constexpr u8 ivOrder[6] = { 0, 1, 2, 5, 3, 4 };
 
