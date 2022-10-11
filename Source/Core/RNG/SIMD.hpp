@@ -22,11 +22,11 @@
 
 #include <Core/Global.hpp>
 
-#if (defined(__i386__) || defined(_M_IX86) || defined(__x86_64__) || defined(_M_AMD64))
+#if SIMD && (defined(__i386__) || defined(_M_IX86) || defined(__x86_64__) || defined(_M_AMD64))
 #define SIMD_X86
 #include <smmintrin.h>
 using vuint32x4 = __m128i;
-#elif (defined(__arm__) || defined(_M_ARM) || defined(__aarch64__))
+#elif SIMD && (defined(__arm__) || defined(_M_ARM) || defined(__aarch64__))
 #define SIMD_ARM
 #include <arm_neon.h>
 using vuint32x4 = uint32x4_t;

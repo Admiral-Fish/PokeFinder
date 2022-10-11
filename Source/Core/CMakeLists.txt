@@ -2,12 +2,17 @@ project(PokeFinderCore)
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+option(SIMD "Enable SIMD" ON)
+
+if (SIMD)
+    add_definitions(-DSIMD)
+endif ()
 
 if (MSVC)
     add_compile_options(/Zc:inline)
 endif ()
 
-if (UNIX)
+if (UNIX AND SIMD)
     include(GetTargetArch)
     get_target_arch(ARCH)
     if ((ARCH STREQUAL "x86_64") OR (ARCH STREQUAL "i686"))

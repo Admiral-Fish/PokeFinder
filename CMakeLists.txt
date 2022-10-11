@@ -4,6 +4,8 @@ project(PokeFinder)
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/CMake")
 
+option(TEST "Run Tests" OFF)
+
 if (TEST)
     add_compile_definitions(TEST)
     enable_testing()
