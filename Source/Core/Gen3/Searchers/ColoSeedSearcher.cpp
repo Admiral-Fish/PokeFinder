@@ -185,7 +185,7 @@ bool ColoSeedSearcher::searchSeed(XDRNG &rng) const
     }
 
     u8 playerName = rng.nextUShort(3);
-    if (playerName != criteria.lead)
+    if (playerName != criteria.trainer)
     {
         return false;
     }
