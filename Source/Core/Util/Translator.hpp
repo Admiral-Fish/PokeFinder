@@ -21,6 +21,7 @@
 #define TRANSLATOR_HPP
 
 #include <Core/Global.hpp>
+#include <array>
 #include <string>
 #include <vector>
 
