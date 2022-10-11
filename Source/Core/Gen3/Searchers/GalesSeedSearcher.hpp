@@ -21,6 +21,7 @@
 #define GALESSEEDSEARCHER_HPP
 
 #include <Core/RNG/LCRNG.hpp>
+#include <atomic>
 #include <mutex>
 #include <vector>
 
