@@ -26,7 +26,7 @@ constexpr u16 enemyHPStat[5][2] = { { 290, 310 }, { 290, 270 }, { 290, 250 }, { 
 
 constexpr u16 playerHPStat[5][2] = { { 322, 340 }, { 310, 290 }, { 210, 620 }, { 320, 230 }, { 310, 310 } };
 
-GalesSeedSearcher::GalesSeedSearcher(const GalesCriteria &criteria, u16 tsv) : progress(0), criteria(criteria), tsv(tsv), searching(false)
+GalesSeedSearcher::GalesSeedSearcher(const GalesCriteria &criteria) : progress(0), criteria(criteria), searching(false)
 {
 }
 
@@ -147,7 +147,7 @@ u8 GalesSeedSearcher::generateEVs(XDRNG &rng) const
     return evs[0];
 }
 
-u8 GalesSeedSearcher::generatePokemon(XDRNG &rng) const
+u8 GalesSeedSearcher::generatePokemon(XDRNG &rng, u16 tsv) const
 {
     // Temp PID
     rng.advance(2);
@@ -160,8 +160,8 @@ u8 GalesSeedSearcher::generatePokemon(XDRNG &rng) const
     u16 psv;
     do
     {
-        psv = (rng.nextUShort() ^ rng.nextUShort()) >> 3;
-    } while (psv == tsv);
+        psv = rng.nextUShort() ^ rng.nextUShort();
+    } while ((psv ^ tsv) < 8);
 
     return hp;
 }
@@ -206,10 +206,10 @@ bool GalesSeedSearcher::searchSeed(XDRNG &rng) const
     }
     rng.next();
 
-    rng.advance(2); // SID/TID
+    u16 tsv = rng.nextUShort() ^ rng.nextUShort();
     for (u8 i = 0; i < 2; i++)
     {
-        u8 hpIV = generatePokemon(rng);
+        u8 hpIV = generatePokemon(rng, tsv);
         u16 hp = (generateEVs(rng) >> 2) + hpIV + enemyHPStat[enemyIndex][i];
         if (hp != criteria.enemyHP[i])
         {
@@ -218,10 +218,10 @@ bool GalesSeedSearcher::searchSeed(XDRNG &rng) const
     }
     rng.next();
 
-    rng.advance(2); // SID/TID
+    tsv = rng.nextUShort() ^ rng.nextUShort();
     for (u8 i = 0; i < 2; i++)
     {
-        u8 hpIV = generatePokemon(rng);
+        u8 hpIV = generatePokemon(rng, tsv);
         u16 hp = (generateEVs(rng) >> 2) + hpIV + playerHPStat[playerIndex][i];
         if (hp != criteria.playerHP[i])
         {
@@ -241,10 +241,10 @@ bool GalesSeedSearcher::searchSeedSkip(XDRNG &rng) const
     }
     rng.next();
 
-    rng.advance(2); // SID/TID
+    u16 tsv = rng.nextUShort() ^ rng.nextUShort();
     for (u8 i = 0; i < 2; i++)
     {
-        u8 hpIV = generatePokemon(rng);
+        u8 hpIV = generatePokemon(rng, tsv);
         u16 hp = (generateEVs(rng) >> 2) + hpIV + enemyHPStat[enemyIndex + 5][i];
         if (hp != criteria.enemyHP[i])
         {
@@ -253,10 +253,10 @@ bool GalesSeedSearcher::searchSeedSkip(XDRNG &rng) const
     }
     rng.next();
 
-    rng.advance(2); // SID/TID
+    tsv = rng.nextUShort() ^ rng.nextUShort();
     for (u8 i = 0; i < 2; i++)
     {
-        u8 hpIV = generatePokemon(rng);
+        u8 hpIV = generatePokemon(rng, tsv);
         u16 hp = (generateEVs(rng) >> 2) + hpIV + playerHPStat[criteria.playerIndex][i];
         if (hp != criteria.playerHP[i])
         {

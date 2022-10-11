@@ -43,7 +43,6 @@ GameCubeSeedFinder::GameCubeSeedFinder(QWidget *parent) : QWidget(parent), ui(ne
     setAttribute(Qt::WA_QuitOnClose, false);
     setAttribute(Qt::WA_DeleteOnClose);
 
-    ui->textBoxGalesTSV->setValues(0, 8191, 4, 10);
     ui->textBoxGalesTopLeft->setValues(1, 714, 3, 10);
     ui->textBoxGalesBottomLeft->setValues(1, 714, 3, 10);
     ui->textBoxGalesTopRight->setValues(1, 714, 3, 10);
@@ -401,7 +400,6 @@ void GameCubeSeedFinder::galesSearch()
 
     u8 playerIndex = ui->comboBoxGalesYourLead->currentIndex();
     u8 enemyIndex = ui->comboBoxGalesEnemyLead->currentIndex();
-    u16 tsv = ui->textBoxGalesTSV->getUShort();
     u16 playerHP1 = ui->textBoxGalesTopLeft->getUShort();
     u16 playerHP2 = ui->textBoxGalesBottomLeft->getUShort();
     u16 enemyHP1 = ui->textBoxGalesTopRight->getUShort();
@@ -438,7 +436,7 @@ void GameCubeSeedFinder::galesSearch()
     ui->pushButtonGalesCancel->setEnabled(true);
 
     GalesCriteria criteria = { { enemyHP1, enemyHP2 }, { playerHP1, playerHP2 }, enemyIndex, playerIndex };
-    auto *searcher = new GalesSeedSearcher(criteria, tsv);
+    auto *searcher = new GalesSeedSearcher(criteria);
 
     QThread *thread;
     if (galesRound == 1)

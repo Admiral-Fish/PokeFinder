@@ -44,7 +44,7 @@ public:
      * @param criteria Filtering data
      * @param tsv Trainer shiny value
      */
-    GalesSeedSearcher(const GalesCriteria &criteria, u16 tsv);
+    GalesSeedSearcher(const GalesCriteria &criteria);
 
     /**
      * @brief Cancels the running search
@@ -84,7 +84,6 @@ private:
     std::vector<u32> results;
     std::atomic<u32> progress;
     GalesCriteria criteria;
-    u16 tsv;
     bool searching;
 
     /**
@@ -103,7 +102,7 @@ private:
      *
      * @return Pokemon HP IV
      */
-    u8 generatePokemon(XDRNG &rng) const;
+    u8 generatePokemon(XDRNG &rng, u16 tsv) const;
 
     /**
      * @brief Searches over a range of PRNG states for valid candidate seeds

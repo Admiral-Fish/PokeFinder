@@ -39,7 +39,7 @@
          <property name="title">
           <string>Settings</string>
          </property>
-         <layout class="QGridLayout" name="gridLayout_8">
+         <layout class="QGridLayout" name="gridLayout_5">
           <item row="0" column="0">
            <widget class="QLabel" name="labelGalesYourLead">
             <property name="text">
@@ -48,17 +48,27 @@
            </widget>
           </item>
           <item row="0" column="1">
-           <widget class="QComboBox" name="comboBoxGalesYourLead"/>
-          </item>
-          <item row="1" column="0">
-           <widget class="QLabel" name="labelGalesTSV">
+           <widget class="QLabel" name="labelGalesTopLeft">
             <property name="text">
-             <string>TSV</string>
+             <string>Top Left HP</string>
             </property>
            </widget>
           </item>
+          <item row="0" column="2">
+           <widget class="QLabel" name="labelGalesTopRight">
+            <property name="text">
+             <string>Top Right HP</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QComboBox" name="comboBoxGalesYourLead"/>
+          </item>
           <item row="1" column="1">
-           <widget class="TextBox" name="textBoxGalesTSV"/>
+           <widget class="TextBox" name="textBoxGalesTopLeft"/>
+          </item>
+          <item row="1" column="2">
+           <widget class="TextBox" name="textBoxGalesTopRight"/>
           </item>
           <item row="2" column="0">
            <widget class="QLabel" name="labelGalesEnemyLead">
@@ -68,51 +78,27 @@
            </widget>
           </item>
           <item row="2" column="1">
+           <widget class="QLabel" name="labelGalesBottomLeft">
+            <property name="text">
+             <string>Bottom Left HP</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="2">
+           <widget class="QLabel" name="labelGalesBottomRight">
+            <property name="text">
+             <string>Bottom Right HP</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0">
            <widget class="QComboBox" name="comboBoxGalesEnemyLead"/>
           </item>
-          <item row="0" column="2" rowspan="3">
-           <layout class="QGridLayout" name="gridLayout_5">
-            <item row="0" column="0">
-             <widget class="QLabel" name="labelGalesTopLeft">
-              <property name="text">
-               <string>Top Left HP</string>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="1">
-             <widget class="QLabel" name="labelGalesTopRight">
-              <property name="text">
-               <string>Top Right HP</string>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="0">
-             <widget class="TextBox" name="textBoxGalesTopLeft"/>
-            </item>
-            <item row="1" column="1">
-             <widget class="TextBox" name="textBoxGalesTopRight"/>
-            </item>
-            <item row="2" column="0">
-             <widget class="QLabel" name="labelGalesBottomLeft">
-              <property name="text">
-               <string>Bottom Left HP</string>
-              </property>
-             </widget>
-            </item>
-            <item row="2" column="1">
-             <widget class="QLabel" name="labelGalesBottomRight">
-              <property name="text">
-               <string>Bottom Right HP</string>
-              </property>
-             </widget>
-            </item>
-            <item row="3" column="0">
-             <widget class="TextBox" name="textBoxGalesBottomLeft"/>
-            </item>
-            <item row="3" column="1">
-             <widget class="TextBox" name="textBoxGalesBottomRight"/>
-            </item>
-           </layout>
+          <item row="3" column="1">
+           <widget class="TextBox" name="textBoxGalesBottomLeft"/>
+          </item>
+          <item row="3" column="2">
+           <widget class="TextBox" name="textBoxGalesBottomRight"/>
           </item>
          </layout>
         </widget>
@@ -520,7 +506,6 @@
   <tabstop>pushButtonGalesCancel</tabstop>
   <tabstop>pushButtonGalesReset</tabstop>
   <tabstop>comboBoxGalesYourLead</tabstop>
-  <tabstop>textBoxGalesTSV</tabstop>
   <tabstop>comboBoxGalesEnemyLead</tabstop>
   <tabstop>textBoxGalesTopLeft</tabstop>
   <tabstop>textBoxGalesBottomLeft</tabstop>
