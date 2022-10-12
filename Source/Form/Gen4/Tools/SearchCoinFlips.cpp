@@ -60,14 +60,14 @@ void SearchCoinFlips::flipsTextChanged(const QString &text)
     if (!text.isEmpty())
     {
         std::string result = text.toStdString();
-        result.erase(std::remove_if(result.begin(), result.end(), [](char c) { return c == ' ' || c == ','; }), result.end());
+        std::erase_if(result, [](char c) { return c == ' ' || c == ','; });
         int num = 0;
 
         possible.clear();
         for (const auto &dt : data)
         {
             std::string compare = dt.getSequence();
-            compare.erase(std::remove_if(compare.begin(), compare.end(), [](char c) { return c == ' ' || c == ','; }), compare.end());
+            std::erase_if(compare, [](char c) { return c == ' ' || c == ','; });
 
             bool pass = compare.find(result) != std::string::npos;
             possible.emplace_back(pass);

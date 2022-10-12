@@ -103,10 +103,11 @@ namespace
                 // Keep the highest value to filter with below
                 if ((i % 5) == result)
                 {
-                    possible[stat].emplace_back(i);
                     characteristicHigh = i;
                 }
             }
+
+            possible[stat].emplace_back(characteristicHigh);
         }
 
         for (u8 i : indexes)
