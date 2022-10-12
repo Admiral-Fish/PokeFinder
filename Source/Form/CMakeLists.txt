@@ -15,6 +15,10 @@ if (NOT EXISTS ${CMAKE_BINARY_DIR}/generated/version.h)
         OUTPUT_STRIP_TRAILING_WHITESPACE
     )
 
+    if (NOT "$ENV{APPVEYOR_REPO_BRANCH}" STREQUAL "")
+        set(GIT_BRANCH "$ENV{APPVEYOR_REPO_BRANCH}")
+    endif ()
+
     add_definitions("-DGIT_BRANCH=${GIT_BRANCH}")
     add_definitions("-DGIT_COMMIT=${GIT_COMMIT}")
 
