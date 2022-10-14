@@ -134,9 +134,17 @@ void TextBox::onTextEdited(QString string)
         string = string.toUpper();
         string.remove(filter);
 
+        // Remove any useless leading zeros
+        int count = 0;
+        while (string.size() > 1 && string[0] == '0')
+        {
+            string.remove(0, 1);
+            count++;
+        }
+
         int position = this->cursorPosition();
         this->setText(string);
-        this->setCursorPosition(position);
+        this->setCursorPosition(position - count);
     }
 }
 
