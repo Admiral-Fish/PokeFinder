@@ -121,11 +121,19 @@ void TextBox::onTextEdited(QString string)
     string = string.toUpper();
     string.remove(filter);
 
+    // Remove any useless leading zeros
+    int count = 0;
+    while (string.size() > 1 && string[0] == '0')
+    {
+        string.remove(0, 1);
+        count++;
+    }
+
     // Bound value
     u64 value = string.toULongLong(nullptr, base);
     value = qBound(minValue, value, maxValue);
 
     int position = this->cursorPosition();
     this->setText(QString::number(value, base));
-    this->setCursorPosition(position);
+    this->setCursorPosition(position - count);
 }
