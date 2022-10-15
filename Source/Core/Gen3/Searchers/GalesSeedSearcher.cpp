@@ -20,7 +20,6 @@
 #include "GalesSeedSearcher.hpp"
 #include <algorithm>
 #include <cstring>
-#include <future>
 
 constexpr u16 enemyHPStat[5][2] = { { 290, 310 }, { 290, 270 }, { 290, 250 }, { 320, 270 }, { 270, 230 } };
 
@@ -49,7 +48,7 @@ void GalesSeedSearcher::startSearch(int threads)
 {
     searching = true;
 
-    std::vector<std::future<void>> threadContainer;
+    std::vector<std::thread> threadContainer;
 
     u32 split = 0x10000 / threads;
     u32 start = 0;
@@ -57,18 +56,18 @@ void GalesSeedSearcher::startSearch(int threads)
     {
         if (i == threads - 1)
         {
-            threadContainer.emplace_back(std::async(std::launch::async, [=] { search(start, 0x10000); }));
+            threadContainer.emplace_back([=] { search(start, 0x10000); });
         }
         else
         {
-            threadContainer.emplace_back(std::async(std::launch::async, [=] { search(start, start + split); }));
+            threadContainer.emplace_back([=] { search(start, start + split); });
         }
         start += split;
     }
 
     for (int i = 0; i < threads; i++)
     {
-        threadContainer[i].wait();
+        threadContainer[i].join();
     }
 
     std::sort(results.begin(), results.end());

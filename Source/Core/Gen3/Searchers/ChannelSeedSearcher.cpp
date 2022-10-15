@@ -19,7 +19,6 @@
 
 #include "ChannelSeedSearcher.hpp"
 #include <algorithm>
-#include <future>
 
 ChannelSeedSearcher::ChannelSeedSearcher(const std::vector<u8> &criteria) : criteria(criteria), progress(0), searching(false)
 {
@@ -44,7 +43,7 @@ void ChannelSeedSearcher::startSearch(int threads)
 {
     searching = true;
 
-    std::vector<std::future<void>> threadContainer;
+    std::vector<std::thread> threadContainer;
 
     u32 split = 0xBFFFFFFE / threads;
     u32 start = 0x40000001;
@@ -52,18 +51,18 @@ void ChannelSeedSearcher::startSearch(int threads)
     {
         if (i == threads - 1)
         {
-            threadContainer.emplace_back(std::async(std::launch::async, [=] { search(start, 0xffffffff); }));
+            threadContainer.emplace_back([=] { search(start, 0xffffffff); });
         }
         else
         {
-            threadContainer.emplace_back(std::async(std::launch::async, [=] { search(start, start + split); }));
+            threadContainer.emplace_back([=] { search(start, start + split); });
         }
         start += split;
     }
 
     for (int i = 0; i < threads; i++)
     {
-        threadContainer[i].wait();
+        threadContainer[i].join();
     }
 
     std::sort(results.begin(), results.end());

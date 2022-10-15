@@ -19,7 +19,6 @@
 
 #include "ColoSeedSearcher.hpp"
 #include <algorithm>
-#include <future>
 
 constexpr u8 natures[8][6]
     = { { 0x16, 0x15, 0x0f, 0x13, 0x04, 0x04 }, { 0x0b, 0x08, 0x01, 0x10, 0x10, 0x0C }, { 0x02, 0x10, 0x0f, 0x12, 0x0f, 0x03 },
@@ -57,7 +56,7 @@ void ColoSeedSearcher::startSearch(int threads)
 {
     searching = true;
 
-    std::vector<std::future<void>> threadContainer;
+    std::vector<std::thread> threadContainer;
 
     u32 split = 0x10000 / threads;
     u32 start = 0;
@@ -65,18 +64,18 @@ void ColoSeedSearcher::startSearch(int threads)
     {
         if (i == threads - 1)
         {
-            threadContainer.emplace_back(std::async(std::launch::async, [=] { search(start, 0x10000); }));
+            threadContainer.emplace_back([=] { search(start, 0x10000); });
         }
         else
         {
-            threadContainer.emplace_back(std::async(std::launch::async, [=] { search(start, start + split); }));
+            threadContainer.emplace_back([=] { search(start, start + split); });
         }
         start += split;
     }
 
     for (int i = 0; i < threads; i++)
     {
-        threadContainer[i].wait();
+        threadContainer[i].join();
     }
 
     std::sort(results.begin(), results.end());
