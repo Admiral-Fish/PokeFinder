@@ -27,7 +27,7 @@
 #include <Core/Gen3/States/State3.hpp>
 #include <Core/Parents/PersonalInfo.hpp>
 #include <Core/RNG/LCRNG.hpp>
-#include <Core/RNG/RNGEuclidean.hpp>
+#include <Core/RNG/LCRNGReverse.hpp>
 
 static bool isShiny(u16 high, u16 low, u16 tsv)
 {
@@ -223,7 +223,7 @@ std::vector<SearcherState3> GameCubeSearcher::searchColoShadow(u8 hp, u8 atk, u8
     std::array<u8, 6> ivs = { hp, atk, def, spa, spd, spe };
 
     u32 seeds[6];
-    int size = RNGEuclidean::recoverXDRNGIV(hp, atk, def, spa, spd, spe, seeds);
+    int size = LCRNGReverse::recoverXDRNGIV(hp, atk, def, spa, spd, spe, seeds);
     for (int i = 0; i < size; i++)
     {
         XDRNG rng(seeds[i]);
@@ -279,7 +279,7 @@ std::vector<SearcherState3> GameCubeSearcher::searchGalesShadow(u8 hp, u8 atk, u
     std::array<u8, 6> ivs = { hp, atk, def, spa, spd, spe };
 
     u32 seeds[6];
-    int size = RNGEuclidean::recoverXDRNGIV(hp, atk, def, spa, spd, spe, seeds);
+    int size = LCRNGReverse::recoverXDRNGIV(hp, atk, def, spa, spd, spe, seeds);
     for (int i = 0; i < size; i++)
     {
         XDRNG rng(seeds[i]);
@@ -361,7 +361,7 @@ std::vector<SearcherState3> GameCubeSearcher::searchNonShadow(u8 hp, u8 atk, u8 
     std::array<u8, 6> ivs = { hp, atk, def, spa, spd, spe };
 
     u32 seeds[6];
-    int size = RNGEuclidean::recoverXDRNGIV(hp, atk, def, spa, spd, spe, seeds);
+    int size = LCRNGReverse::recoverXDRNGIV(hp, atk, def, spa, spd, spe, seeds);
     for (int i = 0; i < size; i++)
     {
         XDRNG rng(seeds[i]);

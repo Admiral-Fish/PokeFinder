@@ -31,10 +31,9 @@
 #include <Test/Gen4/WildGenerator4Test.hpp>
 #include <Test/Gen4/WildSearcher4Test.hpp>
 #include <Test/RNG/LCRNG64Test.hpp>
+#include <Test/RNG/LCRNGReverseTest.hpp>
 #include <Test/RNG/LCRNGTest.hpp>
 #include <Test/RNG/MTTest.hpp>
-#include <Test/RNG/RNGCacheTest.hpp>
-#include <Test/RNG/RNGEuclideanTest.hpp>
 #include <Test/RNG/SFMTTest.hpp>
 #include <Test/RNG/SHA1Test.hpp>
 #include <Test/RNG/TinyMTTest.hpp>
@@ -78,10 +77,9 @@ int main()
 
     // RNG Tests
     status += runTest<LCRNGTest>(fails);
+    status += runTest<LCRNGReverseTest>(fails);
     status += runTest<LCRNG64Test>(fails);
     status += runTest<MTTest>(fails);
-    status += runTest<RNGCacheTest>(fails);
-    status += runTest<RNGEuclideanTest>(fails);
     status += runTest<SFMTTest>(fails);
     status += runTest<SHA1Test>(fails);
     status += runTest<TinyMTTest>(fails);

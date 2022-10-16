@@ -22,7 +22,6 @@
 
 #include <Core/Gen4/Filters/StateFilter4.hpp>
 #include <Core/Parents/Searchers/StaticSearcher.hpp>
-#include <Core/RNG/RNGCache.hpp>
 #include <mutex>
 
 class StaticTemplate4;
@@ -82,7 +81,6 @@ private:
     std::mutex mutex;
     std::vector<SearcherState4> results;
     int progress;
-    RNGCache cache;
     u32 maxAdvance;
     u32 minAdvance;
     u32 maxDelay;

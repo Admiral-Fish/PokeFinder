@@ -17,10 +17,117 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include "RNGEuclidean.hpp"
+#include "LCRNGReverse.hpp"
+#include <Core/Enum/Method.hpp>
 #include <Core/RNG/LCRNG.hpp>
 
-namespace RNGEuclidean
+/**
+ * @brief Recovers origin seeds for two 16 bit calls(15 bits known) without gap
+ *
+ * @param hp HP iv
+ * @param atk Atk iv
+ * @param def Def iv
+ * @param spa SpA iv
+ * @param spd SpD iv
+ * @param spe Spe iv
+ * @param seeds Array to write results
+ *
+ * @return Number of origin seeds (Won't be higher than 6)
+ */
+static int recoverPokeRNGIVMethod12(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, u32 *seeds)
+{
+    constexpr u32 add = 0x6073;
+    constexpr u32 mult = 0x41c64e6d;
+    constexpr u32 mod = 0x67d3;
+    constexpr u32 pat = 0xd3e;
+    constexpr u32 inc = 0x4034;
+
+    int size = 0;
+
+    u32 first = static_cast<u32>((hp | (atk << 5) | (def << 10)) << 16);
+    u32 second = static_cast<u32>((spe | (spa << 5) | (spd << 10)) << 16);
+
+    u16 diff = (second - first * mult) >> 16;
+    u16 start1 = (((diff * mod + inc) >> 16) * pat) % mod;
+    u16 start2 = ((((diff ^ 0x8000) * mod + inc) >> 16) * pat) % mod;
+
+    for (u32 low = start1; low < 0x10000; low += mod)
+    {
+        u32 seed = first | low;
+        if (((seed * mult + add) & 0x7fff0000) == second)
+        {
+            seeds[size++] = seed;
+            seeds[size++] = seed ^ 0x80000000;
+        }
+    }
+
+    for (u32 low = start2; low < 0x10000; low += mod)
+    {
+        u32 seed = first | low;
+        if (((seed * mult + add) & 0x7fff0000) == second)
+        {
+            seeds[size++] = seed;
+            seeds[size++] = seed ^ 0x80000000;
+        }
+    }
+
+    return size;
+}
+
+/**
+ * @brief Recovers origin seeds for two 16 bit calls(15 bits known) with gap
+ *
+ * @param hp HP iv
+ * @param atk Atk iv
+ * @param def Def iv
+ * @param spa SpA iv
+ * @param spd SpD iv
+ * @param spe Spe iv
+ * @param seeds Array to write results
+ *
+ * @return Number of origin seeds (Won't be higher than 6)
+ */
+static int recoverPokeRNGIVMethod4(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, u32 *seeds)
+{
+    constexpr u32 add = 0xe97e7b6a;
+    constexpr u32 mult = 0xc2a29a69;
+    constexpr u32 mod = 0x3a89;
+    constexpr u32 pat = 0x2e4c;
+    constexpr u32 inc = 0x5831;
+
+    int size = 0;
+
+    u32 first = static_cast<u32>((hp | (atk << 5) | (def << 10)) << 16);
+    u32 second = static_cast<u32>((spe | (spa << 5) | (spd << 10)) << 16);
+
+    u16 diff = (second - (first * mult + add)) >> 16;
+    u16 start1 = (((diff * mod + inc) >> 16) * pat) % mod;
+    u16 start2 = ((((diff ^ 0x8000) * mod + inc) >> 16) * pat) % mod;
+
+    for (u32 low = start1; low < 0x10000; low += mod)
+    {
+        u32 seed = first | low;
+        if (((seed * mult + add) & 0x7fff0000) == second)
+        {
+            seeds[size++] = seed;
+            seeds[size++] = seed ^ 0x80000000;
+        }
+    }
+
+    for (u32 low = start2; low < 0x10000; low += mod)
+    {
+        u32 seed = first | low;
+        if (((seed * mult + add) & 0x7fff0000) == second)
+        {
+            seeds[size++] = seed;
+            seeds[size++] = seed ^ 0x80000000;
+        }
+    }
+
+    return size;
+}
+
+namespace LCRNGReverse
 {
     int recoverChannelIV(u32 hp, u32 atk, u32 def, u32 spa, u32 spd, u32 spe, u32 *seeds)
     {
@@ -87,6 +194,43 @@ namespace RNGEuclidean
         return size;
     }
 
+    int recoverPokeRNGIV(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, u32 *seeds, Method method)
+    {
+        if (method == Method::Method4)
+        {
+            return recoverPokeRNGIVMethod4(hp, atk, def, spa, spd, spe, seeds);
+        }
+        return recoverPokeRNGIVMethod12(hp, atk, def, spa, spd, spe, seeds);
+    }
+
+    int recoverPokeRNGPID(u32 pid, u32 *seeds)
+    {
+        constexpr u32 add = 0x6073;
+        constexpr u32 mult = 0x41c64e6d;
+        constexpr u32 mod = 0x67d3;
+        constexpr u32 pat = 0xd3e;
+        constexpr u32 inc = 0x4034;
+
+        int size = 0;
+
+        u32 first = pid << 16;
+        u32 second = pid & 0xffff0000;
+
+        u16 diff = (second - first * mult) >> 16;
+        u16 start = (((diff * mod + inc) >> 16) * pat) % mod;
+
+        for (u32 low = start; low < 0x10000; low += mod)
+        {
+            u32 seed = first | low;
+            if (((seed * mult + add) & 0xffff0000) == second)
+            {
+                seeds[size++] = seed;
+            }
+        }
+
+        return size;
+    }
+
     int recoverXDRNGIV(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, u32 *seeds)
     {
         int size = 0;
@@ -99,7 +243,7 @@ namespace RNGEuclidean
         u32 second = static_cast<u32>((spe | (spa << 5) | (spd << 10)) << 16);
 
         u64 t = ((second - mult * first) - sub) & 0x7FFFFFFF;
-        u32 kmax = static_cast<u32>((base - t) >> 31);
+        u32 kmax = (base - t) >> 31;
 
         for (u32 k = 0; k <= kmax; k++, t += 0x80000000)
         {

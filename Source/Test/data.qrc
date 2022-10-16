@@ -7,10 +7,9 @@
     <file alias="static4.json">Gen4/static4.json</file>
     <file alias="wild4.json">Gen4/wild4.json</file>
     <file alias="lcrng.json">RNG/lcrng.json</file>
+    <file alias="lcrngreverse.json">RNG/lcrngreverse.json</file>
     <file alias="lcrng64.json">RNG/lcrng64.json</file>
     <file alias="mt.json">RNG/mt.json</file>
-    <file alias="rngcache.json">RNG/rngcache.json</file>
-    <file alias="rngeuclidean.json">RNG/rngeuclidean.json</file>
     <file alias="sfmt.json">RNG/sfmt.json</file>
     <file alias="sha1.json">RNG/sha1.json</file>
     <file alias="tinymt.json">RNG/tinymt.json</file>

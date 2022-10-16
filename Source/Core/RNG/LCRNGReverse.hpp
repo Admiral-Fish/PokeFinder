@@ -17,20 +17,22 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef RNGEUCLIDEAN_HPP
-#define RNGEUCLIDEAN_HPP
+#ifndef LCRNGREVERSE_HPP
+#define LCRNGREVERSE_HPP
 
 #include <Core/Global.hpp>
-#include <vector>
 
 enum class Method : u8;
 
 /**
- * @brief Provides a way to compute origin seed given IVs or PID for GameCube games.
- * See https://crypto.stackexchange.com/a/10629 for how the following math works. Uses Euclidean divison to reduce the search space (kmax)
- * even further then RNGCache. Only beneficial for smaller multipliers such as XDRNG.
+ * @brief Provides a way to compute origin seed given IVs or PID.
+ *
+ * The PokeRNG attacks are a derivate of meet-in-the-middle attack (based on https://crypto.stackexchange.com/a/10609) combined with
+ * patterns in modular arithmetic.
+ *
+ * The Channel and XDRNG attacks are Euclidean divisor based (https://crypto.stackexchange.com/a/10629).
  */
-namespace RNGEuclidean
+namespace LCRNGReverse
 {
     /**
      * @brief Recovers origin seeds for six 5 bit calls
@@ -46,6 +48,31 @@ namespace RNGEuclidean
      * @return Number of origin seeds (Safe upper bound of 12)
      */
     int recoverChannelIV(u32 hp, u32 atk, u32 def, u32 spa, u32 spd, u32 spe, u32 *seeds);
+
+    /**
+     * @brief Recovers origin seeds for two 16 bit calls(15 bits known) with or without gap
+     *
+     * @param hp HP iv
+     * @param atk Atk iv
+     * @param def Def iv
+     * @param spa SpA iv
+     * @param spd SpD iv
+     * @param spe Spe iv
+     * @param seeds Array to write results
+     *
+     * @return Number of origin seeds (Won't be higher than 6)
+     */
+    int recoverPokeRNGIV(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, u32 *seeds, Method method);
+
+    /**
+     * @brief Recovers origin seeds for two 16 bit calls
+     *
+     * @param pid PID value
+     * @param seeds Array to write results
+     *
+     * @return Number of origin seeds (Won't be higher than 3)
+     */
+    int recoverPokeRNGPID(u32 pid, u32 *seeds);
 
     /**
      * @brief Recovers origin seeds for two 16 bit calls(15 bits known)
@@ -71,6 +98,6 @@ namespace RNGEuclidean
      * @return Number of origin seeds (Won't be higher than 2)
      */
     int recoverXDRNGPID(u32 pid, u32 *seeds);
-}
+};
 
-#endif // RNGEUCLIDEAN_HPP
+#endif // LCRNGREVERSE_HPP

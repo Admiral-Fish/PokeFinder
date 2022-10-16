@@ -17,17 +17,23 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef RNGEUCLIDEANTEST_HPP
-#define RNGEUCLIDEANTEST_HPP
+#ifndef LCRNGREVERSETEST_HPP
+#define LCRNGREVERSETEST_HPP
 
 #include <QObject>
 
-class RNGEuclideanTest : public QObject
+class LCRNGReverseTest : public QObject
 {
     Q_OBJECT
 private slots:
     void recoverChannelIV_data();
     void recoverChannelIV();
+
+    void recoverPokeRNGIV_data();
+    void recoverPokeRNGIV();
+
+    void recoverPokeRNGPID_data();
+    void recoverPokeRNGPID();
 
     void recoverXDRNGIV_data();
     void recoverXDRNGIV();
@@ -36,4 +42,4 @@ private slots:
     void recoverXDRNGPID();
 };
 
-#endif // RNGEUCLIDEANTEST_HPP
+#endif // LCRNGREVERSETEST_HPP

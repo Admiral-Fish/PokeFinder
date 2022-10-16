@@ -22,7 +22,6 @@
 
 #include <Core/Gen3/Filters/StateFilter3.hpp>
 #include <Core/Parents/Searchers/StaticSearcher.hpp>
-#include <Core/RNG/RNGCache.hpp>
 #include <mutex>
 
 class StaticTemplate;
@@ -77,7 +76,6 @@ private:
     std::mutex mutex;
     std::vector<SearcherState3> results;
     int progress;
-    RNGCache cache;
     bool ivAdvance;
     bool searching;
 

@@ -23,7 +23,6 @@
 #include <Core/Gen3/EncounterArea3.hpp>
 #include <Core/Gen3/Filters/StateFilter3.hpp>
 #include <Core/Parents/Searchers/WildSearcher.hpp>
-#include <Core/RNG/RNGCache.hpp>
 #include <mutex>
 
 /**
@@ -79,7 +78,6 @@ private:
     std::vector<u8> modifiedSlots;
     std::vector<WildSearcherState3> results;
     int progress;
-    RNGCache cache;
     bool ivAdvance;
     bool searching;
 

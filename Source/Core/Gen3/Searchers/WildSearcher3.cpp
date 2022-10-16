@@ -24,6 +24,7 @@
 #include <Core/Parents/Slot.hpp>
 #include <Core/Parents/StaticTemplate.hpp>
 #include <Core/RNG/LCRNG.hpp>
+#include <Core/RNG/LCRNGReverse.hpp>
 #include <Core/Util/EncounterSlot.hpp>
 
 static bool cuteCharmGender(const PersonalInfo *info, u32 pid, Lead lead)
@@ -52,7 +53,6 @@ WildSearcher3::WildSearcher3(u16 tid, u16 sid, Game version, Method method, Enco
     encounterArea(encounterArea),
     modifiedSlots(encounterArea.getSlots(lead)),
     progress(0),
-    cache(method),
     ivAdvance(method == Method::Method2),
     searching(false)
 {
@@ -118,7 +118,7 @@ std::vector<WildSearcherState3> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 
     std::array<u8, 6> ivs = { hp, atk, def, spa, spd, spe };
 
     u32 seeds[6];
-    int size = cache.recoverPokeRNGIV(hp, atk, def, spa, spd, spe, seeds);
+    int size = LCRNGReverse::recoverPokeRNGIV(hp, atk, def, spa, spd, spe, seeds, method);
     for (int i = 0; i < size; i++)
     {
         PokeRNGR rng(seeds[i]);

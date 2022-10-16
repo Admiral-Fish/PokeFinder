@@ -37,14 +37,12 @@ add_executable(PokeFinderTest
     main.cpp
     RNG/LCRNGTest.cpp
     RNG/LCRNGTest.hpp
+    RNG/LCRNGReverseTest.cpp
+    RNG/LCRNGReverseTest.hpp
     RNG/LCRNG64Test.cpp
     RNG/LCRNG64Test.hpp
     RNG/MTTest.cpp
     RNG/MTTest.hpp
-    RNG/RNGCacheTest.cpp
-    RNG/RNGCacheTest.hpp
-    RNG/RNGEuclideanTest.cpp
-    RNG/RNGEuclideanTest.hpp
     RNG/SFMTTest.cpp
     RNG/SFMTTest.hpp
     RNG/SHA1Test.cpp

@@ -19,6 +19,7 @@
 
 #include "ChannelSeedSearcher.hpp"
 #include <algorithm>
+#include <thread>
 
 ChannelSeedSearcher::ChannelSeedSearcher(const std::vector<u8> &criteria) : criteria(criteria), progress(0), searching(false)
 {

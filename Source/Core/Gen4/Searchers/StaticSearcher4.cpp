@@ -24,6 +24,7 @@
 #include <Core/Gen4/StaticTemplate4.hpp>
 #include <Core/Parents/PersonalInfo.hpp>
 #include <Core/RNG/LCRNG.hpp>
+#include <Core/RNG/LCRNGReverse.hpp>
 
 static bool isShiny(u32 pid, u16 tsv)
 {
@@ -35,7 +36,6 @@ StaticSearcher4::StaticSearcher4(u32 minAdvance, u32 maxAdvance, u32 minDelay, u
                                  Lead lead, const StateFilter4 &filter) :
     StaticSearcher(tid, sid, version, method, lead, filter),
     progress(0),
-    cache(method),
     maxAdvance(maxAdvance),
     minAdvance(minAdvance),
     maxDelay(maxDelay),
@@ -156,7 +156,7 @@ std::vector<SearcherState4> StaticSearcher4::searchMethod1(u8 hp, u8 atk, u8 def
     std::array<u8, 6> ivs = { hp, atk, def, spa, spd, spe };
 
     u32 seeds[6];
-    int size = cache.recoverPokeRNGIV(hp, atk, def, spa, spd, spe, seeds);
+    int size = LCRNGReverse::recoverPokeRNGIV(hp, atk, def, spa, spd, spe, seeds, Method::Method1);
     for (int i = 0; i < size; i++)
     {
         PokeRNGR rng(seeds[i]);
@@ -213,7 +213,7 @@ std::vector<SearcherState4> StaticSearcher4::searchMethodJ(u8 hp, u8 atk, u8 def
     std::array<u8, 6> ivs = { hp, atk, def, spa, spd, spe };
 
     u32 seeds[6];
-    int size = cache.recoverPokeRNGIV(hp, atk, def, spa, spd, spe, seeds);
+    int size = LCRNGReverse::recoverPokeRNGIV(hp, atk, def, spa, spd, spe, seeds, Method::Method1);
     for (int i = 0; i < size; i++)
     {
         PokeRNGR rng(seeds[i]);
@@ -301,7 +301,7 @@ std::vector<SearcherState4> StaticSearcher4::searchMethodK(u8 hp, u8 atk, u8 def
     std::array<u8, 6> ivs = { hp, atk, def, spa, spd, spe };
 
     u32 seeds[6];
-    int size = cache.recoverPokeRNGIV(hp, atk, def, spa, spd, spe, seeds);
+    int size = LCRNGReverse::recoverPokeRNGIV(hp, atk, def, spa, spd, spe, seeds, Method::Method1);
     for (int i = 0; i < size; i++)
     {
         PokeRNGR rng(seeds[i]);

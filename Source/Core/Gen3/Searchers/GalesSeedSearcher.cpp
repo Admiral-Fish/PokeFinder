@@ -20,6 +20,7 @@
 #include "GalesSeedSearcher.hpp"
 #include <algorithm>
 #include <cstring>
+#include <thread>
 
 constexpr u16 enemyHPStat[5][2] = { { 290, 310 }, { 290, 270 }, { 290, 250 }, { 320, 270 }, { 270, 230 } };
 

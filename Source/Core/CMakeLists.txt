@@ -137,15 +137,13 @@ add_library(PokeFinderCore STATIC
     Parents/StaticTemplate.hpp
     RNG/LCRNG.cpp
     RNG/LCRNG.hpp
+    RNG/LCRNGReverse.cpp
+    RNG/LCRNGReverse.hpp
     RNG/LCRNG64.cpp
     RNG/LCRNG64.hpp
     RNG/MT.cpp
     RNG/MT.hpp
     RNG/MTFast.hpp
-    RNG/RNGCache.cpp
-    RNG/RNGCache.hpp
-    RNG/RNGEuclidean.cpp
-    RNG/RNGEuclidean.hpp
     RNG/RNGList.hpp
     RNG/SFMT.cpp
     RNG/SFMT.hpp

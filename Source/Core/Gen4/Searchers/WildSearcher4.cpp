@@ -24,6 +24,7 @@
 #include <Core/Gen4/States/WildState4.hpp>
 #include <Core/Parents/Slot.hpp>
 #include <Core/RNG/LCRNG.hpp>
+#include <Core/RNG/LCRNGReverse.hpp>
 #include <Core/Util/EncounterSlot.hpp>
 
 static u16 getItem(u8 rand, Lead lead, const PersonalInfo *info)
@@ -55,7 +56,6 @@ WildSearcher4::WildSearcher4(u32 minAdvance, u32 maxAdvance, u32 minDelay, u32 m
     encounterArea(encounterArea),
     modifiedSlots(encounterArea.getSlots(lead)),
     progress(0),
-    cache(method),
     maxAdvance(maxAdvance),
     minAdvance(minAdvance),
     maxDelay(maxDelay),
@@ -189,7 +189,7 @@ std::vector<WildSearcherState4> WildSearcher4::searchMethodJ(u8 hp, u8 atk, u8 d
     bool grass = encounter == Encounter::Grass;
 
     u32 seeds[6];
-    int size = cache.recoverPokeRNGIV(hp, atk, def, spa, spd, spe, seeds);
+    int size = LCRNGReverse::recoverPokeRNGIV(hp, atk, def, spa, spd, spe, seeds, Method::Method1);
     for (int i = 0; i < size; i++)
     {
         PokeRNGR rng(seeds[i]);
@@ -404,7 +404,7 @@ std::vector<WildSearcherState4> WildSearcher4::searchMethodK(u8 hp, u8 atk, u8 d
     bool grass = encounter == Encounter::Grass;
 
     u32 seeds[6];
-    int size = cache.recoverPokeRNGIV(hp, atk, def, spa, spd, spe, seeds);
+    int size = LCRNGReverse::recoverPokeRNGIV(hp, atk, def, spa, spd, spe, seeds, Method::Method1);
     for (int i = 0; i < size; i++)
     {
         PokeRNGR rng(seeds[i]);
@@ -640,7 +640,7 @@ std::vector<WildSearcherState4> WildSearcher4::searchPokeRadar(u8 hp, u8 atk, u8
     }
 
     u32 seeds[6];
-    int size = cache.recoverPokeRNGIV(hp, atk, def, spa, spd, spe, seeds);
+    int size = LCRNGReverse::recoverPokeRNGIV(hp, atk, def, spa, spd, spe, seeds, Method::Method1);
     for (int i = 0; i < size; i++)
     {
         PokeRNGR rng(seeds[i]);
@@ -759,7 +759,7 @@ std::vector<WildSearcherState4> WildSearcher4::searchPokeRadarShiny(u8 hp, u8 at
     };
 
     u32 seeds[6];
-    int size = cache.recoverPokeRNGIV(hp, atk, def, spa, spd, spe, seeds);
+    int size = LCRNGReverse::recoverPokeRNGIV(hp, atk, def, spa, spd, spe, seeds, Method::Method1);
     for (int i = 0; i < size; i++)
     {
         PokeRNGR rng(seeds[i]);
