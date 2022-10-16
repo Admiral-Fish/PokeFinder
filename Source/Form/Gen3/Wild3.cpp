@@ -54,8 +54,8 @@ Wild3::Wild3(QWidget *parent) : QWidget(parent), ui(new Ui::Wild3)
     ui->textBoxGeneratorInitialAdvances->setValues(InputType::Advance32Bit);
     ui->textBoxGeneratorMaxAdvances->setValues(InputType::Advance32Bit);
 
-    ui->comboBoxGeneratorMethod->setup({ toInt(Method::MethodH1), toInt(Method::MethodH2), toInt(Method::MethodH4) });
-    ui->comboBoxSearcherMethod->setup({ toInt(Method::MethodH1), toInt(Method::MethodH2), toInt(Method::MethodH4) });
+    ui->comboBoxGeneratorMethod->setup({ toInt(Method::Method1), toInt(Method::Method2), toInt(Method::Method4) });
+    ui->comboBoxSearcherMethod->setup({ toInt(Method::Method1), toInt(Method::Method2), toInt(Method::Method4) });
 
     ui->comboBoxGeneratorEncounter->setup({ toInt(Encounter::Grass), toInt(Encounter::RockSmash), toInt(Encounter::Surfing),
                                             toInt(Encounter::OldRod), toInt(Encounter::GoodRod), toInt(Encounter::SuperRod) });

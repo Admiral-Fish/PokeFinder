@@ -129,12 +129,12 @@ std::vector<WildGeneratorState3> WildGenerator3::generate(u32 seed, const Encoun
             pid = (high << 16) | low;
         } while (pid % 25 != nature || (cuteCharm && !cuteCharmCheck(info, pid)));
 
-        if (method == Method::MethodH2)
+        if (method == Method::Method2)
         {
             go.next();
         }
         u16 iv1 = go.nextUShort();
-        if (method == Method::MethodH4)
+        if (method == Method::Method4)
         {
             go.next();
         }

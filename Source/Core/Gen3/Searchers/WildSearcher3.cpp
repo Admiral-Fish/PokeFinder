@@ -53,7 +53,7 @@ WildSearcher3::WildSearcher3(u16 tid, u16 sid, Game version, Method method, Enco
     modifiedSlots(encounterArea.getSlots(lead)),
     progress(0),
     cache(method),
-    ivAdvance(method == Method::MethodH2),
+    ivAdvance(method == Method::Method2),
     searching(false)
 {
 }
