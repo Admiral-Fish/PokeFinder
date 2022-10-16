@@ -111,10 +111,10 @@ void TinyMT::nextState()
     x ^= (x << 1);
     y ^= (y >> 1) ^ x;
 
-    state.uint32[0] = ptr[1];
-    state.uint32[1] = ptr[2] ^ ((y & 1) * 0x8f7011ee);
-    state.uint32[2] = x ^ (y << 10) ^ ((y & 1) * 0xfc78ff1f);
-    state.uint32[3] = y;
+    ptr[0] = ptr[1];
+    ptr[1] = ptr[2] ^ ((y & 1) * 0x8f7011ee);
+    ptr[2] = x ^ (y << 10) ^ ((y & 1) * 0xfc78ff1f);
+    ptr[3] = y;
 }
 
 u32 TinyMT::temper()
