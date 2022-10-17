@@ -34,6 +34,85 @@ static bool isShiny(u16 high, u16 low, u16 tsv)
     return (high ^ low ^ tsv) < 8;
 }
 
+/**
+ * @brief Calculates whether the \p seed passes the Channel menu pattern
+ *
+ * @param seed PRNG state
+ *
+ * @return true Seed passes the menu pattern
+ * @return false Seed does not pass the menu pattern
+ */
+static bool validateMenu(u32 seed)
+{
+    u8 target = seed >> 30;
+
+    if (target == 0)
+    {
+        return false;
+    }
+
+    XDRNGR rng(seed);
+    u8 mask = 1 << target;
+    while ((mask & 14) != 14)
+    {
+        u8 num = rng.next() >> 30;
+        if (num == target)
+        {
+            return false;
+        }
+
+        mask |= 1 << num;
+    }
+
+    return true;
+}
+
+/**
+ * @brief Calculates whether the \p seed passes the Channel Jirachi pattern
+ *
+ * @param seed PRNG state
+ *
+ * @return true Seed passes the Jirachi pattern
+ * @return false Seed does not pass the Jirachi pattern
+ */
+static bool validateJirachi(u32 seed)
+{
+    XDRNGR rng(seed);
+
+    u16 num1 = rng.nextUShort();
+    u16 num2 = rng.nextUShort();
+    u16 num3 = rng.nextUShort();
+
+    rng.advance(3);
+    if (num1 <= 0x4000) // 6 advances
+    {
+        if (validateMenu(rng.getSeed()))
+        {
+            return true;
+        }
+    }
+
+    rng.advance(1);
+    if (num2 > 0x4000 && num1 <= 0x547a) // 7 advances
+    {
+        if (validateMenu(rng.getSeed()))
+        {
+            return true;
+        }
+    }
+
+    rng.advance(1);
+    if (num3 > 0x4000 && num2 > 0x547a) // 8 advances
+    {
+        if (validateMenu(rng.getSeed()))
+        {
+            return true;
+        }
+    }
+
+    return false;
+}
+
 GameCubeSearcher::GameCubeSearcher(u16 tid, u16 sid, Game version, Method method, bool unset, const StateFilter3 &filter) :
     Searcher<StateFilter3>(tid, sid, version, method, filter), progress(0), searching(false), unset(unset)
 {
@@ -136,7 +215,7 @@ void GameCubeSearcher::startSearch(const std::array<u8, 6> &min, const std::arra
                                 return;
                             }
 
-                            auto states = searchNonShadow(hp, atk, def, spa, spd, spe, staticTemplate);
+                            auto states = searchNonLock(hp, atk, def, spa, spd, spe, staticTemplate);
 
                             std::lock_guard<std::mutex> guard(mutex);
                             results.insert(results.end(), states.begin(), states.end());
@@ -255,8 +334,8 @@ std::vector<SearcherState3> GameCubeSearcher::searchColoShadow(u8 hp, u8 atk, u8
 
         if (valid)
         {
-            // If this spread passes and is the 'normal' spread we can skip the XORed 'sister' spread
-            if (i & 2)
+            // If this spread passes and is the 'normal' spread we can skip the XORed spread
+            if ((i & 2) == 0)
             {
                 i++;
             }
@@ -337,8 +416,8 @@ std::vector<SearcherState3> GameCubeSearcher::searchGalesShadow(u8 hp, u8 atk, u
 
         if (valid)
         {
-            // If this spread passes and is the 'normal' spread we can skip the XORed 'sister' spread
-            if (i & 2)
+            // If this spread passes and is the 'normal' spread we can skip the XORed spread
+            if ((i & 2) == 0)
             {
                 i++;
             }
@@ -353,8 +432,8 @@ std::vector<SearcherState3> GameCubeSearcher::searchGalesShadow(u8 hp, u8 atk, u
     return states;
 }
 
-std::vector<SearcherState3> GameCubeSearcher::searchNonShadow(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe,
-                                                              const StaticTemplate *staticTemplate)
+std::vector<SearcherState3> GameCubeSearcher::searchNonLock(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe,
+                                                            const StaticTemplate *staticTemplate)
 {
     std::vector<SearcherState3> states;
     const PersonalInfo *info = staticTemplate->getInfo();
@@ -484,67 +563,4 @@ std::vector<SearcherState3> GameCubeSearcher::searchNonShadow(u8 hp, u8 atk, u8 
         }
     }
     return states;
-}
-
-bool GameCubeSearcher::validateMenu(u32 seed)
-{
-    u8 target = seed >> 30;
-
-    if (target == 0)
-    {
-        return false;
-    }
-
-    XDRNGR rng(seed);
-    u8 mask = 1 << target;
-    while ((mask & 14) != 14)
-    {
-        u8 num = rng.next() >> 30;
-        if (num == target)
-        {
-            return false;
-        }
-
-        mask |= 1 << num;
-    }
-
-    return true;
-}
-
-bool GameCubeSearcher::validateJirachi(u32 seed)
-{
-    XDRNGR rng(seed);
-
-    u16 num1 = rng.nextUShort();
-    u16 num2 = rng.nextUShort();
-    u16 num3 = rng.nextUShort();
-
-    rng.advance(3);
-    if (num1 <= 0x4000) // 6 advances
-    {
-        if (validateMenu(rng.getSeed()))
-        {
-            return true;
-        }
-    }
-
-    rng.advance(1);
-    if (num2 > 0x4000 && num1 <= 0x547a) // 7 advances
-    {
-        if (validateMenu(rng.getSeed()))
-        {
-            return true;
-        }
-    }
-
-    rng.advance(1);
-    if (num3 > 0x4000 && num2 > 0x547a) // 8 advances
-    {
-        if (validateMenu(rng.getSeed()))
-        {
-            return true;
-        }
-    }
-
-    return false;
 }

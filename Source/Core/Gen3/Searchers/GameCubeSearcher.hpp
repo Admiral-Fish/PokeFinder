@@ -43,7 +43,6 @@ public:
      * @param unset
      * @param filter
      */
-
     GameCubeSearcher(u16 tid, u16 sid, Game version, Method method, bool unset, const StateFilter3 &filter);
 
     /**
@@ -141,27 +140,7 @@ private:
      *
      * @return Vector of computed states
      */
-    std::vector<SearcherState3> searchNonShadow(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, const StaticTemplate *staticTemplate);
-
-    /**
-     * @brief Calculates whether the \p seed passes the Channel menu pattern
-     *
-     * @param seed PRNG state
-     *
-     * @return true Seed passes the menu pattern
-     * @return false Seed does not pass the menu pattern
-     */
-    bool validateMenu(u32 seed);
-
-    /**
-     * @brief Calculates whether the \p seed passes the Channel Jirachi pattern
-     *
-     * @param seed PRNG state
-     *
-     * @return true Seed passes the Jirachi pattern
-     * @return false Seed does not pass the Jirachi pattern
-     */
-    bool validateJirachi(u32 seed);
+    std::vector<SearcherState3> searchNonLock(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, const StaticTemplate *staticTemplate);
 };
 
 #endif // GAMECUBESEARCHER_HPP

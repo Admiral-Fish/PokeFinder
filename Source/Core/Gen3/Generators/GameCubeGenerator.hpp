@@ -102,14 +102,14 @@ private:
     std::vector<GeneratorState3> generateGalesShadow(u32 seed, const ShadowTemplate *shadowTemplate) const;
 
     /**
-     * @brief Generates states for Gales/Colo non-shadows
+     * @brief Generates states for Gales/Colo non-locks
      *
      * @param seed Starting PRNG state
      * @param staticTemplate Pokemon template
      *
      * @return Vector of computed states
      */
-    std::vector<GeneratorState3> generateNonShadow(u32 seed, const StaticTemplate *staticTemplate) const;
+    std::vector<GeneratorState3> generateNonLock(u32 seed, const StaticTemplate *staticTemplate) const;
 };
 
 #endif // GAMECUBEGENERATOR_HPP

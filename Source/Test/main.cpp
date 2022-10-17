@@ -19,6 +19,8 @@
 
 #include <QDebug>
 #include <QTest>
+#include <Test/Gen3/GameCubeGeneratorTest.hpp>
+#include <Test/Gen3/GameCubeSearcherTest.hpp>
 #include <Test/Gen3/IDGenerator3Test.hpp>
 #include <Test/Gen3/StaticGenerator3Test.hpp>
 #include <Test/Gen3/StaticSearcher3Test.hpp>
@@ -61,6 +63,8 @@ int main()
     QStringList fails;
 
     // Gen 3
+    status += runTest<GameCubeGeneratorTest>(fails);
+    status += runTest<GameCubeSearcherTest>(fails);
     status += runTest<IDGenerator3Test>(fails);
     status += runTest<StaticGenerator3Test>(fails);
     status += runTest<StaticSearcher3Test>(fails);

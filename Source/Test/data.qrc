@@ -1,5 +1,6 @@
 <RCC>
     <qresource prefix="/data">
+    <file alias="gamecube.json">Gen3/gamecube.json</file>
     <file alias="id3.json">Gen3/id3.json</file>
     <file alias="static3.json">Gen3/static3.json</file>
     <file alias="wild3.json">Gen3/wild3.json</file>

@@ -54,7 +54,7 @@ std::vector<GeneratorState3> GameCubeGenerator::generate(u32 seed, const StaticT
     {
         return generateChannel(seed, staticTemplate);
     }
-    return generateNonShadow(seed, staticTemplate);
+    return generateNonLock(seed, staticTemplate);
 }
 
 std::vector<GeneratorState3> GameCubeGenerator::generateChannel(u32 seed, const StaticTemplate *staticTemplate) const
@@ -187,7 +187,7 @@ std::vector<GeneratorState3> GameCubeGenerator::generateColoShadow(u32 seed, con
             }
         }
 
-        GeneratorState3 state(initialAdvances + cnt, high, low, ability, iv1, iv2, shadowTemplate->getLevel(), info);
+        GeneratorState3 state(initialAdvances + cnt, high, low, ability, iv1, iv2, tsv, shadowTemplate->getLevel(), info);
         if (filter.compareState(state))
         {
             states.emplace_back(state);
@@ -267,7 +267,7 @@ std::vector<GeneratorState3> GameCubeGenerator::generateGalesShadow(u32 seed, co
             low = go.nextUShort();
         }
 
-        GeneratorState3 state(initialAdvances + cnt, high, low, ability, iv1, iv2, shadowTemplate->getLevel(), info);
+        GeneratorState3 state(initialAdvances + cnt, high, low, ability, iv1, iv2, tsv, shadowTemplate->getLevel(), info);
         if (filter.compareState(state))
         {
             states.emplace_back(state);
@@ -277,7 +277,7 @@ std::vector<GeneratorState3> GameCubeGenerator::generateGalesShadow(u32 seed, co
     return states;
 }
 
-std::vector<GeneratorState3> GameCubeGenerator::generateNonShadow(u32 seed, const StaticTemplate *staticTemplate) const
+std::vector<GeneratorState3> GameCubeGenerator::generateNonLock(u32 seed, const StaticTemplate *staticTemplate) const
 {
     std::vector<GeneratorState3> states;
     const PersonalInfo *info = staticTemplate->getInfo();

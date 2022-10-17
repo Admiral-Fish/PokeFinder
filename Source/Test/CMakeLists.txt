@@ -12,6 +12,10 @@ add_executable(PokeFinderTest
     Data.cpp
     Data.hpp
     data.qrc
+    Gen3/GameCubeGeneratorTest.cpp
+    Gen3/GameCubeGeneratorTest.hpp
+    Gen3/GameCubeSearcherTest.cpp
+    Gen3/GameCubeSearcherTest.hpp
     Gen3/IDGenerator3Test.cpp
     Gen3/IDGenerator3Test.hpp
     Gen3/StaticGenerator3Test.cpp
