@@ -98,8 +98,10 @@ Researcher::Researcher(QWidget *parent) : QWidget(parent), ui(new Ui::Researcher
                                 toInt(Custom::Custom3), toInt(Custom::Custom4), toInt(Custom::Custom5), toInt(Custom::Custom6),
                                 toInt(Custom::Custom7), toInt(Custom::Custom8), toInt(Custom::Custom9), toInt(Custom::Custom10) });
 
-    std::vector<QVariant> customs = { toInt(Custom::Full64Bit), toInt(Custom::Full32Bit), toInt(Custom::High32Bit),
-                                      toInt(Custom::Low32Bit),  toInt(Custom::High16Bit), toInt(Custom::Low16Bit) };
+    std::vector<QVariant> customs = { toInt(Custom::Full64Bit),         toInt(Custom::Full32Bit),         toInt(Custom::High32Bit),
+                                      toInt(Custom::Low32Bit),          toInt(Custom::High16Bit),         toInt(Custom::Low16Bit),
+                                      toInt(Custom::PreviousFull64Bit), toInt(Custom::PreviousFull32Bit), toInt(Custom::PreviousHigh32Bit),
+                                      toInt(Custom::PreviousLow32Bit),  toInt(Custom::PreviousHigh16Bit), toInt(Custom::PreviousLow16Bit) };
     QStringList operands = { "*", "/", "%", "+", "-", "<<", ">>", "<", "<=", ">", ">=", "&", "^", "|" };
     for (int i = 1; i <= 10; i++)
     {
@@ -162,6 +164,17 @@ u64 Researcher::getCustom(Custom custom, const ResearcherState &state, const std
         return state.getHigh16();
     case Custom::Low16Bit:
         return state.getLow16();
+    case Custom::PreviousFull64Bit:
+    case Custom::PreviousFull32Bit:
+        return states.empty() ? 0 : states.back().getPRNG();
+    case Custom::PreviousHigh32Bit:
+        return states.empty() ? 0 : states.back().getHigh32();
+    case Custom::PreviousLow32Bit:
+        return states.empty() ? 0 : states.back().getLow32();
+    case Custom::PreviousHigh16Bit:
+        return states.empty() ? 0 : states.back().getHigh16();
+    case Custom::PreviousLow16Bit:
+        return states.empty() ? 0 : states.back().getLow16();
     case Custom::Custom1:
     case Custom::Custom2:
     case Custom::Custom3:
@@ -413,32 +426,41 @@ void Researcher::rngSelectionIndexChanged(int index)
     if (index >= 0)
     {
         bool flag = index != 1;
-        ui->comboBoxSearch->setCurrentIndex(flag ? 1 : 0);
 
         ui->comboBoxSearch->setItemHidden(0, flag);
         ui->comboBoxSearch->setItemHidden(1, !flag);
         ui->comboBoxSearch->setItemHidden(2, flag);
         ui->comboBoxSearch->setItemHidden(3, flag);
+        ui->comboBoxSearch->setItemHidden(6, flag);
+        ui->comboBoxSearch->setItemHidden(7, !flag);
+        ui->comboBoxSearch->setItemHidden(8, flag);
+        ui->comboBoxSearch->setItemHidden(9, flag);
 
         for (int i = 1; i <= 10; i++)
         {
             auto *boxL = ui->groupBoxCustoms->findChild<ComboBox *>(QString("comboBoxLValue%1").arg(i));
-            boxL->setCurrentIndex(flag ? 1 : 0);
 
             boxL->setItemHidden(0, flag);
             boxL->setItemHidden(1, !flag);
             boxL->setItemHidden(2, flag);
             boxL->setItemHidden(3, flag);
+            boxL->setItemHidden(6, flag);
+            boxL->setItemHidden(7, !flag);
+            boxL->setItemHidden(8, flag);
+            boxL->setItemHidden(9, flag);
 
             if (i != 1)
             {
                 auto *boxR = ui->groupBoxCustoms->findChild<ComboBox *>(QString("comboBoxRValue%1").arg(i));
-                boxR->setCurrentIndex(0);
 
                 boxR->setItemHidden(1, flag);
                 boxR->setItemHidden(2, !flag);
                 boxR->setItemHidden(3, flag);
                 boxR->setItemHidden(4, flag);
+                boxR->setItemHidden(6, flag);
+                boxR->setItemHidden(7, !flag);
+                boxR->setItemHidden(8, flag);
+                boxR->setItemHidden(9, flag);
             }
         }
     }

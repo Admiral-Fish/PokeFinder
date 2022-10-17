@@ -236,6 +236,36 @@
           <string>16Bit Low</string>
          </property>
         </item>
+        <item>
+         <property name="text">
+          <string>Previous 64Bit</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Previous 32Bit</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Previous 32Bit High</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Previous 32Bit Low</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Previous 16Bit High</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Previous 16Bit Low</string>
+         </property>
+        </item>
        </widget>
       </item>
       <item row="0" column="2" colspan="2">
@@ -307,6 +337,36 @@
         </item>
         <item>
          <property name="text">
+          <string>Previous 64Bit</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Previous 32Bit</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Previous 32Bit High</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Previous 32Bit Low</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Previous 16Bit High</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Previous 16Bit Low</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
           <string>Custom 1</string>
          </property>
         </item>
@@ -325,7 +385,14 @@
        </widget>
       </item>
       <item row="2" column="4">
-       <widget class="TextBox" name="textBoxRValue3"/>
+       <widget class="TextBox" name="textBoxRValue3">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+       </widget>
       </item>
       <item row="2" column="5">
        <widget class="QCheckBox" name="checkBoxHex3">
@@ -373,6 +440,36 @@
         </item>
         <item>
          <property name="text">
+          <string>Previous 64Bit</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Previous 32Bit</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Previous 32Bit High</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Previous 32Bit Low</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Previous 16Bit High</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Previous 16Bit Low</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
           <string>Custom 1</string>
          </property>
         </item>
@@ -401,7 +498,14 @@
        </widget>
       </item>
       <item row="3" column="4">
-       <widget class="TextBox" name="textBoxRValue4"/>
+       <widget class="TextBox" name="textBoxRValue4">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+       </widget>
       </item>
       <item row="3" column="5">
        <widget class="QCheckBox" name="checkBoxHex4">
@@ -449,6 +553,36 @@
         </item>
         <item>
          <property name="text">
+          <string>Previous 64Bit</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Previous 32Bit</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Previous 32Bit High</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Previous 32Bit Low</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Previous 16Bit High</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Previous 16Bit Low</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
           <string>Custom 1</string>
          </property>
         </item>
@@ -487,7 +621,14 @@
        </widget>
       </item>
       <item row="4" column="4">
-       <widget class="TextBox" name="textBoxRValue5"/>
+       <widget class="TextBox" name="textBoxRValue5">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+       </widget>
       </item>
       <item row="4" column="5">
        <widget class="QCheckBox" name="checkBoxHex5">
@@ -531,6 +672,36 @@
         <item>
          <property name="text">
           <string>16Bit Low</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Previous 64Bit</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Previous 32Bit</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Previous 32Bit High</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Previous 32Bit Low</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Previous 16Bit High</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Previous 16Bit Low</string>
          </property>
         </item>
         <item>
@@ -583,7 +754,14 @@
        </widget>
       </item>
       <item row="5" column="4">
-       <widget class="TextBox" name="textBoxRValue6"/>
+       <widget class="TextBox" name="textBoxRValue6">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+       </widget>
       </item>
       <item row="5" column="5">
        <widget class="QCheckBox" name="checkBoxHex6">
@@ -627,6 +805,36 @@
         <item>
          <property name="text">
           <string>16Bit Low</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Previous 64Bit</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Previous 32Bit</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Previous 32Bit High</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Previous 32Bit Low</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Previous 16Bit High</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Previous 16Bit Low</string>
          </property>
         </item>
         <item>
@@ -689,7 +897,14 @@
        </widget>
       </item>
       <item row="6" column="4">
-       <widget class="TextBox" name="textBoxRValue7"/>
+       <widget class="TextBox" name="textBoxRValue7">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+       </widget>
       </item>
       <item row="6" column="5">
        <widget class="QCheckBox" name="checkBoxHex7">
@@ -733,6 +948,36 @@
         <item>
          <property name="text">
           <string>16Bit Low</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Previous 64Bit</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Previous 32Bit</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Previous 32Bit High</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Previous 32Bit Low</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Previous 16Bit High</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Previous 16Bit Low</string>
          </property>
         </item>
         <item>
@@ -805,7 +1050,14 @@
        </widget>
       </item>
       <item row="7" column="4">
-       <widget class="TextBox" name="textBoxRValue8"/>
+       <widget class="TextBox" name="textBoxRValue8">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+       </widget>
       </item>
       <item row="7" column="5">
        <widget class="QCheckBox" name="checkBoxHex8">
@@ -849,6 +1101,36 @@
         <item>
          <property name="text">
           <string>16Bit Low</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Previous 64Bit</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Previous 32Bit</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Previous 32Bit High</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Previous 32Bit Low</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Previous 16Bit High</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Previous 16Bit Low</string>
          </property>
         </item>
         <item>
@@ -931,7 +1213,14 @@
        </widget>
       </item>
       <item row="8" column="4">
-       <widget class="TextBox" name="textBoxRValue9"/>
+       <widget class="TextBox" name="textBoxRValue9">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+       </widget>
       </item>
       <item row="8" column="5">
        <widget class="QCheckBox" name="checkBoxHex9">
@@ -975,6 +1264,36 @@
         <item>
          <property name="text">
           <string>16Bit Low</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Previous 64Bit</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Previous 32Bit</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Previous 32Bit High</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Previous 32Bit Low</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Previous 16Bit High</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Previous 16Bit Low</string>
          </property>
         </item>
         <item>
@@ -1067,7 +1386,14 @@
        </widget>
       </item>
       <item row="9" column="4">
-       <widget class="TextBox" name="textBoxRValue10"/>
+       <widget class="TextBox" name="textBoxRValue10">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+       </widget>
       </item>
       <item row="9" column="5">
        <widget class="QCheckBox" name="checkBoxHex10">
@@ -1111,6 +1437,36 @@
         <item>
          <property name="text">
           <string>16Bit Low</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Previous 64Bit</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Previous 32Bit</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Previous 32Bit High</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Previous 32Bit Low</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Previous 16Bit High</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Previous 16Bit Low</string>
          </property>
         </item>
         <item>
@@ -1239,6 +1595,36 @@
         </item>
         <item>
          <property name="text">
+          <string>Previous 64Bit</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Previous 32Bit</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Previous 32Bit High</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Previous 32Bit Low</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Previous 16Bit High</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Previous 16Bit Low</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
           <string>Custom 1</string>
          </property>
         </item>
@@ -1279,6 +1665,36 @@
         <item>
          <property name="text">
           <string>16Bit Low</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Previous 64Bit</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Previous 32Bit</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Previous 32Bit High</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Previous 32Bit Low</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Previous 16Bit High</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Previous 16Bit Low</string>
          </property>
         </item>
         <item>
@@ -1333,6 +1749,36 @@
         <item>
          <property name="text">
           <string>16Bit Low</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Previous 64Bit</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Previous 32Bit</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Previous 32Bit High</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Previous 32Bit Low</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Previous 16Bit High</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Previous 16Bit Low</string>
          </property>
         </item>
         <item>
@@ -1406,6 +1852,36 @@
         <item>
          <property name="text">
           <string>16Bit Low</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Previous 64Bit</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Previous 32Bit</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Previous 32Bit High</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Previous 32Bit Low</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Previous 16Bit High</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Previous 16Bit Low</string>
          </property>
         </item>
         <item>
@@ -1534,6 +2010,36 @@
         </item>
         <item>
          <property name="text">
+          <string>Previous 64Bit</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Previous 32Bit</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Previous 32Bit High</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Previous 32Bit Low</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Previous 16Bit High</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Previous 16Bit Low</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
           <string>Custom 1</string>
          </property>
         </item>
@@ -1648,6 +2154,36 @@
         </item>
         <item>
          <property name="text">
+          <string>Previous 64Bit</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Previous 32Bit</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Previous 32Bit High</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Previous 32Bit Low</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Previous 16Bit High</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Previous 16Bit Low</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
           <string>Custom 1</string>
          </property>
         </item>
@@ -1752,6 +2288,36 @@
         </item>
         <item>
          <property name="text">
+          <string>Previous 64Bit</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Previous 32Bit</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Previous 32Bit High</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Previous 32Bit Low</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Previous 16Bit High</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Previous 16Bit Low</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
           <string>Custom 1</string>
          </property>
         </item>
@@ -1846,6 +2412,36 @@
         </item>
         <item>
          <property name="text">
+          <string>Previous 64Bit</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Previous 32Bit</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Previous 32Bit High</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Previous 32Bit Low</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Previous 16Bit High</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Previous 16Bit Low</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
           <string>Custom 1</string>
          </property>
         </item>
@@ -1930,6 +2526,36 @@
         </item>
         <item>
          <property name="text">
+          <string>Previous 64Bit</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Previous 32Bit</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Previous 32Bit High</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Previous 32Bit Low</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Previous 16Bit High</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Previous 16Bit Low</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
           <string>Custom 1</string>
          </property>
         </item>
@@ -1993,6 +2619,12 @@
    </item>
    <item row="1" column="0">
     <widget class="QTabWidget" name="rngSelection">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
      <widget class="QWidget" name="tab32Bit">
       <attribute name="title">
        <string>32Bit</string>
@@ -2045,7 +2677,14 @@
         </widget>
        </item>
        <item row="1" column="1">
-        <widget class="TextBox" name="textBox32BitSeed"/>
+        <widget class="TextBox" name="textBox32BitSeed">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+        </widget>
        </item>
       </layout>
      </widget>
@@ -2086,7 +2725,14 @@
         </widget>
        </item>
        <item row="1" column="1">
-        <widget class="TextBox" name="textBox64BitSeed"/>
+        <widget class="TextBox" name="textBox64BitSeed">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+        </widget>
        </item>
       </layout>
      </widget>
@@ -2096,7 +2742,14 @@
       </attribute>
       <layout class="QGridLayout" name="gridLayout_3">
        <item row="1" column="3">
-        <widget class="TextBox" name="textBoxTinyMTSeed3"/>
+        <widget class="TextBox" name="textBoxTinyMTSeed3">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+        </widget>
        </item>
        <item row="1" column="2">
         <widget class="QLabel" name="labelTinyMTSeed3">
@@ -2106,7 +2759,14 @@
         </widget>
        </item>
        <item row="0" column="1">
-        <widget class="TextBox" name="textBoxTinyMTSeed0"/>
+        <widget class="TextBox" name="textBoxTinyMTSeed0">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+        </widget>
        </item>
        <item row="0" column="2">
         <widget class="QLabel" name="labelTinyMTSeed1">
@@ -2130,10 +2790,24 @@
         </widget>
        </item>
        <item row="1" column="1">
-        <widget class="TextBox" name="textBoxTinyMTSeed2"/>
+        <widget class="TextBox" name="textBoxTinyMTSeed2">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+        </widget>
        </item>
        <item row="0" column="3">
-        <widget class="TextBox" name="textBoxTinyMTSeed1"/>
+        <widget class="TextBox" name="textBoxTinyMTSeed1">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+        </widget>
        </item>
       </layout>
      </widget>
@@ -2150,7 +2824,14 @@
         </widget>
        </item>
        <item row="0" column="1">
-        <widget class="TextBox" name="textBoxXorshiftSeed0"/>
+        <widget class="TextBox" name="textBoxXorshiftSeed0">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+        </widget>
        </item>
        <item row="1" column="0">
         <widget class="QLabel" name="labelXorshiftSeed1">
@@ -2160,7 +2841,14 @@
         </widget>
        </item>
        <item row="1" column="1">
-        <widget class="TextBox" name="textBoxXorshiftSeed1"/>
+        <widget class="TextBox" name="textBoxXorshiftSeed1">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+        </widget>
        </item>
       </layout>
      </widget>
