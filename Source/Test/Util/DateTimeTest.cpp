@@ -22,6 +22,13 @@
 #include <QTest>
 #include <Test/Data.hpp>
 
+NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(DateParts, year, month, day);
+
+static bool operator==(const DateParts &left, const DateParts &right)
+{
+    return left.year == right.year && left.month == right.month && left.day == right.day;
+}
+
 void DateTimeTest::addSecs_data()
 {
     QTest::addColumn<int>("seconds");
@@ -49,21 +56,19 @@ void DateTimeTest::addSecs()
 void DateTest::getParts_data()
 {
     QTest::addColumn<int>("jd");
-    QTest::addColumn<std::array<int, 3>>("results");
+    QTest::addColumn<DateParts>("results");
 
     nlohmann::json data = readData("datetime", "date", "getParts");
     for (const auto &d : data)
     {
-        QTest::newRow(d["name"].get<std::string>().data()) << d["jd"].get<int>() << d["results"].get<std::array<int, 3>>();
+        QTest::newRow(d["name"].get<std::string>().data()) << d["jd"].get<int>() << d["results"].get<DateParts>();
     }
 }
 
 void DateTest::getParts()
 {
-    using Results = std::array<int, 3>;
-
     QFETCH(int, jd);
-    QFETCH(Results, results);
+    QFETCH(DateParts, results);
 
     Date date(jd);
     QCOMPARE(date.getParts(), results);

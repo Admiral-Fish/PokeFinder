@@ -21,8 +21,14 @@
 #define DATETIME_HPP
 
 #include <Core/Global.hpp>
-#include <array>
 #include <string>
+
+struct DateParts
+{
+    int year;
+    int month;
+    int day;
+};
 
 /**
  * @brief Provides a date library based on the Julian calendar
@@ -104,7 +110,7 @@ public:
      *
      * @return Year, month, and day
      */
-    std::array<int, 3> getParts() const;
+    DateParts getParts() const;
 
     /**
      * @brief Converts the Julian date to a Gregorian date and returns the month

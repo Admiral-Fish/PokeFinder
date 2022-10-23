@@ -134,10 +134,10 @@ namespace Utilities4
 
         auto parts = date.getParts();
 
-        u8 ab = static_cast<u8>(parts[1] * parts[2] + time.minute() + time.second());
+        u8 ab = static_cast<u8>(parts.month * parts.day + time.minute() + time.second());
         u8 cd = static_cast<u8>(time.hour());
 
-        return static_cast<u32>(((ab << 24) | (cd << 16))) + delay + parts[0] - 2000;
+        return static_cast<u32>(((ab << 24) | (cd << 16))) + delay + parts.year - 2000;
     }
 
     std::string coinFlips(u32 seed)

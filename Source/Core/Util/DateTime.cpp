@@ -19,8 +19,16 @@
 
 #include "DateTime.hpp"
 
-constexpr int monthDays[13] = { 0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+constexpr int monthDays[12] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 
+/**
+ * @brief Determines if the year is a leap year.
+ *
+ * @param year Year to check
+ *
+ * @return true Year is a leap year
+ * @return false Year is not a leap year
+ */
 static inline bool isLeapYear(int year)
 {
     // Since we know the years are bound between 2000 and 2099, we can simplify this check
@@ -43,7 +51,7 @@ Date Date::addDays(int days) const
 
 int Date::day() const
 {
-    return getParts()[2];
+    return getParts().day;
 }
 
 int Date::daysInMonth(int month, int year)
@@ -52,7 +60,7 @@ int Date::daysInMonth(int month, int year)
     {
         return 29;
     }
-    return monthDays[month];
+    return monthDays[month - 1];
 }
 
 int Date::dayOfWeek() const
@@ -65,7 +73,7 @@ int Date::daysTo(const Date &other) const
     return other.jd - jd;
 }
 
-std::array<int, 3> Date::getParts() const
+DateParts Date::getParts() const
 {
     int a = jd + 32044;
     int b = (4 * a + 3) / 146097;
@@ -87,19 +95,19 @@ std::array<int, 3> Date::getParts() const
 
 int Date::month() const
 {
-    return getParts()[1];
+    return getParts().month;
 }
 
 std::string Date::toString() const
 {
     auto parts = getParts();
 
-    std::string y = std::to_string(parts[0]);
+    std::string y = std::to_string(parts.year);
 
-    std::string m = std::to_string(parts[1]);
+    std::string m = std::to_string(parts.month);
     m.insert(m.begin(), 2 - m.size(), '0');
 
-    std::string d = std::to_string(parts[2]);
+    std::string d = std::to_string(parts.day);
     d.insert(d.begin(), 2 - d.size(), '0');
 
     return y + "-" + m + "-" + d;
@@ -107,7 +115,7 @@ std::string Date::toString() const
 
 int Date::year() const
 {
-    return getParts()[0];
+    return getParts().year;
 }
 
 int Time::addSeconds(int seconds)
@@ -152,8 +160,7 @@ std::string Time::toString() const
     return h + ":" + m + ":" + s;
 }
 
-DateTime::DateTime(int year, int month, int day, int hour, int minute, int second) :
-    date(Date(year, month, day)), time(Time(hour, minute, second))
+DateTime::DateTime(int year, int month, int day, int hour, int minute, int second) : date(year, month, day), time(hour, minute, second)
 {
 }
 

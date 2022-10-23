@@ -69,9 +69,9 @@ namespace Keypresses
                     }
                 }
 
-                for (u8 j = 0; j < 8; j++)
+                for (Buttons direction : directions)
                 {
-                    Buttons combo = keys[i] | directions[j];
+                    Buttons combo = keys[i] | direction;
                     if (valid(combo, skipLR))
                     {
                         buttons.emplace_back(combo);
@@ -92,9 +92,9 @@ namespace Keypresses
                         }
                     }
 
-                    for (u8 k = 0; k < 8; k++)
+                    for (Buttons direction : directions)
                     {
-                        Buttons combo = keys[i] | keys[j] | directions[k];
+                        Buttons combo = keys[i] | keys[j] | direction;
                         if (valid(combo, skipLR))
                         {
                             buttons.emplace_back(combo);

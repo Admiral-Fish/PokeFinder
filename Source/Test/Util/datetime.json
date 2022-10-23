@@ -48,20 +48,20 @@
             {
                 "name": "Jan 1, 2000",
                 "jd": 2451545,
-                "results": [
-                    2000,
-                    1,
-                    1
-                ]
+                "results": {
+                    "year": 2000,
+                    "month": 1,
+                    "day": 1
+                }
             },
             {
                 "name": "Dec 31, 2099",
                 "jd": 2488069,
-                "results": [
-                    2099,
-                    12,
-                    31
-                ]
+                "results": {
+                    "year": 2099,
+                    "month": 12,
+                    "day": 31
+                }
             }
         ],
         "dayOfWeek": [

@@ -251,7 +251,7 @@ void SHA1::setButton(u32 button)
 void SHA1::setDate(const Date &date)
 {
     auto parts = date.getParts();
-    u32 val = static_cast<u32>((bcd(parts[0] - 2000) << 24) | (bcd(parts[1]) << 16) | (bcd(parts[2]) << 8) | date.dayOfWeek());
+    u32 val = static_cast<u32>((bcd(parts.year - 2000) << 24) | (bcd(parts.month) << 16) | (bcd(parts.day) << 8) | date.dayOfWeek());
     data[8] = val;
 }
 
