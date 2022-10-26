@@ -1,4 +1,4 @@
-project(PokeFinder VERSION 3.0.1 LANGUAGES CXX)
+project(PokeFinder VERSION 4.0.1 LANGUAGES CXX)
 
 if (NOT EXISTS ${CMAKE_BINARY_DIR}/generated/version.h)
     execute_process(
@@ -44,13 +44,13 @@ set(PROJECT_TS
     i18n/PokeFinder_ko.ts
     i18n/PokeFinder_zh.ts
 )
-	
+
 set(PROJECT_QRC
     "${CMAKE_SOURCE_DIR}/Externals/QDarkStyleSheet/qdarkstyle/dark/style.qrc"
     resources.qrc
 )
 
-set(PROJECT_UI	
+set(PROJECT_UI
     Controls/EggSettings.ui
     Controls/Filter.ui
     Controls/IVFilter.ui

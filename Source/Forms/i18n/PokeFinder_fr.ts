@@ -40,7 +40,7 @@
     </message>
     <message>
         <location filename="../Gen4/Tools/ChainedSID.ui"/>
-        <location filename="../Gen4/Tools/ChainedSID.cpp" line="47"/>
+        <location filename="../Gen4/Tools/ChainedSID.cpp" line="48"/>
         <source>Gender</source>
         <translation>Genre</translation>
     </message>
@@ -51,7 +51,7 @@
     </message>
     <message>
         <location filename="../Gen4/Tools/ChainedSID.ui"/>
-        <location filename="../Gen4/Tools/ChainedSID.cpp" line="47"/>
+        <location filename="../Gen4/Tools/ChainedSID.cpp" line="48"/>
         <source>Ability</source>
         <translation>Talent</translation>
     </message>
@@ -67,7 +67,7 @@
     </message>
     <message>
         <location filename="../Gen4/Tools/ChainedSID.ui"/>
-        <location filename="../Gen4/Tools/ChainedSID.cpp" line="47"/>
+        <location filename="../Gen4/Tools/ChainedSID.cpp" line="48"/>
         <source>Nature</source>
         <translation>Nature</translation>
     </message>
@@ -147,17 +147,17 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen4/Tools/ChainedSID.cpp" line="47"/>
+        <location filename="../Gen4/Tools/ChainedSID.cpp" line="48"/>
         <source>IVs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen4/Tools/ChainedSID.cpp" line="96"/>
+        <location filename="../Gen4/Tools/ChainedSID.cpp" line="97"/>
         <source>SID Found: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen4/Tools/ChainedSID.cpp" line="100"/>
+        <location filename="../Gen4/Tools/ChainedSID.cpp" line="101"/>
         <source>Possible Results: </source>
         <translation type="unfinished"></translation>
     </message>
@@ -367,42 +367,42 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/DreamRadar.cpp" line="90"/>
-        <location filename="../Gen5/DreamRadar.cpp" line="91"/>
-        <location filename="../Gen5/DreamRadar.cpp" line="92"/>
         <location filename="../Gen5/DreamRadar.cpp" line="93"/>
         <location filename="../Gen5/DreamRadar.cpp" line="94"/>
         <location filename="../Gen5/DreamRadar.cpp" line="95"/>
+        <location filename="../Gen5/DreamRadar.cpp" line="96"/>
         <location filename="../Gen5/DreamRadar.cpp" line="97"/>
         <location filename="../Gen5/DreamRadar.cpp" line="98"/>
-        <location filename="../Gen5/DreamRadar.cpp" line="99"/>
         <location filename="../Gen5/DreamRadar.cpp" line="100"/>
         <location filename="../Gen5/DreamRadar.cpp" line="101"/>
         <location filename="../Gen5/DreamRadar.cpp" line="102"/>
+        <location filename="../Gen5/DreamRadar.cpp" line="103"/>
+        <location filename="../Gen5/DreamRadar.cpp" line="104"/>
+        <location filename="../Gen5/DreamRadar.cpp" line="105"/>
         <source>None</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/DreamRadar.cpp" line="166"/>
-        <location filename="../Gen5/DreamRadar.cpp" line="171"/>
+        <location filename="../Gen5/DreamRadar.cpp" line="169"/>
+        <location filename="../Gen5/DreamRadar.cpp" line="174"/>
         <source>Output Results to TXT</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/DreamRadar.cpp" line="167"/>
-        <location filename="../Gen5/DreamRadar.cpp" line="172"/>
+        <location filename="../Gen5/DreamRadar.cpp" line="170"/>
+        <location filename="../Gen5/DreamRadar.cpp" line="175"/>
         <source>Output Results to CSV</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/DreamRadar.cpp" line="197"/>
-        <location filename="../Gen5/DreamRadar.cpp" line="232"/>
+        <location filename="../Gen5/DreamRadar.cpp" line="202"/>
+        <location filename="../Gen5/DreamRadar.cpp" line="237"/>
         <source>Missing settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/DreamRadar.cpp" line="197"/>
-        <location filename="../Gen5/DreamRadar.cpp" line="232"/>
+        <location filename="../Gen5/DreamRadar.cpp" line="202"/>
+        <location filename="../Gen5/DreamRadar.cpp" line="237"/>
         <source>Enter information for at least 1 slot</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1115,56 +1115,56 @@ Volbeat</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Controls/EggSettings.cpp" line="73"/>
-        <location filename="../Controls/EggSettings.cpp" line="80"/>
-        <source>Power Weight</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../Controls/EggSettings.cpp" line="74"/>
         <location filename="../Controls/EggSettings.cpp" line="81"/>
-        <source>Power Bracer</source>
+        <source>Power Weight</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Controls/EggSettings.cpp" line="75"/>
         <location filename="../Controls/EggSettings.cpp" line="82"/>
-        <source>Power Belt</source>
+        <source>Power Bracer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Controls/EggSettings.cpp" line="76"/>
         <location filename="../Controls/EggSettings.cpp" line="83"/>
-        <source>Power Lens</source>
+        <source>Power Belt</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Controls/EggSettings.cpp" line="77"/>
         <location filename="../Controls/EggSettings.cpp" line="84"/>
-        <source>Power Band</source>
+        <source>Power Lens</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Controls/EggSettings.cpp" line="78"/>
         <location filename="../Controls/EggSettings.cpp" line="85"/>
+        <source>Power Band</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Controls/EggSettings.cpp" line="79"/>
+        <location filename="../Controls/EggSettings.cpp" line="86"/>
         <source>Power Anklet</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Controls/EggSettings.cpp" line="92"/>
         <location filename="../Controls/EggSettings.cpp" line="93"/>
+        <location filename="../Controls/EggSettings.cpp" line="94"/>
         <source>Destiny Knot</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Controls/EggSettings.cpp" line="228"/>
-        <location filename="../Controls/EggSettings.cpp" line="231"/>
-        <source>None</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Controls/EggSettings.cpp" line="229"/>
         <location filename="../Controls/EggSettings.cpp" line="232"/>
+        <source>None</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Controls/EggSettings.cpp" line="230"/>
+        <location filename="../Controls/EggSettings.cpp" line="233"/>
         <source>Everstone</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1297,30 +1297,30 @@ Volbeat</source>
         <translation type="unfinished">PID</translation>
     </message>
     <message>
-        <location filename="../Gen3/Eggs3.cpp" line="125"/>
-        <location filename="../Gen3/Eggs3.cpp" line="130"/>
-        <location filename="../Gen3/Eggs3.cpp" line="135"/>
+        <location filename="../Gen3/Eggs3.cpp" line="126"/>
+        <location filename="../Gen3/Eggs3.cpp" line="131"/>
+        <location filename="../Gen3/Eggs3.cpp" line="136"/>
         <source>Output Results to TXT</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen3/Eggs3.cpp" line="126"/>
-        <location filename="../Gen3/Eggs3.cpp" line="131"/>
-        <location filename="../Gen3/Eggs3.cpp" line="136"/>
+        <location filename="../Gen3/Eggs3.cpp" line="127"/>
+        <location filename="../Gen3/Eggs3.cpp" line="132"/>
+        <location filename="../Gen3/Eggs3.cpp" line="137"/>
         <source>Output Results to CSV</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen3/Eggs3.cpp" line="163"/>
-        <location filename="../Gen3/Eggs3.cpp" line="197"/>
-        <location filename="../Gen3/Eggs3.cpp" line="227"/>
+        <location filename="../Gen3/Eggs3.cpp" line="166"/>
+        <location filename="../Gen3/Eggs3.cpp" line="200"/>
+        <location filename="../Gen3/Eggs3.cpp" line="230"/>
         <source>Incompatible Parents</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen3/Eggs3.cpp" line="163"/>
-        <location filename="../Gen3/Eggs3.cpp" line="197"/>
-        <location filename="../Gen3/Eggs3.cpp" line="227"/>
+        <location filename="../Gen3/Eggs3.cpp" line="166"/>
+        <location filename="../Gen3/Eggs3.cpp" line="200"/>
+        <location filename="../Gen3/Eggs3.cpp" line="230"/>
         <source>Gender of selected parents are not compatible for breeding</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1470,14 +1470,14 @@ Volbeat</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen4/Eggs4.cpp" line="176"/>
-        <location filename="../Gen4/Eggs4.cpp" line="219"/>
+        <location filename="../Gen4/Eggs4.cpp" line="177"/>
+        <location filename="../Gen4/Eggs4.cpp" line="220"/>
         <source>Incompatible Parents</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen4/Eggs4.cpp" line="176"/>
-        <location filename="../Gen4/Eggs4.cpp" line="219"/>
+        <location filename="../Gen4/Eggs4.cpp" line="177"/>
+        <location filename="../Gen4/Eggs4.cpp" line="220"/>
         <source>Gender of selected parents are not compatible for breeding</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1670,38 +1670,38 @@ Volbeat</source>
         <translation type="unfinished">Annuler</translation>
     </message>
     <message>
-        <location filename="../Gen5/Eggs5.cpp" line="105"/>
-        <location filename="../Gen5/Eggs5.cpp" line="110"/>
+        <location filename="../Gen5/Eggs5.cpp" line="107"/>
+        <location filename="../Gen5/Eggs5.cpp" line="112"/>
         <source>Output Results to TXT</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/Eggs5.cpp" line="106"/>
-        <location filename="../Gen5/Eggs5.cpp" line="111"/>
+        <location filename="../Gen5/Eggs5.cpp" line="108"/>
+        <location filename="../Gen5/Eggs5.cpp" line="113"/>
         <source>Output Results to CSV</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/Eggs5.cpp" line="138"/>
-        <location filename="../Gen5/Eggs5.cpp" line="179"/>
+        <location filename="../Gen5/Eggs5.cpp" line="142"/>
+        <location filename="../Gen5/Eggs5.cpp" line="183"/>
         <source>Incompatible Parents</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/Eggs5.cpp" line="138"/>
-        <location filename="../Gen5/Eggs5.cpp" line="179"/>
+        <location filename="../Gen5/Eggs5.cpp" line="142"/>
+        <location filename="../Gen5/Eggs5.cpp" line="183"/>
         <source>Gender of selected parents are not compatible for breeding</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/Eggs5.cpp" line="144"/>
-        <location filename="../Gen5/Eggs5.cpp" line="185"/>
+        <location filename="../Gen5/Eggs5.cpp" line="148"/>
+        <location filename="../Gen5/Eggs5.cpp" line="189"/>
         <source>Parents Reordered</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/Eggs5.cpp" line="144"/>
-        <location filename="../Gen5/Eggs5.cpp" line="185"/>
+        <location filename="../Gen5/Eggs5.cpp" line="148"/>
+        <location filename="../Gen5/Eggs5.cpp" line="189"/>
         <source>Parent were swapped to match the game</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1800,8 +1800,8 @@ Volbeat</source>
     </message>
     <message>
         <location filename="../Gen8/Eggs8.ui"/>
-        <location filename="../Gen8/Eggs8.cpp" line="166"/>
-        <location filename="../Gen8/Eggs8.cpp" line="167"/>
+        <location filename="../Gen8/Eggs8.cpp" line="177"/>
+        <location filename="../Gen8/Eggs8.cpp" line="178"/>
         <source>No</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1821,38 +1821,48 @@ Volbeat</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen8/Eggs8.cpp" line="91"/>
+        <location filename="../Gen8/Eggs8.cpp" line="93"/>
         <source>Output Results to TXT</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen8/Eggs8.cpp" line="92"/>
+        <location filename="../Gen8/Eggs8.cpp" line="94"/>
         <source>Output Results to CSV</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen8/Eggs8.cpp" line="115"/>
+        <location filename="../Gen8/Eggs8.cpp" line="119"/>
         <source>Incompatible Parents</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen8/Eggs8.cpp" line="115"/>
+        <location filename="../Gen8/Eggs8.cpp" line="119"/>
         <source>Gender of selected parents are not compatible for breeding</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen8/Eggs8.cpp" line="121"/>
+        <location filename="../Gen8/Eggs8.cpp" line="125"/>
         <source>Parents Reordered</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen8/Eggs8.cpp" line="121"/>
+        <location filename="../Gen8/Eggs8.cpp" line="125"/>
         <source>Parent were swapped to match the game</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen8/Eggs8.cpp" line="166"/>
-        <location filename="../Gen8/Eggs8.cpp" line="167"/>
+        <location filename="../Gen8/Eggs8.cpp" line="133"/>
+        <source>Missing seeds</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Gen8/Eggs8.cpp" line="133"/>
+        <source>Please insert missing seed information</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Gen8/Eggs8.cpp" line="177"/>
+        <location filename="../Gen8/Eggs8.cpp" line="178"/>
         <source>Yes</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1875,77 +1885,77 @@ Volbeat</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Util/EncounterLookup.cpp" line="58"/>
+        <location filename="../Util/EncounterLookup.cpp" line="60"/>
         <source>Location</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Util/EncounterLookup.cpp" line="58"/>
+        <location filename="../Util/EncounterLookup.cpp" line="60"/>
         <source>Encounter Type</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Util/EncounterLookup.cpp" line="58"/>
+        <location filename="../Util/EncounterLookup.cpp" line="60"/>
         <source>Level Range</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Util/EncounterLookup.cpp" line="62"/>
+        <location filename="../Util/EncounterLookup.cpp" line="64"/>
         <source>Ruby</source>
         <translation>Rubis</translation>
     </message>
     <message>
-        <location filename="../Util/EncounterLookup.cpp" line="63"/>
+        <location filename="../Util/EncounterLookup.cpp" line="65"/>
         <source>Sapphire</source>
         <translation>Saphir</translation>
     </message>
     <message>
-        <location filename="../Util/EncounterLookup.cpp" line="64"/>
+        <location filename="../Util/EncounterLookup.cpp" line="66"/>
         <source>Fire Red</source>
         <translation>Rouge feu</translation>
     </message>
     <message>
-        <location filename="../Util/EncounterLookup.cpp" line="65"/>
+        <location filename="../Util/EncounterLookup.cpp" line="67"/>
         <source>Leaf Green</source>
         <translation>Vert feuille</translation>
     </message>
     <message>
-        <location filename="../Util/EncounterLookup.cpp" line="66"/>
+        <location filename="../Util/EncounterLookup.cpp" line="68"/>
         <source>Emerald</source>
         <translation>Emeraude</translation>
     </message>
     <message>
-        <location filename="../Util/EncounterLookup.cpp" line="67"/>
+        <location filename="../Util/EncounterLookup.cpp" line="69"/>
         <source>Diamond</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Util/EncounterLookup.cpp" line="68"/>
+        <location filename="../Util/EncounterLookup.cpp" line="70"/>
         <source>Pearl</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Util/EncounterLookup.cpp" line="69"/>
+        <location filename="../Util/EncounterLookup.cpp" line="71"/>
         <source>Platinum</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Util/EncounterLookup.cpp" line="70"/>
+        <location filename="../Util/EncounterLookup.cpp" line="72"/>
         <source>Heart Gold</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Util/EncounterLookup.cpp" line="71"/>
+        <location filename="../Util/EncounterLookup.cpp" line="73"/>
         <source>Soul Silver</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Util/EncounterLookup.cpp" line="72"/>
+        <location filename="../Util/EncounterLookup.cpp" line="74"/>
         <source>Brilliant Diamond</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Util/EncounterLookup.cpp" line="73"/>
+        <location filename="../Util/EncounterLookup.cpp" line="75"/>
         <source>Shining Pearl</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1955,32 +1965,42 @@ Volbeat</source>
         <translation>Plante</translation>
     </message>
     <message>
-        <location filename="../Util/EncounterLookup.cpp" line="227"/>
+        <location filename="../Util/EncounterLookup.cpp" line="237"/>
+        <source>Headbutt</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Util/EncounterLookup.cpp" line="239"/>
+        <source>Bug Catching Contest</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Util/EncounterLookup.cpp" line="241"/>
         <source>Safari Zone</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Util/EncounterLookup.cpp" line="229"/>
+        <location filename="../Util/EncounterLookup.cpp" line="227"/>
         <source>Surfing</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Util/EncounterLookup.cpp" line="231"/>
+        <location filename="../Util/EncounterLookup.cpp" line="229"/>
         <source>Old Rod</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Util/EncounterLookup.cpp" line="233"/>
+        <location filename="../Util/EncounterLookup.cpp" line="231"/>
         <source>Good Rod</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Util/EncounterLookup.cpp" line="235"/>
+        <location filename="../Util/EncounterLookup.cpp" line="233"/>
         <source>Super Rod</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Util/EncounterLookup.cpp" line="237"/>
+        <location filename="../Util/EncounterLookup.cpp" line="235"/>
         <source>Rock Smash</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2243,14 +2263,14 @@ Volbeat</source>
         <translation type="unfinished">Annuler</translation>
     </message>
     <message>
-        <location filename="../Gen5/Event5.cpp" line="123"/>
-        <location filename="../Gen5/Event5.cpp" line="128"/>
+        <location filename="../Gen5/Event5.cpp" line="125"/>
+        <location filename="../Gen5/Event5.cpp" line="130"/>
         <source>Output Results to TXT</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/Event5.cpp" line="124"/>
-        <location filename="../Gen5/Event5.cpp" line="129"/>
+        <location filename="../Gen5/Event5.cpp" line="126"/>
+        <location filename="../Gen5/Event5.cpp" line="131"/>
         <source>Output Results to CSV</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2408,13 +2428,23 @@ Volbeat</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen8/Event8.cpp" line="101"/>
+        <location filename="../Gen8/Event8.cpp" line="103"/>
         <source>Output Results to TXT</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen8/Event8.cpp" line="102"/>
+        <location filename="../Gen8/Event8.cpp" line="104"/>
         <source>Output Results to CSV</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Gen8/Event8.cpp" line="140"/>
+        <source>Missing seeds</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Gen8/Event8.cpp" line="140"/>
+        <source>Please insert missing seed information</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2771,6 +2801,44 @@ Volbeat</source>
     </message>
 </context>
 <context>
+    <name>Game</name>
+    <message>
+        <location filename="../Models/Gen4/SeedtoTimeModel4.hpp" line="42"/>
+        <location filename="../Models/Gen4/SeedtoTimeModel4.hpp" line="43"/>
+        <source>Seed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen4/SeedtoTimeModel4.hpp" line="42"/>
+        <location filename="../Models/Gen4/SeedtoTimeModel4.hpp" line="43"/>
+        <location filename="../Models/Gen4/SeedtoTimeModel4.hpp" line="44"/>
+        <source>Date/Time</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen4/SeedtoTimeModel4.hpp" line="42"/>
+        <location filename="../Models/Gen4/SeedtoTimeModel4.hpp" line="43"/>
+        <location filename="../Models/Gen4/SeedtoTimeModel4.hpp" line="44"/>
+        <source>Delay</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen4/SeedtoTimeModel4.hpp" line="42"/>
+        <source>Calls</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen4/SeedtoTimeModel4.hpp" line="42"/>
+        <source>Roamer locations</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen4/SeedtoTimeModel4.hpp" line="43"/>
+        <source>Coin flips</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>GameCube</name>
     <message>
         <location filename="../Gen3/GameCube.ui"/>
@@ -2873,43 +2941,43 @@ Volbeat</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen3/GameCube.cpp" line="104"/>
-        <location filename="../Gen3/GameCube.cpp" line="110"/>
+        <location filename="../Gen3/GameCube.cpp" line="107"/>
+        <location filename="../Gen3/GameCube.cpp" line="113"/>
         <source>Output Results to TXT</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen3/GameCube.cpp" line="105"/>
-        <location filename="../Gen3/GameCube.cpp" line="111"/>
+        <location filename="../Gen3/GameCube.cpp" line="108"/>
+        <location filename="../Gen3/GameCube.cpp" line="114"/>
         <source>Output Results to CSV</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen3/GameCube.cpp" line="109"/>
+        <location filename="../Gen3/GameCube.cpp" line="112"/>
         <source>Generate times for seed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen3/GameCube.cpp" line="260"/>
-        <location filename="../Gen3/GameCube.cpp" line="349"/>
+        <location filename="../Gen3/GameCube.cpp" line="265"/>
+        <location filename="../Gen3/GameCube.cpp" line="354"/>
         <source> (Citadark)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen3/GameCube.cpp" line="264"/>
-        <location filename="../Gen3/GameCube.cpp" line="353"/>
+        <location filename="../Gen3/GameCube.cpp" line="269"/>
+        <location filename="../Gen3/GameCube.cpp" line="358"/>
         <source> (Initial)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen3/GameCube.cpp" line="268"/>
-        <location filename="../Gen3/GameCube.cpp" line="357"/>
+        <location filename="../Gen3/GameCube.cpp" line="273"/>
+        <location filename="../Gen3/GameCube.cpp" line="362"/>
         <source> (Phenac)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen3/GameCube.cpp" line="290"/>
-        <location filename="../Gen3/GameCube.cpp" line="373"/>
+        <location filename="../Gen3/GameCube.cpp" line="295"/>
+        <location filename="../Gen3/GameCube.cpp" line="378"/>
         <source> (E-Reader)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3739,14 +3807,14 @@ Volbeat</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/HiddenGrotto.cpp" line="126"/>
-        <location filename="../Gen5/HiddenGrotto.cpp" line="131"/>
+        <location filename="../Gen5/HiddenGrotto.cpp" line="127"/>
+        <location filename="../Gen5/HiddenGrotto.cpp" line="132"/>
         <source>Output Results to TXT</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/HiddenGrotto.cpp" line="127"/>
-        <location filename="../Gen5/HiddenGrotto.cpp" line="132"/>
+        <location filename="../Gen5/HiddenGrotto.cpp" line="128"/>
+        <location filename="../Gen5/HiddenGrotto.cpp" line="133"/>
         <source>Output Results to CSV</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4263,12 +4331,12 @@ Volbeat</source>
         <translation type="unfinished">Annuler</translation>
     </message>
     <message>
-        <location filename="../Gen5/IDs5.cpp" line="96"/>
+        <location filename="../Gen5/IDs5.cpp" line="95"/>
         <source>Output Results to TXT</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/IDs5.cpp" line="97"/>
+        <location filename="../Gen5/IDs5.cpp" line="96"/>
         <source>Output Results to CSV</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4381,12 +4449,22 @@ Volbeat</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen8/IDs8.cpp" line="115"/>
-        <location filename="../Gen8/IDs8.cpp" line="134"/>
-        <location filename="../Gen8/IDs8.cpp" line="155"/>
-        <location filename="../Gen8/IDs8.cpp" line="163"/>
-        <location filename="../Gen8/IDs8.cpp" line="184"/>
-        <location filename="../Gen8/IDs8.cpp" line="203"/>
+        <location filename="../Gen8/IDs8.cpp" line="96"/>
+        <source>Missing seeds</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Gen8/IDs8.cpp" line="96"/>
+        <source>Please insert missing seed information</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Gen8/IDs8.cpp" line="124"/>
+        <location filename="../Gen8/IDs8.cpp" line="143"/>
+        <location filename="../Gen8/IDs8.cpp" line="164"/>
+        <location filename="../Gen8/IDs8.cpp" line="172"/>
+        <location filename="../Gen8/IDs8.cpp" line="193"/>
+        <location filename="../Gen8/IDs8.cpp" line="212"/>
         <source>%1 is invalid input</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4646,6 +4724,11 @@ Volbeat</source>
         <source>Click holding ctrl+alt to set 0</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="../Controls/IVFilter.ui"/>
+        <source>IV Calculator</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>IVtoPID</name>
@@ -4700,63 +4783,63 @@ Volbeat</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Util/IVtoPID.cpp" line="49"/>
+        <location filename="../Util/IVtoPID.cpp" line="50"/>
         <source>Seed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Util/IVtoPID.cpp" line="49"/>
+        <location filename="../Util/IVtoPID.cpp" line="50"/>
         <source>PID</source>
         <translation>PID</translation>
     </message>
     <message>
-        <location filename="../Util/IVtoPID.cpp" line="49"/>
+        <location filename="../Util/IVtoPID.cpp" line="50"/>
         <source>Method</source>
         <translation>Méthode</translation>
     </message>
     <message>
-        <location filename="../Util/IVtoPID.cpp" line="49"/>
+        <location filename="../Util/IVtoPID.cpp" line="50"/>
         <source>Ability</source>
         <translation>Talent</translation>
     </message>
     <message>
-        <location filename="../Util/IVtoPID.cpp" line="52"/>
+        <location filename="../Util/IVtoPID.cpp" line="53"/>
         <source>SID</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Util/IVtoPID.cpp" line="98"/>
+        <location filename="../Util/IVtoPID.cpp" line="99"/>
         <source>XD/Colo</source>
         <translation>XD/Colo</translation>
     </message>
     <message>
-        <location filename="../Util/IVtoPID.cpp" line="127"/>
+        <location filename="../Util/IVtoPID.cpp" line="128"/>
         <source>Method 1</source>
         <translation>Méthode 1</translation>
     </message>
     <message>
-        <location filename="../Util/IVtoPID.cpp" line="140"/>
+        <location filename="../Util/IVtoPID.cpp" line="141"/>
         <source>Reverse Method 1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Util/IVtoPID.cpp" line="154"/>
+        <location filename="../Util/IVtoPID.cpp" line="155"/>
         <source>Method 2</source>
         <translation>Méthode 2</translation>
     </message>
     <message>
-        <location filename="../Util/IVtoPID.cpp" line="173"/>
-        <location filename="../Util/IVtoPID.cpp" line="195"/>
+        <location filename="../Util/IVtoPID.cpp" line="174"/>
+        <location filename="../Util/IVtoPID.cpp" line="196"/>
         <source>Cute Charm (DPPt)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Util/IVtoPID.cpp" line="215"/>
+        <location filename="../Util/IVtoPID.cpp" line="216"/>
         <source>Method 4</source>
         <translation>Méthode 4</translation>
     </message>
     <message>
-        <location filename="../Util/IVtoPID.cpp" line="253"/>
+        <location filename="../Util/IVtoPID.cpp" line="254"/>
         <source>Channel</source>
         <translation>Channel</translation>
     </message>
@@ -4867,64 +4950,64 @@ Volbeat</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="83"/>
+        <location filename="../MainWindow.cpp" line="85"/>
         <source>Unable to locate profiles</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="84"/>
+        <location filename="../MainWindow.cpp" line="86"/>
         <source>Please update path to your profiles file to restore existing profiles.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="191"/>
+        <location filename="../MainWindow.cpp" line="193"/>
         <source>Update Check</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="192"/>
+        <location filename="../MainWindow.cpp" line="194"/>
         <source>An update is available. Would you like to download the newest version?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../MainWindow.cpp" line="484"/>
         <location filename="../MainWindow.cpp" line="502"/>
-        <location filename="../MainWindow.cpp" line="521"/>
-        <location filename="../MainWindow.cpp" line="540"/>
-        <location filename="../MainWindow.cpp" line="559"/>
-        <location filename="../MainWindow.cpp" line="578"/>
-        <location filename="../MainWindow.cpp" line="597"/>
+        <location filename="../MainWindow.cpp" line="520"/>
+        <location filename="../MainWindow.cpp" line="538"/>
+        <location filename="../MainWindow.cpp" line="556"/>
+        <location filename="../MainWindow.cpp" line="574"/>
         <source>No profiles found</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../MainWindow.cpp" line="485"/>
         <location filename="../MainWindow.cpp" line="503"/>
-        <location filename="../MainWindow.cpp" line="522"/>
-        <location filename="../MainWindow.cpp" line="541"/>
-        <location filename="../MainWindow.cpp" line="560"/>
-        <location filename="../MainWindow.cpp" line="579"/>
-        <location filename="../MainWindow.cpp" line="598"/>
+        <location filename="../MainWindow.cpp" line="521"/>
+        <location filename="../MainWindow.cpp" line="539"/>
+        <location filename="../MainWindow.cpp" line="557"/>
+        <location filename="../MainWindow.cpp" line="575"/>
         <source>Please use the Profile Calibrator under Gen 5 Tools to create one.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="697"/>
-        <location filename="../MainWindow.cpp" line="734"/>
+        <location filename="../MainWindow.cpp" line="667"/>
+        <location filename="../MainWindow.cpp" line="704"/>
         <source>Download failed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="698"/>
-        <location filename="../MainWindow.cpp" line="735"/>
+        <location filename="../MainWindow.cpp" line="668"/>
+        <location filename="../MainWindow.cpp" line="705"/>
         <source>Make sure you are connected to the internet and have OpenSSL setup</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="746"/>
+        <location filename="../MainWindow.cpp" line="716"/>
         <source>Download finished</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="746"/>
+        <location filename="../MainWindow.cpp" line="716"/>
         <source>Restart to see event data. Restart now?</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4970,7 +5053,7 @@ Volbeat</source>
     </message>
     <message>
         <location filename="../MainWindow.ui"/>
-        <location filename="../MainWindow.cpp" line="722"/>
+        <location filename="../MainWindow.cpp" line="692"/>
         <source>Event</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5021,7 +5104,7 @@ Volbeat</source>
     </message>
     <message>
         <location filename="../MainWindow.ui"/>
-        <location filename="../MainWindow.cpp" line="768"/>
+        <location filename="../MainWindow.cpp" line="738"/>
         <source>About</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5032,7 +5115,7 @@ Volbeat</source>
     </message>
     <message>
         <location filename="../MainWindow.ui"/>
-        <location filename="../MainWindow.cpp" line="722"/>
+        <location filename="../MainWindow.cpp" line="692"/>
         <source>Download Event Data</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5340,12 +5423,12 @@ Volbeat</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen3/Tools/PokeSpot.cpp" line="67"/>
+        <location filename="../Gen3/Tools/PokeSpot.cpp" line="68"/>
         <source>Output Results to TXT</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen3/Tools/PokeSpot.cpp" line="68"/>
+        <location filename="../Gen3/Tools/PokeSpot.cpp" line="69"/>
         <source>Output Results to CSV</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5451,12 +5534,12 @@ Volbeat</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen4/Tools/Poketch.cpp" line="24"/>
+        <location filename="../Gen4/Tools/Poketch.cpp" line="43"/>
         <source>Do not switch to the happiness application at all</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen4/Tools/Poketch.cpp" line="34"/>
+        <location filename="../Gen4/Tools/Poketch.cpp" line="53"/>
         <source>Switch to the happiness application once but do not click</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5650,11 +5733,6 @@ Volbeat</source>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileCalibrator5.ui"/>
-        <source>Open IV Calculator</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Gen5/Profile/ProfileCalibrator5.ui"/>
         <source>Needle Search</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5729,20 +5807,25 @@ Volbeat</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../Gen5/Profile/ProfileCalibrator5.cpp" line="78"/>
         <location filename="../Gen5/Profile/ProfileCalibrator5.cpp" line="79"/>
         <location filename="../Gen5/Profile/ProfileCalibrator5.cpp" line="80"/>
-        <location filename="../Gen5/Profile/ProfileCalibrator5.cpp" line="81"/>
         <source>None</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/Profile/ProfileCalibrator5.cpp" line="189"/>
+        <location filename="../Gen5/Profile/ProfileCalibrator5.cpp" line="188"/>
         <source>Some min values are greater then max values</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/Profile/ProfileCalibrator5.cpp" line="302"/>
+        <location filename="../Gen5/Profile/ProfileCalibrator5.cpp" line="301"/>
         <source>Please select a entry.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Gen5/Profile/ProfileCalibrator5.ui"/>
+        <source>IV Calculator</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -5947,13 +6030,18 @@ Volbeat</source>
         <translation type="unfinished">Annuler</translation>
     </message>
     <message>
-        <location filename="../Gen4/Profile/ProfileEditor4.cpp" line="101"/>
+        <location filename="../Gen4/Profile/ProfileEditor4.cpp" line="103"/>
         <source>Enter a profile name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Gen4/Profile/ProfileEditor4.ui"/>
         <source>Okay</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Gen4/Profile/ProfileEditor4.ui"/>
+        <source>National Dex</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -6155,7 +6243,7 @@ Volbeat</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="136"/>
+        <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="137"/>
         <source>Enter a profile name</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6359,18 +6447,18 @@ Volbeat</source>
         <translation type="unfinished">Terminé</translation>
     </message>
     <message>
-        <location filename="../Gen5/Profile/ProfileManager5.cpp" line="70"/>
-        <location filename="../Gen5/Profile/ProfileManager5.cpp" line="92"/>
+        <location filename="../Gen5/Profile/ProfileManager5.cpp" line="71"/>
+        <location filename="../Gen5/Profile/ProfileManager5.cpp" line="93"/>
         <source>Please select a profile.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/Profile/ProfileManager5.cpp" line="97"/>
+        <location filename="../Gen5/Profile/ProfileManager5.cpp" line="98"/>
         <source>Delete profile</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/Profile/ProfileManager5.cpp" line="97"/>
+        <location filename="../Gen5/Profile/ProfileManager5.cpp" line="98"/>
         <source>Are you sure you wish to delete this profile?</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6462,12 +6550,14 @@ Volbeat</source>
     <message>
         <location filename="../Models/Gen4/ProfileModel4.cpp" line="51"/>
         <location filename="../Models/Gen4/ProfileModel4.cpp" line="53"/>
+        <location filename="../Models/Gen4/ProfileModel4.cpp" line="55"/>
         <source>Yes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Models/Gen4/ProfileModel4.cpp" line="51"/>
         <location filename="../Models/Gen4/ProfileModel4.cpp" line="53"/>
+        <location filename="../Models/Gen4/ProfileModel4.cpp" line="55"/>
         <source>No</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6509,6 +6599,11 @@ Volbeat</source>
     <message>
         <location filename="../Models/Gen4/ProfileModel4.hpp" line="37"/>
         <source>Swarm</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen4/ProfileModel4.hpp" line="38"/>
+        <source>National Dex</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -6935,8 +7030,8 @@ Volbeat</source>
     </message>
     <message>
         <location filename="../Gen8/Raids.ui"/>
-        <location filename="../Gen8/Raids.cpp" line="281"/>
-        <location filename="../Gen8/Raids.cpp" line="294"/>
+        <location filename="../Gen8/Raids.cpp" line="284"/>
+        <location filename="../Gen8/Raids.cpp" line="297"/>
         <source>No</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6976,23 +7071,23 @@ Volbeat</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen8/Raids.cpp" line="112"/>
+        <location filename="../Gen8/Raids.cpp" line="110"/>
         <source>Output Results to TXT</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen8/Raids.cpp" line="113"/>
+        <location filename="../Gen8/Raids.cpp" line="111"/>
         <source>Output Results to CSV</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen8/Raids.cpp" line="191"/>
+        <location filename="../Gen8/Raids.cpp" line="194"/>
         <source>Event</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen8/Raids.cpp" line="281"/>
-        <location filename="../Gen8/Raids.cpp" line="294"/>
+        <location filename="../Gen8/Raids.cpp" line="284"/>
+        <location filename="../Gen8/Raids.cpp" line="297"/>
         <source>Yes</source>
         <translation type="unfinished"></translation>
     </message>
@@ -7473,41 +7568,41 @@ Volbeat</source>
         <translation>Annuler</translation>
     </message>
     <message>
-        <location filename="../Gen4/Tools/SearchCalls.cpp" line="137"/>
+        <location filename="../Gen4/Tools/SearchCalls.cpp" line="131"/>
         <source>P - It seems that Pokémon that have been infected with Pokérus level up better. We&apos;re not quite sure why...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen4/Tools/SearchCalls.cpp" line="135"/>
+        <location filename="../Gen4/Tools/SearchCalls.cpp" line="129"/>
         <source>E - There are so many different ways that Pokémon evolve, aren&apos;t there?! Some Pokémon don&apos;t even evolve until they meet certain conditions first!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen4/Tools/SearchCalls.cpp" line="133"/>
+        <location filename="../Gen4/Tools/SearchCalls.cpp" line="127"/>
         <source>K - I expect there are some Pokémon in the Kanto region that I don&apos;t know. There are probably methods of evolution that I&apos;m not familiar with yet. I should use that perspective and discover what I can!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen4/Tools/SearchCalls.cpp" line="37"/>
-        <location filename="../Gen4/Tools/SearchCalls.cpp" line="127"/>
+        <location filename="../Gen4/Tools/SearchCalls.cpp" line="31"/>
+        <location filename="../Gen4/Tools/SearchCalls.cpp" line="121"/>
         <source>Possible Results: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Gen4/Tools/SearchCalls.ui"/>
-        <location filename="../Gen4/Tools/SearchCalls.cpp" line="143"/>
+        <location filename="../Gen4/Tools/SearchCalls.cpp" line="137"/>
         <source>K - I&apos;m so glad you called! I was just about to call you, too! I guess we must be a good match!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Gen4/Tools/SearchCalls.ui"/>
-        <location filename="../Gen4/Tools/SearchCalls.cpp" line="144"/>
+        <location filename="../Gen4/Tools/SearchCalls.cpp" line="138"/>
         <source>E - Hearing about your escapades rocks my soul! It sure does!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Gen4/Tools/SearchCalls.ui"/>
-        <location filename="../Gen4/Tools/SearchCalls.cpp" line="145"/>
+        <location filename="../Gen4/Tools/SearchCalls.cpp" line="139"/>
         <source>P - How are you? What are you doing? Where are you? How many Badges do you have now? How much money have you saved? How&apos;s your mom? Have you got lots of Pokémon? Is it going to be sunny tomorrow? Arrgh, there&apos;s so much I want to chat about! This is going nowhere!</source>
         <translation type="unfinished"></translation>
     </message>
@@ -7535,8 +7630,8 @@ Volbeat</source>
         <translation>Annuler</translation>
     </message>
     <message>
-        <location filename="../Gen4/Tools/SearchCoinFlips.cpp" line="31"/>
-        <location filename="../Gen4/Tools/SearchCoinFlips.cpp" line="104"/>
+        <location filename="../Gen4/Tools/SearchCoinFlips.cpp" line="32"/>
+        <location filename="../Gen4/Tools/SearchCoinFlips.cpp" line="105"/>
         <source>Possible Results: </source>
         <translation type="unfinished"></translation>
     </message>
@@ -7670,33 +7765,33 @@ Volbeat</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen4/Tools/SeedtoTime4.cpp" line="161"/>
+        <location filename="../Gen4/Tools/SeedtoTime4.cpp" line="162"/>
         <source>Please enter a year between 2000 and 2099</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen4/Tools/SeedtoTime4.cpp" line="254"/>
+        <location filename="../Gen4/Tools/SeedtoTime4.cpp" line="255"/>
         <source>Coin Flips: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen4/Tools/SeedtoTime4.cpp" line="272"/>
-        <location filename="../Gen4/Tools/SeedtoTime4.cpp" line="330"/>
+        <location filename="../Gen4/Tools/SeedtoTime4.cpp" line="273"/>
+        <location filename="../Gen4/Tools/SeedtoTime4.cpp" line="331"/>
         <source>Please select a result from Seed to Time.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen4/Tools/SeedtoTime4.cpp" line="310"/>
+        <location filename="../Gen4/Tools/SeedtoTime4.cpp" line="311"/>
         <source>Elm Calls: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen4/Tools/SeedtoTime4.cpp" line="312"/>
+        <location filename="../Gen4/Tools/SeedtoTime4.cpp" line="313"/>
         <source>No roamers</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen4/Tools/SeedtoTime4.cpp" line="312"/>
+        <location filename="../Gen4/Tools/SeedtoTime4.cpp" line="313"/>
         <source>Roamers: </source>
         <translation type="unfinished"></translation>
     </message>
@@ -7709,43 +7804,8 @@ Volbeat</source>
 <context>
     <name>SeedtoTimeModel4</name>
     <message>
-        <location filename="../Models/Gen4/SeedtoTimeModel4.cpp" line="65"/>
+        <location filename="../Models/Gen4/SeedtoTimeModel4.cpp" line="66"/>
         <source>No roamers</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Models/Gen4/SeedtoTimeModel4.hpp" line="41"/>
-        <location filename="../Models/Gen4/SeedtoTimeModel4.hpp" line="42"/>
-        <source>Seed</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Models/Gen4/SeedtoTimeModel4.hpp" line="41"/>
-        <location filename="../Models/Gen4/SeedtoTimeModel4.hpp" line="42"/>
-        <location filename="../Models/Gen4/SeedtoTimeModel4.hpp" line="43"/>
-        <source>Delay</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Models/Gen4/SeedtoTimeModel4.hpp" line="41"/>
-        <source>Calls</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Models/Gen4/SeedtoTimeModel4.hpp" line="41"/>
-        <source>Roamer locations</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Models/Gen4/SeedtoTimeModel4.hpp" line="41"/>
-        <location filename="../Models/Gen4/SeedtoTimeModel4.hpp" line="42"/>
-        <location filename="../Models/Gen4/SeedtoTimeModel4.hpp" line="43"/>
-        <source>Date/Time</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Models/Gen4/SeedtoTimeModel4.hpp" line="42"/>
-        <source>Coin flips</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -7892,12 +7952,12 @@ Volbeat</source>
         <translation>PID</translation>
     </message>
     <message>
-        <location filename="../Gen3/Tools/SpindaPainter.cpp" line="94"/>
+        <location filename="../Gen3/Tools/SpindaPainter.cpp" line="95"/>
         <source>Ability 0</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen3/Tools/SpindaPainter.cpp" line="94"/>
+        <location filename="../Gen3/Tools/SpindaPainter.cpp" line="95"/>
         <source>Ability 1</source>
         <translation type="unfinished"></translation>
     </message>
@@ -8015,19 +8075,19 @@ Volbeat</source>
         <translation type="unfinished">Annuler</translation>
     </message>
     <message>
-        <location filename="../Gen3/Static3.cpp" line="99"/>
-        <location filename="../Gen3/Static3.cpp" line="105"/>
+        <location filename="../Gen3/Static3.cpp" line="101"/>
+        <location filename="../Gen3/Static3.cpp" line="107"/>
         <source>Output Results to TXT</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen3/Static3.cpp" line="100"/>
-        <location filename="../Gen3/Static3.cpp" line="106"/>
+        <location filename="../Gen3/Static3.cpp" line="102"/>
+        <location filename="../Gen3/Static3.cpp" line="108"/>
         <source>Output Results to CSV</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen3/Static3.cpp" line="104"/>
+        <location filename="../Gen3/Static3.cpp" line="106"/>
         <source>Generate times for seed</source>
         <translation type="unfinished"></translation>
     </message>
@@ -8127,6 +8187,7 @@ Volbeat</source>
     <message>
         <location filename="../Gen4/Static4.ui"/>
         <location filename="../Gen4/Static4.cpp" line="106"/>
+        <location filename="../Gen4/Static4.cpp" line="184"/>
         <source>Synchronize</source>
         <translation type="unfinished"></translation>
     </message>
@@ -8215,31 +8276,26 @@ Volbeat</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen4/Static4.cpp" line="182"/>
-        <source>Sychronize</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Gen4/Static4.cpp" line="263"/>
-        <location filename="../Gen4/Static4.cpp" line="269"/>
+        <location filename="../Gen4/Static4.cpp" line="265"/>
+        <location filename="../Gen4/Static4.cpp" line="271"/>
         <source>Method 1</source>
         <translation type="unfinished">Méthode 1</translation>
     </message>
     <message>
-        <location filename="../Gen4/Static4.cpp" line="264"/>
-        <location filename="../Gen4/Static4.cpp" line="270"/>
+        <location filename="../Gen4/Static4.cpp" line="266"/>
+        <location filename="../Gen4/Static4.cpp" line="272"/>
         <source>Method K</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen4/Static4.cpp" line="264"/>
-        <location filename="../Gen4/Static4.cpp" line="270"/>
+        <location filename="../Gen4/Static4.cpp" line="266"/>
+        <location filename="../Gen4/Static4.cpp" line="272"/>
         <source>Method J</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen4/Static4.cpp" line="266"/>
-        <location filename="../Gen4/Static4.cpp" line="271"/>
+        <location filename="../Gen4/Static4.cpp" line="268"/>
+        <location filename="../Gen4/Static4.cpp" line="273"/>
         <source>Wondercard IVs</source>
         <translation type="unfinished"></translation>
     </message>
@@ -8338,8 +8394,8 @@ Volbeat</source>
     </message>
     <message>
         <location filename="../Gen5/Static5.ui"/>
-        <location filename="../Gen5/Static5.cpp" line="298"/>
-        <location filename="../Gen5/Static5.cpp" line="316"/>
+        <location filename="../Gen5/Static5.cpp" line="302"/>
+        <location filename="../Gen5/Static5.cpp" line="320"/>
         <source>Synchronize</source>
         <translation type="unfinished"></translation>
     </message>
@@ -8355,27 +8411,27 @@ Volbeat</source>
     </message>
     <message>
         <location filename="../Gen5/Static5.ui"/>
-        <location filename="../Gen5/Static5.cpp" line="355"/>
-        <location filename="../Gen5/Static5.cpp" line="369"/>
-        <location filename="../Gen5/Static5.cpp" line="386"/>
-        <location filename="../Gen5/Static5.cpp" line="400"/>
-        <location filename="../Gen5/Static5.cpp" line="423"/>
-        <location filename="../Gen5/Static5.cpp" line="435"/>
-        <location filename="../Gen5/Static5.cpp" line="450"/>
-        <location filename="../Gen5/Static5.cpp" line="462"/>
+        <location filename="../Gen5/Static5.cpp" line="359"/>
+        <location filename="../Gen5/Static5.cpp" line="373"/>
+        <location filename="../Gen5/Static5.cpp" line="390"/>
+        <location filename="../Gen5/Static5.cpp" line="404"/>
+        <location filename="../Gen5/Static5.cpp" line="427"/>
+        <location filename="../Gen5/Static5.cpp" line="439"/>
+        <location filename="../Gen5/Static5.cpp" line="454"/>
+        <location filename="../Gen5/Static5.cpp" line="466"/>
         <source>Static</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Gen5/Static5.ui"/>
-        <location filename="../Gen5/Static5.cpp" line="355"/>
-        <location filename="../Gen5/Static5.cpp" line="369"/>
-        <location filename="../Gen5/Static5.cpp" line="386"/>
-        <location filename="../Gen5/Static5.cpp" line="400"/>
-        <location filename="../Gen5/Static5.cpp" line="423"/>
-        <location filename="../Gen5/Static5.cpp" line="435"/>
-        <location filename="../Gen5/Static5.cpp" line="450"/>
-        <location filename="../Gen5/Static5.cpp" line="462"/>
+        <location filename="../Gen5/Static5.cpp" line="359"/>
+        <location filename="../Gen5/Static5.cpp" line="373"/>
+        <location filename="../Gen5/Static5.cpp" line="390"/>
+        <location filename="../Gen5/Static5.cpp" line="404"/>
+        <location filename="../Gen5/Static5.cpp" line="427"/>
+        <location filename="../Gen5/Static5.cpp" line="439"/>
+        <location filename="../Gen5/Static5.cpp" line="454"/>
+        <location filename="../Gen5/Static5.cpp" line="466"/>
         <source>Roamer</source>
         <translation type="unfinished"></translation>
     </message>
@@ -8466,15 +8522,15 @@ Volbeat</source>
     </message>
     <message>
         <location filename="../Gen5/Static5.ui"/>
-        <location filename="../Gen5/Static5.cpp" line="186"/>
-        <location filename="../Gen5/Static5.cpp" line="300"/>
-        <location filename="../Gen5/Static5.cpp" line="309"/>
+        <location filename="../Gen5/Static5.cpp" line="190"/>
+        <location filename="../Gen5/Static5.cpp" line="304"/>
+        <location filename="../Gen5/Static5.cpp" line="313"/>
         <source>Cute Charm</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Gen5/Static5.ui"/>
-        <location filename="../Gen5/Static5.cpp" line="105"/>
+        <location filename="../Gen5/Static5.cpp" line="107"/>
         <source>None</source>
         <translation type="unfinished"></translation>
     </message>
@@ -8484,50 +8540,50 @@ Volbeat</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/Static5.cpp" line="115"/>
-        <location filename="../Gen5/Static5.cpp" line="120"/>
+        <location filename="../Gen5/Static5.cpp" line="117"/>
+        <location filename="../Gen5/Static5.cpp" line="122"/>
         <source>Output Results to TXT</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/Static5.cpp" line="116"/>
-        <location filename="../Gen5/Static5.cpp" line="121"/>
+        <location filename="../Gen5/Static5.cpp" line="118"/>
+        <location filename="../Gen5/Static5.cpp" line="123"/>
         <source>Output Results to CSV</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/Static5.cpp" line="303"/>
+        <location filename="../Gen5/Static5.cpp" line="307"/>
         <source>♂ Lead</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/Static5.cpp" line="304"/>
+        <location filename="../Gen5/Static5.cpp" line="308"/>
         <source>♀ Lead (50% ♂ Target)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/Static5.cpp" line="305"/>
+        <location filename="../Gen5/Static5.cpp" line="309"/>
         <source>♀ Lead (75% ♂ Target)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/Static5.cpp" line="306"/>
+        <location filename="../Gen5/Static5.cpp" line="310"/>
         <source>♀ Lead (25% ♂ Target)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/Static5.cpp" line="307"/>
+        <location filename="../Gen5/Static5.cpp" line="311"/>
         <source>♀ Lead (87.5% ♂ Target)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/Static5.cpp" line="311"/>
+        <location filename="../Gen5/Static5.cpp" line="315"/>
         <source>Suction Cups</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/Static5.cpp" line="355"/>
-        <location filename="../Gen5/Static5.cpp" line="423"/>
+        <location filename="../Gen5/Static5.cpp" line="359"/>
+        <location filename="../Gen5/Static5.cpp" line="427"/>
         <source>Hidden Grotto</source>
         <translation type="unfinished"></translation>
     </message>
@@ -8610,39 +8666,49 @@ Volbeat</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen8/Static8.cpp" line="93"/>
+        <location filename="../Gen8/Static8.cpp" line="91"/>
         <source>None</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen8/Static8.cpp" line="94"/>
-        <location filename="../Gen8/Static8.cpp" line="146"/>
+        <location filename="../Gen8/Static8.cpp" line="92"/>
+        <location filename="../Gen8/Static8.cpp" line="155"/>
         <source>Synchronize</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen8/Static8.cpp" line="95"/>
+        <location filename="../Gen8/Static8.cpp" line="93"/>
         <source>Cute Charm</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen8/Static8.cpp" line="95"/>
+        <location filename="../Gen8/Static8.cpp" line="93"/>
         <source>♂ Lead</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen8/Static8.cpp" line="95"/>
+        <location filename="../Gen8/Static8.cpp" line="93"/>
         <source>♀ Lead</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen8/Static8.cpp" line="102"/>
+        <location filename="../Gen8/Static8.cpp" line="100"/>
         <source>Output Results to TXT</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen8/Static8.cpp" line="103"/>
+        <location filename="../Gen8/Static8.cpp" line="101"/>
         <source>Output Results to CSV</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Gen8/Static8.cpp" line="131"/>
+        <source>Missing seeds</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Gen8/Static8.cpp" line="131"/>
+        <source>Please insert missing seed information</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -8743,6 +8809,11 @@ Volbeat</source>
     <message>
         <location filename="../Gen8/Static8.ui"/>
         <source>IV Count</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Gen8/Static8.ui"/>
+        <source>Mythics</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -9361,24 +9432,24 @@ Volbeat</source>
     </message>
     <message>
         <location filename="../Gen3/Wild3.ui"/>
-        <location filename="../Gen3/Wild3.cpp" line="104"/>
+        <location filename="../Gen3/Wild3.cpp" line="105"/>
         <source>None</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Gen3/Wild3.cpp" line="113"/>
-        <location filename="../Gen3/Wild3.cpp" line="119"/>
-        <source>Output Results to TXT</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Gen3/Wild3.cpp" line="114"/>
         <location filename="../Gen3/Wild3.cpp" line="120"/>
+        <source>Output Results to TXT</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Gen3/Wild3.cpp" line="115"/>
+        <location filename="../Gen3/Wild3.cpp" line="121"/>
         <source>Output Results to CSV</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen3/Wild3.cpp" line="118"/>
+        <location filename="../Gen3/Wild3.cpp" line="119"/>
         <source>Generate times for seed</source>
         <translation type="unfinished"></translation>
     </message>
@@ -9388,42 +9459,42 @@ Volbeat</source>
         <translation>Annuler</translation>
     </message>
     <message>
-        <location filename="../Gen3/Wild3.cpp" line="108"/>
+        <location filename="../Gen3/Wild3.cpp" line="109"/>
         <source>♂ Lead (50% ♀ Target)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen3/Wild3.cpp" line="108"/>
+        <location filename="../Gen3/Wild3.cpp" line="109"/>
         <source>♂ Lead (75% ♀ Target)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen3/Wild3.cpp" line="108"/>
+        <location filename="../Gen3/Wild3.cpp" line="109"/>
         <source>♂ Lead (25% ♀ Target)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen3/Wild3.cpp" line="108"/>
+        <location filename="../Gen3/Wild3.cpp" line="109"/>
         <source>♂ Lead (12.5% ♀ Target)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen3/Wild3.cpp" line="109"/>
+        <location filename="../Gen3/Wild3.cpp" line="110"/>
         <source>♀ Lead (50% ♂ Target)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen3/Wild3.cpp" line="109"/>
+        <location filename="../Gen3/Wild3.cpp" line="110"/>
         <source>♀ Lead (75% ♂ Target)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen3/Wild3.cpp" line="109"/>
+        <location filename="../Gen3/Wild3.cpp" line="110"/>
         <source>♀ Lead (25% ♂ Target)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen3/Wild3.cpp" line="109"/>
+        <location filename="../Gen3/Wild3.cpp" line="110"/>
         <source>♀ Lead (87.5% ♂ Target)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -9468,38 +9539,38 @@ Volbeat</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen3/Wild3.cpp" line="341"/>
-        <location filename="../Gen3/Wild3.cpp" line="342"/>
+        <location filename="../Gen3/Wild3.cpp" line="336"/>
+        <location filename="../Gen3/Wild3.cpp" line="337"/>
         <source>Rock Smash</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen3/Wild3.cpp" line="343"/>
-        <location filename="../Gen3/Wild3.cpp" line="344"/>
+        <location filename="../Gen3/Wild3.cpp" line="338"/>
+        <location filename="../Gen3/Wild3.cpp" line="339"/>
         <source>Surfing</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen3/Wild3.cpp" line="345"/>
-        <location filename="../Gen3/Wild3.cpp" line="346"/>
+        <location filename="../Gen3/Wild3.cpp" line="340"/>
+        <location filename="../Gen3/Wild3.cpp" line="341"/>
         <source>Old Rod</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen3/Wild3.cpp" line="347"/>
-        <location filename="../Gen3/Wild3.cpp" line="348"/>
+        <location filename="../Gen3/Wild3.cpp" line="342"/>
+        <location filename="../Gen3/Wild3.cpp" line="343"/>
         <source>Good Rod</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen3/Wild3.cpp" line="349"/>
-        <location filename="../Gen3/Wild3.cpp" line="350"/>
+        <location filename="../Gen3/Wild3.cpp" line="344"/>
+        <location filename="../Gen3/Wild3.cpp" line="345"/>
         <source>Super Rod</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Gen3/Wild3.ui"/>
-        <location filename="../Gen3/Wild3.cpp" line="105"/>
+        <location filename="../Gen3/Wild3.cpp" line="106"/>
         <location filename="../Gen3/Wild3.cpp" line="248"/>
         <source>Synchronize</source>
         <translation type="unfinished"></translation>
@@ -9537,7 +9608,7 @@ Volbeat</source>
     </message>
     <message>
         <location filename="../Gen3/Wild3.ui"/>
-        <location filename="../Gen3/Wild3.cpp" line="107"/>
+        <location filename="../Gen3/Wild3.cpp" line="108"/>
         <source>Cute Charm</source>
         <translation type="unfinished"></translation>
     </message>
@@ -9559,12 +9630,6 @@ Volbeat</source>
     <message>
         <location filename="../Gen3/Wild3.ui"/>
         <source>Method H4</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Gen3/Wild3.cpp" line="338"/>
-        <location filename="../Gen3/Wild3.cpp" line="339"/>
-        <source>Safari Zone</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -9627,13 +9692,15 @@ Volbeat</source>
     </message>
     <message>
         <location filename="../Gen4/Wild4.ui"/>
-        <location filename="../Gen4/Wild4.cpp" line="394"/>
+        <location filename="../Gen4/Wild4.cpp" line="564"/>
         <source>Any</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen4/Wild4.cpp" line="372"/>
-        <location filename="../Gen4/Wild4.cpp" line="383"/>
+        <location filename="../Gen4/Wild4.cpp" line="522"/>
+        <location filename="../Gen4/Wild4.cpp" line="535"/>
+        <location filename="../Gen4/Wild4.cpp" line="543"/>
+        <location filename="../Gen4/Wild4.cpp" line="556"/>
         <source>Grass</source>
         <translation>Plante</translation>
     </message>
@@ -9648,20 +9715,20 @@ Volbeat</source>
         <translation>Méthode</translation>
     </message>
     <message>
-        <location filename="../Gen4/Wild4.cpp" line="363"/>
-        <location filename="../Gen4/Wild4.cpp" line="368"/>
+        <location filename="../Gen4/Wild4.cpp" line="513"/>
+        <location filename="../Gen4/Wild4.cpp" line="518"/>
         <source>Method J</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen4/Wild4.cpp" line="363"/>
-        <location filename="../Gen4/Wild4.cpp" line="368"/>
+        <location filename="../Gen4/Wild4.cpp" line="513"/>
+        <location filename="../Gen4/Wild4.cpp" line="518"/>
         <source>Method K</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen4/Wild4.cpp" line="365"/>
-        <location filename="../Gen4/Wild4.cpp" line="369"/>
+        <location filename="../Gen4/Wild4.cpp" line="515"/>
+        <location filename="../Gen4/Wild4.cpp" line="519"/>
         <source>Chained Shiny</source>
         <translation type="unfinished"></translation>
     </message>
@@ -9701,34 +9768,42 @@ Volbeat</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen4/Wild4.cpp" line="377"/>
-        <location filename="../Gen4/Wild4.cpp" line="388"/>
+        <location filename="../Gen4/Wild4.cpp" line="336"/>
+        <location filename="../Gen4/Wild4.cpp" line="359"/>
+        <location filename="../Gen4/Wild4.cpp" line="537"/>
+        <location filename="../Gen4/Wild4.cpp" line="558"/>
         <source>Surfing</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen4/Wild4.cpp" line="378"/>
-        <location filename="../Gen4/Wild4.cpp" line="389"/>
+        <location filename="../Gen4/Wild4.cpp" line="337"/>
+        <location filename="../Gen4/Wild4.cpp" line="360"/>
+        <location filename="../Gen4/Wild4.cpp" line="538"/>
+        <location filename="../Gen4/Wild4.cpp" line="559"/>
         <source>Old Rod</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen4/Wild4.cpp" line="379"/>
-        <location filename="../Gen4/Wild4.cpp" line="390"/>
+        <location filename="../Gen4/Wild4.cpp" line="338"/>
+        <location filename="../Gen4/Wild4.cpp" line="361"/>
+        <location filename="../Gen4/Wild4.cpp" line="539"/>
+        <location filename="../Gen4/Wild4.cpp" line="560"/>
         <source>Good Rod</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen4/Wild4.cpp" line="380"/>
-        <location filename="../Gen4/Wild4.cpp" line="391"/>
+        <location filename="../Gen4/Wild4.cpp" line="339"/>
+        <location filename="../Gen4/Wild4.cpp" line="362"/>
+        <location filename="../Gen4/Wild4.cpp" line="540"/>
+        <location filename="../Gen4/Wild4.cpp" line="561"/>
         <source>Super Rod</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Gen4/Wild4.ui"/>
-        <location filename="../Gen4/Wild4.cpp" line="107"/>
-        <location filename="../Gen4/Wild4.cpp" line="275"/>
-        <location filename="../Gen4/Wild4.cpp" line="395"/>
+        <location filename="../Gen4/Wild4.cpp" line="109"/>
+        <location filename="../Gen4/Wild4.cpp" line="403"/>
+        <location filename="../Gen4/Wild4.cpp" line="565"/>
         <source>Synchronize</source>
         <translation type="unfinished"></translation>
     </message>
@@ -9754,23 +9829,24 @@ Volbeat</source>
     </message>
     <message>
         <location filename="../Gen4/Wild4.ui"/>
-        <location filename="../Gen4/Wild4.cpp" line="108"/>
-        <location filename="../Gen4/Wild4.cpp" line="396"/>
+        <location filename="../Gen4/Wild4.cpp" line="110"/>
+        <location filename="../Gen4/Wild4.cpp" line="566"/>
         <source>Cute Charm</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Gen4/Wild4.ui"/>
-        <location filename="../Gen4/Wild4.cpp" line="399"/>
-        <location filename="../Gen4/Wild4.cpp" line="400"/>
-        <location filename="../Gen4/Wild4.cpp" line="404"/>
+        <location filename="../Gen4/Wild4.cpp" line="632"/>
+        <location filename="../Gen4/Wild4.cpp" line="634"/>
+        <location filename="../Gen4/Wild4.cpp" line="639"/>
+        <location filename="../Gen4/Wild4.cpp" line="706"/>
         <source>Suction Cups</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Gen4/Wild4.ui"/>
-        <location filename="../Gen4/Wild4.cpp" line="106"/>
-        <location filename="../Gen4/Wild4.cpp" line="406"/>
+        <location filename="../Gen4/Wild4.cpp" line="108"/>
+        <location filename="../Gen4/Wild4.cpp" line="568"/>
         <source>None</source>
         <translation type="unfinished"></translation>
     </message>
@@ -9800,62 +9876,110 @@ Volbeat</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen4/Wild4.cpp" line="114"/>
-        <location filename="../Gen4/Wild4.cpp" line="120"/>
+        <location filename="../Gen4/Wild4.cpp" line="117"/>
+        <location filename="../Gen4/Wild4.cpp" line="123"/>
         <source>Output Results to TXT</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen4/Wild4.cpp" line="115"/>
-        <location filename="../Gen4/Wild4.cpp" line="121"/>
+        <location filename="../Gen4/Wild4.cpp" line="118"/>
+        <location filename="../Gen4/Wild4.cpp" line="124"/>
         <source>Output Results to CSV</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen4/Wild4.cpp" line="119"/>
+        <location filename="../Gen4/Wild4.cpp" line="122"/>
         <source>Generate times for seed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen4/Wild4.cpp" line="357"/>
-        <location filename="../Gen4/Wild4.cpp" line="358"/>
+        <location filename="../Gen4/Wild4.cpp" line="301"/>
+        <location filename="../Gen4/Wild4.cpp" line="319"/>
+        <source>Special</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Gen4/Wild4.cpp" line="438"/>
+        <source>Missing Flawless IV</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Gen4/Wild4.cpp" line="439"/>
+        <source>Bug Catching Contest/Safari Zone Searcher needs at least one IV at 31</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Gen4/Wild4.cpp" line="506"/>
+        <location filename="../Gen4/Wild4.cpp" line="507"/>
+        <location filename="../Gen4/Wild4.cpp" line="508"/>
         <source>Yes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen4/Wild4.cpp" line="357"/>
-        <location filename="../Gen4/Wild4.cpp" line="358"/>
+        <location filename="../Gen4/Wild4.cpp" line="506"/>
+        <location filename="../Gen4/Wild4.cpp" line="507"/>
+        <location filename="../Gen4/Wild4.cpp" line="508"/>
         <source>No</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen4/Wild4.cpp" line="375"/>
-        <location filename="../Gen4/Wild4.cpp" line="386"/>
+        <location filename="../Gen4/Wild4.cpp" line="525"/>
+        <location filename="../Gen4/Wild4.cpp" line="546"/>
         <source>Rock Smash</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen4/Wild4.cpp" line="109"/>
+        <location filename="../Gen4/Wild4.cpp" line="526"/>
+        <location filename="../Gen4/Wild4.cpp" line="547"/>
+        <source>Headbutt</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Gen4/Wild4.cpp" line="527"/>
+        <location filename="../Gen4/Wild4.cpp" line="548"/>
+        <source>Bug Catching Contest</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Gen4/Wild4.cpp" line="528"/>
+        <location filename="../Gen4/Wild4.cpp" line="549"/>
+        <source>Safari Zone</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Gen4/Wild4.cpp" line="531"/>
+        <location filename="../Gen4/Wild4.cpp" line="552"/>
+        <source>Normal 1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Gen4/Wild4.cpp" line="532"/>
+        <location filename="../Gen4/Wild4.cpp" line="553"/>
+        <source>Normal 2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Gen4/Wild4.cpp" line="111"/>
         <source>♂ Lead</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen4/Wild4.cpp" line="109"/>
+        <location filename="../Gen4/Wild4.cpp" line="111"/>
         <source>♀ Lead (50% ♂ Target)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen4/Wild4.cpp" line="109"/>
+        <location filename="../Gen4/Wild4.cpp" line="111"/>
         <source>♀ Lead (75% ♂ Target)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen4/Wild4.cpp" line="110"/>
+        <location filename="../Gen4/Wild4.cpp" line="112"/>
         <source>♀ Lead (25% ♂ Target)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen4/Wild4.cpp" line="110"/>
+        <location filename="../Gen4/Wild4.cpp" line="112"/>
         <source>♀ Lead (87.5% ♂ Target)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -9897,6 +10021,48 @@ Volbeat</source>
     <message>
         <location filename="../Gen4/Wild4.ui"/>
         <source>Initial Advances</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Gen4/Wild4.ui"/>
+        <source>National Dex</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Gen4/Wild4.ui"/>
+        <source>Safari Encounter</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Gen4/Wild4.ui"/>
+        <source>Plains Blocks</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Gen4/Wild4.ui"/>
+        <source>Water Blocks</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Gen4/Wild4.ui"/>
+        <source>Tree Type</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Gen4/Wild4.ui"/>
+        <source>Peak Blocks</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Gen4/Wild4.ui"/>
+        <source>Forest Blocks</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Gen4/Wild4.ui"/>
+        <location filename="../Gen4/Wild4.cpp" line="115"/>
+        <location filename="../Gen4/Wild4.cpp" line="567"/>
+        <source>Compound Eyes</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -10013,64 +10179,74 @@ Volbeat</source>
         <translation type="unfinished">Filtres</translation>
     </message>
     <message>
-        <location filename="../Gen8/Wild8.cpp" line="96"/>
+        <location filename="../Gen8/Wild8.cpp" line="98"/>
         <source>None</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen8/Wild8.cpp" line="97"/>
-        <location filename="../Gen8/Wild8.cpp" line="197"/>
+        <location filename="../Gen8/Wild8.cpp" line="99"/>
+        <location filename="../Gen8/Wild8.cpp" line="205"/>
         <source>Synchronize</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen8/Wild8.cpp" line="98"/>
+        <location filename="../Gen8/Wild8.cpp" line="100"/>
         <source>Cute Charm</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen8/Wild8.cpp" line="98"/>
+        <location filename="../Gen8/Wild8.cpp" line="100"/>
         <source>♂ Lead</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen8/Wild8.cpp" line="98"/>
+        <location filename="../Gen8/Wild8.cpp" line="100"/>
         <source>♀ Lead</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen8/Wild8.cpp" line="101"/>
+        <location filename="../Gen8/Wild8.cpp" line="103"/>
         <source>Grass</source>
         <translation type="unfinished">Plante</translation>
     </message>
     <message>
-        <location filename="../Gen8/Wild8.cpp" line="102"/>
+        <location filename="../Gen8/Wild8.cpp" line="104"/>
         <source>Surfing</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen8/Wild8.cpp" line="103"/>
+        <location filename="../Gen8/Wild8.cpp" line="105"/>
         <source>Old Rod</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen8/Wild8.cpp" line="104"/>
+        <location filename="../Gen8/Wild8.cpp" line="106"/>
         <source>Good Rod</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen8/Wild8.cpp" line="105"/>
+        <location filename="../Gen8/Wild8.cpp" line="107"/>
         <source>Super Rod</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen8/Wild8.cpp" line="109"/>
+        <location filename="../Gen8/Wild8.cpp" line="111"/>
         <source>Output Results to TXT</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen8/Wild8.cpp" line="110"/>
+        <location filename="../Gen8/Wild8.cpp" line="112"/>
         <source>Output Results to CSV</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Gen8/Wild8.cpp" line="180"/>
+        <source>Missing seeds</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Gen8/Wild8.cpp" line="180"/>
+        <source>Please insert missing seed information</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -10175,17 +10351,23 @@ Volbeat</source>
 <context>
     <name>WildGeneratorModel4</name>
     <message>
-        <location filename="../Models/Gen4/WildModel4.cpp" line="87"/>
+        <location filename="../Models/Gen4/WildModel4.cpp" line="69"/>
+        <location filename="../Models/Gen4/WildModel4.cpp" line="73"/>
+        <source>None</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen4/WildModel4.cpp" line="94"/>
         <source>Square</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/WildModel4.cpp" line="87"/>
+        <location filename="../Models/Gen4/WildModel4.cpp" line="94"/>
         <source>Star</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/WildModel4.cpp" line="87"/>
+        <location filename="../Models/Gen4/WildModel4.cpp" line="94"/>
         <source>No</source>
         <translation type="unfinished"></translation>
     </message>
@@ -10404,57 +10586,64 @@ Volbeat</source>
 <context>
     <name>WildSearcherModel4</name>
     <message>
-        <location filename="../Models/Gen4/WildModel4.cpp" line="267"/>
+        <location filename="../Models/Gen4/WildModel4.cpp" line="274"/>
+        <location filename="../Models/Gen4/WildModel4.cpp" line="298"/>
+        <location filename="../Models/Gen4/WildModel4.cpp" line="302"/>
         <source>None</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/WildModel4.cpp" line="269"/>
+        <location filename="../Models/Gen4/WildModel4.cpp" line="276"/>
         <source>Synchronize</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/WildModel4.cpp" line="271"/>
+        <location filename="../Models/Gen4/WildModel4.cpp" line="278"/>
         <source>Suction Cups</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/WildModel4.cpp" line="273"/>
-        <source>Cute Charm (♀)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Models/Gen4/WildModel4.cpp" line="275"/>
-        <source>Cute Charm (25% ♂)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Models/Gen4/WildModel4.cpp" line="277"/>
-        <source>Cute Charm (50% ♂)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Models/Gen4/WildModel4.cpp" line="279"/>
-        <source>Cute Charm (75% ♂)</source>
+        <location filename="../Models/Gen4/WildModel4.cpp" line="280"/>
+        <source>Compound Eyes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Models/Gen4/WildModel4.cpp" line="282"/>
+        <source>Cute Charm (♀)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen4/WildModel4.cpp" line="284"/>
+        <source>Cute Charm (25% ♂)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen4/WildModel4.cpp" line="286"/>
+        <source>Cute Charm (50% ♂)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen4/WildModel4.cpp" line="288"/>
+        <source>Cute Charm (75% ♂)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen4/WildModel4.cpp" line="291"/>
         <source>Cute Charm (87.5% ♂)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/WildModel4.cpp" line="298"/>
+        <location filename="../Models/Gen4/WildModel4.cpp" line="314"/>
         <source>Square</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/WildModel4.cpp" line="298"/>
+        <location filename="../Models/Gen4/WildModel4.cpp" line="314"/>
         <source>Star</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/WildModel4.cpp" line="298"/>
+        <location filename="../Models/Gen4/WildModel4.cpp" line="314"/>
         <source>No</source>
         <translation type="unfinished"></translation>
     </message>
