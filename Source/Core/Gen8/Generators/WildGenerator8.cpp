@@ -43,6 +43,10 @@ std::vector<WildState> WildGenerator8::generate(u64 seed0, u64 seed1, const Enco
         WildState state(initialAdvances + cnt);
         Xorshift gen(rng);
         u8 slotPercent = gen.next<0, 100>();
+        if (encounterArea.getLocation() > 222 && encounterArea.getLocation() < 244)
+        { // Unown form call
+            gen.next(); // gen.next<0,1>() for F/R/I/E/N/D, gen.next<0,2>() for !/?, gen.next<0,20>() otherwise
+        }
         gen.advance(84);
         switch (encounter)
         {
@@ -111,11 +115,6 @@ std::vector<WildState> WildGenerator8::generate(u64 seed0, u64 seed1, const Enco
         }
 
         state.setAbility(gen.next() % 2);
-
-        if (encounterArea.getLocation() > 222 && encounterArea.getLocation() < 244)
-        { // TODO: add unown check
-            u32 unownForm = gen.next() % 28; // Form call
-        }
 
         if (genderRatio == 255)
         {
