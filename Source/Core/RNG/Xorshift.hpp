@@ -38,6 +38,22 @@ public:
     Xorshift(u64 seed0, u64 seed1);
 
     /**
+     * @brief Construct a new Xorshift object
+     *
+     * @param seed0 Starting PRNG state0
+     * @param seed1 Starting PRNG state1
+     * @param advances Number of initial advances
+     */
+    Xorshift(u64 seed0, u64 seed1, u32 advances);
+
+    /**
+     * @brief Construct a new Xorshift object
+     *
+     * @param other Xorshift to copy
+     */
+    Xorshift(const Xorshift &other);
+
+    /**
      * @brief Advances the RNG by \p advances amount
      *
      * @param advances Number of advances

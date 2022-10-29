@@ -200,7 +200,12 @@ private slots:
     // void openEvent8();
     // void openRaids();
     // void openEgg8();
-    // void openIDs8();
+
+    /**
+     * @brief Opens the Gen 8 IDs window
+     */
+    void openIDs8();
+
     // void openDenMap();
 
     /**

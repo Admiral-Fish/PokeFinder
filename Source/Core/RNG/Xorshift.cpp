@@ -37,6 +37,16 @@ Xorshift::Xorshift(u64 seed0, u64 seed1)
     ptr[1] = seed1;
 }
 
+Xorshift::Xorshift(u64 seed0, u64 seed1, u32 advances) : Xorshift(seed0, seed1)
+{
+    jump(advances);
+}
+
+Xorshift::Xorshift(const Xorshift &other)
+{
+    state.uint128 = other.state.uint128;
+}
+
 void Xorshift::advance(u32 advances)
 {
     for (u64 advance = 0; advance < advances; advance++)

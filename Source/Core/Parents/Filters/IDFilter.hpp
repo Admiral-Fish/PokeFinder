@@ -24,6 +24,7 @@
 #include <vector>
 
 class IDState;
+class IDState8;
 
 /**
  * @brief Provides ways to determine if the given \ref IDState meets the given criteria
@@ -51,6 +52,16 @@ public:
      * @return false State does not pass the filter
      */
     bool compare(const IDState &state) const;
+
+    /**
+     * @brief Determines if the \p state meets the filter criteria
+     *
+     * @param state State to compare
+     *
+     * @return true State passes the filter
+     * @return false State does not pass the filter
+     */
+    bool compare(const IDState8 &state) const;
 
 protected:
     std::vector<u32> displayFilter;

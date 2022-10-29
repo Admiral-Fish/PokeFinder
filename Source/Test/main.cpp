@@ -32,6 +32,7 @@
 #include <Test/Gen4/StaticSearcher4Test.hpp>
 #include <Test/Gen4/WildGenerator4Test.hpp>
 #include <Test/Gen4/WildSearcher4Test.hpp>
+#include <Test/Gen8/IDGenerator8Test.hpp>
 #include <Test/RNG/LCRNG64Test.hpp>
 #include <Test/RNG/LCRNGReverseTest.hpp>
 #include <Test/RNG/LCRNGTest.hpp>
@@ -78,6 +79,9 @@ int main()
     status += runTest<StaticSearcher4Test>(fails);
     status += runTest<WildGenerator4Test>(fails);
     status += runTest<WildSearcher4Test>(fails);
+
+    // Gen 8
+    status += runTest<IDGenerator8Test>(fails);
 
     // RNG Tests
     status += runTest<LCRNGTest>(fails);

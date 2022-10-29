@@ -31,6 +31,7 @@
 #include <Form/Gen4/Static4.hpp>
 #include <Form/Gen4/Tools/SeedToTime4.hpp>
 #include <Form/Gen4/Wild4.hpp>
+#include <Form/Gen8/IDs8.hpp>
 #include <Form/Gen8/Profile/ProfileManager8.hpp>
 #include <Form/Util/IVCalculator.hpp>
 #include <Form/Util/Researcher.hpp>
@@ -66,7 +67,6 @@
 //#include <Forms/Gen8/DenMap.hpp>
 //#include <Forms/Gen8/Eggs8.hpp>
 //#include <Forms/Gen8/Event8.hpp>
-//#include <Forms/Gen8/IDs8.hpp>
 //#include <Forms/Gen8/Raids.hpp>
 //#include <Forms/Gen8/Static8.hpp>
 //#include <Forms/Gen8/Wild8.hpp>
@@ -114,7 +114,7 @@ MainWindow::MainWindow(bool profile, QWidget *parent) : QMainWindow(parent), ui(
     // connect(ui->pushButtonEvent8, &QPushButton::clicked, this, &MainWindow::openEvent8);
     // connect(ui->pushButtonRaid, &QPushButton::clicked, this, &MainWindow::openRaids);
     // connect(ui->pushButtonEgg8, &QPushButton::clicked, this, &MainWindow::openEgg8);
-    // connect(ui->pushButtonIDs8, &QPushButton::clicked, this, &MainWindow::openIDs8);
+    connect(ui->pushButtonIDs8, &QPushButton::clicked, this, &MainWindow::openIDs8);
     // connect(ui->actionDenMap, &QAction::triggered, this, &MainWindow::openDenMap);
     // connect(ui->actionDownloadEventData, &QAction::triggered, this, &MainWindow::downloadEventData);
     connect(ui->actionProfileManager8, &QAction::triggered, this, &MainWindow::openProfileManager8);
@@ -170,7 +170,7 @@ MainWindow::~MainWindow()
 
     // delete egg8;
     // delete event8;
-    // delete ids8;
+    delete ids8;
     // delete raids;
     // delete static8;
     // delete wild8;
@@ -540,19 +540,18 @@ void MainWindow::openEgg8()
         connect(egg8, &Eggs8::alertProfiles, this, &MainWindow::updateProfiles);
     }
     egg8->show();
-}
+}*/
 
 void MainWindow::openIDs8()
 {
     if (!ids8)
     {
         ids8 = new IDs8();
-        connect(ids8, &IDs8::alertProfiles, this, &MainWindow::updateProfiles);
     }
     ids8->show();
 }
 
-void MainWindow::openDenMap()
+/*void MainWindow::openDenMap()
 {
     auto *map = new DenMap();
     map->show();
