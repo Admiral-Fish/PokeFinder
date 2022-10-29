@@ -194,6 +194,7 @@ private slots:
     // void openProfileManager5();
 
     // Gen 8
+    // void downloadEventData();
     // void openStatic8();
     // void openWild8();
     // void openEvent8();
@@ -201,8 +202,11 @@ private slots:
     // void openEgg8();
     // void openIDs8();
     // void openDenMap();
-    // void downloadEventData();
-    // void openProfileManager8();
+
+    /**
+     * @brief Opens the Gen 8 Profile Manager window
+     */
+    void openProfileManager8();
 
     // General tools and settings
 

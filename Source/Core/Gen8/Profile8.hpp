@@ -38,10 +38,8 @@ public:
      * @param sid Secret ID
      * @param shinyCharm Whether shiny charm is obtained
      * @param ovalCharm Whether oval charm is obtained
-     * @param radar Whether pokeradar is enabled
-     * @param swarm Whether swarms are enabled
      */
-    Profile8(const std::string &name, Game version, u16 tid, u16 sid, bool shinyCharm, bool ovalCharm, bool radar, bool swarm);
+    Profile8(const std::string &name, Game version, u16 tid, u16 sid, bool shinyCharm, bool ovalCharm);
 
     /**
      * @brief Returns whether the profile has the oval charm
@@ -52,28 +50,12 @@ public:
     bool getOvalCharm() const;
 
     /**
-     * @brief Returns whether the profile is using the pokeradar
-     *
-     * @return true Pokeradar is enabled
-     * @return false Pokeradar is not enabled
-     */
-    bool getRadar() const;
-
-    /**
      * @brief Returns whether the profile has the shiny charm
      *
      * @return true Shiny charm is obtained
      * @return false Shiny charm is not obtained
      */
     bool getShinyCharm() const;
-
-    /**
-     * @brief Returns whether the profile is using a swarm
-     *
-     * @return true Swarm is enabled
-     * @return false Swarm is not enabled
-     */
-    bool getSwarm() const;
 
     /**
      * @brief Checks if two profiles are equal
@@ -97,9 +79,7 @@ public:
 
 private:
     bool ovalCharm;
-    bool radar;
     bool shinyCharm;
-    bool swarm;
 };
 
 #endif // PROFILE8_HPP

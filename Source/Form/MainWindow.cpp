@@ -31,6 +31,7 @@
 #include <Form/Gen4/Static4.hpp>
 #include <Form/Gen4/Tools/SeedToTime4.hpp>
 #include <Form/Gen4/Wild4.hpp>
+#include <Form/Gen8/Profile/ProfileManager8.hpp>
 #include <Form/Util/IVCalculator.hpp>
 #include <Form/Util/Researcher.hpp>
 #include <Form/Util/Settings.hpp>
@@ -66,7 +67,6 @@
 //#include <Forms/Gen8/Eggs8.hpp>
 //#include <Forms/Gen8/Event8.hpp>
 //#include <Forms/Gen8/IDs8.hpp>
-//#include <Forms/Gen8/Profile/ProfileManager8.hpp>
 //#include <Forms/Gen8/Raids.hpp>
 //#include <Forms/Gen8/Static8.hpp>
 //#include <Forms/Gen8/Wild8.hpp>
@@ -117,7 +117,7 @@ MainWindow::MainWindow(bool profile, QWidget *parent) : QMainWindow(parent), ui(
     // connect(ui->pushButtonIDs8, &QPushButton::clicked, this, &MainWindow::openIDs8);
     // connect(ui->actionDenMap, &QAction::triggered, this, &MainWindow::openDenMap);
     // connect(ui->actionDownloadEventData, &QAction::triggered, this, &MainWindow::downloadEventData);
-    // connect(ui->actionProfileManager8, &QAction::triggered, this, &MainWindow::openProfileManager8);
+    connect(ui->actionProfileManager8, &QAction::triggered, this, &MainWindow::openProfileManager8);
 
     connect(ui->actionAbout, &QAction::triggered, this, &MainWindow::openAbout);
     // connect(ui->actionEncounterLookup, &QAction::triggered, this, &MainWindow::openEncounterLookup);
@@ -621,14 +621,14 @@ files.at(index)); if (eventResponse.isEmpty())
             QApplication::quit();
         }
     }
-}
+}*/
 
 void MainWindow::openProfileManager8()
 {
     auto *manager = new ProfileManager8();
     connect(manager, &ProfileManager8::updateProfiles, this, [=] { updateProfiles(8); });
     manager->show();
-}*/
+}
 
 void MainWindow::openAbout() const
 {

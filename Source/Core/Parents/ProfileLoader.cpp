@@ -112,7 +112,7 @@ namespace ProfileLoader3
         Profile3 getProfile(const json &j)
         {
             std::string name = j.value("name", "-");
-            Game version = j.value("version", Game::LeafGreen);
+            Game version = j.value("version", Game::Emerald);
             u16 tid = j.value("tid", 0);
             u16 sid = j.value("sid", 0);
             u16 deadBattery = j.value("battery", false);
@@ -310,7 +310,7 @@ namespace ProfileLoader5
         Profile5 getProfile(const json &j)
         {
             std::string name = j.value("name", "-");
-            Game version = j.value("version", Game::Diamond);
+            Game version = j.value("version", Game::Black);
             u16 tid = j.value("tid", 0);
             u16 sid = j.value("sid", 0);
             u64 mac = j.value("mac", 0);
@@ -405,8 +405,6 @@ namespace ProfileLoader8
             j["sid"] = profile.getSID();
             j["shinyCharm"] = profile.getShinyCharm();
             j["ovalCharm"] = profile.getOvalCharm();
-            j["radar"] = profile.getRadar();
-            j["swarm"] = profile.getSwarm();
             return j;
         }
 
@@ -420,14 +418,12 @@ namespace ProfileLoader8
         Profile8 getProfile(const json &j)
         {
             std::string name = j.value("name", "-");
-            Game version = j.value("version", Game::Diamond);
+            Game version = j.value("version", Game::BD);
             u16 tid = j.value("tid", 0);
             u16 sid = j.value("sid", 0);
             bool shinyCharm = j.value("shinyCharm", false);
             bool ovalCharm = j.value("ovalCharm", false);
-            bool radar = j.value("radar", false);
-            bool swarm = j.value("swarm", false);
-            return Profile8(name, version, tid, sid, shinyCharm, ovalCharm, radar, swarm);
+            return Profile8(name, version, tid, sid, shinyCharm, ovalCharm);
         }
     }
 

@@ -19,8 +19,8 @@
 
 #include "Profile8.hpp"
 
-Profile8::Profile8(const std::string &name, Game version, u16 tid, u16 sid, bool shinyCharm, bool ovalCharm, bool radar, bool swarm) :
-    Profile(name, version, tid, sid), ovalCharm(ovalCharm), radar(radar), shinyCharm(shinyCharm), swarm(swarm)
+Profile8::Profile8(const std::string &name, Game version, u16 tid, u16 sid, bool shinyCharm, bool ovalCharm) :
+    Profile(name, version, tid, sid), ovalCharm(ovalCharm), shinyCharm(shinyCharm)
 {
 }
 
@@ -29,25 +29,14 @@ bool Profile8::getOvalCharm() const
     return ovalCharm;
 }
 
-bool Profile8::getRadar() const
-{
-    return radar;
-}
-
 bool Profile8::getShinyCharm() const
 {
     return shinyCharm;
 }
 
-bool Profile8::getSwarm() const
-{
-    return swarm;
-}
-
 bool Profile8::operator==(const Profile8 &other) const
 {
-    return Profile::operator==(other) && shinyCharm == other.shinyCharm && ovalCharm == other.ovalCharm && radar == other.radar
-        && swarm == other.swarm;
+    return Profile::operator==(other) && shinyCharm == other.shinyCharm && ovalCharm == other.ovalCharm;
 }
 
 bool Profile8::operator!=(const Profile8 &other) const
