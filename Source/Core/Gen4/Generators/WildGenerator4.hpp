@@ -47,7 +47,7 @@ public:
      * @param filter State filter
      */
     WildGenerator4(u32 initialAdvances, u32 maxAdvances, u32 offset, u16 tid, u16 sid, Game version, Method method, Encounter encounter,
-                   Lead lead, bool shiny, const WildStateFilter4 &filter);
+                   Lead lead, const WildStateFilter4 &filter);
 
     /**
      * @brief Generates states for the \p encounterArea

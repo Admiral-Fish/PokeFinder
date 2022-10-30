@@ -35,6 +35,7 @@ int WildGeneratorModel4::columnCount(const QModelIndex &parent) const
     case Method::MethodJ:
     case Method::PokeRadar:
         return 19;
+    case Method::PokeRadarShiny:
     case Method::MethodK:
         return 20;
     default:
@@ -57,36 +58,38 @@ QVariant WildGeneratorModel4::data(const QModelIndex &index, int role) const
         case 2:
             return QString::fromStdString(*Translator::getItem(state.getItem()));
         case 3:
-            return state.getCall() == 0 ? "E" : state.getCall() == 1 ? "K" : "P";
+            return state.getRadarShinyPatch();
         case 4:
-            return QString::fromStdString(Utilities4::getChatot(state.getChatot()));
+            return state.getCall() == 0 ? "E" : state.getCall() == 1 ? "K" : "P";
         case 5:
-            return QString("%1 (%2)").arg(state.getEncounterSlot()).arg(QString::fromStdString(*Translator::getSpecie(state.getSpecie())));
+            return QString::fromStdString(Utilities4::getChatot(state.getChatot()));
         case 6:
-            return state.getLevel();
+            return QString("%1 (%2)").arg(state.getEncounterSlot()).arg(QString::fromStdString(*Translator::getSpecie(state.getSpecie())));
         case 7:
-            return QString::number(state.getPID(), 16).toUpper().rightJustified(8, '0');
+            return state.getLevel();
         case 8:
+            return QString::number(state.getPID(), 16).toUpper().rightJustified(8, '0');
+        case 9:
         {
             u8 shiny = state.getShiny();
             return shiny == 2 ? tr("Square") : shiny == 1 ? tr("Star") : tr("No");
         }
-        case 9:
-            return QString::fromStdString(*Translator::getNature(state.getNature()));
         case 10:
-            return QString("%1 (%2)").arg(state.getAbility()).arg(QString::fromStdString(*Translator::getAbility(state.getAbilityIndex())));
+            return QString::fromStdString(*Translator::getNature(state.getNature()));
         case 11:
+            return QString("%1 (%2)").arg(state.getAbility()).arg(QString::fromStdString(*Translator::getAbility(state.getAbilityIndex())));
         case 12:
         case 13:
         case 14:
         case 15:
         case 16:
-            return showStats ? state.getStat(column - 11) : state.getIV(column - 11);
         case 17:
-            return QString::fromStdString(*Translator::getHiddenPower(state.getHiddenPower()));
+            return showStats ? state.getStat(column - 12) : state.getIV(column - 12);
         case 18:
-            return state.getHiddenPowerStrength();
+            return QString::fromStdString(*Translator::getHiddenPower(state.getHiddenPower()));
         case 19:
+            return state.getHiddenPowerStrength();
+        case 20:
             return QString::fromStdString(*Translator::getGender(state.getGender()));
         }
     }
@@ -122,8 +125,11 @@ int WildGeneratorModel4::getColumn(int column) const
     {
     case Method::MethodJ:
     case Method::PokeRadar:
-        return column > 2 ? column + 1 : column;
+        return column > 2 ? column + 2 : column;
+    case Method::PokeRadarShiny:
+        return column > 3 ? column + 1 : column;
     case Method::MethodK:
+        return column > 2 ? column + 1 : column;
     default:
         return column;
     }

@@ -48,7 +48,7 @@ public:
      * @param info Pokemon personal information
      */
     WildGeneratorState4(u16 prng, u32 advances, u32 occidentary, u32 pid, u8 nature, u16 iv1, u16 iv2, u16 tsv, u8 level, u8 encounterSlot,
-                        u16 item, u16 specie, const PersonalInfo *info);
+                        u16 item, u16 specie, const PersonalInfo *info, u32 radarShinyPatch = 0);
 
     /**
      * @brief Returns the Elm/Irwin call
@@ -90,8 +90,19 @@ public:
         return occidentary;
     }
 
+    /**
+     * @brief Returns the PokeRadar shiny patch advances
+     *
+     * @return PokeRadar shiny patch advances
+     */
+    u32 getRadarShinyPatch() const
+    {
+        return radarShinyPatch;
+    }
+
 private:
     u32 occidentary;
+    u32 radarShinyPatch;
     u8 call;
     u8 chatot;
     u8 hiddenPowerStrength;

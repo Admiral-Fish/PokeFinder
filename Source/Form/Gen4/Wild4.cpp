@@ -253,7 +253,7 @@ void Wild4::generate()
     {
         if (ui->checkBoxGeneratorPokeRadar->isChecked())
         {
-            method = Method::PokeRadar;
+            method = ui->checkBoxGeneratorPokeRadarShiny->isChecked() ? Method::PokeRadarShiny : Method::PokeRadar;
             std::array<bool, 12> encounters = ui->filterGenerator->getEncounterSlots();
             if (std::count(encounters.begin(), encounters.end(), true) != 1)
             {
@@ -286,7 +286,6 @@ void Wild4::generate()
     u16 sid = currentProfile->getSID();
     auto encounter = ui->comboBoxGeneratorEncounter->getEnum<Encounter>();
     auto lead = ui->toolButtonGeneratorLead->getEnum<Lead>();
-    bool chained = ui->checkBoxGeneratorPokeRadarShiny->isChecked();
     u32 offset = 0;
     if (ui->filterGenerator->useDelay())
     {
@@ -298,8 +297,7 @@ void Wild4::generate()
                             ui->filterGenerator->getNatures(), ui->filterGenerator->getHiddenPowers(),
                             ui->filterGenerator->getEncounterSlots());
 
-    WildGenerator4 generator(initialAdvances, maxAdvances, offset, tid, sid, currentProfile->getVersion(), method, encounter, lead, chained,
-                             filter);
+    WildGenerator4 generator(initialAdvances, maxAdvances, offset, tid, sid, currentProfile->getVersion(), method, encounter, lead, filter);
 
     auto states = generator.generate(seed, encounterGenerator[ui->comboBoxGeneratorLocation->getCurrentInt()], radarSlot);
     generatorModel->addItems(states);

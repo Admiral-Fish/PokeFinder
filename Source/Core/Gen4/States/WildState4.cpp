@@ -24,13 +24,14 @@
 constexpr int order[6] = { 0, 1, 2, 5, 3, 4 };
 
 WildGeneratorState4::WildGeneratorState4(u16 prng, u32 advances, u32 occidentary, u32 pid, u8 nature, u16 iv1, u16 iv2, u16 tsv, u8 level,
-                                         u8 encounterSlot, u16 item, u16 specie, const PersonalInfo *info) :
+                                         u8 encounterSlot, u16 item, u16 specie, const PersonalInfo *info, u32 radarShinyPatch) :
     WildGeneratorState(advances), occidentary(occidentary), call(prng % 3), chatot(((prng % 8192) * 100) >> 13)
 {
     this->level = level;
     this->encounterSlot = encounterSlot;
     this->item = item;
     this->specie = specie;
+    this->radarShinyPatch = radarShinyPatch;
 
     this->pid = pid;
     ability = pid & 1;

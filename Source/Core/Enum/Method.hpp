@@ -44,6 +44,7 @@ enum class Method : u8
     MethodJ,
     MethodK,
     PokeRadar,
+    PokeRadarShiny,
     WondercardIVs,
     Gen4Normal,
     Gen4Masuda,
