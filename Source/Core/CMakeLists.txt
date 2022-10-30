@@ -105,12 +105,27 @@ add_library(PokeFinderCore STATIC
     Gen5/Profile5.cpp
     Gen5/Profile5.hpp
     Gen8/Den.hpp
+    Gen8/EncounterArea8.cpp
+    Gen8/EncounterArea8.hpp
+    Gen8/Encounters8.cpp
+    Gen8/Encounters8.hpp
+    Gen8/Filters/StateFilter8.cpp
+    Gen8/Filters/StateFilter8.hpp
     Gen8/Generators/IDGenerator8.cpp
     Gen8/Generators/IDGenerator8.hpp
+    Gen8/Generators/StaticGenerator8.cpp
+    Gen8/Generators/StaticGenerator8.hpp
+    Gen8/Generators/WildGenerator8.cpp
+    Gen8/Generators/WildGenerator8.hpp
     Gen8/Profile8.cpp
     Gen8/Profile8.hpp
     Gen8/Raid.hpp
     Gen8/States/IDState8.hpp
+    Gen8/States/State8.cpp
+    Gen8/States/State8.hpp
+    Gen8/States/WildState8.cpp
+    Gen8/States/WildState8.hpp
+    Gen8/StaticTemplate8.hpp
     Parents/Daycare.hpp
     Parents/Filters/IDFilter.cpp
     Parents/Filters/IDFilter.hpp

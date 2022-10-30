@@ -31,6 +31,9 @@ namespace Ui
     class Static4;
 }
 
+/**
+ * @brief Provides settings and filters to RNG static encounters in Gen 4 games
+ */
 class Static4 : public QWidget
 {
     Q_OBJECT

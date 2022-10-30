@@ -77,6 +77,8 @@ set(PROJECT_UI
     Gen8/IDs8.ui
     Gen8/Profile/ProfileEditor8.ui
     Gen8/Profile/ProfileManager8.ui
+    Gen8/Static8.ui
+    Gen8/Wild8.ui
     MainWindow.ui
     Util/IVCalculator.ui
     Util/Researcher.ui
@@ -149,6 +151,10 @@ set(PROJECT_SOURCES
     Gen8/Profile/ProfileEditor8.hpp
     Gen8/Profile/ProfileManager8.cpp
     Gen8/Profile/ProfileManager8.hpp
+    Gen8/Static8.cpp
+    Gen8/Static8.hpp
+    Gen8/Wild8.cpp
+    Gen8/Wild8.hpp
     MainWindow.cpp
     MainWindow.hpp
     Util/IVCalculator.cpp

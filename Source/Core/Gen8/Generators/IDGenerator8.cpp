@@ -32,13 +32,13 @@ std::vector<IDState8> IDGenerator8::generate(u64 seed0, u64 seed1)
     std::vector<IDState8> states;
     for (u32 cnt = 0; cnt < maxAdvances; cnt++)
     {
-        u32 sidtid = rng.next();
+        u32 sidtid = rng.next(0x80000000, 0x7fffffff);
         if (sidtid == 0)
         {
             Xorshift gen(rng);
             while (sidtid == 0)
             {
-                sidtid = gen.next();
+                sidtid = gen.next(0x80000000, 0x7fffffff);
             }
         }
 

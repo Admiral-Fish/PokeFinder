@@ -40,7 +40,7 @@ public:
      * @param level Level of the template
      */
     constexpr StaticTemplate(Game version, u16 specie, u8 level) :
-        version(version), specie(specie), shiny(Shiny::Random), form(0), level(level)
+        version(version), form(0), specie(specie), shiny(Shiny::Random), level(level)
     {
     }
 
@@ -53,7 +53,7 @@ public:
      * @param form Form of the template
      */
     constexpr StaticTemplate(Game version, u16 specie, u8 level, u8 form) :
-        version(version), specie(specie), shiny(Shiny::Random), form(form), level(level)
+        version(version), form(form), specie(specie), shiny(Shiny::Random), level(level)
     {
     }
 
@@ -66,7 +66,7 @@ public:
      * @param shiny Shiny state of the template
      */
     constexpr StaticTemplate(Game version, u16 specie, u8 level, Shiny shiny) :
-        version(version), specie(specie), shiny(shiny), form(0), level(level)
+        version(version), form(0), specie(specie), shiny(shiny), level(level)
     {
     }
 
@@ -122,9 +122,9 @@ public:
 
 protected:
     Game version;
-    u16 specie;
+    u16 form : 5;
+    u16 specie : 11;
     Shiny shiny;
-    u8 form;
     u8 level;
 };
 

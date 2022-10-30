@@ -195,8 +195,17 @@ private slots:
 
     // Gen 8
     // void downloadEventData();
-    // void openStatic8();
-    // void openWild8();
+
+    /**
+     * @brief Opens the Gen 8 Static window
+     */
+    void openStatic8();
+
+    /**
+     * @brief Opens the Gen 8 Wild window
+     */
+    void openWild8();
+
     // void openEvent8();
     // void openRaids();
     // void openEgg8();

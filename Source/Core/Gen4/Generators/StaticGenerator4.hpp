@@ -26,13 +26,13 @@
 class StaticTemplate4;
 
 /**
- * @brief Static encounter generator for Gen3
+ * @brief Static encounter generator for Gen4
  */
 class StaticGenerator4 : public StaticGenerator<StateFilter4>
 {
 public:
     /**
-     * @brief Construct a new StaticGenerator3 object
+     * @brief Construct a new StaticGenerator4 object
      *
      * @param initialAdvances Initial number of advances
      * @param maxAdvances Maximum number of advances

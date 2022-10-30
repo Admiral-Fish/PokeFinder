@@ -22,8 +22,6 @@
 
 #include <QWidget>
 
-class QAbstractButton;
-
 class EncounterArea4;
 class Profile4;
 class WildGeneratorModel4;

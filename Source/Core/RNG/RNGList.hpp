@@ -22,6 +22,7 @@
 #define RNGLIST_HPP
 
 #include <Core/Global.hpp>
+#include <cassert>
 
 /**
  * @brief Provides a storage container to reuse RNG calculations and cycle out old states with new states
@@ -29,9 +30,8 @@
  * @tparam Integer Integer type that is being stored
  * @tparam RNG RNG class used to generate states
  * @tparam size Size of the storage container (must be a perfect multiple of two)
- * @tparam shift Value to bit shift right generated states by
  */
-template <typename Integer, class RNG, u16 size, u8 shift>
+template <typename Integer, class RNG, u16 size>
 class RNGList
 {
 public:
@@ -39,14 +39,15 @@ public:
      * @brief Construct a new RNGList object
      *
      * @param rng RNG object to generate states
+     * @param generate Function pointer to modify generated PRNG states
      */
-    RNGList(RNG &rng) : rng(rng), head(0), pointer(0)
+    RNGList(RNG &rng, Integer (*generate)(RNG &) = nullptr) : generate(generate), rng(rng), head(0), pointer(0)
     {
         static_assert(size && ((size & (size - 1)) == 0), "Number is not a perfect multiple of two");
 
         for (Integer &x : list)
         {
-            x = this->rng.next() >> shift;
+            x = generate ? generate(this->rng) : this->rng.next();
         }
     }
 
@@ -56,9 +57,19 @@ public:
     RNGList(const RNGList &) = delete;
 
     /**
-     * @brief Deleted assignment constructor
+     * @brief Deleted move constructor
+     */
+    RNGList(RNGList &&) = delete;
+
+    /**
+     * @brief Deleted copy assignment
      */
     void operator=(const RNGList &) = delete;
+
+    /**
+     * @brief Deleted move assignment
+     */
+    RNGList &operator=(RNGList &&) = delete;
 
     /**
      * @brief Advances the RNG by \p advances amount
@@ -78,7 +89,7 @@ public:
      */
     void advanceState()
     {
-        list[head++] = rng.next() >> shift;
+        list[head++] = generate ? generate(rng) : this->rng.next();
         head &= size - 1;
 
         pointer = head;
@@ -97,13 +108,19 @@ public:
     /**
      * @brief Gets the next PRNG state
      *
+     * @param value Function pointer to modify returned PRNG state
+     *
      * @return PRNG state
      */
-    Integer getValue()
+    Integer next(Integer (*value)(Integer) = nullptr)
     {
         Integer result = list[pointer++];
         pointer &= size - 1;
-        return result;
+
+        // Debug assert to help discover if the array is too small
+        assert(pointer != head);
+
+        return value ? value(result) : result;
     }
 
     /**
@@ -115,6 +132,7 @@ public:
     }
 
 private:
+    Integer (*generate)(RNG &);
     RNG rng;
     Integer list[size];
     u16 head, pointer;

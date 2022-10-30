@@ -69,28 +69,28 @@ public:
     void jump(u32 advances);
 
     /**
-     * @brief Gets the next 32bit PRNG state bounded by the min/max values
-     *
-     * @return PRNG value
-     */
-    template <int min = -0x7fffffff - 1, int max = 0x7fffffff>
-    u32 next()
-    {
-        u32 t = nextState();
-        u32 diff = max - min;
-
-        return (t % diff) + min;
-    }
-
-private:
-    alignas(16) vuint128 state;
-
-    /**
      * @brief Gets the next 32bit PRNG state
      *
      * @return PRNG value
      */
-    u32 nextState();
+    u32 next();
+
+    /**
+     * @brief Gets the next 32bit PRNG state bounded by the \p min and \p max values
+     *
+     * @param min Minimum value
+     * @param max Maximum value
+     *
+     * @return PRNG value
+     */
+    u32 next(u32 min, u32 max)
+    {
+        u32 diff = max - min;
+        return (next() % diff) + min;
+    }
+
+private:
+    alignas(16) vuint128 state;
 };
 
 #endif // XORSHIFT_HPP

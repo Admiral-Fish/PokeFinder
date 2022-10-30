@@ -33,6 +33,8 @@
 #include <Form/Gen4/Wild4.hpp>
 #include <Form/Gen8/IDs8.hpp>
 #include <Form/Gen8/Profile/ProfileManager8.hpp>
+#include <Form/Gen8/Static8.hpp>
+#include <Form/Gen8/Wild8.hpp>
 #include <Form/Util/IVCalculator.hpp>
 #include <Form/Util/Researcher.hpp>
 #include <Form/Util/Settings.hpp>
@@ -68,8 +70,6 @@
 //#include <Forms/Gen8/Eggs8.hpp>
 //#include <Forms/Gen8/Event8.hpp>
 //#include <Forms/Gen8/Raids.hpp>
-//#include <Forms/Gen8/Static8.hpp>
-//#include <Forms/Gen8/Wild8.hpp>
 //#include <Forms/Util/EncounterLookup.hpp>
 //#include <Forms/Util/IVtoPID.hpp>
 
@@ -109,8 +109,8 @@ MainWindow::MainWindow(bool profile, QWidget *parent) : QMainWindow(parent), ui(
     // connect(ui->actionProfileCalibrator, &QAction::triggered, this, &MainWindow::openProfileCalibrator);
     // connect(ui->actionProfileManager5, &QAction::triggered, this, &MainWindow::openProfileManager5);
 
-    // connect(ui->pushButtonStatic8, &QPushButton::clicked, this, &MainWindow::openStatic8);
-    // connect(ui->pushButtonWild8, &QPushButton::clicked, this, &MainWindow::openWild8);
+    connect(ui->pushButtonStatic8, &QPushButton::clicked, this, &MainWindow::openStatic8);
+    connect(ui->pushButtonWild8, &QPushButton::clicked, this, &MainWindow::openWild8);
     // connect(ui->pushButtonEvent8, &QPushButton::clicked, this, &MainWindow::openEvent8);
     // connect(ui->pushButtonRaid, &QPushButton::clicked, this, &MainWindow::openRaids);
     // connect(ui->pushButtonEgg8, &QPushButton::clicked, this, &MainWindow::openEgg8);
@@ -172,8 +172,8 @@ MainWindow::~MainWindow()
     // delete event8;
     delete ids8;
     // delete raids;
-    // delete static8;
-    // delete wild8;
+    delete static8;
+    delete wild8;
 }
 
 void MainWindow::checkUpdates() const
@@ -490,7 +490,7 @@ void MainWindow::openProfileManager5()
     auto *manager = new ProfileManager5();
     connect(manager, &ProfileManager5::updateProfiles, this, [=] { updateProfiles(5); });
     manager->show();
-}
+}*/
 
 void MainWindow::openStatic8()
 {
@@ -512,7 +512,7 @@ void MainWindow::openWild8()
     wild8->show();
 }
 
-void MainWindow::openEvent8()
+/*void MainWindow::openEvent8()
 {
     if (!event8)
     {
@@ -675,7 +675,7 @@ void MainWindow::updateProfiles(int num)
         {
             static3->updateProfiles();
         }
-        /* if (wild3)
+        if (wild3)
         {
             wild3->updateProfiles();
         }
@@ -683,7 +683,7 @@ void MainWindow::updateProfiles(int num)
         {
             gamecube->updateProfiles();
         }
-        if (egg3)
+        /*if (egg3)
         {
             egg3->updateProfiles();
         }*/
@@ -729,7 +729,7 @@ void MainWindow::updateProfiles(int num)
         {
             hiddenGrotto->updateProfiles();
         }
-    }
+    }*/
     else if (num == 8)
     {
         if (static8)
@@ -740,7 +740,7 @@ void MainWindow::updateProfiles(int num)
         {
             wild8->updateProfiles();
         }
-        if (event8)
+        /*if (event8)
         {
             event8->updateProfiles();
         }
@@ -751,10 +751,6 @@ void MainWindow::updateProfiles(int num)
         if (egg8)
         {
             egg8->updateProfiles();
-        }
-        if (ids8)
-        {
-            ids8->updateProfiles();
-        }
-    }*/
+        }*/
+    }
 }

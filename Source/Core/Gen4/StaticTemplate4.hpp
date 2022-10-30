@@ -31,35 +31,50 @@ class StaticTemplate4 : public StaticTemplate
 {
 public:
     /**
-     * @brief Construct a new StaticTemplate object
+     * @brief Construct a new StaticTemplate4 object
      *
      * @param version Game the template appears in
      * @param specie Specie of the template
      * @param level Level of the template
-     * @param form Form of the template
+     * @param method Template generation method
      */
     constexpr StaticTemplate4(Game version, u16 specie, u8 level, Method method) : StaticTemplate(version, specie, level), method(method)
     {
     }
 
     /**
-     * @brief Construct a new StaticTemplate object
+     * @brief Construct a new StaticTemplate4 object
      *
      * @param version Game the template appears in
      * @param specie Specie of the template
      * @param level Level of the template
-     * @param shiny Shiny of the template
+     * @param method Template generation method
+     * @param form Form of the template
      */
     constexpr StaticTemplate4(Game version, u16 specie, u8 level, Method method, u8 form) :
         StaticTemplate(version, specie, level, form), method(method)
     {
     }
 
+    /**
+     * @brief Construct a new StaticTemplate4 object
+     *
+     * @param version Game the template appears in
+     * @param specie Specie of the template
+     * @param level Level of the template
+     * @param method Template generation method
+     * @param shiny Shiny of the template
+     */
     constexpr StaticTemplate4(Game version, u16 specie, u8 level, Method method, Shiny shiny) :
         StaticTemplate(version, specie, level, shiny), method(method)
     {
     }
 
+    /**
+     * @brief Determines the generation method of the template
+     *
+     * @return Template generation method
+     */
     Method getMethod() const
     {
         return method;

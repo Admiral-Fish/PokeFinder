@@ -19,7 +19,6 @@
 
 #include "State4.hpp"
 #include <Core/Parents/PersonalInfo.hpp>
-#include <Core/Parents/PersonalLoader.hpp>
 #include <Core/Util/Nature.hpp>
 #include <cmath>
 

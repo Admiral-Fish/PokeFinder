@@ -32,9 +32,11 @@ constexpr u64 jumpTable[25][2]
 
 Xorshift::Xorshift(u64 seed0, u64 seed1)
 {
-    u64 *ptr = &state.uint64[0];
-    ptr[0] = seed0;
-    ptr[1] = seed1;
+    u32 *ptr = &state.uint32[0];
+    ptr[0] = seed0 >> 32;
+    ptr[1] = seed0;
+    ptr[2] = seed1 >> 32;
+    ptr[3] = seed1;
 }
 
 Xorshift::Xorshift(u64 seed0, u64 seed1, u32 advances) : Xorshift(seed0, seed1)
@@ -51,7 +53,7 @@ void Xorshift::advance(u32 advances)
 {
     for (u64 advance = 0; advance < advances; advance++)
     {
-        nextState();
+        next();
     }
 }
 
@@ -75,7 +77,7 @@ void Xorshift::jump(u32 advances)
                     {
                         jump = v32x4_xor(jump, state.uint128);
                     }
-                    nextState();
+                    next();
                 }
             }
 
@@ -84,7 +86,7 @@ void Xorshift::jump(u32 advances)
     }
 }
 
-u32 Xorshift::nextState()
+u32 Xorshift::next()
 {
     u32 *ptr = &state.uint32[0];
     u32 t = ptr[0];

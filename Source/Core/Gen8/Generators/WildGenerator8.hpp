@@ -17,24 +17,22 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef STATICGENERATOR_HPP
-#define STATICGENERATOR_HPP
+#ifndef WILDGENERATOR8_HPP
+#define WILDGENERATOR8_HPP
 
-#include <Core/Parents/Generators/Generator.hpp>
+#include <Core/Gen8/Filters/StateFilter8.hpp>
+#include <Core/Parents/Generators/WildGenerator.hpp>
 
-enum class Lead : u8;
+class EncounterArea8;
 
 /**
- * @brief Parent generator class for static encounters
- *
- * @tparam Filter Filter class that is used by the generator
+ * @brief Wild encounter generator for Gen8
  */
-template <class Filter>
-class StaticGenerator : public Generator<Filter>
+class WildGenerator8 : public WildGenerator<WildStateFilter8>
 {
 public:
     /**
-     * @brief Construct a new StaticGenerator object
+     * @brief Construct a new WildGenerator4 object
      *
      * @param initialAdvances Initial number of advances
      * @param maxAdvances Maximum number of advances
@@ -42,18 +40,23 @@ public:
      * @param tid Trainer ID
      * @param sid Secret ID
      * @param version Game version
-     * @param method Encounter method
+     * @param encounter Encounter type
      * @param lead Encounter lead
      * @param filter State filter
      */
-    StaticGenerator(u32 initialAdvances, u32 maxAdvances, u32 offset, u16 tid, u16 sid, Game version, Method method, Lead lead,
-                    const Filter &filter) :
-        Generator<Filter>(initialAdvances, maxAdvances, offset, tid, sid, version, method, filter), lead(lead)
-    {
-    }
+    WildGenerator8(u32 initialAdvances, u32 maxAdvances, u32 offset, u16 tid, u16 sid, Game version, Encounter encounter, Lead lead,
+                   const WildStateFilter8 &filter);
 
-protected:
-    Lead lead;
+    /**
+     * @brief Generates states for the \p encounterArea
+     *
+     * @param seed0 Upper half of PRNG state
+     * @param seed1 Lower half of PRNG state
+     * @param encounterArea Wild pokemon info
+     *
+     * @return Vector of computed states
+     */
+    std::vector<WildGeneratorState8> generate(u64 seed0, u64 seed1, const EncounterArea8 &encounterArea) const;
 };
 
-#endif // STATICGENERATOR_HPP
+#endif // WILDGENERATOR8_HPP

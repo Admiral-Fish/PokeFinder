@@ -17,73 +17,69 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef ENCOUNTERS4_HPP
-#define ENCOUNTERS4_HPP
+#ifndef ENCOUNTERS8_HPP
+#define ENCOUNTERS8_HPP
 
 #include <Core/Global.hpp>
-#include <array>
 #include <vector>
 
-class EncounterArea4;
-class Profile4;
-class StaticTemplate4;
+class EncounterArea8;
 enum class Encounter : u8;
-enum class Game : u32;
+class Profile8;
+class StaticTemplate8;
 
-namespace Encounters4
+namespace Encounters8
 {
     /**
-     * @brief Gets wild encounters for the \p encouner and \p profile
+     * @brief Gets wild encounters for the \p encounter and \p profile
      *
      * @param encounter Encounter type
      * @param time Time modifier
-     * @param dual Dual slot version
      * @param radar Whether pokeradar is active
-     * @param radio Radio station
      * @param swarm Whether swarm is active
-     * @param blocks Active pokeblocks in the safari
      * @param profile Profile information
      *
      * @return Vector of wild encounters
      */
-    std::vector<EncounterArea4> getEncounters(Encounter encounter, int time, Game dual, bool radar, int radio, bool swarm,
-                                              const std::array<u8, 5> &blocks, const Profile4 *profile);
+    std::vector<EncounterArea8> getEncounters(Encounter encounter, int time, bool radar, bool swarm, const Profile8 *profile);
 
     /**
      * @brief Gets static encounters from the \p type
      *
      * @param type Static encounter type
      * 0: starters
-     * 1: fossils
-     * 2: gifts
-     * 3: game corner
-     * 4: stationary
+     * 1: gifts
+     * 2: fossils
+     * 3: stationary
+     * 4: roamers
      * 5: legends
-     * 6: events
-     * 7: roamers
+     * 6: ramanasParkPureSpace
+     * 7: ramanasParkStrangeSpace
+     * 8: mythics
      * @param size Pointer to set number of encounters if not nullptr
      *
      * @return Pointer to static encounters area
      */
-    const StaticTemplate4 *getStaticEncounters(int type, size_t *size = nullptr);
+    const StaticTemplate8 *getStaticEncounters(int index, int *size = nullptr);
 
     /**
      * @brief Gets static encounters from the \p type and \p index
      *
      * @param type Static encounter type
      * 0: starters
-     * 1: fossils
-     * 2: gifts
-     * 3: game corner
-     * 4: stationary
+     * 1: gifts
+     * 2: fossils
+     * 3: stationary
+     * 4: roamers
      * 5: legends
-     * 6: events
-     * 7: roamers
+     * 6: ramanasParkPureSpace
+     * 7: ramanasParkStrangeSpace
+     * 8: mythics
      * @param index Pokemon index
      *
      * @return Pointer to static encounter
      */
-    const StaticTemplate4 *getStaticEncounter(int type, int index);
+    const StaticTemplate8 *getStaticEncounter(int type, int index);
 }
 
-#endif // ENCOUNTERS4_HPP
+#endif // ENCOUNTERS8_HPP
