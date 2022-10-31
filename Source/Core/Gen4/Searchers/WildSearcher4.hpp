@@ -44,9 +44,10 @@ public:
      * @param encounter Encounter type
      * @param lead Encounter lead
      * @param filter State filter
+     * @param patch PokeRadar Shiny patch
      */
     WildSearcher4(u32 minAdvance, u32 maxAdvance, u32 minDelay, u32 maxDelay, u16 tid, u16 sid, Game version, Method method,
-                  Encounter encounter, Lead lead, const EncounterArea4 &encounterArea, const WildStateFilter4 &filter);
+                  Encounter encounter, Lead lead, const EncounterArea4 &encounterArea, const WildStateFilter4 &filter, bool patch);
 
     /**
      * @brief Cancels the running search
@@ -76,6 +77,16 @@ public:
      */
     void startSearch(const std::array<u8, 6> &min, const std::array<u8, 6> &max, u8 index);
 
+    /**
+     * @brief Gets the state of the shiny patch checkBox
+     *
+     * @return Bool value of the shiny patch checkBox
+     */
+    bool getPatch() const
+    {
+        return patch;
+    }
+
 private:
     EncounterArea4 encounterArea;
     std::mutex mutex;
@@ -89,6 +100,7 @@ private:
     u16 thresh;
     bool safari;
     bool searching;
+    bool patch;
 
     /**
      * @brief Searches for matching states from provided IVs

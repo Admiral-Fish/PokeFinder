@@ -164,13 +164,6 @@
             </property>
            </widget>
           </item>
-          <item row="1" column="0" colspan="2">
-           <widget class="QCheckBox" name="checkBoxGeneratorPokeRadarShiny">
-            <property name="text">
-             <string>Poke Radar Shiny</string>
-            </property>
-           </widget>
-          </item>
           <item row="3" column="0">
            <widget class="QLabel" name="labelGeneratorMaxAdvances">
             <property name="text">
@@ -191,6 +184,20 @@
             </property>
             <property name="autoDefault">
              <bool>false</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QCheckBox" name="checkBoxGeneratorPokeRadarShiny">
+            <property name="text">
+             <string>Poke Radar Shiny</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QCheckBox" name="checkBoxGeneratorShinyPatch">
+            <property name="text">
+             <string>Shiny Patch</string>
             </property>
            </widget>
           </item>
@@ -629,10 +636,17 @@
             </item>
            </widget>
           </item>
-          <item row="1" column="0" colspan="2">
+          <item row="1" column="0">
            <widget class="QCheckBox" name="checkBoxSearcherPokeRadarShiny">
             <property name="text">
              <string>Poke Radar Shiny</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QCheckBox" name="checkBoxSearcherShinyPatch">
+            <property name="text">
+             <string>Shiny Patch</string>
             </property>
            </widget>
           </item>
@@ -961,6 +975,7 @@
   <tabstop>tabRNGSelector</tabstop>
   <tabstop>toolButtonGeneratorLead</tabstop>
   <tabstop>checkBoxGeneratorPokeRadarShiny</tabstop>
+  <tabstop>checkBoxGeneratorShinyPatch</tabstop>
   <tabstop>textBoxGeneratorStartingAdvance</tabstop>
   <tabstop>textBoxGeneratorMaxAdvances</tabstop>
   <tabstop>textBoxGeneratorSeed</tabstop>
@@ -982,6 +997,7 @@
   <tabstop>tableViewGenerator</tabstop>
   <tabstop>comboBoxSearcherLead</tabstop>
   <tabstop>checkBoxSearcherPokeRadarShiny</tabstop>
+  <tabstop>checkBoxSearcherShinyPatch</tabstop>
   <tabstop>textBoxSearcherMinDelay</tabstop>
   <tabstop>textBoxSearcherMaxDelay</tabstop>
   <tabstop>textBoxSearcherMinAdvance</tabstop>

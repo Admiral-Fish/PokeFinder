@@ -49,9 +49,26 @@ static u16 getItem(u8 rand, Lead lead, const PersonalInfo *info)
     }
 }
 
+static u32 getRadarShinyPatchAdvances(u32 seed, u32 cnt)
+{
+    PokeRNGR radar(seed);
+    u32 radarShinyPatchAdvances = 0;
+    if (cnt > 156) {
+        u16 radarPatch = radar.advance(150) >> 16;  // 150 is a good advances window to recharge the PokeRadar and to step on a shiny patch
+        radarShinyPatchAdvances = 156;  // To get a PokeRadar shiny patch we need to hit -6 from the shiny patch prng;
+        while (radarPatch >= 8 && radarShinyPatchAdvances < cnt)
+        {
+            radarPatch = radar.nextUShort();
+            radarShinyPatchAdvances++;
+        };
+    }
+
+    return radarShinyPatchAdvances != 0 ? cnt - radarShinyPatchAdvances : 0;
+}
+
 WildGenerator4::WildGenerator4(u32 initialAdvances, u32 maxAdvances, u32 offset, u16 tid, u16 sid, Game version, Method method,
-                               Encounter encounter, Lead lead, const WildStateFilter4 &filter) :
-    WildGenerator<WildStateFilter4>(initialAdvances, maxAdvances, offset, tid, sid, version, method, encounter, lead, filter)
+                               Encounter encounter, Lead lead, const WildStateFilter4 &filter, bool patch) :
+    WildGenerator<WildStateFilter4>(initialAdvances, maxAdvances, offset, tid, sid, version, method, encounter, lead, filter), patch(patch)
 {
 }
 
@@ -549,21 +566,15 @@ std::vector<WildGeneratorState4> WildGenerator4::generatePokeRadarShiny(u32 seed
         u16 iv2 = go.nextUShort(&occidentary);
         u16 item = getItem(go.nextUShort(100, &occidentary), lead, info);
 
-        PokeRNGR radar(rng.getSeed());
-        u32 radarShinyPatchAdvances = 0;
-        if (initialAdvances + cnt > 156) {
-            u16 radarPatch = radar.advance(150) >> 16;  // 150 is a good advances window to recharge the PokeRadar and to step on a shiny patch
-            radarShinyPatchAdvances = 156;  // To get a PokeRadar shiny patch we need to hit -6 from the shiny patch prng;
-            while (radarPatch >= 8 && radarShinyPatchAdvances < initialAdvances + cnt)
-            {
-                radarPatch = radar.nextUShort();
-                radarShinyPatchAdvances++;
-            };
+        u32 radarShinyPatchAdvances = getRadarShinyPatchAdvances(rng.getSeed(), initialAdvances + cnt);
+        if (getPatch() && radarShinyPatchAdvances == 0)
+        {
+            rng.next();
+            continue;
         }
 
         WildGeneratorState4 state(rng.nextUShort(), initialAdvances + cnt, occidentary, pid, nature, iv1, iv2, tsv, slot.getMaxLevel(),
-                                  index, item, slot.getSpecie(), info, radarShinyPatchAdvances != 0 ?
-                    ((initialAdvances + cnt) - radarShinyPatchAdvances) : 0);
+                                  index, item, slot.getSpecie(), info, radarShinyPatchAdvances);
         if (filter.compareState(state))
         {
             states.emplace_back(state);

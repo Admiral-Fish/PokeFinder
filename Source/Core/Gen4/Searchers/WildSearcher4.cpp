@@ -49,7 +49,7 @@ static u16 getItem(u8 rand, Lead lead, const PersonalInfo *info)
     }
 }
 
-static u32 getShinyPatchAdvances(u32 seed, u32 cnt)
+static u32 getRadarShinyPatchAdvances(u32 seed, u32 cnt)
 {
     PokeRNG rng(seed, cnt);
     PokeRNGR radar(rng.getSeed());
@@ -69,7 +69,7 @@ static u32 getShinyPatchAdvances(u32 seed, u32 cnt)
 
 WildSearcher4::WildSearcher4(u32 minAdvance, u32 maxAdvance, u32 minDelay, u32 maxDelay, u16 tid, u16 sid, Game version, Method method,
                              Encounter encounter, Lead lead, const EncounterArea4 &encounterArea,
-                             const WildStateFilter4 &filter) :
+                             const WildStateFilter4 &filter, bool patch) :
     WildSearcher<WildStateFilter4>(tid, sid, version, method, encounter, lead, filter),
     encounterArea(encounterArea),
     modifiedSlots(encounterArea.getSlots(lead)),
@@ -80,7 +80,8 @@ WildSearcher4::WildSearcher4(u32 minAdvance, u32 maxAdvance, u32 minDelay, u32 m
     minDelay(minDelay),
     thresh(encounterArea.getRate()),
     safari(encounterArea.safariZone(version)),
-    searching(false)
+    searching(false),
+    patch(patch)
 {
     if (lead == Lead::SuctionCups
         && (encounter == Encounter::OldRod || encounter == Encounter::GoodRod || encounter == Encounter::SuperRod))
@@ -184,13 +185,18 @@ std::vector<WildSearcherState4> WildSearcher4::searchInitialSeeds(const std::vec
             // Check if seed matches a valid gen 4 format
             if (hour < 24 && delay >= minDelay && delay <= maxDelay)
             {
-                result.setSeed(seed);
-                result.setAdvances(cnt);
-
                 if (method == Method::PokeRadarShiny)
                 {
-                    result.setRadarShinyPatch(getShinyPatchAdvances(seed, cnt));
+                    u32 radarShinyPatchAdvances = getRadarShinyPatchAdvances(seed, cnt);
+                    if (getPatch() && radarShinyPatchAdvances == 0)
+                    {
+                        seed = rng.next();
+                        continue;
+                    }
+                    result.setRadarShinyPatch(radarShinyPatchAdvances);
                 }
+                result.setSeed(seed);
+                result.setAdvances(cnt);
                 states.emplace_back(result);
             }
 

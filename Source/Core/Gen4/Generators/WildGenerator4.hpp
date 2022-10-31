@@ -44,9 +44,10 @@ public:
      * @param method Encounter method
      * @param lead Encounter lead
      * @param filter State filter
+     * @param patch PokeRadar Shiny patch
      */
     WildGenerator4(u32 initialAdvances, u32 maxAdvances, u32 offset, u16 tid, u16 sid, Game version, Method method, Encounter encounter,
-                   Lead lead, const WildStateFilter4 &filter);
+                   Lead lead, const WildStateFilter4 &filter, bool patch);
 
     /**
      * @brief Generates states for the \p encounterArea
@@ -59,7 +60,19 @@ public:
      */
     std::vector<WildGeneratorState4> generate(u32 seed, const EncounterArea4 &encounterArea, u8 index) const;
 
+    /**
+     * @brief Gets the state of the shiny patch checkBox
+     *
+     * @return Bool value of the shiny patch checkBox
+     */
+    bool getPatch() const
+    {
+        return patch;
+    }
+
 private:
+    bool patch;
+
     /**
      * @brief Generates states for the \p encounterArea via Method J
      *

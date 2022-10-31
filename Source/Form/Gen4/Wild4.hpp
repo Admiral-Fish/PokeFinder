@@ -121,6 +121,13 @@ private slots:
     void generatorPokeRadarStateChanged(int state);
 
     /**
+     * @brief Toggles what controls are displayed based on relevance to Poke Radar
+     *
+     * @param state Checkbox state
+     */
+    void generatorPokeRadarShinyStateChanged(int state);
+
+    /**
      * @brief Updates displayed information for a profile.  Also toggles what controls are displayed based on relevance to the current
      * settings.
      *
@@ -170,6 +177,13 @@ private slots:
      * @param state Checkbox state
      */
     void searcherPokeRadarStateChanged(int state);
+
+    /**
+     * @brief Toggles what controls are displayed based on relevance to Poke Radar
+     *
+     * @param state Checkbox state
+     */
+    void searcherPokeRadarShinyStateChanged(int state);
 
     /**
      * @brief Opens seed to time. Provides current game version and seed from the selected tableview row.

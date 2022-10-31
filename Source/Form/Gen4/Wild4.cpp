@@ -97,7 +97,9 @@ Wild4::Wild4(QWidget *parent) : QWidget(parent), ui(new Ui::Wild4)
         { toInt(Game::Ruby), toInt(Game::Sapphire), toInt(Game::FireRed), toInt(Game::LeafGreen), toInt(Game::Emerald) });
 
     ui->checkBoxGeneratorPokeRadarShiny->setVisible(false);
+    ui->checkBoxGeneratorShinyPatch->setVisible(false);
     ui->checkBoxSearcherPokeRadarShiny->setVisible(false);
+    ui->checkBoxSearcherShinyPatch->setVisible(false);
 
     auto *seedToTime = new QAction(tr("Generate times for seed"), ui->tableViewSearcher);
     connect(seedToTime, &QAction::triggered, this, &Wild4::seedToTime);
@@ -141,7 +143,9 @@ Wild4::Wild4(QWidget *parent) : QWidget(parent), ui(new Ui::Wild4)
     connect(ui->buttonGroupGenerator, &QButtonGroup::buttonClicked, this, [=] { generatorEncounterUpdate(); });
     connect(ui->buttonGroupSearcher, &QButtonGroup::buttonClicked, this, [=] { searcherEncounterUpdate(); });
     connect(ui->checkBoxGeneratorPokeRadar, &QCheckBox::stateChanged, this, &Wild4::generatorPokeRadarStateChanged);
+    connect(ui->checkBoxGeneratorPokeRadarShiny, &QCheckBox::stateChanged, this, &Wild4::generatorPokeRadarShinyStateChanged);
     connect(ui->checkBoxSearcherPokeRadar, &QCheckBox::stateChanged, this, &Wild4::searcherPokeRadarStateChanged);
+    connect(ui->checkBoxSearcherPokeRadarShiny, &QCheckBox::stateChanged, this, &Wild4::searcherPokeRadarShinyStateChanged);
     connect(ui->spinBoxGeneratorPlainsBlock, &QSpinBox::valueChanged, this, [=] { generatorEncounterUpdate(); });
     connect(ui->spinBoxGeneratorForestBlock, &QSpinBox::valueChanged, this, [=] { generatorEncounterUpdate(); });
     connect(ui->spinBoxGeneratorPeakBlock, &QSpinBox::valueChanged, this, [=] { generatorEncounterUpdate(); });
@@ -297,7 +301,10 @@ void Wild4::generate()
                             ui->filterGenerator->getNatures(), ui->filterGenerator->getHiddenPowers(),
                             ui->filterGenerator->getEncounterSlots());
 
-    WildGenerator4 generator(initialAdvances, maxAdvances, offset, tid, sid, currentProfile->getVersion(), method, encounter, lead, filter);
+    bool patch = ui->checkBoxGeneratorShinyPatch->isChecked();
+
+    WildGenerator4 generator(initialAdvances, maxAdvances, offset, tid, sid, currentProfile->getVersion(), method, encounter, lead, filter,
+                             patch);
 
     auto states = generator.generate(seed, encounterGenerator[ui->comboBoxGeneratorLocation->getCurrentInt()], radarSlot);
     generatorModel->addItems(states);
@@ -353,6 +360,7 @@ void Wild4::generatorEncounterIndexChanged(int index)
         {
             ui->checkBoxGeneratorPokeRadar->setChecked(false);
             ui->checkBoxGeneratorPokeRadarShiny->setChecked(false);
+            ui->checkBoxGeneratorShinyPatch->setVisible(false);
         }
 
         ui->checkBoxGeneratorRadio->setVisible(hgss && grass);
@@ -471,6 +479,15 @@ void Wild4::generatorPokeRadarStateChanged(int state)
     ui->toolButtonGeneratorLead->hideAction(toInt(Lead::Static), state == Qt::Checked);
 }
 
+void Wild4::generatorPokeRadarShinyStateChanged(int state)
+{
+    ui->checkBoxGeneratorShinyPatch->setVisible(state == Qt::Checked);
+    if (!ui->checkBoxGeneratorShinyPatch->isVisible())
+    {
+        ui->checkBoxGeneratorShinyPatch->setChecked(false);
+    }
+}
+
 void Wild4::profilesIndexChanged(int index)
 {
     if (index >= 0)
@@ -577,9 +594,10 @@ void Wild4::search()
     u16 tid = currentProfile->getTID();
     u16 sid = currentProfile->getSID();
     auto lead = ui->comboBoxSearcherLead->getEnum<Lead>();
+    bool patch = ui->checkBoxSearcherShinyPatch->isChecked();
 
     auto *searcher = new WildSearcher4(minAdvance, maxAdvance, minDelay, maxDelay, tid, sid, currentProfile->getVersion(), method,
-                                       encounter, lead, encounterSearcher[ui->comboBoxSearcherLocation->getCurrentInt()], filter);
+                                       encounter, lead, encounterSearcher[ui->comboBoxSearcherLocation->getCurrentInt()], filter, patch);
 
     int maxProgress = 1;
     for (u8 i = 0; i < 6; i++)
@@ -661,6 +679,7 @@ void Wild4::searcherEncounterIndexChanged(int index)
         {
             ui->checkBoxSearcherPokeRadar->setChecked(false);
             ui->checkBoxSearcherPokeRadarShiny->setChecked(false);
+            ui->checkBoxSearcherShinyPatch->setChecked(false);
         }
 
         ui->checkBoxSearcherRadio->setVisible(hgss && grass);
@@ -774,6 +793,15 @@ void Wild4::searcherPokeRadarStateChanged(int state)
     ui->comboBoxSearcherLead->setItemHidden(ui->comboBoxSearcherLead->findData(toInt(Lead::MagnetPull)), state == Qt::Checked);
     ui->comboBoxSearcherLead->setItemHidden(ui->comboBoxSearcherLead->findData(toInt(Lead::Pressure)), state == Qt::Checked);
     ui->comboBoxSearcherLead->setItemHidden(ui->comboBoxSearcherLead->findData(toInt(Lead::Static)), state == Qt::Checked);
+}
+
+void Wild4::searcherPokeRadarShinyStateChanged(int state)
+{
+    ui->checkBoxSearcherShinyPatch->setVisible(state == Qt::Checked);
+    if (!ui->checkBoxSearcherShinyPatch->isVisible())
+    {
+        ui->checkBoxSearcherShinyPatch->setChecked(false);
+    }
 }
 
 void Wild4::seedToTime()

@@ -36,6 +36,7 @@ public:
      * @param prng PRNG call to determine Elm/Irwin call and Chatot pitch
      * @param advances State advances
      * @param occidentary State advances after battle
+     * @param radarShinyPatch PokeRadar shiny patch advances
      * @param pid PID value
      * @param nature Pokemon nature
      * @param iv1 First IV call
