@@ -97,7 +97,7 @@ void WildGenerator4Test::generateMethodJ()
                                       [location](const EncounterArea4 &encounterArea) { return encounterArea.getLocation() == location; });
 
     WildStateFilter4 filter(255, 255, 255, false, min, max, natures, powers, encounterSlots);
-    WildGenerator4 generator(0, 9, 0, 12345, 54321, version, Method::MethodJ, encounter, lead, filter);
+    WildGenerator4 generator(0, 9, 0, 12345, 54321, version, Method::MethodJ, encounter, lead, filter, false);
 
     auto states = generator.generate(seed, *encounterArea, 0);
     QCOMPARE(states.size(), j.size());
@@ -161,7 +161,7 @@ void WildGenerator4Test::generateMethodK()
                                       [location](const EncounterArea4 &encounterArea) { return encounterArea.getLocation() == location; });
 
     WildStateFilter4 filter(255, 255, 255, false, min, max, natures, powers, encounterSlots);
-    WildGenerator4 generator(0, 9, 0, 12345, 54321, version, Method::MethodK, encounter, lead, filter);
+    WildGenerator4 generator(0, 9, 0, 12345, 54321, version, Method::MethodK, encounter, lead, filter, false);
 
     auto states = generator.generate(seed, *encounterArea, 0);
     QCOMPARE(states.size(), j.size());
@@ -228,7 +228,7 @@ void WildGenerator4Test::generatePokeRadar()
                                       [location](const EncounterArea4 &encounterArea) { return encounterArea.getLocation() == location; });
 
     WildStateFilter4 filter(255, 255, 255, false, min, max, natures, powers, encounterSlots);
-    WildGenerator4 generator(0, 9, 0, 12345, 54321, version, Method::PokeRadar, encounter, lead, filter);
+    WildGenerator4 generator(0, 9, 0, 12345, 54321, version, Method::PokeRadar, encounter, lead, filter, false);
 
     auto states = generator.generate(seed, *encounterArea, index);
     QCOMPARE(states.size(), j.size());
@@ -295,7 +295,7 @@ void WildGenerator4Test::generatePokeRadarShiny()
                                       [location](const EncounterArea4 &encounterArea) { return encounterArea.getLocation() == location; });
 
     WildStateFilter4 filter(255, 255, 255, false, min, max, natures, powers, encounterSlots);
-    WildGenerator4 generator(0, 9, 0, 12345, 54321, version, Method::PokeRadarShiny, encounter, lead, filter);
+    WildGenerator4 generator(0, 9, 0, 12345, 54321, version, Method::PokeRadarShiny, encounter, lead, filter, false);
 
     auto states = generator.generate(seed, *encounterArea, index);
     QCOMPARE(states.size(), j.size());
