@@ -43,7 +43,6 @@ public:
      * @param encounter Encounter type
      * @param method Encounter method
      * @param lead Encounter lead
-     * @param shiny Whether Poke Radar is forced shiny
      * @param filter State filter
      */
     WildGenerator4(u32 initialAdvances, u32 maxAdvances, u32 offset, u16 tid, u16 sid, Game version, Method method, Encounter encounter,
@@ -61,8 +60,6 @@ public:
     std::vector<WildGeneratorState4> generate(u32 seed, const EncounterArea4 &encounterArea, u8 index) const;
 
 private:
-    bool shiny;
-
     /**
      * @brief Generates states for the \p encounterArea via Method J
      *

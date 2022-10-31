@@ -34,6 +34,9 @@ private slots:
 
     void generatePokeRadar_data();
     void generatePokeRadar();
+
+    void generatePokeRadarShiny_data();
+    void generatePokeRadarShiny();
 };
 
 #endif // WILDGENERATOR4TEST_HPP

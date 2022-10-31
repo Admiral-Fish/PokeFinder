@@ -34,6 +34,9 @@ private slots:
 
     void searchPokeRadar_data();
     void searchPokeRadar();
+
+    void searchPokeRadarShiny_data();
+    void searchPokeRadarShiny();
 };
 
 #endif // WILDSEARCHER4TEST_HPP

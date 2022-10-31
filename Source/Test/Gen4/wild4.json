@@ -8078,7 +8078,6 @@
                 "encounter": 0,
                 "lead": 255,
                 "location": 175,
-                "shiny": false,
                 "index": 4,
                 "results": [
                     {
@@ -8430,7 +8429,6 @@
                 "encounter": 0,
                 "lead": 26,
                 "location": 175,
-                "shiny": false,
                 "index": 4,
                 "results": [
                     {
@@ -8782,7 +8780,6 @@
                 "encounter": 0,
                 "lead": 0,
                 "location": 175,
-                "shiny": false,
                 "index": 4,
                 "results": [
                     {
@@ -9126,7 +9123,9 @@
                         ]
                     }
                 ]
-            },
+            }
+        ],
+        "generatePokeRadarShiny": [
             {
                 "name": "Route 229 PokeRadar Shiny",
                 "seed": 0,
@@ -9134,7 +9133,6 @@
                 "encounter": 0,
                 "lead": 255,
                 "location": 175,
-                "shiny": true,
                 "index": 4,
                 "results": [
                     {
@@ -9486,7 +9484,6 @@
                 "encounter": 0,
                 "lead": 26,
                 "location": 175,
-                "shiny": true,
                 "index": 4,
                 "results": [
                     {
@@ -9838,7 +9835,6 @@
                 "encounter": 0,
                 "lead": 0,
                 "location": 175,
-                "shiny": true,
                 "index": 4,
                 "results": [
                     {
@@ -11001,7 +10997,6 @@
                 "encounter": 0,
                 "lead": 255,
                 "location": 175,
-                "shiny": false,
                 "index": 4,
                 "results": 33
             },
@@ -11031,7 +11026,6 @@
                 "encounter": 0,
                 "lead": 26,
                 "location": 175,
-                "shiny": false,
                 "index": 4,
                 "results": 11
             },
@@ -11061,10 +11055,11 @@
                 "encounter": 0,
                 "lead": 0,
                 "location": 175,
-                "shiny": false,
                 "index": 4,
                 "results": 417
-            },
+            }
+        ],
+        "searchPokeRadarShiny": [
             {
                 "name": "Route 229 PokeRadar Shiny",
                 "min": [
@@ -11091,7 +11086,6 @@
                 "encounter": 0,
                 "lead": 255,
                 "location": 175,
-                "shiny": true,
                 "index": 4,
                 "results": 12
             },
@@ -11121,7 +11115,6 @@
                 "encounter": 0,
                 "lead": 26,
                 "location": 175,
-                "shiny": true,
                 "index": 4,
                 "results": 5
             },
@@ -11151,7 +11144,6 @@
                 "encounter": 0,
                 "lead": 0,
                 "location": 175,
-                "shiny": true,
                 "index": 4,
                 "results": 174
             }

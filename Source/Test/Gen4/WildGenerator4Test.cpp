@@ -97,7 +97,7 @@ void WildGenerator4Test::generateMethodJ()
                                       [location](const EncounterArea4 &encounterArea) { return encounterArea.getLocation() == location; });
 
     WildStateFilter4 filter(255, 255, 255, false, min, max, natures, powers, encounterSlots);
-    WildGenerator4 generator(0, 9, 0, 12345, 54321, version, Method::MethodJ, encounter, lead, false, filter);
+    WildGenerator4 generator(0, 9, 0, 12345, 54321, version, Method::MethodJ, encounter, lead, filter);
 
     auto states = generator.generate(seed, *encounterArea, 0);
     QCOMPARE(states.size(), j.size());
@@ -161,7 +161,7 @@ void WildGenerator4Test::generateMethodK()
                                       [location](const EncounterArea4 &encounterArea) { return encounterArea.getLocation() == location; });
 
     WildStateFilter4 filter(255, 255, 255, false, min, max, natures, powers, encounterSlots);
-    WildGenerator4 generator(0, 9, 0, 12345, 54321, version, Method::MethodK, encounter, lead, false, filter);
+    WildGenerator4 generator(0, 9, 0, 12345, 54321, version, Method::MethodK, encounter, lead, filter);
 
     auto states = generator.generate(seed, *encounterArea, 0);
     QCOMPARE(states.size(), j.size());
@@ -180,7 +180,6 @@ void WildGenerator4Test::generatePokeRadar_data()
     QTest::addColumn<Encounter>("encounter");
     QTest::addColumn<Lead>("lead");
     QTest::addColumn<int>("location");
-    QTest::addColumn<bool>("shiny");
     QTest::addColumn<u8>("index");
     QTest::addColumn<std::string>("results");
 
@@ -189,7 +188,7 @@ void WildGenerator4Test::generatePokeRadar_data()
     {
         QTest::newRow(d["name"].get<std::string>().data())
             << d["seed"].get<u32>() << d["version"].get<Game>() << d["encounter"].get<Encounter>() << d["lead"].get<Lead>()
-            << d["location"].get<int>() << d["shiny"].get<bool>() << d["index"].get<u8>() << d["results"].get<json>().dump();
+            << d["location"].get<int>() << d["index"].get<u8>() << d["results"].get<json>().dump();
     }
 }
 
@@ -200,7 +199,6 @@ void WildGenerator4Test::generatePokeRadar()
     QFETCH(Encounter, encounter);
     QFETCH(Lead, lead);
     QFETCH(int, location);
-    QFETCH(bool, shiny);
     QFETCH(u8, index);
     QFETCH(std::string, results);
 
@@ -230,7 +228,74 @@ void WildGenerator4Test::generatePokeRadar()
                                       [location](const EncounterArea4 &encounterArea) { return encounterArea.getLocation() == location; });
 
     WildStateFilter4 filter(255, 255, 255, false, min, max, natures, powers, encounterSlots);
-    WildGenerator4 generator(0, 9, 0, 12345, 54321, version, Method::PokeRadar, encounter, lead, shiny, filter);
+    WildGenerator4 generator(0, 9, 0, 12345, 54321, version, Method::PokeRadar, encounter, lead, filter);
+
+    auto states = generator.generate(seed, *encounterArea, index);
+    QCOMPARE(states.size(), j.size());
+
+    for (size_t i = 0; i < states.size(); i++)
+    {
+        const auto &state = states[i];
+        QVERIFY(state == j[i]);
+    }
+}
+
+void WildGenerator4Test::generatePokeRadarShiny_data()
+{
+    QTest::addColumn<u32>("seed");
+    QTest::addColumn<Game>("version");
+    QTest::addColumn<Encounter>("encounter");
+    QTest::addColumn<Lead>("lead");
+    QTest::addColumn<int>("location");
+    QTest::addColumn<u8>("index");
+    QTest::addColumn<std::string>("results");
+
+    json data = readData("wild4", "wildgenerator4", "generatePokeRadarShiny");
+    for (const auto &d : data)
+    {
+        QTest::newRow(d["name"].get<std::string>().data())
+            << d["seed"].get<u32>() << d["version"].get<Game>() << d["encounter"].get<Encounter>() << d["lead"].get<Lead>()
+            << d["location"].get<int>() << d["index"].get<u8>() << d["results"].get<json>().dump();
+    }
+}
+
+void WildGenerator4Test::generatePokeRadarShiny()
+{
+    QFETCH(u32, seed);
+    QFETCH(Game, version);
+    QFETCH(Encounter, encounter);
+    QFETCH(Lead, lead);
+    QFETCH(int, location);
+    QFETCH(u8, index);
+    QFETCH(std::string, results);
+
+    json j = json::parse(results);
+
+    std::array<u8, 6> min;
+    min.fill(0);
+
+    std::array<u8, 6> max;
+    max.fill(31);
+
+    std::array<bool, 25> natures;
+    natures.fill(true);
+
+    std::array<bool, 16> powers;
+    powers.fill(true);
+
+    std::array<bool, 12> encounterSlots;
+    encounterSlots.fill(true);
+
+    std::array<u8, 5> blocks = { 0, 0, 0, 0, 0 };
+
+    Profile4 profile("", version, 12345, 54321, false);
+
+    std::vector<EncounterArea4> encounterAreas = Encounters4::getEncounters(encounter, 0, Game::None, true, 0, false, blocks, &profile);
+    auto encounterArea = std::find_if(encounterAreas.begin(), encounterAreas.end(),
+                                      [location](const EncounterArea4 &encounterArea) { return encounterArea.getLocation() == location; });
+
+    WildStateFilter4 filter(255, 255, 255, false, min, max, natures, powers, encounterSlots);
+    WildGenerator4 generator(0, 9, 0, 12345, 54321, version, Method::PokeRadarShiny, encounter, lead, filter);
 
     auto states = generator.generate(seed, *encounterArea, index);
     QCOMPARE(states.size(), j.size());
