@@ -49,7 +49,7 @@ Wild4::Wild4(QWidget *parent) : QWidget(parent), ui(new Ui::Wild4)
     setAttribute(Qt::WA_QuitOnClose, false);
 
     generatorModel = new WildGeneratorModel4(ui->tableViewGenerator, Method::MethodJ);
-    searcherModel = new WildSearcherModel4(ui->tableViewSearcher);
+    searcherModel = new WildSearcherModel4(ui->tableViewSearcher, Method::MethodJ);
 
     ui->tableViewGenerator->setModel(generatorModel);
     ui->tableViewSearcher->setModel(searcherModel);
@@ -521,7 +521,7 @@ void Wild4::search()
     {
         if (ui->checkBoxSearcherPokeRadar->isChecked())
         {
-            method = Method::PokeRadar;
+            method = ui->checkBoxSearcherPokeRadarShiny->isChecked() ? Method::PokeRadarShiny : Method::PokeRadar;
             std::array<bool, 12> encounters = ui->filterSearcher->getEncounterSlots();
             if (std::count(encounters.begin(), encounters.end(), true) != 1)
             {
@@ -561,6 +561,7 @@ void Wild4::search()
     }
 
     searcherModel->clearModel();
+    searcherModel->setMethod(method);
 
     ui->pushButtonSearch->setEnabled(false);
     ui->pushButtonCancel->setEnabled(true);
@@ -576,10 +577,9 @@ void Wild4::search()
     u16 tid = currentProfile->getTID();
     u16 sid = currentProfile->getSID();
     auto lead = ui->comboBoxSearcherLead->getEnum<Lead>();
-    bool shiny = ui->checkBoxSearcherPokeRadarShiny->isChecked();
 
     auto *searcher = new WildSearcher4(minAdvance, maxAdvance, minDelay, maxDelay, tid, sid, currentProfile->getVersion(), method,
-                                       encounter, lead, shiny, encounterSearcher[ui->comboBoxSearcherLocation->getCurrentInt()], filter);
+                                       encounter, lead, encounterSearcher[ui->comboBoxSearcherLocation->getCurrentInt()], filter);
 
     int maxProgress = 1;
     for (u8 i = 0; i < 6; i++)

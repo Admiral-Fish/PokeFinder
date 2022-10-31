@@ -113,7 +113,7 @@ public:
      *
      * @param parent Parent object, which takes memory ownership
      */
-    WildSearcherModel4(QObject *parent);
+    WildSearcherModel4(QObject *parent, Method metod);
 
     /**
      * @brief Returns the number of columns in the model
@@ -146,6 +146,13 @@ public:
     QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
 
     /**
+     * @brief Sets current \p method of the model
+     *
+     * @param method Method
+     */
+    void setMethod(Method method);
+
+    /**
      * @brief Sorts the displayed data in the \p column by the given \p order
      *
      * @param column Column to sort
@@ -163,9 +170,20 @@ public slots:
 
 private:
     QStringList header
-        = { tr("Seed"), tr("Advances"), tr("Item"), tr("Slot"), tr("Level"), tr("PID"), tr("Shiny"),  tr("Nature"), tr("Ability"),
-            tr("HP"),   tr("Atk"),      tr("Def"),  tr("SpA"),  tr("SpD"),   tr("Spe"), tr("Hidden"), tr("Power"),  tr("Gender") };
+        = { tr("Seed"),    tr("Advances"), tr("Item"), tr("Shiny Patch"), tr("Slot"), tr("Level"), tr("PID"), tr("Shiny"),  tr("Nature"),
+            tr("Ability"), tr("HP"),       tr("Atk"),  tr("Def"),         tr("SpA"),  tr("SpD"),   tr("Spe"), tr("Hidden"), tr("Power"),
+            tr("Gender") };
     bool showStats;
+    Method method;
+
+    /**
+     * @brief Gets modified column index based on model method
+     *
+     * @param column Original column
+     *
+     * @return Modified column
+     */
+    int getColumn(int column) const;
 };
 
 #endif // WILD4MODEL_HPP

@@ -43,11 +43,10 @@ public:
      * @param method Encounter method
      * @param encounter Encounter type
      * @param lead Encounter lead
-     * @param shiny Whether Poke Radar is forced shiny
      * @param filter State filter
      */
     WildSearcher4(u32 minAdvance, u32 maxAdvance, u32 minDelay, u32 maxDelay, u16 tid, u16 sid, Game version, Method method,
-                  Encounter encounter, Lead lead, bool shiny, const EncounterArea4 &encounterArea, const WildStateFilter4 &filter);
+                  Encounter encounter, Lead lead, const EncounterArea4 &encounterArea, const WildStateFilter4 &filter);
 
     /**
      * @brief Cancels the running search
@@ -90,7 +89,6 @@ private:
     u16 thresh;
     bool safari;
     bool searching;
-    bool shiny;
 
     /**
      * @brief Searches for matching states from provided IVs

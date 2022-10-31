@@ -551,10 +551,10 @@ std::vector<WildGeneratorState4> WildGenerator4::generatePokeRadarShiny(u32 seed
 
         PokeRNGR radar(rng.getSeed());
         u32 radarShinyPatchAdvances = 0;
-        if (initialAdvances + cnt >= 150) {  // 150 is a good advances window to recharge the PokeRadar and to step on a shiny patch
-            u16 radarPatch = radar.advance(150) >> 16;
+        if (initialAdvances + cnt > 156) {
+            u16 radarPatch = radar.advance(150) >> 16;  // 150 is a good advances window to recharge the PokeRadar and to step on a shiny patch
             radarShinyPatchAdvances = 156;  // To get a PokeRadar shiny patch we need to hit -6 from the shiny patch prng;
-            while (radarPatch >= 8 && radarShinyPatchAdvances <= initialAdvances + cnt)
+            while (radarPatch >= 8 && radarShinyPatchAdvances < initialAdvances + cnt)
             {
                 radarPatch = radar.nextUShort();
                 radarShinyPatchAdvances++;
@@ -562,8 +562,8 @@ std::vector<WildGeneratorState4> WildGenerator4::generatePokeRadarShiny(u32 seed
         }
 
         WildGeneratorState4 state(rng.nextUShort(), initialAdvances + cnt, occidentary, pid, nature, iv1, iv2, tsv, slot.getMaxLevel(),
-                                  index, item, slot.getSpecie(), info, radarShinyPatchAdvances != 0 &&
-                radarShinyPatchAdvances < (initialAdvances + cnt) ? ((initialAdvances + cnt) - radarShinyPatchAdvances) : 0);
+                                  index, item, slot.getSpecie(), info, radarShinyPatchAdvances != 0 ?
+                    ((initialAdvances + cnt) - radarShinyPatchAdvances) : 0);
         if (filter.compareState(state))
         {
             states.emplace_back(state);

@@ -35,8 +35,8 @@ int WildGeneratorModel4::columnCount(const QModelIndex &parent) const
     case Method::MethodJ:
     case Method::PokeRadar:
         return 19;
-    case Method::PokeRadarShiny:
     case Method::MethodK:
+    case Method::PokeRadarShiny:
         return 20;
     default:
         return 0;
@@ -126,22 +126,32 @@ int WildGeneratorModel4::getColumn(int column) const
     case Method::MethodJ:
     case Method::PokeRadar:
         return column > 2 ? column + 2 : column;
-    case Method::PokeRadarShiny:
-        return column > 3 ? column + 1 : column;
     case Method::MethodK:
         return column > 2 ? column + 1 : column;
+    case Method::PokeRadarShiny:
+        return column > 3 ? column + 1 : column;
     default:
         return column;
     }
 }
 
-WildSearcherModel4::WildSearcherModel4(QObject *parent) : TableModel<WildSearcherState4>(parent), showStats(false)
+WildSearcherModel4::WildSearcherModel4(QObject *parent, Method method) : TableModel<WildSearcherState4>(parent), showStats(false), method(method)
 {
 }
 
 int WildSearcherModel4::columnCount(const QModelIndex &parent) const
 {
-    return 18;
+    switch (method)
+    {
+    case Method::MethodJ:
+    case Method::MethodK:
+    case Method::PokeRadar:
+        return 18;
+    case Method::PokeRadarShiny:
+        return 19;
+    default:
+        return 0;
+    }
 }
 
 QVariant WildSearcherModel4::data(const QModelIndex &index, int role) const
@@ -149,7 +159,7 @@ QVariant WildSearcherModel4::data(const QModelIndex &index, int role) const
     if (role == Qt::DisplayRole)
     {
         const auto &state = model[index.row()];
-        int column = index.column();
+        int column = getColumn(index.column());
         switch (column)
         {
         case 0:
@@ -159,32 +169,34 @@ QVariant WildSearcherModel4::data(const QModelIndex &index, int role) const
         case 2:
             return QString::fromStdString(*Translator::getItem(state.getItem()));
         case 3:
-            return QString("%1 (%2)").arg(state.getEncounterSlot()).arg(QString::fromStdString(*Translator::getSpecie(state.getSpecie())));
+            return state.getRadarShinyPatch();
         case 4:
-            return state.getLevel();
+            return QString("%1 (%2)").arg(state.getEncounterSlot()).arg(QString::fromStdString(*Translator::getSpecie(state.getSpecie())));
         case 5:
-            return QString::number(state.getPID(), 16).toUpper().rightJustified(8, '0');
+            return state.getLevel();
         case 6:
+            return QString::number(state.getPID(), 16).toUpper().rightJustified(8, '0');
+        case 7:
         {
             u8 shiny = state.getShiny();
             return shiny == 2 ? tr("Square") : shiny == 1 ? tr("Star") : tr("No");
         }
-        case 7:
-            return QString::fromStdString(*Translator::getNature(state.getNature()));
         case 8:
-            return QString("%1 (%2)").arg(state.getAbility()).arg(QString::fromStdString(*Translator::getAbility(state.getAbilityIndex())));
+            return QString::fromStdString(*Translator::getNature(state.getNature()));
         case 9:
+            return QString("%1 (%2)").arg(state.getAbility()).arg(QString::fromStdString(*Translator::getAbility(state.getAbilityIndex())));
         case 10:
         case 11:
         case 12:
         case 13:
         case 14:
-            return showStats ? state.getStat(column - 9) : state.getIV(column - 9);
         case 15:
-            return QString::fromStdString(*Translator::getHiddenPower(state.getHiddenPower()));
+            return showStats ? state.getStat(column - 10) : state.getIV(column - 10);
         case 16:
-            return state.getHiddenPowerStrength();
+            return QString::fromStdString(*Translator::getHiddenPower(state.getHiddenPower()));
         case 17:
+            return state.getHiddenPowerStrength();
+        case 18:
             return QString::fromStdString(*Translator::getGender(state.getGender()));
         }
     }
@@ -195,9 +207,17 @@ QVariant WildSearcherModel4::headerData(int section, Qt::Orientation orientation
 {
     if (role == Qt::DisplayRole && orientation == Qt::Horizontal)
     {
+        section = getColumn(section);
+
         return header[section];
     }
     return QVariant();
+}
+
+void WildSearcherModel4::setMethod(Method method)
+{
+    this->method = method;
+    emit headerDataChanged(Qt::Horizontal, 0, columnCount());
 }
 
 void WildSearcherModel4::sort(int column, Qt::SortOrder order)
@@ -225,56 +245,60 @@ void WildSearcherModel4::sort(int column, Qt::SortOrder order)
             break;
         case 3:
             std::sort(model.begin(), model.end(), [flag](const WildSearcherState4 &state1, const WildSearcherState4 &state2) {
-                return flag ? state1.getEncounterSlot() < state2.getEncounterSlot() : state1.getEncounterSlot() > state2.getEncounterSlot();
+                return flag ? state1.getRadarShinyPatch() < state2.getRadarShinyPatch() : state1.getRadarShinyPatch() > state2.getRadarShinyPatch();
             });
-            break;
         case 4:
             std::sort(model.begin(), model.end(), [flag](const WildSearcherState4 &state1, const WildSearcherState4 &state2) {
-                return flag ? state1.getLevel() < state2.getLevel() : state1.getLevel() > state2.getLevel();
+                return flag ? state1.getEncounterSlot() < state2.getEncounterSlot() : state1.getEncounterSlot() > state2.getEncounterSlot();
             });
             break;
         case 5:
             std::sort(model.begin(), model.end(), [flag](const WildSearcherState4 &state1, const WildSearcherState4 &state2) {
-                return flag ? state1.getPID() < state2.getPID() : state1.getPID() > state2.getPID();
+                return flag ? state1.getLevel() < state2.getLevel() : state1.getLevel() > state2.getLevel();
             });
             break;
         case 6:
             std::sort(model.begin(), model.end(), [flag](const WildSearcherState4 &state1, const WildSearcherState4 &state2) {
-                return flag ? state1.getShiny() < state2.getShiny() : state1.getShiny() > state2.getShiny();
+                return flag ? state1.getPID() < state2.getPID() : state1.getPID() > state2.getPID();
             });
             break;
         case 7:
             std::sort(model.begin(), model.end(), [flag](const WildSearcherState4 &state1, const WildSearcherState4 &state2) {
-                return flag ? state1.getNature() < state2.getNature() : state1.getNature() > state2.getNature();
+                return flag ? state1.getShiny() < state2.getShiny() : state1.getShiny() > state2.getShiny();
             });
             break;
         case 8:
             std::sort(model.begin(), model.end(), [flag](const WildSearcherState4 &state1, const WildSearcherState4 &state2) {
-                return flag ? state1.getAbility() < state2.getAbility() : state1.getAbility() > state2.getAbility();
+                return flag ? state1.getNature() < state2.getNature() : state1.getNature() > state2.getNature();
             });
             break;
         case 9:
+            std::sort(model.begin(), model.end(), [flag](const WildSearcherState4 &state1, const WildSearcherState4 &state2) {
+                return flag ? state1.getAbility() < state2.getAbility() : state1.getAbility() > state2.getAbility();
+            });
+            break;
         case 10:
         case 11:
         case 12:
         case 13:
         case 14:
+        case 15:
             std::sort(model.begin(), model.end(), [flag, column](const WildSearcherState4 &state1, const WildSearcherState4 &state2) {
-                return flag ? state1.getIV(column - 9) < state2.getIV(column - 9) : state1.getIV(column - 9) > state2.getIV(column - 9);
+                return flag ? state1.getIV(column - 10) < state2.getIV(column - 10) : state1.getIV(column - 10) > state2.getIV(column - 10);
             });
             break;
-        case 15:
+        case 16:
             std::sort(model.begin(), model.end(), [flag](const WildSearcherState4 &state1, const WildSearcherState4 &state2) {
                 return flag ? state1.getHiddenPower() < state2.getHiddenPower() : state1.getHiddenPower() > state2.getHiddenPower();
             });
             break;
-        case 16:
+        case 17:
             std::sort(model.begin(), model.end(), [flag](const WildSearcherState4 &state1, const WildSearcherState4 &state2) {
                 return flag ? state1.getHiddenPowerStrength() < state2.getHiddenPowerStrength()
                             : state1.getHiddenPowerStrength() > state2.getHiddenPowerStrength();
             });
             break;
-        case 17:
+        case 18:
             std::sort(model.begin(), model.end(), [flag](const WildSearcherState4 &state1, const WildSearcherState4 &state2) {
                 return flag ? state1.getGender() < state2.getGender() : state1.getGender() > state2.getGender();
             });
@@ -289,4 +313,18 @@ void WildSearcherModel4::setShowStats(bool flag)
 {
     showStats = flag;
     emit dataChanged(index(0, 9), index(rowCount(), 14), { Qt::DisplayRole });
+}
+
+int WildSearcherModel4::getColumn(int column) const
+{
+    switch (method)
+    {
+    case Method::MethodJ:
+    case Method::MethodK:
+    case Method::PokeRadar:
+        return column > 2 ? column + 1 : column;
+    case Method::PokeRadarShiny:
+    default:
+        return column;
+    }
 }

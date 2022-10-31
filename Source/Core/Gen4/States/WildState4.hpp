@@ -171,8 +171,29 @@ public:
         this->seed = seed;
     }
 
+    /**
+     * @brief Returns the PokeRadar shiny patch advances
+     *
+     * @return PokeRadar shiny patch advances
+     */
+    u32 getRadarShinyPatch() const
+    {
+        return radarShinyPatch;
+    }
+
+    /**
+     * @brief Sets the PokeRadar shiny patch advances
+     *
+     * @param radarShinyPatch PokeRadar shiny patch advances
+     */
+    void setRadarShinyPatch(u32 radarShinyPatch)
+    {
+        this->radarShinyPatch = radarShinyPatch;
+    }
+
 private:
     u32 advances;
+    u32 radarShinyPatch;
     u8 hiddenPowerStrength;
 };
 

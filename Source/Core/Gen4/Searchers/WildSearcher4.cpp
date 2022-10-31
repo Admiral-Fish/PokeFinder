@@ -49,8 +49,26 @@ static u16 getItem(u8 rand, Lead lead, const PersonalInfo *info)
     }
 }
 
+static u32 getShinyPatchAdvances(u32 seed, u32 cnt)
+{
+    PokeRNG rng(seed, cnt);
+    PokeRNGR radar(rng.getSeed());
+    u32 radarShinyPatchAdvances = 0;
+    if (cnt > 156) {
+        u16 radarPatch = radar.advance(150) >> 16;  // 150 is a good advances window to recharge the PokeRadar and to step on a shiny patch
+        radarShinyPatchAdvances = 156;  // To get a PokeRadar shiny patch we need to hit -6 from the shiny patch prng;
+        while (radarPatch >= 8 && radarShinyPatchAdvances < cnt)
+        {
+            radarPatch = radar.nextUShort();
+            radarShinyPatchAdvances++;
+        };
+    }
+
+    return radarShinyPatchAdvances != 0 ? cnt - radarShinyPatchAdvances : 0;
+}
+
 WildSearcher4::WildSearcher4(u32 minAdvance, u32 maxAdvance, u32 minDelay, u32 maxDelay, u16 tid, u16 sid, Game version, Method method,
-                             Encounter encounter, Lead lead, bool shiny, const EncounterArea4 &encounterArea,
+                             Encounter encounter, Lead lead, const EncounterArea4 &encounterArea,
                              const WildStateFilter4 &filter) :
     WildSearcher<WildStateFilter4>(tid, sid, version, method, encounter, lead, filter),
     encounterArea(encounterArea),
@@ -62,8 +80,7 @@ WildSearcher4::WildSearcher4(u32 minAdvance, u32 maxAdvance, u32 minDelay, u32 m
     minDelay(minDelay),
     thresh(encounterArea.getRate()),
     safari(encounterArea.safariZone(version)),
-    searching(false),
-    shiny(shiny)
+    searching(false)
 {
     if (lead == Lead::SuctionCups
         && (encounter == Encounter::OldRod || encounter == Encounter::GoodRod || encounter == Encounter::SuperRod))
@@ -141,14 +158,11 @@ std::vector<WildSearcherState4> WildSearcher4::search(u8 hp, u8 atk, u8 def, u8 
     }
     else if (method == Method::PokeRadar)
     {
-        if (shiny)
-        {
-            states = searchPokeRadarShiny(hp, atk, def, spa, spd, spe, index);
-        }
-        else
-        {
-            states = searchPokeRadar(hp, atk, def, spa, spd, spe, index);
-        }
+        states = searchPokeRadar(hp, atk, def, spa, spd, spe, index);
+    }
+    else if (method == Method::PokeRadarShiny)
+    {
+        states = searchPokeRadarShiny(hp, atk, def, spa, spd, spe, index);
     }
 
     return searchInitialSeeds(states);
@@ -172,6 +186,11 @@ std::vector<WildSearcherState4> WildSearcher4::searchInitialSeeds(const std::vec
             {
                 result.setSeed(seed);
                 result.setAdvances(cnt);
+
+                if (method == Method::PokeRadarShiny)
+                {
+                    result.setRadarShinyPatch(getShinyPatchAdvances(seed, cnt));
+                }
                 states.emplace_back(result);
             }
 
