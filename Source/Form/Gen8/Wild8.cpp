@@ -50,8 +50,14 @@ Wild8::Wild8(QWidget *parent) : QWidget(parent), ui(new Ui::Wild8)
     ui->textBoxMaxAdvances->setValues(InputType::Advance32Bit);
 
     ui->toolButtonLead->addAction(tr("None"), toInt(Lead::None));
-    ui->toolButtonLead->addMenu(tr("Synchronize"), *Translator::getNatures());
+    ui->toolButtonLead->addAction(tr("Arena Trap"), toInt(Lead::ArenaTrap));
+    ui->toolButtonLead->addAction(tr("Compound Eyes"), toInt(Lead::CompoundEyes));
     ui->toolButtonLead->addMenu(tr("Cute Charm"), { tr("♂ Lead"), tr("♀ Lead") }, { toInt(Lead::CuteCharmM), toInt(Lead::CuteCharmF) });
+    ui->toolButtonLead->addMenu(
+        tr("Encounter Modifier"), { tr("Harvest"), tr("Flash Fire"), tr("Magnet Pull"), tr("Static"), tr("Storm Drain") },
+        { toInt(Lead::Harvest), toInt(Lead::FlashFire), toInt(Lead::MagnetPull), toInt(Lead::Static), toInt(Lead::StormDrain) });
+    ui->toolButtonLead->addAction(tr("Pressure"), toInt(Lead::Pressure));
+    ui->toolButtonLead->addMenu(tr("Synchronize"), *Translator::getNatures());
 
     ui->comboBoxEncounter->setup({ toInt(Encounter::Grass), toInt(Encounter::Surfing), toInt(Encounter::OldRod), toInt(Encounter::GoodRod),
                                    toInt(Encounter::SuperRod) });

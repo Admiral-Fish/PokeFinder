@@ -67,9 +67,9 @@ Wild3::Wild3(QWidget *parent) : QWidget(parent), ui(new Ui::Wild3)
     ui->toolButtonGeneratorLead->addAction(tr("None"), toInt(Lead::None));
     ui->toolButtonGeneratorLead->addMenu(tr("Cute Charm"), { tr("♂ Lead"), tr("♀ Lead") },
                                          { toInt(Lead::CuteCharmM), toInt(Lead::CuteCharmF) });
-    ui->toolButtonGeneratorLead->addAction(tr("Magnet Pull"), toInt(Lead::MagnetPull));
+    ui->toolButtonGeneratorLead->addMenu(tr("Encounter Modifier"), { tr("Magnet Pull"), tr("Static") },
+                                         { toInt(Lead::MagnetPull), toInt(Lead::Static) });
     ui->toolButtonGeneratorLead->addAction(tr("Pressure"), toInt(Lead::Pressure));
-    ui->toolButtonGeneratorLead->addAction(tr("Static"), toInt(Lead::Static));
     ui->toolButtonGeneratorLead->addMenu(tr("Synchronize"), *Translator::getNatures());
 
     ui->comboBoxSearcherLead->setup({ toInt(Lead::None), toInt(Lead::CuteCharmM), toInt(Lead::CuteCharmF), toInt(Lead::MagnetPull),

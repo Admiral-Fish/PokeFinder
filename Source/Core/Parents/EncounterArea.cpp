@@ -19,6 +19,7 @@
 
 #include "EncounterArea.hpp"
 #include <Core/Enum/Encounter.hpp>
+#include <Core/Enum/Game.hpp>
 #include <Core/Enum/Lead.hpp>
 #include <Core/Parents/Slot.hpp>
 #include <Core/Util/Translator.hpp>
@@ -81,10 +82,31 @@ std::vector<bool> EncounterArea::getSlots(u16 specie) const
     return flags;
 }
 
-std::vector<u8> EncounterArea::getSlots(Lead lead) const
+std::vector<u8> EncounterArea::getSlots(Game version, Lead lead) const
 {
     std::vector<u8> encounters;
-    u8 type = lead == Lead::MagnetPull ? 8 : 13;
+    u8 type;
+    switch (lead)
+    {
+    case Lead::MagnetPull:
+        type = 8;
+        break;
+    case Lead::Static:
+        type = (version & (Game::Gen3 | Game::Gen4)) != Game::None ? 13 : 12;
+        break;
+    case Lead::Harvest:
+        type = 11;
+        break;
+    case Lead::FlashFire:
+        type = 9;
+        break;
+    case Lead::StormDrain:
+        type = 10;
+        break;
+    default:
+        return encounters;
+    }
+
     for (size_t i = 0; i < pokemon.size(); i++)
     {
         const PersonalInfo *info = pokemon[i].getInfo();

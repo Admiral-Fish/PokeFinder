@@ -105,7 +105,6 @@ add_library(PokeFinderCore STATIC
     Gen5/Profile5.cpp
     Gen5/Profile5.hpp
     Gen8/Den.hpp
-    Gen8/EncounterArea8.cpp
     Gen8/EncounterArea8.hpp
     Gen8/Encounters8.cpp
     Gen8/Encounters8.hpp

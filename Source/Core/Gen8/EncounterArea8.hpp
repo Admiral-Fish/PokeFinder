@@ -21,13 +21,53 @@
 #define ENCOUNTERAREA8_HPP
 
 #include <Core/Parents/EncounterArea.hpp>
+#include <Core/Parents/Slot.hpp>
+#include <Core/RNG/RNGList.hpp>
+#include <Core/RNG/Xorshift.hpp>
 
 class EncounterArea8 : public EncounterArea
 {
 public:
-    EncounterArea8(u8 location, u8 rate, Encounter type, const std::vector<Slot> &pokemon);
-    u8 calcLevel(u8 index, u32 prng) const;
-    u8 calcLevel(u8 index) const;
+    EncounterArea8(u8 location, u8 rate, Encounter type, const std::vector<Slot> &pokemon) : EncounterArea(location, rate, type, pokemon)
+    {
+    }
+
+    template <bool diff>
+    u8 calculateLevel(u8 encounterSlot, RNGList<u32, Xorshift, 128> &rngList, bool force) const
+    {
+        if constexpr (diff)
+        {
+            const Slot &slot = pokemon[encounterSlot];
+
+            u8 min = slot.getMinLevel();
+            u8 max = slot.getMaxLevel();
+            u8 range = max - min + 1;
+
+            u8 rand = rngList.next() % range; // (rngList.next() % 10000) % range
+            if (force && (rngList.next() % 2) != 0)
+            {
+                return max;
+            }
+
+            return min + rand;
+        }
+        else
+        {
+            const Slot &slot = pokemon[encounterSlot];
+            u8 level = slot.getMaxLevel();
+            if (force && (rngList.next() % 2) != 0)
+            {
+                for (const Slot &s : pokemon)
+                {
+                    if (s.getSpecie() == slot.getSpecie())
+                    {
+                        level = std::max(level, s.getMaxLevel());
+                    }
+                }
+            }
+            return level;
+        }
+    }
 };
 
 #endif // ENCOUNTERAREA8_HPP

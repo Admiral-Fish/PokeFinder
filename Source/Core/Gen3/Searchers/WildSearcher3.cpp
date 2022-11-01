@@ -51,7 +51,7 @@ WildSearcher3::WildSearcher3(u16 tid, u16 sid, Game version, Method method, Enco
                              const EncounterArea3 &encounterArea, const WildStateFilter3 &filter) :
     WildSearcher<WildStateFilter3>(tid, sid, version, method, encounter, lead, filter),
     encounterArea(encounterArea),
-    modifiedSlots(encounterArea.getSlots(lead)),
+    modifiedSlots(encounterArea.getSlots(version, lead)),
     progress(0),
     ivAdvance(method == Method::Method2),
     searching(false)

@@ -37,7 +37,10 @@ enum class Lead : u8
     Pressure,
     SuctionCups,
     CompoundEyes,
-    ArenaTrap
+    ArenaTrap,
+    Harvest,
+    FlashFire,
+    StormDrain
 };
 
 /**

@@ -70,9 +70,9 @@ Wild4::Wild4(QWidget *parent) : QWidget(parent), ui(new Ui::Wild4)
     ui->toolButtonGeneratorLead->addAction(tr("Compound Eyes"), toInt(Lead::CompoundEyes));
     ui->toolButtonGeneratorLead->addMenu(tr("Cute Charm"), { tr("♂ Lead"), tr("♀ Lead") },
                                          { toInt(Lead::CuteCharmM), toInt(Lead::CuteCharmF) });
-    ui->toolButtonGeneratorLead->addAction(tr("Magnet Pull"), toInt(Lead::MagnetPull));
+    ui->toolButtonGeneratorLead->addMenu(tr("Encounter Modifier"), { tr("Magnet Pull"), tr("Static") },
+                                         { toInt(Lead::MagnetPull), toInt(Lead::Static) });
     ui->toolButtonGeneratorLead->addAction(tr("Pressure"), toInt(Lead::Pressure));
-    ui->toolButtonGeneratorLead->addAction(tr("Static"), toInt(Lead::Static));
     ui->toolButtonGeneratorLead->addAction(tr("Suction Cups"), toInt(Lead::SuctionCups));
     ui->toolButtonGeneratorLead->addMenu(tr("Synchronize"), *Translator::getNatures());
 

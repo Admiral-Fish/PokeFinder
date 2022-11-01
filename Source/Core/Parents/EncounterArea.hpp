@@ -28,6 +28,7 @@ class PersonalInfo;
 class Slot;
 enum class Encounter : u8;
 enum class Lead : u8;
+enum class Game : u32;
 
 /**
  * @brief Contains information about the encounters for an area. This includes location, rate, and the slots.
@@ -119,7 +120,7 @@ public:
      *
      * @return Vector of matching indexes
      */
-    std::vector<u8> getSlots(Lead lead) const;
+    std::vector<u8> getSlots(Game version, Lead lead) const;
 
     /**
      * @brief Return vector of names of all pokemon slots

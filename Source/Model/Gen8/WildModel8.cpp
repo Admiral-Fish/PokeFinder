@@ -40,8 +40,7 @@ QVariant WildModel8::data(const QModelIndex &index, int role) const
         case 0:
             return state.getAdvances();
         case 1:
-            // TODO
-            return state.getItem();
+            return QString::fromStdString(*Translator::getItem(state.getItem()));
         case 2:
             return QString("%1 (%2)").arg(state.getEncounterSlot()).arg(QString::fromStdString(*Translator::getSpecie(state.getSpecie())));
         case 3:

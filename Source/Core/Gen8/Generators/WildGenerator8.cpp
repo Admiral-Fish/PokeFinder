@@ -28,6 +28,30 @@
 #include <Core/RNG/Xorshift.hpp>
 #include <Core/Util/EncounterSlot.hpp>
 
+static u16 getItem(u8 rand, Lead lead, const PersonalInfo *info)
+{
+    constexpr u8 ItemTableRange[2][2] = { { 50, 5 }, { 60, 20 } };
+
+    u8 thresh1 = ItemTableRange[lead == Lead::CompoundEyes ? 1 : 0][0];
+    u8 thresh2 = ItemTableRange[lead == Lead::CompoundEyes ? 1 : 0][1];
+
+    if (rand >= thresh1)
+    {
+        if (rand >= (thresh1 + thresh2))
+        {
+            return info->getItem(2);
+        }
+        else
+        {
+            return info->getItem(1);
+        }
+    }
+    else
+    {
+        return info->getItem(0);
+    }
+}
+
 WildGenerator8::WildGenerator8(u32 initialAdvances, u32 maxAdvances, u32 offset, u16 tid, u16 sid, Game version, Encounter encounter,
                                Lead lead, const WildStateFilter8 &filter) :
     WildGenerator(initialAdvances, maxAdvances, offset, tid, sid, version, Method::None, encounter, lead, filter)
@@ -36,14 +60,26 @@ WildGenerator8::WildGenerator8(u32 initialAdvances, u32 maxAdvances, u32 offset,
 
 std::vector<WildGeneratorState8> WildGenerator8::generate(u64 seed0, u64 seed1, const EncounterArea8 &encounterArea) const
 {
-    Xorshift rng(seed0, seed1, initialAdvances + offset);
-    RNGList<u32, Xorshift, 128> rngList(rng);
+    RNGList<u32, Xorshift, 128> rngList(seed0, seed1, initialAdvances + offset);
     auto rand = [](u32 prng) { return (prng % 0xffffffff) + 0x80000000; };
+
+    bool encounterForce
+        = lead == Lead::MagnetPull || lead == Lead::Static || lead == Lead::Harvest || lead == Lead::FlashFire || lead == Lead::StormDrain;
+    std::vector<u8> modifiedSlots = encounterArea.getSlots(version, lead);
 
     std::vector<WildGeneratorState8> states;
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rngList.advanceState())
     {
-        u8 encounterSlot = EncounterSlot::bdspSlot(rngList.next() % 100, encounter);
+        u8 encounterSlot;
+        if (encounterForce && (rngList.next() % 2) == 0 && !modifiedSlots.empty())
+        {
+            encounterSlot = modifiedSlots[rngList.next() % modifiedSlots.size()];
+        }
+        else
+        {
+            encounterSlot = EncounterSlot::bdspSlot(rngList.next() % 100, encounter);
+        }
+
         if (!filter.compareEncounterSlot(encounterSlot))
         {
             continue;
@@ -60,11 +96,11 @@ std::vector<WildGeneratorState8> WildGenerator8::generate(u64 seed0, u64 seed1, 
         u8 level;
         if (encounter == Encounter::Grass)
         {
-            level = encounterArea.calcLevel(encounterSlot);
+            level = encounterArea.calculateLevel<false>(encounterSlot, rngList, lead == Lead::Pressure);
         }
         else
         {
-            level = encounterArea.calcLevel(encounterSlot, rngList.next() % 10000);
+            level = encounterArea.calculateLevel<true>(encounterSlot, rngList, lead == Lead::Pressure);
         }
 
         const Slot &slot = encounterArea.getPokemon(encounterSlot);
@@ -143,8 +179,7 @@ std::vector<WildGeneratorState8> WildGenerator8::generate(u64 seed0, u64 seed1, 
 
         rngList.advance(4); // 2 calls height, 2 calls weight
 
-        // TODO
-        u16 item = rngList.next() % 100;
+        u16 item = getItem(rngList.next() % 100, lead, info);
 
         WildGeneratorState8 state(initialAdvances + cnt, encounterSlot, slot.getSpecie(), level, pid, shiny, ivs, ability, gender, nature,
                                   item, info);

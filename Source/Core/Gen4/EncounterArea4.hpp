@@ -79,16 +79,13 @@ public:
         {
             const Slot &slot = pokemon[encounterSlot];
             u8 level = slot.getMaxLevel();
-            if (force)
+            if (force && rng.nextUShort<mod>(2, occidentary) != 0)
             {
-                if (rng.nextUShort<mod>(2, occidentary) != 0)
+                for (const Slot &s : pokemon)
                 {
-                    for (const Slot &s : pokemon)
+                    if (s.getSpecie() == slot.getSpecie())
                     {
-                        if (s.getSpecie() == slot.getSpecie())
-                        {
-                            level = std::max(level, s.getMaxLevel());
-                        }
+                        level = std::max(level, s.getMaxLevel());
                     }
                 }
             }

@@ -30,25 +30,24 @@
  * @tparam Integer Integer type that is being stored
  * @tparam RNG RNG class used to generate states
  * @tparam size Size of the storage container (must be a perfect multiple of two)
+ * @tparam generate Function pointer to modify generated PRNG states
  */
-template <typename Integer, class RNG, u16 size>
+template <typename Integer, class RNG, u16 size, Integer (*generate)(RNG &) = nullptr>
 class RNGList
 {
+    static_assert(size && ((size & (size - 1)) == 0), "Number is not a perfect multiple of two");
+
 public:
     /**
      * @brief Construct a new RNGList object
      *
-     * @param rng RNG object to generate states
-     * @param generate Function pointer to modify generated PRNG states
+     * @param seed0 Starting PRNG state0
+     * @param seed1 Starting PRNG state1
+     * @param advances Initial advances
      */
-    RNGList(RNG &rng, Integer (*generate)(RNG &) = nullptr) : generate(generate), rng(rng), head(0), pointer(0)
+    RNGList(u64 seed0, u64 seed1, u32 advances) : rng(seed0, seed1, advances), head(0), pointer(0)
     {
-        static_assert(size && ((size & (size - 1)) == 0), "Number is not a perfect multiple of two");
-
-        for (Integer &x : list)
-        {
-            x = generate ? generate(this->rng) : this->rng.next();
-        }
+        init();
     }
 
     /**
@@ -89,8 +88,15 @@ public:
      */
     void advanceState()
     {
-        list[head++] = generate ? generate(rng) : this->rng.next();
-        head &= size - 1;
+        if constexpr (generate)
+        {
+            list[head++] = generate(rng);
+        }
+        else
+        {
+            list[head++] = rng.next();
+        }
+        head %= size;
 
         pointer = head;
     }
@@ -102,7 +108,7 @@ public:
      */
     void advance(u32 advances)
     {
-        pointer = (pointer + advances) & (size - 1);
+        pointer = (pointer + advances) % size;
     }
 
     /**
@@ -115,7 +121,7 @@ public:
     Integer next(Integer (*value)(Integer) = nullptr)
     {
         Integer result = list[pointer++];
-        pointer &= size - 1;
+        pointer %= size;
 
         // Debug assert to help discover if the array is too small
         assert(pointer != head);
@@ -132,10 +138,27 @@ public:
     }
 
 private:
-    Integer (*generate)(RNG &);
     RNG rng;
     Integer list[size];
     u16 head, pointer;
+
+    /**
+     * @brief Populates the list with PRNG states
+     */
+    void init()
+    {
+        for (Integer &x : list)
+        {
+            if constexpr (generate)
+            {
+                x = generate(rng);
+            }
+            else
+            {
+                x = rng.next();
+            }
+        }
+    }
 };
 
 #endif // RNGLIST_HPP

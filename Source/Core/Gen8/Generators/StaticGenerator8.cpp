@@ -28,6 +28,11 @@
 #include <Core/RNG/Xoroshiro.hpp>
 #include <Core/RNG/Xorshift.hpp>
 
+static u32 gen(Xorshift &rng)
+{
+    return rng.next(0x80000000, 0x7fffffff);
+}
+
 StaticGenerator8::StaticGenerator8(u32 initialAdvances, u32 maxAdvances, u32 offset, u16 tid, u16 sid, Game version, Lead lead,
                                    const StateFilter8 &filter) :
     StaticGenerator(initialAdvances, maxAdvances, offset, tid, sid, version, Method::None, lead, filter)
@@ -37,9 +42,7 @@ StaticGenerator8::StaticGenerator8(u32 initialAdvances, u32 maxAdvances, u32 off
 std::vector<GeneratorState8> StaticGenerator8::generate(u64 seed0, u64 seed1, const StaticTemplate8 *staticTemplate) const
 {
     const PersonalInfo *info = staticTemplate->getInfo();
-
-    Xorshift rng(seed0, seed1, initialAdvances + offset);
-    RNGList<u32, Xorshift, 32> rngList(rng, [](Xorshift &rng) { return rng.next(0x80000000, 0x7fffffff); });
+    RNGList<u32, Xorshift, 32, gen> rngList(seed0, seed1, initialAdvances + offset);
 
     std::vector<GeneratorState8> states;
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rngList.advanceState())

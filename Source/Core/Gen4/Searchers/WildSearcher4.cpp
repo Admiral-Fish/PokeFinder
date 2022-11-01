@@ -54,7 +54,7 @@ WildSearcher4::WildSearcher4(u32 minAdvance, u32 maxAdvance, u32 minDelay, u32 m
                              const WildStateFilter4 &filter) :
     WildSearcher<WildStateFilter4>(tid, sid, version, method, encounter, lead, filter),
     encounterArea(encounterArea),
-    modifiedSlots(encounterArea.getSlots(lead)),
+    modifiedSlots(encounterArea.getSlots(version, lead)),
     progress(0),
     maxAdvance(maxAdvance),
     minAdvance(minAdvance),
