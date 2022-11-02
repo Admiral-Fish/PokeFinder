@@ -7,12 +7,12 @@
     <x>0</x>
     <y>0</y>
     <width>129</width>
-    <height>228</height>
+    <height>256</height>
    </rect>
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="2" column="0">
-    <widget class="Label" name="labelDef">
+    <widget class="QLabel" name="labelDef">
      <property name="text">
       <string>Def</string>
      </property>
@@ -60,7 +60,7 @@
     </widget>
    </item>
    <item row="4" column="0">
-    <widget class="Label" name="labelSpD">
+    <widget class="QLabel" name="labelSpD">
      <property name="text">
       <string>SpD</string>
      </property>
@@ -84,7 +84,7 @@
     </widget>
    </item>
    <item row="3" column="0">
-    <widget class="Label" name="labelSpA">
+    <widget class="QLabel" name="labelSpA">
      <property name="text">
       <string>SpA</string>
      </property>
@@ -108,7 +108,7 @@
     </widget>
    </item>
    <item row="5" column="0">
-    <widget class="Label" name="labelSpe">
+    <widget class="QLabel" name="labelSpe">
      <property name="text">
       <string>Spe</string>
      </property>
@@ -132,14 +132,14 @@
     </widget>
    </item>
    <item row="1" column="0">
-    <widget class="Label" name="labelAtk">
+    <widget class="QLabel" name="labelAtk">
      <property name="text">
       <string>Atk</string>
      </property>
     </widget>
    </item>
    <item row="0" column="0">
-    <widget class="Label" name="labelHP">
+    <widget class="QLabel" name="labelHP">
      <property name="text">
       <string>HP</string>
      </property>
@@ -171,16 +171,6 @@
    </item>
   </layout>
  </widget>
- <customwidgets>
-  <customwidget>
-   <class>Label</class>
-   <extends>QLabel</extends>
-   <header>Form/Controls/Label.hpp</header>
-   <slots>
-    <signal>pressed(int)</signal>
-   </slots>
-  </customwidget>
- </customwidgets>
  <tabstops>
   <tabstop>spinBoxHPMin</tabstop>
   <tabstop>spinBoxHPMax</tabstop>

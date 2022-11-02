@@ -31,11 +31,11 @@ Filter::Filter(QWidget *parent) : QWidget(parent), ui(new Ui::Filter)
     ui->checkListHiddenPower->setup(*Translator::getHiddenPowers());
     ui->checkListNature->setup(*Translator::getNatures());
     ui->comboBoxShiny->setup({ 255, 1, 2, 3 });
-    ui->textBoxDelay->setValues(InputType::Advance32Bit);
 
-    connect(ui->pushButtonEncounterSlot, &QPushButton::clicked, ui->checkListEncounterSlot, &CheckList::resetChecks);
-    connect(ui->pushButtonHiddenPower, &QPushButton::clicked, ui->checkListHiddenPower, &CheckList::resetChecks);
-    connect(ui->pushButtonNature, &QPushButton::clicked, ui->checkListNature, &CheckList::resetChecks);
+    ui->checkListEncounterSlot->setToolTip(tr("Click holding ctrl to reset"));
+    ui->checkListHiddenPower->setToolTip(tr("Click holding ctrl to reset"));
+    ui->checkListNature->setToolTip(tr("Click holding ctrl to reset"));
+
     connect(ui->ivFilter, &IVFilter::showStatsChanged, this, [&](bool flag) { emit showStatsChanged(flag); });
 }
 
@@ -67,33 +67,24 @@ void Filter::disableControls(Controls control)
     {
         ui->labelEncounterSlot->setVisible(false);
         ui->checkListEncounterSlot->setVisible(false);
-        ui->pushButtonEncounterSlot->setVisible(false);
     }
 
     if ((control & Controls::HiddenPowers) != Controls::None)
     {
         ui->labelHiddenPower->setVisible(false);
         ui->checkListHiddenPower->setVisible(false);
-        ui->pushButtonHiddenPower->setVisible(false);
     }
 
     if ((control & Controls::Natures) != Controls::None)
     {
         ui->labelNature->setVisible(false);
         ui->checkListNature->setVisible(false);
-        ui->pushButtonNature->setVisible(false);
     }
 
     if ((control & Controls::Shiny) != Controls::None)
     {
         ui->labelShiny->setVisible(false);
         ui->comboBoxShiny->setVisible(false);
-    }
-
-    if ((control & Controls::UseDelay) != Controls::None)
-    {
-        ui->checkBoxDelay->setVisible(false);
-        ui->textBoxDelay->setVisible(false);
     }
 
     if ((control & Controls::DisableFilter) != Controls::None)
@@ -110,11 +101,6 @@ void Filter::enableHiddenAbility()
 u8 Filter::getAbility() const
 {
     return ui->comboBoxAbility->getCurrentByte();
-}
-
-u32 Filter::getDelay() const
-{
-    return ui->textBoxDelay->getUInt();
 }
 
 bool Filter::getDisableFilters() const
@@ -181,9 +167,4 @@ void Filter::setEncounterSlots(const std::vector<std::string> &encounterSlots) c
 void Filter::toggleEncounterSlots(const std::vector<bool> &encounterSlots) const
 {
     ui->checkListEncounterSlot->setChecks(encounterSlots);
-}
-
-bool Filter::useDelay() const
-{
-    return ui->checkBoxDelay->isChecked();
 }

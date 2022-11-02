@@ -23,6 +23,8 @@
 #include <Core/Global.hpp>
 #include <QWidget>
 
+class QSpinBox;
+
 namespace Ui
 {
     class IVFilter;
@@ -64,51 +66,30 @@ public:
      */
     std::array<u8, 6> getUpper() const;
 
+protected:
+    /**
+     * @brief Shows the combo box model when clicked
+     *
+     * @param object Object that is part of triggered event
+     * @param event Contains information about the triggered event
+     *
+     * @return true Model should be shown
+     * @return false Model should not be shown
+     */
+    bool eventFilter(QObject *object, QEvent *event) override;
+
 private:
     Ui::IVFilter *ui;
 
 private slots:
     /**
-     * @brief Updates min/max HP based on control keys selected
+     * @brief Updates min/max values based on control keys selected
      *
+     * @param minBox Spinbox that has the minimum value
+     * @param maxBox Spinbox that has the maximum value
      * @param type Control keys
      */
-    void changeCompareHP(int type);
-
-    /**
-     * @brief Updates min/max Atk based on control keys selected
-     *
-     * @param type Control keys
-     */
-    void changeCompareAtk(int type);
-
-    /**
-     * @brief Updates min/max Def based on control keys selected
-     *
-     * @param type Control keys
-     */
-    void changeCompareDef(int type);
-
-    /**
-     * @brief Updates min/max SpA based on control keys selected
-     *
-     * @param type Control keys
-     */
-    void changeCompareSpA(int type);
-
-    /**
-     * @brief Updates min/max SpD based on control keys selected
-     *
-     * @param type Control keys
-     */
-    void changeCompareSpD(int type);
-
-    /**
-     * @brief Updates min/max Spe based on control keys selected
-     *
-     * @param type Control keys
-     */
-    void changeCompareSpe(int type);
+    void changeCompare(QSpinBox *minBox, QSpinBox *maxBox, int type);
 
     /**
      * @brief Opens IV calculator to determine IV minimum/maximum

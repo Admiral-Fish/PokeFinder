@@ -26,13 +26,6 @@
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout_2">
-       <item row="0" column="1">
-        <widget class="QLabel" name="labelAbility">
-         <property name="text">
-          <string>Ability</string>
-         </property>
-        </widget>
-       </item>
        <item row="0" column="2">
         <widget class="ComboBox" name="comboBoxAbility">
          <item>
@@ -50,73 +43,6 @@
            <string notr="true">1</string>
           </property>
          </item>
-        </widget>
-       </item>
-       <item row="0" column="3">
-        <widget class="QLabel" name="labelEncounterSlot">
-         <property name="text">
-          <string>Encounter Slot</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="4">
-        <widget class="CheckList" name="checkListEncounterSlot"/>
-       </item>
-       <item row="0" column="5">
-        <widget class="QPushButton" name="pushButtonEncounterSlot">
-         <property name="text">
-          <string>Any</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="1">
-        <widget class="QLabel" name="labelGender">
-         <property name="text">
-          <string>Gender</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="2">
-        <widget class="ComboBox" name="comboBoxGender">
-         <item>
-          <property name="text">
-           <string>Any</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string notr="true">♂</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string notr="true">♀</string>
-          </property>
-         </item>
-        </widget>
-       </item>
-       <item row="1" column="3">
-        <widget class="QLabel" name="labelHiddenPower">
-         <property name="text">
-          <string>Hidden Power</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="4">
-        <widget class="CheckList" name="checkListHiddenPower"/>
-       </item>
-       <item row="1" column="5">
-        <widget class="QPushButton" name="pushButtonHiddenPower">
-         <property name="text">
-          <string>Any</string>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="1">
-        <widget class="QLabel" name="labelShiny">
-         <property name="text">
-          <string>Shiny</string>
-         </property>
         </widget>
        </item>
        <item row="2" column="2">
@@ -143,6 +69,69 @@
          </item>
         </widget>
        </item>
+       <item row="0" column="3">
+        <widget class="QLabel" name="labelEncounterSlot">
+         <property name="text">
+          <string>Encounter Slot</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="4">
+        <widget class="CheckList" name="checkListEncounterSlot"/>
+       </item>
+       <item row="0" column="1">
+        <widget class="QLabel" name="labelAbility">
+         <property name="text">
+          <string>Ability</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QLabel" name="labelShiny">
+         <property name="text">
+          <string>Shiny</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="1">
+        <widget class="QCheckBox" name="checkBoxDisableFilters">
+         <property name="text">
+          <string>Disable Filters</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="3">
+        <widget class="QLabel" name="labelHiddenPower">
+         <property name="text">
+          <string>Hidden Power</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="4">
+        <widget class="CheckList" name="checkListHiddenPower"/>
+       </item>
+       <item row="1" column="2">
+        <widget class="ComboBox" name="comboBoxGender">
+         <item>
+          <property name="text">
+           <string>Any</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">♂</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">♀</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="2" column="4">
+        <widget class="CheckList" name="checkListNature"/>
+       </item>
        <item row="2" column="3">
         <widget class="QLabel" name="labelNature">
          <property name="text">
@@ -150,30 +139,10 @@
          </property>
         </widget>
        </item>
-       <item row="2" column="4">
-        <widget class="CheckList" name="checkListNature"/>
-       </item>
-       <item row="2" column="5">
-        <widget class="QPushButton" name="pushButtonNature">
+       <item row="1" column="1">
+        <widget class="QLabel" name="labelGender">
          <property name="text">
-          <string>Any</string>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="3">
-        <widget class="QCheckBox" name="checkBoxDelay">
-         <property name="text">
-          <string>Use Delay</string>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="4">
-        <widget class="TextBox" name="textBoxDelay"/>
-       </item>
-       <item row="3" column="5">
-        <widget class="QCheckBox" name="checkBoxDisableFilters">
-         <property name="text">
-          <string>Disable Filters</string>
+          <string>Gender</string>
          </property>
         </widget>
        </item>
@@ -187,11 +156,6 @@
   </layout>
  </widget>
  <customwidgets>
-  <customwidget>
-   <class>TextBox</class>
-   <extends>QLineEdit</extends>
-   <header>Form/Controls/TextBox.hpp</header>
-  </customwidget>
   <customwidget>
    <class>ComboBox</class>
    <extends>QComboBox</extends>
@@ -218,14 +182,8 @@
   <tabstop>comboBoxGender</tabstop>
   <tabstop>comboBoxShiny</tabstop>
   <tabstop>checkListEncounterSlot</tabstop>
-  <tabstop>pushButtonEncounterSlot</tabstop>
   <tabstop>checkListHiddenPower</tabstop>
-  <tabstop>pushButtonHiddenPower</tabstop>
   <tabstop>checkListNature</tabstop>
-  <tabstop>pushButtonNature</tabstop>
-  <tabstop>checkBoxDelay</tabstop>
-  <tabstop>textBoxDelay</tabstop>
-  <tabstop>checkBoxDisableFilters</tabstop>
  </tabstops>
  <resources/>
  <connections/>

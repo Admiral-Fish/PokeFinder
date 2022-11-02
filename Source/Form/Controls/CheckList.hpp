@@ -53,17 +53,16 @@ public:
     std::vector<bool> getChecked() const;
 
     /**
+     * @brief Sets all check boxes to be unchecked
+     */
+    void resetChecks();
+
+    /**
      * @brief Sets which of the check boxes are checked
      *
      * @param flags Vector detailing which check boxes are to be checked and unchecked
      */
     void setChecks(std::vector<bool> flags);
-
-public slots:
-    /**
-     * @brief Sets all check boxes to be unchecked
-     */
-    void resetChecks();
 
 protected:
     /**

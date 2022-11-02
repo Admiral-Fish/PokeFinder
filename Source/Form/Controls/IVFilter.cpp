@@ -20,6 +20,7 @@
 #include "IVFilter.hpp"
 #include "ui_IVFilter.h"
 #include <Form/Util/IVCalculator.hpp>
+#include <QMouseEvent>
 
 IVFilter::IVFilter(QWidget *parent) : QWidget(parent), ui(new Ui::IVFilter)
 {
@@ -36,12 +37,14 @@ IVFilter::IVFilter(QWidget *parent) : QWidget(parent), ui(new Ui::IVFilter)
     ui->labelSpD->setToolTip(tip);
     ui->labelSpe->setToolTip(tip);
 
-    connect(ui->labelHP, &Label::pressed, this, &IVFilter::changeCompareHP);
-    connect(ui->labelAtk, &Label::pressed, this, &IVFilter::changeCompareAtk);
-    connect(ui->labelDef, &Label::pressed, this, &IVFilter::changeCompareDef);
-    connect(ui->labelSpA, &Label::pressed, this, &IVFilter::changeCompareSpA);
-    connect(ui->labelSpD, &Label::pressed, this, &IVFilter::changeCompareSpD);
-    connect(ui->labelSpe, &Label::pressed, this, &IVFilter::changeCompareSpe);
+    ui->labelHP->installEventFilter(this);
+    ui->labelAtk->installEventFilter(this);
+    ui->labelDef->installEventFilter(this);
+    ui->labelSpA->installEventFilter(this);
+    ui->labelSpA->installEventFilter(this);
+    ui->labelSpD->installEventFilter(this);
+    ui->labelSpe->installEventFilter(this);
+
     connect(ui->checkBoxShowStats, &QCheckBox::stateChanged, this, [&](int state) { emit showStatsChanged(state == Qt::Checked); });
     connect(ui->pushButtonIVCalculator, &QPushButton::clicked, this, &IVFilter::openIVCalculator);
 }
@@ -56,7 +59,6 @@ std::array<u8, 6> IVFilter::getLower() const
     std::array<u8, 6> low = { static_cast<u8>(ui->spinBoxHPMin->value()),  static_cast<u8>(ui->spinBoxAtkMin->value()),
                               static_cast<u8>(ui->spinBoxDefMin->value()), static_cast<u8>(ui->spinBoxSpAMin->value()),
                               static_cast<u8>(ui->spinBoxSpDMin->value()), static_cast<u8>(ui->spinBoxSpeMin->value()) };
-
     return low;
 }
 
@@ -65,44 +67,49 @@ std::array<u8, 6> IVFilter::getUpper() const
     std::array<u8, 6> high = { static_cast<u8>(ui->spinBoxHPMax->value()),  static_cast<u8>(ui->spinBoxAtkMax->value()),
                                static_cast<u8>(ui->spinBoxDefMax->value()), static_cast<u8>(ui->spinBoxSpAMax->value()),
                                static_cast<u8>(ui->spinBoxSpDMax->value()), static_cast<u8>(ui->spinBoxSpeMax->value()) };
-
     return high;
 }
 
-void IVFilter::changeCompareHP(int type)
+bool IVFilter::eventFilter(QObject *object, QEvent *event)
 {
-    int min;
-    int max;
-    if (type == Qt::NoModifier)
+    if (event->type() == QEvent::MouseButtonPress)
     {
-        min = 0;
-        max = 31;
+        auto *mouse = reinterpret_cast<QMouseEvent *>(event);
+        if (object == ui->labelHP)
+        {
+            changeCompare(ui->spinBoxHPMin, ui->spinBoxHPMax, mouse->modifiers());
+            return true;
+        }
+        else if (object == ui->labelAtk)
+        {
+            changeCompare(ui->spinBoxAtkMin, ui->spinBoxAtkMax, mouse->modifiers());
+            return true;
+        }
+        else if (object == ui->labelDef)
+        {
+            changeCompare(ui->spinBoxDefMin, ui->spinBoxDefMax, mouse->modifiers());
+            return true;
+        }
+        else if (object == ui->labelSpA)
+        {
+            changeCompare(ui->spinBoxSpAMin, ui->spinBoxSpAMax, mouse->modifiers());
+            return true;
+        }
+        else if (object == ui->labelSpD)
+        {
+            changeCompare(ui->spinBoxSpDMin, ui->spinBoxSpDMax, mouse->modifiers());
+            return true;
+        }
+        else if (object == ui->labelSpe)
+        {
+            changeCompare(ui->spinBoxSpeMin, ui->spinBoxSpeMax, mouse->modifiers());
+            return true;
+        }
     }
-    else if (type == Qt::ControlModifier)
-    {
-        min = 31;
-        max = 31;
-    }
-    else if (type == Qt::AltModifier)
-    {
-        min = 30;
-        max = 31;
-    }
-    else if (type & Qt::ControlModifier && type & Qt::AltModifier)
-    {
-        min = 0;
-        max = 0;
-    }
-    else
-    {
-        return;
-    }
-
-    ui->spinBoxHPMin->setValue(min);
-    ui->spinBoxHPMax->setValue(max);
+    return false;
 }
 
-void IVFilter::changeCompareAtk(int type)
+void IVFilter::changeCompare(QSpinBox *minBox, QSpinBox *maxBox, int type)
 {
     int min;
     int max;
@@ -131,140 +138,8 @@ void IVFilter::changeCompareAtk(int type)
         return;
     }
 
-    ui->spinBoxAtkMin->setValue(min);
-    ui->spinBoxAtkMax->setValue(max);
-}
-
-void IVFilter::changeCompareDef(int type)
-{
-    int min;
-    int max;
-    if (type == Qt::NoModifier)
-    {
-        min = 0;
-        max = 31;
-    }
-    else if (type == Qt::ControlModifier)
-    {
-        min = 31;
-        max = 31;
-    }
-    else if (type == Qt::AltModifier)
-    {
-        min = 30;
-        max = 31;
-    }
-    else if (type & Qt::ControlModifier && type & Qt::AltModifier)
-    {
-        min = 0;
-        max = 0;
-    }
-    else
-    {
-        return;
-    }
-
-    ui->spinBoxDefMin->setValue(min);
-    ui->spinBoxDefMax->setValue(max);
-}
-
-void IVFilter::changeCompareSpA(int type)
-{
-    int min;
-    int max;
-    if (type == Qt::NoModifier)
-    {
-        min = 0;
-        max = 31;
-    }
-    else if (type == Qt::ControlModifier)
-    {
-        min = 31;
-        max = 31;
-    }
-    else if (type == Qt::AltModifier)
-    {
-        min = 30;
-        max = 31;
-    }
-    else if (type & Qt::ControlModifier && type & Qt::AltModifier)
-    {
-        min = 0;
-        max = 0;
-    }
-    else
-    {
-        return;
-    }
-
-    ui->spinBoxSpAMin->setValue(min);
-    ui->spinBoxSpAMax->setValue(max);
-}
-
-void IVFilter::changeCompareSpD(int type)
-{
-    int min;
-    int max;
-    if (type == Qt::NoModifier)
-    {
-        min = 0;
-        max = 31;
-    }
-    else if (type == Qt::ControlModifier)
-    {
-        min = 31;
-        max = 31;
-    }
-    else if (type == Qt::AltModifier)
-    {
-        min = 30;
-        max = 31;
-    }
-    else if (type & Qt::ControlModifier && type & Qt::AltModifier)
-    {
-        min = 0;
-        max = 0;
-    }
-    else
-    {
-        return;
-    }
-
-    ui->spinBoxSpDMin->setValue(min);
-    ui->spinBoxSpDMax->setValue(max);
-}
-
-void IVFilter::changeCompareSpe(int type)
-{
-    int min;
-    int max;
-    if (type == Qt::NoModifier)
-    {
-        min = 0;
-        max = 31;
-    }
-    else if (type == Qt::ControlModifier)
-    {
-        min = 31;
-        max = 31;
-    }
-    else if (type == Qt::AltModifier)
-    {
-        min = 30;
-        max = 31;
-    }
-    else if (type & Qt::ControlModifier && type & Qt::AltModifier)
-    {
-        min = 0;
-        max = 0;
-    }
-    else
-    {
-        return;
-    }
-
-    ui->spinBoxSpeMin->setValue(min);
-    ui->spinBoxSpeMax->setValue(max);
+    minBox->setValue(min);
+    maxBox->setValue(max);
 }
 
 void IVFilter::openIVCalculator() const
@@ -283,7 +158,7 @@ void IVFilter::updateIVs(const std::array<std::vector<u8>, 6> &ivs)
 
     for (size_t i = 0; i < ivs.size(); i++)
     {
-        auto iv = ivs[i];
+        const auto &iv = ivs[i];
 
         u8 min = 0;
         u8 max = 31;

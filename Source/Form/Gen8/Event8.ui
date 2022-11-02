@@ -36,7 +36,38 @@
       <string>RNG Info</string>
      </property>
      <layout class="QGridLayout" name="gridLayout_3">
-      <item row="4" column="0" colspan="2">
+      <item row="2" column="0">
+       <widget class="QLabel" name="labelInitialAdvances">
+        <property name="text">
+         <string>Initial Advances</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="TextBox" name="textBoxSeed1"/>
+      </item>
+      <item row="3" column="1">
+       <widget class="TextBox" name="textBoxMaxAdvances">
+        <property name="text">
+         <string notr="true">100000</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0">
+       <widget class="QLabel" name="labelSeed0">
+        <property name="text">
+         <string>Seed 0</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="0">
+       <widget class="QLabel" name="labelMaxAdvances">
+        <property name="text">
+         <string>Max Advances</string>
+        </property>
+       </widget>
+      </item>
+      <item row="7" column="0" colspan="2">
        <widget class="QPushButton" name="pushButtonGenerate">
         <property name="enabled">
          <bool>true</bool>
@@ -52,53 +83,32 @@
         </property>
        </widget>
       </item>
-      <item row="1" column="0">
-       <widget class="QLabel" name="labelMaxAdvances">
-        <property name="text">
-         <string>Max Advances</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="1">
+      <item row="2" column="1">
        <widget class="TextBox" name="textBoxInitialAdvances">
         <property name="text">
          <string notr="true">0</string>
         </property>
        </widget>
       </item>
-      <item row="2" column="0">
-       <widget class="QLabel" name="labelSeed0">
-        <property name="text">
-         <string>Seed 0</string>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="1">
+      <item row="0" column="1">
        <widget class="TextBox" name="textBoxSeed0"/>
       </item>
-      <item row="0" column="0">
-       <widget class="QLabel" name="labelInitialAdvances">
-        <property name="text">
-         <string>Initial Advances</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="1">
-       <widget class="TextBox" name="textBoxMaxAdvances">
-        <property name="text">
-         <string notr="true">100000</string>
-        </property>
-       </widget>
-      </item>
-      <item row="3" column="0">
-       <widget class="QLabel" name="label">
+      <item row="1" column="0">
+       <widget class="QLabel" name="labelSeed1">
         <property name="text">
          <string>Seed 1</string>
         </property>
        </widget>
       </item>
-      <item row="3" column="1">
-       <widget class="TextBox" name="textBoxSeed1"/>
+      <item row="4" column="1">
+       <widget class="TextBox" name="textBoxDelay"/>
+      </item>
+      <item row="4" column="0">
+       <widget class="QLabel" name="labelDelay">
+        <property name="text">
+         <string>Delay</string>
+        </property>
+       </widget>
       </item>
      </layout>
     </widget>
@@ -476,10 +486,11 @@
  <tabstops>
   <tabstop>comboBoxProfiles</tabstop>
   <tabstop>pushButtonProfileManager</tabstop>
-  <tabstop>textBoxInitialAdvances</tabstop>
-  <tabstop>textBoxMaxAdvances</tabstop>
   <tabstop>textBoxSeed0</tabstop>
   <tabstop>textBoxSeed1</tabstop>
+  <tabstop>textBoxInitialAdvances</tabstop>
+  <tabstop>textBoxMaxAdvances</tabstop>
+  <tabstop>textBoxDelay</tabstop>
   <tabstop>pushButtonGenerate</tabstop>
   <tabstop>pushButtonImport</tabstop>
   <tabstop>comboBoxSpecies</tabstop>

@@ -51,9 +51,10 @@ GameCube::GameCube(QWidget *parent) : QWidget(parent), ui(new Ui::GameCube)
     ui->textBoxGeneratorSeed->setValues(InputType::Seed32Bit);
     ui->textBoxGeneratorStartingAdvance->setValues(InputType::Advance32Bit);
     ui->textBoxGeneratorMaxAdvances->setValues(InputType::Advance32Bit);
+    ui->textBoxGeneratorDelay->setValues(InputType::Advance32Bit);
 
     ui->filterGenerator->disableControls(Controls::EncounterSlots);
-    ui->filterSearcher->disableControls(Controls::EncounterSlots | Controls::UseDelay | Controls::DisableFilter);
+    ui->filterSearcher->disableControls(Controls::EncounterSlots | Controls::DisableFilter);
 
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &GameCube::generate);
     connect(ui->pushButtonSearch, &QPushButton::clicked, this, &GameCube::search);
@@ -119,13 +120,9 @@ void GameCube::generate()
     u32 seed = ui->textBoxGeneratorSeed->getUInt();
     u32 initialAdvances = ui->textBoxGeneratorStartingAdvance->getUInt();
     u32 maxAdvances = ui->textBoxGeneratorMaxAdvances->getUInt();
+    u32 offset = ui->textBoxGeneratorDelay->getUInt();
     u16 tid = currentProfile->getTID();
     u16 sid = currentProfile->getSID();
-    u32 offset = 0;
-    if (ui->filterGenerator->useDelay())
-    {
-        offset = ui->filterGenerator->getDelay();
-    }
 
     StateFilter3 filter(ui->filterGenerator->getGender(), ui->filterGenerator->getAbility(), ui->filterGenerator->getShiny(),
                         ui->filterGenerator->getDisableFilters(), ui->filterGenerator->getMinIVs(), ui->filterGenerator->getMaxIVs(),

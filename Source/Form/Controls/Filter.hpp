@@ -72,13 +72,6 @@ public:
     u8 getAbility() const;
 
     /**
-     * @brief Gets delay to add
-     *
-     * @return Delay value
-     */
-    u32 getDelay() const;
-
-    /**
      * @brief Checks if filters should be ignored
      *
      * @return true Filters are disabled
@@ -153,14 +146,6 @@ public:
      * @param encounterSlots Vector of encounter slots
      */
     void toggleEncounterSlots(const std::vector<bool> &encounterSlots) const;
-
-    /**
-     * @brief Gets if delay should be added
-     *
-     * @return true Delay is enabled
-     * @return false Delay is not enabled
-     */
-    bool useDelay() const;
 
 private:
     Ui::Filter *ui;

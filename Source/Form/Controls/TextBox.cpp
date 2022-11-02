@@ -108,6 +108,12 @@ u64 TextBox::getULong() const
 
 void TextBox::onTextEdited(QString string)
 {
+    // Early return for empty string
+    if (string.isEmpty())
+    {
+        return;
+    }
+
     // Allow hex formatted strings
     if (base == 16 && string.startsWith("0x"))
     {

@@ -53,6 +53,7 @@ Wild3::Wild3(QWidget *parent) : QWidget(parent), ui(new Ui::Wild3)
     ui->textBoxGeneratorSeed->setValues(InputType::Seed32Bit);
     ui->textBoxGeneratorInitialAdvances->setValues(InputType::Advance32Bit);
     ui->textBoxGeneratorMaxAdvances->setValues(InputType::Advance32Bit);
+    ui->textBoxGeneratorDelay->setValues(InputType::Advance32Bit);
 
     ui->comboBoxGeneratorMethod->setup({ toInt(Method::Method1), toInt(Method::Method2), toInt(Method::Method4) });
     ui->comboBoxSearcherMethod->setup({ toInt(Method::Method1), toInt(Method::Method2), toInt(Method::Method4) });
@@ -62,7 +63,7 @@ Wild3::Wild3(QWidget *parent) : QWidget(parent), ui(new Ui::Wild3)
     ui->comboBoxSearcherEncounter->setup({ toInt(Encounter::Grass), toInt(Encounter::RockSmash), toInt(Encounter::Surfing),
                                            toInt(Encounter::OldRod), toInt(Encounter::GoodRod), toInt(Encounter::SuperRod) });
 
-    ui->filterSearcher->disableControls(Controls::UseDelay | Controls::DisableFilter);
+    ui->filterSearcher->disableControls(Controls::DisableFilter);
 
     ui->toolButtonGeneratorLead->addAction(tr("None"), toInt(Lead::None));
     ui->toolButtonGeneratorLead->addMenu(tr("Cute Charm"), { tr("♂ Lead"), tr("♀ Lead") },
@@ -138,17 +139,12 @@ void Wild3::generate()
     u32 seed = ui->textBoxGeneratorSeed->getUInt();
     u32 initialAdvances = ui->textBoxGeneratorInitialAdvances->getUInt();
     u32 maxAdvances = ui->textBoxGeneratorMaxAdvances->getUInt();
+    u32 offset = ui->textBoxGeneratorDelay->getUInt();
     u16 tid = currentProfile->getTID();
     u16 sid = currentProfile->getSID();
     auto method = ui->comboBoxGeneratorMethod->getEnum<Method>();
     auto encounter = ui->comboBoxGeneratorEncounter->getEnum<Encounter>();
     auto lead = ui->toolButtonGeneratorLead->getEnum<Lead>();
-
-    u32 offset = 0;
-    if (ui->filterGenerator->useDelay())
-    {
-        offset = ui->filterGenerator->getDelay();
-    }
 
     WildStateFilter3 filter(ui->filterGenerator->getGender(), ui->filterGenerator->getAbility(), ui->filterGenerator->getShiny(),
                             ui->filterGenerator->getDisableFilters(), ui->filterGenerator->getMinIVs(), ui->filterGenerator->getMaxIVs(),

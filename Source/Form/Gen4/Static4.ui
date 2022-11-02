@@ -102,20 +102,6 @@
           <string>RNG Info</string>
          </property>
          <layout class="QGridLayout" name="gridLayout_6">
-          <item row="3" column="0">
-           <widget class="QLabel" name="labelGeneratorSeed">
-            <property name="text">
-             <string>Seed</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="0">
-           <widget class="QLabel" name="labelGeneratorLead">
-            <property name="text">
-             <string>Lead</string>
-            </property>
-           </widget>
-          </item>
           <item row="0" column="1">
            <widget class="ComboMenu" name="toolButtonGeneratorLead">
             <property name="sizePolicy">
@@ -126,42 +112,42 @@
             </property>
            </widget>
           </item>
-          <item row="3" column="1">
-           <widget class="TextBox" name="textBoxGeneratorSeed">
-            <property name="maxLength">
-             <number>8</number>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="1">
-           <widget class="TextBox" name="textBoxGeneratorMaxAdvances">
-            <property name="text">
-             <string notr="true">100000</string>
-            </property>
-           </widget>
-          </item>
           <item row="2" column="0">
-           <widget class="QLabel" name="labelGeneratorMaxAdvances">
-            <property name="text">
-             <string>Max Advances</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="1">
-           <widget class="TextBox" name="textBoxGeneratorInitialAdvances">
-            <property name="text">
-             <string notr="true">0</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="0">
            <widget class="QLabel" name="labelGeneratorInitialAdvances">
             <property name="text">
              <string>Initial Advances</string>
             </property>
            </widget>
           </item>
-          <item row="4" column="0" colspan="2">
+          <item row="2" column="1">
+           <widget class="TextBox" name="textBoxGeneratorInitialAdvances">
+            <property name="text">
+             <string notr="true">0</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="1">
+           <widget class="TextBox" name="textBoxGeneratorMaxAdvances">
+            <property name="text">
+             <string notr="true">100000</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0">
+           <widget class="QLabel" name="labelGeneratorLead">
+            <property name="text">
+             <string>Lead</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0">
+           <widget class="QLabel" name="labelGeneratorMaxAdvances">
+            <property name="text">
+             <string>Max Advances</string>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="0" colspan="2">
            <widget class="QPushButton" name="pushButtonGenerate">
             <property name="enabled">
              <bool>true</bool>
@@ -174,6 +160,30 @@
             </property>
             <property name="autoDefault">
              <bool>false</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="labelGeneratorSeed">
+            <property name="text">
+             <string>Seed</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="TextBox" name="textBoxGeneratorSeed">
+            <property name="maxLength">
+             <number>8</number>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="1">
+           <widget class="TextBox" name="textBoxGeneratorDelay"/>
+          </item>
+          <item row="4" column="0">
+           <widget class="QLabel" name="labelGeneratorDelay">
+            <property name="text">
+             <string>Delay</string>
             </property>
            </widget>
           </item>
@@ -593,10 +603,14 @@
   <tabstop>pushButtonProfileManager</tabstop>
   <tabstop>tabRNGSelector</tabstop>
   <tabstop>toolButtonGeneratorLead</tabstop>
+  <tabstop>textBoxGeneratorSeed</tabstop>
   <tabstop>textBoxGeneratorInitialAdvances</tabstop>
   <tabstop>textBoxGeneratorMaxAdvances</tabstop>
-  <tabstop>textBoxGeneratorSeed</tabstop>
+  <tabstop>textBoxGeneratorDelay</tabstop>
   <tabstop>pushButtonGenerate</tabstop>
+  <tabstop>comboBoxGeneratorCategory</tabstop>
+  <tabstop>comboBoxGeneratorPokemon</tabstop>
+  <tabstop>spinBoxGeneratorLevel</tabstop>
   <tabstop>tableViewGenerator</tabstop>
   <tabstop>comboBoxSearcherLead</tabstop>
   <tabstop>textBoxSearcherMinDelay</tabstop>
@@ -605,6 +619,9 @@
   <tabstop>textBoxSearcherMaxAdvance</tabstop>
   <tabstop>pushButtonSearch</tabstop>
   <tabstop>pushButtonCancel</tabstop>
+  <tabstop>comboBoxSearcherCategory</tabstop>
+  <tabstop>comboBoxSearcherPokemon</tabstop>
+  <tabstop>spinBoxSearcherLevel</tabstop>
   <tabstop>tableViewSearcher</tabstop>
  </tabstops>
  <resources/>

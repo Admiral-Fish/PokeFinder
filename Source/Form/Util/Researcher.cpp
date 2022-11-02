@@ -431,10 +431,6 @@ void Researcher::rngSelectionIndexChanged(int index)
         ui->comboBoxSearch->setItemHidden(1, !flag);
         ui->comboBoxSearch->setItemHidden(2, flag);
         ui->comboBoxSearch->setItemHidden(3, flag);
-        ui->comboBoxSearch->setItemHidden(6, flag);
-        ui->comboBoxSearch->setItemHidden(7, !flag);
-        ui->comboBoxSearch->setItemHidden(8, flag);
-        ui->comboBoxSearch->setItemHidden(9, flag);
 
         for (int i = 1; i <= 10; i++)
         {
@@ -444,10 +440,6 @@ void Researcher::rngSelectionIndexChanged(int index)
             boxL->setItemHidden(1, !flag);
             boxL->setItemHidden(2, flag);
             boxL->setItemHidden(3, flag);
-            boxL->setItemHidden(6, flag);
-            boxL->setItemHidden(7, !flag);
-            boxL->setItemHidden(8, flag);
-            boxL->setItemHidden(9, flag);
 
             if (i != 1)
             {
@@ -457,10 +449,6 @@ void Researcher::rngSelectionIndexChanged(int index)
                 boxR->setItemHidden(2, !flag);
                 boxR->setItemHidden(3, flag);
                 boxR->setItemHidden(4, flag);
-                boxR->setItemHidden(6, flag);
-                boxR->setItemHidden(7, !flag);
-                boxR->setItemHidden(8, flag);
-                boxR->setItemHidden(9, flag);
             }
         }
     }

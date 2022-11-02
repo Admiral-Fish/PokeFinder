@@ -48,6 +48,7 @@ Wild8::Wild8(QWidget *parent) : QWidget(parent), ui(new Ui::Wild8)
     ui->textBoxSeed1->setValues(InputType::Seed64Bit);
     ui->textBoxInitialAdvances->setValues(InputType::Advance32Bit);
     ui->textBoxMaxAdvances->setValues(InputType::Advance32Bit);
+    ui->textBoxDelay->setValues(InputType::Advance32Bit);
 
     ui->toolButtonLead->addAction(tr("None"), toInt(Lead::None));
     ui->toolButtonLead->addAction(tr("Arena Trap"), toInt(Lead::ArenaTrap));
@@ -185,15 +186,11 @@ void Wild8::generate()
 
     u32 initialAdvances = ui->textBoxInitialAdvances->getUInt();
     u32 maxAdvances = ui->textBoxMaxAdvances->getUInt();
+    u32 offset = ui->textBoxDelay->getUInt();
     u16 tid = currentProfile->getTID();
     u16 sid = currentProfile->getSID();
     auto encounter = ui->comboBoxEncounter->getEnum<Encounter>();
     auto lead = ui->toolButtonLead->getEnum<Lead>();
-    u32 offset = 0;
-    if (ui->filter->useDelay())
-    {
-        offset = ui->filter->getDelay();
-    }
 
     WildStateFilter8 filter(ui->filter->getGender(), ui->filter->getAbility(), ui->filter->getShiny(), ui->filter->getDisableFilters(),
                             ui->filter->getMinIVs(), ui->filter->getMaxIVs(), ui->filter->getNatures(), ui->filter->getHiddenPowers(),

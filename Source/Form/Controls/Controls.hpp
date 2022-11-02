@@ -35,8 +35,7 @@ enum class Controls : u16
     HiddenPowers = 1 << 4,
     Natures = 1 << 5,
     Shiny = 1 << 6,
-    UseDelay = 1 << 7,
-    DisableFilter = 1 << 8
+    DisableFilter = 1 << 7
 };
 
 /**

@@ -108,8 +108,6 @@ set(PROJECT_SOURCES
     Controls/IDsFilter.hpp
     Controls/IVFilter.cpp
     Controls/IVFilter.hpp
-    Controls/Label.cpp
-    Controls/Label.hpp
     Controls/TableView.cpp
     Controls/TableView.hpp
     Controls/TextBox.cpp

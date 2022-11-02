@@ -21,6 +21,7 @@
 #include <QEvent>
 #include <QLineEdit>
 #include <QListView>
+#include <QMouseEvent>
 #include <QStandardItemModel>
 
 CheckList::CheckList(QWidget *parent) : QComboBox(parent), model(new QStandardItemModel(this))
@@ -68,14 +69,6 @@ std::vector<bool> CheckList::getChecked() const
     return result;
 }
 
-void CheckList::setChecks(std::vector<bool> flags)
-{
-    for (size_t i = 0; i < flags.size(); i++)
-    {
-        model->item(i)->setCheckState(flags[i] ? Qt::Checked : Qt::Unchecked);
-    }
-}
-
 void CheckList::resetChecks()
 {
     for (auto i = 0; i < model->rowCount(); i++)
@@ -84,11 +77,27 @@ void CheckList::resetChecks()
     }
 }
 
+void CheckList::setChecks(std::vector<bool> flags)
+{
+    for (size_t i = 0; i < flags.size(); i++)
+    {
+        model->item(i)->setCheckState(flags[i] ? Qt::Checked : Qt::Unchecked);
+    }
+}
+
 bool CheckList::eventFilter(QObject *object, QEvent *event)
 {
     if (object == lineEdit() && event->type() == QEvent::MouseButtonPress)
     {
-        showPopup();
+        auto *mouse = reinterpret_cast<QMouseEvent *>(event);
+        if (mouse->modifiers() == Qt::ControlModifier)
+        {
+            resetChecks();
+        }
+        else
+        {
+            showPopup();
+        }
         return true;
     }
 
