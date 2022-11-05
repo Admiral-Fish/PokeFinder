@@ -60,7 +60,7 @@ Static3::Static3(QWidget *parent) : QWidget(parent), ui(new Ui::Static3)
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Static3::generate);
     connect(ui->pushButtonSearch, &QPushButton::clicked, this, &Static3::search);
     connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &Static3::profileManager);
-    connect(ui->comboBoxProfiles, &QComboBox::currentIndexChanged, this, &Static3::profilesIndexChanged);
+    connect(ui->comboBoxProfiles, &QComboBox::currentIndexChanged, this, &Static3::profileIndexChanged);
     connect(ui->comboBoxGeneratorCategory, &QComboBox::currentIndexChanged, this, &Static3::generatorCategoryIndexChanged);
     connect(ui->comboBoxGeneratorPokemon, &QComboBox::currentIndexChanged, this, &Static3::generatorPokemonIndexChanged);
     connect(ui->comboBoxSearcherCategory, &QComboBox::currentIndexChanged, this, &Static3::searcherCategoryIndexChanged);
@@ -169,7 +169,7 @@ void Static3::generatorPokemonIndexChanged(int index)
     }
 }
 
-void Static3::profilesIndexChanged(int index)
+void Static3::profileIndexChanged(int index)
 {
     if (index >= 0)
     {

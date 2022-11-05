@@ -48,7 +48,7 @@ public:
     explicit Static8(QWidget *parent = nullptr);
 
     /**
-     * @brief Destroy the Static3 object
+     * @brief Destroy the Static8 object
      */
     ~Static8() override;
 
@@ -85,16 +85,16 @@ private slots:
     void pokemonIndexChanged(int index);
 
     /**
-     * @brief Opens the profile manager
-     */
-    void profileManager();
-
-    /**
      * @brief Updates displayed information for a profile
      *
      * @param index Profile index
      */
-    void profilesIndexChanged(int index);
+    void profileIndexChanged(int index);
+
+    /**
+     * @brief Opens the profile manager
+     */
+    void profileManager();
 };
 
 #endif // STATIC8_HPP

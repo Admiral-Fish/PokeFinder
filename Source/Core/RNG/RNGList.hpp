@@ -88,7 +88,7 @@ public:
      */
     void advanceState()
     {
-        if constexpr (generate)
+        if constexpr (generate != nullptr)
         {
             list[head++] = generate(rng);
         }
@@ -149,7 +149,7 @@ private:
     {
         for (Integer &x : list)
         {
-            if constexpr (generate)
+            if constexpr (generate != nullptr)
             {
                 x = generate(rng);
             }

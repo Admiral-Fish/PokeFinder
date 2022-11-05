@@ -83,9 +83,6 @@ DateParts Date::getParts() const
     int e = c - (1461 * d) / 4;
     int m = (5 * e + 2) / 153;
 
-    // int y = 100 * b + d - 4800 + (m / 10);
-    // int year = y > 0 ? y : y - 1;
-
     int year = 100 * b + d - 4800 + (m / 10);
     int month = m + 3 - 12 * (m / 10);
     int day = e - ((153 * m + 2) / 5) + 1;

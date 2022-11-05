@@ -58,12 +58,11 @@ GameCube::GameCube(QWidget *parent) : QWidget(parent), ui(new Ui::GameCube)
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &GameCube::generate);
     connect(ui->pushButtonSearch, &QPushButton::clicked, this, &GameCube::search);
     connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &GameCube::profileManager);
-    connect(ui->comboBoxProfiles, &QComboBox::currentIndexChanged, this, &GameCube::profilesIndexChanged);
+    connect(ui->comboBoxProfiles, &QComboBox::currentIndexChanged, this, &GameCube::profileIndexChanged);
     connect(ui->comboBoxGeneratorCategory, &QComboBox::currentIndexChanged, this, &GameCube::generatorCategoryIndexChanged);
     connect(ui->comboBoxGeneratorPokemon, &QComboBox::currentIndexChanged, this, &GameCube::generatorPokemonIndexChanged);
     connect(ui->comboBoxSearcherCategory, &QComboBox::currentIndexChanged, this, &GameCube::searcherCategoryIndexChanged);
     connect(ui->comboBoxSearcherPokemon, &QComboBox::currentIndexChanged, this, &GameCube::searcherPokemonIndexChanged);
-    connect(ui->comboBoxProfiles, &QComboBox::currentIndexChanged, this, &GameCube::profilesIndexChanged);
     connect(ui->filterGenerator, &Filter::showStatsChanged, generatorModel, &GameCubeGeneratorModel::setShowStats);
     connect(ui->filterSearcher, &Filter::showStatsChanged, searcherModel, &GameCubeSearcherModel::setShowStats);
 
@@ -207,7 +206,7 @@ void GameCube::generatorPokemonIndexChanged(int index)
     }
 }
 
-void GameCube::profilesIndexChanged(int index)
+void GameCube::profileIndexChanged(int index)
 {
     if (index >= 0)
     {

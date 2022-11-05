@@ -76,36 +76,6 @@ public:
         return ability[index];
     }
 
-    /**
-     * @brief First pokemon ability
-     *
-     * @return Ability 1
-     */
-    u16 getAbility1() const
-    {
-        return ability[0];
-    }
-
-    /**
-     * @brief Second pokemon ability
-     *
-     * @return Ability 2
-     */
-    u16 getAbility2() const
-    {
-        return ability[1];
-    }
-
-    /**
-     * @brief Hidden pokemon ability
-     *
-     * @return Hidden ability
-     */
-    u16 getAbilityH() const
-    {
-        return ability[2];
-    }
-
     u16 getItem(int index) const
     {
         return item[index];

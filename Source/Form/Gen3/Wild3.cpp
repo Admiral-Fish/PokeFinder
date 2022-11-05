@@ -75,7 +75,7 @@ Wild3::Wild3(QWidget *parent) : QWidget(parent), ui(new Ui::Wild3)
     ui->comboBoxSearcherLead->setup({ toInt(Lead::None), toInt(Lead::CuteCharmM), toInt(Lead::CuteCharmF), toInt(Lead::MagnetPull),
                                       toInt(Lead::Pressure), toInt(Lead::Static), toInt(Lead::Synchronize) });
 
-    connect(ui->comboBoxProfiles, &QComboBox::currentIndexChanged, this, &Wild3::profilesIndexChanged);
+    connect(ui->comboBoxProfiles, &QComboBox::currentIndexChanged, this, &Wild3::profileIndexChanged);
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Wild3::generate);
     connect(ui->pushButtonSearch, &QPushButton::clicked, this, &Wild3::search);
     connect(ui->comboBoxGeneratorEncounter, &QComboBox::currentIndexChanged, this, &Wild3::generatorEncounterIndexChanged);
@@ -238,7 +238,7 @@ void Wild3::generatorPokemonIndexChanged(int index)
     }
 }
 
-void Wild3::profilesIndexChanged(int index)
+void Wild3::profileIndexChanged(int index)
 {
     if (index >= 0)
     {

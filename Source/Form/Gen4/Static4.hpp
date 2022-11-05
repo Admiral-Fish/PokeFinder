@@ -91,7 +91,7 @@ private slots:
      *
      * @param index Profile index
      */
-    void profilesIndexChanged(int index);
+    void profileIndexChanged(int index);
 
     /**
      * @brief Opens the profile manager

@@ -43,7 +43,7 @@ public:
             u8 max = slot.getMaxLevel();
             u8 range = max - min + 1;
 
-            u8 rand = rngList.next() % range; // (rngList.next() % 10000) % range
+            u8 rand = rngList.next() % range;
             if (force && (rngList.next() % 2) != 0)
             {
                 return max;

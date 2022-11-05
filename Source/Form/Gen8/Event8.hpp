@@ -17,25 +17,24 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef STATIC3_H
-#define STATIC3_H
+#ifndef EVENT8_HPP
+#define EVENT8_HPP
 
 #include <QWidget>
 
-class Profile3;
-class StaticGeneratorModel3;
-class StaticSearcherModel3;
-class QMenu;
+class Profile8;
+class StaticModel8;
+class WB8;
 
 namespace Ui
 {
-    class Static3;
+    class Event8;
 }
 
 /**
- * @brief Provides settings and filters to RNG static encounters in Gen 3 games
+ * @brief Provides settings and filters to RNG event encounters in Gen 8 games
  */
-class Static3 : public QWidget
+class Event8 : public QWidget
 {
     Q_OBJECT
 signals:
@@ -43,16 +42,16 @@ signals:
 
 public:
     /**
-     * @brief Construct a new Static3 object
+     * @brief Construct a new Event8 object
      *
      * @param parent Parent widget, which takes memory ownership
      */
-    Static3(QWidget *parent = nullptr);
+    explicit Event8(QWidget *parent = nullptr);
 
     /**
      * @brief Destroy the Static3 object
      */
-    ~Static3() override;
+    ~Event8() override;
 
     /**
      * @brief Reloads profiles
@@ -60,32 +59,29 @@ public:
     void updateProfiles();
 
 private:
-    Ui::Static3 *ui;
+    Ui::Event8 *ui;
 
-    Profile3 *currentProfile;
-    StaticGeneratorModel3 *generatorModel;
-    StaticSearcherModel3 *searcherModel;
-    std::vector<Profile3> profiles;
+    Profile8 *currentProfile;
+    StaticModel8 *model;
+    std::vector<Profile8> profiles;
+
+    /**
+     * @brief Loads UI settings for a wondercard
+     *
+     * @return Wondercard template
+     */
+    WB8 getParameters() const;
 
 private slots:
+    /**
+     * @brief Reads in settings from a imported wondercard file
+     */
+    void importEvent();
+
     /**
      * @brief Generates static encounters from a starting seed
      */
     void generate();
-
-    /**
-     * @brief Updates the pokemon listed
-     *
-     * @param index Category index
-     */
-    void generatorCategoryIndexChanged(int index);
-
-    /**
-     * @brief Updates the displayed information for a pokemon
-     *
-     * @param index Pokemon index
-     */
-    void generatorPokemonIndexChanged(int index);
 
     /**
      * @brief Updates displayed information for a profile
@@ -98,25 +94,6 @@ private slots:
      * @brief Opens the profile manager
      */
     void profileManager();
-
-    /**
-     * @brief Searches static encounters from the provided IVs
-     */
-    void search();
-
-    /**
-     * @brief Updates the pokemon listed
-     *
-     * @param index Category index
-     */
-    void searcherCategoryIndexChanged(int index);
-
-    /**
-     * @brief Updates the displayed information for a pokemon
-     *
-     * @param index Pokemon index
-     */
-    void searcherPokemonIndexChanged(int index);
 };
 
-#endif // STATIC3_H
+#endif // EVENT5_HPP

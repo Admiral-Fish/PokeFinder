@@ -55,7 +55,7 @@ Static8::Static8(QWidget *parent) : QWidget(parent), ui(new Ui::Static8)
 
     ui->filter->disableControls(Controls::EncounterSlots | Controls::HiddenPowers);
 
-    connect(ui->comboBoxProfiles, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &Static8::profilesIndexChanged);
+    connect(ui->comboBoxProfiles, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &Static8::profileIndexChanged);
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Static8::generate);
     connect(ui->comboBoxCategory, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &Static8::categoryIndexChanged);
     connect(ui->comboBoxPokemon, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &Static8::pokemonIndexChanged);
@@ -109,6 +109,24 @@ void Static8::updateProfiles()
     }
 }
 
+void Static8::categoryIndexChanged(int index)
+{
+    if (index >= 0)
+    {
+        int size;
+        const StaticTemplate8 *templates = Encounters8::getStaticEncounters(index, &size);
+
+        ui->comboBoxPokemon->clear();
+        for (int i = 0; i < size; i++)
+        {
+            if ((currentProfile->getVersion() & templates[i].getVersion()) != Game::None)
+            {
+                ui->comboBoxPokemon->addItem(QString::fromStdString(*Translator::getSpecie(templates[i].getSpecie())), i);
+            }
+        }
+    }
+}
+
 void Static8::generate()
 {
     u64 seed0 = ui->textBoxSeed0->getULong();
@@ -149,36 +167,6 @@ void Static8::generate()
     }
 }
 
-void Static8::profilesIndexChanged(int index)
-{
-    if (index >= 0)
-    {
-        currentProfile = &profiles[index];
-
-        ui->labelProfileTIDValue->setText(QString::number(currentProfile->getTID()));
-        ui->labelProfileSIDValue->setText(QString::number(currentProfile->getSID()));
-        ui->labelProfileGameValue->setText(QString::fromStdString(*Translator::getGame(currentProfile->getVersion())));
-    }
-}
-
-void Static8::categoryIndexChanged(int index)
-{
-    if (index >= 0)
-    {
-        int size;
-        const StaticTemplate8 *templates = Encounters8::getStaticEncounters(index, &size);
-
-        ui->comboBoxPokemon->clear();
-        for (int i = 0; i < size; i++)
-        {
-            if ((currentProfile->getVersion() & templates[i].getVersion()) != Game::None)
-            {
-                ui->comboBoxPokemon->addItem(QString::fromStdString(*Translator::getSpecie(templates[i].getSpecie())), i);
-            }
-        }
-    }
-}
-
 void Static8::pokemonIndexChanged(int index)
 {
     if (index >= 0)
@@ -189,6 +177,18 @@ void Static8::pokemonIndexChanged(int index)
         ui->comboBoxAbility->setCurrentIndex(ui->comboBoxAbility->findData(staticTemplate->getAbility()));
         ui->comboBoxShiny->setCurrentIndex(ui->comboBoxShiny->findData(toInt(staticTemplate->getShiny())));
         ui->spinBoxIVCount->setValue(staticTemplate->getIVCount());
+    }
+}
+
+void Static8::profileIndexChanged(int index)
+{
+    if (index >= 0)
+    {
+        currentProfile = &profiles[index];
+
+        ui->labelProfileTIDValue->setText(QString::number(currentProfile->getTID()));
+        ui->labelProfileSIDValue->setText(QString::number(currentProfile->getSID()));
+        ui->labelProfileGameValue->setText(QString::fromStdString(*Translator::getGame(currentProfile->getVersion())));
     }
 }
 

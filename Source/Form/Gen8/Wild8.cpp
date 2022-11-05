@@ -62,7 +62,7 @@ Wild8::Wild8(QWidget *parent) : QWidget(parent), ui(new Ui::Wild8)
     ui->comboBoxEncounter->setup({ toInt(Encounter::Grass), toInt(Encounter::Surfing), toInt(Encounter::OldRod), toInt(Encounter::GoodRod),
                                    toInt(Encounter::SuperRod) });
 
-    connect(ui->comboBoxProfiles, &QComboBox::currentIndexChanged, this, &Wild8::profilesIndexChanged);
+    connect(ui->comboBoxProfiles, &QComboBox::currentIndexChanged, this, &Wild8::profileIndexChanged);
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Wild8::generate);
     connect(ui->comboBoxEncounter, &QComboBox::currentIndexChanged, this, &Wild8::encounterIndexChanged);
     connect(ui->comboBoxLocation, &QComboBox::currentIndexChanged, this, &Wild8::locationIndexChanged);
@@ -235,14 +235,7 @@ void Wild8::pokemonIndexChanged(int index)
     }
 }
 
-void Wild8::profileManager()
-{
-    auto *manager = new ProfileManager8();
-    connect(manager, &ProfileManager8::updateProfiles, this, [=] { emit alertProfiles(8); });
-    manager->show();
-}
-
-void Wild8::profilesIndexChanged(int index)
+void Wild8::profileIndexChanged(int index)
 {
     if (index >= 0)
     {
@@ -254,4 +247,11 @@ void Wild8::profilesIndexChanged(int index)
 
         encounterIndexChanged(0);
     }
+}
+
+void Wild8::profileManager()
+{
+    auto *manager = new ProfileManager8();
+    connect(manager, &ProfileManager8::updateProfiles, this, [=] { emit alertProfiles(8); });
+    manager->show();
 }

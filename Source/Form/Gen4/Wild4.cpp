@@ -103,7 +103,7 @@ Wild4::Wild4(QWidget *parent) : QWidget(parent), ui(new Ui::Wild4)
     connect(seedToTime, &QAction::triggered, this, &Wild4::seedToTime);
     ui->tableViewSearcher->addAction(seedToTime);
 
-    connect(ui->comboBoxProfiles, &QComboBox::currentIndexChanged, this, &Wild4::profilesIndexChanged);
+    connect(ui->comboBoxProfiles, &QComboBox::currentIndexChanged, this, &Wild4::profileIndexChanged);
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Wild4::generate);
     connect(ui->pushButtonSearch, &QPushButton::clicked, this, &Wild4::search);
     connect(ui->comboBoxGeneratorEncounter, &QComboBox::currentIndexChanged, this, &Wild4::generatorEncounterIndexChanged);
@@ -473,7 +473,7 @@ void Wild4::generatorPokeRadarStateChanged(int state)
     ui->toolButtonGeneratorLead->hideAction(toInt(Lead::Static), state == Qt::Checked);
 }
 
-void Wild4::profilesIndexChanged(int index)
+void Wild4::profileIndexChanged(int index)
 {
     if (index >= 0)
     {

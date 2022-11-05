@@ -73,7 +73,7 @@ private:
 
 private slots:
     /**
-     * @brief Updates the locations listed. Also toggles what controls are displayed based on relevance to the current settings.
+     * @brief Updates the locations listed
      *
      * @param index Encounter index
      */
@@ -99,17 +99,16 @@ private slots:
     void pokemonIndexChanged(int index);
 
     /**
-     * @brief Opens the profile manager
-     */
-    void profileManager();
-
-    /**
-     * @brief Updates displayed information for a profile.  Also toggles what controls are displayed based on relevance to the current
-     * settings.
+     * @brief Updates displayed information for a profile
      *
      * @param index Profile index
      */
-    void profilesIndexChanged(int index);
+    void profileIndexChanged(int index);
+
+    /**
+     * @brief Opens the profile manager
+     */
+    void profileManager();
 };
 
 #endif // WILD8_HPP
