@@ -591,6 +591,10 @@ std::vector<WildSearcherState4> WildSearcher4::searchMethodK(u8 hp, u8 atk, u8 d
                         {
                             encounterSlot = modifiedSlots[encounterRand % modifiedSlots.size()];
                         }
+                        else if (safari)
+                        {
+                            encounterSlot = encounterRand % 10;
+                        }
                         else
                         {
                             encounterSlot = EncounterSlot::kSlot(encounterRand % 100, encounter);

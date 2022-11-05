@@ -547,7 +547,8 @@ void Wild4::search()
     std::array<u8, 6> max = ui->filterSearcher->getMaxIVs();
 
     auto encounter = ui->comboBoxSearcherEncounter->getEnum<Encounter>();
-    if (encounter == Encounter::BugCatchingContest)
+    auto &area = encounterSearcher[ui->comboBoxSearcherLocation->getCurrentInt()];
+    if (encounter == Encounter::BugCatchingContest || area.safariZone(currentProfile->getVersion()))
     {
         bool flag = std::any_of(min.begin(), min.end(), [](u8 iv) { return iv == 31; });
         if (!flag)
@@ -578,7 +579,7 @@ void Wild4::search()
     bool shiny = ui->checkBoxSearcherPokeRadarShiny->isChecked();
 
     auto *searcher = new WildSearcher4(minAdvance, maxAdvance, minDelay, maxDelay, tid, sid, currentProfile->getVersion(), method,
-                                       encounter, lead, shiny, encounterSearcher[ui->comboBoxSearcherLocation->getCurrentInt()], filter);
+                                       encounter, lead, shiny, area, filter);
 
     int maxProgress = 1;
     for (u8 i = 0; i < 6; i++)
