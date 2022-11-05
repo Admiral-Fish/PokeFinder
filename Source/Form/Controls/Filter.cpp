@@ -36,7 +36,7 @@ Filter::Filter(QWidget *parent) : QWidget(parent), ui(new Ui::Filter)
     ui->checkListHiddenPower->setToolTip(tr("Click holding ctrl to reset"));
     ui->checkListNature->setToolTip(tr("Click holding ctrl to reset"));
 
-    connect(ui->ivFilter, &IVFilter::showStatsChanged, this, [&](bool flag) { emit showStatsChanged(flag); });
+    connect(ui->ivFilter, &IVFilter::showStatsChanged, this, [=](bool flag) { emit showStatsChanged(flag); });
 }
 
 Filter::~Filter()

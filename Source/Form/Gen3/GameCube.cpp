@@ -221,7 +221,7 @@ void GameCube::profileIndexChanged(int index)
 void GameCube::profileManager()
 {
     auto *manager = new ProfileManager3();
-    connect(manager, &ProfileManager3::updateProfiles, this, [=] { emit alertProfiles(3); });
+    connect(manager, &ProfileManager3::profilesModified, this, [=](int num) { emit profilesModified(num); });
     manager->show();
 }
 

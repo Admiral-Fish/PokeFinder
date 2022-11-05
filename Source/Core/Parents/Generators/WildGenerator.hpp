@@ -23,6 +23,11 @@
 #include <Core/Enum/Lead.hpp>
 #include <Core/Parents/Generators/Generator.hpp>
 
+/**
+ * @brief Parent generator class for wild encounters
+ *
+ * @tparam Filter Filter class that is used by the generator
+ */
 template <class Filter>
 class WildGenerator : public Generator<Filter>
 {

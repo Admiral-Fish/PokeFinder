@@ -37,6 +37,9 @@ class Filter : public QWidget
 {
     Q_OBJECT
 signals:
+    /**
+     * @brief Emits that show stats setting has been changed
+     */
     void showStatsChanged(bool);
 
 public:

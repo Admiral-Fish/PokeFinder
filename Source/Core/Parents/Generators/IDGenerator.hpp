@@ -23,6 +23,7 @@
 #include <Core/Global.hpp>
 #include <Core/Parents/Filters/IDFilter.hpp>
 #include <vector>
+
 /**
  * @brief Parent generator class for TID/SID generation
  */

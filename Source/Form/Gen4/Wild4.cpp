@@ -508,7 +508,7 @@ void Wild4::profileIndexChanged(int index)
 void Wild4::profileManager()
 {
     auto *manager = new ProfileManager4();
-    connect(manager, &ProfileManager4::updateProfiles, this, [=] { emit alertProfiles(4); });
+    connect(manager, &ProfileManager4::profilesModified, this, [=](int num) { emit profilesModified(num); });
     manager->show();
 }
 

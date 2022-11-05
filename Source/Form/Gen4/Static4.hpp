@@ -38,7 +38,10 @@ class Static4 : public QWidget
 {
     Q_OBJECT
 signals:
-    void alertProfiles(int);
+    /**
+     * @brief Emits that the profiles have been modified
+     */
+    void profilesModified(int);
 
 public:
     /**

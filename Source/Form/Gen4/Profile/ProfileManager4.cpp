@@ -62,7 +62,7 @@ void ProfileManager4::create()
         Profile4 profile = dialog->getProfile();
         ProfileLoader4::addProfile(profile);
         model->addItem(profile);
-        emit updateProfiles(4);
+        emit profilesModified(4);
     }
 }
 
@@ -83,7 +83,7 @@ void ProfileManager4::edit()
         Profile4 update = dialog->getProfile();
         ProfileLoader4::updateProfile(update, original);
         model->updateItem(update, row);
-        emit updateProfiles(4);
+        emit profilesModified(4);
     }
 }
 
@@ -104,6 +104,6 @@ void ProfileManager4::remove()
         Profile4 profile = model->getItem(row);
         ProfileLoader4::removeProfile(profile);
         model->removeItem(row);
-        emit updateProfiles(4);
+        emit profilesModified(4);
     }
 }

@@ -62,7 +62,7 @@ void ProfileManager8::create()
         Profile8 profile = dialog->getProfile();
         ProfileLoader8::addProfile(profile);
         model->addItem(profile);
-        emit updateProfiles();
+        emit profilesModified(8);
     }
 }
 
@@ -83,7 +83,7 @@ void ProfileManager8::edit()
         Profile8 update = dialog->getProfile();
         ProfileLoader8::updateProfile(update, original);
         model->updateItem(update, row);
-        emit updateProfiles();
+        emit profilesModified(8);
     }
 }
 
@@ -104,6 +104,6 @@ void ProfileManager8::remove()
         Profile8 profile = model->getItem(row);
         ProfileLoader8::removeProfile(profile);
         model->removeItem(row);
-        emit updateProfiles();
+        emit profilesModified(8);
     }
 }

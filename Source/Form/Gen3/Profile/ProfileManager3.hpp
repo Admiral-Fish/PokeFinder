@@ -37,9 +37,9 @@ class ProfileManager3 : public QWidget
     Q_OBJECT
 signals:
     /**
-     * @brief Emits signal when profiles have been updated
+     * @brief Emits that the profiles have been modified
      */
-    void updateProfiles(int);
+    void profilesModified(int);
 
 public:
     /**

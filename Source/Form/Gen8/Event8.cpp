@@ -214,6 +214,6 @@ void Event8::profileIndexChanged(int index)
 void Event8::profileManager()
 {
     auto *manager = new ProfileManager8();
-    connect(manager, &ProfileManager8::updateProfiles, this, [=] { emit alertProfiles(8); });
+    connect(manager, &ProfileManager8::profilesModified, this, [=](int num) { emit profilesModified(num); });
     manager->show();
 }

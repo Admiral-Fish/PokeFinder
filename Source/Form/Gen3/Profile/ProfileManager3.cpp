@@ -61,7 +61,7 @@ void ProfileManager3::create()
         Profile3 profile = dialog->getProfile();
         ProfileLoader3::addProfile(profile);
         model->addItem(profile);
-        emit updateProfiles(3);
+        emit profilesModified(3);
     }
 }
 
@@ -82,7 +82,7 @@ void ProfileManager3::edit()
         Profile3 update = dialog->getProfile();
         ProfileLoader3::updateProfile(update, original);
         model->updateItem(update, row);
-        emit updateProfiles(3);
+        emit profilesModified(3);
     }
 }
 
@@ -103,6 +103,6 @@ void ProfileManager3::remove()
         Profile3 profile = model->getItem(row);
         ProfileLoader3::removeProfile(profile);
         model->removeItem(row);
-        emit updateProfiles(3);
+        emit profilesModified(3);
     }
 }
