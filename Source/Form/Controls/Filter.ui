@@ -6,152 +6,137 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>494</width>
-    <height>152</height>
+    <width>331</width>
+    <height>132</height>
    </rect>
   </property>
-  <layout class="QGridLayout" name="gridLayout">
-   <item row="0" column="1">
-    <widget class="QScrollArea" name="scrollArea">
-     <property name="widgetResizable">
-      <bool>true</bool>
-     </property>
-     <widget class="QWidget" name="scrollAreaWidgetContents">
-      <property name="geometry">
-       <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>458</width>
-        <height>132</height>
-       </rect>
-      </property>
-      <layout class="QGridLayout" name="gridLayout_2">
-       <item row="0" column="2">
-        <widget class="ComboBox" name="comboBoxAbility">
-         <item>
-          <property name="text">
-           <string>Any</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string notr="true">0</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string notr="true">1</string>
-          </property>
-         </item>
-        </widget>
-       </item>
-       <item row="2" column="2">
-        <widget class="ComboBox" name="comboBoxShiny">
-         <item>
-          <property name="text">
-           <string>Any</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>Star</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>Square</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>Star/Square</string>
-          </property>
-         </item>
-        </widget>
-       </item>
-       <item row="0" column="3">
-        <widget class="QLabel" name="labelEncounterSlot">
-         <property name="text">
-          <string>Encounter Slot</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="4">
-        <widget class="CheckList" name="checkListEncounterSlot"/>
-       </item>
-       <item row="0" column="1">
-        <widget class="QLabel" name="labelAbility">
-         <property name="text">
-          <string>Ability</string>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="1">
-        <widget class="QLabel" name="labelShiny">
-         <property name="text">
-          <string>Shiny</string>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="1">
-        <widget class="QCheckBox" name="checkBoxDisableFilters">
-         <property name="text">
-          <string>Disable Filters</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="3">
-        <widget class="QLabel" name="labelHiddenPower">
-         <property name="text">
-          <string>Hidden Power</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="4">
-        <widget class="CheckList" name="checkListHiddenPower"/>
-       </item>
-       <item row="1" column="2">
-        <widget class="ComboBox" name="comboBoxGender">
-         <item>
-          <property name="text">
-           <string>Any</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string notr="true">♂</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string notr="true">♀</string>
-          </property>
-         </item>
-        </widget>
-       </item>
-       <item row="2" column="4">
-        <widget class="CheckList" name="checkListNature"/>
-       </item>
-       <item row="2" column="3">
-        <widget class="QLabel" name="labelNature">
-         <property name="text">
-          <string>Nature</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="1">
-        <widget class="QLabel" name="labelGender">
-         <property name="text">
-          <string>Gender</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </widget>
-    </widget>
-   </item>
+  <layout class="QGridLayout" name="gridLayout_2">
    <item row="0" column="0">
     <widget class="IVFilter" name="ivFilter" native="true"/>
+   </item>
+   <item row="0" column="1">
+    <layout class="QGridLayout" name="gridLayout">
+     <item row="0" column="0">
+      <widget class="QLabel" name="labelAbility">
+       <property name="text">
+        <string>Ability</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="ComboBox" name="comboBoxAbility">
+       <item>
+        <property name="text">
+         <string>Any</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string notr="true">0</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string notr="true">1</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item row="0" column="2">
+      <widget class="QLabel" name="labelEncounterSlot">
+       <property name="text">
+        <string>Encounter Slot</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="3">
+      <widget class="CheckList" name="checkListEncounterSlot"/>
+     </item>
+     <item row="1" column="0">
+      <widget class="QLabel" name="labelGender">
+       <property name="text">
+        <string>Gender</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1">
+      <widget class="ComboBox" name="comboBoxGender">
+       <item>
+        <property name="text">
+         <string>Any</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string notr="true">♂</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string notr="true">♀</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item row="1" column="2">
+      <widget class="QLabel" name="labelHiddenPower">
+       <property name="text">
+        <string>Hidden Power</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="3">
+      <widget class="CheckList" name="checkListHiddenPower"/>
+     </item>
+     <item row="2" column="0">
+      <widget class="QLabel" name="labelShiny">
+       <property name="text">
+        <string>Shiny</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="1">
+      <widget class="ComboBox" name="comboBoxShiny">
+       <item>
+        <property name="text">
+         <string>Any</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Star</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Square</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Star/Square</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item row="2" column="2">
+      <widget class="QLabel" name="labelNature">
+       <property name="text">
+        <string>Nature</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="3">
+      <widget class="CheckList" name="checkListNature"/>
+     </item>
+     <item row="3" column="0" colspan="4">
+      <widget class="QCheckBox" name="checkBoxDisableFilters">
+       <property name="text">
+        <string>Disable Filters</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </item>
   </layout>
  </widget>
@@ -177,13 +162,13 @@
   </customwidget>
  </customwidgets>
  <tabstops>
-  <tabstop>scrollArea</tabstop>
   <tabstop>comboBoxAbility</tabstop>
   <tabstop>comboBoxGender</tabstop>
   <tabstop>comboBoxShiny</tabstop>
   <tabstop>checkListEncounterSlot</tabstop>
   <tabstop>checkListHiddenPower</tabstop>
   <tabstop>checkListNature</tabstop>
+  <tabstop>checkBoxDisableFilters</tabstop>
  </tabstops>
  <resources/>
  <connections/>

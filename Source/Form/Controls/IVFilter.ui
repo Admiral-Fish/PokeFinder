@@ -184,6 +184,8 @@
   <tabstop>spinBoxSpDMax</tabstop>
   <tabstop>spinBoxSpeMin</tabstop>
   <tabstop>spinBoxSpeMax</tabstop>
+  <tabstop>checkBoxShowStats</tabstop>
+  <tabstop>pushButtonIVCalculator</tabstop>
  </tabstops>
  <resources/>
  <connections/>

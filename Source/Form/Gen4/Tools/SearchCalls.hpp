@@ -42,7 +42,7 @@ public:
      *
      * @param parent Parent widget, which takes memory ownership
      */
-    explicit SearchCalls(const std::vector<SeedTimeCalibrate4> &data, QWidget *parent = nullptr);
+    SearchCalls(const std::vector<SeedTimeCalibrate4> &data, QWidget *parent = nullptr);
 
     /**
      * @brief Destroy the Wild4 object

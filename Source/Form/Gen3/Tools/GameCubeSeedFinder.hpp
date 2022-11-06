@@ -40,7 +40,7 @@ public:
      *
      * @param parent Parent widget, which takes memory ownership
      */
-    explicit GameCubeSeedFinder(QWidget *parent = nullptr);
+    GameCubeSeedFinder(QWidget *parent = nullptr);
 
     /**
      * @brief Destroy the Static3 object

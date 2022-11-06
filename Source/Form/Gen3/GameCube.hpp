@@ -49,7 +49,7 @@ public:
      *
      * @param parent Parent widget, which takes memory ownership
      */
-    explicit GameCube(QWidget *parent = nullptr);
+    GameCube(QWidget *parent = nullptr);
 
     /**
      * @brief Destroy the Static3 object

@@ -41,7 +41,7 @@ public:
      *
      * @param parent Parent widget, which takes memory ownership
      */
-    explicit ProfileEditor8(QWidget *parent = nullptr);
+    ProfileEditor8(QWidget *parent = nullptr);
 
     /**
      * @brief Construct a new ProfileEditor8 object
@@ -49,7 +49,7 @@ public:
      * @param profile Existing profile to populate the dialog
      * @param parent Parent widget, which takes memory ownership
      */
-    explicit ProfileEditor8(const Profile8 &profile, QWidget *parent = nullptr);
+    ProfileEditor8(const Profile8 &profile, QWidget *parent = nullptr);
 
     /**
      * @brief Destroy the ProfileEditor8 object

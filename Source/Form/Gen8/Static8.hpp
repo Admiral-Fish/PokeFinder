@@ -48,7 +48,7 @@ public:
      *
      * @param parent Parent widget, which takes memory ownership
      */
-    explicit Static8(QWidget *parent = nullptr);
+    Static8(QWidget *parent = nullptr);
 
     /**
      * @brief Destroy the Static8 object

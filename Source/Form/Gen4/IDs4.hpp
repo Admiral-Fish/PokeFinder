@@ -41,7 +41,7 @@ public:
      *
      * @param parent Parent widget, which takes memory ownership
      */
-    explicit IDs4(QWidget *parent = nullptr);
+    IDs4(QWidget *parent = nullptr);
 
     /**
      * @brief Destroy the IDs3 object

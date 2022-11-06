@@ -36,7 +36,7 @@ public:
      * @brief IDSearcher4
      * @param filter
      */
-    explicit IDSearcher4(const IDFilter &filter);
+    IDSearcher4(const IDFilter &filter);
 
     /**
      * @brief Cancels the running search

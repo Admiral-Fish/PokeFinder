@@ -112,7 +112,7 @@ public:
      *
      * @param parent Parent object, which takes memory ownership
      */
-    explicit StaticSearcherModel4(QObject *parent);
+    StaticSearcherModel4(QObject *parent);
 
     /**
      * @brief Returns the number of columns in the model

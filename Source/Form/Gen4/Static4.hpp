@@ -49,7 +49,7 @@ public:
      *
      * @param parent Parent widget, which takes memory ownership
      */
-    explicit Static4(QWidget *parent = nullptr);
+    Static4(QWidget *parent = nullptr);
 
     /**
      * @brief Destroy the Static3 object

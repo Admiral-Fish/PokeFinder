@@ -46,7 +46,7 @@ public:
      *
      * @param parent Parent widget, which takes memory ownership
      */
-    explicit SeedToTime4(QWidget *parent = nullptr);
+    SeedToTime4(QWidget *parent = nullptr);
 
     /**
      * @brief Construct a new SeedToTime4 object
@@ -55,7 +55,7 @@ public:
      * @param version Game version
      * @param parent Parent widget, which takes memory ownership
      */
-    explicit SeedToTime4(u32 seed, Game version, QWidget *parent = nullptr);
+    SeedToTime4(u32 seed, Game version, QWidget *parent = nullptr);
 
     /**
      * @brief Destroy the Wild4 object

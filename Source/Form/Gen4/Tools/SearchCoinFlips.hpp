@@ -41,7 +41,7 @@ public:
      *
      * @param parent Parent widget, which takes memory ownership
      */
-    explicit SearchCoinFlips(const std::vector<SeedTimeCalibrate4> &data, QWidget *parent = nullptr);
+    SearchCoinFlips(const std::vector<SeedTimeCalibrate4> &data, QWidget *parent = nullptr);
 
     /**
      * @brief Destroy the Wild4 object

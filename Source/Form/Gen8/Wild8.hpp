@@ -49,7 +49,7 @@ public:
      *
      * @param parent Parent widget, which takes memory ownership
      */
-    explicit Wild8(QWidget *parent = nullptr);
+    Wild8(QWidget *parent = nullptr);
 
     /**
      * @brief Destroy the Wild4 object

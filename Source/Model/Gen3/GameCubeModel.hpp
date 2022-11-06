@@ -35,7 +35,7 @@ public:
      *
      * @param parent Parent object, which takes memory ownership
      */
-    explicit GameCubeGeneratorModel(QObject *parent);
+    GameCubeGeneratorModel(QObject *parent);
 
     /**
      * @brief Returns the number of columns in the model
@@ -90,7 +90,7 @@ public:
      *
      * @param parent Parent object, which takes memory ownership
      */
-    explicit GameCubeSearcherModel(QObject *parent);
+    GameCubeSearcherModel(QObject *parent);
 
     /**
      * @brief Returns the number of columns in the model

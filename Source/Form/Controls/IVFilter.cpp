@@ -45,7 +45,7 @@ IVFilter::IVFilter(QWidget *parent) : QWidget(parent), ui(new Ui::IVFilter)
     ui->labelSpD->installEventFilter(this);
     ui->labelSpe->installEventFilter(this);
 
-    connect(ui->checkBoxShowStats, &QCheckBox::stateChanged, this, [&](int state) { emit showStatsChanged(state == Qt::Checked); });
+    connect(ui->checkBoxShowStats, &QCheckBox::stateChanged, this, [=](int state) { emit showStatsChanged(state == Qt::Checked); });
     connect(ui->pushButtonIVCalculator, &QPushButton::clicked, this, &IVFilter::openIVCalculator);
 }
 
