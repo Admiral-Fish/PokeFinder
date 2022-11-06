@@ -110,6 +110,8 @@ add_library(PokeFinderCore STATIC
     Gen8/Encounters8.hpp
     Gen8/Filters/StateFilter8.cpp
     Gen8/Filters/StateFilter8.hpp
+    Gen8/Generators/EggGenerator8.cpp
+    Gen8/Generators/EggGenerator8.hpp
     Gen8/Generators/EventGenerator8.cpp
     Gen8/Generators/EventGenerator8.hpp
     Gen8/Generators/IDGenerator8.cpp
@@ -121,6 +123,8 @@ add_library(PokeFinderCore STATIC
     Gen8/Profile8.cpp
     Gen8/Profile8.hpp
     Gen8/Raid.hpp
+    Gen8/States/EggState8.cpp
+    Gen8/States/EggState8.hpp
     Gen8/States/IDState8.hpp
     Gen8/States/State8.cpp
     Gen8/States/State8.hpp

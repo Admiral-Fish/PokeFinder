@@ -74,6 +74,7 @@ set(PROJECT_UI
     Gen4/Tools/SearchCoinFlips.ui
     Gen4/Tools/SeedToTime4.ui
     Gen4/Wild4.ui
+    Gen8/Eggs8.ui
     Gen8/Event8.ui
     Gen8/IDs8.ui
     Gen8/Profile/ProfileEditor8.ui
@@ -144,6 +145,8 @@ set(PROJECT_SOURCES
     Gen4/Tools/SeedToTime4.hpp
     Gen4/Wild4.cpp
     Gen4/Wild4.hpp
+    Gen8/Eggs8.cpp
+    Gen8/Eggs8.hpp
     Gen8/Event8.cpp
     Gen8/Event8.hpp
     Gen8/IDs8.cpp

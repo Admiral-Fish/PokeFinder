@@ -197,6 +197,11 @@ private slots:
     // void downloadEventData();
 
     /**
+     * @brief Opens the Gen 8 Egg window
+     */
+    void openEgg8();
+
+    /**
      * @brief Opens the Gen 8 Event window
      */
     void openEvent8();
@@ -212,7 +217,6 @@ private slots:
     void openWild8();
 
     // void openRaids();
-    // void openEgg8();
 
     /**
      * @brief Opens the Gen 8 IDs window

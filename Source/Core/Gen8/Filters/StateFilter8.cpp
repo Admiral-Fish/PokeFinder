@@ -18,6 +18,7 @@
  */
 
 #include "StateFilter8.hpp"
+#include <Core/Gen8/States/EggState8.hpp>
 #include <Core/Gen8/States/State8.hpp>
 #include <Core/Gen8/States/WildState8.hpp>
 
@@ -25,6 +26,45 @@ StateFilter8::StateFilter8(u8 gender, u8 ability, u8 shiny, bool skip, const std
                            const std::array<bool, 25> &natures, const std::array<bool, 16> &powers) :
     StateFilter(gender, ability, shiny, skip, min, max, natures, powers)
 {
+}
+
+bool StateFilter8::compareState(const EggState8 &state) const
+{
+    if (skip)
+    {
+        return true;
+    }
+
+    if (ability != 255 && ability != state.getAbility())
+    {
+        return false;
+    }
+
+    if (gender != 255 && gender != state.getGender())
+    {
+        return false;
+    }
+
+    if (!natures[state.getNature()])
+    {
+        return false;
+    }
+
+    if (shiny != 255 && !(shiny & state.getShiny()))
+    {
+        return false;
+    }
+
+    for (int i = 0; i < 6; i++)
+    {
+        u8 iv = state.getIV(i);
+        if (iv < min[i] || iv > max[i])
+        {
+            return false;
+        }
+    }
+
+    return true;
 }
 
 bool StateFilter8::compareState(const GeneratorState8 &state) const

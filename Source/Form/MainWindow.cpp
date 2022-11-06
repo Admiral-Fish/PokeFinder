@@ -31,6 +31,7 @@
 #include <Form/Gen4/Static4.hpp>
 #include <Form/Gen4/Tools/SeedToTime4.hpp>
 #include <Form/Gen4/Wild4.hpp>
+#include <Form/Gen8/Eggs8.hpp>
 #include <Form/Gen8/Event8.hpp>
 #include <Form/Gen8/IDs8.hpp>
 #include <Form/Gen8/Profile/ProfileManager8.hpp>
@@ -68,7 +69,6 @@
 //#include <Forms/Gen5/Profile/ProfileManager5.hpp>
 //#include <Forms/Gen5/Static5.hpp>
 //#include <Forms/Gen8/DenMap.hpp>
-//#include <Forms/Gen8/Eggs8.hpp>
 //#include <Forms/Gen8/Raids.hpp>
 //#include <Forms/Util/EncounterLookup.hpp>
 //#include <Forms/Util/IVtoPID.hpp>
@@ -109,12 +109,12 @@ MainWindow::MainWindow(bool profile, QWidget *parent) : QMainWindow(parent), ui(
     // connect(ui->actionProfileCalibrator, &QAction::triggered, this, &MainWindow::openProfileCalibrator);
     // connect(ui->actionProfileManager5, &QAction::triggered, this, &MainWindow::openProfileManager5);
 
+    connect(ui->pushButtonEgg8, &QPushButton::clicked, this, &MainWindow::openEgg8);
     connect(ui->pushButtonEvent8, &QPushButton::clicked, this, &MainWindow::openEvent8);
     connect(ui->pushButtonIDs8, &QPushButton::clicked, this, &MainWindow::openIDs8);
     connect(ui->pushButtonStatic8, &QPushButton::clicked, this, &MainWindow::openStatic8);
     connect(ui->pushButtonWild8, &QPushButton::clicked, this, &MainWindow::openWild8);
     // connect(ui->pushButtonRaid, &QPushButton::clicked, this, &MainWindow::openRaids);
-    // connect(ui->pushButtonEgg8, &QPushButton::clicked, this, &MainWindow::openEgg8);
     // connect(ui->actionDenMap, &QAction::triggered, this, &MainWindow::openDenMap);
     // connect(ui->actionDownloadEventData, &QAction::triggered, this, &MainWindow::downloadEventData);
     connect(ui->actionProfileManager8, &QAction::triggered, this, &MainWindow::openProfileManager8);
@@ -168,7 +168,7 @@ MainWindow::~MainWindow()
     // delete ids5;
     // delete static5;
 
-    // delete egg8;
+    delete egg8;
     delete event8;
     delete ids8;
     // delete raids;
@@ -492,6 +492,16 @@ void MainWindow::openProfileManager5()
     manager->show();
 }*/
 
+void MainWindow::openEgg8()
+{
+    if (!egg8)
+    {
+        egg8 = new Eggs8();
+        connect(egg8, &Eggs8::profilesModified, this, &MainWindow::updateProfiles);
+    }
+    egg8->show();
+}
+
 void MainWindow::openEvent8()
 {
     if (!event8)
@@ -539,16 +549,6 @@ void MainWindow::openWild8()
         connect(raids, &Raids::updateProfiles, this, &MainWindow::updateProfiles);
     }
     raids->show();
-}
-
-void MainWindow::openEgg8()
-{
-    if (!egg8)
-    {
-        egg8 = new Eggs8();
-        connect(egg8, &Eggs8::updateProfiles, this, &MainWindow::updateProfiles);
-    }
-    egg8->show();
 }*/
 
 /*void MainWindow::openDenMap()

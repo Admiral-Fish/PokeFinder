@@ -17,19 +17,18 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef EGGGENERATOR_HPP
-#define EGGGENERATOR_HPP
+#ifndef EGGGENERATOR8_HPP
+#define EGGGENERATOR8_HPP
 
-#include <Core/Parents/Daycare.hpp>
-#include <Core/Parents/Generators/Generator.hpp>
+#include <Core/Gen8/Filters/StateFilter8.hpp>
+#include <Core/Parents/Generators/EggGenerator.hpp>
+
+class EggState8;
 
 /**
- * @brief Parent generator class for egg encounters
- *
- * @tparam Filter Filter class that is used by the generator
+ * @brief Egg generator for Gen8
  */
-template <class Filter>
-class EggGenerator : public Generator<Filter>
+class EggGenerator8 : public EggGenerator<StateFilter8>
 {
 public:
     /**
@@ -41,22 +40,26 @@ public:
      * @param version Game version
      * @param tid Trainer ID
      * @param sid Secret ID
-     * @param method Encounter method
      * @param compatability Parent compatability
      * @param daycare Daycare parent information
+     * @param shinyCharm Whether the shiny charm is obtained
      * @param filter State filter
      */
-    EggGenerator(u32 initialAdvances, u32 maxAdvances, u32 offset, u16 tid, u16 sid, Game version, Method method, u8 compatability,
-                 const Daycare &daycare, const Filter &filter) :
-        Generator<Filter>(initialAdvances, maxAdvances, offset, tid, sid, version, method, filter),
-        daycare(daycare),
-        compatability(compatability)
-    {
-    }
+    EggGenerator8(u32 initialAdvances, u32 maxAdvances, u32 offset, u16 tid, u16 sid, Game version, u8 compatability,
+                  const Daycare &daycare, bool shinyCharm, const StateFilter8 &filter);
 
-protected:
-    Daycare daycare;
-    u8 compatability;
+    /**
+     * @brief Generates states
+     *
+     * @param seed0 Upper half of PRNG state
+     * @param seed1 Lower half of PRNG state
+     *
+     * @return Vector of computed states
+     */
+    std::vector<EggState8> generate(u64 seed0, u64 seed1) const;
+
+private:
+    bool shinyCharm;
 };
 
-#endif // EGGGENERATOR_HPP
+#endif // EGGGENERATOR8_HPP

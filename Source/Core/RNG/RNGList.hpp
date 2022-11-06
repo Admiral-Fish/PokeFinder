@@ -124,7 +124,11 @@ public:
         pointer %= size;
 
         // Debug assert to help discover if the array is too small
-        assert(pointer != head);
+        // Only check on bigger sizes. Smaller sizes are prone to false positives if we use size number of prng calls
+        if constexpr (size > 8)
+        {
+            assert(pointer != head);
+        }
 
         return value ? value(result) : result;
     }

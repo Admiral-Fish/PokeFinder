@@ -37,12 +37,11 @@ namespace Ui
 class EggSettings : public QWidget
 {
     Q_OBJECT
-
 signals:
     /**
      * @brief Emits whether inheritance should be shown
      */
-    void toggleInheritance(bool);
+    void showInheritanceChanged(bool);
 
 public:
     /**
@@ -58,11 +57,12 @@ public:
     ~EggSettings() override;
 
     /**
-     * @brief Configures what should be shown and enabled based on the \p game
+     * @brief Determines if selected settings for valid for parents in the daycare
      *
-     * @param game Game
+     * @return true Parents are compatible
+     * @return false Parents are not compatible
      */
-    void setup(Game game);
+    bool compatibleParents() const;
 
     /**
      * @brief Gets various parent information: IVs, ability, gender, item masuda, etc.
@@ -72,14 +72,6 @@ public:
     Daycare getDaycareSettings() const;
 
     /**
-     * @brief Determines if selected settings for valid for parents in the daycare
-     *
-     * @return true Parents are compatible
-     * @return false Parents are not compatible
-     */
-    bool compatibleParents() const;
-
-    /**
      * @brief Changes order of the parents to match what the game does
      *
      * @return true Parents were reordered
@@ -87,16 +79,15 @@ public:
      */
     bool reorderParents();
 
+    /**
+     * @brief Configures what should be shown and enabled based on the \p game
+     *
+     * @param game Game
+     */
+    void setup(Game game);
+
 private:
     Ui::EggSettings *ui;
-
-private slots:
-    /**
-     * @brief Shows inherited IVs if selected or IV value if not selected
-     *
-     * @param checked Whether or not the check box is selected
-     */
-    void showInheritance(bool checked);
 };
 
 #endif // EGGSETTINGS_HPP

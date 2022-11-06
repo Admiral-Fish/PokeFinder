@@ -25,22 +25,73 @@
 class EggState : public State
 {
 public:
-    EggState(u64 advance) : State(advance), inheritance { 0, 0, 0, 0, 0, 0 }
-    {
-    }
-
     u8 getInheritance(u8 index) const
     {
         return inheritance[index];
     }
 
-    void setInheritance(u8 index, u8 val)
+protected:
+    std::array<u8, 6> inheritance;
+};
+
+/**
+ * @brief Parent state class that provides additional information from the generator
+ */
+class EggGeneratorState : public EggState
+{
+public:
+    /**
+     * @brief Construct a new EggGeneratorState object
+     *
+     * @param advances Advances of the state
+     */
+    EggGeneratorState(u32 advances) : advances(advances)
     {
-        inheritance[index] = val;
+    }
+
+    /**
+     * @brief Returns the advances of the state
+     *
+     * @return State advances
+     */
+    u32 getAdvances() const
+    {
+        return advances;
     }
 
 protected:
-    u8 inheritance[6];
+    u32 advances;
+};
+
+/**
+ * @brief Parent state class that provides additional information from the searcher
+ *
+ * @tparam Integer Integer type of the seed
+ */
+template <typename Integer>
+class EggSearcherState : public EggState
+{
+public:
+    /**
+     * @brief Construct a new EggSearcherState object
+     * @param seed Seed of the state
+     */
+    EggSearcherState(Integer seed) : seed(seed)
+    {
+    }
+
+    /**
+     * @brief Returns the seed of the state
+     *
+     * @return State seed
+     */
+    Integer getSeed() const
+    {
+        return seed;
+    }
+
+protected:
+    Integer seed;
 };
 
 #endif // EGGSTATE_HPP
