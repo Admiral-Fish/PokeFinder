@@ -36,6 +36,7 @@
 #include <Form/Gen8/IDs8.hpp>
 #include <Form/Gen8/Profile/ProfileManager8.hpp>
 #include <Form/Gen8/Static8.hpp>
+#include <Form/Gen8/Underground.hpp>
 #include <Form/Gen8/Wild8.hpp>
 #include <Form/Util/IVCalculator.hpp>
 #include <Form/Util/Researcher.hpp>
@@ -115,6 +116,7 @@ MainWindow::MainWindow(bool profile, QWidget *parent) : QMainWindow(parent), ui(
     connect(ui->pushButtonStatic8, &QPushButton::clicked, this, &MainWindow::openStatic8);
     connect(ui->pushButtonWild8, &QPushButton::clicked, this, &MainWindow::openWild8);
     // connect(ui->pushButtonRaid, &QPushButton::clicked, this, &MainWindow::openRaids);
+    connect(ui->pushButtonUnderground, &QPushButton::clicked, this, &MainWindow::openUnderground);
     // connect(ui->actionDenMap, &QAction::triggered, this, &MainWindow::openDenMap);
     // connect(ui->actionDownloadEventData, &QAction::triggered, this, &MainWindow::downloadEventData);
     connect(ui->actionProfileManager8, &QAction::triggered, this, &MainWindow::openProfileManager8);
@@ -174,6 +176,7 @@ MainWindow::~MainWindow()
     // delete raids;
     delete static8;
     delete wild8;
+    delete underground;
 }
 
 void MainWindow::checkUpdates() const
@@ -550,6 +553,16 @@ void MainWindow::openWild8()
     }
     raids->show();
 }*/
+
+void MainWindow::openUnderground()
+{
+    if (!underground)
+    {
+        underground = new Underground();
+        connect(underground, &Underground::profilesModified, this, &MainWindow::updateProfiles);
+    }
+    underground->show();
+}
 
 /*void MainWindow::openDenMap()
 {

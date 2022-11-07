@@ -35,6 +35,8 @@ enum class Lead : u8
     MagnetPull,
     Static,
     Pressure,
+    Hustle,
+    VitalSpirit,
     SuctionCups,
     CompoundEyes,
     ArenaTrap,

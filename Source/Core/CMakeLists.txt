@@ -128,6 +128,8 @@ add_library(PokeFinderCore STATIC
     Gen8/States/IDState8.hpp
     Gen8/States/State8.cpp
     Gen8/States/State8.hpp
+    Gen8/States/UndergroundState.cpp
+    Gen8/States/UndergroundState.hpp
     Gen8/States/WildState8.cpp
     Gen8/States/WildState8.hpp
     Gen8/StaticTemplate8.hpp
@@ -160,11 +162,9 @@ add_library(PokeFinderCore STATIC
     Parents/States/State.hpp
     Parents/States/WildState.hpp
     Parents/StaticTemplate.hpp
-    RNG/LCRNG.cpp
     RNG/LCRNG.hpp
     RNG/LCRNGReverse.cpp
     RNG/LCRNGReverse.hpp
-    RNG/LCRNG64.cpp
     RNG/LCRNG64.hpp
     RNG/MT.cpp
     RNG/MT.hpp

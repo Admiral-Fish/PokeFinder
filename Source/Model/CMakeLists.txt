@@ -36,6 +36,8 @@ add_library(PokeFinderModel STATIC
     Gen8/ProfileModel8.hpp
     Gen8/StaticModel8.cpp
     Gen8/StaticModel8.hpp
+    Gen8/UndergroundModel.cpp
+    Gen8/UndergroundModel.hpp
     Gen8/WildModel8.cpp
     Gen8/WildModel8.hpp
     TableModel.hpp

@@ -18,6 +18,9 @@
    <layout class="QGridLayout" name="gridLayout">
     <item row="0" column="0">
      <widget class="QTabWidget" name="tabWidget">
+      <property name="currentIndex">
+       <number>3</number>
+      </property>
       <widget class="QWidget" name="tabGen3">
        <attribute name="title">
         <string>Gen 3</string>
@@ -156,6 +159,13 @@
         <string>Gen 8</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_5">
+        <item row="3" column="0">
+         <widget class="QPushButton" name="pushButtonRaid">
+          <property name="text">
+           <string>Raid</string>
+          </property>
+         </widget>
+        </item>
         <item row="5" column="0">
          <widget class="QPushButton" name="pushButtonWild8">
           <property name="text">
@@ -177,13 +187,6 @@
           </property>
          </widget>
         </item>
-        <item row="2" column="0">
-         <widget class="QPushButton" name="pushButtonIDs8">
-          <property name="text">
-           <string>IDs</string>
-          </property>
-         </widget>
-        </item>
         <item row="0" column="0">
          <widget class="QPushButton" name="pushButtonEgg8">
           <property name="text">
@@ -191,10 +194,17 @@
           </property>
          </widget>
         </item>
-        <item row="3" column="0">
-         <widget class="QPushButton" name="pushButtonRaid">
+        <item row="2" column="0">
+         <widget class="QPushButton" name="pushButtonIDs8">
           <property name="text">
-           <string>Raid</string>
+           <string>IDs</string>
+          </property>
+         </widget>
+        </item>
+        <item row="6" column="0">
+         <widget class="QPushButton" name="pushButtonUnderground">
+          <property name="text">
+           <string>Underground</string>
           </property>
          </widget>
         </item>
