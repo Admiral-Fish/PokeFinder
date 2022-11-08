@@ -118,6 +118,8 @@ add_library(PokeFinderCore STATIC
     Gen8/Generators/IDGenerator8.hpp
     Gen8/Generators/StaticGenerator8.cpp
     Gen8/Generators/StaticGenerator8.hpp
+    Gen8/Generators/UndergroundGenerator.cpp
+    Gen8/Generators/UndergroundGenerator.hpp
     Gen8/Generators/WildGenerator8.cpp
     Gen8/Generators/WildGenerator8.hpp
     Gen8/Profile8.cpp

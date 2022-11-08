@@ -45,6 +45,8 @@ public:
      */
     void setup(const std::vector<std::string> &items = std::vector<std::string>());
 
+    void setup(std::vector<std::pair<std::string, unsigned short>> &items);
+
     /**
      * @brief Determines which of the check boxes are checked
      *

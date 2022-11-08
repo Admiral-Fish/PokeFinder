@@ -18,8 +18,8 @@
  */
 
 #include "PersonalLoader.hpp"
-#include <Core/Resources/Personal.hpp>
 #include <Core/Enum/Game.hpp>
+#include <Core/Resources/Personal.hpp>
 
 namespace PersonalLoader
 {

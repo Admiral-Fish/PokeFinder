@@ -25,17 +25,15 @@ QVariant UndergroundModel::data(const QModelIndex &index, int role) const
         case 2:
             return QString::fromStdString(*Translator::getSpecie(state.getSpecie()));
         case 3:
-            return state.getLevel();
-        case 4:
             return QString::number(state.getPID(), 16).toUpper().rightJustified(8, '0');
-        case 5:
+        case 4:
         {
             u8 shiny = state.getShiny();
             return shiny == 2 ? tr("Square") : shiny == 1 ? tr("Star") : tr("No");
         }
-        case 6:
+        case 5:
             return QString::fromStdString(*Translator::getNature(state.getNature()));
-        case 7:
+        case 6:
             if (state.getAbility() == 0 || state.getAbility() == 1)
             {
                 return QString("%1 (%2)")
@@ -46,16 +44,16 @@ QVariant UndergroundModel::data(const QModelIndex &index, int role) const
             {
                 return QString("H (%2)").arg(QString::fromStdString(*Translator::getAbility(state.getAbilityIndex())));
             }
+        case 7:
         case 8:
         case 9:
         case 10:
         case 11:
         case 12:
+            return showStats ? state.getStat(column - 7) : state.getIV(column - 7);
         case 13:
-            return showStats ? state.getStat(column - 8) : state.getIV(column - 8);
-        case 14:
             return QString::fromStdString(*Translator::getHiddenPower(state.getHiddenPower()));
-        case 15:
+        case 14:
             return QString::fromStdString(*Translator::getGender(state.getGender()));
         }
     }

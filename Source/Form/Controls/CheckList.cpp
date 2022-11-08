@@ -52,6 +52,21 @@ void CheckList::setup(const std::vector<std::string> &items)
     }
 }
 
+void CheckList::setup(std::vector<std::pair<std::string, unsigned short>> &items)
+{
+    // Empty list in case this is not the first call to setup
+    clear();
+
+    for (int i = 0; i < items.size(); i++)
+    {
+        addItem(QString::fromStdString(items[i].first), items[i].second);
+
+        QStandardItem *item = model->item(i);
+        item->setCheckState(Qt::Unchecked);
+        item->setFlags(Qt::ItemIsUserCheckable | Qt::ItemIsEnabled);
+    }
+}
+
 std::vector<bool> CheckList::getChecked() const
 {
     std::vector<bool> result;

@@ -89,6 +89,12 @@ public:
         return (next() % diff) + min;
     }
 
+    float nextf(float min, float max)
+    {
+        float t = (next() & 0x7fffff) / 8388607.0;
+        return t * min + (1.0 - t) * max;
+    }
+
 private:
     alignas(16) vuint128 state;
 };

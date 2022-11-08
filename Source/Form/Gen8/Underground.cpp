@@ -1,9 +1,12 @@
 #include "Underground.hpp"
 #include "ui_Underground.h"
+
 #include <Core/Enum/Encounter.hpp>
 #include <Core/Enum/Lead.hpp>
 #include <Core/Gen8/EncounterArea8.hpp>
 #include <Core/Gen8/Encounters8.hpp>
+#include <Core/Gen8/Filters/StateFilter8.hpp>
+#include <Core/Gen8/Generators/UndergroundGenerator.hpp>
 #include <Core/Gen8/Profile8.hpp>
 #include <Core/Parents/ProfileLoader.hpp>
 #include <Core/Util/Translator.hpp>
@@ -44,6 +47,7 @@ Underground::Underground(QWidget *parent) : QWidget(parent), ui(new Ui::Undergro
     connect(ui->filter, &Filter::showStatsChanged, model, &UndergroundModel::setShowStats);
 
     updateProfiles();
+    storyFlagIndexChanged(0);
     locationIndexChanged(0);
 
     QSettings setting;
@@ -97,22 +101,61 @@ void Underground::storyFlagIndexChanged(int index)
 
 void Underground::generate()
 {
+    u64 seed0 = ui->textBoxSeed0->getULong();
+    u64 seed1 = ui->textBoxSeed1->getULong();
+    if (seed0 == 0 && seed1 == 0)
+    {
+        QMessageBox msg(QMessageBox::Warning, tr("Missing seeds"), tr("Please insert missing seed information"));
+        msg.exec();
+        return;
+    }
+
+    model->clearModel();
+
+    u32 initialAdvances = ui->textBoxInitialAdvances->getUInt();
+    u32 maxAdvances = ui->textBoxMaxAdvances->getUInt();
+    u32 offset = ui->textBoxDelay->getUInt();
+    u16 tid = currentProfile->getTID();
+    u16 sid = currentProfile->getSID();
+    auto lead = ui->toolButtonLead->getEnum<Lead>();
+    u8 storyFlag = ui->comboBoxStoryFlag->currentIndex() + 1;
+    u8 randMarkId = ui->comboBoxLocation->currentData().toUInt() - 181;
+    bool bonus = ui->checkBoxDiglett->isChecked();
+
+    std::vector<u16> species;
+    std::vector<bool> checkedSpecies = ui->checkListPokemon->getChecked();
+    for (int i = 0; i < checkedSpecies.size(); i++)
+    {
+        species.emplace_back(ui->checkListPokemon->itemData(i).toUInt());
+    }
+
+    UndergroundStateFilter filter(ui->filter->getGender(), ui->filter->getAbility(), ui->filter->getShiny(),
+                                  ui->filter->getDisableFilters(), ui->filter->getMinIVs(), ui->filter->getMaxIVs(),
+                                  ui->filter->getNatures(), ui->filter->getHiddenPowers(), species);
+
+    UndergroundGenerator generator(initialAdvances, maxAdvances, offset, tid, sid, currentProfile->getVersion(), lead, randMarkId,
+                                   storyFlag, bonus, filter);
+
+    auto states = generator.generate(seed0, seed1);
+    model->addItems(states);
 }
 
 void Underground::locationIndexChanged(int index)
 {
     if (index >= 0)
     {
-        auto area = encounters[ui->comboBoxLocation->currentData().toInt() - 183];
+        auto area = encounters[ui->comboBoxLocation->currentData().toUInt() - 183];
         auto species = area.getUniqueSpecies();
         auto names = area.getSpecieNames();
 
-        ui->comboBoxPokemon->clear();
-        ui->comboBoxPokemon->addItem(QString("-"));
+        std::vector<std::pair<std::string, u16>> pokemon;
+
+        pokemon.emplace_back(std::make_pair("-", 0));
         for (size_t i = 0; i < species.size(); i++)
         {
-            ui->comboBoxPokemon->addItem(QString::fromStdString(names[i]), species[i]);
+            pokemon.emplace_back(std::make_pair(names[i], species[i]));
         }
+        ui->checkListPokemon->setup(pokemon);
     }
 }
 

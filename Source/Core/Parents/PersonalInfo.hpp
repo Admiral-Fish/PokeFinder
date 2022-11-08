@@ -52,7 +52,7 @@ public:
      * @param present Obtainable in-game
      */
     constexpr PersonalInfo(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, u8 type1, u8 type2, u16 item1, u16 item2, u16 item3, u8 gender,
-                           u16 ability1, u16 ability2, u16 abilityH, u8 formCount, u16 formStatIndex, bool present) :
+                           u16 ability1, u16 ability2, u16 abilityH, u8 formCount, u16 formStatIndex, bool present, u16 hatchSpecies) :
         ability { ability1, ability2, abilityH },
         item { item1, item2, item3 },
         formCount(formCount),
@@ -60,7 +60,8 @@ public:
         stats { hp, atk, def, spa, spd, spe },
         present(present),
         gender(gender),
-        types { type1, type2 }
+        types { type1, type2 },
+        hatchSpecies(hatchSpecies)
     {
     }
 
@@ -163,6 +164,11 @@ public:
         return types[index];
     }
 
+    u16 getHatchSpecies() const
+    {
+        return hatchSpecies;
+    }
+
 private:
     u16 ability[3];
     u16 item[3];
@@ -172,6 +178,7 @@ private:
     bool present;
     u8 gender;
     u8 types[2];
+    u16 hatchSpecies;
 };
 
 #endif // PERSONALINFO_HPP

@@ -20,29 +20,6 @@
       <string>Settings</string>
      </property>
      <layout class="QGridLayout" name="gridLayout_42">
-      <item row="3" column="0">
-       <widget class="QLabel" name="labelPokemon">
-        <property name="text">
-         <string>Pokémon</string>
-        </property>
-       </widget>
-      </item>
-      <item row="3" column="1">
-       <widget class="ComboBox" name="comboBoxPokemon"/>
-      </item>
-      <item row="2" column="0">
-       <widget class="QLabel" name="labelLocation">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="text">
-         <string>Location</string>
-        </property>
-       </widget>
-      </item>
       <item row="2" column="1">
        <widget class="ComboBox" name="comboBoxLocation">
         <item>
@@ -137,10 +114,19 @@
         </item>
        </widget>
       </item>
-      <item row="0" column="0">
-       <widget class="QLabel" name="labelStoryFlag">
+      <item row="3" column="1">
+       <widget class="CheckList" name="checkListPokemon"/>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="labelLocation">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
         <property name="text">
-         <string>Story Flag</string>
+         <string>Location</string>
         </property>
        </widget>
       </item>
@@ -176,6 +162,27 @@
           <string>National Dex</string>
          </property>
         </item>
+       </widget>
+      </item>
+      <item row="0" column="0">
+       <widget class="QLabel" name="labelStoryFlag">
+        <property name="text">
+         <string>Story Flag</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="0">
+       <widget class="QLabel" name="labelPokemon">
+        <property name="text">
+         <string>Pokémon</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="0" colspan="2">
+       <widget class="QCheckBox" name="checkBoxDiglett">
+        <property name="text">
+         <string>Diglett Bonus</string>
+        </property>
        </widget>
       </item>
      </layout>
@@ -412,6 +419,14 @@
    <class>ComboBox</class>
    <extends>QComboBox</extends>
    <header>Form/Controls/ComboBox.hpp</header>
+  </customwidget>
+  <customwidget>
+   <class>CheckList</class>
+   <extends>QComboBox</extends>
+   <header>Form/Controls/CheckList.hpp</header>
+   <slots>
+    <slot>resetChecks()</slot>
+   </slots>
   </customwidget>
   <customwidget>
    <class>TextBox</class>
