@@ -194,7 +194,16 @@ private slots:
     // void openProfileManager5();
 
     // Gen 8
-    // void downloadEventData();
+
+    /**
+     * @brief Opens interface to download event raids
+     */
+    void downloadEventData();
+
+    /**
+     * @brief Opens the Den Map window
+     */
+    void openDenMap();
 
     /**
      * @brief Opens the Gen 8 Egg window
@@ -207,28 +216,29 @@ private slots:
     void openEvent8();
 
     /**
+     * @brief Opens the Gen 8 IDs window
+     */
+    void openIDs8();
+
+    /**
+     * @brief Opens the Raid window
+     */
+    void openRaids();
+
+    /**
      * @brief Opens the Gen 8 Static window
      */
     void openStatic8();
 
     /**
-     * @brief Opens the Gen 8 Wild window
-     */
-    void openWild8();
-
-    // void openRaids();
-
-    /**
-     * @brief Opens the Gen 8 IDs window
-     */
-    void openIDs8();
-
-    // void openDenMap();
-
-    /**
      * @brief Opens the Gen 8 Profile Manager window
      */
     void openProfileManager8();
+
+    /**
+     * @brief Opens the Gen 8 Wild window
+     */
+    void openWild8();
 
     // General tools and settings
 

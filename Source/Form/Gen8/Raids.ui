@@ -1,0 +1,523 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Raids</class>
+ <widget class="QWidget" name="Raids">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1078</width>
+    <height>597</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Gen 8 Raids</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout_2">
+   <item row="1" column="0">
+    <widget class="QGroupBox" name="groupBoxRaidsRNGInfo">
+     <property name="title">
+      <string>RNG Info</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_3">
+      <item row="1" column="0">
+       <widget class="QLabel" name="labelDen">
+        <property name="text">
+         <string>Den</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="0">
+       <widget class="QLabel" name="labelInitialAdvances">
+        <property name="text">
+         <string>Initial Advances</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="labelSeed">
+        <property name="text">
+         <string>Seed</string>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="0" colspan="2">
+       <widget class="QPushButton" name="pushButtonGenerate">
+        <property name="text">
+         <string>Generate</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="1">
+       <widget class="TextBox" name="textBoxMaxAdvances">
+        <property name="text">
+         <string notr="true">100</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="0">
+       <widget class="QLabel" name="labelMaxAdvances">
+        <property name="text">
+         <string>Max Advances</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="1">
+       <widget class="TextBox" name="textBoxInitialAdvances">
+        <property name="text">
+         <string notr="true">0</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QComboBox" name="comboBoxLocation">
+        <item>
+         <property name="text">
+          <string>Wild Area</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Isle of Armor</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Crown Tundra</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="ComboBox" name="comboBoxDen"/>
+      </item>
+      <item row="2" column="1">
+       <widget class="TextBox" name="textBoxSeed"/>
+      </item>
+      <item row="0" column="0">
+       <widget class="QLabel" name="labelLocation">
+        <property name="text">
+         <string>Location</string>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="0">
+       <widget class="QLabel" name="labelDelay">
+        <property name="text">
+         <string>Delay</string>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="1">
+       <widget class="TextBox" name="textBoxDelay"/>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="1" column="1">
+    <widget class="QGroupBox" name="groupBoxRaidsSettings">
+     <property name="title">
+      <string>Settings</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout">
+      <item row="3" column="1">
+       <widget class="QComboBox" name="comboBoxAbilityType">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <item>
+         <property name="text">
+          <string notr="true">1</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string notr="true">2</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string notr="true">H</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string notr="true">1/2</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string notr="true">1/2/H</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="5" column="2">
+       <widget class="QLabel" name="labelShinyType">
+        <property name="text">
+         <string>Shiny Type</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0">
+       <widget class="QLabel" name="labelRarity">
+        <property name="text">
+         <string>Rarity</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0" colspan="4">
+       <widget class="Line" name="line_2">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QComboBox" name="comboBoxRarity">
+        <item>
+         <property name="text">
+          <string>Normal</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Rare</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="0" column="3">
+       <widget class="QComboBox" name="comboBoxSpecies">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="2">
+       <widget class="QLabel" name="labelSpecies">
+        <property name="text">
+         <string>Species</string>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="3">
+       <widget class="QComboBox" name="comboBoxShinyType">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <item>
+         <property name="text">
+          <string>Random</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Force non-shiny</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Force shiny</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="4" column="2">
+       <widget class="QLabel" name="labelIVCount">
+        <property name="text">
+         <string>IV Count</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="0">
+       <widget class="QLabel" name="labelGenderType">
+        <property name="text">
+         <string>Gender</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="3">
+       <widget class="QSpinBox" name="spinBoxIVCount">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="minimum">
+         <number>1</number>
+        </property>
+        <property name="maximum">
+         <number>6</number>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="1">
+       <widget class="QComboBox" name="comboBoxGenderRatio">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <item>
+         <property name="text">
+          <string>Genderless</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Only ♂</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Only ♀</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string notr="true">12.5% ♀</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string notr="true">25% ♀</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string notr="true">50% ♀</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string notr="true">75% ♀</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="5" column="0">
+       <widget class="QLabel" name="labelGenderRatio">
+        <property name="text">
+         <string>Gender Ratio</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="0">
+       <widget class="QLabel" name="labelAbilityType">
+        <property name="text">
+         <string>Ability</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="1">
+       <widget class="QComboBox" name="comboBoxGenderType">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <item>
+         <property name="text">
+          <string>Random</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string notr="true">♂</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string notr="true">♀</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Genderless</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="labelLevel">
+        <property name="text">
+         <string>Level</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QSpinBox" name="spinBoxLevel">
+        <property name="minimum">
+         <number>1</number>
+        </property>
+        <property name="maximum">
+         <number>100</number>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="2">
+       <widget class="QLabel" name="labelGigantamax">
+        <property name="text">
+         <string>Gigantamax</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="3">
+       <widget class="QLabel" name="labelGigantamaxValue">
+        <property name="text">
+         <string>No</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="1" column="2">
+    <widget class="QGroupBox" name="groupBoxRaidsFilters">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+       <horstretch>1</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="title">
+      <string>Filters</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_19">
+      <item row="0" column="0" rowspan="2">
+       <widget class="Filter" name="filter" native="true"/>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="2" column="0" colspan="3">
+    <widget class="TableView" name="tableView">
+     <property name="editTriggers">
+      <set>QAbstractItemView::NoEditTriggers</set>
+     </property>
+     <property name="sortingEnabled">
+      <bool>false</bool>
+     </property>
+     <attribute name="verticalHeaderVisible">
+      <bool>false</bool>
+     </attribute>
+    </widget>
+   </item>
+   <item row="0" column="0" colspan="3">
+    <widget class="QGroupBox" name="groupBoxProfile">
+     <property name="title">
+      <string>Profile</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_5">
+      <item row="1" column="3">
+       <widget class="QLabel" name="labelProfileSIDValue">
+        <property name="text">
+         <string notr="true">54321</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="2">
+       <widget class="QLabel" name="labelProfileSID">
+        <property name="text">
+         <string>SID</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0">
+       <widget class="QLabel" name="labelProfile">
+        <property name="text">
+         <string>Profile</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QComboBox" name="comboBoxProfiles"/>
+      </item>
+      <item row="0" column="5">
+       <widget class="QLabel" name="labelProfileGame">
+        <property name="text">
+         <string>Game</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="3">
+       <widget class="QLabel" name="labelProfileTIDValue">
+        <property name="text">
+         <string notr="true">12345</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="2">
+       <widget class="QLabel" name="labelProfileTID">
+        <property name="text">
+         <string>TID</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="6">
+       <widget class="QLabel" name="labelProfileGameValue">
+        <property name="text">
+         <string>Sword</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QPushButton" name="pushButtonProfileManager">
+        <property name="text">
+         <string>Manager</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="4" rowspan="2">
+       <widget class="Line" name="line">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>TextBox</class>
+   <extends>QLineEdit</extends>
+   <header>Form/Controls/TextBox.hpp</header>
+  </customwidget>
+  <customwidget>
+   <class>TableView</class>
+   <extends>QTableView</extends>
+   <header>Form/Controls/TableView.hpp</header>
+  </customwidget>
+  <customwidget>
+   <class>ComboBox</class>
+   <extends>QComboBox</extends>
+   <header>Form/Controls/ComboBox.hpp</header>
+  </customwidget>
+  <customwidget>
+   <class>Filter</class>
+   <extends>QWidget</extends>
+   <header>Form/Controls/Filter.hpp</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <tabstops>
+  <tabstop>comboBoxProfiles</tabstop>
+  <tabstop>pushButtonProfileManager</tabstop>
+  <tabstop>comboBoxLocation</tabstop>
+  <tabstop>comboBoxDen</tabstop>
+  <tabstop>textBoxSeed</tabstop>
+  <tabstop>textBoxInitialAdvances</tabstop>
+  <tabstop>textBoxMaxAdvances</tabstop>
+  <tabstop>textBoxDelay</tabstop>
+  <tabstop>pushButtonGenerate</tabstop>
+  <tabstop>comboBoxRarity</tabstop>
+  <tabstop>comboBoxSpecies</tabstop>
+  <tabstop>spinBoxLevel</tabstop>
+  <tabstop>comboBoxAbilityType</tabstop>
+  <tabstop>comboBoxGenderType</tabstop>
+  <tabstop>comboBoxGenderRatio</tabstop>
+  <tabstop>spinBoxIVCount</tabstop>
+  <tabstop>comboBoxShinyType</tabstop>
+  <tabstop>tableView</tabstop>
+ </tabstops>
+ <resources/>
+ <connections/>
+</ui>
