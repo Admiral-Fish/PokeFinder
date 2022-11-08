@@ -29,12 +29,6 @@
       </item>
       <item row="2" column="1">
        <widget class="QLabel" name="labelLead">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
         <property name="text">
          <string>Lead</string>
         </property>
@@ -79,12 +73,6 @@
       </item>
       <item row="3" column="1">
        <widget class="QLabel" name="labelSeed0">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
         <property name="text">
          <string>Seed 0</string>
         </property>
@@ -92,12 +80,6 @@
       </item>
       <item row="5" column="1">
        <widget class="QLabel" name="labelInitialAdvances">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
         <property name="text">
          <string>Initial Advances</string>
         </property>
@@ -108,12 +90,6 @@
       </item>
       <item row="6" column="1">
        <widget class="QLabel" name="labelMaxAdvances">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
         <property name="text">
          <string>Max Advances</string>
         </property>
@@ -140,12 +116,6 @@
      <layout class="QGridLayout" name="gridLayout_2">
       <item row="0" column="0">
        <widget class="QLabel" name="labelEncounter">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
         <property name="text">
          <string>Encounter</string>
         </property>
@@ -187,12 +157,6 @@
       </item>
       <item row="1" column="0">
        <widget class="QLabel" name="labelLocation">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
         <property name="text">
          <string>Location</string>
         </property>
@@ -203,12 +167,6 @@
       </item>
       <item row="2" column="0">
        <widget class="QLabel" name="labelTime">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
         <property name="text">
          <string>Time</string>
         </property>
@@ -298,11 +256,7 @@
      </property>
      <layout class="QGridLayout" name="gridLayout_4">
       <item row="0" column="3">
-       <widget class="QLabel" name="labelProfileTIDValue">
-        <property name="text">
-         <string notr="true">12345</string>
-        </property>
-       </widget>
+       <widget class="QLabel" name="labelProfileTIDValue"/>
       </item>
       <item row="0" column="2">
        <widget class="QLabel" name="labelProfileTID">
@@ -326,11 +280,7 @@
        </widget>
       </item>
       <item row="1" column="3">
-       <widget class="QLabel" name="labelProfileSIDValue">
-        <property name="text">
-         <string notr="true">54321</string>
-        </property>
-       </widget>
+       <widget class="QLabel" name="labelProfileSIDValue"/>
       </item>
       <item row="0" column="4" rowspan="2">
        <widget class="Line" name="line">
@@ -341,23 +291,13 @@
       </item>
       <item row="0" column="0">
        <widget class="QLabel" name="labelProfile">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
         <property name="text">
          <string>Profile</string>
         </property>
        </widget>
       </item>
       <item row="0" column="7">
-       <widget class="QLabel" name="labelProfileGameValue">
-        <property name="text">
-         <string>Brilliant Diamond</string>
-        </property>
-       </widget>
+       <widget class="QLabel" name="labelProfileGameValue"/>
       </item>
       <item row="0" column="1">
        <widget class="QComboBox" name="comboBoxProfiles"/>

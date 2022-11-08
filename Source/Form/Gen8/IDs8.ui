@@ -24,8 +24,8 @@
     <widget class="QGroupBox" name="groupBoxFilter">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-       <horstretch>2</horstretch>
-       <verstretch>1</verstretch>
+       <horstretch>1</horstretch>
+       <verstretch>0</verstretch>
       </sizepolicy>
      </property>
      <property name="title">
@@ -89,12 +89,6 @@
    </item>
    <item row="0" column="0">
     <widget class="QGroupBox" name="groupBoxRNGInfo">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-       <horstretch>1</horstretch>
-       <verstretch>1</verstretch>
-      </sizepolicy>
-     </property>
      <property name="title">
       <string>RNG Info</string>
      </property>
@@ -159,12 +153,6 @@
    </item>
    <item row="1" column="0" colspan="2">
     <widget class="TableView" name="tableView">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-       <horstretch>0</horstretch>
-       <verstretch>2</verstretch>
-      </sizepolicy>
-     </property>
      <attribute name="horizontalHeaderDefaultSectionSize">
       <number>60</number>
      </attribute>

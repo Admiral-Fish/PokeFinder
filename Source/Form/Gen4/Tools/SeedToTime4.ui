@@ -55,12 +55,9 @@
            </widget>
           </item>
           <item row="1" column="1">
-           <widget class="QLineEdit" name="lineEditDPPtDelayMinus">
+           <widget class="TextBox" name="textBoxDPPtDelayMinus">
             <property name="text">
              <string notr="true">10</string>
-            </property>
-            <property name="maxLength">
-             <number>8</number>
             </property>
            </widget>
           </item>
@@ -72,12 +69,9 @@
            </widget>
           </item>
           <item row="1" column="4">
-           <widget class="QLineEdit" name="lineEditDPPtSecondMinus">
+           <widget class="TextBox" name="textBoxDPPtSecondMinus">
             <property name="text">
              <string notr="true">1</string>
-            </property>
-            <property name="maxLength">
-             <number>8</number>
             </property>
            </widget>
           </item>
@@ -99,12 +93,9 @@
            </widget>
           </item>
           <item row="1" column="5">
-           <widget class="QLineEdit" name="lineEditDPPtSecondPlus">
+           <widget class="TextBox" name="textBoxDPPtSecondPlus">
             <property name="text">
              <string notr="true">1</string>
-            </property>
-            <property name="maxLength">
-             <number>8</number>
             </property>
            </widget>
           </item>
@@ -133,12 +124,9 @@
            </widget>
           </item>
           <item row="1" column="2">
-           <widget class="QLineEdit" name="lineEditDPPtDelayPlus">
+           <widget class="TextBox" name="textBoxDPPtDelayPlus">
             <property name="text">
              <string notr="true">10</string>
-            </property>
-            <property name="maxLength">
-             <number>8</number>
             </property>
            </widget>
           </item>
@@ -162,9 +150,6 @@
            <widget class="TextBox" name="textBoxDPPtYear">
             <property name="text">
              <string notr="true">2000</string>
-            </property>
-            <property name="maxLength">
-             <number>4</number>
             </property>
            </widget>
           </item>
@@ -201,9 +186,6 @@
             <property name="enabled">
              <bool>false</bool>
             </property>
-            <property name="maxLength">
-             <number>2</number>
-            </property>
            </widget>
           </item>
           <item row="0" column="4">
@@ -221,11 +203,7 @@
            </widget>
           </item>
           <item row="1" column="1">
-           <widget class="TextBox" name="textBoxDPPtSeed">
-            <property name="maxLength">
-             <number>8</number>
-            </property>
-           </widget>
+           <widget class="TextBox" name="textBoxDPPtSeed"/>
           </item>
          </layout>
         </widget>
@@ -261,32 +239,23 @@
            </widget>
           </item>
           <item row="1" column="1">
-           <widget class="QLineEdit" name="lineEditHGSSDelayMinus">
+           <widget class="TextBox" name="textBoxHGSSDelayMinus">
             <property name="text">
              <string notr="true">10</string>
-            </property>
-            <property name="maxLength">
-             <number>8</number>
             </property>
            </widget>
           </item>
           <item row="1" column="2">
-           <widget class="QLineEdit" name="lineEditHGSSDelayPlus">
+           <widget class="TextBox" name="textBoxHGSSDelayPlus">
             <property name="text">
              <string notr="true">10</string>
-            </property>
-            <property name="maxLength">
-             <number>8</number>
             </property>
            </widget>
           </item>
           <item row="1" column="5">
-           <widget class="QLineEdit" name="lineEditHGSSSecondPlus">
+           <widget class="TextBox" name="textBoxHGSSSecondPlus">
             <property name="text">
              <string notr="true">1</string>
-            </property>
-            <property name="maxLength">
-             <number>8</number>
             </property>
            </widget>
           </item>
@@ -315,12 +284,9 @@
            </widget>
           </item>
           <item row="1" column="4">
-           <widget class="QLineEdit" name="lineEditHGSSSecondMinus">
+           <widget class="TextBox" name="textBoxHGSSSecondMinus">
             <property name="text">
              <string notr="true">1</string>
-            </property>
-            <property name="maxLength">
-             <number>8</number>
             </property>
            </widget>
           </item>
@@ -391,19 +357,12 @@
              </widget>
             </item>
             <item row="1" column="1">
-             <widget class="TextBox" name="textBoxHGSSSeed">
-              <property name="maxLength">
-               <number>8</number>
-              </property>
-             </widget>
+             <widget class="TextBox" name="textBoxHGSSSeed"/>
             </item>
             <item row="1" column="2">
              <widget class="TextBox" name="textBoxHGSSYear">
               <property name="text">
                <string notr="true">2000</string>
-              </property>
-              <property name="maxLength">
-               <number>4</number>
               </property>
              </widget>
             </item>
@@ -418,9 +377,6 @@
              <widget class="TextBox" name="textBoxHGSSSecond">
               <property name="enabled">
                <bool>false</bool>
-              </property>
-              <property name="maxLength">
-               <number>2</number>
               </property>
              </widget>
             </item>
@@ -554,10 +510,10 @@
   <tabstop>textBoxDPPtSecond</tabstop>
   <tabstop>pushButtonDPPtGenerate</tabstop>
   <tabstop>tableViewDPPtSearch</tabstop>
-  <tabstop>lineEditDPPtDelayMinus</tabstop>
-  <tabstop>lineEditDPPtDelayPlus</tabstop>
-  <tabstop>lineEditDPPtSecondMinus</tabstop>
-  <tabstop>lineEditDPPtSecondPlus</tabstop>
+  <tabstop>textBoxDPPtDelayMinus</tabstop>
+  <tabstop>textBoxDPPtDelayPlus</tabstop>
+  <tabstop>textBoxDPPtSecondMinus</tabstop>
+  <tabstop>textBoxDPPtSecondPlus</tabstop>
   <tabstop>pushButtonDPPtSearchFlips</tabstop>
   <tabstop>pushButtonDPPtCalibrate</tabstop>
   <tabstop>tableViewDPPtCalibrate</tabstop>
@@ -574,10 +530,10 @@
   <tabstop>lineEditHGSSLati</tabstop>
   <tabstop>pushButtonHGSSGenerate</tabstop>
   <tabstop>tableViewHGSSSearch</tabstop>
-  <tabstop>lineEditHGSSDelayMinus</tabstop>
-  <tabstop>lineEditHGSSDelayPlus</tabstop>
-  <tabstop>lineEditHGSSSecondMinus</tabstop>
-  <tabstop>lineEditHGSSSecondPlus</tabstop>
+  <tabstop>textBoxHGSSDelayMinus</tabstop>
+  <tabstop>textBoxHGSSDelayPlus</tabstop>
+  <tabstop>textBoxHGSSSecondMinus</tabstop>
+  <tabstop>textBoxHGSSSecondPlus</tabstop>
   <tabstop>pushButtonHGSSSearchCalls</tabstop>
   <tabstop>pushButtonHGSSCalibrate</tabstop>
   <tabstop>tableViewHGSSCalibrate</tabstop>

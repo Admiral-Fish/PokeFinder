@@ -60,11 +60,7 @@
        </widget>
       </item>
       <item row="0" column="3">
-       <widget class="QLabel" name="labelProfileTIDValue">
-        <property name="text">
-         <string notr="true">12345</string>
-        </property>
-       </widget>
+       <widget class="QLabel" name="labelProfileTIDValue"/>
       </item>
       <item row="0" column="5">
        <widget class="QLabel" name="labelProfileGame">
@@ -74,18 +70,10 @@
        </widget>
       </item>
       <item row="0" column="6">
-       <widget class="QLabel" name="labelProfileGameValue">
-        <property name="text">
-         <string>Emerald</string>
-        </property>
-       </widget>
+       <widget class="QLabel" name="labelProfileGameValue"/>
       </item>
       <item row="1" column="3">
-       <widget class="QLabel" name="labelProfileSIDValue">
-        <property name="text">
-         <string notr="true">54321</string>
-        </property>
-       </widget>
+       <widget class="QLabel" name="labelProfileSIDValue"/>
       </item>
       <item row="0" column="1">
        <widget class="QComboBox" name="comboBoxProfiles"/>
