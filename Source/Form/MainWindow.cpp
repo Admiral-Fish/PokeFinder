@@ -31,13 +31,13 @@
 #include <Form/Gen4/Static4.hpp>
 #include <Form/Gen4/Tools/SeedToTime4.hpp>
 #include <Form/Gen4/Wild4.hpp>
-#include <Form/Gen8/DenMap.hpp>
 #include <Form/Gen8/Eggs8.hpp>
 #include <Form/Gen8/Event8.hpp>
 #include <Form/Gen8/IDs8.hpp>
 #include <Form/Gen8/Profile/ProfileManager8.hpp>
 #include <Form/Gen8/Raids.hpp>
 #include <Form/Gen8/Static8.hpp>
+#include <Form/Gen8/Tools/DenMap.hpp>
 #include <Form/Gen8/Wild8.hpp>
 #include <Form/Util/IVCalculator.hpp>
 #include <Form/Util/Researcher.hpp>
