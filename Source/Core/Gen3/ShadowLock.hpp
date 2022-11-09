@@ -21,7 +21,6 @@
 #define SHADOWLOCK_HPP
 
 #include <Core/Global.hpp>
-#include <vector>
 
 class ShadowTemplate;
 

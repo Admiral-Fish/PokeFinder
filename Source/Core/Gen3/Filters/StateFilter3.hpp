@@ -21,7 +21,6 @@
 #define STATEFILTER3_HPP
 
 #include <Core/Parents/Filters/StateFilter.hpp>
-#include <vector>
 
 class GeneratorState3;
 class SearcherState3;
