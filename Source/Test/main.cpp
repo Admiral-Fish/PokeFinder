@@ -40,6 +40,8 @@
 #include <Test/RNG/SFMTTest.hpp>
 #include <Test/RNG/SHA1Test.hpp>
 #include <Test/RNG/TinyMTTest.hpp>
+#include <Test/RNG/XoroshiroTest.hpp>
+#include <Test/RNG/XorshiftTest.hpp>
 #include <Test/Util/DateTimeTest.hpp>
 #include <Test/Util/EncounterSlotTest.hpp>
 #include <Test/Util/IVCheckerTest.hpp>
@@ -91,6 +93,9 @@ int main()
     status += runTest<SFMTTest>(fails);
     status += runTest<SHA1Test>(fails);
     status += runTest<TinyMTTest>(fails);
+    status += runTest<XoroshiroTest>(fails);
+    status += runTest<XoroshiroBDSPTest>(fails);
+    status += runTest<XorshiftTest>(fails);
 
     // Util Tests
     status += runTest<DateTest>(fails);

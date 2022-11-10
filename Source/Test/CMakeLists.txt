@@ -55,6 +55,10 @@ add_executable(PokeFinderTest
     RNG/SHA1Test.hpp
     RNG/TinyMTTest.cpp
     RNG/TinyMTTest.hpp
+    RNG/XoroshiroTest.cpp
+    RNG/XoroshiroTest.hpp
+    RNG/XorshiftTest.cpp
+    RNG/XorshiftTest.hpp
     Util/DateTimeTest.cpp
     Util/DateTimeTest.hpp
     Util/EncounterSlotTest.cpp
