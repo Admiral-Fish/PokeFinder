@@ -248,6 +248,11 @@ private slots:
     void openAbout() const;
 
     /**
+     * @brief Open the Encounter Lookup window
+     */
+    void openEncounterLookup() const;
+
+    /**
      * @brief Opens the IV Calculator
      */
     void openIVCalculator() const;
@@ -268,8 +273,6 @@ private slots:
      * @param num Which generation profiles were updated
      */
     void updateProfiles(int num);
-
-    // void openEncounterLookup();
 };
 
 #endif // MAINWINDOW_HPP

@@ -65,6 +65,11 @@ u8 EncounterArea::getLocation() const
     return location;
 }
 
+std::vector<Slot> EncounterArea::getPokemon() const
+{
+    return pokemon;
+}
+
 Slot EncounterArea::getPokemon(int index) const
 {
     return pokemon[index];

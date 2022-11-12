@@ -39,6 +39,7 @@
 #include <Form/Gen8/Static8.hpp>
 #include <Form/Gen8/Tools/DenMap.hpp>
 #include <Form/Gen8/Wild8.hpp>
+#include <Form/Util/EncounterLookup.hpp>
 #include <Form/Util/IVCalculator.hpp>
 #include <Form/Util/Researcher.hpp>
 #include <Form/Util/Settings.hpp>
@@ -70,7 +71,6 @@
 //#include <Forms/Gen5/Profile/ProfileCalibrator5.hpp>
 //#include <Forms/Gen5/Profile/ProfileManager5.hpp>
 //#include <Forms/Gen5/Static5.hpp>
-//#include <Forms/Util/EncounterLookup.hpp>
 //#include <Forms/Util/IVtoPID.hpp>
 
 MainWindow::MainWindow(bool profile, QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow)
@@ -120,7 +120,7 @@ MainWindow::MainWindow(bool profile, QWidget *parent) : QMainWindow(parent), ui(
     connect(ui->actionProfileManager8, &QAction::triggered, this, &MainWindow::openProfileManager8);
 
     connect(ui->actionAbout, &QAction::triggered, this, &MainWindow::openAbout);
-    // connect(ui->actionEncounterLookup, &QAction::triggered, this, &MainWindow::openEncounterLookup);
+    connect(ui->actionEncounterLookup, &QAction::triggered, this, &MainWindow::openEncounterLookup);
     connect(ui->actionIVCalculator, &QAction::triggered, this, &MainWindow::openIVCalculator);
     connect(ui->actionResearcher, &QAction::triggered, this, &MainWindow::openResearcher);
     connect(ui->actionSettings, &QAction::triggered, this, &MainWindow::openSettings);
@@ -642,17 +642,17 @@ void MainWindow::openAbout() const
     delete copy;
 }
 
+void MainWindow::openEncounterLookup() const
+{
+    auto *lookup = new EncounterLookup();
+    lookup->show();
+}
+
 void MainWindow::openIVCalculator() const
 {
     auto *iv = new IVCalculator();
     iv->show();
 }
-
-/*void MainWindow::openEncounterLookup()
-{
-    auto *lookup = new EncounterLookup();
-    lookup->show();
-}*/
 
 void MainWindow::openResearcher() const
 {

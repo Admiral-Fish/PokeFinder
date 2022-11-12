@@ -84,6 +84,7 @@ set(PROJECT_UI
     Gen8/Tools/DenMap.ui
     Gen8/Wild8.ui
     MainWindow.ui
+    Util/EncounterLookup.ui
     Util/IVCalculator.ui
     Util/Researcher.ui
     Util/Settings.ui
@@ -167,6 +168,8 @@ set(PROJECT_SOURCES
     Gen8/Wild8.hpp
     MainWindow.cpp
     MainWindow.hpp
+    Util/EncounterLookup.cpp
+    Util/EncounterLookup.hpp
     Util/IVCalculator.cpp
     Util/IVCalculator.hpp
     Util/Researcher.cpp
