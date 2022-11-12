@@ -20,7 +20,7 @@
 #include "WildModel8.hpp"
 #include <Core/Util/Translator.hpp>
 
-WildModel8::WildModel8(QObject *parent) : TableModel<WildGeneratorState8>(parent), showStats(false)
+WildModel8::WildModel8(QObject *parent) : TableModel<WildState8>(parent), showStats(false)
 {
 }
 

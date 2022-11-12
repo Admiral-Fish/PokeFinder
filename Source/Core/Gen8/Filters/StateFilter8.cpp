@@ -67,7 +67,7 @@ bool StateFilter8::compareState(const EggState8 &state) const
     return true;
 }
 
-bool StateFilter8::compareState(const GeneratorState8 &state) const
+bool StateFilter8::compareState(const State8 &state) const
 {
     if (skip)
     {
@@ -113,7 +113,7 @@ WildStateFilter8::WildStateFilter8(u8 gender, u8 ability, u8 shiny, bool skip, c
 {
 }
 
-bool WildStateFilter8::compareState(const WildGeneratorState8 &state) const
+bool WildStateFilter8::compareState(const WildState8 &state) const
 {
     if (skip)
     {

@@ -26,7 +26,7 @@
 /**
  * @brief Provides a table model implementation to show raid encounter information for Gen 8
  */
-class RaidModel : public TableModel<GeneratorState8>
+class RaidModel : public TableModel<State8>
 {
     Q_OBJECT
 public:

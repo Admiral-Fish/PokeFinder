@@ -52,7 +52,7 @@ public:
      *
      * @return Vector of computed states
      */
-    std::vector<GeneratorState8> generate(u64 seed0, u64 seed1, const WB8 &wb8);
+    std::vector<State8> generate(u64 seed0, u64 seed1, const WB8 &wb8);
 };
 
 #endif // EVENTGENERATOR8_HPP

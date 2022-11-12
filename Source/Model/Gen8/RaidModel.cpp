@@ -20,7 +20,7 @@
 #include "RaidModel.hpp"
 #include <Core/Util/Translator.hpp>
 
-RaidModel::RaidModel(QObject *parent) : TableModel<GeneratorState8>(parent), showStats(false)
+RaidModel::RaidModel(QObject *parent) : TableModel<State8>(parent), showStats(false)
 {
 }
 

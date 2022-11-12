@@ -38,8 +38,18 @@ add_executable(PokeFinderTest
     Gen4/WildGenerator4Test.hpp
     Gen4/WildSearcher4Test.cpp
     Gen4/WildSearcher4Test.hpp
+    Gen8/EggGenerator8Test.cpp
+    Gen8/EggGenerator8Test.hpp
+    Gen8/EventGenerator8Test.cpp
+    Gen8/EventGenerator8Test.hpp
     Gen8/IDGenerator8Test.cpp
     Gen8/IDGenerator8Test.hpp
+    Gen8/RaidGeneratorTest.cpp
+    Gen8/RaidGeneratorTest.hpp
+    Gen8/StaticGenerator8Test.cpp
+    Gen8/StaticGenerator8Test.hpp
+    Gen8/WildGenerator8Test.cpp
+    Gen8/WildGenerator8Test.hpp
     main.cpp
     RNG/LCRNGTest.cpp
     RNG/LCRNGTest.hpp

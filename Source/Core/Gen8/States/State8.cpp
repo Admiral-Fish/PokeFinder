@@ -24,7 +24,7 @@
 
 constexpr int order[6] = { 0, 1, 2, 5, 3, 4 };
 
-GeneratorState8::GeneratorState8(u32 advances, u32 pid, u8 shiny, const std::array<u8, 6> &ivs, u8 ability, u8 gender, u8 nature, u8 level,
+State8::State8(u32 advances, u32 pid, u8 shiny, const std::array<u8, 6> &ivs, u8 ability, u8 gender, u8 nature, u8 level,
                                  const PersonalInfo *info) :
     GeneratorState(advances)
 {

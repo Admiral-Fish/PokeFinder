@@ -1,0 +1,284 @@
+{
+    "generate": [
+        {
+            "name": "Manaphy",
+            "seed0": 1311768467139281697,
+            "seed1": 9756277977086449272,
+            "tid": 0,
+            "sid": 0,
+            "ec": 0,
+            "pid": 0,
+            "specie": 490,
+            "form": 0,
+            "gender": 2,
+            "egg": true,
+            "nature": 255,
+            "ability": 0,
+            "shiny": 0,
+            "ivCount": 3,
+            "level": 1,
+            "results": [
+                {
+                    "ability": 0,
+                    "abilityIndex": 93,
+                    "advances": 0,
+                    "gender": 2,
+                    "ivs": [
+                        15,
+                        30,
+                        31,
+                        19,
+                        31,
+                        31
+                    ],
+                    "level": 1,
+                    "nature": 24,
+                    "pid": 2412930810,
+                    "shiny": 0,
+                    "stats": [
+                        13,
+                        7,
+                        7,
+                        7,
+                        7,
+                        7
+                    ]
+                },
+                {
+                    "ability": 0,
+                    "abilityIndex": 93,
+                    "advances": 1,
+                    "gender": 2,
+                    "ivs": [
+                        30,
+                        31,
+                        31,
+                        19,
+                        26,
+                        31
+                    ],
+                    "level": 1,
+                    "nature": 20,
+                    "pid": 570642538,
+                    "shiny": 0,
+                    "stats": [
+                        13,
+                        6,
+                        7,
+                        7,
+                        7,
+                        7
+                    ]
+                },
+                {
+                    "ability": 0,
+                    "abilityIndex": 93,
+                    "advances": 2,
+                    "gender": 2,
+                    "ivs": [
+                        19,
+                        31,
+                        26,
+                        18,
+                        31,
+                        31
+                    ],
+                    "level": 1,
+                    "nature": 17,
+                    "pid": 2452903364,
+                    "shiny": 0,
+                    "stats": [
+                        13,
+                        7,
+                        7,
+                        7,
+                        7,
+                        6
+                    ]
+                },
+                {
+                    "ability": 0,
+                    "abilityIndex": 93,
+                    "advances": 3,
+                    "gender": 2,
+                    "ivs": [
+                        31,
+                        31,
+                        25,
+                        27,
+                        31,
+                        16
+                    ],
+                    "level": 1,
+                    "nature": 5,
+                    "pid": 715243415,
+                    "shiny": 0,
+                    "stats": [
+                        13,
+                        6,
+                        7,
+                        7,
+                        7,
+                        7
+                    ]
+                },
+                {
+                    "ability": 0,
+                    "abilityIndex": 93,
+                    "advances": 4,
+                    "gender": 2,
+                    "ivs": [
+                        31,
+                        31,
+                        25,
+                        27,
+                        31,
+                        16
+                    ],
+                    "level": 1,
+                    "nature": 5,
+                    "pid": 3067672975,
+                    "shiny": 0,
+                    "stats": [
+                        13,
+                        6,
+                        7,
+                        7,
+                        7,
+                        7
+                    ]
+                },
+                {
+                    "ability": 0,
+                    "abilityIndex": 93,
+                    "advances": 5,
+                    "gender": 2,
+                    "ivs": [
+                        31,
+                        31,
+                        25,
+                        27,
+                        31,
+                        16
+                    ],
+                    "level": 1,
+                    "nature": 5,
+                    "pid": 249593662,
+                    "shiny": 0,
+                    "stats": [
+                        13,
+                        6,
+                        7,
+                        7,
+                        7,
+                        7
+                    ]
+                },
+                {
+                    "ability": 0,
+                    "abilityIndex": 93,
+                    "advances": 6,
+                    "gender": 2,
+                    "ivs": [
+                        31,
+                        27,
+                        16,
+                        12,
+                        31,
+                        31
+                    ],
+                    "level": 1,
+                    "nature": 16,
+                    "pid": 3200942419,
+                    "shiny": 0,
+                    "stats": [
+                        13,
+                        7,
+                        6,
+                        7,
+                        7,
+                        7
+                    ]
+                },
+                {
+                    "ability": 0,
+                    "abilityIndex": 93,
+                    "advances": 7,
+                    "gender": 2,
+                    "ivs": [
+                        31,
+                        12,
+                        0,
+                        15,
+                        31,
+                        31
+                    ],
+                    "level": 1,
+                    "nature": 3,
+                    "pid": 422632474,
+                    "shiny": 0,
+                    "stats": [
+                        13,
+                        7,
+                        7,
+                        6,
+                        7,
+                        7
+                    ]
+                },
+                {
+                    "ability": 0,
+                    "abilityIndex": 93,
+                    "advances": 8,
+                    "gender": 2,
+                    "ivs": [
+                        31,
+                        30,
+                        0,
+                        21,
+                        31,
+                        31
+                    ],
+                    "level": 1,
+                    "nature": 24,
+                    "pid": 3906296370,
+                    "shiny": 0,
+                    "stats": [
+                        13,
+                        7,
+                        7,
+                        7,
+                        7,
+                        7
+                    ]
+                },
+                {
+                    "ability": 0,
+                    "abilityIndex": 93,
+                    "advances": 9,
+                    "gender": 2,
+                    "ivs": [
+                        31,
+                        30,
+                        0,
+                        21,
+                        31,
+                        31
+                    ],
+                    "level": 1,
+                    "nature": 24,
+                    "pid": 1698808217,
+                    "shiny": 0,
+                    "stats": [
+                        13,
+                        7,
+                        7,
+                        7,
+                        7,
+                        7
+                    ]
+                }
+            ]
+        }
+    ]
+}

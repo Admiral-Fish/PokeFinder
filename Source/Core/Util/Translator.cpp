@@ -21,9 +21,9 @@
 #include <Core/Enum/Buttons.hpp>
 #include <Core/Enum/Game.hpp>
 #include <Core/Resources/i18n.hpp>
+#include <Core/Util/Utilities.hpp>
 #include <algorithm>
 #include <bit>
-#include <bzlib.h>
 #include <iterator>
 #include <map>
 
@@ -87,13 +87,11 @@ namespace
         u32 start = indexes[index];
         u32 end = indexes[index + 1];
 
-        char *compressedData = reinterpret_cast<char *>(const_cast<u8 *>(i18n + start));
+        const char *compressedData = reinterpret_cast<const char *>(i18n + start);
         u32 compressedSize = end - start;
 
-        u32 size = *reinterpret_cast<const u16 *>(compressedData);
-        char *data = new char[size];
-
-        BZ2_bzBuffToBuffDecompress(data, &size, compressedData + sizeof(u16), compressedSize, 0, 0);
+        u32 size;
+        char *data = Utilities::decompress(compressedData, compressedSize, size);
 
         std::vector<std::string> strings;
         for (u32 i = 0; i < size;)
@@ -121,13 +119,11 @@ namespace
         u32 start = indexes[index];
         u32 end = indexes[index + 1];
 
-        char *compressedData = reinterpret_cast<char *>(const_cast<u8 *>(i18n + start));
+        const char *compressedData = reinterpret_cast<const char *>(i18n + start);
         u32 compressedSize = end - start;
 
-        u32 size = *reinterpret_cast<const u16 *>(compressedData);
-        char *data = new char[size];
-
-        BZ2_bzBuffToBuffDecompress(data, &size, compressedData + sizeof(u16), compressedSize, 0, 0);
+        u32 size;
+        char *data = Utilities::decompress(compressedData, compressedSize, size);
 
         std::map<u16, std::string> strings;
         for (u32 i = 0; i < size;)

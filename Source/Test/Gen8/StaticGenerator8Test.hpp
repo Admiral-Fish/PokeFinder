@@ -17,17 +17,20 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef IDGENERATOR8TEST_HPP
-#define IDGENERATOR8TEST_HPP
+#ifndef STATICGENERATOR8TEST_HPP
+#define STATICGENERATOR8TEST_HPP
 
 #include <QObject>
 
-class IDGenerator8Test : public QObject
+class StaticGenerator8Test : public QObject
 {
     Q_OBJECT
 private slots:
     void generate_data();
     void generate();
+
+    void generateRoamer_data();
+    void generateRoamer();
 };
 
-#endif // IDGENERATOR8TEST_HPP
+#endif // STATICGENERATOR8TEST_HPP

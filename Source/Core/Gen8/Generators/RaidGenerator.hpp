@@ -51,7 +51,7 @@ public:
      *
      * @return Vector of computed states
      */
-    std::vector<GeneratorState8> generate(u64 seed, u8 level, const Raid &raid) const;
+    std::vector<State8> generate(u64 seed, u8 level, const Raid &raid) const;
 };
 
 #endif // RAIDGENERATOR_HPP

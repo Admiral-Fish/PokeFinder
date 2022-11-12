@@ -25,6 +25,33 @@
 
 class DateTime;
 
+namespace Utilities
+{
+    /**
+     * @brief Decompress provided data
+     * The caller of this function is responsible for cleaning up the memory.
+     *
+     * @param compressedData Compressed data
+     * @param compressedSize Size of compressed data
+     * @param size Size of uncompressed data
+     *
+     * @return Uncompressed data
+     */
+    char *decompress(const char *compressedData, u32 compressedSize, u32 &size);
+
+    /**
+     * @brief Decompress provided data
+     * The caller of this function is responsible for cleaning up the memory.
+     *
+     * @param compressedData Compressed data
+     * @param compressedSize Size of compressed data
+     * @param size Size of uncompressed data
+     *
+     * @return Uncompressed data
+     */
+    u8 *decompress(const u8 *compressedData, u32 compressedSize, u32 &size);
+}
+
 namespace Utilities3
 {
     /**

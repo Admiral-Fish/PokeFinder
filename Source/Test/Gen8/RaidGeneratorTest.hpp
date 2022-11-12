@@ -17,12 +17,12 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef IDGENERATOR8TEST_HPP
-#define IDGENERATOR8TEST_HPP
+#ifndef RAIDGENERATORTEST_HPP
+#define RAIDGENERATORTEST_HPP
 
 #include <QObject>
 
-class IDGenerator8Test : public QObject
+class RaidGeneratorTest : public QObject
 {
     Q_OBJECT
 private slots:
@@ -30,4 +30,4 @@ private slots:
     void generate();
 };
 
-#endif // IDGENERATOR8TEST_HPP
+#endif // RAIDGENERATORTEST_HPP

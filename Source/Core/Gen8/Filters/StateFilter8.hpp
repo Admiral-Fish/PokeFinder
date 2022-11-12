@@ -24,8 +24,8 @@
 #include <vector>
 
 class EggState8;
-class GeneratorState8;
-class WildGeneratorState8;
+class State8;
+class WildState8;
 
 /**
  * @brief Checks if static encounters match the filter criteria
@@ -66,7 +66,7 @@ public:
      * @return true State passes the filter
      * @return false State does not pass the filter
      */
-    bool compareState(const GeneratorState8 &state) const;
+    bool compareState(const State8 &state) const;
 };
 
 /**
@@ -98,7 +98,7 @@ public:
      * @return true State passes the filter
      * @return false State does not pass the filter
      */
-    bool compareState(const WildGeneratorState8 &state) const;
+    bool compareState(const WildState8 &state) const;
 };
 
 #endif // STATEFILTER8_HPP

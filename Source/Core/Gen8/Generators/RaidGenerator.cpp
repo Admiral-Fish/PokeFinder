@@ -32,12 +32,12 @@ RaidGenerator::RaidGenerator(u32 initialAdvances, u32 maxAdvances, u32 offset, u
 {
 }
 
-std::vector<GeneratorState8> RaidGenerator::generate(u64 seed, u8 level, const Raid &raid) const
+std::vector<State8> RaidGenerator::generate(u64 seed, u8 level, const Raid &raid) const
 {
     const PersonalInfo *info = raid.getInfo();
     seed += 0x82A2B175229D6A5B * (initialAdvances + offset);
 
-    std::vector<GeneratorState8> states;
+    std::vector<State8> states;
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++, seed += 0x82A2B175229D6A5B)
     {
         Xoroshiro rng(seed);
@@ -190,7 +190,7 @@ std::vector<GeneratorState8> RaidGenerator::generate(u64 seed, u8 level, const R
         // Height (2 calls)
         // Weight (2 calls)
 
-        GeneratorState8 state(initialAdvances + cnt, pid, shiny, ivs, ability, gender, nature, level, info);
+        State8 state(initialAdvances + cnt, pid, shiny, ivs, ability, gender, nature, level, info);
         if (filter.compareState(state))
         {
             states.emplace_back(state);

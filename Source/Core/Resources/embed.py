@@ -4,7 +4,6 @@ import bz2
 import glob
 import json
 import os
-import re
 import struct
 
 
@@ -70,7 +69,7 @@ def embed_encounters():
                 stars = raid["Stars"]
                 star_string = f"std::array<bool, 5> {{{int(stars[0])}, {int(stars[1])}, {int(stars[2])}, {int(stars[3])}, {int(stars[4])}}}"
                 string += f"Raid({ability}, {altform}, {iv_count}, {gender}, {gigantamax}, {species}, {star_string})"
-                if j != len(sword) - 1:
+                if j != len(shield) - 1:
                     string += ", "
             string += "})"
             if i != len(tables) - 1:

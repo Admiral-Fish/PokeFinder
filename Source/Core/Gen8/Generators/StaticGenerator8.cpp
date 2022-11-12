@@ -39,12 +39,12 @@ StaticGenerator8::StaticGenerator8(u32 initialAdvances, u32 maxAdvances, u32 off
 {
 }
 
-std::vector<GeneratorState8> StaticGenerator8::generate(u64 seed0, u64 seed1, const StaticTemplate8 *staticTemplate) const
+std::vector<State8> StaticGenerator8::generate(u64 seed0, u64 seed1, const StaticTemplate8 *staticTemplate) const
 {
     const PersonalInfo *info = staticTemplate->getInfo();
     RNGList<u32, Xorshift, 32, gen> rngList(seed0, seed1, initialAdvances + offset);
 
-    std::vector<GeneratorState8> states;
+    std::vector<State8> states;
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rngList.advanceState())
     {
         rngList.advance(1); // EC call
@@ -151,7 +151,7 @@ std::vector<GeneratorState8> StaticGenerator8::generate(u64 seed0, u64 seed1, co
             nature = rngList.next() % 25;
         }
 
-        GeneratorState8 state(initialAdvances + cnt, pid, shiny, ivs, ability, gender, nature, staticTemplate->getLevel(), info);
+        State8 state(initialAdvances + cnt, pid, shiny, ivs, ability, gender, nature, staticTemplate->getLevel(), info);
         if (filter.compareState(state))
         {
             states.emplace_back(state);
@@ -161,7 +161,7 @@ std::vector<GeneratorState8> StaticGenerator8::generate(u64 seed0, u64 seed1, co
     return states;
 }
 
-std::vector<GeneratorState8> StaticGenerator8::generateRoamer(u64 seed0, u64 seed1, const StaticTemplate8 *staticTemplate) const
+std::vector<State8> StaticGenerator8::generateRoamer(u64 seed0, u64 seed1, const StaticTemplate8 *staticTemplate) const
 {
     // Going to ignore most of the parameters
     // Only roamers are Cresselia/Mesprit which have identical parameters
@@ -169,7 +169,7 @@ std::vector<GeneratorState8> StaticGenerator8::generateRoamer(u64 seed0, u64 see
 
     Xorshift roamer(seed0, seed1, initialAdvances + offset);
 
-    std::vector<GeneratorState8> states;
+    std::vector<State8> states;
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
     {
         XoroshiroBDSP rng(roamer.next(0x80000000, 0x7fffffff));
@@ -235,7 +235,7 @@ std::vector<GeneratorState8> StaticGenerator8::generateRoamer(u64 seed0, u64 see
             nature = rng.nextUInt(25);
         }
 
-        GeneratorState8 state(initialAdvances + cnt, pid, shiny, ivs, ability, gender, nature, staticTemplate->getLevel(),
+        State8 state(initialAdvances + cnt, pid, shiny, ivs, ability, gender, nature, staticTemplate->getLevel(),
                               staticTemplate->getInfo());
         if (filter.compareState(state))
         {

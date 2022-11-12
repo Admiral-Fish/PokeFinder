@@ -38,7 +38,7 @@ public:
      * @param shield Sword shields
      */
     constexpr Den(u64 hash, const std::array<Raid, 12> &sword, const std::array<Raid, 12> &shield) :
-        hash(hash), sword(sword), shield(shield)
+        hash(hash), shield(shield), sword(sword)
     {
     }
 
@@ -79,8 +79,8 @@ public:
 
 private:
     u64 hash;
-    std::array<Raid, 12> sword;
     std::array<Raid, 12> shield;
+    std::array<Raid, 12> sword;
 };
 
 /**
@@ -97,7 +97,7 @@ public:
      * @param sword Sword raids
      * @param shield Sword shields
      */
-    DenEvent(const std::vector<Raid> &sword, const std::vector<Raid> &shield) : sword(sword), shield(shield)
+    DenEvent(const std::vector<Raid> &sword, const std::vector<Raid> &shield) : shield(shield), sword(sword)
     {
     }
 
@@ -127,8 +127,8 @@ public:
     }
 
 private:
-    std::vector<Raid> sword;
     std::vector<Raid> shield;
+    std::vector<Raid> sword;
 };
 
 #endif // DEN_HPP
