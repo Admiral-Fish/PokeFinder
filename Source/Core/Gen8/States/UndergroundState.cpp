@@ -12,11 +12,8 @@ UndergroundState::UndergroundState(u32 advances, u16 specie, u32 pid, u8 shiny, 
     this->shiny = shiny;
     this->specie = specie;
     this->ivs = ivs;
-    u8 h = 0;
     for (int i = 0; i < 6; i++)
     {
-        h += (ivs[order[i]] & 1) << i;
-
         u16 stat = ((2 * info->getStat(i) + ivs[i]) * level) / 100;
         if (i == 0)
         {
@@ -27,7 +24,6 @@ UndergroundState::UndergroundState(u32 advances, u16 specie, u32 pid, u8 shiny, 
             stats[i] = Nature::computeStat(stat + 5, nature, i);
         }
     }
-    hiddenPower = h * 15 / 63;
 
     this->ability = ability;
     abilityIndex = info->getAbility(ability);

@@ -81,6 +81,11 @@ private slots:
      */
     void generate();
 
+    /**
+     * @brief Updates the pokemon listed
+     *
+     * @param index Story flag index
+     */
     void storyFlagIndexChanged(int index);
 
     /**
