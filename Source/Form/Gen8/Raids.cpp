@@ -145,7 +145,7 @@ void Raids::denIndexChanged(int index)
         }
         else
         {
-            Den den = DenLoader::getDen(ui->comboBoxDen->currentData().toInt(), ui->comboBoxRarity->currentIndex());
+            Den den = DenLoader::getDen(ui->comboBoxDen->getCurrentInt(), ui->comboBoxRarity->currentIndex());
             auto raids = den.getRaids(currentProfile->getVersion());
 
             for (const auto &raid : raids)
@@ -256,7 +256,7 @@ void Raids::specieIndexChanged(int index)
 {
     if (index >= 0)
     {
-        if (ui->comboBoxDen->currentData().toInt() == 65535)
+        if (ui->comboBoxDen->getCurrentInt() == 65535)
         {
             DenEvent den = DenLoader::getEvent();
             Raid raid = den.getRaid(static_cast<u8>(ui->comboBoxSpecies->currentIndex()), currentProfile->getVersion());
@@ -271,7 +271,7 @@ void Raids::specieIndexChanged(int index)
         }
         else
         {
-            Den den = DenLoader::getDen(ui->comboBoxDen->currentData().toInt(), ui->comboBoxRarity->currentIndex());
+            Den den = DenLoader::getDen(ui->comboBoxDen->getCurrentInt(), ui->comboBoxRarity->currentIndex());
             Raid raid = den.getRaid(static_cast<u8>(ui->comboBoxSpecies->currentIndex()), currentProfile->getVersion());
             const PersonalInfo *info = PersonalLoader::getPersonal(Game::SwSh, raid.getSpecie(), raid.getForm());
 

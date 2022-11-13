@@ -123,7 +123,7 @@ void Wild8::updateProfiles()
 
 void Wild8::updateEncounters()
 {
-    auto encounter = static_cast<Encounter>(ui->comboBoxEncounter->currentData().toInt());
+    auto encounter = ui->comboBoxEncounter->getEnum<Encounter>();
     int time = ui->comboBoxTime->currentIndex();
     bool radar = ui->checkBoxRadar->isChecked();
     bool swarm = ui->checkBoxSwarm->isChecked();
@@ -197,7 +197,7 @@ void Wild8::generate()
                             ui->filter->getEncounterSlots());
     WildGenerator8 generator(initialAdvances, maxAdvances, offset, tid, sid, currentProfile->getVersion(), encounter, lead, filter);
 
-    auto states = generator.generate(seed0, seed1, encounters[ui->comboBoxLocation->currentData().toInt()]);
+    auto states = generator.generate(seed0, seed1, encounters[ui->comboBoxLocation->getCurrentInt()]);
     model->addItems(states);
 }
 
@@ -205,7 +205,7 @@ void Wild8::locationIndexChanged(int index)
 {
     if (index >= 0)
     {
-        auto &area = encounters[ui->comboBoxLocation->currentData().toInt()];
+        auto &area = encounters[ui->comboBoxLocation->getCurrentInt()];
         auto species = area.getUniqueSpecies();
         auto names = area.getSpecieNames();
 
@@ -227,7 +227,7 @@ void Wild8::pokemonIndexChanged(int index)
     else
     {
         u16 num = ui->comboBoxPokemon->getCurrentUShort();
-        auto flags = encounters[ui->comboBoxLocation->currentData().toInt()].getSlots(num);
+        auto flags = encounters[ui->comboBoxLocation->getCurrentInt()].getSlots(num);
         ui->filter->toggleEncounterSlots(flags);
     }
 }

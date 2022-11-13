@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string>Underground</string>
   </property>
   <layout class="QGridLayout" name="gridLayout_45">
    <item row="1" column="1">
@@ -450,6 +450,22 @@
    <header>Form/Controls/ComboMenu.hpp</header>
   </customwidget>
  </customwidgets>
+ <tabstops>
+  <tabstop>comboBoxProfiles</tabstop>
+  <tabstop>pushButtonProfileManager</tabstop>
+  <tabstop>toolButtonLead</tabstop>
+  <tabstop>textBoxSeed0</tabstop>
+  <tabstop>textBoxSeed1</tabstop>
+  <tabstop>textBoxInitialAdvances</tabstop>
+  <tabstop>textBoxMaxAdvances</tabstop>
+  <tabstop>textBoxDelay</tabstop>
+  <tabstop>pushButtonGenerate</tabstop>
+  <tabstop>comboBoxStoryFlag</tabstop>
+  <tabstop>comboBoxLocation</tabstop>
+  <tabstop>checkListPokemon</tabstop>
+  <tabstop>checkBoxDiglett</tabstop>
+  <tabstop>tableView</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

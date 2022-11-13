@@ -1,13 +1,44 @@
-#include "UndergroundGenerator.hpp"
+/*
+ * This file is part of PokéFinder
+ * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 3
+ * of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ */
 
+#include "UndergroundGenerator.hpp"
+#include <Core/Enum/Lead.hpp>
 #include <Core/Enum/Method.hpp>
 #include <Core/Gen8/States/UndergroundState.hpp>
 #include <Core/Parents/PersonalLoader.hpp>
+#include <Core/RNG/RNGList.hpp>
 #include <Core/RNG/Xorshift.hpp>
 #include <Core/Resources/Encounters.hpp>
+#include <Core/Util/Utilities.hpp>
 #include <algorithm>
-#include <bzlib.h>
 #include <cmath>
+
+static u32 rand(u32 prng)
+{
+    return (prng % 0xffffffff) + 0x80000000;
+}
+
+static float rand(u32 prng, float max)
+{
+    float t = (prng & 0x7fffff) / 8388607.0;
+    return (1.0 - t) * max;
+}
 
 static u16 getItem(u8 rand, const PersonalInfo *info)
 {
@@ -28,16 +59,6 @@ static u16 getItem(u8 rand, const PersonalInfo *info)
     }
 }
 
-UndergroundGenerator::UndergroundGenerator(u32 initialAdvances, u32 maxAdvances, u32 offset, u16 tid, u16 sid, Game version, Lead lead,
-                                           u8 randMarkId, u8 storyFlag, bool bonus, const UndergroundStateFilter &filter) :
-    Generator<UndergroundStateFilter>(initialAdvances, maxAdvances, offset, tid, sid, version, Method::None, filter),
-    lead(lead),
-    randMarkId(randMarkId),
-    storyFlag(storyFlag),
-    bonus(bonus)
-{
-}
-
 struct PokeRate
 {
     u16 monsNo;
@@ -51,9 +72,9 @@ struct PokeRate
 
 struct TypeAndSize
 {
-    u8 type;
-    u8 size;
     u16 value;
+    u8 size;
+    u8 type;
 
     bool operator==(size_t type) const
     {
@@ -63,8 +84,8 @@ struct TypeAndSize
 
 struct TypeRate
 {
-    u8 type;
     u16 rate;
+    u8 type;
 
     bool operator>(const TypeRate &a) const
     {
@@ -72,24 +93,22 @@ struct TypeRate
     }
 };
 
-std::vector<UndergroundState> UndergroundGenerator::generate(u64 seed0, u64 seed1) const
+UndergroundGenerator::UndergroundGenerator(u32 initialAdvances, u32 maxAdvances, u32 offset, u16 tid, u16 sid, Game version, Lead lead,
+                                           u8 randMarkId, u8 storyFlag, bool bonus, const UndergroundStateFilter &filter) :
+    StaticGenerator<UndergroundStateFilter>(initialAdvances, maxAdvances, offset, tid, sid, version, Method::None, lead, filter),
+    bonus(bonus),
+    randMarkId(randMarkId),
+    storyFlag(storyFlag)
 {
-    Xorshift rng(seed0, seed1);
-    rng.advance(initialAdvances + offset);
+}
 
-    std::vector<PokeRate> specialPokemonRates;
+std::vector<UndergroundState> UndergroundGenerator::generate(u64 seed0, u64 seed1, const EncounterArea8 &area) const
+{
+    u32 specialEncountSize;
+    u8 *specialEncountData = Utilities::decompress(ug_special_pokemon.data(), ug_special_pokemon.size(), specialEncountSize);
 
-    const u8 *compressedSpecialEncountData = ug_special_pokemon.data();
-    size_t compressedSpecialEncountSize = ug_special_pokemon.size();
-
-    u32 specialEncountSize = *reinterpret_cast<const u16 *>(compressedSpecialEncountData);
-    u8 *specialEncountData = new u8[specialEncountSize];
-
-    BZ2_bzBuffToBuffDecompress(reinterpret_cast<char *>(specialEncountData), &specialEncountSize,
-                               reinterpret_cast<char *>(const_cast<u8 *>(compressedSpecialEncountData + sizeof(u16))),
-                               compressedSpecialEncountSize, 0, 0);
     u32 specialRatesSum = 0;
-
+    std::vector<PokeRate> specialPokemonRates;
     for (size_t offset = 0; offset < specialEncountSize; offset += 8)
     {
         const u8 *entry = specialEncountData + offset;
@@ -114,15 +133,8 @@ std::vector<UndergroundState> UndergroundGenerator::generate(u64 seed0, u64 seed
 
     const u8 *randMarkInfo;
 
-    const u8 *compressedRandMarkData = ug_rand_mark.data();
-    size_t compressedRandMarkDataSize = ug_rand_mark.size();
-
-    u32 randMarkSize = *reinterpret_cast<const u16 *>(compressedRandMarkData);
-    u8 *randMarkData = new u8[randMarkSize];
-
-    BZ2_bzBuffToBuffDecompress(reinterpret_cast<char *>(randMarkData), &randMarkSize,
-                               reinterpret_cast<char *>(const_cast<u8 *>(compressedRandMarkData + sizeof(u16))), compressedRandMarkDataSize,
-                               0, 0);
+    u32 randMarkSize;
+    u8 *randMarkData = Utilities::decompress(ug_rand_mark.data(), ug_rand_mark.size(), randMarkSize);
 
     for (size_t offset = 0; offset < randMarkSize; offset += 26)
     {
@@ -134,18 +146,8 @@ std::vector<UndergroundState> UndergroundGenerator::generate(u64 seed0, u64 seed
         }
     }
 
-    std::vector<u16> enabledPokemon;
-
-    const u8 *compressedEncountData = ug_encount.data();
-    size_t compressedEncountSize = ug_encount.size();
-
-    u32 encountSize = *reinterpret_cast<const u16 *>(compressedEncountData);
-    u8 *encountData = new u8[encountSize];
-
-    BZ2_bzBuffToBuffDecompress(reinterpret_cast<char *>(encountData), &encountSize,
-                               reinterpret_cast<char *>(const_cast<u8 *>(compressedEncountData + sizeof(u16))), compressedEncountSize, 0,
-                               0);
-
+    u32 encountSize;
+    u8 *encountData = Utilities::decompress(ug_encount.data(), ug_encount.size(), encountSize);
     u8 romCode = version == Game::BD ? 2 : 3;
 
     const u8 *entry = encountData;
@@ -158,6 +160,7 @@ std::vector<UndergroundState> UndergroundGenerator::generate(u64 seed0, u64 seed
     u8 ugEncountSize = entry[0];
     entry += 1;
 
+    std::vector<u16> enabledPokemon;
     for (size_t offset = 0; offset < ugEncountSize; offset += 1)
     {
         if ((entry[2] == 1 || entry[2] == romCode) && entry[3] <= storyFlag)
@@ -170,44 +173,27 @@ std::vector<UndergroundState> UndergroundGenerator::generate(u64 seed0, u64 seed
 
     std::vector<TypeAndSize> monsDataIndexs;
 
-    const u8 *compressedUgPokemonData = ug_pokemon_data.data();
-    size_t compressedUgPokemonSize = ug_pokemon_data.size();
+    u32 ugPokemonSize;
+    u8 *ugPokemonData = Utilities::decompress(ug_pokemon_data.data(), ug_pokemon_data.size(), ugPokemonSize);
 
-    u32 ugPokemonSize = *reinterpret_cast<const u16 *>(compressedUgPokemonData);
-    u8 *ugPokemonData = new u8[ugPokemonSize];
-
-    BZ2_bzBuffToBuffDecompress(reinterpret_cast<char *>(ugPokemonData), &ugPokemonSize,
-                               reinterpret_cast<char *>(const_cast<u8 *>(compressedUgPokemonData + sizeof(u16))), compressedUgPokemonSize,
-                               0, 0);
-
-    const u8 *compressedTamagoWazaData = tamago_waza_table.data();
-    size_t compressedTamagoWazaSize = tamago_waza_table.size();
-
-    u32 tamagoWazaSize = *reinterpret_cast<const u16 *>(compressedTamagoWazaData);
-    u8 *tamagoWazaData = new u8[tamagoWazaSize];
-
-    BZ2_bzBuffToBuffDecompress(reinterpret_cast<char *>(tamagoWazaData), &tamagoWazaSize,
-                               reinterpret_cast<char *>(const_cast<u8 *>(compressedTamagoWazaData + sizeof(u16))), compressedTamagoWazaSize,
-                               0, 0);
+    u32 tamagoWazaSize;
+    u8 *tamagoWazaData = Utilities::decompress(tamago_waza_table.data(), tamago_waza_table.size(), tamagoWazaSize);
 
     const u8 *compressedTamagoWazaIgnoreData = tamago_waza_ignore_table.data();
     size_t compressedTamagoWazaIgnoreSize = tamago_waza_ignore_table.size();
 
-    u32 tamagoWazaIgnoreSize = *reinterpret_cast<const u16 *>(compressedTamagoWazaIgnoreData);
-    u8 *tamagoWazaIgnoreData = new u8[tamagoWazaIgnoreSize];
+    u32 tamagoWazaIgnoreSize;
+    u8 *tamagoWazaIgnoreData
+        = Utilities::decompress(tamago_waza_ignore_table.data(), tamago_waza_ignore_table.size(), tamagoWazaIgnoreSize);
 
-    BZ2_bzBuffToBuffDecompress(reinterpret_cast<char *>(tamagoWazaIgnoreData), &tamagoWazaIgnoreSize,
-                               reinterpret_cast<char *>(const_cast<u8 *>(compressedTamagoWazaIgnoreData + sizeof(u16))),
-                               compressedTamagoWazaIgnoreSize, 0, 0);
-
-    for (u16 species : enabledPokemon)
+    for (size_t offset = 0; offset < ugPokemonSize; offset += 12)
     {
-        TypeAndSize ts;
-        for (size_t offset = 0; offset < ugPokemonSize; offset += 12)
+        for (u16 species : enabledPokemon)
         {
             const u8 *entry = offset + ugPokemonData;
             if (species == *reinterpret_cast<const u16 *>(entry))
             {
+                TypeAndSize ts;
                 ts.size = entry[4];
                 ts.type = entry[2];
                 ts.value = std::pow(10.0, entry[4]) + entry[2];
@@ -224,9 +210,8 @@ std::vector<UndergroundState> UndergroundGenerator::generate(u64 seed0, u64 seed
         }
     }
 
-    std::vector<TypeRate> typeRates;
-
     u16 typeRatesSum = 0;
+    std::vector<TypeRate> typeRates;
     for (size_t offset = 0; offset < 18; offset++)
     {
         u16 rate = (randMarkInfo + 8)[offset];
@@ -242,16 +227,17 @@ std::vector<UndergroundState> UndergroundGenerator::generate(u64 seed0, u64 seed
 
     std::sort(typeRates.begin(), typeRates.end(), std::greater<TypeRate>());
 
+    RNGList<u32, Xorshift, 256> rngList(seed0, seed1, initialAdvances + offset);
     std::vector<UndergroundState> states;
-    for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rng.next())
+    for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rngList.advanceState())
     {
         u8 spawnCount = randMarkInfo[2];
-        Xorshift gen(rng);
-        u32 rareRand = gen.next(0, 100);
+
+        u32 rareRand = rngList.next() % 100;
         u16 rareMonsNo = 0;
         if (rareRand < 50)
         {
-            float rareESRand = gen.nextf(0.0, specialRatesSum);
+            float rareESRand = rand(rngList.next(), specialRatesSum);
             for (auto p : specialPokemonRates)
             {
                 if (rareESRand < p.rate)
@@ -263,7 +249,7 @@ std::vector<UndergroundState> UndergroundGenerator::generate(u64 seed0, u64 seed
             }
         }
 
-        u32 minMaxRand = gen.next(0, 100);
+        u32 minMaxRand = rngList.next() % 100;
         if (50 <= minMaxRand)
         {
             spawnCount = randMarkInfo[3];
@@ -275,11 +261,10 @@ std::vector<UndergroundState> UndergroundGenerator::generate(u64 seed0, u64 seed
         }
 
         std::vector<TypeAndSize> pokeSlots;
-
         for (auto i = 0; i < spawnCount; i++)
         {
             u8 type = 0;
-            float typeRand = gen.nextf(0.0, typeRatesSum);
+            float typeRand = rand(rngList.next(), typeRatesSum);
             for (auto tr : typeRates)
             {
                 if (typeRand < tr.rate)
@@ -291,7 +276,6 @@ std::vector<UndergroundState> UndergroundGenerator::generate(u64 seed0, u64 seed
             }
 
             std::vector<u8> existSizeList;
-
             for (auto ts : monsDataIndexs)
             {
                 if (ts.type == type && std::count(existSizeList.begin(), existSizeList.end(), ts.size) == 0)
@@ -300,7 +284,7 @@ std::vector<UndergroundState> UndergroundGenerator::generate(u64 seed0, u64 seed
                 }
             }
 
-            u32 sizeRand = gen.next(0, existSizeList.size());
+            u32 sizeRand = rngList.next() % existSizeList.size();
             u8 size = existSizeList[sizeRand];
 
             TypeAndSize ts;
@@ -313,9 +297,7 @@ std::vector<UndergroundState> UndergroundGenerator::generate(u64 seed0, u64 seed
 
         for (auto ts : pokeSlots)
         {
-
             std::vector<PokeRate> pokeRates;
-
             std::vector<TypeAndSize> tmpList;
 
             for (auto ts2 : monsDataIndexs)
@@ -352,7 +334,7 @@ std::vector<UndergroundState> UndergroundGenerator::generate(u64 seed0, u64 seed
             std::sort(pokeRates.begin(), pokeRates.end(), std::greater<PokeRate>());
 
             u16 species = 0;
-            float slotRand = gen.nextf(0.0, pokeRatesSum);
+            float slotRand = rand(rngList.next(), pokeRatesSum);
             for (auto pr : pokeRates)
             {
                 if (slotRand < pr.rate)
@@ -363,15 +345,15 @@ std::vector<UndergroundState> UndergroundGenerator::generate(u64 seed0, u64 seed
                 slotRand -= pr.rate;
             }
 
-            gen.next(); // Level
-            gen.next(); // EC
-            u32 sidtid = gen.next(-0x7fffffff - 1, 0x7fffffff);
+            rngList.advance(1); // Level
+            rngList.advance(1); // EC
+            u32 sidtid = rngList.next(rand);
             u32 pid = 0;
             u8 shiny = 0;
             u8 pidRolls = bonus ? 2 : 1;
             for (auto i = 0; i < pidRolls; i++)
             {
-                pid = gen.next(-0x7fffffff - 1, 0x7fffffff);
+                pid = rngList.next(rand);
 
                 u16 psv = (pid >> 16) ^ (pid & 0xffff);
                 u16 fakeXor = (sidtid >> 16) ^ (sidtid & 0xffff) ^ psv;
@@ -381,9 +363,9 @@ std::vector<UndergroundState> UndergroundGenerator::generate(u64 seed0, u64 seed
                     shiny = fakeXor == 0 ? 2 : 1;
 
                     u16 realXor = psv ^ tsv;
-                    u8 realShinyType = realXor == 0 ? 2 : realXor < 16 ? 1 : 0;
+                    u8 realShiny = realXor == 0 ? 2 : realXor < 16 ? 1 : 0;
 
-                    if (realShinyType != shiny)
+                    if (realShiny != shiny)
                     {
                         u16 high = (pid & 0xFFFF) ^ tsv ^ (2 - shiny);
                         pid = (high << 16) | (pid & 0xFFFF);
@@ -403,10 +385,10 @@ std::vector<UndergroundState> UndergroundGenerator::generate(u64 seed0, u64 seed
             std::array<u8, 6> ivs;
             for (u8 &iv : ivs)
             {
-                iv = gen.next(-0x7fffffff - 1, 0x7fffffff) % 32;
+                iv = rngList.next(rand) % 32;
             }
 
-            u8 ability = gen.next(-0x7fffffff - 1, 0x7fffffff) % 2;
+            u8 ability = rngList.next(rand) % 2;
 
             const PersonalInfo *info = PersonalLoader::getPersonal(version, species);
 
@@ -423,16 +405,15 @@ std::vector<UndergroundState> UndergroundGenerator::generate(u64 seed0, u64 seed
                 gender = 0;
                 break;
             default:
-                gender = (gen.next(-0x7fffffff - 1, 0x7fffffff) % 253) + 1 < info->getGender();
-
+                gender = (rngList.next(rand) % 253) + 1 < info->getGender();
                 break;
             }
 
-            u8 nature = gen.next(-0x7fffffff - 1, 0x7fffffff) % 25;
+            u8 nature = rngList.next(rand) % 25;
 
-            gen.advance(4); // 2 calls height, 2 calls weight
+            rngList.advance(4); // 2 calls height, 2 calls weight
 
-            u16 item = getItem(gen.next(0, 100), info);
+            u16 item = getItem(rngList.next() % 100, info);
 
             u16 hatchSpecies = info->getHatchSpecies();
 
@@ -471,7 +452,7 @@ std::vector<UndergroundState> UndergroundGenerator::generate(u64 seed0, u64 seed
                 {
                     if (wazaCount - ignoreCount > 0)
                     {
-                        gen.next(-0x7fffffff - 1, 0x7fffffff); // Egg Move
+                        rngList.next(rand); // Egg Move
                     }
                     break;
                 }
@@ -479,7 +460,6 @@ std::vector<UndergroundState> UndergroundGenerator::generate(u64 seed0, u64 seed
             }
 
             UndergroundState state(initialAdvances + cnt, species, pid, shiny, ivs, ability, gender, nature, item, info);
-
             if (filter.compareState(state))
             {
                 states.emplace_back(state);
@@ -488,15 +468,15 @@ std::vector<UndergroundState> UndergroundGenerator::generate(u64 seed0, u64 seed
 
         if (rareRand < 50)
         {
-            gen.next(); // Level
-            gen.next(); // EC
-            u32 sidtid = gen.next(-0x7fffffff - 1, 0x7fffffff);
+            rngList.advance(1); // Level
+            rngList.advance(1); // EC
+            u32 sidtid = rngList.next(rand);
             u32 pid = 0;
             u8 shiny = 0;
             u8 pidRolls = bonus ? 2 : 1;
             for (auto i = 0; i < pidRolls; i++)
             {
-                pid = gen.next(-0x7fffffff - 1, 0x7fffffff);
+                pid = rngList.next(rand);
 
                 u16 psv = (pid >> 16) ^ (pid & 0xffff);
                 u16 fakeXor = (sidtid >> 16) ^ (sidtid & 0xffff) ^ psv;
@@ -506,9 +486,9 @@ std::vector<UndergroundState> UndergroundGenerator::generate(u64 seed0, u64 seed
                     shiny = fakeXor == 0 ? 2 : 1;
 
                     u16 realXor = psv ^ tsv;
-                    u8 realShinyType = realXor == 0 ? 2 : realXor < 16 ? 1 : 0;
+                    u8 realShiny = realXor == 0 ? 2 : realXor < 16 ? 1 : 0;
 
-                    if (realShinyType != shiny)
+                    if (realShiny != shiny)
                     {
                         u16 high = (pid & 0xFFFF) ^ tsv ^ (2 - shiny);
                         pid = (high << 16) | (pid & 0xFFFF);
@@ -528,10 +508,10 @@ std::vector<UndergroundState> UndergroundGenerator::generate(u64 seed0, u64 seed
             std::array<u8, 6> ivs;
             for (u8 &iv : ivs)
             {
-                iv = gen.next(-0x7fffffff - 1, 0x7fffffff) % 32;
+                iv = rngList.next(rand) % 32;
             }
 
-            u8 ability = gen.next(-0x7fffffff - 1, 0x7fffffff) % 2;
+            u8 ability = rngList.next(rand) % 2;
 
             const PersonalInfo *info = PersonalLoader::getPersonal(version, rareMonsNo);
 
@@ -548,19 +528,17 @@ std::vector<UndergroundState> UndergroundGenerator::generate(u64 seed0, u64 seed
                 gender = 0;
                 break;
             default:
-                gender = (gen.next(-0x7fffffff - 1, 0x7fffffff) % 253) + 1 < info->getGender();
-
+                gender = (rngList.next(rand) % 253) + 1 < info->getGender();
                 break;
             }
 
-            u8 nature = gen.next(-0x7fffffff - 1, 0x7fffffff) % 25;
+            u8 nature = rngList.next(rand) % 25;
 
-            gen.advance(4); // 2 calls height, 2 calls weight
+            rngList.advance(4); // 2 calls height, 2 calls weight
 
-            u16 item = getItem(gen.next(0, 100), info);
+            u16 item = getItem(rngList.next() % 100, info);
 
             UndergroundState state(initialAdvances + cnt, rareMonsNo, pid, shiny, ivs, ability, gender, nature, item, info);
-
             if (filter.compareState(state))
             {
                 states.emplace_back(state);

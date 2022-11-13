@@ -52,6 +52,11 @@ static u16 getItem(u8 rand, Lead lead, const PersonalInfo *info)
     }
 }
 
+static u32 rand(u32 prng)
+{
+    return (prng % 0xffffffff) + 0x80000000;
+}
+
 WildGenerator8::WildGenerator8(u32 initialAdvances, u32 maxAdvances, u32 offset, u16 tid, u16 sid, Game version, Encounter encounter,
                                Lead lead, const WildStateFilter8 &filter) :
     WildGenerator(initialAdvances, maxAdvances, offset, tid, sid, version, Method::None, encounter, lead, filter)
@@ -61,7 +66,6 @@ WildGenerator8::WildGenerator8(u32 initialAdvances, u32 maxAdvances, u32 offset,
 std::vector<WildState8> WildGenerator8::generate(u64 seed0, u64 seed1, const EncounterArea8 &encounterArea) const
 {
     RNGList<u32, Xorshift, 128> rngList(seed0, seed1, initialAdvances + offset);
-    auto rand = [](u32 prng) { return (prng % 0xffffffff) + 0x80000000; };
 
     bool encounterForce
         = lead == Lead::MagnetPull || lead == Lead::Static || lead == Lead::Harvest || lead == Lead::FlashFire || lead == Lead::StormDrain;

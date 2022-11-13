@@ -119,7 +119,7 @@ void Underground::generate()
     u16 sid = currentProfile->getSID();
     auto lead = ui->toolButtonLead->getEnum<Lead>();
     u8 storyFlag = ui->comboBoxStoryFlag->currentIndex() + 1;
-    u8 randMarkId = ui->comboBoxLocation->currentData().toUInt() - 181;
+    u8 randMarkId = ui->comboBoxLocation->getCurrentByte() - 181;
     bool bonus = ui->checkBoxDiglett->isChecked();
 
     std::vector<u16> species;
@@ -136,7 +136,7 @@ void Underground::generate()
     UndergroundGenerator generator(initialAdvances, maxAdvances, offset, tid, sid, currentProfile->getVersion(), lead, randMarkId,
                                    storyFlag, bonus, filter);
 
-    auto states = generator.generate(seed0, seed1);
+    auto states = generator.generate(seed0, seed1, encounters[ui->comboBoxLocation->getCurrentInt() - 183]);
     model->addItems(states);
 }
 
@@ -144,7 +144,7 @@ void Underground::locationIndexChanged(int index)
 {
     if (index >= 0)
     {
-        auto area = encounters[ui->comboBoxLocation->currentData().toUInt() - 183];
+        auto area = encounters[ui->comboBoxLocation->getCurrentInt() - 183];
         auto species = area.getUniqueSpecies();
         auto names = area.getSpecieNames();
 
