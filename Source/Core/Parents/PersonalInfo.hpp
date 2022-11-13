@@ -49,19 +49,20 @@ public:
      * @param abilityH Hidden Ability
      * @param formCount Alternate form count
      * @param formStatIndex Alternate form index
+     * @param hatchSpecie Base egg specie
      * @param present Obtainable in-game
      */
     constexpr PersonalInfo(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, u8 type1, u8 type2, u16 item1, u16 item2, u16 item3, u8 gender,
-                           u16 ability1, u16 ability2, u16 abilityH, u8 formCount, u16 formStatIndex, bool present, u16 hatchSpecies) :
+                           u16 ability1, u16 ability2, u16 abilityH, u8 formCount, u16 formStatIndex, u16 hatchSpecie, bool present) :
         ability { ability1, ability2, abilityH },
         item { item1, item2, item3 },
         formCount(formCount),
         formStatIndex(formStatIndex),
+        hatchSpecie(hatchSpecie),
         stats { hp, atk, def, spa, spd, spe },
         present(present),
         gender(gender),
-        types { type1, type2 },
-        hatchSpecies(hatchSpecies)
+        types { type1, type2 }
     {
     }
 
@@ -77,6 +78,13 @@ public:
         return ability[index];
     }
 
+    /**
+     * @brief Returns the item specified by \p index
+     *
+     * @param index Item index
+     *
+     * @return Item
+     */
     u16 getItem(int index) const
     {
         return item[index];
@@ -117,6 +125,16 @@ public:
     u8 getGender() const
     {
         return gender;
+    }
+
+    /**
+     * @brief getHatchSpecie
+     *
+     * @return Pokemon base hatch specie
+     */
+    u16 getHatchSpecie() const
+    {
+        return hatchSpecie;
     }
 
     /**
@@ -164,21 +182,16 @@ public:
         return types[index];
     }
 
-    u16 getHatchSpecies() const
-    {
-        return hatchSpecies;
-    }
-
 private:
     u16 ability[3];
     u16 item[3];
     u16 formCount : 5;
     u16 formStatIndex : 11;
+    u16 hatchSpecie;
     std::array<u8, 6> stats;
     bool present;
     u8 gender;
     u8 types[2];
-    u16 hatchSpecies;
 };
 
 #endif // PERSONALINFO_HPP

@@ -131,11 +131,10 @@ std::vector<UndergroundState> UndergroundGenerator::generate(u64 seed0, u64 seed
 
     std::sort(specialPokemonRates.begin(), specialPokemonRates.end(), std::greater<PokeRate>());
 
-    const u8 *randMarkInfo;
-
     u32 randMarkSize;
     u8 *randMarkData = Utilities::decompress(ug_rand_mark.data(), ug_rand_mark.size(), randMarkSize);
 
+    const u8 *randMarkInfo;
     for (size_t offset = 0; offset < randMarkSize; offset += 26)
     {
         const u8 *entry = randMarkData + offset;
@@ -171,8 +170,6 @@ std::vector<UndergroundState> UndergroundGenerator::generate(u64 seed0, u64 seed
         entry += 4;
     }
 
-    std::vector<TypeAndSize> monsDataIndexs;
-
     u32 ugPokemonSize;
     u8 *ugPokemonData = Utilities::decompress(ug_pokemon_data.data(), ug_pokemon_data.size(), ugPokemonSize);
 
@@ -186,6 +183,7 @@ std::vector<UndergroundState> UndergroundGenerator::generate(u64 seed0, u64 seed
     u8 *tamagoWazaIgnoreData
         = Utilities::decompress(tamago_waza_ignore_table.data(), tamago_waza_ignore_table.size(), tamagoWazaIgnoreSize);
 
+    std::vector<TypeAndSize> monsDataIndexs;
     for (size_t offset = 0; offset < ugPokemonSize; offset += 12)
     {
         for (u16 species : enabledPokemon)
@@ -415,7 +413,7 @@ std::vector<UndergroundState> UndergroundGenerator::generate(u64 seed0, u64 seed
 
             u16 item = getItem(rngList.next() % 100, info);
 
-            u16 hatchSpecies = info->getHatchSpecies();
+            u16 hatchSpecies = info->getHatchSpecie();
 
             u8 ignoreCount = 0;
 
