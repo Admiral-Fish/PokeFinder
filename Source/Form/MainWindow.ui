@@ -163,10 +163,10 @@
           </property>
          </widget>
         </item>
-        <item row="5" column="0">
-         <widget class="QPushButton" name="pushButtonWild8">
+        <item row="2" column="0">
+         <widget class="QPushButton" name="pushButtonIDs8">
           <property name="text">
-           <string>Wild</string>
+           <string>IDs</string>
           </property>
          </widget>
         </item>
@@ -191,14 +191,14 @@
           </property>
          </widget>
         </item>
-        <item row="2" column="0">
-         <widget class="QPushButton" name="pushButtonIDs8">
+        <item row="6" column="0">
+         <widget class="QPushButton" name="pushButtonWild8">
           <property name="text">
-           <string>IDs</string>
+           <string>Wild</string>
           </property>
          </widget>
         </item>
-        <item row="6" column="0">
+        <item row="5" column="0">
          <widget class="QPushButton" name="pushButtonUnderground">
           <property name="text">
            <string>Underground</string>
@@ -410,6 +410,7 @@
   <tabstop>pushButtonIDs8</tabstop>
   <tabstop>pushButtonRaid</tabstop>
   <tabstop>pushButtonStatic8</tabstop>
+  <tabstop>pushButtonUnderground</tabstop>
   <tabstop>pushButtonWild8</tabstop>
  </tabstops>
  <resources/>
