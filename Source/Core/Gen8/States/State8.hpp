@@ -27,11 +27,11 @@ class PersonalInfo;
 /**
  * @brief State class for Gen8 static generator encounters
  */
-class GeneratorState8 : public GeneratorState
+class State8 : public GeneratorState
 {
 public:
     /**
-     * @brief Construct a new GeneratorState8 object
+     * @brief Construct a new State8 object
      *
      * @param advances State advances
      * @param pid PID value
@@ -43,8 +43,8 @@ public:
      * @param level Pokemon level
      * @param info Pokemon personal information
      */
-    GeneratorState8(u32 advances, u32 pid, u8 shiny, const std::array<u8, 6> &ivs, u8 ability, u8 gender, u8 nature, u8 level,
-                    const PersonalInfo *info);
+    State8(u32 advances, u32 pid, u8 shiny, const std::array<u8, 6> &ivs, u8 ability, u8 gender, u8 nature, u8 level,
+           const PersonalInfo *info);
 };
 
 #endif // STATE8_HPP

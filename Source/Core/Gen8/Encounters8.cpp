@@ -26,8 +26,8 @@
 #include <Core/Parents/PersonalLoader.hpp>
 #include <Core/Parents/Slot.hpp>
 #include <Core/Resources/Encounters.hpp>
+#include <Core/Util/Utilities.hpp>
 #include <algorithm>
-#include <bzlib.h>
 #include <cstring>
 #include <iterator>
 
@@ -156,48 +156,25 @@ namespace Encounters8
             }
         }
 
-        std::vector<EncounterArea8> getBDSP(Encounter encounter, int mod, bool radar, bool swarm, Game version, const PersonalInfo *info)
+        std::vector<EncounterArea8> getBDSP(Encounter encounter, int time, bool radar, bool swarm, Game version, const PersonalInfo *info)
         {
             std::vector<EncounterArea8> encounters;
-
             if (encounter == Encounter::Underground)
             {
-                const u8 *compressedRandMarkData = ug_rand_mark.data();
-                size_t compressedRandMarkDataSize = ug_rand_mark.size();
+                u32 randMarkSize;
+                u8 *randMarkData = Utilities::decompress(ug_rand_mark.data(), ug_rand_mark.size(), randMarkSize);
 
-                u32 randMarkSize = *reinterpret_cast<const u16 *>(compressedRandMarkData);
-                u8 *randMarkData = new u8[randMarkSize];
+                u32 encountSize;
+                u8 *encountData = Utilities::decompress(ug_encount.data(), ug_encount.size(), encountSize);
 
-                BZ2_bzBuffToBuffDecompress(reinterpret_cast<char *>(randMarkData), &randMarkSize,
-                                           reinterpret_cast<char *>(const_cast<u8 *>(compressedRandMarkData + sizeof(u16))),
-                                           compressedRandMarkDataSize, 0, 0);
-
-                const u8 *compressedEncountData = ug_encount.data();
-                size_t compressedEncountSize = ug_encount.size();
-
-                u32 encountSize = *reinterpret_cast<const u16 *>(compressedEncountData);
-                u8 *encountData = new u8[encountSize];
-
-                BZ2_bzBuffToBuffDecompress(reinterpret_cast<char *>(encountData), &encountSize,
-                                           reinterpret_cast<char *>(const_cast<u8 *>(compressedEncountData + sizeof(u16))),
-                                           compressedEncountSize, 0, 0);
-
-                const u8 *compressedSpecialEncountData = ug_special_pokemon.data();
-                size_t compressedSpecialEncountSize = ug_special_pokemon.size();
-
-                u32 specialEncountSize = *reinterpret_cast<const u16 *>(compressedSpecialEncountData);
-                u8 *specialEncountData = new u8[specialEncountSize];
-
-                BZ2_bzBuffToBuffDecompress(reinterpret_cast<char *>(specialEncountData), &specialEncountSize,
-                                           reinterpret_cast<char *>(const_cast<u8 *>(compressedSpecialEncountData + sizeof(u16))),
-                                           compressedSpecialEncountSize, 0, 0);
+                u32 specialEncountSize;
+                u8 *specialEncountData = Utilities::decompress(ug_special_pokemon.data(), ug_special_pokemon.size(), specialEncountSize);
 
                 u8 versionRaw = version == Game::BD ? 2 : 3;
 
                 for (size_t offset = 0; offset < randMarkSize; offset += 26)
                 {
                     const u8 *entry = randMarkData + offset;
-                    std::vector<Slot> slots;
                     u8 location = entry[0] + 181;
                     u8 encount_id = entry[1];
                     const u8 *encount_start = encountData;
@@ -210,9 +187,10 @@ namespace Encounters8
                     size_t encountSize = encount_start[0];
                     const u8 *encount = encount_start + 1;
 
+                    std::vector<Slot> slots;
                     for (size_t i = 0; i < encountSize; i += 1)
                     {
-                        if ((encount[2] == 1 || encount[2] == versionRaw) && encount[3] <= mod)
+                        if ((encount[2] == 1 || encount[2] == versionRaw) && encount[3] <= time)
                         {
                             u16 specie = *reinterpret_cast<const u16 *>(encount);
                             slots.emplace_back(specie, 16, 63, &info[specie]);
@@ -229,7 +207,7 @@ namespace Encounters8
                             slots.emplace_back(specie, 16, 63, &info[specie]);
                         }
                     }
-                    encounters.emplace_back(location, 0, Encounter::Underground, slots);
+                    encounters.emplace_back(location, 0, encounter, slots);
                 }
 
                 delete[] randMarkData;
@@ -240,7 +218,6 @@ namespace Encounters8
             {
                 const u8 *compressedData;
                 size_t compressedSize;
-
                 if (version == Game::BD)
                 {
                     compressedData = bd.data();
@@ -252,11 +229,8 @@ namespace Encounters8
                     compressedSize = sp.size();
                 }
 
-                u32 size = *reinterpret_cast<const u16 *>(compressedData);
-                u8 *data = new u8[size];
-
-                BZ2_bzBuffToBuffDecompress(reinterpret_cast<char *>(data), &size,
-                                           reinterpret_cast<char *>(const_cast<u8 *>(compressedData + sizeof(u16))), compressedSize, 0, 0);
+                u32 size;
+                u8 *data = Utilities::decompress(compressedData, compressedSize, size);
 
                 for (size_t offset = 0; offset < size; offset += 142)
                 {
@@ -283,7 +257,7 @@ namespace Encounters8
                                 slots.emplace_back(specie, level, &info[specie]);
                             }
                             modifySwarm(slots, entry, info, swarm);
-                            modifyTime(slots, entry, info, mod);
+                            modifyTime(slots, entry, info, time);
                             modifyRadar(slots, entry, info, radar);
                             encounters.emplace_back(location, grass, encounter, slots);
                         }
@@ -359,10 +333,10 @@ namespace Encounters8
         }
     }
 
-    std::vector<EncounterArea8> getEncounters(Encounter encounter, int mod, bool radar, bool swarm, const Profile8 *profile)
+    std::vector<EncounterArea8> getEncounters(Encounter encounter, int time, bool radar, bool swarm, const Profile8 *profile)
     {
         const auto *info = PersonalLoader::getPersonal(profile->getVersion());
-        return getBDSP(encounter, mod, radar, swarm, profile->getVersion(), info);
+        return getBDSP(encounter, time, radar, swarm, profile->getVersion(), info);
     }
 
     const StaticTemplate8 *getStaticEncounters(int index, int *size)

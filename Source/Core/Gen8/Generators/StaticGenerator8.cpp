@@ -39,12 +39,12 @@ StaticGenerator8::StaticGenerator8(u32 initialAdvances, u32 maxAdvances, u32 off
 {
 }
 
-std::vector<GeneratorState8> StaticGenerator8::generate(u64 seed0, u64 seed1, const StaticTemplate8 *staticTemplate) const
+std::vector<State8> StaticGenerator8::generate(u64 seed0, u64 seed1, const StaticTemplate8 *staticTemplate) const
 {
     const PersonalInfo *info = staticTemplate->getInfo();
     RNGList<u32, Xorshift, 32, gen> rngList(seed0, seed1, initialAdvances + offset);
 
-    std::vector<GeneratorState8> states;
+    std::vector<State8> states;
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rngList.advanceState())
     {
         rngList.advance(1); // EC call
@@ -151,7 +151,7 @@ std::vector<GeneratorState8> StaticGenerator8::generate(u64 seed0, u64 seed1, co
             nature = rngList.next() % 25;
         }
 
-        GeneratorState8 state(initialAdvances + cnt, pid, shiny, ivs, ability, gender, nature, staticTemplate->getLevel(), info);
+        State8 state(initialAdvances + cnt, pid, shiny, ivs, ability, gender, nature, staticTemplate->getLevel(), info);
         if (filter.compareState(state))
         {
             states.emplace_back(state);
@@ -161,21 +161,21 @@ std::vector<GeneratorState8> StaticGenerator8::generate(u64 seed0, u64 seed1, co
     return states;
 }
 
-std::vector<GeneratorState8> StaticGenerator8::generateRoamer(u64 seed0, u64 seed1, const StaticTemplate8 *staticTemplate) const
+std::vector<State8> StaticGenerator8::generateRoamer(u64 seed0, u64 seed1, const StaticTemplate8 *staticTemplate) const
 {
     // Going to ignore most of the parameters
     // Only roamers are Cresselia/Mesprit which have identical parameters
     u8 gender = staticTemplate->getSpecie() == 488 ? 1 : 2;
 
-    Xorshift rng(seed0, seed1, initialAdvances + offset);
+    Xorshift roamer(seed0, seed1, initialAdvances + offset);
 
-    std::vector<GeneratorState8> states;
+    std::vector<State8> states;
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
     {
-        XoroshiroBDSP gen(rng.next(0x80000000, 0x7fffffff));
+        XoroshiroBDSP rng(roamer.next(0x80000000, 0x7fffffff));
 
-        u32 sidtid = gen.nextUInt(0xffffffff);
-        u32 pid = gen.nextUInt(0xffffffff);
+        u32 sidtid = rng.nextUInt(0xffffffff);
+        u32 pid = rng.nextUInt(0xffffffff);
 
         u16 psv = (pid >> 16) ^ (pid & 0xffff);
         u16 fakeXOR = (sidtid >> 16) ^ (sidtid & 0xffff) ^ psv;
@@ -206,7 +206,7 @@ std::vector<GeneratorState8> StaticGenerator8::generateRoamer(u64 seed0, u64 see
         std::array<u8, 6> ivs = { 255, 255, 255, 255, 255, 255 };
         for (int i = 0; i < 3;)
         {
-            u8 index = gen.nextUInt(6);
+            u8 index = rng.nextUInt(6);
             if (ivs[index] == 255)
             {
                 ivs[index] = 31;
@@ -218,24 +218,24 @@ std::vector<GeneratorState8> StaticGenerator8::generateRoamer(u64 seed0, u64 see
         {
             if (iv == 255)
             {
-                iv = gen.nextUInt(32);
+                iv = rng.nextUInt(32);
             }
         }
 
         // No HA possible for roamers
-        u8 ability = gen.nextUInt(2);
+        u8 ability = rng.nextUInt(2);
 
         u8 nature;
-        if (lead <= Lead::Synchronize)
+        if (lead <= Lead::SynchronizeEnd)
         {
             nature = toInt(lead);
         }
         else
         {
-            nature = gen.nextUInt(25);
+            nature = rng.nextUInt(25);
         }
 
-        GeneratorState8 state(initialAdvances + cnt, pid, shiny, ivs, ability, gender, nature, staticTemplate->getLevel(),
+        State8 state(initialAdvances + cnt, pid, shiny, ivs, ability, gender, nature, staticTemplate->getLevel(),
                               staticTemplate->getInfo());
         if (filter.compareState(state))
         {

@@ -35,7 +35,7 @@ EventGenerator8::EventGenerator8(u32 initialAdvances, u32 maxAdvances, u32 offse
 {
 }
 
-std::vector<GeneratorState8> EventGenerator8::generate(u64 seed0, u64 seed1, const WB8 &wb8)
+std::vector<State8> EventGenerator8::generate(u64 seed0, u64 seed1, const WB8 &wb8)
 {
     if (!wb8.getEgg())
     {
@@ -45,7 +45,7 @@ std::vector<GeneratorState8> EventGenerator8::generate(u64 seed0, u64 seed1, con
     const PersonalInfo *info = wb8.getInfo(version);
     RNGList<u32, Xorshift, 32, gen> rngList(seed0, seed1, initialAdvances + offset);
 
-    std::vector<GeneratorState8> states;
+    std::vector<State8> states;
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rngList.advanceState())
     {
         // Check for rand EC
@@ -148,7 +148,7 @@ std::vector<GeneratorState8> EventGenerator8::generate(u64 seed0, u64 seed1, con
 
         u8 nature = wb8.getNature() != 255 ? wb8.getNature() : rngList.next() % 25;
 
-        GeneratorState8 state(initialAdvances + cnt, pid, shiny, ivs, ability, gender, nature, wb8.getLevel(), info);
+        State8 state(initialAdvances + cnt, pid, shiny, ivs, ability, gender, nature, wb8.getLevel(), info);
         if (filter.compareState(state))
         {
             states.emplace_back(state);

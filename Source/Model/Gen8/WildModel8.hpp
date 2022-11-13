@@ -26,7 +26,7 @@
 /**
  * @brief Provides a table model implementation to show wild encounter information for Gen 8
  */
-class WildModel8 : public TableModel<WildGeneratorState8>
+class WildModel8 : public TableModel<WildState8>
 {
     Q_OBJECT
 public:

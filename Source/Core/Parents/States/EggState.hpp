@@ -25,6 +25,23 @@
 class EggState : public State
 {
 public:
+    /**
+     * @brief Returns the inheritance of the pokemon
+     *
+     * @return Pokemon inheritance
+     */
+    std::array<u8, 6> getInheritance() const
+    {
+        return inheritance;
+    }
+
+    /**
+     * @brief Returns the specified inheritance of the pokemon
+     *
+     * @param index Inheritance index to get
+     *
+     * @return Pokemon inheritance
+     */
     u8 getInheritance(u8 index) const
     {
         return inheritance[index];

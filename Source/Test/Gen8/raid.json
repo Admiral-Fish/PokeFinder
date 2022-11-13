@@ -1,0 +1,1088 @@
+{
+    "generate": [
+        {
+            "name": "Rolling Fields Diglet",
+            "seed": 0,
+            "version": 16777216,
+            "denIndex": 0,
+            "rarity": 0,
+            "raidIndex": 0,
+            "level": 15,
+            "results": [
+                {
+                    "ability": 0,
+                    "abilityIndex": 8,
+                    "advances": 0,
+                    "gender": 1,
+                    "ivs": [
+                        10,
+                        4,
+                        31,
+                        25,
+                        5,
+                        31
+                    ],
+                    "level": 15,
+                    "nature": 15,
+                    "pid": 314025583,
+                    "shiny": 0,
+                    "stats": [
+                        29,
+                        19,
+                        17,
+                        20,
+                        19,
+                        38
+                    ]
+                },
+                {
+                    "ability": 1,
+                    "abilityIndex": 71,
+                    "advances": 1,
+                    "gender": 0,
+                    "ivs": [
+                        31,
+                        26,
+                        16,
+                        6,
+                        10,
+                        3
+                    ],
+                    "level": 15,
+                    "nature": 19,
+                    "pid": 3969527159,
+                    "shiny": 0,
+                    "stats": [
+                        32,
+                        25,
+                        14,
+                        17,
+                        18,
+                        33
+                    ]
+                },
+                {
+                    "ability": 0,
+                    "abilityIndex": 8,
+                    "advances": 2,
+                    "gender": 1,
+                    "ivs": [
+                        1,
+                        31,
+                        9,
+                        3,
+                        23,
+                        22
+                    ],
+                    "level": 15,
+                    "nature": 19,
+                    "pid": 3987939711,
+                    "shiny": 0,
+                    "stats": [
+                        28,
+                        26,
+                        13,
+                        16,
+                        18,
+                        36
+                    ]
+                },
+                {
+                    "ability": 1,
+                    "abilityIndex": 71,
+                    "advances": 3,
+                    "gender": 1,
+                    "ivs": [
+                        9,
+                        2,
+                        5,
+                        26,
+                        19,
+                        31
+                    ],
+                    "level": 15,
+                    "nature": 16,
+                    "pid": 3823583555,
+                    "shiny": 0,
+                    "stats": [
+                        29,
+                        21,
+                        11,
+                        20,
+                        21,
+                        38
+                    ]
+                },
+                {
+                    "ability": 1,
+                    "abilityIndex": 71,
+                    "advances": 4,
+                    "gender": 0,
+                    "ivs": [
+                        24,
+                        17,
+                        29,
+                        31,
+                        19,
+                        4
+                    ],
+                    "level": 15,
+                    "nature": 5,
+                    "pid": 3501113486,
+                    "shiny": 0,
+                    "stats": [
+                        31,
+                        21,
+                        17,
+                        20,
+                        21,
+                        34
+                    ]
+                },
+                {
+                    "ability": 1,
+                    "abilityIndex": 71,
+                    "advances": 5,
+                    "gender": 0,
+                    "ivs": [
+                        11,
+                        15,
+                        25,
+                        22,
+                        6,
+                        31
+                    ],
+                    "level": 15,
+                    "nature": 8,
+                    "pid": 4073369912,
+                    "shiny": 0,
+                    "stats": [
+                        29,
+                        23,
+                        17,
+                        16,
+                        19,
+                        38
+                    ]
+                },
+                {
+                    "ability": 1,
+                    "abilityIndex": 71,
+                    "advances": 6,
+                    "gender": 1,
+                    "ivs": [
+                        29,
+                        18,
+                        31,
+                        30,
+                        19,
+                        29
+                    ],
+                    "level": 15,
+                    "nature": 6,
+                    "pid": 3558342934,
+                    "shiny": 0,
+                    "stats": [
+                        32,
+                        24,
+                        17,
+                        20,
+                        21,
+                        37
+                    ]
+                },
+                {
+                    "ability": 0,
+                    "abilityIndex": 8,
+                    "advances": 7,
+                    "gender": 0,
+                    "ivs": [
+                        31,
+                        12,
+                        6,
+                        3,
+                        0,
+                        12
+                    ],
+                    "level": 15,
+                    "nature": 2,
+                    "pid": 2677953622,
+                    "shiny": 0,
+                    "stats": [
+                        32,
+                        25,
+                        13,
+                        15,
+                        18,
+                        31
+                    ]
+                },
+                {
+                    "ability": 0,
+                    "abilityIndex": 8,
+                    "advances": 8,
+                    "gender": 1,
+                    "ivs": [
+                        0,
+                        22,
+                        30,
+                        31,
+                        30,
+                        6
+                    ],
+                    "level": 15,
+                    "nature": 3,
+                    "pid": 3047946925,
+                    "shiny": 0,
+                    "stats": [
+                        28,
+                        26,
+                        17,
+                        18,
+                        23,
+                        34
+                    ]
+                },
+                {
+                    "ability": 1,
+                    "abilityIndex": 71,
+                    "advances": 9,
+                    "gender": 0,
+                    "ivs": [
+                        14,
+                        10,
+                        16,
+                        31,
+                        10,
+                        17
+                    ],
+                    "level": 15,
+                    "nature": 16,
+                    "pid": 2762685520,
+                    "shiny": 0,
+                    "stats": [
+                        30,
+                        23,
+                        12,
+                        22,
+                        20,
+                        36
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Rolling Fields Mudsdale",
+            "seed": 0,
+            "version": 16777216,
+            "denIndex": 0,
+            "rarity": 0,
+            "raidIndex": 11,
+            "level": 55,
+            "results": [
+                {
+                    "ability": 1,
+                    "abilityIndex": 192,
+                    "advances": 0,
+                    "gender": 0,
+                    "ivs": [
+                        31,
+                        31,
+                        31,
+                        18,
+                        31,
+                        31
+                    ],
+                    "level": 55,
+                    "nature": 14,
+                    "pid": 314025583,
+                    "shiny": 0,
+                    "stats": [
+                        192,
+                        159,
+                        132,
+                        75,
+                        103,
+                        66
+                    ]
+                },
+                {
+                    "ability": 1,
+                    "abilityIndex": 192,
+                    "advances": 1,
+                    "gender": 1,
+                    "ivs": [
+                        31,
+                        31,
+                        31,
+                        31,
+                        4,
+                        8
+                    ],
+                    "level": 55,
+                    "nature": 1,
+                    "pid": 3969527159,
+                    "shiny": 0,
+                    "stats": [
+                        192,
+                        174,
+                        118,
+                        82,
+                        100,
+                        47
+                    ]
+                },
+                {
+                    "ability": 2,
+                    "abilityIndex": 39,
+                    "advances": 2,
+                    "gender": 0,
+                    "ivs": [
+                        20,
+                        31,
+                        5,
+                        31,
+                        31,
+                        31
+                    ],
+                    "level": 55,
+                    "nature": 1,
+                    "pid": 3987939711,
+                    "shiny": 0,
+                    "stats": [
+                        186,
+                        174,
+                        105,
+                        82,
+                        115,
+                        60
+                    ]
+                },
+                {
+                    "ability": 0,
+                    "abilityIndex": 20,
+                    "advances": 3,
+                    "gender": 0,
+                    "ivs": [
+                        15,
+                        31,
+                        31,
+                        31,
+                        20,
+                        31
+                    ],
+                    "level": 55,
+                    "nature": 23,
+                    "pid": 3823583555,
+                    "shiny": 0,
+                    "stats": [
+                        183,
+                        159,
+                        132,
+                        73,
+                        119,
+                        60
+                    ]
+                },
+                {
+                    "ability": 2,
+                    "abilityIndex": 39,
+                    "advances": 4,
+                    "gender": 0,
+                    "ivs": [
+                        31,
+                        31,
+                        19,
+                        31,
+                        4,
+                        31
+                    ],
+                    "level": 55,
+                    "nature": 22,
+                    "pid": 3501113486,
+                    "shiny": 0,
+                    "stats": [
+                        192,
+                        159,
+                        125,
+                        82,
+                        110,
+                        54
+                    ]
+                },
+                {
+                    "ability": 0,
+                    "abilityIndex": 20,
+                    "advances": 5,
+                    "gender": 1,
+                    "ivs": [
+                        31,
+                        31,
+                        22,
+                        31,
+                        15,
+                        31
+                    ],
+                    "level": 55,
+                    "nature": 4,
+                    "pid": 4073369912,
+                    "shiny": 0,
+                    "stats": [
+                        192,
+                        174,
+                        127,
+                        82,
+                        95,
+                        60
+                    ]
+                },
+                {
+                    "ability": 0,
+                    "abilityIndex": 20,
+                    "advances": 6,
+                    "gender": 0,
+                    "ivs": [
+                        5,
+                        31,
+                        31,
+                        31,
+                        3,
+                        31
+                    ],
+                    "level": 55,
+                    "nature": 8,
+                    "pid": 3558342934,
+                    "shiny": 0,
+                    "stats": [
+                        177,
+                        159,
+                        145,
+                        73,
+                        100,
+                        60
+                    ]
+                },
+                {
+                    "ability": 2,
+                    "abilityIndex": 39,
+                    "advances": 7,
+                    "gender": 1,
+                    "ivs": [
+                        31,
+                        31,
+                        2,
+                        31,
+                        31,
+                        7
+                    ],
+                    "level": 55,
+                    "nature": 7,
+                    "pid": 2677953622,
+                    "shiny": 0,
+                    "stats": [
+                        192,
+                        159,
+                        127,
+                        82,
+                        115,
+                        42
+                    ]
+                },
+                {
+                    "ability": 2,
+                    "abilityIndex": 39,
+                    "advances": 8,
+                    "gender": 0,
+                    "ivs": [
+                        31,
+                        1,
+                        3,
+                        31,
+                        31,
+                        31
+                    ],
+                    "level": 55,
+                    "nature": 19,
+                    "pid": 3047946925,
+                    "shiny": 0,
+                    "stats": [
+                        192,
+                        143,
+                        116,
+                        90,
+                        103,
+                        60
+                    ]
+                },
+                {
+                    "ability": 0,
+                    "abilityIndex": 20,
+                    "advances": 9,
+                    "gender": 0,
+                    "ivs": [
+                        31,
+                        31,
+                        31,
+                        31,
+                        3,
+                        29
+                    ],
+                    "level": 55,
+                    "nature": 9,
+                    "pid": 2762685520,
+                    "shiny": 0,
+                    "stats": [
+                        192,
+                        159,
+                        145,
+                        82,
+                        90,
+                        59
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "North Lake Miloch Toxtricity Amped",
+            "seed": 0,
+            "version": 16777216,
+            "denIndex": 40,
+            "rarity": 1,
+            "raidIndex": 8,
+            "level": 45,
+            "results": [
+                {
+                    "ability": 1,
+                    "abilityIndex": 57,
+                    "advances": 0,
+                    "gender": 0,
+                    "ivs": [
+                        31,
+                        31,
+                        31,
+                        18,
+                        31,
+                        31
+                    ],
+                    "level": 45,
+                    "nature": 6,
+                    "pid": 314025583,
+                    "shiny": 0,
+                    "stats": [
+                        136,
+                        107,
+                        81,
+                        115,
+                        81,
+                        86
+                    ]
+                },
+                {
+                    "ability": 1,
+                    "abilityIndex": 57,
+                    "advances": 1,
+                    "gender": 1,
+                    "ivs": [
+                        31,
+                        31,
+                        31,
+                        31,
+                        4,
+                        8
+                    ],
+                    "level": 45,
+                    "nature": 4,
+                    "pid": 3969527159,
+                    "shiny": 0,
+                    "stats": [
+                        136,
+                        117,
+                        81,
+                        121,
+                        62,
+                        76
+                    ]
+                },
+                {
+                    "ability": 2,
+                    "abilityIndex": 101,
+                    "advances": 2,
+                    "gender": 0,
+                    "ivs": [
+                        20,
+                        31,
+                        5,
+                        31,
+                        31,
+                        31
+                    ],
+                    "level": 45,
+                    "nature": 4,
+                    "pid": 3987939711,
+                    "shiny": 0,
+                    "stats": [
+                        131,
+                        117,
+                        70,
+                        121,
+                        72,
+                        86
+                    ]
+                },
+                {
+                    "ability": 0,
+                    "abilityIndex": 244,
+                    "advances": 3,
+                    "gender": 0,
+                    "ivs": [
+                        15,
+                        31,
+                        31,
+                        31,
+                        20,
+                        31
+                    ],
+                    "level": 45,
+                    "nature": 11,
+                    "pid": 3823583555,
+                    "shiny": 0,
+                    "stats": [
+                        129,
+                        107,
+                        72,
+                        121,
+                        77,
+                        94
+                    ]
+                },
+                {
+                    "ability": 2,
+                    "abilityIndex": 101,
+                    "advances": 4,
+                    "gender": 0,
+                    "ivs": [
+                        31,
+                        31,
+                        19,
+                        31,
+                        4,
+                        31
+                    ],
+                    "level": 45,
+                    "nature": 22,
+                    "pid": 3501113486,
+                    "shiny": 0,
+                    "stats": [
+                        136,
+                        107,
+                        76,
+                        121,
+                        75,
+                        77
+                    ]
+                },
+                {
+                    "ability": 0,
+                    "abilityIndex": 244,
+                    "advances": 5,
+                    "gender": 1,
+                    "ivs": [
+                        31,
+                        31,
+                        22,
+                        31,
+                        15,
+                        31
+                    ],
+                    "level": 45,
+                    "nature": 14,
+                    "pid": 4073369912,
+                    "shiny": 0,
+                    "stats": [
+                        136,
+                        107,
+                        77,
+                        121,
+                        66,
+                        94
+                    ]
+                },
+                {
+                    "ability": 0,
+                    "abilityIndex": 244,
+                    "advances": 6,
+                    "gender": 0,
+                    "ivs": [
+                        5,
+                        31,
+                        31,
+                        31,
+                        3,
+                        31
+                    ],
+                    "level": 45,
+                    "nature": 13,
+                    "pid": 3558342934,
+                    "shiny": 0,
+                    "stats": [
+                        124,
+                        107,
+                        81,
+                        108,
+                        69,
+                        94
+                    ]
+                },
+                {
+                    "ability": 2,
+                    "abilityIndex": 101,
+                    "advances": 7,
+                    "gender": 1,
+                    "ivs": [
+                        31,
+                        31,
+                        2,
+                        31,
+                        31,
+                        7
+                    ],
+                    "level": 45,
+                    "nature": 11,
+                    "pid": 2677953622,
+                    "shiny": 0,
+                    "stats": [
+                        136,
+                        107,
+                        61,
+                        121,
+                        81,
+                        82
+                    ]
+                },
+                {
+                    "ability": 2,
+                    "abilityIndex": 101,
+                    "advances": 8,
+                    "gender": 0,
+                    "ivs": [
+                        31,
+                        1,
+                        3,
+                        31,
+                        31,
+                        31
+                    ],
+                    "level": 45,
+                    "nature": 8,
+                    "pid": 3047946925,
+                    "shiny": 0,
+                    "stats": [
+                        136,
+                        93,
+                        75,
+                        108,
+                        81,
+                        86
+                    ]
+                },
+                {
+                    "ability": 0,
+                    "abilityIndex": 244,
+                    "advances": 9,
+                    "gender": 0,
+                    "ivs": [
+                        31,
+                        31,
+                        31,
+                        31,
+                        3,
+                        29
+                    ],
+                    "level": 45,
+                    "nature": 6,
+                    "pid": 2762685520,
+                    "shiny": 0,
+                    "stats": [
+                        136,
+                        107,
+                        81,
+                        121,
+                        69,
+                        85
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Crown Tundra Toxtricity Low Key",
+            "seed": 0,
+            "version": 33554432,
+            "denIndex": 200,
+            "rarity": 1,
+            "raidIndex": 7,
+            "level": 45,
+            "results": [
+                {
+                    "ability": 2,
+                    "abilityIndex": 101,
+                    "advances": 0,
+                    "gender": 1,
+                    "ivs": [
+                        22,
+                        31,
+                        31,
+                        31,
+                        31,
+                        31
+                    ],
+                    "level": 45,
+                    "nature": 17,
+                    "pid": 314025583,
+                    "shiny": 0,
+                    "stats": [
+                        132,
+                        107,
+                        81,
+                        133,
+                        81,
+                        77
+                    ]
+                },
+                {
+                    "ability": 2,
+                    "abilityIndex": 101,
+                    "advances": 1,
+                    "gender": 0,
+                    "ivs": [
+                        31,
+                        31,
+                        31,
+                        31,
+                        31,
+                        8
+                    ],
+                    "level": 45,
+                    "nature": 10,
+                    "pid": 3969527159,
+                    "shiny": 0,
+                    "stats": [
+                        136,
+                        96,
+                        81,
+                        121,
+                        81,
+                        83
+                    ]
+                },
+                {
+                    "ability": 2,
+                    "abilityIndex": 101,
+                    "advances": 2,
+                    "gender": 0,
+                    "ivs": [
+                        1,
+                        31,
+                        31,
+                        31,
+                        31,
+                        31
+                    ],
+                    "level": 45,
+                    "nature": 7,
+                    "pid": 3987939711,
+                    "shiny": 0,
+                    "stats": [
+                        122,
+                        107,
+                        89,
+                        121,
+                        81,
+                        77
+                    ]
+                },
+                {
+                    "ability": 2,
+                    "abilityIndex": 101,
+                    "advances": 3,
+                    "gender": 0,
+                    "ivs": [
+                        16,
+                        31,
+                        31,
+                        31,
+                        31,
+                        31
+                    ],
+                    "level": 45,
+                    "nature": 17,
+                    "pid": 3823583555,
+                    "shiny": 0,
+                    "stats": [
+                        129,
+                        107,
+                        81,
+                        133,
+                        81,
+                        77
+                    ]
+                },
+                {
+                    "ability": 2,
+                    "abilityIndex": 101,
+                    "advances": 4,
+                    "gender": 0,
+                    "ivs": [
+                        31,
+                        31,
+                        31,
+                        31,
+                        31,
+                        31
+                    ],
+                    "level": 45,
+                    "nature": 15,
+                    "pid": 3501113486,
+                    "shiny": 0,
+                    "stats": [
+                        136,
+                        96,
+                        81,
+                        133,
+                        81,
+                        86
+                    ]
+                },
+                {
+                    "ability": 2,
+                    "abilityIndex": 101,
+                    "advances": 5,
+                    "gender": 1,
+                    "ivs": [
+                        31,
+                        31,
+                        4,
+                        31,
+                        31,
+                        31
+                    ],
+                    "level": 45,
+                    "nature": 12,
+                    "pid": 4073369912,
+                    "shiny": 0,
+                    "stats": [
+                        136,
+                        107,
+                        69,
+                        121,
+                        81,
+                        86
+                    ]
+                },
+                {
+                    "ability": 2,
+                    "abilityIndex": 101,
+                    "advances": 6,
+                    "gender": 0,
+                    "ivs": [
+                        31,
+                        31,
+                        31,
+                        31,
+                        29,
+                        31
+                    ],
+                    "level": 45,
+                    "nature": 18,
+                    "pid": 3558342934,
+                    "shiny": 0,
+                    "stats": [
+                        136,
+                        107,
+                        81,
+                        121,
+                        81,
+                        86
+                    ]
+                },
+                {
+                    "ability": 2,
+                    "abilityIndex": 101,
+                    "advances": 7,
+                    "gender": 0,
+                    "ivs": [
+                        31,
+                        31,
+                        31,
+                        31,
+                        31,
+                        7
+                    ],
+                    "level": 45,
+                    "nature": 10,
+                    "pid": 2677953622,
+                    "shiny": 0,
+                    "stats": [
+                        136,
+                        96,
+                        81,
+                        121,
+                        81,
+                        82
+                    ]
+                },
+                {
+                    "ability": 2,
+                    "abilityIndex": 101,
+                    "advances": 8,
+                    "gender": 0,
+                    "ivs": [
+                        31,
+                        31,
+                        3,
+                        31,
+                        31,
+                        31
+                    ],
+                    "level": 45,
+                    "nature": 10,
+                    "pid": 3047946925,
+                    "shiny": 0,
+                    "stats": [
+                        136,
+                        96,
+                        69,
+                        121,
+                        81,
+                        94
+                    ]
+                },
+                {
+                    "ability": 2,
+                    "abilityIndex": 101,
+                    "advances": 9,
+                    "gender": 0,
+                    "ivs": [
+                        31,
+                        31,
+                        31,
+                        31,
+                        16,
+                        31
+                    ],
+                    "level": 45,
+                    "nature": 23,
+                    "pid": 2762685520,
+                    "shiny": 0,
+                    "stats": [
+                        136,
+                        107,
+                        81,
+                        108,
+                        82,
+                        86
+                    ]
+                }
+            ]
+        }
+    ]
+}

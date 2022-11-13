@@ -35,9 +35,12 @@
 #include <Form/Gen8/Event8.hpp>
 #include <Form/Gen8/IDs8.hpp>
 #include <Form/Gen8/Profile/ProfileManager8.hpp>
+#include <Form/Gen8/Raids.hpp>
 #include <Form/Gen8/Static8.hpp>
+#include <Form/Gen8/Tools/DenMap.hpp>
 #include <Form/Gen8/Underground.hpp>
 #include <Form/Gen8/Wild8.hpp>
+#include <Form/Util/EncounterLookup.hpp>
 #include <Form/Util/IVCalculator.hpp>
 #include <Form/Util/Researcher.hpp>
 #include <Form/Util/Settings.hpp>
@@ -69,9 +72,6 @@
 //#include <Forms/Gen5/Profile/ProfileCalibrator5.hpp>
 //#include <Forms/Gen5/Profile/ProfileManager5.hpp>
 //#include <Forms/Gen5/Static5.hpp>
-//#include <Forms/Gen8/DenMap.hpp>
-//#include <Forms/Gen8/Raids.hpp>
-//#include <Forms/Util/EncounterLookup.hpp>
 //#include <Forms/Util/IVtoPID.hpp>
 
 MainWindow::MainWindow(bool profile, QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow)
@@ -110,19 +110,19 @@ MainWindow::MainWindow(bool profile, QWidget *parent) : QMainWindow(parent), ui(
     // connect(ui->actionProfileCalibrator, &QAction::triggered, this, &MainWindow::openProfileCalibrator);
     // connect(ui->actionProfileManager5, &QAction::triggered, this, &MainWindow::openProfileManager5);
 
+    connect(ui->actionDownloadEventData, &QAction::triggered, this, &MainWindow::downloadEventData);
     connect(ui->pushButtonEgg8, &QPushButton::clicked, this, &MainWindow::openEgg8);
     connect(ui->pushButtonEvent8, &QPushButton::clicked, this, &MainWindow::openEvent8);
     connect(ui->pushButtonIDs8, &QPushButton::clicked, this, &MainWindow::openIDs8);
     connect(ui->pushButtonStatic8, &QPushButton::clicked, this, &MainWindow::openStatic8);
     connect(ui->pushButtonWild8, &QPushButton::clicked, this, &MainWindow::openWild8);
-    // connect(ui->pushButtonRaid, &QPushButton::clicked, this, &MainWindow::openRaids);
     connect(ui->pushButtonUnderground, &QPushButton::clicked, this, &MainWindow::openUnderground);
-    // connect(ui->actionDenMap, &QAction::triggered, this, &MainWindow::openDenMap);
-    // connect(ui->actionDownloadEventData, &QAction::triggered, this, &MainWindow::downloadEventData);
+    connect(ui->pushButtonRaid, &QPushButton::clicked, this, &MainWindow::openRaids);
+    connect(ui->actionDenMap, &QAction::triggered, this, &MainWindow::openDenMap);
     connect(ui->actionProfileManager8, &QAction::triggered, this, &MainWindow::openProfileManager8);
 
     connect(ui->actionAbout, &QAction::triggered, this, &MainWindow::openAbout);
-    // connect(ui->actionEncounterLookup, &QAction::triggered, this, &MainWindow::openEncounterLookup);
+    connect(ui->actionEncounterLookup, &QAction::triggered, this, &MainWindow::openEncounterLookup);
     connect(ui->actionIVCalculator, &QAction::triggered, this, &MainWindow::openIVCalculator);
     connect(ui->actionResearcher, &QAction::triggered, this, &MainWindow::openResearcher);
     connect(ui->actionSettings, &QAction::triggered, this, &MainWindow::openSettings);
@@ -173,7 +173,7 @@ MainWindow::~MainWindow()
     delete egg8;
     delete event8;
     delete ids8;
-    // delete raids;
+    delete raids;
     delete static8;
     delete wild8;
     delete underground;
@@ -283,12 +283,6 @@ void MainWindow::openIVtoPID()
 {
     auto *ivToPID = new IVtoPID();
     ivToPID->show();
-}
-
-void MainWindow::openJirachiPattern()
-{
-    auto *jirachi = new JirachiPattern();
-    jirachi->show();
 }
 
 void MainWindow::openPIDtoIV()
@@ -495,6 +489,82 @@ void MainWindow::openProfileManager5()
     manager->show();
 }*/
 
+void MainWindow::downloadEventData()
+{
+    auto fileResponse
+        = downloadFile("https://raw.githubusercontent.com/Admiral-Fish/RaidFinder/master/Resources/Encounters/Event/files.txt");
+    if (fileResponse.isEmpty())
+    {
+        QMessageBox msg(QMessageBox::Critical, tr("Download failed"),
+                        tr("Make sure you are connected to the internet and have OpenSSL setup"));
+        msg.exec();
+        return;
+    }
+
+    QStringList infos = QString(fileResponse).split('\n');
+    QStringList files;
+    QStringList entries;
+    for (const QString &info : infos)
+    {
+        if (info.isEmpty())
+        {
+            continue;
+        }
+
+        QStringList data = info.split(',');
+        QString file = data.at(0);
+        u16 specie = data.at(1).toUShort();
+
+        files.prepend(file);
+
+        file = file.left(file.indexOf('_'));
+        file.insert(2, '-');
+        file.insert(5, '-');
+
+        entries.prepend(QString("%1: %2").arg(file, QString::fromStdString(*Translator::getSpecie(specie))));
+    }
+
+    bool flag;
+    QString item = QInputDialog::getItem(this, tr("Download Event Data"), tr("Event"), entries, 0, false, &flag,
+                                         Qt::WindowTitleHint | Qt::WindowCloseButtonHint);
+    if (!flag)
+    {
+        return;
+    }
+
+    int index = entries.indexOf(item);
+    auto eventResponse
+        = downloadFile("https://raw.githubusercontent.com/Admiral-Fish/RaidFinder/master/Resources/Encounters/Event/" + files.at(index));
+    if (eventResponse.isEmpty())
+    {
+        QMessageBox msg(QMessageBox::Critical, tr("Download failed"),
+                        tr("Make sure you are connected to the internet and have OpenSSL setup"));
+        msg.exec();
+        return;
+    }
+
+    QFile f(QApplication::applicationDirPath() + "/nests_event.json");
+    if (f.open(QIODevice::WriteOnly))
+    {
+        f.write(qUncompress(eventResponse));
+        f.close();
+
+        QMessageBox msg(QMessageBox::Question, tr("Download finished"), tr("Restart to see event data. Restart now?"),
+                        QMessageBox::Yes | QMessageBox::No);
+        if (msg.exec() == QMessageBox::Yes)
+        {
+            QProcess::startDetached(QApplication::applicationFilePath());
+            QApplication::quit();
+        }
+    }
+}
+
+void MainWindow::openDenMap()
+{
+    auto *map = new DenMap();
+    map->show();
+}
+
 void MainWindow::openEgg8()
 {
     if (!egg8)
@@ -524,6 +594,23 @@ void MainWindow::openIDs8()
     ids8->show();
 }
 
+void MainWindow::openProfileManager8()
+{
+    auto *manager = new ProfileManager8();
+    connect(manager, &ProfileManager8::profilesModified, this, &MainWindow::updateProfiles);
+    manager->show();
+}
+
+void MainWindow::openRaids()
+{
+    if (!raids)
+    {
+        raids = new Raids();
+        connect(raids, &Raids::profilesModified, this, &MainWindow::updateProfiles);
+    }
+    raids->show();
+}
+
 void MainWindow::openStatic8()
 {
     if (!static8)
@@ -533,26 +620,6 @@ void MainWindow::openStatic8()
     }
     static8->show();
 }
-
-void MainWindow::openWild8()
-{
-    if (!wild8)
-    {
-        wild8 = new Wild8();
-        connect(wild8, &Wild8::profilesModified, this, &MainWindow::updateProfiles);
-    }
-    wild8->show();
-}
-
-/*void MainWindow::openRaids()
-{
-    if (!raids)
-    {
-        raids = new Raids();
-        connect(raids, &Raids::updateProfiles, this, &MainWindow::updateProfiles);
-    }
-    raids->show();
-}*/
 
 void MainWindow::openUnderground()
 {
@@ -564,82 +631,14 @@ void MainWindow::openUnderground()
     underground->show();
 }
 
-/*void MainWindow::openDenMap()
+void MainWindow::openWild8()
 {
-    auto *map = new DenMap();
-    map->show();
-}
-
-void MainWindow::downloadEventData()
-{
-    auto fileResponse
-        = downloadFile("https://raw.githubusercontent.com/Admiral-Fish/RaidFinder/master/Resources/Encounters/Event/files.txt");
-    if (fileResponse.isEmpty())
+    if (!wild8)
     {
-        QMessageBox msg(QMessageBox::Critical, tr("Download failed"),
-                          tr("Make sure you are connected to the internet and have OpenSSL setup"));
-        msg.exec();
-        return;
+        wild8 = new Wild8();
+        connect(wild8, &Wild8::profilesModified, this, &MainWindow::updateProfiles);
     }
-
-    QStringList infos = QString(fileResponse).split('\n');
-    QStringList files;
-    QStringList entries;
-    for (const QString &info : infos)
-    {
-        QStringList data = info.split(',');
-        QString file = data.at(0);
-        u16 specie = data.at(1).toUShort();
-
-        files.prepend(file);
-
-        file = file.left(file.indexOf('_'));
-        file.insert(2, '-');
-        file.insert(5, '-');
-
-        entries.prepend(QString("%1: %2").arg(file, QString::fromStdString(*Translator::getSpecies(specie))));
-    }
-
-    bool flag;
-    QString item = QInputDialog::getItem(this, tr("Download Event Data"), tr("Event"), entries, 0, false, &flag,
-                                         Qt::WindowTitleHint | Qt::WindowCloseButtonHint);
-    if (!flag)
-    {
-        return;
-    }
-
-    int index = entries.indexOf(item);
-    auto eventResponse
-        = downloadFile("https://raw.githubusercontent.com/Admiral-Fish/RaidFinder/master/Resources/Encounters/Event/" +
-files.at(index)); if (eventResponse.isEmpty())
-    {
-        QMessageBox msg(QMessageBox::Critical, tr("Download failed"),
-                          tr("Make sure you are connected to the internet and have OpenSSL setup"));
-        msg.exec();
-        return;
-    }
-
-    QFile f(QApplication::applicationDirPath() + "/nests_event.json");
-    if (f.open(QIODevice::WriteOnly))
-    {
-        f.write(qUncompress(eventResponse));
-        f.close();
-
-        QMessageBox msg(QMessageBox::Question, tr("Download finished"), tr("Restart to see event data. Restart now?"),
-                            QMessageBox::Yes | QMessageBox::No);
-        if (msg.exec() == QMessageBox::Yes)
-        {
-            QProcess::startDetached(QApplication::applicationFilePath());
-            QApplication::quit();
-        }
-    }
-}*/
-
-void MainWindow::openProfileManager8()
-{
-    auto *manager = new ProfileManager8();
-    connect(manager, &ProfileManager8::profilesModified, this, &MainWindow::updateProfiles);
-    manager->show();
+    wild8->show();
 }
 
 void MainWindow::openAbout() const
@@ -656,17 +655,17 @@ void MainWindow::openAbout() const
     delete copy;
 }
 
+void MainWindow::openEncounterLookup() const
+{
+    auto *lookup = new EncounterLookup();
+    lookup->show();
+}
+
 void MainWindow::openIVCalculator() const
 {
     auto *iv = new IVCalculator();
     iv->show();
 }
-
-/*void MainWindow::openEncounterLookup()
-{
-    auto *lookup = new EncounterLookup();
-    lookup->show();
-}*/
 
 void MainWindow::openResearcher() const
 {
@@ -757,13 +756,13 @@ void MainWindow::updateProfiles(int num)
         {
             event8->updateProfiles();
         }
-        /*if (raids)
+        if (raids)
         {
             raids->updateProfiles();
         }
         if (egg8)
         {
             egg8->updateProfiles();
-        }*/
+        }
     }
 }

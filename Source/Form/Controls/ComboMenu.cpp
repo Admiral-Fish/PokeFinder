@@ -26,6 +26,7 @@ ComboMenu::ComboMenu(QWidget *parent) : QToolButton(parent), actionGroup(new QAc
     QToolButton::setMenu(topMenu);
 
     setPopupMode(QToolButton::InstantPopup);
+    setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
 
     connect(actionGroup, &QActionGroup::triggered, this, &ComboMenu::actionChanged);
 }

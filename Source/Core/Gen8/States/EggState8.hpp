@@ -31,7 +31,7 @@ class EggState8 : public EggGeneratorState
 {
 public:
     /**
-     * @brief Construct a new GeneratorState8 object
+     * @brief Construct a new EggState8 object
      *
      * @param advances State advances
      * @param gender Pokemon gender

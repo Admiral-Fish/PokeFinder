@@ -26,8 +26,8 @@
 #include <Core/Parents/PersonalLoader.hpp>
 #include <Core/Parents/Slot.hpp>
 #include <Core/Resources/Encounters.hpp>
+#include <Core/Util/Utilities.hpp>
 #include <algorithm>
-#include <bzlib.h>
 #include <cstring>
 #include <iterator>
 
@@ -165,26 +165,6 @@ namespace Encounters4
     namespace
     {
         /**
-         * @brief Decompress provided data
-         *
-         * @param compressedData Compressed data
-         * @param compressedSize Size of compressed data
-         * @param size Size of uncompressed data
-         *
-         * @return Uncompressed data
-         */
-        u8 *decompress(const u8 *compressedData, size_t compressedSize, u32 &size)
-        {
-            size = *reinterpret_cast<const u16 *>(compressedData);
-            u8 *data = new u8[size];
-
-            BZ2_bzBuffToBuffDecompress(reinterpret_cast<char *>(data), &size,
-                                       reinterpret_cast<char *>(const_cast<u8 *>(compressedData + sizeof(u16))), compressedSize, 0, 0);
-
-            return data;
-        }
-
-        /**
          * @brief Modifies encounter slots based on the radio station
          *
          * @param pokemon Vector of original encounters
@@ -281,11 +261,10 @@ namespace Encounters4
             const u8 *compressedData = hgss_safari.data();
             size_t compressedSize = hgss_safari.size();
 
-            u8 *data;
             u32 size;
+            u8 *data = Utilities::decompress(compressedData, compressedSize, size);
 
             std::vector<EncounterArea4> encounters;
-            data = decompress(compressedData, compressedSize, size);
             for (size_t offset = 0; offset < size;)
             {
                 const u8 *entry = data + offset;
@@ -450,7 +429,7 @@ namespace Encounters4
                 compressedData = hgss_bug.data();
                 compressedSize = hgss_bug.size();
 
-                data = decompress(compressedData, compressedSize, size);
+                data = Utilities::decompress(compressedData, compressedSize, size);
                 size = dex ? size : 41;
                 for (size_t offset = dex ? 41 : 0; offset < size; offset += 41)
                 {
@@ -483,7 +462,7 @@ namespace Encounters4
                     compressedSize = ss_headbutt.size();
                 }
 
-                data = decompress(compressedData, compressedSize, size);
+                data = Utilities::decompress(compressedData, compressedSize, size);
                 for (size_t offset = 0; offset < size;)
                 {
                     const u8 *entry = data + offset;
@@ -522,7 +501,7 @@ namespace Encounters4
                     compressedSize = soulsilver.size();
                 }
 
-                data = decompress(compressedData, compressedSize, size);
+                data = Utilities::decompress(compressedData, compressedSize, size);
                 for (size_t offset = 0; offset < size; offset += 195)
                 {
                     const u8 *entry = data + offset;
@@ -794,8 +773,6 @@ namespace Encounters4
         {
             const u8 *compressedData;
             size_t compressedSize;
-            u8 *data;
-            u32 size;
 
             if (version == Game::Diamond)
             {
@@ -813,7 +790,9 @@ namespace Encounters4
                 compressedSize = platinum.size();
             }
 
-            data = decompress(compressedData, compressedSize, size);
+            u32 size;
+            u8 *data = Utilities::decompress(compressedData, compressedSize, size);
+
             std::vector<EncounterArea4> encounters;
             for (size_t offset = 0; offset < size; offset += 163)
             {

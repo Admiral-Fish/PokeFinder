@@ -23,7 +23,7 @@
 
 constexpr int order[6] = { 0, 1, 2, 5, 3, 4 };
 
-WildGeneratorState8::WildGeneratorState8(u32 advances, u8 encounterSlot, u16 specie, u8 level, u32 pid, u8 shiny,
+WildState8::WildState8(u32 advances, u8 encounterSlot, u16 specie, u8 level, u32 pid, u8 shiny,
                                          const std::array<u8, 6> &ivs, u8 ability, u8 gender, u8 nature, u16 item,
                                          const PersonalInfo *info) :
     WildGeneratorState(advances)

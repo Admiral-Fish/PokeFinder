@@ -27,11 +27,11 @@ class PersonalInfo;
 /**
  * @brief State class for Gen8 wild generator encounters
  */
-class WildGeneratorState8 : public WildGeneratorState
+class WildState8 : public WildGeneratorState
 {
 public:
     /**
-     * @brief Construct a new WildGeneratorState8 object
+     * @brief Construct a new WildState8 object
      *
      * @param advances State advances
      * @param encounterSlot Pokemon encounter slot
@@ -46,8 +46,8 @@ public:
      * @param item Pokemon item
      * @param info Pokemon personal information
      */
-    WildGeneratorState8(u32 advances, u8 encounterSlot, u16 specie, u8 level, u32 pid, u8 shiny, const std::array<u8, 6> &ivs, u8 ability,
-                        u8 gender, u8 nature, u16 item, const PersonalInfo *info);
+    WildState8(u32 advances, u8 encounterSlot, u16 specie, u8 level, u32 pid, u8 shiny, const std::array<u8, 6> &ivs, u8 ability, u8 gender,
+               u8 nature, u16 item, const PersonalInfo *info);
 };
 
 #endif // WILDSTATE8_HPP

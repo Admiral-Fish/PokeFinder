@@ -7,7 +7,12 @@
     <file alias="id4.json">Gen4/id4.json</file>
     <file alias="static4.json">Gen4/static4.json</file>
     <file alias="wild4.json">Gen4/wild4.json</file>
+    <file alias="egg8.json">Gen8/egg8.json</file>
+    <file alias="event8.json">Gen8/event8.json</file>
     <file alias="id8.json">Gen8/id8.json</file>
+    <file alias="raid.json">Gen8/raid.json</file>
+    <file alias="static8.json">Gen8/static8.json</file>
+    <file alias="wild8.json">Gen8/wild8.json</file>
     <file alias="lcrng.json">RNG/lcrng.json</file>
     <file alias="lcrngreverse.json">RNG/lcrngreverse.json</file>
     <file alias="lcrng64.json">RNG/lcrng64.json</file>
@@ -15,6 +20,8 @@
     <file alias="sfmt.json">RNG/sfmt.json</file>
     <file alias="sha1.json">RNG/sha1.json</file>
     <file alias="tinymt.json">RNG/tinymt.json</file>
+    <file alias="xoroshiro.json">RNG/xoroshiro.json</file>
+    <file alias="xorshift.json">RNG/xorshift.json</file>
     <file alias="datetime.json">Util/datetime.json</file>
     <file alias="encounterslot.json">Util/encounterslot.json</file>
     <file alias="ivchecker.json">Util/ivchecker.json</file>

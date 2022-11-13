@@ -18,7 +18,7 @@
     <widget class="QGroupBox" name="groupBoxFilters">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-       <horstretch>3</horstretch>
+       <horstretch>1</horstretch>
        <verstretch>0</verstretch>
       </sizepolicy>
      </property>
@@ -34,12 +34,6 @@
    </item>
    <item row="1" column="0">
     <widget class="QGroupBox" name="groupBoxRNGInfo">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-       <horstretch>1</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
      <property name="title">
       <string>RNG Info</string>
      </property>
@@ -106,11 +100,7 @@
        </widget>
       </item>
       <item row="0" column="1">
-       <widget class="TextBox" name="textBoxSeed0">
-        <property name="cursorPosition">
-         <number>0</number>
-        </property>
-       </widget>
+       <widget class="TextBox" name="textBoxSeed0"/>
       </item>
       <item row="2" column="0">
        <widget class="QLabel" name="labelCompatibility">
@@ -153,9 +143,6 @@
    </item>
    <item row="2" column="0" colspan="3">
     <widget class="TableView" name="tableView">
-     <property name="contextMenuPolicy">
-      <enum>Qt::CustomContextMenu</enum>
-     </property>
      <attribute name="verticalHeaderVisible">
       <bool>false</bool>
      </attribute>
@@ -163,12 +150,6 @@
    </item>
    <item row="1" column="1">
     <widget class="QGroupBox" name="groupBoxSettings">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-       <horstretch>2</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
      <property name="title">
       <string>Settings</string>
      </property>
@@ -187,12 +168,6 @@
      <layout class="QGridLayout" name="gridLayout_4">
       <item row="0" column="0">
        <widget class="QLabel" name="labelProfile">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
         <property name="text">
          <string>Profile</string>
         </property>
@@ -209,11 +184,7 @@
        </widget>
       </item>
       <item row="0" column="3">
-       <widget class="QLabel" name="labelProfileTIDValue">
-        <property name="text">
-         <string notr="true">12345</string>
-        </property>
-       </widget>
+       <widget class="QLabel" name="labelProfileTIDValue"/>
       </item>
       <item row="0" column="4" rowspan="2">
        <widget class="Line" name="line_4">
@@ -230,11 +201,7 @@
        </widget>
       </item>
       <item row="0" column="6">
-       <widget class="QLabel" name="labelProfileGameValue">
-        <property name="text">
-         <string>Brilliant Diamond</string>
-        </property>
-       </widget>
+       <widget class="QLabel" name="labelProfileGameValue"/>
       </item>
       <item row="0" column="7" rowspan="2">
        <widget class="Line" name="line_5">
@@ -251,11 +218,7 @@
        </widget>
       </item>
       <item row="0" column="9">
-       <widget class="QLabel" name="labelProfileOvalCharmValue">
-        <property name="text">
-         <string>No</string>
-        </property>
-       </widget>
+       <widget class="QLabel" name="labelProfileOvalCharmValue"/>
       </item>
       <item row="1" column="1">
        <widget class="QPushButton" name="pushButtonProfileManager">
@@ -272,11 +235,7 @@
        </widget>
       </item>
       <item row="1" column="3">
-       <widget class="QLabel" name="labelProfileSIDValue">
-        <property name="text">
-         <string notr="true">54321</string>
-        </property>
-       </widget>
+       <widget class="QLabel" name="labelProfileSIDValue"/>
       </item>
       <item row="1" column="5">
        <widget class="QLabel" name="labelProfileShinyCharm">
@@ -286,11 +245,7 @@
        </widget>
       </item>
       <item row="1" column="6">
-       <widget class="QLabel" name="labelProfileShinyCharmValue">
-        <property name="text">
-         <string>No</string>
-        </property>
-       </widget>
+       <widget class="QLabel" name="labelProfileShinyCharmValue"/>
       </item>
      </layout>
     </widget>
@@ -298,11 +253,6 @@
   </layout>
  </widget>
  <customwidgets>
-  <customwidget>
-   <class>ComboBox</class>
-   <extends>QComboBox</extends>
-   <header>Form/Controls/ComboBox.hpp</header>
-  </customwidget>
   <customwidget>
    <class>TextBox</class>
    <extends>QLineEdit</extends>
@@ -312,6 +262,11 @@
    <class>TableView</class>
    <extends>QTableView</extends>
    <header>Form/Controls/TableView.hpp</header>
+  </customwidget>
+  <customwidget>
+   <class>ComboBox</class>
+   <extends>QComboBox</extends>
+   <header>Form/Controls/ComboBox.hpp</header>
   </customwidget>
   <customwidget>
    <class>Filter</class>

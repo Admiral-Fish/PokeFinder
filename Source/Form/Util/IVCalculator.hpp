@@ -30,6 +30,9 @@ namespace Ui
     class IVCalculator;
 }
 
+/**
+ * @brief Calculate IV ranges from a pokemon stats.
+ */
 class IVCalculator : public QWidget
 {
     Q_OBJECT

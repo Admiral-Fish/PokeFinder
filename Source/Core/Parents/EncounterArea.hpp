@@ -89,6 +89,13 @@ public:
     u8 getLocation() const;
 
     /**
+     * @brief Return the list of pokemon
+     *
+     * @return Pokemon list
+     */
+    std::vector<Slot> getPokemon() const;
+
+    /**
      * @brief Return the pokemon at the specifie \p index
      *
      * @param index Pokemon index

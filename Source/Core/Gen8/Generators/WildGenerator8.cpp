@@ -58,7 +58,7 @@ WildGenerator8::WildGenerator8(u32 initialAdvances, u32 maxAdvances, u32 offset,
 {
 }
 
-std::vector<WildGeneratorState8> WildGenerator8::generate(u64 seed0, u64 seed1, const EncounterArea8 &encounterArea) const
+std::vector<WildState8> WildGenerator8::generate(u64 seed0, u64 seed1, const EncounterArea8 &encounterArea) const
 {
     RNGList<u32, Xorshift, 128> rngList(seed0, seed1, initialAdvances + offset);
     auto rand = [](u32 prng) { return (prng % 0xffffffff) + 0x80000000; };
@@ -67,7 +67,7 @@ std::vector<WildGeneratorState8> WildGenerator8::generate(u64 seed0, u64 seed1, 
         = lead == Lead::MagnetPull || lead == Lead::Static || lead == Lead::Harvest || lead == Lead::FlashFire || lead == Lead::StormDrain;
     std::vector<u8> modifiedSlots = encounterArea.getSlots(version, lead);
 
-    std::vector<WildGeneratorState8> states;
+    std::vector<WildState8> states;
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rngList.advanceState())
     {
         u8 encounterSlot;
@@ -181,7 +181,7 @@ std::vector<WildGeneratorState8> WildGenerator8::generate(u64 seed0, u64 seed1, 
 
         u16 item = getItem(rngList.next() % 100, lead, info);
 
-        WildGeneratorState8 state(initialAdvances + cnt, encounterSlot, slot.getSpecie(), level, pid, shiny, ivs, ability, gender, nature,
+        WildState8 state(initialAdvances + cnt, encounterSlot, slot.getSpecie(), level, pid, shiny, ivs, ability, gender, nature,
                                   item, info);
         if (filter.compareState(state))
         {

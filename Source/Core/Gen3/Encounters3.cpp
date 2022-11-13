@@ -29,8 +29,8 @@
 #include <Core/Parents/Slot.hpp>
 #include <Core/Parents/StaticTemplate.hpp>
 #include <Core/Resources/Encounters.hpp>
+#include <Core/Util/Utilities.hpp>
 #include <algorithm>
-#include <bzlib.h>
 #include <cstring>
 #include <iterator>
 
@@ -796,11 +796,8 @@ namespace
             compressedSize = sapphire.size();
         }
 
-        u32 size = *reinterpret_cast<const u16 *>(compressedData);
-        u8 *data = new u8[size];
-
-        BZ2_bzBuffToBuffDecompress(reinterpret_cast<char *>(data), &size,
-                                   reinterpret_cast<char *>(const_cast<u8 *>(compressedData + sizeof(u16))), compressedSize, 0, 0);
+        u32 size;
+        u8 *data = Utilities::decompress(compressedData, compressedSize, size);
 
         std::vector<EncounterArea3> encounters;
         for (size_t offset = 0; offset < size; offset += 121)

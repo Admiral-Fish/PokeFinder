@@ -32,7 +32,12 @@
 #include <Test/Gen4/StaticSearcher4Test.hpp>
 #include <Test/Gen4/WildGenerator4Test.hpp>
 #include <Test/Gen4/WildSearcher4Test.hpp>
+#include <Test/Gen8/EggGenerator8Test.hpp>
+#include <Test/Gen8/EventGenerator8Test.hpp>
 #include <Test/Gen8/IDGenerator8Test.hpp>
+#include <Test/Gen8/RaidGeneratorTest.hpp>
+#include <Test/Gen8/StaticGenerator8Test.hpp>
+#include <Test/Gen8/WildGenerator8Test.hpp>
 #include <Test/RNG/LCRNG64Test.hpp>
 #include <Test/RNG/LCRNGReverseTest.hpp>
 #include <Test/RNG/LCRNGTest.hpp>
@@ -40,6 +45,8 @@
 #include <Test/RNG/SFMTTest.hpp>
 #include <Test/RNG/SHA1Test.hpp>
 #include <Test/RNG/TinyMTTest.hpp>
+#include <Test/RNG/XoroshiroTest.hpp>
+#include <Test/RNG/XorshiftTest.hpp>
 #include <Test/Util/DateTimeTest.hpp>
 #include <Test/Util/EncounterSlotTest.hpp>
 #include <Test/Util/IVCheckerTest.hpp>
@@ -82,6 +89,11 @@ int main()
 
     // Gen 8
     status += runTest<IDGenerator8Test>(fails);
+    status += runTest<EggGenerator8Test>(fails);
+    status += runTest<EventGenerator8Test>(fails);
+    status += runTest<RaidGeneratorTest>(fails);
+    status += runTest<StaticGenerator8Test>(fails);
+    status += runTest<WildGenerator8Test>(fails);
 
     // RNG Tests
     status += runTest<LCRNGTest>(fails);
@@ -91,6 +103,9 @@ int main()
     status += runTest<SFMTTest>(fails);
     status += runTest<SHA1Test>(fails);
     status += runTest<TinyMTTest>(fails);
+    status += runTest<XoroshiroTest>(fails);
+    status += runTest<XoroshiroBDSPTest>(fails);
+    status += runTest<XorshiftTest>(fails);
 
     // Util Tests
     status += runTest<DateTest>(fails);

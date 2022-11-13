@@ -4,7 +4,6 @@ import bz2
 import glob
 import json
 import os
-import re
 import struct
 
 
@@ -35,16 +34,6 @@ def embed_encounters():
         data = json.load(f)
         tables = data["Tables"]
 
-        # Since some raids have altform of non 0
-        # We need to dynamically adjust the index we lookup in the personal table
-        with open("Personal.hpp", "r") as f_personal:
-            data = f_personal.readlines()
-            for line in data:
-                if "personal_swsh" in line:
-                    personal = re.findall(r"PersonalInfo\(.+?\)", line)
-                    for i in range(len(personal)):
-                        personal[i] = re.search(r"\((.+?)\)", personal[i]).group(1).split(", ")
-
         name = os.path.basename(f.name).replace(".json", "")
         string = f"constexpr std::array<Den, {len(tables)}> {name} = {{ "
 
@@ -63,13 +52,7 @@ def embed_encounters():
                 species = raid["Species"]
                 stars = raid["Stars"]
                 star_string = f"std::array<bool, 5> {{{int(stars[0])}, {int(stars[1])}, {int(stars[2])}, {int(stars[3])}, {int(stars[4])}}}"
-
-                personal_index = species
-                if altform != 0:
-                    altform_index = int(personal[species][11])
-                    personal_index = altform_index + altform - 1
-
-                string += f"Raid({ability}, {altform}, {iv_count}, {gender}, {gigantamax}, {species}, personal_swsh[{personal_index}], {star_string})"
+                string += f"Raid({ability}, {altform}, {iv_count}, {gender}, {gigantamax}, {species}, {star_string})"
                 if j != len(sword) - 1:
                     string += ", "
             string += "}, "
@@ -85,14 +68,8 @@ def embed_encounters():
                 species = raid["Species"]
                 stars = raid["Stars"]
                 star_string = f"std::array<bool, 5> {{{int(stars[0])}, {int(stars[1])}, {int(stars[2])}, {int(stars[3])}, {int(stars[4])}}}"
-
-                personal_index = species
-                if altform != 0:
-                    altform_index = int(personal[species][11])
-                    personal_index = altform_index + altform - 1
-
-                string += f"Raid({ability}, {altform}, {iv_count}, {gender}, {gigantamax}, {species}, personal_swsh[{personal_index}], {star_string})"
-                if j != len(sword) - 1:
+                string += f"Raid({ability}, {altform}, {iv_count}, {gender}, {gigantamax}, {species}, {star_string})"
+                if j != len(shield) - 1:
                     string += ", "
             string += "})"
             if i != len(tables) - 1:

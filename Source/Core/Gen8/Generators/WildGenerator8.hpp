@@ -56,7 +56,7 @@ public:
      *
      * @return Vector of computed states
      */
-    std::vector<WildGeneratorState8> generate(u64 seed0, u64 seed1, const EncounterArea8 &encounterArea) const;
+    std::vector<WildState8> generate(u64 seed0, u64 seed1, const EncounterArea8 &encounterArea) const;
 };
 
 #endif // WILDGENERATOR8_HPP

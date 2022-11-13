@@ -43,12 +43,22 @@ SeedToTime4::SeedToTime4(QWidget *parent) : QWidget(parent), ui(new Ui::SeedToTi
     ui->textBoxDPPtSeed->setValues(InputType::Seed32Bit);
     ui->textBoxDPPtYear->setValues(2000, 2099, 4, 10);
     ui->textBoxDPPtSecond->setValues(0, 59, 2, 10);
+    ui->textBoxDPPtDelayMinus->setValues(InputType::Advance32Bit);
+    ui->textBoxDPPtDelayPlus->setValues(InputType::Advance32Bit);
+    ui->textBoxDPPtSecondMinus->setValues(0, 59, 2, 10);
+    ui->textBoxDPPtSecondPlus->setValues(0, 59, 2, 10);
+
     ui->textBoxHGSSSeed->setValues(InputType::Seed32Bit);
     ui->textBoxHGSSYear->setValues(2000, 2099, 4, 10);
     ui->textBoxHGSSSecond->setValues(0, 59, 2, 10);
+    ui->textBoxHGSSDelayMinus->setValues(InputType::Advance32Bit);
+    ui->textBoxHGSSDelayPlus->setValues(InputType::Advance32Bit);
+    ui->textBoxHGSSSecondMinus->setValues(0, 59, 2, 10);
+    ui->textBoxHGSSSecondPlus->setValues(0, 59, 2, 10);
 
     ui->tableViewDPPtSearch->setModel(dpptModel);
     ui->tableViewDPPtCalibrate->setModel(dpptCalibrateModel);
+
     ui->tableViewHGSSSearch->setModel(hgssModel);
     ui->tableViewHGSSCalibrate->setModel(hgssCalibrateModel);
 
@@ -68,19 +78,19 @@ SeedToTime4::SeedToTime4(QWidget *parent) : QWidget(parent), ui(new Ui::SeedToTi
     }
     if (setting.contains("minusDelayDPPt"))
     {
-        ui->lineEditDPPtDelayMinus->setText(setting.value("minusDelayDPPt").toString());
+        ui->textBoxDPPtDelayMinus->setText(setting.value("minusDelayDPPt").toString());
     }
     if (setting.contains("plusDelayDPPt"))
     {
-        ui->lineEditDPPtDelayPlus->setText(setting.value("plusDelayDPPt").toString());
+        ui->textBoxDPPtDelayPlus->setText(setting.value("plusDelayDPPt").toString());
     }
     if (setting.contains("minusSecondsDPPt"))
     {
-        ui->lineEditDPPtSecondMinus->setText(setting.value("minusSecondsDPPt").toString());
+        ui->textBoxDPPtSecondMinus->setText(setting.value("minusSecondsDPPt").toString());
     }
     if (setting.contains("plusSecondsDPPt"))
     {
-        ui->lineEditDPPtSecondPlus->setText(setting.value("plusSecondsDPPt").toString());
+        ui->textBoxDPPtSecondPlus->setText(setting.value("plusSecondsDPPt").toString());
     }
     if (setting.contains("hgssYear"))
     {
@@ -88,19 +98,19 @@ SeedToTime4::SeedToTime4(QWidget *parent) : QWidget(parent), ui(new Ui::SeedToTi
     }
     if (setting.contains("minusDelayHGSS"))
     {
-        ui->lineEditHGSSDelayMinus->setText(setting.value("minusDelayHGSS").toString());
+        ui->textBoxHGSSDelayMinus->setText(setting.value("minusDelayHGSS").toString());
     }
     if (setting.contains("plusDelayHGSS"))
     {
-        ui->lineEditHGSSDelayPlus->setText(setting.value("plusDelayHGSS").toString());
+        ui->textBoxHGSSDelayPlus->setText(setting.value("plusDelayHGSS").toString());
     }
     if (setting.contains("minusSecondsHGSS"))
     {
-        ui->lineEditHGSSSecondMinus->setText(setting.value("minusSecondsHGSS").toString());
+        ui->textBoxHGSSSecondMinus->setText(setting.value("minusSecondsHGSS").toString());
     }
     if (setting.contains("plusSecondsHGSS"))
     {
-        ui->lineEditHGSSSecondPlus->setText(setting.value("plusSecondsHGSS").toString());
+        ui->textBoxHGSSSecondPlus->setText(setting.value("plusSecondsHGSS").toString());
     }
     if (setting.contains("geometry"))
     {
@@ -129,15 +139,15 @@ SeedToTime4::~SeedToTime4()
     QSettings setting;
     setting.beginGroup("SeedToTime4");
     setting.setValue("dpptYear", ui->textBoxDPPtYear->text());
-    setting.setValue("minusDelayDPPt", ui->lineEditDPPtDelayMinus->text());
-    setting.setValue("plusDelayDPPt", ui->lineEditDPPtDelayPlus->text());
-    setting.setValue("minusSecondsDPPt", ui->lineEditDPPtSecondMinus->text());
-    setting.setValue("plusSecondsDPPt", ui->lineEditDPPtSecondPlus->text());
+    setting.setValue("minusDelayDPPt", ui->textBoxDPPtDelayMinus->text());
+    setting.setValue("plusDelayDPPt", ui->textBoxDPPtDelayPlus->text());
+    setting.setValue("minusSecondsDPPt", ui->textBoxDPPtSecondMinus->text());
+    setting.setValue("plusSecondsDPPt", ui->textBoxDPPtSecondPlus->text());
     setting.setValue("hgssYear", ui->textBoxHGSSYear->text());
-    setting.setValue("minusDelayHGSS", ui->lineEditHGSSDelayMinus->text());
-    setting.setValue("plusDelayHGSS", ui->lineEditHGSSDelayPlus->text());
-    setting.setValue("minusSecondsHGSS", ui->lineEditHGSSSecondMinus->text());
-    setting.setValue("plusSecondsHGSS", ui->lineEditHGSSSecondPlus->text());
+    setting.setValue("minusDelayHGSS", ui->textBoxHGSSDelayMinus->text());
+    setting.setValue("plusDelayHGSS", ui->textBoxHGSSDelayPlus->text());
+    setting.setValue("minusSecondsHGSS", ui->textBoxHGSSSecondMinus->text());
+    setting.setValue("plusSecondsHGSS", ui->textBoxHGSSSecondPlus->text());
     setting.setValue("geometry", this->saveGeometry());
     setting.endGroup();
 
@@ -206,11 +216,11 @@ std::vector<SeedTime4> SeedToTime4::generate(u32 seed, u32 year, bool forceSecon
 
 void SeedToTime4::dpptCalibrate()
 {
-    int minusDelay = -ui->lineEditDPPtDelayMinus->text().toInt();
-    int plusDelay = ui->lineEditDPPtDelayPlus->text().toInt();
+    int minusDelay = -ui->textBoxDPPtDelayMinus->getInt();
+    int plusDelay = ui->textBoxDPPtDelayPlus->getInt();
 
-    int minusSecond = -ui->lineEditDPPtSecondMinus->text().toInt();
-    int plusSecond = ui->lineEditDPPtSecondPlus->text().toInt();
+    int minusSecond = -ui->textBoxDPPtSecondMinus->getInt();
+    int plusSecond = ui->textBoxDPPtSecondPlus->getInt();
 
     QModelIndex index = ui->tableViewDPPtSearch->currentIndex();
     if (!index.isValid())
@@ -255,11 +265,11 @@ void SeedToTime4::dpptGenerate()
 
 void SeedToTime4::hgssCalibrate()
 {
-    int minusDelay = -ui->lineEditHGSSDelayMinus->text().toInt();
-    int plusDelay = ui->lineEditHGSSDelayPlus->text().toInt();
+    int minusDelay = -ui->textBoxHGSSDelayMinus->getInt();
+    int plusDelay = ui->textBoxHGSSDelayPlus->getInt();
 
-    int minusSecond = -ui->lineEditHGSSSecondMinus->text().toInt();
-    int plusSecond = ui->lineEditHGSSSecondPlus->text().toInt();
+    int minusSecond = -ui->textBoxHGSSSecondMinus->getInt();
+    int plusSecond = ui->textBoxHGSSSecondPlus->getInt();
 
     QModelIndex index = ui->tableViewHGSSSearch->currentIndex();
     if (!index.isValid())
