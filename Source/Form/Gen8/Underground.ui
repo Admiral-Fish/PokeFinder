@@ -21,110 +21,13 @@
      </property>
      <layout class="QGridLayout" name="gridLayout_42">
       <item row="2" column="1">
-       <widget class="ComboBox" name="comboBoxLocation">
-        <item>
-         <property name="text">
-          <string>Big Bluff Cavern</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Bogsunk Cavern</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Dazzling Cave</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Fountainspring Cave</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Glacial Cavern</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Grassland Cave</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Ice Cave</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Riverbank Cave</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Rocky Cave</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Sandsear Cave</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Spacious Cave</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Stargleam Cavern</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Still-Water Cavern</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Sunlit Cavern</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Swampy Cave</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Typhlo Cavern</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Volcanic Cave</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Whiteout Cave</string>
-         </property>
-        </item>
-       </widget>
+       <widget class="ComboBox" name="comboBoxLocation"/>
       </item>
       <item row="3" column="1">
        <widget class="CheckList" name="checkListPokemon"/>
       </item>
       <item row="2" column="0">
        <widget class="QLabel" name="labelLocation">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
         <property name="text">
          <string>Location</string>
         </property>
@@ -238,12 +141,6 @@
       </item>
       <item row="0" column="0">
        <widget class="QLabel" name="labelProfile">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
         <property name="text">
          <string>Profile</string>
         </property>
@@ -309,26 +206,13 @@
       </item>
       <item row="2" column="1">
        <widget class="QLabel" name="labelLead">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
         <property name="text">
          <string>Lead</string>
         </property>
        </widget>
       </item>
       <item row="2" column="3">
-       <widget class="ComboMenu" name="toolButtonLead">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-       </widget>
+       <widget class="ComboMenu" name="toolButtonLead"/>
       </item>
       <item row="4" column="1">
        <widget class="QLabel" name="labelSeed1">
@@ -359,12 +243,6 @@
       </item>
       <item row="3" column="1">
        <widget class="QLabel" name="labelSeed0">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
         <property name="text">
          <string>Seed 0</string>
         </property>
@@ -372,12 +250,6 @@
       </item>
       <item row="5" column="1">
        <widget class="QLabel" name="labelInitialAdvances">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
         <property name="text">
          <string>Initial Advances</string>
         </property>
@@ -388,12 +260,6 @@
       </item>
       <item row="6" column="1">
        <widget class="QLabel" name="labelMaxAdvances">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
         <property name="text">
          <string>Max Advances</string>
         </property>

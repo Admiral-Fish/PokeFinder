@@ -139,6 +139,8 @@ add_library(PokeFinderCore STATIC
     Gen8/States/WildState8.cpp
     Gen8/States/WildState8.hpp
     Gen8/StaticTemplate8.hpp
+    Gen8/UndergroundArea.cpp
+    Gen8/UndergroundArea.hpp
     Gen8/WB8.hpp
     Parents/Daycare.hpp
     Parents/Filters/IDFilter.cpp

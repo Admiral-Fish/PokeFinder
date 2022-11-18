@@ -259,13 +259,13 @@ namespace Encounters4
         std::vector<EncounterArea4> getHGSSSafari(Encounter encounter, int time, const std::array<u8, 5> &blocks, const PersonalInfo *info)
         {
             const u8 *compressedData = hgss_safari.data();
-            size_t compressedSize = hgss_safari.size();
+            size_t compressedLength = hgss_safari.size();
 
-            u32 size;
-            u8 *data = Utilities::decompress(compressedData, compressedSize, size);
+            u32 length;
+            u8 *data = Utilities::decompress(compressedData, compressedLength, length);
 
             std::vector<EncounterArea4> encounters;
-            for (size_t offset = 0; offset < size;)
+            for (size_t offset = 0; offset < length;)
             {
                 const u8 *entry = data + offset;
 
@@ -418,20 +418,20 @@ namespace Encounters4
                                             const std::array<u8, 5> &blocks, const PersonalInfo *info)
         {
             const u8 *compressedData;
-            size_t compressedSize;
+            size_t compressedLength;
 
             u8 *data;
-            u32 size;
+            u32 length;
 
             std::vector<EncounterArea4> encounters;
             if (encounter == Encounter::BugCatchingContest)
             {
                 compressedData = hgss_bug.data();
-                compressedSize = hgss_bug.size();
+                compressedLength = hgss_bug.size();
 
-                data = Utilities::decompress(compressedData, compressedSize, size);
-                size = dex ? size : 41;
-                for (size_t offset = dex ? 41 : 0; offset < size; offset += 41)
+                data = Utilities::decompress(compressedData, compressedLength, length);
+                length = dex ? length : 41;
+                for (size_t offset = dex ? 41 : 0; offset < length; offset += 41)
                 {
                     const u8 *entry = data + offset;
 
@@ -454,16 +454,16 @@ namespace Encounters4
                 if (version == Game::HeartGold)
                 {
                     compressedData = hg_headbutt.data();
-                    compressedSize = hg_headbutt.size();
+                    compressedLength = hg_headbutt.size();
                 }
                 else
                 {
                     compressedData = ss_headbutt.data();
-                    compressedSize = ss_headbutt.size();
+                    compressedLength = ss_headbutt.size();
                 }
 
-                data = Utilities::decompress(compressedData, compressedSize, size);
-                for (size_t offset = 0; offset < size;)
+                data = Utilities::decompress(compressedData, compressedLength, length);
+                for (size_t offset = 0; offset < length;)
                 {
                     const u8 *entry = data + offset;
 
@@ -493,16 +493,16 @@ namespace Encounters4
                 if (version == Game::HeartGold)
                 {
                     compressedData = heartgold.data();
-                    compressedSize = heartgold.size();
+                    compressedLength = heartgold.size();
                 }
                 else
                 {
                     compressedData = soulsilver.data();
-                    compressedSize = soulsilver.size();
+                    compressedLength = soulsilver.size();
                 }
 
-                data = Utilities::decompress(compressedData, compressedSize, size);
-                for (size_t offset = 0; offset < size; offset += 195)
+                data = Utilities::decompress(compressedData, compressedLength, length);
+                for (size_t offset = 0; offset < length; offset += 195)
                 {
                     const u8 *entry = data + offset;
 
@@ -772,29 +772,29 @@ namespace Encounters4
                                             const PersonalInfo *info)
         {
             const u8 *compressedData;
-            size_t compressedSize;
+            size_t compressedLength;
 
             if (version == Game::Diamond)
             {
                 compressedData = diamond.data();
-                compressedSize = diamond.size();
+                compressedLength = diamond.size();
             }
             else if (version == Game::Pearl)
             {
                 compressedData = pearl.data();
-                compressedSize = pearl.size();
+                compressedLength = pearl.size();
             }
             else
             {
                 compressedData = platinum.data();
-                compressedSize = platinum.size();
+                compressedLength = platinum.size();
             }
 
-            u32 size;
-            u8 *data = Utilities::decompress(compressedData, compressedSize, size);
+            u32 length;
+            u8 *data = Utilities::decompress(compressedData, compressedLength, length);
 
             std::vector<EncounterArea4> encounters;
-            for (size_t offset = 0; offset < size; offset += 163)
+            for (size_t offset = 0; offset < length; offset += 163)
             {
                 const u8 *entry = data + offset;
 

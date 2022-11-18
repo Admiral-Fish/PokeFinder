@@ -137,6 +137,15 @@ namespace Translator
     std::vector<std::string> getLocations(const std::vector<u16> &nums, Game game);
 
     /**
+     * @brief Gets the string for the \p move
+     *
+     * @param move Move number
+     *
+     * @return Move string
+     */
+    const std::string *getMove(u16 move);
+
+    /**
      * @brief Gets the string for the \p nature
      *
      * @param nature Nature number

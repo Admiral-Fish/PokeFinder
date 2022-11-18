@@ -23,8 +23,8 @@
 
 #include <QWidget>
 
-class EncounterArea8;
 class Profile8;
+class UndergroundArea;
 class UndergroundModel;
 
 namespace Ui
@@ -66,7 +66,7 @@ private:
     Ui::Underground *ui;
 
     Profile8 *currentProfile;
-    std::vector<EncounterArea8> encounters;
+    std::vector<UndergroundArea> encounters;
     std::vector<Profile8> profiles;
     UndergroundModel *model;
 

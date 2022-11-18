@@ -22,11 +22,11 @@
 #include "ui_Underground.h"
 #include <Core/Enum/Encounter.hpp>
 #include <Core/Enum/Lead.hpp>
-#include <Core/Gen8/EncounterArea8.hpp>
 #include <Core/Gen8/Encounters8.hpp>
 #include <Core/Gen8/Filters/StateFilter8.hpp>
 #include <Core/Gen8/Generators/UndergroundGenerator.hpp>
 #include <Core/Gen8/Profile8.hpp>
+#include <Core/Gen8/UndergroundArea.hpp>
 #include <Core/Parents/ProfileLoader.hpp>
 #include <Core/Util/Translator.hpp>
 #include <Form/Controls/Controls.hpp>
@@ -56,8 +56,6 @@ Underground::Underground(QWidget *parent) : QWidget(parent), ui(new Ui::Undergro
     ui->toolButtonLead->addMenu(tr("Synchronize"), *Translator::getNatures());
     ui->toolButtonLead->addAction(tr("Vital Spirit"), toInt(Lead::VitalSpirit));
 
-    ui->comboBoxLocation->setup({ 196, 199, 189, 185, 198, 184, 191, 192, 186, 193, 183, 197, 194, 195, 188, 200, 187, 190 });
-
     ui->filter->disableControls(Controls::EncounterSlots);
 
     connect(ui->comboBoxProfiles, &QComboBox::currentIndexChanged, this, &Underground::profileIndexChanged);
@@ -70,6 +68,20 @@ Underground::Underground(QWidget *parent) : QWidget(parent), ui(new Ui::Undergro
     updateProfiles();
     storyFlagIndexChanged(0);
     locationIndexChanged(0);
+
+    std::vector<u16> locs;
+    std::transform(encounters.begin(), encounters.end(), std::back_inserter(locs),
+                   [](const UndergroundArea &area) { return area.getLocation() + 181; });
+
+    auto locations = Translator::getLocations(locs, currentProfile->getVersion());
+    std::vector<int> indices(locations.size());
+    std::iota(indices.begin(), indices.end(), 0);
+    std::sort(indices.begin(), indices.end(), [&locations](int i, int j) { return locations[i] < locations[j]; });
+
+    for (int i : indices)
+    {
+        ui->comboBoxLocation->addItem(QString::fromStdString(locations[i]), i);
+    }
 
     QSettings setting;
     setting.beginGroup("underground");
@@ -114,11 +126,22 @@ void Underground::updateProfiles()
     }
 }
 
+void Underground::updateEncounters()
+{
+    u8 flag = ui->comboBoxStoryFlag->currentIndex() + 1;
+    bool diglett = ui->checkBoxDiglett->isChecked();
+    encounters = Encounters8::getEncounters(flag, diglett, currentProfile);
+}
+
 void Underground::storyFlagIndexChanged(int index)
 {
-    encounters = Encounters8::getEncounters(Encounter::Underground, index + 1, false, false, currentProfile);
-    locationIndexChanged(ui->comboBoxLocation->currentIndex());
+    if (index >= 0)
+    {
+        updateEncounters();
+        locationIndexChanged(0);
+    }
 }
+
 
 void Underground::generate()
 {
@@ -143,12 +166,7 @@ void Underground::generate()
     u8 randMarkId = ui->comboBoxLocation->getCurrentByte() - 181;
     bool bonus = ui->checkBoxDiglett->isChecked();
 
-    std::vector<u16> species;
-    std::vector<bool> checkedSpecies = ui->checkListPokemon->getChecked();
-    for (int i = 0; i < checkedSpecies.size(); i++)
-    {
-        species.emplace_back(ui->checkListPokemon->itemData(i).toUInt());
-    }
+    std::vector<u16> species = ui->checkListPokemon->getCheckedData();
 
     UndergroundStateFilter filter(ui->filter->getGender(), ui->filter->getAbility(), ui->filter->getShiny(),
                                   ui->filter->getDisableFilters(), ui->filter->getMinIVs(), ui->filter->getMaxIVs(),
@@ -156,7 +174,7 @@ void Underground::generate()
     UndergroundGenerator generator(initialAdvances, maxAdvances, offset, tid, sid, currentProfile->getVersion(), lead, randMarkId,
                                    storyFlag, bonus, filter);
 
-    auto states = generator.generate(seed0, seed1, encounters[ui->comboBoxLocation->getCurrentInt() - 183]);
+    auto states = generator.generate(seed0, seed1, encounters[ui->comboBoxLocation->getCurrentInt()]);
     model->addItems(states);
 }
 
@@ -164,18 +182,10 @@ void Underground::locationIndexChanged(int index)
 {
     if (index >= 0)
     {
-        auto area = encounters[ui->comboBoxLocation->getCurrentInt() - 183];
-        auto species = area.getUniqueSpecies();
+        auto area = encounters[ui->comboBoxLocation->getCurrentInt()];
+        auto species = area.getSpecies();
         auto names = area.getSpecieNames();
-
-        std::vector<std::pair<std::string, u16>> pokemon;
-
-        pokemon.emplace_back(std::make_pair("-", 0));
-        for (size_t i = 0; i < species.size(); i++)
-        {
-            pokemon.emplace_back(std::make_pair(names[i], species[i]));
-        }
-        ui->checkListPokemon->setup(pokemon);
+        ui->checkListPokemon->setup(names, species);
     }
 }
 
@@ -189,8 +199,8 @@ void Underground::profileIndexChanged(int index)
         ui->labelProfileSIDValue->setText(QString::number(currentProfile->getSID()));
         ui->labelProfileGameValue->setText(QString::fromStdString(*Translator::getGame(currentProfile->getVersion())));
 
-        encounters = Encounters8::getEncounters(Encounter::Underground, index, false, false, currentProfile);
-        locationIndexChanged(ui->comboBoxLocation->currentIndex());
+        updateEncounters();
+        locationIndexChanged(0);
     }
 }
 

@@ -182,12 +182,12 @@ bool UndergroundStateFilter::compareState(const UndergroundState &state) const
         return false;
     }
 
-    if (!powers[state.getHiddenPower()])
+    if (!natures[state.getNature()])
     {
         return false;
     }
 
-    if (!natures[state.getNature()])
+    if (std::find(species.begin(), species.end(), state.getSpecie()) == species.end())
     {
         return false;
     }

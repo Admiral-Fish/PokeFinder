@@ -53,6 +53,7 @@ enum class Translation
     Game,
     HGSS,
     Item,
+    Move,
     Nature,
     Power,
     RS,
@@ -69,6 +70,7 @@ namespace
     std::vector<std::string> games;
     std::vector<std::string> hiddenPowers;
     std::map<u16, std::string> items;
+    std::vector<std::string> moves;
     std::vector<std::string> natures;
     std::vector<std::string> species;
     std::array<std::string, 3> genders = { "♂", "♀", "-" };
@@ -88,15 +90,15 @@ namespace
         u32 end = indexes[index + 1];
 
         const char *compressedData = reinterpret_cast<const char *>(i18n + start);
-        u32 compressedSize = end - start;
+        u32 compressedLength = end - start;
 
-        u32 size;
-        char *data = Utilities::decompress(compressedData, compressedSize, size);
+        u32 length;
+        char *data = Utilities::decompress(compressedData, compressedLength, length);
 
         std::vector<std::string> strings;
-        for (u32 i = 0; i < size;)
+        for (u32 i = 0; i < length;)
         {
-            char *it = std::find(data + i, data + size, 0);
+            char *it = std::find(data + i, data + length, 0);
             u32 len = it - &data[i];
             strings.emplace_back(data + i, len);
             i += len + 1;
@@ -120,15 +122,15 @@ namespace
         u32 end = indexes[index + 1];
 
         const char *compressedData = reinterpret_cast<const char *>(i18n + start);
-        u32 compressedSize = end - start;
+        u32 compressedLength = end - start;
 
-        u32 size;
-        char *data = Utilities::decompress(compressedData, compressedSize, size);
+        u32 length;
+        char *data = Utilities::decompress(compressedData, compressedLength, length);
 
         std::map<u16, std::string> strings;
-        for (u32 i = 0; i < size;)
+        for (u32 i = 0; i < length;)
         {
-            char *it = std::find(data + i, data + size, 0);
+            char *it = std::find(data + i, data + length, 0);
             u32 len = it - &data[i];
 
             char *word;
@@ -272,6 +274,11 @@ namespace Translator
         return locations;
     }
 
+    const std::string *getMove(u16 move)
+    {
+        return &moves[move];
+    }
+
     const std::string *getNature(u8 nature)
     {
         return &natures[nature];
@@ -334,6 +341,7 @@ namespace Translator
         games = readFile(Translation::Game);
         hiddenPowers = readFile(Translation::Power);
         items = readFileMap(Translation::Item);
+        moves = readFile(Translation::Move);
         natures = readFile(Translation::Nature);
         species = readFile(Translation::Specie);
     }
