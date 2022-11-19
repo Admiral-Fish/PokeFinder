@@ -184,12 +184,6 @@ static u32 rand(u32 prng)
     return (prng % 0xffffffff) + 0x80000000;
 }
 
-static float randF(u32 prng)
-{
-    float t = (prng & 0x7fffff) / 8388607.0;
-    return 1.0 - t;
-}
-
 static u16 getItem(u8 rand, const PersonalInfo *info)
 {
     if (rand >= 60)
@@ -221,7 +215,6 @@ UndergroundGenerator::UndergroundGenerator(u32 initialAdvances, u32 maxAdvances,
 std::vector<UndergroundState> UndergroundGenerator::generate(u64 seed0, u64 seed1, const UndergroundArea &area) const
 {
     RNGList<u32, Xorshift, 256> rngList(seed0, seed1, initialAdvances + offset);
-    const PersonalInfo *base = PersonalLoader::getPersonal(version);
     u8 pidRolls = bonus ? 2 : 1;
 
     std::vector<UndergroundState> states;
