@@ -57,27 +57,93 @@ struct SpecialPokemon
     u16 rate;
 };
 
+/**
+ * @brief Contains information about the encounters for an underground area.
+ * Underground area does not work on the model of set encounter slot numbers like most other games. This class also provides the
+ * functionality to dynamically determine the encountered pokemon based on the rates of types and pokemon.
+ */
 class UndergroundArea
 {
 public:
+    /**
+     * @brief Construct a new UndergroundArea object
+     *
+     * @param location
+     * @param min Minimum number of pokemon spawned
+     * @param max Maximum number of pokemon spawned
+     * @param pokemon List of normal pokemon
+     * @param specialPokemon List of rare pokemon
+     * @param typeRates List of rates per pokemon type
+     * @param typeSizes List of types with their associated sizes
+     */
     UndergroundArea(u8 location, u8 min, u8 max, const std::vector<Pokemon> &pokemon, const std::vector<SpecialPokemon> &specialPokemon,
                     const std::array<u8, 18> &typeRates, const std::vector<TypeSize> &typeSizes);
 
+    /**
+     * @brief Returns the location of the area
+     *
+     * @return Location number
+     */
     u8 getLocation() const;
 
+    /**
+     * @brief Returns the maximum number of pokemon spawned
+     *
+     * @return Maximum spawn
+     */
     u8 getMax() const;
 
+    /**
+     * @brief Returns the minimum number of pokemon spawned
+     *
+     * @return Minimum spawn
+     */
     u8 getMin() const;
 
-    std::pair<const PersonalInfo *, u16> getPokemon(RNGList<u32, Xorshift, 256> &rngList, const TypeSize &type, u8 story,
-                                                    bool diglett) const;
+    /**
+     * @brief Returns the pokemon to create based on the \p type
+     * Filters from the available pokemon ones that match the necessary type and size. This filtered list is then randomly selected from
+     * based upon the pokemon encounter rates.
+     *
+     * @param rngList RNG object
+     * @param type Pokemon type and associated size
+     *
+     * @return Pokemon to create
+     */
+    std::pair<const PersonalInfo *, u16> getPokemon(RNGList<u32, Xorshift, 256> &rngList, const TypeSize &type) const;
 
+    /**
+     * @brief Returns the list of types and associated sizes to help determine which pokemon to create
+     * A type is randomly selected from the available pokemon. Of these matches a size is randomly selected and paired with the type.
+     *
+     * @param rngList RNG object
+     * @param count Number of pokemon to spawn
+     *
+     * @return List of type/sizes
+     */
     std::array<TypeSize, 10> getSlots(RNGList<u32, Xorshift, 256> &rngList, u8 count) const;
 
+    /**
+     * @brief Returns the rare pokemon to create based
+     *
+     * @param rngList RNG object
+     *
+     * @return Pokemon to create
+     */
     std::pair<const PersonalInfo *, u16> getSpecialPokemon(RNGList<u32, Xorshift, 256> &rngList) const;
 
+    /**
+     * @brief Return the species numbers of the area
+     *
+     * @return Vector of pokemon species
+     */
     std::vector<u16> getSpecies() const;
 
+    /**
+     * @brief Return vector of names of all pokemon slots
+     *
+     * @return Vector of pokemon name
+     */
     std::vector<std::string> getSpecieNames() const;
 
 private:

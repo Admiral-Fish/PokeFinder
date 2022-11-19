@@ -318,10 +318,7 @@ namespace Encounters8
             u8 max = entry[index++];
 
             std::array<u8, 18> rates;
-            for (u8 &rate : rates)
-            {
-                rate = entry[index++];
-            }
+            std::generate(rates.begin(), rates.end(), [entry, &index] { return entry[index++]; });
 
             std::vector<Pokemon> pokemon;
             std::vector<TypeSize> types;
@@ -347,14 +344,11 @@ namespace Encounters8
                     }
 
                     std::array<u8, 6> flagRates;
-                    for (u8 &flagRate : flagRates)
-                    {
-                        flagRate = entry[index++];
-                    }
+                    std::generate(flagRates.begin(), flagRates.end(), [entry, &index] { return entry[index++]; });
                     u8 rateup = entry[index++];
 
                     u16 flagRate = diglett ? flagRates[storyFlag - 1] * rateup : flagRates[storyFlag - 1];
-                    Pokemon mon = { &base[specie], flagRate, specie, size };
+                    Pokemon mon = { info, flagRate, specie, size };
                     pokemon.emplace_back(mon);
                 }
                 else

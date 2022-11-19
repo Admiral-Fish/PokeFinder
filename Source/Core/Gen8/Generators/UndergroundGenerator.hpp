@@ -24,20 +24,42 @@
 #include <Core/Parents/Generators/StaticGenerator.hpp>
 
 class UndergroundArea;
-enum class Lead : u8;
 
+/**
+ * @brief Underground encounter generator for Gen8
+ */
 class UndergroundGenerator : public StaticGenerator<UndergroundStateFilter>
 {
 public:
-    UndergroundGenerator(u32 initialAdvances, u32 maxAdvances, u32 offset, u16 tid, u16 sid, Game version, Lead lead, u8 randMarkId,
-                         u8 storyFlag, bool bonus, const UndergroundStateFilter &filter);
+    /**
+     * @brief Construct a new UndergroundGenerator object
+     *
+     * @param initialAdvances Initial number of advances
+     * @param maxAdvances Maximum number of advances
+     * @param offset Number of advances to offset
+     * @param tid Trainer ID
+     * @param sid Secret ID
+     * @param version Game version
+     * @param lead Encounter lead
+     * @param diglett Whether diglett bonus is activiated
+     * @param filter State filter
+     */
+    UndergroundGenerator(u32 initialAdvances, u32 maxAdvances, u32 offset, u16 tid, u16 sid, Game version, Lead lead, bool diglett,
+                         const UndergroundStateFilter &filter);
 
-    std::vector<UndergroundState> generate(u64 seed0, u64 seed1, const UndergroundArea &area) const;
+    /**
+     * @brief Generates states for the \p encounterArea
+     *
+     * @param seed0 Upper half of PRNG state
+     * @param seed1 Lower half of PRNG state
+     * @param encounterArea Wild pokemon info
+     *
+     * @return Vector of computed states
+     */
+    std::vector<UndergroundState> generate(u64 seed0, u64 seed1, const UndergroundArea &encounterArea) const;
 
 private:
-    bool bonus;
-    u8 randMarkId;
-    u8 storyFlag;
+    bool diglett;
 };
 
 #endif // UNDERGROUNDGENERATOR_HPP

@@ -66,8 +66,7 @@ Underground::Underground(QWidget *parent) : QWidget(parent), ui(new Ui::Undergro
     connect(ui->filter, &Filter::showStatsChanged, model, &UndergroundModel::setShowStats);
 
     updateProfiles();
-    storyFlagIndexChanged(0);
-    locationIndexChanged(0);
+    updateEncounters();
 
     std::vector<u16> locs;
     std::transform(encounters.begin(), encounters.end(), std::back_inserter(locs),
@@ -138,7 +137,7 @@ void Underground::storyFlagIndexChanged(int index)
     if (index >= 0)
     {
         updateEncounters();
-        locationIndexChanged(0);
+        locationIndexChanged(ui->comboBoxLocation->currentIndex());
     }
 }
 
@@ -162,8 +161,6 @@ void Underground::generate()
     u16 tid = currentProfile->getTID();
     u16 sid = currentProfile->getSID();
     auto lead = ui->toolButtonLead->getEnum<Lead>();
-    u8 storyFlag = ui->comboBoxStoryFlag->currentIndex() + 1;
-    u8 randMarkId = ui->comboBoxLocation->getCurrentByte() - 181;
     bool bonus = ui->checkBoxDiglett->isChecked();
 
     std::vector<u16> species = ui->checkListPokemon->getCheckedData();
@@ -171,8 +168,7 @@ void Underground::generate()
     UndergroundStateFilter filter(ui->filter->getGender(), ui->filter->getAbility(), ui->filter->getShiny(),
                                   ui->filter->getDisableFilters(), ui->filter->getMinIVs(), ui->filter->getMaxIVs(),
                                   ui->filter->getNatures(), ui->filter->getHiddenPowers(), species);
-    UndergroundGenerator generator(initialAdvances, maxAdvances, offset, tid, sid, currentProfile->getVersion(), lead, randMarkId,
-                                   storyFlag, bonus, filter);
+    UndergroundGenerator generator(initialAdvances, maxAdvances, offset, tid, sid, currentProfile->getVersion(), lead, bonus, filter);
 
     auto states = generator.generate(seed0, seed1, encounters[ui->comboBoxLocation->getCurrentInt()]);
     model->addItems(states);
@@ -200,7 +196,7 @@ void Underground::profileIndexChanged(int index)
         ui->labelProfileGameValue->setText(QString::fromStdString(*Translator::getGame(currentProfile->getVersion())));
 
         updateEncounters();
-        locationIndexChanged(0);
+        locationIndexChanged(ui->comboBoxLocation->currentIndex());
     }
 }
 

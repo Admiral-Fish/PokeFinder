@@ -204,29 +204,27 @@ static u16 getItem(u8 rand, const PersonalInfo *info)
 }
 
 UndergroundGenerator::UndergroundGenerator(u32 initialAdvances, u32 maxAdvances, u32 offset, u16 tid, u16 sid, Game version, Lead lead,
-                                           u8 randMarkId, u8 storyFlag, bool bonus, const UndergroundStateFilter &filter) :
+                                           bool diglett, const UndergroundStateFilter &filter) :
     StaticGenerator<UndergroundStateFilter>(initialAdvances, maxAdvances, offset, tid, sid, version, Method::None, lead, filter),
-    bonus(bonus),
-    randMarkId(randMarkId),
-    storyFlag(storyFlag)
+    diglett(diglett)
 {
 }
 
-std::vector<UndergroundState> UndergroundGenerator::generate(u64 seed0, u64 seed1, const UndergroundArea &area) const
+std::vector<UndergroundState> UndergroundGenerator::generate(u64 seed0, u64 seed1, const UndergroundArea &encounterArea) const
 {
     RNGList<u32, Xorshift, 256> rngList(seed0, seed1, initialAdvances + offset);
-    u8 pidRolls = bonus ? 2 : 1;
+    u8 pidRolls = diglett ? 2 : 1;
 
     std::vector<UndergroundState> states;
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rngList.advanceState())
     {
-        u8 spawnCount = area.getMin();
+        u8 spawnCount = encounterArea.getMin();
 
-        auto specialPokemon = area.getSpecialPokemon(rngList);
+        auto specialPokemon = encounterArea.getSpecialPokemon(rngList);
 
         if ((rngList.next() % 100) >= 50)
         {
-            spawnCount = area.getMax();
+            spawnCount = encounterArea.getMax();
         }
 
         if (specialPokemon.first)
@@ -234,10 +232,10 @@ std::vector<UndergroundState> UndergroundGenerator::generate(u64 seed0, u64 seed
             spawnCount -= 1;
         }
 
-        auto slots = area.getSlots(rngList, spawnCount);
+        auto slots = encounterArea.getSlots(rngList, spawnCount);
         for (u8 i = 0; i < spawnCount; i++)
         {
-            auto pokemon = area.getPokemon(rngList, slots[i], storyFlag, bonus);
+            auto pokemon = encounterArea.getPokemon(rngList, slots[i]);
 
             rngList.advance(1); // Level
             rngList.advance(1); // EC
@@ -276,10 +274,7 @@ std::vector<UndergroundState> UndergroundGenerator::generate(u64 seed0, u64 seed
             }
 
             std::array<u8, 6> ivs;
-            for (u8 &iv : ivs)
-            {
-                iv = rngList.next(rand) % 32;
-            }
+            std::generate(ivs.begin(), ivs.end(), [&rngList] { return rngList.next(rand) % 32; });
 
             u8 ability = rngList.next(rand) % 2;
 
@@ -362,10 +357,7 @@ std::vector<UndergroundState> UndergroundGenerator::generate(u64 seed0, u64 seed
             }
 
             std::array<u8, 6> ivs;
-            for (u8 &iv : ivs)
-            {
-                iv = rngList.next(rand) % 32;
-            }
+            std::generate(ivs.begin(), ivs.end(), [&rngList] { return rngList.next(rand) % 32; });
 
             u8 ability = rngList.next(rand) % 2;
 

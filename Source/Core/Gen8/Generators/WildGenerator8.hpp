@@ -32,7 +32,7 @@ class WildGenerator8 : public WildGenerator<WildStateFilter8>
 {
 public:
     /**
-     * @brief Construct a new WildGenerator4 object
+     * @brief Construct a new WildGenerator8 object
      *
      * @param initialAdvances Initial number of advances
      * @param maxAdvances Maximum number of advances

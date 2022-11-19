@@ -22,6 +22,7 @@
 #include <Core/Gen8/States/EggState8.hpp>
 #include <Core/Gen8/States/State8.hpp>
 #include <Core/Gen8/States/WildState8.hpp>
+#include <algorithm>
 
 StateFilter8::StateFilter8(u8 gender, u8 ability, u8 shiny, bool skip, const std::array<u8, 6> &min, const std::array<u8, 6> &max,
                            const std::array<bool, 25> &natures, const std::array<bool, 16> &powers) :
@@ -187,7 +188,7 @@ bool UndergroundStateFilter::compareState(const UndergroundState &state) const
         return false;
     }
 
-    if (std::find(species.begin(), species.end(), state.getSpecie()) == species.end())
+    if (!std::binary_search(species.begin(), species.end(), state.getSpecie()))
     {
         return false;
     }

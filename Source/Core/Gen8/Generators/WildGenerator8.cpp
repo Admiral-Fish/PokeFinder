@@ -27,6 +27,7 @@
 #include <Core/RNG/RNGList.hpp>
 #include <Core/RNG/Xorshift.hpp>
 #include <Core/Util/EncounterSlot.hpp>
+#include <algorithm>
 
 static u16 getItem(u8 rand, Lead lead, const PersonalInfo *info)
 {
@@ -140,10 +141,7 @@ std::vector<WildState8> WildGenerator8::generate(u64 seed0, u64 seed1, const Enc
         }
 
         std::array<u8, 6> ivs;
-        for (u8 &iv : ivs)
-        {
-            iv = rngList.next(rand) % 32;
-        }
+        std::generate(ivs.begin(), ivs.end(), [&rngList] { return rngList.next(rand) % 32; });
 
         u8 ability = rngList.next(rand) % 2;
 
