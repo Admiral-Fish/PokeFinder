@@ -8,6 +8,11 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
+if (NOT EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/Enum.hpp)
+    find_package(Python3 COMPONENTS Interpreter REQUIRED)
+    execute_process(COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/enum_map.py)
+endif ()
+
 add_executable(PokeFinderTest
     Data.cpp
     Data.hpp
@@ -82,13 +87,3 @@ add_executable(PokeFinderTest
 add_test(NAME Test COMMAND PokeFinderTest)
 
 target_link_libraries(PokeFinderTest PRIVATE PokeFinderCore Qt6::Core Qt6::Test)
-
-if (NOT EXISTS ${CMAKE_CURRENT_LIST_DIR}/Enum.hpp)
-    find_package(Python3 COMPONENTS Interpreter REQUIRED)
-    add_custom_target(
-        Enums ALL
-        COMMAND ${PYTHON3_EXECUTABLE} ${CMAKE_CURRENT_LIST_DIR}/enum_map.py
-    )
-
-    add_dependencies(PokeFinderTest Enums)
-endif ()
