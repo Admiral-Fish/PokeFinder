@@ -26,18 +26,11 @@
 #include <cmath>
 #include <iterator>
 
-static float randF(u32 prng)
+static float rand(u32 prng)
 {
     float t = (prng & 0x7fffff) / 8388607.0;
     return 1.0 - t;
 }
-
-struct PokeRate
-{
-    const PersonalInfo *info;
-    u16 rate;
-    u16 specie;
-};
 
 UndergroundArea::UndergroundArea(u8 location, u8 min, u8 max, const std::vector<Pokemon> &pokemon,
                                  const std::vector<SpecialPokemon> &specialPokemon, const std::array<u8, 18> &typeRates,
@@ -86,7 +79,7 @@ u8 UndergroundArea::getMin() const
     return min;
 }
 
-std::pair<const PersonalInfo *, u16> UndergroundArea::getPokemon(RNGList<u32, Xorshift, 256> &rngList, const TypeSize &type) const
+u16 UndergroundArea::getPokemon(RNGList<u32, Xorshift, 256> &rngList, const TypeSize &type) const
 {
     u8 tempCount = 0;
     std::array<TypeSize, 23> temp;
@@ -105,9 +98,7 @@ std::pair<const PersonalInfo *, u16> UndergroundArea::getPokemon(RNGList<u32, Xo
     for (const Pokemon &mon : pokemon)
     {
         if (std::find_if(temp.begin(), temp.end(),
-                         [mon](const TypeSize &t) {
-                             return t.size == mon.size && (t.type == mon.info->getType(0) || t.type == mon.info->getType(1));
-                         })
+                         [mon](const TypeSize &t) { return t.size == mon.size && (t.type == mon.type[0] || t.type == mon.type[1]); })
             != temp.end())
         {
             sum += mon.rate;
@@ -119,18 +110,18 @@ std::pair<const PersonalInfo *, u16> UndergroundArea::getPokemon(RNGList<u32, Xo
     std::sort(filtered.begin(), filtered.begin() + filteredCount,
               [](const Pokemon &left, const Pokemon &right) { return left.rate > right.rate; });
 
-    float rand = rngList.next(randF) * sum;
+    float rate = rngList.next(rand) * sum;
     for (u8 i = 0; i < filteredCount; i++)
     {
         const auto &filter = filtered[i];
-        if (rand < filter.rate)
+        if (rate < filter.rate)
         {
-            return std::make_pair(filter.info, filter.specie);
+            return filter.specie;
         }
-        rand -= filter.rate;
+        rate -= filter.rate;
     }
 
-    return std::make_pair(nullptr, 0);
+    return 0;
 }
 
 std::array<TypeSize, 10> UndergroundArea::getSlots(RNGList<u32, Xorshift, 256> &rngList, u8 count) const
@@ -139,8 +130,8 @@ std::array<TypeSize, 10> UndergroundArea::getSlots(RNGList<u32, Xorshift, 256> &
     for (u8 i = 0; i < count; i++)
     {
         u8 type = 0;
-        float rand = rngList.next(randF) * typeSum;
-        auto it = std::find_if(typeRates.begin(), typeRates.end(), [rand](const TypeRate &rate) { return rand < rate.rate; });
+        float rate = rngList.next(rand) * typeSum;
+        auto it = std::find_if(typeRates.begin(), typeRates.end(), [rate](const TypeRate &typeRate) { return rate < typeRate.rate; });
         if (it != typeRates.end())
         {
             type = it->type;
@@ -165,18 +156,18 @@ std::array<TypeSize, 10> UndergroundArea::getSlots(RNGList<u32, Xorshift, 256> &
     return slots;
 }
 
-std::pair<const PersonalInfo *, u16> UndergroundArea::getSpecialPokemon(RNGList<u32, Xorshift, 256> &rngList) const
+u16 UndergroundArea::getSpecialPokemon(RNGList<u32, Xorshift, 256> &rngList) const
 {
     if ((rngList.next() % 100) < 50)
     {
-        float rand = rngList.next(randF) * specialSum;
-        auto it = std::find_if(specialPokemon.begin(), specialPokemon.end(), [rand](const SpecialPokemon &mon) { return rand < mon.rate; });
+        float rate = rngList.next(rand) * specialSum;
+        auto it = std::find_if(specialPokemon.begin(), specialPokemon.end(), [rate](const SpecialPokemon &mon) { return rate < mon.rate; });
         if (it != specialPokemon.end())
         {
-            return std::pair(it->info, it->specie);
+            return it->specie;
         }
     }
-    return std::make_pair(nullptr, 0);
+    return 0;
 }
 
 std::vector<u16> UndergroundArea::getSpecies() const

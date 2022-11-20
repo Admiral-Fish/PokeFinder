@@ -310,7 +310,7 @@ namespace Encounters8
             {
                 u16 specie = *reinterpret_cast<const u16 *>(entry + index);
                 u16 rate = *reinterpret_cast<const u16 *>(entry + index + 2);
-                SpecialPokemon special = { &base[specie], specie, rate };
+                SpecialPokemon special = { specie, rate };
                 specialPokemon.emplace_back(special);
             }
 
@@ -330,7 +330,7 @@ namespace Encounters8
                 {
                     u16 specie = *reinterpret_cast<const u16 *>(entry + index);
                     index += 2;
-                    const PersonalInfo *info = base + specie;
+                    const PersonalInfo *info = &base[specie];
 
                     u8 size = entry[index++];
                     u8 typeCount = info->getType(0) == info->getType(1) ? 1 : 2;
@@ -348,7 +348,7 @@ namespace Encounters8
                     u8 rateup = entry[index++];
 
                     u16 flagRate = diglett ? flagRates[storyFlag - 1] * rateup : flagRates[storyFlag - 1];
-                    Pokemon mon = { info, flagRate, specie, size };
+                    Pokemon mon = { flagRate, specie, size, info->getType(0), info->getType(1) };
                     pokemon.emplace_back(mon);
                 }
                 else

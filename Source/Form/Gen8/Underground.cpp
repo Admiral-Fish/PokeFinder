@@ -49,12 +49,13 @@ Underground::Underground(QWidget *parent) : QWidget(parent), ui(new Ui::Undergro
     ui->textBoxMaxAdvances->setValues(InputType::Advance32Bit);
     ui->textBoxDelay->setValues(InputType::Advance32Bit);
 
-    ui->toolButtonLead->addAction(tr("None"), toInt(Lead::None));
-    ui->toolButtonLead->addMenu(tr("Cute Charm"), { tr("♂ Lead"), tr("♀ Lead") }, { toInt(Lead::CuteCharmM), toInt(Lead::CuteCharmF) });
-    ui->toolButtonLead->addAction(tr("Hustle"), toInt(Lead::Hustle));
-    ui->toolButtonLead->addAction(tr("Pressure"), toInt(Lead::Pressure));
-    ui->toolButtonLead->addMenu(tr("Synchronize"), *Translator::getNatures());
-    ui->toolButtonLead->addAction(tr("Vital Spirit"), toInt(Lead::VitalSpirit));
+    ui->comboMenuLead->addAction(tr("None"), toInt(Lead::None));
+    ui->comboMenuLead->addMenu(tr("Cute Charm"), { tr("♂ Lead"), tr("♀ Lead") }, { toInt(Lead::CuteCharmM), toInt(Lead::CuteCharmF) });
+    ui->comboMenuLead->addMenu(tr("Item Modifier"), { tr("Compound Eyes"), tr("Super Luck") },
+                               { toInt(Lead::CompoundEyes), toInt(Lead::SuperLuck) });
+    ui->comboMenuLead->addMenu(tr("Level Modifier"), { tr("Hustle"), tr("Pressure"), tr("Vital Spirit") },
+                               { toInt(Lead::Hustle), toInt(Lead::Pressure), toInt(Lead::VitalSpirit) });
+    ui->comboMenuLead->addMenu(tr("Synchronize"), *Translator::getNatures());
 
     ui->filter->disableControls(Controls::EncounterSlots);
 
@@ -160,7 +161,7 @@ void Underground::generate()
     u32 offset = ui->textBoxDelay->getUInt();
     u16 tid = currentProfile->getTID();
     u16 sid = currentProfile->getSID();
-    auto lead = ui->toolButtonLead->getEnum<Lead>();
+    auto lead = ui->comboMenuLead->getEnum<Lead>();
     bool bonus = ui->checkBoxDiglett->isChecked();
 
     std::vector<u16> species = ui->checkListPokemon->getCheckedData();

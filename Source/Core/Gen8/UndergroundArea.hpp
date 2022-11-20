@@ -44,15 +44,14 @@ struct TypeSize
 
 struct Pokemon
 {
-    const PersonalInfo *info;
     u16 rate;
     u16 specie;
     u8 size;
+    u8 type[2];
 };
 
 struct SpecialPokemon
 {
-    const PersonalInfo *info;
     u16 specie;
     u16 rate;
 };
@@ -110,7 +109,7 @@ public:
      *
      * @return Pokemon to create
      */
-    std::pair<const PersonalInfo *, u16> getPokemon(RNGList<u32, Xorshift, 256> &rngList, const TypeSize &type) const;
+    u16 getPokemon(RNGList<u32, Xorshift, 256> &rngList, const TypeSize &type) const;
 
     /**
      * @brief Returns the list of types and associated sizes to help determine which pokemon to create
@@ -130,7 +129,7 @@ public:
      *
      * @return Pokemon to create
      */
-    std::pair<const PersonalInfo *, u16> getSpecialPokemon(RNGList<u32, Xorshift, 256> &rngList) const;
+    u16 getSpecialPokemon(RNGList<u32, Xorshift, 256> &rngList) const;
 
     /**
      * @brief Return the species numbers of the area

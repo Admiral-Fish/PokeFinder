@@ -212,7 +212,7 @@
        </widget>
       </item>
       <item row="2" column="3">
-       <widget class="ComboMenu" name="toolButtonLead"/>
+       <widget class="ComboMenu" name="comboMenuLead"/>
       </item>
       <item row="4" column="1">
        <widget class="QLabel" name="labelSeed1">
@@ -282,19 +282,6 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>ComboBox</class>
-   <extends>QComboBox</extends>
-   <header>Form/Controls/ComboBox.hpp</header>
-  </customwidget>
-  <customwidget>
-   <class>CheckList</class>
-   <extends>QComboBox</extends>
-   <header>Form/Controls/CheckList.hpp</header>
-   <slots>
-    <slot>resetChecks()</slot>
-   </slots>
-  </customwidget>
-  <customwidget>
    <class>TextBox</class>
    <extends>QLineEdit</extends>
    <header>Form/Controls/TextBox.hpp</header>
@@ -303,6 +290,11 @@
    <class>TableView</class>
    <extends>QTableView</extends>
    <header>Form/Controls/TableView.hpp</header>
+  </customwidget>
+  <customwidget>
+   <class>ComboBox</class>
+   <extends>QComboBox</extends>
+   <header>Form/Controls/ComboBox.hpp</header>
   </customwidget>
   <customwidget>
    <class>Filter</class>
@@ -315,11 +307,19 @@
    <extends>QToolButton</extends>
    <header>Form/Controls/ComboMenu.hpp</header>
   </customwidget>
+  <customwidget>
+   <class>CheckList</class>
+   <extends>QComboBox</extends>
+   <header>Form/Controls/CheckList.hpp</header>
+   <slots>
+    <slot>resetChecks()</slot>
+   </slots>
+  </customwidget>
  </customwidgets>
  <tabstops>
   <tabstop>comboBoxProfiles</tabstop>
   <tabstop>pushButtonProfileManager</tabstop>
-  <tabstop>toolButtonLead</tabstop>
+  <tabstop>comboMenuLead</tabstop>
   <tabstop>textBoxSeed0</tabstop>
   <tabstop>textBoxSeed1</tabstop>
   <tabstop>textBoxInitialAdvances</tabstop>

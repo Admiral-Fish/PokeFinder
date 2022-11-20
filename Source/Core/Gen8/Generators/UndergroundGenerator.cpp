@@ -184,11 +184,16 @@ static u32 rand(u32 prng)
     return (prng % 0xffffffff) + 0x80000000;
 }
 
-static u16 getItem(u8 rand, const PersonalInfo *info)
+static u16 getItem(u8 rand, Lead lead, const PersonalInfo *info)
 {
-    if (rand >= 60)
+    constexpr u8 ItemTableRange[2] = { 50, 60 };
+
+    u8 thresh1 = ItemTableRange[lead == Lead::CompoundEyes ? 1 : 0];
+    constexpr u8 thresh2 = 20;
+
+    if (rand >= thresh1)
     {
-        if (rand >= 80)
+        if (rand >= (thresh1 + thresh2))
         {
             return info->getItem(2);
         }
@@ -213,21 +218,114 @@ UndergroundGenerator::UndergroundGenerator(u32 initialAdvances, u32 maxAdvances,
 std::vector<UndergroundState> UndergroundGenerator::generate(u64 seed0, u64 seed1, const UndergroundArea &encounterArea) const
 {
     RNGList<u32, Xorshift, 256> rngList(seed0, seed1, initialAdvances + offset);
+    const PersonalInfo *base = PersonalLoader::getPersonal(version);
     u8 pidRolls = diglett ? 2 : 1;
+
+    auto createPokemon = [=, &rngList](u32 advances, u16 specie) {
+        rngList.advance(1); // Level
+        rngList.advance(1); // EC
+        u32 sidtid = rngList.next(rand);
+        u32 pid;
+        u8 shiny;
+        for (u8 j = 0; j < pidRolls; j++)
+        {
+            pid = rngList.next(rand);
+
+            u16 psv = (pid >> 16) ^ (pid & 0xffff);
+            u16 fakeXor = (sidtid >> 16) ^ (sidtid & 0xffff) ^ psv;
+
+            if (fakeXor < 16) // Force shiny
+            {
+                shiny = fakeXor == 0 ? 2 : 1;
+
+                u16 realXor = psv ^ tsv;
+                u8 realShiny = realXor == 0 ? 2 : realXor < 16 ? 1 : 0;
+
+                if (realShiny != shiny)
+                {
+                    u16 high = (pid & 0xFFFF) ^ tsv ^ (2 - shiny);
+                    pid = (high << 16) | (pid & 0xFFFF);
+                }
+                break;
+            }
+            else // Force non
+            {
+                shiny = 0;
+                if ((psv ^ tsv) < 16)
+                {
+                    pid ^= 0x10000000;
+                }
+            }
+        }
+
+        std::array<u8, 6> ivs;
+        std::generate(ivs.begin(), ivs.end(), [&rngList] { return rngList.next(rand) % 32; });
+
+        u8 ability = rngList.next(rand) % 2;
+
+        const PersonalInfo *info = &base[specie];
+
+        u8 gender;
+        switch (info->getGender())
+        {
+        case 255:
+            gender = 2;
+            break;
+        case 254:
+            gender = 1;
+            break;
+        case 0:
+            gender = 0;
+            break;
+        default:
+            if ((lead == Lead::CuteCharmF || lead == Lead::CuteCharmM) && (rngList.next() % 100) < 67)
+            {
+                gender = lead == Lead::CuteCharmF ? 0 : 1;
+            }
+            else
+            {
+                gender = (rngList.next(rand) % 253) + 1 < info->getGender();
+            }
+        }
+
+        u8 nature;
+        if (lead <= Lead::SynchronizeEnd)
+        {
+            nature = toInt(lead);
+        }
+        else
+        {
+            nature = rngList.next(rand) % 25;
+        }
+
+        rngList.advance(4); // 2 calls height, 2 calls weight
+
+        u16 item = getItem(rngList.next() % 100, lead, info);
+
+        u16 eggMove = 0;
+        const auto *eggMoves = std::lower_bound(std::begin(eggMoveList), std::end(eggMoveList), info->getHatchSpecie(),
+                                                [](const EggMoveList &eggMove, u16 specie) { return eggMove.specie < specie; });
+        if (eggMoves != std::end(eggMoveList) && eggMoves->specie == info->getHatchSpecie())
+        {
+            eggMove = eggMoves->moves[rngList.next() % eggMoves->count];
+        }
+
+        return UndergroundState(initialAdvances + advances, specie, pid, shiny, ivs, ability, gender, nature, item, eggMove, info);
+    };
 
     std::vector<UndergroundState> states;
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rngList.advanceState())
     {
         u8 spawnCount = encounterArea.getMin();
 
-        auto specialPokemon = encounterArea.getSpecialPokemon(rngList);
+        u16 specialPokemon = encounterArea.getSpecialPokemon(rngList);
 
         if ((rngList.next() % 100) >= 50)
         {
             spawnCount = encounterArea.getMax();
         }
 
-        if (specialPokemon.first)
+        if (specialPokemon != 0)
         {
             spawnCount -= 1;
         }
@@ -235,167 +333,17 @@ std::vector<UndergroundState> UndergroundGenerator::generate(u64 seed0, u64 seed
         auto slots = encounterArea.getSlots(rngList, spawnCount);
         for (u8 i = 0; i < spawnCount; i++)
         {
-            auto pokemon = encounterArea.getPokemon(rngList, slots[i]);
-
-            rngList.advance(1); // Level
-            rngList.advance(1); // EC
-            u32 sidtid = rngList.next(rand);
-            u32 pid;
-            u8 shiny;
-            for (u8 j = 0; j < pidRolls; j++)
-            {
-                pid = rngList.next(rand);
-
-                u16 psv = (pid >> 16) ^ (pid & 0xffff);
-                u16 fakeXor = (sidtid >> 16) ^ (sidtid & 0xffff) ^ psv;
-
-                if (fakeXor < 16) // Force shiny
-                {
-                    shiny = fakeXor == 0 ? 2 : 1;
-
-                    u16 realXor = psv ^ tsv;
-                    u8 realShiny = realXor == 0 ? 2 : realXor < 16 ? 1 : 0;
-
-                    if (realShiny != shiny)
-                    {
-                        u16 high = (pid & 0xFFFF) ^ tsv ^ (2 - shiny);
-                        pid = (high << 16) | (pid & 0xFFFF);
-                    }
-                    break;
-                }
-                else // Force non
-                {
-                    shiny = 0;
-                    if ((psv ^ tsv) < 16)
-                    {
-                        pid ^= 0x10000000;
-                    }
-                }
-            }
-
-            std::array<u8, 6> ivs;
-            std::generate(ivs.begin(), ivs.end(), [&rngList] { return rngList.next(rand) % 32; });
-
-            u8 ability = rngList.next(rand) % 2;
-
-            const PersonalInfo *info = pokemon.first;
-
-            u8 gender;
-            switch (info->getGender())
-            {
-            case 255:
-                gender = 2;
-                break;
-            case 254:
-                gender = 1;
-                break;
-            case 0:
-                gender = 0;
-                break;
-            default:
-                gender = (rngList.next(rand) % 253) + 1 < info->getGender();
-                break;
-            }
-
-            u8 nature = rngList.next(rand) % 25;
-
-            rngList.advance(4); // 2 calls height, 2 calls weight
-
-            u16 item = getItem(rngList.next() % 100, info);
-
-            u16 eggMove = 0;
-            const auto *eggMoves = std::lower_bound(std::begin(eggMoveList), std::end(eggMoveList), info->getHatchSpecie(),
-                                                    [](const EggMoveList &eggMove, u16 specie) { return eggMove.specie < specie; });
-            if (eggMoves != std::end(eggMoveList) && eggMoves->specie == info->getHatchSpecie())
-            {
-                eggMove = eggMoves->moves[rngList.next() % eggMoves->count];
-            }
-
-            UndergroundState state(initialAdvances + cnt, pokemon.second, pid, shiny, ivs, ability, gender, nature, item, eggMove, info);
+            u16 pokemon = encounterArea.getPokemon(rngList, slots[i]);
+            UndergroundState state = createPokemon(cnt, pokemon);
             if (filter.compareState(state))
             {
                 states.emplace_back(state);
             }
         }
 
-        if (specialPokemon.first)
+        if (specialPokemon != 0)
         {
-            rngList.advance(1); // Level
-            rngList.advance(1); // EC
-            u32 sidtid = rngList.next(rand);
-            u32 pid;
-            u8 shiny;
-            for (auto i = 0; i < pidRolls; i++)
-            {
-                pid = rngList.next(rand);
-
-                u16 psv = (pid >> 16) ^ (pid & 0xffff);
-                u16 fakeXor = (sidtid >> 16) ^ (sidtid & 0xffff) ^ psv;
-
-                if (fakeXor < 16) // Force shiny
-                {
-                    shiny = fakeXor == 0 ? 2 : 1;
-
-                    u16 realXor = psv ^ tsv;
-                    u8 realShiny = realXor == 0 ? 2 : realXor < 16 ? 1 : 0;
-
-                    if (realShiny != shiny)
-                    {
-                        u16 high = (pid & 0xFFFF) ^ tsv ^ (2 - shiny);
-                        pid = (high << 16) | (pid & 0xFFFF);
-                    }
-                    break;
-                }
-                else // Force non
-                {
-                    shiny = 0;
-                    if ((psv ^ tsv) < 16)
-                    {
-                        pid ^= 0x10000000;
-                    }
-                }
-            }
-
-            std::array<u8, 6> ivs;
-            std::generate(ivs.begin(), ivs.end(), [&rngList] { return rngList.next(rand) % 32; });
-
-            u8 ability = rngList.next(rand) % 2;
-
-            const PersonalInfo *info = specialPokemon.first;
-
-            u8 gender;
-            switch (info->getGender())
-            {
-            case 255:
-                gender = 2;
-                break;
-            case 254:
-                gender = 1;
-                break;
-            case 0:
-                gender = 0;
-                break;
-            default:
-                gender = (rngList.next(rand) % 253) + 1 < info->getGender();
-                break;
-            }
-
-            u8 nature = rngList.next(rand) % 25;
-
-            rngList.advance(4); // 2 calls height, 2 calls weight
-
-            u16 item = getItem(rngList.next() % 100, info);
-
-            u16 eggMove = 0;
-            const auto *eggMoves = std::lower_bound(std::begin(eggMoveList), std::end(eggMoveList), info->getHatchSpecie(),
-                                                    [](const EggMoveList &eggMove, u16 specie) { return eggMove.specie < specie; });
-            if (eggMoves != std::end(eggMoveList) && eggMoves->specie == info->getHatchSpecie())
-            {
-                eggMove = eggMoves->moves[rngList.next() % eggMoves->count];
-            }
-
-            UndergroundState state(initialAdvances + cnt, specialPokemon.second, pid, shiny, ivs, ability, gender, nature, item, eggMove,
-                                   info);
+            UndergroundState state = createPokemon(cnt, specialPokemon);
             if (filter.compareState(state))
             {
                 states.emplace_back(state);
