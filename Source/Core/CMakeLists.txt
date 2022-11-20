@@ -142,6 +142,7 @@ add_library(PokeFinderCore STATIC
     Gen8/UndergroundArea.cpp
     Gen8/UndergroundArea.hpp
     Gen8/WB8.hpp
+    Global.hpp
     Parents/Daycare.hpp
     Parents/Filters/IDFilter.cpp
     Parents/Filters/IDFilter.hpp

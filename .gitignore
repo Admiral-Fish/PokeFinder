@@ -15,3 +15,7 @@ out
 i18n.hpp
 Encounters.hpp
 Personal.hpp
+
+# Test resource files
+Enum.cpp
+Enum.hpp

@@ -4,7 +4,7 @@
             {
                 "name": "Manaphy",
                 "seed": 0,
-                "version": 128,
+                "version": "Diamond",
                 "category": 6,
                 "pokemon": 0,
                 "results": [
@@ -313,7 +313,7 @@
             {
                 "name": "Lake of Rage Gyrados",
                 "seed": 1431655765,
-                "version": 1024,
+                "version": "HeartGold",
                 "category": 4,
                 "pokemon": 8,
                 "results": [
@@ -622,7 +622,7 @@
             {
                 "name": "Articuno",
                 "seed": 2863311530,
-                "version": 512,
+                "version": "Platinum",
                 "category": 7,
                 "pokemon": 2,
                 "results": [
@@ -933,10 +933,10 @@
             {
                 "name": "Registeel",
                 "seed": 0,
-                "version": 512,
+                "version": "Platinum",
                 "category": 5,
                 "pokemon": 2,
-                "lead": 255,
+                "lead": "None",
                 "results": [
                     {
                         "ability": 1,
@@ -1243,10 +1243,10 @@
             {
                 "name": "Heatran Cute Charm",
                 "seed": 1431655765,
-                "version": 512,
+                "version": "Platinum",
                 "category": 5,
                 "pokemon": 10,
-                "lead": 26,
+                "lead": "CuteCharmF",
                 "results": [
                     {
                         "ability": 0,
@@ -1553,10 +1553,10 @@
             {
                 "name": "Giratina Synchronize",
                 "seed": 2863311530,
-                "version": 512,
+                "version": "Platinum",
                 "category": 5,
                 "pokemon": 15,
-                "lead": 0,
+                "lead": "Synchronize",
                 "results": [
                     {
                         "ability": 0,
@@ -1865,10 +1865,10 @@
             {
                 "name": "Articuno",
                 "seed": 0,
-                "version": 1024,
+                "version": "HeartGold",
                 "category": 5,
                 "pokemon": 16,
-                "lead": 255,
+                "lead": "None",
                 "results": [
                     {
                         "ability": 1,
@@ -2175,10 +2175,10 @@
             {
                 "name": "Lapras Cute Charm",
                 "seed": 1431655765,
-                "version": 1024,
+                "version": "HeartGold",
                 "category": 4,
                 "pokemon": 9,
-                "lead": 26,
+                "lead": "CuteCharmF",
                 "results": [
                     {
                         "ability": 1,
@@ -2485,10 +2485,10 @@
             {
                 "name": "Ho-Oh Synchronize",
                 "seed": 2863311530,
-                "version": 512,
+                "version": "Platinum",
                 "category": 5,
                 "pokemon": 23,
-                "lead": 0,
+                "lead": "Synchronize",
                 "results": [
                     {
                         "ability": 1,
@@ -2818,7 +2818,7 @@
                 "maxAdvance": 1000,
                 "minDelay": 600,
                 "maxDelay": 2000,
-                "version": 128,
+                "version": "Diamond",
                 "category": 6,
                 "pokemon": 0,
                 "results": 12
@@ -2841,7 +2841,7 @@
                     31,
                     31
                 ],
-                "version": 1024,
+                "version": "HeartGold",
                 "minAdvance": 0,
                 "maxAdvance": 1000,
                 "minDelay": 600,
@@ -2868,7 +2868,7 @@
                     31,
                     31
                 ],
-                "version": 512,
+                "version": "Platinum",
                 "minAdvance": 0,
                 "maxAdvance": 1000,
                 "minDelay": 600,
@@ -2897,14 +2897,14 @@
                     31,
                     31
                 ],
-                "version": 512,
+                "version": "Platinum",
                 "minAdvance": 0,
                 "maxAdvance": 1000,
                 "minDelay": 600,
                 "maxDelay": 2000,
                 "category": 5,
                 "pokemon": 2,
-                "lead": 255,
+                "lead": "None",
                 "results": 33
             },
             {
@@ -2925,14 +2925,14 @@
                     31,
                     31
                 ],
-                "version": 512,
+                "version": "Platinum",
                 "minAdvance": 0,
                 "maxAdvance": 1000,
                 "minDelay": 600,
                 "maxDelay": 2000,
                 "category": 5,
                 "pokemon": 10,
-                "lead": 26,
+                "lead": "CuteCharmF",
                 "results": 11
             },
             {
@@ -2953,14 +2953,14 @@
                     31,
                     31
                 ],
-                "version": 512,
+                "version": "Platinum",
                 "minAdvance": 0,
                 "maxAdvance": 1000,
                 "minDelay": 600,
                 "maxDelay": 2000,
                 "category": 5,
                 "pokemon": 15,
-                "lead": 0,
+                "lead": "Synchronize",
                 "results": 417
             }
         ],
@@ -2987,10 +2987,10 @@
                 "maxAdvance": 1000,
                 "minDelay": 600,
                 "maxDelay": 2000,
-                "version": 1024,
+                "version": "HeartGold",
                 "category": 5,
                 "pokemon": 16,
-                "lead": 255,
+                "lead": "None",
                 "results": 65
             },
             {
@@ -3015,10 +3015,10 @@
                 "maxAdvance": 1000,
                 "minDelay": 600,
                 "maxDelay": 2000,
-                "version": 1024,
+                "version": "HeartGold",
                 "category": 4,
                 "pokemon": 9,
-                "lead": 26,
+                "lead": "CuteCharmF",
                 "results": 6
             },
             {
@@ -3043,10 +3043,10 @@
                 "maxAdvance": 1000,
                 "minDelay": 600,
                 "maxDelay": 2000,
-                "version": 512,
+                "version": "Platinum",
                 "category": 5,
                 "pokemon": 23,
-                "lead": 0,
+                "lead": "Synchronize",
                 "results": 416
             }
         ]

@@ -4,7 +4,7 @@
             "name": "Turtwig",
             "seed0": 1311768467139281697,
             "seed1": 9756277977086449272,
-            "lead": 255,
+            "lead": "None",
             "category": 0,
             "pokemon": 0,
             "results": [
@@ -274,7 +274,7 @@
             "name": "Omanyte",
             "seed0": 1311768467139281697,
             "seed1": 9756277977086449272,
-            "lead": 255,
+            "lead": "None",
             "category": 2,
             "pokemon": 0,
             "results": [
@@ -544,7 +544,7 @@
             "name": "Heatran",
             "seed0": 1311768467139281697,
             "seed1": 9756277977086449272,
-            "lead": 26,
+            "lead": "CuteCharmF",
             "category": 5,
             "pokemon": 4,
             "results": [
@@ -814,7 +814,7 @@
             "name": "Articuno",
             "seed0": 1311768467139281697,
             "seed1": 9756277977086449272,
-            "lead": 0,
+            "lead": "Synchronize",
             "category": 6,
             "pokemon": 0,
             "results": [
@@ -1084,7 +1084,7 @@
             "name": "Jirachi",
             "seed0": 1311768467139281697,
             "seed1": 9756277977086449272,
-            "lead": 255,
+            "lead": "None",
             "category": 8,
             "pokemon": 1,
             "results": [
@@ -1356,7 +1356,7 @@
             "name": "Mespirit",
             "seed0": 1311768467139281697,
             "seed1": 9756277977086449272,
-            "lead": 255,
+            "lead": "None",
             "category": 4,
             "pokemon": 0,
             "results": [
@@ -1626,7 +1626,7 @@
             "name": "Cresselia",
             "seed0": 1311768467139281697,
             "seed1": 9756277977086449272,
-            "lead": 255,
+            "lead": "None",
             "category": 4,
             "pokemon": 1,
             "results": [

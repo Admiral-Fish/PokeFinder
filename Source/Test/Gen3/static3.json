@@ -4,8 +4,8 @@
             {
                 "name": "Ruby Groudon Method 4",
                 "seed": 0,
-                "version": 1,
-                "method": 4,
+                "version": "Ruby",
+                "method": "Method4",
                 "category": 5,
                 "pokemon": 7,
                 "results": [
@@ -294,8 +294,8 @@
             {
                 "name": "Emerald Totodile Method 1",
                 "seed": 1431655765,
-                "version": 4,
-                "method": 1,
+                "version": "Emerald",
+                "method": "Method1",
                 "category": 0,
                 "pokemon": 2,
                 "results": [
@@ -584,8 +584,8 @@
             {
                 "name": "Fire Red Lugia Method 1",
                 "seed": 2863311530,
-                "version": 8,
-                "method": 1,
+                "version": "FireRed",
+                "method": "Method1",
                 "category": 6,
                 "pokemon": 4,
                 "results": [
@@ -893,8 +893,8 @@
                     31,
                     31
                 ],
-                "version": 1,
-                "method": 4,
+                "version": "Ruby",
+                "method": "Method4",
                 "category": 5,
                 "pokemon": 7,
                 "results": 4
@@ -917,8 +917,8 @@
                     31,
                     31
                 ],
-                "version": 4,
-                "method": 1,
+                "version": "Emerald",
+                "method": "Method1",
                 "category": 0,
                 "pokemon": 2,
                 "results": 6
@@ -941,8 +941,8 @@
                     31,
                     31
                 ],
-                "version": 8,
-                "method": 1,
+                "version": "FireRed",
+                "method": "Method1",
                 "category": 6,
                 "pokemon": 4,
                 "results": 4

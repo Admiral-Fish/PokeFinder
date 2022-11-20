@@ -25,6 +25,7 @@
 #include <Core/Util/DateTime.hpp>
 #include <QTest>
 #include <Test/Data.hpp>
+#include <Test/Enum.hpp>
 
 using KeyPresses = std::array<bool, 4>;
 
@@ -47,9 +48,10 @@ void SHA1Test::hash_data()
     for (const auto &d : data)
     {
         QTest::newRow(d["name"].get<std::string>().data())
-            << d["keypresses"].get<KeyPresses>() << d["skipLR"].get<bool>() << d["version"].get<Game>() << d["language"].get<Language>()
-            << d["mac"].get<u64>() << d["softReset"].get<bool>() << d["vFrame"].get<u8>() << d["gxStat"].get<u8>() << d["timer0"].get<u32>()
-            << d["vCount"].get<u8>() << d["dsType"].get<DSType>() << d["seed"].get<u64>();
+            << d["keypresses"].get<KeyPresses>() << d["skipLR"].get<bool>() << getGame(d["version"].get<std::string>())
+            << getLanguage(d["language"].get<std::string>()) << d["mac"].get<u64>() << d["softReset"].get<bool>() << d["vFrame"].get<u8>()
+            << d["gxStat"].get<u8>() << d["timer0"].get<u32>() << d["vCount"].get<u8>() << getDSType(d["dsType"].get<std::string>())
+            << d["seed"].get<u64>();
     }
 }
 

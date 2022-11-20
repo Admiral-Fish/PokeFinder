@@ -4,7 +4,7 @@
             "name": "Shaymin Land Form",
             "specie": 492,
             "form": 0,
-            "version": 3072,
+            "version": "HGSS",
             "stats": [
                 [
                     25,
@@ -85,7 +85,7 @@
             "name": "Shaymin Sky Form",
             "specie": 492,
             "form": 1,
-            "version": 3072,
+            "version": "HGSS",
             "stats": [
                 [
                     25,
@@ -164,7 +164,7 @@
             "name": "Alakzam",
             "specie": 65,
             "form": 0,
-            "version": 3072,
+            "version": "HGSS",
             "stats": [
                 [
                     22,
@@ -234,7 +234,7 @@
             "name": "Alakzam Gen 6+",
             "specie": 65,
             "form": 0,
-            "version": 201326592,
+            "version": "BDSP",
             "stats": [
                 [
                     22,

@@ -12,6 +12,8 @@ add_executable(PokeFinderTest
     Data.cpp
     Data.hpp
     data.qrc
+    Enum.cpp
+    Enum.hpp
     Gen3/GameCubeGeneratorTest.cpp
     Gen3/GameCubeGeneratorTest.hpp
     Gen3/GameCubeSearcherTest.cpp
@@ -80,3 +82,13 @@ add_executable(PokeFinderTest
 add_test(NAME Test COMMAND PokeFinderTest)
 
 target_link_libraries(PokeFinderTest PRIVATE PokeFinderCore Qt6::Core Qt6::Test)
+
+if (NOT EXISTS ${CMAKE_CURRENT_LIST_DIR}/Enum.hpp)
+    find_package(Python3 COMPONENTS Interpreter REQUIRED)
+    add_custom_target(
+        Enums ALL
+        COMMAND ${PYTHON3_EXECUTABLE} ${CMAKE_CURRENT_LIST_DIR}/enum_map.py
+    )
+
+    add_dependencies(PokeFinderTest Enums)
+endif ()

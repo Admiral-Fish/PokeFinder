@@ -2598,7 +2598,7 @@
             {
                 "name": "Colo Umbreon",
                 "seed": 0,
-                "version": 64,
+                "version": "Colosseum",
                 "pokemon": 0,
                 "results": [
                     {
@@ -2886,7 +2886,7 @@
             {
                 "name": "Colo Espeon",
                 "seed": 0,
-                "version": 64,
+                "version": "Colosseum",
                 "pokemon": 1,
                 "results": [
                     {
@@ -3174,7 +3174,7 @@
             {
                 "name": "Ageto Celebi",
                 "seed": 0,
-                "version": 64,
+                "version": "Colosseum",
                 "pokemon": 3,
                 "results": [
                     {
@@ -3462,7 +3462,7 @@
             {
                 "name": "Gales Eevee",
                 "seed": 0,
-                "version": 32,
+                "version": "Gales",
                 "pokemon": 5,
                 "results": [
                     {
@@ -3750,7 +3750,7 @@
             {
                 "name": "Gales Chikorita",
                 "seed": 0,
-                "version": 32,
+                "version": "Gales",
                 "pokemon": 6,
                 "results": [
                     {
@@ -4966,7 +4966,7 @@
                     31,
                     31
                 ],
-                "version": 64,
+                "version": "Colosseum",
                 "pokemon": 0,
                 "results": [
                     {
@@ -5157,7 +5157,7 @@
                     31,
                     31
                 ],
-                "version": 64,
+                "version": "Colosseum",
                 "pokemon": 1,
                 "results": [
                     {
@@ -5348,7 +5348,7 @@
                     31,
                     31
                 ],
-                "version": 64,
+                "version": "Colosseum",
                 "pokemon": 3,
                 "results": [
                     {
@@ -5539,7 +5539,7 @@
                     31,
                     31
                 ],
-                "version": 32,
+                "version": "Gales",
                 "pokemon": 5,
                 "results": [
                     {
@@ -5730,7 +5730,7 @@
                     31,
                     31
                 ],
-                "version": 32,
+                "version": "Gales",
                 "pokemon": 6,
                 "results": [
                     {

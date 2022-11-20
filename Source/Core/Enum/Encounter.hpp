@@ -46,8 +46,7 @@ enum class Encounter : u8
     Gift,
     EntraLink,
     GiftEgg,
-    HiddenGrotto,
-    Underground
+    HiddenGrotto
 };
 
 /**

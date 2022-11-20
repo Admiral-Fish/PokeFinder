@@ -9,15 +9,15 @@
                 false
             ],
             "skipLR": false,
-            "version": 4096,
-            "language": 0,
+            "version": "Black",
+            "language": "English",
             "mac": 41860346966,
             "softReset": false,
             "vFrame": 5,
             "gxStat": 6,
             "timer0": 1544,
             "vCount": 46,
-            "dsType": 0,
+            "dsType": "DS",
             "seed": 6812116909077463616
         },
         {
@@ -29,15 +29,15 @@
                 false
             ],
             "skipLR": false,
-            "version": 8192,
-            "language": 0,
+            "version": "White",
+            "language": "English",
             "mac": 41860346966,
             "softReset": false,
             "vFrame": 5,
             "gxStat": 6,
             "timer0": 1569,
             "vCount": 47,
-            "dsType": 0,
+            "dsType": "DS",
             "seed": 12718926928427950449
         },
         {
@@ -49,15 +49,15 @@
                 false
             ],
             "skipLR": false,
-            "version": 16384,
-            "language": 0,
+            "version": "Black2",
+            "language": "English",
             "mac": 41860346966,
             "softReset": false,
             "vFrame": 5,
             "gxStat": 6,
             "timer0": 2418,
             "vCount": 72,
-            "dsType": 0,
+            "dsType": "DS",
             "seed": 5264333967543063602
         },
         {
@@ -69,15 +69,15 @@
                 false
             ],
             "skipLR": false,
-            "version": 32768,
-            "language": 0,
+            "version": "White2",
+            "language": "English",
             "mac": 41860346966,
             "softReset": false,
             "vFrame": 5,
             "gxStat": 6,
             "timer0": 2415,
             "vCount": 72,
-            "dsType": 0,
+            "dsType": "DS",
             "seed": 16328266460923798414
         }
     ]
