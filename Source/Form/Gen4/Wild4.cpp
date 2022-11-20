@@ -66,20 +66,31 @@ Wild4::Wild4(QWidget *parent) : QWidget(parent), ui(new Ui::Wild4)
 
     ui->filterSearcher->disableControls(Controls::DisableFilter);
 
-    ui->toolButtonGeneratorLead->addAction(tr("None"), toInt(Lead::None));
-    ui->toolButtonGeneratorLead->addAction(tr("Arena Trap"), toInt(Lead::ArenaTrap));
-    ui->toolButtonGeneratorLead->addAction(tr("Compound Eyes"), toInt(Lead::CompoundEyes));
-    ui->toolButtonGeneratorLead->addMenu(tr("Cute Charm"), { tr("♂ Lead"), tr("♀ Lead") },
-                                         { toInt(Lead::CuteCharmM), toInt(Lead::CuteCharmF) });
-    ui->toolButtonGeneratorLead->addMenu(tr("Encounter Modifier"), { tr("Magnet Pull"), tr("Static") },
-                                         { toInt(Lead::MagnetPull), toInt(Lead::Static) });
-    ui->toolButtonGeneratorLead->addAction(tr("Pressure"), toInt(Lead::Pressure));
-    ui->toolButtonGeneratorLead->addAction(tr("Suction Cups"), toInt(Lead::SuctionCups));
-    ui->toolButtonGeneratorLead->addMenu(tr("Synchronize"), *Translator::getNatures());
+    ui->comboMenuGeneratorLead->addAction(tr("None"), toInt(Lead::None));
+    ui->comboMenuGeneratorLead->addMenu(tr("Cute Charm"), { tr("♂ Lead"), tr("♀ Lead") },
+                                        { toInt(Lead::CuteCharmM), toInt(Lead::CuteCharmF) });
+    ui->comboMenuGeneratorLead->addMenu(
+        tr("Encounter Modifier"), { tr("Arena Trap"), tr("Illuminate"), tr("No Guard"), tr("Sticky Hold"), tr("Suction Cups") },
+        { toInt(Lead::ArenaTrap), toInt(Lead::Illuminate), toInt(Lead::NoGuard), toInt(Lead::StickyHold), toInt(Lead::SuctionCups) });
+    ui->comboMenuGeneratorLead->addAction(tr("Compound Eyes"), toInt(Lead::CompoundEyes));
+    ui->comboMenuGeneratorLead->addMenu(tr("Slot Modifier"), { tr("Magnet Pull"), tr("Static") },
+                                        { toInt(Lead::MagnetPull), toInt(Lead::Static) });
+    ui->comboMenuGeneratorLead->addMenu(tr("Level Modifier"), { tr("Hustle"), tr("Pressure"), tr("Vital Spirit") },
+                                        { toInt(Lead::Hustle), toInt(Lead::Pressure), toInt(Lead::VitalSpirit) });
+    ui->comboMenuGeneratorLead->addMenu(tr("Synchronize"), *Translator::getNatures());
 
-    ui->comboBoxSearcherLead->setup({ toInt(Lead::None), toInt(Lead::ArenaTrap), toInt(Lead::CuteCharmM), toInt(Lead::CuteCharmF),
-                                      toInt(Lead::CompoundEyes), toInt(Lead::MagnetPull), toInt(Lead::Pressure), toInt(Lead::Static),
-                                      toInt(Lead::SuctionCups), toInt(Lead::Synchronize) });
+    ui->comboMenuSearcherLead->addAction(tr("None"), toInt(Lead::None));
+    ui->comboMenuSearcherLead->addMenu(tr("Cute Charm"), { tr("♂ Lead"), tr("♀ Lead") },
+                                       { toInt(Lead::CuteCharmM), toInt(Lead::CuteCharmF) });
+    ui->comboMenuSearcherLead->addMenu(
+        tr("Encounter Modifier"), { tr("Arena Trap"), tr("Illuminate"), tr("No Guard"), tr("Sticky Hold"), tr("Suction Cups") },
+        { toInt(Lead::ArenaTrap), toInt(Lead::Illuminate), toInt(Lead::NoGuard), toInt(Lead::StickyHold), toInt(Lead::SuctionCups) });
+    ui->comboMenuSearcherLead->addAction(tr("Compound Eyes"), toInt(Lead::CompoundEyes));
+    ui->comboMenuSearcherLead->addMenu(tr("Slot Modifier"), { tr("Magnet Pull"), tr("Static") },
+                                       { toInt(Lead::MagnetPull), toInt(Lead::Static) });
+    ui->comboMenuSearcherLead->addMenu(tr("Level Modifier"), { tr("Hustle"), tr("Pressure"), tr("Vital Spirit") },
+                                       { toInt(Lead::Hustle), toInt(Lead::Pressure), toInt(Lead::VitalSpirit) });
+    ui->comboMenuSearcherLead->addAction(tr("Synchronize"), toInt(Lead::Synchronize));
 
     ui->comboBoxGeneratorEncounter->setup({ toInt(Encounter::Grass), toInt(Encounter::RockSmash), toInt(Encounter::BugCatchingContest),
                                             toInt(Encounter::Headbutt), toInt(Encounter::HeadbuttAlt), toInt(Encounter::HeadbuttSpecial),
@@ -287,7 +298,7 @@ void Wild4::generate()
     u16 tid = currentProfile->getTID();
     u16 sid = currentProfile->getSID();
     auto encounter = ui->comboBoxGeneratorEncounter->getEnum<Encounter>();
-    auto lead = ui->toolButtonGeneratorLead->getEnum<Lead>();
+    auto lead = ui->comboMenuGeneratorLead->getEnum<Lead>();
     bool chained = ui->checkBoxGeneratorPokeRadarShiny->isChecked();
 
     WildStateFilter4 filter(ui->filterGenerator->getGender(), ui->filterGenerator->getAbility(), ui->filterGenerator->getShiny(),
@@ -465,9 +476,9 @@ void Wild4::generatorPokeRadarStateChanged(int state)
     {
         ui->checkBoxGeneratorPokeRadarShiny->setChecked(false);
     }
-    ui->toolButtonGeneratorLead->hideAction(toInt(Lead::MagnetPull), state == Qt::Checked);
-    ui->toolButtonGeneratorLead->hideAction(toInt(Lead::Pressure), state == Qt::Checked);
-    ui->toolButtonGeneratorLead->hideAction(toInt(Lead::Static), state == Qt::Checked);
+    ui->comboMenuGeneratorLead->hideAction(toInt(Lead::MagnetPull), state == Qt::Checked);
+    ui->comboMenuGeneratorLead->hideAction(toInt(Lead::Hustle), state == Qt::Checked); // Also handles Pressure and Vital Spirit
+    ui->comboMenuGeneratorLead->hideAction(toInt(Lead::Static), state == Qt::Checked);
 }
 
 void Wild4::profileIndexChanged(int index)
@@ -489,16 +500,16 @@ void Wild4::profileIndexChanged(int index)
         ui->comboBoxGeneratorEncounter->setItemHidden(ui->comboBoxGeneratorEncounter->findData(toInt(Encounter::Headbutt)), !hgss);
         ui->comboBoxGeneratorEncounter->setItemHidden(ui->comboBoxGeneratorEncounter->findData(toInt(Encounter::HeadbuttAlt)), !hgss);
         ui->comboBoxGeneratorEncounter->setItemHidden(ui->comboBoxGeneratorEncounter->findData(toInt(Encounter::HeadbuttSpecial)), !hgss);
-        ui->toolButtonGeneratorLead->hideAction(toInt(Lead::ArenaTrap), !hgss);
-        ui->toolButtonGeneratorLead->hideAction(toInt(Lead::SuctionCups), !hgss);
+        ui->comboMenuGeneratorLead->hideAction(toInt(Lead::ArenaTrap), !hgss); // Also handles Illuminate and No Guard
+        ui->comboMenuGeneratorLead->hideAction(toInt(Lead::StickyHold), !hgss); // Also handles Suction Cups
 
         ui->comboBoxSearcherEncounter->setItemHidden(ui->comboBoxSearcherEncounter->findData(toInt(Encounter::RockSmash)), !hgss);
         ui->comboBoxSearcherEncounter->setItemHidden(ui->comboBoxSearcherEncounter->findData(toInt(Encounter::BugCatchingContest)), !hgss);
         ui->comboBoxSearcherEncounter->setItemHidden(ui->comboBoxSearcherEncounter->findData(toInt(Encounter::Headbutt)), !hgss);
         ui->comboBoxSearcherEncounter->setItemHidden(ui->comboBoxSearcherEncounter->findData(toInt(Encounter::HeadbuttAlt)), !hgss);
         ui->comboBoxSearcherEncounter->setItemHidden(ui->comboBoxSearcherEncounter->findData(toInt(Encounter::HeadbuttSpecial)), !hgss);
-        ui->comboBoxSearcherLead->setItemHidden(ui->comboBoxSearcherLead->findData(toInt(Lead::ArenaTrap)), !hgss);
-        ui->comboBoxSearcherLead->setItemHidden(ui->comboBoxSearcherLead->findData(toInt(Lead::SuctionCups)), !hgss);
+        ui->comboMenuSearcherLead->hideAction(toInt(Lead::ArenaTrap), !hgss); // Also handles Illuminate and No Guard
+        ui->comboMenuSearcherLead->hideAction(toInt(Lead::StickyHold), !hgss); // Also handles Suction Cups
 
         generatorEncounterIndexChanged(0);
         searcherEncounterIndexChanged(0);
@@ -575,7 +586,7 @@ void Wild4::search()
     u32 maxDelay = ui->textBoxSearcherMaxDelay->getUInt();
     u16 tid = currentProfile->getTID();
     u16 sid = currentProfile->getSID();
-    auto lead = ui->comboBoxSearcherLead->getEnum<Lead>();
+    auto lead = ui->comboMenuSearcherLead->getEnum<Lead>();
     bool shiny = ui->checkBoxSearcherPokeRadarShiny->isChecked();
 
     auto *searcher = new WildSearcher4(minAdvance, maxAdvance, minDelay, maxDelay, tid, sid, currentProfile->getVersion(), method,
@@ -771,9 +782,9 @@ void Wild4::searcherPokeRadarStateChanged(int state)
     {
         ui->checkBoxSearcherPokeRadarShiny->setChecked(false);
     }
-    ui->comboBoxSearcherLead->setItemHidden(ui->comboBoxSearcherLead->findData(toInt(Lead::MagnetPull)), state == Qt::Checked);
-    ui->comboBoxSearcherLead->setItemHidden(ui->comboBoxSearcherLead->findData(toInt(Lead::Pressure)), state == Qt::Checked);
-    ui->comboBoxSearcherLead->setItemHidden(ui->comboBoxSearcherLead->findData(toInt(Lead::Static)), state == Qt::Checked);
+    ui->comboMenuSearcherLead->hideAction(toInt(Lead::MagnetPull), state == Qt::Checked);
+    ui->comboMenuSearcherLead->hideAction(toInt(Lead::Hustle), state == Qt::Checked); // Also handles Pressure and Vital Spirit
+    ui->comboMenuSearcherLead->hideAction(toInt(Lead::Static), state == Qt::Checked);
 }
 
 void Wild4::seedToTime()

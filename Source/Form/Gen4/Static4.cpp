@@ -62,12 +62,15 @@ Static4::Static4(QWidget *parent) : QWidget(parent), ui(new Ui::Static4)
     ui->filterGenerator->disableControls(Controls::EncounterSlots);
     ui->filterSearcher->disableControls(Controls::EncounterSlots | Controls::DisableFilter);
 
-    ui->toolButtonGeneratorLead->addAction(tr("None"), toInt(Lead::None));
-    ui->toolButtonGeneratorLead->addMenu(tr("Cute Charm"), { tr("♂ Lead"), tr("♀ Lead") },
-                                         { toInt(Lead::CuteCharmM), toInt(Lead::CuteCharmF) });
-    ui->toolButtonGeneratorLead->addMenu(tr("Synchronize"), *Translator::getNatures());
+    ui->comboMenuGeneratorLead->addAction(tr("None"), toInt(Lead::None));
+    ui->comboMenuGeneratorLead->addMenu(tr("Cute Charm"), { tr("♂ Lead"), tr("♀ Lead") },
+                                        { toInt(Lead::CuteCharmM), toInt(Lead::CuteCharmF) });
+    ui->comboMenuGeneratorLead->addMenu(tr("Synchronize"), *Translator::getNatures());
 
-    ui->comboBoxSearcherLead->setup({ toInt(Lead::None), toInt(Lead::CuteCharmM), toInt(Lead::CuteCharmF), toInt(Lead::Synchronize) });
+    ui->comboMenuSearcherLead->addAction(tr("None"), toInt(Lead::None));
+    ui->comboMenuSearcherLead->addMenu(tr("Cute Charm"), { tr("♂ Lead"), tr("♀ Lead") },
+                                       { toInt(Lead::CuteCharmM), toInt(Lead::CuteCharmF) });
+    ui->comboMenuSearcherLead->addAction(tr("Synchronize"), toInt(Lead::Synchronize));
 
     auto *seedToTime = new QAction(tr("Generate times for seed"), ui->tableViewSearcher);
     connect(seedToTime, &QAction::triggered, this, &Static4::seedToTime);
@@ -161,7 +164,7 @@ void Static4::generate()
     u32 offset = ui->textBoxGeneratorDelay->getUInt();
     u16 tid = currentProfile->getTID();
     u16 sid = currentProfile->getSID();
-    auto lead = ui->toolButtonGeneratorLead->getEnum<Lead>();
+    auto lead = ui->comboMenuGeneratorLead->getEnum<Lead>();
 
     StateFilter4 filter(ui->filterGenerator->getGender(), ui->filterGenerator->getAbility(), ui->filterGenerator->getShiny(),
                         ui->filterGenerator->getDisableFilters(), ui->filterGenerator->getMinIVs(), ui->filterGenerator->getMaxIVs(),
@@ -202,14 +205,14 @@ void Static4::generatorPokemonIndexChanged(int index)
         ui->spinBoxGeneratorLevel->setValue(staticTemplate->getLevel());
         if (staticTemplate->getMethod() == Method::Method1)
         {
-            ui->toolButtonGeneratorLead->clearSelection();
+            ui->comboMenuGeneratorLead->clearSelection();
             ui->labelGeneratorLead->setVisible(false);
-            ui->toolButtonGeneratorLead->setVisible(false);
+            ui->comboMenuGeneratorLead->setVisible(false);
         }
         else
         {
             ui->labelGeneratorLead->setVisible(true);
-            ui->toolButtonGeneratorLead->setVisible(true);
+            ui->comboMenuGeneratorLead->setVisible(true);
         }
     }
 }
@@ -261,7 +264,7 @@ void Static4::search()
     u32 maxDelay = ui->textBoxSearcherMaxDelay->getUInt();
     u16 tid = currentProfile->getTID();
     u16 sid = currentProfile->getSID();
-    auto lead = ui->comboBoxSearcherLead->getEnum<Lead>();
+    auto lead = ui->comboMenuSearcherLead->getEnum<Lead>();
     const StaticTemplate4 *staticTemplate
         = Encounters4::getStaticEncounter(ui->comboBoxSearcherCategory->currentIndex(), ui->comboBoxSearcherPokemon->getCurrentInt());
 
@@ -326,14 +329,14 @@ void Static4::searcherPokemonIndexChanged(int index)
         ui->spinBoxSearcherLevel->setValue(staticTemplate->getLevel());
         if (staticTemplate->getMethod() == Method::Method1)
         {
-            ui->comboBoxSearcherLead->setCurrentIndex(0);
+            ui->comboMenuSearcherLead->clearSelection();
             ui->labelSearcherLead->setVisible(false);
-            ui->comboBoxSearcherLead->setVisible(false);
+            ui->comboMenuSearcherLead->setVisible(false);
         }
         else
         {
             ui->labelSearcherLead->setVisible(true);
-            ui->comboBoxSearcherLead->setVisible(true);
+            ui->comboMenuSearcherLead->setVisible(true);
         }
     }
 }

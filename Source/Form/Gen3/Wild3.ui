@@ -177,7 +177,7 @@
            </widget>
           </item>
           <item row="3" column="1">
-           <widget class="ComboMenu" name="toolButtonGeneratorLead"/>
+           <widget class="ComboMenu" name="comboMenuGeneratorLead"/>
           </item>
           <item row="5" column="0">
            <widget class="QLabel" name="labelGeneratorInitialAdvances">
@@ -313,45 +313,6 @@
             </property>
            </widget>
           </item>
-          <item row="3" column="1">
-           <widget class="ComboBox" name="comboBoxSearcherLead">
-            <item>
-             <property name="text">
-              <string>None</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Cute Charm ♂</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Cute Charm ♀</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Magnet Pull</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Pressure</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Static</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Synchronize</string>
-             </property>
-            </item>
-           </widget>
-          </item>
           <item row="3" column="0">
            <widget class="QLabel" name="labelSearcherLead">
             <property name="text">
@@ -401,6 +362,9 @@
              </property>
             </item>
            </widget>
+          </item>
+          <item row="3" column="1">
+           <widget class="ComboMenu" name="comboMenuSearcherLead"/>
           </item>
          </layout>
         </widget>
@@ -542,7 +506,7 @@
   <tabstop>pushButtonProfileManager</tabstop>
   <tabstop>tabRNGSelector</tabstop>
   <tabstop>comboBoxGeneratorMethod</tabstop>
-  <tabstop>toolButtonGeneratorLead</tabstop>
+  <tabstop>comboMenuGeneratorLead</tabstop>
   <tabstop>textBoxGeneratorSeed</tabstop>
   <tabstop>textBoxGeneratorInitialAdvances</tabstop>
   <tabstop>textBoxGeneratorMaxAdvances</tabstop>
@@ -553,7 +517,7 @@
   <tabstop>comboBoxGeneratorPokemon</tabstop>
   <tabstop>tableViewGenerator</tabstop>
   <tabstop>comboBoxSearcherMethod</tabstop>
-  <tabstop>comboBoxSearcherLead</tabstop>
+  <tabstop>comboMenuSearcherLead</tabstop>
   <tabstop>pushButtonSearch</tabstop>
   <tabstop>pushButtonCancel</tabstop>
   <tabstop>comboBoxSearcherEncounter</tabstop>

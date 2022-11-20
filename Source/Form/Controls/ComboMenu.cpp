@@ -87,6 +87,18 @@ void ComboMenu::hideAction(const QVariant &data, bool hide)
             }
         }
     }
+
+    // If all of a menus action are invisible then we also want to hide the menu
+    for (QObject *object : topMenu->children())
+    {
+        auto *menu = qobject_cast<QMenu *>(object);
+        if (menu)
+        {
+            auto menuActions = menu->actions();
+            bool visible = std::all_of(menuActions.begin(), menuActions.end(), [](const QAction *action) { return action->isVisible(); });
+            menu->menuAction()->setVisible(visible);
+        }
+    }
 }
 
 void ComboMenu::actionChanged(QAction *action)

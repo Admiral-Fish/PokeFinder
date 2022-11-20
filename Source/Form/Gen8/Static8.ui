@@ -59,7 +59,7 @@
        <widget class="TextBox" name="textBoxSeed1"/>
       </item>
       <item row="0" column="1">
-       <widget class="ComboMenu" name="toolButtonLead"/>
+       <widget class="ComboMenu" name="comboMenuLead"/>
       </item>
       <item row="2" column="0">
        <widget class="QLabel" name="labelSeed1">
@@ -390,7 +390,7 @@
  <tabstops>
   <tabstop>comboBoxProfiles</tabstop>
   <tabstop>pushButtonProfileManager</tabstop>
-  <tabstop>toolButtonLead</tabstop>
+  <tabstop>comboMenuLead</tabstop>
   <tabstop>textBoxSeed0</tabstop>
   <tabstop>textBoxSeed1</tabstop>
   <tabstop>textBoxInitialAdvances</tabstop>
