@@ -27,7 +27,7 @@ UndergroundModel::UndergroundModel(QObject *parent) : TableModel<UndergroundStat
 
 int UndergroundModel::columnCount(const QModelIndex &parent) const
 {
-    return 15;
+    return 16;
 }
 
 QVariant UndergroundModel::data(const QModelIndex &index, int role) const
@@ -47,15 +47,17 @@ QVariant UndergroundModel::data(const QModelIndex &index, int role) const
         case 3:
             return QString::fromStdString(*Translator::getSpecie(state.getSpecie()));
         case 4:
-            return QString::number(state.getPID(), 16).toUpper().rightJustified(8, '0');
+            return state.getLevel();
         case 5:
+            return QString::number(state.getPID(), 16).toUpper().rightJustified(8, '0');
+        case 6:
         {
             u8 shiny = state.getShiny();
             return shiny == 2 ? tr("Square") : shiny == 1 ? tr("Star") : tr("No");
         }
-        case 6:
-            return QString::fromStdString(*Translator::getNature(state.getNature()));
         case 7:
+            return QString::fromStdString(*Translator::getNature(state.getNature()));
+        case 8:
             if (state.getAbility() == 0 || state.getAbility() == 1)
             {
                 return QString("%1 (%2)")
@@ -66,14 +68,14 @@ QVariant UndergroundModel::data(const QModelIndex &index, int role) const
             {
                 return QString("H (%2)").arg(QString::fromStdString(*Translator::getAbility(state.getAbilityIndex())));
             }
-        case 8:
         case 9:
         case 10:
         case 11:
         case 12:
         case 13:
-            return showStats ? state.getStat(column - 8) : state.getIV(column - 8);
         case 14:
+            return showStats ? state.getStat(column - 9) : state.getIV(column - 9);
+        case 15:
             return QString::fromStdString(*Translator::getGender(state.getGender()));
         }
     }
@@ -93,5 +95,5 @@ QVariant UndergroundModel::headerData(int section, Qt::Orientation orientation, 
 void UndergroundModel::setShowStats(bool flag)
 {
     showStats = flag;
-    emit dataChanged(index(0, 8), index(rowCount(), 13), { Qt::DisplayRole });
+    emit dataChanged(index(0, 9), index(rowCount(), 14), { Qt::DisplayRole });
 }

@@ -163,13 +163,15 @@ void Underground::generate()
     u16 sid = currentProfile->getSID();
     auto lead = ui->comboMenuLead->getEnum<Lead>();
     bool bonus = ui->checkBoxDiglett->isChecked();
+    u8 levelFlag = ui->comboBoxLevelFlag->currentIndex();
 
     std::vector<u16> species = ui->checkListPokemon->getCheckedData();
 
     UndergroundStateFilter filter(ui->filter->getGender(), ui->filter->getAbility(), ui->filter->getShiny(),
                                   ui->filter->getDisableFilters(), ui->filter->getMinIVs(), ui->filter->getMaxIVs(),
                                   ui->filter->getNatures(), ui->filter->getHiddenPowers(), species);
-    UndergroundGenerator generator(initialAdvances, maxAdvances, offset, tid, sid, currentProfile->getVersion(), lead, bonus, filter);
+    UndergroundGenerator generator(initialAdvances, maxAdvances, offset, tid, sid, currentProfile->getVersion(), lead, bonus, levelFlag,
+                                   filter);
 
     auto states = generator.generate(seed0, seed1, encounters[ui->comboBoxLocation->getCurrentInt()]);
     model->addItems(states);

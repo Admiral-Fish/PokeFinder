@@ -29,16 +29,6 @@ class WildState : public State
 {
 public:
     /**
-     * @brief Returns the specie
-     *
-     * @return State specie
-     */
-    u16 getSpecie() const
-    {
-        return specie;
-    }
-
-    /**
      * @brief Returns the encounter slot of the state
      *
      * @return State encounter slot
@@ -49,13 +39,23 @@ public:
     }
 
     /**
-     * @brief Returns the item of the state
+     * @brief Returns the item of the pokemon
      *
      * @return State item
      */
     u16 getItem() const
     {
         return item;
+    }
+
+    /**
+     * @brief Returns the specie
+     *
+     * @return State specie
+     */
+    u16 getSpecie() const
+    {
+        return specie;
     }
 
 protected:

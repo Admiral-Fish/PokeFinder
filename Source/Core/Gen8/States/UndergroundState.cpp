@@ -23,10 +23,11 @@
 
 constexpr int order[6] = { 0, 1, 2, 5, 3, 4 };
 
-UndergroundState::UndergroundState(u32 advances, u16 specie, u32 pid, u8 shiny, const std::array<u8, 6> &ivs, u8 ability, u8 gender,
-                                   u8 nature, u16 item, u16 eggMove, const PersonalInfo *info) :
+UndergroundState::UndergroundState(u32 advances, u16 specie, u8 level, u32 pid, u8 shiny, const std::array<u8, 6> &ivs, u8 ability,
+                                   u8 gender, u8 nature, u16 item, u16 eggMove, const PersonalInfo *info) :
     GeneratorState(advances), eggMove(eggMove), item(item), specie(specie)
 {
+    this->level = level;
     this->pid = pid;
     this->shiny = shiny;
 

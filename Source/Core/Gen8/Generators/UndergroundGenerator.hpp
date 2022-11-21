@@ -42,10 +42,11 @@ public:
      * @param version Game version
      * @param lead Encounter lead
      * @param diglett Whether diglett bonus is activiated
+     * @param levelFlag Determines which level range to pull from
      * @param filter State filter
      */
     UndergroundGenerator(u32 initialAdvances, u32 maxAdvances, u32 offset, u16 tid, u16 sid, Game version, Lead lead, bool diglett,
-                         const UndergroundStateFilter &filter);
+                         u8 levelFlag, const UndergroundStateFilter &filter);
 
     /**
      * @brief Generates states for the \p encounterArea
@@ -60,6 +61,7 @@ public:
 
 private:
     bool diglett;
+    u8 levelFlag;
 };
 
 #endif // UNDERGROUNDGENERATOR_HPP
