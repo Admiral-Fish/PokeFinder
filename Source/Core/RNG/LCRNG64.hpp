@@ -28,23 +28,8 @@ struct JumpTable64
     u64 mult[32];
 };
 
-static consteval JumpTable64 computeJumpTable64(u64 add, u64 mult)
-{
-    JumpTable64 table;
-    table.add[0] = add;
-    table.mult[0] = mult;
-
-    for (int i = 1; i < 32; i++)
-    {
-        table.add[i] = table.add[i - 1] * (table.mult[i - 1] + 1);
-        table.mult[i] = table.mult[i - 1] * table.mult[i - 1];
-    }
-
-    return table;
-}
-
-constexpr JumpTable64 BWRNGTable = computeJumpTable64(0x269ec3, 0x5d588b656c078965);
-constexpr JumpTable64 BWRNGRTable = computeJumpTable64(0x9b1ae6e9a384e6f9, 0xdedcedae9638806d);
+extern const JumpTable64 BWRNGTable;
+extern const JumpTable64 BWRNGRTable;
 
 /**
  * @brief Provides random numbers via the LCRNG algorithm. Most commonly used ones are defined at the bottom of the file.
