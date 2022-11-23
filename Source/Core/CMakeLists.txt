@@ -22,6 +22,9 @@ if (UNIX AND SIMD)
     endif ()
 endif ()
 
+find_package(Python3 COMPONENTS Interpreter REQUIRED)
+execute_process(COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Resources/embed.py)
+
 add_library(PokeFinderCore STATIC
     Enum/Buttons.hpp
     Enum/DSType.hpp
@@ -206,13 +209,3 @@ add_library(PokeFinderCore STATIC
 
 target_include_directories(PokeFinderCore PUBLIC "${CMAKE_SOURCE_DIR}/External")
 target_link_libraries(PokeFinderCore bz2_static)
-
-if (NOT EXISTS ${CMAKE_CURRENT_LIST_DIR}/Resources/Encounters.hpp)
-    find_package(Python3 COMPONENTS Interpreter REQUIRED)
-    add_custom_target(
-        Resources ALL
-        COMMAND ${PYTHON3_EXECUTABLE} ${CMAKE_CURRENT_LIST_DIR}/Resources/embed.py
-    )
-
-    add_dependencies(PokeFinderCore Resources)
-endif ()
