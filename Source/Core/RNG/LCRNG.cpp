@@ -19,7 +19,7 @@
 
 #include "LCRNG.hpp"
 
-consteval JumpTable computeJumpTable(u32 add, u32 mult)
+static consteval JumpTable computeJumpTable(u32 add, u32 mult)
 {
     JumpTable table;
     table.add[0] = add;
