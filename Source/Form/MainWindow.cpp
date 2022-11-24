@@ -31,6 +31,8 @@
 #include <Form/Gen4/Static4.hpp>
 #include <Form/Gen4/Tools/SeedToTime4.hpp>
 #include <Form/Gen4/Wild4.hpp>
+#include <Form/Gen5/Profile/ProfileCalibrator5.hpp>
+#include <Form/Gen5/Profile/ProfileManager5.hpp>
 #include <Form/Gen8/Eggs8.hpp>
 #include <Form/Gen8/Event8.hpp>
 #include <Form/Gen8/IDs8.hpp>
@@ -69,8 +71,6 @@
 //#include <Forms/Gen5/Event5.hpp>
 //#include <Forms/Gen5/HiddenGrotto.hpp>
 //#include <Forms/Gen5/IDs5.hpp>
-//#include <Forms/Gen5/Profile/ProfileCalibrator5.hpp>
-//#include <Forms/Gen5/Profile/ProfileManager5.hpp>
 //#include <Forms/Gen5/Static5.hpp>
 //#include <Forms/Util/IVtoPID.hpp>
 
@@ -107,8 +107,8 @@ MainWindow::MainWindow(bool profile, QWidget *parent) : QMainWindow(parent), ui(
     // connect(ui->pushButtonHiddenGrotto, &QPushButton::clicked, this, &MainWindow::openHiddenGrotto);
     // connect(ui->pushButtonEgg5, &QPushButton::clicked, this, &MainWindow::openEgg5);
     // connect(ui->pushButtonIDs5, &QPushButton::clicked, this, &MainWindow::openIDs5);
-    // connect(ui->actionProfileCalibrator, &QAction::triggered, this, &MainWindow::openProfileCalibrator);
-    // connect(ui->actionProfileManager5, &QAction::triggered, this, &MainWindow::openProfileManager5);
+    connect(ui->actionProfileCalibrator, &QAction::triggered, this, &MainWindow::openProfileCalibrator);
+    connect(ui->actionProfileManager5, &QAction::triggered, this, &MainWindow::openProfileManager5);
 
     connect(ui->actionDownloadEventData, &QAction::triggered, this, &MainWindow::downloadEventData);
     connect(ui->pushButtonEgg8, &QPushButton::clicked, this, &MainWindow::openEgg8);
@@ -365,9 +365,23 @@ void MainWindow::openSIDFromChainedShiny()
 {
     auto *chainedSID = new ChainedSID();
     chainedSID->show();
+}*/
+
+void MainWindow::openProfileCalibrator() const
+{
+    auto *calibrator = new ProfileCalibrator5();
+    connect(calibrator, &ProfileCalibrator5::profilesModified, this, &MainWindow::updateProfiles);
+    calibrator->show();
 }
 
-void MainWindow::openStatic5()
+void MainWindow::openProfileManager5() const
+{
+    auto *manager = new ProfileManager5();
+    connect(manager, &ProfileManager5::profilesModified, this, &MainWindow::updateProfiles);
+    manager->show();
+}
+
+/*void MainWindow::openStatic5()
 {
     if (!static5)
     {
@@ -473,20 +487,6 @@ void MainWindow::openIDs5()
         msg.exec();
         ids5->close();
     }
-}
-
-void MainWindow::openProfileCalibrator()
-{
-    auto *calibrator = new ProfileCalibrator5();
-    connect(calibrator, &ProfileCalibrator5::updateProfiles, this, &MainWindow::updateProfiles);
-    calibrator->show();
-}
-
-void MainWindow::openProfileManager5()
-{
-    auto *manager = new ProfileManager5();
-    connect(manager, &ProfileManager5::updateProfiles, this, [=] { updateProfiles(5); });
-    manager->show();
 }*/
 
 void MainWindow::downloadEventData()
@@ -715,9 +715,9 @@ void MainWindow::updateProfiles(int num)
             egg4->updateProfiles();
         }*/
     }
-    /*else if (num == 5)
+    else if (num == 5)
     {
-        if (static5)
+        /*if (static5)
         {
             static5->updateProfiles();
         }
@@ -740,8 +740,8 @@ void MainWindow::updateProfiles(int num)
         if (hiddenGrotto)
         {
             hiddenGrotto->updateProfiles();
-        }
-    }*/
+        }*/
+    }
     else if (num == 8)
     {
         if (static8)

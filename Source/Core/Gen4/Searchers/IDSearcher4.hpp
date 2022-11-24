@@ -33,8 +33,9 @@ class IDSearcher4
 {
 public:
     /**
-     * @brief IDSearcher4
-     * @param filter
+     * @brief Construct a new IDSearcher4 object
+     *
+     * @param filter State filter
      */
     IDSearcher4(const IDFilter &filter);
 

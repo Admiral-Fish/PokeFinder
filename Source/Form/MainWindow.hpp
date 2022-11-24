@@ -163,7 +163,7 @@ private slots:
     void openIDs4();
 
     /**
-     * @brief Opens the Gen 3 Profile Manager window
+     * @brief Opens the Gen 4 Profile Manager window
      */
     void openProfileManager4() const;
 
@@ -186,17 +186,24 @@ private slots:
     // void openSIDFromChainedShiny();
 
     // Gen 5
+    /**
+     * @brief Opens the Gen 5 Profile Calibrator window
+     */
+    void openProfileCalibrator() const;
+
+    /**
+     * @brief Opens the Gen 5 Profile Manager window
+     */
+    void openProfileManager5() const;
+
     // void openStatic5();
     // void openEvent5();
     // void openDreamRadar();
     // void openHiddenGrotto();
     // void openEgg5();
     // void openIDs5();
-    // void openProfileCalibrator();
-    // void openProfileManager5();
 
     // Gen 8
-
     /**
      * @brief Opens interface to download event raids
      */
@@ -248,7 +255,6 @@ private slots:
     void openWild8();
 
     // General tools and settings
-
     /**
      * @brief Open the About window
      */

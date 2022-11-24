@@ -82,16 +82,6 @@ public:
         return seed;
     }
 
-    static u32 getAdd()
-    {
-        return add;
-    }
-
-    static u32 getMult()
-    {
-        return mult;
-    }
-
     /**
      * @brief Returns the current PRNG state
      *

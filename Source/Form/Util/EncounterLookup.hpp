@@ -45,7 +45,7 @@ public:
      *
      * @param parent Parent widget, which takes memory ownership
      */
-    explicit EncounterLookup(QWidget *parent = nullptr);
+    EncounterLookup(QWidget *parent = nullptr);
 
     /**
      * @brief Destroy the EncounterLookup object

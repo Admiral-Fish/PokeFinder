@@ -101,6 +101,9 @@ add_library(PokeFinderCore STATIC
     Gen4/States/WildState4.cpp
     Gen4/States/WildState4.hpp
     Gen4/StaticTemplate4.hpp
+    Gen5/Searchers/ProfileSearcher5.cpp
+    Gen5/Searchers/ProfileSearcher5.hpp
+    Gen5/States/ProfileSearcherState5.hpp
     Gen5/Nazos.cpp
     Gen5/Nazos.hpp
     Gen5/Keypresses.cpp

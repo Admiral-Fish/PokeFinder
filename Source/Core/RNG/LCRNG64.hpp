@@ -66,14 +66,15 @@ public:
      * This function is called when the number of advances is predetermined and allows the compiler to optimize to the final mult/add
      *
      * @param advances Number of advances
+     * @param count Pointer to keep track of advance count
      *
      * @return PRNG value after the advances
      */
-    u64 advance(u32 advances)
+    u64 advance(u32 advances, u32 *count = nullptr)
     {
         for (u64 advance = 0; advance < advances; advance++)
         {
-            next();
+            next(count);
         }
         return seed;
     }
@@ -123,33 +124,42 @@ public:
     /**
      * @brief Gets the next 64bit PRNG state
      *
+     * @param count Pointer to keep track of advance count
+     *
      * @return PRNG value
      */
-    u64 next()
+    u64 next(u32 *count = nullptr)
     {
+        if (count)
+        {
+            (*count)++;
+        }
         return seed = seed * mult + add;
     }
 
     /**
      * @brief Gets the next 32bit PRNG state
      *
+     * @param count Pointer to keep track of advance count
+     *
      * @return PRNG value
      */
-    u32 nextUInt()
+    u32 nextUInt(u32 *count = nullptr)
     {
-        return next() >> 32;
+        return next(count) >> 32;
     }
 
     /**
      * @brief Gets the next 32bit PRNG state bounded by the \p max value
      *
      * @param max Max bounding value
+     * @param count Pointer to keep track of advance count
      *
      * @return PRNG value
      */
-    u32 nextUInt(u32 max)
+    u32 nextUInt(u32 max, u32 *count = nullptr)
     {
-        return ((next() >> 32) * max) >> 32;
+        return ((next(count) >> 32) * max) >> 32;
     }
 
 private:

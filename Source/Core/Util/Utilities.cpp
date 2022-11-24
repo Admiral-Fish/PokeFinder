@@ -31,49 +31,37 @@ namespace
         u32 count = 0;
 
         // Round 1
-        count++;
-        rng.advance(1);
+        rng.advance(1, &count);
 
         // Round 2
-        count++;
-        if (rng.nextUInt(101) > 50)
+        if (rng.nextUInt(101, &count) > 50)
         {
-            count++;
-            rng.advance(1);
+            rng.advance(1, &count);
         }
 
         // Round 3
-        count++;
-        if (rng.nextUInt(101) > 30)
+        if (rng.nextUInt(101, &count) > 30)
         {
-            count++;
-            rng.advance(1);
+            rng.advance(1, &count);
         }
 
         // Round 4
-        count++;
-        if (rng.nextUInt(101) > 25)
+        if (rng.nextUInt(101, &count) > 25)
         {
-            count++;
-            if (rng.nextUInt(101) > 30)
+            if (rng.nextUInt(101, &count) > 30)
             {
-                count++;
-                rng.advance(1);
+                rng.advance(1, &count);
             }
         }
 
         // Round 5
-        count++;
-        if (rng.nextUInt(101) > 20)
+        if (rng.nextUInt(101, &count) > 20)
         {
-            count++;
-            if (rng.nextUInt(101) > 25)
+            if (rng.nextUInt(101, &count) > 25)
             {
-                count++;
-                if (rng.nextUInt(101) > 33)
+                if (rng.nextUInt(101, &count) > 33)
                 {
-                    count++;
-                    rng.advance(1);
+                    rng.advance(1, &count);
                 }
             }
         }
@@ -219,7 +207,7 @@ namespace Utilities4
     }
 }
 
-/*namespace Utilities5
+namespace Utilities5
 {
     std::string getChatot(u32 seed)
     {
@@ -317,39 +305,39 @@ namespace Utilities4
         return count;
     }
 
-    u32 forceGender(u32 pid, u64 rand, u8 gender, u8 genderRatio)
-    {
-        pid &= 0xffffff00;
+    /*u32 forceGender(u32 pid, u64 rand, u8 gender, u8 genderRatio)
+      {
+          pid &= 0xffffff00;
 
-        if (genderRatio == 0) // Male only
-        {
-            u8 val = ((rand * 0xF6) >> 32) + 8;
-            pid |= val;
-        }
-        else if (genderRatio == 254) // Female only
-        {
-            u8 val = ((rand * 0x8) >> 32) + 1;
-            pid |= val;
-        }
-        else // Gender ratio
-        {
-            if (gender == 0) // Male
-            {
-                u8 val = ((rand * (0xFE - genderRatio)) >> 32) + genderRatio;
-                pid |= val;
-            }
-            else if (gender == 1) // Female
-            {
-                u8 val = ((rand * (genderRatio - 1)) >> 32) + 1;
-                pid |= val;
-            }
-            else
-            {
-                u8 val = rand >> 32;
-                pid |= val;
-            }
-        }
+          if (genderRatio == 0) // Male only
+          {
+              u8 val = ((rand * 0xF6) >> 32) + 8;
+              pid |= val;
+          }
+          else if (genderRatio == 254) // Female only
+          {
+              u8 val = ((rand * 0x8) >> 32) + 1;
+              pid |= val;
+          }
+          else // Gender ratio
+          {
+              if (gender == 0) // Male
+              {
+                  u8 val = ((rand * (0xFE - genderRatio)) >> 32) + genderRatio;
+                  pid |= val;
+              }
+              else if (gender == 1) // Female
+              {
+                  u8 val = ((rand * (genderRatio - 1)) >> 32) + 1;
+                  pid |= val;
+              }
+              else
+              {
+                  u8 val = rand >> 32;
+                  pid |= val;
+              }
+          }
 
-        return pid;
-    }
-}*/
+          return pid;
+      }*/
+}

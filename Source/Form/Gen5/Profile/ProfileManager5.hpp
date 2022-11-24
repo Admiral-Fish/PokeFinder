@@ -17,52 +17,63 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef DENMAP_HPP
-#define DENMAP_HPP
+#ifndef PROFILEMANAGER5_HPP
+#define PROFILEMANAGER5_HPP
 
 #include <QWidget>
 
+class ProfileModel5;
+
 namespace Ui
 {
-    class DenMap;
+    class ProfileManager5;
 }
 
 /**
- * @brief Allows seeing the locations of dens on the map
+ * @brief Provides interface to view/edit/delete existing profiles and create new ones
  */
-class DenMap : public QWidget
+class ProfileManager5 : public QWidget
 {
     Q_OBJECT
+signals:
+    /**
+     * @brief Emits that the profiles have been modified
+     */
+    void profilesModified(int);
+
 public:
     /**
-     * @brief Construct a new DenMap object
+     * @brief Construct a new ProfileManager5 object
      *
      * @param parent Parent widget, which takes memory ownership
      */
-    DenMap(QWidget *parent = nullptr);
+    ProfileManager5(QWidget *parent = nullptr);
 
     /**
-     * @brief Destroy the DenMap object
+     * @brief Destroy the ProfileManager3 object
      */
-    ~DenMap() override;
+    ~ProfileManager5() override;
 
 private:
-    Ui::DenMap *ui;
+    Ui::ProfileManager5 *ui;
+
+    ProfileModel5 *model;
 
 private slots:
     /**
-     * @brief Updates the map image with the location of the den
-     *
-     * @param index Den index
+     * @brief Opens dialog to create a new profile
      */
-    void denIndexChanged(int index);
+    void create();
 
     /**
-     * @brief Updates the dens for the regional location
-     *
-     * @param index Region location index
+     * @brief Opens dialog to edit an existing profile
      */
-    void locationIndexChanged(int index);
+    void edit();
+
+    /**
+     * @brief Opens dialog to confirm deletion of existing profile
+     */
+    void remove();
 };
 
-#endif // DENMAP_HPP
+#endif // PROFILEMANAGER5_HPP

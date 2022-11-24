@@ -48,7 +48,7 @@ public:
      *
      * @param parent Parent widget, which takes memory ownership
      */
-    explicit Raids(QWidget *parent = nullptr);
+    Raids(QWidget *parent = nullptr);
 
     /**
      * @brief Destroy the Raids object

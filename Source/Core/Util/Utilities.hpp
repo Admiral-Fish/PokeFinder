@@ -105,14 +105,55 @@ namespace Utilities4
     std::string getChatot(u8 prng);
 }
 
-/*namespace Utilities5
+namespace Utilities5
 {
+    /**
+     * @brief Returns the chatot pitch
+     *
+     * @param seed PRNG state
+     *
+     * @return Chatot pitch
+     */
     std::string getChatot(u32 seed);
+
+    /**
+     * @brief Calculates the initial set of advances for BW
+     *
+     * @param seed PRNG state
+     *
+     * @return Initial advance count
+     */
     u32 initialAdvancesBW(u64 seed);
+
+    /**
+     * @brief Calculates the initial set of advances for BW2
+     *
+     * @param seed PRNG state
+     * @param memory Whether memory link is activated or not
+     *
+     * @return Initial advance count
+     */
     u32 initialAdvancesBW2(u64 seed, bool memory);
+
+    /**
+     * @brief Calculates the initial set of advances for BW ID
+     *
+     * @param seed PRNG state
+     *
+     * @return Initial advance count
+     */
     u32 initialAdvancesBWID(u64 seed);
+
+    /**
+     * @brief Calculates the initial set of advances for BW2
+     *
+     * @param seed PRNG state
+     *
+     * @return Initial advance count
+     */
     u32 initialAdvancesBW2ID(u64 seed);
-    u32 forceGender(u32 pid, u64 rand, u8 gender, u8 genderRatio);
-}*/
+
+    // u32 forceGender(u32 pid, u64 rand, u8 gender, u8 genderRatio);
+}
 
 #endif // UTILITIES_HPP
