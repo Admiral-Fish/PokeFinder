@@ -244,7 +244,6 @@ std::vector<UndergroundState> UndergroundGenerator::generate(u64 seed0, u64 seed
             level = levelInfo.min + (rngList.next() % range);
         }
 
-        rngList.advance(1); // Level
         rngList.advance(1); // EC
         u32 sidtid = rngList.next(rand);
         u32 pid;
