@@ -114,11 +114,10 @@ public:
     /**
      * @brief Gets the next PRNG state
      *
-     * @param value Function pointer to modify returned PRNG state
      *
      * @return PRNG state
      */
-    Integer next(Integer (*value)(Integer) = nullptr)
+    Integer next()
     {
         Integer result = list[pointer++];
         pointer %= size;
@@ -130,7 +129,21 @@ public:
             assert(pointer != head);
         }
 
-        return value ? value(result) : result;
+        return result;
+    }
+
+    /**
+     * @brief Gets the next PRNG state
+     *
+     * @tparam Ret Return value type
+     * @param value Function pointer to modify returned PRNG state
+     *
+     * @return PRNG state
+     */
+    template <typename Ret>
+    Ret next(Ret (*value)(Integer))
+    {
+        return value(next());
     }
 
     /**

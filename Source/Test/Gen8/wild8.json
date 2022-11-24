@@ -4,8 +4,8 @@
             "name": "Route 222 Grass",
             "seed0": 1311768467139281697,
             "seed1": 9756277977086449272,
-            "encounter": 0,
-            "lead": 255,
+            "encounter": "Grass",
+            "lead": "None",
             "location": 170,
             "results": [
                 {
@@ -314,8 +314,8 @@
             "name": "Route 222 Grass Compound Eyes",
             "seed0": 1311768467139281697,
             "seed1": 9756277977086449272,
-            "encounter": 0,
-            "lead": 32,
+            "encounter": "Grass",
+            "lead": "CompoundEyes",
             "location": 170,
             "results": [
                 {
@@ -624,8 +624,8 @@
             "name": "Route 222 Grass Cute Charm",
             "seed0": 1311768467139281697,
             "seed1": 9756277977086449272,
-            "encounter": 0,
-            "lead": 26,
+            "encounter": "Grass",
+            "lead": "CuteCharmF",
             "location": 170,
             "results": [
                 {
@@ -934,8 +934,8 @@
             "name": "Route 214 Grass Flash Fire",
             "seed0": 1311768467139281697,
             "seed1": 9756277977086449272,
-            "encounter": 0,
-            "lead": 35,
+            "encounter": "Grass",
+            "lead": "FlashFire",
             "location": 163,
             "results": [
                 {
@@ -1244,8 +1244,8 @@
             "name": "Route 221 Grass Harvest",
             "seed0": 1311768467139281697,
             "seed1": 9756277977086449272,
-            "encounter": 0,
-            "lead": 34,
+            "encounter": "Grass",
+            "lead": "Harvest",
             "location": 169,
             "results": [
                 {
@@ -1554,8 +1554,8 @@
             "name": "Route 206 Grass Magnet Pull",
             "seed0": 1311768467139281697,
             "seed1": 9756277977086449272,
-            "encounter": 0,
-            "lead": 28,
+            "encounter": "Grass",
+            "lead": "MagnetPull",
             "location": 147,
             "results": [
                 {
@@ -1864,8 +1864,8 @@
             "name": "Route 222 Grass Pressure",
             "seed0": 1311768467139281697,
             "seed1": 9756277977086449272,
-            "encounter": 0,
-            "lead": 30,
+            "encounter": "Grass",
+            "lead": "Pressure",
             "location": 170,
             "results": [
                 {
@@ -2174,8 +2174,8 @@
             "name": "Fuego Ironworks Grass Static",
             "seed0": 1311768467139281697,
             "seed1": 9756277977086449272,
-            "encounter": 0,
-            "lead": 29,
+            "encounter": "Grass",
+            "lead": "Static",
             "location": 9,
             "results": [
                 {
@@ -2484,8 +2484,8 @@
             "name": "Route 222 Grass Storm Drain",
             "seed0": 1311768467139281697,
             "seed1": 9756277977086449272,
-            "encounter": 0,
-            "lead": 36,
+            "encounter": "Grass",
+            "lead": "StormDrain",
             "location": 170,
             "results": [
                 {
@@ -2794,8 +2794,8 @@
             "name": "Route 222 Grass Synchronize",
             "seed0": 1311768467139281697,
             "seed1": 9756277977086449272,
-            "encounter": 0,
-            "lead": 0,
+            "encounter": "Grass",
+            "lead": "Synchronize",
             "location": 170,
             "results": [
                 {
@@ -3104,8 +3104,8 @@
             "name": "Route 222 Surfing",
             "seed0": 1311768467139281697,
             "seed1": 9756277977086449272,
-            "encounter": 4,
-            "lead": 255,
+            "encounter": "Surfing",
+            "lead": "None",
             "location": 170,
             "results": [
                 {
@@ -3414,8 +3414,8 @@
             "name": "Route 222 Old Rod",
             "seed0": 1311768467139281697,
             "seed1": 9756277977086449272,
-            "encounter": 6,
-            "lead": 255,
+            "encounter": "OldRod",
+            "lead": "None",
             "location": 170,
             "results": [
                 {
@@ -3724,8 +3724,8 @@
             "name": "Route 222 Good Rod",
             "seed0": 1311768467139281697,
             "seed1": 9756277977086449272,
-            "encounter": 7,
-            "lead": 255,
+            "encounter": "GoodRod",
+            "lead": "None",
             "location": 170,
             "results": [
                 {
@@ -4034,8 +4034,8 @@
             "name": "Route 222 Super Rod",
             "seed0": 1311768467139281697,
             "seed1": 9756277977086449272,
-            "encounter": 8,
-            "lead": 255,
+            "encounter": "SuperRod",
+            "lead": "None",
             "location": 170,
             "results": [
                 {

@@ -294,18 +294,18 @@ void EncounterLookup::gameIndexChanged(int index)
 {
     if (index >= 0)
     {
-        Game game = static_cast<Game>(ui->comboBoxGame->currentData().toUInt());
+        auto version = ui->comboBoxGame->getEnum<Game>();
         u16 max = 0;
 
-        if ((game & Game::Gen3) != Game::None)
+        if ((version & Game::Gen3) != Game::None)
         {
             max = 386;
         }
-        else if ((game & Game::Gen4) != Game::None)
+        else if ((version & Game::Gen4) != Game::None)
         {
             max = 493;
         }
-        else if ((game & Game::BDSP) != Game::None)
+        else if ((version & Game::BDSP) != Game::None)
         {
             max = 493;
         }

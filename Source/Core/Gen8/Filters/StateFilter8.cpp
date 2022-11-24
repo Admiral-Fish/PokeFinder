@@ -18,9 +18,11 @@
  */
 
 #include "StateFilter8.hpp"
+#include "Core/Gen8/States/UndergroundState.hpp"
 #include <Core/Gen8/States/EggState8.hpp>
 #include <Core/Gen8/States/State8.hpp>
 #include <Core/Gen8/States/WildState8.hpp>
+#include <algorithm>
 
 StateFilter8::StateFilter8(u8 gender, u8 ability, u8 shiny, bool skip, const std::array<u8, 6> &min, const std::array<u8, 6> &max,
                            const std::array<bool, 25> &natures, const std::array<bool, 16> &powers) :
@@ -136,6 +138,57 @@ bool WildStateFilter8::compareState(const WildState8 &state) const
     }
 
     if (!natures[state.getNature()])
+    {
+        return false;
+    }
+
+    if (shiny != 255 && !(shiny & state.getShiny()))
+    {
+        return false;
+    }
+
+    for (int i = 0; i < 6; i++)
+    {
+        u8 iv = state.getIV(i);
+        if (iv < min[i] || iv > max[i])
+        {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+UndergroundStateFilter::UndergroundStateFilter(u8 gender, u8 ability, u8 shiny, bool skip, const std::array<u8, 6> &min,
+                                               const std::array<u8, 6> &max, const std::array<bool, 25> &natures,
+                                               const std::array<bool, 16> &powers, const std::vector<u16> &species) :
+    StateFilter(gender, ability, shiny, skip, min, max, natures, powers), species(species)
+{
+}
+
+bool UndergroundStateFilter::compareState(const UndergroundState &state) const
+{
+    if (skip)
+    {
+        return true;
+    }
+
+    if (ability != 255 && ability != state.getAbility())
+    {
+        return false;
+    }
+
+    if (gender != 255 && gender != state.getGender())
+    {
+        return false;
+    }
+
+    if (!natures[state.getNature()])
+    {
+        return false;
+    }
+
+    if (!std::binary_search(species.begin(), species.end(), state.getSpecie()))
     {
         return false;
     }

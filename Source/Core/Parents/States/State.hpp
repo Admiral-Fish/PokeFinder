@@ -59,6 +59,11 @@ public:
         return gender;
     }
 
+    /**
+     * @brief Returns the hidden power of the pokemon
+     *
+     * @return Pokemon hidden power
+     */
     u8 getHiddenPower() const
     {
         return hiddenPower;

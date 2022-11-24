@@ -25,6 +25,7 @@
 
 class EggState8;
 class State8;
+class UndergroundState;
 class WildState8;
 
 /**
@@ -99,6 +100,42 @@ public:
      * @return false State does not pass the filter
      */
     bool compareState(const WildState8 &state) const;
+};
+
+/**
+ * @brief Checks if wild encounters match the filter criteria
+ */
+class UndergroundStateFilter : public StateFilter
+{
+public:
+    /**
+     * @brief Construct a new UndergroundStateFilter object
+     *
+     * @param gender Gender value to filter by
+     * @param ability Ability value to filter by
+     * @param shiny Shiny value to filter by
+     * @param skip If filters should be skipped
+     * @param min Minimum IV thresholds
+     * @param max Maximum IV thresholds
+     * @param natures Natures to filter by
+     * @param powers Hidden powers to filter by
+     * @param species Pokemon species to filter by. This list must be sorted.
+     */
+    UndergroundStateFilter(u8 gender, u8 ability, u8 shiny, bool skip, const std::array<u8, 6> &min, const std::array<u8, 6> &max,
+                           const std::array<bool, 25> &natures, const std::array<bool, 16> &powers, const std::vector<u16> &species);
+
+    /**
+     * @brief Determines if the \p state meets the filter criteria
+     *
+     * @param state State to compare
+     *
+     * @return true State passes the filter
+     * @return false State does not pass the filter
+     */
+    bool compareState(const UndergroundState &state) const;
+
+protected:
+    std::vector<u16> species;
 };
 
 #endif // STATEFILTER8_HPP

@@ -47,9 +47,9 @@ Static8::Static8(QWidget *parent) : QWidget(parent), ui(new Ui::Static8)
     ui->textBoxMaxAdvances->setValues(InputType::Advance32Bit);
     ui->textBoxDelay->setValues(InputType::Advance32Bit);
 
-    ui->toolButtonLead->addAction(tr("None"), toInt(Lead::None));
-    ui->toolButtonLead->addMenu(tr("Synchronize"), *Translator::getNatures());
-    ui->toolButtonLead->addMenu(tr("Cute Charm"), { tr("♂ Lead"), tr("♀ Lead") }, { toInt(Lead::CuteCharmM), toInt(Lead::CuteCharmF) });
+    ui->comboMenuLead->addAction(tr("None"), toInt(Lead::None));
+    ui->comboMenuLead->addMenu(tr("Cute Charm"), { tr("♂ Lead"), tr("♀ Lead") }, { toInt(Lead::CuteCharmM), toInt(Lead::CuteCharmF) });
+    ui->comboMenuLead->addMenu(tr("Synchronize"), *Translator::getNatures());
 
     ui->comboBoxShiny->setup({ toInt(Shiny::Never), toInt(Shiny::Random) });
     ui->comboBoxAbility->setup({ 0, 1, 2, 255 });
@@ -146,7 +146,7 @@ void Static8::generate()
     u32 offset = ui->textBoxDelay->getUInt();
     u16 tid = currentProfile->getTID();
     u16 sid = currentProfile->getSID();
-    auto lead = ui->toolButtonLead->getEnum<Lead>();
+    auto lead = ui->comboMenuLead->getEnum<Lead>();
 
     StateFilter8 filter(ui->filter->getGender(), ui->filter->getAbility(), ui->filter->getShiny(), ui->filter->getDisableFilters(),
                         ui->filter->getMinIVs(), ui->filter->getMaxIVs(), ui->filter->getNatures(), ui->filter->getHiddenPowers());

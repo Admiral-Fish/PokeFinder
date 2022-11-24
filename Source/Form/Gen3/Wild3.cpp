@@ -65,16 +65,23 @@ Wild3::Wild3(QWidget *parent) : QWidget(parent), ui(new Ui::Wild3)
 
     ui->filterSearcher->disableControls(Controls::DisableFilter);
 
-    ui->toolButtonGeneratorLead->addAction(tr("None"), toInt(Lead::None));
-    ui->toolButtonGeneratorLead->addMenu(tr("Cute Charm"), { tr("♂ Lead"), tr("♀ Lead") },
-                                         { toInt(Lead::CuteCharmM), toInt(Lead::CuteCharmF) });
-    ui->toolButtonGeneratorLead->addMenu(tr("Encounter Modifier"), { tr("Magnet Pull"), tr("Static") },
-                                         { toInt(Lead::MagnetPull), toInt(Lead::Static) });
-    ui->toolButtonGeneratorLead->addAction(tr("Pressure"), toInt(Lead::Pressure));
-    ui->toolButtonGeneratorLead->addMenu(tr("Synchronize"), *Translator::getNatures());
+    ui->comboMenuGeneratorLead->addAction(tr("None"), toInt(Lead::None));
+    ui->comboMenuGeneratorLead->addMenu(tr("Cute Charm"), { tr("♂ Lead"), tr("♀ Lead") },
+                                        { toInt(Lead::CuteCharmM), toInt(Lead::CuteCharmF) });
+    ui->comboMenuGeneratorLead->addMenu(tr("Slot Modifier"), { tr("Magnet Pull"), tr("Static") },
+                                        { toInt(Lead::MagnetPull), toInt(Lead::Static) });
+    ui->comboMenuGeneratorLead->addMenu(tr("Level Modifier"), { tr("Hustle"), tr("Pressure"), tr("Vital Spirit") },
+                                        { toInt(Lead::Hustle), toInt(Lead::Pressure), toInt(Lead::VitalSpirit) });
+    ui->comboMenuGeneratorLead->addMenu(tr("Synchronize"), *Translator::getNatures());
 
-    ui->comboBoxSearcherLead->setup({ toInt(Lead::None), toInt(Lead::CuteCharmM), toInt(Lead::CuteCharmF), toInt(Lead::MagnetPull),
-                                      toInt(Lead::Pressure), toInt(Lead::Static), toInt(Lead::Synchronize) });
+    ui->comboMenuSearcherLead->addAction(tr("None"), toInt(Lead::None));
+    ui->comboMenuSearcherLead->addMenu(tr("Cute Charm"), { tr("♂ Lead"), tr("♀ Lead") },
+                                       { toInt(Lead::CuteCharmM), toInt(Lead::CuteCharmF) });
+    ui->comboMenuSearcherLead->addMenu(tr("Slot Modifier"), { tr("Magnet Pull"), tr("Static") },
+                                       { toInt(Lead::MagnetPull), toInt(Lead::Static) });
+    ui->comboMenuSearcherLead->addMenu(tr("Level Modifier"), { tr("Hustle"), tr("Pressure"), tr("Vital Spirit") },
+                                       { toInt(Lead::Hustle), toInt(Lead::Pressure), toInt(Lead::VitalSpirit) });
+    ui->comboMenuSearcherLead->addAction(tr("Synchronize"), toInt(Lead::Synchronize));
 
     connect(ui->comboBoxProfiles, &QComboBox::currentIndexChanged, this, &Wild3::profileIndexChanged);
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Wild3::generate);
@@ -144,7 +151,7 @@ void Wild3::generate()
     u16 sid = currentProfile->getSID();
     auto method = ui->comboBoxGeneratorMethod->getEnum<Method>();
     auto encounter = ui->comboBoxGeneratorEncounter->getEnum<Encounter>();
-    auto lead = ui->toolButtonGeneratorLead->getEnum<Lead>();
+    auto lead = ui->comboMenuGeneratorLead->getEnum<Lead>();
 
     WildStateFilter3 filter(ui->filterGenerator->getGender(), ui->filterGenerator->getAbility(), ui->filterGenerator->getShiny(),
                             ui->filterGenerator->getDisableFilters(), ui->filterGenerator->getMinIVs(), ui->filterGenerator->getMaxIVs(),
@@ -252,20 +259,20 @@ void Wild3::profileIndexChanged(int index)
         if ((currentProfile->getVersion() & Game::Emerald) != Game::None)
         {
             ui->labelGeneratorLead->setVisible(true);
-            ui->toolButtonGeneratorLead->setVisible(true);
+            ui->comboMenuGeneratorLead->setVisible(true);
 
             ui->labelSearcherLead->setVisible(true);
-            ui->comboBoxSearcherLead->setVisible(true);
+            ui->comboMenuSearcherLead->setVisible(true);
         }
         else
         {
-            ui->toolButtonGeneratorLead->clearSelection();
+            ui->comboMenuGeneratorLead->clearSelection();
             ui->labelGeneratorLead->setVisible(false);
-            ui->toolButtonGeneratorLead->setVisible(false);
+            ui->comboMenuGeneratorLead->setVisible(false);
 
-            ui->comboBoxSearcherLead->setCurrentIndex(0);
+            ui->comboMenuSearcherLead->clearSelection();
             ui->labelSearcherLead->setVisible(false);
-            ui->comboBoxSearcherLead->setVisible(false);
+            ui->comboMenuSearcherLead->setVisible(false);
         }
 
         generatorEncounterIndexChanged(0);
@@ -298,7 +305,7 @@ void Wild3::search()
     u16 sid = currentProfile->getSID();
     auto method = ui->comboBoxSearcherMethod->getEnum<Method>();
     auto encounter = ui->comboBoxSearcherEncounter->getEnum<Encounter>();
-    auto lead = ui->comboBoxSearcherLead->getEnum<Lead>();
+    auto lead = ui->comboMenuSearcherLead->getEnum<Lead>();
 
     auto *searcher = new WildSearcher3(tid, sid, currentProfile->getVersion(), method, encounter, lead,
                                        encounterSearcher[ui->comboBoxSearcherLocation->getCurrentInt()], filter);

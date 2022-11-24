@@ -50,15 +50,16 @@ Wild8::Wild8(QWidget *parent) : QWidget(parent), ui(new Ui::Wild8)
     ui->textBoxMaxAdvances->setValues(InputType::Advance32Bit);
     ui->textBoxDelay->setValues(InputType::Advance32Bit);
 
-    ui->toolButtonLead->addAction(tr("None"), toInt(Lead::None));
-    ui->toolButtonLead->addAction(tr("Arena Trap"), toInt(Lead::ArenaTrap));
-    ui->toolButtonLead->addAction(tr("Compound Eyes"), toInt(Lead::CompoundEyes));
-    ui->toolButtonLead->addMenu(tr("Cute Charm"), { tr("♂ Lead"), tr("♀ Lead") }, { toInt(Lead::CuteCharmM), toInt(Lead::CuteCharmF) });
-    ui->toolButtonLead->addMenu(
-        tr("Encounter Modifier"), { tr("Harvest"), tr("Flash Fire"), tr("Magnet Pull"), tr("Static"), tr("Storm Drain") },
+    ui->comboMenuLead->addAction(tr("None"), toInt(Lead::None));
+    ui->comboMenuLead->addMenu(tr("Cute Charm"), { tr("♂ Lead"), tr("♀ Lead") }, { toInt(Lead::CuteCharmM), toInt(Lead::CuteCharmF) });
+    ui->comboMenuLead->addMenu(
+        tr("Slot Modifier"), { tr("Harvest"), tr("Flash Fire"), tr("Magnet Pull"), tr("Static"), tr("Storm Drain") },
         { toInt(Lead::Harvest), toInt(Lead::FlashFire), toInt(Lead::MagnetPull), toInt(Lead::Static), toInt(Lead::StormDrain) });
-    ui->toolButtonLead->addAction(tr("Pressure"), toInt(Lead::Pressure));
-    ui->toolButtonLead->addMenu(tr("Synchronize"), *Translator::getNatures());
+    ui->comboMenuLead->addMenu(tr("Item Modifier"), { tr("Compound Eyes"), tr("Super Luck") },
+                               { toInt(Lead::CompoundEyes), toInt(Lead::SuperLuck) });
+    ui->comboMenuLead->addMenu(tr("Level Modifier"), { tr("Hustle"), tr("Pressure"), tr("Vital Spirit") },
+                               { toInt(Lead::Hustle), toInt(Lead::Pressure), toInt(Lead::VitalSpirit) });
+    ui->comboMenuLead->addMenu(tr("Synchronize"), *Translator::getNatures());
 
     ui->comboBoxEncounter->setup({ toInt(Encounter::Grass), toInt(Encounter::Surfing), toInt(Encounter::OldRod), toInt(Encounter::GoodRod),
                                    toInt(Encounter::SuperRod) });
@@ -123,7 +124,7 @@ void Wild8::updateProfiles()
 
 void Wild8::updateEncounters()
 {
-    auto encounter = static_cast<Encounter>(ui->comboBoxEncounter->currentData().toInt());
+    auto encounter = ui->comboBoxEncounter->getEnum<Encounter>();
     int time = ui->comboBoxTime->currentIndex();
     bool radar = ui->checkBoxRadar->isChecked();
     bool swarm = ui->checkBoxSwarm->isChecked();
@@ -190,14 +191,14 @@ void Wild8::generate()
     u16 tid = currentProfile->getTID();
     u16 sid = currentProfile->getSID();
     auto encounter = ui->comboBoxEncounter->getEnum<Encounter>();
-    auto lead = ui->toolButtonLead->getEnum<Lead>();
+    auto lead = ui->comboMenuLead->getEnum<Lead>();
 
     WildStateFilter8 filter(ui->filter->getGender(), ui->filter->getAbility(), ui->filter->getShiny(), ui->filter->getDisableFilters(),
                             ui->filter->getMinIVs(), ui->filter->getMaxIVs(), ui->filter->getNatures(), ui->filter->getHiddenPowers(),
                             ui->filter->getEncounterSlots());
     WildGenerator8 generator(initialAdvances, maxAdvances, offset, tid, sid, currentProfile->getVersion(), encounter, lead, filter);
 
-    auto states = generator.generate(seed0, seed1, encounters[ui->comboBoxLocation->currentData().toInt()]);
+    auto states = generator.generate(seed0, seed1, encounters[ui->comboBoxLocation->getCurrentInt()]);
     model->addItems(states);
 }
 
@@ -205,7 +206,7 @@ void Wild8::locationIndexChanged(int index)
 {
     if (index >= 0)
     {
-        auto &area = encounters[ui->comboBoxLocation->currentData().toInt()];
+        auto &area = encounters[ui->comboBoxLocation->getCurrentInt()];
         auto species = area.getUniqueSpecies();
         auto names = area.getSpecieNames();
 
@@ -227,7 +228,7 @@ void Wild8::pokemonIndexChanged(int index)
     else
     {
         u16 num = ui->comboBoxPokemon->getCurrentUShort();
-        auto flags = encounters[ui->comboBoxLocation->currentData().toInt()].getSlots(num);
+        auto flags = encounters[ui->comboBoxLocation->getCurrentInt()].getSlots(num);
         ui->filter->toggleEncounterSlots(flags);
     }
 }

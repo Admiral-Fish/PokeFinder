@@ -43,6 +43,7 @@ class Event8;
 class Raids;
 class Eggs8;
 class IDs8;
+class Underground;
 class QActionGroup;
 
 namespace Ui
@@ -100,6 +101,7 @@ private:
     IDs8 *ids8 = nullptr;
     Raids *raids = nullptr;
     Static8 *static8 = nullptr;
+    Underground *underground = nullptr;
     Wild8 *wild8 = nullptr;
 
     /**
@@ -221,6 +223,11 @@ private slots:
     void openIDs8();
 
     /**
+     * @brief Opens the Gen 8 Profile Manager window
+     */
+    void openProfileManager8();
+
+    /**
      * @brief Opens the Raid window
      */
     void openRaids();
@@ -231,9 +238,9 @@ private slots:
     void openStatic8();
 
     /**
-     * @brief Opens the Gen 8 Profile Manager window
+     * @brief Opens the Gen 8 Underground window
      */
-    void openProfileManager8();
+    void openUnderground();
 
     /**
      * @brief Opens the Gen 8 Wild window

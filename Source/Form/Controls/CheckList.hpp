@@ -20,6 +20,7 @@
 #ifndef CHECKLIST
 #define CHECKLIST
 
+#include <Core/Global.hpp>
 #include <QComboBox>
 
 class QStandardItemModel;
@@ -46,11 +47,26 @@ public:
     void setup(const std::vector<std::string> &items = std::vector<std::string>());
 
     /**
+     * @brief Setups the model of check boxes to be checkable by the user
+     *
+     * @param items List of items that should be added to the combo box
+     * @param data List of data to assign with the items
+     */
+    void setup(const std::vector<std::string> &items, const std::vector<u16> &data);
+
+    /**
      * @brief Determines which of the check boxes are checked
      *
      * @return Vector of true/false to signify which check boxes are checked
      */
     std::vector<bool> getChecked() const;
+
+    /**
+     * @brief Gets the data of the checked items
+     *
+     * @return Vector of checked data
+     */
+    std::vector<u16> getCheckedData() const;
 
     /**
      * @brief Sets all check boxes to be unchecked

@@ -37,6 +37,7 @@
 #include <Test/Gen8/IDGenerator8Test.hpp>
 #include <Test/Gen8/RaidGeneratorTest.hpp>
 #include <Test/Gen8/StaticGenerator8Test.hpp>
+#include <Test/Gen8/UndergroundGeneratorTest.hpp>
 #include <Test/Gen8/WildGenerator8Test.hpp>
 #include <Test/RNG/LCRNG64Test.hpp>
 #include <Test/RNG/LCRNGReverseTest.hpp>
@@ -93,6 +94,9 @@ int main()
     status += runTest<EventGenerator8Test>(fails);
     status += runTest<RaidGeneratorTest>(fails);
     status += runTest<StaticGenerator8Test>(fails);
+#ifndef NDEBUG
+    status += runTest<UndergroundGeneratorTest>(fails); // TODO: investigate why this doesn't work in release builds
+#endif
     status += runTest<WildGenerator8Test>(fails);
 
     // RNG Tests

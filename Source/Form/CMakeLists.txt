@@ -82,6 +82,7 @@ set(PROJECT_UI
     Gen8/Raids.ui
     Gen8/Static8.ui
     Gen8/Tools/DenMap.ui
+    Gen8/Underground.ui
     Gen8/Wild8.ui
     MainWindow.ui
     Util/EncounterLookup.ui
@@ -164,6 +165,8 @@ set(PROJECT_SOURCES
     Gen8/Static8.hpp
     Gen8/Tools/DenMap.cpp
     Gen8/Tools/DenMap.hpp
+    Gen8/Underground.cpp
+    Gen8/Underground.hpp
     Gen8/Wild8.cpp
     Gen8/Wild8.hpp
     MainWindow.cpp

@@ -25,13 +25,34 @@
 #include <Core/RNG/RNGList.hpp>
 #include <Core/RNG/Xorshift.hpp>
 
+/**
+ * @brief Contains information about the encounters for an area. This includes location, rate, and the slots.
+ */
 class EncounterArea8 : public EncounterArea
 {
 public:
+    /**
+     * @brief Construct a new EncounterArea4 object
+     *
+     * @param location Location number
+     * @param rate Encounter rate of the area
+     * @param encounter Encounter type of the area
+     * @param pokemon Available pokemon of the area
+     */
     EncounterArea8(u8 location, u8 rate, Encounter type, const std::vector<Slot> &pokemon) : EncounterArea(location, rate, type, pokemon)
     {
     }
 
+    /**
+     * @brief Calculates the level of a pokemon. Takes into account any modification from Pressure
+     *
+     * @tparam diff Whether min and max levels are different
+     * @param encounterSlot Pokemon slot
+     * @param rngList RNG object
+     * @param force Whether Pressure lead is being used
+     *
+     * @return Level of the encounter
+     */
     template <bool diff>
     u8 calculateLevel(u8 encounterSlot, RNGList<u32, Xorshift, 128> &rngList, bool force) const
     {

@@ -28,11 +28,14 @@
 enum class Method : u8
 {
     None,
+
     Method1,
     Method1Reverse,
     Method2,
     Method4,
+
     Channel,
+
     EBred,
     EBredSplit,
     EBredAlternate,
@@ -41,15 +44,18 @@ enum class Method : u8
     RSFRLGBredSplit,
     RSFRLGBredAlternate,
     RSFRLGBredMixed,
+
     MethodJ,
     MethodK,
     PokeRadar,
     WondercardIVs,
+
     Gen4Normal,
     Gen4Masuda,
     DPPtIVs,
     HGSSIVs,
     Gen4Combined,
+
     Method5IVs,
     Method5CGear,
     Method5,

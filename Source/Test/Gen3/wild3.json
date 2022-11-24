@@ -4,10 +4,10 @@
             {
                 "name": "Emerald Route 111 Grass",
                 "seed": 477218588,
-                "version": 4,
-                "method": 2,
-                "encounter": 0,
-                "lead": 255,
+                "version": "Emerald",
+                "method": "Method1",
+                "encounter": "Grass",
+                "lead": "None",
                 "location": 6,
                 "results": [
                     {
@@ -315,10 +315,10 @@
             {
                 "name": "Emerald Route 111 Grass Sync",
                 "seed": 954437176,
-                "version": 4,
-                "method": 3,
-                "encounter": 0,
-                "lead": 0,
+                "version": "Emerald",
+                "method": "Method2",
+                "encounter": "Grass",
+                "lead": "Synchronize",
                 "location": 6,
                 "results": [
                     {
@@ -626,10 +626,10 @@
             {
                 "name": "Emerald Route 111 Grass Cute Charm",
                 "seed": 1431655764,
-                "version": 4,
-                "method": 4,
-                "encounter": 0,
-                "lead": 26,
+                "version": "Emerald",
+                "method": "Method4",
+                "encounter": "Grass",
+                "lead": "CuteCharmF",
                 "location": 6,
                 "results": [
                     {
@@ -935,12 +935,12 @@
                 ]
             },
             {
-                "name": "Emerald Route 113 Grass Magnet Slot",
+                "name": "Emerald Route 113 Grass Magnet Pull",
                 "seed": 1431655764,
-                "version": 4,
-                "method": 4,
-                "encounter": 0,
-                "lead": 28,
+                "version": "Emerald",
+                "method": "Method4",
+                "encounter": "Grass",
+                "lead": "MagnetPull",
                 "location": 8,
                 "results": [
                     {
@@ -1248,10 +1248,10 @@
             {
                 "name": "Emerald Route 111 Rock Smash",
                 "seed": 1908874352,
-                "version": 4,
-                "method": 2,
-                "encounter": 3,
-                "lead": 255,
+                "version": "Emerald",
+                "method": "Method1",
+                "encounter": "RockSmash",
+                "lead": "None",
                 "location": 6,
                 "results": [
                     {
@@ -1289,10 +1289,10 @@
             {
                 "name": "Emerald Route 111 Surf",
                 "seed": 2386092940,
-                "version": 4,
-                "method": 2,
-                "encounter": 4,
-                "lead": 255,
+                "version": "Emerald",
+                "method": "Method1",
+                "encounter": "Surfing",
+                "lead": "None",
                 "location": 6,
                 "results": [
                     {
@@ -1600,10 +1600,10 @@
             {
                 "name": "Emerald Route 111 Surf Pressure",
                 "seed": 2386092940,
-                "version": 4,
-                "method": 2,
-                "encounter": 4,
-                "lead": 30,
+                "version": "Emerald",
+                "method": "Method1",
+                "encounter": "Surfing",
+                "lead": "Pressure",
                 "location": 6,
                 "results": [
                     {
@@ -1911,10 +1911,10 @@
             {
                 "name": "Emerald Underwater Route 124 Surf Static",
                 "seed": 2386092940,
-                "version": 4,
-                "method": 2,
-                "encounter": 4,
-                "lead": 29,
+                "version": "Emerald",
+                "method": "Method1",
+                "encounter": "Surfing",
+                "lead": "Static",
                 "location": 91,
                 "results": [
                     {
@@ -2222,10 +2222,10 @@
             {
                 "name": "Emerald Route 111 Old Rod",
                 "seed": 2863311528,
-                "version": 4,
-                "method": 2,
-                "encounter": 6,
-                "lead": 255,
+                "version": "Emerald",
+                "method": "Method1",
+                "encounter": "OldRod",
+                "lead": "None",
                 "location": 6,
                 "results": [
                     {
@@ -2533,10 +2533,10 @@
             {
                 "name": "Emerald Route 111 Good Rod",
                 "seed": 3340530116,
-                "version": 4,
-                "method": 2,
-                "encounter": 7,
-                "lead": 255,
+                "version": "Emerald",
+                "method": "Method1",
+                "encounter": "GoodRod",
+                "lead": "None",
                 "location": 6,
                 "results": [
                     {
@@ -2844,10 +2844,10 @@
             {
                 "name": "Emerald Route 111 Super Rod",
                 "seed": 3817748704,
-                "version": 4,
-                "method": 2,
-                "encounter": 8,
-                "lead": 255,
+                "version": "Emerald",
+                "method": "Method1",
+                "encounter": "SuperRod",
+                "lead": "None",
                 "location": 6,
                 "results": [
                     {
@@ -3155,10 +3155,10 @@
             {
                 "name": "Fire Red Cerulean Cave 1F Rock Smash",
                 "seed": 4294967292,
-                "version": 8,
-                "method": 2,
-                "encounter": 3,
-                "lead": 255,
+                "version": "FireRed",
+                "method": "Method1",
+                "encounter": "RockSmash",
+                "lead": "None",
                 "location": 24,
                 "results": [
                     {
@@ -3485,10 +3485,10 @@
                     31,
                     31
                 ],
-                "version": 4,
-                "method": 2,
-                "encounter": 0,
-                "lead": 255,
+                "version": "Emerald",
+                "method": "Method1",
+                "encounter": "Grass",
+                "lead": "None",
                 "location": 6,
                 "results": 20
             },
@@ -3510,10 +3510,10 @@
                     31,
                     31
                 ],
-                "version": 4,
-                "method": 3,
-                "encounter": 0,
-                "lead": 0,
+                "version": "Emerald",
+                "method": "Method2",
+                "encounter": "Grass",
+                "lead": "Synchronize",
                 "location": 6,
                 "results": 54
             },
@@ -3535,10 +3535,10 @@
                     31,
                     31
                 ],
-                "version": 4,
-                "method": 4,
-                "encounter": 0,
-                "lead": 26,
+                "version": "Emerald",
+                "method": "Method4",
+                "encounter": "Grass",
+                "lead": "CuteCharmF",
                 "location": 6,
                 "results": 4
             },
@@ -3560,10 +3560,10 @@
                     31,
                     31
                 ],
-                "version": 4,
-                "method": 4,
-                "encounter": 0,
-                "lead": 28,
+                "version": "Emerald",
+                "method": "Method4",
+                "encounter": "Grass",
+                "lead": "MagnetPull",
                 "location": 8,
                 "results": 6
             },
@@ -3585,10 +3585,10 @@
                     31,
                     31
                 ],
-                "version": 4,
-                "method": 2,
-                "encounter": 3,
-                "lead": 255,
+                "version": "Emerald",
+                "method": "Method1",
+                "encounter": "RockSmash",
+                "lead": "None",
                 "location": 6,
                 "results": 2
             },
@@ -3610,10 +3610,10 @@
                     31,
                     31
                 ],
-                "version": 4,
-                "method": 2,
-                "encounter": 4,
-                "lead": 255,
+                "version": "Emerald",
+                "method": "Method1",
+                "encounter": "Surfing",
+                "lead": "None",
                 "location": 6,
                 "results": 20
             },
@@ -3635,10 +3635,10 @@
                     31,
                     31
                 ],
-                "version": 4,
-                "method": 2,
-                "encounter": 4,
-                "lead": 30,
+                "version": "Emerald",
+                "method": "Method1",
+                "encounter": "Surfing",
+                "lead": "Pressure",
                 "location": 6,
                 "results": 20
             },
@@ -3660,10 +3660,10 @@
                     31,
                     31
                 ],
-                "version": 4,
-                "method": 2,
-                "encounter": 4,
-                "lead": 29,
+                "version": "Emerald",
+                "method": "Method1",
+                "encounter": "Surfing",
+                "lead": "Static",
                 "location": 91,
                 "results": 20
             },
@@ -3685,10 +3685,10 @@
                     31,
                     31
                 ],
-                "version": 4,
-                "method": 2,
-                "encounter": 6,
-                "lead": 255,
+                "version": "Emerald",
+                "method": "Method1",
+                "encounter": "OldRod",
+                "lead": "None",
                 "location": 6,
                 "results": 20
             },
@@ -3710,10 +3710,10 @@
                     31,
                     31
                 ],
-                "version": 4,
-                "method": 2,
-                "encounter": 7,
-                "lead": 255,
+                "version": "Emerald",
+                "method": "Method1",
+                "encounter": "GoodRod",
+                "lead": "None",
                 "location": 6,
                 "results": 20
             },
@@ -3735,10 +3735,10 @@
                     31,
                     31
                 ],
-                "version": 4,
-                "method": 2,
-                "encounter": 8,
-                "lead": 255,
+                "version": "Emerald",
+                "method": "Method1",
+                "encounter": "SuperRod",
+                "lead": "None",
                 "location": 6,
                 "results": 20
             },
@@ -3760,10 +3760,10 @@
                     31,
                     31
                 ],
-                "version": 8,
-                "method": 2,
-                "encounter": 3,
-                "lead": 255,
+                "version": "FireRed",
+                "method": "Method1",
+                "encounter": "RockSmash",
+                "lead": "None",
                 "location": 24,
                 "results": 20
             }

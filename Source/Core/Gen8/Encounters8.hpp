@@ -24,12 +24,23 @@
 #include <vector>
 
 class EncounterArea8;
-enum class Encounter : u8;
 class Profile8;
 class StaticTemplate8;
+class UndergroundArea;
+enum class Encounter : u8;
 
 namespace Encounters8
 {
+    /**
+     * @brief Gets underground encounters filtered by the \p flag
+     *
+     * @param storyFlag Story flag
+     * @param profile Profile information
+     *
+     * @return Vector of underground encounters
+     */
+    std::vector<UndergroundArea> getEncounters(int storyFlag, bool diglett, const Profile8 *profile);
+
     /**
      * @brief Gets wild encounters for the \p encounter and \p profile
      *

@@ -768,39 +768,39 @@ namespace
     std::vector<EncounterArea3> getAreas(Encounter encounter, Game game, const PersonalInfo *info)
     {
         const u8 *compressedData;
-        size_t compressedSize;
+        size_t compressedLength;
 
         if (game == Game::Emerald)
         {
             compressedData = emerald.data();
-            compressedSize = emerald.size();
+            compressedLength = emerald.size();
         }
         else if (game == Game::FireRed)
         {
             compressedData = firered.data();
-            compressedSize = firered.size();
+            compressedLength = firered.size();
         }
         else if (game == Game::LeafGreen)
         {
             compressedData = leafgreen.data();
-            compressedSize = leafgreen.size();
+            compressedLength = leafgreen.size();
         }
         else if (game == Game::Ruby)
         {
             compressedData = ruby.data();
-            compressedSize = ruby.size();
+            compressedLength = ruby.size();
         }
         else
         {
             compressedData = sapphire.data();
-            compressedSize = sapphire.size();
+            compressedLength = sapphire.size();
         }
 
-        u32 size;
-        u8 *data = Utilities::decompress(compressedData, compressedSize, size);
+        u32 length;
+        u8 *data = Utilities::decompress(compressedData, compressedLength, length);
 
         std::vector<EncounterArea3> encounters;
-        for (size_t offset = 0; offset < size; offset += 121)
+        for (size_t offset = 0; offset < length; offset += 121)
         {
             const u8 *entry = data + offset;
 

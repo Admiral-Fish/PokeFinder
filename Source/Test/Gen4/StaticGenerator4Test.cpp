@@ -27,6 +27,7 @@
 #include <Core/Gen4/States/State4.hpp>
 #include <QTest>
 #include <Test/Data.hpp>
+#include <Test/Enum.hpp>
 
 static bool operator==(const GeneratorState4 &left, const json &right)
 {
@@ -50,8 +51,9 @@ void StaticGenerator4Test::generateMethod1_data()
     json data = readData("static4", "staticgenerator4", "generateMethod1");
     for (const auto &d : data)
     {
-        QTest::newRow(d["name"].get<std::string>().data()) << d["seed"].get<u32>() << d["version"].get<Game>() << d["category"].get<int>()
-                                                           << d["pokemon"].get<int>() << d["results"].get<json>().dump();
+        QTest::newRow(d["name"].get<std::string>().data())
+            << d["seed"].get<u32>() << getGame(d["version"].get<std::string>()) << d["category"].get<int>() << d["pokemon"].get<int>()
+            << d["results"].get<json>().dump();
     }
 }
 
@@ -104,8 +106,8 @@ void StaticGenerator4Test::generateMethodJ_data()
     for (const auto &d : data)
     {
         QTest::newRow(d["name"].get<std::string>().data())
-            << d["seed"].get<u32>() << d["version"].get<Game>() << d["category"].get<int>() << d["pokemon"].get<int>()
-            << d["lead"].get<Lead>() << d["results"].get<json>().dump();
+            << d["seed"].get<u32>() << getGame(d["version"].get<std::string>()) << d["category"].get<int>() << d["pokemon"].get<int>()
+            << getLead(d["lead"].get<std::string>()) << d["results"].get<json>().dump();
     }
 }
 
@@ -159,8 +161,8 @@ void StaticGenerator4Test::generateMethodK_data()
     for (const auto &d : data)
     {
         QTest::newRow(d["name"].get<std::string>().data())
-            << d["seed"].get<u32>() << d["version"].get<Game>() << d["category"].get<int>() << d["pokemon"].get<int>()
-            << d["lead"].get<Lead>() << d["results"].get<json>().dump();
+            << d["seed"].get<u32>() << getGame(d["version"].get<std::string>()) << d["category"].get<int>() << d["pokemon"].get<int>()
+            << getLead(d["lead"].get<std::string>()) << d["results"].get<json>().dump();
     }
 }
 

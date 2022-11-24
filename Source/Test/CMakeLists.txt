@@ -1,6 +1,7 @@
 project(PokeFinderTest LANGUAGES CXX)
 
 find_package(Qt6 COMPONENTS Core Test REQUIRED)
+find_package(Python3 COMPONENTS Interpreter REQUIRED)
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -8,10 +9,14 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
+execute_process(COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/enum_map.py)
+
 add_executable(PokeFinderTest
     Data.cpp
     Data.hpp
     data.qrc
+    Enum.cpp
+    Enum.hpp
     Gen3/GameCubeGeneratorTest.cpp
     Gen3/GameCubeGeneratorTest.hpp
     Gen3/GameCubeSearcherTest.cpp
@@ -48,6 +53,8 @@ add_executable(PokeFinderTest
     Gen8/RaidGeneratorTest.hpp
     Gen8/StaticGenerator8Test.cpp
     Gen8/StaticGenerator8Test.hpp
+    Gen8/UndergroundGeneratorTest.cpp
+    Gen8/UndergroundGeneratorTest.hpp
     Gen8/WildGenerator8Test.cpp
     Gen8/WildGenerator8Test.hpp
     main.cpp

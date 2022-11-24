@@ -27,6 +27,7 @@
 #include <Core/Gen8/States/WildState8.hpp>
 #include <QTest>
 #include <Test/Data.hpp>
+#include <Test/Enum.hpp>
 
 static bool operator==(const WildState8 &left, const json &right)
 {
@@ -52,8 +53,8 @@ void WildGenerator8Test::generate_data()
     for (const auto &d : data)
     {
         QTest::newRow(d["name"].get<std::string>().data())
-            << d["seed0"].get<u64>() << d["seed1"].get<u64>() << d["encounter"].get<Encounter>() << d["lead"].get<Lead>()
-            << d["location"].get<int>() << d["results"].get<json>().dump();
+            << d["seed0"].get<u64>() << d["seed1"].get<u64>() << getEncounter(d["encounter"].get<std::string>())
+            << getLead(d["lead"].get<std::string>()) << d["location"].get<int>() << d["results"].get<json>().dump();
     }
 }
 

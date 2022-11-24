@@ -23,11 +23,13 @@
 #include <Core/Gen8/EncounterArea8.hpp>
 #include <Core/Gen8/Profile8.hpp>
 #include <Core/Gen8/StaticTemplate8.hpp>
+#include <Core/Gen8/UndergroundArea.hpp>
 #include <Core/Parents/PersonalLoader.hpp>
 #include <Core/Parents/Slot.hpp>
 #include <Core/Resources/Encounters.hpp>
 #include <Core/Util/Utilities.hpp>
 #include <algorithm>
+#include <cmath>
 #include <cstring>
 #include <iterator>
 
@@ -109,7 +111,6 @@ namespace Encounters8
 {
     namespace
     {
-
         void modifySwarm(std::vector<Slot> &mons, const u8 *data, const PersonalInfo *info, bool swarm)
         {
             if (swarm)
@@ -159,24 +160,23 @@ namespace Encounters8
         std::vector<EncounterArea8> getBDSP(Encounter encounter, int time, bool radar, bool swarm, Game version, const PersonalInfo *info)
         {
             const u8 *compressedData;
-            size_t compressedSize;
-
+            size_t compressedLength;
             if (version == Game::BD)
             {
                 compressedData = bd.data();
-                compressedSize = bd.size();
+                compressedLength = bd.size();
             }
             else
             {
                 compressedData = sp.data();
-                compressedSize = sp.size();
+                compressedLength = sp.size();
             }
 
-            u32 size;
-            u8 *data = Utilities::decompress(compressedData, compressedSize, size);
+            u32 length;
+            u8 *data = Utilities::decompress(compressedData, compressedLength, length);
 
             std::vector<EncounterArea8> encounters;
-            for (size_t offset = 0; offset < size; offset += 142)
+            for (size_t offset = 0; offset < length; offset += 142)
             {
                 const u8 *entry = data + offset;
 
@@ -273,6 +273,95 @@ namespace Encounters8
             delete[] data;
             return encounters;
         }
+    }
+
+    std::vector<UndergroundArea> getEncounters(int storyFlag, bool diglett, const Profile8 *profile)
+    {
+        const u8 *compressedData;
+        size_t compressedLength;
+
+        Game version = profile->getVersion();
+        if (version == Game::BD)
+        {
+            compressedData = bd_underground.data();
+            compressedLength = bd_underground.size();
+        }
+        else
+        {
+            compressedData = sp_underground.data();
+            compressedLength = sp_underground.size();
+        }
+
+        u32 length;
+        u8 *data = Utilities::decompress(compressedData, compressedLength, length);
+
+        std::vector<UndergroundArea> encounters;
+        const PersonalInfo *base = PersonalLoader::getPersonal(profile->getVersion());
+        for (size_t offset = 0; offset < length;)
+        {
+            const u8 *entry = data + offset;
+            size_t index = 0;
+
+            u8 location = entry[index++];
+
+            u8 specialCount = entry[index++];
+            std::vector<SpecialPokemon> specialPokemon;
+            for (u8 i = 0; i < specialCount; i++, index += 4)
+            {
+                u16 specie = *reinterpret_cast<const u16 *>(entry + index);
+                u16 rate = *reinterpret_cast<const u16 *>(entry + index + 2);
+                SpecialPokemon special = { specie, rate };
+                specialPokemon.emplace_back(special);
+            }
+
+            u8 min = entry[index++];
+            u8 max = entry[index++];
+
+            std::array<u8, 18> rates;
+            std::generate(rates.begin(), rates.end(), [entry, &index] { return entry[index++]; });
+
+            std::vector<Pokemon> pokemon;
+            std::vector<TypeSize> types;
+            u8 pokemonCount = entry[index++];
+            for (u8 i = 0; i < pokemonCount; i++)
+            {
+                u8 flag = entry[index++];
+                if (flag <= storyFlag)
+                {
+                    u16 specie = *reinterpret_cast<const u16 *>(entry + index);
+                    index += 2;
+                    const PersonalInfo *info = &base[specie];
+
+                    u8 size = entry[index++];
+                    u8 typeCount = info->getType(0) == info->getType(1) ? 1 : 2;
+                    for (u8 j = 0; j < typeCount; j++)
+                    {
+                        u8 type = info->getType(j);
+                        u16 value = type + std::pow(10, size);
+
+                        TypeSize typeSize = { value, size, type };
+                        types.emplace_back(typeSize);
+                    }
+
+                    std::array<u8, 6> flagRates;
+                    std::generate(flagRates.begin(), flagRates.end(), [entry, &index] { return entry[index++]; });
+                    u8 rateup = entry[index++];
+
+                    u16 flagRate = diglett ? flagRates[storyFlag - 1] * rateup : flagRates[storyFlag - 1];
+                    Pokemon mon = { flagRate, specie, size, info->getType(0), info->getType(1) };
+                    pokemon.emplace_back(mon);
+                }
+                else
+                {
+                    index += 10;
+                }
+            }
+
+            encounters.emplace_back(location, min, max, pokemon, specialPokemon, rates, types);
+            offset += index;
+        }
+        delete[] data;
+        return encounters;
     }
 
     std::vector<EncounterArea8> getEncounters(Encounter encounter, int time, bool radar, bool swarm, const Profile8 *profile)

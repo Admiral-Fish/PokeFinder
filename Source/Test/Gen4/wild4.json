@@ -4,9 +4,9 @@
             {
                 "name": "Route 222 Grass",
                 "seed": 390451572,
-                "version": 512,
-                "encounter": 0,
-                "lead": 255,
+                "version": "Platinum",
+                "encounter": "Grass",
+                "lead": "None",
                 "location": 170,
                 "results": [
                     {
@@ -354,9 +354,9 @@
             {
                 "name": "Route 222 Grass Compound Eyes",
                 "seed": 780903144,
-                "version": 512,
-                "encounter": 0,
-                "lead": 32,
+                "version": "Platinum",
+                "encounter": "Grass",
+                "lead": "CompoundEyes",
                 "location": 170,
                 "results": [
                     {
@@ -704,9 +704,9 @@
             {
                 "name": "Route 222 Grass Cute Charm",
                 "seed": 1171354716,
-                "version": 512,
-                "encounter": 0,
-                "lead": 26,
+                "version": "Platinum",
+                "encounter": "Grass",
+                "lead": "CuteCharmF",
                 "location": 170,
                 "results": [
                     {
@@ -1054,9 +1054,9 @@
             {
                 "name": "Route 222 Grass Magnet Pull",
                 "seed": 1561806288,
-                "version": 512,
-                "encounter": 0,
-                "lead": 28,
+                "version": "Platinum",
+                "encounter": "Grass",
+                "lead": "MagnetPull",
                 "location": 170,
                 "results": [
                     {
@@ -1404,9 +1404,9 @@
             {
                 "name": "Route 222 Grass Pressure",
                 "seed": 1952257860,
-                "version": 512,
-                "encounter": 0,
-                "lead": 30,
+                "version": "Platinum",
+                "encounter": "Grass",
+                "lead": "Pressure",
                 "location": 170,
                 "results": [
                     {
@@ -1754,9 +1754,9 @@
             {
                 "name": "Route 222 Grass Static",
                 "seed": 2342709432,
-                "version": 512,
-                "encounter": 0,
-                "lead": 29,
+                "version": "Platinum",
+                "encounter": "Grass",
+                "lead": "Static",
                 "location": 170,
                 "results": [
                     {
@@ -2104,9 +2104,9 @@
             {
                 "name": "Route 222 Grass Synchronize",
                 "seed": 2733161004,
-                "version": 512,
-                "encounter": 0,
-                "lead": 0,
+                "version": "Platinum",
+                "encounter": "Grass",
+                "lead": "Synchronize",
                 "location": 170,
                 "results": [
                     {
@@ -2454,9 +2454,9 @@
             {
                 "name": "Route 222 Surf",
                 "seed": 3123612576,
-                "version": 512,
-                "encounter": 4,
-                "lead": 255,
+                "version": "Platinum",
+                "encounter": "Surfing",
+                "lead": "None",
                 "location": 170,
                 "results": [
                     {
@@ -2804,9 +2804,9 @@
             {
                 "name": "Route 222 Old Rod",
                 "seed": 3514064148,
-                "version": 512,
-                "encounter": 6,
-                "lead": 255,
+                "version": "Platinum",
+                "encounter": "OldRod",
+                "lead": "None",
                 "location": 170,
                 "results": [
                     {
@@ -2848,9 +2848,9 @@
             {
                 "name": "Route 222 Good Rod",
                 "seed": 3904515720,
-                "version": 512,
-                "encounter": 7,
-                "lead": 255,
+                "version": "Platinum",
+                "encounter": "GoodRod",
+                "lead": "None",
                 "location": 170,
                 "results": [
                     {
@@ -2994,9 +2994,9 @@
             {
                 "name": "Route 222 Super Rod",
                 "seed": 4294967292,
-                "version": 512,
-                "encounter": 8,
-                "lead": 255,
+                "version": "Platinum",
+                "encounter": "SuperRod",
+                "lead": "None",
                 "location": 170,
                 "results": [
                     {
@@ -3244,9 +3244,9 @@
             {
                 "name": "Route 6 Grass",
                 "seed": 0,
-                "version": 1024,
-                "encounter": 0,
-                "lead": 255,
+                "version": "HeartGold",
+                "encounter": "Grass",
+                "lead": "None",
                 "location": 116,
                 "results": [
                     {
@@ -3594,9 +3594,9 @@
             {
                 "name": "Route 6 Grass Compound Eyes",
                 "seed": 252645135,
-                "version": 1024,
-                "encounter": 0,
-                "lead": 32,
+                "version": "HeartGold",
+                "encounter": "Grass",
+                "lead": "CompoundEyes",
                 "location": 116,
                 "results": [
                     {
@@ -3944,9 +3944,9 @@
             {
                 "name": "Route 6 Grass Cute Charm",
                 "seed": 757935405,
-                "version": 1024,
-                "encounter": 0,
-                "lead": 26,
+                "version": "HeartGold",
+                "encounter": "Grass",
+                "lead": "CuteCharmF",
                 "location": 116,
                 "results": [
                     {
@@ -4294,9 +4294,9 @@
             {
                 "name": "Route 6 Grass Magnet Pull",
                 "seed": 1010580540,
-                "version": 1024,
-                "encounter": 0,
-                "lead": 28,
+                "version": "HeartGold",
+                "encounter": "Grass",
+                "lead": "MagnetPull",
                 "location": 116,
                 "results": [
                     {
@@ -4644,9 +4644,9 @@
             {
                 "name": "Route 6 Grass Pressure",
                 "seed": 1263225675,
-                "version": 1024,
-                "encounter": 0,
-                "lead": 30,
+                "version": "HeartGold",
+                "encounter": "Grass",
+                "lead": "Pressure",
                 "location": 116,
                 "results": [
                     {
@@ -4994,9 +4994,9 @@
             {
                 "name": "Route 6 Grass Static",
                 "seed": 1515870810,
-                "version": 1024,
-                "encounter": 0,
-                "lead": 29,
+                "version": "HeartGold",
+                "encounter": "Grass",
+                "lead": "Static",
                 "location": 116,
                 "results": [
                     {
@@ -5344,9 +5344,9 @@
             {
                 "name": "Route 6 Grass Synchronize",
                 "seed": 1768515945,
-                "version": 1024,
-                "encounter": 0,
-                "lead": 0,
+                "version": "HeartGold",
+                "encounter": "Grass",
+                "lead": "Synchronize",
                 "location": 116,
                 "results": [
                     {
@@ -5694,9 +5694,9 @@
             {
                 "name": "Route 6 Surf",
                 "seed": 2021161080,
-                "version": 1024,
-                "encounter": 4,
-                "lead": 255,
+                "version": "HeartGold",
+                "encounter": "Surfing",
+                "lead": "None",
                 "location": 116,
                 "results": [
                     {
@@ -6044,9 +6044,9 @@
             {
                 "name": "Route 6 Old Rod",
                 "seed": 2273806215,
-                "version": 1024,
-                "encounter": 6,
-                "lead": 255,
+                "version": "HeartGold",
+                "encounter": "OldRod",
+                "lead": "None",
                 "location": 116,
                 "results": [
                     {
@@ -6156,9 +6156,9 @@
             {
                 "name": "Route 6 Old Rod Suction Cups",
                 "seed": 2526451350,
-                "version": 1024,
-                "encounter": 6,
-                "lead": 31,
+                "version": "HeartGold",
+                "encounter": "OldRod",
+                "lead": "SuctionCups",
                 "location": 116,
                 "results": [
                     {
@@ -6370,9 +6370,9 @@
             {
                 "name": "Route 6 Good Rod",
                 "seed": 2779096485,
-                "version": 1024,
-                "encounter": 7,
-                "lead": 255,
+                "version": "HeartGold",
+                "encounter": "GoodRod",
+                "lead": "None",
                 "location": 116,
                 "results": [
                     {
@@ -6516,9 +6516,9 @@
             {
                 "name": "Route 6 Super Rod",
                 "seed": 3031741620,
-                "version": 1024,
-                "encounter": 8,
-                "lead": 255,
+                "version": "HeartGold",
+                "encounter": "SuperRod",
+                "lead": "None",
                 "location": 116,
                 "results": [
                     {
@@ -6798,9 +6798,9 @@
             {
                 "name": "Cianwood City 1F Rock Smash",
                 "seed": 3537031890,
-                "version": 1024,
-                "encounter": 3,
-                "lead": 255,
+                "version": "HeartGold",
+                "encounter": "RockSmash",
+                "lead": "None",
                 "location": 51,
                 "results": [
                     {
@@ -6876,9 +6876,9 @@
             {
                 "name": "Cianwood City 1F Rock Smash Arena Trap",
                 "seed": 3284386755,
-                "version": 1024,
-                "encounter": 3,
-                "lead": 33,
+                "version": "HeartGold",
+                "encounter": "RockSmash",
+                "lead": "ArenaTrap",
                 "location": 51,
                 "results": [
                     {
@@ -7022,9 +7022,9 @@
             {
                 "name": "Bug Catching Contest",
                 "seed": 3789677025,
-                "version": 1024,
-                "encounter": 11,
-                "lead": 255,
+                "version": "HeartGold",
+                "encounter": "BugCatchingContest",
+                "lead": "None",
                 "location": 142,
                 "results": [
                     {
@@ -7372,9 +7372,9 @@
             {
                 "name": "Azalea Town Headbutt",
                 "seed": 4042322160,
-                "version": 1024,
-                "encounter": 12,
-                "lead": 255,
+                "version": "HeartGold",
+                "encounter": "Headbutt",
+                "lead": "None",
                 "location": 146,
                 "results": [
                     {
@@ -7722,9 +7722,9 @@
             {
                 "name": "Safari Zone (Plains)",
                 "seed": 0,
-                "version": 1024,
-                "encounter": 0,
-                "lead": 255,
+                "version": "HeartGold",
+                "encounter": "Grass",
+                "lead": "None",
                 "location": 149,
                 "results": [
                     {
@@ -8074,9 +8074,9 @@
             {
                 "name": "Route 229 PokeRadar",
                 "seed": 0,
-                "version": 512,
-                "encounter": 0,
-                "lead": 255,
+                "version": "Platinum",
+                "encounter": "Grass",
+                "lead": "None",
                 "location": 175,
                 "shiny": false,
                 "index": 4,
@@ -8426,9 +8426,9 @@
             {
                 "name": "Route 229 PokeRadar Cute Charm",
                 "seed": 0,
-                "version": 512,
-                "encounter": 0,
-                "lead": 26,
+                "version": "Platinum",
+                "encounter": "Grass",
+                "lead": "CuteCharmF",
                 "location": 175,
                 "shiny": false,
                 "index": 4,
@@ -8778,9 +8778,9 @@
             {
                 "name": "Route 229 PokeRadar Synchronize",
                 "seed": 0,
-                "version": 512,
-                "encounter": 0,
-                "lead": 0,
+                "version": "Platinum",
+                "encounter": "Grass",
+                "lead": "Synchronize",
                 "location": 175,
                 "shiny": false,
                 "index": 4,
@@ -9130,9 +9130,9 @@
             {
                 "name": "Route 229 PokeRadar Shiny",
                 "seed": 0,
-                "version": 512,
-                "encounter": 0,
-                "lead": 255,
+                "version": "Platinum",
+                "encounter": "Grass",
+                "lead": "None",
                 "location": 175,
                 "shiny": true,
                 "index": 4,
@@ -9482,9 +9482,9 @@
             {
                 "name": "Route 229 PokeRadar Shiny Cute Charm",
                 "seed": 0,
-                "version": 512,
-                "encounter": 0,
-                "lead": 26,
+                "version": "Platinum",
+                "encounter": "Grass",
+                "lead": "CuteCharmF",
                 "location": 175,
                 "shiny": true,
                 "index": 4,
@@ -9834,9 +9834,9 @@
             {
                 "name": "Route 229 PokeRadar Shiny Synchronize",
                 "seed": 0,
-                "version": 512,
-                "encounter": 0,
-                "lead": 0,
+                "version": "Platinum",
+                "encounter": "Grass",
+                "lead": "Synchronize",
                 "location": 175,
                 "shiny": true,
                 "index": 4,
@@ -10209,9 +10209,9 @@
                 "maxAdvance": 1000,
                 "minDelay": 600,
                 "maxDelay": 2000,
-                "version": 512,
-                "encounter": 0,
-                "lead": 255,
+                "version": "Platinum",
+                "encounter": "Grass",
+                "lead": "None",
                 "location": 170,
                 "results": 33
             },
@@ -10237,9 +10237,9 @@
                 "maxAdvance": 1000,
                 "minDelay": 600,
                 "maxDelay": 2000,
-                "version": 512,
-                "encounter": 0,
-                "lead": 32,
+                "version": "Platinum",
+                "encounter": "Grass",
+                "lead": "CompoundEyes",
                 "location": 170,
                 "results": 33
             },
@@ -10265,9 +10265,9 @@
                 "maxAdvance": 1000,
                 "minDelay": 600,
                 "maxDelay": 2000,
-                "version": 512,
-                "encounter": 0,
-                "lead": 26,
+                "version": "Platinum",
+                "encounter": "Grass",
+                "lead": "CuteCharmF",
                 "location": 170,
                 "results": 9
             },
@@ -10293,9 +10293,9 @@
                 "maxAdvance": 1000,
                 "minDelay": 600,
                 "maxDelay": 2000,
-                "version": 512,
-                "encounter": 0,
-                "lead": 28,
+                "version": "Platinum",
+                "encounter": "Grass",
+                "lead": "MagnetPull",
                 "location": 170,
                 "results": 33
             },
@@ -10321,9 +10321,9 @@
                 "maxAdvance": 1000,
                 "minDelay": 600,
                 "maxDelay": 2000,
-                "version": 512,
-                "encounter": 0,
-                "lead": 30,
+                "version": "Platinum",
+                "encounter": "Grass",
+                "lead": "Pressure",
                 "location": 170,
                 "results": 33
             },
@@ -10349,9 +10349,9 @@
                 "maxAdvance": 1000,
                 "minDelay": 600,
                 "maxDelay": 2000,
-                "version": 512,
-                "encounter": 0,
-                "lead": 29,
+                "version": "Platinum",
+                "encounter": "Grass",
+                "lead": "Static",
                 "location": 170,
                 "results": 33
             },
@@ -10377,9 +10377,9 @@
                 "maxAdvance": 1000,
                 "minDelay": 600,
                 "maxDelay": 2000,
-                "version": 512,
-                "encounter": 0,
-                "lead": 0,
+                "version": "Platinum",
+                "encounter": "Grass",
+                "lead": "Synchronize",
                 "location": 170,
                 "results": 417
             },
@@ -10405,9 +10405,9 @@
                 "maxAdvance": 1000,
                 "minDelay": 600,
                 "maxDelay": 2000,
-                "version": 512,
-                "encounter": 4,
-                "lead": 255,
+                "version": "Platinum",
+                "encounter": "Surfing",
+                "lead": "None",
                 "location": 170,
                 "results": 33
             },
@@ -10433,9 +10433,9 @@
                 "maxAdvance": 1000,
                 "minDelay": 600,
                 "maxDelay": 2000,
-                "version": 512,
-                "encounter": 6,
-                "lead": 255,
+                "version": "Platinum",
+                "encounter": "OldRod",
+                "lead": "None",
                 "location": 170,
                 "results": 9
             },
@@ -10461,9 +10461,9 @@
                 "maxAdvance": 1000,
                 "minDelay": 600,
                 "maxDelay": 2000,
-                "version": 512,
-                "encounter": 7,
-                "lead": 255,
+                "version": "Platinum",
+                "encounter": "GoodRod",
+                "lead": "None",
                 "location": 170,
                 "results": 17
             },
@@ -10489,9 +10489,9 @@
                 "maxAdvance": 1000,
                 "minDelay": 600,
                 "maxDelay": 2000,
-                "version": 512,
-                "encounter": 8,
-                "lead": 255,
+                "version": "Platinum",
+                "encounter": "SuperRod",
+                "lead": "None",
                 "location": 170,
                 "results": 29
             }
@@ -10519,9 +10519,9 @@
                 "maxAdvance": 1000,
                 "minDelay": 600,
                 "maxDelay": 2000,
-                "version": 1024,
-                "encounter": 0,
-                "lead": 255,
+                "version": "HeartGold",
+                "encounter": "Grass",
+                "lead": "None",
                 "location": 116,
                 "results": 65
             },
@@ -10547,9 +10547,9 @@
                 "maxAdvance": 1000,
                 "minDelay": 600,
                 "maxDelay": 2000,
-                "version": 1024,
-                "encounter": 0,
-                "lead": 32,
+                "version": "HeartGold",
+                "encounter": "Grass",
+                "lead": "CompoundEyes",
                 "location": 116,
                 "results": 65
             },
@@ -10575,9 +10575,9 @@
                 "maxAdvance": 1000,
                 "minDelay": 600,
                 "maxDelay": 2000,
-                "version": 1024,
-                "encounter": 0,
-                "lead": 26,
+                "version": "HeartGold",
+                "encounter": "Grass",
+                "lead": "CuteCharmF",
                 "location": 116,
                 "results": 6
             },
@@ -10603,9 +10603,9 @@
                 "maxAdvance": 1000,
                 "minDelay": 600,
                 "maxDelay": 2000,
-                "version": 1024,
-                "encounter": 0,
-                "lead": 28,
+                "version": "HeartGold",
+                "encounter": "Grass",
+                "lead": "MagnetPull",
                 "location": 116,
                 "results": 65
             },
@@ -10631,9 +10631,9 @@
                 "maxAdvance": 1000,
                 "minDelay": 600,
                 "maxDelay": 2000,
-                "version": 1024,
-                "encounter": 0,
-                "lead": 30,
+                "version": "HeartGold",
+                "encounter": "Grass",
+                "lead": "Pressure",
                 "location": 116,
                 "results": 65
             },
@@ -10659,9 +10659,9 @@
                 "maxAdvance": 1000,
                 "minDelay": 600,
                 "maxDelay": 2000,
-                "version": 1024,
-                "encounter": 0,
-                "lead": 29,
+                "version": "HeartGold",
+                "encounter": "Grass",
+                "lead": "Static",
                 "location": 116,
                 "results": 65
             },
@@ -10687,9 +10687,9 @@
                 "maxAdvance": 1000,
                 "minDelay": 600,
                 "maxDelay": 2000,
-                "version": 1024,
-                "encounter": 0,
-                "lead": 0,
+                "version": "HeartGold",
+                "encounter": "Grass",
+                "lead": "Synchronize",
                 "location": 116,
                 "results": 416
             },
@@ -10715,9 +10715,9 @@
                 "maxAdvance": 1000,
                 "minDelay": 600,
                 "maxDelay": 2000,
-                "version": 1024,
-                "encounter": 4,
-                "lead": 255,
+                "version": "HeartGold",
+                "encounter": "Surfing",
+                "lead": "None",
                 "location": 116,
                 "results": 65
             },
@@ -10743,9 +10743,9 @@
                 "maxAdvance": 1000,
                 "minDelay": 600,
                 "maxDelay": 2000,
-                "version": 1024,
-                "encounter": 6,
-                "lead": 255,
+                "version": "HeartGold",
+                "encounter": "OldRod",
+                "lead": "None",
                 "location": 116,
                 "results": 10
             },
@@ -10771,9 +10771,9 @@
                 "maxAdvance": 1000,
                 "minDelay": 600,
                 "maxDelay": 2000,
-                "version": 1024,
-                "encounter": 6,
-                "lead": 31,
+                "version": "HeartGold",
+                "encounter": "OldRod",
+                "lead": "SuctionCups",
                 "location": 116,
                 "results": 24
             },
@@ -10799,9 +10799,9 @@
                 "maxAdvance": 1000,
                 "minDelay": 600,
                 "maxDelay": 2000,
-                "version": 1024,
-                "encounter": 7,
-                "lead": 255,
+                "version": "HeartGold",
+                "encounter": "GoodRod",
+                "lead": "None",
                 "location": 116,
                 "results": 24
             },
@@ -10827,9 +10827,9 @@
                 "maxAdvance": 1000,
                 "minDelay": 600,
                 "maxDelay": 2000,
-                "version": 1024,
-                "encounter": 8,
-                "lead": 255,
+                "version": "HeartGold",
+                "encounter": "SuperRod",
+                "lead": "None",
                 "location": 116,
                 "results": 45
             },
@@ -10855,9 +10855,9 @@
                 "maxAdvance": 1000,
                 "minDelay": 600,
                 "maxDelay": 2000,
-                "version": 1024,
-                "encounter": 3,
-                "lead": 255,
+                "version": "HeartGold",
+                "encounter": "RockSmash",
+                "lead": "None",
                 "location": 51,
                 "results": 19
             },
@@ -10883,9 +10883,9 @@
                 "maxAdvance": 1000,
                 "minDelay": 600,
                 "maxDelay": 2000,
-                "version": 1024,
-                "encounter": 3,
-                "lead": 33,
+                "version": "HeartGold",
+                "encounter": "RockSmash",
+                "lead": "ArenaTrap",
                 "location": 51,
                 "results": 40
             },
@@ -10911,9 +10911,9 @@
                 "maxAdvance": 1000,
                 "minDelay": 600,
                 "maxDelay": 2000,
-                "version": 1024,
-                "encounter": 11,
-                "lead": 255,
+                "version": "HeartGold",
+                "encounter": "BugCatchingContest",
+                "lead": "None",
                 "location": 142,
                 "results": 65
             },
@@ -10939,9 +10939,9 @@
                 "maxAdvance": 1000,
                 "minDelay": 600,
                 "maxDelay": 2000,
-                "version": 1024,
-                "encounter": 12,
-                "lead": 255,
+                "version": "HeartGold",
+                "encounter": "Headbutt",
+                "lead": "None",
                 "location": 146,
                 "results": 65
             },
@@ -10967,9 +10967,9 @@
                 "maxAdvance": 1000,
                 "minDelay": 600,
                 "maxDelay": 2000,
-                "version": 1024,
-                "encounter": 0,
-                "lead": 255,
+                "version": "HeartGold",
+                "encounter": "Grass",
+                "lead": "None",
                 "location": 149,
                 "results": 65
             }
@@ -10997,9 +10997,9 @@
                 "maxAdvance": 1000,
                 "minDelay": 600,
                 "maxDelay": 2000,
-                "version": 512,
-                "encounter": 0,
-                "lead": 255,
+                "version": "Platinum",
+                "encounter": "Grass",
+                "lead": "None",
                 "location": 175,
                 "shiny": false,
                 "index": 4,
@@ -11027,9 +11027,9 @@
                 "maxAdvance": 1000,
                 "minDelay": 600,
                 "maxDelay": 2000,
-                "version": 512,
-                "encounter": 0,
-                "lead": 26,
+                "version": "Platinum",
+                "encounter": "Grass",
+                "lead": "CuteCharmF",
                 "location": 175,
                 "shiny": false,
                 "index": 4,
@@ -11057,9 +11057,9 @@
                 "maxAdvance": 1000,
                 "minDelay": 600,
                 "maxDelay": 2000,
-                "version": 512,
-                "encounter": 0,
-                "lead": 0,
+                "version": "Platinum",
+                "encounter": "Grass",
+                "lead": "Synchronize",
                 "location": 175,
                 "shiny": false,
                 "index": 4,
@@ -11087,9 +11087,9 @@
                 "maxAdvance": 1000,
                 "minDelay": 600,
                 "maxDelay": 2000,
-                "version": 512,
-                "encounter": 0,
-                "lead": 255,
+                "version": "Platinum",
+                "encounter": "Grass",
+                "lead": "None",
                 "location": 175,
                 "shiny": true,
                 "index": 4,
@@ -11117,9 +11117,9 @@
                 "maxAdvance": 1000,
                 "minDelay": 600,
                 "maxDelay": 2000,
-                "version": 512,
-                "encounter": 0,
-                "lead": 26,
+                "version": "Platinum",
+                "encounter": "Grass",
+                "lead": "CuteCharmF",
                 "location": 175,
                 "shiny": true,
                 "index": 4,
@@ -11147,9 +11147,9 @@
                 "maxAdvance": 1000,
                 "minDelay": 600,
                 "maxDelay": 2000,
-                "version": 512,
-                "encounter": 0,
-                "lead": 0,
+                "version": "Platinum",
+                "encounter": "Grass",
+                "lead": "Synchronize",
                 "location": 175,
                 "shiny": true,
                 "index": 4,

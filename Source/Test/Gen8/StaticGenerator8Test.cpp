@@ -25,6 +25,7 @@
 #include <Core/Gen8/States/State8.hpp>
 #include <QTest>
 #include <Test/Data.hpp>
+#include <Test/Enum.hpp>
 
 static bool operator==(const State8 &left, const json &right)
 {
@@ -49,7 +50,7 @@ void StaticGenerator8Test::generate_data()
     for (const auto &d : data)
     {
         QTest::newRow(d["name"].get<std::string>().data())
-            << d["seed0"].get<u64>() << d["seed1"].get<u64>() << d["lead"].get<Lead>() << d["category"].get<int>()
+            << d["seed0"].get<u64>() << d["seed1"].get<u64>() << getLead(d["lead"].get<std::string>()) << d["category"].get<int>()
             << d["pokemon"].get<int>() << d["results"].get<json>().dump();
     }
 }

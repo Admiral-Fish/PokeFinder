@@ -38,6 +38,7 @@
 #include <Form/Gen8/Raids.hpp>
 #include <Form/Gen8/Static8.hpp>
 #include <Form/Gen8/Tools/DenMap.hpp>
+#include <Form/Gen8/Underground.hpp>
 #include <Form/Gen8/Wild8.hpp>
 #include <Form/Util/EncounterLookup.hpp>
 #include <Form/Util/IVCalculator.hpp>
@@ -115,6 +116,7 @@ MainWindow::MainWindow(bool profile, QWidget *parent) : QMainWindow(parent), ui(
     connect(ui->pushButtonIDs8, &QPushButton::clicked, this, &MainWindow::openIDs8);
     connect(ui->pushButtonStatic8, &QPushButton::clicked, this, &MainWindow::openStatic8);
     connect(ui->pushButtonWild8, &QPushButton::clicked, this, &MainWindow::openWild8);
+    connect(ui->pushButtonUnderground, &QPushButton::clicked, this, &MainWindow::openUnderground);
     connect(ui->pushButtonRaid, &QPushButton::clicked, this, &MainWindow::openRaids);
     connect(ui->actionDenMap, &QAction::triggered, this, &MainWindow::openDenMap);
     connect(ui->actionProfileManager8, &QAction::triggered, this, &MainWindow::openProfileManager8);
@@ -174,6 +176,7 @@ MainWindow::~MainWindow()
     delete raids;
     delete static8;
     delete wild8;
+    delete underground;
 }
 
 void MainWindow::checkUpdates() const
@@ -591,6 +594,13 @@ void MainWindow::openIDs8()
     ids8->show();
 }
 
+void MainWindow::openProfileManager8()
+{
+    auto *manager = new ProfileManager8();
+    connect(manager, &ProfileManager8::profilesModified, this, &MainWindow::updateProfiles);
+    manager->show();
+}
+
 void MainWindow::openRaids()
 {
     if (!raids)
@@ -611,6 +621,16 @@ void MainWindow::openStatic8()
     static8->show();
 }
 
+void MainWindow::openUnderground()
+{
+    if (!underground)
+    {
+        underground = new Underground();
+        connect(underground, &Underground::profilesModified, this, &MainWindow::updateProfiles);
+    }
+    underground->show();
+}
+
 void MainWindow::openWild8()
 {
     if (!wild8)
@@ -619,13 +639,6 @@ void MainWindow::openWild8()
         connect(wild8, &Wild8::profilesModified, this, &MainWindow::updateProfiles);
     }
     wild8->show();
-}
-
-void MainWindow::openProfileManager8()
-{
-    auto *manager = new ProfileManager8();
-    connect(manager, &ProfileManager8::profilesModified, this, &MainWindow::updateProfiles);
-    manager->show();
 }
 
 void MainWindow::openAbout() const

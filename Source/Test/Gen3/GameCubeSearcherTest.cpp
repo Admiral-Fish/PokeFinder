@@ -27,6 +27,7 @@
 #include <Core/Gen3/States/State3.hpp>
 #include <QTest>
 #include <Test/Data.hpp>
+#include <Test/Enum.hpp>
 
 using IVs = std::array<u8, 6>;
 
@@ -193,8 +194,9 @@ void GameCubeSearcherTest::searchNonLock_data()
     json data = readData("gamecube", "gamecubesearcher", "searchNonLock");
     for (const auto &d : data)
     {
-        QTest::newRow(d["name"].get<std::string>().data()) << d["min"].get<IVs>() << d["max"].get<IVs>() << d["version"].get<Game>()
-                                                           << d["pokemon"].get<int>() << d["results"].get<json>().dump();
+        QTest::newRow(d["name"].get<std::string>().data())
+            << d["min"].get<IVs>() << d["max"].get<IVs>() << getGame(d["version"].get<std::string>()) << d["pokemon"].get<int>()
+            << d["results"].get<json>().dump();
     }
 }
 

@@ -156,10 +156,17 @@
         <string>Gen 8</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_5">
-        <item row="5" column="0">
-         <widget class="QPushButton" name="pushButtonWild8">
+        <item row="3" column="0">
+         <widget class="QPushButton" name="pushButtonRaid">
           <property name="text">
-           <string>Wild</string>
+           <string>Raid</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="QPushButton" name="pushButtonIDs8">
+          <property name="text">
+           <string>IDs</string>
           </property>
          </widget>
         </item>
@@ -177,13 +184,6 @@
           </property>
          </widget>
         </item>
-        <item row="2" column="0">
-         <widget class="QPushButton" name="pushButtonIDs8">
-          <property name="text">
-           <string>IDs</string>
-          </property>
-         </widget>
-        </item>
         <item row="0" column="0">
          <widget class="QPushButton" name="pushButtonEgg8">
           <property name="text">
@@ -191,10 +191,17 @@
           </property>
          </widget>
         </item>
-        <item row="3" column="0">
-         <widget class="QPushButton" name="pushButtonRaid">
+        <item row="6" column="0">
+         <widget class="QPushButton" name="pushButtonWild8">
           <property name="text">
-           <string>Raid</string>
+           <string>Wild</string>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="0">
+         <widget class="QPushButton" name="pushButtonUnderground">
+          <property name="text">
+           <string>Underground</string>
           </property>
          </widget>
         </item>
@@ -403,6 +410,7 @@
   <tabstop>pushButtonIDs8</tabstop>
   <tabstop>pushButtonRaid</tabstop>
   <tabstop>pushButtonStatic8</tabstop>
+  <tabstop>pushButtonUnderground</tabstop>
   <tabstop>pushButtonWild8</tabstop>
  </tabstops>
  <resources/>

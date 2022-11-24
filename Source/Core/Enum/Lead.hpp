@@ -28,19 +28,32 @@
 enum class Lead : u8
 {
     None = 255,
+
     Synchronize = 0,
     SynchronizeEnd = 25,
+
     CuteCharmF,
     CuteCharmM,
+
     MagnetPull,
     Static,
-    Pressure,
-    SuctionCups,
-    CompoundEyes,
-    ArenaTrap,
     Harvest,
     FlashFire,
-    StormDrain
+    StormDrain,
+
+    Pressure,
+    Hustle = Pressure,
+    VitalSpirit = Pressure,
+
+    SuctionCups,
+    StickyHold = SuctionCups,
+
+    CompoundEyes,
+    SuperLuck = CompoundEyes,
+
+    ArenaTrap,
+    Illuminate = ArenaTrap,
+    NoGuard = ArenaTrap,
 };
 
 /**

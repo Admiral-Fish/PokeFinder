@@ -131,6 +131,7 @@ def embed_personal():
                     else:
                         form_count = 1
                         form_stat_index = 0
+                    hatch_species = 0
                     present = 1
                 elif index == 4:
                     item1, = read.unpack(data[i+0xc:i+0xe])
@@ -158,6 +159,7 @@ def embed_personal():
                     else:
                         form_count = 1
                         form_stat_index = 0
+                    hatch_species = 0
                     present = 1
                 elif index == 5:
                     item1, = read.unpack(data[i+0xc:i+0xe])
@@ -169,6 +171,7 @@ def embed_personal():
                     abilityH = data[i+0x1a] or ability1
                     form_count = data[i+0x20]
                     form_stat_index, = read.unpack(data[i+0x1c:i+0x1e])
+                    hatch_species = 0
                     present = 1
                 elif index == 8:
                     item1, = read.unpack(data[i+0xc:i+0xe])
@@ -180,9 +183,10 @@ def embed_personal():
                     abilityH, = read.unpack(data[i+0x1c:i+0x1e])
                     form_count = data[i+0x20]
                     form_stat_index, = read.unpack(data[i+0x1e:i+0x20])
+                    hatch_species, = read.unpack(data[i+0x3e:i+0x40])
                     present = (data[i+0x21] >> 6) & 1
 
-                personal = f"PersonalInfo({hp}, {atk}, {defense}, {spa}, {spd}, {spe}, {type1}, {type2}, {item1}, {item2}, {item3}, {gender}, {ability1}, {ability2}, {abilityH}, {form_count}, {form_stat_index}, {present})"
+                personal = f"PersonalInfo({hp}, {atk}, {defense}, {spa}, {spd}, {spe}, {type1}, {type2}, {item1}, {item2}, {item3}, {gender}, {ability1}, {ability2}, {abilityH}, {form_count}, {form_stat_index}, {hatch_species}, {present})"
                 string += personal
                 if i != size - offset:
                     string += ", "
