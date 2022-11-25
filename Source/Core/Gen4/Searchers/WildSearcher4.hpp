@@ -24,6 +24,7 @@
 #include <Core/Gen4/Filters/StateFilter4.hpp>
 #include <Core/Parents/Searchers/WildSearcher.hpp>
 #include <mutex>
+
 /**
  * @brief Wild encounter searcher for Gen4
  */

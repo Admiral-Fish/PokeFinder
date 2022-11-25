@@ -35,10 +35,10 @@ public:
     /**
      * @brief IDFilter
      *
-     * @param tidFilter
-     * @param sidFilter
-     * @param tsvFilter
-     * @param displayFilter
+     * @param tidFilter TID filter list
+     * @param sidFilter SID filter list
+     * @param tsvFilter TSV filter list
+     * @param displayFilter Display ID filter list
      */
     IDFilter(const std::vector<u16> &tidFilter, const std::vector<u16> &sidFilter, const std::vector<u16> &tsvFilter,
              const std::vector<u32> &displayFilter);

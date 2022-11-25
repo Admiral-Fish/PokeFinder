@@ -321,9 +321,7 @@ public:
     /**
      * @brief Construct a new DateTime object
      */
-    constexpr DateTime() : date(), time()
-    {
-    }
+    constexpr DateTime() = default;
 
     /**
      * @brief Construct a new DateTime object

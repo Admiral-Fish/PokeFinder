@@ -26,7 +26,7 @@
 #include <Core/RNG/SHA1.hpp>
 #include <Core/Util/DateTime.hpp>
 #include <Core/Util/Utilities.hpp>
-#include <future>
+#include <thread>
 
 ProfileSearcher5::ProfileSearcher5(const Date &date, const Time &time, u8 minSeconds, u8 maxSeconds, u8 minVCount, u8 maxVCount,
                                    u16 minTimer0, u16 maxTimer0, u8 minGxStat, u8 maxGxStat, bool softReset, Game version,
@@ -79,25 +79,25 @@ void ProfileSearcher5::startSearch(int threads, u8 minVFrame, u8 maxVFrame)
         threads = diff;
     }
 
-    std::vector<std::future<void>> threadContainer;
+    std::vector<std::thread> threadContainer;
 
     auto split = (diff / threads);
     for (int i = 0; i < threads; i++)
     {
         if (i == threads - 1)
         {
-            threadContainer.emplace_back(std::async(std::launch::async, [=] { search(minVFrame, maxVFrame); }));
+            threadContainer.emplace_back([=] { search(minVFrame, maxVFrame); });
         }
         else
         {
-            threadContainer.emplace_back(std::async(std::launch::async, [=] { search(minVFrame, minVFrame + split - 1); }));
+            threadContainer.emplace_back([=] { search(minVFrame, minVFrame + split - 1); });
         }
         minVFrame += split;
     }
 
     for (int i = 0; i < threads; i++)
     {
-        threadContainer[i].wait();
+        threadContainer[i].join();
     }
 }
 

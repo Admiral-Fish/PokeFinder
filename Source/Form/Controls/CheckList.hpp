@@ -78,7 +78,7 @@ public:
      *
      * @param flags Vector detailing which check boxes are to be checked and unchecked
      */
-    void setChecks(std::vector<bool> flags);
+    void setChecks(const std::vector<bool> &flags);
 
 protected:
     /**

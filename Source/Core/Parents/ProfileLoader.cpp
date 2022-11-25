@@ -313,7 +313,7 @@ namespace ProfileLoader5
             Game version = j.value("version", Game::Black);
             u16 tid = j.value("tid", 0);
             u16 sid = j.value("sid", 0);
-            u64 mac = j.value("mac", 0);
+            u64 mac = j.value("mac", 0ULL);
             std::array<bool, 4> keypresses = j.value("keypresses", std::array<bool, 4> { false, false, false, false });
             u8 vcount = j.value("vcount", 0);
             u8 gxstat = j.value("gxstat", 0);
@@ -325,7 +325,7 @@ namespace ProfileLoader5
             bool memoryLink = j.value("memoryLink", false);
             bool shinyCharm = j.value("shinyCharm", false);
             DSType dsType = j.value("dsType", DSType::DS);
-            Language language = j.value("dsType", Language::English);
+            Language language = j.value("language", Language::English);
             return Profile5(name, version, tid, sid, mac, keypresses, vcount, gxstat, vframe, skipLR, timer0Min, timer0Max, softReset,
                             memoryLink, shinyCharm, dsType, language);
         }

@@ -39,13 +39,17 @@ CheckList::CheckList(QWidget *parent) : QComboBox(parent), model(new QStandardIt
 
 void CheckList::setup(const std::vector<std::string> &items)
 {
-    // Empty list in case this is not the first call to setup
-    clear();
-
-    for (int i = 0; i < items.size(); i++)
+    if (!items.empty())
     {
-        addItem(QString::fromStdString(items[i]));
+        clear();
+        for (const auto &item : items)
+        {
+            addItem(QString::fromStdString(item));
+        }
+    }
 
+    for (int i = 0; i < model->rowCount(); i++)
+    {
         QStandardItem *item = model->item(i);
         item->setCheckState(Qt::Unchecked);
         item->setFlags(Qt::ItemIsUserCheckable | Qt::ItemIsEnabled);
@@ -54,13 +58,18 @@ void CheckList::setup(const std::vector<std::string> &items)
 
 void CheckList::setup(const std::vector<std::string> &items, const std::vector<u16> &data)
 {
-    // Empty list in case this is not the first call to setup
-    clear();
-
-    for (int i = 0; i < items.size(); i++)
+    assert(items.size() == data.size());
+    if (!items.empty())
     {
-        addItem(QString::fromStdString(items[i]), data[i]);
+        clear();
+        for (int i = 0; i < items.size(); i++)
+        {
+            addItem(QString::fromStdString(items[i]), data[i]);
+        }
+    }
 
+    for (int i = 0; i < model->rowCount(); i++)
+    {
         QStandardItem *item = model->item(i);
         item->setCheckState(Qt::Unchecked);
         item->setFlags(Qt::ItemIsUserCheckable | Qt::ItemIsEnabled);
@@ -106,7 +115,7 @@ void CheckList::resetChecks()
     }
 }
 
-void CheckList::setChecks(std::vector<bool> flags)
+void CheckList::setChecks(const std::vector<bool> &flags)
 {
     for (size_t i = 0; i < flags.size(); i++)
     {

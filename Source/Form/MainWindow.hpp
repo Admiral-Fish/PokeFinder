@@ -187,6 +187,11 @@ private slots:
 
     // Gen 5
     /**
+     * @brief Opens the Gen 5 IDs window
+     */
+    void openIDs5();
+
+    /**
      * @brief Opens the Gen 5 Profile Calibrator window
      */
     void openProfileCalibrator() const;
@@ -201,7 +206,6 @@ private slots:
     // void openDreamRadar();
     // void openHiddenGrotto();
     // void openEgg5();
-    // void openIDs5();
 
     // Gen 8
     /**

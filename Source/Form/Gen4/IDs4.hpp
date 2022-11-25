@@ -37,14 +37,14 @@ class IDs4 : public QWidget
     Q_OBJECT
 public:
     /**
-     * @brief Construct a new IDs3 object
+     * @brief Construct a new IDs4 object
      *
      * @param parent Parent widget, which takes memory ownership
      */
     IDs4(QWidget *parent = nullptr);
 
     /**
-     * @brief Destroy the IDs3 object
+     * @brief Destroy the IDs4 object
      */
     ~IDs4() override;
 

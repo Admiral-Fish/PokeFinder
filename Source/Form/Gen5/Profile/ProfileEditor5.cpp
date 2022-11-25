@@ -32,6 +32,7 @@ ProfileEditor5::ProfileEditor5(QWidget *parent) : QDialog(parent), ui(new Ui::Pr
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
+
     ui->textBoxTID->setValues(InputType::TIDSID);
     ui->textBoxSID->setValues(InputType::TIDSID);
     ui->textBoxMAC->setValues(0, 0xFFFFFFFFFFFF, 12, 16);
@@ -59,9 +60,6 @@ ProfileEditor5::ProfileEditor5(QWidget *parent) : QDialog(parent), ui(new Ui::Pr
 
 ProfileEditor5::ProfileEditor5(const Profile5 &profile, QWidget *parent) : ProfileEditor5(parent)
 {
-    ui->setupUi(this);
-    setAttribute(Qt::WA_QuitOnClose, false);
-
     ui->lineEditProfile->setText(QString::fromStdString(profile.getName()));
     ui->textBoxTID->setText(QString::number(profile.getTID()));
     ui->textBoxSID->setText(QString::number(profile.getSID()));
@@ -90,9 +88,6 @@ ProfileEditor5::ProfileEditor5(Game version, Language language, DSType dsType, u
                                QWidget *parent) :
     ProfileEditor5(parent)
 {
-    ui->setupUi(this);
-    setAttribute(Qt::WA_QuitOnClose, false);
-
     ui->comboBoxVersion->setCurrentIndex(ui->comboBoxVersion->findData(toInt(version)));
     ui->comboBoxLanguage->setCurrentIndex(ui->comboBoxLanguage->findData(toInt(language)));
     ui->comboBoxDSType->setCurrentIndex(ui->comboBoxDSType->findData(toInt(dsType)));
