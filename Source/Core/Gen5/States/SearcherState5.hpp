@@ -17,8 +17,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef STATE5_HPP
-#define STATE5_HPP
+#ifndef SEARCHERSTATE5_HPP
+#define SEARCHERSTATE5_HPP
 
 #include <Core/Global.hpp>
 #include <Core/Util/DateTime.hpp>
@@ -118,4 +118,4 @@ private:
     StateType state;
 };
 
-#endif // STATE5_HPP
+#endif // SEARCHERSTATE5_HPP

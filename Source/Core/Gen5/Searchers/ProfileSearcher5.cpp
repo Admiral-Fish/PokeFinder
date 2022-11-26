@@ -133,7 +133,8 @@ void ProfileSearcher5::search(u8 vframeStart, u8 vframeEnd)
                         if (valid(seed))
                         {
                             std::lock_guard<std::mutex> lock(mutex);
-                            results.emplace_back(seed, timer0, vcount, vframe, gxStat, second);
+                            results.emplace_back(seed, static_cast<u16>(timer0), static_cast<u8>(vcount), static_cast<u8>(vframe),
+                                                 static_cast<u8>(gxStat), second);
                         }
                     }
                 }

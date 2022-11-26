@@ -61,8 +61,7 @@ enum class Method : u8
     Method5,
     BWBred,
     BW2Bred,
-    DreamRadar,
-    Method5Event,
+    DreamRadar
 };
 
 /**

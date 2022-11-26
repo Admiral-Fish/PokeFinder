@@ -17,60 +17,56 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef GENERATOR_HPP
-#define GENERATOR_HPP
+#ifndef EVENTGENERATOR5_HPP
+#define EVENTGENERATOR5_HPP
 
-#include <Core/Global.hpp>
-#include <vector>
+#include <Core/Gen5/Filters/StateFilter5.hpp>
+#include <Core/Gen5/PGF.hpp>
+#include <Core/Parents/Generators/Generator.hpp>
 
-enum class Encounter : u8;
-enum class Game : u32;
-enum class Method : u8;
+class State5;
 
 /**
- * @brief Parent generator class that stores common attributes
- *
- * @tparam Filter Filter class that is used by the generator
+ * @brief Event generator for Gen 5
  */
-template <class Filter>
-class Generator
+class EventGenerator5 : public Generator<StateFilter5>
 {
 public:
     /**
-     * @brief Construct a new Generator object
+     * @brief Construct a new EventGenerator5 object
      *
      * @param initialAdvances Initial number of advances
      * @param maxAdvances Maximum number of advances
      * @param offset Number of advances to offset
-     * @param version Game version
      * @param tid Trainer ID
      * @param sid Secret ID
-     * @param method Encounter method
+     * @param version Game version
+     * @param pgf Pokemon template
      * @param filter State filter
      */
-    Generator(u32 initialAdvances, u32 maxAdvances, u32 offset, u16 tid, u16 sid, Game version, Method method, const Filter &filter) :
-        version(version),
-        initialAdvances(initialAdvances),
-        maxAdvances(maxAdvances),
-        offset(offset),
-        sid(sid),
-        tid(tid),
-        tsv(tid ^ sid),
-        method(method),
-        filter(filter)
-    {
-    }
+    EventGenerator5(u32 initialAdvances, u32 maxAdvances, u32 offset, u16 tid, u16 sid, Game version, const PGF &pgf,
+                    const StateFilter5 &filter);
 
-protected:
-    Game version;
-    u32 initialAdvances;
-    u32 maxAdvances;
-    u32 offset;
-    u16 sid;
-    u16 tid;
-    u16 tsv;
-    Filter filter;
-    Method method;
+    /**
+     * @brief Generates states
+     *
+     * @param seed0 Upper half of PRNG state
+     * @param seed1 Lower half of PRNG state
+     *
+     * @return Vector of computed states
+     */
+    std::vector<State5> generate(u64 seed) const;
+
+    /**
+     * @brief Updates the initial advances
+     *
+     * @param initialAdvances Initial advances
+     */
+    void setInitialAdvances(u32 initialAdvances);
+
+private:
+    PGF pgf;
+    u8 wondercardAdvances;
 };
 
-#endif // GENERATOR_HPP
+#endif // EVENTGENERATOR5_HPP

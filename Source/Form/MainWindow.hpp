@@ -187,6 +187,11 @@ private slots:
 
     // Gen 5
     /**
+     * @brief Opens the Gen 5 Event window
+     */
+    void openEvent5();
+
+    /**
      * @brief Opens the Gen 5 IDs window
      */
     void openIDs5();
@@ -202,7 +207,6 @@ private slots:
     void openProfileManager5() const;
 
     // void openStatic5();
-    // void openEvent5();
     // void openDreamRadar();
     // void openHiddenGrotto();
     // void openEgg5();

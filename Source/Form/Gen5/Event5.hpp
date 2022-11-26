@@ -17,24 +17,25 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef EVENT8_HPP
-#define EVENT8_HPP
+#ifndef EVENT5_HPP
+#define EVENT5_HPP
 
 #include <QWidget>
 
-class Profile8;
-class StaticModel8;
-class WB8;
+class EventGeneratorModel5;
+class EventSearcherModel5;
+class PGF;
+class Profile5;
 
 namespace Ui
 {
-    class Event8;
+    class Event5;
 }
 
 /**
- * @brief Provides settings and filters to RNG event encounters in Gen 8 games
+ * @brief Provides settings and filters to RNG event encounters in Gen 5 games
  */
-class Event8 : public QWidget
+class Event5 : public QWidget
 {
     Q_OBJECT
 signals:
@@ -45,16 +46,24 @@ signals:
 
 public:
     /**
-     * @brief Construct a new Event8 object
+     * @brief Construct a new Event5 object
      *
      * @param parent Parent widget, which takes memory ownership
      */
-    Event8(QWidget *parent = nullptr);
+    Event5(QWidget *parent = nullptr);
 
     /**
-     * @brief Destroy the Static3 object
+     * @brief Destroy the IDs5 object
      */
-    ~Event8() override;
+    ~Event5() override;
+
+    /**
+     * @brief Determines if any profiles exist
+     *
+     * @return true At least 1 profile exists
+     * @return false 0 profiles exist
+     */
+    bool hasProfiles() const;
 
     /**
      * @brief Reloads profiles
@@ -62,29 +71,52 @@ public:
     void updateProfiles();
 
 private:
-    Ui::Event8 *ui;
+    Ui::Event5 *ui;
 
-    Profile8 *currentProfile;
-    StaticModel8 *model;
-    std::vector<Profile8> profiles;
+    EventGeneratorModel5 *generatorModel;
+    EventSearcherModel5 *searcherModel;
+    Profile5 *currentProfile;
+    std::vector<Profile5> profiles;
 
     /**
      * @brief Loads UI settings for a wondercard
      *
      * @return Wondercard template
      */
-    WB8 getParameters() const;
+    PGF getGeneratorParameters() const;
+
+    /**
+     * @brief Loads UI settings for a wondercard
+     *
+     * @return Wondercard template
+     */
+    PGF getSearcherParameters() const;
 
 private slots:
     /**
-     * @brief Reads in settings from a imported wondercard file
+     * @brief Calculates the initial advances from a starting seed
      */
-    void importEvent();
+    void calculateInitialAdvances();
 
     /**
-     * @brief Generates event encounters from a starting seed
+     * @brief Generates static encounters from a starting seed
      */
     void generate();
+
+    /**
+     * @brief Reads in settings from a imported wondercard file
+     */
+    void generatorImportEvent();
+
+    /**
+     * @brief Searches static encounters from date range
+     */
+    void search();
+
+    /**
+     * @brief Reads in settings from a imported wondercard file
+     */
+    void searcherImportEvent();
 
     /**
      * @brief Updates displayed information for a profile

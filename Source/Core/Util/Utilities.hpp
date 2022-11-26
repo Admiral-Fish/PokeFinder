@@ -21,9 +21,11 @@
 #define UTILITIES_HPP
 
 #include <Core/Global.hpp>
+#include <Core/RNG/LCRNG64.hpp>
 #include <string>
 
 class DateTime;
+class PersonalInfo;
 
 namespace Utilities
 {
@@ -108,13 +110,25 @@ namespace Utilities4
 namespace Utilities5
 {
     /**
+     * @brief Modifies PID to force a gender
+     *
+     * @param pid PID value to modify
+     * @param rng PRNG state
+     * @param gender Gender to force
+     * @param info Pokemon information
+     *
+     * @return Modified PID
+     */
+    u32 forceGender(u32 pid, BWRNG &rng, u8 gender, const PersonalInfo *info);
+
+    /**
      * @brief Returns the chatot pitch
      *
-     * @param seed PRNG state
+     * @param prng PRNG state
      *
      * @return Chatot pitch
      */
-    std::string getChatot(u32 seed);
+    std::string getChatot(u8 prng);
 
     /**
      * @brief Calculates the initial set of advances for BW
@@ -152,8 +166,6 @@ namespace Utilities5
      * @return Initial advance count
      */
     u32 initialAdvancesBW2ID(u64 seed);
-
-    // u32 forceGender(u32 pid, u64 rand, u8 gender, u8 genderRatio);
 }
 
 #endif // UTILITIES_HPP

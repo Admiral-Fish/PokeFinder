@@ -25,7 +25,7 @@
 #include <Core/Parents/Generators/Generator.hpp>
 
 /**
- * @brief Event generator for Gen8
+ * @brief Event generator for Gen 8
  */
 class EventGenerator8 : public Generator<StateFilter8>
 {
@@ -39,20 +39,24 @@ public:
      * @param tid Trainer ID
      * @param sid Secret ID
      * @param version Game version
+     * @param wb8 Pokemon template
      * @param filter State filter
      */
-    EventGenerator8(u32 initialAdvances, u32 maxAdvances, u32 offset, u16 tid, u16 sid, Game version, const StateFilter8 &filter);
+    EventGenerator8(u32 initialAdvances, u32 maxAdvances, u32 offset, u16 tid, u16 sid, Game version, const WB8 &wb8,
+                    const StateFilter8 &filter);
 
     /**
-     * @brief Generates states for the \p wb8
+     * @brief Generates states
      *
      * @param seed0 Upper half of PRNG state
      * @param seed1 Lower half of PRNG state
-     * @param wb8 Pokemon template
      *
      * @return Vector of computed states
      */
-    std::vector<State8> generate(u64 seed0, u64 seed1, const WB8 &wb8);
+    std::vector<State8> generate(u64 seed0, u64 seed1) const;
+
+private:
+    WB8 wb8;
 };
 
 #endif // EVENTGENERATOR8_HPP

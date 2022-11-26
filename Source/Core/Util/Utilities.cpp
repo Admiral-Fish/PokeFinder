@@ -18,8 +18,8 @@
  */
 
 #include "Utilities.hpp"
+#include <Core/Parents/PersonalInfo.hpp>
 #include <Core/RNG/LCRNG.hpp>
-#include <Core/RNG/LCRNG64.hpp>
 #include <Core/RNG/MT.hpp>
 #include <Core/Util/DateTime.hpp>
 #include <bzlib.h>
@@ -209,9 +209,40 @@ namespace Utilities4
 
 namespace Utilities5
 {
-    std::string getChatot(u32 seed)
+    u32 forceGender(u32 pid, BWRNG &rng, u8 gender, const PersonalInfo *info)
     {
-        return getPitch(seed / 82);
+        u8 val;
+        switch (info->getGender())
+        {
+        case 0: // Male only
+            val = rng.nextUInt(0xf6) + 8;
+            break;
+        case 254: // Female Only
+            val = rng.nextUInt(8) + 1;
+            break;
+        default:
+            if (gender == 0) // Male
+            {
+                val = rng.nextUInt(0xfe - info->getGender()) + info->getGender();
+            }
+            else if (gender == 1) // Female
+            {
+                val = rng.nextUInt(info->getGender() - 1) + 1;
+            }
+            else
+            {
+                rng.advance(1);
+                val = 0;
+            }
+            break;
+        }
+
+        return (pid & 0xffffff00) | val;
+    }
+
+    std::string getChatot(u8 prng)
+    {
+        return getPitch(prng);
     }
 
     u32 initialAdvancesBW(u64 seed)
@@ -304,40 +335,4 @@ namespace Utilities5
 
         return count;
     }
-
-    /*u32 forceGender(u32 pid, u64 rand, u8 gender, u8 genderRatio)
-      {
-          pid &= 0xffffff00;
-
-          if (genderRatio == 0) // Male only
-          {
-              u8 val = ((rand * 0xF6) >> 32) + 8;
-              pid |= val;
-          }
-          else if (genderRatio == 254) // Female only
-          {
-              u8 val = ((rand * 0x8) >> 32) + 1;
-              pid |= val;
-          }
-          else // Gender ratio
-          {
-              if (gender == 0) // Male
-              {
-                  u8 val = ((rand * (0xFE - genderRatio)) >> 32) + genderRatio;
-                  pid |= val;
-              }
-              else if (gender == 1) // Female
-              {
-                  u8 val = ((rand * (genderRatio - 1)) >> 32) + 1;
-                  pid |= val;
-              }
-              else
-              {
-                  u8 val = rand >> 32;
-                  pid |= val;
-              }
-          }
-
-          return pid;
-      }*/
 }

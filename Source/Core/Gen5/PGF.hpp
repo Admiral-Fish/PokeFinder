@@ -17,18 +17,16 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef WB8_HPP
-#define WB8_HPP
+#ifndef PGF_HPP
+#define PGF_HPP
 
 #include <Core/Global.hpp>
-#include <Core/Parents/PersonalLoader.hpp>
-
-enum class Game : u32;
+#include <array>
 
 /**
  * @brief Contains information that impact the generation of events
  */
-class WB8
+class PGF
 {
 public:
     /**
@@ -36,23 +34,18 @@ public:
      *
      * @param data Raw wondercard data
      */
-    WB8(const u8 *data) :
-        ec(*reinterpret_cast<const u32 *>(data + 0x28)),
-        pid(*reinterpret_cast<const u32 *>(data + 0x2c)),
-        sid(*reinterpret_cast<const u16 *>(data + 0x22)),
-        form(data[0x28a]),
-        specie(*reinterpret_cast<const u16 *>(data + 0x288)),
-        tid(*reinterpret_cast<const u16 *>(data + 0x20)),
-        egg(data[0x28d] == 1),
-        ability(data[0x28f]),
-        gender(data[0x28b]),
-        level(data[0x28c]),
-        nature(data[0x28e]),
-        shiny(data[0x290])
+    PGF(const u8 *data) :
+        sid(*reinterpret_cast<const u16 *>(data + 0x2)),
+        species(*reinterpret_cast<const u16 *>(data + 0x1a)),
+        tid(*reinterpret_cast<const u16 *>(data + 0x0)),
+        egg(data[0x5C] == 1),
+        ability(data[0x36]),
+        gender(data[0x35]),
+        ivs { data[0x43], data[0x44], data[0x45], data[0x47], data[0x48], data[0x46] },
+        level(data[0x5b]),
+        nature(data[0x34]),
+        shiny(data[0x37])
     {
-        // Look at HP IV for flag
-        bool ivFlag = data[0x2b2] - 0xfc < 3;
-        ivCount = ivFlag ? (data[0x2b2] - 0xfb) : 0;
     }
 
     /**
@@ -60,30 +53,29 @@ public:
      *
      * @param tid Template TID
      * @param sid Template SID
-     * @param ec Template EC
-     * @param pid Template PID
      * @param specie Template specie
-     * @param form Template form
-     * @param gender Template gender
-     * @param egg Template egg
      * @param nature Template nature
+     * @param gender Template gender
      * @param ability Template ability
      * @param shiny Template shininess
-     * @param ivCount Template 31 IV count
      * @param level Template level
+     * @param hp Template HP
+     * @param atk Template Atk
+     * @param def Template Def
+     * @param spa Template SpA
+     * @param spd Template SpD
+     * @param spe Template Spe
+     * @param egg Template egg
      */
-    WB8(u16 tid, u16 sid, u32 ec, u32 pid, u16 specie, u8 form, u8 gender, bool egg, u8 nature, u8 ability, u8 shiny, u8 ivCount,
-        u8 level) :
-        ec(ec),
-        pid(pid),
+    PGF(u16 tid, u16 sid, u16 species, u8 nature, u8 gender, u8 ability, u8 shiny, u8 level, u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe,
+        bool egg) :
         sid(sid),
-        form(form),
-        specie(specie),
+        species(species),
         tid(tid),
         egg(egg),
         ability(ability),
         gender(gender),
-        ivCount(ivCount),
+        ivs { hp, atk, def, spa, spd, spe },
         level(level),
         nature(nature),
         shiny(shiny)
@@ -101,12 +93,33 @@ public:
     }
 
     /**
-     * @brief Determines what EC the template should have
-     * @return
+     * @brief Returns number of advances consumed by the template
+     *
+     * @return Advances
      */
-    u32 getEC() const
+    u8 getAdvances() const
     {
-        return ec;
+        u8 advances = 8;
+
+        for (u8 iv : ivs)
+        {
+            if (iv == 255) // Random IV
+            {
+                advances += 2;
+            }
+        }
+
+        if (gender == 0 || gender == 1) // Forced male/female
+        {
+            advances += 2;
+        }
+
+        if (nature == 255) // Random nature
+        {
+            advances += 2;
+        }
+
+        return advances;
     }
 
     /**
@@ -121,16 +134,6 @@ public:
     }
 
     /**
-     * @brief Determines what form the template should have
-     *
-     * @return Template form
-     */
-    u8 getForm() const
-    {
-        return form;
-    }
-
-    /**
      * @brief Determines what gender the template should have
      *
      * @return Template gender
@@ -141,23 +144,15 @@ public:
     }
 
     /**
-     * @brief Returns the pokemon information
+     * @brief Returns the specified IV of the template
      *
-     * @return Pokemon information
-     */
-    const PersonalInfo *getInfo(Game version) const
-    {
-        return PersonalLoader::getPersonal(version, specie, form);
-    }
-
-    /**
-     * @brief Determines how many 31 IVs the template should have
+     * @param index IV index to get
      *
-     * @return Template 31 IV count
+     * @return Template IV
      */
-    u8 getIVCount() const
+    u8 getIV(u8 index) const
     {
-        return ivCount;
+        return ivs[index];
     }
 
     /**
@@ -178,16 +173,6 @@ public:
     u8 getNature() const
     {
         return nature;
-    }
-
-    /**
-     * @brief Determines what PID the template should have
-     *
-     * @return Template PID
-     */
-    u32 getPID() const
-    {
-        return pid;
     }
 
     /**
@@ -215,9 +200,9 @@ public:
      *
      * @return Template specie
      */
-    u16 getSpecie() const
+    u16 getSpecies() const
     {
-        return specie;
+        return species;
     }
 
     /**
@@ -231,19 +216,16 @@ public:
     }
 
 private:
-    u32 ec;
-    u32 pid;
     u16 sid;
-    u16 form : 5;
-    u16 specie : 11;
+    u16 species;
     u16 tid;
     bool egg;
-    u8 ability; // 0: 0, 1: 1, 2: H, 3: 1/2, 4: 1/2/H
-    u8 gender;
-    u8 ivCount;
+    u8 ability; // 0: 0, 1: 1, 2: H, 3: 1/2
+    u8 gender; // 0: male, 1: female, 2: random
+    u8 ivs[6]; // 0xff -> unset
     u8 level;
     u8 nature; // 0xff -> unset
-    u8 shiny; // 0: never, 1: random, 2: star, 3: square, 4: static
+    u8 shiny; // 0: no shiny, 1: allow shiny, 2: force shiny
 };
 
-#endif // WB8_HPP
+#endif // PGF_HPP

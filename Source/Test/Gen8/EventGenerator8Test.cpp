@@ -100,9 +100,9 @@ void EventGenerator8Test::generate()
 
     WB8 wb8(tid, sid, ec, pid, specie, form, gender, egg, nature, ability, shiny, ivCount, level);
     StateFilter8 filter(255, 255, 255, false, min, max, natures, powers);
-    EventGenerator8 generator(0, 9, 0, 12345, 54321, Game::BD, filter);
+    EventGenerator8 generator(0, 9, 0, 12345, 54321, Game::BD, wb8, filter);
 
-    auto states = generator.generate(seed0, seed1, wb8);
+    auto states = generator.generate(seed0, seed1);
     QCOMPARE(states.size(), j.size());
 
     for (size_t i = 0; i < states.size(); i++)

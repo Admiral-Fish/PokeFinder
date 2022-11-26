@@ -26,7 +26,7 @@
 #include <mutex>
 
 /**
- * @brief Wild encounter searcher for Gen4
+ * @brief Wild encounter searcher for Gen 4
  */
 class WildSearcher4 : public WildSearcher<WildStateFilter4>
 {

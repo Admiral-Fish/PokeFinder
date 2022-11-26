@@ -28,13 +28,12 @@ static inline u8 bcd(u8 value)
 {
     u8 tens = value / 10;
     u8 ones = value % 10;
-
     return static_cast<u8>(tens << 4) | ones;
 }
 
 static inline u32 changeEndian(u32 val)
 {
-    val = ((val << 8) & 0xFF00FF00) | ((val >> 8) & 0xFF00FF);
+    val = ((val << 8) & 0xff00ff00) | ((val >> 8) & 0xff00ff);
     return (val << 16) | (val >> 16);
 }
 
@@ -59,7 +58,7 @@ SHA1::SHA1(Game version, Language language, DSType type, u64 mac, bool softReset
     auto nazos = Nazos::getNazo(version, language, type);
     std::copy(nazos.begin(), nazos.end(), data);
 
-    data[6] = mac & 0xFFFF;
+    data[6] = mac & 0xffff;
     if (softReset)
     {
         data[6] ^= 0x01000000;
@@ -71,7 +70,7 @@ SHA1::SHA1(Game version, Language language, DSType type, u64 mac, bool softReset
     data[11] = 0;
     data[13] = 0x80000000;
     data[14] = 0;
-    data[15] = 0x000001A0;
+    data[15] = 0x000001a0;
 
     // Precompute data[18]
     data[18] = rotateLeft(data[15] ^ data[10] ^ data[4] ^ data[2], 1);
@@ -87,19 +86,19 @@ u64 SHA1::hashSeed()
     u32 t;
 
     auto section1Calc = [](const u32 &a, u32 &b, const u32 &c, const u32 &d, const u32 &e, u32 &t, const u32 &input) {
-        t = rotateLeft(a, 5) + ((b & c) | (~b & d)) + e + 0x5A827999 + input;
+        t = rotateLeft(a, 5) + ((b & c) | (~b & d)) + e + 0x5a827999 + input;
         b = rotateRight(b, 2);
     };
     auto section2Calc = [](const u32 &a, u32 &b, const u32 &c, const u32 &d, const u32 &e, u32 &t, const u32 &input) {
-        t = rotateLeft(a, 5) + (b ^ c ^ d) + e + 0x6ED9EBA1 + input;
+        t = rotateLeft(a, 5) + (b ^ c ^ d) + e + 0x6ed9eba1 + input;
         b = rotateRight(b, 2);
     };
     auto section3Calc = [](const u32 &a, u32 &b, const u32 &c, const u32 &d, const u32 &e, u32 &t, const u32 &input) {
-        t = rotateLeft(a, 5) + ((b & c) | ((b | c) & d)) + e + 0x8F1BBCDC + input;
+        t = rotateLeft(a, 5) + ((b & c) | ((b | c) & d)) + e + 0x8f1bbcdc + input;
         b = rotateRight(b, 2);
     };
     auto section4Calc = [](const u32 &a, u32 &b, const u32 &c, const u32 &d, const u32 &e, u32 &t, const u32 &input) {
-        t = rotateLeft(a, 5) + (b ^ c ^ d) + e + 0xCA62C1D6 + input;
+        t = rotateLeft(a, 5) + (b ^ c ^ d) + e + 0xca62c1d6 + input;
         b = rotateRight(b, 2);
     };
 
@@ -195,7 +194,7 @@ u64 SHA1::hashSeed()
     section4Calc(c, d, e, t, a, b, calcWSIMD(79));
 
     u64 part1 = changeEndian(b + 0x67452301);
-    u64 part2 = changeEndian(c + 0xEFCDAB89);
+    u64 part2 = changeEndian(c + 0xefcdab89);
 
     u64 seed = (part2 << 32) | part1;
     return BWRNG(seed).next();
@@ -204,14 +203,14 @@ u64 SHA1::hashSeed()
 void SHA1::precompute()
 {
     u32 a = 0x67452301;
-    u32 b = 0xEFCDAB89;
-    u32 c = 0x98BADCFE;
+    u32 b = 0xefcdab89;
+    u32 c = 0x98badcfe;
     u32 d = 0x10325476;
-    u32 e = 0xC3D2E1F0;
+    u32 e = 0xc3d2e1f0;
     u32 t;
 
     auto section1Calc = [](const u32 &a, u32 &b, const u32 &c, const u32 &d, const u32 &e, u32 &t, const u32 &input) {
-        t = rotateLeft(a, 5) + ((b & c) | (~b & d)) + e + 0x5A827999 + input;
+        t = rotateLeft(a, 5) + ((b & c) | (~b & d)) + e + 0x5a827999 + input;
         b = rotateRight(b, 2);
     };
     auto calcW = [this](int i) { data[i] = rotateLeft(data[i - 3] ^ data[i - 8] ^ data[i - 14] ^ data[i - 16], 1); };

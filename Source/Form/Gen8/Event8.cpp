@@ -134,9 +134,8 @@ void Event8::importEvent()
         {
             if (file.size() != 732)
             {
-                QMessageBox error;
-                error.setText("Invalid format for wondercard");
-                error.exec();
+                QMessageBox msg(QMessageBox::Warning, tr("Invalid format"), tr("Wondercard is not the correct size"));
+                msg.exec();
                 return;
             }
 
@@ -166,9 +165,8 @@ void Event8::importEvent()
         }
         else
         {
-            QMessageBox error;
-            error.setText("There was a problem opening the wondercard");
-            error.exec();
+            QMessageBox msg(QMessageBox::Warning, tr("File error"), tr("There was a problem opening the wondercard"));
+            msg.exec();
             return;
         }
     }
@@ -195,10 +193,9 @@ void Event8::generate()
 
     StateFilter8 filter(ui->filter->getGender(), ui->filter->getAbility(), ui->filter->getShiny(), ui->filter->getDisableFilters(),
                         ui->filter->getMinIVs(), ui->filter->getMaxIVs(), ui->filter->getNatures(), ui->filter->getHiddenPowers());
+    EventGenerator8 generator(initialAdvances, maxAdvances, offset, tid, sid, currentProfile->getVersion(), getParameters(), filter);
 
-    EventGenerator8 generator(initialAdvances, maxAdvances, offset, tid, sid, currentProfile->getVersion(), filter);
-
-    auto states = generator.generate(seed0, seed1, getParameters());
+    auto states = generator.generate(seed0, seed1);
     model->addItems(states);
 }
 
@@ -213,7 +210,6 @@ void Event8::profileIndexChanged(int index)
         ui->labelProfileGameValue->setText(QString::fromStdString(*Translator::getGame(currentProfile->getVersion())));
     }
 }
-
 
 void Event8::profileManager()
 {
