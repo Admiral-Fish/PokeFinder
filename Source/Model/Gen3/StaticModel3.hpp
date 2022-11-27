@@ -20,13 +20,13 @@
 #ifndef STATIC3MODEL_HPP
 #define STATIC3MODEL_HPP
 
-#include <Core/Gen3/States/State3.hpp>
+#include <Core/Parents/States/State.hpp>
 #include <Model/TableModel.hpp>
 
 /**
  * @brief Provides a table model implementation to show static encounter information for Gen 3
  */
-class StaticGeneratorModel3 : public TableModel<GeneratorState3>
+class StaticGeneratorModel3 : public TableModel<GeneratorState>
 {
     Q_OBJECT
 public:
@@ -84,7 +84,7 @@ private:
 /**
  * @brief Provides a table model implementation to show static encounter information for Gen 3
  */
-class StaticSearcherModel3 : public TableModel<SearcherState3>
+class StaticSearcherModel3 : public TableModel<SearcherState>
 {
     Q_OBJECT
 public:

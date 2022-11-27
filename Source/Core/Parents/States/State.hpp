@@ -23,12 +23,28 @@
 #include <Core/Global.hpp>
 #include <array>
 
+class PersonalInfo;
+
 /**
  * @brief Parent state that contains all the common information for a Pokemon across each game
  */
 class State
 {
 public:
+    /**
+     * @brief Construct a new State object
+     *
+     * @param pid Pokemon PID
+     * @param ivs Pokemon IVs
+     * @param ability Pokemon ability
+     * @param gender Pokemon gender
+     * @param level Pokemon level
+     * @param nature Pokemon nature
+     * @param shiny Pokemon shininess
+     * @param info Pokemon information
+     */
+    State(u32 pid, const std::array<u8, 6> &ivs, u8 ability, u8 gender, u8 level, u8 nature, u8 shiny, const PersonalInfo *info);
+
     /**
      * @brief Returns the ability of the pokemon
      *
@@ -67,6 +83,16 @@ public:
     u8 getHiddenPower() const
     {
         return hiddenPower;
+    }
+
+    /**
+     * @brief Returns the hidden power strength of the pokemon
+     *
+     * @return Pokemon hidden power strength
+     */
+    u8 getHiddenPowerStrength() const
+    {
+        return hiddenPowerStrength;
     }
 
     /**
@@ -161,8 +187,9 @@ protected:
     u8 ability;
     u8 gender;
     u8 hiddenPower;
-    u8 nature;
+    u8 hiddenPowerStrength;
     u8 level;
+    u8 nature;
     u8 shiny;
 };
 
@@ -176,8 +203,18 @@ public:
      * @brief Construct a new GeneratorState object
      *
      * @param advances Advances of the state
+     * @param pid Pokemon PID
+     * @param ivs Pokemon IVs
+     * @param ability Pokemon ability
+     * @param gender Pokemon gender
+     * @param level Pokemon level
+     * @param nature Pokemon nature
+     * @param shiny Pokemon shininess
+     * @param info Pokemon information
      */
-    GeneratorState(u32 advances) : advances(advances)
+    GeneratorState(u32 advances, u32 pid, const std::array<u8, 6> &ivs, u8 ability, u8 gender, u8 level, u8 nature, u8 shiny,
+                   const PersonalInfo *info) :
+        State(pid, ivs, ability, gender, level, nature, shiny, info), advances(advances)
     {
     }
 
@@ -197,18 +234,24 @@ protected:
 
 /**
  * @brief Parent state class that provides additional information from the searcher
- *
- * @tparam Integer Integer type of the seed
  */
-template <typename Integer>
 class SearcherState : public State
 {
 public:
     /**
      * @brief Construct a new SearcherState object
+     *
      * @param seed Seed of the state
+     * @param pid Pokemon PID
+     * @param ivs Pokemon IVs
+     * @param ability Pokemon ability
+     * @param nature Pokemon nature
+     * @param level Pokemon level
+     * @param info Pokemon information
      */
-    SearcherState(Integer seed) : seed(seed)
+    SearcherState(u32 seed, u32 pid, const std::array<u8, 6> &ivs, u8 ability, u8 gender, u8 level, u8 nature, u8 shiny,
+                  const PersonalInfo *info) :
+        State(pid, ivs, ability, gender, level, nature, shiny, info), seed(seed)
     {
     }
 
@@ -217,13 +260,13 @@ public:
      *
      * @return State seed
      */
-    Integer getSeed() const
+    u32 getSeed() const
     {
         return seed;
     }
 
 protected:
-    Integer seed;
+    u32 seed;
 };
 
 #endif // STATE_HPP

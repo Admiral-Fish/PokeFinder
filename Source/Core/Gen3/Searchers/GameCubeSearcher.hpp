@@ -62,7 +62,7 @@ public:
      *
      * @return Vector of computed states
      */
-    std::vector<SearcherState3> getResults();
+    std::vector<SearcherState> getResults();
 
     /**
      * @brief Starts the search for the \p shadowTemplate
@@ -84,7 +84,7 @@ public:
 
 private:
     std::mutex mutex;
-    std::vector<SearcherState3> results;
+    std::vector<SearcherState> results;
     int progress;
     bool searching;
     bool unset;
@@ -110,7 +110,7 @@ private:
      *
      * @return Vector of computed states
      */
-    std::vector<SearcherState3> searchColoShadow(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, const ShadowTemplate *shadowTemplate);
+    std::vector<SearcherState> searchColoShadow(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, const ShadowTemplate *shadowTemplate);
 
     /**
      * @brief Searches for matching states from provided IVs
@@ -125,7 +125,7 @@ private:
      *
      * @return Vector of computed states
      */
-    std::vector<SearcherState3> searchGalesShadow(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, const ShadowTemplate *shadowTemplate);
+    std::vector<SearcherState> searchGalesShadow(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, const ShadowTemplate *shadowTemplate);
 
     /**
      * @brief Searches for matching states from provided IVs
@@ -140,7 +140,7 @@ private:
      *
      * @return Vector of computed states
      */
-    std::vector<SearcherState3> searchNonLock(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, const StaticTemplate *staticTemplate);
+    std::vector<SearcherState> searchNonLock(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, const StaticTemplate *staticTemplate);
 };
 
 #endif // GAMECUBESEARCHER_HPP

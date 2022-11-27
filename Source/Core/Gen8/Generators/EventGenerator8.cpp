@@ -19,8 +19,8 @@
 
 #include "EventGenerator8.hpp"
 #include <Core/Enum/Method.hpp>
-#include <Core/Gen8/States/State8.hpp>
 #include <Core/Parents/PersonalLoader.hpp>
+#include <Core/Parents/States/State.hpp>
 #include <Core/RNG/RNGList.hpp>
 #include <Core/RNG/Xorshift.hpp>
 
@@ -39,12 +39,12 @@ EventGenerator8::EventGenerator8(u32 initialAdvances, u32 maxAdvances, u32 offse
     }
 }
 
-std::vector<State8> EventGenerator8::generate(u64 seed0, u64 seed1) const
+std::vector<GeneratorState> EventGenerator8::generate(u64 seed0, u64 seed1) const
 {
     const PersonalInfo *info = wb8.getInfo(version);
     RNGList<u32, Xorshift, 32, gen> rngList(seed0, seed1, initialAdvances + offset);
 
-    std::vector<State8> states;
+    std::vector<GeneratorState> states;
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rngList.advanceState())
     {
         // Check for rand EC
@@ -147,7 +147,7 @@ std::vector<State8> EventGenerator8::generate(u64 seed0, u64 seed1) const
 
         u8 nature = wb8.getNature() != 255 ? wb8.getNature() : rngList.next() % 25;
 
-        State8 state(initialAdvances + cnt, pid, shiny, ivs, ability, gender, nature, wb8.getLevel(), info);
+        GeneratorState state(initialAdvances + cnt, pid, ivs, ability, gender, wb8.getLevel(), nature, shiny, info);
         if (filter.compareState(state))
         {
             states.emplace_back(state);

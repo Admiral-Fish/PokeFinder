@@ -20,11 +20,11 @@
 #include "EggGenerator8Test.hpp"
 #include <Core/Enum/Game.hpp>
 #include <Core/Gen8/Generators/EggGenerator8.hpp>
-#include <Core/Gen8/States/EggState8.hpp>
+#include <Core/Parents/States/EggState.hpp>
 #include <QTest>
 #include <Test/Data.hpp>
 
-static bool operator==(const EggState8 &left, const json &right)
+static bool operator==(const EggGeneratorState &left, const json &right)
 {
     // Intentionally ignoring hidden power
     return left.getPID() == right["pid"].get<u32>() && left.getStats() == right["stats"].get<std::array<u16, 6>>()

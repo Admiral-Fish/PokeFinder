@@ -26,6 +26,25 @@ class EggState : public State
 {
 public:
     /**
+     * @brief Construct a new EggState object
+     *
+     * @param pid Pokemon PID
+     * @param ivs Pokemon IVs
+     * @param ability Pokemon ability
+     * @param gender Pokemon gender
+     * @param nature Pokemon nature
+     * @param level Pokemon level
+     * @param shiny Pokemon shininess
+     * @param inheritance Pokemon IV inheritance
+     * @param info Pokemon information
+     */
+    EggState(u32 pid, const std::array<u8, 6> &ivs, u8 ability, u8 gender, u8 level, u8 nature, u8 shiny,
+             const std::array<u8, 6> &inheritance, const PersonalInfo *info) :
+        State(pid, ivs, ability, gender, level, nature, shiny, info), inheritance(inheritance)
+    {
+    }
+
+    /**
      * @brief Returns the inheritance of the pokemon
      *
      * @return Pokemon inheritance
@@ -61,8 +80,19 @@ public:
      * @brief Construct a new EggGeneratorState object
      *
      * @param advances Advances of the state
+     * @param pid Pokemon PID
+     * @param ivs Pokemon IVs
+     * @param ability Pokemon ability
+     * @param gender Pokemon gender
+     * @param nature Pokemon nature
+     * @param level Pokemon level
+     * @param shiny Pokemon shininess
+     * @param inheritance Pokemon IV inheritance
+     * @param info Pokemon information
      */
-    EggGeneratorState(u32 advances) : advances(advances)
+    EggGeneratorState(u32 advances, u32 pid, const std::array<u8, 6> &ivs, u8 ability, u8 gender, u8 level, u8 nature, u8 shiny,
+                      const std::array<u8, 6> &inheritance, const PersonalInfo *info) :
+        EggState(pid, ivs, ability, gender, level, nature, shiny, inheritance, info), advances(advances)
     {
     }
 
@@ -82,18 +112,27 @@ protected:
 
 /**
  * @brief Parent state class that provides additional information from the searcher
- *
- * @tparam Integer Integer type of the seed
  */
-template <typename Integer>
 class EggSearcherState : public EggState
 {
 public:
     /**
      * @brief Construct a new EggSearcherState object
+     *
      * @param seed Seed of the state
+     * @param pid Pokemon PID
+     * @param ivs Pokemon IVs
+     * @param ability Pokemon ability
+     * @param gender Pokemon gender
+     * @param nature Pokemon nature
+     * @param level Pokemon level
+     * @param shiny Pokemon shininess
+     * @param inheritance Pokemon IV inheritance
+     * @param info Pokemon information
      */
-    EggSearcherState(Integer seed) : seed(seed)
+    EggSearcherState(u32 seed, u32 pid, const std::array<u8, 6> &ivs, u8 ability, u8 gender, u8 level, u8 nature, u8 shiny,
+                     const std::array<u8, 6> &inheritance, const PersonalInfo *info) :
+        EggState(pid, ivs, ability, gender, level, nature, shiny, inheritance, info), seed(seed)
     {
     }
 
@@ -102,13 +141,13 @@ public:
      *
      * @return State seed
      */
-    Integer getSeed() const
+    u32 getSeed() const
     {
         return seed;
     }
 
 protected:
-    Integer seed;
+    u32 seed;
 };
 
 #endif // EGGSTATE_HPP

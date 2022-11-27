@@ -34,15 +34,21 @@ public:
      * @brief Construct a new GeneratorState4 object
      *
      * @param prng PRNG call to determine Elm/Irwin call and Chatot pitch
-     * @param advances State advances
-     * @param pid PID value
-     * @param iv1 First IV call
-     * @param iv2 Second IV call
-     * @param tsv Trainer shiny value
+     * @param advances Advances of the state
+     * @param pid Pokemon PID
+     * @param ivs Pokemon IVs
+     * @param ability Pokemon ability
+     * @param gender Pokemon gender
      * @param level Pokemon level
-     * @param info Pokemon personal information
+     * @param nature Pokemon nature
+     * @param shiny Pokemon shininess
+     * @param info Pokemon information
      */
-    GeneratorState4(u16 prng, u32 advances, u32 pid, u16 iv1, u16 iv2, u16 tsv, u8 level, const PersonalInfo *info);
+    GeneratorState4(u16 prng, u32 advances, u32 pid, const std::array<u8, 6> &ivs, u8 ability, u8 gender, u8 level, u8 nature, u8 shiny,
+                    const PersonalInfo *info) :
+        GeneratorState(advances, pid, ivs, ability, gender, level, nature, shiny, info), call(prng % 3), chatot(((prng % 8192) * 100) >> 13)
+    {
+    }
 
     /**
      * @brief Returns the Elm/Irwin call
@@ -64,40 +70,35 @@ public:
         return chatot;
     }
 
-    /**
-     * @brief Returns the hidden power strength
-     *
-     * @return Hidden power strength
-     */
-    u8 getHiddenPowerStrength() const
-    {
-        return hiddenPowerStrength;
-    }
-
 private:
     u8 call;
     u8 chatot;
-    u8 hiddenPowerStrength;
 };
 
 /**
  * @brief State class for Gen4 static searcher encounters
  */
-class SearcherState4 : public SearcherState<u32>
+class SearcherState4 : public SearcherState
 {
 public:
     /**
      * @brief Construct a new SearcherState4 object
      *
      * @param seed State seed
-     * @param pid PID value
-     * @param nature Pokemon nature
+     * @param pid Pokemon PID
      * @param ivs Pokemon IVs
-     * @param tsv Trainer shiny value
+     * @param ability Pokemon ability
+     * @param gender Pokemon gender
      * @param level Pokemon level
-     * @param info Pokemon info
+     * @param nature Pokemon nature
+     * @param shiny Pokemon shininess
+     * @param info Pokemon information
      */
-    SearcherState4(u32 seed, u32 pid, u8 nature, std::array<u8, 6> ivs, u16 tsv, u8 level, const PersonalInfo *info);
+    SearcherState4(u32 seed, u32 pid, const std::array<u8, 6> &ivs, u8 ability, u8 gender, u8 level, u8 nature, u8 shiny,
+                   const PersonalInfo *info) :
+        SearcherState(seed, pid, ivs, ability, gender, level, nature, shiny, info)
+    {
+    }
 
     /**
      * @brief Returns the advances of the state
@@ -107,16 +108,6 @@ public:
     u32 getAdvances() const
     {
         return advances;
-    }
-
-    /**
-     * @brief Returns the hidden power strength
-     *
-     * @return Hidden power strength
-     */
-    u8 getHiddenPowerStrength() const
-    {
-        return hiddenPowerStrength;
     }
 
     /**
@@ -141,7 +132,6 @@ public:
 
 private:
     u32 advances;
-    u8 hiddenPowerStrength;
 };
 
 #endif // STATE4_HPP

@@ -67,9 +67,6 @@ add_library(PokeFinderCore STATIC
     Gen3/ShadowTemplate.hpp
     Gen3/Profile3.cpp
     Gen3/Profile3.hpp
-    Gen3/States/State3.cpp
-    Gen3/States/State3.hpp
-    Gen3/States/WildState3.cpp
     Gen3/States/WildState3.hpp
     Gen4/EncounterArea4.cpp
     Gen4/EncounterArea4.hpp
@@ -96,9 +93,7 @@ add_library(PokeFinderCore STATIC
     Gen4/Searchers/WildSearcher4.cpp
     Gen4/Searchers/WildSearcher4.hpp
     Gen4/States/IDState4.hpp
-    Gen4/States/State4.cpp
     Gen4/States/State4.hpp
-    Gen4/States/WildState4.cpp
     Gen4/States/WildState4.hpp
     Gen4/StaticTemplate4.hpp
     Gen5/Keypresses.cpp
@@ -121,7 +116,6 @@ add_library(PokeFinderCore STATIC
     Gen5/Searchers/Searcher5.hpp
     Gen5/States/ProfileSearcherState5.hpp
     Gen5/States/SearcherState5.hpp
-    Gen5/States/State5.cpp
     Gen5/States/State5.hpp
     Gen8/Den.hpp
     Gen8/DenLoader.cpp
@@ -148,15 +142,8 @@ add_library(PokeFinderCore STATIC
     Gen8/Profile8.cpp
     Gen8/Profile8.hpp
     Gen8/Raid.hpp
-    Gen8/States/EggState8.cpp
-    Gen8/States/EggState8.hpp
     Gen8/States/IDState8.hpp
-    Gen8/States/State8.cpp
-    Gen8/States/State8.hpp
-    Gen8/States/UndergroundState.cpp
     Gen8/States/UndergroundState.hpp
-    Gen8/States/WildState8.cpp
-    Gen8/States/WildState8.hpp
     Gen8/StaticTemplate8.hpp
     Gen8/UndergroundArea.cpp
     Gen8/UndergroundArea.hpp
@@ -187,6 +174,7 @@ add_library(PokeFinderCore STATIC
     Parents/States/EggState.hpp
     Parents/States/IDState.hpp
     Parents/States/ResearcherState.hpp
+    Parents/States/State.cpp
     Parents/States/State.hpp
     Parents/States/WildState.hpp
     Parents/StaticTemplate.hpp

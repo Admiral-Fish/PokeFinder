@@ -20,13 +20,13 @@
 #ifndef STATICMODEL8_HPP
 #define STATICMODEL8_HPP
 
-#include <Core/Gen8/States/State8.hpp>
+#include <Core/Parents/States/State.hpp>
 #include <Model/TableModel.hpp>
 
 /**
  * @brief Provides a table model implementation to show static encounter information for Gen 8
  */
-class StaticModel8 : public TableModel<State8>
+class StaticModel8 : public TableModel<GeneratorState>
 {
     Q_OBJECT
 public:

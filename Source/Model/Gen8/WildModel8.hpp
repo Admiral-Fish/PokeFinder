@@ -20,13 +20,13 @@
 #ifndef WILDMODEL8_HPP
 #define WILDMODEL8_HPP
 
-#include <Core/Gen8/States/WildState8.hpp>
+#include <Core/Parents/States/WildState.hpp>
 #include <Model/TableModel.hpp>
 
 /**
  * @brief Provides a table model implementation to show wild encounter information for Gen 8
  */
-class WildModel8 : public TableModel<WildState8>
+class WildModel8 : public TableModel<WildGeneratorState>
 {
     Q_OBJECT
 public:

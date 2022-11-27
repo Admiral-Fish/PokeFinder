@@ -22,9 +22,9 @@
 
 #include <Core/Parents/Filters/StateFilter.hpp>
 
-class GeneratorState3;
-class SearcherState3;
-class WildGeneratorState3;
+class GeneratorState;
+class SearcherState;
+class WildGeneratorState;
 class WildSearcherState3;
 
 /**
@@ -56,7 +56,7 @@ public:
      * @return true State passes the filter
      * @return false State does not pass the filter
      */
-    bool compareState(const GeneratorState3 &state) const;
+    bool compareState(const GeneratorState &state) const;
 
     /**
      * @brief Determines if the \p state meets the filter criteria
@@ -66,7 +66,7 @@ public:
      * @return true State passes the filter
      * @return false State does not pass the filter
      */
-    bool compareState(const SearcherState3 &state) const;
+    bool compareState(const SearcherState &state) const;
 };
 
 /**
@@ -98,7 +98,7 @@ public:
      * @return true State passes the filter
      * @return false State does not pass the filter
      */
-    bool compareState(const WildGeneratorState3 &state) const;
+    bool compareState(const WildGeneratorState &state) const;
 
     /**
      * @brief Determines if the \p state meets the filter criteria

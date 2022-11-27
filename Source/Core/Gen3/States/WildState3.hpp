@@ -22,74 +22,31 @@
 
 #include <Core/Parents/States/WildState.hpp>
 
-class PersonalInfo;
-
-/**
- * @brief State class for Gen3 wild generator encounters
- */
-class WildGeneratorState3 : public WildGeneratorState
-{
-public:
-    /**
-     * @brief Construct a new WildGeneratorState3 object
-     *
-     * @param advances State advances
-     * @param pid PID value
-     * @param nature Pokemon nature
-     * @param iv1 First IV call
-     * @param iv2 Second IV call
-     * @param tsv Trainer shiny value
-     * @param level Pokemon level
-     * @param specie Pokemon specie
-     * @param info Pokemon personal information
-     */
-    WildGeneratorState3(u32 advances, u32 pid, u8 nature, u16 iv1, u16 iv2, u16 tsv, u8 level, u8 encounterSlot, u16 specie,
-                        const PersonalInfo *info);
-
-    /**
-     * @brief Returns the hidden power strength
-     *
-     * @return Hidden power strength
-     */
-    u8 getHiddenPowerStrength() const
-    {
-        return hiddenPowerStrength;
-    }
-
-private:
-    u8 hiddenPowerStrength;
-};
-
 /**
  * @brief State class for Gen3 wild searcher encounters
  */
-class WildSearcherState3 : public WildSearcherState<u32>
+class WildSearcherState3 : public WildSearcherState
 {
 public:
     /**
      * @brief Construct a new WildSearcherState3 object
      *
-     * @param seed State seed
-     * @param pid PID value
-     * @param nature Pokemon nature
+     * @param seed Seed of the state
+     * @param pid Pokemon PID
      * @param ivs Pokemon IVs
-     * @param tsv Trainer shiny value
+     * @param ability Pokemon ability
+     * @param gender Pokemon gender
      * @param level Pokemon level
+     * @param nature Pokemon nature
+     * @param shiny Pokemon shininess
      * @param encounterSlot Pokemon encounter slot
      * @param specie Pokemon specie
-     * @param info Pokemon personal information
+     * @param info Pokemon information
      */
-    WildSearcherState3(u32 seed, u32 pid, u8 nature, std::array<u8, 6> ivs, u16 tsv, u8 level, u8 encounterSlot, u16 specie,
-                       const PersonalInfo *info);
-
-    /**
-     * @brief Returns the hidden power strength
-     *
-     * @return Hidden power strength
-     */
-    u8 getHiddenPowerStrength() const
+    WildSearcherState3(u32 seed, u32 pid, const std::array<u8, 6> &ivs, u8 ability, u8 gender, u8 level, u8 nature, u8 shiny,
+                       u8 encounterSlot, u16 specie, const PersonalInfo *info) :
+        WildSearcherState(seed, pid, ivs, ability, gender, level, nature, shiny, encounterSlot, 0, specie, info)
     {
-        return hiddenPowerStrength;
     }
 
     /**
@@ -101,9 +58,6 @@ public:
     {
         this->seed = seed;
     }
-
-private:
-    u8 hiddenPowerStrength;
 };
 
 #endif // WILDSTATE3_HPP

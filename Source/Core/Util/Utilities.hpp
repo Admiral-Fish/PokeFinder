@@ -25,7 +25,6 @@
 #include <string>
 
 class DateTime;
-class PersonalInfo;
 
 namespace Utilities
 {
@@ -115,11 +114,11 @@ namespace Utilities5
      * @param pid PID value to modify
      * @param rng PRNG state
      * @param gender Gender to force
-     * @param info Pokemon information
+     * @param genderRatio Pokemon gender ratio
      *
      * @return Modified PID
      */
-    u32 forceGender(u32 pid, BWRNG &rng, u8 gender, const PersonalInfo *info);
+    u32 forceGender(u32 pid, BWRNG &rng, u8 gender, u8 genderRatio);
 
     /**
      * @brief Returns the chatot pitch

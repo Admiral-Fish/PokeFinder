@@ -24,10 +24,46 @@
 #include <Core/Gen3/LockInfo.hpp>
 #include <Core/Gen3/ShadowLock.hpp>
 #include <Core/Gen3/ShadowTemplate.hpp>
-#include <Core/Gen3/States/State3.hpp>
 #include <Core/Parents/PersonalInfo.hpp>
+#include <Core/Parents/States/State.hpp>
 #include <Core/RNG/LCRNG.hpp>
 #include <Core/RNG/LCRNGReverse.hpp>
+
+static u8 getGender(u32 pid, const PersonalInfo *info)
+{
+    switch (info->getGender())
+    {
+    case 255: // Genderless
+        return 2;
+        break;
+    case 254: // Female
+        return 1;
+        break;
+    case 0: // Male
+        return 0;
+        break;
+    default: // Random gender
+        return (pid & 255) < info->getGender();
+        break;
+    }
+}
+
+static u8 getShiny(u32 pid, u16 tsv)
+{
+    u16 psv = (pid >> 16) ^ (pid & 0xffff);
+    if (tsv == psv)
+    {
+        return 2; // Square
+    }
+    else if ((tsv ^ psv) < 8)
+    {
+        return 1; // Star
+    }
+    else
+    {
+        return 0;
+    }
+}
 
 static bool isShiny(u16 high, u16 low, u16 tsv)
 {
@@ -128,7 +164,7 @@ int GameCubeSearcher::getProgress() const
     return progress;
 }
 
-std::vector<SearcherState3> GameCubeSearcher::getResults()
+std::vector<SearcherState> GameCubeSearcher::getResults()
 {
     std::lock_guard<std::mutex> guard(mutex);
     auto data = std::move(results);
@@ -156,7 +192,7 @@ void GameCubeSearcher::startSearch(const std::array<u8, 6> &min, const std::arra
                                 return;
                             }
 
-                            std::vector<SearcherState3> states;
+                            std::vector<SearcherState> states;
                             if ((version & Game::Colosseum) != Game::None)
                             {
                                 states = searchColoShadow(hp, atk, def, spa, spd, spe, shadowTemplate);
@@ -284,7 +320,7 @@ void GameCubeSearcher::searchChannel(u8 minSpd, u8 maxSpd, const StaticTemplate 
                 continue;
             }
 
-            SearcherState3 state(rng.getSeed(), pid, nature, ivs, tid ^ sid, staticTemplate->getLevel(), info);
+            SearcherState state(rng.getSeed(), pid, ivs, pid & 1, 2, staticTemplate->getLevel(), nature, getShiny(pid, tid ^ sid), info);
             if (filter.compareState(state))
             {
                 std::lock_guard<std::mutex> guard(mutex);
@@ -294,10 +330,10 @@ void GameCubeSearcher::searchChannel(u8 minSpd, u8 maxSpd, const StaticTemplate 
     }
 }
 
-std::vector<SearcherState3> GameCubeSearcher::searchColoShadow(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe,
-                                                               const ShadowTemplate *shadowTemplate)
+std::vector<SearcherState> GameCubeSearcher::searchColoShadow(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe,
+                                                              const ShadowTemplate *shadowTemplate)
 {
-    std::vector<SearcherState3> states;
+    std::vector<SearcherState> states;
     const PersonalInfo *info = shadowTemplate->getInfo();
     std::array<u8, 6> ivs = { hp, atk, def, spa, spd, spe };
 
@@ -308,7 +344,7 @@ std::vector<SearcherState3> GameCubeSearcher::searchColoShadow(u8 hp, u8 atk, u8
         XDRNG rng(seeds[i]);
 
         rng.advance(1);
-        u8 ability = rng.nextUShort(2);
+        u8 ability = rng.nextUShort(2) & (info->getAbility(0) != info->getAbility(1));
         u32 pid = rng.nextUShort() << 16;
         pid |= rng.nextUShort();
 
@@ -340,7 +376,8 @@ std::vector<SearcherState3> GameCubeSearcher::searchColoShadow(u8 hp, u8 atk, u8
                 i++;
             }
 
-            SearcherState3 state(seed, pid, ability, nature, ivs, tsv, shadowTemplate->getLevel(), info);
+            SearcherState state(seed, pid, ivs, ability, getGender(pid, info), shadowTemplate->getLevel(), nature, getShiny(pid, tsv),
+                                info);
             if (filter.compareState(state))
             {
                 states.emplace_back(state);
@@ -350,10 +387,10 @@ std::vector<SearcherState3> GameCubeSearcher::searchColoShadow(u8 hp, u8 atk, u8
     return states;
 }
 
-std::vector<SearcherState3> GameCubeSearcher::searchGalesShadow(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe,
-                                                                const ShadowTemplate *shadowTemplate)
+std::vector<SearcherState> GameCubeSearcher::searchGalesShadow(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe,
+                                                               const ShadowTemplate *shadowTemplate)
 {
-    std::vector<SearcherState3> states;
+    std::vector<SearcherState> states;
     const PersonalInfo *info = shadowTemplate->getInfo();
     std::array<u8, 6> ivs = { hp, atk, def, spa, spd, spe };
 
@@ -364,7 +401,7 @@ std::vector<SearcherState3> GameCubeSearcher::searchGalesShadow(u8 hp, u8 atk, u
         XDRNG rng(seeds[i]);
 
         rng.advance(1);
-        u8 ability = rng.nextUShort(2);
+        u8 ability = rng.nextUShort(2) & (info->getAbility(0) != info->getAbility(1));
         u16 high = rng.nextUShort();
         u16 low = rng.nextUShort();
         while (isShiny(high, low, tsv))
@@ -422,7 +459,7 @@ std::vector<SearcherState3> GameCubeSearcher::searchGalesShadow(u8 hp, u8 atk, u
                 i++;
             }
 
-            SearcherState3 state(seed, pid, ability, nature, ivs, tsv, shadowTemplate->getLevel(), info);
+            SearcherState state(seed, pid, ivs, ability, getGender(pid, info), shadowTemplate->getLevel(), nature, 0, info);
             if (filter.compareState(state))
             {
                 states.emplace_back(state);
@@ -432,10 +469,10 @@ std::vector<SearcherState3> GameCubeSearcher::searchGalesShadow(u8 hp, u8 atk, u
     return states;
 }
 
-std::vector<SearcherState3> GameCubeSearcher::searchNonLock(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe,
-                                                            const StaticTemplate *staticTemplate)
+std::vector<SearcherState> GameCubeSearcher::searchNonLock(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe,
+                                                           const StaticTemplate *staticTemplate)
 {
-    std::vector<SearcherState3> states;
+    std::vector<SearcherState> states;
     const PersonalInfo *info = staticTemplate->getInfo();
     std::array<u8, 6> ivs = { hp, atk, def, spa, spd, spe };
 
@@ -556,7 +593,9 @@ std::vector<SearcherState3> GameCubeSearcher::searchNonLock(u8 hp, u8 atk, u8 de
             continue;
         }
 
-        SearcherState3 state(seed, pid, ability, nature, ivs, tsv, staticTemplate->getLevel(), info);
+        ability &= info->getAbility(0) != info->getAbility(1);
+
+        SearcherState state(seed, pid, ivs, ability, getGender(pid, info), staticTemplate->getLevel(), nature, getShiny(pid, tsv), info);
         if (filter.compareState(state))
         {
             states.emplace_back(state);

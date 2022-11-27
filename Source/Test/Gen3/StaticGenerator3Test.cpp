@@ -21,13 +21,13 @@
 #include <Core/Enum/Lead.hpp>
 #include <Core/Gen3/Encounters3.hpp>
 #include <Core/Gen3/Generators/StaticGenerator3.hpp>
-#include <Core/Gen3/States/State3.hpp>
+#include <Core/Parents/States/State.hpp>
 #include <Core/Parents/StaticTemplate.hpp>
 #include <QTest>
 #include <Test/Data.hpp>
 #include <Test/Enum.hpp>
 
-static bool operator==(const GeneratorState3 &left, const json &right)
+static bool operator==(const GeneratorState &left, const json &right)
 {
     return left.getPID() == right["pid"].get<u32>() && left.getStats() == right["stats"].get<std::array<u16, 6>>()
         && left.getAbilityIndex() == right["abilityIndex"].get<u16>() && left.getIVs() == right["ivs"].get<std::array<u8, 6>>()

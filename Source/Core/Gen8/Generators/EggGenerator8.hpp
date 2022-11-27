@@ -56,7 +56,7 @@ public:
      *
      * @return Vector of computed states
      */
-    std::vector<EggState8> generate(u64 seed0, u64 seed1) const;
+    std::vector<EggGeneratorState> generate(u64 seed0, u64 seed1) const;
 
 private:
     bool shinyCharm;

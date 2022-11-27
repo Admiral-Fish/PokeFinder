@@ -47,6 +47,42 @@ static bool cuteCharmGender(const PersonalInfo *info, u32 pid, Lead lead)
     }
 }
 
+static u8 getGender(u32 pid, const PersonalInfo *info)
+{
+    switch (info->getGender())
+    {
+    case 255: // Genderless
+        return 2;
+        break;
+    case 254: // Female
+        return 1;
+        break;
+    case 0: // Male
+        return 0;
+        break;
+    default: // Random gender
+        return (pid & 255) < info->getGender();
+        break;
+    }
+}
+
+static u8 getShiny(u32 pid, u16 tsv)
+{
+    u16 psv = (pid >> 16) ^ (pid & 0xffff);
+    if (tsv == psv)
+    {
+        return 2; // Square
+    }
+    else if ((tsv ^ psv) < 8)
+    {
+        return 1; // Star
+    }
+    else
+    {
+        return 0;
+    }
+}
+
 WildSearcher3::WildSearcher3(u16 tid, u16 sid, Game version, Method method, Encounter encounter, Lead lead,
                              const EncounterArea3 &encounterArea, const WildStateFilter3 &filter) :
     WildSearcher<WildStateFilter3>(tid, sid, version, method, encounter, lead, filter),
@@ -114,7 +150,6 @@ void WildSearcher3::startSearch(const std::array<u8, 6> &min, const std::array<u
 std::vector<WildSearcherState3> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, bool safari) const
 {
     std::vector<WildSearcherState3> states;
-
     std::array<u8, 6> ivs = { hp, atk, def, spa, spd, spe };
 
     u32 seeds[6];
@@ -233,7 +268,8 @@ std::vector<WildSearcherState3> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 
                 const PersonalInfo *info = slot.getInfo();
                 if (!cuteCharmFlag || cuteCharmGender(info, pid, lead))
                 {
-                    WildSearcherState3 state(test.next(), pid, nature, ivs, tsv, level, encounterSlot, slot.getSpecie(), info);
+                    WildSearcherState3 state(test.next(), pid, ivs, pid & 1, getGender(pid, info), level, nature, getShiny(pid, tsv),
+                                             encounterSlot, slot.getSpecie(), info);
                     if (filter.compareState(state))
                     {
                         states.emplace_back(state);

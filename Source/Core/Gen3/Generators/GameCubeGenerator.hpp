@@ -56,7 +56,7 @@ public:
      *
      * @return Vector of computed states
      */
-    std::vector<GeneratorState3> generate(u32 seed, const ShadowTemplate *shadowTemplate) const;
+    std::vector<GeneratorState> generate(u32 seed, const ShadowTemplate *shadowTemplate) const;
 
     /**
      * @brief Generates states for the \p staticTemplate
@@ -66,7 +66,7 @@ public:
      *
      * @return Vector of computed states
      */
-    std::vector<GeneratorState3> generate(u32 seed, const StaticTemplate *staticTemplate) const;
+    std::vector<GeneratorState> generate(u32 seed, const StaticTemplate *staticTemplate) const;
 
 private:
     bool unset;
@@ -79,7 +79,7 @@ private:
      *
      * @return Vector of computed states
      */
-    std::vector<GeneratorState3> generateChannel(u32 seed, const StaticTemplate *staticTemplate) const;
+    std::vector<GeneratorState> generateChannel(u32 seed, const StaticTemplate *staticTemplate) const;
 
     /**
      * @brief Generates states for Colo shadows
@@ -89,7 +89,7 @@ private:
      *
      * @return Vector of computed states
      */
-    std::vector<GeneratorState3> generateColoShadow(u32 seed, const ShadowTemplate *shadowTemplate) const;
+    std::vector<GeneratorState> generateColoShadow(u32 seed, const ShadowTemplate *shadowTemplate) const;
 
     /**
      * @brief Generates states for Gales shadows
@@ -99,7 +99,7 @@ private:
      *
      * @return Vector of computed states
      */
-    std::vector<GeneratorState3> generateGalesShadow(u32 seed, const ShadowTemplate *shadowTemplate) const;
+    std::vector<GeneratorState> generateGalesShadow(u32 seed, const ShadowTemplate *shadowTemplate) const;
 
     /**
      * @brief Generates states for Gales/Colo non-locks
@@ -109,7 +109,7 @@ private:
      *
      * @return Vector of computed states
      */
-    std::vector<GeneratorState3> generateNonLock(u32 seed, const StaticTemplate *staticTemplate) const;
+    std::vector<GeneratorState> generateNonLock(u32 seed, const StaticTemplate *staticTemplate) const;
 };
 
 #endif // GAMECUBEGENERATOR_HPP

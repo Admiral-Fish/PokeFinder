@@ -23,10 +23,10 @@
 #include <Core/Parents/Filters/StateFilter.hpp>
 #include <vector>
 
-class EggState8;
-class State8;
+class EggGeneratorState;
+class GeneratorState;
 class UndergroundState;
-class WildState8;
+class WildGeneratorState;
 
 /**
  * @brief Checks if static encounters match the filter criteria
@@ -57,7 +57,7 @@ public:
      * @return true State passes the filter
      * @return false State does not pass the filter
      */
-    bool compareState(const EggState8 &state) const;
+    bool compareState(const EggGeneratorState &state) const;
 
     /**
      * @brief Determines if the \p state meets the filter criteria
@@ -67,7 +67,7 @@ public:
      * @return true State passes the filter
      * @return false State does not pass the filter
      */
-    bool compareState(const State8 &state) const;
+    bool compareState(const GeneratorState &state) const;
 };
 
 /**
@@ -99,7 +99,7 @@ public:
      * @return true State passes the filter
      * @return false State does not pass the filter
      */
-    bool compareState(const WildState8 &state) const;
+    bool compareState(const WildGeneratorState &state) const;
 };
 
 /**

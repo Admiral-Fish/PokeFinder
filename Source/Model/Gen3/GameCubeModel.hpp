@@ -20,13 +20,13 @@
 #ifndef GAMECUBEMODEL_HPP
 #define GAMECUBEMODEL_HPP
 
-#include <Core/Gen3/States/State3.hpp>
+#include <Core/Parents/States/State.hpp>
 #include <Model/TableModel.hpp>
 
 /**
  * @brief Provides a table model implementation to show static encounter information for Gen 3 GameCube
  */
-class GameCubeGeneratorModel : public TableModel<GeneratorState3>
+class GameCubeGeneratorModel : public TableModel<GeneratorState>
 {
     Q_OBJECT
 public:
@@ -81,7 +81,7 @@ private:
     bool showStats;
 };
 
-class GameCubeSearcherModel : public TableModel<SearcherState3>
+class GameCubeSearcherModel : public TableModel<SearcherState>
 {
     Q_OBJECT
 public:

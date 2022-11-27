@@ -23,12 +23,47 @@
 #include <Core/Enum/Lead.hpp>
 #include <Core/Enum/Method.hpp>
 #include <Core/Gen3/EncounterArea3.hpp>
-#include <Core/Gen3/States/WildState3.hpp>
 #include <Core/Parents/PersonalInfo.hpp>
 #include <Core/Parents/Slot.hpp>
 #include <Core/Parents/States/WildState.hpp>
 #include <Core/RNG/LCRNG.hpp>
 #include <Core/Util/EncounterSlot.hpp>
+
+static u8 getGender(u32 pid, const PersonalInfo *info)
+{
+    switch (info->getGender())
+    {
+    case 255: // Genderless
+        return 2;
+        break;
+    case 254: // Female
+        return 1;
+        break;
+    case 0: // Male
+        return 0;
+        break;
+    default: // Random gender
+        return (pid & 255) < info->getGender();
+        break;
+    }
+}
+
+static u8 getShiny(u32 pid, u16 tsv)
+{
+    u16 psv = (pid >> 16) ^ (pid & 0xffff);
+    if (tsv == psv)
+    {
+        return 2; // Square
+    }
+    else if ((tsv ^ psv) < 8)
+    {
+        return 1; // Star
+    }
+    else
+    {
+        return 0;
+    }
+}
 
 WildGenerator3::WildGenerator3(u32 initialAdvances, u32 maxAdvances, u32 offset, u16 tid, u16 sid, Game version, Method method,
                                Encounter encounter, Lead lead, const WildStateFilter3 &filter) :
@@ -36,9 +71,9 @@ WildGenerator3::WildGenerator3(u32 initialAdvances, u32 maxAdvances, u32 offset,
 {
 }
 
-std::vector<WildGeneratorState3> WildGenerator3::generate(u32 seed, const EncounterArea3 &encounterArea) const
+std::vector<WildGeneratorState> WildGenerator3::generate(u32 seed, const EncounterArea3 &encounterArea) const
 {
-    std::vector<WildGeneratorState3> states;
+    std::vector<WildGeneratorState> states;
 
     std::vector<u8> modifiedSlots = encounterArea.getSlots(version, lead);
     u16 rate = encounterArea.getRate() * 16;
@@ -140,7 +175,16 @@ std::vector<WildGeneratorState3> WildGenerator3::generate(u32 seed, const Encoun
         }
         u16 iv2 = go.nextUShort();
 
-        WildGeneratorState3 state(initialAdvances + cnt, pid, nature, iv1, iv2, tsv, level, encounterSlot, slot.getSpecie(), info);
+        std::array<u8, 6> ivs;
+        ivs[0] = iv1 & 31;
+        ivs[1] = (iv1 >> 5) & 31;
+        ivs[2] = (iv1 >> 10) & 31;
+        ivs[3] = (iv2 >> 5) & 31;
+        ivs[4] = (iv2 >> 10) & 31;
+        ivs[5] = iv2 & 31;
+
+        WildGeneratorState state(initialAdvances + cnt, pid, ivs, pid & 1, getGender(pid, info), level, nature, getShiny(pid, tsv),
+                                 encounterSlot, 0, slot.getSpecie(), info);
         if (filter.compareState(state))
         {
             states.emplace_back(state);

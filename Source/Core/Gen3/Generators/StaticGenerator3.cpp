@@ -19,9 +19,46 @@
 
 #include "StaticGenerator3.hpp"
 #include <Core/Enum/Method.hpp>
-#include <Core/Gen3/States/State3.hpp>
+#include <Core/Parents/PersonalInfo.hpp>
+#include <Core/Parents/States/State.hpp>
 #include <Core/Parents/StaticTemplate.hpp>
 #include <Core/RNG/LCRNG.hpp>
+
+static u8 getGender(u32 pid, const PersonalInfo *info)
+{
+    switch (info->getGender())
+    {
+    case 255: // Genderless
+        return 2;
+        break;
+    case 254: // Female
+        return 1;
+        break;
+    case 0: // Male
+        return 0;
+        break;
+    default: // Random gender
+        return (pid & 255) < info->getGender();
+        break;
+    }
+}
+
+static u8 getShiny(u32 pid, u16 tsv)
+{
+    u16 psv = (pid >> 16) ^ (pid & 0xffff);
+    if (tsv == psv)
+    {
+        return 2; // Square
+    }
+    else if ((tsv ^ psv) < 8)
+    {
+        return 1; // Star
+    }
+    else
+    {
+        return 0;
+    }
+}
 
 StaticGenerator3::StaticGenerator3(u32 initialAdvances, u32 maxAdvances, u32 offset, u16 tid, u16 sid, Game version, Method method,
                                    Lead lead, const StateFilter3 &filter) :
@@ -29,9 +66,9 @@ StaticGenerator3::StaticGenerator3(u32 initialAdvances, u32 maxAdvances, u32 off
 {
 }
 
-std::vector<GeneratorState3> StaticGenerator3::generate(u32 seed, const StaticTemplate *staticTemplate) const
+std::vector<GeneratorState> StaticGenerator3::generate(u32 seed, const StaticTemplate *staticTemplate) const
 {
-    std::vector<GeneratorState3> states;
+    std::vector<GeneratorState> states;
     const PersonalInfo *info = staticTemplate->getInfo();
 
     PokeRNG rng(seed, initialAdvances + offset);
@@ -39,8 +76,8 @@ std::vector<GeneratorState3> StaticGenerator3::generate(u32 seed, const StaticTe
     {
         PokeRNG go(rng.getSeed());
 
-        u16 low = go.nextUShort();
-        u16 high = go.nextUShort();
+        u32 pid = go.nextUShort();
+        pid |= go.nextUShort() << 16;
 
         u16 iv1 = go.nextUShort();
         if (method == Method::Method4)
@@ -49,7 +86,16 @@ std::vector<GeneratorState3> StaticGenerator3::generate(u32 seed, const StaticTe
         }
         u16 iv2 = go.nextUShort();
 
-        GeneratorState3 state(initialAdvances + cnt, high, low, iv1, iv2, tsv, staticTemplate->getLevel(), info);
+        std::array<u8, 6> ivs;
+        ivs[0] = iv1 & 31;
+        ivs[1] = (iv1 >> 5) & 31;
+        ivs[2] = (iv1 >> 10) & 31;
+        ivs[3] = (iv2 >> 5) & 31;
+        ivs[4] = (iv2 >> 10) & 31;
+        ivs[5] = iv2 & 31;
+
+        GeneratorState state(initialAdvances + cnt, pid, ivs, pid & 1, getGender(pid, info), staticTemplate->getLevel(), pid % 25,
+                             getShiny(pid, tsv), info);
         if (filter.compareState(state))
         {
             states.emplace_back(state);

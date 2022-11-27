@@ -18,7 +18,6 @@
  */
 
 #include "Utilities.hpp"
-#include <Core/Parents/PersonalInfo.hpp>
 #include <Core/RNG/LCRNG.hpp>
 #include <Core/RNG/MT.hpp>
 #include <Core/Util/DateTime.hpp>
@@ -209,10 +208,10 @@ namespace Utilities4
 
 namespace Utilities5
 {
-    u32 forceGender(u32 pid, BWRNG &rng, u8 gender, const PersonalInfo *info)
+    u32 forceGender(u32 pid, BWRNG &rng, u8 gender, u8 genderRatio)
     {
         u8 val;
-        switch (info->getGender())
+        switch (genderRatio)
         {
         case 0: // Male only
             val = rng.nextUInt(0xf6) + 8;
@@ -223,11 +222,11 @@ namespace Utilities5
         default:
             if (gender == 0) // Male
             {
-                val = rng.nextUInt(0xfe - info->getGender()) + info->getGender();
+                val = rng.nextUInt(0xfe - genderRatio) + genderRatio;
             }
             else if (gender == 1) // Female
             {
-                val = rng.nextUInt(info->getGender() - 1) + 1;
+                val = rng.nextUInt(genderRatio - 1) + 1;
             }
             else
             {

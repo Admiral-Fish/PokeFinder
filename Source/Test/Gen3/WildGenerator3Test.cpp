@@ -23,13 +23,13 @@
 #include <Core/Gen3/EncounterArea3.hpp>
 #include <Core/Gen3/Encounters3.hpp>
 #include <Core/Gen3/Generators/WildGenerator3.hpp>
-#include <Core/Gen3/States/WildState3.hpp>
 #include <Core/Parents/Slot.hpp>
+#include <Core/Parents/States/WildState.hpp>
 #include <QTest>
 #include <Test/Data.hpp>
 #include <Test/Enum.hpp>
 
-static bool operator==(const WildGeneratorState3 &left, const json &right)
+static bool operator==(const WildGeneratorState &left, const json &right)
 {
     // Intentionally not comparing item
     return left.getPID() == right["pid"].get<u32>() && left.getStats() == right["stats"].get<std::array<u16, 6>>()

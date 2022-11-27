@@ -20,13 +20,13 @@
 #ifndef RAIDMODEL_HPP
 #define RAIDMODEL_HPP
 
-#include <Core/Gen8/States/State8.hpp>
+#include <Core/Parents/States/State.hpp>
 #include <Model/TableModel.hpp>
 
 /**
  * @brief Provides a table model implementation to show raid encounter information for Gen 8
  */
-class RaidModel : public TableModel<State8>
+class RaidModel : public TableModel<GeneratorState>
 {
     Q_OBJECT
 public:

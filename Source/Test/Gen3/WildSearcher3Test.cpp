@@ -30,7 +30,7 @@
 
 using IVs = std::array<u8, 6>;
 
-static bool operator==(const WildSearcherState3 &left, const WildGeneratorState3 &right)
+static bool operator==(const WildSearcherState3 &left, const WildGeneratorState &right)
 {
     return left.getPID() == right.getPID() && left.getStats() == right.getStats() && left.getAbilityIndex() == right.getAbilityIndex()
         && left.getIVs() == right.getIVs() && left.getAbility() == right.getAbility() && left.getGender() == right.getGender()

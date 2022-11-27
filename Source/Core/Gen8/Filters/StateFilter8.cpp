@@ -19,9 +19,9 @@
 
 #include "StateFilter8.hpp"
 #include "Core/Gen8/States/UndergroundState.hpp"
-#include <Core/Gen8/States/EggState8.hpp>
-#include <Core/Gen8/States/State8.hpp>
-#include <Core/Gen8/States/WildState8.hpp>
+#include <Core/Parents/States/EggState.hpp>
+#include <Core/Parents/States/State.hpp>
+#include <Core/Parents/States/WildState.hpp>
 #include <algorithm>
 
 StateFilter8::StateFilter8(u8 gender, u8 ability, u8 shiny, bool skip, const std::array<u8, 6> &min, const std::array<u8, 6> &max,
@@ -30,7 +30,7 @@ StateFilter8::StateFilter8(u8 gender, u8 ability, u8 shiny, bool skip, const std
 {
 }
 
-bool StateFilter8::compareState(const EggState8 &state) const
+bool StateFilter8::compareState(const EggGeneratorState &state) const
 {
     if (skip)
     {
@@ -69,7 +69,7 @@ bool StateFilter8::compareState(const EggState8 &state) const
     return true;
 }
 
-bool StateFilter8::compareState(const State8 &state) const
+bool StateFilter8::compareState(const GeneratorState &state) const
 {
     if (skip)
     {
@@ -115,7 +115,7 @@ WildStateFilter8::WildStateFilter8(u8 gender, u8 ability, u8 shiny, bool skip, c
 {
 }
 
-bool WildStateFilter8::compareState(const WildState8 &state) const
+bool WildStateFilter8::compareState(const WildGeneratorState &state) const
 {
     if (skip)
     {

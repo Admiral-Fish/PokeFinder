@@ -53,7 +53,7 @@ public:
      *
      * @return Vector of computed states
      */
-    std::vector<State8> generate(u64 seed0, u64 seed1) const;
+    std::vector<GeneratorState> generate(u64 seed0, u64 seed1) const;
 
 private:
     WB8 wb8;

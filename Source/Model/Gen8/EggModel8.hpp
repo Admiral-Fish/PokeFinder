@@ -20,13 +20,13 @@
 #ifndef EGGMODEL8_HPP
 #define EGGMODEL8_HPP
 
-#include <Core/Gen8/States/EggState8.hpp>
+#include <Core/Parents/States/EggState.hpp>
 #include <Model/TableModel.hpp>
 
 /**
  * @brief Provides a table model implementation to show egg encounter information for Gen 8
  */
-class EggModel8 : public TableModel<EggState8>
+class EggModel8 : public TableModel<EggGeneratorState>
 {
     Q_OBJECT
 public:

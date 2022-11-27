@@ -25,6 +25,42 @@
 #include <Core/RNG/LCRNG64.hpp>
 #include <Core/Util/Utilities.hpp>
 
+static u8 getGender(u32 pid, const PersonalInfo *info)
+{
+    switch (info->getGender())
+    {
+    case 255: // Genderless
+        return 2;
+        break;
+    case 254: // Female
+        return 1;
+        break;
+    case 0: // Male
+        return 0;
+        break;
+    default: // Random gender
+        return (pid & 255) < info->getGender();
+        break;
+    }
+}
+
+static u8 getShiny(u32 pid, u16 tsv)
+{
+    u16 psv = (pid >> 16) ^ (pid & 0xffff);
+    if (tsv == psv)
+    {
+        return 2; // Square
+    }
+    else if ((tsv ^ psv) < 8)
+    {
+        return 1; // Star
+    }
+    else
+    {
+        return 0;
+    }
+}
+
 EventGenerator5::EventGenerator5(u32 initialAdvances, u32 maxAdvances, u32 offset, u16 tid, u16 sid, Game version, const PGF &pgf,
                                  const StateFilter5 &filter) :
     Generator<StateFilter5>(initialAdvances, maxAdvances, offset, tid, sid, version, Method::None, filter), pgf(pgf)
@@ -39,10 +75,10 @@ EventGenerator5::EventGenerator5(u32 initialAdvances, u32 maxAdvances, u32 offse
 
 std::vector<State5> EventGenerator5::generate(u64 seed) const
 {
-    std::vector<State5> states;
+    BWRNG rng(seed, initialAdvances + offset);
     const PersonalInfo *info = PersonalLoader::getPersonal(version, pgf.getSpecies());
 
-    BWRNG rng(seed, initialAdvances + offset);
+    std::vector<State5> states;
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
     {
         BWRNG go(rng.getSeed(), wondercardAdvances);
@@ -68,7 +104,7 @@ std::vector<State5> EventGenerator5::generate(u64 seed) const
         u32 pid = go.nextUInt();
         if (pgf.getGender() == 0 || pgf.getGender() == 1)
         {
-            pid = Utilities5::forceGender(pid, go, pgf.getGender(), info);
+            pid = Utilities5::forceGender(pid, go, pgf.getGender(), info->getGender());
         }
 
         if (pgf.getShiny() == 0) // No shiny
@@ -115,7 +151,8 @@ std::vector<State5> EventGenerator5::generate(u64 seed) const
             nature = go.nextUInt(25);
         }
 
-        State5 state(rng.nextUInt(0x1fff), initialAdvances + cnt, ivs, pid, ability, nature, tsv, pgf.getLevel(), info);
+        State5 state(rng.nextUInt(0x1fff), initialAdvances + cnt, pid, ivs, ability, getGender(pid, info), pgf.getLevel(), nature,
+                     getShiny(pid, tsv), info);
         if (filter.compareState(state))
         {
             states.emplace_back(state);

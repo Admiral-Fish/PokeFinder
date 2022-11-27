@@ -21,9 +21,9 @@
 #include <Core/Enum/Game.hpp>
 #include <Core/Enum/Lead.hpp>
 #include <Core/Enum/Method.hpp>
-#include <Core/Gen8/States/State8.hpp>
 #include <Core/Gen8/StaticTemplate8.hpp>
 #include <Core/Parents/PersonalInfo.hpp>
+#include <Core/Parents/States/State.hpp>
 #include <Core/RNG/RNGList.hpp>
 #include <Core/RNG/Xoroshiro.hpp>
 #include <Core/RNG/Xorshift.hpp>
@@ -39,12 +39,12 @@ StaticGenerator8::StaticGenerator8(u32 initialAdvances, u32 maxAdvances, u32 off
 {
 }
 
-std::vector<State8> StaticGenerator8::generate(u64 seed0, u64 seed1, const StaticTemplate8 *staticTemplate) const
+std::vector<GeneratorState> StaticGenerator8::generate(u64 seed0, u64 seed1, const StaticTemplate8 *staticTemplate) const
 {
     const PersonalInfo *info = staticTemplate->getInfo();
     RNGList<u32, Xorshift, 32, gen> rngList(seed0, seed1, initialAdvances + offset);
 
-    std::vector<State8> states;
+    std::vector<GeneratorState> states;
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rngList.advanceState())
     {
         rngList.advance(1); // EC call
@@ -151,7 +151,7 @@ std::vector<State8> StaticGenerator8::generate(u64 seed0, u64 seed1, const Stati
             nature = rngList.next() % 25;
         }
 
-        State8 state(initialAdvances + cnt, pid, shiny, ivs, ability, gender, nature, staticTemplate->getLevel(), info);
+        GeneratorState state(initialAdvances + cnt, pid, ivs, ability, gender, staticTemplate->getLevel(), nature, shiny, info);
         if (filter.compareState(state))
         {
             states.emplace_back(state);
@@ -161,7 +161,7 @@ std::vector<State8> StaticGenerator8::generate(u64 seed0, u64 seed1, const Stati
     return states;
 }
 
-std::vector<State8> StaticGenerator8::generateRoamer(u64 seed0, u64 seed1, const StaticTemplate8 *staticTemplate) const
+std::vector<GeneratorState> StaticGenerator8::generateRoamer(u64 seed0, u64 seed1, const StaticTemplate8 *staticTemplate) const
 {
     // Going to ignore most of the parameters
     // Only roamers are Cresselia/Mesprit which have identical parameters
@@ -169,7 +169,7 @@ std::vector<State8> StaticGenerator8::generateRoamer(u64 seed0, u64 seed1, const
 
     Xorshift roamer(seed0, seed1, initialAdvances + offset);
 
-    std::vector<State8> states;
+    std::vector<GeneratorState> states;
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
     {
         XoroshiroBDSP rng(roamer.next(0x80000000, 0x7fffffff));
@@ -235,8 +235,8 @@ std::vector<State8> StaticGenerator8::generateRoamer(u64 seed0, u64 seed1, const
             nature = rng.nextUInt(25);
         }
 
-        State8 state(initialAdvances + cnt, pid, shiny, ivs, ability, gender, nature, staticTemplate->getLevel(),
-                              staticTemplate->getInfo());
+        GeneratorState state(initialAdvances + cnt, pid, ivs, ability, gender, staticTemplate->getLevel(), nature, shiny,
+                             staticTemplate->getInfo());
         if (filter.compareState(state))
         {
             states.emplace_back(state);

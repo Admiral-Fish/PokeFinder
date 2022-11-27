@@ -24,12 +24,12 @@
 #include <Core/Gen8/Encounters8.hpp>
 #include <Core/Gen8/Generators/WildGenerator8.hpp>
 #include <Core/Gen8/Profile8.hpp>
-#include <Core/Gen8/States/WildState8.hpp>
+#include <Core/Parents/States/WildState.hpp>
 #include <QTest>
 #include <Test/Data.hpp>
 #include <Test/Enum.hpp>
 
-static bool operator==(const WildState8 &left, const json &right)
+static bool operator==(const WildGeneratorState &left, const json &right)
 {
     return left.getPID() == right["pid"].get<u32>() && left.getStats() == right["stats"].get<std::array<u16, 6>>()
         && left.getAbilityIndex() == right["abilityIndex"].get<u16>() && left.getIVs() == right["ivs"].get<std::array<u8, 6>>()

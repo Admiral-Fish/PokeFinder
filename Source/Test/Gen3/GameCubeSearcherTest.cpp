@@ -24,14 +24,14 @@
 #include <Core/Gen3/Generators/GameCubeGenerator.hpp>
 #include <Core/Gen3/Searchers/GameCubeSearcher.hpp>
 #include <Core/Gen3/ShadowTemplate.hpp>
-#include <Core/Gen3/States/State3.hpp>
+#include <Core/Parents/States/State.hpp>
 #include <QTest>
 #include <Test/Data.hpp>
 #include <Test/Enum.hpp>
 
 using IVs = std::array<u8, 6>;
 
-static bool operator==(const SearcherState3 &left, const GeneratorState3 &right)
+static bool operator==(const SearcherState &left, const GeneratorState &right)
 {
     return left.getPID() == right.getPID() && left.getStats() == right.getStats() && left.getAbilityIndex() == right.getAbilityIndex()
         && left.getIVs() == right.getIVs() && left.getAbility() == right.getAbility() && left.getGender() == right.getGender()
@@ -39,7 +39,7 @@ static bool operator==(const SearcherState3 &left, const GeneratorState3 &right)
         && left.getShiny() == right.getShiny() && left.getHiddenPowerStrength() == right.getHiddenPowerStrength();
 }
 
-static bool operator==(const SearcherState3 &left, const json &right)
+static bool operator==(const SearcherState &left, const json &right)
 {
     return left.getPID() == right["pid"].get<u32>() && left.getStats() == right["stats"].get<std::array<u16, 6>>()
         && left.getAbilityIndex() == right["abilityIndex"].get<u16>() && left.getIVs() == right["ivs"].get<std::array<u8, 6>>()

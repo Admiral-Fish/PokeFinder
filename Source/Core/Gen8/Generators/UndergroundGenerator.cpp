@@ -344,7 +344,7 @@ std::vector<UndergroundState> UndergroundGenerator::generate(u64 seed0, u64 seed
             eggMove = eggMoves->moves[rngList.next() % eggMoves->count];
         }
 
-        return UndergroundState(initialAdvances + advances, specie, level, pid, shiny, ivs, ability, gender, nature, item, eggMove, info);
+        return UndergroundState(initialAdvances + advances, pid, ivs, ability, gender, level, nature, shiny, eggMove, item, specie, info);
     };
 
     std::vector<UndergroundState> states;

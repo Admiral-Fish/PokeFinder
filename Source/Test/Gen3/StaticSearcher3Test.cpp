@@ -21,7 +21,7 @@
 #include <Core/Gen3/Encounters3.hpp>
 #include <Core/Gen3/Generators/StaticGenerator3.hpp>
 #include <Core/Gen3/Searchers/StaticSearcher3.hpp>
-#include <Core/Gen3/States/State3.hpp>
+#include <Core/Parents/States/State.hpp>
 #include <Core/Parents/StaticTemplate.hpp>
 #include <QTest>
 #include <Test/Data.hpp>
@@ -29,7 +29,7 @@
 
 using IVs = std::array<u8, 6>;
 
-static bool operator==(const SearcherState3 &left, const GeneratorState3 &right)
+static bool operator==(const SearcherState &left, const GeneratorState &right)
 {
     return left.getPID() == right.getPID() && left.getStats() == right.getStats() && left.getAbilityIndex() == right.getAbilityIndex()
         && left.getIVs() == right.getIVs() && left.getAbility() == right.getAbility() && left.getGender() == right.getGender()

@@ -23,12 +23,48 @@
 #include <Core/Enum/ShadowType.hpp>
 #include <Core/Gen3/LockInfo.hpp>
 #include <Core/Gen3/ShadowTemplate.hpp>
-#include <Core/Gen3/States/State3.hpp>
 #include <Core/Parents/PersonalInfo.hpp>
+#include <Core/Parents/States/State.hpp>
 #include <Core/RNG/LCRNG.hpp>
 #include <algorithm>
 
-static inline bool isShiny(u16 high, u16 low, u16 tsv)
+static u8 getGender(u32 pid, const PersonalInfo *info)
+{
+    switch (info->getGender())
+    {
+    case 255: // Genderless
+        return 2;
+        break;
+    case 254: // Female
+        return 1;
+        break;
+    case 0: // Male
+        return 0;
+        break;
+    default: // Random gender
+        return (pid & 255) < info->getGender();
+        break;
+    }
+}
+
+static u8 getShiny(u32 pid, u16 tsv)
+{
+    u16 psv = (pid >> 16) ^ (pid & 0xffff);
+    if (tsv == psv)
+    {
+        return 2; // Square
+    }
+    else if ((tsv ^ psv) < 8)
+    {
+        return 1; // Star
+    }
+    else
+    {
+        return 0;
+    }
+}
+
+static bool isShiny(u16 high, u16 low, u16 tsv)
 {
     return (high ^ low ^ tsv) < 8;
 }
@@ -39,7 +75,7 @@ GameCubeGenerator::GameCubeGenerator(u32 initialAdvances, u32 maxAdvances, u32 o
 {
 }
 
-std::vector<GeneratorState3> GameCubeGenerator::generate(u32 seed, const ShadowTemplate *shadowTemplate) const
+std::vector<GeneratorState> GameCubeGenerator::generate(u32 seed, const ShadowTemplate *shadowTemplate) const
 {
     if ((version & Game::Colosseum) != Game::None)
     {
@@ -48,7 +84,7 @@ std::vector<GeneratorState3> GameCubeGenerator::generate(u32 seed, const ShadowT
     return generateGalesShadow(seed, shadowTemplate);
 }
 
-std::vector<GeneratorState3> GameCubeGenerator::generate(u32 seed, const StaticTemplate *staticTemplate) const
+std::vector<GeneratorState> GameCubeGenerator::generate(u32 seed, const StaticTemplate *staticTemplate) const
 {
     if (method == Method::Channel)
     {
@@ -57,9 +93,9 @@ std::vector<GeneratorState3> GameCubeGenerator::generate(u32 seed, const StaticT
     return generateNonLock(seed, staticTemplate);
 }
 
-std::vector<GeneratorState3> GameCubeGenerator::generateChannel(u32 seed, const StaticTemplate *staticTemplate) const
+std::vector<GeneratorState> GameCubeGenerator::generateChannel(u32 seed, const StaticTemplate *staticTemplate) const
 {
-    std::vector<GeneratorState3> states;
+    std::vector<GeneratorState> states;
     const PersonalInfo *info = staticTemplate->getInfo();
 
     constexpr u16 threshHolds[2] = { 0x4000, 0x547a };
@@ -101,16 +137,18 @@ std::vector<GeneratorState3> GameCubeGenerator::generateChannel(u32 seed, const 
         {
             high ^= 0x8000;
         }
+        u32 pid = (high << 16) | low;
 
-        u8 hp = go.nextUShort() >> 11;
-        u8 atk = go.nextUShort() >> 11;
-        u8 def = go.nextUShort() >> 11;
-        u8 spe = go.nextUShort() >> 11;
-        u8 spa = go.nextUShort() >> 11;
-        u8 spd = go.nextUShort() >> 11;
+        std::array<u8, 6> ivs;
+        ivs[0] = go.nextUShort() >> 11;
+        ivs[1] = go.nextUShort() >> 11;
+        ivs[2] = go.nextUShort() >> 11;
+        ivs[5] = go.nextUShort() >> 11;
+        ivs[3] = go.nextUShort() >> 11;
+        ivs[4] = go.nextUShort() >> 11;
 
-        GeneratorState3 state(initialAdvances + cnt, high, low, { hp, atk, def, spa, spd, spe }, (tid ^ sid), staticTemplate->getLevel(),
-                              info);
+        GeneratorState state(initialAdvances + cnt, pid, ivs, pid & 1, 2, staticTemplate->getLevel(), pid % 25, getShiny(pid, tid ^ sid),
+                             info);
         if (filter.compareState(state))
         {
             states.emplace_back(state);
@@ -120,9 +158,9 @@ std::vector<GeneratorState3> GameCubeGenerator::generateChannel(u32 seed, const 
     return states;
 }
 
-std::vector<GeneratorState3> GameCubeGenerator::generateColoShadow(u32 seed, const ShadowTemplate *shadowTemplate) const
+std::vector<GeneratorState> GameCubeGenerator::generateColoShadow(u32 seed, const ShadowTemplate *shadowTemplate) const
 {
-    std::vector<GeneratorState3> states;
+    std::vector<GeneratorState> states;
     const PersonalInfo *info = shadowTemplate->getInfo();
 
     XDRNG rng(seed, initialAdvances + offset);
@@ -187,7 +225,17 @@ std::vector<GeneratorState3> GameCubeGenerator::generateColoShadow(u32 seed, con
             }
         }
 
-        GeneratorState3 state(initialAdvances + cnt, high, low, ability, iv1, iv2, tsv, shadowTemplate->getLevel(), info);
+        u32 pid = (high << 16) | low;
+        std::array<u8, 6> ivs;
+        ivs[0] = iv1 & 31;
+        ivs[1] = (iv1 >> 5) & 31;
+        ivs[2] = (iv1 >> 10) & 31;
+        ivs[3] = (iv2 >> 5) & 31;
+        ivs[4] = (iv2 >> 10) & 31;
+        ivs[5] = iv2 & 31;
+
+        GeneratorState state(initialAdvances + cnt, pid, ivs, ability, getGender(pid, info), shadowTemplate->getLevel(), pid % 25,
+                             getShiny(pid, tsv), info);
         if (filter.compareState(state))
         {
             states.emplace_back(state);
@@ -197,9 +245,9 @@ std::vector<GeneratorState3> GameCubeGenerator::generateColoShadow(u32 seed, con
     return states;
 }
 
-std::vector<GeneratorState3> GameCubeGenerator::generateGalesShadow(u32 seed, const ShadowTemplate *shadowTemplate) const
+std::vector<GeneratorState> GameCubeGenerator::generateGalesShadow(u32 seed, const ShadowTemplate *shadowTemplate) const
 {
-    std::vector<GeneratorState3> states;
+    std::vector<GeneratorState> states;
     const PersonalInfo *info = shadowTemplate->getInfo();
 
     XDRNG rng(seed, initialAdvances + offset);
@@ -256,7 +304,7 @@ std::vector<GeneratorState3> GameCubeGenerator::generateGalesShadow(u32 seed, co
 
         u16 iv1 = go.nextUShort();
         u16 iv2 = go.nextUShort();
-        u8 ability = go.nextUShort(2);
+        u8 ability = go.nextUShort(2) & (info->getAbility(0) != info->getAbility(1));
         u16 high = go.nextUShort();
         u16 low = go.nextUShort();
 
@@ -267,7 +315,17 @@ std::vector<GeneratorState3> GameCubeGenerator::generateGalesShadow(u32 seed, co
             low = go.nextUShort();
         }
 
-        GeneratorState3 state(initialAdvances + cnt, high, low, ability, iv1, iv2, tsv, shadowTemplate->getLevel(), info);
+        u32 pid = (high << 16) | low;
+        std::array<u8, 6> ivs;
+        ivs[0] = iv1 & 31;
+        ivs[1] = (iv1 >> 5) & 31;
+        ivs[2] = (iv1 >> 10) & 31;
+        ivs[3] = (iv2 >> 5) & 31;
+        ivs[4] = (iv2 >> 10) & 31;
+        ivs[5] = iv2 & 31;
+
+        GeneratorState state(initialAdvances + cnt, pid, ivs, ability, getGender(pid, info), shadowTemplate->getLevel(), pid % 25,
+                             getShiny(pid, tsv), info);
         if (filter.compareState(state))
         {
             states.emplace_back(state);
@@ -277,9 +335,9 @@ std::vector<GeneratorState3> GameCubeGenerator::generateGalesShadow(u32 seed, co
     return states;
 }
 
-std::vector<GeneratorState3> GameCubeGenerator::generateNonLock(u32 seed, const StaticTemplate *staticTemplate) const
+std::vector<GeneratorState> GameCubeGenerator::generateNonLock(u32 seed, const StaticTemplate *staticTemplate) const
 {
-    std::vector<GeneratorState3> states;
+    std::vector<GeneratorState> states;
     const PersonalInfo *info = staticTemplate->getInfo();
 
     u16 actualTSV = tsv;
@@ -354,7 +412,18 @@ std::vector<GeneratorState3> GameCubeGenerator::generateNonLock(u32 seed, const 
             }
         }
 
-        GeneratorState3 state(initialAdvances + cnt, high, low, ability, iv1, iv2, actualTSV, staticTemplate->getLevel(), info);
+        u32 pid = (high << 16) | low;
+        ability &= info->getAbility(0) != info->getAbility(1);
+        std::array<u8, 6> ivs;
+        ivs[0] = iv1 & 31;
+        ivs[1] = (iv1 >> 5) & 31;
+        ivs[2] = (iv1 >> 10) & 31;
+        ivs[3] = (iv2 >> 5) & 31;
+        ivs[4] = (iv2 >> 10) & 31;
+        ivs[5] = iv2 & 31;
+
+        GeneratorState state(initialAdvances + cnt, pid, ivs, ability, getGender(pid, info), staticTemplate->getLevel(), pid % 25,
+                             getShiny(pid, actualTSV), info);
         if (filter.compareState(state))
         {
             states.emplace_back(state);

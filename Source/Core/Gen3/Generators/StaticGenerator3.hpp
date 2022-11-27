@@ -55,7 +55,7 @@ public:
      *
      * @return Vector of computed states
      */
-    std::vector<GeneratorState3> generate(u32 seed, const StaticTemplate *staticTemplate) const;
+    std::vector<GeneratorState> generate(u32 seed, const StaticTemplate *staticTemplate) const;
 };
 
 #endif // STATICGENERATOR3_HPP

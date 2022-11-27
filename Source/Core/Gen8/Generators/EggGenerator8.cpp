@@ -20,9 +20,9 @@
 #include "EggGenerator8.hpp"
 #include <Core/Enum/Game.hpp>
 #include <Core/Enum/Method.hpp>
-#include <Core/Gen8/States/EggState8.hpp>
 #include <Core/Parents/PersonalInfo.hpp>
 #include <Core/Parents/PersonalLoader.hpp>
+#include <Core/Parents/States/EggState.hpp>
 #include <Core/RNG/RNGList.hpp>
 #include <Core/RNG/Xoroshiro.hpp>
 #include <Core/RNG/Xorshift.hpp>
@@ -39,7 +39,7 @@ EggGenerator8::EggGenerator8(u32 initialAdvances, u32 maxAdvances, u32 offset, u
 {
 }
 
-std::vector<EggState8> EggGenerator8::generate(u64 seed0, u64 seed1) const
+std::vector<EggGeneratorState> EggGenerator8::generate(u64 seed0, u64 seed1) const
 {
     const PersonalInfo *base = PersonalLoader::getPersonal(version, daycare.getEggSpecie());
     const PersonalInfo *male;
@@ -74,7 +74,7 @@ std::vector<EggState8> EggGenerator8::generate(u64 seed0, u64 seed1) const
         inheritanceCount = 5;
     }
 
-    std::vector<EggState8> states;
+    std::vector<EggGeneratorState> states;
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rngList.advanceState())
     {
         if ((rngList.next() % 100) < compatability)
@@ -195,7 +195,7 @@ std::vector<EggState8> EggGenerator8::generate(u64 seed0, u64 seed1) const
             // Ball handling check
             // Uses a rand call, maybe add later
 
-            EggState8 state(initialAdvances + cnt, gender, nature, ability, inheritance, ivs, pid, shiny, info);
+            EggGeneratorState state(initialAdvances + cnt, pid, ivs, ability, gender, 1, nature, shiny, inheritance, info);
             if (filter.compareState(state))
             {
                 states.emplace_back(state);

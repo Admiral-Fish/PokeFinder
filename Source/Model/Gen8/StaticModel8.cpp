@@ -20,7 +20,7 @@
 #include "StaticModel8.hpp"
 #include <Core/Util/Translator.hpp>
 
-StaticModel8::StaticModel8(QObject *parent) : TableModel<State8>(parent), showStats(false)
+StaticModel8::StaticModel8(QObject *parent) : TableModel<GeneratorState>(parent), showStats(false)
 {
 }
 

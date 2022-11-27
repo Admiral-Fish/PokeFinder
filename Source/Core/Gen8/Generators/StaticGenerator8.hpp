@@ -55,7 +55,7 @@ public:
      *
      * @return Vector of computed states
      */
-    std::vector<State8> generate(u64 seed0, u64 seed1, const StaticTemplate8 *staticTemplate) const;
+    std::vector<GeneratorState> generate(u64 seed0, u64 seed1, const StaticTemplate8 *staticTemplate) const;
 
     /**
      * @brief Generates states for the roamers \p staticTemplate
@@ -66,7 +66,7 @@ public:
      *
      * @return Vector of computed states
      */
-    std::vector<State8> generateRoamer(u64 seed0, u64 seed1, const StaticTemplate8 *staticTemplate) const;
+    std::vector<GeneratorState> generateRoamer(u64 seed0, u64 seed1, const StaticTemplate8 *staticTemplate) const;
 };
 
 #endif // STATICGENERATOR8_HPP

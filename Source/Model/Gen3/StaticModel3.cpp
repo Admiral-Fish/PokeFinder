@@ -33,7 +33,7 @@ QVariant StaticGeneratorModel3::data(const QModelIndex &index, int role) const
 {
     if (role == Qt::DisplayRole)
     {
-        const GeneratorState3 &state = model[index.row()];
+        const auto &state = model[index.row()];
         int column = index.column();
         switch (column)
         {
@@ -96,7 +96,7 @@ QVariant StaticSearcherModel3::data(const QModelIndex &index, int role) const
 {
     if (role == Qt::DisplayRole)
     {
-        const SearcherState3 &state = model[index.row()];
+        const auto &state = model[index.row()];
         int column = index.column();
         switch (column)
         {
@@ -149,27 +149,27 @@ void StaticSearcherModel3::sort(int column, Qt::SortOrder order)
         switch (column)
         {
         case 0:
-            std::sort(model.begin(), model.end(), [flag](SearcherState3 &state1, SearcherState3 &state2) {
+            std::sort(model.begin(), model.end(), [flag](SearcherState &state1, SearcherState &state2) {
                 return flag ? state1.getSeed() < state2.getSeed() : state1.getSeed() > state2.getSeed();
             });
             break;
         case 1:
-            std::sort(model.begin(), model.end(), [flag](SearcherState3 &state1, SearcherState3 &state2) {
+            std::sort(model.begin(), model.end(), [flag](SearcherState &state1, SearcherState &state2) {
                 return flag ? state1.getPID() < state2.getPID() : state1.getPID() > state2.getPID();
             });
             break;
         case 2:
-            std::sort(model.begin(), model.end(), [flag](SearcherState3 &state1, SearcherState3 &state2) {
+            std::sort(model.begin(), model.end(), [flag](SearcherState &state1, SearcherState &state2) {
                 return flag ? state1.getShiny() < state2.getShiny() : state1.getShiny() > state2.getShiny();
             });
             break;
         case 3:
-            std::sort(model.begin(), model.end(), [flag](SearcherState3 &state1, SearcherState3 &state2) {
+            std::sort(model.begin(), model.end(), [flag](SearcherState &state1, SearcherState &state2) {
                 return flag ? state1.getNature() < state2.getNature() : state1.getNature() > state2.getNature();
             });
             break;
         case 4:
-            std::sort(model.begin(), model.end(), [flag](SearcherState3 &state1, SearcherState3 &state2) {
+            std::sort(model.begin(), model.end(), [flag](SearcherState &state1, SearcherState &state2) {
                 return flag ? state1.getAbility() < state2.getAbility() : state1.getAbility() > state2.getAbility();
             });
             break;
@@ -179,23 +179,23 @@ void StaticSearcherModel3::sort(int column, Qt::SortOrder order)
         case 8:
         case 9:
         case 10:
-            std::sort(model.begin(), model.end(), [flag, column](SearcherState3 &state1, SearcherState3 &state2) {
+            std::sort(model.begin(), model.end(), [flag, column](SearcherState &state1, SearcherState &state2) {
                 return flag ? state1.getIV(column - 5) < state2.getIV(column - 5) : state1.getIV(column - 5) > state2.getIV(column - 5);
             });
             break;
         case 11:
-            std::sort(model.begin(), model.end(), [flag](SearcherState3 &state1, SearcherState3 &state2) {
+            std::sort(model.begin(), model.end(), [flag](SearcherState &state1, SearcherState &state2) {
                 return flag ? state1.getHiddenPower() < state2.getHiddenPower() : state1.getHiddenPower() > state2.getHiddenPower();
             });
             break;
         case 12:
-            std::sort(model.begin(), model.end(), [flag](SearcherState3 &state1, SearcherState3 &state2) {
+            std::sort(model.begin(), model.end(), [flag](SearcherState &state1, SearcherState &state2) {
                 return flag ? state1.getHiddenPowerStrength() < state2.getHiddenPowerStrength()
                             : state1.getHiddenPowerStrength() > state2.getHiddenPowerStrength();
             });
             break;
         case 13:
-            std::sort(model.begin(), model.end(), [flag](SearcherState3 &state1, SearcherState3 &state2) {
+            std::sort(model.begin(), model.end(), [flag](SearcherState &state1, SearcherState &state2) {
                 return flag ? state1.getGender() < state2.getGender() : state1.getGender() > state2.getGender();
             });
             break;

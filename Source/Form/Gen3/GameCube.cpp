@@ -131,7 +131,7 @@ void GameCube::generate()
     GameCubeGenerator generator(initialAdvances, maxAdvances, offset, tid, sid, currentProfile->getVersion(), method,
                                 ui->checkBoxGeneratorFirstShadowUnset->isChecked(), filter);
 
-    std::vector<GeneratorState3> states;
+    std::vector<GeneratorState> states;
     if (shadowLock)
     {
         const ShadowTemplate *shadowTemplate = Encounters3::getShadowTeam(ui->comboBoxGeneratorPokemon->getCurrentInt());

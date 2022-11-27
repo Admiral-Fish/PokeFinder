@@ -21,12 +21,13 @@
 #define WILD3MODEL_HPP
 
 #include <Core/Gen3/States/WildState3.hpp>
+#include <Core/Parents/States/WildState.hpp>
 #include <Model/TableModel.hpp>
 
 /**
  * @brief Provides a table model implementation to show wild encounter information for Gen 3
  */
-class WildGeneratorModel3 : public TableModel<WildGeneratorState3>
+class WildGeneratorModel3 : public TableModel<WildGeneratorState>
 {
     Q_OBJECT
 public:

@@ -21,7 +21,7 @@
 #include <Core/Enum/Game.hpp>
 #include <Core/Enum/Method.hpp>
 #include <Core/Gen8/Raid.hpp>
-#include <Core/Gen8/States/State8.hpp>
+#include <Core/Parents/States/State.hpp>
 #include <Core/RNG/Xoroshiro.hpp>
 
 constexpr u8 toxtricityAmpedNatures[] = { 3, 4, 2, 8, 9, 19, 22, 11, 13, 14, 0, 6, 24 };
@@ -32,12 +32,12 @@ RaidGenerator::RaidGenerator(u32 initialAdvances, u32 maxAdvances, u32 offset, u
 {
 }
 
-std::vector<State8> RaidGenerator::generate(u64 seed, u8 level, const Raid &raid) const
+std::vector<GeneratorState> RaidGenerator::generate(u64 seed, u8 level, const Raid &raid) const
 {
     const PersonalInfo *info = raid.getInfo();
     seed += 0x82A2B175229D6A5B * (initialAdvances + offset);
 
-    std::vector<State8> states;
+    std::vector<GeneratorState> states;
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++, seed += 0x82A2B175229D6A5B)
     {
         Xoroshiro rng(seed);
@@ -190,7 +190,7 @@ std::vector<State8> RaidGenerator::generate(u64 seed, u8 level, const Raid &raid
         // Height (2 calls)
         // Weight (2 calls)
 
-        State8 state(initialAdvances + cnt, pid, shiny, ivs, ability, gender, nature, level, info);
+        GeneratorState state(initialAdvances + cnt, pid, ivs, ability, gender, level, nature, shiny, info);
         if (filter.compareState(state))
         {
             states.emplace_back(state);

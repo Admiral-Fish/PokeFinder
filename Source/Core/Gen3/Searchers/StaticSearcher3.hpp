@@ -61,7 +61,7 @@ public:
      *
      * @return Vector of computed states
      */
-    std::vector<SearcherState3> getResults();
+    std::vector<SearcherState> getResults();
 
     /**
      * @brief Starts the search
@@ -74,7 +74,7 @@ public:
 
 private:
     std::mutex mutex;
-    std::vector<SearcherState3> results;
+    std::vector<SearcherState> results;
     int progress;
     bool ivAdvance;
     bool searching;
@@ -92,7 +92,7 @@ private:
      *
      * @return Vector of computed states
      */
-    std::vector<SearcherState3> search(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, const StaticTemplate *staticTemplate) const;
+    std::vector<SearcherState> search(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, const StaticTemplate *staticTemplate) const;
 };
 
 #endif // STATICSEARCHER3_HPP

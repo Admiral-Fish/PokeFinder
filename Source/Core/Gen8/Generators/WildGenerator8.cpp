@@ -22,8 +22,8 @@
 #include <Core/Enum/Game.hpp>
 #include <Core/Enum/Method.hpp>
 #include <Core/Gen8/EncounterArea8.hpp>
-#include <Core/Gen8/States/WildState8.hpp>
 #include <Core/Parents/Slot.hpp>
+#include <Core/Parents/States/WildState.hpp>
 #include <Core/RNG/RNGList.hpp>
 #include <Core/RNG/Xorshift.hpp>
 #include <Core/Util/EncounterSlot.hpp>
@@ -64,7 +64,7 @@ WildGenerator8::WildGenerator8(u32 initialAdvances, u32 maxAdvances, u32 offset,
 {
 }
 
-std::vector<WildState8> WildGenerator8::generate(u64 seed0, u64 seed1, const EncounterArea8 &encounterArea) const
+std::vector<WildGeneratorState> WildGenerator8::generate(u64 seed0, u64 seed1, const EncounterArea8 &encounterArea) const
 {
     RNGList<u32, Xorshift, 128> rngList(seed0, seed1, initialAdvances + offset);
 
@@ -72,7 +72,7 @@ std::vector<WildState8> WildGenerator8::generate(u64 seed0, u64 seed1, const Enc
         = lead == Lead::MagnetPull || lead == Lead::Static || lead == Lead::Harvest || lead == Lead::FlashFire || lead == Lead::StormDrain;
     std::vector<u8> modifiedSlots = encounterArea.getSlots(version, lead);
 
-    std::vector<WildState8> states;
+    std::vector<WildGeneratorState> states;
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rngList.advanceState())
     {
         u8 encounterSlot;
@@ -183,8 +183,8 @@ std::vector<WildState8> WildGenerator8::generate(u64 seed0, u64 seed1, const Enc
 
         u16 item = getItem(rngList.next() % 100, lead, info);
 
-        WildState8 state(initialAdvances + cnt, encounterSlot, slot.getSpecie(), level, pid, shiny, ivs, ability, gender, nature,
-                                  item, info);
+        WildGeneratorState state(initialAdvances + cnt, pid, ivs, ability, gender, level, nature, shiny, encounterSlot, item,
+                                 slot.getSpecie(), info);
         if (filter.compareState(state))
         {
             states.emplace_back(state);

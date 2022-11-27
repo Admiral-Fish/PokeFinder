@@ -34,16 +34,21 @@ public:
      * @brief Construct a new State5 object
      *
      * @param prng PRNG call to determine Chatot pitch
-     * @param advances State advances
-     * @param pid PID value
-     * @param iv1 First IV call
-     * @param iv2 Second IV call
-     * @param tsv Trainer shiny value
+     * @param advances Advances of the state
+     * @param pid Pokemon PID
+     * @param ivs Pokemon IVs
+     * @param ability Pokemon ability
+     * @param gender Pokemon gender
      * @param level Pokemon level
-     * @param info Pokemon personal information
+     * @param nature Pokemon nature
+     * @param shiny Pokemon shininess
+     * @param info Pokemon information
      */
-    State5(u16 prng, u32 advances, const std::array<u8, 6> &ivs, u32 pid, u8 ability, u8 nature, u16 tsv, u8 level,
-           const PersonalInfo *info);
+    State5(u16 prng, u32 advances, u32 pid, const std::array<u8, 6> &ivs, u8 ability, u8 gender, u8 level, u8 nature, u8 shiny,
+           const PersonalInfo *info) :
+        GeneratorState(advances, pid, ivs, ability, gender, level, nature, shiny, info), chatot(prng / 82)
+    {
+    }
 
     /**
      * @brief Returns the chatot pitch
@@ -55,19 +60,8 @@ public:
         return chatot;
     }
 
-    /**
-     * @brief Returns the hidden power strength
-     *
-     * @return Hidden power strength
-     */
-    u8 getHiddenPowerStrength() const
-    {
-        return hiddenPowerStrength;
-    }
-
 private:
     u8 chatot;
-    u8 hiddenPowerStrength;
 };
 
 #endif // STATE5_HPP

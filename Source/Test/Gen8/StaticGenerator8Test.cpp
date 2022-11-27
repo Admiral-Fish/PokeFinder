@@ -22,12 +22,12 @@
 #include <Core/Enum/Lead.hpp>
 #include <Core/Gen8/Encounters8.hpp>
 #include <Core/Gen8/Generators/StaticGenerator8.hpp>
-#include <Core/Gen8/States/State8.hpp>
+#include <Core/Parents/States/State.hpp>
 #include <QTest>
 #include <Test/Data.hpp>
 #include <Test/Enum.hpp>
 
-static bool operator==(const State8 &left, const json &right)
+static bool operator==(const GeneratorState &left, const json &right)
 {
     // Intentionally ignoring hidden power
     return left.getPID() == right["pid"].get<u32>() && left.getStats() == right["stats"].get<std::array<u16, 6>>()
