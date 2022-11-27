@@ -17,25 +17,23 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef EVENT5_HPP
-#define EVENT5_HPP
+#ifndef DREAMRADAR_HPP
+#define DREAMRADAR_HPP
 
+#include <Core/Gen5/DreamRadarTemplate.hpp>
 #include <QWidget>
 
-class EventGeneratorModel5;
-class EventSearcherModel5;
-class PGF;
+class ComboBox;
+class DreamRadarGeneratorModel5;
+class DreamRadarSearcherModel5;
 class Profile5;
 
 namespace Ui
 {
-    class Event5;
+    class DreamRadar;
 }
 
-/**
- * @brief Provides settings and filters to RNG event encounters in Gen 5 games
- */
-class Event5 : public QWidget
+class DreamRadar : public QWidget
 {
     Q_OBJECT
 signals:
@@ -46,16 +44,16 @@ signals:
 
 public:
     /**
-     * @brief Construct a new Event5 object
+     * @brief Construct a new DreamRadar object
      *
      * @param parent Parent widget, which takes memory ownership
      */
-    Event5(QWidget *parent = nullptr);
+    DreamRadar(QWidget *parent = nullptr);
 
     /**
-     * @brief Destroy the Event5 object
+     * @brief Destroy the DreamRadar object
      */
-    ~Event5() override;
+    ~DreamRadar() override;
 
     /**
      * @brief Determines if any profiles exist
@@ -71,52 +69,45 @@ public:
     void updateProfiles();
 
 private:
-    Ui::Event5 *ui;
+    Ui::DreamRadar *ui;
 
-    EventGeneratorModel5 *generatorModel;
-    EventSearcherModel5 *searcherModel;
+    DreamRadarGeneratorModel5 *generatorModel;
+    DreamRadarSearcherModel5 *searcherModel;
     Profile5 *currentProfile;
     std::vector<Profile5> profiles;
 
     /**
-     * @brief Loads UI settings for a wondercard
+     * @brief Loads UI settings for dream radar templates
      *
-     * @return Wondercard template
+     * @return Dream radar templates
      */
-    PGF getGeneratorParameters() const;
+    std::vector<DreamRadarTemplate> getGeneratorSettings() const;
 
     /**
-     * @brief Loads UI settings for a wondercard
+     * @brief Loads UI settings for dream radar templates
      *
-     * @return Wondercard template
+     * @return Dream radar templates
      */
-    PGF getSearcherParameters() const;
+    std::vector<DreamRadarTemplate> getSearcherSettings() const;
+
+    /**
+     * @brief Updates available genders for the select Pokemon
+     *
+     * @param comboBoxSpecie Pokemon specie combo box
+     * @param comboBoxGender Pokemon gender combo box
+     */
+    void updateGenders(ComboBox *comboBoxSpecie, ComboBox *comboBoxGender);
 
 private slots:
-    /**
-     * @brief Calculates the initial advances from a starting seed
-     */
-    void calculateInitialAdvances();
-
     /**
      * @brief Generates static encounters from a starting seed
      */
     void generate();
 
     /**
-     * @brief Reads in settings from a imported wondercard file
-     */
-    void generatorImportEvent();
-
-    /**
      * @brief Searches static encounters from date range
      */
     void search();
-
-    /**
-     * @brief Reads in settings from a imported wondercard file
-     */
-    void searcherImportEvent();
 
     /**
      * @brief Updates displayed information for a profile
@@ -131,4 +122,4 @@ private slots:
     void profileManager();
 };
 
-#endif // EVENT5_HPP
+#endif // DREAMRADAR_HPP

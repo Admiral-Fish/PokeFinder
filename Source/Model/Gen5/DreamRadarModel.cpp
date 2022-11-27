@@ -17,20 +17,21 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include "EventModel5.hpp"
+#include "DreamRadarModel.hpp"
 #include <Core/Util/Translator.hpp>
-#include <Core/Util/Utilities.hpp>
 
-EventGeneratorModel5::EventGeneratorModel5(QObject *parent) : TableModel<State5>(parent), showStats(false)
+static const QStringList needleStrings = { "↑", "↗", "→", "↘", "↓", "↙", "←", "↖" };
+
+DreamRadarGeneratorModel5::DreamRadarGeneratorModel5(QObject *parent) : TableModel<DreamRadarState>(parent), showStats(false)
 {
 }
 
-int EventGeneratorModel5::columnCount(const QModelIndex &parent) const
+int DreamRadarGeneratorModel5::columnCount(const QModelIndex &parent) const
 {
     return 15;
 }
 
-QVariant EventGeneratorModel5::data(const QModelIndex &index, int role) const
+QVariant DreamRadarGeneratorModel5::data(const QModelIndex &index, int role) const
 {
     if (role == Qt::DisplayRole)
     {
@@ -41,7 +42,7 @@ QVariant EventGeneratorModel5::data(const QModelIndex &index, int role) const
         case 0:
             return state.getAdvances();
         case 1:
-            return QString::fromStdString(Utilities5::getChatot(state.getChatot()));
+            return needleStrings[state.getNeedle()];
         case 2:
             return QString::number(state.getPID(), 16).toUpper().rightJustified(8, '0');
         case 3:
@@ -77,11 +78,10 @@ QVariant EventGeneratorModel5::data(const QModelIndex &index, int role) const
             return QString::fromStdString(*Translator::getGender(state.getGender()));
         }
     }
-
     return QVariant();
 }
 
-QVariant EventGeneratorModel5::headerData(int section, Qt::Orientation orientation, int role) const
+QVariant DreamRadarGeneratorModel5::headerData(int section, Qt::Orientation orientation, int role) const
 {
     if (role == Qt::DisplayRole && orientation == Qt::Horizontal)
     {
@@ -90,22 +90,23 @@ QVariant EventGeneratorModel5::headerData(int section, Qt::Orientation orientati
     return QVariant();
 }
 
-void EventGeneratorModel5::setShowStats(bool flag)
+void DreamRadarGeneratorModel5::setShowStats(bool flag)
 {
     showStats = flag;
     emit dataChanged(index(0, 6), index(rowCount(), 11), { Qt::DisplayRole });
 }
 
-EventSearcherModel5::EventSearcherModel5(QObject *parent) : TableModel<SearcherState5<State5>>(parent), showStats(false)
+DreamRadarSearcherModel5::DreamRadarSearcherModel5(QObject *parent) : TableModel<SearcherState5<DreamRadarState>>(parent), showStats(false)
 {
 }
 
-int EventSearcherModel5::columnCount(const QModelIndex &parent) const
+
+int DreamRadarSearcherModel5::columnCount(const QModelIndex &parent) const
 {
     return 18;
 }
 
-QVariant EventSearcherModel5::data(const QModelIndex &index, int role) const
+QVariant DreamRadarSearcherModel5::data(const QModelIndex &index, int role) const
 {
     if (role == Qt::DisplayRole)
     {
@@ -159,11 +160,10 @@ QVariant EventSearcherModel5::data(const QModelIndex &index, int role) const
             return QString::fromStdString(Translator::getKeypresses(display.getButtons()));
         }
     }
-
     return QVariant();
 }
 
-QVariant EventSearcherModel5::headerData(int section, Qt::Orientation orientation, int role) const
+QVariant DreamRadarSearcherModel5::headerData(int section, Qt::Orientation orientation, int role) const
 {
     if (role == Qt::DisplayRole && orientation == Qt::Horizontal)
     {
@@ -172,7 +172,7 @@ QVariant EventSearcherModel5::headerData(int section, Qt::Orientation orientatio
     return QVariant();
 }
 
-void EventSearcherModel5::sort(int column, Qt::SortOrder order)
+void DreamRadarSearcherModel5::sort(int column, Qt::SortOrder order)
 {
     if (!model.empty())
     {
@@ -181,39 +181,46 @@ void EventSearcherModel5::sort(int column, Qt::SortOrder order)
         switch (column)
         {
         case 0:
-            std::sort(model.begin(), model.end(), [flag](const SearcherState5<State5> &state1, const SearcherState5<State5> &state2) {
-                return flag ? state1.getInitialSeed() < state2.getInitialSeed() : state1.getInitialSeed() > state2.getInitialSeed();
-            });
+            std::sort(model.begin(), model.end(),
+                      [flag](const SearcherState5<DreamRadarState> &state1, const SearcherState5<DreamRadarState> &state2) {
+                          return flag ? state1.getInitialSeed() < state2.getInitialSeed()
+                                      : state1.getInitialSeed() > state2.getInitialSeed();
+                      });
             break;
         case 1:
-            std::sort(model.begin(), model.end(), [flag](const SearcherState5<State5> &state1, const SearcherState5<State5> &state2) {
-                return flag ? state1.getState().getAdvances() < state2.getState().getAdvances()
-                            : state1.getState().getAdvances() > state2.getState().getAdvances();
-            });
+            std::sort(model.begin(), model.end(),
+                      [flag](const SearcherState5<DreamRadarState> &state1, const SearcherState5<DreamRadarState> &state2) {
+                          return flag ? state1.getState().getAdvances() < state2.getState().getAdvances()
+                                      : state1.getState().getAdvances() > state2.getState().getAdvances();
+                      });
             break;
         case 2:
-            std::sort(model.begin(), model.end(), [flag](const SearcherState5<State5> &state1, const SearcherState5<State5> &state2) {
-                return flag ? state1.getState().getPID() < state2.getState().getPID()
-                            : state1.getState().getPID() > state2.getState().getPID();
-            });
+            std::sort(model.begin(), model.end(),
+                      [flag](const SearcherState5<DreamRadarState> &state1, const SearcherState5<DreamRadarState> &state2) {
+                          return flag ? state1.getState().getPID() < state2.getState().getPID()
+                                      : state1.getState().getPID() > state2.getState().getPID();
+                      });
             break;
         case 3:
-            std::sort(model.begin(), model.end(), [flag](const SearcherState5<State5> &state1, const SearcherState5<State5> &state2) {
-                return flag ? state1.getState().getShiny() < state2.getState().getShiny()
-                            : state1.getState().getShiny() > state2.getState().getShiny();
-            });
+            std::sort(model.begin(), model.end(),
+                      [flag](const SearcherState5<DreamRadarState> &state1, const SearcherState5<DreamRadarState> &state2) {
+                          return flag ? state1.getState().getShiny() < state2.getState().getShiny()
+                                      : state1.getState().getShiny() > state2.getState().getShiny();
+                      });
             break;
         case 4:
-            std::sort(model.begin(), model.end(), [flag](const SearcherState5<State5> &state1, const SearcherState5<State5> &state2) {
-                return flag ? state1.getState().getNature() < state2.getState().getNature()
-                            : state1.getState().getNature() > state2.getState().getNature();
-            });
+            std::sort(model.begin(), model.end(),
+                      [flag](const SearcherState5<DreamRadarState> &state1, const SearcherState5<DreamRadarState> &state2) {
+                          return flag ? state1.getState().getNature() < state2.getState().getNature()
+                                      : state1.getState().getNature() > state2.getState().getNature();
+                      });
             break;
         case 5:
-            std::sort(model.begin(), model.end(), [flag](const SearcherState5<State5> &state1, const SearcherState5<State5> &state2) {
-                return flag ? state1.getState().getAbility() < state2.getState().getAbility()
-                            : state1.getState().getAbility() > state2.getState().getAbility();
-            });
+            std::sort(model.begin(), model.end(),
+                      [flag](const SearcherState5<DreamRadarState> &state1, const SearcherState5<DreamRadarState> &state2) {
+                          return flag ? state1.getState().getAbility() < state2.getState().getAbility()
+                                      : state1.getState().getAbility() > state2.getState().getAbility();
+                      });
             break;
         case 6:
         case 7:
@@ -222,49 +229,55 @@ void EventSearcherModel5::sort(int column, Qt::SortOrder order)
         case 10:
         case 11:
             std::sort(model.begin(), model.end(),
-                      [flag, column](const SearcherState5<State5> &state1, const SearcherState5<State5> &state2) {
+                      [flag, column](const SearcherState5<DreamRadarState> &state1, const SearcherState5<DreamRadarState> &state2) {
                           return flag ? state1.getState().getIV(column - 6) < state2.getState().getIV(column - 6)
                                       : state1.getState().getIV(column - 6) > state2.getState().getIV(column - 6);
                       });
             break;
         case 12:
-            std::sort(model.begin(), model.end(), [flag](const SearcherState5<State5> &state1, const SearcherState5<State5> &state2) {
-                return flag ? state1.getState().getHiddenPower() < state2.getState().getHiddenPower()
-                            : state1.getState().getHiddenPower() > state2.getState().getHiddenPower();
-            });
+            std::sort(model.begin(), model.end(),
+                      [flag](const SearcherState5<DreamRadarState> &state1, const SearcherState5<DreamRadarState> &state2) {
+                          return flag ? state1.getState().getHiddenPower() < state2.getState().getHiddenPower()
+                                      : state1.getState().getHiddenPower() > state2.getState().getHiddenPower();
+                      });
             break;
         case 13:
-            std::sort(model.begin(), model.end(), [flag](const SearcherState5<State5> &state1, const SearcherState5<State5> &state2) {
-                return flag ? state1.getState().getHiddenPowerStrength() < state2.getState().getHiddenPowerStrength()
-                            : state1.getState().getHiddenPowerStrength() > state2.getState().getHiddenPowerStrength();
-            });
+            std::sort(model.begin(), model.end(),
+                      [flag](const SearcherState5<DreamRadarState> &state1, const SearcherState5<DreamRadarState> &state2) {
+                          return flag ? state1.getState().getHiddenPowerStrength() < state2.getState().getHiddenPowerStrength()
+                                      : state1.getState().getHiddenPowerStrength() > state2.getState().getHiddenPowerStrength();
+                      });
             break;
         case 14:
-            std::sort(model.begin(), model.end(), [flag](const SearcherState5<State5> &state1, const SearcherState5<State5> &state2) {
-                return flag ? state1.getState().getGender() < state2.getState().getGender()
-                            : state1.getState().getGender() > state2.getState().getGender();
-            });
+            std::sort(model.begin(), model.end(),
+                      [flag](const SearcherState5<DreamRadarState> &state1, const SearcherState5<DreamRadarState> &state2) {
+                          return flag ? state1.getState().getGender() < state2.getState().getGender()
+                                      : state1.getState().getGender() > state2.getState().getGender();
+                      });
             break;
         case 15:
-            std::sort(model.begin(), model.end(), [flag](const SearcherState5<State5> &state1, const SearcherState5<State5> &state2) {
-                return flag ? state1.getDateTime() < state2.getDateTime() : state1.getDateTime() > state2.getDateTime();
-            });
+            std::sort(model.begin(), model.end(),
+                      [flag](const SearcherState5<DreamRadarState> &state1, const SearcherState5<DreamRadarState> &state2) {
+                          return flag ? state1.getDateTime() < state2.getDateTime() : state1.getDateTime() > state2.getDateTime();
+                      });
             break;
         case 16:
-            std::sort(model.begin(), model.end(), [flag](const SearcherState5<State5> &state1, const SearcherState5<State5> &state2) {
-                return flag ? state1.getTimer0() < state2.getTimer0() : state1.getTimer0() > state2.getTimer0();
-            });
+            std::sort(model.begin(), model.end(),
+                      [flag](const SearcherState5<DreamRadarState> &state1, const SearcherState5<DreamRadarState> &state2) {
+                          return flag ? state1.getTimer0() < state2.getTimer0() : state1.getTimer0() > state2.getTimer0();
+                      });
             break;
         case 17:
-            std::sort(model.begin(), model.end(), [flag](const SearcherState5<State5> &state1, const SearcherState5<State5> &state2) {
-                return flag ? state1.getButtons() < state2.getButtons() : state1.getButtons() > state2.getButtons();
-            });
+            std::sort(model.begin(), model.end(),
+                      [flag](const SearcherState5<DreamRadarState> &state1, const SearcherState5<DreamRadarState> &state2) {
+                          return flag ? state1.getButtons() < state2.getButtons() : state1.getButtons() > state2.getButtons();
+                      });
             break;
         }
     }
 }
 
-void EventSearcherModel5::setShowStats(bool flag)
+void DreamRadarSearcherModel5::setShowStats(bool flag)
 {
     showStats = flag;
     emit dataChanged(index(0, 6), index(rowCount(), 11), { Qt::DisplayRole });

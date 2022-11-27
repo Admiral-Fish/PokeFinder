@@ -37,6 +37,14 @@ public:
     MT(u32 seed);
 
     /**
+     * @brief Construct a new MT object
+     *
+     * @param seed Starting PRNG state
+     * @param advances Number of initial advances
+     */
+    MT(u32 seed, u32 advances);
+
+    /**
      * @brief Advances the RNG by \p advances amount
      *
      * @param advances Number of advances

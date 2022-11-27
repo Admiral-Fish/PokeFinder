@@ -31,6 +31,7 @@
 #include <Form/Gen4/Static4.hpp>
 #include <Form/Gen4/Tools/SeedToTime4.hpp>
 #include <Form/Gen4/Wild4.hpp>
+#include <Form/Gen5/DreamRadar.hpp>
 #include <Form/Gen5/Event5.hpp>
 #include <Form/Gen5/IDs5.hpp>
 #include <Form/Gen5/Profile/ProfileCalibrator5.hpp>
@@ -68,7 +69,6 @@
 //#include <Forms/Gen3/Tools/SpindaPainter.hpp>
 //#include <Forms/Gen4/Eggs4.hpp>
 //#include <Forms/Gen4/Tools/ChainedSID.hpp>
-//#include <Forms/Gen5/DreamRadar.hpp>
 //#include <Forms/Gen5/Eggs5.hpp>
 //#include <Forms/Gen5/HiddenGrotto.hpp>
 //#include <Forms/Gen5/Static5.hpp>
@@ -101,7 +101,7 @@ MainWindow::MainWindow(bool profile, QWidget *parent) : QMainWindow(parent), ui(
     connect(ui->actionSeedtoTime4, &QAction::triggered, this, &MainWindow::openSeedToTime4);
     // connect(ui->actionSIDfromChainedShiny, &QAction::triggered, this, &MainWindow::openSIDFromChainedShiny);
 
-    // connect(ui->pushButtonDreamRadar, &QPushButton::clicked, this, &MainWindow::openDreamRadar);
+    connect(ui->pushButtonDreamRadar, &QPushButton::clicked, this, &MainWindow::openDreamRadar);
     // connect(ui->pushButtonEgg5, &QPushButton::clicked, this, &MainWindow::openEgg5);
     connect(ui->pushButtonEvent5, &QPushButton::clicked, this, &MainWindow::openEvent5);
     // connect(ui->pushButtonHiddenGrotto, &QPushButton::clicked, this, &MainWindow::openHiddenGrotto);
@@ -163,7 +163,7 @@ MainWindow::~MainWindow()
     delete static4;
     delete wild4;
 
-    // delete dreamRadar;
+    delete dreamRadar;
     // delete egg5;
     delete event5;
     // delete hiddenGrotto;
@@ -367,6 +367,24 @@ void MainWindow::openSIDFromChainedShiny()
     chainedSID->show();
 }*/
 
+void MainWindow::openDreamRadar()
+{
+    if (!dreamRadar)
+    {
+        dreamRadar = new DreamRadar();
+        connect(dreamRadar, &DreamRadar::profilesModified, this, &MainWindow::updateProfiles);
+    }
+    dreamRadar->show();
+
+    if (!dreamRadar->hasProfiles())
+    {
+        QMessageBox msg(QMessageBox::Warning, tr("No profiles found"),
+                        tr("Please use the Profile Calibrator under Gen 5 Tools to create one."));
+        msg.exec();
+        dreamRadar->close();
+    }
+}
+
 void MainWindow::openEvent5()
 {
     if (!event5)
@@ -432,24 +450,6 @@ void MainWindow::openProfileManager5() const
                             tr("Please use the Profile Calibrator under Gen 5 Tools to create one."));
         msg.exec();
         static5->close();
-    }
-}
-
-void MainWindow::openDreamRadar()
-{
-    if (!dreamRadar)
-    {
-        dreamRadar = new DreamRadar();
-        connect(dreamRadar, &DreamRadar::updateProfiles, this, &MainWindow::updateProfiles);
-    }
-    dreamRadar->show();
-
-    if (!dreamRadar->hasProfiles())
-    {
-        QMessageBox msg(QMessageBox::Warning, tr("No profiles found"),
-                            tr("Please use the Profile Calibrator under Gen 5 Tools to create one."));
-        msg.exec();
-        dreamRadar->close();
     }
 }
 
@@ -725,10 +725,10 @@ void MainWindow::updateProfiles(int num)
         {
             event5->updateProfiles();
         }
-        /*if (dreamRadar)
+        if (dreamRadar)
         {
             dreamRadar->updateProfiles();
-        }*/
+        }
         if (ids5)
         {
             ids5->updateProfiles();

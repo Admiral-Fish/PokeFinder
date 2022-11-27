@@ -33,6 +33,7 @@
 #include <vector>
 
 class Date;
+class DreamRadarGenerator;
 template <class StateType>
 class SearcherState5;
 
@@ -176,7 +177,16 @@ private:
 
                                 u32 advances = flag ? Utilities5::initialAdvancesBW(seed)
                                                     : Utilities5::initialAdvancesBW2(seed, profile.getMemoryLink());
-                                auto states = generator.generate(seed);
+
+                                std::vector<State> states;
+                                if constexpr (std::is_same<Generator, DreamRadarGenerator>::value)
+                                {
+                                    states = generator.generate(seed, profile.getMemoryLink());
+                                }
+                                else
+                                {
+                                    states = generator.generate(seed);
+                                }
 
                                 if (!states.empty())
                                 {

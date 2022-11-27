@@ -31,6 +31,11 @@ MT::MT(u32 seed) : index(624)
     }
 }
 
+MT::MT(u32 seed, u32 advances) : MT(seed)
+{
+    advance(advances);
+}
+
 void MT::advance(u32 advances)
 {
     u64 advance = advances + index;

@@ -41,6 +41,17 @@ public:
     /**
      * @brief Construct a new RNGList object
      *
+     * @param seed Starting PRNG state
+     * @param advances Initial advances
+     */
+    RNGList(u32 seed, u32 advances) : rng(seed, advances), head(0), pointer(0)
+    {
+        init();
+    }
+
+    /**
+     * @brief Construct a new RNGList object
+     *
      * @param seed0 Starting PRNG state0
      * @param seed1 Starting PRNG state1
      * @param advances Initial advances

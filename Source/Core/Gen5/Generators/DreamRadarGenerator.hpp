@@ -17,19 +17,19 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef EVENTGENERATOR5_HPP
-#define EVENTGENERATOR5_HPP
+#ifndef DREAMRADARGENERATOR_HPP
+#define DREAMRADARGENERATOR_HPP
 
+#include <Core/Gen5/DreamRadarTemplate.hpp>
 #include <Core/Gen5/Filters/StateFilter5.hpp>
-#include <Core/Gen5/PGF.hpp>
 #include <Core/Parents/Generators/Generator.hpp>
 
-class State5;
+class DreamRadarState;
 
 /**
- * @brief Event generator for Gen 5
+ * @brief Dream radar generator for Gen 5
  */
-class EventGenerator5 : public Generator<StateFilter5>
+class DreamRadarGenerator : public Generator<StateFilter5>
 {
 public:
     /**
@@ -37,35 +37,31 @@ public:
      *
      * @param initialAdvances Initial number of advances
      * @param maxAdvances Maximum number of advances
-     * @param offset Number of advances to offset
      * @param tid Trainer ID
      * @param sid Secret ID
      * @param version Game version
-     * @param pgf Pokemon template
+     * @param badgeCount Numbers of badges
+     * @param radarTemplate Dream radar templates
      * @param filter State filter
      */
-    EventGenerator5(u32 initialAdvances, u32 maxAdvances, u32 offset, u16 tid, u16 sid, Game version, const PGF &pgf,
-                    const StateFilter5 &filter);
+    DreamRadarGenerator(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, Game version, u8 badgeCount,
+                        const std::vector<DreamRadarTemplate> &radarTemplates, const StateFilter5 &filter);
 
     /**
      * @brief Generates states
      *
      * @param seed Starting PRNG state
+     * @param memory Whether memory link is active
      *
      * @return Vector of computed states
      */
-    std::vector<State5> generate(u64 seed) const;
-
-    /**
-     * @brief Updates the initial advances
-     *
-     * @param initialAdvances Initial advances
-     */
-    void setInitialAdvances(u32 initialAdvances);
+    std::vector<DreamRadarState> generate(u64 seed, bool memory) const;
 
 private:
-    PGF pgf;
-    u8 wondercardAdvances;
+    DreamRadarTemplate radarTemplate;
+    u8 ivAdvances;
+    u8 level;
+    u8 pidAdvances;
 };
 
-#endif // EVENTGENERATOR5_HPP
+#endif // DREAMRADARGENERATOR_HPP

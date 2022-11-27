@@ -74,6 +74,7 @@ set(PROJECT_UI
     Gen4/Tools/SearchCoinFlips.ui
     Gen4/Tools/SeedToTime4.ui
     Gen4/Wild4.ui
+    Gen5/DreamRadar.ui
     Gen5/Event5.ui
     Gen5/IDs5.ui
     Gen5/Profile/ProfileCalibrator5.ui
@@ -154,6 +155,8 @@ set(PROJECT_SOURCES
     Gen4/Tools/SeedToTime4.hpp
     Gen4/Wild4.cpp
     Gen4/Wild4.hpp
+    Gen5/DreamRadar.cpp
+    Gen5/DreamRadar.hpp
     Gen5/Event5.cpp
     Gen5/Event5.hpp
     Gen5/IDs5.cpp

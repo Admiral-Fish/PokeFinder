@@ -32,7 +32,7 @@ class EncounterArea8 : public EncounterArea
 {
 public:
     /**
-     * @brief Construct a new EncounterArea4 object
+     * @brief Construct a new EncounterArea8 object
      *
      * @param location Location number
      * @param rate Encounter rate of the area

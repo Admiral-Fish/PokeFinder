@@ -96,10 +96,16 @@ add_library(PokeFinderCore STATIC
     Gen4/States/State4.hpp
     Gen4/States/WildState4.hpp
     Gen4/StaticTemplate4.hpp
+    Gen5/DreamRadarTemplate.hpp
+    Gen5/EncounterArea5.hpp
+    Gen5/Encounters5.cpp
+    Gen5/Encounters5.hpp
     Gen5/Keypresses.cpp
     Gen5/Keypresses.hpp
     Gen5/Filters/StateFilter5.cpp
     Gen5/Filters/StateFilter5.hpp
+    Gen5/Generators/DreamRadarGenerator.cpp
+    Gen5/Generators/DreamRadarGenerator.hpp
     Gen5/Generators/EventGenerator5.cpp
     Gen5/Generators/EventGenerator5.hpp
     Gen5/Generators/IDGenerator5.cpp
@@ -114,6 +120,7 @@ add_library(PokeFinderCore STATIC
     Gen5/Searchers/ProfileSearcher5.cpp
     Gen5/Searchers/ProfileSearcher5.hpp
     Gen5/Searchers/Searcher5.hpp
+    Gen5/States/DreamRadarState.hpp
     Gen5/States/ProfileSearcherState5.hpp
     Gen5/States/SearcherState5.hpp
     Gen5/States/State5.hpp
