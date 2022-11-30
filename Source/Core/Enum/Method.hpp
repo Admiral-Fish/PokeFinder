@@ -58,9 +58,7 @@ enum class Method : u8
 
     Method5IVs,
     Method5CGear,
-    Method5,
-    BWBred,
-    BW2Bred
+    Method5
 };
 
 /**

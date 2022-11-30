@@ -32,8 +32,8 @@ public:
      * @param ivs Pokemon IVs
      * @param ability Pokemon ability
      * @param gender Pokemon gender
-     * @param nature Pokemon nature
      * @param level Pokemon level
+     * @param nature Pokemon nature
      * @param shiny Pokemon shininess
      * @param inheritance Pokemon IV inheritance
      * @param info Pokemon information
@@ -84,8 +84,8 @@ public:
      * @param ivs Pokemon IVs
      * @param ability Pokemon ability
      * @param gender Pokemon gender
-     * @param nature Pokemon nature
      * @param level Pokemon level
+     * @param nature Pokemon nature
      * @param shiny Pokemon shininess
      * @param inheritance Pokemon IV inheritance
      * @param info Pokemon information
@@ -124,8 +124,8 @@ public:
      * @param ivs Pokemon IVs
      * @param ability Pokemon ability
      * @param gender Pokemon gender
-     * @param nature Pokemon nature
      * @param level Pokemon level
+     * @param nature Pokemon nature
      * @param shiny Pokemon shininess
      * @param inheritance Pokemon IV inheritance
      * @param info Pokemon information

@@ -17,26 +17,24 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef DREAMRADAR_HPP
-#define DREAMRADAR_HPP
+#ifndef EGGS5_HPP
+#define EGGS5_HPP
 
-#include <Core/Gen5/DreamRadarTemplate.hpp>
 #include <QWidget>
 
-class ComboBox;
-class DreamRadarGeneratorModel5;
-class DreamRadarSearcherModel5;
+class EggGeneratorModel5;
+class EggSearcherModel5;
 class Profile5;
 
 namespace Ui
 {
-    class DreamRadar;
+    class Eggs5;
 }
 
 /**
- * @brief Provides settings and filters to RNG dream radar encounters in Gen 5 games
+ * @brief Provides settings and filters to RNG eggs in Gen 5 games
  */
-class DreamRadar : public QWidget
+class Eggs5 : public QWidget
 {
     Q_OBJECT
 signals:
@@ -47,16 +45,16 @@ signals:
 
 public:
     /**
-     * @brief Construct a new DreamRadar object
+     * @brief Construct a new Eggs5 object
      *
      * @param parent Parent widget, which takes memory ownership
      */
-    DreamRadar(QWidget *parent = nullptr);
+    Eggs5(QWidget *parent = nullptr);
 
     /**
-     * @brief Destroy the DreamRadar object
+     * @brief Destroy the Eggs5 object
      */
-    ~DreamRadar() override;
+    ~Eggs5() override;
 
     /**
      * @brief Determines if any profiles exist
@@ -72,43 +70,26 @@ public:
     void updateProfiles();
 
 private:
-    Ui::DreamRadar *ui;
+    Ui::Eggs5 *ui;
 
-    DreamRadarGeneratorModel5 *generatorModel;
-    DreamRadarSearcherModel5 *searcherModel;
+    EggGeneratorModel5 *generatorModel;
+    EggSearcherModel5 *searcherModel;
     Profile5 *currentProfile;
     std::vector<Profile5> profiles;
 
-    /**
-     * @brief Loads UI settings for dream radar templates
-     *
-     * @return Dream radar templates
-     */
-    std::vector<DreamRadarTemplate> getGeneratorSettings() const;
-
-    /**
-     * @brief Loads UI settings for dream radar templates
-     *
-     * @return Dream radar templates
-     */
-    std::vector<DreamRadarTemplate> getSearcherSettings() const;
-
-    /**
-     * @brief Updates available genders for the select Pokemon
-     *
-     * @param comboBoxSpecie Pokemon specie combo box
-     * @param comboBoxGender Pokemon gender combo box
-     */
-    void updateGenders(ComboBox *comboBoxSpecie, ComboBox *comboBoxGender);
-
 private slots:
     /**
-     * @brief Generates static encounters from a starting seed
+     * @brief Calculates the initial advances from a starting seed
+     */
+    void calculateInitialAdvances();
+
+    /**
+     * @brief Generates egg encounters from a starting seed
      */
     void generate();
 
     /**
-     * @brief Searches static encounters from date range
+     * @brief Searches egg encounters from date range
      */
     void search();
 
@@ -125,4 +106,4 @@ private slots:
     void profileManager();
 };
 
-#endif // DREAMRADAR_HPP
+#endif // EGGS5_HPP

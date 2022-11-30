@@ -23,6 +23,7 @@
 #include <Core/Parents/Filters/StateFilter.hpp>
 
 class DreamRadarState;
+class EggState5;
 class GeneratorState;
 
 class StateFilter5 : public StateFilter
@@ -52,6 +53,16 @@ public:
      * @return false State does not pass the filter
      */
     bool compareState(const DreamRadarState &state) const;
+
+    /**
+     * @brief Determines if the \p state meets the filter criteria
+     *
+     * @param state State to compare
+     *
+     * @return true State passes the filter
+     * @return false State does not pass the filter
+     */
+    bool compareState(const EggState5 &state) const;
 
     /**
      * @brief Determines if the \p state meets the filter criteria

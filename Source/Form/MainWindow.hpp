@@ -192,6 +192,11 @@ private slots:
     void openDreamRadar();
 
     /**
+     * @brief Opens the Gen 5 Egg window
+     */
+    void openEgg5();
+
+    /**
      * @brief Opens the Gen 5 Event window
      */
     void openEvent5();
@@ -213,7 +218,6 @@ private slots:
 
     // void openStatic5();
     // void openHiddenGrotto();
-    // void openEgg5();
 
     // Gen 8
     /**
@@ -244,7 +248,7 @@ private slots:
     /**
      * @brief Opens the Gen 8 Profile Manager window
      */
-    void openProfileManager8();
+    void openProfileManager8() const;
 
     /**
      * @brief Opens the Gen 8 Raid window

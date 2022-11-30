@@ -19,6 +19,7 @@
 
 #include "StateFilter5.hpp"
 #include <Core/Gen5/States/DreamRadarState.hpp>
+#include <Core/Gen5/States/EggState5.hpp>
 #include <Core/Gen5/States/State5.hpp>
 
 StateFilter5::StateFilter5(u8 gender, u8 ability, u8 shiny, bool skip, const std::array<u8, 6> &min, const std::array<u8, 6> &max,
@@ -28,6 +29,50 @@ StateFilter5::StateFilter5(u8 gender, u8 ability, u8 shiny, bool skip, const std
 }
 
 bool StateFilter5::compareState(const DreamRadarState &state) const
+{
+    if (skip)
+    {
+        return true;
+    }
+
+    if (ability != 255 && ability != state.getAbility())
+    {
+        return false;
+    }
+
+    if (gender != 255 && gender != state.getGender())
+    {
+        return false;
+    }
+
+    if (!powers[state.getHiddenPower()])
+    {
+        return false;
+    }
+
+    if (!natures[state.getNature()])
+    {
+        return false;
+    }
+
+    if (shiny != 255 && !(shiny & state.getShiny()))
+    {
+        return false;
+    }
+
+    for (int i = 0; i < 6; i++)
+    {
+        u8 iv = state.getIV(i);
+        if (iv < min[i] || iv > max[i])
+        {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+bool StateFilter5::compareState(const EggState5 &state) const
 {
     if (skip)
     {

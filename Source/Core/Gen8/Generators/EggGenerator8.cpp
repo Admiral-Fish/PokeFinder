@@ -88,10 +88,10 @@ std::vector<EggGeneratorState> EggGenerator8::generate(u64 seed0, u64 seed1) con
 
             XoroshiroBDSP rng(seed);
 
-            u8 gender;
-            const PersonalInfo *info = base;
             // Nidoran
             // Volbeat / Illumise
+            u8 gender;
+            const PersonalInfo *info = base;
             if (daycare.getEggSpecie() == 29 || daycare.getEggSpecie() == 32 || daycare.getEggSpecie() == 313
                 || daycare.getEggSpecie() == 314)
             {

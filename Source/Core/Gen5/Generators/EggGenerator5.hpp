@@ -1,0 +1,80 @@
+/*
+ * This file is part of PokéFinder
+ * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 3
+ * of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ */
+
+#ifndef EGGGENERATOR5_HPP
+#define EGGGENERATOR5_HPP
+
+#include <Core/Gen5/Filters/StateFilter5.hpp>
+#include <Core/Parents/Generators/EggGenerator.hpp>
+
+class Daycare;
+class EggState5;
+class PersonalInfo;
+
+/**
+ * @brief Egg generator for Gen 5
+ */
+class EggGenerator5 : public EggGenerator<StateFilter5>
+{
+public:
+    /**
+     * @brief Construct a new EggGenerator5 object
+     *
+     * @param initialAdvances Initial number of advances
+     * @param maxAdvances Maximum number of advances
+     * @param offset Number of advances to offset
+     * @param tid Trainer ID
+     * @param sid Secret ID
+     * @param version Game version
+     * @param shinyCharm Whether or not shiny charm is obtained
+     * @param daycare Daycare parent information
+     * @param filter State filter
+     */
+    EggGenerator5(u32 initialAdvances, u32 maxAdvances, u32 offset, u16 tid, u16 sid, Game version, bool shinyCharm, const Daycare &daycare,
+                  const StateFilter5 &filter);
+
+    /**
+     * @brief Generates states
+     *
+     * @param seed Starting PRNG state
+     *
+     * @return Vector of computed states
+     */
+    std::vector<EggState5> generate(u64 seed) const;
+
+    /**
+     * @brief Updates the initial advances
+     *
+     * @param initialAdvances Initial advances
+     */
+    void setInitialAdvances(u32 advances);
+
+private:
+    bool ditto;
+    u8 everstone;
+    u8 parentAbility;
+    u8 poweritem;
+    u8 rolls;
+
+    std::vector<EggState5> generateBW(u64 seed) const;
+    std::vector<EggState5> generateBW2(u64 seed) const;
+    EggState5 generateBW2Egg(u64 seed, const PersonalInfo **info) const;
+};
+
+#endif // EGGGENERATOR5_HPP

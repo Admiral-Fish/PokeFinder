@@ -30,6 +30,8 @@ add_library(PokeFinderModel STATIC
     Gen4/WildModel4.hpp
     Gen5/DreamRadarModel.cpp
     Gen5/DreamRadarModel.hpp
+    Gen5/EggModel5.cpp
+    Gen5/EggModel5.hpp
     Gen5/EventModel5.cpp
     Gen5/EventModel5.hpp
     Gen5/IDModel5.cpp
