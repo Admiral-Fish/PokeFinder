@@ -21,6 +21,7 @@
 #define WILDGENERATOR8_HPP
 
 #include <Core/Gen8/Filters/StateFilter8.hpp>
+#include <Core/Gen8/Profile8.hpp>
 #include <Core/Parents/Generators/WildGenerator.hpp>
 
 class EncounterArea8;
@@ -28,7 +29,7 @@ class EncounterArea8;
 /**
  * @brief Wild encounter generator for Gen8
  */
-class WildGenerator8 : public WildGenerator<WildStateFilter8>
+class WildGenerator8 : public WildGenerator<Profile8, WildStateFilter8>
 {
 public:
     /**
@@ -36,15 +37,13 @@ public:
      *
      * @param initialAdvances Initial number of advances
      * @param maxAdvances Maximum number of advances
-     * @param offset Number of advances to offset
-     * @param tid Trainer ID
-     * @param sid Secret ID
-     * @param version Game version
+     * @param delay Number of advances to offset
      * @param encounter Encounter type
      * @param lead Encounter lead
+     * @param profile Profile Information
      * @param filter State filter
      */
-    WildGenerator8(u32 initialAdvances, u32 maxAdvances, u32 offset, u16 tid, u16 sid, Game version, Encounter encounter, Lead lead,
+    WildGenerator8(u32 initialAdvances, u32 maxAdvances, u32 delay, Encounter encounter, Lead lead, const Profile8 &profile,
                    const WildStateFilter8 &filter);
 
     /**

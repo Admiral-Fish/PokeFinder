@@ -120,16 +120,13 @@ void GameCube::generate()
     u32 seed = ui->textBoxGeneratorSeed->getUInt();
     u32 initialAdvances = ui->textBoxGeneratorStartingAdvance->getUInt();
     u32 maxAdvances = ui->textBoxGeneratorMaxAdvances->getUInt();
-    u32 offset = ui->textBoxGeneratorDelay->getUInt();
-    u16 tid = currentProfile->getTID();
-    u16 sid = currentProfile->getSID();
+    u32 delay = ui->textBoxGeneratorDelay->getUInt();
 
     StateFilter3 filter(ui->filterGenerator->getGender(), ui->filterGenerator->getAbility(), ui->filterGenerator->getShiny(),
                         ui->filterGenerator->getDisableFilters(), ui->filterGenerator->getMinIVs(), ui->filterGenerator->getMaxIVs(),
                         ui->filterGenerator->getNatures(), ui->filterGenerator->getHiddenPowers());
-
-    GameCubeGenerator generator(initialAdvances, maxAdvances, offset, tid, sid, currentProfile->getVersion(), method,
-                                ui->checkBoxGeneratorFirstShadowUnset->isChecked(), filter);
+    GameCubeGenerator generator(initialAdvances, maxAdvances, delay, method, ui->checkBoxGeneratorFirstShadowUnset->isChecked(),
+                                *currentProfile, filter);
 
     std::vector<GeneratorState> states;
     if (shadowLock)
@@ -240,12 +237,7 @@ void GameCube::search()
 
     StateFilter3 filter(ui->filterSearcher->getGender(), ui->filterSearcher->getAbility(), ui->filterSearcher->getShiny(), false, min, max,
                         ui->filterSearcher->getNatures(), ui->filterSearcher->getHiddenPowers());
-
-    u16 tid = currentProfile->getTID();
-    u16 sid = currentProfile->getSID();
-
-    auto *searcher
-        = new GameCubeSearcher(tid, sid, currentProfile->getVersion(), method, ui->checkBoxSearcherFirstShadowUnset->isChecked(), filter);
+    auto *searcher = new GameCubeSearcher(method, ui->checkBoxSearcherFirstShadowUnset->isChecked(), *currentProfile, filter);
 
     int maxProgress = 1;
     if (method != Method::Channel)

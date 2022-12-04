@@ -294,9 +294,7 @@ void Wild4::generate()
     u32 seed = ui->textBoxGeneratorSeed->getUInt();
     u32 initialAdvances = ui->textBoxGeneratorStartingAdvance->getUInt();
     u32 maxAdvances = ui->textBoxGeneratorMaxAdvances->getUInt();
-    u32 offset = ui->textBoxGeneratorDelay->getUInt();
-    u16 tid = currentProfile->getTID();
-    u16 sid = currentProfile->getSID();
+    u32 delay = ui->textBoxGeneratorDelay->getUInt();
     auto encounter = ui->comboBoxGeneratorEncounter->getEnum<Encounter>();
     auto lead = ui->comboMenuGeneratorLead->getEnum<Lead>();
     bool chained = ui->checkBoxGeneratorPokeRadarShiny->isChecked();
@@ -305,9 +303,7 @@ void Wild4::generate()
                             ui->filterGenerator->getDisableFilters(), ui->filterGenerator->getMinIVs(), ui->filterGenerator->getMaxIVs(),
                             ui->filterGenerator->getNatures(), ui->filterGenerator->getHiddenPowers(),
                             ui->filterGenerator->getEncounterSlots());
-
-    WildGenerator4 generator(initialAdvances, maxAdvances, offset, tid, sid, currentProfile->getVersion(), method, encounter, lead, chained,
-                             filter);
+    WildGenerator4 generator(initialAdvances, maxAdvances, delay, method, encounter, lead, chained, *currentProfile, filter);
 
     auto states = generator.generate(seed, encounterGenerator[ui->comboBoxGeneratorLocation->getCurrentInt()], radarSlot);
     generatorModel->addItems(states);
@@ -576,21 +572,18 @@ void Wild4::search()
     ui->pushButtonSearch->setEnabled(false);
     ui->pushButtonCancel->setEnabled(true);
 
-    WildStateFilter4 filter(ui->filterSearcher->getGender(), ui->filterSearcher->getAbility(), ui->filterSearcher->getShiny(), false, min,
-                            max, ui->filterSearcher->getNatures(), ui->filterSearcher->getHiddenPowers(),
-                            ui->filterSearcher->getEncounterSlots());
-
     u32 minAdvance = ui->textBoxSearcherMinAdvance->getUInt();
     u32 maxAdvance = ui->textBoxSearcherMaxAdvance->getUInt();
     u32 minDelay = ui->textBoxSearcherMinDelay->getUInt();
     u32 maxDelay = ui->textBoxSearcherMaxDelay->getUInt();
-    u16 tid = currentProfile->getTID();
-    u16 sid = currentProfile->getSID();
     auto lead = ui->comboMenuSearcherLead->getEnum<Lead>();
     bool shiny = ui->checkBoxSearcherPokeRadarShiny->isChecked();
 
-    auto *searcher = new WildSearcher4(minAdvance, maxAdvance, minDelay, maxDelay, tid, sid, currentProfile->getVersion(), method,
-                                       encounter, lead, shiny, area, filter);
+    WildStateFilter4 filter(ui->filterSearcher->getGender(), ui->filterSearcher->getAbility(), ui->filterSearcher->getShiny(), false, min,
+                            max, ui->filterSearcher->getNatures(), ui->filterSearcher->getHiddenPowers(),
+                            ui->filterSearcher->getEncounterSlots());
+    auto *searcher
+        = new WildSearcher4(minAdvance, maxAdvance, minDelay, maxDelay, method, encounter, lead, shiny, area, *currentProfile, filter);
 
     int maxProgress = 1;
     for (u8 i = 0; i < 6; i++)

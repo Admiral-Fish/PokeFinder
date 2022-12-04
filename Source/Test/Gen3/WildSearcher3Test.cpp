@@ -85,12 +85,14 @@ void WildSearcher3Test::search()
     std::array<bool, 12> encounterSlots;
     encounterSlots.fill(true);
 
+    Profile3 profile("-", version, 12345, 54321, false);
+
     std::vector<EncounterArea3> encounterAreas = Encounters3::getEncounters(encounter, version);
     auto encounterArea = std::find_if(encounterAreas.begin(), encounterAreas.end(),
                                       [location](const EncounterArea3 &encounterArea) { return encounterArea.getLocation() == location; });
 
     WildStateFilter3 filter(255, 255, 255, false, min, max, natures, powers, encounterSlots);
-    WildSearcher3 searcher(12345, 54321, version, method, encounter, lead, *encounterArea, filter);
+    WildSearcher3 searcher(method, encounter, lead, *encounterArea, profile, filter);
 
     searcher.startSearch(min, max);
     auto states = searcher.getResults();
@@ -99,8 +101,7 @@ void WildSearcher3Test::search()
     for (const auto &state : states)
     {
         // Ensure generator agrees
-        WildGenerator3 generator(0, 0, 0, 12345, 54321, version, method, encounter,
-                                 lead != Lead::Synchronize ? lead : lead + state.getNature(), filter);
+        WildGenerator3 generator(0, 0, 0, method, encounter, lead != Lead::Synchronize ? lead : lead + state.getNature(), profile, filter);
         auto generatorStates = generator.generate(state.getSeed(), *encounterArea);
 
         QCOMPARE(generatorStates.size(), 1);

@@ -69,15 +69,15 @@ static bool isShiny(u16 high, u16 low, u16 tsv)
     return (high ^ low ^ tsv) < 8;
 }
 
-GameCubeGenerator::GameCubeGenerator(u32 initialAdvances, u32 maxAdvances, u32 offset, u16 tid, u16 sid, Game version, Method method,
-                                     bool unset, const StateFilter3 &filter) :
-    Generator<StateFilter3>(initialAdvances, maxAdvances, offset, tid, sid, version, method, filter), unset(unset)
+GameCubeGenerator::GameCubeGenerator(u32 initialAdvances, u32 maxAdvances, u32 delay, Method method, bool unset, const Profile3 &profile,
+                                     const StateFilter3 &filter) :
+    Generator(initialAdvances, maxAdvances, delay, method, profile, filter), unset(unset)
 {
 }
 
 std::vector<GeneratorState> GameCubeGenerator::generate(u32 seed, const ShadowTemplate *shadowTemplate) const
 {
-    if ((version & Game::Colosseum) != Game::None)
+    if ((profile.getVersion() & Game::Colosseum) != Game::None)
     {
         return generateColoShadow(seed, shadowTemplate);
     }
@@ -100,7 +100,7 @@ std::vector<GeneratorState> GameCubeGenerator::generateChannel(u32 seed, const S
 
     constexpr u16 threshHolds[2] = { 0x4000, 0x547a };
 
-    XDRNG rng(seed, initialAdvances + offset);
+    XDRNG rng(seed, initialAdvances + delay);
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rng.next())
     {
         XDRNG go(rng.getSeed());
@@ -163,7 +163,7 @@ std::vector<GeneratorState> GameCubeGenerator::generateColoShadow(u32 seed, cons
     std::vector<GeneratorState> states;
     const PersonalInfo *info = shadowTemplate->getInfo();
 
-    XDRNG rng(seed, initialAdvances + offset);
+    XDRNG rng(seed, initialAdvances + delay);
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rng.next())
     {
         XDRNG go(rng.getSeed());
@@ -250,7 +250,7 @@ std::vector<GeneratorState> GameCubeGenerator::generateGalesShadow(u32 seed, con
     std::vector<GeneratorState> states;
     const PersonalInfo *info = shadowTemplate->getInfo();
 
-    XDRNG rng(seed, initialAdvances + offset);
+    XDRNG rng(seed, initialAdvances + delay);
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rng.next())
     {
         XDRNG go(rng.getSeed());
@@ -353,7 +353,7 @@ std::vector<GeneratorState> GameCubeGenerator::generateNonLock(u32 seed, const S
         actualTSV = 10048; // TID: 10048 SID: 0
     }
 
-    XDRNG rng(seed, initialAdvances + offset);
+    XDRNG rng(seed, initialAdvances + delay);
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rng.next())
     {
         XDRNG go(rng.getSeed());

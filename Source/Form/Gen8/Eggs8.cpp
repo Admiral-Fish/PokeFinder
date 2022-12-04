@@ -128,21 +128,17 @@ void Eggs8::generate()
 
     u32 initialAdvances = ui->textBoxInitialAdvances->getUInt();
     u32 maxAdvances = ui->textBoxMaxAdvances->getUInt();
-    u32 offset = ui->textBoxDelay->getUInt();
-    u16 tid = currentProfile->getTID();
-    u16 sid = currentProfile->getSID();
-
+    u32 delay = ui->textBoxDelay->getUInt();
     u8 compatability = ui->comboBoxCompatibility->getCurrentByte();
     if (currentProfile->getOvalCharm())
     {
         compatability = compatability == 20 ? 40 : compatability == 50 ? 80 : 88;
     }
+    Daycare daycare = ui->eggSettings->getDaycareSettings();
 
     StateFilter8 filter(ui->filter->getGender(), ui->filter->getAbility(), ui->filter->getShiny(), ui->filter->getDisableFilters(),
                         ui->filter->getMinIVs(), ui->filter->getMaxIVs(), ui->filter->getNatures(), ui->filter->getHiddenPowers());
-
-    EggGenerator8 generator(initialAdvances, maxAdvances, offset, tid, sid, currentProfile->getVersion(), compatability,
-                            ui->eggSettings->getDaycareSettings(), currentProfile->getShinyCharm(), filter);
+    EggGenerator8 generator(initialAdvances, maxAdvances, delay, compatability, daycare, *currentProfile, filter);
 
     auto states = generator.generate(seed0, seed1);
     model->addItems(states);

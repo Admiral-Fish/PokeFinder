@@ -21,6 +21,7 @@
 #define EGGGENERATOR8_HPP
 
 #include <Core/Gen8/Filters/StateFilter8.hpp>
+#include <Core/Gen8/Profile8.hpp>
 #include <Core/Parents/Generators/EggGenerator.hpp>
 
 class EggState8;
@@ -28,7 +29,7 @@ class EggState8;
 /**
  * @brief Egg generator for Gen8
  */
-class EggGenerator8 : public EggGenerator<StateFilter8>
+class EggGenerator8 : public EggGenerator<Profile8, StateFilter8>
 {
 public:
     /**
@@ -36,17 +37,14 @@ public:
      *
      * @param initialAdvances Initial number of advances
      * @param maxAdvances Maximum number of advances
-     * @param offset Number of advances to offset
-     * @param version Game version
-     * @param tid Trainer ID
-     * @param sid Secret ID
+     * @param delay Number of advances to offset
      * @param compatability Parent compatability
      * @param daycare Daycare parent information
-     * @param shinyCharm Whether the shiny charm is obtained
+     * @param profile Profile Information
      * @param filter State filter
      */
-    EggGenerator8(u32 initialAdvances, u32 maxAdvances, u32 offset, u16 tid, u16 sid, Game version, u8 compatability,
-                  const Daycare &daycare, bool shinyCharm, const StateFilter8 &filter);
+    EggGenerator8(u32 initialAdvances, u32 maxAdvances, u32 delay, u8 compatability, const Daycare &daycare, const Profile8 &profile,
+                  const StateFilter8 &filter);
 
     /**
      * @brief Generates states

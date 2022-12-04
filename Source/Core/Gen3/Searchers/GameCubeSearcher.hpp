@@ -21,6 +21,7 @@
 #define GAMECUBESEARCHER_HPP
 
 #include <Core/Gen3/Filters/StateFilter3.hpp>
+#include <Core/Gen3/Profile3.hpp>
 #include <Core/Parents/Searchers/Searcher.hpp>
 #include <mutex>
 
@@ -30,20 +31,18 @@ class ShadowTemplate;
 /**
  * @brief Wild encounter searcher for GameCube
  */
-class GameCubeSearcher : public Searcher<StateFilter3>
+class GameCubeSearcher : public Searcher<Profile3, StateFilter3>
 {
 public:
     /**
-     * @brief GameCubeSearcher
+     * @brief Construct a new GameCubeSearcher object
      *
-     * @param tid
-     * @param sid
-     * @param version
-     * @param method
-     * @param unset
-     * @param filter
+     * @param method Encounter method
+     * @param unset Whether first shadow pokemon is unset or not
+     * @param profile Profile Information
+     * @param filter State filter
      */
-    GameCubeSearcher(u16 tid, u16 sid, Game version, Method method, bool unset, const StateFilter3 &filter);
+    GameCubeSearcher(Method method, bool unset, const Profile3 &profile, const StateFilter3 &filter);
 
     /**
      * @brief Cancels the running search

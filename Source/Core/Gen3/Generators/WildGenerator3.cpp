@@ -65,9 +65,9 @@ static u8 getShiny(u32 pid, u16 tsv)
     }
 }
 
-WildGenerator3::WildGenerator3(u32 initialAdvances, u32 maxAdvances, u32 offset, u16 tid, u16 sid, Game version, Method method,
-                               Encounter encounter, Lead lead, const WildStateFilter3 &filter) :
-    WildGenerator<WildStateFilter3>(initialAdvances, maxAdvances, offset, tid, sid, version, method, encounter, lead, filter)
+WildGenerator3::WildGenerator3(u32 initialAdvances, u32 maxAdvances, u32 delay, Method method, Encounter encounter, Lead lead,
+                               const Profile3 &profile, const WildStateFilter3 &filter) :
+    WildGenerator(initialAdvances, maxAdvances, delay, method, encounter, lead, profile, filter)
 {
 }
 
@@ -75,10 +75,10 @@ std::vector<WildGeneratorState> WildGenerator3::generate(u32 seed, const Encount
 {
     std::vector<WildGeneratorState> states;
 
-    std::vector<u8> modifiedSlots = encounterArea.getSlots(version, lead);
+    std::vector<u8> modifiedSlots = encounterArea.getSlots(profile.getVersion(), lead);
     u16 rate = encounterArea.getRate() * 16;
-    bool safari = encounterArea.safariZone(version);
-    bool rse = (version & Game::RSE) != Game::None;
+    bool safari = encounterArea.safariZone(profile.getVersion());
+    bool rse = (profile.getVersion() & Game::RSE) != Game::None;
 
     bool cuteCharm = false;
     auto cuteCharmCheck = [this](const PersonalInfo *info, u32 pid) {
@@ -89,7 +89,7 @@ std::vector<WildGeneratorState> WildGenerator3::generate(u32 seed, const Encount
         return (pid & 0xff) < info->getGender();
     };
 
-    PokeRNG rng(seed, initialAdvances + offset);
+    PokeRNG rng(seed, initialAdvances + delay);
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rng.next())
     {
         PokeRNG go(rng.getSeed());

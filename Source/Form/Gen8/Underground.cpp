@@ -130,7 +130,7 @@ void Underground::updateEncounters()
 {
     u8 flag = ui->comboBoxStoryFlag->currentIndex() + 1;
     bool diglett = ui->checkBoxDiglett->isChecked();
-    encounters = Encounters8::getEncounters(flag, diglett, currentProfile);
+    encounters = Encounters8::getUndergroundEncounters(flag, diglett, currentProfile);
 }
 
 void Underground::storyFlagIndexChanged(int index)
@@ -158,9 +158,7 @@ void Underground::generate()
 
     u32 initialAdvances = ui->textBoxInitialAdvances->getUInt();
     u32 maxAdvances = ui->textBoxMaxAdvances->getUInt();
-    u32 offset = ui->textBoxDelay->getUInt();
-    u16 tid = currentProfile->getTID();
-    u16 sid = currentProfile->getSID();
+    u32 delay = ui->textBoxDelay->getUInt();
     auto lead = ui->comboMenuLead->getEnum<Lead>();
     bool bonus = ui->checkBoxDiglett->isChecked();
     u8 levelFlag = ui->comboBoxLevelFlag->currentIndex();
@@ -170,8 +168,7 @@ void Underground::generate()
     UndergroundStateFilter filter(ui->filter->getGender(), ui->filter->getAbility(), ui->filter->getShiny(),
                                   ui->filter->getDisableFilters(), ui->filter->getMinIVs(), ui->filter->getMaxIVs(),
                                   ui->filter->getNatures(), ui->filter->getHiddenPowers(), species);
-    UndergroundGenerator generator(initialAdvances, maxAdvances, offset, tid, sid, currentProfile->getVersion(), lead, bonus, levelFlag,
-                                   filter);
+    UndergroundGenerator generator(initialAdvances, maxAdvances, delay, lead, bonus, levelFlag, *currentProfile, filter);
 
     auto states = generator.generate(seed0, seed1, encounters[ui->comboBoxLocation->getCurrentInt()]);
     model->addItems(states);

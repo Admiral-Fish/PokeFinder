@@ -98,9 +98,11 @@ void EventGenerator8Test::generate()
     std::array<bool, 16> powers;
     powers.fill(true);
 
+    Profile8 profile("-", Game::BD, 12345, 54321, false, false);
+
     WB8 wb8(tid, sid, ec, pid, specie, form, gender, egg, nature, ability, shiny, ivCount, level);
     StateFilter8 filter(255, 255, 255, false, min, max, natures, powers);
-    EventGenerator8 generator(0, 9, 0, 12345, 54321, Game::BD, wb8, filter);
+    EventGenerator8 generator(0, 9, 0, wb8, profile, filter);
 
     auto states = generator.generate(seed0, seed1);
     QCOMPARE(states.size(), j.size());

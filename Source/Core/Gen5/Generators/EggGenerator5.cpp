@@ -25,6 +25,7 @@
 #include <Core/Parents/PersonalLoader.hpp>
 #include <Core/RNG/LCRNG64.hpp>
 #include <Core/RNG/MTFast.hpp>
+#include <Core/Util/Utilities.hpp>
 
 static u8 getGender(u32 pid, const PersonalInfo *info)
 {
@@ -67,20 +68,20 @@ inline bool isShiny(u32 pid, u16 tsv)
     return ((pid >> 16) ^ (pid & 0xffff) ^ tsv) < 8;
 }
 
-EggGenerator5::EggGenerator5(u32 initialAdvances, u32 maxAdvances, u32 offset, u16 tid, u16 sid, Game version, bool shinyCharm,
-                             const Daycare &daycare, const StateFilter5 &filter) :
-    EggGenerator<StateFilter5>(initialAdvances, maxAdvances, offset, tid, sid, version, Method::None, 0, daycare, filter),
+EggGenerator5::EggGenerator5(u32 initialAdvances, u32 maxAdvances, u32 delay, const Daycare &daycare, const Profile5 &profile,
+                             const StateFilter5 &filter) :
+    EggGenerator(initialAdvances, maxAdvances, delay, Method::None, 0, daycare, profile, filter),
     ditto(daycare.getDitto()),
     everstone(daycare.getEverstoneCount()),
     parentAbility(daycare.getParentAbility(1)),
     poweritem(daycare.getPowerItemCount()),
-    rolls((shinyCharm ? 2 : 0) + (daycare.getMasuda() ? 5 : 0))
+    rolls((profile.getShinyCharm() ? 2 : 0) + (daycare.getMasuda() ? 5 : 0))
 {
 }
 
 std::vector<EggState5> EggGenerator5::generate(u64 seed) const
 {
-    switch (version)
+    switch (profile.getVersion())
     {
     case Game::Black:
     case Game::White:
@@ -93,35 +94,31 @@ std::vector<EggState5> EggGenerator5::generate(u64 seed) const
     }
 }
 
-void EggGenerator5::setInitialAdvances(u32 advances)
-{
-    this->initialAdvances = advances;
-}
-
 std::vector<EggState5> EggGenerator5::generateBW(u64 seed) const
 {
-    const PersonalInfo *base = PersonalLoader::getPersonal(version, daycare.getEggSpecie());
+    const PersonalInfo *base = PersonalLoader::getPersonal(profile.getVersion(), daycare.getEggSpecie());
     const PersonalInfo *male;
     const PersonalInfo *female;
     if (daycare.getEggSpecie() == 29 || daycare.getEggSpecie() == 32)
     {
-        male = PersonalLoader::getPersonal(version, 32);
-        female = PersonalLoader::getPersonal(version, 29);
+        male = PersonalLoader::getPersonal(profile.getVersion(), 32);
+        female = PersonalLoader::getPersonal(profile.getVersion(), 29);
     }
     else if (daycare.getEggSpecie() == 313 || daycare.getEggSpecie() == 314)
     {
-        male = PersonalLoader::getPersonal(version, 313);
-        female = PersonalLoader::getPersonal(version, 314);
+        male = PersonalLoader::getPersonal(profile.getVersion(), 313);
+        female = PersonalLoader::getPersonal(profile.getVersion(), 314);
     }
 
     MTFast<13, true> mt(seed >> 32, 7);
     std::array<u8, 6> ivs;
     std::generate(ivs.begin(), ivs.end(), [&mt] { return mt.next(); });
 
-    BWRNG rng(seed, initialAdvances + offset);
+    u32 cnt = Utilities5::initialAdvances(seed, profile);
+    BWRNG rng(seed, cnt + initialAdvances + delay);
 
     std::vector<EggState5> states;
-    for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
+    for (; cnt <= maxAdvances; cnt++)
     {
         BWRNG go(rng.getSeed());
 
@@ -237,8 +234,9 @@ std::vector<EggState5> EggGenerator5::generateBW2(u64 seed) const
     EggState5 state = generateBW2Egg(eggSeed, &info);
     if (filter.compareAbility(state.getAbility()) && filter.compareNature(state.getNature()) && filter.compareIV(state.getIVs()))
     {
-        BWRNG rng(seed, initialAdvances + offset);
-        for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rng.next())
+        u32 cnt = Utilities5::initialAdvances(seed, profile);
+        BWRNG rng(seed, cnt + initialAdvances + delay);
+        for (; cnt <= maxAdvances; cnt++, rng.next())
         {
             BWRNG go(rng.getSeed());
 
@@ -278,27 +276,27 @@ EggState5 EggGenerator5::generateBW2Egg(u64 seed, const PersonalInfo **info) con
     {
         if (rng.nextUInt(2))
         {
-            *info = PersonalLoader::getPersonal(version, 32);
+            *info = PersonalLoader::getPersonal(profile.getVersion(), 32);
         }
         else
         {
-            *info = PersonalLoader::getPersonal(version, 29);
+            *info = PersonalLoader::getPersonal(profile.getVersion(), 29);
         }
     }
     else if (daycare.getEggSpecie() == 313 || daycare.getEggSpecie() == 314)
     {
         if (rng.nextUInt(2))
         {
-            *info = PersonalLoader::getPersonal(version, 314);
+            *info = PersonalLoader::getPersonal(profile.getVersion(), 314);
         }
         else
         {
-            *info = PersonalLoader::getPersonal(version, 313);
+            *info = PersonalLoader::getPersonal(profile.getVersion(), 313);
         }
     }
     else
     {
-        *info = PersonalLoader::getPersonal(version, daycare.getEggSpecie());
+        *info = PersonalLoader::getPersonal(profile.getVersion(), daycare.getEggSpecie());
     }
 
     u8 nature = rng.nextUInt(25);

@@ -79,11 +79,13 @@ void RaidGeneratorTest::generate()
     std::array<bool, 16> powers;
     powers.fill(true);
 
+    Profile8 profile("-", version, 12345, 54321, false, false);
+
     Den den = DenLoader::getDen(denIndex, rarity);
     Raid raid = den.getRaid(raidIndex, version);
 
     StateFilter8 filter(255, 255, 255, false, min, max, natures, powers);
-    RaidGenerator generator(0, 9, 0, 12345, 54321, filter);
+    RaidGenerator generator(0, 9, 0, profile, filter);
 
     auto states = generator.generate(seed, level, raid);
     QCOMPARE(states.size(), j.size());

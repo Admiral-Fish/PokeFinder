@@ -68,9 +68,9 @@ static bool isShiny(u32 pid, u16 tsv)
     return (psv ^ tsv) < 8;
 }
 
-StaticSearcher4::StaticSearcher4(u32 minAdvance, u32 maxAdvance, u32 minDelay, u32 maxDelay, u16 tid, u16 sid, Game version, Method method,
-                                 Lead lead, const StateFilter4 &filter) :
-    StaticSearcher(tid, sid, version, method, lead, filter),
+StaticSearcher4::StaticSearcher4(u32 minAdvance, u32 maxAdvance, u32 minDelay, u32 maxDelay, Method method, Lead lead,
+                                 const Profile4 &profile, const StateFilter4 &filter) :
+    StaticSearcher(method, lead, profile, filter),
     progress(0),
     maxAdvance(maxAdvance),
     minAdvance(minAdvance),

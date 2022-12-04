@@ -21,6 +21,7 @@
 #define UNDERGROUNDGENERATOR_HPP
 
 #include <Core/Gen8/Filters/StateFilter8.hpp>
+#include <Core/Gen8/Profile8.hpp>
 #include <Core/Parents/Generators/StaticGenerator.hpp>
 
 class UndergroundArea;
@@ -28,7 +29,7 @@ class UndergroundArea;
 /**
  * @brief Underground encounter generator for Gen8
  */
-class UndergroundGenerator : public StaticGenerator<UndergroundStateFilter>
+class UndergroundGenerator : public StaticGenerator<Profile8, UndergroundStateFilter>
 {
 public:
     /**
@@ -36,17 +37,15 @@ public:
      *
      * @param initialAdvances Initial number of advances
      * @param maxAdvances Maximum number of advances
-     * @param offset Number of advances to offset
-     * @param tid Trainer ID
-     * @param sid Secret ID
-     * @param version Game version
+     * @param delay Number of advances to offset
      * @param lead Encounter lead
      * @param diglett Whether diglett bonus is activiated
      * @param levelFlag Determines which level range to pull from
+     * @param profile Profile Information
      * @param filter State filter
      */
-    UndergroundGenerator(u32 initialAdvances, u32 maxAdvances, u32 offset, u16 tid, u16 sid, Game version, Lead lead, bool diglett,
-                         u8 levelFlag, const UndergroundStateFilter &filter);
+    UndergroundGenerator(u32 initialAdvances, u32 maxAdvances, u32 delay, Lead lead, bool diglett, u8 levelFlag, const Profile8 &profile,
+                         const UndergroundStateFilter &filter);
 
     /**
      * @brief Generates states for the \p encounterArea

@@ -22,40 +22,37 @@
 #include <array>
 #include <cstddef>
 
-namespace
+/**
+ * @brief Calculates the encounter slot from the \p ranges using the \p compare value
+ *
+ * @tparam size Number of entries in \p ranges
+ * @tparam greater Whether to compare >= or <
+ * @param rand PRNG call
+ * @param ranges Table PRNG range values
+ *
+ * @return Encounter slot
+ */
+template <size_t size, bool greater = false>
+static u8 calcSlot(u8 rand, const std::array<u8, size> &ranges)
 {
-    /**
-     * @brief Calculates the encounter slot from the \p ranges using the \p compare value
-     *
-     * @tparam size Number of entries in \p ranges
-     * @tparam greater Whether to compare >= or <
-     * @param rand PRNG call
-     * @param ranges Table PRNG range values
-     *
-     * @return Encounter slot
-     */
-    template <size_t size, bool greater = false>
-    u8 calcSlot(u8 rand, const std::array<u8, size> &ranges)
+    for (size_t i = 0; i < size; i++)
     {
-        for (size_t i = 0; i < size; i++)
+        if constexpr (greater)
         {
-            if constexpr (greater)
+            if (rand >= ranges[i])
             {
-                if (rand >= ranges[i])
-                {
-                    return i;
-                }
-            }
-            else
-            {
-                if (rand < ranges[i])
-                {
-                    return i;
-                }
+                return i;
             }
         }
-        return 255;
+        else
+        {
+            if (rand < ranges[i])
+            {
+                return i;
+            }
+        }
     }
+    return 255;
 }
 
 namespace EncounterSlot

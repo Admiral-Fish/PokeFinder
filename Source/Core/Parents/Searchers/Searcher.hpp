@@ -23,36 +23,32 @@
 #include <Core/Global.hpp>
 #include <vector>
 
-enum class Game : u32;
 enum class Method : u8;
 
 /**
  * @brief Parent generator class that stores common attributes
  *
+ * @tparam Profile Profile class that is used by the generator
  * @tparam Filter Filter class used by the searcher
  */
-template <class Filter>
+template <class Profile, class Filter>
 class Searcher
 {
 public:
     /**
      * @brief Construct a new Searcher object
      *
-     * @param tid Trainer ID
-     * @param sid Secret ID
-     * @param version Game version
      * @param method Encounter method
+     * @param profile Profile Information
      * @param filter State filter
      */
-    Searcher(u16 tid, u16 sid, Game version, Method method, const Filter &filter) :
-        version(version), sid(sid), tid(tid), tsv(tid ^ sid), method(method), filter(filter)
+    Searcher(Method method, const Profile &profile, const Filter &filter) :
+        profile(profile), tsv(profile.getTID() ^ profile.getSID()), method(method), filter(filter)
     {
     }
 
 protected:
-    Game version;
-    u16 sid;
-    u16 tid;
+    Profile profile;
     u16 tsv;
     Method method;
     Filter filter;

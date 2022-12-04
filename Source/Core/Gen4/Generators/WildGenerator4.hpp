@@ -21,6 +21,7 @@
 #define WILDGENERATOR4_HPP
 
 #include <Core/Gen4/Filters/StateFilter4.hpp>
+#include <Core/Gen4/Profile4.hpp>
 #include <Core/Parents/Generators/WildGenerator.hpp>
 
 class EncounterArea4;
@@ -28,7 +29,7 @@ class EncounterArea4;
 /**
  * @brief Wild encounter generator for Gen4
  */
-class WildGenerator4 : public WildGenerator<WildStateFilter4>
+class WildGenerator4 : public WildGenerator<Profile4, WildStateFilter4>
 {
 public:
     /**
@@ -36,18 +37,16 @@ public:
      *
      * @param initialAdvances Initial number of advances
      * @param maxAdvances Maximum number of advances
-     * @param offset Number of advances to offset
-     * @param tid Trainer ID
-     * @param sid Secret ID
-     * @param version Game version
+     * @param delay Number of advances to offset
      * @param encounter Encounter type
      * @param method Encounter method
      * @param lead Encounter lead
      * @param shiny Whether Poke Radar is forced shiny
+     * @param profile Profile Information
      * @param filter State filter
      */
-    WildGenerator4(u32 initialAdvances, u32 maxAdvances, u32 offset, u16 tid, u16 sid, Game version, Method method, Encounter encounter,
-                   Lead lead, bool shiny, const WildStateFilter4 &filter);
+    WildGenerator4(u32 initialAdvances, u32 maxAdvances, u32 delay, Method method, Encounter encounter, Lead lead, bool shiny,
+                   const Profile4 &profile, const WildStateFilter4 &filter);
 
     /**
      * @brief Generates states for the \p encounterArea

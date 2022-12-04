@@ -313,10 +313,7 @@ constexpr DenInfo denInfo[276][5] = {
     { 0x42b21efc37c7b974, 0x9d415f6a7a841dd9, 43, 0, 0 }, // 176 177
 };
 
-namespace
-{
-    DenEvent event;
-};
+static DenEvent event;
 
 namespace DenLoader
 {

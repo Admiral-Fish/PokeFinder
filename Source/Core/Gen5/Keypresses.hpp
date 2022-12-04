@@ -21,9 +21,9 @@
 #define KEYPRESSES_HPP
 
 #include <Core/Global.hpp>
-#include <array>
 #include <vector>
 
+class Profile5;
 enum class Buttons : u16;
 
 /**
@@ -34,12 +34,11 @@ namespace Keypresses
     /**
      * @brief Computes possible keypress combinations
      *
-     * @param keypresses Array of true/false for max simultaneous inputs
-     * @param skipLR Whether to skip the L/R buttons
+     * @param profile Profile information
      *
      * @return Vector of keypress inputs
      */
-    std::vector<Buttons> getKeyPresses(const std::array<bool, 4> &keypresses, bool skipLR);
+    std::vector<Buttons> getKeyPresses(const Profile5 &profile);
 
     /**
      * @brief Computes Gen 5 seeding SHA1 input for each keypress combination in \p buttons

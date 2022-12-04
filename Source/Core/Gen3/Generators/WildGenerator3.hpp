@@ -21,6 +21,7 @@
 #define WILDGENERATOR3_HPP
 
 #include <Core/Gen3/Filters/StateFilter3.hpp>
+#include <Core/Gen3/Profile3.hpp>
 #include <Core/Parents/Generators/WildGenerator.hpp>
 
 class EncounterArea3;
@@ -28,7 +29,7 @@ class EncounterArea3;
 /**
  * @brief Wild encounter generator for Gen3
  */
-class WildGenerator3 : public WildGenerator<WildStateFilter3>
+class WildGenerator3 : public WildGenerator<Profile3, WildStateFilter3>
 {
 public:
     /**
@@ -36,17 +37,15 @@ public:
      *
      * @param initialAdvances Initial number of advances
      * @param maxAdvances Maximum number of advances
-     * @param offset Number of advances to offset
-     * @param tid Trainer ID
-     * @param sid Secret ID
-     * @param version Game version
+     * @param delay Number of advances to offset
      * @param encounter Encounter type
      * @param method Encounter method
      * @param lead Encounter lead
+     * @param profile Profile Information
      * @param filter State filter
      */
-    WildGenerator3(u32 initialAdvances, u32 maxAdvances, u32 offset, u16 tid, u16 sid, Game version, Method method, Encounter encounter,
-                   Lead lead, const WildStateFilter3 &filter);
+    WildGenerator3(u32 initialAdvances, u32 maxAdvances, u32 delay, Method method, Encounter encounter, Lead lead, const Profile3 &profile,
+                   const WildStateFilter3 &filter);
 
     /**
      * @brief Generates states for the \p encounterArea

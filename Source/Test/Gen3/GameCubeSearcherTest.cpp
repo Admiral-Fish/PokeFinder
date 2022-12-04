@@ -76,9 +76,11 @@ void GameCubeSearcherTest::searchChannel()
     std::array<bool, 16> powers;
     powers.fill(true);
 
+    Profile3 profile("-", Game::GC, 12345, 54321, false);
+
     const StaticTemplate *staticTemplate = Encounters3::getStaticEncounter(8, 0);
     StateFilter3 filter(255, 255, 255, false, min, max, natures, powers);
-    GameCubeSearcher searcher(12345, 54321, Game::GC, Method::Channel, false, filter);
+    GameCubeSearcher searcher(Method::Channel, false, profile, filter);
 
     searcher.startSearch(min, max, staticTemplate);
     auto states = searcher.getResults();
@@ -121,9 +123,11 @@ void GameCubeSearcherTest::searchColoShadow()
     std::array<bool, 16> powers;
     powers.fill(true);
 
+    Profile3 profile("-", Game::Colosseum, 12345, 54321, false);
+
     const ShadowTemplate *shadowTemplate = Encounters3::getShadowTeam(pokemon);
     StateFilter3 filter(255, 255, 255, false, min, max, natures, powers);
-    GameCubeSearcher searcher(12345, 54321, Game::Colosseum, Method::None, false, filter);
+    GameCubeSearcher searcher(Method::None, false, profile, filter);
 
     searcher.startSearch(min, max, shadowTemplate);
     auto states = searcher.getResults();
@@ -168,9 +172,11 @@ void GameCubeSearcherTest::searchGalesShadow()
     std::array<bool, 16> powers;
     powers.fill(true);
 
+    Profile3 profile("-", Game::Gales, 12345, 54321, false);
+
     const ShadowTemplate *shadowTemplate = Encounters3::getShadowTeam(pokemon);
     StateFilter3 filter(255, 255, 255, false, min, max, natures, powers);
-    GameCubeSearcher searcher(12345, 54321, Game::Gales, Method::None, unset, filter);
+    GameCubeSearcher searcher(Method::None, unset, profile, filter);
 
     searcher.startSearch(min, max, shadowTemplate);
     auto states = searcher.getResults();
@@ -216,9 +222,11 @@ void GameCubeSearcherTest::searchNonLock()
     std::array<bool, 16> powers;
     powers.fill(true);
 
+    Profile3 profile("-", version, 12345, 54321, false);
+
     const StaticTemplate *staticTemplate = Encounters3::getStaticEncounter(7, pokemon);
     StateFilter3 filter(255, 255, 255, false, min, max, natures, powers);
-    GameCubeSearcher searcher(12345, 54321, version, Method::None, false, filter);
+    GameCubeSearcher searcher(Method::None, false, profile, filter);
 
     searcher.startSearch(min, max, staticTemplate);
     auto states = searcher.getResults();

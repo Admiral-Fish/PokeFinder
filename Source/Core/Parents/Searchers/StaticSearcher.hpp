@@ -26,24 +26,23 @@
 /**
  * @brief Parent searcher class for static encounters
  *
+ * @tparam Profile Profile class that is used by the generator
  * @tparam Filter Filter class that is used by the searcher
  */
-template <class Filter>
-class StaticSearcher : public Searcher<Filter>
+template <class Profile, class Filter>
+class StaticSearcher : public Searcher<Profile, Filter>
 {
 public:
     /**
      * @brief Construct a new StaticSearcher object
      *
-     * @param tid Trainer ID
-     * @param sid Secret ID
-     * @param version Game version
      * @param method Encounter method
      * @param lead Encounter lead
+     * @param profile Profile Information
      * @param filter State filter
      */
-    StaticSearcher(u16 tid, u16 sid, Game version, Method method, Lead lead, const Filter &filter) :
-        Searcher<Filter>(tid, sid, version, method, filter), lead(lead)
+    StaticSearcher(Method method, Lead lead, const Profile &profile, const Filter &filter) :
+        Searcher<Profile, Filter>(method, profile, filter), lead(lead)
     {
     }
 

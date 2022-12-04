@@ -21,6 +21,7 @@
 #define STATICSEARCHER4_HPP
 
 #include <Core/Gen4/Filters/StateFilter4.hpp>
+#include <Core/Gen4/Profile4.hpp>
 #include <Core/Parents/Searchers/StaticSearcher.hpp>
 #include <mutex>
 
@@ -29,7 +30,7 @@ class StaticTemplate4;
 /**
  * @brief Static encounter searcher for Gen4
  */
-class StaticSearcher4 : public StaticSearcher<StateFilter4>
+class StaticSearcher4 : public StaticSearcher<Profile4, StateFilter4>
 {
 public:
     /**
@@ -39,14 +40,12 @@ public:
      * @param maxAdvance Maximum advances
      * @param minDelay Minimum delay
      * @param maxDelay Maximum delay
-     * @param tid Trainer ID
-     * @param sid Secret ID
-     * @param version Game version
      * @param method Encounter method
      * @param lead Encounter lead
+     * @param profile Profile Information
      * @param filter State filter
      */
-    StaticSearcher4(u32 minAdvance, u32 maxAdvance, u32 minDelay, u32 maxDelay, u16 tid, u16 sid, Game version, Method method, Lead lead,
+    StaticSearcher4(u32 minAdvance, u32 maxAdvance, u32 minDelay, u32 maxDelay, Method method, Lead lead, const Profile4 &profile,
                     const StateFilter4 &filter);
 
     /**

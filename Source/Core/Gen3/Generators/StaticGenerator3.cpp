@@ -60,9 +60,9 @@ static u8 getShiny(u32 pid, u16 tsv)
     }
 }
 
-StaticGenerator3::StaticGenerator3(u32 initialAdvances, u32 maxAdvances, u32 offset, u16 tid, u16 sid, Game version, Method method,
-                                   Lead lead, const StateFilter3 &filter) :
-    StaticGenerator(initialAdvances, maxAdvances, offset, tid, sid, version, method, lead, filter)
+StaticGenerator3::StaticGenerator3(u32 initialAdvances, u32 maxAdvances, u32 delay, Method method, Lead lead, const Profile3 &profile,
+                                   const StateFilter3 &filter) :
+    StaticGenerator(initialAdvances, maxAdvances, delay, method, lead, profile, filter)
 {
 }
 
@@ -71,7 +71,7 @@ std::vector<GeneratorState> StaticGenerator3::generate(u32 seed, const StaticTem
     std::vector<GeneratorState> states;
     const PersonalInfo *info = staticTemplate->getInfo();
 
-    PokeRNG rng(seed, initialAdvances + offset);
+    PokeRNG rng(seed, initialAdvances + delay);
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rng.next())
     {
         PokeRNG go(rng.getSeed());

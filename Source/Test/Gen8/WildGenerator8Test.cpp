@@ -91,7 +91,7 @@ void WildGenerator8Test::generate()
                                       [location](const EncounterArea8 &encounterArea) { return encounterArea.getLocation() == location; });
 
     WildStateFilter8 filter(255, 255, 255, false, min, max, natures, powers, encounterSlots);
-    WildGenerator8 generator(0, 9, 0, 12345, 54321, Game::BD, encounter, lead, filter);
+    WildGenerator8 generator(0, 9, 0, encounter, lead, profile, filter);
 
     auto states = generator.generate(seed0, seed1, *encounterArea);
     QCOMPARE(states.size(), j.size());

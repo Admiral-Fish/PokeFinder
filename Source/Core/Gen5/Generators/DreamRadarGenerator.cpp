@@ -35,9 +35,10 @@ static u8 gen(MT &rng)
     return rng.next() >> 27;
 }
 
-DreamRadarGenerator::DreamRadarGenerator(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, Game version, u8 badgeCount,
-                                         const std::vector<DreamRadarTemplate> &radarTemplates, const StateFilter5 &filter) :
-    Generator<StateFilter5>(initialAdvances, maxAdvances, 0, tid, sid, version, Method::None, filter),
+DreamRadarGenerator::DreamRadarGenerator(u32 initialAdvances, u32 maxAdvances, u8 badgeCount,
+                                         const std::vector<DreamRadarTemplate> &radarTemplates, const Profile5 &profile,
+                                         const StateFilter5 &filter) :
+    Generator(initialAdvances, maxAdvances, 0, Method::None, profile, filter),
     radarTemplate(radarTemplates.back()),
     ivAdvances(0),
     level(levelTable[badgeCount]),
@@ -61,13 +62,12 @@ DreamRadarGenerator::DreamRadarGenerator(u32 initialAdvances, u32 maxAdvances, u
     }
 }
 
-std::vector<DreamRadarState> DreamRadarGenerator::generate(u64 seed, bool memory) const
+std::vector<DreamRadarState> DreamRadarGenerator::generate(u64 seed) const
 {
     const PersonalInfo *info = radarTemplate.getInfo();
 
-    u32 initialAdvancesBWRNG = Utilities5::initialAdvancesBW2(seed, memory);
-    BWRNG rng(seed, (initialAdvances * 2) + initialAdvancesBWRNG);
-    if (!memory)
+    BWRNG rng(seed, (initialAdvances * 2) + Utilities5::initialAdvancesBW2(seed, profile.getMemoryLink()));
+    if (!profile.getMemoryLink())
     {
         rng.next();
     }

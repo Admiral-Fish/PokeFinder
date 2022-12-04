@@ -31,39 +31,36 @@
 
 using json = nlohmann::json;
 
-namespace
+static std::string path;
+
+/**
+ * @brief Reads provided profiles file
+ *
+ * @return json object with profile information
+ */
+static json readJson()
 {
-    std::string path;
+    json j;
 
-    /**
-     * @brief Reads provided profiles file
-     *
-     * @return json object with profile information
-     */
-    json readJson()
+    std::ifstream read(path);
+    if (read.is_open())
     {
-        json j;
-
-        std::ifstream read(path);
-        if (read.is_open())
-        {
-            j = json::parse(read, nullptr, false);
-        }
-
-        return j.is_discarded() ? json() : j;
+        j = json::parse(read, nullptr, false);
     }
 
-    /**
-     * @brief Writes json object with profile information to profiles file
-     *
-     * @param j json object with profile information
-     */
-    void writeJson(const json &j)
-    {
-        std::ofstream write(path);
-        write << j.dump();
-        write.close();
-    }
+    return j.is_discarded() ? json() : j;
+}
+
+/**
+ * @brief Writes json object with profile information to profiles file
+ *
+ * @param j json object with profile information
+ */
+static void writeJson(const json &j)
+{
+    std::ofstream write(path);
+    write << j.dump();
+    write.close();
 }
 
 namespace ProfileLoader
@@ -90,7 +87,9 @@ namespace ProfileLoader3
     {
         /**
          * @brief Converts profile to JSON
+         *
          * @param profile Profile to convert
+         *
          * @return Profile JSON representation
          */
         json getJson(const Profile3 &profile)
@@ -106,7 +105,9 @@ namespace ProfileLoader3
 
         /**
          * @brief Converts JSON data to profile
+         *
          * @param j JSON to convert
+         *
          * @return Converted profile
          */
         Profile3 getProfile(const json &j)

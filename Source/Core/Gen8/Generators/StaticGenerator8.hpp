@@ -21,6 +21,7 @@
 #define STATICGENERATOR8_HPP
 
 #include <Core/Gen8/Filters/StateFilter8.hpp>
+#include <Core/Gen8/Profile8.hpp>
 #include <Core/Parents/Generators/StaticGenerator.hpp>
 
 class StaticTemplate8;
@@ -28,7 +29,7 @@ class StaticTemplate8;
 /**
  * @brief Static encounter generator for Gen8
  */
-class StaticGenerator8 : public StaticGenerator<StateFilter8>
+class StaticGenerator8 : public StaticGenerator<Profile8, StateFilter8>
 {
 public:
     /**
@@ -36,15 +37,12 @@ public:
      *
      * @param initialAdvances Initial number of advances
      * @param maxAdvances Maximum number of advances
-     * @param offset Number of advances to offset
-     * @param tid Trainer ID
-     * @param sid Secret ID
-     * @param version Game version
+     * @param delay Number of advances to offset
      * @param lead Encounter lead
+     * @param profile Profile Information
      * @param filter State filter
      */
-    StaticGenerator8(u32 initialAdvances, u32 maxAdvances, u32 offset, u16 tid, u16 sid, Game version, Lead lead,
-                     const StateFilter8 &filter);
+    StaticGenerator8(u32 initialAdvances, u32 maxAdvances, u32 delay, Lead lead, const Profile8 &profile, const StateFilter8 &filter);
 
     /**
      * @brief Generates states for the \p staticTemplate

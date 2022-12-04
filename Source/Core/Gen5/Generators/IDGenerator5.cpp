@@ -20,12 +20,14 @@
 #include "IDGenerator5.hpp"
 #include <Core/Parents/States/IDState.hpp>
 #include <Core/RNG/LCRNG64.hpp>
+#include <Core/Util/Utilities.hpp>
 
-IDGenerator5::IDGenerator5(u32 initialAdvances, u32 maxAdvances, const IDFilter &filter) : IDGenerator(initialAdvances, maxAdvances, filter)
+IDGenerator5::IDGenerator5(u32 initialAdvances, u32 maxAdvances, const Profile5 &profile, const IDFilter &filter) :
+    IDGenerator(initialAdvances, maxAdvances, filter), profile(profile)
 {
 }
 
-std::vector<IDState> IDGenerator5::generate(u64 seed, u32 pid, bool checkPID, bool checkXOR)
+std::vector<IDState> IDGenerator5::generate(u64 seed, u32 pid, bool checkPID, bool checkXOR) const
 {
     std::vector<IDState> states;
 
@@ -36,8 +38,9 @@ std::vector<IDState> IDGenerator5::generate(u64 seed, u32 pid, bool checkPID, bo
     // you to enter in the name insertion screen
     // at least once, so prng advances +1 at the
     // Yes/No screen after you click A on OK
+    u32 cnt = Utilities5::initialAdvancesID(seed, profile.getVersion());
     BWRNG rng(seed, initialAdvances);
-    for (u32 cnt = 1; cnt <= maxAdvances; cnt++)
+    for (; cnt <= maxAdvances; cnt++)
     {
         u32 rand = rng.nextUInt(0xffffffff);
         u16 tid = rand & 0xffff;
@@ -64,9 +67,4 @@ std::vector<IDState> IDGenerator5::generate(u64 seed, u32 pid, bool checkPID, bo
     }
 
     return states;
-}
-
-void IDGenerator5::setInitialAdvances(u32 initialAdvances)
-{
-    this->initialAdvances = initialAdvances;
 }

@@ -21,6 +21,7 @@
 #define STATICSEARCHER3_HPP
 
 #include <Core/Gen3/Filters/StateFilter3.hpp>
+#include <Core/Gen3/Profile3.hpp>
 #include <Core/Parents/Searchers/StaticSearcher.hpp>
 #include <mutex>
 
@@ -29,20 +30,18 @@ class StaticTemplate;
 /**
  * @brief Static encounter searcher for Gen3
  */
-class StaticSearcher3 : public StaticSearcher<StateFilter3>
+class StaticSearcher3 : public StaticSearcher<Profile3, StateFilter3>
 {
 public:
     /**
      * @brief Construct a new StaticSearcher3 object
      *
-     * @param tid Trainer ID
-     * @param sid Secret ID
-     * @param version Game version
      * @param method Encounter method
      * @param lead Encounter lead
+     * @param profile Profile Information
      * @param filter State filter
      */
-    StaticSearcher3(u16 tid, u16 sid, Game version, Method method, Lead lead, const StateFilter3 &filter);
+    StaticSearcher3(Method method, Lead lead, const Profile3 &profile, const StateFilter3 &filter);
 
     /**
      * @brief Cancels the running search

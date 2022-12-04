@@ -18,82 +18,81 @@
  */
 
 #include "Utilities.hpp"
+#include <Core/Enum/Game.hpp>
+#include <Core/Gen5/Profile5.hpp>
 #include <Core/RNG/LCRNG.hpp>
 #include <Core/RNG/MT.hpp>
 #include <Core/Util/DateTime.hpp>
 #include <bzlib.h>
 
-namespace
+static u32 advanceProbabilityTable(BWRNG &rng)
 {
-    u32 advanceProbabilityTable(BWRNG &rng)
+    u32 count = 0;
+
+    // Round 1
+    rng.advance(1, &count);
+
+    // Round 2
+    if (rng.nextUInt(101, &count) > 50)
     {
-        u32 count = 0;
-
-        // Round 1
         rng.advance(1, &count);
+    }
 
-        // Round 2
-        if (rng.nextUInt(101, &count) > 50)
-        {
-            rng.advance(1, &count);
-        }
+    // Round 3
+    if (rng.nextUInt(101, &count) > 30)
+    {
+        rng.advance(1, &count);
+    }
 
-        // Round 3
+    // Round 4
+    if (rng.nextUInt(101, &count) > 25)
+    {
         if (rng.nextUInt(101, &count) > 30)
         {
             rng.advance(1, &count);
         }
+    }
 
-        // Round 4
+    // Round 5
+    if (rng.nextUInt(101, &count) > 20)
+    {
         if (rng.nextUInt(101, &count) > 25)
         {
-            if (rng.nextUInt(101, &count) > 30)
+            if (rng.nextUInt(101, &count) > 33)
             {
                 rng.advance(1, &count);
             }
         }
-
-        // Round 5
-        if (rng.nextUInt(101, &count) > 20)
-        {
-            if (rng.nextUInt(101, &count) > 25)
-            {
-                if (rng.nextUInt(101, &count) > 33)
-                {
-                    rng.advance(1, &count);
-                }
-            }
-        }
-
-        return count;
     }
 
-    std::string getPitch(u8 result)
+    return count;
+}
+
+static std::string getPitch(u8 result)
+{
+    std::string pitch;
+    if (result < 20)
     {
-        std::string pitch;
-        if (result < 20)
-        {
-            pitch = "L ";
-        }
-        else if (result < 40)
-        {
-            pitch = "ML ";
-        }
-        else if (result < 60)
-        {
-            pitch = "M ";
-        }
-        else if (result < 80)
-        {
-            pitch = "MH ";
-        }
-        else
-        {
-            pitch = "H ";
-        }
-
-        return pitch + std::to_string(result);
+        pitch = "L ";
     }
+    else if (result < 40)
+    {
+        pitch = "ML ";
+    }
+    else if (result < 60)
+    {
+        pitch = "M ";
+    }
+    else if (result < 80)
+    {
+        pitch = "MH ";
+    }
+    else
+    {
+        pitch = "H ";
+    }
+
+    return pitch + std::to_string(result);
 }
 
 namespace Utilities
@@ -244,6 +243,18 @@ namespace Utilities5
         return getPitch(prng);
     }
 
+    u32 initialAdvances(u64 seed, const Profile5 &profile)
+    {
+        if ((profile.getVersion() & Game::BW) != Game::None)
+        {
+            return initialAdvancesBW(seed);
+        }
+        else
+        {
+            return initialAdvancesBW2(seed, profile.getMemoryLink());
+        }
+    }
+
     u32 initialAdvancesBW(u64 seed)
     {
         BWRNG rng(seed);
@@ -333,5 +344,17 @@ namespace Utilities5
         }
 
         return count;
+    }
+
+    u32 initialAdvancesID(u64 seed, Game version)
+    {
+        if ((version & Game::BW) != Game::None)
+        {
+            return initialAdvancesBWID(seed);
+        }
+        else
+        {
+            return initialAdvancesBW2ID(seed);
+        }
     }
 }

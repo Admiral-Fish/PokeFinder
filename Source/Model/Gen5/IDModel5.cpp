@@ -18,9 +18,11 @@
  */
 
 #include "IDModel5.hpp"
+#include <Core/Enum/Game.hpp>
 #include <Core/Util/Translator.hpp>
+#include <Core/Util/Utilities.hpp>
 
-IDModel5::IDModel5(QObject *parent) : TableModel<SearcherState5<IDState>>(parent)
+IDModel5::IDModel5(QObject *parent) : TableModel<SearcherState5<IDState>>(parent), version(Game::Black)
 {
 }
 
@@ -40,7 +42,7 @@ QVariant IDModel5::data(const QModelIndex &index, int role) const
         case 0:
             return QString::number(display.getInitialSeed(), 16).toUpper().rightJustified(16, '0');
         case 1:
-            return display.getInitialAdvances();
+            return Utilities5::initialAdvancesID(display.getInitialSeed(), version);
         case 2:
             return state.getAdvances();
         case 3:
@@ -65,4 +67,9 @@ QVariant IDModel5::headerData(int section, Qt::Orientation orientation, int role
         return header[section];
     }
     return QVariant();
+}
+
+void IDModel5::setGame(Game version)
+{
+    this->version = version;
 }

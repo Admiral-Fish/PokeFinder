@@ -67,9 +67,9 @@ static bool isShiny(u32 pid, u16 tsv)
     return (psv ^ tsv) < 8;
 }
 
-StaticGenerator4::StaticGenerator4(u32 initialAdvances, u32 maxAdvances, u32 offset, u16 tid, u16 sid, Game version, Method method,
-                                   Lead lead, const StateFilter4 &filter) :
-    StaticGenerator<StateFilter4>(initialAdvances, maxAdvances, offset, tid, sid, version, method, lead, filter)
+StaticGenerator4::StaticGenerator4(u32 initialAdvances, u32 maxAdvances, u32 delay, Method method, Lead lead, const Profile4 &profile,
+                                   const StateFilter4 &filter) :
+    StaticGenerator(initialAdvances, maxAdvances, delay, method, lead, profile, filter)
 {
 }
 
@@ -93,7 +93,7 @@ std::vector<GeneratorState4> StaticGenerator4::generateMethod1(u32 seed, const S
     std::vector<GeneratorState4> states;
     const PersonalInfo *info = staticTemplate->getInfo();
 
-    PokeRNG rng(seed, initialAdvances + offset);
+    PokeRNG rng(seed, initialAdvances + delay);
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
     {
         PokeRNG go(rng.getSeed());
@@ -158,7 +158,7 @@ std::vector<GeneratorState4> StaticGenerator4::generateMethodJ(u32 seed, const S
         buffer = 25 * ((info->getGender() / 25) + 1);
     }
 
-    PokeRNG rng(seed, initialAdvances + offset);
+    PokeRNG rng(seed, initialAdvances + delay);
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
     {
         PokeRNG go(rng.getSeed());
@@ -236,7 +236,7 @@ std::vector<GeneratorState4> StaticGenerator4::generateMethodK(u32 seed, const S
         buffer = 25 * ((info->getGender() / 25) + 1);
     }
 
-    PokeRNG rng(seed, initialAdvances + offset);
+    PokeRNG rng(seed, initialAdvances + delay);
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
     {
         PokeRNG go(rng.getSeed());

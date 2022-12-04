@@ -61,9 +61,9 @@ static u8 getShiny(u32 pid, u16 tsv)
     }
 }
 
-EventGenerator5::EventGenerator5(u32 initialAdvances, u32 maxAdvances, u32 offset, u16 tid, u16 sid, Game version, const PGF &pgf,
+EventGenerator5::EventGenerator5(u32 initialAdvances, u32 maxAdvances, u32 delay, const PGF &pgf, const Profile5 &profile,
                                  const StateFilter5 &filter) :
-    Generator<StateFilter5>(initialAdvances, maxAdvances, offset, tid, sid, version, Method::None, filter), pgf(pgf)
+    Generator(initialAdvances, maxAdvances, delay, Method::None, profile, filter), pgf(pgf)
 {
     if (!pgf.getEgg())
     {
@@ -75,11 +75,13 @@ EventGenerator5::EventGenerator5(u32 initialAdvances, u32 maxAdvances, u32 offse
 
 std::vector<State5> EventGenerator5::generate(u64 seed) const
 {
-    BWRNG rng(seed, initialAdvances + offset);
-    const PersonalInfo *info = PersonalLoader::getPersonal(version, pgf.getSpecies());
+    const PersonalInfo *info = PersonalLoader::getPersonal(profile.getVersion(), pgf.getSpecies());
+
+    u32 cnt = Utilities5::initialAdvances(seed, profile);
+    BWRNG rng(seed, cnt + initialAdvances + delay);
 
     std::vector<State5> states;
-    for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
+    for (; cnt <= maxAdvances; cnt++)
     {
         BWRNG go(rng.getSeed(), wondercardAdvances);
 
@@ -160,9 +162,4 @@ std::vector<State5> EventGenerator5::generate(u64 seed) const
     }
 
     return states;
-}
-
-void EventGenerator5::setInitialAdvances(u32 initialAdvances)
-{
-    this->initialAdvances = initialAdvances;
 }

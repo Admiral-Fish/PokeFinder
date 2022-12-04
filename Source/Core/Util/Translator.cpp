@@ -62,87 +62,84 @@ enum class Translation
     Count
 };
 
-namespace
+static Language language;
+static std::vector<std::string> abilities;
+static std::vector<std::string> characteristics;
+static std::vector<std::string> games;
+static std::vector<std::string> hiddenPowers;
+static std::map<u16, std::string> items;
+static std::vector<std::string> moves;
+static std::vector<std::string> natures;
+static std::vector<std::string> species;
+const static std::array<std::string, 3> genders = { "♂", "♀", "-" };
+const static std::array<std::string, 12> buttons = { "R", "L", "X", "Y", "A", "B", "Select", "Start", "Right", "Left", "Up", "Down" };
+
+/**
+ * @brief Reads strings from the \p translation in the languaged specified by Translator::init()
+ *
+ * @param translation String category to read from
+ *
+ * @return Vector of translated strings
+ */
+static std::vector<std::string> readFile(Translation translation)
 {
-    Language language;
-    std::vector<std::string> abilities;
-    std::vector<std::string> characteristics;
-    std::vector<std::string> games;
-    std::vector<std::string> hiddenPowers;
-    std::map<u16, std::string> items;
-    std::vector<std::string> moves;
-    std::vector<std::string> natures;
-    std::vector<std::string> species;
-    std::array<std::string, 3> genders = { "♂", "♀", "-" };
-    std::array<std::string, 12> buttons = { "R", "L", "X", "Y", "A", "B", "Select", "Start", "Right", "Left", "Up", "Down" };
+    int index = (static_cast<int>(language) * static_cast<int>(Translation::Count)) + static_cast<int>(translation);
+    u32 start = indexes[index];
+    u32 end = indexes[index + 1];
 
-    /**
-     * @brief Reads strings from the \p translation in the languaged specified by Translator::init()
-     *
-     * @param translation String category to read from
-     *
-     * @return Vector of translated strings
-     */
-    std::vector<std::string> readFile(Translation translation)
+    const char *compressedData = reinterpret_cast<const char *>(i18n + start);
+    u32 compressedLength = end - start;
+
+    u32 length;
+    char *data = Utilities::decompress(compressedData, compressedLength, length);
+
+    std::vector<std::string> strings;
+    for (u32 i = 0; i < length;)
     {
-        int index = (static_cast<int>(language) * static_cast<int>(Translation::Count)) + static_cast<int>(translation);
-        u32 start = indexes[index];
-        u32 end = indexes[index + 1];
-
-        const char *compressedData = reinterpret_cast<const char *>(i18n + start);
-        u32 compressedLength = end - start;
-
-        u32 length;
-        char *data = Utilities::decompress(compressedData, compressedLength, length);
-
-        std::vector<std::string> strings;
-        for (u32 i = 0; i < length;)
-        {
-            char *it = std::find(data + i, data + length, 0);
-            u32 len = it - &data[i];
-            strings.emplace_back(data + i, len);
-            i += len + 1;
-        }
-
-        delete[] data;
-        return strings;
+        char *it = std::find(data + i, data + length, 0);
+        u32 len = it - &data[i];
+        strings.emplace_back(data + i, len);
+        i += len + 1;
     }
 
-    /**
-     * @brief Reads string mapping from the \p translation in the languaged specified by Translator::init()
-     *
-     * @param translation String category to read from
-     *
-     * @return Vector of translated strings
-     */
-    std::map<u16, std::string> readFileMap(Translation translation)
+    delete[] data;
+    return strings;
+}
+
+/**
+ * @brief Reads string mapping from the \p translation in the languaged specified by Translator::init()
+ *
+ * @param translation String category to read from
+ *
+ * @return Vector of translated strings
+ */
+static std::map<u16, std::string> readFileMap(Translation translation)
+{
+    int index = (static_cast<int>(language) * static_cast<int>(Translation::Count)) + static_cast<int>(translation);
+    u32 start = indexes[index];
+    u32 end = indexes[index + 1];
+
+    const char *compressedData = reinterpret_cast<const char *>(i18n + start);
+    u32 compressedLength = end - start;
+
+    u32 length;
+    char *data = Utilities::decompress(compressedData, compressedLength, length);
+
+    std::map<u16, std::string> strings;
+    for (u32 i = 0; i < length;)
     {
-        int index = (static_cast<int>(language) * static_cast<int>(Translation::Count)) + static_cast<int>(translation);
-        u32 start = indexes[index];
-        u32 end = indexes[index + 1];
+        char *it = std::find(data + i, data + length, 0);
+        u32 len = it - &data[i];
 
-        const char *compressedData = reinterpret_cast<const char *>(i18n + start);
-        u32 compressedLength = end - start;
+        char *word;
+        u16 num = std::strtoul(&data[i], &word, 10);
+        strings[num] = std::string(word + 1, it - word - 1);
 
-        u32 length;
-        char *data = Utilities::decompress(compressedData, compressedLength, length);
-
-        std::map<u16, std::string> strings;
-        for (u32 i = 0; i < length;)
-        {
-            char *it = std::find(data + i, data + length, 0);
-            u32 len = it - &data[i];
-
-            char *word;
-            u16 num = std::strtoul(&data[i], &word, 10);
-            strings[num] = std::string(word + 1, it - word - 1);
-
-            i += len + 1;
-        }
-
-        delete[] data;
-        return strings;
+        i += len + 1;
     }
+
+    delete[] data;
+    return strings;
 }
 
 namespace Translator

@@ -20,6 +20,7 @@
 #ifndef IDGENERATOR5_HPP
 #define IDGENERATOR5_HPP
 
+#include <Core/Gen5/Profile5.hpp>
 #include <Core/Parents/Generators/IDGenerator.hpp>
 
 class IDState;
@@ -42,7 +43,7 @@ public:
      * @param minute Search minute
      * @param filter State filter
      */
-    IDGenerator5(u32 initialAdvances, u32 maxAdvances, const IDFilter &filter);
+    IDGenerator5(u32 initialAdvances, u32 maxAdvances, const Profile5 &profile, const IDFilter &filter);
 
     /**
      * @brief Generates states
@@ -54,14 +55,10 @@ public:
      *
      * @return Vector of computed states
      */
-    std::vector<IDState> generate(u64 seed, u32 pid = 0, bool checkPID = false, bool checkXOR = false);
+    std::vector<IDState> generate(u64 seed, u32 pid = 0, bool checkPID = false, bool checkXOR = false) const;
 
-    /**
-     * @brief Updates the initial advances
-     *
-     * @param initialAdvances Initial advances
-     */
-    void setInitialAdvances(u32 initialAdvances);
+private:
+    Profile5 profile;
 };
 
 #endif // IDGENERATOR5_HPP

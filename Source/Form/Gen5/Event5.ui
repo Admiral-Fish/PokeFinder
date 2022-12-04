@@ -237,10 +237,20 @@
           <string>RNG Info</string>
          </property>
          <layout class="QGridLayout" name="gridLayout_6">
-          <item row="2" column="1">
-           <widget class="TextBox" name="textBoxGeneratorMaxAdvances">
+          <item row="0" column="0">
+           <widget class="QLabel" name="labelGeneratorSeed">
             <property name="text">
-             <string notr="true">100000</string>
+             <string>Seed</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="TextBox" name="textBoxGeneratorSeed"/>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="labelGeneratorInitialAdvances">
+            <property name="text">
+             <string>Initial Advances</string>
             </property>
            </widget>
           </item>
@@ -258,49 +268,12 @@
             </property>
            </widget>
           </item>
-          <item row="1" column="0">
-           <widget class="QLabel" name="labelGeneratorInitialAdvances">
+          <item row="2" column="1">
+           <widget class="TextBox" name="textBoxGeneratorMaxAdvances">
             <property name="text">
-             <string>Initial Advances</string>
+             <string notr="true">100000</string>
             </property>
            </widget>
-          </item>
-          <item row="4" column="0" colspan="2">
-           <layout class="QHBoxLayout" name="horizontalLayout_2">
-            <item>
-             <widget class="QPushButton" name="pushButtonGenerate">
-              <property name="enabled">
-               <bool>true</bool>
-              </property>
-              <property name="text">
-               <string>Generate</string>
-              </property>
-              <property name="checkable">
-               <bool>false</bool>
-              </property>
-              <property name="autoDefault">
-               <bool>false</bool>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QPushButton" name="pushButtonCalculateInitialAdvances">
-              <property name="text">
-               <string>Calculate Initial Advance</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </item>
-          <item row="0" column="0">
-           <widget class="QLabel" name="labelGeneratorSeed">
-            <property name="text">
-             <string>Seed</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="1">
-           <widget class="TextBox" name="textBoxGeneratorSeed"/>
           </item>
           <item row="3" column="0">
            <widget class="QLabel" name="labelGeneratorDelay">
@@ -311,6 +284,22 @@
           </item>
           <item row="3" column="1">
            <widget class="TextBox" name="textBoxGeneratorDelay"/>
+          </item>
+          <item row="4" column="0" colspan="2">
+           <widget class="QPushButton" name="pushButtonGenerate">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
+            <property name="text">
+             <string>Generate</string>
+            </property>
+            <property name="checkable">
+             <bool>false</bool>
+            </property>
+            <property name="autoDefault">
+             <bool>false</bool>
+            </property>
+           </widget>
           </item>
          </layout>
         </widget>
@@ -1048,15 +1037,15 @@
    <header>Form/Controls/TableView.hpp</header>
   </customwidget>
   <customwidget>
+   <class>DateEdit</class>
+   <extends>QDateEdit</extends>
+   <header>Form/Controls/DateEdit.hpp</header>
+  </customwidget>
+  <customwidget>
    <class>Filter</class>
    <extends>QWidget</extends>
    <header>Form/Controls/Filter.hpp</header>
    <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>DateEdit</class>
-   <extends>QDateEdit</extends>
-   <header>Form/Controls/DateEdit.hpp</header>
   </customwidget>
  </customwidgets>
  <tabstops>
@@ -1068,7 +1057,6 @@
   <tabstop>textBoxGeneratorMaxAdvances</tabstop>
   <tabstop>textBoxGeneratorDelay</tabstop>
   <tabstop>pushButtonGenerate</tabstop>
-  <tabstop>pushButtonCalculateInitialAdvances</tabstop>
   <tabstop>comboBoxGeneratorSpecies</tabstop>
   <tabstop>pushButtonGeneratorImport</tabstop>
   <tabstop>checkBoxGeneratorHP</tabstop>

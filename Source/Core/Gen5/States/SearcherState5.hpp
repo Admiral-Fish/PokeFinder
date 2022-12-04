@@ -39,13 +39,12 @@ public:
      *
      * @param dt Date/time
      * @param initialSeed Initial seed
-     * @param initialAdvances Initial advances
      * @param buttons Key presses
      * @param timer0 Timer0
      * @param state Internal state
      */
-    SearcherState5(const DateTime &dt, u64 initialSeed, u32 initialAdvances, Buttons buttons, u16 timer0, const StateType &state) :
-        initialSeed(initialSeed), dt(dt), initialAdvances(initialAdvances), buttons(buttons), timer0(timer0), state(state)
+    SearcherState5(const DateTime &dt, u64 initialSeed, Buttons buttons, u16 timer0, const StateType &state) :
+        initialSeed(initialSeed), dt(dt), buttons(buttons), timer0(timer0), state(state)
     {
     }
 
@@ -67,16 +66,6 @@ public:
     DateTime getDateTime() const
     {
         return dt;
-    }
-
-    /**
-     * @brief Returns the initial advances of the state
-     *
-     * @return Initial advances
-     */
-    u32 getInitialAdvances() const
-    {
-        return initialAdvances;
     }
 
     /**
@@ -112,7 +101,6 @@ public:
 private:
     u64 initialSeed;
     DateTime dt;
-    u32 initialAdvances;
     Buttons buttons;
     u16 timer0;
     StateType state;

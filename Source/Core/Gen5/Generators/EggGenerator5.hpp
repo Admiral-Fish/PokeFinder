@@ -21,6 +21,7 @@
 #define EGGGENERATOR5_HPP
 
 #include <Core/Gen5/Filters/StateFilter5.hpp>
+#include <Core/Gen5/Profile5.hpp>
 #include <Core/Parents/Generators/EggGenerator.hpp>
 
 class Daycare;
@@ -30,7 +31,7 @@ class PersonalInfo;
 /**
  * @brief Egg generator for Gen 5
  */
-class EggGenerator5 : public EggGenerator<StateFilter5>
+class EggGenerator5 : public EggGenerator<Profile5, StateFilter5>
 {
 public:
     /**
@@ -38,15 +39,12 @@ public:
      *
      * @param initialAdvances Initial number of advances
      * @param maxAdvances Maximum number of advances
-     * @param offset Number of advances to offset
-     * @param tid Trainer ID
-     * @param sid Secret ID
-     * @param version Game version
-     * @param shinyCharm Whether or not shiny charm is obtained
+     * @param delay Number of advances to offset
      * @param daycare Daycare parent information
+     * @param profile Profile Information
      * @param filter State filter
      */
-    EggGenerator5(u32 initialAdvances, u32 maxAdvances, u32 offset, u16 tid, u16 sid, Game version, bool shinyCharm, const Daycare &daycare,
+    EggGenerator5(u32 initialAdvances, u32 maxAdvances, u32 delay, const Daycare &daycare, const Profile5 &profile,
                   const StateFilter5 &filter);
 
     /**
@@ -57,13 +55,6 @@ public:
      * @return Vector of computed states
      */
     std::vector<EggState5> generate(u64 seed) const;
-
-    /**
-     * @brief Updates the initial advances
-     *
-     * @param initialAdvances Initial advances
-     */
-    void setInitialAdvances(u32 advances);
 
 private:
     bool ditto;

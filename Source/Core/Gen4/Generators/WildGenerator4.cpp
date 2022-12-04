@@ -85,9 +85,9 @@ static u8 getShiny(u32 pid, u16 tsv)
     }
 }
 
-WildGenerator4::WildGenerator4(u32 initialAdvances, u32 maxAdvances, u32 offset, u16 tid, u16 sid, Game version, Method method,
-                               Encounter encounter, Lead lead, bool shiny, const WildStateFilter4 &filter) :
-    WildGenerator<WildStateFilter4>(initialAdvances, maxAdvances, offset, tid, sid, version, method, encounter, lead, filter), shiny(shiny)
+WildGenerator4::WildGenerator4(u32 initialAdvances, u32 maxAdvances, u32 delay, Method method, Encounter encounter, Lead lead, bool shiny,
+                               const Profile4 &profile, const WildStateFilter4 &filter) :
+    WildGenerator(initialAdvances, maxAdvances, delay, method, encounter, lead, profile, filter), shiny(shiny)
 {
 }
 
@@ -118,9 +118,9 @@ std::vector<WildGeneratorState4> WildGenerator4::generateMethodJ(u32 seed, const
     std::vector<WildGeneratorState4> states;
 
     u8 thresh = encounterArea.getRate();
-    std::vector<u8> modifiedSlots = encounterArea.getSlots(version, lead);
+    std::vector<u8> modifiedSlots = encounterArea.getSlots(profile.getVersion(), lead);
 
-    PokeRNG rng(seed, initialAdvances + offset);
+    PokeRNG rng(seed, initialAdvances + delay);
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
     {
         u32 occidentary = initialAdvances + cnt;
@@ -252,10 +252,10 @@ std::vector<WildGeneratorState4> WildGenerator4::generateMethodK(u32 seed, const
     {
         rate *= 2;
     }
-    std::vector<u8> modifiedSlots = encounterArea.getSlots(version, lead);
-    bool safari = encounterArea.safariZone(version);
+    std::vector<u8> modifiedSlots = encounterArea.getSlots(profile.getVersion(), lead);
+    bool safari = encounterArea.safariZone(profile.getVersion());
 
-    PokeRNG rng(seed, initialAdvances + offset);
+    PokeRNG rng(seed, initialAdvances + delay);
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
     {
         u32 occidentary = initialAdvances + cnt;
@@ -470,7 +470,7 @@ std::vector<WildGeneratorState4> WildGenerator4::generatePokeRadar(u32 seed, con
         break;
     }
 
-    PokeRNG rng(seed, initialAdvances + offset);
+    PokeRNG rng(seed, initialAdvances + delay);
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
     {
         u32 occidentary = initialAdvances + cnt;
@@ -564,7 +564,7 @@ std::vector<WildGeneratorState4> WildGenerator4::generatePokeRadarShiny(u32 seed
         return (pid & 0xff) < info->getGender();
     };
 
-    PokeRNG rng(seed, initialAdvances + offset);
+    PokeRNG rng(seed, initialAdvances + delay);
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
     {
         u32 occidentary = initialAdvances + cnt;

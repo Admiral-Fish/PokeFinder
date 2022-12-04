@@ -21,6 +21,7 @@
 #define SHA1_HPP
 
 #include <Core/Global.hpp>
+#include <array>
 
 enum class DSType : u8;
 enum class Game : u32;
@@ -55,17 +56,19 @@ public:
     SHA1(Game version, Language language, DSType type, u64 mac, bool softReset, u8 vFrame, u8 gxStat);
 
     /**
-     * @brief Hashes input parameters. Must call \ref precompute() first
+     * @brief Hashes input parameters from the precomputed \p alpha
+     *
+     * @param alpha Precomputed first 8 rounds alpha
      *
      * @return Hashed seed
      */
-    u64 hashSeed();
+    u64 hashSeed(const std::array<u32, 5> &alpha);
 
     /**
      * @brief Precomputes the first 8 rounds of SHA1. Must first call \ref setTimer0() and \ref setDate().
      * For hashes computed on the same date, the first 8 rounds will be the same.
      */
-    void precompute();
+    std::array<u32, 5> precompute();
 
     /**
      * @brief Sets the SHA1 parameter based on \p button
@@ -100,7 +103,6 @@ public:
     void setTime(u8 hour, u8 minute, u8 second, DSType dsType);
 
 private:
-    u32 alpha[5];
     u32 data[80];
 };
 

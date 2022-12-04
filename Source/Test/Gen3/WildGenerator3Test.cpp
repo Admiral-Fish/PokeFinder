@@ -88,12 +88,14 @@ void WildGenerator3Test::generate()
     std::array<bool, 12> encounterSlots;
     encounterSlots.fill(true);
 
+    Profile3 profile("-", version, 12345, 54321, false);
+
     std::vector<EncounterArea3> encounterAreas = Encounters3::getEncounters(encounter, version);
     auto encounterArea = std::find_if(encounterAreas.begin(), encounterAreas.end(),
                                       [location](const EncounterArea3 &encounterArea) { return encounterArea.getLocation() == location; });
 
     WildStateFilter3 filter(255, 255, 255, false, min, max, natures, powers, encounterSlots);
-    WildGenerator3 generator(0, 9, 0, 12345, 54321, version, method, encounter, lead, filter);
+    WildGenerator3 generator(0, 9, 0, method, encounter, lead, profile, filter);
 
     auto states = generator.generate(seed, *encounterArea);
     QCOMPARE(states.size(), j.size());

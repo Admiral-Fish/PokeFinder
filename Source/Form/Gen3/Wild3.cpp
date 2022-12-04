@@ -146,9 +146,7 @@ void Wild3::generate()
     u32 seed = ui->textBoxGeneratorSeed->getUInt();
     u32 initialAdvances = ui->textBoxGeneratorInitialAdvances->getUInt();
     u32 maxAdvances = ui->textBoxGeneratorMaxAdvances->getUInt();
-    u32 offset = ui->textBoxGeneratorDelay->getUInt();
-    u16 tid = currentProfile->getTID();
-    u16 sid = currentProfile->getSID();
+    u32 delay = ui->textBoxGeneratorDelay->getUInt();
     auto method = ui->comboBoxGeneratorMethod->getEnum<Method>();
     auto encounter = ui->comboBoxGeneratorEncounter->getEnum<Encounter>();
     auto lead = ui->comboMenuGeneratorLead->getEnum<Lead>();
@@ -158,7 +156,7 @@ void Wild3::generate()
                             ui->filterGenerator->getNatures(), ui->filterGenerator->getHiddenPowers(),
                             ui->filterGenerator->getEncounterSlots());
 
-    WildGenerator3 generator(initialAdvances, maxAdvances, offset, tid, sid, currentProfile->getVersion(), method, encounter, lead, filter);
+    WildGenerator3 generator(initialAdvances, maxAdvances, delay, method, encounter, lead, *currentProfile, filter);
 
     auto states = generator.generate(seed, encounterGenerator[ui->comboBoxGeneratorLocation->getCurrentInt()]);
     generatorModel->addItems(states);
@@ -296,19 +294,15 @@ void Wild3::search()
 
     std::array<u8, 6> min = ui->filterSearcher->getMinIVs();
     std::array<u8, 6> max = ui->filterSearcher->getMaxIVs();
-
-    WildStateFilter3 filter(ui->filterSearcher->getGender(), ui->filterSearcher->getAbility(), ui->filterSearcher->getShiny(), false, min,
-                            max, ui->filterSearcher->getNatures(), ui->filterSearcher->getHiddenPowers(),
-                            ui->filterSearcher->getEncounterSlots());
-
-    u16 tid = currentProfile->getTID();
-    u16 sid = currentProfile->getSID();
     auto method = ui->comboBoxSearcherMethod->getEnum<Method>();
     auto encounter = ui->comboBoxSearcherEncounter->getEnum<Encounter>();
     auto lead = ui->comboMenuSearcherLead->getEnum<Lead>();
 
-    auto *searcher = new WildSearcher3(tid, sid, currentProfile->getVersion(), method, encounter, lead,
-                                       encounterSearcher[ui->comboBoxSearcherLocation->getCurrentInt()], filter);
+    WildStateFilter3 filter(ui->filterSearcher->getGender(), ui->filterSearcher->getAbility(), ui->filterSearcher->getShiny(), false, min,
+                            max, ui->filterSearcher->getNatures(), ui->filterSearcher->getHiddenPowers(),
+                            ui->filterSearcher->getEncounterSlots());
+    auto *searcher = new WildSearcher3(method, encounter, lead, encounterSearcher[ui->comboBoxSearcherLocation->getCurrentInt()],
+                                       *currentProfile, filter);
 
     int maxProgress = 1;
     for (u8 i = 0; i < 6; i++)

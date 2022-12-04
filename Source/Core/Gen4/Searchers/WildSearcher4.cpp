@@ -85,19 +85,18 @@ static u8 getShiny(u32 pid, u16 tsv)
     }
 }
 
-WildSearcher4::WildSearcher4(u32 minAdvance, u32 maxAdvance, u32 minDelay, u32 maxDelay, u16 tid, u16 sid, Game version, Method method,
-                             Encounter encounter, Lead lead, bool shiny, const EncounterArea4 &encounterArea,
-                             const WildStateFilter4 &filter) :
-    WildSearcher<WildStateFilter4>(tid, sid, version, method, encounter, lead, filter),
+WildSearcher4::WildSearcher4(u32 minAdvance, u32 maxAdvance, u32 minDelay, u32 maxDelay, Method method, Encounter encounter, Lead lead,
+                             bool shiny, const EncounterArea4 &encounterArea, const Profile4 &profile, const WildStateFilter4 &filter) :
+    WildSearcher(method, encounter, lead, profile, filter),
     encounterArea(encounterArea),
-    modifiedSlots(encounterArea.getSlots(version, lead)),
+    modifiedSlots(encounterArea.getSlots(profile.getVersion(), lead)),
     progress(0),
     maxAdvance(maxAdvance),
     minAdvance(minAdvance),
     maxDelay(maxDelay),
     minDelay(minDelay),
     thresh(encounterArea.getRate()),
-    safari(encounterArea.safariZone(version)),
+    safari(encounterArea.safariZone(profile.getVersion())),
     searching(false),
     shiny(shiny)
 {

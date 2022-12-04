@@ -89,7 +89,7 @@ public:
      *
      * @return Vector of computed states
      */
-    std::vector<SearcherState5<IDState>> startSearch(IDGenerator5 generator, const Date &date, u8 hour, u8 minute, u8 minSecond,
+    std::vector<SearcherState5<IDState>> startSearch(const IDGenerator5 &generator, const Date &date, u8 hour, u8 minute, u8 minSecond,
                                                      u8 maxSecond);
 
 private:
@@ -109,7 +109,7 @@ private:
      * @param start Start date
      * @param end End date
      */
-    void search(IDGenerator5 generator, const Date &start, const Date &end);
+    void search(const IDGenerator5 &generator, const Date &start, const Date &end);
 };
 
 #endif // IDSEARCHER5_HPP

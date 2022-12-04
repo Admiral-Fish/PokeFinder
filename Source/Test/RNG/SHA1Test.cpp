@@ -21,6 +21,7 @@
 #include <Core/Enum/DSType.hpp>
 #include <Core/Enum/Game.hpp>
 #include <Core/Gen5/Keypresses.hpp>
+#include <Core/Gen5/Profile5.hpp>
 #include <Core/RNG/SHA1.hpp>
 #include <Core/Util/DateTime.hpp>
 #include <QTest>
@@ -70,19 +71,22 @@ void SHA1Test::hash()
     QFETCH(DSType, dsType);
     QFETCH(u64, seed);
 
-    auto buttons = Keypresses::getKeyPresses(keypresses, skipLR);
+    Profile5 profile("-", version, 0, 0, mac, keypresses, vCount, gxStat, vFrame, skipLR, timer0, timer0, false, false, false, dsType,
+                     language);
+
+    auto buttons = Keypresses::getKeyPresses(profile);
     auto values = Keypresses::getValues(buttons);
 
     DateTime dateTime;
     const Date &date = dateTime.getDate();
     const Time &time = dateTime.getTime();
 
-    SHA1 sha(version, language, dsType, mac, softReset, vFrame, gxStat);
+    SHA1 sha(profile);
     sha.setButton(values.front());
     sha.setDate(date);
-    sha.setTime(time.hour(), time.minute(), time.second(), dsType);
-    sha.setTimer0(timer0, vCount);
+    sha.setTime(time.hour(), time.minute(), time.second(), profile.getDSType());
+    sha.setTimer0(profile.getTimer0Min(), profile.getVCount());
 
-    sha.precompute();
-    QCOMPARE(sha.hashSeed(), seed);
+    auto alpha = sha.precompute();
+    QCOMPARE(sha.hashSeed(alpha), seed);
 }

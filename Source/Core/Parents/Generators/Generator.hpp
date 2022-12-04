@@ -24,15 +24,15 @@
 #include <vector>
 
 enum class Encounter : u8;
-enum class Game : u32;
 enum class Method : u8;
 
 /**
  * @brief Parent generator class that stores common attributes
  *
+ * @tparam Profile Profile class that is used by the generator
  * @tparam Filter Filter class that is used by the generator
  */
-template <class Filter>
+template <class Profile, class Filter>
 class Generator
 {
 public:
@@ -41,33 +41,27 @@ public:
      *
      * @param initialAdvances Initial number of advances
      * @param maxAdvances Maximum number of advances
-     * @param offset Number of advances to offset
-     * @param version Game version
-     * @param tid Trainer ID
-     * @param sid Secret ID
+     * @param delay Number of advances to offset
      * @param method Encounter method
+     * @param profile Profile Information
      * @param filter State filter
      */
-    Generator(u32 initialAdvances, u32 maxAdvances, u32 offset, u16 tid, u16 sid, Game version, Method method, const Filter &filter) :
-        version(version),
+    Generator(u32 initialAdvances, u32 maxAdvances, u32 delay, Method method, const Profile &profile, const Filter &filter) :
+        profile(profile),
         initialAdvances(initialAdvances),
         maxAdvances(maxAdvances),
-        offset(offset),
-        sid(sid),
-        tid(tid),
-        tsv(tid ^ sid),
+        delay(delay),
+        tsv(profile.getTID() ^ profile.getSID()),
         method(method),
         filter(filter)
     {
     }
 
 protected:
-    Game version;
+    Profile profile;
     u32 initialAdvances;
     u32 maxAdvances;
-    u32 offset;
-    u16 sid;
-    u16 tid;
+    u32 delay;
     u16 tsv;
     Filter filter;
     Method method;

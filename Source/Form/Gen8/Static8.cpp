@@ -143,14 +143,12 @@ void Static8::generate()
 
     u32 initialAdvances = ui->textBoxInitialAdvances->getUInt();
     u32 maxAdvances = ui->textBoxMaxAdvances->getUInt();
-    u32 offset = ui->textBoxDelay->getUInt();
-    u16 tid = currentProfile->getTID();
-    u16 sid = currentProfile->getSID();
+    u32 delay = ui->textBoxDelay->getUInt();
     auto lead = ui->comboMenuLead->getEnum<Lead>();
 
     StateFilter8 filter(ui->filter->getGender(), ui->filter->getAbility(), ui->filter->getShiny(), ui->filter->getDisableFilters(),
                         ui->filter->getMinIVs(), ui->filter->getMaxIVs(), ui->filter->getNatures(), ui->filter->getHiddenPowers());
-    StaticGenerator8 generator(initialAdvances, maxAdvances, offset, tid, sid, currentProfile->getVersion(), lead, filter);
+    StaticGenerator8 generator(initialAdvances, maxAdvances, delay, lead, *currentProfile, filter);
 
     const StaticTemplate8 *staticTemplate
         = Encounters8::getStaticEncounter(ui->comboBoxCategory->currentIndex(), ui->comboBoxPokemon->getCurrentInt());

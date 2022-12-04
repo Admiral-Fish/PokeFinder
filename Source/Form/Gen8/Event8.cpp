@@ -187,13 +187,12 @@ void Event8::generate()
 
     u32 initialAdvances = ui->textBoxInitialAdvances->getUInt();
     u32 maxAdvances = ui->textBoxMaxAdvances->getUInt();
-    u32 offset = ui->textBoxDelay->getUInt();
-    u16 tid = currentProfile->getTID();
-    u16 sid = currentProfile->getSID();
+    u32 delay = ui->textBoxDelay->getUInt();
+    WB8 wb8 = getParameters();
 
     StateFilter8 filter(ui->filter->getGender(), ui->filter->getAbility(), ui->filter->getShiny(), ui->filter->getDisableFilters(),
                         ui->filter->getMinIVs(), ui->filter->getMaxIVs(), ui->filter->getNatures(), ui->filter->getHiddenPowers());
-    EventGenerator8 generator(initialAdvances, maxAdvances, offset, tid, sid, currentProfile->getVersion(), getParameters(), filter);
+    EventGenerator8 generator(initialAdvances, maxAdvances, delay, wb8, *currentProfile, filter);
 
     auto states = generator.generate(seed0, seed1);
     model->addItems(states);

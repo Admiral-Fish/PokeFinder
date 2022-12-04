@@ -21,6 +21,7 @@
 #define GAMECUBEGENERATOR_HPP
 
 #include <Core/Gen3/Filters/StateFilter3.hpp>
+#include <Core/Gen3/Profile3.hpp>
 #include <Core/Parents/Generators/Generator.hpp>
 
 class StaticTemplate;
@@ -29,7 +30,7 @@ class ShadowTemplate;
 /**
  * @brief Static encounter generator for GameCube
  */
-class GameCubeGenerator : public Generator<StateFilter3>
+class GameCubeGenerator : public Generator<Profile3, StateFilter3>
 {
 public:
     /**
@@ -37,15 +38,13 @@ public:
      *
      * @param initialAdvances Initial number of advances
      * @param maxAdvances Maximum number of advances
-     * @param offset Number of advances to offset
-     * @param tid Trainer ID
-     * @param sid Secret ID
-     * @param version Game version
+     * @param delay Number of advances to offset
      * @param method Encounter method
      * @param unset Whether first shadow pokemon is unset or not
+     * @param profile Profile Information
      * @param filter State filter
      */
-    GameCubeGenerator(u32 initialAdvances, u32 maxAdvances, u32 offset, u16 tid, u16 sid, Game version, Method method, bool unset,
+    GameCubeGenerator(u32 initialAdvances, u32 maxAdvances, u32 delay, Method method, bool unset, const Profile3 &profile,
                       const StateFilter3 &filter);
 
     /**

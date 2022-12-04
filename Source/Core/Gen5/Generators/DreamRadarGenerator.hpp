@@ -22,6 +22,7 @@
 
 #include <Core/Gen5/DreamRadarTemplate.hpp>
 #include <Core/Gen5/Filters/StateFilter5.hpp>
+#include <Core/Gen5/Profile5.hpp>
 #include <Core/Parents/Generators/Generator.hpp>
 
 class DreamRadarState;
@@ -29,7 +30,7 @@ class DreamRadarState;
 /**
  * @brief Dream radar generator for Gen 5
  */
-class DreamRadarGenerator : public Generator<StateFilter5>
+class DreamRadarGenerator : public Generator<Profile5, StateFilter5>
 {
 public:
     /**
@@ -37,15 +38,13 @@ public:
      *
      * @param initialAdvances Initial number of advances
      * @param maxAdvances Maximum number of advances
-     * @param tid Trainer ID
-     * @param sid Secret ID
-     * @param version Game version
      * @param badgeCount Numbers of badges
      * @param radarTemplate Dream radar templates
+     * @param profile Profile Information
      * @param filter State filter
      */
-    DreamRadarGenerator(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, Game version, u8 badgeCount,
-                        const std::vector<DreamRadarTemplate> &radarTemplates, const StateFilter5 &filter);
+    DreamRadarGenerator(u32 initialAdvances, u32 maxAdvances, u8 badgeCount, const std::vector<DreamRadarTemplate> &radarTemplates,
+                        const Profile5 &profile, const StateFilter5 &filter);
 
     /**
      * @brief Generates states
@@ -55,7 +54,7 @@ public:
      *
      * @return Vector of computed states
      */
-    std::vector<DreamRadarState> generate(u64 seed, bool memory) const;
+    std::vector<DreamRadarState> generate(u64 seed) const;
 
 private:
     DreamRadarTemplate radarTemplate;

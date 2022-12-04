@@ -187,16 +187,14 @@ void Wild8::generate()
 
     u32 initialAdvances = ui->textBoxInitialAdvances->getUInt();
     u32 maxAdvances = ui->textBoxMaxAdvances->getUInt();
-    u32 offset = ui->textBoxDelay->getUInt();
-    u16 tid = currentProfile->getTID();
-    u16 sid = currentProfile->getSID();
+    u32 delay = ui->textBoxDelay->getUInt();
     auto encounter = ui->comboBoxEncounter->getEnum<Encounter>();
     auto lead = ui->comboMenuLead->getEnum<Lead>();
 
     WildStateFilter8 filter(ui->filter->getGender(), ui->filter->getAbility(), ui->filter->getShiny(), ui->filter->getDisableFilters(),
                             ui->filter->getMinIVs(), ui->filter->getMaxIVs(), ui->filter->getNatures(), ui->filter->getHiddenPowers(),
                             ui->filter->getEncounterSlots());
-    WildGenerator8 generator(initialAdvances, maxAdvances, offset, tid, sid, currentProfile->getVersion(), encounter, lead, filter);
+    WildGenerator8 generator(initialAdvances, maxAdvances, delay, encounter, lead, *currentProfile, filter);
 
     auto states = generator.generate(seed0, seed1, encounters[ui->comboBoxLocation->getCurrentInt()]);
     model->addItems(states);

@@ -21,6 +21,7 @@
 #define STATICGENERATOR4_HPP
 
 #include <Core/Gen4/Filters/StateFilter4.hpp>
+#include <Core/Gen4/Profile4.hpp>
 #include <Core/Parents/Generators/StaticGenerator.hpp>
 
 class StaticTemplate4;
@@ -28,7 +29,7 @@ class StaticTemplate4;
 /**
  * @brief Static encounter generator for Gen4
  */
-class StaticGenerator4 : public StaticGenerator<StateFilter4>
+class StaticGenerator4 : public StaticGenerator<Profile4, StateFilter4>
 {
 public:
     /**
@@ -36,15 +37,13 @@ public:
      *
      * @param initialAdvances Initial number of advances
      * @param maxAdvances Maximum number of advances
-     * @param offset Number of advances to offset
-     * @param tid Trainer ID
-     * @param sid Secret ID
-     * @param version Game version
+     * @param delay Number of advances to offset
      * @param method Encounter method
      * @param lead Encounter lead
+     * @param profile Profile Information
      * @param filter State filter
      */
-    StaticGenerator4(u32 initialAdvances, u32 maxAdvances, u32 offset, u16 tid, u16 sid, Game version, Method method, Lead lead,
+    StaticGenerator4(u32 initialAdvances, u32 maxAdvances, u32 delay, Method method, Lead lead, const Profile4 &profile,
                      const StateFilter4 &filter);
 
     /**

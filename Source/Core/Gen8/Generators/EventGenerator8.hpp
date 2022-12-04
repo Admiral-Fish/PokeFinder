@@ -21,13 +21,14 @@
 #define EVENTGENERATOR8_HPP
 
 #include <Core/Gen8/Filters/StateFilter8.hpp>
+#include <Core/Gen8/Profile8.hpp>
 #include <Core/Gen8/WB8.hpp>
 #include <Core/Parents/Generators/Generator.hpp>
 
 /**
  * @brief Event generator for Gen 8
  */
-class EventGenerator8 : public Generator<StateFilter8>
+class EventGenerator8 : public Generator<Profile8, StateFilter8>
 {
 public:
     /**
@@ -35,15 +36,12 @@ public:
      *
      * @param initialAdvances Initial number of advances
      * @param maxAdvances Maximum number of advances
-     * @param offset Number of advances to offset
-     * @param tid Trainer ID
-     * @param sid Secret ID
-     * @param version Game version
+     * @param delay Number of advances to offset
      * @param wb8 Pokemon template
+     * @param profile Profile Information
      * @param filter State filter
      */
-    EventGenerator8(u32 initialAdvances, u32 maxAdvances, u32 offset, u16 tid, u16 sid, Game version, const WB8 &wb8,
-                    const StateFilter8 &filter);
+    EventGenerator8(u32 initialAdvances, u32 maxAdvances, u32 delay, const WB8 &wb8, const Profile8 &profile, const StateFilter8 &filter);
 
     /**
      * @brief Generates states

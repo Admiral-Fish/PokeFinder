@@ -25,6 +25,8 @@
 #include <string>
 
 class DateTime;
+class Profile5;
+enum class Game : u32;
 
 namespace Utilities
 {
@@ -130,6 +132,16 @@ namespace Utilities5
     std::string getChatot(u8 prng);
 
     /**
+     * @brief Calculates the initial set of advances for the \p profile
+     *
+     * @param seed PRNG state
+     * @param profile Profile information
+     *
+     * @return Initial advance count
+     */
+    u32 initialAdvances(u64 seed, const Profile5 &profile);
+
+    /**
      * @brief Calculates the initial set of advances for BW
      *
      * @param seed PRNG state
@@ -165,6 +177,16 @@ namespace Utilities5
      * @return Initial advance count
      */
     u32 initialAdvancesBW2ID(u64 seed);
+
+    /**
+     * @brief Calculates the initial set of advances for the \p profile
+     *
+     * @param seed PRNG state
+     * @param version Game version
+     *
+     * @return Initial advance count
+     */
+    u32 initialAdvancesID(u64 seed, Game version);
 }
 
 #endif // UTILITIES_HPP

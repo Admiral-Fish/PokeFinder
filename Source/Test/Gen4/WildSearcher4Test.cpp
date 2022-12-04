@@ -98,7 +98,6 @@ void WildSearcher4Test::searchMethodJ()
     encounterSlots.fill(true);
 
     std::array<u8, 5> blocks = { 0, 0, 0, 0, 0 };
-
     Profile4 profile("", version, 12345, 54321, false);
 
     std::vector<EncounterArea4> encounterAreas = Encounters4::getEncounters(encounter, 0, Game::None, false, 0, false, blocks, &profile);
@@ -106,8 +105,8 @@ void WildSearcher4Test::searchMethodJ()
                                       [location](const EncounterArea4 &encounterArea) { return encounterArea.getLocation() == location; });
 
     WildStateFilter4 filter(255, 255, 255, false, min, max, natures, powers, encounterSlots);
-    WildSearcher4 searcher(minAdvance, maxAdvance, minDelay, maxDelay, 12345, 54321, version, Method::MethodJ, encounter, lead, false,
-                           *encounterArea, filter);
+    WildSearcher4 searcher(minAdvance, maxAdvance, minDelay, maxDelay, Method::MethodJ, encounter, lead, false, *encounterArea, profile,
+                           filter);
 
     searcher.startSearch(min, max, 0);
     auto states = searcher.getResults();
@@ -116,8 +115,8 @@ void WildSearcher4Test::searchMethodJ()
     for (const auto &state : states)
     {
         // Ensure generator agrees
-        WildGenerator4 generator(state.getAdvances(), 0, 0, 12345, 54321, version, Method::MethodJ, encounter,
-                                 lead != Lead::Synchronize ? lead : lead + state.getNature(), false, filter);
+        WildGenerator4 generator(state.getAdvances(), 0, 0, Method::MethodJ, encounter,
+                                 lead != Lead::Synchronize ? lead : lead + state.getNature(), false, profile, filter);
         auto generatorStates = generator.generate(state.getSeed(), *encounterArea, 0);
 
         QCOMPARE(generatorStates.size(), 1);
@@ -181,8 +180,8 @@ void WildSearcher4Test::searchMethodK()
                                       [location](const EncounterArea4 &encounterArea) { return encounterArea.getLocation() == location; });
 
     WildStateFilter4 filter(255, 255, 255, false, min, max, natures, powers, encounterSlots);
-    WildSearcher4 searcher(minAdvance, maxAdvance, minDelay, maxDelay, 12345, 54321, version, Method::MethodK, encounter, lead, false,
-                           *encounterArea, filter);
+    WildSearcher4 searcher(minAdvance, maxAdvance, minDelay, maxDelay, Method::MethodK, encounter, lead, false, *encounterArea, profile,
+                           filter);
 
     searcher.startSearch(min, max, 0);
     auto states = searcher.getResults();
@@ -191,8 +190,8 @@ void WildSearcher4Test::searchMethodK()
     for (const auto &state : states)
     {
         // Ensure generator agrees
-        WildGenerator4 generator(state.getAdvances(), 0, 0, 12345, 54321, version, Method::MethodK, encounter,
-                                 lead != Lead::Synchronize ? lead : lead + state.getNature(), false, filter);
+        WildGenerator4 generator(state.getAdvances(), 0, 0, Method::MethodK, encounter,
+                                 lead != Lead::Synchronize ? lead : lead + state.getNature(), false, profile, filter);
         auto generatorStates = generator.generate(state.getSeed(), *encounterArea, 0);
 
         QCOMPARE(generatorStates.size(), 1);
@@ -253,7 +252,6 @@ void WildSearcher4Test::searchPokeRadar()
     encounterSlots.fill(true);
 
     std::array<u8, 5> blocks = { 0, 0, 0, 0, 0 };
-
     Profile4 profile("", version, 12345, 54321, false);
 
     std::vector<EncounterArea4> encounterAreas = Encounters4::getEncounters(encounter, 0, Game::None, true, 0, false, blocks, &profile);
@@ -261,8 +259,8 @@ void WildSearcher4Test::searchPokeRadar()
                                       [location](const EncounterArea4 &encounterArea) { return encounterArea.getLocation() == location; });
 
     WildStateFilter4 filter(255, 255, 255, false, min, max, natures, powers, encounterSlots);
-    WildSearcher4 searcher(minAdvance, maxAdvance, minDelay, maxDelay, 12345, 54321, version, Method::PokeRadar, encounter, lead, shiny,
-                           *encounterArea, filter);
+    WildSearcher4 searcher(minAdvance, maxAdvance, minDelay, maxDelay, Method::PokeRadar, encounter, lead, shiny, *encounterArea, profile,
+                           filter);
 
     searcher.startSearch(min, max, index);
     auto states = searcher.getResults();
@@ -271,8 +269,8 @@ void WildSearcher4Test::searchPokeRadar()
     for (const auto &state : states)
     {
         // Ensure generator agrees
-        WildGenerator4 generator(state.getAdvances(), 0, 0, 12345, 54321, version, Method::PokeRadar, encounter,
-                                 lead != Lead::Synchronize ? lead : lead + state.getNature(), shiny, filter);
+        WildGenerator4 generator(state.getAdvances(), 0, 0, Method::PokeRadar, encounter,
+                                 lead != Lead::Synchronize ? lead : lead + state.getNature(), shiny, profile, filter);
         auto generatorStates = generator.generate(state.getSeed(), *encounterArea, index);
 
         QCOMPARE(generatorStates.size(), 1);

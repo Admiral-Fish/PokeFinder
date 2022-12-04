@@ -83,11 +83,11 @@ static u8 getShiny(u32 pid, u16 tsv)
     }
 }
 
-WildSearcher3::WildSearcher3(u16 tid, u16 sid, Game version, Method method, Encounter encounter, Lead lead,
-                             const EncounterArea3 &encounterArea, const WildStateFilter3 &filter) :
-    WildSearcher<WildStateFilter3>(tid, sid, version, method, encounter, lead, filter),
+WildSearcher3::WildSearcher3(Method method, Encounter encounter, Lead lead, const EncounterArea3 &encounterArea, const Profile3 &profile,
+                             const WildStateFilter3 &filter) :
+    WildSearcher(method, encounter, lead, profile, filter),
     encounterArea(encounterArea),
-    modifiedSlots(encounterArea.getSlots(version, lead)),
+    modifiedSlots(encounterArea.getSlots(profile.getVersion(), lead)),
     progress(0),
     ivAdvance(method == Method::Method2),
     searching(false)
@@ -115,7 +115,7 @@ void WildSearcher3::startSearch(const std::array<u8, 6> &min, const std::array<u
 {
     searching = true;
 
-    bool safari = encounterArea.safariZone(version);
+    bool safari = encounterArea.safariZone(profile.getVersion());
 
     for (u8 hp = min[0]; hp <= max[0]; hp++)
     {
@@ -284,7 +284,7 @@ std::vector<WildSearcherState3> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 
     }
 
     // RSE rock smash is dependent on origin seed for encounter check
-    if ((version & Game::RSE) != Game::None && encounter == Encounter::RockSmash)
+    if ((profile.getVersion() & Game::RSE) != Game::None && encounter == Encounter::RockSmash)
     {
         u16 rate = encounterArea.getRate() * 16;
         for (size_t i = 0; i < states.size();)

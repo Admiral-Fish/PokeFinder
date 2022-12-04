@@ -76,7 +76,7 @@ SHA1::SHA1(Game version, Language language, DSType type, u64 mac, bool softReset
     data[18] = rotateLeft(data[15] ^ data[10] ^ data[4] ^ data[2], 1);
 }
 
-u64 SHA1::hashSeed()
+u64 SHA1::hashSeed(const std::array<u32, 5> &alpha)
 {
     u32 a = alpha[0];
     u32 b = alpha[1];
@@ -200,7 +200,7 @@ u64 SHA1::hashSeed()
     return BWRNG(seed).next();
 }
 
-void SHA1::precompute()
+std::array<u32, 5> SHA1::precompute()
 {
     u32 a = 0x67452301;
     u32 b = 0xefcdab89;
@@ -225,12 +225,6 @@ void SHA1::precompute()
     section1Calc(t, a, b, c, d, e, data[7]);
     section1Calc(e, t, a, b, c, d, data[8]);
 
-    alpha[0] = d;
-    alpha[1] = e;
-    alpha[2] = t;
-    alpha[3] = a;
-    alpha[4] = b;
-
     // Select values will be the same for same date
     calcW(16);
     // calcW(18); Enough information is known to calculate this in the constructor
@@ -240,6 +234,8 @@ void SHA1::precompute()
     calcW(24);
     calcW(27);
     calcW(30);
+
+    return { d, e, t, a, b };
 }
 
 void SHA1::setButton(u32 button)

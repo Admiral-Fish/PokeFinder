@@ -163,16 +163,14 @@ void Raids::generate()
 
     u32 initialAdvances = ui->textBoxInitialAdvances->getUInt();
     u32 maxAdvances = ui->textBoxMaxAdvances->getUInt();
-    u32 offset = ui->textBoxDelay->getUInt();
+    u32 delay = ui->textBoxDelay->getUInt();
     u64 seed = ui->textBoxSeed->getULong();
-    u16 tid = currentProfile->getTID();
-    u16 sid = currentProfile->getSID();
     u8 level = ui->spinBoxLevel->value();
 
     StateFilter8 filter(ui->filter->getGender(), ui->filter->getAbility(), ui->filter->getShiny(), ui->filter->getDisableFilters(),
                         ui->filter->getMinIVs(), ui->filter->getMaxIVs(), ui->filter->getNatures(), ui->filter->getHiddenPowers());
+    RaidGenerator generator(initialAdvances, maxAdvances, delay, *currentProfile, filter);
 
-    RaidGenerator generator(initialAdvances, maxAdvances, offset, tid, sid, filter);
     if (ui->comboBoxDen->getCurrentInt() == 65535)
     {
         DenEvent den = DenLoader::getEvent();

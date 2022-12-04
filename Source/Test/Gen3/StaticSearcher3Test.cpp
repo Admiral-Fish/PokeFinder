@@ -72,9 +72,11 @@ void StaticSearcher3Test::search()
     std::array<bool, 16> powers;
     powers.fill(true);
 
+    Profile3 profile("-", version, 12345, 54321, false);
+
     const StaticTemplate *staticTemplate = Encounters3::getStaticEncounter(category, pokemon);
     StateFilter3 filter(255, 255, 255, false, min, max, natures, powers);
-    StaticSearcher3 searcher(12345, 54321, version, method, Lead::None, filter);
+    StaticSearcher3 searcher(method, Lead::None, profile, filter);
 
     searcher.startSearch(min, max, staticTemplate);
     auto states = searcher.getResults();
@@ -83,7 +85,7 @@ void StaticSearcher3Test::search()
     for (const auto &state : states)
     {
         // Ensure generator agrees
-        StaticGenerator3 generator(0, 0, 0, 12345, 54321, version, method, Lead::None, filter);
+        StaticGenerator3 generator(0, 0, 0, method, Lead::None, profile, filter);
         auto generatorStates = generator.generate(state.getSeed(), staticTemplate);
 
         QCOMPARE(generatorStates.size(), 1);

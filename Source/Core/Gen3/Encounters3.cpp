@@ -754,38 +754,29 @@ constexpr std::array<StaticTemplate, 1> channel = {
     StaticTemplate(Game::GC, 385, 5) // Jirachi
 };
 
-namespace
+namespace Encounters3
 {
-    /**
-     * @brief Gets wild encounters for the \p encouner and \p game
-     *
-     * @param encounter Encounter type
-     * @param game Game version
-     * @param info Pointer to PersonalInfo array
-     *
-     * @return Vector of wild encounters
-     */
-    std::vector<EncounterArea3> getAreas(Encounter encounter, Game game, const PersonalInfo *info)
+    std::vector<EncounterArea3> getEncounters(Encounter encounter, Game version)
     {
         const u8 *compressedData;
         size_t compressedLength;
 
-        if (game == Game::Emerald)
+        if (version == Game::Emerald)
         {
             compressedData = emerald.data();
             compressedLength = emerald.size();
         }
-        else if (game == Game::FireRed)
+        else if (version == Game::FireRed)
         {
             compressedData = firered.data();
             compressedLength = firered.size();
         }
-        else if (game == Game::LeafGreen)
+        else if (version == Game::LeafGreen)
         {
             compressedData = leafgreen.data();
             compressedLength = leafgreen.size();
         }
-        else if (game == Game::Ruby)
+        else if (version == Game::Ruby)
         {
             compressedData = ruby.data();
             compressedLength = ruby.size();
@@ -798,6 +789,8 @@ namespace
 
         u32 length;
         u8 *data = Utilities::decompress(compressedData, compressedLength, length);
+
+        const PersonalInfo *info = PersonalLoader::getPersonal(version);
 
         std::vector<EncounterArea3> encounters;
         for (size_t offset = 0; offset < length; offset += 121)
@@ -907,14 +900,6 @@ namespace
         }
         delete[] data;
         return encounters;
-    }
-}
-
-namespace Encounters3
-{
-    std::vector<EncounterArea3> getEncounters(Encounter encounter, Game version)
-    {
-        return getAreas(encounter, version, PersonalLoader::getPersonal(version));
     }
 
     const ShadowTemplate *getShadowTeams(size_t *size)

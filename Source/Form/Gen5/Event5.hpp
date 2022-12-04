@@ -94,11 +94,6 @@ private:
 
 private slots:
     /**
-     * @brief Calculates the initial advances from a starting seed
-     */
-    void calculateInitialAdvances();
-
-    /**
      * @brief Generates static encounters from a starting seed
      */
     void generate();

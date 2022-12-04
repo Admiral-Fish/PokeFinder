@@ -22,6 +22,7 @@
 
 #include <Core/Gen5/Filters/StateFilter5.hpp>
 #include <Core/Gen5/PGF.hpp>
+#include <Core/Gen5/Profile5.hpp>
 #include <Core/Parents/Generators/Generator.hpp>
 
 class State5;
@@ -29,7 +30,7 @@ class State5;
 /**
  * @brief Event generator for Gen 5
  */
-class EventGenerator5 : public Generator<StateFilter5>
+class EventGenerator5 : public Generator<Profile5, StateFilter5>
 {
 public:
     /**
@@ -37,15 +38,12 @@ public:
      *
      * @param initialAdvances Initial number of advances
      * @param maxAdvances Maximum number of advances
-     * @param offset Number of advances to offset
-     * @param tid Trainer ID
-     * @param sid Secret ID
-     * @param version Game version
+     * @param delay Number of advances to offset
      * @param pgf Pokemon template
+     * @param profile Profile Information
      * @param filter State filter
      */
-    EventGenerator5(u32 initialAdvances, u32 maxAdvances, u32 offset, u16 tid, u16 sid, Game version, const PGF &pgf,
-                    const StateFilter5 &filter);
+    EventGenerator5(u32 initialAdvances, u32 maxAdvances, u32 delay, const PGF &pgf, const Profile5 &profile, const StateFilter5 &filter);
 
     /**
      * @brief Generates states
@@ -55,13 +53,6 @@ public:
      * @return Vector of computed states
      */
     std::vector<State5> generate(u64 seed) const;
-
-    /**
-     * @brief Updates the initial advances
-     *
-     * @param initialAdvances Initial advances
-     */
-    void setInitialAdvances(u32 initialAdvances);
 
 private:
     PGF pgf;

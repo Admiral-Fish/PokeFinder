@@ -282,17 +282,14 @@ void DreamRadar::generate()
     u64 seed = ui->textBoxGeneratorSeed->getULong();
     u32 initialAdvances = ui->textBoxGeneratorInitialAdvances->getUInt();
     u32 maxAdvances = ui->textBoxGeneratorMaxAdvances->getUInt();
-    u16 tid = currentProfile->getTID();
-    u16 sid = currentProfile->getSID();
 
     StateFilter5 filter(ui->filterGenerator->getGender(), ui->filterGenerator->getAbility(), ui->filterGenerator->getShiny(),
                         ui->filterGenerator->getDisableFilters(), ui->filterGenerator->getMinIVs(), ui->filterGenerator->getMaxIVs(),
                         ui->filterGenerator->getNatures(), ui->filterGenerator->getHiddenPowers());
+    DreamRadarGenerator generator(initialAdvances, maxAdvances, ui->spinBoxGeneratorBadges->value(), radarTemplates, *currentProfile,
+                                  filter);
 
-    DreamRadarGenerator generator(initialAdvances, maxAdvances, tid, sid, currentProfile->getVersion(), ui->spinBoxGeneratorBadges->value(),
-                                  radarTemplates, filter);
-
-    auto states = generator.generate(seed, currentProfile->getMemoryLink());
+    auto states = generator.generate(seed);
     generatorModel->addItems(states);
 }
 
@@ -313,22 +310,20 @@ void DreamRadar::search()
 
     u32 initialAdvances = ui->textBoxSearcherInitialAdvances->getUInt();
     u32 maxAdvances = ui->textBoxSearcherMaxAdvances->getUInt();
-    u16 tid = currentProfile->getTID();
-    u16 sid = currentProfile->getSID();
 
     StateFilter5 filter(ui->filterSearcher->getGender(), ui->filterSearcher->getAbility(), ui->filterSearcher->getShiny(),
                         ui->filterSearcher->getDisableFilters(), ui->filterSearcher->getMinIVs(), ui->filterSearcher->getMaxIVs(),
                         ui->filterSearcher->getNatures(), ui->filterSearcher->getHiddenPowers());
+    DreamRadarGenerator generator(initialAdvances, maxAdvances, ui->spinBoxSearcherBadges->value(), radarTemplates, *currentProfile,
+                                  filter);
+    auto *searcher = new Searcher5<DreamRadarState>(*currentProfile);
 
-    DreamRadarGenerator generator(initialAdvances, maxAdvances, tid, sid, currentProfile->getVersion(), ui->spinBoxSearcherBadges->value(),
-                                  radarTemplates, filter);
-
-    auto *searcher = new Searcher5<DreamRadarGenerator, DreamRadarState>(*currentProfile);
+    int x = sizeof(*searcher);
 
     Date start = ui->dateEditSearcherStartDate->getDate();
     Date end = ui->dateEditSearcherEndDate->getDate();
 
-    int maxProgress = Keypresses::getKeyPresses(currentProfile->getKeypresses(), currentProfile->getSkipLR()).size();
+    int maxProgress = Keypresses::getKeyPresses(*currentProfile).size();
     maxProgress *= start.daysTo(end) + 1;
     maxProgress *= currentProfile->getTimer0Max() - currentProfile->getTimer0Min() + 1;
     ui->progressBar->setRange(0, maxProgress);

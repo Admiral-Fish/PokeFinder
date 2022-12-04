@@ -71,6 +71,8 @@ void EggGenerator8Test::generate()
     std::array<bool, 16> powers;
     powers.fill(true);
 
+    Profile8 profile("-", Game::BD, 12345, 54321, true, true);
+
     std::array<std::array<u8, 6>, 2> parentIVs = { 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31 };
     std::array<u8, 2> parentAbility = { 0, 0 };
     std::array<u8, 2> parentGender = { 0, 1 };
@@ -79,7 +81,7 @@ void EggGenerator8Test::generate()
 
     Daycare daycare(parentIVs, parentAbility, parentGender, parentItem, parentNature, pokemon, true);
     StateFilter8 filter(255, 255, 255, false, min, max, natures, powers);
-    EggGenerator8 generator(0, 9, 0, 12345, 54321, Game::BD, 88, daycare, true, filter);
+    EggGenerator8 generator(0, 9, 0, 88, daycare, profile, filter);
 
     auto states = generator.generate(seed0, seed1);
     QCOMPARE(states.size(), j.size());

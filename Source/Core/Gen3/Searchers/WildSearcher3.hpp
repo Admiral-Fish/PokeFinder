@@ -22,27 +22,26 @@
 
 #include <Core/Gen3/EncounterArea3.hpp>
 #include <Core/Gen3/Filters/StateFilter3.hpp>
+#include <Core/Gen3/Profile3.hpp>
 #include <Core/Parents/Searchers/WildSearcher.hpp>
 #include <mutex>
 
 /**
  * @brief Wild encounter searcher for Gen3
  */
-class WildSearcher3 : public WildSearcher<WildStateFilter3>
+class WildSearcher3 : public WildSearcher<Profile3, WildStateFilter3>
 {
 public:
     /**
      * @brief Construct a new WildSearcher3 object
      *
-     * @param tid Trainer ID
-     * @param sid Secret ID
-     * @param version Game version
      * @param method Encounter method
      * @param encounter Encounter type
      * @param lead Encounter lead
+     * @param profile Profile Information
      * @param filter State filter
      */
-    WildSearcher3(u16 tid, u16 sid, Game version, Method method, Encounter encounter, Lead lead, const EncounterArea3 &encounterArea,
+    WildSearcher3(Method method, Encounter encounter, Lead lead, const EncounterArea3 &encounterArea, const Profile3 &profile,
                   const WildStateFilter3 &filter);
 
     /**

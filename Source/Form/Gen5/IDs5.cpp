@@ -106,6 +106,7 @@ void IDs5::updateProfiles()
 void IDs5::find()
 {
     model->clearModel();
+    model->setGame(currentProfile->getVersion());
 
     u16 tid = ui->textBoxSeedFinderTID->getUShort();
     Date date = ui->dateEdit->getDate();
@@ -116,7 +117,7 @@ void IDs5::find()
     u32 maxAdvance = ui->textBoxSeedFinderMaxAdvances->getUInt();
 
     IDFilter filter({ tid }, {}, {}, {});
-    IDGenerator5 generator(0, maxAdvance, filter);
+    IDGenerator5 generator(0, maxAdvance, *currentProfile, filter);
     IDSearcher5 searcher(*currentProfile, 0, false, false);
 
     auto states = searcher.startSearch(generator, date, hour, minute, minSecond, maxSecond);
@@ -126,6 +127,7 @@ void IDs5::find()
 void IDs5::search()
 {
     model->clearModel();
+    model->setGame(currentProfile->getVersion());
 
     ui->pushButtonSearch->setEnabled(false);
     ui->pushButtonFind->setEnabled(false);
@@ -151,11 +153,11 @@ void IDs5::search()
     Date end = ui->dateEditEnd->getDate();
 
     IDFilter filter(tid, sid, {}, {});
-    IDGenerator5 generator(0, ui->textBoxMaxAdvances->getUInt(), filter);
+    IDGenerator5 generator(0, ui->textBoxMaxAdvances->getUInt(), *currentProfile, filter);
 
     auto *searcher = new IDSearcher5(*currentProfile, pid, usePID, useXOR);
 
-    int maxProgress = Keypresses::getKeyPresses(currentProfile->getKeypresses(), currentProfile->getSkipLR()).size();
+    int maxProgress = Keypresses::getKeyPresses(*currentProfile).size();
     maxProgress *= (start.daysTo(end) + 1);
     ui->progressBar->setRange(0, maxProgress);
 
@@ -213,6 +215,6 @@ void IDs5::profileIndexChanged(int index)
 void IDs5::profileManager()
 {
     auto *manager = new ProfileManager5();
-    connect(manager, &ProfileManager5::profilesModified, this, &IDs5::profilesModified);
+    connect(manager, &ProfileManager5::profilesModified, this, [=](int num) { emit profilesModified(num); });
     manager->show();
 }

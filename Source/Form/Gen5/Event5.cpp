@@ -84,7 +84,6 @@ Event5::Event5(QWidget *parent) : QWidget(parent), ui(new Ui::Event5)
     connect(ui->comboBoxProfiles, &QComboBox::currentIndexChanged, this, &Event5::profileIndexChanged);
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Event5::generate);
     connect(ui->pushButtonSearch, &QPushButton::clicked, this, &Event5::search);
-    connect(ui->pushButtonCalculateInitialAdvances, &QPushButton::clicked, this, &Event5::calculateInitialAdvances);
     connect(ui->pushButtonGeneratorImport, &QPushButton::clicked, this, &Event5::generatorImportEvent);
     connect(ui->pushButtonSearcherImport, &QPushButton::clicked, this, &Event5::searcherImportEvent);
     connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &Event5::profileManager);
@@ -168,23 +167,6 @@ PGF Event5::getSearcherParameters() const
                hp, atk, def, spa, spd, spe, ui->checkBoxSearcherEgg->isChecked());
 }
 
-void Event5::calculateInitialAdvances()
-{
-    Game version = currentProfile->getVersion();
-
-    u8 initialAdvances;
-    if ((version & Game::BW) != Game::None)
-    {
-        initialAdvances = Utilities5::initialAdvancesBW(ui->textBoxGeneratorSeed->getULong());
-    }
-    else
-    {
-        initialAdvances = Utilities5::initialAdvancesBW2(ui->textBoxGeneratorSeed->getULong(), currentProfile->getMemoryLink());
-    }
-
-    ui->textBoxGeneratorInitialAdvances->setText(QString::number(initialAdvances));
-}
-
 void Event5::generate()
 {
     generatorModel->clearModel();
@@ -192,15 +174,13 @@ void Event5::generate()
     u64 seed = ui->textBoxGeneratorSeed->getULong();
     u32 initialAdvances = ui->textBoxGeneratorInitialAdvances->getUInt();
     u32 maxAdvances = ui->textBoxGeneratorMaxAdvances->getUInt();
-    u16 tid = currentProfile->getTID();
-    u16 sid = currentProfile->getSID();
-    u32 offset = ui->textBoxGeneratorDelay->getUInt();
+    u32 delay = ui->textBoxGeneratorDelay->getUInt();
+    PGF pgf = getGeneratorParameters();
 
     StateFilter5 filter(ui->filterGenerator->getGender(), ui->filterGenerator->getAbility(), ui->filterGenerator->getShiny(),
                         ui->filterGenerator->getDisableFilters(), ui->filterGenerator->getMinIVs(), ui->filterGenerator->getMaxIVs(),
                         ui->filterGenerator->getNatures(), ui->filterGenerator->getHiddenPowers());
-    EventGenerator5 generator(initialAdvances, maxAdvances, offset, tid, sid, currentProfile->getVersion(), getGeneratorParameters(),
-                              filter);
+    EventGenerator5 generator(initialAdvances, maxAdvances, delay, pgf, *currentProfile, filter);
 
     auto states = generator.generate(seed);
     generatorModel->addItems(states);
@@ -281,20 +261,18 @@ void Event5::search()
     ui->pushButtonCancel->setEnabled(true);
 
     u32 maxAdvances = ui->textBoxSearcherMaxAdvances->getUInt();
-    u16 tid = currentProfile->getTID();
-    u16 sid = currentProfile->getSID();
+    PGF pgf = getSearcherParameters();
 
     StateFilter5 filter(ui->filterSearcher->getGender(), ui->filterSearcher->getAbility(), ui->filterSearcher->getShiny(),
                         ui->filterSearcher->getDisableFilters(), ui->filterSearcher->getMinIVs(), ui->filterSearcher->getMaxIVs(),
                         ui->filterSearcher->getNatures(), ui->filterSearcher->getHiddenPowers());
-    EventGenerator5 generator(0, maxAdvances, 0, tid, sid, currentProfile->getVersion(), getSearcherParameters(), filter);
-
-    auto *searcher = new Searcher5<EventGenerator5, State5>(*currentProfile);
+    EventGenerator5 generator(0, maxAdvances, 0, pgf, *currentProfile, filter);
+    auto *searcher = new Searcher5<State5>(*currentProfile);
 
     Date start = ui->dateEditSearcherStartDate->getDate();
     Date end = ui->dateEditSearcherEndDate->getDate();
 
-    int maxProgress = Keypresses::getKeyPresses(currentProfile->getKeypresses(), currentProfile->getSkipLR()).size();
+    int maxProgress = Keypresses::getKeyPresses(*currentProfile).size();
     maxProgress *= start.daysTo(end) + 1;
     maxProgress *= (currentProfile->getTimer0Max() - currentProfile->getTimer0Min() + 1);
     ui->progressBar->setRange(0, maxProgress);

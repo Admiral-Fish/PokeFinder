@@ -58,19 +58,19 @@ static u32 rand(u32 prng)
     return (prng % 0xffffffff) + 0x80000000;
 }
 
-WildGenerator8::WildGenerator8(u32 initialAdvances, u32 maxAdvances, u32 offset, u16 tid, u16 sid, Game version, Encounter encounter,
-                               Lead lead, const WildStateFilter8 &filter) :
-    WildGenerator(initialAdvances, maxAdvances, offset, tid, sid, version, Method::None, encounter, lead, filter)
+WildGenerator8::WildGenerator8(u32 initialAdvances, u32 maxAdvances, u32 delay, Encounter encounter, Lead lead, const Profile8 &profile,
+                               const WildStateFilter8 &filter) :
+    WildGenerator(initialAdvances, maxAdvances, delay, Method::None, encounter, lead, profile, filter)
 {
 }
 
 std::vector<WildGeneratorState> WildGenerator8::generate(u64 seed0, u64 seed1, const EncounterArea8 &encounterArea) const
 {
-    RNGList<u32, Xorshift, 128> rngList(seed0, seed1, initialAdvances + offset);
+    RNGList<u32, Xorshift, 128> rngList(seed0, seed1, initialAdvances + delay);
 
     bool encounterForce
         = lead == Lead::MagnetPull || lead == Lead::Static || lead == Lead::Harvest || lead == Lead::FlashFire || lead == Lead::StormDrain;
-    std::vector<u8> modifiedSlots = encounterArea.getSlots(version, lead);
+    std::vector<u8> modifiedSlots = encounterArea.getSlots(profile.getVersion(), lead);
 
     std::vector<WildGeneratorState> states;
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rngList.advanceState())

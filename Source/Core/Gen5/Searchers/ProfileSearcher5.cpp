@@ -119,7 +119,7 @@ void ProfileSearcher5::search(u8 vframeStart, u8 vframeEnd)
                 for (u16 vcount = minVCount; vcount <= maxVCount; vcount++)
                 {
                     sha.setTimer0(timer0, vcount);
-                    sha.precompute();
+                    auto alpha = sha.precompute();
                     for (u8 second = minSeconds; second <= maxSeconds; second++)
                     {
                         if (!searching)
@@ -129,7 +129,7 @@ void ProfileSearcher5::search(u8 vframeStart, u8 vframeEnd)
 
                         sha.setTime(hour, minute, second, dsType);
 
-                        u64 seed = sha.hashSeed();
+                        u64 seed = sha.hashSeed(alpha);
                         if (valid(seed))
                         {
                             std::lock_guard<std::mutex> lock(mutex);

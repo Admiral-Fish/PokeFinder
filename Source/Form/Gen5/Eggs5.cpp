@@ -66,7 +66,6 @@ Eggs5::Eggs5(QWidget *parent) : QWidget(parent), ui(new Ui::Eggs5)
     connect(ui->comboBoxProfiles, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &Eggs5::profileIndexChanged);
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Eggs5::generate);
     connect(ui->pushButtonSearch, &QPushButton::clicked, this, &Eggs5::search);
-    connect(ui->pushButtonCalculateInitialAdvances, &QPushButton::clicked, this, &Eggs5::calculateInitialAdvances);
     connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &Eggs5::profileManager);
     connect(ui->eggSettingsGenerator, &EggSettings::showInheritanceChanged, generatorModel, &EggGeneratorModel5::setShowInheritance);
     connect(ui->eggSettingsSearcher, &EggSettings::showInheritanceChanged, searcherModel, &EggSearcherModel5::setShowInheritance);
@@ -137,16 +136,13 @@ void Eggs5::generate()
     u64 seed = ui->textBoxGeneratorSeed->getULong();
     u32 initialAdvances = ui->textBoxGeneratorInitialAdvances->getUInt();
     u32 maxAdvances = ui->textBoxGeneratorMaxAdvances->getUInt();
-    u16 tid = currentProfile->getTID();
-    u16 sid = currentProfile->getSID();
-    u32 offset = ui->textBoxGeneratorDelay->getUInt();
+    u32 delay = ui->textBoxGeneratorDelay->getUInt();
+    Daycare daycare = ui->eggSettingsGenerator->getDaycareSettings();
 
     StateFilter5 filter(ui->filterGenerator->getGender(), ui->filterGenerator->getAbility(), ui->filterGenerator->getShiny(),
                         ui->filterGenerator->getDisableFilters(), ui->filterGenerator->getMinIVs(), ui->filterGenerator->getMaxIVs(),
                         ui->filterGenerator->getNatures(), ui->filterGenerator->getHiddenPowers());
-
-    EggGenerator5 generator(initialAdvances, maxAdvances, offset, tid, sid, currentProfile->getVersion(), currentProfile->getShinyCharm(),
-                            ui->eggSettingsGenerator->getDaycareSettings(), filter);
+    EggGenerator5 generator(initialAdvances, maxAdvances, delay, daycare, *currentProfile, filter);
 
     auto states = generator.generate(seed);
     generatorModel->addItems(states);
@@ -172,22 +168,18 @@ void Eggs5::search()
     ui->pushButtonCancel->setEnabled(true);
 
     u32 maxAdvances = ui->textBoxSearcherMaxAdvances->getUInt();
-    u16 tid = currentProfile->getTID();
-    u16 sid = currentProfile->getSID();
+    Daycare daycare = ui->eggSettingsSearcher->getDaycareSettings();
 
     StateFilter5 filter(ui->filterSearcher->getGender(), ui->filterSearcher->getAbility(), ui->filterSearcher->getShiny(),
                         ui->filterSearcher->getDisableFilters(), ui->filterSearcher->getMinIVs(), ui->filterSearcher->getMaxIVs(),
                         ui->filterSearcher->getNatures(), ui->filterSearcher->getHiddenPowers());
-
-    EggGenerator5 generator(0, maxAdvances, 0, tid, sid, currentProfile->getVersion(), currentProfile->getShinyCharm(),
-                            ui->eggSettingsSearcher->getDaycareSettings(), filter);
-
-    auto *searcher = new Searcher5<EggGenerator5, EggState5>(*currentProfile);
+    EggGenerator5 generator(0, maxAdvances, 0, daycare, *currentProfile, filter);
+    auto *searcher = new Searcher5<EggState5>(*currentProfile);
 
     Date start = ui->dateEditSearcherStartDate->getDate();
     Date end = ui->dateEditSearcherEndDate->getDate();
 
-    int maxProgress = Keypresses::getKeyPresses(currentProfile->getKeypresses(), currentProfile->getSkipLR()).size();
+    int maxProgress = Keypresses::getKeyPresses(*currentProfile).size();
     maxProgress *= start.daysTo(end) + 1;
     maxProgress *= (currentProfile->getTimer0Max() - currentProfile->getTimer0Min() + 1);
     ui->progressBar->setRange(0, maxProgress);
@@ -216,23 +208,6 @@ void Eggs5::search()
 
     thread->start();
     timer->start(1000);
-}
-
-void Eggs5::calculateInitialAdvances()
-{
-    Game version = currentProfile->getVersion();
-
-    u8 initialAdvances;
-    if ((version & Game::BW) != Game::None)
-    {
-        initialAdvances = Utilities5::initialAdvancesBW(ui->textBoxGeneratorSeed->getULong());
-    }
-    else
-    {
-        initialAdvances = Utilities5::initialAdvancesBW2(ui->textBoxGeneratorSeed->getULong(), currentProfile->getMemoryLink());
-    }
-
-    ui->textBoxGeneratorInitialAdvances->setText(QString::number(initialAdvances));
 }
 
 void Eggs5::profileIndexChanged(int index)

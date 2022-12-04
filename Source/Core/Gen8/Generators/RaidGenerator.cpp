@@ -27,15 +27,15 @@
 constexpr u8 toxtricityAmpedNatures[] = { 3, 4, 2, 8, 9, 19, 22, 11, 13, 14, 0, 6, 24 };
 constexpr u8 toxtricityLowKeyNatures[] = { 1, 5, 7, 10, 12, 15, 16, 17, 18, 20, 21, 23 };
 
-RaidGenerator::RaidGenerator(u32 initialAdvances, u32 maxAdvances, u32 offset, u16 tid, u16 sid, const StateFilter8 &filter) :
-    Generator(initialAdvances, maxAdvances, offset, tid, sid, Game::SwSh, Method::None, filter)
+RaidGenerator::RaidGenerator(u32 initialAdvances, u32 maxAdvances, u32 delay, const Profile8 &profile, const StateFilter8 &filter) :
+    Generator(initialAdvances, maxAdvances, delay, Method::None, profile, filter)
 {
 }
 
 std::vector<GeneratorState> RaidGenerator::generate(u64 seed, u8 level, const Raid &raid) const
 {
     const PersonalInfo *info = raid.getInfo();
-    seed += 0x82A2B175229D6A5B * (initialAdvances + offset);
+    seed += 0x82A2B175229D6A5B * (initialAdvances + delay);
 
     std::vector<GeneratorState> states;
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++, seed += 0x82A2B175229D6A5B)

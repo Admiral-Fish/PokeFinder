@@ -61,11 +61,8 @@ static u8 getShiny(u32 pid, u16 tsv)
     }
 }
 
-StaticSearcher3::StaticSearcher3(u16 tid, u16 sid, Game version, Method method, Lead lead, const StateFilter3 &filter) :
-    StaticSearcher(tid, sid, version, method, lead, filter),
-    progress(0),
-    ivAdvance(method == Method::Method2),
-    searching(false)
+StaticSearcher3::StaticSearcher3(Method method, Lead lead, const Profile3 &profile, const StateFilter3 &filter) :
+    StaticSearcher(method, lead, profile, filter), progress(0), ivAdvance(method == Method::Method2), searching(false)
 {
 }
 

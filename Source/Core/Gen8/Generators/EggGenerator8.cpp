@@ -32,30 +32,30 @@ static u32 gen(Xorshift &rng)
     return rng.next(0x80000000, 0x7fffffff);
 }
 
-EggGenerator8::EggGenerator8(u32 initialAdvances, u32 maxAdvances, u32 offset, u16 tid, u16 sid, Game version, u8 compatability,
-                             const Daycare &daycare, bool shinyCharm, const StateFilter8 &filter) :
-    EggGenerator(initialAdvances, maxAdvances, offset, tid, sid, version, Method::None, compatability, daycare, filter),
-    shinyCharm(shinyCharm)
+EggGenerator8::EggGenerator8(u32 initialAdvances, u32 maxAdvances, u32 delay, u8 compatability, const Daycare &daycare,
+                             const Profile8 &profile, const StateFilter8 &filter) :
+    EggGenerator(initialAdvances, maxAdvances, delay, Method::None, compatability, daycare, profile, filter),
+    shinyCharm(profile.getShinyCharm())
 {
 }
 
 std::vector<EggGeneratorState> EggGenerator8::generate(u64 seed0, u64 seed1) const
 {
-    const PersonalInfo *base = PersonalLoader::getPersonal(version, daycare.getEggSpecie());
+    const PersonalInfo *base = PersonalLoader::getPersonal(profile.getVersion(), daycare.getEggSpecie());
     const PersonalInfo *male;
     const PersonalInfo *female;
     if (daycare.getEggSpecie() == 29 || daycare.getEggSpecie() == 32)
     {
-        male = PersonalLoader::getPersonal(version, 32);
-        female = PersonalLoader::getPersonal(version, 29);
+        male = PersonalLoader::getPersonal(profile.getVersion(), 32);
+        female = PersonalLoader::getPersonal(profile.getVersion(), 29);
     }
     else if (daycare.getEggSpecie() == 313 || daycare.getEggSpecie() == 314)
     {
-        male = PersonalLoader::getPersonal(version, 313);
-        female = PersonalLoader::getPersonal(version, 314);
+        male = PersonalLoader::getPersonal(profile.getVersion(), 313);
+        female = PersonalLoader::getPersonal(profile.getVersion(), 314);
     }
 
-    RNGList<u32, Xorshift, 2, gen> rngList(seed0, seed1, initialAdvances + offset);
+    RNGList<u32, Xorshift, 2, gen> rngList(seed0, seed1, initialAdvances + delay);
 
     u8 pidRolls = 0;
     if (daycare.getMasuda())

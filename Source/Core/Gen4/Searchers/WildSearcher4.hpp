@@ -22,13 +22,14 @@
 
 #include <Core/Gen4/EncounterArea4.hpp>
 #include <Core/Gen4/Filters/StateFilter4.hpp>
+#include <Core/Gen4/Profile4.hpp>
 #include <Core/Parents/Searchers/WildSearcher.hpp>
 #include <mutex>
 
 /**
  * @brief Wild encounter searcher for Gen 4
  */
-class WildSearcher4 : public WildSearcher<WildStateFilter4>
+class WildSearcher4 : public WildSearcher<Profile4, WildStateFilter4>
 {
 public:
     /**
@@ -38,17 +39,15 @@ public:
      * @param maxAdvance Maximum advances
      * @param minDelay Minimum delay
      * @param maxDelay Maximum delay
-     * @param tid Trainer ID
-     * @param sid Secret ID
-     * @param version Game version
      * @param method Encounter method
      * @param encounter Encounter type
      * @param lead Encounter lead
      * @param shiny Whether Poke Radar is forced shiny
+     * @param profile Profile Information
      * @param filter State filter
      */
-    WildSearcher4(u32 minAdvance, u32 maxAdvance, u32 minDelay, u32 maxDelay, u16 tid, u16 sid, Game version, Method method,
-                  Encounter encounter, Lead lead, bool shiny, const EncounterArea4 &encounterArea, const WildStateFilter4 &filter);
+    WildSearcher4(u32 minAdvance, u32 maxAdvance, u32 minDelay, u32 maxDelay, Method method, Encounter encounter, Lead lead, bool shiny,
+                  const EncounterArea4 &encounterArea, const Profile4 &profile, const WildStateFilter4 &filter);
 
     /**
      * @brief Cancels the running search

@@ -20,7 +20,6 @@
 #ifndef SEARCHER5_HPP
 #define SEARCHER5_HPP
 
-#include <Core/Enum/Game.hpp>
 #include <Core/Gen5/Keypresses.hpp>
 #include <Core/Gen5/Profile5.hpp>
 #include <Core/Global.hpp>
@@ -33,17 +32,16 @@
 #include <vector>
 
 class Date;
-class DreamRadarGenerator;
+class Profile5;
 template <class StateType>
 class SearcherState5;
 
 /**
  * @brief Parent searcher class for most Gen 5 generators
  *
- * @tparam Generator Generator class to use
  * @tparam State State class to use
  */
-template <class Generator, class State>
+template <class State>
 class Searcher5
 {
 public:
@@ -52,7 +50,13 @@ public:
      *
      * @param profile Profile information
      */
-    Searcher5(const Profile5 &profile) : profile(profile), progress(0), searching(false)
+    Searcher5(const Profile5 &profile) :
+        profile(profile),
+        buttons(Keypresses::getKeyPresses(profile)),
+        values(Keypresses::getValues(buttons)),
+        sha(profile),
+        progress(0),
+        searching(false)
     {
     }
 
@@ -89,11 +93,13 @@ public:
     /**
      * @brief Starts the search
      *
+     * @tparam Generator Generator class to use
      * @param generator State generator
      * @param threads Numbers of threads to search with
      * @param start Start date
      * @param end End date
      */
+    template <class Generator>
     void startSearch(const Generator &generator, int threads, const Date &start, const Date &end)
     {
         searching = true;
@@ -131,32 +137,31 @@ public:
 private:
     Profile5 profile;
     std::mutex mutex;
+    std::vector<Buttons> buttons;
     std::vector<SearcherState5<State>> results;
+    std::vector<u32> values;
+    SHA1 sha;
     std::atomic<int> progress;
     bool searching;
 
     /**
      * @brief Searches between the \p start and \p end dates
      *
+     * @tparam Generator Generator class to use
      * @param generator State generator
      * @param start Start date
      * @param end End date
      */
-    void search(Generator generator, const Date &start, const Date &end)
+    template <class Generator>
+    void search(const Generator &generator, const Date &start, const Date &end)
     {
-        bool flag = (profile.getVersion() & Game::BW) != Game::None;
-
-        SHA1 sha(profile);
-        auto buttons = Keypresses::getKeyPresses(profile.getKeypresses(), profile.getSkipLR());
-        auto values = Keypresses::getValues(buttons);
-
         for (u16 timer0 = profile.getTimer0Min(); timer0 <= profile.getTimer0Max(); timer0++)
         {
             sha.setTimer0(timer0, profile.getVCount());
             for (Date date = start; date <= end; date = date.addDays(1))
             {
                 sha.setDate(date);
-                sha.precompute();
+                auto alpha = sha.precompute();
                 for (size_t i = 0; i < values.size(); i++)
                 {
                     sha.setButton(values[i]);
@@ -173,21 +178,9 @@ private:
                                 }
 
                                 sha.setTime(hour, minute, second, profile.getDSType());
-                                u64 seed = sha.hashSeed();
+                                u64 seed = sha.hashSeed(alpha);
 
-                                u32 advances = flag ? Utilities5::initialAdvancesBW(seed)
-                                                    : Utilities5::initialAdvancesBW2(seed, profile.getMemoryLink());
-
-                                std::vector<State> states;
-                                if constexpr (std::is_same<Generator, DreamRadarGenerator>::value)
-                                {
-                                    states = generator.generate(seed, profile.getMemoryLink());
-                                }
-                                else
-                                {
-                                    states = generator.generate(seed);
-                                }
-
+                                auto states = generator.generate(seed);
                                 if (!states.empty())
                                 {
                                     std::vector<SearcherState5<State>> displayStates;
@@ -196,7 +189,7 @@ private:
                                     DateTime dt(date, Time(hour, minute, second));
                                     for (const auto &state : states)
                                     {
-                                        displayStates.emplace_back(dt, seed, advances, buttons[i], timer0, state);
+                                        displayStates.emplace_back(dt, seed, buttons[i], timer0, state);
                                     }
 
                                     std::lock_guard<std::mutex> lock(mutex);

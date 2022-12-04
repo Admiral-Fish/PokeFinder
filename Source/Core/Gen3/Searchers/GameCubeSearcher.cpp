@@ -149,8 +149,8 @@ static bool validateJirachi(u32 seed)
     return false;
 }
 
-GameCubeSearcher::GameCubeSearcher(u16 tid, u16 sid, Game version, Method method, bool unset, const StateFilter3 &filter) :
-    Searcher<StateFilter3>(tid, sid, version, method, filter), progress(0), searching(false), unset(unset)
+GameCubeSearcher::GameCubeSearcher(Method method, bool unset, const Profile3 &profile, const StateFilter3 &filter) :
+    Searcher(method, profile, filter), progress(0), searching(false), unset(unset)
 {
 }
 
@@ -193,7 +193,7 @@ void GameCubeSearcher::startSearch(const std::array<u8, 6> &min, const std::arra
                             }
 
                             std::vector<SearcherState> states;
-                            if ((version & Game::Colosseum) != Game::None)
+                            if ((profile.getVersion() & Game::Colosseum) != Game::None)
                             {
                                 states = searchColoShadow(hp, atk, def, spa, spd, spe, shadowTemplate);
                             }

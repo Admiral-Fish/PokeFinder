@@ -24,6 +24,8 @@
 #include <Core/Parents/States/IDState.hpp>
 #include <Model/TableModel.hpp>
 
+enum class Game : u32;
+
 /**
  * @brief Provides a table model implementation to show TID/SID information for Gen 5
  */
@@ -68,9 +70,12 @@ public:
      */
     QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
 
+    void setGame(Game version);
+
 private:
     QStringList header
         = { tr("Seed"), tr("Initial Advances"), tr("Advances"), tr("TID"), tr("SID"), tr("TSV"), tr("Date/Time"), tr("Buttons") };
+    Game version;
 };
 
 #endif // IDMODEL5_HPP

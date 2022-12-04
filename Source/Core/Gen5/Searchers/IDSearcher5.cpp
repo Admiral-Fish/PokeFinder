@@ -67,32 +67,27 @@ void IDSearcher5::startSearch(const IDGenerator5 &generator, int threads, const 
     }
 }
 
-std::vector<SearcherState5<IDState>> IDSearcher5::startSearch(IDGenerator5 generator, const Date &date, u8 hour, u8 minute, u8 minSecond,
-                                                              u8 maxSecond)
+std::vector<SearcherState5<IDState>> IDSearcher5::startSearch(const IDGenerator5 &generator, const Date &date, u8 hour, u8 minute,
+                                                              u8 minSecond, u8 maxSecond)
 {
-    bool flag = (profile.getVersion() & Game::BW) != Game::None;
-
     SHA1 sha(profile);
-    auto buttons = Keypresses::getKeyPresses(profile.getKeypresses(), profile.getSkipLR());
+    auto buttons = Keypresses::getKeyPresses(profile);
     auto values = Keypresses::getValues(buttons);
 
     // IDs only uses minimum Timer0
     sha.setTimer0(profile.getTimer0Min(), profile.getVCount());
 
     sha.setDate(date);
-    sha.precompute();
+    auto alpha = sha.precompute();
     for (size_t i = 0; i < values.size(); i++)
     {
         sha.setButton(values[i]);
         for (u8 second = minSecond; second < maxSecond; second++)
         {
             sha.setTime(hour, minute, second, profile.getDSType());
-            u64 seed = sha.hashSeed();
+            u64 seed = sha.hashSeed(alpha);
 
-            u32 advances = flag ? Utilities5::initialAdvancesBWID(seed) : Utilities5::initialAdvancesBW2ID(seed);
-            generator.setInitialAdvances(advances);
             auto states = generator.generate(seed, pid, checkPID, checkXOR);
-
             if (!states.empty())
             {
                 std::vector<SearcherState5<IDState>> displayStates;
@@ -101,7 +96,7 @@ std::vector<SearcherState5<IDState>> IDSearcher5::startSearch(IDGenerator5 gener
                 DateTime dt(date, Time(hour, minute, second));
                 for (auto &state : states)
                 {
-                    displayStates.emplace_back(dt, seed, advances, buttons[i], 0, state);
+                    displayStates.emplace_back(dt, seed, buttons[i], profile.getTimer0Min(), state);
                 }
 
                 results.insert(results.end(), displayStates.begin(), displayStates.end());
@@ -128,12 +123,10 @@ int IDSearcher5::getProgress() const
     return progress;
 }
 
-void IDSearcher5::search(IDGenerator5 generator, const Date &start, const Date &end)
+void IDSearcher5::search(const IDGenerator5 &generator, const Date &start, const Date &end)
 {
-    bool flag = (profile.getVersion() & Game::BW) != Game::None;
-
     SHA1 sha(profile);
-    auto buttons = Keypresses::getKeyPresses(profile.getKeypresses(), profile.getSkipLR());
+    auto buttons = Keypresses::getKeyPresses(profile);
     auto values = Keypresses::getValues(buttons);
 
     // IDs only uses minimum Timer0
@@ -142,7 +135,7 @@ void IDSearcher5::search(IDGenerator5 generator, const Date &start, const Date &
     for (Date date = start; date <= end; date = date.addDays(1))
     {
         sha.setDate(date);
-        sha.precompute();
+        auto alpha = sha.precompute();
         for (size_t i = 0; i < values.size(); i++)
         {
             sha.setButton(values[i]);
@@ -159,12 +152,9 @@ void IDSearcher5::search(IDGenerator5 generator, const Date &start, const Date &
                         }
 
                         sha.setTime(hour, minute, second, profile.getDSType());
-                        u64 seed = sha.hashSeed();
+                        u64 seed = sha.hashSeed(alpha);
 
-                        u32 advances = flag ? Utilities5::initialAdvancesBWID(seed) : Utilities5::initialAdvancesBW2ID(seed);
-                        generator.setInitialAdvances(advances);
                         auto states = generator.generate(seed, pid, checkPID, checkXOR);
-
                         if (!states.empty())
                         {
                             std::vector<SearcherState5<IDState>> displayStates;
@@ -173,7 +163,7 @@ void IDSearcher5::search(IDGenerator5 generator, const Date &start, const Date &
                             DateTime dt(date, Time(hour, minute, second));
                             for (auto &state : states)
                             {
-                                displayStates.emplace_back(dt, seed, advances, buttons[i], 0, state);
+                                displayStates.emplace_back(dt, seed, buttons[i], profile.getTimer0Min(), state);
                             }
 
                             std::lock_guard<std::mutex> lock(mutex);

@@ -26,10 +26,11 @@
 /**
  * @brief Parent generator class for egg encounters
  *
+ * @tparam Profile Profile class that is used by the generator
  * @tparam Filter Filter class that is used by the generator
  */
-template <class Filter>
-class EggGenerator : public Generator<Filter>
+template <class Profile, class Filter>
+class EggGenerator : public Generator<Profile, Filter>
 {
 public:
     /**
@@ -37,18 +38,16 @@ public:
      *
      * @param initialAdvances Initial number of advances
      * @param maxAdvances Maximum number of advances
-     * @param offset Number of advances to offset
-     * @param version Game version
-     * @param tid Trainer ID
-     * @param sid Secret ID
+     * @param delay Number of advances to offset
      * @param method Encounter method
      * @param compatability Parent compatability
      * @param daycare Daycare parent information
+     * @param profile Profile Information
      * @param filter State filter
      */
-    EggGenerator(u32 initialAdvances, u32 maxAdvances, u32 offset, u16 tid, u16 sid, Game version, Method method, u8 compatability,
-                 const Daycare &daycare, const Filter &filter) :
-        Generator<Filter>(initialAdvances, maxAdvances, offset, tid, sid, version, method, filter),
+    EggGenerator(u32 initialAdvances, u32 maxAdvances, u32 delay, Method method, u8 compatability, const Daycare &daycare,
+                 const Profile &profile, const Filter &filter) :
+        Generator<Profile, Filter>(initialAdvances, maxAdvances, delay, method, profile, filter),
         daycare(daycare),
         compatability(compatability)
     {

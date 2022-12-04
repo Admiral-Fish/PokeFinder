@@ -21,6 +21,7 @@
 #define RAIDGENERATOR_HPP
 
 #include <Core/Gen8/Filters/StateFilter8.hpp>
+#include <Core/Gen8/Profile8.hpp>
 #include <Core/Parents/Generators/Generator.hpp>
 
 class Raid;
@@ -28,7 +29,7 @@ class Raid;
 /**
  * @brief Raid encounter generator for Gen8
  */
-class RaidGenerator : Generator<StateFilter8>
+class RaidGenerator : Generator<Profile8, StateFilter8>
 {
 public:
     /**
@@ -36,12 +37,11 @@ public:
      *
      * @param initialAdvances Initial number of advances
      * @param maxAdvances Maximum number of advances
-     * @param offset Number of advances to offset
-     * @param tid Trainer ID
-     * @param sid Secret ID
+     * @param delay Number of advances to offset
+     * @param profile Profile Information
      * @param filter State filter
      */
-    RaidGenerator(u32 initialAdvances, u32 maxAdvances, u32 offset, u16 tid, u16 sid, const StateFilter8 &filter);
+    RaidGenerator(u32 initialAdvances, u32 maxAdvances, u32 delay, const Profile8 &profile, const StateFilter8 &filter);
 
     /**
      * @brief Generates states for the \p raid

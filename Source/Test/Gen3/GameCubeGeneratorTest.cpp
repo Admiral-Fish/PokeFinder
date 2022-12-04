@@ -68,9 +68,11 @@ void GameCubeGeneratorTest::generateChannel()
     std::array<bool, 16> powers;
     powers.fill(true);
 
+    Profile3 profile("-", Game::GC, 12345, 54321, false);
+
     const StaticTemplate *staticTemplate = Encounters3::getStaticEncounter(8, 0);
     StateFilter3 filter(255, 255, 255, false, min, max, natures, powers);
-    GameCubeGenerator generator(0, 9, 0, 12345, 54321, Game::GC, Method::Channel, false, filter);
+    GameCubeGenerator generator(0, 9, 0, Method::Channel, false, profile, filter);
 
     auto states = generator.generate(seed, staticTemplate);
     QCOMPARE(states.size(), j.size());
@@ -116,9 +118,11 @@ void GameCubeGeneratorTest::generateColoShadow()
     std::array<bool, 16> powers;
     powers.fill(true);
 
+    Profile3 profile("-", Game::Colosseum, 12345, 54321, false);
+
     const ShadowTemplate *shadowTemplate = Encounters3::getShadowTeam(pokemon);
     StateFilter3 filter(255, 255, 255, false, min, max, natures, powers);
-    GameCubeGenerator generator(0, 9, 0, 12345, 54321, Game::Colosseum, Method::None, false, filter);
+    GameCubeGenerator generator(0, 9, 0, Method::None, false, profile, filter);
 
     auto states = generator.generate(seed, shadowTemplate);
     QCOMPARE(states.size(), j.size());
@@ -166,9 +170,11 @@ void GameCubeGeneratorTest::generateGalesShadow()
     std::array<bool, 16> powers;
     powers.fill(true);
 
+    Profile3 profile("-", Game::Gales, 12345, 54321, false);
+
     const ShadowTemplate *shadowTemplate = Encounters3::getShadowTeam(pokemon);
     StateFilter3 filter(255, 255, 255, false, min, max, natures, powers);
-    GameCubeGenerator generator(0, 9, 0, 12345, 54321, Game::Gales, Method::None, unset, filter);
+    GameCubeGenerator generator(0, 9, 0, Method::None, unset, profile, filter);
 
     auto states = generator.generate(seed, shadowTemplate);
     QCOMPARE(states.size(), j.size());
@@ -216,9 +222,11 @@ void GameCubeGeneratorTest::generateNonLock()
     std::array<bool, 16> powers;
     powers.fill(true);
 
+    Profile3 profile("-", version, 12345, 54321, false);
+
     const StaticTemplate *staticTemplate = Encounters3::getStaticEncounter(7, pokemon);
     StateFilter3 filter(255, 255, 255, false, min, max, natures, powers);
-    GameCubeGenerator generator(0, 9, 0, 12345, 54321, version, Method::None, false, filter);
+    GameCubeGenerator generator(0, 9, 0, Method::None, false, profile, filter);
 
     auto states = generator.generate(seed, staticTemplate);
     QCOMPARE(states.size(), j.size());

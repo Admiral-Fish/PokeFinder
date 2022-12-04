@@ -79,11 +79,6 @@ private:
 
 private slots:
     /**
-     * @brief Calculates the initial advances from a starting seed
-     */
-    void calculateInitialAdvances();
-
-    /**
      * @brief Generates egg encounters from a starting seed
      */
     void generate();

@@ -78,9 +78,11 @@ void StaticGenerator8Test::generate()
     std::array<bool, 16> powers;
     powers.fill(true);
 
+    Profile8 profile("-", Game::BDSP, 12345, 54321, false, false);
+
     const StaticTemplate8 *staticTemplate = Encounters8::getStaticEncounter(category, pokemon);
     StateFilter8 filter(255, 255, 255, false, min, max, natures, powers);
-    StaticGenerator8 generator(0, 9, 0, 12345, 54321, Game::BD, lead, filter);
+    StaticGenerator8 generator(0, 9, 0, lead, profile, filter);
 
     auto states = generator.generate(seed0, seed1, staticTemplate);
     QCOMPARE(states.size(), j.size());
@@ -130,9 +132,11 @@ void StaticGenerator8Test::generateRoamer()
     std::array<bool, 16> powers;
     powers.fill(true);
 
+    Profile8 profile("-", Game::BD, 12345, 54321, false, false);
+
     const StaticTemplate8 *staticTemplate = Encounters8::getStaticEncounter(category, pokemon);
     StateFilter8 filter(255, 255, 255, false, min, max, natures, powers);
-    StaticGenerator8 generator(0, 9, 0, 12345, 54321, Game::BD, Lead::None, filter);
+    StaticGenerator8 generator(0, 9, 0, Lead::None, profile, filter);
 
     auto states = generator.generateRoamer(seed0, seed1, staticTemplate);
     QCOMPARE(states.size(), j.size());
