@@ -114,11 +114,11 @@ std::vector<EggState5> EggGenerator5::generateBW(u64 seed) const
     std::array<u8, 6> ivs;
     std::generate(ivs.begin(), ivs.end(), [&mt] { return mt.next(); });
 
-    u32 cnt = Utilities5::initialAdvances(seed, profile);
-    BWRNG rng(seed, cnt + initialAdvances + delay);
+    u32 advances = Utilities5::initialAdvances(seed, profile);
+    BWRNG rng(seed, advances + initialAdvances + delay);
 
     std::vector<EggState5> states;
-    for (; cnt <= maxAdvances; cnt++)
+    for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
     {
         BWRNG go(rng.getSeed());
 
@@ -210,8 +210,8 @@ std::vector<EggState5> EggGenerator5::generateBW(u64 seed) const
 
         u8 ability = hiddenAbility ? 2 : ((pid >> 16) & 1);
 
-        EggState5 state(rng.nextUInt(0x1fff), initialAdvances + cnt, pid, ivs, ability, getGender(pid, info), 1, nature, getShiny(pid, tsv),
-                        inheritance, info);
+        EggState5 state(rng.nextUInt(0x1fff), advances + initialAdvances + cnt, pid, ivs, ability, getGender(pid, info), 1, nature,
+                        getShiny(pid, tsv), inheritance, info);
         if (filter.compareState(state))
         {
             states.emplace_back(state);
@@ -234,9 +234,9 @@ std::vector<EggState5> EggGenerator5::generateBW2(u64 seed) const
     EggState5 state = generateBW2Egg(eggSeed, &info);
     if (filter.compareAbility(state.getAbility()) && filter.compareNature(state.getNature()) && filter.compareIV(state.getIVs()))
     {
-        u32 cnt = Utilities5::initialAdvances(seed, profile);
-        BWRNG rng(seed, cnt + initialAdvances + delay);
-        for (; cnt <= maxAdvances; cnt++, rng.next())
+        u32 advances = Utilities5::initialAdvances(seed, profile);
+        BWRNG rng(seed, advances + initialAdvances + delay);
+        for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rng.next())
         {
             BWRNG go(rng.getSeed());
 
@@ -255,7 +255,7 @@ std::vector<EggState5> EggGenerator5::generateBW2(u64 seed) const
                 }
             }
 
-            state.update(rng.nextUInt(0x1fff), initialAdvances + cnt, pid, getGender(pid, info), getShiny(pid, tsv));
+            state.update(rng.nextUInt(0x1fff), advances + initialAdvances + cnt, pid, getGender(pid, info), getShiny(pid, tsv));
             if (filter.compareGender(state.getGender()) && filter.compareShiny(state.getShiny()))
             {
                 states.emplace_back(state);

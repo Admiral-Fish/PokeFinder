@@ -56,7 +56,7 @@ DreamRadarGenerator::DreamRadarGenerator(u32 initialAdvances, u32 maxAdvances, u
         const PersonalInfo *info = slot.getInfo();
         if (i != (radarTemplates.size() - 1))
         {
-            pidAdvances += (info->getGender() == 255) ? 4 : 5;
+            pidAdvances += (slot.getLegend() || info->getGender() != 255) ? 5 : 4;
             ivAdvances += 13;
         }
     }
@@ -72,7 +72,6 @@ std::vector<DreamRadarState> DreamRadarGenerator::generate(u64 seed) const
         rng.next();
     }
 
-    // Initial advances, starting advance, slot advances
     RNGList<u8, MT, 8, gen> rngList(seed >> 32, (initialAdvances * 2) + ivAdvances + 9);
 
     std::vector<DreamRadarState> states;

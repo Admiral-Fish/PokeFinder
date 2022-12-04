@@ -29,25 +29,21 @@ IDGenerator5::IDGenerator5(u32 initialAdvances, u32 maxAdvances, const Profile5 
 
 std::vector<IDState> IDGenerator5::generate(u64 seed, u32 pid, bool checkPID, bool checkXOR) const
 {
-    std::vector<IDState> states;
-
     bool pidBit = (pid >> 31) ^ (pid & 1);
     u16 psv = (pid >> 16) ^ (pid & 0xffff);
 
-    // cnt starts from 1 because the game forces
-    // you to enter in the name insertion screen
-    // at least once, so prng advances +1 at the
-    // Yes/No screen after you click A on OK
-    u32 cnt = Utilities5::initialAdvancesID(seed, profile.getVersion());
-    BWRNG rng(seed, initialAdvances);
-    for (; cnt <= maxAdvances; cnt++)
+    u32 advances = Utilities5::initialAdvancesID(seed, profile.getVersion());
+    BWRNG rng(seed, advances + initialAdvances);
+
+    std::vector<IDState> states;
+    for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
     {
         u32 rand = rng.nextUInt(0xffffffff);
         u16 tid = rand & 0xffff;
         u16 sid = rand >> 16;
         u16 tsv = (tid ^ sid) >> 3;
 
-        IDState state(initialAdvances + cnt, tid, sid, tsv);
+        IDState state(advances + initialAdvances + cnt, tid, sid, tsv);
         if (filter.compare(state))
         {
             bool shiny = (psv >> 3) == state.getTSV();

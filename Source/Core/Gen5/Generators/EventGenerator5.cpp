@@ -77,11 +77,11 @@ std::vector<State5> EventGenerator5::generate(u64 seed) const
 {
     const PersonalInfo *info = PersonalLoader::getPersonal(profile.getVersion(), pgf.getSpecies());
 
-    u32 cnt = Utilities5::initialAdvances(seed, profile);
-    BWRNG rng(seed, cnt + initialAdvances + delay);
+    u32 advances = Utilities5::initialAdvances(seed, profile);
+    BWRNG rng(seed, advances + initialAdvances + delay);
 
     std::vector<State5> states;
-    for (; cnt <= maxAdvances; cnt++)
+    for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
     {
         BWRNG go(rng.getSeed(), wondercardAdvances);
 
@@ -153,8 +153,8 @@ std::vector<State5> EventGenerator5::generate(u64 seed) const
             nature = go.nextUInt(25);
         }
 
-        State5 state(rng.nextUInt(0x1fff), initialAdvances + cnt, pid, ivs, ability, getGender(pid, info), pgf.getLevel(), nature,
-                     getShiny(pid, tsv), info);
+        State5 state(rng.nextUInt(0x1fff), advances + initialAdvances + cnt, pid, ivs, ability, getGender(pid, info), pgf.getLevel(),
+                     nature, getShiny(pid, tsv), info);
         if (filter.compareState(state))
         {
             states.emplace_back(state);

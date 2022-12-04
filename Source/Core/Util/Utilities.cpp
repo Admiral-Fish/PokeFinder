@@ -132,7 +132,7 @@ namespace Utilities3
         u32 m = time.minute();
 
         u32 seed = 1440 * d + 960 * (h / 10) + 60 * (h % 10) + 16 * (m / 10) + m % 10;
-        return (seed >> 16) ^ (seed & 0xFFFF);
+        return (seed >> 16) ^ (seed & 0xffff);
     }
 }
 
