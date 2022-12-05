@@ -1,0 +1,1214 @@
+{
+    "generate": [
+        {
+            "name": "Tornadus",
+            "seed": 0,
+            "pokemon": [
+                23
+            ],
+            "gender": [
+                0
+            ],
+            "results": [
+                {
+                    "ability": 2,
+                    "abilityIndex": 144,
+                    "advances": 0,
+                    "gender": 0,
+                    "hiddenPower": 8,
+                    "hiddenPowerStrength": 38,
+                    "ivs": [
+                        16,
+                        15,
+                        18,
+                        12,
+                        29,
+                        26
+                    ],
+                    "level": 5,
+                    "nature": 15,
+                    "needle": 4,
+                    "pid": 2546407445,
+                    "shiny": 0,
+                    "stats": [
+                        23,
+                        13,
+                        13,
+                        17,
+                        15,
+                        18
+                    ]
+                },
+                {
+                    "ability": 2,
+                    "abilityIndex": 144,
+                    "advances": 1,
+                    "gender": 0,
+                    "hiddenPower": 0,
+                    "hiddenPowerStrength": 66,
+                    "ivs": [
+                        18,
+                        12,
+                        29,
+                        26,
+                        2,
+                        10
+                    ],
+                    "level": 5,
+                    "nature": 8,
+                    "needle": 0,
+                    "pid": 750536463,
+                    "shiny": 0,
+                    "stats": [
+                        23,
+                        15,
+                        15,
+                        15,
+                        14,
+                        17
+                    ]
+                },
+                {
+                    "ability": 2,
+                    "abilityIndex": 144,
+                    "advances": 2,
+                    "gender": 0,
+                    "hiddenPower": 0,
+                    "hiddenPowerStrength": 64,
+                    "ivs": [
+                        29,
+                        26,
+                        2,
+                        10,
+                        2,
+                        20
+                    ],
+                    "level": 5,
+                    "nature": 2,
+                    "needle": 0,
+                    "pid": 2642215540,
+                    "shiny": 0,
+                    "stats": [
+                        24,
+                        17,
+                        13,
+                        16,
+                        14,
+                        16
+                    ]
+                },
+                {
+                    "ability": 2,
+                    "abilityIndex": 144,
+                    "advances": 3,
+                    "gender": 0,
+                    "hiddenPower": 1,
+                    "hiddenPowerStrength": 39,
+                    "ivs": [
+                        2,
+                        10,
+                        2,
+                        20,
+                        0,
+                        11
+                    ],
+                    "level": 5,
+                    "nature": 17,
+                    "needle": 4,
+                    "pid": 1501991249,
+                    "shiny": 0,
+                    "stats": [
+                        23,
+                        15,
+                        13,
+                        18,
+                        14,
+                        15
+                    ]
+                },
+                {
+                    "ability": 2,
+                    "abilityIndex": 144,
+                    "advances": 4,
+                    "gender": 0,
+                    "hiddenPower": 3,
+                    "hiddenPowerStrength": 66,
+                    "ivs": [
+                        2,
+                        20,
+                        0,
+                        11,
+                        26,
+                        30
+                    ],
+                    "level": 5,
+                    "nature": 15,
+                    "needle": 1,
+                    "pid": 365076315,
+                    "shiny": 0,
+                    "stats": [
+                        23,
+                        14,
+                        13,
+                        17,
+                        15,
+                        18
+                    ]
+                },
+                {
+                    "ability": 2,
+                    "abilityIndex": 144,
+                    "advances": 5,
+                    "gender": 0,
+                    "hiddenPower": 0,
+                    "hiddenPowerStrength": 43,
+                    "ivs": [
+                        0,
+                        11,
+                        26,
+                        30,
+                        24,
+                        4
+                    ],
+                    "level": 5,
+                    "nature": 3,
+                    "needle": 4,
+                    "pid": 2944628967,
+                    "shiny": 0,
+                    "stats": [
+                        22,
+                        16,
+                        14,
+                        15,
+                        15,
+                        17
+                    ]
+                },
+                {
+                    "ability": 2,
+                    "abilityIndex": 144,
+                    "advances": 6,
+                    "gender": 0,
+                    "hiddenPower": 9,
+                    "hiddenPowerStrength": 57,
+                    "ivs": [
+                        26,
+                        30,
+                        24,
+                        4,
+                        27,
+                        27
+                    ],
+                    "level": 5,
+                    "nature": 2,
+                    "needle": 2,
+                    "pid": 2748196153,
+                    "shiny": 0,
+                    "stats": [
+                        24,
+                        17,
+                        14,
+                        16,
+                        15,
+                        16
+                    ]
+                },
+                {
+                    "ability": 2,
+                    "abilityIndex": 144,
+                    "advances": 7,
+                    "gender": 0,
+                    "hiddenPower": 14,
+                    "hiddenPowerStrength": 68,
+                    "ivs": [
+                        24,
+                        4,
+                        27,
+                        27,
+                        31,
+                        15
+                    ],
+                    "level": 5,
+                    "nature": 15,
+                    "needle": 0,
+                    "pid": 644479429,
+                    "shiny": 0,
+                    "stats": [
+                        24,
+                        13,
+                        14,
+                        18,
+                        15,
+                        17
+                    ]
+                },
+                {
+                    "ability": 2,
+                    "abilityIndex": 144,
+                    "advances": 8,
+                    "gender": 0,
+                    "hiddenPower": 15,
+                    "hiddenPowerStrength": 44,
+                    "ivs": [
+                        27,
+                        27,
+                        31,
+                        15,
+                        25,
+                        25
+                    ],
+                    "level": 5,
+                    "nature": 13,
+                    "needle": 5,
+                    "pid": 417382323,
+                    "shiny": 0,
+                    "stats": [
+                        24,
+                        16,
+                        14,
+                        14,
+                        15,
+                        19
+                    ]
+                },
+                {
+                    "ability": 2,
+                    "abilityIndex": 144,
+                    "advances": 9,
+                    "gender": 0,
+                    "hiddenPower": 5,
+                    "hiddenPowerStrength": 52,
+                    "ivs": [
+                        31,
+                        15,
+                        25,
+                        25,
+                        14,
+                        16
+                    ],
+                    "level": 5,
+                    "nature": 15,
+                    "needle": 5,
+                    "pid": 2653221867,
+                    "shiny": 0,
+                    "stats": [
+                        24,
+                        13,
+                        14,
+                        18,
+                        14,
+                        17
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Lugia",
+            "seed": 0,
+            "pokemon": [
+                8
+            ],
+            "gender": [
+                0
+            ],
+            "results": [
+                {
+                    "ability": 2,
+                    "abilityIndex": 136,
+                    "advances": 0,
+                    "gender": 0,
+                    "hiddenPower": 7,
+                    "hiddenPowerStrength": 40,
+                    "ivs": [
+                        19,
+                        20,
+                        12,
+                        14,
+                        9,
+                        28
+                    ],
+                    "level": 5,
+                    "nature": 24,
+                    "needle": 4,
+                    "pid": 1689394701,
+                    "shiny": 0,
+                    "stats": [
+                        26,
+                        15,
+                        18,
+                        14,
+                        20,
+                        17
+                    ]
+                },
+                {
+                    "ability": 2,
+                    "abilityIndex": 136,
+                    "advances": 1,
+                    "gender": 0,
+                    "hiddenPower": 8,
+                    "hiddenPowerStrength": 36,
+                    "ivs": [
+                        12,
+                        14,
+                        9,
+                        28,
+                        1,
+                        30
+                    ],
+                    "level": 5,
+                    "nature": 1,
+                    "needle": 0,
+                    "pid": 1857619736,
+                    "shiny": 0,
+                    "stats": [
+                        26,
+                        15,
+                        16,
+                        15,
+                        20,
+                        17
+                    ]
+                },
+                {
+                    "ability": 2,
+                    "abilityIndex": 136,
+                    "advances": 2,
+                    "gender": 0,
+                    "hiddenPower": 1,
+                    "hiddenPowerStrength": 40,
+                    "ivs": [
+                        9,
+                        28,
+                        1,
+                        30,
+                        8,
+                        12
+                    ],
+                    "level": 5,
+                    "nature": 0,
+                    "needle": 0,
+                    "pid": 4271269529,
+                    "shiny": 0,
+                    "stats": [
+                        26,
+                        15,
+                        18,
+                        15,
+                        20,
+                        16
+                    ]
+                },
+                {
+                    "ability": 2,
+                    "abilityIndex": 136,
+                    "advances": 3,
+                    "gender": 0,
+                    "hiddenPower": 9,
+                    "hiddenPowerStrength": 51,
+                    "ivs": [
+                        1,
+                        30,
+                        8,
+                        12,
+                        15,
+                        25
+                    ],
+                    "level": 5,
+                    "nature": 10,
+                    "needle": 4,
+                    "pid": 235813170,
+                    "shiny": 0,
+                    "stats": [
+                        25,
+                        13,
+                        18,
+                        14,
+                        21,
+                        18
+                    ]
+                },
+                {
+                    "ability": 2,
+                    "abilityIndex": 136,
+                    "advances": 4,
+                    "gender": 0,
+                    "hiddenPower": 12,
+                    "hiddenPowerStrength": 32,
+                    "ivs": [
+                        8,
+                        12,
+                        15,
+                        25,
+                        25,
+                        16
+                    ],
+                    "level": 5,
+                    "nature": 7,
+                    "needle": 1,
+                    "pid": 134027679,
+                    "shiny": 0,
+                    "stats": [
+                        26,
+                        14,
+                        19,
+                        15,
+                        21,
+                        14
+                    ]
+                },
+                {
+                    "ability": 2,
+                    "abilityIndex": 136,
+                    "advances": 5,
+                    "gender": 0,
+                    "hiddenPower": 9,
+                    "hiddenPowerStrength": 56,
+                    "ivs": [
+                        15,
+                        25,
+                        25,
+                        16,
+                        15,
+                        18
+                    ],
+                    "level": 5,
+                    "nature": 8,
+                    "needle": 4,
+                    "pid": 1886437982,
+                    "shiny": 0,
+                    "stats": [
+                        26,
+                        15,
+                        20,
+                        12,
+                        21,
+                        16
+                    ]
+                },
+                {
+                    "ability": 2,
+                    "abilityIndex": 136,
+                    "advances": 6,
+                    "gender": 0,
+                    "hiddenPower": 3,
+                    "hiddenPowerStrength": 42,
+                    "ivs": [
+                        25,
+                        16,
+                        15,
+                        18,
+                        12,
+                        29
+                    ],
+                    "level": 5,
+                    "nature": 22,
+                    "needle": 2,
+                    "pid": 1280810524,
+                    "shiny": 0,
+                    "stats": [
+                        26,
+                        14,
+                        18,
+                        14,
+                        23,
+                        15
+                    ]
+                },
+                {
+                    "ability": 2,
+                    "abilityIndex": 136,
+                    "advances": 7,
+                    "gender": 0,
+                    "hiddenPower": 4,
+                    "hiddenPowerStrength": 57,
+                    "ivs": [
+                        15,
+                        18,
+                        12,
+                        29,
+                        26,
+                        2
+                    ],
+                    "level": 5,
+                    "nature": 5,
+                    "needle": 0,
+                    "pid": 1449999280,
+                    "shiny": 0,
+                    "stats": [
+                        26,
+                        12,
+                        19,
+                        15,
+                        21,
+                        16
+                    ]
+                },
+                {
+                    "ability": 2,
+                    "abilityIndex": 136,
+                    "advances": 8,
+                    "gender": 0,
+                    "hiddenPower": 0,
+                    "hiddenPowerStrength": 68,
+                    "ivs": [
+                        12,
+                        29,
+                        26,
+                        2,
+                        10,
+                        2
+                    ],
+                    "level": 5,
+                    "nature": 19,
+                    "needle": 5,
+                    "pid": 3904909733,
+                    "shiny": 0,
+                    "stats": [
+                        26,
+                        15,
+                        19,
+                        15,
+                        18,
+                        16
+                    ]
+                },
+                {
+                    "ability": 2,
+                    "abilityIndex": 136,
+                    "advances": 9,
+                    "gender": 0,
+                    "hiddenPower": 0,
+                    "hiddenPowerStrength": 44,
+                    "ivs": [
+                        26,
+                        2,
+                        10,
+                        2,
+                        20,
+                        0
+                    ],
+                    "level": 5,
+                    "nature": 17,
+                    "needle": 5,
+                    "pid": 865102380,
+                    "shiny": 0,
+                    "stats": [
+                        26,
+                        14,
+                        18,
+                        15,
+                        21,
+                        14
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Staryu",
+            "seed": 0,
+            "pokemon": [
+                1
+            ],
+            "gender": [
+                2
+            ],
+            "results": [
+                {
+                    "ability": 2,
+                    "abilityIndex": 148,
+                    "advances": 0,
+                    "gender": 2,
+                    "hiddenPower": 7,
+                    "hiddenPowerStrength": 40,
+                    "ivs": [
+                        19,
+                        20,
+                        12,
+                        14,
+                        9,
+                        28
+                    ],
+                    "level": 5,
+                    "nature": 1,
+                    "needle": 4,
+                    "pid": 1689394930,
+                    "shiny": 0,
+                    "stats": [
+                        18,
+                        11,
+                        9,
+                        12,
+                        10,
+                        14
+                    ]
+                },
+                {
+                    "ability": 2,
+                    "abilityIndex": 148,
+                    "advances": 1,
+                    "gender": 2,
+                    "hiddenPower": 8,
+                    "hiddenPowerStrength": 36,
+                    "ivs": [
+                        12,
+                        14,
+                        9,
+                        28,
+                        1,
+                        30
+                    ],
+                    "level": 5,
+                    "nature": 14,
+                    "needle": 0,
+                    "pid": 1857619897,
+                    "shiny": 0,
+                    "stats": [
+                        18,
+                        10,
+                        10,
+                        13,
+                        9,
+                        16
+                    ]
+                },
+                {
+                    "ability": 2,
+                    "abilityIndex": 148,
+                    "advances": 2,
+                    "gender": 2,
+                    "hiddenPower": 1,
+                    "hiddenPowerStrength": 40,
+                    "ivs": [
+                        9,
+                        28,
+                        1,
+                        30,
+                        8,
+                        12
+                    ],
+                    "level": 5,
+                    "nature": 4,
+                    "needle": 0,
+                    "pid": 4271269493,
+                    "shiny": 0,
+                    "stats": [
+                        18,
+                        11,
+                        10,
+                        13,
+                        9,
+                        14
+                    ]
+                },
+                {
+                    "ability": 2,
+                    "abilityIndex": 148,
+                    "advances": 3,
+                    "gender": 2,
+                    "hiddenPower": 9,
+                    "hiddenPowerStrength": 51,
+                    "ivs": [
+                        1,
+                        30,
+                        8,
+                        12,
+                        15,
+                        25
+                    ],
+                    "level": 5,
+                    "nature": 15,
+                    "needle": 4,
+                    "pid": 235813311,
+                    "shiny": 0,
+                    "stats": [
+                        18,
+                        9,
+                        10,
+                        13,
+                        11,
+                        14
+                    ]
+                },
+                {
+                    "ability": 2,
+                    "abilityIndex": 148,
+                    "advances": 4,
+                    "gender": 2,
+                    "hiddenPower": 12,
+                    "hiddenPowerStrength": 32,
+                    "ivs": [
+                        8,
+                        12,
+                        15,
+                        25,
+                        25,
+                        16
+                    ],
+                    "level": 5,
+                    "nature": 8,
+                    "needle": 1,
+                    "pid": 134027605,
+                    "shiny": 0,
+                    "stats": [
+                        18,
+                        10,
+                        12,
+                        11,
+                        11,
+                        14
+                    ]
+                },
+                {
+                    "ability": 2,
+                    "abilityIndex": 148,
+                    "advances": 5,
+                    "gender": 2,
+                    "hiddenPower": 9,
+                    "hiddenPowerStrength": 56,
+                    "ivs": [
+                        15,
+                        25,
+                        25,
+                        16,
+                        15,
+                        18
+                    ],
+                    "level": 5,
+                    "nature": 2,
+                    "needle": 4,
+                    "pid": 1886438064,
+                    "shiny": 0,
+                    "stats": [
+                        18,
+                        11,
+                        11,
+                        12,
+                        11,
+                        12
+                    ]
+                },
+                {
+                    "ability": 2,
+                    "abilityIndex": 148,
+                    "advances": 6,
+                    "gender": 2,
+                    "hiddenPower": 3,
+                    "hiddenPowerStrength": 42,
+                    "ivs": [
+                        25,
+                        16,
+                        15,
+                        18,
+                        12,
+                        29
+                    ],
+                    "level": 5,
+                    "nature": 17,
+                    "needle": 2,
+                    "pid": 1280810547,
+                    "shiny": 0,
+                    "stats": [
+                        19,
+                        10,
+                        11,
+                        13,
+                        11,
+                        12
+                    ]
+                },
+                {
+                    "ability": 2,
+                    "abilityIndex": 148,
+                    "advances": 7,
+                    "gender": 2,
+                    "hiddenPower": 4,
+                    "hiddenPowerStrength": 57,
+                    "ivs": [
+                        15,
+                        18,
+                        12,
+                        29,
+                        26,
+                        2
+                    ],
+                    "level": 5,
+                    "nature": 15,
+                    "needle": 0,
+                    "pid": 1449999226,
+                    "shiny": 0,
+                    "stats": [
+                        18,
+                        9,
+                        11,
+                        14,
+                        11,
+                        13
+                    ]
+                },
+                {
+                    "ability": 2,
+                    "abilityIndex": 148,
+                    "advances": 8,
+                    "gender": 2,
+                    "hiddenPower": 0,
+                    "hiddenPowerStrength": 68,
+                    "ivs": [
+                        12,
+                        29,
+                        26,
+                        2,
+                        10,
+                        2
+                    ],
+                    "level": 5,
+                    "nature": 3,
+                    "needle": 5,
+                    "pid": 3904909683,
+                    "shiny": 0,
+                    "stats": [
+                        18,
+                        11,
+                        11,
+                        10,
+                        11,
+                        13
+                    ]
+                },
+                {
+                    "ability": 2,
+                    "abilityIndex": 148,
+                    "advances": 9,
+                    "gender": 2,
+                    "hiddenPower": 0,
+                    "hiddenPowerStrength": 44,
+                    "ivs": [
+                        26,
+                        2,
+                        10,
+                        2,
+                        20,
+                        0
+                    ],
+                    "level": 5,
+                    "nature": 2,
+                    "needle": 5,
+                    "pid": 865102581,
+                    "shiny": 0,
+                    "stats": [
+                        19,
+                        9,
+                        11,
+                        12,
+                        11,
+                        11
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Slowpoke (Staryu first)",
+            "seed": 0,
+            "pokemon": [
+                1,
+                0
+            ],
+            "gender": [
+                2,
+                0
+            ],
+            "results": [
+                {
+                    "ability": 2,
+                    "abilityIndex": 144,
+                    "advances": 0,
+                    "gender": 0,
+                    "hiddenPower": 8,
+                    "hiddenPowerStrength": 38,
+                    "ivs": [
+                        16,
+                        15,
+                        18,
+                        12,
+                        29,
+                        26
+                    ],
+                    "level": 5,
+                    "nature": 0,
+                    "needle": 4,
+                    "pid": 4271269578,
+                    "shiny": 0,
+                    "stats": [
+                        24,
+                        12,
+                        12,
+                        9,
+                        10,
+                        7
+                    ]
+                },
+                {
+                    "ability": 2,
+                    "abilityIndex": 144,
+                    "advances": 1,
+                    "gender": 0,
+                    "hiddenPower": 0,
+                    "hiddenPowerStrength": 66,
+                    "ivs": [
+                        18,
+                        12,
+                        29,
+                        26,
+                        2,
+                        10
+                    ],
+                    "level": 5,
+                    "nature": 10,
+                    "needle": 0,
+                    "pid": 235813269,
+                    "shiny": 0,
+                    "stats": [
+                        24,
+                        10,
+                        12,
+                        10,
+                        9,
+                        7
+                    ]
+                },
+                {
+                    "ability": 2,
+                    "abilityIndex": 144,
+                    "advances": 2,
+                    "gender": 0,
+                    "hiddenPower": 0,
+                    "hiddenPowerStrength": 64,
+                    "ivs": [
+                        29,
+                        26,
+                        2,
+                        10,
+                        2,
+                        20
+                    ],
+                    "level": 5,
+                    "nature": 7,
+                    "needle": 0,
+                    "pid": 134027725,
+                    "shiny": 0,
+                    "stats": [
+                        25,
+                        12,
+                        12,
+                        9,
+                        9,
+                        6
+                    ]
+                },
+                {
+                    "ability": 2,
+                    "abilityIndex": 144,
+                    "advances": 3,
+                    "gender": 0,
+                    "hiddenPower": 1,
+                    "hiddenPowerStrength": 39,
+                    "ivs": [
+                        2,
+                        10,
+                        2,
+                        20,
+                        0,
+                        11
+                    ],
+                    "level": 5,
+                    "nature": 8,
+                    "needle": 4,
+                    "pid": 1886438059,
+                    "shiny": 0,
+                    "stats": [
+                        24,
+                        12,
+                        12,
+                        9,
+                        9,
+                        7
+                    ]
+                },
+                {
+                    "ability": 2,
+                    "abilityIndex": 144,
+                    "advances": 4,
+                    "gender": 0,
+                    "hiddenPower": 3,
+                    "hiddenPowerStrength": 66,
+                    "ivs": [
+                        2,
+                        20,
+                        0,
+                        11,
+                        26,
+                        30
+                    ],
+                    "level": 5,
+                    "nature": 22,
+                    "needle": 1,
+                    "pid": 1280810633,
+                    "shiny": 0,
+                    "stats": [
+                        24,
+                        12,
+                        11,
+                        9,
+                        11,
+                        7
+                    ]
+                },
+                {
+                    "ability": 2,
+                    "abilityIndex": 144,
+                    "advances": 5,
+                    "gender": 0,
+                    "hiddenPower": 0,
+                    "hiddenPowerStrength": 43,
+                    "ivs": [
+                        0,
+                        11,
+                        26,
+                        30,
+                        24,
+                        4
+                    ],
+                    "level": 5,
+                    "nature": 5,
+                    "needle": 4,
+                    "pid": 1449999318,
+                    "shiny": 0,
+                    "stats": [
+                        24,
+                        10,
+                        13,
+                        10,
+                        10,
+                        6
+                    ]
+                },
+                {
+                    "ability": 2,
+                    "abilityIndex": 144,
+                    "advances": 6,
+                    "gender": 0,
+                    "hiddenPower": 9,
+                    "hiddenPowerStrength": 57,
+                    "ivs": [
+                        26,
+                        30,
+                        24,
+                        4,
+                        27,
+                        27
+                    ],
+                    "level": 5,
+                    "nature": 19,
+                    "needle": 2,
+                    "pid": 3904909776,
+                    "shiny": 0,
+                    "stats": [
+                        25,
+                        13,
+                        12,
+                        9,
+                        9,
+                        7
+                    ]
+                },
+                {
+                    "ability": 2,
+                    "abilityIndex": 144,
+                    "advances": 7,
+                    "gender": 0,
+                    "hiddenPower": 14,
+                    "hiddenPowerStrength": 68,
+                    "ivs": [
+                        24,
+                        4,
+                        27,
+                        27,
+                        31,
+                        15
+                    ],
+                    "level": 5,
+                    "nature": 17,
+                    "needle": 0,
+                    "pid": 865102482,
+                    "shiny": 0,
+                    "stats": [
+                        25,
+                        11,
+                        12,
+                        11,
+                        10,
+                        6
+                    ]
+                },
+                {
+                    "ability": 2,
+                    "abilityIndex": 144,
+                    "advances": 8,
+                    "gender": 0,
+                    "hiddenPower": 15,
+                    "hiddenPowerStrength": 44,
+                    "ivs": [
+                        27,
+                        27,
+                        31,
+                        15,
+                        25,
+                        25
+                    ],
+                    "level": 5,
+                    "nature": 23,
+                    "needle": 5,
+                    "pid": 3313075339,
+                    "shiny": 0,
+                    "stats": [
+                        25,
+                        12,
+                        13,
+                        8,
+                        11,
+                        7
+                    ]
+                },
+                {
+                    "ability": 2,
+                    "abilityIndex": 144,
+                    "advances": 9,
+                    "gender": 0,
+                    "hiddenPower": 5,
+                    "hiddenPowerStrength": 52,
+                    "ivs": [
+                        31,
+                        15,
+                        25,
+                        25,
+                        14,
+                        16
+                    ],
+                    "level": 5,
+                    "nature": 5,
+                    "needle": 5,
+                    "pid": 3001551309,
+                    "shiny": 0,
+                    "stats": [
+                        25,
+                        10,
+                        13,
+                        10,
+                        9,
+                        7
+                    ]
+                }
+            ]
+        }
+    ]
+}

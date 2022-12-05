@@ -108,7 +108,7 @@ public:
 
     /**
      * @brief Sets what gender the template should have
-     * This isn't considering "Static" information and needs to be specified after the fact
+     * This isn't considered "Static" information and needs to be specified after the fact
      *
      * @param gender Template gender
      */

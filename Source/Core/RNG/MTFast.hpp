@@ -74,7 +74,7 @@ public:
 
             for (u32 j = 0; j < size - (size % 4); j += 4)
             {
-                vuint32x4 m0 = state[j].uint128;
+                vuint32x4 m0 = state[j / 4].uint128;
                 vuint32x4 m1 = v32x4_load(ptr + j + 1);
 
                 u32 x0 = 0x6c078965 * (seed ^ (seed >> 30)) + (j + 397);
@@ -102,7 +102,7 @@ public:
                     y = v32x4_xor(y, v32x4_shr<18>(y));
                 }
 
-                state[j].uint128 = y;
+                state[j / 4].uint128 = y;
             }
         }
 

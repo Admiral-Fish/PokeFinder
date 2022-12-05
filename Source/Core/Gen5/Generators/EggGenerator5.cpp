@@ -111,8 +111,8 @@ std::vector<EggState5> EggGenerator5::generateBW(u64 seed) const
     }
 
     MTFast<13, true> mt(seed >> 32, 7);
-    std::array<u8, 6> ivs;
-    std::generate(ivs.begin(), ivs.end(), [&mt] { return mt.next(); });
+    std::array<u8, 6> mtIVs;
+    std::generate(mtIVs.begin(), mtIVs.end(), [&mt] { return mt.next(); });
 
     u32 advances = Utilities5::initialAdvances(seed, profile);
     BWRNG rng(seed, advances + initialAdvances + delay);
@@ -165,6 +165,7 @@ std::vector<EggState5> EggGenerator5::generateBW(u64 seed) const
 
         // Power Items
         u8 inheritanceCount = 0;
+        std::array<u8, 6> ivs = mtIVs;
         std::array<u8, 6> inheritance = { 0, 0, 0, 0, 0, 0 };
         if (poweritem != 0)
         {
@@ -210,7 +211,7 @@ std::vector<EggState5> EggGenerator5::generateBW(u64 seed) const
 
         u8 ability = hiddenAbility ? 2 : ((pid >> 16) & 1);
 
-        EggState5 state(rng.nextUInt(0x1fff), advances + initialAdvances + cnt, pid, ivs, ability, getGender(pid, info), 1, nature,
+        EggState5 state(rng.nextUInt(0x1fff), advances + initialAdvances + cnt, pid, ivs, ability, getGender(pid, info), nature,
                         getShiny(pid, tsv), inheritance, info);
         if (filter.compareState(state))
         {
@@ -382,5 +383,5 @@ EggState5 EggGenerator5::generateBW2Egg(u64 seed, const PersonalInfo **info) con
         }
     }
 
-    return EggState5(ivs, ability, 1, nature, inheritance, *info);
+    return EggState5(ivs, ability, nature, inheritance, *info);
 }

@@ -43,6 +43,14 @@ add_executable(PokeFinderTest
     Gen4/WildGenerator4Test.hpp
     Gen4/WildSearcher4Test.cpp
     Gen4/WildSearcher4Test.hpp
+    Gen5/DreamRadarGeneratorTest.cpp
+    Gen5/DreamRadarGeneratorTest.hpp
+    Gen5/EggGenerator5Test.cpp
+    Gen5/EggGenerator5Test.hpp
+    Gen5/EventGenerator5Test.cpp
+    Gen5/EventGenerator5Test.hpp
+    Gen5/IDGenerator5Test.cpp
+    Gen5/IDGenerator5Test.hpp
     Gen8/EggGenerator8Test.cpp
     Gen8/EggGenerator8Test.hpp
     Gen8/EventGenerator8Test.cpp

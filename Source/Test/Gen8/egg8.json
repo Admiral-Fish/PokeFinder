@@ -5,6 +5,40 @@
             "seed0": 1311768467139281697,
             "seed1": 9756277977086449272,
             "pokemon": 1,
+            "parentIVs": [
+                [
+                    31,
+                    31,
+                    31,
+                    31,
+                    31,
+                    31
+                ],
+                [
+                    31,
+                    31,
+                    31,
+                    31,
+                    31,
+                    31
+                ]
+            ],
+            "parentAbility": [
+                0,
+                0
+            ],
+            "parentGender": [
+                0,
+                1
+            ],
+            "parentItem": [
+                0,
+                0
+            ],
+            "parentNature": [
+                0,
+                0
+            ],
             "results": [
                 {
                     "ability": 0,
@@ -353,6 +387,40 @@
             "seed0": 1311768467139281697,
             "seed1": 9756277977086449272,
             "pokemon": 29,
+            "parentIVs": [
+                [
+                    31,
+                    31,
+                    31,
+                    31,
+                    31,
+                    31
+                ],
+                [
+                    31,
+                    31,
+                    31,
+                    31,
+                    31,
+                    31
+                ]
+            ],
+            "parentAbility": [
+                0,
+                0
+            ],
+            "parentGender": [
+                0,
+                1
+            ],
+            "parentItem": [
+                0,
+                0
+            ],
+            "parentNature": [
+                0,
+                0
+            ],
             "results": [
                 {
                     "ability": 0,
@@ -701,6 +769,40 @@
             "seed0": 1311768467139281697,
             "seed1": 9756277977086449272,
             "pokemon": 313,
+            "parentIVs": [
+                [
+                    31,
+                    31,
+                    31,
+                    31,
+                    31,
+                    31
+                ],
+                [
+                    31,
+                    31,
+                    31,
+                    31,
+                    31,
+                    31
+                ]
+            ],
+            "parentAbility": [
+                0,
+                0
+            ],
+            "parentGender": [
+                0,
+                1
+            ],
+            "parentItem": [
+                0,
+                0
+            ],
+            "parentNature": [
+                0,
+                0
+            ],
             "results": [
                 {
                     "ability": 0,

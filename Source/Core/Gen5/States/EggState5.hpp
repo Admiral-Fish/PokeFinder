@@ -37,15 +37,14 @@ public:
      * @param ivs Pokemon IVs
      * @param ability Pokemon ability
      * @param gender Pokemon gender
-     * @param level Pokemon level
      * @param nature Pokemon nature
      * @param shiny Pokemon shininess
      * @param inheritance Pokemon IV inheritance
      * @param info Pokemon information
      */
-    EggState5(u16 prng, u32 advances, u32 pid, const std::array<u8, 6> &ivs, u8 ability, u8 gender, u8 level, u8 nature, u8 shiny,
+    EggState5(u16 prng, u32 advances, u32 pid, const std::array<u8, 6> &ivs, u8 ability, u8 gender, u8 nature, u8 shiny,
               const std::array<u8, 6> &inheritance, const PersonalInfo *info) :
-        EggGeneratorState(advances, pid, ivs, ability, gender, level, nature, shiny, inheritance, info), chatot(prng / 82)
+        EggGeneratorState(advances, pid, ivs, ability, gender, 1, nature, shiny, inheritance, info), chatot(prng / 82)
     {
     }
 
@@ -54,15 +53,13 @@ public:
      *
      * @param ivs Pokemon IVs
      * @param ability Pokemon ability
-     * @param level Pokemon level
      * @param nature Pokemon nature
      * @param shiny Pokemon shininess
      * @param inheritance Pokemon IV inheritance
      * @param info Pokemon information
      */
-    EggState5(const std::array<u8, 6> &ivs, u8 ability, u8 level, u8 nature, const std::array<u8, 6> &inheritance,
-              const PersonalInfo *info) :
-        EggGeneratorState(0, 0, ivs, ability, 0, level, nature, 0, inheritance, info)
+    EggState5(const std::array<u8, 6> &ivs, u8 ability, u8 nature, const std::array<u8, 6> &inheritance, const PersonalInfo *info) :
+        EggGeneratorState(0, 0, ivs, ability, 0, 1, nature, 0, inheritance, info)
     {
     }
 

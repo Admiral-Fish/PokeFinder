@@ -32,7 +32,7 @@ class IDGenerator5 : public IDGenerator
 {
 public:
     /**
-     * @brief Construct a new IDGenerator4 object
+     * @brief Construct a new IDGenerator5 object
      *
      * @param minDelay Minimum delay
      * @param maxDelay Maximum delay

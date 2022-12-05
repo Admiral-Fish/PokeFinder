@@ -39,9 +39,10 @@ static bool operator==(const WildSearcherState4 &left, const WildGeneratorState4
 {
     return left.getPID() == right.getPID() && left.getStats() == right.getStats() && left.getAbilityIndex() == right.getAbilityIndex()
         && left.getIVs() == right.getIVs() && left.getAbility() == right.getAbility() && left.getGender() == right.getGender()
-        && left.getHiddenPower() == right.getHiddenPower() && left.getNature() == right.getNature() && left.getLevel() == right.getLevel()
-        && left.getShiny() == right.getShiny() && left.getItem() == right.getItem() && left.getSpecie() == right.getSpecie()
-        && left.getEncounterSlot() == right.getEncounterSlot() && left.getHiddenPowerStrength() == right.getHiddenPowerStrength();
+        && left.getHiddenPower() == right.getHiddenPower() && left.getHiddenPowerStrength() == right.getHiddenPowerStrength()
+        && left.getLevel() == right.getLevel() && left.getNature() == right.getNature() && left.getShiny() == right.getShiny()
+        && left.getItem() == right.getItem() && left.getSpecie() == right.getSpecie()
+        && left.getEncounterSlot() == right.getEncounterSlot();
 }
 
 static constexpr Lead operator+(Lead lead, u8 val)

@@ -17,17 +17,18 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include "StaticGenerator3Test.hpp"
-#include <Core/Enum/Lead.hpp>
-#include <Core/Gen3/Encounters3.hpp>
-#include <Core/Gen3/Generators/StaticGenerator3.hpp>
-#include <Core/Parents/States/State.hpp>
-#include <Core/Parents/StaticTemplate.hpp>
+#include "EggGenerator5Test.hpp"
+#include <Core/Enum/Game.hpp>
+#include <Core/Gen5/Generators/EggGenerator5.hpp>
+#include <Core/Gen5/States/EggState5.hpp>
 #include <QTest>
 #include <Test/Data.hpp>
 #include <Test/Enum.hpp>
 
-static bool operator==(const GeneratorState &left, const json &right)
+using IVs = std::array<std::array<u8, 6>, 2>;
+using Attribute = std::array<u8, 2>;
+
+static bool operator==(const EggState5 &left, const json &right)
 {
     return left.getPID() == right["pid"].get<u32>() && left.getStats() == right["stats"].get<std::array<u16, 6>>()
         && left.getAbilityIndex() == right["abilityIndex"].get<u16>() && left.getIVs() == right["ivs"].get<std::array<u8, 6>>()
@@ -35,34 +36,42 @@ static bool operator==(const GeneratorState &left, const json &right)
         && left.getHiddenPower() == right["hiddenPower"].get<u8>()
         && left.getHiddenPowerStrength() == right["hiddenPowerStrength"].get<u8>() && left.getLevel() == right["level"].get<u8>()
         && left.getNature() == right["nature"].get<u8>() && left.getShiny() == right["shiny"].get<u8>()
-        && left.getAdvances() == right["advances"].get<u32>();
+        && left.getInheritance() == right["inheritance"].get<std::array<u8, 6>>() && left.getAdvances() == right["advances"].get<u32>()
+        && left.getChatot() == right["chatot"].get<u8>();
 }
 
-void StaticGenerator3Test::generate_data()
+void EggGenerator5Test::generate_data()
 {
-    QTest::addColumn<u32>("seed");
+    QTest::addColumn<u64>("seed");
     QTest::addColumn<Game>("version");
-    QTest::addColumn<Method>("method");
-    QTest::addColumn<int>("category");
-    QTest::addColumn<int>("pokemon");
+    QTest::addColumn<u16>("pokemon");
+    QTest::addColumn<IVs>("parentIVs");
+    QTest::addColumn<Attribute>("parentAbility");
+    QTest::addColumn<Attribute>("parentGender");
+    QTest::addColumn<Attribute>("parentItem");
+    QTest::addColumn<Attribute>("parentNature");
     QTest::addColumn<std::string>("results");
 
-    json data = readData("static3", "staticgenerator3", "generate");
+    json data = readData("egg5", "generate");
     for (const auto &d : data)
     {
         QTest::newRow(d["name"].get<std::string>().data())
-            << d["seed"].get<u32>() << getGame(d["version"].get<std::string>()) << getMethod(d["method"].get<std::string>())
-            << d["category"].get<int>() << d["pokemon"].get<int>() << d["results"].get<json>().dump();
+            << d["seed"].get<u64>() << getGame(d["version"].get<std::string>()) << d["pokemon"].get<u16>() << d["parentIVs"].get<IVs>()
+            << d["parentAbility"].get<Attribute>() << d["parentGender"].get<Attribute>() << d["parentItem"].get<Attribute>()
+            << d["parentNature"].get<Attribute>() << d["results"].get<json>().dump();
     }
 }
 
-void StaticGenerator3Test::generate()
+void EggGenerator5Test::generate()
 {
-    QFETCH(u32, seed);
+    QFETCH(u64, seed);
     QFETCH(Game, version);
-    QFETCH(Method, method);
-    QFETCH(int, category);
-    QFETCH(int, pokemon);
+    QFETCH(u16, pokemon);
+    QFETCH(IVs, parentIVs);
+    QFETCH(Attribute, parentAbility);
+    QFETCH(Attribute, parentGender);
+    QFETCH(Attribute, parentItem);
+    QFETCH(Attribute, parentNature);
     QFETCH(std::string, results);
 
     json j = json::parse(results);
@@ -79,13 +88,14 @@ void StaticGenerator3Test::generate()
     std::array<bool, 16> powers;
     powers.fill(true);
 
-    Profile3 profile("-", version, 12345, 54321, false);
+    Profile5 profile("-", version, 12345, 54321, 0, { false, false, false, false }, 0, 0, 0, false, 0, 0, false, false, false, DSType::DS,
+                     Language::English);
 
-    const StaticTemplate *staticTemplate = Encounters3::getStaticEncounter(category, pokemon);
-    StateFilter3 filter(255, 255, 255, false, min, max, natures, powers);
-    StaticGenerator3 generator(0, 9, 0, method, Lead::None, profile, filter);
+    Daycare daycare(parentIVs, parentAbility, parentGender, parentItem, parentNature, pokemon, true);
+    StateFilter5 filter(255, 255, 255, false, min, max, natures, powers);
+    EggGenerator5 generator(0, 9, 0, daycare, profile, filter);
 
-    auto states = generator.generate(seed, staticTemplate);
+    auto states = generator.generate(seed);
     QCOMPARE(states.size(), j.size());
 
     for (size_t i = 0; i < states.size(); i++)

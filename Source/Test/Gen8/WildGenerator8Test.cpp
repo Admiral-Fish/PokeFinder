@@ -34,8 +34,8 @@ static bool operator==(const WildGeneratorState &left, const json &right)
     return left.getPID() == right["pid"].get<u32>() && left.getStats() == right["stats"].get<std::array<u16, 6>>()
         && left.getAbilityIndex() == right["abilityIndex"].get<u16>() && left.getIVs() == right["ivs"].get<std::array<u8, 6>>()
         && left.getAbility() == right["ability"].get<u8>() && left.getGender() == right["gender"].get<u8>()
-        && left.getHiddenPower() == right["hiddenPower"].get<u8>() && left.getNature() == right["nature"].get<u8>()
-        && left.getLevel() == right["level"].get<u8>() && left.getShiny() == right["shiny"].get<u8>()
+        && left.getHiddenPower() == right["hiddenPower"].get<u8>() && left.getLevel() == right["level"].get<u8>()
+        && left.getNature() == right["nature"].get<u8>() && left.getShiny() == right["shiny"].get<u8>()
         && left.getItem() == right["item"].get<u16>() && left.getSpecie() == right["specie"].get<u16>()
         && left.getEncounterSlot() == right["encounterSlot"].get<u8>() && left.getAdvances() == right["advances"].get<u32>();
 }

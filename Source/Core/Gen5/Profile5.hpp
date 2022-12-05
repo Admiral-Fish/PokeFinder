@@ -31,7 +31,6 @@ enum class Language : u8;
  */
 class Profile5 : public Profile
 {
-
 public:
     /**
      * @brief Construct a new Profile5 object

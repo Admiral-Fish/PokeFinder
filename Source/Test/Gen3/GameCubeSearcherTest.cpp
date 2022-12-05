@@ -35,8 +35,8 @@ static bool operator==(const SearcherState &left, const GeneratorState &right)
 {
     return left.getPID() == right.getPID() && left.getStats() == right.getStats() && left.getAbilityIndex() == right.getAbilityIndex()
         && left.getIVs() == right.getIVs() && left.getAbility() == right.getAbility() && left.getGender() == right.getGender()
-        && left.getHiddenPower() == right.getHiddenPower() && left.getNature() == right.getNature() && left.getLevel() == right.getLevel()
-        && left.getShiny() == right.getShiny() && left.getHiddenPowerStrength() == right.getHiddenPowerStrength();
+        && left.getHiddenPower() == right.getHiddenPower() && left.getHiddenPowerStrength() == right.getHiddenPowerStrength()
+        && left.getLevel() == right.getLevel() && left.getNature() == right.getNature() && left.getShiny() == right.getShiny();
 }
 
 static bool operator==(const SearcherState &left, const json &right)
@@ -44,9 +44,10 @@ static bool operator==(const SearcherState &left, const json &right)
     return left.getPID() == right["pid"].get<u32>() && left.getStats() == right["stats"].get<std::array<u16, 6>>()
         && left.getAbilityIndex() == right["abilityIndex"].get<u16>() && left.getIVs() == right["ivs"].get<std::array<u8, 6>>()
         && left.getAbility() == right["ability"].get<u8>() && left.getGender() == right["gender"].get<u8>()
-        && left.getHiddenPower() == right["hiddenPower"].get<u8>() && left.getNature() == right["nature"].get<u8>()
-        && left.getLevel() == right["level"].get<u8>() && left.getShiny() == right["shiny"].get<u8>()
-        && left.getSeed() == right["seed"].get<u32>() && left.getHiddenPowerStrength() == right["hiddenPowerStrength"].get<u8>();
+        && left.getHiddenPower() == right["hiddenPower"].get<u8>()
+        && left.getHiddenPowerStrength() == right["hiddenPowerStrength"].get<u8>() && left.getLevel() == right["level"].get<u8>()
+        && left.getNature() == right["nature"].get<u8>() && left.getShiny() == right["shiny"].get<u8>()
+        && left.getSeed() == right["seed"].get<u32>();
 }
 
 void GameCubeSearcherTest::searchChannel_data()

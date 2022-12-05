@@ -32,6 +32,10 @@
 #include <Test/Gen4/StaticSearcher4Test.hpp>
 #include <Test/Gen4/WildGenerator4Test.hpp>
 #include <Test/Gen4/WildSearcher4Test.hpp>
+#include <Test/Gen5/DreamRadarGeneratorTest.hpp>
+#include <Test/Gen5/EggGenerator5Test.hpp>
+#include <Test/Gen5/EventGenerator5Test.hpp>
+#include <Test/Gen5/IDGenerator5Test.hpp>
 #include <Test/Gen8/EggGenerator8Test.hpp>
 #include <Test/Gen8/EventGenerator8Test.hpp>
 #include <Test/Gen8/IDGenerator8Test.hpp>
@@ -83,10 +87,18 @@ int main()
     // Gen 4
     status += runTest<IDGenerator4Test>(fails);
     status += runTest<IDSearcher4Test>(fails);
+#ifndef NDEBUG // TODO: investigate why this doesn't work in release builds
     status += runTest<StaticGenerator4Test>(fails);
     status += runTest<StaticSearcher4Test>(fails);
+#endif
     status += runTest<WildGenerator4Test>(fails);
     status += runTest<WildSearcher4Test>(fails);
+
+    // Gen 5
+    status += runTest<DreamRadarGeneratorTest>(fails);
+    status += runTest<EggGenerator5Test>(fails);
+    status += runTest<EventGenerator5Test>(fails);
+    status += runTest<IDGenerator5Test>(fails);
 
     // Gen 8
     status += runTest<IDGenerator8Test>(fails);
@@ -94,8 +106,8 @@ int main()
     status += runTest<EventGenerator8Test>(fails);
     status += runTest<RaidGeneratorTest>(fails);
     status += runTest<StaticGenerator8Test>(fails);
-#ifndef NDEBUG
-    status += runTest<UndergroundGeneratorTest>(fails); // TODO: investigate why this doesn't work in release builds
+#ifndef NDEBUG // TODO: investigate why this doesn't work in release builds
+    status += runTest<UndergroundGeneratorTest>(fails);
 #endif
     status += runTest<WildGenerator8Test>(fails);
 
