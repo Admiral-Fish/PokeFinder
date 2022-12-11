@@ -24,7 +24,6 @@
 #include <QFileDialog>
 #include <QHeaderView>
 #include <QKeyEvent>
-#include <QTimer>
 
 TableView::TableView(QWidget *parent) : QTableView(parent)
 {
@@ -39,8 +38,11 @@ TableView::TableView(QWidget *parent) : QTableView(parent)
 
     setContextMenuPolicy(Qt::ActionsContextMenu);
 
-    QHeaderView *header = this->horizontalHeader();
-    header->setSectionResizeMode(QHeaderView::Interactive);
+    QHeaderView *horizontal = this->horizontalHeader();
+    horizontal->setSectionResizeMode(QHeaderView::Interactive);
+
+    QHeaderView *vertical = this->verticalHeader();
+    vertical->setVisible(false);
 }
 
 void TableView::mouseDoubleClickEvent(QMouseEvent *event)

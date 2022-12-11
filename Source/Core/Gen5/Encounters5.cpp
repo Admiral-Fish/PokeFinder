@@ -22,6 +22,7 @@
 #include <Core/Enum/Game.hpp>
 #include <Core/Gen5/DreamRadarTemplate.hpp>
 #include <Core/Gen5/EncounterArea5.hpp>
+#include <Core/Gen5/HiddenGrottoArea.hpp>
 #include <Core/Gen5/Profile5.hpp>
 #include <Core/Parents/PersonalLoader.hpp>
 #include <Core/Parents/Slot.hpp>
@@ -77,6 +78,48 @@ namespace Encounters5
     const DreamRadarTemplate *getDreamRadarEncounters(int index)
     {
         return &dreamRadar[index];
+    }
+
+    std::vector<HiddenGrottoArea> getHiddenGrottoEncounters()
+    {
+        u32 length;
+        const u8 *data = Utilities::decompress(bw2_grotto.data(), bw2_grotto.size(), length);
+
+        const PersonalInfo *info = PersonalLoader::getPersonal(Game::BW2);
+
+        std::vector<HiddenGrottoArea> encounters;
+        for (size_t offset = 0; offset < length; offset += 125)
+        {
+            const u8 *entry = data + offset;
+
+            u8 location = entry[0];
+
+            std::array<HiddenGrottoSlot, 12> pokemon;
+            for (size_t i = 0; i < 12; i++)
+            {
+                u16 specie = *reinterpret_cast<const u16 *>(entry + 1 + i * 5);
+                u8 maxLevel = entry[3 + i * 5];
+                u8 minLevel = entry[4 + i * 5];
+                u8 gender = entry[5 + i * 5];
+                pokemon[i] = HiddenGrottoSlot(specie, gender, minLevel, maxLevel, &info[specie]);
+            }
+
+            std::array<u16, 16> items;
+            for (size_t i = 0; i < 16; i++)
+            {
+                items[i] = *reinterpret_cast<const u16 *>(entry + 61 + i * 2);
+            }
+
+            std::array<u16, 16> hiddenItems;
+            for (size_t i = 0; i < 16; i++)
+            {
+                hiddenItems[i] = *reinterpret_cast<const u16 *>(entry + 93 + i * 2);
+            }
+
+            encounters.emplace_back(location, pokemon, items, hiddenItems);
+        }
+        delete[] data;
+        return encounters;
     }
 
     std::vector<EncounterArea5> getEncounters(Encounter encounter, u8 season, const Profile5 *profile)

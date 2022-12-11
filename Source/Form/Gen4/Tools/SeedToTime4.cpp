@@ -68,6 +68,11 @@ SeedToTime4::SeedToTime4(QWidget *parent) : QWidget(parent), ui(new Ui::SeedToTi
     connect(ui->pushButtonHGSSCalibrate, &QPushButton::clicked, this, &SeedToTime4::hgssCalibrate);
     connect(ui->pushButtonDPPtSearchFlips, &QPushButton::clicked, this, &SeedToTime4::searchFlips);
     connect(ui->pushButtonHGSSSearchCalls, &QPushButton::clicked, this, &SeedToTime4::searchCalls);
+    connect(ui->checkBoxHGSSEntei, &QCheckBox::clicked, ui->lineEditHGSSEntei, &QLineEdit::setEnabled);
+    connect(ui->checkBoxHGSSLati, &QCheckBox::clicked, ui->lineEditHGSSLati, &QLineEdit::setEnabled);
+    connect(ui->checkBoxHGSSRaikou, &QCheckBox::clicked, ui->lineEditHGSSRaikou, &QLineEdit::setEnabled);
+    connect(ui->checkBoxDPPtSecond, &QCheckBox::clicked, ui->textBoxDPPtSecond, &TextBox::setEnabled);
+    connect(ui->checkBoxHGSSSecond, &QCheckBox::clicked, ui->textBoxHGSSSecond, &TextBox::setEnabled);
     connect(ui->pushButtonHGSSMap, &QPushButton::clicked, this, &SeedToTime4::map);
 
     QSettings setting;

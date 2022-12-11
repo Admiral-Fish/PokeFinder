@@ -26,7 +26,6 @@ ProfileModel8::ProfileModel8(QObject *parent) : TableModel<Profile8>(parent)
 
 int ProfileModel8::columnCount(const QModelIndex &parent) const
 {
-    (void)parent;
     return 6;
 }
 

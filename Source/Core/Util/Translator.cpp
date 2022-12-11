@@ -44,8 +44,8 @@ enum class Translation
 {
     Ability,
     BDSP,
-    BW,
     BW2,
+    BW,
     Characteristic,
     DPPt,
     E,
@@ -67,7 +67,7 @@ static std::vector<std::string> abilities;
 static std::vector<std::string> characteristics;
 static std::vector<std::string> games;
 static std::vector<std::string> hiddenPowers;
-static std::map<u16, std::string> items;
+static std::vector<std::string> items;
 static std::vector<std::string> moves;
 static std::vector<std::string> natures;
 static std::vector<std::string> species;
@@ -337,7 +337,7 @@ namespace Translator
         characteristics = readFile(Translation::Characteristic);
         games = readFile(Translation::Game);
         hiddenPowers = readFile(Translation::Power);
-        items = readFileMap(Translation::Item);
+        items = readFile(Translation::Item);
         moves = readFile(Translation::Move);
         natures = readFile(Translation::Nature);
         species = readFile(Translation::Specie);

@@ -102,6 +102,8 @@ add_library(PokeFinderCore STATIC
     Gen5/Encounters5.hpp
     Gen5/Keypresses.cpp
     Gen5/Keypresses.hpp
+    Gen5/Filters/HiddenGrottoFilter.cpp
+    Gen5/Filters/HiddenGrottoFilter.hpp
     Gen5/Filters/StateFilter5.cpp
     Gen5/Filters/StateFilter5.hpp
     Gen5/Generators/DreamRadarGenerator.cpp
@@ -110,8 +112,12 @@ add_library(PokeFinderCore STATIC
     Gen5/Generators/EggGenerator5.hpp
     Gen5/Generators/EventGenerator5.cpp
     Gen5/Generators/EventGenerator5.hpp
+    Gen5/Generators/HiddenGrottoGenerator.cpp
+    Gen5/Generators/HiddenGrottoGenerator.hpp
     Gen5/Generators/IDGenerator5.cpp
     Gen5/Generators/IDGenerator5.hpp
+    Gen5/HiddenGrottoArea.cpp
+    Gen5/HiddenGrottoArea.hpp
     Gen5/Nazos.cpp
     Gen5/Nazos.hpp
     Gen5/PGF.hpp
@@ -124,6 +130,7 @@ add_library(PokeFinderCore STATIC
     Gen5/Searchers/Searcher5.hpp
     Gen5/States/DreamRadarState.hpp
     Gen5/States/EggState5.hpp
+    Gen5/States/HiddenGrottoState.hpp
     Gen5/States/ProfileSearcherState5.hpp
     Gen5/States/SearcherState5.hpp
     Gen5/States/State5.hpp

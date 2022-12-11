@@ -36,7 +36,6 @@
 #include <Form/Gen4/Profile/ProfileManager4.hpp>
 #include <Form/Gen4/Tools/SeedToTime4.hpp>
 #include <Model/Gen4/WildModel4.hpp>
-#include <QMenu>
 #include <QMessageBox>
 #include <QSettings>
 #include <QThread>

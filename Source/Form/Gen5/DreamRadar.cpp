@@ -32,7 +32,6 @@
 #include <Form/Controls/Controls.hpp>
 #include <Form/Gen5/Profile/ProfileManager5.hpp>
 #include <Model/Gen5/DreamRadarModel.hpp>
-#include <QMenu>
 #include <QMessageBox>
 #include <QSettings>
 #include <QThread>

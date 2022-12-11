@@ -297,11 +297,7 @@
          </property>
          <layout class="QGridLayout" name="gridLayout_11">
           <item row="0" column="0">
-           <widget class="QTextEdit" name="textEditInputs">
-            <property name="readOnly">
-             <bool>false</bool>
-            </property>
-           </widget>
+           <widget class="QTextEdit" name="textEditInputs"/>
           </item>
          </layout>
         </widget>

@@ -112,10 +112,7 @@ std::array<bool, 12> Filter::getEncounterSlots()
 {
     // Encounter slot can vary depending on the encounter type, with the highest number being 12 currently
     // Opt to using array of 12 instead of vector for smaller memory usage and avoiding the heap
-    std::array<bool, 12> encounterSlots;
-    std::vector<bool> checked = ui->checkListEncounterSlot->getChecked();
-    std::copy(checked.begin(), checked.end(), encounterSlots.begin());
-    return encounterSlots;
+    return ui->checkListEncounterSlot->getCheckedArray<12>();
 }
 
 u8 Filter::getGender() const
@@ -125,10 +122,7 @@ u8 Filter::getGender() const
 
 std::array<bool, 16> Filter::getHiddenPowers()
 {
-    std::array<bool, 16> hiddenPowers;
-    std::vector<bool> checked = ui->checkListHiddenPower->getChecked();
-    std::copy(checked.begin(), checked.end(), hiddenPowers.begin());
-    return hiddenPowers;
+    return ui->checkListHiddenPower->getCheckedArray<16>();
 }
 
 std::array<u8, 6> Filter::getMaxIVs() const
@@ -143,10 +137,7 @@ std::array<u8, 6> Filter::getMinIVs() const
 
 std::array<bool, 25> Filter::getNatures()
 {
-    std::array<bool, 25> natures;
-    std::vector<bool> checked = ui->checkListNature->getChecked();
-    std::copy(checked.begin(), checked.end(), natures.begin());
-    return natures;
+    return ui->checkListNature->getCheckedArray<25>();
 }
 
 u8 Filter::getShiny() const

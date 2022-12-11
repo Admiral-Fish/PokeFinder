@@ -33,7 +33,6 @@
 #include <Form/Gen5/Profile/ProfileManager5.hpp>
 #include <Model/Gen5/EventModel5.hpp>
 #include <QFileDialog>
-#include <QMenu>
 #include <QMessageBox>
 #include <QSettings>
 #include <QThread>

@@ -80,9 +80,6 @@
       </item>
       <item row="10" column="0" colspan="2">
        <widget class="QPushButton" name="pushButtonGenerate">
-        <property name="enabled">
-         <bool>true</bool>
-        </property>
         <property name="text">
          <string>Generate</string>
         </property>
@@ -183,11 +180,7 @@
     </widget>
    </item>
    <item row="2" column="0" colspan="3">
-    <widget class="TableView" name="tableView">
-     <attribute name="verticalHeaderVisible">
-      <bool>false</bool>
-     </attribute>
-    </widget>
+    <widget class="TableView" name="tableView"/>
    </item>
    <item row="1" column="1">
     <widget class="QGroupBox" name="groupBoxSettings">
@@ -296,22 +289,22 @@
         </property>
         <item>
          <property name="text">
-          <string>0</string>
+          <string notr="true">0</string>
          </property>
         </item>
         <item>
          <property name="text">
-          <string>1</string>
+          <string notr="true">1</string>
          </property>
         </item>
         <item>
          <property name="text">
-          <string>H</string>
+          <string notr="true">H</string>
          </property>
         </item>
         <item>
          <property name="text">
-          <string>0/1</string>
+          <string notr="true">0/1</string>
          </property>
         </item>
        </widget>

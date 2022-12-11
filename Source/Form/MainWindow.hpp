@@ -202,6 +202,11 @@ private slots:
     void openEvent5();
 
     /**
+     * @brief Opens the Hidden Grotto window
+     */
+    void openHiddenGrotto();
+
+    /**
      * @brief Opens the Gen 5 IDs window
      */
     void openIDs5();
@@ -217,7 +222,6 @@ private slots:
     void openProfileManager5() const;
 
     // void openStatic5();
-    // void openHiddenGrotto();
 
     // Gen 8
     /**

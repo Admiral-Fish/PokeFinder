@@ -29,6 +29,7 @@
 #include <Form/Gen5/Profile/ProfileEditor5.hpp>
 #include <Form/Util/IVCalculator.hpp>
 #include <Model/Gen5/ProfileSearcherModel5.hpp>
+#include <QAction>
 #include <QMessageBox>
 #include <QSettings>
 #include <QThread>

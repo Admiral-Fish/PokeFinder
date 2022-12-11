@@ -62,6 +62,22 @@ public:
     std::vector<bool> getChecked() const;
 
     /**
+     * @brief Determines which of the check boxes are checked
+     *
+     * @tparam size Size of the array
+     *
+     * @return Array of true/false to signify which check boxes are checked
+     */
+    template <int size>
+    std::array<bool, size> getCheckedArray() const
+    {
+        auto checked = getChecked();
+        std::array<bool, size> array;
+        std::copy(checked.begin(), checked.end(), array.begin());
+        return array;
+    }
+
+    /**
      * @brief Gets the data of the checked items
      *
      * @return Vector of checked data

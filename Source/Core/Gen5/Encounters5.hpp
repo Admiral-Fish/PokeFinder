@@ -25,6 +25,7 @@
 
 class DreamRadarTemplate;
 class EncounterArea5;
+class HiddenGrottoArea;
 class Profile5;
 enum class Encounter : u8;
 
@@ -47,6 +48,8 @@ namespace Encounters5
      * @return Pointer to dream radar encounter
      */
     const DreamRadarTemplate *getDreamRadarEncounters(int index);
+
+    std::vector<HiddenGrottoArea> getHiddenGrottoEncounters();
 
     /**
      * @brief Gets wild encounters for the \p encounter and \p profile

@@ -25,7 +25,6 @@ IDModel8::IDModel8(QObject *parent) : TableModel<IDState8>(parent)
 
 int IDModel8::columnCount(const QModelIndex &parent) const
 {
-    (void)parent;
     return 5;
 }
 

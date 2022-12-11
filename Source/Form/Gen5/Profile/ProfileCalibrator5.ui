@@ -276,14 +276,7 @@
     </widget>
    </item>
    <item row="2" column="0" colspan="2">
-    <widget class="QTableView" name="tableView">
-     <property name="contextMenuPolicy">
-      <enum>Qt::CustomContextMenu</enum>
-     </property>
-     <attribute name="verticalHeaderVisible">
-      <bool>false</bool>
-     </attribute>
-    </widget>
+    <widget class="TableView" name="tableView"/>
    </item>
    <item row="0" column="0">
     <widget class="QGroupBox" name="groupBox">
@@ -604,6 +597,11 @@
    <class>DateTimeEdit</class>
    <extends>QDateTimeEdit</extends>
    <header>Form/Controls/DateTimeEdit.hpp</header>
+  </customwidget>
+  <customwidget>
+   <class>TableView</class>
+   <extends>QTableView</extends>
+   <header>Form/Controls/TableView.hpp</header>
   </customwidget>
  </customwidgets>
  <tabstops>

@@ -34,6 +34,8 @@ add_library(PokeFinderModel STATIC
     Gen5/EggModel5.hpp
     Gen5/EventModel5.cpp
     Gen5/EventModel5.hpp
+    Gen5/HiddenGrottoModel.cpp
+    Gen5/HiddenGrottoModel.hpp
     Gen5/IDModel5.cpp
     Gen5/IDModel5.hpp
     Gen5/ProfileModel5.cpp

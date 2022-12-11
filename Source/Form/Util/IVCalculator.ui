@@ -223,11 +223,7 @@
        </widget>
       </item>
       <item row="0" column="1">
-       <widget class="QLabel" name="labelBaseHPValue">
-        <property name="text">
-         <string/>
-        </property>
-       </widget>
+       <widget class="QLabel" name="labelBaseHPValue"/>
       </item>
       <item row="1" column="0">
        <widget class="QLabel" name="labelBaseAtk">
@@ -237,11 +233,7 @@
        </widget>
       </item>
       <item row="1" column="1">
-       <widget class="QLabel" name="labelBaseAtkValue">
-        <property name="text">
-         <string/>
-        </property>
-       </widget>
+       <widget class="QLabel" name="labelBaseAtkValue"/>
       </item>
       <item row="2" column="0">
        <widget class="QLabel" name="labelBaseDef">
@@ -251,11 +243,7 @@
        </widget>
       </item>
       <item row="2" column="1">
-       <widget class="QLabel" name="labelBaseDefValue">
-        <property name="text">
-         <string/>
-        </property>
-       </widget>
+       <widget class="QLabel" name="labelBaseDefValue"/>
       </item>
       <item row="3" column="0">
        <widget class="QLabel" name="labelBaseSpA">
@@ -265,11 +253,7 @@
        </widget>
       </item>
       <item row="3" column="1">
-       <widget class="QLabel" name="labelBaseSpAValue">
-        <property name="text">
-         <string/>
-        </property>
-       </widget>
+       <widget class="QLabel" name="labelBaseSpAValue"/>
       </item>
       <item row="4" column="0">
        <widget class="QLabel" name="labelBaseSpD">
@@ -279,11 +263,7 @@
        </widget>
       </item>
       <item row="4" column="1">
-       <widget class="QLabel" name="labelBaseSpDValue">
-        <property name="text">
-         <string/>
-        </property>
-       </widget>
+       <widget class="QLabel" name="labelBaseSpDValue"/>
       </item>
       <item row="5" column="0">
        <widget class="QLabel" name="labelBaseSpe">
@@ -293,11 +273,7 @@
        </widget>
       </item>
       <item row="5" column="1">
-       <widget class="QLabel" name="labelBaseSpeValue">
-        <property name="text">
-         <string/>
-        </property>
-       </widget>
+       <widget class="QLabel" name="labelBaseSpeValue"/>
       </item>
      </layout>
     </widget>
@@ -344,46 +320,22 @@
        </widget>
       </item>
       <item row="1" column="1">
-       <widget class="QLabel" name="labelAtkIVValue">
-        <property name="text">
-         <string/>
-        </property>
-       </widget>
+       <widget class="QLabel" name="labelAtkIVValue"/>
       </item>
       <item row="2" column="1">
-       <widget class="QLabel" name="labelDefIVValue">
-        <property name="text">
-         <string/>
-        </property>
-       </widget>
+       <widget class="QLabel" name="labelDefIVValue"/>
       </item>
       <item row="5" column="1">
-       <widget class="QLabel" name="labelSpeIVValue">
-        <property name="text">
-         <string/>
-        </property>
-       </widget>
+       <widget class="QLabel" name="labelSpeIVValue"/>
       </item>
       <item row="0" column="1">
-       <widget class="QLabel" name="labelHPIVValue">
-        <property name="text">
-         <string/>
-        </property>
-       </widget>
+       <widget class="QLabel" name="labelHPIVValue"/>
       </item>
       <item row="3" column="1">
-       <widget class="QLabel" name="labelSpAIVValue">
-        <property name="text">
-         <string/>
-        </property>
-       </widget>
+       <widget class="QLabel" name="labelSpAIVValue"/>
       </item>
       <item row="4" column="1">
-       <widget class="QLabel" name="labelSpDIVValue">
-        <property name="text">
-         <string/>
-        </property>
-       </widget>
+       <widget class="QLabel" name="labelSpDIVValue"/>
       </item>
       <item row="2" column="0">
        <widget class="QLabel" name="labelDefIV">
@@ -400,11 +352,7 @@
        </widget>
       </item>
       <item row="6" column="1">
-       <widget class="QLabel" name="labelNextLevelValue">
-        <property name="text">
-         <string/>
-        </property>
-       </widget>
+       <widget class="QLabel" name="labelNextLevelValue"/>
       </item>
      </layout>
     </widget>

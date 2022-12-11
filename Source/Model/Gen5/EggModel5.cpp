@@ -27,7 +27,6 @@ EggGeneratorModel5::EggGeneratorModel5(QObject *parent) : TableModel<EggState5>(
 
 int EggGeneratorModel5::columnCount(const QModelIndex &parent) const
 {
-    (void)parent;
     return 15;
 }
 

@@ -54,13 +54,13 @@ public:
     }
 
     /**
-     * @brief Determines the minimum level of the pokemon
+     * @brief Determines the information of the pokemon
      *
-     * @return Minimum level
+     * @return Pokemon information
      */
-    u8 getMinLevel() const
+    const PersonalInfo *getInfo() const
     {
-        return minLevel;
+        return info;
     }
 
     /**
@@ -74,6 +74,16 @@ public:
     }
 
     /**
+     * @brief Determines the minimum level of the pokemon
+     *
+     * @return Minimum level
+     */
+    u8 getMinLevel() const
+    {
+        return minLevel;
+    }
+
+    /**
      * @brief Determines the species of the pokemon
      *
      * @return Pokemon species
@@ -81,16 +91,6 @@ public:
     u16 getSpecie() const
     {
         return specie;
-    }
-
-    /**
-     * @brief Determines the information of the pokemon
-     *
-     * @return Pokemon information
-     */
-    const PersonalInfo *getInfo() const
-    {
-        return info;
     }
 
     /**

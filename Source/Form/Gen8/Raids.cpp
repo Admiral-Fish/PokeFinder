@@ -30,7 +30,6 @@
 #include <Form/Gen8/Profile/ProfileManager8.hpp>
 #include <Model/Gen8/RaidModel.hpp>
 #include <QFile>
-#include <QMenu>
 #include <QSettings>
 
 Raids::Raids(QWidget *parent) : QWidget(parent), ui(new Ui::Raids), currentProfile(nullptr)

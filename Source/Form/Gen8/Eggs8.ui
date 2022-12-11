@@ -54,17 +54,8 @@
       </item>
       <item row="8" column="0" colspan="2">
        <widget class="QPushButton" name="pushButtonGenerate">
-        <property name="enabled">
-         <bool>true</bool>
-        </property>
         <property name="text">
          <string>Generate</string>
-        </property>
-        <property name="checkable">
-         <bool>false</bool>
-        </property>
-        <property name="autoDefault">
-         <bool>false</bool>
         </property>
        </widget>
       </item>
@@ -142,11 +133,7 @@
     </widget>
    </item>
    <item row="2" column="0" colspan="3">
-    <widget class="TableView" name="tableView">
-     <attribute name="verticalHeaderVisible">
-      <bool>false</bool>
-     </attribute>
-    </widget>
+    <widget class="TableView" name="tableView"/>
    </item>
    <item row="1" column="1">
     <widget class="QGroupBox" name="groupBoxSettings">

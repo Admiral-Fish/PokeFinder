@@ -30,7 +30,6 @@
 #include <Core/Util/Utilities.hpp>
 #include <Form/Gen5/Profile/ProfileManager5.hpp>
 #include <Model/Gen5/IDModel5.hpp>
-#include <QMenu>
 #include <QSettings>
 #include <QThread>
 #include <QTimer>

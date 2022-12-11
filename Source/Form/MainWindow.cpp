@@ -34,6 +34,7 @@
 #include <Form/Gen5/DreamRadar.hpp>
 #include <Form/Gen5/Eggs5.hpp>
 #include <Form/Gen5/Event5.hpp>
+#include <Form/Gen5/HiddenGrotto.hpp>
 #include <Form/Gen5/IDs5.hpp>
 #include <Form/Gen5/Profile/ProfileCalibrator5.hpp>
 #include <Form/Gen5/Profile/ProfileManager5.hpp>
@@ -70,7 +71,6 @@
 //#include <Forms/Gen3/Tools/SpindaPainter.hpp>
 //#include <Forms/Gen4/Eggs4.hpp>
 //#include <Forms/Gen4/Tools/ChainedSID.hpp>
-//#include <Forms/Gen5/HiddenGrotto.hpp>
 //#include <Forms/Gen5/Static5.hpp>
 //#include <Forms/Util/IVtoPID.hpp>
 
@@ -104,7 +104,7 @@ MainWindow::MainWindow(bool profile, QWidget *parent) : QMainWindow(parent), ui(
     connect(ui->pushButtonDreamRadar, &QPushButton::clicked, this, &MainWindow::openDreamRadar);
     connect(ui->pushButtonEgg5, &QPushButton::clicked, this, &MainWindow::openEgg5);
     connect(ui->pushButtonEvent5, &QPushButton::clicked, this, &MainWindow::openEvent5);
-    // connect(ui->pushButtonHiddenGrotto, &QPushButton::clicked, this, &MainWindow::openHiddenGrotto);
+    connect(ui->pushButtonHiddenGrotto, &QPushButton::clicked, this, &MainWindow::openHiddenGrotto);
     connect(ui->pushButtonIDs5, &QPushButton::clicked, this, &MainWindow::openIDs5);
     connect(ui->actionProfileCalibrator, &QAction::triggered, this, &MainWindow::openProfileCalibrator);
     connect(ui->actionProfileManager5, &QAction::triggered, this, &MainWindow::openProfileManager5);
@@ -166,7 +166,7 @@ MainWindow::~MainWindow()
     delete dreamRadar;
     delete egg5;
     delete event5;
-    // delete hiddenGrotto;
+    delete hiddenGrotto;
     delete ids5;
     // delete static5;
 
@@ -421,6 +421,24 @@ void MainWindow::openEvent5()
     }
 }
 
+void MainWindow::openHiddenGrotto()
+{
+    if (!hiddenGrotto)
+    {
+        hiddenGrotto = new HiddenGrotto();
+        connect(hiddenGrotto, &HiddenGrotto::profilesModified, this, &MainWindow::updateProfiles);
+    }
+    hiddenGrotto->show();
+
+    if (!hiddenGrotto->hasProfiles())
+    {
+        QMessageBox msg(QMessageBox::Warning, tr("No profiles found"),
+                        tr("Please use the Profile Calibrator under Gen 5 Tools to create one."));
+        msg.exec();
+        hiddenGrotto->close();
+    }
+}
+
 void MainWindow::openIDs5()
 {
     if (!ids5)
@@ -468,24 +486,6 @@ void MainWindow::openProfileManager5() const
                             tr("Please use the Profile Calibrator under Gen 5 Tools to create one."));
         msg.exec();
         static5->close();
-    }
-}
-
-void MainWindow::openHiddenGrotto()
-{
-    if (!hiddenGrotto)
-    {
-        hiddenGrotto = new HiddenGrotto();
-        connect(hiddenGrotto, &HiddenGrotto::updateProfiles, this, &MainWindow::updateProfiles);
-    }
-    hiddenGrotto->show();
-
-    if (!hiddenGrotto->hasProfiles())
-    {
-        QMessageBox msg(QMessageBox::Warning, tr("No profiles found"),
-                            tr("Please use the Profile Calibrator under Gen 5 Tools to create one."));
-        msg.exec();
-        hiddenGrotto->close();
     }
 }*/
 
@@ -737,10 +737,10 @@ void MainWindow::updateProfiles(int num)
         {
             egg5->updateProfiles();
         }
-        /*if (hiddenGrotto)
+        if (hiddenGrotto)
         {
             hiddenGrotto->updateProfiles();
-        }*/
+        }
     }
     else if (num == 8)
     {

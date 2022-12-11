@@ -236,17 +236,8 @@
           </item>
           <item row="4" column="0" colspan="2">
            <widget class="QPushButton" name="pushButtonGenerate">
-            <property name="enabled">
-             <bool>true</bool>
-            </property>
             <property name="text">
              <string>Generate</string>
-            </property>
-            <property name="checkable">
-             <bool>false</bool>
-            </property>
-            <property name="autoDefault">
-             <bool>false</bool>
             </property>
            </widget>
           </item>
@@ -446,21 +437,11 @@
         </widget>
        </item>
        <item row="1" column="0" colspan="3">
-        <widget class="TableView" name="tableViewGenerator">
-         <property name="contextMenuPolicy">
-          <enum>Qt::CustomContextMenu</enum>
-         </property>
-         <attribute name="verticalHeaderVisible">
-          <bool>false</bool>
-         </attribute>
-        </widget>
+        <widget class="TableView" name="tableViewGenerator"/>
        </item>
       </layout>
      </widget>
      <widget class="QWidget" name="tabSearcher">
-      <property name="enabled">
-       <bool>true</bool>
-      </property>
       <attribute name="title">
        <string>Searcher</string>
       </attribute>
@@ -627,17 +608,7 @@
         </widget>
        </item>
        <item row="2" column="0" colspan="3">
-        <widget class="TableView" name="tableViewSearcher">
-         <property name="contextMenuPolicy">
-          <enum>Qt::CustomContextMenu</enum>
-         </property>
-         <property name="sortingEnabled">
-          <bool>true</bool>
-         </property>
-         <attribute name="verticalHeaderVisible">
-          <bool>false</bool>
-         </attribute>
-        </widget>
+        <widget class="TableView" name="tableViewSearcher"/>
        </item>
        <item row="1" column="0" colspan="3">
         <widget class="QProgressBar" name="progressBar">
@@ -710,17 +681,8 @@
            <layout class="QHBoxLayout" name="horizontalLayout_4">
             <item>
              <widget class="QPushButton" name="pushButtonSearch">
-              <property name="enabled">
-               <bool>true</bool>
-              </property>
               <property name="text">
                <string>Search</string>
-              </property>
-              <property name="checkable">
-               <bool>false</bool>
-              </property>
-              <property name="autoDefault">
-               <bool>false</bool>
               </property>
              </widget>
             </item>

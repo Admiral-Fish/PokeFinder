@@ -32,7 +32,6 @@
 #include <Form/Controls/Controls.hpp>
 #include <Form/Gen8/Profile/ProfileManager8.hpp>
 #include <Model/Gen8/WildModel8.hpp>
-#include <QMenu>
 #include <QMessageBox>
 #include <QSettings>
 

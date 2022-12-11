@@ -31,7 +31,6 @@
 #include <Form/Controls/Controls.hpp>
 #include <Form/Gen3/Profile/ProfileManager3.hpp>
 #include <Model/Gen3/StaticModel3.hpp>
-#include <QMenu>
 #include <QSettings>
 #include <QThread>
 #include <QTimer>

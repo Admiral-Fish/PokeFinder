@@ -27,7 +27,6 @@
 #include <Form/Gen8/Profile/ProfileManager8.hpp>
 #include <Model/Gen8/StaticModel8.hpp>
 #include <QFileDialog>
-#include <QMenu>
 #include <QMessageBox>
 #include <QSettings>
 

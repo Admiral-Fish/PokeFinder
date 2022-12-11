@@ -12,6 +12,7 @@
         <file alias="dreamradar.json">Gen5/dreamradar.json</file>
         <file alias="egg5.json">Gen5/egg5.json</file>
         <file alias="event5.json">Gen5/event5.json</file>
+        <file alias="hiddengrotto.json">Gen5/hiddengrotto.json</file>
         <file alias="id5.json">Gen5/id5.json</file>
 
         <file alias="egg8.json">Gen8/egg8.json</file>

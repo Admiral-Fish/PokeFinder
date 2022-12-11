@@ -21,7 +21,7 @@
 #define PROFILECALIBRATOR5_HPP
 
 #include <Core/Global.hpp>
-#include <QMenu>
+#include <QWidget>
 
 class ProfileSearcherModel5;
 class QAbstractButton;

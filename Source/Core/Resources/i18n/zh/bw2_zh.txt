@@ -99,3 +99,7 @@
 132,Undella Town
 133,Route 17
 134,Route 21
+135,Route 6 (Cave)
+136,Route 13 (Giant Chasm)
+137,Abundant Shrine (Pond)
+138,Route 3 (Pond)

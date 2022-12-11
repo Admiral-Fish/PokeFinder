@@ -26,7 +26,6 @@ EggModel8::EggModel8(QObject *parent) : TableModel<EggGeneratorState>(parent), s
 
 int EggModel8::columnCount(const QModelIndex &parent) const
 {
-    (void)parent;
     return 12;
 }
 

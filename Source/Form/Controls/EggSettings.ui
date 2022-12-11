@@ -15,12 +15,6 @@
     <layout class="QGridLayout" name="gridLayout_3">
      <item row="0" column="2">
       <widget class="QLabel" name="labelParentBIVs">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
        <property name="text">
         <string>Parent B</string>
        </property>
@@ -211,12 +205,6 @@
      </item>
      <item row="0" column="2">
       <widget class="QLabel" name="labelParentB">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
        <property name="text">
         <string>Parent B</string>
        </property>
@@ -290,12 +278,6 @@
      </item>
      <item row="0" column="1">
       <widget class="QLabel" name="labelParentA">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
        <property name="text">
         <string>Parent A</string>
        </property>

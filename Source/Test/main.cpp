@@ -35,6 +35,7 @@
 #include <Test/Gen5/DreamRadarGeneratorTest.hpp>
 #include <Test/Gen5/EggGenerator5Test.hpp>
 #include <Test/Gen5/EventGenerator5Test.hpp>
+#include <Test/Gen5/HiddenGrottoGeneratorTest.hpp>
 #include <Test/Gen5/IDGenerator5Test.hpp>
 #include <Test/Gen8/EggGenerator8Test.hpp>
 #include <Test/Gen8/EventGenerator8Test.hpp>
@@ -98,6 +99,7 @@ int main()
     status += runTest<DreamRadarGeneratorTest>(fails);
     status += runTest<EggGenerator5Test>(fails);
     status += runTest<EventGenerator5Test>(fails);
+    status += runTest<HiddenGrottoGeneratorTest>(fails);
     status += runTest<IDGenerator5Test>(fails);
 
     // Gen 8

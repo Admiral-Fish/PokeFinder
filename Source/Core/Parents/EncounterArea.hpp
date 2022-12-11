@@ -96,7 +96,7 @@ public:
     std::vector<Slot> getPokemon() const;
 
     /**
-     * @brief Return the pokemon at the specifie \p index
+     * @brief Return the pokemon at the specific \p index
      *
      * @param index Pokemon index
      *

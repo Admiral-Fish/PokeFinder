@@ -53,7 +53,7 @@ QVariant WildGeneratorModel4::data(const QModelIndex &index, int role) const
         case 0:
             return state.getAdvances();
         case 1:
-            return state.getOccidentary();
+            return state.getBattleAdvances();
         case 2:
             return QString::fromStdString(*Translator::getItem(state.getItem()));
         case 3:
