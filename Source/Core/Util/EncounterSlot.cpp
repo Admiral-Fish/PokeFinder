@@ -23,37 +23,54 @@
 #include <cstddef>
 
 /**
- * @brief Calculates the encounter slot from the \p ranges using the \p compare value
+ * @brief Calculates the encounter slot table from the \p ranges
  *
  * @tparam size Number of entries in \p ranges
  * @tparam greater Whether to compare >= or <
- * @param rand PRNG call
  * @param ranges Table PRNG range values
  *
- * @return Encounter slot
+ * @return Encounter slot table
  */
 template <size_t size, bool greater = false>
-static u8 calcSlot(u8 rand, const std::array<u8, size> &ranges)
+static consteval std::array<u8, 100> computeTable(const std::array<int, size> &ranges)
 {
+    std::array<u8, 100> table;
+
+    int r = greater ? 99 : 0;
     for (size_t i = 0; i < size; i++)
     {
+        u8 range = ranges[i];
         if constexpr (greater)
         {
-            if (rand >= ranges[i])
+            for (; r >= range; r--)
             {
-                return i;
+                table[r] = i;
             }
         }
         else
         {
-            if (rand < ranges[i])
+            for (; r < range; r++)
             {
-                return i;
+                table[r] = i;
             }
         }
     }
-    return 255;
+
+    return table;
 }
+
+// Ground
+constexpr auto grass = computeTable<12>(std::array<int, 12> { 20, 40, 50, 60, 70, 80, 85, 90, 94, 98, 99, 100 });
+constexpr auto rocksmash = computeTable<2>(std::array<int, 2> { 80, 100 });
+constexpr auto bug = computeTable<10, true>(std::array<int, 10> { 80, 60, 50, 40, 30, 20, 15, 10, 5, 0 });
+constexpr auto headbutt = computeTable<6>(std::array<int, 6> { 50, 65, 80, 90, 95, 100 });
+
+// Water
+constexpr auto water0 = computeTable<2>(std::array<int, 2> { 70, 100 });
+constexpr auto water1 = computeTable<3>(std::array<int, 3> { 60, 80, 100 });
+constexpr auto water2 = computeTable<5>(std::array<int, 5> { 40, 80, 95, 99, 100 });
+constexpr auto water3 = computeTable<5>(std::array<int, 5> { 40, 70, 85, 95, 100 });
+constexpr auto water4 = computeTable<5>(std::array<int, 5> { 60, 90, 95, 99, 100 });
 
 namespace EncounterSlot
 {
@@ -62,16 +79,16 @@ namespace EncounterSlot
         switch (encounter)
         {
         case Encounter::OldRod:
-            return calcSlot<2>(rand, std::array<u8, 2> { 70, 100 });
+            return water0[rand];
         case Encounter::GoodRod:
-            return calcSlot<3>(rand, std::array<u8, 3> { 60, 80, 100 });
+            return water1[rand];
         case Encounter::SuperRod:
-            return calcSlot<5>(rand, std::array<u8, 5> { 40, 80, 95, 99, 100 });
+            return water2[rand];
         case Encounter::Surfing:
         case Encounter::RockSmash:
-            return calcSlot<5>(rand, std::array<u8, 5> { 60, 90, 95, 99, 100 });
+            return water4[rand];
         default:
-            return calcSlot<12>(rand, std::array<u8, 12> { 20, 40, 50, 60, 70, 80, 85, 90, 94, 98, 99, 100 });
+            return grass[rand];
         }
     }
 
@@ -81,12 +98,12 @@ namespace EncounterSlot
         {
         case Encounter::GoodRod:
         case Encounter::SuperRod:
-            return calcSlot<5>(rand, std::array<u8, 5> { 40, 80, 95, 99, 100 });
+            return water2[rand];
         case Encounter::OldRod:
         case Encounter::Surfing:
-            return calcSlot<5>(rand, std::array<u8, 5> { 60, 90, 95, 99, 100 });
+            return water4[rand];
         default:
-            return calcSlot<12>(rand, std::array<u8, 12> { 20, 40, 50, 60, 70, 80, 85, 90, 94, 98, 99, 100 });
+            return grass[rand];
         }
     }
 
@@ -97,19 +114,19 @@ namespace EncounterSlot
         case Encounter::OldRod:
         case Encounter::GoodRod:
         case Encounter::SuperRod:
-            return calcSlot<5>(rand, std::array<u8, 5> { 40, 70, 85, 95, 100 });
+            return water3[rand];
         case Encounter::Surfing:
-            return calcSlot<5>(rand, std::array<u8, 5> { 60, 90, 95, 99, 100 });
+            return water4[rand];
         case Encounter::BugCatchingContest:
-            return calcSlot<10, true>(rand, std::array<u8, 10> { 80, 60, 50, 40, 30, 20, 15, 10, 5, 0 });
+            return bug[rand];
         case Encounter::Headbutt:
         case Encounter::HeadbuttAlt:
         case Encounter::HeadbuttSpecial:
-            return calcSlot<6>(rand, std::array<u8, 6> { 50, 65, 80, 90, 95, 100 });
+            return headbutt[rand];
         case Encounter::RockSmash:
-            return calcSlot<2>(rand, std::array<u8, 2> { 80, 100 });
+            return rocksmash[rand];
         default:
-            return calcSlot<12>(rand, std::array<u8, 12> { 20, 40, 50, 60, 70, 80, 85, 90, 94, 98, 99, 100 });
+            return grass[rand];
         }
     }
 
@@ -119,12 +136,12 @@ namespace EncounterSlot
         {
         case Encounter::GoodRod:
         case Encounter::SuperRod:
-            return calcSlot<5>(rand, std::array<u8, 5> { 40, 80, 95, 99, 100 });
+            return water2[rand];
         case Encounter::OldRod:
         case Encounter::Surfing:
-            return calcSlot<5>(rand, std::array<u8, 5> { 60, 90, 95, 99, 100 });
+            return water4[rand];
         default:
-            return calcSlot<12>(rand, std::array<u8, 12> { 20, 40, 50, 60, 70, 80, 85, 90, 94, 98, 99, 100 });
+            return grass[rand];
         }
     }
 }

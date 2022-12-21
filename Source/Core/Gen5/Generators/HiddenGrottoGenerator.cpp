@@ -24,8 +24,22 @@
 #include <Core/RNG/LCRNG64.hpp>
 #include <Core/Util/Utilities.hpp>
 
-// Game has all of these + 1, removed for simplicity
-constexpr u32 grottoSlots[11] = { 0, 4, 19, 20, 24, 34, 59, 60, 64, 74, 99 };
+// clang-format off
+// See EncounterSlot.cpp computeTable() with { 1, 5, 20, 21, 25, 35, 60, 61, 65, 75, 100 }
+constexpr u8 encounterTable[100] = {
+    0,
+    1, 1, 1, 1,
+    2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+    3,
+    4, 4, 4, 4,
+    5, 5, 5, 5, 5, 5, 5, 5, 5, 5,
+    6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6,
+    7,
+    8, 8, 8, 8,
+    9, 9, 9, 9, 9, 9, 9, 9, 9, 9,
+    10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10
+};
+// clang-format on
 
 HiddenGrottoGenerator::HiddenGrottoGenerator(u32 initialAdvances, u32 maxAdvances, u32 delay, u8 powerLevel,
                                              const HiddenGrottoArea &encounterArea, const Profile5 &profile,
@@ -47,15 +61,7 @@ std::vector<HiddenGrottoState> HiddenGrottoGenerator::generate(u64 seed) const
         if (go.nextUInt(100) < powerLevel)
         {
             u8 group = go.nextUInt(4);
-
-            // Game does slot + 1, removed for simplicity
-            u8 slotRand = go.nextUInt(100);
-            u8 slot = 0;
-            while (slotRand > grottoSlots[slot])
-            {
-                slot++;
-            }
-
+            u8 slot = encounterTable[go.nextUInt(100)];
             if (slot < 3) // Pokemon
             {
                 const auto &pokemon = encounterArea.getPokemon(group, slot);
