@@ -121,6 +121,11 @@ private:
 private slots:
     // Gen 3
     /**
+     * @brief Opens the Gen 3 Egg window
+     */
+    void openEgg3();
+
+    /**
      * @brief Opens the Gen 3 IDs window
      */
     void openIDs3();
@@ -149,7 +154,6 @@ private slots:
      */
     void openWild3();
 
-    // void openEgg3();
     // void openIVtoPID();
     // void openPIDtoIV();
     // void openPokeSpot();

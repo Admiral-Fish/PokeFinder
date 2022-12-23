@@ -23,8 +23,7 @@
 #include <Core/Util/Translator.hpp>
 #include <Core/Util/Utilities.hpp>
 
-WildGeneratorModel4::WildGeneratorModel4(QObject *parent, Method method) :
-    TableModel<WildGeneratorState4>(parent), showStats(false), method(method)
+WildGeneratorModel4::WildGeneratorModel4(QObject *parent, Method method) : TableModel(parent), showStats(false), method(method)
 {
 }
 

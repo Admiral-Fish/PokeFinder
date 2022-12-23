@@ -19,7 +19,7 @@
 
 #include "IDModel3.hpp"
 
-IDModel3::IDModel3(QObject *parent) : TableModel<IDState>(parent)
+IDModel3::IDModel3(QObject *parent) : TableModel(parent)
 {
 }
 

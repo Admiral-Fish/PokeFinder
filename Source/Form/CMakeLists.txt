@@ -58,6 +58,7 @@ set(PROJECT_UI
     Controls/Filter.ui
     Controls/IDsFilter.ui
     Controls/IVFilter.ui
+    Gen3/Eggs3.ui
     Gen3/IDs3.ui
     Gen3/GameCube.ui
     Gen3/Profile/ProfileEditor3.ui
@@ -125,6 +126,8 @@ set(PROJECT_SOURCES
     Controls/TableView.hpp
     Controls/TextBox.cpp
     Controls/TextBox.hpp
+    Gen3/Eggs3.cpp
+    Gen3/Eggs3.hpp
     Gen3/IDs3.cpp
     Gen3/IDs3.hpp
     Gen3/GameCube.cpp

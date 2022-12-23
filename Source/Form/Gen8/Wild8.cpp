@@ -190,9 +190,7 @@ void Wild8::generate()
     auto encounter = ui->comboBoxEncounter->getEnum<Encounter>();
     auto lead = ui->comboMenuLead->getEnum<Lead>();
 
-    WildStateFilter8 filter(ui->filter->getGender(), ui->filter->getAbility(), ui->filter->getShiny(), ui->filter->getDisableFilters(),
-                            ui->filter->getMinIVs(), ui->filter->getMaxIVs(), ui->filter->getNatures(), ui->filter->getHiddenPowers(),
-                            ui->filter->getEncounterSlots());
+    WildStateFilter8 filter = ui->filter->getFilter<WildStateFilter8, true>();
     WildGenerator8 generator(initialAdvances, maxAdvances, delay, encounter, lead, *currentProfile, filter);
 
     auto states = generator.generate(seed0, seed1, encounters[ui->comboBoxLocation->getCurrentInt()]);

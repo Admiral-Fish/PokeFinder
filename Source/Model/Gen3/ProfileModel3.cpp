@@ -21,11 +21,11 @@
 #include <Core/Enum/Game.hpp>
 #include <Core/Util/Translator.hpp>
 
-ProfileModel3::ProfileModel3(QObject *parent) : TableModel<Profile3>(parent)
+ProfileModel3::ProfileModel3(QObject *parent) : TableModel(parent)
 {
 }
 
-int ProfileModel3::columnCount(const QModelIndex & /*parent*/) const
+int ProfileModel3::columnCount(const QModelIndex &parent) const
 {
     return 5;
 }

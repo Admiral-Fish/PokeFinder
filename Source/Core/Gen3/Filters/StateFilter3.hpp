@@ -22,6 +22,7 @@
 
 #include <Core/Parents/Filters/StateFilter.hpp>
 
+class EggState3;
 class GeneratorState;
 class SearcherState;
 class WildGeneratorState;
@@ -47,6 +48,16 @@ public:
      */
     StateFilter3(u8 gender, u8 ability, u8 shiny, bool skip, const std::array<u8, 6> &min, const std::array<u8, 6> &max,
                  const std::array<bool, 25> &natures, const std::array<bool, 16> &powers);
+
+    /**
+     * @brief Determines if the \p state meets the filter criteria
+     *
+     * @param state State to compare
+     *
+     * @return true State passes the filter
+     * @return false State does not pass the filter
+     */
+    bool compareState(const EggState3 &state) const;
 
     /**
      * @brief Determines if the \p state meets the filter criteria

@@ -41,6 +41,8 @@ add_library(PokeFinderCore STATIC
     Gen3/Encounters3.hpp
     Gen3/Filters/StateFilter3.cpp
     Gen3/Filters/StateFilter3.hpp
+    Gen3/Generators/EggGenerator3.cpp
+    Gen3/Generators/EggGenerator3.hpp
     Gen3/Generators/GameCubeGenerator.cpp
     Gen3/Generators/GameCubeGenerator.hpp
     Gen3/Generators/IDGenerator3.cpp
@@ -50,6 +52,8 @@ add_library(PokeFinderCore STATIC
     Gen3/Generators/WildGenerator3.cpp
     Gen3/Generators/WildGenerator3.hpp
     Gen3/LockInfo.hpp
+    Gen3/Profile3.cpp
+    Gen3/Profile3.hpp
     Gen3/Searchers/ChannelSeedSearcher.cpp
     Gen3/Searchers/ChannelSeedSearcher.hpp
     Gen3/Searchers/ColoSeedSearcher.cpp
@@ -65,8 +69,7 @@ add_library(PokeFinderCore STATIC
     Gen3/ShadowLock.cpp
     Gen3/ShadowLock.hpp
     Gen3/ShadowTemplate.hpp
-    Gen3/Profile3.cpp
-    Gen3/Profile3.hpp
+    Gen3/States/EggState3.hpp
     Gen3/States/WildState3.hpp
     Gen4/EncounterArea4.cpp
     Gen4/EncounterArea4.hpp

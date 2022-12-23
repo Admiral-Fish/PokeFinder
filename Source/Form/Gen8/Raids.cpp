@@ -166,8 +166,7 @@ void Raids::generate()
     u64 seed = ui->textBoxSeed->getULong();
     u8 level = ui->spinBoxLevel->value();
 
-    StateFilter8 filter(ui->filter->getGender(), ui->filter->getAbility(), ui->filter->getShiny(), ui->filter->getDisableFilters(),
-                        ui->filter->getMinIVs(), ui->filter->getMaxIVs(), ui->filter->getNatures(), ui->filter->getHiddenPowers());
+    StateFilter8 filter = ui->filter->getFilter<StateFilter8>();
     RaidGenerator generator(initialAdvances, maxAdvances, delay, *currentProfile, filter);
 
     if (ui->comboBoxDen->getCurrentInt() == 65535)

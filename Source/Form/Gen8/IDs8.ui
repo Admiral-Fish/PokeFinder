@@ -22,67 +22,12 @@
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="1">
     <widget class="QGroupBox" name="groupBoxFilter">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-       <horstretch>1</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
      <property name="title">
       <string>Filters</string>
      </property>
      <layout class="QGridLayout" name="gridLayout_7">
       <item row="0" column="0">
-       <widget class="QRadioButton" name="radioButtonTID">
-        <property name="text">
-         <string>TID</string>
-        </property>
-        <property name="checked">
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="0">
-       <widget class="QRadioButton" name="radioButtonSID">
-        <property name="text">
-         <string>SID</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="3" rowspan="5">
-       <widget class="QTextEdit" name="textEditTSVFilter">
-        <property name="acceptRichText">
-         <bool>false</bool>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="2">
-       <widget class="QLabel" name="labelTSV">
-        <property name="text">
-         <string>TSV</string>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="0">
-       <widget class="QRadioButton" name="radioButtonTIDSID">
-        <property name="text">
-         <string>TID/SID</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="1" rowspan="5">
-       <widget class="QTextEdit" name="textEditFilter">
-        <property name="acceptRichText">
-         <bool>false</bool>
-        </property>
-       </widget>
-      </item>
-      <item row="3" column="0">
-       <widget class="QRadioButton" name="radioButtonDisplayTID">
-        <property name="text">
-         <string>Display TID</string>
-        </property>
-       </widget>
+       <widget class="IDsFilter" name="filter" native="true"/>
       </item>
      </layout>
     </widget>
@@ -167,6 +112,12 @@
    <extends>QTableView</extends>
    <header>Form/Controls/TableView.hpp</header>
   </customwidget>
+  <customwidget>
+   <class>IDsFilter</class>
+   <extends>QWidget</extends>
+   <header>Form/Controls/IDsFilter.hpp</header>
+   <container>1</container>
+  </customwidget>
  </customwidgets>
  <tabstops>
   <tabstop>textBoxInitialAdvances</tabstop>
@@ -174,12 +125,6 @@
   <tabstop>textBoxSeed0</tabstop>
   <tabstop>textBoxSeed1</tabstop>
   <tabstop>pushButtonGenerate</tabstop>
-  <tabstop>radioButtonTID</tabstop>
-  <tabstop>radioButtonSID</tabstop>
-  <tabstop>radioButtonTIDSID</tabstop>
-  <tabstop>radioButtonDisplayTID</tabstop>
-  <tabstop>textEditFilter</tabstop>
-  <tabstop>textEditTSVFilter</tabstop>
   <tabstop>tableView</tabstop>
  </tabstops>
  <resources/>

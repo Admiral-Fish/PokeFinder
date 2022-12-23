@@ -298,10 +298,7 @@ void Wild4::generate()
     auto lead = ui->comboMenuGeneratorLead->getEnum<Lead>();
     bool chained = ui->checkBoxGeneratorPokeRadarShiny->isChecked();
 
-    WildStateFilter4 filter(ui->filterGenerator->getGender(), ui->filterGenerator->getAbility(), ui->filterGenerator->getShiny(),
-                            ui->filterGenerator->getDisableFilters(), ui->filterGenerator->getMinIVs(), ui->filterGenerator->getMaxIVs(),
-                            ui->filterGenerator->getNatures(), ui->filterGenerator->getHiddenPowers(),
-                            ui->filterGenerator->getEncounterSlots());
+    WildStateFilter4 filter = ui->filterGenerator->getFilter<WildStateFilter4, true>();
     WildGenerator4 generator(initialAdvances, maxAdvances, delay, method, encounter, lead, chained, *currentProfile, filter);
 
     auto states = generator.generate(seed, encounterGenerator[ui->comboBoxGeneratorLocation->getCurrentInt()], radarSlot);
@@ -578,9 +575,7 @@ void Wild4::search()
     auto lead = ui->comboMenuSearcherLead->getEnum<Lead>();
     bool shiny = ui->checkBoxSearcherPokeRadarShiny->isChecked();
 
-    WildStateFilter4 filter(ui->filterSearcher->getGender(), ui->filterSearcher->getAbility(), ui->filterSearcher->getShiny(), false, min,
-                            max, ui->filterSearcher->getNatures(), ui->filterSearcher->getHiddenPowers(),
-                            ui->filterSearcher->getEncounterSlots());
+    WildStateFilter4 filter = ui->filterSearcher->getFilter<WildStateFilter4, true>();
     auto *searcher
         = new WildSearcher4(minAdvance, maxAdvance, minDelay, maxDelay, method, encounter, lead, shiny, area, *currentProfile, filter);
 

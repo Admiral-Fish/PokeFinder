@@ -71,13 +71,6 @@ private slots:
      * @brief Validates that a profile name exists before allowing the dialog to be closed
      */
     void okay();
-
-    /**
-     * @brief Toggles whether radio, pokeradar, dual slot, and national dex is enabled based on selected Game
-     *
-     * @param index Current index of combo box
-     */
-    void versionIndexChanged(int index);
 };
 
 #endif // PROFILEEDITOR4_HPP

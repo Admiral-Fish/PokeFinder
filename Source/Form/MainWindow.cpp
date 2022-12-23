@@ -20,6 +20,7 @@
 #include "MainWindow.hpp"
 #include "ui_MainWindow.h"
 #include <Core/Util/Translator.hpp>
+#include <Form/Gen3/Eggs3.hpp>
 #include <Form/Gen3/GameCube.hpp>
 #include <Form/Gen3/IDs3.hpp>
 #include <Form/Gen3/Profile/ProfileManager3.hpp>
@@ -64,7 +65,6 @@
 #include <QtNetwork>
 #include <version.h>
 
-//#include <Forms/Gen3/Eggs3.hpp>
 //#include <Forms/Gen3/Tools/PIDIV.hpp>
 //#include <Forms/Gen3/Tools/PokeSpot.hpp>
 //#include <Forms/Gen3/Tools/SeedTime3.hpp>
@@ -79,7 +79,7 @@ MainWindow::MainWindow(bool profile, QWidget *parent) : QMainWindow(parent), ui(
     ui->setupUi(this);
     setWindowTitle(QString("Pok\303\251Finder %1").arg(POKEFINDER_VERSION));
 
-    // connect(ui->pushButtonEgg3, &QPushButton::clicked, this, &MainWindow::openEgg3);
+    connect(ui->pushButtonEgg3, &QPushButton::clicked, this, &MainWindow::openEgg3);
     connect(ui->pushButtonGameCube, &QPushButton::clicked, this, &MainWindow::openGameCube);
     connect(ui->pushButtonIDs3, &QPushButton::clicked, this, &MainWindow::openIDs3);
     connect(ui->pushButtonStatic3, &QPushButton::clicked, this, &MainWindow::openStatic3);
@@ -152,7 +152,7 @@ MainWindow::~MainWindow()
 
     delete ui;
 
-    // delete egg3;
+    delete egg3;
     delete gamecube;
     delete ids3;
     delete static3;
@@ -217,6 +217,16 @@ QByteArray MainWindow::downloadFile(const QString &url) const
     return reply->readAll();
 }
 
+void MainWindow::openEgg3()
+{
+    if (!egg3)
+    {
+        egg3 = new Eggs3();
+        connect(egg3, &Eggs3::profilesModified, this, &MainWindow::updateProfiles);
+    }
+    egg3->show();
+}
+
 void MainWindow::openIDs3()
 {
     if (!ids3)
@@ -269,17 +279,7 @@ void MainWindow::openWild3()
     wild3->show();
 }
 
-/*void MainWindow::openEgg3()
-{
-    if (!egg3)
-    {
-        egg3 = new Eggs3();
-        connect(egg3, &Eggs3::updateProfiles, this, &MainWindow::updateProfiles);
-    }
-    egg3->show();
-}
-
-void MainWindow::openIVtoPID()
+/*void MainWindow::openIVtoPID()
 {
     auto *ivToPID = new IVtoPID();
     ivToPID->show();
@@ -683,6 +683,14 @@ void MainWindow::updateProfiles(int num)
 {
     if (num == 3)
     {
+        if (egg3)
+        {
+            egg3->updateProfiles();
+        }
+        if (gamecube)
+        {
+            gamecube->updateProfiles();
+        }
         if (static3)
         {
             static3->updateProfiles();
@@ -691,17 +699,13 @@ void MainWindow::updateProfiles(int num)
         {
             wild3->updateProfiles();
         }
-        if (gamecube)
-        {
-            gamecube->updateProfiles();
-        }
-        /*if (egg3)
-        {
-            egg3->updateProfiles();
-        }*/
     }
     else if (num == 4)
     {
+        /*if (egg4)
+        {
+            egg4->updateProfiles();
+        }*/
         if (static4)
         {
             static4->updateProfiles();
@@ -710,47 +714,39 @@ void MainWindow::updateProfiles(int num)
         {
             wild4->updateProfiles();
         }
-        /*if (egg4)
-        {
-            egg4->updateProfiles();
-        }*/
     }
     else if (num == 5)
     {
-        /*if (static5)
-        {
-            static5->updateProfiles();
-        }*/
-        if (event5)
-        {
-            event5->updateProfiles();
-        }
         if (dreamRadar)
         {
             dreamRadar->updateProfiles();
-        }
-        if (ids5)
-        {
-            ids5->updateProfiles();
         }
         if (egg5)
         {
             egg5->updateProfiles();
         }
+        if (event5)
+        {
+            event5->updateProfiles();
+        }
         if (hiddenGrotto)
         {
             hiddenGrotto->updateProfiles();
         }
+        if (ids5)
+        {
+            ids5->updateProfiles();
+        }
+        /*if (static5)
+        {
+            static5->updateProfiles();
+        }*/
     }
     else if (num == 8)
     {
-        if (static8)
+        if (egg8)
         {
-            static8->updateProfiles();
-        }
-        if (wild8)
-        {
-            wild8->updateProfiles();
+            egg8->updateProfiles();
         }
         if (event8)
         {
@@ -760,9 +756,13 @@ void MainWindow::updateProfiles(int num)
         {
             raids->updateProfiles();
         }
-        if (egg8)
+        if (static8)
         {
-            egg8->updateProfiles();
+            static8->updateProfiles();
+        }
+        if (wild8)
+        {
+            wild8->updateProfiles();
         }
     }
 }

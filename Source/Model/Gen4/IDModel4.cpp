@@ -19,7 +19,7 @@
 
 #include "IDModel4.hpp"
 
-IDModel4::IDModel4(QObject *parent, bool flag) : TableModel<IDState4>(parent), showSeconds(flag)
+IDModel4::IDModel4(QObject *parent, bool flag) : TableModel(parent), showSeconds(flag)
 {
 }
 

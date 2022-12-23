@@ -22,11 +22,11 @@
 #include <Core/Gen4/HGSSRoamer.hpp>
 #include <Core/Util/Utilities.hpp>
 
-SeedTimeModel4::SeedTimeModel4(QObject *parent) : TableModel<SeedTime4>(parent)
+SeedTimeModel4::SeedTimeModel4(QObject *parent) : TableModel(parent)
 {
 }
 
-int SeedTimeModel4::columnCount(const QModelIndex & /*parent*/) const
+int SeedTimeModel4::columnCount(const QModelIndex &parent) const
 {
     return 2;
 }

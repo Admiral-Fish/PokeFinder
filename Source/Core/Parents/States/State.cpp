@@ -33,6 +33,11 @@ State::State(u32 pid, const std::array<u8, 6> &ivs, u8 ability, u8 gender, u8 le
     nature(nature),
     shiny(shiny)
 {
+    updateStats(info);
+}
+
+void State::updateStats(const PersonalInfo *info)
+{
     u8 h = 0;
     u8 p = 0;
     for (int i = 0; i < 6; i++)

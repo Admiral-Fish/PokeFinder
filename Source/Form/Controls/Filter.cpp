@@ -108,7 +108,7 @@ bool Filter::getDisableFilters() const
     return ui->checkBoxDisableFilters->isChecked();
 }
 
-std::array<bool, 12> Filter::getEncounterSlots()
+std::array<bool, 12> Filter::getEncounterSlots() const
 {
     // Encounter slot can vary depending on the encounter type, with the highest number being 12 currently
     // Opt to using array of 12 instead of vector for smaller memory usage and avoiding the heap
@@ -120,7 +120,7 @@ u8 Filter::getGender() const
     return ui->comboBoxGender->getCurrentByte();
 }
 
-std::array<bool, 16> Filter::getHiddenPowers()
+std::array<bool, 16> Filter::getHiddenPowers() const
 {
     return ui->checkListHiddenPower->getCheckedArray<16>();
 }
@@ -135,7 +135,7 @@ std::array<u8, 6> Filter::getMinIVs() const
     return ui->ivFilter->getLower();
 }
 
-std::array<bool, 25> Filter::getNatures()
+std::array<bool, 25> Filter::getNatures() const
 {
     return ui->checkListNature->getCheckedArray<25>();
 }

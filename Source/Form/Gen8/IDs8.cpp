@@ -40,6 +40,8 @@ IDs8::IDs8(QWidget *parent) : QWidget(parent), ui(new Ui::IDs8)
     ui->textBoxSeed0->setValues(InputType::Seed64Bit);
     ui->textBoxSeed1->setValues(InputType::Seed64Bit);
 
+    ui->filter->enableDisplayTID(true);
+
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &IDs8::generate);
 
     QSettings setting;
@@ -73,120 +75,7 @@ void IDs8::generate()
     u32 initialAdvances = ui->textBoxInitialAdvances->getUInt();
     u32 maxAdvances = ui->textBoxMaxAdvances->getUInt();
 
-    std::vector<u16> tidFilter;
-    std::vector<u16> sidFilter;
-    std::vector<u16> tsvFilter;
-    std::vector<u32> displayTIDFilter;
-
-    QString inputs = ui->textEditFilter->toPlainText();
-    if (ui->radioButtonTID->isChecked())
-    {
-        static QRegularExpression re("^\\d+$", QRegularExpression::MultilineOption);
-        auto matches = re.globalMatch(inputs);
-        while (matches.hasNext())
-        {
-            auto match = matches.next().captured();
-
-            bool flag;
-            u16 tid = match.toUShort(&flag);
-            if (!flag)
-            {
-                QMessageBox err(QMessageBox::Warning, ("Invalid input"), tr("%1 is invalid input").arg(match));
-                err.exec();
-                return;
-            }
-            tidFilter.emplace_back(tid);
-        }
-    }
-    else if (ui->radioButtonSID->isChecked())
-    {
-        static QRegularExpression re("^\\d+$", QRegularExpression::MultilineOption);
-        auto matches = re.globalMatch(inputs);
-        while (matches.hasNext())
-        {
-            auto match = matches.next().captured();
-
-            bool flag;
-            u16 sid = match.toUShort(&flag);
-            if (!flag)
-            {
-                QMessageBox err(QMessageBox::Warning, ("Invalid input"), tr("%1 is invalid input").arg(match));
-                err.exec();
-                return;
-            }
-            sidFilter.emplace_back(sid);
-        }
-    }
-    else if (ui->radioButtonTIDSID->isChecked())
-    {
-        static QRegularExpression re("^(\\d+)/(\\d+)$", QRegularExpression::MultilineOption);
-        auto matches = re.globalMatch(inputs);
-        while (matches.hasNext())
-        {
-            auto match = matches.next();
-            QString match1 = match.captured(1);
-            QString match2 = match.captured(2);
-
-            bool flag;
-            u16 tid = match1.toUShort(&flag);
-            if (!flag)
-            {
-                QMessageBox err(QMessageBox::Warning, ("Invalid input"), tr("%1 is invalid input").arg(match1));
-                err.exec();
-                return;
-            }
-
-            u16 sid = match2.toUShort(&flag);
-            if (!flag)
-            {
-                QMessageBox err(QMessageBox::Warning, ("Invalid input"), tr("%1 is invalid input").arg(match2));
-                err.exec();
-                return;
-            }
-
-            tidFilter.emplace_back(tid);
-            sidFilter.emplace_back(sid);
-        }
-    }
-    else if (ui->radioButtonDisplayTID->isChecked())
-    {
-        static QRegularExpression re("^\\d+$", QRegularExpression::MultilineOption);
-        auto matches = re.globalMatch(inputs);
-        while (matches.hasNext())
-        {
-            auto match = matches.next().captured();
-
-            bool flag;
-            u32 displayTID = match.toUInt(&flag);
-            if (!flag || (displayTID > 999999))
-            {
-                QMessageBox err(QMessageBox::Warning, ("Invalid input"), tr("%1 is invalid input").arg(match));
-                err.exec();
-                return;
-            }
-            displayTIDFilter.emplace_back(displayTID);
-        }
-    }
-
-    inputs = ui->textEditTSVFilter->toPlainText();
-    static QRegularExpression re("^\\d+$", QRegularExpression::MultilineOption);
-    auto matches = re.globalMatch(inputs);
-    while (matches.hasNext())
-    {
-        auto match = matches.next().captured();
-
-        bool flag;
-        u16 tsv = match.toUShort(&flag);
-        if (!flag || (tsv > 4095))
-        {
-            QMessageBox err(QMessageBox::Warning, ("Invalid input"), tr("%1 is invalid input").arg(match));
-            err.exec();
-            return;
-        }
-        tsvFilter.emplace_back(match.toUShort());
-    }
-
-    IDFilter filter(tidFilter, sidFilter, tsvFilter, displayTIDFilter);
+    IDFilter filter = ui->filter->getFilter();
     IDGenerator8 generator(initialAdvances, maxAdvances, filter);
 
     auto states = generator.generate(seed0, seed1);

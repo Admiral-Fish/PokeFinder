@@ -191,6 +191,8 @@ protected:
     u8 level;
     u8 nature;
     u8 shiny;
+
+    void updateStats(const PersonalInfo *info);
 };
 
 /**

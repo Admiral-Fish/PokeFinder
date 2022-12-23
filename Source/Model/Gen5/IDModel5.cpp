@@ -22,7 +22,7 @@
 #include <Core/Util/Translator.hpp>
 #include <Core/Util/Utilities.hpp>
 
-IDModel5::IDModel5(QObject *parent) : TableModel<SearcherState5<IDState>>(parent), version(Game::Black)
+IDModel5::IDModel5(QObject *parent) : TableModel(parent), version(Game::Black)
 {
 }
 

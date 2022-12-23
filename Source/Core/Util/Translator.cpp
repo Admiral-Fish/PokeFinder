@@ -78,10 +78,8 @@ const static std::array<std::string, 12> buttons = { "R", "L", "X", "Y", "A", "B
  * @brief Reads strings from the \p translation in the languaged specified by Translator::init()
  *
  * @param translation String category to read from
- *
- * @return Vector of translated strings
  */
-static std::vector<std::string> readFile(Translation translation)
+static void readFile(Translation translation, std::vector<std::string> &strings)
 {
     int index = (static_cast<int>(language) * static_cast<int>(Translation::Count)) + static_cast<int>(translation);
     u32 start = indexes[index];
@@ -93,7 +91,6 @@ static std::vector<std::string> readFile(Translation translation)
     u32 length;
     char *data = Utilities::decompress(compressedData, compressedLength, length);
 
-    std::vector<std::string> strings;
     for (u32 i = 0; i < length;)
     {
         char *it = std::find(data + i, data + length, 0);
@@ -103,7 +100,6 @@ static std::vector<std::string> readFile(Translation translation)
     }
 
     delete[] data;
-    return strings;
 }
 
 /**
@@ -333,13 +329,13 @@ namespace Translator
             language = Language::Chinese;
         }
 
-        abilities = readFile(Translation::Ability);
-        characteristics = readFile(Translation::Characteristic);
-        games = readFile(Translation::Game);
-        hiddenPowers = readFile(Translation::Power);
-        items = readFile(Translation::Item);
-        moves = readFile(Translation::Move);
-        natures = readFile(Translation::Nature);
-        species = readFile(Translation::Specie);
+        readFile(Translation::Ability, abilities);
+        readFile(Translation::Characteristic, characteristics);
+        readFile(Translation::Game, games);
+        readFile(Translation::Power, hiddenPowers);
+        readFile(Translation::Item, items);
+        readFile(Translation::Move, moves);
+        readFile(Translation::Nature, natures);
+        readFile(Translation::Specie, species);
     }
 }

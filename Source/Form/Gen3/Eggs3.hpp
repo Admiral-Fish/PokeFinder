@@ -24,41 +24,71 @@
 
 class EggModel3;
 class Profile3;
-class QMenu;
 
 namespace Ui
 {
     class Eggs3;
 }
 
+/**
+ * @brief Provides settings and filters to RNG egg encounters in Gen 3 games
+ */
 class Eggs3 : public QWidget
 {
     Q_OBJECT
 signals:
-    void alertProfiles(int);
+    /**
+     * @brief Emits that the profiles have been modified
+     */
+    void profilesModified(int);
 
 public:
-    explicit Eggs3(QWidget *parent = nullptr);
+    /**
+     * @brief Construct a new Eggs3 object
+     *
+     * @param parent Parent widget, which takes memory ownership
+     */
+    Eggs3(QWidget *parent = nullptr);
+
+    /**
+     * @brief Destroy the Eggs3 object
+     */
     ~Eggs3() override;
+
+    /**
+     * @brief Reloads profiles
+     */
     void updateProfiles();
 
 private:
     Ui::Eggs3 *ui;
-    std::vector<Profile3> profiles;
-    Profile3 *currentProfile;
+
     EggModel3 *emerald;
     EggModel3 *rsfrlg;
-    QMenu *emeraldMenu;
-    QMenu *rsfrlgMenu;
-
-    void setupModels();
+    Profile3 *currentProfile;
+    std::vector<Profile3> profiles;
 
 private slots:
+    /**
+     * @brief Generates egg encounters for Emerald
+     */
     void emeraldGenerate();
+
+    /**
+     * @brief Generates egg encounters for RS/FRLG
+     */
     void rsfrlgGenerate();
-    void profilesIndexChanged(int index);
-    void tableViewEmeraldContextMenu(QPoint pos);
-    void tableViewRSFRLGContextMenu(QPoint pos);
+
+    /**
+     * @brief Updates displayed information for a profile
+     *
+     * @param index Profile index
+     */
+    void profileIndexChanged(int index);
+
+    /**
+     * @brief Opens the profile manager
+     */
     void profileManager();
 };
 

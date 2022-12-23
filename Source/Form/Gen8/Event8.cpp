@@ -189,8 +189,7 @@ void Event8::generate()
     u32 delay = ui->textBoxDelay->getUInt();
     WB8 wb8 = getParameters();
 
-    StateFilter8 filter(ui->filter->getGender(), ui->filter->getAbility(), ui->filter->getShiny(), ui->filter->getDisableFilters(),
-                        ui->filter->getMinIVs(), ui->filter->getMaxIVs(), ui->filter->getNatures(), ui->filter->getHiddenPowers());
+    StateFilter8 filter = ui->filter->getFilter<StateFilter8>();
     EventGenerator8 generator(initialAdvances, maxAdvances, delay, wb8, *currentProfile, filter);
 
     auto states = generator.generate(seed0, seed1);

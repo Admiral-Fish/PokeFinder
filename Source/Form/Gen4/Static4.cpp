@@ -163,9 +163,7 @@ void Static4::generate()
     u32 delay = ui->textBoxGeneratorDelay->getUInt();
     auto lead = ui->comboMenuGeneratorLead->getEnum<Lead>();
 
-    StateFilter4 filter(ui->filterGenerator->getGender(), ui->filterGenerator->getAbility(), ui->filterGenerator->getShiny(),
-                        ui->filterGenerator->getDisableFilters(), ui->filterGenerator->getMinIVs(), ui->filterGenerator->getMaxIVs(),
-                        ui->filterGenerator->getNatures(), ui->filterGenerator->getHiddenPowers());
+    StateFilter4 filter = ui->filterGenerator->getFilter<StateFilter4>();
     StaticGenerator4 generator(initialAdvances, maxAdvances, delay, staticTemplate->getMethod(), lead, *currentProfile, filter);
 
     auto states = generator.generate(seed, staticTemplate);
@@ -250,9 +248,6 @@ void Static4::search()
     std::array<u8, 6> min = ui->filterSearcher->getMinIVs();
     std::array<u8, 6> max = ui->filterSearcher->getMaxIVs();
 
-    StateFilter4 filter(ui->filterSearcher->getGender(), ui->filterSearcher->getAbility(), ui->filterSearcher->getShiny(), false, min, max,
-                        ui->filterSearcher->getNatures(), ui->filterSearcher->getHiddenPowers());
-
     u32 minAdvance = ui->textBoxSearcherMinAdvance->getUInt();
     u32 maxAdvance = ui->textBoxSearcherMaxAdvance->getUInt();
     u32 minDelay = ui->textBoxSearcherMinDelay->getUInt();
@@ -261,6 +256,7 @@ void Static4::search()
     const StaticTemplate4 *staticTemplate
         = Encounters4::getStaticEncounter(ui->comboBoxSearcherCategory->currentIndex(), ui->comboBoxSearcherPokemon->getCurrentInt());
 
+    StateFilter4 filter = ui->filterSearcher->getFilter<StateFilter4>();
     auto *searcher
         = new StaticSearcher4(minAdvance, maxAdvance, minDelay, maxDelay, staticTemplate->getMethod(), lead, *currentProfile, filter);
 

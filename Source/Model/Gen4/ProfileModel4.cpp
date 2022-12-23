@@ -20,11 +20,11 @@
 #include "ProfileModel4.hpp"
 #include <Core/Util/Translator.hpp>
 
-ProfileModel4::ProfileModel4(QObject *parent) : TableModel<Profile4>(parent)
+ProfileModel4::ProfileModel4(QObject *parent) : TableModel(parent)
 {
 }
 
-int ProfileModel4::columnCount(const QModelIndex & /*parent*/) const
+int ProfileModel4::columnCount(const QModelIndex &parent) const
 {
     return 5;
 }

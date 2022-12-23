@@ -21,7 +21,7 @@
 #include <Core/Util/Translator.hpp>
 #include <Core/Util/Utilities.hpp>
 
-EventGeneratorModel5::EventGeneratorModel5(QObject *parent) : TableModel<State5>(parent), showStats(false)
+EventGeneratorModel5::EventGeneratorModel5(QObject *parent) : TableModel(parent), showStats(false)
 {
 }
 

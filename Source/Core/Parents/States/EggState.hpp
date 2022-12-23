@@ -22,6 +22,9 @@
 
 #include <Core/Parents/States/State.hpp>
 
+/**
+ * @brief Parent state class that provides additional egg information
+ */
 class EggState : public State
 {
 public:

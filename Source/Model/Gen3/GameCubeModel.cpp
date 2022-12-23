@@ -20,7 +20,7 @@
 #include "GameCubeModel.hpp"
 #include <Core/Util/Translator.hpp>
 
-GameCubeGeneratorModel::GameCubeGeneratorModel(QObject *parent) : TableModel<GeneratorState>(parent), showStats(false)
+GameCubeGeneratorModel::GameCubeGeneratorModel(QObject *parent) : TableModel(parent), showStats(false)
 {
 }
 

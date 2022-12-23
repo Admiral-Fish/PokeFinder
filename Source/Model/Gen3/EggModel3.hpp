@@ -17,28 +17,26 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef IDMODEL5_HPP
-#define IDMODEL5_HPP
+#ifndef EGG3MODEL_HPP
+#define EGG3MODEL_HPP
 
-#include <Core/Gen5/States/SearcherState5.hpp>
-#include <Core/Parents/States/IDState.hpp>
+#include <Core/Gen3/States/EggState3.hpp>
 #include <Model/TableModel.hpp>
 
-enum class Game : u32;
-
 /**
- * @brief Provides a table model implementation to show TID/SID information for Gen 5
+ * @brief Provides a table model implementation to show egg encounter information for Gen 3
  */
-class IDModel5 : public TableModel<SearcherState5<IDState>>
+class EggModel3 : public TableModel<EggState3>
 {
     Q_OBJECT
 public:
     /**
-     * @brief Construct a new IDModel4 object
+     * @brief Construct a new EggGeneratorModel5 object
      *
      * @param parent Parent object, which takes memory ownership
+     * @param emerald Whether the version is Emerald or not
      */
-    IDModel5(QObject *parent);
+    EggModel3(QObject *parent, bool emerald);
 
     /**
      * @brief Returns the number of columns in the model
@@ -57,7 +55,7 @@ public:
      *
      * @return Data at index
      */
-    QVariant data(const QModelIndex &index, int role) const override;
+    QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
 
     /**
      * @brief Returns header text at the \p section, \p orientation, and \p role
@@ -70,17 +68,35 @@ public:
      */
     QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
 
+public slots:
     /**
-     * @brief Sets the game version
+     * @brief Sets flag that controls whether the model display inheritance or stats/IVs
      *
-     * @param version Game version
+     * @param flag Whether to show inheritance or not
      */
-    void setGame(Game version);
+    void setShowInheritance(bool flag);
+
+    /**
+     * @brief Sets flag that controls whether the model display stats or IVs
+     *
+     * @param flag Whether to show stats or not
+     */
+    void setShowStats(bool flag);
 
 private:
-    QStringList header
-        = { tr("Seed"), tr("Initial Advances"), tr("Advances"), tr("TID"), tr("SID"), tr("TSV"), tr("Date/Time"), tr("Buttons") };
-    Game version;
+    QStringList header = { tr("Held Advances"), tr("Pickup Advances"),
+                           tr("Redraws"),       tr("PID"),
+                           tr("Shiny"),         tr("Nature"),
+                           tr("Ability"),       tr("HP"),
+                           tr("Atk"),           tr("Def"),
+                           tr("SpA"),           tr("SpD"),
+                           tr("Spe"),           tr("Hidden"),
+                           tr("Power"),         tr("Gender") };
+    bool emerald;
+    bool showInheritance;
+    bool showStats;
+
+    int getColumn(int column) const;
 };
 
-#endif // IDMODEL5_HPP
+#endif // EGG3MODEL_HPP

@@ -145,8 +145,7 @@ void Static8::generate()
     u32 delay = ui->textBoxDelay->getUInt();
     auto lead = ui->comboMenuLead->getEnum<Lead>();
 
-    StateFilter8 filter(ui->filter->getGender(), ui->filter->getAbility(), ui->filter->getShiny(), ui->filter->getDisableFilters(),
-                        ui->filter->getMinIVs(), ui->filter->getMaxIVs(), ui->filter->getNatures(), ui->filter->getHiddenPowers());
+    StateFilter8 filter = ui->filter->getFilter<StateFilter8>();
     StaticGenerator8 generator(initialAdvances, maxAdvances, delay, lead, *currentProfile, filter);
 
     const StaticTemplate8 *staticTemplate

@@ -136,8 +136,7 @@ void Eggs8::generate()
     }
     Daycare daycare = ui->eggSettings->getDaycareSettings();
 
-    StateFilter8 filter(ui->filter->getGender(), ui->filter->getAbility(), ui->filter->getShiny(), ui->filter->getDisableFilters(),
-                        ui->filter->getMinIVs(), ui->filter->getMaxIVs(), ui->filter->getNatures(), ui->filter->getHiddenPowers());
+    StateFilter8 filter = ui->filter->getFilter<StateFilter8>();
     EggGenerator8 generator(initialAdvances, maxAdvances, delay, compatability, daycare, *currentProfile, filter);
 
     auto states = generator.generate(seed0, seed1);

@@ -87,7 +87,30 @@ public:
      *
      * @return Array of encounter slots
      */
-    std::array<bool, 12> getEncounterSlots();
+    std::array<bool, 12> getEncounterSlots() const;
+
+    /**
+     * @brief Constructs filter from the UI settings
+     *
+     * @tparam FilterType Filter class type
+     * @tparam wild Whether filter is for wild encounters
+     *
+     * @return Filter object
+     */
+    template <class FilterType, bool wild = false>
+    FilterType getFilter() const
+    {
+        if constexpr (wild)
+        {
+            return FilterType(getGender(), getAbility(), getShiny(), getDisableFilters(), getMinIVs(), getMaxIVs(), getNatures(),
+                              getHiddenPowers(), getEncounterSlots());
+        }
+        else
+        {
+            return FilterType(getGender(), getAbility(), getShiny(), getDisableFilters(), getMinIVs(), getMaxIVs(), getNatures(),
+                              getHiddenPowers());
+        }
+    }
 
     /**
      * @brief Gets gender to filter by
@@ -101,7 +124,7 @@ public:
      *
      * @return Array of hidden powers
      */
-    std::array<bool, 16> getHiddenPowers();
+    std::array<bool, 16> getHiddenPowers() const;
 
     /**
      * @brief Gets upper bound IVs to filter by
@@ -122,7 +145,7 @@ public:
      *
      * @return Array of natures
      */
-    std::array<bool, 25> getNatures();
+    std::array<bool, 25> getNatures() const;
 
     /**
      * @brief Gets shiny status to filter by

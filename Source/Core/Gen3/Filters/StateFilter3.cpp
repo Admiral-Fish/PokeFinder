@@ -18,6 +18,7 @@
  */
 
 #include "StateFilter3.hpp"
+#include <Core/Gen3/States/EggState3.hpp>
 #include <Core/Gen3/States/WildState3.hpp>
 #include <Core/Parents/States/State.hpp>
 
@@ -25,6 +26,40 @@ StateFilter3::StateFilter3(u8 gender, u8 ability, u8 shiny, bool skip, const std
                            const std::array<bool, 25> &natures, const std::array<bool, 16> &powers) :
     StateFilter(gender, ability, shiny, skip, min, max, natures, powers)
 {
+}
+
+bool StateFilter3::compareState(const EggState3 &state) const
+{
+    if (skip)
+    {
+        return true;
+    }
+
+    if (!powers[state.getHiddenPower()])
+    {
+        return false;
+    }
+
+    if (!natures[state.getNature()])
+    {
+        return false;
+    }
+
+    if (shiny != 255 && !(shiny & state.getShiny()))
+    {
+        return false;
+    }
+
+    for (int i = 0; i < 6; i++)
+    {
+        u8 iv = state.getIV(i);
+        if (iv < min[i] || iv > max[i])
+        {
+            return false;
+        }
+    }
+
+    return true;
 }
 
 bool StateFilter3::compareState(const GeneratorState &state) const

@@ -19,7 +19,7 @@
 
 #include "ProfileSearcherModel5.hpp"
 
-ProfileSearcherModel5::ProfileSearcherModel5(QObject *parent) : TableModel<ProfileSearcherState5>(parent)
+ProfileSearcherModel5::ProfileSearcherModel5(QObject *parent) : TableModel(parent)
 {
 }
 

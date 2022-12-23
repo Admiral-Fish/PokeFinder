@@ -23,8 +23,7 @@
 #include <Core/Util/Translator.hpp>
 #include <Core/Util/Utilities.hpp>
 
-StaticGeneratorModel4::StaticGeneratorModel4(QObject *parent, Method method) :
-    TableModel<GeneratorState4>(parent), showStats(false), method(method)
+StaticGeneratorModel4::StaticGeneratorModel4(QObject *parent, Method method) : TableModel(parent), showStats(false), method(method)
 {
 }
 

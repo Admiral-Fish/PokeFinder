@@ -37,7 +37,6 @@ ProfileEditor4::ProfileEditor4(QWidget *parent) : QDialog(parent), ui(new Ui::Pr
         { toInt(Game::Diamond), toInt(Game::Pearl), toInt(Game::Platinum), toInt(Game::HeartGold), toInt(Game::SoulSilver) });
 
     connect(ui->pushButtonOkay, &QPushButton::clicked, this, &ProfileEditor4::okay);
-    connect(ui->comboBoxVersion, &QComboBox::currentIndexChanged, this, &ProfileEditor4::versionIndexChanged);
 
     QSettings setting;
     if (setting.contains("profileEditor4/geometry"))
@@ -80,14 +79,4 @@ void ProfileEditor4::okay()
     }
 
     done(QDialog::Accepted);
-}
-
-void ProfileEditor4::versionIndexChanged(int index)
-{
-    if (index >= 0)
-    {
-        auto game = ui->comboBoxVersion->getEnum<Game>();
-        bool flag = (game & Game::HGSS) != Game::None;
-        ui->checkBoxNationalDex->setVisible(flag);
-    }
 }

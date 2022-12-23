@@ -21,7 +21,7 @@
 #include <Core/Util/Translator.hpp>
 #include <Core/Util/Utilities.hpp>
 
-EggGeneratorModel5::EggGeneratorModel5(QObject *parent) : TableModel<EggState5>(parent), showInheritance(false), showStats(false)
+EggGeneratorModel5::EggGeneratorModel5(QObject *parent) : TableModel(parent), showInheritance(false), showStats(false)
 {
 }
 

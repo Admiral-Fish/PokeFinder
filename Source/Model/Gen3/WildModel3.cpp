@@ -20,7 +20,7 @@
 #include "WildModel3.hpp"
 #include <Core/Util/Translator.hpp>
 
-WildGeneratorModel3::WildGeneratorModel3(QObject *parent) : TableModel<WildGeneratorState>(parent), showStats(false)
+WildGeneratorModel3::WildGeneratorModel3(QObject *parent) : TableModel(parent), showStats(false)
 {
 }
 

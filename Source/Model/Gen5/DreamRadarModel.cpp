@@ -22,7 +22,7 @@
 
 static const QStringList needleStrings = { "↑", "↗", "→", "↘", "↓", "↙", "←", "↖" };
 
-DreamRadarGeneratorModel5::DreamRadarGeneratorModel5(QObject *parent) : TableModel<DreamRadarState>(parent), showStats(false)
+DreamRadarGeneratorModel5::DreamRadarGeneratorModel5(QObject *parent) : TableModel(parent), showStats(false)
 {
 }
 
