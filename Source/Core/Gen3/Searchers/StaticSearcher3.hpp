@@ -37,11 +37,10 @@ public:
      * @brief Construct a new StaticSearcher3 object
      *
      * @param method Encounter method
-     * @param lead Encounter lead
      * @param profile Profile Information
      * @param filter State filter
      */
-    StaticSearcher3(Method method, Lead lead, const Profile3 &profile, const StateFilter3 &filter);
+    StaticSearcher3(Method method, const Profile3 &profile, const StateFilter3 &filter);
 
     /**
      * @brief Cancels the running search

@@ -24,7 +24,6 @@
 #include <Core/Parents/ProfileLoader.hpp>
 #include <Model/Gen8/IDModel8.hpp>
 #include <QMessageBox>
-#include <QRegularExpression>
 #include <QSettings>
 
 IDs8::IDs8(QWidget *parent) : QWidget(parent), ui(new Ui::IDs8)

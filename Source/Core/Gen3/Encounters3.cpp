@@ -31,7 +31,6 @@
 #include <Core/Resources/Encounters.hpp>
 #include <Core/Util/Utilities.hpp>
 #include <algorithm>
-#include <cstring>
 #include <iterator>
 
 constexpr std::array<StaticTemplate, 9> starters = {

@@ -40,14 +40,14 @@ namespace DenLoader
      *
      * @return Den
      */
-    Den getDen(u16 index, u8 rarity);
+    const Den *getDen(u16 index, u8 rarity);
 
     /**
      * @brief Returns the den event initialized by init()
      *
      * @return Event den
      */
-    DenEvent getEvent();
+    const DenEvent *getEvent();
 
     /**
      * @brief Returns the location of the den

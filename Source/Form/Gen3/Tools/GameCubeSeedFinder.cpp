@@ -19,19 +19,16 @@
 
 #include "GameCubeSeedFinder.hpp"
 #include "ui_GameCubeSeedFinder.h"
-#include <Core/Enum/Method.hpp>
 #include <Core/Gen3/Searchers/ChannelSeedSearcher.hpp>
 #include <Core/Gen3/Searchers/ColoSeedSearcher.hpp>
 #include <Core/Gen3/Searchers/GalesSeedSearcher.hpp>
 #include <Core/Util/Translator.hpp>
 #include <QClipboard>
-#include <QDesktopServices>
 #include <QFileDialog>
 #include <QMessageBox>
 #include <QSettings>
 #include <QThread>
 #include <QTimer>
-#include <QUrl>
 
 static const std::map<QString, u8> patterns = { { "S->N->O->C", 11 }, { "O->N->S->C", 12 }, { "S->N->C->O", 13 }, { "C->N->S->O", 15 },
                                                 { "O->N->C->S", 16 }, { "C->N->O->S", 17 }, { "N->S->O->C", 22 }, { "N->O->S->C", 24 },

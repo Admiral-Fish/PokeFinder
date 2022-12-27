@@ -36,9 +36,9 @@ SeedToTime4::SeedToTime4(QWidget *parent) : QWidget(parent), ui(new Ui::SeedToTi
     setAttribute(Qt::WA_DeleteOnClose);
 
     dpptModel = new SeedTimeModel4(ui->tableViewDPPtSearch);
-    dpptCalibrateModel = new SeedTimeCalibrateModel4(ui->tableViewDPPtCalibrate, Game::DPPt);
+    dpptCalibrateModel = new SeedTimeCalibrateModel4(ui->tableViewDPPtCalibrate, true);
     hgssModel = new SeedTimeModel4(ui->tableViewHGSSSearch);
-    hgssCalibrateModel = new SeedTimeCalibrateModel4(ui->tableViewHGSSCalibrate, Game::HGSS);
+    hgssCalibrateModel = new SeedTimeCalibrateModel4(ui->tableViewHGSSCalibrate, false);
 
     ui->textBoxDPPtSeed->setValues(InputType::Seed32Bit);
     ui->textBoxDPPtYear->setValues(2000, 2099, 4, 10);

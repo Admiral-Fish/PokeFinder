@@ -24,7 +24,6 @@
 #include <Core/Gen5/HiddenGrottoArea.hpp>
 #include <Core/Gen5/Profile5.hpp>
 #include <Core/Parents/Generators/Generator.hpp>
-#include <vector>
 
 class HiddenGrottoState;
 

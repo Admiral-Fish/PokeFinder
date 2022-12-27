@@ -142,7 +142,7 @@ void Eggs3::emeraldGenerate()
     u8 calibration = ui->textBoxEmeraldCalibration->getUChar();
     u8 minRedraw = ui->textBoxEmeraldMinRedraws->getUChar();
     u8 maxRedraw = ui->textBoxEmeraldMaxRedraws->getUChar();
-    u8 compatability = ui->comboBoxEmeraldCompatibility->getCurrentByte();
+    u8 compatability = ui->comboBoxEmeraldCompatibility->getCurrentUChar();
     auto method = ui->comboBoxEmeraldMethod->getEnum<Method>();
 
     StateFilter3 filter = ui->filterEmerald->getFilter<StateFilter3>();
@@ -171,7 +171,7 @@ void Eggs3::rsfrlgGenerate()
     u32 initialAdvancesPickup = ui->textBoxRSFRLGInitialAdvancesPickup->getUInt();
     u32 maxAdvancesPickup = ui->textBoxRSFRLGMaxAdvancesPickup->getUInt();
     u32 delayPickup = ui->textBoxRSFRLGDelayPickup->getUInt();
-    u8 compatability = ui->comboBoxRSFRLGCompatibility->getCurrentByte();
+    u8 compatability = ui->comboBoxRSFRLGCompatibility->getCurrentUChar();
     auto method = ui->comboBoxRSFRLGMethod->getEnum<Method>();
 
     StateFilter3 filter = ui->filterRSFRLG->getFilter<StateFilter3>();

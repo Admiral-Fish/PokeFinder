@@ -33,16 +33,7 @@ u16 HiddenGrottoArea::getItem(u8 group, u8 index) const
 
 std::vector<std::string> HiddenGrottoArea::getItemNames() const
 {
-    std::vector<u16> nums = getUniqueItems();
-
-    std::vector<std::string> items;
-    items.reserve(nums.size());
-    for (u16 i : nums)
-    {
-        items.emplace_back(*Translator::getItem(i));
-    }
-
-    return items;
+    return Translator::getItems(getUniqueItems());
 }
 
 u16 HiddenGrottoArea::getHiddenItem(u8 group, u8 index) const

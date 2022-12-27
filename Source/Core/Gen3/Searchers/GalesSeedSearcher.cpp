@@ -26,23 +26,8 @@ constexpr u16 enemyHPStat[5][2] = { { 290, 310 }, { 290, 270 }, { 290, 250 }, { 
 
 constexpr u16 playerHPStat[5][2] = { { 322, 340 }, { 310, 290 }, { 210, 620 }, { 320, 230 }, { 310, 310 } };
 
-GalesSeedSearcher::GalesSeedSearcher(const GalesCriteria &criteria) : progress(0), criteria(criteria), searching(false)
+GalesSeedSearcher::GalesSeedSearcher(const GalesCriteria &criteria) : SeedSearcher(criteria)
 {
-}
-
-void GalesSeedSearcher::cancelSearch()
-{
-    searching = false;
-}
-
-int GalesSeedSearcher::getProgress() const
-{
-    return progress;
-}
-
-std::vector<u32> GalesSeedSearcher::getResults() const
-{
-    return results;
 }
 
 void GalesSeedSearcher::startSearch(int threads)

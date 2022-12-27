@@ -18,8 +18,6 @@
  */
 
 #include "ShadowLock.hpp"
-#include <Core/Gen3/Encounters3.hpp>
-#include <Core/Gen3/LockInfo.hpp>
 #include <Core/Gen3/ShadowTemplate.hpp>
 #include <Core/RNG/LCRNG.hpp>
 

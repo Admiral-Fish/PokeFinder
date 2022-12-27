@@ -29,7 +29,7 @@
 /**
  * @brief Wild encounter searcher for Gen 4
  */
-class WildSearcher4 : public WildSearcher<Profile4, WildStateFilter4>
+class WildSearcher4 : public WildSearcher<EncounterArea4, Profile4, WildStateFilter4>
 {
 public:
     /**
@@ -78,7 +78,6 @@ public:
     void startSearch(const std::array<u8, 6> &min, const std::array<u8, 6> &max, u8 index);
 
 private:
-    EncounterArea4 encounterArea;
     std::mutex mutex;
     std::vector<u8> modifiedSlots;
     std::vector<WildSearcherState4> results;

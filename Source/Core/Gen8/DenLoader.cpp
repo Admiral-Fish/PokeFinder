@@ -380,16 +380,16 @@ namespace DenLoader
         }
     }
 
-    Den getDen(u16 index, u8 rarity)
+    const Den *getDen(u16 index, u8 rarity)
     {
         u64 tableHash = denInfo[index]->hash[rarity];
         auto it = std::lower_bound(nests.begin(), nests.end(), tableHash, [](const Den &den, u64 hash) { return den.getHash() < hash; });
-        return *it;
+        return std::addressof(*it);
     }
 
-    DenEvent getEvent()
+    const DenEvent *getEvent()
     {
-        return event;
+        return &event;
     }
 
     u8 getLocation(u16 index)

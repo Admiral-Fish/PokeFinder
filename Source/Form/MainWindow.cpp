@@ -52,14 +52,12 @@
 #include <Form/Util/IVCalculator.hpp>
 #include <Form/Util/Researcher.hpp>
 #include <Form/Util/Settings.hpp>
-#include <QActionGroup>
 #include <QClipboard>
 #include <QDate>
 #include <QDesktopServices>
 #include <QFile>
 #include <QInputDialog>
 #include <QMessageBox>
-#include <QPushButton>
 #include <QSettings>
 #include <QTimer>
 #include <QtNetwork>

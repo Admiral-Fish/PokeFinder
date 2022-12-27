@@ -42,7 +42,7 @@ public:
     /**
      * @brief Construct a new IDState object
      *
-     * @param advances
+     * @param advances Advances of the state
      * @param tid Trainer ID
      * @param sid Secret ID
      * @param tsv Trainer shiny value

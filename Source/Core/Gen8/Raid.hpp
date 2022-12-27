@@ -23,7 +23,6 @@
 #include <Core/Enum/Game.hpp>
 #include <Core/Enum/Shiny.hpp>
 #include <Core/Global.hpp>
-#include <Core/Parents/PersonalInfo.hpp>
 #include <Core/Parents/PersonalLoader.hpp>
 #include <array>
 #include <string>

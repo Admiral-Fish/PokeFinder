@@ -18,7 +18,6 @@
  */
 
 #include "TinyMT.hpp"
-#include <Core/RNG/SIMD.hpp>
 
 constexpr u64 jumpTable[25][2]
     = { { 0xb0a48045db1bfe95, 0x1b98a18f31f57486 }, { 0xe29d1503ee564039, 0x342d0c6dc777e228 }, { 0xfd7a37b1acaa7823, 0x9951a06456708b7e },

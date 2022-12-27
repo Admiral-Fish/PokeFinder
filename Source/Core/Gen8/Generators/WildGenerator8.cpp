@@ -19,10 +19,10 @@
 
 #include "WildGenerator8.hpp"
 #include <Core/Enum/Encounter.hpp>
-#include <Core/Enum/Game.hpp>
+#include <Core/Enum/Lead.hpp>
 #include <Core/Enum/Method.hpp>
 #include <Core/Gen8/EncounterArea8.hpp>
-#include <Core/Parents/Slot.hpp>
+#include <Core/Parents/PersonalInfo.hpp>
 #include <Core/Parents/States/WildState.hpp>
 #include <Core/RNG/RNGList.hpp>
 #include <Core/RNG/Xorshift.hpp>

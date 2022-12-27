@@ -20,7 +20,6 @@
 #include "Eggs5.hpp"
 #include "ui_Eggs5.h"
 #include <Core/Enum/Game.hpp>
-#include <Core/Enum/Method.hpp>
 #include <Core/Gen5/Generators/EggGenerator5.hpp>
 #include <Core/Gen5/Keypresses.hpp>
 #include <Core/Gen5/Profile5.hpp>

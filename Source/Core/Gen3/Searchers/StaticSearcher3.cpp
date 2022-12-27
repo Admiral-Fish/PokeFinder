@@ -18,6 +18,7 @@
  */
 
 #include "StaticSearcher3.hpp"
+#include <Core/Enum/Lead.hpp>
 #include <Core/Enum/Method.hpp>
 #include <Core/Parents/PersonalInfo.hpp>
 #include <Core/Parents/States/State.hpp>
@@ -61,8 +62,8 @@ static u8 getShiny(u32 pid, u16 tsv)
     }
 }
 
-StaticSearcher3::StaticSearcher3(Method method, Lead lead, const Profile3 &profile, const StateFilter3 &filter) :
-    StaticSearcher(method, lead, profile, filter), progress(0), ivAdvance(method == Method::Method2), searching(false)
+StaticSearcher3::StaticSearcher3(Method method, const Profile3 &profile, const StateFilter3 &filter) :
+    StaticSearcher(method, Lead::None, profile, filter), progress(0), ivAdvance(method == Method::Method2), searching(false)
 {
 }
 

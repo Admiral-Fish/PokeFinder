@@ -20,8 +20,9 @@
 #ifndef STATICSEARCHER_HPP
 #define STATICSEARCHER_HPP
 
-#include <Core/Enum/Lead.hpp>
 #include <Core/Parents/Searchers/Searcher.hpp>
+
+enum class Lead : u8;
 
 /**
  * @brief Parent searcher class for static encounters

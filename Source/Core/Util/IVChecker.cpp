@@ -20,7 +20,6 @@
 #include "IVChecker.hpp"
 #include <Core/Util/Nature.hpp>
 #include <algorithm>
-#include <cstring>
 #include <iterator>
 
 constexpr u8 ivOrder[6] = { 0, 1, 2, 5, 3, 4 };
@@ -220,7 +219,7 @@ std::array<std::vector<u8>, 6> IVChecker::calculateIVRange(const std::array<u8, 
 std::array<u8, 6> IVChecker::nextLevel(const std::array<u8, 6> &baseStats, const std::array<std::vector<u8>, 6> &ivs, u8 level, u8 nature)
 {
     std::array<u8, 6> levels;
-    std::memset(levels.data(), level, sizeof(levels));
+    levels.fill(level);
 
     for (int i = 0; i < 6; i++)
     {

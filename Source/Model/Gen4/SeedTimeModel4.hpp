@@ -23,8 +23,6 @@
 #include <Core/Gen4/SeedTime4.hpp>
 #include <Model/TableModel.hpp>
 
-enum class Game : u32;
-
 /**
  * @brief Provides a table model implementation to show Seed to Time information for Gen 4
  */
@@ -84,8 +82,9 @@ public:
      * @brief Construct a new SeedTimeCalibrateModel4 object
      *
      * @param parent Parent object, which takes memory ownership
+     * @param dppt Whether the game version is DPPt or not
      */
-    SeedTimeCalibrateModel4(QObject *parent, Game version);
+    SeedTimeCalibrateModel4(QObject *parent, bool dppt);
 
     /**
      * @brief Returns the number of columns in the model
@@ -119,7 +118,7 @@ public:
 
 private:
     QStringList header = { tr("Seed"), tr("Date/Time"), tr("Delay"), tr("Coin flips"), tr("Calls"), tr("Roamer locations") };
-    Game version;
+    bool dppt;
 
     /**
      * @brief Gets modified column index based on model method

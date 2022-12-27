@@ -20,8 +20,9 @@
 #ifndef IDSFILTER_HPP
 #define IDSFILTER_HPP
 
-#include <Core/Parents/Filters/IDFilter.hpp>
 #include <QWidget>
+
+class IDFilter;
 
 namespace Ui
 {

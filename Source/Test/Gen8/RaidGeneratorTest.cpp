@@ -81,8 +81,8 @@ void RaidGeneratorTest::generate()
 
     Profile8 profile("-", version, 12345, 54321, false, false);
 
-    Den den = DenLoader::getDen(denIndex, rarity);
-    Raid raid = den.getRaid(raidIndex, version);
+    const Den *den = DenLoader::getDen(denIndex, rarity);
+    Raid raid = den->getRaid(raidIndex, version);
 
     StateFilter8 filter(255, 255, 255, false, min, max, natures, powers);
     RaidGenerator generator(0, 9, 0, profile, filter);

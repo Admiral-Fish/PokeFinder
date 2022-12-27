@@ -22,8 +22,6 @@
 
 #include <Core/Parents/States/State.hpp>
 
-class PersonalInfo;
-
 class DreamRadarState : public GeneratorState
 {
 public:

@@ -18,7 +18,6 @@
  */
 
 #include "StaticGenerator3Test.hpp"
-#include <Core/Enum/Lead.hpp>
 #include <Core/Gen3/Encounters3.hpp>
 #include <Core/Gen3/Generators/StaticGenerator3.hpp>
 #include <Core/Parents/States/State.hpp>
@@ -83,7 +82,7 @@ void StaticGenerator3Test::generate()
 
     const StaticTemplate *staticTemplate = Encounters3::getStaticEncounter(category, pokemon);
     StateFilter3 filter(255, 255, 255, false, min, max, natures, powers);
-    StaticGenerator3 generator(0, 9, 0, method, Lead::None, profile, filter);
+    StaticGenerator3 generator(0, 9, 0, method, profile, filter);
 
     auto states = generator.generate(seed, staticTemplate);
     QCOMPARE(states.size(), j.size());

@@ -39,12 +39,10 @@ public:
      * @param maxAdvances Maximum number of advances
      * @param delay Number of advances to offset
      * @param method Encounter method
-     * @param lead Encounter lead
      * @param profile Profile Information
      * @param filter State filter
      */
-    StaticGenerator3(u32 initialAdvances, u32 maxAdvances, u32 delay, Method method, Lead lead, const Profile3 &profile,
-                     const StateFilter3 &filter);
+    StaticGenerator3(u32 initialAdvances, u32 maxAdvances, u32 delay, Method method, const Profile3 &profile, const StateFilter3 &filter);
 
     /**
      * @brief Generates states for the \p staticTemplate

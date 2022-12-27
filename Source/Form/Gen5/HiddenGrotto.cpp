@@ -20,7 +20,6 @@
 #include "HiddenGrotto.hpp"
 #include "ui_HiddenGrotto.h"
 #include <Core/Enum/Game.hpp>
-#include <Core/Enum/Method.hpp>
 #include <Core/Gen5/Encounters5.hpp>
 #include <Core/Gen5/Generators/HiddenGrottoGenerator.hpp>
 #include <Core/Gen5/HiddenGrottoArea.hpp>

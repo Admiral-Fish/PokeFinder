@@ -25,7 +25,6 @@
 class Profile3;
 class StaticGeneratorModel3;
 class StaticSearcherModel3;
-class QMenu;
 
 namespace Ui
 {

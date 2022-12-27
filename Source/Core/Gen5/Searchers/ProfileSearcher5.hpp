@@ -117,7 +117,6 @@ private:
 
     void search(u8 vframeStart, u8 vframeEnd);
 
-protected:
     /**
      * @brief Checks if seed matches the provided calibration data
      *

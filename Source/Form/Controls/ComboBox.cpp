@@ -33,7 +33,7 @@ void ComboBox::setup(const std::vector<QVariant> &data)
     }
 }
 
-u8 ComboBox::getCurrentByte() const
+u8 ComboBox::getCurrentUChar() const
 {
     return static_cast<u8>(this->currentData().toUInt());
 }

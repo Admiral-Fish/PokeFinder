@@ -20,12 +20,12 @@
 #ifndef DREAMRADAR_HPP
 #define DREAMRADAR_HPP
 
-#include <Core/Gen5/DreamRadarTemplate.hpp>
 #include <QWidget>
 
 class ComboBox;
 class DreamRadarGeneratorModel5;
 class DreamRadarSearcherModel5;
+class DreamRadarTemplate;
 class Profile5;
 
 namespace Ui

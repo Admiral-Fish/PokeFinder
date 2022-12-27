@@ -21,7 +21,6 @@
 #define RESEARCHERSTATE_HPP
 
 #include <Core/Global.hpp>
-#include <array>
 
 /**
  * @brief Contains the information to display custom calculations for PRNG states
@@ -124,7 +123,7 @@ public:
     }
 
 private:
-    std::array<u64, 10> custom;
+    u64 custom[10];
     u64 prng;
     u32 advances;
     bool rng64Bit;

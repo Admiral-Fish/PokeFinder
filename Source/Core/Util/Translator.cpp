@@ -192,6 +192,14 @@ namespace Translator
         return &items[item];
     }
 
+    std::vector<std::string> getItems(const std::vector<u16> &item)
+    {
+        std::vector<std::string> s;
+        s.reserve(item.size());
+        std::transform(item.begin(), item.end(), std::back_inserter(s), [](u16 num) { return items[num]; });
+        return s;
+    }
+
     const std::string *getKeypress(u8 keypress)
     {
         return &buttons[keypress];
@@ -263,6 +271,7 @@ namespace Translator
 
         std::map<u16, std::string> map = readFileMap(translation);
         std::vector<std::string> locations;
+        locations.reserve(nums.size());
         std::transform(nums.begin(), nums.end(), std::back_inserter(locations), [&map](u16 num) { return map[num]; });
         return locations;
     }
@@ -290,6 +299,7 @@ namespace Translator
     std::vector<std::string> getSpecies(const std::vector<u16> &specie)
     {
         std::vector<std::string> s;
+        s.reserve(specie.size());
         std::transform(specie.begin(), specie.end(), std::back_inserter(s), [](u16 num) { return species[num - 1]; });
         return s;
     }

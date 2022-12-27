@@ -19,7 +19,6 @@
 
 #include "DreamRadar.hpp"
 #include "ui_DreamRadar.h"
-#include <Core/Enum/Game.hpp>
 #include <Core/Gen5/Encounters5.hpp>
 #include <Core/Gen5/Generators/DreamRadarGenerator.hpp>
 #include <Core/Gen5/Keypresses.hpp>
@@ -204,7 +203,7 @@ std::vector<DreamRadarTemplate> DreamRadar::getGeneratorSettings() const
 
         const DreamRadarTemplate *radarTemplate = Encounters5::getDreamRadarEncounters(index);
         radarTemplates.emplace_back(*radarTemplate);
-        radarTemplates[i].setGender(genders[i]->getCurrentByte());
+        radarTemplates[i].setGender(genders[i]->getCurrentUChar());
     }
 
     return radarTemplates;
@@ -229,7 +228,7 @@ std::vector<DreamRadarTemplate> DreamRadar::getSearcherSettings() const
 
         const DreamRadarTemplate *radarTemplate = Encounters5::getDreamRadarEncounters(index);
         radarTemplates.emplace_back(*radarTemplate);
-        radarTemplates[i].setGender(genders[i]->getCurrentByte());
+        radarTemplates[i].setGender(genders[i]->getCurrentUChar());
     }
 
     return radarTemplates;

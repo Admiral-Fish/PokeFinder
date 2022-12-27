@@ -18,7 +18,6 @@
  */
 
 #include "Profile3.hpp"
-#include <Core/Enum/Game.hpp>
 
 Profile3::Profile3(const std::string &name, Game version, u16 tid, u16 sid, bool deadBattery) :
     Profile(name, version, tid, sid), deadBattery(deadBattery)

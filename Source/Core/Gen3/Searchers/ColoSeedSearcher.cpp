@@ -34,23 +34,8 @@ constexpr u8 genderRatios[8][6]
         { 0xff, 0xbf, 0x7f, 0x7f, 0x1f, 0x7f }, { 0x1f, 0x1f, 0x1f, 0x1f, 0x1f, 0x7f }, { 0xff, 0x7f, 0xff, 0x7f, 0xff, 0x7f },
         { 0xff, 0x1f, 0x3f, 0x7f, 0x7f, 0x3f }, { 0x7f, 0x7f, 0x7f, 0x7f, 0x7f, 0x7f } };
 
-ColoSeedSearcher::ColoSeedSearcher(const ColoCriteria &criteria) : progress(0), searching(false), criteria(criteria)
+ColoSeedSearcher::ColoSeedSearcher(const ColoCriteria &criteria) : SeedSearcher(criteria)
 {
-}
-
-void ColoSeedSearcher::cancelSearch()
-{
-    searching = false;
-}
-
-int ColoSeedSearcher::getProgress() const
-{
-    return progress;
-}
-
-std::vector<u32> ColoSeedSearcher::getResults() const
-{
-    return results;
 }
 
 void ColoSeedSearcher::startSearch(int threads)

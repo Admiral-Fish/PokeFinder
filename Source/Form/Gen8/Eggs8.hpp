@@ -24,7 +24,6 @@
 
 class EggModel8;
 class Profile8;
-class QMenu;
 
 namespace Ui
 {

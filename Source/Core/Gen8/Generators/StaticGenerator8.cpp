@@ -18,7 +18,6 @@
  */
 
 #include "StaticGenerator8.hpp"
-#include <Core/Enum/Game.hpp>
 #include <Core/Enum/Lead.hpp>
 #include <Core/Enum/Method.hpp>
 #include <Core/Gen8/StaticTemplate8.hpp>

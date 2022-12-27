@@ -18,7 +18,6 @@
  */
 
 #include "Profile.hpp"
-#include <Core/Enum/Game.hpp>
 
 Profile::Profile(const std::string &name, Game version, u16 tid, u16 sid) : sid(sid), tid(tid), version(version), name(name)
 {

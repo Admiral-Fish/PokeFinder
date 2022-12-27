@@ -48,7 +48,7 @@ public:
      *
      * @return Current data
      */
-    u8 getCurrentByte() const;
+    u8 getCurrentUChar() const;
 
     /**
      * @brief Gets current selected index data as u16
@@ -88,7 +88,7 @@ public:
 
         if constexpr (std::is_same<u8, typename std::underlying_type<Enum>::type>::value)
         {
-            return static_cast<Enum>(getCurrentByte());
+            return static_cast<Enum>(getCurrentUChar());
         }
         else if constexpr (std::is_same<u16, typename std::underlying_type<Enum>::type>::value)
         {

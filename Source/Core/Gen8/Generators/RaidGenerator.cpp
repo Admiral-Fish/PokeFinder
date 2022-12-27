@@ -18,9 +18,9 @@
  */
 
 #include "RaidGenerator.hpp"
-#include <Core/Enum/Game.hpp>
 #include <Core/Enum/Method.hpp>
 #include <Core/Gen8/Raid.hpp>
+#include <Core/Parents/PersonalInfo.hpp>
 #include <Core/Parents/States/State.hpp>
 #include <Core/RNG/Xoroshiro.hpp>
 

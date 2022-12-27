@@ -22,13 +22,29 @@
 
 #include <Core/Parents/States/IDState.hpp>
 
+/**
+ * @brief Contains additional information for Gen 8 TID/SID
+ */
 class IDState8 : public IDState
 {
 public:
+    /**
+     * @brief Construct a new IDState8 object
+     *
+     * @param advances Advances of the state
+     * @param tid Trainer ID
+     * @param sid Secret ID
+     * @param displayTID Displayed trainer ID
+     */
     IDState8(u32 advance, u16 tid, u16 sid, u32 displayTID) : IDState(advance, tid, sid, (tid ^ sid) >> 4), displayTID(displayTID)
     {
     }
 
+    /**
+     * @brief Returns the display TID of the state
+     *
+     * @return State display TID
+     */
     u32 getDisplayTID() const
     {
         return displayTID;

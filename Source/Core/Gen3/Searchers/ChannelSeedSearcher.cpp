@@ -21,23 +21,13 @@
 #include <algorithm>
 #include <thread>
 
-ChannelSeedSearcher::ChannelSeedSearcher(const std::vector<u8> &criteria) : criteria(criteria), progress(0), searching(false)
+ChannelSeedSearcher::ChannelSeedSearcher(const std::vector<u8> &criteria) : SeedSearcher(criteria)
 {
-}
-
-void ChannelSeedSearcher::cancelSearch()
-{
-    searching = false;
 }
 
 int ChannelSeedSearcher::getProgress() const
 {
     return progress >> 1;
-}
-
-std::vector<u32> ChannelSeedSearcher::getResults() const
-{
-    return results;
 }
 
 void ChannelSeedSearcher::startSearch(int threads)

@@ -22,7 +22,6 @@
 #include <Core/Enum/DSType.hpp>
 #include <Core/Enum/Game.hpp>
 #include <Core/Enum/Language.hpp>
-#include <Core/Enum/Lead.hpp>
 #include <Core/Gen5/Profile5.hpp>
 #include <Core/Gen5/States/ProfileSearcherState5.hpp>
 #include <Form/Gen5/Profile/ProfileCalibrator5.hpp>

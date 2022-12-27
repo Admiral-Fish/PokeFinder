@@ -62,6 +62,7 @@ add_library(PokeFinderCore STATIC
     Gen3/Searchers/GalesSeedSearcher.hpp
     Gen3/Searchers/GameCubeSearcher.cpp
     Gen3/Searchers/GameCubeSearcher.hpp
+    Gen3/Searchers/SeedSearcher.hpp
     Gen3/Searchers/StaticSearcher3.cpp
     Gen3/Searchers/StaticSearcher3.hpp
     Gen3/Searchers/WildSearcher3.cpp
@@ -183,6 +184,7 @@ add_library(PokeFinderCore STATIC
     Parents/Generators/WildGenerator.hpp
     Parents/PersonalLoader.cpp
     Parents/PersonalLoader.hpp
+    Parents/PersonalInfo.hpp
     Parents/Profile.cpp
     Parents/Profile.hpp
     Parents/ProfileLoader.cpp

@@ -29,7 +29,6 @@
 #include <Core/Gen4/Profile4.hpp>
 #include <Core/Gen4/Searchers/WildSearcher4.hpp>
 #include <Core/Parents/ProfileLoader.hpp>
-#include <Core/Parents/Slot.hpp>
 #include <Core/Util/Nature.hpp>
 #include <Core/Util/Translator.hpp>
 #include <Form/Controls/Controls.hpp>
@@ -40,7 +39,6 @@
 #include <QSettings>
 #include <QThread>
 #include <QTimer>
-#include <algorithm>
 
 Wild4::Wild4(QWidget *parent) : QWidget(parent), ui(new Ui::Wild4)
 {

@@ -20,10 +20,8 @@
 #ifndef COLOSEEDSEARCHER_HPP
 #define COLOSEEDSEARCHER_HPP
 
+#include <Core/Gen3/Searchers/SeedSearcher.hpp>
 #include <Core/RNG/LCRNG.hpp>
-#include <atomic>
-#include <mutex>
-#include <vector>
 
 struct ColoCriteria
 {
@@ -34,7 +32,7 @@ struct ColoCriteria
 /**
  * @brief Searches for candidate PRNG states
  */
-class ColoSeedSearcher
+class ColoSeedSearcher : public SeedSearcher<ColoCriteria>
 {
 public:
     /**
@@ -43,25 +41,6 @@ public:
      * @param criteria Filtering data
      */
     ColoSeedSearcher(const ColoCriteria &criteria);
-
-    /**
-     * @brief Cancels the running search
-     */
-    void cancelSearch();
-
-    /**
-     * @brief Returns the progress of the running search
-     *
-     * @return Progress
-     */
-    int getProgress() const;
-
-    /**
-     * @brief Returns the states of the running search
-     *
-     * @return Vector of computed states
-     */
-    std::vector<u32> getResults() const;
 
     /**
      * @brief Starts the search
@@ -78,12 +57,6 @@ public:
     void startSearch(const std::vector<u32> &seeds);
 
 private:
-    std::mutex mutex;
-    std::vector<u32> results;
-    std::atomic<u32> progress;
-    bool searching;
-    ColoCriteria criteria;
-
     /**
      * @brief Generates a pokemon that has the matching \p nature and \p gender
      *

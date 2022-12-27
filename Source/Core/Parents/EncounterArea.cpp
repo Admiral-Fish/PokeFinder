@@ -21,6 +21,7 @@
 #include <Core/Enum/Encounter.hpp>
 #include <Core/Enum/Game.hpp>
 #include <Core/Enum/Lead.hpp>
+#include <Core/Parents/PersonalInfo.hpp>
 #include <Core/Parents/Slot.hpp>
 #include <Core/Util/Translator.hpp>
 #include <algorithm>

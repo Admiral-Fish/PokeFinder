@@ -49,6 +49,11 @@ namespace Encounters5
      */
     const DreamRadarTemplate *getDreamRadarEncounters(int index);
 
+    /**
+     * @brief Gets hidden grotto encounters
+     *
+     * @return Vector of grotto encounters
+     */
     std::vector<HiddenGrottoArea> getHiddenGrottoEncounters();
 
     /**

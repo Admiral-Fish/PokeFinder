@@ -19,7 +19,6 @@
 
 #include "Profile5.hpp"
 #include <Core/Enum/DSType.hpp>
-#include <Core/Enum/Game.hpp>
 #include <Core/Enum/Language.hpp>
 
 Profile5::Profile5(const std::string &name, Game version, u16 tid, u16 sid, u64 mac, const std::array<bool, 4> &keypresses, u8 vcount,

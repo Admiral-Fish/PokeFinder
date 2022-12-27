@@ -18,7 +18,6 @@
  */
 
 #include "IDSearcher5.hpp"
-#include <Core/Enum/Game.hpp>
 #include <Core/Gen5/Generators/IDGenerator5.hpp>
 #include <Core/Gen5/Keypresses.hpp>
 #include <Core/Gen5/States/SearcherState5.hpp>

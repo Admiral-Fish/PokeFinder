@@ -134,7 +134,7 @@ public:
      */
     bool compareState(const UndergroundState &state) const;
 
-protected:
+private:
     std::vector<u16> species;
 };
 

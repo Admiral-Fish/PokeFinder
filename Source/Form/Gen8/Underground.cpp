@@ -20,7 +20,6 @@
 
 #include "Underground.hpp"
 #include "ui_Underground.h"
-#include <Core/Enum/Encounter.hpp>
 #include <Core/Enum/Lead.hpp>
 #include <Core/Gen8/Encounters8.hpp>
 #include <Core/Gen8/Filters/StateFilter8.hpp>

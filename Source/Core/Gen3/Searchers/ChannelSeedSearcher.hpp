@@ -20,15 +20,13 @@
 #ifndef CHANNELSEEDSEARCHER_HPP
 #define CHANNELSEEDSEARCHER_HPP
 
+#include <Core/Gen3/Searchers/SeedSearcher.hpp>
 #include <Core/RNG/LCRNG.hpp>
-#include <atomic>
-#include <mutex>
-#include <vector>
 
 /**
  * @brief Searches for candidate PRNG states
  */
-class ChannelSeedSearcher
+class ChannelSeedSearcher : public SeedSearcher<std::vector<u8>>
 {
 public:
     /**
@@ -39,23 +37,11 @@ public:
     ChannelSeedSearcher(const std::vector<u8> &criteria);
 
     /**
-     * @brief Cancels the running search
-     */
-    void cancelSearch();
-
-    /**
      * @brief Returns the progress of the running search
      *
      * @return Progress
      */
-    int getProgress() const;
-
-    /**
-     * @brief Returns the states of the running search
-     *
-     * @return Vector of computed states
-     */
-    std::vector<u32> getResults() const;
+    int getProgress() const final;
 
     /**
      * @brief Starts the search
@@ -65,12 +51,6 @@ public:
     void startSearch(int threads);
 
 private:
-    std::mutex mutex;
-    std::vector<u8> criteria;
-    std::vector<u32> results;
-    std::atomic<u32> progress;
-    bool searching;
-
     /**
      * @brief Searches over a range of PRNG states for valid candidate seeds
      *

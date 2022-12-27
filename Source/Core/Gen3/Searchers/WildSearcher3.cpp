@@ -18,9 +18,12 @@
  */
 
 #include "WildSearcher3.hpp"
+#include <Core/Enum/Encounter.hpp>
 #include <Core/Enum/Game.hpp>
+#include <Core/Enum/Lead.hpp>
 #include <Core/Enum/Method.hpp>
 #include <Core/Gen3/States/WildState3.hpp>
+#include <Core/Parents/PersonalInfo.hpp>
 #include <Core/Parents/Slot.hpp>
 #include <Core/Parents/StaticTemplate.hpp>
 #include <Core/RNG/LCRNG.hpp>
@@ -85,8 +88,7 @@ static u8 getShiny(u32 pid, u16 tsv)
 
 WildSearcher3::WildSearcher3(Method method, Encounter encounter, Lead lead, const EncounterArea3 &encounterArea, const Profile3 &profile,
                              const WildStateFilter3 &filter) :
-    WildSearcher(method, encounter, lead, profile, filter),
-    encounterArea(encounterArea),
+    WildSearcher(method, encounter, lead, encounterArea, profile, filter),
     modifiedSlots(encounterArea.getSlots(profile.getVersion(), lead)),
     progress(0),
     ivAdvance(method == Method::Method2),

@@ -18,7 +18,6 @@
  */
 
 #include "SeedTimeModel4.hpp"
-#include <Core/Enum/Game.hpp>
 #include <Core/Gen4/HGSSRoamer.hpp>
 #include <Core/Util/Utilities.hpp>
 
@@ -56,13 +55,13 @@ QVariant SeedTimeModel4::headerData(int section, Qt::Orientation orientation, in
     return QVariant();
 }
 
-SeedTimeCalibrateModel4::SeedTimeCalibrateModel4(QObject *parent, Game version) : TableModel<SeedTimeCalibrate4>(parent), version(version)
+SeedTimeCalibrateModel4::SeedTimeCalibrateModel4(QObject *parent, bool dppt) : TableModel<SeedTimeCalibrate4>(parent), dppt(dppt)
 {
 }
 
 int SeedTimeCalibrateModel4::columnCount(const QModelIndex &parent) const
 {
-    return (version & Game::HGSS) != Game::None ? 5 : 4;
+    return dppt ? 4 : 5;
 }
 
 QVariant SeedTimeCalibrateModel4::data(const QModelIndex &index, int role) const
@@ -103,12 +102,12 @@ QVariant SeedTimeCalibrateModel4::headerData(int section, Qt::Orientation orient
 
 int SeedTimeCalibrateModel4::getColumn(int column) const
 {
-    switch (version)
+    if (dppt)
     {
-    case Game::HGSS:
-        return column > 2 ? column + 1 : column;
-    case Game::DPPt:
-    default:
         return column;
+    }
+    else
+    {
+        return column > 2 ? column + 1 : column;
     }
 }

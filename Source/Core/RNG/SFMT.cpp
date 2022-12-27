@@ -18,7 +18,6 @@
  */
 
 #include "SFMT.hpp"
-#include <Core/RNG/SIMD.hpp>
 
 SFMT::SFMT(u32 seed) : index(624)
 {

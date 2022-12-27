@@ -129,7 +129,7 @@ void Eggs8::generate()
     u32 initialAdvances = ui->textBoxInitialAdvances->getUInt();
     u32 maxAdvances = ui->textBoxMaxAdvances->getUInt();
     u32 delay = ui->textBoxDelay->getUInt();
-    u8 compatability = ui->comboBoxCompatibility->getCurrentByte();
+    u8 compatability = ui->comboBoxCompatibility->getCurrentUChar();
     if (currentProfile->getOvalCharm())
     {
         compatability = compatability == 20 ? 40 : compatability == 50 ? 80 : 88;

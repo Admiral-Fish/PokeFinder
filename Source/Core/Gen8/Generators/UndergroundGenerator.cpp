@@ -22,13 +22,11 @@
 #include <Core/Enum/Method.hpp>
 #include <Core/Gen8/States/UndergroundState.hpp>
 #include <Core/Gen8/UndergroundArea.hpp>
+#include <Core/Parents/PersonalInfo.hpp>
 #include <Core/Parents/PersonalLoader.hpp>
 #include <Core/RNG/RNGList.hpp>
 #include <Core/RNG/Xorshift.hpp>
-#include <Core/Resources/Encounters.hpp>
-#include <Core/Util/Utilities.hpp>
 #include <algorithm>
-#include <cmath>
 
 struct EggMoveList
 {

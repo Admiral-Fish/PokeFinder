@@ -21,7 +21,6 @@
 #include <Core/Enum/Game.hpp>
 #include <Core/Enum/Method.hpp>
 #include <Core/Enum/ShadowType.hpp>
-#include <Core/Gen3/LockInfo.hpp>
 #include <Core/Gen3/ShadowTemplate.hpp>
 #include <Core/Parents/PersonalInfo.hpp>
 #include <Core/Parents/States/State.hpp>

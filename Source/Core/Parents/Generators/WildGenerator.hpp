@@ -20,8 +20,9 @@
 #ifndef WILDGENERATOR_HPP
 #define WILDGENERATOR_HPP
 
-#include <Core/Enum/Lead.hpp>
 #include <Core/Parents/Generators/Generator.hpp>
+
+enum class Lead : u8;
 
 /**
  * @brief Parent generator class for wild encounters

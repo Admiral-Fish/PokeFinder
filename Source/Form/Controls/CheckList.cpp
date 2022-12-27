@@ -18,7 +18,6 @@
  */
 
 #include "CheckList.hpp"
-#include <QEvent>
 #include <QLineEdit>
 #include <QListView>
 #include <QMouseEvent>

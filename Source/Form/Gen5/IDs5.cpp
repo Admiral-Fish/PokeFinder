@@ -19,7 +19,6 @@
 
 #include "IDs5.hpp"
 #include "ui_IDs5.h"
-#include <Core/Enum/Game.hpp>
 #include <Core/Gen5/Generators/IDGenerator5.hpp>
 #include <Core/Gen5/Keypresses.hpp>
 #include <Core/Gen5/Profile5.hpp>

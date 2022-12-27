@@ -22,8 +22,6 @@
 
 #include <Core/Parents/States/State.hpp>
 
-class PersonalInfo;
-
 /**
  * @brief State class for Gen8 wild generator encounters
  */

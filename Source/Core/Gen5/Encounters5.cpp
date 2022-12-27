@@ -29,7 +29,6 @@
 #include <Core/Resources/Encounters.hpp>
 #include <Core/Util/Utilities.hpp>
 #include <algorithm>
-#include <cstring>
 #include <iterator>
 
 constexpr u8 bwLocations[12] = { 2, 44, 45, 46, 47, 48, 49, 73, 84, 88, 93, 94 };

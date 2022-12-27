@@ -19,6 +19,7 @@
 
 #include "IDsFilter.hpp"
 #include "ui_IDsFilter.h"
+#include <Core/Parents/Filters/IDFilter.hpp>
 #include <QRegularExpression>
 
 IDsFilter::IDsFilter(QWidget *parent) : QWidget(parent), ui(new Ui::IDsFilter)

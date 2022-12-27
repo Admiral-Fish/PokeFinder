@@ -31,7 +31,7 @@ class DreamRadarTemplate
 {
 public:
     /**
-     * @brief Construct a new StaticTemplate object
+     * @brief Construct a new DreamRadarTemplate object
      *
      * @param specie Template specie
      * @param ability Template ability

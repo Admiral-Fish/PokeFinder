@@ -20,10 +20,8 @@
 #ifndef GALESSEEDSEARCHER_HPP
 #define GALESSEEDSEARCHER_HPP
 
+#include <Core/Gen3/Searchers/SeedSearcher.hpp>
 #include <Core/RNG/LCRNG.hpp>
-#include <atomic>
-#include <mutex>
-#include <vector>
 
 struct GalesCriteria
 {
@@ -36,7 +34,7 @@ struct GalesCriteria
 /**
  * @brief Searches for candidate PRNG states
  */
-class GalesSeedSearcher
+class GalesSeedSearcher : public SeedSearcher<GalesCriteria>
 {
 public:
     /**
@@ -46,25 +44,6 @@ public:
      * @param tsv Trainer shiny value
      */
     GalesSeedSearcher(const GalesCriteria &criteria);
-
-    /**
-     * @brief Cancels the running search
-     */
-    void cancelSearch();
-
-    /**
-     * @brief Returns the progress of the running search
-     *
-     * @return Progress
-     */
-    int getProgress() const;
-
-    /**
-     * @brief Returns the states of the running search
-     *
-     * @return Vector of computed states
-     */
-    std::vector<u32> getResults() const;
 
     /**
      * @brief Starts the search
@@ -81,12 +60,6 @@ public:
     void startSearch(const std::vector<u32> &seeds);
 
 private:
-    std::mutex mutex;
-    std::vector<u32> results;
-    std::atomic<u32> progress;
-    GalesCriteria criteria;
-    bool searching;
-
     /**
      * @brief Generates EVs for a pokemon
      *

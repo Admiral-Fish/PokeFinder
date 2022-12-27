@@ -21,7 +21,8 @@
 #define SLOT_HPP
 
 #include <Core/Global.hpp>
-#include <Core/Parents/PersonalInfo.hpp>
+
+class PersonalInfo;
 
 /**
  * @brief Contains information that impact the generation of wild encounters

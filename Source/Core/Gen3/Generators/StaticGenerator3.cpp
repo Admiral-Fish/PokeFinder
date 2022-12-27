@@ -18,6 +18,7 @@
  */
 
 #include "StaticGenerator3.hpp"
+#include <Core/Enum/Lead.hpp>
 #include <Core/Enum/Method.hpp>
 #include <Core/Parents/PersonalInfo.hpp>
 #include <Core/Parents/States/State.hpp>
@@ -60,9 +61,9 @@ static u8 getShiny(u32 pid, u16 tsv)
     }
 }
 
-StaticGenerator3::StaticGenerator3(u32 initialAdvances, u32 maxAdvances, u32 delay, Method method, Lead lead, const Profile3 &profile,
+StaticGenerator3::StaticGenerator3(u32 initialAdvances, u32 maxAdvances, u32 delay, Method method, const Profile3 &profile,
                                    const StateFilter3 &filter) :
-    StaticGenerator(initialAdvances, maxAdvances, delay, method, lead, profile, filter)
+    StaticGenerator(initialAdvances, maxAdvances, delay, method, Lead::None, profile, filter)
 {
 }
 

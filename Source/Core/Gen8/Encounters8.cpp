@@ -30,7 +30,6 @@
 #include <Core/Util/Utilities.hpp>
 #include <algorithm>
 #include <cmath>
-#include <cstring>
 #include <iterator>
 
 constexpr std::array<StaticTemplate8, 3> starters = {

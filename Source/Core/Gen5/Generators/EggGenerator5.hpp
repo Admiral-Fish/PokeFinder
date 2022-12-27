@@ -24,7 +24,6 @@
 #include <Core/Gen5/Profile5.hpp>
 #include <Core/Parents/Generators/EggGenerator.hpp>
 
-class Daycare;
 class EggState5;
 class PersonalInfo;
 

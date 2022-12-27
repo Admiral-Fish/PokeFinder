@@ -131,7 +131,7 @@ Daycare EggSettings::getDaycareSettings() const
     std::array<u8, 2> parentGender
         = { static_cast<u8>(ui->comboBoxParentAGender->currentIndex()), static_cast<u8>(ui->comboBoxParentBGender->currentIndex()) };
 
-    std::array<u8, 2> parentItem = { ui->comboBoxParentAItem->getCurrentByte(), ui->comboBoxParentBItem->getCurrentByte() };
+    std::array<u8, 2> parentItem = { ui->comboBoxParentAItem->getCurrentUChar(), ui->comboBoxParentBItem->getCurrentUChar() };
 
     std::array<u8, 2> parentNature
         = { static_cast<u8>(ui->comboBoxParentANature->currentIndex()), static_cast<u8>(ui->comboBoxParentBNature->currentIndex()) };

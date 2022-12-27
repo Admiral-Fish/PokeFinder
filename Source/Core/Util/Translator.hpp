@@ -109,6 +109,15 @@ namespace Translator
     const std::string *getItem(u16 item);
 
     /**
+     * @brief Gets the the strings for the \p items
+     *
+     * @param item Vector of item numbers
+     *
+     * @return Vector of item strings
+     */
+    std::vector<std::string> getItems(const std::vector<u16> &item);
+
+    /**
      * @brief Gets the string for the \p keypress
      *
      * @param keypress Keypress number

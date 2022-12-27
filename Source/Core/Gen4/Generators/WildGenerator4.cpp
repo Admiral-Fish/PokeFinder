@@ -23,6 +23,7 @@
 #include <Core/Enum/Method.hpp>
 #include <Core/Gen4/EncounterArea4.hpp>
 #include <Core/Gen4/States/WildState4.hpp>
+#include <Core/Parents/PersonalInfo.hpp>
 #include <Core/Parents/Slot.hpp>
 #include <Core/RNG/LCRNG.hpp>
 #include <Core/Util/EncounterSlot.hpp>

@@ -18,7 +18,6 @@
  */
 
 #include "WildModel4.hpp"
-#include <Core/Enum/Lead.hpp>
 #include <Core/Enum/Method.hpp>
 #include <Core/Util/Translator.hpp>
 #include <Core/Util/Utilities.hpp>

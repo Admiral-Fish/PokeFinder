@@ -23,6 +23,7 @@
 #include <Core/Gen8/DenLoader.hpp>
 #include <Core/Gen8/Generators/RaidGenerator.hpp>
 #include <Core/Gen8/Profile8.hpp>
+#include <Core/Parents/PersonalInfo.hpp>
 #include <Core/Parents/PersonalLoader.hpp>
 #include <Core/Parents/ProfileLoader.hpp>
 #include <Core/Util/Translator.hpp>
@@ -133,8 +134,8 @@ void Raids::denIndexChanged(int index)
 
         if (ui->comboBoxDen->getCurrentInt() == 65535)
         {
-            DenEvent den = DenLoader::getEvent();
-            auto raids = den.getRaids(currentProfile->getVersion());
+            const DenEvent *den = DenLoader::getEvent();
+            auto raids = den->getRaids(currentProfile->getVersion());
 
             for (const auto &raid : raids)
             {
@@ -144,8 +145,8 @@ void Raids::denIndexChanged(int index)
         }
         else
         {
-            Den den = DenLoader::getDen(ui->comboBoxDen->getCurrentInt(), ui->comboBoxRarity->currentIndex());
-            auto raids = den.getRaids(currentProfile->getVersion());
+            const Den *den = DenLoader::getDen(ui->comboBoxDen->getCurrentInt(), ui->comboBoxRarity->currentIndex());
+            auto raids = den->getRaids(currentProfile->getVersion());
 
             for (const auto &raid : raids)
             {
@@ -171,16 +172,16 @@ void Raids::generate()
 
     if (ui->comboBoxDen->getCurrentInt() == 65535)
     {
-        DenEvent den = DenLoader::getEvent();
-        Raid raid = den.getRaid(ui->comboBoxSpecies->currentIndex(), currentProfile->getVersion());
+        const DenEvent *den = DenLoader::getEvent();
+        Raid raid = den->getRaid(ui->comboBoxSpecies->currentIndex(), currentProfile->getVersion());
 
         auto states = generator.generate(seed, level, raid);
         model->addItems(states);
     }
     else
     {
-        Den den = DenLoader::getDen(ui->comboBoxDen->getCurrentInt(), ui->comboBoxRarity->currentIndex());
-        Raid raid = den.getRaid(ui->comboBoxSpecies->currentIndex(), currentProfile->getVersion());
+        const Den *den = DenLoader::getDen(ui->comboBoxDen->getCurrentInt(), ui->comboBoxRarity->currentIndex());
+        Raid raid = den->getRaid(ui->comboBoxSpecies->currentIndex(), currentProfile->getVersion());
 
         auto states = generator.generate(seed, level, raid);
         model->addItems(states);
@@ -254,8 +255,8 @@ void Raids::specieIndexChanged(int index)
     {
         if (ui->comboBoxDen->getCurrentInt() == 65535)
         {
-            DenEvent den = DenLoader::getEvent();
-            Raid raid = den.getRaid(static_cast<u8>(ui->comboBoxSpecies->currentIndex()), currentProfile->getVersion());
+            const DenEvent *den = DenLoader::getEvent();
+            Raid raid = den->getRaid(static_cast<u8>(ui->comboBoxSpecies->currentIndex()), currentProfile->getVersion());
             const PersonalInfo *info = PersonalLoader::getPersonal(Game::SwSh, raid.getSpecie(), raid.getForm());
 
             ui->spinBoxIVCount->setValue(raid.getIVCount());
@@ -267,8 +268,8 @@ void Raids::specieIndexChanged(int index)
         }
         else
         {
-            Den den = DenLoader::getDen(ui->comboBoxDen->getCurrentInt(), ui->comboBoxRarity->currentIndex());
-            Raid raid = den.getRaid(static_cast<u8>(ui->comboBoxSpecies->currentIndex()), currentProfile->getVersion());
+            const Den *den = DenLoader::getDen(ui->comboBoxDen->getCurrentInt(), ui->comboBoxRarity->currentIndex());
+            Raid raid = den->getRaid(static_cast<u8>(ui->comboBoxSpecies->currentIndex()), currentProfile->getVersion());
             const PersonalInfo *info = PersonalLoader::getPersonal(Game::SwSh, raid.getSpecie(), raid.getForm());
 
             ui->spinBoxIVCount->setValue(raid.getIVCount());

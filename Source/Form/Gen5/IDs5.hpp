@@ -24,7 +24,6 @@
 
 class IDModel5;
 class Profile5;
-class QMenu;
 
 namespace Ui
 {

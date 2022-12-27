@@ -20,17 +20,19 @@
 #ifndef WILDSEARCHER_HPP
 #define WILDSEARCHER_HPP
 
-#include <Core/Enum/Encounter.hpp>
-#include <Core/Enum/Lead.hpp>
 #include <Core/Parents/Searchers/Searcher.hpp>
+
+enum class Encounter : u8;
+enum class Lead : u8;
 
 /**
  * @brief Parent searcher class for wild encounters
  *
- * @tparam Profile Profile class that is used by the generator
+ * @tparam EncounterArea EncounterArea class that is used by the searcher
+ * @tparam Profile Profile class that is used by the searcher
  * @tparam Filter Filter class that is used by the searcher
  */
-template <class Profile, class Filter>
+template <class EncounterArea, class Profile, class Filter>
 class WildSearcher : public Searcher<Profile, Filter>
 {
 public:
@@ -42,12 +44,14 @@ public:
      * @param profile Profile Information
      * @param filter State filter
      */
-    WildSearcher(Method method, Encounter encounter, Lead lead, const Profile &profile, const Filter &filter) :
-        Searcher<Profile, Filter>(method, profile, filter), encounter(encounter), lead(lead)
+    WildSearcher(Method method, Encounter encounter, Lead lead, const EncounterArea &encounterArea, const Profile &profile,
+                 const Filter &filter) :
+        Searcher<Profile, Filter>(method, profile, filter), encounterArea(encounterArea), encounter(encounter), lead(lead)
     {
     }
 
 protected:
+    EncounterArea encounterArea;
     Encounter encounter;
     Lead lead;
 };

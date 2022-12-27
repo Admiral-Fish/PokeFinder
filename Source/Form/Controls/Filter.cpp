@@ -100,7 +100,7 @@ void Filter::enableHiddenAbility()
 
 u8 Filter::getAbility() const
 {
-    return ui->comboBoxAbility->getCurrentByte();
+    return ui->comboBoxAbility->getCurrentUChar();
 }
 
 bool Filter::getDisableFilters() const
@@ -117,7 +117,7 @@ std::array<bool, 12> Filter::getEncounterSlots() const
 
 u8 Filter::getGender() const
 {
-    return ui->comboBoxGender->getCurrentByte();
+    return ui->comboBoxGender->getCurrentUChar();
 }
 
 std::array<bool, 16> Filter::getHiddenPowers() const
@@ -142,7 +142,7 @@ std::array<bool, 25> Filter::getNatures() const
 
 u8 Filter::getShiny() const
 {
-    return ui->comboBoxShiny->getCurrentByte();
+    return ui->comboBoxShiny->getCurrentUChar();
 }
 
 void Filter::resetEncounterSlots() const
