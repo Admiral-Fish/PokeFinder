@@ -115,7 +115,7 @@ bool EggSettings::compatibleParents() const
     return false;
 }
 
-Daycare EggSettings::getDaycareSettings() const
+Daycare EggSettings::getDaycare() const
 {
     std::array<std::array<u8, 6>, 2> parentIVs
         = { { { static_cast<u8>(ui->spinBoxParentAHP->value()), static_cast<u8>(ui->spinBoxParentAAtk->value()),
@@ -161,7 +161,7 @@ bool EggSettings::reorderParents()
 
     if (flag)
     {
-        Daycare daycare = getDaycareSettings();
+        Daycare daycare = getDaycare();
 
         ui->spinBoxParentAHP->setValue(daycare.getParentIV(1, 0));
         ui->spinBoxParentAAtk->setValue(daycare.getParentIV(1, 1));

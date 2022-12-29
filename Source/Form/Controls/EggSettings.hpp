@@ -69,7 +69,7 @@ public:
      *
      * @return Parent information
      */
-    Daycare getDaycareSettings() const;
+    Daycare getDaycare() const;
 
     /**
      * @brief Changes order of the parents to match what the game does

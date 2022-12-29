@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>278</width>
-    <height>124</height>
+    <height>152</height>
    </rect>
   </property>
   <layout class="QGridLayout" name="gridLayout">
@@ -24,11 +24,14 @@
      </attribute>
     </widget>
    </item>
-   <item row="0" column="2">
-    <widget class="QLabel" name="labelTSV">
+   <item row="2" column="0">
+    <widget class="QRadioButton" name="radioButtonTIDSID">
      <property name="text">
-      <string>TSV</string>
+      <string>TID/SID</string>
      </property>
+     <attribute name="buttonGroup">
+      <string notr="true">buttonGroup</string>
+     </attribute>
     </widget>
    </item>
    <item row="1" column="0">
@@ -41,17 +44,20 @@
      </attribute>
     </widget>
    </item>
-   <item row="2" column="0">
-    <widget class="QRadioButton" name="radioButtonTIDSID">
+   <item row="3" column="0">
+    <widget class="QRadioButton" name="radioButtonTSV">
      <property name="text">
-      <string>TID/SID</string>
+      <string>TSV</string>
      </property>
      <attribute name="buttonGroup">
       <string notr="true">buttonGroup</string>
      </attribute>
     </widget>
    </item>
-   <item row="3" column="0">
+   <item row="0" column="1" rowspan="5">
+    <widget class="QPlainTextEdit" name="plainTextEdit"/>
+   </item>
+   <item row="4" column="0">
     <widget class="QRadioButton" name="radioButtonDisplayTID">
      <property name="text">
       <string>Display TID</string>
@@ -61,14 +67,16 @@
      </attribute>
     </widget>
    </item>
-   <item row="0" column="1" rowspan="4">
-    <widget class="QPlainTextEdit" name="plainTextEditIDs"/>
-   </item>
-   <item row="0" column="3" rowspan="4">
-    <widget class="QPlainTextEdit" name="plainTextEditTSV"/>
-   </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>radioButtonTID</tabstop>
+  <tabstop>radioButtonSID</tabstop>
+  <tabstop>radioButtonTIDSID</tabstop>
+  <tabstop>radioButtonTSV</tabstop>
+  <tabstop>radioButtonDisplayTID</tabstop>
+  <tabstop>plainTextEdit</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
  <buttongroups>

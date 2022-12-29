@@ -67,14 +67,9 @@ private:
 
 private slots:
     /**
-     * @brief Validates text allowed for TID, SID, TID/SID, or Display TID
+     * @brief Validates text allowed for TID, SID, TID/SID, TSV, or Display TID
      */
     void textEditIDsTextChanged();
-
-    /**
-     * @brief Validates text allowed for TSV
-     */
-    void textEditTSVTextChanged();
 };
 
 #endif // IDSFILTER_HPP

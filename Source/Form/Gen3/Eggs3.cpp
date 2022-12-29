@@ -147,7 +147,7 @@ void Eggs3::emeraldGenerate()
 
     StateFilter3 filter = ui->filterEmerald->getFilter<StateFilter3>();
     EggGenerator3 generator(initialAdvancesHeld, maxAdvancesHeld, delayHeld, initialAdvancesPickup, maxAdvancesPickup, delayPickup,
-                            calibration, minRedraw, maxRedraw, method, compatability, ui->eggSettingsEmerald->getDaycareSettings(),
+                            calibration, minRedraw, maxRedraw, method, compatability, ui->eggSettingsEmerald->getDaycare(),
                             *currentProfile, filter);
 
     auto states = generator.generate();
@@ -176,7 +176,7 @@ void Eggs3::rsfrlgGenerate()
 
     StateFilter3 filter = ui->filterRSFRLG->getFilter<StateFilter3>();
     EggGenerator3 generator(initialAdvancesHeld, maxAdvancesHeld, delayHeld, initialAdvancesPickup, maxAdvancesPickup, delayPickup, 0, 0, 0,
-                            method, compatability, ui->eggSettingsRSFRLG->getDaycareSettings(), *currentProfile, filter);
+                            method, compatability, ui->eggSettingsRSFRLG->getDaycare(), *currentProfile, filter);
 
     auto states = generator.generate(ui->textBoxRSFRLGSeedHeld->getUInt(), ui->textBoxRSFRLGSeedPickup->getUInt());
     rsfrlg->addItems(states);

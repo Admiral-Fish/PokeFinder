@@ -134,7 +134,7 @@ void Eggs8::generate()
     {
         compatability = compatability == 20 ? 40 : compatability == 50 ? 80 : 88;
     }
-    Daycare daycare = ui->eggSettings->getDaycareSettings();
+    Daycare daycare = ui->eggSettings->getDaycare();
 
     StateFilter8 filter = ui->filter->getFilter<StateFilter8>();
     EggGenerator8 generator(initialAdvances, maxAdvances, delay, compatability, daycare, *currentProfile, filter);

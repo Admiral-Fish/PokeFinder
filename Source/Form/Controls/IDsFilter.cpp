@@ -25,8 +25,7 @@
 IDsFilter::IDsFilter(QWidget *parent) : QWidget(parent), ui(new Ui::IDsFilter)
 {
     ui->setupUi(this);
-    connect(ui->plainTextEditIDs, &QPlainTextEdit::textChanged, this, &IDsFilter::textEditIDsTextChanged);
-    connect(ui->plainTextEditTSV, &QPlainTextEdit::textChanged, this, &IDsFilter::textEditTSVTextChanged);
+    connect(ui->plainTextEdit, &QPlainTextEdit::textChanged, this, &IDsFilter::textEditIDsTextChanged);
 }
 
 IDsFilter::~IDsFilter()
@@ -41,7 +40,7 @@ IDFilter IDsFilter::getFilter() const
     std::vector<u16> tsvFilter;
     std::vector<u32> displayFilter;
 
-    QStringList inputs = ui->plainTextEditIDs->toPlainText().split('\n');
+    QStringList inputs = ui->plainTextEdit->toPlainText().split('\n');
     if (ui->radioButtonTID->isChecked())
     {
         for (const QString &input : inputs)
@@ -74,6 +73,16 @@ IDFilter IDsFilter::getFilter() const
             }
         }
     }
+    else if (ui->radioButtonTSV->isChecked())
+    {
+        for (const QString &input : inputs)
+        {
+            if (!input.isEmpty())
+            {
+                tsvFilter.emplace_back(input.toUShort());
+            }
+        }
+    }
     else
     {
         for (const QString &input : inputs)
@@ -82,15 +91,6 @@ IDFilter IDsFilter::getFilter() const
             {
                 displayFilter.emplace_back(input.toUInt());
             }
-        }
-    }
-
-    inputs = ui->plainTextEditTSV->toPlainText().split('\n');
-    for (const QString &input : inputs)
-    {
-        if (!input.isEmpty())
-        {
-            sidFilter.emplace_back(input.toUShort());
         }
     }
 
@@ -104,7 +104,7 @@ void IDsFilter::enableDisplayTID(bool flag)
 
 void IDsFilter::textEditIDsTextChanged()
 {
-    QStringList inputs = ui->plainTextEditIDs->toPlainText().split('\n');
+    QStringList inputs = ui->plainTextEdit->toPlainText().split('\n');
     if (ui->radioButtonTID->isChecked() || ui->radioButtonSID->isChecked())
     {
         QRegularExpression filter("[^0-9]");
@@ -116,6 +116,21 @@ void IDsFilter::textEditIDsTextChanged()
                 bool flag;
                 u16 val = input.toUShort(&flag);
                 val = flag ? val : 65535;
+                input = QString::number(val);
+            }
+        }
+    }
+    else if (ui->radioButtonTSV->isChecked())
+    {
+        QRegularExpression filter("[^0-9]");
+        for (QString &input : inputs)
+        {
+            input.remove(filter);
+            if (!input.isEmpty())
+            {
+                bool flag;
+                u16 val = input.toUShort(&flag);
+                val = (flag && val <= 8191) ? val : 8191;
                 input = QString::number(val);
             }
         }
@@ -178,34 +193,9 @@ void IDsFilter::textEditIDsTextChanged()
 
     // Block signals so this function doesn't get called recursively
     // We also grab the cursor position and restore as setting the text resets it
-    ui->plainTextEditIDs->blockSignals(true);
-    QTextCursor cursor = ui->plainTextEditIDs->textCursor();
-    ui->plainTextEditIDs->setPlainText(inputs.join('\n'));
-    ui->plainTextEditIDs->setTextCursor(cursor);
-    ui->plainTextEditIDs->blockSignals(false);
-}
-
-void IDsFilter::textEditTSVTextChanged()
-{
-    QStringList inputs = ui->plainTextEditTSV->toPlainText().split('\n');
-    QRegularExpression filter("[^0-9]");
-    for (QString &input : inputs)
-    {
-        input.remove(filter);
-        if (!input.isEmpty())
-        {
-            bool flag;
-            u16 tsv = input.toUShort(&flag);
-            tsv = (flag && tsv <= 8191) ? tsv : 8191;
-            input = QString::number(tsv);
-        }
-    }
-
-    // Block signals so this function doesn't get called recursively
-    // We also grab the cursor position and restore as setting the text resets it
-    ui->plainTextEditTSV->blockSignals(true);
-    QTextCursor cursor = ui->plainTextEditTSV->textCursor();
-    ui->plainTextEditTSV->setPlainText(inputs.join('\n'));
-    ui->plainTextEditTSV->setTextCursor(cursor);
-    ui->plainTextEditTSV->blockSignals(false);
+    ui->plainTextEdit->blockSignals(true);
+    QTextCursor cursor = ui->plainTextEdit->textCursor();
+    ui->plainTextEdit->setPlainText(inputs.join('\n'));
+    ui->plainTextEdit->setTextCursor(cursor);
+    ui->plainTextEdit->blockSignals(false);
 }

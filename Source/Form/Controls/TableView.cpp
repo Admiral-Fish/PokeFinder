@@ -24,6 +24,7 @@
 #include <QFileDialog>
 #include <QHeaderView>
 #include <QKeyEvent>
+#include <QMenu>
 
 TableView::TableView(QWidget *parent) : QTableView(parent)
 {
@@ -36,8 +37,6 @@ TableView::TableView(QWidget *parent) : QTableView(parent)
     connect(outputTXT, &QAction::triggered, this, [=] { outputModel(); });
     connect(outputCSV, &QAction::triggered, this, [=] { outputModel(true); });
 
-    setContextMenuPolicy(Qt::ActionsContextMenu);
-
     QHeaderView *horizontal = this->horizontalHeader();
     horizontal->setSectionResizeMode(QHeaderView::Interactive);
 
@@ -45,11 +44,11 @@ TableView::TableView(QWidget *parent) : QTableView(parent)
     vertical->setVisible(false);
 }
 
-void TableView::mouseDoubleClickEvent(QMouseEvent *event)
+void TableView::contextMenuEvent(QContextMenuEvent *event)
 {
-    if (event->type() == QMouseEvent::MouseButtonDblClick)
+    if (model()->rowCount() != 0)
     {
-        setSelectionToClipBoard();
+        QMenu::exec(actions(), event->globalPos(), nullptr, this);
     }
 }
 
@@ -62,6 +61,14 @@ void TableView::keyPressEvent(QKeyEvent *event)
     else
     {
         QTableView::keyPressEvent(event);
+    }
+}
+
+void TableView::mouseDoubleClickEvent(QMouseEvent *event)
+{
+    if (event->type() == QMouseEvent::MouseButtonDblClick)
+    {
+        setSelectionToClipBoard();
     }
 }
 

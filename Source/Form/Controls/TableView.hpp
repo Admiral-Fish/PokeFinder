@@ -39,11 +39,11 @@ public:
     TableView(QWidget *parent = nullptr);
 
     /**
-     * @brief Handles double click mouse event to copy selection to clipboard
+     * @brief Handles when the context menu is requested. Only displays if the model isn't empty.
      *
-     * @param event Contains mouse event information
+     * @param event Contains context menu event information
      */
-    void mouseDoubleClickEvent(QMouseEvent *event) override;
+    void contextMenuEvent(QContextMenuEvent *event) override;
 
     /**
      * @brief Handles ctr+c key inputs to copy selection to clipboard
@@ -51,6 +51,13 @@ public:
      * @param event Contains keyboard event information
      */
     void keyPressEvent(QKeyEvent *event) override;
+
+    /**
+     * @brief Handles double click mouse event to copy selection to clipboard
+     *
+     * @param event Contains mouse event information
+     */
+    void mouseDoubleClickEvent(QMouseEvent *event) override;
 
     /**
      * @brief Handles resize event to resize the columns of the horizontal header
