@@ -79,7 +79,7 @@ int main(int argc, char *argv[])
     QString profilePath = setting.value("settings/profiles").toString();
     bool profile = ProfileLoader::init(profilePath.toStdString());
 
-    QFile file(QString(":/qdarkstyle/%1/style.qss").arg(setting.value("settings/style").toString()));
+    QFile file(QString(":/qdarkstyle/%1/%1style.qss").arg(setting.value("settings/style").toString()));
     if (file.open(QIODevice::ReadOnly | QIODevice::Text))
     {
         QTextStream ts(&file);

@@ -21,7 +21,6 @@
 #include "ui_Settings.h"
 #include <Core/Parents/ProfileLoader.hpp>
 #include <QApplication>
-#include <QCryptographicHash>
 #include <QFileDialog>
 #include <QMessageBox>
 #include <QProcess>
@@ -111,8 +110,7 @@ void Settings::changeIVs()
         QFile f(fileName);
         if (f.open(QIODevice::ReadOnly))
         {
-            QByteArray hash = QCryptographicHash::hash(f.readAll(), QCryptographicHash::Sha256).toHex();
-            if (hash != "c49210a31edb77ae54ddce028f8e4081947b0b5315c70e6eefda8ff88d3d70c1")
+            if (qChecksum(f.readAll()) != 0x4bfa)
             {
                 QMessageBox msg(QMessageBox::Information, tr("IV bin"), tr("Invalid IV bin file was provided"));
                 msg.exec();
