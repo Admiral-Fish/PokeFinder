@@ -21,6 +21,7 @@
 #define ENCOUNTERS8_HPP
 
 #include <Core/Global.hpp>
+#include <array>
 #include <vector>
 
 class EncounterArea8;

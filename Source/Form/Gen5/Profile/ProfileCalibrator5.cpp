@@ -35,6 +35,9 @@
 #include <QThread>
 #include <QTimer>
 
+static const QMap<QString, u8> needleMap
+    = { { "↑", 0 }, { "↗", 1 }, { "→", 2 }, { "↘", 3 }, { "↓", 4 }, { "↙", 5 }, { "←", 6 }, { "↖", 7 } };
+
 ProfileCalibrator5::ProfileCalibrator5(QWidget *parent) : QWidget(parent), ui(new Ui::ProfileCalibrator5)
 {
     ui->setupUi(this);
@@ -242,9 +245,8 @@ void ProfileCalibrator5::search()
 
     if (minSeconds > maxSeconds || minVCount > maxVCount || minTimer0 > maxTimer0 || minGxStat > maxGxStat || minVFrame > maxVFrame)
     {
-        QMessageBox error;
-        error.setText(tr("Some min values are greater then max values"));
-        error.exec();
+        QMessageBox msg(QMessageBox::Warning, tr("Invalid Input"), tr("Some min values are greater then max values"));
+        msg.exec();
         return;
     }
 
@@ -273,40 +275,9 @@ void ProfileCalibrator5::search()
 
         std::vector<u8> needles;
         QStringList input = ui->lineEditNeedles->text().split(" ");
-        for (QString &needle : input)
+        for (const QString &needle : input)
         {
-            if (needle == "↑")
-            {
-                needles.emplace_back(0);
-            }
-            else if (needle == "↗")
-            {
-                needles.emplace_back(1);
-            }
-            else if (needle == "→")
-            {
-                needles.emplace_back(2);
-            }
-            else if (needle == "↘")
-            {
-                needles.emplace_back(3);
-            }
-            else if (needle == "↓")
-            {
-                needles.emplace_back(4);
-            }
-            else if (needle == "↙")
-            {
-                needles.emplace_back(5);
-            }
-            else if (needle == "←")
-            {
-                needles.emplace_back(6);
-            }
-            else if (needle == "↖")
-            {
-                needles.emplace_back(7);
-            }
+            needles.emplace_back(needleMap[needle]);
         }
 
         searcher = new ProfileNeedleSearcher5(dt.getDate(), dt.getTime(), minSeconds, maxSeconds, minVCount, maxVCount, minTimer0,

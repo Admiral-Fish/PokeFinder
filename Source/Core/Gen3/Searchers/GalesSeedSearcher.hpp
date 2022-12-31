@@ -34,7 +34,7 @@ struct GalesCriteria
 /**
  * @brief Searches for candidate PRNG states
  */
-class GalesSeedSearcher : public SeedSearcher<GalesCriteria>
+class GalesSeedSearcher final : public SeedSearcher<GalesCriteria>
 {
 public:
     /**

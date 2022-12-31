@@ -190,7 +190,7 @@ bool ProfileNeedleSearcher5::valid(u64 seed)
     u8 advances = game ? Utilities5::initialAdvancesBW(seed) : Utilities5::initialAdvancesBW2(seed, memoryLink);
 
     // Opening the menu advances 1
-    if (unovaLink)
+    if (unovaLink && !memoryLink)
     {
         advances++;
     }

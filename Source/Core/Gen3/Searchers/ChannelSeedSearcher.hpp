@@ -26,7 +26,7 @@
 /**
  * @brief Searches for candidate PRNG states
  */
-class ChannelSeedSearcher : public SeedSearcher<std::vector<u8>>
+class ChannelSeedSearcher final : public SeedSearcher<std::vector<u8>>
 {
 public:
     /**

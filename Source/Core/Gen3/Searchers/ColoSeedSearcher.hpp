@@ -32,7 +32,7 @@ struct ColoCriteria
 /**
  * @brief Searches for candidate PRNG states
  */
-class ColoSeedSearcher : public SeedSearcher<ColoCriteria>
+class ColoSeedSearcher final : public SeedSearcher<ColoCriteria>
 {
 public:
     /**

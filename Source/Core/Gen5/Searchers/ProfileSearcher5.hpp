@@ -173,7 +173,7 @@ private:
      * @return true Seed is valid
      * @return false Seed is not valid
      */
-    bool valid(u64 seed) override;
+    bool valid(u64 seed) final;
 };
 
 /**
@@ -223,7 +223,7 @@ private:
      * @return true Seed is valid
      * @return false Seed is not valid
      */
-    bool valid(u64 seed) override;
+    bool valid(u64 seed) final;
 };
 
 /**
@@ -268,7 +268,7 @@ private:
      * @return true Seed is valid
      * @return false Seed is not valid
      */
-    bool valid(u64 seed) override;
+    bool valid(u64 seed) final;
 };
 
 #endif // PROFILESEARCHER5_HPP
