@@ -140,6 +140,7 @@ std::set<std::pair<u16, QString>> EncounterLookup::getEncounters4(Game version, 
     auto radios = { 0, 1, 2 };
     auto swarms = { false, true };
     auto times = { 0, 1, 2 };
+    std::array<u16, 2> replacement = { 0, 0 };
     std::array<u8, 5> blocks = { 0, 0, 0, 0, 0 };
 
     for (auto type : types)
@@ -154,7 +155,7 @@ std::set<std::pair<u16, QString>> EncounterLookup::getEncounters4(Game version, 
                     {
                         for (auto swarm : swarms)
                         {
-                            auto areas = Encounters4::getEncounters(type, time, dual, radar, 0, swarm, blocks, &profile);
+                            auto areas = Encounters4::getEncounters(type, time, dual, radar, 0, swarm, replacement, blocks, &profile);
                             for (const auto &area : areas)
                             {
                                 auto pokemon = area.getPokemon();
@@ -176,7 +177,7 @@ std::set<std::pair<u16, QString>> EncounterLookup::getEncounters4(Game version, 
                 {
                     for (auto swarm : swarms)
                     {
-                        auto areas = Encounters4::getEncounters(type, time, Game::None, false, radio, swarm, blocks, &profile);
+                        auto areas = Encounters4::getEncounters(type, time, Game::None, false, radio, swarm, replacement, blocks, &profile);
                         for (const auto &area : areas)
                         {
                             auto pokemon = area.getPokemon();
@@ -196,7 +197,7 @@ std::set<std::pair<u16, QString>> EncounterLookup::getEncounters4(Game version, 
 
     for (auto type : altTypes)
     {
-        auto areas = Encounters4::getEncounters(type, 0, Game::None, false, false, false, blocks, &profile);
+        auto areas = Encounters4::getEncounters(type, 0, Game::None, false, false, false, replacement, blocks, &profile);
         for (const auto &area : areas)
         {
             auto pokemon = area.getPokemon();
@@ -215,12 +216,13 @@ std::set<std::pair<u16, QString>> EncounterLookup::getEncounters4(Game version, 
 std::set<std::pair<u16, QString>> EncounterLookup::getEncounters8(Game version, u16 specie)
 {
     std::set<std::pair<u16, QString>> encounters;
-    Profile8 profile("", version, 0, 0, false, false);
+    Profile8 profile("", version, 0, 0, false, false, false);
 
     // Encounter variables to iterate through
     auto types = { Encounter::Grass, Encounter::OldRod, Encounter::GoodRod, Encounter::SuperRod, Encounter::Surfing };
     auto radars = { false, true };
     auto swarms = { false, true };
+    std::array<u16, 2> replacement = { 0, 0 };
     auto times = { 0, 1, 2 };
 
     for (auto type : types)
@@ -231,7 +233,7 @@ std::set<std::pair<u16, QString>> EncounterLookup::getEncounters8(Game version, 
             {
                 for (auto radar : radars)
                 {
-                    auto areas = Encounters8::getEncounters(type, time, radar, swarm, &profile);
+                    auto areas = Encounters8::getEncounters(type, time, radar, swarm, replacement, &profile);
                     for (const auto &area : areas)
                     {
                         auto pokemon = area.getPokemon();

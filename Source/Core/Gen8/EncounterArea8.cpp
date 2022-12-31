@@ -17,34 +17,32 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include "Profile8.hpp"
+#include "EncounterArea8.hpp"
+#include <Core/Enum/Game.hpp>
 
-Profile8::Profile8(const std::string &name, Game version, u16 tid, u16 sid, bool dex, bool shinyCharm, bool ovalCharm) :
-    Profile(name, version, tid, sid), dex(dex), ovalCharm(ovalCharm), shinyCharm(shinyCharm)
+bool EncounterArea8::greatMarsh(Game version) const
 {
+    if ((version & Game::BDSP) != Game::None)
+    {
+        switch (location)
+        {
+        case 23: // Great Marsh Area 1
+        case 24: // Great Marsh Area 2
+        case 25: // Great Marsh Area 3
+        case 26: // Great Marsh Area 4
+        case 27: // Great Marsh Area 5
+        case 28: // Great Marsh Area 6
+            return true;
+        }
+    }
+    return false;
 }
 
-bool Profile8::getNationalDex() const
+bool EncounterArea8::trophyGarden(Game version) const
 {
-    return dex;
-}
-
-bool Profile8::getOvalCharm() const
-{
-    return ovalCharm;
-}
-
-bool Profile8::getShinyCharm() const
-{
-    return shinyCharm;
-}
-
-bool Profile8::operator==(const Profile8 &other) const
-{
-    return Profile::operator==(other) && dex == other.dex && shinyCharm == other.shinyCharm && ovalCharm == other.ovalCharm;
-}
-
-bool Profile8::operator!=(const Profile8 &other) const
-{
-    return !(operator==(other));
+    if ((version & Game::BDSP) != Game::None)
+    {
+        return location == 117;
+    }
+    return false;
 }

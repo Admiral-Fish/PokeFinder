@@ -79,7 +79,7 @@ void RaidGeneratorTest::generate()
     std::array<bool, 16> powers;
     powers.fill(true);
 
-    Profile8 profile("-", version, 12345, 54321, false, false);
+    Profile8 profile("-", version, 12345, 54321, false, false, false);
 
     const Den *den = DenLoader::getDen(denIndex, rarity);
     Raid raid = den->getRaid(raidIndex, version);

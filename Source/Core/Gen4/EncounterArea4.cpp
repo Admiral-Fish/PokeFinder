@@ -20,6 +20,24 @@
 #include "EncounterArea4.hpp"
 #include <Core/Enum/Game.hpp>
 
+bool EncounterArea4::greatMarsh(Game version) const
+{
+    if ((version & Game::DPPt) != Game::None)
+    {
+        switch (location)
+        {
+        case 23: // Great Marsh Area 1
+        case 24: // Great Marsh Area 2
+        case 25: // Great Marsh Area 3
+        case 26: // Great Marsh Area 4
+        case 27: // Great Marsh Area 5
+        case 28: // Great Marsh Area 6
+            return true;
+        }
+    }
+    return false;
+}
+
 bool EncounterArea4::safariZone(Game version) const
 {
     if ((version & Game::HGSS) != Game::None)
@@ -41,6 +59,15 @@ bool EncounterArea4::safariZone(Game version) const
         case 160: // Safari Zone (Desert)
             return true;
         }
+    }
+    return false;
+}
+
+bool EncounterArea4::trophyGarden(Game version) const
+{
+    if ((version & Game::DPPt) != Game::None)
+    {
+        return location == 117;
     }
     return false;
 }

@@ -84,9 +84,10 @@ void WildGenerator8Test::generate()
     std::array<bool, 12> encounterSlots;
     encounterSlots.fill(true);
 
-    Profile8 profile("", Game::BD, 12345, 54321, false, false);
+    std::array<u16, 2> replacement = { 0, 0 };
+    Profile8 profile("", Game::BD, 12345, 54321, false, false, false);
 
-    std::vector<EncounterArea8> encounterAreas = Encounters8::getEncounters(encounter, 0, false, false, &profile);
+    std::vector<EncounterArea8> encounterAreas = Encounters8::getEncounters(encounter, 0, false, false, replacement, &profile);
     auto encounterArea = std::find_if(encounterAreas.begin(), encounterAreas.end(),
                                       [location](const EncounterArea8 &encounterArea) { return encounterArea.getLocation() == location; });
 

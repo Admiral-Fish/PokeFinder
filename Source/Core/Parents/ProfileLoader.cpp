@@ -403,6 +403,7 @@ namespace ProfileLoader8
             j["version"] = profile.getVersion();
             j["tid"] = profile.getTID();
             j["sid"] = profile.getSID();
+            j["dex"] = profile.getNationalDex();
             j["shinyCharm"] = profile.getShinyCharm();
             j["ovalCharm"] = profile.getOvalCharm();
             return j;
@@ -421,9 +422,10 @@ namespace ProfileLoader8
             Game version = j.value("version", Game::BD);
             u16 tid = j.value("tid", 0);
             u16 sid = j.value("sid", 0);
+            bool dex = j.value("dex", false);
             bool shinyCharm = j.value("shinyCharm", false);
             bool ovalCharm = j.value("ovalCharm", false);
-            return Profile8(name, version, tid, sid, shinyCharm, ovalCharm);
+            return Profile8(name, version, tid, sid, dex, shinyCharm, ovalCharm);
         }
     }
 

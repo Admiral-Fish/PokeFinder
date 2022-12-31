@@ -103,7 +103,7 @@
      <property name="title">
       <string>Settings</string>
      </property>
-     <layout class="QGridLayout" name="gridLayout_2">
+     <layout class="QGridLayout" name="gridLayout_6">
       <item row="0" column="0">
        <widget class="QLabel" name="labelEncounter">
         <property name="text">
@@ -191,20 +191,40 @@
       <item row="3" column="1">
        <widget class="ComboBox" name="comboBoxPokemon"/>
       </item>
-      <item row="4" column="0" colspan="2">
-       <widget class="QCheckBox" name="checkBoxRadar">
+      <item row="6" column="0" colspan="2">
+       <layout class="QGridLayout" name="gridLayout_2">
+        <item row="0" column="0">
+         <widget class="QCheckBox" name="checkBoxReplacement">
+          <property name="text">
+           <string>Replacement</string>
+          </property>
+          <attribute name="buttonGroup">
+           <string notr="true">buttonGroup</string>
+          </attribute>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="ComboBox" name="comboBoxReplacement0"/>
+        </item>
+        <item row="0" column="2">
+         <widget class="ComboBox" name="comboBoxReplacement1"/>
+        </item>
+       </layout>
+      </item>
+      <item row="5" column="0" colspan="2">
+       <widget class="QCheckBox" name="checkBoxSwarm">
         <property name="text">
-         <string>Radar</string>
+         <string>Swarm</string>
         </property>
         <attribute name="buttonGroup">
          <string notr="true">buttonGroup</string>
         </attribute>
        </widget>
       </item>
-      <item row="5" column="0" colspan="2">
-       <widget class="QCheckBox" name="checkBoxSwarm">
+      <item row="4" column="0" colspan="2">
+       <widget class="QCheckBox" name="checkBoxRadar">
         <property name="text">
-         <string>Swarm</string>
+         <string>Radar</string>
         </property>
         <attribute name="buttonGroup">
          <string notr="true">buttonGroup</string>
@@ -344,11 +364,18 @@
   <tabstop>comboBoxPokemon</tabstop>
   <tabstop>checkBoxRadar</tabstop>
   <tabstop>checkBoxSwarm</tabstop>
+  <tabstop>checkBoxReplacement</tabstop>
+  <tabstop>comboBoxReplacement0</tabstop>
+  <tabstop>comboBoxReplacement1</tabstop>
   <tabstop>tableView</tabstop>
  </tabstops>
  <resources/>
  <connections/>
  <buttongroups>
-  <buttongroup name="buttonGroup"/>
+  <buttongroup name="buttonGroup">
+   <property name="exclusive">
+    <bool>false</bool>
+   </property>
+  </buttongroup>
  </buttongroups>
 </ui>

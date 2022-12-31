@@ -39,7 +39,15 @@ public:
      * @param shinyCharm Whether shiny charm is obtained
      * @param ovalCharm Whether oval charm is obtained
      */
-    Profile8(const std::string &name, Game version, u16 tid, u16 sid, bool shinyCharm, bool ovalCharm);
+    Profile8(const std::string &name, Game version, u16 tid, u16 sid, bool dex, bool shinyCharm, bool ovalCharm);
+
+    /**
+     * @brief Get the National Dex object
+     *
+     * @return true National pokedex is obtained
+     * @return false National pokedex is not obtained
+     */
+    bool getNationalDex() const;
 
     /**
      * @brief Returns whether the profile has the oval charm
@@ -78,6 +86,7 @@ public:
     bool operator!=(const Profile8 &other) const;
 
 private:
+    bool dex;
     bool ovalCharm;
     bool shinyCharm;
 };

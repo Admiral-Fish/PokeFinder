@@ -41,13 +41,24 @@ namespace Encounters4
      * @param radar Whether pokeradar is active
      * @param radio Radio station
      * @param swarm Whether swarm is active
+     * @param replacement Replacement slots used by Great Marsh and Trophy Garden
      * @param blocks Active pokeblocks in the safari
      * @param profile Profile information
      *
      * @return Vector of wild encounters
      */
     std::vector<EncounterArea4> getEncounters(Encounter encounter, int time, Game dual, bool radar, int radio, bool swarm,
-                                              const std::array<u8, 5> &blocks, const Profile4 *profile);
+                                              const std::array<u16, 2> &replacement, const std::array<u8, 5> &blocks,
+                                              const Profile4 *profile);
+
+    /**
+     * @brief Returns the changing pokemon of the Great Marsh
+     *
+     * @param profile Profile information
+     *
+     * @return Array of Great Marsh Pokemon
+     */
+    std::array<u16, 15> getGreatMarshPokemon(const Profile4 *profile);
 
     /**
      * @brief Gets static encounters from the \p type
@@ -84,6 +95,15 @@ namespace Encounters4
      * @return Pointer to static encounter
      */
     const StaticTemplate4 *getStaticEncounter(int type, int index);
+
+    /**
+     * @brief Returns the changing pokemon of the Trophy Garden
+     *
+     * @param profile Profile information
+     *
+     * @return Array of Trophy Garden Pokemon
+     */
+    std::array<u16, 16> getTrophyGardenPokemon(const Profile4 *profile);
 }
 
 #endif // ENCOUNTERS4_HPP

@@ -141,14 +141,34 @@ public:
     }
 
     /**
-     * @brief Checks if the location in RSE is in the Safari Zone
+     * @brief Checks if the location is in the Great Marsh
      *
      * @param version Game version
      *
-     * @return true Location is Safari Zone in RSE
-     * @return false Location is not Safari Zone in RSE
+     * @return true Location is Great Marsh
+     * @return false Location is not Great Marsh
+     */
+    bool greatMarsh(Game version) const;
+
+    /**
+     * @brief Checks if the location is in the Safari Zone
+     *
+     * @param version Game version
+     *
+     * @return true Location is Safari Zone
+     * @return false Location is not Safari Zone
      */
     bool safariZone(Game version) const;
+
+    /**
+     * @brief Checks if the location is in the Trophy Garden
+     *
+     * @param version Game version
+     *
+     * @return true Location is Trophy Garden
+     * @return false Location is not Trophy Garden
+     */
+    bool trophyGarden(Game version) const;
 };
 
 #endif // ENCOUNTERAREA4_HPP

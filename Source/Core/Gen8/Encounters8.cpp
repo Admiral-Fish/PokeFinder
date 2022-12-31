@@ -106,6 +106,58 @@ constexpr std::array<StaticTemplate8, 5> mythics = {
     StaticTemplate8(Game::BDSP, 493, 80, 3) // Arceus
 };
 
+constexpr std::array<u16, 14> greatMarsh = { 55, 183, 194, 195, 298, 315, 397, 399, 400, 451, 453, 455 };
+constexpr std::array<u16, 14> greatMarshDex = { 46, 55, 102, 115, 193, 285, 315, 316, 397, 451, 452, 453, 454, 455 };
+
+constexpr std::array<u16, 16> trophyGarden = { 35, 39, 52, 113, 133, 137, 173, 174, 183, 298, 311, 312, 351, 438, 439, 440 };
+
+/**
+ * @brief Modifies encounter slots based on the Great Marsh
+ *
+ * @param pokemon Vector of original encounters
+ * @param replacement Replacement pokemon
+ * @param info Personal info array pointer
+ * @param location Encounter location
+ */
+static void modifyGreatMarsh(std::vector<Slot> &pokemon, const std::array<u16, 2> &replacement, const PersonalInfo *info, u8 location)
+{
+    if (location >= 23 && location <= 28 && replacement[0] != 0)
+    {
+        u16 specie = replacement[0];
+        pokemon[6].setSpecie(specie, &info[specie]);
+        pokemon[7].setSpecie(specie, &info[specie]);
+    }
+}
+
+/**
+ * @brief Modifies encounter slots based on the pokeradar
+ *
+ * @param pokemon Vector of original encounters
+ * @param data Encounter area data
+ * @param info Personal info array pointer
+ * @param radar Whether pokeradar is active or not
+ */
+static void modifyRadar(std::vector<Slot> &mons, const u8 *data, const PersonalInfo *info, bool radar)
+{
+    if (radar)
+    {
+        u16 species[4] = { *reinterpret_cast<const u16 *>(data + 50), *reinterpret_cast<const u16 *>(data + 52),
+                           *reinterpret_cast<const u16 *>(data + 54), *reinterpret_cast<const u16 *>(data + 56) };
+        mons[4].setSpecie(species[0], &info[species[0]]);
+        mons[5].setSpecie(species[1], &info[species[1]]);
+        mons[10].setSpecie(species[2], &info[species[2]]);
+        mons[11].setSpecie(species[3], &info[species[3]]);
+    }
+}
+
+/**
+ * @brief Modifies encounter slots based on the swarm
+ *
+ * @param pokemon Vector of original encounters
+ * @param data Encounter area data
+ * @param info Personal info array pointer
+ * @param swarm Whether swarm is active or not
+ */
 static void modifySwarm(std::vector<Slot> &mons, const u8 *data, const PersonalInfo *info, bool swarm)
 {
     if (swarm)
@@ -116,6 +168,14 @@ static void modifySwarm(std::vector<Slot> &mons, const u8 *data, const PersonalI
     }
 }
 
+/**
+ * @brief Modifies encounter slots based on the time
+ *
+ * @param pokemon Vector of original encounters
+ * @param data Encounter area data
+ * @param info Personal info array pointer
+ * @param time Time of day
+ */
 static void modifyTime(std::vector<Slot> &mons, const u8 *data, const PersonalInfo *info, int time)
 {
     u16 specie1;
@@ -139,20 +199,40 @@ static void modifyTime(std::vector<Slot> &mons, const u8 *data, const PersonalIn
     mons[3].setSpecie(specie2, &info[specie2]);
 }
 
-static void modifyRadar(std::vector<Slot> &mons, const u8 *data, const PersonalInfo *info, bool radar)
+/**
+ * @brief Modifies encounter slots based on the Trophy Garden
+ *
+ * @param pokemon Vector of original encounters
+ * @param replacement Replacement pokemon
+ * @param info Personal info array pointer
+ * @param location Encounter location
+ */
+static void modifyTrophyGarden(std::vector<Slot> &pokemon, const std::array<u16, 2> &replacement, const PersonalInfo *info, u8 location)
 {
-    if (radar)
+    if (location == 117 && replacement[0] != 0 && replacement[1] != 0)
     {
-        u16 species[4] = { *reinterpret_cast<const u16 *>(data + 50), *reinterpret_cast<const u16 *>(data + 52),
-                           *reinterpret_cast<const u16 *>(data + 54), *reinterpret_cast<const u16 *>(data + 56) };
-        mons[4].setSpecie(species[0], &info[species[0]]);
-        mons[5].setSpecie(species[1], &info[species[1]]);
-        mons[10].setSpecie(species[2], &info[species[2]]);
-        mons[11].setSpecie(species[3], &info[species[3]]);
+        u16 specie1 = replacement[0];
+        u16 specie2 = replacement[1];
+        pokemon[6].setSpecie(specie1, &info[specie1]);
+        pokemon[7].setSpecie(specie2, &info[specie2]);
     }
 }
 
-static std::vector<EncounterArea8> getBDSP(Encounter encounter, int time, bool radar, bool swarm, Game version, const PersonalInfo *info)
+/**
+ * @brief Gets the encounter area for DPPt
+ *
+ * @param encounter Encounter type
+ * @param time Time modifier
+ * @param radar Whether pokeradar is active
+ * @param swarm Whether swarm is active
+ * @param version Game version
+ * @param replacement Replacement slots used by Great Marsh and Trophy Garden
+ * @param info Personal info array pointer
+ *
+ * @return Vector of encounter areas
+ */
+static std::vector<EncounterArea8> getBDSP(Encounter encounter, int time, bool radar, bool swarm, Game version,
+                                           const std::array<u16, 2> &replacement, const PersonalInfo *info)
 {
     const u8 *compressedData;
     size_t compressedLength;
@@ -198,6 +278,8 @@ static std::vector<EncounterArea8> getBDSP(Encounter encounter, int time, bool r
                 modifySwarm(slots, entry, info, swarm);
                 modifyTime(slots, entry, info, time);
                 modifyRadar(slots, entry, info, radar);
+                modifyGreatMarsh(slots, replacement, info, location);
+                modifyTrophyGarden(slots, replacement, info, location);
                 encounters.emplace_back(location, grass, encounter, slots);
             }
             break;
@@ -271,10 +353,23 @@ static std::vector<EncounterArea8> getBDSP(Encounter encounter, int time, bool r
 
 namespace Encounters8
 {
-    std::vector<EncounterArea8> getEncounters(Encounter encounter, int time, bool radar, bool swarm, const Profile8 *profile)
+    std::vector<EncounterArea8> getEncounters(Encounter encounter, int time, bool radar, bool swarm, const std::array<u16, 2> &replacement,
+                                              const Profile8 *profile)
     {
         const auto *info = PersonalLoader::getPersonal(profile->getVersion());
-        return getBDSP(encounter, time, radar, swarm, profile->getVersion(), info);
+        return getBDSP(encounter, time, radar, swarm, profile->getVersion(), replacement, info);
+    }
+
+    std::array<u16, 14> getGreatMarshPokemon(const Profile8 *profile)
+    {
+        if (profile->getNationalDex())
+        {
+            return greatMarshDex;
+        }
+        else
+        {
+            return greatMarsh;
+        }
     }
 
     const StaticTemplate8 *getStaticEncounters(int index, int *size)
@@ -357,6 +452,11 @@ namespace Encounters8
     {
         const StaticTemplate8 *templates = getStaticEncounters(type);
         return &templates[index];
+    }
+
+    std::array<u16, 16> getTrophyGardenPokemon()
+    {
+        return trophyGarden;
     }
 
     std::vector<UndergroundArea> getUndergroundEncounters(int storyFlag, bool diglett, const Profile8 *profile)

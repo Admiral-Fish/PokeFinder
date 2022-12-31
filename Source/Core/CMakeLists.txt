@@ -141,6 +141,7 @@ add_library(PokeFinderCore STATIC
     Gen8/Den.hpp
     Gen8/DenLoader.cpp
     Gen8/DenLoader.hpp
+    Gen8/EncounterArea8.cpp
     Gen8/EncounterArea8.hpp
     Gen8/Encounters8.cpp
     Gen8/Encounters8.hpp

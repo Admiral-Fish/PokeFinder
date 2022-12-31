@@ -86,7 +86,7 @@ void UndergroundGeneratorTest::generate()
     std::array<bool, 16> powers;
     powers.fill(true);
 
-    Profile8 profile("", Game::BD, 12345, 54321, false, false);
+    Profile8 profile("", Game::BD, 12345, 54321, false, false, false);
 
     std::vector<UndergroundArea> encounterAreas = Encounters8::getUndergroundEncounters(storyFlag, diglett, &profile);
     auto encounterArea = std::find_if(encounterAreas.begin(), encounterAreas.end(),

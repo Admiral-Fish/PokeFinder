@@ -67,9 +67,23 @@ Wild8::Wild8(QWidget *parent) : QWidget(parent), ui(new Ui::Wild8)
     connect(ui->comboBoxEncounter, &QComboBox::currentIndexChanged, this, &Wild8::encounterIndexChanged);
     connect(ui->comboBoxLocation, &QComboBox::currentIndexChanged, this, &Wild8::locationIndexChanged);
     connect(ui->comboBoxPokemon, &QComboBox::currentIndexChanged, this, &Wild8::pokemonIndexChanged);
+    connect(ui->comboBoxReplacement0, &QComboBox::currentIndexChanged, this, [=] {
+        if (ui->checkBoxReplacement->isChecked())
+        {
+            updateEncounters();
+            locationIndexChanged(0);
+        }
+    });
+    connect(ui->comboBoxReplacement1, &QComboBox::currentIndexChanged, this, [=] {
+        if (ui->checkBoxReplacement->isChecked())
+        {
+            updateEncounters();
+            locationIndexChanged(0);
+        }
+    });
     connect(ui->buttonGroup, &QButtonGroup::buttonClicked, this, [=] {
         updateEncounters();
-        encounterIndexChanged(0);
+        locationIndexChanged(0);
     });
     connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &Wild8::profileManager);
     connect(ui->filter, &Filter::showStatsChanged, model, &WildModel8::setShowStats);
@@ -103,7 +117,7 @@ void Wild8::updateProfiles()
     auto completeProfiles = ProfileLoader8::getProfiles();
     std::copy_if(completeProfiles.begin(), completeProfiles.end(), std::back_inserter(profiles),
                  [](const Profile8 &profile) { return (profile.getVersion() & Game::BDSP) != Game::None; });
-    profiles.insert(profiles.begin(), Profile8("-", Game::BD, 12345, 54321, false, false));
+    profiles.insert(profiles.begin(), Profile8("-", Game::BD, 12345, 54321, false, false, false));
 
     ui->comboBoxProfiles->clear();
 
@@ -126,7 +140,13 @@ void Wild8::updateEncounters()
     int time = ui->comboBoxTime->currentIndex();
     bool radar = ui->checkBoxRadar->isChecked();
     bool swarm = ui->checkBoxSwarm->isChecked();
-    encounters = Encounters8::getEncounters(encounter, time, radar, swarm, currentProfile);
+    std::array<u16, 2> replacement = { 0, 0 };
+    if (ui->checkBoxReplacement->isChecked())
+    {
+        replacement[0] = ui->comboBoxReplacement0->getCurrentUShort();
+        replacement[1] = ui->comboBoxReplacement1->count() > 0 ? ui->comboBoxReplacement1->getCurrentUShort() : 0;
+    }
+    encounters = Encounters8::getEncounters(encounter, time, radar, swarm, replacement, currentProfile);
 }
 
 void Wild8::encounterIndexChanged(int index)
@@ -203,12 +223,54 @@ void Wild8::locationIndexChanged(int index)
         auto &area = encounters[ui->comboBoxLocation->getCurrentInt()];
         auto species = area.getUniqueSpecies();
         auto names = area.getSpecieNames();
+        bool greatMarsh = area.greatMarsh(currentProfile->getVersion());
+        bool trophyGarden = area.trophyGarden(currentProfile->getVersion());
+
+        ui->checkBoxReplacement->setVisible(greatMarsh || trophyGarden);
+        ui->comboBoxReplacement0->setVisible(greatMarsh || trophyGarden);
+        ui->comboBoxReplacement1->setVisible(trophyGarden);
 
         ui->comboBoxPokemon->clear();
         ui->comboBoxPokemon->addItem(QString("-"));
         for (size_t i = 0; i < species.size(); i++)
         {
             ui->comboBoxPokemon->addItem(QString::fromStdString(names[i]), species[i]);
+        }
+
+        if (greatMarsh && index != 0)
+        {
+            // Block signals so we don't cause infinite signal recursion
+            ui->comboBoxReplacement0->blockSignals(true);
+
+            ui->comboBoxReplacement0->clear();
+            for (u16 specie : Encounters8::getGreatMarshPokemon(currentProfile))
+            {
+                if (specie == 0)
+                {
+                    break;
+                }
+                ui->comboBoxReplacement0->addItem(QString::fromStdString(*Translator::getSpecie(specie)), specie);
+            }
+
+            ui->comboBoxReplacement0->blockSignals(false);
+        }
+        else if (trophyGarden && index != 0)
+        {
+            // Block signals so we don't cause infinite signal recursion
+            ui->comboBoxReplacement0->blockSignals(true);
+            ui->comboBoxReplacement1->blockSignals(true);
+
+            ui->comboBoxReplacement0->clear();
+            ui->comboBoxReplacement1->clear();
+            for (u16 specie : Encounters8::getTrophyGardenPokemon())
+            {
+                auto *name = Translator::getSpecie(specie);
+                ui->comboBoxReplacement0->addItem(QString::fromStdString(*name), specie);
+                ui->comboBoxReplacement1->addItem(QString::fromStdString(*name), specie);
+            }
+
+            ui->comboBoxReplacement0->blockSignals(false);
+            ui->comboBoxReplacement1->blockSignals(false);
         }
     }
 }

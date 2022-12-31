@@ -147,6 +147,30 @@ Wild4::Wild4(QWidget *parent) : QWidget(parent), ui(new Ui::Wild4)
             searcherEncounterUpdate();
         }
     });
+    connect(ui->comboBoxGeneratorReplacement0, &QComboBox::currentIndexChanged, this, [=] {
+        if (ui->checkBoxGeneratorReplacement->isChecked())
+        {
+            generatorEncounterUpdate();
+        }
+    });
+    connect(ui->comboBoxGeneratorReplacement1, &QComboBox::currentIndexChanged, this, [=] {
+        if (ui->checkBoxGeneratorReplacement->isChecked())
+        {
+            generatorEncounterUpdate();
+        }
+    });
+    connect(ui->comboBoxSearcherReplacement0, &QComboBox::currentIndexChanged, this, [=] {
+        if (ui->checkBoxSearcherReplacement->isChecked())
+        {
+            searcherEncounterUpdate();
+        }
+    });
+    connect(ui->comboBoxSearcherReplacement1, &QComboBox::currentIndexChanged, this, [=] {
+        if (ui->checkBoxSearcherReplacement->isChecked())
+        {
+            searcherEncounterUpdate();
+        }
+    });
     connect(ui->buttonGroupGenerator, &QButtonGroup::buttonClicked, this, [=] { generatorEncounterUpdate(); });
     connect(ui->buttonGroupSearcher, &QButtonGroup::buttonClicked, this, [=] { searcherEncounterUpdate(); });
     connect(ui->checkBoxGeneratorPokeRadar, &QCheckBox::stateChanged, this, &Wild4::generatorPokeRadarStateChanged);
@@ -234,10 +258,16 @@ void Wild4::updateEncounterGenerator()
     bool radar = ui->checkBoxGeneratorPokeRadar->isChecked();
     int radio = ui->checkBoxGeneratorRadio->isChecked() ? ui->comboBoxGeneratorRadio->currentIndex() + 1 : 0;
     bool swarm = ui->checkBoxGeneratorSwarm->isChecked();
+    std::array<u16, 2> replacement = { 0, 0 };
+    if (ui->checkBoxGeneratorReplacement->isChecked())
+    {
+        replacement[0] = ui->comboBoxGeneratorReplacement0->getCurrentUShort();
+        replacement[1] = ui->comboBoxGeneratorReplacement1->count() > 0 ? ui->comboBoxGeneratorReplacement1->getCurrentUShort() : 0;
+    }
     std::array<u8, 5> blocks
         = { 0, static_cast<u8>(ui->spinBoxGeneratorPlainsBlock->value()), static_cast<u8>(ui->spinBoxGeneratorForestBlock->value()),
             static_cast<u8>(ui->spinBoxGeneratorPeakBlock->value()), static_cast<u8>(ui->spinBoxGeneratorWaterBlock->value()) };
-    encounterGenerator = Encounters4::getEncounters(encounter, modifier, dual, radar, radio, swarm, blocks, currentProfile);
+    encounterGenerator = Encounters4::getEncounters(encounter, modifier, dual, radar, radio, swarm, replacement, blocks, currentProfile);
 }
 
 void Wild4::updateEncounterSearcher()
@@ -248,10 +278,16 @@ void Wild4::updateEncounterSearcher()
     bool radar = ui->checkBoxSearcherPokeRadar->isChecked();
     int radio = ui->checkBoxSearcherRadio->isChecked() ? ui->comboBoxSearcherRadio->currentIndex() + 1 : 0;
     bool swarm = ui->checkBoxSearcherSwarm->isChecked();
+    std::array<u16, 2> replacement = { 0, 0 };
+    if (ui->checkBoxSearcherReplacement->isChecked())
+    {
+        replacement[0] = ui->comboBoxSearcherReplacement0->getCurrentUShort();
+        replacement[1] = ui->comboBoxSearcherReplacement1->getCurrentUShort();
+    }
     std::array<u8, 5> blocks
         = { 0, static_cast<u8>(ui->spinBoxSearcherPlainsBlock->value()), static_cast<u8>(ui->spinBoxSearcherForestBlock->value()),
             static_cast<u8>(ui->spinBoxSearcherPeakBlock->value()), static_cast<u8>(ui->spinBoxSearcherWaterBlock->value()) };
-    encounterSearcher = Encounters4::getEncounters(encounter, modifier, dual, radar, radio, swarm, blocks, currentProfile);
+    encounterSearcher = Encounters4::getEncounters(encounter, modifier, dual, radar, radio, swarm, replacement, blocks, currentProfile);
 }
 
 void Wild4::generate()
@@ -407,7 +443,13 @@ void Wild4::generatorLocationIndexChanged(int index)
         auto &area = encounterGenerator[ui->comboBoxGeneratorLocation->getCurrentInt()];
         auto species = area.getUniqueSpecies();
         auto names = area.getSpecieNames();
+        bool greatMarsh = area.greatMarsh(currentProfile->getVersion());
         bool safari = area.safariZone(currentProfile->getVersion());
+        bool trophyGarden = area.trophyGarden(currentProfile->getVersion());
+
+        ui->checkBoxGeneratorReplacement->setVisible(greatMarsh || trophyGarden);
+        ui->comboBoxGeneratorReplacement0->setVisible(greatMarsh || trophyGarden);
+        ui->comboBoxGeneratorReplacement1->setVisible(trophyGarden);
 
         ui->labelGeneratorPlainsBlock->setVisible(safari);
         ui->spinBoxGeneratorPlainsBlock->setVisible(safari);
@@ -423,6 +465,42 @@ void Wild4::generatorLocationIndexChanged(int index)
         for (size_t i = 0; i < species.size(); i++)
         {
             ui->comboBoxGeneratorPokemon->addItem(QString::fromStdString(names[i]), species[i]);
+        }
+
+        if (greatMarsh && index != 0)
+        {
+            // Block signals so we don't cause infinite signal recursion
+            ui->comboBoxGeneratorReplacement0->blockSignals(true);
+
+            ui->comboBoxGeneratorReplacement0->clear();
+            for (u16 specie : Encounters4::getGreatMarshPokemon(currentProfile))
+            {
+                if (specie == 0)
+                {
+                    break;
+                }
+                ui->comboBoxGeneratorReplacement0->addItem(QString::fromStdString(*Translator::getSpecie(specie)), specie);
+            }
+
+            ui->comboBoxGeneratorReplacement0->blockSignals(false);
+        }
+        else if (trophyGarden && index != 0)
+        {
+            // Block signals so we don't cause infinite signal recursion
+            ui->comboBoxGeneratorReplacement0->blockSignals(true);
+            ui->comboBoxGeneratorReplacement1->blockSignals(true);
+
+            ui->comboBoxGeneratorReplacement0->clear();
+            ui->comboBoxGeneratorReplacement1->clear();
+            for (u16 specie : Encounters4::getTrophyGardenPokemon(currentProfile))
+            {
+                auto *name = Translator::getSpecie(specie);
+                ui->comboBoxGeneratorReplacement0->addItem(QString::fromStdString(*name), specie);
+                ui->comboBoxGeneratorReplacement1->addItem(QString::fromStdString(*name), specie);
+            }
+
+            ui->comboBoxGeneratorReplacement0->blockSignals(false);
+            ui->comboBoxGeneratorReplacement1->blockSignals(false);
         }
 
         // Account for safari zone not being its own encounter method
@@ -711,7 +789,13 @@ void Wild4::searcherLocationIndexChanged(int index)
         auto &area = encounterSearcher[ui->comboBoxSearcherLocation->getCurrentInt()];
         auto species = area.getUniqueSpecies();
         auto names = area.getSpecieNames();
+        bool greatMarsh = area.greatMarsh(currentProfile->getVersion());
         bool safari = area.safariZone(currentProfile->getVersion());
+        bool trophyGarden = area.trophyGarden(currentProfile->getVersion());
+
+        ui->checkBoxSearcherReplacement->setVisible(greatMarsh || trophyGarden);
+        ui->comboBoxSearcherReplacement0->setVisible(greatMarsh || trophyGarden);
+        ui->comboBoxSearcherReplacement1->setVisible(trophyGarden);
 
         ui->labelSearcherPlainsBlock->setVisible(safari);
         ui->spinBoxSearcherPlainsBlock->setVisible(safari);
@@ -727,6 +811,42 @@ void Wild4::searcherLocationIndexChanged(int index)
         for (size_t i = 0; i < species.size(); i++)
         {
             ui->comboBoxSearcherPokemon->addItem(QString::fromStdString(names[i]), species[i]);
+        }
+
+        if (greatMarsh && index != 0)
+        {
+            // Block signals so we don't cause infinite signal recursion
+            ui->comboBoxSearcherReplacement0->blockSignals(true);
+
+            ui->comboBoxSearcherReplacement0->clear();
+            for (u16 specie : Encounters4::getGreatMarshPokemon(currentProfile))
+            {
+                if (specie == 0)
+                {
+                    break;
+                }
+                ui->comboBoxSearcherReplacement0->addItem(QString::fromStdString(*Translator::getSpecie(specie)), specie);
+            }
+
+            ui->comboBoxSearcherReplacement0->blockSignals(false);
+        }
+        else if (trophyGarden && index != 0)
+        {
+            // Block signals so we don't cause infinite signal recursion
+            ui->comboBoxSearcherReplacement0->blockSignals(true);
+            ui->comboBoxSearcherReplacement1->blockSignals(true);
+
+            ui->comboBoxSearcherReplacement0->clear();
+            ui->comboBoxSearcherReplacement1->clear();
+            for (u16 specie : Encounters4::getTrophyGardenPokemon(currentProfile))
+            {
+                auto *name = Translator::getSpecie(specie);
+                ui->comboBoxSearcherReplacement0->addItem(QString::fromStdString(*name), specie);
+                ui->comboBoxSearcherReplacement1->addItem(QString::fromStdString(*name), specie);
+            }
+
+            ui->comboBoxSearcherReplacement0->blockSignals(false);
+            ui->comboBoxSearcherReplacement1->blockSignals(false);
         }
 
         // Account for safari zone not being its own encounter method

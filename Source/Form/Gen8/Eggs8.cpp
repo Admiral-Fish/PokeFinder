@@ -85,7 +85,7 @@ void Eggs8::updateProfiles()
     auto completeProfiles = ProfileLoader8::getProfiles();
     std::copy_if(completeProfiles.begin(), completeProfiles.end(), std::back_inserter(profiles),
                  [](const Profile &profile) { return (profile.getVersion() & Game::BDSP) != Game::None; });
-    profiles.insert(profiles.begin(), Profile8("-", Game::BD, 12345, 54321, false, false));
+    profiles.insert(profiles.begin(), Profile8("-", Game::BD, 12345, 54321, false, false, false));
 
     ui->comboBoxProfiles->clear();
     for (const auto &profile : profiles)

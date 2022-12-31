@@ -106,12 +106,12 @@ public:
     }
 
     /**
-     * @brief Checks if the location in RSE is in the Safari Zone
+     * @brief Checks if the location is in the Safari Zone
      *
      * @param version Game version
      *
-     * @return true Location is Safari Zone in RSE
-     * @return false Location is not Safari Zone in RSE
+     * @return true Location is Safari Zone
+     * @return false Location is not Safari Zone
      */
     bool safariZone(Game version) const;
 };

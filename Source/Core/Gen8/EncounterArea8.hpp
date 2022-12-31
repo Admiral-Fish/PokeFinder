@@ -89,6 +89,26 @@ public:
             return level;
         }
     }
+
+    /**
+     * @brief Checks if the location is in the Great Marsh
+     *
+     * @param version Game version
+     *
+     * @return true Location is Great Marsh
+     * @return false Location is not Great Marsh
+     */
+    bool greatMarsh(Game version) const;
+
+    /**
+     * @brief Checks if the location is in the Trophy Garden
+     *
+     * @param version Game version
+     *
+     * @return true Location is Trophy Garden
+     * @return false Location is not Trophy Garden
+     */
+    bool trophyGarden(Game version) const;
 };
 
 #endif // ENCOUNTERAREA8_HPP

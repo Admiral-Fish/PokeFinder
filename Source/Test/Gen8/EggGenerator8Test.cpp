@@ -86,7 +86,7 @@ void EggGenerator8Test::generate()
     std::array<bool, 16> powers;
     powers.fill(true);
 
-    Profile8 profile("-", Game::BD, 12345, 54321, true, true);
+    Profile8 profile("-", Game::BD, 12345, 54321, false, true, true);
 
     Daycare daycare(parentIVs, parentAbility, parentGender, parentItem, parentNature, pokemon, true);
     StateFilter8 filter(255, 255, 255, false, min, max, natures, powers);

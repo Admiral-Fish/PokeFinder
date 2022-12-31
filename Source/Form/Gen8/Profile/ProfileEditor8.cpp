@@ -48,6 +48,7 @@ ProfileEditor8::ProfileEditor8(const Profile8 &profile, QWidget *parent) : Profi
     ui->comboBoxVersion->setCurrentIndex(ui->comboBoxVersion->findData(toInt(profile.getVersion())));
     ui->textBoxTID->setText(QString::number(profile.getTID()));
     ui->textBoxSID->setText(QString::number(profile.getSID()));
+    ui->checkBoxNationalDex->setChecked(profile.getNationalDex());
     ui->checkBoxShinyCharm->setChecked(profile.getShinyCharm());
     ui->checkBoxOvalCharm->setChecked(profile.getOvalCharm());
 }
@@ -63,7 +64,8 @@ ProfileEditor8::~ProfileEditor8()
 Profile8 ProfileEditor8::getProfile()
 {
     return Profile8(ui->lineEditProfile->text().toStdString(), ui->comboBoxVersion->getEnum<Game>(), ui->textBoxTID->getUShort(),
-                    ui->textBoxSID->getUShort(), ui->checkBoxShinyCharm->isChecked(), ui->checkBoxOvalCharm->isChecked());
+                    ui->textBoxSID->getUShort(), ui->checkBoxNationalDex->isChecked(), ui->checkBoxShinyCharm->isChecked(),
+                    ui->checkBoxOvalCharm->isChecked());
 }
 
 void ProfileEditor8::okay()

@@ -39,11 +39,22 @@ namespace Encounters8
      * @param time Time modifier
      * @param radar Whether pokeradar is active
      * @param swarm Whether swarm is active
+     * @param replacement Replacement slots used by Great Marsh and Trophy Garden
      * @param profile Profile information
      *
      * @return Vector of wild encounters
      */
-    std::vector<EncounterArea8> getEncounters(Encounter encounter, int time, bool radar, bool swarm, const Profile8 *profile);
+    std::vector<EncounterArea8> getEncounters(Encounter encounter, int time, bool radar, bool swarm, const std::array<u16, 2> &replacement,
+                                              const Profile8 *profile);
+
+    /**
+     * @brief Returns the changing pokemon of the Great
+     *
+     * @param profile Profile information
+     *
+     * @return Array of Great Marsh Pokemon
+     */
+    std::array<u16, 14> getGreatMarshPokemon(const Profile8 *profile);
 
     /**
      * @brief Gets static encounters from the \p type
@@ -82,6 +93,13 @@ namespace Encounters8
      * @return Pointer to static encounter
      */
     const StaticTemplate8 *getStaticEncounter(int type, int index);
+
+    /**
+     * @brief Returns the changing pokemon of the Trophy Garden
+     *
+     * @return Array of Trophy Garden Pokemon
+     */
+    std::array<u16, 16> getTrophyGardenPokemon();
 
     /**
      * @brief Gets underground encounters filtered by the \p flag

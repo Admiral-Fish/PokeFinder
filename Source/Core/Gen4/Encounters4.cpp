@@ -160,6 +160,15 @@ constexpr std::array<StaticTemplate4, 9> roamers = {
     StaticTemplate4(Game::SoulSilver, 381, 35, Method::Method1) // Latios
 };
 
+constexpr std::array<u16, 15> greatMarshDP = { 55, 183, 194, 195, 298, 315, 397, 399, 400, 451, 453, 455 };
+constexpr std::array<u16, 15> greatMarshDPDex = { 46, 55, 102, 115, 193, 285, 315, 316, 397, 451, 452, 453, 454, 455 };
+
+constexpr std::array<u16, 15> greatMarshPt = { 114, 193, 194, 195, 357, 451, 453, 455 };
+constexpr std::array<u16, 15> greatMarshPtDex = { 46, 102, 114, 115, 193, 195, 285, 316, 352, 357, 451, 452, 453, 454, 455 };
+
+constexpr std::array<u16, 16> trophyGardenDP = { 35, 39, 52, 113, 133, 137, 173, 174, 183, 298, 311, 312, 351, 438, 439, 440 };
+constexpr std::array<u16, 16> trophyGardenPt = { 35, 39, 52, 113, 132, 133, 173, 174, 183, 298, 311, 312, 351, 438, 439, 440 };
+
 /**
  * @brief Modifies encounter slots based on the radio station
  *
@@ -681,6 +690,24 @@ static void modifyDual(std::vector<Slot> &pokemon, const u8 *data, const Persona
 }
 
 /**
+ * @brief Modifies encounter slots based on the Great Marsh
+ *
+ * @param pokemon Vector of original encounters
+ * @param replacement Replacement pokemon
+ * @param info Personal info array pointer
+ * @param location Encounter location
+ */
+static void modifyGreatMarsh(std::vector<Slot> &pokemon, const std::array<u16, 2> &replacement, const PersonalInfo *info, u8 location)
+{
+    if (location >= 23 && location <= 28 && replacement[0] != 0)
+    {
+        u16 specie = replacement[0];
+        pokemon[6].setSpecie(specie, &info[specie]);
+        pokemon[7].setSpecie(specie, &info[specie]);
+    }
+}
+
+/**
  * @brief Modifies encounter slots based on the pokeradar
  *
  * @param pokemon Vector of original encounters
@@ -752,6 +779,25 @@ static void modifyTime(std::vector<Slot> &pokemon, const u8 *data, const Persona
 }
 
 /**
+ * @brief Modifies encounter slots based on the Trophy Garden
+ *
+ * @param pokemon Vector of original encounters
+ * @param replacement Replacement pokemon
+ * @param info Personal info array pointer
+ * @param location Encounter location
+ */
+static void modifyTrophyGarden(std::vector<Slot> &pokemon, const std::array<u16, 2> &replacement, const PersonalInfo *info, u8 location)
+{
+    if (location == 117 && replacement[0] != 0 && replacement[1] != 0)
+    {
+        u16 specie1 = replacement[0];
+        u16 specie2 = replacement[1];
+        pokemon[6].setSpecie(specie1, &info[specie1]);
+        pokemon[7].setSpecie(specie2, &info[specie2]);
+    }
+}
+
+/**
  * @brief Gets the encounter area for DPPt
  *
  * @param version Game version
@@ -760,12 +806,13 @@ static void modifyTime(std::vector<Slot> &pokemon, const u8 *data, const Persona
  * @param radar Whether pokeradar is active
  * @param swarm Whether swarm is active
  * @param time Time modifier
+ * @param replacement Replacement slots used by Great Marsh and Trophy Garden
  * @param info Personal info array pointer
  *
  * @return Vector of encounter areas
  */
 static std::vector<EncounterArea4> getDPPt(Game version, Encounter encounter, Game dual, bool radar, bool swarm, int time,
-                                           const PersonalInfo *info)
+                                           const std::array<u16, 2> &replacement, const PersonalInfo *info)
 {
     const u8 *compressedData;
     size_t compressedLength;
@@ -817,6 +864,8 @@ static std::vector<EncounterArea4> getDPPt(Game version, Encounter encounter, Ga
                 modifySwarmDPPt(slots, entry, info, swarm);
                 modifyTime(slots, entry, info, time);
                 modifyRadar(slots, entry, info, radar);
+                modifyGreatMarsh(slots, replacement, info, location);
+                modifyTrophyGarden(slots, replacement, info, location);
                 modifyDual(slots, entry, info, dual);
                 encounters.emplace_back(location, grass, encounter, slots);
             }
@@ -892,15 +941,28 @@ static std::vector<EncounterArea4> getDPPt(Game version, Encounter encounter, Ga
 namespace Encounters4
 {
     std::vector<EncounterArea4> getEncounters(Encounter encounter, int time, Game dual, bool radar, int radio, bool swarm,
-                                              const std::array<u8, 5> &blocks, const Profile4 *profile)
+                                              const std::array<u16, 2> &replacement, const std::array<u8, 5> &blocks,
+                                              const Profile4 *profile)
     {
         Game version = profile->getVersion();
         const auto *info = PersonalLoader::getPersonal(version);
         if ((version & Game::DPPt) != Game::None)
         {
-            return getDPPt(version, encounter, dual, radar, swarm, time, info);
+            return getDPPt(version, encounter, dual, radar, swarm, time, replacement, info);
         }
         return getHGSS(version, encounter, radio, swarm, profile->getNationalDex(), time, blocks, info);
+    }
+
+    std::array<u16, 15> getGreatMarshPokemon(const Profile4 *profile)
+    {
+        if ((profile->getVersion() & Game::DP) != Game::None)
+        {
+            return profile->getNationalDex() ? greatMarshDPDex : greatMarshDP;
+        }
+        else
+        {
+            return profile->getNationalDex() ? greatMarshPtDex : greatMarshPt;
+        }
     }
 
     const StaticTemplate4 *getStaticEncounters(int type, size_t *size)
@@ -975,5 +1037,17 @@ namespace Encounters4
     {
         const StaticTemplate4 *templates = getStaticEncounters(type);
         return &templates[index];
+    }
+
+    std::array<u16, 16> getTrophyGardenPokemon(const Profile4 *profile)
+    {
+        if ((profile->getVersion() & Game::DP) != Game::None)
+        {
+            return trophyGardenDP;
+        }
+        else
+        {
+            return trophyGardenPt;
+        }
     }
 }
