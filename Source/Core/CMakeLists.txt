@@ -72,6 +72,8 @@ add_library(PokeFinderCore STATIC
     Gen3/ShadowTemplate.hpp
     Gen3/States/EggState3.hpp
     Gen3/States/WildState3.hpp
+    Gen4/ChainedSIDCalc.cpp
+    Gen4/ChainedSIDCalc.hpp
     Gen4/EncounterArea4.cpp
     Gen4/EncounterArea4.hpp
     Gen4/Encounters4.cpp

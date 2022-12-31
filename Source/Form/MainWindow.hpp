@@ -190,8 +190,12 @@ private slots:
      */
     void openSeedToTime4() const;
 
+    /**
+     * @brief Opens the SID From Chained Shiny window
+     */
+    void openSIDFromChainedShiny();
+
     // void openEgg4();
-    // void openSIDFromChainedShiny();
 
     // Gen 5
     /**
