@@ -280,7 +280,7 @@ std::vector<EggState3> EggGenerator3::generateEmeraldHeld() const
 
         for (u16 redraw = minRedraw; redraw <= maxRedraw; redraw++)
         {
-            PokeRNG go(rng.getSeed());
+            PokeRNG go(rng);
 
             u16 offset = calibration + 3 * redraw;
             bool flag = everstone ? (go.nextUShort() >> 15) == 0 : false;
@@ -347,7 +347,7 @@ std::vector<EggState3> EggGenerator3::generateEmeraldPickup(const std::vector<Eg
     std::vector<EggState3> states;
     for (u32 cnt = 0; cnt <= maxAdvancesPickup; cnt++, rng.next())
     {
-        PokeRNG go(rng.getSeed());
+        PokeRNG go(rng);
 
         go.advance(this->iv1);
         u16 iv1 = go.nextUShort();
@@ -415,7 +415,7 @@ std::vector<EggState3> EggGenerator3::generateRSFRLGHeld(u32 seed) const
     std::vector<EggState3> states;
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rng.next())
     {
-        PokeRNG go(rng.getSeed());
+        PokeRNG go(rng);
         if (((go.nextUShort() * 100) / 0xffff) < compatability)
         {
             u16 pid = go.nextUShort(0xfffe) + 1;
@@ -454,7 +454,7 @@ std::vector<EggState3> EggGenerator3::generateRSFRLGPickup(u32 seed, const std::
     std::vector<EggState3> states;
     for (u32 cnt = 0; cnt <= maxAdvancesPickup; cnt++, rng.next())
     {
-        PokeRNG go(rng.getSeed());
+        PokeRNG go(rng);
 
         u32 high = go.nextUShort() << 16;
 

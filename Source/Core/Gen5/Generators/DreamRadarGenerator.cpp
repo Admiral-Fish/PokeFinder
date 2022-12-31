@@ -77,7 +77,7 @@ std::vector<DreamRadarState> DreamRadarGenerator::generate(u64 seed) const
     std::vector<DreamRadarState> states;
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rngList.advanceStates(2), rng.next())
     {
-        BWRNG go(rng.getSeed(), pidAdvances);
+        BWRNG go(rng, pidAdvances);
 
         std::array<u8, 6> ivs;
         std::generate(ivs.begin(), ivs.end(), [&rngList] { return rngList.next(); });

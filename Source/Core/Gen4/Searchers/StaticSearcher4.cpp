@@ -311,7 +311,7 @@ std::vector<SearcherState4> StaticSearcher4::searchMethodJ(u8 hp, u8 atk, u8 def
                     }
                     else if ((nextRNG2 >> 15) == 1 && (nextRNG / 0xa3e) == nature)
                     {
-                        seed = PokeRNGR(rng.getSeed()).next();
+                        seed = PokeRNGR(rng).next();
                         valid = true;
                     }
                 }
@@ -403,7 +403,7 @@ std::vector<SearcherState4> StaticSearcher4::searchMethodK(u8 hp, u8 atk, u8 def
                     }
                     else if ((nextRNG2 % 2) == 1 && (nextRNG % 25) == nature)
                     {
-                        seed = PokeRNGR(rng.getSeed()).next();
+                        seed = PokeRNGR(rng).next();
                         valid = true;
                     }
                 }

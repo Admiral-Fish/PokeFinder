@@ -96,7 +96,7 @@ std::vector<GeneratorState4> StaticGenerator4::generateMethod1(u32 seed, const S
     PokeRNG rng(seed, initialAdvances + delay);
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
     {
-        PokeRNG go(rng.getSeed());
+        PokeRNG go(rng);
 
         u32 pid;
         if (staticTemplate->getShiny() == Shiny::Always)
@@ -161,7 +161,7 @@ std::vector<GeneratorState4> StaticGenerator4::generateMethodJ(u32 seed, const S
     PokeRNG rng(seed, initialAdvances + delay);
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
     {
-        PokeRNG go(rng.getSeed());
+        PokeRNG go(rng);
 
         if (lead == Lead::CuteCharmM || lead == Lead::CuteCharmF)
         {
@@ -239,7 +239,7 @@ std::vector<GeneratorState4> StaticGenerator4::generateMethodK(u32 seed, const S
     PokeRNG rng(seed, initialAdvances + delay);
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
     {
-        PokeRNG go(rng.getSeed());
+        PokeRNG go(rng);
 
         u8 nature;
         if (lead == Lead::CuteCharmM || lead == Lead::CuteCharmF)

@@ -57,6 +57,18 @@ public:
     /**
      * @brief Construct a new LCRNG object
      *
+     * @tparam add1 LCRNG addition value
+     * @tparam mult1 LCRNG multiplication value
+     * @param rng LCRNG object to copy
+     */
+    template <u32 add1, u32 mult1>
+    LCRNG(const LCRNG<add1, mult1> &rng) : seed(rng.getSeed())
+    {
+    }
+
+    /**
+     * @brief Construct a new LCRNG object
+     *
      * @param seed Starting PRNG value
      * @param advances Number of initial advances
      */

@@ -307,7 +307,7 @@ std::vector<WildSearcherState4> WildSearcher4::searchMethodJ(u8 hp, u8 atk, u8 d
 
             do
             {
-                PokeRNGR test(rng.getSeed());
+                PokeRNGR test(rng);
 
                 u8 encounterSlot;
                 u16 levelRand = 0;
@@ -544,7 +544,7 @@ std::vector<WildSearcherState4> WildSearcher4::searchMethodK(u8 hp, u8 atk, u8 d
 
             do
             {
-                PokeRNGR test(rng.getSeed());
+                PokeRNGR test(rng);
 
                 u8 encounterSlot;
                 u16 levelRand = 0;
@@ -766,7 +766,7 @@ std::vector<WildSearcherState4> WildSearcher4::searchPokeRadar(u8 hp, u8 atk, u8
 
             do
             {
-                PokeRNGR test(rng.getSeed());
+                PokeRNGR test(rng);
 
                 bool valid = false;
                 u32 seed;
@@ -876,7 +876,7 @@ std::vector<WildSearcherState4> WildSearcher4::searchPokeRadarShiny(u8 hp, u8 at
             u8 gender = (pid & 0xff) < info->getGender();
             do
             {
-                PokeRNGR test(rng.getSeed());
+                PokeRNGR test(rng);
 
                 bool valid = false;
                 if (lead == Lead::Synchronize)

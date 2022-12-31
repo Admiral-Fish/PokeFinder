@@ -102,7 +102,7 @@ std::vector<GeneratorState> GameCubeGenerator::generateChannel(u32 seed, const S
     XDRNG rng(seed, initialAdvances + delay);
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rng.next())
     {
-        XDRNG go(rng.getSeed());
+        XDRNG go(rng);
 
         // Advance through menu pattern
         for (u8 mask = 0; (mask & 14) != 14;)
@@ -165,7 +165,7 @@ std::vector<GeneratorState> GameCubeGenerator::generateColoShadow(u32 seed, cons
     XDRNG rng(seed, initialAdvances + delay);
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rng.next())
     {
-        XDRNG go(rng.getSeed());
+        XDRNG go(rng);
 
         // Trainer TID/SID
         u16 trainerTSV = go.nextUShort() ^ go.nextUShort();
@@ -252,7 +252,7 @@ std::vector<GeneratorState> GameCubeGenerator::generateGalesShadow(u32 seed, con
     XDRNG rng(seed, initialAdvances + delay);
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rng.next())
     {
-        XDRNG go(rng.getSeed());
+        XDRNG go(rng);
 
         // Enemy TID/SID
         go.advance(2);
@@ -355,7 +355,7 @@ std::vector<GeneratorState> GameCubeGenerator::generateNonLock(u32 seed, const S
     XDRNG rng(seed, initialAdvances + delay);
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rng.next())
     {
-        XDRNG go(rng.getSeed());
+        XDRNG go(rng);
 
         u16 iv1;
         u16 iv2;

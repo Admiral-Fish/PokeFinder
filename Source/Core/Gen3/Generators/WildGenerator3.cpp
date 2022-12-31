@@ -92,7 +92,7 @@ std::vector<WildGeneratorState> WildGenerator3::generate(u32 seed, const Encount
     PokeRNG rng(seed, initialAdvances + delay);
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rng.next())
     {
-        PokeRNG go(rng.getSeed());
+        PokeRNG go(rng);
 
         // RSE uses the main rng to check for rock smash encounters
         if (rse && encounter == Encounter::RockSmash && go.nextUShort(2880) >= rate)

@@ -120,7 +120,7 @@ std::vector<EggState5> EggGenerator5::generateBW(u64 seed) const
     std::vector<EggState5> states;
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
     {
-        BWRNG go(rng.getSeed());
+        BWRNG go(rng);
 
         // Nidoran
         // Volbeat / Illumise
@@ -239,7 +239,7 @@ std::vector<EggState5> EggGenerator5::generateBW2(u64 seed) const
         BWRNG rng(seed, advances + initialAdvances + delay);
         for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rng.next())
         {
-            BWRNG go(rng.getSeed());
+            BWRNG go(rng);
 
             u32 pid = go.nextUInt();
             if (((pid >> 16) & 1) != state.getAbility())

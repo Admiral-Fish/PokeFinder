@@ -125,7 +125,7 @@ std::vector<WildGeneratorState4> WildGenerator4::generateMethodJ(u32 seed, const
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
     {
         u32 occidentary = initialAdvances + cnt;
-        PokeRNG go(rng.getSeed());
+        PokeRNG go(rng);
 
         // Fishing nibble check
         if ((encounter == Encounter::OldRod || encounter == Encounter::GoodRod || encounter == Encounter::SuperRod)
@@ -260,7 +260,7 @@ std::vector<WildGeneratorState4> WildGenerator4::generateMethodK(u32 seed, const
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
     {
         u32 occidentary = initialAdvances + cnt;
-        PokeRNG go(rng.getSeed());
+        PokeRNG go(rng);
 
         // Rock smash/fishing nibble check
         if ((encounter == Encounter::RockSmash || encounter == Encounter::OldRod || encounter == Encounter::GoodRod
@@ -475,7 +475,7 @@ std::vector<WildGeneratorState4> WildGenerator4::generatePokeRadar(u32 seed, con
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
     {
         u32 occidentary = initialAdvances + cnt;
-        PokeRNG go(rng.getSeed());
+        PokeRNG go(rng);
 
         u8 nature;
         u32 pid;
@@ -569,7 +569,7 @@ std::vector<WildGeneratorState4> WildGenerator4::generatePokeRadarShiny(u32 seed
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
     {
         u32 occidentary = initialAdvances + cnt;
-        PokeRNG go(rng.getSeed());
+        PokeRNG go(rng);
 
         u8 nature;
         u32 pid;

@@ -72,21 +72,20 @@ static bool isShiny(u16 high, u16 low, u16 tsv)
 /**
  * @brief Calculates whether the \p seed passes the Channel menu pattern
  *
- * @param seed PRNG state
+ * @param rng PRNG state
  *
  * @return true Seed passes the menu pattern
  * @return false Seed does not pass the menu pattern
  */
-static bool validateMenu(u32 seed)
+static bool validateMenu(XDRNGR rng)
 {
-    u8 target = seed >> 30;
+    u8 target = rng.getSeed() >> 30;
 
     if (target == 0)
     {
         return false;
     }
 
-    XDRNGR rng(seed);
     u8 mask = 1 << target;
     while ((mask & 14) != 14)
     {
@@ -121,7 +120,7 @@ static bool validateJirachi(u32 seed)
     rng.advance(3);
     if (num1 <= 0x4000) // 6 advances
     {
-        if (validateMenu(rng.getSeed()))
+        if (validateMenu(rng))
         {
             return true;
         }
@@ -130,7 +129,7 @@ static bool validateJirachi(u32 seed)
     rng.advance(1);
     if (num2 > 0x4000 && num1 <= 0x547a) // 7 advances
     {
-        if (validateMenu(rng.getSeed()))
+        if (validateMenu(rng))
         {
             return true;
         }
@@ -139,7 +138,7 @@ static bool validateJirachi(u32 seed)
     rng.advance(1);
     if (num3 > 0x4000 && num2 > 0x547a) // 8 advances
     {
-        if (validateMenu(rng.getSeed()))
+        if (validateMenu(rng))
         {
             return true;
         }
@@ -489,7 +488,7 @@ std::vector<SearcherState> GameCubeSearcher::searchNonLock(u8 hp, u8 atk, u8 def
         // Gales eevee
         if (staticTemplate->getSpecie() == 133)
         {
-            XDRNGR temp(rng.getSeed());
+            XDRNGR temp(rng);
             temp.advance(2);
             tsv = temp.nextUShort() ^ temp.nextUShort();
             seed = temp.next();
@@ -498,7 +497,7 @@ std::vector<SearcherState> GameCubeSearcher::searchNonLock(u8 hp, u8 atk, u8 def
         // Colo Umbreon
         if (staticTemplate->getSpecie() == 197)
         {
-            XDRNGR temp(rng.getSeed());
+            XDRNGR temp(rng);
             temp.advance(2);
             tsv = temp.nextUShort() ^ temp.nextUShort();
             seed = temp.next();
@@ -518,7 +517,7 @@ std::vector<SearcherState> GameCubeSearcher::searchNonLock(u8 hp, u8 atk, u8 def
         // Colo Espeon
         else if (staticTemplate->getSpecie() == 196)
         {
-            XDRNGR temp(rng.getSeed());
+            XDRNGR temp(rng);
             temp.advance(2);
 
             u32 originalUmbreonPID = temp.nextUShort();
@@ -536,7 +535,7 @@ std::vector<SearcherState> GameCubeSearcher::searchNonLock(u8 hp, u8 atk, u8 def
                 temp.advance(1);
             }
 
-            XDRNG test(temp.getSeed());
+            XDRNG test(temp);
             temp.advance(2);
             tsv = temp.nextUShort() ^ temp.nextUShort();
             seed = temp.next();

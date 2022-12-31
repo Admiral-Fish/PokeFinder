@@ -187,7 +187,7 @@ bool ColoSeedSearcher::searchSeed(XDRNG &rng) const
 bool ColoSeedSearcher::searchSeedSkip(XDRNG &rng) const
 {
     u8 enemyLead;
-    XDRNGR reverse(rng.getSeed());
+    XDRNGR reverse(rng);
     do
     {
         enemyLead = reverse.nextUShort(8);

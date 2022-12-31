@@ -179,7 +179,7 @@ std::vector<WildSearcherState3> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 
 
         do
         {
-            PokeRNGR test(rng.getSeed());
+            PokeRNGR test(rng);
 
             u8 encounterSlot;
             u8 level;

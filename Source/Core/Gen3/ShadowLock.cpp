@@ -74,7 +74,7 @@ namespace ShadowLock
             }
         }
 
-        XDRNG forward(backward.getSeed());
+        XDRNG forward(backward);
         forward.advance(1);
 
         for (index = 1; index < shadowTemplate->getCount(); index++)
@@ -122,7 +122,7 @@ namespace ShadowLock
             } while (!lock.compare(pid));
         }
 
-        XDRNG forward(backward.getSeed());
+        XDRNG forward(backward);
         forward.advance(1);
 
         for (index = 1; index < shadowTemplate->getCount(); index++)
@@ -167,7 +167,7 @@ namespace ShadowLock
             }
         }
 
-        XDRNG forward(backward.getSeed());
+        XDRNG forward(backward);
         forward.advance(1);
 
         for (index = 1; index < shadowTemplate->getCount(); index++)
@@ -215,7 +215,7 @@ namespace ShadowLock
             }
         }
 
-        XDRNG forward(backward.getSeed());
+        XDRNG forward(backward);
         forward.advance(1);
 
         for (index = 1; index < shadowTemplate->getCount(); index++)
@@ -241,7 +241,7 @@ namespace ShadowLock
         backward.advance(3);
 
         // Shiny lock test for first shadow
-        XDRNGR test(backward.getSeed());
+        XDRNGR test(backward);
         u16 shadowPSV = test.nextUShort() ^ test.nextUShort();
         while ((shadowPSV ^ tsv) < 8)
         {
@@ -274,7 +274,7 @@ namespace ShadowLock
             }
         }
 
-        XDRNG forward(backward.getSeed());
+        XDRNG forward(backward);
         forward.advance(1);
 
         for (index = 1; index < shadowTemplate->getCount(); index++)
@@ -311,7 +311,7 @@ namespace ShadowLock
         backward.advance(3);
 
         // Shiny lock test for first shadow
-        XDRNGR test(backward.getSeed());
+        XDRNGR test(backward);
         u16 shadowPSV = test.nextUShort() ^ test.nextUShort();
         while ((shadowPSV ^ tsv) < 8)
         {

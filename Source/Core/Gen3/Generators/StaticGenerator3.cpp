@@ -75,7 +75,7 @@ std::vector<GeneratorState> StaticGenerator3::generate(u32 seed, const StaticTem
     PokeRNG rng(seed, initialAdvances + delay);
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rng.next())
     {
-        PokeRNG go(rng.getSeed());
+        PokeRNG go(rng);
 
         u32 pid = go.nextUShort();
         pid |= go.nextUShort() << 16;

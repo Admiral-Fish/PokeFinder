@@ -83,7 +83,7 @@ std::vector<State5> EventGenerator5::generate(u64 seed) const
     std::vector<State5> states;
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
     {
-        BWRNG go(rng.getSeed(), wondercardAdvances);
+        BWRNG go(rng, wondercardAdvances);
 
         std::array<u8, 6> ivs;
         for (u8 i = 0; i < 6; i++)

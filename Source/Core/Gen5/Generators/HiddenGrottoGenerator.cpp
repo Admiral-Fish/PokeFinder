@@ -56,7 +56,7 @@ std::vector<HiddenGrottoState> HiddenGrottoGenerator::generate(u64 seed) const
     std::vector<HiddenGrottoState> states;
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
     {
-        BWRNG go(rng.getSeed());
+        BWRNG go(rng);
         u16 prng = rng.nextUInt(0x1fff);
         if (go.nextUInt(100) < powerLevel)
         {

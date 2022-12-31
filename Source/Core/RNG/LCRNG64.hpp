@@ -53,10 +53,30 @@ public:
     /**
      * @brief Construct a new LCRNG64 object
      *
+     * @param rng LCRNG object to copy
+     */
+    LCRNG64(const LCRNG64 &rng) : seed(rng.seed)
+    {
+    }
+
+    /**
+     * @brief Construct a new LCRNG64 object
+     *
      * @param seed Starting PRNG state
      * @param advances Initial number of advances
      */
     LCRNG64(u64 seed, u32 advances) : seed(seed)
+    {
+        jump(advances);
+    }
+
+    /**
+     * @brief Construct a new LCRNG64 object
+     *
+     * @param rng LCRNG object to copy
+     * @param advances Initial number of advances
+     */
+    LCRNG64(const LCRNG64 &rng, u32 advances) : seed(rng.seed)
     {
         jump(advances);
     }
