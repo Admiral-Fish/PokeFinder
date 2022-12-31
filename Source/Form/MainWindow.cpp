@@ -26,6 +26,7 @@
 #include <Form/Gen3/Profile/ProfileManager3.hpp>
 #include <Form/Gen3/Static3.hpp>
 #include <Form/Gen3/Tools/GameCubeSeedFinder.hpp>
+#include <Form/Gen3/Tools/SpindaPainter.hpp>
 #include <Form/Gen3/Wild3.hpp>
 #include <Form/Gen4/IDs4.hpp>
 #include <Form/Gen4/Profile/ProfileManager4.hpp>
@@ -66,7 +67,6 @@
 //#include <Forms/Gen3/Tools/PIDIV.hpp>
 //#include <Forms/Gen3/Tools/PokeSpot.hpp>
 //#include <Forms/Gen3/Tools/SeedTime3.hpp>
-//#include <Forms/Gen3/Tools/SpindaPainter.hpp>
 //#include <Forms/Gen4/Eggs4.hpp>
 //#include <Forms/Gen4/Tools/ChainedSID.hpp>
 //#include <Forms/Gen5/Static5.hpp>
@@ -88,7 +88,7 @@ MainWindow::MainWindow(bool profile, QWidget *parent) : QMainWindow(parent), ui(
     // connect(ui->actionPIDtoIV, &QAction::triggered, this, &MainWindow::openPIDtoIV);
     // connect(ui->actionPokeSpot, &QAction::triggered, this, &MainWindow::openPokeSpot);
     // connect(ui->actionSeedtoTime3, &QAction::triggered, this, &MainWindow::openSeedtoTime3);
-    // connect(ui->actionSpindaPainter, &QAction::triggered, this, &MainWindow::openSpindaPainter);
+    connect(ui->actionSpindaPainter, &QAction::triggered, this, &MainWindow::openSpindaPainter);
 
     // connect(ui->pushButtonEgg4, &QPushButton::clicked, this, &MainWindow::openEgg4);
     connect(ui->pushButtonIDs4, &QPushButton::clicked, this, &MainWindow::openIDs4);
@@ -257,6 +257,12 @@ void MainWindow::openProfileManager3() const
     manager->show();
 }
 
+void MainWindow::openSpindaPainter()
+{
+    auto *spinda = new SpindaPainter();
+    spinda->show();
+}
+
 void MainWindow::openStatic3()
 {
     if (!static3)
@@ -299,12 +305,6 @@ void MainWindow::openSeedtoTime3()
 {
     auto *seedToTime = new SeedTime3();
     seedToTime->show();
-}
-
-void MainWindow::openSpindaPainter()
-{
-    auto *spinda = new SpindaPainter();
-    spinda->show();
 }*/
 
 void MainWindow::openIDs4()

@@ -36,14 +36,14 @@ class GameCubeSeedFinder : public QWidget
     Q_OBJECT
 public:
     /**
-     * @brief Construct a new Static3 object
+     * @brief Construct a new GameCubeSeedFinder object
      *
      * @param parent Parent widget, which takes memory ownership
      */
     GameCubeSeedFinder(QWidget *parent = nullptr);
 
     /**
-     * @brief Destroy the Static3 object
+     * @brief Destroy the GameCubeSeedFinder object
      */
     ~GameCubeSeedFinder() override;
 

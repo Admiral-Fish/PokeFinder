@@ -145,6 +145,11 @@ private slots:
     void openProfileManager3() const;
 
     /**
+     * @brief Opens the Spinda Painter window
+     */
+    void openSpindaPainter();
+
+    /**
      * @brief Opens the Gen 3 Static window
      */
     void openStatic3();
@@ -158,7 +163,6 @@ private slots:
     // void openPIDtoIV();
     // void openPokeSpot();
     // void openSeedtoTime3();
-    // void openSpindaPainter();
 
     // Gen 4
     /**

@@ -38,7 +38,7 @@ public:
      * @param maxX Maximum X position
      * @param maxY Maximum X position
      */
-    GraphicsPixmapItem(const QPixmap &pixmap, u16 minX = 0, u16 minY = 0, u16 maxX = 0, u16 maxY = 0);
+    GraphicsPixmapItem(const QPixmap &pixmap, u16 minX, u16 minY, u16 maxX, u16 maxY);
 
     /**
      * @brief Handles bounding the item with the min/max X/Y position when it is moved
