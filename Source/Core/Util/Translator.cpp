@@ -50,6 +50,7 @@ enum class Translation
     DPPt,
     E,
     FRLG,
+    Gales,
     Game,
     HGSS,
     Item,
@@ -243,6 +244,10 @@ namespace Translator
         else if ((game & Game::RS) != Game::None)
         {
             translation = Translation::RS;
+        }
+        else if ((game & Game::Gales) != Game::None)
+        {
+            translation = Translation::Gales;
         }
         else if ((game & Game::DPPt) != Game::None)
         {

@@ -47,6 +47,8 @@ add_library(PokeFinderCore STATIC
     Gen3/Generators/GameCubeGenerator.hpp
     Gen3/Generators/IDGenerator3.cpp
     Gen3/Generators/IDGenerator3.hpp
+    Gen3/Generators/PokeSpotGenerator.cpp
+    Gen3/Generators/PokeSpotGenerator.hpp
     Gen3/Generators/StaticGenerator3.cpp
     Gen3/Generators/StaticGenerator3.hpp
     Gen3/Generators/WildGenerator3.cpp
@@ -71,6 +73,7 @@ add_library(PokeFinderCore STATIC
     Gen3/ShadowLock.hpp
     Gen3/ShadowTemplate.hpp
     Gen3/States/EggState3.hpp
+    Gen3/States/PokeSpotState.hpp
     Gen3/States/WildState3.hpp
     Gen4/ChainedSIDCalc.cpp
     Gen4/ChainedSIDCalc.hpp

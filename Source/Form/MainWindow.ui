@@ -235,8 +235,6 @@
      <string>Gen 3 Tools</string>
     </property>
     <addaction name="actionGameCubeSeedFinder"/>
-    <addaction name="actionIVtoPID3"/>
-    <addaction name="actionPIDtoIV"/>
     <addaction name="actionPokeSpot"/>
     <addaction name="actionProfileManager3"/>
     <addaction name="actionSpindaPainter"/>
@@ -245,7 +243,6 @@
     <property name="title">
      <string>Gen 4 Tools</string>
     </property>
-    <addaction name="actionIVtoPID4"/>
     <addaction name="actionProfileManager4"/>
     <addaction name="actionSeedtoTime4"/>
     <addaction name="actionSIDfromChainedShiny"/>
@@ -288,7 +285,7 @@
   </action>
   <action name="actionPokeSpot">
    <property name="text">
-    <string>PokeSpot</string>
+    <string>Poke Spot</string>
    </property>
   </action>
   <action name="actionIVtoPID3">

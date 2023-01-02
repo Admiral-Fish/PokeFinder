@@ -23,6 +23,7 @@
 #include <Core/Global.hpp>
 #include <vector>
 
+class EncounterArea;
 class EncounterArea3;
 class ShadowTemplate;
 class StaticTemplate;
@@ -40,6 +41,13 @@ namespace Encounters3
      * @return Vector of wild encounters
      */
     std::vector<EncounterArea3> getEncounters(Encounter encounter, Game version);
+
+    /**
+     * @brief Gets wild encounters for Poke Spots
+     *
+     * @return Vector of Poke Spot encounters
+     */
+    std::vector<EncounterArea> getPokeSpotEncounters();
 
     /**
      * @brief Gets shadow teams

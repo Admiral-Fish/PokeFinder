@@ -65,6 +65,7 @@ set(PROJECT_UI
     Gen3/Profile/ProfileManager3.ui
     Gen3/Static3.ui
     Gen3/Tools/GameCubeSeedFinder.ui
+    Gen3/Tools/PokeSpot.ui
     Gen3/Tools/SpindaPainter.ui
     Gen3/Wild3.ui
     Gen4/IDs4.ui
@@ -142,6 +143,8 @@ set(PROJECT_SOURCES
     Gen3/Static3.hpp
     Gen3/Tools/GameCubeSeedFinder.cpp
     Gen3/Tools/GameCubeSeedFinder.hpp
+    Gen3/Tools/PokeSpot.cpp
+    Gen3/Tools/PokeSpot.hpp
     Gen3/Tools/SpindaPainter.cpp
     Gen3/Tools/SpindaPainter.hpp
     Gen3/Wild3.cpp

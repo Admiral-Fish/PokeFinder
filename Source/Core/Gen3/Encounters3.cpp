@@ -901,6 +901,35 @@ namespace Encounters3
         return encounters;
     }
 
+    std::vector<EncounterArea> getPokeSpotEncounters()
+    {
+        u32 length;
+        u8 *data = Utilities::decompress(xd.data(), xd.size(), length);
+
+        const PersonalInfo *info = PersonalLoader::getPersonal(Game::Gen3);
+
+        std::vector<EncounterArea> encounters;
+        for (size_t offset = 0; offset < length; offset += 13)
+        {
+            const u8 *entry = data + offset;
+
+            u8 location = entry[0];
+
+            std::vector<Slot> slots;
+            slots.reserve(3);
+            for (size_t i = 0; i < 3; i++)
+            {
+                u8 min = entry[1 + (i * 4)];
+                u8 max = entry[2 + (i * 4)];
+                u16 specie = *reinterpret_cast<const u16 *>(entry + 3 + (i * 4));
+                slots.emplace_back(specie, min, max, &info[specie]);
+            }
+            encounters.emplace_back(location, 0, Encounter::Grass, slots);
+        }
+        delete[] data;
+        return encounters;
+    }
+
     const ShadowTemplate *getShadowTeams(size_t *size)
     {
         if (size)

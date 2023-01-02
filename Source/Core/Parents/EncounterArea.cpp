@@ -33,7 +33,7 @@ EncounterArea::EncounterArea(u8 location, u8 rate, Encounter encounter, const st
 
 u8 EncounterArea::calculateLevel(u8 index, u16 prng) const
 {
-    u16 range = pokemon[index].getMaxLevel() - pokemon[index].getMinLevel() + 1;
+    u8 range = pokemon[index].getMaxLevel() - pokemon[index].getMinLevel() + 1;
     return (prng % range) + pokemon[index].getMinLevel();
 }
 
@@ -71,7 +71,7 @@ std::vector<Slot> EncounterArea::getPokemon() const
     return pokemon;
 }
 
-Slot EncounterArea::getPokemon(int index) const
+const Slot &EncounterArea::getPokemon(int index) const
 {
     return pokemon[index];
 }

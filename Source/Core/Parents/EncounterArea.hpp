@@ -102,7 +102,7 @@ public:
      *
      * @return Pokemon
      */
-    Slot getPokemon(int index) const;
+    const Slot &getPokemon(int index) const;
 
     /**
      * @brief Return the encounter rate of the area

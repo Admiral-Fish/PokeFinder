@@ -76,14 +76,14 @@ private:
     u8 minRedraw;
 
     /**
-     * @brief Generates states
+     * @brief Generates states for when the daycare man has the egg
      *
      * @return Vector of computed held states
      */
     std::vector<EggState3> generateEmeraldHeld() const;
 
     /**
-     * @brief Generates states
+     * @brief Generates states for picking up the egg from the daycare man
      *
      * @param held Vector of held states
      *
@@ -92,7 +92,7 @@ private:
     std::vector<EggState3> generateEmeraldPickup(const std::vector<EggState3> &held) const;
 
     /**
-     * @brief Generates states
+     * @brief Generates states for when the daycare man has the egg
      *
      * @param seed Starting PRNG state
      *
@@ -101,7 +101,7 @@ private:
     std::vector<EggState3> generateRSFRLGHeld(u32 seed) const;
 
     /**
-     * @brief Generates states
+     * @brief Generates states for picking up the egg from the daycare man
      *
      * @param seed Starting PRNG state
      * @param held Vector of held states

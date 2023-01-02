@@ -26,6 +26,7 @@
 #include <Form/Gen3/Profile/ProfileManager3.hpp>
 #include <Form/Gen3/Static3.hpp>
 #include <Form/Gen3/Tools/GameCubeSeedFinder.hpp>
+#include <Form/Gen3/Tools/PokeSpot.hpp>
 #include <Form/Gen3/Tools/SpindaPainter.hpp>
 #include <Form/Gen3/Wild3.hpp>
 #include <Form/Gen4/IDs4.hpp>
@@ -65,12 +66,8 @@
 #include <QtNetwork>
 #include <version.h>
 
-//#include <Forms/Gen3/Tools/PIDIV.hpp>
-//#include <Forms/Gen3/Tools/PokeSpot.hpp>
-//#include <Forms/Gen3/Tools/SeedTime3.hpp>
 //#include <Forms/Gen4/Eggs4.hpp>
 //#include <Forms/Gen5/Static5.hpp>
-//#include <Forms/Util/IVtoPID.hpp>
 
 MainWindow::MainWindow(bool profile, QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow)
 {
@@ -84,10 +81,7 @@ MainWindow::MainWindow(bool profile, QWidget *parent) : QMainWindow(parent), ui(
     connect(ui->pushButtonWild3, &QPushButton::clicked, this, &MainWindow::openWild3);
     connect(ui->actionProfileManager3, &QAction::triggered, this, &MainWindow::openProfileManager3);
     connect(ui->actionGameCubeSeedFinder, &QAction::triggered, this, &MainWindow::openGameCubeSeedFinder);
-    // connect(ui->actionIVtoPID3, &QAction::triggered, this, &MainWindow::openIVtoPID);
-    // connect(ui->actionPIDtoIV, &QAction::triggered, this, &MainWindow::openPIDtoIV);
-    // connect(ui->actionPokeSpot, &QAction::triggered, this, &MainWindow::openPokeSpot);
-    // connect(ui->actionSeedtoTime3, &QAction::triggered, this, &MainWindow::openSeedtoTime3);
+    connect(ui->actionPokeSpot, &QAction::triggered, this, &MainWindow::openPokeSpot);
     connect(ui->actionSpindaPainter, &QAction::triggered, this, &MainWindow::openSpindaPainter);
 
     // connect(ui->pushButtonEgg4, &QPushButton::clicked, this, &MainWindow::openEgg4);
@@ -95,7 +89,6 @@ MainWindow::MainWindow(bool profile, QWidget *parent) : QMainWindow(parent), ui(
     connect(ui->pushButtonStatic4, &QPushButton::clicked, this, &MainWindow::openStatic4);
     connect(ui->pushButtonWild4, &QPushButton::clicked, this, &MainWindow::openWild4);
     connect(ui->actionProfileManager4, &QAction::triggered, this, &MainWindow::openProfileManager4);
-    // connect(ui->actionIVtoPID4, &QAction::triggered, this, &MainWindow::openIVtoPID);
     connect(ui->actionSeedtoTime4, &QAction::triggered, this, &MainWindow::openSeedToTime4);
     connect(ui->actionSIDfromChainedShiny, &QAction::triggered, this, &MainWindow::openSIDFromChainedShiny);
 
@@ -250,6 +243,12 @@ void MainWindow::openGameCubeSeedFinder()
     finder->show();
 }
 
+void MainWindow::openPokeSpot()
+{
+    auto *pokeSpot = new PokeSpot();
+    pokeSpot->show();
+}
+
 void MainWindow::openProfileManager3() const
 {
     auto *manager = new ProfileManager3();
@@ -282,30 +281,6 @@ void MainWindow::openWild3()
     }
     wild3->show();
 }
-
-/*void MainWindow::openIVtoPID()
-{
-    auto *ivToPID = new IVtoPID();
-    ivToPID->show();
-}
-
-void MainWindow::openPIDtoIV()
-{
-    auto *pidToIV = new PIDIV();
-    pidToIV->show();
-}
-
-void MainWindow::openPokeSpot()
-{
-    auto *pokeSpot = new PokeSpot();
-    pokeSpot->show();
-}
-
-void MainWindow::openSeedtoTime3()
-{
-    auto *seedToTime = new SeedTime3();
-    seedToTime->show();
-}*/
 
 void MainWindow::openIDs4()
 {

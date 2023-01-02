@@ -30,7 +30,7 @@ def embed_encounters():
         arrays.append(string)
 
     # Handle raids seperately
-    with open("Encounters/Gen8/nests.json") as f:
+    with open("Encounters/Gen8/nests.json", "r") as f:
         data = json.load(f)
         tables = data["Tables"]
 

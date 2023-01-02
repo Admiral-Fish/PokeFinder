@@ -161,10 +161,9 @@ void HiddenGrotto::generatorLocationIndexChanged(int index)
 {
     if (index >= 0)
     {
-        const auto &area = encounter[ui->comboBoxGeneratorLocation->getCurrentInt()];
-
-        std::vector<u16> pokemon = area.getUniqueSpecies();
-        std::vector<std::string> pokemonNames = area.getSpecieNames();
+        auto &area = encounter[ui->comboBoxGeneratorLocation->getCurrentInt()];
+        auto pokemon = area.getUniqueSpecies();
+        auto pokemonNames = area.getSpecieNames();
 
         ui->comboBoxGeneratorPokemon->clear();
         ui->comboBoxGeneratorPokemon->addItem("-");
@@ -173,8 +172,8 @@ void HiddenGrotto::generatorLocationIndexChanged(int index)
             ui->comboBoxGeneratorPokemon->addItem(QString::fromStdString(pokemonNames[i]), pokemon[i]);
         }
 
-        std::vector<u16> item = area.getUniqueItems();
-        std::vector<std::string> itemNames = area.getItemNames();
+        auto item = area.getUniqueItems();
+        auto itemNames = area.getItemNames();
 
         ui->comboBoxGeneratorItems->clear();
         ui->comboBoxGeneratorItems->addItem("-");

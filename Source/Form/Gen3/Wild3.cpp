@@ -206,7 +206,7 @@ void Wild3::generatorLocationIndexChanged(int index)
 {
     if (index >= 0)
     {
-        auto area = encounterGenerator[ui->comboBoxGeneratorLocation->getCurrentInt()];
+        auto &area = encounterGenerator[ui->comboBoxGeneratorLocation->getCurrentInt()];
         auto species = area.getUniqueSpecies();
         auto names = area.getSpecieNames();
 
@@ -376,7 +376,7 @@ void Wild3::searcherLocationIndexChanged(int index)
 {
     if (index >= 0)
     {
-        auto area = encounterSearcher[ui->comboBoxSearcherLocation->getCurrentInt()];
+        auto &area = encounterSearcher[ui->comboBoxSearcherLocation->getCurrentInt()];
         auto species = area.getUniqueSpecies();
         auto names = area.getSpecieNames();
 
