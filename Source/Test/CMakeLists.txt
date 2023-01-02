@@ -23,6 +23,8 @@ add_executable(PokeFinderTest
     Gen3/GameCubeSearcherTest.hpp
     Gen3/IDGenerator3Test.cpp
     Gen3/IDGenerator3Test.hpp
+    Gen3/PokeSpotGeneratorTest.cpp
+    Gen3/PokeSpotGeneratorTest.hpp
     Gen3/StaticGenerator3Test.cpp
     Gen3/StaticGenerator3Test.hpp
     Gen3/StaticSearcher3Test.cpp
@@ -31,6 +33,8 @@ add_executable(PokeFinderTest
     Gen3/WildGenerator3Test.hpp
     Gen3/WildSearcher3Test.cpp
     Gen3/WildSearcher3Test.hpp
+    Gen4/ChainedSIDCalcTest.cpp
+    Gen4/ChainedSIDCalcTest.hpp
     Gen4/IDGenerator4Test.cpp
     Gen4/IDGenerator4Test.hpp
     Gen4/IDSearcher4Test.cpp
@@ -53,6 +57,8 @@ add_executable(PokeFinderTest
     Gen5/HiddenGrottoGeneratorTest.hpp
     Gen5/IDGenerator5Test.cpp
     Gen5/IDGenerator5Test.hpp
+    Gen5/ProfileSearcher5Test.cpp
+    Gen5/ProfileSearcher5Test.hpp
     Gen8/EggGenerator8Test.cpp
     Gen8/EggGenerator8Test.hpp
     Gen8/EventGenerator8Test.cpp

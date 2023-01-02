@@ -22,10 +22,12 @@
 #include <Test/Gen3/GameCubeGeneratorTest.hpp>
 #include <Test/Gen3/GameCubeSearcherTest.hpp>
 #include <Test/Gen3/IDGenerator3Test.hpp>
+#include <Test/Gen3/PokeSpotGeneratorTest.hpp>
 #include <Test/Gen3/StaticGenerator3Test.hpp>
 #include <Test/Gen3/StaticSearcher3Test.hpp>
 #include <Test/Gen3/WildGenerator3Test.hpp>
 #include <Test/Gen3/WildSearcher3Test.hpp>
+#include <Test/Gen4/ChainedSIDCalcTest.hpp>
 #include <Test/Gen4/IDGenerator4Test.hpp>
 #include <Test/Gen4/IDSearcher4Test.hpp>
 #include <Test/Gen4/StaticGenerator4Test.hpp>
@@ -37,6 +39,7 @@
 #include <Test/Gen5/EventGenerator5Test.hpp>
 #include <Test/Gen5/HiddenGrottoGeneratorTest.hpp>
 #include <Test/Gen5/IDGenerator5Test.hpp>
+#include <Test/Gen5/ProfileSearcher5Test.hpp>
 #include <Test/Gen8/EggGenerator8Test.hpp>
 #include <Test/Gen8/EventGenerator8Test.hpp>
 #include <Test/Gen8/IDGenerator8Test.hpp>
@@ -80,12 +83,14 @@ int main()
     status += runTest<GameCubeGeneratorTest>(fails);
     status += runTest<GameCubeSearcherTest>(fails);
     status += runTest<IDGenerator3Test>(fails);
+    status += runTest<PokeSpotGeneratorTest>(fails);
     status += runTest<StaticGenerator3Test>(fails);
     status += runTest<StaticSearcher3Test>(fails);
     status += runTest<WildGenerator3Test>(fails);
     status += runTest<WildSearcher3Test>(fails);
 
     // Gen 4
+    status += runTest<ChainedSIDCalcTest>(fails);
     status += runTest<IDGenerator4Test>(fails);
     status += runTest<IDSearcher4Test>(fails);
 #ifndef NDEBUG // TODO: investigate why this doesn't work in release builds
@@ -101,6 +106,7 @@ int main()
     status += runTest<EventGenerator5Test>(fails);
     status += runTest<HiddenGrottoGeneratorTest>(fails);
     status += runTest<IDGenerator5Test>(fails);
+    status += runTest<ProfileSearcher5Test>(fails);
 
     // Gen 8
     status += runTest<IDGenerator8Test>(fails);

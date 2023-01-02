@@ -6,7 +6,7 @@ import os
 
 def enum_map(parent, files):
     re1 = re.compile(r"enum class (\w+) .+ {(.+)};")
-    re2 = re.compile(r"([a-zA-Z]\w+)[, ]")
+    re2 = re.compile(r"([a-zA-Z]\w+)(?:,| =)")
 
     strings = []
     for file in files:
@@ -58,7 +58,7 @@ def main():
     os.chdir(pathlib.Path(__file__).parent.absolute())
 
     parent = pathlib.Path(__file__).parent.parent.absolute() / "Core" / "Enum"
-    enum_map(parent, ("DSType", "Encounter", "Game", "Language", "Lead", "Method"))
+    enum_map(parent, ("Buttons", "DSType", "Encounter", "Game", "Language", "Lead", "Method"))
 
 
 if __name__ == "__main__":
