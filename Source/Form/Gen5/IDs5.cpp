@@ -206,7 +206,7 @@ void IDs5::profileIndexChanged(int index)
         ui->labelProfileGxStatValue->setText(QString::number(currentProfile->getGxStat()));
         ui->labelProfileVFrameValue->setText(QString::number(currentProfile->getVFrame()));
         ui->labelProfileKeypressesValue->setText(QString::fromStdString(currentProfile->getKeypressesString()));
-        ui->labelProfileGameValue->setText(QString::fromStdString(*Translator::getGame(currentProfile->getVersion())));
+        ui->labelProfileGameValue->setText(QString::fromStdString(Translator::getGame(currentProfile->getVersion())));
     }
 }
 

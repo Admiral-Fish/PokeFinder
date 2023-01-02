@@ -40,21 +40,6 @@ public:
     CheckList(QWidget *parent = nullptr);
 
     /**
-     * @brief Setups the model of check boxes to be checkable by the user
-     *
-     * @param items List of items that should be added to the combo box
-     */
-    void setup(const std::vector<std::string> &items = std::vector<std::string>());
-
-    /**
-     * @brief Setups the model of check boxes to be checkable by the user
-     *
-     * @param items List of items that should be added to the combo box
-     * @param data List of data to assign with the items
-     */
-    void setup(const std::vector<std::string> &items, const std::vector<u16> &data);
-
-    /**
      * @brief Determines which of the check boxes are checked
      *
      * @return Vector of true/false to signify which check boxes are checked
@@ -95,6 +80,21 @@ public:
      * @param flags Vector detailing which check boxes are to be checked and unchecked
      */
     void setChecks(const std::vector<bool> &flags);
+
+    /**
+     * @brief Setups the model of check boxes to be checkable by the user
+     *
+     * @param items List of items that should be added to the combo box
+     */
+    void setup(const std::vector<std::string> &items = std::vector<std::string>());
+
+    /**
+     * @brief Setups the model of check boxes to be checkable by the user
+     *
+     * @param items List of items that should be added to the combo box
+     * @param data List of data to assign with the items
+     */
+    void setup(const std::vector<std::string> &items, const std::vector<u16> &data);
 
 protected:
     /**

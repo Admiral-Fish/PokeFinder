@@ -93,8 +93,8 @@ void SpindaPainter::updateInfo(u32 pid)
 
     QString string
         = QString("%1, %2, %3")
-              .arg(QString::fromStdString(*Translator::getNature(pid % 25)), QString::fromStdString(*Translator::getGender(gender)),
-                   QString::fromStdString(*Translator::getAbility(ability)));
+              .arg(QString::fromStdString(Translator::getNature(pid % 25)), QString::fromStdString(Translator::getGender(gender)),
+                   QString::fromStdString(Translator::getAbility(ability)));
     ui->labelInfo->setText(string);
 }
 

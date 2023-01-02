@@ -39,7 +39,7 @@ QVariant ProfileModel5::data(const QModelIndex &index, int role) const
         case 0:
             return QString::fromStdString(profile.getName());
         case 1:
-            return QString::fromStdString(*Translator::getGame(profile.getVersion()));
+            return QString::fromStdString(Translator::getGame(profile.getVersion()));
         case 2:
             return QString::fromStdString(profile.getLanguageString());
         case 3:

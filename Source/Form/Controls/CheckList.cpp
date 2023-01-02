@@ -36,45 +36,6 @@ CheckList::CheckList(QWidget *parent) : QComboBox(parent), model(new QStandardIt
     connect(model, &QAbstractItemModel::dataChanged, this, &CheckList::modelDataChanged);
 }
 
-void CheckList::setup(const std::vector<std::string> &items)
-{
-    if (!items.empty())
-    {
-        clear();
-        for (const auto &item : items)
-        {
-            addItem(QString::fromStdString(item));
-        }
-    }
-
-    for (int i = 0; i < model->rowCount(); i++)
-    {
-        QStandardItem *item = model->item(i);
-        item->setCheckState(Qt::Unchecked);
-        item->setFlags(Qt::ItemIsUserCheckable | Qt::ItemIsEnabled);
-    }
-}
-
-void CheckList::setup(const std::vector<std::string> &items, const std::vector<u16> &data)
-{
-    assert(items.size() == data.size());
-    if (!items.empty())
-    {
-        clear();
-        for (int i = 0; i < items.size(); i++)
-        {
-            addItem(QString::fromStdString(items[i]), data[i]);
-        }
-    }
-
-    for (int i = 0; i < model->rowCount(); i++)
-    {
-        QStandardItem *item = model->item(i);
-        item->setCheckState(Qt::Unchecked);
-        item->setFlags(Qt::ItemIsUserCheckable | Qt::ItemIsEnabled);
-    }
-}
-
 std::vector<bool> CheckList::getChecked() const
 {
     std::vector<bool> result;
@@ -119,6 +80,45 @@ void CheckList::setChecks(const std::vector<bool> &flags)
     for (size_t i = 0; i < flags.size(); i++)
     {
         model->item(i)->setCheckState(flags[i] ? Qt::Checked : Qt::Unchecked);
+    }
+}
+
+void CheckList::setup(const std::vector<std::string> &items)
+{
+    if (!items.empty())
+    {
+        clear();
+        for (const auto &item : items)
+        {
+            addItem(QString::fromStdString(item));
+        }
+    }
+
+    for (int i = 0; i < model->rowCount(); i++)
+    {
+        QStandardItem *item = model->item(i);
+        item->setCheckState(Qt::Unchecked);
+        item->setFlags(Qt::ItemIsUserCheckable | Qt::ItemIsEnabled);
+    }
+}
+
+void CheckList::setup(const std::vector<std::string> &items, const std::vector<u16> &data)
+{
+    assert(items.size() == data.size());
+    if (!items.empty())
+    {
+        clear();
+        for (int i = 0; i < items.size(); i++)
+        {
+            addItem(QString::fromStdString(items[i]), data[i]);
+        }
+    }
+
+    for (int i = 0; i < model->rowCount(); i++)
+    {
+        QStandardItem *item = model->item(i);
+        item->setCheckState(Qt::Unchecked);
+        item->setFlags(Qt::ItemIsUserCheckable | Qt::ItemIsEnabled);
     }
 }
 

@@ -180,7 +180,7 @@ void PokeSpot::profileIndexChanged(int index)
 
         ui->labelProfileTIDValue->setText(QString::number(currentProfile->getTID()));
         ui->labelProfileSIDValue->setText(QString::number(currentProfile->getSID()));
-        ui->labelProfileGameValue->setText(QString::fromStdString(*Translator::getGame(currentProfile->getVersion())));
+        ui->labelProfileGameValue->setText(QString::fromStdString(Translator::getGame(currentProfile->getVersion())));
     }
 }
 

@@ -59,7 +59,7 @@ Event5::Event5(QWidget *parent) : QWidget(parent), ui(new Ui::Event5)
     ui->textBoxSearcherEventTID->setValues(InputType::TIDSID);
     ui->textBoxSearcherEventSID->setValues(InputType::TIDSID);
 
-    for (const std::string &nature : *Translator::getNatures())
+    for (const std::string &nature : Translator::getNatures())
     {
         ui->comboBoxGeneratorNature->addItem(QString::fromStdString(nature));
         ui->comboBoxSearcherNature->addItem(QString::fromStdString(nature));
@@ -380,7 +380,7 @@ void Event5::profileIndexChanged(int index)
         ui->labelProfileGxStatValue->setText(QString::number(currentProfile->getGxStat()));
         ui->labelProfileVFrameValue->setText(QString::number(currentProfile->getVFrame()));
         ui->labelProfileKeypressesValue->setText(QString::fromStdString(currentProfile->getKeypressesString()));
-        ui->labelProfileGameValue->setText(QString::fromStdString(*Translator::getGame(currentProfile->getVersion())));
+        ui->labelProfileGameValue->setText(QString::fromStdString(Translator::getGame(currentProfile->getVersion())));
     }
 }
 

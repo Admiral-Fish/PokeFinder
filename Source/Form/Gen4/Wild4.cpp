@@ -74,7 +74,7 @@ Wild4::Wild4(QWidget *parent) : QWidget(parent), ui(new Ui::Wild4)
                                         { toInt(Lead::MagnetPull), toInt(Lead::Static) });
     ui->comboMenuGeneratorLead->addMenu(tr("Level Modifier"), { tr("Hustle"), tr("Pressure"), tr("Vital Spirit") },
                                         { toInt(Lead::Hustle), toInt(Lead::Pressure), toInt(Lead::VitalSpirit) });
-    ui->comboMenuGeneratorLead->addMenu(tr("Synchronize"), *Translator::getNatures());
+    ui->comboMenuGeneratorLead->addMenu(tr("Synchronize"), Translator::getNatures());
 
     ui->comboMenuSearcherLead->addAction(tr("None"), toInt(Lead::None));
     ui->comboMenuSearcherLead->addMenu(tr("Cute Charm"), { tr("♂ Lead"), tr("♀ Lead") },
@@ -479,7 +479,7 @@ void Wild4::generatorLocationIndexChanged(int index)
                 {
                     break;
                 }
-                ui->comboBoxGeneratorReplacement0->addItem(QString::fromStdString(*Translator::getSpecie(specie)), specie);
+                ui->comboBoxGeneratorReplacement0->addItem(QString::fromStdString(Translator::getSpecie(specie)), specie);
             }
 
             ui->comboBoxGeneratorReplacement0->blockSignals(false);
@@ -494,9 +494,9 @@ void Wild4::generatorLocationIndexChanged(int index)
             ui->comboBoxGeneratorReplacement1->clear();
             for (u16 specie : Encounters4::getTrophyGardenPokemon(currentProfile))
             {
-                auto *name = Translator::getSpecie(specie);
-                ui->comboBoxGeneratorReplacement0->addItem(QString::fromStdString(*name), specie);
-                ui->comboBoxGeneratorReplacement1->addItem(QString::fromStdString(*name), specie);
+                const auto &name = Translator::getSpecie(specie);
+                ui->comboBoxGeneratorReplacement0->addItem(QString::fromStdString(name), specie);
+                ui->comboBoxGeneratorReplacement1->addItem(QString::fromStdString(name), specie);
             }
 
             ui->comboBoxGeneratorReplacement0->blockSignals(false);
@@ -557,7 +557,7 @@ void Wild4::profileIndexChanged(int index)
 
         ui->labelProfileTIDValue->setText(QString::number(currentProfile->getTID()));
         ui->labelProfileSIDValue->setText(QString::number(currentProfile->getSID()));
-        ui->labelProfileGameValue->setText(QString::fromStdString(*Translator::getGame(currentProfile->getVersion())));
+        ui->labelProfileGameValue->setText(QString::fromStdString(Translator::getGame(currentProfile->getVersion())));
         ui->labelProfileNationalDexValue->setText(currentProfile->getNationalDex() ? tr("Yes") : tr("No"));
 
         bool hgss = (currentProfile->getVersion() & Game::HGSS) != Game::None;
@@ -825,7 +825,7 @@ void Wild4::searcherLocationIndexChanged(int index)
                 {
                     break;
                 }
-                ui->comboBoxSearcherReplacement0->addItem(QString::fromStdString(*Translator::getSpecie(specie)), specie);
+                ui->comboBoxSearcherReplacement0->addItem(QString::fromStdString(Translator::getSpecie(specie)), specie);
             }
 
             ui->comboBoxSearcherReplacement0->blockSignals(false);
@@ -840,9 +840,9 @@ void Wild4::searcherLocationIndexChanged(int index)
             ui->comboBoxSearcherReplacement1->clear();
             for (u16 specie : Encounters4::getTrophyGardenPokemon(currentProfile))
             {
-                auto *name = Translator::getSpecie(specie);
-                ui->comboBoxSearcherReplacement0->addItem(QString::fromStdString(*name), specie);
-                ui->comboBoxSearcherReplacement1->addItem(QString::fromStdString(*name), specie);
+                const auto &name = Translator::getSpecie(specie);
+                ui->comboBoxSearcherReplacement0->addItem(QString::fromStdString(name), specie);
+                ui->comboBoxSearcherReplacement1->addItem(QString::fromStdString(name), specie);
             }
 
             ui->comboBoxSearcherReplacement0->blockSignals(false);

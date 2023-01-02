@@ -42,7 +42,7 @@ QVariant PokeSpotModel::data(const QModelIndex &index, int role) const
         case 1:
             return state.getEncounterAdvances();
         case 2:
-            return QString("%1 (%2)").arg(state.getEncounterSlot()).arg(QString::fromStdString(*Translator::getSpecie(state.getSpecie())));
+            return QString("%1 (%2)").arg(state.getEncounterSlot()).arg(QString::fromStdString(Translator::getSpecie(state.getSpecie())));
         case 3:
             return state.getLevel();
         case 4:
@@ -53,9 +53,9 @@ QVariant PokeSpotModel::data(const QModelIndex &index, int role) const
             return shiny == 2 ? tr("Square") : shiny == 1 ? tr("Star") : tr("No");
         }
         case 6:
-            return QString::fromStdString(*Translator::getNature(state.getNature()));
+            return QString::fromStdString(Translator::getNature(state.getNature()));
         case 7:
-            return QString("%1 (%2)").arg(state.getAbility()).arg(QString::fromStdString(*Translator::getAbility(state.getAbilityIndex())));
+            return QString("%1 (%2)").arg(state.getAbility()).arg(QString::fromStdString(Translator::getAbility(state.getAbilityIndex())));
         case 8:
         case 9:
         case 10:
@@ -64,11 +64,11 @@ QVariant PokeSpotModel::data(const QModelIndex &index, int role) const
         case 13:
             return showStats ? state.getStat(column - 8) : state.getIV(column - 8);
         case 14:
-            return QString::fromStdString(*Translator::getHiddenPower(state.getHiddenPower()));
+            return QString::fromStdString(Translator::getHiddenPower(state.getHiddenPower()));
         case 15:
             return state.getHiddenPowerStrength();
         case 16:
-            return QString::fromStdString(*Translator::getGender(state.getGender()));
+            return QString::fromStdString(Translator::getGender(state.getGender()));
         }
     }
     return QVariant();

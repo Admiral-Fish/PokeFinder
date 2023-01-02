@@ -34,15 +34,15 @@ IVCalculator::IVCalculator(QWidget *parent) : QWidget(parent), ui(new Ui::IVCalc
     setAttribute(Qt::WA_QuitOnClose, false);
     setAttribute(Qt::WA_DeleteOnClose);
 
-    for (const std::string &nature : *Translator::getNatures())
+    for (const std::string &nature : Translator::getNatures())
     {
         ui->comboBoxNature->addItem(QString::fromStdString(nature));
     }
-    for (const std::string &hiddenPower : *Translator::getHiddenPowers())
+    for (const std::string &hiddenPower : Translator::getHiddenPowers())
     {
         ui->comboBoxHiddenPower->addItem(QString::fromStdString(hiddenPower));
     }
-    for (const std::string &characteristic : *Translator::getCharacteristics())
+    for (const std::string &characteristic : Translator::getCharacteristics())
     {
         ui->comboBoxCharacteristic->addItem(QString::fromStdString(characteristic));
     }
@@ -274,7 +274,7 @@ void IVCalculator::gameIndexChanged(int index)
         ui->comboBoxPokemon->clear();
         for (u16 specie : species)
         {
-            ui->comboBoxPokemon->addItem(QString::fromStdString(*Translator::getSpecie(specie)), specie);
+            ui->comboBoxPokemon->addItem(QString::fromStdString(Translator::getSpecie(specie)), specie);
         }
     }
 }

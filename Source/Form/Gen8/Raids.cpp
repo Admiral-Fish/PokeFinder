@@ -139,7 +139,7 @@ void Raids::denIndexChanged(int index)
 
             for (const auto &raid : raids)
             {
-                ui->comboBoxSpecies->addItem(QString("%1: %2").arg(QString::fromStdString(*Translator::getSpecie(raid.getSpecie())),
+                ui->comboBoxSpecies->addItem(QString("%1: %2").arg(QString::fromStdString(Translator::getSpecie(raid.getSpecie())),
                                                                    QString::fromStdString(raid.getStarDisplay())));
             }
         }
@@ -150,7 +150,7 @@ void Raids::denIndexChanged(int index)
 
             for (const auto &raid : raids)
             {
-                ui->comboBoxSpecies->addItem(QString("%1: %2").arg(QString::fromStdString(*Translator::getSpecie(raid.getSpecie())),
+                ui->comboBoxSpecies->addItem(QString("%1: %2").arg(QString::fromStdString(Translator::getSpecie(raid.getSpecie())),
                                                                    QString::fromStdString(raid.getStarDisplay())));
             }
         }
@@ -230,7 +230,7 @@ void Raids::profileIndexChanged(int index)
 
         ui->labelProfileTIDValue->setText(QString::number(currentProfile->getTID()));
         ui->labelProfileSIDValue->setText(QString::number(currentProfile->getSID()));
-        ui->labelProfileGameValue->setText(QString::fromStdString(*Translator::getGame(currentProfile->getVersion())));
+        ui->labelProfileGameValue->setText(QString::fromStdString(Translator::getGame(currentProfile->getVersion())));
     }
 }
 

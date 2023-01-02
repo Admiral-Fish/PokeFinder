@@ -55,14 +55,14 @@ HiddenGrotto::HiddenGrotto(QWidget *parent) : QWidget(parent), ui(new Ui::Hidden
     ui->textBoxSearcherMaxAdvances->setValues(InputType::Advance32Bit);
 
     ui->comboBoxGeneratorGrottoPower->setup({ 5, 15, 25, 35, 55 });
-    ui->checkListGeneratorSlot->setup({ "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" });
-    ui->checkListGeneratorGroup->setup({ "0", "1", "2", "3" });
-    ui->checkListGeneratorGender->setup({ "♂", "♀" });
+    ui->checkListGeneratorSlot->setup();
+    ui->checkListGeneratorGroup->setup();
+    ui->checkListGeneratorGender->setup();
 
     ui->comboBoxSearcherGrottoPower->setup({ 5, 15, 25, 35, 55 });
-    ui->checkListSearcherSlot->setup({ "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" });
-    ui->checkListSearcherGroup->setup({ "0", "1", "2", "3" });
-    ui->checkListSearcherGender->setup({ "♂", "♀" });
+    ui->checkListSearcherSlot->setup();
+    ui->checkListSearcherGroup->setup();
+    ui->checkListSearcherGender->setup();
 
     connect(ui->comboBoxGeneratorLocation, &QComboBox::currentIndexChanged, this, &HiddenGrotto::generatorLocationIndexChanged);
     connect(ui->comboBoxSearcherLocation, &QComboBox::currentIndexChanged, this, &HiddenGrotto::searcherLocationIndexChanged);
@@ -366,7 +366,7 @@ void HiddenGrotto::profileIndexChanged(int index)
         ui->labelProfileGxStatValue->setText(QString::number(currentProfile->getGxStat()));
         ui->labelProfileVFrameValue->setText(QString::number(currentProfile->getVFrame()));
         ui->labelProfileKeypressesValue->setText(QString::fromStdString(currentProfile->getKeypressesString()));
-        ui->labelProfileGameValue->setText(QString::fromStdString(*Translator::getGame(currentProfile->getVersion())));
+        ui->labelProfileGameValue->setText(QString::fromStdString(Translator::getGame(currentProfile->getVersion())));
     }
 }
 

@@ -47,14 +47,14 @@ QVariant HiddenGrottoGeneratorModel5::data(const QModelIndex &index, int role) c
         case 3:
             if (state.getItem())
             {
-                return QString("%1 (%2)").arg(state.getSlot()).arg(QString::fromStdString(*Translator::getItem(state.getData())));
+                return QString("%1 (%2)").arg(state.getSlot()).arg(QString::fromStdString(Translator::getItem(state.getData())));
             }
             else
             {
                 return QString("%1 (%2 %3)")
                     .arg(state.getSlot())
-                    .arg(QString::fromStdString(*Translator::getSpecie(state.getData())),
-                         QString::fromStdString(*Translator::getGender(state.getGender())));
+                    .arg(QString::fromStdString(Translator::getSpecie(state.getData())),
+                         QString::fromStdString(Translator::getGender(state.getGender())));
             }
         }
     }
@@ -97,14 +97,14 @@ QVariant HiddenGrottoSearcherModel5::data(const QModelIndex &index, int role) co
         case 3:
             if (state.getItem())
             {
-                return QString("%1 (%2)").arg(state.getSlot()).arg(QString::fromStdString(*Translator::getItem(state.getData())));
+                return QString("%1 (%2)").arg(state.getSlot()).arg(QString::fromStdString(Translator::getItem(state.getData())));
             }
             else
             {
                 return QString("%1 (%2 %3)")
                     .arg(state.getSlot())
-                    .arg(QString::fromStdString(*Translator::getSpecie(state.getData())),
-                         QString::fromStdString(*Translator::getGender(state.getGender())));
+                    .arg(QString::fromStdString(Translator::getSpecie(state.getData())),
+                         QString::fromStdString(Translator::getGender(state.getGender())));
             }
         case 4:
             return QString::fromStdString(display.getDateTime().toString());

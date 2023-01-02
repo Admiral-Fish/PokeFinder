@@ -151,7 +151,7 @@ void Eggs8::profileIndexChanged(int index)
 
         ui->labelProfileTIDValue->setText(QString::number(currentProfile->getTID()));
         ui->labelProfileSIDValue->setText(QString::number(currentProfile->getSID()));
-        ui->labelProfileGameValue->setText(QString::fromStdString(*Translator::getGame(currentProfile->getVersion())));
+        ui->labelProfileGameValue->setText(QString::fromStdString(Translator::getGame(currentProfile->getVersion())));
         ui->labelProfileShinyCharmValue->setText(currentProfile->getShinyCharm() ? tr("Yes") : tr("No"));
         ui->labelProfileOvalCharmValue->setText(currentProfile->getOvalCharm() ? tr("Yes") : tr("No"));
     }

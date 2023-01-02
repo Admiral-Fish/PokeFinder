@@ -39,14 +39,14 @@ ChainedSID::ChainedSID(QWidget *parent) : QWidget(parent), ui(new Ui::ChainedSID
     ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
     ui->textBoxTID->setValues(InputType::TIDSID);
-    for (const std::string &nature : *Translator::getNatures())
+    for (const std::string &nature : Translator::getNatures())
     {
         ui->comboBoxNature->addItem(QString::fromStdString(nature));
     }
 
     for (u16 i = 1; i < 493; i++)
     {
-        ui->comboBoxPokemon->addItem(QString::fromStdString(*Translator::getSpecie(i)), i);
+        ui->comboBoxPokemon->addItem(QString::fromStdString(Translator::getSpecie(i)), i);
     }
 
     connect(ui->comboBoxPokemon, &QComboBox::currentIndexChanged, this, &ChainedSID::pokemonIndexChanged);
@@ -143,29 +143,29 @@ void ChainedSID::pokemonIndexChanged(int index)
         ui->comboBoxAbility->clear();
         if (info->getAbility(0) == info->getAbility(1))
         {
-            ui->comboBoxAbility->addItem(QString::fromStdString(*Translator::getAbility(info->getAbility(0))), info->getAbility(0));
+            ui->comboBoxAbility->addItem(QString::fromStdString(Translator::getAbility(info->getAbility(0))), info->getAbility(0));
         }
         else
         {
-            ui->comboBoxAbility->addItem(QString::fromStdString(*Translator::getAbility(info->getAbility(0))), info->getAbility(0));
-            ui->comboBoxAbility->addItem(QString::fromStdString(*Translator::getAbility(info->getAbility(1))), info->getAbility(1));
+            ui->comboBoxAbility->addItem(QString::fromStdString(Translator::getAbility(info->getAbility(0))), info->getAbility(0));
+            ui->comboBoxAbility->addItem(QString::fromStdString(Translator::getAbility(info->getAbility(1))), info->getAbility(1));
         }
 
         ui->comboBoxGender->clear();
         switch (info->getGender())
         {
         case 255: // Genderless
-            ui->comboBoxGender->addItem(QString::fromStdString(*Translator::getGender(2)), 2);
+            ui->comboBoxGender->addItem(QString::fromStdString(Translator::getGender(2)), 2);
             break;
         case 254: // Female
-            ui->comboBoxGender->addItem(QString::fromStdString(*Translator::getGender(1)), 1);
+            ui->comboBoxGender->addItem(QString::fromStdString(Translator::getGender(1)), 1);
             break;
         case 0: // Male
-            ui->comboBoxGender->addItem(QString::fromStdString(*Translator::getGender(0)), 0);
+            ui->comboBoxGender->addItem(QString::fromStdString(Translator::getGender(0)), 0);
             break;
         default: // Random gender
-            ui->comboBoxGender->addItem(QString::fromStdString(*Translator::getGender(0)), 0);
-            ui->comboBoxGender->addItem(QString::fromStdString(*Translator::getGender(1)), 1);
+            ui->comboBoxGender->addItem(QString::fromStdString(Translator::getGender(0)), 0);
+            ui->comboBoxGender->addItem(QString::fromStdString(Translator::getGender(1)), 1);
             break;
         }
     }

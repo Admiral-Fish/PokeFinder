@@ -57,7 +57,7 @@ Wild8::Wild8(QWidget *parent) : QWidget(parent), ui(new Ui::Wild8)
                                { toInt(Lead::CompoundEyes), toInt(Lead::SuperLuck) });
     ui->comboMenuLead->addMenu(tr("Level Modifier"), { tr("Hustle"), tr("Pressure"), tr("Vital Spirit") },
                                { toInt(Lead::Hustle), toInt(Lead::Pressure), toInt(Lead::VitalSpirit) });
-    ui->comboMenuLead->addMenu(tr("Synchronize"), *Translator::getNatures());
+    ui->comboMenuLead->addMenu(tr("Synchronize"), Translator::getNatures());
 
     ui->comboBoxEncounter->setup({ toInt(Encounter::Grass), toInt(Encounter::Surfing), toInt(Encounter::OldRod), toInt(Encounter::GoodRod),
                                    toInt(Encounter::SuperRod) });
@@ -249,7 +249,7 @@ void Wild8::locationIndexChanged(int index)
                 {
                     break;
                 }
-                ui->comboBoxReplacement0->addItem(QString::fromStdString(*Translator::getSpecie(specie)), specie);
+                ui->comboBoxReplacement0->addItem(QString::fromStdString(Translator::getSpecie(specie)), specie);
             }
 
             ui->comboBoxReplacement0->blockSignals(false);
@@ -264,9 +264,9 @@ void Wild8::locationIndexChanged(int index)
             ui->comboBoxReplacement1->clear();
             for (u16 specie : Encounters8::getTrophyGardenPokemon())
             {
-                auto *name = Translator::getSpecie(specie);
-                ui->comboBoxReplacement0->addItem(QString::fromStdString(*name), specie);
-                ui->comboBoxReplacement1->addItem(QString::fromStdString(*name), specie);
+                const auto &name = Translator::getSpecie(specie);
+                ui->comboBoxReplacement0->addItem(QString::fromStdString(name), specie);
+                ui->comboBoxReplacement1->addItem(QString::fromStdString(name), specie);
             }
 
             ui->comboBoxReplacement0->blockSignals(false);
@@ -297,7 +297,7 @@ void Wild8::profileIndexChanged(int index)
 
         ui->labelProfileTIDValue->setText(QString::number(currentProfile->getTID()));
         ui->labelProfileSIDValue->setText(QString::number(currentProfile->getSID()));
-        ui->labelProfileGameValue->setText(QString::fromStdString(*Translator::getGame(currentProfile->getVersion())));
+        ui->labelProfileGameValue->setText(QString::fromStdString(Translator::getGame(currentProfile->getVersion())));
 
         encounterIndexChanged(0);
     }

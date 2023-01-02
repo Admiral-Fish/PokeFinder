@@ -59,7 +59,7 @@ Event8::Event8(QWidget *parent) : QWidget(parent), ui(new Ui::Event8)
         ui->comboBoxSpecies->addItem(QString::fromStdString(specie));
     }
 
-    for (const std::string &nature : *Translator::getNatures())
+    for (const std::string &nature : Translator::getNatures())
     {
         ui->comboBoxNature->addItem(QString::fromStdString(nature));
     }
@@ -204,7 +204,7 @@ void Event8::profileIndexChanged(int index)
 
         ui->labelProfileTIDValue->setText(QString::number(currentProfile->getTID()));
         ui->labelProfileSIDValue->setText(QString::number(currentProfile->getSID()));
-        ui->labelProfileGameValue->setText(QString::fromStdString(*Translator::getGame(currentProfile->getVersion())));
+        ui->labelProfileGameValue->setText(QString::fromStdString(Translator::getGame(currentProfile->getVersion())));
     }
 }
 

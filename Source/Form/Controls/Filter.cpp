@@ -28,8 +28,8 @@ Filter::Filter(QWidget *parent) : QWidget(parent), ui(new Ui::Filter)
 
     ui->comboBoxAbility->setup({ 255, 0, 1 });
     ui->comboBoxGender->setup({ 255, 0, 1 });
-    ui->checkListHiddenPower->setup(*Translator::getHiddenPowers());
-    ui->checkListNature->setup(*Translator::getNatures());
+    ui->checkListHiddenPower->setup(Translator::getHiddenPowers());
+    ui->checkListNature->setup(Translator::getNatures());
     ui->comboBoxShiny->setup({ 255, 1, 2, 3 });
 
     ui->checkListEncounterSlot->setToolTip(tr("Click holding ctrl to reset"));

@@ -41,11 +41,11 @@ QVariant UndergroundModel::data(const QModelIndex &index, int role) const
         case 0:
             return state.getAdvances();
         case 1:
-            return QString::fromStdString(*Translator::getMove(state.getEggMove()));
+            return QString::fromStdString(Translator::getMove(state.getEggMove()));
         case 2:
-            return QString::fromStdString(*Translator::getItem(state.getItem()));
+            return QString::fromStdString(Translator::getItem(state.getItem()));
         case 3:
-            return QString::fromStdString(*Translator::getSpecie(state.getSpecie()));
+            return QString::fromStdString(Translator::getSpecie(state.getSpecie()));
         case 4:
             return state.getLevel();
         case 5:
@@ -56,17 +56,17 @@ QVariant UndergroundModel::data(const QModelIndex &index, int role) const
             return shiny == 2 ? tr("Square") : shiny == 1 ? tr("Star") : tr("No");
         }
         case 7:
-            return QString::fromStdString(*Translator::getNature(state.getNature()));
+            return QString::fromStdString(Translator::getNature(state.getNature()));
         case 8:
             if (state.getAbility() == 0 || state.getAbility() == 1)
             {
                 return QString("%1 (%2)")
                     .arg(state.getAbility())
-                    .arg(QString::fromStdString(*Translator::getAbility(state.getAbilityIndex())));
+                    .arg(QString::fromStdString(Translator::getAbility(state.getAbilityIndex())));
             }
             else
             {
-                return QString("H (%2)").arg(QString::fromStdString(*Translator::getAbility(state.getAbilityIndex())));
+                return QString("H (%2)").arg(QString::fromStdString(Translator::getAbility(state.getAbilityIndex())));
             }
         case 9:
         case 10:
@@ -76,7 +76,7 @@ QVariant UndergroundModel::data(const QModelIndex &index, int role) const
         case 14:
             return showStats ? state.getStat(column - 9) : state.getIV(column - 9);
         case 15:
-            return QString::fromStdString(*Translator::getGender(state.getGender()));
+            return QString::fromStdString(Translator::getGender(state.getGender()));
         }
     }
 

@@ -64,7 +64,7 @@ Static4::Static4(QWidget *parent) : QWidget(parent), ui(new Ui::Static4)
     ui->comboMenuGeneratorLead->addAction(tr("None"), toInt(Lead::None));
     ui->comboMenuGeneratorLead->addMenu(tr("Cute Charm"), { tr("♂ Lead"), tr("♀ Lead") },
                                         { toInt(Lead::CuteCharmM), toInt(Lead::CuteCharmF) });
-    ui->comboMenuGeneratorLead->addMenu(tr("Synchronize"), *Translator::getNatures());
+    ui->comboMenuGeneratorLead->addMenu(tr("Synchronize"), Translator::getNatures());
 
     ui->comboMenuSearcherLead->addAction(tr("None"), toInt(Lead::None));
     ui->comboMenuSearcherLead->addMenu(tr("Cute Charm"), { tr("♂ Lead"), tr("♀ Lead") },
@@ -182,7 +182,7 @@ void Static4::generatorCategoryIndexChanged(int index)
         {
             if ((currentProfile->getVersion() & templates[i].getVersion()) != Game::None)
             {
-                ui->comboBoxGeneratorPokemon->addItem(QString::fromStdString(*Translator::getSpecie(templates[i].getSpecie())),
+                ui->comboBoxGeneratorPokemon->addItem(QString::fromStdString(Translator::getSpecie(templates[i].getSpecie())),
                                                       QVariant::fromValue(i));
             }
         }
@@ -218,7 +218,7 @@ void Static4::profileIndexChanged(int index)
 
         ui->labelProfileTIDValue->setText(QString::number(currentProfile->getTID()));
         ui->labelProfileSIDValue->setText(QString::number(currentProfile->getSID()));
-        ui->labelProfileGameValue->setText(QString::fromStdString(*Translator::getGame(currentProfile->getVersion())));
+        ui->labelProfileGameValue->setText(QString::fromStdString(Translator::getGame(currentProfile->getVersion())));
 
         bool hgss = (currentProfile->getVersion() & Game::HGSS) != Game::None;
 
@@ -302,7 +302,7 @@ void Static4::searcherCategoryIndexChanged(int index)
         {
             if ((currentProfile->getVersion() & templates[i].getVersion()) != Game::None)
             {
-                ui->comboBoxSearcherPokemon->addItem(QString::fromStdString(*Translator::getSpecie(templates[i].getSpecie())),
+                ui->comboBoxSearcherPokemon->addItem(QString::fromStdString(Translator::getSpecie(templates[i].getSpecie())),
                                                      QVariant::fromValue(i));
             }
         }

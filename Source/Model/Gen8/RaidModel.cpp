@@ -47,17 +47,17 @@ QVariant RaidModel::data(const QModelIndex &index, int role) const
             return shiny == 2 ? tr("Square") : shiny == 1 ? tr("Star") : tr("No");
         }
         case 3:
-            return QString::fromStdString(*Translator::getNature(state.getNature()));
+            return QString::fromStdString(Translator::getNature(state.getNature()));
         case 4:
             if (state.getAbility() == 0 || state.getAbility() == 1)
             {
                 return QString("%1 (%2)")
                     .arg(state.getAbility())
-                    .arg(QString::fromStdString(*Translator::getAbility(state.getAbilityIndex())));
+                    .arg(QString::fromStdString(Translator::getAbility(state.getAbilityIndex())));
             }
             else
             {
-                return QString("H (%2)").arg(QString::fromStdString(*Translator::getAbility(state.getAbilityIndex())));
+                return QString("H (%2)").arg(QString::fromStdString(Translator::getAbility(state.getAbilityIndex())));
             }
         case 5:
         case 6:
@@ -67,7 +67,7 @@ QVariant RaidModel::data(const QModelIndex &index, int role) const
         case 10:
             return showStats ? state.getStat(column - 5) : state.getIV(column - 5);
         case 11:
-            return QString::fromStdString(*Translator::getGender(state.getGender()));
+            return QString::fromStdString(Translator::getGender(state.getGender()));
         }
     }
     return QVariant();

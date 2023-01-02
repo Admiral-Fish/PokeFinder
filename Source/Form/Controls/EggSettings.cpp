@@ -44,19 +44,19 @@ EggSettings::EggSettings(QWidget *parent) : QWidget(parent), ui(new Ui::EggSetti
 {
     ui->setupUi(this);
 
-    for (const std::string &nature : *Translator::getNatures())
+    for (const std::string &nature : Translator::getNatures())
     {
         ui->comboBoxParentANature->addItem(QString::fromStdString(nature));
         ui->comboBoxParentBNature->addItem(QString::fromStdString(nature));
     }
 
-    for (const std::string &gender : *Translator::getGenders())
+    for (const std::string &gender : Translator::getGenders())
     {
         ui->comboBoxParentAGender->addItem(QString::fromStdString(gender));
         ui->comboBoxParentBGender->addItem(QString::fromStdString(gender));
     }
-    ui->comboBoxParentAGender->addItem(QString::fromStdString(*Translator::getSpecie(132)));
-    ui->comboBoxParentBGender->addItem(QString::fromStdString(*Translator::getSpecie(132)));
+    ui->comboBoxParentAGender->addItem(QString::fromStdString(Translator::getSpecie(132)));
+    ui->comboBoxParentBGender->addItem(QString::fromStdString(Translator::getSpecie(132)));
 
     ui->comboBoxParentAAbility->addItem("1");
     ui->comboBoxParentAAbility->addItem("2");
@@ -264,6 +264,6 @@ void EggSettings::setup(Game game)
         {
             break;
         }
-        ui->comboBoxEggSpecie->addItem(QString::fromStdString(*Translator::getSpecie(i)), i);
+        ui->comboBoxEggSpecie->addItem(QString::fromStdString(Translator::getSpecie(i)), i);
     }
 }

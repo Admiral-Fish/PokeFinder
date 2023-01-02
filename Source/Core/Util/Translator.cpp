@@ -79,6 +79,7 @@ const static std::array<std::string, 12> buttons = { "R", "L", "X", "Y", "A", "B
  * @brief Reads strings from the \p translation in the languaged specified by Translator::init()
  *
  * @param translation String category to read from
+ * @param strings Vector to write strings out to
  */
 static void readFile(Translation translation, std::vector<std::string> &strings)
 {
@@ -141,56 +142,56 @@ static std::map<u16, std::string> readFileMap(Translation translation)
 
 namespace Translator
 {
-    const std::string *getAbility(u16 ability)
+    const std::string &getAbility(u16 ability)
     {
-        return &abilities[ability - 1];
+        return abilities[ability - 1];
     }
 
-    const std::string *getCharacteristic(u8 characteristic)
+    const std::string &getCharacteristic(u8 characteristic)
     {
-        return &characteristics[characteristic];
+        return characteristics[characteristic];
     }
 
-    const std::vector<std::string> *getCharacteristics()
+    const std::vector<std::string> &getCharacteristics()
     {
-        return &characteristics;
+        return characteristics;
     }
 
-    const std::string *getGame(Game version)
+    const std::string &getGame(Game version)
     {
         // Strings are ordered to match the enum
         // Use countr_zero to get the bit that is set
         int index = std::countr_zero(toInt(version));
         if (index == 32)
         {
-            return &games[games.size() - 1];
+            return games[games.size() - 1];
         }
-        return &games[index];
+        return games[index];
     }
 
-    const std::string *getGender(u8 gender)
+    const std::string &getGender(u8 gender)
     {
-        return &genders[gender];
+        return genders[gender];
     }
 
-    const std::array<std::string, 3> *getGenders()
+    const std::array<std::string, 3> &getGenders()
     {
-        return &genders;
+        return genders;
     }
 
-    const std::string *getHiddenPower(u8 power)
+    const std::string &getHiddenPower(u8 power)
     {
-        return &hiddenPowers[power];
+        return hiddenPowers[power];
     }
 
-    const std::vector<std::string> *getHiddenPowers()
+    const std::vector<std::string> &getHiddenPowers()
     {
-        return &hiddenPowers;
+        return hiddenPowers;
     }
 
-    const std::string *getItem(u16 item)
+    const std::string &getItem(u16 item)
     {
-        return &items[item];
+        return items[item];
     }
 
     std::vector<std::string> getItems(const std::vector<u16> &item)
@@ -201,9 +202,9 @@ namespace Translator
         return s;
     }
 
-    const std::string *getKeypress(u8 keypress)
+    const std::string &getKeypress(u8 keypress)
     {
-        return &buttons[keypress];
+        return buttons[keypress];
     }
 
     std::string getKeypresses(Buttons keypresses)
@@ -281,24 +282,24 @@ namespace Translator
         return locations;
     }
 
-    const std::string *getMove(u16 move)
+    const std::string &getMove(u16 move)
     {
-        return &moves[move];
+        return moves[move];
     }
 
-    const std::string *getNature(u8 nature)
+    const std::string &getNature(u8 nature)
     {
-        return &natures[nature];
+        return natures[nature];
     }
 
-    const std::vector<std::string> *getNatures()
+    const std::vector<std::string> &getNatures()
     {
-        return &natures;
+        return natures;
     }
 
-    const std::string *getSpecie(u16 specie)
+    const std::string &getSpecie(u16 specie)
     {
-        return &species[specie - 1];
+        return species[specie - 1];
     }
 
     std::vector<std::string> getSpecies(const std::vector<u16> &specie)

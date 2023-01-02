@@ -54,7 +54,7 @@ Underground::Underground(QWidget *parent) : QWidget(parent), ui(new Ui::Undergro
                                { toInt(Lead::CompoundEyes), toInt(Lead::SuperLuck) });
     ui->comboMenuLead->addMenu(tr("Level Modifier"), { tr("Hustle"), tr("Pressure"), tr("Vital Spirit") },
                                { toInt(Lead::Hustle), toInt(Lead::Pressure), toInt(Lead::VitalSpirit) });
-    ui->comboMenuLead->addMenu(tr("Synchronize"), *Translator::getNatures());
+    ui->comboMenuLead->addMenu(tr("Synchronize"), Translator::getNatures());
 
     ui->filter->disableControls(Controls::EncounterSlots);
 
@@ -177,7 +177,7 @@ void Underground::locationIndexChanged(int index)
 {
     if (index >= 0)
     {
-        auto area = encounters[ui->comboBoxLocation->getCurrentInt()];
+        const auto &area = encounters[ui->comboBoxLocation->getCurrentInt()];
         auto species = area.getSpecies();
         auto names = area.getSpecieNames();
         ui->checkListPokemon->setup(names, species);
@@ -192,7 +192,7 @@ void Underground::profileIndexChanged(int index)
 
         ui->labelProfileTIDValue->setText(QString::number(currentProfile->getTID()));
         ui->labelProfileSIDValue->setText(QString::number(currentProfile->getSID()));
-        ui->labelProfileGameValue->setText(QString::fromStdString(*Translator::getGame(currentProfile->getVersion())));
+        ui->labelProfileGameValue->setText(QString::fromStdString(Translator::getGame(currentProfile->getVersion())));
 
         updateEncounters();
         locationIndexChanged(ui->comboBoxLocation->currentIndex());

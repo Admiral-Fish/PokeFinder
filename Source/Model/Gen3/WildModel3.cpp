@@ -40,7 +40,7 @@ QVariant WildGeneratorModel3::data(const QModelIndex &index, int role) const
         case 0:
             return state.getAdvances();
         case 1:
-            return QString("%1 (%2)").arg(state.getEncounterSlot()).arg(QString::fromStdString(*Translator::getSpecie(state.getSpecie())));
+            return QString("%1 (%2)").arg(state.getEncounterSlot()).arg(QString::fromStdString(Translator::getSpecie(state.getSpecie())));
         case 2:
             return state.getLevel();
         case 3:
@@ -51,9 +51,9 @@ QVariant WildGeneratorModel3::data(const QModelIndex &index, int role) const
             return shiny == 2 ? tr("Square") : shiny == 1 ? tr("Star") : tr("No");
         }
         case 5:
-            return QString::fromStdString(*Translator::getNature(state.getNature()));
+            return QString::fromStdString(Translator::getNature(state.getNature()));
         case 6:
-            return QString("%1 (%2)").arg(state.getAbility()).arg(QString::fromStdString(*Translator::getAbility(state.getAbilityIndex())));
+            return QString("%1 (%2)").arg(state.getAbility()).arg(QString::fromStdString(Translator::getAbility(state.getAbilityIndex())));
         case 7:
         case 8:
         case 9:
@@ -62,11 +62,11 @@ QVariant WildGeneratorModel3::data(const QModelIndex &index, int role) const
         case 12:
             return showStats ? state.getStat(column - 7) : state.getIV(column - 7);
         case 13:
-            return QString::fromStdString(*Translator::getHiddenPower(state.getHiddenPower()));
+            return QString::fromStdString(Translator::getHiddenPower(state.getHiddenPower()));
         case 14:
             return state.getHiddenPowerStrength();
         case 15:
-            return QString::fromStdString(*Translator::getGender(state.getGender()));
+            return QString::fromStdString(Translator::getGender(state.getGender()));
         }
     }
     return QVariant();
@@ -107,7 +107,7 @@ QVariant WildSearcherModel3::data(const QModelIndex &index, int role) const
         case 0:
             return QString::number(state.getSeed(), 16).toUpper().rightJustified(8, '0');
         case 1:
-            return QString("%1 (%2)").arg(state.getEncounterSlot()).arg(QString::fromStdString(*Translator::getSpecie(state.getSpecie())));
+            return QString("%1 (%2)").arg(state.getEncounterSlot()).arg(QString::fromStdString(Translator::getSpecie(state.getSpecie())));
         case 2:
             return state.getLevel();
         case 3:
@@ -118,9 +118,9 @@ QVariant WildSearcherModel3::data(const QModelIndex &index, int role) const
             return shiny == 2 ? tr("Square") : shiny == 1 ? tr("Star") : tr("No");
         }
         case 5:
-            return QString::fromStdString(*Translator::getNature(state.getNature()));
+            return QString::fromStdString(Translator::getNature(state.getNature()));
         case 6:
-            return QString("%1 (%2)").arg(state.getAbility()).arg(QString::fromStdString(*Translator::getAbility(state.getAbilityIndex())));
+            return QString("%1 (%2)").arg(state.getAbility()).arg(QString::fromStdString(Translator::getAbility(state.getAbilityIndex())));
         case 7:
         case 8:
         case 9:
@@ -129,11 +129,11 @@ QVariant WildSearcherModel3::data(const QModelIndex &index, int role) const
         case 12:
             return showStats ? state.getStat(column - 7) : state.getIV(column - 7);
         case 13:
-            return QString::fromStdString(*Translator::getHiddenPower(state.getHiddenPower()));
+            return QString::fromStdString(Translator::getHiddenPower(state.getHiddenPower()));
         case 14:
             return state.getHiddenPowerStrength();
         case 15:
-            return QString::fromStdString(*Translator::getGender(state.getGender()));
+            return QString::fromStdString(Translator::getGender(state.getGender()));
         }
     }
     return QVariant();

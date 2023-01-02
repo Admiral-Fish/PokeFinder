@@ -68,9 +68,9 @@ ProfileCalibrator5::ProfileCalibrator5(QWidget *parent) : QWidget(parent), ui(ne
     ui->comboBoxKeypress3->addItem(tr("None"), 0);
     for (int i = 0; i < 12; i++)
     {
-        ui->comboBoxKeypress1->addItem(QString::fromStdString(*Translator::getKeypress(i)), 1 << i);
-        ui->comboBoxKeypress2->addItem(QString::fromStdString(*Translator::getKeypress(i)), 1 << i);
-        ui->comboBoxKeypress3->addItem(QString::fromStdString(*Translator::getKeypress(i)), 1 << i);
+        ui->comboBoxKeypress1->addItem(QString::fromStdString(Translator::getKeypress(i)), 1 << i);
+        ui->comboBoxKeypress2->addItem(QString::fromStdString(Translator::getKeypress(i)), 1 << i);
+        ui->comboBoxKeypress3->addItem(QString::fromStdString(Translator::getKeypress(i)), 1 << i);
     }
 
     auto *createProfile = new QAction(tr("Create profile"), ui->tableView);

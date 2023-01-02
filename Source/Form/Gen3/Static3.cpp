@@ -143,7 +143,7 @@ void Static3::generatorCategoryIndexChanged(int index)
         {
             if ((currentProfile->getVersion() & templates[i].getVersion()) != Game::None)
             {
-                ui->comboBoxGeneratorPokemon->addItem(QString::fromStdString(*Translator::getSpecie(templates[i].getSpecie())),
+                ui->comboBoxGeneratorPokemon->addItem(QString::fromStdString(Translator::getSpecie(templates[i].getSpecie())),
                                                       QVariant::fromValue(i));
             }
         }
@@ -173,7 +173,7 @@ void Static3::profileIndexChanged(int index)
 
         ui->labelProfileTIDValue->setText(QString::number(currentProfile->getTID()));
         ui->labelProfileSIDValue->setText(QString::number(currentProfile->getSID()));
-        ui->labelProfileGameValue->setText(QString::fromStdString(*Translator::getGame(currentProfile->getVersion())));
+        ui->labelProfileGameValue->setText(QString::fromStdString(Translator::getGame(currentProfile->getVersion())));
 
         bool frlg = (currentProfile->getVersion() & Game::FRLG) != Game::None;
         bool rs = (currentProfile->getVersion() & Game::RS) != Game::None;
@@ -257,7 +257,7 @@ void Static3::searcherCategoryIndexChanged(int index)
         {
             if ((currentProfile->getVersion() & templates[i].getVersion()) != Game::None)
             {
-                ui->comboBoxSearcherPokemon->addItem(QString::fromStdString(*Translator::getSpecie(templates[i].getSpecie())),
+                ui->comboBoxSearcherPokemon->addItem(QString::fromStdString(Translator::getSpecie(templates[i].getSpecie())),
                                                      QVariant::fromValue(i));
             }
         }

@@ -112,7 +112,7 @@ DreamRadar::DreamRadar(QWidget *parent) : QWidget(parent), ui(new Ui::DreamRadar
     for (int i = 0; i < size; i++)
     {
         const DreamRadarTemplate *dreamRadarTemplate = &dreamRadarTemplates[i];
-        std::string name = *Translator::getSpecie(dreamRadarTemplate->getSpecie());
+        std::string name = Translator::getSpecie(dreamRadarTemplate->getSpecie());
         if (dreamRadarTemplate->getGenie())
         {
             ui->comboBoxGeneratorSpecie1->addItem(QString::fromStdString(name), i);
@@ -250,17 +250,17 @@ void DreamRadar::updateGenders(ComboBox *comboBoxSpecie, ComboBox *comboBoxGende
     switch (info->getGender())
     {
     case 255: // Genderless
-        comboBoxGender->addItem(QString::fromStdString(*Translator::getGender(2)), 2);
+        comboBoxGender->addItem(QString::fromStdString(Translator::getGender(2)), 2);
         break;
     case 254: // Female
-        comboBoxGender->addItem(QString::fromStdString(*Translator::getGender(1)), 1);
+        comboBoxGender->addItem(QString::fromStdString(Translator::getGender(1)), 1);
         break;
     case 0: // Male
-        comboBoxGender->addItem(QString::fromStdString(*Translator::getGender(0)), 0);
+        comboBoxGender->addItem(QString::fromStdString(Translator::getGender(0)), 0);
         break;
     default: // Random gender
-        comboBoxGender->addItem(QString::fromStdString(*Translator::getGender(0)), 0);
-        comboBoxGender->addItem(QString::fromStdString(*Translator::getGender(1)), 1);
+        comboBoxGender->addItem(QString::fromStdString(Translator::getGender(0)), 0);
+        comboBoxGender->addItem(QString::fromStdString(Translator::getGender(1)), 1);
         break;
     }
 }
@@ -362,7 +362,7 @@ void DreamRadar::profileIndexChanged(int index)
         ui->labelProfileGxStatValue->setText(QString::number(currentProfile->getGxStat()));
         ui->labelProfileVFrameValue->setText(QString::number(currentProfile->getVFrame()));
         ui->labelProfileKeypressesValue->setText(QString::fromStdString(currentProfile->getKeypressesString()));
-        ui->labelProfileGameValue->setText(QString::fromStdString(*Translator::getGame(currentProfile->getVersion())));
+        ui->labelProfileGameValue->setText(QString::fromStdString(Translator::getGame(currentProfile->getVersion())));
     }
 }
 

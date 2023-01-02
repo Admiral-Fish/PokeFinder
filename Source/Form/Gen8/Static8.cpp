@@ -48,7 +48,7 @@ Static8::Static8(QWidget *parent) : QWidget(parent), ui(new Ui::Static8)
 
     ui->comboMenuLead->addAction(tr("None"), toInt(Lead::None));
     ui->comboMenuLead->addMenu(tr("Cute Charm"), { tr("♂ Lead"), tr("♀ Lead") }, { toInt(Lead::CuteCharmM), toInt(Lead::CuteCharmF) });
-    ui->comboMenuLead->addMenu(tr("Synchronize"), *Translator::getNatures());
+    ui->comboMenuLead->addMenu(tr("Synchronize"), Translator::getNatures());
 
     ui->comboBoxShiny->setup({ toInt(Shiny::Never), toInt(Shiny::Random) });
     ui->comboBoxAbility->setup({ 0, 1, 2, 255 });
@@ -121,7 +121,7 @@ void Static8::categoryIndexChanged(int index)
         {
             if ((currentProfile->getVersion() & templates[i].getVersion()) != Game::None)
             {
-                ui->comboBoxPokemon->addItem(QString::fromStdString(*Translator::getSpecie(templates[i].getSpecie())), i);
+                ui->comboBoxPokemon->addItem(QString::fromStdString(Translator::getSpecie(templates[i].getSpecie())), i);
             }
         }
     }
@@ -181,7 +181,7 @@ void Static8::profileIndexChanged(int index)
 
         ui->labelProfileTIDValue->setText(QString::number(currentProfile->getTID()));
         ui->labelProfileSIDValue->setText(QString::number(currentProfile->getSID()));
-        ui->labelProfileGameValue->setText(QString::fromStdString(*Translator::getGame(currentProfile->getVersion())));
+        ui->labelProfileGameValue->setText(QString::fromStdString(Translator::getGame(currentProfile->getVersion())));
     }
 }
 

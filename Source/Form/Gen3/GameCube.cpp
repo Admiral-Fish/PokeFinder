@@ -154,7 +154,7 @@ void GameCube::generatorCategoryIndexChanged(int index)
             {
                 if ((currentProfile->getVersion() & templates[i].getVersion()) != Game::None)
                 {
-                    ui->comboBoxGeneratorPokemon->addItem(QString::fromStdString(*Translator::getSpecie(templates[i].getSpecie())),
+                    ui->comboBoxGeneratorPokemon->addItem(QString::fromStdString(Translator::getSpecie(templates[i].getSpecie())),
                                                           QVariant::fromValue(i));
                 }
             }
@@ -166,7 +166,7 @@ void GameCube::generatorCategoryIndexChanged(int index)
             {
                 if ((currentProfile->getVersion() & templates[i].getVersion()) != Game::None)
                 {
-                    ui->comboBoxGeneratorPokemon->addItem(QString::fromStdString(*Translator::getSpecie(templates[i].getSpecie())),
+                    ui->comboBoxGeneratorPokemon->addItem(QString::fromStdString(Translator::getSpecie(templates[i].getSpecie())),
                                                           QVariant::fromValue(i));
                 }
             }
@@ -205,7 +205,7 @@ void GameCube::profileIndexChanged(int index)
 
         ui->labelProfileTIDValue->setText(QString::number(currentProfile->getTID()));
         ui->labelProfileSIDValue->setText(QString::number(currentProfile->getSID()));
-        ui->labelProfileGameValue->setText(QString::fromStdString(*Translator::getGame(currentProfile->getVersion())));
+        ui->labelProfileGameValue->setText(QString::fromStdString(Translator::getGame(currentProfile->getVersion())));
 
         generatorCategoryIndexChanged(ui->comboBoxGeneratorCategory->currentIndex());
         searcherCategoryIndexChanged(ui->comboBoxSearcherCategory->currentIndex());
@@ -298,7 +298,7 @@ void GameCube::searcherCategoryIndexChanged(int index)
             {
                 if ((currentProfile->getVersion() & templates[i].getVersion()) != Game::None)
                 {
-                    ui->comboBoxSearcherPokemon->addItem(QString::fromStdString(*Translator::getSpecie(templates[i].getSpecie())),
+                    ui->comboBoxSearcherPokemon->addItem(QString::fromStdString(Translator::getSpecie(templates[i].getSpecie())),
                                                          QVariant::fromValue(i));
                 }
             }
@@ -310,7 +310,7 @@ void GameCube::searcherCategoryIndexChanged(int index)
             {
                 if ((currentProfile->getVersion() & templates[i].getVersion()) != Game::None)
                 {
-                    ui->comboBoxSearcherPokemon->addItem(QString::fromStdString(*Translator::getSpecie(templates[i].getSpecie())),
+                    ui->comboBoxSearcherPokemon->addItem(QString::fromStdString(Translator::getSpecie(templates[i].getSpecie())),
                                                          QVariant::fromValue(i));
                 }
             }

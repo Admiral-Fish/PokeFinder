@@ -396,7 +396,63 @@
            </widget>
           </item>
           <item row="0" column="1">
-           <widget class="CheckList" name="checkListGeneratorSlot"/>
+           <widget class="CheckList" name="checkListGeneratorSlot">
+            <item>
+             <property name="text">
+              <string notr="true">0</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string notr="true">1</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string notr="true">2</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string notr="true">3</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string notr="true">4</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string notr="true">5</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string notr="true">6</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string notr="true">7</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string notr="true">8</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string notr="true">9</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string notr="true">10</string>
+             </property>
+            </item>
+           </widget>
           </item>
           <item row="1" column="0">
            <widget class="QLabel" name="labelGeneratorGroup">
@@ -412,7 +468,28 @@
            </widget>
           </item>
           <item row="1" column="1">
-           <widget class="CheckList" name="checkListGeneratorGroup"/>
+           <widget class="CheckList" name="checkListGeneratorGroup">
+            <item>
+             <property name="text">
+              <string notr="true">0</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string notr="true">1</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string notr="true">2</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string notr="true">3</string>
+             </property>
+            </item>
+           </widget>
           </item>
           <item row="2" column="0">
            <widget class="QLabel" name="labelGeneratorGender">
@@ -428,7 +505,18 @@
            </widget>
           </item>
           <item row="2" column="1">
-           <widget class="CheckList" name="checkListGeneratorGender"/>
+           <widget class="CheckList" name="checkListGeneratorGender">
+            <item>
+             <property name="text">
+              <string notr="true">♂</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>♀</string>
+             </property>
+            </item>
+           </widget>
           </item>
          </layout>
         </widget>
@@ -668,7 +756,63 @@
            </widget>
           </item>
           <item row="0" column="1">
-           <widget class="CheckList" name="checkListSearcherSlot"/>
+           <widget class="CheckList" name="checkListSearcherSlot">
+            <item>
+             <property name="text">
+              <string notr="true">0</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string notr="true">1</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string notr="true">2</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string notr="true">3</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string notr="true">4</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string notr="true">5</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string notr="true">6</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string notr="true">7</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string notr="true">8</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string notr="true">9</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string notr="true">10</string>
+             </property>
+            </item>
+           </widget>
           </item>
           <item row="1" column="0">
            <widget class="QLabel" name="labelSearcherGroup">
@@ -684,7 +828,28 @@
            </widget>
           </item>
           <item row="1" column="1">
-           <widget class="CheckList" name="checkListSearcherGroup"/>
+           <widget class="CheckList" name="checkListSearcherGroup">
+            <item>
+             <property name="text">
+              <string notr="true">0</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string notr="true">1</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string notr="true">2</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string notr="true">3</string>
+             </property>
+            </item>
+           </widget>
           </item>
           <item row="2" column="0">
            <widget class="QLabel" name="labelSearcherGender">
@@ -700,7 +865,18 @@
            </widget>
           </item>
           <item row="2" column="1">
-           <widget class="CheckList" name="checkListSearcherGender"/>
+           <widget class="CheckList" name="checkListSearcherGender">
+            <item>
+             <property name="text">
+              <string notr="true">♂</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string notr="true">♀</string>
+             </property>
+            </item>
+           </widget>
           </item>
          </layout>
         </widget>

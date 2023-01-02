@@ -47,9 +47,9 @@ QVariant StaticGeneratorModel3::data(const QModelIndex &index, int role) const
             return shiny == 2 ? tr("Square") : shiny == 1 ? tr("Star") : tr("No");
         }
         case 3:
-            return QString::fromStdString(*Translator::getNature(state.getNature()));
+            return QString::fromStdString(Translator::getNature(state.getNature()));
         case 4:
-            return QString("%1 (%2)").arg(state.getAbility()).arg(QString::fromStdString(*Translator::getAbility(state.getAbilityIndex())));
+            return QString("%1 (%2)").arg(state.getAbility()).arg(QString::fromStdString(Translator::getAbility(state.getAbilityIndex())));
         case 5:
         case 6:
         case 7:
@@ -58,11 +58,11 @@ QVariant StaticGeneratorModel3::data(const QModelIndex &index, int role) const
         case 10:
             return showStats ? state.getStat(column - 5) : state.getIV(column - 5);
         case 11:
-            return QString::fromStdString(*Translator::getHiddenPower(state.getHiddenPower()));
+            return QString::fromStdString(Translator::getHiddenPower(state.getHiddenPower()));
         case 12:
             return state.getHiddenPowerStrength();
         case 13:
-            return QString::fromStdString(*Translator::getGender(state.getGender()));
+            return QString::fromStdString(Translator::getGender(state.getGender()));
         }
     }
     return QVariant();
@@ -110,9 +110,9 @@ QVariant StaticSearcherModel3::data(const QModelIndex &index, int role) const
             return shiny == 2 ? tr("Square") : shiny == 1 ? tr("Star") : tr("No");
         }
         case 3:
-            return QString::fromStdString(*Translator::getNature(state.getNature()));
+            return QString::fromStdString(Translator::getNature(state.getNature()));
         case 4:
-            return QString("%1 (%2)").arg(state.getAbility()).arg(QString::fromStdString(*Translator::getAbility(state.getAbilityIndex())));
+            return QString("%1 (%2)").arg(state.getAbility()).arg(QString::fromStdString(Translator::getAbility(state.getAbilityIndex())));
         case 5:
         case 6:
         case 7:
@@ -121,11 +121,11 @@ QVariant StaticSearcherModel3::data(const QModelIndex &index, int role) const
         case 10:
             return showStats ? state.getStat(column - 5) : state.getIV(column - 5);
         case 11:
-            return QString::fromStdString(*Translator::getHiddenPower(state.getHiddenPower()));
+            return QString::fromStdString(Translator::getHiddenPower(state.getHiddenPower()));
         case 12:
             return state.getHiddenPowerStrength();
         case 13:
-            return QString::fromStdString(*Translator::getGender(state.getGender()));
+            return QString::fromStdString(Translator::getGender(state.getGender()));
         }
     }
     return QVariant();

@@ -50,17 +50,17 @@ QVariant EventGeneratorModel5::data(const QModelIndex &index, int role) const
             return shiny == 2 ? tr("Square") : shiny == 1 ? tr("Star") : tr("No");
         }
         case 4:
-            return QString::fromStdString(*Translator::getNature(state.getNature()));
+            return QString::fromStdString(Translator::getNature(state.getNature()));
         case 5:
             if (state.getAbility() == 0 || state.getAbility() == 1)
             {
                 return QString("%1 (%2)")
                     .arg(state.getAbility())
-                    .arg(QString::fromStdString(*Translator::getAbility(state.getAbilityIndex())));
+                    .arg(QString::fromStdString(Translator::getAbility(state.getAbilityIndex())));
             }
             else
             {
-                return QString("H (%2)").arg(QString::fromStdString(*Translator::getAbility(state.getAbilityIndex())));
+                return QString("H (%2)").arg(QString::fromStdString(Translator::getAbility(state.getAbilityIndex())));
             }
         case 6:
         case 7:
@@ -70,11 +70,11 @@ QVariant EventGeneratorModel5::data(const QModelIndex &index, int role) const
         case 11:
             return showStats ? state.getStat(column - 6) : state.getIV(column - 6);
         case 12:
-            return QString::fromStdString(*Translator::getHiddenPower(state.getHiddenPower()));
+            return QString::fromStdString(Translator::getHiddenPower(state.getHiddenPower()));
         case 13:
             return state.getHiddenPowerStrength();
         case 14:
-            return QString::fromStdString(*Translator::getGender(state.getGender()));
+            return QString::fromStdString(Translator::getGender(state.getGender()));
         }
     }
 
@@ -126,17 +126,17 @@ QVariant EventSearcherModel5::data(const QModelIndex &index, int role) const
             return shiny == 2 ? tr("Square") : shiny == 1 ? tr("Star") : tr("No");
         }
         case 4:
-            return QString::fromStdString(*Translator::getNature(state.getNature()));
+            return QString::fromStdString(Translator::getNature(state.getNature()));
         case 5:
             if (state.getAbility() == 0 || state.getAbility() == 1)
             {
                 return QString("%1 (%2)")
                     .arg(state.getAbility())
-                    .arg(QString::fromStdString(*Translator::getAbility(state.getAbilityIndex())));
+                    .arg(QString::fromStdString(Translator::getAbility(state.getAbilityIndex())));
             }
             else
             {
-                return QString("H (%2)").arg(QString::fromStdString(*Translator::getAbility(state.getAbilityIndex())));
+                return QString("H (%2)").arg(QString::fromStdString(Translator::getAbility(state.getAbilityIndex())));
             }
         case 6:
         case 7:
@@ -146,11 +146,11 @@ QVariant EventSearcherModel5::data(const QModelIndex &index, int role) const
         case 11:
             return showStats ? state.getStat(column - 6) : state.getIV(column - 6);
         case 12:
-            return QString::fromStdString(*Translator::getHiddenPower(state.getHiddenPower()));
+            return QString::fromStdString(Translator::getHiddenPower(state.getHiddenPower()));
         case 13:
             return state.getHiddenPowerStrength();
         case 14:
-            return QString::fromStdString(*Translator::getGender(state.getGender()));
+            return QString::fromStdString(Translator::getGender(state.getGender()));
         case 15:
             return QString::fromStdString(display.getDateTime().toString());
         case 16:
