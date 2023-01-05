@@ -44,8 +44,6 @@ IDs3::IDs3(QWidget *parent) : QWidget(parent), ui(new Ui::IDs3), model(new IDMod
     ui->textBoxInitialAdvancesXDColo->setValues(InputType::Advance32Bit);
     ui->textBoxMaxAdvancesXDColo->setValues(InputType::Advance32Bit);
 
-    ui->idFilter->enableDisplayTID(false);
-
     connect(ui->pushButtonGenerateXDColo, &QPushButton::clicked, this, &IDs3::generateXDColo);
     connect(ui->pushButtonGenerateFRLGE, &QPushButton::clicked, this, &IDs3::generateFRLGE);
     connect(ui->pushButtonGenerateRS, &QPushButton::clicked, this, &IDs3::generateRS);

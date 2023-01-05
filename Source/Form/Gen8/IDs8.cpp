@@ -39,7 +39,7 @@ IDs8::IDs8(QWidget *parent) : QWidget(parent), ui(new Ui::IDs8)
     ui->textBoxSeed0->setValues(InputType::Seed64Bit);
     ui->textBoxSeed1->setValues(InputType::Seed64Bit);
 
-    ui->filter->enableDisplayTID(true);
+    ui->filter->enableDisplayTID();
 
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &IDs8::generate);
 

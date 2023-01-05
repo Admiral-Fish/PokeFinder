@@ -56,11 +56,9 @@ public:
     IDFilter getFilter() const;
 
     /**
-     * @brief Enables of disables showing of the Display TID filter settings
-     *
-     * @param flag True if enabled, false otherwise
+     * @brief Enables showing of the Display TID filter settings
      */
-    void enableDisplayTID(bool flag);
+    void enableDisplayTID();
 
 private:
     Ui::IDsFilter *ui;

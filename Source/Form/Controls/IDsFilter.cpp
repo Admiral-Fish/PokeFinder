@@ -25,6 +25,9 @@
 IDsFilter::IDsFilter(QWidget *parent) : QWidget(parent), ui(new Ui::IDsFilter)
 {
     ui->setupUi(this);
+
+    ui->radioButtonDisplayTID->setVisible(false);
+
     connect(ui->plainTextEdit, &QPlainTextEdit::textChanged, this, &IDsFilter::textEditIDsTextChanged);
 }
 
@@ -97,9 +100,9 @@ IDFilter IDsFilter::getFilter() const
     return IDFilter(tidFilter, sidFilter, tsvFilter, displayFilter);
 }
 
-void IDsFilter::enableDisplayTID(bool flag)
+void IDsFilter::enableDisplayTID()
 {
-    ui->radioButtonDisplayTID->setVisible(flag);
+    ui->radioButtonDisplayTID->setVisible(true);
 }
 
 void IDsFilter::textEditIDsTextChanged()
