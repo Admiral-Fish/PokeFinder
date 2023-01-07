@@ -26,6 +26,7 @@
 #include <Form/Gen3/Profile/ProfileManager3.hpp>
 #include <Form/Gen3/Static3.hpp>
 #include <Form/Gen3/Tools/GameCubeSeedFinder.hpp>
+#include <Form/Gen3/Tools/PIDToIV.hpp>
 #include <Form/Gen3/Tools/PokeSpot.hpp>
 #include <Form/Gen3/Tools/SpindaPainter.hpp>
 #include <Form/Gen3/Wild3.hpp>
@@ -53,6 +54,7 @@
 #include <Form/Gen8/Wild8.hpp>
 #include <Form/Util/EncounterLookup.hpp>
 #include <Form/Util/IVCalculator.hpp>
+#include <Form/Util/IVToPID.hpp>
 #include <Form/Util/Researcher.hpp>
 #include <Form/Util/Settings.hpp>
 #include <QClipboard>
@@ -79,15 +81,18 @@ MainWindow::MainWindow(bool profile, QWidget *parent) : QMainWindow(parent), ui(
     connect(ui->pushButtonIDs3, &QPushButton::clicked, this, &MainWindow::openIDs3);
     connect(ui->pushButtonStatic3, &QPushButton::clicked, this, &MainWindow::openStatic3);
     connect(ui->pushButtonWild3, &QPushButton::clicked, this, &MainWindow::openWild3);
-    connect(ui->actionProfileManager3, &QAction::triggered, this, &MainWindow::openProfileManager3);
     connect(ui->actionGameCubeSeedFinder, &QAction::triggered, this, &MainWindow::openGameCubeSeedFinder);
+    connect(ui->actionIVstoPID3, &QAction::triggered, this, &MainWindow::openIVToPID);
+    connect(ui->actionPIDtoIVs, &QAction::triggered, this, &MainWindow::openPIDtoIV);
     connect(ui->actionPokeSpot, &QAction::triggered, this, &MainWindow::openPokeSpot);
+    connect(ui->actionProfileManager3, &QAction::triggered, this, &MainWindow::openProfileManager3);
     connect(ui->actionSpindaPainter, &QAction::triggered, this, &MainWindow::openSpindaPainter);
 
     // connect(ui->pushButtonEgg4, &QPushButton::clicked, this, &MainWindow::openEgg4);
     connect(ui->pushButtonIDs4, &QPushButton::clicked, this, &MainWindow::openIDs4);
     connect(ui->pushButtonStatic4, &QPushButton::clicked, this, &MainWindow::openStatic4);
     connect(ui->pushButtonWild4, &QPushButton::clicked, this, &MainWindow::openWild4);
+    connect(ui->actionIVstoPID4, &QAction::triggered, this, &MainWindow::openIVToPID);
     connect(ui->actionProfileManager4, &QAction::triggered, this, &MainWindow::openProfileManager4);
     connect(ui->actionSeedtoTime4, &QAction::triggered, this, &MainWindow::openSeedToTime4);
     connect(ui->actionSIDfromChainedShiny, &QAction::triggered, this, &MainWindow::openSIDFromChainedShiny);
@@ -216,6 +221,7 @@ void MainWindow::openEgg3()
         connect(egg3, &Eggs3::profilesModified, this, &MainWindow::updateProfiles);
     }
     egg3->show();
+    egg3->raise();
 }
 
 void MainWindow::openIDs3()
@@ -225,6 +231,7 @@ void MainWindow::openIDs3()
         ids3 = new IDs3();
     }
     ids3->show();
+    ids3->raise();
 }
 
 void MainWindow::openGameCube()
@@ -235,18 +242,25 @@ void MainWindow::openGameCube()
         connect(gamecube, &GameCube::profilesModified, this, &MainWindow::updateProfiles);
     }
     gamecube->show();
+    gamecube->raise();
 }
 
 void MainWindow::openGameCubeSeedFinder()
 {
-    auto *finder = new GameCubeSeedFinder();
-    finder->show();
+    auto *window = new GameCubeSeedFinder();
+    window->show();
+}
+
+void MainWindow::openPIDtoIV() const
+{
+    auto *window = new PIDToIV();
+    window->show();
 }
 
 void MainWindow::openPokeSpot()
 {
-    auto *pokeSpot = new PokeSpot();
-    pokeSpot->show();
+    auto *window = new PokeSpot();
+    window->show();
 }
 
 void MainWindow::openProfileManager3() const
@@ -258,8 +272,8 @@ void MainWindow::openProfileManager3() const
 
 void MainWindow::openSpindaPainter()
 {
-    auto *spinda = new SpindaPainter();
-    spinda->show();
+    auto *window = new SpindaPainter();
+    window->show();
 }
 
 void MainWindow::openStatic3()
@@ -270,6 +284,7 @@ void MainWindow::openStatic3()
         connect(static3, &Static3::profilesModified, this, &MainWindow::updateProfiles);
     }
     static3->show();
+    static3->raise();
 }
 
 void MainWindow::openWild3()
@@ -280,6 +295,7 @@ void MainWindow::openWild3()
         connect(wild3, &Wild3::profilesModified, this, &MainWindow::updateProfiles);
     }
     wild3->show();
+    wild4->raise();
 }
 
 void MainWindow::openIDs4()
@@ -289,6 +305,7 @@ void MainWindow::openIDs4()
         ids4 = new IDs4();
     }
     ids4->show();
+    ids4->raise();
 }
 
 void MainWindow::openProfileManager4() const
@@ -306,6 +323,7 @@ void MainWindow::openStatic4()
         connect(static4, &Static4::profilesModified, this, &MainWindow::updateProfiles);
     }
     static4->show();
+    static4->raise();
 }
 
 void MainWindow::openWild4()
@@ -316,18 +334,19 @@ void MainWindow::openWild4()
         connect(wild4, &Wild4::profilesModified, this, &MainWindow::updateProfiles);
     }
     wild4->show();
+    wild4->raise();
 }
 
 void MainWindow::openSeedToTime4() const
 {
-    auto *seedToTime = new SeedToTime4();
-    seedToTime->show();
+    auto *window = new SeedToTime4();
+    window->show();
 }
 
 void MainWindow::openSIDFromChainedShiny()
 {
-    auto *chainedSID = new ChainedSID();
-    chainedSID->show();
+    auto *window = new ChainedSID();
+    window->show();
 }
 
 /*void MainWindow::openEgg4()
@@ -347,15 +366,15 @@ void MainWindow::openDreamRadar()
         dreamRadar = new DreamRadar();
         connect(dreamRadar, &DreamRadar::profilesModified, this, &MainWindow::updateProfiles);
     }
-    dreamRadar->show();
-
-    if (!dreamRadar->hasProfiles())
+    else if (!dreamRadar->hasProfiles())
     {
         QMessageBox msg(QMessageBox::Warning, tr("No profiles found"),
                         tr("Please use the Profile Calibrator under Gen 5 Tools to create one."));
         msg.exec();
         dreamRadar->close();
     }
+    dreamRadar->show();
+    dreamRadar->raise();
 }
 
 void MainWindow::openEgg5()
@@ -365,15 +384,15 @@ void MainWindow::openEgg5()
         egg5 = new Eggs5();
         connect(egg5, &Eggs5::profilesModified, this, &MainWindow::updateProfiles);
     }
-    egg5->show();
-
-    if (!egg5->hasProfiles())
+    else if (!egg5->hasProfiles())
     {
         QMessageBox message(QMessageBox::Warning, tr("No profiles found"),
                             tr("Please use the Profile Calibrator under Gen 5 Tools to create one."));
         message.exec();
         egg5->close();
     }
+    egg5->show();
+    egg5->raise();
 }
 
 void MainWindow::openEvent5()
@@ -383,15 +402,15 @@ void MainWindow::openEvent5()
         event5 = new Event5();
         connect(event5, &Event5::profilesModified, this, &MainWindow::updateProfiles);
     }
-    event5->show();
-
-    if (!event5->hasProfiles())
+    else if (!event5->hasProfiles())
     {
         QMessageBox msg(QMessageBox::Warning, tr("No profiles found"),
                         tr("Please use the Profile Calibrator under Gen 5 Tools to create one."));
         msg.exec();
         event5->close();
     }
+    event5->show();
+    event5->raise();
 }
 
 void MainWindow::openHiddenGrotto()
@@ -401,15 +420,15 @@ void MainWindow::openHiddenGrotto()
         hiddenGrotto = new HiddenGrotto();
         connect(hiddenGrotto, &HiddenGrotto::profilesModified, this, &MainWindow::updateProfiles);
     }
-    hiddenGrotto->show();
-
-    if (!hiddenGrotto->hasProfiles())
+    else if (!hiddenGrotto->hasProfiles())
     {
         QMessageBox msg(QMessageBox::Warning, tr("No profiles found"),
                         tr("Please use the Profile Calibrator under Gen 5 Tools to create one."));
         msg.exec();
         hiddenGrotto->close();
     }
+    hiddenGrotto->show();
+    hiddenGrotto->raise();
 }
 
 void MainWindow::openIDs5()
@@ -419,15 +438,15 @@ void MainWindow::openIDs5()
         ids5 = new IDs5();
         connect(ids5, &IDs5::profilesModified, this, &MainWindow::updateProfiles);
     }
-    ids5->show();
-
-    if (!ids5->hasProfiles())
+    else if (!ids5->hasProfiles())
     {
         QMessageBox msg(QMessageBox::Warning, tr("No profiles found"),
                         tr("Please use the Profile Calibrator under Gen 5 Tools to create one."));
         msg.exec();
         ids5->close();
     }
+    ids5->show();
+    ids5->raise();
 }
 
 void MainWindow::openProfileCalibrator() const
@@ -534,8 +553,8 @@ void MainWindow::downloadEventData()
 
 void MainWindow::openDenMap()
 {
-    auto *map = new DenMap();
-    map->show();
+    auto *window = new DenMap();
+    window->show();
 }
 
 void MainWindow::openEgg8()
@@ -546,6 +565,7 @@ void MainWindow::openEgg8()
         connect(egg8, &Eggs8::profilesModified, this, &MainWindow::updateProfiles);
     }
     egg8->show();
+    egg8->raise();
 }
 
 void MainWindow::openEvent8()
@@ -556,6 +576,7 @@ void MainWindow::openEvent8()
         connect(event8, &Event8::profilesModified, this, &MainWindow::updateProfiles);
     }
     event8->show();
+    event8->raise();
 }
 
 void MainWindow::openIDs8()
@@ -565,6 +586,7 @@ void MainWindow::openIDs8()
         ids8 = new IDs8();
     }
     ids8->show();
+    ids8->raise();
 }
 
 void MainWindow::openProfileManager8() const
@@ -582,6 +604,7 @@ void MainWindow::openRaids()
         connect(raids, &Raids::profilesModified, this, &MainWindow::updateProfiles);
     }
     raids->show();
+    raids->show();
 }
 
 void MainWindow::openStatic8()
@@ -591,6 +614,7 @@ void MainWindow::openStatic8()
         static8 = new Static8();
         connect(static8, &Static8::profilesModified, this, &MainWindow::updateProfiles);
     }
+    static8->show();
     static8->show();
 }
 
@@ -602,6 +626,7 @@ void MainWindow::openUnderground()
         connect(underground, &Underground::profilesModified, this, &MainWindow::updateProfiles);
     }
     underground->show();
+    underground->raise();
 }
 
 void MainWindow::openWild8()
@@ -612,6 +637,7 @@ void MainWindow::openWild8()
         connect(wild8, &Wild8::profilesModified, this, &MainWindow::updateProfiles);
     }
     wild8->show();
+    wild8->raise();
 }
 
 void MainWindow::openAbout() const
@@ -630,26 +656,32 @@ void MainWindow::openAbout() const
 
 void MainWindow::openEncounterLookup() const
 {
-    auto *lookup = new EncounterLookup();
-    lookup->show();
+    auto *window = new EncounterLookup();
+    window->show();
 }
 
 void MainWindow::openIVCalculator() const
 {
-    auto *iv = new IVCalculator();
-    iv->show();
+    auto *window = new IVCalculator();
+    window->show();
+}
+
+void MainWindow::openIVToPID() const
+{
+    auto *window = new IVToPID();
+    window->show();
 }
 
 void MainWindow::openResearcher() const
 {
-    auto *r = new Researcher();
-    r->show();
+    auto *window = new Researcher();
+    window->show();
 }
 
 void MainWindow::openSettings() const
 {
-    auto *s = new Settings();
-    s->show();
+    auto *window = new Settings();
+    window->show();
 }
 
 void MainWindow::updateProfiles(int num)

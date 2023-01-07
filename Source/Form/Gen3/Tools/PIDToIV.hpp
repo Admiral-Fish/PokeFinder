@@ -17,61 +17,48 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef METHOD_HPP
-#define METHOD_HPP
+#ifndef PIDTOIVS_HPP
+#define PIDTOIVS_HPP
 
 #include <Core/Global.hpp>
+#include <QWidget>
 
-/**
- * @brief Enum to encompass different encounter methods
- */
-enum class Method : u8
+class PIDToIVModel;
+
+namespace Ui
 {
-    None,
-
-    Method1,
-    Method1Reverse,
-    Method2,
-    Method4,
-
-    XDColo,
-    Channel,
-
-    EBred,
-    EBredSplit,
-    EBredAlternate,
-    EBredPID,
-    RSFRLGBred,
-    RSFRLGBredSplit,
-    RSFRLGBredAlternate,
-    RSFRLGBredMixed,
-
-    MethodJ,
-    MethodK,
-    PokeRadar,
-    WondercardIVs,
-
-    Gen4Normal,
-    Gen4Masuda,
-    DPPtIVs,
-    HGSSIVs,
-    Gen4Combined,
-
-    Method5IVs,
-    Method5CGear,
-    Method5
-};
-
-/**
- * @brief Converts enum to number
- *
- * @param method Input method
- *
- * @return Converted number
- */
-constexpr u8 toInt(Method method)
-{
-    return static_cast<u8>(method);
+    class PIDToIV;
 }
 
-#endif // METHOD_HPP
+/**
+ * @brief Calculates potentional IVs from the given PID for various methods
+ */
+class PIDToIV : public QWidget
+{
+    Q_OBJECT
+public:
+    /**
+     * @brief Construct a new PIDToIV object
+     *
+     * @param parent Parent widget, which takes memory ownership
+     */
+    PIDToIV(QWidget *parent = nullptr);
+
+    /**
+     * @brief Destroy the PIDToIV object
+     */
+    ~PIDToIV() override;
+
+private:
+    Ui::PIDToIV *ui;
+
+    PIDToIVModel *model;
+
+private slots:
+    /**
+     * @brief Computes IVs for the given PID
+     */
+    void generate();
+};
+
+#endif // PIDTOIVS_HPP

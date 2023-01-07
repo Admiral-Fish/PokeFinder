@@ -54,6 +54,8 @@ add_library(PokeFinderCore STATIC
     Gen3/Generators/WildGenerator3.cpp
     Gen3/Generators/WildGenerator3.hpp
     Gen3/LockInfo.hpp
+    Gen3/PIDToIVCalculator.cpp
+    Gen3/PIDToIVCalculator.hpp
     Gen3/Profile3.cpp
     Gen3/Profile3.hpp
     Gen3/Searchers/ChannelSeedSearcher.cpp
@@ -73,6 +75,7 @@ add_library(PokeFinderCore STATIC
     Gen3/ShadowLock.hpp
     Gen3/ShadowTemplate.hpp
     Gen3/States/EggState3.hpp
+    Gen3/States/PIDToIVState.hpp
     Gen3/States/PokeSpotState.hpp
     Gen3/States/WildState3.hpp
     Gen4/ChainedSIDCalc.cpp
@@ -201,6 +204,7 @@ add_library(PokeFinderCore STATIC
     Parents/Slot.hpp
     Parents/States/EggState.hpp
     Parents/States/IDState.hpp
+    Parents/States/IVToPIDState.hpp
     Parents/States/ResearcherState.hpp
     Parents/States/State.cpp
     Parents/States/State.hpp
@@ -233,6 +237,8 @@ add_library(PokeFinderCore STATIC
     Util/EncounterSlot.hpp
     Util/IVChecker.cpp
     Util/IVChecker.hpp
+    Util/IVToPIDCalculator.cpp
+    Util/IVToPIDCalculator.hpp
     Util/Nature.cpp
     Util/Nature.hpp
     Util/Translator.cpp

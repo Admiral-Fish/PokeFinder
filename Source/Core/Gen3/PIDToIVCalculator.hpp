@@ -17,61 +17,27 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef METHOD_HPP
-#define METHOD_HPP
+#ifndef PIDTOIVCALCULATOR_HPP
+#define PIDTOIVCALCULATOR_HPP
 
 #include <Core/Global.hpp>
+#include <vector>
+
+class PIDToIVState;
 
 /**
- * @brief Enum to encompass different encounter methods
+ * @brief Computes IV from PID for Method 1/2/4, XD/Colo, and Channel
  */
-enum class Method : u8
+namespace PIDToIVCalculator
 {
-    None,
-
-    Method1,
-    Method1Reverse,
-    Method2,
-    Method4,
-
-    XDColo,
-    Channel,
-
-    EBred,
-    EBredSplit,
-    EBredAlternate,
-    EBredPID,
-    RSFRLGBred,
-    RSFRLGBredSplit,
-    RSFRLGBredAlternate,
-    RSFRLGBredMixed,
-
-    MethodJ,
-    MethodK,
-    PokeRadar,
-    WondercardIVs,
-
-    Gen4Normal,
-    Gen4Masuda,
-    DPPtIVs,
-    HGSSIVs,
-    Gen4Combined,
-
-    Method5IVs,
-    Method5CGear,
-    Method5
+    /**
+     * @brief Computes IVs from the \p pid for Method 1/2/4, XD/Colo, and Channel
+     *
+     * @param pid PID value
+     *
+     * @return Vector of computed IVs
+     */
+    std::vector<PIDToIVState> calculateIVs(u32 pid);
 };
 
-/**
- * @brief Converts enum to number
- *
- * @param method Input method
- *
- * @return Converted number
- */
-constexpr u8 toInt(Method method)
-{
-    return static_cast<u8>(method);
-}
-
-#endif // METHOD_HPP
+#endif // PIDTOIVCALCULATOR_HPP

@@ -88,6 +88,7 @@ public:
      * @brief Construct a new ResearcherModel object
      *
      * @param parent Parent object, which takes memory ownership
+     * @param flag Whether or not the model is in 64bit or 32bit mode
      */
     ResearcherModel(QObject *parent, bool flag);
 
@@ -122,11 +123,13 @@ public:
     QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
 
     /**
-     * @brief search
-     * @param custom
-     * @param result
-     * @param row
-     * @return
+     * @brief Search for the column that has the given data
+     *
+     * @param custom Determine which function pointer to search with
+     * @param result Number to search
+     * @param row Row index to search
+     *
+     * @return Index of found data
      */
     QModelIndex search(Custom custom, u64 result, int row);
 

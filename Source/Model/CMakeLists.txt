@@ -14,6 +14,8 @@ add_library(PokeFinderModel STATIC
     Gen3/EggModel3.hpp
     Gen3/GameCubeModel.cpp
     Gen3/GameCubeModel.hpp
+    Gen3/PIDToIVModel.cpp
+    Gen3/PIDToIVModel.hpp
     Gen3/PokeSpotModel.cpp
     Gen3/PokeSpotModel.hpp
     Gen3/ProfileModel3.cpp
@@ -61,6 +63,8 @@ add_library(PokeFinderModel STATIC
     Gen8/WildModel8.cpp
     Gen8/WildModel8.hpp
     TableModel.hpp
+    Util/IVToPIDModel.cpp
+    Util/IVToPIDModel.hpp
     Util/ResearcherModel.cpp
     Util/ResearcherModel.hpp
 )

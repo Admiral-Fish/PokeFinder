@@ -141,6 +141,11 @@ private slots:
     void openGameCubeSeedFinder();
 
     /**
+     * @brief Opens the PID to IVs window
+     */
+    void openPIDtoIV() const;
+
+    /**
      * @brief Opens the Poke Spot window
      */
     void openPokeSpot();
@@ -302,6 +307,11 @@ private slots:
      * @brief Opens the IV Calculator
      */
     void openIVCalculator() const;
+
+    /**
+     * @brief Opens the IVs to PID window
+     */
+    void openIVToPID() const;
 
     /**
      * @brief Opens the Researcher window

@@ -235,14 +235,18 @@
      <string>Gen 3 Tools</string>
     </property>
     <addaction name="actionGameCubeSeedFinder"/>
+    <addaction name="actionIVstoPID3"/>
+    <addaction name="actionPIDtoIVs"/>
     <addaction name="actionPokeSpot"/>
     <addaction name="actionProfileManager3"/>
     <addaction name="actionSpindaPainter"/>
+    <addaction name="separator"/>
    </widget>
    <widget class="QMenu" name="menuGen4Tools">
     <property name="title">
      <string>Gen 4 Tools</string>
     </property>
+    <addaction name="actionIVstoPID4"/>
     <addaction name="actionProfileManager4"/>
     <addaction name="actionSeedtoTime4"/>
     <addaction name="actionSIDfromChainedShiny"/>
@@ -273,44 +277,14 @@
     <string>Researcher</string>
    </property>
   </action>
-  <action name="actionSeedtoTime3">
-   <property name="text">
-    <string>Seed to Time</string>
-   </property>
-  </action>
-  <action name="actionJirachiPattern">
-   <property name="text">
-    <string>Jirachi Pattern</string>
-   </property>
-  </action>
   <action name="actionPokeSpot">
    <property name="text">
     <string>Poke Spot</string>
    </property>
   </action>
-  <action name="actionIVtoPID3">
-   <property name="text">
-    <string>IV to PID</string>
-   </property>
-  </action>
-  <action name="actionGameCubeRTC">
-   <property name="text">
-    <string>GameCube RTC</string>
-   </property>
-  </action>
-  <action name="actionPIDtoIV">
-   <property name="text">
-    <string>PID to IV</string>
-   </property>
-  </action>
   <action name="actionSeedtoTime4">
    <property name="text">
     <string>Seed to Time</string>
-   </property>
-  </action>
-  <action name="actionIVtoPID4">
-   <property name="text">
-    <string>IV to PID</string>
    </property>
   </action>
   <action name="actionSIDfromChainedShiny">
@@ -381,6 +355,21 @@
   <action name="actionProfileManager8">
    <property name="text">
     <string>Profile Manager</string>
+   </property>
+  </action>
+  <action name="actionPIDtoIVs">
+   <property name="text">
+    <string>PID to IVs</string>
+   </property>
+  </action>
+  <action name="actionIVstoPID3">
+   <property name="text">
+    <string>IVs to PID</string>
+   </property>
+  </action>
+  <action name="actionIVstoPID4">
+   <property name="text">
+    <string>IVs to PID</string>
    </property>
   </action>
  </widget>

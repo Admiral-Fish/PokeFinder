@@ -17,61 +17,34 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef METHOD_HPP
-#define METHOD_HPP
+#ifndef IVTOPIDCALCULATOR_HPP
+#define IVTOPIDCALCULATOR_HPP
 
 #include <Core/Global.hpp>
+#include <vector>
+
+class IVToPIDState;
 
 /**
- * @brief Enum to encompass different encounter methods
+ * @brief Computes PID from IVs
  */
-enum class Method : u8
+namespace IVToPIDCalculator
 {
-    None,
-
-    Method1,
-    Method1Reverse,
-    Method2,
-    Method4,
-
-    XDColo,
-    Channel,
-
-    EBred,
-    EBredSplit,
-    EBredAlternate,
-    EBredPID,
-    RSFRLGBred,
-    RSFRLGBredSplit,
-    RSFRLGBredAlternate,
-    RSFRLGBredMixed,
-
-    MethodJ,
-    MethodK,
-    PokeRadar,
-    WondercardIVs,
-
-    Gen4Normal,
-    Gen4Masuda,
-    DPPtIVs,
-    HGSSIVs,
-    Gen4Combined,
-
-    Method5IVs,
-    Method5CGear,
-    Method5
+    /**
+     * @brief Computes PID from the IVs for Method 1/2/4, XD/Colo, and Channel
+     *
+     * @param hp HP IV
+     * @param atk Atk IV
+     * @param def Def IV
+     * @param spa SpA IV
+     * @param spd SpD IV
+     * @param spe Spe IV
+     * @param nature Nature value
+     * @param tid Trainer ID
+     *
+     * @return Vector of computed PIDs
+     */
+    std::vector<IVToPIDState> calculateIVs(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, u8 nature, u16 tid);
 };
 
-/**
- * @brief Converts enum to number
- *
- * @param method Input method
- *
- * @return Converted number
- */
-constexpr u8 toInt(Method method)
-{
-    return static_cast<u8>(method);
-}
-
-#endif // METHOD_HPP
+#endif // IVTOPIDCALCULATOR_HPP
