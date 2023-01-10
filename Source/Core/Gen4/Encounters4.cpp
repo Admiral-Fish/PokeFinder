@@ -76,7 +76,7 @@ constexpr std::array<StaticTemplate4, 14> gifts = {
 };
 
 constexpr std::array<StaticTemplate4, 7> gameCorner = {
-    StaticTemplate4(Game::HGSS, 112, 15, Method::Method1), // Mr. Mime @ Celadon City Game Corner
+    StaticTemplate4(Game::HGSS, 122, 15, Method::Method1), // Mr. Mime @ Celadon City Game Corner
     StaticTemplate4(Game::HGSS, 133, 15, Method::Method1), // Eevee
     StaticTemplate4(Game::HGSS, 137, 15, Method::Method1), // Porygon
 
