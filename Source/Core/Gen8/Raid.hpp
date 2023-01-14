@@ -20,72 +20,32 @@
 #ifndef RAID_HPP
 #define RAID_HPP
 
-#include <Core/Enum/Game.hpp>
-#include <Core/Enum/Shiny.hpp>
 #include <Core/Global.hpp>
-#include <Core/Parents/PersonalLoader.hpp>
+#include <Core/Parents/StaticTemplate.hpp>
 #include <array>
 #include <string>
 
 /**
  * @brief Contains information about how to generate a Raid pokemon
  */
-class Raid
+class Raid : public StaticTemplate
 {
 public:
     /**
      * @brief Construct a new Raid object
      *
-     * @param ability Template ability
-     * @param form Template form
-     * @param ivCount Template IV count
-     * @param gender Template gender
+     * @param specie Specie of the template
+     * @param form Form of the template
+     * @param shiny Shiny state of the template
+     * @param ability Ability of the template
+     * @param gender Gender of the template
+     * @param ivCount Gender of the template
      * @param gigantamax Template gigantamax
-     * @param specie Template specie
      * @param star Template stars
-     * @param shinyType Template shiny type
      */
-    constexpr Raid(u8 ability, u8 form, u8 ivCount, u8 gender, bool gigantamax, u16 specie, const std::array<bool, 5> &star,
-                   Shiny shinyType = Shiny::Random) :
-        form(form),
-        specie(specie),
-        gigantamax(gigantamax),
-        shinyType(shinyType),
-        ability(ability),
-        ivCount(ivCount),
-        gender(gender),
-        star(star)
+    constexpr Raid(u16 specie, u8 form, Shiny shiny, u8 ability, u8 gender, u8 ivCount, bool gigantamax, const std::array<bool, 5> &star) :
+        StaticTemplate(Game::SwSh, specie, form, shiny, ability, gender, ivCount, 0), gigantamax(gigantamax), star(star)
     {
-    }
-
-    /**
-     * @brief Determines what ability the template should have
-     *
-     * @return Template ability
-     */
-    u8 getAbility() const
-    {
-        return ability;
-    }
-
-    /**
-     * @brief Determines what form the template should have
-     *
-     * @return Template form
-     */
-    u8 getForm() const
-    {
-        return form;
-    }
-
-    /**
-     * @brief Determines what gender the template should have
-     *
-     * @return Template gender
-     */
-    u8 getGender() const
-    {
-        return gender;
     }
 
     /**
@@ -96,46 +56,6 @@ public:
     bool getGigantamax() const
     {
         return gigantamax;
-    }
-
-    /**
-     * @brief Returns the pokemon information
-     *
-     * @return Pokemon information
-     */
-    const PersonalInfo *getInfo() const
-    {
-        return PersonalLoader::getPersonal(Game::SwSh, specie, form);
-    }
-
-    /**
-     * @brief Determines what IV count the template should have
-     *
-     * @return Template IV count
-     */
-    u8 getIVCount() const
-    {
-        return ivCount;
-    }
-
-    /**
-     * @brief Determines what shiny type the template should have
-     *
-     * @return Template shiny type
-     */
-    Shiny getShinyType() const
-    {
-        return shinyType;
-    }
-
-    /**
-     * @brief Determines what specie the template should have
-     *
-     * @return Template specie
-     */
-    u16 getSpecie() const
-    {
-        return specie;
     }
 
     /**
@@ -171,13 +91,7 @@ public:
     }
 
 private:
-    u16 form : 5;
-    u16 specie : 11;
     bool gigantamax;
-    Shiny shinyType;
-    u8 ability;
-    u8 ivCount;
-    u8 gender;
     std::array<bool, 5> star;
 };
 

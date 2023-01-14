@@ -27,6 +27,7 @@ class DreamRadarTemplate;
 class EncounterArea5;
 class HiddenGrottoArea;
 class Profile5;
+class StaticTemplate;
 enum class Encounter : u8;
 
 namespace Encounters5
@@ -66,6 +67,40 @@ namespace Encounters5
      * @return Vector of wild encounters
      */
     std::vector<EncounterArea5> getEncounters(Encounter encounter, u8 season, const Profile5 *profile);
+
+    /**
+     * @brief Gets static encounters from the \p type
+     *
+     * @param type Static encounter type
+     * 0: starters
+     * 1: fossils
+     * 2: gifts
+     * 3: stationary
+     * 4: legends
+     * 5: mythics
+     * 6: roamers
+     * @param size Pointer to set number of encounters if not nullptr
+     *
+     * @return Pointer to static encounters area
+     */
+    const StaticTemplate *getStaticEncounters(int index, int *size = nullptr);
+
+    /**
+     * @brief Gets static encounters from the \p type and \p index
+     *
+     * @param type Static encounter type
+     * 0: starters
+     * 1: fossils
+     * 2: gifts
+     * 3: stationary
+     * 4: legends
+     * 5: mythics
+     * 6: roamers
+     * @param index Pokemon index
+     *
+     * @return Pointer to static encounter
+     */
+    const StaticTemplate *getStaticEncounter(int type, int index);
 }
 
 #endif // ENCOUNTERS5_HPP

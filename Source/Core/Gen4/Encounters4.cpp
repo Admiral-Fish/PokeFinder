@@ -23,142 +23,14 @@
 #include <Core/Gen4/EncounterArea4.hpp>
 #include <Core/Gen4/Profile4.hpp>
 #include <Core/Gen4/StaticTemplate4.hpp>
+#include <Core/Parents/PersonalInfo.hpp>
 #include <Core/Parents/PersonalLoader.hpp>
 #include <Core/Parents/Slot.hpp>
-#include <Core/Resources/Encounters.hpp>
+#include <Core/Resources/EncounterData4.hpp>
 #include <Core/Util/Utilities.hpp>
 #include <algorithm>
 #include <cstring>
 #include <iterator>
-
-constexpr std::array<StaticTemplate4, 12> starters = {
-    StaticTemplate4(Game::DPPt, 387, 5, Method::Method1), // Turtwig @ Lake Verity / Route 201
-    StaticTemplate4(Game::DPPt, 390, 5, Method::Method1), // Chimchar
-    StaticTemplate4(Game::DPPt, 393, 5, Method::Method1), // Piplup
-
-    StaticTemplate4(Game::HGSS, 1, 5, Method::Method1), // Bulbasaur @ Pallet Town
-    StaticTemplate4(Game::HGSS, 4, 5, Method::Method1), // Charmander
-    StaticTemplate4(Game::HGSS, 7, 5, Method::Method1), // Squirtle
-    StaticTemplate4(Game::HGSS, 152, 5, Method::Method1), // Chikorita @ New Bark Town
-    StaticTemplate4(Game::HGSS, 155, 5, Method::Method1), // Cyndaquil
-    StaticTemplate4(Game::HGSS, 158, 5, Method::Method1), // Totodile
-    StaticTemplate4(Game::HGSS, 252, 5, Method::Method1), // Treecko @ Saffron City
-    StaticTemplate4(Game::HGSS, 255, 5, Method::Method1), // Torchic
-    StaticTemplate4(Game::HGSS, 258, 5, Method::Method1) // Mudkip
-};
-
-constexpr std::array<StaticTemplate4, 7> fossils = {
-    StaticTemplate4(Game::Gen4, 138, 20, Method::Method1), // Omanyte @ Mining Museum / Pewter City
-    StaticTemplate4(Game::Gen4, 140, 20, Method::Method1), // Kabuto
-    StaticTemplate4(Game::Gen4, 142, 20, Method::Method1), // Aerodactyl
-    StaticTemplate4(Game::Gen4, 345, 20, Method::Method1), // Lileep
-    StaticTemplate4(Game::Gen4, 347, 20, Method::Method1), // Anorith
-    StaticTemplate4(Game::Gen4, 408, 20, Method::Method1), // Cranidos
-    StaticTemplate4(Game::Gen4, 410, 20, Method::Method1) // Shieldon
-};
-
-constexpr std::array<StaticTemplate4, 14> gifts = {
-    StaticTemplate4(Game::DP, 133, 5, Method::Method1), // Eevee @ Hearthome City
-    StaticTemplate4(Game::Platinum, 133, 20, Method::Method1), // Eevee
-    StaticTemplate4(Game::Platinum, 137, 25, Method::Method1), // Porygon @ Veilstone City
-    StaticTemplate4(Game::Platinum, 175, 1, Method::Method1), // Togepi egg @ Cynthia
-    StaticTemplate4(Game::DP, 440, 1, Method::Method1), // Happiny egg @ Traveling Man
-    StaticTemplate4(Game::DPPt, 447, 1, Method::Method1), // Riolu egg @ Riley
-
-    StaticTemplate4(Game::HGSS, 72, 15, Method::Method1), // Tentacool @ Cianwood City
-    StaticTemplate4(Game::HGSS, 133, 5, Method::Method1), // Eevee @ Goldenrod City
-    StaticTemplate4(Game::HGSS, 147, 15, Method::Method1), // Dratini @ Dragon's Den
-    StaticTemplate4(Game::HGSS, 236, 10, Method::Method1), // Tyrogue @ Mt. Mortar
-    StaticTemplate4(Game::HGSS, 175, 1, Method::Method1), // Togepi Egg @ Mr. Pokemon
-    StaticTemplate4(Game::HGSS, 179, 1, Method::Method1), // Mareep Egg @ Primo
-    StaticTemplate4(Game::HGSS, 194, 1, Method::Method1), // Wooper Egg
-    StaticTemplate4(Game::HGSS, 218, 1, Method::Method1) // Slugma Egg
-};
-
-constexpr std::array<StaticTemplate4, 7> gameCorner = {
-    StaticTemplate4(Game::HGSS, 122, 15, Method::Method1), // Mr. Mime @ Celadon City Game Corner
-    StaticTemplate4(Game::HGSS, 133, 15, Method::Method1), // Eevee
-    StaticTemplate4(Game::HGSS, 137, 15, Method::Method1), // Porygon
-
-    StaticTemplate4(Game::HGSS, 63, 15, Method::Method1), // Abra @ Goldenrod City Game Corner
-    StaticTemplate4(Game::HeartGold, 23, 15, Method::Method1), // Ekans
-    StaticTemplate4(Game::SoulSilver, 27, 15, Method::Method1), // Sandshrew
-    StaticTemplate4(Game::HGSS, 147, 15, Method::Method1) // Dratini
-};
-
-constexpr std::array<StaticTemplate4, 13> stationary = {
-    StaticTemplate4(Game::DP, 425, 22, Method::MethodJ), // Drifloon @ Valley Windworks
-    StaticTemplate4(Game::Platinum, 425, 15, Method::MethodJ), // Drifloon
-    StaticTemplate4(Game::DP, 479, 15, Method::MethodJ), // Rotom @ Old Chateau
-    StaticTemplate4(Game::Platinum, 479, 20, Method::MethodJ), // Rotom
-    StaticTemplate4(Game::DPPt, 442, 25, Method::MethodJ), // Spiritomb @ Route 209
-
-    StaticTemplate4(Game::HGSS, 100, 23, Method::MethodK), // Voltorb @ Team Rocket HQ Trap Floor
-    StaticTemplate4(Game::HGSS, 74, 21, Method::MethodK), // Geodude
-    StaticTemplate4(Game::HGSS, 109, 21, Method::MethodK), // Koffing
-    StaticTemplate4(Game::HGSS, 130, 30, Method::Method1, Shiny::Always), // Gyrados @ Lake of Rage
-    StaticTemplate4(Game::HGSS, 131, 20, Method::MethodK), // Lapras @ Union Cave
-    StaticTemplate4(Game::HGSS, 101, 23, Method::MethodK), // Electrode @ Team Rocket HQ
-    StaticTemplate4(Game::HGSS, 143, 50, Method::MethodK), // Snorlax @ Route 11 / Route 12
-    StaticTemplate4(Game::HGSS, 185, 20, Method::MethodK) // Sudowoodo @ Route 36
-    // TODO: maybe add spiky-eared pichu
-};
-
-constexpr std::array<StaticTemplate4, 33> legends = {
-    StaticTemplate4(Game::Platinum, 377, 30, Method::MethodJ), // Regirock @ Rock Peak Ruins
-    StaticTemplate4(Game::Platinum, 378, 30, Method::MethodJ), // Regice @ Iceberg Ruins
-    StaticTemplate4(Game::Platinum, 379, 30, Method::MethodJ), // Registeel @ Iron Ruins
-    StaticTemplate4(Game::DPPt, 480, 50, Method::MethodJ), // Uxie @ Acuity Cavern
-    StaticTemplate4(Game::DPPt, 482, 50, Method::MethodJ), // Azelf @ Valor Cavern
-    StaticTemplate4(Game::Diamond, 483, 47, Method::MethodJ), // Diagla @ Spear Pillar
-    StaticTemplate4(Game::Pearl, 484, 47, Method::MethodJ), // Palkia
-    StaticTemplate4(Game::Platinum, 483, 70, Method::MethodJ), // Diagla
-    StaticTemplate4(Game::Platinum, 484, 70, Method::MethodJ), // Palkia
-    StaticTemplate4(Game::DP, 485, 70, Method::MethodJ), // Heatran @ Stark Mountain
-    StaticTemplate4(Game::Platinum, 485, 50, Method::MethodJ), // Heatran
-    StaticTemplate4(Game::DP, 486, 70, Method::MethodJ), // Regigigas @ Snowpoint Temple
-    StaticTemplate4(Game::Platinum, 486, 1, Method::MethodJ), // Regigigas
-    StaticTemplate4(Game::DP, 487, 70, Method::MethodJ), // Giratina @ Turnback Cave
-    StaticTemplate4(Game::Platinum, 487, 47, Method::MethodJ), // Giratina
-    StaticTemplate4(Game::Platinum, 487, 47, Method::MethodJ, 1), // Giratina @ Distortion World
-
-    StaticTemplate4(Game::HGSS, 144, 50, Method::MethodK), // Articuno @ Seafoam Islands
-    StaticTemplate4(Game::HGSS, 145, 50, Method::MethodK), // Zapdos @ Route 10
-    StaticTemplate4(Game::HGSS, 146, 50, Method::MethodK), // Moltres @ Mt. Silver Cave
-    StaticTemplate4(Game::HGSS, 150, 70, Method::MethodK), // Mewtwo @ Cerulean Cave
-    StaticTemplate4(Game::HGSS, 245, 40, Method::MethodK), // Suicune @ Route 25 / Burned Tower
-    StaticTemplate4(Game::HeartGold, 249, 70, Method::MethodK), // Lugia @ Whirl Islands
-    StaticTemplate4(Game::SoulSilver, 249, 45, Method::MethodK), // Lugia
-    StaticTemplate4(Game::HeartGold, 250, 45, Method::MethodK), // Ho-Oh @ Bell Tower
-    StaticTemplate4(Game::SoulSilver, 250, 70, Method::MethodK), // Ho-Oh
-    StaticTemplate4(Game::HeartGold, 381, 40, Method::MethodK), // Latios @ Pewter City
-    StaticTemplate4(Game::SoulSilver, 380, 40, Method::MethodK), // Latias
-    StaticTemplate4(Game::HeartGold, 382, 50, Method::MethodK), // Kyogre @ Embedded Tower
-    StaticTemplate4(Game::SoulSilver, 383, 50, Method::MethodK), // Groudon
-    StaticTemplate4(Game::HGSS, 384, 50, Method::MethodK), // Rayquaza
-    StaticTemplate4(Game::HGSS, 483, 1, Method::Method1), // Dialga @ Sinjoh Ruins
-    StaticTemplate4(Game::HGSS, 484, 1, Method::Method1), // Palkia
-    StaticTemplate4(Game::HGSS, 487, 1, Method::Method1, 1) // Giratina
-};
-
-constexpr std::array<StaticTemplate4, 3> events = {
-    StaticTemplate4(Game::Gen4, 490, 1, Method::Method1, Shiny::Never), // Manaphy @ Pokemon Ranger
-    StaticTemplate4(Game::Platinum, 491, 50, Method::MethodJ), // Darkrai @ Newmoon Island
-    StaticTemplate4(Game::Platinum, 492, 30, Method::MethodJ) // Shaymin @ Flower Paradise
-};
-
-constexpr std::array<StaticTemplate4, 9> roamers = {
-    StaticTemplate4(Game::DPPt, 481, 50, Method::Method1), // Mesprit
-    StaticTemplate4(Game::DPPt, 488, 50, Method::Method1), // Cresselia
-    StaticTemplate4(Game::Platinum, 144, 60, Method::Method1), // Articuno
-    StaticTemplate4(Game::Platinum, 145, 60, Method::Method1), // Zapdos
-    StaticTemplate4(Game::Platinum, 146, 60, Method::Method1), // Moltres
-
-    StaticTemplate4(Game::HGSS, 243, 40, Method::Method1), // Raikou
-    StaticTemplate4(Game::HGSS, 244, 40, Method::Method1), // Entei
-    StaticTemplate4(Game::HeartGold, 380, 35, Method::Method1), // Latias
-    StaticTemplate4(Game::SoulSilver, 381, 35, Method::Method1) // Latios
-};
 
 constexpr std::array<u16, 15> greatMarshDP = { 55, 183, 194, 195, 298, 315, 397, 399, 400, 451, 453, 455 };
 constexpr std::array<u16, 15> greatMarshDPDex = { 46, 55, 102, 115, 193, 285, 315, 316, 397, 451, 452, 453, 454, 455 };

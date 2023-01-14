@@ -47,7 +47,7 @@ std::vector<GeneratorState> RaidGenerator::generate(u64 seed, u8 level, const Ra
         u32 pid = rng.nextUInt<0xffffffff>();
         u16 psv = (pid >> 16) ^ (pid & 0xffff);
         u8 shiny;
-        if (raid.getShinyType() == Shiny::Random) // Random shiny chance
+        if (raid.getShiny() == Shiny::Random) // Random shiny chance
         {
             // Game uses a fake TID/SID to determine shiny or not
             // PID is later modified using the actual TID/SID of trainer if necessary
@@ -75,7 +75,7 @@ std::vector<GeneratorState> RaidGenerator::generate(u64 seed, u8 level, const Ra
                 }
             }
         }
-        else if (raid.getShinyType() == Shiny::Never) // Force non-shiny
+        else if (raid.getShiny() == Shiny::Never) // Force non-shiny
         {
             shiny = 0;
             if ((psv ^ tsv) < 16)

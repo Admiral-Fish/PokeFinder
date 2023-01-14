@@ -49,6 +49,7 @@ enum class Translation
     Characteristic,
     DPPt,
     E,
+    Form,
     FRLG,
     Gales,
     Game,
@@ -66,6 +67,7 @@ enum class Translation
 static Language language;
 static std::vector<std::string> abilities;
 static std::vector<std::string> characteristics;
+static std::map<u16, std::string> forms;
 static std::vector<std::string> games;
 static std::vector<std::string> hiddenPowers;
 static std::vector<std::string> items;
@@ -109,9 +111,9 @@ static void readFile(Translation translation, std::vector<std::string> &strings)
  *
  * @param translation String category to read from
  *
- * @return Vector of translated strings
+ * @return Map of translated strings
  */
-static std::map<u16, std::string> readFileMap(Translation translation)
+static std::map<u16, std::string> readFile(Translation translation)
 {
     int index = (static_cast<int>(language) * static_cast<int>(Translation::Count)) + static_cast<int>(translation);
     u32 start = indexes[index];
@@ -155,6 +157,11 @@ namespace Translator
     const std::vector<std::string> &getCharacteristics()
     {
         return characteristics;
+    }
+
+    const std::string &getForm(u16 specie, u8 form)
+    {
+        return forms[(form << 11) | specie];
     }
 
     const std::string &getGame(Game version)
@@ -275,7 +282,7 @@ namespace Translator
             translation = Translation::BDSP;
         }
 
-        std::map<u16, std::string> map = readFileMap(translation);
+        std::map<u16, std::string> map = readFile(translation);
         std::vector<std::string> locations;
         locations.reserve(nums.size());
         std::transform(nums.begin(), nums.end(), std::back_inserter(locations), [&map](u16 num) { return map[num]; });
@@ -300,6 +307,19 @@ namespace Translator
     const std::string &getSpecie(u16 specie)
     {
         return species[specie - 1];
+    }
+
+    std::string getSpecie(u16 specie, u8 form)
+    {
+        auto it = forms.find((form << 11) | specie);
+        if (it != forms.end())
+        {
+            return species[specie - 1] + " (" + it->second + ")";
+        }
+        else
+        {
+            return species[specie - 1];
+        }
     }
 
     std::vector<std::string> getSpecies(const std::vector<u16> &specie)
@@ -347,6 +367,7 @@ namespace Translator
 
         readFile(Translation::Ability, abilities);
         readFile(Translation::Characteristic, characteristics);
+        forms = readFile(Translation::Form);
         readFile(Translation::Game, games);
         readFile(Translation::Power, hiddenPowers);
         readFile(Translation::Item, items);

@@ -20,11 +20,11 @@
 #ifndef SHADOWTEAM_HPP
 #define SHADOWTEAM_HPP
 
+#include <Core/Enum/ShadowType.hpp>
 #include <Core/Gen3/LockInfo.hpp>
 #include <Core/Parents/StaticTemplate.hpp>
 #include <array>
 
-enum class ShadowType : u8;
 /**
  * @brief Contains additional information for Gamecube static encounters
  */
@@ -36,30 +36,15 @@ public:
      *
      * @param version Game the template appears in
      * @param specie Specie of the template
-     * @param level Level of the template
-     * @param locks Shadow locks of the template
-     * @param count Number of shadow locks the template has
-     * @param type Shadow type of the template
-     */
-    constexpr ShadowTemplate(Game version, u16 specie, u8 level, const std::array<LockInfo, 5> &locks, s8 count, ShadowType type) :
-        StaticTemplate(version, specie, level), type(type), locks(locks), count(count)
-    {
-    }
-
-    /**
-     * @brief Construct a new ShadowTemplate object
-     *
-     * @param version Game the template appears in
-     * @param specie Specie of the template
-     * @param level Level of the template
      * @param shiny Shiny state of the template
+     * @param level Level of the template
      * @param locks Shadow locks of the template
      * @param count Number of shadow locks the template has
      * @param type Shadow type of the template
      */
-    constexpr ShadowTemplate(Game version, u16 specie, u8 level, Shiny shiny, const std::array<LockInfo, 5> &locks, s8 count,
+    constexpr ShadowTemplate(Game version, u16 specie, Shiny shiny, u8 level, const std::array<LockInfo, 5> &locks, s8 count,
                              ShadowType type) :
-        StaticTemplate(version, specie, level, shiny), type(type), locks(locks), count(count)
+        StaticTemplate(version, specie, 0, shiny, 255, 255, 0, level), type(type), locks(locks), count(count)
     {
     }
 

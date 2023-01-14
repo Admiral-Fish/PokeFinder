@@ -59,6 +59,16 @@ namespace Translator
     const std::vector<std::string> &getCharacteristics();
 
     /**
+     * @brief Gets the string for the \p specie and \p form
+     *
+     * @param specie Specie number
+     * @param form Form number
+     *
+     * @return Form string
+     */
+    const std::string &getForm(u16 specie, u8 form);
+
+    /**
      * @brief Gets the string for the \p game
      *
      * @param version Game version
@@ -178,6 +188,16 @@ namespace Translator
      * @return Specie string
      */
     const std::string &getSpecie(u16 specie);
+
+    /**
+     * @brief Gets the string for the \p specie and \p form
+     *
+     * @param specie Specie number
+     * @param form Form number
+     *
+     * @return Specie string
+     */
+    std::string getSpecie(u16 specie, u8 form);
 
     /**
      * @brief Gets the the strings for the \p species

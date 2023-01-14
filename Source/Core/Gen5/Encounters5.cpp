@@ -20,48 +20,19 @@
 #include "Encounters5.hpp"
 #include <Core/Enum/Encounter.hpp>
 #include <Core/Enum/Game.hpp>
-#include <Core/Gen5/DreamRadarTemplate.hpp>
 #include <Core/Gen5/EncounterArea5.hpp>
 #include <Core/Gen5/HiddenGrottoArea.hpp>
 #include <Core/Gen5/Profile5.hpp>
+#include <Core/Parents/PersonalInfo.hpp>
 #include <Core/Parents/PersonalLoader.hpp>
 #include <Core/Parents/Slot.hpp>
-#include <Core/Resources/Encounters.hpp>
+#include <Core/Resources/EncounterData5.hpp>
 #include <Core/Util/Utilities.hpp>
 #include <algorithm>
 #include <iterator>
 
-constexpr u8 bwLocations[12] = { 2, 44, 45, 46, 47, 48, 49, 73, 84, 88, 93, 94 };
-constexpr u8 bw2Locations[13] = { 2, 23, 24, 25, 26, 27, 28, 43, 107, 111, 116, 117, 129 };
-
-constexpr std::array<DreamRadarTemplate, 26> dreamRadar = {
-    DreamRadarTemplate(79), // Slowpoke
-    DreamRadarTemplate(120), // Staryu
-    DreamRadarTemplate(137), // Porygon
-    DreamRadarTemplate(163), // Hoothoot
-    DreamRadarTemplate(174), // Igglybuff
-    DreamRadarTemplate(175), // Togepi
-    DreamRadarTemplate(213), // Shuckle
-    DreamRadarTemplate(238), // Smoochum
-    DreamRadarTemplate(249), // Lugia
-    DreamRadarTemplate(250), // Ho-Oh
-    DreamRadarTemplate(280), // Ralts
-    DreamRadarTemplate(333), // Swablu
-    DreamRadarTemplate(374), // Beldum
-    DreamRadarTemplate(425), // Drifloon
-    DreamRadarTemplate(436), // Bronzor
-    DreamRadarTemplate(442), // Spiritomb
-    DreamRadarTemplate(447), // Riolu
-    DreamRadarTemplate(479, 255), // Rotom
-    DreamRadarTemplate(483), // Dialga
-    DreamRadarTemplate(484), // Palkia
-    DreamRadarTemplate(487), // Giratina
-    DreamRadarTemplate(517), // Munna
-    DreamRadarTemplate(561), // Sigilyph
-    DreamRadarTemplate(641), // Tornadus
-    DreamRadarTemplate(642), // Thundurus
-    DreamRadarTemplate(645) // Landorus
-};
+constexpr std::array<u8, 12> bwLocations = { 2, 44, 45, 46, 47, 48, 49, 73, 84, 88, 93, 94 };
+constexpr std::array<u8, 13> bw2Locations = { 2, 23, 24, 25, 26, 27, 28, 43, 107, 111, 116, 117, 129 };
 
 namespace Encounters5
 {
@@ -161,11 +132,11 @@ namespace Encounters5
             int size;
             if ((version & Game::BW) != Game::None)
             {
-                size = std::binary_search(std::begin(bwLocations), std::end(bwLocations), location) ? 928 : 232;
+                size = std::binary_search(bwLocations.begin(), bwLocations.end(), location) ? 928 : 232;
             }
             else
             {
-                size = std::binary_search(std::begin(bw2Locations), std::end(bw2Locations), location) ? 928 : 232;
+                size = std::binary_search(bw2Locations.begin(), bw2Locations.end(), location) ? 928 : 232;
             }
 
             int seasonOffset = 0;
@@ -293,5 +264,71 @@ namespace Encounters5
             offset += 1 + size;
         }
         return encounters;
+    }
+
+    const StaticTemplate *getStaticEncounters(int index, int *size)
+    {
+        if (index == 0)
+        {
+            if (size)
+            {
+                *size = starters.size();
+            }
+            return starters.data();
+        }
+        else if (index == 1)
+        {
+            if (size)
+            {
+                *size = fossils.size();
+            }
+            return fossils.data();
+        }
+        else if (index == 2)
+        {
+            if (size)
+            {
+                *size = gifts.size();
+            }
+            return gifts.data();
+        }
+        else if (index == 3)
+        {
+            if (size)
+            {
+                *size = stationary.size();
+            }
+            return stationary.data();
+        }
+        else if (index == 4)
+        {
+            if (size)
+            {
+                *size = legends.size();
+            }
+            return legends.data();
+        }
+        else if (index == 5)
+        {
+            if (size)
+            {
+                *size = events.size();
+            }
+            return events.data();
+        }
+        else
+        {
+            if (size)
+            {
+                *size = roamers.size();
+            }
+            return roamers.data();
+        }
+    }
+
+    const StaticTemplate *getStaticEncounter(int type, int index)
+    {
+        const StaticTemplate *templates = getStaticEncounters(type);
+        return &templates[index];
     }
 }

@@ -24,7 +24,7 @@
 #include <Core/Gen8/Profile8.hpp>
 #include <Core/Parents/Generators/StaticGenerator.hpp>
 
-class StaticTemplate8;
+class StaticTemplate;
 
 /**
  * @brief Static encounter generator for Gen8
@@ -53,7 +53,7 @@ public:
      *
      * @return Vector of computed states
      */
-    std::vector<GeneratorState> generate(u64 seed0, u64 seed1, const StaticTemplate8 *staticTemplate) const;
+    std::vector<GeneratorState> generate(u64 seed0, u64 seed1, const StaticTemplate *staticTemplate) const;
 
     /**
      * @brief Generates states for the roamers \p staticTemplate
@@ -64,7 +64,7 @@ public:
      *
      * @return Vector of computed states
      */
-    std::vector<GeneratorState> generateRoamer(u64 seed0, u64 seed1, const StaticTemplate8 *staticTemplate) const;
+    std::vector<GeneratorState> generateRoamer(u64 seed0, u64 seed1, const StaticTemplate *staticTemplate) const;
 };
 
 #endif // STATICGENERATOR8_HPP

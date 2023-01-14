@@ -139,8 +139,9 @@ void Raids::denIndexChanged(int index)
 
             for (const auto &raid : raids)
             {
-                ui->comboBoxSpecies->addItem(QString("%1: %2").arg(QString::fromStdString(Translator::getSpecie(raid.getSpecie())),
-                                                                   QString::fromStdString(raid.getStarDisplay())));
+                ui->comboBoxSpecies->addItem(
+                    QString("%1: %2").arg(QString::fromStdString(Translator::getSpecie(raid.getSpecie(), raid.getForm())),
+                                          QString::fromStdString(raid.getStarDisplay())));
             }
         }
         else
@@ -150,8 +151,9 @@ void Raids::denIndexChanged(int index)
 
             for (const auto &raid : raids)
             {
-                ui->comboBoxSpecies->addItem(QString("%1: %2").arg(QString::fromStdString(Translator::getSpecie(raid.getSpecie())),
-                                                                   QString::fromStdString(raid.getStarDisplay())));
+                ui->comboBoxSpecies->addItem(
+                    QString("%1: %2").arg(QString::fromStdString(Translator::getSpecie(raid.getSpecie(), raid.getForm())),
+                                          QString::fromStdString(raid.getStarDisplay())));
             }
         }
     }
@@ -263,7 +265,7 @@ void Raids::specieIndexChanged(int index)
             ui->comboBoxAbilityType->setCurrentIndex(ui->comboBoxAbilityType->findData(raid.getAbility()));
             ui->comboBoxGenderType->setCurrentIndex(raid.getGender());
             ui->comboBoxGenderRatio->setCurrentIndex(ui->comboBoxGenderRatio->findData(info->getGender()));
-            ui->comboBoxShinyType->setCurrentIndex(ui->comboBoxShinyType->findData(toInt(raid.getShinyType())));
+            ui->comboBoxShinyType->setCurrentIndex(ui->comboBoxShinyType->findData(toInt(raid.getShiny())));
             ui->labelGigantamaxValue->setText(raid.getGigantamax() ? tr("Yes") : tr("No"));
         }
         else
@@ -276,7 +278,7 @@ void Raids::specieIndexChanged(int index)
             ui->comboBoxAbilityType->setCurrentIndex(ui->comboBoxAbilityType->findData(raid.getAbility()));
             ui->comboBoxGenderType->setCurrentIndex(raid.getGender());
             ui->comboBoxGenderRatio->setCurrentIndex(ui->comboBoxGenderRatio->findData(info->getGender()));
-            ui->comboBoxShinyType->setCurrentIndex(ui->comboBoxShinyType->findData(toInt(raid.getShinyType())));
+            ui->comboBoxShinyType->setCurrentIndex(ui->comboBoxShinyType->findData(toInt(raid.getShiny())));
             ui->labelGigantamaxValue->setText(raid.getGigantamax() ? tr("Yes") : tr("No"));
         }
     }

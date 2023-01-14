@@ -20,60 +20,26 @@
 #ifndef DREAMRADARTEMPLATE_HPP
 #define DREAMRADARTEMPLATE_HPP
 
-#include <Core/Enum/Game.hpp>
-#include <Core/Global.hpp>
-#include <Core/Parents/PersonalLoader.hpp>
+#include <Core/Parents/StaticTemplate.hpp>
 
 /**
  * @brief Contains information that impact the generation of dream radar encounters
  */
-class DreamRadarTemplate
+class DreamRadarTemplate : public StaticTemplate
 {
 public:
     /**
      * @brief Construct a new DreamRadarTemplate object
      *
      * @param specie Template specie
+     * @param form Template form
      * @param ability Template ability
      */
-    constexpr DreamRadarTemplate(u16 specie, u8 ability = 2) :
-        form(specie == 641 || specie == 642 || specie == 645),
-        specie(specie),
+    constexpr DreamRadarTemplate(u16 specie, u8 form, u8 ability) :
+        StaticTemplate(Game::BW2, specie, form, Shiny::Never, ability, 255, 0, 0),
         genie(specie == 641 || specie == 642 || specie == 645),
-        legend(genie || specie == 249 || specie == 250 || specie == 483 || specie == 484 || specie == 487),
-        ability(ability),
-        gender(255)
+        legend(genie || specie == 249 || specie == 250 || specie == 483 || specie == 484 || specie == 487)
     {
-    }
-
-    /**
-     * @brief Determines what ability the template should have
-     *
-     * @return Template ability
-     */
-    u8 getAbility() const
-    {
-        return ability;
-    }
-
-    /**
-     * @brief Determines what gender the template should have
-     *
-     * @return Template gender
-     */
-    u8 getGender() const
-    {
-        return gender;
-    }
-
-    /**
-     * @brief Returns the pokemon information
-     *
-     * @return Pokemon information
-     */
-    const PersonalInfo *getInfo() const
-    {
-        return PersonalLoader::getPersonal(Game::BW2, specie, form);
     }
 
     /**
@@ -97,16 +63,6 @@ public:
     }
 
     /**
-     * @brief Determines what specie the template should have
-     *
-     * @return Template specie
-     */
-    u16 getSpecie() const
-    {
-        return specie;
-    }
-
-    /**
      * @brief Sets what gender the template should have
      * This isn't considered "Static" information and needs to be specified after the fact
      *
@@ -118,12 +74,8 @@ public:
     }
 
 private:
-    u16 form : 5;
-    u16 specie : 11;
     bool genie;
     bool legend;
-    u8 ability;
-    u8 gender;
 };
 
 #endif // DREAMRADARTEMPLATE_HPP

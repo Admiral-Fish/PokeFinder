@@ -20,11 +20,10 @@
 #ifndef STATICTEMPLATE_HPP
 #define STATICTEMPLATE_HPP
 
+#include <Core/Enum/Game.hpp>
 #include <Core/Enum/Shiny.hpp>
 #include <Core/Global.hpp>
 #include <Core/Parents/PersonalLoader.hpp>
-
-enum class Game : u32;
 
 /**
  * @brief Parent class that contains information that impact the generation of static encounters
@@ -37,37 +36,46 @@ public:
      *
      * @param version Game the template appears in
      * @param specie Specie of the template
-     * @param level Level of the template
-     */
-    constexpr StaticTemplate(Game version, u16 specie, u8 level) :
-        version(version), form(0), specie(specie), shiny(Shiny::Random), level(level)
-    {
-    }
-
-    /**
-     * @brief Construct a new StaticTemplate object
-     *
-     * @param version Game the template appears in
-     * @param specie Specie of the template
-     * @param level Level of the template
      * @param form Form of the template
+     * @param shiny Shiny state of the template
+     * @param ability Ability of the template
+     * @param gender Gender of the template
+     * @param ivCount Gender of the template
+     * @param level Level of the template
      */
-    constexpr StaticTemplate(Game version, u16 specie, u8 level, u8 form) :
-        version(version), form(form), specie(specie), shiny(Shiny::Random), level(level)
+    constexpr StaticTemplate(Game version, u16 specie, u8 form, Shiny shiny, u8 ability, u8 gender, u8 ivCount, u8 level) :
+        version(version), form(form), specie(specie), shiny(shiny), ability(ability), gender(gender), ivCount(ivCount), level(level)
     {
     }
 
     /**
-     * @brief Construct a new StaticTemplate object
+     * @brief Determines what ability the template should have
      *
-     * @param version Game the template appears in
-     * @param specie Specie of the template
-     * @param level Level of the template
-     * @param shiny Shiny state of the template
+     * @return Template ability
      */
-    constexpr StaticTemplate(Game version, u16 specie, u8 level, Shiny shiny) :
-        version(version), form(0), specie(specie), shiny(shiny), level(level)
+    u8 getAbility() const
     {
+        return ability;
+    }
+
+    /**
+     * @brief Determines what form the template should have
+     *
+     * @return Template form
+     */
+    u8 getForm() const
+    {
+        return form;
+    }
+
+    /**
+     * @brief Determines what gender the template should have
+     *
+     * @return Template gender
+     */
+    u8 getGender() const
+    {
+        return gender;
     }
 
     /**
@@ -78,6 +86,16 @@ public:
     const PersonalInfo *getInfo() const
     {
         return PersonalLoader::getPersonal(version, specie, form);
+    }
+
+    /**
+     * @brief Determines what IV count the template should have
+     *
+     * @return Template IV count
+     */
+    u8 getIVCount() const
+    {
+        return ivCount;
     }
 
     /**
@@ -125,6 +143,9 @@ protected:
     u16 form : 5;
     u16 specie : 11;
     Shiny shiny;
+    u8 ability;
+    u8 gender;
+    u8 ivCount;
     u8 level;
 };
 

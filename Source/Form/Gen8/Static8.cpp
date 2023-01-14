@@ -23,8 +23,8 @@
 #include <Core/Gen8/Encounters8.hpp>
 #include <Core/Gen8/Generators/StaticGenerator8.hpp>
 #include <Core/Gen8/Profile8.hpp>
-#include <Core/Gen8/StaticTemplate8.hpp>
 #include <Core/Parents/ProfileLoader.hpp>
+#include <Core/Parents/StaticTemplate.hpp>
 #include <Core/Util/Translator.hpp>
 #include <Form/Controls/Controls.hpp>
 #include <Form/Gen8/Profile/ProfileManager8.hpp>
@@ -114,14 +114,15 @@ void Static8::categoryIndexChanged(int index)
     if (index >= 0)
     {
         int size;
-        const StaticTemplate8 *templates = Encounters8::getStaticEncounters(index, &size);
+        const StaticTemplate *templates = Encounters8::getStaticEncounters(index, &size);
 
         ui->comboBoxPokemon->clear();
         for (int i = 0; i < size; i++)
         {
             if ((currentProfile->getVersion() & templates[i].getVersion()) != Game::None)
             {
-                ui->comboBoxPokemon->addItem(QString::fromStdString(Translator::getSpecie(templates[i].getSpecie())), i);
+                ui->comboBoxPokemon->addItem(
+                    QString::fromStdString(Translator::getSpecie(templates[i].getSpecie(), templates[i].getForm())), i);
             }
         }
     }
@@ -148,7 +149,7 @@ void Static8::generate()
     StateFilter8 filter = ui->filter->getFilter<StateFilter8>();
     StaticGenerator8 generator(initialAdvances, maxAdvances, delay, lead, *currentProfile, filter);
 
-    const StaticTemplate8 *staticTemplate
+    const StaticTemplate *staticTemplate
         = Encounters8::getStaticEncounter(ui->comboBoxCategory->currentIndex(), ui->comboBoxPokemon->getCurrentInt());
     if (ui->comboBoxCategory->currentIndex() == 3)
     {
@@ -164,7 +165,7 @@ void Static8::pokemonIndexChanged(int index)
 {
     if (index >= 0)
     {
-        const StaticTemplate8 *staticTemplate
+        const StaticTemplate *staticTemplate
             = Encounters8::getStaticEncounter(ui->comboBoxCategory->currentIndex(), ui->comboBoxPokemon->getCurrentInt());
         ui->spinBoxLevel->setValue(staticTemplate->getLevel());
         ui->comboBoxAbility->setCurrentIndex(ui->comboBoxAbility->findData(staticTemplate->getAbility()));

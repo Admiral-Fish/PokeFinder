@@ -1,0 +1,708 @@
+{
+    "starters": [
+        {
+            "description": "Turtwig @ Lake Verity / Route 201",
+            "version": "Game::DPPt",
+            "specie": 387,
+            "level": 5,
+            "method": "Method::Method1"
+        },
+        {
+            "description": "Chimchar @ Lake Verity / Route 201",
+            "version": "Game::DPPt",
+            "specie": 390,
+            "level": 5,
+            "method": "Method::Method1"
+        },
+        {
+            "description": "Piplup @ Lake Verity / Route 201",
+            "version": "Game::DPPt",
+            "specie": 393,
+            "level": 5,
+            "method": "Method::Method1"
+        },
+        {
+            "description": "Bulbasaur @ Pallet Town",
+            "version": "Game::HGSS",
+            "specie": 1,
+            "level": 5,
+            "method": "Method::Method1"
+        },
+        {
+            "description": "Charmander @ Pallet Town",
+            "version": "Game::HGSS",
+            "specie": 4,
+            "level": 5,
+            "method": "Method::Method1"
+        },
+        {
+            "description": "Squirtle @ Pallet Town",
+            "version": "Game::HGSS",
+            "specie": 7,
+            "level": 5,
+            "method": "Method::Method1"
+        },
+        {
+            "description": "Chikorita @ New Bark Town",
+            "version": "Game::HGSS",
+            "specie": 152,
+            "level": 5,
+            "method": "Method::Method1"
+        },
+        {
+            "description": "Cyndaquil @ New Bark Town",
+            "version": "Game::HGSS",
+            "specie": 155,
+            "level": 5,
+            "method": "Method::Method1"
+        },
+        {
+            "description": "Totodile @ New Bark Town",
+            "version": "Game::HGSS",
+            "specie": 158,
+            "level": 5,
+            "method": "Method::Method1"
+        },
+        {
+            "description": "Treecko @ Saffron City",
+            "version": "Game::HGSS",
+            "specie": 252,
+            "level": 5,
+            "method": "Method::Method1"
+        },
+        {
+            "description": "Torchic @ Saffron City",
+            "version": "Game::HGSS",
+            "specie": 255,
+            "level": 5,
+            "method": "Method::Method1"
+        },
+        {
+            "description": "Mudkip @ Saffron City",
+            "version": "Game::HGSS",
+            "specie": 258,
+            "level": 5,
+            "method": "Method::Method1"
+        }
+    ],
+    "fossils": [
+        {
+            "description": "Omanyte @ Mining Museum ",
+            "version": "Game::Gen4",
+            "specie": 138,
+            "level": 20,
+            "method": "Method::Method1"
+        },
+        {
+            "description": "Kabuto @ Mining Museum ",
+            "version": "Game::Gen4",
+            "specie": 140,
+            "level": 20,
+            "method": "Method::Method1"
+        },
+        {
+            "description": "Aerodactyl @ Mining Museum ",
+            "version": "Game::Gen4",
+            "specie": 142,
+            "level": 20,
+            "method": "Method::Method1"
+        },
+        {
+            "description": "Lileep @ Mining Museum ",
+            "version": "Game::Gen4",
+            "specie": 345,
+            "level": 20,
+            "method": "Method::Method1"
+        },
+        {
+            "description": "Anorith @ Mining Museum ",
+            "version": "Game::Gen4",
+            "specie": 347,
+            "level": 20,
+            "method": "Method::Method1"
+        },
+        {
+            "description": "Cranidos @ Mining Museum ",
+            "version": "Game::Gen4",
+            "specie": 408,
+            "level": 20,
+            "method": "Method::Method1"
+        },
+        {
+            "description": "Shieldon @ Mining Museum ",
+            "version": "Game::Gen4",
+            "specie": 410,
+            "level": 20,
+            "method": "Method::Method1"
+        }
+    ],
+    "gifts": [
+        {
+            "description": "Eevee @ Hearthome City",
+            "version": "Game::DP",
+            "specie": 133,
+            "level": 5,
+            "method": "Method::Method1"
+        },
+        {
+            "description": "Eevee @ Hearthome City",
+            "version": "Game::Platinum",
+            "specie": 133,
+            "level": 20,
+            "method": "Method::Method1"
+        },
+        {
+            "description": "Porygon @ Veilstone City",
+            "version": "Game::Platinum",
+            "specie": 137,
+            "level": 25,
+            "method": "Method::Method1"
+        },
+        {
+            "description": "Togepi egg @ Cynthia",
+            "version": "Game::Platinum",
+            "specie": 175,
+            "level": 1,
+            "method": "Method::Method1"
+        },
+        {
+            "description": "Happiny egg @ Traveling Man",
+            "version": "Game::DP",
+            "specie": 440,
+            "level": 1,
+            "method": "Method::Method1"
+        },
+        {
+            "description": "Riolu egg @ Riley",
+            "version": "Game::DPPt",
+            "specie": 447,
+            "level": 1,
+            "method": "Method::Method1"
+        },
+        {
+            "description": "Tentacool @ Cianwood City",
+            "version": "Game::HGSS",
+            "specie": 72,
+            "level": 15,
+            "method": "Method::Method1"
+        },
+        {
+            "description": "Eevee @ Goldenrod City",
+            "version": "Game::HGSS",
+            "specie": 133,
+            "level": 5,
+            "method": "Method::Method1"
+        },
+        {
+            "description": "Dratini @ Dragon",
+            "version": "Game::HGSS",
+            "specie": 147,
+            "level": 15,
+            "method": "Method::Method1"
+        },
+        {
+            "description": "Tyrogue @ Mt. Mortar",
+            "version": "Game::HGSS",
+            "specie": 236,
+            "level": 10,
+            "method": "Method::Method1"
+        },
+        {
+            "description": "Togepi Egg @ Mr. Pokemon",
+            "version": "Game::HGSS",
+            "specie": 175,
+            "level": 1,
+            "method": "Method::Method1"
+        },
+        {
+            "description": "Mareep Egg @ Primo",
+            "version": "Game::HGSS",
+            "specie": 179,
+            "level": 1,
+            "method": "Method::Method1"
+        },
+        {
+            "description": "Wooper Egg @ Primo",
+            "version": "Game::HGSS",
+            "specie": 194,
+            "level": 1,
+            "method": "Method::Method1"
+        },
+        {
+            "description": "Slugma Egg @ Primo",
+            "version": "Game::HGSS",
+            "specie": 218,
+            "level": 1,
+            "method": "Method::Method1"
+        }
+    ],
+    "gameCorner": [
+        {
+            "description": "Mr. Mime @ Celadon City Game Corner",
+            "version": "Game::HGSS",
+            "specie": 122,
+            "level": 15,
+            "method": "Method::Method1"
+        },
+        {
+            "description": "Eevee @ Celadon City Game Corner",
+            "version": "Game::HGSS",
+            "specie": 133,
+            "level": 15,
+            "method": "Method::Method1"
+        },
+        {
+            "description": "Porygon @ Celadon City Game Corner",
+            "version": "Game::HGSS",
+            "specie": 137,
+            "level": 15,
+            "method": "Method::Method1"
+        },
+        {
+            "description": "Abra @ Goldenrod City Game Corner",
+            "version": "Game::HGSS",
+            "specie": 63,
+            "level": 15,
+            "method": "Method::Method1"
+        },
+        {
+            "description": "Ekans @ Goldenrod City Game Corner",
+            "version": "Game::HeartGold",
+            "specie": 23,
+            "level": 15,
+            "method": "Method::Method1"
+        },
+        {
+            "description": "Sandshrew @ Goldenrod City Game Corner",
+            "version": "Game::SoulSilver",
+            "specie": 27,
+            "level": 15,
+            "method": "Method::Method1"
+        },
+        {
+            "description": "Dratini @ Goldenrod City Game Corner",
+            "version": "Game::HGSS",
+            "specie": 147,
+            "level": 15,
+            "method": "Method::Method1"
+        }
+    ],
+    "stationary": [
+        {
+            "description": "Drifloon @ Valley Windworks",
+            "version": "Game::DP",
+            "specie": 425,
+            "level": 22,
+            "method": "Method::MethodJ"
+        },
+        {
+            "description": "Drifloon @ Valley Windworks",
+            "version": "Game::Platinum",
+            "specie": 425,
+            "level": 15,
+            "method": "Method::MethodJ"
+        },
+        {
+            "description": "Rotom @ Old Chateau",
+            "version": "Game::DP",
+            "specie": 479,
+            "level": 15,
+            "method": "Method::MethodJ"
+        },
+        {
+            "description": "Rotom @ Old Chateau",
+            "version": "Game::Platinum",
+            "specie": 479,
+            "level": 20,
+            "method": "Method::MethodJ"
+        },
+        {
+            "description": "Spiritomb @ Route 209",
+            "version": "Game::DPPt",
+            "specie": 442,
+            "level": 25,
+            "method": "Method::MethodJ"
+        },
+        {
+            "description": "Voltorb @ Team Rocket HQ Trap Floor",
+            "version": "Game::HGSS",
+            "specie": 100,
+            "level": 23,
+            "method": "Method::MethodK"
+        },
+        {
+            "description": "Geodude @ Team Rocket HQ Trap Floor",
+            "version": "Game::HGSS",
+            "specie": 74,
+            "level": 21,
+            "method": "Method::MethodK"
+        },
+        {
+            "description": "Koffing @ Team Rocket HQ Trap Floor",
+            "version": "Game::HGSS",
+            "specie": 109,
+            "level": 21,
+            "method": "Method::MethodK"
+        },
+        {
+            "description": "Gyrados @ Lake of Rage",
+            "version": "Game::HGSS",
+            "specie": 130,
+            "level": 30,
+            "shiny": "Shiny::Always",
+            "method": "Method::Method1"
+        },
+        {
+            "description": "Lapras @ Union Cave",
+            "version": "Game::HGSS",
+            "specie": 131,
+            "level": 20,
+            "method": "Method::MethodK"
+        },
+        {
+            "description": "Electrode @ Team Rocket HQ",
+            "version": "Game::HGSS",
+            "specie": 101,
+            "level": 23,
+            "method": "Method::MethodK"
+        },
+        {
+            "description": "Snorlax @ Route 11 ",
+            "version": "Game::HGSS",
+            "specie": 143,
+            "level": 50,
+            "method": "Method::MethodK"
+        },
+        {
+            "description": "Sudowoodo @ Route 36",
+            "version": "Game::HGSS",
+            "specie": 185,
+            "level": 20,
+            "method": "Method::MethodK"
+        }
+    ],
+    "legends": [
+        {
+            "description": "Regirock @ Rock Peak Ruins",
+            "version": "Game::Platinum",
+            "specie": 377,
+            "level": 30,
+            "method": "Method::MethodJ"
+        },
+        {
+            "description": "Regice @ Iceberg Ruins",
+            "version": "Game::Platinum",
+            "specie": 378,
+            "level": 30,
+            "method": "Method::MethodJ"
+        },
+        {
+            "description": "Registeel @ Iron Ruins",
+            "version": "Game::Platinum",
+            "specie": 379,
+            "level": 30,
+            "method": "Method::MethodJ"
+        },
+        {
+            "description": "Uxie @ Acuity Cavern",
+            "version": "Game::DPPt",
+            "specie": 480,
+            "level": 50,
+            "method": "Method::MethodJ"
+        },
+        {
+            "description": "Azelf @ Valor Cavern",
+            "version": "Game::DPPt",
+            "specie": 482,
+            "level": 50,
+            "method": "Method::MethodJ"
+        },
+        {
+            "description": "Diagla @ Spear Pillar",
+            "version": "Game::Diamond",
+            "specie": 483,
+            "level": 47,
+            "method": "Method::MethodJ"
+        },
+        {
+            "description": "Palkia @ Spear Pillar",
+            "version": "Game::Pearl",
+            "specie": 484,
+            "level": 47,
+            "method": "Method::MethodJ"
+        },
+        {
+            "description": "Diagla @ Spear Pillar",
+            "version": "Game::Platinum",
+            "specie": 483,
+            "level": 70,
+            "method": "Method::MethodJ"
+        },
+        {
+            "description": "Palkia @ Spear Pillar",
+            "version": "Game::Platinum",
+            "specie": 484,
+            "level": 70,
+            "method": "Method::MethodJ"
+        },
+        {
+            "description": "Heatran @ Stark Mountain",
+            "version": "Game::DP",
+            "specie": 485,
+            "level": 70,
+            "method": "Method::MethodJ"
+        },
+        {
+            "description": "Heatran @ Stark Mountain",
+            "version": "Game::Platinum",
+            "specie": 485,
+            "level": 50,
+            "method": "Method::MethodJ"
+        },
+        {
+            "description": "Regigigas @ Snowpoint Temple",
+            "version": "Game::DP",
+            "specie": 486,
+            "level": 70,
+            "method": "Method::MethodJ"
+        },
+        {
+            "description": "Regigigas @ Snowpoint Temple",
+            "version": "Game::Platinum",
+            "specie": 486,
+            "level": 1,
+            "method": "Method::MethodJ"
+        },
+        {
+            "description": "Giratina @ Turnback Cave",
+            "version": "Game::DP",
+            "specie": 487,
+            "level": 70,
+            "method": "Method::MethodJ"
+        },
+        {
+            "description": "Giratina @ Turnback Cave",
+            "version": "Game::Platinum",
+            "specie": 487,
+            "level": 47,
+            "method": "Method::MethodJ"
+        },
+        {
+            "description": "Giratina @ Distortion World",
+            "version": "Game::Platinum",
+            "specie": 487,
+            "form": 1,
+            "level": 47,
+            "method": "Method::MethodJ"
+        },
+        {
+            "description": "Articuno @ Seafoam Islands",
+            "version": "Game::HGSS",
+            "specie": 144,
+            "level": 50,
+            "method": "Method::MethodK"
+        },
+        {
+            "description": "Zapdos @ Route 10",
+            "version": "Game::HGSS",
+            "specie": 145,
+            "level": 50,
+            "method": "Method::MethodK"
+        },
+        {
+            "description": "Moltres @ Mt. Silver Cave",
+            "version": "Game::HGSS",
+            "specie": 146,
+            "level": 50,
+            "method": "Method::MethodK"
+        },
+        {
+            "description": "Mewtwo @ Cerulean Cave",
+            "version": "Game::HGSS",
+            "specie": 150,
+            "level": 70,
+            "method": "Method::MethodK"
+        },
+        {
+            "description": "Suicune @ Route 25 ",
+            "version": "Game::HGSS",
+            "specie": 245,
+            "level": 40,
+            "method": "Method::MethodK"
+        },
+        {
+            "description": "Lugia @ Whirl Islands",
+            "version": "Game::HeartGold",
+            "specie": 249,
+            "level": 70,
+            "method": "Method::MethodK"
+        },
+        {
+            "description": "Lugia @ Whirl Islands",
+            "version": "Game::SoulSilver",
+            "specie": 249,
+            "level": 45,
+            "method": "Method::MethodK"
+        },
+        {
+            "description": "Ho-Oh @ Bell Tower",
+            "version": "Game::HeartGold",
+            "specie": 250,
+            "level": 45,
+            "method": "Method::MethodK"
+        },
+        {
+            "description": "Ho-Oh @ Bell Tower",
+            "version": "Game::SoulSilver",
+            "specie": 250,
+            "level": 70,
+            "method": "Method::MethodK"
+        },
+        {
+            "description": "Latios @ Pewter City",
+            "version": "Game::HeartGold",
+            "specie": 381,
+            "level": 40,
+            "method": "Method::MethodK"
+        },
+        {
+            "description": "Latias @ Pewter City",
+            "version": "Game::SoulSilver",
+            "specie": 380,
+            "level": 40,
+            "method": "Method::MethodK"
+        },
+        {
+            "description": "Kyogre @ Embedded Tower",
+            "version": "Game::HeartGold",
+            "specie": 382,
+            "level": 50,
+            "method": "Method::MethodK"
+        },
+        {
+            "description": "Groudon @ Embedded Tower",
+            "version": "Game::SoulSilver",
+            "specie": 383,
+            "level": 50,
+            "method": "Method::MethodK"
+        },
+        {
+            "description": "Rayquaza @ Embedded Tower",
+            "version": "Game::HGSS",
+            "specie": 384,
+            "level": 50,
+            "method": "Method::MethodK"
+        },
+        {
+            "description": "Dialga @ Sinjoh Ruins",
+            "version": "Game::HGSS",
+            "specie": 483,
+            "level": 1,
+            "method": "Method::Method1"
+        },
+        {
+            "description": "Palkia @ Sinjoh Ruins",
+            "version": "Game::HGSS",
+            "specie": 484,
+            "level": 1,
+            "method": "Method::Method1"
+        },
+        {
+            "description": "Giratina @ Sinjoh Ruins",
+            "version": "Game::HGSS",
+            "specie": 487,
+            "form": 1,
+            "level": 1,
+            "method": "Method::Method1"
+        }
+    ],
+    "events": [
+        {
+            "description": "Manaphy @ Pokemon Ranger",
+            "version": "Game::Gen4",
+            "specie": 490,
+            "level": 1,
+            "shiny": "Shiny::Never",
+            "method": "Method::Method1"
+        },
+        {
+            "description": "Darkrai @ Newmoon Island",
+            "version": "Game::Platinum",
+            "specie": 491,
+            "level": 50,
+            "method": "Method::MethodJ"
+        },
+        {
+            "description": "Shaymin @ Flower Paradise",
+            "version": "Game::Platinum",
+            "specie": 492,
+            "level": 30,
+            "method": "Method::MethodJ"
+        }
+    ],
+    "roamers": [
+        {
+            "description": "Mesprit",
+            "version": "Game::DPPt",
+            "specie": 481,
+            "level": 50,
+            "method": "Method::Method1"
+        },
+        {
+            "description": "Cresselia",
+            "version": "Game::DPPt",
+            "specie": 488,
+            "level": 50,
+            "method": "Method::Method1"
+        },
+        {
+            "description": "Articuno",
+            "version": "Game::Platinum",
+            "specie": 144,
+            "level": 60,
+            "method": "Method::Method1"
+        },
+        {
+            "description": "Zapdos",
+            "version": "Game::Platinum",
+            "specie": 145,
+            "level": 60,
+            "method": "Method::Method1"
+        },
+        {
+            "description": "Moltres",
+            "version": "Game::Platinum",
+            "specie": 146,
+            "level": 60,
+            "method": "Method::Method1"
+        },
+        {
+            "description": "Raikou",
+            "version": "Game::HGSS",
+            "specie": 243,
+            "level": 40,
+            "method": "Method::Method1"
+        },
+        {
+            "description": "Entei",
+            "version": "Game::HGSS",
+            "specie": 244,
+            "level": 40,
+            "method": "Method::Method1"
+        },
+        {
+            "description": "Latias",
+            "version": "Game::HeartGold",
+            "specie": 380,
+            "level": 35,
+            "method": "Method::Method1"
+        },
+        {
+            "description": "Latios",
+            "version": "Game::SoulSilver",
+            "specie": 381,
+            "level": 35,
+            "method": "Method::Method1"
+        }
+    ]
+}

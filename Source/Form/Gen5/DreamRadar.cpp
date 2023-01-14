@@ -112,7 +112,7 @@ DreamRadar::DreamRadar(QWidget *parent) : QWidget(parent), ui(new Ui::DreamRadar
     for (int i = 0; i < size; i++)
     {
         const DreamRadarTemplate *dreamRadarTemplate = &dreamRadarTemplates[i];
-        std::string name = Translator::getSpecie(dreamRadarTemplate->getSpecie());
+        std::string name = Translator::getSpecie(dreamRadarTemplate->getSpecie(), dreamRadarTemplate->getForm());
         if (dreamRadarTemplate->getGenie())
         {
             ui->comboBoxGeneratorSpecie1->addItem(QString::fromStdString(name), i);

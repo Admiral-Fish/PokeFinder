@@ -20,9 +20,9 @@
 #include "StaticGenerator8.hpp"
 #include <Core/Enum/Lead.hpp>
 #include <Core/Enum/Method.hpp>
-#include <Core/Gen8/StaticTemplate8.hpp>
 #include <Core/Parents/PersonalInfo.hpp>
 #include <Core/Parents/States/State.hpp>
+#include <Core/Parents/StaticTemplate.hpp>
 #include <Core/RNG/RNGList.hpp>
 #include <Core/RNG/Xoroshiro.hpp>
 #include <Core/RNG/Xorshift.hpp>
@@ -38,7 +38,7 @@ StaticGenerator8::StaticGenerator8(u32 initialAdvances, u32 maxAdvances, u32 del
 {
 }
 
-std::vector<GeneratorState> StaticGenerator8::generate(u64 seed0, u64 seed1, const StaticTemplate8 *staticTemplate) const
+std::vector<GeneratorState> StaticGenerator8::generate(u64 seed0, u64 seed1, const StaticTemplate *staticTemplate) const
 {
     const PersonalInfo *info = staticTemplate->getInfo();
     RNGList<u32, Xorshift, 32, gen> rngList(seed0, seed1, initialAdvances + delay);
@@ -160,7 +160,7 @@ std::vector<GeneratorState> StaticGenerator8::generate(u64 seed0, u64 seed1, con
     return states;
 }
 
-std::vector<GeneratorState> StaticGenerator8::generateRoamer(u64 seed0, u64 seed1, const StaticTemplate8 *staticTemplate) const
+std::vector<GeneratorState> StaticGenerator8::generateRoamer(u64 seed0, u64 seed1, const StaticTemplate *staticTemplate) const
 {
     // Going to ignore most of the parameters
     // Only roamers are Cresselia/Mesprit which have identical parameters

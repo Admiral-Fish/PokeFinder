@@ -39,7 +39,8 @@ public:
      * @param gender Forced gender of the lock
      * @param genderRatio Gender ratio of the lock
      */
-    constexpr LockInfo(u8 nature, u8 gender, u8 genderRatio) : ignore(false), gender(gender), genderRatio(genderRatio), nature(nature)
+    constexpr LockInfo(u8 nature, u8 gender, u8 genderRatio) :
+        ignore(nature == 0 && gender == 0 && genderRatio == 0), gender(gender), genderRatio(genderRatio), nature(nature)
     {
     }
 
@@ -53,12 +54,9 @@ public:
      */
     bool compare(u32 pid) const
     {
-        if (gender != 2)
+        if (gender != 2 && gender != ((pid & 255) < genderRatio))
         {
-            if (gender != ((pid & 255) < genderRatio))
-            {
-                return false;
-            }
+            return false;
         }
 
         return nature == (pid % 25);

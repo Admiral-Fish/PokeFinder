@@ -19,7 +19,7 @@
 
 #include "DenLoader.hpp"
 #include <Core/Parents/PersonalLoader.hpp>
-#include <Core/Resources/Encounters.hpp>
+#include <Core/Resources/EncounterData8.hpp>
 #include <algorithm>
 #include <fstream>
 #include <nlohmann/json.hpp>
@@ -34,7 +34,7 @@ struct DenInfo
 };
 
 // Normal hash, rare hash, location, x, y
-constexpr DenInfo denInfo[276][5] = {
+constexpr DenInfo denInfo[276] = {
     { 0x173f0456dc5dfc52, 0xba83e1671012ebcd, 12, 185, 977 }, // 16 52
     { 0x17458556dc634333, 0xba8745671015cb90, 12, 125, 1005 }, // 37 64
     { 0x17458b56dc634d65, 0x450421d99cf882c1, 12, 114, 936 }, // 31 90
@@ -334,7 +334,7 @@ namespace DenLoader
                 {
                     u8 ability = raid["Ability"].get<u8>();
                     u8 altform = raid["AltForm"].get<u8>();
-                    auto shinyType = raid["ShinyForced"].get<Shiny>();
+                    auto shiny = raid["ShinyForced"].get<Shiny>();
                     u8 ivCount = raid["FlawlessIVs"].get<u8>();
                     u8 gender = raid["Gender"].get<u8>();
                     bool gigantamax = raid["IsGigantamax"].get<bool>();
@@ -348,7 +348,7 @@ namespace DenLoader
 
                     if (std::any_of(std::begin(stars), std::end(stars), [](bool flag) { return flag; }))
                     {
-                        swordRaids.emplace_back(ability, altform, ivCount, gender, gigantamax, species, stars, shinyType);
+                        swordRaids.emplace_back(species, altform, shiny, ability, gender, ivCount, gigantamax, stars);
                     }
                 }
 
@@ -357,7 +357,7 @@ namespace DenLoader
                 {
                     u8 ability = raid["Ability"].get<u8>();
                     u8 altform = raid["AltForm"].get<u8>();
-                    auto shinyType = raid["ShinyForced"].get<Shiny>();
+                    auto shiny = raid["ShinyForced"].get<Shiny>();
                     u8 ivCount = raid["FlawlessIVs"].get<u8>();
                     u8 gender = raid["Gender"].get<u8>();
                     bool gigantamax = raid["IsGigantamax"].get<bool>();
@@ -371,7 +371,7 @@ namespace DenLoader
 
                     if (std::any_of(std::begin(stars), std::end(stars), [](bool flag) { return flag; }))
                     {
-                        shieldRaids.emplace_back(ability, altform, ivCount, gender, gigantamax, species, stars, shinyType);
+                        shieldRaids.emplace_back(species, altform, shiny, ability, gender, ivCount, gigantamax, stars);
                     }
                 }
 
@@ -382,7 +382,7 @@ namespace DenLoader
 
     const Den *getDen(u16 index, u8 rarity)
     {
-        u64 tableHash = denInfo[index]->hash[rarity];
+        u64 tableHash = denInfo[index].hash[rarity];
         auto it = std::lower_bound(nests.begin(), nests.end(), tableHash, [](const Den &den, u64 hash) { return den.getHash() < hash; });
         return std::addressof(*it);
     }
@@ -394,11 +394,11 @@ namespace DenLoader
 
     u8 getLocation(u16 index)
     {
-        return denInfo[index]->location;
+        return denInfo[index].location;
     }
 
     std::array<u16, 2> getCoordinates(u16 index)
     {
-        return { denInfo[index]->coordinate[0], denInfo[index]->coordinate[1] };
+        return { denInfo[index].coordinate[0], denInfo[index].coordinate[1] };
     }
 };

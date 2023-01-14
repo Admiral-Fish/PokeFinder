@@ -295,7 +295,15 @@ void IVCalculator::pokemonIndexChanged(int index)
         ui->comboBoxAltForm->clear();
         for (u8 i = 0; i < formCount; i++)
         {
-            ui->comboBoxAltForm->addItem(QString::number(i));
+            auto const &form = Translator::getForm(specie, i);
+            if (form.empty())
+            {
+                ui->comboBoxAltForm->addItem(QString::number(i));
+            }
+            else
+            {
+                ui->comboBoxAltForm->addItem(QString::fromStdString(form));
+            }
         }
     }
 }
