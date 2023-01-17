@@ -19,9 +19,11 @@
 
 #include <QDebug>
 #include <QTest>
+#include <Test/Gen3/EggGenerator3Test.hpp>
 #include <Test/Gen3/GameCubeGeneratorTest.hpp>
 #include <Test/Gen3/GameCubeSearcherTest.hpp>
 #include <Test/Gen3/IDGenerator3Test.hpp>
+#include <Test/Gen3/PIDToIVCalculatorTest.hpp>
 #include <Test/Gen3/PokeSpotGeneratorTest.hpp>
 #include <Test/Gen3/StaticGenerator3Test.hpp>
 #include <Test/Gen3/StaticSearcher3Test.hpp>
@@ -59,6 +61,7 @@
 #include <Test/Util/DateTimeTest.hpp>
 #include <Test/Util/EncounterSlotTest.hpp>
 #include <Test/Util/IVCheckerTest.hpp>
+#include <Test/Util/IVToPIDCalculatorTest.hpp>
 
 template <class Testname>
 int runTest(QStringList &fails)
@@ -80,9 +83,11 @@ int main()
     QStringList fails;
 
     // Gen 3
+    status += runTest<EggGenerator3Test>(fails);
     status += runTest<GameCubeGeneratorTest>(fails);
     status += runTest<GameCubeSearcherTest>(fails);
     status += runTest<IDGenerator3Test>(fails);
+    status += runTest<PIDToIVCalculatorTest>(fails);
     status += runTest<PokeSpotGeneratorTest>(fails);
     status += runTest<StaticGenerator3Test>(fails);
     status += runTest<StaticSearcher3Test>(fails);
@@ -93,10 +98,8 @@ int main()
     status += runTest<ChainedSIDCalcTest>(fails);
     status += runTest<IDGenerator4Test>(fails);
     status += runTest<IDSearcher4Test>(fails);
-#ifndef NDEBUG // TODO: investigate why this doesn't work in release builds
     status += runTest<StaticGenerator4Test>(fails);
     status += runTest<StaticSearcher4Test>(fails);
-#endif
     status += runTest<WildGenerator4Test>(fails);
     status += runTest<WildSearcher4Test>(fails);
 
@@ -137,6 +140,7 @@ int main()
     status += runTest<TimeTest>(fails);
     status += runTest<EncounterSlotTest>(fails);
     status += runTest<IVCheckerTest>(fails);
+    status += runTest<IVToPIDCalculatorTest>(fails);
 
     qDebug() << "";
     // Summary of failures at end for easy viewing

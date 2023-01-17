@@ -54,7 +54,7 @@ public:
      * @param info Pokemon information
      */
     EggState3(u32 advances, u16 low, u8 gender, const PersonalInfo *info) :
-        EggGeneratorState(advances, low, { 0, 0, 0, 0, 0, 0 }, low & 1, gender, 5, 0, 0, { 0, 0, 0, 0, 0, 0 }, info)
+        EggGeneratorState(advances, low, { 0, 0, 0, 0, 0, 0 }, low & 1, gender, 5, 0, 0, { 0, 0, 0, 0, 0, 0 }, info), redraws(0)
     {
     }
 

@@ -17,34 +17,17 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef IVTOPIDCALCULATOR_HPP
-#define IVTOPIDCALCULATOR_HPP
+#ifndef IVTOPIDCALCULATORTEST_HPP
+#define IVTOPIDCALCULATORTEST_HPP
 
-#include <Core/Global.hpp>
-#include <vector>
+#include <QObject>
 
-class IVToPIDState;
-
-/**
- * @brief Computes PID from IVs
- */
-namespace IVToPIDCalculator
+class IVToPIDCalculatorTest : public QObject
 {
-    /**
-     * @brief Computes PID from the IVs for Method 1/2/4, XD/Colo, and Channel
-     *
-     * @param hp HP IV
-     * @param atk Atk IV
-     * @param def Def IV
-     * @param spa SpA IV
-     * @param spd SpD IV
-     * @param spe Spe IV
-     * @param nature Nature value
-     * @param tid Trainer ID
-     *
-     * @return Vector of computed PIDs
-     */
-    std::vector<IVToPIDState> calculatePIDs(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, u8 nature, u16 tid);
+    Q_OBJECT
+private slots:
+    void calculatePIDs_data();
+    void calculatePIDs();
 };
 
-#endif // IVTOPIDCALCULATOR_HPP
+#endif // IVTOPIDCALCULATORTEST_HPP

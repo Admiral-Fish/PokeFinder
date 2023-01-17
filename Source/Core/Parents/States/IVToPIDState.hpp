@@ -22,17 +22,7 @@
 
 #include <Core/Global.hpp>
 
-enum class IVToPIDMethod : u8
-{
-    Method1,
-    ReverseMethod1,
-    Method2,
-    Method4,
-    CuteCharmDPPt,
-    CuteCharmHGSS,
-    XDColo,
-    Channel
-};
+enum class Method : u8;
 
 /**
  * @brief State class for PID to IV information
@@ -48,7 +38,7 @@ public:
      * @param sid Secret Trainer ID
      * @param method Generation method
      */
-    IVToPIDState(u32 seed, u32 pid, u16 sid, IVToPIDMethod method) : seed(seed), pid(pid), sid(sid), method(method)
+    IVToPIDState(u32 seed, u32 pid, u16 sid, Method method) : seed(seed), pid(pid), sid(sid), method(method)
     {
     }
 
@@ -57,7 +47,7 @@ public:
      *
      * @return Generation method
      */
-    IVToPIDMethod getMethod() const
+    Method getMethod() const
     {
         return method;
     }
@@ -96,7 +86,7 @@ private:
     u32 pid;
     u32 seed;
     u16 sid;
-    IVToPIDMethod method;
+    Method method;
 };
 
 #endif // IVTOPIDSTATE_HPP

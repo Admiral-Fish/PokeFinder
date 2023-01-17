@@ -17,12 +17,16 @@ add_executable(PokeFinderTest
     data.qrc
     Enum.cpp
     Enum.hpp
+    Gen3/EggGenerator3Test.cpp
+    Gen3/EggGenerator3Test.hpp
     Gen3/GameCubeGeneratorTest.cpp
     Gen3/GameCubeGeneratorTest.hpp
     Gen3/GameCubeSearcherTest.cpp
     Gen3/GameCubeSearcherTest.hpp
     Gen3/IDGenerator3Test.cpp
     Gen3/IDGenerator3Test.hpp
+    Gen3/PIDToIVCalculatorTest.cpp
+    Gen3/PIDToIVCalculatorTest.hpp
     Gen3/PokeSpotGeneratorTest.cpp
     Gen3/PokeSpotGeneratorTest.hpp
     Gen3/StaticGenerator3Test.cpp
@@ -98,6 +102,8 @@ add_executable(PokeFinderTest
     Util/EncounterSlotTest.hpp
     Util/IVCheckerTest.cpp
     Util/IVCheckerTest.hpp
+    Util/IVToPIDCalculatorTest.cpp
+    Util/IVToPIDCalculatorTest.hpp
 )
 
 add_test(NAME Test COMMAND PokeFinderTest)

@@ -57,13 +57,13 @@ static std::vector<IVToPIDState> calcMethod12(u8 hp, u8 atk, u8 def, u8 spa, u8 
         u32 pid = (high << 16) | low;
         if ((pid % 25) == nature)
         {
-            states.emplace_back(seed, pid, sid, IVToPIDMethod::Method1);
+            states.emplace_back(seed, pid, sid, Method::Method1);
         }
 
         pid = (low << 16) | high;
         if ((pid % 25) == nature)
         {
-            states.emplace_back(seed, pid, sid, IVToPIDMethod::ReverseMethod1);
+            states.emplace_back(seed, pid, sid, Method::Method1Reverse);
         }
 
         if ((low / 0x5556) != 0 && (high / 0xa3e) == nature)
@@ -72,7 +72,7 @@ static std::vector<IVToPIDState> calcMethod12(u8 hp, u8 atk, u8 def, u8 spa, u8 
             {
                 pid = nature + thresh;
                 sid = (pid ^ tid) & 0xfff8;
-                states.emplace_back(seed, pid, sid, IVToPIDMethod::CuteCharmDPPt);
+                states.emplace_back(seed, pid, sid, Method::CuteCharmDPPt);
             }
         }
 
@@ -82,7 +82,7 @@ static std::vector<IVToPIDState> calcMethod12(u8 hp, u8 atk, u8 def, u8 spa, u8 
             {
                 pid = nature + thresh;
                 sid = (pid ^ tid) & 0xfff8;
-                states.emplace_back(seed, pid, sid, IVToPIDMethod::CuteCharmHGSS);
+                states.emplace_back(seed, pid, sid, Method::CuteCharmHGSS);
             }
         }
     }
@@ -100,7 +100,7 @@ static std::vector<IVToPIDState> calcMethod12(u8 hp, u8 atk, u8 def, u8 spa, u8 
         u32 pid = (high << 16) | low;
         if ((pid % 25) == nature)
         {
-            states.emplace_back(seed, pid, sid, IVToPIDMethod::Method2);
+            states.emplace_back(seed, pid, sid, Method::Method2);
         }
     }
 
@@ -139,7 +139,7 @@ static std::vector<IVToPIDState> calcMethod4(u8 hp, u8 atk, u8 def, u8 spa, u8 s
         u32 pid = (high << 16) | low;
         if ((pid % 25) == nature)
         {
-            states.emplace_back(seed, pid, sid, IVToPIDMethod::Method4);
+            states.emplace_back(seed, pid, sid, Method::Method4);
         }
     }
     return states;
@@ -183,7 +183,7 @@ static std::vector<IVToPIDState> calcMethodChannel(u8 hp, u8 atk, u8 def, u8 spa
         u32 pid = (high << 16) | low;
         if ((pid % 25) == nature)
         {
-            states.emplace_back(seed, pid, sid, IVToPIDMethod::Channel);
+            states.emplace_back(seed, pid, sid, Method::Channel);
         }
     }
     return states;
@@ -223,7 +223,7 @@ static std::vector<IVToPIDState> calcMethodXDColo(u8 hp, u8 atk, u8 def, u8 spa,
         u32 pid = (high << 16) | low;
         if ((pid % 25) == nature)
         {
-            states.emplace_back(seed, pid, sid, IVToPIDMethod::XDColo);
+            states.emplace_back(seed, pid, sid, Method::XDColo);
         }
     }
     return states;
@@ -231,7 +231,7 @@ static std::vector<IVToPIDState> calcMethodXDColo(u8 hp, u8 atk, u8 def, u8 spa,
 
 namespace IVToPIDCalculator
 {
-    std::vector<IVToPIDState> calculateIVs(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, u8 nature, u16 tid)
+    std::vector<IVToPIDState> calculatePIDs(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, u8 nature, u16 tid)
     {
         std::vector<IVToPIDState> states;
 

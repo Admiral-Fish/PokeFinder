@@ -21,6 +21,7 @@
 #define PIDTOIVSTATE_HPP
 
 #include <Core/Global.hpp>
+#include <array>
 
 enum class Method : u8;
 
@@ -78,6 +79,16 @@ public:
     }
 
     /**
+     * @brief Returns the IVs of the state
+     *
+     * @return State IVs
+     */
+    std::array<u8, 6> getIVs() const
+    {
+        return ivs;
+    }
+
+    /**
      * @brief Returns the generation method of the state
      *
      * @return Generation method
@@ -100,7 +111,7 @@ public:
 private:
     u32 seed;
     Method method;
-    u8 ivs[6];
+    std::array<u8, 6> ivs;
 };
 
 #endif // PIDTOIVSTATE_HPP

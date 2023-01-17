@@ -70,6 +70,6 @@ void IVToPID::find()
     u8 nature = ui->comboBoxNature->currentIndex();
     u16 tid = ui->textBoxTID->getUShort();
 
-    auto states = IVToPIDCalculator::calculateIVs(hp, atk, def, spa, spd, spe, nature, tid);
+    auto states = IVToPIDCalculator::calculatePIDs(hp, atk, def, spa, spd, spe, nature, tid);
     model->addItems(states);
 }

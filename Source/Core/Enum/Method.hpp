@@ -46,6 +46,8 @@ enum class Method : u8
     RSFRLGBredAlternate,
     RSFRLGBredMixed,
 
+    CuteCharmDPPt,
+    CuteCharmHGSS,
     MethodJ,
     MethodK,
     PokeRadar,

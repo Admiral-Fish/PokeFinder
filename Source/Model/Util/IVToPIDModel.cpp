@@ -18,6 +18,7 @@
  */
 
 #include "IVToPIDModel.hpp"
+#include <Core/Enum/Method.hpp>
 
 IVToPIDModel::IVToPIDModel(QObject *parent) : TableModel(parent)
 {
@@ -43,22 +44,24 @@ QVariant IVToPIDModel::data(const QModelIndex &index, int role) const
         case 2:
             switch (state.getMethod())
             {
-            case IVToPIDMethod::Method1:
+            case Method::Method1:
                 return tr("Method 1");
-            case IVToPIDMethod::ReverseMethod1:
+            case Method::Method1Reverse:
                 return tr("Reverse Method 1");
-            case IVToPIDMethod::Method2:
+            case Method::Method2:
                 return tr("Method 2");
-            case IVToPIDMethod::Method4:
+            case Method::Method4:
                 return tr("Method 4");
-            case IVToPIDMethod::CuteCharmDPPt:
+            case Method::CuteCharmDPPt:
                 return tr("Cute Charm (DPPt)");
-            case IVToPIDMethod::CuteCharmHGSS:
+            case Method::CuteCharmHGSS:
                 return tr("Cute Charm (HGSS)");
-            case IVToPIDMethod::XDColo:
+            case Method::XDColo:
                 return tr("XD/Colo");
-            case IVToPIDMethod::Channel:
+            case Method::Channel:
                 return tr("Channel");
+            default:
+                break;
             }
         case 3:
             return state.getPID() & 1;
