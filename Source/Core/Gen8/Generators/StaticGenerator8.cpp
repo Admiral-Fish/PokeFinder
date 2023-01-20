@@ -46,7 +46,7 @@ std::vector<GeneratorState> StaticGenerator8::generate(u64 seed0, u64 seed1, con
     std::vector<GeneratorState> states;
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rngList.advanceState())
     {
-        rngList.advance(1); // EC call
+        u32 ec = rngList.next();
         u32 sidtid = rngList.next();
         u32 pid = rngList.next();
 
@@ -150,7 +150,7 @@ std::vector<GeneratorState> StaticGenerator8::generate(u64 seed0, u64 seed1, con
             nature = rngList.next() % 25;
         }
 
-        GeneratorState state(initialAdvances + cnt, pid, ivs, ability, gender, staticTemplate->getLevel(), nature, shiny, info);
+        GeneratorState state(initialAdvances + cnt, ec, pid, ivs, ability, gender, staticTemplate->getLevel(), nature, shiny, info);
         if (filter.compareState(state))
         {
             states.emplace_back(state);
@@ -171,7 +171,8 @@ std::vector<GeneratorState> StaticGenerator8::generateRoamer(u64 seed0, u64 seed
     std::vector<GeneratorState> states;
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
     {
-        XoroshiroBDSP rng(roamer.next(0x80000000, 0x7fffffff));
+        u32 ec = roamer.next(0x80000000, 0x7fffffff);
+        XoroshiroBDSP rng(ec);
 
         u32 sidtid = rng.nextUInt(0xffffffff);
         u32 pid = rng.nextUInt(0xffffffff);
@@ -234,7 +235,7 @@ std::vector<GeneratorState> StaticGenerator8::generateRoamer(u64 seed0, u64 seed
             nature = rng.nextUInt(25);
         }
 
-        GeneratorState state(initialAdvances + cnt, pid, ivs, ability, gender, staticTemplate->getLevel(), nature, shiny,
+        GeneratorState state(initialAdvances + cnt, ec, pid, ivs, ability, gender, staticTemplate->getLevel(), nature, shiny,
                              staticTemplate->getInfo());
         if (filter.compareState(state))
         {

@@ -20,7 +20,6 @@
 #ifndef DEN_HPP
 #define DEN_HPP
 
-#include <Core/Enum/Game.hpp>
 #include <Core/Gen8/Raid.hpp>
 #include <vector>
 

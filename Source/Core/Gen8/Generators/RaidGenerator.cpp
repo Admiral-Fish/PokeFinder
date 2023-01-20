@@ -42,7 +42,7 @@ std::vector<GeneratorState> RaidGenerator::generate(u64 seed, u8 level, const Ra
     {
         Xoroshiro rng(seed);
 
-        rng.nextUInt<0xffffffff>(); // EC
+        u32 ec = rng.nextUInt<0xffffffff>();
         u32 sidtid = rng.nextUInt<0xffffffff>();
         u32 pid = rng.nextUInt<0xffffffff>();
         u16 psv = (pid >> 16) ^ (pid & 0xffff);
@@ -190,7 +190,7 @@ std::vector<GeneratorState> RaidGenerator::generate(u64 seed, u8 level, const Ra
         // Height (2 calls)
         // Weight (2 calls)
 
-        GeneratorState state(initialAdvances + cnt, pid, ivs, ability, gender, level, nature, shiny, info);
+        GeneratorState state(initialAdvances + cnt, ec, pid, ivs, ability, gender, level, nature, shiny, info);
         if (filter.compareState(state))
         {
             states.emplace_back(state);

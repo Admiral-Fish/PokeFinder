@@ -346,7 +346,7 @@ namespace DenLoader
                         stars[i] = raid["Probabilities"][i].get<u8>() > 0;
                     }
 
-                    if (std::any_of(std::begin(stars), std::end(stars), [](bool flag) { return flag; }))
+                    if (std::any_of(stars.begin(), stars.end(), [](bool flag) { return flag; }))
                     {
                         swordRaids.emplace_back(species, altform, shiny, ability, gender, ivCount, gigantamax, stars);
                     }
@@ -369,7 +369,7 @@ namespace DenLoader
                         stars[i] = raid["Probabilities"][i].get<u8>() > 0;
                     }
 
-                    if (std::any_of(std::begin(stars), std::end(stars), [](bool flag) { return flag; }))
+                    if (std::any_of(stars.begin(), stars.end(), [](bool flag) { return flag; }))
                     {
                         shieldRaids.emplace_back(species, altform, shiny, ability, gender, ivCount, gigantamax, stars);
                     }

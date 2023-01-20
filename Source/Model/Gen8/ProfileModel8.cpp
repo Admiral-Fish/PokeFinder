@@ -20,7 +20,7 @@
 #include "ProfileModel8.hpp"
 #include <Core/Util/Translator.hpp>
 
-ProfileModel8::ProfileModel8(QObject *parent) : TableModel<Profile8>(parent)
+ProfileModel8::ProfileModel8(QObject *parent) : TableModel(parent)
 {
 }
 

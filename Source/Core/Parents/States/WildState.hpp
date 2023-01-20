@@ -50,6 +50,28 @@ public:
     }
 
     /**
+     * @brief Construct a new WildState object
+     *
+     * @param ec Pokemon EC
+     * @param pid Pokemon PID
+     * @param ivs Pokemon IVs
+     * @param ability Pokemon ability
+     * @param gender Pokemon gender
+     * @param level Pokemon level
+     * @param nature Pokemon nature
+     * @param shiny Pokemon shininess
+     * @param encounterSlot Pokemon encounter slot
+     * @param item Pokemon item
+     * @param specie Pokemon specie
+     * @param info Pokemon information
+     */
+    WildState(u32 ec, u32 pid, const std::array<u8, 6> &ivs, u8 ability, u8 gender, u8 level, u8 nature, u8 shiny, u8 encounterSlot,
+              u16 item, u16 specie, const PersonalInfo *info) :
+        State(ec, pid, ivs, ability, gender, level, nature, shiny, info), item(item), specie(specie), encounterSlot(encounterSlot)
+    {
+    }
+
+    /**
      * @brief Returns the encounter slot of the state
      *
      * @return State encounter slot
@@ -110,6 +132,29 @@ public:
     WildGeneratorState(u32 advances, u32 pid, const std::array<u8, 6> &ivs, u8 ability, u8 gender, u8 level, u8 nature, u8 shiny,
                        u8 encounterSlot, u16 item, u16 specie, const PersonalInfo *info) :
         WildState(pid, ivs, ability, gender, level, nature, shiny, encounterSlot, item, specie, info), advances(advances)
+    {
+    }
+
+    /**
+     * @brief Construct a new WildGeneratorState object
+     *
+     * @param advances Advances of the state
+     * @param ec Pokemon EC
+     * @param pid Pokemon PID
+     * @param ivs Pokemon IVs
+     * @param ability Pokemon ability
+     * @param gender Pokemon gender
+     * @param level Pokemon level
+     * @param nature Pokemon nature
+     * @param shiny Pokemon shininess
+     * @param encounterSlot Pokemon encounter slot
+     * @param item Pokemon item
+     * @param specie Pokemon specie
+     * @param info Pokemon information
+     */
+    WildGeneratorState(u32 advances, u32 ec, u32 pid, const std::array<u8, 6> &ivs, u8 ability, u8 gender, u8 level, u8 nature, u8 shiny,
+                       u8 encounterSlot, u16 item, u16 specie, const PersonalInfo *info) :
+        WildState(ec, pid, ivs, ability, gender, level, nature, shiny, encounterSlot, item, specie, info), advances(advances)
     {
     }
 

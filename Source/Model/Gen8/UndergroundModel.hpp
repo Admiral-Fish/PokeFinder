@@ -77,8 +77,9 @@ public slots:
     void setShowStats(bool flag);
 
 private:
-    QStringList header = { tr("Advances"), tr("Egg Move"), tr("Item"), tr("Species"), tr("Level"), tr("PID"), tr("Shiny"), tr("Nature"),
-                           tr("Ability"),  tr("HP"),       tr("Atk"),  tr("Def"),     tr("SpA"),   tr("SpD"), tr("Spe"),   tr("Gender") };
+    QStringList header = { tr("Advances"), tr("Egg Move"), tr("Item"),   tr("Species"), tr("Level"),  tr("EC"),
+                           tr("PID"),      tr("Shiny"),    tr("Nature"), tr("Ability"), tr("HP"),     tr("Atk"),
+                           tr("Def"),      tr("SpA"),      tr("SpD"),    tr("Spe"),     tr("Gender"), tr("Characteristic") };
     bool showStats;
 };
 

@@ -48,6 +48,26 @@ public:
     }
 
     /**
+     * @brief Construct a new EggState object
+     *
+     * @param ec Pokemon EC
+     * @param pid Pokemon PID
+     * @param ivs Pokemon IVs
+     * @param ability Pokemon ability
+     * @param gender Pokemon gender
+     * @param level Pokemon level
+     * @param nature Pokemon nature
+     * @param shiny Pokemon shininess
+     * @param inheritance Pokemon IV inheritance
+     * @param info Pokemon information
+     */
+    EggState(u32 ec, u32 pid, const std::array<u8, 6> &ivs, u8 ability, u8 gender, u8 level, u8 nature, u8 shiny,
+             const std::array<u8, 6> &inheritance, const PersonalInfo *info) :
+        State(ec, pid, ivs, ability, gender, level, nature, shiny, info), inheritance(inheritance)
+    {
+    }
+
+    /**
      * @brief Returns the inheritance of the pokemon
      *
      * @return Pokemon inheritance
@@ -96,6 +116,27 @@ public:
     EggGeneratorState(u32 advances, u32 pid, const std::array<u8, 6> &ivs, u8 ability, u8 gender, u8 level, u8 nature, u8 shiny,
                       const std::array<u8, 6> &inheritance, const PersonalInfo *info) :
         EggState(pid, ivs, ability, gender, level, nature, shiny, inheritance, info), advances(advances)
+    {
+    }
+
+    /**
+     * @brief Construct a new EggGeneratorState object
+     *
+     * @param advances Advances of the state
+     * @param ec Pokemon EC
+     * @param pid Pokemon PID
+     * @param ivs Pokemon IVs
+     * @param ability Pokemon ability
+     * @param gender Pokemon gender
+     * @param level Pokemon level
+     * @param nature Pokemon nature
+     * @param shiny Pokemon shininess
+     * @param inheritance Pokemon IV inheritance
+     * @param info Pokemon information
+     */
+    EggGeneratorState(u32 advances, u32 ec, u32 pid, const std::array<u8, 6> &ivs, u8 ability, u8 gender, u8 level, u8 nature, u8 shiny,
+                      const std::array<u8, 6> &inheritance, const PersonalInfo *info) :
+        EggState(ec, pid, ivs, ability, gender, level, nature, shiny, inheritance, info), advances(advances)
     {
     }
 

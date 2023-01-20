@@ -102,7 +102,7 @@ void IVCalculator::displayIVs(QLabel *label, const std::vector<u8> &ivs)
                 {
                     flag = true;
 
-                    //  Check to see if we need to cap here.
+                    // Check to see if we need to cap here.
                     if (i == ivs.size() - 1)
                     {
                         result += QString("-%1").arg(ivs[i]);

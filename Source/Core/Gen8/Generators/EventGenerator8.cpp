@@ -46,11 +46,7 @@ std::vector<GeneratorState> EventGenerator8::generate(u64 seed0, u64 seed1) cons
     std::vector<GeneratorState> states;
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rngList.advanceState())
     {
-        // Check for rand EC
-        if (wb8.getEC() == 0)
-        {
-            rngList.advance(1);
-        }
+        u32 ec = wb8.getEC() == 0 ? rngList.next() : wb8.getEC();
 
         u32 pid;
         u8 shiny;
@@ -146,7 +142,7 @@ std::vector<GeneratorState> EventGenerator8::generate(u64 seed0, u64 seed1) cons
 
         u8 nature = wb8.getNature() != 255 ? wb8.getNature() : rngList.next() % 25;
 
-        GeneratorState state(initialAdvances + cnt, pid, ivs, ability, gender, wb8.getLevel(), nature, shiny, info);
+        GeneratorState state(initialAdvances + cnt, ec, pid, ivs, ability, gender, wb8.getLevel(), nature, shiny, info);
         if (filter.compareState(state))
         {
             states.emplace_back(state);

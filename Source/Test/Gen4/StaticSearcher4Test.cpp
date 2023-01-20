@@ -35,7 +35,8 @@ using IVs = std::array<u8, 6>;
 static bool operator==(const SearcherState4 &left, const GeneratorState4 &right)
 {
     return left.getPID() == right.getPID() && left.getStats() == right.getStats() && left.getAbilityIndex() == right.getAbilityIndex()
-        && left.getIVs() == right.getIVs() && left.getAbility() == right.getAbility() && left.getGender() == right.getGender()
+        && left.getIVs() == right.getIVs() && left.getAbility() == right.getAbility()
+        && left.getCharacteristic() == right.getCharacteristic() && left.getGender() == right.getGender()
         && left.getHiddenPower() == right.getHiddenPower() && left.getHiddenPowerStrength() == right.getHiddenPowerStrength()
         && left.getLevel() == right.getLevel() && left.getNature() == right.getNature() && left.getShiny() == right.getShiny();
 }

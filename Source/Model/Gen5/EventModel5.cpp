@@ -27,7 +27,7 @@ EventGeneratorModel5::EventGeneratorModel5(QObject *parent) : TableModel(parent)
 
 int EventGeneratorModel5::columnCount(const QModelIndex &parent) const
 {
-    return 15;
+    return 16;
 }
 
 QVariant EventGeneratorModel5::data(const QModelIndex &index, int role) const
@@ -75,6 +75,8 @@ QVariant EventGeneratorModel5::data(const QModelIndex &index, int role) const
             return state.getHiddenPowerStrength();
         case 14:
             return QString::fromStdString(Translator::getGender(state.getGender()));
+        case 15:
+            return QString::fromStdString(Translator::getCharacteristic(state.getCharacteristic()));
         }
     }
 

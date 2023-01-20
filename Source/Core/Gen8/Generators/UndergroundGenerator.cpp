@@ -253,7 +253,7 @@ std::vector<UndergroundState> UndergroundGenerator::generate(u64 seed0, u64 seed
             level = levelInfo.min + (rngList.next() % range);
         }
 
-        rngList.advance(1); // EC
+        u32 ec = rngList.next(rand);
         u32 sidtid = rngList.next(rand);
         u32 pid;
         u8 shiny;
@@ -340,7 +340,8 @@ std::vector<UndergroundState> UndergroundGenerator::generate(u64 seed0, u64 seed
             eggMove = eggMoves->moves[rngList.next() % eggMoves->count];
         }
 
-        return UndergroundState(initialAdvances + advances, pid, ivs, ability, gender, level, nature, shiny, eggMove, item, specie, info);
+        return UndergroundState(initialAdvances + advances, ec, pid, ivs, ability, gender, level, nature, shiny, eggMove, item, specie,
+                                info);
     };
 
     std::vector<UndergroundState> states;

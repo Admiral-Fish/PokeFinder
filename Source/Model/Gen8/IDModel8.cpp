@@ -19,7 +19,7 @@
 
 #include "IDModel8.hpp"
 
-IDModel8::IDModel8(QObject *parent) : TableModel<IDState8>(parent)
+IDModel8::IDModel8(QObject *parent) : TableModel(parent)
 {
 }
 

@@ -32,9 +32,9 @@ int WildGeneratorModel4::columnCount(const QModelIndex &parent) const
     {
     case Method::MethodJ:
     case Method::PokeRadar:
-        return 19;
-    case Method::MethodK:
         return 20;
+    case Method::MethodK:
+        return 21;
     default:
         return 0;
     }
@@ -86,6 +86,8 @@ QVariant WildGeneratorModel4::data(const QModelIndex &index, int role) const
             return state.getHiddenPowerStrength();
         case 19:
             return QString::fromStdString(Translator::getGender(state.getGender()));
+        case 20:
+            return QString::fromStdString(Translator::getCharacteristic(state.getCharacteristic()));
         }
     }
     return QVariant();
@@ -133,7 +135,7 @@ WildSearcherModel4::WildSearcherModel4(QObject *parent) : TableModel<WildSearche
 
 int WildSearcherModel4::columnCount(const QModelIndex &parent) const
 {
-    return 18;
+    return 19;
 }
 
 QVariant WildSearcherModel4::data(const QModelIndex &index, int role) const
@@ -178,6 +180,8 @@ QVariant WildSearcherModel4::data(const QModelIndex &index, int role) const
             return state.getHiddenPowerStrength();
         case 17:
             return QString::fromStdString(Translator::getGender(state.getGender()));
+        case 18:
+            return QString::fromStdString(Translator::getCharacteristic(state.getCharacteristic()));
         }
     }
     return QVariant();
@@ -269,6 +273,12 @@ void WildSearcherModel4::sort(int column, Qt::SortOrder order)
         case 17:
             std::sort(model.begin(), model.end(), [flag](const WildSearcherState4 &state1, const WildSearcherState4 &state2) {
                 return flag ? state1.getGender() < state2.getGender() : state1.getGender() > state2.getGender();
+            });
+            break;
+        case 18:
+            std::sort(model.begin(), model.end(), [flag](const WildSearcherState4 &state1, const WildSearcherState4 &state2) {
+                return flag ? state1.getCharacteristic() < state2.getCharacteristic()
+                            : state1.getCharacteristic() > state2.getCharacteristic();
             });
             break;
         }

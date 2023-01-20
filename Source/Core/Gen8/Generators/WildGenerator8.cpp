@@ -111,7 +111,7 @@ std::vector<WildGeneratorState> WildGenerator8::generate(u64 seed0, u64 seed1, c
         const Slot &slot = encounterArea.getPokemon(encounterSlot);
         const PersonalInfo *info = slot.getInfo();
 
-        rngList.next(rand); // EC call
+        u32 ec = rngList.next(rand);
         u32 sidtid = rngList.next(rand);
         u32 pid = rngList.next(rand);
 
@@ -183,7 +183,7 @@ std::vector<WildGeneratorState> WildGenerator8::generate(u64 seed0, u64 seed1, c
 
         u16 item = getItem(rngList.next() % 100, lead, info);
 
-        WildGeneratorState state(initialAdvances + cnt, pid, ivs, ability, gender, level, nature, shiny, encounterSlot, item,
+        WildGeneratorState state(initialAdvances + cnt, ec, pid, ivs, ability, gender, level, nature, shiny, encounterSlot, item,
                                  slot.getSpecie(), info);
         if (filter.compareState(state))
         {

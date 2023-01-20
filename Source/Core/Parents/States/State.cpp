@@ -18,28 +18,18 @@
  */
 
 #include "State.hpp"
-#include <Core/Parents/PersonalInfo.hpp>
 #include <Core/Util/Nature.hpp>
 
-constexpr int order[6] = { 0, 1, 2, 5, 3, 4 };
-
-State::State(u32 pid, const std::array<u8, 6> &ivs, u8 ability, u8 gender, u8 level, u8 nature, u8 shiny, const PersonalInfo *info) :
-    pid(pid),
-    abilityIndex(info->getAbility(ability)),
-    ivs(ivs),
-    ability(ability),
-    gender(gender),
-    level(level),
-    nature(nature),
-    shiny(shiny)
-{
-    updateStats(info);
-}
+constexpr u8 order[6] = { 0, 1, 2, 5, 3, 4 };
+constexpr u8 charOrder[11] = { 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4 };
 
 void State::updateStats(const PersonalInfo *info)
 {
     u8 h = 0;
     u8 p = 0;
+    u8 ecIndex = ec % 6;
+    u8 charIndex = ecIndex;
+    u8 maxIV = 0;
     for (int i = 0; i < 6; i++)
     {
         h += (ivs[order[i]] & 1) << i;
@@ -54,7 +44,15 @@ void State::updateStats(const PersonalInfo *info)
         {
             stats[i] = Nature::computeStat(stat + 5, nature, i);
         }
+
+        u8 index = charOrder[ecIndex + i];
+        if (ivs[order[index]] > maxIV)
+        {
+            charIndex = index;
+            maxIV = ivs[order[index]];
+        }
     }
     hiddenPower = h * 15 / 63;
     hiddenPowerStrength = 30 + (p * 40 / 63);
+    characteristic = (charIndex * 5) + (maxIV % 5);
 }

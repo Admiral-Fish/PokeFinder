@@ -28,7 +28,7 @@ DreamRadarGeneratorModel5::DreamRadarGeneratorModel5(QObject *parent) : TableMod
 
 int DreamRadarGeneratorModel5::columnCount(const QModelIndex &parent) const
 {
-    return 15;
+    return 16;
 }
 
 QVariant DreamRadarGeneratorModel5::data(const QModelIndex &index, int role) const
@@ -76,6 +76,8 @@ QVariant DreamRadarGeneratorModel5::data(const QModelIndex &index, int role) con
             return state.getHiddenPowerStrength();
         case 14:
             return QString::fromStdString(Translator::getGender(state.getGender()));
+        case 15:
+            return QString::fromStdString(Translator::getCharacteristic(state.getCharacteristic()));
         }
     }
     return QVariant();

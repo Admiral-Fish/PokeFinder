@@ -174,8 +174,7 @@ std::vector<EggGeneratorState> EggGenerator8::generate(u64 seed0, u64 seed1) con
                 ivs[i] = iv;
             }
 
-            // Encryption constant
-            rng.next();
+            u32 ec = rng.nextUInt(0xffffffff);
 
             // Assign PID if we have masuda or shiny charm
             u32 pid = 0;
@@ -194,7 +193,7 @@ std::vector<EggGeneratorState> EggGenerator8::generate(u64 seed0, u64 seed1) con
             // Ball handling check
             // Uses a rand call, maybe add later
 
-            EggGeneratorState state(initialAdvances + cnt, pid, ivs, ability, gender, 1, nature, shiny, inheritance, info);
+            EggGeneratorState state(initialAdvances + cnt, ec, pid, ivs, ability, gender, 1, nature, shiny, inheritance, info);
             if (filter.compareState(state))
             {
                 states.emplace_back(state);

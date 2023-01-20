@@ -21,13 +21,13 @@
 #include "UndergroundModel.hpp"
 #include <Core/Util/Translator.hpp>
 
-UndergroundModel::UndergroundModel(QObject *parent) : TableModel<UndergroundState>(parent), showStats(false)
+UndergroundModel::UndergroundModel(QObject *parent) : TableModel(parent), showStats(false)
 {
 }
 
 int UndergroundModel::columnCount(const QModelIndex &parent) const
 {
-    return 16;
+    return 18;
 }
 
 QVariant UndergroundModel::data(const QModelIndex &index, int role) const
@@ -49,15 +49,17 @@ QVariant UndergroundModel::data(const QModelIndex &index, int role) const
         case 4:
             return state.getLevel();
         case 5:
-            return QString::number(state.getPID(), 16).toUpper().rightJustified(8, '0');
+            return QString::number(state.getEC(), 16).toUpper().rightJustified(8, '0');
         case 6:
+            return QString::number(state.getPID(), 16).toUpper().rightJustified(8, '0');
+        case 7:
         {
             u8 shiny = state.getShiny();
             return shiny == 2 ? tr("Square") : shiny == 1 ? tr("Star") : tr("No");
         }
-        case 7:
-            return QString::fromStdString(Translator::getNature(state.getNature()));
         case 8:
+            return QString::fromStdString(Translator::getNature(state.getNature()));
+        case 9:
             if (state.getAbility() == 0 || state.getAbility() == 1)
             {
                 return QString("%1 (%2)")
@@ -68,15 +70,17 @@ QVariant UndergroundModel::data(const QModelIndex &index, int role) const
             {
                 return QString("H (%2)").arg(QString::fromStdString(Translator::getAbility(state.getAbilityIndex())));
             }
-        case 9:
         case 10:
         case 11:
         case 12:
         case 13:
         case 14:
-            return showStats ? state.getStat(column - 9) : state.getIV(column - 9);
         case 15:
+            return showStats ? state.getStat(column - 10) : state.getIV(column - 10);
+        case 16:
             return QString::fromStdString(Translator::getGender(state.getGender()));
+        case 17:
+            return QString::fromStdString(Translator::getCharacteristic(state.getCharacteristic()));
         }
     }
 
@@ -95,5 +99,5 @@ QVariant UndergroundModel::headerData(int section, Qt::Orientation orientation, 
 void UndergroundModel::setShowStats(bool flag)
 {
     showStats = flag;
-    emit dataChanged(index(0, 9), index(rowCount(), 14), { Qt::DisplayRole });
+    emit dataChanged(index(0, 10), index(rowCount(), 15), { Qt::DisplayRole });
 }

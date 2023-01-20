@@ -21,9 +21,8 @@
 #define STATE_HPP
 
 #include <Core/Global.hpp>
+#include <Core/Parents/PersonalInfo.hpp>
 #include <array>
-
-class PersonalInfo;
 
 /**
  * @brief Parent state that contains all the common information for a Pokemon across each game
@@ -43,7 +42,46 @@ public:
      * @param shiny Pokemon shininess
      * @param info Pokemon information
      */
-    State(u32 pid, const std::array<u8, 6> &ivs, u8 ability, u8 gender, u8 level, u8 nature, u8 shiny, const PersonalInfo *info);
+    State(u32 pid, const std::array<u8, 6> &ivs, u8 ability, u8 gender, u8 level, u8 nature, u8 shiny, const PersonalInfo *info) :
+        ec(pid),
+        pid(pid),
+        abilityIndex(info->getAbility(ability)),
+        ivs(ivs),
+        ability(ability),
+        gender(gender),
+        level(level),
+        nature(nature),
+        shiny(shiny)
+    {
+        updateStats(info);
+    }
+
+    /**
+     * @brief Construct a new State object
+     *
+     * @param ec Pokemon EC
+     * @param pid Pokemon PID
+     * @param ivs Pokemon IVs
+     * @param ability Pokemon ability
+     * @param gender Pokemon gender
+     * @param level Pokemon level
+     * @param nature Pokemon nature
+     * @param shiny Pokemon shininess
+     * @param info Pokemon information
+     */
+    State(u32 ec, u32 pid, const std::array<u8, 6> &ivs, u8 ability, u8 gender, u8 level, u8 nature, u8 shiny, const PersonalInfo *info) :
+        ec(ec),
+        pid(pid),
+        abilityIndex(info->getAbility(ability)),
+        ivs(ivs),
+        ability(ability),
+        gender(gender),
+        level(level),
+        nature(nature),
+        shiny(shiny)
+    {
+        updateStats(info);
+    }
 
     /**
      * @brief Returns the ability of the pokemon
@@ -63,6 +101,26 @@ public:
     u16 getAbilityIndex() const
     {
         return abilityIndex;
+    }
+
+    /**
+     * @brief Returns the characteristic of the pokemon
+     *
+     * @return Pokemon characteristic
+     */
+    u8 getCharacteristic() const
+    {
+        return characteristic;
+    }
+
+    /**
+     * @brief Returns the EC of the pokemon
+     *
+     * @return Pokemon EC
+     */
+    u32 getEC() const
+    {
+        return ec;
     }
 
     /**
@@ -180,11 +238,13 @@ public:
     }
 
 protected:
+    u32 ec;
     u32 pid;
     std::array<u16, 6> stats;
     u16 abilityIndex;
     std::array<u8, 6> ivs;
     u8 ability;
+    u8 characteristic;
     u8 gender;
     u8 hiddenPower;
     u8 hiddenPowerStrength;
@@ -192,6 +252,11 @@ protected:
     u8 nature;
     u8 shiny;
 
+    /**
+     * @brief Updates characterstic, hidden power, and stats
+     *
+     * @param info Pokemon information
+     */
     void updateStats(const PersonalInfo *info);
 };
 
@@ -217,6 +282,26 @@ public:
     GeneratorState(u32 advances, u32 pid, const std::array<u8, 6> &ivs, u8 ability, u8 gender, u8 level, u8 nature, u8 shiny,
                    const PersonalInfo *info) :
         State(pid, ivs, ability, gender, level, nature, shiny, info), advances(advances)
+    {
+    }
+
+    /**
+     * @brief Construct a new GeneratorState object
+     *
+     * @param advances Advances of the state
+     * @param ec Pokemon EC
+     * @param pid Pokemon PID
+     * @param ivs Pokemon IVs
+     * @param ability Pokemon ability
+     * @param gender Pokemon gender
+     * @param level Pokemon level
+     * @param nature Pokemon nature
+     * @param shiny Pokemon shininess
+     * @param info Pokemon information
+     */
+    GeneratorState(u32 advances, u32 ec, u32 pid, const std::array<u8, 6> &ivs, u8 ability, u8 gender, u8 level, u8 nature, u8 shiny,
+                   const PersonalInfo *info) :
+        State(ec, pid, ivs, ability, gender, level, nature, shiny, info), advances(advances)
     {
     }
 

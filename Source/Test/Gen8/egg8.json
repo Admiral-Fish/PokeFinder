@@ -44,6 +44,8 @@
                     "ability": 0,
                     "abilityIndex": 65,
                     "advances": 0,
+                    "characteristic": 6,
+                    "ec": 544659516,
                     "gender": 0,
                     "inheritance": [
                         0,
@@ -78,6 +80,8 @@
                     "ability": 1,
                     "abilityIndex": 65,
                     "advances": 1,
+                    "characteristic": 6,
+                    "ec": 698112516,
                     "gender": 0,
                     "inheritance": [
                         0,
@@ -112,6 +116,8 @@
                     "ability": 0,
                     "abilityIndex": 65,
                     "advances": 2,
+                    "characteristic": 21,
+                    "ec": 625084975,
                     "gender": 0,
                     "inheritance": [
                         1,
@@ -146,6 +152,8 @@
                     "ability": 0,
                     "abilityIndex": 65,
                     "advances": 3,
+                    "characteristic": 21,
+                    "ec": 237363526,
                     "gender": 0,
                     "inheritance": [
                         0,
@@ -180,6 +188,8 @@
                     "ability": 0,
                     "abilityIndex": 65,
                     "advances": 4,
+                    "characteristic": 1,
+                    "ec": 1195944738,
                     "gender": 0,
                     "inheritance": [
                         1,
@@ -214,6 +224,8 @@
                     "ability": 0,
                     "abilityIndex": 65,
                     "advances": 5,
+                    "characteristic": 16,
+                    "ec": 3830245881,
                     "gender": 0,
                     "inheritance": [
                         0,
@@ -248,6 +260,8 @@
                     "ability": 0,
                     "abilityIndex": 65,
                     "advances": 6,
+                    "characteristic": 26,
+                    "ec": 3262135576,
                     "gender": 0,
                     "inheritance": [
                         0,
@@ -282,6 +296,8 @@
                     "ability": 0,
                     "abilityIndex": 65,
                     "advances": 7,
+                    "characteristic": 26,
+                    "ec": 72596883,
                     "gender": 0,
                     "inheritance": [
                         1,
@@ -316,6 +332,8 @@
                     "ability": 1,
                     "abilityIndex": 65,
                     "advances": 8,
+                    "characteristic": 21,
+                    "ec": 3876664676,
                     "gender": 0,
                     "inheritance": [
                         0,
@@ -350,6 +368,8 @@
                     "ability": 0,
                     "abilityIndex": 65,
                     "advances": 9,
+                    "characteristic": 6,
+                    "ec": 1864436393,
                     "gender": 0,
                     "inheritance": [
                         0,
@@ -426,6 +446,8 @@
                     "ability": 0,
                     "abilityIndex": 38,
                     "advances": 0,
+                    "characteristic": 6,
+                    "ec": 544659516,
                     "gender": 0,
                     "inheritance": [
                         0,
@@ -460,6 +482,8 @@
                     "ability": 1,
                     "abilityIndex": 79,
                     "advances": 1,
+                    "characteristic": 6,
+                    "ec": 698112516,
                     "gender": 1,
                     "inheritance": [
                         0,
@@ -494,6 +518,8 @@
                     "ability": 0,
                     "abilityIndex": 38,
                     "advances": 2,
+                    "characteristic": 21,
+                    "ec": 625084975,
                     "gender": 1,
                     "inheritance": [
                         1,
@@ -528,6 +554,8 @@
                     "ability": 0,
                     "abilityIndex": 38,
                     "advances": 3,
+                    "characteristic": 21,
+                    "ec": 237363526,
                     "gender": 0,
                     "inheritance": [
                         0,
@@ -562,6 +590,8 @@
                     "ability": 0,
                     "abilityIndex": 38,
                     "advances": 4,
+                    "characteristic": 1,
+                    "ec": 1195944738,
                     "gender": 1,
                     "inheritance": [
                         1,
@@ -596,6 +626,8 @@
                     "ability": 0,
                     "abilityIndex": 38,
                     "advances": 5,
+                    "characteristic": 16,
+                    "ec": 3830245881,
                     "gender": 1,
                     "inheritance": [
                         0,
@@ -630,6 +662,8 @@
                     "ability": 0,
                     "abilityIndex": 38,
                     "advances": 6,
+                    "characteristic": 26,
+                    "ec": 3262135576,
                     "gender": 0,
                     "inheritance": [
                         0,
@@ -664,6 +698,8 @@
                     "ability": 0,
                     "abilityIndex": 38,
                     "advances": 7,
+                    "characteristic": 26,
+                    "ec": 72596883,
                     "gender": 1,
                     "inheritance": [
                         1,
@@ -698,6 +734,8 @@
                     "ability": 1,
                     "abilityIndex": 79,
                     "advances": 8,
+                    "characteristic": 21,
+                    "ec": 3876664676,
                     "gender": 0,
                     "inheritance": [
                         0,
@@ -732,6 +770,8 @@
                     "ability": 0,
                     "abilityIndex": 38,
                     "advances": 9,
+                    "characteristic": 6,
+                    "ec": 1864436393,
                     "gender": 0,
                     "inheritance": [
                         0,
@@ -808,6 +848,8 @@
                     "ability": 0,
                     "abilityIndex": 35,
                     "advances": 0,
+                    "characteristic": 6,
+                    "ec": 544659516,
                     "gender": 0,
                     "inheritance": [
                         0,
@@ -842,6 +884,8 @@
                     "ability": 1,
                     "abilityIndex": 110,
                     "advances": 1,
+                    "characteristic": 6,
+                    "ec": 698112516,
                     "gender": 1,
                     "inheritance": [
                         0,
@@ -876,6 +920,8 @@
                     "ability": 0,
                     "abilityIndex": 12,
                     "advances": 2,
+                    "characteristic": 21,
+                    "ec": 625084975,
                     "gender": 1,
                     "inheritance": [
                         1,
@@ -910,6 +956,8 @@
                     "ability": 0,
                     "abilityIndex": 35,
                     "advances": 3,
+                    "characteristic": 21,
+                    "ec": 237363526,
                     "gender": 0,
                     "inheritance": [
                         0,
@@ -944,6 +992,8 @@
                     "ability": 0,
                     "abilityIndex": 12,
                     "advances": 4,
+                    "characteristic": 1,
+                    "ec": 1195944738,
                     "gender": 1,
                     "inheritance": [
                         1,
@@ -978,6 +1028,8 @@
                     "ability": 0,
                     "abilityIndex": 12,
                     "advances": 5,
+                    "characteristic": 16,
+                    "ec": 3830245881,
                     "gender": 1,
                     "inheritance": [
                         0,
@@ -1012,6 +1064,8 @@
                     "ability": 0,
                     "abilityIndex": 35,
                     "advances": 6,
+                    "characteristic": 26,
+                    "ec": 3262135576,
                     "gender": 0,
                     "inheritance": [
                         0,
@@ -1046,6 +1100,8 @@
                     "ability": 0,
                     "abilityIndex": 12,
                     "advances": 7,
+                    "characteristic": 26,
+                    "ec": 72596883,
                     "gender": 1,
                     "inheritance": [
                         1,
@@ -1080,6 +1136,8 @@
                     "ability": 1,
                     "abilityIndex": 68,
                     "advances": 8,
+                    "characteristic": 21,
+                    "ec": 3876664676,
                     "gender": 0,
                     "inheritance": [
                         0,
@@ -1114,6 +1172,8 @@
                     "ability": 0,
                     "abilityIndex": 35,
                     "advances": 9,
+                    "characteristic": 6,
+                    "ec": 1864436393,
                     "gender": 0,
                     "inheritance": [
                         0,

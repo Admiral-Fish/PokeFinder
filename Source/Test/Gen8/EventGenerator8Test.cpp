@@ -28,9 +28,10 @@
 static bool operator==(const GeneratorState &left, const json &right)
 {
     // Intentionally ignoring hidden power
-    return left.getPID() == right["pid"].get<u32>() && left.getStats() == right["stats"].get<std::array<u16, 6>>()
-        && left.getAbilityIndex() == right["abilityIndex"].get<u16>() && left.getIVs() == right["ivs"].get<std::array<u8, 6>>()
-        && left.getAbility() == right["ability"].get<u8>() && left.getGender() == right["gender"].get<u8>()
+    return left.getEC() == right["ec"].get<u32>() && left.getPID() == right["pid"].get<u32>()
+        && left.getStats() == right["stats"].get<std::array<u16, 6>>() && left.getAbilityIndex() == right["abilityIndex"].get<u16>()
+        && left.getIVs() == right["ivs"].get<std::array<u8, 6>>() && left.getAbility() == right["ability"].get<u8>()
+        && left.getCharacteristic() == right["characteristic"].get<u8>() && left.getGender() == right["gender"].get<u8>()
         && left.getLevel() == right["level"].get<u8>() && left.getNature() == right["nature"].get<u8>()
         && left.getShiny() == right["shiny"].get<u8>() && left.getAdvances() == right["advances"].get<u32>();
 }

@@ -22,6 +22,8 @@
                     "ability": 0,
                     "abilityIndex": 93,
                     "advances": 0,
+                    "characteristic": 11,
+                    "ec": 570639824,
                     "gender": 2,
                     "ivs": [
                         15,
@@ -48,6 +50,8 @@
                     "ability": 0,
                     "abilityIndex": 93,
                     "advances": 1,
+                    "characteristic": 6,
+                    "ec": 2412930810,
                     "gender": 2,
                     "ivs": [
                         30,
@@ -74,6 +78,8 @@
                     "ability": 0,
                     "abilityIndex": 93,
                     "advances": 2,
+                    "characteristic": 26,
+                    "ec": 570642538,
                     "gender": 2,
                     "ivs": [
                         19,
@@ -100,6 +106,8 @@
                     "ability": 0,
                     "abilityIndex": 93,
                     "advances": 3,
+                    "characteristic": 26,
+                    "ec": 2452903364,
                     "gender": 2,
                     "ivs": [
                         31,
@@ -126,6 +134,8 @@
                     "ability": 0,
                     "abilityIndex": 93,
                     "advances": 4,
+                    "characteristic": 26,
+                    "ec": 715243415,
                     "gender": 2,
                     "ivs": [
                         31,
@@ -152,6 +162,8 @@
                     "ability": 0,
                     "abilityIndex": 93,
                     "advances": 5,
+                    "characteristic": 6,
+                    "ec": 3067672975,
                     "gender": 2,
                     "ivs": [
                         31,
@@ -178,6 +190,8 @@
                     "ability": 0,
                     "abilityIndex": 93,
                     "advances": 6,
+                    "characteristic": 26,
+                    "ec": 249593662,
                     "gender": 2,
                     "ivs": [
                         31,
@@ -204,6 +218,8 @@
                     "ability": 0,
                     "abilityIndex": 93,
                     "advances": 7,
+                    "characteristic": 16,
+                    "ec": 3200942419,
                     "gender": 2,
                     "ivs": [
                         31,
@@ -230,6 +246,8 @@
                     "ability": 0,
                     "abilityIndex": 93,
                     "advances": 8,
+                    "characteristic": 26,
+                    "ec": 422632474,
                     "gender": 2,
                     "ivs": [
                         31,
@@ -256,6 +274,8 @@
                     "ability": 0,
                     "abilityIndex": 93,
                     "advances": 9,
+                    "characteristic": 1,
+                    "ec": 3906296370,
                     "gender": 2,
                     "ivs": [
                         31,

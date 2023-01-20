@@ -27,7 +27,7 @@ EggGeneratorModel5::EggGeneratorModel5(QObject *parent) : TableModel(parent), sh
 
 int EggGeneratorModel5::columnCount(const QModelIndex &parent) const
 {
-    return 15;
+    return 16;
 }
 
 QVariant EggGeneratorModel5::data(const QModelIndex &index, int role) const
@@ -83,6 +83,8 @@ QVariant EggGeneratorModel5::data(const QModelIndex &index, int role) const
             return state.getHiddenPowerStrength();
         case 14:
             return QString::fromStdString(Translator::getGender(state.getGender()));
+        case 15:
+            return QString::fromStdString(Translator::getCharacteristic(state.getCharacteristic()));
         }
     }
 
