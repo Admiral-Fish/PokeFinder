@@ -295,7 +295,7 @@ void MainWindow::openWild3()
         connect(wild3, &Wild3::profilesModified, this, &MainWindow::updateProfiles);
     }
     wild3->show();
-    wild4->raise();
+    wild3->raise();
 }
 
 void MainWindow::openIDs4()
