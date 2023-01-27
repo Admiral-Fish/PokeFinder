@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -17,17 +17,17 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef EGGGENERATOR3_HPP
-#define EGGGENERATOR3_HPP
+#ifndef EGGGENERATOR4_HPP
+#define EGGGENERATOR4_HPP
 
-#include <Core/Gen3/Filters/StateFilter3.hpp>
-#include <Core/Gen3/Profile3.hpp>
+#include <Core/Gen4/Filters/StateFilter4.hpp>
+#include <Core/Gen4/Profile4.hpp>
 #include <Core/Parents/Generators/EggGenerator.hpp>
 
 /**
- * @brief Egg encounter generator for Gen3
+ * @brief Egg encounter generator for Gen4
  */
-class EggGenerator3 : public EggGenerator<Profile3, StateFilter3>
+class EggGenerator4 : public EggGenerator<Profile4, StateFilter4>
 {
 public:
     /**
@@ -39,18 +39,12 @@ public:
      * @param initialAdvancesPickup Initial number of pickup advances
      * @param maxAdvancesPickup Maximum number of pickup advances
      * @param delayPickup Number of pickup advances to offset
-     * @param calibration Emerald PID calibration value
-     * @param minRedraw Minimum number of redraws
-     * @param maxRedraw Maximum number of redraws
-     * @param method Encounter method
-     * @param compatability Parent compatability
      * @param daycare Daycare parent information
      * @param profile Profile Information
      * @param filter State filter
      */
-    EggGenerator3(u32 initialAdvances, u32 maxAdvances, u32 delay, u32 initialAdvancesPickup, u32 maxAdvancesPickup, u32 delayPickup,
-                  u8 calibration, u8 minRedraw, u8 maxRedraw, Method method, u8 compatability, const Daycare &daycare,
-                  const Profile3 &profile, const StateFilter3 &filter);
+    EggGenerator4(u32 initialAdvances, u32 maxAdvances, u32 delay, u32 initialAdvancesPickup, u32 maxAdvancesPickup, u32 delayPickup,
+                  const Daycare &daycare, const Profile4 &profile, const StateFilter4 &filter);
 
     /**
      * @brief Generates states
@@ -60,34 +54,12 @@ public:
      *
      * @return Vector of computed states
      */
-    std::vector<EggState3> generate(u32 seedHeld = 0, u32 seedPickup = 0) const;
+    std::vector<EggGeneratorState4> generate(u32 seedHeld, u32 seedPickup) const;
 
 private:
     u32 delayPickup;
     u32 initialAdvancesPickup;
     u32 maxAdvancesPickup;
-    u8 calibration;
-    u8 inh;
-    u8 iv1;
-    u8 iv2;
-    u8 maxRedraw;
-    u8 minRedraw;
-
-    /**
-     * @brief Generates states for when the daycare man has the egg
-     *
-     * @return Vector of computed held states
-     */
-    std::vector<EggState3> generateEmeraldHeld() const;
-
-    /**
-     * @brief Generates states for picking up the egg from the daycare man
-     *
-     * @param held Vector of held states
-     *
-     * @return Vector of computed pickup states
-     */
-    std::vector<EggState3> generateEmeraldPickup(const std::vector<EggState3> &held) const;
 
     /**
      * @brief Generates states for when the daycare man has the egg
@@ -96,7 +68,7 @@ private:
      *
      * @return Vector of computed held states
      */
-    std::vector<EggState3> generateRSFRLGHeld(u32 seed) const;
+    std::vector<EggGeneratorState4> generateHeld(u32 seed) const;
 
     /**
      * @brief Generates states for picking up the egg from the daycare man
@@ -106,7 +78,7 @@ private:
      *
      * @return Vector of computed pickup states
      */
-    std::vector<EggState3> generateRSFRLGPickup(u32 seed, const std::vector<EggState3> &held) const;
+    std::vector<EggGeneratorState4> generatePickup(u32 seed, const std::vector<EggGeneratorState4> &held) const;
 };
 
-#endif // EGGGENERATOR3_HPP
+#endif // EGGGENERATOR4_HPP

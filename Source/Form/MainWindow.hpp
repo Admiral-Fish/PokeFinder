@@ -172,6 +172,11 @@ private slots:
 
     // Gen 4
     /**
+     * @brief Opens the Gen 4 Egg window
+     */
+    void openEgg4();
+
+    /**
      * @brief Opens the Gen 4 IDs window
      */
     void openIDs4();
@@ -200,8 +205,6 @@ private slots:
      * @brief Opens the SID From Chained Shiny window
      */
     void openSIDFromChainedShiny();
-
-    // void openEgg4();
 
     // Gen 5
     /**

@@ -45,7 +45,7 @@ public:
     ChainedSID(QWidget *parent = nullptr);
 
     /**
-     * @brief Destroy the Wild4 object
+     * @brief Destroy the ChainedSID object
      */
     ~ChainedSID() override;
 

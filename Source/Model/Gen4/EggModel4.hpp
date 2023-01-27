@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -17,28 +17,27 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef STATIC4MODEL_HPP
-#define STATIC4MODEL_HPP
+#ifndef EGG4MODEL_HPP
+#define EGG4MODEL_HPP
 
-#include <Core/Gen4/States/State4.hpp>
+#include <Core/Gen4/States/EggState4.hpp>
 #include <Model/TableModel.hpp>
 
-enum class Method : u8;
+enum class Game : u32;
 
 /**
- * @brief Provides a table model implementation to show static encounter information for Gen 4
+ * @brief Provides a table model implementation to show egg encounter information for Gen 4
  */
-class StaticGeneratorModel4 : public TableModel<GeneratorState4>
+class EggGeneratorModel4 : public TableModel<EggGeneratorState4>
 {
     Q_OBJECT
 public:
     /**
-     * @brief Construct a new StaticGeneratorModel4 object
+     * @brief Construct a new EggGeneratorModel4 object
      *
      * @param parent Parent object, which takes memory ownership
-     * @param method Generation method
      */
-    StaticGeneratorModel4(QObject *parent, Method method);
+    EggGeneratorModel4(QObject *parent, Game version);
 
     /**
      * @brief Returns the number of columns in the model
@@ -71,13 +70,20 @@ public:
     QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
 
     /**
-     * @brief Sets current \p method of the model
+     * @brief Sets current \p version of the model
      *
-     * @param method Method
+     * @param method Game version
      */
-    void setMethod(Method method);
+    void setVersion(Game version);
 
 public slots:
+    /**
+     * @brief Sets flag that controls whether the model display inheritance or stats/IVs
+     *
+     * @param flag Whether to show inheritance or not
+     */
+    void setShowInheritance(bool flag);
+
     /**
      * @brief Sets flag that controls whether the model display stats or IVs
      *
@@ -86,14 +92,30 @@ public slots:
     void setShowStats(bool flag);
 
 private:
-    QStringList header = { tr("Advances"), tr("Call"),   tr("Chatot"), tr("PID"),    tr("Shiny"),         tr("Nature"),
-                           tr("Ability"),  tr("HP"),     tr("Atk"),    tr("Def"),    tr("SpA"),           tr("SpD"),
-                           tr("Spe"),      tr("Hidden"), tr("Power"),  tr("Gender"), tr("Characteristic") };
+    QStringList header = { tr("Held Advances"),
+                           tr("Pickup Advances"),
+                           tr("Call"),
+                           tr("Chatot"),
+                           tr("PID"),
+                           tr("Shiny"),
+                           tr("Nature"),
+                           tr("Ability"),
+                           tr("HP"),
+                           tr("Atk"),
+                           tr("Def"),
+                           tr("SpA"),
+                           tr("SpD"),
+                           tr("Spe"),
+                           tr("Hidden"),
+                           tr("Power"),
+                           tr("Gender"),
+                           tr("Characteristic") };
+    bool dppt;
+    bool showInheritance;
     bool showStats;
-    Method method;
 
     /**
-     * @brief Gets modified column index based on model method
+     * @brief Gets modified column index based on model version
      *
      * @param column Original column
      *
@@ -103,18 +125,18 @@ private:
 };
 
 /**
- * @brief Provides a table model implementation to show static encounter information for Gen 4
+ * @brief Provides a table model implementation to show egg encounter information for Gen 4
  */
-class StaticSearcherModel4 : public TableModel<SearcherState4>
+class EggSearcherModel4 : public TableModel<EggSearcherState4>
 {
     Q_OBJECT
 public:
     /**
-     * @brief Construct a new StaticSearcherModel4 object
+     * @brief Construct a new EggSearcherModel4 object
      *
      * @param parent Parent object, which takes memory ownership
      */
-    StaticSearcherModel4(QObject *parent);
+    EggSearcherModel4(QObject *parent);
 
     /**
      * @brief Returns the number of columns in the model
@@ -156,6 +178,13 @@ public:
 
 public slots:
     /**
+     * @brief Sets flag that controls whether the model display inheritance or stats/IVs
+     *
+     * @param flag Whether to show inheritance or not
+     */
+    void setShowInheritance(bool flag);
+
+    /**
      * @brief Sets flag that controls whether the model display stats or IVs
      *
      * @param flag Whether to show stats or not
@@ -163,10 +192,25 @@ public slots:
     void setShowStats(bool flag);
 
 private:
-    QStringList header
-        = { tr("Seed"), tr("Advances"), tr("PID"), tr("Shiny"), tr("Nature"), tr("Ability"), tr("HP"),     tr("Atk"),
-            tr("Def"),  tr("SpA"),      tr("SpD"), tr("Spe"),   tr("Hidden"), tr("Power"),   tr("Gender"), tr("Characteristic") };
+    QStringList header = { tr("Seed"),
+                           tr("Held Advances"),
+                           tr("Pickup Advances"),
+                           tr("PID"),
+                           tr("Shiny"),
+                           tr("Nature"),
+                           tr("Ability"),
+                           tr("HP"),
+                           tr("Atk"),
+                           tr("Def"),
+                           tr("SpA"),
+                           tr("SpD"),
+                           tr("Spe"),
+                           tr("Hidden"),
+                           tr("Power"),
+                           tr("Gender"),
+                           tr("Characteristic") };
+    bool showInheritance;
     bool showStats;
 };
 
-#endif // STATIC4MODEL_HPP
+#endif // EGG4MODEL_HPP

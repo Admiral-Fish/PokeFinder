@@ -53,12 +53,6 @@ enum class Method : u8
     PokeRadar,
     WondercardIVs,
 
-    Gen4Normal,
-    Gen4Masuda,
-    DPPtIVs,
-    HGSSIVs,
-    Gen4Combined,
-
     Method5IVs,
     Method5CGear,
     Method5

@@ -89,16 +89,13 @@ std::vector<SearcherState5<IDState>> IDSearcher5::startSearch(const IDGenerator5
             auto states = generator.generate(seed, pid, checkPID, checkXOR);
             if (!states.empty())
             {
-                std::vector<SearcherState5<IDState>> displayStates;
-                displayStates.reserve(states.size());
-
                 DateTime dt(date, Time(hour, minute, second));
-                for (auto &state : states)
-                {
-                    displayStates.emplace_back(dt, seed, buttons[i], profile.getTimer0Min(), state);
-                }
 
-                results.insert(results.end(), displayStates.begin(), displayStates.end());
+                results.reserve(results.capacity() + states.size());
+                for (const auto &state : states)
+                {
+                    results.emplace_back(dt, seed, buttons[i], profile.getTimer0Min(), state);
+                }
             }
         }
     }
@@ -156,17 +153,14 @@ void IDSearcher5::search(const IDGenerator5 &generator, const Date &start, const
                         auto states = generator.generate(seed, pid, checkPID, checkXOR);
                         if (!states.empty())
                         {
-                            std::vector<SearcherState5<IDState>> displayStates;
-                            displayStates.reserve(states.size());
-
                             DateTime dt(date, Time(hour, minute, second));
-                            for (auto &state : states)
-                            {
-                                displayStates.emplace_back(dt, seed, buttons[i], profile.getTimer0Min(), state);
-                            }
 
                             std::lock_guard<std::mutex> lock(mutex);
-                            results.insert(results.end(), displayStates.begin(), displayStates.end());
+                            results.reserve(results.capacity() + states.size());
+                            for (const auto &state : states)
+                            {
+                                results.emplace_back(dt, seed, buttons[i], profile.getTimer0Min(), state);
+                            }
                         }
                     }
                 }

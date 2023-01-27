@@ -234,11 +234,11 @@ private:
     u32 ec;
     u32 pid;
     u16 sid;
-    u16 form : 5;
-    u16 specie : 11;
+    u16 specie;
     u16 tid;
     bool egg;
     u8 ability; // 0: 0, 1: 1, 2: H, 3: 1/2, 4: 1/2/H
+    u8 form;
     u8 gender;
     u8 ivCount;
     u8 level;

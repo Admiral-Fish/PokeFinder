@@ -140,10 +140,10 @@ public:
 
 protected:
     Game version;
-    u16 form : 5;
-    u16 specie : 11;
+    u16 specie;
     Shiny shiny;
     u8 ability;
+    u8 form;
     u8 gender;
     u8 ivCount;
     u8 level;

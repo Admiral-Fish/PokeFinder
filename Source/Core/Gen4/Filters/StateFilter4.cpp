@@ -18,6 +18,7 @@
  */
 
 #include "StateFilter4.hpp"
+#include <Core/Gen4/States/EggState4.hpp>
 #include <Core/Gen4/States/State4.hpp>
 #include <Core/Gen4/States/WildState4.hpp>
 
@@ -25,6 +26,30 @@ StateFilter4::StateFilter4(u8 gender, u8 ability, u8 shiny, bool skip, const std
                            const std::array<bool, 25> &natures, const std::array<bool, 16> &powers) :
     StateFilter(gender, ability, shiny, skip, min, max, natures, powers)
 {
+}
+
+bool StateFilter4::compareState(const EggGeneratorState4 &state) const
+{
+    if (skip)
+    {
+        return true;
+    }
+
+    if (!powers[state.getHiddenPower()])
+    {
+        return false;
+    }
+
+    for (int i = 0; i < 6; i++)
+    {
+        u8 iv = state.getIV(i);
+        if (iv < min[i] || iv > max[i])
+        {
+            return false;
+        }
+    }
+
+    return true;
 }
 
 bool StateFilter4::compareState(const GeneratorState4 &state) const

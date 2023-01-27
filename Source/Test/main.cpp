@@ -30,6 +30,7 @@
 #include <Test/Gen3/WildGenerator3Test.hpp>
 #include <Test/Gen3/WildSearcher3Test.hpp>
 #include <Test/Gen4/ChainedSIDCalcTest.hpp>
+#include <Test/Gen4/EggGenerator4Test.hpp>
 #include <Test/Gen4/IDGenerator4Test.hpp>
 #include <Test/Gen4/IDSearcher4Test.hpp>
 #include <Test/Gen4/StaticGenerator4Test.hpp>
@@ -96,6 +97,7 @@ int main()
 
     // Gen 4
     status += runTest<ChainedSIDCalcTest>(fails);
+    status += runTest<EggGenerator4Test>(fails);
     status += runTest<IDGenerator4Test>(fails);
     status += runTest<IDSearcher4Test>(fails);
     status += runTest<StaticGenerator4Test>(fails);

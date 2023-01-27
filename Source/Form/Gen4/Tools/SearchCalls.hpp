@@ -45,7 +45,7 @@ public:
     SearchCalls(const std::vector<SeedTimeCalibrate4> &data, QWidget *parent = nullptr);
 
     /**
-     * @brief Destroy the Wild4 object
+     * @brief Destroy the SearchCalls object
      */
     ~SearchCalls() override;
 

@@ -183,17 +183,14 @@ private:
                                 auto states = generator.generate(seed);
                                 if (!states.empty())
                                 {
-                                    std::vector<SearcherState5<State>> displayStates;
-                                    displayStates.reserve(states.size());
-
                                     DateTime dt(date, Time(hour, minute, second));
-                                    for (const auto &state : states)
-                                    {
-                                        displayStates.emplace_back(dt, seed, buttons[i], timer0, state);
-                                    }
 
                                     std::lock_guard<std::mutex> lock(mutex);
-                                    results.insert(results.end(), displayStates.begin(), displayStates.end());
+                                    results.reserve(results.capacity() + states.size());
+                                    for (const auto &state : states)
+                                    {
+                                        results.emplace_back(dt, seed, buttons[i], timer0, state);
+                                    }
                                 }
                             }
                         }

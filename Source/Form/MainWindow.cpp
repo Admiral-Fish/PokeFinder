@@ -30,6 +30,7 @@
 #include <Form/Gen3/Tools/PokeSpot.hpp>
 #include <Form/Gen3/Tools/SpindaPainter.hpp>
 #include <Form/Gen3/Wild3.hpp>
+#include <Form/Gen4/Eggs4.hpp>
 #include <Form/Gen4/IDs4.hpp>
 #include <Form/Gen4/Profile/ProfileManager4.hpp>
 #include <Form/Gen4/Static4.hpp>
@@ -68,7 +69,6 @@
 #include <QtNetwork>
 #include <version.h>
 
-//#include <Forms/Gen4/Eggs4.hpp>
 //#include <Forms/Gen5/Static5.hpp>
 
 MainWindow::MainWindow(bool profile, QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow)
@@ -88,7 +88,7 @@ MainWindow::MainWindow(bool profile, QWidget *parent) : QMainWindow(parent), ui(
     connect(ui->actionProfileManager3, &QAction::triggered, this, &MainWindow::openProfileManager3);
     connect(ui->actionSpindaPainter, &QAction::triggered, this, &MainWindow::openSpindaPainter);
 
-    // connect(ui->pushButtonEgg4, &QPushButton::clicked, this, &MainWindow::openEgg4);
+    connect(ui->pushButtonEgg4, &QPushButton::clicked, this, &MainWindow::openEgg4);
     connect(ui->pushButtonIDs4, &QPushButton::clicked, this, &MainWindow::openIDs4);
     connect(ui->pushButtonStatic4, &QPushButton::clicked, this, &MainWindow::openStatic4);
     connect(ui->pushButtonWild4, &QPushButton::clicked, this, &MainWindow::openWild4);
@@ -154,7 +154,7 @@ MainWindow::~MainWindow()
     delete static3;
     delete wild3;
 
-    // delete egg4;
+    delete egg4;
     delete ids4;
     delete static4;
     delete wild4;
@@ -298,6 +298,16 @@ void MainWindow::openWild3()
     wild3->raise();
 }
 
+void MainWindow::openEgg4()
+{
+    if (!egg4)
+    {
+        egg4 = new Eggs4();
+        connect(egg4, &Eggs4::profilesModified, this, &MainWindow::updateProfiles);
+    }
+    egg4->show();
+}
+
 void MainWindow::openIDs4()
 {
     if (!ids4)
@@ -348,16 +358,6 @@ void MainWindow::openSIDFromChainedShiny()
     auto *window = new ChainedSID();
     window->show();
 }
-
-/*void MainWindow::openEgg4()
-{
-    if (!egg4)
-    {
-        egg4 = new Eggs4();
-        connect(egg4, &Eggs4::updateProfiles, this, &MainWindow::updateProfiles);
-    }
-    egg4->show();
-}*/
 
 void MainWindow::openDreamRadar()
 {
@@ -707,10 +707,10 @@ void MainWindow::updateProfiles(int num)
     }
     else if (num == 4)
     {
-        /*if (egg4)
+        if (egg4)
         {
             egg4->updateProfiles();
-        }*/
+        }
         if (static4)
         {
             static4->updateProfiles();

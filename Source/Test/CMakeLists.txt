@@ -39,6 +39,8 @@ add_executable(PokeFinderTest
     Gen3/WildSearcher3Test.hpp
     Gen4/ChainedSIDCalcTest.cpp
     Gen4/ChainedSIDCalcTest.hpp
+    Gen4/EggGenerator4Test.cpp
+    Gen4/EggGenerator4Test.hpp
     Gen4/IDGenerator4Test.cpp
     Gen4/IDGenerator4Test.hpp
     Gen4/IDSearcher4Test.cpp

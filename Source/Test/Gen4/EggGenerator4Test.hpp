@@ -14,40 +14,21 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301,
+ * USA.
  */
 
-#ifndef ROAMERMAP_HPP
-#define ROAMERMAP_HPP
+#ifndef EGGGENERATOR4TEST_HPP
+#define EGGGENERATOR4TEST_HPP
 
-#include <QDialog>
+#include <QObject>
 
-namespace Ui
-{
-    class RoamerMap;
-}
-
-/**
- * @brief Shows a map of roamer locations in HGSS
- */
-class RoamerMap : public QDialog
+class EggGenerator4Test : public QObject
 {
     Q_OBJECT
-public:
-    /**
-     * @brief Construct a new RoamerMap object
-     *
-     * @param parent Parent widget, which takes memory ownership
-     */
-    RoamerMap(QWidget *parent = nullptr);
-
-    /**
-     * @brief Destroy the RoamerMap object
-     */
-    ~RoamerMap() override;
-
-private:
-    Ui::RoamerMap *ui;
+private slots:
+    void generate_data();
+    void generate();
 };
 
-#endif // ROAMERMAP_HPP
+#endif // EGGGENERATOR4TEST_HPP
