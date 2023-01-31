@@ -1,5 +1,4 @@
 import bz2
-import glob
 import json
 import os
 
@@ -9,7 +8,7 @@ from .embed_util import write_data
 def embed_encounters3():
     arrays = []
 
-    with open("Encounters/Gen3/encounters.json") as f:
+    with open("EncounterTables/Gen3/encounters.json") as f:
         data = json.load(f)
         for type, encounters in data.items():
             if "Shadow" in type:
@@ -37,9 +36,9 @@ def embed_encounters3():
             string += " };"
             arrays.append(string)
 
-    files = glob.glob("Encounters/Gen3/*.bin", recursive=True)
+    files = ("emerald", "firered", "leafgreen", "ruby", "sapphire", "xd")
     for file in files:
-        with open(file, "rb") as f:
+        with open(f"EncounterTables/{file}.bin", "rb") as f:
             data = f.read()
 
         size = len(data)

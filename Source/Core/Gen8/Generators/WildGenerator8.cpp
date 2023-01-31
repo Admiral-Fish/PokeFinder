@@ -90,10 +90,11 @@ std::vector<WildGeneratorState> WildGenerator8::generate(u64 seed0, u64 seed1, c
             continue;
         }
 
-        if (encounterArea.getLocation() > 222 && encounterArea.getLocation() < 244)
+        const Slot &slot = encounterArea.getPokemon(encounterSlot);
+        u8 form = 0;
+        if (slot.getSpecie() == 201)
         {
-            // Unown form call
-            rngList.advance(1); // rngList.getValue() % 1 for F/R/I/E/N/D, rngList.getValue() % 2 for !/?, rngList.getValue() % 20 otherwise
+            form = encounterArea.unownForm(rngList.next());
         }
 
         rngList.advance(84);
@@ -107,9 +108,6 @@ std::vector<WildGeneratorState> WildGenerator8::generate(u64 seed0, u64 seed1, c
         {
             level = encounterArea.calculateLevel<true>(encounterSlot, rngList, lead == Lead::Pressure);
         }
-
-        const Slot &slot = encounterArea.getPokemon(encounterSlot);
-        const PersonalInfo *info = slot.getInfo();
 
         u32 ec = rngList.next(rand);
         u32 sidtid = rngList.next(rand);
@@ -144,6 +142,8 @@ std::vector<WildGeneratorState> WildGenerator8::generate(u64 seed0, u64 seed1, c
         std::generate(ivs.begin(), ivs.end(), [&rngList] { return rngList.next(rand) % 32; });
 
         u8 ability = rngList.next(rand) % 2;
+
+        const PersonalInfo *info = slot.getInfo();
 
         u8 gender;
         switch (info->getGender())
@@ -184,7 +184,7 @@ std::vector<WildGeneratorState> WildGenerator8::generate(u64 seed0, u64 seed1, c
         u16 item = getItem(rngList.next() % 100, lead, info);
 
         WildGeneratorState state(initialAdvances + cnt, ec, pid, ivs, ability, gender, level, nature, shiny, encounterSlot, item,
-                                 slot.getSpecie(), info);
+                                 slot.getSpecie(), form, info);
         if (filter.compareState(state))
         {
             states.emplace_back(state);

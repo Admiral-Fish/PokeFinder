@@ -41,11 +41,12 @@ public:
      * @param encounterSlot Pokemon encounter slot
      * @param item Pokemon item
      * @param specie Pokemon specie
+     * @param form Pokemon form
      * @param info Pokemon information
      */
     WildState(u32 pid, const std::array<u8, 6> &ivs, u8 ability, u8 gender, u8 level, u8 nature, u8 shiny, u8 encounterSlot, u16 item,
-              u16 specie, const PersonalInfo *info) :
-        State(pid, ivs, ability, gender, level, nature, shiny, info), item(item), specie(specie), encounterSlot(encounterSlot)
+              u16 specie, u8 form, const PersonalInfo *info) :
+        State(pid, ivs, ability, gender, level, nature, shiny, info), item(item), specie(specie), encounterSlot(encounterSlot), form(form)
     {
     }
 
@@ -63,11 +64,16 @@ public:
      * @param encounterSlot Pokemon encounter slot
      * @param item Pokemon item
      * @param specie Pokemon specie
+     * @param form Pokemon form
      * @param info Pokemon information
      */
     WildState(u32 ec, u32 pid, const std::array<u8, 6> &ivs, u8 ability, u8 gender, u8 level, u8 nature, u8 shiny, u8 encounterSlot,
-              u16 item, u16 specie, const PersonalInfo *info) :
-        State(ec, pid, ivs, ability, gender, level, nature, shiny, info), item(item), specie(specie), encounterSlot(encounterSlot)
+              u16 item, u16 specie, u8 form, const PersonalInfo *info) :
+        State(ec, pid, ivs, ability, gender, level, nature, shiny, info),
+        item(item),
+        specie(specie),
+        encounterSlot(encounterSlot),
+        form(form)
     {
     }
 
@@ -79,6 +85,16 @@ public:
     u8 getEncounterSlot() const
     {
         return encounterSlot;
+    }
+
+    /**
+     * @brief Returns the form
+     *
+     * @return State form
+     */
+    u8 getForm() const
+    {
+        return form;
     }
 
     /**
@@ -105,6 +121,7 @@ protected:
     u16 item;
     u16 specie;
     u8 encounterSlot;
+    u8 form;
 };
 
 /**
@@ -127,11 +144,12 @@ public:
      * @param encounterSlot Pokemon encounter slot
      * @param item Pokemon item
      * @param specie Pokemon specie
+     * @param form Pokemon form
      * @param info Pokemon information
      */
     WildGeneratorState(u32 advances, u32 pid, const std::array<u8, 6> &ivs, u8 ability, u8 gender, u8 level, u8 nature, u8 shiny,
-                       u8 encounterSlot, u16 item, u16 specie, const PersonalInfo *info) :
-        WildState(pid, ivs, ability, gender, level, nature, shiny, encounterSlot, item, specie, info), advances(advances)
+                       u8 encounterSlot, u16 item, u16 specie, u8 form, const PersonalInfo *info) :
+        WildState(pid, ivs, ability, gender, level, nature, shiny, encounterSlot, item, specie, form, info), advances(advances)
     {
     }
 
@@ -150,11 +168,12 @@ public:
      * @param encounterSlot Pokemon encounter slot
      * @param item Pokemon item
      * @param specie Pokemon specie
+     * @param form Pokemon form
      * @param info Pokemon information
      */
     WildGeneratorState(u32 advances, u32 ec, u32 pid, const std::array<u8, 6> &ivs, u8 ability, u8 gender, u8 level, u8 nature, u8 shiny,
-                       u8 encounterSlot, u16 item, u16 specie, const PersonalInfo *info) :
-        WildState(ec, pid, ivs, ability, gender, level, nature, shiny, encounterSlot, item, specie, info), advances(advances)
+                       u8 encounterSlot, u16 item, u16 specie, u8 form, const PersonalInfo *info) :
+        WildState(ec, pid, ivs, ability, gender, level, nature, shiny, encounterSlot, item, specie, form, info), advances(advances)
     {
     }
 
@@ -192,11 +211,12 @@ public:
      * @param encounterSlot Pokemon encounter slot
      * @param item Pokemon item
      * @param specie Pokemon specie
+     * @param form Pokemon form
      * @param info Pokemon information
      */
     WildSearcherState(u32 seed, u32 pid, const std::array<u8, 6> &ivs, u8 ability, u8 gender, u8 level, u8 nature, u8 shiny,
-                      u8 encounterSlot, u16 item, u16 specie, const PersonalInfo *info) :
-        WildState(pid, ivs, ability, gender, level, nature, shiny, encounterSlot, item, specie, info), seed(seed)
+                      u8 encounterSlot, u16 item, u16 specie, u8 form, const PersonalInfo *info) :
+        WildState(pid, ivs, ability, gender, level, nature, shiny, encounterSlot, item, specie, form, info), seed(seed)
     {
     }
 

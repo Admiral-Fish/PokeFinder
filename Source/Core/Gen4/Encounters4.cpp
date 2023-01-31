@@ -402,7 +402,7 @@ static std::vector<EncounterArea4> getHGSS(Game version, Encounter encounter, in
                     {
                         u8 level = entry[7 + i];
                         u16 specie = *reinterpret_cast<const u16 *>(entry + 19 + (i * 2) + (time * 24));
-                        slots.emplace_back(specie, level, &info[specie]);
+                        slots.emplace_back(specie, level, level, &info[specie]);
                     }
                     modifyRadio(slots, entry, info, radio);
                     modifySwarmHGSS(slots, entry, info, encounter, swarm);
@@ -529,28 +529,28 @@ static void modifyDual(std::vector<Slot> &pokemon, const u8 *data, const Persona
     u16 specie2;
     if (dual == Game::Ruby)
     {
-        specie1 = *reinterpret_cast<const u16 *>(data + 59);
-        specie2 = *reinterpret_cast<const u16 *>(data + 61);
+        specie1 = *reinterpret_cast<const u16 *>(data + 58);
+        specie2 = *reinterpret_cast<const u16 *>(data + 60);
     }
     else if (dual == Game::Sapphire)
     {
-        specie1 = *reinterpret_cast<const u16 *>(data + 63);
-        specie2 = *reinterpret_cast<const u16 *>(data + 65);
+        specie1 = *reinterpret_cast<const u16 *>(data + 62);
+        specie2 = *reinterpret_cast<const u16 *>(data + 64);
     }
     else if (dual == Game::Emerald)
     {
-        specie1 = *reinterpret_cast<const u16 *>(data + 67);
-        specie2 = *reinterpret_cast<const u16 *>(data + 69);
+        specie1 = *reinterpret_cast<const u16 *>(data + 66);
+        specie2 = *reinterpret_cast<const u16 *>(data + 68);
     }
     else if (dual == Game::FireRed)
     {
-        specie1 = *reinterpret_cast<const u16 *>(data + 71);
-        specie2 = *reinterpret_cast<const u16 *>(data + 73);
+        specie1 = *reinterpret_cast<const u16 *>(data + 70);
+        specie2 = *reinterpret_cast<const u16 *>(data + 72);
     }
     else if (dual == Game::LeafGreen)
     {
-        specie1 = *reinterpret_cast<const u16 *>(data + 75);
-        specie2 = *reinterpret_cast<const u16 *>(data + 77);
+        specie1 = *reinterpret_cast<const u16 *>(data + 74);
+        specie2 = *reinterpret_cast<const u16 *>(data + 76);
     }
     else
     {
@@ -709,16 +709,16 @@ static std::vector<EncounterArea4> getDPPt(Game version, Encounter encounter, Ga
     u8 *data = Utilities::decompress(compressedData, compressedLength, length);
 
     std::vector<EncounterArea4> encounters;
-    for (size_t offset = 0; offset < length; offset += 163)
+    for (size_t offset = 0; offset < length; offset += 162)
     {
         const u8 *entry = data + offset;
 
         u8 location = entry[0];
         u8 grass = entry[1];
-        u8 surf = entry[79];
-        u8 old = entry[100];
-        u8 good = entry[121];
-        u8 super = entry[142];
+        u8 surf = entry[78];
+        u8 old = entry[99];
+        u8 good = entry[120];
+        u8 super = entry[141];
 
         switch (encounter)
         {
@@ -731,7 +731,7 @@ static std::vector<EncounterArea4> getDPPt(Game version, Encounter encounter, Ga
                 {
                     u8 level = entry[2 + (i * 3)];
                     u16 specie = *reinterpret_cast<const u16 *>(entry + 3 + (i * 3));
-                    slots.emplace_back(specie, level, &info[specie]);
+                    slots.emplace_back(specie, level, level, &info[specie]);
                 }
                 modifySwarmDPPt(slots, entry, info, swarm);
                 modifyTime(slots, entry, info, time);
@@ -749,9 +749,9 @@ static std::vector<EncounterArea4> getDPPt(Game version, Encounter encounter, Ga
                 slots.reserve(5);
                 for (size_t i = 0; i < 5; i++)
                 {
-                    u8 max = entry[80 + (i * 4)];
-                    u8 min = entry[81 + (i * 4)];
-                    u16 specie = *reinterpret_cast<const u16 *>(entry + 82 + (i * 4));
+                    u8 max = entry[79 + (i * 4)];
+                    u8 min = entry[80 + (i * 4)];
+                    u16 specie = *reinterpret_cast<const u16 *>(entry + 81 + (i * 4));
                     slots.emplace_back(specie, min, max, &info[specie]);
                 }
                 encounters.emplace_back(location, surf, encounter, slots);
@@ -764,9 +764,9 @@ static std::vector<EncounterArea4> getDPPt(Game version, Encounter encounter, Ga
                 slots.reserve(5);
                 for (size_t i = 0; i < 5; i++)
                 {
-                    u8 max = entry[101 + (i * 4)];
-                    u8 min = entry[102 + (i * 4)];
-                    u16 specie = *reinterpret_cast<const u16 *>(entry + 103 + (i * 4));
+                    u8 max = entry[100 + (i * 4)];
+                    u8 min = entry[101 + (i * 4)];
+                    u16 specie = *reinterpret_cast<const u16 *>(entry + 102 + (i * 4));
                     slots.emplace_back(specie, min, max, &info[specie]);
                 }
                 encounters.emplace_back(location, old, encounter, slots);
@@ -779,9 +779,9 @@ static std::vector<EncounterArea4> getDPPt(Game version, Encounter encounter, Ga
                 slots.reserve(5);
                 for (size_t i = 0; i < 5; i++)
                 {
-                    u8 max = entry[122 + (i * 4)];
-                    u8 min = entry[123 + (i * 4)];
-                    u16 specie = *reinterpret_cast<const u16 *>(entry + 124 + (i * 4));
+                    u8 max = entry[121 + (i * 4)];
+                    u8 min = entry[122 + (i * 4)];
+                    u16 specie = *reinterpret_cast<const u16 *>(entry + 123 + (i * 4));
                     slots.emplace_back(specie, min, max, &info[specie]);
                 }
                 encounters.emplace_back(location, good, encounter, slots);
@@ -794,9 +794,9 @@ static std::vector<EncounterArea4> getDPPt(Game version, Encounter encounter, Ga
                 slots.reserve(5);
                 for (size_t i = 0; i < 5; i++)
                 {
-                    u8 max = entry[143 + (i * 4)];
-                    u8 min = entry[144 + (i * 4)];
-                    u16 specie = *reinterpret_cast<const u16 *>(entry + 145 + (i * 4));
+                    u8 max = entry[142 + (i * 4)];
+                    u8 min = entry[143 + (i * 4)];
+                    u16 specie = *reinterpret_cast<const u16 *>(entry + 144 + (i * 4));
                     slots.emplace_back(specie, min, max, &info[specie]);
                 }
                 encounters.emplace_back(location, super, encounter, slots);

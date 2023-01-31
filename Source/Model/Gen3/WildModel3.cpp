@@ -40,7 +40,9 @@ QVariant WildGeneratorModel3::data(const QModelIndex &index, int role) const
         case 0:
             return state.getAdvances();
         case 1:
-            return QString("%1 (%2)").arg(state.getEncounterSlot()).arg(QString::fromStdString(Translator::getSpecie(state.getSpecie())));
+            return QString("%1: %2")
+                .arg(state.getEncounterSlot())
+                .arg(QString::fromStdString(Translator::getSpecie(state.getSpecie(), state.getForm())));
         case 2:
             return state.getLevel();
         case 3:
@@ -53,7 +55,7 @@ QVariant WildGeneratorModel3::data(const QModelIndex &index, int role) const
         case 5:
             return QString::fromStdString(Translator::getNature(state.getNature()));
         case 6:
-            return QString("%1 (%2)").arg(state.getAbility()).arg(QString::fromStdString(Translator::getAbility(state.getAbilityIndex())));
+            return QString("%1: %2").arg(state.getAbility()).arg(QString::fromStdString(Translator::getAbility(state.getAbilityIndex())));
         case 7:
         case 8:
         case 9:
@@ -107,7 +109,9 @@ QVariant WildSearcherModel3::data(const QModelIndex &index, int role) const
         case 0:
             return QString::number(state.getSeed(), 16).toUpper().rightJustified(8, '0');
         case 1:
-            return QString("%1 (%2)").arg(state.getEncounterSlot()).arg(QString::fromStdString(Translator::getSpecie(state.getSpecie())));
+            return QString("%1: %2")
+                .arg(state.getEncounterSlot())
+                .arg(QString::fromStdString(Translator::getSpecie(state.getSpecie(), state.getForm())));
         case 2:
             return state.getLevel();
         case 3:
@@ -120,7 +124,7 @@ QVariant WildSearcherModel3::data(const QModelIndex &index, int role) const
         case 5:
             return QString::fromStdString(Translator::getNature(state.getNature()));
         case 6:
-            return QString("%1 (%2)").arg(state.getAbility()).arg(QString::fromStdString(Translator::getAbility(state.getAbilityIndex())));
+            return QString("%1: %2").arg(state.getAbility()).arg(QString::fromStdString(Translator::getAbility(state.getAbilityIndex())));
         case 7:
         case 8:
         case 9:

@@ -199,7 +199,7 @@ static std::vector<EncounterArea8> getBDSP(Encounter encounter, int time, bool r
                 {
                     u8 level = entry[2 + (i * 3)];
                     u16 specie = *reinterpret_cast<const u16 *>(entry + 3 + (i * 3));
-                    slots.emplace_back(specie, level, &info[specie]);
+                    slots.emplace_back(specie, level, level, &info[specie]);
                 }
                 modifySwarm(slots, entry, info, swarm);
                 modifyTime(slots, entry, info, time);

@@ -228,8 +228,14 @@ std::vector<WildGeneratorState4> WildGenerator4::generateMethodJ(u32 seed, const
 
         u16 item = getItem(go.nextUShort(100, &occidentary), lead, info);
 
+        u8 form = 0;
+        if (slot.getSpecie() == 201)
+        {
+            form = encounterArea.unownForm(go.nextUShort());
+        }
+
         WildGeneratorState4 state(rng.nextUShort(), occidentary, initialAdvances + cnt, pid, ivs, pid & 1, getGender(pid, info), level,
-                                  nature, getShiny(pid, tsv), encounterSlot, item, slot.getSpecie(), info);
+                                  nature, getShiny(pid, tsv), encounterSlot, item, slot.getSpecie(), form, info);
         if (filter.compareState(state))
         {
             states.emplace_back(state);
@@ -437,7 +443,7 @@ std::vector<WildGeneratorState4> WildGenerator4::generateMethodK(u32 seed, const
         u16 item = getItem(go.nextUShort(100, &occidentary), lead, info);
 
         WildGeneratorState4 state(rng.nextUShort(), occidentary, initialAdvances + cnt, pid, ivs, pid & 1, getGender(pid, info), level,
-                                  nature, getShiny(pid, tsv), encounterSlot, item, slot.getSpecie(), info);
+                                  nature, getShiny(pid, tsv), encounterSlot, item, slot.getSpecie(), 0, info);
         if (filter.compareState(state))
         {
             states.emplace_back(state);
@@ -528,7 +534,7 @@ std::vector<WildGeneratorState4> WildGenerator4::generatePokeRadar(u32 seed, con
         u16 item = getItem(go.nextUShort(100, &occidentary), lead, info);
 
         WildGeneratorState4 state(rng.nextUShort(), occidentary, initialAdvances + cnt, pid, ivs, pid & 1, getGender(pid, info),
-                                  slot.getMaxLevel(), nature, getShiny(pid, tsv), index, item, slot.getSpecie(), info);
+                                  slot.getMaxLevel(), nature, getShiny(pid, tsv), index, item, slot.getSpecie(), 0, info);
         if (filter.compareState(state))
         {
             states.emplace_back(state);
@@ -624,7 +630,7 @@ std::vector<WildGeneratorState4> WildGenerator4::generatePokeRadarShiny(u32 seed
         u16 item = getItem(go.nextUShort(100, &occidentary), lead, info);
 
         WildGeneratorState4 state(rng.nextUShort(), occidentary, initialAdvances + cnt, pid, ivs, pid & 1, getGender(pid, info),
-                                  slot.getMaxLevel(), nature, getShiny(pid, tsv), index, item, slot.getSpecie(), info);
+                                  slot.getMaxLevel(), nature, getShiny(pid, tsv), index, item, slot.getSpecie(), 0, info);
         if (filter.compareState(state))
         {
             states.emplace_back(state);

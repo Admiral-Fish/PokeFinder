@@ -4,3 +4,6 @@
 [submodule "External/QDarkStyleSheet"]
 	path = External/QDarkStyleSheet
 	url = https://github.com/ColinDuquesnoy/QDarkStyleSheet
+[submodule "Source/Core/Resources/EncounterTables"]
+	path = Source/Core/Resources/EncounterTables
+	url = https://github.com/Admiral-Fish/EncounterTableGenerator

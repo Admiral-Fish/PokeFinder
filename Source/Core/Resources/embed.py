@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import os
+import pathlib
 
 from Embed.embed_strings import embed_strings
 from Embed.embed_personal import embed_personal
@@ -11,7 +12,6 @@ from Embed.embed_gen8 import embed_encounters8
 
 
 def main():
-    import pathlib
     os.chdir(pathlib.Path(__file__).parent.absolute())
 
     embed_encounters3()

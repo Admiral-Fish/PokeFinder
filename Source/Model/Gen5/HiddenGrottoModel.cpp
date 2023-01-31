@@ -47,7 +47,7 @@ QVariant HiddenGrottoGeneratorModel5::data(const QModelIndex &index, int role) c
         case 3:
             if (state.getItem())
             {
-                return QString("%1 (%2)").arg(state.getSlot()).arg(QString::fromStdString(Translator::getItem(state.getData())));
+                return QString("%1: %2").arg(state.getSlot()).arg(QString::fromStdString(Translator::getItem(state.getData())));
             }
             else
             {
@@ -97,7 +97,7 @@ QVariant HiddenGrottoSearcherModel5::data(const QModelIndex &index, int role) co
         case 3:
             if (state.getItem())
             {
-                return QString("%1 (%2)").arg(state.getSlot()).arg(QString::fromStdString(Translator::getItem(state.getData())));
+                return QString("%1: %2").arg(state.getSlot()).arg(QString::fromStdString(Translator::getItem(state.getData())));
             }
             else
             {

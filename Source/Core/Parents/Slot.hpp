@@ -39,7 +39,7 @@ public:
      * @param info Pokemon information
      */
     Slot(u16 specie, u8 minLevel, u8 maxLevel, const PersonalInfo *info) :
-        info(info), specie(specie), maxLevel(maxLevel), minLevel(minLevel)
+        info(info), specie(specie), form(0), maxLevel(maxLevel), minLevel(minLevel)
     {
     }
 
@@ -47,11 +47,24 @@ public:
      * @brief Construct a new Slot object
      *
      * @param specie Species of the pokemon
-     * @param level Level of the pokemon
+     * @param form Form of the pokemon
+     * @param minLevel Minimum level of the pokemon
+     * @param maxLevel Maximum level of the pokemon
      * @param info Pokemon information
      */
-    Slot(u16 specie, u8 level, const PersonalInfo *info) : info(info), specie(specie), maxLevel(level), minLevel(level)
+    Slot(u16 specie, u8 form, u8 minLevel, u8 maxLevel, const PersonalInfo *info) :
+        info(info), specie(specie), form(form), maxLevel(maxLevel), minLevel(minLevel)
     {
+    }
+
+    /**
+     * @brief Determines the form of the pokemon
+     *
+     * @return Pokemon form
+     */
+    u8 getForm() const
+    {
+        return form;
     }
 
     /**
@@ -109,6 +122,7 @@ public:
 private:
     const PersonalInfo *info;
     u16 specie;
+    u8 form;
     u8 minLevel;
     u8 maxLevel;
 };

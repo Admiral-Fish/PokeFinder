@@ -46,11 +46,12 @@ public:
      * @param encounterSlot Pokemon encounter slot
      * @param item Pokemon item
      * @param specie Pokemon specie
+     * @param form Pokemon form
      * @param info Pokemon information
      */
     WildGeneratorState4(u16 prng, u32 battleAdvances, u32 advances, u32 pid, const std::array<u8, 6> &ivs, u8 ability, u8 gender, u8 level,
-                        u8 nature, u8 shiny, u8 encounterSlot, u16 item, u16 specie, const PersonalInfo *info) :
-        WildGeneratorState(advances, pid, ivs, ability, gender, level, nature, shiny, encounterSlot, item, specie, info),
+                        u8 nature, u8 shiny, u8 encounterSlot, u16 item, u16 specie, u8 form, const PersonalInfo *info) :
+        WildGeneratorState(advances, pid, ivs, ability, gender, level, nature, shiny, encounterSlot, item, specie, form, info),
         battleAdvances(battleAdvances),
         call(prng % 3),
         chatot(((prng % 8192) * 100) >> 13)
@@ -113,11 +114,12 @@ public:
      * @param encounterSlot Pokemon encounter slot
      * @param item Pokemon item
      * @param specie Pokemon specie
+     * @param form Pokemon form
      * @param info Pokemon information
      */
     WildSearcherState4(u32 seed, u32 pid, const std::array<u8, 6> &ivs, u8 ability, u8 gender, u8 level, u8 nature, u8 shiny,
-                       u8 encounterSlot, u16 item, u16 specie, const PersonalInfo *info) :
-        WildSearcherState(seed, pid, ivs, ability, gender, level, nature, shiny, encounterSlot, item, specie, info)
+                       u8 encounterSlot, u16 item, u16 specie, u8 form, const PersonalInfo *info) :
+        WildSearcherState(seed, pid, ivs, ability, gender, level, nature, shiny, encounterSlot, item, specie, form, info)
     {
     }
 

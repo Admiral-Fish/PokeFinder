@@ -55,7 +55,7 @@ QVariant DreamRadarGeneratorModel5::data(const QModelIndex &index, int role) con
         case 5:
             if (state.getAbility() == 0 || state.getAbility() == 1)
             {
-                return QString("%1 (%2)")
+                return QString("%1: %2")
                     .arg(state.getAbility())
                     .arg(QString::fromStdString(Translator::getAbility(state.getAbilityIndex())));
             }
@@ -133,7 +133,7 @@ QVariant DreamRadarSearcherModel5::data(const QModelIndex &index, int role) cons
         case 5:
             if (state.getAbility() == 0 || state.getAbility() == 1)
             {
-                return QString("%1 (%2)")
+                return QString("%1: %2")
                     .arg(state.getAbility())
                     .arg(QString::fromStdString(Translator::getAbility(state.getAbilityIndex())));
             }

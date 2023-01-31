@@ -39,7 +39,7 @@ static bool operator==(const WildGeneratorState &left, const json &right)
         && left.getHiddenPowerStrength() == right["hiddenPowerStrength"].get<u8>() && left.getLevel() == right["level"].get<u8>()
         && left.getNature() == right["nature"].get<u8>() && left.getShiny() == right["shiny"].get<u8>()
         && left.getSpecie() == right["specie"].get<u16>() && left.getEncounterSlot() == right["encounterSlot"].get<u8>()
-        && left.getAdvances() == right["advances"].get<u32>();
+        && left.getForm() == right["form"].get<u8>() && left.getAdvances() == right["advances"].get<u32>();
 }
 
 void WildGenerator3Test::generate_data()

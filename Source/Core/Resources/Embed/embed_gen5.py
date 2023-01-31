@@ -9,7 +9,7 @@ from .embed_util import write_data
 def embed_encounters5():
     arrays = []
 
-    with open("Encounters/Gen5/encounters.json") as f:
+    with open("EncounterTables/Gen5/encounters.json") as f:
         data = json.load(f)
         for type, encounters in data.items():
             if "dreamRadar" in type:
@@ -29,9 +29,9 @@ def embed_encounters5():
             string += " };"
             arrays.append(string)
 
-    files = glob.glob("Encounters/Gen5/*.bin", recursive=True)
+    files = ("black", "black2", "bw2_grotto", "white", "white2")
     for file in files:
-        with open(file, "rb") as f:
+        with open(f"EncounterTables/{file}.bin", "rb") as f:
             data = f.read()
 
         size = len(data)

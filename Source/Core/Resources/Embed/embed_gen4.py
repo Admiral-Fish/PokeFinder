@@ -1,5 +1,4 @@
 import bz2
-import glob
 import json
 import os
 
@@ -9,7 +8,7 @@ from .embed_util import write_data
 def embed_encounters4():
     arrays = []
 
-    with open("Encounters/Gen4/encounters.json") as f:
+    with open("EncounterTables/Gen4/encounters.json") as f:
         data = json.load(f)
         for type, encounters in data.items():
             string = f"constexpr std::array<StaticTemplate4, {len(encounters)}> {type} = {{ "
@@ -23,9 +22,9 @@ def embed_encounters4():
             string += " };"
             arrays.append(string)
 
-    files = glob.glob("Encounters/Gen4/*.bin", recursive=True)
+    files = ("diamond", "heartgold", "hg_headbutt", "hgss_bug", "hgss_safari", "pearl", "platinum", "soulsilver", "ss_headbutt")
     for file in files:
-        with open(file, "rb") as f:
+        with open(f"EncounterTables/{file}.bin", "rb") as f:
             data = f.read()
 
         size = len(data)

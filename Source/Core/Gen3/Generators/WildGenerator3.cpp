@@ -65,6 +65,12 @@ static u8 getShiny(u32 pid, u16 tsv)
     }
 }
 
+static bool unownCheck(u32 pid, u8 form)
+{
+    u8 letter = (((pid & 0x3000000) >> 18) | ((pid & 0x30000) >> 12) | ((pid & 0x300) >> 6) | (pid & 0x3)) % 0x1C;
+    return letter == form;
+}
+
 WildGenerator3::WildGenerator3(u32 initialAdvances, u32 maxAdvances, u32 delay, Method method, Encounter encounter, Lead lead,
                                const Profile3 &profile, const WildStateFilter3 &filter) :
     WildGenerator(initialAdvances, maxAdvances, delay, method, encounter, lead, profile, filter)
@@ -162,7 +168,8 @@ std::vector<WildGeneratorState> WildGenerator3::generate(u32 seed, const Encount
             u16 low = go.nextUShort();
             u16 high = go.nextUShort();
             pid = (high << 16) | low;
-        } while (pid % 25 != nature || (cuteCharm && !cuteCharmCheck(info, pid)));
+        } while (pid % 25 != nature || (cuteCharm && !cuteCharmCheck(info, pid))
+                 || (slot.getSpecie() == 201 && !unownCheck(pid, slot.getForm())));
 
         if (method == Method::Method2)
         {
@@ -184,7 +191,7 @@ std::vector<WildGeneratorState> WildGenerator3::generate(u32 seed, const Encount
         ivs[5] = iv2 & 31;
 
         WildGeneratorState state(initialAdvances + cnt, pid, ivs, pid & 1, getGender(pid, info), level, nature, getShiny(pid, tsv),
-                                 encounterSlot, 0, slot.getSpecie(), info);
+                                 encounterSlot, 0, slot.getSpecie(), slot.getForm(), info);
         if (filter.compareState(state))
         {
             states.emplace_back(state);

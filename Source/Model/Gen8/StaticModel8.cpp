@@ -53,7 +53,7 @@ QVariant StaticModel8::data(const QModelIndex &index, int role) const
         case 5:
             if (state.getAbility() == 0 || state.getAbility() == 1)
             {
-                return QString("%1 (%2)")
+                return QString("%1: %2")
                     .arg(state.getAbility())
                     .arg(QString::fromStdString(Translator::getAbility(state.getAbilityIndex())));
             }

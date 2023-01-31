@@ -42,7 +42,9 @@ QVariant WildModel8::data(const QModelIndex &index, int role) const
         case 1:
             return QString::fromStdString(Translator::getItem(state.getItem()));
         case 2:
-            return QString("%1 (%2)").arg(state.getEncounterSlot()).arg(QString::fromStdString(Translator::getSpecie(state.getSpecie())));
+            return QString("%1: %2")
+                .arg(state.getEncounterSlot())
+                .arg(QString::fromStdString(Translator::getSpecie(state.getSpecie(), state.getForm())));
         case 3:
             return state.getLevel();
         case 4:
@@ -59,7 +61,7 @@ QVariant WildModel8::data(const QModelIndex &index, int role) const
         case 8:
             if (state.getAbility() == 0 || state.getAbility() == 1)
             {
-                return QString("%1 (%2)")
+                return QString("%1: %2")
                     .arg(state.getAbility())
                     .arg(QString::fromStdString(Translator::getAbility(state.getAbilityIndex())));
             }

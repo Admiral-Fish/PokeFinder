@@ -9,7 +9,7 @@ from .embed_util import write_data
 def embed_encounters8():
     arrays = []
 
-    with open("Encounters/Gen8/encounters.json") as f:
+    with open("EncounterTables/Gen8/encounters.json") as f:
         data = json.load(f)
         for type, encounters in data.items():
             string = f"constexpr std::array<StaticTemplate, {len(encounters)}> {type} = {{ "
@@ -23,7 +23,7 @@ def embed_encounters8():
             string += " };"
             arrays.append(string)
 
-    with open("Encounters/Gen8/nests.json", "r") as f:
+    with open("EncounterTables/Gen8/nests.json", "r") as f:
         data = json.load(f)
         tables = data["Tables"]
 
@@ -71,9 +71,9 @@ def embed_encounters8():
 
         arrays.append(string)
 
-    files = glob.glob("Encounters/Gen8/*.bin", recursive=True)
+    files = ("bd", "bd_underground", "sp", "sp_underground")
     for file in files:
-        with open(file, "rb") as f:
+        with open(f"EncounterTables/{file}.bin", "rb") as f:
             data = f.read()
 
         size = len(data)

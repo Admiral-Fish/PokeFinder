@@ -109,6 +109,13 @@ public:
      * @return false Location is not Trophy Garden
      */
     bool trophyGarden(Game version) const;
+
+    /**
+     * @brief Returns the Unown form to use for Solaceon Ruins
+     *
+     * @return Unown form
+     */
+    u8 unownForm(u32 prng) const;
 };
 
 #endif // ENCOUNTERAREA8_HPP

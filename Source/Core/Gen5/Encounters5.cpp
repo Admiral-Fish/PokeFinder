@@ -164,7 +164,8 @@ namespace Encounters5
                     {
                         u16 species = *reinterpret_cast<const u16 *>(entry + seasonOffset + 9 + (i * 4));
                         u8 level = entry[seasonOffset + 10 + (i * 4)];
-                        slots.emplace_back(species & 0x7ff, level, PersonalLoader::getPersonal(version, species & 0x7ff, species >> 11));
+                        slots.emplace_back(species & 0x7ff, species >> 11, level, level,
+                                           PersonalLoader::getPersonal(version, species & 0x7ff, species >> 11));
                     }
                     encounters.emplace_back(location, grass, encounter, slots);
                 }
@@ -178,7 +179,8 @@ namespace Encounters5
                     {
                         u16 species = *reinterpret_cast<const u16 *>(entry + seasonOffset + 57 + (i * 4));
                         u8 level = entry[seasonOffset + 58 + (i * 4)];
-                        slots.emplace_back(species & 0x7ff, level, PersonalLoader::getPersonal(version, species & 0x7ff, species >> 11));
+                        slots.emplace_back(species & 0x7ff, species >> 11, level, level,
+                                           PersonalLoader::getPersonal(version, species & 0x7ff, species >> 11));
                     }
                     encounters.emplace_back(location, grassDouble, encounter, slots);
                 }
@@ -192,7 +194,8 @@ namespace Encounters5
                     {
                         u16 species = *reinterpret_cast<const u16 *>(entry + seasonOffset + 105 + (i * 4));
                         u8 level = entry[seasonOffset + 106 + (i * 4)];
-                        slots.emplace_back(species & 0x7ff, level, PersonalLoader::getPersonal(version, species & 0x7ff, species >> 11));
+                        slots.emplace_back(species & 0x7ff, species >> 11, level, level,
+                                           PersonalLoader::getPersonal(version, species & 0x7ff, species >> 11));
                     }
                     encounters.emplace_back(location, grassSpecial, encounter, slots);
                 }
@@ -207,7 +210,8 @@ namespace Encounters5
                         u16 species = *reinterpret_cast<const u16 *>(entry + seasonOffset + 153 + (i * 4));
                         u8 min = entry[seasonOffset + 154 + (i * 4)];
                         u8 max = entry[seasonOffset + 155 + (i * 4)];
-                        slots.emplace_back(species & 0x7ff, min, max, PersonalLoader::getPersonal(version, species & 0x7ff, species >> 11));
+                        slots.emplace_back(species & 0x7ff, species >> 11, min, max,
+                                           PersonalLoader::getPersonal(version, species & 0x7ff, species >> 11));
                     }
                     encounters.emplace_back(location, surf, encounter, slots);
                 }
@@ -222,7 +226,8 @@ namespace Encounters5
                         u16 species = *reinterpret_cast<const u16 *>(entry + seasonOffset + 173 + (i * 4));
                         u8 min = entry[seasonOffset + 174 + (i * 4)];
                         u8 max = entry[seasonOffset + 175 + (i * 4)];
-                        slots.emplace_back(species & 0x7ff, min, max, PersonalLoader::getPersonal(version, species & 0x7ff, species >> 11));
+                        slots.emplace_back(species & 0x7ff, species >> 11, min, max,
+                                           PersonalLoader::getPersonal(version, species & 0x7ff, species >> 11));
                     }
                     encounters.emplace_back(location, surfSpecial, encounter, slots);
                 }
@@ -237,7 +242,8 @@ namespace Encounters5
                         u16 species = *reinterpret_cast<const u16 *>(entry + seasonOffset + 193 + (i * 4));
                         u8 min = entry[seasonOffset + 194 + (i * 4)];
                         u8 max = entry[seasonOffset + 195 + (i * 4)];
-                        slots.emplace_back(species & 0x7ff, min, max, PersonalLoader::getPersonal(version, species & 0x7ff, species >> 11));
+                        slots.emplace_back(species & 0x7ff, species >> 11, min, max,
+                                           PersonalLoader::getPersonal(version, species & 0x7ff, species >> 11));
                     }
                     encounters.emplace_back(location, fish, encounter, slots);
                 }
@@ -252,7 +258,8 @@ namespace Encounters5
                         u16 species = *reinterpret_cast<const u16 *>(entry + seasonOffset + 213 + (i * 4));
                         u8 min = entry[seasonOffset + 214 + (i * 4)];
                         u8 max = entry[seasonOffset + 215 + (i * 4)];
-                        slots.emplace_back(species & 0x7ff, min, max, PersonalLoader::getPersonal(version, species & 0x7ff, species >> 11));
+                        slots.emplace_back(species & 0x7ff, min, species >> 11, max,
+                                           PersonalLoader::getPersonal(version, species & 0x7ff, species >> 11));
                     }
                     encounters.emplace_back(location, fishSpecial, encounter, slots);
                 }

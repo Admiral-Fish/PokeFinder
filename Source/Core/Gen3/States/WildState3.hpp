@@ -41,11 +41,12 @@ public:
      * @param shiny Pokemon shininess
      * @param encounterSlot Pokemon encounter slot
      * @param specie Pokemon specie
+     * @param form Pokemon form
      * @param info Pokemon information
      */
     WildSearcherState3(u32 seed, u32 pid, const std::array<u8, 6> &ivs, u8 ability, u8 gender, u8 level, u8 nature, u8 shiny,
-                       u8 encounterSlot, u16 specie, const PersonalInfo *info) :
-        WildSearcherState(seed, pid, ivs, ability, gender, level, nature, shiny, encounterSlot, 0, specie, info)
+                       u8 encounterSlot, u16 specie, u8 form, const PersonalInfo *info) :
+        WildSearcherState(seed, pid, ivs, ability, gender, level, nature, shiny, encounterSlot, 0, specie, form, info)
     {
     }
 

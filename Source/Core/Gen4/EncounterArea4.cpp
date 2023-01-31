@@ -19,6 +19,16 @@
 
 #include "EncounterArea4.hpp"
 #include <Core/Enum/Game.hpp>
+#include <array>
+
+constexpr std::array<u8, 20> unown0 = { 0, 1, 2, 6, 7, 9, 10, 11, 12, 14, 15, 16, 18, 19, 20, 21, 22, 23, 24, 25 };
+constexpr std::array<u8, 1> unown1 = { 5 };
+constexpr std::array<u8, 1> unown2 = { 17 };
+constexpr std::array<u8, 1> unown3 = { 8 };
+constexpr std::array<u8, 1> unown4 = { 13 };
+constexpr std::array<u8, 1> unown5 = { 4 };
+constexpr std::array<u8, 1> unown6 = { 3 };
+constexpr std::array<u8, 2> unown7 = { 26, 27 };
 
 bool EncounterArea4::greatMarsh(Game version) const
 {
@@ -70,4 +80,28 @@ bool EncounterArea4::trophyGarden(Game version) const
         return location == 117;
     }
     return false;
+}
+
+u8 EncounterArea4::unownForm(u16 prng) const
+{
+    switch (location)
+    {
+    case 29:
+        return unown7[prng % unown7.size()];
+    case 30:
+        return unown0[prng % unown0.size()];
+    case 32:
+        return unown1[prng % unown1.size()];
+    case 34:
+        return unown2[prng % unown2.size()];
+    case 40:
+        return unown3[prng % unown3.size()];
+    case 41:
+        return unown4[prng % unown4.size()];
+    case 42:
+        return unown5[prng % unown5.size()];
+    case 43:
+        return unown6[prng % unown6.size()];
+    }
+    return 0;
 }

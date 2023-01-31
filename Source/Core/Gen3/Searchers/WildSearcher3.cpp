@@ -86,6 +86,12 @@ static u8 getShiny(u32 pid, u16 tsv)
     }
 }
 
+static bool unownCheck(u32 pid, u8 form)
+{
+    u8 letter = (((pid & 0x3000000) >> 18) | ((pid & 0x30000) >> 12) | ((pid & 0x300) >> 6) | (pid & 0x3)) % 0x1C;
+    return letter == form;
+}
+
 WildSearcher3::WildSearcher3(Method method, Encounter encounter, Lead lead, const EncounterArea3 &encounterArea, const Profile3 &profile,
                              const WildStateFilter3 &filter) :
     WildSearcher(method, encounter, lead, encounterArea, profile, filter),
@@ -268,10 +274,10 @@ std::vector<WildSearcherState3> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 
             {
                 const Slot &slot = encounterArea.getPokemon(encounterSlot);
                 const PersonalInfo *info = slot.getInfo();
-                if (!cuteCharmFlag || cuteCharmGender(info, pid, lead))
+                if ((!cuteCharmFlag || cuteCharmGender(info, pid, lead)) && (slot.getSpecie() != 201 || unownCheck(pid, slot.getForm())))
                 {
                     WildSearcherState3 state(test.next(), pid, ivs, pid & 1, getGender(pid, info), level, nature, getShiny(pid, tsv),
-                                             encounterSlot, slot.getSpecie(), info);
+                                             encounterSlot, slot.getSpecie(), slot.getForm(), info);
                     if (filter.compareState(state))
                     {
                         states.emplace_back(state);

@@ -90,8 +90,8 @@ namespace Encounters3
                     for (size_t i = 0; i < 12; i++)
                     {
                         u8 level = entry[5 + (i * 3)];
-                        u16 specie = *reinterpret_cast<const u16 *>(entry + 6 + (i * 3));
-                        slots.emplace_back(specie, level, &info[specie]);
+                        u16 species = *reinterpret_cast<const u16 *>(entry + 6 + (i * 3));
+                        slots.emplace_back(species & 0x7ff, species >> 11, level, level, &info[species & 0x7ff]);
                     }
                     encounters.emplace_back(location, grass, encounter, slots);
                 }
