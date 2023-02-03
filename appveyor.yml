@@ -17,9 +17,8 @@ environment:
 
 install:
     - git submodule update --init --recursive
-    - sh: bash .ci/install.sh
     - cmd: pip install requests
-    - sh: pip3 install requests
+    - sh: bash .ci/install.sh
     
 before_build:
     - cmd: set PATH=%QTPATH%\bin;%PATH%
