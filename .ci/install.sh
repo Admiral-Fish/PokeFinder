@@ -15,6 +15,6 @@ case $OS in
   } ;;
   macOS)
   {
-    pip3 install requests --user
+    pip3.11 install requests --user
   } ;;
 esac
