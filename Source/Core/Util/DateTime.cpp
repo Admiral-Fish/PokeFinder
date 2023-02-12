@@ -18,8 +18,31 @@
  */
 
 #include "DateTime.hpp"
+#include <array>
 
-constexpr int monthDays[12] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+consteval std::array<char[2], 100> computeNumbers()
+{
+    std::array<char[2], 100> strings;
+
+    for (char i = 0; i < strings.size(); i++)
+    {
+        if (i < 10)
+        {
+            strings[i][0] = '0';
+            strings[i][1] = i + '0';
+        }
+        else
+        {
+            strings[i][0] = (i / 10) + '0';
+            strings[i][1] = (i % 10) + '0';
+        }
+    }
+
+    return strings;
+}
+
+constexpr std::array<char[2], 100> numbers = computeNumbers();
+constexpr u8 monthDays[12] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 
 /**
  * @brief Determines if the year is a leap year.
@@ -97,17 +120,14 @@ int Date::month() const
 
 std::string Date::toString() const
 {
+    char buf[11] = "20  -  -  ";
     auto parts = getParts();
 
-    std::string y = std::to_string(parts.year);
+    std::memcpy(buf + 2, numbers[parts.year - 2000], 2);
+    std::memcpy(buf + 5, numbers[parts.month], 2);
+    std::memcpy(buf + 8, numbers[parts.day], 2);
 
-    std::string m = std::to_string(parts.month);
-    m.insert(m.begin(), 2 - m.size(), '0');
-
-    std::string d = std::to_string(parts.day);
-    d.insert(d.begin(), 2 - d.size(), '0');
-
-    return y + "-" + m + "-" + d;
+    return std::string(buf, sizeof(buf));
 }
 
 int Date::year() const
@@ -145,16 +165,13 @@ int Time::second() const
 
 std::string Time::toString() const
 {
-    std::string h = std::to_string(hour());
-    h.insert(h.begin(), 2 - h.size(), '0');
+    char buf[9] = "  :  :  ";
 
-    std::string m = std::to_string(minute());
-    m.insert(m.begin(), 2 - m.size(), '0');
+    std::memcpy(buf, numbers[hour()], 2);
+    std::memcpy(buf + 3, numbers[minute()], 2);
+    std::memcpy(buf + 6, numbers[second()], 2);
 
-    std::string s = std::to_string(second());
-    s.insert(s.begin(), 2 - s.size(), '0');
-
-    return h + ":" + m + ":" + s;
+    return std::string(buf, sizeof(buf));
 }
 
 DateTime::DateTime(int year, int month, int day, int hour, int minute, int second) : date(year, month, day), time(hour, minute, second)
@@ -186,5 +203,15 @@ Time DateTime::getTime() const
 
 std::string DateTime::toString() const
 {
-    return date.toString() + " " + time.toString();
+    char buf[20] = "20  -  -     :  :  ";
+    auto parts = date.getParts();
+
+    std::memcpy(buf + 2, numbers[parts.year - 2000], 2);
+    std::memcpy(buf + 5, numbers[parts.month], 2);
+    std::memcpy(buf + 8, numbers[parts.day], 2);
+    std::memcpy(buf + 11, numbers[time.hour()], 2);
+    std::memcpy(buf + 14, numbers[time.minute()], 2);
+    std::memcpy(buf + 17, numbers[time.second()], 2);
+
+    return std::string(buf, sizeof(buf));
 }
