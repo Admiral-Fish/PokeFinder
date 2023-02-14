@@ -98,7 +98,7 @@ void DreamRadarGeneratorModel5::setShowStats(bool flag)
     emit dataChanged(index(0, 6), index(rowCount(), 11), { Qt::DisplayRole });
 }
 
-DreamRadarSearcherModel5::DreamRadarSearcherModel5(QObject *parent) : TableModel<SearcherState5<DreamRadarState>>(parent), showStats(false)
+DreamRadarSearcherModel5::DreamRadarSearcherModel5(QObject *parent) : TableModel(parent), showStats(false)
 {
 }
 

@@ -17,8 +17,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef SEEDTIME_HPP
-#define SEEDTIME_HPP
+#ifndef SEEDTIME4_HPP
+#define SEEDTIME4_HPP
 
 #include <Core/Util/DateTime.hpp>
 #include <array>
@@ -114,4 +114,4 @@ private:
     u32 seed;
 };
 
-#endif // SEEDTIME_HPP
+#endif // SEEDTIME4_HPP

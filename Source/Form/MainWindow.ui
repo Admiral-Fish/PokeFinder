@@ -239,8 +239,8 @@
     <addaction name="actionPIDtoIVs"/>
     <addaction name="actionPokeSpot"/>
     <addaction name="actionProfileManager3"/>
+    <addaction name="actionSeedToTime3"/>
     <addaction name="actionSpindaPainter"/>
-    <addaction name="separator"/>
    </widget>
    <widget class="QMenu" name="menuGen4Tools">
     <property name="title">
@@ -248,7 +248,7 @@
     </property>
     <addaction name="actionIVstoPID4"/>
     <addaction name="actionProfileManager4"/>
-    <addaction name="actionSeedtoTime4"/>
+    <addaction name="actionSeedToTime4"/>
     <addaction name="actionSIDfromChainedShiny"/>
    </widget>
    <widget class="QMenu" name="menuGen5Tools">
@@ -282,7 +282,7 @@
     <string>Poke Spot</string>
    </property>
   </action>
-  <action name="actionSeedtoTime4">
+  <action name="actionSeedToTime4">
    <property name="text">
     <string>Seed to Time</string>
    </property>
@@ -370,6 +370,11 @@
   <action name="actionIVstoPID4">
    <property name="text">
     <string>IVs to PID</string>
+   </property>
+  </action>
+  <action name="actionSeedToTime3">
+   <property name="text">
+    <string>Seed to Time</string>
    </property>
   </action>
  </widget>

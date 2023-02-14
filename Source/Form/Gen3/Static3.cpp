@@ -30,7 +30,9 @@
 #include <Core/Util/Translator.hpp>
 #include <Form/Controls/Controls.hpp>
 #include <Form/Gen3/Profile/ProfileManager3.hpp>
+#include <Form/Gen3/Tools/SeedToTime3.hpp>
 #include <Model/Gen3/StaticModel3.hpp>
+#include <QAction>
 #include <QSettings>
 #include <QThread>
 #include <QTimer>
@@ -56,6 +58,10 @@ Static3::Static3(QWidget *parent) : QWidget(parent), ui(new Ui::Static3)
 
     ui->filterGenerator->disableControls(Controls::EncounterSlots);
     ui->filterSearcher->disableControls(Controls::EncounterSlots | Controls::DisableFilter);
+
+    auto *seedToTime = new QAction(tr("Generate times for seed"), ui->tableViewSearcher);
+    connect(seedToTime, &QAction::triggered, this, &Static3::seedToTime);
+    ui->tableViewSearcher->addAction(seedToTime);
 
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Static3::generate);
     connect(ui->pushButtonSearch, &QPushButton::clicked, this, &Static3::search);
@@ -274,4 +280,13 @@ void Static3::searcherPokemonIndexChanged(int index)
             = Encounters3::getStaticEncounter(ui->comboBoxSearcherCategory->currentIndex(), ui->comboBoxSearcherPokemon->getCurrentInt());
         ui->spinBoxSearcherLevel->setValue(staticTemplate->getLevel());
     }
+}
+
+void Static3::seedToTime()
+{
+    QModelIndex index = ui->tableViewSearcher->currentIndex();
+    const auto &state = searcherModel->getItem(index.row());
+
+    auto *time = new SeedToTime3(state.getSeed());
+    time->show();
 }

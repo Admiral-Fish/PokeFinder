@@ -20,6 +20,8 @@ add_library(PokeFinderModel STATIC
     Gen3/PokeSpotModel.hpp
     Gen3/ProfileModel3.cpp
     Gen3/ProfileModel3.hpp
+    Gen3/SeedToTimeModel3.cpp
+    Gen3/SeedToTimeModel3.hpp
     Gen3/StaticModel3.cpp
     Gen3/StaticModel3.hpp
     Gen3/WildModel3.cpp
@@ -30,8 +32,8 @@ add_library(PokeFinderModel STATIC
     Gen4/IDModel4.hpp
     Gen4/ProfileModel4.cpp
     Gen4/ProfileModel4.hpp
-    Gen4/SeedTimeModel4.cpp
-    Gen4/SeedTimeModel4.hpp
+    Gen4/SeedToTimeModel4.cpp
+    Gen4/SeedToTimeModel4.hpp
     Gen4/StaticModel4.cpp
     Gen4/StaticModel4.hpp
     Gen4/WildModel4.cpp

@@ -17,8 +17,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef SEEDTIME4MODEL_HPP
-#define SEEDTIME4MODEL_HPP
+#ifndef SEEDTOTIME4MODEL_HPP
+#define SEEDTOTIME4MODEL_HPP
 
 #include <Core/Gen4/SeedTime4.hpp>
 #include <Model/TableModel.hpp>
@@ -26,7 +26,7 @@
 /**
  * @brief Provides a table model implementation to show Seed to Time information for Gen 4
  */
-class SeedTimeModel4 : public TableModel<SeedTime4>
+class SeedToTimeModel4 : public TableModel<SeedTime4>
 {
     Q_OBJECT
 public:
@@ -35,7 +35,7 @@ public:
      *
      * @param parent Parent object, which takes memory ownership
      */
-    SeedTimeModel4(QObject *parent);
+    SeedToTimeModel4(QObject *parent);
 
     /**
      * @brief Returns the number of columns in the model
@@ -74,7 +74,7 @@ private:
 /**
  * @brief Provides a table model implementation to show Seed to Time Calibration information for Gen 4
  */
-class SeedTimeCalibrateModel4 : public TableModel<SeedTimeCalibrate4>
+class SeedToTimeCalibrateModel4 : public TableModel<SeedTimeCalibrate4>
 {
     Q_OBJECT
 public:
@@ -84,7 +84,7 @@ public:
      * @param parent Parent object, which takes memory ownership
      * @param dppt Whether the game version is DPPt or not
      */
-    SeedTimeCalibrateModel4(QObject *parent, bool dppt);
+    SeedToTimeCalibrateModel4(QObject *parent, bool dppt);
 
     /**
      * @brief Returns the number of columns in the model
@@ -130,4 +130,4 @@ private:
     int getColumn(int column) const;
 };
 
-#endif // SEEDTIME4MODEL_HPP
+#endif // SEEDTOTIME4MODEL_HPP

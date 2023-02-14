@@ -89,7 +89,7 @@ void WildGeneratorModel3::setShowStats(bool flag)
     emit dataChanged(index(0, 7), index(rowCount(), 12), { Qt::DisplayRole });
 }
 
-WildSearcherModel3::WildSearcherModel3(QObject *parent) : TableModel<WildSearcherState3>(parent), showStats(false)
+WildSearcherModel3::WildSearcherModel3(QObject *parent) : TableModel(parent), showStats(false)
 {
 }
 

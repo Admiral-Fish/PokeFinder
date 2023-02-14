@@ -121,7 +121,7 @@ int StaticGeneratorModel4::getColumn(int column) const
     }
 }
 
-StaticSearcherModel4::StaticSearcherModel4(QObject *parent) : TableModel<SearcherState4>(parent), showStats(false)
+StaticSearcherModel4::StaticSearcherModel4(QObject *parent) : TableModel(parent), showStats(false)
 {
 }
 

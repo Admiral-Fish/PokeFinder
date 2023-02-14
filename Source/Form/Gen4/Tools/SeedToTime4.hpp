@@ -25,8 +25,8 @@
 
 class SeedTime4;
 class SeedTimeCalibrate4;
-class SeedTimeCalibrateModel4;
-class SeedTimeModel4;
+class SeedToTimeCalibrateModel4;
+class SeedToTimeModel4;
 enum class Game : u32;
 
 namespace Ui
@@ -58,17 +58,17 @@ public:
     SeedToTime4(u32 seed, Game version, QWidget *parent = nullptr);
 
     /**
-     * @brief Destroy the Wild4 object
+     * @brief Destroy the SeedToTime4 object
      */
     ~SeedToTime4() override;
 
 private:
     Ui::SeedToTime4 *ui;
 
-    SeedTimeCalibrateModel4 *dpptCalibrateModel;
-    SeedTimeModel4 *dpptModel;
-    SeedTimeCalibrateModel4 *hgssCalibrateModel;
-    SeedTimeModel4 *hgssModel;
+    SeedToTimeCalibrateModel4 *dpptCalibrateModel;
+    SeedToTimeModel4 *dpptModel;
+    SeedToTimeCalibrateModel4 *hgssCalibrateModel;
+    SeedToTimeModel4 *hgssModel;
 
     /**
      * @brief Generates calibration results within \p minusDelay, \p plusDelay, \p minusSecond, and \p plusSecond from the selected \p
@@ -96,7 +96,7 @@ private:
      *
      * @return Vector of generated date/times
      */
-    std::vector<SeedTime4> generate(u32 seed, u32 year, bool forceSecond, int forcedSecond);
+    std::vector<SeedTime4> generate(u32 seed, u16 year, bool forceSecond, int forcedSecond);
 
 private slots:
     /**
@@ -120,17 +120,17 @@ private slots:
     void hgssGenerate();
 
     /**
-     * @brief map
+     * @brief Opens the roamer map
      */
     void map() const;
 
     /**
-     * @brief searchCalls
+     * @brief Searches chatot calls to narrow down potentional results
      */
     void searchCalls();
 
     /**
-     * @brief searchFlips
+     * @brief Searches coin flips to narrow down potentional results
      */
     void searchFlips();
 };

@@ -112,8 +112,7 @@ void EggGeneratorModel5::setShowStats(bool flag)
     emit dataChanged(index(0, 6), index(rowCount(), 11), { Qt::DisplayRole });
 }
 
-EggSearcherModel5::EggSearcherModel5(QObject *parent) :
-    TableModel<SearcherState5<EggState5>>(parent), showInheritance(false), showStats(false)
+EggSearcherModel5::EggSearcherModel5(QObject *parent) : TableModel(parent), showInheritance(false), showStats(false)
 {
 }
 int EggSearcherModel5::columnCount(const QModelIndex &parent) const

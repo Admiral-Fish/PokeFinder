@@ -25,9 +25,9 @@
 
 struct DateParts
 {
-    int year;
-    int month;
-    int day;
+    u16 year;
+    u8 month;
+    u8 day;
 };
 
 /**
@@ -43,7 +43,7 @@ public:
      *
      * @param jd Initial julian date
      */
-    constexpr Date(int jd = 2451545) : jd(jd)
+    constexpr Date(u32 jd = 2451545) : jd(jd)
     {
     }
 
@@ -54,7 +54,7 @@ public:
      * @param month Initial month
      * @param day Initial day
      */
-    Date(int year, int month, int day);
+    Date(u16 year, u8 month, u8 day);
 
     /**
      * @brief Calculates a new date by adding a number of days
@@ -63,14 +63,14 @@ public:
      *
      * @return New calculated date
      */
-    Date addDays(int days) const;
+    Date addDays(u32 days) const;
 
     /**
      * @brief Converts the Julian date to a Gregorian date and returns the day
      *
      * @return Day of the date
      */
-    int day() const;
+    u8 day() const;
 
     /**
      * @brief Calculates how many days are in the month for a given year
@@ -80,7 +80,7 @@ public:
      *
      * @return How many days are in the month/year
      */
-    static int daysInMonth(int month, int year);
+    static u8 daysInMonth(u16 year, u8 month);
 
     /**
      * @brief Calculates the Gregorian day of the week
@@ -94,7 +94,7 @@ public:
      * 5: Friday
      * 6: Saturday
      */
-    int dayOfWeek() const;
+    u8 dayOfWeek() const;
 
     /**
      * @brief Computes the number of days between two dates
@@ -103,7 +103,7 @@ public:
      *
      * @return Day difference
      */
-    int daysTo(const Date &other) const;
+    u32 daysTo(const Date &other) const;
 
     /**
      * @brief Converts the Julian date to a Gregorian date
@@ -117,7 +117,7 @@ public:
      *
      * @return Month of the date
      */
-    int month() const;
+    u8 month() const;
 
     /**
      * @brief Converts the date to a ISO 8601 string
@@ -127,11 +127,11 @@ public:
     std::string toString() const;
 
     /**
-     * @brief Converts the Julian date to a Gregorian date and returns the month
+     * @brief Converts the Julian date to a Gregorian date and returns the year
      *
      * @return Year of the date
      */
-    int year() const;
+    u16 year() const;
 
     /**
      * @brief Checks if two dates are equal
@@ -185,8 +185,20 @@ public:
         return jd > other.jd;
     }
 
+    /**
+     * @brief Postfix operator that increments the day by 1
+     *
+     * @return Day value before increment
+     */
+    constexpr Date operator++(int)
+    {
+        Date old = *this;
+        jd++;
+        return old;
+    }
+
 private:
-    int jd;
+    u32 jd;
 
     friend class DateTime;
 };
@@ -202,7 +214,7 @@ public:
      *
      * @param seconds Initial seconds
      */
-    constexpr Time(int seconds = 0) : md(seconds)
+    constexpr Time(u32 seconds = 0) : md(seconds)
     {
     }
 
@@ -213,7 +225,7 @@ public:
      * @param minute Initial minute
      * @param second Initial second
      */
-    constexpr Time(int hour, int minute, int second) : md(hour * 3600 + minute * 60 + second)
+    constexpr Time(u8 hour, u8 minute, u8 second) : md(hour * 3600 + minute * 60 + second)
     {
     }
 
@@ -224,28 +236,28 @@ public:
      *
      * @return How many days passed
      */
-    int addSeconds(int seconds);
+    u32 addSeconds(u32 seconds);
 
     /**
      * @brief Computes hour field
      *
      * @return Hour of the time
      */
-    int hour() const;
+    u8 hour() const;
 
     /**
      * @brief Computes minute field
      *
      * @return Minute of the time
      */
-    int minute() const;
+    u8 minute() const;
 
     /**
      * @brief Computes second field
      *
      * @return Second of the time
      */
-    int second() const;
+    u8 second() const;
 
     /**
      * @brief Converts the time to a string
@@ -307,7 +319,7 @@ public:
     }
 
 private:
-    int md;
+    u32 md;
 
     friend class DateTime;
 };
@@ -339,7 +351,7 @@ public:
      * @param jd Initial julian day
      * @param seconds Initial seconds for time
      */
-    constexpr DateTime(int jd, int seconds) : date(Date(jd)), time(Time(seconds))
+    constexpr DateTime(u32 jd, u32 seconds) : date(Date(jd)), time(Time(seconds))
     {
     }
 
@@ -353,7 +365,7 @@ public:
      * @param minute Initial minute
      * @param second Initial second
      */
-    DateTime(int year, int month, int day, int hour = 0, int minute = 0, int second = 0);
+    DateTime(u16 year, u8 month, u8 day, u8 hour = 0, u8 minute = 0, u8 second = 0);
 
     /**
      * @brief Adds a number of seconds to the DateTime
@@ -361,7 +373,7 @@ public:
      *
      * @param seconds Seconds to add
      */
-    void addSeconds(int seconds);
+    void addSeconds(u32 seconds);
 
     /**
      * @brief Adds a number of seconds to the DateTime
@@ -370,7 +382,7 @@ public:
      *
      * @return Computed DateTime
      */
-    DateTime addSecs(int seconds);
+    DateTime addSecs(u32 seconds);
 
     /**
      * @brief Returns the \ref Date component

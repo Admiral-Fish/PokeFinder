@@ -156,6 +156,11 @@ private slots:
     void openProfileManager3() const;
 
     /**
+     * @brief Opens the Gen 3 Seed to Time window
+     */
+    void openSeedToTime3() const;
+
+    /**
      * @brief Opens the Spinda Painter window
      */
     void openSpindaPainter();

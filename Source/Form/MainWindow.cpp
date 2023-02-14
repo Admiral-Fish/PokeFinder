@@ -28,6 +28,7 @@
 #include <Form/Gen3/Tools/GameCubeSeedFinder.hpp>
 #include <Form/Gen3/Tools/PIDToIV.hpp>
 #include <Form/Gen3/Tools/PokeSpot.hpp>
+#include <Form/Gen3/Tools/SeedToTime3.hpp>
 #include <Form/Gen3/Tools/SpindaPainter.hpp>
 #include <Form/Gen3/Wild3.hpp>
 #include <Form/Gen4/Eggs4.hpp>
@@ -86,6 +87,7 @@ MainWindow::MainWindow(bool profile, QWidget *parent) : QMainWindow(parent), ui(
     connect(ui->actionPIDtoIVs, &QAction::triggered, this, &MainWindow::openPIDtoIV);
     connect(ui->actionPokeSpot, &QAction::triggered, this, &MainWindow::openPokeSpot);
     connect(ui->actionProfileManager3, &QAction::triggered, this, &MainWindow::openProfileManager3);
+    connect(ui->actionSeedToTime3, &QAction::triggered, this, &MainWindow::openSeedToTime3);
     connect(ui->actionSpindaPainter, &QAction::triggered, this, &MainWindow::openSpindaPainter);
 
     connect(ui->pushButtonEgg4, &QPushButton::clicked, this, &MainWindow::openEgg4);
@@ -94,7 +96,7 @@ MainWindow::MainWindow(bool profile, QWidget *parent) : QMainWindow(parent), ui(
     connect(ui->pushButtonWild4, &QPushButton::clicked, this, &MainWindow::openWild4);
     connect(ui->actionIVstoPID4, &QAction::triggered, this, &MainWindow::openIVToPID);
     connect(ui->actionProfileManager4, &QAction::triggered, this, &MainWindow::openProfileManager4);
-    connect(ui->actionSeedtoTime4, &QAction::triggered, this, &MainWindow::openSeedToTime4);
+    connect(ui->actionSeedToTime4, &QAction::triggered, this, &MainWindow::openSeedToTime4);
     connect(ui->actionSIDfromChainedShiny, &QAction::triggered, this, &MainWindow::openSIDFromChainedShiny);
 
     connect(ui->pushButtonDreamRadar, &QPushButton::clicked, this, &MainWindow::openDreamRadar);
@@ -268,6 +270,12 @@ void MainWindow::openProfileManager3() const
     auto *manager = new ProfileManager3();
     connect(manager, &ProfileManager3::profilesModified, this, &MainWindow::updateProfiles);
     manager->show();
+}
+
+void MainWindow::openSeedToTime3() const
+{
+    auto *window = new SeedToTime3();
+    window->show();
 }
 
 void MainWindow::openSpindaPainter()

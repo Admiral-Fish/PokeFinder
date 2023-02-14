@@ -67,6 +67,7 @@ set(PROJECT_UI
     Gen3/Tools/GameCubeSeedFinder.ui
     Gen3/Tools/PIDToIV.ui
     Gen3/Tools/PokeSpot.ui
+    Gen3/Tools/SeedToTime3.ui
     Gen3/Tools/SpindaPainter.ui
     Gen3/Wild3.ui
     Gen4/Eggs4.ui
@@ -150,6 +151,8 @@ set(PROJECT_SOURCES
     Gen3/Tools/PIDToIV.hpp
     Gen3/Tools/PokeSpot.cpp
     Gen3/Tools/PokeSpot.hpp
+    Gen3/Tools/SeedToTime3.cpp
+    Gen3/Tools/SeedToTime3.hpp
     Gen3/Tools/SpindaPainter.cpp
     Gen3/Tools/SpindaPainter.hpp
     Gen3/Wild3.cpp
@@ -214,6 +217,7 @@ set(PROJECT_SOURCES
     Gen8/Wild8.hpp
     MainWindow.cpp
     MainWindow.hpp
+    Plugin.hpp
     Util/EncounterLookup.cpp
     Util/EncounterLookup.hpp
     Util/IVCalculator.cpp

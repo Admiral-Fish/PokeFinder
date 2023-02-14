@@ -83,7 +83,7 @@ void GameCubeGeneratorModel::setShowStats(bool flag)
     emit dataChanged(index(0, 5), index(rowCount(), 10), { Qt::DisplayRole });
 }
 
-GameCubeSearcherModel::GameCubeSearcherModel(QObject *parent) : TableModel<SearcherState>(parent), showStats(false)
+GameCubeSearcherModel::GameCubeSearcherModel(QObject *parent) : TableModel(parent), showStats(false)
 {
 }
 

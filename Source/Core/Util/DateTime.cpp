@@ -52,32 +52,32 @@ constexpr u8 monthDays[12] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
  * @return true Year is a leap year
  * @return false Year is not a leap year
  */
-static inline bool isLeapYear(int year)
+static inline bool isLeapYear(u16 year)
 {
     // Since we know the years are bound between 2000 and 2099, we can simplify this check
     // return ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0));
     return (year % 4) == 0;
 }
 
-Date::Date(int year, int month, int day)
+Date::Date(u16 year, u8 month, u8 day)
 {
-    int a = month < 3 ? 1 : 0;
-    int y = year + 4800 - a;
-    int m = month + 12 * a - 3;
+    u32 a = month < 3 ? 1 : 0;
+    u32 y = year + 4800 - a;
+    u32 m = month + 12 * a - 3;
     jd = day + ((153 * m + 2) / 5) - 32045 + 365 * y + (y / 4) - (y / 100) + (y / 400);
 }
 
-Date Date::addDays(int days) const
+Date Date::addDays(u32 days) const
 {
     return Date(jd + days);
 }
 
-int Date::day() const
+u8 Date::day() const
 {
     return getParts().day;
 }
 
-int Date::daysInMonth(int month, int year)
+u8 Date::daysInMonth(u16 year, u8 month)
 {
     if (month == 2 && isLeapYear(year))
     {
@@ -86,34 +86,34 @@ int Date::daysInMonth(int month, int year)
     return monthDays[month - 1];
 }
 
-int Date::dayOfWeek() const
+u8 Date::dayOfWeek() const
 {
     return (jd + 1) % 7;
 }
 
-int Date::daysTo(const Date &other) const
+u32 Date::daysTo(const Date &other) const
 {
     return other.jd - jd;
 }
 
 DateParts Date::getParts() const
 {
-    int a = jd + 32044;
-    int b = (4 * a + 3) / 146097;
-    int c = a - (146097 * b) / 4;
+    u32 a = jd + 32044;
+    u32 b = (4 * a + 3) / 146097;
+    u32 c = a - (146097 * b) / 4;
 
-    int d = (4 * c + 3) / 1461;
-    int e = c - (1461 * d) / 4;
-    int m = (5 * e + 2) / 153;
+    u32 d = (4 * c + 3) / 1461;
+    u32 e = c - (1461 * d) / 4;
+    u32 m = (5 * e + 2) / 153;
 
-    int year = 100 * b + d - 4800 + (m / 10);
-    int month = m + 3 - 12 * (m / 10);
-    int day = e - ((153 * m + 2) / 5) + 1;
+    u16 year = 100 * b + d - 4800 + (m / 10);
+    u8 month = m + 3 - 12 * (m / 10);
+    u8 day = e - ((153 * m + 2) / 5) + 1;
 
     return { year, month, day };
 }
 
-int Date::month() const
+u8 Date::month() const
 {
     return getParts().month;
 }
@@ -130,16 +130,16 @@ std::string Date::toString() const
     return std::string(buf, sizeof(buf));
 }
 
-int Date::year() const
+u16 Date::year() const
 {
     return getParts().year;
 }
 
-int Time::addSeconds(int seconds)
+u32 Time::addSeconds(u32 seconds)
 {
     md += seconds;
 
-    int days = 0;
+    u32 days = 0;
     while (md >= 86400)
     {
         md -= 86400;
@@ -148,17 +148,17 @@ int Time::addSeconds(int seconds)
     return days;
 }
 
-int Time::hour() const
+u8 Time::hour() const
 {
     return md / 3600;
 }
 
-int Time::minute() const
+u8 Time::minute() const
 {
     return (md % 3600) / 60;
 }
 
-int Time::second() const
+u8 Time::second() const
 {
     return md % 60;
 }
@@ -174,17 +174,17 @@ std::string Time::toString() const
     return std::string(buf, sizeof(buf));
 }
 
-DateTime::DateTime(int year, int month, int day, int hour, int minute, int second) : date(year, month, day), time(hour, minute, second)
+DateTime::DateTime(u16 year, u8 month, u8 day, u8 hour, u8 minute, u8 second) : date(year, month, day), time(hour, minute, second)
 {
 }
 
-void DateTime::addSeconds(int seconds)
+void DateTime::addSeconds(u32 seconds)
 {
-    int days = time.addSeconds(seconds);
+    u32 days = time.addSeconds(seconds);
     date = date.addDays(days);
 }
 
-DateTime DateTime::addSecs(int seconds)
+DateTime DateTime::addSecs(u32 seconds)
 {
     DateTime dt(*this);
     dt.addSeconds(seconds);

@@ -19,7 +19,7 @@
 
 #include "PIDToIV.hpp"
 #include "ui_PIDToIV.h"
-#include <Core/Gen3/PIDToIVCalculator.hpp>
+#include <Core/Gen3/Tools/PIDToIVCalculator.hpp>
 #include <Model/Gen3/PIDToIVModel.hpp>
 #include <QSettings>
 

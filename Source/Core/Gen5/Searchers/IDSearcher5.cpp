@@ -128,7 +128,7 @@ void IDSearcher5::search(const IDGenerator5 &generator, const Date &start, const
     // IDs only uses minimum Timer0
     sha.setTimer0(profile.getTimer0Min(), profile.getVCount());
 
-    for (Date date = start; date <= end; date = date.addDays(1))
+    for (Date date = start; date <= end; date++)
     {
         sha.setDate(date);
         auto alpha = sha.precompute();

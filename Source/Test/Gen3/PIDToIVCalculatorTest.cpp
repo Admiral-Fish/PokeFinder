@@ -18,8 +18,8 @@
  */
 
 #include "PIDToIVCalculatorTest.hpp"
-#include <Core/Gen3/PIDToIVCalculator.hpp>
 #include <Core/Gen3/States/PIDToIVState.hpp>
+#include <Core/Gen3/Tools/PIDToIVCalculator.hpp>
 #include <QTest>
 #include <Test/Data.hpp>
 #include <Test/Enum.hpp>

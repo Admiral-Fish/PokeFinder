@@ -119,6 +119,11 @@ private slots:
      * @param index Pokemon index
      */
     void searcherPokemonIndexChanged(int index);
+
+    /**
+     * @brief Opens seed to time.
+     */
+    void seedToTime();
 };
 
 #endif // STATIC3_H

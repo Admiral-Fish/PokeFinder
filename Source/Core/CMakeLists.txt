@@ -55,8 +55,6 @@ add_library(PokeFinderCore STATIC
     Gen3/Generators/WildGenerator3.cpp
     Gen3/Generators/WildGenerator3.hpp
     Gen3/LockInfo.hpp
-    Gen3/PIDToIVCalculator.cpp
-    Gen3/PIDToIVCalculator.hpp
     Gen3/Profile3.cpp
     Gen3/Profile3.hpp
     Gen3/Searchers/ChannelSeedSearcher.cpp
@@ -79,6 +77,10 @@ add_library(PokeFinderCore STATIC
     Gen3/States/PIDToIVState.hpp
     Gen3/States/PokeSpotState.hpp
     Gen3/States/WildState3.hpp
+    Gen3/Tools/PIDToIVCalculator.cpp
+    Gen3/Tools/PIDToIVCalculator.hpp
+    Gen3/Tools/SeedToTimeCalculator3.cpp
+    Gen3/Tools/SeedToTimeCalculator3.hpp
     Gen4/ChainedSIDCalc.cpp
     Gen4/ChainedSIDCalc.hpp
     Gen4/EncounterArea4.cpp

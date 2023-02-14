@@ -158,7 +158,7 @@ private:
         for (u16 timer0 = profile.getTimer0Min(); timer0 <= profile.getTimer0Max(); timer0++)
         {
             sha.setTimer0(timer0, profile.getVCount());
-            for (Date date = start; date <= end; date = date.addDays(1))
+            for (Date date = start; date <= end; date++)
             {
                 sha.setDate(date);
                 auto alpha = sha.precompute();

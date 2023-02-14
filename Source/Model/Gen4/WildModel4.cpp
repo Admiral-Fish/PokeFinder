@@ -131,7 +131,7 @@ int WildGeneratorModel4::getColumn(int column) const
     }
 }
 
-WildSearcherModel4::WildSearcherModel4(QObject *parent) : TableModel<WildSearcherState4>(parent), showStats(false)
+WildSearcherModel4::WildSearcherModel4(QObject *parent) : TableModel(parent), showStats(false)
 {
 }
 

@@ -17,20 +17,20 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include "SeedTimeModel4.hpp"
+#include "SeedToTimeModel4.hpp"
 #include <Core/Gen4/HGSSRoamer.hpp>
 #include <Core/Util/Utilities.hpp>
 
-SeedTimeModel4::SeedTimeModel4(QObject *parent) : TableModel(parent)
+SeedToTimeModel4::SeedToTimeModel4(QObject *parent) : TableModel(parent)
 {
 }
 
-int SeedTimeModel4::columnCount(const QModelIndex &parent) const
+int SeedToTimeModel4::columnCount(const QModelIndex &parent) const
 {
     return 2;
 }
 
-QVariant SeedTimeModel4::data(const QModelIndex &index, int role) const
+QVariant SeedToTimeModel4::data(const QModelIndex &index, int role) const
 {
     if (role == Qt::DisplayRole)
     {
@@ -46,7 +46,7 @@ QVariant SeedTimeModel4::data(const QModelIndex &index, int role) const
     return QVariant();
 }
 
-QVariant SeedTimeModel4::headerData(int section, Qt::Orientation orientation, int role) const
+QVariant SeedToTimeModel4::headerData(int section, Qt::Orientation orientation, int role) const
 {
     if (role == Qt::DisplayRole && orientation == Qt::Horizontal)
     {
@@ -55,16 +55,16 @@ QVariant SeedTimeModel4::headerData(int section, Qt::Orientation orientation, in
     return QVariant();
 }
 
-SeedTimeCalibrateModel4::SeedTimeCalibrateModel4(QObject *parent, bool dppt) : TableModel<SeedTimeCalibrate4>(parent), dppt(dppt)
+SeedToTimeCalibrateModel4::SeedToTimeCalibrateModel4(QObject *parent, bool dppt) : TableModel(parent), dppt(dppt)
 {
 }
 
-int SeedTimeCalibrateModel4::columnCount(const QModelIndex &parent) const
+int SeedToTimeCalibrateModel4::columnCount(const QModelIndex &parent) const
 {
     return dppt ? 4 : 5;
 }
 
-QVariant SeedTimeCalibrateModel4::data(const QModelIndex &index, int role) const
+QVariant SeedToTimeCalibrateModel4::data(const QModelIndex &index, int role) const
 {
     if (role == Qt::DisplayRole)
     {
@@ -91,7 +91,7 @@ QVariant SeedTimeCalibrateModel4::data(const QModelIndex &index, int role) const
     return QVariant();
 }
 
-QVariant SeedTimeCalibrateModel4::headerData(int section, Qt::Orientation orientation, int role) const
+QVariant SeedToTimeCalibrateModel4::headerData(int section, Qt::Orientation orientation, int role) const
 {
     if (role == Qt::DisplayRole && orientation == Qt::Horizontal)
     {
@@ -100,7 +100,7 @@ QVariant SeedTimeCalibrateModel4::headerData(int section, Qt::Orientation orient
     return QVariant();
 }
 
-int SeedTimeCalibrateModel4::getColumn(int column) const
+int SeedToTimeCalibrateModel4::getColumn(int column) const
 {
     if (dppt)
     {

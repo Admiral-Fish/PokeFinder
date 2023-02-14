@@ -25,7 +25,7 @@
 #include <Form/Gen4/Tools/RoamerMap.hpp>
 #include <Form/Gen4/Tools/SearchCalls.hpp>
 #include <Form/Gen4/Tools/SearchCoinFlips.hpp>
-#include <Model/Gen4/SeedTimeModel4.hpp>
+#include <Model/Gen4/SeedToTimeModel4.hpp>
 #include <QMessageBox>
 #include <QSettings>
 
@@ -35,10 +35,10 @@ SeedToTime4::SeedToTime4(QWidget *parent) : QWidget(parent), ui(new Ui::SeedToTi
     setAttribute(Qt::WA_QuitOnClose, false);
     setAttribute(Qt::WA_DeleteOnClose);
 
-    dpptModel = new SeedTimeModel4(ui->tableViewDPPtSearch);
-    dpptCalibrateModel = new SeedTimeCalibrateModel4(ui->tableViewDPPtCalibrate, true);
-    hgssModel = new SeedTimeModel4(ui->tableViewHGSSSearch);
-    hgssCalibrateModel = new SeedTimeCalibrateModel4(ui->tableViewHGSSCalibrate, false);
+    dpptModel = new SeedToTimeModel4(ui->tableViewDPPtSearch);
+    dpptCalibrateModel = new SeedToTimeCalibrateModel4(ui->tableViewDPPtCalibrate, true);
+    hgssModel = new SeedToTimeModel4(ui->tableViewHGSSSearch);
+    hgssCalibrateModel = new SeedToTimeCalibrateModel4(ui->tableViewHGSSCalibrate, false);
 
     ui->textBoxDPPtSeed->setValues(InputType::Seed32Bit);
     ui->textBoxDPPtYear->setValues(2000, 2099, 4, 10);
@@ -185,27 +185,27 @@ std::vector<SeedTimeCalibrate4> SeedToTime4::calibrate(int minusDelay, int plusD
     return results;
 }
 
-std::vector<SeedTime4> SeedToTime4::generate(u32 seed, u32 year, bool forceSecond, int forcedSecond)
+std::vector<SeedTime4> SeedToTime4::generate(u32 seed, u16 year, bool forceSecond, int forcedSecond)
 {
     u8 ab = seed >> 24;
     u8 cd = (seed >> 16) & 0xFF;
     u32 efgh = seed & 0xFFFF;
 
     // Allow overflow seeds by setting hour to 23 and adjusting for delay
-    u32 hour = cd > 23 ? 23 : cd;
+    u8 hour = cd > 23 ? 23 : cd;
     u32 delay = cd > 23 ? (efgh + (2000 - year)) + ((cd - 23) * 0x10000) : efgh + (2000 - year);
 
     std::vector<SeedTime4> results;
-    for (int month = 1; month <= 12; month++)
+    for (u8 month = 1; month <= 12; month++)
     {
-        int maxDays = Date::daysInMonth(month, year);
-        for (int day = 1; day <= maxDays; day++)
+        u8 maxDays = Date::daysInMonth(year, month);
+        for (u8 day = 1; day <= maxDays; day++)
         {
-            for (int minute = 0; minute < 60; minute++)
+            for (u8 minute = 0; minute < 60; minute++)
             {
-                for (int second = 0; second < 60; second++)
+                for (u8 second = 0; second < 60; second++)
                 {
-                    if (ab == ((month * day + minute + second) & 0xFF))
+                    if (ab == (month * day + minute + second))
                     {
                         if (!forceSecond || second == forcedSecond)
                         {
@@ -255,7 +255,7 @@ void SeedToTime4::dpptCalibrate()
 void SeedToTime4::dpptGenerate()
 {
     u32 seed = ui->textBoxDPPtSeed->getUInt();
-    u32 year = ui->textBoxDPPtYear->getUInt();
+    u16 year = ui->textBoxDPPtYear->getUShort();
 
     bool forceSecond = ui->checkBoxDPPtSecond->isChecked();
     int forcedSecond = ui->textBoxDPPtSecond->getInt();
@@ -303,10 +303,10 @@ void SeedToTime4::hgssGenerate()
     hgssModel->clearModel();
 
     u32 seed = ui->textBoxHGSSSeed->getUInt();
-    u32 year = ui->textBoxHGSSYear->getUInt();
+    u16 year = ui->textBoxHGSSYear->getUShort();
 
     bool forceSecond = ui->checkBoxHGSSSecond->isChecked();
-    int forcedSecond = ui->textBoxHGSSSecond->getInt();
+    u8 forcedSecond = ui->textBoxHGSSSecond->getUChar();
 
     std::array<bool, 3> roamers
         = { ui->checkBoxHGSSRaikou->isChecked(), ui->checkBoxHGSSEntei->isChecked(), ui->checkBoxHGSSLati->isChecked() };

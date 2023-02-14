@@ -98,7 +98,7 @@ void EventGeneratorModel5::setShowStats(bool flag)
     emit dataChanged(index(0, 6), index(rowCount(), 11), { Qt::DisplayRole });
 }
 
-EventSearcherModel5::EventSearcherModel5(QObject *parent) : TableModel<SearcherState5<State5>>(parent), showStats(false)
+EventSearcherModel5::EventSearcherModel5(QObject *parent) : TableModel(parent), showStats(false)
 {
 }
 

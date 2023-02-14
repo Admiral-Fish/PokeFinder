@@ -19,7 +19,7 @@
 
 #include "ResearcherModel.hpp"
 
-ResearcherModel::ResearcherModel(QObject *parent, bool flag) : TableModel<ResearcherState>(parent), flag(flag)
+ResearcherModel::ResearcherModel(QObject *parent, bool flag) : TableModel(parent), flag(flag)
 {
 }
 

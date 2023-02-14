@@ -70,7 +70,7 @@ QVariant HiddenGrottoGeneratorModel5::headerData(int section, Qt::Orientation or
     return QVariant();
 }
 
-HiddenGrottoSearcherModel5::HiddenGrottoSearcherModel5(QObject *parent) : TableModel<SearcherState5<HiddenGrottoState>>(parent)
+HiddenGrottoSearcherModel5::HiddenGrottoSearcherModel5(QObject *parent) : TableModel(parent)
 {
 }
 

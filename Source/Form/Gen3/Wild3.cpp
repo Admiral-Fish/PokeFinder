@@ -32,7 +32,9 @@
 #include <Core/Util/Translator.hpp>
 #include <Form/Controls/Controls.hpp>
 #include <Form/Gen3/Profile/ProfileManager3.hpp>
+#include <Form/Gen3/Tools/SeedToTime3.hpp>
 #include <Model/Gen3/WildModel3.hpp>
+#include <QAction>
 #include <QSettings>
 #include <QThread>
 #include <QTimer>
@@ -80,6 +82,10 @@ Wild3::Wild3(QWidget *parent) : QWidget(parent), ui(new Ui::Wild3)
     ui->comboMenuSearcherLead->addMenu(tr("Level Modifier"), { tr("Hustle"), tr("Pressure"), tr("Vital Spirit") },
                                        { toInt(Lead::Hustle), toInt(Lead::Pressure), toInt(Lead::VitalSpirit) });
     ui->comboMenuSearcherLead->addAction(tr("Synchronize"), toInt(Lead::Synchronize));
+
+    auto *seedToTime = new QAction(tr("Generate times for seed"), ui->tableViewSearcher);
+    connect(seedToTime, &QAction::triggered, this, &Wild3::seedToTime);
+    ui->tableViewSearcher->addAction(seedToTime);
 
     connect(ui->comboBoxProfiles, &QComboBox::currentIndexChanged, this, &Wild3::profileIndexChanged);
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Wild3::generate);
@@ -401,4 +407,13 @@ void Wild3::searcherPokemonIndexChanged(int index)
         auto flags = encounterSearcher[ui->comboBoxSearcherLocation->getCurrentInt()].getSlots(num);
         ui->filterSearcher->toggleEncounterSlots(flags);
     }
+}
+
+void Wild3::seedToTime()
+{
+    QModelIndex index = ui->tableViewSearcher->currentIndex();
+    const auto &state = searcherModel->getItem(index.row());
+
+    auto *time = new SeedToTime3(state.getSeed());
+    time->show();
 }
