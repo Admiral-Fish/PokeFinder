@@ -382,7 +382,7 @@ public:
      *
      * @return Computed DateTime
      */
-    DateTime addSecs(u32 seconds);
+    DateTime addSecs(u32 seconds) const;
 
     /**
      * @brief Returns the \ref Date component

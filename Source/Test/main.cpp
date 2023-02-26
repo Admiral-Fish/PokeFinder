@@ -25,6 +25,7 @@
 #include <Test/Gen3/IDGenerator3Test.hpp>
 #include <Test/Gen3/PIDToIVCalculatorTest.hpp>
 #include <Test/Gen3/PokeSpotGeneratorTest.hpp>
+#include <Test/Gen3/SeedToTimeCalculator3Test.hpp>
 #include <Test/Gen3/StaticGenerator3Test.hpp>
 #include <Test/Gen3/StaticSearcher3Test.hpp>
 #include <Test/Gen3/WildGenerator3Test.hpp>
@@ -33,6 +34,7 @@
 #include <Test/Gen4/EggGenerator4Test.hpp>
 #include <Test/Gen4/IDGenerator4Test.hpp>
 #include <Test/Gen4/IDSearcher4Test.hpp>
+#include <Test/Gen4/SeedToTimeCalculator4Test.hpp>
 #include <Test/Gen4/StaticGenerator4Test.hpp>
 #include <Test/Gen4/StaticSearcher4Test.hpp>
 #include <Test/Gen4/WildGenerator4Test.hpp>
@@ -90,6 +92,7 @@ int main()
     status += runTest<IDGenerator3Test>(fails);
     status += runTest<PIDToIVCalculatorTest>(fails);
     status += runTest<PokeSpotGeneratorTest>(fails);
+    status += runTest<SeedToTimeCalculator3Test>(fails);
     status += runTest<StaticGenerator3Test>(fails);
     status += runTest<StaticSearcher3Test>(fails);
     status += runTest<WildGenerator3Test>(fails);
@@ -100,6 +103,7 @@ int main()
     status += runTest<EggGenerator4Test>(fails);
     status += runTest<IDGenerator4Test>(fails);
     status += runTest<IDSearcher4Test>(fails);
+    status += runTest<SeedToTimeCalculator4Test>(fails);
     status += runTest<StaticGenerator4Test>(fails);
     status += runTest<StaticSearcher4Test>(fails);
     status += runTest<WildGenerator4Test>(fails);

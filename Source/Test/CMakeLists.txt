@@ -29,6 +29,8 @@ add_executable(PokeFinderTest
     Gen3/PIDToIVCalculatorTest.hpp
     Gen3/PokeSpotGeneratorTest.cpp
     Gen3/PokeSpotGeneratorTest.hpp
+    Gen3/SeedToTimeCalculator3Test.cpp
+    Gen3/SeedToTimeCalculator3Test.hpp
     Gen3/StaticGenerator3Test.cpp
     Gen3/StaticGenerator3Test.hpp
     Gen3/StaticSearcher3Test.cpp
@@ -45,6 +47,8 @@ add_executable(PokeFinderTest
     Gen4/IDGenerator4Test.hpp
     Gen4/IDSearcher4Test.cpp
     Gen4/IDSearcher4Test.hpp
+    Gen4/SeedToTimeCalculator4Test.cpp
+    Gen4/SeedToTimeCalculator4Test.hpp
     Gen4/StaticGenerator4Test.cpp
     Gen4/StaticGenerator4Test.hpp
     Gen4/StaticSearcher4Test.cpp

@@ -88,7 +88,7 @@ public:
      *
      * @return Item data of the model
      */
-    Item getItem(int row) const
+    const Item &getItem(int row) const
     {
         return model[row];
     }
@@ -98,7 +98,7 @@ public:
      *
      * @return Vector of Items of the model
      */
-    std::vector<Item> getModel() const
+    const std::vector<Item> &getModel() const
     {
         return model;
     }

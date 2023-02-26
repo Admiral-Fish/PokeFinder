@@ -5,12 +5,14 @@
         <file alias="id3.json">Gen3/id3.json</file>
         <file alias="pidtoivcalculator.json">Gen3/pidtoivcalculator.json</file>
         <file alias="pokespot.json">Gen3/pokespot.json</file>
+        <file alias="seedtotime3.json">Gen3/seedtotime3.json</file>
         <file alias="static3.json">Gen3/static3.json</file>
         <file alias="wild3.json">Gen3/wild3.json</file>
 
         <file alias="chainedsid.json">Gen4/chainedsid.json</file>
         <file alias="egg4.json">Gen4/egg4.json</file>
         <file alias="id4.json">Gen4/id4.json</file>
+        <file alias="seedtotime4.json">Gen4/seedtotime4.json</file>
         <file alias="static4.json">Gen4/static4.json</file>
         <file alias="wild4.json">Gen4/wild4.json</file>
 

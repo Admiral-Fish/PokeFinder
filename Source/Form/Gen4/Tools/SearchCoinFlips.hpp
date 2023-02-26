@@ -59,7 +59,7 @@ private:
     Ui::SearchCoinFlips *ui;
 
     std::vector<bool> possible;
-    std::vector<SeedTimeCalibrate4> data;
+    const std::vector<SeedTimeCalibrate4> &data;
 
 private slots:
     /**

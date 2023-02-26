@@ -76,7 +76,7 @@ void ProfileManager5::edit()
         return;
     }
 
-    Profile5 original = model->getItem(row);
+    const Profile5 &original = model->getItem(row);
     std::unique_ptr<ProfileEditor5> dialog(new ProfileEditor5(original));
     if (dialog->exec() == QDialog::Accepted)
     {
@@ -101,7 +101,7 @@ void ProfileManager5::remove()
                         QMessageBox::Yes | QMessageBox::No);
     if (message.exec() == QMessageBox::Yes)
     {
-        Profile5 profile = model->getItem(row);
+        const Profile5 &profile = model->getItem(row);
         ProfileLoader5::removeProfile(profile);
         model->removeItem(row);
         emit profilesModified(5);

@@ -75,7 +75,7 @@ void ProfileManager3::edit()
         return;
     }
 
-    Profile3 original = model->getItem(row);
+    const Profile3 &original = model->getItem(row);
     std::unique_ptr<ProfileEditor3> dialog(new ProfileEditor3(original));
     if (dialog->exec() == QDialog::Accepted)
     {
@@ -100,7 +100,7 @@ void ProfileManager3::remove()
                     QMessageBox::Yes | QMessageBox::No);
     if (msg.exec() == QMessageBox::Yes)
     {
-        Profile3 profile = model->getItem(row);
+        const Profile3 &profile = model->getItem(row);
         ProfileLoader3::removeProfile(profile);
         model->removeItem(row);
         emit profilesModified(3);

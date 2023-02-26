@@ -70,12 +70,18 @@ public:
      *
      * @param dateTime Date/time
      * @param delay Delay
-     * @param version Game version
+     */
+    SeedTimeCalibrate4(const DateTime &dateTime, u32 delay);
+
+    /**
+     * @brief Construct a new SeedTimeCalibrate4 object
+     *
+     * @param dateTime Date/time
+     * @param delay Delay
      * @param roamers Active roamers
      * @param routes Roamer locations
      */
-    SeedTimeCalibrate4(const DateTime &dateTime, u32 delay, Game version, const std::array<bool, 3> &roamers,
-                       const std::array<u8, 3> &routes);
+    SeedTimeCalibrate4(const DateTime &dateTime, u32 delay, const std::array<bool, 3> &roamers, const std::array<u8, 3> &routes);
 
     /**
      * @brief SeedTimeCalibrate4

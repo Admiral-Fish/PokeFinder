@@ -383,7 +383,7 @@
              </widget>
             </item>
             <item row="1" column="7">
-             <widget class="QLineEdit" name="lineEditHGSSRaikou">
+             <widget class="TextBox" name="textBoxHGSSRaikou">
               <property name="enabled">
                <bool>false</bool>
               </property>
@@ -400,7 +400,7 @@
              </widget>
             </item>
             <item row="1" column="9">
-             <widget class="QLineEdit" name="lineEditHGSSEntei">
+             <widget class="TextBox" name="textBoxHGSSEntei">
               <property name="enabled">
                <bool>false</bool>
               </property>
@@ -417,7 +417,7 @@
              </widget>
             </item>
             <item row="1" column="11">
-             <widget class="QLineEdit" name="lineEditHGSSLati">
+             <widget class="TextBox" name="textBoxHGSSLati">
               <property name="enabled">
                <bool>false</bool>
               </property>
@@ -507,11 +507,11 @@
   <tabstop>textBoxHGSSSecond</tabstop>
   <tabstop>pushButtonHGSSMap</tabstop>
   <tabstop>checkBoxHGSSRaikou</tabstop>
-  <tabstop>lineEditHGSSRaikou</tabstop>
+  <tabstop>textBoxHGSSRaikou</tabstop>
   <tabstop>checkBoxHGSSEntei</tabstop>
-  <tabstop>lineEditHGSSEntei</tabstop>
+  <tabstop>textBoxHGSSEntei</tabstop>
   <tabstop>checkBoxHGSSLati</tabstop>
-  <tabstop>lineEditHGSSLati</tabstop>
+  <tabstop>textBoxHGSSLati</tabstop>
   <tabstop>pushButtonHGSSGenerate</tabstop>
   <tabstop>tableViewHGSSSearch</tabstop>
   <tabstop>textBoxHGSSDelayMinus</tabstop>

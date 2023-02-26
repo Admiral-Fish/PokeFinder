@@ -184,7 +184,7 @@ void DateTime::addSeconds(u32 seconds)
     date = date.addDays(days);
 }
 
-DateTime DateTime::addSecs(u32 seconds)
+DateTime DateTime::addSecs(u32 seconds) const
 {
     DateTime dt(*this);
     dt.addSeconds(seconds);

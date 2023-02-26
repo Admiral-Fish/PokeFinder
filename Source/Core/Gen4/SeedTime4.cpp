@@ -36,14 +36,16 @@ u32 SeedTime4::getDelay() const
     return delay;
 }
 
-SeedTimeCalibrate4::SeedTimeCalibrate4(const DateTime &dateTime, u32 delay, Game version, const std::array<bool, 3> &roamers,
-                                       const std::array<u8, 3> &routes) :
+SeedTimeCalibrate4::SeedTimeCalibrate4(const DateTime &dateTime, u32 delay) :
     SeedTime4(dateTime, delay), roamer(nullptr), seed(Utilities4::calcSeed(dateTime, delay))
 {
-    if ((version & Game::HGSS) != Game::None)
-    {
-        roamer = new HGSSRoamer(seed, roamers, routes);
-    }
+}
+
+SeedTimeCalibrate4::SeedTimeCalibrate4(const DateTime &dateTime, u32 delay, const std::array<bool, 3> &roamers,
+                                       const std::array<u8, 3> &routes) :
+    SeedTime4(dateTime, delay), seed(Utilities4::calcSeed(dateTime, delay))
+{
+    roamer = new HGSSRoamer(seed, roamers, routes);
 }
 
 SeedTimeCalibrate4::SeedTimeCalibrate4(const SeedTimeCalibrate4 &other) :

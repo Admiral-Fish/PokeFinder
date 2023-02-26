@@ -1,0 +1,283 @@
+{
+    "calculateOriginSeed": [
+        {
+            "name": "Test 1",
+            "seed": 0,
+            "result": {
+                "origin": 0,
+                "advances": 0
+            }
+        },
+        {
+            "name": "Test 2",
+            "seed": 1073741824,
+            "result": {
+                "origin": 6821,
+                "advances": 66861
+            }
+        },
+        {
+            "name": "Test 3",
+            "seed": 2147483648,
+            "result": {
+                "origin": 6603,
+                "advances": 10055
+            }
+        },
+        {
+            "name": "Test 4",
+            "seed": 3221225472,
+            "result": {
+                "origin": 26412,
+                "advances": 44340
+            }
+        }
+    ],
+    "calculateTimes": [
+        {
+            "name": "Test 1",
+            "seed": 0,
+            "year": 2000,
+            "results": [
+                {
+                    "day": 30,
+                    "hour": 18,
+                    "minute": 22,
+                    "month": 3,
+                    "year": 2000
+                },
+                {
+                    "day": 31,
+                    "hour": 0,
+                    "minute": 22,
+                    "month": 3,
+                    "year": 2000
+                },
+                {
+                    "day": 29,
+                    "hour": 18,
+                    "minute": 44,
+                    "month": 6,
+                    "year": 2000
+                },
+                {
+                    "day": 29,
+                    "hour": 19,
+                    "minute": 8,
+                    "month": 6,
+                    "year": 2000
+                },
+                {
+                    "day": 30,
+                    "hour": 0,
+                    "minute": 44,
+                    "month": 6,
+                    "year": 2000
+                },
+                {
+                    "day": 30,
+                    "hour": 1,
+                    "minute": 8,
+                    "month": 6,
+                    "year": 2000
+                },
+                {
+                    "day": 29,
+                    "hour": 2,
+                    "minute": 10,
+                    "month": 12,
+                    "year": 2000
+                }
+            ]
+        },
+        {
+            "name": "Test 2",
+            "seed": 16384,
+            "year": 2009,
+            "results": [
+                {
+                    "day": 2,
+                    "hour": 2,
+                    "minute": 48,
+                    "month": 1,
+                    "year": 2009
+                },
+                {
+                    "day": 18,
+                    "hour": 10,
+                    "minute": 3,
+                    "month": 5,
+                    "year": 2009
+                },
+                {
+                    "day": 3,
+                    "hour": 3,
+                    "minute": 50,
+                    "month": 7,
+                    "year": 2009
+                },
+                {
+                    "day": 3,
+                    "hour": 4,
+                    "minute": 14,
+                    "month": 7,
+                    "year": 2009
+                },
+                {
+                    "day": 17,
+                    "hour": 10,
+                    "minute": 25,
+                    "month": 8,
+                    "year": 2009
+                },
+                {
+                    "day": 2,
+                    "hour": 4,
+                    "minute": 36,
+                    "month": 10,
+                    "year": 2009
+                },
+                {
+                    "day": 16,
+                    "hour": 10,
+                    "minute": 47,
+                    "month": 11,
+                    "year": 2009
+                }
+            ]
+        },
+        {
+            "name": "Test 3",
+            "seed": 32768,
+            "year": 2018,
+            "results": [
+                {
+                    "day": 2,
+                    "hour": 20,
+                    "minute": 28,
+                    "month": 1,
+                    "year": 2018
+                },
+                {
+                    "day": 3,
+                    "hour": 8,
+                    "minute": 28,
+                    "month": 1,
+                    "year": 2018
+                },
+                {
+                    "day": 17,
+                    "hour": 14,
+                    "minute": 39,
+                    "month": 2,
+                    "year": 2018
+                },
+                {
+                    "day": 3,
+                    "hour": 21,
+                    "minute": 30,
+                    "month": 7,
+                    "year": 2018
+                },
+                {
+                    "day": 4,
+                    "hour": 9,
+                    "minute": 30,
+                    "month": 7,
+                    "year": 2018
+                },
+                {
+                    "day": 18,
+                    "hour": 15,
+                    "minute": 41,
+                    "month": 8,
+                    "year": 2018
+                },
+                {
+                    "day": 18,
+                    "hour": 16,
+                    "minute": 5,
+                    "month": 8,
+                    "year": 2018
+                },
+                {
+                    "day": 2,
+                    "hour": 21,
+                    "minute": 52,
+                    "month": 10,
+                    "year": 2018
+                },
+                {
+                    "day": 2,
+                    "hour": 22,
+                    "minute": 16,
+                    "month": 10,
+                    "year": 2018
+                },
+                {
+                    "day": 3,
+                    "hour": 9,
+                    "minute": 52,
+                    "month": 10,
+                    "year": 2018
+                },
+                {
+                    "day": 17,
+                    "hour": 16,
+                    "minute": 27,
+                    "month": 11,
+                    "year": 2018
+                }
+            ]
+        },
+        {
+            "name": "Test 4",
+            "seed": 49152,
+            "year": 2027,
+            "results": [
+                {
+                    "day": 18,
+                    "hour": 19,
+                    "minute": 55,
+                    "month": 2,
+                    "year": 2027
+                },
+                {
+                    "day": 19,
+                    "hour": 1,
+                    "minute": 55,
+                    "month": 2,
+                    "year": 2027
+                },
+                {
+                    "day": 19,
+                    "hour": 2,
+                    "minute": 19,
+                    "month": 2,
+                    "year": 2027
+                },
+                {
+                    "day": 20,
+                    "hour": 3,
+                    "minute": 21,
+                    "month": 8,
+                    "year": 2027
+                },
+                {
+                    "day": 19,
+                    "hour": 3,
+                    "minute": 43,
+                    "month": 11,
+                    "year": 2027
+                },
+                {
+                    "day": 19,
+                    "hour": 4,
+                    "minute": 7,
+                    "month": 11,
+                    "year": 2027
+                }
+            ]
+        }
+    ]
+}

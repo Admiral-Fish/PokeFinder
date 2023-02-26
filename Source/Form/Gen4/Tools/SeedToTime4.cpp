@@ -21,6 +21,7 @@
 #include "ui_SeedToTime4.h"
 #include <Core/Enum/Game.hpp>
 #include <Core/Gen4/HGSSRoamer.hpp>
+#include <Core/Gen4/Tools/SeedToTimeCalculator4.hpp>
 #include <Core/Util/Utilities.hpp>
 #include <Form/Gen4/Tools/RoamerMap.hpp>
 #include <Form/Gen4/Tools/SearchCalls.hpp>
@@ -68,9 +69,9 @@ SeedToTime4::SeedToTime4(QWidget *parent) : QWidget(parent), ui(new Ui::SeedToTi
     connect(ui->pushButtonHGSSCalibrate, &QPushButton::clicked, this, &SeedToTime4::hgssCalibrate);
     connect(ui->pushButtonDPPtSearchFlips, &QPushButton::clicked, this, &SeedToTime4::searchFlips);
     connect(ui->pushButtonHGSSSearchCalls, &QPushButton::clicked, this, &SeedToTime4::searchCalls);
-    connect(ui->checkBoxHGSSEntei, &QCheckBox::clicked, ui->lineEditHGSSEntei, &QLineEdit::setEnabled);
-    connect(ui->checkBoxHGSSLati, &QCheckBox::clicked, ui->lineEditHGSSLati, &QLineEdit::setEnabled);
-    connect(ui->checkBoxHGSSRaikou, &QCheckBox::clicked, ui->lineEditHGSSRaikou, &QLineEdit::setEnabled);
+    connect(ui->checkBoxHGSSEntei, &QCheckBox::clicked, ui->textBoxHGSSEntei, &QLineEdit::setEnabled);
+    connect(ui->checkBoxHGSSLati, &QCheckBox::clicked, ui->textBoxHGSSLati, &QLineEdit::setEnabled);
+    connect(ui->checkBoxHGSSRaikou, &QCheckBox::clicked, ui->textBoxHGSSRaikou, &QLineEdit::setEnabled);
     connect(ui->checkBoxDPPtSecond, &QCheckBox::clicked, ui->textBoxDPPtSecond, &TextBox::setEnabled);
     connect(ui->checkBoxHGSSSecond, &QCheckBox::clicked, ui->textBoxHGSSSecond, &TextBox::setEnabled);
     connect(ui->pushButtonHGSSMap, &QPushButton::clicked, this, &SeedToTime4::map);
@@ -159,66 +160,6 @@ SeedToTime4::~SeedToTime4()
     delete ui;
 }
 
-std::vector<SeedTimeCalibrate4> SeedToTime4::calibrate(int minusDelay, int plusDelay, int minusSecond, int plusSecond, Game version,
-                                                       const SeedTime4 &target)
-{
-    DateTime time = target.getDateTime();
-    u32 delay = target.getDelay();
-
-    std::array<bool, 3> roamer
-        = { ui->checkBoxHGSSRaikou->isChecked(), ui->checkBoxHGSSEntei->isChecked(), ui->checkBoxHGSSLati->isChecked() };
-    std::array<u8, 3> routes
-        = { static_cast<u8>(ui->lineEditHGSSRaikou->text().toUInt()), static_cast<u8>(ui->lineEditHGSSEntei->text().toUInt()),
-            static_cast<u8>(ui->lineEditHGSSLati->text().toUInt()) };
-
-    std::vector<SeedTimeCalibrate4> results;
-    results.reserve((plusDelay - minusDelay + 1) * (plusSecond - minusSecond + 1));
-    for (int secondOffset = minusSecond; secondOffset <= plusSecond; secondOffset++)
-    {
-        DateTime offset = time.addSecs(secondOffset);
-        for (int delayOffset = minusDelay; delayOffset <= plusDelay; delayOffset++)
-        {
-            results.emplace_back(offset, delay + delayOffset, version, roamer, routes);
-        }
-    }
-
-    return results;
-}
-
-std::vector<SeedTime4> SeedToTime4::generate(u32 seed, u16 year, bool forceSecond, int forcedSecond)
-{
-    u8 ab = seed >> 24;
-    u8 cd = (seed >> 16) & 0xFF;
-    u32 efgh = seed & 0xFFFF;
-
-    // Allow overflow seeds by setting hour to 23 and adjusting for delay
-    u8 hour = cd > 23 ? 23 : cd;
-    u32 delay = cd > 23 ? (efgh + (2000 - year)) + ((cd - 23) * 0x10000) : efgh + (2000 - year);
-
-    std::vector<SeedTime4> results;
-    for (u8 month = 1; month <= 12; month++)
-    {
-        u8 maxDays = Date::daysInMonth(year, month);
-        for (u8 day = 1; day <= maxDays; day++)
-        {
-            for (u8 minute = 0; minute < 60; minute++)
-            {
-                for (u8 second = 0; second < 60; second++)
-                {
-                    if (ab == (month * day + minute + second))
-                    {
-                        if (!forceSecond || second == forcedSecond)
-                        {
-                            results.emplace_back(DateTime(year, month, day, hour, minute, second), delay);
-                        }
-                    }
-                }
-            }
-        }
-    }
-    return results;
-}
-
 void SeedToTime4::dpptCalibrate()
 {
     int minusDelay = -ui->textBoxDPPtDelayMinus->getInt();
@@ -230,19 +171,15 @@ void SeedToTime4::dpptCalibrate()
     QModelIndex index = ui->tableViewDPPtSearch->currentIndex();
     if (!index.isValid())
     {
-        if (!index.isValid())
-        {
-            QMessageBox msg(QMessageBox::Warning, tr("Invalid selection"), tr("Select a valid row"));
-            msg.exec();
-            return;
-        }
+        QMessageBox msg(QMessageBox::Warning, tr("Invalid selection"), tr("Select a valid row"));
+        msg.exec();
+        return;
     }
 
-    dpptCalibrateModel->clearModel();
-
     const SeedTime4 &target = dpptModel->getItem(index.row());
-    auto results = calibrate(minusDelay, plusDelay, minusSecond, plusSecond, Game::DPPt, target);
 
+    dpptCalibrateModel->clearModel();
+    auto results = SeedToTimeCalculator4::calibrate(minusDelay, plusDelay, minusSecond, plusSecond, target);
     dpptCalibrateModel->addItems(results);
 
     int count = (results.size() - 1) / 2;
@@ -258,11 +195,11 @@ void SeedToTime4::dpptGenerate()
     u16 year = ui->textBoxDPPtYear->getUShort();
 
     bool forceSecond = ui->checkBoxDPPtSecond->isChecked();
-    int forcedSecond = ui->textBoxDPPtSecond->getInt();
+    u8 forcedSecond = ui->textBoxDPPtSecond->getUChar();
 
     dpptModel->clearModel();
 
-    auto results = generate(seed, year, forceSecond, forcedSecond);
+    auto results = SeedToTimeCalculator4::calculateTimes(seed, year, forceSecond, forcedSecond);
     ui->labelDPPtCoinFlips->setText(tr("Coin Flips: ") + QString::fromStdString(Utilities4::coinFlips(seed)));
 
     dpptModel->addItems(results);
@@ -284,11 +221,13 @@ void SeedToTime4::hgssCalibrate()
         return;
     }
 
-    hgssCalibrateModel->clearModel();
-
+    std::array<bool, 3> roamers
+        = { ui->checkBoxHGSSRaikou->isChecked(), ui->checkBoxHGSSEntei->isChecked(), ui->checkBoxHGSSLati->isChecked() };
+    std::array<u8, 3> routes = { ui->textBoxHGSSRaikou->getUChar(), ui->textBoxHGSSEntei->getUChar(), ui->textBoxHGSSLati->getUChar() };
     const SeedTime4 &target = hgssModel->getItem(index.row());
-    auto results = calibrate(minusDelay, plusDelay, minusSecond, plusSecond, Game::HGSS, target);
 
+    hgssCalibrateModel->clearModel();
+    auto results = SeedToTimeCalculator4::calibrate(minusDelay, plusDelay, minusSecond, plusSecond, roamers, routes, target);
     hgssCalibrateModel->addItems(results);
 
     int count = (results.size() - 1) / 2;
@@ -310,9 +249,7 @@ void SeedToTime4::hgssGenerate()
 
     std::array<bool, 3> roamers
         = { ui->checkBoxHGSSRaikou->isChecked(), ui->checkBoxHGSSEntei->isChecked(), ui->checkBoxHGSSLati->isChecked() };
-    std::array<u8, 3> routes
-        = { static_cast<u8>(ui->lineEditHGSSRaikou->text().toUInt()), static_cast<u8>(ui->lineEditHGSSEntei->text().toUInt()),
-            static_cast<u8>(ui->lineEditHGSSLati->text().toUInt()) };
+    std::array<u8, 3> routes = { ui->textBoxHGSSRaikou->getUChar(), ui->textBoxHGSSEntei->getUChar(), ui->textBoxHGSSLati->getUChar() };
 
     HGSSRoamer roamer(seed, roamers, routes);
 
@@ -320,7 +257,7 @@ void SeedToTime4::hgssGenerate()
     std::string str = roamer.getRouteString();
     ui->labelHGSSRoamers->setText(tr("Roamers: ") + (str.empty() ? tr("No roamers") : QString::fromStdString(str)));
 
-    auto results = generate(seed, year, forceSecond, forcedSecond);
+    auto results = SeedToTimeCalculator4::calculateTimes(seed, year, forceSecond, forcedSecond);
     hgssModel->addItems(results);
 }
 
@@ -338,25 +275,23 @@ void SeedToTime4::searchCalls()
     }
 
     std::unique_ptr<SearchCalls> search(new SearchCalls(hgssCalibrateModel->getModel()));
-    if (search->exec() == QDialog::Rejected)
+    if (search->exec() == QDialog::Accepted)
     {
-        return;
-    }
+        ui->tableViewHGSSCalibrate->setSelectionMode(QAbstractItemView::MultiSelection);
+        ui->tableViewHGSSCalibrate->clearSelection();
 
-    ui->tableViewHGSSCalibrate->setSelectionMode(QAbstractItemView::MultiSelection);
-    ui->tableViewHGSSCalibrate->clearSelection();
-
-    auto results = search->getResults();
-    for (size_t i = 0; i < results.size(); i++)
-    {
-        if (results[i])
+        auto results = search->getResults();
+        for (size_t i = 0; i < results.size(); i++)
         {
-            ui->tableViewHGSSCalibrate->selectRow(i);
+            if (results[i])
+            {
+                ui->tableViewHGSSCalibrate->selectRow(i);
+            }
         }
-    }
 
-    ui->tableViewHGSSCalibrate->setSelectionMode(QAbstractItemView::SingleSelection);
-    ui->tableViewHGSSCalibrate->setFocus();
+        ui->tableViewHGSSCalibrate->setSelectionMode(QAbstractItemView::SingleSelection);
+        ui->tableViewHGSSCalibrate->setFocus();
+    }
 }
 
 void SeedToTime4::searchFlips()
@@ -367,23 +302,21 @@ void SeedToTime4::searchFlips()
     }
 
     std::unique_ptr<SearchCoinFlips> search(new SearchCoinFlips(dpptCalibrateModel->getModel()));
-    if (search->exec() == QDialog::Rejected)
+    if (search->exec() == QDialog::Accepted)
     {
-        return;
-    }
+        ui->tableViewDPPtCalibrate->setSelectionMode(QAbstractItemView::MultiSelection);
+        ui->tableViewDPPtCalibrate->clearSelection();
 
-    ui->tableViewDPPtCalibrate->setSelectionMode(QAbstractItemView::MultiSelection);
-    ui->tableViewDPPtCalibrate->clearSelection();
-
-    auto results = search->getResults();
-    for (size_t i = 0; i < results.size(); i++)
-    {
-        if (results[i])
+        auto results = search->getResults();
+        for (size_t i = 0; i < results.size(); i++)
         {
-            ui->tableViewDPPtCalibrate->selectRow(i);
+            if (results[i])
+            {
+                ui->tableViewDPPtCalibrate->selectRow(i);
+            }
         }
-    }
 
-    ui->tableViewDPPtCalibrate->setSelectionMode(QAbstractItemView::SingleSelection);
-    ui->tableViewDPPtCalibrate->setFocus();
+        ui->tableViewDPPtCalibrate->setSelectionMode(QAbstractItemView::SingleSelection);
+        ui->tableViewDPPtCalibrate->setFocus();
+    }
 }

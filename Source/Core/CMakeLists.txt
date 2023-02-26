@@ -116,6 +116,8 @@ add_library(PokeFinderCore STATIC
     Gen4/States/State4.hpp
     Gen4/States/WildState4.hpp
     Gen4/StaticTemplate4.hpp
+    Gen4/Tools/SeedToTimeCalculator4.cpp
+    Gen4/Tools/SeedToTimeCalculator4.hpp
     Gen5/DreamRadarTemplate.hpp
     Gen5/EncounterArea5.hpp
     Gen5/Encounters5.cpp

@@ -217,7 +217,6 @@ set(PROJECT_SOURCES
     Gen8/Wild8.hpp
     MainWindow.cpp
     MainWindow.hpp
-    Plugin.hpp
     Util/EncounterLookup.cpp
     Util/EncounterLookup.hpp
     Util/IVCalculator.cpp

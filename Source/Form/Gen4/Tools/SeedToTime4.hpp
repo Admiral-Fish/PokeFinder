@@ -70,34 +70,6 @@ private:
     SeedToTimeCalibrateModel4 *hgssCalibrateModel;
     SeedToTimeModel4 *hgssModel;
 
-    /**
-     * @brief Generates calibration results within \p minusDelay, \p plusDelay, \p minusSecond, and \p plusSecond from the selected \p
-     * target.
-     *
-     * @param minusDelay Minimum delay range
-     * @param plusDelay Maximum delay range
-     * @param minusSecond Minimum second range
-     * @param plusSecond Maximum second range
-     * @param version Game version
-     * @param target Date/time target
-     *
-     * @return Vector of calibration date/times
-     */
-    std::vector<SeedTimeCalibrate4> calibrate(int minusDelay, int plusDelay, int minusSecond, int plusSecond, Game version,
-                                              const SeedTime4 &target);
-
-    /**
-     * @brief Generates date/times from a seed. Can filter by a specific second with \p forceSecond and \p forcedSecond
-     *
-     * @param seed PRNG state
-     * @param year Year to search
-     * @param forceSecond Whether to filter by second or not
-     * @param forcedSecond Second to filter by
-     *
-     * @return Vector of generated date/times
-     */
-    std::vector<SeedTime4> generate(u32 seed, u16 year, bool forceSecond, int forcedSecond);
-
 private slots:
     /**
      * @brief Generates calibration date/times for DPPt
