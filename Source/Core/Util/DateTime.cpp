@@ -19,6 +19,7 @@
 
 #include "DateTime.hpp"
 #include <array>
+#include <cstring>
 
 consteval std::array<char[2], 100> computeNumbers()
 {
