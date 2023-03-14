@@ -125,6 +125,9 @@ MainWindow::MainWindow(bool profile, QWidget *parent) : QMainWindow(parent), ui(
     connect(ui->actionResearcher, &QAction::triggered, this, &MainWindow::openResearcher);
     connect(ui->actionSettings, &QAction::triggered, this, &MainWindow::openSettings);
 
+    ui->pushButtonStatic5->setVisible(false);
+    ui->pushButtonWild5->setVisible(false);
+
     QSettings setting;
     if (setting.contains("mainWindow/geometry"))
     {
