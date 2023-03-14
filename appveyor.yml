@@ -16,7 +16,7 @@ environment:
     EXT: tar.gz
 
 install:
-    - git submodule update --init --recursive
+    - git submodule update --init
     - cmd: pip install requests
     - sh: bash .ci/install.sh
     
