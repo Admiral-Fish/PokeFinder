@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -20,20 +20,31 @@
 #ifndef STATICSEARCHER_HPP
 #define STATICSEARCHER_HPP
 
-#include <Core/Enum/Lead.hpp>
 #include <Core/Parents/Searchers/Searcher.hpp>
 
-class StaticSearcher : public Searcher
+enum class Lead : u8;
+
+/**
+ * @brief Parent searcher class for static encounters
+ *
+ * @tparam Profile Profile class that is used by the generator
+ * @tparam Filter Filter class that is used by the searcher
+ */
+template <class Profile, class Filter>
+class StaticSearcher : public Searcher<Profile, Filter>
 {
 public:
-    StaticSearcher(u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter) :
-        Searcher(tid, sid, genderRatio, method, filter)
+    /**
+     * @brief Construct a new StaticSearcher object
+     *
+     * @param method Encounter method
+     * @param lead Encounter lead
+     * @param profile Profile Information
+     * @param filter State filter
+     */
+    StaticSearcher(Method method, Lead lead, const Profile &profile, const Filter &filter) :
+        Searcher<Profile, Filter>(method, profile, filter), lead(lead)
     {
-    }
-
-    void setLead(Lead lead)
-    {
-        this->lead = lead;
     }
 
 protected:

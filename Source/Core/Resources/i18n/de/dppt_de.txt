@@ -20,7 +20,14 @@
 20,Mt. Coronet Upper 1F 2
 21,Mt. Coronet Upper 1F 1
 22,Mt. Coronet Upper B1F
-29,Solaceon Ruins
+29,Solaceon Ruins 2F
+30,Solaceon Ruins
+32,Solaceon Ruins B1F (4 Stairs)
+34,Solaceon Ruins B2F (4 Stairs)
+40,Solaceon Ruins B3F (3 Stairs)
+41,Solaceon Ruins B3F (4 Stairs)
+42,Solaceon Ruins B4F (4 Stairs)
+43,Solaceon Ruins B4F (Chamber)
 47,Victory Road 1F
 48,Victory Road 2F
 49,Victory Road B1F

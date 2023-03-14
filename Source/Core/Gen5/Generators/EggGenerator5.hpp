@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -20,28 +20,51 @@
 #ifndef EGGGENERATOR5_HPP
 #define EGGGENERATOR5_HPP
 
+#include <Core/Gen5/Filters/StateFilter5.hpp>
+#include <Core/Gen5/Profile5.hpp>
 #include <Core/Parents/Generators/EggGenerator.hpp>
 
-class Daycare;
-class EggState;
+class EggState5;
+class PersonalInfo;
 
-class EggGenerator5 : public EggGenerator
+/**
+ * @brief Egg generator for Gen 5
+ */
+class EggGenerator5 : public EggGenerator<Profile5, StateFilter5>
 {
 public:
-    EggGenerator5(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter,
-                  const Daycare &daycare, bool shinyCharm);
-    std::vector<EggState> generate(u64 seed) const;
+    /**
+     * @brief Construct a new EggGenerator5 object
+     *
+     * @param initialAdvances Initial number of advances
+     * @param maxAdvances Maximum number of advances
+     * @param delay Number of advances to offset
+     * @param daycare Daycare parent information
+     * @param profile Profile Information
+     * @param filter State filter
+     */
+    EggGenerator5(u32 initialAdvances, u32 maxAdvances, u32 delay, const Daycare &daycare, const Profile5 &profile,
+                  const StateFilter5 &filter);
+
+    /**
+     * @brief Generates states
+     *
+     * @param seed Starting PRNG state
+     *
+     * @return Vector of computed states
+     */
+    std::vector<EggState5> generate(u64 seed) const;
 
 private:
-    u8 rolls;
-    u8 everstone;
-    u8 poweritem;
     bool ditto;
+    u8 everstone;
     u8 parentAbility;
+    u8 poweritem;
+    u8 rolls;
 
-    std::vector<EggState> generateBW(u64 seed) const;
-    std::vector<EggState> generateBW2(u64 seed) const;
-    EggState generateBW2Egg(u64 seed) const;
+    std::vector<EggState5> generateBW(u64 seed) const;
+    std::vector<EggState5> generateBW2(u64 seed) const;
+    EggState5 generateBW2Egg(u64 seed, const PersonalInfo **info) const;
 };
 
 #endif // EGGGENERATOR5_HPP

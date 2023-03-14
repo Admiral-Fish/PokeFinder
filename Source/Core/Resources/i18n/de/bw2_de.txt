@@ -1,5 +1,9 @@
 0,Striaton City
+1,Castelia City
 2,Icirrus City
+3,Aspertia City
+4,Virbank City
+5,Humilau City
 6,Dreamyard (Ruins)
 7,Dreamyard (Basement)
 8,Pinwheel Forest (Exterior)
@@ -26,8 +30,37 @@
 33,Giant Chasm (Cave)
 34,Giant Chasm (Crater Forest)
 36,Giant Chasm (Cave Depths)
+37,Castelia Sewers
 42,P2 Laboratory
 43,Undella Bay
+45,Floccesy Ranch
+46,Virbank Complex (Entrance)
+47,Virbank Complex (Inside)
+48,Reversal Mountain
+49,Reversal Mountain 1F
+50,Reversal Mountain B1F
+52,Reversal Mountain B1F (Chamber)
+61,Strange House
+65,Strange House (Rooms)
+71,Victory Road 1F
+72,Victory Road (Grove)
+73,Victory Road (Outside 1)
+74,Victory Road 2F
+75,Victory Road 2F (Back)
+76,Victory Road (Outside 2)
+77,Victory Road 3F
+80,Victory Road 3F (Back)
+81,Relic Passage (Castelia City Exit)
+82,Relic Passage (Middle)
+83,Relic Passage (Driftveil City Exit)
+85,Clay Tunnel
+87,Underground Ruins
+90,Rock Peak Chamber
+91,Iceberg Chamber
+92,Iron Chamber
+93,Seaside Cave 1F
+94,Seaside Cave B1F
+95,Nature Preserve
 96,Driftveil Drawbridge
 97,Village Bridge
 98,Marvelous Bridge
@@ -59,43 +92,14 @@
 125,Route 16
 126,Lostlorn Forest
 127,Route 18
-132,Undella Town
-133,Route 17
-3,Aspertia City
 128,Route 19
-45,Floccesy Ranch
 129,Route 20
-4,Virbank City
-46,Virbank Complex (Entrance)
-47,Virbank Complex (Inside)
-48,Reversal Mountain
-61,Strange House
-134,Route 21
-5,Humilau City
 130,Route 22
 131,Route 23
-37,Castelia Sewers
-1,Castelia City
-81,Relic Passage (Castelia City Exit)
-82,Relic Passage (Middle)
-83,Relic Passage (Driftveil City Exit)
-85,Clay Tunnel
-65,Strange House (Rooms)
-93,Seaside Cave 1F
-94,Seaside Cave B1F
-49,Reversal Mountain 1F
-50,Reversal Mountain B1F
-52,Reversal Mountain B1F (Chamber)
-87,Underground Ruins
-95,Nature Preserve
-71,Victory Road 1F
-72,Victory Road (Grove)
-73,Victory Road (Outside 1)
-74,Victory Road 2F
-75,Victory Road 2F (Back)
-76,Victory Road (Outside 2)
-77,Victory Road 3F
-80,Victory Road 3F (Back)
-90,Rock Peak Chamber
-91,Iceberg Chamber
-92,Iron Chamber
+132,Undella Town
+133,Route 17
+134,Route 21
+135,Route 6 (Cave)
+136,Route 13 (Giant Chasm)
+137,Abundant Shrine (Pond)
+138,Route 3 (Pond)

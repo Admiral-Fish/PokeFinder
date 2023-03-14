@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -20,8 +20,12 @@
 #ifndef LANGUAGE_HPP
 #define LANGUAGE_HPP
 
-#include <Core/Util/Global.hpp>
+#include <Core/Global.hpp>
 
+/**
+ * @brief Enum that encompasses language settings for Gen5
+ *
+ */
 enum class Language : u8
 {
     English,
@@ -33,6 +37,13 @@ enum class Language : u8
     Spanish
 };
 
+/**
+ * @brief Converts enum to number
+ *
+ * @param language Input language
+ *
+ * @return Converted number
+ */
 constexpr u8 toInt(Language language)
 {
     return static_cast<u8>(language);

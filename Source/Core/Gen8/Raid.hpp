@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -20,69 +20,49 @@
 #ifndef RAID_HPP
 #define RAID_HPP
 
-#include <Core/Enum/Shiny.hpp>
-#include <Core/Parents/PersonalInfo.hpp>
-#include <Core/Util/Global.hpp>
+#include <Core/Global.hpp>
+#include <Core/Parents/StaticTemplate.hpp>
 #include <array>
 #include <string>
 
-class Raid
+/**
+ * @brief Contains information about how to generate a Raid pokemon
+ */
+class Raid : public StaticTemplate
 {
 public:
-    constexpr Raid(u8 ability, u8 altform, u8 ivCount, u8 gender, bool gigantamax, u16 species, const PersonalInfo &info,
-                   const std::array<bool, 5> &star, Shiny shinyType = Shiny::Random) :
-        ability(ability),
-        altform(altform),
-        ivCount(ivCount),
-        gender(gender),
-        gigantamax(gigantamax),
-        species(species),
-        info(info),
-        star(star),
-        shinyType(shinyType)
+    /**
+     * @brief Construct a new Raid object
+     *
+     * @param specie Specie of the template
+     * @param form Form of the template
+     * @param shiny Shiny state of the template
+     * @param ability Ability of the template
+     * @param gender Gender of the template
+     * @param ivCount Gender of the template
+     * @param gigantamax Template gigantamax
+     * @param star Template stars
+     */
+    constexpr Raid(u16 specie, u8 form, Shiny shiny, u8 ability, u8 gender, u8 ivCount, bool gigantamax, const std::array<bool, 5> &star) :
+        StaticTemplate(Game::SwSh, specie, form, shiny, ability, gender, ivCount, 0), gigantamax(gigantamax), star(star)
     {
     }
 
-    u8 getAbility() const
-    {
-        return ability;
-    }
-
-    u8 getAltForm() const
-    {
-        return altform;
-    }
-
-    u8 getIVCount() const
-    {
-        return ivCount;
-    }
-
-    u8 getGender() const
-    {
-        return gender;
-    }
-
-    PersonalInfo getInfo() const
-    {
-        return info;
-    }
-
+    /**
+     * @brief Determines what gigantamax the template should have
+     *
+     * @return Template gigantamax
+     */
     bool getGigantamax() const
     {
         return gigantamax;
     }
 
-    u16 getSpecies() const
-    {
-        return species;
-    }
-
-    Shiny getShinyType() const
-    {
-        return shinyType;
-    }
-
+    /**
+     * @brief Determines what stars the template should have
+     *
+     * @return Template stars
+     */
     std::string getStarDisplay() const
     {
         u8 low = 4;
@@ -111,15 +91,8 @@ public:
     }
 
 private:
-    u8 ability;
-    u8 altform;
-    u8 ivCount;
-    u8 gender;
     bool gigantamax;
-    u16 species;
-    PersonalInfo info;
     std::array<bool, 5> star;
-    Shiny shinyType;
 };
 
 #endif // RAID_HPP

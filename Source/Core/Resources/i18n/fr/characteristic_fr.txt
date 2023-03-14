@@ -1,17 +1,16 @@
-None
 Adore manger
-S'assoupit souvent
+S’assoupit souvent
 Dort beaucoup
-Éparpille les choses
+Éparpille des choses
 Aime se détendre
-Fière de sa puissance
+Est fier de sa puissance
 Aime se démener
 Un peu coléreux
 Aime combattre
-S'emporte facilement
+S’emporte facilement
 Corps robuste
 Sait encaisser les coups
-Très astucieux
+Très obstiné
 Bonne endurance
 Persévérant
 Aime courir
@@ -21,7 +20,7 @@ Aime faire le pitre
 Fuit rapidement
 Extrêmement curieux
 Coquin
-Très obstiné
+Très astucieux
 Souvent dans la lune
 Très particulier
 Très volontaire

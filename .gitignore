@@ -13,5 +13,10 @@ out
 
 # Resource files
 i18n.hpp
-Encounters.hpp
+EncounterData*.hpp
 Personal.hpp
+*.pyc
+
+# Test resource files
+Enum.cpp
+Enum.hpp

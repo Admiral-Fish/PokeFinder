@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -21,35 +21,32 @@
 #include <Core/Gen8/States/IDState8.hpp>
 #include <Core/RNG/Xorshift.hpp>
 
-IDGenerator8::IDGenerator8(u32 initialAdvances, u32 maxAdvances, const IDFilter8 &filter) :
-    IDGenerator(initialAdvances, maxAdvances, filter)
+IDGenerator8::IDGenerator8(u32 initialAdvances, u32 maxAdvances, const IDFilter &filter) : IDGenerator(initialAdvances, maxAdvances, filter)
 {
-    this->filter = filter;
 }
 
 std::vector<IDState8> IDGenerator8::generate(u64 seed0, u64 seed1)
 {
-    Xorshift rng(seed0, seed1);
-    rng.advance(initialAdvances);
+    Xorshift rng(seed0, seed1, initialAdvances);
 
     std::vector<IDState8> states;
     for (u32 cnt = 0; cnt < maxAdvances; cnt++)
     {
-        u32 sidtid = rng.next();
+        u32 sidtid = rng.next(0x80000000, 0x7fffffff);
         if (sidtid == 0)
         {
             Xorshift gen(rng);
             while (sidtid == 0)
             {
-                sidtid = gen.next();
+                sidtid = gen.next(0x80000000, 0x7fffffff);
             }
         }
 
         u16 tid = sidtid & 0xffff;
         u16 sid = sidtid >> 16;
-        u32 g8tid = sidtid % 1000000;
+        u32 displayTID = sidtid % 1000000;
 
-        IDState8 state(initialAdvances + cnt, tid, sid, g8tid);
+        IDState8 state(initialAdvances + cnt, tid, sid, displayTID);
         if (filter.compare(state))
         {
             states.emplace_back(state);

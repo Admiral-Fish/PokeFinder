@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -20,30 +20,56 @@
 #ifndef PROFILE4_HPP
 #define PROFILE4_HPP
 
-#include <Core/Enum/Game.hpp>
 #include <Core/Parents/Profile.hpp>
 
+enum class Game : u32;
+
+/**
+ * @brief Provides additional storage specific to Gen4
+ */
 class Profile4 : public Profile
 {
 public:
-    Profile4();
-    Profile4(const std::string &profileName, Game version, u16 tid, u16 sid, Game dual = Game::None, int radio = 0, bool radar = false,
-             bool swarm = false, bool dex = false);
-    std::string getDualSlotString() const;
-    Game getDualSlot() const;
-    std::string getRadioString() const;
-    int getRadio() const;
-    bool getRadar() const;
-    bool getSwarm() const;
+    /**
+     * @brief Construct a new Profile4 object
+     *
+     * @param name Profile name
+     * @param version Game version
+     * @param tid Trainer ID
+     * @param sid Secret ID
+     * @param dex Whether national pokedex is obtained
+     */
+    Profile4(const std::string &profileName, Game version, u16 tid, u16 sid, bool dex);
+
+    /**
+     * @brief Get the National Dex object
+     *
+     * @return true National pokedex is obtained
+     * @return false National pokedex is not obtained
+     */
     bool getNationalDex() const;
+
+    /**
+     * @brief Checks if two profiles are equal
+     *
+     * @param other Profile to compare
+     *
+     * @return true Profiles are equal
+     * @return false Profiles are not equal
+     */
     bool operator==(const Profile4 &other) const;
+
+    /**
+     * @brief Checks if two profiles are not equal
+     *
+     * @param other Profile to compare
+     *
+     * @return true Profiles are not equal
+     * @return false Profiles are equal
+     */
     bool operator!=(const Profile4 &other) const;
 
 private:
-    Game dual;
-    int radio;
-    bool radar;
-    bool swarm;
     bool dex;
 };
 

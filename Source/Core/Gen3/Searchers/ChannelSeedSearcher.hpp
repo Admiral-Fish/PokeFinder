@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -23,16 +23,51 @@
 #include <Core/Gen3/Searchers/SeedSearcher.hpp>
 #include <Core/RNG/LCRNG.hpp>
 
-class ChannelSeedSearcher : public SeedSearcher
+/**
+ * @brief Searches for candidate PRNG states
+ */
+class ChannelSeedSearcher final : public SeedSearcher<std::vector<u8>>
 {
 public:
-    explicit ChannelSeedSearcher(const std::vector<u32> &criteria);
+    /**
+     * @brief Construct a new GalesSeedSearcher object
+     *
+     * @param criteria Filtering data
+     */
+    ChannelSeedSearcher(const std::vector<u8> &criteria);
+
+    /**
+     * @brief Returns the progress of the running search
+     *
+     * @return Progress
+     */
+    int getProgress() const final;
+
+    /**
+     * @brief Starts the search
+     *
+     * @param threads Number of threads to search with
+     */
     void startSearch(int threads);
-    int getProgress() const override;
 
 private:
+    /**
+     * @brief Searches over a range of PRNG states for valid candidate seeds
+     *
+     * @param start Lower PRNG state
+     * @param end Upper PRNG state
+     */
     void search(u32 start, u32 end);
-    bool searchSeed(XDRNG &rng);
+
+    /**
+     * @brief Determines if PRNG state is valid for the criteria
+     *
+     * @param rng Starting PRNG state
+     *
+     * @return true PRNG state is valid
+     * @return false PRNG state is not valid
+     */
+    bool searchSeed(XDRNG &rng) const;
 };
 
 #endif // CHANNELSEEDSEARCHER_HPP

@@ -1,0 +1,81 @@
+{
+    "calculatePIDs": [
+        {
+            "name": "Test 1",
+            "ivs": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "nature": 0,
+            "tid": 12345,
+            "results": [
+                {
+                    "method": "Channel",
+                    "pid": 3693978225,
+                    "seed": 1449478200,
+                    "sid": 48333
+                }
+            ]
+        },
+        {
+            "name": "Test 2",
+            "ivs": [
+                31,
+                31,
+                31,
+                0,
+                31,
+                31
+            ],
+            "nature": 0,
+            "tid": 12345,
+            "results": [
+                {
+                    "method": "Method2",
+                    "pid": 45092875,
+                    "seed": 921075850,
+                    "sid": 8832
+                }
+            ]
+        },
+        {
+            "name": "Test 3",
+            "ivs": [
+                31,
+                0,
+                31,
+                31,
+                31,
+                31
+            ],
+            "nature": 0,
+            "tid": 12345,
+            "results": []
+        },
+        {
+            "name": "Test 4",
+            "ivs": [
+                31,
+                31,
+                31,
+                31,
+                31,
+                31
+            ],
+            "nature": 0,
+            "tid": 12345,
+            "results": [
+                {
+                    "method": "Method2",
+                    "pid": 4017276575,
+                    "seed": 902592441,
+                    "sid": 6608
+                }
+            ]
+        }
+    ]
+}

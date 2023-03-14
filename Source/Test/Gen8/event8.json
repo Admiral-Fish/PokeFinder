@@ -1,0 +1,304 @@
+{
+    "generate": [
+        {
+            "name": "Manaphy",
+            "seed0": 1311768467139281697,
+            "seed1": 9756277977086449272,
+            "tid": 0,
+            "sid": 0,
+            "ec": 0,
+            "pid": 0,
+            "specie": 490,
+            "form": 0,
+            "gender": 2,
+            "egg": true,
+            "nature": 255,
+            "ability": 0,
+            "shiny": 0,
+            "ivCount": 3,
+            "level": 1,
+            "results": [
+                {
+                    "ability": 0,
+                    "abilityIndex": 93,
+                    "advances": 0,
+                    "characteristic": 11,
+                    "ec": 570639824,
+                    "gender": 2,
+                    "ivs": [
+                        15,
+                        30,
+                        31,
+                        19,
+                        31,
+                        31
+                    ],
+                    "level": 1,
+                    "nature": 24,
+                    "pid": 2412930810,
+                    "shiny": 0,
+                    "stats": [
+                        13,
+                        7,
+                        7,
+                        7,
+                        7,
+                        7
+                    ]
+                },
+                {
+                    "ability": 0,
+                    "abilityIndex": 93,
+                    "advances": 1,
+                    "characteristic": 6,
+                    "ec": 2412930810,
+                    "gender": 2,
+                    "ivs": [
+                        30,
+                        31,
+                        31,
+                        19,
+                        26,
+                        31
+                    ],
+                    "level": 1,
+                    "nature": 20,
+                    "pid": 570642538,
+                    "shiny": 0,
+                    "stats": [
+                        13,
+                        6,
+                        7,
+                        7,
+                        7,
+                        7
+                    ]
+                },
+                {
+                    "ability": 0,
+                    "abilityIndex": 93,
+                    "advances": 2,
+                    "characteristic": 26,
+                    "ec": 570642538,
+                    "gender": 2,
+                    "ivs": [
+                        19,
+                        31,
+                        26,
+                        18,
+                        31,
+                        31
+                    ],
+                    "level": 1,
+                    "nature": 17,
+                    "pid": 2452903364,
+                    "shiny": 0,
+                    "stats": [
+                        13,
+                        7,
+                        7,
+                        7,
+                        7,
+                        6
+                    ]
+                },
+                {
+                    "ability": 0,
+                    "abilityIndex": 93,
+                    "advances": 3,
+                    "characteristic": 26,
+                    "ec": 2452903364,
+                    "gender": 2,
+                    "ivs": [
+                        31,
+                        31,
+                        25,
+                        27,
+                        31,
+                        16
+                    ],
+                    "level": 1,
+                    "nature": 5,
+                    "pid": 715243415,
+                    "shiny": 0,
+                    "stats": [
+                        13,
+                        6,
+                        7,
+                        7,
+                        7,
+                        7
+                    ]
+                },
+                {
+                    "ability": 0,
+                    "abilityIndex": 93,
+                    "advances": 4,
+                    "characteristic": 26,
+                    "ec": 715243415,
+                    "gender": 2,
+                    "ivs": [
+                        31,
+                        31,
+                        25,
+                        27,
+                        31,
+                        16
+                    ],
+                    "level": 1,
+                    "nature": 5,
+                    "pid": 3067672975,
+                    "shiny": 0,
+                    "stats": [
+                        13,
+                        6,
+                        7,
+                        7,
+                        7,
+                        7
+                    ]
+                },
+                {
+                    "ability": 0,
+                    "abilityIndex": 93,
+                    "advances": 5,
+                    "characteristic": 6,
+                    "ec": 3067672975,
+                    "gender": 2,
+                    "ivs": [
+                        31,
+                        31,
+                        25,
+                        27,
+                        31,
+                        16
+                    ],
+                    "level": 1,
+                    "nature": 5,
+                    "pid": 249593662,
+                    "shiny": 0,
+                    "stats": [
+                        13,
+                        6,
+                        7,
+                        7,
+                        7,
+                        7
+                    ]
+                },
+                {
+                    "ability": 0,
+                    "abilityIndex": 93,
+                    "advances": 6,
+                    "characteristic": 26,
+                    "ec": 249593662,
+                    "gender": 2,
+                    "ivs": [
+                        31,
+                        27,
+                        16,
+                        12,
+                        31,
+                        31
+                    ],
+                    "level": 1,
+                    "nature": 16,
+                    "pid": 3200942419,
+                    "shiny": 0,
+                    "stats": [
+                        13,
+                        7,
+                        6,
+                        7,
+                        7,
+                        7
+                    ]
+                },
+                {
+                    "ability": 0,
+                    "abilityIndex": 93,
+                    "advances": 7,
+                    "characteristic": 16,
+                    "ec": 3200942419,
+                    "gender": 2,
+                    "ivs": [
+                        31,
+                        12,
+                        0,
+                        15,
+                        31,
+                        31
+                    ],
+                    "level": 1,
+                    "nature": 3,
+                    "pid": 422632474,
+                    "shiny": 0,
+                    "stats": [
+                        13,
+                        7,
+                        7,
+                        6,
+                        7,
+                        7
+                    ]
+                },
+                {
+                    "ability": 0,
+                    "abilityIndex": 93,
+                    "advances": 8,
+                    "characteristic": 26,
+                    "ec": 422632474,
+                    "gender": 2,
+                    "ivs": [
+                        31,
+                        30,
+                        0,
+                        21,
+                        31,
+                        31
+                    ],
+                    "level": 1,
+                    "nature": 24,
+                    "pid": 3906296370,
+                    "shiny": 0,
+                    "stats": [
+                        13,
+                        7,
+                        7,
+                        7,
+                        7,
+                        7
+                    ]
+                },
+                {
+                    "ability": 0,
+                    "abilityIndex": 93,
+                    "advances": 9,
+                    "characteristic": 1,
+                    "ec": 3906296370,
+                    "gender": 2,
+                    "ivs": [
+                        31,
+                        30,
+                        0,
+                        21,
+                        31,
+                        31
+                    ],
+                    "level": 1,
+                    "nature": 24,
+                    "pid": 1698808217,
+                    "shiny": 0,
+                    "stats": [
+                        13,
+                        7,
+                        7,
+                        7,
+                        7,
+                        7
+                    ]
+                }
+            ]
+        }
+    ]
+}

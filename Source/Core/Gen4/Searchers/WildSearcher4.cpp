@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -21,40 +21,116 @@
 #include <Core/Enum/Encounter.hpp>
 #include <Core/Enum/Lead.hpp>
 #include <Core/Enum/Method.hpp>
+#include <Core/Gen4/States/WildState4.hpp>
+#include <Core/Parents/PersonalInfo.hpp>
 #include <Core/Parents/Slot.hpp>
-#include <Core/Parents/States/WildState.hpp>
 #include <Core/RNG/LCRNG.hpp>
+#include <Core/RNG/LCRNGReverse.hpp>
 #include <Core/Util/EncounterSlot.hpp>
 
-constexpr u8 genderThreshHolds[5] = { 0, 0x96, 0xC8, 0x4B, 0x32 };
-
-WildSearcher4::WildSearcher4(u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter) :
-    WildSearcher(tid, sid, genderRatio, method, filter), cache(method), searching(false), progress(0)
+static u8 getGender(u32 pid, const PersonalInfo *info)
 {
+    switch (info->getGender())
+    {
+    case 255: // Genderless
+        return 2;
+        break;
+    case 254: // Female
+        return 1;
+        break;
+    case 0: // Male
+        return 0;
+        break;
+    default: // Random gender
+        return (pid & 255) < info->getGender();
+        break;
+    }
 }
 
-void WildSearcher4::setEncounterArea(const EncounterArea4 &encounterArea)
+static u16 getItem(u8 rand, Lead lead, const PersonalInfo *info)
 {
-    this->encounterArea = encounterArea;
+    constexpr u8 ItemTableRange[2][2] = { { 45, 95 }, { 20, 80 } };
+
+    if (info->getItem(0) == info->getItem(1) && info->getItem(0) != 0)
+    {
+        return info->getItem(0);
+    }
+    else if (rand < ItemTableRange[lead == Lead::CompoundEyes ? 1 : 0][0])
+    {
+        return 0;
+    }
+    else if (rand < ItemTableRange[lead == Lead::CompoundEyes ? 1 : 0][1])
+    {
+        return info->getItem(0);
+    }
+    else
+    {
+        return info->getItem(1);
+    }
 }
 
-void WildSearcher4::setDelay(u32 minDelay, u32 maxDelay)
+static u8 getShiny(u32 pid, u16 tsv)
 {
-    this->minDelay = minDelay;
-    this->maxDelay = maxDelay;
+    u16 psv = (pid >> 16) ^ (pid & 0xffff);
+    if (tsv == psv)
+    {
+        return 2; // Square
+    }
+    else if ((tsv ^ psv) < 8)
+    {
+        return 1; // Star
+    }
+    else
+    {
+        return 0;
+    }
 }
 
-void WildSearcher4::setState(u32 minAdvance, u32 maxAdvance)
+WildSearcher4::WildSearcher4(u32 minAdvance, u32 maxAdvance, u32 minDelay, u32 maxDelay, Method method, Encounter encounter, Lead lead,
+                             bool shiny, const EncounterArea4 &encounterArea, const Profile4 &profile, const WildStateFilter4 &filter) :
+    WildSearcher(method, encounter, lead, encounterArea, profile, filter),
+    modifiedSlots(encounterArea.getSlots(profile.getVersion(), lead)),
+    progress(0),
+    maxAdvance(maxAdvance),
+    minAdvance(minAdvance),
+    maxDelay(maxDelay),
+    minDelay(minDelay),
+    thresh(encounterArea.getRate()),
+    safari(encounterArea.safariZone(profile.getVersion())),
+    searching(false),
+    shiny(shiny)
 {
-    this->minAdvance = minAdvance;
-    this->maxAdvance = maxAdvance;
+    if (lead == Lead::SuctionCups
+        && (encounter == Encounter::OldRod || encounter == Encounter::GoodRod || encounter == Encounter::SuperRod))
+    {
+        thresh *= 2;
+    }
+    else if (lead == Lead::ArenaTrap && encounter == Encounter::RockSmash)
+    {
+        thresh *= 2;
+    }
 }
 
-void WildSearcher4::startSearch(const std::array<u8, 6> &min, const std::array<u8, 6> &max)
+void WildSearcher4::cancelSearch()
+{
+    searching = false;
+}
+
+int WildSearcher4::getProgress() const
+{
+    return progress;
+}
+
+std::vector<WildSearcherState4> WildSearcher4::getResults()
+{
+    std::lock_guard<std::mutex> guard(mutex);
+    auto data = std::move(results);
+    return data;
+}
+
+void WildSearcher4::startSearch(const std::array<u8, 6> &min, const std::array<u8, 6> &max, u8 index)
 {
     searching = true;
-
-    thresh = encounterArea.getRate();
 
     for (u8 hp = min[0]; hp <= max[0]; hp++)
     {
@@ -73,7 +149,7 @@ void WildSearcher4::startSearch(const std::array<u8, 6> &min, const std::array<u
                                 return;
                             }
 
-                            auto states = search(hp, atk, def, spa, spd, spe);
+                            auto states = search(hp, atk, def, spa, spd, spe, index);
 
                             std::lock_guard<std::mutex> guard(mutex);
                             results.insert(results.end(), states.begin(), states.end());
@@ -86,26 +162,9 @@ void WildSearcher4::startSearch(const std::array<u8, 6> &min, const std::array<u
     }
 }
 
-void WildSearcher4::cancelSearch()
+std::vector<WildSearcherState4> WildSearcher4::search(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, u8 index) const
 {
-    searching = false;
-}
-
-std::vector<WildState> WildSearcher4::getResults()
-{
-    std::lock_guard<std::mutex> guard(mutex);
-    auto data = std::move(results);
-    return data;
-}
-
-int WildSearcher4::getProgress() const
-{
-    return progress;
-}
-
-std::vector<WildState> WildSearcher4::search(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const
-{
-    std::vector<WildState> states;
+    std::vector<WildSearcherState4> states;
 
     if (method == Method::MethodJ)
     {
@@ -115,602 +174,768 @@ std::vector<WildState> WildSearcher4::search(u8 hp, u8 atk, u8 def, u8 spa, u8 s
     {
         states = searchMethodK(hp, atk, def, spa, spd, spe);
     }
-    else if (method == Method::ChainedShiny)
+    else if (method == Method::PokeRadar)
     {
-        states = searchChainedShiny(hp, atk, def, spa, spd, spe);
+        if (shiny)
+        {
+            states = searchPokeRadarShiny(hp, atk, def, spa, spd, spe, index);
+        }
+        else
+        {
+            states = searchPokeRadar(hp, atk, def, spa, spd, spe, index);
+        }
     }
 
     return searchInitialSeeds(states);
 }
 
-std::vector<WildState> WildSearcher4::searchMethodJ(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const
+std::vector<WildSearcherState4> WildSearcher4::searchInitialSeeds(const std::vector<WildSearcherState4> &results) const
 {
-    std::vector<WildState> states;
+    std::vector<WildSearcherState4> states;
 
-    WildState state;
-    state.setIVs(hp, atk, def, spa, spd, spe);
-    state.calculateHiddenPower();
-
-    if (!filter.compareHiddenPower(state))
+    for (WildSearcherState4 result : results)
     {
-        return states;
-    }
-
-    auto seeds = cache.recoverLower16BitsIV(hp, atk, def, spa, spd, spe);
-    for (const u32 val : seeds)
-    {
-        PokeRNGR rng(val);
-        u16 high = rng.nextUShort();
-        u16 low = rng.nextUShort();
-        u32 seed = rng.next();
-
-        state.setPID(high, low);
-
-        for (const bool flag : { false, true })
-        {
-            if (flag)
-            {
-                state.setPID(state.getPID() ^ 0x80008000);
-                seed ^= 0x80000000;
-            }
-
-            PokeRNG rng2(seed);
-            rng2.advance(4);
-            u8 item = rng2.nextUShort() % 100;
-
-            state.setItem(item);
-
-            if (lead == Lead::CuteCharm)
-            {
-                auto results = cuteCharmMethodJ(state, seed);
-                states.insert(states.begin(), results.begin(), results.end());
-            }
-            else
-            {
-                if (lead == Lead::Search)
-                {
-                    auto results = cuteCharmMethodJ(state, seed);
-                    states.insert(states.begin(), results.begin(), results.end());
-                }
-
-                state.setAbility(low & 1);
-                state.setGender(low & 255, genderRatio);
-                state.setNature(state.getPID() % 25);
-                state.setShiny<8>(tsv, high ^ low);
-
-                if (!filter.comparePID(state))
-                {
-                    continue;
-                }
-
-                if (lead == Lead::None || lead == Lead::CompoundEyes)
-                {
-                    auto results = normalMethodJ(state, seed);
-                    states.insert(states.begin(), results.begin(), results.end());
-                }
-                else if (lead == Lead::Synchronize)
-                {
-                    auto results = synchMethodJ(state, seed);
-                    states.insert(states.begin(), results.begin(), results.end());
-                }
-                else if (lead == Lead::Search)
-                {
-                    auto results = normalMethodJ(state, seed);
-                    states.insert(states.begin(), results.begin(), results.end());
-                    results = synchMethodJ(state, seed);
-                    states.insert(states.begin(), results.begin(), results.end());
-                }
-            }
-        }
-    }
-
-    return states;
-}
-
-std::vector<WildState> WildSearcher4::searchMethodK(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const
-{
-    std::vector<WildState> states;
-
-    WildState state;
-    state.setIVs(hp, atk, def, spa, spd, spe);
-    state.calculateHiddenPower();
-
-    if (!filter.compareHiddenPower(state))
-    {
-        return states;
-    }
-
-    auto seeds = cache.recoverLower16BitsIV(hp, atk, def, spa, spd, spe);
-    for (const u32 val : seeds)
-    {
-        PokeRNGR rng(val);
-        u16 high = rng.nextUShort();
-        u16 low = rng.nextUShort();
-        u32 seed = rng.next();
-
-        state.setPID(high, low);
-
-        for (const bool flag : { false, true })
-        {
-            if (flag)
-            {
-                state.setPID(state.getPID() ^ 0x80008000);
-                seed ^= 0x80000000;
-            }
-
-            PokeRNG rng2(seed);
-            rng2.advance(4);
-            u8 item = rng2.nextUShort() % 100;
-
-            state.setItem(item);
-
-            if (lead == Lead::CuteCharm)
-            {
-                auto results = cuteCharmMethodK(state, seed);
-                states.insert(states.begin(), results.begin(), results.end());
-            }
-            else
-            {
-                if (lead == Lead::Search)
-                {
-                    auto results = cuteCharmMethodK(state, seed);
-                    states.insert(states.begin(), results.begin(), results.end());
-                }
-
-                state.setAbility(low & 1);
-                state.setGender(low & 255, genderRatio);
-                state.setNature(state.getPID() % 25);
-                state.setShiny<8>(tsv, high ^ low);
-
-                if (!filter.comparePID(state))
-                {
-                    continue;
-                }
-
-                if (lead == Lead::None || lead == Lead::SuctionCups || lead == Lead::CompoundEyes)
-                {
-                    auto results = normalMethodK(state, seed);
-                    states.insert(states.begin(), results.begin(), results.end());
-                }
-                else if (lead == Lead::Synchronize)
-                {
-                    auto results = synchMethodK(state, seed);
-                    states.insert(states.begin(), results.begin(), results.end());
-                }
-                else if (lead == Lead::Search)
-                {
-                    auto results = normalMethodK(state, seed);
-                    states.insert(states.begin(), results.begin(), results.end());
-                    results = synchMethodK(state, seed);
-                    states.insert(states.begin(), results.begin(), results.end());
-                }
-            }
-        }
-    }
-
-    return states;
-}
-
-std::vector<WildState> WildSearcher4::searchChainedShiny(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const
-{
-    std::vector<WildState> states;
-
-    WildState state;
-    state.setIVs(hp, atk, def, spa, spd, spe);
-    state.calculateHiddenPower();
-
-    if (!filter.compareHiddenPower(state))
-    {
-        return states;
-    }
-
-    auto seeds = cache.recoverLower16BitsIV(hp, atk, def, spa, spd, spe);
-    for (const auto &seed : seeds)
-    {
-        PokeRNGR rng(seed);
-
-        u16 low = 0;
-        for (int i = 15; i > 2; i--)
-        {
-            low |= (rng.nextUShort() & 1) << i;
-        }
-
-        u16 high = rng.nextUShort() & 7;
-        low |= rng.nextUShort() & 7;
-        high |= (tid ^ sid ^ low) & 0xfff8;
-
-        state.setPID(high, low);
-        state.setAbility(low & 1);
-        state.setGender(low & 255, genderRatio);
-        state.setNature(state.getPID() % 25);
-        state.setShiny<8>(tsv, high ^ low);
-
-        if (filter.comparePID(state))
-        {
-            state.setSeed(rng.next());
-            states.emplace_back(state);
-
-            // Sister spread shares PID
-            state.setSeed(state.getSeed() ^ 0x80000000);
-            states.emplace_back(state);
-        }
-    }
-
-    return states;
-}
-
-std::vector<WildState> WildSearcher4::searchInitialSeeds(const std::vector<WildState> &results) const
-{
-    std::vector<WildState> states;
-
-    for (WildState result : results)
-    {
-        PokeRNGR rng(result.getSeed());
-        rng.advance(minAdvance);
-
-        u32 test = rng.getSeed();
-
+        PokeRNGR rng(result.getSeed(), minAdvance);
+        u32 seed = rng.getSeed();
         for (u32 cnt = minAdvance; cnt <= maxAdvance; cnt++)
         {
-            u8 hour = (test >> 16) & 0xFF;
-            u16 delay = test & 0xFFFF;
+            u8 hour = (seed >> 16) & 0xFF;
+            u16 delay = seed & 0xFFFF;
 
             // Check if seed matches a valid gen 4 format
             if (hour < 24 && delay >= minDelay && delay <= maxDelay)
             {
-                result.setSeed(test);
+                result.setSeed(seed);
                 result.setAdvances(cnt);
                 states.emplace_back(result);
             }
 
-            test = rng.next();
+            seed = rng.next();
         }
     }
 
     return states;
 }
 
-std::vector<WildState> WildSearcher4::normalMethodJ(WildState state, u32 seed) const
+std::vector<WildSearcherState4> WildSearcher4::searchMethodJ(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const
 {
-    std::vector<WildState> states;
-    state.setLead(lead);
+    std::vector<WildSearcherState4> states;
 
-    PokeRNGR rng(seed);
-    u32 pid;
-    u16 nextRNG = seed >> 16;
-    u16 nextRNG2 = rng.nextUShort();
+    std::array<u8, 6> ivs = { hp, atk, def, spa, spd, spe };
+    bool grass = encounter == Encounter::Grass;
+    bool nibble = encounter == Encounter::OldRod || encounter == Encounter::GoodRod || encounter == Encounter::SuperRod;
 
-    do
+    u32 seeds[6];
+    int size = LCRNGReverse::recoverPokeRNGIV(hp, atk, def, spa, spd, spe, seeds, Method::Method1);
+    for (int i = 0; i < size; i++)
     {
-        if ((nextRNG / 0xa3e) == state.getNature())
+        PokeRNGR rng(seeds[i]);
+
+        PokeRNG forward(seeds[i]);
+        forward.advance(1);
+        u8 itemRand = forward.nextUShort(100);
+        u8 unownForm = encounterArea.unownForm(forward.nextUShort());
+
+        if (lead == Lead::CuteCharmF || lead == Lead::CuteCharmM)
         {
-            if (encounterMethodJ(state, rng.getSeed()))
+            u8 nature = rng.nextUShort<false>(25);
+            if (!filter.compareNature(nature))
             {
-                states.emplace_back(state);
+                continue;
+            }
+
+            if (rng.nextUShort<false>(3) != 0)
+            {
+                u16 levelRand = grass ? 0 : rng.nextUShort();
+                u8 encounterSlot = EncounterSlot::jSlot(rng.nextUShort<false>(100), encounter);
+                if (!filter.compareEncounterSlot(encounterSlot))
+                {
+                    continue;
+                }
+
+                if (!nibble || rng.nextUShort(100) < thresh)
+                {
+                    const Slot &slot = encounterArea.getPokemon(encounterSlot);
+                    const PersonalInfo *info = slot.getInfo();
+
+                    u8 buffer = 0;
+                    switch (info->getGender())
+                    {
+                    case 0:
+                    case 254:
+                    case 255:
+                        continue;
+                    default:
+                        if (lead == Lead::CuteCharmF)
+                        {
+                            buffer = 25 * ((info->getGender() / 25) + 1);
+                        }
+                        break;
+                    }
+
+                    u8 level;
+                    if (grass)
+                    {
+                        level = encounterArea.EncounterArea::calculateLevel(encounterSlot);
+                    }
+                    else
+                    {
+                        level = encounterArea.EncounterArea::calculateLevel(encounterSlot, levelRand);
+                    }
+
+                    u16 item = getItem(itemRand, lead, info);
+
+                    u8 form = 0;
+                    if (slot.getSpecie() == 201)
+                    {
+                        form = unownForm;
+                    }
+
+                    u32 pid = nature + buffer;
+                    WildSearcherState4 state(rng.next(), pid, ivs, pid & 1, getGender(pid, info), level, nature, getShiny(pid, tsv),
+                                             encounterSlot, item, slot.getSpecie(), form, info);
+                    if (filter.compareState(state))
+                    {
+                        states.emplace_back(state);
+                    }
+                }
             }
         }
+        else
+        {
+            u32 pid = rng.nextUShort() << 16;
+            pid |= rng.nextUShort();
 
-        pid = static_cast<u32>((nextRNG << 16) | nextRNG2);
-        nextRNG = rng.nextUShort();
-        nextRNG2 = rng.nextUShort();
-    } while (pid % 25 != state.getNature());
+            u8 nature = pid % 25;
+            if (!filter.compareNature(nature))
+            {
+                continue;
+            }
+
+            u8 huntNature;
+            u16 nextRNG = rng.nextUShort();
+            u16 nextRNG2 = rng.nextUShort();
+
+            do
+            {
+                PokeRNGR test(rng);
+
+                u8 encounterSlot;
+                u16 levelRand = 0;
+                bool force = false;
+                bool valid = false;
+                switch (lead)
+                {
+                case Lead::None:
+                case Lead::CompoundEyes:
+                    if ((nextRNG / 0xa3e) == nature)
+                    {
+                        if (grass)
+                        {
+                            encounterSlot = EncounterSlot::jSlot(nextRNG2 / 0x290, encounter);
+                        }
+                        else
+                        {
+                            levelRand = nextRNG2;
+                            encounterSlot = EncounterSlot::jSlot(test.nextUShort<false>(100), encounter);
+                        }
+                        valid = filter.compareEncounterSlot(encounterSlot);
+                    }
+                    break;
+                case Lead::Synchronize:
+                    if ((nextRNG / 0x8000) == 0)
+                    {
+                        if (grass)
+                        {
+                            encounterSlot = EncounterSlot::jSlot(nextRNG2 / 0x290, encounter);
+                        }
+                        else
+                        {
+                            levelRand = nextRNG2;
+                            encounterSlot = EncounterSlot::jSlot(test.nextUShort<false>(100), encounter);
+                        }
+                        valid = filter.compareEncounterSlot(encounterSlot);
+                    }
+                    else if ((nextRNG2 / 0x8000) == 1 && (nextRNG / 0xa3e) == nature)
+                    {
+                        if (grass)
+                        {
+                            encounterSlot = EncounterSlot::jSlot(test.nextUShort<false>(100), encounter);
+                        }
+                        else
+                        {
+                            levelRand = test.nextUShort();
+                            encounterSlot = EncounterSlot::jSlot(test.nextUShort<false>(100), encounter);
+                        }
+                        valid = filter.compareEncounterSlot(encounterSlot);
+                    }
+                    break;
+                case Lead::MagnetPull:
+                case Lead::Static:
+                    if ((nextRNG / 0xa3e) == nature)
+                    {
+                        u16 encounterRand;
+                        if (grass)
+                        {
+                            encounterRand = nextRNG2;
+                        }
+                        else
+                        {
+                            levelRand = nextRNG2;
+                            encounterRand = test.nextUShort();
+                        }
+
+                        if (test.nextUShort<false>(2) == 0 && !modifiedSlots.empty())
+                        {
+                            encounterSlot = modifiedSlots[encounterRand % modifiedSlots.size()];
+                        }
+                        else
+                        {
+                            encounterSlot = EncounterSlot::jSlot(encounterRand / 0x290, encounter);
+                        }
+                        valid = filter.compareEncounterSlot(encounterSlot);
+                    }
+                    break;
+                case Lead::Pressure:
+                    if ((nextRNG / 0xa3e) == nature)
+                    {
+                        force = (nextRNG2 / 0x8000) != 0;
+                        if (grass)
+                        {
+                            encounterSlot = EncounterSlot::jSlot(test.nextUShort<false>(100), encounter);
+                        }
+                        else
+                        {
+                            levelRand = test.nextUShort();
+                            encounterSlot = EncounterSlot::jSlot(test.nextUShort<false>(100), encounter);
+                        }
+                        valid = filter.compareEncounterSlot(encounterSlot);
+                    }
+                    break;
+                default:
+                    break;
+                }
+
+                if (valid && (!nibble || test.nextUShort<false>(100) < thresh))
+                {
+                    u8 level;
+                    if (encounter == Encounter::Grass)
+                    {
+                        level = encounterArea.calculateLevel<false>(encounterSlot, levelRand, force);
+                    }
+                    else
+                    {
+                        level = encounterArea.calculateLevel<true>(encounterSlot, levelRand, force);
+                    }
+
+                    const Slot &slot = encounterArea.getPokemon(encounterSlot);
+                    const PersonalInfo *info = slot.getInfo();
+                    u16 item = getItem(itemRand, lead, info);
+
+                    u8 form = 0;
+                    if (slot.getSpecie() == 201)
+                    {
+                        form = unownForm;
+                    }
+
+                    WildSearcherState4 state(test.next(), pid, ivs, pid & 1, getGender(pid, info), level, nature, getShiny(pid, tsv),
+                                             encounterSlot, item, slot.getSpecie(), form, info);
+                    if (filter.compareState(state))
+                    {
+                        states.emplace_back(state);
+                    }
+                }
+
+                huntNature = static_cast<u32>((nextRNG << 16) | nextRNG2) % 25;
+                nextRNG = rng.nextUShort();
+                nextRNG2 = rng.nextUShort();
+            } while (huntNature != nature);
+        }
+    }
 
     return states;
 }
 
-std::vector<WildState> WildSearcher4::synchMethodJ(WildState state, u32 seed) const
+std::vector<WildSearcherState4> WildSearcher4::searchMethodK(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const
 {
-    std::vector<WildState> states;
-    state.setLead(Lead::Synchronize);
+    std::vector<WildSearcherState4> states;
 
-    PokeRNGR rng(seed);
-    u32 pid;
-    u16 nextRNG = seed >> 16;
-    u16 nextRNG2 = rng.nextUShort();
+    std::array<u8, 6> ivs = { hp, atk, def, spa, spd, spe };
+    bool grass = encounter == Encounter::Grass;
+    bool nibble = encounter == Encounter::RockSmash || encounter == Encounter::OldRod || encounter == Encounter::GoodRod
+        || encounter == Encounter::SuperRod;
 
-    do
+    u32 seeds[6];
+    int size = LCRNGReverse::recoverPokeRNGIV(hp, atk, def, spa, spd, spe, seeds, Method::Method1);
+    for (int i = 0; i < size; i++)
     {
-        if ((nextRNG >> 15) == 0)
+        PokeRNGR rng(seeds[i]);
+        u8 itemRand = (PokeRNG(seeds[i]).advance(2) >> 16) % 100;
+        if (lead == Lead::CuteCharmF || lead == Lead::CuteCharmM)
         {
-            if (encounterMethodJ(state, rng.getSeed()))
+            u8 nature = rng.nextUShort(25);
+            if (!filter.compareNature(nature))
             {
-                states.emplace_back(state);
+                continue;
             }
-        }
-        else if ((nextRNG2 >> 15) == 1 && (nextRNG / 0xa3e) == state.getNature())
-        {
-            if (encounterMethodJ(state, PokeRNGR(rng.getSeed()).next()))
-            {
-                states.emplace_back(state);
-            }
-        }
 
-        pid = static_cast<u32>((nextRNG << 16) | nextRNG2);
-        nextRNG = rng.nextUShort();
-        nextRNG2 = rng.nextUShort();
-    } while (pid % 25 != state.getNature());
+            if (rng.nextUShort(3) != 0)
+            {
+                u8 encounterSlot;
+                u16 levelRand;
+                if (safari)
+                {
+                    encounterSlot = rng.nextUShort(10);
+                }
+                else if (grass)
+                {
+                    encounterSlot = EncounterSlot::kSlot(rng.nextUShort(100), encounter);
+                }
+                else
+                {
+                    levelRand = rng.nextUShort();
+                    encounterSlot = EncounterSlot::kSlot(rng.nextUShort(100), encounter);
+                }
+
+                if (!filter.compareEncounterSlot(encounterSlot))
+                {
+                    continue;
+                }
+
+                if (!nibble || rng.nextUShort(100) < thresh)
+                {
+                    const Slot &slot = encounterArea.getPokemon(encounterSlot);
+                    const PersonalInfo *info = slot.getInfo();
+
+                    u8 buffer = 0;
+                    switch (info->getGender())
+                    {
+                    case 0:
+                    case 254:
+                    case 255:
+                        continue;
+                    default:
+                        if (lead == Lead::CuteCharmF)
+                        {
+                            buffer = 25 * ((info->getGender() / 25) + 1);
+                        }
+                        break;
+                    }
+
+                    u8 level;
+                    if (grass || safari)
+                    {
+                        level = encounterArea.EncounterArea::calculateLevel(encounterSlot);
+                    }
+                    else
+                    {
+                        level = encounterArea.EncounterArea::calculateLevel(encounterSlot, levelRand);
+                    }
+
+                    u16 item = getItem(itemRand, lead, info);
+
+                    u32 pid = nature + buffer;
+                    WildSearcherState4 state(rng.next(), pid, ivs, pid & 1, getGender(pid, info), level, nature, getShiny(pid, tsv),
+                                             encounterSlot, item, slot.getSpecie(), 0, info);
+                    if (filter.compareState(state))
+                    {
+                        states.emplace_back(state);
+                    }
+                }
+            }
+        }
+        else
+        {
+            u32 pid = rng.nextUShort() << 16;
+            pid |= rng.nextUShort();
+
+            u8 nature = pid % 25;
+            if (!filter.compareNature(nature))
+            {
+                continue;
+            }
+
+            u8 huntNature;
+            u16 nextRNG = rng.nextUShort();
+            u16 nextRNG2 = rng.nextUShort();
+
+            do
+            {
+                PokeRNGR test(rng);
+
+                u8 encounterSlot;
+                u16 levelRand = 0;
+                bool force = false;
+                bool valid = false;
+                switch (lead)
+                {
+                case Lead::None:
+                case Lead::ArenaTrap:
+                case Lead::CompoundEyes:
+                case Lead::SuctionCups:
+                    if ((nextRNG % 25) == nature)
+                    {
+                        if (safari)
+                        {
+                            encounterSlot = nextRNG2 % 10;
+                        }
+                        else if (grass)
+                        {
+                            encounterSlot = EncounterSlot::kSlot(nextRNG2 % 100, encounter);
+                        }
+                        else
+                        {
+                            levelRand = nextRNG2;
+                            encounterSlot = EncounterSlot::kSlot(test.nextUShort(100), encounter);
+                        }
+                        valid = filter.compareEncounterSlot(encounterSlot);
+                    }
+                    break;
+                case Lead::Synchronize:
+                    if ((nextRNG % 2) == 0)
+                    {
+                        if (safari)
+                        {
+                            encounterSlot = nextRNG2 % 10;
+                        }
+                        else if (grass)
+                        {
+                            encounterSlot = EncounterSlot::kSlot(nextRNG2 % 100, encounter);
+                        }
+                        else
+                        {
+                            levelRand = nextRNG2;
+                            encounterSlot = EncounterSlot::kSlot(test.nextUShort(100), encounter);
+                        }
+                        valid = filter.compareEncounterSlot(encounterSlot);
+                    }
+                    else if ((nextRNG2 % 2) == 1 && (nextRNG % 25) == nature)
+                    {
+                        if (safari)
+                        {
+                            encounterSlot = test.nextUShort(10);
+                        }
+                        else if (grass)
+                        {
+                            encounterSlot = EncounterSlot::kSlot(test.nextUShort(100), encounter);
+                        }
+                        else
+                        {
+                            levelRand = test.nextUShort();
+                            encounterSlot = EncounterSlot::kSlot(test.nextUShort(100), encounter);
+                        }
+                        valid = filter.compareEncounterSlot(encounterSlot);
+                    }
+                    break;
+                case Lead::MagnetPull:
+                case Lead::Static:
+                    if ((nextRNG % 25) == nature)
+                    {
+                        u16 encounterRand;
+                        if (grass || safari)
+                        {
+                            encounterRand = nextRNG2;
+                        }
+                        else
+                        {
+                            levelRand = nextRNG2;
+                            encounterRand = test.nextUShort();
+                        }
+
+                        if (test.nextUShort(2) == 0 && !modifiedSlots.empty())
+                        {
+                            encounterSlot = modifiedSlots[encounterRand % modifiedSlots.size()];
+                        }
+                        else if (safari)
+                        {
+                            encounterSlot = encounterRand % 10;
+                        }
+                        else
+                        {
+                            encounterSlot = EncounterSlot::kSlot(encounterRand % 100, encounter);
+                        }
+                        valid = filter.compareEncounterSlot(encounterSlot);
+                    }
+                    break;
+                case Lead::Pressure:
+                    if ((nextRNG % 25) == nature)
+                    {
+                        force = (nextRNG2 % 2) != 0;
+                        if (safari)
+                        {
+                            encounterSlot = test.nextUShort(10);
+                        }
+                        else if (grass)
+                        {
+                            encounterSlot = EncounterSlot::kSlot(test.nextUShort(100), encounter);
+                        }
+                        else
+                        {
+                            levelRand = test.nextUShort();
+                            encounterSlot = EncounterSlot::kSlot(test.nextUShort(100), encounter);
+                        }
+                        valid = filter.compareEncounterSlot(encounterSlot);
+                    }
+                    break;
+                default:
+                    break;
+                }
+
+                if (valid && (!nibble || test.nextUShort(100) < thresh))
+                {
+                    u8 level;
+                    if (encounter == Encounter::Grass || safari)
+                    {
+                        level = encounterArea.calculateLevel<false>(encounterSlot, levelRand, force);
+                    }
+                    else
+                    {
+                        level = encounterArea.calculateLevel<true>(encounterSlot, levelRand, force);
+                    }
+
+                    const Slot &slot = encounterArea.getPokemon(encounterSlot);
+                    const PersonalInfo *info = slot.getInfo();
+                    u16 item = getItem(itemRand, lead, info);
+
+                    WildSearcherState4 state(test.next(), pid, ivs, pid & 1, getGender(pid, info), level, nature, getShiny(pid, tsv),
+                                             encounterSlot, item, slot.getSpecie(), 0, info);
+                    if (filter.compareState(state))
+                    {
+                        states.emplace_back(state);
+                    }
+                }
+
+                huntNature = static_cast<u32>((nextRNG << 16) | nextRNG2) % 25;
+                nextRNG = rng.nextUShort();
+                nextRNG2 = rng.nextUShort();
+            } while (huntNature != nature);
+        }
+    }
 
     return states;
 }
 
-std::vector<WildState> WildSearcher4::cuteCharmMethodJ(WildState state, u32 seed) const
+std::vector<WildSearcherState4> WildSearcher4::searchPokeRadar(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, u8 index) const
 {
-    std::vector<WildState> states;
+    std::vector<WildSearcherState4> states;
 
-    PokeRNGR rng(seed);
-    u16 high = state.getPID() >> 16;
-    u16 low = state.getPID() & 0xffff;
+    std::array<u8, 6> ivs = { hp, atk, def, spa, spd, spe };
+    const Slot &slot = encounterArea.getPokemon(index);
+    const PersonalInfo *info = slot.getInfo();
 
-    if ((low / 0x5556) != 0)
+    bool cuteCharm = false;
+    u8 buffer = 0;
+    switch (info->getGender())
     {
-        if (encounterMethodJ(state, seed))
+    case 0:
+    case 254:
+    case 255:
+        break;
+    default:
+        cuteCharm = true;
+        if (lead == Lead::CuteCharmF)
         {
-            u8 choppedPID = high / 0xa3e;
-            u8 nature = choppedPID % 25;
-            for (const u8 buffer : genderThreshHolds)
+            buffer = 25 * ((info->getGender() / 25) + 1);
+        }
+        break;
+    }
+
+    u32 seeds[6];
+    int size = LCRNGReverse::recoverPokeRNGIV(hp, atk, def, spa, spd, spe, seeds, Method::Method1);
+    for (int i = 0; i < size; i++)
+    {
+        PokeRNGR rng(seeds[i]);
+        u16 item = getItem((PokeRNG(seeds[i]).advance(2) >> 16) % 100, lead, info);
+
+        if ((lead == Lead::CuteCharmF || lead == Lead::CuteCharmM) && cuteCharm)
+        {
+            u8 nature = rng.nextUShort<false>(25);
+            if (!filter.compareNature(nature))
             {
-                if (buffer == 0)
-                {
-                    state.setLead(Lead::CuteCharmFemale);
-                }
-                else if (buffer == 0x96)
-                {
-                    state.setLead(Lead::CuteCharm50M);
-                }
-                else if (buffer == 0xc8)
-                {
-                    state.setLead(Lead::CuteCharm25M);
-                }
-                else if (buffer == 0x4b)
-                {
-                    state.setLead(Lead::CuteCharm75M);
-                }
-                else if (buffer == 0x32)
-                {
-                    state.setLead(Lead::CuteCharm875M);
-                }
+                continue;
+            }
 
-                u8 pid = choppedPID + buffer;
-                state.setPID(pid);
-                state.setAbility(pid & 1);
-                state.setGender(pid, genderRatio);
-                state.setNature(nature);
-                state.setShiny<8>(tsv, pid);
-
-                if (filter.comparePID(state))
+            if (rng.nextUShort<false>(3) != 0)
+            {
+                u32 pid = nature + buffer;
+                WildSearcherState4 state(rng.next(), pid, ivs, pid & 1, getGender(pid, info), slot.getMaxLevel(), nature,
+                                         getShiny(pid, tsv), index, item, slot.getSpecie(), 0, info);
+                if (filter.compareState(state))
                 {
                     states.emplace_back(state);
                 }
             }
         }
-    }
-
-    return states;
-}
-
-bool WildSearcher4::encounterMethodJ(WildState &state, u32 seed) const
-{
-    PokeRNGR rng(seed);
-
-    switch (encounter)
-    {
-    case Encounter::Grass:
-        state.setEncounterSlot(EncounterSlot::jSlot(seed >> 16, encounter));
-        state.setLevel(encounterArea.calcLevel(state.getEncounterSlot()));
-        state.setSeed(rng.next());
-        break;
-    case Encounter::Surfing:
-        state.setEncounterSlot(EncounterSlot::jSlot(rng.nextUShort(), encounter));
-        state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), seed >> 16));
-        state.setSeed(rng.next());
-        break;
-    case Encounter::OldRod:
-    case Encounter::GoodRod:
-    case Encounter::SuperRod:
-    {
-        u16 slot = rng.nextUShort();
-        if ((rng.nextUShort() / 656) < thresh)
-        {
-            state.setEncounterSlot(EncounterSlot::jSlot(slot, encounter));
-            state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), seed >> 16));
-            state.setSeed(rng.next());
-        }
         else
         {
-            return false;
-        }
-        break;
-    }
-    default:
-        break;
-    }
+            u32 pid = rng.nextUShort() << 16;
+            pid |= rng.nextUShort();
 
-    return filter.compareEncounterSlot(state);
-}
-
-std::vector<WildState> WildSearcher4::normalMethodK(WildState state, u32 seed) const
-{
-    std::vector<WildState> states;
-
-    PokeRNGR rng(seed);
-    u32 pid;
-    u16 nextRNG = seed >> 16;
-    u16 nextRNG2 = rng.nextUShort();
-
-    do
-    {
-        if ((nextRNG % 25) == state.getNature())
-        {
-            state.setLead(lead);
-            if (encounterMethodK(state, rng.getSeed()))
+            u8 nature = pid % 25;
+            if (!filter.compareNature(nature))
             {
-                states.emplace_back(state);
+                continue;
             }
-        }
 
-        pid = static_cast<u32>((nextRNG << 16) | nextRNG2);
-        nextRNG = rng.nextUShort();
-        nextRNG2 = rng.nextUShort();
-    } while (pid % 25 != state.getNature());
+            u8 huntNature;
+            u16 nextRNG = rng.nextUShort();
+            u16 nextRNG2 = rng.nextUShort();
 
-    return states;
-}
-
-std::vector<WildState> WildSearcher4::synchMethodK(WildState state, u32 seed) const
-{
-    std::vector<WildState> states;
-    state.setLead(Lead::Synchronize);
-
-    PokeRNGR rng(seed);
-    u32 pid;
-    u16 nextRNG = seed >> 16;
-    u16 nextRNG2 = rng.nextUShort();
-
-    do
-    {
-        if ((nextRNG & 1) == 0)
-        {
-            if (encounterMethodK(state, rng.getSeed()))
+            do
             {
-                states.emplace_back(state);
-            }
-        }
-        else if ((nextRNG2 & 1) == 1 && (nextRNG % 25) == state.getNature())
-        {
-            if (encounterMethodK(state, PokeRNGR(rng.getSeed()).next()))
-            {
-                states.emplace_back(state);
-            }
-        }
+                PokeRNGR test(rng);
 
-        pid = static_cast<u32>((nextRNG << 16) | nextRNG2);
-        nextRNG = rng.nextUShort();
-        nextRNG2 = rng.nextUShort();
-    } while (pid % 25 != state.getNature());
-
-    return states;
-}
-
-std::vector<WildState> WildSearcher4::cuteCharmMethodK(WildState state, u32 seed) const
-{
-    std::vector<WildState> states;
-
-    PokeRNGR rng(seed);
-    u16 high = state.getPID() >> 16;
-    u16 low = state.getPID() & 0xffff;
-
-    if ((low % 3) != 0)
-    {
-        if (encounterMethodK(state, seed))
-        {
-            u8 choppedPID = high % 25;
-            u8 nature = choppedPID % 25;
-            for (const u8 buffer : genderThreshHolds)
-            {
-                if (buffer == 0)
+                bool valid = false;
+                u32 seed;
+                switch (lead)
                 {
-                    state.setLead(Lead::CuteCharmFemale);
-                }
-                else if (buffer == 0x96)
-                {
-                    state.setLead(Lead::CuteCharm50M);
-                }
-                else if (buffer == 0xc8)
-                {
-                    state.setLead(Lead::CuteCharm25M);
-                }
-                else if (buffer == 0x4b)
-                {
-                    state.setLead(Lead::CuteCharm75M);
-                }
-                else if (buffer == 0x32)
-                {
-                    state.setLead(Lead::CuteCharm875M);
+                case Lead::None:
+                case Lead::CompoundEyes:
+                    if ((nextRNG / 0xa3e) == nature)
+                    {
+                        seed = test.getSeed();
+                        valid = true;
+                    }
+                    break;
+                case Lead::Synchronize:
+                    if ((nextRNG / 0x8000) == 0)
+                    {
+                        seed = test.getSeed();
+                        valid = true;
+                    }
+                    else if ((nextRNG2 / 0x8000) == 1 && (nextRNG / 0xa3e) == nature)
+                    {
+                        seed = test.next();
+                        valid = true;
+                    }
+                    break;
+                default:
+                    break;
                 }
 
-                u8 pid = choppedPID + buffer;
-                state.setPID(pid);
-                state.setAbility(pid & 1);
-                state.setGender(pid, genderRatio);
-                state.setNature(nature);
-                state.setShiny<8>(tsv, pid);
-
-                if (filter.comparePID(state))
+                if (valid)
                 {
-                    states.emplace_back(state);
+                    WildSearcherState4 state(seed, pid, ivs, pid & 1, getGender(pid, info), slot.getMaxLevel(), nature, getShiny(pid, tsv),
+                                             index, item, slot.getSpecie(), 0, info);
+                    if (filter.compareState(state))
+                    {
+                        states.emplace_back(state);
+                    }
                 }
-            }
+
+                huntNature = static_cast<u32>((nextRNG << 16) | nextRNG2) % 25;
+                nextRNG = rng.nextUShort();
+                nextRNG2 = rng.nextUShort();
+            } while (huntNature != nature);
         }
     }
 
     return states;
 }
 
-bool WildSearcher4::encounterMethodK(WildState &state, u32 seed) const
+std::vector<WildSearcherState4> WildSearcher4::searchPokeRadarShiny(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, u8 index) const
 {
-    PokeRNGR rng(seed);
+    std::vector<WildSearcherState4> states;
 
-    switch (encounter)
+    std::array<u8, 6> ivs = { hp, atk, def, spa, spd, spe };
+    const Slot &slot = encounterArea.getPokemon(index);
+    const PersonalInfo *info = slot.getInfo();
+
+    bool cuteCharm = false;
+    switch (info->getGender())
     {
-    case Encounter::Grass:
-        state.setEncounterSlot(EncounterSlot::kSlot(seed >> 16, encounter));
-        state.setLevel(encounterArea.calcLevel(state.getEncounterSlot()));
-        state.setSeed(rng.next());
-        break;
-    case Encounter::Surfing:
-    case Encounter::BugCatchingContest:
-        state.setEncounterSlot(EncounterSlot::kSlot(rng.nextUShort(), encounter));
-        state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), seed >> 16));
-        state.setSeed(rng.next());
-        break;
-    case Encounter::OldRod:
-    case Encounter::GoodRod:
-    case Encounter::SuperRod:
-    {
-        u16 slot = rng.nextUShort();
-        u16 nibble = rng.nextUShort() % 100;
-        if (nibble < thresh)
-        {
-            state.setEncounterSlot(EncounterSlot::kSlot(slot, encounter));
-            state.setLevel(encounterArea.calcLevel(state.getEncounterSlot()));
-            state.setSeed(rng.next());
-        }
-        else if (nibble < (thresh << 1) && (lead == Lead::SuctionCups || lead == Lead::Search))
-        {
-            state.setLead(Lead::SuctionCups);
-            state.setEncounterSlot(EncounterSlot::kSlot(slot, encounter));
-            state.setLevel(encounterArea.calcLevel(state.getEncounterSlot()));
-            state.setSeed(rng.next());
-        }
-        else
-        {
-            return false;
-        }
-    }
-    break;
-    case Encounter::RockSmash:
-    {
-        u16 slot = rng.nextUShort();
-        if ((rng.nextUShort() % 100) < thresh)
-        {
-            state.setEncounterSlot(EncounterSlot::kSlot(slot, encounter));
-            state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), seed >> 16));
-            state.setSeed(rng.next());
-        }
-        else
-        {
-            return false;
-        }
-    }
-    break;
-    case Encounter::Headbutt:
-        state.setEncounterSlot(EncounterSlot::kSlot(rng.nextUShort(), encounter));
-        state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), seed >> 16));
-        state.setSeed(rng.next());
+    case 0:
+    case 254:
+    case 255:
         break;
     default:
+        cuteCharm = true;
         break;
     }
 
-    return filter.compareEncounterSlot(state);
+    auto cuteCharmCheck = [this](const PersonalInfo *info, u32 pid) {
+        if (lead == Lead::CuteCharmF)
+        {
+            return (pid & 0xff) >= info->getGender();
+        }
+        return (pid & 0xff) < info->getGender();
+    };
+
+    u32 seeds[6];
+    int size = LCRNGReverse::recoverPokeRNGIV(hp, atk, def, spa, spd, spe, seeds, Method::Method1);
+    for (int i = 0; i < size; i++)
+    {
+        PokeRNGR rng(seeds[i]);
+        u16 item = getItem((PokeRNG(seeds[i]).advance(2) >> 16) % 100, lead, info);
+
+        auto shinyPID = [this](PokeRNGR &rng) {
+            u16 low = 0;
+            for (int j = 15; j > 2; j--)
+            {
+                low |= rng.nextUShort(2) << j;
+            }
+            u16 high = rng.nextUShort(8);
+            low |= rng.nextUShort(8);
+            high |= (low ^ tsv) & 0xfff8;
+            return static_cast<u32>(high << 16) | low;
+        };
+
+        u32 pid = shinyPID(rng);
+        u8 nature = pid % 25;
+        if (!filter.compareNature(nature))
+        {
+            continue;
+        }
+
+        if (lead == Lead::Synchronize || (cuteCharm && (lead == Lead::CuteCharmF || lead == Lead::CuteCharmM)))
+        {
+            u8 huntNature;
+            u8 gender = (pid & 0xff) < info->getGender();
+            do
+            {
+                PokeRNGR test(rng);
+
+                bool valid = false;
+                if (lead == Lead::Synchronize)
+                {
+                    valid = test.nextUShort<false>(2) == 0;
+                }
+                else
+                {
+                    valid = test.nextUShort<false>(3) != 0 && cuteCharmCheck(info, pid);
+                }
+
+                if (valid)
+                {
+                    WildSearcherState4 state(test.next(), pid, ivs, pid & 1, getGender(pid, info), slot.getMaxLevel(), nature,
+                                             getShiny(pid, tsv), index, item, slot.getSpecie(), 0, info);
+                    if (filter.compareState(state))
+                    {
+                        states.emplace_back(state);
+                    }
+                }
+
+                u32 huntPID = shinyPID(rng);
+                huntNature = huntPID % 25;
+                if (lead == Lead::CuteCharmF || lead == Lead::CuteCharmM)
+                {
+                    if (gender == ((huntPID & 0xff) < info->getGender()))
+                    {
+                        break;
+                    }
+                }
+            } while (huntNature != nature);
+        }
+        else
+        {
+            WildSearcherState4 state(rng.next(), pid, ivs, pid & 1, getGender(pid, info), slot.getMaxLevel(), nature, getShiny(pid, tsv),
+                                     index, item, slot.getSpecie(), 0, info);
+            if (filter.compareState(state))
+            {
+                states.emplace_back(state);
+            }
+        }
+    }
+
+    return states;
 }

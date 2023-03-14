@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -19,15 +19,22 @@
 
 #include "DenLoader.hpp"
 #include <Core/Parents/PersonalLoader.hpp>
-#include <Core/Resources/Encounters.hpp>
+#include <Core/Resources/EncounterData8.hpp>
 #include <algorithm>
 #include <fstream>
 #include <nlohmann/json.hpp>
 
 using json = nlohmann::json;
 
+struct DenInfo
+{
+    u64 hash[2];
+    u8 location;
+    u16 coordinate[2];
+};
+
 // Normal hash, rare hash, location, x, y
-constexpr u64 denInfo[276][5] = {
+constexpr DenInfo denInfo[276] = {
     { 0x173f0456dc5dfc52, 0xba83e1671012ebcd, 12, 185, 977 }, // 16 52
     { 0x17458556dc634333, 0xba8745671015cb90, 12, 125, 1005 }, // 37 64
     { 0x17458b56dc634d65, 0x450421d99cf882c1, 12, 114, 936 }, // 31 90
@@ -306,10 +313,7 @@ constexpr u64 denInfo[276][5] = {
     { 0x42b21efc37c7b974, 0x9d415f6a7a841dd9, 43, 0, 0 }, // 176 177
 };
 
-namespace
-{
-    DenEvent event;
-};
+static DenEvent event;
 
 namespace DenLoader
 {
@@ -321,16 +325,16 @@ namespace DenLoader
             json j = json::parse(read, nullptr, false);
             if (!j.is_discarded())
             {
-                nlohmann::json table = j["Tables"];
-                nlohmann::json swordEntries = table[0]["Entries"];
-                nlohmann::json shieldEntries = table[1]["Entries"];
+                json table = j["Tables"];
+                json swordEntries = table[0]["Entries"];
+                json shieldEntries = table[1]["Entries"];
 
                 std::vector<Raid> swordRaids;
                 for (auto raid : swordEntries)
                 {
                     u8 ability = raid["Ability"].get<u8>();
                     u8 altform = raid["AltForm"].get<u8>();
-                    u8 shinyType = raid["ShinyForced"].get<u8>();
+                    auto shiny = raid["ShinyForced"].get<Shiny>();
                     u8 ivCount = raid["FlawlessIVs"].get<u8>();
                     u8 gender = raid["Gender"].get<u8>();
                     bool gigantamax = raid["IsGigantamax"].get<bool>();
@@ -342,11 +346,9 @@ namespace DenLoader
                         stars[i] = raid["Probabilities"][i].get<u8>() > 0;
                     }
 
-                    if (std::any_of(std::begin(stars), std::end(stars), [](bool flag) { return flag; }))
+                    if (std::any_of(stars.begin(), stars.end(), [](bool flag) { return flag; }))
                     {
-                        swordRaids.emplace_back(ability, altform, ivCount, gender, gigantamax, species,
-                                                PersonalLoader::getPersonal(Game::SwSh, species, altform), stars,
-                                                static_cast<Shiny>(shinyType));
+                        swordRaids.emplace_back(species, altform, shiny, ability, gender, ivCount, gigantamax, stars);
                     }
                 }
 
@@ -355,7 +357,7 @@ namespace DenLoader
                 {
                     u8 ability = raid["Ability"].get<u8>();
                     u8 altform = raid["AltForm"].get<u8>();
-                    u8 shinyType = raid["ShinyForced"].get<u8>();
+                    auto shiny = raid["ShinyForced"].get<Shiny>();
                     u8 ivCount = raid["FlawlessIVs"].get<u8>();
                     u8 gender = raid["Gender"].get<u8>();
                     bool gigantamax = raid["IsGigantamax"].get<bool>();
@@ -367,11 +369,9 @@ namespace DenLoader
                         stars[i] = raid["Probabilities"][i].get<u8>() > 0;
                     }
 
-                    if (std::any_of(std::begin(stars), std::end(stars), [](bool flag) { return flag; }))
+                    if (std::any_of(stars.begin(), stars.end(), [](bool flag) { return flag; }))
                     {
-                        shieldRaids.emplace_back(ability, altform, ivCount, gender, gigantamax, species,
-                                                 PersonalLoader::getPersonal(Game::SwSh, species, altform), stars,
-                                                 static_cast<Shiny>(shinyType));
+                        shieldRaids.emplace_back(species, altform, shiny, ability, gender, ivCount, gigantamax, stars);
                     }
                 }
 
@@ -380,25 +380,25 @@ namespace DenLoader
         }
     }
 
-    Den getDen(u16 index, u8 rarity)
+    const Den *getDen(u16 index, u8 rarity)
     {
-        u64 tableHash = denInfo[index][rarity];
+        u64 tableHash = denInfo[index].hash[rarity];
         auto it = std::lower_bound(nests.begin(), nests.end(), tableHash, [](const Den &den, u64 hash) { return den.getHash() < hash; });
-        return *it;
+        return std::addressof(*it);
     }
 
-    DenEvent getEvent()
+    const DenEvent *getEvent()
     {
-        return event;
+        return &event;
     }
 
     u8 getLocation(u16 index)
     {
-        return static_cast<u8>(denInfo[index][2]);
+        return denInfo[index].location;
     }
 
     std::array<u16, 2> getCoordinates(u16 index)
     {
-        return { static_cast<u16>(denInfo[index][3]), static_cast<u16>(denInfo[index][4]) };
+        return { denInfo[index].coordinate[0], denInfo[index].coordinate[1] };
     }
 };

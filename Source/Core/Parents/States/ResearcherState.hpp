@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -20,95 +20,113 @@
 #ifndef RESEARCHERSTATE_HPP
 #define RESEARCHERSTATE_HPP
 
-#include <Core/Util/Global.hpp>
+#include <Core/Global.hpp>
 
+/**
+ * @brief Contains the information to display custom calculations for PRNG states
+ */
 class ResearcherState
 {
 public:
-    ResearcherState(bool rng64Bit, u32 advances) : custom {}, rng64Bit(rng64Bit), advances(advances)
+    /**
+     * @brief Construct a new ResearcherState object
+     *
+     * @param advances State advances
+     * @param prng State PRNG value
+     * @param rng64Bit Whether value was generated from a 64bit RNG
+     */
+    ResearcherState(u32 advances, u64 prng, bool rng64Bit) : prng(prng), advances(advances), rng64Bit(rng64Bit)
     {
     }
 
-    u64 getState() const
-    {
-        return state;
-    }
-
-    void setState(u64 seed)
-    {
-        state = seed;
-    }
-
+    /**
+     * @brief Returns the advances of the state
+     *
+     * @return State advances
+     */
     u32 getAdvances() const
     {
         return advances;
     }
 
+    /**
+     * @brief Returns the custom value at \p index
+     *
+     * @param index Custom index
+     *
+     * @return Custom value
+     */
     u64 getCustom(u8 index) const
     {
         return custom[index];
     }
 
-    void setCustom(u8 index, u64 val)
-    {
-        custom[index] = val;
-    }
-
+    /**
+     * @brief Computes the high 32bits of the PRNG value
+     *
+     * @return Computed value
+     */
     u32 getHigh32() const
     {
-        return state >> 32;
+        return prng >> 32;
     }
 
-    u32 getLow32() const
-    {
-        return state & 0xffffffff;
-    }
-
+    /**
+     * @brief Computes the high 16bits of the PRNG value
+     *
+     * @return Computed value
+     */
     u32 getHigh16() const
     {
-        return rng64Bit ? getHigh32() >> 16 : state >> 16;
+        return rng64Bit ? getHigh32() >> 16 : prng >> 16;
     }
 
+    /**
+     * @brief Computes the low 32bits of the PRNG value
+     *
+     * @return Computed value
+     */
+    u32 getLow32() const
+    {
+        return prng & 0xffffffff;
+    }
+
+    /**
+     * @brief Computes the low 16bits of the PRNG value
+     *
+     * @return Computed value
+     */
     u32 getLow16() const
     {
-        return rng64Bit ? getHigh32() & 0xFFFF : state & 0xFFFF;
+        return rng64Bit ? getHigh32() & 0xFFFF : prng & 0xFFFF;
     }
 
-    u32 getMod25() const
+    /**
+     * @brief Returns the PRNG value of the state
+     *
+     * @return PRNG value
+     */
+    u64 getPRNG() const
     {
-        return rng64Bit ? getHigh32() % 25 : getHigh16() % 25;
+        return prng;
     }
 
-    u32 getMod100() const
+    /**
+     * @brief Sets the custom value at \p index
+     *
+     * @param index Custom index
+     * @param custom Custom value
+     */
+    void setCustom(u8 index, u64 custom)
     {
-        return rng64Bit ? getHigh32() % 100 : getHigh16() % 100;
-    }
-
-    u32 getMod3() const
-    {
-        return rng64Bit ? getHigh32() % 3 : getHigh16() % 3;
-    }
-
-    u32 getDiv656() const
-    {
-        return getHigh16() / 656;
-    }
-
-    u32 getHighBit() const
-    {
-        return rng64Bit ? getHigh32() >> 31 : getHigh16() >> 15;
-    }
-
-    u32 getLowBit() const
-    {
-        return rng64Bit ? getHigh32() & 1 : getHigh16() & 1;
+        this->custom[index] = custom;
     }
 
 private:
     u64 custom[10];
-    bool rng64Bit;
-    u64 state;
+    u64 prng;
     u32 advances;
+    bool rng64Bit;
 };
 
 #endif // RESEARCHERSTATE_HPP

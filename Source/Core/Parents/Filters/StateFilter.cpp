@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -18,61 +18,38 @@
  */
 
 #include "StateFilter.hpp"
-#include <Core/Parents/States/State.hpp>
-#include <Core/Parents/States/WildState.hpp>
 
 StateFilter::StateFilter(u8 gender, u8 ability, u8 shiny, bool skip, const std::array<u8, 6> &min, const std::array<u8, 6> &max,
-                         const std::vector<bool> &natures, const std::vector<bool> &powers, const std::vector<bool> &encounters) :
-    min(min), max(max), gender(gender), ability(ability), natures(natures), powers(powers), encounters(encounters), shiny(shiny), skip(skip)
+                         const std::array<bool, 25> &natures, const std::array<bool, 16> &powers) :
+    natures(natures), powers(powers), max(max), min(min), skip(skip), ability(ability), gender(gender), shiny(shiny)
 {
 }
 
-bool StateFilter::compareState(const State &state) const
+bool StateFilter::compareAbility(u8 ability) const
 {
-    return comparePID(state) && compareIVs(state);
+    return skip || this->ability == 255 || this->ability == ability;
 }
 
-bool StateFilter::comparePID(const State &state) const
+bool StateFilter::compareGender(u8 gender) const
 {
-    return compareShiny(state) && compareAbility(state) && compareGender(state) && compareNature(state);
+    return skip || this->gender == 255 || this->gender == gender;
 }
 
-bool StateFilter::compareIVs(const State &state) const
+bool StateFilter::compareHiddenPower(u8 hiddenPower) const
 {
-    return compareHiddenPower(state) && compareIV(state);
+    return skip || powers[hiddenPower];
 }
 
-bool StateFilter::compareAbility(const State &state) const
-{
-    return skip || ability == 255 || ability == state.getAbility();
-}
-
-bool StateFilter::compareGender(const State &state) const
-{
-    return skip || gender == 255 || gender == state.getGender();
-}
-
-bool StateFilter::compareNature(const State &state) const
-{
-    return skip || natures[state.getNature()];
-}
-
-bool StateFilter::compareShiny(const State &state) const
-{
-    return skip || shiny == 255 || (shiny & state.getShiny());
-}
-
-bool StateFilter::compareIV(const State &state) const
+bool StateFilter::compareIV(std::array<u8, 6> ivs) const
 {
     if (skip)
     {
         return true;
     }
 
-    for (u8 i = 0; i < 6; i++)
+    for (int i = 0; i < 6; i++)
     {
-        u8 iv = state.getIV(i);
-
+        u8 iv = ivs[i];
         if (iv < min[i] || iv > max[i])
         {
             return false;
@@ -82,12 +59,24 @@ bool StateFilter::compareIV(const State &state) const
     return true;
 }
 
-bool StateFilter::compareHiddenPower(const State &state) const
+bool StateFilter::compareNature(u8 nature) const
 {
-    return skip || powers[state.getHidden()];
+    return skip || natures[nature];
 }
 
-bool StateFilter::compareEncounterSlot(const WildState &state) const
+bool StateFilter::compareShiny(u8 shiny) const
 {
-    return skip || encounters[state.getEncounterSlot()];
+    return skip || this->shiny == 255 || (this->shiny & shiny);
+}
+
+WildStateFilter::WildStateFilter(u8 gender, u8 ability, u8 shiny, bool skip, const std::array<u8, 6> &min, const std::array<u8, 6> &max,
+                                 const std::array<bool, 25> &natures, const std::array<bool, 16> &powers,
+                                 const std::array<bool, 12> &encounterSlots) :
+    StateFilter(gender, ability, shiny, skip, min, max, natures, powers), encounterSlots(encounterSlots)
+{
+}
+
+bool WildStateFilter::compareEncounterSlot(u8 encounterSlot) const
+{
+    return skip || encounterSlots[encounterSlot];
 }

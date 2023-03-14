@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,28 +24,34 @@
 #include <Core/RNG/LCRNG64.hpp>
 #include <Core/Util/DateTime.hpp>
 
-inline u32 changeEndian(u32 val)
+consteval std::array<u8, 100> computeBCDTable()
 {
-    val = ((val << 8) & 0xFF00FF00) | ((val >> 8) & 0xFF00FF);
+    std::array<u8, 100> data;
+
+    for (int i = 0; i < data.size(); i++)
+    {
+        data[i] = ((i / 10) << 4) + (i % 10);
+    }
+
+    return data;
+}
+
+constexpr std::array<u8, 100> bcd = computeBCDTable();
+
+static inline u32 changeEndian(u32 val)
+{
+    val = ((val << 8) & 0xff00ff00) | ((val >> 8) & 0xff00ff);
     return (val << 16) | (val >> 16);
 }
 
-inline u32 rotateLeft(u32 val, u8 count)
+static inline u32 rotateLeft(u32 val, u8 count)
 {
     return (val << count) | (val >> (32 - count));
 }
 
-inline u32 rotateRight(u32 val, u8 count)
+static inline u32 rotateRight(u32 val, u8 count)
 {
     return (val << (32 - count)) | (val >> count);
-}
-
-inline u8 bcd(u8 value)
-{
-    u8 tens = value / 10;
-    u8 ones = value % 10;
-
-    return static_cast<u8>(tens << 4) | ones;
 }
 
 SHA1::SHA1(const Profile5 &profile) :
@@ -59,7 +65,7 @@ SHA1::SHA1(Game version, Language language, DSType type, u64 mac, bool softReset
     auto nazos = Nazos::getNazo(version, language, type);
     std::copy(nazos.begin(), nazos.end(), data);
 
-    data[6] = mac & 0xFFFF;
+    data[6] = mac & 0xffff;
     if (softReset)
     {
         data[6] ^= 0x01000000;
@@ -71,13 +77,13 @@ SHA1::SHA1(Game version, Language language, DSType type, u64 mac, bool softReset
     data[11] = 0;
     data[13] = 0x80000000;
     data[14] = 0;
-    data[15] = 0x000001A0;
+    data[15] = 0x000001a0;
 
     // Precompute data[18]
     data[18] = rotateLeft(data[15] ^ data[10] ^ data[4] ^ data[2], 1);
 }
 
-u64 SHA1::hashSeed()
+u64 SHA1::hashSeed(const std::array<u32, 5> &alpha)
 {
     u32 a = alpha[0];
     u32 b = alpha[1];
@@ -87,19 +93,19 @@ u64 SHA1::hashSeed()
     u32 t;
 
     auto section1Calc = [](const u32 &a, u32 &b, const u32 &c, const u32 &d, const u32 &e, u32 &t, const u32 &input) {
-        t = rotateLeft(a, 5) + ((b & c) | (~b & d)) + e + 0x5A827999 + input;
+        t = rotateLeft(a, 5) + ((b & c) | (~b & d)) + e + 0x5a827999 + input;
         b = rotateRight(b, 2);
     };
     auto section2Calc = [](const u32 &a, u32 &b, const u32 &c, const u32 &d, const u32 &e, u32 &t, const u32 &input) {
-        t = rotateLeft(a, 5) + (b ^ c ^ d) + e + 0x6ED9EBA1 + input;
+        t = rotateLeft(a, 5) + (b ^ c ^ d) + e + 0x6ed9eba1 + input;
         b = rotateRight(b, 2);
     };
     auto section3Calc = [](const u32 &a, u32 &b, const u32 &c, const u32 &d, const u32 &e, u32 &t, const u32 &input) {
-        t = rotateLeft(a, 5) + ((b & c) | ((b | c) & d)) + e + 0x8F1BBCDC + input;
+        t = rotateLeft(a, 5) + ((b & c) | ((b | c) & d)) + e + 0x8f1bbcdc + input;
         b = rotateRight(b, 2);
     };
     auto section4Calc = [](const u32 &a, u32 &b, const u32 &c, const u32 &d, const u32 &e, u32 &t, const u32 &input) {
-        t = rotateLeft(a, 5) + (b ^ c ^ d) + e + 0xCA62C1D6 + input;
+        t = rotateLeft(a, 5) + (b ^ c ^ d) + e + 0xca62c1d6 + input;
         b = rotateRight(b, 2);
     };
 
@@ -195,24 +201,23 @@ u64 SHA1::hashSeed()
     section4Calc(c, d, e, t, a, b, calcWSIMD(79));
 
     u64 part1 = changeEndian(b + 0x67452301);
-    u64 part2 = changeEndian(c + 0xEFCDAB89);
+    u64 part2 = changeEndian(c + 0xefcdab89);
 
     u64 seed = (part2 << 32) | part1;
     return BWRNG(seed).next();
 }
 
-void SHA1::precompute()
+std::array<u32, 5> SHA1::precompute()
 {
-    // For hashes computed on the same date, the first 8 rounds will be the same
     u32 a = 0x67452301;
-    u32 b = 0xEFCDAB89;
-    u32 c = 0x98BADCFE;
+    u32 b = 0xefcdab89;
+    u32 c = 0x98badcfe;
     u32 d = 0x10325476;
-    u32 e = 0xC3D2E1F0;
+    u32 e = 0xc3d2e1f0;
     u32 t;
 
     auto section1Calc = [](const u32 &a, u32 &b, const u32 &c, const u32 &d, const u32 &e, u32 &t, const u32 &input) {
-        t = rotateLeft(a, 5) + ((b & c) | (~b & d)) + e + 0x5A827999 + input;
+        t = rotateLeft(a, 5) + ((b & c) | (~b & d)) + e + 0x5a827999 + input;
         b = rotateRight(b, 2);
     };
     auto calcW = [this](int i) { data[i] = rotateLeft(data[i - 3] ^ data[i - 8] ^ data[i - 14] ^ data[i - 16], 1); };
@@ -227,12 +232,6 @@ void SHA1::precompute()
     section1Calc(t, a, b, c, d, e, data[7]);
     section1Calc(e, t, a, b, c, d, data[8]);
 
-    alpha[0] = d;
-    alpha[1] = e;
-    alpha[2] = t;
-    alpha[3] = a;
-    alpha[4] = b;
-
     // Select values will be the same for same date
     calcW(16);
     // calcW(18); Enough information is known to calculate this in the constructor
@@ -242,6 +241,20 @@ void SHA1::precompute()
     calcW(24);
     calcW(27);
     calcW(30);
+
+    return { d, e, t, a, b };
+}
+
+void SHA1::setButton(u32 button)
+{
+    data[12] = button;
+}
+
+void SHA1::setDate(const Date &date)
+{
+    auto parts = date.getParts();
+    u32 val = static_cast<u32>((bcd[parts.year - 2000] << 24) | (bcd[parts.month] << 16) | (bcd[parts.day] << 8) | date.dayOfWeek());
+    data[8] = val;
 }
 
 void SHA1::setTimer0(u32 timer0, u8 vcount)
@@ -249,23 +262,11 @@ void SHA1::setTimer0(u32 timer0, u8 vcount)
     data[5] = changeEndian(static_cast<u32>(vcount << 16) | timer0);
 }
 
-void SHA1::setDate(const Date &date)
-{
-    auto parts = date.getParts();
-    u32 val = static_cast<u32>((bcd(parts[0] - 2000) << 24) | (bcd(parts[1]) << 16) | (bcd(parts[2]) << 8) | date.dayOfWeek());
-    data[8] = val;
-}
-
 void SHA1::setTime(u8 hour, u8 minute, u8 second, DSType dsType)
 {
-    u32 h = static_cast<u32>((bcd(hour) + (hour >= 12 && dsType != DSType::DS3 ? 0x40 : 0)) << 24);
-    u32 m = static_cast<u32>(bcd(minute) << 16);
-    u32 s = static_cast<u32>(bcd(second) << 8);
+    u32 h = static_cast<u32>((bcd[hour] + (hour >= 12 && dsType != DSType::DS3 ? 0x40 : 0)) << 24);
+    u32 m = static_cast<u32>(bcd[minute] << 16);
+    u32 s = static_cast<u32>(bcd[second] << 8);
     u32 val = h | m | s;
     data[9] = val;
-}
-
-void SHA1::setButton(u32 button)
-{
-    data[12] = button;
 }

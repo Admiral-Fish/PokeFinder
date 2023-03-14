@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -20,26 +20,58 @@
 #ifndef SEEDSEARCHER_HPP
 #define SEEDSEARCHER_HPP
 
-#include <Core/Util/Global.hpp>
+#include <Core/Global.hpp>
 #include <atomic>
 #include <mutex>
 #include <vector>
 
+template <class Criteria>
 class SeedSearcher
 {
 public:
-    explicit SeedSearcher(const std::vector<u32> &criteria);
-    std::vector<u32> getInitialSeeds();
-    void cancelSearch();
-    std::vector<u32> getResults() const;
-    virtual int getProgress() const;
+    /**
+     * @brief Construct a new SeedSearcher object
+     *
+     * @param criteria Filtering data
+     */
+    SeedSearcher(const Criteria &criteria) : progress(0), criteria(criteria), searching(false)
+    {
+    }
+
+    /**
+     * @brief Cancels the running search
+     */
+    void cancelSearch()
+    {
+        searching = false;
+    }
+
+    /**
+     * @brief Returns the progress of the running search
+     *
+     * @return Progress
+     */
+    virtual int getProgress() const
+    {
+        return progress;
+    }
+
+    /**
+     * @brief Returns the states of the running search
+     *
+     * @return Vector of computed states
+     */
+    std::vector<u32> getResults() const
+    {
+        return results;
+    }
 
 protected:
-    std::vector<u32> results;
-    std::vector<u32> criteria;
-    bool searching;
-    std::atomic<u32> progress;
     std::mutex mutex;
+    std::vector<u32> results;
+    std::atomic<u32> progress;
+    Criteria criteria;
+    bool searching;
 };
 
 #endif // SEEDSEARCHER_HPP

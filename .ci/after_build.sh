@@ -3,13 +3,13 @@
 case $OS in
   linux)
   {
-    mv build/Source/Forms/PokeFinder .
+    mv build/Source/PokeFinder .
     tar czf PokeFinder-linux.tar.gz PokeFinder
     sha256sum PokeFinder-linux.tar.gz > PokeFinder-linux.tar.gz.sha256
   } ;;
   macOS)
   {
-    mv build/Source/Forms/PokeFinder.app .
+    mv build/Source/PokeFinder.app .
     PATH=$PATH:$HOME/Qt/$QTVER/macos/bin macdeployqt PokeFinder.app -no-plugins -verbose=3
 
     # Fix rpath

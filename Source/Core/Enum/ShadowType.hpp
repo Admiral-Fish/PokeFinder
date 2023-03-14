@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -20,8 +20,11 @@
 #ifndef SHADOWTYPE_HPP
 #define SHADOWTYPE_HPP
 
-#include <Core/Util/Global.hpp>
+#include <Core/Global.hpp>
 
+/**
+ * @brief Enum that encompasses different shadow pokemon types
+ */
 enum class ShadowType : u8
 {
     SingleLock,

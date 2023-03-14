@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -18,20 +18,56 @@
  */
 
 #include "StaticSearcher3.hpp"
+#include <Core/Enum/Lead.hpp>
 #include <Core/Enum/Method.hpp>
+#include <Core/Parents/PersonalInfo.hpp>
 #include <Core/Parents/States/State.hpp>
+#include <Core/Parents/StaticTemplate.hpp>
 #include <Core/RNG/LCRNG.hpp>
+#include <Core/RNG/LCRNGReverse.hpp>
 
-StaticSearcher3::StaticSearcher3(u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter) :
-    StaticSearcher(tid, sid, genderRatio, method, filter),
-    cache(method),
-    ivAdvance(method == Method::Method2 ? 1 : 0),
-    searching(false),
-    progress(0)
+static u8 getGender(u32 pid, const PersonalInfo *info)
+{
+    switch (info->getGender())
+    {
+    case 255: // Genderless
+        return 2;
+        break;
+    case 254: // Female
+        return 1;
+        break;
+    case 0: // Male
+        return 0;
+        break;
+    default: // Random gender
+        return (pid & 255) < info->getGender();
+        break;
+    }
+}
+
+static u8 getShiny(u32 pid, u16 tsv)
+{
+    u16 psv = (pid >> 16) ^ (pid & 0xffff);
+    if (tsv == psv)
+    {
+        return 2; // Square
+    }
+    else if ((tsv ^ psv) < 8)
+    {
+        return 1; // Star
+    }
+    else
+    {
+        return 0;
+    }
+}
+
+StaticSearcher3::StaticSearcher3(Method method, const Profile3 &profile, const StateFilter3 &filter) :
+    StaticSearcher(method, Lead::None, profile, filter), progress(0), ivAdvance(method == Method::Method2), searching(false)
 {
 }
 
-void StaticSearcher3::startSearch(const std::array<u8, 6> &min, const std::array<u8, 6> &max)
+void StaticSearcher3::startSearch(const std::array<u8, 6> &min, const std::array<u8, 6> &max, const StaticTemplate *staticTemplate)
 {
     searching = true;
 
@@ -52,7 +88,7 @@ void StaticSearcher3::startSearch(const std::array<u8, 6> &min, const std::array
                                 return;
                             }
 
-                            auto states = search(hp, atk, def, spa, spd, spe);
+                            auto states = search(hp, atk, def, spa, spd, spe, staticTemplate);
 
                             std::lock_guard<std::mutex> guard(mutex);
                             results.insert(results.end(), states.begin(), states.end());
@@ -70,123 +106,51 @@ void StaticSearcher3::cancelSearch()
     searching = false;
 }
 
-std::vector<State> StaticSearcher3::getResults()
+int StaticSearcher3::getProgress() const
+{
+    return progress;
+}
+
+std::vector<SearcherState> StaticSearcher3::getResults()
 {
     std::lock_guard<std::mutex> guard(mutex);
     auto data = std::move(results);
     return data;
 }
 
-int StaticSearcher3::getProgress() const
+std::vector<SearcherState> StaticSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe,
+                                                   const StaticTemplate *staticTemplate) const
 {
-    return progress;
-}
+    std::vector<SearcherState> states;
+    std::array<u8, 6> ivs = { hp, atk, def, spa, spd, spe };
+    const PersonalInfo *info = staticTemplate->getInfo();
 
-std::vector<State> StaticSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const
-{
-    switch (method)
+    u32 seeds[6];
+    int size = LCRNGReverse::recoverPokeRNGIV(hp, atk, def, spa, spd, spe, seeds, method);
+    for (int i = 0; i < size; i++)
     {
-    case Method::Method1:
-    case Method::Method2:
-    case Method::Method4:
-        return searchMethod124(hp, atk, def, spa, spd, spe);
-    case Method::Method1Reverse:
-        return searchMethod1Reverse(hp, atk, def, spa, spd, spe);
-    default:
-        return std::vector<State>();
-    }
-}
-
-std::vector<State> StaticSearcher3::searchMethod124(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const
-{
-    std::vector<State> states;
-    State state;
-
-    state.setIVs(hp, atk, def, spa, spd, spe);
-    state.calculateHiddenPower();
-
-    if (!filter.compareHiddenPower(state))
-    {
-        return states;
-    }
-
-    auto seeds = cache.recoverLower16BitsIV(hp, atk, def, spa, spd, spe);
-    for (const u32 seed : seeds)
-    {
-        // Setup normal state
-        PokeRNGR rng(seed);
-        rng.advance(ivAdvance);
-
-        u16 high = rng.nextUShort();
-        u16 low = rng.nextUShort();
-
-        state.setSeed(rng.next());
-        state.setPID(high, low);
-        state.setAbility(low & 1);
-        state.setGender(low & 255, genderRatio);
-        state.setNature(state.getPID() % 25);
-        state.setShiny<8>(tsv, high ^ low);
-
-        if (filter.comparePID(state))
+        PokeRNGR rng(seeds[i]);
+        if (ivAdvance)
         {
-            states.emplace_back(state);
+            rng.next();
         }
 
-        // Setup XORed state
-        state.setSeed(state.getSeed() ^ 0x80000000);
-        state.setPID(state.getPID() ^ 0x80008000);
-        state.setNature(state.getPID() % 25);
-        if (filter.comparePID(state))
+        u32 pid = rng.nextUShort() << 16;
+        pid |= rng.nextUShort();
+
+        u8 nature = pid % 25;
+        if (!filter.compareNature(nature))
+        {
+            continue;
+        }
+
+        SearcherState state(rng.next(), pid, ivs, pid & 1, getGender(pid, info), staticTemplate->getLevel(), nature, getShiny(pid, tsv),
+                            info);
+        if (filter.compareState(state))
         {
             states.emplace_back(state);
         }
     }
-    return states;
-}
 
-std::vector<State> StaticSearcher3::searchMethod1Reverse(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const
-{
-    std::vector<State> states;
-    State state;
-
-    state.setIVs(hp, atk, def, spa, spd, spe);
-    state.calculateHiddenPower();
-
-    if (!filter.compareHiddenPower(state))
-    {
-        return states;
-    }
-
-    auto seeds = cache.recoverLower16BitsIV(hp, atk, def, spa, spd, spe);
-    for (const u32 seed : seeds)
-    {
-        // Setup normal state
-        PokeRNGR rng(seed);
-        rng.advance(ivAdvance);
-
-        u16 low = rng.nextUShort();
-        u16 high = rng.nextUShort();
-
-        state.setSeed(rng.next());
-        state.setPID(high, low);
-        state.setAbility(low & 1);
-        state.setGender(low & 255, genderRatio);
-        state.setNature(state.getPID() % 25);
-        state.setShiny<8>(tsv, high ^ low);
-
-        if (filter.comparePID(state))
-        {
-            states.emplace_back(state);
-        }
-
-        // Setup XORed state
-        state.setPID(state.getPID() ^ 0x80008000);
-        state.setNature(state.getPID() % 25);
-        state.setSeed(state.getSeed() ^ 0x80000000);
-        if (filter.comparePID(state))
-        {
-            states.emplace_back(state);
-        }
-    }
     return states;
 }

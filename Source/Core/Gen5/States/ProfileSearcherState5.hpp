@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -20,53 +20,96 @@
 #ifndef PROFILESEARCHERSTATE5_HPP
 #define PROFILESEARCHERSTATE5_HPP
 
-#include <Core/Util/Global.hpp>
+#include <Core/Global.hpp>
 
+/**
+ * @brief Provides information to calibrate profiles
+ */
 class ProfileSearcherState5
 {
 public:
+    /**
+     * @brief Construct a new ProfileModel5 object
+     *
+     * @param seed Calibrated seed
+     * @param timer0 Calibrated Timer0
+     * @param vcount Calibrated VCount
+     * @param vframe Calibrated VFrame
+     * @param gxstat Calibrated GxStat
+     * @param second Calibrated second
+     */
     ProfileSearcherState5(u64 seed, u16 timer0, u8 vcount, u8 vframe, u8 gxstat, u8 second) :
-    seed(seed), timer0(timer0), vcount(vcount), vframe(vframe), gxstat(gxstat), second(second)
+        seed(seed), timer0(timer0), gxstat(gxstat), second(second), vcount(vcount), vframe(vframe)
     {
     }
 
-    u64 getSeed() const
-    {
-        return seed;
-    }
-
-    u16 getTimer0() const
-    {
-        return timer0;
-    }
-
-    u8 getVcount() const
-    {
-        return vcount;
-    }
-
-    u8 getVframe() const
-    {
-        return vframe;
-    }
-
-    u8 getGxstat() const
+    /**
+     * @brief Returns the calibrated GxStat
+     *
+     * @return GxStat
+     */
+    u8 getGxStat() const
     {
         return gxstat;
     }
 
+    /**
+     * @brief Returns the calibrated second
+     *
+     * @return Seconds
+     */
     u8 getSecond() const
     {
         return second;
     }
 
+    /**
+     * @brief Returns the calibrated seed
+     *
+     * @return Seed
+     */
+    u64 getSeed() const
+    {
+        return seed;
+    }
+
+    /**
+     * @brief Returns the calibrated Timer0
+     *
+     * @return Timer0
+     */
+    u16 getTimer0() const
+    {
+        return timer0;
+    }
+
+    /**
+     * @brief Returns the calibrated VCount
+     *
+     * @return VCount
+     */
+    u8 getVCount() const
+    {
+        return vcount;
+    }
+
+    /**
+     * @brief Returns the calibrated VFrame
+     *
+     * @return VFrame
+     */
+    u8 getVFrame() const
+    {
+        return vframe;
+    }
+
 private:
     u64 seed;
     u16 timer0;
-    u8 vcount;
-    u8 vframe;
     u8 gxstat;
     u8 second;
+    u8 vcount;
+    u8 vframe;
 };
 
 #endif // PROFILESEARCHERSTATE5_HPP

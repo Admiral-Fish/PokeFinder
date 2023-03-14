@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -19,6 +19,7 @@
 
 #include "ProfileLoader.hpp"
 #include <Core/Enum/DSType.hpp>
+#include <Core/Enum/Language.hpp>
 #include <Core/Gen3/Profile3.hpp>
 #include <Core/Gen4/Profile4.hpp>
 #include <Core/Gen5/Profile5.hpp>
@@ -26,33 +27,39 @@
 #include <filesystem>
 #include <fstream>
 #include <nlohmann/json.hpp>
-#include <sstream>
 
 using json = nlohmann::json;
 
-namespace
+static std::string path;
+
+/**
+ * @brief Reads provided profiles file
+ *
+ * @return json object with profile information
+ */
+static json readJson()
 {
-    std::string path;
+    json j;
 
-    json readJson()
+    std::ifstream read(path);
+    if (read.is_open())
     {
-        json j;
-
-        std::ifstream read(path);
-        if (read.is_open())
-        {
-            j = json::parse(read, nullptr, false);
-        }
-
-        return j.is_discarded() ? json() : j;
+        j = json::parse(read, nullptr, false);
     }
 
-    void writeJson(const json &j)
-    {
-        std::ofstream write(path);
-        write << j.dump();
-        write.close();
-    }
+    return j.is_discarded() ? json() : j;
+}
+
+/**
+ * @brief Writes json object with profile information to profiles file
+ *
+ * @param j json object with profile information
+ */
+static void writeJson(const json &j)
+{
+    std::ofstream write(path);
+    write << j.dump();
+    write.close();
 }
 
 namespace ProfileLoader
@@ -77,17 +84,13 @@ namespace ProfileLoader3
 {
     namespace
     {
-        Profile3 getProfile(const json &j)
-        {
-            std::string name = j.value("name", "-");
-            Game version = j.value("version", Game::LeafGreen);
-            u16 tid = j.value("tid", 0);
-            u16 sid = j.value("sid", 0);
-            u16 deadBattery = j.value("battery", false);
-
-            return Profile3(name, version, tid, sid, deadBattery);
-        }
-
+        /**
+         * @brief Converts profile to JSON
+         *
+         * @param profile Profile to convert
+         *
+         * @return Profile JSON representation
+         */
         json getJson(const Profile3 &profile)
         {
             json j;
@@ -98,6 +101,31 @@ namespace ProfileLoader3
             j["battery"] = profile.getDeadBattery();
             return j;
         }
+
+        /**
+         * @brief Converts JSON data to profile
+         *
+         * @param j JSON to convert
+         *
+         * @return Converted profile
+         */
+        Profile3 getProfile(const json &j)
+        {
+            std::string name = j.value("name", "-");
+            Game version = j.value("version", Game::Emerald);
+            u16 tid = j.value("tid", 0);
+            u16 sid = j.value("sid", 0);
+            u16 deadBattery = j.value("battery", false);
+            return Profile3(name, version, tid, sid, deadBattery);
+        }
+    }
+
+    void addProfile(const Profile3 &profile)
+    {
+        json j = readJson();
+        auto &gen3 = j["gen3"];
+        gen3.emplace_back(getJson(profile));
+        writeJson(j);
     }
 
     std::vector<Profile3> getProfiles()
@@ -109,14 +137,6 @@ namespace ProfileLoader3
         return profiles;
     }
 
-    void addProfile(const Profile3 &profile)
-    {
-        json j = readJson();
-        auto &gen3 = j["gen3"];
-        gen3.emplace_back(getJson(profile));
-        writeJson(j);
-    }
-
     void removeProfile(const Profile3 &remove)
     {
         json j = readJson();
@@ -126,7 +146,7 @@ namespace ProfileLoader3
             Profile3 profile = getProfile(gen3[i]);
             if (profile == remove)
             {
-                gen3.erase(gen3.begin() + i);
+                gen3.erase(i);
                 writeJson(j);
                 break;
             }
@@ -157,20 +177,13 @@ namespace ProfileLoader4
 {
     namespace
     {
-        Profile4 getProfile(const json &j)
-        {
-            std::string name = j.value("name", "-");
-            Game version = j.value("version", Game::Diamond);
-            u16 tid = j.value("tid", 0);
-            u16 sid = j.value("sid", 0);
-            Game dual = j.value("dual", Game::Emerald);
-            int radio = j.value("radio", 0);
-            bool radar = j.value("radar", false);
-            bool swarm = j.value("swarm", false);
-            bool dex = j.value("dex", false);
-            return Profile4(name, version, tid, sid, dual, radio, radar, swarm, dex);
-        }
-
+        /**
+         * @brief Converts profile to JSON
+         *
+         * @param profile Profile to convert
+         *
+         * @return Profile JSON representation
+         */
         json getJson(const Profile4 &profile)
         {
             json j;
@@ -178,12 +191,25 @@ namespace ProfileLoader4
             j["version"] = profile.getVersion();
             j["tid"] = profile.getTID();
             j["sid"] = profile.getSID();
-            j["dual"] = profile.getDualSlot();
-            j["radio"] = profile.getRadio();
-            j["radar"] = profile.getRadar();
-            j["swarm"] = profile.getSwarm();
             j["dex"] = profile.getNationalDex();
             return j;
+        }
+
+        /**
+         * @brief Converts JSON data to profile
+         *
+         * @param j JSON to convert
+         *
+         * @return Converted profile
+         */
+        Profile4 getProfile(const json &j)
+        {
+            std::string name = j.value("name", "-");
+            Game version = j.value("version", Game::Diamond);
+            u16 tid = j.value("tid", 0);
+            u16 sid = j.value("sid", 0);
+            bool dex = j.value("dex", false);
+            return Profile4(name, version, tid, sid, dex);
         }
     }
 
@@ -213,7 +239,7 @@ namespace ProfileLoader4
             Profile4 profile = getProfile(gen4[i]);
             if (profile == remove)
             {
-                gen4.erase(gen4.begin() + i);
+                gen4.erase(i);
                 writeJson(j);
                 break;
             }
@@ -244,14 +270,51 @@ namespace ProfileLoader5
 {
     namespace
     {
+        /**
+         * @brief Converts profile to JSON
+         *
+         * @param profile Profile to convert
+         *
+         * @return Profile JSON representation
+         */
+        json getJson(const Profile5 &profile)
+        {
+            json j;
+            j["name"] = profile.getName();
+            j["version"] = profile.getVersion();
+            j["tid"] = profile.getTID();
+            j["sid"] = profile.getSID();
+            j["mac"] = profile.getMac();
+            j["keypresses"] = profile.getKeypresses();
+            j["vcount"] = profile.getVCount();
+            j["gxstat"] = profile.getGxStat();
+            j["vframe"] = profile.getVFrame();
+            j["skipLR"] = profile.getSkipLR();
+            j["timer0Min"] = profile.getTimer0Min();
+            j["timer0Max"] = profile.getTimer0Max();
+            j["softReset"] = profile.getSoftReset();
+            j["memoryLink"] = profile.getMemoryLink();
+            j["shinyCharm"] = profile.getShinyCharm();
+            j["dsType"] = profile.getDSType();
+            j["language"] = profile.getLanguage();
+            return j;
+        }
+
+        /**
+         * @brief Converts JSON data to profile
+         *
+         * @param j JSON to convert
+         *
+         * @return Converted profile
+         */
         Profile5 getProfile(const json &j)
         {
             std::string name = j.value("name", "-");
-            Game version = j.value("version", Game::Diamond);
+            Game version = j.value("version", Game::Black);
             u16 tid = j.value("tid", 0);
             u16 sid = j.value("sid", 0);
-            u64 mac = std::stoull(j.value("mac", "000000000000"), nullptr, 16);
-            std::vector<bool> keypresses = j.value("keypresses", std::vector<bool> { false, false, false, false });
+            u64 mac = j.value("mac", 0ULL);
+            std::array<bool, 4> keypresses = j.value("keypresses", std::array<bool, 4> { false, false, false, false });
             u8 vcount = j.value("vcount", 0);
             u8 gxstat = j.value("gxstat", 0);
             u8 vframe = j.value("vframe", 0);
@@ -267,30 +330,14 @@ namespace ProfileLoader5
                             memoryLink, shinyCharm, dsType, language);
         }
 
-        json getJson(const Profile5 &profile)
-        {
-            json j;
-            j["name"] = profile.getName();
-            j["version"] = profile.getVersion();
-            j["tid"] = profile.getTID();
-            j["sid"] = profile.getSID();
-            std::stringstream stream;
-            stream << std::hex << profile.getMac();
-            j["mac"] = stream.str();
-            j["keypresses"] = profile.getKeypresses();
-            j["vcount"] = profile.getVCount();
-            j["gxstat"] = profile.getGxStat();
-            j["vframe"] = profile.getVFrame();
-            j["skipLR"] = profile.getSkipLR();
-            j["timer0Min"] = profile.getTimer0Min();
-            j["timer0Max"] = profile.getTimer0Max();
-            j["softReset"] = profile.getSoftReset();
-            j["memoryLink"] = profile.getMemoryLink();
-            j["shinyCharm"] = profile.getShinyCharm();
-            j["dsType"] = profile.getDSType();
-            j["language"] = profile.getLanguage();
-            return j;
-        }
+    }
+
+    void addProfile(const Profile5 &profile)
+    {
+        json j = readJson();
+        auto &gen5 = j["gen5"];
+        gen5.emplace_back(getJson(profile));
+        writeJson(j);
     }
 
     std::vector<Profile5> getProfiles()
@@ -302,14 +349,6 @@ namespace ProfileLoader5
         return profiles;
     }
 
-    void addProfile(const Profile5 &profile)
-    {
-        json j = readJson();
-        auto &gen5 = j["gen5"];
-        gen5.emplace_back(getJson(profile));
-        writeJson(j);
-    }
-
     void removeProfile(const Profile5 &remove)
     {
         json j = readJson();
@@ -319,7 +358,7 @@ namespace ProfileLoader5
             Profile5 profile = getProfile(gen5[i]);
             if (profile == remove)
             {
-                gen5.erase(gen5.begin() + i);
+                gen5.erase(i);
                 writeJson(j);
                 break;
             }
@@ -350,19 +389,13 @@ namespace ProfileLoader8
 {
     namespace
     {
-        Profile8 getProfile(const json &j)
-        {
-            std::string name = j.value("name", std::string("-"));
-            Game version = j.value("version", Game::Diamond);
-            u16 tid = j.value("tid", u16(0));
-            u16 sid = j.value("sid", u16(0));
-            bool shinyCharm = j.value("shinyCharm", false);
-            bool ovalCharm = j.value("ovalCharm", false);
-            bool radar = j.value("radar", false);
-            bool swarm = j.value("swarm", false);
-            return Profile8(name, version, tid, sid, shinyCharm, ovalCharm, radar, swarm);
-        }
-
+        /**
+         * @brief Converts profile to JSON
+         *
+         * @param profile Profile to convert
+         *
+         * @return Profile JSON representation
+         */
         json getJson(const Profile8 &profile)
         {
             json j;
@@ -370,12 +403,38 @@ namespace ProfileLoader8
             j["version"] = profile.getVersion();
             j["tid"] = profile.getTID();
             j["sid"] = profile.getSID();
+            j["dex"] = profile.getNationalDex();
             j["shinyCharm"] = profile.getShinyCharm();
             j["ovalCharm"] = profile.getOvalCharm();
-            j["radar"] = profile.getRadar();
-            j["swarm"] = profile.getSwarm();
             return j;
         }
+
+        /**
+         * @brief Converts JSON data to profile
+         *
+         * @param j JSON to convert
+         *
+         * @return Converted profile
+         */
+        Profile8 getProfile(const json &j)
+        {
+            std::string name = j.value("name", "-");
+            Game version = j.value("version", Game::BD);
+            u16 tid = j.value("tid", 0);
+            u16 sid = j.value("sid", 0);
+            bool dex = j.value("dex", false);
+            bool shinyCharm = j.value("shinyCharm", false);
+            bool ovalCharm = j.value("ovalCharm", false);
+            return Profile8(name, version, tid, sid, dex, shinyCharm, ovalCharm);
+        }
+    }
+
+    void addProfile(const Profile8 &profile)
+    {
+        json j = readJson();
+        auto &gen8 = j["gen8"];
+        gen8.emplace_back(getJson(profile));
+        writeJson(j);
     }
 
     std::vector<Profile8> getProfiles()
@@ -387,14 +446,6 @@ namespace ProfileLoader8
         return profiles;
     }
 
-    void addProfile(const Profile8 &profile)
-    {
-        json j = readJson();
-        auto &gen8 = j["gen8"];
-        gen8.emplace_back(getJson(profile));
-        writeJson(j);
-    }
-
     void removeProfile(const Profile8 &remove)
     {
         json j = readJson();
@@ -404,7 +455,7 @@ namespace ProfileLoader8
             Profile8 profile = getProfile(gen8[i]);
             if (profile == remove)
             {
-                gen8.erase(gen8.begin() + i);
+                gen8.erase(i);
                 writeJson(j);
                 break;
             }

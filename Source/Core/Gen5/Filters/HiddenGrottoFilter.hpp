@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -20,20 +20,36 @@
 #ifndef HIDDENGROTTOFILTER_HPP
 #define HIDDENGROTTOFILTER_HPP
 
-#include <vector>
+#include <array>
 
 class HiddenGrottoState;
 
 class HiddenGrottoFilter
 {
 public:
-    HiddenGrottoFilter(const std::vector<bool> &groups, const std::vector<bool> &encounterSlots, const std::vector<bool> &genders);
+    /**
+     * @brief Construct a new HiddenGrottoFilter object
+     *
+     * @param encounterSlots Encounter slots to filter by
+     * @param genders Genders to filter by
+     * @param groups Groups to filter by
+     */
+    HiddenGrottoFilter(const std::array<bool, 11> &encounterSlots, const std::array<bool, 2> &genders, const std::array<bool, 4> &groups);
+
+    /**
+     * @brief Determines if the \p state meets the filter criteria
+     *
+     * @param state State to compare
+     *
+     * @return true State passes the filter
+     * @return false State does not pass the filter
+     */
     bool compareState(const HiddenGrottoState &state) const;
 
 private:
-    std::vector<bool> groups;
-    std::vector<bool> encounterSlots;
-    std::vector<bool> genders;
+    std::array<bool, 11> encounterSlots;
+    std::array<bool, 2> genders;
+    std::array<bool, 4> groups;
 };
 
 #endif // HIDDENGROTTOFILTER_HPP

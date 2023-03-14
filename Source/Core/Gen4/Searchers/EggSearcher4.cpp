@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -18,15 +18,33 @@
  */
 
 #include "EggSearcher4.hpp"
+#include <Core/Enum/Method.hpp>
 #include <Core/Gen4/Generators/EggGenerator4.hpp>
 #include <Core/Gen4/States/EggState4.hpp>
 
-EggSearcher4::EggSearcher4(u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter) :
-    Searcher(tid, sid, genderRatio, method, filter), searching(false), progress(0)
+EggSearcher4::EggSearcher4(u32 minDelay, u32 maxDelay, const Profile4 &profile, const StateFilter4 &filter) :
+    Searcher(Method::None, profile, filter), progress(0), maxDelay(maxDelay), minDelay(minDelay), searching(false)
 {
 }
 
-void EggSearcher4::startSearch(u32 minDelay, u32 maxDelay, int type, const EggGenerator4 &generatorIV, const EggGenerator4 &generatorPID)
+void EggSearcher4::cancelSearch()
+{
+    searching = false;
+}
+
+int EggSearcher4::getProgress() const
+{
+    return progress;
+}
+
+std::vector<EggSearcherState4> EggSearcher4::getResults()
+{
+    std::lock_guard<std::mutex> guard(mutex);
+    auto data = std::move(results);
+    return data;
+}
+
+void EggSearcher4::startSearch(const EggGenerator4 &generator)
 {
     searching = true;
     u16 total = 0;
@@ -48,72 +66,22 @@ void EggSearcher4::startSearch(u32 minDelay, u32 maxDelay, int type, const EggGe
                     return;
                 }
 
-                std::vector<EggState4> states;
                 u32 seed = static_cast<u32>((ab << 24) | (cd << 16)) + efgh;
 
-                if (type == 0)
+                auto states = generator.generate(seed, seed);
+                if (!states.empty())
                 {
-                    states = generatorIV.generate(seed);
-                }
-                else if (type == 1)
-                {
-                    states = generatorPID.generate(seed);
-                }
-                else
-                {
-                    auto statesIV = generatorIV.generate(seed);
-                    auto statesPID = generatorPID.generate(seed);
-
-                    if (!statesIV.empty() && !statesPID.empty())
+                    std::lock_guard<std::mutex> lock(mutex);
+                    results.reserve(results.capacity() + states.size());
+                    for (const auto &state : states)
                     {
-                        for (auto statePID : statesPID)
-                        {
-                            for (const auto &stateIV : statesIV)
-                            {
-                                statePID.setIVs(stateIV.getIV(0), stateIV.getIV(1), stateIV.getIV(2), stateIV.getIV(3), stateIV.getIV(4),
-                                                stateIV.getIV(5));
-                                statePID.calculateHiddenPower();
-
-                                for (u8 i = 0; i < 6; i++)
-                                {
-                                    statePID.setInheritance(i, stateIV.getInheritance(i));
-                                }
-                                statePID.setSecondaryAdvance(stateIV.getAdvances());
-
-                                states.emplace_back(statePID);
-                            }
-                        }
+                        results.emplace_back(seed, state);
                     }
                 }
 
-                for (EggState4 &state : states)
-                {
-                    state.setInitialSeed(seed);
-                }
-
                 total += states.size();
-
-                std::lock_guard<std::mutex> guard(mutex);
-                results.insert(results.end(), states.begin(), states.end());
                 progress++;
             }
         }
     }
-}
-
-void EggSearcher4::cancelSearch()
-{
-    searching = false;
-}
-
-std::vector<EggState4> EggSearcher4::getResults()
-{
-    std::lock_guard<std::mutex> guard(mutex);
-    auto data = std::move(results);
-    return data;
-}
-
-int EggSearcher4::getProgress() const
-{
-    return progress;
 }

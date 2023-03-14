@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -20,26 +20,63 @@
 #ifndef EGGSEARCHER4_HPP
 #define EGGSEARCHER4_HPP
 
+#include <Core/Gen4/Filters/StateFilter4.hpp>
+#include <Core/Gen4/Profile4.hpp>
 #include <Core/Parents/Searchers/Searcher.hpp>
 #include <mutex>
 
 class EggGenerator4;
-class EggState4;
+class EggSearcherState4;
 
-class EggSearcher4 : public Searcher
+/**
+ * @brief Egg encounter searcher for Gen4
+ */
+class EggSearcher4 : public Searcher<Profile4, StateFilter4>
 {
 public:
-    EggSearcher4(u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter);
-    void startSearch(u32 minDelay, u32 maxDelay, int type, const EggGenerator4 &generatorIV, const EggGenerator4 &generatorPID);
+    /**
+     * @brief Construct a new EggSearcher4 object
+     *
+     * @param minDelay Minimum delay
+     * @param maxDelay Maximum delay
+     * @param profile Profile Information
+     * @param filter State filter
+     */
+    EggSearcher4(u32 minDelay, u32 maxDelay, const Profile4 &profile, const StateFilter4 &filter);
+
+    /**
+     * @brief Cancels the running search
+     */
     void cancelSearch();
-    std::vector<EggState4> getResults();
+
+    /**
+     * @brief Returns the progress of the running search
+     *
+     * @return Progress
+     */
     int getProgress() const;
 
+    /**
+     * @brief Returns the states of the running search
+     *
+     * @return Vector of computed states
+     */
+    std::vector<EggSearcherState4> getResults();
+
+    /**
+     * @brief Starts the search
+     *
+     * @param generator Egg generator
+     */
+    void startSearch(const EggGenerator4 &generator);
+
 private:
-    bool searching;
-    int progress;
-    std::vector<EggState4> results;
     std::mutex mutex;
+    std::vector<EggSearcherState4> results;
+    int progress;
+    u32 maxDelay;
+    u32 minDelay;
+    bool searching;
 };
 
 #endif // EGGSEARCHER4_HPP

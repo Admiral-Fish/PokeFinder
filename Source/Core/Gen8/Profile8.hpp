@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -23,55 +23,72 @@
 #include <Core/Enum/Game.hpp>
 #include <Core/Parents/Profile.hpp>
 
+/**
+ * @brief Provides additional storage specific to Gen8
+ */
 class Profile8 : public Profile
 {
 public:
-    Profile8(Game version = Game::Sword) :
-        Profile("-", version, 12345, 54321), shinyCharm(false), ovalCharm(false), radar(false), swarm(false)
-    {
-    }
+    /**
+     * @brief Construct a new Profile8 object
+     *
+     * @param name Profile name
+     * @param version Game version
+     * @param tid Trainer ID
+     * @param sid Secret ID
+     * @param shinyCharm Whether shiny charm is obtained
+     * @param ovalCharm Whether oval charm is obtained
+     */
+    Profile8(const std::string &name, Game version, u16 tid, u16 sid, bool dex, bool shinyCharm, bool ovalCharm);
 
-    Profile8(const std::string &name, Game version, u16 tid, u16 sid, bool shinyCharm, bool ovalCharm, bool radar, bool swarm) :
-        Profile(name, version, tid, sid), shinyCharm(shinyCharm), ovalCharm(ovalCharm), radar(radar), swarm(swarm)
-    {
-    }
+    /**
+     * @brief Get the National Dex object
+     *
+     * @return true National pokedex is obtained
+     * @return false National pokedex is not obtained
+     */
+    bool getNationalDex() const;
 
-    bool getShinyCharm() const
-    {
-        return shinyCharm;
-    }
+    /**
+     * @brief Returns whether the profile has the oval charm
+     *
+     * @return true Oval charm is obtained
+     * @return false Oval charm is not obtained
+     */
+    bool getOvalCharm() const;
 
-    bool getOvalCharm() const
-    {
-        return ovalCharm;
-    }
+    /**
+     * @brief Returns whether the profile has the shiny charm
+     *
+     * @return true Shiny charm is obtained
+     * @return false Shiny charm is not obtained
+     */
+    bool getShinyCharm() const;
 
-    bool getRadar() const
-    {
-        return radar;
-    }
+    /**
+     * @brief Checks if two profiles are equal
+     *
+     * @param other Profile to compare
+     *
+     * @return true Profiles are equal
+     * @return false Profils are not equal
+     */
+    bool operator==(const Profile8 &other) const;
 
-    bool getSwarm() const
-    {
-        return swarm;
-    }
-
-    bool operator==(const Profile8 &other) const
-    {
-        return Profile::operator==(other) && shinyCharm == other.shinyCharm && ovalCharm == other.ovalCharm && radar == other.radar
-            && swarm == other.swarm;
-    }
-
-    bool operator!=(const Profile8 &other) const
-    {
-        return !(operator==(other));
-    }
+    /**
+     * @brief Checks if two profiles are not equal
+     *
+     * @param other Profile to compare
+     *
+     * @return true Profiles are not equal
+     * @return false Profiles are equal
+     */
+    bool operator!=(const Profile8 &other) const;
 
 private:
-    bool shinyCharm;
+    bool dex;
     bool ovalCharm;
-    bool radar;
-    bool swarm;
+    bool shinyCharm;
 };
 
 #endif // PROFILE8_HPP

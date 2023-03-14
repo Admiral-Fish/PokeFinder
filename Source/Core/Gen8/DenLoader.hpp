@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -20,20 +20,60 @@
 #ifndef DENLOADER_HPP
 #define DENLOADER_HPP
 
-#include <Core/Util/Global.hpp>
+#include <Core/Global.hpp>
 #include <array>
 #include <string>
 
 class Den;
 class DenEvent;
 
+/**
+ * @brief Provides methods to get Raids from various Dens
+ */
 namespace DenLoader
 {
-    void init(const std::string &path);
-    Den getDen(u16 index, u8 rarity);
-    DenEvent getEvent();
+    /**
+     * @brief Returns the den for the \p index and \p rarity
+     *
+     * @param index Den index
+     * @param rarity Den rarity
+     *
+     * @return Den
+     */
+    const Den *getDen(u16 index, u8 rarity);
+
+    /**
+     * @brief Returns the den event initialized by init()
+     *
+     * @return Event den
+     */
+    const DenEvent *getEvent();
+
+    /**
+     * @brief Returns the location of the den
+     *
+     * @param index Den index
+     *
+     * @return Den location
+     */
     u8 getLocation(u16 index);
+
+    /**
+     * @brief Return the coordinates of the den
+     *
+     * @param index Den index
+     *
+     * @return Den coordinates
+     */
     std::array<u16, 2> getCoordinates(u16 index);
+
+    /**
+     * @brief Initalize the DenLoader with what \p path to use for events.
+     * This must be called before using getEvent().
+     *
+     * @param path Language
+     */
+    void init(const std::string &path);
 };
 
 #endif // DENLOADER_HPP

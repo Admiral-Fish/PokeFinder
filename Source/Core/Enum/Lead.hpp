@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -20,27 +20,49 @@
 #ifndef LEAD_HPP
 #define LEAD_HPP
 
-#include <Core/Util/Global.hpp>
+#include <Core/Global.hpp>
 
+/**
+ * @brief Enum to encompass different leads
+ */
 enum class Lead : u8
 {
-    None,
-    Search,
-    Synchronize,
-    CuteCharm,
-    CuteCharm50M,
-    CuteCharm75M,
-    CuteCharm25M,
-    CuteCharm875M,
-    CuteCharm50F,
-    CuteCharm75F,
-    CuteCharm25F,
-    CuteCharm125F,
-    CuteCharmFemale,
+    None = 255,
+
+    Synchronize = 0,
+    SynchronizeEnd = 25,
+
+    CuteCharmF,
+    CuteCharmM,
+
+    MagnetPull,
+    Static,
+    Harvest,
+    FlashFire,
+    StormDrain,
+
+    Pressure,
+    Hustle = Pressure,
+    VitalSpirit = Pressure,
+
     SuctionCups,
-    CompoundEyes
+    StickyHold = SuctionCups,
+
+    CompoundEyes,
+    SuperLuck = CompoundEyes,
+
+    ArenaTrap,
+    Illuminate = ArenaTrap,
+    NoGuard = ArenaTrap,
 };
 
+/**
+ * @brief Converts enum to number
+ *
+ * @param lead Input lead
+ *
+ * @return Converted number
+ */
 constexpr u8 toInt(Lead lead)
 {
     return static_cast<u8>(lead);

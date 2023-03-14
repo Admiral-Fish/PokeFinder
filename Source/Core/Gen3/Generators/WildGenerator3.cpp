@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -23,192 +23,175 @@
 #include <Core/Enum/Lead.hpp>
 #include <Core/Enum/Method.hpp>
 #include <Core/Gen3/EncounterArea3.hpp>
+#include <Core/Parents/PersonalInfo.hpp>
+#include <Core/Parents/Slot.hpp>
 #include <Core/Parents/States/WildState.hpp>
 #include <Core/RNG/LCRNG.hpp>
 #include <Core/Util/EncounterSlot.hpp>
 
-WildGenerator3::WildGenerator3(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, Method method,
-                               const StateFilter &filter, Game version) :
-    WildGenerator(initialAdvances, maxAdvances, tid, sid, genderRatio, method, filter), version(version)
+static u8 getGender(u32 pid, const PersonalInfo *info)
+{
+    switch (info->getGender())
+    {
+    case 255: // Genderless
+        return 2;
+        break;
+    case 254: // Female
+        return 1;
+        break;
+    case 0: // Male
+        return 0;
+        break;
+    default: // Random gender
+        return (pid & 255) < info->getGender();
+        break;
+    }
+}
+
+static u8 getShiny(u32 pid, u16 tsv)
+{
+    u16 psv = (pid >> 16) ^ (pid & 0xffff);
+    if (tsv == psv)
+    {
+        return 2; // Square
+    }
+    else if ((tsv ^ psv) < 8)
+    {
+        return 1; // Star
+    }
+    else
+    {
+        return 0;
+    }
+}
+
+static bool unownCheck(u32 pid, u8 form)
+{
+    u8 letter = (((pid & 0x3000000) >> 18) | ((pid & 0x30000) >> 12) | ((pid & 0x300) >> 6) | (pid & 0x3)) % 0x1C;
+    return letter == form;
+}
+
+WildGenerator3::WildGenerator3(u32 initialAdvances, u32 maxAdvances, u32 delay, Method method, Encounter encounter, Lead lead,
+                               const Profile3 &profile, const WildStateFilter3 &filter) :
+    WildGenerator(initialAdvances, maxAdvances, delay, method, encounter, lead, profile, filter)
 {
 }
 
-std::vector<WildState> WildGenerator3::generate(u32 seed, const EncounterArea3 &encounterArea) const
+std::vector<WildGeneratorState> WildGenerator3::generate(u32 seed, const EncounterArea3 &encounterArea) const
 {
-    std::vector<WildState> states;
+    std::vector<WildGeneratorState> states;
 
-    PokeRNG rng(seed);
-    rng.advance(initialAdvances + offset);
-
+    std::vector<u8> modifiedSlots = encounterArea.getSlots(profile.getVersion(), lead);
     u16 rate = encounterArea.getRate() * 16;
-    // RockSmash/Surfing/Fishing encounters have different rng calls inside RSE Safari Zone,
-    // so we set a flag to check if we're searching these kind of spreads
-    bool rseSafari = encounterArea.rseSafariZone() && (version & Game::RSE) != Game::None;
-    bool rock = (version & Game::FRLG) != Game::None;
+    bool safari = encounterArea.safariZone(profile.getVersion());
+    bool rse = (profile.getVersion() & Game::RSE) != Game::None;
 
-    bool cuteCharmFlag = false;
-    bool (*cuteCharm)(u32);
-    switch (lead)
-    {
-    case Lead::CuteCharm125F:
-        cuteCharm = [](u32 pid) { return (pid & 0xff) < 31; };
-        break;
-    case Lead::CuteCharm875M:
-        cuteCharm = [](u32 pid) { return (pid & 0xff) >= 31; };
-        break;
-    case Lead::CuteCharm25F:
-        cuteCharm = [](u32 pid) { return (pid & 0xff) < 63; };
-        break;
-    case Lead::CuteCharm75M:
-        cuteCharm = [](u32 pid) { return (pid & 0xff) >= 63; };
-        break;
-    case Lead::CuteCharm50F:
-        cuteCharm = [](u32 pid) { return (pid & 0xff) < 127; };
-        break;
-    case Lead::CuteCharm50M:
-        cuteCharm = [](u32 pid) { return (pid & 0xff) >= 127; };
-        break;
-    case Lead::CuteCharm75F:
-        cuteCharm = [](u32 pid) { return (pid & 0xff) < 191; };
-        break;
-    case Lead::CuteCharm25M:
-        cuteCharm = [](u32 pid) { return (pid & 0xff) >= 191; };
-        break;
-    default:
-        cuteCharm = [](u32 pid) {
-            (void)pid;
-            return true;
-        };
-    }
+    bool cuteCharm = false;
+    auto cuteCharmCheck = [this](const PersonalInfo *info, u32 pid) {
+        if (lead == Lead::CuteCharmF)
+        {
+            return (pid & 0xff) >= info->getGender();
+        }
+        return (pid & 0xff) < info->getGender();
+    };
 
+    PokeRNG rng(seed, initialAdvances + delay);
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rng.next())
     {
-        WildState state(initialAdvances + cnt);
-        PokeRNG go(rng.getSeed());
+        PokeRNG go(rng);
 
-        switch (encounter)
-        {
-        case Encounter::RockSmash:
-            if (rseSafari || !rock) // account RockSmash extra rng call inside RSE Safari Zone
-            {
-                go.next();
-            }
-            if ((go.nextUShort() % 2880) >= rate)
-            {
-                continue;
-            }
-
-            state.setEncounterSlot(EncounterSlot::hSlot(go.nextUShort(), encounter));
-            if (!filter.compareEncounterSlot(state))
-            {
-                continue;
-            }
-
-            state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), go.nextUShort()));
-            if (rseSafari) // account RockSmash extra rng call inside RSE Safari Zone
-            {
-                go.advance(1);
-            }
-
-            break;
-        case Encounter::Grass:
-            go.next();
-            state.setEncounterSlot(EncounterSlot::hSlot(go.nextUShort(), encounter));
-            if (!filter.compareEncounterSlot(state))
-            {
-                continue;
-            }
-
-            state.setLevel(encounterArea.calcLevel(state.getEncounterSlot()));
-            go.advance(rseSafari ? 2 : 1);
-            break;
-        case Encounter::Surfing:
-        case Encounter::OldRod:
-        case Encounter::GoodRod:
-        case Encounter::SuperRod:
-            if (!rseSafari) // account Surfing/Fishing extra rng call outside RSE Safari Zone
-            {
-                go.next();
-            }
-            state.setEncounterSlot(EncounterSlot::hSlot(go.nextUShort(), encounter));
-            if (!filter.compareEncounterSlot(state))
-            {
-                continue;
-            }
-
-            state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), go.nextUShort()));
-            if (rseSafari) // account Surfing/Fishing extra rng call inside RSE Safari Zone
-            {
-                go.next();
-            }
-            break;
-        default:
-            break;
-        }
-
-        if (lead == Lead::None)
-        {
-            state.setNature(go.nextUShort() % 25);
-        }
-        else if (lead == Lead::Synchronize)
-        {
-            if ((go.nextUShort() & 1) == 0) // state is synchable so set nature to synch nature
-            {
-                state.setNature(synchNature);
-            }
-            else // Synch failed so grab hunt nature from next RNG call
-            {
-                state.setNature(go.nextUShort() % 25);
-            }
-        }
-        else // Covers cutecharm
-        {
-            cuteCharmFlag = go.nextUShort() % 3 > 0;
-            state.setNature(go.nextUShort() % 25);
-        }
-
-        if (!filter.compareNature(state))
+        // RSE uses the main rng to check for rock smash encounters
+        if (rse && encounter == Encounter::RockSmash && go.nextUShort(2880) >= rate)
         {
             continue;
         }
 
-        // Now search for a Method 124 PID that matches our hunt nature
+        u8 encounterSlot;
+        if ((lead == Lead::MagnetPull || lead == Lead::Static) && go.nextUShort(2) == 0 && !modifiedSlots.empty())
+        {
+            encounterSlot = modifiedSlots[go.nextUShort(modifiedSlots.size())];
+        }
+        else
+        {
+            encounterSlot = EncounterSlot::hSlot(go.nextUShort(100), encounter);
+        }
+
+        if (!filter.compareEncounterSlot(encounterSlot))
+        {
+            continue;
+        }
+
+        // Modify level based on pressure if necessary
+        u8 level = encounterArea.calculateLevel(encounterSlot, go, lead == Lead::Pressure);
+
+        const Slot &slot = encounterArea.getPokemon(encounterSlot);
+        const PersonalInfo *info = slot.getInfo();
+        if (lead == Lead::CuteCharmM || lead == Lead::CuteCharmF)
+        {
+            switch (info->getGender())
+            {
+            case 0:
+            case 254:
+            case 255:
+                cuteCharm = false;
+                break;
+            default:
+                cuteCharm = go.nextUShort(3) != 0;
+                break;
+            }
+        }
+
+        // Safari zone in RSE takes an extra RNG call to determine shuffling of pokeblocks
+        if (safari)
+        {
+            go.next();
+        }
+
+        u8 nature;
+        if (lead <= Lead::SynchronizeEnd)
+        {
+            nature = go.nextUShort(2) == 0 ? toInt(lead) : go.nextUShort(25);
+        }
+        else
+        {
+            nature = go.nextUShort(25);
+        }
+
+        if (!filter.compareNature(nature))
+        {
+            continue;
+        }
+
         u32 pid;
         do
         {
             u16 low = go.nextUShort();
             u16 high = go.nextUShort();
             pid = (high << 16) | low;
-        } while (pid % 25 != state.getNature() || (cuteCharmFlag && !cuteCharm(pid)));
+        } while (pid % 25 != nature || (cuteCharm && !cuteCharmCheck(info, pid))
+                 || (slot.getSpecie() == 201 && !unownCheck(pid, slot.getForm())));
 
-        state.setPID(pid);
-        state.setAbility(pid & 1);
-        state.setGender(pid & 255, genderRatio);
-        state.setShiny<8>(tsv, (pid & 0xffff) ^ (pid >> 16));
-
-        // Valid PID is found now time to generate IVs
-        u16 iv1;
-        u16 iv2;
-        if (method == Method::MethodH1)
-        {
-            iv1 = go.nextUShort();
-            iv2 = go.nextUShort();
-        }
-        else if (method == Method::MethodH2)
+        if (method == Method::Method2)
         {
             go.next();
-            iv1 = go.nextUShort();
-            iv2 = go.nextUShort();
         }
-        else
+        u16 iv1 = go.nextUShort();
+        if (method == Method::Method4)
         {
-            iv1 = go.nextUShort();
             go.next();
-            iv2 = go.nextUShort();
         }
-        state.setIVs(iv1, iv2);
-        state.calculateHiddenPower();
+        u16 iv2 = go.nextUShort();
 
+        std::array<u8, 6> ivs;
+        ivs[0] = iv1 & 31;
+        ivs[1] = (iv1 >> 5) & 31;
+        ivs[2] = (iv1 >> 10) & 31;
+        ivs[3] = (iv2 >> 5) & 31;
+        ivs[4] = (iv2 >> 10) & 31;
+        ivs[5] = iv2 & 31;
+
+        WildGeneratorState state(initialAdvances + cnt, pid, ivs, pid & 1, getGender(pid, info), level, nature, getShiny(pid, tsv),
+                                 encounterSlot, 0, slot.getSpecie(), slot.getForm(), info);
         if (filter.compareState(state))
         {
             states.emplace_back(state);

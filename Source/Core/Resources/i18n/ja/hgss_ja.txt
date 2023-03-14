@@ -127,3 +127,15 @@
 146,Azalea Town
 147,Pewter City
 148,Safari Zone Gate
+149,Safari Zone (Plains)
+150,Safari Zone (Meadow)
+151,Safari Zone (Savannah)
+152,Safari Zone (Peak)
+153,Safari Zone (Rocky Beach)
+154,Safari Zone (Wetland)
+155,Safari Zone (Forest)
+156,Safari Zone (Swamp)
+157,Safari Zone (Marshland)
+158,Safari Zone (Wasteland)
+159,Safari Zone (Mountain)
+160,Safari Zone (Desert)

@@ -1,0 +1,76 @@
+{
+    "advance": [
+        {
+            "name": "Advance 1",
+            "seed": 9223372036854775808,
+            "advances": 5,
+            "result": 8392704
+        },
+        {
+            "name": "Advance 2",
+            "seed": 9223372036854775808,
+            "advances": 10,
+            "result": 2222986240
+        },
+        {
+            "name": "Advance 3",
+            "seed": 18446744073709551615,
+            "advances": 5,
+            "result": 4194247
+        },
+        {
+            "name": "Advance 4",
+            "seed": 18446744073709551615,
+            "advances": 10,
+            "result": 4184095
+        }
+    ],
+    "jump": [
+        {
+            "name": "Jump 1",
+            "seed": 9223372036854775808,
+            "advances": 1073741824,
+            "result": 2876701647
+        },
+        {
+            "name": "Jump 2",
+            "seed": 9223372036854775808,
+            "advances": 2147483648,
+            "result": 990808563
+        },
+        {
+            "name": "Jump 3",
+            "seed": 9223372036854775808,
+            "advances": 3221225472,
+            "result": 2455714441
+        },
+        {
+            "name": "Jump 4",
+            "seed": 9223372036854775808,
+            "advances": 4294967295,
+            "result": 4072477285
+        }
+    ],
+    "next": [
+        {
+            "name": "Next 1",
+            "seed": 4611686018427387904,
+            "result": 4196352
+        },
+        {
+            "name": "Next 2",
+            "seed": 9223372036854775808,
+            "result": 8392704
+        },
+        {
+            "name": "Next 3",
+            "seed": 13835058055282163712,
+            "result": 12589056
+        },
+        {
+            "name": "Next 4",
+            "seed": 18446744073709551615,
+            "result": 2040
+        }
+    ]
+}

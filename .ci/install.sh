@@ -4,11 +4,17 @@ case $OS in
   linux)
   {
     sudo apt update
-    sudo apt install -y g++ libgl1-mesa-dev
+    sudo apt install -y g++-11 libgl1-mesa-dev
 
-    # Change default g++ from 7.5 to 9.3, gets access to <filesystem>
+    python3 -m pip install requests
+
+    # Change default g++ from 9 to 11, gets access to C++20 features
     # Should probably do this with update-alternatives but I am lazy
     sudo rm /usr/bin/g++
-    sudo ln -s /usr/bin/g++-9 /usr/bin/g++
+    sudo ln -s /usr/bin/g++-11 /usr/bin/g++
+  } ;;
+  macOS)
+  {
+    pip3.11 install requests --user
   } ;;
 esac

@@ -26,7 +26,14 @@
 26,Great Marsh Area 4
 27,Great Marsh Area 5
 28,Great Marsh Area 6
-29,Solaceon Ruins
+29,Solaceon Ruins 2F
+30,Solaceon Ruins
+32,Solaceon Ruins B1F (4 Stairs)
+34,Solaceon Ruins B2F (4 Stairs)
+40,Solaceon Ruins B3F (3 Stairs)
+41,Solaceon Ruins B3F (4 Stairs)
+42,Solaceon Ruins B4F (4 Stairs)
+43,Solaceon Ruins B4F (Chamber)
 47,Victory Road 1F
 48,Victory Road 2F
 49,Victory Road B1F
@@ -115,3 +122,21 @@
 180,Route 223
 181,Route 226
 182,Route 230
+183,Spacious Cave
+184,Grassland Cave
+185,Fountainspring Cave
+186,Rocky Cave
+187,Volcanic Cave
+188,Swampy Cave
+189,Dazzling Cave
+190,Whiteout Cave
+191,Ice Cave
+192,Riverbank Cave
+193,Sandsear Cave
+194,Still-Water Cavern
+195,Sunlit Cavern
+196,Big Bluff Cavern
+197,Stargleam Cavern
+198,Glacial Cavern
+199,Bogsunk Cavern
+200,Typhlo Cavern

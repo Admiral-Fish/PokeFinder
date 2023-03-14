@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -20,48 +20,123 @@
 #ifndef HIDDENGROTTOSTATE_HPP
 #define HIDDENGROTTOSTATE_HPP
 
-#include <Core/Parents/States/State.hpp>
-#include <Core/Util/Global.hpp>
+#include <Core/Global.hpp>
 
+/**
+ * @brief State class for Gen5 hidden grottos
+ */
 class HiddenGrottoState
 {
 public:
-    HiddenGrottoState(u32 seed, u32 advances, u8 group, u8 slot, u8 gender) :
-        seed(seed), advances(advances), group(group), slot(slot), gender(gender)
+    /**
+     * @brief Construct a new HiddenGrottoState object
+     *
+     * @param prng PRNG call to determine Chatot pitch
+     * @param advances Advances of the state
+     * @param group Pokemon group
+     * @param slot Pokemon slot
+     * @param specie Pokemon specie
+     * @param gender Pokemon gender
+     */
+    HiddenGrottoState(u16 prng, u32 advances, u8 group, u8 slot, u16 specie, u8 gender) :
+        advances(advances), data(specie), item(false), chatot(prng / 82), gender(gender), group(group), slot(slot)
     {
     }
 
-    u32 getSeed() const
+    /**
+     * @brief Construct a new HiddenGrottoState object
+     *
+     * @param prng PRNG call to determine Chatot pitch
+     * @param advances Advances of the state
+     * @param group Item group
+     * @param slot Item slot
+     * @param item Item number
+     */
+    HiddenGrottoState(u16 prng, u32 advances, u8 group, u8 slot, u16 item) :
+        advances(advances), data(item), item(true), chatot(prng / 82), gender(0), group(group), slot(slot)
     {
-        return seed;
     }
 
+    /**
+     * @brief Returns the advances of the state
+     *
+     * @return State advances
+     */
     u32 getAdvances() const
     {
         return advances;
     }
 
-    u8 getGroup() const
+    /**
+     * @brief Returns the chatot pitch
+     *
+     * @return Chatot pitch
+     */
+    u8 getChatot() const
     {
-        return group;
+        return chatot;
     }
 
-    u8 getSlot() const
+    /**
+     * @brief Returns the data of the state
+     * If the item flag it true it is the item number otherwise the pokemon specie.
+     *
+     * @return State data
+     */
+    u16 getData() const
     {
-        return slot;
+        return data;
     }
 
+    /**
+     * @brief Returns the gender of the pokemon
+     *
+     * @return Pokemon gender
+     */
     u8 getGender() const
     {
         return gender;
     }
 
+    /**
+     * @brief Returns the group of the state
+     *
+     * @return State group
+     */
+    u8 getGroup() const
+    {
+        return group;
+    }
+
+    /**
+     * @brief getItem
+     *
+     * @return true State is a item
+     * @return false State is a pokemon
+     */
+    bool getItem() const
+    {
+        return item;
+    }
+
+    /**
+     * @brief Returns the slot of the state
+     *
+     * @return State slot
+     */
+    u8 getSlot() const
+    {
+        return slot;
+    }
+
 private:
-    u32 seed;
     u32 advances;
+    u16 data;
+    bool item;
+    u8 chatot;
+    u8 gender;
     u8 group;
     u8 slot;
-    u8 gender;
 };
 
 #endif // HIDDENGROTTOSTATE_HPP

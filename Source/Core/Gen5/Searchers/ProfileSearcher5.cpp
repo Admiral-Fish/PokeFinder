@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -26,30 +26,47 @@
 #include <Core/RNG/SHA1.hpp>
 #include <Core/Util/DateTime.hpp>
 #include <Core/Util/Utilities.hpp>
-#include <future>
+#include <thread>
 
 ProfileSearcher5::ProfileSearcher5(const Date &date, const Time &time, u8 minSeconds, u8 maxSeconds, u8 minVCount, u8 maxVCount,
                                    u16 minTimer0, u16 maxTimer0, u8 minGxStat, u8 maxGxStat, bool softReset, Game version,
                                    Language language, DSType dsType, u64 mac, Buttons keypress) :
-    date(date),
-    time(time),
-    minSeconds(minSeconds),
-    maxSeconds(maxSeconds),
-    minVCount(minVCount),
-    maxVCount(maxVCount),
-    minTimer0(minTimer0),
-    maxTimer0(maxTimer0),
-    minGxStat(minGxStat),
-    maxGxStat(maxGxStat),
-    softReset(softReset),
-    version(version),
-    language(language),
-    dsType(dsType),
     mac(mac),
+    date(date),
+    version(version),
+    progress(0),
+    time(time),
     keypress(keypress),
+    maxTimer0(maxTimer0),
+    minTimer0(minTimer0),
     searching(false),
-    progress(0)
+    softReset(softReset),
+    dsType(dsType),
+    language(language),
+    maxGxStat(maxGxStat),
+    minGxStat(minGxStat),
+    maxSeconds(maxSeconds),
+    minSeconds(minSeconds),
+    maxVCount(maxVCount),
+    minVCount(minVCount)
 {
+}
+
+void ProfileSearcher5::cancelSearch()
+{
+    searching = false;
+}
+
+int ProfileSearcher5::getProgress() const
+{
+    return progress;
+}
+
+std::vector<ProfileSearcherState5> ProfileSearcher5::getResults()
+{
+    std::lock_guard<std::mutex> lock(mutex);
+    auto data = std::move(results);
+    return data;
 }
 
 void ProfileSearcher5::startSearch(int threads, u8 minVFrame, u8 maxVFrame)
@@ -62,43 +79,26 @@ void ProfileSearcher5::startSearch(int threads, u8 minVFrame, u8 maxVFrame)
         threads = diff;
     }
 
-    std::vector<std::future<void>> threadContainer;
+    std::vector<std::thread> threadContainer;
 
     auto split = (diff / threads);
     for (int i = 0; i < threads; i++)
     {
         if (i == threads - 1)
         {
-            threadContainer.emplace_back(std::async(std::launch::async, [=] { search(minVFrame, maxVFrame); }));
+            threadContainer.emplace_back([=] { search(minVFrame, maxVFrame); });
         }
         else
         {
-            threadContainer.emplace_back(std::async(std::launch::async, [=] { search(minVFrame, minVFrame + split - 1); }));
+            threadContainer.emplace_back([=] { search(minVFrame, minVFrame + split - 1); });
         }
         minVFrame += split;
     }
 
     for (int i = 0; i < threads; i++)
     {
-        threadContainer[i].wait();
+        threadContainer[i].join();
     }
-}
-
-void ProfileSearcher5::cancelSearch()
-{
-    searching = false;
-}
-
-std::vector<ProfileSearcherState5> ProfileSearcher5::getResults()
-{
-    std::lock_guard<std::mutex> lock(mutex);
-    auto data = std::move(results);
-    return data;
-}
-
-int ProfileSearcher5::getProgress() const
-{
-    return progress;
 }
 
 void ProfileSearcher5::search(u8 vframeStart, u8 vframeEnd)
@@ -119,8 +119,7 @@ void ProfileSearcher5::search(u8 vframeStart, u8 vframeEnd)
                 for (u16 vcount = minVCount; vcount <= maxVCount; vcount++)
                 {
                     sha.setTimer0(timer0, vcount);
-                    sha.precompute();
-
+                    auto alpha = sha.precompute();
                     for (u8 second = minSeconds; second <= maxSeconds; second++)
                     {
                         if (!searching)
@@ -130,12 +129,12 @@ void ProfileSearcher5::search(u8 vframeStart, u8 vframeEnd)
 
                         sha.setTime(hour, minute, second, dsType);
 
-                        u64 seed = sha.hashSeed();
-
+                        u64 seed = sha.hashSeed(alpha);
                         if (valid(seed))
                         {
                             std::lock_guard<std::mutex> lock(mutex);
-                            results.emplace_back(seed, timer0, vcount, vframe, gxStat, second);
+                            results.emplace_back(seed, static_cast<u16>(timer0), static_cast<u8>(vcount), static_cast<u8>(vframe),
+                                                 static_cast<u8>(gxStat), second);
                         }
                     }
                 }
@@ -145,14 +144,14 @@ void ProfileSearcher5::search(u8 vframeStart, u8 vframeEnd)
     }
 }
 
-ProfileIVSearcher5::ProfileIVSearcher5(const std::array<u8, 6> &minIVs, const std::array<u8, 6> &maxIVs, const Date &date, const Time &time,
-                                       int minSeconds, int maxSeconds, u8 minVCount, u8 maxVCount, u16 minTimer0, u16 maxTimer0,
-                                       u8 minGxStat, u8 maxGxStat, bool softReset, Game version, Language language, DSType dsType, u64 mac,
-                                       Buttons keypress) :
+ProfileIVSearcher5::ProfileIVSearcher5(const Date &date, const Time &time, int minSeconds, int maxSeconds, u8 minVCount, u8 maxVCount,
+                                       u16 minTimer0, u16 maxTimer0, u8 minGxStat, u8 maxGxStat, bool softReset, Game version,
+                                       Language language, DSType dsType, u64 mac, Buttons keypress, const std::array<u8, 6> &minIVs,
+                                       const std::array<u8, 6> &maxIVs) :
     ProfileSearcher5(date, time, minSeconds, maxSeconds, minVCount, maxVCount, minTimer0, maxTimer0, minGxStat, maxGxStat, softReset,
                      version, language, dsType, mac, keypress),
-    minIVs(minIVs),
     maxIVs(maxIVs),
+    minIVs(minIVs),
     offset((version & Game::BW2) != Game::None ? 2 : 0)
 {
 }
@@ -173,33 +172,30 @@ bool ProfileIVSearcher5::valid(u64 seed)
     return true;
 }
 
-ProfileNeedleSearcher5::ProfileNeedleSearcher5(const std::vector<u8> &needles, bool unovaLink, bool memoryLink, const Date &date,
-                                               const Time &time, int minSeconds, int maxSeconds, u8 minVCount, u8 maxVCount, u16 minTimer0,
-                                               u16 maxTimer0, u8 minGxStat, u8 maxGxStat, bool softReset, Game version, Language language,
-                                               DSType dsType, u64 mac, Buttons keypress) :
+ProfileNeedleSearcher5::ProfileNeedleSearcher5(const Date &date, const Time &time, int minSeconds, int maxSeconds, u8 minVCount,
+                                               u8 maxVCount, u16 minTimer0, u16 maxTimer0, u8 minGxStat, u8 maxGxStat, bool softReset,
+                                               Game version, Language language, DSType dsType, u64 mac, Buttons keypress,
+                                               const std::vector<u8> &needles, bool unovaLink, bool memoryLink) :
     ProfileSearcher5(date, time, minSeconds, maxSeconds, minVCount, maxVCount, minTimer0, maxTimer0, minGxStat, maxGxStat, softReset,
                      version, language, dsType, mac, keypress),
     needles(needles),
-    unovaLink(unovaLink),
+    game((version & Game::BW) != Game::None),
     memoryLink(memoryLink),
-    game((version & Game::BW) != Game::None)
+    unovaLink(unovaLink)
 {
 }
 
 bool ProfileNeedleSearcher5::valid(u64 seed)
 {
-    BWRNG rng(seed);
-
     u8 advances = game ? Utilities5::initialAdvancesBW(seed) : Utilities5::initialAdvancesBW2(seed, memoryLink);
 
     // Opening the menu advances 1
-    if (unovaLink)
+    if (unovaLink && !memoryLink)
     {
         advances++;
     }
 
-    rng.advance(advances);
-
+    BWRNG rng(seed, advances);
     for (u8 needle : needles)
     {
         u8 rand = rng.nextUInt(8);
@@ -217,9 +213,9 @@ bool ProfileNeedleSearcher5::valid(u64 seed)
     return true;
 }
 
-ProfileSeedSearcher5::ProfileSeedSearcher5(u64 seed, const Date &date, const Time &time, int minSeconds, int maxSeconds, u8 minVCount,
-                                           u8 maxVCount, u16 minTimer0, u16 maxTimer0, u8 minGxStat, u8 maxGxStat, bool softReset,
-                                           Game version, Language language, DSType dsType, u64 mac, Buttons keypress) :
+ProfileSeedSearcher5::ProfileSeedSearcher5(const Date &date, const Time &time, int minSeconds, int maxSeconds, u8 minVCount, u8 maxVCount,
+                                           u16 minTimer0, u16 maxTimer0, u8 minGxStat, u8 maxGxStat, bool softReset, Game version,
+                                           Language language, DSType dsType, u64 mac, Buttons keypress, u64 seed) :
     ProfileSearcher5(date, time, minSeconds, maxSeconds, minVCount, maxVCount, minTimer0, maxTimer0, minGxStat, maxGxStat, softReset,
                      version, language, dsType, mac, keypress),
     seed(seed)

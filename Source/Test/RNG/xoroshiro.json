@@ -1,0 +1,154 @@
+{
+    "normal": {
+        "advance": [
+            {
+                "name": "Advance 1",
+                "seed": 0,
+                "advances": 5,
+                "result": 17676842096070414519
+            },
+            {
+                "name": "Advance 2",
+                "seed": 0,
+                "advances": 10,
+                "result": 6702887940291596197
+            },
+            {
+                "name": "Advance 3",
+                "seed": 9223372036854775808,
+                "advances": 5,
+                "result": 5138662405597443191
+            },
+            {
+                "name": "Advance 4",
+                "seed": 9223372036854775808,
+                "advances": 10,
+                "result": 12849307009304356729
+            }
+        ],
+        "jump": [
+            {
+                "name": "Jump 1",
+                "seed": 0,
+                "advances": 1073741824,
+                "result": 3401927017795051517
+            },
+            {
+                "name": "Jump 2",
+                "seed": 0,
+                "advances": 2147483648,
+                "result": 6685056814496308209
+            },
+            {
+                "name": "Jump 3",
+                "seed": 0,
+                "advances": 3221225472,
+                "result": 13866174297823814841
+            },
+            {
+                "name": "Jump 4",
+                "seed": 0,
+                "advances": 4294967295,
+                "result": 4809213515391165710
+            }
+        ],
+        "next": [
+            {
+                "name": "Next 1",
+                "seed": 0,
+                "result": 9413281287807789659
+            },
+            {
+                "name": "Next 2",
+                "seed": 4611686018427387904,
+                "result": 14024967306235177563
+            },
+            {
+                "name": "Next 3",
+                "seed": 9223372036854775808,
+                "result": 189909250953013851
+            },
+            {
+                "name": "Next 4",
+                "seed": 13835058055282163712,
+                "result": 4801595269380401755
+            }
+        ]
+    },
+    "bdsp": {
+        "advance": [
+            {
+                "name": "Advance 1",
+                "seed": 0,
+                "advances": 5,
+                "result": 12308290697538785981
+            },
+            {
+                "name": "Advance 2",
+                "seed": 0,
+                "advances": 10,
+                "result": 614725201967582109
+            },
+            {
+                "name": "Advance 3",
+                "seed": 9223372036854775808,
+                "advances": 5,
+                "result": 15092744403755812888
+            },
+            {
+                "name": "Advance 4",
+                "seed": 9223372036854775808,
+                "advances": 10,
+                "result": 873521186264857422
+            }
+        ],
+        "jump": [
+            {
+                "name": "Jump 1",
+                "seed": 0,
+                "advances": 1073741824,
+                "result": 1816436583070306696
+            },
+            {
+                "name": "Jump 2",
+                "seed": 0,
+                "advances": 2147483648,
+                "result": 10735789180167930541
+            },
+            {
+                "name": "Jump 3",
+                "seed": 0,
+                "advances": 3221225472,
+                "result": 18384946360177730019
+            },
+            {
+                "name": "Jump 4",
+                "seed": 0,
+                "advances": 4294967295,
+                "result": 2069475519164550003
+            }
+        ],
+        "next": [
+            {
+                "name": "Next 1",
+                "seed": 0,
+                "result": 5807750865143411619
+            },
+            {
+                "name": "Next 2",
+                "seed": 4611686018427387904,
+                "result": 13695927684520067560
+            },
+            {
+                "name": "Next 3",
+                "seed": 9223372036854775808,
+                "result": 904773664738280429
+            },
+            {
+                "name": "Next 4",
+                "seed": 13835058055282163712,
+                "result": 9852954266555844231
+            }
+        ]
+    }
+}

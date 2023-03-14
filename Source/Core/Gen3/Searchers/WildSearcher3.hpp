@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2022 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -21,34 +21,78 @@
 #define WILDSEARCHER3_HPP
 
 #include <Core/Gen3/EncounterArea3.hpp>
+#include <Core/Gen3/Filters/StateFilter3.hpp>
+#include <Core/Gen3/Profile3.hpp>
 #include <Core/Parents/Searchers/WildSearcher.hpp>
-#include <Core/RNG/RNGCache.hpp>
 #include <mutex>
 
-class WildState;
-enum class Game : u32;
-
-class WildSearcher3 : public WildSearcher
+/**
+ * @brief Wild encounter searcher for Gen3
+ */
+class WildSearcher3 : public WildSearcher<EncounterArea3, Profile3, WildStateFilter3>
 {
 public:
-    WildSearcher3(u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter, Game version);
-    void setEncounterArea(const EncounterArea3 &encounterArea);
-    void startSearch(const std::array<u8, 6> &min, const std::array<u8, 6> &max);
+    /**
+     * @brief Construct a new WildSearcher3 object
+     *
+     * @param method Encounter method
+     * @param encounter Encounter type
+     * @param lead Encounter lead
+     * @param profile Profile Information
+     * @param filter State filter
+     */
+    WildSearcher3(Method method, Encounter encounter, Lead lead, const EncounterArea3 &encounterArea, const Profile3 &profile,
+                  const WildStateFilter3 &filter);
+
+    /**
+     * @brief Cancels the running search
+     */
     void cancelSearch();
-    std::vector<WildState> getResults();
+
+    /**
+     * @brief Returns the progress of the running search
+     *
+     * @return Progress
+     */
     int getProgress() const;
 
+    /**
+     * @brief Returns the states of the running search
+     *
+     * @return Vector of computed states
+     */
+    std::vector<WildSearcherState3> getResults();
+
+    /**
+     * @brief Starts the search
+     *
+     * @param min Minimum IVs
+     * @param max Maximum IVs
+     */
+    void startSearch(const std::array<u8, 6> &min, const std::array<u8, 6> &max);
+
 private:
-    RNGCache cache;
-    EncounterArea3 encounterArea;
-    Game version;
-
-    bool searching;
-    int progress;
-    std::vector<WildState> results;
     std::mutex mutex;
+    std::vector<u8> modifiedSlots;
+    std::vector<WildSearcherState3> results;
+    int progress;
+    bool ivAdvance;
+    bool searching;
 
-    std::vector<WildState> search(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const;
+    /**
+     * @brief Searches for matching states from provided IVs
+     *
+     * @param hp HP IV
+     * @param atk Atk IV
+     * @param def Def IV
+     * @param spa SpA IV
+     * @param spd SpD IV
+     * @param spe Spe IV
+     * @param safari Whether the encounter location is the Safari Zone in RSE
+     *
+     * @return Vector of computed states
+     */
+    std::vector<WildSearcherState3> search(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, bool safari) const;
 };
 
 #endif // WILDSEARCHER3_HPP
