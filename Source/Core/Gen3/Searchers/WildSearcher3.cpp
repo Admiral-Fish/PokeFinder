@@ -95,7 +95,7 @@ static bool unownCheck(u32 pid, u8 form)
 WildSearcher3::WildSearcher3(Method method, Encounter encounter, Lead lead, const EncounterArea3 &encounterArea, const Profile3 &profile,
                              const WildStateFilter3 &filter) :
     WildSearcher(method, encounter, lead, encounterArea, profile, filter),
-    modifiedSlots(encounterArea.getSlots(profile.getVersion(), lead)),
+    modifiedSlots(encounterArea.getSlots(lead)),
     progress(0),
     ivAdvance(method == Method::Method2),
     searching(false)

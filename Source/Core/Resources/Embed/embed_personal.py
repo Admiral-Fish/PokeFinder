@@ -5,6 +5,15 @@ import struct
 from .embed_util import write_data
 
 
+def get_type(type: int, gen: int):
+    if gen in (3, 4):
+        types = (0, 1, 2, 3, 4, 5, 6, 7, 8, -1, 9, 10, 11, 12, 13, 14, 15, 16)
+        assert types[type] != -1, "Unknown type"
+        return types[type]
+    else:
+        return type
+
+
 def embed_personal():
     arrays = []
     read = struct.Struct("<H")
@@ -38,8 +47,8 @@ def embed_personal():
                 spe = data[i+0x3]
                 spa = data[i+0x4]
                 spd = data[i+0x5]
-                type1 = data[i+0x6]
-                type2 = data[i+0x7]
+                type1 = get_type(data[i+0x6], index)
+                type2 = get_type(data[i+0x7], index)
 
                 if index == 3:
                     item1 = 0

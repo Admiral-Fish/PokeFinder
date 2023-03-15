@@ -89,7 +89,7 @@ static u8 getShiny(u32 pid, u16 tsv)
 WildSearcher4::WildSearcher4(u32 minAdvance, u32 maxAdvance, u32 minDelay, u32 maxDelay, Method method, Encounter encounter, Lead lead,
                              bool shiny, const EncounterArea4 &encounterArea, const Profile4 &profile, const WildStateFilter4 &filter) :
     WildSearcher(method, encounter, lead, encounterArea, profile, filter),
-    modifiedSlots(encounterArea.getSlots(profile.getVersion(), lead)),
+    modifiedSlots(encounterArea.getSlots(lead)),
     progress(0),
     maxAdvance(maxAdvance),
     minAdvance(minAdvance),

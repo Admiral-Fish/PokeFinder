@@ -24,8 +24,6 @@
 #include <Core/Parents/Slot.hpp>
 #include <Core/RNG/LCRNG.hpp>
 
-enum class Game : u32;
-
 /**
  * @brief Contains information about the encounters for an area. This includes location, rate, and the slots.
  */

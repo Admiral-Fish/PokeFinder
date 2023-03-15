@@ -81,7 +81,7 @@ std::vector<WildGeneratorState> WildGenerator3::generate(u32 seed, const Encount
 {
     std::vector<WildGeneratorState> states;
 
-    std::vector<u8> modifiedSlots = encounterArea.getSlots(profile.getVersion(), lead);
+    std::vector<u8> modifiedSlots = encounterArea.getSlots(lead);
     u16 rate = encounterArea.getRate() * 16;
     bool safari = encounterArea.safariZone(profile.getVersion());
     bool rse = (profile.getVersion() & Game::RSE) != Game::None;

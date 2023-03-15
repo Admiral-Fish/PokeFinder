@@ -127,7 +127,7 @@ public:
      *
      * @return Vector of matching indexes
      */
-    std::vector<u8> getSlots(Game version, Lead lead) const;
+    std::vector<u8> getSlots(Lead lead) const;
 
     /**
      * @brief Return vector of names of all pokemon slots

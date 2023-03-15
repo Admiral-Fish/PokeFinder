@@ -88,7 +88,7 @@ std::vector<bool> EncounterArea::getSlots(u16 specie) const
     return flags;
 }
 
-std::vector<u8> EncounterArea::getSlots(Game version, Lead lead) const
+std::vector<u8> EncounterArea::getSlots(Lead lead) const
 {
     std::vector<u8> encounters;
     u8 type;
@@ -98,7 +98,7 @@ std::vector<u8> EncounterArea::getSlots(Game version, Lead lead) const
         type = 8;
         break;
     case Lead::Static:
-        type = (version & (Game::Gen3 | Game::Gen4)) != Game::None ? 13 : 12;
+        type = 12;
         break;
     case Lead::Harvest:
         type = 11;

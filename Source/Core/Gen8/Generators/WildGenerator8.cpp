@@ -70,7 +70,7 @@ std::vector<WildGeneratorState> WildGenerator8::generate(u64 seed0, u64 seed1, c
 
     bool encounterForce
         = lead == Lead::MagnetPull || lead == Lead::Static || lead == Lead::Harvest || lead == Lead::FlashFire || lead == Lead::StormDrain;
-    std::vector<u8> modifiedSlots = encounterArea.getSlots(profile.getVersion(), lead);
+    std::vector<u8> modifiedSlots = encounterArea.getSlots(lead);
 
     std::vector<WildGeneratorState> states;
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rngList.advanceState())

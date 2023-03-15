@@ -119,7 +119,7 @@ std::vector<WildGeneratorState4> WildGenerator4::generateMethodJ(u32 seed, const
     std::vector<WildGeneratorState4> states;
 
     u8 thresh = encounterArea.getRate();
-    std::vector<u8> modifiedSlots = encounterArea.getSlots(profile.getVersion(), lead);
+    std::vector<u8> modifiedSlots = encounterArea.getSlots(lead);
 
     PokeRNG rng(seed, initialAdvances + delay);
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
@@ -259,7 +259,7 @@ std::vector<WildGeneratorState4> WildGenerator4::generateMethodK(u32 seed, const
     {
         rate *= 2;
     }
-    std::vector<u8> modifiedSlots = encounterArea.getSlots(profile.getVersion(), lead);
+    std::vector<u8> modifiedSlots = encounterArea.getSlots(lead);
     bool safari = encounterArea.safariZone(profile.getVersion());
 
     PokeRNG rng(seed, initialAdvances + delay);
