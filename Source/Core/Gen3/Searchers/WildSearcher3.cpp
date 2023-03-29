@@ -124,6 +124,7 @@ void WildSearcher3::startSearch(const std::array<u8, 6> &min, const std::array<u
     searching = true;
 
     bool safari = encounterArea.safariZone(profile.getVersion());
+    bool tanoby = encounterArea.tanobyChamber(profile.getVersion());
 
     for (u8 hp = min[0]; hp <= max[0]; hp++)
     {
@@ -142,7 +143,7 @@ void WildSearcher3::startSearch(const std::array<u8, 6> &min, const std::array<u
                                 return;
                             }
 
-                            auto states = search(hp, atk, def, spa, spd, spe, safari);
+                            auto states = search(hp, atk, def, spa, spd, spe, safari, tanoby);
 
                             std::lock_guard<std::mutex> guard(mutex);
                             results.insert(results.end(), states.begin(), states.end());
@@ -155,7 +156,7 @@ void WildSearcher3::startSearch(const std::array<u8, 6> &min, const std::array<u
     }
 }
 
-std::vector<WildSearcherState3> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, bool safari) const
+std::vector<WildSearcherState3> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, bool safari, bool tanoby) const
 {
     std::vector<WildSearcherState3> states;
     std::array<u8, 6> ivs = { hp, atk, def, spa, spd, spe };
@@ -170,8 +171,18 @@ std::vector<WildSearcherState3> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 
             rng.next();
         }
 
-        u32 pid = rng.nextUShort() << 16;
-        pid |= rng.nextUShort();
+        u32 pid;
+
+        if (tanoby)
+        {
+            pid = rng.nextUShort();
+            pid |= rng.nextUShort() << 16;
+        }
+        else
+        {
+            pid = rng.nextUShort() << 16;
+            pid |= rng.nextUShort();
+        }
 
         u8 nature = pid % 25;
         if (!filter.compareNature(nature))

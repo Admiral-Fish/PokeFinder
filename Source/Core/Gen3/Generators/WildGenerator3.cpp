@@ -84,6 +84,7 @@ std::vector<WildGeneratorState> WildGenerator3::generate(u32 seed, const Encount
     std::vector<u8> modifiedSlots = encounterArea.getSlots(lead);
     u16 rate = encounterArea.getRate() * 16;
     bool safari = encounterArea.safariZone(profile.getVersion());
+    bool tanoby = encounterArea.tanobyChamber(profile.getVersion());
     bool rse = (profile.getVersion() & Game::RSE) != Game::None;
 
     bool cuteCharm = false;
@@ -167,7 +168,15 @@ std::vector<WildGeneratorState> WildGenerator3::generate(u32 seed, const Encount
         {
             u16 low = go.nextUShort();
             u16 high = go.nextUShort();
-            pid = (high << 16) | low;
+
+            if (tanoby)
+            {
+                pid = (low << 16) | high;
+            }
+            else
+            {
+                pid = (high << 16) | low;
+            }
         } while (pid % 25 != nature || (cuteCharm && !cuteCharmCheck(info, pid))
                  || (slot.getSpecie() == 201 && !unownCheck(pid, slot.getForm())));
 

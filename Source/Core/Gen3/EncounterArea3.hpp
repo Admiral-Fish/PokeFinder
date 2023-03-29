@@ -112,6 +112,16 @@ public:
      * @return false Location is not Safari Zone
      */
     bool safariZone(Game version) const;
+
+    /**
+     * @brief Checks if the location is in the Tanoby Chamber
+     *
+     * @param version Game version
+     *
+     * @return true Location is Tanoby Chamber
+     * @return false Location is not Tanoby Chamber
+     */
+    bool tanobyChamber(Game version) const;
 };
 
 #endif // ENCOUNTERAREA3_HPP

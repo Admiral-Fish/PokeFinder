@@ -92,7 +92,7 @@ private:
      *
      * @return Vector of computed states
      */
-    std::vector<WildSearcherState3> search(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, bool safari) const;
+    std::vector<WildSearcherState3> search(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, bool safari, bool tanoby) const;
 };
 
 #endif // WILDSEARCHER3_HPP

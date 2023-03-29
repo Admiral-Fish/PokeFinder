@@ -52,3 +52,22 @@ bool EncounterArea3::safariZone(Game version) const
     }
     return false;
 }
+
+bool EncounterArea3::tanobyChamber(Game version) const
+{
+    if ((version & Game::FRLG) != Game::None)
+    {
+        switch (location)
+        {
+        case 0: // Monean Chamber
+        case 1: // Liptoo Chamber
+        case 2: // Weepth Chamber
+        case 3: // Dilford Chamber
+        case 4: // Scufib Chamber
+        case 5: // Rixy Chamber
+        case 6: // Viapois Chamber
+            return true;
+        }
+    }
+    return false;
+}
