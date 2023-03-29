@@ -298,11 +298,12 @@ std::vector<EggState3> EggGenerator3::generateEmeraldHeld() const
                 {
                     // VBlank at 17 from starting PID generation
                     // Skip at this point since spread is unlikely to occur
-                    if (i++ == 17)
+                    if (i == 17)
                     {
                         break;
                     }
 
+                    i++;
                     pid = go.nextUShort() | (trng.next() & 0xffff0000);
                 } while (pid % 25 != daycare.getParentNature(parent));
 
