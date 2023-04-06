@@ -41,27 +41,162 @@ constexpr std::array<u16, 15> greatMarshPtDex = { 46, 102, 114, 115, 193, 195, 2
 constexpr std::array<u16, 16> trophyGardenDP = { 35, 39, 52, 113, 133, 137, 173, 174, 183, 298, 311, 312, 351, 438, 439, 440 };
 constexpr std::array<u16, 16> trophyGardenPt = { 35, 39, 52, 113, 132, 133, 173, 174, 183, 298, 311, 312, 351, 438, 439, 440 };
 
+struct DynamicSlot
+{
+    u16 specie;
+    u8 maxLevel;
+    u8 minLevel;
+};
+static_assert(sizeof(DynamicSlot) == 4);
+
+struct StaticSlot
+{
+    u16 specie;
+    u8 level;
+};
+static_assert(sizeof(StaticSlot) == 4);
+
+struct WildEncounterDPPt
+{
+    u8 location;
+    u8 grassRate;
+    u8 surfRate;
+    u8 oldRate;
+    u8 goodRate;
+    u8 superRate;
+    StaticSlot grass[12];
+    u16 swarm[2];
+    u16 day[2];
+    u16 night[2];
+    u16 radar[4];
+    u16 ruby[2];
+    u16 sapphire[2];
+    u16 emerald[2];
+    u16 firered[2];
+    u16 leafgreen[2];
+    DynamicSlot surf[5];
+    DynamicSlot old[5];
+    DynamicSlot good[5];
+    DynamicSlot super[5];
+};
+static_assert(sizeof(WildEncounterDPPt) == 174);
+
+struct HGSSEncounterGrass
+{
+    union {
+        struct
+        {
+            u16 morning[12];
+            u16 day[12];
+            u16 night[12];
+        };
+        u16 slots[36];
+    };
+    u8 level[12];
+};
+static_assert(sizeof(HGSSEncounterGrass) == 84);
+
+struct WildEncounterHGSS
+{
+    u8 location;
+    u8 grassRate;
+    u8 surfRate;
+    u8 rockRate;
+    u8 oldRate;
+    u8 goodRate;
+    u8 superRate;
+    HGSSEncounterGrass grass;
+    u16 hoennSound[2];
+    u16 sinnohSound[2];
+    DynamicSlot surf[5];
+    DynamicSlot rock[2];
+    DynamicSlot old[5];
+    DynamicSlot good[5];
+    DynamicSlot super[5];
+    u16 swarm[4];
+};
+static_assert(sizeof(WildEncounterHGSS) == 196);
+
+struct WildEncounterHGSSBug
+{
+    u8 location;
+    DynamicSlot bug[10];
+};
+static_assert(sizeof(WildEncounterHGSSBug) == 42);
+
+struct WildEncounterHGSSHeadbutt
+{
+    u8 location;
+    bool hasSpecial;
+    DynamicSlot normal1[6];
+    DynamicSlot normal2[6];
+    DynamicSlot special[6];
+};
+static_assert(sizeof(WildEncounterHGSSHeadbutt) == 74);
+
+template <int size>
+struct WildSubEncounterHGSSSafari
+{
+    union {
+        struct
+        {
+            StaticSlot morning[10];
+            StaticSlot day[10];
+            StaticSlot night[10];
+        };
+        StaticSlot slots[30];
+    } normal;
+    union {
+        struct
+        {
+            StaticSlot morning[size];
+            StaticSlot day[size];
+            StaticSlot night[size];
+        };
+        StaticSlot slots[3 * size];
+    } block;
+    u8 type1[size];
+    u8 quantity1[size];
+    u8 type2[size];
+    u8 quantity2[size];
+};
+static_assert(sizeof(WildSubEncounterHGSSSafari<10>) == 280);
+static_assert(sizeof(WildSubEncounterHGSSSafari<3>) == 168);
+static_assert(sizeof(WildSubEncounterHGSSSafari<2>) == 152);
+
+struct WildEncounterHGSSSafari
+{
+    u8 location;
+    bool hasWater;
+    WildSubEncounterHGSSSafari<10> grass;
+    WildSubEncounterHGSSSafari<3> surf;
+    WildSubEncounterHGSSSafari<2> old;
+    WildSubEncounterHGSSSafari<2> good;
+    WildSubEncounterHGSSSafari<2> super;
+};
+static_assert(sizeof(WildEncounterHGSSSafari) == 906);
+
 /**
  * @brief Modifies encounter slots based on the radio station
  *
  * @param pokemon Vector of original encounters
- * @param data Encounter area data
+ * @param entry Encounter area data
  * @param info Personal info array pointer
  * @param radio Radio station
  */
-static void modifyRadio(std::vector<Slot> &pokemon, const u8 *data, const PersonalInfo *info, int radio)
+static void modifyRadio(std::vector<Slot> &pokemon, const WildEncounterHGSS *entry, const PersonalInfo *info, int radio)
 {
     u16 specie1;
     u16 specie2;
     if (radio == 1)
     {
-        specie1 = *reinterpret_cast<const u16 *>(data + 91);
-        specie2 = *reinterpret_cast<const u16 *>(data + 93);
+        specie1 = entry->hoennSound[0];
+        specie2 = entry->hoennSound[1];
     }
     else if (radio == 2)
     {
-        specie1 = *reinterpret_cast<const u16 *>(data + 95);
-        specie2 = *reinterpret_cast<const u16 *>(data + 97);
+        specie1 = entry->sinnohSound[0];
+        specie2 = entry->sinnohSound[1];
     }
     else
     {
@@ -78,35 +213,36 @@ static void modifyRadio(std::vector<Slot> &pokemon, const u8 *data, const Person
  * @brief Modifies encounter slots based on the swarm
  *
  * @param pokemon Vector of original encounters
- * @param data Encounter area data
+ * @param entry Encounter area data
  * @param info Personal info array pointer
  * @param encounter Encounter type
  * @param swarm Whether swarm is active or not
  */
-static void modifySwarmHGSS(std::vector<Slot> &pokemon, const u8 *data, const PersonalInfo *info, Encounter encounter, bool swarm)
+static void modifySwarmHGSS(std::vector<Slot> &pokemon, const WildEncounterHGSS *entry, const PersonalInfo *info, Encounter encounter,
+                            bool swarm)
 {
     if (swarm)
     {
         u16 specie;
         if (encounter == Encounter::Grass)
         {
-            specie = *reinterpret_cast<const u16 *>(data + 187);
+            specie = entry->swarm[0];
             pokemon[0].setSpecie(specie, &info[specie]);
             pokemon[1].setSpecie(specie, &info[specie]);
         }
         else if (encounter == Encounter::Surfing)
         {
-            specie = *reinterpret_cast<const u16 *>(data + 189);
+            specie = entry->swarm[1];
             pokemon[0].setSpecie(specie, &info[specie]);
         }
         else if (encounter == Encounter::OldRod)
         {
-            specie = *reinterpret_cast<const u16 *>(data + 193);
+            specie = entry->swarm[3];
             pokemon[2].setSpecie(specie, &info[specie]);
         }
         else if (encounter == Encounter::GoodRod)
         {
-            specie = *reinterpret_cast<const u16 *>(data + 193);
+            specie = entry->swarm[3];
             for (int i : { 0, 2, 3 })
             {
                 pokemon[i].setSpecie(specie, &info[specie]);
@@ -114,12 +250,30 @@ static void modifySwarmHGSS(std::vector<Slot> &pokemon, const u8 *data, const Pe
         }
         else if (encounter == Encounter::SuperRod)
         {
-            specie = *reinterpret_cast<const u16 *>(data + 193);
+            specie = entry->swarm[3];
             for (size_t i = 0; i < 5; i++)
             {
                 pokemon[i].setSpecie(specie, &info[specie]);
             }
         }
+    }
+}
+
+static void modifyTimeHGSS(std::vector<Slot> &pokemon, const WildEncounterHGSS *entry, const PersonalInfo *info, Encounter encounter,
+                           int time)
+{
+    if (time != 0 || time != 1)
+    {
+        return;
+    }
+
+    if (encounter == Encounter::GoodRod)
+    {
+        pokemon[3].setSpecie(entry->swarm[2], &info[entry->swarm[2]]);
+    }
+    else if (encounter == Encounter::SuperRod)
+    {
+        pokemon[1].setSpecie(entry->swarm[2], &info[entry->swarm[2]]);
     }
 }
 
@@ -142,13 +296,13 @@ static std::vector<EncounterArea4> getHGSSSafari(Encounter encounter, int time, 
     u8 *data = Utilities::decompress(compressedData, compressedLength, length);
 
     std::vector<EncounterArea4> encounters;
-    for (size_t offset = 0; offset < length;)
+    for (size_t offset = 0; offset < length; offset += sizeof(WildEncounterHGSSSafari))
     {
-        const u8 *entry = data + offset;
+        const auto *entry = reinterpret_cast<const WildEncounterHGSSSafari *>(data + offset);
 
-        u8 location = entry[0];
-        bool water = entry[1];
         size_t block = 0;
+        const StaticSlot *safariSlots;
+        const StaticSlot *safariBlockSlots;
 
         std::vector<Slot> slots;
         slots.reserve(10);
@@ -157,119 +311,133 @@ static std::vector<EncounterArea4> getHGSSSafari(Encounter encounter, int time, 
         case Encounter::Grass:
             for (size_t i = 0; i < 10; i++)
             {
-                u16 specie = *reinterpret_cast<const u16 *>(entry + 2 + (i * 3) + (30 * time));
-                u8 level = entry[4 + (i * 3) + (30 * time)];
+                safariSlots = &entry->grass.normal.slots[10 * time];
+                safariBlockSlots = &entry->grass.block.slots[10 * time];
+
+                u16 specie = safariSlots[i].specie;
+                u8 level = safariSlots[i].level;
                 for (; block < 10; block++)
                 {
-                    if (blocks[entry[182 + (4 * block)]] >= entry[183 + (4 * block)]
-                        && blocks[entry[184 + (4 * block)]] >= entry[185 + (4 * block)])
+                    if (blocks[entry->grass.type1[block]] >= entry->grass.quantity1[block]
+                        && blocks[entry->grass.type2[block]] >= entry->grass.quantity2[block])
                     {
-                        specie = *reinterpret_cast<const u16 *>(entry + 92 + (3 * block) + (30 * time));
-                        level = entry[94 + (3 * block) + (30 * time)];
+                        specie = safariBlockSlots[block].specie;
+                        level = safariBlockSlots[block].level;
                         block++;
                         break;
                     }
                 }
                 slots.emplace_back(specie, level, level, &info[specie]);
             }
-            encounters.emplace_back(location, 0, encounter, slots);
+            encounters.emplace_back(entry->location, 0, encounter, slots);
             break;
         case Encounter::Surfing:
-            if (water)
+            if (entry->hasWater)
             {
+                safariSlots = &entry->surf.normal.slots[10 * time];
+                safariBlockSlots = &entry->surf.block.slots[3 * time];
+
                 for (size_t i = 0; i < 10; i++)
                 {
-                    u16 specie = *reinterpret_cast<const u16 *>(entry + 222 + (i * 3) + (30 * time));
-                    u8 level = entry[224 + (i * 3) + (30 * time)];
+                    u16 specie = safariSlots[i].specie;
+                    u8 level = safariSlots[i].level;
                     for (; block < 3; block++)
                     {
-                        if (blocks[entry[339 + (4 * block)]] >= entry[340 + (4 * block)]
-                            && blocks[entry[341 + (4 * block)]] >= entry[342 + (4 * block)])
+                        if (blocks[entry->surf.type1[block]] >= entry->surf.quantity1[block]
+                            && blocks[entry->surf.type2[block]] >= entry->surf.quantity2[block])
                         {
-                            specie = *reinterpret_cast<const u16 *>(entry + 312 + (3 * block) + (30 * time));
-                            level = entry[314 + (3 * block) + (30 * time)];
+                            specie = safariBlockSlots[block].specie;
+                            level = safariBlockSlots[block].level;
                             block++;
                             break;
                         }
                     }
                     slots.emplace_back(specie, level, level, &info[specie]);
                 }
-                encounters.emplace_back(location, 0, encounter, slots);
+                encounters.emplace_back(entry->location, 0, encounter, slots);
             }
             break;
         case Encounter::OldRod:
-            if (water)
+            if (entry->hasWater)
             {
+                safariSlots = &entry->old.normal.slots[10 * time];
+                safariBlockSlots = &entry->old.block.slots[2 * time];
+
                 for (size_t i = 0; i < 10; i++)
                 {
-                    u16 specie = *reinterpret_cast<const u16 *>(entry + 351 + (i * 3) + (30 * time));
-                    u8 level = entry[353 + (i * 3) + (30 * time)];
+                    u16 specie = safariSlots[i].specie;
+                    u8 level = safariSlots[i].level;
                     for (; block < 2; block++)
                     {
-                        if (blocks[entry[459 + (4 * block)]] >= entry[460 + (4 * block)]
-                            && blocks[entry[461 + (4 * block)]] >= entry[462 + (4 * block)])
+                        if (blocks[entry->surf.type1[block]] >= entry->surf.quantity1[block]
+                            && blocks[entry->surf.type2[block]] >= entry->surf.quantity2[block])
                         {
-                            specie = *reinterpret_cast<const u16 *>(entry + 441 + (3 * block) + (30 * time));
-                            level = entry[443 + (3 * block) + (30 * time)];
+                            specie = safariBlockSlots[block].specie;
+                            level = safariBlockSlots[block].level;
                             block++;
                             break;
                         }
                     }
                     slots.emplace_back(specie, level, level, &info[specie]);
                 }
-                encounters.emplace_back(location, 25, encounter, slots);
+                encounters.emplace_back(entry->location, 25, encounter, slots);
             }
             break;
         case Encounter::GoodRod:
-            if (water)
+            if (entry->hasWater)
             {
+                safariSlots = &entry->good.normal.slots[10 * time];
+                safariBlockSlots = &entry->good.block.slots[2 * time];
+
                 for (size_t i = 0; i < 10; i++)
                 {
-                    u16 specie = *reinterpret_cast<const u16 *>(entry + 467 + (i * 3) + (30 * time));
-                    u8 level = entry[469 + (i * 3) + (30 * time)];
+                    u16 specie = safariSlots[i].specie;
+                    u8 level = safariSlots[i].level;
                     for (; block < 2; block++)
                     {
-                        if (blocks[entry[575 + (4 * block)]] >= entry[576 + (4 * block)]
-                            && blocks[entry[577 + (4 * block)]] >= entry[578 + (4 * block)])
+                        if (blocks[entry->good.type1[block]] >= entry->good.quantity1[block]
+                            && blocks[entry->good.type2[block]] >= entry->good.quantity2[block])
                         {
-                            specie = *reinterpret_cast<const u16 *>(entry + 557 + (3 * block) + (30 * time));
-                            level = entry[559 + (3 * block) + (30 * time)];
+                            specie = safariBlockSlots[block].specie;
+                            level = safariBlockSlots[block].level;
                             block++;
                             break;
                         }
                     }
                     slots.emplace_back(specie, level, level, &info[specie]);
                 }
-                encounters.emplace_back(location, 50, encounter, slots);
+                encounters.emplace_back(entry->location, 50, encounter, slots);
             }
             break;
         case Encounter::SuperRod:
-            if (water)
+            if (entry->hasWater)
             {
+                safariSlots = &entry->super.normal.slots[10 * time];
+                safariBlockSlots = &entry->super.block.slots[2 * time];
+
                 for (size_t i = 0; i < 10; i++)
                 {
-                    u16 specie = *reinterpret_cast<const u16 *>(entry + 583 + (i * 3) + (30 * time));
-                    u8 level = entry[585 + (i * 3) + (30 * time)];
+                    u16 specie = safariSlots[i].specie;
+                    u8 level = safariSlots[i].level;
                     for (; block < 2; block++)
                     {
-                        if (blocks[entry[691 + (4 * block)]] >= entry[692 + (4 * block)]
-                            && blocks[entry[693 + (4 * block)]] >= entry[694 + (4 * block)])
+                        if (blocks[entry->super.type1[block]] >= entry->super.quantity1[block]
+                            && blocks[entry->super.type2[block]] >= entry->super.quantity2[block])
                         {
-                            specie = *reinterpret_cast<const u16 *>(entry + 673 + (3 * block) + (30 * time));
-                            level = entry[675 + (3 * block) + (30 * time)];
+                            specie = safariBlockSlots[block].specie;
+                            level = safariBlockSlots[block].specie;
                             block++;
                             break;
                         }
                     }
                     slots.emplace_back(specie, level, level, &info[specie]);
                 }
-                encounters.emplace_back(location, 75, encounter, slots);
+                encounters.emplace_back(entry->location, 75, encounter, slots);
             }
             break;
         default:
             break;
         }
-        offset += water ? 699 : 222;
     }
 
     delete[] data;
@@ -307,23 +475,18 @@ static std::vector<EncounterArea4> getHGSS(Game version, Encounter encounter, in
         compressedLength = hgss_bug.size();
 
         data = Utilities::decompress(compressedData, compressedLength, length);
-        length = dex ? length : 41;
-        for (size_t offset = dex ? 41 : 0; offset < length; offset += 41)
+        length = dex ? length : sizeof(WildEncounterHGSSBug);
+        for (size_t offset = dex ? sizeof(WildEncounterHGSSBug) : 0; offset < length; offset += sizeof(WildEncounterHGSSBug))
         {
-            const u8 *entry = data + offset;
-
-            u8 location = entry[0];
+            const auto *entry = reinterpret_cast<const WildEncounterHGSSBug *>(data + offset);
 
             std::vector<Slot> slots;
             slots.reserve(10);
-            for (size_t i = 0; i < 10; i++)
+            for (const auto &slot : entry->bug)
             {
-                u16 specie = *reinterpret_cast<const u16 *>(entry + 1 + (i * 4));
-                u8 min = entry[3 + (i * 4)];
-                u8 max = entry[4 + (i * 4)];
-                slots.emplace_back(specie, min, max, &info[specie]);
+                slots.emplace_back(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
             }
-            encounters.emplace_back(location, 0, encounter, slots);
+            encounters.emplace_back(entry->location, 0, encounter, slots);
         }
     }
     else if (encounter == Encounter::Headbutt || encounter == Encounter::HeadbuttAlt || encounter == Encounter::HeadbuttSpecial)
@@ -340,29 +503,38 @@ static std::vector<EncounterArea4> getHGSS(Game version, Encounter encounter, in
         }
 
         data = Utilities::decompress(compressedData, compressedLength, length);
-        for (size_t offset = 0; offset < length;)
+
+        u8 tree = toInt(encounter) - toInt(Encounter::Headbutt);
+        for (size_t offset = 0; offset < length; offset += sizeof(WildEncounterHGSSHeadbutt))
         {
-            const u8 *entry = data + offset;
+            const auto *entry = reinterpret_cast<const WildEncounterHGSSHeadbutt *>(data + offset);
 
-            u8 location = entry[0];
-            bool special = entry[1];
-            u8 tree = toInt(encounter) - toInt(Encounter::Headbutt);
-
-            if (encounter != Encounter::HeadbuttSpecial || special)
+            if (encounter != Encounter::HeadbuttSpecial || entry->hasSpecial)
             {
                 std::vector<Slot> slots;
                 slots.reserve(6);
+
+                const DynamicSlot *treeSlot;
+                if (tree == 0)
+                {
+                    treeSlot = entry->normal1;
+                }
+                else if (tree == 1)
+                {
+                    treeSlot = entry->normal2;
+                }
+                else
+                {
+                    treeSlot = entry->special;
+                }
+
                 for (size_t i = 0; i < 6; i++)
                 {
-                    u16 specie = *reinterpret_cast<const u16 *>(entry + 2 + (i * 4) + (24 * tree));
-                    u8 min = entry[4 + (i * 4) + (24 * tree)];
-                    u8 max = entry[5 + (i * 4) + (24 * tree)];
-                    slots.emplace_back(specie, min, max, &info[specie]);
+                    const auto &slot = treeSlot[i];
+                    slots.emplace_back(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
                 }
-                encounters.emplace_back(location, 0, encounter, slots);
+                encounters.emplace_back(entry->location, 0, encounter, slots);
             }
-
-            offset += special == 0 ? 50 : 74;
         }
     }
     else
@@ -379,127 +551,92 @@ static std::vector<EncounterArea4> getHGSS(Game version, Encounter encounter, in
         }
 
         data = Utilities::decompress(compressedData, compressedLength, length);
-        for (size_t offset = 0; offset < length; offset += 195)
+        for (size_t offset = 0; offset < length; offset += sizeof(WildEncounterHGSS))
         {
-            const u8 *entry = data + offset;
-
-            u8 location = entry[0];
-            u8 grass = entry[1];
-            u8 surf = entry[2];
-            u8 rock = entry[3];
-            u8 old = entry[4];
-            u8 good = entry[5];
-            u8 super = entry[6];
+            const auto *entry = reinterpret_cast<const WildEncounterHGSS *>(data + offset);
 
             switch (encounter)
             {
             case Encounter::Grass:
-                if (grass != 0)
+                if (entry->grassRate != 0)
                 {
                     std::vector<Slot> slots;
                     slots.reserve(12);
+
+                    const u16 *species = &entry->grass.slots[time * 12];
                     for (size_t i = 0; i < 12; i++)
                     {
-                        u8 level = entry[7 + i];
-                        u16 specie = *reinterpret_cast<const u16 *>(entry + 19 + (i * 2) + (time * 24));
-                        slots.emplace_back(specie, level, level, &info[specie]);
+                        slots.emplace_back(species[i], entry->grass.level[i], entry->grass.level[i], &info[species[i]]);
                     }
                     modifyRadio(slots, entry, info, radio);
                     modifySwarmHGSS(slots, entry, info, encounter, swarm);
-                    encounters.emplace_back(location, grass, encounter, slots);
+                    encounters.emplace_back(entry->location, entry->grassRate, encounter, slots);
                 }
                 break;
             case Encounter::Surfing:
-                if (surf != 0)
+                if (entry->surfRate != 0)
                 {
                     std::vector<Slot> slots;
                     slots.reserve(5);
-                    for (size_t i = 0; i < 5; i++)
+                    for (const auto &slot : entry->surf)
                     {
-                        u8 min = entry[99 + (i * 4)];
-                        u8 max = entry[100 + (i * 4)];
-                        u16 specie = *reinterpret_cast<const u16 *>(entry + 101 + (i * 4));
-                        slots.emplace_back(specie, min, max, &info[specie]);
+                        slots.emplace_back(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
                     }
                     modifySwarmHGSS(slots, entry, info, encounter, swarm);
-                    encounters.emplace_back(location, surf, encounter, slots);
+                    encounters.emplace_back(entry->location, entry->surfRate, encounter, slots);
                 }
                 break;
             case Encounter::RockSmash:
-                if (rock != 0)
+                if (entry->rockRate != 0)
                 {
                     std::vector<Slot> slots;
                     slots.reserve(2);
-                    for (size_t i = 0; i < 2; i++)
+                    for (const auto &slot : entry->rock)
                     {
-                        u8 min = entry[119 + (i * 4)];
-                        u8 max = entry[120 + (i * 4)];
-                        u16 specie = *reinterpret_cast<const u16 *>(entry + 121 + (i * 4));
-                        slots.emplace_back(specie, min, max, &info[specie]);
+                        slots.emplace_back(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
                     }
-                    encounters.emplace_back(location, rock, encounter, slots);
+                    encounters.emplace_back(entry->location, entry->rockRate, encounter, slots);
                 }
                 break;
             case Encounter::OldRod:
-                if (old != 0)
+                if (entry->oldRate != 0)
                 {
                     std::vector<Slot> slots;
                     slots.reserve(5);
-                    for (size_t i = 0; i < 5; i++)
+                    for (const auto &slot : entry->old)
                     {
-                        u8 min = entry[127 + (i * 4)];
-                        u8 max = entry[128 + (i * 4)];
-                        u16 specie = *reinterpret_cast<const u16 *>(entry + 129 + (i * 4));
-                        slots.emplace_back(specie, min, max, &info[specie]);
+                        slots.emplace_back(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
                     }
                     modifySwarmHGSS(slots, entry, info, encounter, swarm);
-                    encounters.emplace_back(location, old, encounter, slots);
+                    encounters.emplace_back(entry->location, entry->oldRate, encounter, slots);
                 }
                 break;
             case Encounter::GoodRod:
-                if (good != 0)
+                if (entry->goodRate != 0)
                 {
                     std::vector<Slot> slots;
                     slots.reserve(5);
-                    for (size_t i = 0; i < 5; i++)
+                    for (const auto &slot : entry->good)
                     {
-                        u8 min = entry[147 + (i * 4)];
-                        u8 max = entry[148 + (i * 4)];
-                        u16 specie = *reinterpret_cast<const u16 *>(entry + 149 + (i * 4));
-
-                        // Adjust time based slot
-                        if ((time == 0 || time == 1) && i == 3)
-                        {
-                            specie = *reinterpret_cast<const u16 *>(entry + 191);
-                        }
-
-                        slots.emplace_back(specie, min, max, &info[specie]);
+                        slots.emplace_back(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
                     }
+                    modifyTimeHGSS(slots, entry, info, encounter, time);
                     modifySwarmHGSS(slots, entry, info, encounter, swarm);
-                    encounters.emplace_back(location, good, encounter, slots);
+                    encounters.emplace_back(entry->location, entry->goodRate, encounter, slots);
                 }
                 break;
             case Encounter::SuperRod:
-                if (super != 0)
+                if (entry->superRate != 0)
                 {
                     std::vector<Slot> slots;
                     slots.reserve(5);
-                    for (size_t i = 0; i < 5; i++)
+                    for (const auto &slot : entry->super)
                     {
-                        u8 min = entry[167 + (i * 4)];
-                        u8 max = entry[168 + (i * 4)];
-                        u16 specie = *reinterpret_cast<const u16 *>(entry + 169 + (i * 4));
-
-                        // Adjust time based slot
-                        if ((time == 0 || time == 1) && i == 1)
-                        {
-                            specie = *reinterpret_cast<const u16 *>(entry + 191);
-                        }
-
-                        slots.emplace_back(specie, min, max, &info[specie]);
+                        slots.emplace_back(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
                     }
+                    modifyTimeHGSS(slots, entry, info, encounter, time);
                     modifySwarmHGSS(slots, entry, info, encounter, swarm);
-                    encounters.emplace_back(location, super, encounter, slots);
+                    encounters.emplace_back(entry->location, entry->superRate, encounter, slots);
                 }
                 break;
             default:
@@ -519,38 +656,38 @@ static std::vector<EncounterArea4> getHGSS(Game version, Encounter encounter, in
  * @brief Modifies encounter slots based on the dual slot game
  *
  * @param pokemon Vector of original encounters
- * @param data Encounter area data
+ * @param entry Encounter area data
  * @param info Personal info array pointer
  * @param dual Dual slot game version
  */
-static void modifyDual(std::vector<Slot> &pokemon, const u8 *data, const PersonalInfo *info, Game dual)
+static void modifyDual(std::vector<Slot> &pokemon, const WildEncounterDPPt *entry, const PersonalInfo *info, Game dual)
 {
     u16 specie1;
     u16 specie2;
     if (dual == Game::Ruby)
     {
-        specie1 = *reinterpret_cast<const u16 *>(data + 58);
-        specie2 = *reinterpret_cast<const u16 *>(data + 60);
+        specie1 = entry->ruby[0];
+        specie2 = entry->ruby[1];
     }
     else if (dual == Game::Sapphire)
     {
-        specie1 = *reinterpret_cast<const u16 *>(data + 62);
-        specie2 = *reinterpret_cast<const u16 *>(data + 64);
+        specie1 = entry->sapphire[0];
+        specie2 = entry->sapphire[1];
     }
     else if (dual == Game::Emerald)
     {
-        specie1 = *reinterpret_cast<const u16 *>(data + 66);
-        specie2 = *reinterpret_cast<const u16 *>(data + 68);
+        specie1 = entry->emerald[0];
+        specie2 = entry->emerald[1];
     }
     else if (dual == Game::FireRed)
     {
-        specie1 = *reinterpret_cast<const u16 *>(data + 70);
-        specie2 = *reinterpret_cast<const u16 *>(data + 72);
+        specie1 = entry->firered[0];
+        specie2 = entry->firered[1];
     }
     else if (dual == Game::LeafGreen)
     {
-        specie1 = *reinterpret_cast<const u16 *>(data + 74);
-        specie2 = *reinterpret_cast<const u16 *>(data + 76);
+        specie1 = entry->leafgreen[0];
+        specie2 = entry->leafgreen[1];
     }
     else
     {
@@ -583,20 +720,18 @@ static void modifyGreatMarsh(std::vector<Slot> &pokemon, const std::array<u16, 2
  * @brief Modifies encounter slots based on the pokeradar
  *
  * @param pokemon Vector of original encounters
- * @param data Encounter area data
+ * @param entry Encounter area data
  * @param info Personal info array pointer
  * @param radar Whether pokeradar is active or not
  */
-static void modifyRadar(std::vector<Slot> &pokemon, const u8 *data, const PersonalInfo *info, bool radar)
+static void modifyRadar(std::vector<Slot> &pokemon, const WildEncounterDPPt *entry, const PersonalInfo *info, bool radar)
 {
     if (radar)
     {
-        u16 species[4] = { *reinterpret_cast<const u16 *>(data + 50), *reinterpret_cast<const u16 *>(data + 52),
-                           *reinterpret_cast<const u16 *>(data + 54), *reinterpret_cast<const u16 *>(data + 56) };
-        pokemon[4].setSpecie(species[0], &info[species[0]]);
-        pokemon[5].setSpecie(species[1], &info[species[1]]);
-        pokemon[10].setSpecie(species[2], &info[species[2]]);
-        pokemon[11].setSpecie(species[3], &info[species[3]]);
+        pokemon[4].setSpecie(entry->radar[0], &info[entry->radar[0]]);
+        pokemon[5].setSpecie(entry->radar[1], &info[entry->radar[1]]);
+        pokemon[10].setSpecie(entry->radar[2], &info[entry->radar[2]]);
+        pokemon[11].setSpecie(entry->radar[3], &info[entry->radar[3]]);
     }
 }
 
@@ -604,18 +739,16 @@ static void modifyRadar(std::vector<Slot> &pokemon, const u8 *data, const Person
  * @brief Modifies encounter slots based on the swarm
  *
  * @param pokemon Vector of original encounters
- * @param data Encounter area data
+ * @param entry Encounter area data
  * @param info Personal info array pointer
  * @param swarm Whether swarm is active or not
  */
-static void modifySwarmDPPt(std::vector<Slot> &pokemon, const u8 *data, const PersonalInfo *info, bool swarm)
+static void modifySwarmDPPt(std::vector<Slot> &pokemon, const WildEncounterDPPt *entry, const PersonalInfo *info, bool swarm)
 {
     if (swarm)
     {
-        u16 specie1 = *reinterpret_cast<const u16 *>(data + 38);
-        u16 specie2 = *reinterpret_cast<const u16 *>(data + 40);
-        pokemon[0].setSpecie(specie1, &info[specie1]);
-        pokemon[1].setSpecie(specie2, &info[specie2]);
+        pokemon[0].setSpecie(entry->swarm[0], &info[entry->swarm[0]]);
+        pokemon[1].setSpecie(entry->swarm[1], &info[entry->swarm[1]]);
     }
 }
 
@@ -623,23 +756,23 @@ static void modifySwarmDPPt(std::vector<Slot> &pokemon, const u8 *data, const Pe
  * @brief Modifies encounter slots based on the time
  *
  * @param pokemon Vector of original encounters
- * @param data Encounter area data
+ * @param entry Encounter area data
  * @param info Personal info array pointer
  * @param time Time of day
  */
-static void modifyTime(std::vector<Slot> &pokemon, const u8 *data, const PersonalInfo *info, int time)
+static void modifyTimeDPPt(std::vector<Slot> &pokemon, const WildEncounterDPPt *entry, const PersonalInfo *info, int time)
 {
     u16 specie1;
     u16 specie2;
     if (time == 1)
     {
-        specie1 = *reinterpret_cast<const u16 *>(data + 42);
-        specie2 = *reinterpret_cast<const u16 *>(data + 44);
+        specie1 = entry->day[0];
+        specie2 = entry->day[1];
     }
     else if (time == 2)
     {
-        specie1 = *reinterpret_cast<const u16 *>(data + 46);
-        specie2 = *reinterpret_cast<const u16 *>(data + 48);
+        specie1 = entry->night[0];
+        specie2 = entry->night[1];
     }
     else
     {
@@ -709,97 +842,76 @@ static std::vector<EncounterArea4> getDPPt(Game version, Encounter encounter, Ga
     u8 *data = Utilities::decompress(compressedData, compressedLength, length);
 
     std::vector<EncounterArea4> encounters;
-    for (size_t offset = 0; offset < length; offset += 162)
+    for (size_t offset = 0; offset < length; offset += sizeof(WildEncounterDPPt))
     {
-        const u8 *entry = data + offset;
-
-        u8 location = entry[0];
-        u8 grass = entry[1];
-        u8 surf = entry[78];
-        u8 old = entry[99];
-        u8 good = entry[120];
-        u8 super = entry[141];
+        const auto *entry = reinterpret_cast<const WildEncounterDPPt *>(data + offset);
 
         switch (encounter)
         {
         case Encounter::Grass:
-            if (grass != 0)
+            if (entry->grassRate != 0)
             {
                 std::vector<Slot> slots;
                 slots.reserve(12);
-                for (size_t i = 0; i < 12; i++)
+                for (const auto &slot : entry->grass)
                 {
-                    u8 level = entry[2 + (i * 3)];
-                    u16 specie = *reinterpret_cast<const u16 *>(entry + 3 + (i * 3));
-                    slots.emplace_back(specie, level, level, &info[specie]);
+                    slots.emplace_back(slot.specie, slot.level, slot.level, &info[slot.specie]);
                 }
                 modifySwarmDPPt(slots, entry, info, swarm);
-                modifyTime(slots, entry, info, time);
+                modifyTimeDPPt(slots, entry, info, time);
                 modifyRadar(slots, entry, info, radar);
-                modifyGreatMarsh(slots, replacement, info, location);
-                modifyTrophyGarden(slots, replacement, info, location);
+                modifyGreatMarsh(slots, replacement, info, entry->location);
+                modifyTrophyGarden(slots, replacement, info, entry->location);
                 modifyDual(slots, entry, info, dual);
-                encounters.emplace_back(location, grass, encounter, slots);
+                encounters.emplace_back(entry->location, entry->grassRate, encounter, slots);
             }
             break;
         case Encounter::Surfing:
-            if (surf != 0)
+            if (entry->surfRate != 0)
             {
                 std::vector<Slot> slots;
                 slots.reserve(5);
-                for (size_t i = 0; i < 5; i++)
+                for (const auto &slot : entry->surf)
                 {
-                    u8 max = entry[79 + (i * 4)];
-                    u8 min = entry[80 + (i * 4)];
-                    u16 specie = *reinterpret_cast<const u16 *>(entry + 81 + (i * 4));
-                    slots.emplace_back(specie, min, max, &info[specie]);
+                    slots.emplace_back(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
                 }
-                encounters.emplace_back(location, surf, encounter, slots);
+                encounters.emplace_back(entry->location, entry->surfRate, encounter, slots);
             }
             break;
         case Encounter::OldRod:
-            if (old != 0)
+            if (entry->oldRate != 0)
             {
                 std::vector<Slot> slots;
                 slots.reserve(5);
-                for (size_t i = 0; i < 5; i++)
+                for (const auto &slot : entry->old)
                 {
-                    u8 max = entry[100 + (i * 4)];
-                    u8 min = entry[101 + (i * 4)];
-                    u16 specie = *reinterpret_cast<const u16 *>(entry + 102 + (i * 4));
-                    slots.emplace_back(specie, min, max, &info[specie]);
+                    slots.emplace_back(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
                 }
-                encounters.emplace_back(location, old, encounter, slots);
+                encounters.emplace_back(entry->location, entry->oldRate, encounter, slots);
             }
             break;
         case Encounter::GoodRod:
-            if (good != 0)
+            if (entry->goodRate != 0)
             {
                 std::vector<Slot> slots;
                 slots.reserve(5);
-                for (size_t i = 0; i < 5; i++)
+                for (const auto &slot : entry->good)
                 {
-                    u8 max = entry[121 + (i * 4)];
-                    u8 min = entry[122 + (i * 4)];
-                    u16 specie = *reinterpret_cast<const u16 *>(entry + 123 + (i * 4));
-                    slots.emplace_back(specie, min, max, &info[specie]);
+                    slots.emplace_back(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
                 }
-                encounters.emplace_back(location, good, encounter, slots);
+                encounters.emplace_back(entry->location, entry->goodRate, encounter, slots);
             }
             break;
         case Encounter::SuperRod:
-            if (super != 0)
+            if (entry->superRate != 0)
             {
                 std::vector<Slot> slots;
                 slots.reserve(5);
-                for (size_t i = 0; i < 5; i++)
+                for (const auto &slot : entry->super)
                 {
-                    u8 max = entry[142 + (i * 4)];
-                    u8 min = entry[143 + (i * 4)];
-                    u16 specie = *reinterpret_cast<const u16 *>(entry + 144 + (i * 4));
-                    slots.emplace_back(specie, min, max, &info[specie]);
+                    slots.emplace_back(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
                 }
-                encounters.emplace_back(location, super, encounter, slots);
+                encounters.emplace_back(entry->location, entry->superRate, encounter, slots);
             }
             break;
         default:

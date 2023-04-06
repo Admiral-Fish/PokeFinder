@@ -28,11 +28,66 @@
 #include <Core/Parents/Slot.hpp>
 #include <Core/Resources/EncounterData5.hpp>
 #include <Core/Util/Utilities.hpp>
-#include <algorithm>
-#include <iterator>
 
-constexpr std::array<u8, 12> bwLocations = { 2, 44, 45, 46, 47, 48, 49, 73, 84, 88, 93, 94 };
-constexpr std::array<u8, 13> bw2Locations = { 2, 23, 24, 25, 26, 27, 28, 43, 107, 111, 116, 117, 129 };
+struct DynamicSlot
+{
+    u16 specie;
+    u8 maxLevel;
+    u8 minLevel;
+};
+static_assert(sizeof(DynamicSlot) == 4);
+
+struct GrottoSlot
+{
+    u16 specie;
+    u8 maxLevel;
+    u8 minLevel;
+    u8 gender;
+};
+static_assert(sizeof(GrottoSlot) == 6);
+
+struct StaticSlot
+{
+    u16 specie;
+    u8 level;
+};
+static_assert(sizeof(StaticSlot) == 4);
+
+struct WildEncounter5Season
+{
+    u8 grassRate;
+    u8 grassDoubleRate;
+    u8 grassSpecialRate;
+    u8 surfRate;
+    u8 surfSpecialRate;
+    u8 fishRate;
+    u8 fishSpecialRate;
+    StaticSlot grass[12];
+    StaticSlot grassDouble[12];
+    StaticSlot grassSpecial[12];
+    DynamicSlot surf[5];
+    DynamicSlot surfSpecial[5];
+    DynamicSlot fish[5];
+    DynamicSlot fishSpecial[5];
+};
+static_assert(sizeof(WildEncounter5Season) == 232);
+
+struct WildEncounter5
+{
+    u8 location;
+    u8 seasonCount;
+    WildEncounter5Season seasons[0];
+};
+static_assert(sizeof(WildEncounter5) == 2);
+
+struct WildEncounterGrotto
+{
+    u8 location;
+    GrottoSlot pokemon[12];
+    std::array<u16, 16> items;
+    std::array<u16, 16> hiddenItems;
+};
+static_assert(sizeof(WildEncounterGrotto) == 138);
 
 namespace Encounters5
 {
@@ -58,35 +113,18 @@ namespace Encounters5
         const PersonalInfo *info = PersonalLoader::getPersonal(Game::BW2);
 
         std::vector<HiddenGrottoArea> encounters;
-        for (size_t offset = 0; offset < length; offset += 125)
+        for (size_t offset = 0; offset < length; offset += sizeof(WildEncounterGrotto))
         {
-            const u8 *entry = data + offset;
-
-            u8 location = entry[0];
+            const auto *entry = reinterpret_cast<const WildEncounterGrotto *>(data + offset);
 
             std::array<HiddenGrottoSlot, 12> pokemon;
             for (size_t i = 0; i < 12; i++)
             {
-                u16 specie = *reinterpret_cast<const u16 *>(entry + 1 + i * 5);
-                u8 maxLevel = entry[3 + i * 5];
-                u8 minLevel = entry[4 + i * 5];
-                u8 gender = entry[5 + i * 5];
-                pokemon[i] = HiddenGrottoSlot(specie, gender, minLevel, maxLevel, &info[specie]);
+                const auto &slot = entry->pokemon[i];
+                pokemon[i] = HiddenGrottoSlot(slot.specie, slot.gender, slot.minLevel, slot.maxLevel, &info[slot.specie]);
             }
 
-            std::array<u16, 16> items;
-            for (size_t i = 0; i < 16; i++)
-            {
-                items[i] = *reinterpret_cast<const u16 *>(entry + 61 + i * 2);
-            }
-
-            std::array<u16, 16> hiddenItems;
-            for (size_t i = 0; i < 16; i++)
-            {
-                hiddenItems[i] = *reinterpret_cast<const u16 *>(entry + 93 + i * 2);
-            }
-
-            encounters.emplace_back(location, pokemon, items, hiddenItems);
+            encounters.emplace_back(entry->location, pokemon, entry->items, entry->hiddenItems);
         }
         delete[] data;
         return encounters;
@@ -125,150 +163,113 @@ namespace Encounters5
         std::vector<EncounterArea5> encounters;
         for (size_t offset = 0; offset < length;)
         {
-            const u8 *entry = data + offset;
+            const auto *entry = reinterpret_cast<const WildEncounter5 *>(data + offset);
 
-            u8 location = entry[0];
-
-            int size;
-            if ((version & Game::BW) != Game::None)
+            const auto *entrySeasons = reinterpret_cast<const WildEncounter5Season *>(data + offset + offsetof(WildEncounter5, seasons));
+            const auto *entrySeason = &entrySeasons[0];
+            if (season < entry->seasonCount)
             {
-                size = std::binary_search(bwLocations.begin(), bwLocations.end(), location) ? 928 : 232;
+                entrySeason = &entrySeasons[season];
             }
-            else
-            {
-                size = std::binary_search(bw2Locations.begin(), bw2Locations.end(), location) ? 928 : 232;
-            }
-
-            int seasonOffset = 0;
-            if (season != 0 && size != 232)
-            {
-                seasonOffset = (season - 1) * 232;
-            }
-
-            u8 grass = entry[seasonOffset + 1];
-            u8 grassDouble = entry[seasonOffset + 2];
-            u8 grassSpecial = entry[seasonOffset + 3];
-            u8 surf = entry[seasonOffset + 4];
-            u8 surfSpecial = entry[seasonOffset + 5];
-            u8 fish = entry[seasonOffset + 6];
-            u8 fishSpecial = entry[seasonOffset + 7];
 
             switch (encounter)
             {
             case Encounter::Grass:
-                if (grass != 0)
+                if (entrySeason->grassRate != 0)
                 {
                     std::vector<Slot> slots;
                     slots.reserve(12);
-                    for (int i = 0; i < 12; i++)
+                    for (const auto &slot : entrySeason->grass)
                     {
-                        u16 species = *reinterpret_cast<const u16 *>(entry + seasonOffset + 9 + (i * 4));
-                        u8 level = entry[seasonOffset + 10 + (i * 4)];
-                        slots.emplace_back(species & 0x7ff, species >> 11, level, level,
-                                           PersonalLoader::getPersonal(version, species & 0x7ff, species >> 11));
+                        slots.emplace_back(slot.specie & 0x7ff, slot.specie >> 11, slot.level, slot.level,
+                                           PersonalLoader::getPersonal(version, slot.specie & 0x7ff, slot.specie >> 11));
                     }
-                    encounters.emplace_back(location, grass, encounter, slots);
+                    encounters.emplace_back(entry->location, entrySeason->grassRate, encounter, slots);
                 }
                 break;
             case Encounter::DoubleGrass:
-                if (grassDouble != 0)
+                if (entrySeason->grassDoubleRate != 0)
                 {
                     std::vector<Slot> slots;
                     slots.reserve(12);
-                    for (int i = 0; i < 12; i++)
+                    for (const auto &slot : entrySeason->grassDouble)
                     {
-                        u16 species = *reinterpret_cast<const u16 *>(entry + seasonOffset + 57 + (i * 4));
-                        u8 level = entry[seasonOffset + 58 + (i * 4)];
-                        slots.emplace_back(species & 0x7ff, species >> 11, level, level,
-                                           PersonalLoader::getPersonal(version, species & 0x7ff, species >> 11));
+                        slots.emplace_back(slot.specie & 0x7ff, slot.specie >> 11, slot.level, slot.level,
+                                           PersonalLoader::getPersonal(version, slot.specie & 0x7ff, slot.specie >> 11));
                     }
-                    encounters.emplace_back(location, grassDouble, encounter, slots);
+                    encounters.emplace_back(entry->location, entrySeason->grassDoubleRate, encounter, slots);
                 }
                 break;
             case Encounter::SpecialGrass:
-                if (grassSpecial != 0)
+                if (entrySeason->grassSpecialRate != 0)
                 {
                     std::vector<Slot> slots;
                     slots.reserve(12);
-                    for (int i = 0; i < 12; i++)
+                    for (const auto &slot : entrySeason->grassSpecial)
                     {
-                        u16 species = *reinterpret_cast<const u16 *>(entry + seasonOffset + 105 + (i * 4));
-                        u8 level = entry[seasonOffset + 106 + (i * 4)];
-                        slots.emplace_back(species & 0x7ff, species >> 11, level, level,
-                                           PersonalLoader::getPersonal(version, species & 0x7ff, species >> 11));
+                        slots.emplace_back(slot.specie & 0x7ff, slot.specie >> 11, slot.level, slot.level,
+                                           PersonalLoader::getPersonal(version, slot.specie & 0x7ff, slot.specie >> 11));
                     }
-                    encounters.emplace_back(location, grassSpecial, encounter, slots);
+                    encounters.emplace_back(entry->location, entrySeason->grassSpecialRate, encounter, slots);
                 }
                 break;
             case Encounter::Surfing:
-                if (surf != 0)
+                if (entrySeason->surfRate != 0)
                 {
                     std::vector<Slot> slots;
                     slots.reserve(5);
-                    for (int i = 0; i < 5; i++)
+                    for (const auto &slot : entrySeason->surf)
                     {
-                        u16 species = *reinterpret_cast<const u16 *>(entry + seasonOffset + 153 + (i * 4));
-                        u8 min = entry[seasonOffset + 154 + (i * 4)];
-                        u8 max = entry[seasonOffset + 155 + (i * 4)];
-                        slots.emplace_back(species & 0x7ff, species >> 11, min, max,
-                                           PersonalLoader::getPersonal(version, species & 0x7ff, species >> 11));
+                        slots.emplace_back(slot.specie & 0x7ff, slot.specie >> 11, slot.minLevel, slot.maxLevel,
+                                           PersonalLoader::getPersonal(version, slot.specie & 0x7ff, slot.specie >> 11));
                     }
-                    encounters.emplace_back(location, surf, encounter, slots);
+                    encounters.emplace_back(entry->location, entrySeason->surfRate, encounter, slots);
                 }
                 break;
             case Encounter::SpecialSurf:
-                if (surfSpecial != 0)
+                if (entrySeason->surfSpecialRate != 0)
                 {
                     std::vector<Slot> slots;
                     slots.reserve(5);
-                    for (int i = 0; i < 5; i++)
+                    for (const auto &slot : entrySeason->surfSpecial)
                     {
-                        u16 species = *reinterpret_cast<const u16 *>(entry + seasonOffset + 173 + (i * 4));
-                        u8 min = entry[seasonOffset + 174 + (i * 4)];
-                        u8 max = entry[seasonOffset + 175 + (i * 4)];
-                        slots.emplace_back(species & 0x7ff, species >> 11, min, max,
-                                           PersonalLoader::getPersonal(version, species & 0x7ff, species >> 11));
+                        slots.emplace_back(slot.specie & 0x7ff, slot.specie >> 11, slot.minLevel, slot.maxLevel,
+                                           PersonalLoader::getPersonal(version, slot.specie & 0x7ff, slot.specie >> 11));
                     }
-                    encounters.emplace_back(location, surfSpecial, encounter, slots);
+                    encounters.emplace_back(entry->location, entrySeason->surfSpecialRate, encounter, slots);
                 }
                 break;
             case Encounter::SuperRod:
-                if (fish != 0)
+                if (entrySeason->fishRate != 0)
                 {
                     std::vector<Slot> slots;
                     slots.reserve(5);
-                    for (int i = 0; i < 5; i++)
+                    for (const auto &slot : entrySeason->fish)
                     {
-                        u16 species = *reinterpret_cast<const u16 *>(entry + seasonOffset + 193 + (i * 4));
-                        u8 min = entry[seasonOffset + 194 + (i * 4)];
-                        u8 max = entry[seasonOffset + 195 + (i * 4)];
-                        slots.emplace_back(species & 0x7ff, species >> 11, min, max,
-                                           PersonalLoader::getPersonal(version, species & 0x7ff, species >> 11));
+                        slots.emplace_back(slot.specie & 0x7ff, slot.specie >> 11, slot.minLevel, slot.maxLevel,
+                                           PersonalLoader::getPersonal(version, slot.specie & 0x7ff, slot.specie >> 11));
                     }
-                    encounters.emplace_back(location, fish, encounter, slots);
+                    encounters.emplace_back(entry->location, entrySeason->fishRate, encounter, slots);
                 }
                 break;
             case Encounter::SpecialSuperRod:
-                if (fishSpecial != 0)
+                if (entrySeason->fishSpecialRate != 0)
                 {
                     std::vector<Slot> slots;
                     slots.reserve(5);
-                    for (int i = 0; i < 5; i++)
+                    for (const auto &slot : entrySeason->fishSpecial)
                     {
-                        u16 species = *reinterpret_cast<const u16 *>(entry + seasonOffset + 213 + (i * 4));
-                        u8 min = entry[seasonOffset + 214 + (i * 4)];
-                        u8 max = entry[seasonOffset + 215 + (i * 4)];
-                        slots.emplace_back(species & 0x7ff, min, species >> 11, max,
-                                           PersonalLoader::getPersonal(version, species & 0x7ff, species >> 11));
+                        slots.emplace_back(slot.specie & 0x7ff, slot.specie >> 11, slot.minLevel, slot.maxLevel,
+                                           PersonalLoader::getPersonal(version, slot.specie & 0x7ff, slot.specie >> 11));
                     }
-                    encounters.emplace_back(location, fishSpecial, encounter, slots);
+                    encounters.emplace_back(entry->location, entrySeason->fishSpecialRate, encounter, slots);
                 }
                 break;
             default:
                 break;
             }
 
-            offset += 1 + size;
+            offset += sizeof(WildEncounter5) + entry->seasonCount * sizeof(WildEncounter5Season);
         }
         return encounters;
     }

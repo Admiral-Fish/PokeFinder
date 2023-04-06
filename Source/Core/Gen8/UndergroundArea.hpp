@@ -52,8 +52,8 @@ struct Pokemon
 
 struct SpecialPokemon
 {
-    u16 specie;
     u16 rate;
+    u16 specie;
 };
 
 /**
