@@ -28,6 +28,7 @@
 #include <Core/Parents/Slot.hpp>
 #include <Core/Resources/EncounterData5.hpp>
 #include <Core/Util/Utilities.hpp>
+#include <cstddef>
 
 struct DynamicSlot
 {
