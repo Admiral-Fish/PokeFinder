@@ -52,17 +52,17 @@ public:
      * @param hatchSpecie Base egg specie
      * @param present Obtainable in-game
      */
-    constexpr PersonalInfo(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, u8 type1, u8 type2, u16 item1, u16 item2, u16 item3, u8 gender,
-                           u16 ability1, u16 ability2, u16 abilityH, u8 formCount, u16 formStatIndex, u16 hatchSpecie, bool present) :
-        ability { ability1, ability2, abilityH },
-        item { item1, item2, item3 },
+    constexpr PersonalInfo(const std::array<u8, 6> &stats, const std::array<u8, 2> &types, const std::array<u16, 3> &item, u8 gender,
+                           const std::array<u16, 3> &ability, u8 formCount, u16 formStatIndex, u16 hatchSpecie, bool present) :
+        ability(ability),
+        item(item),
         formCount(formCount),
         formStatIndex(formStatIndex),
         hatchSpecie(hatchSpecie),
-        stats { hp, atk, def, spa, spd, spe },
+        stats(stats),
         present(present),
         gender(gender),
-        types { type1, type2 }
+        types(types)
     {
     }
 
@@ -183,15 +183,15 @@ public:
     }
 
 private:
-    u16 ability[3];
-    u16 item[3];
+    std::array<u16, 3> ability;
+    std::array<u16, 3> item;
     u16 formCount : 5;
     u16 formStatIndex : 11;
     u16 hatchSpecie;
     std::array<u8, 6> stats;
     bool present;
     u8 gender;
-    u8 types[2];
+    std::array<u8, 2> types;
 };
 
 #endif // PERSONALINFO_HPP

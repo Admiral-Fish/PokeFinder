@@ -119,7 +119,12 @@ def embed_personal():
                     hatch_species, = read.unpack(data[i+0x3e:i+0x40])
                     present = (data[i+0x21] >> 6) & 1
 
-                personal = f"PersonalInfo({hp}, {atk}, {defense}, {spa}, {spd}, {spe}, {type1}, {type2}, {item1}, {item2}, {item3}, {gender}, {ability1}, {ability2}, {abilityH}, {form_count}, {form_stat_index}, {hatch_species}, {present})"
+                stats = f"std::array<u8, 6> {{ {hp}, {atk}, {defense}, {spa}, {spd}, {spe} }}"
+                types = f"std::array<u8, 2> {{ {type1}, {type2} }}"
+                items = f"std::array<u16, 3> {{ {item1}, {item2}, {item3} }}"
+                ability = f"std::array<u16, 3> {{ {ability1}, {ability2}, {abilityH} }}"
+                personal = f"PersonalInfo({stats}, {types}, {items}, {gender}, {ability}, {form_count}, {form_stat_index}, {hatch_species}, {present})"
+                
                 string += personal
                 if i != size - offset:
                     string += ", "
