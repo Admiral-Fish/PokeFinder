@@ -20,7 +20,7 @@ def embed_strings(paths):
                 string_data += bytes(line, encoding="utf-8")
                 string_data += b"\x00"
 
-            size = len(string_data).to_bytes(2, byteorder="little")
+            size = len(string_data).to_bytes(2, "little")
             string_data = bz2.compress(string_data, 9)
             string_data = size + string_data
 

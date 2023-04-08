@@ -36,7 +36,7 @@ def embed_encounters5():
 
         size = len(data)
         data = bz2.compress(data, 9)
-        data = size.to_bytes(2, byteorder="little") + data
+        data = size.to_bytes(2, "little") + data
 
         name = os.path.basename(f.name).replace(".bin", "")
         string = f"constexpr std::array<u8, {len(data)}> {name} = {{ "
