@@ -262,7 +262,7 @@ static void modifySwarmHGSS(std::vector<Slot> &pokemon, const WildEncounterHGSS 
 static void modifyTimeHGSS(std::vector<Slot> &pokemon, const WildEncounterHGSS *entry, const PersonalInfo *info, Encounter encounter,
                            int time)
 {
-    if (time != 0 || time != 1)
+    if (time != 0 && time != 1)
     {
         return;
     }
