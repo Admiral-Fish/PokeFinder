@@ -32,21 +32,11 @@ public:
     /**
      * @brief Construct a new PersonalInfo object
      *
-     * @param hp Base HP
-     * @param atk Base Atk
-     * @param def Base Def
-     * @param spa Base SpA
-     * @param spd Base SpD
-     * @param spe Base Spe
-     * @param type1 1st type
-     * @param type2 2nd type
-     * @param item1 1st item
-     * @param item2 2nd item
-     * @param item3 3rd item
+     * @param stats Base stats
+     * @param types Pokemon types
+     * @param items Pokemon items
      * @param gender Gender ratio
-     * @param ability1 1st Ability
-     * @param ability2 2nd Ability
-     * @param abilityH Hidden Ability
+     * @param ability Pokemon abilities
      * @param formCount Alternate form count
      * @param formStatIndex Alternate form index
      * @param hatchSpecie Base egg specie
