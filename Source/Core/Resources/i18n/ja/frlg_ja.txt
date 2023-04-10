@@ -9,7 +9,7 @@
 8,Mt Moon 1F
 9,Mt Moon B1F
 10,Mt Moon B2F
-11,Ssanne Exterior
+11,S.S. Anne Exterior
 12,Digletts Cave B1F
 13,Victory Road 1F
 14,Victory Road 2F

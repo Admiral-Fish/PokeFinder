@@ -93,5 +93,5 @@
 92,Safari Zone Southeast
 93,Dewford Town
 94,Pacifidlog Town
-95,Underwater1
-96,Underwater2
+95,Underwater Route 124
+96,Underwater Route 126

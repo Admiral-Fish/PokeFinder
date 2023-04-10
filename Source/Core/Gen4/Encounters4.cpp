@@ -128,9 +128,15 @@ struct WildEncounterHGSSHeadbutt
 {
     u8 location;
     bool hasSpecial;
-    DynamicSlot normal1[6];
-    DynamicSlot normal2[6];
-    DynamicSlot special[6];
+    union {
+        struct
+        {
+            DynamicSlot normal1[6];
+            DynamicSlot normal2[6];
+            DynamicSlot special[6];
+        };
+        DynamicSlot slots[18];
+    };
 };
 static_assert(sizeof(WildEncounterHGSSHeadbutt) == 74);
 
@@ -514,20 +520,7 @@ static std::vector<EncounterArea4> getHGSS(Game version, Encounter encounter, in
                 std::vector<Slot> slots;
                 slots.reserve(6);
 
-                const DynamicSlot *treeSlot;
-                if (tree == 0)
-                {
-                    treeSlot = entry->normal1;
-                }
-                else if (tree == 1)
-                {
-                    treeSlot = entry->normal2;
-                }
-                else
-                {
-                    treeSlot = entry->special;
-                }
-
+                const DynamicSlot *treeSlot = &entry->slots[6 * tree];
                 for (size_t i = 0; i < 6; i++)
                 {
                     const auto &slot = treeSlot[i];
