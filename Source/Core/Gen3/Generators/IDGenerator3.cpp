@@ -77,8 +77,8 @@ std::vector<IDState> IDGenerator3::generateRS(u16 seed)
     {
         PokeRNG go(rng);
 
-        u16 tid = go.nextUShort();
         u16 sid = go.nextUShort();
+        u16 tid = go.nextUShort();
         u16 tsv = (tid ^ sid) >> 3;
 
         IDState state(initialAdvances + cnt, tid, sid, tsv);
