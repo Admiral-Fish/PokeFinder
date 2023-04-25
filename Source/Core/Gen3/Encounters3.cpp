@@ -74,7 +74,7 @@ namespace Encounters3
     std::vector<EncounterArea3> getEncounters(Encounter encounter, Game version)
     {
         const u8 *compressedData;
-        size_t compressedLength;
+        std::size_t compressedLength;
 
         if (version == Game::Emerald)
         {
@@ -108,7 +108,7 @@ namespace Encounters3
         const PersonalInfo *info = PersonalLoader::getPersonal(version);
 
         std::vector<EncounterArea3> encounters;
-        for (size_t offset = 0; offset < length; offset += sizeof(WildEncounter3))
+        for (std::size_t offset = 0; offset < length; offset += sizeof(WildEncounter3))
         {
             const auto *entry = reinterpret_cast<const WildEncounter3 *>(data + offset);
 
@@ -202,7 +202,7 @@ namespace Encounters3
         const PersonalInfo *info = PersonalLoader::getPersonal(Game::Gen3);
 
         std::vector<EncounterArea> encounters;
-        for (size_t offset = 0; offset < length; offset += sizeof(WildEncounterPokeSpot))
+        for (std::size_t offset = 0; offset < length; offset += sizeof(WildEncounterPokeSpot))
         {
             const auto *entry = reinterpret_cast<const WildEncounterPokeSpot *>(data + offset);
 
@@ -218,7 +218,7 @@ namespace Encounters3
         return encounters;
     }
 
-    const ShadowTemplate *getShadowTeams(size_t *size)
+    const ShadowTemplate *getShadowTeams(std::size_t *size)
     {
         if (size)
         {
@@ -233,7 +233,7 @@ namespace Encounters3
         return &templates[index];
     }
 
-    const StaticTemplate *getStaticEncounters(int type, size_t *size)
+    const StaticTemplate *getStaticEncounters(int type, std::size_t *size)
     {
         if (type == 0)
         {

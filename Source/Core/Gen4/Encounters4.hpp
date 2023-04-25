@@ -76,7 +76,7 @@ namespace Encounters4
      *
      * @return Pointer to static encounters area
      */
-    const StaticTemplate4 *getStaticEncounters(int type, size_t *size = nullptr);
+    const StaticTemplate4 *getStaticEncounters(int type, std::size_t *size = nullptr);
 
     /**
      * @brief Gets static encounters from the \p type and \p index

@@ -257,7 +257,7 @@ static void modifySwarmHGSS(std::vector<Slot> &pokemon, const WildEncounterHGSS 
         else if (encounter == Encounter::SuperRod)
         {
             specie = entry->swarm[3];
-            for (size_t i = 0; i < 5; i++)
+            for (std::size_t i = 0; i < 5; i++)
             {
                 pokemon[i].setSpecie(specie, &info[specie]);
             }
@@ -296,17 +296,17 @@ static void modifyTimeHGSS(std::vector<Slot> &pokemon, const WildEncounterHGSS *
 static std::vector<EncounterArea4> getHGSSSafari(Encounter encounter, int time, const std::array<u8, 5> &blocks, const PersonalInfo *info)
 {
     const u8 *compressedData = hgss_safari.data();
-    size_t compressedLength = hgss_safari.size();
+    std::size_t compressedLength = hgss_safari.size();
 
     u32 length;
     u8 *data = Utilities::decompress(compressedData, compressedLength, length);
 
     std::vector<EncounterArea4> encounters;
-    for (size_t offset = 0; offset < length; offset += sizeof(WildEncounterHGSSSafari))
+    for (std::size_t offset = 0; offset < length; offset += sizeof(WildEncounterHGSSSafari))
     {
         const auto *entry = reinterpret_cast<const WildEncounterHGSSSafari *>(data + offset);
 
-        size_t block = 0;
+        std::size_t block = 0;
         const StaticSlot *safariSlots;
         const StaticSlot *safariBlockSlots;
 
@@ -315,7 +315,7 @@ static std::vector<EncounterArea4> getHGSSSafari(Encounter encounter, int time, 
         switch (encounter)
         {
         case Encounter::Grass:
-            for (size_t i = 0; i < 10; i++)
+            for (std::size_t i = 0; i < 10; i++)
             {
                 safariSlots = &entry->grass.normal.slots[10 * time];
                 safariBlockSlots = &entry->grass.block.slots[10 * time];
@@ -343,7 +343,7 @@ static std::vector<EncounterArea4> getHGSSSafari(Encounter encounter, int time, 
                 safariSlots = &entry->surf.normal.slots[10 * time];
                 safariBlockSlots = &entry->surf.block.slots[3 * time];
 
-                for (size_t i = 0; i < 10; i++)
+                for (std::size_t i = 0; i < 10; i++)
                 {
                     u16 specie = safariSlots[i].specie;
                     u8 level = safariSlots[i].level;
@@ -369,7 +369,7 @@ static std::vector<EncounterArea4> getHGSSSafari(Encounter encounter, int time, 
                 safariSlots = &entry->old.normal.slots[10 * time];
                 safariBlockSlots = &entry->old.block.slots[2 * time];
 
-                for (size_t i = 0; i < 10; i++)
+                for (std::size_t i = 0; i < 10; i++)
                 {
                     u16 specie = safariSlots[i].specie;
                     u8 level = safariSlots[i].level;
@@ -395,7 +395,7 @@ static std::vector<EncounterArea4> getHGSSSafari(Encounter encounter, int time, 
                 safariSlots = &entry->good.normal.slots[10 * time];
                 safariBlockSlots = &entry->good.block.slots[2 * time];
 
-                for (size_t i = 0; i < 10; i++)
+                for (std::size_t i = 0; i < 10; i++)
                 {
                     u16 specie = safariSlots[i].specie;
                     u8 level = safariSlots[i].level;
@@ -421,7 +421,7 @@ static std::vector<EncounterArea4> getHGSSSafari(Encounter encounter, int time, 
                 safariSlots = &entry->super.normal.slots[10 * time];
                 safariBlockSlots = &entry->super.block.slots[2 * time];
 
-                for (size_t i = 0; i < 10; i++)
+                for (std::size_t i = 0; i < 10; i++)
                 {
                     u16 specie = safariSlots[i].specie;
                     u8 level = safariSlots[i].level;
@@ -469,7 +469,7 @@ static std::vector<EncounterArea4> getHGSS(Game version, Encounter encounter, in
                                            const std::array<u8, 5> &blocks, const PersonalInfo *info)
 {
     const u8 *compressedData;
-    size_t compressedLength;
+    std::size_t compressedLength;
 
     u8 *data;
     u32 length;
@@ -482,7 +482,7 @@ static std::vector<EncounterArea4> getHGSS(Game version, Encounter encounter, in
 
         data = Utilities::decompress(compressedData, compressedLength, length);
         length = dex ? length : sizeof(WildEncounterHGSSBug);
-        for (size_t offset = dex ? sizeof(WildEncounterHGSSBug) : 0; offset < length; offset += sizeof(WildEncounterHGSSBug))
+        for (std::size_t offset = dex ? sizeof(WildEncounterHGSSBug) : 0; offset < length; offset += sizeof(WildEncounterHGSSBug))
         {
             const auto *entry = reinterpret_cast<const WildEncounterHGSSBug *>(data + offset);
 
@@ -511,7 +511,7 @@ static std::vector<EncounterArea4> getHGSS(Game version, Encounter encounter, in
         data = Utilities::decompress(compressedData, compressedLength, length);
 
         u8 tree = toInt(encounter) - toInt(Encounter::Headbutt);
-        for (size_t offset = 0; offset < length; offset += sizeof(WildEncounterHGSSHeadbutt))
+        for (std::size_t offset = 0; offset < length; offset += sizeof(WildEncounterHGSSHeadbutt))
         {
             const auto *entry = reinterpret_cast<const WildEncounterHGSSHeadbutt *>(data + offset);
 
@@ -521,7 +521,7 @@ static std::vector<EncounterArea4> getHGSS(Game version, Encounter encounter, in
                 slots.reserve(6);
 
                 const DynamicSlot *treeSlot = &entry->slots[6 * tree];
-                for (size_t i = 0; i < 6; i++)
+                for (std::size_t i = 0; i < 6; i++)
                 {
                     const auto &slot = treeSlot[i];
                     slots.emplace_back(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
@@ -544,7 +544,7 @@ static std::vector<EncounterArea4> getHGSS(Game version, Encounter encounter, in
         }
 
         data = Utilities::decompress(compressedData, compressedLength, length);
-        for (size_t offset = 0; offset < length; offset += sizeof(WildEncounterHGSS))
+        for (std::size_t offset = 0; offset < length; offset += sizeof(WildEncounterHGSS))
         {
             const auto *entry = reinterpret_cast<const WildEncounterHGSS *>(data + offset);
 
@@ -557,7 +557,7 @@ static std::vector<EncounterArea4> getHGSS(Game version, Encounter encounter, in
                     slots.reserve(12);
 
                     const u16 *species = &entry->grass.slots[time * 12];
-                    for (size_t i = 0; i < 12; i++)
+                    for (std::size_t i = 0; i < 12; i++)
                     {
                         slots.emplace_back(species[i], entry->grass.level[i], entry->grass.level[i], &info[species[i]]);
                     }
@@ -813,7 +813,7 @@ static std::vector<EncounterArea4> getDPPt(Game version, Encounter encounter, Ga
                                            const std::array<u16, 2> &replacement, const PersonalInfo *info)
 {
     const u8 *compressedData;
-    size_t compressedLength;
+    std::size_t compressedLength;
 
     if (version == Game::Diamond)
     {
@@ -835,7 +835,7 @@ static std::vector<EncounterArea4> getDPPt(Game version, Encounter encounter, Ga
     u8 *data = Utilities::decompress(compressedData, compressedLength, length);
 
     std::vector<EncounterArea4> encounters;
-    for (size_t offset = 0; offset < length; offset += sizeof(WildEncounterDPPt))
+    for (std::size_t offset = 0; offset < length; offset += sizeof(WildEncounterDPPt))
     {
         const auto *entry = reinterpret_cast<const WildEncounterDPPt *>(data + offset);
 
@@ -942,7 +942,7 @@ namespace Encounters4
         }
     }
 
-    const StaticTemplate4 *getStaticEncounters(int type, size_t *size)
+    const StaticTemplate4 *getStaticEncounters(int type, std::size_t *size)
     {
         if (type == 0)
         {
