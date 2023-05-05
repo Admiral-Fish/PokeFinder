@@ -95,6 +95,26 @@ public:
     }
 
     /**
+     * @brief Returns the adder of the LCRNG
+     *
+     * @return LCRNG adder value
+     */
+    constexpr static u32 getAdd()
+    {
+        return add;
+    }
+
+    /**
+     * @brief Returns the multipler of the LCRNG
+     *
+     * @return LCRNG multipler value
+     */
+    constexpr static u32 getMult()
+    {
+        return mult;
+    }
+
+    /**
      * @brief Returns the current PRNG state
      *
      * @return PRNG value
