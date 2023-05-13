@@ -59,7 +59,7 @@ std::vector<GeneratorState> EventGenerator8::generate(u64 seed0, u64 seed1) cons
         case 0:
         {
             pid = rngList.next();
-            u16 psv = (pid >> 16) & (pid & 0xfff0);
+            u16 psv = (pid >> 16) ^ (pid & 0xfff0);
 
             if ((psv ^ tsv) < 16)
             {
@@ -72,7 +72,7 @@ std::vector<GeneratorState> EventGenerator8::generate(u64 seed0, u64 seed1) cons
         case 2:
         {
             pid = rngList.next();
-            u16 psv = (pid >> 16) & (pid & 0xfff0);
+            u16 psv = (pid >> 16) ^ (pid & 0xfff0);
 
             u16 realXOR = psv ^ tsv;
             u8 shinyType = realXOR == 0 ? 2 : realXOR < 16 ? 1 : 0;
@@ -89,7 +89,7 @@ std::vector<GeneratorState> EventGenerator8::generate(u64 seed0, u64 seed1) cons
         case 4:
         {
             pid = wb8.getPID();
-            u16 realXor = (pid >> 16) & (pid & 0xfff0) ^ tsv;
+            u16 realXor = (pid >> 16) ^ (pid & 0xfff0) ^ tsv;
             shiny = realXor == 0 ? 2 : realXor < 16 ? 1 : 0;
             break;
         }
