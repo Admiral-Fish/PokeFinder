@@ -105,6 +105,8 @@ add_library(PokeFinderCore STATIC
     Gen4/SeedTime4.hpp
     Gen4/Searchers/EggSearcher4.cpp
     Gen4/Searchers/EggSearcher4.hpp
+    Gen4/Searchers/EventSearcher4.cpp
+    Gen4/Searchers/EventSearcher4.hpp
     Gen4/Searchers/IDSearcher4.cpp
     Gen4/Searchers/IDSearcher4.hpp
     Gen4/Searchers/StaticSearcher4.cpp
@@ -132,6 +134,8 @@ add_library(PokeFinderCore STATIC
     Gen5/Generators/DreamRadarGenerator.hpp
     Gen5/Generators/EggGenerator5.cpp
     Gen5/Generators/EggGenerator5.hpp
+    Gen4/Generators/EventGenerator4.cpp
+    Gen4/Generators/EventGenerator4.hpp
     Gen5/Generators/EventGenerator5.cpp
     Gen5/Generators/EventGenerator5.hpp
     Gen5/Generators/HiddenGrottoGenerator.cpp
