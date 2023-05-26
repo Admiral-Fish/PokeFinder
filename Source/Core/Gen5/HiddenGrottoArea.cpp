@@ -19,6 +19,7 @@
 
 #include "HiddenGrottoArea.hpp"
 #include <Core/Util/Translator.hpp>
+#include <algorithm>
 
 HiddenGrottoArea::HiddenGrottoArea(u8 location, const std::array<HiddenGrottoSlot, 12> &pokemon, const std::array<u16, 16> &item,
                                    const std::array<u16, 16> &hiddenItem) :

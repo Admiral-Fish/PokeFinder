@@ -21,6 +21,7 @@
 #define ENCOUNTERS3_HPP
 
 #include <Core/Global.hpp>
+#include <cstddef>
 #include <vector>
 
 class EncounterArea;

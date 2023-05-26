@@ -22,6 +22,7 @@
 
 #include <Core/Global.hpp>
 #include <array>
+#include <cstddef>
 #include <vector>
 
 class EncounterArea4;

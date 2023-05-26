@@ -68,6 +68,8 @@ Linux
 - Install Qt 6
   - [Qt website](https://www.qt.io/download)
   - sudo apt install qt6-base-dev
+- Install Python 3 and `requests`
+  - python -m pip install requests
 - Download the linux zip folder from the [releases page](https://github.com/Admiral-Fish/PokeFinder/releases/latest)
 - Extract PokéFinder from the zip folder
 
@@ -85,7 +87,7 @@ Windows
   - cmake --build .
 - Bundle
   - mk PokeFinder-windows
-  - move release\PokeFinder.exe PokeFinder-windows\PokeFinder.exe 
+  - move release\PokeFinder.exe PokeFinder-windows\PokeFinder.exe
   - windeployqt --release --no-translations --no-angle --no-plugins --no-opengl-sw PokeFinder.exe
   - xcopy /I "QTPath"\plugins\platforms\qwindows.dll PokeFinder-windows\platforms\
   - xcopy /I "QTPath"\plugins\styles\qwindowsvistastyle.dll PokeFinder-windows\styles\
@@ -109,6 +111,8 @@ Linux
     - [Qt website](https://www.qt.io/download)
     - sudo apt install qt6-base-dev qt6-tools-dev qt6-tools-dev-tools qt6-l10n-tools
   - sudo apt install build-essential libgl1-mesa-dev
+  - Python3 and `requests`
+    - python -m pip install requests
 - Build
   - git submodule update
   - mkdir build
