@@ -56,7 +56,7 @@ namespace Encounters3
      *
      * @return Pointer to shadow teams
      */
-    const ShadowTemplate *getShadowTeams(size_t *size = nullptr);
+    const ShadowTemplate *getShadowTeams(int *size = nullptr);
 
     /**
      * @brief Gets shadow team from the \p index
@@ -84,7 +84,7 @@ namespace Encounters3
      *
      * @return Pointer to static encounters area
      */
-    const StaticTemplate *getStaticEncounters(int type, size_t *size = nullptr);
+    const StaticTemplate *getStaticEncounters(int type, int *size = nullptr);
 
     /**
      * @brief Gets the static encounter from the \p type and \p index

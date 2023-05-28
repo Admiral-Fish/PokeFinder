@@ -17,7 +17,6 @@ environment:
 
 install:
     - git submodule update --init
-    - cmd: pip install requests
     - sh: bash .ci/install.sh
     
 before_build:

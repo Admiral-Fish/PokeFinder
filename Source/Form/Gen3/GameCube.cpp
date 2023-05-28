@@ -145,12 +145,12 @@ void GameCube::generatorCategoryIndexChanged(int index)
 {
     if (index >= 0)
     {
-        size_t size;
+        int size;
         ui->comboBoxGeneratorPokemon->clear();
         if (index == 2)
         {
             const ShadowTemplate *templates = Encounters3::getShadowTeams(&size);
-            for (size_t i = 0; i < size; i++)
+            for (int i = 0; i < size; i++)
             {
                 if ((currentProfile->getVersion() & templates[i].getVersion()) != Game::None)
                 {
@@ -162,7 +162,7 @@ void GameCube::generatorCategoryIndexChanged(int index)
         else
         {
             const StaticTemplate *templates = Encounters3::getStaticEncounters(index + 7, &size);
-            for (size_t i = 0; i < size; i++)
+            for (int i = 0; i < size; i++)
             {
                 if ((currentProfile->getVersion() & templates[i].getVersion()) != Game::None)
                 {
@@ -289,12 +289,12 @@ void GameCube::searcherCategoryIndexChanged(int index)
 {
     if (index >= 0)
     {
-        size_t size;
+        int size;
         ui->comboBoxSearcherPokemon->clear();
         if (index == 2)
         {
             const ShadowTemplate *templates = Encounters3::getShadowTeams(&size);
-            for (size_t i = 0; i < size; i++)
+            for (int i = 0; i < size; i++)
             {
                 if ((currentProfile->getVersion() & templates[i].getVersion()) != Game::None)
                 {
@@ -306,7 +306,7 @@ void GameCube::searcherCategoryIndexChanged(int index)
         else
         {
             const StaticTemplate *templates = Encounters3::getStaticEncounters(index + 7, &size);
-            for (size_t i = 0; i < size; i++)
+            for (int i = 0; i < size; i++)
             {
                 if ((currentProfile->getVersion() & templates[i].getVersion()) != Game::None)
                 {

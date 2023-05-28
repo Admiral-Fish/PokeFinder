@@ -218,7 +218,7 @@ namespace Encounters3
         return encounters;
     }
 
-    const ShadowTemplate *getShadowTeams(size_t *size)
+    const ShadowTemplate *getShadowTeams(int *size)
     {
         if (size)
         {
@@ -233,7 +233,7 @@ namespace Encounters3
         return &templates[index];
     }
 
-    const StaticTemplate *getStaticEncounters(int type, size_t *size)
+    const StaticTemplate *getStaticEncounters(int type, int *size)
     {
         if (type == 0)
         {

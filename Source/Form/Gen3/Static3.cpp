@@ -141,11 +141,11 @@ void Static3::generatorCategoryIndexChanged(int index)
 {
     if (index >= 0)
     {
-        size_t size;
+        int size;
         const StaticTemplate *templates = Encounters3::getStaticEncounters(index, &size);
 
         ui->comboBoxGeneratorPokemon->clear();
-        for (size_t i = 0; i < size; i++)
+        for (int i = 0; i < size; i++)
         {
             if ((currentProfile->getVersion() & templates[i].getVersion()) != Game::None)
             {
@@ -256,11 +256,11 @@ void Static3::searcherCategoryIndexChanged(int index)
 {
     if (index >= 0)
     {
-        size_t size;
+        int size;
         const StaticTemplate *templates = Encounters3::getStaticEncounters(index, &size);
 
         ui->comboBoxSearcherPokemon->clear();
-        for (size_t i = 0; i < size; i++)
+        for (int i = 0; i < size; i++)
         {
             if ((currentProfile->getVersion() & templates[i].getVersion()) != Game::None)
             {
