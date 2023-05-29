@@ -110,16 +110,16 @@ static void setInheritance(const Daycare &daycare, std::array<u8, 6> &ivs, std::
         constexpr u8 available3[4] = { 1, 3, 4, 5 };
 
         u8 stat = available1[inh[0]];
-        ivs[stat] = daycare.getParentIV(par[0], order[stat]);
+        ivs[order[stat]] = daycare.getParentIV(par[0], order[stat]);
         inheritance[stat] = par[0] + 1;
 
         stat = available2[inh[1]];
-        ivs[stat] = daycare.getParentIV(par[1], order[stat]);
-        inheritance[stat] = par[1] + 1;
+        ivs[order[stat]] = daycare.getParentIV(par[1], order[stat]);
+        inheritance[order[stat]] = par[1] + 1;
 
         stat = available3[inh[2]];
-        ivs[stat] = daycare.getParentIV(par[2], order[stat]);
-        inheritance[stat] = par[2] + 1;
+        ivs[order[stat]] = daycare.getParentIV(par[2], order[stat]);
+        inheritance[order[stat]] = par[2] + 1;
     }
     else
     {
@@ -132,20 +132,20 @@ static void setInheritance(const Daycare &daycare, std::array<u8, 6> &ivs, std::
         };
 
         u8 stat = available[inh[0]];
-        ivs[stat] = daycare.getParentIV(par[0], order[stat]);
+        ivs[order[stat]] = daycare.getParentIV(par[0], order[stat]);
         inheritance[stat] = par[1] + 1;
 
         avoid(stat, 0);
 
         stat = available[inh[1]];
-        ivs[stat] = daycare.getParentIV(par[1], order[stat]);
-        inheritance[stat] = par[1] + 1;
+        ivs[order[stat]] = daycare.getParentIV(par[1], order[stat]);
+        inheritance[order[stat]] = par[1] + 1;
 
         avoid(stat, 1);
 
         stat = available[inh[2]];
-        ivs[stat] = daycare.getParentIV(par[2], order[stat]);
-        inheritance[stat] = par[2] + 1;
+        ivs[order[stat]] = daycare.getParentIV(par[2], order[stat]);
+        inheritance[order[stat]] = par[2] + 1;
     }
 }
 
