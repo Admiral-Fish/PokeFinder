@@ -28,6 +28,7 @@ IDsFilter::IDsFilter(QWidget *parent) : QWidget(parent), ui(new Ui::IDsFilter)
 
     ui->radioButtonDisplayTID->setVisible(false);
 
+    connect(ui->buttonGroup, &QButtonGroup::buttonClicked, this, &IDsFilter::buttonGroupButtonClicked);
     connect(ui->plainTextEdit, &QPlainTextEdit::textChanged, this, &IDsFilter::textEditIDsTextChanged);
 }
 
@@ -76,6 +77,17 @@ IDFilter IDsFilter::getFilter() const
             }
         }
     }
+    else if (ui->radioButtonPID->isChecked())
+    {
+        for (const QString &input : inputs)
+        {
+            if (!input.isEmpty())
+            {
+                u32 pid = input.toUInt(nullptr, 16);
+                tsvFilter.emplace_back((pid >> 16) ^ (pid & 0xffff));
+            }
+        }
+    }
     else if (ui->radioButtonTSV->isChecked())
     {
         for (const QString &input : inputs)
@@ -105,6 +117,11 @@ void IDsFilter::enableDisplayTID()
     ui->radioButtonDisplayTID->setVisible(true);
 }
 
+void IDsFilter::buttonGroupButtonClicked(QAbstractButton *button)
+{
+    ui->plainTextEdit->clear();
+}
+
 void IDsFilter::textEditIDsTextChanged()
 {
     QStringList inputs = ui->plainTextEdit->toPlainText().split('\n');
@@ -120,6 +137,21 @@ void IDsFilter::textEditIDsTextChanged()
                 u16 val = input.toUShort(&flag);
                 val = flag ? val : 65535;
                 input = QString::number(val);
+            }
+        }
+    }
+    else if (ui->radioButtonPID->isChecked())
+    {
+        QRegularExpression filter("[^0-9a-f]");
+        for (QString &input : inputs)
+        {
+            input.remove(filter);
+            if (!input.isEmpty())
+            {
+                bool flag;
+                u32 val = input.toUInt(&flag, 16);
+                val = flag ? val : 0xffffffff;
+                input = QString::number(val, 16);
             }
         }
     }

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>278</width>
-    <height>152</height>
+    <width>177</width>
+    <height>180</height>
    </rect>
   </property>
   <layout class="QGridLayout" name="gridLayout">
@@ -34,6 +34,19 @@
      </attribute>
     </widget>
    </item>
+   <item row="4" column="0">
+    <widget class="QRadioButton" name="radioButtonTSV">
+     <property name="text">
+      <string>TSV</string>
+     </property>
+     <attribute name="buttonGroup">
+      <string notr="true">buttonGroup</string>
+     </attribute>
+    </widget>
+   </item>
+   <item row="0" column="1" rowspan="7">
+    <widget class="QPlainTextEdit" name="plainTextEdit"/>
+   </item>
    <item row="1" column="0">
     <widget class="QRadioButton" name="radioButtonSID">
      <property name="text">
@@ -44,23 +57,20 @@
      </attribute>
     </widget>
    </item>
-   <item row="3" column="0">
-    <widget class="QRadioButton" name="radioButtonTSV">
+   <item row="6" column="0">
+    <widget class="QRadioButton" name="radioButtonDisplayTID">
      <property name="text">
-      <string>TSV</string>
+      <string>Display TID</string>
      </property>
      <attribute name="buttonGroup">
       <string notr="true">buttonGroup</string>
      </attribute>
     </widget>
    </item>
-   <item row="0" column="1" rowspan="5">
-    <widget class="QPlainTextEdit" name="plainTextEdit"/>
-   </item>
-   <item row="4" column="0">
-    <widget class="QRadioButton" name="radioButtonDisplayTID">
+   <item row="3" column="0">
+    <widget class="QRadioButton" name="radioButtonPID">
      <property name="text">
-      <string>Display TID</string>
+      <string>PID</string>
      </property>
      <attribute name="buttonGroup">
       <string notr="true">buttonGroup</string>
@@ -73,6 +83,7 @@
   <tabstop>radioButtonTID</tabstop>
   <tabstop>radioButtonSID</tabstop>
   <tabstop>radioButtonTIDSID</tabstop>
+  <tabstop>radioButtonPID</tabstop>
   <tabstop>radioButtonTSV</tabstop>
   <tabstop>radioButtonDisplayTID</tabstop>
   <tabstop>plainTextEdit</tabstop>

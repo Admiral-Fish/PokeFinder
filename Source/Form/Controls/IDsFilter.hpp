@@ -23,6 +23,7 @@
 #include <QWidget>
 
 class IDFilter;
+class QAbstractButton;
 
 namespace Ui
 {
@@ -64,6 +65,11 @@ private:
     Ui::IDsFilter *ui;
 
 private slots:
+    /**
+     * @brief Clears text when the filter type is changed
+     */
+    void buttonGroupButtonClicked(QAbstractButton *button);
+
     /**
      * @brief Validates text allowed for TID, SID, TID/SID, TSV, or Display TID
      */
