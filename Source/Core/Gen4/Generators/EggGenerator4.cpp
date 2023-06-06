@@ -111,7 +111,7 @@ static void setInheritance(const Daycare &daycare, std::array<u8, 6> &ivs, std::
 
         u8 stat = available1[inh[0]];
         ivs[order[stat]] = daycare.getParentIV(par[0], order[stat]);
-        inheritance[stat] = par[0] + 1;
+        inheritance[order[stat]] = par[0] + 1;
 
         stat = available2[inh[1]];
         ivs[order[stat]] = daycare.getParentIV(par[1], order[stat]);
@@ -133,7 +133,7 @@ static void setInheritance(const Daycare &daycare, std::array<u8, 6> &ivs, std::
 
         u8 stat = available[inh[0]];
         ivs[order[stat]] = daycare.getParentIV(par[0], order[stat]);
-        inheritance[stat] = par[1] + 1;
+        inheritance[order[stat]] = par[1] + 1;
 
         avoid(stat, 0);
 
