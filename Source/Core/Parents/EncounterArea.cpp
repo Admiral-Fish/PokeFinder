@@ -84,7 +84,8 @@ u8 EncounterArea::getRate() const
 std::vector<bool> EncounterArea::getSlots(u16 specie) const
 {
     std::vector<bool> flags(pokemon.size());
-    std::transform(pokemon.begin(), pokemon.end(), flags.begin(), [specie](const auto &mon) { return mon.getSpecie() == specie; });
+    std::transform(pokemon.begin(), pokemon.end(), flags.begin(),
+                   [specie](const auto &mon) { return mon.getSpecie() == (specie & 0x7ff) && mon.getForm() == (specie >> 11); });
     return flags;
 }
 
@@ -134,9 +135,10 @@ std::vector<u16> EncounterArea::getUniqueSpecies() const
     std::vector<u16> nums;
     for (const auto &mon : pokemon)
     {
-        if (std::find(nums.begin(), nums.end(), mon.getSpecie()) == nums.end())
+        u16 num = (mon.getForm() << 11) | mon.getSpecie();
+        if (std::find(nums.begin(), nums.end(), num) == nums.end())
         {
-            nums.emplace_back(mon.getSpecie());
+            nums.emplace_back(num);
         }
     }
     return nums;
