@@ -51,12 +51,7 @@ public:
      * @param profile Profile information
      */
     Searcher5(const Profile5 &profile) :
-        profile(profile),
-        buttons(Keypresses::getKeyPresses(profile)),
-        values(Keypresses::getValues(buttons)),
-        sha(profile),
-        progress(0),
-        searching(false)
+        profile(profile), buttons(Keypresses::getKeyPresses(profile)), values(Keypresses::getValues(buttons)), progress(0), searching(false)
     {
     }
 
@@ -140,7 +135,6 @@ private:
     std::vector<Buttons> buttons;
     std::vector<SearcherState5<State>> results;
     std::vector<u32> values;
-    SHA1 sha;
     std::atomic<int> progress;
     bool searching;
 
@@ -155,6 +149,8 @@ private:
     template <class Generator>
     void search(const Generator &generator, const Date &start, const Date &end)
     {
+        SHA1 sha(profile);
+
         for (u16 timer0 = profile.getTimer0Min(); timer0 <= profile.getTimer0Max(); timer0++)
         {
             sha.setTimer0(timer0, profile.getVCount());
