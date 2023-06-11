@@ -54,6 +54,30 @@ static inline u32 rotateRight(u32 val, u8 count)
     return (val << (32 - count)) | (val >> count);
 }
 
+static inline void section1Calc(u32 a, u32 &b, u32 c, u32 d, u32 e, u32 &t, u32 input)
+{
+    t = rotateLeft(a, 5) + ((b & c) | (~b & d)) + e + 0x5a827999 + input;
+    b = rotateRight(b, 2);
+};
+
+static inline void section2Calc(u32 a, u32 &b, u32 c, u32 d, u32 e, u32 &t, u32 input)
+{
+    t = rotateLeft(a, 5) + (b ^ c ^ d) + e + 0x6ed9eba1 + input;
+    b = rotateRight(b, 2);
+};
+
+static inline void section3Calc(u32 a, u32 &b, u32 c, u32 d, u32 e, u32 &t, u32 input)
+{
+    t = rotateLeft(a, 5) + ((b & c) | ((b | c) & d)) + e + 0x8f1bbcdc + input;
+    b = rotateRight(b, 2);
+};
+
+static inline void section4Calc(u32 a, u32 &b, u32 c, u32 d, u32 e, u32 &t, u32 input)
+{
+    t = rotateLeft(a, 5) + (b ^ c ^ d) + e + 0xca62c1d6 + input;
+    b = rotateRight(b, 2);
+};
+
 SHA1::SHA1(const Profile5 &profile) :
     SHA1(profile.getVersion(), profile.getLanguage(), profile.getDSType(), profile.getMac(), profile.getSoftReset(), profile.getVFrame(),
          profile.getGxStat())
@@ -91,23 +115,6 @@ u64 SHA1::hashSeed(const std::array<u32, 5> &alpha)
     u32 d = alpha[3];
     u32 e = alpha[4];
     u32 t;
-
-    auto section1Calc = [](const u32 &a, u32 &b, const u32 &c, const u32 &d, const u32 &e, u32 &t, const u32 &input) {
-        t = rotateLeft(a, 5) + ((b & c) | (~b & d)) + e + 0x5a827999 + input;
-        b = rotateRight(b, 2);
-    };
-    auto section2Calc = [](const u32 &a, u32 &b, const u32 &c, const u32 &d, const u32 &e, u32 &t, const u32 &input) {
-        t = rotateLeft(a, 5) + (b ^ c ^ d) + e + 0x6ed9eba1 + input;
-        b = rotateRight(b, 2);
-    };
-    auto section3Calc = [](const u32 &a, u32 &b, const u32 &c, const u32 &d, const u32 &e, u32 &t, const u32 &input) {
-        t = rotateLeft(a, 5) + ((b & c) | ((b | c) & d)) + e + 0x8f1bbcdc + input;
-        b = rotateRight(b, 2);
-    };
-    auto section4Calc = [](const u32 &a, u32 &b, const u32 &c, const u32 &d, const u32 &e, u32 &t, const u32 &input) {
-        t = rotateLeft(a, 5) + (b ^ c ^ d) + e + 0xca62c1d6 + input;
-        b = rotateRight(b, 2);
-    };
 
     auto calcW = [this](int i) {
         u32 val = rotateLeft(data[i - 3] ^ data[i - 8] ^ data[i - 14] ^ data[i - 16], 1);
@@ -216,10 +223,6 @@ std::array<u32, 5> SHA1::precompute()
     u32 e = 0xc3d2e1f0;
     u32 t;
 
-    auto section1Calc = [](const u32 &a, u32 &b, const u32 &c, const u32 &d, const u32 &e, u32 &t, const u32 &input) {
-        t = rotateLeft(a, 5) + ((b & c) | (~b & d)) + e + 0x5a827999 + input;
-        b = rotateRight(b, 2);
-    };
     auto calcW = [this](int i) { data[i] = rotateLeft(data[i - 3] ^ data[i - 8] ^ data[i - 14] ^ data[i - 16], 1); };
 
     section1Calc(a, b, c, d, e, t, data[0]);

@@ -237,7 +237,7 @@ std::vector<EggState5> EggGenerator5::generateBW2(u64 seed) const
     {
         u32 advances = Utilities5::initialAdvances(seed, profile);
         BWRNG rng(seed, advances + initialAdvances + delay);
-        for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rng.next())
+        for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
         {
             BWRNG go(rng);
 
