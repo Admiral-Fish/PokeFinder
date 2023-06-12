@@ -3,7 +3,7 @@
     {
       "name": "Black",
       "seed": 0,
-      "version": 4096,
+      "version": "Black",
       "results": [
         {
           "advances": 26,
@@ -70,7 +70,7 @@
     {
       "name": "Black 2",
       "seed": 0,
-      "version": 16384,
+      "version": "Black2",
       "results": [
         {
           "advances": 35,
