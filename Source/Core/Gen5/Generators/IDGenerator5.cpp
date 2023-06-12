@@ -43,7 +43,7 @@ std::vector<IDState> IDGenerator5::generate(u64 seed, u32 pid, bool checkPID, bo
         u16 sid = rand >> 16;
         u16 tsv = (tid ^ sid) >> 3;
 
-        IDState state(advances + initialAdvances + cnt, tid, sid, tsv);
+        IDState state(advances + initialAdvances + cnt + 1, tid, sid, tsv);
         if (filter.compare(state))
         {
             bool shiny = (psv >> 3) == state.getTSV();
