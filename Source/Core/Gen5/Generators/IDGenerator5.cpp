@@ -23,7 +23,7 @@
 #include <Core/Util/Utilities.hpp>
 
 IDGenerator5::IDGenerator5(u32 initialAdvances, u32 maxAdvances, const Profile5 &profile, const IDFilter &filter) :
-    IDGenerator(initialAdvances, maxAdvances, filter), profile(profile)
+    IDGenerator(initialAdvances, maxAdvances + 1, filter), profile(profile)
 {
 }
 
@@ -36,7 +36,7 @@ std::vector<IDState> IDGenerator5::generate(u64 seed, u32 pid, bool checkPID, bo
     BWRNG rng(seed, advances + initialAdvances);
 
     std::vector<IDState> states;
-    for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
+    for (u32 cnt = 1; cnt <= maxAdvances; cnt++)
     {
         u32 rand = rng.nextUInt(0xffffffff);
         u16 tid = rand & 0xffff;
