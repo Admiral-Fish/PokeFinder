@@ -100,7 +100,7 @@
 <context>
     <name>CheckList</name>
     <message>
-        <location filename="../Controls/CheckList.cpp" line="173"/>
+        <location filename="../Controls/CheckList.cpp" line="182"/>
         <source>Any</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2095,44 +2095,44 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen4/Eggs4.cpp" line="75"/>
+        <location filename="../Gen4/Eggs4.cpp" line="76"/>
         <source>Generate times for seed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen4/Eggs4.cpp" line="141"/>
+        <location filename="../Gen4/Eggs4.cpp" line="143"/>
         <source>Do not switch to the happiness application at all</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen4/Eggs4.cpp" line="151"/>
+        <location filename="../Gen4/Eggs4.cpp" line="153"/>
         <source>Switch to the happiness application once but do not click</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen4/Eggs4.cpp" line="155"/>
+        <location filename="../Gen4/Eggs4.cpp" line="157"/>
         <source>Happiness Application Double Taps: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen4/Eggs4.cpp" line="155"/>
+        <location filename="../Gen4/Eggs4.cpp" line="157"/>
         <source>Coin Flip Application Taps: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen4/Eggs4.cpp" line="161"/>
+        <location filename="../Gen4/Eggs4.cpp" line="163"/>
         <source>Poketch Taps</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen4/Eggs4.cpp" line="169"/>
-        <location filename="../Gen4/Eggs4.cpp" line="207"/>
+        <location filename="../Gen4/Eggs4.cpp" line="171"/>
+        <location filename="../Gen4/Eggs4.cpp" line="209"/>
         <source>Incompatible Parents</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen4/Eggs4.cpp" line="169"/>
-        <location filename="../Gen4/Eggs4.cpp" line="207"/>
+        <location filename="../Gen4/Eggs4.cpp" line="171"/>
+        <location filename="../Gen4/Eggs4.cpp" line="209"/>
         <source>Gender of selected parents are not compatible for breeding</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4827,6 +4827,11 @@ p, li { white-space: pre-wrap; }
         <source>Display TID</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="../Controls/IDsFilter.ui"/>
+        <source>PID</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>IVCalculator</name>
@@ -6418,22 +6423,22 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/Profile/ProfileCalibrator5.cpp" line="177"/>
+        <location filename="../Gen5/Profile/ProfileCalibrator5.cpp" line="178"/>
         <source>No row selected</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/Profile/ProfileCalibrator5.cpp" line="177"/>
+        <location filename="../Gen5/Profile/ProfileCalibrator5.cpp" line="178"/>
         <source>Please select a row</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/Profile/ProfileCalibrator5.cpp" line="247"/>
+        <location filename="../Gen5/Profile/ProfileCalibrator5.cpp" line="248"/>
         <source>Some min values are greater then max values</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/Profile/ProfileCalibrator5.cpp" line="247"/>
+        <location filename="../Gen5/Profile/ProfileCalibrator5.cpp" line="248"/>
         <source>Invalid Input</source>
         <translation type="unfinished"></translation>
     </message>
@@ -9456,7 +9461,7 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Controls/TableView.cpp" line="32"/>
+        <location filename="../Controls/TableView.cpp" line="34"/>
         <source>Output Results to CSV</source>
         <translation type="unfinished"></translation>
     </message>
@@ -10287,12 +10292,12 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen4/Wild4.cpp" line="634"/>
+        <location filename="../Gen4/Wild4.cpp" line="635"/>
         <source>Missing Flawless IV</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen4/Wild4.cpp" line="635"/>
+        <location filename="../Gen4/Wild4.cpp" line="636"/>
         <source>Bug Catching Contest Searcher needs at least one IV at 31</source>
         <translation type="unfinished"></translation>
     </message>
@@ -10333,24 +10338,24 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen4/Wild4.cpp" line="304"/>
-        <location filename="../Gen4/Wild4.cpp" line="605"/>
+        <location filename="../Gen4/Wild4.cpp" line="305"/>
+        <location filename="../Gen4/Wild4.cpp" line="606"/>
         <source>Too many slots selected</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen4/Wild4.cpp" line="304"/>
-        <location filename="../Gen4/Wild4.cpp" line="605"/>
+        <location filename="../Gen4/Wild4.cpp" line="305"/>
+        <location filename="../Gen4/Wild4.cpp" line="606"/>
         <source>Please a single encounter slot for Poke Radar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen4/Wild4.cpp" line="560"/>
+        <location filename="../Gen4/Wild4.cpp" line="561"/>
         <source>Yes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen4/Wild4.cpp" line="560"/>
+        <location filename="../Gen4/Wild4.cpp" line="561"/>
         <source>No</source>
         <translation type="unfinished"></translation>
     </message>
