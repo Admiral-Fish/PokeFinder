@@ -2640,6 +2640,11 @@
          </item>
          <item>
           <property name="text">
+           <string>Xoroshiro</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
            <string>Xoroshiro (BDSP)</string>
           </property>
          </item>

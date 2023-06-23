@@ -268,6 +268,9 @@ void Researcher::generate()
             rngStates = getStates<SFMT>(SFMT(seed), initialAdvances, maxAdvances);
             break;
         case 3:
+            rngStates = getStates<Xoroshiro>(Xoroshiro(seed), initialAdvances, maxAdvances);
+            break;
+        case 4:
             rngStates = getStates<XoroshiroBDSP>(XoroshiroBDSP(seed), initialAdvances, maxAdvances);
             break;
         }

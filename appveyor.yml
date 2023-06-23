@@ -22,7 +22,7 @@ install:
 before_build:
     - cmd: set PATH=%QTPATH%\bin;%PATH%
     - cmd: call %VCVARSALLPATH%
-    
+
 build_script:
     - mkdir build
     - cd build
@@ -30,7 +30,7 @@ build_script:
     - sh: bash ../.ci/build.sh
     - cmake --build . -j 4
     - ctest -V
-    
+
 after_build:
     - cd ..
     - cmd: md PokeFinder-windows
@@ -44,7 +44,7 @@ after_build:
     - cmd: 7z a PokeFinder-win.zip PokeFinder-windows\
     - cmd: sha256sum PokeFinder-win.zip > PokeFinder-win.zip.sha256
     - sh: bash .ci/after_build.sh
-    
+
 artifacts:
 - path: PokeFinder-%OS%.%EXT%
 - path: PokeFinder-%OS%.%EXT%.sha256
