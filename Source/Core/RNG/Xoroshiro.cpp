@@ -18,6 +18,7 @@
  */
 
 #include "Xoroshiro.hpp"
+#include <bit>
 
 constexpr u64 jumpTable[25][2]
     = { { 0x8828e513b43d5, 0x95b8f76579aa001 },     { 0x7a8ff5b1c465a931, 0x162ad6ec01b26eae }, { 0xb18b0d36cd81a8f5, 0xb4fbaa5c54ee8b8f },
@@ -29,11 +30,6 @@ constexpr u64 jumpTable[25][2]
         { 0xb9a362fafedfe9d2, 0xcf0a2225da7fb95 },  { 0xf57881ab117349fd, 0x2bab58a3cadfc0a3 }, { 0x849272241425c996, 0x8d51ecdb9ed82455 },
         { 0xf1ccb8898cbc07cd, 0x521b29d0a57326c1 }, { 0x61179e44214caafa, 0xfbe65017abec72dd }, { 0xd9aa6b1e93fbb6e4, 0x6c446b9bc95c267b },
         { 0x86e3772194563f6d, 0x64f80248d23655c6 } };
-
-static inline u64 rotl(u64 x, int k)
-{
-    return (x << k) | (x >> (64 - k));
-}
 
 static inline u64 splitmix(u64 seed, u64 state)
 {
@@ -99,8 +95,8 @@ u64 Xoroshiro::next()
     u64 result = s0 + s1;
 
     s1 ^= s0;
-    ptr[0] = rotl(s0, 24) ^ s1 ^ (s1 << 16);
-    ptr[1] = rotl(s1, 37);
+    ptr[0] = std::rotl(s0, 24) ^ s1 ^ (s1 << 16);
+    ptr[1] = std::rotl(s1, 37);
 
     return result;
 }

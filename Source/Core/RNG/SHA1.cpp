@@ -44,38 +44,28 @@ static inline u32 changeEndian(u32 val)
     return (val << 16) | (val >> 16);
 }
 
-static inline u32 rotateLeft(u32 val, u8 count)
-{
-    return (val << count) | (val >> (32 - count));
-}
-
-static inline u32 rotateRight(u32 val, u8 count)
-{
-    return (val << (32 - count)) | (val >> count);
-}
-
 static inline void section1Calc(u32 a, u32 &b, u32 c, u32 d, u32 e, u32 &t, u32 input)
 {
-    t = rotateLeft(a, 5) + ((b & c) | (~b & d)) + e + 0x5a827999 + input;
-    b = rotateRight(b, 2);
+    t = std::rotl(a, 5) + ((b & c) | (~b & d)) + e + 0x5a827999 + input;
+    b = std::rotr(b, 2);
 };
 
 static inline void section2Calc(u32 a, u32 &b, u32 c, u32 d, u32 e, u32 &t, u32 input)
 {
-    t = rotateLeft(a, 5) + (b ^ c ^ d) + e + 0x6ed9eba1 + input;
-    b = rotateRight(b, 2);
+    t = std::rotl(a, 5) + (b ^ c ^ d) + e + 0x6ed9eba1 + input;
+    b = std::rotr(b, 2);
 };
 
 static inline void section3Calc(u32 a, u32 &b, u32 c, u32 d, u32 e, u32 &t, u32 input)
 {
-    t = rotateLeft(a, 5) + ((b & c) | ((b | c) & d)) + e + 0x8f1bbcdc + input;
-    b = rotateRight(b, 2);
+    t = std::rotl(a, 5) + ((b & c) | ((b | c) & d)) + e + 0x8f1bbcdc + input;
+    b = std::rotr(b, 2);
 };
 
 static inline void section4Calc(u32 a, u32 &b, u32 c, u32 d, u32 e, u32 &t, u32 input)
 {
-    t = rotateLeft(a, 5) + (b ^ c ^ d) + e + 0xca62c1d6 + input;
-    b = rotateRight(b, 2);
+    t = std::rotl(a, 5) + (b ^ c ^ d) + e + 0xca62c1d6 + input;
+    b = std::rotr(b, 2);
 };
 
 SHA1::SHA1(const Profile5 &profile) :
@@ -104,7 +94,7 @@ SHA1::SHA1(Game version, Language language, DSType type, u64 mac, bool softReset
     data[15] = 0x000001a0;
 
     // Precompute data[18]
-    data[18] = rotateLeft(data[15] ^ data[10] ^ data[4] ^ data[2], 1);
+    data[18] = std::rotl(data[15] ^ data[10] ^ data[4] ^ data[2], 1);
 }
 
 u64 SHA1::hashSeed(const std::array<u32, 5> &alpha)
@@ -117,12 +107,12 @@ u64 SHA1::hashSeed(const std::array<u32, 5> &alpha)
     u32 t;
 
     auto calcW = [this](int i) {
-        u32 val = rotateLeft(data[i - 3] ^ data[i - 8] ^ data[i - 14] ^ data[i - 16], 1);
+        u32 val = std::rotl(data[i - 3] ^ data[i - 8] ^ data[i - 14] ^ data[i - 16], 1);
         data[i] = val;
         return val;
     };
     auto calcWSIMD = [this](int i) {
-        u32 val = rotateLeft(data[i - 6] ^ data[i - 16] ^ data[i - 28] ^ data[i - 32], 2);
+        u32 val = std::rotl(data[i - 6] ^ data[i - 16] ^ data[i - 28] ^ data[i - 32], 2);
         data[i] = val;
         return val;
     };
@@ -223,7 +213,7 @@ std::array<u32, 5> SHA1::precompute()
     u32 e = 0xc3d2e1f0;
     u32 t;
 
-    auto calcW = [this](int i) { data[i] = rotateLeft(data[i - 3] ^ data[i - 8] ^ data[i - 14] ^ data[i - 16], 1); };
+    auto calcW = [this](int i) { data[i] = std::rotl(data[i - 3] ^ data[i - 8] ^ data[i - 14] ^ data[i - 16], 1); };
 
     section1Calc(a, b, c, d, e, t, data[0]);
     section1Calc(t, a, b, c, d, e, data[1]);

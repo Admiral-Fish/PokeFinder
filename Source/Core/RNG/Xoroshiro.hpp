@@ -76,8 +76,7 @@ public:
     template <u32 max>
     u32 nextUInt()
     {
-        auto bitMask = [](u32 x) constexpr
-        {
+        auto bitMask = [](u32 x) constexpr {
             x--;
             x |= x >> 1;
             x |= x >> 2;

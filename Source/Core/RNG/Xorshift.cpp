@@ -18,6 +18,7 @@
  */
 
 #include "Xorshift.hpp"
+#include <bit>
 
 constexpr u64 jumpTable[25][2]
     = { { 0x10046d8b3, 0xf985d65ffd3c8001 },        { 0x956c89fbfa6b67e9, 0xa42ca9aeb1e10da6 }, { 0xff7aa97c47ec17c7, 0x1a0988e988f8a56e },
@@ -32,11 +33,9 @@ constexpr u64 jumpTable[25][2]
 
 Xorshift::Xorshift(u64 seed0, u64 seed1)
 {
-    auto flip = [](u64 seed) { return (seed << 32) | (seed >> 32); };
-
     u64 *ptr = &state.uint64[0];
-    ptr[0] = flip(seed0);
-    ptr[1] = flip(seed1);
+    ptr[0] = std::rotl(seed0, 32);
+    ptr[1] = std::rotl(seed1, 32);
 }
 
 Xorshift::Xorshift(u64 seed0, u64 seed1, u32 advances) : Xorshift(seed0, seed1)
