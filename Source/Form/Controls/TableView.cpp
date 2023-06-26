@@ -25,6 +25,7 @@
 #include <QHeaderView>
 #include <QKeyEvent>
 #include <QMenu>
+#include <QTimer>
 
 TableView::TableView(QWidget *parent) : QTableView(parent)
 {
@@ -42,6 +43,8 @@ TableView::TableView(QWidget *parent) : QTableView(parent)
 
     QHeaderView *vertical = this->verticalHeader();
     vertical->setVisible(false);
+
+    QTimer::singleShot(200, this, [horizontal] { horizontal->resizeSections(QHeaderView::ResizeToContents); });
 }
 
 void TableView::contextMenuEvent(QContextMenuEvent *event)
@@ -72,19 +75,11 @@ void TableView::mouseDoubleClickEvent(QMouseEvent *event)
     }
 }
 
-void TableView::resizeEvent(QResizeEvent *event)
+void TableView::setModel(QAbstractItemModel *model)
 {
-    // Only resize when width changes
-    // This accounts for taking up too much width and adding a horizontal scroll bar which only changes the height
-    if (event->size().width() != event->oldSize().width())
-    {
-        QHeaderView *header = this->horizontalHeader();
-        int width = event->size().width() / header->count();
-        for (int i = 0; i < header->count(); i++)
-        {
-            this->setColumnWidth(i, width);
-        }
-    }
+    QTableView::setModel(model);
+    connect(this->model(), &QAbstractItemModel::rowsInserted, this,
+            [=] { this->horizontalHeader()->resizeSections(QHeaderView::ResizeToContents); });
 }
 
 void TableView::outputModel(bool csv) const

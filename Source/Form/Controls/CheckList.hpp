@@ -118,6 +118,11 @@ private:
      */
     Qt::CheckState checkState() const;
 
+    /**
+     * @brief Setups the model of check boxes to be checkable by the user and sets the minimum width for the popup
+     */
+    void setupChecks();
+
 private slots:
     /**
      * @brief Updates the text displayed of the combo box based upon which check boxes are checked

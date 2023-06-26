@@ -18,6 +18,7 @@
  */
 
 #include "ComboBox.hpp"
+#include <QApplication>
 #include <QListView>
 #include <QStandardItemModel>
 
@@ -27,10 +28,22 @@ ComboBox::ComboBox(QWidget *parent) : QComboBox(parent)
 
 void ComboBox::setup(const std::vector<QVariant> &data)
 {
+    int width = 0;
+    auto font = fontMetrics();
+    auto *model = qobject_cast<QStandardItemModel *>(this->model());
     for (size_t i = 0; i < data.size(); i++)
     {
+        QStandardItem *item = model->item(i);
+        width = std::max(width, font.size(0, item->text()).width());
+
         this->setItemData(i, data[i]);
     }
+
+    width += 2 * font.size(0, " ").width() + QApplication::style()->pixelMetric(QStyle::PM_ScrollBarExtent);
+    width *= 1.25f;
+
+    auto *view = qobject_cast<QListView *>(this->view());
+    view->setMinimumWidth(width);
 }
 
 u8 ComboBox::getCurrentUChar() const
