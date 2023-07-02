@@ -30,13 +30,13 @@
 
 ProfileSearcher5::ProfileSearcher5(const Date &date, const Time &time, u8 minSeconds, u8 maxSeconds, u8 minVCount, u8 maxVCount,
                                    u16 minTimer0, u16 maxTimer0, u8 minGxStat, u8 maxGxStat, bool softReset, Game version,
-                                   Language language, DSType dsType, u64 mac, Buttons keypress) :
+                                   Language language, DSType dsType, u64 mac, Buttons buttons) :
     mac(mac),
     date(date),
     version(version),
     progress(0),
     time(time),
-    keypress(keypress),
+    keypress { Keypresses::getValue(buttons), buttons },
     maxTimer0(maxTimer0),
     minTimer0(minTimer0),
     searching(false),
@@ -103,7 +103,6 @@ void ProfileSearcher5::startSearch(int threads, u8 minVFrame, u8 maxVFrame)
 
 void ProfileSearcher5::search(u8 vframeStart, u8 vframeEnd)
 {
-    u32 button = Keypresses::getValues({ keypress }).front();
     int hour = time.hour();
     int minute = time.minute();
 
@@ -113,7 +112,7 @@ void ProfileSearcher5::search(u8 vframeStart, u8 vframeEnd)
         {
             SHA1 sha(version, language, dsType, mac, softReset, vframe, gxStat);
             sha.setDate(date);
-            sha.setButton(button);
+            sha.setButton(keypress.value);
             for (u32 timer0 = minTimer0; timer0 <= maxTimer0; timer0++)
             {
                 for (u16 vcount = minVCount; vcount <= maxVCount; vcount++)
@@ -146,10 +145,10 @@ void ProfileSearcher5::search(u8 vframeStart, u8 vframeEnd)
 
 ProfileIVSearcher5::ProfileIVSearcher5(const Date &date, const Time &time, int minSeconds, int maxSeconds, u8 minVCount, u8 maxVCount,
                                        u16 minTimer0, u16 maxTimer0, u8 minGxStat, u8 maxGxStat, bool softReset, Game version,
-                                       Language language, DSType dsType, u64 mac, Buttons keypress, const std::array<u8, 6> &minIVs,
+                                       Language language, DSType dsType, u64 mac, Buttons buttons, const std::array<u8, 6> &minIVs,
                                        const std::array<u8, 6> &maxIVs) :
     ProfileSearcher5(date, time, minSeconds, maxSeconds, minVCount, maxVCount, minTimer0, maxTimer0, minGxStat, maxGxStat, softReset,
-                     version, language, dsType, mac, keypress),
+                     version, language, dsType, mac, buttons),
     maxIVs(maxIVs),
     minIVs(minIVs),
     offset((version & Game::BW2) != Game::None ? 2 : 0)
@@ -174,10 +173,10 @@ bool ProfileIVSearcher5::valid(u64 seed)
 
 ProfileNeedleSearcher5::ProfileNeedleSearcher5(const Date &date, const Time &time, int minSeconds, int maxSeconds, u8 minVCount,
                                                u8 maxVCount, u16 minTimer0, u16 maxTimer0, u8 minGxStat, u8 maxGxStat, bool softReset,
-                                               Game version, Language language, DSType dsType, u64 mac, Buttons keypress,
+                                               Game version, Language language, DSType dsType, u64 mac, Buttons buttons,
                                                const std::vector<u8> &needles, bool unovaLink, bool memoryLink) :
     ProfileSearcher5(date, time, minSeconds, maxSeconds, minVCount, maxVCount, minTimer0, maxTimer0, minGxStat, maxGxStat, softReset,
-                     version, language, dsType, mac, keypress),
+                     version, language, dsType, mac, buttons),
     needles(needles),
     game((version & Game::BW) != Game::None),
     memoryLink(memoryLink),
@@ -215,9 +214,9 @@ bool ProfileNeedleSearcher5::valid(u64 seed)
 
 ProfileSeedSearcher5::ProfileSeedSearcher5(const Date &date, const Time &time, int minSeconds, int maxSeconds, u8 minVCount, u8 maxVCount,
                                            u16 minTimer0, u16 maxTimer0, u8 minGxStat, u8 maxGxStat, bool softReset, Game version,
-                                           Language language, DSType dsType, u64 mac, Buttons keypress, u64 seed) :
+                                           Language language, DSType dsType, u64 mac, Buttons buttons, u64 seed) :
     ProfileSearcher5(date, time, minSeconds, maxSeconds, minVCount, maxVCount, minTimer0, maxTimer0, minGxStat, maxGxStat, softReset,
-                     version, language, dsType, mac, keypress),
+                     version, language, dsType, mac, buttons),
     seed(seed)
 {
 }

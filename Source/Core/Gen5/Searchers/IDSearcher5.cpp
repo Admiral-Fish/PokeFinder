@@ -70,17 +70,16 @@ std::vector<SearcherState5<IDState>> IDSearcher5::startSearch(const IDGenerator5
                                                               u8 minSecond, u8 maxSecond)
 {
     SHA1 sha(profile);
-    auto buttons = Keypresses::getKeyPresses(profile);
-    auto values = Keypresses::getValues(buttons);
+    auto keypresses = Keypresses::getKeypresses(profile);
 
     // IDs only uses minimum Timer0
     sha.setTimer0(profile.getTimer0Min(), profile.getVCount());
 
     sha.setDate(date);
     auto alpha = sha.precompute();
-    for (size_t i = 0; i < values.size(); i++)
+    for (const auto &keypress : keypresses)
     {
-        sha.setButton(values[i]);
+        sha.setButton(keypress.value);
         for (u8 second = minSecond; second < maxSecond; second++)
         {
             sha.setTime(hour, minute, second, profile.getDSType());
@@ -94,7 +93,7 @@ std::vector<SearcherState5<IDState>> IDSearcher5::startSearch(const IDGenerator5
                 results.reserve(results.capacity() + states.size());
                 for (const auto &state : states)
                 {
-                    results.emplace_back(dt, seed, buttons[i], profile.getTimer0Min(), state);
+                    results.emplace_back(dt, seed, keypress.button, profile.getTimer0Min(), state);
                 }
             }
         }
@@ -122,8 +121,7 @@ int IDSearcher5::getProgress() const
 void IDSearcher5::search(const IDGenerator5 &generator, const Date &start, const Date &end)
 {
     SHA1 sha(profile);
-    auto buttons = Keypresses::getKeyPresses(profile);
-    auto values = Keypresses::getValues(buttons);
+    auto keypresses = Keypresses::getKeypresses(profile);
 
     // IDs only uses minimum Timer0
     sha.setTimer0(profile.getTimer0Min(), profile.getVCount());
@@ -132,9 +130,9 @@ void IDSearcher5::search(const IDGenerator5 &generator, const Date &start, const
     {
         sha.setDate(date);
         auto alpha = sha.precompute();
-        for (size_t i = 0; i < values.size(); i++)
+        for (const auto &keypress : keypresses)
         {
-            sha.setButton(values[i]);
+            sha.setButton(keypress.value);
 
             for (u8 hour = 0; hour < 24; hour++)
             {
@@ -159,7 +157,7 @@ void IDSearcher5::search(const IDGenerator5 &generator, const Date &start, const
                             results.reserve(results.capacity() + states.size());
                             for (const auto &state : states)
                             {
-                                results.emplace_back(dt, seed, buttons[i], profile.getTimer0Min(), state);
+                                results.emplace_back(dt, seed, keypress.button, profile.getTimer0Min(), state);
                             }
                         }
                     }

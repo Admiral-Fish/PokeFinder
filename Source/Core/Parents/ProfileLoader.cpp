@@ -313,8 +313,22 @@ namespace ProfileLoader5
             Game version = j.value("version", Game::Black);
             u16 tid = j.value("tid", 0);
             u16 sid = j.value("sid", 0);
-            u64 mac = j.value("mac", 0ULL);
-            std::array<bool, 4> keypresses = j.value("keypresses", std::array<bool, 4> { false, false, false, false });
+            u64 mac;
+            try
+            {
+                mac = j.value("mac", 0ULL);
+            } catch (...)
+            {
+                mac = std::stoull(j.value("mac", "000000000000"), nullptr, 16);
+            }
+            std::array<bool, 9> keypresses;
+            try
+            {
+                keypresses = j.value("keypresses", std::array<bool, 9> { true, false, false, false, false, false, false, false, false });
+            } catch (...)
+            {
+                keypresses = { true, false, false, false, false, false, false, false, false };
+            }
             u8 vcount = j.value("vcount", 0);
             u8 gxstat = j.value("gxstat", 0);
             u8 vframe = j.value("vframe", 0);

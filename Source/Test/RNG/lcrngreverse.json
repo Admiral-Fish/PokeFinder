@@ -54,7 +54,7 @@
     "recoverPokeRNGIV": [
         {
             "name": "Method 1/2 6IV",
-            "method": 1,
+            "method": "Method1",
             "ivs": [
                 31,
                 31,
@@ -74,7 +74,7 @@
         },
         {
             "name": "Method 1/2 Atk",
-            "method": 1,
+            "method": "Method1",
             "ivs": [
                 31,
                 31,
@@ -92,7 +92,7 @@
         },
         {
             "name": "Method 1/2 SpA",
-            "method": 1,
+            "method": "Method1",
             "ivs": [
                 31,
                 0,
@@ -110,7 +110,7 @@
         },
         {
             "name": "Method 4 6IV",
-            "method": 4,
+            "method": "Method4",
             "ivs": [
                 31,
                 31,
@@ -128,7 +128,7 @@
         },
         {
             "name": "Method 4 Atk",
-            "method": 4,
+            "method": "Method4",
             "ivs": [
                 31,
                 31,
@@ -146,7 +146,7 @@
         },
         {
             "name": "Method 4 SpA",
-            "method": 4,
+            "method": "Method4",
             "ivs": [
                 31,
                 0,
@@ -164,7 +164,7 @@
     "recoverPokeRNGPID_data": [
         {
             "name": "Test 1",
-            "method": 1,
+            "method": "Method1",
             "pid": 0,
             "results": [
                 0,
@@ -173,7 +173,7 @@
         },
         {
             "name": "Test 2",
-            "method": 1,
+            "method": "Method1",
             "pid": 2147483648,
             "results": [
                 51463

@@ -26,6 +26,12 @@
 class Profile5;
 enum class Buttons : u16;
 
+struct Keypress
+{
+    u32 value;
+    Buttons button;
+};
+
 /**
  * @brief Computes keypress and keypress values used as part of the Gen 5 seeding SHA1 input
  */
@@ -38,16 +44,16 @@ namespace Keypresses
      *
      * @return Vector of keypress inputs
      */
-    std::vector<Buttons> getKeyPresses(const Profile5 &profile);
+    std::vector<Keypress> getKeypresses(const Profile5 &profile);
 
     /**
-     * @brief Computes Gen 5 seeding SHA1 input for each keypress combination in \p buttons
+     * @brief Computes value of held key presses
      *
-     * @param buttons Vector of keypress combinations
+     * @param button Held buttons
      *
-     * @return Vector of keypress values
+     * @return Keypress value
      */
-    std::vector<u32> getValues(const std::vector<Buttons> &buttons);
+    u32 getValue(Buttons button);
 }
 
 #endif // KEYPRESSES_HPP

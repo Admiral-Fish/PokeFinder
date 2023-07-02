@@ -60,9 +60,8 @@ void WildSearcher3Test::search_data()
     for (const auto &d : data)
     {
         QTest::newRow(d["name"].get<std::string>().data())
-            << d["min"].get<IVs>() << d["max"].get<IVs>() << getGame(d["version"].get<std::string>())
-            << getMethod(d["method"].get<std::string>()) << getEncounter(d["encounter"].get<std::string>())
-            << getLead(d["lead"].get<std::string>()) << d["location"].get<int>() << d["results"].get<int>();
+            << d["min"].get<IVs>() << d["max"].get<IVs>() << d["version"].get<Game>() << d["method"].get<Method>()
+            << d["encounter"].get<Encounter>() << d["lead"].get<Lead>() << d["location"].get<int>() << d["results"].get<int>();
     }
 }
 

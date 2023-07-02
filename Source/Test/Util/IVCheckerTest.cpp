@@ -46,7 +46,7 @@ void IVCheckerTest::calculateIVRange_data()
     for (const auto &d : data)
     {
         QTest::newRow(d["name"].get<std::string>().data())
-            << d["specie"].get<u16>() << d["form"].get<u8>() << getGame(d["version"].get<std::string>()) << d["stats"].get<Stats>()
+            << d["specie"].get<u16>() << d["form"].get<u8>() << d["version"].get<Game>() << d["stats"].get<Stats>()
             << d["levels"].get<Levels>() << d["nature"].get<u8>() << d["characteristic"].get<u8>() << d["hiddenPower"].get<u8>()
             << d["results"].get<Results>();
     }

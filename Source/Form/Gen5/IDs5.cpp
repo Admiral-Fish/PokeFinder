@@ -155,7 +155,7 @@ void IDs5::search()
 
     auto *searcher = new IDSearcher5(*currentProfile, pid, usePID, useXOR);
 
-    int maxProgress = Keypresses::getKeyPresses(*currentProfile).size();
+    int maxProgress = Keypresses::getKeypresses(*currentProfile).size();
     maxProgress *= (start.daysTo(end) + 1);
     ui->progressBar->setRange(0, maxProgress);
 

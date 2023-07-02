@@ -63,10 +63,10 @@ void EventGenerator5Test::generate_data()
     for (const auto &d : data)
     {
         QTest::newRow(d["name"].get<std::string>().data())
-            << d["seed"].get<u64>() << getGame(d["version"].get<std::string>()) << d["tid"].get<u16>() << d["sid"].get<u16>()
-            << d["specie"].get<u16>() << d["nature"].get<u8>() << d["gender"].get<u8>() << d["ability"].get<u8>() << d["shiny"].get<u8>()
-            << d["level"].get<u8>() << d["egg"].get<bool>() << d["hp"].get<u8>() << d["atk"].get<u8>() << d["def"].get<u8>()
-            << d["spa"].get<u8>() << d["spd"].get<u8>() << d["spe"].get<u8>() << d["results"].get<json>().dump();
+            << d["seed"].get<u64>() << d["version"].get<Game>() << d["tid"].get<u16>() << d["sid"].get<u16>() << d["specie"].get<u16>()
+            << d["nature"].get<u8>() << d["gender"].get<u8>() << d["ability"].get<u8>() << d["shiny"].get<u8>() << d["level"].get<u8>()
+            << d["egg"].get<bool>() << d["hp"].get<u8>() << d["atk"].get<u8>() << d["def"].get<u8>() << d["spa"].get<u8>()
+            << d["spd"].get<u8>() << d["spe"].get<u8>() << d["results"].get<json>().dump();
     }
 }
 

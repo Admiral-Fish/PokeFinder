@@ -21,111 +21,79 @@
 #include <Core/Enum/Buttons.hpp>
 #include <Core/Gen5/Profile5.hpp>
 
-constexpr Buttons keys[8] = { Buttons::R, Buttons::L, Buttons::X, Buttons::Y, Buttons::A, Buttons::B, Buttons::Select, Buttons::Start };
-constexpr Buttons directions[8] = { Buttons::Right,   Buttons::Left,   Buttons::Up,        Buttons::Down,
-                                    Buttons::RightUp, Buttons::LeftUp, Buttons::RightDown, Buttons::LeftDown };
-constexpr u32 buttonValues[12]
-    = { 0x10000, 0x20000, 0x40000, 0x80000, 0x1000000, 0x2000000, 0x4000000, 0x8000000, 0x10000000, 0x20000000, 0x40000000, 0x80000000 };
-
-static bool valid(Buttons button, bool skipLR)
+/**
+ * @brief Determines if the selected key presses are valid
+ *
+ * @param button Held buttons
+ * @param count Number of held key presses
+ * @param skipLR Whether to include combos with L/R
+ *
+ * @return true Held buttons are valid
+ * @return false Held buttons are invalid
+ */
+static bool valid(Buttons button, int count, bool skipLR)
 {
-    return !(skipLR && ((button & Buttons::L) != Buttons::None || (button & Buttons::R) != Buttons::None));
+    if ((button & Buttons::UpDown) == Buttons::UpDown)
+    {
+        return false;
+    }
+
+    if ((button & Buttons::LeftRight) == Buttons::LeftRight)
+    {
+        return false;
+    }
+
+    if ((button & Buttons::SoftReset) == Buttons::SoftReset)
+    {
+        return false;
+    }
+
+    if (count >= 7 && (button & Buttons::SelectStart) == Buttons::SelectStart)
+    {
+        return false;
+    }
+
+    return true;
 }
 
 namespace Keypresses
 {
-    std::vector<Buttons> getKeyPresses(const Profile5 &profile)
+    std::vector<Keypress> getKeypresses(const Profile5 &profile)
     {
-        std::vector<Buttons> buttons;
+        std::vector<Keypress> keypress;
 
         auto keypresses = profile.getKeypresses();
         bool skipLR = profile.getSkipLR();
 
-        if (keypresses[0])
+        for (u16 bits = 0; bits < 0x1000; bits++)
         {
-            buttons.emplace_back(Buttons::None);
-        }
-
-        for (u8 i = 0; i < 8; i++)
-        {
-            if (keypresses[1])
+            auto combo = static_cast<Buttons>(bits);
+            int count = std::popcount(bits);
+            if (count <= 8 && keypresses[count] && valid(combo, count, skipLR))
             {
-                Buttons combo = keys[i];
-                if (valid(combo, skipLR))
-                {
-                    buttons.emplace_back(keys[i]);
-                }
-
-                buttons.emplace_back(directions[i]);
-            }
-
-            if (keypresses[2])
-            {
-                for (u8 j = i + 1; j < 8; j++)
-                {
-                    Buttons combo = keys[i] | keys[j];
-                    if (valid(combo, skipLR))
-                    {
-                        buttons.emplace_back(combo);
-                    }
-                }
-
-                for (Buttons direction : directions)
-                {
-                    Buttons combo = keys[i] | direction;
-                    if (valid(combo, skipLR))
-                    {
-                        buttons.emplace_back(combo);
-                    }
-                }
-            }
-
-            if (keypresses[3])
-            {
-                for (u8 j = i + 1; j < 8; j++)
-                {
-                    for (u8 k = j + 1; k < 8; k++)
-                    {
-                        Buttons combo = keys[i] | keys[j] | keys[k];
-                        if (valid(combo, skipLR))
-                        {
-                            buttons.emplace_back(combo);
-                        }
-                    }
-
-                    for (Buttons direction : directions)
-                    {
-                        Buttons combo = keys[i] | keys[j] | direction;
-                        if (valid(combo, skipLR))
-                        {
-                            buttons.emplace_back(combo);
-                        }
-                    }
-                }
+                keypress.emplace_back(getValue(combo), combo);
             }
         }
 
-        return buttons;
+        return keypress;
     }
 
-    std::vector<u32> getValues(const std::vector<Buttons> &buttons)
+    u32 getValue(Buttons button)
     {
-        std::vector<u32> values;
-        for (const auto button : buttons)
+        constexpr u32 values[12] = { 0x10000,   0x20000,   0x40000,    0x80000,    0x1000000,  0x2000000,
+                                     0x4000000, 0x8000000, 0x10000000, 0x20000000, 0x40000000, 0x80000000 };
+
+        u32 value = 0xff2f0000;
+
+        u16 bits = toInt(button);
+        for (int i = 0; bits; bits >>= 1, i++)
         {
-            u32 value = 0xff2f0000;
-
-            for (int i = 0; i < 12; i++)
+            if (bits & 1)
             {
-                if ((button & static_cast<Buttons>(1 << i)) != Buttons::None)
-                {
-                    value -= buttonValues[i];
-                }
+                value -= values[i];
             }
-
-            values.emplace_back(value);
         }
 
-        return values;
+        return value;
     }
 }

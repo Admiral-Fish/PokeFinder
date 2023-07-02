@@ -50,8 +50,7 @@ public:
      *
      * @param profile Profile information
      */
-    Searcher5(const Profile5 &profile) :
-        profile(profile), buttons(Keypresses::getKeyPresses(profile)), values(Keypresses::getValues(buttons)), progress(0), searching(false)
+    Searcher5(const Profile5 &profile) : profile(profile), keypresses(Keypresses::getKeypresses(profile)), progress(0), searching(false)
     {
     }
 
@@ -132,9 +131,8 @@ public:
 private:
     Profile5 profile;
     std::mutex mutex;
-    std::vector<Buttons> buttons;
+    std::vector<Keypress> keypresses;
     std::vector<SearcherState5<State>> results;
-    std::vector<u32> values;
     std::atomic<int> progress;
     bool searching;
 
@@ -158,9 +156,9 @@ private:
             {
                 sha.setDate(date);
                 auto alpha = sha.precompute();
-                for (size_t i = 0; i < values.size(); i++)
+                for (const auto &keypress : keypresses)
                 {
-                    sha.setButton(values[i]);
+                    sha.setButton(keypress.value);
 
                     for (u8 hour = 0; hour < 24; hour++)
                     {
@@ -185,7 +183,7 @@ private:
                                     results.reserve(results.capacity() + states.size());
                                     for (const auto &state : states)
                                     {
-                                        results.emplace_back(dt, seed, buttons[i], timer0, state);
+                                        results.emplace_back(dt, seed, keypress.button, timer0, state);
                                     }
                                 }
                             }

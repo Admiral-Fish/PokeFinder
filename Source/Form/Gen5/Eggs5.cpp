@@ -173,8 +173,8 @@ void Eggs5::search()
 
     Date start = ui->dateEditSearcherStartDate->getDate();
     Date end = ui->dateEditSearcherEndDate->getDate();
-
-    int maxProgress = Keypresses::getKeyPresses(*currentProfile).size();
+    
+    int maxProgress = Keypresses::getKeypresses(*currentProfile).size();
     maxProgress *= start.daysTo(end) + 1;
     maxProgress *= (currentProfile->getTimer0Max() - currentProfile->getTimer0Min() + 1);
     ui->progressBar->setRange(0, maxProgress);

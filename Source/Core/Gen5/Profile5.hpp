@@ -53,7 +53,7 @@ public:
      * @param dsType DS type for the profile
      * @param language Language type of the profile
      */
-    Profile5(const std::string &name, Game version, u16 tid, u16 sid, u64 mac, const std::array<bool, 4> &keypresses, u8 vcount, u8 gxstat,
+    Profile5(const std::string &name, Game version, u16 tid, u16 sid, u64 mac, const std::array<bool, 9> &keypresses, u8 vcount, u8 gxstat,
              u8 vframe, bool skipLR, u16 timer0Min, u16 timer0Max, bool softReset, bool memoryLink, bool shinyCharm, DSType dsType,
              Language language);
 
@@ -83,7 +83,7 @@ public:
      *
      * @return Vector of keypress where true indicates that value is used and false means that value is not used
      */
-    std::array<bool, 4> getKeypresses() const;
+    std::array<bool, 9> getKeypresses() const;
 
     /**
      * @brief Returns the string representation of the keypresses
@@ -195,7 +195,7 @@ public:
 
 private:
     u64 mac;
-    std::array<bool, 4> keypresses; // 0: None, 1: One, 2: Two, 3: Three
+    std::array<bool, 9> keypresses;
     u16 timer0Max;
     u16 timer0Min;
     bool memoryLink;

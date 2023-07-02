@@ -50,8 +50,8 @@ void StaticGenerator3Test::generate_data()
     for (const auto &d : data)
     {
         QTest::newRow(d["name"].get<std::string>().data())
-            << d["seed"].get<u32>() << getGame(d["version"].get<std::string>()) << getMethod(d["method"].get<std::string>())
-            << d["category"].get<int>() << d["pokemon"].get<int>() << d["results"].get<json>().dump();
+            << d["seed"].get<u32>() << d["version"].get<Game>() << d["method"].get<Method>() << d["category"].get<int>()
+            << d["pokemon"].get<int>() << d["results"].get<json>().dump();
     }
 }
 

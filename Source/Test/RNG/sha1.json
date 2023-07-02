@@ -6,6 +6,11 @@
                 true,
                 false,
                 false,
+                false,
+                false,
+                false,
+                false,
+                false,
                 false
             ],
             "skipLR": false,
@@ -24,6 +29,11 @@
             "name": "White 1",
             "keypresses": [
                 true,
+                false,
+                false,
+                false,
+                false,
+                false,
                 false,
                 false,
                 false
@@ -46,6 +56,11 @@
                 true,
                 false,
                 false,
+                false,
+                false,
+                false,
+                false,
+                false,
                 false
             ],
             "skipLR": false,
@@ -64,6 +79,11 @@
             "name": "White 2",
             "keypresses": [
                 true,
+                false,
+                false,
+                false,
+                false,
+                false,
                 false,
                 false,
                 false

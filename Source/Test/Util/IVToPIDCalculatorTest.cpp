@@ -29,7 +29,7 @@ using IVs = std::array<u8, 6>;
 static bool operator==(const IVToPIDState &left, const json &right)
 {
     return left.getPID() == right["pid"].get<u32>() && left.getSeed() == right["seed"].get<u32>()
-        && left.getSID() == right["sid"].get<u16>() && left.getMethod() == getMethod(right["method"].get<std::string>());
+        && left.getSID() == right["sid"].get<u16>() && left.getMethod() == right["method"].get<Method>();
 }
 
 void IVToPIDCalculatorTest::calculatePIDs_data()

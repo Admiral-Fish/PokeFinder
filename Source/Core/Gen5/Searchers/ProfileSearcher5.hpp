@@ -20,6 +20,7 @@
 #ifndef PROFILESEARCHER5_HPP
 #define PROFILESEARCHER5_HPP
 
+#include <Core/Gen5/Keypresses.hpp>
 #include <Core/Global.hpp>
 #include <Core/Util/DateTime.hpp>
 #include <array>
@@ -28,7 +29,6 @@
 #include <vector>
 
 class ProfileSearcherState5;
-enum class Buttons : u16;
 enum class Game : u32;
 enum class Language : u8;
 enum class DSType : u8;
@@ -57,11 +57,11 @@ public:
      * @param language Game language
      * @param dsType DS type
      * @param mac DS MAC address
-     * @param keypress Keypresses selected
+     * @param buttons Keypresses selected
      */
     ProfileSearcher5(const Date &date, const Time &time, u8 minSeconds, u8 maxSeconds, u8 minVCount, u8 maxVCount, u16 minTimer0,
                      u16 maxTimer0, u8 minGxStat, u8 maxGxStat, bool softReset, Game version, Language language, DSType dsType, u64 mac,
-                     Buttons keypress);
+                     Buttons buttons);
 
     virtual ~ProfileSearcher5() = default;
 
@@ -101,7 +101,7 @@ private:
     Game version;
     std::atomic<int> progress;
     Time time;
-    Buttons keypress;
+    Keypress keypress;
     u16 maxTimer0;
     u16 minTimer0;
     bool searching;
@@ -152,13 +152,13 @@ public:
      * @param language Game language
      * @param dsType DS type
      * @param mac DS MAC address
-     * @param keypress Keypresses selected
+     * @param buttons Keypresses selected
      * @param minIVs Minimum IVs
      * @param maxIVs Maximum IVs
      */
     ProfileIVSearcher5(const Date &date, const Time &time, int minSeconds, int maxSeconds, u8 minVCount, u8 maxVCount, u16 minTimer0,
                        u16 maxTimer0, u8 minGxStat, u8 maxGxStat, bool softReset, Game version, Language language, DSType dsType, u64 mac,
-                       Buttons keypress, const std::array<u8, 6> &minIVs, const std::array<u8, 6> &maxIVs);
+                       Buttons buttons, const std::array<u8, 6> &minIVs, const std::array<u8, 6> &maxIVs);
 
 private:
     std::array<u8, 6> maxIVs;
@@ -200,14 +200,14 @@ public:
      * @param language Game language
      * @param dsType DS type
      * @param mac DS MAC address
-     * @param keypress Keypresses selected
+     * @param buttons Keypresses selected
      * @param needles Save/Unova link needles
      * @param Whether Unova link is used to obtain needles
      * @param Whether memory link is enabled
      */
     ProfileNeedleSearcher5(const Date &date, const Time &time, int minSeconds, int maxSeconds, u8 minVCount, u8 maxVCount, u16 minTimer0,
                            u16 maxTimer0, u8 minGxStat, u8 maxGxStat, bool softReset, Game version, Language language, DSType dsType,
-                           u64 mac, Buttons keypress, const std::vector<u8> &needles, bool unovaLink, bool memoryLink);
+                           u64 mac, Buttons buttons, const std::vector<u8> &needles, bool unovaLink, bool memoryLink);
 
 private:
     std::vector<u8> needles;
@@ -250,12 +250,12 @@ public:
      * @param language Game language
      * @param dsType DS type
      * @param mac DS MAC address
-     * @param keypress Keypresses selected
+     * @param buttons Keypresses selected
      * @param seed PRNG state
      */
     ProfileSeedSearcher5(const Date &date, const Time &time, int minSeconds, int maxSeconds, u8 minVCount, u8 maxVCount, u16 minTimer0,
                          u16 maxTimer0, u8 minGxStat, u8 maxGxStat, bool softReset, Game version, Language language, DSType dsType, u64 mac,
-                         Buttons keypress, u64 seed);
+                         Buttons buttons, u64 seed);
 
 private:
     u64 seed;

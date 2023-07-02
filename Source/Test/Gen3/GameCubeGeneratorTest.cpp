@@ -197,8 +197,8 @@ void GameCubeGeneratorTest::generateNonLock_data()
     json data = readData("gamecube", "gamecubegenerator", "generateNonLock");
     for (const auto &d : data)
     {
-        QTest::newRow(d["name"].get<std::string>().data()) << d["seed"].get<u32>() << getGame(d["version"].get<std::string>())
-                                                           << d["pokemon"].get<int>() << d["results"].get<json>().dump();
+        QTest::newRow(d["name"].get<std::string>().data())
+            << d["seed"].get<u32>() << d["version"].get<Game>() << d["pokemon"].get<int>() << d["results"].get<json>().dump();
     }
 }
 

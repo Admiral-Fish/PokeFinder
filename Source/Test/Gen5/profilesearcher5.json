@@ -19,7 +19,7 @@
             "language": "English",
             "dsType": "DS",
             "mac": 41860346966,
-            "keypress": "None",
+            "buttons": "None",
             "minIVs": [24,4,18,5,26,0],
             "maxIVs": [24,4,18,5,26,0],
             "result": 6812116909077463616
@@ -43,7 +43,7 @@
             "language": "English",
             "dsType": "DS",
             "mac": 41860346966,
-            "keypress": "None",
+            "buttons": "None",
             "minIVs": [5,4,27,10,7,17],
             "maxIVs": [5,4,27,10,7,17],
             "result": 5264333967543063602
@@ -69,7 +69,7 @@
             "language": "English",
             "dsType": "DS",
             "mac": 41860346966,
-            "keypress": "None",
+            "buttons": "None",
             "needles": [5, 4, 0, 5],
             "unovaLink": false,
             "memoryLink": false,
@@ -94,7 +94,7 @@
             "language": "English",
             "dsType": "DS",
             "mac": 41860346966,
-            "keypress": "None",
+            "buttons": "None",
             "needles": [7, 4, 7, 0],
             "unovaLink": true,
             "memoryLink": false,
@@ -119,7 +119,7 @@
             "language": "English",
             "dsType": "DS",
             "mac": 41860346966,
-            "keypress": "None",
+            "buttons": "None",
             "needles": [0, 1, 0, 7],
             "unovaLink": true,
             "memoryLink": true,
@@ -146,7 +146,7 @@
             "language": "English",
             "dsType": "DS",
             "mac": 41860346966,
-            "keypress": "None",
+            "buttons": "None",
             "seed": 6812116909077463616
         },
         {
@@ -168,7 +168,7 @@
             "language": "English",
             "dsType": "DS",
             "mac": 41860346966,
-            "keypress": "None",
+            "buttons": "None",
             "seed": 5264333967543063602
         }
     ]

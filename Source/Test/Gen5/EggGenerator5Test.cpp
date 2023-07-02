@@ -56,7 +56,7 @@ void EggGenerator5Test::generate_data()
     for (const auto &d : data)
     {
         QTest::newRow(d["name"].get<std::string>().data())
-            << d["seed"].get<u64>() << getGame(d["version"].get<std::string>()) << d["pokemon"].get<u16>() << d["parentIVs"].get<IVs>()
+            << d["seed"].get<u64>() << d["version"].get<Game>() << d["pokemon"].get<u16>() << d["parentIVs"].get<IVs>()
             << d["parentAbility"].get<Attribute>() << d["parentGender"].get<Attribute>() << d["parentItem"].get<Attribute>()
             << d["parentNature"].get<Attribute>() << d["results"].get<json>().dump();
     }
@@ -88,8 +88,8 @@ void EggGenerator5Test::generate()
     std::array<bool, 16> powers;
     powers.fill(true);
 
-    Profile5 profile("-", version, 12345, 54321, 0, { false, false, false, false }, 0, 0, 0, false, 0, 0, false, false, false, DSType::DS,
-                     Language::English);
+    Profile5 profile("-", version, 12345, 54321, 0, { false, false, false, false, false, false, false, false }, 0, 0, 0, false, 0, 0, false,
+                     false, false, DSType::DS, Language::English);
 
     Daycare daycare(parentIVs, parentAbility, parentGender, parentItem, parentNature, pokemon, true);
     StateFilter5 filter(255, 255, 255, false, min, max, natures, powers);
