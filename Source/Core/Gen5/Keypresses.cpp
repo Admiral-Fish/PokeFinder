@@ -20,6 +20,7 @@
 #include "Keypresses.hpp"
 #include <Core/Enum/Buttons.hpp>
 #include <Core/Gen5/Profile5.hpp>
+#include <bit>
 
 /**
  * @brief Determines if the selected key presses are valid
