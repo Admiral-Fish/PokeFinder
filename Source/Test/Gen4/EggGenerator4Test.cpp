@@ -60,7 +60,7 @@ void EggGenerator4Test::generate_data()
     for (const auto &d : data)
     {
         QTest::newRow(d["name"].get<std::string>().data())
-            << d["seed"].get<u32>() << d["seedPickup"].get<u32>() << getGame(d["version"].get<std::string>()) << d["pokemon"].get<u16>()
+            << d["seed"].get<u32>() << d["seedPickup"].get<u32>() << d["version"].get<Game>() << d["pokemon"].get<u16>()
             << d["parentIVs"].get<IVs>() << d["parentAbility"].get<Attribute>() << d["parentGender"].get<Attribute>()
             << d["parentItem"].get<Attribute>() << d["parentNature"].get<Attribute>() << d["masuda"].get<bool>()
             << d["results"].get<json>().dump();

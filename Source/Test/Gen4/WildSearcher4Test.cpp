@@ -70,9 +70,8 @@ void WildSearcher4Test::searchMethodJ_data()
     {
         QTest::newRow(d["name"].get<std::string>().data())
             << d["min"].get<IVs>() << d["max"].get<IVs>() << d["minAdvance"].get<u32>() << d["maxAdvance"].get<u32>()
-            << d["minDelay"].get<u32>() << d["maxDelay"].get<u32>() << getGame(d["version"].get<std::string>())
-            << getEncounter(d["encounter"].get<std::string>()) << getLead(d["lead"].get<std::string>()) << d["location"].get<int>()
-            << d["results"].get<int>();
+            << d["minDelay"].get<u32>() << d["maxDelay"].get<u32>() << d["version"].get<Game>() << d["encounter"].get<Encounter>()
+            << d["lead"].get<Lead>() << d["location"].get<int>() << d["results"].get<int>();
     }
 }
 
@@ -147,9 +146,8 @@ void WildSearcher4Test::searchMethodK_data()
     {
         QTest::newRow(d["name"].get<std::string>().data())
             << d["min"].get<IVs>() << d["max"].get<IVs>() << d["minAdvance"].get<u32>() << d["maxAdvance"].get<u32>()
-            << d["minDelay"].get<u32>() << d["maxDelay"].get<u32>() << getGame(d["version"].get<std::string>())
-            << getEncounter(d["encounter"].get<std::string>()) << getLead(d["lead"].get<std::string>()) << d["location"].get<int>()
-            << d["results"].get<int>();
+            << d["minDelay"].get<u32>() << d["maxDelay"].get<u32>() << d["version"].get<Game>() << d["encounter"].get<Encounter>()
+            << d["lead"].get<Lead>() << d["location"].get<int>() << d["results"].get<int>();
     }
 }
 
@@ -226,9 +224,9 @@ void WildSearcher4Test::searchPokeRadar_data()
     {
         QTest::newRow(d["name"].get<std::string>().data())
             << d["min"].get<IVs>() << d["max"].get<IVs>() << d["minAdvance"].get<u32>() << d["maxAdvance"].get<u32>()
-            << d["minDelay"].get<u32>() << d["maxDelay"].get<u32>() << getGame(d["version"].get<std::string>())
-            << getEncounter(d["encounter"].get<std::string>()) << getLead(d["lead"].get<std::string>()) << d["location"].get<int>()
-            << d["shiny"].get<bool>() << d["index"].get<u8>() << d["results"].get<int>();
+            << d["minDelay"].get<u32>() << d["maxDelay"].get<u32>() << d["version"].get<Game>() << d["encounter"].get<Encounter>()
+            << d["lead"].get<Lead>() << d["location"].get<int>() << d["shiny"].get<bool>() << d["index"].get<u8>()
+            << d["results"].get<int>();
     }
 }
 

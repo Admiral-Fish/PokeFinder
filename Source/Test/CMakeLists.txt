@@ -15,7 +15,6 @@ add_executable(PokeFinderTest
     Data.cpp
     Data.hpp
     data.qrc
-    Enum.cpp
     Enum.hpp
     Gen3/EggGenerator3Test.cpp
     Gen3/EggGenerator3Test.hpp
