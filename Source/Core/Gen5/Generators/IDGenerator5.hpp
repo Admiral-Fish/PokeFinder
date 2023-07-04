@@ -34,31 +34,31 @@ public:
     /**
      * @brief Construct a new IDGenerator5 object
      *
-     * @param minDelay Minimum delay
-     * @param maxDelay Maximum delay
-     * @param year Search year
-     * @param month Search month
-     * @param day Search day
-     * @param hour Seach hour
-     * @param minute Search minute
+     * @param initialAdvances Initial number of advances
+     * @param maxAdvances Maximum number of advances
+     * @param pid PID to search for
+     * @param checkPID Whether to check for PID
+     * @param checkXOR Whether to check for PID XORed
+     * @param profile Profile information
      * @param filter State filter
      */
-    IDGenerator5(u32 initialAdvances, u32 maxAdvances, const Profile5 &profile, const IDFilter &filter);
+    IDGenerator5(u32 initialAdvances, u32 maxAdvances, u32 pid, bool checkPID, bool checkXOR, const Profile5 &profile,
+                 const IDFilter &filter);
 
     /**
      * @brief Generates states
      *
      * @param seed Starting PRNG state
-     * @param pid PID to search for
-     * @param checkPID Whether to check for PID
-     * @param checkXOR Whether to check for PID XORed
      *
      * @return Vector of computed states
      */
-    std::vector<IDState> generate(u64 seed, u32 pid = 0, bool checkPID = false, bool checkXOR = false) const;
+    std::vector<IDState> generate(u64 seed) const;
 
 private:
     Profile5 profile;
+    u32 pid;
+    bool checkPID;
+    bool checkXOR;
 };
 
 #endif // IDGENERATOR5_HPP

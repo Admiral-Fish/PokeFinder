@@ -261,7 +261,7 @@ void Event5::search()
 
     StateFilter5 filter = ui->filterSearcher->getFilter<StateFilter5>();
     EventGenerator5 generator(0, maxAdvances, 0, pgf, *currentProfile, filter);
-    auto *searcher = new Searcher5<State5>(*currentProfile);
+    auto *searcher = new Searcher5<EventGenerator5, State5>(generator, *currentProfile);
 
     Date start = ui->dateEditSearcherStartDate->getDate();
     Date end = ui->dateEditSearcherEndDate->getDate();
@@ -274,7 +274,7 @@ void Event5::search()
     QSettings settings;
     int threads = settings.value("settings/threads").toInt();
 
-    auto *thread = QThread::create([=] { searcher->startSearch(generator, threads, start, end); });
+    auto *thread = QThread::create([=] { searcher->startSearch(threads, start, end); });
     connect(thread, &QThread::finished, thread, &QThread::deleteLater);
     connect(ui->pushButtonCancel, &QPushButton::clicked, [searcher] { searcher->cancelSearch(); });
 

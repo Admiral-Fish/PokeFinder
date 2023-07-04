@@ -169,11 +169,11 @@ void Eggs5::search()
 
     StateFilter5 filter = ui->filterSearcher->getFilter<StateFilter5>();
     EggGenerator5 generator(0, maxAdvances, 0, daycare, *currentProfile, filter);
-    auto *searcher = new Searcher5<EggState5>(*currentProfile);
+    auto *searcher = new Searcher5<EggGenerator5, EggState5>(generator, *currentProfile);
 
     Date start = ui->dateEditSearcherStartDate->getDate();
     Date end = ui->dateEditSearcherEndDate->getDate();
-    
+
     int maxProgress = Keypresses::getKeypresses(*currentProfile).size();
     maxProgress *= start.daysTo(end) + 1;
     maxProgress *= (currentProfile->getTimer0Max() - currentProfile->getTimer0Min() + 1);
@@ -182,7 +182,7 @@ void Eggs5::search()
     QSettings settings;
     int threads = settings.value("settings/threads").toInt();
 
-    auto *thread = QThread::create([=] { searcher->startSearch(generator, threads, start, end); });
+    auto *thread = QThread::create([=] { searcher->startSearch(threads, start, end); });
     connect(thread, &QThread::finished, thread, &QThread::deleteLater);
     connect(ui->pushButtonCancel, &QPushButton::clicked, [searcher] { searcher->cancelSearch(); });
 

@@ -241,7 +241,7 @@ void HiddenGrotto::search()
                               ui->checkListSearcherGroup->getCheckedArray<4>());
     HiddenGrottoGenerator generator(0, maxAdvances, 0, powerLevel, encounter[ui->comboBoxSearcherLocation->getCurrentInt()],
                                     *currentProfile, filter);
-    auto *searcher = new Searcher5<HiddenGrottoState>(*currentProfile);
+    auto *searcher = new Searcher5<HiddenGrottoGenerator, HiddenGrottoState>(generator, *currentProfile);
 
     Date start = ui->dateEditSearcherStartDate->getDate();
     Date end = ui->dateEditSearcherEndDate->getDate();
@@ -254,7 +254,7 @@ void HiddenGrotto::search()
     QSettings settings;
     int threads = settings.value("settings/threads").toInt();
 
-    auto *thread = QThread::create([=] { searcher->startSearch(generator, threads, start, end); });
+    auto *thread = QThread::create([=] { searcher->startSearch(threads, start, end); });
     connect(thread, &QThread::finished, thread, &QThread::deleteLater);
     connect(ui->pushButtonCancel, &QPushButton::clicked, [searcher] { searcher->cancelSearch(); });
 

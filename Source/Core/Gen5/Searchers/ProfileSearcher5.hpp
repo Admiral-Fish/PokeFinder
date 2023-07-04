@@ -99,9 +99,9 @@ private:
     u64 mac;
     Date date;
     Game version;
+    Keypress keypress;
     std::atomic<int> progress;
     Time time;
-    Keypress keypress;
     u16 maxTimer0;
     u16 minTimer0;
     bool searching;

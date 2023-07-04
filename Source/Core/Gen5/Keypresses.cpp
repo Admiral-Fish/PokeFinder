@@ -34,6 +34,11 @@
  */
 static bool valid(Buttons button, int count, bool skipLR)
 {
+    if (skipLR && (button & Buttons::LR) == Buttons::LR)
+    {
+        return false;
+    }
+
     if ((button & Buttons::UpDown) == Buttons::UpDown)
     {
         return false;

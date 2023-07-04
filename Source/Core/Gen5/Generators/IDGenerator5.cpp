@@ -22,12 +22,13 @@
 #include <Core/RNG/LCRNG64.hpp>
 #include <Core/Util/Utilities.hpp>
 
-IDGenerator5::IDGenerator5(u32 initialAdvances, u32 maxAdvances, const Profile5 &profile, const IDFilter &filter) :
-    IDGenerator(initialAdvances, maxAdvances + 1, filter), profile(profile)
+IDGenerator5::IDGenerator5(u32 initialAdvances, u32 maxAdvances, u32 pid, bool checkPID, bool checkXOR, const Profile5 &profile,
+                           const IDFilter &filter) :
+    IDGenerator(initialAdvances, maxAdvances + 1, filter), profile(profile), pid(pid), checkPID(checkPID), checkXOR(checkXOR)
 {
 }
 
-std::vector<IDState> IDGenerator5::generate(u64 seed, u32 pid, bool checkPID, bool checkXOR) const
+std::vector<IDState> IDGenerator5::generate(u64 seed) const
 {
     bool pidBit = (pid >> 31) ^ (pid & 1);
     u16 psv = (pid >> 16) ^ (pid & 0xffff);

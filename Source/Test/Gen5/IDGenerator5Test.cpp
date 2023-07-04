@@ -58,7 +58,7 @@ void IDGenerator5Test::generate()
                      Language::English);
 
     IDFilter filter({}, {}, {}, {});
-    IDGenerator5 generator(0, 9, profile, filter);
+    IDGenerator5 generator(0, 9, 0, false, false, profile, filter);
 
     auto states = generator.generate(seed);
     QCOMPARE(states.size(), j.size());
