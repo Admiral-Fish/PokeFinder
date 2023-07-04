@@ -62,6 +62,8 @@ Wild8::Wild8(QWidget *parent) : QWidget(parent), ui(new Ui::Wild8)
     ui->comboBoxEncounter->setup({ toInt(Encounter::Grass), toInt(Encounter::Surfing), toInt(Encounter::OldRod), toInt(Encounter::GoodRod),
                                    toInt(Encounter::SuperRod) });
 
+    ui->comboBoxLocation->enableAutoComplete();
+
     connect(ui->comboBoxProfiles, &QComboBox::currentIndexChanged, this, &Wild8::profileIndexChanged);
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Wild8::generate);
     connect(ui->comboBoxEncounter, &QComboBox::currentIndexChanged, this, &Wild8::encounterIndexChanged);

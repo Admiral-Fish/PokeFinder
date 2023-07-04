@@ -74,6 +74,20 @@ DreamRadar::DreamRadar(QWidget *parent) : QWidget(parent), ui(new Ui::DreamRadar
     ui->filterGenerator->disableControls(Controls::EncounterSlots);
     ui->filterSearcher->disableControls(Controls::EncounterSlots | Controls::DisableFilter);
 
+    ui->comboBoxGeneratorSpecie1->enableAutoComplete();
+    ui->comboBoxGeneratorSpecie2->enableAutoComplete();
+    ui->comboBoxGeneratorSpecie3->enableAutoComplete();
+    ui->comboBoxGeneratorSpecie4->enableAutoComplete();
+    ui->comboBoxGeneratorSpecie5->enableAutoComplete();
+    ui->comboBoxGeneratorSpecie6->enableAutoComplete();
+
+    ui->comboBoxSearcherSpecie1->enableAutoComplete();
+    ui->comboBoxSearcherSpecie2->enableAutoComplete();
+    ui->comboBoxSearcherSpecie3->enableAutoComplete();
+    ui->comboBoxSearcherSpecie4->enableAutoComplete();
+    ui->comboBoxSearcherSpecie5->enableAutoComplete();
+    ui->comboBoxSearcherSpecie6->enableAutoComplete();
+
     connect(ui->comboBoxProfiles, &QComboBox::currentIndexChanged, this, &DreamRadar::profileIndexChanged);
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &DreamRadar::generate);
     connect(ui->pushButtonSearch, &QPushButton::clicked, this, &DreamRadar::search);

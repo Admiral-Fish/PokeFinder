@@ -108,6 +108,9 @@ Wild4::Wild4(QWidget *parent) : QWidget(parent), ui(new Ui::Wild4)
     ui->checkBoxGeneratorPokeRadarShiny->setVisible(false);
     ui->checkBoxSearcherPokeRadarShiny->setVisible(false);
 
+    ui->comboBoxGeneratorLocation->enableAutoComplete();
+    ui->comboBoxSearcherLocation->enableAutoComplete();
+
     auto *seedToTime = new QAction(tr("Generate times for seed"), ui->tableViewSearcher);
     connect(seedToTime, &QAction::triggered, this, &Wild4::seedToTime);
     ui->tableViewSearcher->addAction(seedToTime);

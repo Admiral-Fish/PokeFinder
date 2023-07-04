@@ -79,6 +79,9 @@ Event5::Event5(QWidget *parent) : QWidget(parent), ui(new Ui::Event5)
         ui->comboBoxSearcherSpecies->addItem(QString::fromStdString(specie));
     }
 
+    ui->comboBoxGeneratorSpecies->enableAutoComplete();
+    ui->comboBoxSearcherSpecies->enableAutoComplete();
+
     connect(ui->comboBoxProfiles, &QComboBox::currentIndexChanged, this, &Event5::profileIndexChanged);
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Event5::generate);
     connect(ui->pushButtonSearch, &QPushButton::clicked, this, &Event5::search);

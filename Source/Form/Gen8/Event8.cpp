@@ -64,6 +64,8 @@ Event8::Event8(QWidget *parent) : QWidget(parent), ui(new Ui::Event8)
         ui->comboBoxNature->addItem(QString::fromStdString(nature));
     }
 
+    ui->comboBoxSpecies->enableAutoComplete();
+
     connect(ui->comboBoxProfiles, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &Event8::profileIndexChanged);
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Event8::generate);
     connect(ui->pushButtonImport, &QPushButton::clicked, this, &Event8::importEvent);

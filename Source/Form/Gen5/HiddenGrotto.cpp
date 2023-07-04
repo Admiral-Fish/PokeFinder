@@ -64,6 +64,9 @@ HiddenGrotto::HiddenGrotto(QWidget *parent) : QWidget(parent), ui(new Ui::Hidden
     ui->checkListSearcherGroup->setup();
     ui->checkListSearcherGender->setup();
 
+    ui->comboBoxGeneratorLocation->enableAutoComplete();
+    ui->comboBoxSearcherLocation->enableAutoComplete();
+
     connect(ui->comboBoxGeneratorLocation, &QComboBox::currentIndexChanged, this, &HiddenGrotto::generatorLocationIndexChanged);
     connect(ui->comboBoxSearcherLocation, &QComboBox::currentIndexChanged, this, &HiddenGrotto::searcherLocationIndexChanged);
     connect(ui->comboBoxGeneratorPokemon, &QComboBox::currentIndexChanged, this, &HiddenGrotto::generatorUpdateFilter);

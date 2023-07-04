@@ -37,11 +37,9 @@ public:
     ComboBox(QWidget *parent);
 
     /**
-     * @brief Sets the data for each item in the combo box
-     *
-     * @param data Vector of data to set
+     * @brief Enables type to autocomplete
      */
-    void setup(const std::vector<QVariant> &data);
+    void enableAutoComplete();
 
     /**
      * @brief Gets current selected index data as u8
@@ -111,6 +109,13 @@ public:
      * @param hide Whether item should be hidden
      */
     void setItemHidden(int row, bool hide);
+
+    /**
+     * @brief Sets the data for each item in the combo box
+     *
+     * @param data Vector of data to set
+     */
+    void setup(const std::vector<QVariant> &data);
 };
 
 #endif // COMBOBOX_HPP

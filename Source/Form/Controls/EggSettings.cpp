@@ -22,7 +22,6 @@
 #include <Core/Enum/Game.hpp>
 #include <Core/Parents/Daycare.hpp>
 #include <Core/Util/Translator.hpp>
-#include <QCompleter>
 
 constexpr u16 allowed[]
     = { 1,   4,   7,   10,  13,  16,  19,  21,  23,  27,  29,  32,  37,  41,  43,  46,  48,  50,  52,  54,  56,  58,  60,  63,  66,  69,
@@ -70,9 +69,7 @@ EggSettings::EggSettings(QWidget *parent) : QWidget(parent), ui(new Ui::EggSetti
     ui->comboBoxParentBItem->addItem(tr("None"), 0);
     ui->comboBoxParentBItem->addItem(tr("Everstone"), 1);
 
-    ui->comboBoxEggSpecie->setEditable(true);
-    ui->comboBoxEggSpecie->setInsertPolicy(QComboBox::NoInsert);
-    ui->comboBoxEggSpecie->completer()->setCompletionMode(QCompleter::PopupCompletion);
+    ui->comboBoxEggSpecie->enableAutoComplete();
 
     connect(ui->checkBoxShowInheritance, &QCheckBox::stateChanged, this,
             [=](int state) { emit showInheritanceChanged(state == Qt::Checked); });

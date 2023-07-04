@@ -31,7 +31,6 @@
 #include <Core/Gen8/Encounters8.hpp>
 #include <Core/Gen8/Profile8.hpp>
 #include <Core/Util/Translator.hpp>
-#include <QCompleter>
 #include <QSettings>
 #include <QStandardItemModel>
 
@@ -49,9 +48,7 @@ EncounterLookup::EncounterLookup(QWidget *parent) : QWidget(parent), ui(new Ui::
                               toInt(Game::Diamond), toInt(Game::Pearl), toInt(Game::Platinum), toInt(Game::HeartGold),
                               toInt(Game::SoulSilver), toInt(Game::BD), toInt(Game::SP) });
 
-    ui->comboBoxPokemon->setEditable(true);
-    ui->comboBoxPokemon->setInsertPolicy(QComboBox::NoInsert);
-    ui->comboBoxPokemon->completer()->setCompletionMode(QCompleter::PopupCompletion);
+    ui->comboBoxPokemon->enableAutoComplete();
 
     connect(ui->pushButtonFind, &QPushButton::clicked, this, &EncounterLookup::find);
     connect(ui->comboBoxGame, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &EncounterLookup::gameIndexChanged);

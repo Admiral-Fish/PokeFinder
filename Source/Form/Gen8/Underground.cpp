@@ -58,6 +58,8 @@ Underground::Underground(QWidget *parent) : QWidget(parent), ui(new Ui::Undergro
 
     ui->filter->disableControls(Controls::EncounterSlots);
 
+    ui->comboBoxLocation->enableAutoComplete();
+
     connect(ui->comboBoxProfiles, &QComboBox::currentIndexChanged, this, &Underground::profileIndexChanged);
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Underground::generate);
     connect(ui->comboBoxStoryFlag, &QComboBox::currentIndexChanged, this, &Underground::storyFlagIndexChanged);
@@ -140,7 +142,6 @@ void Underground::storyFlagIndexChanged(int index)
         locationIndexChanged(ui->comboBoxLocation->currentIndex());
     }
 }
-
 
 void Underground::generate()
 {
