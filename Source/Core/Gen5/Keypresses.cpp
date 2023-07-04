@@ -77,7 +77,8 @@ namespace Keypresses
             int count = std::popcount(bits);
             if (count <= 8 && keypresses[count] && valid(combo, count, skipLR))
             {
-                keypress.emplace_back(getValue(combo), combo);
+                Keypress k = { getValue(combo), combo };
+                keypress.emplace_back(k);
             }
         }
 
