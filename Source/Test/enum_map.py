@@ -5,24 +5,32 @@ import os
 
 
 def enum_map(parent, files):
-    re1 = re.compile(r"enum class (\w+) .+ {(.+)};")
-    re2 = re.compile(r"([a-zA-Z]\w+)(?:,| =)")
+    re1 = re.compile(r"enum class (\w+) : u\d+")
+    re2 = re.compile(r"(\w+)(?:,| =|$)")
 
     strings = []
     for file in files:
         with open(f"{parent}/{file}.hpp", "r") as f:
-            data = f.read().replace("\n", " ")
+            data = [x for x in f.read().split("\n") if x != ""]
 
-        enum_data = re1.search(data)
+        for start, string in enumerate(data):
+            if string.startswith("enum class"):
+                enum_name = re1.search(string).group(1)
+                start += 2
+                break
 
-        enum_name = enum_data.group(1)
-        enum_class = enum_data.group(2)
-        enum_values = list(set(re2.findall(enum_class)))
+        for end in range(start + 1, len(data), 1):
+            if data[end] == "};":
+                break
+
+        data = data[start:end]
 
         string = f"NLOHMANN_JSON_SERIALIZE_ENUM( {enum_name}, {{\n"
-        for i, enum_value in enumerate(enum_values):
+        for i, line in enumerate(data):
+            enum_value = re2.search(line).group(1)
+
             string += f"\t{{ {enum_name}::{enum_value}, \"{enum_value}\" }}"
-            if i != len(enum_values) - 1:
+            if i != len(data) - 1:
                 string += ","
             string += "\n"
         string += "})"
