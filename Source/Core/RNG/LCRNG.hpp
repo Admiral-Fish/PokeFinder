@@ -24,8 +24,11 @@
 
 struct JumpTable
 {
-    u32 add[32];
-    u32 mult[32];
+    struct
+    {
+        u32 mult;
+        u32 add;
+    } jump[32];
 };
 
 extern const JumpTable ARNGTable;
@@ -165,7 +168,7 @@ public:
         {
             if (advances & 1)
             {
-                seed = seed * table->mult[i] + table->add[i];
+                seed = seed * table->jump[i].mult + table->jump[i].add;
             }
         }
 

@@ -23,13 +23,13 @@ template <class RNG>
 static consteval JumpTable computeJumpTable()
 {
     JumpTable table;
-    table.add[0] = RNG::getAdd();
-    table.mult[0] = RNG::getMult();
+    table.jump[0].add = RNG::getAdd();
+    table.jump[0].mult = RNG::getMult();
 
     for (int i = 1; i < 32; i++)
     {
-        table.add[i] = table.add[i - 1] * (table.mult[i - 1] + 1);
-        table.mult[i] = table.mult[i - 1] * table.mult[i - 1];
+        table.jump[i].add = table.jump[i - 1].add * (table.jump[i - 1].mult + 1);
+        table.jump[i].mult = table.jump[i - 1].mult * table.jump[i - 1].mult;
     }
 
     return table;

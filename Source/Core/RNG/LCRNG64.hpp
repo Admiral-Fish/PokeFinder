@@ -24,8 +24,11 @@
 
 struct JumpTable64
 {
-    u64 add[32];
-    u64 mult[32];
+    struct
+    {
+        u64 mult;
+        u64 add;
+    } jump[32];
 };
 
 extern const JumpTable64 BWRNGTable;
@@ -154,7 +157,7 @@ public:
         {
             if (advances & 1)
             {
-                seed = seed * table->mult[i] + table->add[i];
+                seed = seed * table->jump[i].mult + table->jump[i].add;
             }
         }
 
