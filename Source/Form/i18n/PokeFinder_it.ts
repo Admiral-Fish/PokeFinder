@@ -100,7 +100,7 @@
 <context>
     <name>CheckList</name>
     <message>
-        <location filename="../Controls/CheckList.cpp" line="182"/>
+        <location filename="../Controls/CheckList.cpp" line="184"/>
         <source>Any</source>
         <translation>Qualsiasi</translation>
     </message>
@@ -999,14 +999,14 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/DreamRadar.cpp" line="273"/>
-        <location filename="../Gen5/DreamRadar.cpp" line="297"/>
+        <location filename="../Gen5/DreamRadar.cpp" line="287"/>
+        <location filename="../Gen5/DreamRadar.cpp" line="311"/>
         <source>Missing settings</source>
         <translation>Impostazioni mancanti</translation>
     </message>
     <message>
-        <location filename="../Gen5/DreamRadar.cpp" line="273"/>
-        <location filename="../Gen5/DreamRadar.cpp" line="297"/>
+        <location filename="../Gen5/DreamRadar.cpp" line="287"/>
+        <location filename="../Gen5/DreamRadar.cpp" line="311"/>
         <source>Enter information for at least 1 slot</source>
         <translation>Inserisci informazione per almeno 1 slot</translation>
     </message>
@@ -1803,56 +1803,56 @@ p, li { white-space: pre-wrap; }
         <translation>Natura</translation>
     </message>
     <message>
-        <location filename="../Controls/EggSettings.cpp" line="230"/>
-        <location filename="../Controls/EggSettings.cpp" line="237"/>
+        <location filename="../Controls/EggSettings.cpp" line="227"/>
+        <location filename="../Controls/EggSettings.cpp" line="234"/>
         <source>Power Weight</source>
         <translation>Vigorpeso</translation>
     </message>
     <message>
-        <location filename="../Controls/EggSettings.cpp" line="231"/>
-        <location filename="../Controls/EggSettings.cpp" line="238"/>
+        <location filename="../Controls/EggSettings.cpp" line="228"/>
+        <location filename="../Controls/EggSettings.cpp" line="235"/>
         <source>Power Bracer</source>
         <translation>Vigorcerchio</translation>
     </message>
     <message>
-        <location filename="../Controls/EggSettings.cpp" line="232"/>
-        <location filename="../Controls/EggSettings.cpp" line="239"/>
+        <location filename="../Controls/EggSettings.cpp" line="229"/>
+        <location filename="../Controls/EggSettings.cpp" line="236"/>
         <source>Power Belt</source>
         <translation>Vigorfascia</translation>
     </message>
     <message>
-        <location filename="../Controls/EggSettings.cpp" line="233"/>
-        <location filename="../Controls/EggSettings.cpp" line="240"/>
+        <location filename="../Controls/EggSettings.cpp" line="230"/>
+        <location filename="../Controls/EggSettings.cpp" line="237"/>
         <source>Power Lens</source>
         <translation>Vigorlente</translation>
     </message>
     <message>
-        <location filename="../Controls/EggSettings.cpp" line="234"/>
-        <location filename="../Controls/EggSettings.cpp" line="241"/>
+        <location filename="../Controls/EggSettings.cpp" line="231"/>
+        <location filename="../Controls/EggSettings.cpp" line="238"/>
         <source>Power Band</source>
         <translation>Vigorbanda</translation>
     </message>
     <message>
-        <location filename="../Controls/EggSettings.cpp" line="235"/>
-        <location filename="../Controls/EggSettings.cpp" line="242"/>
+        <location filename="../Controls/EggSettings.cpp" line="232"/>
+        <location filename="../Controls/EggSettings.cpp" line="239"/>
         <source>Power Anklet</source>
         <translation>Vigorgliera</translation>
     </message>
     <message>
-        <location filename="../Controls/EggSettings.cpp" line="251"/>
-        <location filename="../Controls/EggSettings.cpp" line="252"/>
+        <location filename="../Controls/EggSettings.cpp" line="248"/>
+        <location filename="../Controls/EggSettings.cpp" line="249"/>
         <source>Destiny Knot</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Controls/EggSettings.cpp" line="67"/>
-        <location filename="../Controls/EggSettings.cpp" line="70"/>
+        <location filename="../Controls/EggSettings.cpp" line="66"/>
+        <location filename="../Controls/EggSettings.cpp" line="69"/>
         <source>None</source>
         <translation>Nessuno</translation>
     </message>
     <message>
-        <location filename="../Controls/EggSettings.cpp" line="68"/>
-        <location filename="../Controls/EggSettings.cpp" line="71"/>
+        <location filename="../Controls/EggSettings.cpp" line="67"/>
+        <location filename="../Controls/EggSettings.cpp" line="70"/>
         <source>Everstone</source>
         <translation>Pietrastante</translation>
     </message>
@@ -2512,17 +2512,17 @@ p, li { white-space: pre-wrap; }
         <translation>Trova</translation>
     </message>
     <message>
-        <location filename="../Util/EncounterLookup.cpp" line="45"/>
+        <location filename="../Util/EncounterLookup.cpp" line="44"/>
         <source>Location</source>
         <translation>Zona</translation>
     </message>
     <message>
-        <location filename="../Util/EncounterLookup.cpp" line="45"/>
+        <location filename="../Util/EncounterLookup.cpp" line="44"/>
         <source>Encounter Type</source>
         <translation>Tipo Incontro</translation>
     </message>
     <message>
-        <location filename="../Util/EncounterLookup.cpp" line="45"/>
+        <location filename="../Util/EncounterLookup.cpp" line="44"/>
         <source>Level Range</source>
         <translation>Intervallo Livello</translation>
     </message>
@@ -2587,42 +2587,42 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Util/EncounterLookup.cpp" line="81"/>
+        <location filename="../Util/EncounterLookup.cpp" line="78"/>
         <source>Grass</source>
         <translation>Erba</translation>
     </message>
     <message>
-        <location filename="../Util/EncounterLookup.cpp" line="83"/>
+        <location filename="../Util/EncounterLookup.cpp" line="80"/>
         <source>Surfing</source>
         <translation>Surf</translation>
     </message>
     <message>
-        <location filename="../Util/EncounterLookup.cpp" line="85"/>
+        <location filename="../Util/EncounterLookup.cpp" line="82"/>
         <source>Old Rod</source>
         <translation>Amo Vecchio</translation>
     </message>
     <message>
-        <location filename="../Util/EncounterLookup.cpp" line="87"/>
+        <location filename="../Util/EncounterLookup.cpp" line="84"/>
         <source>Good Rod</source>
         <translation>Amo Buono</translation>
     </message>
     <message>
-        <location filename="../Util/EncounterLookup.cpp" line="89"/>
+        <location filename="../Util/EncounterLookup.cpp" line="86"/>
         <source>Super Rod</source>
         <translation>Super Amo</translation>
     </message>
     <message>
-        <location filename="../Util/EncounterLookup.cpp" line="91"/>
+        <location filename="../Util/EncounterLookup.cpp" line="88"/>
         <source>Rock Smash</source>
         <translation>Spaccaroccia</translation>
     </message>
     <message>
-        <location filename="../Util/EncounterLookup.cpp" line="95"/>
+        <location filename="../Util/EncounterLookup.cpp" line="92"/>
         <source>Headbutt</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Util/EncounterLookup.cpp" line="97"/>
+        <location filename="../Util/EncounterLookup.cpp" line="94"/>
         <source>Bug Catching Contest</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2890,26 +2890,26 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished">Livello</translation>
     </message>
     <message>
-        <location filename="../Gen5/Event5.cpp" line="195"/>
-        <location filename="../Gen5/Event5.cpp" line="310"/>
+        <location filename="../Gen5/Event5.cpp" line="198"/>
+        <location filename="../Gen5/Event5.cpp" line="313"/>
         <source>Invalid format</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/Event5.cpp" line="195"/>
-        <location filename="../Gen5/Event5.cpp" line="310"/>
+        <location filename="../Gen5/Event5.cpp" line="198"/>
+        <location filename="../Gen5/Event5.cpp" line="313"/>
         <source>Wondercard is not the correct size</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/Event5.cpp" line="245"/>
-        <location filename="../Gen5/Event5.cpp" line="360"/>
+        <location filename="../Gen5/Event5.cpp" line="248"/>
+        <location filename="../Gen5/Event5.cpp" line="363"/>
         <source>File error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/Event5.cpp" line="245"/>
-        <location filename="../Gen5/Event5.cpp" line="360"/>
+        <location filename="../Gen5/Event5.cpp" line="248"/>
+        <location filename="../Gen5/Event5.cpp" line="363"/>
         <source>There was a problem opening the wondercard</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3072,32 +3072,32 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished">Livello</translation>
     </message>
     <message>
-        <location filename="../Gen8/Event8.cpp" line="136"/>
+        <location filename="../Gen8/Event8.cpp" line="138"/>
         <source>Invalid format</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen8/Event8.cpp" line="136"/>
+        <location filename="../Gen8/Event8.cpp" line="138"/>
         <source>Wondercard is not the correct size</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen8/Event8.cpp" line="167"/>
+        <location filename="../Gen8/Event8.cpp" line="169"/>
         <source>File error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen8/Event8.cpp" line="167"/>
+        <location filename="../Gen8/Event8.cpp" line="169"/>
         <source>There was a problem opening the wondercard</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen8/Event8.cpp" line="180"/>
+        <location filename="../Gen8/Event8.cpp" line="182"/>
         <source>Missing seeds</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen8/Event8.cpp" line="180"/>
+        <location filename="../Gen8/Event8.cpp" line="182"/>
         <source>Please insert missing seed information</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4946,7 +4946,7 @@ p, li { white-space: pre-wrap; }
         <translation>Vel Base</translation>
     </message>
     <message>
-        <location filename="../Util/IVCalculator.cpp" line="88"/>
+        <location filename="../Util/IVCalculator.cpp" line="85"/>
         <source>Invalid</source>
         <translation>Non valido</translation>
     </message>
@@ -7920,25 +7920,30 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Util/Researcher.cpp" line="329"/>
+        <location filename="../Util/Researcher.cpp" line="332"/>
         <source>Missing setting</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Util/Researcher.cpp" line="330"/>
+        <location filename="../Util/Researcher.cpp" line="333"/>
         <source>You must check the Hex box in order to use hexadecimal values for Custom %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Util/Researcher.cpp" line="394"/>
-        <location filename="../Util/Researcher.cpp" line="418"/>
+        <location filename="../Util/Researcher.cpp" line="397"/>
+        <location filename="../Util/Researcher.cpp" line="421"/>
         <source>No result</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Util/Researcher.cpp" line="394"/>
-        <location filename="../Util/Researcher.cpp" line="418"/>
+        <location filename="../Util/Researcher.cpp" line="397"/>
+        <location filename="../Util/Researcher.cpp" line="421"/>
         <source>Unable to find a result</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Util/Researcher.ui"/>
+        <source>Xoroshiro</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -9456,12 +9461,12 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>TableView</name>
     <message>
-        <location filename="../Controls/TableView.cpp" line="31"/>
+        <location filename="../Controls/TableView.cpp" line="32"/>
         <source>Output Results to TXT</source>
         <translation type="unfinished">Risultati Output in TXT</translation>
     </message>
     <message>
-        <location filename="../Controls/TableView.cpp" line="34"/>
+        <location filename="../Controls/TableView.cpp" line="35"/>
         <source>Output Results to CSV</source>
         <translation type="unfinished">Risultati Output in CSV</translation>
     </message>
@@ -9704,12 +9709,12 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished">Sincronismo</translation>
     </message>
     <message>
-        <location filename="../Gen8/Underground.cpp" line="151"/>
+        <location filename="../Gen8/Underground.cpp" line="152"/>
         <source>Missing seeds</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen8/Underground.cpp" line="151"/>
+        <location filename="../Gen8/Underground.cpp" line="152"/>
         <source>Please insert missing seed information</source>
         <translation type="unfinished"></translation>
     </message>
@@ -9910,7 +9915,7 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen3/Wild3.cpp" line="86"/>
+        <location filename="../Gen3/Wild3.cpp" line="89"/>
         <source>Generate times for seed</source>
         <translation>Genera tempi per il seed</translation>
     </message>
@@ -10292,12 +10297,12 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen4/Wild4.cpp" line="635"/>
+        <location filename="../Gen4/Wild4.cpp" line="638"/>
         <source>Missing Flawless IV</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen4/Wild4.cpp" line="636"/>
+        <location filename="../Gen4/Wild4.cpp" line="639"/>
         <source>Bug Catching Contest Searcher needs at least one IV at 31</source>
         <translation type="unfinished"></translation>
     </message>
@@ -10333,29 +10338,29 @@ p, li { white-space: pre-wrap; }
         <translation>Avanzamento Massimo</translation>
     </message>
     <message>
-        <location filename="../Gen4/Wild4.cpp" line="111"/>
+        <location filename="../Gen4/Wild4.cpp" line="114"/>
         <source>Generate times for seed</source>
         <translation>Genera tempi per il seed</translation>
     </message>
     <message>
-        <location filename="../Gen4/Wild4.cpp" line="305"/>
-        <location filename="../Gen4/Wild4.cpp" line="606"/>
+        <location filename="../Gen4/Wild4.cpp" line="308"/>
+        <location filename="../Gen4/Wild4.cpp" line="609"/>
         <source>Too many slots selected</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen4/Wild4.cpp" line="305"/>
-        <location filename="../Gen4/Wild4.cpp" line="606"/>
+        <location filename="../Gen4/Wild4.cpp" line="308"/>
+        <location filename="../Gen4/Wild4.cpp" line="609"/>
         <source>Please a single encounter slot for Poke Radar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen4/Wild4.cpp" line="561"/>
+        <location filename="../Gen4/Wild4.cpp" line="564"/>
         <source>Yes</source>
         <translation>Si</translation>
     </message>
     <message>
-        <location filename="../Gen4/Wild4.cpp" line="561"/>
+        <location filename="../Gen4/Wild4.cpp" line="564"/>
         <source>No</source>
         <translation type="unfinished"></translation>
     </message>
@@ -10689,12 +10694,12 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished">Sincronismo</translation>
     </message>
     <message>
-        <location filename="../Gen8/Wild8.cpp" line="199"/>
+        <location filename="../Gen8/Wild8.cpp" line="201"/>
         <source>Missing seeds</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen8/Wild8.cpp" line="199"/>
+        <location filename="../Gen8/Wild8.cpp" line="201"/>
         <source>Please insert missing seed information</source>
         <translation type="unfinished"></translation>
     </message>
