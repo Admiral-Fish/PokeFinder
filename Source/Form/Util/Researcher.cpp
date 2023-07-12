@@ -378,7 +378,7 @@ void Researcher::next()
 
     auto custom = ui->comboBoxSearch->getEnum<Custom>();
     QModelIndex start = ui->tableView->currentIndex();
-    u64 result = ui->textBoxSearch->text().toULongLong(nullptr, 16);
+    u64 result = ui->textBoxSearch->text().toULongLong(nullptr, ui->checkBoxSearch->isChecked() ? 16 : 10);
 
     if (!start.isValid())
     {
