@@ -28,7 +28,7 @@ IDModel5::IDModel5(QObject *parent) : TableModel(parent), version(Game::Black)
 
 int IDModel5::columnCount(const QModelIndex &parent) const
 {
-    return 8;
+    return 9;
 }
 
 QVariant IDModel5::data(const QModelIndex &index, int role) const
@@ -54,6 +54,8 @@ QVariant IDModel5::data(const QModelIndex &index, int role) const
         case 6:
             return QString::fromStdString(display.getDateTime().toString());
         case 7:
+            return QString::number(display.getTimer0(), 16).toUpper();
+        case 8:
             return QString::fromStdString(Translator::getKeypresses(display.getButtons()));
         }
     }
