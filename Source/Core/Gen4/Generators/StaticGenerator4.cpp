@@ -68,7 +68,7 @@ static bool isShiny(u32 pid, u16 tsv)
 }
 
 StaticGenerator4::StaticGenerator4(u32 initialAdvances, u32 maxAdvances, u32 delay, Method method, Lead lead, const Profile4 &profile,
-                                   const StateFilter4 &filter) :
+                                   const StateFilter &filter) :
     StaticGenerator(initialAdvances, maxAdvances, delay, method, lead, profile, filter)
 {
 }
@@ -137,7 +137,7 @@ std::vector<GeneratorState4> StaticGenerator4::generateMethod1(u32 seed, const S
 
         GeneratorState4 state(rng.nextUShort(), initialAdvances + cnt, pid, ivs, pid & 1, getGender(pid, info), staticTemplate->getLevel(),
                               pid % 25, getShiny(pid, tsv), info);
-        if (filter.compareState(state))
+        if (filter.compareState(static_cast<const State &>(state)))
         {
             states.emplace_back(state);
         }
@@ -215,7 +215,7 @@ std::vector<GeneratorState4> StaticGenerator4::generateMethodJ(u32 seed, const S
 
         GeneratorState4 state(rng.nextUShort(), initialAdvances + cnt, pid, ivs, pid & 1, getGender(pid, info), staticTemplate->getLevel(),
                               pid % 25, getShiny(pid, tsv), info);
-        if (filter.compareState(state))
+        if (filter.compareState(static_cast<const State &>(state)))
         {
             states.emplace_back(state);
         }
@@ -293,7 +293,7 @@ std::vector<GeneratorState4> StaticGenerator4::generateMethodK(u32 seed, const S
 
         GeneratorState4 state(rng.nextUShort(), initialAdvances + cnt, pid, ivs, pid & 1, getGender(pid, info), staticTemplate->getLevel(),
                               pid % 25, getShiny(pid, tsv), info);
-        if (filter.compareState(state))
+        if (filter.compareState(static_cast<const State &>(state)))
         {
             states.emplace_back(state);
         }

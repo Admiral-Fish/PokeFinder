@@ -69,7 +69,7 @@ inline bool isShiny(u32 pid, u16 tsv)
 }
 
 EggGenerator5::EggGenerator5(u32 initialAdvances, u32 maxAdvances, u32 delay, const Daycare &daycare, const Profile5 &profile,
-                             const StateFilter5 &filter) :
+                             const StateFilter &filter) :
     EggGenerator(initialAdvances, maxAdvances, delay, Method::None, 0, daycare, profile, filter),
     ditto(daycare.getDitto()),
     everstone(daycare.getEverstoneCount()),
@@ -213,7 +213,7 @@ std::vector<EggState5> EggGenerator5::generateBW(u64 seed) const
 
         EggState5 state(rng.nextUInt(0x1fff), advances + initialAdvances + cnt, pid, ivs, ability, getGender(pid, info), nature,
                         getShiny(pid, tsv), inheritance, info);
-        if (filter.compareState(state))
+        if (filter.compareState(static_cast<const State &>(state)))
         {
             states.emplace_back(state);
         }

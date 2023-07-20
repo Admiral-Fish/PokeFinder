@@ -20,8 +20,8 @@
 #ifndef WILDGENERATOR3_HPP
 #define WILDGENERATOR3_HPP
 
-#include <Core/Gen3/Filters/StateFilter3.hpp>
 #include <Core/Gen3/Profile3.hpp>
+#include <Core/Parents/Filters/StateFilter.hpp>
 #include <Core/Parents/Generators/WildGenerator.hpp>
 
 class EncounterArea3;
@@ -29,7 +29,7 @@ class EncounterArea3;
 /**
  * @brief Wild encounter generator for Gen3
  */
-class WildGenerator3 : public WildGenerator<Profile3, WildStateFilter3>
+class WildGenerator3 : public WildGenerator<Profile3, WildStateFilter>
 {
 public:
     /**
@@ -45,7 +45,7 @@ public:
      * @param filter State filter
      */
     WildGenerator3(u32 initialAdvances, u32 maxAdvances, u32 delay, Method method, Encounter encounter, Lead lead, const Profile3 &profile,
-                   const WildStateFilter3 &filter);
+                   const WildStateFilter &filter);
 
     /**
      * @brief Generates states for the \p encounterArea

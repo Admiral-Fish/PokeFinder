@@ -158,7 +158,7 @@ void Wild3::generate()
     auto encounter = ui->comboBoxGeneratorEncounter->getEnum<Encounter>();
     auto lead = ui->comboMenuGeneratorLead->getEnum<Lead>();
 
-    WildStateFilter3 filter = ui->filterGenerator->getFilter<WildStateFilter3, true>();
+    WildStateFilter filter = ui->filterGenerator->getFilter<WildStateFilter, true>();
     WildGenerator3 generator(initialAdvances, maxAdvances, delay, method, encounter, lead, *currentProfile, filter);
 
     auto states = generator.generate(seed, encounterGenerator[ui->comboBoxGeneratorLocation->getCurrentInt()]);
@@ -301,7 +301,7 @@ void Wild3::search()
     auto encounter = ui->comboBoxSearcherEncounter->getEnum<Encounter>();
     auto lead = ui->comboMenuSearcherLead->getEnum<Lead>();
 
-    WildStateFilter3 filter = ui->filterSearcher->getFilter<WildStateFilter3, true>();
+    WildStateFilter filter = ui->filterSearcher->getFilter<WildStateFilter, true>();
     auto *searcher = new WildSearcher3(method, encounter, lead, encounterSearcher[ui->comboBoxSearcherLocation->getCurrentInt()],
                                        *currentProfile, filter);
 

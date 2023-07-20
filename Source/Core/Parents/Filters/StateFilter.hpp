@@ -23,6 +23,12 @@
 #include <Core/Global.hpp>
 #include <array>
 
+class SearcherState;
+class State;
+class WildGeneratorState;
+class WildSearcherState;
+class WildState;
+
 /**
  * @brief Provides ways to determine if the given \ref State meets the given criteria
  */
@@ -82,7 +88,7 @@ public:
      * @return true IVs pass the filter
      * @return false IVs do not pass the filter
      */
-    bool compareIV(std::array<u8, 6> ivs) const;
+    bool compareIV(const std::array<u8, 6> &ivs) const;
 
     /**
      * @brief Determines if the \p nature meets the filter criteria
@@ -103,6 +109,28 @@ public:
      * @return false Shiny does not pass the filter
      */
     bool compareShiny(u8 shiny) const;
+
+    /**
+     * @brief Determines if the \p state meets the filter criteria.
+     *
+     * Filters a subset of information for Gen 3/4 searcher.
+     *
+     * @param state State to compare
+     *
+     * @return true State passes the filter
+     * @return false State does not pass the filter
+     */
+    bool compareState(const SearcherState &state) const;
+
+    /**
+     * @brief Determines if the \p state meets the filter criteria
+     *
+     * @param state State to compare
+     *
+     * @return true State passes the filter
+     * @return false State does not pass the filter
+     */
+    bool compareState(const State &state) const;
 
 protected:
     std::array<bool, 25> natures;
@@ -145,6 +173,40 @@ public:
      * @return false Encounter slot does not pass the filter
      */
     bool compareEncounterSlot(u8 encounterSlot) const;
+
+    /**
+     * @brief Determines if the \p state meets the filter criteria
+     *
+     * Filters a subset of information for Gen 3/4 generator.
+     *
+     * @param state State to compare
+     *
+     * @return true State passes the filter
+     * @return false State does not pass the filter
+     */
+    bool compareState(const WildGeneratorState &state) const;
+
+    /**
+     * @brief Determines if the \p state meets the filter criteria
+     *
+     * @param state State to compare
+     *
+     * @return true State passes the filter
+     * @return false State does not pass the filter
+     */
+    bool compareState(const WildState &state) const;
+
+    /**
+     * @brief Determines if the \p state meets the filter criteria.
+     *
+     * Filters a subset of information for Gen 3/4 searcher.
+     *
+     * @param state State to compare
+     *
+     * @return true State passes the filter
+     * @return false State does not pass the filter
+     */
+    bool compareState(const WildSearcherState &state) const;
 
 protected:
     std::array<bool, 12> encounterSlots;

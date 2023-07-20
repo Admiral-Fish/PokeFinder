@@ -69,7 +69,7 @@ static bool isShiny(u32 pid, u16 tsv)
 }
 
 StaticSearcher4::StaticSearcher4(u32 minAdvance, u32 maxAdvance, u32 minDelay, u32 maxDelay, Method method, Lead lead,
-                                 const Profile4 &profile, const StateFilter4 &filter) :
+                                 const Profile4 &profile, const StateFilter &filter) :
     StaticSearcher(method, lead, profile, filter),
     progress(0),
     maxAdvance(maxAdvance),
@@ -235,7 +235,7 @@ std::vector<SearcherState4> StaticSearcher4::searchMethod1(u8 hp, u8 atk, u8 def
 
         SearcherState4 state(rng.next(), pid, ivs, pid & 1, getGender(pid, info), staticTemplate->getLevel(), nature, getShiny(pid, tsv),
                              info);
-        if (filter.compareState(state))
+        if (filter.compareState(static_cast<const SearcherState &>(state)))
         {
             states.emplace_back(state);
         }
@@ -269,7 +269,7 @@ std::vector<SearcherState4> StaticSearcher4::searchMethodJ(u8 hp, u8 atk, u8 def
                 u32 pid = nature + buffer;
                 SearcherState4 state(rng.next(), pid, ivs, pid & 1, getGender(pid, info), staticTemplate->getLevel(), nature,
                                      getShiny(pid, tsv), staticTemplate->getInfo());
-                if (filter.compareState(state))
+                if (filter.compareState(static_cast<const SearcherState &>(state)))
                 {
                     states.emplace_back(state);
                 }
@@ -320,7 +320,7 @@ std::vector<SearcherState4> StaticSearcher4::searchMethodJ(u8 hp, u8 atk, u8 def
                 {
                     SearcherState4 state(seed, pid, ivs, pid & 1, getGender(pid, info), staticTemplate->getLevel(), nature,
                                          getShiny(pid, tsv), info);
-                    if (filter.compareState(state))
+                    if (filter.compareState(static_cast<const SearcherState &>(state)))
                     {
                         states.emplace_back(state);
                     }
@@ -361,7 +361,7 @@ std::vector<SearcherState4> StaticSearcher4::searchMethodK(u8 hp, u8 atk, u8 def
                 u32 pid = nature + buffer;
                 SearcherState4 state(rng.next(), pid, ivs, pid & 1, getGender(pid, info), staticTemplate->getLevel(), nature,
                                      getShiny(pid, tsv), info);
-                if (filter.compareState(state))
+                if (filter.compareState(static_cast<const SearcherState &>(state)))
                 {
                     states.emplace_back(state);
                 }
@@ -412,7 +412,7 @@ std::vector<SearcherState4> StaticSearcher4::searchMethodK(u8 hp, u8 atk, u8 def
                 {
                     SearcherState4 state(seed, pid, ivs, pid & 1, getGender(pid, info), staticTemplate->getLevel(), nature,
                                          getShiny(pid, tsv), info);
-                    if (filter.compareState(state))
+                    if (filter.compareState(static_cast<const SearcherState &>(state)))
                     {
                         states.emplace_back(state);
                     }

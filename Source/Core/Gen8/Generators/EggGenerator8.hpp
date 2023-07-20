@@ -20,16 +20,16 @@
 #ifndef EGGGENERATOR8_HPP
 #define EGGGENERATOR8_HPP
 
-#include <Core/Gen8/Filters/StateFilter8.hpp>
 #include <Core/Gen8/Profile8.hpp>
+#include <Core/Parents/Filters/StateFilter.hpp>
 #include <Core/Parents/Generators/EggGenerator.hpp>
 
-class EggState8;
+class EggGeneratorState;
 
 /**
  * @brief Egg generator for Gen8
  */
-class EggGenerator8 : public EggGenerator<Profile8, StateFilter8>
+class EggGenerator8 : public EggGenerator<Profile8, StateFilter>
 {
 public:
     /**
@@ -44,7 +44,7 @@ public:
      * @param filter State filter
      */
     EggGenerator8(u32 initialAdvances, u32 maxAdvances, u32 delay, u8 compatability, const Daycare &daycare, const Profile8 &profile,
-                  const StateFilter8 &filter);
+                  const StateFilter &filter);
 
     /**
      * @brief Generates states

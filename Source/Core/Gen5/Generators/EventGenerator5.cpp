@@ -62,7 +62,7 @@ static u8 getShiny(u32 pid, u16 tsv)
 }
 
 EventGenerator5::EventGenerator5(u32 initialAdvances, u32 maxAdvances, u32 delay, const PGF &pgf, const Profile5 &profile,
-                                 const StateFilter5 &filter) :
+                                 const StateFilter &filter) :
     Generator(initialAdvances, maxAdvances, delay, Method::None, profile, filter), pgf(pgf)
 {
     if (!pgf.getEgg())
@@ -155,7 +155,7 @@ std::vector<State5> EventGenerator5::generate(u64 seed) const
 
         State5 state(rng.nextUInt(0x1fff), advances + initialAdvances + cnt, pid, ivs, ability, getGender(pid, info), pgf.getLevel(),
                      nature, getShiny(pid, tsv), info);
-        if (filter.compareState(state))
+        if (filter.compareState(static_cast<const State &>(state)))
         {
             states.emplace_back(state);
         }

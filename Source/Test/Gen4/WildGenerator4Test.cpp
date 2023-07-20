@@ -99,7 +99,7 @@ void WildGenerator4Test::generateMethodJ()
     auto encounterArea = std::find_if(encounterAreas.begin(), encounterAreas.end(),
                                       [location](const EncounterArea4 &encounterArea) { return encounterArea.getLocation() == location; });
 
-    WildStateFilter4 filter(255, 255, 255, false, min, max, natures, powers, encounterSlots);
+    WildStateFilter filter(255, 255, 255, false, min, max, natures, powers, encounterSlots);
     WildGenerator4 generator(0, 9, 0, Method::MethodJ, encounter, lead, false, profile, filter);
 
     auto states = generator.generate(seed, *encounterArea, 0);
@@ -165,7 +165,7 @@ void WildGenerator4Test::generateMethodK()
     auto encounterArea = std::find_if(encounterAreas.begin(), encounterAreas.end(),
                                       [location](const EncounterArea4 &encounterArea) { return encounterArea.getLocation() == location; });
 
-    WildStateFilter4 filter(255, 255, 255, false, min, max, natures, powers, encounterSlots);
+    WildStateFilter filter(255, 255, 255, false, min, max, natures, powers, encounterSlots);
     WildGenerator4 generator(0, 9, 0, Method::MethodK, encounter, lead, false, profile, filter);
 
     auto states = generator.generate(seed, *encounterArea, 0);
@@ -235,7 +235,7 @@ void WildGenerator4Test::generatePokeRadar()
     auto encounterArea = std::find_if(encounterAreas.begin(), encounterAreas.end(),
                                       [location](const EncounterArea4 &encounterArea) { return encounterArea.getLocation() == location; });
 
-    WildStateFilter4 filter(255, 255, 255, false, min, max, natures, powers, encounterSlots);
+    WildStateFilter filter(255, 255, 255, false, min, max, natures, powers, encounterSlots);
     WildGenerator4 generator(0, 9, 0, Method::PokeRadar, encounter, lead, shiny, profile, filter);
 
     auto states = generator.generate(seed, *encounterArea, index);

@@ -147,7 +147,7 @@ static bool validateJirachi(u32 seed)
     return false;
 }
 
-GameCubeSearcher::GameCubeSearcher(Method method, bool unset, const Profile3 &profile, const StateFilter3 &filter) :
+GameCubeSearcher::GameCubeSearcher(Method method, bool unset, const Profile3 &profile, const StateFilter &filter) :
     Searcher(method, profile, filter), progress(0), searching(false), unset(unset)
 {
 }
@@ -319,7 +319,7 @@ void GameCubeSearcher::searchChannel(u8 minSpd, u8 maxSpd, const StaticTemplate 
             }
 
             SearcherState state(rng.getSeed(), pid, ivs, pid & 1, 2, staticTemplate->getLevel(), nature, getShiny(pid, tid ^ sid), info);
-            if (filter.compareState(state))
+            if (filter.compareState(static_cast<const SearcherState &>(state)))
             {
                 std::lock_guard<std::mutex> guard(mutex);
                 results.emplace_back(state);
@@ -376,7 +376,7 @@ std::vector<SearcherState> GameCubeSearcher::searchColoShadow(u8 hp, u8 atk, u8 
 
             SearcherState state(seed, pid, ivs, ability, getGender(pid, info), shadowTemplate->getLevel(), nature, getShiny(pid, tsv),
                                 info);
-            if (filter.compareState(state))
+            if (filter.compareState(static_cast<const SearcherState &>(state)))
             {
                 states.emplace_back(state);
             }
@@ -458,7 +458,7 @@ std::vector<SearcherState> GameCubeSearcher::searchGalesShadow(u8 hp, u8 atk, u8
             }
 
             SearcherState state(seed, pid, ivs, ability, getGender(pid, info), shadowTemplate->getLevel(), nature, 0, info);
-            if (filter.compareState(state))
+            if (filter.compareState(static_cast<const SearcherState &>(state)))
             {
                 states.emplace_back(state);
             }
@@ -594,7 +594,7 @@ std::vector<SearcherState> GameCubeSearcher::searchNonLock(u8 hp, u8 atk, u8 def
         ability &= info->getAbility(0) != info->getAbility(1);
 
         SearcherState state(seed, pid, ivs, ability, getGender(pid, info), staticTemplate->getLevel(), nature, getShiny(pid, tsv), info);
-        if (filter.compareState(state))
+        if (filter.compareState(static_cast<const SearcherState &>(state)))
         {
             states.emplace_back(state);
         }

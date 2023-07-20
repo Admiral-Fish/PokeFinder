@@ -62,7 +62,7 @@ static u8 getShiny(u32 pid, u16 tsv)
 }
 
 StaticGenerator3::StaticGenerator3(u32 initialAdvances, u32 maxAdvances, u32 delay, Method method, const Profile3 &profile,
-                                   const StateFilter3 &filter) :
+                                   const StateFilter &filter) :
     StaticGenerator(initialAdvances, maxAdvances, delay, method, Lead::None, profile, filter)
 {
 }
@@ -97,7 +97,7 @@ std::vector<GeneratorState> StaticGenerator3::generate(u32 seed, const StaticTem
 
         GeneratorState state(initialAdvances + cnt, pid, ivs, pid & 1, getGender(pid, info), staticTemplate->getLevel(), pid % 25,
                              getShiny(pid, tsv), info);
-        if (filter.compareState(state))
+        if (filter.compareState(static_cast<const State &>(state)))
         {
             states.emplace_back(state);
         }

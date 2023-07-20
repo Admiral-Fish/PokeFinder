@@ -81,7 +81,7 @@ void StaticGenerator3Test::generate()
     Profile3 profile("-", version, 12345, 54321, false);
 
     const StaticTemplate *staticTemplate = Encounters3::getStaticEncounter(category, pokemon);
-    StateFilter3 filter(255, 255, 255, false, min, max, natures, powers);
+    StateFilter filter(255, 255, 255, false, min, max, natures, powers);
     StaticGenerator3 generator(0, 9, 0, method, profile, filter);
 
     auto states = generator.generate(seed, staticTemplate);

@@ -71,8 +71,7 @@ static u8 getShiny(u32 pid, u16 tsv)
 }
 
 PokeSpotGenerator::PokeSpotGenerator(u32 initialAdvances, u32 maxAdvances, u32 delay, u32 initialAdvancesEncounter,
-                                     u32 maxAdvancesEncounter, u32 delayEncounter, const Profile3 &profile,
-                                     const WildStateFilter3 &filter) :
+                                     u32 maxAdvancesEncounter, u32 delayEncounter, const Profile3 &profile, const WildStateFilter &filter) :
     Generator(initialAdvances, maxAdvances, delay, Method::None, profile, filter),
     delayEncounter(delayEncounter),
     initialAdvancesEncounter(initialAdvancesEncounter),

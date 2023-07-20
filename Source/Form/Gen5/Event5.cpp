@@ -178,7 +178,7 @@ void Event5::generate()
     u32 delay = ui->textBoxGeneratorDelay->getUInt();
     PGF pgf = getGeneratorParameters();
 
-    StateFilter5 filter = ui->filterGenerator->getFilter<StateFilter5>();
+    StateFilter filter = ui->filterGenerator->getFilter<StateFilter>();
     EventGenerator5 generator(initialAdvances, maxAdvances, delay, pgf, *currentProfile, filter);
 
     auto states = generator.generate(seed);
@@ -262,7 +262,7 @@ void Event5::search()
     u32 maxAdvances = ui->textBoxSearcherMaxAdvances->getUInt();
     PGF pgf = getSearcherParameters();
 
-    StateFilter5 filter = ui->filterSearcher->getFilter<StateFilter5>();
+    StateFilter filter = ui->filterSearcher->getFilter<StateFilter>();
     EventGenerator5 generator(0, maxAdvances, 0, pgf, *currentProfile, filter);
     auto *searcher = new Searcher5<EventGenerator5, State5>(generator, *currentProfile);
 

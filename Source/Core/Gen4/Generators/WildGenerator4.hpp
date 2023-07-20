@@ -20,16 +20,17 @@
 #ifndef WILDGENERATOR4_HPP
 #define WILDGENERATOR4_HPP
 
-#include <Core/Gen4/Filters/StateFilter4.hpp>
 #include <Core/Gen4/Profile4.hpp>
+#include <Core/Parents/Filters/StateFilter.hpp>
 #include <Core/Parents/Generators/WildGenerator.hpp>
 
 class EncounterArea4;
+class WildGeneratorState4;
 
 /**
  * @brief Wild encounter generator for Gen4
  */
-class WildGenerator4 : public WildGenerator<Profile4, WildStateFilter4>
+class WildGenerator4 : public WildGenerator<Profile4, WildStateFilter>
 {
 public:
     /**
@@ -46,7 +47,7 @@ public:
      * @param filter State filter
      */
     WildGenerator4(u32 initialAdvances, u32 maxAdvances, u32 delay, Method method, Encounter encounter, Lead lead, bool shiny,
-                   const Profile4 &profile, const WildStateFilter4 &filter);
+                   const Profile4 &profile, const WildStateFilter &filter);
 
     /**
      * @brief Generates states for the \p encounterArea

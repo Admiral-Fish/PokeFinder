@@ -127,7 +127,7 @@ void Static3::generate()
     u32 delay = ui->textBoxGeneratorDelay->getUInt();
     auto method = ui->comboBoxGeneratorMethod->getEnum<Method>();
 
-    StateFilter3 filter = ui->filterGenerator->getFilter<StateFilter3>();
+    StateFilter filter = ui->filterGenerator->getFilter<StateFilter>();
     StaticGenerator3 generator(initialAdvances, maxAdvances, delay, method, *currentProfile, filter);
 
     const StaticTemplate *staticTemplate
@@ -216,7 +216,7 @@ void Static3::search()
     std::array<u8, 6> max = ui->filterSearcher->getMaxIVs();
     auto method = ui->comboBoxSearcherMethod->getEnum<Method>();
 
-    StateFilter3 filter = ui->filterSearcher->getFilter<StateFilter3>();
+    StateFilter filter = ui->filterSearcher->getFilter<StateFilter>();
     auto *searcher = new StaticSearcher3(method, *currentProfile, filter);
 
     const StaticTemplate *staticTemplate

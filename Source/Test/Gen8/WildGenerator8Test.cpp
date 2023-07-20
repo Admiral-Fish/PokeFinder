@@ -93,7 +93,7 @@ void WildGenerator8Test::generate()
     auto encounterArea = std::find_if(encounterAreas.begin(), encounterAreas.end(),
                                       [location](const EncounterArea8 &encounterArea) { return encounterArea.getLocation() == location; });
 
-    WildStateFilter8 filter(255, 255, 255, false, min, max, natures, powers, encounterSlots);
+    WildStateFilter filter(255, 255, 255, false, min, max, natures, powers, encounterSlots);
     WildGenerator8 generator(0, 9, 0, encounter, lead, profile, filter);
 
     auto states = generator.generate(seed0, seed1, *encounterArea);

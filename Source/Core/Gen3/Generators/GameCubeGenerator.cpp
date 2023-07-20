@@ -69,7 +69,7 @@ static bool isShiny(u16 high, u16 low, u16 tsv)
 }
 
 GameCubeGenerator::GameCubeGenerator(u32 initialAdvances, u32 maxAdvances, u32 delay, Method method, bool unset, const Profile3 &profile,
-                                     const StateFilter3 &filter) :
+                                     const StateFilter &filter) :
     Generator(initialAdvances, maxAdvances, delay, method, profile, filter), unset(unset)
 {
 }
@@ -148,7 +148,7 @@ std::vector<GeneratorState> GameCubeGenerator::generateChannel(u32 seed, const S
 
         GeneratorState state(initialAdvances + cnt, pid, ivs, pid & 1, 2, staticTemplate->getLevel(), pid % 25, getShiny(pid, tid ^ sid),
                              info);
-        if (filter.compareState(state))
+        if (filter.compareState(static_cast<const State &>(state)))
         {
             states.emplace_back(state);
         }
@@ -235,7 +235,7 @@ std::vector<GeneratorState> GameCubeGenerator::generateColoShadow(u32 seed, cons
 
         GeneratorState state(initialAdvances + cnt, pid, ivs, ability, getGender(pid, info), shadowTemplate->getLevel(), pid % 25,
                              getShiny(pid, tsv), info);
-        if (filter.compareState(state))
+        if (filter.compareState(static_cast<const State &>(state)))
         {
             states.emplace_back(state);
         }
@@ -325,7 +325,7 @@ std::vector<GeneratorState> GameCubeGenerator::generateGalesShadow(u32 seed, con
 
         GeneratorState state(initialAdvances + cnt, pid, ivs, ability, getGender(pid, info), shadowTemplate->getLevel(), pid % 25,
                              getShiny(pid, tsv), info);
-        if (filter.compareState(state))
+        if (filter.compareState(static_cast<const State &>(state)))
         {
             states.emplace_back(state);
         }
@@ -423,7 +423,7 @@ std::vector<GeneratorState> GameCubeGenerator::generateNonLock(u32 seed, const S
 
         GeneratorState state(initialAdvances + cnt, pid, ivs, ability, getGender(pid, info), staticTemplate->getLevel(), pid % 25,
                              getShiny(pid, actualTSV), info);
-        if (filter.compareState(state))
+        if (filter.compareState(static_cast<const State &>(state)))
         {
             states.emplace_back(state);
         }

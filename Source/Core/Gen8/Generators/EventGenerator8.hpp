@@ -20,15 +20,17 @@
 #ifndef EVENTGENERATOR8_HPP
 #define EVENTGENERATOR8_HPP
 
-#include <Core/Gen8/Filters/StateFilter8.hpp>
 #include <Core/Gen8/Profile8.hpp>
 #include <Core/Gen8/WB8.hpp>
+#include <Core/Parents/Filters/StateFilter.hpp>
 #include <Core/Parents/Generators/Generator.hpp>
+
+class GeneratorState;
 
 /**
  * @brief Event generator for Gen 8
  */
-class EventGenerator8 : public Generator<Profile8, StateFilter8>
+class EventGenerator8 : public Generator<Profile8, StateFilter>
 {
 public:
     /**
@@ -41,7 +43,7 @@ public:
      * @param profile Profile Information
      * @param filter State filter
      */
-    EventGenerator8(u32 initialAdvances, u32 maxAdvances, u32 delay, const WB8 &wb8, const Profile8 &profile, const StateFilter8 &filter);
+    EventGenerator8(u32 initialAdvances, u32 maxAdvances, u32 delay, const WB8 &wb8, const Profile8 &profile, const StateFilter &filter);
 
     /**
      * @brief Generates states

@@ -145,7 +145,7 @@ void Eggs3::emeraldGenerate()
     u8 compatability = ui->comboBoxEmeraldCompatibility->getCurrentUChar();
     auto method = ui->comboBoxEmeraldMethod->getEnum<Method>();
 
-    StateFilter3 filter = ui->filterEmerald->getFilter<StateFilter3>();
+    StateFilter filter = ui->filterEmerald->getFilter<StateFilter>();
     EggGenerator3 generator(initialAdvancesHeld, maxAdvancesHeld, delayHeld, initialAdvancesPickup, maxAdvancesPickup, delayPickup,
                             calibration, minRedraw, maxRedraw, method, compatability, ui->eggSettingsEmerald->getDaycare(),
                             *currentProfile, filter);
@@ -174,7 +174,7 @@ void Eggs3::rsfrlgGenerate()
     u8 compatability = ui->comboBoxRSFRLGCompatibility->getCurrentUChar();
     auto method = ui->comboBoxRSFRLGMethod->getEnum<Method>();
 
-    StateFilter3 filter = ui->filterRSFRLG->getFilter<StateFilter3>();
+    StateFilter filter = ui->filterRSFRLG->getFilter<StateFilter>();
     EggGenerator3 generator(initialAdvancesHeld, maxAdvancesHeld, delayHeld, initialAdvancesPickup, maxAdvancesPickup, delayPickup, 0, 0, 0,
                             method, compatability, ui->eggSettingsRSFRLG->getDaycare(), *currentProfile, filter);
 

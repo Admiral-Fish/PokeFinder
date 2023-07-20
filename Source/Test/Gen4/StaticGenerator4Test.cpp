@@ -82,7 +82,7 @@ void StaticGenerator4Test::generateMethod1()
     Profile4 profile("-", version, 12345, 54321, false);
 
     const StaticTemplate4 *staticTemplate = Encounters4::getStaticEncounter(category, pokemon);
-    StateFilter4 filter(255, 255, 255, false, min, max, natures, powers);
+    StateFilter filter(255, 255, 255, false, min, max, natures, powers);
     StaticGenerator4 generator(0, 9, 0, Method::Method1, Lead::None, profile, filter);
 
     auto states = generator.generate(seed, staticTemplate);
@@ -139,7 +139,7 @@ void StaticGenerator4Test::generateMethodJ()
     Profile4 profile("-", version, 12345, 54321, false);
 
     const StaticTemplate4 *staticTemplate = Encounters4::getStaticEncounter(category, pokemon);
-    StateFilter4 filter(255, 255, 255, false, min, max, natures, powers);
+    StateFilter filter(255, 255, 255, false, min, max, natures, powers);
     StaticGenerator4 generator(0, 9, 0, Method::MethodJ, lead, profile, filter);
 
     auto states = generator.generate(seed, staticTemplate);
@@ -196,7 +196,7 @@ void StaticGenerator4Test::generateMethodK()
     Profile4 profile("-", version, 12345, 54321, false);
 
     const StaticTemplate4 *staticTemplate = Encounters4::getStaticEncounter(category, pokemon);
-    StateFilter4 filter(255, 255, 255, false, min, max, natures, powers);
+    StateFilter filter(255, 255, 255, false, min, max, natures, powers);
     StaticGenerator4 generator(0, 9, 0, Method::MethodK, lead, profile, filter);
 
     auto states = generator.generate(seed, staticTemplate);

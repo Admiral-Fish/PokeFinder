@@ -37,7 +37,7 @@ static u8 gen(MT &rng)
 
 DreamRadarGenerator::DreamRadarGenerator(u32 initialAdvances, u32 maxAdvances, u8 badgeCount,
                                          const std::vector<DreamRadarTemplate> &radarTemplates, const Profile5 &profile,
-                                         const StateFilter5 &filter) :
+                                         const StateFilter &filter) :
     Generator(initialAdvances, maxAdvances, 0, Method::None, profile, filter),
     radarTemplate(radarTemplates.back()),
     ivAdvances(0),
@@ -115,7 +115,7 @@ std::vector<DreamRadarState> DreamRadarGenerator::generate(u64 seed) const
         u8 nature = go.nextUInt(25);
 
         DreamRadarState state(rng.nextUInt(8), initialAdvances + cnt, pid, ivs, ability, radarTemplate.getGender(), level, nature, 0, info);
-        if (filter.compareState(state))
+        if (filter.compareState(static_cast<const State &>(state)))
         {
             states.emplace_back(state);
         }

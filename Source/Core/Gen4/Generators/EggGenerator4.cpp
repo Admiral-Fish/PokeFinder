@@ -150,7 +150,7 @@ static void setInheritance(const Daycare &daycare, std::array<u8, 6> &ivs, std::
 }
 
 EggGenerator4::EggGenerator4(u32 initialAdvances, u32 maxAdvances, u32 delay, u32 initialAdvancesPickup, u32 maxAdvancesPickup,
-                             u32 delayPickup, const Daycare &daycare, const Profile4 &profile, const StateFilter4 &filter) :
+                             u32 delayPickup, const Daycare &daycare, const Profile4 &profile, const StateFilter &filter) :
     EggGenerator(initialAdvances, maxAdvances, delay, Method::None, 0, daycare, profile, filter),
     delayPickup(delayPickup),
     initialAdvancesPickup(initialAdvancesPickup),
@@ -278,7 +278,7 @@ std::vector<EggGeneratorState4> EggGenerator4::generatePickup(u32 seed, const st
             }
 
             state.update(prng, initialAdvancesPickup + cnt, ivs, inheritance, info);
-            if (filter.compareState(state))
+            if (filter.compareHiddenPower(state.getHiddenPower()) && filter.compareIV(state.getIVs()))
             {
                 states.emplace_back(state);
             }

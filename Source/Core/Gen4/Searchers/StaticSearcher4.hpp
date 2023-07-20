@@ -20,17 +20,18 @@
 #ifndef STATICSEARCHER4_HPP
 #define STATICSEARCHER4_HPP
 
-#include <Core/Gen4/Filters/StateFilter4.hpp>
 #include <Core/Gen4/Profile4.hpp>
+#include <Core/Parents/Filters/StateFilter.hpp>
 #include <Core/Parents/Searchers/StaticSearcher.hpp>
 #include <mutex>
 
+class SearcherState4;
 class StaticTemplate4;
 
 /**
  * @brief Static encounter searcher for Gen4
  */
-class StaticSearcher4 : public StaticSearcher<Profile4, StateFilter4>
+class StaticSearcher4 : public StaticSearcher<Profile4, StateFilter>
 {
 public:
     /**
@@ -46,7 +47,7 @@ public:
      * @param filter State filter
      */
     StaticSearcher4(u32 minAdvance, u32 maxAdvance, u32 minDelay, u32 maxDelay, Method method, Lead lead, const Profile4 &profile,
-                    const StateFilter4 &filter);
+                    const StateFilter &filter);
 
     /**
      * @brief Cancels the running search

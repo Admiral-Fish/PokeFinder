@@ -20,8 +20,8 @@
 #ifndef STATICSEARCHER3_HPP
 #define STATICSEARCHER3_HPP
 
-#include <Core/Gen3/Filters/StateFilter3.hpp>
 #include <Core/Gen3/Profile3.hpp>
+#include <Core/Parents/Filters/StateFilter.hpp>
 #include <Core/Parents/Searchers/StaticSearcher.hpp>
 #include <mutex>
 
@@ -30,7 +30,7 @@ class StaticTemplate;
 /**
  * @brief Static encounter searcher for Gen3
  */
-class StaticSearcher3 : public StaticSearcher<Profile3, StateFilter3>
+class StaticSearcher3 : public StaticSearcher<Profile3, StateFilter>
 {
 public:
     /**
@@ -40,7 +40,7 @@ public:
      * @param profile Profile Information
      * @param filter State filter
      */
-    StaticSearcher3(Method method, const Profile3 &profile, const StateFilter3 &filter);
+    StaticSearcher3(Method method, const Profile3 &profile, const StateFilter &filter);
 
     /**
      * @brief Cancels the running search

@@ -20,8 +20,8 @@
 #ifndef EGGSEARCHER4_HPP
 #define EGGSEARCHER4_HPP
 
-#include <Core/Gen4/Filters/StateFilter4.hpp>
 #include <Core/Gen4/Profile4.hpp>
+#include <Core/Parents/Filters/StateFilter.hpp>
 #include <Core/Parents/Searchers/Searcher.hpp>
 #include <mutex>
 
@@ -31,7 +31,7 @@ class EggSearcherState4;
 /**
  * @brief Egg encounter searcher for Gen4
  */
-class EggSearcher4 : public Searcher<Profile4, StateFilter4>
+class EggSearcher4 : public Searcher<Profile4, StateFilter>
 {
 public:
     /**
@@ -42,7 +42,7 @@ public:
      * @param profile Profile Information
      * @param filter State filter
      */
-    EggSearcher4(u32 minDelay, u32 maxDelay, const Profile4 &profile, const StateFilter4 &filter);
+    EggSearcher4(u32 minDelay, u32 maxDelay, const Profile4 &profile, const StateFilter &filter);
 
     /**
      * @brief Cancels the running search

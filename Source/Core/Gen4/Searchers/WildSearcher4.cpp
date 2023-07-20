@@ -87,7 +87,7 @@ static u8 getShiny(u32 pid, u16 tsv)
 }
 
 WildSearcher4::WildSearcher4(u32 minAdvance, u32 maxAdvance, u32 minDelay, u32 maxDelay, Method method, Encounter encounter, Lead lead,
-                             bool shiny, const EncounterArea4 &encounterArea, const Profile4 &profile, const WildStateFilter4 &filter) :
+                             bool shiny, const EncounterArea4 &encounterArea, const Profile4 &profile, const WildStateFilter &filter) :
     WildSearcher(method, encounter, lead, encounterArea, profile, filter),
     modifiedSlots(encounterArea.getSlots(lead)),
     progress(0),
@@ -294,7 +294,7 @@ std::vector<WildSearcherState4> WildSearcher4::searchMethodJ(u8 hp, u8 atk, u8 d
                     u32 pid = nature + buffer;
                     WildSearcherState4 state(rng.next(), pid, ivs, pid & 1, getGender(pid, info), level, nature, getShiny(pid, tsv),
                                              encounterSlot, item, slot.getSpecie(), form, info);
-                    if (filter.compareState(state))
+                    if (filter.compareState(static_cast<const WildSearcherState &>(state)))
                     {
                         states.emplace_back(state);
                     }
@@ -440,7 +440,7 @@ std::vector<WildSearcherState4> WildSearcher4::searchMethodJ(u8 hp, u8 atk, u8 d
 
                     WildSearcherState4 state(test.next(), pid, ivs, pid & 1, getGender(pid, info), level, nature, getShiny(pid, tsv),
                                              encounterSlot, item, slot.getSpecie(), form, info);
-                    if (filter.compareState(state))
+                    if (filter.compareState(static_cast<const WildSearcherState &>(state)))
                     {
                         states.emplace_back(state);
                     }
@@ -537,7 +537,7 @@ std::vector<WildSearcherState4> WildSearcher4::searchMethodK(u8 hp, u8 atk, u8 d
                     u32 pid = nature + buffer;
                     WildSearcherState4 state(rng.next(), pid, ivs, pid & 1, getGender(pid, info), level, nature, getShiny(pid, tsv),
                                              encounterSlot, item, slot.getSpecie(), 0, info);
-                    if (filter.compareState(state))
+                    if (filter.compareState(static_cast<const WildSearcherState &>(state)))
                     {
                         states.emplace_back(state);
                     }
@@ -699,7 +699,7 @@ std::vector<WildSearcherState4> WildSearcher4::searchMethodK(u8 hp, u8 atk, u8 d
 
                     WildSearcherState4 state(test.next(), pid, ivs, pid & 1, getGender(pid, info), level, nature, getShiny(pid, tsv),
                                              encounterSlot, item, slot.getSpecie(), 0, info);
-                    if (filter.compareState(state))
+                    if (filter.compareState(static_cast<const WildSearcherState &>(state)))
                     {
                         states.emplace_back(state);
                     }
@@ -760,7 +760,7 @@ std::vector<WildSearcherState4> WildSearcher4::searchPokeRadar(u8 hp, u8 atk, u8
                 u32 pid = nature + buffer;
                 WildSearcherState4 state(rng.next(), pid, ivs, pid & 1, getGender(pid, info), slot.getMaxLevel(), nature,
                                          getShiny(pid, tsv), index, item, slot.getSpecie(), 0, info);
-                if (filter.compareState(state))
+                if (filter.compareState(static_cast<const WildSearcherState &>(state)))
                 {
                     states.emplace_back(state);
                 }
@@ -817,7 +817,7 @@ std::vector<WildSearcherState4> WildSearcher4::searchPokeRadar(u8 hp, u8 atk, u8
                 {
                     WildSearcherState4 state(seed, pid, ivs, pid & 1, getGender(pid, info), slot.getMaxLevel(), nature, getShiny(pid, tsv),
                                              index, item, slot.getSpecie(), 0, info);
-                    if (filter.compareState(state))
+                    if (filter.compareState(static_cast<const WildSearcherState &>(state)))
                     {
                         states.emplace_back(state);
                     }
@@ -909,7 +909,7 @@ std::vector<WildSearcherState4> WildSearcher4::searchPokeRadarShiny(u8 hp, u8 at
                 {
                     WildSearcherState4 state(test.next(), pid, ivs, pid & 1, getGender(pid, info), slot.getMaxLevel(), nature,
                                              getShiny(pid, tsv), index, item, slot.getSpecie(), 0, info);
-                    if (filter.compareState(state))
+                    if (filter.compareState(static_cast<const WildSearcherState &>(state)))
                     {
                         states.emplace_back(state);
                     }
@@ -930,7 +930,7 @@ std::vector<WildSearcherState4> WildSearcher4::searchPokeRadarShiny(u8 hp, u8 at
         {
             WildSearcherState4 state(rng.next(), pid, ivs, pid & 1, getGender(pid, info), slot.getMaxLevel(), nature, getShiny(pid, tsv),
                                      index, item, slot.getSpecie(), 0, info);
-            if (filter.compareState(state))
+            if (filter.compareState(static_cast<const WildSearcherState &>(state)))
             {
                 states.emplace_back(state);
             }

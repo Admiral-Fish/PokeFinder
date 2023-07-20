@@ -295,7 +295,7 @@ void DreamRadar::generate()
     u32 initialAdvances = ui->textBoxGeneratorInitialAdvances->getUInt();
     u32 maxAdvances = ui->textBoxGeneratorMaxAdvances->getUInt();
 
-    StateFilter5 filter = ui->filterGenerator->getFilter<StateFilter5>();
+    StateFilter filter = ui->filterGenerator->getFilter<StateFilter>();
     DreamRadarGenerator generator(initialAdvances, maxAdvances, ui->spinBoxGeneratorBadges->value(), radarTemplates, *currentProfile,
                                   filter);
 
@@ -321,7 +321,7 @@ void DreamRadar::search()
     u32 initialAdvances = ui->textBoxSearcherInitialAdvances->getUInt();
     u32 maxAdvances = ui->textBoxSearcherMaxAdvances->getUInt();
 
-    StateFilter5 filter = ui->filterSearcher->getFilter<StateFilter5>();
+    StateFilter filter = ui->filterSearcher->getFilter<StateFilter>();
     DreamRadarGenerator generator(initialAdvances, maxAdvances, ui->spinBoxSearcherBadges->value(), radarTemplates, *currentProfile,
                                   filter);
     auto *searcher = new Searcher5<DreamRadarGenerator, DreamRadarState>(generator, *currentProfile);

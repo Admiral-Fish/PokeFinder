@@ -88,7 +88,7 @@ void DreamRadarGeneratorTest::generate()
         radarTemplates[i].setGender(gender[i]);
     }
 
-    StateFilter5 filter(255, 255, 255, false, min, max, natures, powers);
+    StateFilter filter(255, 255, 255, false, min, max, natures, powers);
     DreamRadarGenerator generator(0, 9, 0, radarTemplates, profile, filter);
 
     auto states = generator.generate(seed);

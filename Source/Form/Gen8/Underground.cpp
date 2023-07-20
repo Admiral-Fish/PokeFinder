@@ -22,7 +22,7 @@
 #include "ui_Underground.h"
 #include <Core/Enum/Lead.hpp>
 #include <Core/Gen8/Encounters8.hpp>
-#include <Core/Gen8/Filters/StateFilter8.hpp>
+#include <Core/Gen8/Filters/UndergroundFilter.hpp>
 #include <Core/Gen8/Generators/UndergroundGenerator.hpp>
 #include <Core/Gen8/Profile8.hpp>
 #include <Core/Gen8/UndergroundArea.hpp>

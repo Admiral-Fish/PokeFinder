@@ -33,7 +33,7 @@ static u32 gen(Xorshift &rng)
 }
 
 StaticGenerator8::StaticGenerator8(u32 initialAdvances, u32 maxAdvances, u32 delay, Lead lead, const Profile8 &profile,
-                                   const StateFilter8 &filter) :
+                                   const StateFilter &filter) :
     StaticGenerator(initialAdvances, maxAdvances, delay, Method::None, lead, profile, filter)
 {
     tsv = (profile.getTID() & 0xFFF0) ^ profile.getSID();
@@ -152,7 +152,7 @@ std::vector<GeneratorState> StaticGenerator8::generate(u64 seed0, u64 seed1, con
         }
 
         GeneratorState state(initialAdvances + cnt, ec, pid, ivs, ability, gender, staticTemplate->getLevel(), nature, shiny, info);
-        if (filter.compareState(state))
+        if (filter.compareState(static_cast<const State &>(state)))
         {
             states.emplace_back(state);
         }
@@ -238,7 +238,7 @@ std::vector<GeneratorState> StaticGenerator8::generateRoamer(u64 seed0, u64 seed
 
         GeneratorState state(initialAdvances + cnt, ec, pid, ivs, ability, gender, staticTemplate->getLevel(), nature, shiny,
                              staticTemplate->getInfo());
-        if (filter.compareState(state))
+        if (filter.compareState(static_cast<const State &>(state)))
         {
             states.emplace_back(state);
         }

@@ -93,7 +93,7 @@ static bool unownCheck(u32 pid, u8 form)
 }
 
 WildSearcher3::WildSearcher3(Method method, Encounter encounter, Lead lead, const EncounterArea3 &encounterArea, const Profile3 &profile,
-                             const WildStateFilter3 &filter) :
+                             const WildStateFilter &filter) :
     WildSearcher(method, encounter, lead, encounterArea, profile, filter),
     modifiedSlots(encounterArea.getSlots(lead)),
     progress(0),
@@ -289,7 +289,7 @@ std::vector<WildSearcherState3> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 
                 {
                     WildSearcherState3 state(test.next(), pid, ivs, pid & 1, getGender(pid, info), level, nature, getShiny(pid, tsv),
                                              encounterSlot, slot.getSpecie(), slot.getForm(), info);
-                    if (filter.compareState(state))
+                    if (filter.compareState(static_cast<const WildSearcherState &>(state)))
                     {
                         states.emplace_back(state);
                     }

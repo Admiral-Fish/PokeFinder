@@ -110,7 +110,7 @@ void EventGenerator5Test::generate()
 
     PGF pgf(tid, sid, specie, nature, gender, ability, shiny, level, hp, atk, def, spa, spd, spe, egg);
 
-    StateFilter5 filter(255, 255, 255, false, min, max, natures, powers);
+    StateFilter filter(255, 255, 255, false, min, max, natures, powers);
     EventGenerator5 generator(0, 9, 0, pgf, profile, filter);
 
     auto states = generator.generate(seed);

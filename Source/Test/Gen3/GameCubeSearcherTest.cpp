@@ -80,7 +80,7 @@ void GameCubeSearcherTest::searchChannel()
     Profile3 profile("-", Game::GC, 12345, 54321, false);
 
     const StaticTemplate *staticTemplate = Encounters3::getStaticEncounter(8, 0);
-    StateFilter3 filter(255, 255, 255, false, min, max, natures, powers);
+    StateFilter filter(255, 255, 255, false, min, max, natures, powers);
     GameCubeSearcher searcher(Method::Channel, false, profile, filter);
 
     searcher.startSearch(min, max, staticTemplate);
@@ -127,7 +127,7 @@ void GameCubeSearcherTest::searchColoShadow()
     Profile3 profile("-", Game::Colosseum, 12345, 54321, false);
 
     const ShadowTemplate *shadowTemplate = Encounters3::getShadowTeam(pokemon);
-    StateFilter3 filter(255, 255, 255, false, min, max, natures, powers);
+    StateFilter filter(255, 255, 255, false, min, max, natures, powers);
     GameCubeSearcher searcher(Method::None, false, profile, filter);
 
     searcher.startSearch(min, max, shadowTemplate);
@@ -176,7 +176,7 @@ void GameCubeSearcherTest::searchGalesShadow()
     Profile3 profile("-", Game::Gales, 12345, 54321, false);
 
     const ShadowTemplate *shadowTemplate = Encounters3::getShadowTeam(pokemon);
-    StateFilter3 filter(255, 255, 255, false, min, max, natures, powers);
+    StateFilter filter(255, 255, 255, false, min, max, natures, powers);
     GameCubeSearcher searcher(Method::None, unset, profile, filter);
 
     searcher.startSearch(min, max, shadowTemplate);
@@ -225,7 +225,7 @@ void GameCubeSearcherTest::searchNonLock()
     Profile3 profile("-", version, 12345, 54321, false);
 
     const StaticTemplate *staticTemplate = Encounters3::getStaticEncounter(7, pokemon);
-    StateFilter3 filter(255, 255, 255, false, min, max, natures, powers);
+    StateFilter filter(255, 255, 255, false, min, max, natures, powers);
     GameCubeSearcher searcher(Method::None, false, profile, filter);
 
     searcher.startSearch(min, max, staticTemplate);

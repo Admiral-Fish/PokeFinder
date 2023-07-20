@@ -20,8 +20,8 @@
 #ifndef GAMECUBESEARCHER_HPP
 #define GAMECUBESEARCHER_HPP
 
-#include <Core/Gen3/Filters/StateFilter3.hpp>
 #include <Core/Gen3/Profile3.hpp>
+#include <Core/Parents/Filters/StateFilter.hpp>
 #include <Core/Parents/Searchers/Searcher.hpp>
 #include <mutex>
 
@@ -31,7 +31,7 @@ class ShadowTemplate;
 /**
  * @brief Wild encounter searcher for GameCube
  */
-class GameCubeSearcher : public Searcher<Profile3, StateFilter3>
+class GameCubeSearcher : public Searcher<Profile3, StateFilter>
 {
 public:
     /**
@@ -42,7 +42,7 @@ public:
      * @param profile Profile Information
      * @param filter State filter
      */
-    GameCubeSearcher(Method method, bool unset, const Profile3 &profile, const StateFilter3 &filter);
+    GameCubeSearcher(Method method, bool unset, const Profile3 &profile, const StateFilter &filter);
 
     /**
      * @brief Cancels the running search

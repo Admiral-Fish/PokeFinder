@@ -92,7 +92,7 @@ void EggGenerator5Test::generate()
                      false, false, DSType::DS, Language::English);
 
     Daycare daycare(parentIVs, parentAbility, parentGender, parentItem, parentNature, pokemon, true);
-    StateFilter5 filter(255, 255, 255, false, min, max, natures, powers);
+    StateFilter filter(255, 255, 255, false, min, max, natures, powers);
     EggGenerator5 generator(0, 9, 0, daycare, profile, filter);
 
     auto states = generator.generate(seed);

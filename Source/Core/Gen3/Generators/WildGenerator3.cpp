@@ -72,7 +72,7 @@ static bool unownCheck(u32 pid, u8 form)
 }
 
 WildGenerator3::WildGenerator3(u32 initialAdvances, u32 maxAdvances, u32 delay, Method method, Encounter encounter, Lead lead,
-                               const Profile3 &profile, const WildStateFilter3 &filter) :
+                               const Profile3 &profile, const WildStateFilter &filter) :
     WildGenerator(initialAdvances, maxAdvances, delay, method, encounter, lead, profile, filter)
 {
 }

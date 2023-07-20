@@ -29,7 +29,7 @@ static u32 gen(Xorshift &rng)
 }
 
 EventGenerator8::EventGenerator8(u32 initialAdvances, u32 maxAdvances, u32 delay, const WB8 &wb8, const Profile8 &profile,
-                                 const StateFilter8 &filter) :
+                                 const StateFilter &filter) :
     Generator(initialAdvances, maxAdvances, delay, Method::None, profile, filter), wb8(wb8)
 {
     if (!wb8.getEgg())
@@ -147,7 +147,7 @@ std::vector<GeneratorState> EventGenerator8::generate(u64 seed0, u64 seed1) cons
         u8 nature = wb8.getNature() != 255 ? wb8.getNature() : rngList.next() % 25;
 
         GeneratorState state(initialAdvances + cnt, ec, pid, ivs, ability, gender, wb8.getLevel(), nature, shiny, info);
-        if (filter.compareState(state))
+        if (filter.compareState(static_cast<const State &>(state)))
         {
             states.emplace_back(state);
         }

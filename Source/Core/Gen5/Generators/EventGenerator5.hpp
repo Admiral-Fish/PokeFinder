@@ -20,9 +20,9 @@
 #ifndef EVENTGENERATOR5_HPP
 #define EVENTGENERATOR5_HPP
 
-#include <Core/Gen5/Filters/StateFilter5.hpp>
 #include <Core/Gen5/PGF.hpp>
 #include <Core/Gen5/Profile5.hpp>
+#include <Core/Parents/Filters/StateFilter.hpp>
 #include <Core/Parents/Generators/Generator.hpp>
 
 class State5;
@@ -30,7 +30,7 @@ class State5;
 /**
  * @brief Event generator for Gen 5
  */
-class EventGenerator5 : public Generator<Profile5, StateFilter5>
+class EventGenerator5 : public Generator<Profile5, StateFilter>
 {
 public:
     /**
@@ -43,7 +43,7 @@ public:
      * @param profile Profile Information
      * @param filter State filter
      */
-    EventGenerator5(u32 initialAdvances, u32 maxAdvances, u32 delay, const PGF &pgf, const Profile5 &profile, const StateFilter5 &filter);
+    EventGenerator5(u32 initialAdvances, u32 maxAdvances, u32 delay, const PGF &pgf, const Profile5 &profile, const StateFilter &filter);
 
     /**
      * @brief Generates states

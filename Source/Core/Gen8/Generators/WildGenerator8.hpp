@@ -20,16 +20,17 @@
 #ifndef WILDGENERATOR8_HPP
 #define WILDGENERATOR8_HPP
 
-#include <Core/Gen8/Filters/StateFilter8.hpp>
 #include <Core/Gen8/Profile8.hpp>
+#include <Core/Parents/Filters/StateFilter.hpp>
 #include <Core/Parents/Generators/WildGenerator.hpp>
 
 class EncounterArea8;
+class WildGeneratorState;
 
 /**
  * @brief Wild encounter generator for Gen8
  */
-class WildGenerator8 : public WildGenerator<Profile8, WildStateFilter8>
+class WildGenerator8 : public WildGenerator<Profile8, WildStateFilter>
 {
 public:
     /**
@@ -44,7 +45,7 @@ public:
      * @param filter State filter
      */
     WildGenerator8(u32 initialAdvances, u32 maxAdvances, u32 delay, Encounter encounter, Lead lead, const Profile8 &profile,
-                   const WildStateFilter8 &filter);
+                   const WildStateFilter &filter);
 
     /**
      * @brief Generates states for the \p encounterArea

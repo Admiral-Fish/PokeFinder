@@ -87,7 +87,7 @@ static u8 getShiny(u32 pid, u16 tsv)
 }
 
 WildGenerator4::WildGenerator4(u32 initialAdvances, u32 maxAdvances, u32 delay, Method method, Encounter encounter, Lead lead, bool shiny,
-                               const Profile4 &profile, const WildStateFilter4 &filter) :
+                               const Profile4 &profile, const WildStateFilter &filter) :
     WildGenerator(initialAdvances, maxAdvances, delay, method, encounter, lead, profile, filter), shiny(shiny)
 {
 }
@@ -236,7 +236,7 @@ std::vector<WildGeneratorState4> WildGenerator4::generateMethodJ(u32 seed, const
 
         WildGeneratorState4 state(rng.nextUShort(), occidentary, initialAdvances + cnt, pid, ivs, pid & 1, getGender(pid, info), level,
                                   nature, getShiny(pid, tsv), encounterSlot, item, slot.getSpecie(), form, info);
-        if (filter.compareState(state))
+        if (filter.compareState(static_cast<const WildGeneratorState &>(state)))
         {
             states.emplace_back(state);
         }
@@ -444,7 +444,7 @@ std::vector<WildGeneratorState4> WildGenerator4::generateMethodK(u32 seed, const
 
         WildGeneratorState4 state(rng.nextUShort(), occidentary, initialAdvances + cnt, pid, ivs, pid & 1, getGender(pid, info), level,
                                   nature, getShiny(pid, tsv), encounterSlot, item, slot.getSpecie(), 0, info);
-        if (filter.compareState(state))
+        if (filter.compareState(static_cast<const WildGeneratorState &>(state)))
         {
             states.emplace_back(state);
         }
@@ -535,7 +535,7 @@ std::vector<WildGeneratorState4> WildGenerator4::generatePokeRadar(u32 seed, con
 
         WildGeneratorState4 state(rng.nextUShort(), occidentary, initialAdvances + cnt, pid, ivs, pid & 1, getGender(pid, info),
                                   slot.getMaxLevel(), nature, getShiny(pid, tsv), index, item, slot.getSpecie(), 0, info);
-        if (filter.compareState(state))
+        if (filter.compareState(static_cast<const WildGeneratorState &>(state)))
         {
             states.emplace_back(state);
         }
@@ -631,7 +631,7 @@ std::vector<WildGeneratorState4> WildGenerator4::generatePokeRadarShiny(u32 seed
 
         WildGeneratorState4 state(rng.nextUShort(), occidentary, initialAdvances + cnt, pid, ivs, pid & 1, getGender(pid, info),
                                   slot.getMaxLevel(), nature, getShiny(pid, tsv), index, item, slot.getSpecie(), 0, info);
-        if (filter.compareState(state))
+        if (filter.compareState(static_cast<const WildGeneratorState &>(state)))
         {
             states.emplace_back(state);
         }

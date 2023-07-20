@@ -20,16 +20,17 @@
 #ifndef STATICGENERATOR3_HPP
 #define STATICGENERATOR3_HPP
 
-#include <Core/Gen3/Filters/StateFilter3.hpp>
 #include <Core/Gen3/Profile3.hpp>
+#include <Core/Parents/Filters/StateFilter.hpp>
 #include <Core/Parents/Generators/StaticGenerator.hpp>
 
+class GeneratorState;
 class StaticTemplate;
 
 /**
  * @brief Static encounter generator for Gen3
  */
-class StaticGenerator3 : public StaticGenerator<Profile3, StateFilter3>
+class StaticGenerator3 : public StaticGenerator<Profile3, StateFilter>
 {
 public:
     /**
@@ -42,7 +43,7 @@ public:
      * @param profile Profile Information
      * @param filter State filter
      */
-    StaticGenerator3(u32 initialAdvances, u32 maxAdvances, u32 delay, Method method, const Profile3 &profile, const StateFilter3 &filter);
+    StaticGenerator3(u32 initialAdvances, u32 maxAdvances, u32 delay, Method method, const Profile3 &profile, const StateFilter &filter);
 
     /**
      * @brief Generates states for the \p staticTemplate

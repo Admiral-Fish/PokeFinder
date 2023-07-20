@@ -21,15 +21,17 @@
 #define WILDSEARCHER3_HPP
 
 #include <Core/Gen3/EncounterArea3.hpp>
-#include <Core/Gen3/Filters/StateFilter3.hpp>
 #include <Core/Gen3/Profile3.hpp>
+#include <Core/Parents/Filters/StateFilter.hpp>
 #include <Core/Parents/Searchers/WildSearcher.hpp>
 #include <mutex>
+
+class WildSearcherState3;
 
 /**
  * @brief Wild encounter searcher for Gen3
  */
-class WildSearcher3 : public WildSearcher<EncounterArea3, Profile3, WildStateFilter3>
+class WildSearcher3 : public WildSearcher<EncounterArea3, Profile3, WildStateFilter>
 {
 public:
     /**
@@ -42,7 +44,7 @@ public:
      * @param filter State filter
      */
     WildSearcher3(Method method, Encounter encounter, Lead lead, const EncounterArea3 &encounterArea, const Profile3 &profile,
-                  const WildStateFilter3 &filter);
+                  const WildStateFilter &filter);
 
     /**
      * @brief Cancels the running search
