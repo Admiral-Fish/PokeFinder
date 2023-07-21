@@ -25,42 +25,7 @@
 #include <Core/Parents/StaticTemplate.hpp>
 #include <Core/RNG/LCRNG.hpp>
 #include <Core/RNG/LCRNGReverse.hpp>
-
-static u8 getGender(u32 pid, const PersonalInfo *info)
-{
-    switch (info->getGender())
-    {
-    case 255: // Genderless
-        return 2;
-        break;
-    case 254: // Female
-        return 1;
-        break;
-    case 0: // Male
-        return 0;
-        break;
-    default: // Random gender
-        return (pid & 255) < info->getGender();
-        break;
-    }
-}
-
-static u8 getShiny(u32 pid, u16 tsv)
-{
-    u16 psv = (pid >> 16) ^ (pid & 0xffff);
-    if (tsv == psv)
-    {
-        return 2; // Square
-    }
-    else if ((tsv ^ psv) < 8)
-    {
-        return 1; // Star
-    }
-    else
-    {
-        return 0;
-    }
-}
+#include <Core/Util/Utilities.hpp>
 
 StaticSearcher3::StaticSearcher3(Method method, const Profile3 &profile, const StateFilter &filter) :
     StaticSearcher(method, Lead::None, profile, filter), progress(0), ivAdvance(method == Method::Method2), searching(false)
@@ -144,8 +109,8 @@ std::vector<SearcherState> StaticSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa
             continue;
         }
 
-        SearcherState state(rng.next(), pid, ivs, pid & 1, getGender(pid, info), staticTemplate->getLevel(), nature, getShiny(pid, tsv),
-                            info);
+        SearcherState state(rng.next(), pid, ivs, pid & 1, Utilities::getGender(pid, info), staticTemplate->getLevel(), nature,
+                            Utilities::getShiny(pid, tsv), info);
         if (filter.compareState(state))
         {
             states.emplace_back(state);

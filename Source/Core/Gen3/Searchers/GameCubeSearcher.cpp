@@ -27,42 +27,7 @@
 #include <Core/Parents/States/State.hpp>
 #include <Core/RNG/LCRNG.hpp>
 #include <Core/RNG/LCRNGReverse.hpp>
-
-static u8 getGender(u32 pid, const PersonalInfo *info)
-{
-    switch (info->getGender())
-    {
-    case 255: // Genderless
-        return 2;
-        break;
-    case 254: // Female
-        return 1;
-        break;
-    case 0: // Male
-        return 0;
-        break;
-    default: // Random gender
-        return (pid & 255) < info->getGender();
-        break;
-    }
-}
-
-static u8 getShiny(u32 pid, u16 tsv)
-{
-    u16 psv = (pid >> 16) ^ (pid & 0xffff);
-    if (tsv == psv)
-    {
-        return 2; // Square
-    }
-    else if ((tsv ^ psv) < 8)
-    {
-        return 1; // Star
-    }
-    else
-    {
-        return 0;
-    }
-}
+#include <Core/Util/Utilities.hpp>
 
 static bool isShiny(u16 high, u16 low, u16 tsv)
 {
@@ -318,7 +283,8 @@ void GameCubeSearcher::searchChannel(u8 minSpd, u8 maxSpd, const StaticTemplate 
                 continue;
             }
 
-            SearcherState state(rng.getSeed(), pid, ivs, pid & 1, 2, staticTemplate->getLevel(), nature, getShiny(pid, tid ^ sid), info);
+            SearcherState state(rng.getSeed(), pid, ivs, pid & 1, 2, staticTemplate->getLevel(), nature,
+                                Utilities::getShiny(pid, tid ^ sid), info);
             if (filter.compareState(static_cast<const SearcherState &>(state)))
             {
                 std::lock_guard<std::mutex> guard(mutex);
@@ -374,8 +340,8 @@ std::vector<SearcherState> GameCubeSearcher::searchColoShadow(u8 hp, u8 atk, u8 
                 i++;
             }
 
-            SearcherState state(seed, pid, ivs, ability, getGender(pid, info), shadowTemplate->getLevel(), nature, getShiny(pid, tsv),
-                                info);
+            SearcherState state(seed, pid, ivs, ability, Utilities::getGender(pid, info), shadowTemplate->getLevel(), nature,
+                                Utilities::getShiny(pid, tsv), info);
             if (filter.compareState(static_cast<const SearcherState &>(state)))
             {
                 states.emplace_back(state);
@@ -457,7 +423,7 @@ std::vector<SearcherState> GameCubeSearcher::searchGalesShadow(u8 hp, u8 atk, u8
                 i++;
             }
 
-            SearcherState state(seed, pid, ivs, ability, getGender(pid, info), shadowTemplate->getLevel(), nature, 0, info);
+            SearcherState state(seed, pid, ivs, ability, Utilities::getGender(pid, info), shadowTemplate->getLevel(), nature, 0, info);
             if (filter.compareState(static_cast<const SearcherState &>(state)))
             {
                 states.emplace_back(state);
@@ -593,7 +559,8 @@ std::vector<SearcherState> GameCubeSearcher::searchNonLock(u8 hp, u8 atk, u8 def
 
         ability &= info->getAbility(0) != info->getAbility(1);
 
-        SearcherState state(seed, pid, ivs, ability, getGender(pid, info), staticTemplate->getLevel(), nature, getShiny(pid, tsv), info);
+        SearcherState state(seed, pid, ivs, ability, Utilities::getGender(pid, info), staticTemplate->getLevel(), nature,
+                            Utilities::getShiny(pid, tsv), info);
         if (filter.compareState(static_cast<const SearcherState &>(state)))
         {
             states.emplace_back(state);

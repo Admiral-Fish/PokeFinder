@@ -23,6 +23,7 @@
 #include <Core/Parents/EncounterArea.hpp>
 #include <Core/Parents/Slot.hpp>
 #include <Core/RNG/LCRNG.hpp>
+#include <Core/Util/Utilities.hpp>
 #include <algorithm>
 
 // clang-format off
@@ -33,42 +34,6 @@ constexpr u8 encounterTable[100] = {
     2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2
 };
 // clang-format on
-
-static u8 getGender(u32 pid, const PersonalInfo *info)
-{
-    switch (info->getGender())
-    {
-    case 255: // Genderless
-        return 2;
-        break;
-    case 254: // Female
-        return 1;
-        break;
-    case 0: // Male
-        return 0;
-        break;
-    default: // Random gender
-        return (pid & 255) < info->getGender();
-        break;
-    }
-}
-
-static u8 getShiny(u32 pid, u16 tsv)
-{
-    u16 psv = (pid >> 16) ^ (pid & 0xffff);
-    if (tsv == psv)
-    {
-        return 2; // Square
-    }
-    else if ((tsv ^ psv) < 8)
-    {
-        return 1; // Star
-    }
-    else
-    {
-        return 0;
-    }
-}
 
 PokeSpotGenerator::PokeSpotGenerator(u32 initialAdvances, u32 maxAdvances, u32 delay, u32 initialAdvancesEncounter,
                                      u32 maxAdvancesEncounter, u32 delayEncounter, const Profile3 &profile, const WildStateFilter &filter) :
@@ -191,8 +156,8 @@ std::vector<PokeSpotState> PokeSpotGenerator::generateFood(u32 seed, const Encou
             const Slot &slot = encounterArea.getPokemon(encounterSlot);
             const PersonalInfo *info = slot.getInfo();
 
-            PokeSpotState state(initialAdvances + cnt, pid, getGender(pid, info), getShiny(pid, tsv), encounterSlot, slot.getSpecie(),
-                                info);
+            PokeSpotState state(initialAdvances + cnt, pid, Utilities::getGender(pid, info), Utilities::getShiny(pid, tsv), encounterSlot,
+                                slot.getSpecie(), info);
             if (filter.compareGender(state.getGender()) && filter.compareShiny(state.getShiny()))
             {
                 states.emplace_back(state);

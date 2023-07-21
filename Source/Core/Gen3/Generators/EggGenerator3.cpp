@@ -24,6 +24,7 @@
 #include <Core/Parents/PersonalInfo.hpp>
 #include <Core/Parents/PersonalLoader.hpp>
 #include <Core/RNG/LCRNG.hpp>
+#include <Core/Util/Utilities.hpp>
 #include <algorithm>
 
 static bool compare(const EggState3 &left, const EggState3 &right)
@@ -47,42 +48,6 @@ static bool compare(const EggState3 &left, const EggState3 &right)
     }
 
     return false;
-}
-
-static u8 getGender(u32 pid, const PersonalInfo *info)
-{
-    switch (info->getGender())
-    {
-    case 255: // Genderless
-        return 2;
-        break;
-    case 254: // Female
-        return 1;
-        break;
-    case 0: // Male
-        return 0;
-        break;
-    default: // Random gender
-        return (pid & 255) < info->getGender();
-        break;
-    }
-}
-
-static u8 getShiny(u32 pid, u16 tsv)
-{
-    u16 psv = (pid >> 16) ^ (pid & 0xffff);
-    if (tsv == psv)
-    {
-        return 2; // Square
-    }
-    else if ((tsv ^ psv) < 8)
-    {
-        return 1; // Star
-    }
-    else
-    {
-        return 0;
-    }
 }
 
 /**
@@ -319,7 +284,8 @@ std::vector<EggState3> EggGenerator3::generateEmeraldHeld() const
                 info = male;
             }
 
-            EggState3 state(initialAdvances + cnt - offset, redraw, pid, getGender(pid, info), getShiny(pid, tsv), info);
+            EggState3 state(initialAdvances + cnt - offset, redraw, pid, Utilities::getGender(pid, info), Utilities::getShiny(pid, tsv),
+                            info);
             if (filter.compareAbility(state.getAbility()) && filter.compareGender(state.getGender()))
             {
                 states.emplace_back(state);
@@ -427,7 +393,7 @@ std::vector<EggState3> EggGenerator3::generateRSFRLGHeld(u32 seed) const
                 info = male;
             }
 
-            EggState3 state(initialAdvances + cnt, pid, getGender(pid, info), info);
+            EggState3 state(initialAdvances + cnt, pid, Utilities::getGender(pid, info), info);
             if (filter.compareAbility(state.getAbility()) && filter.compareGender(state.getGender()))
             {
                 states.emplace_back(state);
@@ -497,7 +463,7 @@ std::vector<EggState3> EggGenerator3::generateRSFRLGPickup(u32 seed, const std::
                 info = male;
             }
 
-            state.update(initialAdvancesPickup + cnt, pid, getShiny(pid, tsv), ivs, inheritance, info);
+            state.update(initialAdvancesPickup + cnt, pid, Utilities::getShiny(pid, tsv), ivs, inheritance, info);
             if (filter.compareHiddenPower(state.getHiddenPower()) && filter.compareNature(state.getNature())
                 && filter.compareShiny(state.getShiny()) && filter.compareIV(state.getIVs()))
             {

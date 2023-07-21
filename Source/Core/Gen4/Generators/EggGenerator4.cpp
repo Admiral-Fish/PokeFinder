@@ -24,6 +24,7 @@
 #include <Core/Parents/PersonalLoader.hpp>
 #include <Core/RNG/LCRNG.hpp>
 #include <Core/RNG/MT.hpp>
+#include <Core/Util/Utilities.hpp>
 
 static bool compare(const EggGeneratorState4 &left, const EggGeneratorState4 &right)
 {
@@ -46,42 +47,6 @@ static bool compare(const EggGeneratorState4 &left, const EggGeneratorState4 &ri
     }
 
     return false;
-}
-
-static u8 getGender(u32 pid, const PersonalInfo *info)
-{
-    switch (info->getGender())
-    {
-    case 255: // Genderless
-        return 2;
-        break;
-    case 254: // Female
-        return 1;
-        break;
-    case 0: // Male
-        return 0;
-        break;
-    default: // Random gender
-        return (pid & 255) < info->getGender();
-        break;
-    }
-}
-
-static u8 getShiny(u32 pid, u16 tsv)
-{
-    u16 psv = (pid >> 16) ^ (pid & 0xffff);
-    if (tsv == psv)
-    {
-        return 2; // Square
-    }
-    else if ((tsv ^ psv) < 8)
-    {
-        return 1; // Star
-    }
-    else
-    {
-        return 0;
-    }
 }
 
 /**
@@ -192,7 +157,7 @@ std::vector<EggGeneratorState4> EggGenerator4::generateHeld(u32 seed) const
             ARNG rng(pid);
             for (int i = 0; i < 4; i++)
             {
-                if (getShiny(pid, tsv))
+                if (Utilities::getShiny(pid, tsv))
                 {
                     break;
                 }
@@ -206,7 +171,7 @@ std::vector<EggGeneratorState4> EggGenerator4::generateHeld(u32 seed) const
             info = male;
         }
 
-        EggGeneratorState4 state(initialAdvances + cnt, pid, getGender(pid, info), getShiny(pid, tsv), info);
+        EggGeneratorState4 state(initialAdvances + cnt, pid, Utilities::getGender(pid, info), Utilities::getShiny(pid, tsv), info);
         if (filter.compareAbility(state.getAbility()) && filter.compareGender(state.getGender()) && filter.compareNature(state.getNature())
             && filter.compareShiny(state.getShiny()))
         {

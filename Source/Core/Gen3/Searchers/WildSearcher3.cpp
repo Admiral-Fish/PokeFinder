@@ -29,6 +29,7 @@
 #include <Core/RNG/LCRNG.hpp>
 #include <Core/RNG/LCRNGReverse.hpp>
 #include <Core/Util/EncounterSlot.hpp>
+#include <Core/Util/Utilities.hpp>
 
 static bool cuteCharmGender(const PersonalInfo *info, u32 pid, Lead lead)
 {
@@ -47,42 +48,6 @@ static bool cuteCharmGender(const PersonalInfo *info, u32 pid, Lead lead)
         {
             return (pid & 255) < info->getGender();
         }
-    }
-}
-
-static u8 getGender(u32 pid, const PersonalInfo *info)
-{
-    switch (info->getGender())
-    {
-    case 255: // Genderless
-        return 2;
-        break;
-    case 254: // Female
-        return 1;
-        break;
-    case 0: // Male
-        return 0;
-        break;
-    default: // Random gender
-        return (pid & 255) < info->getGender();
-        break;
-    }
-}
-
-static u8 getShiny(u32 pid, u16 tsv)
-{
-    u16 psv = (pid >> 16) ^ (pid & 0xffff);
-    if (tsv == psv)
-    {
-        return 2; // Square
-    }
-    else if ((tsv ^ psv) < 8)
-    {
-        return 1; // Star
-    }
-    else
-    {
-        return 0;
     }
 }
 
@@ -287,8 +252,8 @@ std::vector<WildSearcherState3> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 
                 const PersonalInfo *info = slot.getInfo();
                 if ((!cuteCharmFlag || cuteCharmGender(info, pid, lead)) && (slot.getSpecie() != 201 || unownCheck(pid, slot.getForm())))
                 {
-                    WildSearcherState3 state(test.next(), pid, ivs, pid & 1, getGender(pid, info), level, nature, getShiny(pid, tsv),
-                                             encounterSlot, slot.getSpecie(), slot.getForm(), info);
+                    WildSearcherState3 state(test.next(), pid, ivs, pid & 1, Utilities::getGender(pid, info), level, nature,
+                                             Utilities::getShiny(pid, tsv), encounterSlot, slot.getSpecie(), slot.getForm(), info);
                     if (filter.compareState(static_cast<const WildSearcherState &>(state)))
                     {
                         states.emplace_back(state);
