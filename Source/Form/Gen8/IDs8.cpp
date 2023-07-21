@@ -74,7 +74,7 @@ void IDs8::generate()
     u32 initialAdvances = ui->textBoxInitialAdvances->getUInt();
     u32 maxAdvances = ui->textBoxMaxAdvances->getUInt();
 
-    IDFilter filter = ui->filter->getFilter();
+    IDFilter filter = ui->filter->getFilter(false);
     IDGenerator8 generator(initialAdvances, maxAdvances, filter);
 
     auto states = generator.generate(seed0, seed1);

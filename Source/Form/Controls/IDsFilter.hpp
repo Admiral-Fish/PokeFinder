@@ -52,9 +52,11 @@ public:
     /**
      * @brief Gets settings to filter by
      *
+     * @param pastGen Whether or not we are Gen 3-5 or Gen 6+
+     *
      * @return Filter information
      */
-    IDFilter getFilter() const;
+    IDFilter getFilter(bool pastGen) const;
 
     /**
      * @brief Enables showing of the Display TID filter settings
@@ -65,11 +67,6 @@ private:
     Ui::IDsFilter *ui;
 
 private slots:
-    /**
-     * @brief Clears text when the filter type is changed
-     */
-    void buttonGroupButtonClicked(QAbstractButton *button);
-
     /**
      * @brief Validates text allowed for TID, SID, TID/SID, TSV, or Display TID
      */

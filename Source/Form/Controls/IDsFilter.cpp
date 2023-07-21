@@ -28,7 +28,7 @@ IDsFilter::IDsFilter(QWidget *parent) : QWidget(parent), ui(new Ui::IDsFilter)
 
     ui->radioButtonDisplayTID->setVisible(false);
 
-    connect(ui->buttonGroup, &QButtonGroup::buttonClicked, this, &IDsFilter::buttonGroupButtonClicked);
+    connect(ui->buttonGroup, &QButtonGroup::buttonClicked, ui->plainTextEdit, &QPlainTextEdit::clear);
     connect(ui->plainTextEdit, &QPlainTextEdit::textChanged, this, &IDsFilter::textEditIDsTextChanged);
 }
 
@@ -37,7 +37,7 @@ IDsFilter::~IDsFilter()
     delete ui;
 }
 
-IDFilter IDsFilter::getFilter() const
+IDFilter IDsFilter::getFilter(bool pastGen) const
 {
     std::vector<u16> tidFilter;
     std::vector<u16> sidFilter;
@@ -84,7 +84,8 @@ IDFilter IDsFilter::getFilter() const
             if (!input.isEmpty())
             {
                 u32 pid = input.toUInt(nullptr, 16);
-                tsvFilter.emplace_back((pid >> 16) ^ (pid & 0xffff));
+                u16 psv = (pid >> 16) ^ (pid & 0xffff);
+                tsvFilter.emplace_back(psv >> (pastGen ? 3 : 4));
             }
         }
     }
@@ -115,11 +116,6 @@ IDFilter IDsFilter::getFilter() const
 void IDsFilter::enableDisplayTID()
 {
     ui->radioButtonDisplayTID->setVisible(true);
-}
-
-void IDsFilter::buttonGroupButtonClicked(QAbstractButton *button)
-{
-    ui->plainTextEdit->clear();
 }
 
 void IDsFilter::textEditIDsTextChanged()
@@ -179,7 +175,7 @@ void IDsFilter::textEditIDsTextChanged()
             if (!input.isEmpty())
             {
                 bool flag;
-                u32 val = input.toUShort(&flag);
+                u32 val = input.toUInt(&flag);
                 val = (flag && val <= 999999) ? val : 999999;
                 input = QString::number(val);
             }

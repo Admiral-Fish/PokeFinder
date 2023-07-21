@@ -74,7 +74,7 @@ void IDs3::generateXDColo()
     u32 initialAdvances = ui->textBoxInitialAdvancesXDColo->getUInt();
     u32 maxAdvances = ui->textBoxMaxAdvancesXDColo->getUInt();
 
-    IDFilter filter = ui->idFilter->getFilter();
+    IDFilter filter = ui->idFilter->getFilter(true);
     IDGenerator3 generator(initialAdvances, maxAdvances, filter);
 
     auto states = generator.generateXDColo(seed);
@@ -89,7 +89,7 @@ void IDs3::generateFRLGE()
     u32 initialAdvances = ui->textBoxInitialAdvancesFRLGE->getUInt();
     u32 maxAdvances = ui->textBoxMaxAdvancesFRLGE->getUInt();
 
-    IDFilter filter = ui->idFilter->getFilter();
+    IDFilter filter = ui->idFilter->getFilter(true);
     IDGenerator3 generator(initialAdvances, maxAdvances, filter);
 
     auto states = generator.generateFRLGE(tid);
@@ -117,7 +117,7 @@ void IDs3::generateRS()
     u32 initialAdvances = ui->textBoxInitialAdvancesRS->getUInt();
     u32 maxAdvances = ui->textBoxMaxAdvancesRS->getUInt();
 
-    IDFilter filter = ui->idFilter->getFilter();
+    IDFilter filter = ui->idFilter->getFilter(true);
     IDGenerator3 generator(initialAdvances, maxAdvances, filter);
 
     auto states = generator.generateRS(seed);
