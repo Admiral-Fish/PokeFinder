@@ -305,11 +305,20 @@ void DreamRadar::generate()
 
 void DreamRadar::search()
 {
+    Date start = ui->dateEditSearcherStartDate->getDate();
+    Date end = ui->dateEditSearcherEndDate->getDate();
+    if (start > end)
+    {
+        QMessageBox msg(QMessageBox::Warning, tr("Invalid date range"), tr("Start date is after end date"));
+        msg.exec();
+        return;
+    }
+
     auto radarTemplates = getSearcherSettings();
     if (radarTemplates.empty())
     {
-        QMessageBox message(QMessageBox::Warning, tr("Missing settings"), tr("Enter information for at least 1 slot"));
-        message.exec();
+        QMessageBox msg(QMessageBox::Warning, tr("Missing settings"), tr("Enter information for at least 1 slot"));
+        msg.exec();
         return;
     }
 
@@ -325,9 +334,6 @@ void DreamRadar::search()
     DreamRadarGenerator generator(initialAdvances, maxAdvances, ui->spinBoxSearcherBadges->value(), radarTemplates, *currentProfile,
                                   filter);
     auto *searcher = new Searcher5<DreamRadarGenerator, DreamRadarState>(generator, *currentProfile);
-
-    Date start = ui->dateEditSearcherStartDate->getDate();
-    Date end = ui->dateEditSearcherEndDate->getDate();
 
     int maxProgress = Keypresses::getKeypresses(*currentProfile).size();
     maxProgress *= start.daysTo(end) + 1;

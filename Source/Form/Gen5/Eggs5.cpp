@@ -147,6 +147,15 @@ void Eggs5::generate()
 
 void Eggs5::search()
 {
+    Date start = ui->dateEditSearcherStartDate->getDate();
+    Date end = ui->dateEditSearcherEndDate->getDate();
+    if (start > end)
+    {
+        QMessageBox msg(QMessageBox::Warning, tr("Invalid date range"), tr("Start date is after end date"));
+        msg.exec();
+        return;
+    }
+
     if (!ui->eggSettingsSearcher->compatibleParents())
     {
         QMessageBox box(QMessageBox::Warning, tr("Incompatible Parents"), tr("Gender of selected parents are not compatible for breeding"));
@@ -170,9 +179,6 @@ void Eggs5::search()
     StateFilter filter = ui->filterSearcher->getFilter<StateFilter>();
     EggGenerator5 generator(0, maxAdvances, 0, daycare, *currentProfile, filter);
     auto *searcher = new Searcher5<EggGenerator5, EggState5>(generator, *currentProfile);
-
-    Date start = ui->dateEditSearcherStartDate->getDate();
-    Date end = ui->dateEditSearcherEndDate->getDate();
 
     int maxProgress = Keypresses::getKeypresses(*currentProfile).size();
     maxProgress *= start.daysTo(end) + 1;

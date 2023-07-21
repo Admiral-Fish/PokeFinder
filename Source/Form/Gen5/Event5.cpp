@@ -254,6 +254,15 @@ void Event5::generatorImportEvent()
 
 void Event5::search()
 {
+    Date start = ui->dateEditSearcherStartDate->getDate();
+    Date end = ui->dateEditSearcherEndDate->getDate();
+    if (start > end)
+    {
+        QMessageBox msg(QMessageBox::Warning, tr("Invalid date range"), tr("Start date is after end date"));
+        msg.exec();
+        return;
+    }
+
     searcherModel->clearModel();
 
     ui->pushButtonSearch->setEnabled(false);
@@ -265,9 +274,6 @@ void Event5::search()
     StateFilter filter = ui->filterSearcher->getFilter<StateFilter>();
     EventGenerator5 generator(0, maxAdvances, 0, pgf, *currentProfile, filter);
     auto *searcher = new Searcher5<EventGenerator5, State5>(generator, *currentProfile);
-
-    Date start = ui->dateEditSearcherStartDate->getDate();
-    Date end = ui->dateEditSearcherEndDate->getDate();
 
     int maxProgress = Keypresses::getKeypresses(*currentProfile).size();
     maxProgress *= start.daysTo(end) + 1;

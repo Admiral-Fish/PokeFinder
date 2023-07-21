@@ -233,6 +233,15 @@ void HiddenGrotto::generatorUpdateFilter()
 
 void HiddenGrotto::search()
 {
+    Date start = ui->dateEditSearcherStartDate->getDate();
+    Date end = ui->dateEditSearcherEndDate->getDate();
+    if (start > end)
+    {
+        QMessageBox msg(QMessageBox::Warning, tr("Invalid date range"), tr("Start date is after end date"));
+        msg.exec();
+        return;
+    }
+
     searcherModel->clearModel();
     ui->pushButtonSearch->setEnabled(false);
     ui->pushButtonCancel->setEnabled(true);
@@ -245,9 +254,6 @@ void HiddenGrotto::search()
     HiddenGrottoGenerator generator(0, maxAdvances, 0, powerLevel, encounter[ui->comboBoxSearcherLocation->getCurrentInt()],
                                     *currentProfile, filter);
     auto *searcher = new Searcher5<HiddenGrottoGenerator, HiddenGrottoState>(generator, *currentProfile);
-
-    Date start = ui->dateEditSearcherStartDate->getDate();
-    Date end = ui->dateEditSearcherEndDate->getDate();
 
     int maxProgress = Keypresses::getKeypresses(*currentProfile).size();
     maxProgress *= start.daysTo(end) + 1;

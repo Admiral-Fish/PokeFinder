@@ -29,6 +29,7 @@
 #include <Core/Util/Utilities.hpp>
 #include <Form/Gen5/Profile/ProfileManager5.hpp>
 #include <Model/Gen5/IDModel5.hpp>
+#include <QMessageBox>
 #include <QSettings>
 #include <QThread>
 #include <QTimer>
@@ -124,6 +125,15 @@ void IDs5::find()
 
 void IDs5::search()
 {
+    Date start = ui->dateEditStart->getDate();
+    Date end = ui->dateEditEnd->getDate();
+    if (start > end)
+    {
+        QMessageBox msg(QMessageBox::Warning, tr("Invalid date range"), tr("Start date is after end date"));
+        msg.exec();
+        return;
+    }
+
     model->clearModel();
     model->setGame(currentProfile->getVersion());
 
@@ -146,9 +156,6 @@ void IDs5::search()
     {
         sid.emplace_back(ui->textBoxSID->getUShort());
     }
-
-    Date start = ui->dateEditStart->getDate();
-    Date end = ui->dateEditEnd->getDate();
 
     IDFilter filter(tid, sid, {}, {});
     IDGenerator5 generator(0, ui->textBoxMaxAdvances->getUInt(), pid, usePID, useXOR, *currentProfile, filter);
