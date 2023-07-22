@@ -42,7 +42,7 @@ public:
      * @param max Maximum IV thresholds
      * @param natures Natures to filter by
      * @param powers Hidden powers to filter by
-     * @param species Pokemon species to filter by. This list must be sorted.
+     * @param species Pokemon species to filter by
      */
     UndergroundStateFilter(u8 gender, u8 ability, u8 shiny, bool skip, const std::array<u8, 6> &min, const std::array<u8, 6> &max,
                            const std::array<bool, 25> &natures, const std::array<bool, 16> &powers, const std::vector<u16> &species);

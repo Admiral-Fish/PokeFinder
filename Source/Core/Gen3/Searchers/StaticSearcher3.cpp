@@ -28,7 +28,7 @@
 #include <Core/Util/Utilities.hpp>
 
 StaticSearcher3::StaticSearcher3(Method method, const Profile3 &profile, const StateFilter &filter) :
-    StaticSearcher(method, Lead::None, profile, filter), progress(0), ivAdvance(method == Method::Method2), searching(false)
+    StaticSearcher(method, Lead::None, profile, filter), ivAdvance(method == Method::Method2)
 {
 }
 
@@ -64,23 +64,6 @@ void StaticSearcher3::startSearch(const std::array<u8, 6> &min, const std::array
             }
         }
     }
-}
-
-void StaticSearcher3::cancelSearch()
-{
-    searching = false;
-}
-
-int StaticSearcher3::getProgress() const
-{
-    return progress;
-}
-
-std::vector<SearcherState> StaticSearcher3::getResults()
-{
-    std::lock_guard<std::mutex> guard(mutex);
-    auto data = std::move(results);
-    return data;
 }
 
 std::vector<SearcherState> StaticSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe,

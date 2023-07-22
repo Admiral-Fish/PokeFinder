@@ -166,11 +166,10 @@ namespace Encounters5
         {
             const auto *entry = reinterpret_cast<const WildEncounter5 *>(data + offset);
 
-            const auto *entrySeasons = reinterpret_cast<const WildEncounter5Season *>(data + offset + offsetof(WildEncounter5, seasons));
-            const auto *entrySeason = &entrySeasons[0];
+            const auto *entrySeason = &entry->seasons[0];
             if (season < entry->seasonCount)
             {
-                entrySeason = &entrySeasons[season];
+                entrySeason = &entry->seasons[season];
             }
 
             switch (encounter)

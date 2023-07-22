@@ -193,11 +193,20 @@ constexpr std::array<EggMoveList, 141> eggMoveList = {
     EggMoveList(7, 459, { 73, 74, 38, 23, 130, 345, 402, 0, 0, 0, 0, 0, 0, 0, 0, 0 }),
     EggMoveList(13, 422, { 68, 243, 254, 256, 255, 281, 174, 124, 499, 54, 151, 133, 90, 0, 0, 0 }),
     };
-// clang-format on
 
-constexpr std::array<LevelInfo, 9> levelInfoList
-    = { LevelInfo(16, 20), LevelInfo(25, 29), LevelInfo(29, 33), LevelInfo(33, 37), LevelInfo(36, 40),
-        LevelInfo(39, 43), LevelInfo(42, 46), LevelInfo(50, 55), LevelInfo(58, 63) };
+constexpr std::array<LevelInfo, 9> levelInfoList = {
+    LevelInfo(16, 20),
+    LevelInfo(25, 29),
+    LevelInfo(29, 33),
+    LevelInfo(33, 37),
+    LevelInfo(36, 40),
+    LevelInfo(39, 43),
+    LevelInfo(42, 46),
+    LevelInfo(50, 55),
+    LevelInfo(58, 63)
+    };
+
+// clang-format on
 
 static u32 rand(u32 prng)
 {

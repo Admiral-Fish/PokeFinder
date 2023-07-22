@@ -79,8 +79,6 @@ add_library(PokeFinderCore STATIC
     Gen3/Tools/PIDToIVCalculator.hpp
     Gen3/Tools/SeedToTimeCalculator3.cpp
     Gen3/Tools/SeedToTimeCalculator3.hpp
-    Gen4/ChainedSIDCalc.cpp
-    Gen4/ChainedSIDCalc.hpp
     Gen4/EncounterArea4.cpp
     Gen4/EncounterArea4.hpp
     Gen4/Encounters4.cpp
@@ -112,6 +110,8 @@ add_library(PokeFinderCore STATIC
     Gen4/States/State4.hpp
     Gen4/States/WildState4.hpp
     Gen4/StaticTemplate4.hpp
+    Gen4/Tools/ChainedSIDCalc.cpp
+    Gen4/Tools/ChainedSIDCalc.hpp
     Gen4/Tools/SeedToTimeCalculator4.cpp
     Gen4/Tools/SeedToTimeCalculator4.hpp
     Gen5/DreamRadarTemplate.hpp

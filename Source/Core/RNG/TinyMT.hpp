@@ -76,7 +76,7 @@ public:
     u16 nextUShort();
 
 private:
-    alignas(16) vuint128 state;
+    vuint128 state;
 
     /**
      * @brief Advances the RNG to the next PRNG state

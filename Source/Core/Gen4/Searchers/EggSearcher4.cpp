@@ -23,25 +23,8 @@
 #include <Core/Gen4/States/EggState4.hpp>
 
 EggSearcher4::EggSearcher4(u32 minDelay, u32 maxDelay, const Profile4 &profile, const StateFilter &filter) :
-    Searcher(Method::None, profile, filter), progress(0), maxDelay(maxDelay), minDelay(minDelay), searching(false)
+    Searcher(Method::None, profile, filter), maxDelay(maxDelay), minDelay(minDelay)
 {
-}
-
-void EggSearcher4::cancelSearch()
-{
-    searching = false;
-}
-
-int EggSearcher4::getProgress() const
-{
-    return progress;
-}
-
-std::vector<EggSearcherState4> EggSearcher4::getResults()
-{
-    std::lock_guard<std::mutex> guard(mutex);
-    auto data = std::move(results);
-    return data;
 }
 
 void EggSearcher4::startSearch(const EggGenerator4 &generator)

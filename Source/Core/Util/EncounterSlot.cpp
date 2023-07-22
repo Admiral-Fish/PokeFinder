@@ -20,7 +20,6 @@
 #include "EncounterSlot.hpp"
 #include <Core/Enum/Encounter.hpp>
 #include <array>
-#include <cstddef>
 
 /**
  * @brief Calculates the encounter slot table from the \p ranges
@@ -31,13 +30,13 @@
  *
  * @return Encounter slot table
  */
-template <size_t size, bool greater = false>
+template <int size, bool greater = false>
 static consteval std::array<u8, 100> computeTable(const std::array<int, size> &ranges)
 {
     std::array<u8, 100> table;
 
     int r = greater ? 99 : 0;
-    for (size_t i = 0; i < size; i++)
+    for (int i = 0; i < size; i++)
     {
         u8 range = ranges[i];
         if constexpr (greater)

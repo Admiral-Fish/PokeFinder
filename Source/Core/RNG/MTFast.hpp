@@ -155,7 +155,7 @@ public:
     }
 
 private:
-    alignas(16) vuint128 state[(size + 4) / 4];
+    vuint128 state[(size + 4) / 4];
     u16 index;
 };
 

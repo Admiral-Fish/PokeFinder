@@ -23,7 +23,6 @@
 #include <Core/Gen4/Profile4.hpp>
 #include <Core/Parents/Filters/StateFilter.hpp>
 #include <Core/Parents/Searchers/StaticSearcher.hpp>
-#include <mutex>
 
 class SearcherState4;
 class StaticTemplate4;
@@ -31,7 +30,7 @@ class StaticTemplate4;
 /**
  * @brief Static encounter searcher for Gen4
  */
-class StaticSearcher4 : public StaticSearcher<Profile4, StateFilter>
+class StaticSearcher4 : public StaticSearcher<Profile4, StateFilter, SearcherState4>
 {
 public:
     /**
@@ -50,25 +49,6 @@ public:
                     const StateFilter &filter);
 
     /**
-     * @brief Cancels the running search
-     */
-    void cancelSearch();
-
-    /**
-     * @brief Returns the progress of the running search
-     *
-     * @return Progress
-     */
-    int getProgress() const;
-
-    /**
-     * @brief Returns the states of the running search
-     *
-     * @return Vector of computed states
-     */
-    std::vector<SearcherState4> getResults();
-
-    /**
      * @brief Starts the search
      *
      * @param min Minimum IVs
@@ -78,14 +58,10 @@ public:
     void startSearch(const std::array<u8, 6> &min, const std::array<u8, 6> &max, const StaticTemplate4 *staticTemplate);
 
 private:
-    std::mutex mutex;
-    std::vector<SearcherState4> results;
-    int progress;
     u32 maxAdvance;
     u32 minAdvance;
     u32 maxDelay;
     u32 minDelay;
-    bool searching;
     u8 buffer;
 
     /**

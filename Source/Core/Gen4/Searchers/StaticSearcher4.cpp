@@ -36,31 +36,12 @@ static bool isShiny(u32 pid, u16 tsv)
 StaticSearcher4::StaticSearcher4(u32 minAdvance, u32 maxAdvance, u32 minDelay, u32 maxDelay, Method method, Lead lead,
                                  const Profile4 &profile, const StateFilter &filter) :
     StaticSearcher(method, lead, profile, filter),
-    progress(0),
     maxAdvance(maxAdvance),
     minAdvance(minAdvance),
     maxDelay(maxDelay),
     minDelay(minDelay),
-    searching(false),
     buffer(0)
 {
-}
-
-void StaticSearcher4::cancelSearch()
-{
-    searching = false;
-}
-
-int StaticSearcher4::getProgress() const
-{
-    return progress;
-}
-
-std::vector<SearcherState4> StaticSearcher4::getResults()
-{
-    std::lock_guard<std::mutex> guard(mutex);
-    auto data = std::move(results);
-    return data;
 }
 
 void StaticSearcher4::startSearch(const std::array<u8, 6> &min, const std::array<u8, 6> &max, const StaticTemplate4 *staticTemplate)

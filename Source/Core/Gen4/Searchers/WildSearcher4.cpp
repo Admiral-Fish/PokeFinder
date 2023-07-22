@@ -55,14 +55,12 @@ WildSearcher4::WildSearcher4(u32 minAdvance, u32 maxAdvance, u32 minDelay, u32 m
                              bool shiny, const EncounterArea4 &encounterArea, const Profile4 &profile, const WildStateFilter &filter) :
     WildSearcher(method, encounter, lead, encounterArea, profile, filter),
     modifiedSlots(encounterArea.getSlots(lead)),
-    progress(0),
     maxAdvance(maxAdvance),
     minAdvance(minAdvance),
     maxDelay(maxDelay),
     minDelay(minDelay),
     thresh(encounterArea.getRate()),
     safari(encounterArea.safariZone(profile.getVersion())),
-    searching(false),
     shiny(shiny)
 {
     if (lead == Lead::SuctionCups
@@ -74,23 +72,6 @@ WildSearcher4::WildSearcher4(u32 minAdvance, u32 maxAdvance, u32 minDelay, u32 m
     {
         thresh *= 2;
     }
-}
-
-void WildSearcher4::cancelSearch()
-{
-    searching = false;
-}
-
-int WildSearcher4::getProgress() const
-{
-    return progress;
-}
-
-std::vector<WildSearcherState4> WildSearcher4::getResults()
-{
-    std::lock_guard<std::mutex> guard(mutex);
-    auto data = std::move(results);
-    return data;
 }
 
 void WildSearcher4::startSearch(const std::array<u8, 6> &min, const std::array<u8, 6> &max, u8 index)

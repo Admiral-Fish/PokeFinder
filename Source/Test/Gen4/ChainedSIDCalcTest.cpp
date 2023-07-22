@@ -19,7 +19,7 @@
 
 #include "ChainedSIDCalcTest.hpp"
 #include <Core/Enum/Game.hpp>
-#include <Core/Gen4/ChainedSIDCalc.hpp>
+#include <Core/Gen4/Tools/ChainedSIDCalc.hpp>
 #include <Core/Parents/PersonalInfo.hpp>
 #include <Core/Parents/PersonalLoader.hpp>
 #include <QTest>

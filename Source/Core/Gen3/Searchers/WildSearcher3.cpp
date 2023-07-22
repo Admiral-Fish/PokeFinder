@@ -61,27 +61,8 @@ WildSearcher3::WildSearcher3(Method method, Encounter encounter, Lead lead, cons
                              const WildStateFilter &filter) :
     WildSearcher(method, encounter, lead, encounterArea, profile, filter),
     modifiedSlots(encounterArea.getSlots(lead)),
-    progress(0),
-    ivAdvance(method == Method::Method2),
-    searching(false)
+    ivAdvance(method == Method::Method2)
 {
-}
-
-void WildSearcher3::cancelSearch()
-{
-    searching = false;
-}
-
-int WildSearcher3::getProgress() const
-{
-    return progress;
-}
-
-std::vector<WildSearcherState3> WildSearcher3::getResults()
-{
-    std::lock_guard<std::mutex> guard(mutex);
-    auto data = std::move(results);
-    return data;
 }
 
 void WildSearcher3::startSearch(const std::array<u8, 6> &min, const std::array<u8, 6> &max)

@@ -21,7 +21,6 @@
 #define PGF_HPP
 
 #include <Core/Global.hpp>
-#include <array>
 
 /**
  * @brief Contains information that impact the generation of events

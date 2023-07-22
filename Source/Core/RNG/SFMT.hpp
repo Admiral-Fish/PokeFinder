@@ -58,7 +58,7 @@ public:
     u32 nextUInt();
 
 private:
-    alignas(16) vuint128 state[156];
+    vuint128 state[156];
     u16 index;
 
     /**

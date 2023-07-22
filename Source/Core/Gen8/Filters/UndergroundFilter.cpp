@@ -26,6 +26,7 @@ UndergroundStateFilter::UndergroundStateFilter(u8 gender, u8 ability, u8 shiny, 
                                                const std::array<bool, 16> &powers, const std::vector<u16> &species) :
     StateFilter(gender, ability, shiny, skip, min, max, natures, powers), species(species)
 {
+    std::sort(this->species.begin(), this->species.end());
 }
 
 bool UndergroundStateFilter::compareState(const UndergroundState &state) const

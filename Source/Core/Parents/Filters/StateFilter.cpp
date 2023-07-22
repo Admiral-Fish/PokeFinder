@@ -18,7 +18,6 @@
  */
 
 #include "StateFilter.hpp"
-#include <Core/Parents/States/State.hpp>
 #include <Core/Parents/States/WildState.hpp>
 
 StateFilter::StateFilter(u8 gender, u8 ability, u8 shiny, bool skip, const std::array<u8, 6> &min, const std::array<u8, 6> &max,

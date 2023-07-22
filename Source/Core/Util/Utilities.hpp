@@ -55,6 +55,14 @@ namespace Utilities
      */
     u8 *decompress(const u8 *compressedData, u32 compressedSize, u32 &size);
 
+    /**
+     * @brief Determines the gender of the \p pid based on the gender ratio of the \p info
+     *
+     * @param pid Pokemon PID
+     * @param info Pokemon information
+     *
+     * @return Gender value
+     */
     inline u8 getGender(u32 pid, const PersonalInfo *info)
     {
         switch (info->getGender())
@@ -74,6 +82,16 @@ namespace Utilities
         }
     }
 
+    /**
+     * @brief Determines the shiny of the \p pid based on the \p tsv
+     *
+     * This is utilized by Gen 3-5
+     *
+     * @param pid Pokemon PID
+     * @param tsv Trainer shiny value
+     *
+     * @return Shiny value
+     */
     inline u8 getShiny(u32 pid, u16 tsv)
     {
         u16 psv = (pid >> 16) ^ (pid & 0xffff);

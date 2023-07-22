@@ -23,8 +23,6 @@
 #include <Core/Gen5/Profile5.hpp>
 #include <Core/Parents/Generators/IDGenerator.hpp>
 
-class IDState;
-
 /**
  * @brief TID/SID generator for Gen5
  */

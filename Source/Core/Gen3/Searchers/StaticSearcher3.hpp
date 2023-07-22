@@ -23,14 +23,13 @@
 #include <Core/Gen3/Profile3.hpp>
 #include <Core/Parents/Filters/StateFilter.hpp>
 #include <Core/Parents/Searchers/StaticSearcher.hpp>
-#include <mutex>
 
 class StaticTemplate;
 
 /**
  * @brief Static encounter searcher for Gen3
  */
-class StaticSearcher3 : public StaticSearcher<Profile3, StateFilter>
+class StaticSearcher3 : public StaticSearcher<Profile3, StateFilter, SearcherState>
 {
 public:
     /**
@@ -43,25 +42,6 @@ public:
     StaticSearcher3(Method method, const Profile3 &profile, const StateFilter &filter);
 
     /**
-     * @brief Cancels the running search
-     */
-    void cancelSearch();
-
-    /**
-     * @brief Returns the progress of the running search
-     *
-     * @return Progress
-     */
-    int getProgress() const;
-
-    /**
-     * @brief Returns the states of the running search
-     *
-     * @return Vector of computed states
-     */
-    std::vector<SearcherState> getResults();
-
-    /**
      * @brief Starts the search
      *
      * @param min Minimum IVs
@@ -71,11 +51,7 @@ public:
     void startSearch(const std::array<u8, 6> &min, const std::array<u8, 6> &max, const StaticTemplate *staticTemplate);
 
 private:
-    std::mutex mutex;
-    std::vector<SearcherState> results;
-    int progress;
     bool ivAdvance;
-    bool searching;
 
     /**
      * @brief Searches for matching states from provided IVs

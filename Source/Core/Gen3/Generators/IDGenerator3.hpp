@@ -22,8 +22,6 @@
 
 #include <Core/Parents/Generators/IDGenerator.hpp>
 
-class IDState;
-
 /**
  * @brief TID/SID generator for Gen3
  */

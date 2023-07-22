@@ -113,25 +113,8 @@ static bool validateJirachi(u32 seed)
 }
 
 GameCubeSearcher::GameCubeSearcher(Method method, bool unset, const Profile3 &profile, const StateFilter &filter) :
-    Searcher(method, profile, filter), progress(0), searching(false), unset(unset)
+    Searcher(method, profile, filter), unset(unset)
 {
-}
-
-void GameCubeSearcher::cancelSearch()
-{
-    searching = false;
-}
-
-int GameCubeSearcher::getProgress() const
-{
-    return progress;
-}
-
-std::vector<SearcherState> GameCubeSearcher::getResults()
-{
-    std::lock_guard<std::mutex> guard(mutex);
-    auto data = std::move(results);
-    return data;
 }
 
 void GameCubeSearcher::startSearch(const std::array<u8, 6> &min, const std::array<u8, 6> &max, const ShadowTemplate *shadowTemplate)

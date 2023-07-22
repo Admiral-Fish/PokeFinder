@@ -67,7 +67,7 @@ void IDSearcher4::startSearch(bool infinite, u16 year, u32 minDelay, u32 maxDela
                 u16 sid = sidtid >> 16;
 
                 IDState4 state(seed, efgh + 2000 - year, tid, sid);
-                if (filter.compare(state))
+                if (filter.compareState(static_cast<const IDState &>(state)))
                 {
                     std::lock_guard<std::mutex> guard(mutex);
                     results.emplace_back(state);

@@ -24,14 +24,13 @@
 #include <Core/Gen3/Profile3.hpp>
 #include <Core/Parents/Filters/StateFilter.hpp>
 #include <Core/Parents/Searchers/WildSearcher.hpp>
-#include <mutex>
 
 class WildSearcherState3;
 
 /**
  * @brief Wild encounter searcher for Gen3
  */
-class WildSearcher3 : public WildSearcher<EncounterArea3, Profile3, WildStateFilter>
+class WildSearcher3 : public WildSearcher<EncounterArea3, Profile3, WildStateFilter, WildSearcherState3>
 {
 public:
     /**
@@ -47,25 +46,6 @@ public:
                   const WildStateFilter &filter);
 
     /**
-     * @brief Cancels the running search
-     */
-    void cancelSearch();
-
-    /**
-     * @brief Returns the progress of the running search
-     *
-     * @return Progress
-     */
-    int getProgress() const;
-
-    /**
-     * @brief Returns the states of the running search
-     *
-     * @return Vector of computed states
-     */
-    std::vector<WildSearcherState3> getResults();
-
-    /**
      * @brief Starts the search
      *
      * @param min Minimum IVs
@@ -74,12 +54,8 @@ public:
     void startSearch(const std::array<u8, 6> &min, const std::array<u8, 6> &max);
 
 private:
-    std::mutex mutex;
     std::vector<u8> modifiedSlots;
-    std::vector<WildSearcherState3> results;
-    int progress;
     bool ivAdvance;
-    bool searching;
 
     /**
      * @brief Searches for matching states from provided IVs
