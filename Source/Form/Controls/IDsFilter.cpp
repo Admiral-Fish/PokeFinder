@@ -138,7 +138,7 @@ void IDsFilter::textEditIDsTextChanged()
     }
     else if (ui->radioButtonPID->isChecked())
     {
-        QRegularExpression filter("[^0-9a-f]");
+        QRegularExpression filter("[^0-9a-fA-F]");
         for (QString &input : inputs)
         {
             input.remove(filter);
