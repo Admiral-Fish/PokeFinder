@@ -3590,28 +3590,28 @@
                         "encounterSlot": 0,
                         "form": 2,
                         "gender": 2,
-                        "hiddenPower": 1,
-                        "hiddenPowerStrength": 49,
+                        "hiddenPower": 0,
+                        "hiddenPowerStrength": 69,
                         "ivs": [
-                            27,
-                            3,
-                            15,
-                            22,
-                            20,
-                            18
+                            5,
+                            14,
+                            26,
+                            6,
+                            30,
+                            26
                         ],
                         "level": 25,
-                        "nature": 2,
-                        "pid": 385233502,
+                        "nature": 17,
+                        "pid": 265752342,
                         "shiny": 0,
                         "specie": 201,
                         "stats": [
-                            65,
-                            45,
-                            32,
+                            60,
+                            44,
+                            35,
                             46,
-                            34,
-                            29
+                            36,
+                            31
                         ]
                     },
                     {
@@ -3621,27 +3621,27 @@
                         "encounterSlot": 5,
                         "form": 3,
                         "gender": 2,
-                        "hiddenPower": 9,
-                        "hiddenPowerStrength": 32,
+                        "hiddenPower": 4,
+                        "hiddenPowerStrength": 45,
                         "ivs": [
-                            25,
-                            0,
-                            10,
-                            0,
-                            9,
-                            29
+                            27,
+                            21,
+                            12,
+                            7,
+                            4,
+                            30
                         ],
                         "level": 25,
-                        "nature": 1,
-                        "pid": 2337209351,
+                        "nature": 18,
+                        "pid": 677690443,
                         "shiny": 0,
                         "specie": 201,
                         "stats": [
                             65,
-                            45,
-                            27,
-                            41,
-                            31,
+                            46,
+                            32,
+                            42,
+                            30,
                             36
                         ]
                     },
@@ -3652,28 +3652,28 @@
                         "encounterSlot": 0,
                         "form": 2,
                         "gender": 2,
-                        "hiddenPower": 1,
-                        "hiddenPowerStrength": 49,
+                        "hiddenPower": 0,
+                        "hiddenPowerStrength": 69,
                         "ivs": [
-                            27,
-                            3,
-                            15,
-                            22,
-                            20,
-                            18
+                            5,
+                            14,
+                            26,
+                            6,
+                            30,
+                            26
                         ],
                         "level": 25,
-                        "nature": 2,
-                        "pid": 385233502,
+                        "nature": 17,
+                        "pid": 265752342,
                         "shiny": 0,
                         "specie": 201,
                         "stats": [
-                            65,
-                            45,
-                            32,
+                            60,
+                            44,
+                            35,
                             46,
-                            34,
-                            29
+                            36,
+                            31
                         ]
                     },
                     {
@@ -3683,28 +3683,28 @@
                         "encounterSlot": 1,
                         "form": 2,
                         "gender": 2,
-                        "hiddenPower": 9,
-                        "hiddenPowerStrength": 49,
+                        "hiddenPower": 10,
+                        "hiddenPowerStrength": 64,
                         "ivs": [
+                            9,
+                            11,
+                            30,
                             10,
-                            18,
-                            26,
-                            22,
-                            29,
-                            27
+                            15,
+                            21
                         ],
                         "level": 25,
-                        "nature": 23,
-                        "pid": 3981515098,
+                        "nature": 3,
+                        "pid": 339479578,
                         "shiny": 0,
                         "specie": 201,
                         "stats": [
                             61,
-                            45,
-                            35,
-                            41,
-                            39,
-                            35
+                            47,
+                            36,
+                            38,
+                            32,
+                            34
                         ]
                     },
                     {
@@ -3714,65 +3714,34 @@
                         "encounterSlot": 5,
                         "form": 3,
                         "gender": 2,
-                        "hiddenPower": 9,
-                        "hiddenPowerStrength": 37,
+                        "hiddenPower": 6,
+                        "hiddenPowerStrength": 62,
                         "ivs": [
-                            9,
-                            0,
-                            6,
-                            16,
-                            5,
-                            23
+                            30,
+                            7,
+                            4,
+                            15,
+                            10,
+                            25
                         ],
                         "level": 25,
-                        "nature": 11,
-                        "pid": 1146858111,
+                        "nature": 20,
+                        "pid": 3159044795,
                         "shiny": 0,
                         "specie": 201,
                         "stats": [
-                            61,
-                            41,
-                            27,
-                            45,
+                            66,
+                            37,
                             30,
-                            37
+                            44,
+                            34,
+                            35
                         ]
                     },
                     {
                         "ability": 0,
                         "abilityIndex": 26,
                         "advances": 5,
-                        "encounterSlot": 1,
-                        "form": 2,
-                        "gender": 2,
-                        "hiddenPower": 14,
-                        "hiddenPowerStrength": 63,
-                        "ivs": [
-                            18,
-                            8,
-                            31,
-                            23,
-                            11,
-                            1
-                        ],
-                        "level": 25,
-                        "nature": 15,
-                        "pid": 469967590,
-                        "shiny": 0,
-                        "specie": 201,
-                        "stats": [
-                            63,
-                            38,
-                            36,
-                            50,
-                            31,
-                            29
-                        ]
-                    },
-                    {
-                        "ability": 0,
-                        "abilityIndex": 26,
-                        "advances": 6,
                         "encounterSlot": 1,
                         "form": 2,
                         "gender": 2,
@@ -3803,32 +3772,63 @@
                     {
                         "ability": 0,
                         "abilityIndex": 26,
+                        "advances": 6,
+                        "encounterSlot": 1,
+                        "form": 2,
+                        "gender": 2,
+                        "hiddenPower": 0,
+                        "hiddenPowerStrength": 69,
+                        "ivs": [
+                            5,
+                            14,
+                            26,
+                            6,
+                            30,
+                            26
+                        ],
+                        "level": 25,
+                        "nature": 17,
+                        "pid": 265752342,
+                        "shiny": 0,
+                        "specie": 201,
+                        "stats": [
+                            60,
+                            44,
+                            35,
+                            46,
+                            36,
+                            31
+                        ]
+                    },
+                    {
+                        "ability": 0,
+                        "abilityIndex": 26,
                         "advances": 7,
                         "encounterSlot": 2,
                         "form": 2,
                         "gender": 2,
-                        "hiddenPower": 2,
-                        "hiddenPowerStrength": 57,
+                        "hiddenPower": 10,
+                        "hiddenPowerStrength": 64,
                         "ivs": [
-                            17,
-                            5,
-                            6,
-                            8,
+                            9,
+                            11,
+                            30,
                             10,
-                            11
+                            15,
+                            21
                         ],
                         "level": 25,
-                        "nature": 12,
-                        "pid": 89126062,
+                        "nature": 3,
+                        "pid": 339479578,
                         "shiny": 0,
                         "specie": 201,
                         "stats": [
-                            63,
-                            42,
-                            30,
-                            43,
-                            31,
-                            31
+                            61,
+                            47,
+                            36,
+                            38,
+                            32,
+                            34
                         ]
                     },
                     {
@@ -3839,27 +3839,27 @@
                         "form": 2,
                         "gender": 2,
                         "hiddenPower": 0,
-                        "hiddenPowerStrength": 31,
+                        "hiddenPowerStrength": 69,
                         "ivs": [
-                            15,
+                            5,
+                            14,
+                            26,
                             6,
-                            8,
-                            16,
-                            16,
-                            28
+                            30,
+                            26
                         ],
                         "level": 25,
-                        "nature": 18,
-                        "pid": 3029941018,
+                        "nature": 17,
+                        "pid": 265752342,
                         "shiny": 0,
                         "specie": 201,
                         "stats": [
-                            62,
-                            42,
-                            31,
-                            45,
-                            33,
-                            36
+                            60,
+                            44,
+                            35,
+                            46,
+                            36,
+                            31
                         ]
                     },
                     {
@@ -3869,28 +3869,28 @@
                         "encounterSlot": 7,
                         "form": 7,
                         "gender": 2,
-                        "hiddenPower": 8,
-                        "hiddenPowerStrength": 30,
+                        "hiddenPower": 10,
+                        "hiddenPowerStrength": 35,
                         "ivs": [
                             6,
-                            12,
-                            1,
-                            8,
                             21,
-                            28
+                            21,
+                            12,
+                            29,
+                            23
                         ],
                         "level": 25,
-                        "nature": 13,
-                        "pid": 786010363,
+                        "nature": 2,
+                        "pid": 4173539227,
                         "shiny": 0,
                         "specie": 201,
                         "stats": [
                             60,
-                            44,
-                            29,
-                            38,
+                            50,
                             34,
-                            39
+                            44,
+                            36,
+                            30
                         ]
                     }
                 ]
@@ -4222,7 +4222,7 @@
                 "encounter": "Grass",
                 "lead": "None",
                 "location": 1,
-                "results": 3
+                "results": 97
             }
         ]
     }

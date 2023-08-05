@@ -51,10 +51,9 @@ static bool cuteCharmGender(const PersonalInfo *info, u32 pid, Lead lead)
     }
 }
 
-static bool unownCheck(u32 pid, u8 form)
+static u8 unownLetter(u32 pid)
 {
-    u8 letter = (((pid & 0x3000000) >> 18) | ((pid & 0x30000) >> 12) | ((pid & 0x300) >> 6) | (pid & 0x3)) % 0x1C;
-    return letter == form;
+    return (((pid & 0x3000000) >> 18) | ((pid & 0x30000) >> 12) | ((pid & 0x300) >> 6) | (pid & 0x3)) % 0x1c;
 }
 
 WildSearcher3::WildSearcher3(Method method, Encounter encounter, Lead lead, const EncounterArea3 &encounterArea, const Profile3 &profile,
@@ -119,10 +118,12 @@ std::vector<WildSearcherState3> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 
 
         u32 pid;
 
+        u8 letter;
         if (tanoby)
         {
             pid = rng.nextUShort();
             pid |= rng.nextUShort() << 16;
+            letter = unownLetter(pid);
         }
         else
         {
@@ -136,7 +137,6 @@ std::vector<WildSearcherState3> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 
             continue;
         }
 
-        u8 huntNature;
         u16 nextRNG = rng.nextUShort();
         u16 nextRNG2 = rng.nextUShort();
 
@@ -151,7 +151,13 @@ std::vector<WildSearcherState3> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 
             switch (lead)
             {
             case Lead::None:
-                if ((nextRNG % 25) == nature)
+                if (tanoby)
+                {
+                    encounterSlot = EncounterSlot::hSlot(nextRNG2 % 100, encounter);
+                    level = encounterArea.EncounterArea::calculateLevel(encounterSlot, nextRNG);
+                    valid = filter.compareEncounterSlot(encounterSlot);
+                }
+                else if ((nextRNG % 25) == nature)
                 {
                     u16 prng = safari ? test.nextUShort() : nextRNG2;
                     encounterSlot = EncounterSlot::hSlot(test.nextUShort(100), encounter);
@@ -231,7 +237,7 @@ std::vector<WildSearcherState3> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 
             {
                 const Slot &slot = encounterArea.getPokemon(encounterSlot);
                 const PersonalInfo *info = slot.getInfo();
-                if ((!cuteCharmFlag || cuteCharmGender(info, pid, lead)) && (slot.getSpecie() != 201 || unownCheck(pid, slot.getForm())))
+                if ((!cuteCharmFlag || cuteCharmGender(info, pid, lead)) && (slot.getSpecie() != 201 || unownLetter(pid) == slot.getForm()))
                 {
                     WildSearcherState3 state(test.next(), pid, ivs, pid & 1, Utilities::getGender(pid, info), level, nature,
                                              Utilities::getShiny(pid, tsv), encounterSlot, slot.getSpecie(), slot.getForm(), info);
@@ -242,10 +248,26 @@ std::vector<WildSearcherState3> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 
                 }
             }
 
-            huntNature = static_cast<u32>((nextRNG << 16) | nextRNG2) % 25;
+            if (tanoby)
+            {
+                u8 huntLetter = unownLetter(static_cast<u32>((nextRNG2 << 16) | nextRNG));
+                if (huntLetter == letter)
+                {
+                    break;
+                }
+            }
+            else
+            {
+                u8 huntNature = static_cast<u32>((nextRNG << 16) | nextRNG2) % 25;
+                if (huntNature == nature)
+                {
+                    break;
+                }
+            }
+
             nextRNG = rng.nextUShort();
             nextRNG2 = rng.nextUShort();
-        } while (huntNature != nature);
+        } while (true);
     }
 
     // RSE rock smash is dependent on origin seed for encounter check

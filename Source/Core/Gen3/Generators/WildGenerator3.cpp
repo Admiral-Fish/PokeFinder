@@ -30,10 +30,9 @@
 #include <Core/Util/EncounterSlot.hpp>
 #include <Core/Util/Utilities.hpp>
 
-static bool unownCheck(u32 pid, u8 form)
+static u8 unownLetter(u32 pid)
 {
-    u8 letter = (((pid & 0x3000000) >> 18) | ((pid & 0x30000) >> 12) | ((pid & 0x300) >> 6) | (pid & 0x3)) % 0x1C;
-    return letter == form;
+    return (((pid & 0x3000000) >> 18) | ((pid & 0x30000) >> 12) | ((pid & 0x300) >> 6) | (pid & 0x3)) % 0x1c;
 }
 
 WildGenerator3::WildGenerator3(u32 initialAdvances, u32 maxAdvances, u32 delay, Method method, Encounter encounter, Lead lead,
@@ -114,36 +113,46 @@ std::vector<WildGeneratorState> WildGenerator3::generate(u32 seed, const Encount
         }
 
         u8 nature;
-        if (lead <= Lead::SynchronizeEnd)
+        u32 pid;
+        if (tanoby)
         {
-            nature = go.nextUShort(2) == 0 ? toInt(lead) : go.nextUShort(25);
+            do
+            {
+                u16 low = go.nextUShort();
+                u16 high = go.nextUShort();
+                pid = (low << 16) | high;
+            } while (unownLetter(pid) != slot.getForm());
+
+            nature = pid % 25;
+            if (!filter.compareNature(nature))
+            {
+                continue;
+            }
         }
         else
         {
-            nature = go.nextUShort(25);
-        }
-
-        if (!filter.compareNature(nature))
-        {
-            continue;
-        }
-
-        u32 pid;
-        do
-        {
-            u16 low = go.nextUShort();
-            u16 high = go.nextUShort();
-
-            if (tanoby)
+            if (lead <= Lead::SynchronizeEnd)
             {
-                pid = (low << 16) | high;
+                nature = go.nextUShort(2) == 0 ? toInt(lead) : go.nextUShort(25);
             }
             else
             {
-                pid = (high << 16) | low;
+                nature = go.nextUShort(25);
             }
-        } while (pid % 25 != nature || (cuteCharm && !cuteCharmCheck(info, pid))
-                 || (slot.getSpecie() == 201 && !unownCheck(pid, slot.getForm())));
+
+            if (!filter.compareNature(nature))
+            {
+                continue;
+            }
+
+            do
+            {
+                u16 low = go.nextUShort();
+                u16 high = go.nextUShort();
+                pid = (high << 16) | low;
+
+            } while (pid % 25 != nature || (cuteCharm && !cuteCharmCheck(info, pid)));
+        }
 
         if (method == Method::Method2)
         {
