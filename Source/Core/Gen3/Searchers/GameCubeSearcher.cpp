@@ -282,7 +282,16 @@ std::vector<SearcherState> GameCubeSearcher::searchColoShadow(u8 hp, u8 atk, u8 
 {
     std::vector<SearcherState> states;
     const PersonalInfo *info = shadowTemplate->getInfo();
-    std::array<u8, 6> ivs = { hp, atk, def, spa, spd, spe };
+
+    std::array<u8, 6> ivs;
+    if (shadowTemplate->getType() == ShadowType::EReader)
+    {
+        ivs.fill(0);
+    }
+    else
+    {
+        ivs = { hp, atk, def, spa, spd, spe };
+    }
 
     u32 seeds[6];
     int size = LCRNGReverse::recoverXDRNGIV(hp, atk, def, spa, spd, spe, seeds);

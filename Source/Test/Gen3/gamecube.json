@@ -4164,15 +4164,15 @@
                         "ability": 0,
                         "abilityIndex": 55,
                         "gender": 1,
-                        "hiddenPower": 3,
-                        "hiddenPowerStrength": 59,
+                        "hiddenPower": 0,
+                        "hiddenPowerStrength": 30,
                         "ivs": [
-                            30,
-                            30,
-                            30,
-                            25,
-                            30,
-                            30
+                            0,
+                            0,
+                            0,
+                            0,
+                            0,
+                            0
                         ],
                         "level": 20,
                         "nature": 22,
@@ -4180,12 +4180,12 @@
                         "seed": 4037083889,
                         "shiny": 0,
                         "stats": [
-                            50,
-                            19,
-                            37,
-                            26,
-                            40,
-                            17
+                            44,
+                            13,
+                            31,
+                            21,
+                            34,
+                            11
                         ]
                     },
                     {
@@ -4193,14 +4193,14 @@
                         "abilityIndex": 32,
                         "gender": 1,
                         "hiddenPower": 0,
-                        "hiddenPowerStrength": 70,
+                        "hiddenPowerStrength": 30,
                         "ivs": [
-                            30,
-                            30,
-                            31,
-                            2,
-                            30,
-                            30
+                            0,
+                            0,
+                            0,
+                            0,
+                            0,
+                            0
                         ],
                         "level": 20,
                         "nature": 22,
@@ -4208,27 +4208,27 @@
                         "seed": 3667408318,
                         "shiny": 0,
                         "stats": [
-                            50,
-                            19,
-                            37,
+                            44,
+                            13,
+                            31,
                             21,
-                            40,
-                            17
+                            34,
+                            11
                         ]
                     },
                     {
                         "ability": 0,
                         "abilityIndex": 55,
                         "gender": 1,
-                        "hiddenPower": 10,
-                        "hiddenPowerStrength": 59,
+                        "hiddenPower": 0,
+                        "hiddenPowerStrength": 30,
                         "ivs": [
-                            30,
-                            30,
-                            31,
-                            4,
-                            31,
-                            31
+                            0,
+                            0,
+                            0,
+                            0,
+                            0,
+                            0
                         ],
                         "level": 20,
                         "nature": 22,
@@ -4236,27 +4236,27 @@
                         "seed": 1462487989,
                         "shiny": 0,
                         "stats": [
-                            50,
-                            19,
-                            37,
+                            44,
+                            13,
+                            31,
                             21,
-                            40,
-                            17
+                            34,
+                            11
                         ]
                     },
                     {
                         "ability": 0,
                         "abilityIndex": 55,
                         "gender": 1,
-                        "hiddenPower": 13,
-                        "hiddenPowerStrength": 70,
+                        "hiddenPower": 0,
+                        "hiddenPowerStrength": 30,
                         "ivs": [
-                            30,
-                            31,
-                            30,
-                            27,
-                            31,
-                            31
+                            0,
+                            0,
+                            0,
+                            0,
+                            0,
+                            0
                         ],
                         "level": 20,
                         "nature": 22,
@@ -4264,152 +4264,12 @@
                         "seed": 261986799,
                         "shiny": 0,
                         "stats": [
-                            50,
-                            19,
-                            37,
-                            26,
-                            40,
-                            17
-                        ]
-                    },
-                    {
-                        "ability": 1,
-                        "abilityIndex": 32,
-                        "gender": 1,
-                        "hiddenPower": 9,
-                        "hiddenPowerStrength": 70,
-                        "ivs": [
+                            44,
+                            13,
                             31,
-                            30,
-                            30,
-                            14,
-                            31,
-                            31
-                        ],
-                        "level": 20,
-                        "nature": 22,
-                        "pid": 3388962322,
-                        "seed": 2848654339,
-                        "shiny": 0,
-                        "stats": [
-                            50,
-                            19,
-                            37,
-                            23,
-                            40,
-                            17
-                        ]
-                    },
-                    {
-                        "ability": 1,
-                        "abilityIndex": 32,
-                        "gender": 1,
-                        "hiddenPower": 5,
-                        "hiddenPowerStrength": 59,
-                        "ivs": [
-                            31,
-                            30,
-                            30,
                             21,
-                            30,
-                            31
-                        ],
-                        "level": 20,
-                        "nature": 22,
-                        "pid": 2794365447,
-                        "seed": 1602928589,
-                        "shiny": 0,
-                        "stats": [
-                            50,
-                            19,
-                            37,
-                            25,
-                            40,
-                            17
-                        ]
-                    },
-                    {
-                        "ability": 0,
-                        "abilityIndex": 55,
-                        "gender": 1,
-                        "hiddenPower": 11,
-                        "hiddenPowerStrength": 59,
-                        "ivs": [
-                            31,
-                            30,
-                            30,
-                            29,
-                            31,
-                            30
-                        ],
-                        "level": 20,
-                        "nature": 22,
-                        "pid": 551178772,
-                        "seed": 3413237647,
-                        "shiny": 0,
-                        "stats": [
-                            50,
-                            19,
-                            37,
-                            26,
-                            40,
-                            17
-                        ]
-                    },
-                    {
-                        "ability": 1,
-                        "abilityIndex": 32,
-                        "gender": 1,
-                        "hiddenPower": 14,
-                        "hiddenPowerStrength": 59,
-                        "ivs": [
-                            31,
-                            30,
-                            31,
-                            1,
-                            31,
-                            31
-                        ],
-                        "level": 20,
-                        "nature": 22,
-                        "pid": 2148212247,
-                        "seed": 2560166781,
-                        "shiny": 0,
-                        "stats": [
-                            50,
-                            19,
-                            37,
-                            21,
-                            40,
-                            17
-                        ]
-                    },
-                    {
-                        "ability": 1,
-                        "abilityIndex": 32,
-                        "gender": 1,
-                        "hiddenPower": 4,
-                        "hiddenPowerStrength": 70,
-                        "ivs": [
-                            31,
-                            31,
-                            30,
-                            11,
-                            30,
-                            30
-                        ],
-                        "level": 20,
-                        "nature": 22,
-                        "pid": 790213897,
-                        "seed": 2392883649,
-                        "shiny": 0,
-                        "stats": [
-                            50,
-                            19,
-                            37,
-                            23,
-                            40,
-                            17
+                            34,
+                            11
                         ]
                     },
                     {
@@ -4417,14 +4277,154 @@
                         "abilityIndex": 32,
                         "gender": 1,
                         "hiddenPower": 0,
-                        "hiddenPowerStrength": 59,
+                        "hiddenPowerStrength": 30,
                         "ivs": [
+                            0,
+                            0,
+                            0,
+                            0,
+                            0,
+                            0
+                        ],
+                        "level": 20,
+                        "nature": 22,
+                        "pid": 3388962322,
+                        "seed": 2848654339,
+                        "shiny": 0,
+                        "stats": [
+                            44,
+                            13,
                             31,
+                            21,
+                            34,
+                            11
+                        ]
+                    },
+                    {
+                        "ability": 1,
+                        "abilityIndex": 32,
+                        "gender": 1,
+                        "hiddenPower": 0,
+                        "hiddenPowerStrength": 30,
+                        "ivs": [
+                            0,
+                            0,
+                            0,
+                            0,
+                            0,
+                            0
+                        ],
+                        "level": 20,
+                        "nature": 22,
+                        "pid": 2794365447,
+                        "seed": 1602928589,
+                        "shiny": 0,
+                        "stats": [
+                            44,
+                            13,
                             31,
-                            30,
-                            12,
-                            30,
-                            30
+                            21,
+                            34,
+                            11
+                        ]
+                    },
+                    {
+                        "ability": 0,
+                        "abilityIndex": 55,
+                        "gender": 1,
+                        "hiddenPower": 0,
+                        "hiddenPowerStrength": 30,
+                        "ivs": [
+                            0,
+                            0,
+                            0,
+                            0,
+                            0,
+                            0
+                        ],
+                        "level": 20,
+                        "nature": 22,
+                        "pid": 551178772,
+                        "seed": 3413237647,
+                        "shiny": 0,
+                        "stats": [
+                            44,
+                            13,
+                            31,
+                            21,
+                            34,
+                            11
+                        ]
+                    },
+                    {
+                        "ability": 1,
+                        "abilityIndex": 32,
+                        "gender": 1,
+                        "hiddenPower": 0,
+                        "hiddenPowerStrength": 30,
+                        "ivs": [
+                            0,
+                            0,
+                            0,
+                            0,
+                            0,
+                            0
+                        ],
+                        "level": 20,
+                        "nature": 22,
+                        "pid": 2148212247,
+                        "seed": 2560166781,
+                        "shiny": 0,
+                        "stats": [
+                            44,
+                            13,
+                            31,
+                            21,
+                            34,
+                            11
+                        ]
+                    },
+                    {
+                        "ability": 1,
+                        "abilityIndex": 32,
+                        "gender": 1,
+                        "hiddenPower": 0,
+                        "hiddenPowerStrength": 30,
+                        "ivs": [
+                            0,
+                            0,
+                            0,
+                            0,
+                            0,
+                            0
+                        ],
+                        "level": 20,
+                        "nature": 22,
+                        "pid": 790213897,
+                        "seed": 2392883649,
+                        "shiny": 0,
+                        "stats": [
+                            44,
+                            13,
+                            31,
+                            21,
+                            34,
+                            11
+                        ]
+                    },
+                    {
+                        "ability": 1,
+                        "abilityIndex": 32,
+                        "gender": 1,
+                        "hiddenPower": 0,
+                        "hiddenPowerStrength": 30,
+                        "ivs": [
+                            0,
+                            0,
+                            0,
+                            0,
+                            0,
+                            0
                         ],
                         "level": 20,
                         "nature": 22,
@@ -4432,27 +4432,27 @@
                         "seed": 1629750445,
                         "shiny": 0,
                         "stats": [
-                            50,
-                            19,
-                            37,
-                            23,
-                            40,
-                            17
+                            44,
+                            13,
+                            31,
+                            21,
+                            34,
+                            11
                         ]
                     },
                     {
                         "ability": 0,
                         "abilityIndex": 55,
                         "gender": 1,
-                        "hiddenPower": 3,
-                        "hiddenPowerStrength": 70,
+                        "hiddenPower": 0,
+                        "hiddenPowerStrength": 30,
                         "ivs": [
-                            31,
-                            31,
-                            31,
-                            22,
-                            30,
-                            31
+                            0,
+                            0,
+                            0,
+                            0,
+                            0,
+                            0
                         ],
                         "level": 20,
                         "nature": 22,
@@ -4460,27 +4460,27 @@
                         "seed": 4113255045,
                         "shiny": 0,
                         "stats": [
-                            50,
-                            19,
-                            37,
-                            25,
-                            40,
-                            17
+                            44,
+                            13,
+                            31,
+                            21,
+                            34,
+                            11
                         ]
                     },
                     {
                         "ability": 0,
                         "abilityIndex": 55,
                         "gender": 1,
-                        "hiddenPower": 5,
-                        "hiddenPowerStrength": 70,
+                        "hiddenPower": 0,
+                        "hiddenPowerStrength": 30,
                         "ivs": [
-                            31,
-                            31,
-                            31,
-                            23,
-                            30,
-                            30
+                            0,
+                            0,
+                            0,
+                            0,
+                            0,
+                            0
                         ],
                         "level": 20,
                         "nature": 22,
@@ -4488,27 +4488,27 @@
                         "seed": 3350121841,
                         "shiny": 0,
                         "stats": [
-                            50,
-                            19,
-                            37,
-                            25,
-                            40,
-                            17
+                            44,
+                            13,
+                            31,
+                            21,
+                            34,
+                            11
                         ]
                     },
                     {
                         "ability": 1,
                         "abilityIndex": 32,
                         "gender": 1,
-                        "hiddenPower": 5,
-                        "hiddenPowerStrength": 59,
+                        "hiddenPower": 0,
+                        "hiddenPowerStrength": 30,
                         "ivs": [
-                            31,
-                            31,
-                            31,
-                            29,
-                            30,
-                            30
+                            0,
+                            0,
+                            0,
+                            0,
+                            0,
+                            0
                         ],
                         "level": 20,
                         "nature": 22,
@@ -4516,12 +4516,12 @@
                         "seed": 2776547746,
                         "shiny": 0,
                         "stats": [
-                            50,
-                            19,
-                            37,
-                            26,
-                            40,
-                            17
+                            44,
+                            13,
+                            31,
+                            21,
+                            34,
+                            11
                         ]
                     }
                 ]
