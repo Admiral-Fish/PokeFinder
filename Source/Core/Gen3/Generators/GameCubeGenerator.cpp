@@ -189,6 +189,8 @@ std::vector<GeneratorState> GameCubeGenerator::generateColoShadow(u32 seed, cons
             }
         }
 
+        ability &= info->getAbility(0) != info->getAbility(1);
+
         u32 pid = (high << 16) | low;
         std::array<u8, 6> ivs;
         ivs[0] = iv1 & 31;
@@ -251,16 +253,11 @@ std::vector<GeneratorState> GameCubeGenerator::generateGalesShadow(u32 seed, con
             }
         }
 
-        if (shadowTemplate->getType() == ShadowType::SecondShadow || shadowTemplate->getType() == ShadowType::Salamence)
+        // Check for shiny lock with unset
+        if ((shadowTemplate->getType() == ShadowType::SecondShadow || shadowTemplate->getType() == ShadowType::Salamence) && unset)
         {
-            go.advance(5); // Set and Unset start the same
-
-            // Check for shiny lock with unset
-            if (unset)
+            while (isShiny(go.nextUShort(), go.nextUShort(), tsv))
             {
-                while (isShiny(go.nextUShort(), go.nextUShort(), tsv))
-                {
-                }
             }
         }
 

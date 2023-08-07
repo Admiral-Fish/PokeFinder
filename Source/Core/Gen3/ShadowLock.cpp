@@ -46,7 +46,7 @@ static inline u32 getPIDForward(XDRNG &rng)
 
 namespace ShadowLock
 {
-    bool coloShadow(u32 seed, const ShadowTemplate *shadowTemplate)
+    bool coloShadow(u32 &seed, const ShadowTemplate *shadowTemplate)
     {
         XDRNGR backward(seed);
         backward.advance(1);
@@ -91,10 +91,16 @@ namespace ShadowLock
         }
 
         // Check if we end on the same PID as first non-shadow going backwards
-        return pidOriginal == pid;
+        if (pidOriginal == pid)
+        {
+            seed = backward.advance(8);
+            return true;
+        }
+
+        return false;
     }
 
-    bool ereader(u32 seed, u32 readerPID, const ShadowTemplate *shadowTemplate)
+    bool ereader(u32 &seed, u32 readerPID, const ShadowTemplate *shadowTemplate)
     {
         // Check if PID is even valid for E-Reader
         // E-Reader have set nature/gender
@@ -136,10 +142,15 @@ namespace ShadowLock
         }
 
         // Checks if PID matches original
-        return pid == readerPID;
+        if (pid == readerPID)
+        {
+            seed = backward.advance(8);
+            return true;
+        }
+        return false;
     }
 
-    bool firstShadowNormal(u32 seed, u16 tsv, const ShadowTemplate *shadowTemplate)
+    bool firstShadowNormal(u32 &seed, u16 tsv, const ShadowTemplate *shadowTemplate)
     {
         XDRNGR backward(seed);
         backward.advance(1);
@@ -184,10 +195,16 @@ namespace ShadowLock
         }
 
         // Check if we end on the same PID as first non-shadow going backwards
-        return pidOriginal == pid;
+        if (pidOriginal == pid)
+        {
+            seed = backward.advance(8);
+            return true;
+        }
+
+        return false;
     }
 
-    bool firstShadowSet(u32 seed, u16 tsv, const ShadowTemplate *shadowTemplate)
+    bool firstShadowSet(u32 &seed, u16 tsv, const ShadowTemplate *shadowTemplate)
     {
         XDRNGR backward(seed);
         backward.advance(6);
@@ -232,10 +249,16 @@ namespace ShadowLock
         }
 
         // Check if we end on the same PID as first non-shadow going backwards
-        return pidOriginal == pid;
+        if (pidOriginal == pid)
+        {
+            seed = backward.advance(8);
+            return true;
+        }
+
+        return false;
     }
 
-    bool firstShadowUnset(u32 seed, u16 tsv, const ShadowTemplate *shadowTemplate)
+    bool firstShadowUnset(u32 &seed, u16 tsv, const ShadowTemplate *shadowTemplate)
     {
         XDRNGR backward(seed);
         backward.advance(3);
@@ -291,10 +314,16 @@ namespace ShadowLock
         }
 
         // Check if we end on the same PID as first non-shadow going backwards
-        return pidOriginal == pid;
+        if (pidOriginal == pid)
+        {
+            seed = backward.advance(8);
+            return true;
+        }
+
+        return false;
     }
 
-    bool salamenceSet(u32 seed, u16 tsv, const ShadowTemplate *shadowTemplate)
+    bool salamenceSet(u32 &seed, u16 tsv, const ShadowTemplate *shadowTemplate)
     {
         XDRNGR backward(seed);
         backward.advance(6);
@@ -302,10 +331,17 @@ namespace ShadowLock
         // Build PID of non-shadow
         u32 pid = getPIDBackward(backward);
 
-        return shadowTemplate->getLock(0).compare(pid) && !isShiny(pid, tsv);
+        // Backwards nature lock check
+        if (shadowTemplate->getLock(0).compare(pid) && !isShiny(pid, tsv))
+        {
+            seed = backward.advance(8);
+            return true;
+        }
+
+        return false;
     }
 
-    bool salamenceUnset(u32 seed, u16 tsv, const ShadowTemplate *shadowTemplate)
+    bool salamenceUnset(u32 &seed, u16 tsv, const ShadowTemplate *shadowTemplate)
     {
         XDRNGR backward(seed);
         backward.advance(3);
@@ -325,10 +361,16 @@ namespace ShadowLock
         u32 pid = getPIDBackward(backward);
 
         // Backwards nature lock check
-        return shadowTemplate->getLock(0).compare(pid) && !isShiny(pid, tsv);
+        if (shadowTemplate->getLock(0).compare(pid) && !isShiny(pid, tsv))
+        {
+            seed = backward.advance(8);
+            return true;
+        }
+
+        return false;
     }
 
-    bool singleNL(u32 seed, u16 tsv, const ShadowTemplate *shadowTemplate)
+    bool singleNL(u32 &seed, u16 tsv, const ShadowTemplate *shadowTemplate)
     {
         XDRNGR backward(seed);
         backward.advance(1);
@@ -337,6 +379,12 @@ namespace ShadowLock
         u32 pid = getPIDBackward(backward);
 
         // Backwards nature lock check
-        return shadowTemplate->getLock(0).compare(pid) && !isShiny(pid, tsv);
+        if (shadowTemplate->getLock(0).compare(pid) && !isShiny(pid, tsv))
+        {
+            seed = backward.advance(8);
+            return true;
+        }
+
+        return false;
     }
 }

@@ -40,7 +40,7 @@ namespace ShadowLock
      * @return true Seed matches the lock criteria
      * @return false Seed does not match the lock criteria
      */
-    bool coloShadow(u32 seed, const ShadowTemplate *shadowTemplate);
+    bool coloShadow(u32 &seed, const ShadowTemplate *shadowTemplate);
 
     /**
      * @brief Determines whether the \p seed matches the lock criteria for Colosseum E-Reader
@@ -54,7 +54,7 @@ namespace ShadowLock
      * @return true Seed matches the lock criteria
      * @return false Seed does not match the lock criteria
      */
-    bool ereader(u32 seed, u32 readerPID, const ShadowTemplate *shadowTemplate);
+    bool ereader(u32 &seed, u32 readerPID, const ShadowTemplate *shadowTemplate);
 
     /**
      * @brief firstShadowNormal
@@ -68,7 +68,7 @@ namespace ShadowLock
      * @return true Seed matches the lock criteria
      * @return false Seed does not match the lock criteria
      */
-    bool firstShadowNormal(u32 seed, u16 tsv, const ShadowTemplate *shadowTemplate);
+    bool firstShadowNormal(u32 &seed, u16 tsv, const ShadowTemplate *shadowTemplate);
 
     /**
      * @brief firstShadowSet
@@ -80,7 +80,7 @@ namespace ShadowLock
      * @return true Seed matches the lock criteria
      * @return false Seed does not match the lock criteria
      */
-    bool firstShadowSet(u32 seed, u16 tsv, const ShadowTemplate *shadowTemplate);
+    bool firstShadowSet(u32 &seed, u16 tsv, const ShadowTemplate *shadowTemplate);
 
     /**
      * @brief firstShadowUnset
@@ -92,7 +92,7 @@ namespace ShadowLock
      * @return true Seed matches the lock criteria
      * @return false Seed does not match the lock criteria
      */
-    bool firstShadowUnset(u32 seed, u16 tsv, const ShadowTemplate *shadowTemplate);
+    bool firstShadowUnset(u32 &seed, u16 tsv, const ShadowTemplate *shadowTemplate);
 
     /**
      * @brief salamenceSet
@@ -104,7 +104,7 @@ namespace ShadowLock
      * @return true Seed matches the lock criteria
      * @return false Seed does not match the lock criteria
      */
-    bool salamenceSet(u32 seed, u16 tsv, const ShadowTemplate *shadowTemplate);
+    bool salamenceSet(u32 &seed, u16 tsv, const ShadowTemplate *shadowTemplate);
 
     /**
      * @brief salamenceUnset
@@ -116,7 +116,7 @@ namespace ShadowLock
      * @return true Seed matches the lock criteria
      * @return false Seed does not match the lock criteria
      */
-    bool salamenceUnset(u32 seed, u16 tsv, const ShadowTemplate *shadowTemplate);
+    bool salamenceUnset(u32 &seed, u16 tsv, const ShadowTemplate *shadowTemplate);
 
     /**
      * @brief singleNL
@@ -128,7 +128,7 @@ namespace ShadowLock
      * @return true Seed matches the lock criteria
      * @return false Seed does not match the lock criteria
      */
-    bool singleNL(u32 seed, u16 tsv, const ShadowTemplate *shadowTemplate);
+    bool singleNL(u32 &seed, u16 tsv, const ShadowTemplate *shadowTemplate);
 };
 
 #endif // SHADOWLOCK_HPP
