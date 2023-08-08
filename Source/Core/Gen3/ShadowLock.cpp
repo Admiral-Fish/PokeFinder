@@ -93,7 +93,13 @@ namespace ShadowLock
         // Check if we end on the same PID as first non-shadow going backwards
         if (pidOriginal == pid)
         {
-            seed = backward.advance(8);
+            // Compute origin seed that would give the first occurence of the spread
+            do
+            {
+                pid = getPIDBackward(backward);
+            } while (!shadowTemplate->getLock(0).compare(pid));
+
+            seed = backward.advance(6);
             return true;
         }
 
@@ -144,7 +150,13 @@ namespace ShadowLock
         // Checks if PID matches original
         if (pid == readerPID)
         {
-            seed = backward.advance(8);
+            // Compute origin seed that would give the first occurence of the spread
+            do
+            {
+                pid = getPIDBackward(backward);
+            } while (!shadowTemplate->getLock(0).compare(pid));
+
+            seed = backward.advance(6);
             return true;
         }
         return false;
@@ -197,7 +209,13 @@ namespace ShadowLock
         // Check if we end on the same PID as first non-shadow going backwards
         if (pidOriginal == pid)
         {
-            seed = backward.advance(8);
+            // Compute origin seed that would give the first occurence of the spread
+            do
+            {
+                pid = getPIDBackward(backward);
+            } while (!shadowTemplate->getLock(0).compare(pid) || isShiny(pid, tsv));
+
+            seed = backward.advance(6);
             return true;
         }
 
@@ -251,7 +269,13 @@ namespace ShadowLock
         // Check if we end on the same PID as first non-shadow going backwards
         if (pidOriginal == pid)
         {
-            seed = backward.advance(8);
+            // Compute origin seed that would give the first occurence of the spread
+            do
+            {
+                pid = getPIDBackward(backward);
+            } while (!shadowTemplate->getLock(0).compare(pid) || isShiny(pid, tsv));
+
+            seed = backward.advance(6);
             return true;
         }
 
@@ -316,7 +340,13 @@ namespace ShadowLock
         // Check if we end on the same PID as first non-shadow going backwards
         if (pidOriginal == pid)
         {
-            seed = backward.advance(8);
+            // Compute origin seed that would give the first occurence of the spread
+            do
+            {
+                pid = getPIDBackward(backward);
+            } while (!shadowTemplate->getLock(0).compare(pid) || isShiny(pid, tsv));
+
+            seed = backward.advance(6);
             return true;
         }
 
@@ -334,7 +364,13 @@ namespace ShadowLock
         // Backwards nature lock check
         if (shadowTemplate->getLock(0).compare(pid) && !isShiny(pid, tsv))
         {
-            seed = backward.advance(8);
+            // Compute origin seed that would give the first occurence of the spread
+            do
+            {
+                pid = getPIDBackward(backward);
+            } while (!shadowTemplate->getLock(0).compare(pid) || isShiny(pid, tsv));
+
+            seed = backward.advance(6);
             return true;
         }
 
@@ -363,7 +399,13 @@ namespace ShadowLock
         // Backwards nature lock check
         if (shadowTemplate->getLock(0).compare(pid) && !isShiny(pid, tsv))
         {
-            seed = backward.advance(8);
+            // Compute origin seed that would give the first occurence of the spread
+            do
+            {
+                pid = getPIDBackward(backward);
+            } while (!shadowTemplate->getLock(0).compare(pid) || isShiny(pid, tsv));
+
+            seed = backward.advance(6);
             return true;
         }
 
@@ -381,7 +423,13 @@ namespace ShadowLock
         // Backwards nature lock check
         if (shadowTemplate->getLock(0).compare(pid) && !isShiny(pid, tsv))
         {
-            seed = backward.advance(8);
+            // Compute origin seed that would give the first occurence of the spread
+            do
+            {
+                pid = getPIDBackward(backward);
+            } while (!shadowTemplate->getLock(0).compare(pid) || isShiny(pid, tsv));
+
+            seed = backward.advance(6);
             return true;
         }
 

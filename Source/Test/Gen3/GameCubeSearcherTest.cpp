@@ -50,27 +50,16 @@ static bool operator==(const SearcherState &left, const GeneratorState &right)
     }
 }
 
-static bool operator==(const SearcherState &left, const json &right)
-{
-    return left.getPID() == right["pid"].get<u32>() && left.getStats() == right["stats"].get<std::array<u16, 6>>()
-        && left.getAbilityIndex() == right["abilityIndex"].get<u16>() && left.getIVs() == right["ivs"].get<std::array<u8, 6>>()
-        && left.getAbility() == right["ability"].get<u8>() && left.getGender() == right["gender"].get<u8>()
-        && left.getHiddenPower() == right["hiddenPower"].get<u8>()
-        && left.getHiddenPowerStrength() == right["hiddenPowerStrength"].get<u8>() && left.getLevel() == right["level"].get<u8>()
-        && left.getNature() == right["nature"].get<u8>() && left.getShiny() == right["shiny"].get<u8>()
-        && left.getSeed() == right["seed"].get<u32>();
-}
-
 void GameCubeSearcherTest::searchChannel_data()
 {
     QTest::addColumn<IVs>("min");
     QTest::addColumn<IVs>("max");
-    QTest::addColumn<std::string>("results");
+    QTest::addColumn<int>("results");
 
     json data = readData("gamecube", "gamecubesearcher", "searchChannel");
     for (const auto &d : data)
     {
-        QTest::newRow(d["name"].get<std::string>().data()) << d["min"].get<IVs>() << d["max"].get<IVs>() << d["results"].get<json>().dump();
+        QTest::newRow(d["name"].get<std::string>().data()) << d["min"].get<IVs>() << d["max"].get<IVs>() << d["results"].get<int>();
     }
 }
 
@@ -78,9 +67,7 @@ void GameCubeSearcherTest::searchChannel()
 {
     QFETCH(IVs, min);
     QFETCH(IVs, max);
-    QFETCH(std::string, results);
-
-    json j = json::parse(results);
+    QFETCH(int, results);
 
     std::array<bool, 25> natures;
     natures.fill(true);
@@ -96,12 +83,16 @@ void GameCubeSearcherTest::searchChannel()
 
     searcher.startSearch(min, max, staticTemplate);
     auto states = searcher.getResults();
-    QCOMPARE(states.size(), j.size());
+    QCOMPARE(states.size(), results);
 
-    for (int i = 0; i < states.size(); i++)
+    for (const auto &state : states)
     {
-        const auto &state = states[i];
-        QVERIFY(state == j[i]);
+        // Ensure generator agrees
+        GameCubeGenerator generator(0, 0, 0, Method::Channel, false, profile, filter);
+        auto generatorStates = generator.generate(state.getSeed(), staticTemplate);
+
+        QCOMPARE(generatorStates.size(), 1);
+        QVERIFY(state == generatorStates[0]);
     }
 }
 
@@ -221,13 +212,13 @@ void GameCubeSearcherTest::searchNonLock_data()
     QTest::addColumn<IVs>("max");
     QTest::addColumn<Game>("version");
     QTest::addColumn<int>("pokemon");
-    QTest::addColumn<std::string>("results");
+    QTest::addColumn<int>("results");
 
     json data = readData("gamecube", "gamecubesearcher", "searchNonLock");
     for (const auto &d : data)
     {
-        QTest::newRow(d["name"].get<std::string>().data()) << d["min"].get<IVs>() << d["max"].get<IVs>() << d["version"].get<Game>()
-                                                           << d["pokemon"].get<int>() << d["results"].get<json>().dump();
+        QTest::newRow(d["name"].get<std::string>().data())
+            << d["min"].get<IVs>() << d["max"].get<IVs>() << d["version"].get<Game>() << d["pokemon"].get<int>() << d["results"].get<int>();
     }
 }
 
@@ -237,9 +228,7 @@ void GameCubeSearcherTest::searchNonLock()
     QFETCH(IVs, max);
     QFETCH(Game, version);
     QFETCH(int, pokemon);
-    QFETCH(std::string, results);
-
-    json j = json::parse(results);
+    QFETCH(int, results);
 
     std::array<bool, 25> natures;
     natures.fill(true);
@@ -255,11 +244,15 @@ void GameCubeSearcherTest::searchNonLock()
 
     searcher.startSearch(min, max, staticTemplate);
     auto states = searcher.getResults();
-    QCOMPARE(states.size(), j.size());
+    QCOMPARE(states.size(), results);
 
-    for (int i = 0; i < states.size(); i++)
+    for (const auto &state : states)
     {
-        const auto &state = states[i];
-        QVERIFY(state == j[i]);
+        // Ensure generator agrees
+        GameCubeGenerator generator(0, 0, 0, Method::None, false, profile, filter);
+        auto generatorStates = generator.generate(state.getSeed(), staticTemplate);
+
+        QCOMPARE(generatorStates.size(), 1);
+        QVERIFY(state == generatorStates[0]);
     }
 }

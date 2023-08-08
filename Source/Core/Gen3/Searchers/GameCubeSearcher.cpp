@@ -42,7 +42,7 @@ static bool isShiny(u16 high, u16 low, u16 tsv)
  * @return true Seed passes the menu pattern
  * @return false Seed does not pass the menu pattern
  */
-static bool validateMenu(XDRNGR rng)
+static bool validateMenu(XDRNGR &rng)
 {
     u8 target = rng.getSeed() >> 30;
 
@@ -74,7 +74,7 @@ static bool validateMenu(XDRNGR rng)
  * @return true Seed passes the Jirachi pattern
  * @return false Seed does not pass the Jirachi pattern
  */
-static bool validateJirachi(u32 seed)
+static bool validateJirachi(u32 &seed)
 {
     XDRNGR rng(seed);
 
@@ -82,29 +82,35 @@ static bool validateJirachi(u32 seed)
     u16 num2 = rng.nextUShort();
     u16 num3 = rng.nextUShort();
 
-    rng.advance(3);
-    if (num1 <= 0x4000) // 6 advances
-    {
-        if (validateMenu(rng))
-        {
-            return true;
-        }
-    }
-
-    rng.advance(1);
-    if (num2 > 0x4000 && num1 <= 0x547a) // 7 advances
-    {
-        if (validateMenu(rng))
-        {
-            return true;
-        }
-    }
-
-    rng.advance(1);
     if (num3 > 0x4000 && num2 > 0x547a) // 8 advances
     {
-        if (validateMenu(rng))
+        XDRNGR test(rng);
+        test.advance(5);
+        if (validateMenu(test))
         {
+            seed = test.advance(2);
+            return true;
+        }
+    }
+
+    if (num2 > 0x4000 && num1 <= 0x547a) // 7 advances
+    {
+        XDRNGR test(rng);
+        test.advance(4);
+        if (validateMenu(test))
+        {
+            seed = test.advance(2);
+            return true;
+        }
+    }
+
+    if (num1 <= 0x4000) // 6 advances
+    {
+        XDRNGR test(rng);
+        test.advance(3);
+        if (validateMenu(test))
+        {
+            seed = test.advance(2);
             return true;
         }
     }
@@ -261,13 +267,14 @@ void GameCubeSearcher::searchChannel(u8 minSpd, u8 maxSpd, const StaticTemplate 
                 continue;
             }
 
-            if (!validateJirachi(rng.next()))
+            u32 origin = rng.next();
+            if (!validateJirachi(origin))
             {
                 continue;
             }
 
-            SearcherState state(rng.getSeed(), pid, ivs, pid & 1, 2, staticTemplate->getLevel(), nature,
-                                Utilities::getShiny(pid, tid ^ sid), info);
+            SearcherState state(origin, pid, ivs, pid & 1, 2, staticTemplate->getLevel(), nature, Utilities::getShiny(pid, tid ^ sid),
+                                info);
             if (filter.compareState(static_cast<const SearcherState &>(state)))
             {
                 std::lock_guard<std::mutex> guard(mutex);
@@ -494,9 +501,10 @@ std::vector<SearcherState> GameCubeSearcher::searchNonLock(u8 hp, u8 atk, u8 def
             }
 
             XDRNG test(temp);
+
             temp.advance(2);
             tsv = temp.nextUShort() ^ temp.nextUShort();
-            seed = temp.next();
+            seed = temp.advance(3);
 
             // This TSV better end up on the original Umbreon PID we found
             // The only reason this wouldn't be true is if we get some extra rerolls from a PID being shiny
