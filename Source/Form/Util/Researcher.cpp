@@ -46,17 +46,13 @@ static std::vector<u64> getStates(RNGType rng, u32 initial, u32 max)
 {
     std::vector<u64> states;
 
-    if constexpr (std::is_same<RNGType, ARNG>::value || std::is_same<RNGType, ARNGR>::value || std::is_same<RNGType, BWRNG>::value
-                  || std::is_same<RNGType, BWRNGR>::value || std::is_same<RNGType, PokeRNG>::value || std::is_same<RNGType, PokeRNGR>::value
-                  || std::is_same<RNGType, TinyMT>::value || std::is_same<RNGType, XDRNG>::value || std::is_same<RNGType, XDRNGR>::value
-                  || std::is_same<RNGType, Xorshift>::value || std::is_same<RNGType, Xoroshiro>::value
-                  || std::is_same<RNGType, XoroshiroBDSP>::value)
+    if constexpr (std::is_same<RNGType, MT>::value || std::is_same<RNGType, SFMT>::value)
     {
-        rng.jump(initial);
+        rng.advance(initial);
     }
     else
     {
-        rng.advance(initial);
+        rng.jump(initial);
     }
 
     for (u32 i = 0; i < max; i++)
@@ -122,8 +118,16 @@ Researcher::Researcher(QWidget *parent) : QWidget(parent), ui(new Ui::Researcher
             customs.erase(customs.begin());
         }
 
-        customs.emplace_back(toInt(Custom::Custom1) + i - 1);
-        customs.emplace_back(toInt(Custom::Previous1) + i - 1);
+        if (i == 1)
+        {
+            customs.emplace_back(toInt(Custom::Custom1) + i - 1);
+            customs.emplace_back(toInt(Custom::Previous1) + i - 1);
+        }
+        else
+        {
+            customs.insert(std::find(customs.begin(), customs.end(), toInt(Custom::Custom1) + i - 2) + 1, toInt(Custom::Custom1) + i - 1);
+            customs.emplace_back(toInt(Custom::Previous1) + i - 1);
+        }
     }
 
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Researcher::generate);
