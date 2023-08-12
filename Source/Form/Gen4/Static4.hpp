@@ -52,7 +52,7 @@ public:
     Static4(QWidget *parent = nullptr);
 
     /**
-     * @brief Destroy the Static3 object
+     * @brief Destroy the Static4 object
      */
     ~Static4() override;
 

@@ -1,6 +1,23 @@
-#include "EventSearcher4.hpp"
+/*
+ * This file is part of PokéFinder
+ * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 3
+ * of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ */
 
-#include <Core/Enum/Lead.hpp>
+#include "EventSearcher4.hpp"
 #include <Core/Enum/Method.hpp>
 #include <Core/Gen4/States/State4.hpp>
 #include <Core/Parents/PersonalLoader.hpp>
@@ -9,32 +26,9 @@
 #include <Core/RNG/LCRNGReverse.hpp>
 
 EventSearcher4::EventSearcher4(u32 minAdvance, u32 maxAdvance, u32 minDelay, u32 maxDelay, const Profile4 &profile,
-                               const StateFilter4 &filter) :
-    StaticSearcher(Method::None, Lead::None, profile, filter),
-    progress(0),
-    maxAdvance(maxAdvance),
-    minAdvance(minAdvance),
-    maxDelay(maxDelay),
-    minDelay(minDelay),
-    searching(false)
+                               const StateFilter &filter) :
+    Searcher(Method::None, profile, filter), maxAdvance(maxAdvance), minAdvance(minAdvance), maxDelay(maxDelay), minDelay(minDelay)
 {
-}
-
-void EventSearcher4::cancelSearch()
-{
-    searching = false;
-}
-
-int EventSearcher4::getProgress() const
-{
-    return progress;
-}
-
-std::vector<SearcherState4> EventSearcher4::getResults()
-{
-    std::lock_guard<std::mutex> guard(mutex);
-    auto data = std::move(results);
-    return data;
 }
 
 void EventSearcher4::startSearch(const std::array<u8, 6> &min, const std::array<u8, 6> &max, u16 species, u8 nature, u8 level)
@@ -73,7 +67,27 @@ void EventSearcher4::startSearch(const std::array<u8, 6> &min, const std::array<
 
 std::vector<SearcherState4> EventSearcher4::search(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, u16 species, u8 nature, u8 level) const
 {
-    std::vector<SearcherState4> states = searchWondercardIVs(hp, atk, def, spa, spd, spe, species, nature, level);
+    std::vector<SearcherState4> states;
+    std::array<u8, 6> ivs = { hp, atk, def, spa, spd, spe };
+    const PersonalInfo *info = PersonalLoader::getPersonal(profile.getVersion(), species);
+
+    SearcherState4 state(0, 0, ivs, 0, 0, level, nature, 0, info);
+    if (!filter.compareHiddenPower(state.getHiddenPower()))
+    {
+        return states;
+    }
+
+    u32 seeds[6];
+    int size = LCRNGReverse::recoverPokeRNGIV(hp, atk, def, spa, spd, spe, seeds, Method::Method1);
+    for (int i = 0; i < size; i++)
+    {
+        PokeRNGR rng(seeds[i]);
+        state.setSeed(rng.next());
+        states.emplace_back(state);
+
+        state.setSeed(state.getSeed() ^ 0x80000000);
+        states.emplace_back(state);
+    }
 
     return searchInitialSeeds(states);
 }
@@ -101,34 +115,6 @@ std::vector<SearcherState4> EventSearcher4::searchInitialSeeds(const std::vector
 
             seed = rng.next();
         }
-    }
-
-    return states;
-}
-
-std::vector<SearcherState4> EventSearcher4::searchWondercardIVs(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, u16 species, u8 nature,
-                                                                u8 level) const
-{
-    std::vector<SearcherState4> states;
-    std::array<u8, 6> ivs = { hp, atk, def, spa, spd, spe };
-    const PersonalInfo *info = PersonalLoader::getPersonal(profile.getVersion(), species);
-
-    SearcherState4 state(0, 0, ivs, 0, 0, level, nature, 0, info);
-    if (!filter.compareHiddenPower(state.getHiddenPower()))
-    {
-        return states;
-    }
-
-    u32 seeds[6];
-    int size = LCRNGReverse::recoverPokeRNGIV(hp, atk, def, spa, spd, spe, seeds, Method::Method1);
-    for (int i = 0; i < size; i++)
-    {
-        PokeRNGR rng(seeds[i]);
-        state.setSeed(rng.next());
-        states.emplace_back(state);
-
-        state.setSeed(state.getSeed() ^ 0x80000000);
-        states.emplace_back(state);
     }
 
     return states;

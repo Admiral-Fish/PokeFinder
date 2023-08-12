@@ -1,3 +1,22 @@
+/*
+ * This file is part of PokéFinder
+ * Copyright (C) 2017-2023 by Admiral_Fish, bumba, and EzPzStreamz
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 3
+ * of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ */
+
 #include "Event4.hpp"
 #include "ui_Event4.h"
 #include <Core/Enum/Game.hpp>
@@ -28,7 +47,7 @@ Event4::Event4(QWidget *parent) : QWidget(parent), ui(new Ui::Event4)
     searcherModel = new EventSearcherModel4(ui->tableViewSearcher);
     ui->tableViewSearcher->setModel(searcherModel);
 
-    ui->textBoxGeneratorSeed->setValues(InputType::Seed64Bit);
+    ui->textBoxGeneratorSeed->setValues(InputType::Seed32Bit);
     ui->textBoxGeneratorInitialAdvances->setValues(InputType::Advance32Bit);
     ui->textBoxGeneratorMaxAdvances->setValues(InputType::Advance32Bit);
     ui->textBoxGeneratorDelay->setValues(InputType::Advance32Bit);
@@ -140,12 +159,27 @@ void Event4::generate()
     u32 maxAdvances = ui->textBoxGeneratorMaxAdvances->getUInt();
     u32 delay = ui->textBoxGeneratorDelay->getUInt();
 
-    StateFilter4 filter = ui->filterGenerator->getFilter<StateFilter4>();
+    StateFilter filter = ui->filterGenerator->getFilter<StateFilter>();
     EventGenerator4 generator(initialAdvances, maxAdvances, delay, ui->comboBoxGeneratorSpecies->currentIndex() + 1,
                               ui->comboBoxGeneratorNature->currentIndex(), ui->spinBoxGeneratorLevel->value(), *currentProfile, filter);
 
     auto states = generator.generate(seed);
     generatorModel->addItems(states);
+}
+
+void Event4::profileIndexChanged(int index)
+{
+    if (index >= 0)
+    {
+        currentProfile = &profiles[index];
+    }
+}
+
+void Event4::profileManager()
+{
+    auto *manager = new ProfileManager4();
+    connect(manager, &ProfileManager4::profilesModified, this, [=](int num) { emit profilesModified(num); });
+    manager->show();
 }
 
 void Event4::search()
@@ -163,7 +197,7 @@ void Event4::search()
     u32 minAdvance = ui->textBoxSearcherMinAdvance->getUInt();
     u32 maxAdvance = ui->textBoxSearcherMaxAdvance->getUInt();
 
-    StateFilter4 filter = ui->filterSearcher->getFilter<StateFilter4>();
+    StateFilter filter = ui->filterSearcher->getFilter<StateFilter>();
     auto *searcher = new EventSearcher4(minAdvance, maxAdvance, minDelay, maxDelay, *currentProfile, filter);
 
     int maxProgress = 1;
@@ -197,21 +231,6 @@ void Event4::search()
 
     thread->start();
     timer->start(1000);
-}
-
-void Event4::profileIndexChanged(int index)
-{
-    if (index >= 0)
-    {
-        currentProfile = &profiles[index];
-    }
-}
-
-void Event4::profileManager()
-{
-    auto *manager = new ProfileManager4();
-    connect(manager, &ProfileManager4::profilesModified, this, [=](int num) { emit profilesModified(num); });
-    manager->show();
 }
 
 void Event4::seedToTime()

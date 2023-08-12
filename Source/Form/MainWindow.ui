@@ -18,9 +18,6 @@
    <layout class="QGridLayout" name="gridLayout">
     <item row="0" column="0">
      <widget class="QTabWidget" name="tabWidget">
-      <property name="currentIndex">
-       <number>0</number>
-      </property>
       <widget class="QWidget" name="tabGen3">
        <attribute name="title">
         <string>Gen 3</string>
@@ -99,7 +96,7 @@
         <item row="1" column="0">
          <widget class="QPushButton" name="pushButtonEvent4">
           <property name="text">
-           <string>Wondercard IVs</string>
+           <string>Event</string>
           </property>
          </widget>
         </item>
@@ -396,6 +393,7 @@
   <tabstop>pushButtonStatic3</tabstop>
   <tabstop>pushButtonWild3</tabstop>
   <tabstop>pushButtonEgg4</tabstop>
+  <tabstop>pushButtonEvent4</tabstop>
   <tabstop>pushButtonIDs4</tabstop>
   <tabstop>pushButtonStatic4</tabstop>
   <tabstop>pushButtonWild4</tabstop>

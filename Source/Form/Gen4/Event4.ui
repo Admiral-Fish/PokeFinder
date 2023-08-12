@@ -91,9 +91,6 @@
    </item>
    <item row="1" column="0">
     <widget class="QTabWidget" name="tabRNGSelector">
-     <property name="currentIndex">
-      <number>1</number>
-     </property>
      <widget class="QWidget" name="tabGenerator">
       <attribute name="title">
        <string>Generator</string>
@@ -183,7 +180,7 @@
          <property name="title">
           <string>Settings</string>
          </property>
-         <layout class="QGridLayout" name="gridLayout_11">
+         <layout class="QGridLayout" name="gridLayout_8">
           <item row="0" column="0">
            <widget class="QLabel" name="labelGeneratorSpecies">
             <property name="text">
@@ -191,46 +188,35 @@
             </property>
            </widget>
           </item>
-          <item row="0" column="1">
-           <widget class="QComboBox" name="comboBoxGeneratorSpecies"/>
-          </item>
-          <item row="0" column="2">
-           <widget class="QPushButton" name="pushButtonGeneratorImport">
+          <item row="1" column="0">
+           <widget class="QLabel" name="labelGeneratorLevel">
             <property name="text">
-             <string>Import</string>
+             <string>Level</string>
             </property>
            </widget>
           </item>
-          <item row="1" column="0" colspan="3">
-           <layout class="QGridLayout" name="gridLayout_8">
-            <item row="0" column="1">
-             <widget class="QSpinBox" name="spinBoxGeneratorLevel">
-              <property name="minimum">
-               <number>1</number>
-              </property>
-              <property name="maximum">
-               <number>100</number>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="0">
-             <widget class="QLabel" name="labelGeneratorLevel">
-              <property name="text">
-               <string>Level</string>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="1">
-             <widget class="QComboBox" name="comboBoxGeneratorNature"/>
-            </item>
-            <item row="1" column="0">
-             <widget class="QLabel" name="labelGeneratorNature">
-              <property name="text">
-               <string>Nature</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
+          <item row="1" column="1">
+           <widget class="QSpinBox" name="spinBoxGeneratorLevel">
+            <property name="minimum">
+             <number>1</number>
+            </property>
+            <property name="maximum">
+             <number>100</number>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="labelGeneratorNature">
+            <property name="text">
+             <string>Nature</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QComboBox" name="comboBoxGeneratorSpecies"/>
+          </item>
+          <item row="2" column="1">
+           <widget class="QComboBox" name="comboBoxGeneratorNature"/>
           </item>
          </layout>
         </widget>
@@ -271,7 +257,7 @@
          <property name="title">
           <string>Settings</string>
          </property>
-         <layout class="QGridLayout" name="gridLayout_13">
+         <layout class="QGridLayout" name="gridLayout_9">
           <item row="0" column="0">
            <widget class="QLabel" name="labelSearcherSpecies">
             <property name="text">
@@ -279,46 +265,35 @@
             </property>
            </widget>
           </item>
-          <item row="0" column="1">
-           <widget class="QComboBox" name="comboBoxSearcherSpecies"/>
-          </item>
-          <item row="0" column="2">
-           <widget class="QPushButton" name="pushButtonSearcherImport">
+          <item row="1" column="0">
+           <widget class="QLabel" name="labelSearcherLevel">
             <property name="text">
-             <string>Import</string>
+             <string>Level</string>
             </property>
            </widget>
           </item>
-          <item row="1" column="0" colspan="3">
-           <layout class="QGridLayout" name="gridLayout_9">
-            <item row="0" column="0">
-             <widget class="QLabel" name="labelSearcherLevel">
-              <property name="text">
-               <string>Level</string>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="1">
-             <widget class="QSpinBox" name="spinBoxSearcherLevel">
-              <property name="minimum">
-               <number>1</number>
-              </property>
-              <property name="maximum">
-               <number>100</number>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="1">
-             <widget class="QComboBox" name="comboBoxSearcherNature"/>
-            </item>
-            <item row="1" column="0">
-             <widget class="QLabel" name="labelSearcherNature">
-              <property name="text">
-               <string>Nature</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
+          <item row="1" column="1">
+           <widget class="QSpinBox" name="spinBoxSearcherLevel">
+            <property name="minimum">
+             <number>1</number>
+            </property>
+            <property name="maximum">
+             <number>100</number>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="labelSearcherNature">
+            <property name="text">
+             <string>Nature</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QComboBox" name="comboBoxSearcherSpecies"/>
+          </item>
+          <item row="2" column="1">
+           <widget class="QComboBox" name="comboBoxSearcherNature"/>
           </item>
          </layout>
         </widget>
@@ -475,6 +450,30 @@
    <container>1</container>
   </customwidget>
  </customwidgets>
+ <tabstops>
+  <tabstop>comboBoxProfiles</tabstop>
+  <tabstop>pushButtonProfileManager</tabstop>
+  <tabstop>tabRNGSelector</tabstop>
+  <tabstop>textBoxGeneratorSeed</tabstop>
+  <tabstop>textBoxGeneratorInitialAdvances</tabstop>
+  <tabstop>textBoxGeneratorMaxAdvances</tabstop>
+  <tabstop>textBoxGeneratorDelay</tabstop>
+  <tabstop>pushButtonGenerate</tabstop>
+  <tabstop>comboBoxGeneratorSpecies</tabstop>
+  <tabstop>spinBoxGeneratorLevel</tabstop>
+  <tabstop>comboBoxGeneratorNature</tabstop>
+  <tabstop>tableViewGenerator</tabstop>
+  <tabstop>textBoxSearcherMinDelay</tabstop>
+  <tabstop>textBoxSearcherMaxDelay</tabstop>
+  <tabstop>textBoxSearcherMinAdvance</tabstop>
+  <tabstop>textBoxSearcherMaxAdvance</tabstop>
+  <tabstop>pushButtonSearch</tabstop>
+  <tabstop>pushButtonCancel</tabstop>
+  <tabstop>comboBoxSearcherSpecies</tabstop>
+  <tabstop>spinBoxSearcherLevel</tabstop>
+  <tabstop>comboBoxSearcherNature</tabstop>
+  <tabstop>tableViewSearcher</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>
