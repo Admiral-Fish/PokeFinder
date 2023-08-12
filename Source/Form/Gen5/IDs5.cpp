@@ -29,6 +29,7 @@
 #include <Core/Util/Utilities.hpp>
 #include <Form/Gen5/Profile/ProfileManager5.hpp>
 #include <Model/Gen5/IDModel5.hpp>
+#include <QMessageBox>
 #include <QSettings>
 #include <QThread>
 #include <QTimer>
@@ -115,15 +116,24 @@ void IDs5::find()
     u32 maxAdvance = ui->textBoxSeedFinderMaxAdvances->getUInt();
 
     IDFilter filter({ tid }, {}, {}, {});
-    IDGenerator5 generator(0, maxAdvance, *currentProfile, filter);
-    IDSearcher5 searcher(*currentProfile, 0, false, false);
+    IDGenerator5 generator(0, maxAdvance, 0, false, false, *currentProfile, filter);
+    IDSearcher5 searcher(generator, *currentProfile);
 
-    auto states = searcher.startSearch(generator, date, hour, minute, minSecond, maxSecond);
+    auto states = searcher.search(generator, date, hour, minute, minSecond, maxSecond);
     model->addItems(states);
 }
 
 void IDs5::search()
 {
+    Date start = ui->dateEditStart->getDate();
+    Date end = ui->dateEditEnd->getDate();
+    if (start > end)
+    {
+        QMessageBox msg(QMessageBox::Warning, tr("Invalid date range"), tr("Start date is after end date"));
+        msg.exec();
+        return;
+    }
+
     model->clearModel();
     model->setGame(currentProfile->getVersion());
 
@@ -147,22 +157,19 @@ void IDs5::search()
         sid.emplace_back(ui->textBoxSID->getUShort());
     }
 
-    Date start = ui->dateEditStart->getDate();
-    Date end = ui->dateEditEnd->getDate();
-
     IDFilter filter(tid, sid, {}, {});
-    IDGenerator5 generator(0, ui->textBoxMaxAdvances->getUInt(), *currentProfile, filter);
+    IDGenerator5 generator(0, ui->textBoxMaxAdvances->getUInt(), pid, usePID, useXOR, *currentProfile, filter);
 
-    auto *searcher = new IDSearcher5(*currentProfile, pid, usePID, useXOR);
+    auto *searcher = new IDSearcher5(generator, *currentProfile);
 
-    int maxProgress = Keypresses::getKeyPresses(*currentProfile).size();
+    int maxProgress = Keypresses::getKeypresses(*currentProfile).size();
     maxProgress *= (start.daysTo(end) + 1);
     ui->progressBar->setRange(0, maxProgress);
 
     QSettings settings;
     int threads = settings.value("settings/threads").toInt();
 
-    auto *thread = QThread::create([=] { searcher->startSearch(generator, threads, start, end); });
+    auto *thread = QThread::create([=] { searcher->startSearch(threads, start, end); });
     connect(thread, &QThread::finished, thread, &QThread::deleteLater);
     connect(ui->pushButtonCancel, &QPushButton::clicked, [searcher] { searcher->cancelSearch(); });
 

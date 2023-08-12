@@ -51,7 +51,7 @@ void StaticGenerator8Test::generate_data()
     for (const auto &d : data)
     {
         QTest::newRow(d["name"].get<std::string>().data())
-            << d["seed0"].get<u64>() << d["seed1"].get<u64>() << getLead(d["lead"].get<std::string>()) << d["category"].get<int>()
+            << d["seed0"].get<u64>() << d["seed1"].get<u64>() << d["lead"].get<Lead>() << d["category"].get<int>()
             << d["pokemon"].get<int>() << d["results"].get<json>().dump();
     }
 }
@@ -82,7 +82,7 @@ void StaticGenerator8Test::generate()
     Profile8 profile("-", Game::BDSP, 12345, 54321, false, false, false);
 
     const StaticTemplate *staticTemplate = Encounters8::getStaticEncounter(category, pokemon);
-    StateFilter8 filter(255, 255, 255, false, min, max, natures, powers);
+    StateFilter filter(255, 255, 255, false, min, max, natures, powers);
     StaticGenerator8 generator(0, 9, 0, lead, profile, filter);
 
     auto states = generator.generate(seed0, seed1, staticTemplate);
@@ -136,7 +136,7 @@ void StaticGenerator8Test::generateRoamer()
     Profile8 profile("-", Game::BD, 12345, 54321, false, false, false);
 
     const StaticTemplate *staticTemplate = Encounters8::getStaticEncounter(category, pokemon);
-    StateFilter8 filter(255, 255, 255, false, min, max, natures, powers);
+    StateFilter filter(255, 255, 255, false, min, max, natures, powers);
     StaticGenerator8 generator(0, 9, 0, Lead::None, profile, filter);
 
     auto states = generator.generateRoamer(seed0, seed1, staticTemplate);

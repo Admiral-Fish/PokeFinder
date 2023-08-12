@@ -23,6 +23,7 @@
 #include <QWidget>
 
 class IDFilter;
+class QAbstractButton;
 
 namespace Ui
 {
@@ -51,9 +52,11 @@ public:
     /**
      * @brief Gets settings to filter by
      *
+     * @param pastGen Whether or not we are Gen 3-5 or Gen 6+
+     *
      * @return Filter information
      */
-    IDFilter getFilter() const;
+    IDFilter getFilter(bool pastGen) const;
 
     /**
      * @brief Enables showing of the Display TID filter settings

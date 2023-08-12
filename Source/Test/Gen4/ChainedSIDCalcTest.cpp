@@ -19,7 +19,7 @@
 
 #include "ChainedSIDCalcTest.hpp"
 #include <Core/Enum/Game.hpp>
-#include <Core/Gen4/ChainedSIDCalc.hpp>
+#include <Core/Gen4/Tools/ChainedSIDCalc.hpp>
 #include <Core/Parents/PersonalInfo.hpp>
 #include <Core/Parents/PersonalLoader.hpp>
 #include <QTest>
@@ -43,9 +43,8 @@ void ChainedSIDCalcTest::addEntry_data()
     for (const auto &d : data)
     {
         QTest::newRow(d["name"].get<std::string>().data())
-            << d["tid"].get<u16>() << getGame(d["version"].get<std::string>()) << d["pokemon"].get<u16>()
-            << d["ability"].get<std::vector<u8>>() << d["ivs"].get<IVs>() << d["gender"].get<std::vector<u8>>()
-            << d["nature"].get<std::vector<u8>>() << d["result"].get<u16>();
+            << d["tid"].get<u16>() << d["version"].get<Game>() << d["pokemon"].get<u16>() << d["ability"].get<std::vector<u8>>()
+            << d["ivs"].get<IVs>() << d["gender"].get<std::vector<u8>>() << d["nature"].get<std::vector<u8>>() << d["result"].get<u16>();
     }
 }
 

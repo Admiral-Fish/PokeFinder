@@ -21,6 +21,7 @@
 #define UTILITIES_HPP
 
 #include <Core/Global.hpp>
+#include <Core/Parents/PersonalInfo.hpp>
 #include <Core/RNG/LCRNG64.hpp>
 #include <string>
 
@@ -53,6 +54,60 @@ namespace Utilities
      * @return Uncompressed data
      */
     u8 *decompress(const u8 *compressedData, u32 compressedSize, u32 &size);
+
+    /**
+     * @brief Determines the gender of the \p pid based on the gender ratio of the \p info
+     *
+     * @param pid Pokemon PID
+     * @param info Pokemon information
+     *
+     * @return Gender value
+     */
+    inline u8 getGender(u32 pid, const PersonalInfo *info)
+    {
+        switch (info->getGender())
+        {
+        case 255: // Genderless
+            return 2;
+            break;
+        case 254: // Female
+            return 1;
+            break;
+        case 0: // Male
+            return 0;
+            break;
+        default: // Random gender
+            return (pid & 255) < info->getGender();
+            break;
+        }
+    }
+
+    /**
+     * @brief Determines the shiny of the \p pid based on the \p tsv
+     *
+     * This is utilized by Gen 3-5
+     *
+     * @param pid Pokemon PID
+     * @param tsv Trainer shiny value
+     *
+     * @return Shiny value
+     */
+    inline u8 getShiny(u32 pid, u16 tsv)
+    {
+        u16 psv = (pid >> 16) ^ (pid & 0xffff);
+        if (tsv == psv)
+        {
+            return 2; // Square
+        }
+        else if ((tsv ^ psv) < 8)
+        {
+            return 1; // Star
+        }
+        else
+        {
+            return 0;
+        }
+    }
 }
 
 namespace Utilities3

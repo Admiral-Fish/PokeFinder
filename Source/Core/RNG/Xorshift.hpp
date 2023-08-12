@@ -90,7 +90,7 @@ public:
     }
 
 private:
-    alignas(16) vuint128 state;
+    vuint128 state;
 };
 
 #endif // XORSHIFT_HPP

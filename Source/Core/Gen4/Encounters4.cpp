@@ -942,7 +942,7 @@ namespace Encounters4
         }
     }
 
-    const StaticTemplate4 *getStaticEncounters(int type, size_t *size)
+    const StaticTemplate4 *getStaticEncounters(int type, int *size)
     {
         if (type == 0)
         {

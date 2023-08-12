@@ -39,24 +39,21 @@ class SearcherState5;
 /**
  * @brief Parent searcher class for most Gen 5 generators
  *
+ * @tparam Generator Generator class to use
  * @tparam State State class to use
  */
-template <class State>
+template <class Generator, class State>
 class Searcher5
 {
 public:
     /**
      * @brief Construct a new DreamRadarSearcher object
      *
+     * @param generator State generator
      * @param profile Profile information
      */
-    Searcher5(const Profile5 &profile) :
-        profile(profile),
-        buttons(Keypresses::getKeyPresses(profile)),
-        values(Keypresses::getValues(buttons)),
-        sha(profile),
-        progress(0),
-        searching(false)
+    Searcher5(const Generator &generator, const Profile5 &profile) :
+        generator(generator), profile(profile), keypresses(Keypresses::getKeypresses(profile)), progress(0), searching(false)
     {
     }
 
@@ -93,14 +90,11 @@ public:
     /**
      * @brief Starts the search
      *
-     * @tparam Generator Generator class to use
-     * @param generator State generator
      * @param threads Numbers of threads to search with
      * @param start Start date
      * @param end End date
      */
-    template <class Generator>
-    void startSearch(const Generator &generator, int threads, const Date &start, const Date &end)
+    void startSearch(int threads, const Date &start, const Date &end)
     {
         searching = true;
 
@@ -118,12 +112,12 @@ public:
         {
             if (i == threads - 1)
             {
-                threadContainer.emplace_back([=] { search(generator, day, end); });
+                threadContainer.emplace_back([=] { search(day, end); });
             }
             else
             {
                 Date mid = day.addDays(daysSplit - 1);
-                threadContainer.emplace_back([=] { search(generator, day, mid); });
+                threadContainer.emplace_back([=] { search(day, mid); });
             }
             day = day.addDays(daysSplit);
         }
@@ -134,27 +128,25 @@ public:
         }
     }
 
-private:
+protected:
+    Generator generator;
     Profile5 profile;
     std::mutex mutex;
-    std::vector<Buttons> buttons;
+    std::vector<Keypress> keypresses;
     std::vector<SearcherState5<State>> results;
-    std::vector<u32> values;
-    SHA1 sha;
     std::atomic<int> progress;
     bool searching;
 
     /**
      * @brief Searches between the \p start and \p end dates
      *
-     * @tparam Generator Generator class to use
-     * @param generator State generator
      * @param start Start date
      * @param end End date
      */
-    template <class Generator>
-    void search(const Generator &generator, const Date &start, const Date &end)
+    void search(const Date &start, const Date &end)
     {
+        SHA1 sha(profile);
+
         for (u16 timer0 = profile.getTimer0Min(); timer0 <= profile.getTimer0Max(); timer0++)
         {
             sha.setTimer0(timer0, profile.getVCount());
@@ -162,9 +154,9 @@ private:
             {
                 sha.setDate(date);
                 auto alpha = sha.precompute();
-                for (size_t i = 0; i < values.size(); i++)
+                for (const auto &keypress : keypresses)
                 {
-                    sha.setButton(values[i]);
+                    sha.setButton(keypress.value);
 
                     for (u8 hour = 0; hour < 24; hour++)
                     {
@@ -189,7 +181,7 @@ private:
                                     results.reserve(results.capacity() + states.size());
                                     for (const auto &state : states)
                                     {
-                                        results.emplace_back(dt, seed, buttons[i], timer0, state);
+                                        results.emplace_back(dt, seed, keypress.button, timer0, state);
                                     }
                                 }
                             }

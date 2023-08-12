@@ -79,6 +79,9 @@ Event5::Event5(QWidget *parent) : QWidget(parent), ui(new Ui::Event5)
         ui->comboBoxSearcherSpecies->addItem(QString::fromStdString(specie));
     }
 
+    ui->comboBoxGeneratorSpecies->enableAutoComplete();
+    ui->comboBoxSearcherSpecies->enableAutoComplete();
+
     connect(ui->comboBoxProfiles, &QComboBox::currentIndexChanged, this, &Event5::profileIndexChanged);
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Event5::generate);
     connect(ui->pushButtonSearch, &QPushButton::clicked, this, &Event5::search);
@@ -175,7 +178,7 @@ void Event5::generate()
     u32 delay = ui->textBoxGeneratorDelay->getUInt();
     PGF pgf = getGeneratorParameters();
 
-    StateFilter5 filter = ui->filterGenerator->getFilter<StateFilter5>();
+    StateFilter filter = ui->filterGenerator->getFilter<StateFilter>();
     EventGenerator5 generator(initialAdvances, maxAdvances, delay, pgf, *currentProfile, filter);
 
     auto states = generator.generate(seed);
@@ -251,6 +254,15 @@ void Event5::generatorImportEvent()
 
 void Event5::search()
 {
+    Date start = ui->dateEditSearcherStartDate->getDate();
+    Date end = ui->dateEditSearcherEndDate->getDate();
+    if (start > end)
+    {
+        QMessageBox msg(QMessageBox::Warning, tr("Invalid date range"), tr("Start date is after end date"));
+        msg.exec();
+        return;
+    }
+
     searcherModel->clearModel();
 
     ui->pushButtonSearch->setEnabled(false);
@@ -259,14 +271,11 @@ void Event5::search()
     u32 maxAdvances = ui->textBoxSearcherMaxAdvances->getUInt();
     PGF pgf = getSearcherParameters();
 
-    StateFilter5 filter = ui->filterSearcher->getFilter<StateFilter5>();
+    StateFilter filter = ui->filterSearcher->getFilter<StateFilter>();
     EventGenerator5 generator(0, maxAdvances, 0, pgf, *currentProfile, filter);
-    auto *searcher = new Searcher5<State5>(*currentProfile);
+    auto *searcher = new Searcher5<EventGenerator5, State5>(generator, *currentProfile);
 
-    Date start = ui->dateEditSearcherStartDate->getDate();
-    Date end = ui->dateEditSearcherEndDate->getDate();
-
-    int maxProgress = Keypresses::getKeyPresses(*currentProfile).size();
+    int maxProgress = Keypresses::getKeypresses(*currentProfile).size();
     maxProgress *= start.daysTo(end) + 1;
     maxProgress *= (currentProfile->getTimer0Max() - currentProfile->getTimer0Min() + 1);
     ui->progressBar->setRange(0, maxProgress);
@@ -274,7 +283,7 @@ void Event5::search()
     QSettings settings;
     int threads = settings.value("settings/threads").toInt();
 
-    auto *thread = QThread::create([=] { searcher->startSearch(generator, threads, start, end); });
+    auto *thread = QThread::create([=] { searcher->startSearch(threads, start, end); });
     connect(thread, &QThread::finished, thread, &QThread::deleteLater);
     connect(ui->pushButtonCancel, &QPushButton::clicked, [searcher] { searcher->cancelSearch(); });
 

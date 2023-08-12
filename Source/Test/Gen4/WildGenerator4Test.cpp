@@ -59,8 +59,8 @@ void WildGenerator4Test::generateMethodJ_data()
     for (const auto &d : data)
     {
         QTest::newRow(d["name"].get<std::string>().data())
-            << d["seed"].get<u32>() << getGame(d["version"].get<std::string>()) << getEncounter(d["encounter"].get<std::string>())
-            << getLead(d["lead"].get<std::string>()) << d["location"].get<int>() << d["results"].get<json>().dump();
+            << d["seed"].get<u32>() << d["version"].get<Game>() << d["encounter"].get<Encounter>() << d["lead"].get<Lead>()
+            << d["location"].get<int>() << d["results"].get<json>().dump();
     }
 }
 
@@ -99,7 +99,7 @@ void WildGenerator4Test::generateMethodJ()
     auto encounterArea = std::find_if(encounterAreas.begin(), encounterAreas.end(),
                                       [location](const EncounterArea4 &encounterArea) { return encounterArea.getLocation() == location; });
 
-    WildStateFilter4 filter(255, 255, 255, false, min, max, natures, powers, encounterSlots);
+    WildStateFilter filter(255, 255, 255, false, min, max, natures, powers, encounterSlots);
     WildGenerator4 generator(0, 9, 0, Method::MethodJ, encounter, lead, false, profile, filter);
 
     auto states = generator.generate(seed, *encounterArea, 0);
@@ -125,8 +125,8 @@ void WildGenerator4Test::generateMethodK_data()
     for (const auto &d : data)
     {
         QTest::newRow(d["name"].get<std::string>().data())
-            << d["seed"].get<u32>() << getGame(d["version"].get<std::string>()) << getEncounter(d["encounter"].get<std::string>())
-            << getLead(d["lead"].get<std::string>()) << d["location"].get<int>() << d["results"].get<json>().dump();
+            << d["seed"].get<u32>() << d["version"].get<Game>() << d["encounter"].get<Encounter>() << d["lead"].get<Lead>()
+            << d["location"].get<int>() << d["results"].get<json>().dump();
     }
 }
 
@@ -165,7 +165,7 @@ void WildGenerator4Test::generateMethodK()
     auto encounterArea = std::find_if(encounterAreas.begin(), encounterAreas.end(),
                                       [location](const EncounterArea4 &encounterArea) { return encounterArea.getLocation() == location; });
 
-    WildStateFilter4 filter(255, 255, 255, false, min, max, natures, powers, encounterSlots);
+    WildStateFilter filter(255, 255, 255, false, min, max, natures, powers, encounterSlots);
     WildGenerator4 generator(0, 9, 0, Method::MethodK, encounter, lead, false, profile, filter);
 
     auto states = generator.generate(seed, *encounterArea, 0);
@@ -193,9 +193,8 @@ void WildGenerator4Test::generatePokeRadar_data()
     for (const auto &d : data)
     {
         QTest::newRow(d["name"].get<std::string>().data())
-            << d["seed"].get<u32>() << getGame(d["version"].get<std::string>()) << getEncounter(d["encounter"].get<std::string>())
-            << getLead(d["lead"].get<std::string>()) << d["location"].get<int>() << d["shiny"].get<bool>() << d["index"].get<u8>()
-            << d["results"].get<json>().dump();
+            << d["seed"].get<u32>() << d["version"].get<Game>() << d["encounter"].get<Encounter>() << d["lead"].get<Lead>()
+            << d["location"].get<int>() << d["shiny"].get<bool>() << d["index"].get<u8>() << d["results"].get<json>().dump();
     }
 }
 
@@ -236,7 +235,7 @@ void WildGenerator4Test::generatePokeRadar()
     auto encounterArea = std::find_if(encounterAreas.begin(), encounterAreas.end(),
                                       [location](const EncounterArea4 &encounterArea) { return encounterArea.getLocation() == location; });
 
-    WildStateFilter4 filter(255, 255, 255, false, min, max, natures, powers, encounterSlots);
+    WildStateFilter filter(255, 255, 255, false, min, max, natures, powers, encounterSlots);
     WildGenerator4 generator(0, 9, 0, Method::PokeRadar, encounter, lead, shiny, profile, filter);
 
     auto states = generator.generate(seed, *encounterArea, index);

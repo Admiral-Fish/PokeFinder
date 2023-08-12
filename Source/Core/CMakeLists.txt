@@ -40,8 +40,6 @@ add_library(PokeFinderCore STATIC
     Gen3/EncounterArea3.hpp
     Gen3/Encounters3.cpp
     Gen3/Encounters3.hpp
-    Gen3/Filters/StateFilter3.cpp
-    Gen3/Filters/StateFilter3.hpp
     Gen3/Generators/EggGenerator3.cpp
     Gen3/Generators/EggGenerator3.hpp
     Gen3/Generators/GameCubeGenerator.cpp
@@ -81,14 +79,10 @@ add_library(PokeFinderCore STATIC
     Gen3/Tools/PIDToIVCalculator.hpp
     Gen3/Tools/SeedToTimeCalculator3.cpp
     Gen3/Tools/SeedToTimeCalculator3.hpp
-    Gen4/ChainedSIDCalc.cpp
-    Gen4/ChainedSIDCalc.hpp
     Gen4/EncounterArea4.cpp
     Gen4/EncounterArea4.hpp
     Gen4/Encounters4.cpp
     Gen4/Encounters4.hpp
-    Gen4/Filters/StateFilter4.cpp
-    Gen4/Filters/StateFilter4.hpp
     Gen4/Generators/EggGenerator4.cpp
     Gen4/Generators/EggGenerator4.hpp
     Gen4/Generators/IDGenerator4.cpp
@@ -118,6 +112,8 @@ add_library(PokeFinderCore STATIC
     Gen4/States/State4.hpp
     Gen4/States/WildState4.hpp
     Gen4/StaticTemplate4.hpp
+    Gen4/Tools/ChainedSIDCalc.cpp
+    Gen4/Tools/ChainedSIDCalc.hpp
     Gen4/Tools/SeedToTimeCalculator4.cpp
     Gen4/Tools/SeedToTimeCalculator4.hpp
     Gen5/DreamRadarTemplate.hpp
@@ -128,8 +124,6 @@ add_library(PokeFinderCore STATIC
     Gen5/Keypresses.hpp
     Gen5/Filters/HiddenGrottoFilter.cpp
     Gen5/Filters/HiddenGrottoFilter.hpp
-    Gen5/Filters/StateFilter5.cpp
-    Gen5/Filters/StateFilter5.hpp
     Gen5/Generators/DreamRadarGenerator.cpp
     Gen5/Generators/DreamRadarGenerator.hpp
     Gen5/Generators/EggGenerator5.cpp
@@ -167,8 +161,8 @@ add_library(PokeFinderCore STATIC
     Gen8/EncounterArea8.hpp
     Gen8/Encounters8.cpp
     Gen8/Encounters8.hpp
-    Gen8/Filters/StateFilter8.cpp
-    Gen8/Filters/StateFilter8.hpp
+    Gen8/Filters/UndergroundFilter.cpp
+    Gen8/Filters/UndergroundFilter.hpp
     Gen8/Generators/EggGenerator8.cpp
     Gen8/Generators/EggGenerator8.hpp
     Gen8/Generators/EventGenerator8.cpp

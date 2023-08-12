@@ -22,7 +22,7 @@
 #include "ui_Underground.h"
 #include <Core/Enum/Lead.hpp>
 #include <Core/Gen8/Encounters8.hpp>
-#include <Core/Gen8/Filters/StateFilter8.hpp>
+#include <Core/Gen8/Filters/UndergroundFilter.hpp>
 #include <Core/Gen8/Generators/UndergroundGenerator.hpp>
 #include <Core/Gen8/Profile8.hpp>
 #include <Core/Gen8/UndergroundArea.hpp>
@@ -57,6 +57,8 @@ Underground::Underground(QWidget *parent) : QWidget(parent), ui(new Ui::Undergro
     ui->comboMenuLead->addMenu(tr("Synchronize"), Translator::getNatures());
 
     ui->filter->disableControls(Controls::EncounterSlots);
+
+    ui->comboBoxLocation->enableAutoComplete();
 
     connect(ui->comboBoxProfiles, &QComboBox::currentIndexChanged, this, &Underground::profileIndexChanged);
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Underground::generate);
@@ -140,7 +142,6 @@ void Underground::storyFlagIndexChanged(int index)
         locationIndexChanged(ui->comboBoxLocation->currentIndex());
     }
 }
-
 
 void Underground::generate()
 {

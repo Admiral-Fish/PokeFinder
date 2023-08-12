@@ -103,7 +103,7 @@ void ComboMenu::hideAction(const QVariant &data, bool hide)
 
 void ComboMenu::actionChanged(QAction *action)
 {
-    auto *parent = qobject_cast<QMenu *>(action->parentWidget());
+    auto *parent = qobject_cast<QMenu *>(action->parent());
     if (parent != nullptr && !parent->title().isEmpty())
     {
         setText(QString("%1 :%2").arg(parent->title(), action->text()));

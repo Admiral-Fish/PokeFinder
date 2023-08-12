@@ -5,26 +5,35 @@ import os
 
 
 def enum_map(parent, files):
-    re1 = re.compile(r"enum class (\w+) .+ {(.+)};")
-    re2 = re.compile(r"([a-zA-Z]\w+)(?:,| =)")
+    re1 = re.compile(r"enum class (\w+) : u\d+")
+    re2 = re.compile(r"(\w+)(?:,| =|$)")
 
     strings = []
     for file in files:
         with open(f"{parent}/{file}.hpp", "r") as f:
-            data = f.read().replace("\n", " ")
+            data = [x for x in f.read().split("\n") if x != ""]
 
-        enum_data = re1.search(data)
+        for start, string in enumerate(data):
+            if string.startswith("enum class"):
+                enum_name = re1.search(string).group(1)
+                start += 2
+                break
 
-        enum_name = enum_data.group(1)
-        enum_class = enum_data.group(2)
-        enum_values = list(set(re2.findall(enum_class)))
+        for end in range(start + 1, len(data), 1):
+            if data[end] == "};":
+                break
 
-        string = f"static std::map<std::string, {enum_name}> {enum_name.lower()} = {{ "
-        for i, enum_value in enumerate(enum_values):
-            string += f"{{ \"{enum_value}\", {enum_name}::{enum_value} }}"
-            if i != len(enum_values) - 1:
+        data = data[start:end]
+
+        string = f"NLOHMANN_JSON_SERIALIZE_ENUM( {enum_name}, {{\n"
+        for i, line in enumerate(data):
+            enum_value = re2.search(line).group(1)
+
+            string += f"\t{{ {enum_name}::{enum_value}, \"{enum_value}\" }}"
+            if i != len(data) - 1:
                 string += ","
-        string += "};"
+            string += "\n"
+        string += "})"
 
         strings.append(string)
 
@@ -34,23 +43,13 @@ def enum_map(parent, files):
 
         for file in files:
             f.write(f"#include <Core/Enum/{file}.hpp>\n")
-        f.write("#include <string>\n\n")
-
-        for file in files:
-            f.write(f"{file} get{file}(const std::string &s);\n")
-        f.write("\n")
-
-        f.write("#endif")
-
-    with open("Enum.cpp", "w+") as f:
-        f.write("#include \"Enum.hpp\"\n")
-        f.write("#include <map>\n\n")
+        f.write("#include <nlohmann/json.hpp>\n\n")
 
         for string in strings:
             f.write(f"{string}\n\n")
+        f.write("\n")
 
-        for file in files:
-            f.write(f"{file} get{file}(const std::string &s) {{ return {file.lower()}[s]; }};\n")
+        f.write("#endif")
 
 
 def main():

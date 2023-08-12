@@ -21,7 +21,7 @@
 #include <Core/Enum/DSType.hpp>
 #include <Core/Enum/Language.hpp>
 
-Profile5::Profile5(const std::string &name, Game version, u16 tid, u16 sid, u64 mac, const std::array<bool, 4> &keypresses, u8 vcount,
+Profile5::Profile5(const std::string &name, Game version, u16 tid, u16 sid, u64 mac, const std::array<bool, 9> &keypresses, u8 vcount,
                    u8 gxstat, u8 vframe, bool skipLR, u16 timer0Min, u16 timer0Max, bool softReset, bool memoryLink, bool shinyCharm,
                    DSType dsType, Language language) :
     Profile(name, version, tid, sid),
@@ -65,7 +65,7 @@ u8 Profile5::getGxStat() const
     return gxstat;
 }
 
-std::array<bool, 4> Profile5::getKeypresses() const
+std::array<bool, 9> Profile5::getKeypresses() const
 {
     return keypresses;
 }

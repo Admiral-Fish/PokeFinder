@@ -108,6 +108,9 @@ Wild4::Wild4(QWidget *parent) : QWidget(parent), ui(new Ui::Wild4)
     ui->checkBoxGeneratorPokeRadarShiny->setVisible(false);
     ui->checkBoxSearcherPokeRadarShiny->setVisible(false);
 
+    ui->comboBoxGeneratorLocation->enableAutoComplete();
+    ui->comboBoxSearcherLocation->enableAutoComplete();
+
     auto *seedToTime = new QAction(tr("Generate times for seed"), ui->tableViewSearcher);
     connect(seedToTime, &QAction::triggered, this, &Wild4::seedToTime);
     ui->tableViewSearcher->addAction(seedToTime);
@@ -332,7 +335,7 @@ void Wild4::generate()
     auto lead = ui->comboMenuGeneratorLead->getEnum<Lead>();
     bool chained = ui->checkBoxGeneratorPokeRadarShiny->isChecked();
 
-    WildStateFilter4 filter = ui->filterGenerator->getFilter<WildStateFilter4, true>();
+    WildStateFilter filter = ui->filterGenerator->getFilter<WildStateFilter, true>();
     WildGenerator4 generator(initialAdvances, maxAdvances, delay, method, encounter, lead, chained, *currentProfile, filter);
 
     auto states = generator.generate(seed, encounterGenerator[ui->comboBoxGeneratorLocation->getCurrentInt()], radarSlot);
@@ -651,7 +654,7 @@ void Wild4::search()
     auto lead = ui->comboMenuSearcherLead->getEnum<Lead>();
     bool shiny = ui->checkBoxSearcherPokeRadarShiny->isChecked();
 
-    WildStateFilter4 filter = ui->filterSearcher->getFilter<WildStateFilter4, true>();
+    WildStateFilter filter = ui->filterSearcher->getFilter<WildStateFilter, true>();
     auto *searcher
         = new WildSearcher4(minAdvance, maxAdvance, minDelay, maxDelay, method, encounter, lead, shiny, area, *currentProfile, filter);
 

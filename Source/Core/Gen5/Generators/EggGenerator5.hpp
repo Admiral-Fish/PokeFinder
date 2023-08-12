@@ -20,8 +20,8 @@
 #ifndef EGGGENERATOR5_HPP
 #define EGGGENERATOR5_HPP
 
-#include <Core/Gen5/Filters/StateFilter5.hpp>
 #include <Core/Gen5/Profile5.hpp>
+#include <Core/Parents/Filters/StateFilter.hpp>
 #include <Core/Parents/Generators/EggGenerator.hpp>
 
 class EggState5;
@@ -30,7 +30,7 @@ class PersonalInfo;
 /**
  * @brief Egg generator for Gen 5
  */
-class EggGenerator5 : public EggGenerator<Profile5, StateFilter5>
+class EggGenerator5 : public EggGenerator<Profile5, StateFilter>
 {
 public:
     /**
@@ -44,7 +44,7 @@ public:
      * @param filter State filter
      */
     EggGenerator5(u32 initialAdvances, u32 maxAdvances, u32 delay, const Daycare &daycare, const Profile5 &profile,
-                  const StateFilter5 &filter);
+                  const StateFilter &filter);
 
     /**
      * @brief Generates states

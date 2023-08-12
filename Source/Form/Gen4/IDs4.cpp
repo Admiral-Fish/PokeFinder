@@ -98,7 +98,7 @@ void IDs4::search()
     ui->progressBar->setValue(0);
     ui->progressBar->setMaximum(static_cast<int>(256 * 24 * (infinite ? 0xE8FFFF : (maxDelay - minDelay + 1))));
 
-    IDFilter filter = ui->idFilter->getFilter();
+    IDFilter filter = ui->idFilter->getFilter(true);
     auto *searcher = new IDSearcher4(filter);
 
     auto *thread = QThread::create([=] { searcher->startSearch(infinite, year, minDelay, maxDelay); });

@@ -21,6 +21,7 @@
 #include <Core/RNG/LCRNGReverse.hpp>
 #include <QTest>
 #include <Test/Data.hpp>
+#include <Test/Enum.hpp>
 
 using IVs = std::array<u8, 6>;
 

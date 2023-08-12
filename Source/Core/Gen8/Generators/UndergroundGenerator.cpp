@@ -193,11 +193,20 @@ constexpr std::array<EggMoveList, 141> eggMoveList = {
     EggMoveList(7, 459, { 73, 74, 38, 23, 130, 345, 402, 0, 0, 0, 0, 0, 0, 0, 0, 0 }),
     EggMoveList(13, 422, { 68, 243, 254, 256, 255, 281, 174, 124, 499, 54, 151, 133, 90, 0, 0, 0 }),
     };
-// clang-format on
 
-constexpr std::array<LevelInfo, 9> levelInfoList
-    = { LevelInfo(16, 20), LevelInfo(25, 29), LevelInfo(29, 33), LevelInfo(33, 37), LevelInfo(36, 40),
-        LevelInfo(39, 43), LevelInfo(42, 46), LevelInfo(50, 55), LevelInfo(58, 63) };
+constexpr std::array<LevelInfo, 9> levelInfoList = {
+    LevelInfo(16, 20),
+    LevelInfo(25, 29),
+    LevelInfo(29, 33),
+    LevelInfo(33, 37),
+    LevelInfo(36, 40),
+    LevelInfo(39, 43),
+    LevelInfo(42, 46),
+    LevelInfo(50, 55),
+    LevelInfo(58, 63)
+    };
+
+// clang-format on
 
 static u32 rand(u32 prng)
 {
@@ -232,6 +241,7 @@ UndergroundGenerator::UndergroundGenerator(u32 initialAdvances, u32 maxAdvances,
                                            const Profile8 &profile, const UndergroundStateFilter &filter) :
     StaticGenerator(initialAdvances, maxAdvances, delay, Method::None, lead, profile, filter), diglett(diglett), levelFlag(levelFlag)
 {
+    tsv = (profile.getTID() & 0xFFF0) ^ profile.getSID();
 }
 
 std::vector<UndergroundState> UndergroundGenerator::generate(u64 seed0, u64 seed1, const UndergroundArea &encounterArea) const
@@ -261,8 +271,8 @@ std::vector<UndergroundState> UndergroundGenerator::generate(u64 seed0, u64 seed
         {
             pid = rngList.next(rand);
 
-            u16 psv = (pid >> 16) ^ (pid & 0xffff);
-            u16 fakeXor = (sidtid >> 16) ^ (sidtid & 0xffff) ^ psv;
+            u16 psv = (pid >> 16) ^ (pid & 0xfff0);
+            u16 fakeXor = (sidtid >> 16) ^ (sidtid & 0xfff0) ^ psv;
 
             if (fakeXor < 16) // Force shiny
             {

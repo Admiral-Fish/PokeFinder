@@ -20,16 +20,17 @@
 #ifndef STATICGENERATOR4_HPP
 #define STATICGENERATOR4_HPP
 
-#include <Core/Gen4/Filters/StateFilter4.hpp>
 #include <Core/Gen4/Profile4.hpp>
+#include <Core/Parents/Filters/StateFilter.hpp>
 #include <Core/Parents/Generators/StaticGenerator.hpp>
 
+class GeneratorState4;
 class StaticTemplate4;
 
 /**
  * @brief Static encounter generator for Gen4
  */
-class StaticGenerator4 : public StaticGenerator<Profile4, StateFilter4>
+class StaticGenerator4 : public StaticGenerator<Profile4, StateFilter>
 {
 public:
     /**
@@ -44,7 +45,7 @@ public:
      * @param filter State filter
      */
     StaticGenerator4(u32 initialAdvances, u32 maxAdvances, u32 delay, Method method, Lead lead, const Profile4 &profile,
-                     const StateFilter4 &filter);
+                     const StateFilter &filter);
 
     /**
      * @brief Generates states for the \p staticTemplate

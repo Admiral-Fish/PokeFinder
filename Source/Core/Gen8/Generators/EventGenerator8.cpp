@@ -29,12 +29,16 @@ static u32 gen(Xorshift &rng)
 }
 
 EventGenerator8::EventGenerator8(u32 initialAdvances, u32 maxAdvances, u32 delay, const WB8 &wb8, const Profile8 &profile,
-                                 const StateFilter8 &filter) :
+                                 const StateFilter &filter) :
     Generator(initialAdvances, maxAdvances, delay, Method::None, profile, filter), wb8(wb8)
 {
     if (!wb8.getEgg())
     {
-        tsv = wb8.getTID() ^ wb8.getSID();
+        tsv = (wb8.getTID() & 0xFFF0) ^ wb8.getSID();
+    }
+    else
+    {
+        tsv = (profile.getTID() & 0xFFF0) ^ profile.getSID();
     }
 }
 
@@ -55,7 +59,7 @@ std::vector<GeneratorState> EventGenerator8::generate(u64 seed0, u64 seed1) cons
         case 0:
         {
             pid = rngList.next();
-            u16 psv = (pid >> 16) & (pid & 0xffff);
+            u16 psv = (pid >> 16) ^ (pid & 0xfff0);
 
             if ((psv ^ tsv) < 16)
             {
@@ -68,7 +72,7 @@ std::vector<GeneratorState> EventGenerator8::generate(u64 seed0, u64 seed1) cons
         case 2:
         {
             pid = rngList.next();
-            u16 psv = (pid >> 16) & (pid & 0xffff);
+            u16 psv = (pid >> 16) ^ (pid & 0xfff0);
 
             u16 realXOR = psv ^ tsv;
             u8 shinyType = realXOR == 0 ? 2 : realXOR < 16 ? 1 : 0;
@@ -85,7 +89,7 @@ std::vector<GeneratorState> EventGenerator8::generate(u64 seed0, u64 seed1) cons
         case 4:
         {
             pid = wb8.getPID();
-            u16 realXor = (pid >> 16) & (pid & 0xffff) ^ tsv;
+            u16 realXor = (pid >> 16) ^ (pid & 0xfff0) ^ tsv;
             shiny = realXor == 0 ? 2 : realXor < 16 ? 1 : 0;
             break;
         }
@@ -143,7 +147,7 @@ std::vector<GeneratorState> EventGenerator8::generate(u64 seed0, u64 seed1) cons
         u8 nature = wb8.getNature() != 255 ? wb8.getNature() : rngList.next() % 25;
 
         GeneratorState state(initialAdvances + cnt, ec, pid, ivs, ability, gender, wb8.getLevel(), nature, shiny, info);
-        if (filter.compareState(state))
+        if (filter.compareState(static_cast<const State &>(state)))
         {
             states.emplace_back(state);
         }

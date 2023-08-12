@@ -28,6 +28,7 @@ IDsFilter::IDsFilter(QWidget *parent) : QWidget(parent), ui(new Ui::IDsFilter)
 
     ui->radioButtonDisplayTID->setVisible(false);
 
+    connect(ui->buttonGroup, &QButtonGroup::buttonClicked, ui->plainTextEdit, &QPlainTextEdit::clear);
     connect(ui->plainTextEdit, &QPlainTextEdit::textChanged, this, &IDsFilter::textEditIDsTextChanged);
 }
 
@@ -36,7 +37,7 @@ IDsFilter::~IDsFilter()
     delete ui;
 }
 
-IDFilter IDsFilter::getFilter() const
+IDFilter IDsFilter::getFilter(bool pastGen) const
 {
     std::vector<u16> tidFilter;
     std::vector<u16> sidFilter;
@@ -73,6 +74,18 @@ IDFilter IDsFilter::getFilter() const
                 QStringList ids = input.split('/');
                 tidFilter.emplace_back(ids[0].toUShort());
                 sidFilter.emplace_back(ids[1].toUShort());
+            }
+        }
+    }
+    else if (ui->radioButtonPID->isChecked())
+    {
+        for (const QString &input : inputs)
+        {
+            if (!input.isEmpty())
+            {
+                u32 pid = input.toUInt(nullptr, 16);
+                u16 psv = (pid >> 16) ^ (pid & 0xffff);
+                tsvFilter.emplace_back(psv >> (pastGen ? 3 : 4));
             }
         }
     }
@@ -123,6 +136,21 @@ void IDsFilter::textEditIDsTextChanged()
             }
         }
     }
+    else if (ui->radioButtonPID->isChecked())
+    {
+        QRegularExpression filter("[^0-9a-fA-F]");
+        for (QString &input : inputs)
+        {
+            input.remove(filter);
+            if (!input.isEmpty())
+            {
+                bool flag;
+                u32 val = input.toUInt(&flag, 16);
+                val = flag ? val : 0xffffffff;
+                input = QString::number(val, 16);
+            }
+        }
+    }
     else if (ui->radioButtonTSV->isChecked())
     {
         QRegularExpression filter("[^0-9]");
@@ -147,7 +175,7 @@ void IDsFilter::textEditIDsTextChanged()
             if (!input.isEmpty())
             {
                 bool flag;
-                u32 val = input.toUShort(&flag);
+                u32 val = input.toUInt(&flag);
                 val = (flag && val <= 999999) ? val : 999999;
                 input = QString::number(val);
             }

@@ -28,7 +28,7 @@
 #include <Test/Data.hpp>
 #include <Test/Enum.hpp>
 
-using KeyPresses = std::array<bool, 4>;
+using KeyPresses = std::array<bool, 9>;
 
 void SHA1Test::hash_data()
 {
@@ -49,10 +49,9 @@ void SHA1Test::hash_data()
     for (const auto &d : data)
     {
         QTest::newRow(d["name"].get<std::string>().data())
-            << d["keypresses"].get<KeyPresses>() << d["skipLR"].get<bool>() << getGame(d["version"].get<std::string>())
-            << getLanguage(d["language"].get<std::string>()) << d["mac"].get<u64>() << d["softReset"].get<bool>() << d["vFrame"].get<u8>()
-            << d["gxStat"].get<u8>() << d["timer0"].get<u32>() << d["vCount"].get<u8>() << getDSType(d["dsType"].get<std::string>())
-            << d["seed"].get<u64>();
+            << d["keypresses"].get<KeyPresses>() << d["skipLR"].get<bool>() << d["version"].get<Game>() << d["language"].get<Language>()
+            << d["mac"].get<u64>() << d["softReset"].get<bool>() << d["vFrame"].get<u8>() << d["gxStat"].get<u8>() << d["timer0"].get<u32>()
+            << d["vCount"].get<u8>() << d["dsType"].get<DSType>() << d["seed"].get<u64>();
     }
 }
 
@@ -74,15 +73,14 @@ void SHA1Test::hash()
     Profile5 profile("-", version, 0, 0, mac, keypresses, vCount, gxStat, vFrame, skipLR, timer0, timer0, false, false, false, dsType,
                      language);
 
-    auto buttons = Keypresses::getKeyPresses(profile);
-    auto values = Keypresses::getValues(buttons);
+    auto buttons = Keypresses::getKeypresses(profile);
 
     DateTime dateTime;
     const Date &date = dateTime.getDate();
     const Time &time = dateTime.getTime();
 
     SHA1 sha(profile);
-    sha.setButton(values.front());
+    sha.setButton(buttons.front().value);
     sha.setDate(date);
     sha.setTime(time.hour(), time.minute(), time.second(), profile.getDSType());
     sha.setTimer0(profile.getTimer0Min(), profile.getVCount());

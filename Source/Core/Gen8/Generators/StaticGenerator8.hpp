@@ -20,16 +20,17 @@
 #ifndef STATICGENERATOR8_HPP
 #define STATICGENERATOR8_HPP
 
-#include <Core/Gen8/Filters/StateFilter8.hpp>
 #include <Core/Gen8/Profile8.hpp>
+#include <Core/Parents/Filters/StateFilter.hpp>
 #include <Core/Parents/Generators/StaticGenerator.hpp>
 
+class GeneratorState;
 class StaticTemplate;
 
 /**
  * @brief Static encounter generator for Gen8
  */
-class StaticGenerator8 : public StaticGenerator<Profile8, StateFilter8>
+class StaticGenerator8 : public StaticGenerator<Profile8, StateFilter>
 {
 public:
     /**
@@ -42,7 +43,7 @@ public:
      * @param profile Profile Information
      * @param filter State filter
      */
-    StaticGenerator8(u32 initialAdvances, u32 maxAdvances, u32 delay, Lead lead, const Profile8 &profile, const StateFilter8 &filter);
+    StaticGenerator8(u32 initialAdvances, u32 maxAdvances, u32 delay, Lead lead, const Profile8 &profile, const StateFilter &filter);
 
     /**
      * @brief Generates states for the \p staticTemplate

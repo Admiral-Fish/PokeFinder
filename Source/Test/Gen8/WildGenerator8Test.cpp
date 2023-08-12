@@ -55,8 +55,8 @@ void WildGenerator8Test::generate_data()
     for (const auto &d : data)
     {
         QTest::newRow(d["name"].get<std::string>().data())
-            << d["seed0"].get<u64>() << d["seed1"].get<u64>() << getEncounter(d["encounter"].get<std::string>())
-            << getLead(d["lead"].get<std::string>()) << d["location"].get<int>() << d["results"].get<json>().dump();
+            << d["seed0"].get<u64>() << d["seed1"].get<u64>() << d["encounter"].get<Encounter>() << d["lead"].get<Lead>()
+            << d["location"].get<int>() << d["results"].get<json>().dump();
     }
 }
 
@@ -93,7 +93,7 @@ void WildGenerator8Test::generate()
     auto encounterArea = std::find_if(encounterAreas.begin(), encounterAreas.end(),
                                       [location](const EncounterArea8 &encounterArea) { return encounterArea.getLocation() == location; });
 
-    WildStateFilter8 filter(255, 255, 255, false, min, max, natures, powers, encounterSlots);
+    WildStateFilter filter(255, 255, 255, false, min, max, natures, powers, encounterSlots);
     WildGenerator8 generator(0, 9, 0, encounter, lead, profile, filter);
 
     auto states = generator.generate(seed0, seed1, *encounterArea);

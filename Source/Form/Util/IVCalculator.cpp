@@ -24,7 +24,6 @@
 #include <Core/Parents/PersonalLoader.hpp>
 #include <Core/Util/IVChecker.hpp>
 #include <Core/Util/Translator.hpp>
-#include <QCompleter>
 #include <QSettings>
 #include <QSpinBox>
 
@@ -47,9 +46,7 @@ IVCalculator::IVCalculator(QWidget *parent) : QWidget(parent), ui(new Ui::IVCalc
         ui->comboBoxCharacteristic->addItem(QString::fromStdString(characteristic));
     }
 
-    ui->comboBoxPokemon->setEditable(true);
-    ui->comboBoxPokemon->setInsertPolicy(QComboBox::NoInsert);
-    ui->comboBoxPokemon->completer()->setCompletionMode(QCompleter::PopupCompletion);
+    ui->comboBoxPokemon->enableAutoComplete();
 
     ui->comboBoxGame->setup(
         { toInt(Game::Gen3), toInt(Game::Platinum), toInt(Game::HGSS), toInt(Game::BW2), toInt(Game::SwSh), toInt(Game::BDSP) });

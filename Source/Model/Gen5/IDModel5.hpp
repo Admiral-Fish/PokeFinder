@@ -78,8 +78,8 @@ public:
     void setGame(Game version);
 
 private:
-    QStringList header
-        = { tr("Seed"), tr("Initial Advances"), tr("Advances"), tr("TID"), tr("SID"), tr("TSV"), tr("Date/Time"), tr("Buttons") };
+    QStringList header = { tr("Seed"), tr("Initial Advances"), tr("Advances"), tr("TID"),    tr("SID"),
+                           tr("TSV"),  tr("Date/Time"),        tr("Timer0"),   tr("Buttons") };
     Game version;
 };
 

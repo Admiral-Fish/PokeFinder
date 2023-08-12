@@ -30,6 +30,7 @@ enum class Buttons : u16
     None = 0,
     R = 1 << 0, // -0x10000
     L = 1 << 1, // -0x20000
+    LR = L | R,
     X = 1 << 2, // -0x40000
     Y = 1 << 3, // -0x80000
     A = 1 << 4, // -0x1000000
@@ -41,10 +42,9 @@ enum class Buttons : u16
     Left = 1 << 9, // -0x20000000
     Up = 1 << 10, // -0x40000000
     Down = 1 << 11, // -0x80000000
-    RightUp = Right | Up,
-    LeftUp = Left | Up,
-    RightDown = Right | Down,
-    LeftDown = Left | Down
+    UpDown = Up | Down,
+    LeftRight = Left | Right,
+    SoftReset = LR | SelectStart
 };
 
 /**

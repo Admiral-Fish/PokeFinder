@@ -20,17 +20,17 @@
 #ifndef STATICSEARCHER4_HPP
 #define STATICSEARCHER4_HPP
 
-#include <Core/Gen4/Filters/StateFilter4.hpp>
 #include <Core/Gen4/Profile4.hpp>
+#include <Core/Parents/Filters/StateFilter.hpp>
 #include <Core/Parents/Searchers/StaticSearcher.hpp>
-#include <mutex>
 
+class SearcherState4;
 class StaticTemplate4;
 
 /**
  * @brief Static encounter searcher for Gen4
  */
-class StaticSearcher4 : public StaticSearcher<Profile4, StateFilter4>
+class StaticSearcher4 : public StaticSearcher<Profile4, StateFilter, SearcherState4>
 {
 public:
     /**
@@ -46,26 +46,7 @@ public:
      * @param filter State filter
      */
     StaticSearcher4(u32 minAdvance, u32 maxAdvance, u32 minDelay, u32 maxDelay, Method method, Lead lead, const Profile4 &profile,
-                    const StateFilter4 &filter);
-
-    /**
-     * @brief Cancels the running search
-     */
-    void cancelSearch();
-
-    /**
-     * @brief Returns the progress of the running search
-     *
-     * @return Progress
-     */
-    int getProgress() const;
-
-    /**
-     * @brief Returns the states of the running search
-     *
-     * @return Vector of computed states
-     */
-    std::vector<SearcherState4> getResults();
+                    const StateFilter &filter);
 
     /**
      * @brief Starts the search
@@ -77,14 +58,10 @@ public:
     void startSearch(const std::array<u8, 6> &min, const std::array<u8, 6> &max, const StaticTemplate4 *staticTemplate);
 
 private:
-    std::mutex mutex;
-    std::vector<SearcherState4> results;
-    int progress;
     u32 maxAdvance;
     u32 minAdvance;
     u32 maxDelay;
     u32 minDelay;
-    bool searching;
     u8 buffer;
 
     /**

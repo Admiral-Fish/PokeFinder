@@ -65,10 +65,10 @@ void EggGenerator3Test::generate_data()
     {
         QTest::newRow(d["name"].get<std::string>().data())
             << d["seed"].get<u32>() << d["seedPickup"].get<u32>() << d["calibration"].get<u8>() << d["minRedraw"].get<u8>()
-            << d["maxRedraw"].get<u8>() << getMethod(d["method"].get<std::string>()) << d["compatability"].get<u8>()
-            << getGame(d["version"].get<std::string>()) << d["pokemon"].get<u16>() << d["parentIVs"].get<IVs>()
-            << d["parentAbility"].get<Attribute>() << d["parentGender"].get<Attribute>() << d["parentItem"].get<Attribute>()
-            << d["parentNature"].get<Attribute>() << d["results"].get<json>().dump();
+            << d["maxRedraw"].get<u8>() << d["method"].get<Method>() << d["compatability"].get<u8>() << d["version"].get<Game>()
+            << d["pokemon"].get<u16>() << d["parentIVs"].get<IVs>() << d["parentAbility"].get<Attribute>()
+            << d["parentGender"].get<Attribute>() << d["parentItem"].get<Attribute>() << d["parentNature"].get<Attribute>()
+            << d["results"].get<json>().dump();
     }
 }
 
@@ -107,7 +107,7 @@ void EggGenerator3Test::generate()
     Profile3 profile("-", version, 12345, 54321, false);
 
     Daycare daycare(parentIVs, parentAbility, parentGender, parentItem, parentNature, pokemon, false);
-    StateFilter3 filter(255, 255, 255, false, min, max, natures, powers);
+    StateFilter filter(255, 255, 255, false, min, max, natures, powers);
     EggGenerator3 generator(0, 9, 0, 0, 9, 0, calibration, minRedraw, maxRedraw, method, compatability, daycare, profile, filter);
 
     auto states = generator.generate(seed, seedPickup);

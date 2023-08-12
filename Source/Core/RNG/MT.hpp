@@ -66,7 +66,7 @@ public:
     u16 nextUShort();
 
 private:
-    alignas(16) vuint128 state[156];
+    vuint128 state[156];
     u16 index;
 
     /**

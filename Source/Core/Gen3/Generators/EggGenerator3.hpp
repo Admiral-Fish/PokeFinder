@@ -20,14 +20,16 @@
 #ifndef EGGGENERATOR3_HPP
 #define EGGGENERATOR3_HPP
 
-#include <Core/Gen3/Filters/StateFilter3.hpp>
 #include <Core/Gen3/Profile3.hpp>
+#include <Core/Parents/Filters/StateFilter.hpp>
 #include <Core/Parents/Generators/EggGenerator.hpp>
+
+class EggState3;
 
 /**
  * @brief Egg encounter generator for Gen3
  */
-class EggGenerator3 : public EggGenerator<Profile3, StateFilter3>
+class EggGenerator3 : public EggGenerator<Profile3, StateFilter>
 {
 public:
     /**
@@ -50,7 +52,7 @@ public:
      */
     EggGenerator3(u32 initialAdvances, u32 maxAdvances, u32 delay, u32 initialAdvancesPickup, u32 maxAdvancesPickup, u32 delayPickup,
                   u8 calibration, u8 minRedraw, u8 maxRedraw, Method method, u8 compatability, const Daycare &daycare,
-                  const Profile3 &profile, const StateFilter3 &filter);
+                  const Profile3 &profile, const StateFilter &filter);
 
     /**
      * @brief Generates states

@@ -25,44 +25,8 @@
 #include <Core/RNG/LCRNG64.hpp>
 #include <Core/Util/Utilities.hpp>
 
-static u8 getGender(u32 pid, const PersonalInfo *info)
-{
-    switch (info->getGender())
-    {
-    case 255: // Genderless
-        return 2;
-        break;
-    case 254: // Female
-        return 1;
-        break;
-    case 0: // Male
-        return 0;
-        break;
-    default: // Random gender
-        return (pid & 255) < info->getGender();
-        break;
-    }
-}
-
-static u8 getShiny(u32 pid, u16 tsv)
-{
-    u16 psv = (pid >> 16) ^ (pid & 0xffff);
-    if (tsv == psv)
-    {
-        return 2; // Square
-    }
-    else if ((tsv ^ psv) < 8)
-    {
-        return 1; // Star
-    }
-    else
-    {
-        return 0;
-    }
-}
-
 EventGenerator5::EventGenerator5(u32 initialAdvances, u32 maxAdvances, u32 delay, const PGF &pgf, const Profile5 &profile,
-                                 const StateFilter5 &filter) :
+                                 const StateFilter &filter) :
     Generator(initialAdvances, maxAdvances, delay, Method::None, profile, filter), pgf(pgf)
 {
     if (!pgf.getEgg())
@@ -153,9 +117,9 @@ std::vector<State5> EventGenerator5::generate(u64 seed) const
             nature = go.nextUInt(25);
         }
 
-        State5 state(rng.nextUInt(0x1fff), advances + initialAdvances + cnt, pid, ivs, ability, getGender(pid, info), pgf.getLevel(),
-                     nature, getShiny(pid, tsv), info);
-        if (filter.compareState(state))
+        State5 state(rng.nextUInt(0x1fff), advances + initialAdvances + cnt, pid, ivs, ability, Utilities::getGender(pid, info),
+                     pgf.getLevel(), nature, Utilities::getShiny(pid, tsv), info);
+        if (filter.compareState(static_cast<const State &>(state)))
         {
             states.emplace_back(state);
         }

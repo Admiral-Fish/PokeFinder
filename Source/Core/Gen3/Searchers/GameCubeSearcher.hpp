@@ -20,10 +20,9 @@
 #ifndef GAMECUBESEARCHER_HPP
 #define GAMECUBESEARCHER_HPP
 
-#include <Core/Gen3/Filters/StateFilter3.hpp>
 #include <Core/Gen3/Profile3.hpp>
+#include <Core/Parents/Filters/StateFilter.hpp>
 #include <Core/Parents/Searchers/Searcher.hpp>
-#include <mutex>
 
 class StaticTemplate;
 class ShadowTemplate;
@@ -31,7 +30,7 @@ class ShadowTemplate;
 /**
  * @brief Wild encounter searcher for GameCube
  */
-class GameCubeSearcher : public Searcher<Profile3, StateFilter3>
+class GameCubeSearcher : public Searcher<Profile3, StateFilter, SearcherState>
 {
 public:
     /**
@@ -42,26 +41,7 @@ public:
      * @param profile Profile Information
      * @param filter State filter
      */
-    GameCubeSearcher(Method method, bool unset, const Profile3 &profile, const StateFilter3 &filter);
-
-    /**
-     * @brief Cancels the running search
-     */
-    void cancelSearch();
-
-    /**
-     * @brief Returns the progress of the running search
-     *
-     * @return Progress
-     */
-    int getProgress() const;
-
-    /**
-     * @brief Returns the states of the running search
-     *
-     * @return Vector of computed states
-     */
-    std::vector<SearcherState> getResults();
+    GameCubeSearcher(Method method, bool unset, const Profile3 &profile, const StateFilter &filter);
 
     /**
      * @brief Starts the search for the \p shadowTemplate
@@ -82,10 +62,6 @@ public:
     void startSearch(const std::array<u8, 6> &min, const std::array<u8, 6> &max, const StaticTemplate *staticTemplate);
 
 private:
-    std::mutex mutex;
-    std::vector<SearcherState> results;
-    int progress;
-    bool searching;
     bool unset;
 
     /**

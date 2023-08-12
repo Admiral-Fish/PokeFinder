@@ -20,17 +20,18 @@
 #ifndef GAMECUBEGENERATOR_HPP
 #define GAMECUBEGENERATOR_HPP
 
-#include <Core/Gen3/Filters/StateFilter3.hpp>
 #include <Core/Gen3/Profile3.hpp>
+#include <Core/Parents/Filters/StateFilter.hpp>
 #include <Core/Parents/Generators/Generator.hpp>
 
+class GeneratorState;
 class StaticTemplate;
 class ShadowTemplate;
 
 /**
  * @brief Static encounter generator for GameCube
  */
-class GameCubeGenerator : public Generator<Profile3, StateFilter3>
+class GameCubeGenerator : public Generator<Profile3, StateFilter>
 {
 public:
     /**
@@ -45,7 +46,7 @@ public:
      * @param filter State filter
      */
     GameCubeGenerator(u32 initialAdvances, u32 maxAdvances, u32 delay, Method method, bool unset, const Profile3 &profile,
-                      const StateFilter3 &filter);
+                      const StateFilter &filter);
 
     /**
      * @brief Generates states for the \p shadowTemplate

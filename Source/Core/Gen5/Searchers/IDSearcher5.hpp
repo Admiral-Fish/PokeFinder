@@ -20,65 +20,29 @@
 #ifndef IDSEARCHER5_HPP
 #define IDSEARCHER5_HPP
 
-#include <Core/Gen5/Profile5.hpp>
-#include <Core/Global.hpp>
-#include <atomic>
-#include <mutex>
-#include <vector>
-
-class Date;
-class IDGenerator5;
-class IDState;
-template <class StateType>
-class SearcherState5;
+#include <Core/Gen5/Generators/IDGenerator5.hpp>
+#include <Core/Gen5/Searchers/Searcher5.hpp>
+#include <Core/Gen5/States/SearcherState5.hpp>
+#include <Core/Parents/States/IDState.hpp>
 
 /**
  * @brief TID/SID searcher for Gen5
  */
-class IDSearcher5
+class IDSearcher5 : public Searcher5<IDGenerator5, IDState>
 {
 public:
     /**
      * @brief Construct a new IDSearcher5 object
      *
+     * @param generator ID state generator
      * @param profile Profile information
-     * @param pid PID to search for
-     * @param checkPID Whether to check for PID
-     * @param checkXOR Whether to check for PID XORed
      */
-    IDSearcher5(const Profile5 &profile, u32 pid, bool checkPID, bool checkXOR);
+    IDSearcher5(const IDGenerator5 &generator, const Profile5 &profile) : Searcher5(generator, profile)
+    {
+    }
 
     /**
-     * @brief Cancels the running search
-     */
-    void cancelSearch();
-
-    /**
-     * @brief Returns the progress of the running search
-     *
-     * @return Progress
-     */
-    int getProgress() const;
-
-    /**
-     * @brief Returns the states of the running search
-     *
-     * @return Vector of computed states
-     */
-    std::vector<SearcherState5<IDState>> getResults();
-
-    /**
-     * @brief Starts the search
-     *
-     * @param generator State generator
-     * @param threads Threads to search with
-     * @param start Start date
-     * @param end End date
-     */
-    void startSearch(const IDGenerator5 &generator, int threads, const Date &start, const Date &end);
-
-    /**
-     * @brief Starts the search
+     * @brief Searches specified date/time range for filtered matches
      *
      * @param generator State generator
      * @param date Date to search
@@ -89,27 +53,8 @@ public:
      *
      * @return Vector of computed states
      */
-    std::vector<SearcherState5<IDState>> startSearch(const IDGenerator5 &generator, const Date &date, u8 hour, u8 minute, u8 minSecond,
-                                                     u8 maxSecond);
-
-private:
-    Profile5 profile;
-    std::mutex mutex;
-    std::vector<SearcherState5<IDState>> results;
-    std::atomic<int> progress;
-    u32 pid;
-    bool checkPID;
-    bool checkXOR;
-    bool searching;
-
-    /**
-     * @brief Searches between \p start and \p end dates
-     *
-     * @param generator State generator
-     * @param start Start date
-     * @param end End date
-     */
-    void search(const IDGenerator5 &generator, const Date &start, const Date &end);
+    std::vector<SearcherState5<IDState>> search(const IDGenerator5 &generator, const Date &date, u8 hour, u8 minute, u8 minSecond,
+                                                u8 maxSecond);
 };
 
 #endif // IDSEARCHER5_HPP

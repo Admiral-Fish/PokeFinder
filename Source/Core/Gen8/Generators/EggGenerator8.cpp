@@ -32,10 +32,11 @@ static u32 gen(Xorshift &rng)
 }
 
 EggGenerator8::EggGenerator8(u32 initialAdvances, u32 maxAdvances, u32 delay, u8 compatability, const Daycare &daycare,
-                             const Profile8 &profile, const StateFilter8 &filter) :
+                             const Profile8 &profile, const StateFilter &filter) :
     EggGenerator(initialAdvances, maxAdvances, delay, Method::None, compatability, daycare, profile, filter),
     shinyCharm(profile.getShinyCharm())
 {
+    tsv = (profile.getTID() & 0xFFF0) ^ profile.getSID();
 }
 
 std::vector<EggGeneratorState> EggGenerator8::generate(u64 seed0, u64 seed1) const
@@ -182,7 +183,7 @@ std::vector<EggGeneratorState> EggGenerator8::generate(u64 seed0, u64 seed1) con
             for (u8 roll = 0; roll < pidRolls; roll++)
             {
                 pid = rng.nextUInt(0xffffffff);
-                psv = (pid >> 16) ^ (pid & 0xffff);
+                psv = (pid >> 16) ^ (pid & 0xfff0);
                 if ((psv ^ tsv) < 16)
                 {
                     break;
@@ -194,7 +195,7 @@ std::vector<EggGeneratorState> EggGenerator8::generate(u64 seed0, u64 seed1) con
             // Uses a rand call, maybe add later
 
             EggGeneratorState state(initialAdvances + cnt, ec, pid, ivs, ability, gender, 1, nature, shiny, inheritance, info);
-            if (filter.compareState(state))
+            if (filter.compareState(static_cast<const State &>(state)))
             {
                 states.emplace_back(state);
             }

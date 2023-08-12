@@ -100,7 +100,7 @@
 <context>
     <name>CheckList</name>
     <message>
-        <location filename="../Controls/CheckList.cpp" line="173"/>
+        <location filename="../Controls/CheckList.cpp" line="184"/>
         <source>Any</source>
         <translation>Qualsiasi</translation>
     </message>
@@ -999,16 +999,26 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/DreamRadar.cpp" line="273"/>
-        <location filename="../Gen5/DreamRadar.cpp" line="297"/>
+        <location filename="../Gen5/DreamRadar.cpp" line="287"/>
+        <location filename="../Gen5/DreamRadar.cpp" line="320"/>
         <source>Missing settings</source>
         <translation>Impostazioni mancanti</translation>
     </message>
     <message>
-        <location filename="../Gen5/DreamRadar.cpp" line="273"/>
-        <location filename="../Gen5/DreamRadar.cpp" line="297"/>
+        <location filename="../Gen5/DreamRadar.cpp" line="287"/>
+        <location filename="../Gen5/DreamRadar.cpp" line="320"/>
         <source>Enter information for at least 1 slot</source>
         <translation>Inserisci informazione per almeno 1 slot</translation>
+    </message>
+    <message>
+        <location filename="../Gen5/DreamRadar.cpp" line="312"/>
+        <source>Invalid date range</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Gen5/DreamRadar.cpp" line="312"/>
+        <source>Start date is after end date</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Gen5/DreamRadar.ui"/>
@@ -1803,56 +1813,56 @@ p, li { white-space: pre-wrap; }
         <translation>Natura</translation>
     </message>
     <message>
-        <location filename="../Controls/EggSettings.cpp" line="230"/>
-        <location filename="../Controls/EggSettings.cpp" line="237"/>
+        <location filename="../Controls/EggSettings.cpp" line="227"/>
+        <location filename="../Controls/EggSettings.cpp" line="234"/>
         <source>Power Weight</source>
         <translation>Vigorpeso</translation>
     </message>
     <message>
-        <location filename="../Controls/EggSettings.cpp" line="231"/>
-        <location filename="../Controls/EggSettings.cpp" line="238"/>
+        <location filename="../Controls/EggSettings.cpp" line="228"/>
+        <location filename="../Controls/EggSettings.cpp" line="235"/>
         <source>Power Bracer</source>
         <translation>Vigorcerchio</translation>
     </message>
     <message>
-        <location filename="../Controls/EggSettings.cpp" line="232"/>
-        <location filename="../Controls/EggSettings.cpp" line="239"/>
+        <location filename="../Controls/EggSettings.cpp" line="229"/>
+        <location filename="../Controls/EggSettings.cpp" line="236"/>
         <source>Power Belt</source>
         <translation>Vigorfascia</translation>
     </message>
     <message>
-        <location filename="../Controls/EggSettings.cpp" line="233"/>
-        <location filename="../Controls/EggSettings.cpp" line="240"/>
+        <location filename="../Controls/EggSettings.cpp" line="230"/>
+        <location filename="../Controls/EggSettings.cpp" line="237"/>
         <source>Power Lens</source>
         <translation>Vigorlente</translation>
     </message>
     <message>
-        <location filename="../Controls/EggSettings.cpp" line="234"/>
-        <location filename="../Controls/EggSettings.cpp" line="241"/>
+        <location filename="../Controls/EggSettings.cpp" line="231"/>
+        <location filename="../Controls/EggSettings.cpp" line="238"/>
         <source>Power Band</source>
         <translation>Vigorbanda</translation>
     </message>
     <message>
-        <location filename="../Controls/EggSettings.cpp" line="235"/>
-        <location filename="../Controls/EggSettings.cpp" line="242"/>
+        <location filename="../Controls/EggSettings.cpp" line="232"/>
+        <location filename="../Controls/EggSettings.cpp" line="239"/>
         <source>Power Anklet</source>
         <translation>Vigorgliera</translation>
     </message>
     <message>
-        <location filename="../Controls/EggSettings.cpp" line="251"/>
-        <location filename="../Controls/EggSettings.cpp" line="252"/>
+        <location filename="../Controls/EggSettings.cpp" line="248"/>
+        <location filename="../Controls/EggSettings.cpp" line="249"/>
         <source>Destiny Knot</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Controls/EggSettings.cpp" line="67"/>
-        <location filename="../Controls/EggSettings.cpp" line="70"/>
+        <location filename="../Controls/EggSettings.cpp" line="66"/>
+        <location filename="../Controls/EggSettings.cpp" line="69"/>
         <source>None</source>
         <translation>Nessuno</translation>
     </message>
     <message>
-        <location filename="../Controls/EggSettings.cpp" line="68"/>
-        <location filename="../Controls/EggSettings.cpp" line="71"/>
+        <location filename="../Controls/EggSettings.cpp" line="67"/>
+        <location filename="../Controls/EggSettings.cpp" line="70"/>
         <source>Everstone</source>
         <translation>Pietrastante</translation>
     </message>
@@ -2095,44 +2105,44 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen4/Eggs4.cpp" line="75"/>
+        <location filename="../Gen4/Eggs4.cpp" line="76"/>
         <source>Generate times for seed</source>
         <translation>Genera tempi per il seed</translation>
     </message>
     <message>
-        <location filename="../Gen4/Eggs4.cpp" line="141"/>
+        <location filename="../Gen4/Eggs4.cpp" line="143"/>
         <source>Do not switch to the happiness application at all</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen4/Eggs4.cpp" line="151"/>
+        <location filename="../Gen4/Eggs4.cpp" line="153"/>
         <source>Switch to the happiness application once but do not click</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen4/Eggs4.cpp" line="155"/>
+        <location filename="../Gen4/Eggs4.cpp" line="157"/>
         <source>Happiness Application Double Taps: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen4/Eggs4.cpp" line="155"/>
+        <location filename="../Gen4/Eggs4.cpp" line="157"/>
         <source>Coin Flip Application Taps: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen4/Eggs4.cpp" line="161"/>
+        <location filename="../Gen4/Eggs4.cpp" line="163"/>
         <source>Poketch Taps</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen4/Eggs4.cpp" line="169"/>
-        <location filename="../Gen4/Eggs4.cpp" line="207"/>
+        <location filename="../Gen4/Eggs4.cpp" line="171"/>
+        <location filename="../Gen4/Eggs4.cpp" line="209"/>
         <source>Incompatible Parents</source>
         <translation>Genitori Incompatibili</translation>
     </message>
     <message>
-        <location filename="../Gen4/Eggs4.cpp" line="169"/>
-        <location filename="../Gen4/Eggs4.cpp" line="207"/>
+        <location filename="../Gen4/Eggs4.cpp" line="171"/>
+        <location filename="../Gen4/Eggs4.cpp" line="209"/>
         <source>Gender of selected parents are not compatible for breeding</source>
         <translation>Il sesso dei genitori selezionati non è compatibile per l&apos;accoppiamento</translation>
     </message>
@@ -2316,27 +2326,37 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../Gen5/Eggs5.cpp" line="123"/>
-        <location filename="../Gen5/Eggs5.cpp" line="152"/>
+        <location filename="../Gen5/Eggs5.cpp" line="161"/>
         <source>Incompatible Parents</source>
         <translation>Genitori Incompatibili</translation>
     </message>
     <message>
         <location filename="../Gen5/Eggs5.cpp" line="123"/>
-        <location filename="../Gen5/Eggs5.cpp" line="152"/>
+        <location filename="../Gen5/Eggs5.cpp" line="161"/>
         <source>Gender of selected parents are not compatible for breeding</source>
         <translation>Il sesso dei genitori selezionati non è compatibile per l&apos;accoppiamento</translation>
     </message>
     <message>
         <location filename="../Gen5/Eggs5.cpp" line="129"/>
-        <location filename="../Gen5/Eggs5.cpp" line="158"/>
+        <location filename="../Gen5/Eggs5.cpp" line="167"/>
         <source>Parents Reordered</source>
         <translation>Genitori Riordinati</translation>
     </message>
     <message>
         <location filename="../Gen5/Eggs5.cpp" line="129"/>
-        <location filename="../Gen5/Eggs5.cpp" line="158"/>
+        <location filename="../Gen5/Eggs5.cpp" line="167"/>
         <source>Parent were swapped to match the game</source>
         <translation>I genitori sono stati scambiati per far corrispondere il gioco</translation>
+    </message>
+    <message>
+        <location filename="../Gen5/Eggs5.cpp" line="154"/>
+        <source>Invalid date range</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Gen5/Eggs5.cpp" line="154"/>
+        <source>Start date is after end date</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Gen5/Eggs5.ui"/>
@@ -2512,17 +2532,17 @@ p, li { white-space: pre-wrap; }
         <translation>Trova</translation>
     </message>
     <message>
-        <location filename="../Util/EncounterLookup.cpp" line="45"/>
+        <location filename="../Util/EncounterLookup.cpp" line="44"/>
         <source>Location</source>
         <translation>Zona</translation>
     </message>
     <message>
-        <location filename="../Util/EncounterLookup.cpp" line="45"/>
+        <location filename="../Util/EncounterLookup.cpp" line="44"/>
         <source>Encounter Type</source>
         <translation>Tipo Incontro</translation>
     </message>
     <message>
-        <location filename="../Util/EncounterLookup.cpp" line="45"/>
+        <location filename="../Util/EncounterLookup.cpp" line="44"/>
         <source>Level Range</source>
         <translation>Intervallo Livello</translation>
     </message>
@@ -2587,42 +2607,42 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Util/EncounterLookup.cpp" line="81"/>
+        <location filename="../Util/EncounterLookup.cpp" line="78"/>
         <source>Grass</source>
         <translation>Erba</translation>
     </message>
     <message>
-        <location filename="../Util/EncounterLookup.cpp" line="83"/>
+        <location filename="../Util/EncounterLookup.cpp" line="80"/>
         <source>Surfing</source>
         <translation>Surf</translation>
     </message>
     <message>
-        <location filename="../Util/EncounterLookup.cpp" line="85"/>
+        <location filename="../Util/EncounterLookup.cpp" line="82"/>
         <source>Old Rod</source>
         <translation>Amo Vecchio</translation>
     </message>
     <message>
-        <location filename="../Util/EncounterLookup.cpp" line="87"/>
+        <location filename="../Util/EncounterLookup.cpp" line="84"/>
         <source>Good Rod</source>
         <translation>Amo Buono</translation>
     </message>
     <message>
-        <location filename="../Util/EncounterLookup.cpp" line="89"/>
+        <location filename="../Util/EncounterLookup.cpp" line="86"/>
         <source>Super Rod</source>
         <translation>Super Amo</translation>
     </message>
     <message>
-        <location filename="../Util/EncounterLookup.cpp" line="91"/>
+        <location filename="../Util/EncounterLookup.cpp" line="88"/>
         <source>Rock Smash</source>
         <translation>Spaccaroccia</translation>
     </message>
     <message>
-        <location filename="../Util/EncounterLookup.cpp" line="95"/>
+        <location filename="../Util/EncounterLookup.cpp" line="92"/>
         <source>Headbutt</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Util/EncounterLookup.cpp" line="97"/>
+        <location filename="../Util/EncounterLookup.cpp" line="94"/>
         <source>Bug Catching Contest</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2890,27 +2910,37 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished">Livello</translation>
     </message>
     <message>
-        <location filename="../Gen5/Event5.cpp" line="195"/>
-        <location filename="../Gen5/Event5.cpp" line="310"/>
+        <location filename="../Gen5/Event5.cpp" line="198"/>
+        <location filename="../Gen5/Event5.cpp" line="346"/>
         <source>Invalid format</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/Event5.cpp" line="195"/>
-        <location filename="../Gen5/Event5.cpp" line="310"/>
+        <location filename="../Gen5/Event5.cpp" line="198"/>
+        <location filename="../Gen5/Event5.cpp" line="346"/>
         <source>Wondercard is not the correct size</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/Event5.cpp" line="245"/>
-        <location filename="../Gen5/Event5.cpp" line="360"/>
+        <location filename="../Gen5/Event5.cpp" line="248"/>
+        <location filename="../Gen5/Event5.cpp" line="396"/>
         <source>File error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/Event5.cpp" line="245"/>
-        <location filename="../Gen5/Event5.cpp" line="360"/>
+        <location filename="../Gen5/Event5.cpp" line="248"/>
+        <location filename="../Gen5/Event5.cpp" line="396"/>
         <source>There was a problem opening the wondercard</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Gen5/Event5.cpp" line="288"/>
+        <source>Invalid date range</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Gen5/Event5.cpp" line="288"/>
+        <source>Start date is after end date</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3072,32 +3102,32 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished">Livello</translation>
     </message>
     <message>
-        <location filename="../Gen8/Event8.cpp" line="136"/>
+        <location filename="../Gen8/Event8.cpp" line="138"/>
         <source>Invalid format</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen8/Event8.cpp" line="136"/>
+        <location filename="../Gen8/Event8.cpp" line="138"/>
         <source>Wondercard is not the correct size</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen8/Event8.cpp" line="167"/>
+        <location filename="../Gen8/Event8.cpp" line="169"/>
         <source>File error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen8/Event8.cpp" line="167"/>
+        <location filename="../Gen8/Event8.cpp" line="169"/>
         <source>There was a problem opening the wondercard</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen8/Event8.cpp" line="180"/>
+        <location filename="../Gen8/Event8.cpp" line="182"/>
         <source>Missing seeds</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen8/Event8.cpp" line="180"/>
+        <location filename="../Gen8/Event8.cpp" line="182"/>
         <source>Please insert missing seed information</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3466,27 +3496,27 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished">Caratteristica</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/IDModel5.hpp" line="82"/>
+        <location filename="../../Model/Gen5/IDModel5.hpp" line="81"/>
         <source>Seed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/IDModel5.hpp" line="82"/>
+        <location filename="../../Model/Gen5/IDModel5.hpp" line="81"/>
         <source>Initial Advances</source>
         <translation type="unfinished">Avanzamenti Iniziali</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/IDModel5.hpp" line="82"/>
+        <location filename="../../Model/Gen5/IDModel5.hpp" line="81"/>
         <source>Advances</source>
         <translation type="unfinished">Avanzamenti</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/IDModel5.hpp" line="82"/>
+        <location filename="../../Model/Gen5/IDModel5.hpp" line="81"/>
         <source>TID</source>
         <translation type="unfinished">IDA</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen5/IDModel5.hpp" line="82"/>
+        <location filename="../../Model/Gen5/IDModel5.hpp" line="81"/>
         <source>SID</source>
         <translation type="unfinished">IDS</translation>
     </message>
@@ -3504,6 +3534,11 @@ p, li { white-space: pre-wrap; }
         <location filename="../../Model/Gen5/IDModel5.hpp" line="82"/>
         <source>Buttons</source>
         <translation type="unfinished">Tasti</translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen5/IDModel5.hpp" line="82"/>
+        <source>Timer0</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4312,6 +4347,16 @@ p, li { white-space: pre-wrap; }
         <source>GroupBox</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="../Gen5/HiddenGrotto.cpp" line="240"/>
+        <source>Invalid date range</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Gen5/HiddenGrotto.cpp" line="240"/>
+        <source>Start date is after end date</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>HiddenGrottoGeneratorModel5</name>
@@ -4746,6 +4791,16 @@ p, li { white-space: pre-wrap; }
         <source>Static/Wild</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="../Gen5/IDs5.cpp" line="132"/>
+        <source>Invalid date range</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Gen5/IDs5.cpp" line="132"/>
+        <source>Start date is after end date</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>IDs8</name>
@@ -4825,6 +4880,11 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Controls/IDsFilter.ui"/>
         <source>Display TID</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Controls/IDsFilter.ui"/>
+        <source>PID</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4941,7 +5001,7 @@ p, li { white-space: pre-wrap; }
         <translation>Vel Base</translation>
     </message>
     <message>
-        <location filename="../Util/IVCalculator.cpp" line="88"/>
+        <location filename="../Util/IVCalculator.cpp" line="85"/>
         <source>Invalid</source>
         <translation>Non valido</translation>
     </message>
@@ -5243,82 +5303,84 @@ p, li { white-space: pre-wrap; }
         <translation>Selvatici</translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="140"/>
+        <location filename="../MainWindow.cpp" line="141"/>
         <source>Unable to locate profiles</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="141"/>
+        <location filename="../MainWindow.cpp" line="142"/>
         <source>Please update path to your profiles file to restore existing profiles.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="195"/>
+        <location filename="../MainWindow.cpp" line="197"/>
         <source>Update Check</source>
         <translation>Controllo Aggiornamento</translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="196"/>
+        <location filename="../MainWindow.cpp" line="198"/>
         <source>An update is available. Would you like to download the newest version?</source>
         <translation>È disponibile un aggiornamento. Vuoi scaricare l&apos;ultima versione?</translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="382"/>
-        <location filename="../MainWindow.cpp" line="400"/>
-        <location filename="../MainWindow.cpp" line="418"/>
-        <location filename="../MainWindow.cpp" line="436"/>
-        <location filename="../MainWindow.cpp" line="454"/>
+        <location filename="../MainWindow.cpp" line="384"/>
+        <location filename="../MainWindow.cpp" line="402"/>
+        <location filename="../MainWindow.cpp" line="420"/>
+        <location filename="../MainWindow.cpp" line="438"/>
+        <location filename="../MainWindow.cpp" line="456"/>
+        <location filename="../MainWindow.cpp" line="494"/>
         <source>No profiles found</source>
         <translation>Nessun profilo trovato</translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="383"/>
-        <location filename="../MainWindow.cpp" line="401"/>
-        <location filename="../MainWindow.cpp" line="419"/>
-        <location filename="../MainWindow.cpp" line="437"/>
-        <location filename="../MainWindow.cpp" line="455"/>
+        <location filename="../MainWindow.cpp" line="385"/>
+        <location filename="../MainWindow.cpp" line="403"/>
+        <location filename="../MainWindow.cpp" line="421"/>
+        <location filename="../MainWindow.cpp" line="439"/>
+        <location filename="../MainWindow.cpp" line="457"/>
+        <location filename="../MainWindow.cpp" line="495"/>
         <source>Please use the Profile Calibrator under Gen 5 Tools to create one.</source>
         <translation>Per favore usa il Calibratore di Profilo sotto Strumenti Gen 5 per crearne uno</translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="501"/>
-        <location filename="../MainWindow.cpp" line="543"/>
+        <location filename="../MainWindow.cpp" line="521"/>
+        <location filename="../MainWindow.cpp" line="563"/>
         <source>Download failed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="502"/>
-        <location filename="../MainWindow.cpp" line="544"/>
+        <location filename="../MainWindow.cpp" line="522"/>
+        <location filename="../MainWindow.cpp" line="564"/>
         <source>Make sure you are connected to the internet and have OpenSSL setup</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="555"/>
+        <location filename="../MainWindow.cpp" line="575"/>
         <source>Download finished</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="555"/>
+        <location filename="../MainWindow.cpp" line="575"/>
         <source>Restart to see event data. Restart now?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="656"/>
+        <location filename="../MainWindow.cpp" line="676"/>
         <source>Version: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="656"/>
+        <location filename="../MainWindow.cpp" line="676"/>
         <source>Branch: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="656"/>
+        <location filename="../MainWindow.cpp" line="676"/>
         <source>Commit: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="659"/>
+        <location filename="../MainWindow.cpp" line="679"/>
         <source>Copy</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5364,7 +5426,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../MainWindow.ui"/>
-        <location filename="../MainWindow.cpp" line="531"/>
+        <location filename="../MainWindow.cpp" line="551"/>
         <source>Event</source>
         <translation>Eventi</translation>
     </message>
@@ -5415,7 +5477,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../MainWindow.ui"/>
-        <location filename="../MainWindow.cpp" line="658"/>
+        <location filename="../MainWindow.cpp" line="678"/>
         <source>About</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5426,7 +5488,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../MainWindow.ui"/>
-        <location filename="../MainWindow.cpp" line="531"/>
+        <location filename="../MainWindow.cpp" line="551"/>
         <source>Download Event Data</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6418,22 +6480,22 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/Profile/ProfileCalibrator5.cpp" line="177"/>
+        <location filename="../Gen5/Profile/ProfileCalibrator5.cpp" line="178"/>
         <source>No row selected</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/Profile/ProfileCalibrator5.cpp" line="177"/>
+        <location filename="../Gen5/Profile/ProfileCalibrator5.cpp" line="178"/>
         <source>Please select a row</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen5/Profile/ProfileCalibrator5.cpp" line="247"/>
+        <location filename="../Gen5/Profile/ProfileCalibrator5.cpp" line="248"/>
         <source>Some min values are greater then max values</source>
         <translation>Alcuni valori minimi sono più grandi dei valori massimi</translation>
     </message>
     <message>
-        <location filename="../Gen5/Profile/ProfileCalibrator5.cpp" line="247"/>
+        <location filename="../Gen5/Profile/ProfileCalibrator5.cpp" line="248"/>
         <source>Invalid Input</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6589,12 +6651,12 @@ p, li { white-space: pre-wrap; }
         <translation>Annulla</translation>
     </message>
     <message>
-        <location filename="../Gen4/Profile/ProfileEditor4.cpp" line="77"/>
+        <location filename="../Gen4/Profile/ProfileEditor4.cpp" line="75"/>
         <source>Enter a profile name</source>
         <translation>Inserisci un nome profilo</translation>
     </message>
     <message>
-        <location filename="../Gen4/Profile/ProfileEditor4.cpp" line="77"/>
+        <location filename="../Gen4/Profile/ProfileEditor4.cpp" line="75"/>
         <source>Missing name</source>
         <translation type="unfinished"></translation>
     </message>
@@ -7915,25 +7977,30 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Util/Researcher.cpp" line="329"/>
+        <location filename="../Util/Researcher.cpp" line="332"/>
         <source>Missing setting</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Util/Researcher.cpp" line="330"/>
+        <location filename="../Util/Researcher.cpp" line="333"/>
         <source>You must check the Hex box in order to use hexadecimal values for Custom %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Util/Researcher.cpp" line="394"/>
-        <location filename="../Util/Researcher.cpp" line="418"/>
+        <location filename="../Util/Researcher.cpp" line="397"/>
+        <location filename="../Util/Researcher.cpp" line="421"/>
         <source>No result</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Util/Researcher.cpp" line="394"/>
-        <location filename="../Util/Researcher.cpp" line="418"/>
+        <location filename="../Util/Researcher.cpp" line="397"/>
+        <location filename="../Util/Researcher.cpp" line="421"/>
         <source>Unable to find a result</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Util/Researcher.ui"/>
+        <source>Xoroshiro</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -9451,12 +9518,12 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>TableView</name>
     <message>
-        <location filename="../Controls/TableView.cpp" line="31"/>
+        <location filename="../Controls/TableView.cpp" line="32"/>
         <source>Output Results to TXT</source>
         <translation type="unfinished">Risultati Output in TXT</translation>
     </message>
     <message>
-        <location filename="../Controls/TableView.cpp" line="32"/>
+        <location filename="../Controls/TableView.cpp" line="35"/>
         <source>Output Results to CSV</source>
         <translation type="unfinished">Risultati Output in CSV</translation>
     </message>
@@ -9699,12 +9766,12 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished">Sincronismo</translation>
     </message>
     <message>
-        <location filename="../Gen8/Underground.cpp" line="151"/>
+        <location filename="../Gen8/Underground.cpp" line="152"/>
         <source>Missing seeds</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen8/Underground.cpp" line="151"/>
+        <location filename="../Gen8/Underground.cpp" line="152"/>
         <source>Please insert missing seed information</source>
         <translation type="unfinished"></translation>
     </message>
@@ -9905,7 +9972,7 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen3/Wild3.cpp" line="86"/>
+        <location filename="../Gen3/Wild3.cpp" line="89"/>
         <source>Generate times for seed</source>
         <translation>Genera tempi per il seed</translation>
     </message>
@@ -10287,12 +10354,12 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen4/Wild4.cpp" line="634"/>
+        <location filename="../Gen4/Wild4.cpp" line="636"/>
         <source>Missing Flawless IV</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen4/Wild4.cpp" line="635"/>
+        <location filename="../Gen4/Wild4.cpp" line="637"/>
         <source>Bug Catching Contest Searcher needs at least one IV at 31</source>
         <translation type="unfinished"></translation>
     </message>
@@ -10328,29 +10395,29 @@ p, li { white-space: pre-wrap; }
         <translation>Avanzamento Massimo</translation>
     </message>
     <message>
-        <location filename="../Gen4/Wild4.cpp" line="111"/>
+        <location filename="../Gen4/Wild4.cpp" line="114"/>
         <source>Generate times for seed</source>
         <translation>Genera tempi per il seed</translation>
     </message>
     <message>
-        <location filename="../Gen4/Wild4.cpp" line="304"/>
-        <location filename="../Gen4/Wild4.cpp" line="605"/>
+        <location filename="../Gen4/Wild4.cpp" line="308"/>
+        <location filename="../Gen4/Wild4.cpp" line="607"/>
         <source>Too many slots selected</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen4/Wild4.cpp" line="304"/>
-        <location filename="../Gen4/Wild4.cpp" line="605"/>
+        <location filename="../Gen4/Wild4.cpp" line="308"/>
+        <location filename="../Gen4/Wild4.cpp" line="607"/>
         <source>Please a single encounter slot for Poke Radar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Gen4/Wild4.cpp" line="560"/>
+        <location filename="../Gen4/Wild4.cpp" line="562"/>
         <source>Yes</source>
         <translation>Si</translation>
     </message>
     <message>
-        <location filename="../Gen4/Wild4.cpp" line="560"/>
+        <location filename="../Gen4/Wild4.cpp" line="562"/>
         <source>No</source>
         <translation type="unfinished"></translation>
     </message>
@@ -10499,6 +10566,301 @@ p, li { white-space: pre-wrap; }
         <location filename="../Gen4/Wild4.ui"/>
         <source>Water Block</source>
         <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>Wild5</name>
+    <message>
+        <location filename="../Gen5/Wild5.ui"/>
+        <source>Gen 5 Wild</source>
+        <translation type="unfinished">Selvatici Gen 4 {5 ?}</translation>
+    </message>
+    <message>
+        <location filename="../Gen5/Wild5.ui"/>
+        <source>Profile</source>
+        <translation type="unfinished">Profilo</translation>
+    </message>
+    <message>
+        <location filename="../Gen5/Wild5.ui"/>
+        <source>TID</source>
+        <translation type="unfinished">IDA</translation>
+    </message>
+    <message>
+        <location filename="../Gen5/Wild5.ui"/>
+        <source>MAC Address</source>
+        <translation type="unfinished">Indirizzo MAC</translation>
+    </message>
+    <message>
+        <location filename="../Gen5/Wild5.ui"/>
+        <source>VCount</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Gen5/Wild5.ui"/>
+        <source>GxStat</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Gen5/Wild5.ui"/>
+        <source>Keypresses</source>
+        <translation type="unfinished">Pressione Tasti</translation>
+    </message>
+    <message>
+        <location filename="../Gen5/Wild5.ui"/>
+        <source>None, 1, 2, 3</source>
+        <translation type="unfinished">Nessuno, 1, 2, 3</translation>
+    </message>
+    <message>
+        <location filename="../Gen5/Wild5.ui"/>
+        <source>Manager</source>
+        <translation type="unfinished">Gestore</translation>
+    </message>
+    <message>
+        <location filename="../Gen5/Wild5.ui"/>
+        <source>SID</source>
+        <translation type="unfinished">IDS</translation>
+    </message>
+    <message>
+        <location filename="../Gen5/Wild5.ui"/>
+        <source>DS Type</source>
+        <translation type="unfinished">Tipo DS</translation>
+    </message>
+    <message>
+        <location filename="../Gen5/Wild5.ui"/>
+        <source>DS Original/Lite</source>
+        <translation type="unfinished">DS Originale/Lite</translation>
+    </message>
+    <message>
+        <location filename="../Gen5/Wild5.ui"/>
+        <source>Timer0</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Gen5/Wild5.ui"/>
+        <source>VFrame</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Gen5/Wild5.ui"/>
+        <source>Game</source>
+        <translation type="unfinished">Gioco</translation>
+    </message>
+    <message>
+        <location filename="../Gen5/Wild5.ui"/>
+        <source>White</source>
+        <translation type="unfinished">Bianca</translation>
+    </message>
+    <message>
+        <location filename="../Gen5/Wild5.ui"/>
+        <source>Generator</source>
+        <translation type="unfinished">Generatore</translation>
+    </message>
+    <message>
+        <location filename="../Gen5/Wild5.ui"/>
+        <source>RNG Info</source>
+        <translation type="unfinished">Info RNG</translation>
+    </message>
+    <message>
+        <location filename="../Gen5/Wild5.ui"/>
+        <source>Seed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Gen5/Wild5.ui"/>
+        <source>Initial Advances</source>
+        <translation type="unfinished">Avanzamenti Iniziali</translation>
+    </message>
+    <message>
+        <location filename="../Gen5/Wild5.ui"/>
+        <source>Generate</source>
+        <translation type="unfinished">Genera</translation>
+    </message>
+    <message>
+        <location filename="../Gen5/Wild5.ui"/>
+        <source>Lead</source>
+        <translation type="unfinished">Leader</translation>
+    </message>
+    <message>
+        <location filename="../Gen5/Wild5.ui"/>
+        <source>Delay</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Gen5/Wild5.ui"/>
+        <source>Max Advances</source>
+        <translation type="unfinished">Avanzamenti Massimi</translation>
+    </message>
+    <message>
+        <location filename="../Gen5/Wild5.ui"/>
+        <source>IV Advances</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Gen5/Wild5.ui"/>
+        <source>Settings</source>
+        <translation type="unfinished">Impostazioni</translation>
+    </message>
+    <message>
+        <location filename="../Gen5/Wild5.ui"/>
+        <source>Encounter</source>
+        <translation type="unfinished">Incontro</translation>
+    </message>
+    <message>
+        <location filename="../Gen5/Wild5.ui"/>
+        <source>Pokémon</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Gen5/Wild5.ui"/>
+        <source>Grass</source>
+        <translation type="unfinished">Erba</translation>
+    </message>
+    <message>
+        <location filename="../Gen5/Wild5.ui"/>
+        <source>Surfing</source>
+        <translation type="unfinished">Surf</translation>
+    </message>
+    <message>
+        <location filename="../Gen5/Wild5.ui"/>
+        <source>Fishing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Gen5/Wild5.ui"/>
+        <source>Location</source>
+        <translation type="unfinished">Zona</translation>
+    </message>
+    <message>
+        <location filename="../Gen5/Wild5.ui"/>
+        <source>Season</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Gen5/Wild5.ui"/>
+        <source>Spring</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Gen5/Wild5.ui"/>
+        <source>Summer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Gen5/Wild5.ui"/>
+        <source>Autumn</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Gen5/Wild5.ui"/>
+        <source>Winter</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Gen5/Wild5.ui"/>
+        <source>Filters</source>
+        <translation type="unfinished">Filtri</translation>
+    </message>
+    <message>
+        <location filename="../Gen5/Wild5.ui"/>
+        <source>Searcher</source>
+        <translation type="unfinished">Ricercatore</translation>
+    </message>
+    <message>
+        <location filename="../Gen5/Wild5.ui"/>
+        <source>Rock Smash</source>
+        <translation type="unfinished">Spaccaroccia</translation>
+    </message>
+    <message>
+        <location filename="../Gen5/Wild5.ui"/>
+        <source>Start Date</source>
+        <translation type="unfinished">Data Iniziale</translation>
+    </message>
+    <message>
+        <location filename="../Gen5/Wild5.ui"/>
+        <source>End Date</source>
+        <translation type="unfinished">Data Finale</translation>
+    </message>
+    <message>
+        <location filename="../Gen5/Wild5.ui"/>
+        <source>Search</source>
+        <translation type="unfinished">Cerca</translation>
+    </message>
+    <message>
+        <location filename="../Gen5/Wild5.ui"/>
+        <source>Cancel</source>
+        <translation type="unfinished">Annulla</translation>
+    </message>
+    <message>
+        <location filename="../Gen5/Wild5.cpp" line="61"/>
+        <location filename="../Gen5/Wild5.cpp" line="70"/>
+        <source>None</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Gen5/Wild5.cpp" line="62"/>
+        <location filename="../Gen5/Wild5.cpp" line="71"/>
+        <source>Cute Charm</source>
+        <translation type="unfinished">Incantevole</translation>
+    </message>
+    <message>
+        <location filename="../Gen5/Wild5.cpp" line="62"/>
+        <location filename="../Gen5/Wild5.cpp" line="71"/>
+        <source>♂ Lead</source>
+        <translation type="unfinished">Leader ♂</translation>
+    </message>
+    <message>
+        <location filename="../Gen5/Wild5.cpp" line="62"/>
+        <location filename="../Gen5/Wild5.cpp" line="71"/>
+        <source>♀ Lead</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Gen5/Wild5.cpp" line="64"/>
+        <location filename="../Gen5/Wild5.cpp" line="73"/>
+        <source>Slot Modifier</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Gen5/Wild5.cpp" line="64"/>
+        <location filename="../Gen5/Wild5.cpp" line="73"/>
+        <source>Magnet Pull</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Gen5/Wild5.cpp" line="64"/>
+        <location filename="../Gen5/Wild5.cpp" line="73"/>
+        <source>Static</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Gen5/Wild5.cpp" line="66"/>
+        <location filename="../Gen5/Wild5.cpp" line="75"/>
+        <source>Level Modifier</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Gen5/Wild5.cpp" line="66"/>
+        <location filename="../Gen5/Wild5.cpp" line="75"/>
+        <source>Hustle</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Gen5/Wild5.cpp" line="66"/>
+        <location filename="../Gen5/Wild5.cpp" line="75"/>
+        <source>Pressure</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Gen5/Wild5.cpp" line="66"/>
+        <location filename="../Gen5/Wild5.cpp" line="75"/>
+        <source>Vital Spirit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Gen5/Wild5.cpp" line="68"/>
+        <location filename="../Gen5/Wild5.cpp" line="77"/>
+        <source>Synchronize</source>
+        <translation type="unfinished">Sincronismo</translation>
     </message>
 </context>
 <context>
@@ -10881,6 +11243,119 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
+    <name>WildGeneratorModel5</name>
+    <message>
+        <location filename="../../Model/Gen5/WildModel5.cpp" line="58"/>
+        <source>Square</source>
+        <translation type="unfinished">Quadrato</translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen5/WildModel5.cpp" line="58"/>
+        <source>Star</source>
+        <translation type="unfinished">Stella</translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen5/WildModel5.cpp" line="58"/>
+        <source>No</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="80"/>
+        <source>Advances</source>
+        <translation type="unfinished">Avanzamenti</translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="80"/>
+        <source>Chatot</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="80"/>
+        <source>Item</source>
+        <translation type="unfinished">Strumento</translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="80"/>
+        <source>Slot</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="80"/>
+        <source>Level</source>
+        <translation type="unfinished">Livello</translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="80"/>
+        <source>PID</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="80"/>
+        <source>Shiny</source>
+        <translation type="unfinished">Cromatico</translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="81"/>
+        <source>Nature</source>
+        <translation type="unfinished">Natura</translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="81"/>
+        <source>Ability</source>
+        <translation type="unfinished">Abilità</translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="81"/>
+        <source>HP</source>
+        <translation type="unfinished">PS</translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="81"/>
+        <source>Atk</source>
+        <translation type="unfinished">Att</translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="81"/>
+        <source>Def</source>
+        <translation type="unfinished">Dif</translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="81"/>
+        <source>SpA</source>
+        <translation type="unfinished">AttSp</translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="81"/>
+        <source>SpD</source>
+        <translation type="unfinished">DifSp</translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="82"/>
+        <source>Spe</source>
+        <translation type="unfinished">Vel</translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="82"/>
+        <source>Hidden</source>
+        <translation type="unfinished">Introforza</translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="82"/>
+        <source>Power</source>
+        <translation type="unfinished">Potenza</translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="82"/>
+        <source>Gender</source>
+        <translation type="unfinished">Sesso</translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="82"/>
+        <source>Characteristic</source>
+        <translation type="unfinished">Caratteristica</translation>
+    </message>
+</context>
+<context>
     <name>WildModel8</name>
     <message>
         <location filename="../../Model/Gen8/WildModel8.cpp" line="57"/>
@@ -11197,6 +11672,129 @@ p, li { white-space: pre-wrap; }
         <location filename="../../Model/Gen4/WildModel4.hpp" line="168"/>
         <source>Characteristic</source>
         <translation type="unfinished">Caratteristica</translation>
+    </message>
+</context>
+<context>
+    <name>WildSearcherModel5</name>
+    <message>
+        <location filename="../../Model/Gen5/WildModel5.cpp" line="144"/>
+        <source>Square</source>
+        <translation type="unfinished">Quadrato</translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen5/WildModel5.cpp" line="144"/>
+        <source>Star</source>
+        <translation type="unfinished">Stella</translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen5/WildModel5.cpp" line="144"/>
+        <source>No</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="147"/>
+        <source>Seed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="147"/>
+        <source>Advances</source>
+        <translation type="unfinished">Avanzamenti</translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="147"/>
+        <source>Item</source>
+        <translation type="unfinished">Strumento</translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="147"/>
+        <source>Slot</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="147"/>
+        <source>Level</source>
+        <translation type="unfinished">Livello</translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="147"/>
+        <source>PID</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="147"/>
+        <source>Shiny</source>
+        <translation type="unfinished">Cromatico</translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="148"/>
+        <source>Nature</source>
+        <translation type="unfinished">Natura</translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="148"/>
+        <source>Ability</source>
+        <translation type="unfinished">Abilità</translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="148"/>
+        <source>HP</source>
+        <translation type="unfinished">PS</translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="148"/>
+        <source>Atk</source>
+        <translation type="unfinished">Att</translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="148"/>
+        <source>Def</source>
+        <translation type="unfinished">Dif</translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="148"/>
+        <source>SpA</source>
+        <translation type="unfinished">AttSp</translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="148"/>
+        <source>SpD</source>
+        <translation type="unfinished">DifSp</translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="149"/>
+        <source>Spe</source>
+        <translation type="unfinished">Vel</translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="149"/>
+        <source>Hidden</source>
+        <translation type="unfinished">Introforza</translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="149"/>
+        <source>Power</source>
+        <translation type="unfinished">Potenza</translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="149"/>
+        <source>Gender</source>
+        <translation type="unfinished">Sesso</translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="149"/>
+        <source>Date/Time</source>
+        <translation type="unfinished">Data/Ora</translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="149"/>
+        <source>Timer0</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen5/WildModel5.hpp" line="149"/>
+        <source>Buttons</source>
+        <translation type="unfinished">Tasti</translation>
     </message>
 </context>
 </TS>

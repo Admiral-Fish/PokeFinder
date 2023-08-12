@@ -72,7 +72,7 @@ void GameCubeGeneratorTest::generateChannel()
     Profile3 profile("-", Game::GC, 12345, 54321, false);
 
     const StaticTemplate *staticTemplate = Encounters3::getStaticEncounter(8, 0);
-    StateFilter3 filter(255, 255, 255, false, min, max, natures, powers);
+    StateFilter filter(255, 255, 255, false, min, max, natures, powers);
     GameCubeGenerator generator(0, 9, 0, Method::Channel, false, profile, filter);
 
     auto states = generator.generate(seed, staticTemplate);
@@ -122,7 +122,7 @@ void GameCubeGeneratorTest::generateColoShadow()
     Profile3 profile("-", Game::Colosseum, 12345, 54321, false);
 
     const ShadowTemplate *shadowTemplate = Encounters3::getShadowTeam(pokemon);
-    StateFilter3 filter(255, 255, 255, false, min, max, natures, powers);
+    StateFilter filter(255, 255, 255, false, min, max, natures, powers);
     GameCubeGenerator generator(0, 9, 0, Method::None, false, profile, filter);
 
     auto states = generator.generate(seed, shadowTemplate);
@@ -174,7 +174,7 @@ void GameCubeGeneratorTest::generateGalesShadow()
     Profile3 profile("-", Game::Gales, 12345, 54321, false);
 
     const ShadowTemplate *shadowTemplate = Encounters3::getShadowTeam(pokemon);
-    StateFilter3 filter(255, 255, 255, false, min, max, natures, powers);
+    StateFilter filter(255, 255, 255, false, min, max, natures, powers);
     GameCubeGenerator generator(0, 9, 0, Method::None, unset, profile, filter);
 
     auto states = generator.generate(seed, shadowTemplate);
@@ -197,8 +197,8 @@ void GameCubeGeneratorTest::generateNonLock_data()
     json data = readData("gamecube", "gamecubegenerator", "generateNonLock");
     for (const auto &d : data)
     {
-        QTest::newRow(d["name"].get<std::string>().data()) << d["seed"].get<u32>() << getGame(d["version"].get<std::string>())
-                                                           << d["pokemon"].get<int>() << d["results"].get<json>().dump();
+        QTest::newRow(d["name"].get<std::string>().data())
+            << d["seed"].get<u32>() << d["version"].get<Game>() << d["pokemon"].get<int>() << d["results"].get<json>().dump();
     }
 }
 
@@ -226,7 +226,7 @@ void GameCubeGeneratorTest::generateNonLock()
     Profile3 profile("-", version, 12345, 54321, false);
 
     const StaticTemplate *staticTemplate = Encounters3::getStaticEncounter(7, pokemon);
-    StateFilter3 filter(255, 255, 255, false, min, max, natures, powers);
+    StateFilter filter(255, 255, 255, false, min, max, natures, powers);
     GameCubeGenerator generator(0, 9, 0, Method::None, false, profile, filter);
 
     auto states = generator.generate(seed, staticTemplate);

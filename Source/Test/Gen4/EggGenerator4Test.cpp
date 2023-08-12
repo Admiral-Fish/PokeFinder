@@ -60,7 +60,7 @@ void EggGenerator4Test::generate_data()
     for (const auto &d : data)
     {
         QTest::newRow(d["name"].get<std::string>().data())
-            << d["seed"].get<u32>() << d["seedPickup"].get<u32>() << getGame(d["version"].get<std::string>()) << d["pokemon"].get<u16>()
+            << d["seed"].get<u32>() << d["seedPickup"].get<u32>() << d["version"].get<Game>() << d["pokemon"].get<u16>()
             << d["parentIVs"].get<IVs>() << d["parentAbility"].get<Attribute>() << d["parentGender"].get<Attribute>()
             << d["parentItem"].get<Attribute>() << d["parentNature"].get<Attribute>() << d["masuda"].get<bool>()
             << d["results"].get<json>().dump();
@@ -98,7 +98,7 @@ void EggGenerator4Test::generate()
     Profile4 profile("-", version, 12345, 54321, false);
 
     Daycare daycare(parentIVs, parentAbility, parentGender, parentItem, parentNature, pokemon, masuda);
-    StateFilter4 filter(255, 255, 255, false, min, max, natures, powers);
+    StateFilter filter(255, 255, 255, false, min, max, natures, powers);
     EggGenerator4 generator(0, 9, 0, 0, 9, 0, daycare, profile, filter);
 
     auto states = generator.generate(seed, seedPickup);

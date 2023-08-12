@@ -326,7 +326,7 @@ namespace Translator
     {
         std::vector<std::string> s;
         s.reserve(specie.size());
-        std::transform(specie.begin(), specie.end(), std::back_inserter(s), [](u16 num) { return species[num - 1]; });
+        std::transform(specie.begin(), specie.end(), std::back_inserter(s), [](u16 num) { return getSpecie(num & 0x7ff, num >> 11); });
         return s;
     }
 

@@ -21,15 +21,16 @@
 #define WILDSEARCHER4_HPP
 
 #include <Core/Gen4/EncounterArea4.hpp>
-#include <Core/Gen4/Filters/StateFilter4.hpp>
 #include <Core/Gen4/Profile4.hpp>
+#include <Core/Parents/Filters/StateFilter.hpp>
 #include <Core/Parents/Searchers/WildSearcher.hpp>
-#include <mutex>
+
+class WildSearcherState4;
 
 /**
  * @brief Wild encounter searcher for Gen 4
  */
-class WildSearcher4 : public WildSearcher<EncounterArea4, Profile4, WildStateFilter4>
+class WildSearcher4 : public WildSearcher<EncounterArea4, Profile4, WildStateFilter, WildSearcherState4>
 {
 public:
     /**
@@ -47,26 +48,7 @@ public:
      * @param filter State filter
      */
     WildSearcher4(u32 minAdvance, u32 maxAdvance, u32 minDelay, u32 maxDelay, Method method, Encounter encounter, Lead lead, bool shiny,
-                  const EncounterArea4 &encounterArea, const Profile4 &profile, const WildStateFilter4 &filter);
-
-    /**
-     * @brief Cancels the running search
-     */
-    void cancelSearch();
-
-    /**
-     * @brief Returns the progress of the running search
-     *
-     * @return Progress
-     */
-    int getProgress() const;
-
-    /**
-     * @brief Returns the states of the running search
-     *
-     * @return Vector of computed states
-     */
-    std::vector<WildSearcherState4> getResults();
+                  const EncounterArea4 &encounterArea, const Profile4 &profile, const WildStateFilter &filter);
 
     /**
      * @brief Starts the search
@@ -78,17 +60,13 @@ public:
     void startSearch(const std::array<u8, 6> &min, const std::array<u8, 6> &max, u8 index);
 
 private:
-    std::mutex mutex;
     std::vector<u8> modifiedSlots;
-    std::vector<WildSearcherState4> results;
-    int progress;
     u32 maxAdvance;
     u32 minAdvance;
     u32 maxDelay;
     u32 minDelay;
     u16 thresh;
     bool safari;
-    bool searching;
     bool shiny;
 
     /**

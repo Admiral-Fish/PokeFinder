@@ -51,7 +51,7 @@ public:
      * @return true State passes the filter
      * @return false State does not pass the filter
      */
-    bool compare(const IDState &state) const;
+    bool compareState(const IDState &state) const;
 
     /**
      * @brief Determines if the \p state meets the filter criteria
@@ -61,7 +61,7 @@ public:
      * @return true State passes the filter
      * @return false State does not pass the filter
      */
-    bool compare(const IDState8 &state) const;
+    bool compareState(const IDState8 &state) const;
 
 protected:
     std::vector<u32> displayFilter;

@@ -44,7 +44,7 @@ public:
     }
 
     /**
-     * @brief Calculates the level of a pokemon. Takes into account any modification from Pressure
+     * @brief Calculates the level of a pokemon
      *
      * @param encounterSlot Pokemon slot
      * @param rng RNG object
@@ -74,7 +74,7 @@ public:
     }
 
     /**
-     * @brief Calculates the level of a pokemon. Used by WildSearcher3 and assume Pressure is being used
+     * @brief Calculates the level of a pokemon
      *
      * @param encounterSlot Pokemon slot
      * @param levelRand PRNG call for the level

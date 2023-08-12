@@ -64,6 +64,8 @@ Event8::Event8(QWidget *parent) : QWidget(parent), ui(new Ui::Event8)
         ui->comboBoxNature->addItem(QString::fromStdString(nature));
     }
 
+    ui->comboBoxSpecies->enableAutoComplete();
+
     connect(ui->comboBoxProfiles, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &Event8::profileIndexChanged);
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Event8::generate);
     connect(ui->pushButtonImport, &QPushButton::clicked, this, &Event8::importEvent);
@@ -189,7 +191,7 @@ void Event8::generate()
     u32 delay = ui->textBoxDelay->getUInt();
     WB8 wb8 = getParameters();
 
-    StateFilter8 filter = ui->filter->getFilter<StateFilter8>();
+    StateFilter filter = ui->filter->getFilter<StateFilter>();
     EventGenerator8 generator(initialAdvances, maxAdvances, delay, wb8, *currentProfile, filter);
 
     auto states = generator.generate(seed0, seed1);

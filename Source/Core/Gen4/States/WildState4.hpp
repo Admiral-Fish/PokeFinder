@@ -22,8 +22,6 @@
 
 #include <Core/Parents/States/WildState.hpp>
 
-class PersonalInfo;
-
 /**
  * @brief State class for Gen4 wild generator encounters
  */

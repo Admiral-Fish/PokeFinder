@@ -71,7 +71,7 @@
 #include <QtNetwork>
 #include <version.h>
 
-//#include <Forms/Gen5/Static5.hpp>
+// #include <Forms/Gen5/Static5.hpp>
 
 MainWindow::MainWindow(bool profile, QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow)
 {
@@ -410,9 +410,9 @@ void MainWindow::openEgg5()
     }
     else if (!egg5->hasProfiles())
     {
-        QMessageBox message(QMessageBox::Warning, tr("No profiles found"),
-                            tr("Please use the Profile Calibrator under Gen 5 Tools to create one."));
-        message.exec();
+        QMessageBox msg(QMessageBox::Warning, tr("No profiles found"),
+                        tr("Please use the Profile Calibrator under Gen 5 Tools to create one."));
+        msg.exec();
         egg5->close();
     }
     egg5->show();

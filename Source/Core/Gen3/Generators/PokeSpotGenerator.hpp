@@ -20,8 +20,8 @@
 #ifndef POKESPOTGENERATOR_HPP
 #define POKESPOTGENERATOR_HPP
 
-#include <Core/Gen3/Filters/StateFilter3.hpp>
 #include <Core/Gen3/Profile3.hpp>
+#include <Core/Parents/Filters/StateFilter.hpp>
 #include <Core/Parents/Generators/Generator.hpp>
 
 class EncounterArea;
@@ -30,7 +30,7 @@ class PokeSpotState;
 /**
  * @brief Poke Spot encounter generator for Gen3
  */
-class PokeSpotGenerator : public Generator<Profile3, WildStateFilter3>
+class PokeSpotGenerator : public Generator<Profile3, WildStateFilter>
 {
 public:
     /**
@@ -46,7 +46,7 @@ public:
      * @param filter State filter
      */
     PokeSpotGenerator(u32 initialAdvances, u32 maxAdvances, u32 delay, u32 initialAdvancesEncounter, u32 maxAdvancesEncounter,
-                      u32 delayEncounter, const Profile3 &profile, const WildStateFilter3 &filter);
+                      u32 delayEncounter, const Profile3 &profile, const WildStateFilter &filter);
 
     /**
      * @brief Generates states

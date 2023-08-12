@@ -44,7 +44,7 @@ std::vector<IDState4> IDGenerator4::generate() const
             u16 sid = sidtid >> 16;
 
             IDState4 state(seed, efgh + 2000 - year, tid, sid, second);
-            if (filter.compare(state))
+            if (filter.compareState(static_cast<const IDState &>(state)))
             {
                 states.emplace_back(state);
             }

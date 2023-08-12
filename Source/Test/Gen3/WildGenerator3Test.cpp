@@ -56,9 +56,8 @@ void WildGenerator3Test::generate_data()
     for (const auto &d : data)
     {
         QTest::newRow(d["name"].get<std::string>().data())
-            << d["seed"].get<u32>() << getGame(d["version"].get<std::string>()) << getMethod(d["method"].get<std::string>())
-            << getEncounter(d["encounter"].get<std::string>()) << getLead(d["lead"].get<std::string>()) << d["location"].get<int>()
-            << d["results"].get<json>().dump();
+            << d["seed"].get<u32>() << d["version"].get<Game>() << d["method"].get<Method>() << d["encounter"].get<Encounter>()
+            << d["lead"].get<Lead>() << d["location"].get<int>() << d["results"].get<json>().dump();
     }
 }
 
@@ -95,7 +94,7 @@ void WildGenerator3Test::generate()
     auto encounterArea = std::find_if(encounterAreas.begin(), encounterAreas.end(),
                                       [location](const EncounterArea3 &encounterArea) { return encounterArea.getLocation() == location; });
 
-    WildStateFilter3 filter(255, 255, 255, false, min, max, natures, powers, encounterSlots);
+    WildStateFilter filter(255, 255, 255, false, min, max, natures, powers, encounterSlots);
     WildGenerator3 generator(0, 9, 0, method, encounter, lead, profile, filter);
 
     auto states = generator.generate(seed, *encounterArea);

@@ -20,7 +20,7 @@
 #ifndef UNDERGROUNDGENERATOR_HPP
 #define UNDERGROUNDGENERATOR_HPP
 
-#include <Core/Gen8/Filters/StateFilter8.hpp>
+#include <Core/Gen8/Filters/UndergroundFilter.hpp>
 #include <Core/Gen8/Profile8.hpp>
 #include <Core/Parents/Generators/StaticGenerator.hpp>
 

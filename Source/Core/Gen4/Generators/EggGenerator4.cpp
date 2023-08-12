@@ -24,6 +24,7 @@
 #include <Core/Parents/PersonalLoader.hpp>
 #include <Core/RNG/LCRNG.hpp>
 #include <Core/RNG/MT.hpp>
+#include <Core/Util/Utilities.hpp>
 
 static bool compare(const EggGeneratorState4 &left, const EggGeneratorState4 &right)
 {
@@ -46,42 +47,6 @@ static bool compare(const EggGeneratorState4 &left, const EggGeneratorState4 &ri
     }
 
     return false;
-}
-
-static u8 getGender(u32 pid, const PersonalInfo *info)
-{
-    switch (info->getGender())
-    {
-    case 255: // Genderless
-        return 2;
-        break;
-    case 254: // Female
-        return 1;
-        break;
-    case 0: // Male
-        return 0;
-        break;
-    default: // Random gender
-        return (pid & 255) < info->getGender();
-        break;
-    }
-}
-
-static u8 getShiny(u32 pid, u16 tsv)
-{
-    u16 psv = (pid >> 16) ^ (pid & 0xffff);
-    if (tsv == psv)
-    {
-        return 2; // Square
-    }
-    else if ((tsv ^ psv) < 8)
-    {
-        return 1; // Star
-    }
-    else
-    {
-        return 0;
-    }
 }
 
 /**
@@ -110,16 +75,16 @@ static void setInheritance(const Daycare &daycare, std::array<u8, 6> &ivs, std::
         constexpr u8 available3[4] = { 1, 3, 4, 5 };
 
         u8 stat = available1[inh[0]];
-        ivs[stat] = daycare.getParentIV(par[0], order[stat]);
-        inheritance[stat] = par[0] + 1;
+        ivs[order[stat]] = daycare.getParentIV(par[0], order[stat]);
+        inheritance[order[stat]] = par[0] + 1;
 
         stat = available2[inh[1]];
-        ivs[stat] = daycare.getParentIV(par[1], order[stat]);
-        inheritance[stat] = par[1] + 1;
+        ivs[order[stat]] = daycare.getParentIV(par[1], order[stat]);
+        inheritance[order[stat]] = par[1] + 1;
 
         stat = available3[inh[2]];
-        ivs[stat] = daycare.getParentIV(par[2], order[stat]);
-        inheritance[stat] = par[2] + 1;
+        ivs[order[stat]] = daycare.getParentIV(par[2], order[stat]);
+        inheritance[order[stat]] = par[2] + 1;
     }
     else
     {
@@ -132,25 +97,25 @@ static void setInheritance(const Daycare &daycare, std::array<u8, 6> &ivs, std::
         };
 
         u8 stat = available[inh[0]];
-        ivs[stat] = daycare.getParentIV(par[0], order[stat]);
-        inheritance[stat] = par[1] + 1;
+        ivs[order[stat]] = daycare.getParentIV(par[0], order[stat]);
+        inheritance[order[stat]] = par[0] + 1;
 
         avoid(stat, 0);
 
         stat = available[inh[1]];
-        ivs[stat] = daycare.getParentIV(par[1], order[stat]);
-        inheritance[stat] = par[1] + 1;
+        ivs[order[stat]] = daycare.getParentIV(par[1], order[stat]);
+        inheritance[order[stat]] = par[1] + 1;
 
         avoid(stat, 1);
 
         stat = available[inh[2]];
-        ivs[stat] = daycare.getParentIV(par[2], order[stat]);
-        inheritance[stat] = par[2] + 1;
+        ivs[order[stat]] = daycare.getParentIV(par[2], order[stat]);
+        inheritance[order[stat]] = par[2] + 1;
     }
 }
 
 EggGenerator4::EggGenerator4(u32 initialAdvances, u32 maxAdvances, u32 delay, u32 initialAdvancesPickup, u32 maxAdvancesPickup,
-                             u32 delayPickup, const Daycare &daycare, const Profile4 &profile, const StateFilter4 &filter) :
+                             u32 delayPickup, const Daycare &daycare, const Profile4 &profile, const StateFilter &filter) :
     EggGenerator(initialAdvances, maxAdvances, delay, Method::None, 0, daycare, profile, filter),
     delayPickup(delayPickup),
     initialAdvancesPickup(initialAdvancesPickup),
@@ -192,7 +157,7 @@ std::vector<EggGeneratorState4> EggGenerator4::generateHeld(u32 seed) const
             ARNG rng(pid);
             for (int i = 0; i < 4; i++)
             {
-                if (getShiny(pid, tsv))
+                if (Utilities::getShiny(pid, tsv))
                 {
                     break;
                 }
@@ -206,7 +171,7 @@ std::vector<EggGeneratorState4> EggGenerator4::generateHeld(u32 seed) const
             info = male;
         }
 
-        EggGeneratorState4 state(initialAdvances + cnt, pid, getGender(pid, info), getShiny(pid, tsv), info);
+        EggGeneratorState4 state(initialAdvances + cnt, pid, Utilities::getGender(pid, info), Utilities::getShiny(pid, tsv), info);
         if (filter.compareAbility(state.getAbility()) && filter.compareGender(state.getGender()) && filter.compareNature(state.getNature())
             && filter.compareShiny(state.getShiny()))
         {
@@ -278,7 +243,7 @@ std::vector<EggGeneratorState4> EggGenerator4::generatePickup(u32 seed, const st
             }
 
             state.update(prng, initialAdvancesPickup + cnt, ivs, inheritance, info);
-            if (filter.compareState(state))
+            if (filter.compareHiddenPower(state.getHiddenPower()) && filter.compareIV(state.getIVs()))
             {
                 states.emplace_back(state);
             }

@@ -43,7 +43,7 @@ ProfileEditor5::ProfileEditor5(QWidget *parent) : QDialog(parent), ui(new Ui::Pr
 
     ui->comboBoxVersion->setup({ toInt(Game::Black), toInt(Game::White), toInt(Game::Black2), toInt(Game::White2) });
 
-    ui->comboBoxDSType->setup({ toInt(DSType::DS), toInt(DSType::DSi), 2, toInt(DSType::DS3) });
+    ui->comboBoxDSType->setup({ toInt(DSType::DS), toInt(DSType::DSi), toInt(DSType::DS3) });
 
     ui->comboBoxLanguage->setup({ toInt(Language::English), toInt(Language::Spanish), toInt(Language::French), toInt(Language::Italian),
                                   toInt(Language::German), toInt(Language::Japanese), toInt(Language::Korean) });
@@ -73,7 +73,7 @@ ProfileEditor5::ProfileEditor5(const Profile5 &profile, QWidget *parent) : Profi
     ui->comboBoxLanguage->setCurrentIndex(ui->comboBoxLanguage->findData(toInt(profile.getLanguage())));
     ui->comboBoxDSType->setCurrentIndex(ui->comboBoxDSType->findData(toInt(profile.getDSType())));
 
-    std::array<bool, 4> keypresses = profile.getKeypresses();
+    std::array<bool, 9> keypresses = profile.getKeypresses();
     std::vector<bool> checked(keypresses.begin(), keypresses.end());
     ui->comboBoxKeypresses->setChecks(checked);
 
@@ -105,7 +105,7 @@ ProfileEditor5::~ProfileEditor5()
 
 Profile5 ProfileEditor5::getProfile()
 {
-    std::array<bool, 4> keypresses;
+    std::array<bool, 9> keypresses;
     std::vector<bool> checked = ui->comboBoxKeypresses->getChecked();
     std::copy(checked.begin(), checked.end(), keypresses.begin());
 

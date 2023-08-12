@@ -20,14 +20,16 @@
 #ifndef EGGGENERATOR4_HPP
 #define EGGGENERATOR4_HPP
 
-#include <Core/Gen4/Filters/StateFilter4.hpp>
 #include <Core/Gen4/Profile4.hpp>
+#include <Core/Parents/Filters/StateFilter.hpp>
 #include <Core/Parents/Generators/EggGenerator.hpp>
+
+class EggGeneratorState4;
 
 /**
  * @brief Egg encounter generator for Gen4
  */
-class EggGenerator4 : public EggGenerator<Profile4, StateFilter4>
+class EggGenerator4 : public EggGenerator<Profile4, StateFilter>
 {
 public:
     /**
@@ -44,7 +46,7 @@ public:
      * @param filter State filter
      */
     EggGenerator4(u32 initialAdvances, u32 maxAdvances, u32 delay, u32 initialAdvancesPickup, u32 maxAdvancesPickup, u32 delayPickup,
-                  const Daycare &daycare, const Profile4 &profile, const StateFilter4 &filter);
+                  const Daycare &daycare, const Profile4 &profile, const StateFilter &filter);
 
     /**
      * @brief Generates states

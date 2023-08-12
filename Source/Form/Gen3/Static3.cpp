@@ -127,7 +127,7 @@ void Static3::generate()
     u32 delay = ui->textBoxGeneratorDelay->getUInt();
     auto method = ui->comboBoxGeneratorMethod->getEnum<Method>();
 
-    StateFilter3 filter = ui->filterGenerator->getFilter<StateFilter3>();
+    StateFilter filter = ui->filterGenerator->getFilter<StateFilter>();
     StaticGenerator3 generator(initialAdvances, maxAdvances, delay, method, *currentProfile, filter);
 
     const StaticTemplate *staticTemplate
@@ -141,11 +141,11 @@ void Static3::generatorCategoryIndexChanged(int index)
 {
     if (index >= 0)
     {
-        size_t size;
+        int size;
         const StaticTemplate *templates = Encounters3::getStaticEncounters(index, &size);
 
         ui->comboBoxGeneratorPokemon->clear();
-        for (size_t i = 0; i < size; i++)
+        for (int i = 0; i < size; i++)
         {
             if ((currentProfile->getVersion() & templates[i].getVersion()) != Game::None)
             {
@@ -216,7 +216,7 @@ void Static3::search()
     std::array<u8, 6> max = ui->filterSearcher->getMaxIVs();
     auto method = ui->comboBoxSearcherMethod->getEnum<Method>();
 
-    StateFilter3 filter = ui->filterSearcher->getFilter<StateFilter3>();
+    StateFilter filter = ui->filterSearcher->getFilter<StateFilter>();
     auto *searcher = new StaticSearcher3(method, *currentProfile, filter);
 
     const StaticTemplate *staticTemplate
@@ -256,11 +256,11 @@ void Static3::searcherCategoryIndexChanged(int index)
 {
     if (index >= 0)
     {
-        size_t size;
+        int size;
         const StaticTemplate *templates = Encounters3::getStaticEncounters(index, &size);
 
         ui->comboBoxSearcherPokemon->clear();
-        for (size_t i = 0; i < size; i++)
+        for (int i = 0; i < size; i++)
         {
             if ((currentProfile->getVersion() & templates[i].getVersion()) != Game::None)
             {

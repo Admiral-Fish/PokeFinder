@@ -138,7 +138,7 @@ void Eggs5::generate()
     u32 delay = ui->textBoxGeneratorDelay->getUInt();
     Daycare daycare = ui->eggSettingsGenerator->getDaycare();
 
-    StateFilter5 filter = ui->filterGenerator->getFilter<StateFilter5>();
+    StateFilter filter = ui->filterGenerator->getFilter<StateFilter>();
     EggGenerator5 generator(initialAdvances, maxAdvances, delay, daycare, *currentProfile, filter);
 
     auto states = generator.generate(seed);
@@ -147,6 +147,15 @@ void Eggs5::generate()
 
 void Eggs5::search()
 {
+    Date start = ui->dateEditSearcherStartDate->getDate();
+    Date end = ui->dateEditSearcherEndDate->getDate();
+    if (start > end)
+    {
+        QMessageBox msg(QMessageBox::Warning, tr("Invalid date range"), tr("Start date is after end date"));
+        msg.exec();
+        return;
+    }
+
     if (!ui->eggSettingsSearcher->compatibleParents())
     {
         QMessageBox box(QMessageBox::Warning, tr("Incompatible Parents"), tr("Gender of selected parents are not compatible for breeding"));
@@ -167,14 +176,11 @@ void Eggs5::search()
     u32 maxAdvances = ui->textBoxSearcherMaxAdvances->getUInt();
     Daycare daycare = ui->eggSettingsSearcher->getDaycare();
 
-    StateFilter5 filter = ui->filterSearcher->getFilter<StateFilter5>();
+    StateFilter filter = ui->filterSearcher->getFilter<StateFilter>();
     EggGenerator5 generator(0, maxAdvances, 0, daycare, *currentProfile, filter);
-    auto *searcher = new Searcher5<EggState5>(*currentProfile);
+    auto *searcher = new Searcher5<EggGenerator5, EggState5>(generator, *currentProfile);
 
-    Date start = ui->dateEditSearcherStartDate->getDate();
-    Date end = ui->dateEditSearcherEndDate->getDate();
-
-    int maxProgress = Keypresses::getKeyPresses(*currentProfile).size();
+    int maxProgress = Keypresses::getKeypresses(*currentProfile).size();
     maxProgress *= start.daysTo(end) + 1;
     maxProgress *= (currentProfile->getTimer0Max() - currentProfile->getTimer0Min() + 1);
     ui->progressBar->setRange(0, maxProgress);
@@ -182,7 +188,7 @@ void Eggs5::search()
     QSettings settings;
     int threads = settings.value("settings/threads").toInt();
 
-    auto *thread = QThread::create([=] { searcher->startSearch(generator, threads, start, end); });
+    auto *thread = QThread::create([=] { searcher->startSearch(threads, start, end); });
     connect(thread, &QThread::finished, thread, &QThread::deleteLater);
     connect(ui->pushButtonCancel, &QPushButton::clicked, [searcher] { searcher->cancelSearch(); });
 

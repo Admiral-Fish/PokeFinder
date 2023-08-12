@@ -55,6 +55,9 @@ GameCube::GameCube(QWidget *parent) : QWidget(parent), ui(new Ui::GameCube)
     ui->filterGenerator->disableControls(Controls::EncounterSlots);
     ui->filterSearcher->disableControls(Controls::EncounterSlots | Controls::DisableFilter);
 
+    ui->comboBoxGeneratorPokemon->enableAutoComplete();
+    ui->comboBoxSearcherPokemon->enableAutoComplete();
+
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &GameCube::generate);
     connect(ui->pushButtonSearch, &QPushButton::clicked, this, &GameCube::search);
     connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &GameCube::profileManager);
@@ -121,7 +124,7 @@ void GameCube::generate()
     u32 maxAdvances = ui->textBoxGeneratorMaxAdvances->getUInt();
     u32 delay = ui->textBoxGeneratorDelay->getUInt();
 
-    StateFilter3 filter = ui->filterGenerator->getFilter<StateFilter3>();
+    StateFilter filter = ui->filterGenerator->getFilter<StateFilter>();
     GameCubeGenerator generator(initialAdvances, maxAdvances, delay, method, ui->checkBoxGeneratorFirstShadowUnset->isChecked(),
                                 *currentProfile, filter);
 
@@ -145,12 +148,12 @@ void GameCube::generatorCategoryIndexChanged(int index)
 {
     if (index >= 0)
     {
-        size_t size;
+        int size;
         ui->comboBoxGeneratorPokemon->clear();
         if (index == 2)
         {
             const ShadowTemplate *templates = Encounters3::getShadowTeams(&size);
-            for (size_t i = 0; i < size; i++)
+            for (int i = 0; i < size; i++)
             {
                 if ((currentProfile->getVersion() & templates[i].getVersion()) != Game::None)
                 {
@@ -162,7 +165,7 @@ void GameCube::generatorCategoryIndexChanged(int index)
         else
         {
             const StaticTemplate *templates = Encounters3::getStaticEncounters(index + 7, &size);
-            for (size_t i = 0; i < size; i++)
+            for (int i = 0; i < size; i++)
             {
                 if ((currentProfile->getVersion() & templates[i].getVersion()) != Game::None)
                 {
@@ -232,7 +235,7 @@ void GameCube::search()
     std::array<u8, 6> min = ui->filterSearcher->getMinIVs();
     std::array<u8, 6> max = ui->filterSearcher->getMaxIVs();
 
-    StateFilter3 filter = ui->filterSearcher->getFilter<StateFilter3>();
+    StateFilter filter = ui->filterSearcher->getFilter<StateFilter>();
     auto *searcher = new GameCubeSearcher(method, ui->checkBoxSearcherFirstShadowUnset->isChecked(), *currentProfile, filter);
 
     int maxProgress = 1;
@@ -289,12 +292,12 @@ void GameCube::searcherCategoryIndexChanged(int index)
 {
     if (index >= 0)
     {
-        size_t size;
+        int size;
         ui->comboBoxSearcherPokemon->clear();
         if (index == 2)
         {
             const ShadowTemplate *templates = Encounters3::getShadowTeams(&size);
-            for (size_t i = 0; i < size; i++)
+            for (int i = 0; i < size; i++)
             {
                 if ((currentProfile->getVersion() & templates[i].getVersion()) != Game::None)
                 {
@@ -306,7 +309,7 @@ void GameCube::searcherCategoryIndexChanged(int index)
         else
         {
             const StaticTemplate *templates = Encounters3::getStaticEncounters(index + 7, &size);
-            for (size_t i = 0; i < size; i++)
+            for (int i = 0; i < size; i++)
             {
                 if ((currentProfile->getVersion() & templates[i].getVersion()) != Game::None)
                 {

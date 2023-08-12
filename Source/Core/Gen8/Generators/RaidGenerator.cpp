@@ -27,7 +27,7 @@
 constexpr u8 toxtricityAmpedNatures[] = { 3, 4, 2, 8, 9, 19, 22, 11, 13, 14, 0, 6, 24 };
 constexpr u8 toxtricityLowKeyNatures[] = { 1, 5, 7, 10, 12, 15, 16, 17, 18, 20, 21, 23 };
 
-RaidGenerator::RaidGenerator(u32 initialAdvances, u32 maxAdvances, u32 delay, const Profile8 &profile, const StateFilter8 &filter) :
+RaidGenerator::RaidGenerator(u32 initialAdvances, u32 maxAdvances, u32 delay, const Profile8 &profile, const StateFilter &filter) :
     Generator(initialAdvances, maxAdvances, delay, Method::None, profile, filter)
 {
 }
@@ -93,12 +93,6 @@ std::vector<GeneratorState> RaidGenerator::generate(u64 seed, u8 level, const Ra
                 u16 high = (pid & 0xffff) ^ tsv;
                 pid = (high << 16) | (pid & 0xffff);
             }
-        }
-
-        // Early shiny filter reduces further computation
-        if (!filter.compareShiny(shiny))
-        {
-            continue;
         }
 
         // Set IVs that will be 31s
@@ -191,7 +185,7 @@ std::vector<GeneratorState> RaidGenerator::generate(u64 seed, u8 level, const Ra
         // Weight (2 calls)
 
         GeneratorState state(initialAdvances + cnt, ec, pid, ivs, ability, gender, level, nature, shiny, info);
-        if (filter.compareState(state))
+        if (filter.compareState(static_cast<const State &>(state)))
         {
             states.emplace_back(state);
         }

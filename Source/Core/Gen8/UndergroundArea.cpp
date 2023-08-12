@@ -176,7 +176,6 @@ std::vector<u16> UndergroundArea::getSpecies() const
     std::transform(pokemon.begin(), pokemon.end(), std::back_inserter(nums), [](const Pokemon &mon) { return mon.specie; });
     std::transform(specialPokemon.begin(), specialPokemon.end(), std::back_inserter(nums),
                    [](const SpecialPokemon &mon) { return mon.specie; });
-    std::sort(nums.begin(), nums.end());
     return nums;
 }
 

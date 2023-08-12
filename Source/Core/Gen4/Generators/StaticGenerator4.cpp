@@ -24,42 +24,7 @@
 #include <Core/Gen4/StaticTemplate4.hpp>
 #include <Core/Parents/PersonalInfo.hpp>
 #include <Core/RNG/LCRNG.hpp>
-
-static u8 getGender(u32 pid, const PersonalInfo *info)
-{
-    switch (info->getGender())
-    {
-    case 255: // Genderless
-        return 2;
-        break;
-    case 254: // Female
-        return 1;
-        break;
-    case 0: // Male
-        return 0;
-        break;
-    default: // Random gender
-        return (pid & 255) < info->getGender();
-        break;
-    }
-}
-
-static u8 getShiny(u32 pid, u16 tsv)
-{
-    u16 psv = (pid >> 16) ^ (pid & 0xffff);
-    if (tsv == psv)
-    {
-        return 2; // Square
-    }
-    else if ((tsv ^ psv) < 8)
-    {
-        return 1; // Star
-    }
-    else
-    {
-        return 0;
-    }
-}
+#include <Core/Util/Utilities.hpp>
 
 static bool isShiny(u32 pid, u16 tsv)
 {
@@ -68,7 +33,7 @@ static bool isShiny(u32 pid, u16 tsv)
 }
 
 StaticGenerator4::StaticGenerator4(u32 initialAdvances, u32 maxAdvances, u32 delay, Method method, Lead lead, const Profile4 &profile,
-                                   const StateFilter4 &filter) :
+                                   const StateFilter &filter) :
     StaticGenerator(initialAdvances, maxAdvances, delay, method, lead, profile, filter)
 {
 }
@@ -135,9 +100,9 @@ std::vector<GeneratorState4> StaticGenerator4::generateMethod1(u32 seed, const S
         ivs[4] = (iv2 >> 10) & 31;
         ivs[5] = iv2 & 31;
 
-        GeneratorState4 state(rng.nextUShort(), initialAdvances + cnt, pid, ivs, pid & 1, getGender(pid, info), staticTemplate->getLevel(),
-                              pid % 25, getShiny(pid, tsv), info);
-        if (filter.compareState(state))
+        GeneratorState4 state(rng.nextUShort(), initialAdvances + cnt, pid, ivs, pid & 1, Utilities::getGender(pid, info),
+                              staticTemplate->getLevel(), pid % 25, Utilities::getShiny(pid, tsv), info);
+        if (filter.compareState(static_cast<const State &>(state)))
         {
             states.emplace_back(state);
         }
@@ -213,9 +178,9 @@ std::vector<GeneratorState4> StaticGenerator4::generateMethodJ(u32 seed, const S
         ivs[4] = (iv2 >> 10) & 31;
         ivs[5] = iv2 & 31;
 
-        GeneratorState4 state(rng.nextUShort(), initialAdvances + cnt, pid, ivs, pid & 1, getGender(pid, info), staticTemplate->getLevel(),
-                              pid % 25, getShiny(pid, tsv), info);
-        if (filter.compareState(state))
+        GeneratorState4 state(rng.nextUShort(), initialAdvances + cnt, pid, ivs, pid & 1, Utilities::getGender(pid, info),
+                              staticTemplate->getLevel(), pid % 25, Utilities::getShiny(pid, tsv), info);
+        if (filter.compareState(static_cast<const State &>(state)))
         {
             states.emplace_back(state);
         }
@@ -291,9 +256,9 @@ std::vector<GeneratorState4> StaticGenerator4::generateMethodK(u32 seed, const S
         ivs[4] = (iv2 >> 10) & 31;
         ivs[5] = iv2 & 31;
 
-        GeneratorState4 state(rng.nextUShort(), initialAdvances + cnt, pid, ivs, pid & 1, getGender(pid, info), staticTemplate->getLevel(),
-                              pid % 25, getShiny(pid, tsv), info);
-        if (filter.compareState(state))
+        GeneratorState4 state(rng.nextUShort(), initialAdvances + cnt, pid, ivs, pid & 1, Utilities::getGender(pid, info),
+                              staticTemplate->getLevel(), pid % 25, Utilities::getShiny(pid, tsv), info);
+        if (filter.compareState(static_cast<const State &>(state)))
         {
             states.emplace_back(state);
         }

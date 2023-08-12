@@ -18,10 +18,12 @@
  */
 
 #include "CheckList.hpp"
+#include <QApplication>
 #include <QLineEdit>
 #include <QListView>
 #include <QMouseEvent>
 #include <QStandardItemModel>
+#include <algorithm>
 
 CheckList::CheckList(QWidget *parent) : QComboBox(parent), model(new QStandardItemModel(this))
 {
@@ -94,12 +96,7 @@ void CheckList::setup(const std::vector<std::string> &items)
         }
     }
 
-    for (int i = 0; i < model->rowCount(); i++)
-    {
-        QStandardItem *item = model->item(i);
-        item->setCheckState(Qt::Unchecked);
-        item->setFlags(Qt::ItemIsUserCheckable | Qt::ItemIsEnabled);
-    }
+    setupChecks();
 }
 
 void CheckList::setup(const std::vector<std::string> &items, const std::vector<u16> &data)
@@ -114,12 +111,7 @@ void CheckList::setup(const std::vector<std::string> &items, const std::vector<u
         }
     }
 
-    for (int i = 0; i < model->rowCount(); i++)
-    {
-        QStandardItem *item = model->item(i);
-        item->setCheckState(Qt::Unchecked);
-        item->setFlags(Qt::ItemIsUserCheckable | Qt::ItemIsEnabled);
-    }
+    setupChecks();
 }
 
 bool CheckList::eventFilter(QObject *object, QEvent *event)
@@ -160,6 +152,25 @@ Qt::CheckState CheckList::checkState() const
     }
 
     return checked == total ? Qt::Checked : unchecked == total ? Qt::Unchecked : Qt::PartiallyChecked;
+}
+
+void CheckList::setupChecks()
+{
+    auto font = fontMetrics();
+    int width = 0;
+    for (int i = 0; i < model->rowCount(); i++)
+    {
+        QStandardItem *item = model->item(i);
+        item->setCheckState(Qt::Unchecked);
+        item->setFlags(Qt::ItemIsUserCheckable | Qt::ItemIsEnabled);
+
+        width = std::max(width, font.size(0, item->text()).width());
+    }
+
+    width += 2 * font.size(0, " ").width() + iconSize().width() + QApplication::style()->pixelMetric(QStyle::PM_ScrollBarExtent);
+    width *= 1.25f;
+
+    view()->setMinimumWidth(width);
 }
 
 void CheckList::modelDataChanged()

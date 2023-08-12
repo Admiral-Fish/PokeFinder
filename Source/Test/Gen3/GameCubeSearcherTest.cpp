@@ -31,35 +31,35 @@
 
 using IVs = std::array<u8, 6>;
 
+template <bool compareAbility = true>
 static bool operator==(const SearcherState &left, const GeneratorState &right)
 {
-    return left.getPID() == right.getPID() && left.getStats() == right.getStats() && left.getAbilityIndex() == right.getAbilityIndex()
-        && left.getIVs() == right.getIVs() && left.getAbility() == right.getAbility() && left.getGender() == right.getGender()
-        && left.getHiddenPower() == right.getHiddenPower() && left.getHiddenPowerStrength() == right.getHiddenPowerStrength()
-        && left.getLevel() == right.getLevel() && left.getNature() == right.getNature() && left.getShiny() == right.getShiny();
-}
-
-static bool operator==(const SearcherState &left, const json &right)
-{
-    return left.getPID() == right["pid"].get<u32>() && left.getStats() == right["stats"].get<std::array<u16, 6>>()
-        && left.getAbilityIndex() == right["abilityIndex"].get<u16>() && left.getIVs() == right["ivs"].get<std::array<u8, 6>>()
-        && left.getAbility() == right["ability"].get<u8>() && left.getGender() == right["gender"].get<u8>()
-        && left.getHiddenPower() == right["hiddenPower"].get<u8>()
-        && left.getHiddenPowerStrength() == right["hiddenPowerStrength"].get<u8>() && left.getLevel() == right["level"].get<u8>()
-        && left.getNature() == right["nature"].get<u8>() && left.getShiny() == right["shiny"].get<u8>()
-        && left.getSeed() == right["seed"].get<u32>();
+    if constexpr (compareAbility)
+    {
+        return left.getPID() == right.getPID() && left.getStats() == right.getStats() && left.getAbilityIndex() == right.getAbilityIndex()
+            && left.getIVs() == right.getIVs() && left.getAbility() == right.getAbility() && left.getGender() == right.getGender()
+            && left.getHiddenPower() == right.getHiddenPower() && left.getHiddenPowerStrength() == right.getHiddenPowerStrength()
+            && left.getLevel() == right.getLevel() && left.getNature() == right.getNature() && left.getShiny() == right.getShiny();
+    }
+    else
+    {
+        return left.getPID() == right.getPID() && left.getStats() == right.getStats() && left.getIVs() == right.getIVs()
+            && left.getGender() == right.getGender() && left.getHiddenPower() == right.getHiddenPower()
+            && left.getHiddenPowerStrength() == right.getHiddenPowerStrength() && left.getLevel() == right.getLevel()
+            && left.getNature() == right.getNature() && left.getShiny() == right.getShiny();
+    }
 }
 
 void GameCubeSearcherTest::searchChannel_data()
 {
     QTest::addColumn<IVs>("min");
     QTest::addColumn<IVs>("max");
-    QTest::addColumn<std::string>("results");
+    QTest::addColumn<int>("results");
 
     json data = readData("gamecube", "gamecubesearcher", "searchChannel");
     for (const auto &d : data)
     {
-        QTest::newRow(d["name"].get<std::string>().data()) << d["min"].get<IVs>() << d["max"].get<IVs>() << d["results"].get<json>().dump();
+        QTest::newRow(d["name"].get<std::string>().data()) << d["min"].get<IVs>() << d["max"].get<IVs>() << d["results"].get<int>();
     }
 }
 
@@ -67,9 +67,7 @@ void GameCubeSearcherTest::searchChannel()
 {
     QFETCH(IVs, min);
     QFETCH(IVs, max);
-    QFETCH(std::string, results);
-
-    json j = json::parse(results);
+    QFETCH(int, results);
 
     std::array<bool, 25> natures;
     natures.fill(true);
@@ -80,17 +78,21 @@ void GameCubeSearcherTest::searchChannel()
     Profile3 profile("-", Game::GC, 12345, 54321, false);
 
     const StaticTemplate *staticTemplate = Encounters3::getStaticEncounter(8, 0);
-    StateFilter3 filter(255, 255, 255, false, min, max, natures, powers);
+    StateFilter filter(255, 255, 255, false, min, max, natures, powers);
     GameCubeSearcher searcher(Method::Channel, false, profile, filter);
 
     searcher.startSearch(min, max, staticTemplate);
     auto states = searcher.getResults();
-    QCOMPARE(states.size(), j.size());
+    QCOMPARE(states.size(), results);
 
-    for (int i = 0; i < states.size(); i++)
+    for (const auto &state : states)
     {
-        const auto &state = states[i];
-        QVERIFY(state == j[i]);
+        // Ensure generator agrees
+        GameCubeGenerator generator(0, 0, 0, Method::Channel, false, profile, filter);
+        auto generatorStates = generator.generate(state.getSeed(), staticTemplate);
+
+        QCOMPARE(generatorStates.size(), 1);
+        QVERIFY(state == generatorStates[0]);
     }
 }
 
@@ -99,13 +101,13 @@ void GameCubeSearcherTest::searchColoShadow_data()
     QTest::addColumn<IVs>("min");
     QTest::addColumn<IVs>("max");
     QTest::addColumn<int>("pokemon");
-    QTest::addColumn<std::string>("results");
+    QTest::addColumn<int>("results");
 
     json data = readData("gamecube", "gamecubesearcher", "searchColoShadow");
     for (const auto &d : data)
     {
         QTest::newRow(d["name"].get<std::string>().data())
-            << d["min"].get<IVs>() << d["max"].get<IVs>() << d["pokemon"].get<int>() << d["results"].get<json>().dump();
+            << d["min"].get<IVs>() << d["max"].get<IVs>() << d["pokemon"].get<int>() << d["results"].get<int>();
     }
 }
 
@@ -114,9 +116,7 @@ void GameCubeSearcherTest::searchColoShadow()
     QFETCH(IVs, min);
     QFETCH(IVs, max);
     QFETCH(int, pokemon);
-    QFETCH(std::string, results);
-
-    json j = json::parse(results);
+    QFETCH(int, results);
 
     std::array<bool, 25> natures;
     natures.fill(true);
@@ -124,20 +124,34 @@ void GameCubeSearcherTest::searchColoShadow()
     std::array<bool, 16> powers;
     powers.fill(true);
 
+    constexpr std::array<u8, 6> zero = { 0, 0, 0, 0, 0, 0 };
+
     Profile3 profile("-", Game::Colosseum, 12345, 54321, false);
 
     const ShadowTemplate *shadowTemplate = Encounters3::getShadowTeam(pokemon);
-    StateFilter3 filter(255, 255, 255, false, min, max, natures, powers);
+    StateFilter filter(255, 255, 255, false, shadowTemplate->getType() == ShadowType::EReader ? zero : min,
+                       shadowTemplate->getType() == ShadowType::EReader ? zero : max, natures, powers);
     GameCubeSearcher searcher(Method::None, false, profile, filter);
 
     searcher.startSearch(min, max, shadowTemplate);
     auto states = searcher.getResults();
-    QCOMPARE(states.size(), j.size());
+    QCOMPARE(states.size(), results);
 
-    for (int i = 0; i < states.size(); i++)
+    for (const auto &state : states)
     {
-        const auto &state = states[i];
-        QVERIFY(state == j[i]);
+        // Ensure generator agrees
+        GameCubeGenerator generator(0, 0, 0, Method::None, false, profile, filter);
+        auto generatorStates = generator.generate(state.getSeed(), shadowTemplate);
+
+        QCOMPARE(generatorStates.size(), 1);
+        if (shadowTemplate->getType() == ShadowType::EReader)
+        {
+            QVERIFY(operator==<false>(state, generatorStates[0]));
+        }
+        else
+        {
+            QVERIFY(state == generatorStates[0]);
+        }
     }
 }
 
@@ -147,13 +161,13 @@ void GameCubeSearcherTest::searchGalesShadow_data()
     QTest::addColumn<IVs>("max");
     QTest::addColumn<bool>("unset");
     QTest::addColumn<int>("pokemon");
-    QTest::addColumn<std::string>("results");
+    QTest::addColumn<int>("results");
 
     json data = readData("gamecube", "gamecubesearcher", "searchGalesShadow");
     for (const auto &d : data)
     {
-        QTest::newRow(d["name"].get<std::string>().data()) << d["min"].get<IVs>() << d["max"].get<IVs>() << d["unset"].get<bool>()
-                                                           << d["pokemon"].get<int>() << d["results"].get<json>().dump();
+        QTest::newRow(d["name"].get<std::string>().data())
+            << d["min"].get<IVs>() << d["max"].get<IVs>() << d["unset"].get<bool>() << d["pokemon"].get<int>() << d["results"].get<int>();
     }
 }
 
@@ -163,9 +177,7 @@ void GameCubeSearcherTest::searchGalesShadow()
     QFETCH(IVs, max);
     QFETCH(bool, unset);
     QFETCH(int, pokemon);
-    QFETCH(std::string, results);
-
-    json j = json::parse(results);
+    QFETCH(int, results);
 
     std::array<bool, 25> natures;
     natures.fill(true);
@@ -176,17 +188,21 @@ void GameCubeSearcherTest::searchGalesShadow()
     Profile3 profile("-", Game::Gales, 12345, 54321, false);
 
     const ShadowTemplate *shadowTemplate = Encounters3::getShadowTeam(pokemon);
-    StateFilter3 filter(255, 255, 255, false, min, max, natures, powers);
+    StateFilter filter(255, 255, 255, false, min, max, natures, powers);
     GameCubeSearcher searcher(Method::None, unset, profile, filter);
 
     searcher.startSearch(min, max, shadowTemplate);
     auto states = searcher.getResults();
-    QCOMPARE(states.size(), j.size());
+    QCOMPARE(states.size(), results);
 
-    for (int i = 0; i < states.size(); i++)
+    for (const auto &state : states)
     {
-        const auto &state = states[i];
-        QVERIFY(state == j[i]);
+        // Ensure generator agrees
+        GameCubeGenerator generator(0, 0, 0, Method::None, unset, profile, filter);
+        auto generatorStates = generator.generate(state.getSeed(), shadowTemplate);
+
+        QCOMPARE(generatorStates.size(), 1);
+        QVERIFY(state == generatorStates[0]);
     }
 }
 
@@ -196,14 +212,13 @@ void GameCubeSearcherTest::searchNonLock_data()
     QTest::addColumn<IVs>("max");
     QTest::addColumn<Game>("version");
     QTest::addColumn<int>("pokemon");
-    QTest::addColumn<std::string>("results");
+    QTest::addColumn<int>("results");
 
     json data = readData("gamecube", "gamecubesearcher", "searchNonLock");
     for (const auto &d : data)
     {
         QTest::newRow(d["name"].get<std::string>().data())
-            << d["min"].get<IVs>() << d["max"].get<IVs>() << getGame(d["version"].get<std::string>()) << d["pokemon"].get<int>()
-            << d["results"].get<json>().dump();
+            << d["min"].get<IVs>() << d["max"].get<IVs>() << d["version"].get<Game>() << d["pokemon"].get<int>() << d["results"].get<int>();
     }
 }
 
@@ -213,9 +228,7 @@ void GameCubeSearcherTest::searchNonLock()
     QFETCH(IVs, max);
     QFETCH(Game, version);
     QFETCH(int, pokemon);
-    QFETCH(std::string, results);
-
-    json j = json::parse(results);
+    QFETCH(int, results);
 
     std::array<bool, 25> natures;
     natures.fill(true);
@@ -226,16 +239,20 @@ void GameCubeSearcherTest::searchNonLock()
     Profile3 profile("-", version, 12345, 54321, false);
 
     const StaticTemplate *staticTemplate = Encounters3::getStaticEncounter(7, pokemon);
-    StateFilter3 filter(255, 255, 255, false, min, max, natures, powers);
+    StateFilter filter(255, 255, 255, false, min, max, natures, powers);
     GameCubeSearcher searcher(Method::None, false, profile, filter);
 
     searcher.startSearch(min, max, staticTemplate);
     auto states = searcher.getResults();
-    QCOMPARE(states.size(), j.size());
+    QCOMPARE(states.size(), results);
 
-    for (int i = 0; i < states.size(); i++)
+    for (const auto &state : states)
     {
-        const auto &state = states[i];
-        QVERIFY(state == j[i]);
+        // Ensure generator agrees
+        GameCubeGenerator generator(0, 0, 0, Method::None, false, profile, filter);
+        auto generatorStates = generator.generate(state.getSeed(), staticTemplate);
+
+        QCOMPARE(generatorStates.size(), 1);
+        QVERIFY(state == generatorStates[0]);
     }
 }

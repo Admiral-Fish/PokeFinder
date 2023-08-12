@@ -27,42 +27,7 @@
 #include <Core/Parents/States/State.hpp>
 #include <Core/RNG/LCRNG.hpp>
 #include <Core/RNG/LCRNGReverse.hpp>
-
-static u8 getGender(u32 pid, const PersonalInfo *info)
-{
-    switch (info->getGender())
-    {
-    case 255: // Genderless
-        return 2;
-        break;
-    case 254: // Female
-        return 1;
-        break;
-    case 0: // Male
-        return 0;
-        break;
-    default: // Random gender
-        return (pid & 255) < info->getGender();
-        break;
-    }
-}
-
-static u8 getShiny(u32 pid, u16 tsv)
-{
-    u16 psv = (pid >> 16) ^ (pid & 0xffff);
-    if (tsv == psv)
-    {
-        return 2; // Square
-    }
-    else if ((tsv ^ psv) < 8)
-    {
-        return 1; // Star
-    }
-    else
-    {
-        return 0;
-    }
-}
+#include <Core/Util/Utilities.hpp>
 
 static bool isShiny(u16 high, u16 low, u16 tsv)
 {
@@ -77,7 +42,7 @@ static bool isShiny(u16 high, u16 low, u16 tsv)
  * @return true Seed passes the menu pattern
  * @return false Seed does not pass the menu pattern
  */
-static bool validateMenu(XDRNGR rng)
+static bool validateMenu(XDRNGR &rng)
 {
     u8 target = rng.getSeed() >> 30;
 
@@ -109,7 +74,7 @@ static bool validateMenu(XDRNGR rng)
  * @return true Seed passes the Jirachi pattern
  * @return false Seed does not pass the Jirachi pattern
  */
-static bool validateJirachi(u32 seed)
+static bool validateJirachi(u32 &seed)
 {
     XDRNGR rng(seed);
 
@@ -117,29 +82,35 @@ static bool validateJirachi(u32 seed)
     u16 num2 = rng.nextUShort();
     u16 num3 = rng.nextUShort();
 
-    rng.advance(3);
-    if (num1 <= 0x4000) // 6 advances
-    {
-        if (validateMenu(rng))
-        {
-            return true;
-        }
-    }
-
-    rng.advance(1);
-    if (num2 > 0x4000 && num1 <= 0x547a) // 7 advances
-    {
-        if (validateMenu(rng))
-        {
-            return true;
-        }
-    }
-
-    rng.advance(1);
     if (num3 > 0x4000 && num2 > 0x547a) // 8 advances
     {
-        if (validateMenu(rng))
+        XDRNGR test(rng);
+        test.advance(5);
+        if (validateMenu(test))
         {
+            seed = test.advance(2);
+            return true;
+        }
+    }
+
+    if (num2 > 0x4000 && num1 <= 0x547a) // 7 advances
+    {
+        XDRNGR test(rng);
+        test.advance(4);
+        if (validateMenu(test))
+        {
+            seed = test.advance(2);
+            return true;
+        }
+    }
+
+    if (num1 <= 0x4000) // 6 advances
+    {
+        XDRNGR test(rng);
+        test.advance(3);
+        if (validateMenu(test))
+        {
+            seed = test.advance(2);
             return true;
         }
     }
@@ -147,26 +118,9 @@ static bool validateJirachi(u32 seed)
     return false;
 }
 
-GameCubeSearcher::GameCubeSearcher(Method method, bool unset, const Profile3 &profile, const StateFilter3 &filter) :
-    Searcher(method, profile, filter), progress(0), searching(false), unset(unset)
+GameCubeSearcher::GameCubeSearcher(Method method, bool unset, const Profile3 &profile, const StateFilter &filter) :
+    Searcher(method, profile, filter), unset(unset)
 {
-}
-
-void GameCubeSearcher::cancelSearch()
-{
-    searching = false;
-}
-
-int GameCubeSearcher::getProgress() const
-{
-    return progress;
-}
-
-std::vector<SearcherState> GameCubeSearcher::getResults()
-{
-    std::lock_guard<std::mutex> guard(mutex);
-    auto data = std::move(results);
-    return data;
 }
 
 void GameCubeSearcher::startSearch(const std::array<u8, 6> &min, const std::array<u8, 6> &max, const ShadowTemplate *shadowTemplate)
@@ -313,13 +267,15 @@ void GameCubeSearcher::searchChannel(u8 minSpd, u8 maxSpd, const StaticTemplate 
                 continue;
             }
 
-            if (!validateJirachi(rng.next()))
+            u32 origin = rng.next();
+            if (!validateJirachi(origin))
             {
                 continue;
             }
 
-            SearcherState state(rng.getSeed(), pid, ivs, pid & 1, 2, staticTemplate->getLevel(), nature, getShiny(pid, tid ^ sid), info);
-            if (filter.compareState(state))
+            SearcherState state(origin, pid, ivs, pid & 1, 2, staticTemplate->getLevel(), nature, Utilities::getShiny(pid, tid ^ sid),
+                                info);
+            if (filter.compareState(static_cast<const SearcherState &>(state)))
             {
                 std::lock_guard<std::mutex> guard(mutex);
                 results.emplace_back(state);
@@ -333,7 +289,16 @@ std::vector<SearcherState> GameCubeSearcher::searchColoShadow(u8 hp, u8 atk, u8 
 {
     std::vector<SearcherState> states;
     const PersonalInfo *info = shadowTemplate->getInfo();
-    std::array<u8, 6> ivs = { hp, atk, def, spa, spd, spe };
+
+    std::array<u8, 6> ivs;
+    if (shadowTemplate->getType() == ShadowType::EReader)
+    {
+        ivs.fill(0);
+    }
+    else
+    {
+        ivs = { hp, atk, def, spa, spd, spe };
+    }
 
     u32 seeds[6];
     int size = LCRNGReverse::recoverXDRNGIV(hp, atk, def, spa, spd, spe, seeds);
@@ -374,9 +339,9 @@ std::vector<SearcherState> GameCubeSearcher::searchColoShadow(u8 hp, u8 atk, u8 
                 i++;
             }
 
-            SearcherState state(seed, pid, ivs, ability, getGender(pid, info), shadowTemplate->getLevel(), nature, getShiny(pid, tsv),
-                                info);
-            if (filter.compareState(state))
+            SearcherState state(seed, pid, ivs, ability, Utilities::getGender(pid, info), shadowTemplate->getLevel(), nature,
+                                Utilities::getShiny(pid, tsv), info);
+            if (filter.compareState(static_cast<const SearcherState &>(state)))
             {
                 states.emplace_back(state);
             }
@@ -457,8 +422,8 @@ std::vector<SearcherState> GameCubeSearcher::searchGalesShadow(u8 hp, u8 atk, u8
                 i++;
             }
 
-            SearcherState state(seed, pid, ivs, ability, getGender(pid, info), shadowTemplate->getLevel(), nature, 0, info);
-            if (filter.compareState(state))
+            SearcherState state(seed, pid, ivs, ability, Utilities::getGender(pid, info), shadowTemplate->getLevel(), nature, 0, info);
+            if (filter.compareState(static_cast<const SearcherState &>(state)))
             {
                 states.emplace_back(state);
             }
@@ -536,9 +501,10 @@ std::vector<SearcherState> GameCubeSearcher::searchNonLock(u8 hp, u8 atk, u8 def
             }
 
             XDRNG test(temp);
+
             temp.advance(2);
             tsv = temp.nextUShort() ^ temp.nextUShort();
-            seed = temp.next();
+            seed = temp.advance(3);
 
             // This TSV better end up on the original Umbreon PID we found
             // The only reason this wouldn't be true is if we get some extra rerolls from a PID being shiny
@@ -593,8 +559,9 @@ std::vector<SearcherState> GameCubeSearcher::searchNonLock(u8 hp, u8 atk, u8 def
 
         ability &= info->getAbility(0) != info->getAbility(1);
 
-        SearcherState state(seed, pid, ivs, ability, getGender(pid, info), staticTemplate->getLevel(), nature, getShiny(pid, tsv), info);
-        if (filter.compareState(state))
+        SearcherState state(seed, pid, ivs, ability, Utilities::getGender(pid, info), staticTemplate->getLevel(), nature,
+                            Utilities::getShiny(pid, tsv), info);
+        if (filter.compareState(static_cast<const SearcherState &>(state)))
         {
             states.emplace_back(state);
         }

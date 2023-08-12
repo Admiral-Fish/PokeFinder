@@ -64,7 +64,7 @@ void StaticSearcher4Test::searchMethod1_data()
     {
         QTest::newRow(d["name"].get<std::string>().data())
             << d["min"].get<IVs>() << d["max"].get<IVs>() << d["minAdvance"].get<u32>() << d["maxAdvance"].get<u32>()
-            << d["minDelay"].get<u32>() << d["maxDelay"].get<u32>() << getGame(d["version"].get<std::string>()) << d["category"].get<int>()
+            << d["minDelay"].get<u32>() << d["maxDelay"].get<u32>() << d["version"].get<Game>() << d["category"].get<int>()
             << d["pokemon"].get<int>() << d["results"].get<int>();
     }
 }
@@ -91,7 +91,7 @@ void StaticSearcher4Test::searchMethod1()
     Profile4 profile("-", version, 12345, 54321, false);
 
     const StaticTemplate4 *staticTemplate = Encounters4::getStaticEncounter(category, pokemon);
-    StateFilter4 filter(255, 255, 255, false, min, max, natures, powers);
+    StateFilter filter(255, 255, 255, false, min, max, natures, powers);
     StaticSearcher4 searcher(minAdvance, maxAdvance, minDelay, maxDelay, Method::Method1, Lead::None, profile, filter);
 
     searcher.startSearch(min, max, staticTemplate);
@@ -128,8 +128,8 @@ void StaticSearcher4Test::searchMethodJ_data()
     {
         QTest::newRow(d["name"].get<std::string>().data())
             << d["min"].get<IVs>() << d["max"].get<IVs>() << d["minAdvance"].get<u32>() << d["maxAdvance"].get<u32>()
-            << d["minDelay"].get<u32>() << d["maxDelay"].get<u32>() << getGame(d["version"].get<std::string>())
-            << getLead(d["lead"].get<std::string>()) << d["category"].get<int>() << d["pokemon"].get<int>() << d["results"].get<int>();
+            << d["minDelay"].get<u32>() << d["maxDelay"].get<u32>() << d["version"].get<Game>() << d["lead"].get<Lead>()
+            << d["category"].get<int>() << d["pokemon"].get<int>() << d["results"].get<int>();
     }
 }
 
@@ -156,7 +156,7 @@ void StaticSearcher4Test::searchMethodJ()
     Profile4 profile("-", version, 12345, 54321, false);
 
     const StaticTemplate4 *staticTemplate = Encounters4::getStaticEncounter(category, pokemon);
-    StateFilter4 filter(255, 255, 255, false, min, max, natures, powers);
+    StateFilter filter(255, 255, 255, false, min, max, natures, powers);
     StaticSearcher4 searcher(minAdvance, maxAdvance, minDelay, maxDelay, Method::MethodJ, lead, profile, filter);
 
     searcher.startSearch(min, max, staticTemplate);
@@ -194,8 +194,8 @@ void StaticSearcher4Test::searchMethodK_data()
     {
         QTest::newRow(d["name"].get<std::string>().data())
             << d["min"].get<IVs>() << d["max"].get<IVs>() << d["minAdvance"].get<u32>() << d["maxAdvance"].get<u32>()
-            << d["minDelay"].get<u32>() << d["maxDelay"].get<u32>() << getGame(d["version"].get<std::string>())
-            << getLead(d["lead"].get<std::string>()) << d["category"].get<int>() << d["pokemon"].get<int>() << d["results"].get<int>();
+            << d["minDelay"].get<u32>() << d["maxDelay"].get<u32>() << d["version"].get<Game>() << d["lead"].get<Lead>()
+            << d["category"].get<int>() << d["pokemon"].get<int>() << d["results"].get<int>();
     }
 }
 
@@ -222,7 +222,7 @@ void StaticSearcher4Test::searchMethodK()
     Profile4 profile("-", version, 12345, 54321, false);
 
     const StaticTemplate4 *staticTemplate = Encounters4::getStaticEncounter(category, pokemon);
-    StateFilter4 filter(255, 255, 255, false, min, max, natures, powers);
+    StateFilter filter(255, 255, 255, false, min, max, natures, powers);
     StaticSearcher4 searcher(minAdvance, maxAdvance, minDelay, maxDelay, Method::MethodK, lead, profile, filter);
 
     searcher.startSearch(min, max, staticTemplate);

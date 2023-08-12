@@ -25,7 +25,7 @@
 #include <string>
 #include <vector>
 
-enum class Buttons: u16;
+enum class Buttons : u16;
 enum class Game : u32;
 
 /**

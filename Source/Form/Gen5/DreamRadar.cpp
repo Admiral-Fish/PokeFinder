@@ -74,6 +74,20 @@ DreamRadar::DreamRadar(QWidget *parent) : QWidget(parent), ui(new Ui::DreamRadar
     ui->filterGenerator->disableControls(Controls::EncounterSlots);
     ui->filterSearcher->disableControls(Controls::EncounterSlots | Controls::DisableFilter);
 
+    ui->comboBoxGeneratorSpecie1->enableAutoComplete();
+    ui->comboBoxGeneratorSpecie2->enableAutoComplete();
+    ui->comboBoxGeneratorSpecie3->enableAutoComplete();
+    ui->comboBoxGeneratorSpecie4->enableAutoComplete();
+    ui->comboBoxGeneratorSpecie5->enableAutoComplete();
+    ui->comboBoxGeneratorSpecie6->enableAutoComplete();
+
+    ui->comboBoxSearcherSpecie1->enableAutoComplete();
+    ui->comboBoxSearcherSpecie2->enableAutoComplete();
+    ui->comboBoxSearcherSpecie3->enableAutoComplete();
+    ui->comboBoxSearcherSpecie4->enableAutoComplete();
+    ui->comboBoxSearcherSpecie5->enableAutoComplete();
+    ui->comboBoxSearcherSpecie6->enableAutoComplete();
+
     connect(ui->comboBoxProfiles, &QComboBox::currentIndexChanged, this, &DreamRadar::profileIndexChanged);
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &DreamRadar::generate);
     connect(ui->pushButtonSearch, &QPushButton::clicked, this, &DreamRadar::search);
@@ -281,7 +295,7 @@ void DreamRadar::generate()
     u32 initialAdvances = ui->textBoxGeneratorInitialAdvances->getUInt();
     u32 maxAdvances = ui->textBoxGeneratorMaxAdvances->getUInt();
 
-    StateFilter5 filter = ui->filterGenerator->getFilter<StateFilter5>();
+    StateFilter filter = ui->filterGenerator->getFilter<StateFilter>();
     DreamRadarGenerator generator(initialAdvances, maxAdvances, ui->spinBoxGeneratorBadges->value(), radarTemplates, *currentProfile,
                                   filter);
 
@@ -291,11 +305,20 @@ void DreamRadar::generate()
 
 void DreamRadar::search()
 {
+    Date start = ui->dateEditSearcherStartDate->getDate();
+    Date end = ui->dateEditSearcherEndDate->getDate();
+    if (start > end)
+    {
+        QMessageBox msg(QMessageBox::Warning, tr("Invalid date range"), tr("Start date is after end date"));
+        msg.exec();
+        return;
+    }
+
     auto radarTemplates = getSearcherSettings();
     if (radarTemplates.empty())
     {
-        QMessageBox message(QMessageBox::Warning, tr("Missing settings"), tr("Enter information for at least 1 slot"));
-        message.exec();
+        QMessageBox msg(QMessageBox::Warning, tr("Missing settings"), tr("Enter information for at least 1 slot"));
+        msg.exec();
         return;
     }
 
@@ -307,15 +330,12 @@ void DreamRadar::search()
     u32 initialAdvances = ui->textBoxSearcherInitialAdvances->getUInt();
     u32 maxAdvances = ui->textBoxSearcherMaxAdvances->getUInt();
 
-    StateFilter5 filter = ui->filterSearcher->getFilter<StateFilter5>();
+    StateFilter filter = ui->filterSearcher->getFilter<StateFilter>();
     DreamRadarGenerator generator(initialAdvances, maxAdvances, ui->spinBoxSearcherBadges->value(), radarTemplates, *currentProfile,
                                   filter);
-    auto *searcher = new Searcher5<DreamRadarState>(*currentProfile);
+    auto *searcher = new Searcher5<DreamRadarGenerator, DreamRadarState>(generator, *currentProfile);
 
-    Date start = ui->dateEditSearcherStartDate->getDate();
-    Date end = ui->dateEditSearcherEndDate->getDate();
-
-    int maxProgress = Keypresses::getKeyPresses(*currentProfile).size();
+    int maxProgress = Keypresses::getKeypresses(*currentProfile).size();
     maxProgress *= start.daysTo(end) + 1;
     maxProgress *= currentProfile->getTimer0Max() - currentProfile->getTimer0Min() + 1;
     ui->progressBar->setRange(0, maxProgress);
@@ -323,7 +343,7 @@ void DreamRadar::search()
     QSettings settings;
     int threads = settings.value("settings/threads").toInt();
 
-    auto *thread = QThread::create([=] { searcher->startSearch(generator, threads, start, end); });
+    auto *thread = QThread::create([=] { searcher->startSearch(threads, start, end); });
     connect(thread, &QThread::finished, thread, &QThread::deleteLater);
     connect(ui->pushButtonCancel, &QPushButton::clicked, [searcher] { searcher->cancelSearch(); });
 

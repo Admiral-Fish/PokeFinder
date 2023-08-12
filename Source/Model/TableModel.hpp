@@ -46,9 +46,9 @@ public:
     void addItem(const Item &item)
     {
         int i = rowCount();
-        emit beginInsertRows(QModelIndex(), i, i);
+        beginInsertRows(QModelIndex(), i, i);
         model.emplace_back(item);
-        emit endInsertRows();
+        endInsertRows();
     }
 
     /**
@@ -61,9 +61,9 @@ public:
         if (!items.empty())
         {
             int i = rowCount();
-            emit beginInsertRows(QModelIndex(), i, i + static_cast<int>(items.size()) - 1);
+            beginInsertRows(QModelIndex(), i, i + static_cast<int>(items.size()) - 1);
             model.insert(model.end(), items.begin(), items.end());
-            emit endInsertRows();
+            endInsertRows();
         }
     }
 
@@ -74,10 +74,10 @@ public:
     {
         if (!model.empty())
         {
-            emit beginRemoveRows(QModelIndex(), 0, rowCount() - 1);
+            beginRemoveRows(QModelIndex(), 0, rowCount() - 1);
             model.clear();
             model.shrink_to_fit();
-            emit endRemoveRows();
+            endRemoveRows();
         }
     }
 
@@ -122,10 +122,10 @@ public:
      */
     void removeItem(int row)
     {
-        emit beginRemoveRows(QModelIndex(), row, row);
+        beginRemoveRows(QModelIndex(), row, row);
         model.erase(model.begin() + row);
         model.shrink_to_fit();
-        emit endRemoveRows();
+        endRemoveRows();
     }
 
     /**

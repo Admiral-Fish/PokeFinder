@@ -35,7 +35,7 @@ using vuint32x4 = uint32x4_t;
 using vuint32x4 = std::array<u32, 4>;
 #endif
 
-union vuint128 {
+union alignas(16) vuint128 {
     u32 uint32[4];
     u64 uint64[2];
     vuint32x4 uint128;

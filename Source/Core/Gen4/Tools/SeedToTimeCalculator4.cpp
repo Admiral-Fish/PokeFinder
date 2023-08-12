@@ -41,7 +41,7 @@ namespace SeedToTimeCalculator4
                 {
                     for (u8 second = 0; second < 60; second++)
                     {
-                        if (ab == (month * day + minute + second))
+                        if (ab == ((month * day + minute + second) & 0xFF))
                         {
                             if (!forceSecond || second == forcedSecond)
                             {

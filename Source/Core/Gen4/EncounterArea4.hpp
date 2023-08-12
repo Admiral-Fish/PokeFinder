@@ -44,7 +44,7 @@ public:
     }
 
     /**
-     * @brief Calculates the level of a pokemon. Takes into account any modification from Pressure
+     * @brief Calculates the level of a pokemon
      *
      * @tparam diff Whether min and max levels are different
      * @tparam mod Whether the max calculation is done without mod
@@ -92,7 +92,7 @@ public:
     }
 
     /**
-     * @brief Calculates the level of a pokemon. Used by WildSearcher3 and assume Pressure is being used
+     * @brief Calculates the level of a pokemon
      *
      * @tparam diff Whether min and max levels are different
      * @param encounterSlot Pokemon slot

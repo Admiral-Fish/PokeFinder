@@ -21,8 +21,8 @@
 #define DREAMRADARGENERATOR_HPP
 
 #include <Core/Gen5/DreamRadarTemplate.hpp>
-#include <Core/Gen5/Filters/StateFilter5.hpp>
 #include <Core/Gen5/Profile5.hpp>
+#include <Core/Parents/Filters/StateFilter.hpp>
 #include <Core/Parents/Generators/Generator.hpp>
 
 class DreamRadarState;
@@ -30,7 +30,7 @@ class DreamRadarState;
 /**
  * @brief Dream radar generator for Gen 5
  */
-class DreamRadarGenerator : public Generator<Profile5, StateFilter5>
+class DreamRadarGenerator : public Generator<Profile5, StateFilter>
 {
 public:
     /**
@@ -44,7 +44,7 @@ public:
      * @param filter State filter
      */
     DreamRadarGenerator(u32 initialAdvances, u32 maxAdvances, u8 badgeCount, const std::vector<DreamRadarTemplate> &radarTemplates,
-                        const Profile5 &profile, const StateFilter5 &filter);
+                        const Profile5 &profile, const StateFilter &filter);
 
     /**
      * @brief Generates states

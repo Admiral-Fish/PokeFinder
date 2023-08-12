@@ -24,8 +24,11 @@
 
 struct JumpTable64
 {
-    u64 add[32];
-    u64 mult[32];
+    struct
+    {
+        u64 mult;
+        u64 add;
+    } jump[32];
 };
 
 extern const JumpTable64 BWRNGTable;
@@ -100,6 +103,26 @@ public:
     }
 
     /**
+     * @brief Returns the adder of the LCRNG
+     *
+     * @return LCRNG adder value
+     */
+    constexpr static u64 getAdd()
+    {
+        return add;
+    }
+
+    /**
+     * @brief Returns the multipler of the LCRNG
+     *
+     * @return LCRNG multipler value
+     */
+    constexpr static u64 getMult()
+    {
+        return mult;
+    }
+
+    /**
      * @brief Returns the current PRNG state
      *
      * @return PRNG value
@@ -134,7 +157,7 @@ public:
         {
             if (advances & 1)
             {
-                seed = seed * table->mult[i] + table->add[i];
+                seed = seed * table->jump[i].mult + table->jump[i].add;
             }
         }
 

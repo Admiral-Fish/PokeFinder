@@ -240,8 +240,8 @@ void ProfileCalibrator5::search()
     auto language = static_cast<Language>(ui->comboBoxLanguage->getCurrentInt());
     auto dsType = static_cast<DSType>(ui->comboBoxDSType->getCurrentInt());
     u64 mac = ui->textBoxMACAddress->getULong();
-    auto keypress = static_cast<Buttons>(ui->comboBoxKeypress1->getCurrentUShort() | ui->comboBoxKeypress2->getCurrentUShort()
-                                         | ui->comboBoxKeypress3->getCurrentUShort());
+    auto buttons = static_cast<Buttons>(ui->comboBoxKeypress1->getCurrentUShort() | ui->comboBoxKeypress2->getCurrentUShort()
+                                        | ui->comboBoxKeypress3->getCurrentUShort());
 
     if (minSeconds > maxSeconds || minVCount > maxVCount || minTimer0 > maxTimer0 || minGxStat > maxGxStat || minVFrame > maxVFrame)
     {
@@ -266,7 +266,7 @@ void ProfileCalibrator5::search()
                                      static_cast<u8>(ui->spinBoxMaxSpD->value()), static_cast<u8>(ui->spinBoxMaxSpe->value()) };
 
         searcher = new ProfileIVSearcher5(dt.getDate(), dt.getTime(), minSeconds, maxSeconds, minVCount, maxVCount, minTimer0, maxTimer0,
-                                          minGxStat, maxGxStat, softReset, version, language, dsType, mac, keypress, minIVs, maxIVs);
+                                          minGxStat, maxGxStat, softReset, version, language, dsType, mac, buttons, minIVs, maxIVs);
     }
     else if (ui->tabWidgetType->currentIndex() == 1) // Needle Search
     {
@@ -281,14 +281,14 @@ void ProfileCalibrator5::search()
         }
 
         searcher = new ProfileNeedleSearcher5(dt.getDate(), dt.getTime(), minSeconds, maxSeconds, minVCount, maxVCount, minTimer0,
-                                              maxTimer0, minGxStat, maxGxStat, softReset, version, language, dsType, mac, keypress, needles,
+                                              maxTimer0, minGxStat, maxGxStat, softReset, version, language, dsType, mac, buttons, needles,
                                               unovaLink, memoryLink);
     }
     else // Seed search
     {
         u64 seed = ui->textBoxSeed->getULong();
         searcher = new ProfileSeedSearcher5(dt.getDate(), dt.getTime(), minSeconds, maxSeconds, minVCount, maxVCount, minTimer0, maxTimer0,
-                                            minGxStat, maxGxStat, softReset, version, language, dsType, mac, keypress, seed);
+                                            minGxStat, maxGxStat, softReset, version, language, dsType, mac, buttons, seed);
     }
 
     int maxProgress = (maxTimer0 - minTimer0 + 1) * (maxGxStat - minGxStat + 1) * (maxVFrame - minVFrame + 1);

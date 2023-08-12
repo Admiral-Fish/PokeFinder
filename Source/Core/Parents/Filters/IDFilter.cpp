@@ -19,7 +19,6 @@
 
 #include "IDFilter.hpp"
 #include <Core/Gen8/States/IDState8.hpp>
-#include <Core/Parents/States/IDState.hpp>
 #include <algorithm>
 
 IDFilter::IDFilter(const std::vector<u16> &tidFilter, const std::vector<u16> &sidFilter, const std::vector<u16> &tsvFilter,
@@ -28,7 +27,7 @@ IDFilter::IDFilter(const std::vector<u16> &tidFilter, const std::vector<u16> &si
 {
 }
 
-bool IDFilter::compare(const IDState &state) const
+bool IDFilter::compareState(const IDState &state) const
 {
     if (!tidFilter.empty() && std::find(tidFilter.begin(), tidFilter.end(), state.getTID()) == tidFilter.end())
     {
@@ -48,7 +47,7 @@ bool IDFilter::compare(const IDState &state) const
     return true;
 }
 
-bool IDFilter::compare(const IDState8 &state) const
+bool IDFilter::compareState(const IDState8 &state) const
 {
     if (!tidFilter.empty() && std::find(tidFilter.begin(), tidFilter.end(), state.getTID()) == tidFilter.end())
     {

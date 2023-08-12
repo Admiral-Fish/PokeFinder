@@ -51,8 +51,8 @@ void StaticSearcher3Test::search_data()
     for (const auto &d : data)
     {
         QTest::newRow(d["name"].get<std::string>().data())
-            << d["min"].get<IVs>() << d["max"].get<IVs>() << getGame(d["version"].get<std::string>())
-            << getMethod(d["method"].get<std::string>()) << d["category"].get<int>() << d["pokemon"].get<int>() << d["results"].get<int>();
+            << d["min"].get<IVs>() << d["max"].get<IVs>() << d["version"].get<Game>() << d["method"].get<Method>()
+            << d["category"].get<int>() << d["pokemon"].get<int>() << d["results"].get<int>();
     }
 }
 
@@ -75,7 +75,7 @@ void StaticSearcher3Test::search()
     Profile3 profile("-", version, 12345, 54321, false);
 
     const StaticTemplate *staticTemplate = Encounters3::getStaticEncounter(category, pokemon);
-    StateFilter3 filter(255, 255, 255, false, min, max, natures, powers);
+    StateFilter filter(255, 255, 255, false, min, max, natures, powers);
     StaticSearcher3 searcher(method, profile, filter);
 
     searcher.startSearch(min, max, staticTemplate);

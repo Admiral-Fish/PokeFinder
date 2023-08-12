@@ -42,7 +42,7 @@ void IDGenerator5Test::generate_data()
     for (const auto &d : data)
     {
         QTest::newRow(d["name"].get<std::string>().data())
-            << d["seed"].get<u64>() << getGame(d["version"].get<std::string>()) << d["results"].get<json>().dump();
+            << d["seed"].get<u64>() << d["version"].get<Game>() << d["results"].get<json>().dump();
     }
 }
 
@@ -58,7 +58,7 @@ void IDGenerator5Test::generate()
                      Language::English);
 
     IDFilter filter({}, {}, {}, {});
-    IDGenerator5 generator(0, 9, profile, filter);
+    IDGenerator5 generator(0, 9, 0, false, false, profile, filter);
 
     auto states = generator.generate(seed);
     QCOMPARE(states.size(), j.size());

@@ -64,6 +64,9 @@ HiddenGrotto::HiddenGrotto(QWidget *parent) : QWidget(parent), ui(new Ui::Hidden
     ui->checkListSearcherGroup->setup();
     ui->checkListSearcherGender->setup();
 
+    ui->comboBoxGeneratorLocation->enableAutoComplete();
+    ui->comboBoxSearcherLocation->enableAutoComplete();
+
     connect(ui->comboBoxGeneratorLocation, &QComboBox::currentIndexChanged, this, &HiddenGrotto::generatorLocationIndexChanged);
     connect(ui->comboBoxSearcherLocation, &QComboBox::currentIndexChanged, this, &HiddenGrotto::searcherLocationIndexChanged);
     connect(ui->comboBoxGeneratorPokemon, &QComboBox::currentIndexChanged, this, &HiddenGrotto::generatorUpdateFilter);
@@ -230,6 +233,15 @@ void HiddenGrotto::generatorUpdateFilter()
 
 void HiddenGrotto::search()
 {
+    Date start = ui->dateEditSearcherStartDate->getDate();
+    Date end = ui->dateEditSearcherEndDate->getDate();
+    if (start > end)
+    {
+        QMessageBox msg(QMessageBox::Warning, tr("Invalid date range"), tr("Start date is after end date"));
+        msg.exec();
+        return;
+    }
+
     searcherModel->clearModel();
     ui->pushButtonSearch->setEnabled(false);
     ui->pushButtonCancel->setEnabled(true);
@@ -241,12 +253,9 @@ void HiddenGrotto::search()
                               ui->checkListSearcherGroup->getCheckedArray<4>());
     HiddenGrottoGenerator generator(0, maxAdvances, 0, powerLevel, encounter[ui->comboBoxSearcherLocation->getCurrentInt()],
                                     *currentProfile, filter);
-    auto *searcher = new Searcher5<HiddenGrottoState>(*currentProfile);
+    auto *searcher = new Searcher5<HiddenGrottoGenerator, HiddenGrottoState>(generator, *currentProfile);
 
-    Date start = ui->dateEditSearcherStartDate->getDate();
-    Date end = ui->dateEditSearcherEndDate->getDate();
-
-    int maxProgress = Keypresses::getKeyPresses(*currentProfile).size();
+    int maxProgress = Keypresses::getKeypresses(*currentProfile).size();
     maxProgress *= start.daysTo(end) + 1;
     maxProgress *= currentProfile->getTimer0Max() - currentProfile->getTimer0Min() + 1;
     ui->progressBar->setRange(0, maxProgress);
@@ -254,7 +263,7 @@ void HiddenGrotto::search()
     QSettings settings;
     int threads = settings.value("settings/threads").toInt();
 
-    auto *thread = QThread::create([=] { searcher->startSearch(generator, threads, start, end); });
+    auto *thread = QThread::create([=] { searcher->startSearch(threads, start, end); });
     connect(thread, &QThread::finished, thread, &QThread::deleteLater);
     connect(ui->pushButtonCancel, &QPushButton::clicked, [searcher] { searcher->cancelSearch(); });
 

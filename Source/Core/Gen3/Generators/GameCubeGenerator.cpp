@@ -25,43 +25,8 @@
 #include <Core/Parents/PersonalInfo.hpp>
 #include <Core/Parents/States/State.hpp>
 #include <Core/RNG/LCRNG.hpp>
+#include <Core/Util/Utilities.hpp>
 #include <algorithm>
-
-static u8 getGender(u32 pid, const PersonalInfo *info)
-{
-    switch (info->getGender())
-    {
-    case 255: // Genderless
-        return 2;
-        break;
-    case 254: // Female
-        return 1;
-        break;
-    case 0: // Male
-        return 0;
-        break;
-    default: // Random gender
-        return (pid & 255) < info->getGender();
-        break;
-    }
-}
-
-static u8 getShiny(u32 pid, u16 tsv)
-{
-    u16 psv = (pid >> 16) ^ (pid & 0xffff);
-    if (tsv == psv)
-    {
-        return 2; // Square
-    }
-    else if ((tsv ^ psv) < 8)
-    {
-        return 1; // Star
-    }
-    else
-    {
-        return 0;
-    }
-}
 
 static bool isShiny(u16 high, u16 low, u16 tsv)
 {
@@ -69,7 +34,7 @@ static bool isShiny(u16 high, u16 low, u16 tsv)
 }
 
 GameCubeGenerator::GameCubeGenerator(u32 initialAdvances, u32 maxAdvances, u32 delay, Method method, bool unset, const Profile3 &profile,
-                                     const StateFilter3 &filter) :
+                                     const StateFilter &filter) :
     Generator(initialAdvances, maxAdvances, delay, method, profile, filter), unset(unset)
 {
 }
@@ -146,9 +111,9 @@ std::vector<GeneratorState> GameCubeGenerator::generateChannel(u32 seed, const S
         ivs[3] = go.nextUShort() >> 11;
         ivs[4] = go.nextUShort() >> 11;
 
-        GeneratorState state(initialAdvances + cnt, pid, ivs, pid & 1, 2, staticTemplate->getLevel(), pid % 25, getShiny(pid, tid ^ sid),
-                             info);
-        if (filter.compareState(state))
+        GeneratorState state(initialAdvances + cnt, pid, ivs, pid & 1, 2, staticTemplate->getLevel(), pid % 25,
+                             Utilities::getShiny(pid, tid ^ sid), info);
+        if (filter.compareState(static_cast<const State &>(state)))
         {
             states.emplace_back(state);
         }
@@ -224,6 +189,8 @@ std::vector<GeneratorState> GameCubeGenerator::generateColoShadow(u32 seed, cons
             }
         }
 
+        ability &= info->getAbility(0) != info->getAbility(1);
+
         u32 pid = (high << 16) | low;
         std::array<u8, 6> ivs;
         ivs[0] = iv1 & 31;
@@ -233,9 +200,9 @@ std::vector<GeneratorState> GameCubeGenerator::generateColoShadow(u32 seed, cons
         ivs[4] = (iv2 >> 10) & 31;
         ivs[5] = iv2 & 31;
 
-        GeneratorState state(initialAdvances + cnt, pid, ivs, ability, getGender(pid, info), shadowTemplate->getLevel(), pid % 25,
-                             getShiny(pid, tsv), info);
-        if (filter.compareState(state))
+        GeneratorState state(initialAdvances + cnt, pid, ivs, ability, Utilities::getGender(pid, info), shadowTemplate->getLevel(),
+                             pid % 25, Utilities::getShiny(pid, tsv), info);
+        if (filter.compareState(static_cast<const State &>(state)))
         {
             states.emplace_back(state);
         }
@@ -286,16 +253,11 @@ std::vector<GeneratorState> GameCubeGenerator::generateGalesShadow(u32 seed, con
             }
         }
 
-        if (shadowTemplate->getType() == ShadowType::SecondShadow || shadowTemplate->getType() == ShadowType::Salamence)
+        // Check for shiny lock with unset
+        if ((shadowTemplate->getType() == ShadowType::SecondShadow || shadowTemplate->getType() == ShadowType::Salamence) && unset)
         {
-            go.advance(5); // Set and Unset start the same
-
-            // Check for shiny lock with unset
-            if (unset)
+            while (isShiny(go.nextUShort(), go.nextUShort(), tsv))
             {
-                while (isShiny(go.nextUShort(), go.nextUShort(), tsv))
-                {
-                }
             }
         }
 
@@ -323,9 +285,9 @@ std::vector<GeneratorState> GameCubeGenerator::generateGalesShadow(u32 seed, con
         ivs[4] = (iv2 >> 10) & 31;
         ivs[5] = iv2 & 31;
 
-        GeneratorState state(initialAdvances + cnt, pid, ivs, ability, getGender(pid, info), shadowTemplate->getLevel(), pid % 25,
-                             getShiny(pid, tsv), info);
-        if (filter.compareState(state))
+        GeneratorState state(initialAdvances + cnt, pid, ivs, ability, Utilities::getGender(pid, info), shadowTemplate->getLevel(),
+                             pid % 25, Utilities::getShiny(pid, tsv), info);
+        if (filter.compareState(static_cast<const State &>(state)))
         {
             states.emplace_back(state);
         }
@@ -421,9 +383,9 @@ std::vector<GeneratorState> GameCubeGenerator::generateNonLock(u32 seed, const S
         ivs[4] = (iv2 >> 10) & 31;
         ivs[5] = iv2 & 31;
 
-        GeneratorState state(initialAdvances + cnt, pid, ivs, ability, getGender(pid, info), staticTemplate->getLevel(), pid % 25,
-                             getShiny(pid, actualTSV), info);
-        if (filter.compareState(state))
+        GeneratorState state(initialAdvances + cnt, pid, ivs, ability, Utilities::getGender(pid, info), staticTemplate->getLevel(),
+                             pid % 25, Utilities::getShiny(pid, actualTSV), info);
+        if (filter.compareState(static_cast<const State &>(state)))
         {
             states.emplace_back(state);
         }

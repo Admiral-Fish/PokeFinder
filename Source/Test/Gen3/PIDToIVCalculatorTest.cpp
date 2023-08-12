@@ -26,7 +26,7 @@
 
 static bool operator==(const PIDToIVState &left, const json &right)
 {
-    return left.getSeed() == right["seed"].get<u32>() && left.getMethod() == getMethod(right["method"].get<std::string>())
+    return left.getSeed() == right["seed"].get<u32>() && left.getMethod() == right["method"].get<Method>()
         && left.getIVs() == right["ivs"].get<std::array<u8, 6>>();
 }
 

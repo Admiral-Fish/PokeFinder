@@ -52,9 +52,8 @@ void StaticGenerator4Test::generateMethod1_data()
     json data = readData("static4", "staticgenerator4", "generateMethod1");
     for (const auto &d : data)
     {
-        QTest::newRow(d["name"].get<std::string>().data())
-            << d["seed"].get<u32>() << getGame(d["version"].get<std::string>()) << d["category"].get<int>() << d["pokemon"].get<int>()
-            << d["results"].get<json>().dump();
+        QTest::newRow(d["name"].get<std::string>().data()) << d["seed"].get<u32>() << d["version"].get<Game>() << d["category"].get<int>()
+                                                           << d["pokemon"].get<int>() << d["results"].get<json>().dump();
     }
 }
 
@@ -83,7 +82,7 @@ void StaticGenerator4Test::generateMethod1()
     Profile4 profile("-", version, 12345, 54321, false);
 
     const StaticTemplate4 *staticTemplate = Encounters4::getStaticEncounter(category, pokemon);
-    StateFilter4 filter(255, 255, 255, false, min, max, natures, powers);
+    StateFilter filter(255, 255, 255, false, min, max, natures, powers);
     StaticGenerator4 generator(0, 9, 0, Method::Method1, Lead::None, profile, filter);
 
     auto states = generator.generate(seed, staticTemplate);
@@ -109,8 +108,8 @@ void StaticGenerator4Test::generateMethodJ_data()
     for (const auto &d : data)
     {
         QTest::newRow(d["name"].get<std::string>().data())
-            << d["seed"].get<u32>() << getGame(d["version"].get<std::string>()) << d["category"].get<int>() << d["pokemon"].get<int>()
-            << getLead(d["lead"].get<std::string>()) << d["results"].get<json>().dump();
+            << d["seed"].get<u32>() << d["version"].get<Game>() << d["category"].get<int>() << d["pokemon"].get<int>()
+            << d["lead"].get<Lead>() << d["results"].get<json>().dump();
     }
 }
 
@@ -140,7 +139,7 @@ void StaticGenerator4Test::generateMethodJ()
     Profile4 profile("-", version, 12345, 54321, false);
 
     const StaticTemplate4 *staticTemplate = Encounters4::getStaticEncounter(category, pokemon);
-    StateFilter4 filter(255, 255, 255, false, min, max, natures, powers);
+    StateFilter filter(255, 255, 255, false, min, max, natures, powers);
     StaticGenerator4 generator(0, 9, 0, Method::MethodJ, lead, profile, filter);
 
     auto states = generator.generate(seed, staticTemplate);
@@ -166,8 +165,8 @@ void StaticGenerator4Test::generateMethodK_data()
     for (const auto &d : data)
     {
         QTest::newRow(d["name"].get<std::string>().data())
-            << d["seed"].get<u32>() << getGame(d["version"].get<std::string>()) << d["category"].get<int>() << d["pokemon"].get<int>()
-            << getLead(d["lead"].get<std::string>()) << d["results"].get<json>().dump();
+            << d["seed"].get<u32>() << d["version"].get<Game>() << d["category"].get<int>() << d["pokemon"].get<int>()
+            << d["lead"].get<Lead>() << d["results"].get<json>().dump();
     }
 }
 
@@ -197,7 +196,7 @@ void StaticGenerator4Test::generateMethodK()
     Profile4 profile("-", version, 12345, 54321, false);
 
     const StaticTemplate4 *staticTemplate = Encounters4::getStaticEncounter(category, pokemon);
-    StateFilter4 filter(255, 255, 255, false, min, max, natures, powers);
+    StateFilter filter(255, 255, 255, false, min, max, natures, powers);
     StaticGenerator4 generator(0, 9, 0, Method::MethodK, lead, profile, filter);
 
     auto states = generator.generate(seed, staticTemplate);

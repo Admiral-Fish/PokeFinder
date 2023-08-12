@@ -70,9 +70,8 @@ void WildSearcher4Test::searchMethodJ_data()
     {
         QTest::newRow(d["name"].get<std::string>().data())
             << d["min"].get<IVs>() << d["max"].get<IVs>() << d["minAdvance"].get<u32>() << d["maxAdvance"].get<u32>()
-            << d["minDelay"].get<u32>() << d["maxDelay"].get<u32>() << getGame(d["version"].get<std::string>())
-            << getEncounter(d["encounter"].get<std::string>()) << getLead(d["lead"].get<std::string>()) << d["location"].get<int>()
-            << d["results"].get<int>();
+            << d["minDelay"].get<u32>() << d["maxDelay"].get<u32>() << d["version"].get<Game>() << d["encounter"].get<Encounter>()
+            << d["lead"].get<Lead>() << d["location"].get<int>() << d["results"].get<int>();
     }
 }
 
@@ -108,7 +107,7 @@ void WildSearcher4Test::searchMethodJ()
     auto encounterArea = std::find_if(encounterAreas.begin(), encounterAreas.end(),
                                       [location](const EncounterArea4 &encounterArea) { return encounterArea.getLocation() == location; });
 
-    WildStateFilter4 filter(255, 255, 255, false, min, max, natures, powers, encounterSlots);
+    WildStateFilter filter(255, 255, 255, false, min, max, natures, powers, encounterSlots);
     WildSearcher4 searcher(minAdvance, maxAdvance, minDelay, maxDelay, Method::MethodJ, encounter, lead, false, *encounterArea, profile,
                            filter);
 
@@ -147,9 +146,8 @@ void WildSearcher4Test::searchMethodK_data()
     {
         QTest::newRow(d["name"].get<std::string>().data())
             << d["min"].get<IVs>() << d["max"].get<IVs>() << d["minAdvance"].get<u32>() << d["maxAdvance"].get<u32>()
-            << d["minDelay"].get<u32>() << d["maxDelay"].get<u32>() << getGame(d["version"].get<std::string>())
-            << getEncounter(d["encounter"].get<std::string>()) << getLead(d["lead"].get<std::string>()) << d["location"].get<int>()
-            << d["results"].get<int>();
+            << d["minDelay"].get<u32>() << d["maxDelay"].get<u32>() << d["version"].get<Game>() << d["encounter"].get<Encounter>()
+            << d["lead"].get<Lead>() << d["location"].get<int>() << d["results"].get<int>();
     }
 }
 
@@ -185,7 +183,7 @@ void WildSearcher4Test::searchMethodK()
     auto encounterArea = std::find_if(encounterAreas.begin(), encounterAreas.end(),
                                       [location](const EncounterArea4 &encounterArea) { return encounterArea.getLocation() == location; });
 
-    WildStateFilter4 filter(255, 255, 255, false, min, max, natures, powers, encounterSlots);
+    WildStateFilter filter(255, 255, 255, false, min, max, natures, powers, encounterSlots);
     WildSearcher4 searcher(minAdvance, maxAdvance, minDelay, maxDelay, Method::MethodK, encounter, lead, false, *encounterArea, profile,
                            filter);
 
@@ -226,9 +224,9 @@ void WildSearcher4Test::searchPokeRadar_data()
     {
         QTest::newRow(d["name"].get<std::string>().data())
             << d["min"].get<IVs>() << d["max"].get<IVs>() << d["minAdvance"].get<u32>() << d["maxAdvance"].get<u32>()
-            << d["minDelay"].get<u32>() << d["maxDelay"].get<u32>() << getGame(d["version"].get<std::string>())
-            << getEncounter(d["encounter"].get<std::string>()) << getLead(d["lead"].get<std::string>()) << d["location"].get<int>()
-            << d["shiny"].get<bool>() << d["index"].get<u8>() << d["results"].get<int>();
+            << d["minDelay"].get<u32>() << d["maxDelay"].get<u32>() << d["version"].get<Game>() << d["encounter"].get<Encounter>()
+            << d["lead"].get<Lead>() << d["location"].get<int>() << d["shiny"].get<bool>() << d["index"].get<u8>()
+            << d["results"].get<int>();
     }
 }
 
@@ -266,7 +264,7 @@ void WildSearcher4Test::searchPokeRadar()
     auto encounterArea = std::find_if(encounterAreas.begin(), encounterAreas.end(),
                                       [location](const EncounterArea4 &encounterArea) { return encounterArea.getLocation() == location; });
 
-    WildStateFilter4 filter(255, 255, 255, false, min, max, natures, powers, encounterSlots);
+    WildStateFilter filter(255, 255, 255, false, min, max, natures, powers, encounterSlots);
     WildSearcher4 searcher(minAdvance, maxAdvance, minDelay, maxDelay, Method::PokeRadar, encounter, lead, shiny, *encounterArea, profile,
                            filter);
 
