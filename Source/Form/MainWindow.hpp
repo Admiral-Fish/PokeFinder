@@ -30,6 +30,7 @@ class IDs3;
 class Static4;
 class Wild4;
 class Eggs4;
+class Event4;
 class IDs4;
 class Static5;
 class Event5;
@@ -83,6 +84,7 @@ private:
 
     // Gen 4
     Eggs4 *egg4 = nullptr;
+    Event4 *event4 = nullptr;
     IDs4 *ids4 = nullptr;
     Static4 *static4 = nullptr;
     Wild4 *wild4 = nullptr;
@@ -180,6 +182,12 @@ private slots:
      * @brief Opens the Gen 4 Egg window
      */
     void openEgg4();
+
+    // Gen 4
+    /**
+     * @brief Opens the Gen 4 Event window
+     */
+    void openEvent4();
 
     /**
      * @brief Opens the Gen 4 IDs window

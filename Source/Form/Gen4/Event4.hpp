@@ -17,24 +17,24 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef STATIC4_HPP
-#define STATIC4_HPP
+#ifndef EVENT4_HPP
+#define EVENT4_HPP
 
 #include <QWidget>
 
+class EventGeneratorModel4;
+class EventSearcherModel4;
 class Profile4;
-class StaticGeneratorModel4;
-class StaticSearcherModel4;
 
 namespace Ui
 {
-    class Static4;
+    class Event4;
 }
 
 /**
- * @brief Provides settings and filters to RNG static encounters in Gen 4 games
+ * @brief Provides settings and filters to RNG event encounters in Gen 4 games
  */
-class Static4 : public QWidget
+class Event4 : public QWidget
 {
     Q_OBJECT
 signals:
@@ -45,16 +45,16 @@ signals:
 
 public:
     /**
-     * @brief Construct a new Static4 object
+     * @brief Construct a new Event4 object
      *
      * @param parent Parent widget, which takes memory ownership
      */
-    Static4(QWidget *parent = nullptr);
+    Event4(QWidget *parent = nullptr);
 
     /**
-     * @brief Destroy the Static4 object
+     * @brief Destroy the Event4 object
      */
-    ~Static4() override;
+    ~Event4() override;
 
     /**
      * @brief Reloads profiles
@@ -62,32 +62,18 @@ public:
     void updateProfiles();
 
 private:
-    Ui::Static4 *ui;
+    Ui::Event4 *ui;
 
-    StaticGeneratorModel4 *generatorModel;
-    StaticSearcherModel4 *searcherModel;
-    std::vector<Profile4> profiles;
+    EventGeneratorModel4 *generatorModel;
+    EventSearcherModel4 *searcherModel;
     Profile4 *currentProfile;
+    std::vector<Profile4> profiles;
 
 private slots:
     /**
      * @brief Generates static encounters from a starting seed
      */
     void generate();
-
-    /**
-     * @brief Updates the pokemon listed
-     *
-     * @param index Category index
-     */
-    void generatorCategoryIndexChanged(int index);
-
-    /**
-     * @brief Updates the displayed information for a pokemon
-     *
-     * @param index Pokemon index
-     */
-    void generatorPokemonIndexChanged(int index);
 
     /**
      * @brief Updates displayed information for a profile
@@ -107,23 +93,9 @@ private slots:
     void search();
 
     /**
-     * @brief Updates the pokemon listed
-     *
-     * @param index Category index
-     */
-    void searcherCategoryIndexChanged(int index);
-
-    /**
-     * @brief Updates the displayed information for a pokemon
-     *
-     * @param index Pokemon index
-     */
-    void searcherPokemonIndexChanged(int index);
-
-    /**
      * @brief Opens seed to time. Provides current game version and seed from the selected tableview row.
      */
     void seedToTime();
 };
 
-#endif // STATIC4_HPP
+#endif // EVENT4_HPP

@@ -32,6 +32,7 @@
 #include <Form/Gen3/Tools/SpindaPainter.hpp>
 #include <Form/Gen3/Wild3.hpp>
 #include <Form/Gen4/Eggs4.hpp>
+#include <Form/Gen4/Event4.hpp>
 #include <Form/Gen4/IDs4.hpp>
 #include <Form/Gen4/Profile/ProfileManager4.hpp>
 #include <Form/Gen4/Static4.hpp>
@@ -91,6 +92,7 @@ MainWindow::MainWindow(bool profile, QWidget *parent) : QMainWindow(parent), ui(
     connect(ui->actionSpindaPainter, &QAction::triggered, this, &MainWindow::openSpindaPainter);
 
     connect(ui->pushButtonEgg4, &QPushButton::clicked, this, &MainWindow::openEgg4);
+    connect(ui->pushButtonEvent4, &QPushButton::clicked, this, &MainWindow::openEvent4);
     connect(ui->pushButtonIDs4, &QPushButton::clicked, this, &MainWindow::openIDs4);
     connect(ui->pushButtonStatic4, &QPushButton::clicked, this, &MainWindow::openStatic4);
     connect(ui->pushButtonWild4, &QPushButton::clicked, this, &MainWindow::openWild4);
@@ -160,6 +162,7 @@ MainWindow::~MainWindow()
     delete wild3;
 
     delete egg4;
+    delete event4;
     delete ids4;
     delete static4;
     delete wild4;
@@ -317,6 +320,16 @@ void MainWindow::openEgg4()
         connect(egg4, &Eggs4::profilesModified, this, &MainWindow::updateProfiles);
     }
     egg4->show();
+}
+
+void MainWindow::openEvent4()
+{
+    if (!event4)
+    {
+        event4 = new Event4();
+        connect(event4, &Event4::profilesModified, this, &MainWindow::updateProfiles);
+    }
+    event4->show();
 }
 
 void MainWindow::openIDs4()

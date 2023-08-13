@@ -66,13 +66,13 @@
        </attribute>
        <layout class="QGridLayout" name="gridLayout_3">
         <item row="2" column="0">
-         <widget class="QPushButton" name="pushButtonStatic4">
+         <widget class="QPushButton" name="pushButtonIDs4">
           <property name="text">
-           <string>Static</string>
+           <string>IDs</string>
           </property>
          </widget>
         </item>
-        <item row="3" column="0">
+        <item row="4" column="0">
          <widget class="QPushButton" name="pushButtonWild4">
           <property name="text">
            <string>Wild</string>
@@ -86,10 +86,17 @@
           </property>
          </widget>
         </item>
-        <item row="1" column="0">
-         <widget class="QPushButton" name="pushButtonIDs4">
+        <item row="3" column="0">
+         <widget class="QPushButton" name="pushButtonStatic4">
           <property name="text">
-           <string>IDs</string>
+           <string>Static</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QPushButton" name="pushButtonEvent4">
+          <property name="text">
+           <string>Event</string>
           </property>
          </widget>
         </item>
@@ -386,6 +393,7 @@
   <tabstop>pushButtonStatic3</tabstop>
   <tabstop>pushButtonWild3</tabstop>
   <tabstop>pushButtonEgg4</tabstop>
+  <tabstop>pushButtonEvent4</tabstop>
   <tabstop>pushButtonIDs4</tabstop>
   <tabstop>pushButtonStatic4</tabstop>
   <tabstop>pushButtonWild4</tabstop>
