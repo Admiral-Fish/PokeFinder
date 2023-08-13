@@ -214,7 +214,7 @@ static std::vector<IVToPIDState> calcMethodXDColo(u8 hp, u8 atk, u8 def, u8 spa,
         u32 seed = XDRNGR(seeds[i]).next();
 
         XDRNG rng(seeds[i]);
-        rng.advance(1);
+        rng.advance(2);
 
         u16 high = rng.nextUShort();
         u16 low = rng.nextUShort();
