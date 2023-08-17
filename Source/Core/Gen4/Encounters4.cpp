@@ -431,7 +431,7 @@ static std::vector<EncounterArea4> getHGSSSafari(Encounter encounter, int time, 
                             && blocks[entry->super.type2[block]] >= entry->super.quantity2[block])
                         {
                             specie = safariBlockSlots[block].specie;
-                            level = safariBlockSlots[block].specie;
+                            level = safariBlockSlots[block].level;
                             block++;
                             break;
                         }
