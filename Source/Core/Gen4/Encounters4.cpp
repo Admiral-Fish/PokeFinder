@@ -375,8 +375,8 @@ static std::vector<EncounterArea4> getHGSSSafari(Encounter encounter, int time, 
                     u8 level = safariSlots[i].level;
                     for (; block < 2; block++)
                     {
-                        if (blocks[entry->surf.type1[block]] >= entry->surf.quantity1[block]
-                            && blocks[entry->surf.type2[block]] >= entry->surf.quantity2[block])
+                        if (blocks[entry->surf.type1[block]] >= entry->old.quantity1[block]
+                            && blocks[entry->surf.type2[block]] >= entry->old.quantity2[block])
                         {
                             specie = safariBlockSlots[block].specie;
                             level = safariBlockSlots[block].level;
