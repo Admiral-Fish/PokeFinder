@@ -375,6 +375,7 @@ void Wild4::generatorEncounterIndexChanged(int index)
         }
         ui->filterGenerator->setEncounterSlots(t);
 
+        bool bug = encounter == Encounter::BugCatchingContest;
         bool hgss = (currentProfile->getVersion() & Game::HGSS) != Game::None;
         bool hgssSwarm = encounter == Encounter::Grass || encounter == Encounter::Surfing || encounter == Encounter::OldRod
             || encounter == Encounter::GoodRod || encounter == Encounter::SuperRod;
@@ -410,6 +411,10 @@ void Wild4::generatorEncounterIndexChanged(int index)
         ui->labelGeneratorTime->setVisible((!hgss && grass) || hgss);
         ui->comboBoxGeneratorTime->setVisible((!hgss && grass) || hgss);
 
+        ui->comboMenuGeneratorLead->hideAction(toInt(Lead::MagnetPull), bug);
+        ui->comboMenuGeneratorLead->hideAction(toInt(Lead::Static), bug);
+        ui->comboMenuGeneratorLead->hideAction(toInt(Lead::Pressure), bug); // Also handles Hustle and Vital Spirit
+
         updateEncounterGenerator();
 
         std::vector<u16> locs;
@@ -420,7 +425,7 @@ void Wild4::generatorEncounterIndexChanged(int index)
         std::vector<int> indices(locations.size());
         std::iota(indices.begin(), indices.end(), 0);
 
-        if (encounter != Encounter::BugCatchingContest)
+        if (!bug)
         {
             std::sort(indices.begin(), indices.end(), [&locations](int i, int j) { return locations[i] < locations[j]; });
         }
@@ -721,6 +726,7 @@ void Wild4::searcherEncounterIndexChanged(int index)
         }
         ui->filterSearcher->setEncounterSlots(t);
 
+        bool bug = encounter == Encounter::BugCatchingContest;
         bool hgss = (currentProfile->getVersion() & Game::HGSS) != Game::None;
         bool hgssSwarm = encounter == Encounter::Grass || encounter == Encounter::Surfing || encounter == Encounter::OldRod
             || encounter == Encounter::GoodRod || encounter == Encounter::SuperRod;
@@ -756,6 +762,10 @@ void Wild4::searcherEncounterIndexChanged(int index)
         ui->labelSearcherTime->setVisible((!hgss && grass) || hgss);
         ui->comboBoxSearcherTime->setVisible((!hgss && grass) || hgss);
 
+        ui->comboMenuSearcherLead->hideAction(toInt(Lead::MagnetPull), bug);
+        ui->comboMenuSearcherLead->hideAction(toInt(Lead::Static), bug);
+        ui->comboMenuSearcherLead->hideAction(toInt(Lead::Pressure), bug); // Also handles Hustle and Vital Spirit
+
         updateEncounterSearcher();
 
         std::vector<u16> locs;
@@ -766,7 +776,7 @@ void Wild4::searcherEncounterIndexChanged(int index)
         std::vector<int> indices(locations.size());
         std::iota(indices.begin(), indices.end(), 0);
 
-        if (encounter != Encounter::BugCatchingContest)
+        if (!bug)
         {
             std::sort(indices.begin(), indices.end(), [&locations](int i, int j) { return locations[i] < locations[j]; });
         }
