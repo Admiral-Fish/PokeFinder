@@ -76,7 +76,7 @@ HiddenGrottoSearcherModel5::HiddenGrottoSearcherModel5(QObject *parent) : TableM
 
 int HiddenGrottoSearcherModel5::columnCount(const QModelIndex &parent) const
 {
-    return 6;
+    return 7;
 }
 
 QVariant HiddenGrottoSearcherModel5::data(const QModelIndex &index, int role) const
