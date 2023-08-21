@@ -26,6 +26,7 @@ IDsFilter::IDsFilter(QWidget *parent) : QWidget(parent), ui(new Ui::IDsFilter)
 {
     ui->setupUi(this);
 
+    ui->radioButtonTIDPID->setVisible(false);
     ui->radioButtonDisplayTID->setVisible(false);
 
     connect(ui->buttonGroup, &QButtonGroup::buttonClicked, ui->plainTextEdit, &QPlainTextEdit::clear);
@@ -89,6 +90,20 @@ IDFilter IDsFilter::getFilter(bool pastGen) const
             }
         }
     }
+    else if (ui->radioButtonTIDPID->isChecked())
+    {
+        for (const QString &input : inputs)
+        {
+            if (!input.isEmpty())
+            {
+                QStringList tidpid = input.split('/');
+                tidFilter.emplace_back(tidpid[0].toUShort());
+                u32 pid = tidpid[1].toUInt(nullptr, 16);
+                u16 psv = (pid >> 16) ^ (pid & 0xffff);
+                tsvFilter.emplace_back(psv >> (pastGen ? 3 : 4));
+            }
+        }
+    }
     else if (ui->radioButtonTSV->isChecked())
     {
         for (const QString &input : inputs)
@@ -111,6 +126,11 @@ IDFilter IDsFilter::getFilter(bool pastGen) const
     }
 
     return IDFilter(tidFilter, sidFilter, tsvFilter, displayFilter);
+}
+
+void IDsFilter::enableTIDPID()
+{
+    ui->radioButtonTIDPID->setVisible(true);
 }
 
 void IDsFilter::enableDisplayTID()
@@ -178,6 +198,47 @@ void IDsFilter::textEditIDsTextChanged()
                 u32 val = input.toUInt(&flag);
                 val = (flag && val <= 999999) ? val : 999999;
                 input = QString::number(val);
+            }
+        }
+    }
+    if (ui->radioButtonTIDPID->isChecked())
+    {
+        QRegularExpression filter("[^0-9/0-9a-fA-F]");
+        for (QString &input : inputs)
+        {
+            input.remove(filter);
+            // Only allow a single '/' character
+            while (input.count('/') > 1)
+            {
+                input.remove(input.lastIndexOf('/'), 1);
+            }
+
+            if (!input.isEmpty())
+            {
+                QStringList tidpid = input.split('/');
+
+                bool flag;
+                u16 tid = tidpid[0].toUShort(&flag);
+                tid = flag ? tid : 65535;
+
+                if (tidpid.size() == 1)
+                {
+                    if (input.contains('/'))
+                    {
+                        input = QString("%1/").arg(tid);
+                    }
+                    else
+                    {
+                        input = QString::number(tid);
+                    }
+                }
+                else if (!tidpid[1].isEmpty())
+                {
+                    u32 val = tidpid[1].toUInt(&flag, 16);
+                    val = flag ? val : 0xffffffff;
+                    QString valHex = QString::number(val, 16);
+                    input = QString("%1/%2").arg(tid).arg(valHex);
+                }
             }
         }
     }

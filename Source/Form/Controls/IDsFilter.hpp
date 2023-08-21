@@ -59,6 +59,11 @@ public:
     IDFilter getFilter(bool pastGen) const;
 
     /**
+     * @brief Enables showing of the TID/PID filter settings
+     */
+    void enableTIDPID();
+
+    /**
      * @brief Enables showing of the Display TID filter settings
      */
     void enableDisplayTID();
