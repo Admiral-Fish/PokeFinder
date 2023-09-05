@@ -55,10 +55,10 @@ Static8::Static8(QWidget *parent) : QWidget(parent), ui(new Ui::Static8)
 
     ui->filter->disableControls(Controls::EncounterSlots | Controls::HiddenPowers);
 
-    connect(ui->comboBoxProfiles, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &Static8::profileIndexChanged);
+    connect(ui->comboBoxProfiles, &QComboBox::currentIndexChanged, this, &Static8::profileIndexChanged);
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Static8::generate);
-    connect(ui->comboBoxCategory, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &Static8::categoryIndexChanged);
-    connect(ui->comboBoxPokemon, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &Static8::pokemonIndexChanged);
+    connect(ui->comboBoxCategory, &QComboBox::currentIndexChanged, this, &Static8::categoryIndexChanged);
+    connect(ui->comboBoxPokemon, &QComboBox::currentIndexChanged, this, &Static8::pokemonIndexChanged);
     connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &Static8::profileManager);
     connect(ui->filter, &Filter::showStatsChanged, model, &StaticModel8::setShowStats);
 

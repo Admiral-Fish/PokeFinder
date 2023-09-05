@@ -119,8 +119,8 @@ void WildSearcher4Test::searchMethodJ()
     {
         // Ensure generator agrees
         WildGenerator4 generator(state.getAdvances(), 0, 0, Method::MethodJ, encounter,
-                                 lead != Lead::Synchronize ? lead : lead + state.getNature(), false, profile, filter);
-        auto generatorStates = generator.generate(state.getSeed(), *encounterArea, 0);
+                                 lead != Lead::Synchronize ? lead : lead + state.getNature(), false, *encounterArea, profile, filter);
+        auto generatorStates = generator.generate(state.getSeed(), 0);
 
         QCOMPARE(generatorStates.size(), 1);
         QVERIFY(state == generatorStates[0]);
@@ -195,8 +195,8 @@ void WildSearcher4Test::searchMethodK()
     {
         // Ensure generator agrees
         WildGenerator4 generator(state.getAdvances(), 0, 0, Method::MethodK, encounter,
-                                 lead != Lead::Synchronize ? lead : lead + state.getNature(), false, profile, filter);
-        auto generatorStates = generator.generate(state.getSeed(), *encounterArea, 0);
+                                 lead != Lead::Synchronize ? lead : lead + state.getNature(), false, *encounterArea, profile, filter);
+        auto generatorStates = generator.generate(state.getSeed(), 0);
 
         QCOMPARE(generatorStates.size(), 1);
         QVERIFY(state == generatorStates[0]);
@@ -276,8 +276,8 @@ void WildSearcher4Test::searchPokeRadar()
     {
         // Ensure generator agrees
         WildGenerator4 generator(state.getAdvances(), 0, 0, Method::PokeRadar, encounter,
-                                 lead != Lead::Synchronize ? lead : lead + state.getNature(), shiny, profile, filter);
-        auto generatorStates = generator.generate(state.getSeed(), *encounterArea, index);
+                                 lead != Lead::Synchronize ? lead : lead + state.getNature(), shiny, *encounterArea, profile, filter);
+        auto generatorStates = generator.generate(state.getSeed(), index);
 
         QCOMPARE(generatorStates.size(), 1);
         QVERIFY(state == generatorStates[0]);

@@ -86,10 +86,10 @@ const static std::array<std::string, 12> buttons = { "R", "L", "X", "Y", "A", "B
 static void readFile(Translation translation, std::vector<std::string> &strings)
 {
     int index = (static_cast<int>(language) * static_cast<int>(Translation::Count)) + static_cast<int>(translation);
-    u32 start = indexes[index];
-    u32 end = indexes[index + 1];
+    u32 start = INDICES[index];
+    u32 end = INDICES[index + 1];
 
-    const char *compressedData = reinterpret_cast<const char *>(i18n + start);
+    const char *compressedData = reinterpret_cast<const char *>(I18N + start);
     u32 compressedLength = end - start;
 
     u32 length;
@@ -116,10 +116,10 @@ static void readFile(Translation translation, std::vector<std::string> &strings)
 static std::map<u16, std::string> readFile(Translation translation)
 {
     int index = (static_cast<int>(language) * static_cast<int>(Translation::Count)) + static_cast<int>(translation);
-    u32 start = indexes[index];
-    u32 end = indexes[index + 1];
+    u32 start = INDICES[index];
+    u32 end = INDICES[index + 1];
 
-    const char *compressedData = reinterpret_cast<const char *>(i18n + start);
+    const char *compressedData = reinterpret_cast<const char *>(I18N + start);
     u32 compressedLength = end - start;
 
     u32 length;

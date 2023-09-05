@@ -52,7 +52,7 @@ Wild4::Wild4(QWidget *parent) : QWidget(parent), ui(new Ui::Wild4)
     ui->tableViewSearcher->setModel(searcherModel);
 
     ui->textBoxGeneratorSeed->setValues(InputType::Seed32Bit);
-    ui->textBoxGeneratorStartingAdvance->setValues(InputType::Advance32Bit);
+    ui->textBoxGeneratorInitialAdvances->setValues(InputType::Advance32Bit);
     ui->textBoxGeneratorMaxAdvances->setValues(InputType::Advance32Bit);
     ui->textBoxGeneratorDelay->setValues(InputType::Advance32Bit);
 
@@ -328,7 +328,7 @@ void Wild4::generate()
     generatorModel->setMethod(method);
 
     u32 seed = ui->textBoxGeneratorSeed->getUInt();
-    u32 initialAdvances = ui->textBoxGeneratorStartingAdvance->getUInt();
+    u32 initialAdvances = ui->textBoxGeneratorInitialAdvances->getUInt();
     u32 maxAdvances = ui->textBoxGeneratorMaxAdvances->getUInt();
     u32 delay = ui->textBoxGeneratorDelay->getUInt();
     auto encounter = ui->comboBoxGeneratorEncounter->getEnum<Encounter>();
@@ -336,9 +336,10 @@ void Wild4::generate()
     bool chained = ui->checkBoxGeneratorPokeRadarShiny->isChecked();
 
     WildStateFilter filter = ui->filterGenerator->getFilter<WildStateFilter, true>();
-    WildGenerator4 generator(initialAdvances, maxAdvances, delay, method, encounter, lead, chained, *currentProfile, filter);
+    WildGenerator4 generator(initialAdvances, maxAdvances, delay, method, encounter, lead, chained,
+                             encounterGenerator[ui->comboBoxGeneratorLocation->getCurrentInt()], *currentProfile, filter);
 
-    auto states = generator.generate(seed, encounterGenerator[ui->comboBoxGeneratorLocation->getCurrentInt()], radarSlot);
+    auto states = generator.generate(seed, radarSlot);
     generatorModel->addItems(states);
 }
 
@@ -346,34 +347,32 @@ void Wild4::generatorEncounterIndexChanged(int index)
 {
     if (index >= 0)
     {
-        std::vector<std::string> t;
         auto encounter = ui->comboBoxGeneratorEncounter->getEnum<Encounter>();
         switch (encounter)
         {
         case Encounter::Grass:
-            t = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11" };
+            ui->filterGenerator->setEncounterSlots(12);
             break;
         case Encounter::Surfing:
         case Encounter::OldRod:
         case Encounter::GoodRod:
         case Encounter::SuperRod:
-            t = { "0", "1", "2", "3", "4" };
+            ui->filterGenerator->setEncounterSlots(5);
             break;
         case Encounter::RockSmash:
-            t = { "0", "1" };
+            ui->filterGenerator->setEncounterSlots(2);
             break;
         case Encounter::BugCatchingContest:
-            t = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+            ui->filterGenerator->setEncounterSlots(10);
             break;
         case Encounter::Headbutt:
         case Encounter::HeadbuttAlt:
         case Encounter::HeadbuttSpecial:
-            t = { "0", "1", "2", "3", "4", "5" };
+            ui->filterGenerator->setEncounterSlots(6);
             break;
         default:
             break;
         }
-        ui->filterGenerator->setEncounterSlots(t);
 
         bool bug = encounter == Encounter::BugCatchingContest;
         bool hgss = (currentProfile->getVersion() & Game::HGSS) != Game::None;
@@ -514,7 +513,7 @@ void Wild4::generatorLocationIndexChanged(int index)
         // Account for safari zone not being its own encounter method
         if (safari)
         {
-            ui->filterGenerator->setEncounterSlots({ "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" });
+            ui->filterGenerator->setEncounterSlots(10);
             ui->labelGeneratorTime->setVisible(true);
             ui->comboBoxGeneratorTime->setVisible(true);
         }
@@ -697,34 +696,32 @@ void Wild4::searcherEncounterIndexChanged(int index)
 {
     if (index >= 0)
     {
-        std::vector<std::string> t;
         auto encounter = ui->comboBoxSearcherEncounter->getEnum<Encounter>();
         switch (encounter)
         {
         case Encounter::Grass:
-            t = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11" };
+            ui->filterSearcher->setEncounterSlots(12);
             break;
         case Encounter::Surfing:
         case Encounter::OldRod:
         case Encounter::GoodRod:
         case Encounter::SuperRod:
-            t = { "0", "1", "2", "3", "4" };
+            ui->filterSearcher->setEncounterSlots(5);
             break;
         case Encounter::RockSmash:
-            t = { "0", "1" };
+            ui->filterSearcher->setEncounterSlots(2);
             break;
         case Encounter::BugCatchingContest:
-            t = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+            ui->filterSearcher->setEncounterSlots(10);
             break;
         case Encounter::Headbutt:
         case Encounter::HeadbuttAlt:
         case Encounter::HeadbuttSpecial:
-            t = { "0", "1", "2", "3", "4", "5" };
+            ui->filterSearcher->setEncounterSlots(6);
             break;
         default:
             break;
         }
-        ui->filterSearcher->setEncounterSlots(t);
 
         bool bug = encounter == Encounter::BugCatchingContest;
         bool hgss = (currentProfile->getVersion() & Game::HGSS) != Game::None;
@@ -865,7 +862,7 @@ void Wild4::searcherLocationIndexChanged(int index)
         // Account for safari zone not being its own encounter method
         if (safari)
         {
-            ui->filterSearcher->setEncounterSlots({ "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" });
+            ui->filterSearcher->setEncounterSlots(12);
             ui->labelSearcherTime->setVisible(true);
             ui->comboBoxSearcherTime->setVisible(true);
         }

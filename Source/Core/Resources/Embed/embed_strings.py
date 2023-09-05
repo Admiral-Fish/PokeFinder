@@ -20,7 +20,7 @@ def embed_strings(paths):
                 string_data += bytes(line, encoding="utf-8")
                 string_data += b"\x00"
 
-            size = len(string_data).to_bytes(2, "little")
+            size = len(string_data).to_bytes(4, "little")
             string_data = bz2.compress(string_data, 9)
             string_data = size + string_data
 
@@ -30,14 +30,14 @@ def embed_strings(paths):
             strings += string_data
     indexes.append(index)
 
-    string = f"constexpr u8 i18n[{len(strings)}] = {{ "
+    string = f"constexpr u8 I18N[{len(strings)}] = {{ "
     for i, char in enumerate(strings):
         string += str(char)
         if i != len(strings) - 1:
             string += ", "
     string += " };"
 
-    index_string = f"constexpr u32 indexes[{len(indexes)}] = {{ "
+    index_string = f"constexpr u32 INDICES[{len(indexes)}] = {{ "
     for i, index in enumerate(indexes):
         index_string += str(index)
         if i != len(indexes) - 1:

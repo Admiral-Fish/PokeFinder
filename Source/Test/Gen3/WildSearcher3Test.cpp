@@ -101,8 +101,9 @@ void WildSearcher3Test::search()
     for (const auto &state : states)
     {
         // Ensure generator agrees
-        WildGenerator3 generator(0, 0, 0, method, encounter, lead != Lead::Synchronize ? lead : lead + state.getNature(), profile, filter);
-        auto generatorStates = generator.generate(state.getSeed(), *encounterArea);
+        WildGenerator3 generator(0, 0, 0, method, encounter, lead != Lead::Synchronize ? lead : lead + state.getNature(), *encounterArea,
+                                 profile, filter);
+        auto generatorStates = generator.generate(state.getSeed());
 
         QCOMPARE(generatorStates.size(), 1);
         QVERIFY(state == generatorStates[0]);

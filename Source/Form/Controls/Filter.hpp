@@ -162,9 +162,9 @@ public:
     /**
      * @brief Sets encounter slots that are available
      *
-     * @param encounterSlots Vector of encounter slots
+     * @param max Number of encounter slots
      */
-    void setEncounterSlots(const std::vector<std::string> &encounterSlots) const;
+    void setEncounterSlots(u8 max) const;
 
     /**
      * @brief Sets encounter slots that are checked and not checked

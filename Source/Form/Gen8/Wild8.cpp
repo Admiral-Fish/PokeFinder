@@ -155,23 +155,21 @@ void Wild8::encounterIndexChanged(int index)
 {
     if (index >= 0)
     {
-        std::vector<std::string> t;
         auto encounter = ui->comboBoxEncounter->getEnum<Encounter>();
         switch (encounter)
         {
         case Encounter::Grass:
-            t = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11" };
+            ui->filter->setEncounterSlots(12);
             break;
         case Encounter::Surfing:
         case Encounter::OldRod:
         case Encounter::GoodRod:
         case Encounter::SuperRod:
-            t = { "0", "1", "2", "3", "4" };
+            ui->filter->setEncounterSlots(5);
             break;
         default:
             break;
         }
-        ui->filter->setEncounterSlots(t);
 
         updateEncounters();
 
@@ -212,9 +210,10 @@ void Wild8::generate()
     auto lead = ui->comboMenuLead->getEnum<Lead>();
 
     WildStateFilter filter = ui->filter->getFilter<WildStateFilter, true>();
-    WildGenerator8 generator(initialAdvances, maxAdvances, delay, encounter, lead, *currentProfile, filter);
+    WildGenerator8 generator(initialAdvances, maxAdvances, delay, encounter, lead, encounters[ui->comboBoxLocation->getCurrentInt()],
+                             *currentProfile, filter);
 
-    auto states = generator.generate(seed0, seed1, encounters[ui->comboBoxLocation->getCurrentInt()]);
+    auto states = generator.generate(seed0, seed1);
     model->addItems(states);
 }
 

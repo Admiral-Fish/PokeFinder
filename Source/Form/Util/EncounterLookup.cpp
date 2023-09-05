@@ -51,7 +51,7 @@ EncounterLookup::EncounterLookup(QWidget *parent) : QWidget(parent), ui(new Ui::
     ui->comboBoxPokemon->enableAutoComplete();
 
     connect(ui->pushButtonFind, &QPushButton::clicked, this, &EncounterLookup::find);
-    connect(ui->comboBoxGame, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &EncounterLookup::gameIndexChanged);
+    connect(ui->comboBoxGame, &QComboBox::currentIndexChanged, this, &EncounterLookup::gameIndexChanged);
 
     gameIndexChanged(0);
 

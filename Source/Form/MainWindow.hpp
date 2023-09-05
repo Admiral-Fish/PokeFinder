@@ -259,11 +259,6 @@ private slots:
 
     // Gen 8
     /**
-     * @brief Opens interface to download event raids
-     */
-    void downloadEventData();
-
-    /**
      * @brief Opens the Den Map window
      */
     void openDenMap();

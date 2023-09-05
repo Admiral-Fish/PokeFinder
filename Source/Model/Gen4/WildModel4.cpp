@@ -53,11 +53,11 @@ QVariant WildGeneratorModel4::data(const QModelIndex &index, int role) const
         case 1:
             return state.getBattleAdvances();
         case 2:
-            return QString::fromStdString(Translator::getItem(state.getItem()));
-        case 3:
             return state.getCall() == 0 ? "E" : state.getCall() == 1 ? "K" : "P";
-        case 4:
+        case 3:
             return QString::fromStdString(Utilities4::getChatot(state.getChatot()));
+        case 4:
+            return QString::fromStdString(Translator::getItem(state.getItem()));
         case 5:
             return QString("%1: %2")
                 .arg(state.getEncounterSlot())
@@ -124,7 +124,7 @@ int WildGeneratorModel4::getColumn(int column) const
     {
     case Method::MethodJ:
     case Method::PokeRadar:
-        return column > 2 ? column + 1 : column;
+        return column > 1 ? column + 1 : column;
     case Method::MethodK:
     default:
         return column;

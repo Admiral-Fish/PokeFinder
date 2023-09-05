@@ -100,9 +100,9 @@ void WildGenerator4Test::generateMethodJ()
                                       [location](const EncounterArea4 &encounterArea) { return encounterArea.getLocation() == location; });
 
     WildStateFilter filter(255, 255, 255, false, min, max, natures, powers, encounterSlots);
-    WildGenerator4 generator(0, 9, 0, Method::MethodJ, encounter, lead, false, profile, filter);
+    WildGenerator4 generator(0, 9, 0, Method::MethodJ, encounter, lead, false, *encounterArea, profile, filter);
 
-    auto states = generator.generate(seed, *encounterArea, 0);
+    auto states = generator.generate(seed, 0);
     QCOMPARE(states.size(), j.size());
 
     for (size_t i = 0; i < states.size(); i++)
@@ -166,9 +166,9 @@ void WildGenerator4Test::generateMethodK()
                                       [location](const EncounterArea4 &encounterArea) { return encounterArea.getLocation() == location; });
 
     WildStateFilter filter(255, 255, 255, false, min, max, natures, powers, encounterSlots);
-    WildGenerator4 generator(0, 9, 0, Method::MethodK, encounter, lead, false, profile, filter);
+    WildGenerator4 generator(0, 9, 0, Method::MethodK, encounter, lead, false, *encounterArea, profile, filter);
 
-    auto states = generator.generate(seed, *encounterArea, 0);
+    auto states = generator.generate(seed, 0);
     QCOMPARE(states.size(), j.size());
 
     for (size_t i = 0; i < states.size(); i++)
@@ -236,9 +236,9 @@ void WildGenerator4Test::generatePokeRadar()
                                       [location](const EncounterArea4 &encounterArea) { return encounterArea.getLocation() == location; });
 
     WildStateFilter filter(255, 255, 255, false, min, max, natures, powers, encounterSlots);
-    WildGenerator4 generator(0, 9, 0, Method::PokeRadar, encounter, lead, shiny, profile, filter);
+    WildGenerator4 generator(0, 9, 0, Method::PokeRadar, encounter, lead, shiny, *encounterArea, profile, filter);
 
-    auto states = generator.generate(seed, *encounterArea, index);
+    auto states = generator.generate(seed, index);
     QCOMPARE(states.size(), j.size());
 
     for (size_t i = 0; i < states.size(); i++)

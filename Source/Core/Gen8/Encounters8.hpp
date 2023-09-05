@@ -24,6 +24,8 @@
 #include <array>
 #include <vector>
 
+class Den;
+class DenEvent;
 class EncounterArea8;
 class Profile8;
 class StaticTemplate;
@@ -32,6 +34,42 @@ enum class Encounter : u8;
 
 namespace Encounters8
 {
+    /**
+     * @brief Returns the den for the \p index and \p rarity
+     *
+     * @param index Den index
+     * @param rarity Den rarity
+     *
+     * @return Den
+     */
+    const Den *getDen(u16 index, u8 rarity);
+
+    /**
+     * @brief Return the coordinates of the den
+     *
+     * @param index Den index
+     *
+     * @return Den coordinates
+     */
+    std::array<u16, 2> getDenCoordinates(u16 index);
+
+    /**
+     * @brief Returns the den event
+     *
+     * @param index Den index
+     *
+     * @return Event den
+     */
+    const DenEvent *getDenEvent(u8 index);
+
+    /**
+     * @brief Returns the location of the den
+     *
+     * @param index Den index
+     *
+     * @return Den location
+     */
+    u8 getDenLocation(u16 index);
 
     /**
      * @brief Gets wild encounters for the \p encounter and \p profile

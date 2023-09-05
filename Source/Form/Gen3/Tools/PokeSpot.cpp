@@ -52,7 +52,7 @@ PokeSpot::PokeSpot(QWidget *parent) : QWidget(parent), ui(new Ui::PokeSpot)
 
     encounters = Encounters3::getPokeSpotEncounters();
 
-    ui->filter->setEncounterSlots({ "0", "1", "2" });
+    ui->filter->setEncounterSlots(3);
 
     std::vector<u16> locs;
     std::transform(encounters.begin(), encounters.end(), std::back_inserter(locs),

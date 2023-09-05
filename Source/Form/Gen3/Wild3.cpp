@@ -159,9 +159,10 @@ void Wild3::generate()
     auto lead = ui->comboMenuGeneratorLead->getEnum<Lead>();
 
     WildStateFilter filter = ui->filterGenerator->getFilter<WildStateFilter, true>();
-    WildGenerator3 generator(initialAdvances, maxAdvances, delay, method, encounter, lead, *currentProfile, filter);
+    WildGenerator3 generator(initialAdvances, maxAdvances, delay, method, encounter, lead,
+                             encounterGenerator[ui->comboBoxGeneratorLocation->getCurrentInt()], *currentProfile, filter);
 
-    auto states = generator.generate(seed, encounterGenerator[ui->comboBoxGeneratorLocation->getCurrentInt()]);
+    auto states = generator.generate(seed);
     generatorModel->addItems(states);
 }
 
@@ -169,28 +170,26 @@ void Wild3::generatorEncounterIndexChanged(int index)
 {
     if (index >= 0)
     {
-        std::vector<std::string> t;
         auto encounter = ui->comboBoxGeneratorEncounter->getEnum<Encounter>();
         switch (encounter)
         {
         case Encounter::Grass:
-            t = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11" };
+            ui->filterGenerator->setEncounterSlots(12);
             break;
         case Encounter::RockSmash:
         case Encounter::Surfing:
         case Encounter::SuperRod:
-            t = { "0", "1", "2", "3", "4" };
+            ui->filterGenerator->setEncounterSlots(5);
             break;
         case Encounter::OldRod:
-            t = { "0", "1" };
+            ui->filterGenerator->setEncounterSlots(2);
             break;
         case Encounter::GoodRod:
-            t = { "0", "1", "2" };
+            ui->filterGenerator->setEncounterSlots(3);
             break;
         default:
             break;
         }
-        ui->filterGenerator->setEncounterSlots(t);
 
         encounterGenerator = Encounters3::getEncounters(encounter, currentProfile->getVersion());
 
@@ -339,28 +338,26 @@ void Wild3::searcherEncounterIndexChanged(int index)
 {
     if (index >= 0)
     {
-        std::vector<std::string> t;
         auto encounter = ui->comboBoxSearcherEncounter->getEnum<Encounter>();
         switch (encounter)
         {
         case Encounter::Grass:
-            t = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11" };
+            ui->filterSearcher->setEncounterSlots(12);
             break;
         case Encounter::RockSmash:
         case Encounter::Surfing:
         case Encounter::SuperRod:
-            t = { "0", "1", "2", "3", "4" };
+            ui->filterSearcher->setEncounterSlots(5);
             break;
         case Encounter::OldRod:
-            t = { "0", "1" };
+            ui->filterSearcher->setEncounterSlots(2);
             break;
         case Encounter::GoodRod:
-            t = { "0", "1", "2" };
+            ui->filterSearcher->setEncounterSlots(3);
             break;
         default:
             break;
         }
-        ui->filterSearcher->setEncounterSlots(t);
 
         encounterSearcher = Encounters3::getEncounters(encounter, currentProfile->getVersion());
 

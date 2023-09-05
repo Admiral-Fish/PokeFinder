@@ -150,9 +150,14 @@ void Filter::resetEncounterSlots() const
     ui->checkListEncounterSlot->resetChecks();
 }
 
-void Filter::setEncounterSlots(const std::vector<std::string> &encounterSlots) const
+void Filter::setEncounterSlots(u8 max) const
 {
-    ui->checkListEncounterSlot->setup(encounterSlots);
+    std::vector<std::string> items;
+    for (u8 i = 0; i < max; i++)
+    {
+        items.emplace_back(std::to_string(i));
+    }
+    ui->checkListEncounterSlot->setup(items);
 }
 
 void Filter::toggleEncounterSlots(const std::vector<bool> &encounterSlots) const

@@ -270,7 +270,6 @@
      <string>Gen 8 Tools</string>
     </property>
     <addaction name="actionDenMap"/>
-    <addaction name="actionDownloadEventData"/>
     <addaction name="actionProfileManager8"/>
    </widget>
    <addaction name="menuGen3Tools"/>
@@ -352,11 +351,6 @@
   <action name="actionDenMap">
    <property name="text">
     <string>Den Map</string>
-   </property>
-  </action>
-  <action name="actionDownloadEventData">
-   <property name="text">
-    <string>Download Event Data</string>
    </property>
   </action>
   <action name="actionProfileManager8">

@@ -20,17 +20,17 @@
 #ifndef WILDGENERATOR4_HPP
 #define WILDGENERATOR4_HPP
 
+#include <Core/Gen4/EncounterArea4.hpp>
 #include <Core/Gen4/Profile4.hpp>
 #include <Core/Parents/Filters/StateFilter.hpp>
 #include <Core/Parents/Generators/WildGenerator.hpp>
 
-class EncounterArea4;
 class WildGeneratorState4;
 
 /**
  * @brief Wild encounter generator for Gen4
  */
-class WildGenerator4 : public WildGenerator<Profile4, WildStateFilter>
+class WildGenerator4 : public WildGenerator<EncounterArea4, Profile4, WildStateFilter>
 {
 public:
     /**
@@ -43,22 +43,22 @@ public:
      * @param method Encounter method
      * @param lead Encounter lead
      * @param shiny Whether Poke Radar is forced shiny
+     * @param area Wild pokemon info
      * @param profile Profile Information
      * @param filter State filter
      */
     WildGenerator4(u32 initialAdvances, u32 maxAdvances, u32 delay, Method method, Encounter encounter, Lead lead, bool shiny,
-                   const Profile4 &profile, const WildStateFilter &filter);
+                   const EncounterArea4 &area, const Profile4 &profile, const WildStateFilter &filter);
 
     /**
      * @brief Generates states for the \p encounterArea
      *
      * @param seed Starting PRNG state
-     * @param encounterArea Wild pokemon info
      * @param index Pokeradar slot index
      *
      * @return Vector of computed states
      */
-    std::vector<WildGeneratorState4> generate(u32 seed, const EncounterArea4 &encounterArea, u8 index) const;
+    std::vector<WildGeneratorState4> generate(u32 seed, u8 index) const;
 
 private:
     bool shiny;
@@ -67,32 +67,29 @@ private:
      * @brief Generates states for the \p encounterArea via Method J
      *
      * @param seed Starting PRNG state
-     * @param encounterArea Wild pokemon info
      *
      * @return Vector of computed states
      */
-    std::vector<WildGeneratorState4> generateMethodJ(u32 seed, const EncounterArea4 &encounterArea) const;
+    std::vector<WildGeneratorState4> generateMethodJ(u32 seed) const;
 
     /**
      * @brief Generates states for the \p encounterArea via Method K
      *
      * @param seed Starting PRNG state
-     * @param encounterArea Wild pokemon info
      *
      * @return Vector of computed states
      */
-    std::vector<WildGeneratorState4> generateMethodK(u32 seed, const EncounterArea4 &encounterArea) const;
+    std::vector<WildGeneratorState4> generateMethodK(u32 seed) const;
 
     /**
      * @brief Generates states for the \p encounterArea via Poke Radar
      *
      * @param seed Starting PRNG state
-     * @param encounterArea Wild pokemon info
      * @param index Pokeradar slot index
      *
      * @return Vector of computed states
      */
-    std::vector<WildGeneratorState4> generatePokeRadar(u32 seed, const EncounterArea4 &encounterArea, u8 index) const;
+    std::vector<WildGeneratorState4> generatePokeRadar(u32 seed, u8 index) const;
 
     /**
      * @brief Generates states for the \p encounterArea via Poke Radar chained shiny
@@ -103,7 +100,7 @@ private:
      *
      * @return Vector of computed states
      */
-    std::vector<WildGeneratorState4> generatePokeRadarShiny(u32 seed, const EncounterArea4 &encounterArea, u8 index) const;
+    std::vector<WildGeneratorState4> generatePokeRadarShiny(u32 seed, u8 index) const;
 };
 
 #endif // WILDGENERATOR4_HPP

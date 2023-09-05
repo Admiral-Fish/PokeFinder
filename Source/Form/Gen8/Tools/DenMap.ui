@@ -42,6 +42,11 @@
        <string>Isle of Armor</string>
       </property>
      </item>
+     <item>
+      <property name="text">
+       <string>Crown Tundra</string>
+      </property>
+     </item>
     </widget>
    </item>
   </layout>

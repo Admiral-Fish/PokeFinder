@@ -79,9 +79,9 @@ ProfileCalibrator5::ProfileCalibrator5(QWidget *parent) : QWidget(parent), ui(ne
 
     connect(ui->pushButtonIVCalculator, &QPushButton::clicked, this, &ProfileCalibrator5::openIVCalculator);
     connect(ui->pushButtonSearch, &QPushButton::clicked, this, &ProfileCalibrator5::search);
-    connect(ui->comboBoxVersion, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &ProfileCalibrator5::versionIndexChanged);
-    connect(ui->comboBoxDSType, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &ProfileCalibrator5::dsTypeIndexChanged);
-    connect(ui->buttonGroupNeedles, QOverload<QAbstractButton *>::of(&QButtonGroup::buttonClicked), this, &ProfileCalibrator5::addNeedle);
+    connect(ui->comboBoxVersion, &QComboBox::currentIndexChanged, this, &ProfileCalibrator5::versionIndexChanged);
+    connect(ui->comboBoxDSType, &QComboBox::currentIndexChanged, this, &ProfileCalibrator5::dsTypeIndexChanged);
+    connect(ui->buttonGroupNeedles, &QButtonGroup::buttonClicked, this, &ProfileCalibrator5::addNeedle);
     connect(ui->pushButtonDelete, &QPushButton::clicked, this, &ProfileCalibrator5::removeNeedle);
     connect(ui->pushButtonClear, &QPushButton::clicked, this, &ProfileCalibrator5::clearNeedles);
 

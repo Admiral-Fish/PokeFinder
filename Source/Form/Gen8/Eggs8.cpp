@@ -51,7 +51,7 @@ Eggs8::Eggs8(QWidget *parent) : QWidget(parent), ui(new Ui::Eggs8)
 
     ui->filter->enableHiddenAbility();
 
-    connect(ui->comboBoxProfiles, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &Eggs8::profileIndexChanged);
+    connect(ui->comboBoxProfiles, &QComboBox::currentIndexChanged, this, &Eggs8::profileIndexChanged);
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Eggs8::generate);
     connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &Eggs8::profileManager);
     connect(ui->eggSettings, &EggSettings::showInheritanceChanged, model, &EggModel8::setShowInheritance);

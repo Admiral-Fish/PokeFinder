@@ -73,37 +73,29 @@ namespace Encounters3
 {
     std::vector<EncounterArea3> getEncounters(Encounter encounter, Game version)
     {
-        const u8 *compressedData;
-        size_t compressedLength;
+        u32 length;
+        u8 *data;
 
         if (version == Game::Emerald)
         {
-            compressedData = emerald.data();
-            compressedLength = emerald.size();
+            data = Utilities::decompress(EMERALD.data(), EMERALD.size(), length);
         }
         else if (version == Game::FireRed)
         {
-            compressedData = firered.data();
-            compressedLength = firered.size();
+            data = Utilities::decompress(FIRERED.data(), FIRERED.size(), length);
         }
         else if (version == Game::LeafGreen)
         {
-            compressedData = leafgreen.data();
-            compressedLength = leafgreen.size();
+            data = Utilities::decompress(LEAFGREEN.data(), LEAFGREEN.size(), length);
         }
         else if (version == Game::Ruby)
         {
-            compressedData = ruby.data();
-            compressedLength = ruby.size();
+            data = Utilities::decompress(RUBY.data(), RUBY.size(), length);
         }
         else
         {
-            compressedData = sapphire.data();
-            compressedLength = sapphire.size();
+            data = Utilities::decompress(SAPPHIRE.data(), SAPPHIRE.size(), length);
         }
-
-        u32 length;
-        u8 *data = Utilities::decompress(compressedData, compressedLength, length);
 
         const PersonalInfo *info = PersonalLoader::getPersonal(version);
 
@@ -197,7 +189,7 @@ namespace Encounters3
     std::vector<EncounterArea> getPokeSpotEncounters()
     {
         u32 length;
-        u8 *data = Utilities::decompress(xd.data(), xd.size(), length);
+        u8 *data = Utilities::decompress(XD.data(), XD.size(), length);
 
         const PersonalInfo *info = PersonalLoader::getPersonal(Game::Gen3);
 
@@ -222,9 +214,9 @@ namespace Encounters3
     {
         if (size)
         {
-            *size = galesColoShadow.size();
+            *size = GALESCOLOSHADOW.size();
         }
-        return galesColoShadow.data();
+        return GALESCOLOSHADOW.data();
     }
 
     const ShadowTemplate *getShadowTeam(int index)
@@ -239,73 +231,73 @@ namespace Encounters3
         {
             if (size)
             {
-                *size = starters.size();
+                *size = STARTERS.size();
             }
-            return starters.data();
+            return STARTERS.data();
         }
         else if (type == 1)
         {
             if (size)
             {
-                *size = fossils.size();
+                *size = FOSSILS.size();
             }
-            return fossils.data();
+            return FOSSILS.data();
         }
         else if (type == 2)
         {
             if (size)
             {
-                *size = gifts.size();
+                *size = GIFTS.size();
             }
-            return gifts.data();
+            return GIFTS.data();
         }
         else if (type == 3)
         {
             if (size)
             {
-                *size = gameCorner.size();
+                *size = GAMECORNER.size();
             }
-            return gameCorner.data();
+            return GAMECORNER.data();
         }
         else if (type == 4)
         {
             if (size)
             {
-                *size = stationary.size();
+                *size = STATIONARY.size();
             }
-            return stationary.data();
+            return STATIONARY.data();
         }
         else if (type == 5)
         {
             if (size)
             {
-                *size = legends.size();
+                *size = LEGENDS.size();
             }
-            return legends.data();
+            return LEGENDS.data();
         }
         else if (type == 6)
         {
             if (size)
             {
-                *size = events.size();
+                *size = EVENTS.size();
             }
-            return events.data();
+            return EVENTS.data();
         }
         else if (type == 7)
         {
             if (size)
             {
-                *size = galesColo.size();
+                *size = GALESCOLO.size();
             }
-            return galesColo.data();
+            return GALESCOLO.data();
         }
         else
         {
             if (size)
             {
-                *size = channel.size();
+                *size = CHANNEL.size();
             }
-            return channel.data();
+            return CHANNEL.data();
         }
     }
 

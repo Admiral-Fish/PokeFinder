@@ -99,21 +99,21 @@ namespace Utilities
 {
     char *decompress(const char *compressedData, u32 compressedSize, u32 &size)
     {
-        size = *reinterpret_cast<const u16 *>(compressedData);
+        size = *reinterpret_cast<const u32 *>(compressedData);
         char *data = new char[size];
 
-        BZ2_bzBuffToBuffDecompress(data, &size, const_cast<char *>(compressedData + sizeof(u16)), compressedSize, 0, 0);
+        BZ2_bzBuffToBuffDecompress(data, &size, const_cast<char *>(compressedData + sizeof(u32)), compressedSize, 0, 0);
 
         return data;
     }
 
     u8 *decompress(const u8 *compressedData, u32 compressedSize, u32 &size)
     {
-        size = *reinterpret_cast<const u16 *>(compressedData);
+        size = *reinterpret_cast<const u32 *>(compressedData);
         u8 *data = new u8[size];
 
         BZ2_bzBuffToBuffDecompress(reinterpret_cast<char *>(data), &size,
-                                   reinterpret_cast<char *>(const_cast<u8 *>(compressedData + sizeof(u16))), compressedSize, 0, 0);
+                                   reinterpret_cast<char *>(const_cast<u8 *>(compressedData + sizeof(u32))), compressedSize, 0, 0);
 
         return data;
     }

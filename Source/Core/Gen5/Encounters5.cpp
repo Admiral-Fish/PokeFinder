@@ -96,20 +96,20 @@ namespace Encounters5
     {
         if (size)
         {
-            *size = dreamRadar.size();
+            *size = DREAMRADAR.size();
         }
-        return dreamRadar.data();
+        return DREAMRADAR.data();
     }
 
     const DreamRadarTemplate *getDreamRadarEncounters(int index)
     {
-        return &dreamRadar[index];
+        return &DREAMRADAR[index];
     }
 
     std::vector<HiddenGrottoArea> getHiddenGrottoEncounters()
     {
         u32 length;
-        const u8 *data = Utilities::decompress(bw2_grotto.data(), bw2_grotto.size(), length);
+        const u8 *data = Utilities::decompress(BW2_GROTTO.data(), BW2_GROTTO.size(), length);
 
         const PersonalInfo *info = PersonalLoader::getPersonal(Game::BW2);
 
@@ -139,23 +139,23 @@ namespace Encounters5
         Game version = profile->getVersion();
         if (version == Game::Black)
         {
-            compressedData = black.data();
-            compressedLength = black.size();
+            compressedData = BLACK.data();
+            compressedLength = BLACK.size();
         }
         else if (version == Game::Black2)
         {
-            compressedData = black2.data();
-            compressedLength = black2.size();
+            compressedData = BLACK2.data();
+            compressedLength = BLACK2.size();
         }
         else if (version == Game::White)
         {
-            compressedData = white.data();
-            compressedLength = white.size();
+            compressedData = WHITE.data();
+            compressedLength = WHITE.size();
         }
         else
         {
-            compressedData = white2.data();
-            compressedLength = white2.size();
+            compressedData = WHITE2.data();
+            compressedLength = WHITE2.size();
         }
 
         u32 length;
@@ -280,57 +280,57 @@ namespace Encounters5
         {
             if (size)
             {
-                *size = starters.size();
+                *size = STARTERS.size();
             }
-            return starters.data();
+            return STARTERS.data();
         }
         else if (index == 1)
         {
             if (size)
             {
-                *size = fossils.size();
+                *size = FOSSILS.size();
             }
-            return fossils.data();
+            return FOSSILS.data();
         }
         else if (index == 2)
         {
             if (size)
             {
-                *size = gifts.size();
+                *size = GIFTS.size();
             }
-            return gifts.data();
+            return GIFTS.data();
         }
         else if (index == 3)
         {
             if (size)
             {
-                *size = stationary.size();
+                *size = STATIONARY.size();
             }
-            return stationary.data();
+            return STATIONARY.data();
         }
         else if (index == 4)
         {
             if (size)
             {
-                *size = legends.size();
+                *size = LEGENDS.size();
             }
-            return legends.data();
+            return LEGENDS.data();
         }
         else if (index == 5)
         {
             if (size)
             {
-                *size = events.size();
+                *size = EVENTS.size();
             }
-            return events.data();
+            return EVENTS.data();
         }
         else
         {
             if (size)
             {
-                *size = roamers.size();
+                *size = ROAMERS.size();
             }
-            return roamers.data();
+            return ROAMERS.data();
         }
     }
 

@@ -22,7 +22,6 @@
 #include <Core/Enum/Game.hpp>
 #include <Core/Enum/Lead.hpp>
 #include <Core/Enum/Method.hpp>
-#include <Core/Gen3/EncounterArea3.hpp>
 #include <Core/Parents/PersonalInfo.hpp>
 #include <Core/Parents/Slot.hpp>
 #include <Core/Parents/States/WildState.hpp>
@@ -36,19 +35,19 @@ static u8 unownLetter(u32 pid)
 }
 
 WildGenerator3::WildGenerator3(u32 initialAdvances, u32 maxAdvances, u32 delay, Method method, Encounter encounter, Lead lead,
-                               const Profile3 &profile, const WildStateFilter &filter) :
-    WildGenerator(initialAdvances, maxAdvances, delay, method, encounter, lead, profile, filter)
+                               const EncounterArea3 &area, const Profile3 &profile, const WildStateFilter &filter) :
+    WildGenerator(initialAdvances, maxAdvances, delay, method, encounter, lead, area, profile, filter)
 {
 }
 
-std::vector<WildGeneratorState> WildGenerator3::generate(u32 seed, const EncounterArea3 &encounterArea) const
+std::vector<WildGeneratorState> WildGenerator3::generate(u32 seed) const
 {
     std::vector<WildGeneratorState> states;
 
-    std::vector<u8> modifiedSlots = encounterArea.getSlots(lead);
-    u16 rate = encounterArea.getRate() * 16;
-    bool safari = encounterArea.safariZone(profile.getVersion());
-    bool tanoby = encounterArea.tanobyChamber(profile.getVersion());
+    std::vector<u8> modifiedSlots = area.getSlots(lead);
+    u16 rate = area.getRate() * 16;
+    bool safari = area.safariZone(profile.getVersion());
+    bool tanoby = area.tanobyChamber(profile.getVersion());
     bool rse = (profile.getVersion() & Game::RSE) != Game::None;
 
     bool cuteCharm = false;
@@ -87,9 +86,9 @@ std::vector<WildGeneratorState> WildGenerator3::generate(u32 seed, const Encount
         }
 
         // Modify level based on pressure if necessary
-        u8 level = encounterArea.calculateLevel(encounterSlot, go, lead == Lead::Pressure);
+        u8 level = area.calculateLevel(encounterSlot, go, lead == Lead::Pressure);
 
-        const Slot &slot = encounterArea.getPokemon(encounterSlot);
+        const Slot &slot = area.getPokemon(encounterSlot);
         const PersonalInfo *info = slot.getInfo();
         if (lead == Lead::CuteCharmM || lead == Lead::CuteCharmF)
         {

@@ -51,7 +51,7 @@ IDs5::IDs5(QWidget *parent) : QWidget(parent), ui(new Ui::IDs5)
     ui->textBoxSeedFinderTID->setValues(InputType::TIDSID);
     ui->textBoxSeedFinderMaxAdvances->setValues(InputType::Advance32Bit);
 
-    connect(ui->comboBoxProfiles, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &IDs5::profileIndexChanged);
+    connect(ui->comboBoxProfiles, &QComboBox::currentIndexChanged, this, &IDs5::profileIndexChanged);
     connect(ui->pushButtonSearch, &QPushButton::clicked, this, &IDs5::search);
     connect(ui->pushButtonFind, &QPushButton::clicked, this, &IDs5::find);
     connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &IDs5::profileManager);

@@ -20,16 +20,15 @@
 #ifndef WILDGENERATOR3_HPP
 #define WILDGENERATOR3_HPP
 
+#include <Core/Gen3/EncounterArea3.hpp>
 #include <Core/Gen3/Profile3.hpp>
 #include <Core/Parents/Filters/StateFilter.hpp>
 #include <Core/Parents/Generators/WildGenerator.hpp>
 
-class EncounterArea3;
-
 /**
  * @brief Wild encounter generator for Gen3
  */
-class WildGenerator3 : public WildGenerator<Profile3, WildStateFilter>
+class WildGenerator3 : public WildGenerator<EncounterArea3, Profile3, WildStateFilter>
 {
 public:
     /**
@@ -41,21 +40,21 @@ public:
      * @param encounter Encounter type
      * @param method Encounter method
      * @param lead Encounter lead
+     * @param area Wild pokemon info
      * @param profile Profile Information
      * @param filter State filter
      */
-    WildGenerator3(u32 initialAdvances, u32 maxAdvances, u32 delay, Method method, Encounter encounter, Lead lead, const Profile3 &profile,
-                   const WildStateFilter &filter);
+    WildGenerator3(u32 initialAdvances, u32 maxAdvances, u32 delay, Method method, Encounter encounter, Lead lead,
+                   const EncounterArea3 &area, const Profile3 &profile, const WildStateFilter &filter);
 
     /**
      * @brief Generates states for the \p encounterArea
      *
      * @param seed Starting PRNG state
-     * @param encounterArea Wild pokemon info
      *
      * @return Vector of computed states
      */
-    std::vector<WildGeneratorState> generate(u32 seed, const EncounterArea3 &encounterArea) const;
+    std::vector<WildGeneratorState> generate(u32 seed) const;
 };
 
 #endif // WILDGENERATOR3_HPP

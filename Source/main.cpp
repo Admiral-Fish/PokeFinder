@@ -17,7 +17,6 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include <Core/Gen8/DenLoader.hpp>
 #include <Core/Parents/ProfileLoader.hpp>
 #include <Core/Util/Translator.hpp>
 #include <Form/MainWindow.hpp>
@@ -94,8 +93,6 @@ int main(int argc, char *argv[])
     {
         QApplication::installTranslator(&translator);
     }
-
-    DenLoader::init(QApplication::applicationDirPath().toStdString());
 
     MainWindow w(profile);
     w.show();
