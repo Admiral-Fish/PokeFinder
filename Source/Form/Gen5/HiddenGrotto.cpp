@@ -249,7 +249,7 @@ void HiddenGrotto::search()
 
     u32 initialAdvances = ui->textBoxSearcherInitialAdvances->getUInt();
     u32 maxAdvances = ui->textBoxSearcherMaxAdvances->getUInt();
-    u8 powerLevel = ui->comboBoxSearcherGrottoPower->currentData().toUInt();
+    u8 powerLevel = ui->comboBoxSearcherGrottoPower->getCurrentUInt();
 
     HiddenGrottoFilter filter(ui->checkListSearcherSlot->getCheckedArray<11>(), ui->checkListSearcherGender->getCheckedArray<2>(),
                               ui->checkListSearcherGroup->getCheckedArray<4>());

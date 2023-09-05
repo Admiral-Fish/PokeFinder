@@ -92,7 +92,7 @@ std::vector<DreamRadarState> DreamRadarGenerator::generate(u64 seed) const
         {
             pid = Utilities5::forceGender(pid, go, 0, 0);
         }
-        else if (radarTemplate.getGender() == 0 || radarTemplate.getGender() == 1)
+        else if (radarTemplate.getGender() < 2)
         {
             pid = Utilities5::forceGender(pid, go, radarTemplate.getGender(), info->getGender());
         }
@@ -101,7 +101,7 @@ std::vector<DreamRadarState> DreamRadarGenerator::generate(u64 seed) const
         pid ^= 0x10000;
 
         // Force non-shiny
-        if (((pid >> 16) ^ (pid & 0xffff) ^ tsv) < 8)
+        if (Utilities::isShiny<true>(pid, tsv))
         {
             pid ^= 0x10000000;
         }

@@ -332,7 +332,7 @@ std::vector<WildSearcherState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 s
                     u16 encounterRand = test[0].nextUShort();
                     if (test[0].nextUShort(2) == 0 && !modifiedSlots.empty())
                     {
-                        encounterSlot[0] = modifiedSlots[encounterRand];
+                        encounterSlot[0] = modifiedSlots[encounterRand % modifiedSlots.count];
                     }
                     else
                     {

@@ -104,16 +104,12 @@ ProfileEditor5::~ProfileEditor5()
 
 Profile5 ProfileEditor5::getProfile()
 {
-    std::array<bool, 9> keypresses;
-    std::vector<bool> checked = ui->comboBoxKeypresses->getChecked();
-    std::copy(checked.begin(), checked.end(), keypresses.begin());
-
     return Profile5(ui->lineEditProfile->text().toStdString(), ui->comboBoxVersion->getEnum<Game>(), ui->textBoxTID->getUShort(),
-                    ui->textBoxSID->getUShort(), ui->textBoxMAC->getULong(), keypresses, ui->textBoxVCount->getUChar(),
-                    ui->textBoxGxStat->getUChar(), ui->textBoxVFrame->getUChar(), ui->checkBoxSkipLR->isChecked(),
-                    ui->textBoxTimer0Min->getUShort(), ui->textBoxTimer0Max->getUShort(), ui->checkBoxSoftReset->isChecked(),
-                    ui->checkBoxMemoryLink->isChecked(), ui->checkBoxShinyCharm->isChecked(), ui->comboBoxDSType->getEnum<DSType>(),
-                    ui->comboBoxLanguage->getEnum<Language>());
+                    ui->textBoxSID->getUShort(), ui->textBoxMAC->getULong(), ui->comboBoxKeypresses->getCheckedArray<9>(),
+                    ui->textBoxVCount->getUChar(), ui->textBoxGxStat->getUChar(), ui->textBoxVFrame->getUChar(),
+                    ui->checkBoxSkipLR->isChecked(), ui->textBoxTimer0Min->getUShort(), ui->textBoxTimer0Max->getUShort(),
+                    ui->checkBoxSoftReset->isChecked(), ui->checkBoxMemoryLink->isChecked(), ui->checkBoxShinyCharm->isChecked(),
+                    ui->comboBoxDSType->getEnum<DSType>(), ui->comboBoxLanguage->getEnum<Language>());
 }
 
 void ProfileEditor5::okay()

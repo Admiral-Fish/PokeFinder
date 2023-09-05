@@ -77,7 +77,7 @@ private:
     std::set<std::pair<u16, QString>> getEncounters3(Game version, u16 specie);
 
     /**
-     * @brief Gets wild encounters for Gen 3
+     * @brief Gets wild encounters for Gen 4
      *
      * @param version Game version
      * @param specie Pokemon specie
@@ -87,7 +87,17 @@ private:
     std::set<std::pair<u16, QString>> getEncounters4(Game version, u16 specie);
 
     /**
-     * @brief Gets wild encounters for Gen 3
+     * @brief Gets wild encounters for Gen 5
+     *
+     * @param version Game version
+     * @param specie Pokemon specie
+     *
+     * @return Set of pokemon locations and level ranges
+     */
+    std::set<std::pair<u16, QString>> getEncounters5(Game version, u16 specie);
+
+    /**
+     * @brief Gets wild encounters for Gen 8
      *
      * @param version Game version
      * @param specie Pokemon specie

@@ -97,6 +97,26 @@
      </item>
      <item>
       <property name="text">
+       <string>Black</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>White</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Black 2</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>White 2</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
        <string>Brilliant Diamond</string>
       </property>
      </item>

@@ -19,14 +19,19 @@
 
 #include "EncounterLookup.hpp"
 #include "ui_EncounterLookup.h"
+#include <Core/Enum/DSType.hpp>
 #include <Core/Enum/Encounter.hpp>
 #include <Core/Enum/Game.hpp>
+#include <Core/Enum/Language.hpp>
 #include <Core/Gen3/EncounterArea3.hpp>
 #include <Core/Gen3/Encounters3.hpp>
 #include <Core/Gen3/Profile3.hpp>
 #include <Core/Gen4/EncounterArea4.hpp>
 #include <Core/Gen4/Encounters4.hpp>
 #include <Core/Gen4/Profile4.hpp>
+#include <Core/Gen5/EncounterArea5.hpp>
+#include <Core/Gen5/Encounters5.hpp>
+#include <Core/Gen5/Profile5.hpp>
 #include <Core/Gen8/EncounterArea8.hpp>
 #include <Core/Gen8/Encounters8.hpp>
 #include <Core/Gen8/Profile8.hpp>
@@ -46,7 +51,8 @@ EncounterLookup::EncounterLookup(QWidget *parent) : QWidget(parent), ui(new Ui::
 
     ui->comboBoxGame->setup({ toInt(Game::Ruby), toInt(Game::Sapphire), toInt(Game::FireRed), toInt(Game::LeafGreen), toInt(Game::Emerald),
                               toInt(Game::Diamond), toInt(Game::Pearl), toInt(Game::Platinum), toInt(Game::HeartGold),
-                              toInt(Game::SoulSilver), toInt(Game::BD), toInt(Game::SP) });
+                              toInt(Game::SoulSilver), toInt(Game::Black), toInt(Game::White), toInt(Game::Black2), toInt(Game::White2),
+                              toInt(Game::BD), toInt(Game::SP) });
 
     ui->comboBoxPokemon->enableAutoComplete();
 
@@ -75,14 +81,18 @@ QString EncounterLookup::getEncounterString(Encounter type)
     switch (type)
     {
     case Encounter::Grass:
+    case Encounter::DoubleGrass:
+    case Encounter::SpecialGrass:
         return tr("Grass");
     case Encounter::Surfing:
+    case Encounter::SpecialSurf:
         return tr("Surfing");
     case Encounter::OldRod:
         return tr("Old Rod");
     case Encounter::GoodRod:
         return tr("Good Rod");
     case Encounter::SuperRod:
+    case Encounter::SpecialSuperRod:
         return tr("Super Rod");
     case Encounter::RockSmash:
         return tr("Rock Smash");
@@ -228,6 +238,38 @@ std::set<std::pair<u16, QString>> EncounterLookup::getEncounters4(Game version, 
     return encounters;
 }
 
+std::set<std::pair<u16, QString>> EncounterLookup::getEncounters5(Game version, u16 specie)
+{
+    std::set<std::pair<u16, QString>> encounters;
+    Profile5 profile("", version, 0, 0, 0, { false, false, false, false, false, false, false, false, false }, 0, 0, 0, false, 0, 0, false,
+                     false, false, DSType::DS, Language::English);
+
+    // Encounter variables to iterate through
+    auto types = { Encounter::Grass,           Encounter::DoubleGrass, Encounter::SpecialGrass, Encounter::SuperRod,
+                   Encounter::SpecialSuperRod, Encounter::Surfing,     Encounter::SpecialSurf };
+    auto seasons = { 0, 1, 2, 3 };
+
+    for (auto type : types)
+    {
+        for (auto season : seasons)
+        {
+            auto areas = Encounters5::getEncounters(type, season, &profile);
+            for (const auto &area : areas)
+            {
+                auto pokemon = area.getPokemon();
+                if (std::any_of(pokemon.begin(), pokemon.end(), [specie](const auto &entry) { return entry.getSpecie() == specie; }))
+                {
+                    std::pair<u8, u8> range = area.getLevelRange(specie);
+                    QString info = QString("%1/%2-%3").arg(getEncounterString(type)).arg(range.first).arg(range.second);
+                    encounters.insert(std::make_pair(area.getLocation(), info));
+                }
+            }
+        }
+    }
+
+    return encounters;
+}
+
 std::set<std::pair<u16, QString>> EncounterLookup::getEncounters8(Game version, u16 specie)
 {
     std::set<std::pair<u16, QString>> encounters;
@@ -289,6 +331,10 @@ void EncounterLookup::find()
     {
         encounters = getEncounters4(version, specie);
     }
+    else if ((version & Game::Gen5) != Game::None)
+    {
+        encounters = getEncounters5(version, specie);
+    }
     else if ((version & Game::Gen8) != Game::None)
     {
         encounters = getEncounters8(version, specie);
@@ -325,6 +371,10 @@ void EncounterLookup::gameIndexChanged(int index)
         else if ((version & Game::Gen4) != Game::None)
         {
             max = 493;
+        }
+        else if ((version & Game::Gen5) != Game::None)
+        {
+            max = 649;
         }
         else if ((version & Game::BDSP) != Game::None)
         {

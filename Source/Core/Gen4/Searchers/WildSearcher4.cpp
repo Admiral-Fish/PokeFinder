@@ -454,7 +454,7 @@ std::vector<WildSearcherState4> WildSearcher4::searchMethodJ(u8 hp, u8 atk, u8 d
                         u8 slot;
                         if (test[0].nextUShort<false>(2) == 0 && !modifiedSlots.empty())
                         {
-                            slot = modifiedSlots[encounterRand];
+                            slot = modifiedSlots[encounterRand % modifiedSlots.count];
                         }
                         else
                         {
@@ -789,7 +789,7 @@ std::vector<WildSearcherState4> WildSearcher4::searchMethodK(u8 hp, u8 atk, u8 d
 
                         if (test[0].nextUShort(2) == 0 && !modifiedSlots.empty())
                         {
-                            encounterSlot[0] = modifiedSlots[encounterRand];
+                            encounterSlot[0] = modifiedSlots[encounterRand % modifiedSlots.count];
                         }
                         else if (safari)
                         {

@@ -1,328 +1,139 @@
-Niente
-Master Ball
-Ultra Ball
-Mega Ball
-Poké Ball
-Safari Ball
-Rete Ball
-Sub Ball
-Minor Ball
-Bis Ball
-Timer Ball
-Chic Ball
-Premier Ball
-Scuro Ball
-Cura Ball
-Velox Ball
-Pregio Ball
-Pozione
-Antidoto
-Antiscottatura
-Antigelo
-Sveglia
-Antiparalisi
-Ricarica totale
-Pozione max
-Iperpozione
-Superpozione
-Cura totale
-Revitalizzante
-Revitalizzante max
-Acqua fresca
-Gassosa
-Lemonsucco
-Latte Mumu
-Polvenergia
-Radicenergia
-Polvocura
-Vitalerba
-Etere
-Etere max
-Elisir
-Elisir max
-Lavottino
-Succo di bacca
-Cenere magica
-PS-su
-Proteina
-Ferro
-Carburante
-Calcio
-Caramella rara
-PP-su
-Zinco
-PP-max
-Dolce gateau
-Superguardia
-Supercolpo
-Attacco X
-Difesa X
-Velocità X
-Precisione X
-Attacco Speciale X
-Difesa Speciale X
-Pokébambola
-Coda Skitty
-Flauto blu
-Flauto giallo
-Flauto rosso
-Flauto nero
-Flauto bianco
-Sale ondoso
-Gusciondoso
-Coccio rosso
-Coccio blu
-Coccio giallo
-Coccio verde
-Superrepellente
-Repellente max
-Fune di fuga
-Repellente
-Pietrasolare
-Pietralunare
-Pietrafocaia
-Pietratuono
-Pietraidrica
-Pietrafoglia
-Minifungo
-Grande fungo
-Perla
-Grande perla
-Polvostella
-Pezzo stella
-Pepita
-Squama cuore
-Miele
-Fertilrapido
-Fertilidro
-Fertilsaldo
-Fertilcolla
-Radifossile
-Fossilunghia
-Helixfossile
-Domofossile
-Ambra antica
-Fossilscudo
-Fossilcranio
-Osso raro
-Pietrabrillo
-Neropietra
-Pietralbore
-Pietraovale
-Roccianima
-Grigiosfera
-Tè
-???
-Autografo
-Idromodulo
-Voltmodulo
-Piromodulo
-Gelomodulo
-???
-Box Pokémon
-Tasca rimedi
-Porta MT
-Portacaramelle
-Tasca potenziam.
-Valigia vestiti
-Tasca cattura
-Tasca lotta
-???
-???
-???
-???
-???
-Dolcecuore
-Adamasfera
-Splendisfera
-Messaggio Inizio
-Messaggio TVB
-Messaggio Invito
-Messaggio Grazie
-Messaggio Chiedi
-Messaggio Consiglio
-Messaggio Risposta
-Messaggio Ponte F
-Messaggio Ponte L
-Messaggio Ponte P
-Messaggio Ponte V
-Messaggio Ponte M
-Baccaliegia
-Baccastagna
-Baccapesca
-Baccafrago
-Baccaperina
-Baccamela
-Baccarancia
-Baccaki
-Baccaprugna
-Baccacedro
-Baccafico
-Baccakiwi
-Baccamango
-Baccaguava
-Baccapaia
-Baccalampon
-Baccamora
-Baccabana
-Baccapera
-Baccananas
-Baccagrana
-Baccalga
-Baccaloquat
-Baccamelon
-Baccauva
-Baccamodoro
-Baccavena
-Baccagostan
-Baccambutan
-Baccalemon
-Baccamelos
-Baccapalma
-Baccacomero
-Baccadurian
-Baccartillo
-Baccacao
-Baccapasflo
-Baccaparmen
-Baccarindo
-Baccamoya
-Baccarosmel
-Baccakebia
-Baccanaca
-Baccababa
-Baccapayapa
-Baccaitan
-Baccaciofo
-Baccacitrus
-Baccahaban
-Baccaxan
-Baccababiri
-Baccacinlan
-Baccalici
-Baccalongan
-Baccasalak
-Baccapitaya
-Baccacocca
-Baccalangsa
-Baccambola
-Baccaenigma
-Baccaracolo
-Baccacrela
-Baccajaba
-Baccaroam
-Luminpolvere
-Erbachiara
-Crescicappa
-Condividi esperienza
-Rapidartiglio
-Calmanella
-Mentalerba
-Bendascelta
-Roccia di re
-Argenpolvere
-Monetamuleto
-Velopuro
-Cuorugiada
-Dente abissi
-Squamabissi
-Palla fumo
-Pietrastante
-Bandana
-Fortunuovo
-Mirino
-Metalcopertura
-Avanzi
-Squama drago
-Elettropalla
-Sabbia soffice
-Pietradura
-Miracolseme
-Occhialineri
-Cintura nera
-Calamita
-Acqua magica
-Beccaffilato
-Velenaculeo
-Gelomai
-Spettrotarga
-Cucchiaio torto
-Carbonella
-Dente di drago
-Sciarpa seta
-Upgrade
-Conchinella
-Marearoma
-Distraroma
-Fortunpugno
-Metalpolvere
-Osso spesso
-Porro
-Fascia rossa
-Fascia blu
-Fascia rosa
-Fascia verde
-Fascia gialla
-Grandelente
-Muscolbanda
-Saviocchiali
-Abilcintura
-Creta luce
-Assorbisfera
-Vigorerba
-Tossicsfera
-Fiammosfera
-Velopolvere
-Focalnastro
-Zoomlente
-Plessimetro
-Ferropalla
-Rallentocoda
-Destincomune
-Fangopece
-Rocciafredda
-Roccialiscia
-Rocciacalda
-Rocciaumida
-Presartiglio
-Stolascelta
-Vischiopunta
-Vigorcerchio
-Vigorfascia
-Vigorlente
-Vigorbanda
-Vigorgliera
-Vigorpeso
-Disfoguscio
-Granradice
-Lentiscelta
-Lastrarogo
-Lastraidro
-Lastrasaetta
-Lastraprato
-Lastragelo
-Lastrapugno
-Lastrafiele
-Lastrageo
-Lastracielo
-Lastramente
-Lastrabaco
-Lastrapietra
-Lastratetra
-Lastradrakon
-Lastratimore
-Lastraferro
-Bizzoaroma
-Roccioaroma
-Gonfioaroma
-Ondaroma
-Rosaroma
-Fortunaroma
-Puroaroma
-Copertura
-Elettritore
-Magmatore
-Dubbiodisco
-Terrorpanno
-Affilartiglio
-Affilodente
+0,Niente
+2,Ultra Ball
+3,Mega Ball
+4,Poké Ball
+17,Pozione
+25,Iperpozione
+26,Superpozione
+28,Revitalizzante
+29,Revitalizzante max
+33,Latte Mumu
+43,Succo di bacca
+44,Cenere magica
+50,Caramella rara
+51,PP-su
+53,PP-max
+72,Coccio rosso
+73,Coccio blu
+74,Coccio giallo
+75,Coccio verde
+76,Superrepellente
+77,Repellente max
+79,Repellente
+80,Pietrasolare
+81,Pietralunare
+82,Pietrafocaia
+83,Pietratuono
+84,Pietraidrica
+85,Pietrafoglia
+86,Minifungo
+87,Grande fungo
+88,Perla
+89,Grande perla
+90,Polvostella
+91,Pezzo stella
+92,Pepita
+93,Squama cuore
+94,Miele
+95,Fertilrapido
+96,Fertilidro
+97,Fertilsaldo
+98,Fertilcolla
+106,Osso raro
+107,Pietrabrillo
+108,Neropietra
+109,Pietralbore
+110,Pietraovale
+149,Baccaliegia
+150,Baccastagna
+151,Baccapesca
+152,Baccafrago
+153,Baccaperina
+154,Baccamela
+155,Baccarancia
+156,Baccaki
+157,Baccaprugna
+158,Baccacedro
+184,Baccacao
+185,Baccapasflo
+186,Baccaparmen
+187,Baccarindo
+188,Baccamoya
+189,Baccarosmel
+190,Baccakebia
+191,Baccanaca
+192,Baccababa
+193,Baccapayapa
+194,Baccaitan
+195,Baccaciofo
+196,Baccacitrus
+197,Baccahaban
+198,Baccaxan
+199,Baccababiri
+200,Baccacinlan
+213,Luminpolvere
+217,Rapidartiglio
+219,Mentalerba
+221,Roccia di re
+222,Argenpolvere
+224,Velopuro
+226,Dente abissi
+227,Squamabissi
+228,Palla fumo
+229,Pietrastante
+230,Bandana
+231,Fortunuovo
+233,Metalcopertura
+234,Avanzi
+235,Squama drago
+236,Elettropalla
+237,Sabbia soffice
+238,Pietradura
+239,Miracolseme
+240,Occhialineri
+241,Cintura nera
+242,Calamita
+243,Acqua magica
+244,Beccaffilato
+245,Velenaculeo
+246,Gelomai
+247,Spettrotarga
+248,Cucchiaio torto
+249,Carbonella
+250,Dente di drago
+251,Sciarpa seta
+256,Fortunpugno
+257,Metalpolvere
+258,Osso spesso
+259,Porro
+265,Grandelente
+268,Abilcintura
+269,Creta luce
+271,Vigorerba
+272,Tossicsfera
+273,Fiammosfera
+274,Velopolvere
+277,Plessimetro
+278,Ferropalla
+279,Rallentocoda
+281,Fangopece
+286,Presartiglio
+288,Vischiopunta
+295,Disfoguscio
+296,Granradice
+322,Elettritore
+323,Magmatore
+326,Affilartiglio
+541,Palloncino
+545,Bulbo
+546,Ricaripila
+571,Piumabella
+580,Profumfungo
+581,Granpepita
+583,Pezzo cometa
+648,Muschioluce
+649,Palla di neve
+881,Elettroseme
+882,Psicoseme
+883,Nebbiaseme
+884,Erbaseme

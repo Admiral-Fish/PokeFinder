@@ -140,8 +140,14 @@ add_library(PokeFinderCore STATIC
     Gen5/Generators/HiddenGrottoGenerator.hpp
     Gen5/Generators/IDGenerator5.cpp
     Gen5/Generators/IDGenerator5.hpp
+    Gen5/Generators/StaticGenerator5.cpp
+    Gen5/Generators/StaticGenerator5.hpp
+    Gen5/Generators/WildGenerator5.cpp
+    Gen5/Generators/WildGenerator5.hpp
     Gen5/HiddenGrottoArea.cpp
     Gen5/HiddenGrottoArea.hpp
+    Gen5/IVSeedCache.cpp
+    Gen5/IVSeedCache.hpp
     Gen5/Nazos.cpp
     Gen5/Nazos.hpp
     Gen5/PGF.hpp
@@ -149,8 +155,10 @@ add_library(PokeFinderCore STATIC
     Gen5/Profile5.hpp
     Gen5/Searchers/IDSearcher5.cpp
     Gen5/Searchers/IDSearcher5.hpp
+    Gen5/Searchers/IVSearcher5.hpp
     Gen5/Searchers/ProfileSearcher5.cpp
     Gen5/Searchers/ProfileSearcher5.hpp
+    Gen5/Searchers/SearcherBase5.hpp
     Gen5/Searchers/Searcher5.hpp
     Gen5/States/DreamRadarState.hpp
     Gen5/States/EggState5.hpp
@@ -158,6 +166,8 @@ add_library(PokeFinderCore STATIC
     Gen5/States/ProfileSearcherState5.hpp
     Gen5/States/SearcherState5.hpp
     Gen5/States/State5.hpp
+    Gen5/States/WildState5.hpp
+    Gen5/StaticTemplate5.hpp
     Gen8/Den.hpp
     Gen8/EncounterArea8.cpp
     Gen8/EncounterArea8.hpp
@@ -212,6 +222,7 @@ add_library(PokeFinderCore STATIC
     Parents/ProfileLoader.cpp
     Parents/ProfileLoader.hpp
     Parents/Searchers/Searcher.hpp
+    Parents/Searchers/SearcherBase.hpp
     Parents/Searchers/StaticSearcher.hpp
     Parents/Searchers/WildSearcher.hpp
     Parents/Slot.hpp
@@ -260,5 +271,5 @@ add_library(PokeFinderCore STATIC
     Util/Utilities.hpp
 )
 
-target_include_directories(PokeFinderCore PUBLIC "External/nlohmann")
+target_include_directories(PokeFinderCore PUBLIC "External/fph" "External/nlohmann")
 target_link_libraries(PokeFinderCore bz2_static)

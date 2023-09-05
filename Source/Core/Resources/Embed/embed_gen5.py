@@ -14,13 +14,13 @@ def embed_encounters5():
             if "dreamRadar" in type:
                 string = f"constexpr std::array<DreamRadarTemplate, {len(encounters)}> {type.upper()} = {{ "
             else:
-                string = f"constexpr std::array<StaticTemplate, {len(encounters)}> {type.upper()} = {{ "
+                string = f"constexpr std::array<StaticTemplate5, {len(encounters)}> {type.upper()} = {{ "
 
             for i, encounter in enumerate(encounters):
                 if "dreamRadar" in type:
                     string += f"DreamRadarTemplate({encounter['specie']}, {encounter.get('form', 0)}, {encounter['ability']})"
                 else:
-                    string += f"StaticTemplate({encounter['version']}, {encounter['specie']}, {encounter.get('form', 0)}, {encounter.get('shiny', 'Shiny::Random')}, {encounter.get('ability', 255)}, {encounter.get('gender', 255)}, 0, {encounter['level']})"
+                    string += f"StaticTemplate5({encounter['version']}, {encounter['specie']}, {encounter.get('form', 0)}, {encounter.get('shiny', 'Shiny::Random')}, {encounter.get('ability', 255)}, {encounter.get('gender', 255)}, {encounter['level']})"
 
                 if i != len(encounters) - 1:
                     string += ", "
@@ -48,4 +48,4 @@ def embed_encounters5():
         string += " };"
         arrays.append(string)
 
-    write_data(arrays, "EncounterData5.hpp", ("Core/Gen5/DreamRadarTemplate.hpp", "Core/Parents/StaticTemplate.hpp", "array"))
+    write_data(arrays, "EncounterData5.hpp", ("Core/Gen5/DreamRadarTemplate.hpp", "Core/Gen5/StaticTemplate5.hpp", "array"))

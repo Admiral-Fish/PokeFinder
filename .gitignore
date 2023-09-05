@@ -15,6 +15,7 @@ out
 i18n.hpp
 EncounterData*.hpp
 Personal.hpp
+IVs.hpp
 *.pyc
 
 # Test resource files

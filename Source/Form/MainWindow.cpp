@@ -47,6 +47,8 @@
 #include <Form/Gen5/IDs5.hpp>
 #include <Form/Gen5/Profile/ProfileCalibrator5.hpp>
 #include <Form/Gen5/Profile/ProfileManager5.hpp>
+#include <Form/Gen5/Static5.hpp>
+#include <Form/Gen5/Wild5.hpp>
 #include <Form/Gen8/Eggs8.hpp>
 #include <Form/Gen8/Event8.hpp>
 #include <Form/Gen8/IDs8.hpp>
@@ -71,8 +73,6 @@
 #include <QTimer>
 #include <QtNetwork>
 #include <version.h>
-
-// #include <Forms/Gen5/Static5.hpp>
 
 MainWindow::MainWindow(bool profile, QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow)
 {
@@ -108,6 +108,8 @@ MainWindow::MainWindow(bool profile, QWidget *parent) : QMainWindow(parent), ui(
     connect(ui->pushButtonEvent5, &QPushButton::clicked, this, &MainWindow::openEvent5);
     connect(ui->pushButtonHiddenGrotto, &QPushButton::clicked, this, &MainWindow::openHiddenGrotto);
     connect(ui->pushButtonIDs5, &QPushButton::clicked, this, &MainWindow::openIDs5);
+    connect(ui->pushButtonStatic5, &QPushButton::clicked, this, &MainWindow::openStatic5);
+    connect(ui->pushButtonWild5, &QPushButton::clicked, this, &MainWindow::openWild5);
     connect(ui->actionProfileCalibrator, &QAction::triggered, this, &MainWindow::openProfileCalibrator);
     connect(ui->actionProfileManager5, &QAction::triggered, this, &MainWindow::openProfileManager5);
 
@@ -126,9 +128,6 @@ MainWindow::MainWindow(bool profile, QWidget *parent) : QMainWindow(parent), ui(
     connect(ui->actionIVCalculator, &QAction::triggered, this, &MainWindow::openIVCalculator);
     connect(ui->actionResearcher, &QAction::triggered, this, &MainWindow::openResearcher);
     connect(ui->actionSettings, &QAction::triggered, this, &MainWindow::openSettings);
-
-    ui->pushButtonStatic5->setVisible(false);
-    ui->pushButtonWild5->setVisible(false);
 
     QSettings setting;
     if (setting.contains("mainWindow/geometry"))
@@ -172,7 +171,8 @@ MainWindow::~MainWindow()
     delete event5;
     delete hiddenGrotto;
     delete ids5;
-    // delete static5;
+    delete static5;
+    delete wild5;
 
     delete egg8;
     delete event8;
@@ -499,6 +499,50 @@ void MainWindow::openIDs5()
     }
 }
 
+void MainWindow::openStatic5()
+{
+    if (!static5)
+    {
+        static5 = new Static5();
+        connect(static5, &Static5::profilesModified, this, &MainWindow::updateProfiles);
+    }
+
+    if (!static5->hasProfiles())
+    {
+        QMessageBox msg(QMessageBox::Warning, tr("No profiles found"),
+                        tr("Please use the Profile Calibrator under Gen 5 Tools to create one."));
+        msg.exec();
+        static5->close();
+    }
+    else
+    {
+        static5->show();
+        static5->raise();
+    }
+}
+
+void MainWindow::openWild5()
+{
+    if (!wild5)
+    {
+        wild5 = new Wild5();
+        connect(wild5, &Wild5::profilesModified, this, &MainWindow::updateProfiles);
+    }
+
+    if (!wild5->hasProfiles())
+    {
+        QMessageBox msg(QMessageBox::Warning, tr("No profiles found"),
+                        tr("Please use the Profile Calibrator under Gen 5 Tools to create one."));
+        msg.exec();
+        wild5->close();
+    }
+    else
+    {
+        wild5->show();
+        wild5->raise();
+    }
+}
+
 void MainWindow::openProfileCalibrator() const
 {
     auto *calibrator = new ProfileCalibrator5();
@@ -512,24 +556,6 @@ void MainWindow::openProfileManager5() const
     connect(manager, &ProfileManager5::profilesModified, this, &MainWindow::updateProfiles);
     manager->show();
 }
-
-/*void MainWindow::openStatic5()
-{
-    if (!static5)
-    {
-        static5 = new Static5();
-        connect(static5, &Static5::updateProfiles, this, &MainWindow::updateProfiles);
-    }
-    static5->show();
-
-    if (!static5->hasProfiles())
-    {
-        QMessageBox msg(QMessageBox::Warning, tr("No profiles found"),
-                            tr("Please use the Profile Calibrator under Gen 5 Tools to create one."));
-        msg.exec();
-        static5->close();
-    }
-}*/
 
 void MainWindow::openDenMap()
 {
@@ -721,10 +747,14 @@ void MainWindow::updateProfiles(int num)
         {
             ids5->updateProfiles();
         }
-        /*if (static5)
+        if (static5)
         {
             static5->updateProfiles();
-        }*/
+        }
+        if (wild5)
+        {
+            wild5->updateProfiles();
+        }
     }
     else if (num == 8)
     {

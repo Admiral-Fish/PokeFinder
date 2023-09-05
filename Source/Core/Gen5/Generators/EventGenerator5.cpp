@@ -51,14 +51,14 @@ std::vector<State5> EventGenerator5::generate(u64 seed) const
         std::array<u8, 6> ivs;
         for (u8 i = 0; i < 6; i++)
         {
-            u8 parameterIV = pgf.getIV(i);
-            if (parameterIV == 255)
+            u8 iv = pgf.getIV(i);
+            if (iv == 255)
             {
                 ivs[i] = go.nextUInt(32);
             }
             else
             {
-                ivs[i] = parameterIV;
+                ivs[i] = iv;
             }
         }
 
@@ -67,14 +67,14 @@ std::vector<State5> EventGenerator5::generate(u64 seed) const
 
         // Gender locked handling
         u32 pid = go.nextUInt();
-        if (pgf.getGender() == 0 || pgf.getGender() == 1)
+        if (pgf.getGender() < 2)
         {
             pid = Utilities5::forceGender(pid, go, pgf.getGender(), info->getGender());
         }
 
         if (pgf.getShiny() == 0) // No shiny
         {
-            if (((pid >> 16) ^ (pid & 0xffff) ^ tsv) < 8)
+            if (Utilities::isShiny<true>(pid, tsv))
             {
                 pid ^= 0x10000000;
             }
