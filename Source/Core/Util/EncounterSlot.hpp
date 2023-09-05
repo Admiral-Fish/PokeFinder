@@ -57,6 +57,16 @@ namespace EncounterSlot
     u8 kSlot(u8 rand, Encounter encounter);
 
     /**
+     * @brief Calculates the encounter slot for BW/BW2
+     *
+     * @param rand PRNG call
+     * @param encounter Encounter type
+     *
+     * @return Encounter slot
+     */
+    u8 bwSlot(u8 rand, Encounter encounter);
+
+    /**
      * @brief Calculates the encounter slot for BDSP
      *
      * @param rand PRNG call

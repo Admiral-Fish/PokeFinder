@@ -129,6 +129,19 @@ namespace EncounterSlot
         }
     }
 
+    u8 bwSlot(u8 rand, Encounter encounter)
+    {
+        switch (encounter)
+        {
+        case Encounter::SuperRod:
+            return water2[rand];
+        case Encounter::Surfing:
+            return water4[rand];
+        default:
+            return grass[rand];
+        }
+    }
+
     u8 bdspSlot(u8 rand, Encounter encounter)
     {
         switch (encounter)

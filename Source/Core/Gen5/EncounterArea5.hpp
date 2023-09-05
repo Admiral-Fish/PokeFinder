@@ -21,6 +21,7 @@
 #define ENCOUNTERAREA5_HPP
 
 #include <Core/Parents/EncounterArea.hpp>
+#include <Core/RNG/LCRNG64.hpp>
 
 /**
  * @brief Contains information about the encounters for an area. This includes location, rate, and the slots.
@@ -29,16 +30,58 @@ class EncounterArea5 : public EncounterArea
 {
 public:
     /**
-     * @brief Construct a new EncounterArea4 object
+     * @brief Construct a new EncounterArea5 object
      *
      * @param location Location number
      * @param rate Encounter rate of the area
+     * @param season Whether encounter area has seasonal encounters
      * @param encounter Encounter type of the area
      * @param pokemon Available pokemon of the area
      */
-    EncounterArea5(u8 location, u8 rate, Encounter type, const std::array<Slot, 12> &pokemon) : EncounterArea(location, rate, type, pokemon)
+    EncounterArea5(u8 location, u8 rate, bool season, Encounter type, const std::array<Slot, 12> &pokemon) :
+        EncounterArea(location, rate, type, pokemon), season(season)
     {
     }
+
+    /**
+     * @brief Calculates the level of a pokemon
+     *
+     * @param encounterSlot Pokemon slot
+     * @param rng RNG object
+     * @param force Whether Pressure lead is being used
+     *
+     * @return Level of the encounter
+     */
+    u8 calculateLevel(u8 encounterSlot, BWRNG &rng, bool force) const
+    {
+        const Slot &slot = pokemon[encounterSlot];
+
+        u8 min = slot.getMinLevel();
+        u8 max = slot.getMaxLevel();
+        u8 range = max - min + 1;
+
+        u8 rand = rng.nextUInt(100) % range;
+        if (force && rng.nextUInt(2) != 0)
+        {
+            return max;
+        }
+
+        return min + rand;
+    }
+
+    /**
+     * @brief Returns if the encounter area has multiple seasonal differences
+     *
+     * @return true Differences based on the season
+     * @return false No differences based on the season
+     */
+    bool getSeason() const
+    {
+        return season;
+    }
+
+private:
+    bool season;
 };
 
 #endif // ENCOUNTERAREA5_HPP

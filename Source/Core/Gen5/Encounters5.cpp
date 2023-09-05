@@ -160,6 +160,7 @@ namespace Encounters5
             const auto *entry = reinterpret_cast<const WildEncounter5 *>(data + offset);
 
             const auto *entrySeason = &entry->seasons[0];
+            bool seasons = entry->seasonCount > 1;
             if (season < entry->seasonCount)
             {
                 entrySeason = &entry->seasons[season];
@@ -177,7 +178,7 @@ namespace Encounters5
                         slots[i] = Slot(slot.specie & 0x7ff, slot.specie >> 11, slot.level, slot.level,
                                         PersonalLoader::getPersonal(version, slot.specie & 0x7ff, slot.specie >> 11));
                     }
-                    encounters.emplace_back(entry->location, entrySeason->grassRate, encounter, slots);
+                    encounters.emplace_back(entry->location, entrySeason->grassRate, seasons, encounter, slots);
                 }
                 break;
             case Encounter::DoubleGrass:
@@ -189,7 +190,7 @@ namespace Encounters5
                         slots[i] = Slot(slot.specie & 0x7ff, slot.specie >> 11, slot.level, slot.level,
                                         PersonalLoader::getPersonal(version, slot.specie & 0x7ff, slot.specie >> 11));
                     }
-                    encounters.emplace_back(entry->location, entrySeason->grassDoubleRate, encounter, slots);
+                    encounters.emplace_back(entry->location, entrySeason->grassDoubleRate, seasons, encounter, slots);
                 }
                 break;
             case Encounter::SpecialGrass:
@@ -201,7 +202,7 @@ namespace Encounters5
                         slots[i] = Slot(slot.specie & 0x7ff, slot.specie >> 11, slot.level, slot.level,
                                         PersonalLoader::getPersonal(version, slot.specie & 0x7ff, slot.specie >> 11));
                     }
-                    encounters.emplace_back(entry->location, entrySeason->grassSpecialRate, encounter, slots);
+                    encounters.emplace_back(entry->location, entrySeason->grassSpecialRate, seasons, encounter, slots);
                 }
                 break;
             case Encounter::Surfing:
@@ -213,7 +214,7 @@ namespace Encounters5
                         slots[i] = Slot(slot.specie & 0x7ff, slot.specie >> 11, slot.minLevel, slot.maxLevel,
                                         PersonalLoader::getPersonal(version, slot.specie & 0x7ff, slot.specie >> 11));
                     }
-                    encounters.emplace_back(entry->location, entrySeason->surfRate, encounter, slots);
+                    encounters.emplace_back(entry->location, entrySeason->surfRate, seasons, encounter, slots);
                 }
                 break;
             case Encounter::SpecialSurf:
@@ -225,7 +226,7 @@ namespace Encounters5
                         slots[i] = Slot(slot.specie & 0x7ff, slot.specie >> 11, slot.minLevel, slot.maxLevel,
                                         PersonalLoader::getPersonal(version, slot.specie & 0x7ff, slot.specie >> 11));
                     }
-                    encounters.emplace_back(entry->location, entrySeason->surfSpecialRate, encounter, slots);
+                    encounters.emplace_back(entry->location, entrySeason->surfSpecialRate, seasons, encounter, slots);
                 }
                 break;
             case Encounter::SuperRod:
@@ -237,7 +238,7 @@ namespace Encounters5
                         slots[i] = Slot(slot.specie & 0x7ff, slot.specie >> 11, slot.minLevel, slot.maxLevel,
                                         PersonalLoader::getPersonal(version, slot.specie & 0x7ff, slot.specie >> 11));
                     }
-                    encounters.emplace_back(entry->location, entrySeason->fishRate, encounter, slots);
+                    encounters.emplace_back(entry->location, entrySeason->fishRate, seasons, encounter, slots);
                 }
                 break;
             case Encounter::SpecialSuperRod:
@@ -249,7 +250,7 @@ namespace Encounters5
                         slots[i] = Slot(slot.specie & 0x7ff, slot.specie >> 11, slot.minLevel, slot.maxLevel,
                                         PersonalLoader::getPersonal(version, slot.specie & 0x7ff, slot.specie >> 11));
                     }
-                    encounters.emplace_back(entry->location, entrySeason->fishSpecialRate, encounter, slots);
+                    encounters.emplace_back(entry->location, entrySeason->fishSpecialRate, seasons, encounter, slots);
                 }
                 break;
             default:
@@ -258,6 +259,7 @@ namespace Encounters5
 
             offset += sizeof(WildEncounter5) + entry->seasonCount * sizeof(WildEncounter5Season);
         }
+        delete[] data;
         return encounters;
     }
 
