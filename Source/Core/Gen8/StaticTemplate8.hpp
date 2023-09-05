@@ -40,7 +40,7 @@ public:
      * @param gender Gender of the template
      * @param ivCount Gender of the template
      * @param level Level of the template
-     * @param Whether the template is a roamer
+     * @param roamer Whether the template is a roamer
      */
     constexpr StaticTemplate8(Game version, u16 specie, u8 form, Shiny shiny, u8 ability, u8 gender, u8 ivCount, u8 level, bool roamer) :
         StaticTemplate(version, specie, form, shiny, ability, gender, ivCount, level), roamer(roamer)

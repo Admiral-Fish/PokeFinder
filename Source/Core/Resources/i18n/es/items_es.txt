@@ -1,328 +1,139 @@
-Ningún objeto
-Master Ball
-Ultra Ball
-Super Ball
-Poké Ball
-Safari Ball
-Malla Ball
-Buceo Ball
-Nido Ball
-Acopio Ball
-Turno Ball
-Lujo Ball
-Honor Ball
-Ocaso Ball
-Sana Ball
-Veloz Ball
-Gloria Ball
-Poción
-Antídoto
-Antiquemar
-Antihielo
-Despertar
-Antiparalizador
-Restaurar Todo
-Poción Máxima
-Hiperpoción
-Superpoción
-Cura Total
-Revivir
-Revivir Máximo
-Agua Fresca
-Refresco
-Limonada
-Leche Mu-mu
-Polvo Energía
-Raíz Energía
-Polvo Curación
-Hierba Revivir
-Éter
-Éter Máximo
-Elixir
-Elixir Máximo
-Galleta Lava
-Zumo de Baya
-Ceniza Sagrada
-Más PS
-Proteína
-Hierro
-Carburante
-Calcio
-Caramelo Raro
-Más PP
-Zinc
-PP Máximos
-Barrita Plus
-Protección X
-Crítico X
-Ataque X
-Defensa X
-Velocidad X
-Precisión X
-Ataque Especial X
-Defensa Especial X
-Pokémuñeco
-Cola Skitty
-Flauta Azul
-Flauta Amarilla
-Flauta Roja
-Flauta Negra
-Flauta Blanca
-Sal Cardumen
-Concha Cardumen
-Parte Roja
-Parte Azul
-Parte Amarilla
-Parte Verde
-Superrepelente
-Repelente Máximo
-Cuerda Huida
-Repelente
-Piedra Solar
-Piedra Lunar
-Piedra Fuego
-Piedra Trueno
-Piedra Agua
-Piedra Hoja
-Miniseta
-Seta Grande
-Perla
-Perla Grande
-Polvo Estelar
-Trozo Estrella
-Pepita
-Escama Corazón
-Miel
-Abono Rápido
-Abono Lento
-Abono Fijador
-Abono Brote
-Fósil Raíz
-Fósil Garra
-Fósil Hélix
-Fósil Domo
-Ámbar Viejo
-Fósil Coraza
-Fósil Cráneo
-Hueso Raro
-Piedra Día
-Piedra Noche
-Piedra Alba
-Piedra Oval
-Piedra Espíritu
-Griseosfera
-Té
-(?)
-Autógrafo
-HidroROM
-FulgoROM
-PiroROM
-CrioROM
-(?)
-Caja de Pokémon
-Botiquín
-Estuche de MT
-Tarro de Caramelos
-Bolsillo Mejoras
-Maleta
-Bolsillo Captura
-Bolsillo Combate
-(?)
-(?)
-(?)
-(?)
-(?)
-Corazón Dulce
-Diamansfera
-Lustresfera
-Carta Inicial
-Carta Favoritos
-Carta Invitar
-Carta Gracias
-Carta Pregunta
-Carta Gustos
-Carta Respuesta
-Carta Puente S
-Carta Puente F
-Carta Puente A
-Carta Puente V
-Carta Puente P
-Baya Zreza
-Baya Atania
-Baya Meloc
-Baya Safre
-Baya Perasi
-Baya Zanama
-Baya Aranja
-Baya Caquic
-Baya Ziuela
-Baya Zidra
-Baya Higog
-Baya Wiki
-Baya Ango
-Baya Guaya
-Baya Pabaya
-Baya Frambu
-Baya Oram
-Baya Latano
-Baya Peragu
-Baya Pinia
-Baya Grana
-Baya Algama
-Baya Ispero
-Baya Meluce
-Baya Uvav
-Baya Tamate
-Baya Mais
-Baya Aostan
-Baya Rautan
-Baya Monli
-Baya Wikano
-Baya Plama
-Baya Sambia
-Baya Rudion
-Baya Andano
-Baya Caoca
-Baya Pasio
-Baya Gualot
-Baya Tamar
-Baya Rimoya
-Baya Pomaro
-Baya Kebia
-Baya Acardo
-Baya Kouba
-Baya Payapa
-Baya Yecana
-Baya Alcho
-Baya Drasi
-Baya Anjiro
-Baya Dillo
-Baya Baribá
-Baya Chilan
-Baya Lichi
-Baya Gonlan
-Baya Aslac
-Baya Yapati
-Baya Aricoc
-Baya Zonlan
-Baya Arabol
-Baya Enigma
-Baya Lagro
-Baya Chiri
-Baya Jaboca
-Baya Magua
-Polvo Brillo
-Hierba Blanca
-Brazal Firme
-Repartir Experiencia
-Garra Rápida
-Cascabel Alivio
-Hierba Mental
-Cinta Elección
-Roca del Rey
-Polvo Plata
-Moneda Amuleto
-Amuleto
-Rocío Bondad
-Diente Marino
-Escama Marina
-Bola de Humo
-Piedra Eterna
-Cinta Aguante
-Huevo Suerte
-Periscopio
-Revest. Metálico
-Restos
-Escama Dragón
-Bola Luminosa
-Arena Fina
-Piedra Dura
-Semilla Milagro
-Gafas de Sol
-Cinturón Negro
-Imán
-Agua Mística
-Pico Afilado
-Flecha Venenosa
-Antiderretir
-Hechizo
-Cuchara Torcida
-Carbón
-Colmillo Dragón
-Pañuelo de Seda
-Mejora
-Cascabel Concha
-Incienso Marino
-Incienso Suave
-Puño Suerte
-Polvo Metálico
-Hueso Grueso
-Puerro
-Pañuelo Rojo
-Pañuelo Azul
-Pañuelo Rosa
-Pañuelo Verde
-Pañuelo Amarillo
-Lupa
-Cinta Fuerte
-Gafas Especiales
-Cinta Experto
-Refleluz
-Vidasfera
-Hierba Única
-Toxisfera
-Llamasfera
-Polvo Veloz
-Banda Aguante
-Telescopio
-Metrónomo
-Bola Férrea
-Cola Plúmbea
-Lazo Destino
-Lodo Negro
-Roca Helada
-Roca Suave
-Roca Calor
-Roca Lluvia
-Garra Garfio
-Pañuelo Elección
-Toxiestrella
-Brazal Recio
-Cinto Recio
-Lente Recia
-Banda Recia
-Franja Recia
-Pesa Recia
-Muda Concha
-Raíz Grande
-Gafas Elección
-Tabla Llama
-Tabla Linfa
-Tabla Trueno
-Tabla Pradal
-Tabla Helada
-Tabla Fuerte
-Tabla Tóxica
-Tabla Terrax
-Tabla Cielo
-Tabla Mental
-Tabla Bicho
-Tabla Pétrea
-Tabla Terror
-Tabla Draco
-Tabla Oscura
-Tabla Acero
-Incienso Raro
-Incienso Roca
-Incienso Lento
-Incienso Acua
-Incienso Floral
-Incienso Duplo
-Incienso Puro
-Protector
-Electrizador
-Magmatizador
-Disco Extraño
-Tela Terrible
-Garra Afilada
-Colmillo Agudo
+0,Ningún objeto
+2,Ultra Ball
+3,Super Ball
+4,Poké Ball
+17,Poción
+25,Hiperpoción
+26,Superpoción
+28,Revivir
+29,Revivir Máximo
+33,Leche Mu-mu
+43,Zumo de Baya
+44,Ceniza Sagrada
+50,Caramelo Raro
+51,Más PP
+53,PP Máximos
+72,Parte Roja
+73,Parte Azul
+74,Parte Amarilla
+75,Parte Verde
+76,Superrepelente
+77,Repelente Máximo
+79,Repelente
+80,Piedra Solar
+81,Piedra Lunar
+82,Piedra Fuego
+83,Piedra Trueno
+84,Piedra Agua
+85,Piedra Hoja
+86,Miniseta
+87,Seta Grande
+88,Perla
+89,Perla Grande
+90,Polvo Estelar
+91,Trozo Estrella
+92,Pepita
+93,Escama Corazón
+94,Miel
+95,Abono Rápido
+96,Abono Lento
+97,Abono Fijador
+98,Abono Brote
+106,Hueso Raro
+107,Piedra Día
+108,Piedra Noche
+109,Piedra Alba
+110,Piedra Oval
+149,Baya Zreza
+150,Baya Atania
+151,Baya Meloc
+152,Baya Safre
+153,Baya Perasi
+154,Baya Zanama
+155,Baya Aranja
+156,Baya Caquic
+157,Baya Ziuela
+158,Baya Zidra
+184,Baya Caoca
+185,Baya Pasio
+186,Baya Gualot
+187,Baya Tamar
+188,Baya Rimoya
+189,Baya Pomaro
+190,Baya Kebia
+191,Baya Acardo
+192,Baya Kouba
+193,Baya Payapa
+194,Baya Yecana
+195,Baya Alcho
+196,Baya Drasi
+197,Baya Anjiro
+198,Baya Dillo
+199,Baya Baribá
+200,Baya Chilan
+213,Polvo Brillo
+217,Garra Rápida
+219,Hierba Mental
+221,Roca del Rey
+222,Polvo Plata
+224,Amuleto
+226,Diente Marino
+227,Escama Marina
+228,Bola de Humo
+229,Piedra Eterna
+230,Cinta Aguante
+231,Huevo Suerte
+233,Revest. Metálico
+234,Restos
+235,Escama Dragón
+236,Bola Luminosa
+237,Arena Fina
+238,Piedra Dura
+239,Semilla Milagro
+240,Gafas de Sol
+241,Cinturón Negro
+242,Imán
+243,Agua Mística
+244,Pico Afilado
+245,Flecha Venenosa
+246,Antiderretir
+247,Hechizo
+248,Cuchara Torcida
+249,Carbón
+250,Colmillo Dragón
+251,Pañuelo de Seda
+256,Puño Suerte
+257,Polvo Metálico
+258,Hueso Grueso
+259,Puerro
+265,Lupa
+268,Cinta Experto
+269,Refleluz
+271,Hierba Única
+272,Toxisfera
+273,Llamasfera
+274,Polvo Veloz
+277,Metrónomo
+278,Bola Férrea
+279,Cola Plúmbea
+281,Lodo Negro
+286,Garra Garfio
+288,Toxiestrella
+295,Muda Concha
+296,Raíz Grande
+322,Electrizador
+323,Magmatizador
+326,Garra Afilada
+541,Globo Helio
+545,Tubérculo
+546,Pila
+571,Pluma Bella
+580,Seta Aroma
+581,Maxipepita
+583,Fragmento Cometa
+648,Musgo Brillante
+649,Bola de Nieve
+881,Semilla Electro
+882,Semilla Psique
+883,Semilla Bruma
+884,Semilla Hierba

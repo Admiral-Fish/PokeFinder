@@ -1,328 +1,139 @@
-Aucun
-Master Ball
-Hyper Ball
-Super Ball
-Poké Ball
-Safari Ball
-Filet Ball
-Scuba Ball
-Faiblo Ball
-Bis Ball
-Chrono Ball
-Luxe Ball
-Honor Ball
-Sombre Ball
-Soin Ball
-Rapide Ball
-Mémoire Ball
-Potion
-Antidote
-Anti-Brûle
-Antigel
-Réveil
-Anti-Para
-Guérison
-Potion Max
-Hyper Potion
-Super Potion
-Total Soin
-Rappel
-Rappel Max
-Eau Fraîche
-Soda Cool
-Limonade
-Lait Meumeu
-Poudrénergie
-Racinénergie
-Poudre Soin
-Herbe Rappel
-Huile
-Huile Max
-Élixir
-Élixir Max
-Lava Cookie
-Jus de Baie
-Cendre Sacrée
-PV Plus
-Protéine
-Fer
-Carbone
-Calcium
-Super Bonbon
-PP Plus
-Zinc
-PP Max
-Vieux Gâteau
-Garde-Stats
-Muscle +
-Attaque +
-Défense +
-Vitesse +
-Précision +
-Atq. Spé. +
-Déf. Spé. +
-Poké Poupée
-Queue Skitty
-Flûte Bleue
-Flûte Jaune
-Flûte Rouge
-Flûte Noire
-Flûte Blanche
-Sel Tréfonds
-CoquilleTréfonds
-Tesson Rouge
-Tesson Bleu
-Tesson Jaune
-Tesson Vert
-Super Repousse
-Repousse Max
-Corde Sortie
-Repousse
-Pierre Soleil
-Pierre Lune
-Pierre Feu
-Pierre Foudre
-Pierre Eau
-Pierre Plante
-Petit Champi
-Gros Champi
-Perle
-Grande Perle
-Poussière Étoile
-Morceau d’Étoile
-Pépite
-Écaille Cœur
-Miel
-Fertipousse
-Fertihumide
-Fertistable
-Fertiglu
-Fossile Racine
-Fossile Griffe
-Nautile
-Fossile Dôme
-Vieil Ambre
-Fossile Armure
-Fossile Crâne
-Os Rare
-Pierre Éclat
-Pierre Nuit
-Pierre Aube
-Pierre Ovale
-Clé de Voûte
-Orbe Platiné
-Thé
-???
-Dédicace de Bob
-Module Aqua
-Module Choc
-Module Pyro
-Module Cryo
-???
-Boîte Pokémon
-Trousse de Soins
-Boîte CT
-Bonbonnière
-Poche à Renforts
-Malle à Costumes
-Poche de Capture
-Poche de Combat
-???
-???
-???
-???
-???
-Chococœur
-Orbe Adamant
-Orbe Perlé
-Lettre Salut
-Lettre Fan
-Lettre Invit
-Lettre Merci
-Lettre Demande
-Lettre Avis
-Lettre Réponse
-Lettre Pont S
-Lettre Pont Y
-Lettre Pont F
-Lettre Pont H
-Lettre Pont I
-Baie Ceriz
-Baie Maron
-Baie Pêcha
-Baie Fraive
-Baie Willia
-Baie Mepo
-Baie Oran
-Baie Kika
-Baie Prine
-Baie Sitrus
-Baie Figuy
-Baie Wiki
-Baie Mago
-Baie Gowav
-Baie Papaya
-Baie Framby
-Baie Remu
-Baie Nanab
-Baie Repoi
-Baie Nanana
-Baie Grena
-Baie Alga
-Baie Qualot
-Baie Lonme
-Baie Résin
-Baie Tamato
-Baie Siam
-Baie Mangou
-Baie Rabuta
-Baie Tronci
-Baie Kiwan
-Baie Palma
-Baie Stekpa
-Baie Durin
-Baie Myrte
-Baie Chocco
-Baie Pocpoc
-Baie Parma
-Baie Ratam
-Baie Nanone
-Baie Pomroz
-Baie Kébia
-Baie Jouca
-Baie Cobaba
-Baie Yapap
-Baie Panga
-Baie Charti
-Baie Sédra
-Baie Fraigo
-Baie Lampou
-Baie Babiri
-Baie Zalis
-Baie Lichii
-Baie Lingan
-Baie Sailak
-Baie Pitaye
-Baie Abriko
-Baie Lansat
-Baie Frista
-Baie Enigma
-Baie Micle
-Baie Chérim
-Baie Jaboca
-Baie Pommo
-Poudre Claire
-Herbe Blanche
-Bracelet Macho
-Multi Exp
-Vive Griffe
-Grelot Zen
-Herbe Mental
-Bandeau Choix
-Roche Royale
-Poudre Argentée
-Pièce Rune
-Rune Purifiante
-Rosée Âme
-Dent Océan
-Écaille Océan
-Boule Fumée
-Pierre Stase
-Bandeau
-Œuf Chance
-Lentilscope
-Peau Métal
-Restes
-Écaille Draco
-Balle Lumière
-Sable Doux
-Pierre Dure
-Graine Miracle
-Lunettes Noires
-Ceinture Noire
-Aimant
-Eau Mystique
-Bec Pointu
-Pic Venin
-Glace Éternelle
-Rune Sort
-Cuillère Tordue
-Charbon
-Croc Dragon
-Mouchoir Soie
-Améliorator
-Grelot Coque
-Encens Mer
-Encens Doux
-Poing Chance
-Poudre Métal
-Masse Os
-Poireau
-Foulard Rouge
-Foulard Bleu
-Foulard Rose
-Foulard Vert
-Foulard Jaune
-Loupe
-Bandeau Muscle
-Lunettes Sages
-Ceinture Pro
-Lumargile
-Orbe Vie
-Herbe Pouvoir
-Orbe Toxique
-Orbe Flamme
-Poudre Vite
-Ceinture Force
-Lentille Zoom
-Métronome
-Balle Fer
-Ralentiqueue
-Nœud Destin
-Boue Noire
-Roche Glace
-Roche Lisse
-Roche Chaude
-Roche Humide
-Accro Griffe
-Mouchoir Choix
-Piquants
-Poignet Pouvoir
-Ceinture Pouvoir
-Lentille Pouvoir
-Bandeau Pouvoir
-Chaîne Pouvoir
-Poids Pouvoir
-Carapace Mue
-Grosse Racine
-Lunettes Choix
-Plaque Flamme
-Plaque Hydro
-Plaque Volt
-Plaque Herbe
-Plaque Glace
-Plaque Poing
-Plaque Toxicité
-Plaque Terre
-Plaque Ciel
-Plaque Esprit
-Plaque Insecte
-Plaque Roc
-Plaque Fantôme
-Plaque Draco
-Plaque Ombre
-Plaque Fer
-Encens Bizarre
-Encens Roc
-Encens Plein
-Encens Vague
-Encens Fleur
-Encens Veine
-Encens Pur
-Protecteur
-Électriseur
-Magmariseur
-CD Douteux
-Tissu Fauche
-Griffe Rasoir
-Croc Rasoir
+0,Aucun
+2,Hyper Ball
+3,Super Ball
+4,Poké Ball
+17,Potion
+25,Hyper Potion
+26,Super Potion
+28,Rappel
+29,Rappel Max
+33,Lait Meumeu
+43,Jus de Baie
+44,Cendre Sacrée
+50,Super Bonbon
+51,PP Plus
+53,PP Max
+72,Tesson Rouge
+73,Tesson Bleu
+74,Tesson Jaune
+75,Tesson Vert
+76,Super Repousse
+77,Repousse Max
+79,Repousse
+80,Pierre Soleil
+81,Pierre Lune
+82,Pierre Feu
+83,Pierre Foudre
+84,Pierre Eau
+85,Pierre Plante
+86,Petit Champi
+87,Gros Champi
+88,Perle
+89,Grande Perle
+90,Poussière Étoile
+91,Morceau d’Étoile
+92,Pépite
+93,Écaille Cœur
+94,Miel
+95,Fertipousse
+96,Fertihumide
+97,Fertistable
+98,Fertiglu
+106,Os Rare
+107,Pierre Éclat
+108,Pierre Nuit
+109,Pierre Aube
+110,Pierre Ovale
+149,Baie Ceriz
+150,Baie Maron
+151,Baie Pêcha
+152,Baie Fraive
+153,Baie Willia
+154,Baie Mepo
+155,Baie Oran
+156,Baie Kika
+157,Baie Prine
+158,Baie Sitrus
+184,Baie Chocco
+185,Baie Pocpoc
+186,Baie Parma
+187,Baie Ratam
+188,Baie Nanone
+189,Baie Pomroz
+190,Baie Kébia
+191,Baie Jouca
+192,Baie Cobaba
+193,Baie Yapap
+194,Baie Panga
+195,Baie Charti
+196,Baie Sédra
+197,Baie Fraigo
+198,Baie Lampou
+199,Baie Babiri
+200,Baie Zalis
+213,Poudre Claire
+217,Vive Griffe
+219,Herbe Mental
+221,Roche Royale
+222,Poudre Argentée
+224,Rune Purifiante
+226,Dent Océan
+227,Écaille Océan
+228,Boule Fumée
+229,Pierre Stase
+230,Bandeau
+231,Œuf Chance
+233,Peau Métal
+234,Restes
+235,Écaille Draco
+236,Balle Lumière
+237,Sable Doux
+238,Pierre Dure
+239,Graine Miracle
+240,Lunettes Noires
+241,Ceinture Noire
+242,Aimant
+243,Eau Mystique
+244,Bec Pointu
+245,Pic Venin
+246,Glace Éternelle
+247,Rune Sort
+248,Cuillère Tordue
+249,Charbon
+250,Croc Dragon
+251,Mouchoir Soie
+256,Poing Chance
+257,Poudre Métal
+258,Masse Os
+259,Poireau
+265,Loupe
+268,Ceinture Pro
+269,Lumargile
+271,Herbe Pouvoir
+272,Orbe Toxique
+273,Orbe Flamme
+274,Poudre Vite
+277,Métronome
+278,Balle Fer
+279,Ralentiqueue
+281,Boue Noire
+286,Accro Griffe
+288,Piquants
+295,Carapace Mue
+296,Grosse Racine
+322,Électriseur
+323,Magmariseur
+326,Griffe Rasoir
+541,Ballon
+545,Bulbe
+546,Pile
+571,Jolie Plume
+580,Champi Suave
+581,Maxi Pépite
+583,Morceau Comète
+648,Lichen Lumineux
+649,Boule de Neige
+881,Graine Électrik
+882,Graine Psychique
+883,Graine Brume
+884,Graine Herbe

@@ -20,14 +20,14 @@
 #ifndef EVENTMODEL5_HPP
 #define EVENTMODEL5_HPP
 
+#include <Core/Gen5/States/EventState5.hpp>
 #include <Core/Gen5/States/SearcherState5.hpp>
-#include <Core/Gen5/States/State5.hpp>
 #include <Model/TableModel.hpp>
 
 /**
  * @brief Provides a table model implementation to show event encounter information for Gen 5
  */
-class EventGeneratorModel5 : public TableModel<State5>
+class EventGeneratorModel5 : public TableModel<EventState5>
 {
     Q_OBJECT
 public:
@@ -86,7 +86,7 @@ private:
 /**
  * @brief Provides a table model implementation to show event encounter information for Gen 5
  */
-class EventSearcherModel5 : public TableModel<SearcherState5<State5>>
+class EventSearcherModel5 : public TableModel<SearcherState5<EventState5>>
 {
     Q_OBJECT
 public:

@@ -27,12 +27,12 @@
  */
 enum class Shiny : u8
 {
-    Random, /// PID is random, not locked
-    Never, /// PID is random, forced to not be shiny
-    Always, /// PID is random, forced to shiny
-    Star, /// PID is random, forced to be star shiny
-    Square, /// PID is random, forced to be square shiny
-    Static /// PID is set to a fixed value
+    Random,
+    Never,
+    Always,
+    Star,
+    Square,
+    Static
 };
 
 /**

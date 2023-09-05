@@ -1,328 +1,139 @@
-None
-Master Ball
-Ultra Ball
-Great Ball
-Poké Ball
-Safari Ball
-Net Ball
-Dive Ball
-Nest Ball
-Repeat Ball
-Timer Ball
-Luxury Ball
-Premier Ball
-Dusk Ball
-Heal Ball
-Quick Ball
-Cherish Ball
-Potion
-Antidote
-Burn Heal
-Ice Heal
-Awakening
-Paralyze Heal
-Full Restore
-Max Potion
-Hyper Potion
-Super Potion
-Full Heal
-Revive
-Max Revive
-Fresh Water
-Soda Pop
-Lemonade
-Moomoo Milk
-Energy Powder
-Energy Root
-Heal Powder
-Revival Herb
-Ether
-Max Ether
-Elixir
-Max Elixir
-Lava Cookie
-Berry Juice
-Sacred Ash
-HP Up
-Protein
-Iron
-Carbos
-Calcium
-Rare Candy
-PP Up
-Zinc
-PP Max
-Old Gateau
-Guard Spec.
-Dire Hit
-X Attack
-X Defense
-X Speed
-X Accuracy
-X Sp. Atk
-X Sp. Def
-Poké Doll
-Fluffy Tail
-Blue Flute
-Yellow Flute
-Red Flute
-Black Flute
-White Flute
-Shoal Salt
-Shoal Shell
-Red Shard
-Blue Shard
-Yellow Shard
-Green Shard
-Super Repel
-Max Repel
-Escape Rope
-Repel
-Sun Stone
-Moon Stone
-Fire Stone
-Thunder Stone
-Water Stone
-Leaf Stone
-Tiny Mushroom
-Big Mushroom
-Pearl
-Big Pearl
-Stardust
-Star Piece
-Nugget
-Heart Scale
-Honey
-Growth Mulch
-Damp Mulch
-Stable Mulch
-Gooey Mulch
-Root Fossil
-Claw Fossil
-Helix Fossil
-Dome Fossil
-Old Amber
-Armor Fossil
-Skull Fossil
-Rare Bone
-Shiny Stone
-Dusk Stone
-Dawn Stone
-Oval Stone
-Odd Keystone
-Griseous Orb
-Tea
-???
-Autograph
-Douse Drive
-Shock Drive
-Burn Drive
-Chill Drive
-???
-Pokémon Box Link
-Medicine Pocket
-TM Case
-Candy Jar
-Power-Up Pocket
-Clothing Trunk
-Catching Pocket
-Battle Pocket
-???
-???
-???
-???
-???
-Sweet Heart
-Adamant Orb
-Lustrous Orb
-Greet Mail
-Favored Mail
-RSVP Mail
-Thanks Mail
-Inquiry Mail
-Like Mail
-Reply Mail
-Bridge Mail S
-Bridge Mail D
-Bridge Mail T
-Bridge Mail V
-Bridge Mail M
-Cheri Berry
-Chesto Berry
-Pecha Berry
-Rawst Berry
-Aspear Berry
-Leppa Berry
-Oran Berry
-Persim Berry
-Lum Berry
-Sitrus Berry
-Figy Berry
-Wiki Berry
-Mago Berry
-Aguav Berry
-Iapapa Berry
-Razz Berry
-Bluk Berry
-Nanab Berry
-Wepear Berry
-Pinap Berry
-Pomeg Berry
-Kelpsy Berry
-Qualot Berry
-Hondew Berry
-Grepa Berry
-Tamato Berry
-Cornn Berry
-Magost Berry
-Rabuta Berry
-Nomel Berry
-Spelon Berry
-Pamtre Berry
-Watmel Berry
-Durin Berry
-Belue Berry
-Occa Berry
-Passho Berry
-Wacan Berry
-Rindo Berry
-Yache Berry
-Chople Berry
-Kebia Berry
-Shuca Berry
-Coba Berry
-Payapa Berry
-Tanga Berry
-Charti Berry
-Kasib Berry
-Haban Berry
-Colbur Berry
-Babiri Berry
-Chilan Berry
-Liechi Berry
-Ganlon Berry
-Salac Berry
-Petaya Berry
-Apicot Berry
-Lansat Berry
-Starf Berry
-Enigma Berry
-Micle Berry
-Custap Berry
-Jaboca Berry
-Rowap Berry
-Bright Powder
-White Herb
-Macho Brace
-Exp. Share
-Quick Claw
-Soothe Bell
-Mental Herb
-Choice Band
-King’s Rock
-Silver Powder
-Amulet Coin
-Cleanse Tag
-Soul Dew
-Deep Sea Tooth
-Deep Sea Scale
-Smoke Ball
-Everstone
-Focus Band
-Lucky Egg
-Scope Lens
-Metal Coat
-Leftovers
-Dragon Scale
-Light Ball
-Soft Sand
-Hard Stone
-Miracle Seed
-Black Glasses
-Black Belt
-Magnet
-Mystic Water
-Sharp Beak
-Poison Barb
-Never-Melt Ice
-Spell Tag
-Twisted Spoon
-Charcoal
-Dragon Fang
-Silk Scarf
-Upgrade
-Shell Bell
-Sea Incense
-Lax Incense
-Lucky Punch
-Metal Powder
-Thick Club
-Leek
-Red Scarf
-Blue Scarf
-Pink Scarf
-Green Scarf
-Yellow Scarf
-Wide Lens
-Muscle Band
-Wise Glasses
-Expert Belt
-Light Clay
-Life Orb
-Power Herb
-Toxic Orb
-Flame Orb
-Quick Powder
-Focus Sash
-Zoom Lens
-Metronome
-Iron Ball
-Lagging Tail
-Destiny Knot
-Black Sludge
-Icy Rock
-Smooth Rock
-Heat Rock
-Damp Rock
-Grip Claw
-Choice Scarf
-Sticky Barb
-Power Bracer
-Power Belt
-Power Lens
-Power Band
-Power Anklet
-Power Weight
-Shed Shell
-Big Root
-Choice Specs
-Flame Plate
-Splash Plate
-Zap Plate
-Meadow Plate
-Icicle Plate
-Fist Plate
-Toxic Plate
-Earth Plate
-Sky Plate
-Mind Plate
-Insect Plate
-Stone Plate
-Spooky Plate
-Draco Plate
-Dread Plate
-Iron Plate
-Odd Incense
-Rock Incense
-Full Incense
-Wave Incense
-Rose Incense
-Luck Incense
-Pure Incense
-Protector
-Electirizer
-Magmarizer
-Dubious Disc
-Reaper Cloth
-Razor Claw
-Razor Fang
+0,None
+2,Ultra Ball
+3,Great Ball
+4,Poké Ball
+17,Potion
+25,Hyper Potion
+26,Super Potion
+28,Revive
+29,Max Revive
+33,Moomoo Milk
+43,Berry Juice
+44,Sacred Ash
+50,Rare Candy
+51,PP Up
+53,PP Max
+72,Red Shard
+73,Blue Shard
+74,Yellow Shard
+75,Green Shard
+76,Super Repel
+77,Max Repel
+79,Repel
+80,Sun Stone
+81,Moon Stone
+82,Fire Stone
+83,Thunder Stone
+84,Water Stone
+85,Leaf Stone
+86,Tiny Mushroom
+87,Big Mushroom
+88,Pearl
+89,Big Pearl
+90,Stardust
+91,Star Piece
+92,Nugget
+93,Heart Scale
+94,Honey
+95,Growth Mulch
+96,Damp Mulch
+97,Stable Mulch
+98,Gooey Mulch
+106,Rare Bone
+107,Shiny Stone
+108,Dusk Stone
+109,Dawn Stone
+110,Oval Stone
+149,Cheri Berry
+150,Chesto Berry
+151,Pecha Berry
+152,Rawst Berry
+153,Aspear Berry
+154,Leppa Berry
+155,Oran Berry
+156,Persim Berry
+157,Lum Berry
+158,Sitrus Berry
+184,Occa Berry
+185,Passho Berry
+186,Wacan Berry
+187,Rindo Berry
+188,Yache Berry
+189,Chople Berry
+190,Kebia Berry
+191,Shuca Berry
+192,Coba Berry
+193,Payapa Berry
+194,Tanga Berry
+195,Charti Berry
+196,Kasib Berry
+197,Haban Berry
+198,Colbur Berry
+199,Babiri Berry
+200,Chilan Berry
+213,Bright Powder
+217,Quick Claw
+219,Mental Herb
+221,King’s Rock
+222,Silver Powder
+224,Cleanse Tag
+226,Deep Sea Tooth
+227,Deep Sea Scale
+228,Smoke Ball
+229,Everstone
+230,Focus Band
+231,Lucky Egg
+233,Metal Coat
+234,Leftovers
+235,Dragon Scale
+236,Light Ball
+237,Soft Sand
+238,Hard Stone
+239,Miracle Seed
+240,Black Glasses
+241,Black Belt
+242,Magnet
+243,Mystic Water
+244,Sharp Beak
+245,Poison Barb
+246,Never-Melt Ice
+247,Spell Tag
+248,Twisted Spoon
+249,Charcoal
+250,Dragon Fang
+251,Silk Scarf
+256,Lucky Punch
+257,Metal Powder
+258,Thick Club
+259,Leek
+265,Wide Lens
+268,Expert Belt
+269,Light Clay
+271,Power Herb
+272,Toxic Orb
+273,Flame Orb
+274,Quick Powder
+277,Metronome
+278,Iron Ball
+279,Lagging Tail
+281,Black Sludge
+286,Grip Claw
+288,Sticky Barb
+295,Shed Shell
+296,Big Root
+322,Electirizer
+323,Magmarizer
+326,Razor Claw
+541,Air Balloon
+545,Absorb Bulb
+546,Cell Battery
+571,Pretty Feather
+580,Balm Mushroom
+581,Big Nugget
+583,Comet Shard
+648,Luminous Moss
+649,Snowball
+881,Electric Seed
+882,Psychic Seed
+883,Misty Seed
+884,Grassy Seed

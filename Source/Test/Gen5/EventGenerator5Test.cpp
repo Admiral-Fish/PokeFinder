@@ -19,15 +19,16 @@
 
 #include "EventGenerator5Test.hpp"
 #include <Core/Enum/Game.hpp>
+#include <Core/Enum/Shiny.hpp>
 #include <Core/Gen5/Generators/EventGenerator5.hpp>
 #include <Core/Gen5/PGF.hpp>
 #include <Core/Gen5/Profile5.hpp>
-#include <Core/Gen5/States/State5.hpp>
+#include <Core/Gen5/States/EventState5.hpp>
 #include <QTest>
 #include <Test/Data.hpp>
 #include <Test/Enum.hpp>
 
-static bool operator==(const State5 &left, const json &right)
+static bool operator==(const EventState5 &left, const json &right)
 {
     return left.getPID() == right["pid"].get<u32>() && left.getStats() == right["stats"].get<std::array<u16, 6>>()
         && left.getAbilityIndex() == right["abilityIndex"].get<u16>() && left.getIVs() == right["ivs"].get<std::array<u8, 6>>()
@@ -48,7 +49,7 @@ void EventGenerator5Test::generate_data()
     QTest::addColumn<u8>("nature");
     QTest::addColumn<u8>("gender");
     QTest::addColumn<u8>("ability");
-    QTest::addColumn<u8>("shiny");
+    QTest::addColumn<Shiny>("shiny");
     QTest::addColumn<u8>("level");
     QTest::addColumn<bool>("egg");
     QTest::addColumn<u8>("hp");
@@ -64,7 +65,7 @@ void EventGenerator5Test::generate_data()
     {
         QTest::newRow(d["name"].get<std::string>().data())
             << d["seed"].get<u64>() << d["version"].get<Game>() << d["tid"].get<u16>() << d["sid"].get<u16>() << d["specie"].get<u16>()
-            << d["nature"].get<u8>() << d["gender"].get<u8>() << d["ability"].get<u8>() << d["shiny"].get<u8>() << d["level"].get<u8>()
+            << d["nature"].get<u8>() << d["gender"].get<u8>() << d["ability"].get<u8>() << d["shiny"].get<Shiny>() << d["level"].get<u8>()
             << d["egg"].get<bool>() << d["hp"].get<u8>() << d["atk"].get<u8>() << d["def"].get<u8>() << d["spa"].get<u8>()
             << d["spd"].get<u8>() << d["spe"].get<u8>() << d["results"].get<json>().dump();
     }
@@ -80,7 +81,7 @@ void EventGenerator5Test::generate()
     QFETCH(u8, nature);
     QFETCH(u8, gender);
     QFETCH(u8, ability);
-    QFETCH(u8, shiny);
+    QFETCH(Shiny, shiny);
     QFETCH(u8, level);
     QFETCH(bool, egg);
     QFETCH(u8, hp);

@@ -91,7 +91,7 @@ std::vector<WildGeneratorState> WildGenerator3::generate(u32 seed) const
         {
             if ((lead == Lead::MagnetPull || lead == Lead::Static) && go.nextUShort(2) == 0 && !modifiedSlots.empty())
             {
-                encounterSlot = modifiedSlots[go.nextUShort()];
+                encounterSlot = modifiedSlots[go.nextUShort(modifiedSlots.count)];
             }
             else
             {

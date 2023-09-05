@@ -19,9 +19,9 @@
 
 #include "Filter.hpp"
 #include "ui_Filter.h"
-#include <Form/Util/IVCalculator.hpp>
 #include <Core/Util/Translator.hpp>
 #include <Form/Controls/Controls.hpp>
+#include <Form/Util/IVCalculator.hpp>
 #include <QMouseEvent>
 
 /**
@@ -96,6 +96,18 @@ Filter::Filter(QWidget *parent) : QWidget(parent), ui(new Ui::Filter)
     ui->labelSpD->installEventFilter(this);
     ui->labelSpe->installEventFilter(this);
 
+    connect(ui->spinBoxHPMin, &QSpinBox::valueChanged, this, &Filter::ivsChanged);
+    connect(ui->spinBoxHPMax, &QSpinBox::valueChanged, this, &Filter::ivsChanged);
+    connect(ui->spinBoxAtkMin, &QSpinBox::valueChanged, this, &Filter::ivsChanged);
+    connect(ui->spinBoxAtkMax, &QSpinBox::valueChanged, this, &Filter::ivsChanged);
+    connect(ui->spinBoxDefMin, &QSpinBox::valueChanged, this, &Filter::ivsChanged);
+    connect(ui->spinBoxDefMax, &QSpinBox::valueChanged, this, &Filter::ivsChanged);
+    connect(ui->spinBoxSpAMin, &QSpinBox::valueChanged, this, &Filter::ivsChanged);
+    connect(ui->spinBoxSpAMax, &QSpinBox::valueChanged, this, &Filter::ivsChanged);
+    connect(ui->spinBoxSpDMin, &QSpinBox::valueChanged, this, &Filter::ivsChanged);
+    connect(ui->spinBoxSpDMax, &QSpinBox::valueChanged, this, &Filter::ivsChanged);
+    connect(ui->spinBoxSpeMin, &QSpinBox::valueChanged, this, &Filter::ivsChanged);
+    connect(ui->spinBoxSpeMax, &QSpinBox::valueChanged, this, &Filter::ivsChanged);
     connect(ui->checkBoxShowStats, &QCheckBox::stateChanged, this, [=](int state) { emit showStatsChanged(state == Qt::Checked); });
     connect(ui->pushButtonIVCalculator, &QPushButton::clicked, this, &Filter::openIVCalculator);
 }

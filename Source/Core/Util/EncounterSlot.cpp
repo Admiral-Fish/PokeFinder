@@ -71,6 +71,30 @@ constexpr auto water2 = computeTable<5>(std::array<int, 5> { 40, 80, 95, 99, 100
 constexpr auto water3 = computeTable<5>(std::array<int, 5> { 40, 70, 85, 95, 100 });
 constexpr auto water4 = computeTable<5>(std::array<int, 5> { 60, 90, 95, 99, 100 });
 
+// BW Lucky Power
+// clang-format off
+constexpr std::array<std::array<u8, 100>, 4> grassBW = {
+    grass,
+    computeTable<12>(std::array<int, 12> { 10, 20, 30, 40, 50, 60, 70, 80, 85, 90, 95, 100 }),
+    computeTable<12>(std::array<int, 12> { 5, 10, 15, 20, 30, 40, 50, 60, 70, 80, 90, 100 }),
+    computeTable<12>(std::array<int, 12> { 1, 2, 6, 10, 15, 20, 30, 40, 50, 60, 80, 100 })
+};
+
+constexpr std::array<std::array<u8, 100>, 4> surfBW = {
+    water4,
+    computeTable<5>(std::array<int, 5> { 50, 80, 90, 95, 100 }),
+    computeTable<5>(std::array<int, 5> { 40, 70, 80, 90, 100 }),
+    computeTable<5>(std::array<int, 5> { 30, 50, 60, 80, 100 })
+};
+
+constexpr std::array<std::array<u8, 100>, 4> fishBW = {
+    water2,
+    computeTable<5>(std::array<int, 5> { 40, 75, 90, 95, 100 }),
+    computeTable<5>(std::array<int, 5> { 30, 60, 80, 90, 100 }),
+    computeTable<5>(std::array<int, 5> { 20, 40, 60, 80, 100 })
+};
+// clang-format on
+
 namespace EncounterSlot
 {
     u8 hSlot(u8 rand, Encounter encounter)
@@ -126,6 +150,19 @@ namespace EncounterSlot
             return rocksmash[rand];
         default:
             return grass[rand];
+        }
+    }
+
+    u8 bwSlot(u8 rand, Encounter encounter, u8 luckyPower)
+    {
+        switch (encounter)
+        {
+        case Encounter::SuperRod:
+            return fishBW[luckyPower][rand];
+        case Encounter::Surfing:
+            return surfBW[luckyPower][rand];
+        default:
+            return grassBW[luckyPower][rand];
         }
     }
 

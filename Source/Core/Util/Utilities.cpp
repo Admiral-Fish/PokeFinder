@@ -19,6 +19,7 @@
 
 #include "Utilities.hpp"
 #include <Core/Enum/Game.hpp>
+#include <Core/Enum/Shiny.hpp>
 #include <Core/Gen5/Profile5.hpp>
 #include <Core/RNG/LCRNG.hpp>
 #include <Core/RNG/MT.hpp>
@@ -207,35 +208,66 @@ namespace Utilities4
 
 namespace Utilities5
 {
-    u32 forceGender(u32 pid, BWRNG &rng, u8 gender, u8 genderRatio)
+    u32 createPID(u16 tsv, u8 ability, u8 gender, Shiny shiny, bool boost, u8 ratio, BWRNG &rng)
     {
-        u8 val;
-        switch (genderRatio)
+        u32 pid = rng.nextUInt();
+
+        if (gender < 2)
         {
-        case 0: // Male only
-            val = rng.nextUInt(0xf6) + 8;
-            break;
-        case 254: // Female Only
-            val = rng.nextUInt(8) + 1;
-            break;
-        default:
-            if (gender == 0) // Male
+            u8 low;
+            switch (ratio)
             {
-                val = rng.nextUInt(0xfe - genderRatio) + genderRatio;
+            case 0: // Male only
+                low = rng.nextUInt(0xf6) + 8;
+                break;
+            case 254: // Female only
+                low = rng.nextUInt(8) + 1;
+                break;
+            default:
+                if (gender == 0) // Male
+                {
+                    low = rng.nextUInt(0xfe - ratio) + ratio;
+                }
+                else if (gender == 1) // Female
+                {
+                    low = rng.nextUInt(ratio - 1) + 1;
+                }
             }
-            else if (gender == 1) // Female
+
+            pid = (pid & 0xffffff00) | low;
+        }
+
+        if (shiny == Shiny::Always)
+        {
+            u32 low = pid & 0xff;
+            pid = ((low ^ tsv) << 16) | low;
+        }
+        else if (shiny == Shiny::Never && Utilities::isShiny<true>(pid, tsv))
+        {
+            pid ^= 0x10000000;
+        }
+
+        // 0: force ability 0
+        // 1: force ability 1
+        // 2/255: force ability flip
+        if (((pid >> 16) & 1) != ability)
+        {
+            pid ^= 0x10000;
+        }
+
+        if (boost && shiny != Shiny::Never)
+        {
+            if ((tsv ^ pid) & 1)
             {
-                val = rng.nextUInt(genderRatio - 1) + 1;
+                pid |= 0x80000000;
             }
             else
             {
-                rng.advance(1);
-                val = 0;
+                pid &= 0x7fffffff;
             }
-            break;
         }
 
-        return (pid & 0xffffff00) | val;
+        return pid;
     }
 
     std::string getChatot(u8 prng)

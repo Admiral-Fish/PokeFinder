@@ -27,6 +27,10 @@ def enum_map(parent, files):
 
         string = f"NLOHMANN_JSON_SERIALIZE_ENUM( {enum_name}, {{\n"
         for i, line in enumerate(data):
+            index = line.find("//")
+            if index != -1:
+                line = line[:index]
+
             enum_value = re2.search(line).group(1)
 
             string += f"\t{{ {enum_name}::{enum_value}, \"{enum_value}\" }}"
@@ -57,7 +61,7 @@ def main():
     os.chdir(pathlib.Path(__file__).parent.absolute())
 
     parent = pathlib.Path(__file__).parent.parent.absolute() / "Core" / "Enum"
-    enum_map(parent, ("Buttons", "DSType", "Encounter", "Game", "Language", "Lead", "Method"))
+    enum_map(parent, ("Buttons", "DSType", "Encounter", "Game", "Language", "Lead", "Method", "Shiny"))
 
 
 if __name__ == "__main__":

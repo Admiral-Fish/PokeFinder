@@ -88,7 +88,7 @@ ModifiedSlots EncounterArea::getSlots(Lead lead) const
         const PersonalInfo *info = pokemon[i].getInfo();
         if (info->getType(0) == type || info->getType(1) == type)
         {
-            modifiedSlots.index[modifiedSlots.count++] = static_cast<u8>(i);
+            modifiedSlots.encounters[modifiedSlots.count++] = static_cast<u8>(i);
         }
         count++;
     }

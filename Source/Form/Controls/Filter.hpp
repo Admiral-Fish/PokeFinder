@@ -43,6 +43,11 @@ signals:
      */
     void showStatsChanged(bool);
 
+    /**
+     * @brief Emits that IV filter has been changed
+     */
+    void ivsChanged();
+
 public:
     /**
      * @brief Construct a new Filter object

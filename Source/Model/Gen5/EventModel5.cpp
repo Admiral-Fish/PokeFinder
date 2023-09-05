@@ -183,39 +183,45 @@ void EventSearcherModel5::sort(int column, Qt::SortOrder order)
         switch (column)
         {
         case 0:
-            std::sort(model.begin(), model.end(), [flag](const SearcherState5<State5> &state1, const SearcherState5<State5> &state2) {
-                return flag ? state1.getInitialSeed() < state2.getInitialSeed() : state1.getInitialSeed() > state2.getInitialSeed();
-            });
+            std::sort(
+                model.begin(), model.end(), [flag](const SearcherState5<EventState5> &state1, const SearcherState5<EventState5> &state2) {
+                    return flag ? state1.getInitialSeed() < state2.getInitialSeed() : state1.getInitialSeed() > state2.getInitialSeed();
+                });
             break;
         case 1:
-            std::sort(model.begin(), model.end(), [flag](const SearcherState5<State5> &state1, const SearcherState5<State5> &state2) {
-                return flag ? state1.getState().getAdvances() < state2.getState().getAdvances()
-                            : state1.getState().getAdvances() > state2.getState().getAdvances();
-            });
+            std::sort(model.begin(), model.end(),
+                      [flag](const SearcherState5<EventState5> &state1, const SearcherState5<EventState5> &state2) {
+                          return flag ? state1.getState().getAdvances() < state2.getState().getAdvances()
+                                      : state1.getState().getAdvances() > state2.getState().getAdvances();
+                      });
             break;
         case 2:
-            std::sort(model.begin(), model.end(), [flag](const SearcherState5<State5> &state1, const SearcherState5<State5> &state2) {
-                return flag ? state1.getState().getPID() < state2.getState().getPID()
-                            : state1.getState().getPID() > state2.getState().getPID();
-            });
+            std::sort(model.begin(), model.end(),
+                      [flag](const SearcherState5<EventState5> &state1, const SearcherState5<EventState5> &state2) {
+                          return flag ? state1.getState().getPID() < state2.getState().getPID()
+                                      : state1.getState().getPID() > state2.getState().getPID();
+                      });
             break;
         case 3:
-            std::sort(model.begin(), model.end(), [flag](const SearcherState5<State5> &state1, const SearcherState5<State5> &state2) {
-                return flag ? state1.getState().getShiny() < state2.getState().getShiny()
-                            : state1.getState().getShiny() > state2.getState().getShiny();
-            });
+            std::sort(model.begin(), model.end(),
+                      [flag](const SearcherState5<EventState5> &state1, const SearcherState5<EventState5> &state2) {
+                          return flag ? state1.getState().getShiny() < state2.getState().getShiny()
+                                      : state1.getState().getShiny() > state2.getState().getShiny();
+                      });
             break;
         case 4:
-            std::sort(model.begin(), model.end(), [flag](const SearcherState5<State5> &state1, const SearcherState5<State5> &state2) {
-                return flag ? state1.getState().getNature() < state2.getState().getNature()
-                            : state1.getState().getNature() > state2.getState().getNature();
-            });
+            std::sort(model.begin(), model.end(),
+                      [flag](const SearcherState5<EventState5> &state1, const SearcherState5<EventState5> &state2) {
+                          return flag ? state1.getState().getNature() < state2.getState().getNature()
+                                      : state1.getState().getNature() > state2.getState().getNature();
+                      });
             break;
         case 5:
-            std::sort(model.begin(), model.end(), [flag](const SearcherState5<State5> &state1, const SearcherState5<State5> &state2) {
-                return flag ? state1.getState().getAbility() < state2.getState().getAbility()
-                            : state1.getState().getAbility() > state2.getState().getAbility();
-            });
+            std::sort(model.begin(), model.end(),
+                      [flag](const SearcherState5<EventState5> &state1, const SearcherState5<EventState5> &state2) {
+                          return flag ? state1.getState().getAbility() < state2.getState().getAbility()
+                                      : state1.getState().getAbility() > state2.getState().getAbility();
+                      });
             break;
         case 6:
         case 7:
@@ -224,43 +230,49 @@ void EventSearcherModel5::sort(int column, Qt::SortOrder order)
         case 10:
         case 11:
             std::sort(model.begin(), model.end(),
-                      [flag, column](const SearcherState5<State5> &state1, const SearcherState5<State5> &state2) {
+                      [flag, column](const SearcherState5<EventState5> &state1, const SearcherState5<EventState5> &state2) {
                           return flag ? state1.getState().getIV(column - 6) < state2.getState().getIV(column - 6)
                                       : state1.getState().getIV(column - 6) > state2.getState().getIV(column - 6);
                       });
             break;
         case 12:
-            std::sort(model.begin(), model.end(), [flag](const SearcherState5<State5> &state1, const SearcherState5<State5> &state2) {
-                return flag ? state1.getState().getHiddenPower() < state2.getState().getHiddenPower()
-                            : state1.getState().getHiddenPower() > state2.getState().getHiddenPower();
-            });
+            std::sort(model.begin(), model.end(),
+                      [flag](const SearcherState5<EventState5> &state1, const SearcherState5<EventState5> &state2) {
+                          return flag ? state1.getState().getHiddenPower() < state2.getState().getHiddenPower()
+                                      : state1.getState().getHiddenPower() > state2.getState().getHiddenPower();
+                      });
             break;
         case 13:
-            std::sort(model.begin(), model.end(), [flag](const SearcherState5<State5> &state1, const SearcherState5<State5> &state2) {
-                return flag ? state1.getState().getHiddenPowerStrength() < state2.getState().getHiddenPowerStrength()
-                            : state1.getState().getHiddenPowerStrength() > state2.getState().getHiddenPowerStrength();
-            });
+            std::sort(model.begin(), model.end(),
+                      [flag](const SearcherState5<EventState5> &state1, const SearcherState5<EventState5> &state2) {
+                          return flag ? state1.getState().getHiddenPowerStrength() < state2.getState().getHiddenPowerStrength()
+                                      : state1.getState().getHiddenPowerStrength() > state2.getState().getHiddenPowerStrength();
+                      });
             break;
         case 14:
-            std::sort(model.begin(), model.end(), [flag](const SearcherState5<State5> &state1, const SearcherState5<State5> &state2) {
-                return flag ? state1.getState().getGender() < state2.getState().getGender()
-                            : state1.getState().getGender() > state2.getState().getGender();
-            });
+            std::sort(model.begin(), model.end(),
+                      [flag](const SearcherState5<EventState5> &state1, const SearcherState5<EventState5> &state2) {
+                          return flag ? state1.getState().getGender() < state2.getState().getGender()
+                                      : state1.getState().getGender() > state2.getState().getGender();
+                      });
             break;
         case 15:
-            std::sort(model.begin(), model.end(), [flag](const SearcherState5<State5> &state1, const SearcherState5<State5> &state2) {
-                return flag ? state1.getDateTime() < state2.getDateTime() : state1.getDateTime() > state2.getDateTime();
-            });
+            std::sort(model.begin(), model.end(),
+                      [flag](const SearcherState5<EventState5> &state1, const SearcherState5<EventState5> &state2) {
+                          return flag ? state1.getDateTime() < state2.getDateTime() : state1.getDateTime() > state2.getDateTime();
+                      });
             break;
         case 16:
-            std::sort(model.begin(), model.end(), [flag](const SearcherState5<State5> &state1, const SearcherState5<State5> &state2) {
-                return flag ? state1.getTimer0() < state2.getTimer0() : state1.getTimer0() > state2.getTimer0();
-            });
+            std::sort(model.begin(), model.end(),
+                      [flag](const SearcherState5<EventState5> &state1, const SearcherState5<EventState5> &state2) {
+                          return flag ? state1.getTimer0() < state2.getTimer0() : state1.getTimer0() > state2.getTimer0();
+                      });
             break;
         case 17:
-            std::sort(model.begin(), model.end(), [flag](const SearcherState5<State5> &state1, const SearcherState5<State5> &state2) {
-                return flag ? state1.getButtons() < state2.getButtons() : state1.getButtons() > state2.getButtons();
-            });
+            std::sort(model.begin(), model.end(),
+                      [flag](const SearcherState5<EventState5> &state1, const SearcherState5<EventState5> &state2) {
+                          return flag ? state1.getButtons() < state2.getButtons() : state1.getButtons() > state2.getButtons();
+                      });
             break;
         }
     }

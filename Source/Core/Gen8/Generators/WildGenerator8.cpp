@@ -77,7 +77,7 @@ std::vector<WildState8> WildGenerator8::generate(u64 seed0, u64 seed1) const
         u8 encounterSlot;
         if (encounterForce && (rngList.next() % 2) == 0 && !modifiedSlots.empty())
         {
-            encounterSlot = modifiedSlots[rngList.next()];
+            encounterSlot = modifiedSlots[rngList.next() % modifiedSlots.count];
         }
         else
         {

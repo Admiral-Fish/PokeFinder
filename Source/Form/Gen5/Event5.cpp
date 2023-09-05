@@ -19,6 +19,7 @@
 
 #include "Event5.hpp"
 #include "ui_Event5.h"
+#include <Core/Enum/Shiny.hpp>
 #include <Core/Gen5/Generators/EventGenerator5.hpp>
 #include <Core/Gen5/Keypresses.hpp>
 #include <Core/Gen5/Profile5.hpp>
@@ -149,8 +150,8 @@ PGF Event5::getGeneratorParameters() const
 
     return PGF(ui->textBoxGeneratorEventTID->getUShort(), ui->textBoxGeneratorEventSID->getUShort(),
                ui->comboBoxGeneratorSpecies->currentIndex() + 1, nature, ui->comboBoxGeneratorGender->currentIndex(),
-               ui->comboBoxGeneratorAbility->currentIndex(), ui->comboBoxGeneratorShiny->currentIndex(), ui->spinBoxGeneratorLevel->value(),
-               hp, atk, def, spa, spd, spe, ui->checkBoxGeneratorEgg->isChecked());
+               ui->comboBoxGeneratorAbility->currentIndex(), ui->comboBoxGeneratorShiny->getEnum<Shiny>(),
+               ui->spinBoxGeneratorLevel->value(), hp, atk, def, spa, spd, spe, ui->checkBoxGeneratorEgg->isChecked());
 }
 
 PGF Event5::getSearcherParameters() const
@@ -165,7 +166,7 @@ PGF Event5::getSearcherParameters() const
 
     return PGF(ui->textBoxSearcherEventTID->getUShort(), ui->textBoxSearcherEventSID->getUShort(),
                ui->comboBoxSearcherSpecies->currentIndex() + 1, nature, ui->comboBoxSearcherGender->currentIndex(),
-               ui->comboBoxSearcherAbility->currentIndex(), ui->comboBoxSearcherShiny->currentIndex(), ui->spinBoxSearcherLevel->value(),
+               ui->comboBoxSearcherAbility->currentIndex(), ui->comboBoxSearcherShiny->getEnum<Shiny>(), ui->spinBoxSearcherLevel->value(),
                hp, atk, def, spa, spd, spe, ui->checkBoxSearcherEgg->isChecked());
 }
 
@@ -201,11 +202,11 @@ void Event5::generatorImportEvent()
                 return;
             }
 
-            std::array<u8, 204> data;
-            file.read(reinterpret_cast<char *>(data.data()), 204);
+            u8 data[204];
+            file.read(reinterpret_cast<char *>(data), sizeof(data));
             file.close();
 
-            PGF pgf(data.data());
+            PGF pgf(data);
 
             ui->textBoxGeneratorEventTID->setText(QString::number(pgf.getTID()));
             ui->textBoxGeneratorEventSID->setText(QString::number(pgf.getSID()));
@@ -220,7 +221,7 @@ void Event5::generatorImportEvent()
 
             ui->comboBoxGeneratorGender->setCurrentIndex(pgf.getGender());
             ui->comboBoxGeneratorAbility->setCurrentIndex(pgf.getAbility());
-            ui->comboBoxGeneratorShiny->setCurrentIndex(pgf.getShiny());
+            ui->comboBoxGeneratorShiny->setCurrentIndex(ui->comboBoxGeneratorShiny->findData(toInt(pgf.getShiny())));
             ui->spinBoxGeneratorLevel->setValue(pgf.getLevel());
 
             std::vector<QCheckBox *> checkBoxes = { ui->checkBoxGeneratorHP,  ui->checkBoxGeneratorAtk, ui->checkBoxGeneratorDef,
@@ -302,7 +303,7 @@ void Event5::search()
 
     auto filter = ui->filterSearcher->getFilter<StateFilter>();
     EventGenerator5 generator(initialAdvances, maxAdvances, 0, pgf, *currentProfile, filter);
-    auto *searcher = new Searcher5<EventGenerator5, State5>(generator, *currentProfile);
+    auto *searcher = new Searcher5<EventGenerator5, EventState5>(generator, *currentProfile);
 
     int maxProgress = Keypresses::getKeypresses(*currentProfile).size();
     maxProgress *= start.daysTo(end) + 1;
@@ -369,7 +370,7 @@ void Event5::searcherImportEvent()
 
             ui->comboBoxSearcherGender->setCurrentIndex(pgf.getGender());
             ui->comboBoxSearcherAbility->setCurrentIndex(pgf.getAbility());
-            ui->comboBoxSearcherShiny->setCurrentIndex(pgf.getShiny());
+            ui->comboBoxSearcherShiny->setCurrentIndex(ui->comboBoxSearcherShiny->findData(toInt(pgf.getShiny())));
             ui->spinBoxSearcherLevel->setValue(pgf.getLevel());
 
             std::vector<QCheckBox *> checkBoxes = { ui->checkBoxSearcherHP,  ui->checkBoxSearcherAtk, ui->checkBoxSearcherDef,
