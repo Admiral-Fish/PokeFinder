@@ -1,6 +1,7 @@
 import bz2
 import json
 import os
+from typing import List
 
 from .embed_util import write_data
 
@@ -14,7 +15,7 @@ def _get_shiny(flag: int):
         return "Shiny::Always"
     
 
-def _get_stars(flags: list[str]):
+def _get_stars(flags: List[str]):
     stars = [ "1" if int(x) != 0 else "0" for x in flags ]
     return f"std::array<bool, 5> {{ {', '.join(stars)} }}"
 
