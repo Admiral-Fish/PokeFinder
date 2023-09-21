@@ -39,7 +39,6 @@ public:
      * @param initialAdvances Initial number of advances
      * @param maxAdvances Maximum number of advances
      * @param delay Number of advances to offset
-     * @param encounter Encounter type
      * @param method Encounter method
      * @param lead Encounter lead
      * @param shiny Whether Poke Radar is forced shiny
@@ -47,8 +46,8 @@ public:
      * @param profile Profile Information
      * @param filter State filter
      */
-    WildGenerator4(u32 initialAdvances, u32 maxAdvances, u32 delay, Method method, Encounter encounter, Lead lead, bool shiny,
-                   const EncounterArea4 &area, const Profile4 &profile, const WildStateFilter &filter);
+    WildGenerator4(u32 initialAdvances, u32 maxAdvances, u32 delay, Method method, Lead lead, bool shiny, const EncounterArea4 &area,
+                   const Profile4 &profile, const WildStateFilter &filter);
 
     /**
      * @brief Generates states for the \p encounterArea

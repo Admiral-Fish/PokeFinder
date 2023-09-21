@@ -331,12 +331,11 @@ void Wild4::generate()
     u32 initialAdvances = ui->textBoxGeneratorInitialAdvances->getUInt();
     u32 maxAdvances = ui->textBoxGeneratorMaxAdvances->getUInt();
     u32 delay = ui->textBoxGeneratorDelay->getUInt();
-    auto encounter = ui->comboBoxGeneratorEncounter->getEnum<Encounter>();
     auto lead = ui->comboMenuGeneratorLead->getEnum<Lead>();
     bool chained = ui->checkBoxGeneratorPokeRadarShiny->isChecked();
 
     WildStateFilter filter = ui->filterGenerator->getFilter<WildStateFilter, true>();
-    WildGenerator4 generator(initialAdvances, maxAdvances, delay, method, encounter, lead, chained,
+    WildGenerator4 generator(initialAdvances, maxAdvances, delay, method, lead, chained,
                              encounterGenerator[ui->comboBoxGeneratorLocation->getCurrentInt()], *currentProfile, filter);
 
     auto states = generator.generate(seed, radarSlot);
@@ -659,8 +658,7 @@ void Wild4::search()
     bool shiny = ui->checkBoxSearcherPokeRadarShiny->isChecked();
 
     WildStateFilter filter = ui->filterSearcher->getFilter<WildStateFilter, true>();
-    auto *searcher
-        = new WildSearcher4(minAdvance, maxAdvance, minDelay, maxDelay, method, encounter, lead, shiny, area, *currentProfile, filter);
+    auto *searcher = new WildSearcher4(minAdvance, maxAdvance, minDelay, maxDelay, method, lead, shiny, area, *currentProfile, filter);
 
     int maxProgress = 1;
     for (u8 i = 0; i < 6; i++)

@@ -23,6 +23,7 @@
 
 #include <Core/Global.hpp>
 #include <cassert>
+#include <type_traits>
 
 /**
  * @brief Provides a storage container to reuse RNG calculations and cycle out old states with new states
@@ -107,7 +108,11 @@ public:
         {
             list[head++] = rng.next();
         }
-        head %= size;
+
+        if constexpr (size != 256)
+        {
+            head %= size;
+        }
 
         pointer = head;
     }
@@ -119,7 +124,11 @@ public:
      */
     void advance(u32 advances)
     {
-        pointer = (pointer + advances) % size;
+        pointer += advances;
+        if constexpr (size != 256)
+        {
+            pointer %= size;
+        }
     }
 
     /**
@@ -131,7 +140,11 @@ public:
     Integer next()
     {
         Integer result = list[pointer++];
-        pointer %= size;
+
+        if constexpr (size != 256)
+        {
+            pointer %= size;
+        }
 
         // Debug assert to help discover if the array is too small
         // Only check on bigger sizes. Smaller sizes are prone to false positives if we use size number of prng calls
@@ -166,9 +179,11 @@ public:
     }
 
 private:
+    using SizeType = typename std::conditional<size <= 256, u8, u16>::type;
+
     RNG rng;
     Integer list[size];
-    u16 head, pointer;
+    SizeType head, pointer;
 
     /**
      * @brief Populates the list with PRNG states

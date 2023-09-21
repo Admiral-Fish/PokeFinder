@@ -22,17 +22,15 @@
 
 DateTimeEdit::DateTimeEdit(QWidget *parent) : QDateTimeEdit(parent)
 {
+    setMinimumDateTime(QDateTime(QDate(2000, 1, 1), QTime(0, 0, 0)));
+    setMaximumDateTime(QDateTime(QDate(2099, 12, 31), QTime(23, 59, 59)));
+    setCalendarPopup(true);
     setDisplayFormat("yyyy-MM-dd HH:mm");
 }
 
 DateTime DateTimeEdit::getDateTime() const
 {
-    QDateTime dt = dateTime();
-    QDate date = dt.date();
-    QTime time = dt.time();
-
-    int jd = date.toJulianDay();
-    int md = time.msecsSinceStartOfDay() / 1000;
-
+    int jd = date().toJulianDay();
+    int md = time().msecsSinceStartOfDay() / 1000;
     return DateTime(jd, md);
 }

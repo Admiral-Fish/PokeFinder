@@ -644,31 +644,7 @@
            </widget>
           </item>
           <item row="3" column="1">
-           <widget class="DateEdit" name="dateEditSearcherEndDate">
-            <property name="maximumDateTime">
-             <datetime>
-              <hour>23</hour>
-              <minute>59</minute>
-              <second>59</second>
-              <year>2099</year>
-              <month>12</month>
-              <day>31</day>
-             </datetime>
-            </property>
-            <property name="minimumDateTime">
-             <datetime>
-              <hour>0</hour>
-              <minute>0</minute>
-              <second>0</second>
-              <year>2000</year>
-              <month>1</month>
-              <day>1</day>
-             </datetime>
-            </property>
-            <property name="calendarPopup">
-             <bool>true</bool>
-            </property>
-           </widget>
+           <widget class="DateEdit" name="dateEditSearcherEndDate"/>
           </item>
           <item row="1" column="0">
            <widget class="QLabel" name="labelSearcherMaxAdvances">
@@ -699,31 +675,7 @@
            </layout>
           </item>
           <item row="2" column="1">
-           <widget class="DateEdit" name="dateEditSearcherStartDate">
-            <property name="maximumDateTime">
-             <datetime>
-              <hour>23</hour>
-              <minute>59</minute>
-              <second>59</second>
-              <year>2099</year>
-              <month>12</month>
-              <day>31</day>
-             </datetime>
-            </property>
-            <property name="minimumDateTime">
-             <datetime>
-              <hour>0</hour>
-              <minute>0</minute>
-              <second>0</second>
-              <year>2000</year>
-              <month>1</month>
-              <day>1</day>
-             </datetime>
-            </property>
-            <property name="calendarPopup">
-             <bool>true</bool>
-            </property>
-           </widget>
+           <widget class="DateEdit" name="dateEditSearcherStartDate"/>
           </item>
           <item row="2" column="0">
            <widget class="QLabel" name="labelSearcherStartDate">
@@ -767,15 +719,15 @@
    <header>Form/Controls/TableView.hpp</header>
   </customwidget>
   <customwidget>
+   <class>DateEdit</class>
+   <extends>QDateEdit</extends>
+   <header>Form/Controls/DateEdit.hpp</header>
+  </customwidget>
+  <customwidget>
    <class>Filter</class>
    <extends>QWidget</extends>
    <header>Form/Controls/Filter.hpp</header>
    <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>DateEdit</class>
-   <extends>QDateEdit</extends>
-   <header>Form/Controls/DateEdit.hpp</header>
   </customwidget>
   <customwidget>
    <class>ComboBox</class>

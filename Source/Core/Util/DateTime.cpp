@@ -68,11 +68,6 @@ Date::Date(u16 year, u8 month, u8 day)
     jd = day + ((153 * m + 2) / 5) - 32045 + 365 * y + (y / 4) - (y / 100) + (y / 400);
 }
 
-Date Date::addDays(u32 days) const
-{
-    return Date(jd + days);
-}
-
 u8 Date::day() const
 {
     return getParts().day;
@@ -179,16 +174,13 @@ DateTime::DateTime(u16 year, u8 month, u8 day, u8 hour, u8 minute, u8 second) : 
 {
 }
 
-void DateTime::addSeconds(u32 seconds)
-{
-    u32 days = time.addSeconds(seconds);
-    date = date.addDays(days);
-}
-
-DateTime DateTime::addSecs(u32 seconds) const
+DateTime DateTime::addSeconds(u32 seconds) const
 {
     DateTime dt(*this);
-    dt.addSeconds(seconds);
+
+    u32 days = dt.time.addSeconds(seconds);
+    dt.date += days;
+
     return dt;
 }
 

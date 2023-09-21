@@ -155,11 +155,10 @@ void Wild3::generate()
     u32 maxAdvances = ui->textBoxGeneratorMaxAdvances->getUInt();
     u32 delay = ui->textBoxGeneratorDelay->getUInt();
     auto method = ui->comboBoxGeneratorMethod->getEnum<Method>();
-    auto encounter = ui->comboBoxGeneratorEncounter->getEnum<Encounter>();
     auto lead = ui->comboMenuGeneratorLead->getEnum<Lead>();
 
     WildStateFilter filter = ui->filterGenerator->getFilter<WildStateFilter, true>();
-    WildGenerator3 generator(initialAdvances, maxAdvances, delay, method, encounter, lead,
+    WildGenerator3 generator(initialAdvances, maxAdvances, delay, method, lead,
                              encounterGenerator[ui->comboBoxGeneratorLocation->getCurrentInt()], *currentProfile, filter);
 
     auto states = generator.generate(seed);
@@ -297,12 +296,11 @@ void Wild3::search()
     std::array<u8, 6> min = ui->filterSearcher->getMinIVs();
     std::array<u8, 6> max = ui->filterSearcher->getMaxIVs();
     auto method = ui->comboBoxSearcherMethod->getEnum<Method>();
-    auto encounter = ui->comboBoxSearcherEncounter->getEnum<Encounter>();
     auto lead = ui->comboMenuSearcherLead->getEnum<Lead>();
 
     WildStateFilter filter = ui->filterSearcher->getFilter<WildStateFilter, true>();
-    auto *searcher = new WildSearcher3(method, encounter, lead, encounterSearcher[ui->comboBoxSearcherLocation->getCurrentInt()],
-                                       *currentProfile, filter);
+    auto *searcher
+        = new WildSearcher3(method, lead, encounterSearcher[ui->comboBoxSearcherLocation->getCurrentInt()], *currentProfile, filter);
 
     int maxProgress = 1;
     for (u8 i = 0; i < 6; i++)

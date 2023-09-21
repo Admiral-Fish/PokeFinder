@@ -22,6 +22,9 @@
 
 DateEdit::DateEdit(QWidget *parent) : QDateEdit(parent)
 {
+    setMinimumDate(QDate(2000, 1, 1));
+    setMaximumDate(QDate(2099, 12, 31));
+    setCalendarPopup(true);
     setDisplayFormat("yyyy-MM-dd");
 }
 

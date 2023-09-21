@@ -21,7 +21,6 @@
 #define ENCOUNTERAREA5_HPP
 
 #include <Core/Parents/EncounterArea.hpp>
-#include <Core/Parents/Slot.hpp>
 
 /**
  * @brief Contains information about the encounters for an area. This includes location, rate, and the slots.
@@ -37,7 +36,7 @@ public:
      * @param encounter Encounter type of the area
      * @param pokemon Available pokemon of the area
      */
-    EncounterArea5(u8 location, u8 rate, Encounter type, const std::vector<Slot> &pokemon) : EncounterArea(location, rate, type, pokemon)
+    EncounterArea5(u8 location, u8 rate, Encounter type, const std::array<Slot, 12> &pokemon) : EncounterArea(location, rate, type, pokemon)
     {
     }
 };

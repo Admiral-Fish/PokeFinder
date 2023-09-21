@@ -104,16 +104,16 @@ namespace Encounters3
         {
             const auto *entry = reinterpret_cast<const WildEncounter3 *>(data + offset);
 
+            std::array<Slot, 12> slots;
             switch (encounter)
             {
             case Encounter::Grass:
                 if (entry->grassRate != 0)
                 {
-                    std::vector<Slot> slots;
-                    slots.reserve(12);
-                    for (const auto &slot : entry->grass)
+                    for (size_t i = 0; i < 12; i++)
                     {
-                        slots.emplace_back(slot.specie & 0x7ff, slot.specie >> 11, slot.level, slot.level, &info[slot.specie & 0x7ff]);
+                        const auto &slot = entry->grass[i];
+                        slots[i] = Slot(slot.specie & 0x7ff, slot.specie >> 11, slot.level, slot.level, &info[slot.specie & 0x7ff]);
                     }
                     encounters.emplace_back(entry->location, entry->grassRate, encounter, slots);
                 }
@@ -121,11 +121,10 @@ namespace Encounters3
             case Encounter::Surfing:
                 if (entry->surfRate != 0)
                 {
-                    std::vector<Slot> slots;
-                    slots.reserve(5);
-                    for (const auto &slot : entry->surf)
+                    for (size_t i = 0; i < 5; i++)
                     {
-                        slots.emplace_back(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
+                        const auto &slot = entry->surf[i];
+                        slots[i] = Slot(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
                     }
                     encounters.emplace_back(entry->location, entry->surfRate, encounter, slots);
                 }
@@ -133,11 +132,10 @@ namespace Encounters3
             case Encounter::RockSmash:
                 if (entry->rockRate != 0)
                 {
-                    std::vector<Slot> slots;
-                    slots.reserve(5);
-                    for (const auto &slot : entry->rock)
+                    for (size_t i = 0; i < 5; i++)
                     {
-                        slots.emplace_back(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
+                        const auto &slot = entry->rock[i];
+                        slots[i] = Slot(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
                     }
                     encounters.emplace_back(entry->location, entry->rockRate, encounter, slots);
                 }
@@ -145,11 +143,10 @@ namespace Encounters3
             case Encounter::OldRod:
                 if (entry->fishRate != 0)
                 {
-                    std::vector<Slot> slots;
-                    slots.reserve(2);
-                    for (const auto &slot : entry->old)
+                    for (size_t i = 0; i < 2; i++)
                     {
-                        slots.emplace_back(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
+                        const auto &slot = entry->old[i];
+                        slots[i] = Slot(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
                     }
                     encounters.emplace_back(entry->location, entry->fishRate, encounter, slots);
                 }
@@ -157,11 +154,10 @@ namespace Encounters3
             case Encounter::GoodRod:
                 if (entry->fishRate != 0)
                 {
-                    std::vector<Slot> slots;
-                    slots.reserve(3);
-                    for (const auto &slot : entry->good)
+                    for (size_t i = 0; i < 3; i++)
                     {
-                        slots.emplace_back(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
+                        const auto &slot = entry->good[i];
+                        slots[i] = Slot(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
                     }
                     encounters.emplace_back(entry->location, entry->fishRate, encounter, slots);
                 }
@@ -169,11 +165,10 @@ namespace Encounters3
             case Encounter::SuperRod:
                 if (entry->fishRate != 0)
                 {
-                    std::vector<Slot> slots;
-                    slots.reserve(5);
-                    for (const auto &slot : entry->super)
+                    for (size_t i = 0; i < 5; i++)
                     {
-                        slots.emplace_back(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
+                        const auto &slot = entry->super[i];
+                        slots[i] = Slot(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
                     }
                     encounters.emplace_back(entry->location, entry->fishRate, encounter, slots);
                 }
@@ -198,11 +193,11 @@ namespace Encounters3
         {
             const auto *entry = reinterpret_cast<const WildEncounterPokeSpot *>(data + offset);
 
-            std::vector<Slot> slots;
-            slots.reserve(3);
-            for (const auto &slot : entry->spot)
+            std::array<Slot, 12> slots;
+            for (size_t i = 0; i < 3; i++)
             {
-                slots.emplace_back(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
+                const auto &slot = entry->spot[i];
+                slots[i] = Slot(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
             }
             encounters.emplace_back(entry->location, 0, Encounter::Grass, slots);
         }

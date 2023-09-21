@@ -50,9 +50,9 @@ static u16 getItem(u8 rand, Lead lead, const PersonalInfo *info)
     }
 }
 
-WildGenerator4::WildGenerator4(u32 initialAdvances, u32 maxAdvances, u32 delay, Method method, Encounter encounter, Lead lead, bool shiny,
+WildGenerator4::WildGenerator4(u32 initialAdvances, u32 maxAdvances, u32 delay, Method method, Lead lead, bool shiny,
                                const EncounterArea4 &area, const Profile4 &profile, const WildStateFilter &filter) :
-    WildGenerator(initialAdvances, maxAdvances, delay, method, encounter, lead, area, profile, filter), shiny(shiny)
+    WildGenerator(initialAdvances, maxAdvances, delay, method, lead, area, profile, filter), shiny(shiny)
 {
 }
 
@@ -92,7 +92,8 @@ std::vector<WildGeneratorState4> WildGenerator4::generateMethodJ(u32 seed) const
         PokeRNG go(rng);
 
         // Fishing nibble check
-        if ((encounter == Encounter::OldRod || encounter == Encounter::GoodRod || encounter == Encounter::SuperRod)
+        if ((area.getEncounter() == Encounter::OldRod || area.getEncounter() == Encounter::GoodRod
+             || area.getEncounter() == Encounter::SuperRod)
             && go.nextUShort<false>(100, &occidentary) >= thresh)
         {
             rng.next();
@@ -106,7 +107,7 @@ std::vector<WildGeneratorState4> WildGenerator4::generateMethodJ(u32 seed) const
         }
         else
         {
-            encounterSlot = EncounterSlot::jSlot(go.nextUShort<false>(100, &occidentary), encounter);
+            encounterSlot = EncounterSlot::jSlot(go.nextUShort<false>(100, &occidentary), area.getEncounter());
         }
 
         if (!filter.compareEncounterSlot(encounterSlot))
@@ -116,7 +117,7 @@ std::vector<WildGeneratorState4> WildGenerator4::generateMethodJ(u32 seed) const
         }
 
         u8 level;
-        if (encounter == Encounter::Grass)
+        if (area.getEncounter() == Encounter::Grass)
         {
             level = area.calculateLevel<false, false>(encounterSlot, go, &occidentary, lead == Lead::Pressure);
         }
@@ -215,11 +216,12 @@ std::vector<WildGeneratorState4> WildGenerator4::generateMethodK(u32 seed) const
 
     u16 rate = area.getRate();
     if (lead == Lead::SuctionCups
-        && (encounter == Encounter::OldRod || encounter == Encounter::GoodRod || encounter == Encounter::SuperRod))
+        && (area.getEncounter() == Encounter::OldRod || area.getEncounter() == Encounter::GoodRod
+            || area.getEncounter() == Encounter::SuperRod))
     {
         rate *= 2;
     }
-    else if (lead == Lead::ArenaTrap && encounter == Encounter::RockSmash)
+    else if (lead == Lead::ArenaTrap && area.getEncounter() == Encounter::RockSmash)
     {
         rate *= 2;
     }
@@ -233,8 +235,8 @@ std::vector<WildGeneratorState4> WildGenerator4::generateMethodK(u32 seed) const
         PokeRNG go(rng);
 
         // Rock smash/fishing nibble check
-        if ((encounter == Encounter::RockSmash || encounter == Encounter::OldRod || encounter == Encounter::GoodRod
-             || encounter == Encounter::SuperRod)
+        if ((area.getEncounter() == Encounter::RockSmash || area.getEncounter() == Encounter::OldRod
+             || area.getEncounter() == Encounter::GoodRod || area.getEncounter() == Encounter::SuperRod)
             && go.nextUShort(100, &occidentary) >= rate)
         {
             rng.next();
@@ -254,7 +256,7 @@ std::vector<WildGeneratorState4> WildGenerator4::generateMethodK(u32 seed) const
             }
             else
             {
-                encounterSlot = EncounterSlot::kSlot(go.nextUShort(100, &occidentary), encounter);
+                encounterSlot = EncounterSlot::kSlot(go.nextUShort(100, &occidentary), area.getEncounter());
             }
         }
 
@@ -265,7 +267,7 @@ std::vector<WildGeneratorState4> WildGenerator4::generateMethodK(u32 seed) const
         }
 
         u8 level;
-        if (encounter == Encounter::Grass || safari)
+        if (area.getEncounter() == Encounter::Grass || safari)
         {
             level = area.calculateLevel<false, true>(encounterSlot, go, &occidentary, lead == Lead::Pressure);
         }
@@ -317,7 +319,7 @@ std::vector<WildGeneratorState4> WildGenerator4::generateMethodK(u32 seed) const
         }
         else
         {
-            if (encounter == Encounter::BugCatchingContest || safari)
+            if (area.getEncounter() == Encounter::BugCatchingContest || safari)
             {
                 for (u8 i = 0; i < 4; i++)
                 {

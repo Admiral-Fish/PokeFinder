@@ -57,15 +57,6 @@ public:
     Date(u16 year, u8 month, u8 day);
 
     /**
-     * @brief Calculates a new date by adding a number of days
-     *
-     * @param days Days to add
-     *
-     * @return New calculated date
-     */
-    Date addDays(u32 days) const;
-
-    /**
      * @brief Converts the Julian date to a Gregorian date and returns the day
      *
      * @return Day of the date
@@ -186,15 +177,39 @@ public:
     }
 
     /**
-     * @brief Postfix operator that increments the day by 1
+     * @brief Calculates a new date by adding a number of days
+     *
+     * @param days Days to add
+     *
+     * @return New calculated date
+     */
+    constexpr Date operator+(u32 days) const
+    {
+        return Date(jd + days);
+    }
+
+    /**
+     * @brief Calculates a new date by adding a number of days
+     *
+     * @param days Days to add
+     *
+     * @return New calculated date
+     */
+    constexpr Date &operator+=(u32 days)
+    {
+        jd += days;
+        return *this;
+    }
+
+    /**
+     * @brief Prefix operator that increments the day by 1
      *
      * @return Day value before increment
      */
-    constexpr Date operator++(int)
+    constexpr Date &operator++()
     {
-        Date old = *this;
         jd++;
-        return old;
+        return *this;
     }
 
 private:
@@ -369,20 +384,12 @@ public:
 
     /**
      * @brief Adds a number of seconds to the DateTime
-     * This also internally handles updating the \ref Date if the \ref Time goes over 86400
-     *
-     * @param seconds Seconds to add
-     */
-    void addSeconds(u32 seconds);
-
-    /**
-     * @brief Adds a number of seconds to the DateTime
      *
      * @param seconds Seconds to add
      *
      * @return Computed DateTime
      */
-    DateTime addSecs(u32 seconds) const;
+    DateTime addSeconds(u32 seconds) const;
 
     /**
      * @brief Returns the \ref Date component

@@ -391,7 +391,7 @@ constexpr std::array<u16, 16> trophyGarden = { 35, 39, 52, 113, 133, 137, 173, 1
  * @param info Personal info array pointer
  * @param location Encounter location
  */
-static void modifyGreatMarsh(std::vector<Slot> &pokemon, const std::array<u16, 2> &replacement, const PersonalInfo *info, u8 location)
+static void modifyGreatMarsh(std::array<Slot, 12> &pokemon, const std::array<u16, 2> &replacement, const PersonalInfo *info, u8 location)
 {
     if (location >= 23 && location <= 28 && replacement[0] != 0)
     {
@@ -409,7 +409,7 @@ static void modifyGreatMarsh(std::vector<Slot> &pokemon, const std::array<u16, 2
  * @param info Personal info array pointer
  * @param radar Whether pokeradar is active or not
  */
-static void modifyRadar(std::vector<Slot> &mons, const WildEncounter8 *entry, const PersonalInfo *info, bool radar)
+static void modifyRadar(std::array<Slot, 12> &mons, const WildEncounter8 *entry, const PersonalInfo *info, bool radar)
 {
     if (radar)
     {
@@ -428,7 +428,7 @@ static void modifyRadar(std::vector<Slot> &mons, const WildEncounter8 *entry, co
  * @param info Personal info array pointer
  * @param swarm Whether swarm is active or not
  */
-static void modifySwarm(std::vector<Slot> &mons, const WildEncounter8 *entry, const PersonalInfo *info, bool swarm)
+static void modifySwarm(std::array<Slot, 12> &mons, const WildEncounter8 *entry, const PersonalInfo *info, bool swarm)
 {
     if (swarm)
     {
@@ -445,7 +445,7 @@ static void modifySwarm(std::vector<Slot> &mons, const WildEncounter8 *entry, co
  * @param info Personal info array pointer
  * @param time Time of day
  */
-static void modifyTime(std::vector<Slot> &mons, const WildEncounter8 *entry, const PersonalInfo *info, int time)
+static void modifyTime(std::array<Slot, 12> &mons, const WildEncounter8 *entry, const PersonalInfo *info, int time)
 {
     u16 specie1;
     u16 specie2;
@@ -476,7 +476,7 @@ static void modifyTime(std::vector<Slot> &mons, const WildEncounter8 *entry, con
  * @param info Personal info array pointer
  * @param location Encounter location
  */
-static void modifyTrophyGarden(std::vector<Slot> &pokemon, const std::array<u16, 2> &replacement, const PersonalInfo *info, u8 location)
+static void modifyTrophyGarden(std::array<Slot, 12> &pokemon, const std::array<u16, 2> &replacement, const PersonalInfo *info, u8 location)
 {
     if (location == 117 && replacement[0] != 0 && replacement[1] != 0)
     {
@@ -520,16 +520,16 @@ static std::vector<EncounterArea8> getBDSP(Encounter encounter, int time, bool r
     {
         const auto *entry = reinterpret_cast<const WildEncounter8 *>(data + offset);
 
+        std::array<Slot, 12> slots;
         switch (encounter)
         {
         case Encounter::Grass:
             if (entry->grassRate != 0)
             {
-                std::vector<Slot> slots;
-                slots.reserve(12);
-                for (const auto &slot : entry->grass)
+                for (size_t i = 0; i < 12; i++)
                 {
-                    slots.emplace_back(slot.specie, slot.level, slot.level, &info[slot.specie]);
+                    const auto &slot = entry->grass[i];
+                    slots[i] = Slot(slot.specie, slot.level, slot.level, &info[slot.specie]);
                 }
                 modifySwarm(slots, entry, info, swarm);
                 modifyTime(slots, entry, info, time);
@@ -542,11 +542,10 @@ static std::vector<EncounterArea8> getBDSP(Encounter encounter, int time, bool r
         case Encounter::Surfing:
             if (entry->surfRate != 0)
             {
-                std::vector<Slot> slots;
-                slots.reserve(5);
-                for (const auto &slot : entry->surf)
+                for (size_t i = 0; i < 5; i++)
                 {
-                    slots.emplace_back(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
+                    const auto &slot = entry->surf[i];
+                    slots[i] = Slot(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
                 }
                 encounters.emplace_back(entry->location, entry->surfRate, encounter, slots);
             }
@@ -554,11 +553,10 @@ static std::vector<EncounterArea8> getBDSP(Encounter encounter, int time, bool r
         case Encounter::OldRod:
             if (entry->oldRate != 0)
             {
-                std::vector<Slot> slots;
-                slots.reserve(5);
-                for (const auto &slot : entry->old)
+                for (size_t i = 0; i < 5; i++)
                 {
-                    slots.emplace_back(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
+                    const auto &slot = entry->old[i];
+                    slots[i] = Slot(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
                 }
                 encounters.emplace_back(entry->location, entry->oldRate, encounter, slots);
             }
@@ -566,11 +564,10 @@ static std::vector<EncounterArea8> getBDSP(Encounter encounter, int time, bool r
         case Encounter::GoodRod:
             if (entry->goodRate != 0)
             {
-                std::vector<Slot> slots;
-                slots.reserve(5);
-                for (const auto &slot : entry->good)
+                for (size_t i = 0; i < 5; i++)
                 {
-                    slots.emplace_back(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
+                    const auto &slot = entry->good[i];
+                    slots[i] = Slot(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
                 }
                 encounters.emplace_back(entry->location, entry->goodRate, encounter, slots);
             }
@@ -578,11 +575,10 @@ static std::vector<EncounterArea8> getBDSP(Encounter encounter, int time, bool r
         case Encounter::SuperRod:
             if (entry->superRate != 0)
             {
-                std::vector<Slot> slots;
-                slots.reserve(5);
-                for (const auto &slot : entry->super)
+                for (size_t i = 0; i < 5; i++)
                 {
-                    slots.emplace_back(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
+                    const auto &slot = entry->super[i];
+                    slots[i] = Slot(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
                 }
                 encounters.emplace_back(entry->location, entry->superRate, Encounter::SuperRod, slots);
             }

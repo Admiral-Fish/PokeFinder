@@ -190,7 +190,7 @@ constexpr std::array<u16, 16> trophyGardenPt = { 35, 39, 52, 113, 132, 133, 173,
  * @param info Personal info array pointer
  * @param radio Radio station
  */
-static void modifyRadio(std::vector<Slot> &pokemon, const WildEncounterHGSS *entry, const PersonalInfo *info, int radio)
+static void modifyRadio(std::array<Slot, 12> &pokemon, const WildEncounterHGSS *entry, const PersonalInfo *info, int radio)
 {
     u16 specie1;
     u16 specie2;
@@ -224,7 +224,7 @@ static void modifyRadio(std::vector<Slot> &pokemon, const WildEncounterHGSS *ent
  * @param encounter Encounter type
  * @param swarm Whether swarm is active or not
  */
-static void modifySwarmHGSS(std::vector<Slot> &pokemon, const WildEncounterHGSS *entry, const PersonalInfo *info, Encounter encounter,
+static void modifySwarmHGSS(std::array<Slot, 12> &pokemon, const WildEncounterHGSS *entry, const PersonalInfo *info, Encounter encounter,
                             bool swarm)
 {
     if (swarm)
@@ -265,7 +265,7 @@ static void modifySwarmHGSS(std::vector<Slot> &pokemon, const WildEncounterHGSS 
     }
 }
 
-static void modifyTimeHGSS(std::vector<Slot> &pokemon, const WildEncounterHGSS *entry, const PersonalInfo *info, Encounter encounter,
+static void modifyTimeHGSS(std::array<Slot, 12> &pokemon, const WildEncounterHGSS *entry, const PersonalInfo *info, Encounter encounter,
                            int time)
 {
     if (time != 0 && time != 1)
@@ -307,8 +307,7 @@ static std::vector<EncounterArea4> getHGSSSafari(Encounter encounter, int time, 
         const StaticSlot *safariSlots;
         const StaticSlot *safariBlockSlots;
 
-        std::vector<Slot> slots;
-        slots.reserve(10);
+        std::array<Slot, 12> slots;
         switch (encounter)
         {
         case Encounter::Grass:
@@ -330,7 +329,7 @@ static std::vector<EncounterArea4> getHGSSSafari(Encounter encounter, int time, 
                         break;
                     }
                 }
-                slots.emplace_back(specie, level, level, &info[specie]);
+                slots[i] = Slot(specie, level, level, &info[specie]);
             }
             encounters.emplace_back(entry->location, 0, encounter, slots);
             break;
@@ -355,7 +354,7 @@ static std::vector<EncounterArea4> getHGSSSafari(Encounter encounter, int time, 
                             break;
                         }
                     }
-                    slots.emplace_back(specie, level, level, &info[specie]);
+                    slots[i] = Slot(specie, level, level, &info[specie]);
                 }
                 encounters.emplace_back(entry->location, 0, encounter, slots);
             }
@@ -381,7 +380,7 @@ static std::vector<EncounterArea4> getHGSSSafari(Encounter encounter, int time, 
                             break;
                         }
                     }
-                    slots.emplace_back(specie, level, level, &info[specie]);
+                    slots[i] = Slot(specie, level, level, &info[specie]);
                 }
                 encounters.emplace_back(entry->location, 25, encounter, slots);
             }
@@ -407,7 +406,7 @@ static std::vector<EncounterArea4> getHGSSSafari(Encounter encounter, int time, 
                             break;
                         }
                     }
-                    slots.emplace_back(specie, level, level, &info[specie]);
+                    slots[i] = Slot(specie, level, level, &info[specie]);
                 }
                 encounters.emplace_back(entry->location, 50, encounter, slots);
             }
@@ -433,7 +432,7 @@ static std::vector<EncounterArea4> getHGSSSafari(Encounter encounter, int time, 
                             break;
                         }
                     }
-                    slots.emplace_back(specie, level, level, &info[specie]);
+                    slots[i] = Slot(specie, level, level, &info[specie]);
                 }
                 encounters.emplace_back(entry->location, 75, encounter, slots);
             }
@@ -477,11 +476,11 @@ static std::vector<EncounterArea4> getHGSS(Game version, Encounter encounter, in
         {
             const auto *entry = reinterpret_cast<const WildEncounterHGSSBug *>(data + offset);
 
-            std::vector<Slot> slots;
-            slots.reserve(10);
-            for (const auto &slot : entry->bug)
+            std::array<Slot, 12> slots;
+            for (size_t i = 0; i < 10; i++)
             {
-                slots.emplace_back(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
+                const auto &slot = entry->bug[i];
+                slots[i] = Slot(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
             }
             encounters.emplace_back(entry->location, 0, encounter, slots);
         }
@@ -504,14 +503,13 @@ static std::vector<EncounterArea4> getHGSS(Game version, Encounter encounter, in
 
             if (encounter != Encounter::HeadbuttSpecial || entry->hasSpecial)
             {
-                std::vector<Slot> slots;
-                slots.reserve(6);
+                std::array<Slot, 12> slots;
 
                 const DynamicSlot *treeSlot = &entry->slots[6 * tree];
                 for (size_t i = 0; i < 6; i++)
                 {
                     const auto &slot = treeSlot[i];
-                    slots.emplace_back(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
+                    slots[i] = Slot(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
                 }
                 encounters.emplace_back(entry->location, 0, encounter, slots);
             }
@@ -532,18 +530,16 @@ static std::vector<EncounterArea4> getHGSS(Game version, Encounter encounter, in
         {
             const auto *entry = reinterpret_cast<const WildEncounterHGSS *>(data + offset);
 
+            std::array<Slot, 12> slots;
             switch (encounter)
             {
             case Encounter::Grass:
                 if (entry->grassRate != 0)
                 {
-                    std::vector<Slot> slots;
-                    slots.reserve(12);
-
                     const u16 *species = &entry->grass.slots[time * 12];
                     for (size_t i = 0; i < 12; i++)
                     {
-                        slots.emplace_back(species[i], entry->grass.level[i], entry->grass.level[i], &info[species[i]]);
+                        slots[i] = Slot(species[i], entry->grass.level[i], entry->grass.level[i], &info[species[i]]);
                     }
                     modifyRadio(slots, entry, info, radio);
                     modifySwarmHGSS(slots, entry, info, encounter, swarm);
@@ -553,11 +549,10 @@ static std::vector<EncounterArea4> getHGSS(Game version, Encounter encounter, in
             case Encounter::Surfing:
                 if (entry->surfRate != 0)
                 {
-                    std::vector<Slot> slots;
-                    slots.reserve(5);
-                    for (const auto &slot : entry->surf)
+                    for (size_t i = 0; i < 5; i++)
                     {
-                        slots.emplace_back(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
+                        const auto &slot = entry->surf[i];
+                        slots[i] = Slot(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
                     }
                     modifySwarmHGSS(slots, entry, info, encounter, swarm);
                     encounters.emplace_back(entry->location, entry->surfRate, encounter, slots);
@@ -566,11 +561,10 @@ static std::vector<EncounterArea4> getHGSS(Game version, Encounter encounter, in
             case Encounter::RockSmash:
                 if (entry->rockRate != 0)
                 {
-                    std::vector<Slot> slots;
-                    slots.reserve(2);
-                    for (const auto &slot : entry->rock)
+                    for (size_t i = 0; i < 2; i++)
                     {
-                        slots.emplace_back(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
+                        const auto &slot = entry->rock[i];
+                        slots[i] = Slot(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
                     }
                     encounters.emplace_back(entry->location, entry->rockRate, encounter, slots);
                 }
@@ -578,11 +572,10 @@ static std::vector<EncounterArea4> getHGSS(Game version, Encounter encounter, in
             case Encounter::OldRod:
                 if (entry->oldRate != 0)
                 {
-                    std::vector<Slot> slots;
-                    slots.reserve(5);
-                    for (const auto &slot : entry->old)
+                    for (size_t i = 0; i < 5; i++)
                     {
-                        slots.emplace_back(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
+                        const auto &slot = entry->old[i];
+                        slots[i] = Slot(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
                     }
                     modifySwarmHGSS(slots, entry, info, encounter, swarm);
                     encounters.emplace_back(entry->location, entry->oldRate, encounter, slots);
@@ -591,11 +584,10 @@ static std::vector<EncounterArea4> getHGSS(Game version, Encounter encounter, in
             case Encounter::GoodRod:
                 if (entry->goodRate != 0)
                 {
-                    std::vector<Slot> slots;
-                    slots.reserve(5);
-                    for (const auto &slot : entry->good)
+                    for (size_t i = 0; i < 5; i++)
                     {
-                        slots.emplace_back(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
+                        const auto &slot = entry->good[i];
+                        slots[i] = Slot(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
                     }
                     modifyTimeHGSS(slots, entry, info, encounter, time);
                     modifySwarmHGSS(slots, entry, info, encounter, swarm);
@@ -605,11 +597,10 @@ static std::vector<EncounterArea4> getHGSS(Game version, Encounter encounter, in
             case Encounter::SuperRod:
                 if (entry->superRate != 0)
                 {
-                    std::vector<Slot> slots;
-                    slots.reserve(5);
-                    for (const auto &slot : entry->super)
+                    for (size_t i = 0; i < 5; i++)
                     {
-                        slots.emplace_back(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
+                        const auto &slot = entry->super[i];
+                        slots[i] = Slot(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
                     }
                     modifyTimeHGSS(slots, entry, info, encounter, time);
                     modifySwarmHGSS(slots, entry, info, encounter, swarm);
@@ -637,7 +628,7 @@ static std::vector<EncounterArea4> getHGSS(Game version, Encounter encounter, in
  * @param info Personal info array pointer
  * @param dual Dual slot game version
  */
-static void modifyDual(std::vector<Slot> &pokemon, const WildEncounterDPPt *entry, const PersonalInfo *info, Game dual)
+static void modifyDual(std::array<Slot, 12> &pokemon, const WildEncounterDPPt *entry, const PersonalInfo *info, Game dual)
 {
     u16 specie1;
     u16 specie2;
@@ -683,7 +674,7 @@ static void modifyDual(std::vector<Slot> &pokemon, const WildEncounterDPPt *entr
  * @param info Personal info array pointer
  * @param location Encounter location
  */
-static void modifyGreatMarsh(std::vector<Slot> &pokemon, const std::array<u16, 2> &replacement, const PersonalInfo *info, u8 location)
+static void modifyGreatMarsh(std::array<Slot, 12> &pokemon, const std::array<u16, 2> &replacement, const PersonalInfo *info, u8 location)
 {
     if (location >= 23 && location <= 28 && replacement[0] != 0)
     {
@@ -701,7 +692,7 @@ static void modifyGreatMarsh(std::vector<Slot> &pokemon, const std::array<u16, 2
  * @param info Personal info array pointer
  * @param radar Whether pokeradar is active or not
  */
-static void modifyRadar(std::vector<Slot> &pokemon, const WildEncounterDPPt *entry, const PersonalInfo *info, bool radar)
+static void modifyRadar(std::array<Slot, 12> &pokemon, const WildEncounterDPPt *entry, const PersonalInfo *info, bool radar)
 {
     if (radar)
     {
@@ -720,7 +711,7 @@ static void modifyRadar(std::vector<Slot> &pokemon, const WildEncounterDPPt *ent
  * @param info Personal info array pointer
  * @param swarm Whether swarm is active or not
  */
-static void modifySwarmDPPt(std::vector<Slot> &pokemon, const WildEncounterDPPt *entry, const PersonalInfo *info, bool swarm)
+static void modifySwarmDPPt(std::array<Slot, 12> &pokemon, const WildEncounterDPPt *entry, const PersonalInfo *info, bool swarm)
 {
     if (swarm)
     {
@@ -737,7 +728,7 @@ static void modifySwarmDPPt(std::vector<Slot> &pokemon, const WildEncounterDPPt 
  * @param info Personal info array pointer
  * @param time Time of day
  */
-static void modifyTimeDPPt(std::vector<Slot> &pokemon, const WildEncounterDPPt *entry, const PersonalInfo *info, int time)
+static void modifyTimeDPPt(std::array<Slot, 12> &pokemon, const WildEncounterDPPt *entry, const PersonalInfo *info, int time)
 {
     u16 specie1;
     u16 specie2;
@@ -768,7 +759,7 @@ static void modifyTimeDPPt(std::vector<Slot> &pokemon, const WildEncounterDPPt *
  * @param info Personal info array pointer
  * @param location Encounter location
  */
-static void modifyTrophyGarden(std::vector<Slot> &pokemon, const std::array<u16, 2> &replacement, const PersonalInfo *info, u8 location)
+static void modifyTrophyGarden(std::array<Slot, 12> &pokemon, const std::array<u16, 2> &replacement, const PersonalInfo *info, u8 location)
 {
     if (location == 117 && replacement[0] != 0 && replacement[1] != 0)
     {
@@ -817,16 +808,16 @@ static std::vector<EncounterArea4> getDPPt(Game version, Encounter encounter, Ga
     {
         const auto *entry = reinterpret_cast<const WildEncounterDPPt *>(data + offset);
 
+        std::array<Slot, 12> slots;
         switch (encounter)
         {
         case Encounter::Grass:
             if (entry->grassRate != 0)
             {
-                std::vector<Slot> slots;
-                slots.reserve(12);
-                for (const auto &slot : entry->grass)
+                for (size_t i = 0; i < 12; i++)
                 {
-                    slots.emplace_back(slot.specie, slot.level, slot.level, &info[slot.specie]);
+                    const auto &slot = entry->grass[i];
+                    slots[i] = Slot(slot.specie, slot.level, slot.level, &info[slot.specie]);
                 }
                 modifySwarmDPPt(slots, entry, info, swarm);
                 modifyTimeDPPt(slots, entry, info, time);
@@ -840,11 +831,10 @@ static std::vector<EncounterArea4> getDPPt(Game version, Encounter encounter, Ga
         case Encounter::Surfing:
             if (entry->surfRate != 0)
             {
-                std::vector<Slot> slots;
-                slots.reserve(5);
-                for (const auto &slot : entry->surf)
+                for (size_t i = 0; i < 5; i++)
                 {
-                    slots.emplace_back(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
+                    const auto &slot = entry->surf[i];
+                    slots[i] = Slot(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
                 }
                 encounters.emplace_back(entry->location, entry->surfRate, encounter, slots);
             }
@@ -852,11 +842,10 @@ static std::vector<EncounterArea4> getDPPt(Game version, Encounter encounter, Ga
         case Encounter::OldRod:
             if (entry->oldRate != 0)
             {
-                std::vector<Slot> slots;
-                slots.reserve(5);
-                for (const auto &slot : entry->old)
+                for (size_t i = 0; i < 5; i++)
                 {
-                    slots.emplace_back(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
+                    const auto &slot = entry->old[i];
+                    slots[i] = Slot(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
                 }
                 encounters.emplace_back(entry->location, entry->oldRate, encounter, slots);
             }
@@ -864,11 +853,10 @@ static std::vector<EncounterArea4> getDPPt(Game version, Encounter encounter, Ga
         case Encounter::GoodRod:
             if (entry->goodRate != 0)
             {
-                std::vector<Slot> slots;
-                slots.reserve(5);
-                for (const auto &slot : entry->good)
+                for (size_t i = 0; i < 5; i++)
                 {
-                    slots.emplace_back(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
+                    const auto &slot = entry->good[i];
+                    slots[i] = Slot(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
                 }
                 encounters.emplace_back(entry->location, entry->goodRate, encounter, slots);
             }
@@ -876,11 +864,10 @@ static std::vector<EncounterArea4> getDPPt(Game version, Encounter encounter, Ga
         case Encounter::SuperRod:
             if (entry->superRate != 0)
             {
-                std::vector<Slot> slots;
-                slots.reserve(5);
-                for (const auto &slot : entry->super)
+                for (size_t i = 0; i < 5; i++)
                 {
-                    slots.emplace_back(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
+                    const auto &slot = entry->super[i];
+                    slots[i] = Slot(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
                 }
                 encounters.emplace_back(entry->location, entry->superRate, encounter, slots);
             }

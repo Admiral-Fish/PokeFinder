@@ -41,25 +41,20 @@ public:
      * @param initialAdvances Initial number of advances
      * @param maxAdvances Maximum number of advances
      * @param delay Number of advances to offset
-     * @param encounter Encounter type
      * @param method Encounter method
      * @param lead Encounter lead
      * @param area Wild pokemon info
      * @param profile Profile Information
      * @param filter State filter
      */
-    WildGenerator(u32 initialAdvances, u32 maxAdvances, u32 delay, Method method, Encounter encounter, Lead lead, const EncounterArea &area,
+    WildGenerator(u32 initialAdvances, u32 maxAdvances, u32 delay, Method method, Lead lead, const EncounterArea &area,
                   const Profile &profile, const Filter &filter) :
-        Generator<Profile, Filter>(initialAdvances, maxAdvances, delay, method, profile, filter),
-        area(area),
-        encounter(encounter),
-        lead(lead)
+        Generator<Profile, Filter>(initialAdvances, maxAdvances, delay, method, profile, filter), area(area), lead(lead)
     {
     }
 
 protected:
     EncounterArea area;
-    Encounter encounter;
     Lead lead;
 };
 

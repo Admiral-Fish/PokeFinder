@@ -22,7 +22,7 @@
 
 #include <Core/Gen3/Profile3.hpp>
 #include <Core/Parents/Filters/StateFilter.hpp>
-#include <Core/Parents/Searchers/Searcher.hpp>
+#include <Core/Parents/Searchers/StaticSearcher.hpp>
 
 class StaticTemplate;
 class ShadowTemplate;
@@ -30,7 +30,7 @@ class ShadowTemplate;
 /**
  * @brief Wild encounter searcher for GameCube
  */
-class GameCubeSearcher : public Searcher<Profile3, StateFilter, SearcherState>
+class GameCubeSearcher : public StaticSearcher<Profile3, StateFilter, SearcherState>
 {
 public:
     /**

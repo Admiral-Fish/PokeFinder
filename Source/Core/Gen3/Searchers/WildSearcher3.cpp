@@ -22,9 +22,9 @@
 #include <Core/Enum/Game.hpp>
 #include <Core/Enum/Lead.hpp>
 #include <Core/Enum/Method.hpp>
-#include <Core/Gen3/States/WildState3.hpp>
 #include <Core/Parents/PersonalInfo.hpp>
 #include <Core/Parents/Slot.hpp>
+#include <Core/Parents/States/WildState.hpp>
 #include <Core/Parents/StaticTemplate.hpp>
 #include <Core/RNG/LCRNG.hpp>
 #include <Core/RNG/LCRNGReverse.hpp>
@@ -56,20 +56,21 @@ static u8 unownLetter(u32 pid)
     return (((pid & 0x3000000) >> 18) | ((pid & 0x30000) >> 12) | ((pid & 0x300) >> 6) | (pid & 0x3)) % 0x1c;
 }
 
-WildSearcher3::WildSearcher3(Method method, Encounter encounter, Lead lead, const EncounterArea3 &encounterArea, const Profile3 &profile,
-                             const WildStateFilter &filter) :
-    WildSearcher(method, encounter, lead, encounterArea, profile, filter),
-    modifiedSlots(encounterArea.getSlots(lead)),
-    ivAdvance(method == Method::Method2)
+WildSearcher3::WildSearcher3(Method method, Lead lead, const EncounterArea3 &area, const Profile3 &profile, const WildStateFilter &filter) :
+    WildSearcher(method, lead, area, profile, filter), modifiedSlots(area.getSlots(lead)), ivAdvance(method == Method::Method2), rate(0)
 {
+    if ((profile.getVersion() & Game::RSE) != Game::None && area.getEncounter() == Encounter::RockSmash)
+    {
+        rate = area.getRate() * 16;
+    }
 }
 
 void WildSearcher3::startSearch(const std::array<u8, 6> &min, const std::array<u8, 6> &max)
 {
     searching = true;
 
-    bool safari = encounterArea.safariZone(profile.getVersion());
-    bool tanoby = encounterArea.tanobyChamber(profile.getVersion());
+    bool safari = area.safariZone(profile.getVersion());
+    bool tanoby = area.tanobyChamber(profile.getVersion());
 
     for (u8 hp = min[0]; hp <= max[0]; hp++)
     {
@@ -101,9 +102,9 @@ void WildSearcher3::startSearch(const std::array<u8, 6> &min, const std::array<u
     }
 }
 
-std::vector<WildSearcherState3> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, bool safari, bool tanoby) const
+std::vector<WildSearcherState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, bool safari, bool tanoby) const
 {
-    std::vector<WildSearcherState3> states;
+    std::vector<WildSearcherState> states;
     std::array<u8, 6> ivs = { hp, atk, def, spa, spd, spe };
 
     u32 seeds[6];
@@ -153,15 +154,15 @@ std::vector<WildSearcherState3> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 
             case Lead::None:
                 if (tanoby)
                 {
-                    encounterSlot = EncounterSlot::hSlot(nextRNG2 % 100, encounter);
-                    level = encounterArea.EncounterArea::calculateLevel(encounterSlot, nextRNG);
+                    encounterSlot = EncounterSlot::hSlot(nextRNG2 % 100, area.getEncounter());
+                    level = area.EncounterArea::calculateLevel(encounterSlot, nextRNG);
                     valid = filter.compareEncounterSlot(encounterSlot);
                 }
                 else if ((nextRNG % 25) == nature)
                 {
                     u16 prng = safari ? test.nextUShort() : nextRNG2;
-                    encounterSlot = EncounterSlot::hSlot(test.nextUShort(100), encounter);
-                    level = encounterArea.EncounterArea::calculateLevel(encounterSlot, prng);
+                    encounterSlot = EncounterSlot::hSlot(test.nextUShort(100), area.getEncounter());
+                    level = area.EncounterArea::calculateLevel(encounterSlot, prng);
                     valid = filter.compareEncounterSlot(encounterSlot);
                 }
                 break;
@@ -175,8 +176,8 @@ std::vector<WildSearcherState3> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 
                         test.next();
                     }
                     u16 prng = test.nextUShort();
-                    encounterSlot = EncounterSlot::hSlot(test.nextUShort(100), encounter);
-                    level = encounterArea.EncounterArea::calculateLevel(encounterSlot, prng);
+                    encounterSlot = EncounterSlot::hSlot(test.nextUShort(100), area.getEncounter());
+                    level = area.EncounterArea::calculateLevel(encounterSlot, prng);
                     cuteCharmFlag = (nextRNG2 % 3) > 0;
                     valid = filter.compareEncounterSlot(encounterSlot);
                 }
@@ -185,8 +186,8 @@ std::vector<WildSearcherState3> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 
                 if ((nextRNG & 1) == 0)
                 {
                     u16 prng = safari ? test.nextUShort() : nextRNG2;
-                    encounterSlot = EncounterSlot::hSlot(test.nextUShort(100), encounter);
-                    level = encounterArea.EncounterArea::calculateLevel(encounterSlot, prng);
+                    encounterSlot = EncounterSlot::hSlot(test.nextUShort(100), area.getEncounter());
+                    level = area.EncounterArea::calculateLevel(encounterSlot, prng);
                     valid = filter.compareEncounterSlot(encounterSlot);
                 }
                 else if ((nextRNG2 & 1) == 1 && (nextRNG % 25) == nature)
@@ -196,8 +197,8 @@ std::vector<WildSearcherState3> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 
                         test.next();
                     }
                     u16 prng = test.nextUShort();
-                    encounterSlot = EncounterSlot::hSlot(test.nextUShort(100), encounter);
-                    level = encounterArea.EncounterArea::calculateLevel(encounterSlot, prng);
+                    encounterSlot = EncounterSlot::hSlot(test.nextUShort(100), area.getEncounter());
+                    level = area.EncounterArea::calculateLevel(encounterSlot, prng);
                     valid = filter.compareEncounterSlot(encounterSlot);
                 }
                 break;
@@ -213,9 +214,9 @@ std::vector<WildSearcherState3> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 
                     }
                     else
                     {
-                        encounterSlot = EncounterSlot::hSlot(encounterRand % 100, encounter);
+                        encounterSlot = EncounterSlot::hSlot(encounterRand % 100, area.getEncounter());
                     }
-                    level = encounterArea.EncounterArea::calculateLevel(encounterSlot, levelRand);
+                    level = area.EncounterArea::calculateLevel(encounterSlot, levelRand);
                     valid = filter.compareEncounterSlot(encounterSlot);
                 }
                 break;
@@ -224,8 +225,8 @@ std::vector<WildSearcherState3> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 
                 {
                     u16 rand = safari ? test.nextUShort() : nextRNG2;
                     u16 levelRand = test.nextUShort();
-                    encounterSlot = EncounterSlot::hSlot(test.nextUShort(100), encounter);
-                    level = encounterArea.calculateLevel(encounterSlot, levelRand, (rand & 1) == 0);
+                    encounterSlot = EncounterSlot::hSlot(test.nextUShort(100), area.getEncounter());
+                    level = area.calculateLevel(encounterSlot, levelRand, (rand & 1) == 0);
                     valid = filter.compareEncounterSlot(encounterSlot);
                 }
                 break;
@@ -233,15 +234,15 @@ std::vector<WildSearcherState3> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 
                 break;
             }
 
-            if (valid)
+            if (valid && (rate == 0 || (test.nextUShort(2880) < rate)))
             {
-                const Slot &slot = encounterArea.getPokemon(encounterSlot);
+                const Slot &slot = area.getPokemon(encounterSlot);
                 const PersonalInfo *info = slot.getInfo();
                 if ((!cuteCharmFlag || cuteCharmGender(info, pid, lead)) && (slot.getSpecie() != 201 || unownLetter(pid) == slot.getForm()))
                 {
-                    WildSearcherState3 state(test.next(), pid, ivs, pid & 1, Utilities::getGender(pid, info), level, nature,
-                                             Utilities::getShiny(pid, tsv), encounterSlot, slot.getSpecie(), slot.getForm(), info);
-                    if (filter.compareState(static_cast<const WildSearcherState &>(state)))
+                    WildSearcherState state(test.next(), pid, ivs, pid & 1, Utilities::getGender(pid, info), level, nature,
+                                            Utilities::getShiny(pid, tsv), encounterSlot, 0, slot.getSpecie(), slot.getForm(), info);
+                    if (filter.compareState(state))
                     {
                         states.emplace_back(state);
                     }
@@ -268,25 +269,6 @@ std::vector<WildSearcherState3> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 
             nextRNG = rng.nextUShort();
             nextRNG2 = rng.nextUShort();
         } while (true);
-    }
-
-    // RSE rock smash is dependent on origin seed for encounter check
-    if ((profile.getVersion() & Game::RSE) != Game::None && encounter == Encounter::RockSmash)
-    {
-        u16 rate = encounterArea.getRate() * 16;
-        for (size_t i = 0; i < states.size();)
-        {
-            u16 check = states[i].getSeed() >> 16;
-            if ((check % 2880) >= rate)
-            {
-                states.erase(states.begin() + i);
-            }
-            else
-            {
-                states[i].setSeed(PokeRNGR(states[i].getSeed()).next());
-                i++;
-            }
-        }
     }
 
     return states;

@@ -57,9 +57,9 @@ static u32 rand(u32 prng)
     return (prng % 0xffffffff) + 0x80000000;
 }
 
-WildGenerator8::WildGenerator8(u32 initialAdvances, u32 maxAdvances, u32 delay, Encounter encounter, Lead lead, const EncounterArea8 &area,
+WildGenerator8::WildGenerator8(u32 initialAdvances, u32 maxAdvances, u32 delay, Lead lead, const EncounterArea8 &area,
                                const Profile8 &profile, const WildStateFilter &filter) :
-    WildGenerator(initialAdvances, maxAdvances, delay, Method::None, encounter, lead, area, profile, filter)
+    WildGenerator(initialAdvances, maxAdvances, delay, Method::None, lead, area, profile, filter)
 {
     tsv = (profile.getTID() & 0xFFF0) ^ profile.getSID();
 }
@@ -82,7 +82,7 @@ std::vector<WildGeneratorState> WildGenerator8::generate(u64 seed0, u64 seed1) c
         }
         else
         {
-            encounterSlot = EncounterSlot::bdspSlot(rngList.next() % 100, encounter);
+            encounterSlot = EncounterSlot::bdspSlot(rngList.next() % 100, area.getEncounter());
         }
 
         if (!filter.compareEncounterSlot(encounterSlot))
@@ -100,7 +100,7 @@ std::vector<WildGeneratorState> WildGenerator8::generate(u64 seed0, u64 seed1) c
         rngList.advance(84);
 
         u8 level;
-        if (encounter == Encounter::Grass)
+        if (area.getEncounter() == Encounter::Grass)
         {
             level = area.calculateLevel<false>(encounterSlot, rngList, lead == Lead::Pressure);
         }

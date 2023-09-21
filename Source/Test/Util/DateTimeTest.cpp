@@ -49,7 +49,7 @@ void DateTimeTest::addSecs()
     QFETCH(int, seconds);
     QFETCH(DateTime, result);
 
-    DateTime dt = DateTime().addSecs(seconds);
+    DateTime dt = DateTime().addSeconds(seconds);
     QCOMPARE(dt, result);
 }
 

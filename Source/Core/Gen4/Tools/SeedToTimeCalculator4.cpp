@@ -64,7 +64,7 @@ namespace SeedToTimeCalculator4
         results.reserve((plusDelay - minusDelay + 1) * (plusSecond - minusSecond + 1));
         for (int secondOffset = minusSecond; secondOffset <= plusSecond; secondOffset++)
         {
-            DateTime offset = time.addSecs(secondOffset);
+            DateTime offset = time.addSeconds(secondOffset);
             for (int delayOffset = minusDelay; delayOffset <= plusDelay; delayOffset++)
             {
                 results.emplace_back(offset, delay + delayOffset);
@@ -84,7 +84,7 @@ namespace SeedToTimeCalculator4
         results.reserve((plusDelay - minusDelay + 1) * (plusSecond - minusSecond + 1));
         for (int secondOffset = minusSecond; secondOffset <= plusSecond; secondOffset++)
         {
-            DateTime offset = time.addSecs(secondOffset);
+            DateTime offset = time.addSeconds(secondOffset);
             for (int delayOffset = minusDelay; delayOffset <= plusDelay; delayOffset++)
             {
                 results.emplace_back(offset, delay + delayOffset, roamers, routes);

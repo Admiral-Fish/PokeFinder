@@ -21,7 +21,6 @@
 #define EGGSEARCHER4_HPP
 
 #include <Core/Gen4/Profile4.hpp>
-#include <Core/Parents/Filters/StateFilter.hpp>
 #include <Core/Parents/Searchers/Searcher.hpp>
 
 class EggGenerator4;
@@ -30,7 +29,7 @@ class EggSearcherState4;
 /**
  * @brief Egg encounter searcher for Gen4
  */
-class EggSearcher4 : public Searcher<Profile4, StateFilter, EggSearcherState4>
+class EggSearcher4 : public Searcher<Profile4, EggSearcherState4>
 {
 public:
     /**
@@ -39,9 +38,8 @@ public:
      * @param minDelay Minimum delay
      * @param maxDelay Maximum delay
      * @param profile Profile Information
-     * @param filter State filter
      */
-    EggSearcher4(u32 minDelay, u32 maxDelay, const Profile4 &profile, const StateFilter &filter);
+    EggSearcher4(u32 minDelay, u32 maxDelay, const Profile4 &profile);
 
     /**
      * @brief Starts the search

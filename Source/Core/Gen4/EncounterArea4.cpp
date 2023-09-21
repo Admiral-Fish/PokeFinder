@@ -19,7 +19,6 @@
 
 #include "EncounterArea4.hpp"
 #include <Core/Enum/Game.hpp>
-#include <array>
 
 constexpr std::array<u8, 20> unown0 = { 0, 1, 2, 6, 7, 9, 10, 11, 12, 14, 15, 16, 18, 19, 20, 21, 22, 23, 24, 25 };
 constexpr std::array<u8, 1> unown1 = { 5 };

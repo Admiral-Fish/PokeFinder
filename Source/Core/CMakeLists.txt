@@ -74,7 +74,6 @@ add_library(PokeFinderCore STATIC
     Gen3/States/EggState3.hpp
     Gen3/States/PIDToIVState.hpp
     Gen3/States/PokeSpotState.hpp
-    Gen3/States/WildState3.hpp
     Gen3/Tools/PIDToIVCalculator.cpp
     Gen3/Tools/PIDToIVCalculator.hpp
     Gen3/Tools/SeedToTimeCalculator3.cpp

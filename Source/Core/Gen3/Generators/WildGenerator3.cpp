@@ -34,9 +34,9 @@ static u8 unownLetter(u32 pid)
     return (((pid & 0x3000000) >> 18) | ((pid & 0x30000) >> 12) | ((pid & 0x300) >> 6) | (pid & 0x3)) % 0x1c;
 }
 
-WildGenerator3::WildGenerator3(u32 initialAdvances, u32 maxAdvances, u32 delay, Method method, Encounter encounter, Lead lead,
-                               const EncounterArea3 &area, const Profile3 &profile, const WildStateFilter &filter) :
-    WildGenerator(initialAdvances, maxAdvances, delay, method, encounter, lead, area, profile, filter)
+WildGenerator3::WildGenerator3(u32 initialAdvances, u32 maxAdvances, u32 delay, Method method, Lead lead, const EncounterArea3 &area,
+                               const Profile3 &profile, const WildStateFilter &filter) :
+    WildGenerator(initialAdvances, maxAdvances, delay, method, lead, area, profile, filter)
 {
 }
 
@@ -46,9 +46,9 @@ std::vector<WildGeneratorState> WildGenerator3::generate(u32 seed) const
 
     std::vector<u8> modifiedSlots = area.getSlots(lead);
     u16 rate = area.getRate() * 16;
+    bool rock = (profile.getVersion() & Game::RSE) != Game::None && area.getEncounter() == Encounter::RockSmash;
     bool safari = area.safariZone(profile.getVersion());
     bool tanoby = area.tanobyChamber(profile.getVersion());
-    bool rse = (profile.getVersion() & Game::RSE) != Game::None;
 
     bool cuteCharm = false;
     auto cuteCharmCheck = [this](const PersonalInfo *info, u32 pid) {
@@ -65,7 +65,7 @@ std::vector<WildGeneratorState> WildGenerator3::generate(u32 seed) const
         PokeRNG go(rng);
 
         // RSE uses the main rng to check for rock smash encounters
-        if (rse && encounter == Encounter::RockSmash && go.nextUShort(2880) >= rate)
+        if (rock && go.nextUShort(2880) >= rate)
         {
             continue;
         }
@@ -77,7 +77,7 @@ std::vector<WildGeneratorState> WildGenerator3::generate(u32 seed) const
         }
         else
         {
-            encounterSlot = EncounterSlot::hSlot(go.nextUShort(100), encounter);
+            encounterSlot = EncounterSlot::hSlot(go.nextUShort(100), area.getEncounter());
         }
 
         if (!filter.compareEncounterSlot(encounterSlot))

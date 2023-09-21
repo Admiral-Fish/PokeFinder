@@ -28,7 +28,7 @@
 /**
  * @brief Event encounter searcher for Gen4
  */
-class EventSearcher4 : public Searcher<Profile4, StateFilter, SearcherState4>
+class EventSearcher4 : public Searcher<Profile4, SearcherState4>
 {
 public:
     /**
@@ -59,6 +59,7 @@ private:
     u32 minAdvance;
     u32 maxDelay;
     u32 minDelay;
+    StateFilter filter;
 
     /**
      * @brief Searches for matching states from provided IVs

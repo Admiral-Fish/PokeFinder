@@ -39,14 +39,13 @@ public:
      * @param initialAdvances Initial number of advances
      * @param maxAdvances Maximum number of advances
      * @param delay Number of advances to offset
-     * @param encounter Encounter type
      * @param lead Encounter lead
      * @param area Wild pokemon info
      * @param profile Profile Information
      * @param filter State filter
      */
-    WildGenerator8(u32 initialAdvances, u32 maxAdvances, u32 delay, Encounter encounter, Lead lead, const EncounterArea8 &area,
-                   const Profile8 &profile, const WildStateFilter &filter);
+    WildGenerator8(u32 initialAdvances, u32 maxAdvances, u32 delay, Lead lead, const EncounterArea8 &area, const Profile8 &profile,
+                   const WildStateFilter &filter);
 
     /**
      * @brief Generates states for the \p encounterArea

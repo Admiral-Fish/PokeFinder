@@ -41,14 +41,14 @@ public:
      * @param minDelay Minimum delay
      * @param maxDelay Maximum delay
      * @param method Encounter method
-     * @param encounter Encounter type
      * @param lead Encounter lead
+     * @param area Wild pokemon info
      * @param shiny Whether Poke Radar is forced shiny
      * @param profile Profile Information
      * @param filter State filter
      */
-    WildSearcher4(u32 minAdvance, u32 maxAdvance, u32 minDelay, u32 maxDelay, Method method, Encounter encounter, Lead lead, bool shiny,
-                  const EncounterArea4 &encounterArea, const Profile4 &profile, const WildStateFilter &filter);
+    WildSearcher4(u32 minAdvance, u32 maxAdvance, u32 minDelay, u32 maxDelay, Method method, Lead lead, bool shiny,
+                  const EncounterArea4 &area, const Profile4 &profile, const WildStateFilter &filter);
 
     /**
      * @brief Starts the search
