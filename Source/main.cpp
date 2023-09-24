@@ -36,8 +36,15 @@ void validateSettings(QSettings &setting)
 {
     if (!setting.contains("settings/profiles"))
     {
-        QString documentFolder = QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation);
-        setting.setValue("settings/profiles", QString("%1/profiles.json").arg(documentFolder));
+        QString profilePath = QString("%1/profiles.json").arg(QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation));
+
+        QFile f(profilePath);
+        if (f.open(QIODevice::NewOnly | QIODevice::Text | QIODevice::WriteOnly))
+        {
+            f.write("{}");
+        }
+
+        setting.setValue("settings/profiles", profilePath);
     }
 
     if (!setting.contains("settings/style"))
