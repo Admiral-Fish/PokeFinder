@@ -123,9 +123,7 @@ int main()
     status += runTest<EventGenerator8Test>(fails);
     status += runTest<RaidGeneratorTest>(fails);
     status += runTest<StaticGenerator8Test>(fails);
-#ifndef NDEBUG // TODO: investigate why this doesn't work in release builds
     status += runTest<UndergroundGeneratorTest>(fails);
-#endif
     status += runTest<WildGenerator8Test>(fails);
 
     // RNG Tests

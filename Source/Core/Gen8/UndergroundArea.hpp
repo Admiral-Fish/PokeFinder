@@ -83,21 +83,30 @@ public:
      *
      * @return Location number
      */
-    u8 getLocation() const;
+    u8 getLocation() const
+    {
+        return location;
+    }
 
     /**
      * @brief Returns the maximum number of pokemon spawned
      *
      * @return Maximum spawn
      */
-    u8 getMax() const;
+    u8 getMax() const
+    {
+        return max;
+    }
 
     /**
      * @brief Returns the minimum number of pokemon spawned
      *
      * @return Minimum spawn
      */
-    u8 getMin() const;
+    u8 getMin() const
+    {
+        return min;
+    }
 
     /**
      * @brief Returns the pokemon to create based on the \p type
