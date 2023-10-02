@@ -22,6 +22,7 @@
 #include <Core/RNG/Xorshift.hpp>
 #include <Core/Util/Translator.hpp>
 #include <algorithm>
+#include <bit>
 #include <cassert>
 #include <cmath>
 #include <iterator>
