@@ -190,7 +190,7 @@ std::vector<EggGeneratorState> EggGenerator8::generate(u64 seed0, u64 seed1) con
                 }
             }
             u8 pidXOR = psv ^ tsv;
-            u8 shiny = pidXOR < 16 ? pidXOR == 0 ? 2 : 1;
+            u8 shiny = pidXOR < 16 ? pidXOR == 0 ? 2 : 1 : 0;
 
             // Ball handling check
             // Uses a rand call, maybe add later
