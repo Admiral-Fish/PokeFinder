@@ -168,9 +168,10 @@ void Underground::generate()
     UndergroundStateFilter filter(ui->filter->getGender(), ui->filter->getAbility(), ui->filter->getShiny(),
                                   ui->filter->getDisableFilters(), ui->filter->getMinIVs(), ui->filter->getMaxIVs(),
                                   ui->filter->getNatures(), ui->filter->getHiddenPowers(), species);
-    UndergroundGenerator generator(initialAdvances, maxAdvances, delay, lead, bonus, levelFlag, *currentProfile, filter);
+    UndergroundGenerator generator(initialAdvances, maxAdvances, delay, lead, bonus, levelFlag,
+                                   encounters[ui->comboBoxLocation->getCurrentInt()], *currentProfile, filter);
 
-    auto states = generator.generate(seed0, seed1, encounters[ui->comboBoxLocation->getCurrentInt()]);
+    auto states = generator.generate(seed0, seed1);
     model->addItems(states);
 }
 

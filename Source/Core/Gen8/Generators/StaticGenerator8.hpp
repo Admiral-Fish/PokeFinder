@@ -23,14 +23,14 @@
 #include <Core/Gen8/Profile8.hpp>
 #include <Core/Parents/Filters/StateFilter.hpp>
 #include <Core/Parents/Generators/StaticGenerator.hpp>
+#include <Core/Parents/StaticTemplate.hpp>
 
 class GeneratorState;
-class StaticTemplate;
 
 /**
  * @brief Static encounter generator for Gen8
  */
-class StaticGenerator8 : public StaticGenerator<Profile8, StateFilter>
+class StaticGenerator8 : public StaticGenerator<StaticTemplate, Profile8, StateFilter>
 {
 public:
     /**
@@ -40,32 +40,32 @@ public:
      * @param maxAdvances Maximum number of advances
      * @param delay Number of advances to offset
      * @param lead Encounter lead
+     * @param staticTemplate Pokemon template
      * @param profile Profile Information
      * @param filter State filter
      */
-    StaticGenerator8(u32 initialAdvances, u32 maxAdvances, u32 delay, Lead lead, const Profile8 &profile, const StateFilter &filter);
+    StaticGenerator8(u32 initialAdvances, u32 maxAdvances, u32 delay, Lead lead, const StaticTemplate &staticTemplate,
+                     const Profile8 &profile, const StateFilter &filter);
 
     /**
-     * @brief Generates states for the \p staticTemplate
+     * @brief Generates states
      *
      * @param seed0 Upper half of PRNG state
      * @param seed1 Lower half of PRNG state
-     * @param staticTemplate Pokemon template
      *
      * @return Vector of computed states
      */
-    std::vector<GeneratorState> generate(u64 seed0, u64 seed1, const StaticTemplate *staticTemplate) const;
+    std::vector<GeneratorState> generate(u64 seed0, u64 seed1) const;
 
     /**
-     * @brief Generates states for the roamers \p staticTemplate
+     * @brief Generates states
      *
      * @param seed0 Upper half of PRNG state
      * @param seed1 Lower half of PRNG state
-     * @param staticTemplate Pokemon template
      *
      * @return Vector of computed states
      */
-    std::vector<GeneratorState> generateRoamer(u64 seed0, u64 seed1, const StaticTemplate *staticTemplate) const;
+    std::vector<GeneratorState> generateRoamer(u64 seed0, u64 seed1) const;
 };
 
 #endif // STATICGENERATOR8_HPP

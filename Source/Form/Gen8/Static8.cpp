@@ -145,19 +145,19 @@ void Static8::generate()
     u32 maxAdvances = ui->textBoxMaxAdvances->getUInt();
     u32 delay = ui->textBoxDelay->getUInt();
     auto lead = ui->comboMenuLead->getEnum<Lead>();
-
-    StateFilter filter = ui->filter->getFilter<StateFilter>();
-    StaticGenerator8 generator(initialAdvances, maxAdvances, delay, lead, *currentProfile, filter);
-
     const StaticTemplate *staticTemplate
         = Encounters8::getStaticEncounter(ui->comboBoxCategory->currentIndex(), ui->comboBoxPokemon->getCurrentInt());
+
+    StateFilter filter = ui->filter->getFilter<StateFilter>();
+    StaticGenerator8 generator(initialAdvances, maxAdvances, delay, lead, *staticTemplate, *currentProfile, filter);
+
     if (ui->comboBoxCategory->currentIndex() == 4)
     {
-        model->addItems(generator.generateRoamer(seed0, seed1, staticTemplate));
+        model->addItems(generator.generateRoamer(seed0, seed1));
     }
     else
     {
-        model->addItems(generator.generate(seed0, seed1, staticTemplate));
+        model->addItems(generator.generate(seed0, seed1));
     }
 }
 

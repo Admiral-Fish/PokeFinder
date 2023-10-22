@@ -101,8 +101,8 @@ void StaticSearcher4Test::searchMethod1()
     for (const auto &state : states)
     {
         // Ensure generator agrees
-        StaticGenerator4 generator(state.getAdvances(), 0, 0, Method::Method1, Lead::None, profile, filter);
-        auto generatorStates = generator.generate(state.getSeed(), staticTemplate);
+        StaticGenerator4 generator(state.getAdvances(), 0, 0, Method::Method1, Lead::None, *staticTemplate, profile, filter);
+        auto generatorStates = generator.generate(state.getSeed());
 
         QCOMPARE(generatorStates.size(), 1);
         QVERIFY(state == generatorStates[0]);
@@ -167,8 +167,8 @@ void StaticSearcher4Test::searchMethodJ()
     {
         // Ensure generator agrees
         StaticGenerator4 generator(state.getAdvances(), 0, 0, Method::MethodJ, lead != Lead::Synchronize ? lead : lead + state.getNature(),
-                                   profile, filter);
-        auto generatorStates = generator.generate(state.getSeed(), staticTemplate);
+                                   *staticTemplate, profile, filter);
+        auto generatorStates = generator.generate(state.getSeed());
 
         QCOMPARE(generatorStates.size(), 1);
         QVERIFY(state == generatorStates[0]);
@@ -233,8 +233,8 @@ void StaticSearcher4Test::searchMethodK()
     {
         // Ensure generator agrees
         StaticGenerator4 generator(state.getAdvances(), 0, 0, Method::MethodK, lead != Lead::Synchronize ? lead : lead + state.getNature(),
-                                   profile, filter);
-        auto generatorStates = generator.generate(state.getSeed(), staticTemplate);
+                                   *staticTemplate, profile, filter);
+        auto generatorStates = generator.generate(state.getSeed());
 
         QCOMPARE(generatorStates.size(), 1);
         QVERIFY(state == generatorStates[0]);

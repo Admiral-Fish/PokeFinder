@@ -22,20 +22,19 @@
 #include <Core/Enum/Method.hpp>
 #include <Core/Parents/PersonalInfo.hpp>
 #include <Core/Parents/States/State.hpp>
-#include <Core/Parents/StaticTemplate.hpp>
 #include <Core/RNG/LCRNG.hpp>
 #include <Core/Util/Utilities.hpp>
 
-StaticGenerator3::StaticGenerator3(u32 initialAdvances, u32 maxAdvances, u32 delay, Method method, const Profile3 &profile,
-                                   const StateFilter &filter) :
-    StaticGenerator(initialAdvances, maxAdvances, delay, method, Lead::None, profile, filter)
+StaticGenerator3::StaticGenerator3(u32 initialAdvances, u32 maxAdvances, u32 delay, Method method, const StaticTemplate &staticTemplate,
+                                   const Profile3 &profile, const StateFilter &filter) :
+    StaticGenerator(initialAdvances, maxAdvances, delay, method, Lead::None, staticTemplate, profile, filter)
 {
 }
 
-std::vector<GeneratorState> StaticGenerator3::generate(u32 seed, const StaticTemplate *staticTemplate) const
+std::vector<GeneratorState> StaticGenerator3::generate(u32 seed) const
 {
     std::vector<GeneratorState> states;
-    const PersonalInfo *info = staticTemplate->getInfo();
+    const PersonalInfo *info = staticTemplate.getInfo();
 
     PokeRNG rng(seed, initialAdvances + delay);
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rng.next())
@@ -60,8 +59,8 @@ std::vector<GeneratorState> StaticGenerator3::generate(u32 seed, const StaticTem
         ivs[4] = (iv2 >> 10) & 31;
         ivs[5] = iv2 & 31;
 
-        GeneratorState state(initialAdvances + cnt, pid, ivs, pid & 1, Utilities::getGender(pid, info), staticTemplate->getLevel(),
-                             pid % 25, Utilities::getShiny(pid, tsv), info);
+        GeneratorState state(initialAdvances + cnt, pid, ivs, pid & 1, Utilities::getGender(pid, info), staticTemplate.getLevel(), pid % 25,
+                             Utilities::getShiny(pid, tsv), info);
         if (filter.compareState(static_cast<const State &>(state)))
         {
             states.emplace_back(state);
