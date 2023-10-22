@@ -36,7 +36,6 @@ StaticGenerator8::StaticGenerator8(u32 initialAdvances, u32 maxAdvances, u32 del
                                    const StateFilter &filter) :
     StaticGenerator(initialAdvances, maxAdvances, delay, Method::None, lead, profile, filter)
 {
-    tsv = (profile.getTID() & 0xFFF0) ^ profile.getSID();
 }
 
 std::vector<GeneratorState> StaticGenerator8::generate(u64 seed0, u64 seed1, const StaticTemplate *staticTemplate) const
@@ -51,7 +50,7 @@ std::vector<GeneratorState> StaticGenerator8::generate(u64 seed0, u64 seed1, con
         u32 sidtid = rngList.next();
         u32 pid = rngList.next();
 
-        u16 psv = (pid >> 16) ^ (pid & 0xfff0);
+        u16 psv = (pid >> 16) ^ (pid & 0xffff);
         u8 shiny;
         if (staticTemplate->getShiny() == Shiny::Never)
         {
@@ -63,7 +62,7 @@ std::vector<GeneratorState> StaticGenerator8::generate(u64 seed0, u64 seed1, con
         }
         else
         {
-            u16 fakeXOR = (sidtid >> 16) ^ (sidtid & 0xfff0) ^ psv;
+            u16 fakeXOR = (sidtid >> 16) ^ (sidtid & 0xffff) ^ psv;
             if (fakeXOR < 16) // Force shiny
             {
                 shiny = fakeXOR == 0 ? 2 : 1;
@@ -178,8 +177,8 @@ std::vector<GeneratorState> StaticGenerator8::generateRoamer(u64 seed0, u64 seed
         u32 sidtid = rng.nextUInt(0xffffffff);
         u32 pid = rng.nextUInt(0xffffffff);
 
-        u16 psv = (pid >> 16) ^ (pid & 0xfff0);
-        u16 fakeXOR = (sidtid >> 16) ^ (sidtid & 0xfff0) ^ psv;
+        u16 psv = (pid >> 16) ^ (pid & 0xffff);
+        u16 fakeXOR = (sidtid >> 16) ^ (sidtid & 0xffff) ^ psv;
         u8 shiny;
         if (fakeXOR < 16) // Force shiny
         {
