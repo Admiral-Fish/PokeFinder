@@ -22,14 +22,20 @@
 #include <Core/RNG/Xorshift.hpp>
 #include <Core/Util/Translator.hpp>
 #include <algorithm>
-#include <bit>
 #include <cassert>
 #include <cmath>
 #include <iterator>
 
 static float rand(u32 prng)
 {
-    float t = (prng & 0x7fffff) * std::bit_cast<float>(0x34000001);
+    auto max = [] {
+        float f;
+        u32 val = 0x34000001;
+        std::memcpy(&f, &val, sizeof(float));
+        return f;
+    };
+
+    float t = (prng & 0x7fffff) * max();
     return 1.0f - t;
 }
 
