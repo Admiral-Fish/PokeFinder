@@ -24,6 +24,7 @@
 #include <algorithm>
 #include <cassert>
 #include <cmath>
+#include <cstring>
 #include <iterator>
 
 static float rand(u32 prng)
