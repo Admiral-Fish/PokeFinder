@@ -27,10 +27,11 @@ enum class Lead : u8;
 /**
  * @brief Parent generator class for static encounters
  *
+ * @tparam StaticTemplate Static template class that is used by the generator
  * @tparam Profile Profile class that is used by the generator
  * @tparam Filter Filter class that is used by the generator
  */
-template <class Profile, class Filter>
+template <class StaticTemplate, class Profile, class Filter>
 class StaticGenerator : public Generator<Profile, Filter>
 {
 public:
@@ -42,16 +43,18 @@ public:
      * @param delay Number of advances to offset
      * @param method Encounter method
      * @param lead Encounter lead
+     * @param staticTemplate Pokemon template
      * @param profile Profile Information
      * @param filter State filter
      */
-    StaticGenerator(u32 initialAdvances, u32 maxAdvances, u32 delay, Method method, Lead lead, const Profile &profile,
-                    const Filter &filter) :
-        Generator<Profile, Filter>(initialAdvances, maxAdvances, delay, method, profile, filter), lead(lead)
+    StaticGenerator(u32 initialAdvances, u32 maxAdvances, u32 delay, Method method, Lead lead, const StaticTemplate &staticTemplate,
+                    const Profile &profile, const Filter &filter) :
+        Generator<Profile, Filter>(initialAdvances, maxAdvances, delay, method, profile, filter), staticTemplate(staticTemplate), lead(lead)
     {
     }
 
 protected:
+    StaticTemplate staticTemplate;
     Lead lead;
 };
 

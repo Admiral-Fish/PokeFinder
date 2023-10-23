@@ -50,7 +50,7 @@ public:
                    const Profile4 &profile, const WildStateFilter &filter);
 
     /**
-     * @brief Generates states for the \p encounterArea
+     * @brief Generates states
      *
      * @param seed Starting PRNG state
      * @param index Pokeradar slot index
@@ -63,7 +63,7 @@ private:
     bool shiny;
 
     /**
-     * @brief Generates states for the \p encounterArea via Method J
+     * @brief Generates states via Method J
      *
      * @param seed Starting PRNG state
      *
@@ -72,7 +72,7 @@ private:
     std::vector<WildGeneratorState4> generateMethodJ(u32 seed) const;
 
     /**
-     * @brief Generates states for the \p encounterArea via Method K
+     * @brief Generates states via Method K
      *
      * @param seed Starting PRNG state
      *
@@ -81,7 +81,7 @@ private:
     std::vector<WildGeneratorState4> generateMethodK(u32 seed) const;
 
     /**
-     * @brief Generates states for the \p encounterArea via Poke Radar
+     * @brief Generates states via Poke Radar
      *
      * @param seed Starting PRNG state
      * @param index Pokeradar slot index
@@ -91,10 +91,9 @@ private:
     std::vector<WildGeneratorState4> generatePokeRadar(u32 seed, u8 index) const;
 
     /**
-     * @brief Generates states for the \p encounterArea via Poke Radar chained shiny
+     * @brief Generates states via Poke Radar chained shiny
      *
      * @param seed Starting PRNG state
-     * @param encounterArea Wild pokemon info
      * @param index Pokeradar slot index
      *
      * @return Vector of computed states

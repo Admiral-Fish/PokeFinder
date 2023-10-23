@@ -164,9 +164,10 @@ void Static4::generate()
     auto lead = ui->comboMenuGeneratorLead->getEnum<Lead>();
 
     StateFilter filter = ui->filterGenerator->getFilter<StateFilter>();
-    StaticGenerator4 generator(initialAdvances, maxAdvances, delay, staticTemplate->getMethod(), lead, *currentProfile, filter);
+    StaticGenerator4 generator(initialAdvances, maxAdvances, delay, staticTemplate->getMethod(), lead, *staticTemplate, *currentProfile,
+                               filter);
 
-    auto states = generator.generate(seed, staticTemplate);
+    auto states = generator.generate(seed);
     generatorModel->addItems(states);
 }
 

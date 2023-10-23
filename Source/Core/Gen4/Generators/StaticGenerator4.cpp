@@ -21,7 +21,6 @@
 #include <Core/Enum/Lead.hpp>
 #include <Core/Enum/Method.hpp>
 #include <Core/Gen4/States/State4.hpp>
-#include <Core/Gen4/StaticTemplate4.hpp>
 #include <Core/Parents/PersonalInfo.hpp>
 #include <Core/RNG/LCRNG.hpp>
 #include <Core/Util/Utilities.hpp>
@@ -32,31 +31,31 @@ static bool isShiny(u32 pid, u16 tsv)
     return (psv ^ tsv) < 8;
 }
 
-StaticGenerator4::StaticGenerator4(u32 initialAdvances, u32 maxAdvances, u32 delay, Method method, Lead lead, const Profile4 &profile,
-                                   const StateFilter &filter) :
-    StaticGenerator(initialAdvances, maxAdvances, delay, method, lead, profile, filter)
+StaticGenerator4::StaticGenerator4(u32 initialAdvances, u32 maxAdvances, u32 delay, Method method, Lead lead,
+                                   const StaticTemplate4 &staticTemplate, const Profile4 &profile, const StateFilter &filter) :
+    StaticGenerator(initialAdvances, maxAdvances, delay, method, lead, staticTemplate, profile, filter)
 {
 }
 
-std::vector<GeneratorState4> StaticGenerator4::generate(u32 seed, const StaticTemplate4 *staticTemplate) const
+std::vector<GeneratorState4> StaticGenerator4::generate(u32 seed) const
 {
     switch (method)
     {
     case Method::Method1:
-        return generateMethod1(seed, staticTemplate);
+        return generateMethod1(seed);
     case Method::MethodJ:
-        return generateMethodJ(seed, staticTemplate);
+        return generateMethodJ(seed);
     case Method::MethodK:
-        return generateMethodK(seed, staticTemplate);
+        return generateMethodK(seed);
     default:
         return std::vector<GeneratorState4>();
     }
 }
 
-std::vector<GeneratorState4> StaticGenerator4::generateMethod1(u32 seed, const StaticTemplate4 *staticTemplate) const
+std::vector<GeneratorState4> StaticGenerator4::generateMethod1(u32 seed) const
 {
     std::vector<GeneratorState4> states;
-    const PersonalInfo *info = staticTemplate->getInfo();
+    const PersonalInfo *info = staticTemplate.getInfo();
 
     PokeRNG rng(seed, initialAdvances + delay);
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
@@ -64,7 +63,7 @@ std::vector<GeneratorState4> StaticGenerator4::generateMethod1(u32 seed, const S
         PokeRNG go(rng);
 
         u32 pid;
-        if (staticTemplate->getShiny() == Shiny::Always)
+        if (staticTemplate.getShiny() == Shiny::Always)
         {
             u16 low = go.nextUShort(8);
             u16 high = go.nextUShort(8);
@@ -81,7 +80,7 @@ std::vector<GeneratorState4> StaticGenerator4::generateMethod1(u32 seed, const S
             pid = go.nextUShort();
             pid |= go.nextUShort() << 16;
 
-            if (staticTemplate->getShiny() == Shiny::Never)
+            if (staticTemplate.getShiny() == Shiny::Never)
             {
                 while (isShiny(pid, tsv))
                 {
@@ -101,7 +100,7 @@ std::vector<GeneratorState4> StaticGenerator4::generateMethod1(u32 seed, const S
         ivs[5] = iv2 & 31;
 
         GeneratorState4 state(rng.nextUShort(), initialAdvances + cnt, pid, ivs, pid & 1, Utilities::getGender(pid, info),
-                              staticTemplate->getLevel(), pid % 25, Utilities::getShiny(pid, tsv), info);
+                              staticTemplate.getLevel(), pid % 25, Utilities::getShiny(pid, tsv), info);
         if (filter.compareState(static_cast<const State &>(state)))
         {
             states.emplace_back(state);
@@ -111,10 +110,10 @@ std::vector<GeneratorState4> StaticGenerator4::generateMethod1(u32 seed, const S
     return states;
 }
 
-std::vector<GeneratorState4> StaticGenerator4::generateMethodJ(u32 seed, const StaticTemplate4 *staticTemplate) const
+std::vector<GeneratorState4> StaticGenerator4::generateMethodJ(u32 seed) const
 {
     std::vector<GeneratorState4> states;
-    const PersonalInfo *info = staticTemplate->getInfo();
+    const PersonalInfo *info = staticTemplate.getInfo();
 
     bool cuteCharmFlag = false;
     u8 buffer = 0;
@@ -179,7 +178,7 @@ std::vector<GeneratorState4> StaticGenerator4::generateMethodJ(u32 seed, const S
         ivs[5] = iv2 & 31;
 
         GeneratorState4 state(rng.nextUShort(), initialAdvances + cnt, pid, ivs, pid & 1, Utilities::getGender(pid, info),
-                              staticTemplate->getLevel(), pid % 25, Utilities::getShiny(pid, tsv), info);
+                              staticTemplate.getLevel(), pid % 25, Utilities::getShiny(pid, tsv), info);
         if (filter.compareState(static_cast<const State &>(state)))
         {
             states.emplace_back(state);
@@ -189,10 +188,10 @@ std::vector<GeneratorState4> StaticGenerator4::generateMethodJ(u32 seed, const S
     return states;
 }
 
-std::vector<GeneratorState4> StaticGenerator4::generateMethodK(u32 seed, const StaticTemplate4 *staticTemplate) const
+std::vector<GeneratorState4> StaticGenerator4::generateMethodK(u32 seed) const
 {
     std::vector<GeneratorState4> states;
-    const PersonalInfo *info = staticTemplate->getInfo();
+    const PersonalInfo *info = staticTemplate.getInfo();
 
     bool cuteCharmFlag = false;
     u8 buffer = 0;
@@ -257,7 +256,7 @@ std::vector<GeneratorState4> StaticGenerator4::generateMethodK(u32 seed, const S
         ivs[5] = iv2 & 31;
 
         GeneratorState4 state(rng.nextUShort(), initialAdvances + cnt, pid, ivs, pid & 1, Utilities::getGender(pid, info),
-                              staticTemplate->getLevel(), pid % 25, Utilities::getShiny(pid, tsv), info);
+                              staticTemplate.getLevel(), pid % 25, Utilities::getShiny(pid, tsv), info);
         if (filter.compareState(static_cast<const State &>(state)))
         {
             states.emplace_back(state);

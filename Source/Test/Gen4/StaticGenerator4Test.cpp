@@ -83,9 +83,9 @@ void StaticGenerator4Test::generateMethod1()
 
     const StaticTemplate4 *staticTemplate = Encounters4::getStaticEncounter(category, pokemon);
     StateFilter filter(255, 255, 255, false, min, max, natures, powers);
-    StaticGenerator4 generator(0, 9, 0, Method::Method1, Lead::None, profile, filter);
+    StaticGenerator4 generator(0, 9, 0, Method::Method1, Lead::None, *staticTemplate, profile, filter);
 
-    auto states = generator.generate(seed, staticTemplate);
+    auto states = generator.generate(seed);
     QCOMPARE(states.size(), j.size());
 
     for (size_t i = 0; i < states.size(); i++)
@@ -140,9 +140,9 @@ void StaticGenerator4Test::generateMethodJ()
 
     const StaticTemplate4 *staticTemplate = Encounters4::getStaticEncounter(category, pokemon);
     StateFilter filter(255, 255, 255, false, min, max, natures, powers);
-    StaticGenerator4 generator(0, 9, 0, Method::MethodJ, lead, profile, filter);
+    StaticGenerator4 generator(0, 9, 0, Method::MethodJ, lead, *staticTemplate, profile, filter);
 
-    auto states = generator.generate(seed, staticTemplate);
+    auto states = generator.generate(seed);
     QCOMPARE(states.size(), j.size());
 
     for (size_t i = 0; i < states.size(); i++)
@@ -197,9 +197,9 @@ void StaticGenerator4Test::generateMethodK()
 
     const StaticTemplate4 *staticTemplate = Encounters4::getStaticEncounter(category, pokemon);
     StateFilter filter(255, 255, 255, false, min, max, natures, powers);
-    StaticGenerator4 generator(0, 9, 0, Method::MethodK, lead, profile, filter);
+    StaticGenerator4 generator(0, 9, 0, Method::MethodK, lead, *staticTemplate, profile, filter);
 
-    auto states = generator.generate(seed, staticTemplate);
+    auto states = generator.generate(seed);
     QCOMPARE(states.size(), j.size());
 
     for (size_t i = 0; i < states.size(); i++)
