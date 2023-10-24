@@ -240,7 +240,6 @@ UndergroundGenerator::UndergroundGenerator(u32 initialAdvances, u32 maxAdvances,
                                            const UndergroundArea &area, const Profile8 &profile, const UndergroundStateFilter &filter) :
     WildGenerator(initialAdvances, maxAdvances, delay, Method::None, lead, area, profile, filter), diglett(diglett), levelFlag(levelFlag)
 {
-    tsv = (profile.getTID() & 0xFFF0) ^ profile.getSID();
 }
 
 std::vector<UndergroundState> UndergroundGenerator::generate(u64 seed0, u64 seed1) const
@@ -270,8 +269,8 @@ std::vector<UndergroundState> UndergroundGenerator::generate(u64 seed0, u64 seed
         {
             pid = rngList.next(rand);
 
-            u16 psv = (pid >> 16) ^ (pid & 0xfff0);
-            u16 fakeXor = (sidtid >> 16) ^ (sidtid & 0xfff0) ^ psv;
+            u16 psv = (pid >> 16) ^ (pid & 0xffff);
+            u16 fakeXor = (sidtid >> 16) ^ (sidtid & 0xffff) ^ psv;
 
             if (fakeXor < 16) // Force shiny
             {

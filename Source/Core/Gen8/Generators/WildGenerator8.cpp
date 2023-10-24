@@ -61,7 +61,6 @@ WildGenerator8::WildGenerator8(u32 initialAdvances, u32 maxAdvances, u32 delay, 
                                const Profile8 &profile, const WildStateFilter &filter) :
     WildGenerator(initialAdvances, maxAdvances, delay, Method::None, lead, area, profile, filter)
 {
-    tsv = (profile.getTID() & 0xFFF0) ^ profile.getSID();
 }
 
 std::vector<WildGeneratorState> WildGenerator8::generate(u64 seed0, u64 seed1) const
@@ -113,8 +112,8 @@ std::vector<WildGeneratorState> WildGenerator8::generate(u64 seed0, u64 seed1) c
         u32 sidtid = rngList.next(rand);
         u32 pid = rngList.next(rand);
 
-        u16 psv = (pid >> 16) ^ (pid & 0xfff0);
-        u16 fakeXor = (sidtid >> 16) ^ (sidtid & 0xfff0) ^ psv;
+        u16 psv = (pid >> 16) ^ (pid & 0xffff);
+        u16 fakeXor = (sidtid >> 16) ^ (sidtid & 0xffff) ^ psv;
         u8 shiny;
         if (fakeXor < 16) // Force shiny
         {
