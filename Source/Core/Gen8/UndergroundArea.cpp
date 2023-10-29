@@ -23,9 +23,10 @@
 #include <Core/Util/Translator.hpp>
 #include <algorithm>
 #include <cassert>
-#include <cmath>
 #include <cstring>
 #include <iterator>
+
+constexpr u16 pokemonSizes[] = { 1, 10, 100, 1000 };
 
 static float rand(u32 prng)
 {
@@ -141,7 +142,7 @@ std::array<TypeSize, 10> UndergroundArea::getSlots(RNGList<u32, Xorshift, 256> &
         }
 
         u8 size = sizes[rngList.next() % sizeCount];
-        u16 value = std::pow(10, size) + type;
+        u16 value = pokemonSizes[size] + type;
 
         TypeSize slot = { value, size, type };
         slots[i] = slot;

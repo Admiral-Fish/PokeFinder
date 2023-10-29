@@ -29,7 +29,6 @@
 #include <Core/Resources/EncounterData8.hpp>
 #include <Core/Util/Utilities.hpp>
 #include <algorithm>
-#include <cmath>
 #include <cstddef>
 #include <iterator>
 
@@ -382,6 +381,8 @@ constexpr std::array<u16, 14> greatMarsh = { 55, 183, 194, 195, 298, 315, 397, 3
 constexpr std::array<u16, 14> greatMarshDex = { 46, 55, 102, 115, 193, 285, 315, 316, 397, 451, 452, 453, 454, 455 };
 
 constexpr std::array<u16, 16> trophyGarden = { 35, 39, 52, 113, 133, 137, 173, 174, 183, 298, 311, 312, 351, 438, 439, 440 };
+
+constexpr u16 pokemonSizes[] = { 1, 10, 100, 1000 };
 
 /**
  * @brief Modifies encounter slots based on the Great Marsh
@@ -766,7 +767,7 @@ namespace Encounters8
                     for (u8 j = 0; j < typeCount; j++)
                     {
                         u8 type = info->getType(j);
-                        u16 value = type + std::pow(10, pokemonSlot->size);
+                        u16 value = pokemonSizes[pokemonSlot->size] + type;
 
                         TypeSize typeSize = { value, pokemonSlot->size, type };
                         types.emplace_back(typeSize);
