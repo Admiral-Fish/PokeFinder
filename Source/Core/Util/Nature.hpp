@@ -22,6 +22,8 @@
 
 #include <Core/Global.hpp>
 
+extern const float modifiers[25][5];
+
 /**
  * @brief Computes stats that get modified from the nature
  */
@@ -36,7 +38,10 @@ namespace Nature
      *
      * @return Computed modified stat
      */
-    u16 computeStat(u16 stat, u8 nature, u8 index);
+    inline u16 computeStat(u16 stat, u8 nature, u8 index)
+    {
+        return stat * modifiers[nature][index - 1];
+    }
 }
 
 #endif // NATURE_HPP
