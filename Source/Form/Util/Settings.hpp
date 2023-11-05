@@ -75,6 +75,13 @@ private slots:
     void styleIndexChanged(int index);
 
     /**
+     * @brief Updates the saved table header size settings
+     *
+     * @param index Table header size index
+     */
+    void tableHeaderSizeIndexChanged(int index);
+
+    /**
      * @brief Updates the saved thread settings
      *
      * @param index Threads index

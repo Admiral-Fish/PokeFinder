@@ -22,6 +22,7 @@
 #include <Form/MainWindow.hpp>
 #include <QApplication>
 #include <QFile>
+#include <QHeaderView>
 #include <QSettings>
 #include <QStandardPaths>
 #include <QThread>
@@ -55,6 +56,11 @@ void validateSettings(QSettings &setting)
     if (!setting.contains("settings/locale"))
     {
         setting.setValue("settings/locale", "en");
+    }
+
+    if (!setting.contains("settings/headerSize"))
+    {
+        setting.setValue("settings/headerSize", QHeaderView::ResizeToContents);
     }
 
     if (!setting.contains("settings/threads") || (setting.value("settings/threads").toInt() > QThread::idealThreadCount()))
