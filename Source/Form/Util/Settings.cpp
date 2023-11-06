@@ -113,34 +113,6 @@ Settings::~Settings()
     delete ui;
 }
 
-void Settings::changeIVs()
-{
-    QString fileName = QFileDialog::getOpenFileName(this, "Select the IV bin file", QDir::currentPath(), "bin (*.bin)");
-    if (!fileName.isEmpty())
-    {
-        QFile f(fileName);
-        if (f.open(QIODevice::ReadOnly))
-        {
-            if (qChecksum(f.readAll()) != 0x4bfa)
-            {
-                QMessageBox msg(QMessageBox::Information, tr("IV bin"), tr("Invalid IV bin file was provided"));
-                msg.exec();
-                return;
-            }
-
-            ui->lineEditIVBin->setText(fileName);
-
-            QSettings setting;
-            setting.setValue("settings/ivs", fileName);
-        }
-        else
-        {
-            QMessageBox msg(QMessageBox::Information, tr("IV bin"), tr("There was a problem opening the file"));
-            msg.exec();
-        }
-    }
-}
-
 void Settings::changeProfiles()
 {
     QString fileName = QFileDialog::getSaveFileName(this, "Select Profile json", QDir::currentPath(), "json (*.json)");

@@ -51,11 +51,6 @@ private:
 
 private slots:
     /**
-     * @brief Handles updating the path to the Gen5 IV bin file
-     */
-    void changeIVs();
-
-    /**
      * @brief Handles updating the path to the profiles file
      */
     void changeProfiles();
