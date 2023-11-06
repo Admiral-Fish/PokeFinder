@@ -29,12 +29,6 @@
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
      </property>
-     <property name="sizeHint" stdset="0">
-      <size>
-       <width>239</width>
-       <height>20</height>
-      </size>
-     </property>
     </spacer>
    </item>
    <item row="1" column="2">
@@ -61,11 +55,6 @@
    <header>Form/Controls/TableView.hpp</header>
   </customwidget>
  </customwidgets>
- <tabstops>
-  <tabstop>textBoxPID</tabstop>
-  <tabstop>pushButtonGenerate</tabstop>
-  <tabstop>tableView</tabstop>
- </tabstops>
  <resources/>
  <connections/>
 </ui>

@@ -14,6 +14,51 @@
    <string>Profile Editor Gen 4</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="4">
+    <widget class="QPushButton" name="pushButtonOkay">
+     <property name="text">
+      <string>Okay</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="3">
+    <widget class="QCheckBox" name="checkBoxNationalDex">
+     <property name="text">
+      <string>National Dex</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0">
+    <widget class="QLabel" name="labelVersion">
+     <property name="text">
+      <string>Version</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="2">
+    <widget class="QLabel" name="labelTID">
+     <property name="text">
+      <string>TID</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="4">
+    <widget class="QPushButton" name="pushButtonCancel">
+     <property name="text">
+      <string>Cancel</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="3">
+    <widget class="TextBox" name="textBoxTID"/>
+   </item>
+   <item row="1" column="2">
+    <widget class="QLabel" name="labelSID">
+     <property name="text">
+      <string>SID</string>
+     </property>
+    </widget>
+   </item>
    <item row="1" column="1">
     <widget class="ComboBox" name="comboBoxVersion">
      <item>
@@ -43,19 +88,8 @@
      </item>
     </widget>
    </item>
-   <item row="1" column="0">
-    <widget class="QLabel" name="labelVersion">
-     <property name="text">
-      <string>Version</string>
-     </property>
-    </widget>
-   </item>
-   <item row="0" column="4">
-    <widget class="QPushButton" name="pushButtonOkay">
-     <property name="text">
-      <string>Okay</string>
-     </property>
-    </widget>
+   <item row="0" column="1">
+    <widget class="QLineEdit" name="lineEditProfile"/>
    </item>
    <item row="0" column="0">
     <widget class="QLabel" name="labelProfile">
@@ -64,42 +98,8 @@
      </property>
     </widget>
    </item>
-   <item row="0" column="3">
-    <widget class="TextBox" name="textBoxTID"/>
-   </item>
-   <item row="0" column="2">
-    <widget class="QLabel" name="labelTID">
-     <property name="text">
-      <string>TID</string>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="2">
-    <widget class="QLabel" name="labelSID">
-     <property name="text">
-      <string>SID</string>
-     </property>
-    </widget>
-   </item>
    <item row="1" column="3">
     <widget class="TextBox" name="textBoxSID"/>
-   </item>
-   <item row="1" column="4">
-    <widget class="QPushButton" name="pushButtonCancel">
-     <property name="text">
-      <string>Cancel</string>
-     </property>
-    </widget>
-   </item>
-   <item row="0" column="1">
-    <widget class="QLineEdit" name="lineEditProfile"/>
-   </item>
-   <item row="2" column="3">
-    <widget class="QCheckBox" name="checkBoxNationalDex">
-     <property name="text">
-      <string>National Dex</string>
-     </property>
-    </widget>
    </item>
   </layout>
  </widget>
@@ -115,31 +115,6 @@
    <header>Form/Controls/ComboBox.hpp</header>
   </customwidget>
  </customwidgets>
- <tabstops>
-  <tabstop>lineEditProfile</tabstop>
-  <tabstop>comboBoxVersion</tabstop>
-  <tabstop>textBoxTID</tabstop>
-  <tabstop>textBoxSID</tabstop>
-  <tabstop>pushButtonOkay</tabstop>
-  <tabstop>pushButtonCancel</tabstop>
- </tabstops>
  <resources/>
- <connections>
-  <connection>
-   <sender>pushButtonCancel</sender>
-   <signal>clicked()</signal>
-   <receiver>ProfileEditor4</receiver>
-   <slot>reject()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>514</x>
-     <y>56</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>511</x>
-     <y>84</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
 </ui>

@@ -34,6 +34,7 @@ ProfileEditor8::ProfileEditor8(QWidget *parent) : QDialog(parent), ui(new Ui::Pr
     ui->comboBoxVersion->setup({ toInt(Game::Sword), toInt(Game::Shield), toInt(Game::BD), toInt(Game::SP) });
 
     connect(ui->pushButtonOkay, &QPushButton::clicked, this, &ProfileEditor8::okay);
+    connect(ui->pushButtonCancel, &QPushButton::clicked, this, &ProfileEditor8::reject);
 
     QSettings setting;
     if (setting.contains("profileEditor8/geometry"))

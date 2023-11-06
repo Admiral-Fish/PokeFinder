@@ -245,7 +245,6 @@
  </customwidgets>
  <tabstops>
   <tabstop>tabWidget</tabstop>
-  <tabstop>tableView</tabstop>
   <tabstop>textBoxSeedXDColo</tabstop>
   <tabstop>textBoxInitialAdvancesXDColo</tabstop>
   <tabstop>textBoxMaxAdvancesXDColo</tabstop>
@@ -262,6 +261,7 @@
   <tabstop>textBoxInitialAdvancesRS</tabstop>
   <tabstop>textBoxMaxAdvancesRS</tabstop>
   <tabstop>pushButtonGenerateRS</tabstop>
+  <tabstop>tableView</tabstop>
  </tabstops>
  <resources/>
  <connections/>

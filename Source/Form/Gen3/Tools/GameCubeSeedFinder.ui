@@ -21,11 +21,51 @@
        <string>Gales</string>
       </attribute>
       <layout class="QGridLayout" name="gridLayout_6">
-       <item row="1" column="0" colspan="3">
-        <widget class="QProgressBar" name="progressBarGales">
-         <property name="value">
-          <number>0</number>
+       <item row="0" column="0">
+        <widget class="QGroupBox" name="groupBoxGalesSearch">
+         <property name="title">
+          <string>Search</string>
          </property>
+         <layout class="QGridLayout" name="gridLayout_7">
+          <item row="0" column="0">
+           <widget class="QLabel" name="labelGalesRound">
+            <property name="text">
+             <string>Round #1</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="labelGalesResults">
+            <property name="text">
+             <string>Possible Results:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QPushButton" name="pushButtonGalesSearch">
+            <property name="text">
+             <string>Search</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0">
+           <widget class="QPushButton" name="pushButtonGalesCancel">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="text">
+             <string>Cancel</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="0">
+           <widget class="QPushButton" name="pushButtonGalesReset">
+            <property name="text">
+             <string>Reset</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
         </widget>
        </item>
        <item row="0" column="1">
@@ -97,52 +137,8 @@
          </layout>
         </widget>
        </item>
-       <item row="0" column="0">
-        <widget class="QGroupBox" name="groupBoxGalesSearch">
-         <property name="title">
-          <string>Search</string>
-         </property>
-         <layout class="QGridLayout" name="gridLayout_7">
-          <item row="0" column="0">
-           <widget class="QLabel" name="labelGalesRound">
-            <property name="text">
-             <string>Round #1</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="0">
-           <widget class="QLabel" name="labelGalesResults">
-            <property name="text">
-             <string>Possible Results:</string>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="0">
-           <widget class="QPushButton" name="pushButtonGalesSearch">
-            <property name="text">
-             <string>Search</string>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="0">
-           <widget class="QPushButton" name="pushButtonGalesCancel">
-            <property name="enabled">
-             <bool>false</bool>
-            </property>
-            <property name="text">
-             <string>Cancel</string>
-            </property>
-           </widget>
-          </item>
-          <item row="4" column="0">
-           <widget class="QPushButton" name="pushButtonGalesReset">
-            <property name="text">
-             <string>Reset</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </widget>
+       <item row="1" column="0" colspan="3">
+        <widget class="QProgressBar" name="progressBarGales"/>
        </item>
       </layout>
      </widget>
@@ -157,6 +153,20 @@
           <string>Search</string>
          </property>
          <layout class="QGridLayout" name="gridLayout_3">
+          <item row="0" column="0">
+           <widget class="QLabel" name="labelColoRound">
+            <property name="text">
+             <string>Round #1</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="labelColoResults">
+            <property name="text">
+             <string>Possible Results:</string>
+            </property>
+           </widget>
+          </item>
           <item row="2" column="0">
            <widget class="QPushButton" name="pushButtonColoSearch">
             <property name="text">
@@ -174,13 +184,6 @@
             </property>
            </widget>
           </item>
-          <item row="1" column="0">
-           <widget class="QLabel" name="labelColoResults">
-            <property name="text">
-             <string>Possible Results:</string>
-            </property>
-           </widget>
-          </item>
           <item row="4" column="0">
            <widget class="QPushButton" name="pushButtonColoReset">
             <property name="text">
@@ -188,21 +191,7 @@
             </property>
            </widget>
           </item>
-          <item row="0" column="0">
-           <widget class="QLabel" name="labelColoRound">
-            <property name="text">
-             <string>Round #1</string>
-            </property>
-           </widget>
-          </item>
          </layout>
-        </widget>
-       </item>
-       <item row="1" column="0" colspan="3">
-        <widget class="QProgressBar" name="progressBarColo">
-         <property name="value">
-          <number>0</number>
-         </property>
         </widget>
        </item>
        <item row="0" column="1" colspan="2">
@@ -250,6 +239,9 @@
          </layout>
         </widget>
        </item>
+       <item row="1" column="0" colspan="3">
+        <widget class="QProgressBar" name="progressBarColo"/>
+       </item>
       </layout>
      </widget>
      <widget class="QWidget" name="tabChannel">
@@ -286,18 +278,6 @@
              <string>Cancel</string>
             </property>
            </widget>
-          </item>
-         </layout>
-        </widget>
-       </item>
-       <item row="0" column="2">
-        <widget class="QGroupBox" name="groupBoxInputs">
-         <property name="title">
-          <string>Inputs</string>
-         </property>
-         <layout class="QGridLayout" name="gridLayout_11">
-          <item row="0" column="0">
-           <widget class="QTextEdit" name="textEditInputs"/>
           </item>
          </layout>
         </widget>
@@ -452,12 +432,20 @@
          </layout>
         </widget>
        </item>
-       <item row="1" column="0" colspan="3">
-        <widget class="QProgressBar" name="progressBarChannel">
-         <property name="value">
-          <number>0</number>
+       <item row="0" column="2">
+        <widget class="QGroupBox" name="groupBoxInputs">
+         <property name="title">
+          <string>Inputs</string>
          </property>
+         <layout class="QGridLayout" name="gridLayout_11">
+          <item row="0" column="0">
+           <widget class="QTextEdit" name="textEditInputs"/>
+          </item>
+         </layout>
         </widget>
+       </item>
+       <item row="1" column="0" colspan="3">
+        <widget class="QProgressBar" name="progressBarChannel"/>
        </item>
       </layout>
      </widget>
@@ -472,40 +460,6 @@
    <header>Form/Controls/TextBox.hpp</header>
   </customwidget>
  </customwidgets>
- <tabstops>
-  <tabstop>tabWidget</tabstop>
-  <tabstop>pushButtonGalesSearch</tabstop>
-  <tabstop>pushButtonGalesCancel</tabstop>
-  <tabstop>pushButtonGalesReset</tabstop>
-  <tabstop>comboBoxGalesYourLead</tabstop>
-  <tabstop>comboBoxGalesEnemyLead</tabstop>
-  <tabstop>textBoxGalesTopLeft</tabstop>
-  <tabstop>textBoxGalesBottomLeft</tabstop>
-  <tabstop>textBoxGalesTopRight</tabstop>
-  <tabstop>textBoxGalesBottomRight</tabstop>
-  <tabstop>pushButtonColoSearch</tabstop>
-  <tabstop>pushButtonColoCancel</tabstop>
-  <tabstop>pushButtonColoReset</tabstop>
-  <tabstop>comboBoxColoTrainer</tabstop>
-  <tabstop>comboBoxColoPartyLead</tabstop>
-  <tabstop>pushButtonChannelSearch</tabstop>
-  <tabstop>pushButtonChannelCancel</tabstop>
-  <tabstop>radioButtonSNOC</tabstop>
-  <tabstop>radioButtonONSC</tabstop>
-  <tabstop>radioButtonSNCO</tabstop>
-  <tabstop>radioButtonCNSO</tabstop>
-  <tabstop>radioButtonONCS</tabstop>
-  <tabstop>radioButtonCNOS</tabstop>
-  <tabstop>radioButtonNSOC</tabstop>
-  <tabstop>radioButtonNOSC</tabstop>
-  <tabstop>radioButtonNSCO</tabstop>
-  <tabstop>radioButtonNCSO</tabstop>
-  <tabstop>radioButtonNOCS</tabstop>
-  <tabstop>radioButtonNCOS</tabstop>
-  <tabstop>pushButtonChannelAdd</tabstop>
-  <tabstop>pushButtonChannelRemove</tabstop>
-  <tabstop>textEditInputs</tabstop>
- </tabstops>
  <resources/>
  <connections/>
  <buttongroups>

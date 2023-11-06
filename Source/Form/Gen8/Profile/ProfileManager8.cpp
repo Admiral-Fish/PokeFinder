@@ -38,6 +38,7 @@ ProfileManager8::ProfileManager8(QWidget *parent) : QWidget(parent), ui(new Ui::
     connect(ui->pushButtonNew, &QPushButton::clicked, this, &ProfileManager8::create);
     connect(ui->pushButtonEdit, &QPushButton::clicked, this, &ProfileManager8::edit);
     connect(ui->pushButtonDelete, &QPushButton::clicked, this, &ProfileManager8::remove);
+    connect(ui->pushButtonOk, &QPushButton::clicked, this, &ProfileManager8::close);
 
     QSettings setting;
     if (setting.contains("profileManager8/geometry"))

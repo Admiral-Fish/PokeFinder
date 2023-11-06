@@ -27,6 +27,43 @@
         </property>
        </widget>
       </item>
+      <item row="0" column="1">
+       <widget class="QComboBox" name="comboBoxProfiles"/>
+      </item>
+      <item row="1" column="1">
+       <widget class="QPushButton" name="pushButtonProfileManager">
+        <property name="text">
+         <string>Manager</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="2">
+       <widget class="QLabel" name="labelProfileTID">
+        <property name="text">
+         <string>TID</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="3">
+       <widget class="QLabel" name="labelProfileTIDValue"/>
+      </item>
+      <item row="1" column="2">
+       <widget class="QLabel" name="labelProfileSID">
+        <property name="text">
+         <string>SID</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="3">
+       <widget class="QLabel" name="labelProfileSIDValue"/>
+      </item>
+      <item row="0" column="4" rowspan="2">
+       <widget class="Line" name="line">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+       </widget>
+      </item>
       <item row="0" column="5">
        <widget class="QLabel" name="labelProfileGame">
         <property name="text">
@@ -36,43 +73,6 @@
       </item>
       <item row="0" column="6">
        <widget class="QLabel" name="labelProfileGameValue"/>
-      </item>
-      <item row="0" column="2">
-       <widget class="QLabel" name="labelProfileTID">
-        <property name="text">
-         <string>TID</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="1">
-       <widget class="QPushButton" name="pushButtonProfileManager">
-        <property name="text">
-         <string>Manager</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="3">
-       <widget class="QLabel" name="labelProfileTIDValue"/>
-      </item>
-      <item row="0" column="1">
-       <widget class="QComboBox" name="comboBoxProfiles"/>
-      </item>
-      <item row="1" column="2">
-       <widget class="QLabel" name="labelProfileSID">
-        <property name="text">
-         <string>SID</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="4" rowspan="2">
-       <widget class="Line" name="line">
-        <property name="orientation">
-         <enum>Qt::Vertical</enum>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="3">
-       <widget class="QLabel" name="labelProfileSIDValue"/>
       </item>
      </layout>
     </widget>
@@ -84,6 +84,80 @@
        <string>Generator</string>
       </attribute>
       <layout class="QGridLayout" name="gridLayout_10">
+       <item row="0" column="0">
+        <widget class="QGroupBox" name="groupBoxGeneratorRNGInfo">
+         <property name="title">
+          <string>RNG Info</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_6">
+          <item row="0" column="0">
+           <widget class="QLabel" name="labelGeneratorLead">
+            <property name="text">
+             <string>Lead</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="ComboMenu" name="comboMenuGeneratorLead"/>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="labelGeneratorSeed">
+            <property name="text">
+             <string>Seed</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="TextBox" name="textBoxGeneratorSeed"/>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="labelGeneratorInitialAdvances">
+            <property name="text">
+             <string>Initial Advances</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="TextBox" name="textBoxGeneratorInitialAdvances">
+            <property name="text">
+             <string notr="true">0</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0">
+           <widget class="QLabel" name="labelGeneratorMaxAdvances">
+            <property name="text">
+             <string>Max Advances</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="1">
+           <widget class="TextBox" name="textBoxGeneratorMaxAdvances">
+            <property name="text">
+             <string notr="true">100000</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="0">
+           <widget class="QLabel" name="labelGeneratorDelay">
+            <property name="text">
+             <string>Delay</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="1">
+           <widget class="TextBox" name="textBoxGeneratorDelay"/>
+          </item>
+          <item row="5" column="0" colspan="2">
+           <widget class="QPushButton" name="pushButtonGenerate">
+            <property name="text">
+             <string>Generate</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
        <item row="0" column="1">
         <widget class="QGroupBox" name="groupBoxGeneratorSettings">
          <property name="title">
@@ -151,6 +225,13 @@
           <item row="1" column="1">
            <widget class="ComboBox" name="comboBoxGeneratorPokemon"/>
           </item>
+          <item row="2" column="0" colspan="2">
+           <widget class="Line" name="line_2">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+           </widget>
+          </item>
           <item row="3" column="0">
            <widget class="QLabel" name="labelGeneratorLevel">
             <property name="text">
@@ -162,13 +243,6 @@
            <widget class="QSpinBox" name="spinBoxGeneratorLevel">
             <property name="enabled">
              <bool>false</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="0" colspan="2">
-           <widget class="Line" name="line_2">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
             </property>
            </widget>
           </item>
@@ -196,80 +270,6 @@
        <item row="1" column="0" colspan="3">
         <widget class="TableView" name="tableViewGenerator"/>
        </item>
-       <item row="0" column="0">
-        <widget class="QGroupBox" name="groupBoxGeneratorRNGInfo">
-         <property name="title">
-          <string>RNG Info</string>
-         </property>
-         <layout class="QGridLayout" name="gridLayout_6">
-          <item row="0" column="1">
-           <widget class="ComboMenu" name="comboMenuGeneratorLead"/>
-          </item>
-          <item row="2" column="0">
-           <widget class="QLabel" name="labelGeneratorInitialAdvances">
-            <property name="text">
-             <string>Initial Advances</string>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="1">
-           <widget class="TextBox" name="textBoxGeneratorInitialAdvances">
-            <property name="text">
-             <string notr="true">0</string>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="1">
-           <widget class="TextBox" name="textBoxGeneratorMaxAdvances">
-            <property name="text">
-             <string notr="true">100000</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="0">
-           <widget class="QLabel" name="labelGeneratorLead">
-            <property name="text">
-             <string>Lead</string>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="0">
-           <widget class="QLabel" name="labelGeneratorMaxAdvances">
-            <property name="text">
-             <string>Max Advances</string>
-            </property>
-           </widget>
-          </item>
-          <item row="5" column="0" colspan="2">
-           <widget class="QPushButton" name="pushButtonGenerate">
-            <property name="text">
-             <string>Generate</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="0">
-           <widget class="QLabel" name="labelGeneratorSeed">
-            <property name="text">
-             <string>Seed</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="1">
-           <widget class="TextBox" name="textBoxGeneratorSeed"/>
-          </item>
-          <item row="4" column="1">
-           <widget class="TextBox" name="textBoxGeneratorDelay"/>
-          </item>
-          <item row="4" column="0">
-           <widget class="QLabel" name="labelGeneratorDelay">
-            <property name="text">
-             <string>Delay</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </widget>
-       </item>
       </layout>
      </widget>
      <widget class="QWidget" name="tabSpreadSearcher">
@@ -283,66 +283,6 @@
           <string>RNG Info</string>
          </property>
          <layout class="QGridLayout" name="gridLayout_2">
-          <item row="1" column="0" colspan="2">
-           <layout class="QGridLayout" name="gridLayout_3">
-            <item row="0" column="0">
-             <widget class="QLabel" name="labelSearcherMinDelay">
-              <property name="text">
-               <string>Min Delay</string>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="1">
-             <widget class="TextBox" name="textBoxSearcherMinDelay">
-              <property name="text">
-               <string notr="true">600</string>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="2">
-             <widget class="QLabel" name="labelSearcherMaxDelay">
-              <property name="text">
-               <string>Max Delay</string>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="3">
-             <widget class="TextBox" name="textBoxSearcherMaxDelay">
-              <property name="text">
-               <string notr="true">2000</string>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="0">
-             <widget class="QLabel" name="labelSearcherMinAdvance">
-              <property name="text">
-               <string>Min Advance</string>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="1">
-             <widget class="TextBox" name="textBoxSearcherMinAdvance">
-              <property name="text">
-               <string notr="true">0</string>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="2">
-             <widget class="QLabel" name="labelSearcherMaxAdvance">
-              <property name="text">
-               <string>Max Advance</string>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="3">
-             <widget class="TextBox" name="textBoxSearcherMaxAdvance">
-              <property name="text">
-               <string notr="true">1000</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </item>
           <item row="0" column="0">
            <widget class="QLabel" name="labelSearcherLead">
             <property name="text">
@@ -350,7 +290,66 @@
             </property>
            </widget>
           </item>
-          <item row="2" column="0" colspan="2">
+          <item row="0" column="2">
+           <widget class="ComboMenu" name="comboMenuSearcherLead"/>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="labelSearcherMinDelay">
+            <property name="text">
+             <string>Min Delay</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="TextBox" name="textBoxSearcherMinDelay">
+            <property name="text">
+             <string notr="true">600</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="2">
+           <widget class="QLabel" name="labelSearcherMaxDelay">
+            <property name="text">
+             <string>Max Delay</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="3">
+           <widget class="TextBox" name="textBoxSearcherMaxDelay">
+            <property name="text">
+             <string notr="true">2000</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="labelSearcherMinAdvance">
+            <property name="text">
+             <string>Min Advance</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="TextBox" name="textBoxSearcherMinAdvance">
+            <property name="text">
+             <string notr="true">0</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="2">
+           <widget class="QLabel" name="labelSearcherMaxAdvance">
+            <property name="text">
+             <string>Max Advance</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="3">
+           <widget class="TextBox" name="textBoxSearcherMaxAdvance">
+            <property name="text">
+             <string notr="true">1000</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0" colspan="4">
            <layout class="QHBoxLayout" name="horizontalLayout">
             <item>
              <widget class="QPushButton" name="pushButtonSearch">
@@ -371,27 +370,6 @@
             </item>
            </layout>
           </item>
-          <item row="0" column="1">
-           <widget class="ComboMenu" name="comboMenuSearcherLead"/>
-          </item>
-         </layout>
-        </widget>
-       </item>
-       <item row="0" column="2">
-        <widget class="QGroupBox" name="groupBoxSearcherFilters">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-           <horstretch>1</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="title">
-          <string>Filters</string>
-         </property>
-         <layout class="QGridLayout" name="gridLayout_4">
-          <item row="0" column="0" rowspan="2">
-           <widget class="Filter" name="filterSearcher" native="true"/>
-          </item>
          </layout>
         </widget>
        </item>
@@ -408,31 +386,7 @@
             </property>
            </widget>
           </item>
-          <item row="1" column="0">
-           <widget class="QLabel" name="labelSearcherPokemon">
-            <property name="text">
-             <string>Pokemon</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="1" colspan="2">
-           <widget class="ComboBox" name="comboBoxSearcherPokemon"/>
-          </item>
-          <item row="2" column="0" colspan="3">
-           <widget class="Line" name="line_3">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="0">
-           <widget class="QLabel" name="labelSearcherLevel">
-            <property name="text">
-             <string>Level</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="1" colspan="2">
+          <item row="0" column="1">
            <widget class="ComboBox" name="comboBoxSearcherCategory">
             <item>
              <property name="text">
@@ -476,7 +430,31 @@
             </item>
            </widget>
           </item>
-          <item row="3" column="1" colspan="2">
+          <item row="1" column="0">
+           <widget class="QLabel" name="labelSearcherPokemon">
+            <property name="text">
+             <string>Pokemon</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="ComboBox" name="comboBoxSearcherPokemon"/>
+          </item>
+          <item row="2" column="0" colspan="2">
+           <widget class="Line" name="line_3">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0">
+           <widget class="QLabel" name="labelSearcherLevel">
+            <property name="text">
+             <string>Level</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="1">
            <widget class="QSpinBox" name="spinBoxSearcherLevel">
             <property name="enabled">
              <bool>false</bool>
@@ -486,12 +464,26 @@
          </layout>
         </widget>
        </item>
-       <item row="1" column="0" colspan="3">
-        <widget class="QProgressBar" name="progressBar">
-         <property name="value">
-          <number>0</number>
+       <item row="0" column="2">
+        <widget class="QGroupBox" name="groupBoxSearcherFilters">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>1</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
          </property>
+         <property name="title">
+          <string>Filters</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_4">
+          <item row="0" column="0" rowspan="2">
+           <widget class="Filter" name="filterSearcher" native="true"/>
+          </item>
+         </layout>
         </widget>
+       </item>
+       <item row="1" column="0" colspan="3">
+        <widget class="QProgressBar" name="progressBar"/>
        </item>
        <item row="2" column="0" colspan="3">
         <widget class="TableView" name="tableViewSearcher">
@@ -518,15 +510,15 @@
    <header>Form/Controls/TableView.hpp</header>
   </customwidget>
   <customwidget>
-   <class>ComboBox</class>
-   <extends>QComboBox</extends>
-   <header>Form/Controls/ComboBox.hpp</header>
-  </customwidget>
-  <customwidget>
    <class>Filter</class>
    <extends>QWidget</extends>
    <header>Form/Controls/Filter.hpp</header>
    <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>ComboBox</class>
+   <extends>QComboBox</extends>
+   <header>Form/Controls/ComboBox.hpp</header>
   </customwidget>
   <customwidget>
    <class>ComboMenu</class>

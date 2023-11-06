@@ -24,43 +24,6 @@
    <item row="0" column="1">
     <widget class="QLineEdit" name="lineEditProfile"/>
    </item>
-   <item row="0" column="2">
-    <widget class="QLabel" name="labelMAC">
-     <property name="text">
-      <string>MAC</string>
-     </property>
-    </widget>
-   </item>
-   <item row="0" column="3">
-    <widget class="TextBox" name="textBoxMAC"/>
-   </item>
-   <item row="0" column="4">
-    <widget class="QLabel" name="labelVFrame">
-     <property name="text">
-      <string>VFrame</string>
-     </property>
-    </widget>
-   </item>
-   <item row="0" column="5">
-    <widget class="TextBox" name="textBoxVFrame"/>
-   </item>
-   <item row="0" column="6">
-    <widget class="QLabel" name="labelTID">
-     <property name="text">
-      <string>TID</string>
-     </property>
-    </widget>
-   </item>
-   <item row="0" column="7">
-    <widget class="TextBox" name="textBoxTID"/>
-   </item>
-   <item row="0" column="8">
-    <widget class="QPushButton" name="pushButtonAccept">
-     <property name="text">
-      <string>Accept</string>
-     </property>
-    </widget>
-   </item>
    <item row="1" column="0">
     <widget class="QLabel" name="labelVersion">
      <property name="text">
@@ -91,6 +54,88 @@
       </property>
      </item>
     </widget>
+   </item>
+   <item row="2" column="0">
+    <widget class="QLabel" name="labelLanguage">
+     <property name="text">
+      <string>Language</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="1">
+    <widget class="ComboBox" name="comboBoxLanguage">
+     <item>
+      <property name="text">
+       <string>ENG</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>SPA</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>FRE</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>ITA</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>DEU</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>JPN</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>KOR</string>
+      </property>
+     </item>
+    </widget>
+   </item>
+   <item row="3" column="0">
+    <widget class="QLabel" name="labelDSType">
+     <property name="text">
+      <string>DS Type</string>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="1">
+    <widget class="ComboBox" name="comboBoxDSType">
+     <item>
+      <property name="text">
+       <string>DS Original/Lite</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>DSi/DSi XL</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>3DS</string>
+      </property>
+     </item>
+    </widget>
+   </item>
+   <item row="0" column="2">
+    <widget class="QLabel" name="labelMAC">
+     <property name="text">
+      <string>MAC</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="3">
+    <widget class="TextBox" name="textBoxMAC"/>
    </item>
    <item row="1" column="2">
     <widget class="QLabel" name="labelKeypresses">
@@ -148,79 +193,6 @@
      </item>
     </widget>
    </item>
-   <item row="1" column="4">
-    <widget class="QLabel" name="labelTimer0Min">
-     <property name="text">
-      <string>Timer0 Min</string>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="5">
-    <widget class="TextBox" name="textBoxTimer0Min"/>
-   </item>
-   <item row="1" column="6">
-    <widget class="QLabel" name="labelSID">
-     <property name="text">
-      <string>SID</string>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="7">
-    <widget class="TextBox" name="textBoxSID"/>
-   </item>
-   <item row="1" column="8">
-    <widget class="QPushButton" name="pushButtonCancel">
-     <property name="text">
-      <string>Cancel</string>
-     </property>
-    </widget>
-   </item>
-   <item row="2" column="0">
-    <widget class="QLabel" name="labelLanguage">
-     <property name="text">
-      <string>Language</string>
-     </property>
-    </widget>
-   </item>
-   <item row="2" column="1">
-    <widget class="ComboBox" name="comboBoxLanguage">
-     <item>
-      <property name="text">
-       <string>ENG</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>SPA</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>FRE</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>ITA</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>DEU</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>JPN</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>KOR</string>
-      </property>
-     </item>
-    </widget>
-   </item>
    <item row="2" column="2">
     <widget class="QLabel" name="labelVCount">
      <property name="text">
@@ -230,42 +202,6 @@
    </item>
    <item row="2" column="3">
     <widget class="TextBox" name="textBoxVCount"/>
-   </item>
-   <item row="2" column="4">
-    <widget class="QLabel" name="labelTimer0Max">
-     <property name="text">
-      <string>Timer0 Max</string>
-     </property>
-    </widget>
-   </item>
-   <item row="2" column="5">
-    <widget class="TextBox" name="textBoxTimer0Max"/>
-   </item>
-   <item row="3" column="0">
-    <widget class="QLabel" name="labelDSType">
-     <property name="text">
-      <string>DS Type</string>
-     </property>
-    </widget>
-   </item>
-   <item row="3" column="1">
-    <widget class="ComboBox" name="comboBoxDSType">
-     <item>
-      <property name="text">
-       <string>DS Original/Lite</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>DSi/DSi XL</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>3DS</string>
-      </property>
-     </item>
-    </widget>
    </item>
    <item row="3" column="2">
     <widget class="QLabel" name="labelGxStat">
@@ -277,12 +213,55 @@
    <item row="3" column="3">
     <widget class="TextBox" name="textBoxGxStat"/>
    </item>
-   <item row="3" column="8">
-    <widget class="QPushButton" name="pushButtonFindParameters">
+   <item row="0" column="4">
+    <widget class="QLabel" name="labelVFrame">
      <property name="text">
-      <string>Find Parameters</string>
+      <string>VFrame</string>
      </property>
     </widget>
+   </item>
+   <item row="0" column="5">
+    <widget class="TextBox" name="textBoxVFrame"/>
+   </item>
+   <item row="1" column="4">
+    <widget class="QLabel" name="labelTimer0Min">
+     <property name="text">
+      <string>Timer0 Min</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="5">
+    <widget class="TextBox" name="textBoxTimer0Min"/>
+   </item>
+   <item row="2" column="4">
+    <widget class="QLabel" name="labelTimer0Max">
+     <property name="text">
+      <string>Timer0 Max</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="5">
+    <widget class="TextBox" name="textBoxTimer0Max"/>
+   </item>
+   <item row="0" column="6">
+    <widget class="QLabel" name="labelTID">
+     <property name="text">
+      <string>TID</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="7">
+    <widget class="TextBox" name="textBoxTID"/>
+   </item>
+   <item row="1" column="6">
+    <widget class="QLabel" name="labelSID">
+     <property name="text">
+      <string>SID</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="7">
+    <widget class="TextBox" name="textBoxSID"/>
    </item>
    <item row="3" column="4">
     <widget class="QCheckBox" name="checkBoxSoftReset">
@@ -312,6 +291,27 @@
      </property>
     </widget>
    </item>
+   <item row="3" column="8">
+    <widget class="QPushButton" name="pushButtonFindParameters">
+     <property name="text">
+      <string>Find Parameters</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="8">
+    <widget class="QPushButton" name="pushButtonAccept">
+     <property name="text">
+      <string>Accept</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="8">
+    <widget class="QPushButton" name="pushButtonCancel">
+     <property name="text">
+      <string>Cancel</string>
+     </property>
+    </widget>
+   </item>
   </layout>
  </widget>
  <customwidgets>
@@ -329,50 +329,8 @@
    <class>CheckList</class>
    <extends>QComboBox</extends>
    <header>Form/Controls/CheckList.hpp</header>
-   <slots>
-    <slot>resetChecks()</slot>
-   </slots>
   </customwidget>
  </customwidgets>
- <tabstops>
-  <tabstop>lineEditProfile</tabstop>
-  <tabstop>comboBoxVersion</tabstop>
-  <tabstop>comboBoxLanguage</tabstop>
-  <tabstop>comboBoxDSType</tabstop>
-  <tabstop>textBoxMAC</tabstop>
-  <tabstop>comboBoxKeypresses</tabstop>
-  <tabstop>textBoxVCount</tabstop>
-  <tabstop>textBoxGxStat</tabstop>
-  <tabstop>textBoxVFrame</tabstop>
-  <tabstop>textBoxTimer0Min</tabstop>
-  <tabstop>textBoxTimer0Max</tabstop>
-  <tabstop>textBoxTID</tabstop>
-  <tabstop>textBoxSID</tabstop>
-  <tabstop>checkBoxSoftReset</tabstop>
-  <tabstop>checkBoxSkipLR</tabstop>
-  <tabstop>checkBoxMemoryLink</tabstop>
-  <tabstop>checkBoxShinyCharm</tabstop>
-  <tabstop>pushButtonFindParameters</tabstop>
-  <tabstop>pushButtonAccept</tabstop>
-  <tabstop>pushButtonCancel</tabstop>
- </tabstops>
  <resources/>
- <connections>
-  <connection>
-   <sender>pushButtonCancel</sender>
-   <signal>clicked()</signal>
-   <receiver>ProfileEditor5</receiver>
-   <slot>reject()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>662</x>
-     <y>53</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>588</x>
-     <y>82</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
 </ui>

@@ -29,12 +29,6 @@
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
      </property>
-     <property name="sizeHint" stdset="0">
-      <size>
-       <width>216</width>
-       <height>20</height>
-      </size>
-     </property>
     </spacer>
    </item>
    <item row="1" column="0">
@@ -49,20 +43,6 @@
      <property name="text">
       <string notr="true">2000</string>
      </property>
-    </widget>
-   </item>
-   <item row="2" column="2">
-    <widget class="QPushButton" name="pushButtonFind">
-     <property name="text">
-      <string>Find</string>
-     </property>
-    </widget>
-   </item>
-   <item row="3" column="0" colspan="3">
-    <widget class="TableView" name="tableView">
-     <attribute name="verticalHeaderVisible">
-      <bool>false</bool>
-     </attribute>
     </widget>
    </item>
    <item row="2" column="0">
@@ -82,6 +62,20 @@
      </property>
     </widget>
    </item>
+   <item row="2" column="2">
+    <widget class="QPushButton" name="pushButtonFind">
+     <property name="text">
+      <string>Find</string>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="0" colspan="3">
+    <widget class="TableView" name="tableView">
+     <attribute name="verticalHeaderVisible">
+      <bool>false</bool>
+     </attribute>
+    </widget>
+   </item>
   </layout>
  </widget>
  <customwidgets>
@@ -96,12 +90,6 @@
    <header>Form/Controls/TableView.hpp</header>
   </customwidget>
  </customwidgets>
- <tabstops>
-  <tabstop>textBoxSeed</tabstop>
-  <tabstop>textBoxYear</tabstop>
-  <tabstop>pushButtonFind</tabstop>
-  <tabstop>tableView</tabstop>
- </tabstops>
  <resources/>
  <connections/>
 </ui>

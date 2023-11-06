@@ -54,30 +54,6 @@
    <header>Form/Controls/TableView.hpp</header>
   </customwidget>
  </customwidgets>
- <tabstops>
-  <tabstop>pushButtonNew</tabstop>
-  <tabstop>pushButtonEdit</tabstop>
-  <tabstop>pushButtonDelete</tabstop>
-  <tabstop>tableView</tabstop>
-  <tabstop>pushButtonOk</tabstop>
- </tabstops>
  <resources/>
- <connections>
-  <connection>
-   <sender>pushButtonOk</sender>
-   <signal>clicked()</signal>
-   <receiver>ProfileManager8</receiver>
-   <slot>close()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>140</x>
-     <y>269</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>6</x>
-     <y>288</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
 </ui>

@@ -13,164 +13,142 @@
   <property name="windowTitle">
    <string>IVs to PID</string>
   </property>
-  <layout class="QGridLayout" name="gridLayout_2">
+  <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
+    <widget class="QLabel" name="labelHP">
+     <property name="text">
+      <string>HP</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="1">
+    <widget class="QLabel" name="labelAtk">
+     <property name="text">
+      <string>Atk</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="2">
+    <widget class="QLabel" name="labelDef">
+     <property name="text">
+      <string>Def</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="3">
+    <widget class="QLabel" name="labelSpA">
+     <property name="text">
+      <string>SpA</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="4">
+    <widget class="QLabel" name="labelSpD">
+     <property name="text">
+      <string>SpD</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="5">
+    <widget class="QLabel" name="labelSpe">
+     <property name="text">
+      <string>Spe</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0">
+    <widget class="QSpinBox" name="spinBoxHP">
+     <property name="maximum">
+      <number>31</number>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="1">
+    <widget class="QSpinBox" name="spinBoxAtk">
+     <property name="maximum">
+      <number>31</number>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="2">
+    <widget class="QSpinBox" name="spinBoxDef">
+     <property name="maximum">
+      <number>31</number>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="3">
+    <widget class="QSpinBox" name="spinBoxSpA">
+     <property name="maximum">
+      <number>31</number>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="4">
+    <widget class="QSpinBox" name="spinBoxSpD">
+     <property name="maximum">
+      <number>31</number>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="5">
+    <widget class="QSpinBox" name="spinBoxSpe">
+     <property name="maximum">
+      <number>31</number>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="0">
     <widget class="QLabel" name="labelNature">
      <property name="text">
       <string>Nature</string>
      </property>
     </widget>
    </item>
-   <item row="1" column="0">
-    <widget class="QComboBox" name="comboBoxNature"/>
-   </item>
-   <item row="1" column="1">
-    <spacer name="horizontalSpacer">
-     <property name="orientation">
-      <enum>Qt::Horizontal</enum>
-     </property>
-     <property name="sizeHint" stdset="0">
-      <size>
-       <width>469</width>
-       <height>20</height>
-      </size>
-     </property>
-    </spacer>
-   </item>
-   <item row="3" column="3">
-    <widget class="QPushButton" name="pushButtonFind">
-     <property name="text">
-      <string>Find</string>
-     </property>
-    </widget>
-   </item>
-   <item row="4" column="0" colspan="4">
-    <widget class="TableView" name="tableView"/>
-   </item>
-   <item row="2" column="0" colspan="4">
-    <layout class="QGridLayout" name="gridLayout">
-     <item row="0" column="0">
-      <widget class="QLabel" name="labelHP">
-       <property name="text">
-        <string>HP</string>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="1">
-      <widget class="QLabel" name="labelAtk">
-       <property name="text">
-        <string>Atk</string>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="2">
-      <widget class="QLabel" name="labelDef">
-       <property name="text">
-        <string>Def</string>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="3">
-      <widget class="QLabel" name="labelSpA">
-       <property name="text">
-        <string>SpA</string>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="4">
-      <widget class="QLabel" name="labelSpD">
-       <property name="text">
-        <string>SpD</string>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="5">
-      <widget class="QLabel" name="labelSpe">
-       <property name="text">
-        <string>Spe</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="0">
-      <widget class="QSpinBox" name="spinBoxHP">
-       <property name="maximum">
-        <number>31</number>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="1">
-      <widget class="QSpinBox" name="spinBoxAtk">
-       <property name="maximum">
-        <number>31</number>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="2">
-      <widget class="QSpinBox" name="spinBoxDef">
-       <property name="maximum">
-        <number>31</number>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="3">
-      <widget class="QSpinBox" name="spinBoxSpA">
-       <property name="maximum">
-        <number>31</number>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="4">
-      <widget class="QSpinBox" name="spinBoxSpD">
-       <property name="maximum">
-        <number>31</number>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="5">
-      <widget class="QSpinBox" name="spinBoxSpe">
-       <property name="maximum">
-        <number>31</number>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </item>
-   <item row="1" column="3">
-    <widget class="TextBox" name="textBoxTID"/>
-   </item>
-   <item row="0" column="3">
+   <item row="2" column="1">
     <widget class="QLabel" name="labelTID">
      <property name="text">
       <string>TID</string>
      </property>
     </widget>
    </item>
+   <item row="3" column="0">
+    <widget class="QComboBox" name="comboBoxNature"/>
+   </item>
+   <item row="3" column="1">
+    <widget class="TextBox" name="textBoxTID">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="2">
+    <widget class="QPushButton" name="pushButtonFind">
+     <property name="text">
+      <string>Find</string>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="0" colspan="6">
+    <widget class="TableView" name="tableView"/>
+   </item>
   </layout>
  </widget>
  <customwidgets>
-  <customwidget>
-   <class>TextBox</class>
-   <extends>QLineEdit</extends>
-   <header>Form/Controls/TextBox.hpp</header>
-  </customwidget>
   <customwidget>
    <class>TableView</class>
    <extends>QTableView</extends>
    <header>Form/Controls/TableView.hpp</header>
   </customwidget>
+  <customwidget>
+   <class>TextBox</class>
+   <extends>QLineEdit</extends>
+   <header>Form/Controls/TextBox.hpp</header>
+  </customwidget>
  </customwidgets>
- <tabstops>
-  <tabstop>comboBoxNature</tabstop>
-  <tabstop>textBoxTID</tabstop>
-  <tabstop>spinBoxHP</tabstop>
-  <tabstop>spinBoxAtk</tabstop>
-  <tabstop>spinBoxDef</tabstop>
-  <tabstop>spinBoxSpA</tabstop>
-  <tabstop>spinBoxSpD</tabstop>
-  <tabstop>spinBoxSpe</tabstop>
-  <tabstop>pushButtonFind</tabstop>
-  <tabstop>tableView</tabstop>
- </tabstops>
  <resources/>
  <connections/>
 </ui>

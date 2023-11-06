@@ -37,6 +37,8 @@ SearchCalls::SearchCalls(const std::vector<SeedTimeCalibrate4> &data, QWidget *p
     connect(ui->lineEditCalls, &QLineEdit::textChanged, this, &SearchCalls::callsTextChanged);
     connect(ui->radioButtonElm, &QRadioButton::clicked, this, &SearchCalls::elm);
     connect(ui->radioButtonIrwin, &QRadioButton::clicked, this, &SearchCalls::irwin);
+    connect(ui->pushButtonOkay, &QPushButton::clicked, this, &SearchCalls::accept);
+    connect(ui->pushButtonCancel, &QPushButton::clicked, this, &SearchCalls::reject);
 
     QSettings setting;
     if (setting.contains("searchCalls/geometry"))

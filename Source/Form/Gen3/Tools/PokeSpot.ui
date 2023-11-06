@@ -30,6 +30,13 @@
       <item row="0" column="1">
        <widget class="QComboBox" name="comboBoxProfiles"/>
       </item>
+      <item row="1" column="1">
+       <widget class="QPushButton" name="pushButtonProfileManager">
+        <property name="text">
+         <string>Manager</string>
+        </property>
+       </widget>
+      </item>
       <item row="0" column="2">
        <widget class="QLabel" name="labelProfileTID">
         <property name="text">
@@ -39,6 +46,16 @@
       </item>
       <item row="0" column="3">
        <widget class="QLabel" name="labelProfileTIDValue"/>
+      </item>
+      <item row="1" column="2">
+       <widget class="QLabel" name="labelProfileSID">
+        <property name="text">
+         <string>SID</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="3">
+       <widget class="QLabel" name="labelProfileSIDValue"/>
       </item>
       <item row="0" column="4" rowspan="2">
        <widget class="Line" name="line">
@@ -57,23 +74,6 @@
       <item row="0" column="6">
        <widget class="QLabel" name="labelProfileGameValue"/>
       </item>
-      <item row="1" column="1">
-       <widget class="QPushButton" name="pushButtonProfileManager">
-        <property name="text">
-         <string>Manager</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="2">
-       <widget class="QLabel" name="labelProfileSID">
-        <property name="text">
-         <string>SID</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="3">
-       <widget class="QLabel" name="labelProfileSIDValue"/>
-      </item>
      </layout>
     </widget>
    </item>
@@ -83,51 +83,10 @@
       <string>RNG Info</string>
      </property>
      <layout class="QGridLayout" name="gridLayout">
-      <item row="1" column="0">
-       <widget class="QLabel" name="labelGenerateAdvances">
-        <property name="text">
-         <string>Food Advances</string>
-        </property>
-       </widget>
-      </item>
       <item row="0" column="0">
        <widget class="QLabel" name="labelSeed">
         <property name="text">
          <string>Seed (Food / Encounter)</string>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="0">
-       <widget class="QLabel" name="labelEncounterAdvances">
-        <property name="text">
-         <string>Encounter Advances</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="1">
-       <widget class="TextBox" name="textBoxFoodInitialAdvances">
-        <property name="text">
-         <string notr="true">0</string>
-        </property>
-        <property name="maxLength">
-         <number>10</number>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="1">
-       <widget class="TextBox" name="textBoxEncounterInitialAdvances">
-        <property name="text">
-         <string notr="true">0</string>
-        </property>
-        <property name="maxLength">
-         <number>10</number>
-        </property>
-       </widget>
-      </item>
-      <item row="3" column="0">
-       <widget class="QLabel" name="labelDelay">
-        <property name="text">
-         <string>Delay (Food / Encounter)</string>
         </property>
        </widget>
       </item>
@@ -141,6 +100,23 @@
       <item row="0" column="2">
        <widget class="TextBox" name="textBoxEncounterSeed"/>
       </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="labelGenerateAdvances">
+        <property name="text">
+         <string>Food Advances</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="TextBox" name="textBoxFoodInitialAdvances">
+        <property name="text">
+         <string notr="true">0</string>
+        </property>
+        <property name="maxLength">
+         <number>10</number>
+        </property>
+       </widget>
+      </item>
       <item row="1" column="2">
        <widget class="TextBox" name="textBoxFoodMaxAdvances">
         <property name="text">
@@ -148,10 +124,34 @@
         </property>
        </widget>
       </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="labelEncounterAdvances">
+        <property name="text">
+         <string>Encounter Advances</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="TextBox" name="textBoxEncounterInitialAdvances">
+        <property name="text">
+         <string notr="true">0</string>
+        </property>
+        <property name="maxLength">
+         <number>10</number>
+        </property>
+       </widget>
+      </item>
       <item row="2" column="2">
        <widget class="TextBox" name="textBoxEncounterMaxAdvances">
         <property name="text">
          <string>10000</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="0">
+       <widget class="QLabel" name="labelDelay">
+        <property name="text">
+         <string>Delay (Food / Encounter)</string>
         </property>
        </widget>
       </item>
@@ -230,6 +230,11 @@
    <header>Form/Controls/TextBox.hpp</header>
   </customwidget>
   <customwidget>
+   <class>ComboBox</class>
+   <extends>QComboBox</extends>
+   <header>Form/Controls/ComboBox.hpp</header>
+  </customwidget>
+  <customwidget>
    <class>TableView</class>
    <extends>QTableView</extends>
    <header>Form/Controls/TableView.hpp</header>
@@ -239,11 +244,6 @@
    <extends>QWidget</extends>
    <header>Form/Controls/Filter.hpp</header>
    <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>ComboBox</class>
-   <extends>QComboBox</extends>
-   <header>Form/Controls/ComboBox.hpp</header>
   </customwidget>
  </customwidgets>
  <tabstops>
