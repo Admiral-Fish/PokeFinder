@@ -35,15 +35,7 @@ void State::updateStats(const PersonalInfo *info)
         h += (ivs[order[i]] & 1) << i;
         p += ((ivs[order[i]] >> 1) & 1) << i;
 
-        u16 stat = ((2 * info->getStat(i) + ivs[i]) * level) / 100;
-        if (i == 0)
-        {
-            stats[i] = stat + level + 10;
-        }
-        else
-        {
-            stats[i] = Nature::computeStat(stat + 5, nature, i);
-        }
+        stats[i] = Nature::computeStat(info->getStat(i), ivs[i], nature, level, i);
 
         u8 index = charOrder[ecIndex + i];
         if (ivs[order[index]] > maxIV)
