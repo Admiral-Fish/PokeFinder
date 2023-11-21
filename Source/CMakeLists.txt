@@ -8,8 +8,8 @@ find_package(Qt6 REQUIRED COMPONENTS Core Widgets)
 set(CMAKE_AUTORCC ON)
 
 set(PROJECT_QRC
-    "${CMAKE_SOURCE_DIR}/External/QDarkStyleSheet/qdarkstyle/dark/darkstyle.qrc"
-    "${CMAKE_SOURCE_DIR}/External/QDarkStyleSheet/qdarkstyle/light/lightstyle.qrc"
+    "${CMAKE_SOURCE_DIR}/Source/Form/External/QDarkStyleSheet/qdarkstyle/dark/darkstyle.qrc"
+    "${CMAKE_SOURCE_DIR}/Source/Form/External/QDarkStyleSheet/qdarkstyle/light/lightstyle.qrc"
 )
 
 include_directories(.)
