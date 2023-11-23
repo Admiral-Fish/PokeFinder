@@ -43,7 +43,7 @@ def enum_map(parent, files):
 
         for file in files:
             f.write(f"#include <Core/Enum/{file}.hpp>\n")
-        f.write("#include <json.hpp>\n\n")
+        f.write("#include <nlohmann/json.hpp>\n\n")
 
         for string in strings:
             f.write(f"{string}\n\n")
