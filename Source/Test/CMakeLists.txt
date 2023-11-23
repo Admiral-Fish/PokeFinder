@@ -11,8 +11,6 @@ set(CMAKE_AUTORCC ON)
 
 execute_process(COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/enum_map.py)
 
-include_directories(../External)
-
 add_executable(PokeFinderTest
     Data.cpp
     Data.hpp
