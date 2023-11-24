@@ -26,7 +26,7 @@
 #include <Core/Gen8/Profile8.hpp>
 #include <filesystem>
 #include <fstream>
-#include <nlohmann/json.hpp>
+#include <json.hpp>
 
 using json = nlohmann::json;
 

@@ -24,10 +24,6 @@ endif ()
 
 add_subdirectory(External)
 
-include(FetchContent)
-FetchContent_Declare(json URL https://github.com/nlohmann/json/releases/download/v3.11.2/json.tar.xz)
-FetchContent_MakeAvailable(json)
-
 find_package(Python3 COMPONENTS Interpreter REQUIRED)
 execute_process(COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Resources/EncounterTables/main.py)
 execute_process(COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Resources/embed.py)
@@ -257,4 +253,5 @@ add_library(PokeFinderCore STATIC
     Util/Utilities.hpp
 )
 
-target_link_libraries(PokeFinderCore bz2_static nlohmann_json::nlohmann_json)
+target_include_directories(PokeFinderCore PUBLIC "External/nlohmann")
+target_link_libraries(PokeFinderCore bz2_static)
