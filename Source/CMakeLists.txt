@@ -7,11 +7,6 @@ find_package(Qt6 REQUIRED COMPONENTS Core Widgets)
 
 set(CMAKE_AUTORCC ON)
 
-set(PROJECT_QRC
-    "${CMAKE_SOURCE_DIR}/External/QDarkStyleSheet/qdarkstyle/dark/darkstyle.qrc"
-    "${CMAKE_SOURCE_DIR}/External/QDarkStyleSheet/qdarkstyle/light/lightstyle.qrc"
-)
-
 include_directories(.)
 
 add_subdirectory(Core)
@@ -25,7 +20,6 @@ if (WIN32)
     add_executable(PokeFinder
         WIN32
         main.cpp
-        ${PROJECT_QRC}
         appicon.rc
     )
 elseif (APPLE)
@@ -36,14 +30,12 @@ elseif (APPLE)
     add_executable(PokeFinder
         MACOSX_BUNDLE
         main.cpp
-        ${PROJECT_QRC}
         ${APP_ICON_MACOSX}
     )
 else ()
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread")
     add_executable(PokeFinder
         main.cpp
-        ${PROJECT_QRC}
     )
 endif ()
 

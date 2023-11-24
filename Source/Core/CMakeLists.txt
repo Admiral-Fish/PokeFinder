@@ -22,6 +22,8 @@ if (UNIX AND SIMD)
     endif ()
 endif ()
 
+add_subdirectory(External)
+
 find_package(Python3 COMPONENTS Interpreter REQUIRED)
 execute_process(COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Resources/EncounterTables/main.py)
 execute_process(COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Resources/embed.py)
@@ -251,5 +253,5 @@ add_library(PokeFinderCore STATIC
     Util/Utilities.hpp
 )
 
-target_include_directories(PokeFinderCore PUBLIC "${CMAKE_SOURCE_DIR}/External")
+target_include_directories(PokeFinderCore PUBLIC "External/nlohmann")
 target_link_libraries(PokeFinderCore bz2_static)
