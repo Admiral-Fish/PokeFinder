@@ -60,6 +60,13 @@ public:
     void mouseDoubleClickEvent(QMouseEvent *event) override;
 
     /**
+     * @brief Handles window resize event to resize the header
+     *
+     * @param event Contains resize event information
+     */
+    void resizeEvent(QResizeEvent *event) override;
+
+    /**
      * @brief Sets the model and connects signal to auto resize when rows are added
      *
      * @param model Model for the table view to present

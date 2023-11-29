@@ -22,6 +22,8 @@
 
 #include <Core/Global.hpp>
 
+extern const float modifiers[25][5];
+
 /**
  * @brief Computes stats that get modified from the nature
  */
@@ -30,13 +32,26 @@ namespace Nature
     /**
      * @brief Computes the stat based upon the \p nature and stat \p index
      *
-     * @param stat Unmodified stat
+     * @param baseStat Pokemon base stat
+     * @param iv Pokemon IV
      * @param nature Pokemon nature
+     * @param level Pokemon level
      * @param index Pokemon stat index
      *
      * @return Computed modified stat
      */
-    u16 computeStat(u16 stat, u8 nature, u8 index);
+    inline u16 computeStat(u16 baseStat, u8 iv, u8 nature, u8 level, u8 index)
+    {
+        u16 stat = ((2 * baseStat + iv) * level) / 100;
+        if (index == 0)
+        {
+            return stat + level + 10;
+        }
+        else
+        {
+            return (stat + 5) * modifiers[nature][index - 1];
+        }
+    }
 }
 
 #endif // NATURE_HPP

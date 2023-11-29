@@ -21,16 +21,16 @@
 #define STATICGENERATOR4_HPP
 
 #include <Core/Gen4/Profile4.hpp>
+#include <Core/Gen4/StaticTemplate4.hpp>
 #include <Core/Parents/Filters/StateFilter.hpp>
 #include <Core/Parents/Generators/StaticGenerator.hpp>
 
 class GeneratorState4;
-class StaticTemplate4;
 
 /**
  * @brief Static encounter generator for Gen4
  */
-class StaticGenerator4 : public StaticGenerator<Profile4, StateFilter>
+class StaticGenerator4 : public StaticGenerator<StaticTemplate4, Profile4, StateFilter>
 {
 public:
     /**
@@ -41,52 +41,53 @@ public:
      * @param delay Number of advances to offset
      * @param method Encounter method
      * @param lead Encounter lead
+     * @param staticTemplate Pokemon template
      * @param profile Profile Information
      * @param filter State filter
      */
-    StaticGenerator4(u32 initialAdvances, u32 maxAdvances, u32 delay, Method method, Lead lead, const Profile4 &profile,
-                     const StateFilter &filter);
+    StaticGenerator4(u32 initialAdvances, u32 maxAdvances, u32 delay, Method method, Lead lead, const StaticTemplate4 &staticTemplate,
+                     const Profile4 &profile, const StateFilter &filter);
 
     /**
-     * @brief Generates states for the \p staticTemplate
+     * @brief Generates states
      *
      * @param seed Starting PRNG state
      * @param staticTemplate Pokemon template
      *
      * @return Vector of computed states
      */
-    std::vector<GeneratorState4> generate(u32 seed, const StaticTemplate4 *staticTemplate) const;
+    std::vector<GeneratorState4> generate(u32 seed) const;
 
 private:
     /**
-     * @brief Generates states for the \p staticTemplate via Method 1
+     * @brief Generates states via Method 1
      *
      * @param seed Starting PRNG state
      * @param staticTemplate Pokemon template
      *
      * @return Vector of computed states
      */
-    std::vector<GeneratorState4> generateMethod1(u32 seed, const StaticTemplate4 *staticTemplate) const;
+    std::vector<GeneratorState4> generateMethod1(u32 seed) const;
 
     /**
-     * @brief Generates states for the \p staticTemplate via Method J
+     * @brief Generates states via Method J
      *
      * @param seed Starting PRNG state
      * @param staticTemplate Pokemon template
      *
      * @return Vector of computed states
      */
-    std::vector<GeneratorState4> generateMethodJ(u32 seed, const StaticTemplate4 *staticTemplate) const;
+    std::vector<GeneratorState4> generateMethodJ(u32 seed) const;
 
     /**
-     * @brief Generates states for the \p staticTemplate via Method K
+     * @brief Generates states via Method K
      *
      * @param seed Starting PRNG state
      * @param staticTemplate Pokemon template
      *
      * @return Vector of computed states
      */
-    std::vector<GeneratorState4> generateMethodK(u32 seed, const StaticTemplate4 *staticTemplate) const;
+    std::vector<GeneratorState4> generateMethodK(u32 seed) const;
 };
 
 #endif // STATICGENERATOR4_HPP

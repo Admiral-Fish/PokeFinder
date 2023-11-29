@@ -85,8 +85,8 @@ void StaticSearcher3Test::search()
     for (const auto &state : states)
     {
         // Ensure generator agrees
-        StaticGenerator3 generator(0, 0, 0, method, profile, filter);
-        auto generatorStates = generator.generate(state.getSeed(), staticTemplate);
+        StaticGenerator3 generator(0, 0, 0, method, *staticTemplate, profile, filter);
+        auto generatorStates = generator.generate(state.getSeed());
 
         QCOMPARE(generatorStates.size(), 1);
         QVERIFY(state == generatorStates[0]);

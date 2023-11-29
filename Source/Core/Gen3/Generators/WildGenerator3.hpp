@@ -47,7 +47,7 @@ public:
                    const Profile3 &profile, const WildStateFilter &filter);
 
     /**
-     * @brief Generates states for the \p encounterArea
+     * @brief Generates states
      *
      * @param seed Starting PRNG state
      *

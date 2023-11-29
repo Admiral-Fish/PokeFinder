@@ -20,80 +20,164 @@
       <string>RNG Info</string>
      </property>
      <layout class="QGridLayout" name="gridLayout_3">
-      <item row="5" column="3">
-       <widget class="TextBox" name="textBoxInitialAdvances">
-        <property name="text">
-         <string notr="true">0</string>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="1">
+      <item row="0" column="0">
        <widget class="QLabel" name="labelLead">
         <property name="text">
          <string>Lead</string>
         </property>
        </widget>
       </item>
-      <item row="2" column="3">
+      <item row="0" column="1">
        <widget class="ComboMenu" name="comboMenuLead"/>
       </item>
-      <item row="4" column="1">
-       <widget class="QLabel" name="labelSeed1">
-        <property name="text">
-         <string>Seed 1</string>
-        </property>
-       </widget>
-      </item>
-      <item row="4" column="3">
-       <widget class="TextBox" name="textBoxSeed1"/>
-      </item>
-      <item row="6" column="3">
-       <widget class="TextBox" name="textBoxMaxAdvances">
-        <property name="text">
-         <string notr="true">100000</string>
-        </property>
-       </widget>
-      </item>
-      <item row="10" column="1" colspan="3">
-       <widget class="QPushButton" name="pushButtonGenerate">
-        <property name="text">
-         <string>Generate</string>
-        </property>
-       </widget>
-      </item>
-      <item row="3" column="1">
+      <item row="1" column="0">
        <widget class="QLabel" name="labelSeed0">
         <property name="text">
          <string>Seed 0</string>
         </property>
        </widget>
       </item>
-      <item row="5" column="1">
+      <item row="1" column="1">
+       <widget class="TextBox" name="textBoxSeed0"/>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="labelSeed1">
+        <property name="text">
+         <string>Seed 1</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="TextBox" name="textBoxSeed1"/>
+      </item>
+      <item row="3" column="0">
        <widget class="QLabel" name="labelInitialAdvances">
         <property name="text">
          <string>Initial Advances</string>
         </property>
        </widget>
       </item>
-      <item row="3" column="3">
-       <widget class="TextBox" name="textBoxSeed0"/>
+      <item row="3" column="1">
+       <widget class="TextBox" name="textBoxInitialAdvances">
+        <property name="text">
+         <string notr="true">0</string>
+        </property>
+       </widget>
       </item>
-      <item row="6" column="1">
+      <item row="4" column="0">
        <widget class="QLabel" name="labelMaxAdvances">
         <property name="text">
          <string>Max Advances</string>
         </property>
        </widget>
       </item>
-      <item row="7" column="1">
+      <item row="4" column="1">
+       <widget class="TextBox" name="textBoxMaxAdvances">
+        <property name="text">
+         <string notr="true">100000</string>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="0">
        <widget class="QLabel" name="labelDelay">
         <property name="text">
          <string>Delay</string>
         </property>
        </widget>
       </item>
-      <item row="7" column="3">
+      <item row="5" column="1">
        <widget class="TextBox" name="textBoxDelay"/>
+      </item>
+      <item row="6" column="0" colspan="2">
+       <widget class="QPushButton" name="pushButtonGenerate">
+        <property name="text">
+         <string>Generate</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="2" column="0" colspan="3">
+    <widget class="TableView" name="tableView"/>
+   </item>
+   <item row="1" column="2">
+    <widget class="QGroupBox" name="groupBoxFilters">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+       <horstretch>1</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="title">
+      <string>Filters</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout">
+      <item row="0" column="0" rowspan="2">
+       <widget class="Filter" name="filter" native="true"/>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="0" column="0" colspan="3">
+    <widget class="QGroupBox" name="groupBoxProfile">
+     <property name="title">
+      <string>Profile</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_4">
+      <item row="0" column="0">
+       <widget class="QLabel" name="labelProfile">
+        <property name="text">
+         <string>Profile</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QComboBox" name="comboBoxProfiles"/>
+      </item>
+      <item row="1" column="1">
+       <widget class="QPushButton" name="pushButtonProfileManager">
+        <property name="text">
+         <string>Manager</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="2">
+       <widget class="QLabel" name="labelProfileTID">
+        <property name="text">
+         <string>TID</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="3">
+       <widget class="QLabel" name="labelProfileTIDValue"/>
+      </item>
+      <item row="1" column="2">
+       <widget class="QLabel" name="labelProfileSID">
+        <property name="text">
+         <string>SID</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="3">
+       <widget class="QLabel" name="labelProfileSIDValue"/>
+      </item>
+      <item row="0" column="4" rowspan="2">
+       <widget class="Line" name="line">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="6">
+       <widget class="QLabel" name="labelProfileGame">
+        <property name="text">
+         <string>Game</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="7">
+       <widget class="QLabel" name="labelProfileGameValue"/>
       </item>
      </layout>
     </widget>
@@ -103,7 +187,7 @@
      <property name="title">
       <string>Settings</string>
      </property>
-     <layout class="QGridLayout" name="gridLayout_6">
+     <layout class="QGridLayout" name="gridLayout_2">
       <item row="0" column="0">
        <widget class="QLabel" name="labelEncounter">
         <property name="text">
@@ -111,7 +195,7 @@
         </property>
        </widget>
       </item>
-      <item row="0" column="1">
+      <item row="0" column="1" colspan="2">
        <widget class="ComboBox" name="comboBoxEncounter">
         <item>
          <property name="text">
@@ -152,7 +236,7 @@
         </property>
        </widget>
       </item>
-      <item row="1" column="1">
+      <item row="1" column="1" colspan="2">
        <widget class="ComboBox" name="comboBoxLocation"/>
       </item>
       <item row="2" column="0">
@@ -162,7 +246,7 @@
         </property>
        </widget>
       </item>
-      <item row="2" column="1">
+      <item row="2" column="1" colspan="2">
        <widget class="QComboBox" name="comboBoxTime">
         <item>
          <property name="text">
@@ -188,40 +272,10 @@
         </property>
        </widget>
       </item>
-      <item row="3" column="1">
+      <item row="3" column="1" colspan="2">
        <widget class="ComboBox" name="comboBoxPokemon"/>
       </item>
-      <item row="6" column="0" colspan="2">
-       <layout class="QGridLayout" name="gridLayout_2">
-        <item row="0" column="0">
-         <widget class="QCheckBox" name="checkBoxReplacement">
-          <property name="text">
-           <string>Replacement</string>
-          </property>
-          <attribute name="buttonGroup">
-           <string notr="true">buttonGroup</string>
-          </attribute>
-         </widget>
-        </item>
-        <item row="0" column="1">
-         <widget class="ComboBox" name="comboBoxReplacement0"/>
-        </item>
-        <item row="0" column="2">
-         <widget class="ComboBox" name="comboBoxReplacement1"/>
-        </item>
-       </layout>
-      </item>
-      <item row="5" column="0" colspan="2">
-       <widget class="QCheckBox" name="checkBoxSwarm">
-        <property name="text">
-         <string>Swarm</string>
-        </property>
-        <attribute name="buttonGroup">
-         <string notr="true">buttonGroup</string>
-        </attribute>
-       </widget>
-      </item>
-      <item row="4" column="0" colspan="2">
+      <item row="4" column="0">
        <widget class="QCheckBox" name="checkBoxRadar">
         <property name="text">
          <string>Radar</string>
@@ -231,89 +285,31 @@
         </attribute>
        </widget>
       </item>
-     </layout>
-    </widget>
-   </item>
-   <item row="1" column="2">
-    <widget class="QGroupBox" name="groupBoxFilters">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-       <horstretch>1</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="title">
-      <string>Filters</string>
-     </property>
-     <layout class="QGridLayout" name="gridLayout">
-      <item row="0" column="0" rowspan="2">
-       <widget class="Filter" name="filter" native="true"/>
-      </item>
-     </layout>
-    </widget>
-   </item>
-   <item row="2" column="0" colspan="3">
-    <widget class="TableView" name="tableView"/>
-   </item>
-   <item row="0" column="0" colspan="3">
-    <widget class="QGroupBox" name="groupBoxProfile">
-     <property name="title">
-      <string>Profile</string>
-     </property>
-     <layout class="QGridLayout" name="gridLayout_4">
-      <item row="0" column="3">
-       <widget class="QLabel" name="labelProfileTIDValue"/>
-      </item>
-      <item row="0" column="2">
-       <widget class="QLabel" name="labelProfileTID">
+      <item row="5" column="0">
+       <widget class="QCheckBox" name="checkBoxSwarm">
         <property name="text">
-         <string>TID</string>
+         <string>Swarm</string>
         </property>
+        <attribute name="buttonGroup">
+         <string notr="true">buttonGroup</string>
+        </attribute>
        </widget>
       </item>
-      <item row="0" column="6">
-       <widget class="QLabel" name="labelProfileGame">
+      <item row="6" column="0">
+       <widget class="QCheckBox" name="checkBoxReplacement">
         <property name="text">
-         <string>Game</string>
+         <string>Replacement</string>
         </property>
+        <attribute name="buttonGroup">
+         <string notr="true">buttonGroup</string>
+        </attribute>
        </widget>
       </item>
-      <item row="1" column="1">
-       <widget class="QPushButton" name="pushButtonProfileManager">
-        <property name="text">
-         <string>Manager</string>
-        </property>
-       </widget>
+      <item row="6" column="1">
+       <widget class="ComboBox" name="comboBoxReplacement0"/>
       </item>
-      <item row="1" column="3">
-       <widget class="QLabel" name="labelProfileSIDValue"/>
-      </item>
-      <item row="0" column="4" rowspan="2">
-       <widget class="Line" name="line">
-        <property name="orientation">
-         <enum>Qt::Vertical</enum>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="0">
-       <widget class="QLabel" name="labelProfile">
-        <property name="text">
-         <string>Profile</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="7">
-       <widget class="QLabel" name="labelProfileGameValue"/>
-      </item>
-      <item row="0" column="1">
-       <widget class="QComboBox" name="comboBoxProfiles"/>
-      </item>
-      <item row="1" column="2">
-       <widget class="QLabel" name="labelProfileSID">
-        <property name="text">
-         <string>SID</string>
-        </property>
-       </widget>
+      <item row="6" column="2">
+       <widget class="ComboBox" name="comboBoxReplacement1"/>
       </item>
      </layout>
     </widget>

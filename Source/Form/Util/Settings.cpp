@@ -22,6 +22,7 @@
 #include <Core/Parents/ProfileLoader.hpp>
 #include <QApplication>
 #include <QFileDialog>
+#include <QHeaderView>
 #include <QMessageBox>
 #include <QProcess>
 #include <QSettings>
@@ -49,6 +50,10 @@ Settings::Settings(QWidget *parent) : QWidget(parent), ui(new Ui::Settings)
         }
     }
 
+    // Profiles
+    QString profile = setting.value("profiles").toString();
+    ui->lineEditProfiles->setText(profile);
+
     // Style
     QString style = setting.value("style").toString();
     QStringList styles = { "dark", "light" };
@@ -59,6 +64,19 @@ Settings::Settings(QWidget *parent) : QWidget(parent), ui(new Ui::Settings)
         if (style == sty)
         {
             ui->comboBoxStyle->setCurrentIndex(i);
+        }
+    }
+
+    // Table header size
+    QHeaderView::ResizeMode size = setting.value("headerSize").value<QHeaderView::ResizeMode>();
+    std::array<QHeaderView::ResizeMode, 2> sizes = { QHeaderView::ResizeToContents, QHeaderView::Stretch };
+    for (int i = 0; i < sizes.size(); i++)
+    {
+        QHeaderView::ResizeMode s = sizes[i];
+        ui->comboBoxTableHeaderSize->setItemData(i, s);
+        if (size == s)
+        {
+            ui->comboBoxTableHeaderSize->setCurrentIndex(i);
         }
     }
 
@@ -73,20 +91,13 @@ Settings::Settings(QWidget *parent) : QWidget(parent), ui(new Ui::Settings)
         }
     }
 
-    // Profiles
-    QString profile = setting.value("profiles").toString();
-    ui->lineEditProfiles->setText(profile);
-
-    // IV Bin
-    ui->lineEditIVBin->setText(setting.value("ivs", "").toString());
-
     setting.endGroup();
 
     connect(ui->comboBoxLanguage, &QComboBox::currentIndexChanged, this, &Settings::languageIndexChanged);
-    connect(ui->comboBoxStyle, &QComboBox::currentIndexChanged, this, &Settings::styleIndexChanged);
-    connect(ui->comboBoxThreads, &QComboBox::currentIndexChanged, this, &Settings::threadsIndexChanged);
     connect(ui->pushButtonProfile, &QPushButton::clicked, this, &Settings::changeProfiles);
-    connect(ui->pushButtonIVBin, &QPushButton::clicked, this, &Settings::changeIVs);
+    connect(ui->comboBoxStyle, &QComboBox::currentIndexChanged, this, &Settings::styleIndexChanged);
+    connect(ui->comboBoxTableHeaderSize, &QComboBox::currentIndexChanged, this, &Settings::tableHeaderSizeIndexChanged);
+    connect(ui->comboBoxThreads, &QComboBox::currentIndexChanged, this, &Settings::threadsIndexChanged);
 
     if (setting.contains("settingsForm/geometry"))
     {
@@ -100,34 +111,6 @@ Settings::~Settings()
     setting.setValue("settingsForm/geometry", this->saveGeometry());
 
     delete ui;
-}
-
-void Settings::changeIVs()
-{
-    QString fileName = QFileDialog::getOpenFileName(this, "Select the IV bin file", QDir::currentPath(), "bin (*.bin)");
-    if (!fileName.isEmpty())
-    {
-        QFile f(fileName);
-        if (f.open(QIODevice::ReadOnly))
-        {
-            if (qChecksum(f.readAll()) != 0x4bfa)
-            {
-                QMessageBox msg(QMessageBox::Information, tr("IV bin"), tr("Invalid IV bin file was provided"));
-                msg.exec();
-                return;
-            }
-
-            ui->lineEditIVBin->setText(fileName);
-
-            QSettings setting;
-            setting.setValue("settings/ivs", fileName);
-        }
-        else
-        {
-            QMessageBox msg(QMessageBox::Information, tr("IV bin"), tr("There was a problem opening the file"));
-            msg.exec();
-        }
-    }
 }
 
 void Settings::changeProfiles()
@@ -197,6 +180,15 @@ void Settings::styleIndexChanged(int index)
                 QApplication::quit();
             }
         }
+    }
+}
+
+void Settings::tableHeaderSizeIndexChanged(int index)
+{
+    if (index >= 0)
+    {
+        QSettings setting;
+        setting.setValue("settings/headerSize", ui->comboBoxTableHeaderSize->currentData());
     }
 }
 

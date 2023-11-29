@@ -22,6 +22,7 @@
 #include <Form/MainWindow.hpp>
 #include <QApplication>
 #include <QFile>
+#include <QHeaderView>
 #include <QSettings>
 #include <QStandardPaths>
 #include <QThread>
@@ -57,6 +58,11 @@ void validateSettings(QSettings &setting)
         setting.setValue("settings/locale", "en");
     }
 
+    if (!setting.contains("settings/headerSize"))
+    {
+        setting.setValue("settings/headerSize", QHeaderView::ResizeToContents);
+    }
+
     if (!setting.contains("settings/threads") || (setting.value("settings/threads").toInt() > QThread::idealThreadCount()))
     {
         setting.setValue("settings/threads", QThread::idealThreadCount());
@@ -77,6 +83,8 @@ int main(int argc, char *argv[])
     a.setApplicationName("PokeFinder");
     a.setOrganizationName("PokeFinder Team");
 
+    Q_INIT_RESOURCE(darkstyle);
+    Q_INIT_RESOURCE(lightstyle);
     Q_INIT_RESOURCE(resources);
 
     QSettings setting;

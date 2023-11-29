@@ -51,11 +51,6 @@ private:
 
 private slots:
     /**
-     * @brief Handles updating the path to the Gen5 IV bin file
-     */
-    void changeIVs();
-
-    /**
      * @brief Handles updating the path to the profiles file
      */
     void changeProfiles();
@@ -73,6 +68,13 @@ private slots:
      * @param index Style index
      */
     void styleIndexChanged(int index);
+
+    /**
+     * @brief Updates the saved table header size settings
+     *
+     * @param index Table header size index
+     */
+    void tableHeaderSizeIndexChanged(int index);
 
     /**
      * @brief Updates the saved thread settings

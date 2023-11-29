@@ -126,14 +126,13 @@ void Static3::generate()
     u32 maxAdvances = ui->textBoxGeneratorMaxAdvances->getUInt();
     u32 delay = ui->textBoxGeneratorDelay->getUInt();
     auto method = ui->comboBoxGeneratorMethod->getEnum<Method>();
-
-    StateFilter filter = ui->filterGenerator->getFilter<StateFilter>();
-    StaticGenerator3 generator(initialAdvances, maxAdvances, delay, method, *currentProfile, filter);
-
     const StaticTemplate *staticTemplate
         = Encounters3::getStaticEncounter(ui->comboBoxGeneratorCategory->currentIndex(), ui->comboBoxGeneratorPokemon->getCurrentInt());
 
-    auto states = generator.generate(seed, staticTemplate);
+    StateFilter filter = ui->filterGenerator->getFilter<StateFilter>();
+    StaticGenerator3 generator(initialAdvances, maxAdvances, delay, method, *staticTemplate, *currentProfile, filter);
+
+    auto states = generator.generate(seed);
     generatorModel->addItems(states);
 }
 

@@ -36,6 +36,7 @@ ProfileEditor4::ProfileEditor4(QWidget *parent) : QDialog(parent), ui(new Ui::Pr
         { toInt(Game::Diamond), toInt(Game::Pearl), toInt(Game::Platinum), toInt(Game::HeartGold), toInt(Game::SoulSilver) });
 
     connect(ui->pushButtonOkay, &QPushButton::clicked, this, &ProfileEditor4::okay);
+    connect(ui->pushButtonCancel, &QPushButton::clicked, this, &ProfileEditor4::reject);
 
     QSettings setting;
     if (setting.contains("profileEditor4/geometry"))

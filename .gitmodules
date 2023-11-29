@@ -1,8 +1,8 @@
 [submodule "External/bzip2"]
-	path = External/bzip2
+	path = Source/Core/External/bzip2
 	url = https://gitlab.com/bzip2/bzip2
 [submodule "External/QDarkStyleSheet"]
-	path = External/QDarkStyleSheet
+	path = Source/Form/External/QDarkStyleSheet
 	url = https://github.com/ColinDuquesnoy/QDarkStyleSheet
 [submodule "Source/Core/Resources/EncounterTables"]
 	path = Source/Core/Resources/EncounterTables

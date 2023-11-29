@@ -22,14 +22,13 @@
 
 #include <Core/Gen8/Filters/UndergroundFilter.hpp>
 #include <Core/Gen8/Profile8.hpp>
-#include <Core/Parents/Generators/StaticGenerator.hpp>
-
-class UndergroundArea;
+#include <Core/Gen8/UndergroundArea.hpp>
+#include <Core/Parents/Generators/WildGenerator.hpp>
 
 /**
  * @brief Underground encounter generator for Gen8
  */
-class UndergroundGenerator : public StaticGenerator<Profile8, UndergroundStateFilter>
+class UndergroundGenerator : public WildGenerator<UndergroundArea, Profile8, UndergroundStateFilter>
 {
 public:
     /**
@@ -41,22 +40,22 @@ public:
      * @param lead Encounter lead
      * @param diglett Whether diglett bonus is activiated
      * @param levelFlag Determines which level range to pull from
+     * @param area Wild pokemon info
      * @param profile Profile Information
      * @param filter State filter
      */
-    UndergroundGenerator(u32 initialAdvances, u32 maxAdvances, u32 delay, Lead lead, bool diglett, u8 levelFlag, const Profile8 &profile,
-                         const UndergroundStateFilter &filter);
+    UndergroundGenerator(u32 initialAdvances, u32 maxAdvances, u32 delay, Lead lead, bool diglett, u8 levelFlag,
+                         const UndergroundArea &area, const Profile8 &profile, const UndergroundStateFilter &filter);
 
     /**
      * @brief Generates states for the \p encounterArea
      *
      * @param seed0 Upper half of PRNG state
      * @param seed1 Lower half of PRNG state
-     * @param encounterArea Wild pokemon info
      *
      * @return Vector of computed states
      */
-    std::vector<UndergroundState> generate(u64 seed0, u64 seed1, const UndergroundArea &encounterArea) const;
+    std::vector<UndergroundState> generate(u64 seed0, u64 seed1) const;
 
 private:
     bool diglett;

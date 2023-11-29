@@ -83,9 +83,9 @@ void StaticGenerator8Test::generate()
 
     const StaticTemplate *staticTemplate = Encounters8::getStaticEncounter(category, pokemon);
     StateFilter filter(255, 255, 255, false, min, max, natures, powers);
-    StaticGenerator8 generator(0, 9, 0, lead, profile, filter);
+    StaticGenerator8 generator(0, 9, 0, lead, *staticTemplate, profile, filter);
 
-    auto states = generator.generate(seed0, seed1, staticTemplate);
+    auto states = generator.generate(seed0, seed1);
     QCOMPARE(states.size(), j.size());
 
     for (size_t i = 0; i < states.size(); i++)
@@ -137,9 +137,9 @@ void StaticGenerator8Test::generateRoamer()
 
     const StaticTemplate *staticTemplate = Encounters8::getStaticEncounter(category, pokemon);
     StateFilter filter(255, 255, 255, false, min, max, natures, powers);
-    StaticGenerator8 generator(0, 9, 0, Lead::None, profile, filter);
+    StaticGenerator8 generator(0, 9, 0, Lead::None, *staticTemplate, profile, filter);
 
-    auto states = generator.generateRoamer(seed0, seed1, staticTemplate);
+    auto states = generator.generateRoamer(seed0, seed1);
     QCOMPARE(states.size(), j.size());
 
     for (size_t i = 0; i < states.size(); i++)

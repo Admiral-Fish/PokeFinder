@@ -23,14 +23,14 @@
 #include <Core/Gen3/Profile3.hpp>
 #include <Core/Parents/Filters/StateFilter.hpp>
 #include <Core/Parents/Generators/StaticGenerator.hpp>
+#include <Core/Parents/StaticTemplate.hpp>
 
 class GeneratorState;
-class StaticTemplate;
 
 /**
  * @brief Static encounter generator for Gen3
  */
-class StaticGenerator3 : public StaticGenerator<Profile3, StateFilter>
+class StaticGenerator3 : public StaticGenerator<StaticTemplate, Profile3, StateFilter>
 {
 public:
     /**
@@ -40,20 +40,21 @@ public:
      * @param maxAdvances Maximum number of advances
      * @param delay Number of advances to offset
      * @param method Encounter method
+     * @param staticTemplate Pokemon template
      * @param profile Profile Information
      * @param filter State filter
      */
-    StaticGenerator3(u32 initialAdvances, u32 maxAdvances, u32 delay, Method method, const Profile3 &profile, const StateFilter &filter);
+    StaticGenerator3(u32 initialAdvances, u32 maxAdvances, u32 delay, Method method, const StaticTemplate &staticTemplate,
+                     const Profile3 &profile, const StateFilter &filter);
 
     /**
-     * @brief Generates states for the \p staticTemplate
+     * @brief Generates states
      *
      * @param seed Starting PRNG state
-     * @param staticTemplate Pokemon template
      *
      * @return Vector of computed states
      */
-    std::vector<GeneratorState> generate(u32 seed, const StaticTemplate *staticTemplate) const;
+    std::vector<GeneratorState> generate(u32 seed) const;
 };
 
 #endif // STATICGENERATOR3_HPP
