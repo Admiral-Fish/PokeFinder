@@ -20,6 +20,10 @@
 #include "IVFilter.hpp"
 #include "ui_IVFilter.h"
 #include <Form/Util/IVCalculator.hpp>
+#include <QAction>
+#include <QClipboard>
+#include <QMenu>
+#include <QMessageBox>
 #include <QMouseEvent>
 
 IVFilter::IVFilter(QWidget *parent) : QWidget(parent), ui(new Ui::IVFilter)
@@ -45,6 +49,15 @@ IVFilter::IVFilter(QWidget *parent) : QWidget(parent), ui(new Ui::IVFilter)
     ui->labelSpD->installEventFilter(this);
     ui->labelSpe->installEventFilter(this);
 
+    auto *copyAction = new QAction(tr("Copy to clipboard"), this);
+    addAction(copyAction);
+
+    auto *pasteAction = new QAction(tr("Paste from clipboard"), this);
+    addAction(pasteAction);
+
+    connect(copyAction, &QAction::triggered, this, [=] { setIVsToClipBoard(); });
+    connect(pasteAction, &QAction::triggered, this, [=] { setIVsFromClipBoard(); });
+
     connect(ui->checkBoxShowStats, &QCheckBox::stateChanged, this, [=](int state) { emit showStatsChanged(state == Qt::Checked); });
     connect(ui->pushButtonIVCalculator, &QPushButton::clicked, this, &IVFilter::openIVCalculator);
 }
@@ -52,6 +65,11 @@ IVFilter::IVFilter(QWidget *parent) : QWidget(parent), ui(new Ui::IVFilter)
 IVFilter::~IVFilter()
 {
     delete ui;
+}
+
+void IVFilter::contextMenuEvent(QContextMenuEvent *event)
+{
+    QMenu::exec(actions(), event->globalPos(), nullptr, this);
 }
 
 std::array<u8, 6> IVFilter::getLower() const
@@ -107,6 +125,75 @@ bool IVFilter::eventFilter(QObject *object, QEvent *event)
         }
     }
     return false;
+}
+
+void IVFilter::setIVsToClipBoard()
+{
+    QString ivs = QString("%1/%2/%3/%4/%5/%6-%7/%8/%9/%10/%11/%12")
+                      .arg(ui->spinBoxHPMin->value(), 2, 10, QChar('0'))
+                      .arg(ui->spinBoxAtkMin->value(), 2, 10, QChar('0'))
+                      .arg(ui->spinBoxDefMin->value(), 2, 10, QChar('0'))
+                      .arg(ui->spinBoxSpAMin->value(), 2, 10, QChar('0'))
+                      .arg(ui->spinBoxSpDMin->value(), 2, 10, QChar('0'))
+                      .arg(ui->spinBoxSpeMin->value(), 2, 10, QChar('0'))
+                      .arg(ui->spinBoxHPMax->value(), 2, 10, QChar('0'))
+                      .arg(ui->spinBoxAtkMax->value(), 2, 10, QChar('0'))
+                      .arg(ui->spinBoxDefMax->value(), 2, 10, QChar('0'))
+                      .arg(ui->spinBoxSpAMax->value(), 2, 10, QChar('0'))
+                      .arg(ui->spinBoxSpDMax->value(), 2, 10, QChar('0'))
+                      .arg(ui->spinBoxSpeMax->value(), 2, 10, QChar('0'));
+
+    QApplication::clipboard()->setText(ivs);
+}
+
+void IVFilter::setIVsFromClipBoard()
+{
+    QString text = QApplication::clipboard()->text();
+    if (text.length() != 35)
+    {
+        QMessageBox box(QMessageBox::Warning, tr("Invalid Clipboard Length"),
+                        tr("Pasting IVs expects a string that is 35 characters in length."));
+        box.exec();
+        return;
+    }
+
+    QStringList halves = text.split("-");
+    if (halves.length() != 2)
+    {
+        QMessageBox box(QMessageBox::Warning, tr("Invalid Format"), tr("The clipboard text did not match the expected format."));
+        box.exec();
+        return;
+    }
+
+    QStringList minimums = halves[0].split("/");
+    if (minimums.length() != 6)
+    {
+        QMessageBox box(QMessageBox::Warning, tr("Minimum IVs"), tr("The clipboard text did not contain exactly 6 minimum IVs."));
+        box.exec();
+        return;
+    }
+
+    QStringList maximums = halves[1].split("/");
+    if (maximums.length() != 6)
+    {
+        QMessageBox box(QMessageBox::Warning, tr("Maximum IVs"), tr("The clipboard text did not contain exactly 6 maximum IVs."));
+        box.exec();
+        return;
+    }
+
+    ui->spinBoxHPMin->setValue(minimums[0].toInt());
+    ui->spinBoxAtkMin->setValue(minimums[1].toInt());
+    ui->spinBoxDefMin->setValue(minimums[2].toInt());
+    ui->spinBoxSpAMin->setValue(minimums[3].toInt());
+    ui->spinBoxSpDMin->setValue(minimums[4].toInt());
+    ui->spinBoxSpeMin->setValue(minimums[5].toInt());
+
+    ui->spinBoxHPMax->setValue(maximums[0].toInt());
+    ui->spinBoxAtkMax->setValue(maximums[1].toInt());
+    ui->spinBoxDefMax->setValue(maximums[2].toInt());
+    ui->spinBoxSpAMax->setValue(maximums[3].toInt());
+    ui->spinBoxSpDMax->setValue(maximums[4].toInt());
+    ui->spinBoxSpeMax->setValue(maximums[5].toInt());
 }
 
 void IVFilter::changeCompare(QSpinBox *minBox, QSpinBox *maxBox, int type)

@@ -22,6 +22,11 @@
 #include <Core/Enum/Game.hpp>
 #include <Core/Parents/Daycare.hpp>
 #include <Core/Util/Translator.hpp>
+#include <QAction>
+#include <QClipboard>
+#include <QContextMenuEvent>
+#include <QMenu>
+#include <QMessageBox>
 
 constexpr u16 allowed[]
     = { 1,   4,   7,   10,  13,  16,  19,  21,  23,  27,  29,  32,  37,  41,  43,  46,  48,  50,  52,  54,  56,  58,  60,  63,  66,  69,
@@ -71,6 +76,15 @@ EggSettings::EggSettings(QWidget *parent) : QWidget(parent), ui(new Ui::EggSetti
 
     ui->comboBoxEggSpecie->enableAutoComplete();
 
+    auto *copyAction = new QAction(tr("Copy to clipboard"), this);
+    addAction(copyAction);
+
+    auto *pasteAction = new QAction(tr("Paste from clipboard"), this);
+    addAction(pasteAction);
+
+    connect(copyAction, &QAction::triggered, this, [=] { setIVsToClipBoard(); });
+    connect(pasteAction, &QAction::triggered, this, [=] { setIVsFromClipBoard(); });
+
     connect(ui->checkBoxShowInheritance, &QCheckBox::stateChanged, this,
             [=](int state) { emit showInheritanceChanged(state == Qt::Checked); });
 }
@@ -78,6 +92,11 @@ EggSettings::EggSettings(QWidget *parent) : QWidget(parent), ui(new Ui::EggSetti
 EggSettings::~EggSettings()
 {
     delete ui;
+}
+
+void EggSettings::contextMenuEvent(QContextMenuEvent *event)
+{
+    QMenu::exec(actions(), event->globalPos(), nullptr, this);
 }
 
 bool EggSettings::compatibleParents() const
@@ -263,4 +282,73 @@ void EggSettings::setup(Game game)
         }
         ui->comboBoxEggSpecie->addItem(QString::fromStdString(Translator::getSpecie(i)), i);
     }
+}
+
+void EggSettings::setIVsToClipBoard()
+{
+    QString ivs = QString("%1/%2/%3/%4/%5/%6-%7/%8/%9/%10/%11/%12")
+                      .arg(ui->spinBoxParentAHP->value(), 2, 10, QChar('0'))
+                      .arg(ui->spinBoxParentAAtk->value(), 2, 10, QChar('0'))
+                      .arg(ui->spinBoxParentADef->value(), 2, 10, QChar('0'))
+                      .arg(ui->spinBoxParentASpA->value(), 2, 10, QChar('0'))
+                      .arg(ui->spinBoxParentASpD->value(), 2, 10, QChar('0'))
+                      .arg(ui->spinBoxParentASpe->value(), 2, 10, QChar('0'))
+                      .arg(ui->spinBoxParentBHP->value(), 2, 10, QChar('0'))
+                      .arg(ui->spinBoxParentBAtk->value(), 2, 10, QChar('0'))
+                      .arg(ui->spinBoxParentBDef->value(), 2, 10, QChar('0'))
+                      .arg(ui->spinBoxParentBSpA->value(), 2, 10, QChar('0'))
+                      .arg(ui->spinBoxParentBSpD->value(), 2, 10, QChar('0'))
+                      .arg(ui->spinBoxParentBSpe->value(), 2, 10, QChar('0'));
+
+    QApplication::clipboard()->setText(ivs);
+}
+
+void EggSettings::setIVsFromClipBoard()
+{
+    QString text = QApplication::clipboard()->text();
+    if (text.length() != 35)
+    {
+        QMessageBox box(QMessageBox::Warning, tr("Invalid Clipboard Length"),
+                        tr("Pasting IVs expects a string that is 35 characters in length."));
+        box.exec();
+        return;
+    }
+
+    QStringList halves = text.split("-");
+    if (halves.length() != 2)
+    {
+        QMessageBox box(QMessageBox::Warning, tr("Invalid Format"), tr("The clipboard text did not match the expected format."));
+        box.exec();
+        return;
+    }
+
+    QStringList parentA = halves[0].split("/");
+    if (parentA.length() != 6)
+    {
+        QMessageBox box(QMessageBox::Warning, tr("Parent A IVs"), tr("The clipboard text did not contain exactly 6 Parent A IVs."));
+        box.exec();
+        return;
+    }
+
+    QStringList parentB = halves[1].split("/");
+    if (parentB.length() != 6)
+    {
+        QMessageBox box(QMessageBox::Warning, tr("Parent B IVs"), tr("The clipboard text did not contain exactly 6 Parent B IVs."));
+        box.exec();
+        return;
+    }
+
+    ui->spinBoxParentAHP->setValue(parentA[0].toInt());
+    ui->spinBoxParentAAtk->setValue(parentA[1].toInt());
+    ui->spinBoxParentADef->setValue(parentA[2].toInt());
+    ui->spinBoxParentASpA->setValue(parentA[3].toInt());
+    ui->spinBoxParentASpD->setValue(parentA[4].toInt());
+    ui->spinBoxParentASpe->setValue(parentA[5].toInt());
+
+    ui->spinBoxParentBHP->setValue(parentB[0].toInt());
+    ui->spinBoxParentBAtk->setValue(parentB[1].toInt());
+    ui->spinBoxParentBDef->setValue(parentB[2].toInt());
+    ui->spinBoxParentBSpA->setValue(parentB[3].toInt());
+    ui->spinBoxParentBSpD->setValue(parentB[4].toInt());
+    ui->spinBoxParentBSpe->setValue(parentB[5].toInt());
 }

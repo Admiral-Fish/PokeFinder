@@ -56,6 +56,13 @@ public:
     ~IVFilter() override;
 
     /**
+     * @brief Handles when the context menu is requested.
+     *
+     * @param event Contains context menu event information
+     */
+    void contextMenuEvent(QContextMenuEvent *event) override;
+
+    /**
      * @brief Gets lower bound IVs to filter by
      *
      * @return Array of minimum IVs
@@ -83,6 +90,16 @@ protected:
 
 private:
     Ui::IVFilter *ui;
+
+    /**
+     * @brief Sets the current IVs to the clipboard
+     */
+    void setIVsToClipBoard();
+
+    /**
+     * @brief Sets the current IVs from the clipboard
+     */
+    void setIVsFromClipBoard();
 
 private slots:
     /**
