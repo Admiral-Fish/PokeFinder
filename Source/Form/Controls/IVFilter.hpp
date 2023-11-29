@@ -91,16 +91,6 @@ protected:
 private:
     Ui::IVFilter *ui;
 
-    /**
-     * @brief Sets the current IVs to the clipboard
-     */
-    void setIVsToClipBoard();
-
-    /**
-     * @brief Sets the current IVs from the clipboard
-     */
-    void setIVsFromClipBoard();
-
 private slots:
     /**
      * @brief Updates min/max values based on control keys selected
@@ -122,6 +112,16 @@ private slots:
      * @param ivs Possible IV ranges
      */
     void updateIVs(const std::array<std::vector<u8>, 6> &ivs);
+
+    /**
+     * @brief Sets the current IVs to the clipboard
+     */
+    void setIVsToClipBoard();
+
+    /**
+     * @brief Sets the current IVs from the clipboard
+     */
+    void setIVsFromClipBoard();
 };
 
 #endif // IVFILTER_HPP

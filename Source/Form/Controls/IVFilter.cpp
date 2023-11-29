@@ -55,8 +55,8 @@ IVFilter::IVFilter(QWidget *parent) : QWidget(parent), ui(new Ui::IVFilter)
     auto *pasteAction = new QAction(tr("Paste from clipboard"), this);
     addAction(pasteAction);
 
-    connect(copyAction, &QAction::triggered, this, [=] { setIVsToClipBoard(); });
-    connect(pasteAction, &QAction::triggered, this, [=] { setIVsFromClipBoard(); });
+    connect(copyAction, &QAction::triggered, this, &IVFilter::setIVsToClipBoard);
+    connect(pasteAction, &QAction::triggered, this, &IVFilter::setIVsFromClipBoard);
 
     connect(ui->checkBoxShowStats, &QCheckBox::stateChanged, this, [=](int state) { emit showStatsChanged(state == Qt::Checked); });
     connect(ui->pushButtonIVCalculator, &QPushButton::clicked, this, &IVFilter::openIVCalculator);

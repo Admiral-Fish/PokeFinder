@@ -82,8 +82,8 @@ EggSettings::EggSettings(QWidget *parent) : QWidget(parent), ui(new Ui::EggSetti
     auto *pasteAction = new QAction(tr("Paste from clipboard"), this);
     addAction(pasteAction);
 
-    connect(copyAction, &QAction::triggered, this, [=] { setIVsToClipBoard(); });
-    connect(pasteAction, &QAction::triggered, this, [=] { setIVsFromClipBoard(); });
+    connect(copyAction, &QAction::triggered, this, &EggSettings::setIVsToClipBoard);
+    connect(pasteAction, &QAction::triggered, this, &EggSettings::setIVsFromClipBoard);
 
     connect(ui->checkBoxShowInheritance, &QCheckBox::stateChanged, this,
             [=](int state) { emit showInheritanceChanged(state == Qt::Checked); });

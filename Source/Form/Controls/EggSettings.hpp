@@ -96,6 +96,7 @@ public:
 private:
     Ui::EggSettings *ui;
 
+private slots:
     /**
      * @brief Sets the current IVs to the clipboard
      */
