@@ -86,6 +86,8 @@ public:
      */
     void setup(Game game);
 
+    void copyFrom(const EggSettings *other);
+
 private:
     Ui::EggSettings *ui;
 };

@@ -173,6 +173,8 @@ public:
      */
     void toggleEncounterSlots(const std::vector<bool> &encounterSlots) const;
 
+    void copyFrom(const Filter *other);
+
 private:
     Ui::Filter *ui;
 };

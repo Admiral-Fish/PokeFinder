@@ -70,6 +70,26 @@ std::array<u8, 6> IVFilter::getUpper() const
     return high;
 }
 
+void IVFilter::setLower(const std::array<u8, 6> ivs)
+{
+    ui->spinBoxHPMin->setValue(ivs[0]);
+    ui->spinBoxAtkMin->setValue(ivs[1]);
+    ui->spinBoxDefMin->setValue(ivs[2]);
+    ui->spinBoxSpAMin->setValue(ivs[3]);
+    ui->spinBoxSpDMin->setValue(ivs[4]);
+    ui->spinBoxSpeMin->setValue(ivs[5]);
+}
+
+void IVFilter::setUpper(const std::array<u8, 6> ivs)
+{
+    ui->spinBoxHPMax->setValue(ivs[0]);
+    ui->spinBoxAtkMax->setValue(ivs[1]);
+    ui->spinBoxDefMax->setValue(ivs[2]);
+    ui->spinBoxSpAMax->setValue(ivs[3]);
+    ui->spinBoxSpDMax->setValue(ivs[4]);
+    ui->spinBoxSpeMax->setValue(ivs[5]);
+}
+
 bool IVFilter::eventFilter(QObject *object, QEvent *event)
 {
     if (event->type() == QEvent::MouseButtonPress)

@@ -62,6 +62,9 @@ public:
      */
     void updateProfiles();
 
+protected:
+    void contextMenuEvent(QContextMenuEvent *event) override;
+
 private:
     Ui::Eggs4 *ui;
 
@@ -103,6 +106,16 @@ private slots:
      * @brief Opens seed to time. Provides current game version and seed from the selected tableview row.
      */
     void seedToTime();
+
+    /**
+     * @brief Transfers the current Searcher filters to the Generator.
+     */
+    void transferFiltersToGenerator();
+
+    /**
+     * @brief Transfers the current Searcher settings to the Generator.
+     */
+    void transferSettingsToGenerator();
 };
 
 #endif // EGGS4_HPP

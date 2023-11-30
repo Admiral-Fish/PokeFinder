@@ -21,6 +21,8 @@
 #include "ui_Filter.h"
 #include <Core/Util/Translator.hpp>
 #include <Form/Controls/Controls.hpp>
+#include <QContextMenuEvent>
+#include <QMenu>
 
 Filter::Filter(QWidget *parent) : QWidget(parent), ui(new Ui::Filter)
 {
@@ -163,4 +165,16 @@ void Filter::setEncounterSlots(u8 max) const
 void Filter::toggleEncounterSlots(const std::vector<bool> &encounterSlots) const
 {
     ui->checkListEncounterSlot->setChecks(encounterSlots);
+}
+
+void Filter::copyFrom(const Filter *other)
+{
+    ui->comboBoxAbility->setCurrentIndex(other->ui->comboBoxAbility->currentIndex());
+    ui->checkListEncounterSlot->setChecks(other->ui->checkListEncounterSlot->getChecked());
+    ui->comboBoxGender->setCurrentIndex(other->ui->comboBoxGender->currentIndex());
+    ui->checkListHiddenPower->setChecks(other->ui->checkListHiddenPower->getChecked());
+    ui->ivFilter->setLower(other->ui->ivFilter->getLower());
+    ui->ivFilter->setUpper(other->ui->ivFilter->getUpper());
+    ui->checkListNature->setChecks(other->ui->checkListNature->getChecked());
+    ui->comboBoxShiny->setCurrentIndex(other->ui->comboBoxShiny->currentIndex());
 }

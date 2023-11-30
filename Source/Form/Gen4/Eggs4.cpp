@@ -30,6 +30,8 @@
 #include <Form/Gen4/Tools/SeedToTime4.hpp>
 #include <Model/Gen4/EggModel4.hpp>
 #include <QAction>
+#include <QContextMenuEvent>
+#include <QMenu>
 #include <QMessageBox>
 #include <QSettings>
 #include <QThread>
@@ -76,6 +78,14 @@ Eggs4::Eggs4(QWidget *parent) : QWidget(parent), ui(new Ui::Eggs4)
     auto *seedToTime = new QAction(tr("Generate times for seed"), ui->tableViewSearcher);
     connect(seedToTime, &QAction::triggered, this, &Eggs4::seedToTime);
     ui->tableViewSearcher->addAction(seedToTime);
+
+    auto *transferSettings = new QAction(tr("Transfer Settings to Generator"), this);
+    connect(transferSettings, &QAction::triggered, this, &Eggs4::transferSettingsToGenerator);
+    addAction(transferSettings);
+
+    auto *transferFilters = new QAction(tr("Transfer Filters to Generator"), this);
+    connect(transferFilters, &QAction::triggered, this, &Eggs4::transferFiltersToGenerator);
+    addAction(transferFilters);
 
     connect(ui->comboBoxProfiles, &QComboBox::currentIndexChanged, this, &Eggs4::profileIndexChanged);
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Eggs4::generate);
@@ -124,6 +134,14 @@ void Eggs4::updateProfiles()
     if (val < ui->comboBoxProfiles->count())
     {
         ui->comboBoxProfiles->setCurrentIndex(val);
+    }
+}
+
+void Eggs4::contextMenuEvent(QContextMenuEvent *event)
+{
+    if (ui->tabEggSelection->currentIndex() == 1)
+    {
+        QMenu::exec(actions(), event->globalPos(), nullptr, this);
     }
 }
 
@@ -281,4 +299,14 @@ void Eggs4::seedToTime()
 
     auto *time = new SeedToTime4(state.getSeed(), currentProfile->getVersion());
     time->show();
+}
+
+void Eggs4::transferFiltersToGenerator()
+{
+    ui->filterGenerator->copyFrom(ui->filterSearcher);
+}
+
+void Eggs4::transferSettingsToGenerator()
+{
+    ui->eggSettingsGenerator->copyFrom(ui->eggSettingsSearcher);
 }

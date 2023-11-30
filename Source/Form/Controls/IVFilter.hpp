@@ -69,6 +69,20 @@ public:
      */
     std::array<u8, 6> getUpper() const;
 
+    /**
+     * @brief Sets lower bound IVs to filter by
+     *
+     * @param Array of minimum IVs
+     */
+    void setLower(const std::array<u8, 6> ivs);
+
+    /**
+     * @brief Sets upper bound IVs to filter by
+     *
+     * @param Array of maximum IVs
+     */
+    void setUpper(const std::array<u8, 6> ivs);
+
 protected:
     /**
      * @brief Shows the combo box model when clicked
