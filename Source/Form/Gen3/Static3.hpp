@@ -61,6 +61,14 @@ public:
      */
     void updateProfiles();
 
+protected:
+    /**
+     * @brief Handles when the context menu is requested.
+     *
+     * @param event Contains context menu event information
+     */
+    void contextMenuEvent(QContextMenuEvent *event) override;
+
 private:
     Ui::Static3 *ui;
 
@@ -124,6 +132,16 @@ private slots:
      * @brief Opens seed to time.
      */
     void seedToTime();
+
+    /**
+     * @brief Transfers the current Searcher filters to the Generator.
+     */
+    void transferFiltersToGenerator();
+
+    /**
+     * @brief Transfers the current Searcher settings to the Generator.
+     */
+    void transferSettingsToGenerator();
 };
 
 #endif // STATIC3_H

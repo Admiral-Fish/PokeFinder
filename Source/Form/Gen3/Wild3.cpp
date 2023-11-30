@@ -35,6 +35,8 @@
 #include <Form/Gen3/Tools/SeedToTime3.hpp>
 #include <Model/Gen3/WildModel3.hpp>
 #include <QAction>
+#include <QContextMenuEvent>
+#include <QMenu>
 #include <QSettings>
 #include <QThread>
 #include <QTimer>
@@ -90,6 +92,14 @@ Wild3::Wild3(QWidget *parent) : QWidget(parent), ui(new Ui::Wild3)
     connect(seedToTime, &QAction::triggered, this, &Wild3::seedToTime);
     ui->tableViewSearcher->addAction(seedToTime);
 
+    auto *transferSettings = new QAction(tr("Transfer Settings to Generator"), this);
+    connect(transferSettings, &QAction::triggered, this, &Wild3::transferSettingsToGenerator);
+    addAction(transferSettings);
+
+    auto *transferFilters = new QAction(tr("Transfer Filters to Generator"), this);
+    connect(transferFilters, &QAction::triggered, this, &Wild3::transferFiltersToGenerator);
+    addAction(transferFilters);
+
     connect(ui->comboBoxProfiles, &QComboBox::currentIndexChanged, this, &Wild3::profileIndexChanged);
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Wild3::generate);
     connect(ui->pushButtonSearch, &QPushButton::clicked, this, &Wild3::search);
@@ -143,6 +153,14 @@ void Wild3::updateProfiles()
     if (val < ui->comboBoxProfiles->count())
     {
         ui->comboBoxProfiles->setCurrentIndex(val);
+    }
+}
+
+void Wild3::contextMenuEvent(QContextMenuEvent *event)
+{
+    if (ui->tabRNGSelector->currentIndex() == 1)
+    {
+        QMenu::exec(actions(), event->globalPos(), nullptr, this);
     }
 }
 
@@ -414,4 +432,16 @@ void Wild3::seedToTime()
 
     auto *time = new SeedToTime3(state.getSeed());
     time->show();
+}
+
+void Wild3::transferFiltersToGenerator()
+{
+    ui->filterGenerator->copyFrom(ui->filterSearcher);
+}
+
+void Wild3::transferSettingsToGenerator()
+{
+    ui->comboBoxGeneratorEncounter->setCurrentIndex(ui->comboBoxSearcherEncounter->currentIndex());
+    ui->comboBoxGeneratorLocation->setCurrentIndex(ui->comboBoxSearcherLocation->currentIndex());
+    ui->comboBoxGeneratorPokemon->setCurrentIndex(ui->comboBoxSearcherPokemon->currentIndex());
 }

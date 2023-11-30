@@ -32,6 +32,9 @@
 #include <Form/Controls/Controls.hpp>
 #include <Form/Gen3/Profile/ProfileManager3.hpp>
 #include <Model/Gen3/GameCubeModel.hpp>
+#include <QAction>
+#include <QContextMenuEvent>
+#include <QMenu>
 #include <QSettings>
 #include <QThread>
 #include <QTimer>
@@ -57,6 +60,14 @@ GameCube::GameCube(QWidget *parent) : QWidget(parent), ui(new Ui::GameCube)
 
     ui->comboBoxGeneratorPokemon->enableAutoComplete();
     ui->comboBoxSearcherPokemon->enableAutoComplete();
+
+    auto *transferSettings = new QAction(tr("Transfer Settings to Generator"), this);
+    connect(transferSettings, &QAction::triggered, this, &GameCube::transferSettingsToGenerator);
+    addAction(transferSettings);
+
+    auto *transferFilters = new QAction(tr("Transfer Filters to Generator"), this);
+    connect(transferFilters, &QAction::triggered, this, &GameCube::transferFiltersToGenerator);
+    addAction(transferFilters);
 
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &GameCube::generate);
     connect(ui->pushButtonSearch, &QPushButton::clicked, this, &GameCube::search);
@@ -109,6 +120,14 @@ void GameCube::updateProfiles()
     if (val < ui->comboBoxProfiles->count())
     {
         ui->comboBoxProfiles->setCurrentIndex(val);
+    }
+}
+
+void GameCube::contextMenuEvent(QContextMenuEvent *event)
+{
+    if (ui->tabRNGSelector->currentIndex() == 1)
+    {
+        QMenu::exec(actions(), event->globalPos(), nullptr, this);
     }
 }
 
@@ -342,4 +361,16 @@ void GameCube::searcherPokemonIndexChanged(int index)
             ui->checkBoxSearcherFirstShadowUnset->setVisible(false);
         }
     }
+}
+
+void GameCube::transferFiltersToGenerator()
+{
+    ui->filterGenerator->copyFrom(ui->filterSearcher);
+}
+
+void GameCube::transferSettingsToGenerator()
+{
+    ui->comboBoxGeneratorCategory->setCurrentIndex(ui->comboBoxSearcherCategory->currentIndex());
+    ui->comboBoxGeneratorPokemon->setCurrentIndex(ui->comboBoxSearcherPokemon->currentIndex());
+    ui->spinBoxGeneratorLevel->setValue(ui->spinBoxSearcherLevel->value());
 }
