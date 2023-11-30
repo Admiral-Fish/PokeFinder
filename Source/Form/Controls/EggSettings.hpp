@@ -86,6 +86,11 @@ public:
      */
     void setup(Game game);
 
+    /**
+     * @brief Copies the values from another EggSettings
+     *
+     * @param other The EggSettings to copy values from
+     */
     void copyFrom(const EggSettings *other);
 
 private:

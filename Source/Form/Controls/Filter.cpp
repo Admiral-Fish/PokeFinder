@@ -226,8 +226,21 @@ void Filter::copyFrom(const Filter *other)
     ui->checkListEncounterSlot->setChecks(other->ui->checkListEncounterSlot->getChecked());
     ui->comboBoxGender->setCurrentIndex(other->ui->comboBoxGender->currentIndex());
     ui->checkListHiddenPower->setChecks(other->ui->checkListHiddenPower->getChecked());
-    ui->ivFilter->setLower(other->ui->ivFilter->getLower());
-    ui->ivFilter->setUpper(other->ui->ivFilter->getUpper());
+
+    ui->spinBoxHPMin->setValue(other->ui->spinBoxHPMin->value());
+    ui->spinBoxAtkMin->setValue(other->ui->spinBoxAtkMin->value());
+    ui->spinBoxDefMin->setValue(other->ui->spinBoxDefMin->value());
+    ui->spinBoxSpAMin->setValue(other->ui->spinBoxSpAMin->value());
+    ui->spinBoxSpDMin->setValue(other->ui->spinBoxSpDMin->value());
+    ui->spinBoxSpeMin->setValue(other->ui->spinBoxSpeMin->value());
+
+    ui->spinBoxHPMax->setValue(other->ui->spinBoxHPMax->value());
+    ui->spinBoxAtkMax->setValue(other->ui->spinBoxAtkMax->value());
+    ui->spinBoxDefMax->setValue(other->ui->spinBoxDefMax->value());
+    ui->spinBoxSpAMax->setValue(other->ui->spinBoxSpAMax->value());
+    ui->spinBoxSpDMax->setValue(other->ui->spinBoxSpDMax->value());
+    ui->spinBoxSpeMax->setValue(other->ui->spinBoxSpeMax->value());
+
     ui->checkListNature->setChecks(other->ui->checkListNature->getChecked());
     ui->comboBoxShiny->setCurrentIndex(other->ui->comboBoxShiny->currentIndex());
 }
