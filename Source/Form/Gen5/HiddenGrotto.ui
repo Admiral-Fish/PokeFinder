@@ -169,7 +169,7 @@
     </widget>
    </item>
    <item row="1" column="0">
-    <widget class="QTabWidget" name="tabRNGSelector">
+    <widget class="RNGTabWidget" name="tabRNGSelector">
      <widget class="QWidget" name="tabGenerator">
       <attribute name="title">
        <string>Generator</string>
@@ -781,14 +781,20 @@
    <header>Form/Controls/TableView.hpp</header>
   </customwidget>
   <customwidget>
-   <class>DateEdit</class>
-   <extends>QDateEdit</extends>
-   <header>Form/Controls/DateEdit.hpp</header>
+   <class>RNGTabWidget</class>
+   <extends>QTabWidget</extends>
+   <header>Form/Controls/RNGTabWidget.hpp</header>
+   <container>1</container>
   </customwidget>
   <customwidget>
    <class>ComboBox</class>
    <extends>QComboBox</extends>
    <header>Form/Controls/ComboBox.hpp</header>
+  </customwidget>
+  <customwidget>
+   <class>DateEdit</class>
+   <extends>QDateEdit</extends>
+   <header>Form/Controls/DateEdit.hpp</header>
   </customwidget>
   <customwidget>
    <class>CheckList</class>

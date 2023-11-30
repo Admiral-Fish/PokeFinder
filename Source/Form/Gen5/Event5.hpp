@@ -124,6 +124,16 @@ private slots:
      * @brief Reads in settings from a imported wondercard file
      */
     void searcherImportEvent();
+
+    /**
+     * @brief Transfers the current Searcher filters to the Generator.
+     */
+    void transferFiltersToGenerator();
+
+    /**
+     * @brief Transfers the current Searcher settings to the Generator.
+     */
+    void transferSettingsToGenerator();
 };
 
 #endif // EVENT5_HPP

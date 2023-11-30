@@ -132,6 +132,8 @@ set(PROJECT_SOURCES
     Controls/IDsFilter.hpp
     Controls/IVFilter.cpp
     Controls/IVFilter.hpp
+    Controls/RNGTabWidget.hpp
+    Controls/RNGTabWidget.cpp
     Controls/TableView.cpp
     Controls/TableView.hpp
     Controls/TextBox.cpp

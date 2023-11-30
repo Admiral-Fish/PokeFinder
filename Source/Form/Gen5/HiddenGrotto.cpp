@@ -385,3 +385,17 @@ void HiddenGrotto::profileManager()
     connect(manager, &ProfileManager5::profilesModified, this, [=](int num) { emit profilesModified(num); });
     manager->show();
 }
+
+void HiddenGrotto::transferFiltersToGenerator()
+{
+    ui->checkListGeneratorSlot->setChecks(ui->checkListSearcherSlot->getChecked());
+    ui->checkListGeneratorGroup->setChecks(ui->checkListSearcherGroup->getChecked());
+    ui->checkListGeneratorGender->setChecks(ui->checkListSearcherGender->getChecked());
+}
+
+void HiddenGrotto::transferSettingsToGenerator()
+{
+    ui->comboBoxGeneratorLocation->setCurrentIndex(ui->comboBoxSearcherLocation->currentIndex());
+    ui->comboBoxGeneratorPokemon->setCurrentIndex(ui->comboBoxGeneratorPokemon->currentIndex());
+    ui->comboBoxGeneratorItems->setCurrentIndex(ui->comboBoxSearcherItems->currentIndex());
+}

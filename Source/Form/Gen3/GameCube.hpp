@@ -61,14 +61,6 @@ public:
      */
     void updateProfiles();
 
-protected:
-    /**
-     * @brief Handles when the context menu is requested.
-     *
-     * @param event Contains context menu event information
-     */
-    void contextMenuEvent(QContextMenuEvent *event) override;
-
 private:
     Ui::GameCube *ui;
 

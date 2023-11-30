@@ -29,12 +29,11 @@
 #include <Core/Parents/StaticTemplate.hpp>
 #include <Core/Util/Translator.hpp>
 #include <Form/Controls/Controls.hpp>
+#include <Form/Controls/RNGTabWidget.hpp>
 #include <Form/Gen3/Profile/ProfileManager3.hpp>
 #include <Form/Gen3/Tools/SeedToTime3.hpp>
 #include <Model/Gen3/StaticModel3.hpp>
 #include <QAction>
-#include <QContextMenuEvent>
-#include <QMenu>
 #include <QSettings>
 #include <QThread>
 #include <QTimer>
@@ -65,13 +64,8 @@ Static3::Static3(QWidget *parent) : QWidget(parent), ui(new Ui::Static3)
     connect(seedToTime, &QAction::triggered, this, &Static3::seedToTime);
     ui->tableViewSearcher->addAction(seedToTime);
 
-    auto *transferSettings = new QAction(tr("Transfer Settings to Generator"), this);
-    connect(transferSettings, &QAction::triggered, this, &Static3::transferSettingsToGenerator);
-    addAction(transferSettings);
-
-    auto *transferFilters = new QAction(tr("Transfer Filters to Generator"), this);
-    connect(transferFilters, &QAction::triggered, this, &Static3::transferFiltersToGenerator);
-    addAction(transferFilters);
+    connect(ui->tabRNGSelector, &RNGTabWidget::transferSettingsTriggered, this, &Static3::transferSettingsToGenerator);
+    connect(ui->tabRNGSelector, &RNGTabWidget::transferFiltersTriggered, this, &Static3::transferFiltersToGenerator);
 
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Static3::generate);
     connect(ui->pushButtonSearch, &QPushButton::clicked, this, &Static3::search);
@@ -124,14 +118,6 @@ void Static3::updateProfiles()
     if (val < ui->comboBoxProfiles->count())
     {
         ui->comboBoxProfiles->setCurrentIndex(val);
-    }
-}
-
-void Static3::contextMenuEvent(QContextMenuEvent *event)
-{
-    if (ui->tabRNGSelector->currentIndex() == 1)
-    {
-        QMenu::exec(actions(), event->globalPos(), nullptr, this);
     }
 }
 

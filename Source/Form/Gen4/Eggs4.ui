@@ -90,7 +90,10 @@
     </widget>
    </item>
    <item row="1" column="0">
-    <widget class="QTabWidget" name="tabEggSelection">
+    <widget class="RNGTabWidget" name="tabEggSelection">
+     <property name="currentIndex">
+      <number>0</number>
+     </property>
      <widget class="QWidget" name="tabGenerator">
       <attribute name="title">
        <string>Generator</string>
@@ -412,6 +415,12 @@
    <class>Filter</class>
    <extends>QWidget</extends>
    <header>Form/Controls/Filter.hpp</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>RNGTabWidget</class>
+   <extends>QTabWidget</extends>
+   <header>Form/Controls/RNGTabWidget.hpp</header>
    <container>1</container>
   </customwidget>
   <customwidget>

@@ -29,6 +29,7 @@
 #include <Core/Util/Translator.hpp>
 #include <Core/Util/Utilities.hpp>
 #include <Form/Controls/Controls.hpp>
+#include <Form/Controls/RNGTabWidget.hpp>
 #include <Form/Gen5/Profile/ProfileManager5.hpp>
 #include <Model/Gen5/EventModel5.hpp>
 #include <QFileDialog>
@@ -81,6 +82,9 @@ Event5::Event5(QWidget *parent) : QWidget(parent), ui(new Ui::Event5)
 
     ui->comboBoxGeneratorSpecies->enableAutoComplete();
     ui->comboBoxSearcherSpecies->enableAutoComplete();
+
+    connect(ui->tabRNGSelector, &RNGTabWidget::transferSettingsTriggered, this, &Event5::transferSettingsToGenerator);
+    connect(ui->tabRNGSelector, &RNGTabWidget::transferFiltersTriggered, this, &Event5::transferFiltersToGenerator);
 
     connect(ui->comboBoxProfiles, &QComboBox::currentIndexChanged, this, &Event5::profileIndexChanged);
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Event5::generate);
@@ -398,4 +402,40 @@ void Event5::searcherImportEvent()
             return;
         }
     }
+}
+
+void Event5::transferFiltersToGenerator()
+{
+    ui->filterGenerator->copyFrom(ui->filterSearcher);
+}
+
+void Event5::transferSettingsToGenerator()
+{
+    ui->comboBoxGeneratorSpecies->setCurrentIndex(ui->comboBoxGeneratorSpecies->currentIndex());
+
+    ui->checkBoxGeneratorHP->setCheckState(ui->checkBoxSearcherHP->checkState());
+    ui->checkBoxGeneratorAtk->setCheckState(ui->checkBoxSearcherAtk->checkState());
+    ui->checkBoxGeneratorDef->setCheckState(ui->checkBoxSearcherDef->checkState());
+    ui->checkBoxGeneratorSpA->setCheckState(ui->checkBoxSearcherSpA->checkState());
+    ui->checkBoxGeneratorSpD->setCheckState(ui->checkBoxSearcherSpD->checkState());
+    ui->checkBoxGeneratorSpe->setCheckState(ui->checkBoxSearcherSpe->checkState());
+
+    ui->spinBoxGeneratorHP->setValue(ui->spinBoxSearcherHP->value());
+    ui->spinBoxGeneratorAtk->setValue(ui->spinBoxSearcherAtk->value());
+    ui->spinBoxGeneratorDef->setValue(ui->spinBoxSearcherDef->value());
+    ui->spinBoxGeneratorSpA->setValue(ui->spinBoxSearcherSpA->value());
+    ui->spinBoxGeneratorSpD->setValue(ui->spinBoxSearcherSpD->value());
+    ui->spinBoxGeneratorSpe->setValue(ui->spinBoxSearcherSpe->value());
+
+    ui->checkBoxGeneratorNature->setCheckState(ui->checkBoxSearcherNature->checkState());
+    ui->comboBoxGeneratorAbility->setCurrentIndex(ui->comboBoxSearcherAbility->currentIndex());
+    ui->comboBoxGeneratorGender->setCurrentIndex(ui->comboBoxSearcherGender->currentIndex());
+    ui->comboBoxGeneratorNature->setCurrentIndex(ui->comboBoxSearcherNature->currentIndex());
+    ui->comboBoxGeneratorShiny->setCurrentIndex(ui->comboBoxSearcherShiny->currentIndex());
+
+    ui->textBoxGeneratorEventTID->setText(ui->textBoxSearcherEventTID->text());
+    ui->textBoxGeneratorEventSID->setText(ui->textBoxSearcherEventSID->text());
+
+    ui->spinBoxGeneratorLevel->setValue(ui->spinBoxSearcherLevel->value());
+    ui->checkBoxGeneratorEgg->setCheckState(ui->checkBoxSearcherEgg->checkState());
 }

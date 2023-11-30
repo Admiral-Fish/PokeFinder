@@ -31,12 +31,11 @@
 #include <Core/Util/Nature.hpp>
 #include <Core/Util/Translator.hpp>
 #include <Form/Controls/Controls.hpp>
+#include <Form/Controls/RNGTabWidget.hpp>
 #include <Form/Gen3/Profile/ProfileManager3.hpp>
 #include <Form/Gen3/Tools/SeedToTime3.hpp>
 #include <Model/Gen3/WildModel3.hpp>
 #include <QAction>
-#include <QContextMenuEvent>
-#include <QMenu>
 #include <QSettings>
 #include <QThread>
 #include <QTimer>
@@ -92,13 +91,8 @@ Wild3::Wild3(QWidget *parent) : QWidget(parent), ui(new Ui::Wild3)
     connect(seedToTime, &QAction::triggered, this, &Wild3::seedToTime);
     ui->tableViewSearcher->addAction(seedToTime);
 
-    auto *transferSettings = new QAction(tr("Transfer Settings to Generator"), this);
-    connect(transferSettings, &QAction::triggered, this, &Wild3::transferSettingsToGenerator);
-    addAction(transferSettings);
-
-    auto *transferFilters = new QAction(tr("Transfer Filters to Generator"), this);
-    connect(transferFilters, &QAction::triggered, this, &Wild3::transferFiltersToGenerator);
-    addAction(transferFilters);
+    connect(ui->tabRNGSelector, &RNGTabWidget::transferSettingsTriggered, this, &Wild3::transferSettingsToGenerator);
+    connect(ui->tabRNGSelector, &RNGTabWidget::transferFiltersTriggered, this, &Wild3::transferFiltersToGenerator);
 
     connect(ui->comboBoxProfiles, &QComboBox::currentIndexChanged, this, &Wild3::profileIndexChanged);
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Wild3::generate);
@@ -153,14 +147,6 @@ void Wild3::updateProfiles()
     if (val < ui->comboBoxProfiles->count())
     {
         ui->comboBoxProfiles->setCurrentIndex(val);
-    }
-}
-
-void Wild3::contextMenuEvent(QContextMenuEvent *event)
-{
-    if (ui->tabRNGSelector->currentIndex() == 1)
-    {
-        QMenu::exec(actions(), event->globalPos(), nullptr, this);
     }
 }
 

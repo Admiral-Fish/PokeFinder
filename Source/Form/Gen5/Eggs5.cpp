@@ -28,6 +28,7 @@
 #include <Core/Util/Translator.hpp>
 #include <Core/Util/Utilities.hpp>
 #include <Form/Controls/Controls.hpp>
+#include <Form/Controls/RNGTabWidget.hpp>
 #include <Form/Gen5/Profile/ProfileManager5.hpp>
 #include <Model/Gen5/EggModel5.hpp>
 #include <QMessageBox>
@@ -61,6 +62,9 @@ Eggs5::Eggs5(QWidget *parent) : QWidget(parent), ui(new Ui::Eggs5)
 
     ui->filterGenerator->enableHiddenAbility();
     ui->filterSearcher->enableHiddenAbility();
+
+    connect(ui->tabRNGSelector, &RNGTabWidget::transferSettingsTriggered, this, &Eggs5::transferSettingsToGenerator);
+    connect(ui->tabRNGSelector, &RNGTabWidget::transferFiltersTriggered, this, &Eggs5::transferFiltersToGenerator);
 
     connect(ui->comboBoxProfiles, &QComboBox::currentIndexChanged, this, &Eggs5::profileIndexChanged);
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Eggs5::generate);
@@ -236,4 +240,14 @@ void Eggs5::profileManager()
     auto *manager = new ProfileManager5();
     connect(manager, &ProfileManager5::profilesModified, this, [=](int num) { emit profilesModified(num); });
     manager->show();
+}
+
+void Eggs5::transferFiltersToGenerator()
+{
+    ui->filterGenerator->copyFrom(ui->filterSearcher);
+}
+
+void Eggs5::transferSettingsToGenerator()
+{
+    ui->eggSettingsGenerator->copyFrom(ui->eggSettingsGenerator);
 }

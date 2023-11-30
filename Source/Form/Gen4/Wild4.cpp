@@ -908,3 +908,35 @@ void Wild4::seedToTime()
     auto *time = new SeedToTime4(state.getSeed(), currentProfile->getVersion());
     time->show();
 }
+
+void Wild4::transferFiltersToGenerator()
+{
+    ui->filterGenerator->copyFrom(ui->filterSearcher);
+}
+
+void Wild4::transferSettingsToGenerator()
+{
+    ui->comboBoxGeneratorEncounter->setCurrentIndex(ui->comboBoxSearcherEncounter->currentIndex());
+    ui->comboBoxGeneratorLocation->setCurrentIndex(ui->comboBoxSearcherLocation->currentIndex());
+    ui->comboBoxGeneratorPokemon->setCurrentIndex(ui->comboBoxSearcherPokemon->currentIndex());
+    ui->comboBoxGeneratorTime->setCurrentIndex(ui->comboBoxSearcherTime->currentIndex());
+
+    ui->checkBoxGeneratorDualSlot->setCheckState(ui->checkBoxSearcherDualSlot->checkState());
+    ui->comboBoxGeneratorDualSlot->setCurrentIndex(ui->comboBoxSearcherDualSlot->currentIndex());
+
+    ui->checkBoxGeneratorPokeRadar->setCheckState(ui->checkBoxSearcherPokeRadar->checkState());
+
+    ui->checkBoxGeneratorRadio->setCheckState(ui->checkBoxSearcherRadio->checkState());
+    ui->comboBoxGeneratorRadio->setCurrentIndex(ui->comboBoxSearcherRadio->currentIndex());
+
+    ui->checkBoxGeneratorSwarm->setCheckState(ui->checkBoxSearcherSwarm->checkState());
+
+    ui->checkBoxGeneratorReplacement->setCheckState(ui->checkBoxSearcherReplacement->checkState());
+    ui->comboBoxGeneratorReplacement0->setCurrentIndex(ui->comboBoxSearcherReplacement0->currentIndex());
+    ui->comboBoxGeneratorReplacement1->setCurrentIndex(ui->comboBoxSearcherReplacement1->currentIndex());
+
+    ui->spinBoxGeneratorPlainsBlock->setValue(ui->spinBoxSearcherPlainsBlock->value());
+    ui->spinBoxGeneratorForestBlock->setValue(ui->spinBoxSearcherForestBlock->value());
+    ui->spinBoxGeneratorPeakBlock->setValue(ui->spinBoxSearcherPeakBlock->value());
+    ui->spinBoxGeneratorWaterBlock->setValue(ui->spinBoxGeneratorWaterBlock->value());
+}
