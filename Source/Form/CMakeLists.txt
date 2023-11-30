@@ -59,7 +59,6 @@ set(PROJECT_UI
     Controls/EggSettings.ui
     Controls/Filter.ui
     Controls/IDsFilter.ui
-    Controls/IVFilter.ui
     Gen3/Eggs3.ui
     Gen3/IDs3.ui
     Gen3/GameCube.ui
@@ -130,8 +129,6 @@ set(PROJECT_SOURCES
     Controls/GraphicsPixmapItem.hpp
     Controls/IDsFilter.cpp
     Controls/IDsFilter.hpp
-    Controls/IVFilter.cpp
-    Controls/IVFilter.hpp
     Controls/RNGTabWidget.hpp
     Controls/RNGTabWidget.cpp
     Controls/TableView.cpp
