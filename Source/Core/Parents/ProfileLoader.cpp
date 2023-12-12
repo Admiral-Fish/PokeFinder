@@ -71,7 +71,7 @@ namespace ProfileLoader
         bool exists = std::filesystem::exists(std::filesystem::path(path));
         if (!exists)
         {
-            std::ofstream json(path);
+            std::ofstream json((std::filesystem::path(path)));
             json << "{}";
             json.close();
         }
