@@ -91,7 +91,7 @@ int main(int argc, char *argv[])
     validateSettings(setting);
 
     QString profilePath = setting.value("settings/profiles").toString();
-    bool profile = ProfileLoader::init(profilePath.toStdString());
+    bool profile = ProfileLoader::init(profilePath.toStdWString());
 
     QFile file(QString(":/qdarkstyle/%1/%1style.qss").arg(setting.value("settings/style").toString()));
     if (file.open(QIODevice::ReadOnly | QIODevice::Text))

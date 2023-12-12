@@ -132,7 +132,7 @@ void Settings::changeProfiles()
         QSettings setting;
         setting.setValue("settings/profiles", fileName);
 
-        ProfileLoader::init(fileName.toStdString());
+        ProfileLoader::init(fileName.toStdWString());
 
         ui->lineEditProfiles->setText(fileName);
     }

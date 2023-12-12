@@ -30,7 +30,7 @@
 
 using json = nlohmann::json;
 
-static std::string path;
+static std::wstring path;
 
 /**
  * @brief Reads provided profiles file
@@ -64,7 +64,7 @@ static void writeJson(const json &j)
 
 namespace ProfileLoader
 {
-    bool init(const std::string &location)
+    bool init(const std::wstring &location)
     {
         path = location;
 
