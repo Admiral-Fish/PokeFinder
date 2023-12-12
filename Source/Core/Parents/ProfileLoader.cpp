@@ -41,7 +41,7 @@ static json readJson()
 {
     json j;
 
-    std::ifstream read(path);
+    std::ifstream read((std::filesystem::path(path)));
     if (read.is_open())
     {
         j = json::parse(read, nullptr, false);
@@ -57,7 +57,7 @@ static json readJson()
  */
 static void writeJson(const json &j)
 {
-    std::ofstream write(path);
+    std::ofstream write((std::filesystem::path(path)));
     write << j.dump();
     write.close();
 }
@@ -68,7 +68,7 @@ namespace ProfileLoader
     {
         path = location;
 
-        bool exists = std::filesystem::exists(path);
+        bool exists = std::filesystem::exists(std::filesystem::path(path));
         if (!exists)
         {
             std::ofstream json(path);
