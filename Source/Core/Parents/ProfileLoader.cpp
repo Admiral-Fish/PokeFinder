@@ -30,7 +30,7 @@
 
 using json = nlohmann::json;
 
-static std::wstring path;
+static std::filesystem::path path;
 
 /**
  * @brief Reads provided profiles file
@@ -41,7 +41,7 @@ static json readJson()
 {
     json j;
 
-    std::ifstream read((std::filesystem::path(path)));
+    std::ifstream read(path);
     if (read.is_open())
     {
         j = json::parse(read, nullptr, false);
@@ -57,7 +57,7 @@ static json readJson()
  */
 static void writeJson(const json &j)
 {
-    std::ofstream write((std::filesystem::path(path)));
+    std::ofstream write(path);
     write << j.dump();
     write.close();
 }
@@ -66,12 +66,12 @@ namespace ProfileLoader
 {
     bool init(const std::wstring &location)
     {
-        path = location;
+        path = std::filesystem::path(location);
 
-        bool exists = std::filesystem::exists(std::filesystem::path(path));
+        bool exists = std::filesystem::exists(path);
         if (!exists)
         {
-            std::ofstream json((std::filesystem::path(path)));
+            std::ofstream json(path);
             json << "{}";
             json.close();
         }
