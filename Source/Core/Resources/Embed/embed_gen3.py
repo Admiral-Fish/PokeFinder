@@ -12,9 +12,9 @@ def embed_encounters3():
         data = json.load(f)
         for type, encounters in data.items():
             if "Shadow" in type:
-                string = f"constexpr std::array<ShadowTemplate, {len(encounters)}> {type} = {{ "
+                string = f"constexpr std::array<ShadowTemplate, {len(encounters)}> {type.upper()} = {{ "
             else:
-                string = f"constexpr std::array<StaticTemplate, {len(encounters)}> {type} = {{ "
+                string = f"constexpr std::array<StaticTemplate, {len(encounters)}> {type.upper()} = {{ "
 
             for i, encounter in enumerate(encounters):
                 if "Shadow" in type:
@@ -43,10 +43,10 @@ def embed_encounters3():
 
         size = len(data)
         data = bz2.compress(data, 9)
-        data = size.to_bytes(2, "little") + data
+        data = size.to_bytes(4, "little") + data
 
         name = os.path.basename(f.name).replace(".bin", "")
-        string = f"constexpr std::array<u8, {len(data)}> {name} = {{ "
+        string = f"constexpr std::array<u8, {len(data)}> {name.upper()} = {{ "
 
         for i in range(len(data)):
             string += str(data[i])
@@ -56,4 +56,4 @@ def embed_encounters3():
         string += " };"
         arrays.append(string)
 
-    write_data(arrays, "EncounterData3.hpp", ("Core/Gen3/ShadowTemplate.hpp", "Core/Global.hpp", "array"))
+    write_data(arrays, "EncounterData3.hpp", ("Core/Gen3/ShadowTemplate.hpp", "array"))

@@ -20,7 +20,7 @@
 #include "DenMap.hpp"
 #include "ui_DenMap.h"
 #include <Core/Enum/Game.hpp>
-#include <Core/Gen8/DenLoader.hpp>
+#include <Core/Gen8/Encounters8.hpp>
 #include <Core/Util/Translator.hpp>
 #include <QPainter>
 
@@ -32,8 +32,8 @@ DenMap::DenMap(QWidget *parent) : QWidget(parent), ui(new Ui::DenMap)
 
     locationIndexChanged(0);
 
-    connect(ui->comboBoxLocation, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &DenMap::locationIndexChanged);
-    connect(ui->comboBoxDen, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &DenMap::denIndexChanged);
+    connect(ui->comboBoxLocation, &QComboBox::currentIndexChanged, this, &DenMap::locationIndexChanged);
+    connect(ui->comboBoxDen, &QComboBox::currentIndexChanged, this, &DenMap::denIndexChanged);
 }
 
 DenMap::~DenMap()
@@ -46,24 +46,31 @@ void DenMap::denIndexChanged(int index)
     if (index >= 0)
     {
         int location = ui->comboBoxLocation->currentIndex();
-        int offset = location == 0 ? 0 : 100;
+        u16 offset = location == 0 ? 0 : location == 1 ? 100 : 190;
 
-        std::array<u16, 2> coordinates = DenLoader::getCoordinates(index + offset);
+        auto coordinates = Encounters8::getDenCoordinates(index + offset);
 
         QPixmap image;
+        double elipseSize = 20;
         if (location == 0)
         {
             image.load(":/images/map.png");
-            this->resize(245, 578);
+            this->resize(image.width() >> 1, image.height() >> 1);
+        }
+        else if (location == 1)
+        {
+            image.load(":/images/map_ioa.png");
+            this->resize(image.width() >> 1, image.height() >> 1);
         }
         else
         {
-            image.load(":/images/map_ioa.png");
-            this->resize(609, 637);
+            image.load(":/images/map_ct.png");
+            elipseSize = 40;
+            this->resize(image.width() >> 2, image.height() >> 2);
         }
 
         QPainter paint(&image);
-        paint.setPen(QPen(QBrush(Qt::red), 20));
+        paint.setPen(QPen(QBrush(Qt::red), elipseSize));
         paint.drawEllipse(QPoint(coordinates[0], coordinates[1]), 5, 5);
 
         ui->labelMap->setPixmap(image);
@@ -74,19 +81,19 @@ void DenMap::locationIndexChanged(int index)
 {
     if (index >= 0)
     {
-        u8 start = index == 0 ? 0 : 100;
-        u8 end = index == 0 ? 100 : 190;
-        u8 offset = index == 0 ? 0 : 100;
+        u16 start = index == 0 ? 0 : index == 1 ? 100 : 190;
+        u16 end = index == 0 ? 100 : index == 1 ? 190 : 276;
+        u16 offset = index == 0 ? 0 : index == 1 ? 100 : 190;
 
         std::vector<u16> indices(end - start);
         std::vector<u16> locationIndices(end - start);
 
         std::iota(indices.begin(), indices.end(), start);
-        std::transform(indices.begin(), indices.end(), locationIndices.begin(), [](u16 i) { return DenLoader::getLocation(i); });
+        std::transform(indices.begin(), indices.end(), locationIndices.begin(), [](u16 i) { return Encounters8::getDenLocation(i); });
 
         ui->comboBoxDen->clear();
         auto locations = Translator::getLocations(locationIndices, Game::SwSh);
-        for (u8 i : indices)
+        for (u16 i : indices)
         {
             ui->comboBoxDen->addItem(QString("%1: %2").arg(i + 1 - offset).arg(QString::fromStdString(locations[i - offset])));
         }

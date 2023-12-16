@@ -96,20 +96,20 @@ namespace Encounters5
     {
         if (size)
         {
-            *size = dreamRadar.size();
+            *size = DREAMRADAR.size();
         }
-        return dreamRadar.data();
+        return DREAMRADAR.data();
     }
 
     const DreamRadarTemplate *getDreamRadarEncounters(int index)
     {
-        return &dreamRadar[index];
+        return &DREAMRADAR[index];
     }
 
     std::vector<HiddenGrottoArea> getHiddenGrottoEncounters()
     {
         u32 length;
-        const u8 *data = Utilities::decompress(bw2_grotto.data(), bw2_grotto.size(), length);
+        const u8 *data = Utilities::decompress(BW2_GROTTO.data(), BW2_GROTTO.size(), length);
 
         const PersonalInfo *info = PersonalLoader::getPersonal(Game::BW2);
 
@@ -133,33 +133,26 @@ namespace Encounters5
 
     std::vector<EncounterArea5> getEncounters(Encounter encounter, u8 season, const Profile5 *profile)
     {
-        const u8 *compressedData;
-        size_t compressedLength;
+        u32 length;
+        u8 *data;
 
         Game version = profile->getVersion();
         if (version == Game::Black)
         {
-            compressedData = black.data();
-            compressedLength = black.size();
+            data = Utilities::decompress(BLACK.data(), BLACK.size(), length);
         }
         else if (version == Game::Black2)
         {
-            compressedData = black2.data();
-            compressedLength = black2.size();
+            data = Utilities::decompress(BLACK2.data(), BLACK2.size(), length);
         }
         else if (version == Game::White)
         {
-            compressedData = white.data();
-            compressedLength = white.size();
+            data = Utilities::decompress(WHITE.data(), WHITE.size(), length);
         }
         else
         {
-            compressedData = white2.data();
-            compressedLength = white2.size();
+            data = Utilities::decompress(WHITE2.data(), WHITE2.size(), length);
         }
-
-        u32 length;
-        u8 *data = Utilities::decompress(compressedData, compressedLength, length);
 
         std::vector<EncounterArea5> encounters;
         for (size_t offset = 0; offset < length;)
@@ -172,17 +165,17 @@ namespace Encounters5
                 entrySeason = &entry->seasons[season];
             }
 
+            std::array<Slot, 12> slots;
             switch (encounter)
             {
             case Encounter::Grass:
                 if (entrySeason->grassRate != 0)
                 {
-                    std::vector<Slot> slots;
-                    slots.reserve(12);
-                    for (const auto &slot : entrySeason->grass)
+                    for (size_t i = 0; i < 12; i++)
                     {
-                        slots.emplace_back(slot.specie & 0x7ff, slot.specie >> 11, slot.level, slot.level,
-                                           PersonalLoader::getPersonal(version, slot.specie & 0x7ff, slot.specie >> 11));
+                        const auto &slot = entrySeason->grass[i];
+                        slots[i] = Slot(slot.specie & 0x7ff, slot.specie >> 11, slot.level, slot.level,
+                                        PersonalLoader::getPersonal(version, slot.specie & 0x7ff, slot.specie >> 11));
                     }
                     encounters.emplace_back(entry->location, entrySeason->grassRate, encounter, slots);
                 }
@@ -190,12 +183,11 @@ namespace Encounters5
             case Encounter::DoubleGrass:
                 if (entrySeason->grassDoubleRate != 0)
                 {
-                    std::vector<Slot> slots;
-                    slots.reserve(12);
-                    for (const auto &slot : entrySeason->grassDouble)
+                    for (size_t i = 0; i < 12; i++)
                     {
-                        slots.emplace_back(slot.specie & 0x7ff, slot.specie >> 11, slot.level, slot.level,
-                                           PersonalLoader::getPersonal(version, slot.specie & 0x7ff, slot.specie >> 11));
+                        const auto &slot = entrySeason->grassDouble[i];
+                        slots[i] = Slot(slot.specie & 0x7ff, slot.specie >> 11, slot.level, slot.level,
+                                        PersonalLoader::getPersonal(version, slot.specie & 0x7ff, slot.specie >> 11));
                     }
                     encounters.emplace_back(entry->location, entrySeason->grassDoubleRate, encounter, slots);
                 }
@@ -203,12 +195,11 @@ namespace Encounters5
             case Encounter::SpecialGrass:
                 if (entrySeason->grassSpecialRate != 0)
                 {
-                    std::vector<Slot> slots;
-                    slots.reserve(12);
-                    for (const auto &slot : entrySeason->grassSpecial)
+                    for (size_t i = 0; i < 12; i++)
                     {
-                        slots.emplace_back(slot.specie & 0x7ff, slot.specie >> 11, slot.level, slot.level,
-                                           PersonalLoader::getPersonal(version, slot.specie & 0x7ff, slot.specie >> 11));
+                        const auto &slot = entrySeason->grassSpecial[i];
+                        slots[i] = Slot(slot.specie & 0x7ff, slot.specie >> 11, slot.level, slot.level,
+                                        PersonalLoader::getPersonal(version, slot.specie & 0x7ff, slot.specie >> 11));
                     }
                     encounters.emplace_back(entry->location, entrySeason->grassSpecialRate, encounter, slots);
                 }
@@ -216,12 +207,11 @@ namespace Encounters5
             case Encounter::Surfing:
                 if (entrySeason->surfRate != 0)
                 {
-                    std::vector<Slot> slots;
-                    slots.reserve(5);
-                    for (const auto &slot : entrySeason->surf)
+                    for (size_t i = 0; i < 5; i++)
                     {
-                        slots.emplace_back(slot.specie & 0x7ff, slot.specie >> 11, slot.minLevel, slot.maxLevel,
-                                           PersonalLoader::getPersonal(version, slot.specie & 0x7ff, slot.specie >> 11));
+                        const auto &slot = entrySeason->surf[i];
+                        slots[i] = Slot(slot.specie & 0x7ff, slot.specie >> 11, slot.minLevel, slot.maxLevel,
+                                        PersonalLoader::getPersonal(version, slot.specie & 0x7ff, slot.specie >> 11));
                     }
                     encounters.emplace_back(entry->location, entrySeason->surfRate, encounter, slots);
                 }
@@ -229,12 +219,11 @@ namespace Encounters5
             case Encounter::SpecialSurf:
                 if (entrySeason->surfSpecialRate != 0)
                 {
-                    std::vector<Slot> slots;
-                    slots.reserve(5);
-                    for (const auto &slot : entrySeason->surfSpecial)
+                    for (size_t i = 0; i < 5; i++)
                     {
-                        slots.emplace_back(slot.specie & 0x7ff, slot.specie >> 11, slot.minLevel, slot.maxLevel,
-                                           PersonalLoader::getPersonal(version, slot.specie & 0x7ff, slot.specie >> 11));
+                        const auto &slot = entrySeason->surfSpecial[i];
+                        slots[i] = Slot(slot.specie & 0x7ff, slot.specie >> 11, slot.minLevel, slot.maxLevel,
+                                        PersonalLoader::getPersonal(version, slot.specie & 0x7ff, slot.specie >> 11));
                     }
                     encounters.emplace_back(entry->location, entrySeason->surfSpecialRate, encounter, slots);
                 }
@@ -242,12 +231,11 @@ namespace Encounters5
             case Encounter::SuperRod:
                 if (entrySeason->fishRate != 0)
                 {
-                    std::vector<Slot> slots;
-                    slots.reserve(5);
-                    for (const auto &slot : entrySeason->fish)
+                    for (size_t i = 0; i < 5; i++)
                     {
-                        slots.emplace_back(slot.specie & 0x7ff, slot.specie >> 11, slot.minLevel, slot.maxLevel,
-                                           PersonalLoader::getPersonal(version, slot.specie & 0x7ff, slot.specie >> 11));
+                        const auto &slot = entrySeason->fish[i];
+                        slots[i] = Slot(slot.specie & 0x7ff, slot.specie >> 11, slot.minLevel, slot.maxLevel,
+                                        PersonalLoader::getPersonal(version, slot.specie & 0x7ff, slot.specie >> 11));
                     }
                     encounters.emplace_back(entry->location, entrySeason->fishRate, encounter, slots);
                 }
@@ -255,12 +243,11 @@ namespace Encounters5
             case Encounter::SpecialSuperRod:
                 if (entrySeason->fishSpecialRate != 0)
                 {
-                    std::vector<Slot> slots;
-                    slots.reserve(5);
-                    for (const auto &slot : entrySeason->fishSpecial)
+                    for (size_t i = 0; i < 5; i++)
                     {
-                        slots.emplace_back(slot.specie & 0x7ff, slot.specie >> 11, slot.minLevel, slot.maxLevel,
-                                           PersonalLoader::getPersonal(version, slot.specie & 0x7ff, slot.specie >> 11));
+                        const auto &slot = entrySeason->fishSpecial[i];
+                        slots[i] = Slot(slot.specie & 0x7ff, slot.specie >> 11, slot.minLevel, slot.maxLevel,
+                                        PersonalLoader::getPersonal(version, slot.specie & 0x7ff, slot.specie >> 11));
                     }
                     encounters.emplace_back(entry->location, entrySeason->fishSpecialRate, encounter, slots);
                 }
@@ -280,57 +267,57 @@ namespace Encounters5
         {
             if (size)
             {
-                *size = starters.size();
+                *size = STARTERS.size();
             }
-            return starters.data();
+            return STARTERS.data();
         }
         else if (index == 1)
         {
             if (size)
             {
-                *size = fossils.size();
+                *size = FOSSILS.size();
             }
-            return fossils.data();
+            return FOSSILS.data();
         }
         else if (index == 2)
         {
             if (size)
             {
-                *size = gifts.size();
+                *size = GIFTS.size();
             }
-            return gifts.data();
+            return GIFTS.data();
         }
         else if (index == 3)
         {
             if (size)
             {
-                *size = stationary.size();
+                *size = STATIONARY.size();
             }
-            return stationary.data();
+            return STATIONARY.data();
         }
         else if (index == 4)
         {
             if (size)
             {
-                *size = legends.size();
+                *size = LEGENDS.size();
             }
-            return legends.data();
+            return LEGENDS.data();
         }
         else if (index == 5)
         {
             if (size)
             {
-                *size = events.size();
+                *size = EVENTS.size();
             }
-            return events.data();
+            return EVENTS.data();
         }
         else
         {
             if (size)
             {
-                *size = roamers.size();
+                *size = ROAMERS.size();
             }
-            return roamers.data();
+            return ROAMERS.data();
         }
     }
 

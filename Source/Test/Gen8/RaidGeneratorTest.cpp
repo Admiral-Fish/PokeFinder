@@ -20,7 +20,7 @@
 #include "RaidGeneratorTest.hpp"
 #include <Core/Enum/Game.hpp>
 #include <Core/Gen8/Den.hpp>
-#include <Core/Gen8/DenLoader.hpp>
+#include <Core/Gen8/Encounters8.hpp>
 #include <Core/Gen8/Generators/RaidGenerator.hpp>
 #include <Core/Parents/States/State.hpp>
 #include <QTest>
@@ -82,7 +82,7 @@ void RaidGeneratorTest::generate()
 
     Profile8 profile("-", version, 12345, 54321, false, false, false);
 
-    const Den *den = DenLoader::getDen(denIndex, rarity);
+    const Den *den = Encounters8::getDen(denIndex, rarity);
     Raid raid = den->getRaid(raidIndex, version);
 
     StateFilter filter(255, 255, 255, false, min, max, natures, powers);

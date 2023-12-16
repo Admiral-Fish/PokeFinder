@@ -26,66 +26,32 @@
 #include <Core/Util/Translator.hpp>
 #include <algorithm>
 
-EncounterArea::EncounterArea(u8 location, u8 rate, Encounter encounter, const std::vector<Slot> &pokemon) :
+EncounterArea::EncounterArea(u8 location, u8 rate, Encounter encounter, const std::array<Slot, 12> &pokemon) :
     location(location), rate(rate), encounter(encounter), pokemon(pokemon)
 {
-}
-
-u8 EncounterArea::calculateLevel(u8 index, u16 prng) const
-{
-    u8 range = pokemon[index].getMaxLevel() - pokemon[index].getMinLevel() + 1;
-    return (prng % range) + pokemon[index].getMinLevel();
-}
-
-u8 EncounterArea::calculateLevel(u8 index) const
-{
-    return pokemon[index].getMaxLevel();
-}
-
-Encounter EncounterArea::getEncounter() const
-{
-    return encounter;
 }
 
 std::pair<u8, u8> EncounterArea::getLevelRange(u16 specie) const
 {
     std::pair<u8, u8> range = std::make_pair(100, 0);
-    for (const auto &slot : pokemon)
+    for (size_t i = 0; i < pokemon.size() && pokemon[i].getSpecie() != 0; i++)
     {
-        if (slot.getSpecie() == specie)
+        if (pokemon[i].getSpecie() == specie)
         {
-            range.first = std::min(range.first, slot.getMinLevel());
-            range.second = std::max(range.second, slot.getMaxLevel());
+            range.first = std::min(range.first, pokemon[i].getMinLevel());
+            range.second = std::max(range.second, pokemon[i].getMaxLevel());
         }
     }
     return range;
 }
 
-u8 EncounterArea::getLocation() const
-{
-    return location;
-}
-
-std::vector<Slot> EncounterArea::getPokemon() const
-{
-    return pokemon;
-}
-
-const Slot &EncounterArea::getPokemon(int index) const
-{
-    return pokemon[index];
-}
-
-u8 EncounterArea::getRate() const
-{
-    return rate;
-}
-
 std::vector<bool> EncounterArea::getSlots(u16 specie) const
 {
     std::vector<bool> flags(pokemon.size());
-    std::transform(pokemon.begin(), pokemon.end(), flags.begin(),
-                   [specie](const auto &mon) { return mon.getSpecie() == (specie & 0x7ff) && mon.getForm() == (specie >> 11); });
+    for (size_t i = 0; i < pokemon.size() && pokemon[i].getSpecie() != 0; i++)
+    {
+        flags[i] = pokemon[i].getSpecie() == (specie & 0x7ff) && pokemon[i].getForm() == (specie >> 11);
+    }
     return flags;
 }
 
@@ -114,7 +80,7 @@ std::vector<u8> EncounterArea::getSlots(Lead lead) const
         return encounters;
     }
 
-    for (size_t i = 0; i < pokemon.size(); i++)
+    for (size_t i = 0; i < pokemon.size() && pokemon[i].getInfo() != nullptr; i++)
     {
         const PersonalInfo *info = pokemon[i].getInfo();
         if (info->getType(0) == type || info->getType(1) == type)
@@ -133,9 +99,9 @@ std::vector<std::string> EncounterArea::getSpecieNames() const
 std::vector<u16> EncounterArea::getUniqueSpecies() const
 {
     std::vector<u16> nums;
-    for (const auto &mon : pokemon)
+    for (size_t i = 0; i < pokemon.size() && pokemon[i].getSpecie(); i++)
     {
-        u16 num = (mon.getForm() << 11) | mon.getSpecie();
+        u16 num = (pokemon[i].getForm() << 11) | pokemon[i].getSpecie();
         if (std::find(nums.begin(), nums.end(), num) == nums.end())
         {
             nums.emplace_back(num);

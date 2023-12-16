@@ -252,6 +252,33 @@ void Event5::generatorImportEvent()
     }
 }
 
+void Event5::profileIndexChanged(int index)
+{
+    if (index >= 0)
+    {
+        currentProfile = &profiles[index];
+
+        ui->labelProfileTIDValue->setText(QString::number(currentProfile->getTID()));
+        ui->labelProfileSIDValue->setText(QString::number(currentProfile->getSID()));
+        ui->labelProfileMACAddressValue->setText(QString::number(currentProfile->getMac(), 16));
+        ui->labelProfileDSTypeValue->setText(QString::fromStdString(currentProfile->getDSTypeString()));
+        ui->labelProfileVCountValue->setText(QString::number(currentProfile->getVCount(), 16));
+        ui->labelProfileTimer0Value->setText(QString::number(currentProfile->getTimer0Min(), 16) + "-"
+                                             + QString::number(currentProfile->getTimer0Max(), 16));
+        ui->labelProfileGxStatValue->setText(QString::number(currentProfile->getGxStat()));
+        ui->labelProfileVFrameValue->setText(QString::number(currentProfile->getVFrame()));
+        ui->labelProfileKeypressesValue->setText(QString::fromStdString(currentProfile->getKeypressesString()));
+        ui->labelProfileGameValue->setText(QString::fromStdString(Translator::getGame(currentProfile->getVersion())));
+    }
+}
+
+void Event5::profileManager()
+{
+    auto *manager = new ProfileManager5();
+    connect(manager, &ProfileManager5::profilesModified, this, [=](int num) { emit profilesModified(num); });
+    manager->show();
+}
+
 void Event5::search()
 {
     Date start = ui->dateEditSearcherStartDate->getDate();
@@ -371,31 +398,4 @@ void Event5::searcherImportEvent()
             return;
         }
     }
-}
-
-void Event5::profileIndexChanged(int index)
-{
-    if (index >= 0)
-    {
-        currentProfile = &profiles[index];
-
-        ui->labelProfileTIDValue->setText(QString::number(currentProfile->getTID()));
-        ui->labelProfileSIDValue->setText(QString::number(currentProfile->getSID()));
-        ui->labelProfileMACAddressValue->setText(QString::number(currentProfile->getMac(), 16));
-        ui->labelProfileDSTypeValue->setText(QString::fromStdString(currentProfile->getDSTypeString()));
-        ui->labelProfileVCountValue->setText(QString::number(currentProfile->getVCount(), 16));
-        ui->labelProfileTimer0Value->setText(QString::number(currentProfile->getTimer0Min(), 16) + "-"
-                                             + QString::number(currentProfile->getTimer0Max(), 16));
-        ui->labelProfileGxStatValue->setText(QString::number(currentProfile->getGxStat()));
-        ui->labelProfileVFrameValue->setText(QString::number(currentProfile->getVFrame()));
-        ui->labelProfileKeypressesValue->setText(QString::fromStdString(currentProfile->getKeypressesString()));
-        ui->labelProfileGameValue->setText(QString::fromStdString(Translator::getGame(currentProfile->getVersion())));
-    }
-}
-
-void Event5::profileManager()
-{
-    auto *manager = new ProfileManager5();
-    connect(manager, &ProfileManager5::profilesModified, this, [=](int num) { emit profilesModified(num); });
-    manager->show();
 }

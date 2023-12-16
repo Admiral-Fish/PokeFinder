@@ -11,39 +11,6 @@
    </rect>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="1" column="0">
-    <widget class="QRadioButton" name="radioButtonSID">
-     <property name="text">
-      <string>SID</string>
-     </property>
-     <attribute name="buttonGroup">
-      <string notr="true">buttonGroup</string>
-     </attribute>
-    </widget>
-   </item>
-   <item row="3" column="0">
-    <widget class="QRadioButton" name="radioButtonPID">
-     <property name="text">
-      <string>PID</string>
-     </property>
-     <attribute name="buttonGroup">
-      <string notr="true">buttonGroup</string>
-     </attribute>
-    </widget>
-   </item>
-   <item row="7" column="0">
-    <widget class="QRadioButton" name="radioButtonDisplayTID">
-     <property name="text">
-      <string>Display TID</string>
-     </property>
-     <attribute name="buttonGroup">
-      <string notr="true">buttonGroup</string>
-     </attribute>
-    </widget>
-   </item>
-   <item row="0" column="1" rowspan="8">
-    <widget class="QPlainTextEdit" name="plainTextEdit"/>
-   </item>
    <item row="0" column="0">
     <widget class="QRadioButton" name="radioButtonTID">
      <property name="text">
@@ -57,10 +24,10 @@
      </attribute>
     </widget>
    </item>
-   <item row="5" column="0">
-    <widget class="QRadioButton" name="radioButtonTSV">
+   <item row="1" column="0">
+    <widget class="QRadioButton" name="radioButtonSID">
      <property name="text">
-      <string>TSV</string>
+      <string>SID</string>
      </property>
      <attribute name="buttonGroup">
       <string notr="true">buttonGroup</string>
@@ -77,6 +44,16 @@
      </attribute>
     </widget>
    </item>
+   <item row="3" column="0">
+    <widget class="QRadioButton" name="radioButtonPID">
+     <property name="text">
+      <string>PID</string>
+     </property>
+     <attribute name="buttonGroup">
+      <string notr="true">buttonGroup</string>
+     </attribute>
+    </widget>
+   </item>
    <item row="4" column="0">
     <widget class="QRadioButton" name="radioButtonTIDPID">
      <property name="text">
@@ -87,18 +64,31 @@
      </attribute>
     </widget>
    </item>
+   <item row="5" column="0">
+    <widget class="QRadioButton" name="radioButtonTSV">
+     <property name="text">
+      <string>TSV</string>
+     </property>
+     <attribute name="buttonGroup">
+      <string notr="true">buttonGroup</string>
+     </attribute>
+    </widget>
+   </item>
+   <item row="6" column="0">
+    <widget class="QRadioButton" name="radioButtonDisplayTID">
+     <property name="text">
+      <string>Display TID</string>
+     </property>
+     <attribute name="buttonGroup">
+      <string notr="true">buttonGroup</string>
+     </attribute>
+    </widget>
+   </item>
+   <item row="0" column="1" rowspan="7">
+    <widget class="QPlainTextEdit" name="plainTextEdit"/>
+   </item>
   </layout>
  </widget>
- <tabstops>
-  <tabstop>radioButtonTID</tabstop>
-  <tabstop>radioButtonSID</tabstop>
-  <tabstop>radioButtonTIDSID</tabstop>
-  <tabstop>radioButtonPID</tabstop>
-  <tabstop>radioButtonTIDPID</tabstop>
-  <tabstop>radioButtonTSV</tabstop>
-  <tabstop>radioButtonDisplayTID</tabstop>
-  <tabstop>plainTextEdit</tabstop>
- </tabstops>
  <resources/>
  <connections/>
  <buttongroups>

@@ -22,6 +22,8 @@ if (UNIX AND SIMD)
     endif ()
 endif ()
 
+add_subdirectory(External)
+
 find_package(Python3 COMPONENTS Interpreter REQUIRED)
 execute_process(COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Resources/EncounterTables/main.py)
 execute_process(COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Resources/embed.py)
@@ -74,7 +76,6 @@ add_library(PokeFinderCore STATIC
     Gen3/States/EggState3.hpp
     Gen3/States/PIDToIVState.hpp
     Gen3/States/PokeSpotState.hpp
-    Gen3/States/WildState3.hpp
     Gen3/Tools/PIDToIVCalculator.cpp
     Gen3/Tools/PIDToIVCalculator.hpp
     Gen3/Tools/SeedToTimeCalculator3.cpp
@@ -155,8 +156,6 @@ add_library(PokeFinderCore STATIC
     Gen5/States/SearcherState5.hpp
     Gen5/States/State5.hpp
     Gen8/Den.hpp
-    Gen8/DenLoader.cpp
-    Gen8/DenLoader.hpp
     Gen8/EncounterArea8.cpp
     Gen8/EncounterArea8.hpp
     Gen8/Encounters8.cpp
@@ -254,5 +253,5 @@ add_library(PokeFinderCore STATIC
     Util/Utilities.hpp
 )
 
-target_include_directories(PokeFinderCore PUBLIC "${CMAKE_SOURCE_DIR}/External")
+target_include_directories(PokeFinderCore PUBLIC "External/nlohmann")
 target_link_libraries(PokeFinderCore bz2_static)

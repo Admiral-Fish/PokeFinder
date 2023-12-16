@@ -38,7 +38,7 @@ namespace ProfileLoader
      * @return true Profile json file exists
      * @return false Profile json file does not exist
      */
-    bool init(const std::string &location);
+    bool init(const std::wstring &location);
 }
 
 namespace ProfileLoader3

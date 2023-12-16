@@ -46,11 +46,3 @@ constexpr float modifiers[25][5] = {
     { 1.0, 1.0, 0.9, 1.1, 1.0 }, // Careful
     { 1.0, 1.0, 1.0, 1.0, 1.0 } // Quirky
 };
-
-namespace Nature
-{
-    u16 computeStat(u16 stat, u8 nature, u8 index)
-    {
-        return stat * modifiers[nature][index - 1];
-    }
-}

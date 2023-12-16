@@ -51,8 +51,9 @@ ProfileEditor5::ProfileEditor5(QWidget *parent) : QDialog(parent), ui(new Ui::Pr
     ui->comboBoxKeypresses->setup();
 
     connect(ui->pushButtonAccept, &QPushButton::clicked, this, &ProfileEditor5::okay);
+    connect(ui->pushButtonCancel, &QPushButton::clicked, this, &ProfileEditor5::reject);
     connect(ui->pushButtonFindParameters, &QPushButton::clicked, this, &ProfileEditor5::findParameters);
-    connect(ui->comboBoxVersion, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &ProfileEditor5::versionIndexChanged);
+    connect(ui->comboBoxVersion, &QComboBox::currentIndexChanged, this, &ProfileEditor5::versionIndexChanged);
 
     versionIndexChanged(ui->comboBoxVersion->currentIndex());
 }

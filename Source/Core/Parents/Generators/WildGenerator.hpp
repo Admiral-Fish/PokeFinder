@@ -27,10 +27,11 @@ enum class Lead : u8;
 /**
  * @brief Parent generator class for wild encounters
  *
+ * @tparam EncounterArea EncounterArea class that is used by the generator
  * @tparam Profile Profile class that is used by the generator
  * @tparam Filter Filter class that is used by the generator
  */
-template <class Profile, class Filter>
+template <class EncounterArea, class Profile, class Filter>
 class WildGenerator : public Generator<Profile, Filter>
 {
 public:
@@ -40,20 +41,20 @@ public:
      * @param initialAdvances Initial number of advances
      * @param maxAdvances Maximum number of advances
      * @param delay Number of advances to offset
-     * @param encounter Encounter type
      * @param method Encounter method
      * @param lead Encounter lead
+     * @param area Wild pokemon info
      * @param profile Profile Information
      * @param filter State filter
      */
-    WildGenerator(u32 initialAdvances, u32 maxAdvances, u32 delay, Method method, Encounter encounter, Lead lead, const Profile &profile,
-                  const Filter &filter) :
-        Generator<Profile, Filter>(initialAdvances, maxAdvances, delay, method, profile, filter), encounter(encounter), lead(lead)
+    WildGenerator(u32 initialAdvances, u32 maxAdvances, u32 delay, Method method, Lead lead, const EncounterArea &area,
+                  const Profile &profile, const Filter &filter) :
+        Generator<Profile, Filter>(initialAdvances, maxAdvances, delay, method, profile, filter), area(area), lead(lead)
     {
     }
 
 protected:
-    Encounter encounter;
+    EncounterArea area;
     Lead lead;
 };
 

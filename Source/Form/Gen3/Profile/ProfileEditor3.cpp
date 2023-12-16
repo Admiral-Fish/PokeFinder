@@ -36,6 +36,7 @@ ProfileEditor3::ProfileEditor3(QWidget *parent) : QDialog(parent), ui(new Ui::Pr
                                  toInt(Game::Emerald), toInt(Game::Gales), toInt(Game::Colosseum) });
 
     connect(ui->pushButtonOkay, &QPushButton::clicked, this, &ProfileEditor3::okay);
+    connect(ui->pushButtonCancel, &QPushButton::clicked, this, &ProfileEditor3::reject);
     connect(ui->comboBoxVersion, &QComboBox::currentIndexChanged, this, &ProfileEditor3::versionIndexChanged);
 
     QSettings setting;

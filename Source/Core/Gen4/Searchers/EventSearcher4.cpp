@@ -27,7 +27,7 @@
 
 EventSearcher4::EventSearcher4(u32 minAdvance, u32 maxAdvance, u32 minDelay, u32 maxDelay, const Profile4 &profile,
                                const StateFilter &filter) :
-    Searcher(Method::None, profile, filter), maxAdvance(maxAdvance), minAdvance(minAdvance), maxDelay(maxDelay), minDelay(minDelay)
+    Searcher(Method::None, profile), maxAdvance(maxAdvance), minAdvance(minAdvance), maxDelay(maxDelay), minDelay(minDelay), filter(filter)
 {
 }
 

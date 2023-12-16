@@ -83,7 +83,7 @@ public:
      *
      * @return Internal state
      */
-    StateType getState() const
+    const StateType &getState() const
     {
         return state;
     }

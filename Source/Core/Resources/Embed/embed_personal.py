@@ -38,7 +38,7 @@ def embed_personal():
                         offset = 0x44
 
             name = os.path.basename(f.name).replace(".bin", "")
-            string = f"constexpr std::array<PersonalInfo, {int(size/offset)}> {name} = {{ "
+            string = f"constexpr std::array<PersonalInfo, {int(size/offset)}> {name.upper()} = {{ "
 
             for i in range(0, size, offset):
                 hp = data[i]

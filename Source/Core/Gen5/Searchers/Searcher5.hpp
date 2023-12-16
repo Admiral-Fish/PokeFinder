@@ -23,13 +23,11 @@
 #include <Core/Gen5/Keypresses.hpp>
 #include <Core/Gen5/Profile5.hpp>
 #include <Core/Global.hpp>
+#include <Core/Parents/Searchers/Searcher.hpp>
 #include <Core/RNG/SHA1.hpp>
 #include <Core/Util/DateTime.hpp>
 #include <Core/Util/Utilities.hpp>
-#include <atomic>
-#include <mutex>
 #include <thread>
-#include <vector>
 
 class Date;
 class Profile5;
@@ -43,48 +41,18 @@ class SearcherState5;
  * @tparam State State class to use
  */
 template <class Generator, class State>
-class Searcher5
+class Searcher5 : public SearcherBase<SearcherState5<State>>
 {
 public:
     /**
-     * @brief Construct a new DreamRadarSearcher object
+     * @brief Construct a new Searcher5 object
      *
      * @param generator State generator
      * @param profile Profile information
      */
     Searcher5(const Generator &generator, const Profile5 &profile) :
-        generator(generator), profile(profile), keypresses(Keypresses::getKeypresses(profile)), progress(0), searching(false)
+        SearcherBase<SearcherState5<State>>(), generator(generator), profile(profile), keypresses(Keypresses::getKeypresses(profile))
     {
-    }
-
-    /**
-     * @brief Cancels the running search
-     */
-    void cancelSearch()
-    {
-        searching = false;
-    }
-
-    /**
-     * @brief Returns the progress of the running search
-     *
-     * @return Progress
-     */
-    int getProgress() const
-    {
-        return progress;
-    }
-
-    /**
-     * @brief Returns the states of the running search
-     *
-     * @return Vector of computed states
-     */
-    std::vector<SearcherState5<State>> getResults()
-    {
-        std::lock_guard<std::mutex> lock(mutex);
-        auto data = std::move(results);
-        return data;
     }
 
     /**
@@ -96,7 +64,7 @@ public:
      */
     void startSearch(int threads, const Date &start, const Date &end)
     {
-        searching = true;
+        this->searching = true;
 
         auto days = start.daysTo(end) + 1;
         if (days < threads)
@@ -116,10 +84,10 @@ public:
             }
             else
             {
-                Date mid = day.addDays(daysSplit - 1);
+                Date mid = day + (daysSplit - 1);
                 threadContainer.emplace_back([=] { search(day, mid); });
             }
-            day = day.addDays(daysSplit);
+            day += daysSplit;
         }
 
         for (int i = 0; i < threads; i++)
@@ -131,11 +99,7 @@ public:
 protected:
     Generator generator;
     Profile5 profile;
-    std::mutex mutex;
     std::vector<Keypress> keypresses;
-    std::vector<SearcherState5<State>> results;
-    std::atomic<int> progress;
-    bool searching;
 
     /**
      * @brief Searches between the \p start and \p end dates
@@ -150,7 +114,7 @@ protected:
         for (u16 timer0 = profile.getTimer0Min(); timer0 <= profile.getTimer0Max(); timer0++)
         {
             sha.setTimer0(timer0, profile.getVCount());
-            for (Date date = start; date <= end; date++)
+            for (Date date = start; date <= end; ++date)
             {
                 sha.setDate(date);
                 auto alpha = sha.precompute();
@@ -164,7 +128,7 @@ protected:
                         {
                             for (u8 second = 0; second < 60; second++)
                             {
-                                if (!searching)
+                                if (!this->searching)
                                 {
                                     return;
                                 }
@@ -177,17 +141,17 @@ protected:
                                 {
                                     DateTime dt(date, Time(hour, minute, second));
 
-                                    std::lock_guard<std::mutex> lock(mutex);
-                                    results.reserve(results.capacity() + states.size());
+                                    std::lock_guard<std::mutex> lock(this->mutex);
+                                    this->results.reserve(this->results.capacity() + states.size());
                                     for (const auto &state : states)
                                     {
-                                        results.emplace_back(dt, seed, keypress.button, timer0, state);
+                                        this->results.emplace_back(dt, seed, keypress.button, timer0, state);
                                     }
                                 }
                             }
                         }
                     }
-                    progress++;
+                    this->progress++;
                 }
             }
         }

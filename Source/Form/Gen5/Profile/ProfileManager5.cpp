@@ -38,6 +38,7 @@ ProfileManager5::ProfileManager5(QWidget *parent) : QWidget(parent), ui(new Ui::
     connect(ui->pushButtonNew, &QPushButton::clicked, this, &ProfileManager5::create);
     connect(ui->pushButtonEdit, &QPushButton::clicked, this, &ProfileManager5::edit);
     connect(ui->pushButtonDelete, &QPushButton::clicked, this, &ProfileManager5::remove);
+    connect(ui->pushButtonOk, &QPushButton::clicked, this, &ProfileManager5::close);
 
     QSettings setting;
     if (setting.contains("profileManager5/geometry"))

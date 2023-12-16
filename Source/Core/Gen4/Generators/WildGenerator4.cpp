@@ -21,7 +21,6 @@
 #include <Core/Enum/Encounter.hpp>
 #include <Core/Enum/Lead.hpp>
 #include <Core/Enum/Method.hpp>
-#include <Core/Gen4/EncounterArea4.hpp>
 #include <Core/Gen4/States/WildState4.hpp>
 #include <Core/Parents/PersonalInfo.hpp>
 #include <Core/Parents/Slot.hpp>
@@ -51,40 +50,40 @@ static u16 getItem(u8 rand, Lead lead, const PersonalInfo *info)
     }
 }
 
-WildGenerator4::WildGenerator4(u32 initialAdvances, u32 maxAdvances, u32 delay, Method method, Encounter encounter, Lead lead, bool shiny,
-                               const Profile4 &profile, const WildStateFilter &filter) :
-    WildGenerator(initialAdvances, maxAdvances, delay, method, encounter, lead, profile, filter), shiny(shiny)
+WildGenerator4::WildGenerator4(u32 initialAdvances, u32 maxAdvances, u32 delay, Method method, Lead lead, bool shiny,
+                               const EncounterArea4 &area, const Profile4 &profile, const WildStateFilter &filter) :
+    WildGenerator(initialAdvances, maxAdvances, delay, method, lead, area, profile, filter), shiny(shiny)
 {
 }
 
-std::vector<WildGeneratorState4> WildGenerator4::generate(u32 seed, const EncounterArea4 &encounterArea, u8 index) const
+std::vector<WildGeneratorState4> WildGenerator4::generate(u32 seed, u8 index) const
 {
     switch (method)
     {
     case Method::MethodJ:
-        return generateMethodJ(seed, encounterArea);
+        return generateMethodJ(seed);
     case Method::MethodK:
-        return generateMethodK(seed, encounterArea);
+        return generateMethodK(seed);
     case Method::PokeRadar:
         if (shiny)
         {
-            return generatePokeRadarShiny(seed, encounterArea, index);
+            return generatePokeRadarShiny(seed, index);
         }
         else
         {
-            return generatePokeRadar(seed, encounterArea, index);
+            return generatePokeRadar(seed, index);
         }
     default:
         return std::vector<WildGeneratorState4>();
     }
 }
 
-std::vector<WildGeneratorState4> WildGenerator4::generateMethodJ(u32 seed, const EncounterArea4 &encounterArea) const
+std::vector<WildGeneratorState4> WildGenerator4::generateMethodJ(u32 seed) const
 {
     std::vector<WildGeneratorState4> states;
 
-    u8 thresh = encounterArea.getRate();
-    std::vector<u8> modifiedSlots = encounterArea.getSlots(lead);
+    u8 thresh = area.getRate();
+    std::vector<u8> modifiedSlots = area.getSlots(lead);
 
     PokeRNG rng(seed, initialAdvances + delay);
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
@@ -93,7 +92,8 @@ std::vector<WildGeneratorState4> WildGenerator4::generateMethodJ(u32 seed, const
         PokeRNG go(rng);
 
         // Fishing nibble check
-        if ((encounter == Encounter::OldRod || encounter == Encounter::GoodRod || encounter == Encounter::SuperRod)
+        if ((area.getEncounter() == Encounter::OldRod || area.getEncounter() == Encounter::GoodRod
+             || area.getEncounter() == Encounter::SuperRod)
             && go.nextUShort<false>(100, &occidentary) >= thresh)
         {
             rng.next();
@@ -107,7 +107,7 @@ std::vector<WildGeneratorState4> WildGenerator4::generateMethodJ(u32 seed, const
         }
         else
         {
-            encounterSlot = EncounterSlot::jSlot(go.nextUShort<false>(100, &occidentary), encounter);
+            encounterSlot = EncounterSlot::jSlot(go.nextUShort<false>(100, &occidentary), area.getEncounter());
         }
 
         if (!filter.compareEncounterSlot(encounterSlot))
@@ -117,16 +117,16 @@ std::vector<WildGeneratorState4> WildGenerator4::generateMethodJ(u32 seed, const
         }
 
         u8 level;
-        if (encounter == Encounter::Grass)
+        if (area.getEncounter() == Encounter::Grass)
         {
-            level = encounterArea.calculateLevel<false, false>(encounterSlot, go, &occidentary, lead == Lead::Pressure);
+            level = area.calculateLevel<false, false>(encounterSlot, go, &occidentary, lead == Lead::Pressure);
         }
         else
         {
-            level = encounterArea.calculateLevel<true, false>(encounterSlot, go, &occidentary, lead == Lead::Pressure);
+            level = area.calculateLevel<true, false>(encounterSlot, go, &occidentary, lead == Lead::Pressure);
         }
 
-        const Slot &slot = encounterArea.getPokemon(encounterSlot);
+        const Slot &slot = area.getPokemon(encounterSlot);
         const PersonalInfo *info = slot.getInfo();
 
         bool cuteCharmFlag = false;
@@ -196,7 +196,7 @@ std::vector<WildGeneratorState4> WildGenerator4::generateMethodJ(u32 seed, const
         u8 form = 0;
         if (slot.getSpecie() == 201)
         {
-            form = encounterArea.unownForm(go.nextUShort());
+            form = area.unownForm(go.nextUShort());
         }
 
         WildGeneratorState4 state(rng.nextUShort(), occidentary, initialAdvances + cnt, pid, ivs, pid & 1, Utilities::getGender(pid, info),
@@ -210,22 +210,23 @@ std::vector<WildGeneratorState4> WildGenerator4::generateMethodJ(u32 seed, const
     return states;
 }
 
-std::vector<WildGeneratorState4> WildGenerator4::generateMethodK(u32 seed, const EncounterArea4 &encounterArea) const
+std::vector<WildGeneratorState4> WildGenerator4::generateMethodK(u32 seed) const
 {
     std::vector<WildGeneratorState4> states;
 
-    u16 rate = encounterArea.getRate();
+    u16 rate = area.getRate();
     if (lead == Lead::SuctionCups
-        && (encounter == Encounter::OldRod || encounter == Encounter::GoodRod || encounter == Encounter::SuperRod))
+        && (area.getEncounter() == Encounter::OldRod || area.getEncounter() == Encounter::GoodRod
+            || area.getEncounter() == Encounter::SuperRod))
     {
         rate *= 2;
     }
-    else if (lead == Lead::ArenaTrap && encounter == Encounter::RockSmash)
+    else if (lead == Lead::ArenaTrap && area.getEncounter() == Encounter::RockSmash)
     {
         rate *= 2;
     }
-    std::vector<u8> modifiedSlots = encounterArea.getSlots(lead);
-    bool safari = encounterArea.safariZone(profile.getVersion());
+    std::vector<u8> modifiedSlots = area.getSlots(lead);
+    bool safari = area.safariZone(profile.getVersion());
 
     PokeRNG rng(seed, initialAdvances + delay);
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
@@ -234,8 +235,8 @@ std::vector<WildGeneratorState4> WildGenerator4::generateMethodK(u32 seed, const
         PokeRNG go(rng);
 
         // Rock smash/fishing nibble check
-        if ((encounter == Encounter::RockSmash || encounter == Encounter::OldRod || encounter == Encounter::GoodRod
-             || encounter == Encounter::SuperRod)
+        if ((area.getEncounter() == Encounter::RockSmash || area.getEncounter() == Encounter::OldRod
+             || area.getEncounter() == Encounter::GoodRod || area.getEncounter() == Encounter::SuperRod)
             && go.nextUShort(100, &occidentary) >= rate)
         {
             rng.next();
@@ -255,7 +256,7 @@ std::vector<WildGeneratorState4> WildGenerator4::generateMethodK(u32 seed, const
             }
             else
             {
-                encounterSlot = EncounterSlot::kSlot(go.nextUShort(100, &occidentary), encounter);
+                encounterSlot = EncounterSlot::kSlot(go.nextUShort(100, &occidentary), area.getEncounter());
             }
         }
 
@@ -266,16 +267,16 @@ std::vector<WildGeneratorState4> WildGenerator4::generateMethodK(u32 seed, const
         }
 
         u8 level;
-        if (encounter == Encounter::Grass || safari)
+        if (area.getEncounter() == Encounter::Grass || safari)
         {
-            level = encounterArea.calculateLevel<false, true>(encounterSlot, go, &occidentary, lead == Lead::Pressure);
+            level = area.calculateLevel<false, true>(encounterSlot, go, &occidentary, lead == Lead::Pressure);
         }
         else
         {
-            level = encounterArea.calculateLevel<true, true>(encounterSlot, go, &occidentary, lead == Lead::Pressure);
+            level = area.calculateLevel<true, true>(encounterSlot, go, &occidentary, lead == Lead::Pressure);
         }
 
-        const Slot &slot = encounterArea.getPokemon(encounterSlot);
+        const Slot &slot = area.getPokemon(encounterSlot);
         const PersonalInfo *info = slot.getInfo();
 
         bool cuteCharmFlag = false;
@@ -318,7 +319,7 @@ std::vector<WildGeneratorState4> WildGenerator4::generateMethodK(u32 seed, const
         }
         else
         {
-            if (encounter == Encounter::BugCatchingContest || safari)
+            if (area.getEncounter() == Encounter::BugCatchingContest || safari)
             {
                 for (u8 i = 0; i < 4; i++)
                 {
@@ -418,11 +419,11 @@ std::vector<WildGeneratorState4> WildGenerator4::generateMethodK(u32 seed, const
     return states;
 }
 
-std::vector<WildGeneratorState4> WildGenerator4::generatePokeRadar(u32 seed, const EncounterArea4 &encounterArea, u8 index) const
+std::vector<WildGeneratorState4> WildGenerator4::generatePokeRadar(u32 seed, u8 index) const
 {
     std::vector<WildGeneratorState4> states;
 
-    const Slot &slot = encounterArea.getPokemon(index);
+    const Slot &slot = area.getPokemon(index);
     const PersonalInfo *info = slot.getInfo();
 
     bool cuteCharm = false;
@@ -509,11 +510,11 @@ std::vector<WildGeneratorState4> WildGenerator4::generatePokeRadar(u32 seed, con
     return states;
 }
 
-std::vector<WildGeneratorState4> WildGenerator4::generatePokeRadarShiny(u32 seed, const EncounterArea4 &encounterArea, u8 index) const
+std::vector<WildGeneratorState4> WildGenerator4::generatePokeRadarShiny(u32 seed, u8 index) const
 {
     std::vector<WildGeneratorState4> states;
 
-    const Slot &slot = encounterArea.getPokemon(index);
+    const Slot &slot = area.getPokemon(index);
     const PersonalInfo *info = slot.getInfo();
 
     bool cuteCharm = false;

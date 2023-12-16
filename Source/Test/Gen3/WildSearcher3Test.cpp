@@ -22,15 +22,15 @@
 #include <Core/Gen3/Encounters3.hpp>
 #include <Core/Gen3/Generators/WildGenerator3.hpp>
 #include <Core/Gen3/Searchers/WildSearcher3.hpp>
-#include <Core/Gen3/States/WildState3.hpp>
 #include <Core/Parents/Slot.hpp>
+#include <Core/Parents/States/WildState.hpp>
 #include <QTest>
 #include <Test/Data.hpp>
 #include <Test/Enum.hpp>
 
 using IVs = std::array<u8, 6>;
 
-static bool operator==(const WildSearcherState3 &left, const WildGeneratorState &right)
+static bool operator==(const WildSearcherState &left, const WildGeneratorState &right)
 {
     return left.getPID() == right.getPID() && left.getStats() == right.getStats() && left.getAbilityIndex() == right.getAbilityIndex()
         && left.getIVs() == right.getIVs() && left.getAbility() == right.getAbility() && left.getGender() == right.getGender()
@@ -92,7 +92,7 @@ void WildSearcher3Test::search()
                                       [location](const EncounterArea3 &encounterArea) { return encounterArea.getLocation() == location; });
 
     WildStateFilter filter(255, 255, 255, false, min, max, natures, powers, encounterSlots);
-    WildSearcher3 searcher(method, encounter, lead, *encounterArea, profile, filter);
+    WildSearcher3 searcher(method, lead, *encounterArea, profile, filter);
 
     searcher.startSearch(min, max);
     auto states = searcher.getResults();
@@ -101,8 +101,9 @@ void WildSearcher3Test::search()
     for (const auto &state : states)
     {
         // Ensure generator agrees
-        WildGenerator3 generator(0, 0, 0, method, encounter, lead != Lead::Synchronize ? lead : lead + state.getNature(), profile, filter);
-        auto generatorStates = generator.generate(state.getSeed(), *encounterArea);
+        WildGenerator3 generator(0, 0, 0, method, lead != Lead::Synchronize ? lead : lead + state.getNature(), *encounterArea, profile,
+                                 filter);
+        auto generatorStates = generator.generate(state.getSeed());
 
         QCOMPARE(generatorStates.size(), 1);
         QVERIFY(state == generatorStates[0]);

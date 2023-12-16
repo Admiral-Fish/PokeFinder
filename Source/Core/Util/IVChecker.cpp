@@ -24,32 +24,6 @@
 
 constexpr u8 ivOrder[6] = { 0, 1, 2, 5, 3, 4 };
 
-/**
- * @brief Calculates the stat value
- *
- * @param statIndex Pokemon stat index
- * @param baseStat Pokemon stat
- * @param iv IV value
- * @param level Pokemon level
- * @param nature Pokemon nature
- *
- * @return Calculated stat
- *
- */
-static u16 calculateStat(u8 statIndex, u16 baseStat, u8 iv, u8 level, u8 nature)
-{
-    u16 stat = ((2 * baseStat + iv) * level) / 100;
-    if (statIndex == 0)
-    {
-        stat += level + 10;
-    }
-    else
-    {
-        stat = Nature::computeStat(stat + 5, nature, statIndex);
-    }
-    return stat;
-}
-
 namespace
 {
     /**
@@ -73,7 +47,7 @@ namespace
         {
             for (u8 iv = 0; iv < 32; iv++)
             {
-                u16 stat = calculateStat(i, baseStats[i], iv, level, nature);
+                u16 stat = Nature::computeStat(baseStats[i], iv, nature, level, i);
                 if (stat == stats[i])
                 {
                     minIVs[i] = std::min(iv, minIVs[i]);
@@ -102,11 +76,10 @@ namespace
                 // Keep the highest value to filter with below
                 if ((i % 5) == result)
                 {
+                    possible[stat].emplace_back(i);
                     characteristicHigh = i;
                 }
             }
-
-            possible[stat].emplace_back(characteristicHigh);
         }
 
         for (u8 i : indexes)
@@ -233,8 +206,8 @@ std::array<u8, 6> IVChecker::nextLevel(const std::array<u8, 6> &baseStats, const
         {
             for (size_t j = 1; j < statIVs.size(); j++)
             {
-                u16 previous = calculateStat(i, baseStats[i], statIVs[j - 1], l, nature);
-                u16 current = calculateStat(i, baseStats[i], statIVs[j], l, nature);
+                u16 previous = Nature::computeStat(baseStats[i], statIVs[j - 1], nature, l, i);
+                u16 current = Nature::computeStat(baseStats[i], statIVs[j], nature, l, i);
                 if (previous < current)
                 {
                     levels[i] = l;

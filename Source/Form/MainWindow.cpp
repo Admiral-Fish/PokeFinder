@@ -108,9 +108,7 @@ MainWindow::MainWindow(bool profile, QWidget *parent) : QMainWindow(parent), ui(
     connect(ui->pushButtonIDs5, &QPushButton::clicked, this, &MainWindow::openIDs5);
     connect(ui->actionProfileCalibrator, &QAction::triggered, this, &MainWindow::openProfileCalibrator);
     connect(ui->actionProfileManager5, &QAction::triggered, this, &MainWindow::openProfileManager5);
-    // connect(ui->pushButtonStatic5, &QPushButton::clicked, this, &MainWindow::openStatic5);
 
-    connect(ui->actionDownloadEventData, &QAction::triggered, this, &MainWindow::downloadEventData);
     connect(ui->pushButtonEgg8, &QPushButton::clicked, this, &MainWindow::openEgg8);
     connect(ui->pushButtonEvent8, &QPushButton::clicked, this, &MainWindow::openEvent8);
     connect(ui->pushButtonIDs8, &QPushButton::clicked, this, &MainWindow::openIDs8);
@@ -504,76 +502,6 @@ void MainWindow::openProfileManager5() const
         static5->close();
     }
 }*/
-
-void MainWindow::downloadEventData()
-{
-    auto fileResponse
-        = downloadFile("https://raw.githubusercontent.com/Admiral-Fish/RaidFinder/master/Resources/Encounters/Event/files.txt");
-    if (fileResponse.isEmpty())
-    {
-        QMessageBox msg(QMessageBox::Critical, tr("Download failed"),
-                        tr("Make sure you are connected to the internet and have OpenSSL setup"));
-        msg.exec();
-        return;
-    }
-
-    QStringList infos = QString(fileResponse).split('\n');
-    QStringList files;
-    QStringList entries;
-    for (const QString &info : infos)
-    {
-        if (info.isEmpty())
-        {
-            continue;
-        }
-
-        QStringList data = info.split(',');
-        QString file = data.at(0);
-        u16 specie = data.at(1).toUShort();
-
-        files.prepend(file);
-
-        file = file.left(file.indexOf('_'));
-        file.insert(2, '-');
-        file.insert(5, '-');
-
-        entries.prepend(QString("%1: %2").arg(file, QString::fromStdString(Translator::getSpecie(specie))));
-    }
-
-    bool flag;
-    QString item = QInputDialog::getItem(this, tr("Download Event Data"), tr("Event"), entries, 0, false, &flag,
-                                         Qt::WindowTitleHint | Qt::WindowCloseButtonHint);
-    if (!flag)
-    {
-        return;
-    }
-
-    int index = entries.indexOf(item);
-    auto eventResponse
-        = downloadFile("https://raw.githubusercontent.com/Admiral-Fish/RaidFinder/master/Resources/Encounters/Event/" + files.at(index));
-    if (eventResponse.isEmpty())
-    {
-        QMessageBox msg(QMessageBox::Critical, tr("Download failed"),
-                        tr("Make sure you are connected to the internet and have OpenSSL setup"));
-        msg.exec();
-        return;
-    }
-
-    QFile f(QApplication::applicationDirPath() + "/nests_event.json");
-    if (f.open(QIODevice::WriteOnly))
-    {
-        f.write(qUncompress(eventResponse));
-        f.close();
-
-        QMessageBox msg(QMessageBox::Question, tr("Download finished"), tr("Restart to see event data. Restart now?"),
-                        QMessageBox::Yes | QMessageBox::No);
-        if (msg.exec() == QMessageBox::Yes)
-        {
-            QProcess::startDetached(QApplication::applicationFilePath());
-            QApplication::quit();
-        }
-    }
-}
 
 void MainWindow::openDenMap()
 {

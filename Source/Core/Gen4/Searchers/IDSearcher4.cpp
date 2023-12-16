@@ -21,25 +21,8 @@
 #include <Core/Gen4/States/IDState4.hpp>
 #include <Core/RNG/MTFast.hpp>
 
-IDSearcher4::IDSearcher4(const IDFilter &filter) : filter(filter), progress(0), searching(false)
+IDSearcher4::IDSearcher4(const IDFilter &filter) : filter(filter)
 {
-}
-
-void IDSearcher4::cancelSearch()
-{
-    searching = false;
-}
-
-int IDSearcher4::getProgress() const
-{
-    return progress;
-}
-
-std::vector<IDState4> IDSearcher4::getResults()
-{
-    std::lock_guard<std::mutex> guard(mutex);
-    auto data = std::move(results);
-    return data;
 }
 
 void IDSearcher4::startSearch(bool infinite, u16 year, u32 minDelay, u32 maxDelay)

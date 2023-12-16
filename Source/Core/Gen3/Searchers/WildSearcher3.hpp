@@ -25,25 +25,24 @@
 #include <Core/Parents/Filters/StateFilter.hpp>
 #include <Core/Parents/Searchers/WildSearcher.hpp>
 
-class WildSearcherState3;
+class WildSearcherState;
 
 /**
  * @brief Wild encounter searcher for Gen3
  */
-class WildSearcher3 : public WildSearcher<EncounterArea3, Profile3, WildStateFilter, WildSearcherState3>
+class WildSearcher3 : public WildSearcher<EncounterArea3, Profile3, WildStateFilter, WildSearcherState>
 {
 public:
     /**
      * @brief Construct a new WildSearcher3 object
      *
      * @param method Encounter method
-     * @param encounter Encounter type
      * @param lead Encounter lead
+     * @param area Wild pokemon info
      * @param profile Profile Information
      * @param filter State filter
      */
-    WildSearcher3(Method method, Encounter encounter, Lead lead, const EncounterArea3 &encounterArea, const Profile3 &profile,
-                  const WildStateFilter &filter);
+    WildSearcher3(Method method, Lead lead, const EncounterArea3 &area, const Profile3 &profile, const WildStateFilter &filter);
 
     /**
      * @brief Starts the search
@@ -55,6 +54,7 @@ public:
 
 private:
     std::vector<u8> modifiedSlots;
+    u16 rate;
     bool ivAdvance;
 
     /**
@@ -70,7 +70,7 @@ private:
      *
      * @return Vector of computed states
      */
-    std::vector<WildSearcherState3> search(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, bool safari, bool tanoby) const;
+    std::vector<WildSearcherState> search(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, bool safari, bool tanoby) const;
 };
 
 #endif // WILDSEARCHER3_HPP

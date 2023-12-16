@@ -21,15 +21,14 @@
 #define IDSEARCHER4_HPP
 
 #include <Core/Parents/Filters/IDFilter.hpp>
-#include <mutex>
-#include <vector>
+#include <Core/Parents/Searchers/Searcher.hpp>
 
 class IDState4;
 
 /**
  * @brief TID/SID searcher for Gen4
  */
-class IDSearcher4
+class IDSearcher4 : public SearcherBase<IDState4>
 {
 public:
     /**
@@ -38,25 +37,6 @@ public:
      * @param filter State filter
      */
     IDSearcher4(const IDFilter &filter);
-
-    /**
-     * @brief Cancels the running search
-     */
-    void cancelSearch();
-
-    /**
-     * @brief Returns the progress of the running search
-     *
-     * @return Progress
-     */
-    int getProgress() const;
-
-    /**
-     * @brief Returns the states of the running search
-     *
-     * @return Vector of computed states
-     */
-    std::vector<IDState4> getResults();
 
     /**
      * @brief Starts the search
@@ -70,10 +50,6 @@ public:
 
 private:
     IDFilter filter;
-    std::mutex mutex;
-    std::vector<IDState4> results;
-    int progress;
-    bool searching;
 };
 
 #endif // IDSEARCHER4_HPP

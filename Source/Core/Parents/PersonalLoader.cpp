@@ -27,39 +27,39 @@ namespace PersonalLoader
     {
         if ((version & Game::Gen3) != Game::None)
         {
-            return personal_rsefrlg.data();
+            return PERSONAL_RSEFRLG.data();
         }
         else if ((version & Game::Diamond) != Game::None)
         {
-            return personal_d.data();
+            return PERSONAL_D.data();
         }
         else if ((version & Game::Pearl) != Game::None)
         {
-            return personal_p.data();
+            return PERSONAL_P.data();
         }
         else if ((version & Game::Platinum) != Game::None)
         {
-            return personal_pt.data();
+            return PERSONAL_PT.data();
         }
         else if ((version & Game::HGSS) != Game::None)
         {
-            return personal_hgss.data();
+            return PERSONAL_HGSS.data();
         }
         else if ((version & Game::BW) != Game::None)
         {
-            return personal_bw.data();
+            return PERSONAL_BW.data();
         }
         else if ((version & Game::BW2) != Game::None)
         {
-            return personal_b2w2.data();
+            return PERSONAL_B2W2.data();
         }
         else if ((version & Game::SwSh) != Game::None)
         {
-            return personal_swsh.data();
+            return PERSONAL_SWSH.data();
         }
         else
         {
-            return personal_bdsp.data();
+            return PERSONAL_BDSP.data();
         }
     }
 

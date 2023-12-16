@@ -36,7 +36,6 @@ EggGenerator8::EggGenerator8(u32 initialAdvances, u32 maxAdvances, u32 delay, u8
     EggGenerator(initialAdvances, maxAdvances, delay, Method::None, compatability, daycare, profile, filter),
     shinyCharm(profile.getShinyCharm())
 {
-    tsv = (profile.getTID() & 0xFFF0) ^ profile.getSID();
 }
 
 std::vector<EggGeneratorState> EggGenerator8::generate(u64 seed0, u64 seed1) const
@@ -183,13 +182,14 @@ std::vector<EggGeneratorState> EggGenerator8::generate(u64 seed0, u64 seed1) con
             for (u8 roll = 0; roll < pidRolls; roll++)
             {
                 pid = rng.nextUInt(0xffffffff);
-                psv = (pid >> 16) ^ (pid & 0xfff0);
+                psv = (pid >> 16) ^ (pid & 0xffff);
                 if ((psv ^ tsv) < 16)
                 {
                     break;
                 }
             }
-            u8 shiny = (psv ^ tsv) < 16;
+            u16 pidXOR = psv ^ tsv;
+            u8 shiny = pidXOR < 16 ? pidXOR == 0 ? 2 : 1 : 0;
 
             // Ball handling check
             // Uses a rand call, maybe add later

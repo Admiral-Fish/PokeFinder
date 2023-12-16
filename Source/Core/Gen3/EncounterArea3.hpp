@@ -21,7 +21,6 @@
 #define ENCOUNTERAREA3_HPP
 
 #include <Core/Parents/EncounterArea.hpp>
-#include <Core/Parents/Slot.hpp>
 #include <Core/RNG/LCRNG.hpp>
 
 /**
@@ -38,7 +37,7 @@ public:
      * @param encounter Encounter type of the area
      * @param pokemon Available pokemon of the area
      */
-    EncounterArea3(u8 location, u8 rate, Encounter encounter, const std::vector<Slot> &pokemon) :
+    EncounterArea3(u8 location, u8 rate, Encounter encounter, const std::array<Slot, 12> &pokemon) :
         EncounterArea(location, rate, encounter, pokemon)
     {
     }

@@ -33,6 +33,14 @@ class Raid : public StaticTemplate
 public:
     /**
      * @brief Construct a new Raid object
+     */
+    constexpr Raid() :
+        StaticTemplate(Game::SwSh, 0, 0, Shiny::Never, 0, 0, 0, 0), gigantamax(false), star { false, false, false, false, false }
+    {
+    }
+
+    /**
+     * @brief Construct a new Raid object
      *
      * @param specie Specie of the template
      * @param form Form of the template
@@ -42,9 +50,11 @@ public:
      * @param ivCount Gender of the template
      * @param gigantamax Template gigantamax
      * @param star Template stars
+     * @param level Template level
      */
-    constexpr Raid(u16 specie, u8 form, Shiny shiny, u8 ability, u8 gender, u8 ivCount, bool gigantamax, const std::array<bool, 5> &star) :
-        StaticTemplate(Game::SwSh, specie, form, shiny, ability, gender, ivCount, 0), gigantamax(gigantamax), star(star)
+    constexpr Raid(u16 specie, u8 form, Shiny shiny, u8 ability, u8 gender, u8 ivCount, bool gigantamax, const std::array<bool, 5> &star,
+                   u8 level = 0) :
+        StaticTemplate(Game::SwSh, specie, form, shiny, ability, gender, ivCount, level), gigantamax(gigantamax), star(star)
     {
     }
 

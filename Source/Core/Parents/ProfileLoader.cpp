@@ -26,11 +26,11 @@
 #include <Core/Gen8/Profile8.hpp>
 #include <filesystem>
 #include <fstream>
-#include <nlohmann/json.hpp>
+#include <json.hpp>
 
 using json = nlohmann::json;
 
-static std::string path;
+static std::filesystem::path path;
 
 /**
  * @brief Reads provided profiles file
@@ -64,9 +64,9 @@ static void writeJson(const json &j)
 
 namespace ProfileLoader
 {
-    bool init(const std::string &location)
+    bool init(const std::wstring &location)
     {
-        path = location;
+        path = std::filesystem::path(location);
 
         bool exists = std::filesystem::exists(path);
         if (!exists)

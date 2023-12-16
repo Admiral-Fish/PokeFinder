@@ -14,110 +14,12 @@
    <string>Gen 8 Event</string>
   </property>
   <layout class="QGridLayout" name="gridLayout_2">
-   <item row="2" column="0" colspan="3">
-    <widget class="TableView" name="tableView"/>
-   </item>
-   <item row="1" column="0">
-    <widget class="QGroupBox" name="groupBoxRNGInfo">
-     <property name="title">
-      <string>RNG Info</string>
-     </property>
-     <layout class="QGridLayout" name="gridLayout_3">
-      <item row="2" column="0">
-       <widget class="QLabel" name="labelInitialAdvances">
-        <property name="text">
-         <string>Initial Advances</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="1">
-       <widget class="TextBox" name="textBoxSeed1"/>
-      </item>
-      <item row="3" column="1">
-       <widget class="TextBox" name="textBoxMaxAdvances">
-        <property name="text">
-         <string notr="true">100000</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="0">
-       <widget class="QLabel" name="labelSeed0">
-        <property name="text">
-         <string>Seed 0</string>
-        </property>
-       </widget>
-      </item>
-      <item row="3" column="0">
-       <widget class="QLabel" name="labelMaxAdvances">
-        <property name="text">
-         <string>Max Advances</string>
-        </property>
-       </widget>
-      </item>
-      <item row="7" column="0" colspan="2">
-       <widget class="QPushButton" name="pushButtonGenerate">
-        <property name="text">
-         <string>Generate</string>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="1">
-       <widget class="TextBox" name="textBoxInitialAdvances">
-        <property name="text">
-         <string notr="true">0</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="1">
-       <widget class="TextBox" name="textBoxSeed0"/>
-      </item>
-      <item row="1" column="0">
-       <widget class="QLabel" name="labelSeed1">
-        <property name="text">
-         <string>Seed 1</string>
-        </property>
-       </widget>
-      </item>
-      <item row="4" column="1">
-       <widget class="TextBox" name="textBoxDelay"/>
-      </item>
-      <item row="4" column="0">
-       <widget class="QLabel" name="labelDelay">
-        <property name="text">
-         <string>Delay</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </widget>
-   </item>
    <item row="0" column="0" colspan="3">
     <widget class="QGroupBox" name="groupBoxProfile">
      <property name="title">
       <string>Profile</string>
      </property>
      <layout class="QGridLayout" name="gridLayout_5">
-      <item row="1" column="2">
-       <widget class="QLabel" name="labelProfileSID">
-        <property name="text">
-         <string>SID</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="2">
-       <widget class="QLabel" name="labelProfileTID">
-        <property name="text">
-         <string>TID</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="4" rowspan="2">
-       <widget class="Line" name="line_4">
-        <property name="orientation">
-         <enum>Qt::Vertical</enum>
-        </property>
-       </widget>
-      </item>
       <item row="0" column="0">
        <widget class="QLabel" name="labelProfile">
         <property name="text">
@@ -128,16 +30,37 @@
       <item row="0" column="1">
        <widget class="QComboBox" name="comboBoxProfiles"/>
       </item>
-      <item row="0" column="3">
-       <widget class="QLabel" name="labelProfileTIDValue"/>
-      </item>
-      <item row="1" column="3">
-       <widget class="QLabel" name="labelProfileSIDValue"/>
-      </item>
       <item row="1" column="1">
        <widget class="QPushButton" name="pushButtonProfileManager">
         <property name="text">
          <string>Manager</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="2">
+       <widget class="QLabel" name="labelProfileTID">
+        <property name="text">
+         <string>TID</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="3">
+       <widget class="QLabel" name="labelProfileTIDValue"/>
+      </item>
+      <item row="1" column="2">
+       <widget class="QLabel" name="labelProfileSID">
+        <property name="text">
+         <string>SID</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="3">
+       <widget class="QLabel" name="labelProfileSIDValue"/>
+      </item>
+      <item row="0" column="4" rowspan="2">
+       <widget class="Line" name="line_4">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
         </property>
        </widget>
       </item>
@@ -154,20 +77,76 @@
      </layout>
     </widget>
    </item>
-   <item row="1" column="2">
-    <widget class="QGroupBox" name="groupBoxFilters">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-       <horstretch>1</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
+   <item row="1" column="0">
+    <widget class="QGroupBox" name="groupBoxRNGInfo">
      <property name="title">
-      <string>Filters</string>
+      <string>RNG Info</string>
      </property>
-     <layout class="QGridLayout" name="gridLayout">
-      <item row="0" column="0" rowspan="2">
-       <widget class="Filter" name="filter" native="true"/>
+     <layout class="QGridLayout" name="gridLayout_3">
+      <item row="0" column="0">
+       <widget class="QLabel" name="labelSeed0">
+        <property name="text">
+         <string>Seed 0</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="TextBox" name="textBoxSeed0"/>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="labelSeed1">
+        <property name="text">
+         <string>Seed 1</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="TextBox" name="textBoxSeed1"/>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="labelInitialAdvances">
+        <property name="text">
+         <string>Initial Advances</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="TextBox" name="textBoxInitialAdvances">
+        <property name="text">
+         <string notr="true">0</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="0">
+       <widget class="QLabel" name="labelMaxAdvances">
+        <property name="text">
+         <string>Max Advances</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="1">
+       <widget class="TextBox" name="textBoxMaxAdvances">
+        <property name="text">
+         <string notr="true">100000</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="0">
+       <widget class="QLabel" name="labelDelay">
+        <property name="text">
+         <string>Delay</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="1">
+       <widget class="TextBox" name="textBoxDelay"/>
+      </item>
+      <item row="5" column="0" colspan="2">
+       <widget class="QPushButton" name="pushButtonGenerate">
+        <property name="text">
+         <string>Generate</string>
+        </property>
+       </widget>
       </item>
      </layout>
     </widget>
@@ -178,17 +157,34 @@
       <string>Settings</string>
      </property>
      <layout class="QGridLayout" name="gridLayout_17">
-      <item row="6" column="3">
-       <widget class="QCheckBox" name="checkBoxEgg">
+      <item row="0" column="0">
+       <widget class="QPushButton" name="pushButtonImport">
         <property name="text">
-         <string>Egg</string>
+         <string>Import</string>
         </property>
        </widget>
       </item>
-      <item row="5" column="0">
-       <widget class="QLabel" name="labelAbility">
+      <item row="1" column="0">
+       <widget class="QLabel" name="labelSpecies">
         <property name="text">
-         <string>Ability</string>
+         <string>Species</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="ComboBox" name="comboBoxSpecies"/>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="labelRandomIVs">
+        <property name="text">
+         <string>IV Count</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QSpinBox" name="spinBoxRandomIVs">
+        <property name="maximum">
+         <number>3</number>
         </property>
        </widget>
       </item>
@@ -199,42 +195,6 @@
         </property>
        </widget>
       </item>
-      <item row="5" column="1">
-       <widget class="QComboBox" name="comboBoxAbility">
-        <item>
-         <property name="text">
-          <string notr="true">0</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string notr="true">1</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string notr="true">H</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string notr="true">1/2</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string notr="true">1/2/H</string>
-         </property>
-        </item>
-       </widget>
-      </item>
-      <item row="1" column="0">
-       <widget class="QLabel" name="labelSpecies">
-        <property name="text">
-         <string>Species</string>
-        </property>
-       </widget>
-      </item>
       <item row="3" column="1">
        <widget class="QSpinBox" name="spinBoxLevel">
         <property name="minimum">
@@ -242,20 +202,6 @@
         </property>
         <property name="maximum">
          <number>100</number>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="0">
-       <widget class="QPushButton" name="pushButtonImport">
-        <property name="text">
-         <string>Import</string>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="1">
-       <widget class="QSpinBox" name="spinBoxRandomIVs">
-        <property name="maximum">
-         <number>3</number>
         </property>
        </widget>
       </item>
@@ -295,18 +241,41 @@
         </item>
        </widget>
       </item>
-      <item row="2" column="0">
-       <widget class="QLabel" name="labelRandomIVs">
+      <item row="5" column="0">
+       <widget class="QLabel" name="labelAbility">
         <property name="text">
-         <string>IV Count</string>
+         <string>Ability</string>
         </property>
        </widget>
       </item>
-      <item row="1" column="1">
-       <widget class="ComboBox" name="comboBoxSpecies"/>
-      </item>
-      <item row="6" column="1">
-       <widget class="QComboBox" name="comboBoxNature"/>
+      <item row="5" column="1">
+       <widget class="QComboBox" name="comboBoxAbility">
+        <item>
+         <property name="text">
+          <string notr="true">0</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string notr="true">1</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string notr="true">H</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string notr="true">1/2</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string notr="true">1/2/H</string>
+         </property>
+        </item>
+       </widget>
       </item>
       <item row="6" column="0">
        <widget class="QCheckBox" name="checkBoxNature">
@@ -315,45 +284,8 @@
         </property>
        </widget>
       </item>
-      <item row="5" column="2">
-       <widget class="QLabel" name="labelPID">
-        <property name="text">
-         <string>PID</string>
-        </property>
-       </widget>
-      </item>
-      <item row="5" column="3">
-       <widget class="TextBox" name="textBoxPID"/>
-      </item>
-      <item row="4" column="2">
-       <widget class="QLabel" name="labelEC">
-        <property name="text">
-         <string>EC</string>
-        </property>
-       </widget>
-      </item>
-      <item row="4" column="3">
-       <widget class="TextBox" name="textBoxEC"/>
-      </item>
-      <item row="3" column="2">
-       <widget class="QLabel" name="labelSID">
-        <property name="text">
-         <string>SID</string>
-        </property>
-       </widget>
-      </item>
-      <item row="3" column="3">
-       <widget class="TextBox" name="textBoxSID"/>
-      </item>
-      <item row="2" column="2">
-       <widget class="QLabel" name="labelTID">
-        <property name="text">
-         <string>TID</string>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="3">
-       <widget class="TextBox" name="textBoxTID"/>
+      <item row="6" column="1">
+       <widget class="QComboBox" name="comboBoxNature"/>
       </item>
       <item row="1" column="2">
        <widget class="QLabel" name="labelGender">
@@ -381,12 +313,85 @@
         </item>
        </widget>
       </item>
+      <item row="2" column="2">
+       <widget class="QLabel" name="labelTID">
+        <property name="text">
+         <string>TID</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="3">
+       <widget class="TextBox" name="textBoxTID"/>
+      </item>
+      <item row="3" column="2">
+       <widget class="QLabel" name="labelSID">
+        <property name="text">
+         <string>SID</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="3">
+       <widget class="TextBox" name="textBoxSID"/>
+      </item>
+      <item row="4" column="2">
+       <widget class="QLabel" name="labelEC">
+        <property name="text">
+         <string>EC</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="3">
+       <widget class="TextBox" name="textBoxEC"/>
+      </item>
+      <item row="5" column="2">
+       <widget class="QLabel" name="labelPID">
+        <property name="text">
+         <string>PID</string>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="3">
+       <widget class="TextBox" name="textBoxPID"/>
+      </item>
+      <item row="6" column="3">
+       <widget class="QCheckBox" name="checkBoxEgg">
+        <property name="text">
+         <string>Egg</string>
+        </property>
+       </widget>
+      </item>
      </layout>
     </widget>
+   </item>
+   <item row="1" column="2">
+    <widget class="QGroupBox" name="groupBoxFilters">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+       <horstretch>1</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="title">
+      <string>Filters</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout">
+      <item row="0" column="0" rowspan="2">
+       <widget class="Filter" name="filter" native="true"/>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="2" column="0" colspan="3">
+    <widget class="TableView" name="tableView"/>
    </item>
   </layout>
  </widget>
  <customwidgets>
+  <customwidget>
+   <class>ComboBox</class>
+   <extends>QComboBox</extends>
+   <header>Form/Controls/ComboBox.hpp</header>
+  </customwidget>
   <customwidget>
    <class>TextBox</class>
    <extends>QLineEdit</extends>
@@ -402,11 +407,6 @@
    <extends>QWidget</extends>
    <header>Form/Controls/Filter.hpp</header>
    <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>ComboBox</class>
-   <extends>QComboBox</extends>
-   <header>Form/Controls/ComboBox.hpp</header>
   </customwidget>
  </customwidgets>
  <tabstops>

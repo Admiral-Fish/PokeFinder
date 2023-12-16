@@ -23,7 +23,6 @@
 #include <Core/Global.hpp>
 #include <vector>
 
-enum class Encounter : u8;
 enum class Method : u8;
 
 /**

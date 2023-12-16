@@ -68,7 +68,7 @@ public:
     QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
 
 private:
-    QStringList header = { tr("Seed"), tr("Date/Time") };
+    QStringList header = { tr("Date/Time"), tr("Delay") };
 };
 
 /**

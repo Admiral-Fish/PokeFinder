@@ -1,5 +1,4 @@
 import bz2
-import glob
 import json
 import os
 
@@ -13,9 +12,9 @@ def embed_encounters5():
         data = json.load(f)
         for type, encounters in data.items():
             if "dreamRadar" in type:
-                string = f"constexpr std::array<DreamRadarTemplate, {len(encounters)}> {type} = {{ "
+                string = f"constexpr std::array<DreamRadarTemplate, {len(encounters)}> {type.upper()} = {{ "
             else:
-                string = f"constexpr std::array<StaticTemplate, {len(encounters)}> {type} = {{ "
+                string = f"constexpr std::array<StaticTemplate, {len(encounters)}> {type.upper()} = {{ "
 
             for i, encounter in enumerate(encounters):
                 if "dreamRadar" in type:
@@ -36,10 +35,10 @@ def embed_encounters5():
 
         size = len(data)
         data = bz2.compress(data, 9)
-        data = size.to_bytes(2, "little") + data
+        data = size.to_bytes(4, "little") + data
 
         name = os.path.basename(f.name).replace(".bin", "")
-        string = f"constexpr std::array<u8, {len(data)}> {name} = {{ "
+        string = f"constexpr std::array<u8, {len(data)}> {name.upper()} = {{ "
 
         for i in range(len(data)):
             string += str(data[i])
@@ -49,4 +48,4 @@ def embed_encounters5():
         string += " };"
         arrays.append(string)
 
-    write_data(arrays, "EncounterData5.hpp", ("Core/Gen5/DreamRadarTemplate.hpp", "Core/Parents/StaticTemplate.hpp", "Core/Global.hpp", "array"))
+    write_data(arrays, "EncounterData5.hpp", ("Core/Gen5/DreamRadarTemplate.hpp", "Core/Parents/StaticTemplate.hpp", "array"))

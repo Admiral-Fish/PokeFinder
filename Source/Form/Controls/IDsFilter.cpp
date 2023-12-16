@@ -38,6 +38,16 @@ IDsFilter::~IDsFilter()
     delete ui;
 }
 
+void IDsFilter::enableDisplayTID()
+{
+    ui->radioButtonDisplayTID->setVisible(true);
+}
+
+void IDsFilter::enableTIDPID()
+{
+    ui->radioButtonTIDPID->setVisible(true);
+}
+
 IDFilter IDsFilter::getFilter(bool pastGen) const
 {
     std::vector<u16> tidFilter;
@@ -46,96 +56,52 @@ IDFilter IDsFilter::getFilter(bool pastGen) const
     std::vector<u32> displayFilter;
 
     QStringList inputs = ui->plainTextEdit->toPlainText().split('\n');
-    if (ui->radioButtonTID->isChecked())
+    for (const QString &input : inputs)
     {
-        for (const QString &input : inputs)
+        if (input.isEmpty())
         {
-            if (!input.isEmpty())
-            {
-                tidFilter.emplace_back(input.toUShort());
-            }
+            continue;
         }
-    }
-    else if (ui->radioButtonSID->isChecked())
-    {
-        for (const QString &input : inputs)
+
+        if (ui->radioButtonTID->isChecked())
         {
-            if (!input.isEmpty())
-            {
-                sidFilter.emplace_back(input.toUShort());
-            }
+            tidFilter.emplace_back(input.toUShort());
         }
-    }
-    else if (ui->radioButtonTIDSID->isChecked())
-    {
-        for (const QString &input : inputs)
+        else if (ui->radioButtonSID->isChecked())
         {
-            if (!input.isEmpty())
-            {
-                QStringList ids = input.split('/');
-                tidFilter.emplace_back(ids[0].toUShort());
-                sidFilter.emplace_back(ids[1].toUShort());
-            }
+            sidFilter.emplace_back(input.toUShort());
         }
-    }
-    else if (ui->radioButtonPID->isChecked())
-    {
-        for (const QString &input : inputs)
+        else if (ui->radioButtonTIDSID->isChecked())
         {
-            if (!input.isEmpty())
-            {
-                u32 pid = input.toUInt(nullptr, 16);
-                u16 psv = (pid >> 16) ^ (pid & 0xffff);
-                tsvFilter.emplace_back(psv >> (pastGen ? 3 : 4));
-            }
+            QStringList ids = input.split('/');
+            tidFilter.emplace_back(ids[0].toUShort());
+            sidFilter.emplace_back(ids[1].toUShort());
         }
-    }
-    else if (ui->radioButtonTIDPID->isChecked())
-    {
-        for (const QString &input : inputs)
+        else if (ui->radioButtonPID->isChecked())
         {
-            if (!input.isEmpty())
-            {
-                QStringList tidpid = input.split('/');
-                tidFilter.emplace_back(tidpid[0].toUShort());
-                u32 pid = tidpid[1].toUInt(nullptr, 16);
-                u16 psv = (pid >> 16) ^ (pid & 0xffff);
-                tsvFilter.emplace_back(psv >> (pastGen ? 3 : 4));
-            }
+            u32 pid = input.toUInt(nullptr, 16);
+            u16 psv = (pid >> 16) ^ (pid & 0xffff);
+            tsvFilter.emplace_back(psv >> (pastGen ? 3 : 4));
         }
-    }
-    else if (ui->radioButtonTSV->isChecked())
-    {
-        for (const QString &input : inputs)
+        else if (ui->radioButtonTIDPID->isChecked())
         {
-            if (!input.isEmpty())
-            {
-                tsvFilter.emplace_back(input.toUShort());
-            }
+            QStringList tidpid = input.split('/');
+            tidFilter.emplace_back(tidpid[0].toUShort());
+            u32 pid = tidpid[1].toUInt(nullptr, 16);
+            u16 psv = (pid >> 16) ^ (pid & 0xffff);
+            tsvFilter.emplace_back(psv >> (pastGen ? 3 : 4));
         }
-    }
-    else
-    {
-        for (const QString &input : inputs)
+        else if (ui->radioButtonTSV->isChecked())
         {
-            if (!input.isEmpty())
-            {
-                displayFilter.emplace_back(input.toUInt());
-            }
+            tsvFilter.emplace_back(input.toUShort());
+        }
+        else
+        {
+            displayFilter.emplace_back(input.toUInt());
         }
     }
 
     return IDFilter(tidFilter, sidFilter, tsvFilter, displayFilter);
-}
-
-void IDsFilter::enableTIDPID()
-{
-    ui->radioButtonTIDPID->setVisible(true);
-}
-
-void IDsFilter::enableDisplayTID()
-{
-    ui->radioButtonDisplayTID->setVisible(true);
 }
 
 void IDsFilter::textEditIDsTextChanged()
@@ -201,7 +167,7 @@ void IDsFilter::textEditIDsTextChanged()
             }
         }
     }
-    if (ui->radioButtonTIDPID->isChecked())
+    else if (ui->radioButtonTIDPID->isChecked())
     {
         QRegularExpression filter("[^0-9/0-9a-fA-F]");
         for (QString &input : inputs)
@@ -244,7 +210,7 @@ void IDsFilter::textEditIDsTextChanged()
     }
     else
     {
-        QRegularExpression filter = QRegularExpression("[^0-9/]");
+        QRegularExpression filter = QRegularExpression("[^0-9/0-9]");
         for (QString &input : inputs)
         {
             input.remove(filter);

@@ -41,7 +41,7 @@ namespace SeedToTimeCalculator3
         Date date(year, 1, 1);
         Date end(year, 12, 31);
 
-        for (; date <= end; date++)
+        for (; date <= end; ++date)
         {
             // The if statement considering the year is to handle a bug the game has
             // If the year is greater then 2000 it does not count the days in that year
@@ -55,7 +55,7 @@ namespace SeedToTimeCalculator3
                     v = (v >> 16) ^ (v & 0xffff);
                     if (v == seed)
                     {
-                        states.emplace_back(DateTime(date, Time(hour, minute, 0)));
+                        states.emplace_back(date, Time(hour, minute, 0));
                     }
                 }
             }

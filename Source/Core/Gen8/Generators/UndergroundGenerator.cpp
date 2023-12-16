@@ -21,7 +21,6 @@
 #include <Core/Enum/Lead.hpp>
 #include <Core/Enum/Method.hpp>
 #include <Core/Gen8/States/UndergroundState.hpp>
-#include <Core/Gen8/UndergroundArea.hpp>
 #include <Core/Parents/PersonalInfo.hpp>
 #include <Core/Parents/PersonalLoader.hpp>
 #include <Core/RNG/RNGList.hpp>
@@ -50,12 +49,12 @@ struct LevelInfo
 };
 
 // clang-format off
-constexpr std::array<EggMoveList, 141> eggMoveList = { 
+constexpr std::array<EggMoveList, 141> eggMoveList = {
     EggMoveList(12, 1, { 130, 80, 174, 275, 267, 204, 345, 133, 437, 438, 124, 580, 0, 0, 0, 0 }),
     EggMoveList(13, 4, { 187, 246, 44, 407, 232, 68, 17, 525, 200, 251, 349, 242, 314, 0, 0, 0 }),
     EggMoveList(12, 7, { 243, 114, 54, 175, 281, 252, 392, 453, 323, 791, 330, 396, 0, 0, 0, 0 }),
-    EggMoveList(9, 19, { 103, 172, 154, 68, 179, 253, 387, 279, 515, 0, 0, 0, 0, 0, 0, 0 }),      
-    EggMoveList(9, 23, { 21, 180, 251, 305, 184, 342, 50, 415, 389, 0, 0, 0, 0, 0, 0, 0 }),       
+    EggMoveList(9, 19, { 103, 172, 154, 68, 179, 253, 387, 279, 515, 0, 0, 0, 0, 0, 0, 0 }),
+    EggMoveList(9, 23, { 21, 180, 251, 305, 184, 342, 50, 415, 389, 0, 0, 0, 0, 0, 0, 0 }),
     EggMoveList(8, 27, { 68, 175, 189, 400, 232, 468, 306, 341, 0, 0, 0, 0, 0, 0, 0, 0 }),
     EggMoveList(11, 29, { 68, 50, 342, 130, 48, 36, 305, 116, 204, 251, 599, 0, 0, 0, 0, 0 }),
     EggMoveList(13, 32, { 93, 68, 50, 457, 342, 389, 48, 36, 32, 37, 133, 251, 599, 0, 0, 0 }),
@@ -238,13 +237,12 @@ static u16 getItem(u8 rand, Lead lead, const PersonalInfo *info)
 }
 
 UndergroundGenerator::UndergroundGenerator(u32 initialAdvances, u32 maxAdvances, u32 delay, Lead lead, bool diglett, u8 levelFlag,
-                                           const Profile8 &profile, const UndergroundStateFilter &filter) :
-    StaticGenerator(initialAdvances, maxAdvances, delay, Method::None, lead, profile, filter), diglett(diglett), levelFlag(levelFlag)
+                                           const UndergroundArea &area, const Profile8 &profile, const UndergroundStateFilter &filter) :
+    WildGenerator(initialAdvances, maxAdvances, delay, Method::None, lead, area, profile, filter), diglett(diglett), levelFlag(levelFlag)
 {
-    tsv = (profile.getTID() & 0xFFF0) ^ profile.getSID();
 }
 
-std::vector<UndergroundState> UndergroundGenerator::generate(u64 seed0, u64 seed1, const UndergroundArea &encounterArea) const
+std::vector<UndergroundState> UndergroundGenerator::generate(u64 seed0, u64 seed1) const
 {
     RNGList<u32, Xorshift, 256> rngList(seed0, seed1, initialAdvances + delay);
     const PersonalInfo *base = PersonalLoader::getPersonal(profile.getVersion());
@@ -271,8 +269,8 @@ std::vector<UndergroundState> UndergroundGenerator::generate(u64 seed0, u64 seed
         {
             pid = rngList.next(rand);
 
-            u16 psv = (pid >> 16) ^ (pid & 0xfff0);
-            u16 fakeXor = (sidtid >> 16) ^ (sidtid & 0xfff0) ^ psv;
+            u16 psv = (pid >> 16) ^ (pid & 0xffff);
+            u16 fakeXor = (sidtid >> 16) ^ (sidtid & 0xffff) ^ psv;
 
             if (fakeXor < 16) // Force shiny
             {
@@ -357,13 +355,13 @@ std::vector<UndergroundState> UndergroundGenerator::generate(u64 seed0, u64 seed
     std::vector<UndergroundState> states;
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rngList.advanceState())
     {
-        u8 spawnCount = encounterArea.getMin();
+        u8 spawnCount = area.getMin();
 
-        u16 specialPokemon = encounterArea.getSpecialPokemon(rngList);
+        u16 specialPokemon = area.getSpecialPokemon(rngList);
 
         if ((rngList.next() % 100) >= 50)
         {
-            spawnCount = encounterArea.getMax();
+            spawnCount = area.getMax();
         }
 
         if (specialPokemon != 0)
@@ -371,10 +369,10 @@ std::vector<UndergroundState> UndergroundGenerator::generate(u64 seed0, u64 seed
             spawnCount -= 1;
         }
 
-        auto slots = encounterArea.getSlots(rngList, spawnCount);
+        auto slots = area.getSlots(rngList, spawnCount);
         for (u8 i = 0; i < spawnCount; i++)
         {
-            u16 pokemon = encounterArea.getPokemon(rngList, slots[i]);
+            u16 pokemon = area.getPokemon(rngList, slots[i]);
             UndergroundState state = createPokemon(cnt, pokemon);
             if (filter.compareState(state))
             {

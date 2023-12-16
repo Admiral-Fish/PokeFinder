@@ -21,11 +21,12 @@
 #define ENCOUNTERAREA_HPP
 
 #include <Core/Global.hpp>
+#include <Core/Parents/Slot.hpp>
+#include <array>
 #include <string>
 #include <vector>
 
 class PersonalInfo;
-class Slot;
 enum class Encounter : u8;
 enum class Lead : u8;
 enum class Game : u32;
@@ -44,7 +45,7 @@ public:
      * @param encounter Encounter type of the area
      * @param pokemon Available pokemon of the area
      */
-    EncounterArea(u8 location, u8 rate, Encounter encounter, const std::vector<Slot> &pokemon);
+    EncounterArea(u8 location, u8 rate, Encounter encounter, const std::array<Slot, 12> &pokemon);
 
     /**
      * @brief Calculates the level of a pokemon that has a range
@@ -54,7 +55,11 @@ public:
      *
      * @return Level of the encounter
      */
-    u8 calculateLevel(u8 index, u16 prng) const;
+    u8 calculateLevel(u8 index, u16 prng) const
+    {
+        u8 range = pokemon[index].getMaxLevel() - pokemon[index].getMinLevel() + 1;
+        return (prng % range) + pokemon[index].getMinLevel();
+    }
 
     /**
      * @brief Calculates the level of a pokemon that has no range
@@ -63,14 +68,20 @@ public:
      *
      * @return Level of the encounter
      */
-    u8 calculateLevel(u8 index) const;
+    u8 calculateLevel(u8 index) const
+    {
+        return pokemon[index].getMaxLevel();
+    }
 
     /**
      * @brief Returns the type of encounter of the area
      *
      * @return Encounter type
      */
-    Encounter getEncounter() const;
+    Encounter getEncounter() const
+    {
+        return encounter;
+    }
 
     /**
      * @brief Calculates the level range of a \p specie across all possible slots it can be encountered
@@ -86,14 +97,20 @@ public:
      *
      * @return Location number
      */
-    u8 getLocation() const;
+    u8 getLocation() const
+    {
+        return location;
+    }
 
     /**
      * @brief Return the list of pokemon
      *
      * @return Pokemon list
      */
-    std::vector<Slot> getPokemon() const;
+    const std::array<Slot, 12> &getPokemon() const
+    {
+        return pokemon;
+    }
 
     /**
      * @brief Return the pokemon at the specific \p index
@@ -102,14 +119,20 @@ public:
      *
      * @return Pokemon
      */
-    const Slot &getPokemon(int index) const;
+    const Slot &getPokemon(int index) const
+    {
+        return pokemon[index];
+    }
 
     /**
      * @brief Return the encounter rate of the area
      *
      * @return Encounter rate
      */
-    u8 getRate() const;
+    u8 getRate() const
+    {
+        return rate;
+    }
 
     /**
      * @brief Return vector of true/false which indicate slots that match the \p specie
@@ -144,7 +167,7 @@ public:
     std::vector<u16> getUniqueSpecies() const;
 
 protected:
-    std::vector<Slot> pokemon;
+    std::array<Slot, 12> pokemon;
     Encounter encounter;
     u8 location;
     u8 rate;

@@ -22,11 +22,9 @@
 
 #include <Core/Gen5/Keypresses.hpp>
 #include <Core/Global.hpp>
+#include <Core/Parents/Searchers/Searcher.hpp>
 #include <Core/Util/DateTime.hpp>
 #include <array>
-#include <atomic>
-#include <mutex>
-#include <vector>
 
 class ProfileSearcherState5;
 enum class Game : u32;
@@ -36,7 +34,7 @@ enum class DSType : u8;
 /**
  * @brief Parent class to calibrate profiles
  */
-class ProfileSearcher5
+class ProfileSearcher5 : public SearcherBase<ProfileSearcherState5>
 {
 public:
     /**
@@ -63,27 +61,6 @@ public:
                      u16 maxTimer0, u8 minGxStat, u8 maxGxStat, bool softReset, Game version, Language language, DSType dsType, u64 mac,
                      Buttons buttons);
 
-    virtual ~ProfileSearcher5() = default;
-
-    /**
-     * @brief Cancels the running search
-     */
-    void cancelSearch();
-
-    /**
-     * @brief Returns the progress of the running search
-     *
-     * @return Progress
-     */
-    int getProgress() const;
-
-    /**
-     * @brief Returns the states of the running search
-     *
-     * @return Vector of computed states
-     */
-    std::vector<ProfileSearcherState5> getResults();
-
     /**
      * @brief Starts the search
      *
@@ -94,17 +71,13 @@ public:
     void startSearch(int threads, u8 minVFrame, u8 maxVFrame);
 
 private:
-    std::mutex mutex;
-    std::vector<ProfileSearcherState5> results;
     u64 mac;
     Date date;
     Game version;
     Keypress keypress;
-    std::atomic<int> progress;
     Time time;
     u16 maxTimer0;
     u16 minTimer0;
-    bool searching;
     bool softReset;
     DSType dsType;
     Language language;

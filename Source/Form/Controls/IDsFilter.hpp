@@ -50,13 +50,9 @@ public:
     ~IDsFilter() override;
 
     /**
-     * @brief Gets settings to filter by
-     *
-     * @param pastGen Whether or not we are Gen 3-5 or Gen 6+
-     *
-     * @return Filter information
+     * @brief Enables showing of the Display TID filter settings
      */
-    IDFilter getFilter(bool pastGen) const;
+    void enableDisplayTID();
 
     /**
      * @brief Enables showing of the TID/PID filter settings
@@ -64,9 +60,13 @@ public:
     void enableTIDPID();
 
     /**
-     * @brief Enables showing of the Display TID filter settings
+     * @brief Gets settings to filter by
+     *
+     * @param pastGen Whether or not we are Gen 3-5 or Gen 6+
+     *
+     * @return Filter information
      */
-    void enableDisplayTID();
+    IDFilter getFilter(bool pastGen) const;
 
 private:
     Ui::IDsFilter *ui;

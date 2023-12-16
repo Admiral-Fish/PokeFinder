@@ -22,8 +22,8 @@
 #include <Core/Gen4/Generators/EggGenerator4.hpp>
 #include <Core/Gen4/States/EggState4.hpp>
 
-EggSearcher4::EggSearcher4(u32 minDelay, u32 maxDelay, const Profile4 &profile, const StateFilter &filter) :
-    Searcher(Method::None, profile, filter), maxDelay(maxDelay), minDelay(minDelay)
+EggSearcher4::EggSearcher4(u32 minDelay, u32 maxDelay, const Profile4 &profile) :
+    Searcher(Method::None, profile), maxDelay(maxDelay), minDelay(minDelay)
 {
 }
 

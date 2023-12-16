@@ -88,15 +88,13 @@ private:
 class DenEvent
 {
 public:
-    DenEvent() = default;
-
     /**
      * @brief Construct a new Den object
      *
      * @param sword Sword raids
      * @param shield Sword shields
      */
-    DenEvent(const std::vector<Raid> &sword, const std::vector<Raid> &shield) : shield(shield), sword(sword)
+    constexpr DenEvent(const std::array<Raid, 30> &sword, const std::array<Raid, 30> &shield) : shield(shield), sword(sword)
     {
     }
 
@@ -120,14 +118,14 @@ public:
      *
      * @return Den raids
      */
-    std::vector<Raid> getRaids(Game version) const
+    std::array<Raid, 30> getRaids(Game version) const
     {
         return (version == Game::Sword) ? sword : shield;
     }
 
 private:
-    std::vector<Raid> shield;
-    std::vector<Raid> sword;
+    std::array<Raid, 30> shield;
+    std::array<Raid, 30> sword;
 };
 
 #endif // DEN_HPP

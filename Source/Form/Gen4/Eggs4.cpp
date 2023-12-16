@@ -230,7 +230,7 @@ void Eggs4::search()
     ui->progressBar->setValue(0);
     ui->progressBar->setMaximum(static_cast<int>(256 * 24 * (maxDelay - minDelay + 1)));
 
-    auto *searcher = new EggSearcher4(minDelay, maxDelay, *currentProfile, filter);
+    auto *searcher = new EggSearcher4(minDelay, maxDelay, *currentProfile);
 
     auto *thread = QThread::create([=] { searcher->startSearch(generator); });
     connect(thread, &QThread::finished, thread, &QThread::deleteLater);

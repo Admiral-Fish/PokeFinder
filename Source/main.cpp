@@ -17,12 +17,12 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include <Core/Gen8/DenLoader.hpp>
 #include <Core/Parents/ProfileLoader.hpp>
 #include <Core/Util/Translator.hpp>
 #include <Form/MainWindow.hpp>
 #include <QApplication>
 #include <QFile>
+#include <QHeaderView>
 #include <QSettings>
 #include <QStandardPaths>
 #include <QThread>
@@ -37,8 +37,15 @@ void validateSettings(QSettings &setting)
 {
     if (!setting.contains("settings/profiles"))
     {
-        QString documentFolder = QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation);
-        setting.setValue("settings/profiles", QString("%1/profiles.json").arg(documentFolder));
+        QString profilePath = QString("%1/profiles.json").arg(QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation));
+
+        QFile f(profilePath);
+        if (f.open(QIODevice::NewOnly | QIODevice::Text | QIODevice::WriteOnly))
+        {
+            f.write("{}");
+        }
+
+        setting.setValue("settings/profiles", profilePath);
     }
 
     if (!setting.contains("settings/style"))
@@ -49,6 +56,11 @@ void validateSettings(QSettings &setting)
     if (!setting.contains("settings/locale"))
     {
         setting.setValue("settings/locale", "en");
+    }
+
+    if (!setting.contains("settings/headerSize"))
+    {
+        setting.setValue("settings/headerSize", QHeaderView::ResizeToContents);
     }
 
     if (!setting.contains("settings/threads") || (setting.value("settings/threads").toInt() > QThread::idealThreadCount()))
@@ -71,13 +83,15 @@ int main(int argc, char *argv[])
     a.setApplicationName("PokeFinder");
     a.setOrganizationName("PokeFinder Team");
 
+    Q_INIT_RESOURCE(darkstyle);
+    Q_INIT_RESOURCE(lightstyle);
     Q_INIT_RESOURCE(resources);
 
     QSettings setting;
     validateSettings(setting);
 
     QString profilePath = setting.value("settings/profiles").toString();
-    bool profile = ProfileLoader::init(profilePath.toStdString());
+    bool profile = ProfileLoader::init(profilePath.toStdWString());
 
     QFile file(QString(":/qdarkstyle/%1/%1style.qss").arg(setting.value("settings/style").toString()));
     if (file.open(QIODevice::ReadOnly | QIODevice::Text))
@@ -94,8 +108,6 @@ int main(int argc, char *argv[])
     {
         QApplication::installTranslator(&translator);
     }
-
-    DenLoader::init(QApplication::applicationDirPath().toStdString());
 
     MainWindow w(profile);
     w.show();

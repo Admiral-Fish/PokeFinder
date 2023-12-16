@@ -94,9 +94,9 @@ void UndergroundGeneratorTest::generate()
                                       [location](const UndergroundArea &encounterArea) { return encounterArea.getLocation() == location; });
 
     UndergroundStateFilter filter(255, 255, 255, false, min, max, natures, powers, encounterArea->getSpecies());
-    UndergroundGenerator generator(0, 9, 0, lead, diglett, levelFlag, profile, filter);
+    UndergroundGenerator generator(0, 9, 0, lead, diglett, levelFlag, *encounterArea, profile, filter);
 
-    auto states = generator.generate(seed0, seed1, *encounterArea);
+    auto states = generator.generate(seed0, seed1);
     QCOMPARE(states.size(), j.size());
 
     for (size_t i = 0; i < states.size(); i++)

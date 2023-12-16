@@ -25,6 +25,7 @@
 #include <QHeaderView>
 #include <QKeyEvent>
 #include <QMenu>
+#include <QSettings>
 #include <QTimer>
 
 TableView::TableView(QWidget *parent) : QTableView(parent)
@@ -44,7 +45,10 @@ TableView::TableView(QWidget *parent) : QTableView(parent)
     QHeaderView *vertical = this->verticalHeader();
     vertical->setVisible(false);
 
-    QTimer::singleShot(200, this, [horizontal] { horizontal->resizeSections(QHeaderView::ResizeToContents); });
+    QTimer::singleShot(200, this, [horizontal] {
+        QSettings setting;
+        horizontal->resizeSections(setting.value("settings/headerSize").value<QHeaderView::ResizeMode>());
+    });
 }
 
 void TableView::contextMenuEvent(QContextMenuEvent *event)
@@ -75,11 +79,20 @@ void TableView::mouseDoubleClickEvent(QMouseEvent *event)
     }
 }
 
+void TableView::resizeEvent(QResizeEvent *event)
+{
+    QSettings setting;
+    this->horizontalHeader()->resizeSections(setting.value("settings/headerSize").value<QHeaderView::ResizeMode>());
+    QTableView::resizeEvent(event);
+}
+
 void TableView::setModel(QAbstractItemModel *model)
 {
     QTableView::setModel(model);
-    connect(this->model(), &QAbstractItemModel::rowsInserted, this,
-            [=] { this->horizontalHeader()->resizeSections(QHeaderView::ResizeToContents); });
+    connect(this->model(), &QAbstractItemModel::rowsInserted, this, [=] {
+        QSettings setting;
+        this->horizontalHeader()->resizeSections(setting.value("settings/headerSize").value<QHeaderView::ResizeMode>());
+    });
 }
 
 void TableView::outputModel(bool csv) const

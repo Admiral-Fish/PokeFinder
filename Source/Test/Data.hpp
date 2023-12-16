@@ -20,7 +20,7 @@
 #ifndef DATA_HPP
 #define DATA_HPP
 
-#include <nlohmann/json.hpp>
+#include <json.hpp>
 
 using json = nlohmann::json;
 

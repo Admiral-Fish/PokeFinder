@@ -33,11 +33,9 @@ ProfileSearcher5::ProfileSearcher5(const Date &date, const Time &time, u8 minSec
     date(date),
     version(version),
     keypress { Keypresses::getValue(buttons), buttons },
-    progress(0),
     time(time),
     maxTimer0(maxTimer0),
     minTimer0(minTimer0),
-    searching(false),
     softReset(softReset),
     dsType(dsType),
     language(language),
@@ -48,23 +46,6 @@ ProfileSearcher5::ProfileSearcher5(const Date &date, const Time &time, u8 minSec
     maxVCount(maxVCount),
     minVCount(minVCount)
 {
-}
-
-void ProfileSearcher5::cancelSearch()
-{
-    searching = false;
-}
-
-int ProfileSearcher5::getProgress() const
-{
-    return progress;
-}
-
-std::vector<ProfileSearcherState5> ProfileSearcher5::getResults()
-{
-    std::lock_guard<std::mutex> lock(mutex);
-    auto data = std::move(results);
-    return data;
 }
 
 void ProfileSearcher5::startSearch(int threads, u8 minVFrame, u8 maxVFrame)

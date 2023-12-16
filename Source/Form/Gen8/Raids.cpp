@@ -20,7 +20,7 @@
 #include "Raids.hpp"
 #include "ui_Raids.h"
 #include <Core/Gen8/Den.hpp>
-#include <Core/Gen8/DenLoader.hpp>
+#include <Core/Gen8/Encounters8.hpp>
 #include <Core/Gen8/Generators/RaidGenerator.hpp>
 #include <Core/Gen8/Profile8.hpp>
 #include <Core/Parents/PersonalInfo.hpp>
@@ -74,6 +74,7 @@ Raids::Raids(QWidget *parent) : QWidget(parent), ui(new Ui::Raids), currentProfi
     connect(ui->comboBoxDen, &QComboBox::currentIndexChanged, this, &Raids::denIndexChanged);
     connect(ui->comboBoxRarity, &QComboBox::currentIndexChanged, this, &Raids::rarityIndexChange);
     connect(ui->comboBoxSpecies, &QComboBox::currentIndexChanged, this, &Raids::specieIndexChanged);
+    connect(ui->filter, &Filter::showStatsChanged, model, &RaidModel::setShowStats);
 
     updateProfiles();
     locationIndexChanged(0);
@@ -132,13 +133,18 @@ void Raids::denIndexChanged(int index)
     {
         ui->comboBoxSpecies->clear();
 
-        if (ui->comboBoxDen->getCurrentInt() == 65535)
+        if (ui->comboBoxLocation->currentIndex() == 3)
         {
-            const DenEvent *den = DenLoader::getEvent();
+            const DenEvent *den = Encounters8::getDenEvent(ui->comboBoxDen->currentIndex());
             auto raids = den->getRaids(currentProfile->getVersion());
 
             for (const auto &raid : raids)
             {
+                if (raid.getSpecie() == 0)
+                {
+                    break;
+                }
+
                 ui->comboBoxSpecies->addItem(
                     QString("%1: %2").arg(QString::fromStdString(Translator::getSpecie(raid.getSpecie(), raid.getForm())),
                                           QString::fromStdString(raid.getStarDisplay())));
@@ -146,7 +152,7 @@ void Raids::denIndexChanged(int index)
         }
         else
         {
-            const Den *den = DenLoader::getDen(ui->comboBoxDen->getCurrentInt(), ui->comboBoxRarity->currentIndex());
+            const Den *den = Encounters8::getDen(ui->comboBoxDen->getCurrentUShort(), ui->comboBoxRarity->currentIndex());
             auto raids = den->getRaids(currentProfile->getVersion());
 
             for (const auto &raid : raids)
@@ -172,9 +178,9 @@ void Raids::generate()
     StateFilter filter = ui->filter->getFilter<StateFilter>();
     RaidGenerator generator(initialAdvances, maxAdvances, delay, *currentProfile, filter);
 
-    if (ui->comboBoxDen->getCurrentInt() == 65535)
+    if (ui->comboBoxLocation->currentIndex() == 3)
     {
-        const DenEvent *den = DenLoader::getEvent();
+        const DenEvent *den = Encounters8::getDenEvent(ui->comboBoxDen->currentIndex());
         Raid raid = den->getRaid(ui->comboBoxSpecies->currentIndex(), currentProfile->getVersion());
 
         auto states = generator.generate(seed, level, raid);
@@ -182,7 +188,7 @@ void Raids::generate()
     }
     else
     {
-        const Den *den = DenLoader::getDen(ui->comboBoxDen->getCurrentInt(), ui->comboBoxRarity->currentIndex());
+        const Den *den = Encounters8::getDen(ui->comboBoxDen->getCurrentUShort(), ui->comboBoxRarity->currentIndex());
         Raid raid = den->getRaid(ui->comboBoxSpecies->currentIndex(), currentProfile->getVersion());
 
         auto states = generator.generate(seed, level, raid);
@@ -195,31 +201,41 @@ void Raids::locationIndexChanged(int index)
     if (index >= 0)
     {
         ui->comboBoxDen->clear();
-        if (QFile::exists(QApplication::applicationDirPath() + "/nests_event.json"))
+
+        if (index < 3)
         {
-            ui->comboBoxDen->addItem(tr("Event"), 65535);
-        }
+            u16 start = index == 0 ? 0 : index == 1 ? 100 : 190;
+            u16 end = index == 0 ? 100 : index == 1 ? 190 : 276;
+            u16 offset = index == 0 ? 0 : index == 1 ? 100 : 190;
 
-        u16 start = index == 0 ? 0 : index == 1 ? 100 : 190;
-        u16 end = index == 0 ? 100 : index == 1 ? 190 : 276;
-        u16 offset = index == 0 ? 0 : index == 1 ? 100 : 190;
+            std::vector<u16> indices(end - start);
+            std::vector<u16> locationIndices(end - start);
 
-        std::vector<u16> indices(end - start);
-        std::vector<u16> locationIndices(end - start);
+            std::iota(indices.begin(), indices.end(), start);
+            std::transform(indices.begin(), indices.end(), locationIndices.begin(), [](u16 i) { return Encounters8::getDenLocation(i); });
 
-        std::iota(indices.begin(), indices.end(), start);
-        std::transform(indices.begin(), indices.end(), locationIndices.begin(), [](u16 i) { return DenLoader::getLocation(i); });
-
-        auto locations = Translator::getLocations(locationIndices, Game::SwSh);
-        for (u16 i : indices)
-        {
-            if (i == 16)
+            auto locations = Translator::getLocations(locationIndices, Game::SwSh);
+            for (u16 i : indices)
             {
-                continue;
+                if (i == 16)
+                {
+                    continue;
+                }
+
+                QString str = QString("%1: %2").arg(i + 1 - offset).arg(QString::fromStdString(locations[i - offset]));
+                ui->comboBoxDen->addItem(str, i);
             }
 
-            QString str = QString("%1: %2").arg(i + 1 - offset).arg(QString::fromStdString(locations[i - offset]));
-            ui->comboBoxDen->addItem(str, i);
+            ui->spinBoxLevel->setEnabled(true);
+        }
+        else
+        {
+            for (u8 i = 1; i < 70; i++)
+            {
+                ui->comboBoxDen->addItem(QString(tr("Wild Area Event %1")).arg(i));
+            }
+
+            ui->spinBoxLevel->setEnabled(false);
         }
     }
 }
@@ -255,10 +271,10 @@ void Raids::specieIndexChanged(int index)
 {
     if (index >= 0)
     {
-        if (ui->comboBoxDen->getCurrentInt() == 65535)
+        if (ui->comboBoxLocation->currentIndex() == 3)
         {
-            const DenEvent *den = DenLoader::getEvent();
-            Raid raid = den->getRaid(static_cast<u8>(ui->comboBoxSpecies->currentIndex()), currentProfile->getVersion());
+            const DenEvent *den = Encounters8::getDenEvent(ui->comboBoxDen->currentIndex());
+            Raid raid = den->getRaid(ui->comboBoxSpecies->currentIndex(), currentProfile->getVersion());
             const PersonalInfo *info = PersonalLoader::getPersonal(Game::SwSh, raid.getSpecie(), raid.getForm());
 
             ui->spinBoxIVCount->setValue(raid.getIVCount());
@@ -267,11 +283,12 @@ void Raids::specieIndexChanged(int index)
             ui->comboBoxGenderRatio->setCurrentIndex(ui->comboBoxGenderRatio->findData(info->getGender()));
             ui->comboBoxShinyType->setCurrentIndex(ui->comboBoxShinyType->findData(toInt(raid.getShiny())));
             ui->labelGigantamaxValue->setText(raid.getGigantamax() ? tr("Yes") : tr("No"));
+            ui->spinBoxLevel->setValue(raid.getLevel());
         }
         else
         {
-            const Den *den = DenLoader::getDen(ui->comboBoxDen->getCurrentInt(), ui->comboBoxRarity->currentIndex());
-            Raid raid = den->getRaid(static_cast<u8>(ui->comboBoxSpecies->currentIndex()), currentProfile->getVersion());
+            const Den *den = Encounters8::getDen(ui->comboBoxDen->getCurrentUShort(), ui->comboBoxRarity->currentIndex());
+            Raid raid = den->getRaid(ui->comboBoxSpecies->currentIndex(), currentProfile->getVersion());
             const PersonalInfo *info = PersonalLoader::getPersonal(Game::SwSh, raid.getSpecie(), raid.getForm());
 
             ui->spinBoxIVCount->setValue(raid.getIVCount());

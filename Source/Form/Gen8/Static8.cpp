@@ -55,10 +55,10 @@ Static8::Static8(QWidget *parent) : QWidget(parent), ui(new Ui::Static8)
 
     ui->filter->disableControls(Controls::EncounterSlots | Controls::HiddenPowers);
 
-    connect(ui->comboBoxProfiles, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &Static8::profileIndexChanged);
+    connect(ui->comboBoxProfiles, &QComboBox::currentIndexChanged, this, &Static8::profileIndexChanged);
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Static8::generate);
-    connect(ui->comboBoxCategory, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &Static8::categoryIndexChanged);
-    connect(ui->comboBoxPokemon, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &Static8::pokemonIndexChanged);
+    connect(ui->comboBoxCategory, &QComboBox::currentIndexChanged, this, &Static8::categoryIndexChanged);
+    connect(ui->comboBoxPokemon, &QComboBox::currentIndexChanged, this, &Static8::pokemonIndexChanged);
     connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &Static8::profileManager);
     connect(ui->filter, &Filter::showStatsChanged, model, &StaticModel8::setShowStats);
 
@@ -145,19 +145,19 @@ void Static8::generate()
     u32 maxAdvances = ui->textBoxMaxAdvances->getUInt();
     u32 delay = ui->textBoxDelay->getUInt();
     auto lead = ui->comboMenuLead->getEnum<Lead>();
-
-    StateFilter filter = ui->filter->getFilter<StateFilter>();
-    StaticGenerator8 generator(initialAdvances, maxAdvances, delay, lead, *currentProfile, filter);
-
     const StaticTemplate *staticTemplate
         = Encounters8::getStaticEncounter(ui->comboBoxCategory->currentIndex(), ui->comboBoxPokemon->getCurrentInt());
+
+    StateFilter filter = ui->filter->getFilter<StateFilter>();
+    StaticGenerator8 generator(initialAdvances, maxAdvances, delay, lead, *staticTemplate, *currentProfile, filter);
+
     if (ui->comboBoxCategory->currentIndex() == 4)
     {
-        model->addItems(generator.generateRoamer(seed0, seed1, staticTemplate));
+        model->addItems(generator.generateRoamer(seed0, seed1));
     }
     else
     {
-        model->addItems(generator.generate(seed0, seed1, staticTemplate));
+        model->addItems(generator.generate(seed0, seed1));
     }
 }
 

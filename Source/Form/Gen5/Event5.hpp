@@ -104,16 +104,6 @@ private slots:
     void generatorImportEvent();
 
     /**
-     * @brief Searches static encounters from date range
-     */
-    void search();
-
-    /**
-     * @brief Reads in settings from a imported wondercard file
-     */
-    void searcherImportEvent();
-
-    /**
      * @brief Updates displayed information for a profile
      *
      * @param index Profile index
@@ -124,6 +114,16 @@ private slots:
      * @brief Opens the profile manager
      */
     void profileManager();
+
+    /**
+     * @brief Searches static encounters from date range
+     */
+    void search();
+
+    /**
+     * @brief Reads in settings from a imported wondercard file
+     */
+    void searcherImportEvent();
 };
 
 #endif // EVENT5_HPP

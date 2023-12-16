@@ -19,6 +19,7 @@
 
 #include "GameCubeSearcher.hpp"
 #include <Core/Enum/Game.hpp>
+#include <Core/Enum/Lead.hpp>
 #include <Core/Enum/Method.hpp>
 #include <Core/Enum/ShadowType.hpp>
 #include <Core/Gen3/ShadowLock.hpp>
@@ -119,7 +120,7 @@ static bool validateJirachi(u32 &seed)
 }
 
 GameCubeSearcher::GameCubeSearcher(Method method, bool unset, const Profile3 &profile, const StateFilter &filter) :
-    Searcher(method, profile, filter), unset(unset)
+    StaticSearcher(method, Lead::None, profile, filter), unset(unset)
 {
 }
 

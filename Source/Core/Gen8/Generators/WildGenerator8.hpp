@@ -20,17 +20,17 @@
 #ifndef WILDGENERATOR8_HPP
 #define WILDGENERATOR8_HPP
 
+#include <Core/Gen8/EncounterArea8.hpp>
 #include <Core/Gen8/Profile8.hpp>
 #include <Core/Parents/Filters/StateFilter.hpp>
 #include <Core/Parents/Generators/WildGenerator.hpp>
 
-class EncounterArea8;
 class WildGeneratorState;
 
 /**
  * @brief Wild encounter generator for Gen8
  */
-class WildGenerator8 : public WildGenerator<Profile8, WildStateFilter>
+class WildGenerator8 : public WildGenerator<EncounterArea8, Profile8, WildStateFilter>
 {
 public:
     /**
@@ -39,24 +39,23 @@ public:
      * @param initialAdvances Initial number of advances
      * @param maxAdvances Maximum number of advances
      * @param delay Number of advances to offset
-     * @param encounter Encounter type
      * @param lead Encounter lead
+     * @param area Wild pokemon info
      * @param profile Profile Information
      * @param filter State filter
      */
-    WildGenerator8(u32 initialAdvances, u32 maxAdvances, u32 delay, Encounter encounter, Lead lead, const Profile8 &profile,
+    WildGenerator8(u32 initialAdvances, u32 maxAdvances, u32 delay, Lead lead, const EncounterArea8 &area, const Profile8 &profile,
                    const WildStateFilter &filter);
 
     /**
-     * @brief Generates states for the \p encounterArea
+     * @brief Generates states
      *
      * @param seed0 Upper half of PRNG state
      * @param seed1 Lower half of PRNG state
-     * @param encounterArea Wild pokemon info
      *
      * @return Vector of computed states
      */
-    std::vector<WildGeneratorState> generate(u64 seed0, u64 seed1, const EncounterArea8 &encounterArea) const;
+    std::vector<WildGeneratorState> generate(u64 seed0, u64 seed1) const;
 };
 
 #endif // WILDGENERATOR8_HPP

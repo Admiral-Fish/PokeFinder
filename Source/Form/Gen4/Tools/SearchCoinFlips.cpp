@@ -34,6 +34,8 @@ SearchCoinFlips::SearchCoinFlips(const std::vector<SeedTimeCalibrate4> &data, QW
     connect(ui->pushButtonHeads, &QPushButton::clicked, this, &SearchCoinFlips::heads);
     connect(ui->pushButtonTails, &QPushButton::clicked, this, &SearchCoinFlips::tails);
     connect(ui->lineEditFlips, &QLineEdit::textChanged, this, &SearchCoinFlips::flipsTextChanged);
+    connect(ui->pushButtonOkay, &QPushButton::clicked, this, &SearchCoinFlips::accept);
+    connect(ui->pushButtonCancel, &QPushButton::clicked, this, &SearchCoinFlips::reject);
 
     QSettings setting;
     if (setting.contains("searchCoinFlips/geometry"))

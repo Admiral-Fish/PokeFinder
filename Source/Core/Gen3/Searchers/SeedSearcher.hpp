@@ -21,12 +21,10 @@
 #define SEEDSEARCHER_HPP
 
 #include <Core/Global.hpp>
-#include <atomic>
-#include <mutex>
-#include <vector>
+#include <Core/Parents/Searchers/Searcher.hpp>
 
 template <class Criteria>
-class SeedSearcher
+class SeedSearcher : public SearcherBase<u32>
 {
 public:
     /**
@@ -34,44 +32,12 @@ public:
      *
      * @param criteria Filtering data
      */
-    SeedSearcher(const Criteria &criteria) : progress(0), criteria(criteria), searching(false)
+    SeedSearcher(const Criteria &criteria) : criteria(criteria)
     {
-    }
-
-    /**
-     * @brief Cancels the running search
-     */
-    void cancelSearch()
-    {
-        searching = false;
-    }
-
-    /**
-     * @brief Returns the progress of the running search
-     *
-     * @return Progress
-     */
-    virtual int getProgress() const
-    {
-        return progress;
-    }
-
-    /**
-     * @brief Returns the states of the running search
-     *
-     * @return Vector of computed states
-     */
-    std::vector<u32> getResults() const
-    {
-        return results;
     }
 
 protected:
-    std::mutex mutex;
-    std::vector<u32> results;
-    std::atomic<u32> progress;
     Criteria criteria;
-    bool searching;
 };
 
 #endif // SEEDSEARCHER_HPP

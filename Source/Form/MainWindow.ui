@@ -23,27 +23,6 @@
         <string>Gen 3</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_2">
-        <item row="7" column="0">
-         <widget class="QPushButton" name="pushButtonWild3">
-          <property name="text">
-           <string>Wild</string>
-          </property>
-         </widget>
-        </item>
-        <item row="4" column="0">
-         <widget class="QPushButton" name="pushButtonStatic3">
-          <property name="text">
-           <string>Static</string>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="0">
-         <widget class="QPushButton" name="pushButtonIDs3">
-          <property name="text">
-           <string>IDs</string>
-          </property>
-         </widget>
-        </item>
         <item row="0" column="0">
          <widget class="QPushButton" name="pushButtonEgg3">
           <property name="text">
@@ -58,6 +37,27 @@
           </property>
          </widget>
         </item>
+        <item row="2" column="0">
+         <widget class="QPushButton" name="pushButtonIDs3">
+          <property name="text">
+           <string>IDs</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="0">
+         <widget class="QPushButton" name="pushButtonStatic3">
+          <property name="text">
+           <string>Static</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="0">
+         <widget class="QPushButton" name="pushButtonWild3">
+          <property name="text">
+           <string>Wild</string>
+          </property>
+         </widget>
+        </item>
        </layout>
       </widget>
       <widget class="QWidget" name="tabGen4">
@@ -65,31 +65,10 @@
         <string>Gen 4</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_3">
-        <item row="2" column="0">
-         <widget class="QPushButton" name="pushButtonIDs4">
-          <property name="text">
-           <string>IDs</string>
-          </property>
-         </widget>
-        </item>
-        <item row="4" column="0">
-         <widget class="QPushButton" name="pushButtonWild4">
-          <property name="text">
-           <string>Wild</string>
-          </property>
-         </widget>
-        </item>
         <item row="0" column="0">
          <widget class="QPushButton" name="pushButtonEgg4">
           <property name="text">
            <string>Egg</string>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="0">
-         <widget class="QPushButton" name="pushButtonStatic4">
-          <property name="text">
-           <string>Static</string>
           </property>
          </widget>
         </item>
@@ -100,6 +79,27 @@
           </property>
          </widget>
         </item>
+        <item row="2" column="0">
+         <widget class="QPushButton" name="pushButtonIDs4">
+          <property name="text">
+           <string>IDs</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="0">
+         <widget class="QPushButton" name="pushButtonStatic4">
+          <property name="text">
+           <string>Static</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="0">
+         <widget class="QPushButton" name="pushButtonWild4">
+          <property name="text">
+           <string>Wild</string>
+          </property>
+         </widget>
+        </item>
        </layout>
       </widget>
       <widget class="QWidget" name="tabGen5">
@@ -107,24 +107,10 @@
         <string>Gen 5</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_4">
-        <item row="6" column="0">
-         <widget class="QPushButton" name="pushButtonWild5">
+        <item row="0" column="0">
+         <widget class="QPushButton" name="pushButtonDreamRadar">
           <property name="text">
-           <string>Wild</string>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="0">
-         <widget class="QPushButton" name="pushButtonEvent5">
-          <property name="text">
-           <string>Event</string>
-          </property>
-         </widget>
-        </item>
-        <item row="4" column="0">
-         <widget class="QPushButton" name="pushButtonIDs5">
-          <property name="text">
-           <string>IDs</string>
+           <string>Dream Radar</string>
           </property>
          </widget>
         </item>
@@ -135,17 +121,10 @@
           </property>
          </widget>
         </item>
-        <item row="5" column="0">
-         <widget class="QPushButton" name="pushButtonStatic5">
+        <item row="2" column="0">
+         <widget class="QPushButton" name="pushButtonEvent5">
           <property name="text">
-           <string>Static</string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="0">
-         <widget class="QPushButton" name="pushButtonDreamRadar">
-          <property name="text">
-           <string>Dream Radar</string>
+           <string>Event</string>
           </property>
          </widget>
         </item>
@@ -156,6 +135,27 @@
           </property>
          </widget>
         </item>
+        <item row="4" column="0">
+         <widget class="QPushButton" name="pushButtonIDs5">
+          <property name="text">
+           <string>IDs</string>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="0">
+         <widget class="QPushButton" name="pushButtonStatic5">
+          <property name="text">
+           <string>Static</string>
+          </property>
+         </widget>
+        </item>
+        <item row="6" column="0">
+         <widget class="QPushButton" name="pushButtonWild5">
+          <property name="text">
+           <string>Wild</string>
+          </property>
+         </widget>
+        </item>
        </layout>
       </widget>
       <widget class="QWidget" name="tabGen8">
@@ -163,24 +163,10 @@
         <string>Gen 8</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_5">
-        <item row="3" column="0">
-         <widget class="QPushButton" name="pushButtonRaid">
+        <item row="0" column="0">
+         <widget class="QPushButton" name="pushButtonEgg8">
           <property name="text">
-           <string>Raid</string>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="0">
-         <widget class="QPushButton" name="pushButtonIDs8">
-          <property name="text">
-           <string>IDs</string>
-          </property>
-         </widget>
-        </item>
-        <item row="4" column="0">
-         <widget class="QPushButton" name="pushButtonStatic8">
-          <property name="text">
-           <string>Static</string>
+           <string>Egg</string>
           </property>
          </widget>
         </item>
@@ -191,17 +177,24 @@
           </property>
          </widget>
         </item>
-        <item row="0" column="0">
-         <widget class="QPushButton" name="pushButtonEgg8">
+        <item row="2" column="0">
+         <widget class="QPushButton" name="pushButtonIDs8">
           <property name="text">
-           <string>Egg</string>
+           <string>IDs</string>
           </property>
          </widget>
         </item>
-        <item row="6" column="0">
-         <widget class="QPushButton" name="pushButtonWild8">
+        <item row="3" column="0">
+         <widget class="QPushButton" name="pushButtonRaid">
           <property name="text">
-           <string>Wild</string>
+           <string>Raid</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="0">
+         <widget class="QPushButton" name="pushButtonStatic8">
+          <property name="text">
+           <string>Static</string>
           </property>
          </widget>
         </item>
@@ -209,6 +202,13 @@
          <widget class="QPushButton" name="pushButtonUnderground">
           <property name="text">
            <string>Underground</string>
+          </property>
+         </widget>
+        </item>
+        <item row="6" column="0">
+         <widget class="QPushButton" name="pushButtonWild8">
+          <property name="text">
+           <string>Wild</string>
           </property>
          </widget>
         </item>
@@ -270,7 +270,6 @@
      <string>Gen 8 Tools</string>
     </property>
     <addaction name="actionDenMap"/>
-    <addaction name="actionDownloadEventData"/>
     <addaction name="actionProfileManager8"/>
    </widget>
    <addaction name="menuGen3Tools"/>
@@ -354,11 +353,6 @@
     <string>Den Map</string>
    </property>
   </action>
-  <action name="actionDownloadEventData">
-   <property name="text">
-    <string>Download Event Data</string>
-   </property>
-  </action>
   <action name="actionProfileManager8">
    <property name="text">
     <string>Profile Manager</string>
@@ -385,33 +379,6 @@
    </property>
   </action>
  </widget>
- <tabstops>
-  <tabstop>tabWidget</tabstop>
-  <tabstop>pushButtonEgg3</tabstop>
-  <tabstop>pushButtonGameCube</tabstop>
-  <tabstop>pushButtonIDs3</tabstop>
-  <tabstop>pushButtonStatic3</tabstop>
-  <tabstop>pushButtonWild3</tabstop>
-  <tabstop>pushButtonEgg4</tabstop>
-  <tabstop>pushButtonEvent4</tabstop>
-  <tabstop>pushButtonIDs4</tabstop>
-  <tabstop>pushButtonStatic4</tabstop>
-  <tabstop>pushButtonWild4</tabstop>
-  <tabstop>pushButtonDreamRadar</tabstop>
-  <tabstop>pushButtonEgg5</tabstop>
-  <tabstop>pushButtonEvent5</tabstop>
-  <tabstop>pushButtonHiddenGrotto</tabstop>
-  <tabstop>pushButtonIDs5</tabstop>
-  <tabstop>pushButtonStatic5</tabstop>
-  <tabstop>pushButtonWild5</tabstop>
-  <tabstop>pushButtonEgg8</tabstop>
-  <tabstop>pushButtonEvent8</tabstop>
-  <tabstop>pushButtonIDs8</tabstop>
-  <tabstop>pushButtonRaid</tabstop>
-  <tabstop>pushButtonStatic8</tabstop>
-  <tabstop>pushButtonUnderground</tabstop>
-  <tabstop>pushButtonWild8</tabstop>
- </tabstops>
  <resources/>
  <connections/>
 </ui>

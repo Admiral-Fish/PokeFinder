@@ -23,13 +23,22 @@
 #include <Core/Util/Translator.hpp>
 #include <algorithm>
 #include <cassert>
-#include <cmath>
+#include <cstring>
 #include <iterator>
+
+constexpr u16 pokemonSizes[] = { 1, 10, 100, 1000 };
 
 static float rand(u32 prng)
 {
-    float t = (prng & 0x7fffff) / 8388607.0;
-    return 1.0 - t;
+    auto max = [] {
+        float f;
+        u32 val = 0x34000001;
+        std::memcpy(&f, &val, sizeof(float));
+        return f;
+    };
+
+    float t = (prng & 0x7fffff) * max();
+    return 1.0f - t;
 }
 
 UndergroundArea::UndergroundArea(u8 location, u8 min, u8 max, const std::vector<Pokemon> &pokemon,
@@ -64,21 +73,6 @@ UndergroundArea::UndergroundArea(u8 location, u8 min, u8 max, const std::vector<
     }
 }
 
-u8 UndergroundArea::getLocation() const
-{
-    return location;
-}
-
-u8 UndergroundArea::getMax() const
-{
-    return max;
-}
-
-u8 UndergroundArea::getMin() const
-{
-    return min;
-}
-
 u16 UndergroundArea::getPokemon(RNGList<u32, Xorshift, 256> &rngList, const TypeSize &type) const
 {
     u8 tempCount = 0;
@@ -97,9 +91,9 @@ u16 UndergroundArea::getPokemon(RNGList<u32, Xorshift, 256> &rngList, const Type
     std::array<Pokemon, 23> filtered;
     for (const Pokemon &mon : pokemon)
     {
-        if (std::find_if(temp.begin(), temp.end(),
+        if (std::find_if(temp.begin(), temp.begin() + tempCount,
                          [mon](const TypeSize &t) { return t.size == mon.size && (t.type == mon.type[0] || t.type == mon.type[1]); })
-            != temp.end())
+            != temp.begin() + tempCount)
         {
             sum += mon.rate;
             filtered[filteredCount++] = mon;
@@ -137,7 +131,7 @@ std::array<TypeSize, 10> UndergroundArea::getSlots(RNGList<u32, Xorshift, 256> &
             type = it->type;
         }
 
-        std::array<u8, 3> sizes = { 255, 255, 255 };
+        std::array<u8, 3> sizes;
         u8 sizeCount = 0;
         for (const auto &t : typeSizes)
         {
@@ -148,7 +142,7 @@ std::array<TypeSize, 10> UndergroundArea::getSlots(RNGList<u32, Xorshift, 256> &
         }
 
         u8 size = sizes[rngList.next() % sizeCount];
-        u16 value = std::pow(10, size) + type;
+        u16 value = pokemonSizes[size] + type;
 
         TypeSize slot = { value, size, type };
         slots[i] = slot;
