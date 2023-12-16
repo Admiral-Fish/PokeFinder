@@ -32,8 +32,8 @@ void State::updateStats(const PersonalInfo *info)
     u8 maxIV = 0;
     for (int i = 0; i < 6; i++)
     {
-        h += (ivs[order[i]] & 1) << i;
-        p += ((ivs[order[i]] >> 1) & 1) << i;
+        h |= (ivs[order[i]] & 1) << i;
+        p |= ((ivs[order[i]] >> 1) & 1) << i;
 
         stats[i] = Nature::computeStat(info->getStat(i), ivs[i], nature, level, i);
 
