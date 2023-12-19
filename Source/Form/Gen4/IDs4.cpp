@@ -45,6 +45,8 @@ IDs4::IDs4(QWidget *parent) : QWidget(parent), ui(new Ui::IDs4)
     ui->textBoxSeedFinderMinDelay->setValues(InputType::Delay);
     ui->textBoxSeedFinderMaxDelay->setValues(InputType::Delay);
 
+    ui->idFilter->enableTIDPID();
+
     connect(ui->pushButtonSearch, &QPushButton::clicked, this, &IDs4::search);
     connect(ui->pushButtonFind, &QPushButton::clicked, this, &IDs4::find);
 
