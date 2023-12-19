@@ -56,6 +56,9 @@ SeedToTime4::SeedToTime4(QWidget *parent) : QWidget(parent), ui(new Ui::SeedToTi
     ui->textBoxHGSSDelayPlus->setValues(InputType::Advance32Bit);
     ui->textBoxHGSSSecondMinus->setValues(0, 59, 2, 10);
     ui->textBoxHGSSSecondPlus->setValues(0, 59, 2, 10);
+    ui->textBoxHGSSRaikou->setValues(0, 46, 2, 10);
+    ui->textBoxHGSSEntei->setValues(0, 46, 2, 10);
+    ui->textBoxHGSSLati->setValues(0, 28, 2, 10);
 
     ui->tableViewDPPtSearch->setModel(dpptModel);
     ui->tableViewDPPtCalibrate->setModel(dpptCalibrateModel);
