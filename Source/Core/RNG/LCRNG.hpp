@@ -22,13 +22,15 @@
 
 #include <Core/Global.hpp>
 
+struct Jump
+{
+    u32 mult;
+    u32 add;
+};
+
 struct JumpTable
 {
-    struct
-    {
-        u32 mult;
-        u32 add;
-    } jump[32];
+    Jump jump[32];
 };
 
 extern const JumpTable ARNGTable;
@@ -81,6 +83,17 @@ public:
     }
 
     /**
+     * @brief Construct a new LCRNG object
+     *
+     * @param rng LCRNG object to copy
+     * @param j Multipler and adder to advance by
+     */
+    LCRNG(const LCRNG &rng, const Jump &j) : seed(rng.seed)
+    {
+        jump(j);
+    }
+
+    /**
      * @brief Advances the RNG by \p advances amount
      *
      * @param advances Number of advances
@@ -118,6 +131,32 @@ public:
     }
 
     /**
+     * @brief Computes the multipler and adder to jump the RNG by \p advances amount
+     *
+     * @param advances Number of advances
+     *
+     * @return Multipler and adder to jump the RNG
+     */
+    const Jump getJump(u32 advances)
+    {
+        const JumpTable *table = getJumpTable();
+        Jump jump;
+
+        jump.add = 0;
+        jump.mult = 1;
+        for (int i = 0; advances > 0; advances >>= 1, i++)
+        {
+            if (advances & 1)
+            {
+                jump.add = jump.add * table->jump[i].mult + table->jump[i].add;
+                jump.mult *= table->jump[i].mult;
+            }
+        }
+
+        return jump;
+    }
+
+    /**
      * @brief Returns the current PRNG state
      *
      * @return PRNG value
@@ -137,32 +176,7 @@ public:
      */
     u32 jump(u32 advances)
     {
-        const JumpTable *table;
-        if constexpr (add == 0x01) // ARNG
-        {
-            table = &ARNGTable;
-        }
-        else if constexpr (add == 0x69C77F93) // ARNG(R)
-        {
-            table = &ARNGRTable;
-        }
-        else if constexpr (add == 0x6073) // PokeRNG
-        {
-            table = &PokeRNGTable;
-        }
-        else if constexpr (add == 0xA3561A1) // PokeRNG(R)
-        {
-            table = &PokeRNGRTable;
-        }
-        else if constexpr (add == 0x269EC3) // XDRNG
-        {
-            table = &XDRNGTable;
-        }
-        else // XDRNG(R)
-        {
-            static_assert(add == 0xA170F641, "Unsupported LCRNG");
-            table = &XDRNGRTable;
-        }
+        const JumpTable *table = getJumpTable();
 
         for (int i = 0; advances; advances >>= 1, i++)
         {
@@ -173,6 +187,18 @@ public:
         }
 
         return seed;
+    }
+
+    /**
+     * @brief Jumps the RNG by multipler and adder in \p jump
+     *
+     * @param jump Multipler and adder to jump by
+     *
+     * @return PRNG value after the advances
+     */
+    u32 jump(const Jump &jump)
+    {
+        return seed = seed * jump.mult + jump.add;
     }
 
     /**
@@ -238,6 +264,35 @@ public:
 
 private:
     u32 seed;
+
+    const JumpTable *getJumpTable()
+    {
+        if constexpr (add == 0x01) // ARNG
+        {
+            return &ARNGTable;
+        }
+        else if constexpr (add == 0x69C77F93) // ARNG(R)
+        {
+            return &ARNGRTable;
+        }
+        else if constexpr (add == 0x6073) // PokeRNG
+        {
+            return &PokeRNGTable;
+        }
+        else if constexpr (add == 0xA3561A1) // PokeRNG(R)
+        {
+            return &PokeRNGRTable;
+        }
+        else if constexpr (add == 0x269EC3) // XDRNG
+        {
+            return &XDRNGTable;
+        }
+        else // XDRNG(R)
+        {
+            static_assert(add == 0xA170F641, "Unsupported LCRNG");
+            return &XDRNGRTable;
+        }
+    }
 };
 
 using ARNG = LCRNG<0x01, 0x6C078965>;

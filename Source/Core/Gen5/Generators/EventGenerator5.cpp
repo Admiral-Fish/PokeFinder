@@ -33,8 +33,6 @@ EventGenerator5::EventGenerator5(u32 initialAdvances, u32 maxAdvances, u32 delay
     {
         tsv = pgf.getTID() ^ pgf.getSID();
     }
-
-    wondercardAdvances = pgf.getAdvances();
 }
 
 std::vector<State5> EventGenerator5::generate(u64 seed) const
@@ -42,12 +40,13 @@ std::vector<State5> EventGenerator5::generate(u64 seed) const
     const PersonalInfo *info = PersonalLoader::getPersonal(profile.getVersion(), pgf.getSpecies());
 
     u32 advances = Utilities5::initialAdvances(seed, profile);
-    BWRNG rng(seed, advances + initialAdvances + delay);
+    BWRNG rng(seed, advances + initialAdvances);
+    auto jump = rng.getJump(pgf.getAdvances() + delay);
 
     std::vector<State5> states;
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
     {
-        BWRNG go(rng, wondercardAdvances);
+        BWRNG go(rng, jump);
 
         std::array<u8, 6> ivs;
         for (u8 i = 0; i < 6; i++)

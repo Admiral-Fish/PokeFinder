@@ -195,12 +195,13 @@ std::vector<EggGeneratorState4> EggGenerator4::generatePickup(u32 seed, const st
         male = PersonalLoader::getPersonal(profile.getVersion(), 313);
     }
 
-    PokeRNG rng(seed, initialAdvancesPickup + delayPickup);
+    PokeRNG rng(seed, initialAdvancesPickup);
+    auto jump = rng.getJump(delayPickup);
 
     std::vector<EggGeneratorState4> states;
     for (u32 cnt = 0; cnt <= maxAdvancesPickup; cnt++)
     {
-        PokeRNG go(rng.getSeed());
+        PokeRNG go(rng, jump);
 
         u16 iv1 = go.nextUShort();
         u16 iv2 = go.nextUShort();

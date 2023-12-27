@@ -57,10 +57,12 @@ std::vector<GeneratorState4> StaticGenerator4::generateMethod1(u32 seed) const
     std::vector<GeneratorState4> states;
     const PersonalInfo *info = staticTemplate.getInfo();
 
-    PokeRNG rng(seed, initialAdvances + delay);
+    PokeRNG rng(seed, initialAdvances);
+    auto jump = rng.getJump(delay);
+
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
     {
-        PokeRNG go(rng);
+        PokeRNG go(rng, jump);
 
         u32 pid;
         if (staticTemplate.getShiny() == Shiny::Always)
@@ -122,10 +124,12 @@ std::vector<GeneratorState4> StaticGenerator4::generateMethodJ(u32 seed) const
         buffer = 25 * ((info->getGender() / 25) + 1);
     }
 
-    PokeRNG rng(seed, initialAdvances + delay);
+    PokeRNG rng(seed, initialAdvances);
+    auto jump = rng.getJump(delay);
+
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
     {
-        PokeRNG go(rng);
+        PokeRNG go(rng, jump);
 
         if (lead == Lead::CuteCharmM || lead == Lead::CuteCharmF)
         {
@@ -200,10 +204,12 @@ std::vector<GeneratorState4> StaticGenerator4::generateMethodK(u32 seed) const
         buffer = 25 * ((info->getGender() / 25) + 1);
     }
 
-    PokeRNG rng(seed, initialAdvances + delay);
+    PokeRNG rng(seed, initialAdvances);
+    auto jump = rng.getJump(delay);
+
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
     {
-        PokeRNG go(rng);
+        PokeRNG go(rng, jump);
 
         u8 nature;
         if (lead == Lead::CuteCharmM || lead == Lead::CuteCharmF)

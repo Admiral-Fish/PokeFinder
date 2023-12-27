@@ -85,11 +85,13 @@ std::vector<WildGeneratorState4> WildGenerator4::generateMethodJ(u32 seed) const
     u8 thresh = area.getRate();
     std::vector<u8> modifiedSlots = area.getSlots(lead);
 
-    PokeRNG rng(seed, initialAdvances + delay);
+    PokeRNG rng(seed, initialAdvances);
+    auto jump = rng.getJump(delay);
+
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
     {
         u32 occidentary = initialAdvances + cnt;
-        PokeRNG go(rng);
+        PokeRNG go(rng, jump);
 
         // Fishing nibble check
         if ((area.getEncounter() == Encounter::OldRod || area.getEncounter() == Encounter::GoodRod
@@ -228,11 +230,13 @@ std::vector<WildGeneratorState4> WildGenerator4::generateMethodK(u32 seed) const
     std::vector<u8> modifiedSlots = area.getSlots(lead);
     bool safari = area.safariZone(profile.getVersion());
 
-    PokeRNG rng(seed, initialAdvances + delay);
+    PokeRNG rng(seed, initialAdvances);
+    auto jump = rng.getJump(delay);
+
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
     {
         u32 occidentary = initialAdvances + cnt;
-        PokeRNG go(rng);
+        PokeRNG go(rng, jump);
 
         // Rock smash/fishing nibble check
         if ((area.getEncounter() == Encounter::RockSmash || area.getEncounter() == Encounter::OldRod
@@ -443,11 +447,13 @@ std::vector<WildGeneratorState4> WildGenerator4::generatePokeRadar(u32 seed, u8 
         break;
     }
 
-    PokeRNG rng(seed, initialAdvances + delay);
+    PokeRNG rng(seed, initialAdvances);
+    auto jump = rng.getJump(delay);
+
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
     {
         u32 occidentary = initialAdvances + cnt;
-        PokeRNG go(rng);
+        PokeRNG go(rng, jump);
 
         u8 nature;
         u32 pid;
@@ -537,11 +543,13 @@ std::vector<WildGeneratorState4> WildGenerator4::generatePokeRadarShiny(u32 seed
         return (pid & 0xff) < info->getGender();
     };
 
-    PokeRNG rng(seed, initialAdvances + delay);
+    PokeRNG rng(seed, initialAdvances);
+    auto jump = rng.getJump(delay);
+
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
     {
         u32 occidentary = initialAdvances + cnt;
-        PokeRNG go(rng);
+        PokeRNG go(rng, jump);
 
         u8 nature;
         u32 pid;

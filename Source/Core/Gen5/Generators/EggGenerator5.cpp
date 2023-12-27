@@ -79,12 +79,13 @@ std::vector<EggState5> EggGenerator5::generateBW(u64 seed) const
     std::generate(mtIVs.begin(), mtIVs.end(), [&mt] { return mt.next(); });
 
     u32 advances = Utilities5::initialAdvances(seed, profile);
-    BWRNG rng(seed, advances + initialAdvances + delay);
+    BWRNG rng(seed, advances + initialAdvances);
+    auto jump = rng.getJump(delay);
 
     std::vector<EggState5> states;
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
     {
-        BWRNG go(rng);
+        BWRNG go(rng, jump);
 
         // Nidoran
         // Volbeat / Illumise
@@ -200,10 +201,12 @@ std::vector<EggState5> EggGenerator5::generateBW2(u64 seed) const
     if (filter.compareAbility(state.getAbility()) && filter.compareNature(state.getNature()) && filter.compareIV(state.getIVs()))
     {
         u32 advances = Utilities5::initialAdvances(seed, profile);
-        BWRNG rng(seed, advances + initialAdvances + delay);
+        BWRNG rng(seed, advances + initialAdvances);
+        auto jump = rng.getJump(delay);
+
         for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
         {
-            BWRNG go(rng);
+            BWRNG go(rng, jump);
 
             u32 pid = go.nextUInt();
             if (((pid >> 16) & 1) != state.getAbility())

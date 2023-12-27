@@ -22,13 +22,15 @@
 
 #include <Core/Global.hpp>
 
+struct Jump64
+{
+    u64 mult;
+    u64 add;
+};
+
 struct JumpTable64
 {
-    struct
-    {
-        u64 mult;
-        u64 add;
-    } jump[32];
+    Jump64 jump[32];
 };
 
 extern const JumpTable64 BWRNGTable;
@@ -85,6 +87,17 @@ public:
     }
 
     /**
+     * @brief Construct a new LCRNG64 object
+     *
+     * @param rng LCRNG object to copy
+     * @param j Multipler and adder to advance by
+     */
+    LCRNG64(const LCRNG64 &rng, const Jump64 &j) : seed(rng.seed)
+    {
+        jump(j);
+    }
+
+    /**
      * @brief Advances the RNG by \p advances amount
      * This function is called when the number of advances is predetermined and allows the compiler to optimize to the final mult/add
      *
@@ -123,6 +136,32 @@ public:
     }
 
     /**
+     * @brief Computes the multipler and adder to jump the RNG by \p advances amount
+     *
+     * @param advances Number of advances
+     *
+     * @return Multipler and adder to jump the RNG
+     */
+    const Jump64 getJump(u32 advances)
+    {
+        const JumpTable64 *table = getJumpTable();
+        Jump64 jump;
+
+        jump.add = 0;
+        jump.mult = 1;
+        for (int i = 0; advances > 0; advances >>= 1, i++)
+        {
+            if (advances & 1)
+            {
+                jump.add = jump.add * table->jump[i].mult + table->jump[i].add;
+                jump.mult *= table->jump[i].mult;
+            }
+        }
+
+        return jump;
+    }
+
+    /**
      * @brief Returns the current PRNG state
      *
      * @return PRNG value
@@ -142,16 +181,7 @@ public:
      */
     u64 jump(u32 advances)
     {
-        const JumpTable64 *table;
-        if constexpr (add == 0x269ec3) // BWRNG
-        {
-            table = &BWRNGTable;
-        }
-        else // BWRNG(R)
-        {
-            static_assert(add == 0x9b1ae6e9a384e6f9, "Unsupported LCRNG64");
-            table = &BWRNGRTable;
-        }
+        const JumpTable64 *table = getJumpTable();
 
         for (int i = 0; advances; advances >>= 1, i++)
         {
@@ -162,6 +192,18 @@ public:
         }
 
         return seed;
+    }
+
+    /**
+     * @brief Jumps the RNG by multipler and adder in \p jump
+     *
+     * @param jump Multipler and adder to jump by
+     *
+     * @return PRNG value after the advances
+     */
+    u64 jump(const Jump64 &jump)
+    {
+        return seed = seed * jump.mult + jump.add;
     }
 
     /**
@@ -207,6 +249,19 @@ public:
 
 private:
     u64 seed;
+
+    const JumpTable64 *getJumpTable()
+    {
+        if constexpr (add == 0x269ec3) // BWRNG
+        {
+            return &BWRNGTable;
+        }
+        else // BWRNG(R)
+        {
+            static_assert(add == 0x9b1ae6e9a384e6f9, "Unsupported LCRNG64");
+            return &BWRNGRTable;
+        }
+    }
 };
 
 using BWRNG = LCRNG64<0x269ec3, 0x5d588b656c078965>;

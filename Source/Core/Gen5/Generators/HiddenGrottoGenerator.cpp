@@ -51,12 +51,13 @@ HiddenGrottoGenerator::HiddenGrottoGenerator(u32 initialAdvances, u32 maxAdvance
 std::vector<HiddenGrottoState> HiddenGrottoGenerator::generate(u64 seed) const
 {
     u32 advances = Utilities5::initialAdvancesBW2(seed, profile.getMemoryLink());
-    BWRNG rng(seed, advances + initialAdvances + delay);
+    BWRNG rng(seed, advances + initialAdvances);
+    auto jump = rng.getJump(delay);
 
     std::vector<HiddenGrottoState> states;
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++)
     {
-        BWRNG go(rng);
+        BWRNG go(rng, jump);
         u16 prng = rng.nextUInt(0x1fff);
         if (go.nextUInt(100) < powerLevel)
         {

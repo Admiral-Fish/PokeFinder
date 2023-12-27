@@ -56,7 +56,6 @@ public:
 
 private:
     PGF pgf;
-    u8 wondercardAdvances;
 };
 
 #endif // EVENTGENERATOR5_HPP
