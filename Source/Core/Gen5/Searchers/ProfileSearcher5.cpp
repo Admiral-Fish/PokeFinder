@@ -58,34 +58,35 @@ void ProfileSearcher5::startSearch(int threads, u8 minVFrame, u8 maxVFrame)
         threads = diff;
     }
 
-    std::vector<std::thread> threadContainer;
+    auto *threadContainer = new std::thread[threads];
 
     auto split = (diff / threads);
-    for (int i = 0; i < threads; i++)
+    for (int i = 0; i < threads; i++, minVFrame += split)
     {
         if (i == threads - 1)
         {
-            threadContainer.emplace_back([=] { search(minVFrame, maxVFrame); });
+            threadContainer[i] = std::thread([=] { search(minVFrame, maxVFrame); });
         }
         else
         {
-            threadContainer.emplace_back([=] { search(minVFrame, minVFrame + split - 1); });
+            threadContainer[i] = std::thread([=] { search(minVFrame, minVFrame + split - 1); });
         }
-        minVFrame += split;
     }
 
     for (int i = 0; i < threads; i++)
     {
         threadContainer[i].join();
     }
+
+    delete[] threadContainer;
 }
 
-void ProfileSearcher5::search(u8 vframeStart, u8 vframeEnd)
+void ProfileSearcher5::search(u8 minVFrame, u8 maxVFrame)
 {
     int hour = time.hour();
     int minute = time.minute();
 
-    for (u16 vframe = vframeStart; vframe <= vframeEnd; vframe++)
+    for (u16 vframe = minVFrame; vframe <= maxVFrame; vframe++)
     {
         for (u16 gxStat = minGxStat; gxStat <= maxGxStat; gxStat++)
         {

@@ -52,7 +52,6 @@ public:
      * @brief Generates states
      *
      * @param seed Starting PRNG state
-     * @param staticTemplate Pokemon template
      *
      * @return Vector of computed states
      */
@@ -63,7 +62,6 @@ private:
      * @brief Generates states via Method 1
      *
      * @param seed Starting PRNG state
-     * @param staticTemplate Pokemon template
      *
      * @return Vector of computed states
      */
@@ -73,7 +71,6 @@ private:
      * @brief Generates states via Method J
      *
      * @param seed Starting PRNG state
-     * @param staticTemplate Pokemon template
      *
      * @return Vector of computed states
      */
@@ -83,7 +80,6 @@ private:
      * @brief Generates states via Method K
      *
      * @param seed Starting PRNG state
-     * @param staticTemplate Pokemon template
      *
      * @return Vector of computed states
      */

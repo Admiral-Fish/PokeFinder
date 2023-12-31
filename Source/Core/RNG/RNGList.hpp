@@ -100,7 +100,7 @@ public:
      */
     void advanceState()
     {
-        if constexpr (generate != nullptr)
+        if constexpr (generate)
         {
             list[head++] = generate(rng);
         }

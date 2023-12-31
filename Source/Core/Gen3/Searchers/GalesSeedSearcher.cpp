@@ -34,27 +34,28 @@ void GalesSeedSearcher::startSearch(int threads)
 {
     searching = true;
 
-    std::vector<std::thread> threadContainer;
+    auto *threadContainer = new std::thread[threads];
 
     u32 split = 0x10000 / threads;
     u32 start = 0;
-    for (int i = 0; i < threads; i++)
+    for (int i = 0; i < threads; i++, start += split)
     {
         if (i == threads - 1)
         {
-            threadContainer.emplace_back([=] { search(start, 0x10000); });
+            threadContainer[i] = std::thread([=] { search(start, 0x10000); });
         }
         else
         {
-            threadContainer.emplace_back([=] { search(start, start + split); });
+            threadContainer[i] = std::thread([=] { search(start, start + split); });
         }
-        start += split;
     }
 
     for (int i = 0; i < threads; i++)
     {
         threadContainer[i].join();
     }
+
+    delete[] threadContainer;
 
     std::sort(results.begin(), results.end());
     results.erase(std::unique(results.begin(), results.end()), results.end());

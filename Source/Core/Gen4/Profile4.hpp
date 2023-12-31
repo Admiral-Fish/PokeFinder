@@ -39,7 +39,9 @@ public:
      * @param sid Secret ID
      * @param dex Whether national pokedex is obtained
      */
-    Profile4(const std::string &profileName, Game version, u16 tid, u16 sid, bool dex);
+    Profile4(const std::string &name, Game version, u16 tid, u16 sid, bool dex) : Profile(name, version, tid, sid), dex(dex)
+    {
+    }
 
     /**
      * @brief Get the National Dex object
@@ -47,7 +49,10 @@ public:
      * @return true National pokedex is obtained
      * @return false National pokedex is not obtained
      */
-    bool getNationalDex() const;
+    bool getNationalDex() const
+    {
+        return dex;
+    }
 
     /**
      * @brief Checks if two profiles are equal

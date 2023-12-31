@@ -29,11 +29,11 @@
  */
 enum class InputType : u8
 {
+    Advance32Bit,
+    Delay,
     Seed64Bit,
     Seed32Bit,
-    Advance32Bit,
     Seed16Bit,
-    Delay,
     TIDSID
 };
 

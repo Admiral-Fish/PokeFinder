@@ -102,6 +102,14 @@ public:
      */
     void setTime(u8 hour, u8 minute, u8 second, DSType dsType);
 
+    /**
+     * @brief Sets the SHA1 parameter based on time and \p dsType
+     *
+     * @param time Time parameter
+     * @param dsType DS type parameter
+     */
+    void setTime(u32 time, DSType dsType);
+
 private:
     u32 data[80];
 };

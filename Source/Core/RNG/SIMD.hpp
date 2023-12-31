@@ -151,6 +151,20 @@ inline vuint32x4 v32x4_or(vuint32x4 x, vuint32x4 y)
 }
 
 /**
+ * @brief Computes the bitwise rotate left of each 32bit number pair in the vector
+ *
+ * @tparam rotate Amount to rotateby
+ * @param x Input vector
+ *
+ * @return Computed bitwise rotate left vector
+ */
+template <int rotate>
+inline vuint32x4 v32x4_rotl(vuint32x4 x)
+{
+    return v32x4_or(v32x4_shl<rotate>(x), v32x4_shr<32 - rotate>(x));
+}
+
+/**
  * @brief Initalizes a vector with the given number
  *
  * @param x Initalization number

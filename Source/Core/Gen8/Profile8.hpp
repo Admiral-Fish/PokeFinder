@@ -39,7 +39,10 @@ public:
      * @param shinyCharm Whether shiny charm is obtained
      * @param ovalCharm Whether oval charm is obtained
      */
-    Profile8(const std::string &name, Game version, u16 tid, u16 sid, bool dex, bool shinyCharm, bool ovalCharm);
+    Profile8(const std::string &name, Game version, u16 tid, u16 sid, bool dex, bool shinyCharm, bool ovalCharm) :
+        Profile(name, version, tid, sid), dex(dex), ovalCharm(ovalCharm), shinyCharm(shinyCharm)
+    {
+    }
 
     /**
      * @brief Get the National Dex object
@@ -47,7 +50,10 @@ public:
      * @return true National pokedex is obtained
      * @return false National pokedex is not obtained
      */
-    bool getNationalDex() const;
+    bool getNationalDex() const
+    {
+        return dex;
+    }
 
     /**
      * @brief Returns whether the profile has the oval charm
@@ -55,7 +61,10 @@ public:
      * @return true Oval charm is obtained
      * @return false Oval charm is not obtained
      */
-    bool getOvalCharm() const;
+    bool getOvalCharm() const
+    {
+        return ovalCharm;
+    }
 
     /**
      * @brief Returns whether the profile has the shiny charm
@@ -63,7 +72,10 @@ public:
      * @return true Shiny charm is obtained
      * @return false Shiny charm is not obtained
      */
-    bool getShinyCharm() const;
+    bool getShinyCharm() const
+    {
+        return shinyCharm;
+    }
 
     /**
      * @brief Checks if two profiles are equal

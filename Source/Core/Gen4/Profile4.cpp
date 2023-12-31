@@ -19,16 +19,6 @@
 
 #include "Profile4.hpp"
 
-Profile4::Profile4(const std::string &profileName, Game version, u16 tid, u16 sid, bool dex) :
-    Profile(profileName, version, tid, sid), dex(dex)
-{
-}
-
-bool Profile4::getNationalDex() const
-{
-    return dex;
-}
-
 bool Profile4::operator==(const Profile4 &other) const
 {
     return Profile::operator==(other) && dex == other.dex;

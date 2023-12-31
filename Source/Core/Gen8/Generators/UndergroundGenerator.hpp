@@ -48,7 +48,7 @@ public:
                          const UndergroundArea &area, const Profile8 &profile, const UndergroundStateFilter &filter);
 
     /**
-     * @brief Generates states for the \p encounterArea
+     * @brief Generates states
      *
      * @param seed0 Upper half of PRNG state
      * @param seed1 Lower half of PRNG state

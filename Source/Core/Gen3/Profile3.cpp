@@ -19,16 +19,6 @@
 
 #include "Profile3.hpp"
 
-Profile3::Profile3(const std::string &name, Game version, u16 tid, u16 sid, bool deadBattery) :
-    Profile(name, version, tid, sid), deadBattery(deadBattery)
-{
-}
-
-bool Profile3::getDeadBattery() const
-{
-    return deadBattery;
-}
-
 bool Profile3::operator==(const Profile3 &other) const
 {
     return Profile::operator==(other) && deadBattery == other.deadBattery;

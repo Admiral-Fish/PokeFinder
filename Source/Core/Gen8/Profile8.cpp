@@ -19,26 +19,6 @@
 
 #include "Profile8.hpp"
 
-Profile8::Profile8(const std::string &name, Game version, u16 tid, u16 sid, bool dex, bool shinyCharm, bool ovalCharm) :
-    Profile(name, version, tid, sid), dex(dex), ovalCharm(ovalCharm), shinyCharm(shinyCharm)
-{
-}
-
-bool Profile8::getNationalDex() const
-{
-    return dex;
-}
-
-bool Profile8::getOvalCharm() const
-{
-    return ovalCharm;
-}
-
-bool Profile8::getShinyCharm() const
-{
-    return shinyCharm;
-}
-
 bool Profile8::operator==(const Profile8 &other) const
 {
     return Profile::operator==(other) && dex == other.dex && shinyCharm == other.shinyCharm && ovalCharm == other.ovalCharm;

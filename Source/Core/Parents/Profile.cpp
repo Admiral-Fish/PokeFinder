@@ -19,30 +19,6 @@
 
 #include "Profile.hpp"
 
-Profile::Profile(const std::string &name, Game version, u16 tid, u16 sid) : sid(sid), tid(tid), version(version), name(name)
-{
-}
-
-std::string Profile::getName() const
-{
-    return name;
-}
-
-u16 Profile::getSID() const
-{
-    return sid;
-}
-
-u16 Profile::getTID() const
-{
-    return tid;
-}
-
-Game Profile::getVersion() const
-{
-    return version;
-}
-
 bool Profile::operator==(const Profile &other) const
 {
     return name == other.name && version == other.version && tid == other.tid && sid == other.sid;

@@ -44,7 +44,7 @@ public:
      * @param filter State filter
      */
     StaticSearcher(Method method, Lead lead, const Profile &profile, const Filter &filter) :
-        Searcher<Profile, Result>(method, profile), lead(lead), filter(filter)
+        Searcher<Profile, Result>(method, profile), filter(filter), lead(lead)
     {
     }
 

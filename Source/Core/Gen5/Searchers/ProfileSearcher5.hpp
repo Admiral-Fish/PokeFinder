@@ -88,7 +88,7 @@ private:
     u8 maxVCount;
     u8 minVCount;
 
-    void search(u8 vframeStart, u8 vframeEnd);
+    void search(u8 minVFrame, u8 maxVFrame);
 
     /**
      * @brief Checks if seed matches the provided calibration data

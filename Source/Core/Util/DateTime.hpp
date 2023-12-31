@@ -97,6 +97,16 @@ public:
     u32 daysTo(const Date &other) const;
 
     /**
+     * @brief Returns the interal date representation
+     *
+     * @return Julian date
+     */
+    u32 getJD() const
+    {
+        return jd;
+    }
+
+    /**
      * @brief Converts the Julian date to a Gregorian date
      *
      * @return Year, month, and day
