@@ -52,6 +52,7 @@ HiddenGrotto::HiddenGrotto(QWidget *parent) : QWidget(parent), ui(new Ui::Hidden
     ui->textBoxGeneratorMaxAdvances->setValues(InputType::Advance32Bit);
     ui->textBoxGeneratorDelay->setValues(InputType::Advance32Bit);
 
+    ui->textBoxSearcherInitialAdvances->setValues(InputType::Advance32Bit);
     ui->textBoxSearcherMaxAdvances->setValues(InputType::Advance32Bit);
 
     ui->comboBoxGeneratorGrottoPower->setup({ 5, 15, 25, 35, 55 });
@@ -246,12 +247,13 @@ void HiddenGrotto::search()
     ui->pushButtonSearch->setEnabled(false);
     ui->pushButtonCancel->setEnabled(true);
 
+    u32 initialAdvances = ui->textBoxSearcherInitialAdvances->getUInt();
     u32 maxAdvances = ui->textBoxSearcherMaxAdvances->getUInt();
     u8 powerLevel = ui->comboBoxSearcherGrottoPower->currentData().toUInt();
 
     HiddenGrottoFilter filter(ui->checkListSearcherSlot->getCheckedArray<11>(), ui->checkListSearcherGender->getCheckedArray<2>(),
                               ui->checkListSearcherGroup->getCheckedArray<4>());
-    HiddenGrottoGenerator generator(0, maxAdvances, 0, powerLevel, encounter[ui->comboBoxSearcherLocation->getCurrentInt()],
+    HiddenGrottoGenerator generator(initialAdvances, maxAdvances, 0, powerLevel, encounter[ui->comboBoxSearcherLocation->getCurrentInt()],
                                     *currentProfile, filter);
     auto *searcher = new Searcher5<HiddenGrottoGenerator, HiddenGrottoState>(generator, *currentProfile);
 
