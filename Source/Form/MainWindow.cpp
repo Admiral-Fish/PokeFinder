@@ -388,15 +388,19 @@ void MainWindow::openDreamRadar()
         dreamRadar = new DreamRadar();
         connect(dreamRadar, &DreamRadar::profilesModified, this, &MainWindow::updateProfiles);
     }
-    else if (!dreamRadar->hasProfiles())
+
+    if (!dreamRadar->hasProfiles())
     {
         QMessageBox msg(QMessageBox::Warning, tr("No profiles found"),
                         tr("Please use the Profile Calibrator under Gen 5 Tools to create one."));
         msg.exec();
         dreamRadar->close();
     }
-    dreamRadar->show();
-    dreamRadar->raise();
+    else
+    {
+        dreamRadar->show();
+        dreamRadar->raise();
+    }
 }
 
 void MainWindow::openEgg5()
@@ -406,15 +410,19 @@ void MainWindow::openEgg5()
         egg5 = new Eggs5();
         connect(egg5, &Eggs5::profilesModified, this, &MainWindow::updateProfiles);
     }
-    else if (!egg5->hasProfiles())
+
+    if (!egg5->hasProfiles())
     {
         QMessageBox msg(QMessageBox::Warning, tr("No profiles found"),
                         tr("Please use the Profile Calibrator under Gen 5 Tools to create one."));
         msg.exec();
         egg5->close();
     }
-    egg5->show();
-    egg5->raise();
+    else
+    {
+        egg5->show();
+        egg5->raise();
+    }
 }
 
 void MainWindow::openEvent5()
@@ -442,15 +450,19 @@ void MainWindow::openHiddenGrotto()
         hiddenGrotto = new HiddenGrotto();
         connect(hiddenGrotto, &HiddenGrotto::profilesModified, this, &MainWindow::updateProfiles);
     }
-    else if (!hiddenGrotto->hasProfiles())
+
+    if (!hiddenGrotto->hasProfiles())
     {
         QMessageBox msg(QMessageBox::Warning, tr("No profiles found"),
                         tr("Please use the Profile Calibrator under Gen 5 Tools to create one."));
         msg.exec();
         hiddenGrotto->close();
     }
-    hiddenGrotto->show();
-    hiddenGrotto->raise();
+    else
+    {
+        hiddenGrotto->show();
+        hiddenGrotto->raise();
+    }
 }
 
 void MainWindow::openIDs5()
@@ -460,15 +472,19 @@ void MainWindow::openIDs5()
         ids5 = new IDs5();
         connect(ids5, &IDs5::profilesModified, this, &MainWindow::updateProfiles);
     }
-    else if (!ids5->hasProfiles())
+
+    if (!ids5->hasProfiles())
     {
         QMessageBox msg(QMessageBox::Warning, tr("No profiles found"),
                         tr("Please use the Profile Calibrator under Gen 5 Tools to create one."));
         msg.exec();
         ids5->close();
     }
-    ids5->show();
-    ids5->raise();
+    else
+    {
+        ids5->show();
+        ids5->raise();
+    }
 }
 
 void MainWindow::openProfileCalibrator() const
@@ -603,7 +619,6 @@ void MainWindow::openAbout() const
     {
         QApplication::clipboard()->setText(info.join('\n'));
     }
-    delete copy;
 }
 
 void MainWindow::openEncounterLookup() const

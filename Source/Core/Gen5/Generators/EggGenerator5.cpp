@@ -103,7 +103,7 @@ std::vector<EggState5> EggGenerator5::generateBW(u64 seed) const
         // Everstone, first check for presence of item and proc
         if (everstone != 0)
         {
-            if ((go.nextUInt(2)) == 1)
+            if (go.nextUInt(2) == 1)
             {
                 if (everstone == 2)
                 {
