@@ -39,7 +39,7 @@ EggGenerator5::EggGenerator5(u32 initialAdvances, u32 maxAdvances, u32 delay, co
     everstone(daycare.getEverstoneCount()),
     parentAbility(daycare.getParentAbility(1)),
     poweritem(daycare.getPowerItemCount()),
-    rolls((profile.getShinyCharm() ? 2 : 0) + (daycare.getMasuda() ? 5 : 0))
+    rolls(((profile.getVersion() & Game::BW2) != Game::None && profile.getShinyCharm() ? 2 : 0) + (daycare.getMasuda() ? 5 : 0))
 {
 }
 
@@ -118,14 +118,15 @@ std::vector<EggState5> EggGenerator5::generateBW(u64 seed) const
             }
         }
 
-        bool hiddenAbility = go.nextUInt(100) >= 40 && parentAbility == 2;
-
         // Reroll ability to remove HA
+        bool hiddenAbility = false;
         if (ditto)
         {
-            // ability = go.nextUInt(2);
-            go.advance(1);
-            hiddenAbility = false;
+            go.advance(2);
+        }
+        else
+        {
+            hiddenAbility = go.nextUInt(100) >= 40 && parentAbility == 2;
         }
 
         // Power Items
