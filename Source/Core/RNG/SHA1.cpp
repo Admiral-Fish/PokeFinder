@@ -41,12 +41,12 @@ static void calcWSIMD(u32 *data, int i)
     }
 };
 
-static u32 computeBCD(u8 val)
+static consteval u32 computeBCD(u8 val)
 {
     return ((val / 10) << 4) + (val % 10);
 }
 
-static u32 computeWeekday(u16 year, u8 month, u8 day)
+static consteval u32 computeWeekday(u16 year, u8 month, u8 day)
 {
     u32 a = month < 3 ? 1 : 0;
     u32 y = year + 4800 - a;
@@ -55,7 +55,7 @@ static u32 computeWeekday(u16 year, u8 month, u8 day)
     return (jd + 1) % 7;
 }
 
-static std::array<u32, 36525> computeDateValues()
+static consteval std::array<u32, 36525> computeDateValues()
 {
     std::array<u32, 36525> dates;
 
@@ -86,7 +86,7 @@ static std::array<u32, 36525> computeDateValues()
     return dates;
 }
 
-static std::array<u32, 86400> computeTimeValues()
+static consteval std::array<u32, 86400> computeTimeValues()
 {
     std::array<u32, 86400> times;
 
@@ -143,8 +143,8 @@ static inline void section4Calc(u32 a, u32 &b, u32 c, u32 d, u32 e, u32 &t, u32 
     b = std::rotr(b, 2);
 };
 
-static std::array<u32, 36525> dateValues = computeDateValues();
-static std::array<u32, 86400> timeValues = computeTimeValues();
+constexpr std::array<u32, 36525> dateValues = computeDateValues();
+constexpr std::array<u32, 86400> timeValues = computeTimeValues();
 
 SHA1::SHA1(const Profile5 &profile) :
     SHA1(profile.getVersion(), profile.getLanguage(), profile.getDSType(), profile.getMac(), profile.getSoftReset(), profile.getVFrame(),

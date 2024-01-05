@@ -432,15 +432,19 @@ void MainWindow::openEvent5()
         event5 = new Event5();
         connect(event5, &Event5::profilesModified, this, &MainWindow::updateProfiles);
     }
-    else if (!event5->hasProfiles())
+
+    if (!event5->hasProfiles())
     {
         QMessageBox msg(QMessageBox::Warning, tr("No profiles found"),
                         tr("Please use the Profile Calibrator under Gen 5 Tools to create one."));
         msg.exec();
         event5->close();
     }
-    event5->show();
-    event5->raise();
+    else
+    {
+        event5->show();
+        event5->raise();
+    }
 }
 
 void MainWindow::openHiddenGrotto()

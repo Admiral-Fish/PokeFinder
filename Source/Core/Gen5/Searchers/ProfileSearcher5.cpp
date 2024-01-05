@@ -83,8 +83,8 @@ void ProfileSearcher5::startSearch(int threads, u8 minVFrame, u8 maxVFrame)
 
 void ProfileSearcher5::search(u8 minVFrame, u8 maxVFrame)
 {
-    int hour = time.hour();
-    int minute = time.minute();
+    u8 hour = time.hour();
+    u8 minute = time.minute();
 
     for (u16 vframe = minVFrame; vframe <= maxVFrame; vframe++)
     {
