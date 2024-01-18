@@ -332,9 +332,9 @@ void SHA1::setTimer0(u32 timer0, u8 vcount)
 void SHA1::setTime(u32 time, DSType dsType)
 {
     u32 val = timeValues[time];
-    if (dsType == DSType::DS3)
+    if (time >= 43200 && dsType != DSType::DS3)
     {
-        val &= ~0x40000000;
+        val |= 0x40000000;
     }
     data[9] = val;
 }

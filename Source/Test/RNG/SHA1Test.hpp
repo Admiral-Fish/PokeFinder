@@ -28,6 +28,9 @@ class SHA1Test : public QObject
 private slots:
     void hash_data();
     void hash();
+
+    void hashTime_data();
+    void hashTime();
 };
 
 #endif // SHA1TEST_HPP
