@@ -23,56 +23,14 @@
 #include <fstream>
 #include <mutex>
 
-#pragma pack(push, 1)
-struct IVSeed
-{
-    u32 seed;
-    u16 hp : 1;
-    u16 atk : 5;
-    u16 def : 1;
-    u16 spa : 5;
-    u16 spd : 1;
-    u16 spe : 2;
-};
-#pragma pack(pop)
-
-static bool compareIVSeed(const IVSeed &left, const IVSeed &right)
-{
-    return left.seed < right.seed;
-}
-
-static IVSeed computeIVSeed(u32 seed, u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe)
-{
-    IVSeed ivSeed = { 0 };
-
-    ivSeed.seed = seed;
-    ivSeed.hp = hp - 30;
-    ivSeed.atk = atk;
-    ivSeed.def = def - 30;
-    ivSeed.spa = spa;
-    ivSeed.spd = spd - 30;
-
-    // Map speed of 0-1 to 2-3 and 30-31 to 0-1
-    if (spe == 0 || spe == 1)
-    {
-        ivSeed.spe = 2 + spe;
-    }
-    else
-    {
-        ivSeed.spe = spe - 30;
-    }
-
-    return ivSeed;
-}
-
 class IVTableSearcher
 {
 public:
     IVTableSearcher()
     {
-        std::generate(entralinkSeeds.begin(), entralinkSeeds.end(), [] { return new IVSeed[16384]; });
-        std::generate(normalSeeds.begin(), normalSeeds.end(), [] { return new IVSeed[16384]; });
-        std::generate(roamerSeeds.begin(), roamerSeeds.end(), [] { return new IVSeed[8192]; });
+        std::generate(entralinkSeeds.begin(), entralinkSeeds.end(), [] { return new u32[16384]; });
+        std::generate(normalSeeds.begin(), normalSeeds.end(), [] { return new u32[16384]; });
+        std::generate(roamerSeeds.begin(), roamerSeeds.end(), [] { return new u32[8192]; });
 
         entralinkSizes.fill(0);
         normalSizes.fill(0);
@@ -122,26 +80,22 @@ public:
             threadContainer[i].join();
         }
 
-        delete[] threadContainer;
-    }
-
-    void writeResults()
-    {
         for (int i = 0; i < entralinkSeeds.size(); i++)
         {
-            std::sort(&entralinkSeeds[i][0], &entralinkSeeds[i][entralinkSizes[i]], compareIVSeed);
+            std::sort(&entralinkSeeds[i][0], &entralinkSeeds[i][entralinkSizes[i]]);
         }
 
         for (int i = 0; i < normalSeeds.size(); i++)
         {
-            std::sort(&normalSeeds[i][0], &normalSeeds[i][normalSizes[i]], compareIVSeed);
+            std::sort(&normalSeeds[i][0], &normalSeeds[i][normalSizes[i]]);
         }
 
         for (int i = 0; i < roamerSeeds.size(); i++)
         {
-            std::sort(&roamerSeeds[i][0], &roamerSeeds[i][roamerSizes[i]], compareIVSeed);
+            std::sort(&roamerSeeds[i][0], &roamerSeeds[i][roamerSizes[i]]);
         }
 
+        // Save results
         std::ofstream file("ivs.bin", std::ios_base::binary | std::ios_base::out | std::ios_base::trunc);
         if (file.is_open())
         {
@@ -151,28 +105,30 @@ public:
 
             for (int i = 0; i < entralinkSeeds.size(); i++)
             {
-                file.write(reinterpret_cast<const char *>(entralinkSeeds[i]), sizeof(IVSeed) * entralinkSizes[i]);
+                file.write(reinterpret_cast<const char *>(entralinkSeeds[i]), sizeof(u32) * entralinkSizes[i]);
             }
 
             for (int i = 0; i < normalSeeds.size(); i++)
             {
-                file.write(reinterpret_cast<const char *>(normalSeeds[i]), sizeof(IVSeed) * normalSizes[i]);
+                file.write(reinterpret_cast<const char *>(normalSeeds[i]), sizeof(u32) * normalSizes[i]);
             }
 
             for (int i = 0; i < roamerSeeds.size(); i++)
             {
-                file.write(reinterpret_cast<const char *>(roamerSeeds[i]), sizeof(IVSeed) * roamerSizes[i]);
+                file.write(reinterpret_cast<const char *>(roamerSeeds[i]), sizeof(u32) * roamerSizes[i]);
             }
 
             file.close();
         }
+
+        delete[] threadContainer;
     }
 
 private:
     std::mutex mutex;
-    std::array<IVSeed *, 10> entralinkSeeds;
-    std::array<IVSeed *, 8> normalSeeds;
-    std::array<IVSeed *, 6> roamerSeeds;
+    std::array<u32 *, 10> entralinkSeeds;
+    std::array<u32 *, 8> normalSeeds;
+    std::array<u32 *, 6> roamerSeeds;
     std::array<u16, 10> entralinkSizes;
     std::array<u16, 8> normalSizes;
     std::array<u16, 6> roamerSizes;
@@ -181,13 +137,14 @@ private:
     {
         for (u32 seed = start;; seed++)
         {
-            MTFast<38, true> mt(seed);
+            MTFast<37, true> mt(seed);
 
-            std::array<u8, 32> ivs;
+            std::array<u8, 37> ivs;
             std::generate(ivs.begin(), ivs.end(), [&mt] { return mt.next(); });
 
             for (u8 i = 0; i < 10; i++)
             {
+                // Entralink
                 u8 hp = ivs[i + 22];
                 u8 atk = ivs[i + 23];
                 u8 def = ivs[i + 24];
@@ -196,11 +153,11 @@ private:
                 u8 spe = ivs[i + 27];
                 if (hp >= 30 && def >= 30 && spd >= 30 && (atk >= 30 || spa >= 30) && (spe <= 1 || spe >= 30))
                 {
-                    IVSeed ivSeed = computeIVSeed(seed, hp, atk, def, spa, spd, spe);
                     std::lock_guard<std::mutex> lock(mutex);
-                    entralinkSeeds[i][entralinkSizes[i]++] = ivSeed;
+                    entralinkSeeds[i][entralinkSizes[i]++] = seed;
                 }
 
+                // Normal
                 if (i < 8)
                 {
                     hp = ivs[i];
@@ -212,12 +169,12 @@ private:
 
                     if (hp >= 30 && def >= 30 && spd >= 30 && (atk >= 30 || spa >= 30) && (spe <= 1 || spe >= 30))
                     {
-                        IVSeed ivSeed = computeIVSeed(seed, hp, atk, def, spa, spd, spe);
                         std::lock_guard<std::mutex> lock(mutex);
-                        normalSeeds[i][normalSizes[i]++] = ivSeed;
+                        normalSeeds[i][normalSizes[i]++] = seed;
                     }
                 }
 
+                // Roamer
                 if (i < 6)
                 {
                     hp = ivs[i + 1];
@@ -229,9 +186,8 @@ private:
 
                     if (hp >= 30 && def >= 30 && spd >= 30 && (atk >= 30 || spa >= 30) && spe >= 30)
                     {
-                        IVSeed ivSeed = computeIVSeed(seed, hp, atk, def, spa, spd, spe);
                         std::lock_guard<std::mutex> lock(mutex);
-                        roamerSeeds[i][roamerSizes[i]++] = ivSeed;
+                        roamerSeeds[i][roamerSizes[i]++] = seed;
                     }
                 }
             }
@@ -248,5 +204,4 @@ int main()
 {
     IVTableSearcher searcher;
     searcher.startSearch(4);
-    searcher.writeResults();
 }

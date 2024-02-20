@@ -33,6 +33,18 @@ enum class Game : u32;
 namespace IVSeedCache
 {
     /**
+     * @brief Returns the IV caches for entralink
+     *
+     * @param initialAdvance Initial IV advances
+     * @param maxAdvance Maximum IV advances
+     * @param filter IV filter
+     *
+     * @return IV caches
+     */
+    std::array<fph::DynamicFphMap<u32, std::array<u8, 6>>, 6> getEntralinkCache(u32 initialAdvance, u32 maxAdvance,
+                                                                                const StateFilter &filter);
+
+    /**
      * @brief Returns the IV caches for most encounter types
      *
      * @param initialAdvance Initial IV advances
@@ -55,18 +67,6 @@ namespace IVSeedCache
      * @return IV caches
      */
     std::array<fph::DynamicFphMap<u32, std::array<u8, 6>>, 6> getRoamerCache(u32 initialAdvance, u32 maxAdvance, const StateFilter &filter);
-
-    /**
-     * @brief Returns the IV caches for entralink
-     *
-     * @param initialAdvance Initial IV advances
-     * @param maxAdvance Maximum IV advances
-     * @param filter IV filter
-     *
-     * @return IV caches
-     */
-    std::array<fph::DynamicFphMap<u32, std::array<u8, 6>>, 6> getEntralinkCache(u32 initialAdvance, u32 maxAdvance,
-                                                                                const StateFilter &filter);
 };
 
 #endif // IVSEEDCACHE_HPP
