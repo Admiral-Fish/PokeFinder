@@ -52,16 +52,21 @@ static bool validateMenu(XDRNGR &rng)
         return false;
     }
 
-    u8 mask = 1 << target;
-    while ((mask & 14) != 14)
+    for (u8 mask = 1 << target; mask < 14;)
     {
-        u8 num = rng.next() >> 30;
+        u8 num = rng.nextUShort() >> 14;
         if (num == target)
         {
             return false;
         }
 
         mask |= 1 << num;
+    }
+
+    // Keep advancing until we hit the target again
+    // This will get the seed with the most possibilities for the target
+    while ((rng.nextUShort() >> 14) != target)
+    {
     }
 
     return true;
@@ -89,7 +94,7 @@ static bool validateJirachi(u32 &seed)
         test.advance(5);
         if (validateMenu(test))
         {
-            seed = test.advance(2);
+            seed = test.getSeed();
             return true;
         }
     }
@@ -100,7 +105,7 @@ static bool validateJirachi(u32 &seed)
         test.advance(4);
         if (validateMenu(test))
         {
-            seed = test.advance(2);
+            seed = test.getSeed();
             return true;
         }
     }
@@ -111,7 +116,7 @@ static bool validateJirachi(u32 &seed)
         test.advance(3);
         if (validateMenu(test))
         {
-            seed = test.advance(2);
+            seed = test.getSeed();
             return true;
         }
     }

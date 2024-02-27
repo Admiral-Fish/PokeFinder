@@ -24,6 +24,8 @@ add_executable(PokeFinderTest
     Gen3/GameCubeSearcherTest.hpp
     Gen3/IDGenerator3Test.cpp
     Gen3/IDGenerator3Test.hpp
+    Gen3/JirachiPatternTest.cpp
+    Gen3/JirachiPatternTest.hpp
     Gen3/PIDToIVCalculatorTest.cpp
     Gen3/PIDToIVCalculatorTest.hpp
     Gen3/PokeSpotGeneratorTest.cpp

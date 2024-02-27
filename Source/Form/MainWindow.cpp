@@ -26,6 +26,7 @@
 #include <Form/Gen3/Profile/ProfileManager3.hpp>
 #include <Form/Gen3/Static3.hpp>
 #include <Form/Gen3/Tools/GameCubeSeedFinder.hpp>
+#include <Form/Gen3/Tools/JirachiAdvancer.hpp>
 #include <Form/Gen3/Tools/PIDToIV.hpp>
 #include <Form/Gen3/Tools/PokeSpot.hpp>
 #include <Form/Gen3/Tools/SeedToTime3.hpp>
@@ -85,6 +86,7 @@ MainWindow::MainWindow(bool profile, QWidget *parent) : QMainWindow(parent), ui(
     connect(ui->pushButtonWild3, &QPushButton::clicked, this, &MainWindow::openWild3);
     connect(ui->actionGameCubeSeedFinder, &QAction::triggered, this, &MainWindow::openGameCubeSeedFinder);
     connect(ui->actionIVstoPID3, &QAction::triggered, this, &MainWindow::openIVToPID);
+    connect(ui->actionJirachiAdvancer, &QAction::triggered, this, &MainWindow::openJirachiAdvancer);
     connect(ui->actionPIDtoIVs, &QAction::triggered, this, &MainWindow::openPIDtoIV);
     connect(ui->actionPokeSpot, &QAction::triggered, this, &MainWindow::openPokeSpot);
     connect(ui->actionProfileManager3, &QAction::triggered, this, &MainWindow::openProfileManager3);
@@ -254,6 +256,12 @@ void MainWindow::openGameCube()
 void MainWindow::openGameCubeSeedFinder()
 {
     auto *window = new GameCubeSeedFinder();
+    window->show();
+}
+
+void MainWindow::openJirachiAdvancer() const
+{
+    auto *window = new JirachiAdvancer();
     window->show();
 }
 

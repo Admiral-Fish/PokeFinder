@@ -70,7 +70,7 @@ std::vector<GeneratorState> GameCubeGenerator::generateChannel(u32 seed, const S
         XDRNG go(rng);
 
         // Advance through menu pattern
-        for (u8 mask = 0; (mask & 14) != 14;)
+        for (u8 mask = 0; mask < 14;)
         {
             mask |= 1 << (go.nextUShort() >> 14);
         }

@@ -61,6 +61,34 @@ void LCRNGTest::advance()
     QCOMPARE(xdrngr.advance(advances), results[5]);
 }
 
+void LCRNGTest::distance_data()
+{
+    QTest::addColumn<u32>("start");
+    QTest::addColumn<u32>("end");
+    QTest::addColumn<std::vector<u32>>("results");
+
+    json data = readData("lcrng", "distance");
+    for (const auto &d : data)
+    {
+        QTest::newRow(d["name"].get<std::string>().data())
+            << d["start"].get<u32>() << d["end"].get<u32>() << d["results"].get<std::vector<u32>>();
+    }
+}
+
+void LCRNGTest::distance()
+{
+    QFETCH(u32, start);
+    QFETCH(u32, end);
+    QFETCH(std::vector<u32>, results);
+
+    QCOMPARE(ARNG::distance(start, end), results[0]);
+    QCOMPARE(ARNGR::distance(start, end), results[1]);
+    QCOMPARE(PokeRNG::distance(start, end), results[2]);
+    QCOMPARE(PokeRNGR::distance(start, end), results[3]);
+    QCOMPARE(XDRNG::distance(start, end), results[4]);
+    QCOMPARE(XDRNGR::distance(start, end), results[5]);
+}
+
 void LCRNGTest::jump_data()
 {
     QTest::addColumn<u32>("seed");

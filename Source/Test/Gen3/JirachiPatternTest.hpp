@@ -17,26 +17,20 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef LCRNG64TEST_HPP
-#define LCRNG64TEST_HPP
+#ifndef JIRACHIPATTERNTEST_HPP
+#define JIRACHIPATTERNTEST_HPP
 
 #include <QObject>
 
-class LCRNG64Test : public QObject
+class JirachiPatternTest : public QObject
 {
     Q_OBJECT
 private slots:
-    void advance_data();
-    void advance();
+    void calculateActions_data();
+    void calculateActions();
 
-    void distance_data();
-    void distance();
-
-    void jump_data();
-    void jump();
-
-    void next_data();
-    void next();
+    void computeJirachiSeed_data();
+    void computeJirachiSeed();
 };
 
-#endif // LCRNG64TEST_HPP
+#endif // JIRACHIPATTERNTEST_HPP

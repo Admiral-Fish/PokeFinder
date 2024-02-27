@@ -30,7 +30,7 @@ struct Jump64
 
 struct JumpTable64
 {
-    Jump64 jump[32];
+    Jump64 jump[64];
 };
 
 extern const JumpTable64 BWRNGTable;
@@ -113,6 +113,34 @@ public:
             next(count);
         }
         return seed;
+    }
+
+    /**
+     * @brief Computes the number of advances between \p start and \p end PRNG states
+     *
+     * @param start Starting PRNG state
+     * @param end Ending PRNG state
+     *
+     * @return Number of advances between \p start and \p end
+     */
+    static u64 distance(u64 start, u64 end)
+    {
+        const JumpTable64 *table = getJumpTable();
+
+        u64 count = 0;
+        u64 p = 1;
+
+        for (int i = 0; i < 64 && start != end; i++, p <<= 1)
+        {
+            if ((start ^ end) & p)
+            {
+                const Jump64 *jump = &table->jump[i];
+                start = jump->mult * start + jump->add;
+                count += p;
+            }
+        }
+
+        return count;
     }
 
     /**
@@ -250,7 +278,7 @@ public:
 private:
     u64 seed;
 
-    const JumpTable64 *getJumpTable()
+    static const JumpTable64 *getJumpTable()
     {
         if constexpr (add == 0x269ec3) // BWRNG
         {

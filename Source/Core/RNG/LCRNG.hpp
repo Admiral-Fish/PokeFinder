@@ -111,6 +111,34 @@ public:
     }
 
     /**
+     * @brief Computes the number of advances between \p start and \p end PRNG states
+     *
+     * @param start Starting PRNG state
+     * @param end Ending PRNG state
+     *
+     * @return Number of advances between \p start and \p end
+     */
+    static u32 distance(u32 start, u32 end)
+    {
+        const JumpTable *table = getJumpTable();
+
+        u32 count = 0;
+        u32 p = 1;
+
+        for (int i = 0; i < 32 && start != end; i++, p <<= 1)
+        {
+            if ((start ^ end) & p)
+            {
+                const Jump *jump = &table->jump[i];
+                start = jump->mult * start + jump->add;
+                count += p;
+            }
+        }
+
+        return count;
+    }
+
+    /**
      * @brief Returns the adder of the LCRNG
      *
      * @return LCRNG adder value
@@ -265,7 +293,7 @@ public:
 private:
     u32 seed;
 
-    const JumpTable *getJumpTable()
+    static const JumpTable *getJumpTable()
     {
         if constexpr (add == 0x01) // ARNG
         {

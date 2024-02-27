@@ -66,6 +66,7 @@ set(PROJECT_UI
     Gen3/Profile/ProfileManager3.ui
     Gen3/Static3.ui
     Gen3/Tools/GameCubeSeedFinder.ui
+    Gen3/Tools/JirachiAdvancer.ui
     Gen3/Tools/PIDToIV.ui
     Gen3/Tools/PokeSpot.ui
     Gen3/Tools/SeedToTime3.ui
@@ -147,6 +148,8 @@ set(PROJECT_SOURCES
     Gen3/Static3.hpp
     Gen3/Tools/GameCubeSeedFinder.cpp
     Gen3/Tools/GameCubeSeedFinder.hpp
+    Gen3/Tools/JirachiAdvancer.cpp
+    Gen3/Tools/JirachiAdvancer.hpp
     Gen3/Tools/PIDToIV.cpp
     Gen3/Tools/PIDToIV.hpp
     Gen3/Tools/PokeSpot.cpp

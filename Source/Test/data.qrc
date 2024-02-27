@@ -3,6 +3,7 @@
         <file alias="egg3.json">Gen3/egg3.json</file>
         <file alias="gamecube.json">Gen3/gamecube.json</file>
         <file alias="id3.json">Gen3/id3.json</file>
+        <file alias="jirachipattern.json">Gen3/jirachipattern.json</file>
         <file alias="pidtoivcalculator.json">Gen3/pidtoivcalculator.json</file>
         <file alias="pokespot.json">Gen3/pokespot.json</file>
         <file alias="seedtotime3.json">Gen3/seedtotime3.json</file>

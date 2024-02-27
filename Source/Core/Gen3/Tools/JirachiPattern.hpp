@@ -17,26 +17,33 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef LCRNG64TEST_HPP
-#define LCRNG64TEST_HPP
+#ifndef JIRACHIPATTERN_HPP
+#define JIRACHIPATTERN_HPP
 
-#include <QObject>
+#include <Core/Global.hpp>
+#include <vector>
 
-class LCRNG64Test : public QObject
+namespace JirachiPattern
 {
-    Q_OBJECT
-private slots:
-    void advance_data();
-    void advance();
+    /**
+     * @brief Calculates series of actions to take to hit the target seed
+     *
+     * @param seed Starting seed
+     * @param advance Target advance
+     * @param bruteForce What frame range to brute force actions over
+     *
+     * @return List of actions to take to get the target Jirachi
+     */
+    std::vector<u8> calculateActions(u32 seed, u32 targetAdvance, u32 bruteForce);
 
-    void distance_data();
-    void distance();
-
-    void jump_data();
-    void jump();
-
-    void next_data();
-    void next();
+    /**
+     * @brief Runs the menu and Jirachi pattern to get the PRNG state that would generate the Jirachi
+     *
+     * @param seed Pre menu PRNG state
+     *
+     * @return PRNG state that generates the Jirachi
+     */
+    u32 computeJirachiSeed(u32 seed);
 };
 
-#endif // LCRNG64TEST_HPP
+#endif // JIRACHIPATTERN_HPP

@@ -143,6 +143,11 @@ private slots:
     void openGameCubeSeedFinder();
 
     /**
+     * @brief Opens the Jirachi Advancer window
+     */
+    void openJirachiAdvancer() const;
+
+    /**
      * @brief Opens the PID to IVs window
      */
     void openPIDtoIV() const;
@@ -183,7 +188,6 @@ private slots:
      */
     void openEgg4();
 
-    // Gen 4
     /**
      * @brief Opens the Gen 4 Event window
      */

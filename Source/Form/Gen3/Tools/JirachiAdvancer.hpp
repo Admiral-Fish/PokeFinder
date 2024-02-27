@@ -17,26 +17,43 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef LCRNG64TEST_HPP
-#define LCRNG64TEST_HPP
+#ifndef JIRACHIADVANCER_HPP
+#define JIRACHIADVANCER_HPP
 
-#include <QObject>
+#include <QDialog>
 
-class LCRNG64Test : public QObject
+namespace Ui
+{
+    class JirachiAdvancer;
+}
+
+/**
+ * @brief Calculates possible advancement path to get target Jirachi
+ */
+class JirachiAdvancer : public QDialog
 {
     Q_OBJECT
+public:
+    /**
+     * @brief Construct a new JirachiAdvancer object
+     *
+     * @param parent Parent widget, which takes memory ownership
+     */
+    JirachiAdvancer(QWidget *parent = nullptr);
+
+    /**
+     * @brief Destroy the JirachiAdvancer object
+     */
+    ~JirachiAdvancer();
+
+private:
+    Ui::JirachiAdvancer *ui;
+
 private slots:
-    void advance_data();
-    void advance();
-
-    void distance_data();
-    void distance();
-
-    void jump_data();
-    void jump();
-
-    void next_data();
-    void next();
+    /**
+     * @brief Computes advancement path to get target Jirachi
+     */
+    void generate();
 };
 
-#endif // LCRNG64TEST_HPP
+#endif // JIRACHIADVANCER_HPP
