@@ -199,7 +199,8 @@ std::vector<EggState5> EggGenerator5::generateBW2(u64 seed) const
 
     const PersonalInfo *info = nullptr;
     EggState5 state = generateBW2Egg(eggSeed, &info);
-    if (filter.compareAbility(state.getAbility()) && filter.compareNature(state.getNature()) && filter.compareIV(state.getIVs()))
+    if (filter.compareAbility(state.getAbility()) && filter.compareNature(state.getNature()) && filter.compareIV(state.getIVs())
+        && filter.compareHiddenPower(state.getHiddenPower()))
     {
         u32 advances = Utilities5::initialAdvances(seed, profile);
         BWRNG rng(seed, advances + initialAdvances);
