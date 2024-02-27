@@ -28,6 +28,8 @@ namespace Ui
     class GameCubeSeedFinder;
 }
 
+class QAbstractButton;
+
 /**
  * @brief Provides settings to determine current PRNG state in GameCube games
  */
@@ -103,7 +105,12 @@ private slots:
     /**
      * @brief Adds the selected Channel pattern
      */
-    void channelAdd();
+    void channelAdd(QAbstractButton *button);
+
+    /**
+     * @brief Clears the entire Channel pattern
+     */
+    void channelClear();
 
     /**
      * @brief Removes the last Channel pattern

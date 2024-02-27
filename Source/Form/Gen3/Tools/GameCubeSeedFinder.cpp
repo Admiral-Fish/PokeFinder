@@ -64,7 +64,8 @@ GameCubeSeedFinder::GameCubeSeedFinder(QWidget *parent) : QWidget(parent), ui(ne
     connect(ui->pushButtonColoSearch, &QPushButton::clicked, this, &GameCubeSeedFinder::coloSearch);
     connect(ui->pushButtonColoReset, &QPushButton::clicked, this, &GameCubeSeedFinder::coloReset);
     connect(ui->pushButtonChannelSearch, &QPushButton::clicked, this, &GameCubeSeedFinder::channelSearch);
-    connect(ui->pushButtonChannelAdd, &QPushButton::clicked, this, &GameCubeSeedFinder::channelAdd);
+    connect(ui->buttonGroupChannel, &QButtonGroup::buttonClicked, this, &GameCubeSeedFinder::channelAdd);
+    connect(ui->pushButtonChannelClear, &QPushButton::clicked, this, &GameCubeSeedFinder::channelClear);
     connect(ui->pushButtonChannelRemove, &QPushButton::clicked, this, &GameCubeSeedFinder::channelRemove);
 
     QSettings setting;
@@ -167,25 +168,31 @@ void GameCubeSeedFinder::updateGalesProgress(int progress)
     ui->progressBarGales->setValue(progress);
 }
 
-void GameCubeSeedFinder::channelAdd()
+void GameCubeSeedFinder::channelAdd(QAbstractButton *button)
 {
-    QString text = ui->buttonGroupChannel->checkedButton()->text();
-    ui->textEditInputs->append(text);
+    ui->listWidgetInputs->addItem(button->text());
+}
+
+void GameCubeSeedFinder::channelClear()
+{
+    ui->listWidgetInputs->clear();
 }
 
 void GameCubeSeedFinder::channelRemove()
 {
-    QString input = ui->textEditInputs->toPlainText();
-    QStringList inputs = input.split("\n");
-    inputs.removeLast();
-
-    ui->textEditInputs->clear();
-    ui->textEditInputs->insertPlainText(inputs.join("\n"));
+    auto *item = ui->listWidgetInputs->takeItem(ui->listWidgetInputs->count() - 1);
+    delete item;
 }
 
 void GameCubeSeedFinder::channelSearch()
 {
-    QStringList inputs = ui->textEditInputs->toPlainText().split("\n");
+    QStringList inputs;
+    for (int i = 0; i < ui->listWidgetInputs->count(); i++)
+    {
+        auto *item = ui->listWidgetInputs->item(i);
+        inputs.append(item->text());
+    }
+
     if (inputs.size() < 10)
     {
         QMessageBox info(QMessageBox::Warning, tr("Missing info"), tr("You must have at least 10 entries"), QMessageBox::Ok);

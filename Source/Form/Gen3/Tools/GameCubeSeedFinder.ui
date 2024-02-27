@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>640</width>
-    <height>335</height>
+    <height>347</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -287,145 +287,145 @@
          <property name="title">
           <string>Settings</string>
          </property>
-         <layout class="QGridLayout" name="gridLayout_12">
-          <item row="0" column="0" colspan="2">
-           <layout class="QGridLayout" name="gridLayout_10">
-            <item row="0" column="0">
-             <widget class="QRadioButton" name="radioButtonSNOC">
-              <property name="text">
-               <string>S-&gt;N-&gt;O-&gt;C</string>
-              </property>
-              <property name="checked">
-               <bool>true</bool>
-              </property>
-              <attribute name="buttonGroup">
-               <string notr="true">buttonGroupChannel</string>
-              </attribute>
-             </widget>
-            </item>
-            <item row="0" column="1">
-             <widget class="QRadioButton" name="radioButtonNSOC">
-              <property name="text">
-               <string>N-&gt;S-&gt;O-&gt;C</string>
-              </property>
-              <attribute name="buttonGroup">
-               <string notr="true">buttonGroupChannel</string>
-              </attribute>
-             </widget>
-            </item>
-            <item row="1" column="0">
-             <widget class="QRadioButton" name="radioButtonONSC">
-              <property name="text">
-               <string>O-&gt;N-&gt;S-&gt;C</string>
-              </property>
-              <attribute name="buttonGroup">
-               <string notr="true">buttonGroupChannel</string>
-              </attribute>
-             </widget>
-            </item>
-            <item row="1" column="1">
-             <widget class="QRadioButton" name="radioButtonNOSC">
-              <property name="text">
-               <string>N-&gt;O-&gt;S-&gt;C</string>
-              </property>
-              <attribute name="buttonGroup">
-               <string notr="true">buttonGroupChannel</string>
-              </attribute>
-             </widget>
-            </item>
-            <item row="2" column="0">
-             <widget class="QRadioButton" name="radioButtonSNCO">
-              <property name="text">
-               <string>S-&gt;N-&gt;C-&gt;O</string>
-              </property>
-              <attribute name="buttonGroup">
-               <string notr="true">buttonGroupChannel</string>
-              </attribute>
-             </widget>
-            </item>
-            <item row="2" column="1">
-             <widget class="QRadioButton" name="radioButtonNSCO">
-              <property name="text">
-               <string>N-&gt;S-&gt;C-&gt;O</string>
-              </property>
-              <attribute name="buttonGroup">
-               <string notr="true">buttonGroupChannel</string>
-              </attribute>
-             </widget>
-            </item>
-            <item row="3" column="0">
-             <widget class="QRadioButton" name="radioButtonCNSO">
-              <property name="text">
-               <string>C-&gt;N-&gt;S-&gt;O</string>
-              </property>
-              <attribute name="buttonGroup">
-               <string notr="true">buttonGroupChannel</string>
-              </attribute>
-             </widget>
-            </item>
-            <item row="3" column="1">
-             <widget class="QRadioButton" name="radioButtonNCSO">
-              <property name="text">
-               <string>N-&gt;C-&gt;S-&gt;O</string>
-              </property>
-              <attribute name="buttonGroup">
-               <string notr="true">buttonGroupChannel</string>
-              </attribute>
-             </widget>
-            </item>
-            <item row="4" column="0">
-             <widget class="QRadioButton" name="radioButtonONCS">
-              <property name="text">
-               <string>O-&gt;N-&gt;C-&gt;S</string>
-              </property>
-              <attribute name="buttonGroup">
-               <string notr="true">buttonGroupChannel</string>
-              </attribute>
-             </widget>
-            </item>
-            <item row="4" column="1">
-             <widget class="QRadioButton" name="radioButtonNOCS">
-              <property name="text">
-               <string>N-&gt;O-&gt;C-&gt;S</string>
-              </property>
-              <attribute name="buttonGroup">
-               <string notr="true">buttonGroupChannel</string>
-              </attribute>
-             </widget>
-            </item>
-            <item row="5" column="0">
-             <widget class="QRadioButton" name="radioButtonCNOS">
-              <property name="text">
-               <string>C-&gt;N-&gt;O-&gt;S</string>
-              </property>
-              <attribute name="buttonGroup">
-               <string notr="true">buttonGroupChannel</string>
-              </attribute>
-             </widget>
-            </item>
-            <item row="5" column="1">
-             <widget class="QRadioButton" name="radioButtonNCOS">
-              <property name="text">
-               <string>N-&gt;C-&gt;O-&gt;S</string>
-              </property>
-              <attribute name="buttonGroup">
-               <string notr="true">buttonGroupChannel</string>
-              </attribute>
-             </widget>
-            </item>
-           </layout>
+         <layout class="QGridLayout" name="gridLayout_8">
+          <item row="0" column="0">
+           <widget class="QPushButton" name="pushButtonSNOC">
+            <property name="text">
+             <string>S-&gt;N-&gt;O-&gt;C</string>
+            </property>
+            <attribute name="buttonGroup">
+             <string notr="true">buttonGroupChannel</string>
+            </attribute>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QPushButton" name="pushButtonNSOC">
+            <property name="text">
+             <string>N-&gt;S-&gt;O-&gt;C</string>
+            </property>
+            <attribute name="buttonGroup">
+             <string notr="true">buttonGroupChannel</string>
+            </attribute>
+           </widget>
           </item>
           <item row="1" column="0">
-           <widget class="QPushButton" name="pushButtonChannelAdd">
+           <widget class="QPushButton" name="pushButtonONSC">
             <property name="text">
-             <string>Add</string>
+             <string>O-&gt;N-&gt;S-&gt;C</string>
             </property>
+            <attribute name="buttonGroup">
+             <string notr="true">buttonGroupChannel</string>
+            </attribute>
            </widget>
           </item>
           <item row="1" column="1">
+           <widget class="QPushButton" name="pushButtonNOSC">
+            <property name="text">
+             <string>N-&gt;O-&gt;S-&gt;C</string>
+            </property>
+            <attribute name="buttonGroup">
+             <string notr="true">buttonGroupChannel</string>
+            </attribute>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QPushButton" name="pushButtonSNCO">
+            <property name="text">
+             <string>S-&gt;N-&gt;C-&gt;O</string>
+            </property>
+            <attribute name="buttonGroup">
+             <string notr="true">buttonGroupChannel</string>
+            </attribute>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="QPushButton" name="pushButtonNSCO">
+            <property name="text">
+             <string>N-&gt;S-&gt;C-&gt;O</string>
+            </property>
+            <attribute name="buttonGroup">
+             <string notr="true">buttonGroupChannel</string>
+            </attribute>
+           </widget>
+          </item>
+          <item row="3" column="0">
+           <widget class="QPushButton" name="pushButtonCNSO">
+            <property name="text">
+             <string>C-&gt;N-&gt;S-&gt;O</string>
+            </property>
+            <attribute name="buttonGroup">
+             <string notr="true">buttonGroupChannel</string>
+            </attribute>
+           </widget>
+          </item>
+          <item row="3" column="1">
+           <widget class="QPushButton" name="pushButtonNCSO">
+            <property name="text">
+             <string>N-&gt;C-&gt;S-&gt;O</string>
+            </property>
+            <attribute name="buttonGroup">
+             <string notr="true">buttonGroupChannel</string>
+            </attribute>
+           </widget>
+          </item>
+          <item row="4" column="0">
+           <widget class="QPushButton" name="pushButtonONCS">
+            <property name="text">
+             <string>O-&gt;N-&gt;C-&gt;S</string>
+            </property>
+            <attribute name="buttonGroup">
+             <string notr="true">buttonGroupChannel</string>
+            </attribute>
+           </widget>
+          </item>
+          <item row="4" column="1">
+           <widget class="QPushButton" name="pushButtonNOCS">
+            <property name="text">
+             <string>N-&gt;O-&gt;C-&gt;S</string>
+            </property>
+            <attribute name="buttonGroup">
+             <string notr="true">buttonGroupChannel</string>
+            </attribute>
+           </widget>
+          </item>
+          <item row="5" column="0">
+           <widget class="QPushButton" name="pushButtonCNOS">
+            <property name="text">
+             <string>C-&gt;N-&gt;O-&gt;S</string>
+            </property>
+            <attribute name="buttonGroup">
+             <string notr="true">buttonGroupChannel</string>
+            </attribute>
+           </widget>
+          </item>
+          <item row="5" column="1">
+           <widget class="QPushButton" name="pushButtonNCOS">
+            <property name="text">
+             <string>N-&gt;C-&gt;O-&gt;S</string>
+            </property>
+            <attribute name="buttonGroup">
+             <string notr="true">buttonGroupChannel</string>
+            </attribute>
+           </widget>
+          </item>
+          <item row="6" column="0" colspan="2">
+           <widget class="Line" name="line">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+           </widget>
+          </item>
+          <item row="7" column="0">
            <widget class="QPushButton" name="pushButtonChannelRemove">
             <property name="text">
              <string>Remove</string>
+            </property>
+           </widget>
+          </item>
+          <item row="7" column="1">
+           <widget class="QPushButton" name="pushButtonChannelClear">
+            <property name="text">
+             <string>Clear</string>
             </property>
            </widget>
           </item>
@@ -439,7 +439,7 @@
          </property>
          <layout class="QGridLayout" name="gridLayout_11">
           <item row="0" column="0">
-           <widget class="QTextEdit" name="textEditInputs"/>
+           <widget class="QListWidget" name="listWidgetInputs"/>
           </item>
          </layout>
         </widget>
