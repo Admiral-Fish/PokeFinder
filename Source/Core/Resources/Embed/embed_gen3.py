@@ -19,14 +19,14 @@ def embed_encounters3():
             for i, encounter in enumerate(encounters):
                 if "Shadow" in type:
                     locks = "std::array<LockInfo, 5> { "
-                    for j in range(int(encounter["count"])):
+                    for j in range(len(encounter["locks"])):
                         lock = encounter["locks"][j]
                         locks += f"LockInfo({lock['nature']}, {lock['gender']}, {lock['genderRatio']})"
-                        if j != int(encounter["count"]) - 1:
+                        if j != len(encounter["locks"]) - 1:
                             locks += ", "
                     locks += " }"
 
-                    string += f"ShadowTemplate({encounter['version']}, {encounter['specie']}, {encounter.get('shiny', 'Shiny::Random')}, {encounter['level']}, {locks}, {encounter['count']}, {encounter['type']})"
+                    string += f"ShadowTemplate({encounter['version']}, {encounter['specie']}, {encounter.get('shiny', 'Shiny::Random')}, {encounter['level']}, {locks}, {len(encounter['locks'])}, {encounter['type']})"
                 else:
                     string += f"StaticTemplate({encounter['version']}, {encounter['specie']}, {encounter.get('form', 0)}, {encounter.get('shiny', 'Shiny::Random')}, 255, 255, 0, {encounter['level']})"
                 
