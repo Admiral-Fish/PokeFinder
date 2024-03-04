@@ -150,59 +150,12 @@ static bool validateMenu(u32 seed)
     return true;
 }
 
-/**
- * @brief Determines if the target \p seed is valid to generate a Jirachi
- *  * @param seed Target seed
- *  * @return true Target seed is valid
- * @return false Target seed isn't valid
- */
-bool validateJirachi(u32 seed)
-{
-    XDRNGR rng(seed);
-
-    u16 num1 = rng.nextUShort();
-    u16 num2 = rng.nextUShort();
-    u16 num3 = rng.nextUShort();
-
-    // 6 advances
-    rng.advance(3);
-    if (num1 <= 0x4000)
-    {
-        if (validateMenu(rng.getSeed()))
-        {
-            return true;
-        }
-    }
-
-    // 7 advances
-    rng.advance(1);
-    if (num2 > 0x4000 && num1 <= 0x547a)
-    {
-        if (validateMenu(rng.getSeed()))
-        {
-            return true;
-        }
-    }
-
-    // 8 advances
-    rng.advance(1);
-    if (num3 > 0x4000 && num2 > 0x547a)
-    {
-        if (validateMenu(rng.getSeed()))
-        {
-            return true;
-        }
-    }
-
-    return false;
-}
-
 namespace JirachiPattern
 {
     std::vector<u8> calculateActions(u32 seed, u32 targetAdvance, u32 bruteForce)
     {
         // Not possible
-        if (targetAdvance < 6 || validateJirachi(seed))
+        if (targetAdvance < 6)
         {
             return {};
         }
