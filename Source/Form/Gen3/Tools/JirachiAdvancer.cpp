@@ -82,19 +82,19 @@ void JirachiAdvancer::generate()
     {
         if (action == 0)
         {
-            ui->listWidget->addItem(QString("%1: Reload menu").arg(num++));
+            ui->listWidget->addItem(tr("%1: Reload menu").arg(num++));
         }
         else if (action == 1)
         {
-            ui->listWidget->addItem(QString("%1: Reject Jirachi").arg(num++));
+            ui->listWidget->addItem(tr("%1: Reject Jirachi").arg(num++));
         }
         else if (action == 2)
         {
-            ui->listWidget->addItem(QString("%1: Special Cutscene").arg(num++));
+            ui->listWidget->addItem(tr("%1: Special Cutscene").arg(num++));
         }
         else
         {
-            ui->listWidget->addItem(QString("%1: Accept Jirachi").arg(num++));
+            ui->listWidget->addItem(tr("%1: Accept Jirachi").arg(num++));
         }
     }
 }

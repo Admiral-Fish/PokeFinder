@@ -238,37 +238,42 @@ std::vector<SearcherState4> StaticSearcher4::searchMethodJ(u8 hp, u8 atk, u8 def
 
             do
             {
-                u32 seed;
-                bool valid = false;
+                u32 seed[2];
+                bool valid[2] = { false, false };
+
                 if (lead == Lead::None)
                 {
                     if ((nextRNG / 0xa3e) == nature)
                     {
-                        seed = rng.getSeed();
-                        valid = true;
+                        seed[0] = rng.getSeed();
+                        valid[0] = true;
                     }
                 }
                 else if (lead == Lead::Synchronize)
                 {
                     if ((nextRNG >> 15) == 0)
                     {
-                        seed = rng.getSeed();
-                        valid = true;
+                        seed[0] = rng.getSeed();
+                        valid[0] = true;
                     }
-                    else if ((nextRNG2 >> 15) == 1 && (nextRNG / 0xa3e) == nature)
+
+                    if ((nextRNG2 >> 15) == 1 && (nextRNG / 0xa3e) == nature)
                     {
-                        seed = PokeRNGR(rng).next();
-                        valid = true;
+                        seed[1] = PokeRNGR(rng).next();
+                        valid[1] = true;
                     }
                 }
 
-                if (valid)
+                for (int i = 0; i < 2; i++)
                 {
-                    SearcherState4 state(seed, pid, ivs, pid & 1, Utilities::getGender(pid, info), staticTemplate->getLevel(), nature,
-                                         Utilities::getShiny(pid, tsv), info);
-                    if (filter.compareState(static_cast<const SearcherState &>(state)))
+                    if (valid[i])
                     {
-                        states.emplace_back(state);
+                        SearcherState4 state(seed[i], pid, ivs, pid & 1, Utilities::getGender(pid, info), staticTemplate->getLevel(),
+                                             nature, Utilities::getShiny(pid, tsv), info);
+                        if (filter.compareState(static_cast<const SearcherState &>(state)))
+                        {
+                            states.emplace_back(state);
+                        }
                     }
                 }
 
@@ -330,37 +335,42 @@ std::vector<SearcherState4> StaticSearcher4::searchMethodK(u8 hp, u8 atk, u8 def
 
             do
             {
-                u32 seed;
-                bool valid = false;
+                u32 seed[2];
+                bool valid[2] = { false, false };
+
                 if (lead == Lead::None)
                 {
                     if ((nextRNG % 25) == nature)
                     {
-                        seed = rng.getSeed();
-                        valid = true;
+                        seed[0] = rng.getSeed();
+                        valid[0] = true;
                     }
                 }
                 else if (lead == Lead::Synchronize)
                 {
                     if ((nextRNG % 2) == 0)
                     {
-                        seed = rng.getSeed();
-                        valid = true;
+                        seed[0] = rng.getSeed();
+                        valid[0] = true;
                     }
-                    else if ((nextRNG2 % 2) == 1 && (nextRNG % 25) == nature)
+
+                    if ((nextRNG2 % 2) == 1 && (nextRNG % 25) == nature)
                     {
-                        seed = PokeRNGR(rng).next();
-                        valid = true;
+                        seed[1] = PokeRNGR(rng).next();
+                        valid[1] = true;
                     }
                 }
 
-                if (valid)
+                for (int i = 0; i < 2; i++)
                 {
-                    SearcherState4 state(seed, pid, ivs, pid & 1, Utilities::getGender(pid, info), staticTemplate->getLevel(), nature,
-                                         Utilities::getShiny(pid, tsv), info);
-                    if (filter.compareState(static_cast<const SearcherState &>(state)))
+                    if (valid[i])
                     {
-                        states.emplace_back(state);
+                        SearcherState4 state(seed[i], pid, ivs, pid & 1, Utilities::getGender(pid, info), staticTemplate->getLevel(),
+                                             nature, Utilities::getShiny(pid, tsv), info);
+                        if (filter.compareState(static_cast<const SearcherState &>(state)))
+                        {
+                            states.emplace_back(state);
+                        }
                     }
                 }
 
