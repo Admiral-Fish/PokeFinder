@@ -11,7 +11,7 @@ environment:
     OS: linux
     EXT: tar.gz
   - APPVEYOR_BUILD_WORKER_IMAGE: macos-monterey
-    QTVER: 6.5
+    QTVER: 6.6
     OS: macOS
     EXT: tar.gz
 
