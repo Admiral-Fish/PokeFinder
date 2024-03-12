@@ -90,12 +90,10 @@ void WildGenerator4Test::generateMethodJ()
     std::array<bool, 12> encounterSlots;
     encounterSlots.fill(true);
 
-    std::array<u16, 2> replacement = { 0, 0 };
-    std::array<u8, 5> blocks = { 0, 0, 0, 0, 0 };
     Profile4 profile("", version, 12345, 54321, false);
+    EncounterSettings4 settings = {};
 
-    std::vector<EncounterArea4> encounterAreas
-        = Encounters4::getEncounters(encounter, 0, Game::None, false, 0, false, replacement, blocks, &profile);
+    std::vector<EncounterArea4> encounterAreas = Encounters4::getEncounters(encounter, settings, &profile);
     auto encounterArea = std::find_if(encounterAreas.begin(), encounterAreas.end(),
                                       [location](const EncounterArea4 &encounterArea) { return encounterArea.getLocation() == location; });
 
@@ -156,12 +154,10 @@ void WildGenerator4Test::generateMethodK()
     std::array<bool, 12> encounterSlots;
     encounterSlots.fill(true);
 
-    std::array<u16, 2> replacement = { 0, 0 };
-    std::array<u8, 5> blocks = { 0, 0, 0, 0, 0 };
     Profile4 profile("", version, 12345, 54321, false);
+    EncounterSettings4 settings = {};
 
-    std::vector<EncounterArea4> encounterAreas
-        = Encounters4::getEncounters(encounter, 0, Game::None, false, 0, false, replacement, blocks, &profile);
+    std::vector<EncounterArea4> encounterAreas = Encounters4::getEncounters(encounter, settings, &profile);
     auto encounterArea = std::find_if(encounterAreas.begin(), encounterAreas.end(),
                                       [location](const EncounterArea4 &encounterArea) { return encounterArea.getLocation() == location; });
 
@@ -226,12 +222,12 @@ void WildGenerator4Test::generatePokeRadar()
     std::array<bool, 12> encounterSlots;
     encounterSlots.fill(true);
 
-    std::array<u16, 2> replacement = { 0, 0 };
-    std::array<u8, 5> blocks = { 0, 0, 0, 0, 0 };
     Profile4 profile("", version, 12345, 54321, false);
+    EncounterSettings4 settings = {};
 
-    std::vector<EncounterArea4> encounterAreas
-        = Encounters4::getEncounters(encounter, 0, Game::None, true, 0, false, replacement, blocks, &profile);
+    settings.dppt.radar = true;
+
+    std::vector<EncounterArea4> encounterAreas = Encounters4::getEncounters(encounter, settings, &profile);
     auto encounterArea = std::find_if(encounterAreas.begin(), encounterAreas.end(),
                                       [location](const EncounterArea4 &encounterArea) { return encounterArea.getLocation() == location; });
 

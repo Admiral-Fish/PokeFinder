@@ -32,6 +32,14 @@ class StaticTemplate;
 class UndergroundArea;
 enum class Encounter : u8;
 
+struct EncounterSettings8
+{
+    int time;
+    std::array<u16, 2> replacement;
+    bool radar;
+    bool swarm;
+};
+
 namespace Encounters8
 {
     /**
@@ -75,16 +83,12 @@ namespace Encounters8
      * @brief Gets wild encounters for the \p encounter and \p profile
      *
      * @param encounter Encounter type
-     * @param time Time modifier
-     * @param radar Whether pokeradar is active
-     * @param swarm Whether swarm is active
-     * @param replacement Replacement slots used by Great Marsh and Trophy Garden
+     * @param settings Settings that impact wild encounter slots
      * @param profile Profile information
      *
      * @return Vector of wild encounters
      */
-    std::vector<EncounterArea8> getEncounters(Encounter encounter, int time, bool radar, bool swarm, const std::array<u16, 2> &replacement,
-                                              const Profile8 *profile);
+    std::vector<EncounterArea8> getEncounters(Encounter encounter, const EncounterSettings8 &settings, const Profile8 *profile);
 
     /**
      * @brief Returns the changing pokemon of the Great

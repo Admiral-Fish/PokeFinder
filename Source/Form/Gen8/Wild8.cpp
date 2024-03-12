@@ -139,16 +139,18 @@ void Wild8::updateProfiles()
 void Wild8::updateEncounters()
 {
     auto encounter = ui->comboBoxEncounter->getEnum<Encounter>();
-    int time = ui->comboBoxTime->currentIndex();
-    bool radar = ui->checkBoxRadar->isChecked();
-    bool swarm = ui->checkBoxSwarm->isChecked();
-    std::array<u16, 2> replacement = { 0, 0 };
+
+    EncounterSettings8 settings = {};
+    settings.time = ui->comboBoxTime->currentIndex();
     if (ui->checkBoxReplacement->isChecked())
     {
-        replacement[0] = ui->comboBoxReplacement0->getCurrentUShort();
-        replacement[1] = ui->comboBoxReplacement1->count() > 0 ? ui->comboBoxReplacement1->getCurrentUShort() : 0;
+        settings.replacement[0] = ui->comboBoxReplacement0->getCurrentUShort();
+        settings.replacement[1] = ui->comboBoxReplacement1->count() > 0 ? ui->comboBoxReplacement1->getCurrentUShort() : 0;
     }
-    encounters = Encounters8::getEncounters(encounter, time, radar, swarm, replacement, currentProfile);
+    settings.radar = ui->checkBoxRadar->isChecked();
+    settings.swarm = ui->checkBoxSwarm->isChecked();
+
+    encounters = Encounters8::getEncounters(encounter, settings, currentProfile);
 }
 
 void Wild8::encounterIndexChanged(int index)

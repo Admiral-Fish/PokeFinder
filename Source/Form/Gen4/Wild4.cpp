@@ -256,41 +256,59 @@ void Wild4::updateProfiles()
 void Wild4::updateEncounterGenerator()
 {
     auto encounter = ui->comboBoxGeneratorEncounter->getEnum<Encounter>();
-    int modifier = ui->comboBoxGeneratorTime->currentIndex();
-    Game dual = ui->checkBoxGeneratorDualSlot->isChecked() ? ui->comboBoxGeneratorDualSlot->getEnum<Game>() : Game::None;
-    bool radar = ui->checkBoxGeneratorPokeRadar->isChecked();
-    int radio = ui->checkBoxGeneratorRadio->isChecked() ? ui->comboBoxGeneratorRadio->currentIndex() + 1 : 0;
-    bool swarm = ui->checkBoxGeneratorSwarm->isChecked();
-    std::array<u16, 2> replacement = { 0, 0 };
-    if (ui->checkBoxGeneratorReplacement->isChecked())
+
+    EncounterSettings4 settings = {};
+    if ((currentProfile->getVersion() & Game::DPPt) != Game::None)
     {
-        replacement[0] = ui->comboBoxGeneratorReplacement0->getCurrentUShort();
-        replacement[1] = ui->comboBoxGeneratorReplacement1->count() > 0 ? ui->comboBoxGeneratorReplacement1->getCurrentUShort() : 0;
+        settings.dppt.dual = ui->checkBoxGeneratorDualSlot->isChecked() ? ui->comboBoxGeneratorDualSlot->getEnum<Game>() : Game::None;
+        if (ui->checkBoxGeneratorReplacement->isChecked())
+        {
+            settings.dppt.replacement[0] = ui->comboBoxGeneratorReplacement0->getCurrentUShort();
+            settings.dppt.replacement[1]
+                = ui->comboBoxGeneratorReplacement1->count() > 0 ? ui->comboBoxGeneratorReplacement1->getCurrentUShort() : 0;
+        }
+        settings.dppt.radar = ui->checkBoxGeneratorPokeRadar->isChecked();
     }
-    std::array<u8, 5> blocks
-        = { 0, static_cast<u8>(ui->spinBoxGeneratorPlainsBlock->value()), static_cast<u8>(ui->spinBoxGeneratorForestBlock->value()),
-            static_cast<u8>(ui->spinBoxGeneratorPeakBlock->value()), static_cast<u8>(ui->spinBoxGeneratorWaterBlock->value()) };
-    encounterGenerator = Encounters4::getEncounters(encounter, modifier, dual, radar, radio, swarm, replacement, blocks, currentProfile);
+    else
+    {
+        settings.hgss.radio = ui->checkBoxGeneratorRadio->isChecked() ? ui->comboBoxGeneratorRadio->currentIndex() + 1 : 0;
+        settings.hgss.blocks
+            = { 0, static_cast<u8>(ui->spinBoxGeneratorPlainsBlock->value()), static_cast<u8>(ui->spinBoxGeneratorForestBlock->value()),
+                static_cast<u8>(ui->spinBoxGeneratorPeakBlock->value()), static_cast<u8>(ui->spinBoxGeneratorWaterBlock->value()) };
+    }
+    settings.time = ui->comboBoxGeneratorTime->currentIndex();
+    settings.swarm = ui->checkBoxGeneratorSwarm->isChecked();
+
+    encounterGenerator = Encounters4::getEncounters(encounter, settings, currentProfile);
 }
 
 void Wild4::updateEncounterSearcher()
 {
     auto encounter = ui->comboBoxSearcherEncounter->getEnum<Encounter>();
-    int modifier = ui->comboBoxSearcherTime->currentIndex();
-    Game dual = ui->checkBoxSearcherDualSlot->isChecked() ? ui->comboBoxSearcherDualSlot->getEnum<Game>() : Game::None;
-    bool radar = ui->checkBoxSearcherPokeRadar->isChecked();
-    int radio = ui->checkBoxSearcherRadio->isChecked() ? ui->comboBoxSearcherRadio->currentIndex() + 1 : 0;
-    bool swarm = ui->checkBoxSearcherSwarm->isChecked();
-    std::array<u16, 2> replacement = { 0, 0 };
-    if (ui->checkBoxSearcherReplacement->isChecked())
+
+    EncounterSettings4 settings = {};
+    if ((currentProfile->getVersion() & Game::DPPt) != Game::None)
     {
-        replacement[0] = ui->comboBoxSearcherReplacement0->getCurrentUShort();
-        replacement[1] = ui->comboBoxSearcherReplacement1->getCurrentUShort();
+        settings.dppt.dual = ui->checkBoxSearcherDualSlot->isChecked() ? ui->comboBoxSearcherDualSlot->getEnum<Game>() : Game::None;
+        if (ui->checkBoxSearcherReplacement->isChecked())
+        {
+            settings.dppt.replacement[0] = ui->comboBoxSearcherReplacement0->getCurrentUShort();
+            settings.dppt.replacement[1]
+                = ui->comboBoxSearcherReplacement1->count() > 0 ? ui->comboBoxSearcherReplacement1->getCurrentUShort() : 0;
+        }
+        settings.dppt.radar = ui->checkBoxSearcherPokeRadar->isChecked();
     }
-    std::array<u8, 5> blocks
-        = { 0, static_cast<u8>(ui->spinBoxSearcherPlainsBlock->value()), static_cast<u8>(ui->spinBoxSearcherForestBlock->value()),
-            static_cast<u8>(ui->spinBoxSearcherPeakBlock->value()), static_cast<u8>(ui->spinBoxSearcherWaterBlock->value()) };
-    encounterSearcher = Encounters4::getEncounters(encounter, modifier, dual, radar, radio, swarm, replacement, blocks, currentProfile);
+    else
+    {
+        settings.hgss.radio = ui->checkBoxSearcherRadio->isChecked() ? ui->comboBoxSearcherRadio->currentIndex() + 1 : 0;
+        settings.hgss.blocks
+            = { 0, static_cast<u8>(ui->spinBoxSearcherPlainsBlock->value()), static_cast<u8>(ui->spinBoxSearcherForestBlock->value()),
+                static_cast<u8>(ui->spinBoxSearcherPeakBlock->value()), static_cast<u8>(ui->spinBoxSearcherWaterBlock->value()) };
+    }
+    settings.time = ui->comboBoxSearcherTime->currentIndex();
+    settings.swarm = ui->checkBoxSearcherSwarm->isChecked();
+
+    encounterSearcher = Encounters4::getEncounters(encounter, settings, currentProfile);
 }
 
 void Wild4::generate()
