@@ -130,6 +130,8 @@ set(PROJECT_SOURCES
     Controls/GraphicsPixmapItem.hpp
     Controls/IDsFilter.cpp
     Controls/IDsFilter.hpp
+    Controls/RNGTabWidget.hpp
+    Controls/RNGTabWidget.cpp
     Controls/TableView.cpp
     Controls/TableView.hpp
     Controls/TextBox.cpp

@@ -119,6 +119,16 @@ private slots:
      * @param index Pokemon index
      */
     void searcherPokemonIndexChanged(int index);
+
+    /**
+     * @brief Transfers the current Searcher filters to the Generator.
+     */
+    void transferFiltersToGenerator();
+
+    /**
+     * @brief Transfers the current Searcher settings to the Generator.
+     */
+    void transferSettingsToGenerator();
 };
 
 #endif // GAMECUBE_HPP

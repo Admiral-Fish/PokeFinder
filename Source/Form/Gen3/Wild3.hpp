@@ -141,6 +141,16 @@ private slots:
      * @brief Opens seed to time.
      */
     void seedToTime();
+
+    /**
+     * @brief Transfers the current Searcher filters to the Generator.
+     */
+    void transferFiltersToGenerator();
+
+    /**
+     * @brief Transfers the current Searcher settings to the Generator.
+     */
+    void transferSettingsToGenerator();
 };
 
 #endif // WILD3_HPP

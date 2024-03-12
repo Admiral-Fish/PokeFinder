@@ -29,6 +29,7 @@
 #include <Core/Parents/StaticTemplate.hpp>
 #include <Core/Util/Translator.hpp>
 #include <Form/Controls/Controls.hpp>
+#include <Form/Controls/RNGTabWidget.hpp>
 #include <Form/Gen3/Profile/ProfileManager3.hpp>
 #include <Form/Gen3/Tools/SeedToTime3.hpp>
 #include <Model/Gen3/StaticModel3.hpp>
@@ -62,6 +63,9 @@ Static3::Static3(QWidget *parent) : QWidget(parent), ui(new Ui::Static3)
     auto *seedToTime = new QAction(tr("Generate times for seed"), ui->tableViewSearcher);
     connect(seedToTime, &QAction::triggered, this, &Static3::seedToTime);
     ui->tableViewSearcher->addAction(seedToTime);
+
+    connect(ui->tabRNGSelector, &RNGTabWidget::transferSettingsTriggered, this, &Static3::transferSettingsToGenerator);
+    connect(ui->tabRNGSelector, &RNGTabWidget::transferFiltersTriggered, this, &Static3::transferFiltersToGenerator);
 
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Static3::generate);
     connect(ui->pushButtonSearch, &QPushButton::clicked, this, &Static3::search);
@@ -288,4 +292,16 @@ void Static3::seedToTime()
 
     auto *time = new SeedToTime3(state.getSeed());
     time->show();
+}
+
+void Static3::transferFiltersToGenerator()
+{
+    ui->filterGenerator->copyFrom(ui->filterSearcher);
+}
+
+void Static3::transferSettingsToGenerator()
+{
+    ui->comboBoxGeneratorCategory->setCurrentIndex(ui->comboBoxSearcherCategory->currentIndex());
+    ui->comboBoxGeneratorPokemon->setCurrentIndex(ui->comboBoxSearcherPokemon->currentIndex());
+    ui->spinBoxGeneratorLevel->setValue(ui->spinBoxSearcherLevel->value());
 }

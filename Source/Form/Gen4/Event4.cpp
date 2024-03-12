@@ -28,6 +28,7 @@
 #include <Core/Parents/States/State.hpp>
 #include <Core/Util/Translator.hpp>
 #include <Form/Controls/Controls.hpp>
+#include <Form/Controls/RNGTabWidget.hpp>
 #include <Form/Gen4/Profile/ProfileManager4.hpp>
 #include <Form/Gen4/Tools/SeedToTime4.hpp>
 #include <Model/Gen4/EventModel4.hpp>
@@ -81,6 +82,9 @@ Event4::Event4(QWidget *parent) : QWidget(parent), ui(new Ui::Event4)
 
     auto *seedToTime = new QAction(tr("Generate times for seed"), ui->tableViewSearcher);
     connect(seedToTime, &QAction::triggered, this, &Event4::seedToTime);
+
+    connect(ui->tabRNGSelector, &RNGTabWidget::transferSettingsTriggered, this, &Event4::transferSettingsToGenerator);
+    connect(ui->tabRNGSelector, &RNGTabWidget::transferFiltersTriggered, this, &Event4::transferFiltersToGenerator);
 
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Event4::generate);
     connect(ui->pushButtonSearch, &QPushButton::clicked, this, &Event4::search);
@@ -240,4 +244,16 @@ void Event4::seedToTime()
 
     auto *time = new SeedToTime4(state.getSeed(), currentProfile->getVersion());
     time->show();
+}
+
+void Event4::transferFiltersToGenerator()
+{
+    ui->filterGenerator->copyFrom(ui->filterSearcher);
+}
+
+void Event4::transferSettingsToGenerator()
+{
+    ui->comboBoxGeneratorSpecies->setCurrentIndex(ui->comboBoxSearcherSpecies->currentIndex());
+    ui->spinBoxGeneratorLevel->setValue(ui->spinBoxSearcherLevel->value());
+    ui->comboBoxGeneratorNature->setCurrentIndex(ui->comboBoxSearcherNature->currentIndex());
 }

@@ -174,6 +174,13 @@ public:
      */
     void toggleEncounterSlots(const std::vector<bool> &encounterSlots) const;
 
+    /**
+     * @brief Copies the values from another Filter
+     *
+     * @param other The Filter to copy values from
+     */
+    void copyFrom(const Filter *other);
+
 protected:
     /**
      * @brief Shows the combo box model when clicked

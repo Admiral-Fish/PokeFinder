@@ -30,6 +30,7 @@
 #include <Core/Parents/ProfileLoader.hpp>
 #include <Core/Util/Translator.hpp>
 #include <Form/Controls/Controls.hpp>
+#include <Form/Controls/RNGTabWidget.hpp>
 #include <Form/Gen3/Profile/ProfileManager3.hpp>
 #include <Model/Gen3/GameCubeModel.hpp>
 #include <QSettings>
@@ -57,6 +58,9 @@ GameCube::GameCube(QWidget *parent) : QWidget(parent), ui(new Ui::GameCube)
 
     ui->comboBoxGeneratorPokemon->enableAutoComplete();
     ui->comboBoxSearcherPokemon->enableAutoComplete();
+
+    connect(ui->tabRNGSelector, &RNGTabWidget::transferSettingsTriggered, this, &GameCube::transferSettingsToGenerator);
+    connect(ui->tabRNGSelector, &RNGTabWidget::transferFiltersTriggered, this, &GameCube::transferFiltersToGenerator);
 
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &GameCube::generate);
     connect(ui->pushButtonSearch, &QPushButton::clicked, this, &GameCube::search);
@@ -342,4 +346,16 @@ void GameCube::searcherPokemonIndexChanged(int index)
             ui->checkBoxSearcherFirstShadowUnset->setVisible(false);
         }
     }
+}
+
+void GameCube::transferFiltersToGenerator()
+{
+    ui->filterGenerator->copyFrom(ui->filterSearcher);
+}
+
+void GameCube::transferSettingsToGenerator()
+{
+    ui->comboBoxGeneratorCategory->setCurrentIndex(ui->comboBoxSearcherCategory->currentIndex());
+    ui->comboBoxGeneratorPokemon->setCurrentIndex(ui->comboBoxSearcherPokemon->currentIndex());
+    ui->spinBoxGeneratorLevel->setValue(ui->spinBoxSearcherLevel->value());
 }

@@ -26,6 +26,7 @@
 #include <Core/Parents/ProfileLoader.hpp>
 #include <Core/Util/Translator.hpp>
 #include <Form/Controls/Controls.hpp>
+#include <Form/Controls/RNGTabWidget.hpp>
 #include <Form/Gen4/Profile/ProfileManager4.hpp>
 #include <Form/Gen4/Tools/SeedToTime4.hpp>
 #include <Model/Gen4/EggModel4.hpp>
@@ -76,6 +77,9 @@ Eggs4::Eggs4(QWidget *parent) : QWidget(parent), ui(new Ui::Eggs4)
     auto *seedToTime = new QAction(tr("Generate times for seed"), ui->tableViewSearcher);
     connect(seedToTime, &QAction::triggered, this, &Eggs4::seedToTime);
     ui->tableViewSearcher->addAction(seedToTime);
+
+    connect(ui->tabEggSelection, &RNGTabWidget::transferSettingsTriggered, this, &Eggs4::transferSettingsToGenerator);
+    connect(ui->tabEggSelection, &RNGTabWidget::transferFiltersTriggered, this, &Eggs4::transferFiltersToGenerator);
 
     connect(ui->comboBoxProfiles, &QComboBox::currentIndexChanged, this, &Eggs4::profileIndexChanged);
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Eggs4::generate);
@@ -281,4 +285,14 @@ void Eggs4::seedToTime()
 
     auto *time = new SeedToTime4(state.getSeed(), currentProfile->getVersion());
     time->show();
+}
+
+void Eggs4::transferFiltersToGenerator()
+{
+    ui->filterGenerator->copyFrom(ui->filterSearcher);
+}
+
+void Eggs4::transferSettingsToGenerator()
+{
+    ui->eggSettingsGenerator->copyFrom(ui->eggSettingsSearcher);
 }

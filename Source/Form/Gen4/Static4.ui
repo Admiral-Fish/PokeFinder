@@ -78,7 +78,7 @@
     </widget>
    </item>
    <item row="1" column="0">
-    <widget class="QTabWidget" name="tabRNGSelector">
+    <widget class="RNGTabWidget" name="tabRNGSelector">
      <widget class="QWidget" name="tabStatic">
       <attribute name="title">
        <string>Generator</string>
@@ -513,6 +513,12 @@
    <class>Filter</class>
    <extends>QWidget</extends>
    <header>Form/Controls/Filter.hpp</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>RNGTabWidget</class>
+   <extends>QTabWidget</extends>
+   <header>Form/Controls/RNGTabWidget.hpp</header>
    <container>1</container>
   </customwidget>
   <customwidget>

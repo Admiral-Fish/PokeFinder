@@ -125,6 +125,16 @@ private slots:
      * @brief Opens the profile manager
      */
     void profileManager();
+
+    /**
+     * @brief Transfers the current Searcher filters to the Generator.
+     */
+    void transferFiltersToGenerator();
+
+    /**
+     * @brief Transfers the current Searcher settings to the Generator.
+     */
+    void transferSettingsToGenerator();
 };
 
 #endif // HIDDENGROTTO_HPP
