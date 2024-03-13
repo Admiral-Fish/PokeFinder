@@ -54,7 +54,7 @@ public:
      * @return Level of the encounter
      */
     template <bool diff, bool mod>
-    u8 calculateLevel(u8 encounterSlot, PokeRNG &rng, u32 *occidentary, bool force) const
+    u8 calculateLevel(u8 &encounterSlot, PokeRNG &rng, u32 *occidentary, bool force) const
     {
         if constexpr (diff)
         {
@@ -74,19 +74,18 @@ public:
         }
         else
         {
-            const Slot &slot = pokemon[encounterSlot];
-            u8 level = slot.getMaxLevel();
             if (force && rng.nextUShort<mod>(2, occidentary) != 0)
             {
-                for (const Slot &s : pokemon)
+                for (u8 i = 0; i < pokemon.size(); i++)
                 {
-                    if (s.getSpecie() == slot.getSpecie())
+                    if (pokemon[i].getSpecie() == pokemon[encounterSlot].getSpecie()
+                        && pokemon[i].getMaxLevel() > pokemon[encounterSlot].getMaxLevel())
                     {
-                        level = std::max(level, s.getMaxLevel());
+                        encounterSlot = i;
                     }
                 }
             }
-            return level;
+            return pokemon[encounterSlot].getMaxLevel();
         }
     }
 
@@ -101,7 +100,7 @@ public:
      * @return Level of the encounter
      */
     template <bool diff>
-    u8 calculateLevel(u8 encounterSlot, u16 levelRand, bool force) const
+    u8 calculateLevel(u8 &encounterSlot, u16 levelRand, bool force) const
     {
         if constexpr (diff)
         {
@@ -121,19 +120,18 @@ public:
         }
         else
         {
-            const Slot &slot = pokemon[encounterSlot];
-            u8 level = slot.getMaxLevel();
             if (force)
             {
-                for (const Slot &s : pokemon)
+                for (u8 i = 0; i < pokemon.size(); i++)
                 {
-                    if (s.getSpecie() == slot.getSpecie())
+                    if (pokemon[i].getSpecie() == pokemon[encounterSlot].getSpecie()
+                        && pokemon[i].getMaxLevel() > pokemon[encounterSlot].getMaxLevel())
                     {
-                        level = std::max(level, s.getMaxLevel());
+                        encounterSlot = i;
                     }
                 }
             }
-            return level;
+            return pokemon[encounterSlot].getMaxLevel();
         }
     }
 
