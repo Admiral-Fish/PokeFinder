@@ -136,7 +136,7 @@
             <item row="0" column="0">
              <widget class="QPushButton" name="pushButtonUpLeft">
               <property name="text">
-               <string>↖</string>
+               <string notr="true">↖</string>
               </property>
               <attribute name="buttonGroup">
                <string notr="true">buttonGroupNeedles</string>
@@ -146,7 +146,7 @@
             <item row="0" column="1">
              <widget class="QPushButton" name="pushButtonUp">
               <property name="text">
-               <string>↑</string>
+               <string notr="true">↑</string>
               </property>
               <attribute name="buttonGroup">
                <string notr="true">buttonGroupNeedles</string>
@@ -156,7 +156,7 @@
             <item row="0" column="2">
              <widget class="QPushButton" name="pushButtonUpRight">
               <property name="text">
-               <string>↗</string>
+               <string notr="true">↗</string>
               </property>
               <attribute name="buttonGroup">
                <string notr="true">buttonGroupNeedles</string>
@@ -166,7 +166,7 @@
             <item row="1" column="0">
              <widget class="QPushButton" name="pushButtonLeft">
               <property name="text">
-               <string>←</string>
+               <string notr="true">←</string>
               </property>
               <attribute name="buttonGroup">
                <string notr="true">buttonGroupNeedles</string>
@@ -176,7 +176,7 @@
             <item row="1" column="2">
              <widget class="QPushButton" name="pushButtonRight">
               <property name="text">
-               <string>→</string>
+               <string notr="true">→</string>
               </property>
               <attribute name="buttonGroup">
                <string notr="true">buttonGroupNeedles</string>
@@ -186,7 +186,7 @@
             <item row="2" column="0">
              <widget class="QPushButton" name="pushButtonDownLeft">
               <property name="text">
-               <string>↙</string>
+               <string notr="true">↙</string>
               </property>
               <attribute name="buttonGroup">
                <string notr="true">buttonGroupNeedles</string>
@@ -196,7 +196,7 @@
             <item row="2" column="1">
              <widget class="QPushButton" name="pushButtonDown">
               <property name="text">
-               <string>↓</string>
+               <string notr="true">↓</string>
               </property>
               <attribute name="buttonGroup">
                <string notr="true">buttonGroupNeedles</string>
@@ -206,7 +206,7 @@
             <item row="2" column="2">
              <widget class="QPushButton" name="pushButtonDownRight">
               <property name="text">
-               <string>↘</string>
+               <string notr="true">↘</string>
               </property>
               <attribute name="buttonGroup">
                <string notr="true">buttonGroupNeedles</string>
@@ -540,14 +540,14 @@
    <header>Form/Controls/TextBox.hpp</header>
   </customwidget>
   <customwidget>
-   <class>TableView</class>
-   <extends>QTableView</extends>
-   <header>Form/Controls/TableView.hpp</header>
-  </customwidget>
-  <customwidget>
    <class>ComboBox</class>
    <extends>QComboBox</extends>
    <header>Form/Controls/ComboBox.hpp</header>
+  </customwidget>
+  <customwidget>
+   <class>TableView</class>
+   <extends>QTableView</extends>
+   <header>Form/Controls/TableView.hpp</header>
   </customwidget>
   <customwidget>
    <class>DateTimeEdit</class>
@@ -611,11 +611,11 @@
  <resources/>
  <connections/>
  <buttongroups>
-  <buttongroup name="buttonGroupNeedleType"/>
   <buttongroup name="buttonGroupNeedles">
    <property name="exclusive">
     <bool>false</bool>
    </property>
   </buttongroup>
+  <buttongroup name="buttonGroupNeedleType"/>
  </buttongroups>
 </ui>

@@ -120,7 +120,7 @@
       <item row="1" column="2">
        <widget class="TextBox" name="textBoxFoodMaxAdvances">
         <property name="text">
-         <string>10000</string>
+         <string notr="true">10000</string>
         </property>
        </widget>
       </item>
@@ -144,7 +144,7 @@
       <item row="2" column="2">
        <widget class="TextBox" name="textBoxEncounterMaxAdvances">
         <property name="text">
-         <string>10000</string>
+         <string notr="true">10000</string>
         </property>
        </widget>
       </item>
