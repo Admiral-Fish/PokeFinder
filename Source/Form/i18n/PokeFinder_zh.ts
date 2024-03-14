@@ -10572,7 +10572,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Gen4/Wild4.ui"/>
         <source>Swarm</source>
-        <translation>大量出现 {?}</translation>
+        <translation>大量出现</translation>
     </message>
     <message>
         <location filename="../Gen4/Wild4.ui"/>
@@ -10945,7 +10945,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Gen8/Wild8.ui"/>
         <source>Swarm</source>
-        <translation>大量出现 {?}</translation>
+        <translation>大量出现</translation>
     </message>
     <message>
         <location filename="../Gen8/Wild8.ui"/>

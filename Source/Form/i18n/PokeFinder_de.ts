@@ -2262,7 +2262,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Gen5/Eggs5.ui"/>
         <source>Gen 5 Eggs</source>
-        <translation type="unfinished">Generation 4 Eier {5 ?}</translation>
+        <translation type="unfinished">Generation 5 Eier</translation>
     </message>
     <message>
         <location filename="../Gen5/Eggs5.ui"/>
