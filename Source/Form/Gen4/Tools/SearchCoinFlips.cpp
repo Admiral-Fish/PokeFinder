@@ -29,7 +29,7 @@ SearchCoinFlips::SearchCoinFlips(const std::vector<SeedTimeCalibrate4> &data, QW
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
 
-    ui->labelPossibleResults->setText(tr("Possible Results: ") + QString::number(data.size()));
+    ui->labelPossibleResults->setText(tr("Possible Results: %1").arg(data.size()));
 
     connect(ui->pushButtonHeads, &QPushButton::clicked, this, &SearchCoinFlips::heads);
     connect(ui->pushButtonTails, &QPushButton::clicked, this, &SearchCoinFlips::tails);
@@ -79,7 +79,7 @@ void SearchCoinFlips::flipsTextChanged(const QString &text)
             }
         }
 
-        ui->labelPossibleResults->setText(tr("Possible Results: ") + QString::number(num));
+        ui->labelPossibleResults->setText(tr("Possible Results: %1").arg(num));
     }
 }
 

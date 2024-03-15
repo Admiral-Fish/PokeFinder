@@ -30,6 +30,7 @@
  */
 class TableView : public QTableView
 {
+    Q_OBJECT
 public:
     /**
      * @brief Construct a new TableView object

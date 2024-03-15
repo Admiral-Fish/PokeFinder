@@ -203,7 +203,7 @@ void SeedToTime4::dpptGenerate()
     dpptModel->clearModel();
 
     auto results = SeedToTimeCalculator4::calculateTimes(seed, year, forceSecond, forcedSecond);
-    ui->labelDPPtCoinFlips->setText(tr("Coin Flips: ") + QString::fromStdString(Utilities4::coinFlips(seed)));
+    ui->labelDPPtCoinFlips->setText(tr("Coin Flips: %1").arg(QString::fromStdString(Utilities4::coinFlips(seed))));
 
     dpptModel->addItems(results);
 }
@@ -256,9 +256,9 @@ void SeedToTime4::hgssGenerate()
 
     HGSSRoamer roamer(seed, roamers, routes);
 
-    ui->labelHGSSElmCalls->setText(tr("Elm Calls: ") + QString::fromStdString(Utilities4::getCalls(seed, roamer.getSkips())));
+    ui->labelHGSSElmCalls->setText(tr("Elm Calls: %1").arg(QString::fromStdString(Utilities4::getCalls(seed, roamer.getSkips()))));
     std::string str = roamer.getRouteString();
-    ui->labelHGSSRoamers->setText(tr("Roamers: ") + (str.empty() ? tr("No roamers") : QString::fromStdString(str)));
+    ui->labelHGSSRoamers->setText(tr("Roamers: %1").arg(str.empty() ? tr("No roamers") : QString::fromStdString(str)));
 
     auto results = SeedToTimeCalculator4::calculateTimes(seed, year, forceSecond, forcedSecond);
     hgssModel->addItems(results);

@@ -29,7 +29,7 @@ SearchCalls::SearchCalls(const std::vector<SeedTimeCalibrate4> &data, QWidget *p
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
 
-    ui->labelPossibleResults->setText(tr("Possible Results: ") + QString::number(data.size()));
+    ui->labelPossibleResults->setText(tr("Possible Results: %1").arg(data.size()));
 
     connect(ui->pushButtonE, &QPushButton::clicked, this, &SearchCalls::e);
     connect(ui->pushButtonK, &QPushButton::clicked, this, &SearchCalls::k);
@@ -89,7 +89,7 @@ void SearchCalls::callsTextChanged(const QString &text)
             }
         }
 
-        ui->labelPossibleResults->setText(tr("Possible Results: ") + QString::number(num));
+        ui->labelPossibleResults->setText(tr("Possible Results: %1").arg(num));
     }
 }
 
