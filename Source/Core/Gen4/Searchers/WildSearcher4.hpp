@@ -45,11 +45,12 @@ public:
      * @param area Wild pokemon info
      * @param shiny Whether Poke Radar is forced shiny
      * @param unownRadio Whether the radio station gives undiscovered Unowns more frequently
+     * @param happiness Encounter rate modifier for fishing in HGSS
      * @param profile Profile Information
      * @param filter State filter
      */
     WildSearcher4(u32 minAdvance, u32 maxAdvance, u32 minDelay, u32 maxDelay, Method method, Lead lead, bool shiny, bool unownRadio,
-                  const EncounterArea4 &area, const Profile4 &profile, const WildStateFilter &filter);
+                  u8 happiness, const EncounterArea4 &area, const Profile4 &profile, const WildStateFilter &filter);
 
     /**
      * @brief Starts the search

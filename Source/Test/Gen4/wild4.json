@@ -6836,6 +6836,114 @@
                         ]
                     },
                     {
+                        "ability": 0,
+                        "abilityIndex": 33,
+                        "advances": 2,
+                        "battleAdvances": 19,
+                        "call": 1,
+                        "characteristic": 26,
+                        "chatot": 80,
+                        "encounterSlot": 1,
+                        "form": 0,
+                        "gender": 1,
+                        "hiddenPower": 10,
+                        "hiddenPowerStrength": 67,
+                        "item": 0,
+                        "ivs": [
+                            27,
+                            10,
+                            25,
+                            14,
+                            31,
+                            11
+                        ],
+                        "level": 10,
+                        "nature": 2,
+                        "pid": 2316287502,
+                        "shiny": 0,
+                        "specie": 129,
+                        "stats": [
+                            26,
+                            8,
+                            18,
+                            9,
+                            12,
+                            19
+                        ]
+                    },
+                    {
+                        "ability": 1,
+                        "abilityIndex": 33,
+                        "advances": 3,
+                        "battleAdvances": 16,
+                        "call": 0,
+                        "characteristic": 0,
+                        "chatot": 90,
+                        "encounterSlot": 0,
+                        "form": 0,
+                        "gender": 1,
+                        "hiddenPower": 8,
+                        "hiddenPowerStrength": 58,
+                        "item": 0,
+                        "ivs": [
+                            30,
+                            1,
+                            22,
+                            16,
+                            15,
+                            14
+                        ],
+                        "level": 10,
+                        "nature": 11,
+                        "pid": 1943117061,
+                        "shiny": 0,
+                        "specie": 129,
+                        "stats": [
+                            27,
+                            7,
+                            16,
+                            9,
+                            10,
+                            24
+                        ]
+                    },
+                    {
+                        "ability": 1,
+                        "abilityIndex": 33,
+                        "advances": 4,
+                        "battleAdvances": 97,
+                        "call": 1,
+                        "characteristic": 11,
+                        "chatot": 1,
+                        "encounterSlot": 0,
+                        "form": 0,
+                        "gender": 0,
+                        "hiddenPower": 14,
+                        "hiddenPowerStrength": 49,
+                        "item": 0,
+                        "ivs": [
+                            10,
+                            6,
+                            31,
+                            19,
+                            9,
+                            15
+                        ],
+                        "level": 10,
+                        "nature": 0,
+                        "pid": 2912047325,
+                        "shiny": 0,
+                        "specie": 129,
+                        "stats": [
+                            25,
+                            7,
+                            19,
+                            9,
+                            9,
+                            22
+                        ]
+                    },
+                    {
                         "ability": 1,
                         "abilityIndex": 6,
                         "advances": 5,
@@ -6870,6 +6978,78 @@
                             17,
                             21
                         ]
+                    },
+                    {
+                        "ability": 1,
+                        "abilityIndex": 33,
+                        "advances": 7,
+                        "battleAdvances": 32,
+                        "call": 2,
+                        "characteristic": 6,
+                        "chatot": 74,
+                        "encounterSlot": 2,
+                        "form": 0,
+                        "gender": 1,
+                        "hiddenPower": 4,
+                        "hiddenPowerStrength": 52,
+                        "item": 0,
+                        "ivs": [
+                            6,
+                            31,
+                            4,
+                            25,
+                            18,
+                            20
+                        ],
+                        "level": 10,
+                        "nature": 14,
+                        "pid": 1629596239,
+                        "shiny": 0,
+                        "specie": 129,
+                        "stats": [
+                            24,
+                            10,
+                            16,
+                            10,
+                            9,
+                            25
+                        ]
+                    },
+                    {
+                        "ability": 0,
+                        "abilityIndex": 11,
+                        "advances": 8,
+                        "battleAdvances": 31,
+                        "call": 0,
+                        "characteristic": 21,
+                        "chatot": 55,
+                        "encounterSlot": 3,
+                        "form": 0,
+                        "gender": 0,
+                        "hiddenPower": 4,
+                        "hiddenPowerStrength": 45,
+                        "item": 0,
+                        "ivs": [
+                            1,
+                            9,
+                            24,
+                            31,
+                            4,
+                            6
+                        ],
+                        "level": 10,
+                        "nature": 22,
+                        "pid": 2857317522,
+                        "shiny": 0,
+                        "specie": 60,
+                        "stats": [
+                            28,
+                            15,
+                            15,
+                            16,
+                            14,
+                            20
+                        ]
                     }
                 ]
             },
@@ -6881,6 +7061,42 @@
                 "lead": "SuctionCups",
                 "location": 116,
                 "results": [
+                    {
+                        "ability": 1,
+                        "abilityIndex": 33,
+                        "advances": 0,
+                        "battleAdvances": 57,
+                        "call": 2,
+                        "characteristic": 19,
+                        "chatot": 43,
+                        "encounterSlot": 1,
+                        "form": 0,
+                        "gender": 1,
+                        "hiddenPower": 4,
+                        "hiddenPowerStrength": 43,
+                        "item": 0,
+                        "ivs": [
+                            6,
+                            1,
+                            6,
+                            15,
+                            4,
+                            24
+                        ],
+                        "level": 10,
+                        "nature": 8,
+                        "pid": 658856033,
+                        "shiny": 0,
+                        "specie": 129,
+                        "stats": [
+                            24,
+                            7,
+                            17,
+                            8,
+                            9,
+                            23
+                        ]
+                    },
                     {
                         "ability": 1,
                         "abilityIndex": 33,
@@ -6915,6 +7131,42 @@
                             8,
                             9,
                             21
+                        ]
+                    },
+                    {
+                        "ability": 0,
+                        "abilityIndex": 33,
+                        "advances": 2,
+                        "battleAdvances": 29,
+                        "call": 1,
+                        "characteristic": 9,
+                        "chatot": 27,
+                        "encounterSlot": 0,
+                        "form": 0,
+                        "gender": 0,
+                        "hiddenPower": 1,
+                        "hiddenPowerStrength": 61,
+                        "item": 0,
+                        "ivs": [
+                            18,
+                            24,
+                            16,
+                            14,
+                            22,
+                            13
+                        ],
+                        "level": 10,
+                        "nature": 22,
+                        "pid": 1239360722,
+                        "shiny": 0,
+                        "specie": 129,
+                        "stats": [
+                            25,
+                            9,
+                            17,
+                            9,
+                            12,
+                            19
                         ]
                     },
                     {
@@ -7096,6 +7348,78 @@
                             10,
                             23
                         ]
+                    },
+                    {
+                        "ability": 0,
+                        "abilityIndex": 33,
+                        "advances": 8,
+                        "battleAdvances": 35,
+                        "call": 2,
+                        "characteristic": 25,
+                        "chatot": 41,
+                        "encounterSlot": 1,
+                        "form": 0,
+                        "gender": 0,
+                        "hiddenPower": 5,
+                        "hiddenPowerStrength": 67,
+                        "item": 0,
+                        "ivs": [
+                            3,
+                            22,
+                            1,
+                            23,
+                            30,
+                            6
+                        ],
+                        "level": 10,
+                        "nature": 11,
+                        "pid": 1136856986,
+                        "shiny": 0,
+                        "specie": 129,
+                        "stats": [
+                            24,
+                            9,
+                            14,
+                            10,
+                            12,
+                            23
+                        ]
+                    },
+                    {
+                        "ability": 1,
+                        "abilityIndex": 33,
+                        "advances": 9,
+                        "battleAdvances": 82,
+                        "call": 0,
+                        "characteristic": 4,
+                        "chatot": 60,
+                        "encounterSlot": 1,
+                        "form": 0,
+                        "gender": 1,
+                        "hiddenPower": 10,
+                        "hiddenPowerStrength": 52,
+                        "item": 0,
+                        "ivs": [
+                            29,
+                            13,
+                            26,
+                            24,
+                            27,
+                            21
+                        ],
+                        "level": 10,
+                        "nature": 14,
+                        "pid": 3282411389,
+                        "shiny": 0,
+                        "specie": 129,
+                        "stats": [
+                            26,
+                            8,
+                            18,
+                            10,
+                            9,
+                            25
+                        ]
                     }
                 ]
             },
@@ -7107,6 +7431,186 @@
                 "lead": "None",
                 "location": 116,
                 "results": [
+                    {
+                        "ability": 1,
+                        "abilityIndex": 6,
+                        "advances": 0,
+                        "battleAdvances": 131,
+                        "call": 1,
+                        "characteristic": 1,
+                        "chatot": 8,
+                        "encounterSlot": 2,
+                        "form": 0,
+                        "gender": 0,
+                        "hiddenPower": 0,
+                        "hiddenPowerStrength": 42,
+                        "item": 0,
+                        "ivs": [
+                            31,
+                            23,
+                            28,
+                            14,
+                            24,
+                            4
+                        ],
+                        "level": 20,
+                        "nature": 8,
+                        "pid": 3563908033,
+                        "shiny": 0,
+                        "specie": 60,
+                        "stats": [
+                            52,
+                            29,
+                            28,
+                            20,
+                            25,
+                            41
+                        ]
+                    },
+                    {
+                        "ability": 0,
+                        "abilityIndex": 11,
+                        "advances": 1,
+                        "battleAdvances": 28,
+                        "call": 2,
+                        "characteristic": 8,
+                        "chatot": 89,
+                        "encounterSlot": 1,
+                        "form": 0,
+                        "gender": 1,
+                        "hiddenPower": 0,
+                        "hiddenPowerStrength": 35,
+                        "item": 0,
+                        "ivs": [
+                            15,
+                            28,
+                            24,
+                            12,
+                            20,
+                            18
+                        ],
+                        "level": 20,
+                        "nature": 12,
+                        "pid": 2718874412,
+                        "shiny": 0,
+                        "specie": 60,
+                        "stats": [
+                            49,
+                            30,
+                            25,
+                            23,
+                            25,
+                            44
+                        ]
+                    },
+                    {
+                        "ability": 0,
+                        "abilityIndex": 11,
+                        "advances": 2,
+                        "battleAdvances": 29,
+                        "call": 1,
+                        "characteristic": 10,
+                        "chatot": 74,
+                        "encounterSlot": 2,
+                        "form": 0,
+                        "gender": 1,
+                        "hiddenPower": 0,
+                        "hiddenPowerStrength": 66,
+                        "item": 0,
+                        "ivs": [
+                            18,
+                            12,
+                            20,
+                            10,
+                            2,
+                            10
+                        ],
+                        "level": 20,
+                        "nature": 16,
+                        "pid": 3817841166,
+                        "shiny": 0,
+                        "specie": 60,
+                        "stats": [
+                            49,
+                            27,
+                            22,
+                            25,
+                            21,
+                            43
+                        ]
+                    },
+                    {
+                        "ability": 0,
+                        "abilityIndex": 11,
+                        "advances": 3,
+                        "battleAdvances": 46,
+                        "call": 2,
+                        "characteristic": 3,
+                        "chatot": 21,
+                        "encounterSlot": 1,
+                        "form": 0,
+                        "gender": 1,
+                        "hiddenPower": 2,
+                        "hiddenPowerStrength": 59,
+                        "item": 0,
+                        "ivs": [
+                            28,
+                            2,
+                            3,
+                            28,
+                            6,
+                            7
+                        ],
+                        "level": 20,
+                        "nature": 8,
+                        "pid": 1047720708,
+                        "shiny": 0,
+                        "specie": 60,
+                        "stats": [
+                            51,
+                            25,
+                            23,
+                            23,
+                            22,
+                            42
+                        ]
+                    },
+                    {
+                        "ability": 0,
+                        "abilityIndex": 11,
+                        "advances": 4,
+                        "battleAdvances": 51,
+                        "call": 0,
+                        "characteristic": 11,
+                        "chatot": 3,
+                        "encounterSlot": 1,
+                        "form": 0,
+                        "gender": 1,
+                        "hiddenPower": 9,
+                        "hiddenPowerStrength": 48,
+                        "item": 0,
+                        "ivs": [
+                            7,
+                            25,
+                            31,
+                            18,
+                            1,
+                            30
+                        ],
+                        "level": 20,
+                        "nature": 5,
+                        "pid": 882741530,
+                        "shiny": 0,
+                        "specie": 60,
+                        "stats": [
+                            47,
+                            27,
+                            29,
+                            24,
+                            21,
+                            47
+                        ]
+                    },
                     {
                         "ability": 1,
                         "abilityIndex": 6,
@@ -7141,6 +7645,42 @@
                             25,
                             21,
                             42
+                        ]
+                    },
+                    {
+                        "ability": 0,
+                        "abilityIndex": 33,
+                        "advances": 6,
+                        "battleAdvances": 29,
+                        "call": 1,
+                        "characteristic": 10,
+                        "chatot": 58,
+                        "encounterSlot": 0,
+                        "form": 0,
+                        "gender": 1,
+                        "hiddenPower": 0,
+                        "hiddenPowerStrength": 66,
+                        "item": 0,
+                        "ivs": [
+                            18,
+                            12,
+                            20,
+                            10,
+                            2,
+                            10
+                        ],
+                        "level": 20,
+                        "nature": 16,
+                        "pid": 3817841166,
+                        "shiny": 0,
+                        "specie": 129,
+                        "stats": [
+                            41,
+                            11,
+                            27,
+                            14,
+                            13,
+                            39
                         ]
                     },
                     {
@@ -7475,6 +8015,78 @@
                             18,
                             21,
                             80
+                        ]
+                    },
+                    {
+                        "ability": 0,
+                        "abilityIndex": 33,
+                        "advances": 6,
+                        "battleAdvances": 37,
+                        "call": 0,
+                        "characteristic": 21,
+                        "chatot": 59,
+                        "encounterSlot": 4,
+                        "form": 0,
+                        "gender": 0,
+                        "hiddenPower": 15,
+                        "hiddenPowerStrength": 42,
+                        "item": 0,
+                        "ivs": [
+                            23,
+                            15,
+                            17,
+                            31,
+                            13,
+                            1
+                        ],
+                        "level": 40,
+                        "nature": 15,
+                        "pid": 1284534990,
+                        "shiny": 0,
+                        "specie": 129,
+                        "stats": [
+                            75,
+                            17,
+                            55,
+                            31,
+                            26,
+                            69
+                        ]
+                    },
+                    {
+                        "ability": 0,
+                        "abilityIndex": 11,
+                        "advances": 7,
+                        "battleAdvances": 28,
+                        "call": 2,
+                        "characteristic": 11,
+                        "chatot": 24,
+                        "encounterSlot": 0,
+                        "form": 0,
+                        "gender": 0,
+                        "hiddenPower": 0,
+                        "hiddenPowerStrength": 38,
+                        "item": 0,
+                        "ivs": [
+                            0,
+                            10,
+                            31,
+                            0,
+                            24,
+                            18
+                        ],
+                        "level": 40,
+                        "nature": 5,
+                        "pid": 524976630,
+                        "shiny": 0,
+                        "specie": 60,
+                        "stats": [
+                            82,
+                            44,
+                            53,
+                            37,
+                            46,
+                            84
                         ]
                     },
                     {
@@ -12463,7 +13075,7 @@
                 "encounter": "OldRod",
                 "lead": "None",
                 "location": 116,
-                "results": 10
+                "results": 45
             },
             {
                 "name": "Route 6 Old Rod Suction Cups",
@@ -12491,7 +13103,7 @@
                 "encounter": "OldRod",
                 "lead": "SuctionCups",
                 "location": 116,
-                "results": 24
+                "results": 65
             },
             {
                 "name": "Route 6 Good Rod",
@@ -12519,7 +13131,7 @@
                 "encounter": "GoodRod",
                 "lead": "None",
                 "location": 116,
-                "results": 24
+                "results": 65
             },
             {
                 "name": "Route 6 Super Rod",
@@ -12547,7 +13159,7 @@
                 "encounter": "SuperRod",
                 "lead": "None",
                 "location": 116,
-                "results": 45
+                "results": 65
             },
             {
                 "name": "Cianwood City 1F Rock Smash",

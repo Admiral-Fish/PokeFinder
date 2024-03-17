@@ -19,6 +19,7 @@
 
 #include "WildSearcher4.hpp"
 #include <Core/Enum/Encounter.hpp>
+#include <Core/Enum/Game.hpp>
 #include <Core/Enum/Lead.hpp>
 #include <Core/Enum/Method.hpp>
 #include <Core/Gen4/States/WildState4.hpp>
@@ -52,7 +53,8 @@ static u16 getItem(u8 rand, Lead lead, const PersonalInfo *info)
 }
 
 WildSearcher4::WildSearcher4(u32 minAdvance, u32 maxAdvance, u32 minDelay, u32 maxDelay, Method method, Lead lead, bool shiny,
-                             bool unownRadio, const EncounterArea4 &area, const Profile4 &profile, const WildStateFilter &filter) :
+                             bool unownRadio, u8 happiness, const EncounterArea4 &area, const Profile4 &profile,
+                             const WildStateFilter &filter) :
     WildSearcher(method, lead, area, profile, filter),
     modifiedSlots(area.getSlots(lead)),
     unlockedUnown(profile.getUnlockedUnownForms()),
@@ -66,12 +68,21 @@ WildSearcher4::WildSearcher4(u32 minAdvance, u32 maxAdvance, u32 minDelay, u32 m
     shiny(shiny),
     unownRadio(unownRadio)
 {
-    if ((lead == Lead::SuctionCups
-         && (area.getEncounter() == Encounter::OldRod || area.getEncounter() == Encounter::GoodRod
-             || area.getEncounter() == Encounter::SuperRod))
-        || (lead == Lead::ArenaTrap && area.getEncounter() == Encounter::RockSmash))
+    if ((profile.getVersion() & Game::HGSS) != Game::None)
     {
-        thresh *= 2;
+        if (area.getEncounter() == Encounter::OldRod || area.getEncounter() == Encounter::GoodRod
+            || area.getEncounter() == Encounter::SuperRod)
+        {
+            thresh += happiness;
+            if (lead == Lead::SuctionCups)
+            {
+                thresh *= 2;
+            }
+        }
+        else if (lead == Lead::ArenaTrap && area.getEncounter() == Encounter::RockSmash)
+        {
+            thresh *= 2;
+        }
     }
 }
 

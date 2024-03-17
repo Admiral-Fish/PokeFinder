@@ -111,6 +111,9 @@ Wild4::Wild4(QWidget *parent) : QWidget(parent), ui(new Ui::Wild4)
     ui->comboBoxGeneratorLocation->enableAutoComplete();
     ui->comboBoxSearcherLocation->enableAutoComplete();
 
+    ui->comboBoxGeneratorHappiness->setup({ 0, 20, 30, 40, 50 });
+    ui->comboBoxSearcherHappiness->setup({ 0, 20, 30, 40, 50 });
+
     auto *seedToTime = new QAction(tr("Generate times for seed"), ui->tableViewSearcher);
     connect(seedToTime, &QAction::triggered, this, &Wild4::seedToTime);
     ui->tableViewSearcher->addAction(seedToTime);
@@ -352,9 +355,10 @@ void Wild4::generate()
     auto lead = ui->comboMenuGeneratorLead->getEnum<Lead>();
     bool chained = ui->checkBoxGeneratorPokeRadarShiny->isChecked();
     bool unownRadio = ui->checkBoxGeneratorRadio->isChecked() && ui->comboBoxGeneratorRadio->currentIndex() == 2;
+    u8 happiness = ui->comboBoxGeneratorHappiness->getCurrentUChar();
 
     WildStateFilter filter = ui->filterGenerator->getFilter<WildStateFilter, true>();
-    WildGenerator4 generator(initialAdvances, maxAdvances, delay, method, lead, chained, unownRadio,
+    WildGenerator4 generator(initialAdvances, maxAdvances, delay, method, lead, chained, unownRadio, happiness,
                              encounterGenerator[ui->comboBoxGeneratorLocation->getCurrentInt()], *currentProfile, filter);
 
     auto states = generator.generate(seed, radarSlot);
@@ -393,10 +397,14 @@ void Wild4::generatorEncounterIndexChanged(int index)
         }
 
         bool bug = encounter == Encounter::BugCatchingContest;
-        bool hgss = (currentProfile->getVersion() & Game::HGSS) != Game::None;
-        bool hgssSwarm = encounter == Encounter::Grass || encounter == Encounter::Surfing || encounter == Encounter::OldRod
-            || encounter == Encounter::GoodRod || encounter == Encounter::SuperRod;
+        bool fish = encounter == Encounter::OldRod || encounter == Encounter::GoodRod || encounter == Encounter::SuperRod;
         bool grass = encounter == Encounter::Grass;
+        bool hgss = (currentProfile->getVersion() & Game::HGSS) != Game::None;
+        bool swarm = encounter == Encounter::Grass || encounter == Encounter::Surfing || encounter == Encounter::OldRod
+            || encounter == Encounter::GoodRod || encounter == Encounter::SuperRod;
+
+        ui->labelGeneratorHappiness->setVisible(hgss && fish);
+        ui->comboBoxGeneratorHappiness->setVisible(hgss && fish);
 
         ui->checkBoxGeneratorDualSlot->setVisible(!hgss && grass);
         ui->comboBoxGeneratorDualSlot->setVisible(!hgss && grass);
@@ -419,7 +427,7 @@ void Wild4::generatorEncounterIndexChanged(int index)
             ui->checkBoxGeneratorRadio->setChecked(false);
         }
 
-        ui->checkBoxGeneratorSwarm->setVisible((!hgss && grass) || (hgss && hgssSwarm));
+        ui->checkBoxGeneratorSwarm->setVisible((!hgss && grass) || (hgss && swarm));
         if (!ui->checkBoxGeneratorSwarm->isVisible())
         {
             ui->checkBoxGeneratorSwarm->setChecked(false);
@@ -676,10 +684,11 @@ void Wild4::search()
     auto lead = ui->comboMenuSearcherLead->getEnum<Lead>();
     bool shiny = ui->checkBoxSearcherPokeRadarShiny->isChecked();
     bool unownRadio = ui->checkBoxSearcherRadio->isChecked() && ui->comboBoxSearcherRadio->currentIndex() == 2;
+    u8 happiness = ui->comboBoxSearcherHappiness->getCurrentUChar();
 
     WildStateFilter filter = ui->filterSearcher->getFilter<WildStateFilter, true>();
-    auto *searcher
-        = new WildSearcher4(minAdvance, maxAdvance, minDelay, maxDelay, method, lead, shiny, unownRadio, area, *currentProfile, filter);
+    auto *searcher = new WildSearcher4(minAdvance, maxAdvance, minDelay, maxDelay, method, lead, shiny, unownRadio, happiness, area,
+                                       *currentProfile, filter);
 
     int maxProgress = 1;
     for (u8 i = 0; i < 6; i++)
@@ -743,10 +752,14 @@ void Wild4::searcherEncounterIndexChanged(int index)
         }
 
         bool bug = encounter == Encounter::BugCatchingContest;
-        bool hgss = (currentProfile->getVersion() & Game::HGSS) != Game::None;
-        bool hgssSwarm = encounter == Encounter::Grass || encounter == Encounter::Surfing || encounter == Encounter::OldRod
-            || encounter == Encounter::GoodRod || encounter == Encounter::SuperRod;
+        bool fish = encounter == Encounter::OldRod || encounter == Encounter::GoodRod || encounter == Encounter::SuperRod;
         bool grass = encounter == Encounter::Grass;
+        bool hgss = (currentProfile->getVersion() & Game::HGSS) != Game::None;
+        bool swarm = encounter == Encounter::Grass || encounter == Encounter::Surfing || encounter == Encounter::OldRod
+            || encounter == Encounter::GoodRod || encounter == Encounter::SuperRod;
+
+        ui->labelSearcherHappiness->setVisible(hgss && fish);
+        ui->comboBoxSearcherHappiness->setVisible(hgss && fish);
 
         ui->checkBoxSearcherDualSlot->setVisible(!hgss && grass);
         ui->comboBoxSearcherDualSlot->setVisible(!hgss && grass);
@@ -769,7 +782,7 @@ void Wild4::searcherEncounterIndexChanged(int index)
             ui->checkBoxSearcherRadio->setChecked(false);
         }
 
-        ui->checkBoxSearcherSwarm->setVisible((!hgss && grass) || (hgss && hgssSwarm));
+        ui->checkBoxSearcherSwarm->setVisible((!hgss && grass) || (hgss && swarm));
         if (!ui->checkBoxSearcherSwarm->isVisible())
         {
             ui->checkBoxSearcherSwarm->setChecked(false);

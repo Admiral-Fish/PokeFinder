@@ -51,8 +51,11 @@ static u16 getItem(u8 rand, Lead lead, const PersonalInfo *info)
 }
 
 WildGenerator4::WildGenerator4(u32 initialAdvances, u32 maxAdvances, u32 delay, Method method, Lead lead, bool shiny, bool unownRadio,
-                               const EncounterArea4 &area, const Profile4 &profile, const WildStateFilter &filter) :
-    WildGenerator(initialAdvances, maxAdvances, delay, method, lead, area, profile, filter), shiny(shiny), unownRadio(unownRadio)
+                               u8 happiness, const EncounterArea4 &area, const Profile4 &profile, const WildStateFilter &filter) :
+    WildGenerator(initialAdvances, maxAdvances, delay, method, lead, area, profile, filter),
+    shiny(shiny),
+    unownRadio(unownRadio),
+    happiness(happiness)
 {
 }
 
@@ -217,11 +220,13 @@ std::vector<WildGeneratorState4> WildGenerator4::generateMethodK(u32 seed) const
     std::vector<WildGeneratorState4> states;
 
     u16 rate = area.getRate();
-    if (lead == Lead::SuctionCups
-        && (area.getEncounter() == Encounter::OldRod || area.getEncounter() == Encounter::GoodRod
-            || area.getEncounter() == Encounter::SuperRod))
+    if (area.getEncounter() == Encounter::OldRod || area.getEncounter() == Encounter::GoodRod || area.getEncounter() == Encounter::SuperRod)
     {
-        rate *= 2;
+        rate += happiness;
+        if (lead == Lead::SuctionCups)
+        {
+            rate *= 2;
+        }
     }
     else if (lead == Lead::ArenaTrap && area.getEncounter() == Encounter::RockSmash)
     {
