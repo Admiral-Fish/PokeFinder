@@ -703,13 +703,13 @@ static std::vector<EncounterArea4> getHGSSSafari(Encounter encounter, const Enco
  *
  * @param version Game version
  * @param encounter Encounter type
- * @param dex Whether the national dex has been obtained
+ * @param profile Profile information
  * @param settings Settings that impact wild encounter slots
  * @param info Personal info array pointer
  *
  * @return Vector of encounter areas
  */
-static std::vector<EncounterArea4> getHGSS(Game version, Encounter encounter, bool dex, const EncounterSettings4 &settings,
+static std::vector<EncounterArea4> getHGSS(Game version, Encounter encounter, const Profile4 *profile, const EncounterSettings4 &settings,
                                            const PersonalInfo *info)
 {
     u8 *data;
@@ -719,8 +719,9 @@ static std::vector<EncounterArea4> getHGSS(Game version, Encounter encounter, bo
     if (encounter == Encounter::BugCatchingContest)
     {
         data = Utilities::decompress(HGSS_BUG.data(), HGSS_BUG.size(), length);
-        length = dex ? length : sizeof(WildEncounterHGSSBug);
-        for (size_t offset = dex ? sizeof(WildEncounterHGSSBug) : 0; offset < length; offset += sizeof(WildEncounterHGSSBug))
+        length = profile->getNationalDex() ? length : sizeof(WildEncounterHGSSBug);
+        for (size_t offset = profile->getNationalDex() ? sizeof(WildEncounterHGSSBug) : 0; offset < length;
+             offset += sizeof(WildEncounterHGSSBug))
         {
             const auto *entry = reinterpret_cast<const WildEncounterHGSSBug *>(data + offset);
 
@@ -782,6 +783,23 @@ static std::vector<EncounterArea4> getHGSS(Game version, Encounter encounter, bo
             switch (encounter)
             {
             case Encounter::Grass:
+                // Skip Ruins of Alph if the unlock requirements aren't met
+                if (entry->location == 10)
+                {
+                    auto unlocked = profile->getUnlockedUnownForms();
+                    if (unlocked.size() == 0 || profile->getUndiscoveredUnownForms(unlocked).size() == 0)
+                    {
+                        continue;
+                    }
+                }
+                else if (entry->location == 11)
+                {
+                    if (profile->getUnlockedUnownForms().size() == 0)
+                    {
+                        continue;
+                    }
+                }
+
                 if (entry->grassRate != 0)
                 {
                     const u16 *species = &entry->grass.slots[settings.time * 12];
@@ -878,7 +896,7 @@ namespace Encounters4
         {
             return getDPPt(version, encounter, settings, info);
         }
-        return getHGSS(version, encounter, profile->getNationalDex(), settings, info);
+        return getHGSS(version, encounter, profile, settings, info);
     }
 
     std::array<u16, 15> getGreatMarshPokemon(const Profile4 *profile)

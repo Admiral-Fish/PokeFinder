@@ -50,9 +50,9 @@ static u16 getItem(u8 rand, Lead lead, const PersonalInfo *info)
     }
 }
 
-WildGenerator4::WildGenerator4(u32 initialAdvances, u32 maxAdvances, u32 delay, Method method, Lead lead, bool shiny,
+WildGenerator4::WildGenerator4(u32 initialAdvances, u32 maxAdvances, u32 delay, Method method, Lead lead, bool shiny, bool unownRadio,
                                const EncounterArea4 &area, const Profile4 &profile, const WildStateFilter &filter) :
-    WildGenerator(initialAdvances, maxAdvances, delay, method, lead, area, profile, filter), shiny(shiny)
+    WildGenerator(initialAdvances, maxAdvances, delay, method, lead, area, profile, filter), shiny(shiny), unownRadio(unownRadio)
 {
 }
 
@@ -229,6 +229,9 @@ std::vector<WildGeneratorState4> WildGenerator4::generateMethodK(u32 seed) const
     }
     std::vector<u8> modifiedSlots = area.getSlots(lead);
     bool safari = area.safariZone(profile.getVersion());
+
+    auto unlockedUnown = profile.getUnlockedUnownForms();
+    auto undiscoveredUnown = profile.getUndiscoveredUnownForms(unlockedUnown);
 
     PokeRNG rng(seed, initialAdvances);
     auto jump = rng.getJump(delay);
@@ -412,8 +415,28 @@ std::vector<WildGeneratorState4> WildGenerator4::generateMethodK(u32 seed) const
 
         u16 item = getItem(go.nextUShort(100, &occidentary), lead, info);
 
+        u8 form = 0;
+        if (slot.getSpecie() == 201 && unlockedUnown.size() != 0)
+        {
+            if (area.getLocation() == 10)
+            {
+                form = 26 + go.nextUShort(2);
+            }
+            else if (area.getLocation() == 11)
+            {
+                if (unownRadio && undiscoveredUnown.size() != 0 && go.nextUShort(100) < 50)
+                {
+                    form = undiscoveredUnown[go.nextUShort(undiscoveredUnown.size())];
+                }
+                else
+                {
+                    form = unlockedUnown[go.nextUShort(unlockedUnown.size())];
+                }
+            }
+        }
+
         WildGeneratorState4 state(rng.nextUShort(), occidentary, initialAdvances + cnt, pid, ivs, pid & 1, Utilities::getGender(pid, info),
-                                  level, nature, Utilities::getShiny(pid, tsv), encounterSlot, item, slot.getSpecie(), 0, info);
+                                  level, nature, Utilities::getShiny(pid, tsv), encounterSlot, item, slot.getSpecie(), form, info);
         if (filter.compareState(static_cast<const WildGeneratorState &>(state)))
         {
             states.emplace_back(state);

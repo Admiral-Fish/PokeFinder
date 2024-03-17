@@ -71,6 +71,13 @@ private slots:
      * @brief Validates that a profile name exists before allowing the dialog to be closed
      */
     void okay();
+
+    /**
+     * @brief Toggles whether dead battery is enabled based on selected Game
+     *
+     * @param index Current index of combo box
+     */
+    void versionIndexChanged(int index);
 };
 
 #endif // PROFILEEDITOR4_HPP

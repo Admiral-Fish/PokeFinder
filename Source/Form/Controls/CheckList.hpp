@@ -53,7 +53,7 @@ public:
      *
      * @return Array of true/false to signify which check boxes are checked
      */
-    template <int size>
+    template <size_t size>
     std::array<bool, size> getCheckedArray() const
     {
         auto checked = getChecked();
@@ -80,6 +80,20 @@ public:
      * @param flags Vector detailing which check boxes are to be checked and unchecked
      */
     void setChecks(const std::vector<bool> &flags);
+
+    /**
+     * @brief Sets which of the check boxes are checked
+     *
+     * @tparam size Size of the array
+     *
+     * @param flags Array detailing which check boxes are to be checked and unchecked
+     */
+    template <size_t size>
+    void setChecks(const std::array<bool, size> &flags)
+    {
+        std::vector<bool> checked(flags.begin(), flags.end());
+        setChecks(checked);
+    }
 
     /**
      * @brief Setups the model of check boxes to be checkable by the user

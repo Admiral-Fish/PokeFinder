@@ -8,6 +8,7 @@
 8,Ruta 32
 9,Ruinas Alfa (Exterior)
 10,Ruinas Alfa (Interior)
+11,Ruinas Alfa (Underground)
 14,Cueva Unión Planta baja
 15,Cueva Unión Sótano 1
 16,Cueva Unión Sótano 2

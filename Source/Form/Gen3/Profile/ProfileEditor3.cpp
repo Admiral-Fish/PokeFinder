@@ -39,6 +39,8 @@ ProfileEditor3::ProfileEditor3(QWidget *parent) : QDialog(parent), ui(new Ui::Pr
     connect(ui->pushButtonCancel, &QPushButton::clicked, this, &ProfileEditor3::reject);
     connect(ui->comboBoxVersion, &QComboBox::currentIndexChanged, this, &ProfileEditor3::versionIndexChanged);
 
+    versionIndexChanged(ui->comboBoxVersion->currentIndex());
+
     QSettings setting;
     if (setting.contains("profileEditor3/geometry"))
     {

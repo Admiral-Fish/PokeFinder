@@ -46,11 +46,6 @@
     </message>
     <message>
         <location filename="../Gen4/Tools/ChainedSID.ui"/>
-        <source>Possible Results: 8192</source>
-        <translation>Risultati Possibili: 8192</translation>
-    </message>
-    <message>
-        <location filename="../Gen4/Tools/ChainedSID.ui"/>
         <location filename="../Gen4/Tools/ChainedSID.cpp" line="37"/>
         <source>Ability</source>
         <translation>Abilità</translation>
@@ -95,6 +90,11 @@
         <location filename="../Gen4/Tools/ChainedSID.ui"/>
         <source>Pokemon</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Gen4/Tools/ChainedSID.ui"/>
+        <source>Possible Results:</source>
+        <translation type="unfinished">Risultati Possibili:</translation>
     </message>
 </context>
 <context>
@@ -6935,6 +6935,11 @@
     <message>
         <location filename="../Gen4/Wild4.ui"/>
         <source>Water Block</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Gen4/Wild4.ui"/>
+        <source>Mysterious Transmission</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

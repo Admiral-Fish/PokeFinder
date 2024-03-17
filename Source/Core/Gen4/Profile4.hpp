@@ -21,6 +21,8 @@
 #define PROFILE4_HPP
 
 #include <Core/Parents/Profile.hpp>
+#include <array>
+#include <vector>
 
 enum class Game : u32;
 
@@ -41,6 +43,25 @@ public:
      */
     Profile4(const std::string &name, Game version, u16 tid, u16 sid, bool dex) : Profile(name, version, tid, sid), dex(dex)
     {
+        unownDiscovered.fill(false);
+        unownPuzzle.fill(false);
+    }
+
+    /**
+     * @brief Construct a new Profile4 object
+     *
+     * @param name Profile name
+     * @param version Game version
+     * @param tid Trainer ID
+     * @param sid Secret ID
+     * @param dex Whether national pokedex is obtained
+     * @param unownDiscovered Array of which Unown forms have been encountered
+     * @param unownPuzzle Array of which Alpha Ruin puzzles have been completed
+     */
+    Profile4(const std::string &name, Game version, u16 tid, u16 sid, bool dex, const std::array<bool, 26> &unownDiscovered,
+             const std::array<bool, 4> &unownPuzzle) :
+        Profile(name, version, tid, sid), dex(dex), unownDiscovered(unownDiscovered), unownPuzzle(unownPuzzle)
+    {
     }
 
     /**
@@ -53,6 +74,42 @@ public:
     {
         return dex;
     }
+
+    /**
+     * @brief Returns the discovered unowns
+     *
+     * @return Vector of discovered unowns
+     */
+    std::array<bool, 26> getUnownDiscovered() const
+    {
+        return unownDiscovered;
+    }
+
+    /**
+     * @brief Returns the unown puzzles
+     *
+     * @return Vector of unown puzzles
+     */
+    std::array<bool, 4> getUnownPuzzle() const
+    {
+        return unownPuzzle;
+    }
+
+    /**
+     * @brief Gets the list of undiscovered unown forms
+     *
+     * @param unlocked List of unlocked unown forms
+     *
+     * @return Vector of undiscovered unown forms
+     */
+    std::vector<u8> getUndiscoveredUnownForms(const std::vector<u8> &unlocked) const;
+
+    /**
+     * @brief Gets the list of unlocked unown forms
+     *
+     * @return Vector of unlocked unown forms
+     */
+    std::vector<u8> getUnlockedUnownForms() const;
 
     /**
      * @brief Checks if two profiles are equal
@@ -76,6 +133,8 @@ public:
 
 private:
     bool dex;
+    std::array<bool, 26> unownDiscovered;
+    std::array<bool, 4> unownPuzzle;
 };
 
 #endif // PROFILE4_HPP

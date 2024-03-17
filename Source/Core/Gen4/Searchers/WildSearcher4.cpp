@@ -52,16 +52,19 @@ static u16 getItem(u8 rand, Lead lead, const PersonalInfo *info)
 }
 
 WildSearcher4::WildSearcher4(u32 minAdvance, u32 maxAdvance, u32 minDelay, u32 maxDelay, Method method, Lead lead, bool shiny,
-                             const EncounterArea4 &area, const Profile4 &profile, const WildStateFilter &filter) :
+                             bool unownRadio, const EncounterArea4 &area, const Profile4 &profile, const WildStateFilter &filter) :
     WildSearcher(method, lead, area, profile, filter),
     modifiedSlots(area.getSlots(lead)),
+    unlockedUnown(profile.getUnlockedUnownForms()),
+    undiscoveredUnown(profile.getUndiscoveredUnownForms(unlockedUnown)),
     maxAdvance(maxAdvance),
     minAdvance(minAdvance),
     maxDelay(maxDelay),
     minDelay(minDelay),
     thresh(area.getRate()),
     safari(area.safariZone(profile.getVersion())),
-    shiny(shiny)
+    shiny(shiny),
+    unownRadio(unownRadio)
 {
     if ((lead == Lead::SuctionCups
          && (area.getEncounter() == Encounter::OldRod || area.getEncounter() == Encounter::GoodRod
@@ -419,7 +422,27 @@ std::vector<WildSearcherState4> WildSearcher4::searchMethodK(u8 hp, u8 atk, u8 d
     for (int i = 0; i < size; i++)
     {
         PokeRNGR rng(seeds[i]);
-        u8 itemRand = (PokeRNG(seeds[i]).advance(2) >> 16) % 100;
+
+        PokeRNG forward(seeds[i]);
+        u8 itemRand = (forward.advance(2) >> 16) % 100;
+
+        u8 form = 0;
+        if (area.getLocation() == 10)
+        {
+            form = 26 + forward.nextUShort(2);
+        }
+        else if (area.getLocation() == 11 && unlockedUnown.size() != 0)
+        {
+            if (unownRadio && undiscoveredUnown.size() != 0 && forward.nextUShort(100) < 50)
+            {
+                form = undiscoveredUnown[forward.nextUShort(undiscoveredUnown.size())];
+            }
+            else
+            {
+                form = unlockedUnown[forward.nextUShort(unlockedUnown.size())];
+            }
+        }
+
         if (lead == Lead::CuteCharmF || lead == Lead::CuteCharmM)
         {
             u8 nature = rng.nextUShort(25);
@@ -485,7 +508,8 @@ std::vector<WildSearcherState4> WildSearcher4::searchMethodK(u8 hp, u8 atk, u8 d
 
                     u32 pid = nature + buffer;
                     WildSearcherState4 state(rng.next(), pid, ivs, pid & 1, Utilities::getGender(pid, info), level, nature,
-                                             Utilities::getShiny(pid, tsv), encounterSlot, item, slot.getSpecie(), 0, info);
+                                             Utilities::getShiny(pid, tsv), encounterSlot, item, slot.getSpecie(),
+                                             slot.getSpecie() == 201 ? form : 0, info);
                     if (filter.compareState(static_cast<const WildSearcherState &>(state)))
                     {
                         states.emplace_back(state);
@@ -650,7 +674,8 @@ std::vector<WildSearcherState4> WildSearcher4::searchMethodK(u8 hp, u8 atk, u8 d
                         u16 item = getItem(itemRand, lead, info);
 
                         WildSearcherState4 state(test[i].next(), pid, ivs, pid & 1, Utilities::getGender(pid, info), level, nature,
-                                                 Utilities::getShiny(pid, tsv), encounterSlot[i], item, slot.getSpecie(), 0, info);
+                                                 Utilities::getShiny(pid, tsv), encounterSlot[i], item, slot.getSpecie(),
+                                                 slot.getSpecie() == 201 ? form : 0, info);
                         if (filter.compareState(static_cast<const WildSearcherState &>(state)))
                         {
                             states.emplace_back(state);

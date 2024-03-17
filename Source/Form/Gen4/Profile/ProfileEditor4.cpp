@@ -35,8 +35,19 @@ ProfileEditor4::ProfileEditor4(QWidget *parent) : QDialog(parent), ui(new Ui::Pr
     ui->comboBoxVersion->setup(
         { toInt(Game::Diamond), toInt(Game::Pearl), toInt(Game::Platinum), toInt(Game::HeartGold), toInt(Game::SoulSilver) });
 
+    for (char letter = 'A'; letter <= 'Z'; letter++)
+    {
+        ui->checkListUnownDiscovered->addItem(QChar(letter));
+    }
+
+    ui->checkListUnownDiscovered->setup();
+    ui->checkListUnownPuzzles->setup();
+
     connect(ui->pushButtonOkay, &QPushButton::clicked, this, &ProfileEditor4::okay);
     connect(ui->pushButtonCancel, &QPushButton::clicked, this, &ProfileEditor4::reject);
+    connect(ui->comboBoxVersion, &QComboBox::currentIndexChanged, this, &ProfileEditor4::versionIndexChanged);
+
+    versionIndexChanged(ui->comboBoxVersion->currentIndex());
 
     QSettings setting;
     if (setting.contains("profileEditor4/geometry"))
@@ -52,6 +63,8 @@ ProfileEditor4::ProfileEditor4(const Profile4 &profile, QWidget *parent) : Profi
     ui->textBoxTID->setText(QString::number(profile.getTID()));
     ui->textBoxSID->setText(QString::number(profile.getSID()));
     ui->checkBoxNationalDex->setChecked(profile.getNationalDex());
+    ui->checkListUnownPuzzles->setChecks(profile.getUnownPuzzle());
+    ui->checkListUnownDiscovered->setChecks(profile.getUnownDiscovered());
 }
 
 ProfileEditor4::~ProfileEditor4()
@@ -65,7 +78,8 @@ ProfileEditor4::~ProfileEditor4()
 Profile4 ProfileEditor4::getProfile()
 {
     return Profile4(ui->lineEditProfile->text().toStdString(), ui->comboBoxVersion->getEnum<Game>(), ui->textBoxTID->getUShort(),
-                    ui->textBoxSID->getUShort(), ui->checkBoxNationalDex->isChecked());
+                    ui->textBoxSID->getUShort(), ui->checkBoxNationalDex->isChecked(), ui->checkListUnownDiscovered->getCheckedArray<26>(),
+                    ui->checkListUnownPuzzles->getCheckedArray<4>());
 }
 
 void ProfileEditor4::okay()
@@ -79,4 +93,16 @@ void ProfileEditor4::okay()
     }
 
     done(QDialog::Accepted);
+}
+
+void ProfileEditor4::versionIndexChanged(int index)
+{
+    if (index >= 0)
+    {
+        bool flag = (ui->comboBoxVersion->getEnum<Game>() & Game::HGSS) != Game::None;
+        ui->labelUnownPuzzles->setVisible(flag);
+        ui->checkListUnownPuzzles->setVisible(flag);
+        ui->labelUnownDiscovered->setVisible(flag);
+        ui->checkListUnownDiscovered->setVisible(flag);
+    }
 }

@@ -126,7 +126,14 @@ std::set<std::pair<u16, QString>> EncounterLookup::getEncounters3(Game version, 
 std::set<std::pair<u16, QString>> EncounterLookup::getEncounters4(Game version, u16 specie)
 {
     std::set<std::pair<u16, QString>> encounters;
-    Profile4 profile("", version, 0, 0, false);
+
+    std::array<bool, 26> unownDiscovered;
+    unownDiscovered.fill(true);
+
+    std::array<bool, 4> unownPuzzle;
+    unownDiscovered.fill(true);
+
+    Profile4 profile("", version, 0, 0, false, unownDiscovered, unownPuzzle);
 
     // Encounter variables to iterate through
     auto types = { Encounter::Grass, Encounter::OldRod, Encounter::GoodRod, Encounter::SuperRod, Encounter::Surfing };

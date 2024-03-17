@@ -44,10 +44,11 @@ public:
      * @param lead Encounter lead
      * @param area Wild pokemon info
      * @param shiny Whether Poke Radar is forced shiny
+     * @param unownRadio Whether the radio station gives undiscovered Unowns more frequently
      * @param profile Profile Information
      * @param filter State filter
      */
-    WildSearcher4(u32 minAdvance, u32 maxAdvance, u32 minDelay, u32 maxDelay, Method method, Lead lead, bool shiny,
+    WildSearcher4(u32 minAdvance, u32 maxAdvance, u32 minDelay, u32 maxDelay, Method method, Lead lead, bool shiny, bool unownRadio,
                   const EncounterArea4 &area, const Profile4 &profile, const WildStateFilter &filter);
 
     /**
@@ -61,6 +62,8 @@ public:
 
 private:
     std::vector<u8> modifiedSlots;
+    std::vector<u8> unlockedUnown;
+    std::vector<u8> undiscoveredUnown;
     u32 maxAdvance;
     u32 minAdvance;
     u32 maxDelay;
@@ -68,6 +71,7 @@ private:
     u16 thresh;
     bool safari;
     bool shiny;
+    bool unownRadio;
 
     /**
      * @brief Searches for matching states from provided IVs

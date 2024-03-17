@@ -351,9 +351,10 @@ void Wild4::generate()
     u32 delay = ui->textBoxGeneratorDelay->getUInt();
     auto lead = ui->comboMenuGeneratorLead->getEnum<Lead>();
     bool chained = ui->checkBoxGeneratorPokeRadarShiny->isChecked();
+    bool unownRadio = ui->checkBoxGeneratorRadio->isChecked() && ui->comboBoxGeneratorRadio->currentIndex() == 2;
 
     WildStateFilter filter = ui->filterGenerator->getFilter<WildStateFilter, true>();
-    WildGenerator4 generator(initialAdvances, maxAdvances, delay, method, lead, chained,
+    WildGenerator4 generator(initialAdvances, maxAdvances, delay, method, lead, chained, unownRadio,
                              encounterGenerator[ui->comboBoxGeneratorLocation->getCurrentInt()], *currentProfile, filter);
 
     auto states = generator.generate(seed, radarSlot);
@@ -674,9 +675,11 @@ void Wild4::search()
     u32 maxDelay = ui->textBoxSearcherMaxDelay->getUInt();
     auto lead = ui->comboMenuSearcherLead->getEnum<Lead>();
     bool shiny = ui->checkBoxSearcherPokeRadarShiny->isChecked();
+    bool unownRadio = ui->checkBoxSearcherRadio->isChecked() && ui->comboBoxSearcherRadio->currentIndex() == 2;
 
     WildStateFilter filter = ui->filterSearcher->getFilter<WildStateFilter, true>();
-    auto *searcher = new WildSearcher4(minAdvance, maxAdvance, minDelay, maxDelay, method, lead, shiny, area, *currentProfile, filter);
+    auto *searcher
+        = new WildSearcher4(minAdvance, maxAdvance, minDelay, maxDelay, method, lead, shiny, unownRadio, area, *currentProfile, filter);
 
     int maxProgress = 1;
     for (u8 i = 0; i < 6; i++)

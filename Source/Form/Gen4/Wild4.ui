@@ -359,6 +359,11 @@
               <string>Sinnoh Sound</string>
              </property>
             </item>
+            <item>
+             <property name="text">
+              <string>Mysterious Transmission</string>
+             </property>
+            </item>
            </widget>
           </item>
           <item row="7" column="0" colspan="4">
@@ -743,6 +748,11 @@
             <item>
              <property name="text">
               <string>Sinnoh Sound</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Mysterious Transmission</string>
              </property>
             </item>
            </widget>

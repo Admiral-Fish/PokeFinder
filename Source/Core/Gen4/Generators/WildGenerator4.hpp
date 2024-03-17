@@ -42,12 +42,13 @@ public:
      * @param method Encounter method
      * @param lead Encounter lead
      * @param shiny Whether Poke Radar is forced shiny
+     * @param unownRadio Whether the radio station gives undiscovered Unowns more frequently
      * @param area Wild pokemon info
      * @param profile Profile Information
      * @param filter State filter
      */
-    WildGenerator4(u32 initialAdvances, u32 maxAdvances, u32 delay, Method method, Lead lead, bool shiny, const EncounterArea4 &area,
-                   const Profile4 &profile, const WildStateFilter &filter);
+    WildGenerator4(u32 initialAdvances, u32 maxAdvances, u32 delay, Method method, Lead lead, bool shiny, bool unownRadio,
+                   const EncounterArea4 &area, const Profile4 &profile, const WildStateFilter &filter);
 
     /**
      * @brief Generates states
@@ -61,6 +62,7 @@ public:
 
 private:
     bool shiny;
+    bool unownRadio;
 
     /**
      * @brief Generates states via Method J

@@ -8,6 +8,7 @@
 8,Route 32
 9,Ruins of Alph (Outside)
 10,Ruins of Alph (Inside)
+11,Ruins of Alph (Underground)
 14,Union Cave 1F
 15,Union Cave B1F
 16,Union Cave B2F

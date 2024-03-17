@@ -8,6 +8,7 @@
 8,Percorso 32
 9,Rovine d'Alfa (Esterno)
 10,Rovine d'Alfa (Inside)
+11,Rovine d'Alfa (Underground)
 14,Grotta di mezzo P1
 15,Grotta di mezzo P1S
 16,Grotta di mezzo P2S
