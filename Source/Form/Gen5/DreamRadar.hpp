@@ -93,14 +93,6 @@ private:
      */
     std::vector<DreamRadarTemplate> getSearcherSettings() const;
 
-    /**
-     * @brief Updates available genders for the select Pokemon
-     *
-     * @param comboBoxSpecie Pokemon specie combo box
-     * @param comboBoxGender Pokemon gender combo box
-     */
-    void updateGenders(ComboBox *comboBoxSpecie, ComboBox *comboBoxGender);
-
 private slots:
     /**
      * @brief Generates static encounters from a starting seed

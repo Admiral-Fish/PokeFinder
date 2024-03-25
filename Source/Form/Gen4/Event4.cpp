@@ -159,7 +159,7 @@ void Event4::generate()
     u32 maxAdvances = ui->textBoxGeneratorMaxAdvances->getUInt();
     u32 delay = ui->textBoxGeneratorDelay->getUInt();
 
-    StateFilter filter = ui->filterGenerator->getFilter<StateFilter>();
+    auto filter = ui->filterGenerator->getFilter<StateFilter>();
     EventGenerator4 generator(initialAdvances, maxAdvances, delay, ui->comboBoxGeneratorSpecies->currentIndex() + 1,
                               ui->comboBoxGeneratorNature->currentIndex(), ui->spinBoxGeneratorLevel->value(), *currentProfile, filter);
 
@@ -197,7 +197,7 @@ void Event4::search()
     u32 minAdvance = ui->textBoxSearcherMinAdvance->getUInt();
     u32 maxAdvance = ui->textBoxSearcherMaxAdvance->getUInt();
 
-    StateFilter filter = ui->filterSearcher->getFilter<StateFilter>();
+    auto filter = ui->filterSearcher->getFilter<StateFilter>();
     auto *searcher = new EventSearcher4(minAdvance, maxAdvance, minDelay, maxDelay, *currentProfile, filter);
 
     int maxProgress = 1;

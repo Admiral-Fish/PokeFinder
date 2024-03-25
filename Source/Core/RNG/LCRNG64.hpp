@@ -170,7 +170,7 @@ public:
      *
      * @return Multipler and adder to jump the RNG
      */
-    const Jump64 getJump(u32 advances)
+    Jump64 getJump(u32 advances)
     {
         const JumpTable64 *table = getJumpTable();
         Jump64 jump;

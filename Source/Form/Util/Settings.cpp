@@ -68,11 +68,11 @@ Settings::Settings(QWidget *parent) : QWidget(parent), ui(new Ui::Settings)
     }
 
     // Table header size
-    QHeaderView::ResizeMode size = setting.value("headerSize").value<QHeaderView::ResizeMode>();
+    auto size = setting.value("headerSize").value<QHeaderView::ResizeMode>();
     std::array<QHeaderView::ResizeMode, 2> sizes = { QHeaderView::ResizeToContents, QHeaderView::Stretch };
     for (int i = 0; i < sizes.size(); i++)
     {
-        QHeaderView::ResizeMode s = sizes[i];
+        auto s = sizes[i];
         ui->comboBoxTableHeaderSize->setItemData(i, s);
         if (size == s)
         {

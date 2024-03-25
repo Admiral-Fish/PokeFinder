@@ -24,6 +24,45 @@
 #include <Form/Controls/Controls.hpp>
 #include <QMouseEvent>
 
+/**
+ * @brief Updates min/max values based on control keys selected
+ *
+ * @param minBox Spinbox that has the minimum value
+ * @param maxBox Spinbox that has the maximum value
+ * @param type Control keys
+ */
+static void changeCompare(QSpinBox *minBox, QSpinBox *maxBox, int type)
+{
+    int min;
+    int max;
+    if (type == Qt::NoModifier)
+    {
+        min = 0;
+        max = 31;
+    }
+    else if (type == Qt::ControlModifier)
+    {
+        min = 31;
+        max = 31;
+    }
+    else if (type == Qt::AltModifier)
+    {
+        min = 30;
+        max = 31;
+    }
+    else if (type & Qt::ControlModifier && type & Qt::AltModifier)
+    {
+        min = 0;
+        max = 0;
+    }
+    else
+    {
+        return;
+    }
+    minBox->setValue(min);
+    maxBox->setValue(max);
+}
+
 Filter::Filter(QWidget *parent) : QWidget(parent), ui(new Ui::Filter)
 {
     ui->setupUi(this);
@@ -255,38 +294,6 @@ bool Filter::eventFilter(QObject *object, QEvent *event)
         }
     }
     return false;
-}
-
-void Filter::changeCompare(QSpinBox *minBox, QSpinBox *maxBox, int type)
-{
-    int min;
-    int max;
-    if (type == Qt::NoModifier)
-    {
-        min = 0;
-        max = 31;
-    }
-    else if (type == Qt::ControlModifier)
-    {
-        min = 31;
-        max = 31;
-    }
-    else if (type == Qt::AltModifier)
-    {
-        min = 30;
-        max = 31;
-    }
-    else if (type & Qt::ControlModifier && type & Qt::AltModifier)
-    {
-        min = 0;
-        max = 0;
-    }
-    else
-    {
-        return;
-    }
-    minBox->setValue(min);
-    maxBox->setValue(max);
 }
 
 void Filter::openIVCalculator() const

@@ -26,6 +26,87 @@ constexpr u16 enemyHPStat[5][2] = { { 290, 310 }, { 290, 270 }, { 290, 250 }, { 
 
 constexpr u16 playerHPStat[5][2] = { { 322, 340 }, { 310, 290 }, { 210, 620 }, { 320, 230 }, { 310, 310 } };
 
+/**
+ * @brief Generates EVs for a pokemon
+ *
+ * @param rng Starting PRNG state
+ *
+ * @return EV for the HP stat
+ */
+static u8 generateEVs(XDRNG &rng)
+{
+    u8 evs[6] = { 0, 0, 0, 0, 0, 0 };
+    u16 sum = 0;
+
+    for (u8 i = 0; i <= 100; i++)
+    {
+        for (u8 &ev : evs)
+        {
+            ev += rng.nextUShort(256);
+            sum += ev;
+        }
+
+        if (sum == 510)
+        {
+            return evs[0];
+        }
+        else if (490 < sum && sum < 530)
+        {
+            break;
+        }
+        else if (510 < sum && i != 100)
+        {
+            std::memset(evs, 0, sizeof(evs));
+            sum = 0;
+        }
+    }
+
+    while (sum != 510)
+    {
+        for (u8 &ev : evs)
+        {
+            if (sum < 510 && ev < 255)
+            {
+                ev++;
+                sum++;
+            }
+            else if (sum > 510 && ev != 0)
+            {
+                ev--;
+                sum--;
+            }
+        }
+    }
+
+    return evs[0];
+}
+
+/**
+ *  @brief Generates a pokemon
+ *
+ *  @param rng Starting PRNG state
+ *
+ *  @return Pokemon HP IV
+ */
+static u8 generatePokemon(XDRNG &rng, u16 tsv)
+{
+    // Temp PID
+    rng.advance(2);
+
+    u8 hp = rng.nextUShort(32);
+
+    // Other IV Call / Ability
+    rng.advance(2);
+
+    u16 psv;
+    do
+    {
+        psv = rng.nextUShort() ^ rng.nextUShort();
+    } while ((psv ^ tsv) < 8);
+
+    return hp;
+}
+
 GalesSeedSearcher::GalesSeedSearcher(const GalesCriteria &criteria) : SeedSearcher(criteria)
 {
 }
@@ -83,73 +164,6 @@ void GalesSeedSearcher::startSearch(const std::vector<u32> &seeds)
 
     std::sort(results.begin(), results.end());
     results.erase(std::unique(results.begin(), results.end()), results.end());
-}
-
-u8 GalesSeedSearcher::generateEVs(XDRNG &rng) const
-{
-    u8 evs[6] = { 0, 0, 0, 0, 0, 0 };
-    u16 sum = 0;
-
-    for (u8 i = 0; i <= 100; i++)
-    {
-        for (u8 &ev : evs)
-        {
-            ev += rng.nextUShort(256);
-            sum += ev;
-        }
-
-        if (sum == 510)
-        {
-            return evs[0];
-        }
-        else if (490 < sum && sum < 530)
-        {
-            break;
-        }
-        else if (510 < sum && i != 100)
-        {
-            std::memset(evs, 0, sizeof(evs));
-            sum = 0;
-        }
-    }
-
-    while (sum != 510)
-    {
-        for (u8 &ev : evs)
-        {
-            if (sum < 510 && ev < 255)
-            {
-                ev++;
-                sum++;
-            }
-            else if (sum > 510 && ev != 0)
-            {
-                ev--;
-                sum--;
-            }
-        }
-    }
-
-    return evs[0];
-}
-
-u8 GalesSeedSearcher::generatePokemon(XDRNG &rng, u16 tsv) const
-{
-    // Temp PID
-    rng.advance(2);
-
-    u8 hp = rng.nextUShort(32);
-
-    // Other IV Call / Ability
-    rng.advance(2);
-
-    u16 psv;
-    do
-    {
-        psv = rng.nextUShort() ^ rng.nextUShort();
-    } while ((psv ^ tsv) < 8);
-
-    return hp;
 }
 
 void GalesSeedSearcher::search(u32 start, u32 end)

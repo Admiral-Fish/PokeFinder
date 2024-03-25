@@ -44,7 +44,7 @@ public:
     /**
      * @brief Destroy the JirachiAdvancer object
      */
-    ~JirachiAdvancer();
+    ~JirachiAdvancer() override;
 
 private:
     Ui::JirachiAdvancer *ui;

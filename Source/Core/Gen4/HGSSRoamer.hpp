@@ -65,24 +65,6 @@ private:
     u8 latiRoute;
     u8 raikouRoute;
     u8 skips;
-
-    /**
-     * @brief Calculates roamer location for Entei/Raikou
-     *
-     * @param prng PRNG state
-     *
-     * @return Roamer location
-     */
-    u8 getRouteJ(u16 prng) const;
-
-    /**
-     * @brief Calculates roamer location for Latios/Latias
-     *
-     * @param prng PRNG state
-     *
-     * @return Roamer location
-     */
-    u8 getRouteK(u16 prng) const;
 };
 
 #endif // HGSSROAMER_HPP

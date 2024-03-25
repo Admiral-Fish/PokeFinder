@@ -61,24 +61,6 @@ public:
 
 private:
     /**
-     * @brief Generates EVs for a pokemon
-     *
-     * @param rng Starting PRNG state
-     *
-     * @return EV for the HP stat
-     */
-    u8 generateEVs(XDRNG &rng) const;
-
-    /**
-     * @brief Generates a pokemon
-     *
-     * @param rng Starting PRNG state
-     *
-     * @return Pokemon HP IV
-     */
-    u8 generatePokemon(XDRNG &rng, u16 tsv) const;
-
-    /**
      * @brief Searches over a range of PRNG states for valid candidate seeds
      *
      * @param start Lower PRNG state

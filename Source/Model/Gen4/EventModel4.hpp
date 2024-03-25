@@ -123,7 +123,7 @@ public:
      *
      * @return Header text at column
      */
-    QVariant headerData(int section, Qt::Orientation, int role) const override;
+    QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
 
     /**
      * @brief Sorts the displayed data in the \p column by the given \p order

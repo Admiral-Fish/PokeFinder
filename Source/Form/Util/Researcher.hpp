@@ -57,17 +57,6 @@ private:
     ResearcherModel *model;
 
     /**
-     * @brief Gets the \p custom value from the current \p state or \p states
-     *
-     * @param custom Custom value to grab
-     * @param state Current researcher state
-     * @param states Vector of researcher states
-     *
-     * @return Calculated custom value
-     */
-    u64 getCustom(Custom custom, const ResearcherState &state, const std::vector<ResearcherState> &states);
-
-    /**
      * @brief Returns which hex checkboxes are checked
      *
      * @return Vector of true/false for whether the hex checkbox is checked

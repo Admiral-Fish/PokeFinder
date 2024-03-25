@@ -421,7 +421,7 @@ std::vector<WildGeneratorState4> WildGenerator4::generateMethodK(u32 seed) const
         u16 item = getItem(go.nextUShort(100, &occidentary), lead, info);
 
         u8 form = 0;
-        if (slot.getSpecie() == 201 && unlockedUnown.size() != 0)
+        if (slot.getSpecie() == 201 && !unlockedUnown.empty())
         {
             if (area.getLocation() == 10)
             {
@@ -429,7 +429,7 @@ std::vector<WildGeneratorState4> WildGenerator4::generateMethodK(u32 seed) const
             }
             else if (area.getLocation() == 11)
             {
-                if (unownRadio && undiscoveredUnown.size() != 0 && go.nextUShort(100) < 50)
+                if (unownRadio && !undiscoveredUnown.empty() && go.nextUShort(100) < 50)
                 {
                     form = undiscoveredUnown[go.nextUShort(undiscoveredUnown.size())];
                 }

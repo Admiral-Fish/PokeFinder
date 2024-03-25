@@ -179,7 +179,7 @@ public:
     }
 
 private:
-    using SizeType = typename std::conditional<size <= 256, u8, u16>::type;
+    using SizeType = std::conditional_t<size <= 256, u8, u16>;
 
     RNG rng;
     Integer list[size];

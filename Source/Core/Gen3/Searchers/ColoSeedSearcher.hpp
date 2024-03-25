@@ -58,17 +58,6 @@ public:
 
 private:
     /**
-     * @brief Generates a pokemon that has the matching \p nature and \p gender
-     *
-     * @param rng Starting PRNG state
-     * @param tsv Trainer shiny value
-     * @param nature Pokemon nature
-     * @param gender Pokemon gender
-     * @param genderRatio Pokemon gender ratio
-     */
-    void generatePokemon(XDRNG &rng, u16 tsv, u8 nature, u8 gender, u8 genderRatio) const;
-
-    /**
      * @brief Searches over a range of PRNG states for valid candidate seeds
      *
      * @param start Lower PRNG state

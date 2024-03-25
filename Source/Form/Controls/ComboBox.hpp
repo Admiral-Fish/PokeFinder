@@ -79,20 +79,19 @@ public:
     template <typename Enum>
     constexpr Enum getEnum() const
     {
-        static_assert(std::is_same<u8, typename std::underlying_type<Enum>::type>::value
-                          || std::is_same<u16, typename std::underlying_type<Enum>::type>::value
-                          || std::is_same<u32, typename std::underlying_type<Enum>::type>::value,
+        static_assert(std::is_same<u8, std::underlying_type_t<Enum>>::value || std::is_same<u16, std::underlying_type_t<Enum>>::value
+                          || std::is_same<u32, std::underlying_type_t<Enum>>::value,
                       "Unsupported enum base type");
 
-        if constexpr (std::is_same<u8, typename std::underlying_type<Enum>::type>::value)
+        if constexpr (std::is_same<u8, std::underlying_type_t<Enum>>::value)
         {
             return static_cast<Enum>(getCurrentUChar());
         }
-        else if constexpr (std::is_same<u16, typename std::underlying_type<Enum>::type>::value)
+        else if constexpr (std::is_same<u16, std::underlying_type_t<Enum>>::value)
         {
             return static_cast<Enum>(getCurrentUShort());
         }
-        else if constexpr (std::is_same<u32, typename std::underlying_type<Enum>::type>::value)
+        else if constexpr (std::is_same<u32, std::underlying_type_t<Enum>>::value)
         {
             return static_cast<Enum>(getCurrentUInt());
         }

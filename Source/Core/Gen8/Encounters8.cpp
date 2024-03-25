@@ -30,7 +30,6 @@
 #include <Core/Util/Utilities.hpp>
 #include <algorithm>
 #include <cstddef>
-#include <iterator>
 
 struct DynamicSlot
 {

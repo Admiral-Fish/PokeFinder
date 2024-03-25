@@ -357,7 +357,7 @@ void Wild4::generate()
     bool unownRadio = ui->checkBoxGeneratorRadio->isChecked() && ui->comboBoxGeneratorRadio->currentIndex() == 2;
     u8 happiness = ui->comboBoxGeneratorHappiness->getCurrentUChar();
 
-    WildStateFilter filter = ui->filterGenerator->getFilter<WildStateFilter, true>();
+    auto filter = ui->filterGenerator->getFilter<WildStateFilter, true>();
     WildGenerator4 generator(initialAdvances, maxAdvances, delay, method, lead, chained, unownRadio, happiness,
                              encounterGenerator[ui->comboBoxGeneratorLocation->getCurrentInt()], *currentProfile, filter);
 
@@ -686,7 +686,7 @@ void Wild4::search()
     bool unownRadio = ui->checkBoxSearcherRadio->isChecked() && ui->comboBoxSearcherRadio->currentIndex() == 2;
     u8 happiness = ui->comboBoxSearcherHappiness->getCurrentUChar();
 
-    WildStateFilter filter = ui->filterSearcher->getFilter<WildStateFilter, true>();
+    auto filter = ui->filterSearcher->getFilter<WildStateFilter, true>();
     auto *searcher = new WildSearcher4(minAdvance, maxAdvance, minDelay, maxDelay, method, lead, shiny, unownRadio, happiness, area,
                                        *currentProfile, filter);
 

@@ -148,7 +148,7 @@ void Static8::generate()
     const StaticTemplate *staticTemplate
         = Encounters8::getStaticEncounter(ui->comboBoxCategory->currentIndex(), ui->comboBoxPokemon->getCurrentInt());
 
-    StateFilter filter = ui->filter->getFilter<StateFilter>();
+    auto filter = ui->filter->getFilter<StateFilter>();
     StaticGenerator8 generator(initialAdvances, maxAdvances, delay, lead, *staticTemplate, *currentProfile, filter);
 
     if (ui->comboBoxCategory->currentIndex() == 4)

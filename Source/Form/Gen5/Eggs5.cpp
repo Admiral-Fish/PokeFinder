@@ -139,7 +139,7 @@ void Eggs5::generate()
     u32 delay = ui->textBoxGeneratorDelay->getUInt();
     Daycare daycare = ui->eggSettingsGenerator->getDaycare();
 
-    StateFilter filter = ui->filterGenerator->getFilter<StateFilter>();
+    auto filter = ui->filterGenerator->getFilter<StateFilter>();
     EggGenerator5 generator(initialAdvances, maxAdvances, delay, daycare, *currentProfile, filter);
 
     auto states = generator.generate(seed);
@@ -178,7 +178,7 @@ void Eggs5::search()
     u32 maxAdvances = ui->textBoxSearcherMaxAdvances->getUInt();
     Daycare daycare = ui->eggSettingsSearcher->getDaycare();
 
-    StateFilter filter = ui->filterSearcher->getFilter<StateFilter>();
+    auto filter = ui->filterSearcher->getFilter<StateFilter>();
     EggGenerator5 generator(initialAdvances, maxAdvances, 0, daycare, *currentProfile, filter);
     auto *searcher = new Searcher5<EggGenerator5, EggState5>(generator, *currentProfile);
 

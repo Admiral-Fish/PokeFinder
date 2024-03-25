@@ -191,15 +191,6 @@ private:
 
 private slots:
     /**
-     * @brief Updates min/max values based on control keys selected
-     *
-     * @param minBox Spinbox that has the minimum value
-     * @param maxBox Spinbox that has the maximum value
-     * @param type Control keys
-     */
-    void changeCompare(QSpinBox *minBox, QSpinBox *maxBox, int type);
-
-    /**
      * @brief Opens IV calculator to determine IV minimum/maximum
      */
     void openIVCalculator() const;

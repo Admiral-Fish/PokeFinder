@@ -80,10 +80,10 @@ public:
     template <typename Enum>
     constexpr Enum getEnum() const
     {
-        static_assert(std::is_same<u8, typename std::underlying_type<Enum>::type>::value, "Unsupported enum base type");
+        static_assert(std::is_same<u8, std::underlying_type_t<Enum>>::value, "Unsupported enum base type");
 
         QAction *action = actionGroup->checkedAction();
-        if constexpr (std::is_same<u8, typename std::underlying_type<Enum>::type>::value)
+        if constexpr (std::is_same<u8, std::underlying_type_t<Enum>>::value)
         {
             return static_cast<Enum>(action->data().toUInt());
         }

@@ -165,7 +165,7 @@ public:
      *
      * @return Multipler and adder to jump the RNG
      */
-    const Jump getJump(u32 advances)
+    Jump getJump(u32 advances)
     {
         const JumpTable *table = getJumpTable();
         Jump jump;

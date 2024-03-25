@@ -442,9 +442,9 @@ std::vector<WildSearcherState4> WildSearcher4::searchMethodK(u8 hp, u8 atk, u8 d
         {
             form = 26 + forward.nextUShort(2);
         }
-        else if (area.getLocation() == 11 && unlockedUnown.size() != 0)
+        else if (area.getLocation() == 11 && !unlockedUnown.empty())
         {
-            if (unownRadio && undiscoveredUnown.size() != 0 && forward.nextUShort(100) < 50)
+            if (unownRadio && !undiscoveredUnown.empty() && forward.nextUShort(100) < 50)
             {
                 form = undiscoveredUnown[forward.nextUShort(undiscoveredUnown.size())];
             }

@@ -28,8 +28,6 @@
 #include <Core/Parents/Slot.hpp>
 #include <Core/Resources/EncounterData3.hpp>
 #include <Core/Util/Utilities.hpp>
-#include <algorithm>
-#include <iterator>
 
 struct DynamicSlot
 {

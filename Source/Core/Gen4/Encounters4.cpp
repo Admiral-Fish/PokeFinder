@@ -787,14 +787,14 @@ static std::vector<EncounterArea4> getHGSS(Game version, Encounter encounter, co
                 if (entry->location == 10)
                 {
                     auto unlocked = profile->getUnlockedUnownForms();
-                    if (unlocked.size() != 26 || profile->getUndiscoveredUnownForms(unlocked).size() != 0)
+                    if (unlocked.size() != 26 || !profile->getUndiscoveredUnownForms(unlocked).empty())
                     {
                         continue;
                     }
                 }
                 else if (entry->location == 11)
                 {
-                    if (profile->getUnlockedUnownForms().size() == 0)
+                    if (profile->getUnlockedUnownForms().empty())
                     {
                         continue;
                     }

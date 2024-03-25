@@ -129,7 +129,7 @@ void Static3::generate()
     const StaticTemplate *staticTemplate
         = Encounters3::getStaticEncounter(ui->comboBoxGeneratorCategory->currentIndex(), ui->comboBoxGeneratorPokemon->getCurrentInt());
 
-    StateFilter filter = ui->filterGenerator->getFilter<StateFilter>();
+    auto filter = ui->filterGenerator->getFilter<StateFilter>();
     StaticGenerator3 generator(initialAdvances, maxAdvances, delay, method, *staticTemplate, *currentProfile, filter);
 
     auto states = generator.generate(seed);
@@ -215,7 +215,7 @@ void Static3::search()
     std::array<u8, 6> max = ui->filterSearcher->getMaxIVs();
     auto method = ui->comboBoxSearcherMethod->getEnum<Method>();
 
-    StateFilter filter = ui->filterSearcher->getFilter<StateFilter>();
+    auto filter = ui->filterSearcher->getFilter<StateFilter>();
     auto *searcher = new StaticSearcher3(method, *currentProfile, filter);
 
     const StaticTemplate *staticTemplate

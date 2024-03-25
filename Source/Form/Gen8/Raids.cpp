@@ -175,7 +175,7 @@ void Raids::generate()
     u64 seed = ui->textBoxSeed->getULong();
     u8 level = ui->spinBoxLevel->value();
 
-    StateFilter filter = ui->filter->getFilter<StateFilter>();
+    auto filter = ui->filter->getFilter<StateFilter>();
     RaidGenerator generator(initialAdvances, maxAdvances, delay, *currentProfile, filter);
 
     if (ui->comboBoxLocation->currentIndex() == 3)

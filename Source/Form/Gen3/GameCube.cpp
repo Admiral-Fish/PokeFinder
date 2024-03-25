@@ -124,7 +124,7 @@ void GameCube::generate()
     u32 maxAdvances = ui->textBoxGeneratorMaxAdvances->getUInt();
     u32 delay = ui->textBoxGeneratorDelay->getUInt();
 
-    StateFilter filter = ui->filterGenerator->getFilter<StateFilter>();
+    auto filter = ui->filterGenerator->getFilter<StateFilter>();
     GameCubeGenerator generator(initialAdvances, maxAdvances, delay, method, ui->checkBoxGeneratorFirstShadowUnset->isChecked(),
                                 *currentProfile, filter);
 
@@ -235,7 +235,7 @@ void GameCube::search()
     std::array<u8, 6> min = ui->filterSearcher->getMinIVs();
     std::array<u8, 6> max = ui->filterSearcher->getMaxIVs();
 
-    StateFilter filter = ui->filterSearcher->getFilter<StateFilter>();
+    auto filter = ui->filterSearcher->getFilter<StateFilter>();
     auto *searcher = new GameCubeSearcher(method, ui->checkBoxSearcherFirstShadowUnset->isChecked(), *currentProfile, filter);
 
     int maxProgress = 1;

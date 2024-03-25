@@ -34,6 +34,47 @@ constexpr u8 genderRatios[8][6]
         { 0xff, 0xbf, 0x7f, 0x7f, 0x1f, 0x7f }, { 0x1f, 0x1f, 0x1f, 0x1f, 0x1f, 0x7f }, { 0xff, 0x7f, 0xff, 0x7f, 0xff, 0x7f },
         { 0xff, 0x1f, 0x3f, 0x7f, 0x7f, 0x3f }, { 0x7f, 0x7f, 0x7f, 0x7f, 0x7f, 0x7f } };
 
+/**
+ * @brief Generates a pokemon that has the matching \p nature and \p gender
+ *
+ * @param rng Starting PRNG state
+ * @param tsv Trainer shiny value
+ * @param nature Pokemon nature
+ * @param gender Pokemon gender
+ * @param genderRatio Pokemon gender ratio
+ */
+static void generatePokemon(XDRNG &rng, u16 tsv, u8 nature, u8 gender, u8 genderRatio)
+{
+    // Fake PID / IVs / Ability
+    rng.advance(5);
+
+    while (true)
+    {
+        u16 high = rng.nextUShort();
+        u16 low = rng.nextUShort();
+
+        if (genderRatio != 0xff)
+        {
+            u8 pidGender = (low & 0xff) < genderRatio;
+            if (pidGender != gender)
+            {
+                continue;
+            }
+        }
+
+        u32 pid = (high << 16) | low;
+        if (pid % 25 != nature)
+        {
+            continue;
+        }
+
+        if ((high ^ low ^ tsv) >= 8)
+        {
+            break;
+        }
+    }
+}
+
 ColoSeedSearcher::ColoSeedSearcher(const ColoCriteria &criteria) : SeedSearcher(criteria)
 {
 }
@@ -91,38 +132,6 @@ void ColoSeedSearcher::startSearch(const std::vector<u32> &seeds)
 
     std::sort(results.begin(), results.end());
     results.erase(std::unique(results.begin(), results.end()), results.end());
-}
-
-void ColoSeedSearcher::generatePokemon(XDRNG &rng, u16 tsv, u8 nature, u8 gender, u8 genderRatio) const
-{
-    // Fake PID / IVs / Ability
-    rng.advance(5);
-
-    while (true)
-    {
-        u16 high = rng.nextUShort();
-        u16 low = rng.nextUShort();
-
-        if (genderRatio != 0xff)
-        {
-            u8 pidGender = (low & 0xff) < genderRatio;
-            if (pidGender != gender)
-            {
-                continue;
-            }
-        }
-
-        u32 pid = (high << 16) | low;
-        if (pid % 25 != nature)
-        {
-            continue;
-        }
-
-        if ((high ^ low ^ tsv) >= 8)
-        {
-            break;
-        }
-    }
 }
 
 void ColoSeedSearcher::search(u32 start, u32 end)
