@@ -27,11 +27,6 @@
 #include <Core/RNG/MTFast.hpp>
 #include <Core/Util/Utilities.hpp>
 
-inline bool isShiny(u32 pid, u16 tsv)
-{
-    return ((pid >> 16) ^ (pid & 0xffff) ^ tsv) < 8;
-}
-
 EggGenerator5::EggGenerator5(u32 initialAdvances, u32 maxAdvances, u32 delay, const Daycare &daycare, const Profile5 &profile,
                              const StateFilter &filter) :
     EggGenerator(initialAdvances, maxAdvances, delay, Method::None, 0, daycare, profile, filter),
@@ -170,7 +165,7 @@ std::vector<EggState5> EggGenerator5::generateBW(u64 seed) const
         }
 
         u32 pid = go.nextUInt(0xffffffff);
-        for (u8 i = 0; i < rolls && !isShiny(pid, tsv); i++)
+        for (u8 i = 0; i < rolls && !Utilities::isShiny<true>(pid, tsv); i++)
         {
             pid = go.nextUInt(0xffffffff);
         }
@@ -178,7 +173,7 @@ std::vector<EggState5> EggGenerator5::generateBW(u64 seed) const
         u8 ability = hiddenAbility ? 2 : ((pid >> 16) & 1);
 
         EggState5 state(rng.nextUInt(0x1fff), advances + initialAdvances + cnt, pid, ivs, ability, Utilities::getGender(pid, info), nature,
-                        Utilities::getShiny(pid, tsv), inheritance, info);
+                        Utilities::getShiny<true>(pid, tsv), inheritance, info);
         if (filter.compareState(static_cast<const State &>(state)))
         {
             states.emplace_back(state);
@@ -216,7 +211,7 @@ std::vector<EggState5> EggGenerator5::generateBW2(u64 seed) const
                 pid ^= 0x10000;
             }
 
-            for (u8 i = 0; i < rolls && !isShiny(pid, tsv); i++)
+            for (u8 i = 0; i < rolls && !Utilities::isShiny<true>(pid, tsv); i++)
             {
                 pid = go.nextUInt();
                 if (((pid >> 16) & 1) != state.getAbility())
@@ -226,7 +221,7 @@ std::vector<EggState5> EggGenerator5::generateBW2(u64 seed) const
             }
 
             state.update(rng.nextUInt(0x1fff), advances + initialAdvances + cnt, pid, Utilities::getGender(pid, info),
-                         Utilities::getShiny(pid, tsv));
+                         Utilities::getShiny<true>(pid, tsv));
             if (filter.compareGender(state.getGender()) && filter.compareShiny(state.getShiny()))
             {
                 states.emplace_back(state);

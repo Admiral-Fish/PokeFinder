@@ -284,7 +284,7 @@ std::vector<EggState3> EggGenerator3::generateEmeraldHeld() const
                 info = male;
             }
 
-            EggState3 state(initialAdvances + cnt - offset, redraw, pid, Utilities::getGender(pid, info), Utilities::getShiny(pid, tsv),
+            EggState3 state(initialAdvances + cnt - offset, redraw, pid, Utilities::getGender(pid, info), Utilities::getShiny<true>(pid, tsv),
                             info);
             if (filter.compareAbility(state.getAbility()) && filter.compareGender(state.getGender()))
             {
@@ -463,7 +463,7 @@ std::vector<EggState3> EggGenerator3::generateRSFRLGPickup(u32 seed, const std::
                 info = male;
             }
 
-            state.update(initialAdvancesPickup + cnt, pid, Utilities::getShiny(pid, tsv), ivs, inheritance, info);
+            state.update(initialAdvancesPickup + cnt, pid, Utilities::getShiny<true>(pid, tsv), ivs, inheritance, info);
             if (filter.compareHiddenPower(state.getHiddenPower()) && filter.compareNature(state.getNature())
                 && filter.compareShiny(state.getShiny()) && filter.compareIV(state.getIVs()))
             {

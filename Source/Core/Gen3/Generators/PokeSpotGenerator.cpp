@@ -156,7 +156,7 @@ std::vector<PokeSpotState> PokeSpotGenerator::generateFood(u32 seed, const Encou
             const Slot &slot = encounterArea.getPokemon(encounterSlot);
             const PersonalInfo *info = slot.getInfo();
 
-            PokeSpotState state(initialAdvances + cnt, pid, Utilities::getGender(pid, info), Utilities::getShiny(pid, tsv), encounterSlot,
+            PokeSpotState state(initialAdvances + cnt, pid, Utilities::getGender(pid, info), Utilities::getShiny<true>(pid, tsv), encounterSlot,
                                 slot.getSpecie(), info);
             if (filter.compareGender(state.getGender()) && filter.compareShiny(state.getShiny()))
             {

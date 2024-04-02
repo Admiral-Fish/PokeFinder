@@ -22,6 +22,7 @@
 #include <Core/Parents/States/State.hpp>
 #include <Core/RNG/RNGList.hpp>
 #include <Core/RNG/Xorshift.hpp>
+#include <Core/Util/Utilities.hpp>
 
 static u32 gen(Xorshift &rng)
 {
@@ -53,27 +54,18 @@ std::vector<GeneratorState> EventGenerator8::generate(u64 seed0, u64 seed1) cons
         switch (wb8.getShiny())
         {
         case 0:
-        {
             pid = rngList.next();
-            u16 psv = (pid >> 16) ^ (pid & 0xffff);
-
-            if ((psv ^ tsv) < 16)
+            if (Utilities::isShiny<false>(pid, tsv))
             {
                 pid ^= 0x10000000;
             }
             shiny = 0;
             break;
-        }
+
         case 1:
         case 2:
-        {
             pid = rngList.next();
-            u16 psv = (pid >> 16) ^ (pid & 0xffff);
-
-            u16 realXOR = psv ^ tsv;
-            u8 shinyType = realXOR == 0 ? 2 : realXOR < 16 ? 1 : 0;
-
-            if (shinyType != wb8.getShiny())
+            if (Utilities::getShiny<false>(pid, tsv) != wb8.getShiny())
             {
                 u16 high = (pid & 0xFFFF) ^ tsv ^ (2 - wb8.getShiny());
                 pid = (high << 16) | (pid & 0xFFFF);
@@ -81,14 +73,11 @@ std::vector<GeneratorState> EventGenerator8::generate(u64 seed0, u64 seed1) cons
 
             shiny = wb8.getShiny();
             break;
-        }
+
         case 4:
-        {
             pid = wb8.getPID();
-            u16 realXor = (pid >> 16) ^ (pid & 0xffff) ^ tsv;
-            shiny = realXor == 0 ? 2 : realXor < 16 ? 1 : 0;
+            shiny = Utilities::getShiny<false>(pid, tsv);
             break;
-        }
         }
 
         std::array<u8, 6> ivs = { 255, 255, 255, 255, 255, 255 };

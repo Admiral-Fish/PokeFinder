@@ -25,6 +25,7 @@
 #include <Core/Parents/PersonalLoader.hpp>
 #include <Core/RNG/RNGList.hpp>
 #include <Core/RNG/Xorshift.hpp>
+#include <Core/Util/Utilities.hpp>
 #include <algorithm>
 
 struct EggMoveList
@@ -269,17 +270,10 @@ std::vector<UndergroundState> UndergroundGenerator::generate(u64 seed0, u64 seed
         {
             pid = rngList.next(rand);
 
-            u16 psv = (pid >> 16) ^ (pid & 0xffff);
-            u16 fakeXor = (sidtid >> 16) ^ (sidtid & 0xffff) ^ psv;
-
-            if (fakeXor < 16) // Force shiny
+            shiny = Utilities::getShiny<false>(pid, (sidtid >> 16) ^ (sidtid & 0xffff));
+            if (shiny) // Force shiny
             {
-                shiny = fakeXor == 0 ? 2 : 1;
-
-                u16 realXor = psv ^ tsv;
-                u8 realShiny = realXor == 0 ? 2 : realXor < 16 ? 1 : 0;
-
-                if (realShiny != shiny)
+                if (Utilities::getShiny<false>(pid, tsv) != shiny)
                 {
                     u16 high = (pid & 0xFFFF) ^ tsv ^ (2 - shiny);
                     pid = (high << 16) | (pid & 0xFFFF);
@@ -288,8 +282,7 @@ std::vector<UndergroundState> UndergroundGenerator::generate(u64 seed0, u64 seed
             }
             else // Force non
             {
-                shiny = 0;
-                if ((psv ^ tsv) < 16)
+                if (Utilities::isShiny<false>(pid, tsv))
                 {
                     pid ^= 0x10000000;
                 }

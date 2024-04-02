@@ -26,6 +26,7 @@
 #include <Core/RNG/RNGList.hpp>
 #include <Core/RNG/Xorshift.hpp>
 #include <Core/Util/EncounterSlot.hpp>
+#include <Core/Util/Utilities.hpp>
 #include <algorithm>
 
 static u16 getItem(u8 rand, Lead lead, const PersonalInfo *info)
@@ -112,26 +113,18 @@ std::vector<WildGeneratorState> WildGenerator8::generate(u64 seed0, u64 seed1) c
         u32 sidtid = rngList.next(rand);
         u32 pid = rngList.next(rand);
 
-        u16 psv = (pid >> 16) ^ (pid & 0xffff);
-        u16 fakeXor = (sidtid >> 16) ^ (sidtid & 0xffff) ^ psv;
-        u8 shiny;
-        if (fakeXor < 16) // Force shiny
+        u8 shiny = Utilities::getShiny<false>(pid, (sidtid >> 16) ^ (sidtid & 0xffff));
+        if (shiny) // Force shiny
         {
-            shiny = fakeXor == 0 ? 2 : 1;
-
-            u16 realXor = psv ^ tsv;
-            u8 realShiny = realXor == 0 ? 2 : realXor < 16 ? 1 : 0;
-
-            if (realShiny != shiny)
+            if (Utilities::getShiny<false>(pid, tsv) != shiny)
             {
                 u16 high = (pid & 0xFFFF) ^ tsv ^ (2 - shiny);
                 pid = (high << 16) | (pid & 0xFFFF);
             }
         }
-        else // Force non shiny
+        else
         {
-            shiny = 0;
-            if ((psv ^ tsv) < 16)
+            if (Utilities::isShiny<false>(pid, tsv)) // Force non shiny
             {
                 pid ^= 0x10000000;
             }

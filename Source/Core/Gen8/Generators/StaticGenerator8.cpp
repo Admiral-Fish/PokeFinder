@@ -25,6 +25,7 @@
 #include <Core/RNG/RNGList.hpp>
 #include <Core/RNG/Xoroshiro.hpp>
 #include <Core/RNG/Xorshift.hpp>
+#include <Core/Util/Utilities.hpp>
 
 static u32 gen(Xorshift &rng)
 {
@@ -49,27 +50,21 @@ std::vector<GeneratorState> StaticGenerator8::generate(u64 seed0, u64 seed1) con
         u32 sidtid = rngList.next();
         u32 pid = rngList.next();
 
-        u16 psv = (pid >> 16) ^ (pid & 0xffff);
         u8 shiny;
         if (staticTemplate.getShiny() == Shiny::Never)
         {
             shiny = 0;
-            if ((psv ^ tsv) < 16)
+            if (Utilities::isShiny<false>(pid, tsv))
             {
                 pid ^= 0x10000000;
             }
         }
         else
         {
-            u16 fakeXOR = (sidtid >> 16) ^ (sidtid & 0xffff) ^ psv;
-            if (fakeXOR < 16) // Force shiny
+            shiny = Utilities::getShiny<false>(pid, (sidtid >> 16) ^ (sidtid & 0xffff));
+            if (shiny) // Force shiny
             {
-                shiny = fakeXOR == 0 ? 2 : 1;
-
-                u16 realXOR = psv ^ tsv;
-                u8 realShiny = realXOR == 0 ? 2 : realXOR < 16 ? 1 : 0;
-
-                if (realShiny != shiny)
+                if (Utilities::getShiny<false>(pid, tsv) != shiny)
                 {
                     u16 high = (pid & 0xFFFF) ^ tsv ^ (2 - shiny);
                     pid = (high << 16) | (pid & 0xFFFF);
@@ -78,7 +73,7 @@ std::vector<GeneratorState> StaticGenerator8::generate(u64 seed0, u64 seed1) con
             else // Force non shiny
             {
                 shiny = 0;
-                if ((psv ^ tsv) < 16)
+                if (Utilities::isShiny<false>(pid, tsv))
                 {
                     pid ^= 0x10000000;
                 }
@@ -176,17 +171,10 @@ std::vector<GeneratorState> StaticGenerator8::generateRoamer(u64 seed0, u64 seed
         u32 sidtid = rng.nextUInt(0xffffffff);
         u32 pid = rng.nextUInt(0xffffffff);
 
-        u16 psv = (pid >> 16) ^ (pid & 0xffff);
-        u16 fakeXOR = (sidtid >> 16) ^ (sidtid & 0xffff) ^ psv;
-        u8 shiny;
-        if (fakeXOR < 16) // Force shiny
+        u8 shiny = Utilities::getShiny<false>(pid, (sidtid >> 16) ^ (sidtid & 0xffff));
+        if (shiny) // Force shiny
         {
-            shiny = fakeXOR == 0 ? 2 : 1;
-
-            u16 realXOR = psv ^ tsv;
-            u8 realShiny = realXOR == 0 ? 2 : realXOR < 16 ? 1 : 0;
-
-            if (realShiny != shiny)
+            if (Utilities::getShiny<false>(pid, tsv) != shiny)
             {
                 u16 high = (pid & 0xFFFF) ^ tsv ^ (2 - shiny);
                 pid = (high << 16) | (pid & 0xFFFF);
@@ -194,8 +182,7 @@ std::vector<GeneratorState> StaticGenerator8::generateRoamer(u64 seed0, u64 seed
         }
         else // Force non shiny
         {
-            shiny = 0;
-            if ((psv ^ tsv) < 16)
+            if (Utilities::isShiny<false>(pid, tsv))
             {
                 pid ^= 0x10000000;
             }

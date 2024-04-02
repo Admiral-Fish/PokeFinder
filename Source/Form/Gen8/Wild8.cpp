@@ -50,13 +50,13 @@ Wild8::Wild8(QWidget *parent) : QWidget(parent), ui(new Ui::Wild8)
 
     ui->comboMenuLead->addAction(tr("None"), toInt(Lead::None));
     ui->comboMenuLead->addMenu(tr("Cute Charm"), { tr("♂ Lead"), tr("♀ Lead") }, { toInt(Lead::CuteCharmM), toInt(Lead::CuteCharmF) });
-    ui->comboMenuLead->addMenu(
-        tr("Slot Modifier"), { tr("Harvest"), tr("Flash Fire"), tr("Magnet Pull"), tr("Static"), tr("Storm Drain") },
-        { toInt(Lead::Harvest), toInt(Lead::FlashFire), toInt(Lead::MagnetPull), toInt(Lead::Static), toInt(Lead::StormDrain) });
     ui->comboMenuLead->addMenu(tr("Item Modifier"), { tr("Compound Eyes"), tr("Super Luck") },
                                { toInt(Lead::CompoundEyes), toInt(Lead::SuperLuck) });
     ui->comboMenuLead->addMenu(tr("Level Modifier"), { tr("Hustle"), tr("Pressure"), tr("Vital Spirit") },
                                { toInt(Lead::Hustle), toInt(Lead::Pressure), toInt(Lead::VitalSpirit) });
+    ui->comboMenuLead->addMenu(
+        tr("Slot Modifier"), { tr("Harvest"), tr("Flash Fire"), tr("Magnet Pull"), tr("Static"), tr("Storm Drain") },
+        { toInt(Lead::Harvest), toInt(Lead::FlashFire), toInt(Lead::MagnetPull), toInt(Lead::Static), toInt(Lead::StormDrain) });
     ui->comboMenuLead->addMenu(tr("Synchronize"), Translator::getNatures());
 
     ui->comboBoxEncounter->setup({ toInt(Encounter::Grass), toInt(Encounter::Surfing), toInt(Encounter::OldRod), toInt(Encounter::GoodRod),

@@ -85,21 +85,23 @@ namespace Utilities
     /**
      * @brief Determines the shiny of the \p pid based on the \p tsv
      *
-     * This is utilized by Gen 3-5
-     *
+     * @tparam old Whether to use the old or new shiny compare value
      * @param pid Pokemon PID
      * @param tsv Trainer shiny value
      *
      * @return Shiny value
      */
+    template <bool old>
     inline u8 getShiny(u32 pid, u16 tsv)
     {
+        constexpr u8 compare = old ? 8 : 16;
+
         u16 psv = (pid >> 16) ^ (pid & 0xffff);
         if (tsv == psv)
         {
             return 2; // Square
         }
-        else if ((tsv ^ psv) < 8)
+        else if ((tsv ^ psv) < compare)
         {
             return 1; // Star
         }
@@ -107,6 +109,24 @@ namespace Utilities
         {
             return 0;
         }
+    }
+
+    /**
+     * @brief Determines if the \p pid is shiny based on the \p tsv
+     *
+     * @tparam old Whether to use the old or new shiny compare value
+     * @param pid Pokemon PID
+     * @param tsv Trainer shiny value
+     *
+     * @return Shiny value
+     */
+    template <bool old>
+    inline u8 isShiny(u32 pid, u16 tsv)
+    {
+        constexpr u8 compare = old ? 8 : 16;
+
+        u16 psv = (pid >> 16) ^ (pid & 0xffff);
+        return (tsv ^ psv) < compare;
     }
 }
 

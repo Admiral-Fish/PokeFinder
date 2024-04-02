@@ -117,7 +117,7 @@ std::vector<State5> EventGenerator5::generate(u64 seed) const
         }
 
         State5 state(rng.nextUInt(0x1fff), advances + initialAdvances + cnt, pid, ivs, ability, Utilities::getGender(pid, info),
-                     pgf.getLevel(), nature, Utilities::getShiny(pid, tsv), info);
+                     pgf.getLevel(), nature, Utilities::getShiny<true>(pid, tsv), info);
         if (filter.compareState(static_cast<const State &>(state)))
         {
             states.emplace_back(state);

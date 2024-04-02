@@ -25,6 +25,7 @@
 #include <Core/RNG/RNGList.hpp>
 #include <Core/RNG/Xoroshiro.hpp>
 #include <Core/RNG/Xorshift.hpp>
+#include <Core/Util/Utilities.hpp>
 
 static u32 gen(Xorshift &rng)
 {
@@ -178,23 +179,20 @@ std::vector<EggGeneratorState> EggGenerator8::generate(u64 seed0, u64 seed1) con
 
             // Assign PID if we have masuda or shiny charm
             u32 pid = 0;
-            u16 psv = 0;
             for (u8 roll = 0; roll < pidRolls; roll++)
             {
                 pid = rng.nextUInt(0xffffffff);
-                psv = (pid >> 16) ^ (pid & 0xffff);
-                if ((psv ^ tsv) < 16)
+                if (Utilities::isShiny<false>(pid, tsv))
                 {
                     break;
                 }
             }
-            u16 pidXOR = psv ^ tsv;
-            u8 shiny = pidXOR < 16 ? pidXOR == 0 ? 2 : 1 : 0;
 
             // Ball handling check
             // Uses a rand call, maybe add later
 
-            EggGeneratorState state(initialAdvances + cnt, ec, pid, ivs, ability, gender, 1, nature, shiny, inheritance, info);
+            EggGeneratorState state(initialAdvances + cnt, ec, pid, ivs, ability, gender, 1, nature, Utilities::getShiny<false>(pid, tsv),
+                                    inheritance, info);
             if (filter.compareState(static_cast<const State &>(state)))
             {
                 states.emplace_back(state);

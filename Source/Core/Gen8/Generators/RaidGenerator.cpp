@@ -23,6 +23,7 @@
 #include <Core/Parents/PersonalInfo.hpp>
 #include <Core/Parents/States/State.hpp>
 #include <Core/RNG/Xoroshiro.hpp>
+#include <Core/Util/Utilities.hpp>
 
 constexpr u8 toxtricityAmpedNatures[] = { 3, 4, 2, 8, 9, 19, 22, 11, 13, 14, 0, 6, 24 };
 constexpr u8 toxtricityLowKeyNatures[] = { 1, 5, 7, 10, 12, 15, 16, 17, 18, 20, 21, 23 };
@@ -45,22 +46,15 @@ std::vector<GeneratorState> RaidGenerator::generate(u64 seed, u8 level, const Ra
         u32 ec = rng.nextUInt<0xffffffff>();
         u32 sidtid = rng.nextUInt<0xffffffff>();
         u32 pid = rng.nextUInt<0xffffffff>();
-        u16 psv = (pid >> 16) ^ (pid & 0xffff);
         u8 shiny;
         if (raid.getShiny() == Shiny::Random) // Random shiny chance
         {
             // Game uses a fake TID/SID to determine shiny or not
             // PID is later modified using the actual TID/SID of trainer if necessary
-            u16 fakeXor = (sidtid >> 16) ^ (sidtid & 0xffff) ^ psv;
-
-            if (fakeXor < 16) // Force shiny
+            shiny = Utilities::getShiny<false>(pid, (sidtid >> 16) ^ (sidtid & 0xffff));
+            if (shiny) // Force shiny
             {
-                shiny = fakeXor == 0 ? 2 : 1;
-
-                u16 realXor = psv ^ tsv;
-                u8 realShiny = realXor == 0 ? 2 : realXor < 16 ? 1 : 0;
-
-                if (realShiny != shiny)
+                if (Utilities::getShiny<false>(pid, tsv) != shiny)
                 {
                     u16 high = (pid & 0xFFFF) ^ tsv ^ (2 - shiny);
                     pid = (high << 16) | (pid & 0xFFFF);
@@ -68,8 +62,7 @@ std::vector<GeneratorState> RaidGenerator::generate(u64 seed, u8 level, const Ra
             }
             else // Force non shiny
             {
-                shiny = 0;
-                if ((psv ^ tsv) < 16)
+                if (Utilities::isShiny<false>(pid, tsv))
                 {
                     pid ^= 0x10000000;
                 }
@@ -78,7 +71,7 @@ std::vector<GeneratorState> RaidGenerator::generate(u64 seed, u8 level, const Ra
         else if (raid.getShiny() == Shiny::Never) // Force non-shiny
         {
             shiny = 0;
-            if ((psv ^ tsv) < 16)
+            if (Utilities::isShiny<false>(pid, tsv))
             {
                 pid ^= 0x10000000;
             }
@@ -86,8 +79,7 @@ std::vector<GeneratorState> RaidGenerator::generate(u64 seed, u8 level, const Ra
         else // Force shiny
         {
             shiny = 2;
-            u16 realXor = psv ^ tsv;
-            if (realXor != 0) // Check if PID is not normally square shiny
+            if (Utilities::getShiny<false>(pid, tsv) != shiny) // Check if PID is not normally square shiny
             {
                 // Force shiny (makes it square)
                 u16 high = (pid & 0xffff) ^ tsv;

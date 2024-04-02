@@ -279,7 +279,7 @@ void GameCubeSearcher::searchChannel(u8 minSpd, u8 maxSpd, const StaticTemplate 
                 continue;
             }
 
-            SearcherState state(origin, pid, ivs, pid & 1, 2, staticTemplate->getLevel(), nature, Utilities::getShiny(pid, tid ^ sid),
+            SearcherState state(origin, pid, ivs, pid & 1, 2, staticTemplate->getLevel(), nature, Utilities::getShiny<true>(pid, tid ^ sid),
                                 info);
             if (filter.compareState(static_cast<const SearcherState &>(state)))
             {
@@ -346,7 +346,7 @@ std::vector<SearcherState> GameCubeSearcher::searchColoShadow(u8 hp, u8 atk, u8 
             }
 
             SearcherState state(seed, pid, ivs, ability, Utilities::getGender(pid, info), shadowTemplate->getLevel(), nature,
-                                Utilities::getShiny(pid, tsv), info);
+                                Utilities::getShiny<true>(pid, tsv), info);
             if (filter.compareState(static_cast<const SearcherState &>(state)))
             {
                 states.emplace_back(state);
@@ -566,7 +566,7 @@ std::vector<SearcherState> GameCubeSearcher::searchNonLock(u8 hp, u8 atk, u8 def
         ability &= info->getAbility(0) != info->getAbility(1);
 
         SearcherState state(seed, pid, ivs, ability, Utilities::getGender(pid, info), staticTemplate->getLevel(), nature,
-                            Utilities::getShiny(pid, tsv), info);
+                            Utilities::getShiny<true>(pid, tsv), info);
         if (filter.compareState(static_cast<const SearcherState &>(state)))
         {
             states.emplace_back(state);

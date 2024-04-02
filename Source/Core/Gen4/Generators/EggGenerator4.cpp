@@ -157,7 +157,7 @@ std::vector<EggGeneratorState4> EggGenerator4::generateHeld(u32 seed) const
             ARNG rng(pid);
             for (int i = 0; i < 4; i++)
             {
-                if (Utilities::getShiny(pid, tsv))
+                if (Utilities::getShiny<true>(pid, tsv))
                 {
                     break;
                 }
@@ -171,7 +171,7 @@ std::vector<EggGeneratorState4> EggGenerator4::generateHeld(u32 seed) const
             info = male;
         }
 
-        EggGeneratorState4 state(initialAdvances + cnt, pid, Utilities::getGender(pid, info), Utilities::getShiny(pid, tsv), info);
+        EggGeneratorState4 state(initialAdvances + cnt, pid, Utilities::getGender(pid, info), Utilities::getShiny<true>(pid, tsv), info);
         if (filter.compareAbility(state.getAbility()) && filter.compareGender(state.getGender()) && filter.compareNature(state.getNature())
             && filter.compareShiny(state.getShiny()))
         {

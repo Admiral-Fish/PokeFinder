@@ -112,7 +112,7 @@ std::vector<GeneratorState> GameCubeGenerator::generateChannel(u32 seed, const S
         ivs[4] = go.nextUShort() >> 11;
 
         GeneratorState state(initialAdvances + cnt, pid, ivs, pid & 1, 2, staticTemplate->getLevel(), pid % 25,
-                             Utilities::getShiny(pid, tid ^ sid), info);
+                             Utilities::getShiny<true>(pid, tid ^ sid), info);
         if (filter.compareState(static_cast<const State &>(state)))
         {
             states.emplace_back(state);
@@ -201,7 +201,7 @@ std::vector<GeneratorState> GameCubeGenerator::generateColoShadow(u32 seed, cons
         ivs[5] = iv2 & 31;
 
         GeneratorState state(initialAdvances + cnt, pid, ivs, ability, Utilities::getGender(pid, info), shadowTemplate->getLevel(),
-                             pid % 25, Utilities::getShiny(pid, tsv), info);
+                             pid % 25, Utilities::getShiny<true>(pid, tsv), info);
         if (filter.compareState(static_cast<const State &>(state)))
         {
             states.emplace_back(state);
@@ -286,7 +286,7 @@ std::vector<GeneratorState> GameCubeGenerator::generateGalesShadow(u32 seed, con
         ivs[5] = iv2 & 31;
 
         GeneratorState state(initialAdvances + cnt, pid, ivs, ability, Utilities::getGender(pid, info), shadowTemplate->getLevel(),
-                             pid % 25, Utilities::getShiny(pid, tsv), info);
+                             pid % 25, Utilities::getShiny<true>(pid, tsv), info);
         if (filter.compareState(static_cast<const State &>(state)))
         {
             states.emplace_back(state);
@@ -384,7 +384,7 @@ std::vector<GeneratorState> GameCubeGenerator::generateNonLock(u32 seed, const S
         ivs[5] = iv2 & 31;
 
         GeneratorState state(initialAdvances + cnt, pid, ivs, ability, Utilities::getGender(pid, info), staticTemplate->getLevel(),
-                             pid % 25, Utilities::getShiny(pid, actualTSV), info);
+                             pid % 25, Utilities::getShiny<true>(pid, actualTSV), info);
         if (filter.compareState(static_cast<const State &>(state)))
         {
             states.emplace_back(state);

@@ -64,29 +64,29 @@ Wild4::Wild4(QWidget *parent) : QWidget(parent), ui(new Ui::Wild4)
     ui->filterSearcher->disableControls(Controls::DisableFilter);
 
     ui->comboMenuGeneratorLead->addAction(tr("None"), toInt(Lead::None));
+    ui->comboMenuGeneratorLead->addAction(tr("Compound Eyes"), toInt(Lead::CompoundEyes));
     ui->comboMenuGeneratorLead->addMenu(tr("Cute Charm"), { tr("♂ Lead"), tr("♀ Lead") },
                                         { toInt(Lead::CuteCharmM), toInt(Lead::CuteCharmF) });
     ui->comboMenuGeneratorLead->addMenu(
         tr("Encounter Modifier"), { tr("Arena Trap"), tr("Illuminate"), tr("No Guard"), tr("Sticky Hold"), tr("Suction Cups") },
         { toInt(Lead::ArenaTrap), toInt(Lead::Illuminate), toInt(Lead::NoGuard), toInt(Lead::StickyHold), toInt(Lead::SuctionCups) });
-    ui->comboMenuGeneratorLead->addAction(tr("Compound Eyes"), toInt(Lead::CompoundEyes));
-    ui->comboMenuGeneratorLead->addMenu(tr("Slot Modifier"), { tr("Magnet Pull"), tr("Static") },
-                                        { toInt(Lead::MagnetPull), toInt(Lead::Static) });
     ui->comboMenuGeneratorLead->addMenu(tr("Level Modifier"), { tr("Hustle"), tr("Pressure"), tr("Vital Spirit") },
                                         { toInt(Lead::Hustle), toInt(Lead::Pressure), toInt(Lead::VitalSpirit) });
+    ui->comboMenuGeneratorLead->addMenu(tr("Slot Modifier"), { tr("Magnet Pull"), tr("Static") },
+                                        { toInt(Lead::MagnetPull), toInt(Lead::Static) });
     ui->comboMenuGeneratorLead->addMenu(tr("Synchronize"), Translator::getNatures());
 
     ui->comboMenuSearcherLead->addAction(tr("None"), toInt(Lead::None));
+    ui->comboMenuSearcherLead->addAction(tr("Compound Eyes"), toInt(Lead::CompoundEyes));
     ui->comboMenuSearcherLead->addMenu(tr("Cute Charm"), { tr("♂ Lead"), tr("♀ Lead") },
                                        { toInt(Lead::CuteCharmM), toInt(Lead::CuteCharmF) });
     ui->comboMenuSearcherLead->addMenu(
         tr("Encounter Modifier"), { tr("Arena Trap"), tr("Illuminate"), tr("No Guard"), tr("Sticky Hold"), tr("Suction Cups") },
         { toInt(Lead::ArenaTrap), toInt(Lead::Illuminate), toInt(Lead::NoGuard), toInt(Lead::StickyHold), toInt(Lead::SuctionCups) });
-    ui->comboMenuSearcherLead->addAction(tr("Compound Eyes"), toInt(Lead::CompoundEyes));
-    ui->comboMenuSearcherLead->addMenu(tr("Slot Modifier"), { tr("Magnet Pull"), tr("Static") },
-                                       { toInt(Lead::MagnetPull), toInt(Lead::Static) });
     ui->comboMenuSearcherLead->addMenu(tr("Level Modifier"), { tr("Hustle"), tr("Pressure"), tr("Vital Spirit") },
                                        { toInt(Lead::Hustle), toInt(Lead::Pressure), toInt(Lead::VitalSpirit) });
+    ui->comboMenuSearcherLead->addMenu(tr("Slot Modifier"), { tr("Magnet Pull"), tr("Static") },
+                                       { toInt(Lead::MagnetPull), toInt(Lead::Static) });
     ui->comboMenuSearcherLead->addAction(tr("Synchronize"), toInt(Lead::Synchronize));
 
     ui->comboBoxGeneratorEncounter->setup({ toInt(Encounter::Grass), toInt(Encounter::RockSmash), toInt(Encounter::BugCatchingContest),

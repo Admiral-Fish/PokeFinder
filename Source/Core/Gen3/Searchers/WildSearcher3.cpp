@@ -245,7 +245,7 @@ std::vector<WildSearcherState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 s
                         && (slot.getSpecie() != 201 || unownLetter(pid) == slot.getForm()))
                     {
                         WildSearcherState state(test[i].next(), pid, ivs, pid & 1, Utilities::getGender(pid, info), level[i], nature,
-                                                Utilities::getShiny(pid, tsv), encounterSlot[i], 0, slot.getSpecie(), slot.getForm(), info);
+                                                Utilities::getShiny<true>(pid, tsv), encounterSlot[i], 0, slot.getSpecie(), slot.getForm(), info);
                         if (filter.compareState(state))
                         {
                             states.emplace_back(state);
