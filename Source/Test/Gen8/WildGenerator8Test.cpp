@@ -24,12 +24,12 @@
 #include <Core/Gen8/Encounters8.hpp>
 #include <Core/Gen8/Generators/WildGenerator8.hpp>
 #include <Core/Gen8/Profile8.hpp>
-#include <Core/Parents/States/WildState.hpp>
+#include <Core/Gen8/States/WildState8.hpp>
 #include <QTest>
 #include <Test/Data.hpp>
 #include <Test/Enum.hpp>
 
-static bool operator==(const WildGeneratorState &left, const json &right)
+static bool operator==(const WildState8 &left, const json &right)
 {
     return left.getEC() == right["ec"].get<u32>() && left.getPID() == right["pid"].get<u32>()
         && left.getStats() == right["stats"].get<std::array<u16, 6>>() && left.getAbilityIndex() == right["abilityIndex"].get<u16>()
@@ -39,7 +39,8 @@ static bool operator==(const WildGeneratorState &left, const json &right)
         && left.getNature() == right["nature"].get<u8>() && left.getShiny() == right["shiny"].get<u8>()
         && left.getItem() == right["item"].get<u16>() && left.getSpecie() == right["specie"].get<u16>()
         && left.getEncounterSlot() == right["encounterSlot"].get<u8>() && left.getForm() == right["form"].get<u8>()
-        && left.getAdvances() == right["advances"].get<u32>();
+        && left.getAdvances() == right["advances"].get<u32>() && left.getHeight() == right["height"].get<u8>()
+        && left.getWeight() == right["weight"].get<u8>();
 }
 
 void WildGenerator8Test::generate_data()

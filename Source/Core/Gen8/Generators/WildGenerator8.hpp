@@ -25,7 +25,7 @@
 #include <Core/Parents/Filters/StateFilter.hpp>
 #include <Core/Parents/Generators/WildGenerator.hpp>
 
-class WildGeneratorState;
+class WildState8;
 
 /**
  * @brief Wild encounter generator for Gen8
@@ -55,7 +55,7 @@ public:
      *
      * @return Vector of computed states
      */
-    std::vector<WildGeneratorState> generate(u64 seed0, u64 seed1) const;
+    std::vector<WildState8> generate(u64 seed0, u64 seed1) const;
 };
 
 #endif // WILDGENERATOR8_HPP

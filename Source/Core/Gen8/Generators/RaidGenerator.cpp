@@ -20,8 +20,8 @@
 #include "RaidGenerator.hpp"
 #include <Core/Enum/Method.hpp>
 #include <Core/Gen8/Raid.hpp>
+#include <Core/Gen8/States/State8.hpp>
 #include <Core/Parents/PersonalInfo.hpp>
-#include <Core/Parents/States/State.hpp>
 #include <Core/RNG/Xoroshiro.hpp>
 #include <Core/Util/Utilities.hpp>
 
@@ -33,12 +33,12 @@ RaidGenerator::RaidGenerator(u32 initialAdvances, u32 maxAdvances, u32 delay, co
 {
 }
 
-std::vector<GeneratorState> RaidGenerator::generate(u64 seed, u8 level, const Raid &raid) const
+std::vector<State8> RaidGenerator::generate(u64 seed, u8 level, const Raid &raid) const
 {
     const PersonalInfo *info = raid.getInfo();
     seed += 0x82A2B175229D6A5B * (initialAdvances + delay);
 
-    std::vector<GeneratorState> states;
+    std::vector<State8> states;
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++, seed += 0x82A2B175229D6A5B)
     {
         Xoroshiro rng(seed);
@@ -125,8 +125,9 @@ std::vector<GeneratorState> RaidGenerator::generate(u64 seed, u8 level, const Ra
         // Altform, doesn't seem to have a rand call for raids
 
         u8 gender;
-        if (raid.getGender() == 0) // Random
+        switch (raid.getGender())
         {
+        case 0: // Random
             switch (info->getGender())
             {
             case 255:
@@ -142,18 +143,9 @@ std::vector<GeneratorState> RaidGenerator::generate(u64 seed, u8 level, const Ra
                 gender = (rng.nextUInt<253>() + 1) < info->getGender();
                 break;
             }
-        }
-        else if (raid.getGender() == 1) // Male
-        {
-            gender = 0;
-        }
-        else if (raid.getGender() == 2) // Female
-        {
-            gender = 1;
-        }
-        else if (raid.getGender() == 3) // Genderless
-        {
-            gender = 2;
+            break;
+        default: // Male/Female/Genderless
+            gender = raid.getGender() - 1;
         }
 
         u8 nature;
@@ -173,10 +165,10 @@ std::vector<GeneratorState> RaidGenerator::generate(u64 seed, u8 level, const Ra
             }
         }
 
-        // Height (2 calls)
-        // Weight (2 calls)
+        u8 height = rng.nextUInt<129>() + rng.nextUInt<128>();
+        u8 weight = rng.nextUInt<129>() + rng.nextUInt<128>();
 
-        GeneratorState state(initialAdvances + cnt, ec, pid, ivs, ability, gender, level, nature, shiny, info);
+        State8 state(initialAdvances + cnt, ec, pid, ivs, ability, gender, level, nature, shiny, height, weight, info);
         if (filter.compareState(static_cast<const State &>(state)))
         {
             states.emplace_back(state);

@@ -26,7 +26,7 @@ WildModel8::WildModel8(QObject *parent) : TableModel(parent), showStats(false)
 
 int WildModel8::columnCount(const QModelIndex &parent) const
 {
-    return 18;
+    return 20;
 }
 
 QVariant WildModel8::data(const QModelIndex &index, int role) const
@@ -81,6 +81,10 @@ QVariant WildModel8::data(const QModelIndex &index, int role) const
         case 16:
             return QString::fromStdString(Translator::getGender(state.getGender()));
         case 17:
+            return state.getHeight();
+        case 18:
+            return state.getWeight();
+        case 19:
             return QString::fromStdString(Translator::getCharacteristic(state.getCharacteristic()));
         }
     }

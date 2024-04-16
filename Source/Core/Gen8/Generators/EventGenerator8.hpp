@@ -25,7 +25,7 @@
 #include <Core/Parents/Filters/StateFilter.hpp>
 #include <Core/Parents/Generators/Generator.hpp>
 
-class GeneratorState;
+class State8;
 
 /**
  * @brief Event generator for Gen 8
@@ -53,7 +53,7 @@ public:
      *
      * @return Vector of computed states
      */
-    std::vector<GeneratorState> generate(u64 seed0, u64 seed1) const;
+    std::vector<State8> generate(u64 seed0, u64 seed1) const;
 
 private:
     WB8 wb8;

@@ -17,19 +17,19 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef UNDERGROUNDSTATE_HPP
-#define UNDERGROUNDSTATE_HPP
+#ifndef WILDSTATE8_H
+#define WILDSTATE8_H
 
-#include <Core/Gen8/States/State8.hpp>
+#include <Core/Parents/States/WildState.hpp>
 
 /**
- * @brief State class for Gen8 underground generator encounters
+ * @brief State class for Gen8 wild encounters
  */
-class UndergroundState : public State8
+class WildState8 : public WildGeneratorState
 {
 public:
     /**
-     * @brief Construct a new UndergroundState object
+     * @brief Construct a new WildGeneratorState object
      *
      * @param advances Advances of the state
      * @param ec Pokemon EC
@@ -40,56 +40,45 @@ public:
      * @param level Pokemon level
      * @param nature Pokemon nature
      * @param shiny Pokemon shininess
-     * @param height Pokemon height
-     * @param weight Pokemon weight
-     * @param eggMove Pokemon egg move
+     * @param encounterSlot Pokemon encounter slot
      * @param item Pokemon item
      * @param specie Pokemon specie
-     * @param info Pokemon personal information
+     * @param form Pokemon form
+     * @param height Pokemon height
+     * @param weight Pokemon weight
+     * @param info Pokemon information
      */
-    UndergroundState(u32 advances, u32 ec, u32 pid, const std::array<u8, 6> &ivs, u8 ability, u8 gender, u8 level, u8 nature, u8 shiny,
-                     u8 height, u8 weight, u16 eggMove, u16 item, u16 specie, const PersonalInfo *info) :
-        State8(advances, ec, pid, ivs, ability, gender, level, nature, shiny, height, weight, info),
-        eggMove(eggMove),
-        item(item),
-        specie(specie)
+    WildState8(u32 advances, u32 ec, u32 pid, const std::array<u8, 6> &ivs, u8 ability, u8 gender, u8 level, u8 nature, u8 shiny,
+               u8 encounterSlot, u16 item, u16 specie, u8 form, u8 height, u8 weight, const PersonalInfo *info) :
+        WildGeneratorState(advances, ec, pid, ivs, ability, gender, level, nature, shiny, encounterSlot, item, specie, form, info),
+        height(height),
+        weight(weight)
     {
     }
 
     /**
-     * @brief Returns the egg move of the pokemon
+     * @brief Returns the height of the pokemon
      *
-     * @return Pokemon egg move
+     * @return Pokemon height
      */
-    u16 getEggMove() const
+    u8 getHeight() const
     {
-        return eggMove;
+        return height;
     }
 
     /**
-     * @brief Returns the item of the pokemon
+     * @brief Returns the weight of the pokemon
      *
-     * @return Pokemon item
+     * @return Pokemon weight
      */
-    u16 getItem() const
+    u8 getWeight() const
     {
-        return item;
-    }
-
-    /**
-     * @brief Returns the specie
-     *
-     * @return Pokemon specie
-     */
-    u16 getSpecie() const
-    {
-        return specie;
+        return weight;
     }
 
 private:
-    u16 eggMove;
-    u16 item;
-    u16 specie;
+    u8 height;
+    u8 weight;
 };
 
-#endif // UNDERGROUNDSTATE_HPP
+#endif // WILDSTATE8_H
