@@ -17,10 +17,10 @@
 20,Chargestone Cave 1F
 21,Chargestone Cave B1F
 22,Chargestone Cave B2F
-23,Twist Mountain
-24,Twist Mountain (Upper Level)
-25,Twist Mountain (Middle Level)
-26,Twist Mountain (Lower Level)
+23,Twist Mountain (Upper Level)
+24,Twist Mountain (Middle Level)
+25,Twist Mountain (Lower Level)
+26,Twist Mountain (Lowest Level)
 27,Dragonspiral Tower (Entrance)
 28,Dragonspiral Tower (Outside)
 29,Dragonspiral Tower 1F
