@@ -70,7 +70,7 @@
 85,Mt. Silver
 86,Mt. Silver 1F
 87,Mt. Silver Cave (Lower mountainside)
-88,Mt. Silver Cave (Export Belt)
+88,Mt. Silver Cave (Expert Belt)
 89,Mt. Silver Cave (Upper mountainside)
 91,Safari Zone
 92,Route 12
