@@ -19,8 +19,8 @@
 18,Mt Pyre 1F
 19,Via Vittoria P1
 20,Safari Zone South
-21,Underwater Route 126
-22,Abandoned Ship Rooms B1F
+21,Route 126 Underwater
+22,Abandoned Ship
 23,Grotta Pietrosa P2S
 24,Cammino Ardente
 25,Cascate Meteora P1S 2S
@@ -54,7 +54,6 @@
 53,Percorso 132
 54,Percorso 133
 55,Percorso 134
-56,Abandoned Ship Hidden Floor Corridors
 57,Seafloor Cavern Room 1
 58,Seafloor Cavern Room 2
 59,Seafloor Cavern Room 3
@@ -86,7 +85,7 @@
 88,Orocea
 89,Iridopoli
 90,Petalipoli
-91,Underwater Route 124
+91,Route 124 Underwater
 92,Shoal Cave Low Tide Ice Room
 93,Torre dei Cieli P1
 94,Ceneride
@@ -94,14 +93,7 @@
 96,Torre dei Cieli P5
 97,Safari Zone Southeast
 98,Safari Zone Northeast
-99,Magma Hideout 1F
-100,Magma Hideout 2F 1R
-101,Magma Hideout 2F 2R
-102,Magma Hideout 3F 1R
-103,Magma Hideout 3F 2R
-104,Magma Hideout 4F
-105,Magma Hideout 3F 3R
-106,Magma Hideout 2F 3R
+99,Magma Hideout 
 107,Mirage Tower 1F
 108,Mirage Tower 2F
 109,Mirage Tower 3F

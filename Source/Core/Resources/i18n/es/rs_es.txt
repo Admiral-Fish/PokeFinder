@@ -48,8 +48,7 @@
 47,Shoal Cave Low Tide Ice Room
 48,New Mauville Entrance
 49,New Mauville Inside
-50,Abandoned Ship Rooms B1F
-51,Abandoned Ship Hidden Floor Corridors
+50,Abandoned Ship
 52,Pilar Celeste Planta baja
 53,Sky Pillar 3F
 54,Sky Pillar 5F
@@ -93,5 +92,5 @@
 92,Safari Zone Southeast
 93,Pueblo Azuliza
 94,Pacifidlog Town
-95,Underwater Route 124
-96,Underwater Route 126
+95,Route 124 Underwater
+96,Route 126 Underwater
