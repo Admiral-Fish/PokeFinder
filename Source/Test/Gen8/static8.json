@@ -945,7 +945,7 @@
                     "characteristic": 11,
                     "ec": 570639824,
                     "gender": 2,
-                    "height": 52,
+                    "height": 245,
                     "ivs": [
                         30,
                         31,
@@ -966,7 +966,7 @@
                         198,
                         145
                     ],
-                    "weight": 48
+                    "weight": 124
                 },
                 {
                     "ability": 2,
@@ -975,7 +975,7 @@
                     "characteristic": 6,
                     "ec": 2412930810,
                     "gender": 2,
-                    "height": 245,
+                    "height": 48,
                     "ivs": [
                         19,
                         31,
@@ -996,7 +996,7 @@
                         201,
                         145
                     ],
-                    "weight": 124
+                    "weight": 96
                 },
                 {
                     "ability": 2,
@@ -1005,7 +1005,7 @@
                     "characteristic": 26,
                     "ec": 570642538,
                     "gender": 2,
-                    "height": 96,
+                    "height": 99,
                     "ivs": [
                         31,
                         31,
@@ -1026,7 +1026,7 @@
                         201,
                         135
                     ],
-                    "weight": 69
+                    "weight": 96
                 },
                 {
                     "ability": 2,
@@ -1035,7 +1035,7 @@
                     "characteristic": 26,
                     "ec": 2452903364,
                     "gender": 2,
-                    "height": 96,
+                    "height": 99,
                     "ivs": [
                         31,
                         31,
@@ -1056,7 +1056,7 @@
                         201,
                         135
                     ],
-                    "weight": 69
+                    "weight": 96
                 },
                 {
                     "ability": 2,
@@ -1065,7 +1065,7 @@
                     "characteristic": 26,
                     "ec": 715243415,
                     "gender": 2,
-                    "height": 96,
+                    "height": 99,
                     "ivs": [
                         31,
                         31,
@@ -1086,7 +1086,7 @@
                         201,
                         135
                     ],
-                    "weight": 69
+                    "weight": 96
                 },
                 {
                     "ability": 2,
@@ -1095,7 +1095,7 @@
                     "characteristic": 16,
                     "ec": 3067672975,
                     "gender": 2,
-                    "height": 99,
+                    "height": 69,
                     "ivs": [
                         31,
                         27,
@@ -1116,7 +1116,7 @@
                         201,
                         145
                     ],
-                    "weight": 96
+                    "weight": 147
                 },
                 {
                     "ability": 2,
@@ -1125,7 +1125,7 @@
                     "characteristic": 26,
                     "ec": 249593662,
                     "gender": 2,
-                    "height": 96,
+                    "height": 147,
                     "ivs": [
                         31,
                         12,
@@ -1146,7 +1146,7 @@
                         201,
                         145
                     ],
-                    "weight": 103
+                    "weight": 67
                 },
                 {
                     "ability": 2,
@@ -1155,7 +1155,7 @@
                     "characteristic": 16,
                     "ec": 3200942419,
                     "gender": 2,
-                    "height": 129,
+                    "height": 245,
                     "ivs": [
                         31,
                         30,
@@ -1176,7 +1176,7 @@
                         201,
                         145
                     ],
-                    "weight": 95
+                    "weight": 150
                 },
                 {
                     "ability": 2,
@@ -1185,7 +1185,7 @@
                     "characteristic": 26,
                     "ec": 422632474,
                     "gender": 2,
-                    "height": 129,
+                    "height": 245,
                     "ivs": [
                         31,
                         30,
@@ -1206,7 +1206,7 @@
                         201,
                         145
                     ],
-                    "weight": 95
+                    "weight": 150
                 },
                 {
                     "ability": 2,
@@ -1215,7 +1215,7 @@
                     "characteristic": 1,
                     "ec": 3906296370,
                     "gender": 2,
-                    "height": 129,
+                    "height": 245,
                     "ivs": [
                         31,
                         30,
@@ -1236,7 +1236,7 @@
                         201,
                         145
                     ],
-                    "weight": 95
+                    "weight": 150
                 }
             ]
         },

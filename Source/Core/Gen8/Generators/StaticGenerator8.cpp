@@ -113,13 +113,19 @@ std::vector<State8> StaticGenerator8::generateNonRoamer(u64 seed0, u64 seed1) co
         }
 
         u8 ability;
-        if (staticTemplate.getAbility() != 255)
+        switch (staticTemplate.getAbility())
         {
+        case 0:
+        case 1:
             ability = staticTemplate.getAbility();
-        }
-        else
-        {
+            break;
+        case 2:
+            ability = 2;
+            rngList.next();
+            break;
+        default:
             ability = rngList.next() % 2;
+            break;
         }
 
         u8 gender;
