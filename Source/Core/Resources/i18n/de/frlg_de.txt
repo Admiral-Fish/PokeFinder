@@ -49,6 +49,7 @@
 54,Eiland Vier Eiskaskadenhöhle Rückseite
 55,Eiland Sechs Musterbuschwald
 56,Eiland Fünf Verlorene Höhle
+66,Eiland Fünf Verlorene Höhle Item Räume
 70,Eiland Eins Glühweg
 71,Eiland Eins Schatzgestade
 72,Eiland Zwei Kap Kante
