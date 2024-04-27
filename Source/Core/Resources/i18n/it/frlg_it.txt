@@ -11,12 +11,9 @@
 10,Mt Moon B2F
 11,S.S Anne Exterior
 12,Digletts Cave B1F
-13,Victory Road 1F
+13,Victory Road 1F/3F
 14,Victory Road 2F
-15,Via Vittoria P3
-16,Pokemon Mansion 1F
-17,Pokemon Mansion 2F
-18,Pokemon Mansion 3F
+16,Pokemon Mansion 1F-3F
 19,Pokemon Mansion B1F
 20,Safari Zone Center
 21,Safari Zone East
@@ -33,15 +30,13 @@
 32,Seafoam Islands B3F
 33,Isole Spumarine P4S
 34,Pokemon Tower 3F
-35,Pokemon Tower 4F
-36,Pokemon Tower 5F
+35,Pokemon Tower 4F-5F
 37,Pokemon Tower 6F
 38,Pokemon Tower 7F
 39,Centrale Elettrica
 40,Mt Ember Exterior
-41,Mt Ember Summit Path 1F
+41,Mt Ember Summit Path 1F/3F
 42,Mt Ember Summit Path 2F
-43,Mt Ember Summit Path 3F
 44,Mt Ember Ruby Path 1F
 45,Mt Ember Ruby Path B1F
 46,Mt Ember Ruby Path B2F
@@ -50,24 +45,11 @@
 49,Mt Ember Ruby Path B2F Stairs
 50,Three Island Berry Forest
 51,Four Island Icefall Cave Entrance
-52,Four Island Icefall Cave 1F
-53,Four Island Icefall Cave B1F
+52,Four Island Icefall Cave 1F/B1F
 54,Four Island Icefall Cave Back
 55,Six Island Pattern Bush
-56,Five Island Lost Cave Room 1
-57,Five Island Lost Cave Room 2
-58,Five Island Lost Cave Room 3
-59,Five Island Lost Cave Room 4
-60,Five Island Lost Cave Room 5
-61,Five Island Lost Cave Room 6
-62,Five Island Lost Cave Room 7
-63,Five Island Lost Cave Room 8
-64,Five Island Lost Cave Room 9
-65,Five Island Lost Cave Room 10
-66,Five Island Lost Cave Room 11
-67,Five Island Lost Cave Room 12
-68,Five Island Lost Cave Room 13
-69,Five Island Lost Cave Room 14
+56,Five Island Lost Cave
+66,Five Island Lost Cave Item Room
 70,One Island Kindle Road
 71,One Island Treasure Beach
 72,Two Island Cape Brink
@@ -105,8 +87,7 @@
 104,Percorso 18
 105,Percorso 19
 106,Percorso 20
-107,Percorso 21 North
-108,Percorso 21 South
+107,Percorso 21
 109,Percorso 22
 110,Percorso 23
 111,Percorso 24

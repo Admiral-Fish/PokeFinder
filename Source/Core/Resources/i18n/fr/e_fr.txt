@@ -16,7 +16,7 @@
 15,Rusturf Tunnel
 16,Granite Cave 1F
 17,Granite Cave B1F
-18,Mt Pyre 1F
+18,Mt Pyre 1F-3F
 19,Victory Road 1F
 20,Safari Zone South
 21,Route 126 Underwater
@@ -36,11 +36,7 @@
 35,Route 121
 36,Route 122
 37,Route 123
-38,Mt Pyre 2F
-39,Mt Pyre 3F
-40,Mt Pyre 4F
-41,Mt Pyre 5F
-42,Mt Pyre 6F
+40,Mt Pyre 4F-6F
 43,Mt Pyre Exterior
 44,Mt Pyre Summit
 45,Granite Cave Stevens Room
@@ -54,15 +50,7 @@
 53,Route 132
 54,Route 133
 55,Route 134
-57,Seafloor Cavern Room 1
-58,Seafloor Cavern Room 2
-59,Seafloor Cavern Room 3
-60,Seafloor Cavern Room 4
-61,Seafloor Cavern Room 5
-62,Seafloor Cavern Room 6
-63,Seafloor Cavern Room 7
-64,Seafloor Cavern Room 8
-65,Seafloor Cavern Entrance
+62,Seafloor Cavern
 66,Cave Of Origin Entrance
 67,Cave Of Origin 1F
 71,New Mauville Entrance
@@ -74,10 +62,7 @@
 77,Meteor Falls 1F 1R
 78,Meteor Falls 1F 2R
 79,Meteor Falls B1F 1R
-80,Shoal Cave Low Tide Stairs Room
-81,Shoal Cave Low Tide Lower Room
-82,Shoal Cave Low Tide Inner Room
-83,Shoal Cave Low Tide Entrance Room
+82,Shoal Cave
 84,Lilycove City
 85,Dewford Town
 86,Slateport City
@@ -86,7 +71,7 @@
 89,Ever Grande City
 90,Petalburg City
 91,Route 124 Underwater
-92,Shoal Cave Low Tide Ice Room
+92,Shoal Cave Ice Room
 93,Sky Pillar 1F
 94,Sootopolis City
 95,Sky Pillar 3F
@@ -94,12 +79,8 @@
 97,Safari Zone Southeast
 98,Safari Zone Northeast
 99,Magma Hideout
-107,Mirage Tower 1F
-108,Mirage Tower 2F
-109,Mirage Tower 3F
-110,Mirage Tower 4F
+107,Mirage Tower
 111,Desert Underpass
-112,Artisan Cave B1F
-113,Artisan Cave 1F
+112,Artisan Cave
 114,Altering Cave
 123,Meteor Falls Stevens Cave
