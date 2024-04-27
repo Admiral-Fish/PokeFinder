@@ -50,7 +50,7 @@
 53,Route 132
 54,Route 133
 55,Route 134
-65,Tiefseehöhle
+62,Tiefseehöhle
 66,Urzeithöhle Eingangsbereich
 67,Urzeithöhle EG
 71,Neu Malvenfroh Eingangsbereich
@@ -62,7 +62,7 @@
 77,Meteorfälle EG Wasserfälle
 78,Meteorfälle EG oberhalb des Wasserfalls
 79,Meteorfälle UG unterhalb des Wasserfalls
-80,Küstenhöhle (außer Eisraum)
+82,Küstenhöhle (außer Eisraum)
 84,Seegrasulb City
 85,Faustauhaven
 86,Graphitport City
