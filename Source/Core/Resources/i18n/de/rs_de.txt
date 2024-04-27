@@ -20,13 +20,13 @@
 21,Pyroberg 3.OG-5.OG
 24,Pyroberg Südhang
 25,Pyroberg Gipfel
-26,Tiefseehöhle
+32,Tiefseehöhle
 35,Urzeithöhle Eingangsbereich
 36,Urzeithöhle EG-3.UG
 40,Siegesstraße EG
 41,Siegesstraße 1.UG
 42,Siegesstraße 2.UG
-43,Küstenhöhle (außer Eisraum)
+44,Küstenhöhle (außer Eisraum)
 47,Küstenhöhle Eisraum
 48,Neu Malvenfroh Eingangsbereich
 49,Neu Malvenfroh Gebäudeinneres
