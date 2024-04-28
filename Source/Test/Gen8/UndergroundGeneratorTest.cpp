@@ -38,6 +38,7 @@ static bool operator==(const UndergroundState &left, const json &right)
         && left.getCharacteristic() == right["characteristic"].get<u8>() && left.getGender() == right["gender"].get<u8>()
         && left.getLevel() == right["level"].get<u8>() && left.getNature() == right["nature"].get<u8>()
         && left.getShiny() == right["shiny"].get<u8>() && left.getAdvances() == right["advances"].get<u32>()
+        && left.getHeight() == right["height"].get<u8>() && left.getWeight() == right["weight"].get<u8>()
         && left.getEggMove() == right["eggMove"].get<u16>() && left.getItem() == right["item"].get<u16>()
         && left.getSpecie() == right["specie"].get<u16>();
 }

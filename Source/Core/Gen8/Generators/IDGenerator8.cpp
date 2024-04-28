@@ -19,7 +19,13 @@
 
 #include "IDGenerator8.hpp"
 #include <Core/Gen8/States/IDState8.hpp>
+#include <Core/RNG/RNGList.hpp>
 #include <Core/RNG/Xorshift.hpp>
+
+static u32 gen(Xorshift &rng)
+{
+    return rng.next(0x80000000, 0x7fffffff);
+}
 
 IDGenerator8::IDGenerator8(u32 initialAdvances, u32 maxAdvances, const IDFilter &filter) : IDGenerator(initialAdvances, maxAdvances, filter)
 {
@@ -27,20 +33,16 @@ IDGenerator8::IDGenerator8(u32 initialAdvances, u32 maxAdvances, const IDFilter 
 
 std::vector<IDState8> IDGenerator8::generate(u64 seed0, u64 seed1)
 {
-    Xorshift rng(seed0, seed1, initialAdvances);
+    RNGList<u32, Xorshift, 2, gen> rngList(seed0, seed1, initialAdvances);
 
     std::vector<IDState8> states;
-    for (u32 cnt = 0; cnt < maxAdvances; cnt++)
+    for (u32 cnt = 0; cnt < maxAdvances; cnt++, rngList.advanceState())
     {
-        u32 sidtid = rng.next(0x80000000, 0x7fffffff);
-        if (sidtid == 0)
+        u32 sidtid;
+        do
         {
-            Xorshift gen(rng);
-            while (sidtid == 0)
-            {
-                sidtid = gen.next(0x80000000, 0x7fffffff);
-            }
-        }
+            sidtid = rngList.next();
+        } while (sidtid == 0);
 
         u16 tid = sidtid & 0xffff;
         u16 sid = sidtid >> 16;

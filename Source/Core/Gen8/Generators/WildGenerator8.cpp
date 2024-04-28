@@ -21,8 +21,8 @@
 #include <Core/Enum/Encounter.hpp>
 #include <Core/Enum/Lead.hpp>
 #include <Core/Enum/Method.hpp>
+#include <Core/Gen8/States/WildState8.hpp>
 #include <Core/Parents/PersonalInfo.hpp>
-#include <Core/Parents/States/WildState.hpp>
 #include <Core/RNG/RNGList.hpp>
 #include <Core/RNG/Xorshift.hpp>
 #include <Core/Util/EncounterSlot.hpp>
@@ -64,7 +64,7 @@ WildGenerator8::WildGenerator8(u32 initialAdvances, u32 maxAdvances, u32 delay, 
 {
 }
 
-std::vector<WildGeneratorState> WildGenerator8::generate(u64 seed0, u64 seed1) const
+std::vector<WildState8> WildGenerator8::generate(u64 seed0, u64 seed1) const
 {
     RNGList<u32, Xorshift, 128> rngList(seed0, seed1, initialAdvances + delay);
 
@@ -72,7 +72,7 @@ std::vector<WildGeneratorState> WildGenerator8::generate(u64 seed0, u64 seed1) c
         = lead == Lead::MagnetPull || lead == Lead::Static || lead == Lead::Harvest || lead == Lead::FlashFire || lead == Lead::StormDrain;
     std::vector<u8> modifiedSlots = area.getSlots(lead);
 
-    std::vector<WildGeneratorState> states;
+    std::vector<WildState8> states;
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rngList.advanceState())
     {
         u8 encounterSlot;
@@ -171,12 +171,13 @@ std::vector<WildGeneratorState> WildGenerator8::generate(u64 seed0, u64 seed1) c
             nature = rngList.next(rand) % 25;
         }
 
-        rngList.advance(4); // 2 calls height, 2 calls weight
+        u8 height = (rngList.next(rand) % 129) + (rngList.next(rand) % 128);
+        u8 weight = (rngList.next(rand) % 129) + (rngList.next(rand) % 128);
 
         u16 item = getItem(rngList.next() % 100, lead, info);
 
-        WildGeneratorState state(initialAdvances + cnt, ec, pid, ivs, ability, gender, level, nature, shiny, encounterSlot, item,
-                                 slot.getSpecie(), form, info);
+        WildState8 state(initialAdvances + cnt, ec, pid, ivs, ability, gender, level, nature, shiny, encounterSlot, item, slot.getSpecie(),
+                         form, height, weight, info);
         if (filter.compareState(static_cast<const WildState &>(state)))
         {
             states.emplace_back(state);

@@ -25,7 +25,7 @@
 #include <Core/Parents/Generators/Generator.hpp>
 
 class Raid;
-class GeneratorState;
+class State8;
 
 /**
  * @brief Raid encounter generator for Gen8
@@ -52,7 +52,7 @@ public:
      *
      * @return Vector of computed states
      */
-    std::vector<GeneratorState> generate(u64 seed, u8 level, const Raid &raid) const;
+    std::vector<State8> generate(u64 seed, u8 level, const Raid &raid) const;
 };
 
 #endif // RAIDGENERATOR_HPP

@@ -22,12 +22,12 @@
 #include <Core/Enum/Lead.hpp>
 #include <Core/Gen8/Encounters8.hpp>
 #include <Core/Gen8/Generators/StaticGenerator8.hpp>
-#include <Core/Parents/States/State.hpp>
+#include <Core/Gen8/States/State8.hpp>
 #include <QTest>
 #include <Test/Data.hpp>
 #include <Test/Enum.hpp>
 
-static bool operator==(const GeneratorState &left, const json &right)
+static bool operator==(const State8 &left, const json &right)
 {
     // Intentionally ignoring hidden power
     return left.getEC() == right["ec"].get<u32>() && left.getPID() == right["pid"].get<u32>()
@@ -35,7 +35,8 @@ static bool operator==(const GeneratorState &left, const json &right)
         && left.getIVs() == right["ivs"].get<std::array<u8, 6>>() && left.getAbility() == right["ability"].get<u8>()
         && left.getCharacteristic() == right["characteristic"].get<u8>() && left.getGender() == right["gender"].get<u8>()
         && left.getLevel() == right["level"].get<u8>() && left.getNature() == right["nature"].get<u8>()
-        && left.getShiny() == right["shiny"].get<u8>() && left.getAdvances() == right["advances"].get<u32>();
+        && left.getShiny() == right["shiny"].get<u8>() && left.getAdvances() == right["advances"].get<u32>()
+        && left.getHeight() == right["height"].get<u8>() && left.getWeight() == right["weight"].get<u8>();
 }
 
 void StaticGenerator8Test::generate_data()
@@ -139,7 +140,7 @@ void StaticGenerator8Test::generateRoamer()
     StateFilter filter(255, 255, 255, false, min, max, natures, powers);
     StaticGenerator8 generator(0, 9, 0, Lead::None, *staticTemplate, profile, filter);
 
-    auto states = generator.generateRoamer(seed0, seed1);
+    auto states = generator.generate(seed0, seed1);
     QCOMPARE(states.size(), j.size());
 
     for (size_t i = 0; i < states.size(); i++)

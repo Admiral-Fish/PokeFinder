@@ -25,7 +25,7 @@
 #include <Core/Parents/Generators/StaticGenerator.hpp>
 #include <Core/Parents/StaticTemplate.hpp>
 
-class GeneratorState;
+class State8;
 
 /**
  * @brief Static encounter generator for Gen8
@@ -55,17 +55,28 @@ public:
      *
      * @return Vector of computed states
      */
-    std::vector<GeneratorState> generate(u64 seed0, u64 seed1) const;
+    std::vector<State8> generate(u64 seed0, u64 seed1) const;
 
+private:
     /**
-     * @brief Generates states
+     * @brief Generates states for non roamers
      *
      * @param seed0 Upper half of PRNG state
      * @param seed1 Lower half of PRNG state
      *
      * @return Vector of computed states
      */
-    std::vector<GeneratorState> generateRoamer(u64 seed0, u64 seed1) const;
+    std::vector<State8> generateNonRoamer(u64 seed0, u64 seed1) const;
+
+    /**
+     * @brief Generates states for roamers
+     *
+     * @param seed0 Upper half of PRNG state
+     * @param seed1 Lower half of PRNG state
+     *
+     * @return Vector of computed states
+     */
+    std::vector<State8> generateRoamer(u64 seed0, u64 seed1) const;
 };
 
 #endif // STATICGENERATOR8_HPP

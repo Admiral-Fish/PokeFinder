@@ -20,13 +20,13 @@
 #ifndef WILDMODEL8_HPP
 #define WILDMODEL8_HPP
 
-#include <Core/Parents/States/WildState.hpp>
+#include <Core/Gen8/States/WildState8.hpp>
 #include <Model/TableModel.hpp>
 
 /**
  * @brief Provides a table model implementation to show wild encounter information for Gen 8
  */
-class WildModel8 : public TableModel<WildGeneratorState>
+class WildModel8 : public TableModel<WildState8>
 {
     Q_OBJECT
 public:
@@ -76,9 +76,9 @@ public slots:
     void setShowStats(bool flag);
 
 private:
-    QStringList header
-        = { tr("Advances"), tr("Item"), tr("Slot"), tr("Level"), tr("EC"),  tr("PID"), tr("Shiny"),  tr("Nature"), tr("Ability"),
-            tr("HP"),       tr("Atk"),  tr("Def"),  tr("SpA"),   tr("SpD"), tr("Spe"), tr("Hidden"), tr("Gender"), tr("Characteristic") };
+    QStringList header = { tr("Advances"), tr("Item"),    tr("Slot"),   tr("Level"),  tr("EC"),     tr("PID"),           tr("Shiny"),
+                           tr("Nature"),   tr("Ability"), tr("HP"),     tr("Atk"),    tr("Def"),    tr("SpA"),           tr("SpD"),
+                           tr("Spe"),      tr("Hidden"),  tr("Gender"), tr("Height"), tr("Weight"), tr("Characteristic") };
     bool showStats;
 };
 

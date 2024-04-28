@@ -151,14 +151,8 @@ void Static8::generate()
     auto filter = ui->filter->getFilter<StateFilter>();
     StaticGenerator8 generator(initialAdvances, maxAdvances, delay, lead, *staticTemplate, *currentProfile, filter);
 
-    if (ui->comboBoxCategory->currentIndex() == 4)
-    {
-        model->addItems(generator.generateRoamer(seed0, seed1));
-    }
-    else
-    {
-        model->addItems(generator.generate(seed0, seed1));
-    }
+    auto states = generator.generate(seed0, seed1);
+    model->addItems(states);
 }
 
 void Static8::pokemonIndexChanged(int index)

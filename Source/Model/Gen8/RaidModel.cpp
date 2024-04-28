@@ -26,7 +26,7 @@ RaidModel::RaidModel(QObject *parent) : TableModel(parent), showStats(false)
 
 int RaidModel::columnCount(const QModelIndex &parent) const
 {
-    return 14;
+    return 16;
 }
 
 QVariant RaidModel::data(const QModelIndex &index, int role) const
@@ -71,6 +71,10 @@ QVariant RaidModel::data(const QModelIndex &index, int role) const
         case 12:
             return QString::fromStdString(Translator::getGender(state.getGender()));
         case 13:
+            return state.getHeight();
+        case 14:
+            return state.getWeight();
+        case 15:
             return QString::fromStdString(Translator::getCharacteristic(state.getCharacteristic()));
         }
     }
