@@ -165,8 +165,11 @@ std::vector<State8> RaidGenerator::generate(u64 seed, u8 level, const Raid &raid
             }
         }
 
-        u8 height = rng.nextUInt<129>() + rng.nextUInt<128>();
-        u8 weight = rng.nextUInt<129>() + rng.nextUInt<128>();
+        u8 height = rng.nextUInt<129>();
+        height += rng.nextUInt<128>();
+
+        u8 weight = rng.nextUInt<129>();
+        weight += rng.nextUInt<128>();
 
         State8 state(initialAdvances + cnt, ec, pid, ivs, ability, gender, level, nature, shiny, height, weight, info);
         if (filter.compareState(static_cast<const State &>(state)))

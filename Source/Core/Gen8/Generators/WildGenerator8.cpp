@@ -171,8 +171,11 @@ std::vector<WildState8> WildGenerator8::generate(u64 seed0, u64 seed1) const
             nature = rngList.next(rand) % 25;
         }
 
-        u8 height = (rngList.next(rand) % 129) + (rngList.next(rand) % 128);
-        u8 weight = (rngList.next(rand) % 129) + (rngList.next(rand) % 128);
+        u8 height = rngList.next(rand) % 129;
+        height += rngList.next(rand) % 128;
+
+        u8 weight = rngList.next(rand) % 129;
+        weight += rngList.next(rand) % 128;
 
         u16 item = getItem(rngList.next() % 100, lead, info);
 

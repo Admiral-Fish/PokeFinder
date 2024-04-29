@@ -131,8 +131,11 @@ std::vector<State8> EventGenerator8::generate(u64 seed0, u64 seed1) const
 
         u8 nature = wb8.getNature() != 255 ? wb8.getNature() : rngList.next() % 25;
 
-        u8 height = (rngList.next() % 129) + (rngList.next() % 128);
-        u8 weight = (rngList.next() % 129) + (rngList.next() % 128);
+        u8 height = rngList.next() % 129;
+        height += rngList.next() % 128;
+
+        u8 weight = rngList.next() % 129;
+        weight += rngList.next() % 128;
 
         State8 state(initialAdvances + cnt, ec, pid, ivs, ability, gender, wb8.getLevel(), nature, shiny, height, weight, info);
         if (filter.compareState(static_cast<const State &>(state)))

@@ -162,8 +162,11 @@ std::vector<State8> StaticGenerator8::generateNonRoamer(u64 seed0, u64 seed1) co
             nature = rngList.next() % 25;
         }
 
-        u8 height = (rngList.next() % 129) + (rngList.next() % 128);
-        u8 weight = (rngList.next() % 129) + (rngList.next() % 128);
+        u8 height = rngList.next() % 129;
+        height += rngList.next() % 128;
+
+        u8 weight = (rngList.next() % 129);
+        weight += rngList.next() % 128;
 
         State8 state(initialAdvances + cnt, ec, pid, ivs, ability, gender, staticTemplate.getLevel(), nature, shiny, height, weight, info);
         if (filter.compareState(static_cast<const State &>(state)))
@@ -242,8 +245,11 @@ std::vector<State8> StaticGenerator8::generateRoamer(u64 seed0, u64 seed1) const
             nature = rng.nextUInt(25);
         }
 
-        u8 height = rng.nextUInt(129) + rng.nextUInt(128);
-        u8 weight = rng.nextUInt(129) + rng.nextUInt(128);
+        u8 height = rng.nextUInt(129);
+        height += rng.nextUInt(128);
+
+        u8 weight = rng.nextUInt(129);
+        weight += rng.nextUInt(128);
 
         State8 state(initialAdvances + cnt, ec, pid, ivs, ability, gender, staticTemplate.getLevel(), nature, shiny, height, weight,
                      staticTemplate.getInfo());

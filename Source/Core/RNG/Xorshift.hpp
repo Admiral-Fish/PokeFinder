@@ -47,13 +47,6 @@ public:
     Xorshift(u64 seed0, u64 seed1, u32 advances);
 
     /**
-     * @brief Construct a new Xorshift object
-     *
-     * @param other Xorshift to copy
-     */
-    Xorshift(const Xorshift &other);
-
-    /**
      * @brief Advances the RNG by \p advances amount
      *
      * @param advances Number of advances
