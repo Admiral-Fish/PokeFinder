@@ -1,72 +1,72 @@
-0,Seven Island Tanoby Ruins Monean Chamber
-1,Seven Island Tanoby Ruins Liptoo Chamber
-2,Seven Island Tanoby Ruins Weepth Chamber
-3,Seven Island Tanoby Ruins Dilford Chamber
-4,Seven Island Tanoby Ruins Scufib Chamber
-5,Seven Island Tanoby Ruins Rixy Chamber
-6,Seven Island Tanoby Ruins Viapois Chamber
-7,Viridian Forest
-8,Mt Moon 1F
-9,Mt Moon B1F
-10,Mt Moon B2F
-11,S.S Anne Exterior
-12,Digletts Cave B1F
-13,Victory Road 1F/3F
-14,Victory Road 2F
-16,Pokemon Mansion 1F-3F
-19,Pokemon Mansion B1F
-20,Safari Zone Center
-21,Safari Zone East
-22,Safari Zone North
-23,Safari Zone West
-24,Cerulean Cave 1F
-25,Cerulean Cave 2F
-26,Cerulean Cave B1F
-27,Rock Tunnel 1F
-28,Rock Tunnel B1F
-29,Seafoam Islands 1F
-30,Seafoam Islands B1F
-31,Seafoam Islands B2F
-32,Seafoam Islands B3F
-33,Seafoam Islands B4F
-34,Pokemon Tower 3F
-35,Pokemon Tower 4F-5F
-37,Pokemon Tower 6F
-38,Pokemon Tower 7F
-39,Power Plant
-40,Mt Ember Exterior
-41,Mt Ember Summit Path 1F/3F
-42,Mt Ember Summit Path 2F
-44,Mt Ember Ruby Path 1F
-45,Mt Ember Ruby Path B1F
-46,Mt Ember Ruby Path B2F
-47,Mt Ember Ruby Path B3F
-48,Mt Ember Ruby Path B1F Stairs
-49,Mt Ember Ruby Path B2F Stairs
-50,Three Island Berry Forest
-51,Four Island Icefall Cave Entrance
-52,Four Island Icefall Cave 1F/B1F
-54,Four Island Icefall Cave Back
-55,Six Island Pattern Bush
-56,Five Island Lost Cave
-66,Five Island Lost Cave Item Room
-70,One Island Kindle Road
-71,One Island Treasure Beach
-72,Two Island Cape Brink
-73,Three Island Bond Bridge
-74,Three Island Port
-75,Five Island Resort Gorgeous
-76,Five Island Water Labyrinth
-77,Five Island Meadow
-78,Five Island Memorial Pillar
-79,Six Island Outcast Island
-80,Six Island Green Path
-81,Six Island Water Path
-82,Six Island Ruin Valley
-83,Seven Island Trainer Tower
-84,Seven Island Sevault Canyon Entrance
-85,Seven Island Sevault Canyon
-86,Seven Island Tanoby Ruins
+0,Eiland Sieben Tanibo-Ruinen Einamon-Kammer
+1,Eiland Sieben Tanibo-Ruinen Pezwulp-Kammer
+2,Eiland Sieben Tanibo-Ruinen Dreicke-Kammer
+3,Eiland Sieben Tanibo-Ruinen Vierzisse-Kammer
+4,Eiland Sieben Tanibo-Ruinen Fünibisku-Kammer
+5,Eiland Sieben Tanibo-Ruinen Lilechs-Kammer
+6,Eiland Sieben Tanibo-Ruinen Sieborbia-Kammer
+7,Vertania-Wald
+8,Mondberg EG
+9,Mondberg 1.UG
+10,Mondberg 2.UG
+11,MS Anne Anlegestelle
+12,Digda-Höhle UG
+13,Siegesstraße EG+2.OG
+14,Siegesstraße 1.OG
+16,Pokémon-Villa EG-2.OG
+19,Pokémon-Villa UG
+20,Safari-Zone Areal 1 (Mitte)
+21,Safari-Zone Areal 2 (Osten)
+22,Safari-Zone Areal 3 (Norden)
+23,Safari-Zone Areal 4 (Westen)
+24,Azuria-Höhle EG
+25,Azuria-Höhle OG
+26,Azuria-Höhle UG
+27,Felstunnel EG
+28,Felstunnel UG
+29,Seeschauminseln EG
+30,Seeschauminseln 1.UG
+31,Seeschauminseln 2.UG
+32,Seeschauminseln 3.UG
+33,Seeschauminseln 4.UG
+34,Pokémon-Turm 2.OG
+35,Pokémon-Turm 3.OG+4.OG
+37,Pokémon-Turm 5.OG
+38,Pokémon-Turm 6.OG
+39,Kraftwerk
+40,Glutberg Außenbereich
+41,Glutberg Vulkankrater Eingang+Ausgang
+42,Glutberg Vulkankrater
+44,Glutberg Rubinpfad Eingang
+45,Glutberg Rubinpfad 1.UG
+46,Glutberg Rubinpfad 2.UG
+47,Glutberg Rubinpfad 3.UG
+48,Glutberg Rubinpfad 1.UG Ausgang nach Rubin
+49,Glutberg Rubinpfad 2.UG Ausgang nach Rubin
+50,Eiland Drei Beerenforst
+51,Eiland Vier Eiskaskadenhöhle Eingang
+52,Eiland Vier Eiskaskadenhöhle EG+UG
+54,Eiland Vier Eiskaskadenhöhle Rückseite
+55,Eiland Sechs Musterbuschwald
+56,Eiland Fünf Verlorene Höhle
+66,Eiland Fünf Verlorene Höhle Item Räume
+70,Eiland Eins Glühweg
+71,Eiland Eins Schatzgestade
+72,Eiland Zwei Kap Kante
+73,Eiland Drei Bundbrücke
+74,Eiland Drei Tri-Eiland Hafen
+75,Eiland Fünf Ferienparadies
+76,Eiland Fünf Wasserirrgarten
+77,Eiland Fünf Weide
+78,Eiland Fünf Gedenksäule
+79,Eiland Sechs Fern-Eiland
+80,Eiland Sechs Grüner Pfad
+81,Eiland Sechs Wasserweg
+82,Eiland Sechs Ruinental
+83,Eiland Sieben Trainerturm
+84,Eiland Sieben Schluchteingang
+85,Eiland Sieben Schatzschlucht
+86,Eiland Sieben Tanibo-Ruinen
 87,Route 1
 88,Route 2
 89,Route 3
@@ -92,14 +92,14 @@
 110,Route 23
 111,Route 24
 112,Route 25
-113,Pallet Town
-114,Viridian City
-115,Cerulean City
-116,Vermilion City
-117,Celadon City
-118,Fuchsia City
-119,Cinnabar Island
-120,One Island
-121,Four Island
-122,Five Island
-123,Six Island Altering Cave
+113,Alabastia
+114,Vertania City
+115,Azuria City
+116,Orania City
+117,Prismania City
+118,Fuchsania City
+119,Zinnoberinsel
+120,Eiland Eins
+121,Eiland Vier
+122,Eiland Fünf
+123,Eiland Sechs Wandelhöhle

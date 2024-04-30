@@ -1,98 +1,98 @@
-0,New Bark Town
+0,Neuborkia
 1,Route 29
-2,Cherrygrove City
+2,Rosalia City
 3,Route 30
 4,Route 31
-5,Violet City
-6,Sprout Tower
+5,Viola City
+6,Knofensa-Turm
 8,Route 32
-9,Ruins of Alph (Outside)
-10,Ruins of Alph (Inside)
-11,Ruins of Alph (Underground)
-14,Union Cave 1F
-15,Union Cave B1F
-16,Union Cave B2F
+9,Alph-Ruinen (Außenbereich)
+10,Alph-Ruinen (Innenbereich)
+11,Alph-Ruinen (Untergrund)
+14,Einheitstunnel EG
+15,Einheitstunnel 1.UG
+16,Einheitstunnel 2.UG
 17,Route 33
-18,SLOWPOKE Well B1F
-19,SLOWPOKE Well B2F
-20,Ilex Forest
+18,Flegmon-Brunnen 1.UG
+19,Flegmon-Brunnen 2.UG
+20,Steineichenwald 	
 21,Route 34
 22,Route 35
-23,National Park
-24,National Park
+23,Nationalpark
+24,Nationalpark
 25,Route 36
 26,Route 37
-27,Ecruteak City
-28,Burned Tower 1F
-29,Burned Tower B1F
-30,Bell Tower
+27,Teak City
+28,Turmruine EG
+29,Turmruine UG
+30,Glockenturm
 38,Route 38
 39,Route 39
-40,Olivine City
+40,Oliviana City
 41,Route 40
 42,Route 41
-43,Whirl Islands 1F
-44,Whirl Islands B1F
-46,Whirl Islands B2F
-48,Whirl Islands B3F
-51,Cianwood City
+43,Strudelinseln EG
+44,Strudelinseln 1.UG
+46,Strudelinseln 2.UG
+48,Strudelinseln 3.UG
+51,Anemonia City
 52,Route 42
-53,Mt. Mortar 1F
-54,Mt. Mortar 1F (Back)
-55,Mt. Mortar 2F
-56,Mt. Mortar B1F
+53,Kesselberg EG
+54,Kesselberg EG (hintere Höhle)
+55,Kesselberg OG
+56,Kesselberg UG
 57,Route 43
-58,Lake of Rage
+58,See des Zorns
 59,Route 44
-60,Ice Path 1F
-61,Ice Path B1F
-62,Ice Path B2F
-63,Ice Path B3F
-65,Blackthorn City
-66,Dragon’s Den
+60,Eispfad EG
+61,Eispfad 1.UG
+62,Eispfad 2.UG
+63,Eispfad 3.UG
+65,Ebenholz City
+66,Drachenhöhle
 67,Route 45
 68,Route 46
-69,Dark Cave (Route 31)
-70,Dark Cave (Route 45)
+69,Dunkelhöhle (Route 31)
+70,Dunkelhöhle (Route 45)
 71,Route 47
-72,Mt. Moon Square
-73,Mt. Moon Square (Clefairy Event)
-74,Seafoam Islands 1F
-75,Seafoam Islands B1F
-76,Seafoam Islands B2F
-77,Seafoam Islands B3F
-78,Seafoam Islands B4F
-79,Mt. Silver Cave (Moltres Chamber)
-80,Mt. Silver Cave 2F
-81,Mt. Silver Cave 3F
-82,Cliff Edge Gate
-83,Cliff Cave
-85,Mt. Silver
-86,Mt. Silver 1F
-87,Mt. Silver Cave (Lower mountainside)
-88,Mt. Silver Cave (Expert Belt)
-89,Mt. Silver Cave (Upper mountainside)
-91,Safari Zone
+72,Mondberg Spitze
+73,Mondberg Spitze (Piepi Event)
+74,Seeschauminseln EG
+75,Seeschauminseln 1.UG
+76,Seeschauminseln 2.UG
+77,Seeschauminseln 3.UG
+78,Seeschauminseln 4.UG
+79,Silberberg (Lavados-Kammer)
+80,Silberberg (mittlere Höhle)
+81,Silberberg (hintere Höhle)
+82,Felsklippentor
+83,Felsschlundhöhle
+85,Silberberg (Außenbereich)
+86,Silberberg (vordere Höhle)
+87,Silberberg (Unterer Bergaußenbereich)
+88,Silberberg (Nebenkammer)
+89,Silberberg (Oberer Bergaußenbereich)
+91,Safari-Zone
 92,Route 12
 93,Route 19
 94,Route 20
-95,Pallet Town
-96,Viridian City
-97,Cerulean City
-98,Vermilion City
-99,Celadon City
-100,Fuchsia City
-101,Cinnabar Island
+95,Alabastia
+96,Vertania City
+97,Azuria City
+98,Orania City
+99,Prismania City
+100,Fuchsania City
+101,Zinnoberinsel
 102,Route 48
 103,Route 26
 104,Route 27
 105,Route 28
-106,Mt. Moon 1F
-108,Rock Tunnel 1F
-109,Rock Tunnel B1F
-110,Victory Road 1F
+106,Mondberg EG
+108,Felstunnel EG
+109,Felstunnel UG
+110,Siegesstraße EG
 111,Route 1
-112,Route 2 (South)
+112,Route 2 (Süden)
 113,Route 3
 114,Route 4
 115,Route 5
@@ -112,31 +112,31 @@
 129,Route 22
 130,Route 24
 131,Route 25
-132,Tohjo Falls
-133,DIGLETT’s Cave
-134,Victory Road 2F
-135,Victory Road 3F
-136,Route 2 (North)
-137,Viridian Forest
-139,Cerulean Cave 1F
-140,Cerulean Cave 2F
-141,Cerulean Cave B1F
-142,Bug Contest
-143,Bug Contest (Tuesday)
-144,Bug Contest (Thursday)
-145,Bug Contest (Saturday)
-146,Azalea Town
-147,Pewter City
-148,Safari Zone Gate
-149,Safari Zone (Plains)
-150,Safari Zone (Meadow)
-151,Safari Zone (Savannah)
-152,Safari Zone (Peak)
-153,Safari Zone (Rocky Beach)
-154,Safari Zone (Wetland)
-155,Safari Zone (Forest)
-156,Safari Zone (Swamp)
-157,Safari Zone (Marshland)
-158,Safari Zone (Wasteland)
-159,Safari Zone (Mountain)
-160,Safari Zone (Desert)
+132,Tohjo-Fälle
+133,Digda-Höhle
+134,Siegesstraße 1.OG
+135,Siegesstraße 2.OG
+136,Route 2 (Norden)
+137,Vertania-Wald
+139,Azuria-Höhle EG
+140,Azuria-Höhle OG
+141,Azuria-Höhle UG
+142,Käferturnier
+143,Käferturnier (Dienstag)
+144,Käferturnier (Donnerstag)
+145,Käferturnier (Samstag)
+146,Azalea City
+147,Marmoria City
+148,Safari-Eingang
+149,Safari Zone (Grasland)
+150,Safari Zone (Blumenbeete)
+151,Safari Zone (Savanne)
+152,Safari Zone (Felsplateu)
+153,Safari Zone (Felsenufer)
+154,Safari Zone (Moorlandschaft)
+155,Safari Zone (Waldstück)
+156,Safari Zone (Waldesufer)
+157,Safari Zone (Sumpfland)
+158,Safari Zone (Einöde)
+159,Safari Zone (Berglandschaft)
+160,Safari Zone (Wüste)

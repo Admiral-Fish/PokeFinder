@@ -36,7 +36,7 @@
     <message>
         <location filename="../Gen4/Tools/ChainedSID.ui"/>
         <source>Clear</source>
-        <translation type="unfinished"></translation>
+        <translation>Zurücksetzen</translation>
     </message>
     <message>
         <location filename="../Gen4/Tools/ChainedSID.ui"/>
@@ -58,7 +58,7 @@
     <message>
         <location filename="../Gen4/Tools/ChainedSID.ui"/>
         <source>Calculate</source>
-        <translation type="unfinished"></translation>
+        <translation>Berechnen</translation>
     </message>
     <message>
         <location filename="../Gen4/Tools/ChainedSID.ui"/>
@@ -69,7 +69,7 @@
     <message>
         <location filename="../Gen4/Tools/ChainedSID.ui"/>
         <source>Chained Shiny to SID</source>
-        <translation type="unfinished"></translation>
+        <translation>Chained Shiny zu SID</translation>
     </message>
     <message>
         <location filename="../Gen4/Tools/ChainedSID.cpp" line="37"/>
@@ -79,12 +79,12 @@
     <message>
         <location filename="../Gen4/Tools/ChainedSID.cpp" line="105"/>
         <source>SID Found: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>SID Gefunden: %1</translation>
     </message>
     <message>
         <location filename="../Gen4/Tools/ChainedSID.cpp" line="109"/>
         <source>Possible Results: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Mögliche Ergebnisse: %1</translation>
     </message>
     <message>
         <location filename="../Gen4/Tools/ChainedSID.ui"/>
@@ -94,7 +94,7 @@
     <message>
         <location filename="../Gen4/Tools/ChainedSID.ui"/>
         <source>Possible Results:</source>
-        <translation type="unfinished">Mögliche Ergebnisse:</translation>
+        <translation>Mögliche Ergebnisse:</translation>
     </message>
 </context>
 <context>
@@ -110,22 +110,22 @@
     <message>
         <location filename="../Gen8/Tools/DenMap.ui"/>
         <source>Den Map</source>
-        <translation type="unfinished"></translation>
+        <translation>Pokemon-Nest Karte</translation>
     </message>
     <message>
         <location filename="../Gen8/Tools/DenMap.ui"/>
         <source>Wild Area</source>
-        <translation type="unfinished"></translation>
+        <translation>Naturzone</translation>
     </message>
     <message>
         <location filename="../Gen8/Tools/DenMap.ui"/>
         <source>Isle of Armor</source>
-        <translation type="unfinished"></translation>
+        <translation>Rüstungsinsel</translation>
     </message>
     <message>
         <location filename="../Gen8/Tools/DenMap.ui"/>
         <source>Crown Tundra</source>
-        <translation type="unfinished"></translation>
+        <translation>Die Schneelande der Krone</translation>
     </message>
 </context>
 <context>
@@ -133,7 +133,7 @@
     <message>
         <location filename="../Gen5/DreamRadar.ui"/>
         <source>Dream Radar</source>
-        <translation type="unfinished"></translation>
+        <translation>Traumradar</translation>
     </message>
     <message>
         <location filename="../Gen5/DreamRadar.ui"/>
@@ -158,7 +158,7 @@
     <message>
         <location filename="../Gen5/DreamRadar.ui"/>
         <source>DS Type</source>
-        <translation type="unfinished"></translation>
+        <translation>DS Typ</translation>
     </message>
     <message>
         <location filename="../Gen5/DreamRadar.ui"/>
@@ -168,7 +168,7 @@
     <message>
         <location filename="../Gen5/DreamRadar.ui"/>
         <source>Keypresses</source>
-        <translation type="unfinished"></translation>
+        <translation>Anzahl Knopfdrücke</translation>
     </message>
     <message>
         <location filename="../Gen5/DreamRadar.ui"/>
@@ -178,7 +178,7 @@
     <message>
         <location filename="../Gen5/DreamRadar.ui"/>
         <source>MAC Address</source>
-        <translation type="unfinished"></translation>
+        <translation>MAC Adresse</translation>
     </message>
     <message>
         <location filename="../Gen5/DreamRadar.ui"/>
@@ -208,17 +208,17 @@
     <message>
         <location filename="../Gen5/DreamRadar.ui"/>
         <source>Initial Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>Minimale Advances</translation>
     </message>
     <message>
         <location filename="../Gen5/DreamRadar.ui"/>
         <source>Max Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>Maximale Advances</translation>
     </message>
     <message>
         <location filename="../Gen5/DreamRadar.ui"/>
         <source>Seed</source>
-        <translation>Zufallswert</translation>
+        <translation>Seed</translation>
     </message>
     <message>
         <location filename="../Gen5/DreamRadar.ui"/>
@@ -228,7 +228,7 @@
     <message>
         <location filename="../Gen5/DreamRadar.ui"/>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Einstellungen</translation>
     </message>
     <message>
         <location filename="../Gen5/DreamRadar.ui"/>
@@ -273,7 +273,7 @@
     <message>
         <location filename="../Gen5/DreamRadar.ui"/>
         <source>End Date</source>
-        <translation type="unfinished"></translation>
+        <translation>Enddatum</translation>
     </message>
     <message>
         <location filename="../Gen5/DreamRadar.ui"/>
@@ -288,7 +288,7 @@
     <message>
         <location filename="../Gen5/DreamRadar.ui"/>
         <source>Start Date</source>
-        <translation type="unfinished"></translation>
+        <translation>Startdatum</translation>
     </message>
     <message>
         <location filename="../Gen5/DreamRadar.cpp" line="50"/>
@@ -310,28 +310,28 @@
         <location filename="../Gen5/DreamRadar.cpp" line="287"/>
         <location filename="../Gen5/DreamRadar.cpp" line="320"/>
         <source>Missing settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Fehlende Einstellungen</translation>
     </message>
     <message>
         <location filename="../Gen5/DreamRadar.cpp" line="287"/>
         <location filename="../Gen5/DreamRadar.cpp" line="320"/>
         <source>Enter information for at least 1 slot</source>
-        <translation type="unfinished"></translation>
+        <translation>Informationen für mindestens einen Slot ausfüllen</translation>
     </message>
     <message>
         <location filename="../Gen5/DreamRadar.cpp" line="312"/>
         <source>Invalid date range</source>
-        <translation type="unfinished"></translation>
+        <translation>Ungültige Datumsspanne</translation>
     </message>
     <message>
         <location filename="../Gen5/DreamRadar.cpp" line="312"/>
         <source>Start date is after end date</source>
-        <translation type="unfinished"></translation>
+        <translation>Startdatum ist nach Enddatum</translation>
     </message>
     <message>
         <location filename="../Gen5/DreamRadar.ui"/>
         <source>Badges</source>
-        <translation type="unfinished"></translation>
+        <translation>Orden</translation>
     </message>
 </context>
 <context>
@@ -339,17 +339,17 @@
     <message>
         <location filename="../Controls/EggSettings.ui"/>
         <source>Parent A</source>
-        <translation type="unfinished"></translation>
+        <translation>Elternteil A</translation>
     </message>
     <message>
         <location filename="../Controls/EggSettings.ui"/>
         <source>Parent B</source>
-        <translation type="unfinished"></translation>
+        <translation>Elternteil B</translation>
     </message>
     <message>
         <location filename="../Controls/EggSettings.ui"/>
         <source>Show Inheritance</source>
-        <translation type="unfinished"></translation>
+        <translation>Vererbung anzeigen</translation>
     </message>
     <message>
         <location filename="../Controls/EggSettings.ui"/>
@@ -405,43 +405,43 @@
         <location filename="../Controls/EggSettings.cpp" line="227"/>
         <location filename="../Controls/EggSettings.cpp" line="234"/>
         <source>Power Weight</source>
-        <translation type="unfinished"></translation>
+        <translation>Machtgewicht</translation>
     </message>
     <message>
         <location filename="../Controls/EggSettings.cpp" line="228"/>
         <location filename="../Controls/EggSettings.cpp" line="235"/>
         <source>Power Bracer</source>
-        <translation type="unfinished"></translation>
+        <translation>Machtreif</translation>
     </message>
     <message>
         <location filename="../Controls/EggSettings.cpp" line="229"/>
         <location filename="../Controls/EggSettings.cpp" line="236"/>
         <source>Power Belt</source>
-        <translation type="unfinished"></translation>
+        <translation>Machtgurt</translation>
     </message>
     <message>
         <location filename="../Controls/EggSettings.cpp" line="230"/>
         <location filename="../Controls/EggSettings.cpp" line="237"/>
         <source>Power Lens</source>
-        <translation type="unfinished"></translation>
+        <translation>Machtlinse</translation>
     </message>
     <message>
         <location filename="../Controls/EggSettings.cpp" line="231"/>
         <location filename="../Controls/EggSettings.cpp" line="238"/>
         <source>Power Band</source>
-        <translation type="unfinished"></translation>
+        <translation>Machtband</translation>
     </message>
     <message>
         <location filename="../Controls/EggSettings.cpp" line="232"/>
         <location filename="../Controls/EggSettings.cpp" line="239"/>
         <source>Power Anklet</source>
-        <translation type="unfinished"></translation>
+        <translation>Machtkette</translation>
     </message>
     <message>
         <location filename="../Controls/EggSettings.cpp" line="248"/>
         <location filename="../Controls/EggSettings.cpp" line="249"/>
         <source>Destiny Knot</source>
-        <translation type="unfinished"></translation>
+        <translation>Fatumknoten</translation>
     </message>
     <message>
         <location filename="../Controls/EggSettings.cpp" line="66"/>
@@ -463,7 +463,7 @@
     <message>
         <location filename="../Controls/EggSettings.ui"/>
         <source>Egg Specie</source>
-        <translation type="unfinished"></translation>
+        <translation>Ei Spezies</translation>
     </message>
 </context>
 <context>
@@ -577,18 +577,18 @@
         <location filename="../Gen3/Eggs3.cpp" line="129"/>
         <location filename="../Gen3/Eggs3.cpp" line="161"/>
         <source>Incompatible Parents</source>
-        <translation type="unfinished"></translation>
+        <translation>Inkompatible Eltern</translation>
     </message>
     <message>
         <location filename="../Gen3/Eggs3.cpp" line="129"/>
         <location filename="../Gen3/Eggs3.cpp" line="161"/>
         <source>Gender of selected parents are not compatible for breeding</source>
-        <translation type="unfinished"></translation>
+        <translation>Geschlechter der ausgewählten Eltern sind zum Züchten nicht kompatibel</translation>
     </message>
     <message>
         <location filename="../Gen3/Eggs3.ui"/>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Einstellungen</translation>
     </message>
     <message>
         <location filename="../Gen3/Eggs3.ui"/>
@@ -613,7 +613,7 @@
     <message>
         <location filename="../Gen3/Eggs3.ui"/>
         <source>RS/FRLG</source>
-        <translation type="unfinished"></translation>
+        <translation>RS/FRBG</translation>
     </message>
 </context>
 <context>
@@ -681,7 +681,7 @@
     <message>
         <location filename="../Gen4/Eggs4.ui"/>
         <source>Delay</source>
-        <translation>Verzögerung</translation>
+        <translation>Delay</translation>
     </message>
     <message>
         <location filename="../Gen4/Eggs4.ui"/>
@@ -691,49 +691,49 @@
     <message>
         <location filename="../Gen4/Eggs4.cpp" line="71"/>
         <source>Calculate Poketch</source>
-        <translation type="unfinished"></translation>
+        <translation>Poketch berechnen</translation>
     </message>
     <message>
         <location filename="../Gen4/Eggs4.cpp" line="76"/>
         <source>Generate times for seed</source>
-        <translation>Generiere Zeiten für Zufallswert</translation>
+        <translation>Generiere Zeiten für Seed</translation>
     </message>
     <message>
         <location filename="../Gen4/Eggs4.cpp" line="143"/>
         <source>Do not switch to the happiness application at all</source>
-        <translation type="unfinished"></translation>
+        <translation>Nicht zur Freundschaftsstatus-App wechseln</translation>
     </message>
     <message>
         <location filename="../Gen4/Eggs4.cpp" line="153"/>
         <source>Switch to the happiness application once but do not click</source>
-        <translation type="unfinished"></translation>
+        <translation>1 mal zur Freundschaftsstatus-App wechseln, aber nicht antippen</translation>
     </message>
     <message>
         <location filename="../Gen4/Eggs4.cpp" line="157"/>
         <source>Happiness Application Double Taps: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Freundschaftsstatus-App Doppeltipps</translation>
     </message>
     <message>
         <location filename="../Gen4/Eggs4.cpp" line="157"/>
         <source>Coin Flip Application Taps: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Münzwurf-App tipps</translation>
     </message>
     <message>
         <location filename="../Gen4/Eggs4.cpp" line="163"/>
         <source>Poketch Taps</source>
-        <translation type="unfinished"></translation>
+        <translation>Poketch tipps</translation>
     </message>
     <message>
         <location filename="../Gen4/Eggs4.cpp" line="171"/>
         <location filename="../Gen4/Eggs4.cpp" line="209"/>
         <source>Incompatible Parents</source>
-        <translation type="unfinished"></translation>
+        <translation>Inkompatible Eltern</translation>
     </message>
     <message>
         <location filename="../Gen4/Eggs4.cpp" line="171"/>
         <location filename="../Gen4/Eggs4.cpp" line="209"/>
         <source>Gender of selected parents are not compatible for breeding</source>
-        <translation type="unfinished"></translation>
+        <translation>Geschlechter der ausgewählten Eltern sind zum Züchten nicht kompatibel</translation>
     </message>
     <message>
         <location filename="../Gen4/Eggs4.ui"/>
@@ -743,7 +743,7 @@
     <message>
         <location filename="../Gen4/Eggs4.ui"/>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Einstellungen</translation>
     </message>
     <message>
         <location filename="../Gen4/Eggs4.ui"/>
@@ -771,12 +771,12 @@
     <message>
         <location filename="../Gen5/Eggs5.ui"/>
         <source>Gen 5 Eggs</source>
-        <translation type="unfinished">Generation 5 Eier</translation>
+        <translation>Generation 5 Eier</translation>
     </message>
     <message>
         <location filename="../Gen5/Eggs5.ui"/>
         <source>Profile</source>
-        <translation type="unfinished">Profil</translation>
+        <translation>Profil</translation>
     </message>
     <message>
         <location filename="../Gen5/Eggs5.ui"/>
@@ -786,7 +786,7 @@
     <message>
         <location filename="../Gen5/Eggs5.ui"/>
         <source>MAC Address</source>
-        <translation type="unfinished"></translation>
+        <translation>MAC Adresse</translation>
     </message>
     <message>
         <location filename="../Gen5/Eggs5.ui"/>
@@ -801,7 +801,7 @@
     <message>
         <location filename="../Gen5/Eggs5.ui"/>
         <source>Keypresses</source>
-        <translation type="unfinished"></translation>
+        <translation>Anzahl Knopfdrücke</translation>
     </message>
     <message>
         <location filename="../Gen5/Eggs5.ui"/>
@@ -816,7 +816,7 @@
     <message>
         <location filename="../Gen5/Eggs5.ui"/>
         <source>DS Type</source>
-        <translation type="unfinished"></translation>
+        <translation>DS Typ</translation>
     </message>
     <message>
         <location filename="../Gen5/Eggs5.ui"/>
@@ -841,7 +841,7 @@
     <message>
         <location filename="../Gen5/Eggs5.ui"/>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Einstellungen</translation>
     </message>
     <message>
         <location filename="../Gen5/Eggs5.ui"/>
@@ -851,17 +851,17 @@
     <message>
         <location filename="../Gen5/Eggs5.ui"/>
         <source>Initial Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>Minimale Advances</translation>
     </message>
     <message>
         <location filename="../Gen5/Eggs5.ui"/>
         <source>Max Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>Maximale Advances</translation>
     </message>
     <message>
         <location filename="../Gen5/Eggs5.ui"/>
         <source>Seed</source>
-        <translation>Zufallswert</translation>
+        <translation>Seed</translation>
     </message>
     <message>
         <location filename="../Gen5/Eggs5.ui"/>
@@ -881,12 +881,12 @@
     <message>
         <location filename="../Gen5/Eggs5.ui"/>
         <source>Start Date</source>
-        <translation type="unfinished"></translation>
+        <translation>Startdatum</translation>
     </message>
     <message>
         <location filename="../Gen5/Eggs5.ui"/>
         <source>End Date</source>
-        <translation type="unfinished"></translation>
+        <translation>Enddatum</translation>
     </message>
     <message>
         <location filename="../Gen5/Eggs5.ui"/>
@@ -902,40 +902,40 @@
         <location filename="../Gen5/Eggs5.cpp" line="124"/>
         <location filename="../Gen5/Eggs5.cpp" line="162"/>
         <source>Incompatible Parents</source>
-        <translation type="unfinished"></translation>
+        <translation>Inkompatible Eltern</translation>
     </message>
     <message>
         <location filename="../Gen5/Eggs5.cpp" line="124"/>
         <location filename="../Gen5/Eggs5.cpp" line="162"/>
         <source>Gender of selected parents are not compatible for breeding</source>
-        <translation type="unfinished"></translation>
+        <translation>Geschlechter der ausgewählten Eltern sind zum Züchten nicht kompatibel</translation>
     </message>
     <message>
         <location filename="../Gen5/Eggs5.cpp" line="130"/>
         <location filename="../Gen5/Eggs5.cpp" line="168"/>
         <source>Parents Reordered</source>
-        <translation type="unfinished"></translation>
+        <translation>Eltern neu angeordnet</translation>
     </message>
     <message>
         <location filename="../Gen5/Eggs5.cpp" line="130"/>
         <location filename="../Gen5/Eggs5.cpp" line="168"/>
         <source>Parent were swapped to match the game</source>
-        <translation type="unfinished"></translation>
+        <translation>Eltern wurden passend zum Spiel ausgetauscht</translation>
     </message>
     <message>
         <location filename="../Gen5/Eggs5.cpp" line="155"/>
         <source>Invalid date range</source>
-        <translation type="unfinished"></translation>
+        <translation>Ungültige Datumsspanne</translation>
     </message>
     <message>
         <location filename="../Gen5/Eggs5.cpp" line="155"/>
         <source>Start date is after end date</source>
-        <translation type="unfinished"></translation>
+        <translation>Startdatum ist nach Enddatum</translation>
     </message>
     <message>
         <location filename="../Gen5/Eggs5.ui"/>
         <source>Delay</source>
-        <translation>Verzögerung</translation>
+        <translation>Delay</translation>
     </message>
 </context>
 <context>
@@ -958,12 +958,12 @@
     <message>
         <location filename="../Gen8/Eggs8.ui"/>
         <source>Initial Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>Minimale Advances</translation>
     </message>
     <message>
         <location filename="../Gen8/Eggs8.ui"/>
         <source>Max Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>Maximale Advances</translation>
     </message>
     <message>
         <location filename="../Gen8/Eggs8.ui"/>
@@ -1003,7 +1003,7 @@
     <message>
         <location filename="../Gen8/Eggs8.ui"/>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Einstellungen</translation>
     </message>
     <message>
         <location filename="../Gen8/Eggs8.ui"/>
@@ -1023,7 +1023,7 @@
     <message>
         <location filename="../Gen8/Eggs8.ui"/>
         <source>Oval Charm</source>
-        <translation type="unfinished"></translation>
+        <translation>Ovalpin</translation>
     </message>
     <message>
         <location filename="../Gen8/Eggs8.cpp" line="155"/>
@@ -1044,37 +1044,37 @@
     <message>
         <location filename="../Gen8/Eggs8.ui"/>
         <source>Shiny Charm</source>
-        <translation type="unfinished"></translation>
+        <translation>Schillerpin</translation>
     </message>
     <message>
         <location filename="../Gen8/Eggs8.cpp" line="108"/>
         <source>Incompatible Parents</source>
-        <translation type="unfinished"></translation>
+        <translation>Inkompatible Eltern</translation>
     </message>
     <message>
         <location filename="../Gen8/Eggs8.cpp" line="108"/>
         <source>Gender of selected parents are not compatible for breeding</source>
-        <translation type="unfinished"></translation>
+        <translation>Geschlechter der ausgewählten Eltern sind zum Züchten nicht kompatibel</translation>
     </message>
     <message>
         <location filename="../Gen8/Eggs8.cpp" line="114"/>
         <source>Parents Reordered</source>
-        <translation type="unfinished"></translation>
+        <translation>Eltern neu angeordnet</translation>
     </message>
     <message>
         <location filename="../Gen8/Eggs8.cpp" line="114"/>
         <source>Parent were swapped to match the game</source>
-        <translation type="unfinished"></translation>
+        <translation>Die Eltern wurden passend zum Spiel ausgetauscht</translation>
     </message>
     <message>
         <location filename="../Gen8/Eggs8.cpp" line="122"/>
         <source>Missing seeds</source>
-        <translation type="unfinished"></translation>
+        <translation>Fehlende Seeds</translation>
     </message>
     <message>
         <location filename="../Gen8/Eggs8.cpp" line="122"/>
         <source>Please insert missing seed information</source>
-        <translation type="unfinished"></translation>
+        <translation>Bitte fehlende Seed-Informationen eingeben</translation>
     </message>
     <message>
         <location filename="../Gen8/Eggs8.cpp" line="155"/>
@@ -1085,7 +1085,7 @@
     <message>
         <location filename="../Gen8/Eggs8.ui"/>
         <source>Delay</source>
-        <translation>Verzögerung</translation>
+        <translation>Delay</translation>
     </message>
 </context>
 <context>
@@ -1093,7 +1093,7 @@
     <message>
         <location filename="../Util/EncounterLookup.ui"/>
         <source>Encounter Lookup</source>
-        <translation type="unfinished"></translation>
+        <translation>Nach Pokemon suchen</translation>
     </message>
     <message>
         <location filename="../Util/EncounterLookup.ui"/>
@@ -1113,12 +1113,12 @@
     <message>
         <location filename="../Util/EncounterLookup.cpp" line="44"/>
         <source>Encounter Type</source>
-        <translation type="unfinished"></translation>
+        <translation>Begegnungsart</translation>
     </message>
     <message>
         <location filename="../Util/EncounterLookup.cpp" line="44"/>
         <source>Level Range</source>
-        <translation type="unfinished"></translation>
+        <translation>Levelbereich</translation>
     </message>
     <message>
         <location filename="../Util/EncounterLookup.ui"/>
@@ -1173,17 +1173,17 @@
     <message>
         <location filename="../Util/EncounterLookup.ui"/>
         <source>Brilliant Diamond</source>
-        <translation type="unfinished"></translation>
+        <translation>Strahlender Diamant</translation>
     </message>
     <message>
         <location filename="../Util/EncounterLookup.ui"/>
         <source>Shining Pearl</source>
-        <translation type="unfinished"></translation>
+        <translation>Leuchtende Perle</translation>
     </message>
     <message>
         <location filename="../Util/EncounterLookup.cpp" line="78"/>
         <source>Grass</source>
-        <translation>Pflanze</translation>
+        <translation>Hohes Gras</translation>
     </message>
     <message>
         <location filename="../Util/EncounterLookup.cpp" line="80"/>
@@ -1213,12 +1213,12 @@
     <message>
         <location filename="../Util/EncounterLookup.cpp" line="92"/>
         <source>Headbutt</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopfnuss</translation>
     </message>
     <message>
         <location filename="../Util/EncounterLookup.cpp" line="94"/>
         <source>Bug Catching Contest</source>
-        <translation type="unfinished"></translation>
+        <translation>Käferturnier</translation>
     </message>
     <message>
         <location filename="../Util/EncounterLookup.ui"/>
@@ -1231,7 +1231,7 @@
     <message>
         <location filename="../Gen4/Event4.ui"/>
         <source>Wondercard IVs</source>
-        <translation type="unfinished"></translation>
+        <translation>Wunderkarten IVs</translation>
     </message>
     <message>
         <location filename="../Gen4/Event4.ui"/>
@@ -1276,22 +1276,22 @@
     <message>
         <location filename="../Gen4/Event4.ui"/>
         <source>Seed</source>
-        <translation>Zufallswert</translation>
+        <translation>Seed</translation>
     </message>
     <message>
         <location filename="../Gen4/Event4.ui"/>
         <source>Initial Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>Minimale Advances</translation>
     </message>
     <message>
         <location filename="../Gen4/Event4.ui"/>
         <source>Max Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>Maximale Advances</translation>
     </message>
     <message>
         <location filename="../Gen4/Event4.ui"/>
         <source>Delay</source>
-        <translation>Verzögerung</translation>
+        <translation>Delay</translation>
     </message>
     <message>
         <location filename="../Gen4/Event4.ui"/>
@@ -1301,12 +1301,12 @@
     <message>
         <location filename="../Gen4/Event4.ui"/>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Einstellungen</translation>
     </message>
     <message>
         <location filename="../Gen4/Event4.ui"/>
         <source>Species</source>
-        <translation type="unfinished"></translation>
+        <translation>Spezies</translation>
     </message>
     <message>
         <location filename="../Gen4/Event4.ui"/>
@@ -1331,12 +1331,12 @@
     <message>
         <location filename="../Gen4/Event4.ui"/>
         <source>Min Delay</source>
-        <translation>Min. Verzögerung</translation>
+        <translation>Min. Delay</translation>
     </message>
     <message>
         <location filename="../Gen4/Event4.ui"/>
         <source>Max Delay</source>
-        <translation>Max. Verzögerung</translation>
+        <translation>Max. Delay</translation>
     </message>
     <message>
         <location filename="../Gen4/Event4.ui"/>
@@ -1361,7 +1361,7 @@
     <message>
         <location filename="../Gen4/Event4.cpp" line="82"/>
         <source>Generate times for seed</source>
-        <translation>Generiere Zeiten für Zufallswert</translation>
+        <translation>Generiere Zeiten für Seed</translation>
     </message>
 </context>
 <context>
@@ -1369,7 +1369,7 @@
     <message>
         <location filename="../Gen5/Event5.ui"/>
         <source>Gen 5 Event</source>
-        <translation type="unfinished"></translation>
+        <type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Gen5/Event5.ui"/>
@@ -1384,7 +1384,7 @@
     <message>
         <location filename="../Gen5/Event5.ui"/>
         <source>MAC Address</source>
-        <translation type="unfinished"></translation>
+        <translation>MAC Adresse</translation>
     </message>
     <message>
         <location filename="../Gen5/Event5.ui"/>
@@ -1399,7 +1399,7 @@
     <message>
         <location filename="../Gen5/Event5.ui"/>
         <source>Keypresses</source>
-        <translation type="unfinished"></translation>
+        <translation>Anzahl Knopfdrücke</translation>
     </message>
     <message>
         <location filename="../Gen5/Event5.ui"/>
@@ -1414,7 +1414,7 @@
     <message>
         <location filename="../Gen5/Event5.ui"/>
         <source>DS Type</source>
-        <translation type="unfinished"></translation>
+        <translation>DS Typ</translation>
     </message>
     <message>
         <location filename="../Gen5/Event5.ui"/>
@@ -1444,17 +1444,17 @@
     <message>
         <location filename="../Gen5/Event5.ui"/>
         <source>Initial Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>Minimale Advances</translation>
     </message>
     <message>
         <location filename="../Gen5/Event5.ui"/>
         <source>Max Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>Maximale Advances</translation>
     </message>
     <message>
         <location filename="../Gen5/Event5.ui"/>
         <source>Seed</source>
-        <translation>Zufallswert</translation>
+        <translation>Seed</translation>
     </message>
     <message>
         <location filename="../Gen5/Event5.ui"/>
@@ -1464,12 +1464,12 @@
     <message>
         <location filename="../Gen5/Event5.ui"/>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Einstellungen</translation>
     </message>
     <message>
         <location filename="../Gen5/Event5.ui"/>
         <source>Species</source>
-        <translation type="unfinished"></translation>
+        <translation>Spezies</translation>
     </message>
     <message>
         <location filename="../Gen5/Event5.ui"/>
@@ -1514,17 +1514,17 @@
     <message>
         <location filename="../Gen5/Event5.ui"/>
         <source>♂ Only</source>
-        <translation type="unfinished"></translation>
+        <translation>Nur ♂</translation>
     </message>
     <message>
         <location filename="../Gen5/Event5.ui"/>
         <source>♀ Only</source>
-        <translation type="unfinished"></translation>
+        <translation>Nur ♀</translation>
     </message>
     <message>
         <location filename="../Gen5/Event5.ui"/>
         <source>Random</source>
-        <translation type="unfinished"></translation>
+        <translation>Zufällig</translation>
     </message>
     <message>
         <location filename="../Gen5/Event5.ui"/>
@@ -1534,17 +1534,17 @@
     <message>
         <location filename="../Gen5/Event5.ui"/>
         <source>Shiny</source>
-        <translation type="unfinished"></translation>
+        <translation>Schillernd</translation>
     </message>
     <message>
         <location filename="../Gen5/Event5.ui"/>
         <source>Force non-shiny</source>
-        <translation type="unfinished"></translation>
+        <translation>Erzwungen nicht-schillernd</translation>
     </message>
     <message>
         <location filename="../Gen5/Event5.ui"/>
         <source>Force shiny</source>
-        <translation type="unfinished"></translation>
+        <translation>Erzwungen schillernd</translation>
     </message>
     <message>
         <location filename="../Gen5/Event5.ui"/>
@@ -1564,7 +1564,7 @@
     <message>
         <location filename="../Gen5/Event5.ui"/>
         <source>Import</source>
-        <translation type="unfinished"></translation>
+        <translation>Importieren</translation>
     </message>
     <message>
         <location filename="../Gen5/Event5.ui"/>
@@ -1579,12 +1579,12 @@
     <message>
         <location filename="../Gen5/Event5.ui"/>
         <source>Start Date</source>
-        <translation type="unfinished"></translation>
+        <translation>Startdatum</translation>
     </message>
     <message>
         <location filename="../Gen5/Event5.ui"/>
         <source>End Date</source>
-        <translation type="unfinished"></translation>
+        <translation>Enddatum</translation>
     </message>
     <message>
         <location filename="../Gen5/Event5.ui"/>
@@ -1599,7 +1599,7 @@
     <message>
         <location filename="../Gen5/Event5.ui"/>
         <source>Delay</source>
-        <translation>Verzögerung</translation>
+        <translation>Delay</translation>
     </message>
     <message>
         <location filename="../Gen5/Event5.ui"/>
@@ -1610,35 +1610,35 @@
         <location filename="../Gen5/Event5.cpp" line="199"/>
         <location filename="../Gen5/Event5.cpp" line="348"/>
         <source>Invalid format</source>
-        <translation type="unfinished"></translation>
+        <translation>Ungültiges Format</translation>
     </message>
     <message>
         <location filename="../Gen5/Event5.cpp" line="199"/>
         <location filename="../Gen5/Event5.cpp" line="348"/>
         <source>Wondercard is not the correct size</source>
-        <translation type="unfinished"></translation>
+        <translation>Wunderkarte hat nicht die korrekte Größe</translation>
     </message>
     <message>
         <location filename="../Gen5/Event5.cpp" line="249"/>
         <location filename="../Gen5/Event5.cpp" line="398"/>
         <source>File error</source>
-        <translation type="unfinished"></translation>
+        <translation>Dateifehler</translation>
     </message>
     <message>
         <location filename="../Gen5/Event5.cpp" line="249"/>
         <location filename="../Gen5/Event5.cpp" line="398"/>
         <source>There was a problem opening the wondercard</source>
-        <translation type="unfinished"></translation>
+        <translation>Es gab ein Problem beim öffnen der Wunderkarte</translation>
     </message>
     <message>
         <location filename="../Gen5/Event5.cpp" line="289"/>
         <source>Invalid date range</source>
-        <translation type="unfinished"></translation>
+        <translation>Ungültige Datumsspanne</translation>
     </message>
     <message>
         <location filename="../Gen5/Event5.cpp" line="289"/>
         <source>Start date is after end date</source>
-        <translation type="unfinished"></translation>
+        <translation>Startdatum ist nach Enddatum</translation>
     </message>
 </context>
 <context>
@@ -1661,7 +1661,7 @@
     <message>
         <location filename="../Gen8/Event8.ui"/>
         <source>Max Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>Maximale Advances</translation>
     </message>
     <message>
         <location filename="../Gen8/Event8.ui"/>
@@ -1671,7 +1671,7 @@
     <message>
         <location filename="../Gen8/Event8.ui"/>
         <source>Initial Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>Minimale Advances</translation>
     </message>
     <message>
         <location filename="../Gen8/Event8.ui"/>
@@ -1711,12 +1711,12 @@
     <message>
         <location filename="../Gen8/Event8.ui"/>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Einstellungen</translation>
     </message>
     <message>
         <location filename="../Gen8/Event8.ui"/>
         <source>Import</source>
-        <translation type="unfinished"></translation>
+        <translation>Importieren</translation>
     </message>
     <message>
         <location filename="../Gen8/Event8.ui"/>
@@ -1736,17 +1736,17 @@
     <message>
         <location filename="../Gen8/Event8.ui"/>
         <source>PID Type</source>
-        <translation type="unfinished"></translation>
+        <translation>PID Typ</translation>
     </message>
     <message>
         <location filename="../Gen8/Event8.ui"/>
         <source>Nonshiny</source>
-        <translation type="unfinished"></translation>
+        <translation>Nicht schillernd</translation>
     </message>
     <message>
         <location filename="../Gen8/Event8.ui"/>
         <source>Random</source>
-        <translation type="unfinished"></translation>
+        <translation>Zufällig</translation>
     </message>
     <message>
         <location filename="../Gen8/Event8.ui"/>
@@ -1761,17 +1761,17 @@
     <message>
         <location filename="../Gen8/Event8.ui"/>
         <source>Static</source>
-        <translation type="unfinished"></translation>
+        <translation>Stationär</translation>
     </message>
     <message>
         <location filename="../Gen8/Event8.ui"/>
         <source>IV Count</source>
-        <translation type="unfinished"></translation>
+        <translation>IV Zahl</translation>
     </message>
     <message>
         <location filename="../Gen8/Event8.ui"/>
         <source>Species</source>
-        <translation type="unfinished"></translation>
+        <translation>Spezies</translation>
     </message>
     <message>
         <location filename="../Gen8/Event8.ui"/>
@@ -1786,12 +1786,12 @@
     <message>
         <location filename="../Gen8/Event8.ui"/>
         <source>Nature Locked</source>
-        <translation type="unfinished"></translation>
+        <translation>Wesen vorbestimmt</translation>
     </message>
     <message>
         <location filename="../Gen8/Event8.ui"/>
         <source>Delay</source>
-        <translation>Verzögerung</translation>
+        <translation>Delay</translation>
     </message>
     <message>
         <location filename="../Gen8/Event8.ui"/>
@@ -1801,32 +1801,32 @@
     <message>
         <location filename="../Gen8/Event8.cpp" line="138"/>
         <source>Invalid format</source>
-        <translation type="unfinished"></translation>
+        <translation>Ungültiges Format</translation>
     </message>
     <message>
         <location filename="../Gen8/Event8.cpp" line="138"/>
         <source>Wondercard is not the correct size</source>
-        <translation type="unfinished"></translation>
+        <translation>Wunderkarte hat nicht die korrekte Größe</translation>
     </message>
     <message>
         <location filename="../Gen8/Event8.cpp" line="169"/>
         <source>File error</source>
-        <translation type="unfinished"></translation>
+        <translation>Dateifehler</translation>
     </message>
     <message>
         <location filename="../Gen8/Event8.cpp" line="169"/>
         <source>There was a problem opening the wondercard</source>
-        <translation type="unfinished"></translation>
+        <translation>Es gab ein Problem beim öffnen der Wunderkarte</translation>
     </message>
     <message>
         <location filename="../Gen8/Event8.cpp" line="182"/>
         <source>Missing seeds</source>
-        <translation type="unfinished"></translation>
+        <translation>Fehlende Seeds</translation>
     </message>
     <message>
         <location filename="../Gen8/Event8.cpp" line="182"/>
         <source>Please insert missing seed information</source>
-        <translation type="unfinished"></translation>
+        <translation>Bitte fehlende Seed Informationen eingeben</translation>
     </message>
 </context>
 <context>
@@ -1854,7 +1854,7 @@
     <message>
         <location filename="../Controls/Filter.ui"/>
         <source>Hidden Power</source>
-        <translation>Versteckter Typ</translation>
+        <translation>Kraftreserve</translation>
     </message>
     <message>
         <location filename="../Controls/Filter.ui"/>
@@ -1864,7 +1864,7 @@
     <message>
         <location filename="../Controls/Filter.ui"/>
         <source>Shiny</source>
-        <translation type="unfinished"></translation>
+        <translation>Schillernd</translation>
     </message>
     <message>
         <location filename="../Controls/Filter.ui"/>
@@ -1891,27 +1891,27 @@
         <location filename="../Controls/Filter.cpp" line="38"/>
         <location filename="../Controls/Filter.cpp" line="39"/>
         <source>Click holding ctrl to reset</source>
-        <translation type="unfinished"></translation>
+        <translation>Zum zurücksetzen klicke während Strg gedrückt ist</translation>
     </message>
     <message>
         <location filename="../Controls/Filter.cpp" line="41"/>
         <source>Click to clear</source>
-        <translation type="unfinished"></translation>
+        <translation>Klicke zum leeren</translation>
     </message>
     <message>
         <location filename="../Controls/Filter.cpp" line="41"/>
         <source>Click holding ctrl to set 31</source>
-        <translation type="unfinished"></translation>
+        <translation>Klicke während Strg gedrückt ist um Wert auf 31 zu setzen</translation>
     </message>
     <message>
         <location filename="../Controls/Filter.cpp" line="41"/>
         <source>Click holding alt to set 30-31</source>
-        <translation type="unfinished"></translation>
+        <translation>Klicke während Alt gedrückt ist um Werte auf 30-31 zu setzen</translation>
     </message>
     <message>
         <location filename="../Controls/Filter.cpp" line="42"/>
         <source>Click holding ctrl+alt to set 0</source>
-        <translation type="unfinished"></translation>
+        <translation>Klicke während Strg+Alt gedrückt sind um Wert auf 0 zu setzen</translation>
     </message>
     <message>
         <location filename="../Controls/Filter.ui"/>
@@ -1946,12 +1946,12 @@
     <message>
         <location filename="../Controls/Filter.ui"/>
         <source>Show Stats</source>
-        <translation type="unfinished"></translation>
+        <translation>Statuswerte anzeigen</translation>
     </message>
     <message>
         <location filename="../Controls/Filter.ui"/>
         <source>IV Calculator</source>
-        <translation type="unfinished"></translation>
+        <translation>IV Rechner</translation>
     </message>
 </context>
 <context>
@@ -2004,7 +2004,7 @@
     <message>
         <location filename="../Gen3/GameCube.ui"/>
         <source>Seed</source>
-        <translation>Zufallswert</translation>
+        <translation>Seed</translation>
     </message>
     <message>
         <location filename="../Gen3/GameCube.ui"/>
@@ -2034,17 +2034,17 @@
     <message>
         <location filename="../Gen3/GameCube.ui"/>
         <source>Initial Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>Minimale Advances</translation>
     </message>
     <message>
         <location filename="../Gen3/GameCube.ui"/>
         <source>Max Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>Maximale Advances</translation>
     </message>
     <message>
         <location filename="../Gen3/GameCube.ui"/>
         <source>Delay</source>
-        <translation>Verzögerung</translation>
+        <translation>Delay</translation>
     </message>
     <message>
         <location filename="../Gen3/GameCube.ui"/>
@@ -2054,12 +2054,12 @@
     <message>
         <location filename="../Gen3/GameCube.ui"/>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Einstellungen</translation>
     </message>
     <message>
         <location filename="../Gen3/GameCube.ui"/>
         <source>Category</source>
-        <translation type="unfinished"></translation>
+        <translation>Kategorie</translation>
     </message>
     <message>
         <location filename="../Gen3/GameCube.ui"/>
@@ -2102,7 +2102,7 @@
     <message>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.ui"/>
         <source>Round #1</source>
-        <translation type="unfinished"></translation>
+        <translation>Runde #1</translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.ui"/>
@@ -2117,17 +2117,17 @@
     <message>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.ui"/>
         <source>Reset</source>
-        <translation type="unfinished"></translation>
+        <translation>Zurücksetzen</translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.ui"/>
         <source>Enemy Lead</source>
-        <translation type="unfinished"></translation>
+        <translation>Feindlicher Lead</translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.ui"/>
         <source>Your lead</source>
-        <translation type="unfinished"></translation>
+        <translation>Dein Lead</translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.ui"/>
@@ -2152,29 +2152,29 @@
     <message>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.ui"/>
         <source>Party Lead</source>
-        <translation type="unfinished"></translation>
+        <translation>Team Lead</translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.cpp" line="127"/>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.cpp" line="153"/>
         <source>Your seed is %1. Copy to clipboard?</source>
-        <translation type="unfinished"></translation>
+        <translation>Dein Seed ist %1. In die Zwischenablage kopieren?</translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.cpp" line="136"/>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.cpp" line="162"/>
         <source>Possible Results: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Mögliche Ergebnisse: %1</translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.cpp" line="90"/>
         <source>Result: Invalid</source>
-        <translation type="unfinished"></translation>
+        <translation>Ergebnis: Ungültig</translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.cpp" line="105"/>
         <source>Your seed(s) is %1. Copy to clipboard?</source>
-        <translation type="unfinished"></translation>
+        <translation>Dein Seed ist/Deine Seeds sind %1. In die Zwischenablage kopieren?</translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.cpp" line="369"/>
@@ -2184,23 +2184,23 @@
     <message>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.cpp" line="370"/>
         <source>Would you like to use the Gales Precalc file? This decision will be remembered until you close this window.</source>
-        <translation type="unfinished"></translation>
+        <translation>Möchtest du die Gales Precalc Datei nutzen? Diese Entscheidung wird gespeichert, bis du dieses Fenster schließt.</translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.cpp" line="374"/>
         <source>Select Gales Precalc</source>
-        <translation type="unfinished"></translation>
+        <translation>Gales Precalc auswählen</translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.cpp" line="266"/>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.cpp" line="385"/>
         <source>Invalid Precalc File</source>
-        <translation type="unfinished"></translation>
+        <translation>Ungültige Precalc Datei</translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.cpp" line="104"/>
         <source>Result: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Ergebnis: %1</translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.cpp" line="122"/>
@@ -2208,31 +2208,31 @@
         <location filename="../Gen3/Tools/GameCubeSeedFinder.cpp" line="242"/>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.cpp" line="361"/>
         <source>Round #%1</source>
-        <translation type="unfinished"></translation>
+        <translation>Runde #%1</translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.cpp" line="126"/>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.cpp" line="152"/>
         <source>Seed: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Seed: %1</translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.cpp" line="267"/>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.cpp" line="386"/>
         <source>An invalid Precalc file was provided. Please try again.</source>
-        <translation type="unfinished"></translation>
+        <translation>Die Precalc Datei ist ungültig. Bitte erneut versuchen.</translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.cpp" line="274"/>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.cpp" line="393"/>
         <source>Unable to open file</source>
-        <translation type="unfinished"></translation>
+        <translation>Datei kann nicht geöffnet werden</translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.cpp" line="274"/>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.cpp" line="393"/>
         <source>Unable to open file. Please try again.</source>
-        <translation type="unfinished"></translation>
+        <translatio>Datei kann nicht geöffnet werden. Bitte erneut versuchen.</translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.cpp" line="250"/>
@@ -2242,29 +2242,29 @@
     <message>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.cpp" line="251"/>
         <source>Would you like to use the Colo Precalc file? This decision will be remembered until you close this window.</source>
-        <translation type="unfinished"></translation>
+        <translation>Möchtest du die Colo Precalc Datei nutzen? Diese Entscheidung wird gespeichert, bis du dieses Fenster schließt.</translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.cpp" line="255"/>
         <source>Select Colo Precalc</source>
-        <translation type="unfinished"></translation>
+        <translation>Colo Precalc auswählen</translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.cpp" line="198"/>
         <source>Missing info</source>
-        <translation type="unfinished"></translation>
+        <translation>Fehlende Informationen</translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.cpp" line="198"/>
         <source>You must have at least 10 entries</source>
-        <translation type="unfinished"></translation>
+        <translation>Du musst mindestens 10 Einträge haben</translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.cpp" line="105"/>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.cpp" line="127"/>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.cpp" line="153"/>
         <source>Seed found</source>
-        <translation type="unfinished"></translation>
+        <translation>Seed gefunden</translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.ui"/>
@@ -2274,102 +2274,102 @@
     <message>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.ui"/>
         <source>Result:</source>
-        <translation type="unfinished"></translation>
+        <translation>Ergebnis:</translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.ui"/>
         <source>Inputs</source>
-        <translation type="unfinished"></translation>
+        <translation>Eingaben</translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.ui"/>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Einstellungen</translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.ui"/>
         <source>S-&gt;N-&gt;O-&gt;C</source>
-        <translation type="unfinished"></translation>
+        <translation>E-&gt;N-&gt;O-&gt;W</translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.ui"/>
         <source>N-&gt;S-&gt;O-&gt;C</source>
-        <translation type="unfinished"></translation>
+        <translation>N-&gt;E-&gt;O-&gt;W</translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.ui"/>
         <source>O-&gt;N-&gt;S-&gt;C</source>
-        <translation type="unfinished"></translation>
+        <translation>O-&gt;N-&gt;E-&gt;W</translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.ui"/>
         <source>N-&gt;O-&gt;S-&gt;C</source>
-        <translation type="unfinished"></translation>
+        <translation>N-&gt;O-&gt;E-&gt;W</translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.ui"/>
         <source>S-&gt;N-&gt;C-&gt;O</source>
-        <translation type="unfinished"></translation>
+        <translation>E-&gt;N-&gt;W-&gt;O</translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.ui"/>
         <source>N-&gt;S-&gt;C-&gt;O</source>
-        <translation type="unfinished"></translation>
+        <translation>N-&gt;E-&gt;W-&gt;O</translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.ui"/>
         <source>C-&gt;N-&gt;S-&gt;O</source>
-        <translation type="unfinished"></translation>
+        <translation>W-&gt;N-&gt;E-&gt;O</translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.ui"/>
         <source>N-&gt;C-&gt;S-&gt;O</source>
-        <translation type="unfinished"></translation>
+        <translation>N-&gt;W-&gt;E-&gt;O</translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.ui"/>
         <source>O-&gt;N-&gt;C-&gt;S</source>
-        <translation type="unfinished"></translation>
+        <translation>O-&gt;N-&gt;W-&gt;E</translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.ui"/>
         <source>N-&gt;O-&gt;C-&gt;S</source>
-        <translation type="unfinished"></translation>
+        <translation>N-&gt;O-&gt;W-&gt;E</translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.ui"/>
         <source>C-&gt;N-&gt;O-&gt;S</source>
-        <translation type="unfinished"></translation>
+        <translation>W-&gt;N-&gt;O-&gt;E</translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.ui"/>
         <source>N-&gt;C-&gt;O-&gt;S</source>
-        <translation type="unfinished"></translation>
+        <translation>N-&gt;W-&gt;O-&gt;E</translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.ui"/>
         <source>Remove</source>
-        <translation type="unfinished"></translation>
+        <translation>Entfernen</translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.ui"/>
         <source>Top Left HP</source>
-        <translation type="unfinished"></translation>
+        <translation>KP oben links</translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.ui"/>
         <source>Top Right HP</source>
-        <translation type="unfinished"></translation>
+        <translation>KP oben rechts</translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.ui"/>
         <source>Bottom Left HP</source>
-        <translation type="unfinished"></translation>
+        <translation>KP unten links</translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.ui"/>
         <source>Bottom Right HP</source>
-        <translation type="unfinished"></translation>
+        <translation>KP unten rechts</translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.ui"/>
@@ -2379,7 +2379,7 @@
     <message>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.ui"/>
         <source>Clear</source>
-        <translation type="unfinished"></translation>
+        <translation>Zurücksetzen</translation>
     </message>
 </context>
 <context>
@@ -2387,7 +2387,7 @@
     <message>
         <location filename="../Gen5/HiddenGrotto.ui"/>
         <source>Hidden Grotto</source>
-        <translation type="unfinished"></translation>
+        <translation>Versteckte Lichtungen</translation>
     </message>
     <message>
         <location filename="../Gen5/HiddenGrotto.ui"/>
@@ -2412,7 +2412,7 @@
     <message>
         <location filename="../Gen5/HiddenGrotto.ui"/>
         <source>DS Type</source>
-        <translation type="unfinished"></translation>
+        <translation>DS Typ</translation>
     </message>
     <message>
         <location filename="../Gen5/HiddenGrotto.ui"/>
@@ -2422,7 +2422,7 @@
     <message>
         <location filename="../Gen5/HiddenGrotto.ui"/>
         <source>Keypresses</source>
-        <translation type="unfinished"></translation>
+        <translation>Anzahl Knopfdrücke</translation>
     </message>
     <message>
         <location filename="../Gen5/HiddenGrotto.ui"/>
@@ -2432,7 +2432,7 @@
     <message>
         <location filename="../Gen5/HiddenGrotto.ui"/>
         <source>MAC Address</source>
-        <translation type="unfinished"></translation>
+        <translation>MAC Adresse</translation>
     </message>
     <message>
         <location filename="../Gen5/HiddenGrotto.ui"/>
@@ -2462,17 +2462,17 @@
     <message>
         <location filename="../Gen5/HiddenGrotto.ui"/>
         <source>Seed</source>
-        <translation>Zufallswert</translation>
+        <translation>Seed</translation>
     </message>
     <message>
         <location filename="../Gen5/HiddenGrotto.ui"/>
         <source>Initial Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>Minimale Advances</translation>
     </message>
     <message>
         <location filename="../Gen5/HiddenGrotto.ui"/>
         <source>Max Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>Maximale Advances</translation>
     </message>
     <message>
         <location filename="../Gen5/HiddenGrotto.ui"/>
@@ -2482,7 +2482,7 @@
     <message>
         <location filename="../Gen5/HiddenGrotto.ui"/>
         <source>Grotto Power</source>
-        <translation type="unfinished"></translation>
+        <translation>Lichtungskraft</translation>
     </message>
     <message>
         <location filename="../Gen5/HiddenGrotto.ui"/>
@@ -2492,7 +2492,7 @@
     <message>
         <location filename="../Gen5/HiddenGrotto.ui"/>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Einstellungen</translation>
     </message>
     <message>
         <location filename="../Gen5/HiddenGrotto.ui"/>
@@ -2502,7 +2502,7 @@
     <message>
         <location filename="../Gen5/HiddenGrotto.ui"/>
         <source>Group</source>
-        <translation type="unfinished"></translation>
+        <translation>Gruppe</translation>
     </message>
     <message>
         <location filename="../Gen5/HiddenGrotto.ui"/>
@@ -2527,17 +2527,17 @@
     <message>
         <location filename="../Gen5/HiddenGrotto.ui"/>
         <source>Start Date</source>
-        <translation type="unfinished"></translation>
+        <translation>Startdatum</translation>
     </message>
     <message>
         <location filename="../Gen5/HiddenGrotto.ui"/>
         <source>End Date</source>
-        <translation type="unfinished"></translation>
+        <translation>Enddatum</translation>
     </message>
     <message>
         <location filename="../Gen5/HiddenGrotto.ui"/>
         <source>Delay</source>
-        <translation>Verzögerung</translation>
+        <translation>Delay</translation>
     </message>
     <message>
         <location filename="../Gen5/HiddenGrotto.ui"/>
@@ -2562,12 +2562,12 @@
     <message>
         <location filename="../Gen5/HiddenGrotto.cpp" line="241"/>
         <source>Invalid date range</source>
-        <translation type="unfinished"></translation>
+        <translation>Ungültige Datumsspanne</translation>
     </message>
     <message>
         <location filename="../Gen5/HiddenGrotto.cpp" line="241"/>
         <source>Start date is after end date</source>
-        <translation type="unfinished"></translation>
+        <translation>Startdatum ist nach Enddatum</translation>
     </message>
 </context>
 <context>
@@ -2585,7 +2585,7 @@
     <message>
         <location filename="../Gen3/IDs3.ui"/>
         <source>Seed</source>
-        <translation>Zufallswert</translation>
+        <translation>Seed</translation>
     </message>
     <message>
         <location filename="../Gen3/IDs3.ui"/>
@@ -2600,12 +2600,12 @@
     <message>
         <location filename="../Gen3/IDs3.ui"/>
         <source>Initial Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>Minimale Advances</translation>
     </message>
     <message>
         <location filename="../Gen3/IDs3.ui"/>
         <source>Max Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>Maximale Advances</translation>
     </message>
     <message>
         <location filename="../Gen3/IDs3.ui"/>
@@ -2620,7 +2620,7 @@
     <message>
         <location filename="../Gen3/IDs3.ui"/>
         <source>FRLGE</source>
-        <translation type="unfinished"></translation>
+        <translation>FRBGSM</translation>
     </message>
     <message>
         <location filename="../Gen3/IDs3.ui"/>
@@ -2630,7 +2630,7 @@
     <message>
         <location filename="../Gen3/IDs3.ui"/>
         <source>Date/Time</source>
-        <translation type="unfinished"></translation>
+        <translation>Datum/Uhrzeit</translation>
     </message>
     <message>
         <location filename="../Gen3/IDs3.ui"/>
@@ -2653,12 +2653,12 @@
     <message>
         <location filename="../Gen4/IDs4.ui"/>
         <source>Min Delay</source>
-        <translation>Min. Verzögerung</translation>
+        <translation>Min. Delay</translation>
     </message>
     <message>
         <location filename="../Gen4/IDs4.ui"/>
         <source>Max Delay</source>
-        <translation>Max. Verzögerung</translation>
+        <translation>Max. Delay</translation>
     </message>
     <message>
         <location filename="../Gen4/IDs4.ui"/>
@@ -2673,7 +2673,7 @@
     <message>
         <location filename="../Gen4/IDs4.ui"/>
         <source>Seed Finder</source>
-        <translation>Zufallswert-Finder</translation>
+        <translation>Seed-Finder</translation>
     </message>
     <message>
         <location filename="../Gen4/IDs4.ui"/>
@@ -2688,7 +2688,7 @@
     <message>
         <location filename="../Gen4/IDs4.ui"/>
         <source>Date/Time</source>
-        <translation type="unfinished"></translation>
+        <translation>Datum/Uhrzeit</translation>
     </message>
     <message>
         <location filename="../Gen4/IDs4.ui"/>
@@ -2726,12 +2726,12 @@
     <message>
         <location filename="../Gen5/IDs5.ui"/>
         <source>MAC Address</source>
-        <translation type="unfinished"></translation>
+        <translation>MAC Adresse</translation>
     </message>
     <message>
         <location filename="../Gen5/IDs5.ui"/>
         <source>DS Type</source>
-        <translation type="unfinished"></translation>
+        <translation>DS Typ</translation>
     </message>
     <message>
         <location filename="../Gen5/IDs5.ui"/>
@@ -2766,27 +2766,27 @@
     <message>
         <location filename="../Gen5/IDs5.ui"/>
         <source>Keypresses</source>
-        <translation type="unfinished"></translation>
+        <translation>Anzahl Knopfdrücke</translation>
     </message>
     <message>
         <location filename="../Gen5/IDs5.ui"/>
         <source>Seed Finder</source>
-        <translation>Zufallswert-Finder</translation>
+        <translation>Seed-Finder</translation>
     </message>
     <message>
         <location filename="../Gen5/IDs5.ui"/>
         <source>Second Range</source>
-        <translation type="unfinished"></translation>
+        <translation>Sekundenbereich</translation>
     </message>
     <message>
         <location filename="../Gen5/IDs5.ui"/>
         <source>Max Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>Maximale Advances</translation>
     </message>
     <message>
         <location filename="../Gen5/IDs5.ui"/>
         <source>Hour</source>
-        <translation type="unfinished"></translation>
+        <translation>Stunde</translation>
     </message>
     <message>
         <location filename="../Gen5/IDs5.ui"/>
@@ -2826,7 +2826,7 @@
     <message>
         <location filename="../Gen5/IDs5.ui"/>
         <source>Start/End Date</source>
-        <translation type="unfinished"></translation>
+        <translation>Start-/Enddatum</translation>
     </message>
     <message>
         <location filename="../Gen5/IDs5.ui"/>
@@ -2841,17 +2841,17 @@
     <message>
         <location filename="../Gen5/IDs5.ui"/>
         <source>Static/Wild</source>
-        <translation type="unfinished"></translation>
+        <translation>Stationär/Wild</translation>
     </message>
     <message>
         <location filename="../Gen5/IDs5.cpp" line="132"/>
         <source>Invalid date range</source>
-        <translation type="unfinished"></translation>
+        <translation>Unültige Datumsspanne</translation>
     </message>
     <message>
         <location filename="../Gen5/IDs5.cpp" line="132"/>
         <source>Start date is after end date</source>
-        <translation type="unfinished"></translation>
+        <translation>Startdatum ist nach Enddatum</translation>
     </message>
 </context>
 <context>
@@ -2869,7 +2869,7 @@
     <message>
         <location filename="../Gen8/IDs8.ui"/>
         <source>Initial Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>Minimale Advances</translation>
     </message>
     <message>
         <location filename="../Gen8/IDs8.ui"/>
@@ -2879,7 +2879,7 @@
     <message>
         <location filename="../Gen8/IDs8.ui"/>
         <source>Max Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>Maximale Advances</translation>
     </message>
     <message>
         <location filename="../Gen8/IDs8.ui"/>
@@ -2899,12 +2899,12 @@
     <message>
         <location filename="../Gen8/IDs8.cpp" line="67"/>
         <source>Missing seeds</source>
-        <translation type="unfinished"></translation>
+        <translation>Fehlende Seeds</translation>
     </message>
     <message>
         <location filename="../Gen8/IDs8.cpp" line="67"/>
         <source>Please insert missing seed information</source>
-        <translation type="unfinished"></translation>
+        <translation>Bitte fehlende Seed Informationen eingeben</translation>
     </message>
 </context>
 <context>
@@ -2932,7 +2932,7 @@
     <message>
         <location filename="../Controls/IDsFilter.ui"/>
         <source>Display TID</source>
-        <translation type="unfinished"></translation>
+        <translation>TID anzeigen</translation>
     </message>
     <message>
         <location filename="../Controls/IDsFilter.ui"/>
@@ -2950,12 +2950,12 @@
     <message>
         <location filename="../Util/IVCalculator.ui"/>
         <source>IV Calculator</source>
-        <translation type="unfinished"></translation>
+        <translation>IV Rechner</translation>
     </message>
     <message>
         <location filename="../Util/IVCalculator.ui"/>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Einstellungen</translation>
     </message>
     <message>
         <location filename="../Util/IVCalculator.ui"/>
@@ -2970,12 +2970,12 @@
     <message>
         <location filename="../Util/IVCalculator.ui"/>
         <source>Characteristic</source>
-        <translation type="unfinished"></translation>
+        <translation>Persönlichkeit</translation>
     </message>
     <message>
         <location filename="../Util/IVCalculator.ui"/>
         <source>Hidden Power</source>
-        <translation>Versteckter Typ</translation>
+        <translation>Kraftreserve</translation>
     </message>
     <message>
         <location filename="../Util/IVCalculator.ui"/>
@@ -2985,7 +2985,7 @@
     <message>
         <location filename="../Util/IVCalculator.ui"/>
         <source>Find IVs</source>
-        <translation type="unfinished"></translation>
+        <translation>IVs finden</translation>
     </message>
     <message>
         <location filename="../Util/IVCalculator.ui"/>
@@ -3030,42 +3030,42 @@
     <message>
         <location filename="../Util/IVCalculator.ui"/>
         <source>Base HP</source>
-        <translation type="unfinished"></translation>
+        <translation>Basis KP</translation>
     </message>
     <message>
         <location filename="../Util/IVCalculator.ui"/>
         <source>Base Atk</source>
-        <translation type="unfinished"></translation>
+        <translation>Basis Angr</translation>
     </message>
     <message>
         <location filename="../Util/IVCalculator.ui"/>
         <source>Base Def</source>
-        <translation type="unfinished"></translation>
+        <translation>Basis Vert</translation>
     </message>
     <message>
         <location filename="../Util/IVCalculator.ui"/>
         <source>Base SpA</source>
-        <translation type="unfinished"></translation>
+        <translation>Basis SpAng</translation>
     </message>
     <message>
         <location filename="../Util/IVCalculator.ui"/>
         <source>Base SpD</source>
-        <translation type="unfinished"></translation>
+        <translation>Basis SpVer</translation>
     </message>
     <message>
         <location filename="../Util/IVCalculator.ui"/>
         <source>Base Spe</source>
-        <translation type="unfinished"></translation>
+        <translation>Basis Init</translation>
     </message>
     <message>
         <location filename="../Util/IVCalculator.cpp" line="85"/>
         <source>Invalid</source>
-        <translation type="unfinished"></translation>
+        <translation>Ungültig</translation>
     </message>
     <message>
         <location filename="../Util/IVCalculator.ui"/>
         <source>Altform</source>
-        <translation type="unfinished"></translation>
+        <translation>Form</translation>
     </message>
     <message>
         <location filename="../Util/IVCalculator.ui"/>
@@ -3075,17 +3075,17 @@
     <message>
         <location filename="../Util/IVCalculator.ui"/>
         <source>Speed</source>
-        <translation type="unfinished"></translation>
+        <translation>Initiative</translation>
     </message>
     <message>
         <location filename="../Util/IVCalculator.ui"/>
         <source>Add row</source>
-        <translation type="unfinished"></translation>
+        <translation>Zeile hinzufügen</translation>
     </message>
     <message>
         <location filename="../Util/IVCalculator.ui"/>
         <source>Remove row</source>
-        <translation type="unfinished"></translation>
+        <translation>Zeile entfernen</translation>
     </message>
     <message>
         <location filename="../Util/IVCalculator.ui"/>
@@ -3100,32 +3100,32 @@
     <message>
         <location filename="../Util/IVCalculator.ui"/>
         <source>Sword/Shield</source>
-        <translation type="unfinished"></translation>
+        <translation>Schwert/Schild</translation>
     </message>
     <message>
         <location filename="../Util/IVCalculator.ui"/>
         <source>Brilliant Diamond/Shining Pearl</source>
-        <translation type="unfinished"></translation>
+        <translation>Strahlender Diamant/Leuchtende Perle</translation>
     </message>
     <message>
         <location filename="../Util/IVCalculator.ui"/>
         <source>Emerald/RS/FRLG</source>
-        <translation type="unfinished"></translation>
+        <translation>Smaragd/RS/FRBG</translation>
     </message>
     <message>
         <location filename="../Util/IVCalculator.ui"/>
         <source>Diamond/Pearl/Platinum</source>
-        <translation type="unfinished"></translation>
+        <translation>Diamant/Perl/Platin</translation>
     </message>
     <message>
         <location filename="../Util/IVCalculator.ui"/>
         <source>Black/White/Black 2/White 2</source>
-        <translation type="unfinished"></translation>
+        <translation>Schwarz/Weiß/Schwarz 2/Weiß 2</translation>
     </message>
     <message>
         <location filename="../Util/IVCalculator.ui"/>
         <source>Next level</source>
-        <translation type="unfinished"></translation>
+        <translation>Nächster Level</translation>
     </message>
 </context>
 <context>
@@ -3191,22 +3191,22 @@
     <message>
         <location filename="../Gen3/Tools/JirachiAdvancer.ui"/>
         <source>Starting Seed</source>
-        <translation type="unfinished"></translation>
+        <translation>Startseed</translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/JirachiAdvancer.ui"/>
         <source>Target Seed</source>
-        <translation type="unfinished"></translation>
+        <translation>Zielseed</translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/JirachiAdvancer.ui"/>
         <source>Max Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>Max. Advances</translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/JirachiAdvancer.ui"/>
         <source>Brute Force Range</source>
-        <translation type="unfinished"></translation>
+        <translation>Bereich erzwingen</translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/JirachiAdvancer.ui"/>
@@ -3216,42 +3216,42 @@
     <message>
         <location filename="../Gen3/Tools/JirachiAdvancer.cpp" line="65"/>
         <source>Invalid advance</source>
-        <translation type="unfinished"></translation>
+        <translation>Min. Advances</translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/JirachiAdvancer.cpp" line="65"/>
         <source>Target is outside of specified advance range</source>
-        <translation type="unfinished"></translation>
+        <translation>Ziel ist außerhalb des angegebenen Advance-Bereichs</translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/JirachiAdvancer.cpp" line="73"/>
         <source>Invalid target</source>
-        <translation type="unfinished"></translation>
+        <translation>Unültiges Ziel</translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/JirachiAdvancer.cpp" line="73"/>
         <source>Target seed is unobtainable</source>
-        <translation type="unfinished"></translation>
+        <translation>Zielseed ist unerreichbar</translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/JirachiAdvancer.cpp" line="85"/>
         <source>%1: Reload menu</source>
-        <translation type="unfinished"></translation>
+        <translation>%1: Menu neu laden</translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/JirachiAdvancer.cpp" line="89"/>
         <source>%1: Reject Jirachi</source>
-        <translation type="unfinished"></translation>
+        <translation>%1: Jirachi ablehnen</translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/JirachiAdvancer.cpp" line="93"/>
         <source>%1: Special Cutscene</source>
-        <translation type="unfinished"></translation>
+        <translation>%1: Spezial-Cutscene</translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/JirachiAdvancer.cpp" line="97"/>
         <source>%1: Accept Jirachi</source>
-        <translation type="unfinished"></translation>
+        <translation>%1: Jirachi annehmen</translation>
     </message>
 </context>
 <context>
@@ -3289,7 +3289,7 @@
     <message>
         <location filename="../MainWindow.ui"/>
         <source>Seed to Time</source>
-        <translation>Zufallswert zu Zeit</translation>
+        <translation>Seed zu Zeit</translation>
     </message>
     <message>
         <location filename="../MainWindow.ui"/>
@@ -3304,22 +3304,22 @@
     <message>
         <location filename="../MainWindow.cpp" line="142"/>
         <source>Unable to locate profiles</source>
-        <translation type="unfinished"></translation>
+        <translation>Kann Profile nicht finden</translation>
     </message>
     <message>
         <location filename="../MainWindow.cpp" line="143"/>
         <source>Please update path to your profiles file to restore existing profiles.</source>
-        <translation type="unfinished"></translation>
+        <translation>Bitte Dateipfad für Profile aktualisieren, um existierende Profile wiederherzustellen.</translation>
     </message>
     <message>
         <location filename="../MainWindow.cpp" line="198"/>
         <source>Update Check</source>
-        <translation type="unfinished"></translation>
+        <translation>Nach Update suchen</translation>
     </message>
     <message>
         <location filename="../MainWindow.cpp" line="199"/>
         <source>An update is available. Would you like to download the newest version?</source>
-        <translation type="unfinished"></translation>
+        <translation>Ein Update ist verfügbar. Neueste Version herunterladen?</translation>
     </message>
     <message>
         <location filename="../MainWindow.cpp" line="402"/>
@@ -3328,7 +3328,7 @@
         <location filename="../MainWindow.cpp" line="468"/>
         <location filename="../MainWindow.cpp" line="490"/>
         <source>No profiles found</source>
-        <translation type="unfinished"></translation>
+        <translation>Keine Profile gefunden</translation>
     </message>
     <message>
         <location filename="../MainWindow.cpp" line="403"/>
@@ -3337,7 +3337,7 @@
         <location filename="../MainWindow.cpp" line="469"/>
         <location filename="../MainWindow.cpp" line="491"/>
         <source>Please use the Profile Calibrator under Gen 5 Tools to create one.</source>
-        <translation type="unfinished"></translation>
+        <translation>Bitte Profilkalibrierer in den Gen 5 Tools verwenden, um ein Profil zu erstellen.</translation>
     </message>
     <message>
         <location filename="../MainWindow.cpp" line="625"/>
@@ -3357,7 +3357,7 @@
     <message>
         <location filename="../MainWindow.cpp" line="628"/>
         <source>Copy</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopie</translation>
     </message>
     <message>
         <location filename="../MainWindow.ui"/>
@@ -3367,27 +3367,27 @@
     <message>
         <location filename="../MainWindow.ui"/>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Einstellungen</translation>
     </message>
     <message>
         <location filename="../MainWindow.ui"/>
         <source>SID from Chained Shiny</source>
-        <translation type="unfinished"></translation>
+        <translation>SID von Chained Shiny</translation>
     </message>
     <message>
         <location filename="../MainWindow.ui"/>
         <source>IV Calculator</source>
-        <translation type="unfinished"></translation>
+        <translation>IV Rechner</translation>
     </message>
     <message>
         <location filename="../MainWindow.ui"/>
         <source>Spinda Painter</source>
-        <translation type="unfinished"></translation>
+        <translation>Spinda Maler</translation>
     </message>
     <message>
         <location filename="../MainWindow.ui"/>
         <source>Encounter Lookup</source>
-        <translation type="unfinished"></translation>
+        <translation>Nach Pokemon suchen</translation>
     </message>
     <message>
         <location filename="../MainWindow.ui"/>
@@ -3407,7 +3407,7 @@
     <message>
         <location filename="../MainWindow.ui"/>
         <source>Dream Radar</source>
-        <translation type="unfinished"></translation>
+        <translation>Traumradar</translation>
     </message>
     <message>
         <location filename="../MainWindow.ui"/>
@@ -3417,22 +3417,22 @@
     <message>
         <location filename="../MainWindow.ui"/>
         <source>Profile Calibrator</source>
-        <translation type="unfinished"></translation>
+        <translation>Profilkalibrierer</translation>
     </message>
     <message>
         <location filename="../MainWindow.ui"/>
         <source>Profile Manager</source>
-        <translation type="unfinished"></translation>
+        <translation>Profilmanager</translation>
     </message>
     <message>
         <location filename="../MainWindow.ui"/>
         <source>Static</source>
-        <translation type="unfinished"></translation>
+        <translation>Stationär</translation>
     </message>
     <message>
         <location filename="../MainWindow.ui"/>
         <source>Hidden Grotto</source>
-        <translation type="unfinished"></translation>
+        <translation>Versteckte Lichtung</translation>
     </message>
     <message>
         <location filename="../MainWindow.ui"/>
@@ -3453,12 +3453,12 @@
         <location filename="../MainWindow.ui"/>
         <location filename="../MainWindow.cpp" line="627"/>
         <source>About</source>
-        <translation type="unfinished"></translation>
+        <translation>Über</translation>
     </message>
     <message>
         <location filename="../MainWindow.ui"/>
         <source>Den Map</source>
-        <translation type="unfinished"></translation>
+        <translation>Pokemon-Nest Karte</translation>
     </message>
     <message>
         <location filename="../MainWindow.ui"/>
@@ -3468,17 +3468,17 @@
     <message>
         <location filename="../MainWindow.ui"/>
         <source>Underground</source>
-        <translation type="unfinished"></translation>
+        <translation>Untergrund</translation>
     </message>
     <message>
         <location filename="../MainWindow.ui"/>
         <source>Poke Spot</source>
-        <translation type="unfinished"></translation>
+        <translation>Pokeplatz</translation>
     </message>
     <message>
         <location filename="../MainWindow.ui"/>
         <source>PID to IVs</source>
-        <translation type="unfinished"></translation>
+        <translation>PID zu IVs</translation>
     </message>
     <message>
         <location filename="../MainWindow.ui"/>
@@ -3496,7 +3496,7 @@
     <message>
         <location filename="../Gen3/Tools/PIDToIV.ui"/>
         <source>PID to IVs</source>
-        <translation type="unfinished"></translation>
+        <translation>PID zu IVs</translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/PIDToIV.ui"/>
@@ -3559,12 +3559,12 @@
     <message>
         <location filename="../Gen3/Tools/PokeSpot.ui"/>
         <source>Food Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>Pokesnack Advances</translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/PokeSpot.ui"/>
         <source>Seed (Food / Encounter)</source>
-        <translation type="unfinished"></translation>
+        <translation>Seed (Pokesnack / Encounter)</translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/PokeSpot.ui"/>
@@ -3574,12 +3574,12 @@
     <message>
         <location filename="../Gen3/Tools/PokeSpot.ui"/>
         <source>Delay (Food / Encounter)</source>
-        <translation type="unfinished"></translation>
+        <translation>Delay (Pokesnack / Encounter)</translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/PokeSpot.ui"/>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Einstellungen</translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/PokeSpot.ui"/>
@@ -3597,17 +3597,17 @@
     <message>
         <location filename="../Gen5/Profile/ProfileCalibrator5.ui"/>
         <source>Profile Calibrator</source>
-        <translation type="unfinished"></translation>
+        <translation>Profilkalibrierer</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileCalibrator5.ui"/>
         <source>Variables</source>
-        <translation type="unfinished"></translation>
+        <translation>Variablen</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileCalibrator5.ui"/>
         <source>DS Type</source>
-        <translation type="unfinished"></translation>
+        <translation>DS Typ</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileCalibrator5.ui"/>
@@ -3652,7 +3652,7 @@
     <message>
         <location filename="../Gen5/Profile/ProfileCalibrator5.ui"/>
         <source>Memory Link</source>
-        <translation type="unfinished"></translation>
+        <translation>Mementolink</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileCalibrator5.ui"/>
@@ -3677,12 +3677,12 @@
     <message>
         <location filename="../Gen5/Profile/ProfileCalibrator5.ui"/>
         <source>Keypresses</source>
-        <translation type="unfinished"></translation>
+        <translation>Gedrückte Knöpfe</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileCalibrator5.ui"/>
         <source>MAC Address</source>
-        <translation type="unfinished"></translation>
+        <translation>MAC  Adresse</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileCalibrator5.ui"/>
@@ -3692,22 +3692,22 @@
     <message>
         <location filename="../Gen5/Profile/ProfileCalibrator5.ui"/>
         <source>Black</source>
-        <translation type="unfinished"></translation>
+        <translation>Schwarz</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileCalibrator5.ui"/>
         <source>White</source>
-        <translation type="unfinished"></translation>
+        <translation>Weiß</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileCalibrator5.ui"/>
         <source>Black 2</source>
-        <translation type="unfinished"></translation>
+        <translation>Schwarz 2</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileCalibrator5.ui"/>
         <source>White 2</source>
-        <translation type="unfinished"></translation>
+        <translation>Weiß 2</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileCalibrator5.ui"/>
@@ -3747,7 +3747,7 @@
     <message>
         <location filename="../Gen5/Profile/ProfileCalibrator5.ui"/>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Einstellungen</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileCalibrator5.ui"/>
@@ -3767,7 +3767,7 @@
     <message>
         <location filename="../Gen5/Profile/ProfileCalibrator5.ui"/>
         <source>IV Search</source>
-        <translation type="unfinished"></translation>
+        <translation>IV Suche</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileCalibrator5.ui"/>
@@ -3782,17 +3782,17 @@
     <message>
         <location filename="../Gen5/Profile/ProfileCalibrator5.ui"/>
         <source>Needle Search</source>
-        <translation type="unfinished"></translation>
+        <translation>Zeigersuche</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileCalibrator5.ui"/>
         <source>Unova Link</source>
-        <translation type="unfinished"></translation>
+        <translation>Einall-Link</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileCalibrator5.ui"/>
         <source>Saving</source>
-        <translation type="unfinished"></translation>
+        <translation>Speichern</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileCalibrator5.ui"/>
@@ -3802,17 +3802,17 @@
     <message>
         <location filename="../Gen5/Profile/ProfileCalibrator5.ui"/>
         <source>Clear</source>
-        <translation type="unfinished"></translation>
+        <translation>Zurücksetzen</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileCalibrator5.ui"/>
         <source>Seed Search</source>
-        <translation type="unfinished"></translation>
+        <translation>Seedsuche</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileCalibrator5.ui"/>
         <source>Seed</source>
-        <translation>Zufallswert</translation>
+        <translation>Seed</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileCalibrator5.cpp" line="66"/>
@@ -3824,32 +3824,32 @@
     <message>
         <location filename="../Gen5/Profile/ProfileCalibrator5.cpp" line="76"/>
         <source>Create profile</source>
-        <translation type="unfinished"></translation>
+        <translation>Profil erstellen</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileCalibrator5.cpp" line="171"/>
         <source>No row selected</source>
-        <translation type="unfinished"></translation>
+        <translation>Keine Zeile ausgewählt</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileCalibrator5.cpp" line="171"/>
         <source>Please select a row</source>
-        <translation type="unfinished"></translation>
+        <translation>Bitte eine Zeile auswählen</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileCalibrator5.cpp" line="235"/>
         <source>Some min values are greater then max values</source>
-        <translation type="unfinished"></translation>
+        <translation>Manche Min Werte sind größer als die Max Werte</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileCalibrator5.cpp" line="235"/>
         <source>Invalid Input</source>
-        <translation type="unfinished"></translation>
+        <translation>Ungültige Eingabe</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileCalibrator5.ui"/>
         <source>IV Calculator</source>
-        <translation type="unfinished"></translation>
+        <translation>IV Rechner</translation>
     </message>
 </context>
 <context>
@@ -3932,12 +3932,12 @@
     <message>
         <location filename="../Gen3/Profile/ProfileEditor3.cpp" line="77"/>
         <source>Missing name</source>
-        <translation type="unfinished"></translation>
+        <translation>Fehlender Name</translation>
     </message>
     <message>
         <location filename="../Gen3/Profile/ProfileEditor3.cpp" line="77"/>
         <source>Enter a profile name</source>
-        <translation type="unfinished"></translation>
+        <translatio>Profilname eingeben</translation>
     </message>
 </context>
 <context>
@@ -4000,12 +4000,12 @@
     <message>
         <location filename="../Gen4/Profile/ProfileEditor4.cpp" line="76"/>
         <source>Enter a profile name</source>
-        <translation type="unfinished"></translation>
+        <translation>Profilname eingeben</translation>
     </message>
     <message>
         <location filename="../Gen4/Profile/ProfileEditor4.cpp" line="76"/>
         <source>Missing name</source>
-        <translation type="unfinished"></translation>
+        <translation>Fehlender Name</translation>
     </message>
     <message>
         <location filename="../Gen4/Profile/ProfileEditor4.ui"/>
@@ -4015,7 +4015,7 @@
     <message>
         <location filename="../Gen4/Profile/ProfileEditor4.ui"/>
         <source>National Dex</source>
-        <translation type="unfinished"></translation>
+        <translation>Nationaler Pokedex</translation>
     </message>
 </context>
 <context>
@@ -4048,7 +4048,7 @@
     <message>
         <location filename="../Gen5/Profile/ProfileEditor5.ui"/>
         <source>Accept</source>
-        <translation type="unfinished"></translation>
+        <translation>Bestätigen</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileEditor5.ui"/>
@@ -4058,27 +4058,27 @@
     <message>
         <location filename="../Gen5/Profile/ProfileEditor5.ui"/>
         <source>Black</source>
-        <translation type="unfinished"></translation>
+        <translation>Schwarz</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileEditor5.ui"/>
         <source>White</source>
-        <translation type="unfinished"></translation>
+        <translation>Weiß</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileEditor5.ui"/>
         <source>Black 2</source>
-        <translation type="unfinished"></translation>
+        <translation>Schwarz 2</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileEditor5.ui"/>
         <source>White 2</source>
-        <translation type="unfinished"></translation>
+        <translation>Weiß 2</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileEditor5.ui"/>
         <source>Keypresses</source>
-        <translation type="unfinished"></translation>
+        <translation>Anzahl Knopfdrücke</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileEditor5.ui"/>
@@ -4153,7 +4153,7 @@
     <message>
         <location filename="../Gen5/Profile/ProfileEditor5.ui"/>
         <source>DS Type</source>
-        <translation type="unfinished"></translation>
+        <translation>DS Typ</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileEditor5.ui"/>
@@ -4178,7 +4178,7 @@
     <message>
         <location filename="../Gen5/Profile/ProfileEditor5.ui"/>
         <source>Find Parameters</source>
-        <translation type="unfinished"></translation>
+        <translation>Parameter finden</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileEditor5.ui"/>
@@ -4188,27 +4188,27 @@
     <message>
         <location filename="../Gen5/Profile/ProfileEditor5.ui"/>
         <source>Skip L/R</source>
-        <translation type="unfinished"></translation>
+        <translation>L/R weglassen</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileEditor5.ui"/>
         <source>Memory Link</source>
-        <translation type="unfinished"></translation>
+        <translation>Mementolink</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileEditor5.ui"/>
         <source>Shiny Charm</source>
-        <translation type="unfinished"></translation>
+        <translation>Schillerpin</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="126"/>
         <source>Enter a profile name</source>
-        <translation type="unfinished"></translation>
+        <translation>Profilname eingeben</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileEditor5.cpp" line="126"/>
         <source>Missing name</source>
-        <translation type="unfinished"></translation>
+        <translation>Fehlender Name</translation>
     </message>
 </context>
 <context>
@@ -4226,7 +4226,7 @@
     <message>
         <location filename="../Gen8/Profile/ProfileEditor8.ui"/>
         <source>Shiny Charm</source>
-        <translation type="unfinished"></translation>
+        <translation>Schillerpin</translation>
     </message>
     <message>
         <location filename="../Gen8/Profile/ProfileEditor8.ui"/>
@@ -4236,27 +4236,27 @@
     <message>
         <location filename="../Gen8/Profile/ProfileEditor8.ui"/>
         <source>Sword</source>
-        <translation type="unfinished"></translation>
+        <translation>Schwert</translation>
     </message>
     <message>
         <location filename="../Gen8/Profile/ProfileEditor8.ui"/>
         <source>Shield</source>
-        <translation type="unfinished"></translation>
+        <translation>Schild</translation>
     </message>
     <message>
         <location filename="../Gen8/Profile/ProfileEditor8.ui"/>
         <source>Brilliant Diamond</source>
-        <translation type="unfinished"></translation>
+        <translation>Strahlender Diamant</translation>
     </message>
     <message>
         <location filename="../Gen8/Profile/ProfileEditor8.ui"/>
         <source>Shining Pearl</source>
-        <translation type="unfinished"></translation>
+        <translation>Leuchtende Perle</translation>
     </message>
     <message>
         <location filename="../Gen8/Profile/ProfileEditor8.ui"/>
         <source>Oval Charm</source>
-        <translation type="unfinished"></translation>
+        <translation>Ovalpin</translation>
     </message>
     <message>
         <location filename="../Gen8/Profile/ProfileEditor8.ui"/>
@@ -4281,17 +4281,17 @@
     <message>
         <location filename="../Gen8/Profile/ProfileEditor8.ui"/>
         <source>National Dex</source>
-        <translation type="unfinished"></translation>
+        <translation>Nationaler Pokedex</translation>
     </message>
     <message>
         <location filename="../Gen8/Profile/ProfileEditor8.cpp" line="77"/>
         <source>Missing name</source>
-        <translation type="unfinished"></translation>
+        <translation>Fehlender Name</translation>
     </message>
     <message>
         <location filename="../Gen8/Profile/ProfileEditor8.cpp" line="77"/>
         <source>Enter a profile name</source>
-        <translation type="unfinished"></translation>
+        <translation>Profilname eingeben</translation>
     </message>
 </context>
 <context>
@@ -4325,23 +4325,23 @@
         <location filename="../Gen3/Profile/ProfileManager3.cpp" line="74"/>
         <location filename="../Gen3/Profile/ProfileManager3.cpp" line="95"/>
         <source>No profile selected</source>
-        <translation type="unfinished"></translation>
+        <translation>Kein Profil ausgewählt</translation>
     </message>
     <message>
         <location filename="../Gen3/Profile/ProfileManager3.cpp" line="74"/>
         <location filename="../Gen3/Profile/ProfileManager3.cpp" line="95"/>
         <source>Please select a profile</source>
-        <translation type="unfinished"></translation>
+        <translation>Bitte Profil auswählen</translation>
     </message>
     <message>
         <location filename="../Gen3/Profile/ProfileManager3.cpp" line="100"/>
         <source>Delete profile</source>
-        <translation type="unfinished"></translation>
+        <translation>Profil löschen</translation>
     </message>
     <message>
         <location filename="../Gen3/Profile/ProfileManager3.cpp" line="100"/>
         <source>Are you sure you wish to delete this profile?</source>
-        <translation type="unfinished"></translation>
+        <translation>Profil endgültig löschen?</translation>
     </message>
 </context>
 <context>
@@ -4375,23 +4375,23 @@
         <location filename="../Gen4/Profile/ProfileManager4.cpp" line="75"/>
         <location filename="../Gen4/Profile/ProfileManager4.cpp" line="96"/>
         <source>No profile selected</source>
-        <translation type="unfinished"></translation>
+        <translation>Kein Profil ausgewählt</translation>
     </message>
     <message>
         <location filename="../Gen4/Profile/ProfileManager4.cpp" line="75"/>
         <location filename="../Gen4/Profile/ProfileManager4.cpp" line="96"/>
         <source>Please select a profile</source>
-        <translation type="unfinished"></translation>
+        <translation>Bitte Profil auswählen</translation>
     </message>
     <message>
         <location filename="../Gen4/Profile/ProfileManager4.cpp" line="101"/>
         <source>Delete profile</source>
-        <translation type="unfinished"></translation>
+        <translation>Profil löschen</translation>
     </message>
     <message>
         <location filename="../Gen4/Profile/ProfileManager4.cpp" line="101"/>
         <source>Are you sure you wish to delete this profile?</source>
-        <translation type="unfinished"></translation>
+        <translation>Profil endgültig löschen?</translation>
     </message>
 </context>
 <context>
@@ -4425,23 +4425,23 @@
         <location filename="../Gen5/Profile/ProfileManager5.cpp" line="75"/>
         <location filename="../Gen5/Profile/ProfileManager5.cpp" line="96"/>
         <source>No profile selected</source>
-        <translation type="unfinished"></translation>
+        <translation>Kein Profil ausgewählt</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileManager5.cpp" line="75"/>
         <location filename="../Gen5/Profile/ProfileManager5.cpp" line="96"/>
         <source>Please select a profile</source>
-        <translation type="unfinished"></translation>
+        <translation>Bitte Profil auswählen</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileManager5.cpp" line="101"/>
         <source>Delete profile</source>
-        <translation type="unfinished"></translation>
+        <translation>Profil löschen</translation>
     </message>
     <message>
         <location filename="../Gen5/Profile/ProfileManager5.cpp" line="101"/>
         <source>Are you sure you wish to delete this profile?</source>
-        <translation type="unfinished"></translation>
+        <translation>Profil endgültig löschen?</translation>
     </message>
 </context>
 <context>
@@ -4475,23 +4475,23 @@
         <location filename="../Gen8/Profile/ProfileManager8.cpp" line="75"/>
         <location filename="../Gen8/Profile/ProfileManager8.cpp" line="96"/>
         <source>No profile selected</source>
-        <translation type="unfinished"></translation>
+        <translation>Kein Profil ausgewählt</translation>
     </message>
     <message>
         <location filename="../Gen8/Profile/ProfileManager8.cpp" line="75"/>
         <location filename="../Gen8/Profile/ProfileManager8.cpp" line="96"/>
         <source>Please select a profile</source>
-        <translation type="unfinished"></translation>
+        <translation>Bitte Profil auswählen</translation>
     </message>
     <message>
         <location filename="../Gen8/Profile/ProfileManager8.cpp" line="101"/>
         <source>Delete profile</source>
-        <translation type="unfinished"></translation>
+        <translation>Profil löschen</translation>
     </message>
     <message>
         <location filename="../Gen8/Profile/ProfileManager8.cpp" line="101"/>
         <source>Are you sure you wish to delete this profile?</source>
-        <translation type="unfinished"></translation>
+        <translation>Profil endgültig löschen?</translation>
     </message>
 </context>
 <context>
@@ -4514,27 +4514,27 @@
     <message>
         <location filename="../Gen8/Raids.ui"/>
         <source>Wild Area</source>
-        <translation type="unfinished"></translation>
+        <translation>Naturzone</translation>
     </message>
     <message>
         <location filename="../Gen8/Raids.ui"/>
         <source>Isle of Armor</source>
-        <translation type="unfinished"></translation>
+        <translation>Rüstungsinsel</translation>
     </message>
     <message>
         <location filename="../Gen8/Raids.ui"/>
         <source>Crown Tundra</source>
-        <translation type="unfinished"></translation>
+        <translation>Die Schneelande der Krone</translation>
     </message>
     <message>
         <location filename="../Gen8/Raids.ui"/>
         <source>Den</source>
-        <translation type="unfinished"></translation>
+        <translation>Pokemon-Nest</translation>
     </message>
     <message>
         <location filename="../Gen8/Raids.ui"/>
         <source>Seed</source>
-        <translation>Zufallswert</translation>
+        <translation>Seed</translation>
     </message>
     <message>
         <location filename="../Gen8/Raids.ui"/>
@@ -4544,7 +4544,7 @@
     <message>
         <location filename="../Gen8/Raids.ui"/>
         <source>Max Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>Minimum Advances</translation>
     </message>
     <message>
         <location filename="../Gen8/Raids.ui"/>
@@ -4554,12 +4554,12 @@
     <message>
         <location filename="../Gen8/Raids.ui"/>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Einstellungen</translation>
     </message>
     <message>
         <location filename="../Gen8/Raids.ui"/>
         <source>Rarity</source>
-        <translation type="unfinished"></translation>
+        <translation>Seltenheit</translation>
     </message>
     <message>
         <location filename="../Gen8/Raids.ui"/>
@@ -4579,7 +4579,7 @@
     <message>
         <location filename="../Gen8/Raids.ui"/>
         <source>Random</source>
-        <translation type="unfinished"></translation>
+        <translation>Zufällig</translation>
     </message>
     <message>
         <location filename="../Gen8/Raids.ui"/>
@@ -4589,42 +4589,42 @@
     <message>
         <location filename="../Gen8/Raids.ui"/>
         <source>Species</source>
-        <translation type="unfinished"></translation>
+        <translation>Spezies</translation>
     </message>
     <message>
         <location filename="../Gen8/Raids.ui"/>
         <source>Gender Ratio</source>
-        <translation>Geschlechtsverteilung</translation>
+        <translation>Geschlechterverhältnis</translation>
     </message>
     <message>
         <location filename="../Gen8/Raids.ui"/>
         <source>Only ♂</source>
-        <translation type="unfinished"></translation>
+        <translation>Nur ♂</translation>
     </message>
     <message>
         <location filename="../Gen8/Raids.ui"/>
         <source>Only ♀</source>
-        <translation type="unfinished"></translation>
+        <translation>Nur ♀</translation>
     </message>
     <message>
         <location filename="../Gen8/Raids.ui"/>
         <source>IV Count</source>
-        <translation type="unfinished"></translation>
+        <translation>IV Zahl</translation>
     </message>
     <message>
         <location filename="../Gen8/Raids.ui"/>
         <source>Shiny Type</source>
-        <translation type="unfinished"></translation>
+        <translation>Shiny Typ</translation>
     </message>
     <message>
         <location filename="../Gen8/Raids.ui"/>
         <source>Force non-shiny</source>
-        <translation type="unfinished"></translation>
+        <translation>Erzwungen nicht-schillernd</translation>
     </message>
     <message>
         <location filename="../Gen8/Raids.ui"/>
         <source>Force shiny</source>
-        <translation type="unfinished"></translation>
+        <translation>Erzwungen schillernd</translation>
     </message>
     <message>
         <location filename="../Gen8/Raids.ui"/>
@@ -4634,7 +4634,7 @@
     <message>
         <location filename="../Gen8/Raids.ui"/>
         <source>Gigantamax</source>
-        <translation type="unfinished"></translation>
+        <translation>Gigadynamax</translation>
     </message>
     <message>
         <location filename="../Gen8/Raids.ui"/>
@@ -4681,7 +4681,7 @@
     <message>
         <location filename="../Gen8/Raids.cpp" line="235"/>
         <source>Wild Area Event %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Naturzone Event %1</translation>
     </message>
     <message>
         <location filename="../Gen8/Raids.cpp" line="285"/>
@@ -4692,7 +4692,7 @@
     <message>
         <location filename="../Gen8/Raids.ui"/>
         <source>Delay</source>
-        <translation>Verzögerung</translation>
+        <translation>Delay</translation>
     </message>
     <message>
         <location filename="../Gen8/Raids.ui"/>
@@ -4825,7 +4825,7 @@
     <message>
         <location filename="../Util/Researcher.ui"/>
         <source>Seed</source>
-        <translation>Zufallswert</translation>
+        <translation>Seed</translation>
     </message>
     <message>
         <location filename="../Util/Researcher.ui"/>
@@ -4925,12 +4925,12 @@
     <message>
         <location filename="../Util/Researcher.ui"/>
         <source>Initial Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>Minimale Advances</translation>
     </message>
     <message>
         <location filename="../Util/Researcher.ui"/>
         <source>Max Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>Maximale Advances</translation>
     </message>
     <message>
         <location filename="../Util/Researcher.ui"/>
@@ -4955,59 +4955,59 @@
     <message>
         <location filename="../Util/Researcher.ui"/>
         <source>Value (Hex)</source>
-        <translation type="unfinished"></translation>
+        <translation>Wert (Hex)</translation>
     </message>
     <message>
         <location filename="../Util/Researcher.ui"/>
         <source>Previous 64Bit</source>
-        <translation type="unfinished"></translation>
+        <translation>Vorherige 64Bit</translation>
     </message>
     <message>
         <location filename="../Util/Researcher.ui"/>
         <source>Previous 32Bit</source>
-        <translation type="unfinished"></translation>
+        <translation>Vorherige 32Bit</translation>
     </message>
     <message>
         <location filename="../Util/Researcher.ui"/>
         <source>Previous 32Bit High</source>
-        <translation type="unfinished"></translation>
+        <translation>Vorherige 32Bit High</translation>
     </message>
     <message>
         <location filename="../Util/Researcher.ui"/>
         <source>Previous 32Bit Low</source>
-        <translation type="unfinished"></translation>
+        <translation>Vorherige 32Bit Low</translation>
     </message>
     <message>
         <location filename="../Util/Researcher.ui"/>
         <source>Previous 16Bit High</source>
-        <translation type="unfinished"></translation>
+        <translation>Vorherige 16Bit High</translation>
     </message>
     <message>
         <location filename="../Util/Researcher.ui"/>
         <source>Previous 16Bit Low</source>
-        <translation type="unfinished"></translation>
+        <translation>Vorherige 16Bit Low</translation>
     </message>
     <message>
         <location filename="../Util/Researcher.cpp" line="336"/>
         <source>Missing setting</source>
-        <translation type="unfinished"></translation>
+        <translation>Fehlende Einstellung</translation>
     </message>
     <message>
         <location filename="../Util/Researcher.cpp" line="337"/>
         <source>You must check the Hex box in order to use hexadecimal values for Custom %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Hex Box muss abgehakt sein, um Hexadezimalwerte für Nummer %1 zu verwenden</translation>
     </message>
     <message>
         <location filename="../Util/Researcher.cpp" line="401"/>
         <location filename="../Util/Researcher.cpp" line="425"/>
         <source>No result</source>
-        <translation type="unfinished"></translation>
+        <translation>Kein Ergebnis</translation>
     </message>
     <message>
         <location filename="../Util/Researcher.cpp" line="401"/>
         <location filename="../Util/Researcher.cpp" line="425"/>
         <source>Unable to find a result</source>
-        <translation type="unfinished"></translation>
+        <translation>Konnte kein Ergebnis finden</translation>
     </message>
     <message>
         <location filename="../Util/Researcher.ui"/>
@@ -5028,7 +5028,7 @@
     <message>
         <location filename="../Gen4/Tools/SearchCalls.ui"/>
         <source>Search Calls</source>
-        <translation type="unfinished"></translation>
+        <translation>Suche Anrufe</translation>
     </message>
     <message>
         <location filename="../Gen4/Tools/SearchCalls.ui"/>
@@ -5038,12 +5038,12 @@
     <message>
         <location filename="../Gen4/Tools/SearchCalls.ui"/>
         <source>Elm</source>
-        <translation type="unfinished"></translation>
+        <translation>Lind</translation>
     </message>
     <message>
         <location filename="../Gen4/Tools/SearchCalls.ui"/>
         <source>Irwin</source>
-        <translation type="unfinished"></translation>
+        <translation>Erich</translation>
     </message>
     <message>
         <location filename="../Gen4/Tools/SearchCalls.ui"/>
@@ -5058,41 +5058,41 @@
     <message>
         <location filename="../Gen4/Tools/SearchCalls.cpp" line="109"/>
         <source>P - It seems that Pokémon that have been infected with Pokérus level up better. We&apos;re not quite sure why...</source>
-        <translation type="unfinished"></translation>
+        <translation>P - Pokémon, die mit dem Pokérus infiziert sind, scheinen schneller zu wachsen. Wenn ich nur wüsste, woran das liegt...</translation>
     </message>
     <message>
         <location filename="../Gen4/Tools/SearchCalls.cpp" line="107"/>
         <source>E - There are so many different ways that Pokémon evolve, aren&apos;t there?! Some Pokémon don&apos;t even evolve until they meet certain conditions first!</source>
-        <translation type="unfinished"></translation>
+        <translation>E - Die Entwicklung der Pokémon gibt uns noch immer viele Rätsel auf. Es scheint sogar Pokémon zu geben, die sich unter sehr speziellen Voraussetzungen entwickeln!</translation>
     </message>
     <message>
         <location filename="../Gen4/Tools/SearchCalls.cpp" line="32"/>
         <location filename="../Gen4/Tools/SearchCalls.cpp" line="92"/>
         <source>Possible Results: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Mögliche Ergebnisse: %1</translation>
     </message>
     <message>
         <location filename="../Gen4/Tools/SearchCalls.cpp" line="105"/>
         <source>K - I expect there are some Pokémon in the Kanto region that I don&apos;t know. There are probably methods of evolution that I&apos;m not familiar with yet. I should use that perspective and discover what I can!</source>
-        <translation type="unfinished"></translation>
+        <translation>K - In der Kanto-Region gibt es noch viele Pokémon, die ich noch nicht kenne. Wer weiß, vielleicht kennt man dort auch mir völlig neue Entwicklungsmethoden! Halte also immer die Augen auf und beobachte alles genau!</translation>
     </message>
     <message>
         <location filename="../Gen4/Tools/SearchCalls.ui"/>
         <location filename="../Gen4/Tools/SearchCalls.cpp" line="115"/>
         <source>K - I&apos;m so glad you called! I was just about to call you, too! I guess we must be a good match!</source>
-        <translation type="unfinished"></translation>
+        <translation>K - Ist das schön, dass du anrufst! Ich wollte dich auch gerade anrufen! Siehst du? Wir passen gut zusammen!</translation>
     </message>
     <message>
         <location filename="../Gen4/Tools/SearchCalls.ui"/>
         <location filename="../Gen4/Tools/SearchCalls.cpp" line="116"/>
         <source>E - Hearing about your escapades rocks my soul! It sure does!</source>
-        <translation type="unfinished"></translation>
+        <translation>E - Ich kriege jedes Mal Gänsehaut, wenn ich von deinen Abenteuern höre!</translation>
     </message>
     <message>
         <location filename="../Gen4/Tools/SearchCalls.ui"/>
         <location filename="../Gen4/Tools/SearchCalls.cpp" line="117"/>
         <source>P - How are you? What are you doing? Where are you? How many Badges do you have now? How much money have you saved? How&apos;s your mom? Have you got lots of Pokémon? Is it going to be sunny tomorrow? Arrgh, there&apos;s so much I want to chat about! This is going nowhere!</source>
-        <translation type="unfinished"></translation>
+        <translation>P - Wie geht es dir? Was machst du gerade? Wo bist du? Wie viele Orden hast du jetzt? Wie viel Geld hast du gespart? Wie geht es deiner Mama? Hast du viele Pokémon? Scheint morgen die Sonne? Aaargh, es gibt so viel, über das ich reden möchte! Wir kommen ja gar nicht zum Reden!</translation>
     </message>
 </context>
 <context>
@@ -5121,7 +5121,7 @@
         <location filename="../Gen4/Tools/SearchCoinFlips.cpp" line="32"/>
         <location filename="../Gen4/Tools/SearchCoinFlips.cpp" line="82"/>
         <source>Possible Results: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Mögliche Ergebnisse: %1</translation>
     </message>
 </context>
 <context>
@@ -5129,12 +5129,12 @@
     <message>
         <location filename="../Gen3/Tools/SeedToTime3.ui"/>
         <source>Gen 3 Seed to Time</source>
-        <translation>Generation 3 Zufallswert zu Zeit</translation>
+        <translation>Generation 3 Seed zu Zeit</translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/SeedToTime3.ui"/>
         <source>16/32-Bit Seed</source>
-        <translation>16/32-Bit Zufallswert</translation>
+        <translation>16/32-Bit Seed</translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/SeedToTime3.ui"/>
@@ -5157,7 +5157,7 @@
     <message>
         <location filename="../Gen4/Tools/SeedToTime4.ui"/>
         <source>Gen 4 Seed to Time</source>
-        <translation>Generation 4 Zufallswert zu Zeit</translation>
+        <translation>Generation 4 Seed zu Zeit</translation>
     </message>
     <message>
         <location filename="../Gen4/Tools/SeedToTime4.ui"/>
@@ -5182,12 +5182,12 @@
     <message>
         <location filename="../Gen4/Tools/SeedToTime4.ui"/>
         <source>Delay</source>
-        <translation>Verzögerung</translation>
+        <translation>Delay</translation>
     </message>
     <message>
         <location filename="../Gen4/Tools/SeedToTime4.ui"/>
         <source>Search Flips</source>
-        <translation type="unfinished"></translation>
+        <translation>Münzwurf-Suche</translation>
     </message>
     <message>
         <location filename="../Gen4/Tools/SeedToTime4.ui"/>
@@ -5202,7 +5202,7 @@
     <message>
         <location filename="../Gen4/Tools/SeedToTime4.ui"/>
         <source>Seed</source>
-        <translation>Zufallswert</translation>
+        <translation>Seed</translation>
     </message>
     <message>
         <location filename="../Gen4/Tools/SeedToTime4.ui"/>
@@ -5217,7 +5217,7 @@
     <message>
         <location filename="../Gen4/Tools/SeedToTime4.ui"/>
         <source>Search Calls</source>
-        <translation type="unfinished"></translation>
+        <translation>Anrufs-Suche</translation>
     </message>
     <message>
         <location filename="../Gen4/Tools/SeedToTime4.ui"/>
@@ -5242,44 +5242,44 @@
     <message>
         <location filename="../Gen4/Tools/SeedToTime4.ui"/>
         <source>Elm Calls:</source>
-        <translation type="unfinished"></translation>
+        <translation>Lind Anrufe</translation>
     </message>
     <message>
         <location filename="../Gen4/Tools/SeedToTime4.ui"/>
         <source>Roamers:</source>
-        <translation>Wanderer-Pokémon:</translation>
+        <translation>Wander-Pokémon:</translation>
     </message>
     <message>
         <location filename="../Gen4/Tools/SeedToTime4.cpp" line="177"/>
         <location filename="../Gen4/Tools/SeedToTime4.cpp" line="222"/>
         <source>Invalid selection</source>
-        <translation type="unfinished"></translation>
+        <translation>Ungültige Auswahl</translation>
     </message>
     <message>
         <location filename="../Gen4/Tools/SeedToTime4.cpp" line="177"/>
         <location filename="../Gen4/Tools/SeedToTime4.cpp" line="222"/>
         <source>Select a valid row</source>
-        <translation type="unfinished"></translation>
+        <translation>Gültige Reihe auswählen</translation>
     </message>
     <message>
         <location filename="../Gen4/Tools/SeedToTime4.cpp" line="206"/>
         <source>Coin Flips: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Münzwürfe: %1</translation>
     </message>
     <message>
         <location filename="../Gen4/Tools/SeedToTime4.cpp" line="259"/>
         <source>Elm Calls: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Lind Anrufe: %1</translation>
     </message>
     <message>
         <location filename="../Gen4/Tools/SeedToTime4.cpp" line="261"/>
         <source>Roamers: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Wander-Pokemon: %1</translation>
     </message>
     <message>
         <location filename="../Gen4/Tools/SeedToTime4.cpp" line="261"/>
         <source>No roamers</source>
-        <translation>Keine Wanderer-Pokémon</translation>
+        <translation>Keine Wander-Pokémon</translation>
     </message>
 </context>
 <context>
@@ -5287,7 +5287,7 @@
     <message>
         <location filename="../Util/Settings.ui"/>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Einstellungen</translation>
     </message>
     <message>
         <location filename="../Util/Settings.ui"/>
@@ -5342,12 +5342,12 @@
     <message>
         <location filename="../Util/Settings.ui"/>
         <source>Dark</source>
-        <translation>Unlicht</translation>
+        <translation>Dunkel</translation>
     </message>
     <message>
         <location filename="../Util/Settings.ui"/>
         <source>Light</source>
-        <translation type="unfinished"></translation>
+        <translation>Hell</translation>
     </message>
     <message>
         <location filename="../Util/Settings.ui"/>
@@ -5357,53 +5357,53 @@
     <message>
         <location filename="../Util/Settings.ui"/>
         <source>Profiles Path</source>
-        <translation type="unfinished"></translation>
+        <translation>Profilpfad</translation>
     </message>
     <message>
         <location filename="../Util/Settings.ui"/>
         <source>Change</source>
-        <translation type="unfinished"></translation>
+        <translation>Ändern</translation>
     </message>
     <message>
         <location filename="../Util/Settings.cpp" line="153"/>
         <source>Language update</source>
-        <translation type="unfinished"></translation>
+        <translation>Sprachupdate</translation>
     </message>
     <message>
         <location filename="../Util/Settings.cpp" line="153"/>
         <location filename="../Util/Settings.cpp" line="175"/>
         <source>Restart for changes to take effect. Restart now?</source>
-        <translation type="unfinished"></translation>
+        <translation>Neu starten, damit Änderungen wirksam werden. Neustart ausführen?</translation>
     </message>
     <message>
         <location filename="../Util/Settings.cpp" line="175"/>
         <source>Style change</source>
-        <translation type="unfinished"></translation>
+        <translation>Style Änderung</translation>
     </message>
     <message>
         <location filename="../Util/Settings.cpp" line="126"/>
         <source>Profile File</source>
-        <translation type="unfinished"></translation>
+        <translation>Profiltyp</translation>
     </message>
     <message>
         <location filename="../Util/Settings.cpp" line="126"/>
         <source>There was a problem creating the file</source>
-        <translation type="unfinished"></translation>
+        <translation>Es gab ein Problem beim erstellen der Datei</translation>
     </message>
     <message>
         <location filename="../Util/Settings.ui"/>
         <source>Table Header Size</source>
-        <translation type="unfinished"></translation>
+        <translation>Tabellen-Überschriftsgröße</translation>
     </message>
     <message>
         <location filename="../Util/Settings.ui"/>
         <source>Stretch to fit contents</source>
-        <translation type="unfinished"></translation>
+        <translation>Auf Inhaltsbreite strecken</translation>
     </message>
     <message>
         <location filename="../Util/Settings.ui"/>
         <source>Stretch to fit width</source>
-        <translation type="unfinished"></translation>
+        <translation>Auf Zeilenbreite strecken</translation>
     </message>
 </context>
 <context>
@@ -5411,7 +5411,7 @@
     <message>
         <location filename="../Gen3/Tools/SpindaPainter.ui"/>
         <source>Spinda Painter</source>
-        <translation type="unfinished"></translation>
+        <translation>Pandir-Maler</translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/SpindaPainter.ui"/>
@@ -5424,7 +5424,7 @@
     <message>
         <location filename="../Gen3/Static3.ui"/>
         <source>Gen 3 Static</source>
-        <translation type="unfinished"></translation>
+        <translation>Generation 3 Stationär</translation>
     </message>
     <message>
         <location filename="../Gen3/Static3.ui"/>
@@ -5464,7 +5464,7 @@
     <message>
         <location filename="../Gen3/Static3.ui"/>
         <source>Initial Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>Minimale Advances</translation>
     </message>
     <message>
         <location filename="../Gen3/Static3.ui"/>
@@ -5474,7 +5474,7 @@
     <message>
         <location filename="../Gen3/Static3.ui"/>
         <source>Seed</source>
-        <translation>Zufallswert</translation>
+        <translation>Seed</translation>
     </message>
     <message>
         <location filename="../Gen3/Static3.ui"/>
@@ -5484,7 +5484,7 @@
     <message>
         <location filename="../Gen3/Static3.ui"/>
         <source>Max Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>Maximale Advances</translation>
     </message>
     <message>
         <location filename="../Gen3/Static3.ui"/>
@@ -5519,52 +5519,52 @@
     <message>
         <location filename="../Gen3/Static3.cpp" line="62"/>
         <source>Generate times for seed</source>
-        <translation>Generiere Zeiten für Zufallswert</translation>
+        <translation>Generiere Zeiten für Seed</translation>
     </message>
     <message>
         <location filename="../Gen3/Static3.ui"/>
         <source>Delay</source>
-        <translation>Verzögerung</translation>
+        <translation>Delay</translation>
     </message>
     <message>
         <location filename="../Gen3/Static3.ui"/>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Einstellungen</translation>
     </message>
     <message>
         <location filename="../Gen3/Static3.ui"/>
         <source>Category</source>
-        <translation type="unfinished"></translation>
+        <translation>Kategorie</translation>
     </message>
     <message>
         <location filename="../Gen3/Static3.ui"/>
         <source>Starters</source>
-        <translation type="unfinished"></translation>
+        <translation>Starter</translation>
     </message>
     <message>
         <location filename="../Gen3/Static3.ui"/>
         <source>Fossils</source>
-        <translation type="unfinished"></translation>
+        <translation>Fossilien</translation>
     </message>
     <message>
         <location filename="../Gen3/Static3.ui"/>
         <source>Gifts</source>
-        <translation type="unfinished"></translation>
+        <translation>Geschenke</translation>
     </message>
     <message>
         <location filename="../Gen3/Static3.ui"/>
         <source>Game Corner</source>
-        <translation type="unfinished"></translation>
+        <translation>Spielhalle</translation>
     </message>
     <message>
         <location filename="../Gen3/Static3.ui"/>
         <source>Stationary</source>
-        <translation type="unfinished"></translation>
+        <translation>Stationär</translation>
     </message>
     <message>
         <location filename="../Gen3/Static3.ui"/>
         <source>Legends</source>
-        <translation type="unfinished"></translation>
+        <translation>Legendäre</translation>
     </message>
     <message>
         <location filename="../Gen3/Static3.ui"/>
@@ -5587,7 +5587,7 @@
     <message>
         <location filename="../Gen4/Static4.ui"/>
         <source>Gen 4 Static</source>
-        <translation type="unfinished"></translation>
+        <translation>Generation 4 Stationär</translation>
     </message>
     <message>
         <location filename="../Gen4/Static4.ui"/>
@@ -5627,17 +5627,17 @@
     <message>
         <location filename="../Gen4/Static4.ui"/>
         <source>Seed</source>
-        <translation>Zufallswert</translation>
+        <translation>Seed</translation>
     </message>
     <message>
         <location filename="../Gen4/Static4.ui"/>
         <source>Max Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>Maximale Advances</translation>
     </message>
     <message>
         <location filename="../Gen4/Static4.ui"/>
         <source>Initial Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>Minimale Advances</translation>
     </message>
     <message>
         <location filename="../Gen4/Static4.ui"/>
@@ -5686,22 +5686,22 @@
     <message>
         <location filename="../Gen4/Static4.ui"/>
         <source>Min Delay</source>
-        <translation>Min. Verzögerung</translation>
+        <translation>Min. Delay</translation>
     </message>
     <message>
         <location filename="../Gen4/Static4.ui"/>
         <source>Max Delay</source>
-        <translation>Max. Verzögerung</translation>
+        <translation>Max. Delay</translation>
     </message>
     <message>
         <location filename="../Gen4/Static4.ui"/>
         <source>Min Advance</source>
-        <translation>Mindestwert</translation>
+        <translation>Minimale Advances</translation>
     </message>
     <message>
         <location filename="../Gen4/Static4.ui"/>
         <source>Max Advance</source>
-        <translation>Höchstwert</translation>
+        <translation>Maximale Advances</translation>
     </message>
     <message>
         <location filename="../Gen4/Static4.ui"/>
@@ -5722,47 +5722,47 @@
     <message>
         <location filename="../Gen4/Static4.cpp" line="74"/>
         <source>Generate times for seed</source>
-        <translation>Generiere Zeiten für Zufallswert</translation>
+        <translation>Generiere Zeiten für Seed</translation>
     </message>
     <message>
         <location filename="../Gen4/Static4.ui"/>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Einstellungen</translation>
     </message>
     <message>
         <location filename="../Gen4/Static4.ui"/>
         <source>Category</source>
-        <translation type="unfinished"></translation>
+        <translation>Kategorie</translation>
     </message>
     <message>
         <location filename="../Gen4/Static4.ui"/>
         <source>Starters</source>
-        <translation type="unfinished"></translation>
+        <translation>Starter</translation>
     </message>
     <message>
         <location filename="../Gen4/Static4.ui"/>
         <source>Fossils</source>
-        <translation type="unfinished"></translation>
+        <translation>Fossilien</translation>
     </message>
     <message>
         <location filename="../Gen4/Static4.ui"/>
         <source>Gifts</source>
-        <translation type="unfinished"></translation>
+        <translation>Geschenke</translation>
     </message>
     <message>
         <location filename="../Gen4/Static4.ui"/>
         <source>Game Corner</source>
-        <translation type="unfinished"></translation>
+        <translation>Spielhalle</translation>
     </message>
     <message>
         <location filename="../Gen4/Static4.ui"/>
         <source>Stationary</source>
-        <translation type="unfinished"></translation>
+        <translation>Stationär</translation>
     </message>
     <message>
         <location filename="../Gen4/Static4.ui"/>
         <source>Legends</source>
-        <translation type="unfinished"></translation>
+        <translation>Legendäre</translation>
     </message>
     <message>
         <location filename="../Gen4/Static4.ui"/>
@@ -5772,7 +5772,7 @@
     <message>
         <location filename="../Gen4/Static4.ui"/>
         <source>Roamers</source>
-        <translation type="unfinished"></translation>
+        <translation>Wander-Pokémon</translation>
     </message>
     <message>
         <location filename="../Gen4/Static4.ui"/>
@@ -5787,7 +5787,7 @@
     <message>
         <location filename="../Gen4/Static4.ui"/>
         <source>Delay</source>
-        <translation>Verzögerung</translation>
+        <translation>Delay</translation>
     </message>
 </context>
 <context>
@@ -5795,7 +5795,7 @@
     <message>
         <location filename="../Gen8/Static8.ui"/>
         <source>Static Gen 8</source>
-        <translation type="unfinished"></translation>
+        <translation>Generation 8 Stationär</translation>
     </message>
     <message>
         <location filename="../Gen8/Static8.ui"/>
@@ -5805,7 +5805,7 @@
     <message>
         <location filename="../Gen8/Static8.ui"/>
         <source>Initial Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>Minimale Advances</translation>
     </message>
     <message>
         <location filename="../Gen8/Static8.ui"/>
@@ -5820,7 +5820,7 @@
     <message>
         <location filename="../Gen8/Static8.ui"/>
         <source>Max Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>Maximale Advances</translation>
     </message>
     <message>
         <location filename="../Gen8/Static8.ui"/>
@@ -5890,57 +5890,57 @@
     <message>
         <location filename="../Gen8/Static8.cpp" line="137"/>
         <source>Missing seeds</source>
-        <translation type="unfinished"></translation>
+        <translation>Fehlende Seeds</translation>
     </message>
     <message>
         <location filename="../Gen8/Static8.cpp" line="137"/>
         <source>Please insert missing seed information</source>
-        <translation type="unfinished"></translation>
+        <translation>Bitte fehlende Seed Informationen eingeben</translation>
     </message>
     <message>
         <location filename="../Gen8/Static8.ui"/>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Einstellungen</translation>
     </message>
     <message>
         <location filename="../Gen8/Static8.ui"/>
         <source>Category</source>
-        <translation type="unfinished"></translation>
+        <translation>Kategorie</translation>
     </message>
     <message>
         <location filename="../Gen8/Static8.ui"/>
         <source>Gifts</source>
-        <translation type="unfinished"></translation>
+        <translation>Geschenke</translation>
     </message>
     <message>
         <location filename="../Gen8/Static8.ui"/>
         <source>Fossils</source>
-        <translation type="unfinished"></translation>
+        <translation>Fossilien</translation>
     </message>
     <message>
         <location filename="../Gen8/Static8.ui"/>
         <source>Stationary</source>
-        <translation type="unfinished"></translation>
+        <translation>Stationär</translation>
     </message>
     <message>
         <location filename="../Gen8/Static8.ui"/>
         <source>Roamers</source>
-        <translation type="unfinished"></translation>
+        <translation>Wander-Pokémon</translation>
     </message>
     <message>
         <location filename="../Gen8/Static8.ui"/>
         <source>Legends</source>
-        <translation type="unfinished"></translation>
+        <translation>Legendäre</translation>
     </message>
     <message>
         <location filename="../Gen8/Static8.ui"/>
         <source>Ramanas Park (Pure Space)</source>
-        <translation type="unfinished"></translation>
+        <translation>Hamanasu-Park (friedlicher Raum)</translation>
     </message>
     <message>
         <location filename="../Gen8/Static8.ui"/>
         <source>Ramanas Park (Strange Space)</source>
-        <translation type="unfinished"></translation>
+        <translation>Hamanasu-Park (verzerrter Raum)</translation>
     </message>
     <message>
         <location filename="../Gen8/Static8.ui"/>
@@ -5960,37 +5960,37 @@
     <message>
         <location filename="../Gen8/Static8.ui"/>
         <source>Shiny</source>
-        <translation type="unfinished"></translation>
+        <translation>Schillernd</translation>
     </message>
     <message>
         <location filename="../Gen8/Static8.ui"/>
         <source>Never</source>
-        <translation type="unfinished"></translation>
+        <translation>Niemals</translation>
     </message>
     <message>
         <location filename="../Gen8/Static8.ui"/>
         <source>Random</source>
-        <translation type="unfinished"></translation>
+        <translation>Zufällig</translation>
     </message>
     <message>
         <location filename="../Gen8/Static8.ui"/>
         <source>IV Count</source>
-        <translation type="unfinished"></translation>
+        <translation>IV Zahl</translation>
     </message>
     <message>
         <location filename="../Gen8/Static8.ui"/>
         <source>Delay</source>
-        <translation>Verzögerung</translation>
+        <translation>Delay</translation>
     </message>
     <message>
         <location filename="../Gen8/Static8.ui"/>
         <source>Starters</source>
-        <translation type="unfinished"></translation>
+        <translation>Starter</translation>
     </message>
     <message>
         <location filename="../Gen8/Static8.ui"/>
         <source>Mythics</source>
-        <translation type="unfinished"></translation>
+        <translation>Mysteriöse</translation>
     </message>
 </context>
 <context>
@@ -6011,12 +6011,12 @@
     <message>
         <location filename="../Gen8/Underground.ui"/>
         <source>Underground</source>
-        <translation type="unfinished"></translation>
+        <translation>Untergrund</translation>
     </message>
     <message>
         <location filename="../Gen8/Underground.ui"/>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Einstellungen</translation>
     </message>
     <message>
         <location filename="../Gen8/Underground.ui"/>
@@ -6026,37 +6026,37 @@
     <message>
         <location filename="../Gen8/Underground.ui"/>
         <source>Underground Unlocked</source>
-        <translation type="unfinished"></translation>
+        <translation>Untergrund freigeschaltet</translation>
     </message>
     <message>
         <location filename="../Gen8/Underground.ui"/>
         <source>Strength Obtained</source>
-        <translation type="unfinished"></translation>
+        <translation>Stärke erhalten</translation>
     </message>
     <message>
         <location filename="../Gen8/Underground.ui"/>
         <source>Defog Obtained</source>
-        <translation type="unfinished"></translation>
+        <translation>Auflockern erhalten</translation>
     </message>
     <message>
         <location filename="../Gen8/Underground.ui"/>
         <source>7 Badges</source>
-        <translation type="unfinished"></translation>
+        <translation>7 Orden</translation>
     </message>
     <message>
         <location filename="../Gen8/Underground.ui"/>
         <source>Waterfall Obtained</source>
-        <translation type="unfinished"></translation>
+        <translation>Kaskade erhalten</translation>
     </message>
     <message>
         <location filename="../Gen8/Underground.ui"/>
         <source>National Dex</source>
-        <translation type="unfinished"></translation>
+        <translation>Nationaler Pokedex</translation>
     </message>
     <message>
         <location filename="../Gen8/Underground.ui"/>
         <source>Story Flag</source>
-        <translation type="unfinished"></translation>
+        <translation>Story-Fortschritt</translation>
     </message>
     <message>
         <location filename="../Gen8/Underground.ui"/>
@@ -6066,47 +6066,47 @@
     <message>
         <location filename="../Gen8/Underground.ui"/>
         <source>Diglett Bonus</source>
-        <translation type="unfinished"></translation>
+        <translation>Digda Bonus</translation>
     </message>
     <message>
         <location filename="../Gen8/Underground.ui"/>
         <source>Level Flag</source>
-        <translation type="unfinished"></translation>
+        <translation>Level-Fortschritt</translation>
     </message>
     <message>
         <location filename="../Gen8/Underground.ui"/>
         <source>0/1 Badges</source>
-        <translation type="unfinished"></translation>
+        <translation>0/1 Orden</translation>
     </message>
     <message>
         <location filename="../Gen8/Underground.ui"/>
         <source>2 Badges</source>
-        <translation type="unfinished"></translation>
+        <translation>2 Orden</translation>
     </message>
     <message>
         <location filename="../Gen8/Underground.ui"/>
         <source>3 Badges</source>
-        <translation type="unfinished"></translation>
+        <translation>3 Orden</translation>
     </message>
     <message>
         <location filename="../Gen8/Underground.ui"/>
         <source>4 Badges</source>
-        <translation type="unfinished"></translation>
+        <translation>4 Orden</translation>
     </message>
     <message>
         <location filename="../Gen8/Underground.ui"/>
         <source>5 Badges</source>
-        <translation type="unfinished"></translation>
+        <translation>5 Orden</translation>
     </message>
     <message>
         <location filename="../Gen8/Underground.ui"/>
         <source>6 Badges</source>
-        <translation type="unfinished"></translation>
+        <translation>6 Orden</translation>
     </message>
     <message>
         <location filename="../Gen8/Underground.ui"/>
         <source>8 Badges</source>
-        <translation type="unfinished"></translation>
+        <translation>8 Orden</translation>
     </message>
     <message>
         <location filename="../Gen8/Underground.ui"/>
@@ -6131,7 +6131,7 @@
     <message>
         <location filename="../Gen8/Underground.ui"/>
         <source>Brilliant Diamond</source>
-        <translation type="unfinished"></translation>
+        <translation>Strahlender Diamant</translation>
     </message>
     <message>
         <location filename="../Gen8/Underground.ui"/>
@@ -6171,17 +6171,17 @@
     <message>
         <location filename="../Gen8/Underground.ui"/>
         <source>Initial Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>Minimale Advances</translation>
     </message>
     <message>
         <location filename="../Gen8/Underground.ui"/>
         <source>Max Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>Maximale Advances</translation>
     </message>
     <message>
         <location filename="../Gen8/Underground.ui"/>
         <source>Delay</source>
-        <translation>Verzögerung</translation>
+        <translation>Delay</translation>
     </message>
     <message>
         <location filename="../Gen8/Underground.cpp" line="51"/>
@@ -6206,37 +6206,37 @@
     <message>
         <location filename="../Gen8/Underground.cpp" line="53"/>
         <source>Item Modifier</source>
-        <translation type="unfinished"></translation>
+        <translation>Item Modifizierer</translation>
     </message>
     <message>
         <location filename="../Gen8/Underground.cpp" line="53"/>
         <source>Compound Eyes</source>
-        <translation type="unfinished"></translation>
+        <translation>Facettenauge</translation>
     </message>
     <message>
         <location filename="../Gen8/Underground.cpp" line="53"/>
         <source>Super Luck</source>
-        <translation type="unfinished"></translation>
+        <translation>Glückspilz</translation>
     </message>
     <message>
         <location filename="../Gen8/Underground.cpp" line="55"/>
         <source>Level Modifier</source>
-        <translation type="unfinished"></translation>
+        <translation>Level Modifizierer</translation>
     </message>
     <message>
         <location filename="../Gen8/Underground.cpp" line="55"/>
         <source>Hustle</source>
-        <translation type="unfinished"></translation>
+        <translation>Übereifer</translation>
     </message>
     <message>
         <location filename="../Gen8/Underground.cpp" line="55"/>
         <source>Pressure</source>
-        <translation type="unfinished"></translation>
+        <translation>Erzwinger</translation>
     </message>
     <message>
         <location filename="../Gen8/Underground.cpp" line="55"/>
         <source>Vital Spirit</source>
-        <translation type="unfinished"></translation>
+        <translation>Munterkeit</translation>
     </message>
     <message>
         <location filename="../Gen8/Underground.cpp" line="57"/>
@@ -6246,12 +6246,12 @@
     <message>
         <location filename="../Gen8/Underground.cpp" line="152"/>
         <source>Missing seeds</source>
-        <translation type="unfinished"></translation>
+        <translation>Fehlende Seeds</translation>
     </message>
     <message>
         <location filename="../Gen8/Underground.cpp" line="152"/>
         <source>Please insert missing seed information</source>
-        <translation type="unfinished"></translation>
+        <translation>Bitte fehlende Seed Informationen eingeben</translation>
     </message>
 </context>
 <context>
@@ -6303,48 +6303,48 @@
         <location filename="../Gen3/Wild3.cpp" line="71"/>
         <location filename="../Gen3/Wild3.cpp" line="80"/>
         <source>Slot Modifier</source>
-        <translation type="unfinished"></translation>
+        <translation>Slot Modifizierer</translation>
     </message>
     <message>
         <location filename="../Gen3/Wild3.cpp" line="71"/>
         <location filename="../Gen3/Wild3.cpp" line="80"/>
         <source>Magnet Pull</source>
-        <translation type="unfinished"></translation>
+        <translation>Magnetfalle</translation>
     </message>
     <message>
         <location filename="../Gen3/Wild3.cpp" line="71"/>
         <location filename="../Gen3/Wild3.cpp" line="80"/>
         <source>Static</source>
-        <translation type="unfinished"></translation>
+        <translation>Statik</translation>
     </message>
     <message>
         <location filename="../Gen3/Wild3.cpp" line="73"/>
         <location filename="../Gen3/Wild3.cpp" line="82"/>
         <source>Level Modifier</source>
-        <translation type="unfinished"></translation>
+        <translation>Level Modifizierer</translation>
     </message>
     <message>
         <location filename="../Gen3/Wild3.cpp" line="73"/>
         <location filename="../Gen3/Wild3.cpp" line="82"/>
         <source>Hustle</source>
-        <translation type="unfinished"></translation>
+        <translation>Übereifer</translation>
     </message>
     <message>
         <location filename="../Gen3/Wild3.cpp" line="73"/>
         <location filename="../Gen3/Wild3.cpp" line="82"/>
         <source>Pressure</source>
-        <translation type="unfinished"></translation>
+        <translation>Erzwinger</translation>
     </message>
     <message>
         <location filename="../Gen3/Wild3.cpp" line="73"/>
         <location filename="../Gen3/Wild3.cpp" line="82"/>
         <source>Vital Spirit</source>
-        <translation type="unfinished"></translation>
+        <translation>Munterkeit</translation>
     </message>
     <message>
         <location filename="../Gen3/Wild3.cpp" line="89"/>
         <source>Generate times for seed</source>
-        <translation>Generiere Zeiten für Zufallswert</translation>
+        <translation>Generiere Zeiten für Seed</translation>
     </message>
     <message>
         <location filename="../Gen3/Wild3.ui"/>
@@ -6364,7 +6364,7 @@
     <message>
         <location filename="../Gen3/Wild3.ui"/>
         <source>Seed</source>
-        <translation>Zufallswert</translation>
+        <translation>Seed</translation>
     </message>
     <message>
         <location filename="../Gen3/Wild3.ui"/>
@@ -6440,7 +6440,7 @@
     <message>
         <location filename="../Gen3/Wild3.ui"/>
         <source>Grass</source>
-        <translation>Pflanze</translation>
+        <translation>Hohes Gras</translation>
     </message>
     <message>
         <location filename="../Gen3/Wild3.ui"/>
@@ -6461,12 +6461,12 @@
     <message>
         <location filename="../Gen3/Wild3.ui"/>
         <source>Initial Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>Minimale Advances</translation>
     </message>
     <message>
         <location filename="../Gen3/Wild3.ui"/>
         <source>Max Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>Maximale Advances</translation>
     </message>
     <message>
         <location filename="../Gen3/Wild3.ui"/>
@@ -6486,12 +6486,12 @@
     <message>
         <location filename="../Gen3/Wild3.ui"/>
         <source>Delay</source>
-        <translation>Verzögerung</translation>
+        <translation>Delay</translation>
     </message>
     <message>
         <location filename="../Gen3/Wild3.ui"/>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Einstellungen</translation>
     </message>
 </context>
 <context>
@@ -6539,7 +6539,7 @@
     <message>
         <location filename="../Gen4/Wild4.ui"/>
         <source>Grass</source>
-        <translation>Pflanze</translation>
+        <translation>Hohes Gras</translation>
     </message>
     <message>
         <location filename="../Gen4/Wild4.ui"/>
@@ -6569,7 +6569,7 @@
     <message>
         <location filename="../Gen4/Wild4.ui"/>
         <source>Night</source>
-        <translation>Nacht</translation>
+        <translation>Nachts</translation>
     </message>
     <message>
         <location filename="../Gen4/Wild4.ui"/>
@@ -6610,7 +6610,7 @@
     <message>
         <location filename="../Gen4/Wild4.ui"/>
         <source>Seed</source>
-        <translation>Zufallswert</translation>
+        <translation>Seed</translation>
     </message>
     <message>
         <location filename="../Gen4/Wild4.ui"/>
@@ -6649,89 +6649,89 @@
         <location filename="../Gen4/Wild4.cpp" line="70"/>
         <location filename="../Gen4/Wild4.cpp" line="83"/>
         <source>Encounter Modifier</source>
-        <translation type="unfinished"></translation>
+        <translation>Encounter Modifizierer</translation>
     </message>
     <message>
         <location filename="../Gen4/Wild4.cpp" line="70"/>
         <location filename="../Gen4/Wild4.cpp" line="83"/>
         <source>Arena Trap</source>
-        <translation type="unfinished"></translation>
+        <translation>Auswegslos</translation>
     </message>
     <message>
         <location filename="../Gen4/Wild4.cpp" line="70"/>
         <location filename="../Gen4/Wild4.cpp" line="83"/>
         <source>Illuminate</source>
-        <translation type="unfinished"></translation>
+        <translation>Erleuchtung</translation>
     </message>
     <message>
         <location filename="../Gen4/Wild4.cpp" line="70"/>
         <location filename="../Gen4/Wild4.cpp" line="83"/>
         <source>No Guard</source>
-        <translation type="unfinished"></translation>
+        <translation>Schildlos</translation>
     </message>
     <message>
         <location filename="../Gen4/Wild4.cpp" line="70"/>
         <location filename="../Gen4/Wild4.cpp" line="83"/>
         <source>Sticky Hold</source>
-        <translation type="unfinished"></translation>
+        <translation>Wertehalter</translation>
     </message>
     <message>
         <location filename="../Gen4/Wild4.cpp" line="72"/>
         <location filename="../Gen4/Wild4.cpp" line="85"/>
         <source>Compound Eyes</source>
-        <translation type="unfinished"></translation>
+        <translation>Facettenauge</translation>
     </message>
     <message>
         <location filename="../Gen4/Wild4.cpp" line="73"/>
         <location filename="../Gen4/Wild4.cpp" line="86"/>
         <source>Slot Modifier</source>
-        <translation type="unfinished"></translation>
+        <translation>Slot Modifizierer</translation>
     </message>
     <message>
         <location filename="../Gen4/Wild4.cpp" line="73"/>
         <location filename="../Gen4/Wild4.cpp" line="86"/>
         <source>Magnet Pull</source>
-        <translation type="unfinished"></translation>
+        <translation>Magnetfalle</translation>
     </message>
     <message>
         <location filename="../Gen4/Wild4.cpp" line="73"/>
         <location filename="../Gen4/Wild4.cpp" line="86"/>
         <source>Static</source>
-        <translation type="unfinished"></translation>
+        <translation>Statik</translation>
     </message>
     <message>
         <location filename="../Gen4/Wild4.cpp" line="75"/>
         <location filename="../Gen4/Wild4.cpp" line="88"/>
         <source>Level Modifier</source>
-        <translation type="unfinished"></translation>
+        <translation>Level Modifizierer</translation>
     </message>
     <message>
         <location filename="../Gen4/Wild4.cpp" line="75"/>
         <location filename="../Gen4/Wild4.cpp" line="88"/>
         <source>Hustle</source>
-        <translation type="unfinished"></translation>
+        <translation>Übereifer</translation>
     </message>
     <message>
         <location filename="../Gen4/Wild4.cpp" line="75"/>
         <location filename="../Gen4/Wild4.cpp" line="88"/>
         <source>Pressure</source>
-        <translation type="unfinished"></translation>
+        <translation>Erzwinger</translation>
     </message>
     <message>
         <location filename="../Gen4/Wild4.cpp" line="75"/>
         <location filename="../Gen4/Wild4.cpp" line="88"/>
         <source>Vital Spirit</source>
-        <translation type="unfinished"></translation>
+        <translation>Munterkeit</translation>
     </message>
     <message>
         <location filename="../Gen4/Wild4.cpp" line="659"/>
         <source>Missing Flawless IV</source>
-        <translation type="unfinished"></translation>
+        <translation>Fehlender perfekter IV</translation>
     </message>
     <message>
         <location filename="../Gen4/Wild4.cpp" line="660"/>
         <source>Bug Catching Contest Searcher needs at least one IV at 31</source>
-        <translation type="unfinished"></translation>
+        <translation>Käferturnier-Sucher benötigt mindestens einen IV bei 31</translation>
     </message>
     <message>
         <location filename="../Gen4/Wild4.cpp" line="66"/>
@@ -6747,39 +6747,39 @@
     <message>
         <location filename="../Gen4/Wild4.ui"/>
         <source>Max Delay</source>
-        <translation>Max. Verzögerung</translation>
+        <translation>Max. Delay</translation>
     </message>
     <message>
         <location filename="../Gen4/Wild4.ui"/>
         <source>Min Advance</source>
-        <translation>Mindestwert</translation>
+        <translation>Minimale Advances</translation>
     </message>
     <message>
         <location filename="../Gen4/Wild4.ui"/>
         <source>Min Delay</source>
-        <translation>Min. Verzögerung</translation>
+        <translation>Min. Delay</translation>
     </message>
     <message>
         <location filename="../Gen4/Wild4.ui"/>
         <source>Max Advance</source>
-        <translation>Höchstwert</translation>
+        <translation>Maximale Advances</translation>
     </message>
     <message>
         <location filename="../Gen4/Wild4.cpp" line="114"/>
         <source>Generate times for seed</source>
-        <translation>Generiere Zeiten für Zufallswert</translation>
+        <translation>Generiere Zeiten für Seed</translation>
     </message>
     <message>
         <location filename="../Gen4/Wild4.cpp" line="326"/>
         <location filename="../Gen4/Wild4.cpp" line="630"/>
         <source>Too many slots selected</source>
-        <translation type="unfinished"></translation>
+        <translation>Zu viele Slots ausgewählt</translation>
     </message>
     <message>
         <location filename="../Gen4/Wild4.cpp" line="326"/>
         <location filename="../Gen4/Wild4.cpp" line="630"/>
         <source>Please a single encounter slot for Poke Radar</source>
-        <translation type="unfinished"></translation>
+        <translation>Bitte nur einen encounter slot für das Pokeradar festlegen</translation>
     </message>
     <message>
         <location filename="../Gen4/Wild4.cpp" line="585"/>
@@ -6815,67 +6815,67 @@
     <message>
         <location filename="../Gen4/Wild4.ui"/>
         <source>Dual Slot</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Gen4/Wild4.ui"/>
         <source>Swarm</source>
-        <translation type="unfinished"></translation>
+        <translation>Schwarm</translation>
     </message>
     <message>
         <location filename="../Gen4/Wild4.ui"/>
         <source>Poke Radar</source>
-        <translation type="unfinished"></translation>
+        <translation>Pokeradar</translation>
     </message>
     <message>
         <location filename="../Gen4/Wild4.ui"/>
         <source>Max Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>Maximale Advances</translation>
     </message>
     <message>
         <location filename="../Gen4/Wild4.ui"/>
         <source>Initial Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>Minimale Advances</translation>
     </message>
     <message>
         <location filename="../Gen4/Wild4.ui"/>
         <source>National Dex</source>
-        <translation type="unfinished"></translation>
+        <translation>Nationaler Pokedex</translation>
     </message>
     <message>
         <location filename="../Gen4/Wild4.ui"/>
         <source>Poke Radar Shiny</source>
-        <translation type="unfinished"></translation>
+        <translation>Pokeradar Schillernd</translation>
     </message>
     <message>
         <location filename="../Gen4/Wild4.ui"/>
         <source>Delay</source>
-        <translation>Verzögerung</translation>
+        <translation>Delay</translation>
     </message>
     <message>
         <location filename="../Gen4/Wild4.ui"/>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Einstellungen</translation>
     </message>
     <message>
         <location filename="../Gen4/Wild4.ui"/>
         <source>Bug Catching Contest</source>
-        <translation type="unfinished"></translation>
+        <translation>Käferturnier</translation>
     </message>
     <message>
         <location filename="../Gen4/Wild4.ui"/>
         <source>Headbutt</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopfnuss</translation>
     </message>
     <message>
         <location filename="../Gen4/Wild4.ui"/>
         <source>Headbutt Alt</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopfnuss Alternativ</translation>
     </message>
     <message>
         <location filename="../Gen4/Wild4.ui"/>
         <source>Headbutt Special</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopfnuss Spezial</translation>
     </message>
     <message>
         <location filename="../Gen4/Wild4.ui"/>
@@ -6915,32 +6915,32 @@
     <message>
         <location filename="../Gen4/Wild4.ui"/>
         <source>Replacement</source>
-        <translation type="unfinished"></translation>
+        <translation>Ersatz</translation>
     </message>
     <message>
         <location filename="../Gen4/Wild4.ui"/>
         <source>Forest Block</source>
-        <translation type="unfinished"></translation>
+        <translation>Wald Blöcke</translation>
     </message>
     <message>
         <location filename="../Gen4/Wild4.ui"/>
         <source>Peak Block</source>
-        <translation type="unfinished"></translation>
+        <translation>Gestein Blöcke</translation>
     </message>
     <message>
         <location filename="../Gen4/Wild4.ui"/>
         <source>Plains Block</source>
-        <translation type="unfinished"></translation>
+        <translation>Feld Blöcke</translation>
     </message>
     <message>
         <location filename="../Gen4/Wild4.ui"/>
         <source>Water Block</source>
-        <translation type="unfinished"></translation>
+        <translation>Wasser Blöcke</translation>
     </message>
     <message>
         <location filename="../Gen4/Wild4.ui"/>
         <source>Mysterious Transmission</source>
-        <translation type="unfinished"></translation>
+        <translation>Mysteriöse Wellen</translation>
     </message>
 </context>
 <context>
@@ -6948,7 +6948,7 @@
     <message>
         <location filename="../Gen8/Wild8.ui"/>
         <source>Wild Gen 8</source>
-        <translation type="unfinished"></translation>
+        <translation>Generation 8 Wild</translation>
     </message>
     <message>
         <location filename="../Gen8/Wild8.ui"/>
@@ -6988,12 +6988,12 @@
     <message>
         <location filename="../Gen8/Wild8.ui"/>
         <source>Initial Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>Minimale Advances</translation>
     </message>
     <message>
         <location filename="../Gen8/Wild8.ui"/>
         <source>Max Advances</source>
-        <translation type="unfinished"></translation>
+        <translation>Maximale Advances</translation>
     </message>
     <message>
         <location filename="../Gen8/Wild8.ui"/>
@@ -7033,7 +7033,7 @@
     <message>
         <location filename="../Gen8/Wild8.ui"/>
         <source>Night</source>
-        <translation>Nacht</translation>
+        <translation>Nachts</translation>
     </message>
     <message>
         <location filename="../Gen8/Wild8.ui"/>
@@ -7058,67 +7058,67 @@
     <message>
         <location filename="../Gen8/Wild8.cpp" line="54"/>
         <source>Slot Modifier</source>
-        <translation type="unfinished"></translation>
+        <translation>Modifizierer</translation>
     </message>
     <message>
         <location filename="../Gen8/Wild8.cpp" line="54"/>
         <source>Harvest</source>
-        <translation type="unfinished"></translation>
+        <translation>Reiche Ernte</translation>
     </message>
     <message>
         <location filename="../Gen8/Wild8.cpp" line="54"/>
         <source>Flash Fire</source>
-        <translation type="unfinished"></translation>
+        <translation>Feuerfänger</translation>
     </message>
     <message>
         <location filename="../Gen8/Wild8.cpp" line="54"/>
         <source>Magnet Pull</source>
-        <translation type="unfinished"></translation>
+        <translation>Magnetfalle</translation>
     </message>
     <message>
         <location filename="../Gen8/Wild8.cpp" line="54"/>
         <source>Static</source>
-        <translation type="unfinished"></translation>
+        <translation>Statik</translation>
     </message>
     <message>
         <location filename="../Gen8/Wild8.cpp" line="54"/>
         <source>Storm Drain</source>
-        <translation type="unfinished"></translation>
+        <translation>Sturmsog</translation>
     </message>
     <message>
         <location filename="../Gen8/Wild8.cpp" line="56"/>
         <source>Item Modifier</source>
-        <translation type="unfinished"></translation>
+        <translation>Item Modifizierer</translation>
     </message>
     <message>
         <location filename="../Gen8/Wild8.cpp" line="56"/>
         <source>Compound Eyes</source>
-        <translation type="unfinished"></translation>
+        <translation>Facettenauge</translation>
     </message>
     <message>
         <location filename="../Gen8/Wild8.cpp" line="56"/>
         <source>Super Luck</source>
-        <translation type="unfinished"></translation>
+        <translation>Glückspilz</translation>
     </message>
     <message>
         <location filename="../Gen8/Wild8.cpp" line="58"/>
         <source>Level Modifier</source>
-        <translation type="unfinished"></translation>
+        <translation>Level Modifizierer</translation>
     </message>
     <message>
         <location filename="../Gen8/Wild8.cpp" line="58"/>
         <source>Hustle</source>
-        <translation type="unfinished"></translation>
+        <translation>Übereifer</translation>
     </message>
     <message>
         <location filename="../Gen8/Wild8.cpp" line="58"/>
         <source>Pressure</source>
-        <translation type="unfinished"></translation>
+        <translation>Erzwinger</translation>
     </message>
     <message>
         <location filename="../Gen8/Wild8.cpp" line="58"/>
         <source>Vital Spirit</source>
-        <translation type="unfinished"></translation>
+        <translation>Munterkeit</translation>
     </message>
     <message>
         <location filename="../Gen8/Wild8.cpp" line="60"/>
@@ -7128,12 +7128,12 @@
     <message>
         <location filename="../Gen8/Wild8.cpp" line="201"/>
         <source>Missing seeds</source>
-        <translation type="unfinished"></translation>
+        <translation>Fehlende Seeds</translation>
     </message>
     <message>
         <location filename="../Gen8/Wild8.cpp" line="201"/>
         <source>Please insert missing seed information</source>
-        <translation type="unfinished"></translation>
+        <translation>Bitte fehlende Seed Informationen eingeben</translation>
     </message>
     <message>
         <location filename="../Gen8/Wild8.cpp" line="52"/>
@@ -7153,7 +7153,7 @@
     <message>
         <location filename="../Gen8/Wild8.ui"/>
         <source>Grass</source>
-        <translation>Pflanze</translation>
+        <translation>Hohes Gras</translation>
     </message>
     <message>
         <location filename="../Gen8/Wild8.ui"/>
@@ -7178,12 +7178,12 @@
     <message>
         <location filename="../Gen8/Wild8.ui"/>
         <source>Delay</source>
-        <translation>Verzögerung</translation>
+        <translation>Delay</translation>
     </message>
     <message>
         <location filename="../Gen8/Wild8.ui"/>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Einstellungen</translation>
     </message>
     <message>
         <location filename="../Gen8/Wild8.ui"/>
@@ -7193,12 +7193,12 @@
     <message>
         <location filename="../Gen8/Wild8.ui"/>
         <source>Replacement</source>
-        <translation type="unfinished"></translation>
+        <translation>Ersatz</translation>
     </message>
     <message>
         <location filename="../Gen8/Wild8.ui"/>
         <source>Swarm</source>
-        <translation type="unfinished"></translation>
+        <translation>Schwarm</translation>
     </message>
     <message>
         <location filename="../Gen8/Wild8.ui"/>
