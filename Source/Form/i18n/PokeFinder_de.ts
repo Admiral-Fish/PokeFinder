@@ -1369,7 +1369,7 @@
     <message>
         <location filename="../Gen5/Event5.ui"/>
         <source>Gen 5 Event</source>
-        <type="unfinished"></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Gen5/Event5.ui"/>
@@ -2232,7 +2232,7 @@
         <location filename="../Gen3/Tools/GameCubeSeedFinder.cpp" line="274"/>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.cpp" line="393"/>
         <source>Unable to open file. Please try again.</source>
-        <translatio>Datei kann nicht geöffnet werden. Bitte erneut versuchen.</translation>
+        <translation>Datei kann nicht geöffnet werden. Bitte erneut versuchen.</translation>
     </message>
     <message>
         <location filename="../Gen3/Tools/GameCubeSeedFinder.cpp" line="250"/>
@@ -3937,7 +3937,7 @@
     <message>
         <location filename="../Gen3/Profile/ProfileEditor3.cpp" line="77"/>
         <source>Enter a profile name</source>
-        <translatio>Profilname eingeben</translation>
+        <translation>Profilname eingeben</translation>
     </message>
 </context>
 <context>
