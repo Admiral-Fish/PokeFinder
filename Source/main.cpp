@@ -84,6 +84,7 @@ int main(int argc, char *argv[])
     a.setOrganizationName("PokeFinder Team");
 
     Q_INIT_RESOURCE(darkstyle);
+    Q_INIT_RESOURCE(i18n);
     Q_INIT_RESOURCE(lightstyle);
     Q_INIT_RESOURCE(resources);
 

@@ -37,7 +37,7 @@ set(CMAKE_AUTOUIC ON)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-find_package(Qt6 REQUIRED COMPONENTS Core Network Widgets)
+find_package(Qt6 REQUIRED COMPONENTS Core LinguistTools Network Widgets)
 
 set(PROJECT_TS
     i18n/PokeFinder_fr.ts
@@ -233,6 +233,10 @@ set(PROJECT_SOURCES
     Util/Settings.cpp
     Util/Settings.hpp
 )
+
+qt_add_translation(PROJECT_QM ${PROJECT_TS} OPTIONS -nounfinished -removeidentical)
+include(EmbedTranslations)
+embed_translations(PROJECT_I18N ${PROJECT_QM})
 
 add_library(PokeFinderForm STATIC
     ${PROJECT_I18N}
