@@ -89,7 +89,7 @@ QVariant EventSearcherModel4::data(const QModelIndex &index, int role) const
         switch (column)
         {
         case 0:
-            return QString::number(state.getSeed(), 16).toUpper().rightJustified(16, '0');
+            return QString::number(state.getSeed(), 16).toUpper().rightJustified(8, '0');
         case 1:
             return state.getAdvances();
         case 2:
