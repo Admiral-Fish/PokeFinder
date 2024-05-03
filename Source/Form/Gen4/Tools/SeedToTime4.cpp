@@ -130,7 +130,15 @@ SeedToTime4::SeedToTime4(QWidget *parent) : QWidget(parent), ui(new Ui::SeedToTi
 
 SeedToTime4::SeedToTime4(u32 seed, Game version, QWidget *parent) : SeedToTime4(parent)
 {
-    if ((version & Game::HGSS) != Game::None)
+    if ((version & Game::Gen4) != Game::None)
+    {
+        ui->textBoxHGSSSeed->setText(QString::number(seed, 16));
+        hgssGenerate();
+
+        ui->textBoxDPPtSeed->setText(QString::number(seed, 16));
+        dpptGenerate();
+    }
+    else if ((version & Game::HGSS) != Game::None)
     {
         ui->tabWidget->setCurrentIndex(1);
         ui->textBoxHGSSSeed->setText(QString::number(seed, 16));

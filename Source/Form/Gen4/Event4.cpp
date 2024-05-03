@@ -79,7 +79,7 @@ Event4::Event4(QWidget *parent) : QWidget(parent), ui(new Ui::Event4)
         ui->comboBoxSearcherSpecies->addItem(QString::fromStdString(specie));
     }
 
-    auto *seedToTime = new QAction(tr("Generate times for seed"), ui->tableViewSearcher);
+    auto *seedToTime = ui->tableViewSearcher->addAction(tr("Generate times for seed"));
     connect(seedToTime, &QAction::triggered, this, &Event4::seedToTime);
 
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Event4::generate);

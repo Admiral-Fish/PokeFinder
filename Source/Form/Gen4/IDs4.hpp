@@ -64,6 +64,11 @@ private slots:
      * @brief Searches and displays results
      */
     void search();
+
+    /**
+     * @brief Opens seed to time. Provides current game version and seed from the selected tableview row.
+     */
+    void seedToTime();
 };
 
 #endif // IDS4_HPP

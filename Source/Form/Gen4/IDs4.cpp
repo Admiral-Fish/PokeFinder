@@ -19,8 +19,10 @@
 
 #include "IDs4.hpp"
 #include "ui_IDs4.h"
+#include <Core/Enum/Game.hpp>
 #include <Core/Gen4/Generators/IDGenerator4.hpp>
 #include <Core/Gen4/Searchers/IDSearcher4.hpp>
+#include <Form/Gen4/Tools/SeedToTime4.hpp>
 #include <Model/Gen4/IDModel4.hpp>
 #include <QSettings>
 #include <QThread>
@@ -46,6 +48,9 @@ IDs4::IDs4(QWidget *parent) : QWidget(parent), ui(new Ui::IDs4)
     ui->textBoxSeedFinderMaxDelay->setValues(InputType::Delay);
 
     ui->idFilter->enableTIDPID();
+
+    auto *seedToTime = ui->tableViewSearcher->addAction(tr("Generate times for seed"));
+    connect(seedToTime, &QAction::triggered, this, &IDs4::seedToTime);
 
     connect(ui->pushButtonSearch, &QPushButton::clicked, this, &IDs4::search);
     connect(ui->pushButtonFind, &QPushButton::clicked, this, &IDs4::find);
@@ -124,4 +129,13 @@ void IDs4::search()
 
     thread->start();
     timer->start(1000);
+}
+
+void IDs4::seedToTime()
+{
+    QModelIndex index = ui->tableViewSearcher->currentIndex();
+    const auto &state = searcherModel->getItem(index.row());
+
+    auto *time = new SeedToTime4(state.getSeed(), Game::Gen4);
+    time->show();
 }
