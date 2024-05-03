@@ -99,7 +99,7 @@
 132,Ondula
 133,Route 17
 134,Route 21
-135,Route 6 (Mistralton Cave)
+135,Route 6 (Panaero-Höhle)
 136,Route 13 (Riesengrotte)
 137,Schrein der Ernte (Nördlicher Teich)
 138,Route 3 (Teich)
