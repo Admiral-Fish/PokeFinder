@@ -67,33 +67,33 @@ static bool compare(const EggState3 &left, const EggState3 &right)
 template <bool emerald>
 static void setInheritance(const Daycare &daycare, std::array<u8, 6> &ivs, std::array<u8, 6> &inheritance, const u8 *inh, const u8 *par)
 {
-    constexpr u8 order[6] = { 0, 1, 2, 5, 3, 4 };
-
     if constexpr (emerald)
     {
-        constexpr u8 available1[6] = { 0, 1, 2, 3, 4, 5 };
-        constexpr u8 available2[5] = { 1, 2, 3, 4, 5 };
-        constexpr u8 available3[4] = { 1, 3, 4, 5 };
+        constexpr u8 available1[6] = { 0, 1, 2, 5, 3, 4 };
+        constexpr u8 available2[5] = { 1, 2, 5, 3, 4 };
+        constexpr u8 available3[4] = { 1, 5, 3, 4 };
 
         u8 stat = available1[inh[0]];
-        ivs[order[stat]] = daycare.getParentIV(par[0], order[stat]);
-        inheritance[order[stat]] = par[0] + 1;
+        ivs[stat] = daycare.getParentIV(par[0], stat);
+        inheritance[stat] = par[0] + 1;
 
         stat = available2[inh[1]];
-        ivs[order[stat]] = daycare.getParentIV(par[1], order[stat]);
-        inheritance[order[stat]] = par[1] + 1;
+        ivs[stat] = daycare.getParentIV(par[1], stat);
+        inheritance[stat] = par[1] + 1;
 
         stat = available3[inh[2]];
-        ivs[order[stat]] = daycare.getParentIV(par[2], order[stat]);
-        inheritance[order[stat]] = par[2] + 1;
+        ivs[stat] = daycare.getParentIV(par[2], stat);
+        inheritance[stat] = par[2] + 1;
     }
     else
     {
+        constexpr u8 order[6] = { 0, 1, 2, 5, 3, 4 };
+
         u8 available[6] = { 0, 1, 2, 3, 4, 5 };
-        auto avoid = [&available](u8 stat, u8 i) {
-            for (u8 j = stat; j < 5 - i; j++)
+        auto avoid = [&available](u8 index, u8 size) {
+            for (u8 i = index; i < size; i++)
             {
-                available[j] = available[j + 1];
+                available[i] = available[i + 1];
             }
         };
 
@@ -101,13 +101,13 @@ static void setInheritance(const Daycare &daycare, std::array<u8, 6> &ivs, std::
         ivs[order[stat]] = daycare.getParentIV(par[0], order[stat]);
         inheritance[order[stat]] = par[0] + 1;
 
-        avoid(stat, 0);
+        avoid(stat, 5);
 
         stat = available[inh[1]];
         ivs[order[stat]] = daycare.getParentIV(par[1], order[stat]);
         inheritance[order[stat]] = par[1] + 1;
 
-        avoid(stat, 1);
+        avoid(stat, 4);
 
         stat = available[inh[2]];
         ivs[order[stat]] = daycare.getParentIV(par[2], order[stat]);
@@ -284,8 +284,8 @@ std::vector<EggState3> EggGenerator3::generateEmeraldHeld() const
                 info = male;
             }
 
-            EggState3 state(initialAdvances + cnt - offset, redraw, pid, Utilities::getGender(pid, info), Utilities::getShiny<true>(pid, tsv),
-                            info);
+            EggState3 state(initialAdvances + cnt - offset, redraw, pid, Utilities::getGender(pid, info),
+                            Utilities::getShiny<true>(pid, tsv), info);
             if (filter.compareAbility(state.getAbility()) && filter.compareGender(state.getGender()))
             {
                 states.emplace_back(state);
