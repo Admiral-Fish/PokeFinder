@@ -71,7 +71,7 @@ void GameCubeGeneratorTest::generateChannel()
 
     Profile3 profile("-", Game::GC, 12345, 54321, false);
 
-    const StaticTemplate *staticTemplate = Encounters3::getStaticEncounter(8, 0);
+    const StaticTemplate *staticTemplate = Encounters3::getStaticEncounter(9, 0);
     StateFilter filter(255, 255, 255, false, min, max, natures, powers);
     GameCubeGenerator generator(0, 9, 0, Method::Channel, false, profile, filter);
 
@@ -225,7 +225,7 @@ void GameCubeGeneratorTest::generateNonLock()
 
     Profile3 profile("-", version, 12345, 54321, false);
 
-    const StaticTemplate *staticTemplate = Encounters3::getStaticEncounter(7, pokemon);
+    const StaticTemplate *staticTemplate = Encounters3::getStaticEncounter(8, pokemon);
     StateFilter filter(255, 255, 255, false, min, max, natures, powers);
     GameCubeGenerator generator(0, 9, 0, Method::None, false, profile, filter);
 
