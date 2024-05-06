@@ -31,7 +31,7 @@ StaticGenerator3::StaticGenerator3(u32 initialAdvances, u32 maxAdvances, u32 del
 {
 }
 
-std::vector<GeneratorState> StaticGenerator3::generate(u32 seed) const
+std::vector<GeneratorState> StaticGenerator3::generate(u32 seed, const StaticTemplate &staticTemplate) const
 {
     std::vector<GeneratorState> states;
     const PersonalInfo *info = staticTemplate.getInfo();
@@ -44,12 +44,15 @@ std::vector<GeneratorState> StaticGenerator3::generate(u32 seed) const
         u32 pid = go.nextUShort();
         pid |= go.nextUShort() << 16;
 
-        u16 iv1 = go.nextUShort();
+        // Raikou/Entei/Suicune/Latias/Latios
+        bool buggedRoamer = ((staticTemplate.getSpecie() == 380 || staticTemplate.getSpecie() == 381) && (profile.getVersion() & Game::RS) != Game::None) ||
+            (staticTemplate.getSpecie() >= 243 && staticTemplate.getSpecie() <= 245);
+        u16 iv1 = buggedRoamer ? go.nextUShort() & 0xff : go.nextUShort();
         if (method == Method::Method4)
         {
             go.next();
         }
-        u16 iv2 = go.nextUShort();
+        u16 iv2 = buggedRoamer ? 0 : go.nextUShort();
 
         std::array<u8, 6> ivs;
         ivs[0] = iv1 & 31;

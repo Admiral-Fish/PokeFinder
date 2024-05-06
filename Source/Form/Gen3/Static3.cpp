@@ -132,7 +132,7 @@ void Static3::generate()
     auto filter = ui->filterGenerator->getFilter<StateFilter>();
     StaticGenerator3 generator(initialAdvances, maxAdvances, delay, method, *staticTemplate, *currentProfile, filter);
 
-    auto states = generator.generate(seed);
+    auto states = generator.generate(seed, *staticTemplate);
     generatorModel->addItems(states);
 }
 

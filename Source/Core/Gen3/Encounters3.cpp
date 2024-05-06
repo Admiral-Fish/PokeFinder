@@ -280,6 +280,14 @@ namespace Encounters3
         {
             if (size)
             {
+                *size = ROAMERS.size();
+            }
+            return ROAMERS.data();
+        }
+        else if (type == 8)
+        {
+            if (size)
+            {
                 *size = GALESCOLO.size();
             }
             return GALESCOLO.data();
