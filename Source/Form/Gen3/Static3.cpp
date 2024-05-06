@@ -228,7 +228,11 @@ void Static3::search()
     }
     ui->progressBar->setRange(0, maxProgress);
 
-    auto *thread = QThread::create([=] { searcher->startSearch(min, max, staticTemplate); });
+    // Raikou/Entei/Suicune/Latias/Latios
+    bool buggedRoamer = ((staticTemplate->getSpecie() == 380 || staticTemplate->getSpecie() == 381) &&
+                         (currentProfile->getVersion() & Game::RS) != Game::None) ||
+        (staticTemplate->getSpecie() >= 243 && staticTemplate->getSpecie() <= 245);
+    auto *thread = QThread::create([=] { searcher->startSearch(min, max, staticTemplate, buggedRoamer); });
     connect(thread, &QThread::finished, thread, &QThread::deleteLater);
     connect(ui->pushButtonCancel, &QPushButton::clicked, [searcher] { searcher->cancelSearch(); });
 

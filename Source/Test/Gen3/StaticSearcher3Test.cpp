@@ -78,7 +78,7 @@ void StaticSearcher3Test::search()
     StateFilter filter(255, 255, 255, false, min, max, natures, powers);
     StaticSearcher3 searcher(method, profile, filter);
 
-    searcher.startSearch(min, max, staticTemplate);
+    searcher.startSearch(min, max, staticTemplate, false);
     auto states = searcher.getResults();
     QCOMPARE(states.size(), results);
 
