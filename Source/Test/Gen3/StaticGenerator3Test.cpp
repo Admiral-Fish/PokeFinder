@@ -84,7 +84,7 @@ void StaticGenerator3Test::generate()
     StateFilter filter(255, 255, 255, false, min, max, natures, powers);
     StaticGenerator3 generator(0, 9, 0, method, *staticTemplate, profile, filter);
 
-    auto states = generator.generate(seed);
+    auto states = generator.generate(seed, *staticTemplate);
     QCOMPARE(states.size(), j.size());
 
     for (size_t i = 0; i < states.size(); i++)
