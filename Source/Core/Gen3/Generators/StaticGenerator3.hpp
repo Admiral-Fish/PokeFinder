@@ -51,6 +51,7 @@ public:
      * @brief Generates states
      *
      * @param seed Starting PRNG state
+     * @param staticTemplate Pokemon template
      *
      * @return Vector of computed states
      */

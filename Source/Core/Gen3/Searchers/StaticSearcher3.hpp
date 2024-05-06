@@ -47,6 +47,7 @@ public:
      * @param min Minimum IVs
      * @param max Maximum IVs
      * @param staticTemplate Pokemon template
+     * @param buggedRoamer FRLG/RS roamer
      */
     void startSearch(const std::array<u8, 6> &min, const std::array<u8, 6> &max, const StaticTemplate *staticTemplate, const bool buggedRoamer);
 
@@ -63,6 +64,7 @@ private:
      * @param spd SpD IV
      * @param spe Spe IV
      * @param staticTemplate Pokemon template
+     * @param buggedRoamer FRLG/RS roamer
      *
      * @return Vector of computed states
      */

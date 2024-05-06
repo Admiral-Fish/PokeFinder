@@ -78,8 +78,9 @@ namespace Encounters3
      * 4: stationary
      * 5: legends
      * 6: events
-     * 7: gales/colo
-     * 8: channel
+     * 7: roamers
+     * 8: gales/colo
+     * 9: channel
      * @param size Pointer to set number of encounters if not nullptr
      *
      * @return Pointer to static encounters area
@@ -97,8 +98,9 @@ namespace Encounters3
      * 4: stationary
      * 5: legends
      * 6: events
-     * 7: gales/colo
-     * 8: channel
+     * 7: roamers
+     * 8: gales/colo
+     * 9: channel
      * @param index Pokemon index
      *
      * @return Pointer to static encounter
