@@ -153,6 +153,7 @@ void Static3::generatorCategoryIndexChanged(int index)
                     QVariant::fromValue(i));
             }
         }
+        ui->comboBoxGeneratorMethod->setItemHidden(1, templates[ui->comboBoxGeneratorPokemon->getCurrentInt()].getBuggedRoamer());
     }
 }
 
@@ -268,6 +269,7 @@ void Static3::searcherCategoryIndexChanged(int index)
                     QVariant::fromValue(i));
             }
         }
+        ui->comboBoxSearcherMethod->setItemHidden(1, templates[ui->comboBoxSearcherPokemon->getCurrentInt()].getBuggedRoamer());
     }
 }
 
