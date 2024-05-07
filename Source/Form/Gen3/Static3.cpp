@@ -26,7 +26,7 @@
 #include <Core/Gen3/Profile3.hpp>
 #include <Core/Gen3/Searchers/StaticSearcher3.hpp>
 #include <Core/Parents/ProfileLoader.hpp>
-#include <Core/Parents/StaticTemplate.hpp>
+#include <Core/Gen3/StaticTemplate3.hpp>
 #include <Core/Util/Translator.hpp>
 #include <Form/Controls/Controls.hpp>
 #include <Form/Gen3/Profile/ProfileManager3.hpp>
@@ -126,13 +126,13 @@ void Static3::generate()
     u32 maxAdvances = ui->textBoxGeneratorMaxAdvances->getUInt();
     u32 delay = ui->textBoxGeneratorDelay->getUInt();
     auto method = ui->comboBoxGeneratorMethod->getEnum<Method>();
-    const StaticTemplate *staticTemplate
+    const StaticTemplate3 *staticTemplate
         = Encounters3::getStaticEncounter(ui->comboBoxGeneratorCategory->currentIndex(), ui->comboBoxGeneratorPokemon->getCurrentInt());
 
     auto filter = ui->filterGenerator->getFilter<StateFilter>();
     StaticGenerator3 generator(initialAdvances, maxAdvances, delay, method, *staticTemplate, *currentProfile, filter);
 
-    auto states = generator.generate(seed, *staticTemplate);
+    auto states = generator.generate(seed);
     generatorModel->addItems(states);
 }
 
@@ -141,7 +141,7 @@ void Static3::generatorCategoryIndexChanged(int index)
     if (index >= 0)
     {
         int size;
-        const StaticTemplate *templates = Encounters3::getStaticEncounters(index, &size);
+        const StaticTemplate3 *templates = Encounters3::getStaticEncounters(index, &size);
 
         ui->comboBoxGeneratorPokemon->clear();
         for (int i = 0; i < size; i++)
@@ -160,7 +160,7 @@ void Static3::generatorPokemonIndexChanged(int index)
 {
     if (index >= 0)
     {
-        const StaticTemplate *staticTemplate
+        const StaticTemplate3 *staticTemplate
             = Encounters3::getStaticEncounter(ui->comboBoxGeneratorCategory->currentIndex(), ui->comboBoxGeneratorPokemon->getCurrentInt());
         ui->spinBoxGeneratorLevel->setValue(staticTemplate->getLevel());
     }
@@ -218,7 +218,7 @@ void Static3::search()
     auto filter = ui->filterSearcher->getFilter<StateFilter>();
     auto *searcher = new StaticSearcher3(method, *currentProfile, filter);
 
-    const StaticTemplate *staticTemplate
+    const StaticTemplate3 *staticTemplate
         = Encounters3::getStaticEncounter(ui->comboBoxSearcherCategory->currentIndex(), ui->comboBoxSearcherPokemon->getCurrentInt());
 
     int maxProgress = 1;
@@ -228,11 +228,7 @@ void Static3::search()
     }
     ui->progressBar->setRange(0, maxProgress);
 
-    // Raikou/Entei/Suicune/Latias/Latios
-    bool buggedRoamer = ((staticTemplate->getSpecie() == 380 || staticTemplate->getSpecie() == 381) &&
-                         (currentProfile->getVersion() & Game::RS) != Game::None) ||
-        (staticTemplate->getSpecie() >= 243 && staticTemplate->getSpecie() <= 245);
-    auto *thread = QThread::create([=] { searcher->startSearch(min, max, staticTemplate, buggedRoamer); });
+    auto *thread = QThread::create([=] { searcher->startSearch(min, max, staticTemplate); });
     connect(thread, &QThread::finished, thread, &QThread::deleteLater);
     connect(ui->pushButtonCancel, &QPushButton::clicked, [searcher] { searcher->cancelSearch(); });
 
@@ -260,7 +256,7 @@ void Static3::searcherCategoryIndexChanged(int index)
     if (index >= 0)
     {
         int size;
-        const StaticTemplate *templates = Encounters3::getStaticEncounters(index, &size);
+        const StaticTemplate3 *templates = Encounters3::getStaticEncounters(index, &size);
 
         ui->comboBoxSearcherPokemon->clear();
         for (int i = 0; i < size; i++)
@@ -279,7 +275,7 @@ void Static3::searcherPokemonIndexChanged(int index)
 {
     if (index >= 0)
     {
-        const StaticTemplate *staticTemplate
+        const StaticTemplate3 *staticTemplate
             = Encounters3::getStaticEncounter(ui->comboBoxSearcherCategory->currentIndex(), ui->comboBoxSearcherPokemon->getCurrentInt());
         ui->spinBoxSearcherLevel->setValue(staticTemplate->getLevel());
     }

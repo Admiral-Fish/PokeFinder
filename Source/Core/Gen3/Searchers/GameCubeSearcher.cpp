@@ -24,6 +24,7 @@
 #include <Core/Enum/ShadowType.hpp>
 #include <Core/Gen3/ShadowLock.hpp>
 #include <Core/Gen3/ShadowTemplate.hpp>
+#include <Core/Gen3/StaticTemplate3.hpp>
 #include <Core/Parents/PersonalInfo.hpp>
 #include <Core/Parents/States/State.hpp>
 #include <Core/RNG/LCRNG.hpp>
@@ -171,7 +172,7 @@ void GameCubeSearcher::startSearch(const std::array<u8, 6> &min, const std::arra
     }
 }
 
-void GameCubeSearcher::startSearch(const std::array<u8, 6> &min, const std::array<u8, 6> &max, const StaticTemplate *staticTemplate)
+void GameCubeSearcher::startSearch(const std::array<u8, 6> &min, const std::array<u8, 6> &max, const StaticTemplate3 *staticTemplate)
 {
     searching = true;
 
@@ -222,7 +223,7 @@ void GameCubeSearcher::startSearch(const std::array<u8, 6> &min, const std::arra
     }
 }
 
-void GameCubeSearcher::searchChannel(u8 minSpd, u8 maxSpd, const StaticTemplate *staticTemplate)
+void GameCubeSearcher::searchChannel(u8 minSpd, u8 maxSpd, const StaticTemplate3 *staticTemplate)
 {
     const PersonalInfo *info = staticTemplate->getInfo();
 
@@ -439,7 +440,7 @@ std::vector<SearcherState> GameCubeSearcher::searchGalesShadow(u8 hp, u8 atk, u8
 }
 
 std::vector<SearcherState> GameCubeSearcher::searchNonLock(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe,
-                                                           const StaticTemplate *staticTemplate)
+                                                           const StaticTemplate3 *staticTemplate)
 {
     std::vector<SearcherState> states;
     const PersonalInfo *info = staticTemplate->getInfo();

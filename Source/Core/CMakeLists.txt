@@ -73,6 +73,7 @@ add_library(PokeFinderCore STATIC
     Gen3/ShadowLock.cpp
     Gen3/ShadowLock.hpp
     Gen3/ShadowTemplate.hpp
+    Gen3/StaticTemplate3.hpp
     Gen3/States/EggState3.hpp
     Gen3/States/PIDToIVState.hpp
     Gen3/States/PokeSpotState.hpp

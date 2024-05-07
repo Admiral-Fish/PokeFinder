@@ -22,7 +22,7 @@
 #include <Core/Enum/Method.hpp>
 #include <Core/Parents/PersonalInfo.hpp>
 #include <Core/Parents/States/State.hpp>
-#include <Core/Parents/StaticTemplate.hpp>
+#include <Core/Gen3/StaticTemplate3.hpp>
 #include <Core/RNG/LCRNG.hpp>
 #include <Core/RNG/LCRNGReverse.hpp>
 #include <Core/Util/Utilities.hpp>
@@ -32,28 +32,28 @@ StaticSearcher3::StaticSearcher3(Method method, const Profile3 &profile, const S
 {
 }
 
-void StaticSearcher3::startSearch(const std::array<u8, 6> &min, const std::array<u8, 6> &max, const StaticTemplate *staticTemplate, const bool buggedRoamer)
+void StaticSearcher3::startSearch(const std::array<u8, 6> &min, const std::array<u8, 6> &max, const StaticTemplate3 *staticTemplate)
 {
     searching = true;
 
     for (u8 hp = min[0]; hp <= max[0]; hp++)
     {
-        for (u8 atk = buggedRoamer ? min[1] & 7 : min[1]; atk <= (buggedRoamer ? max[1] & 7 : max[1]); atk++)
+        for (u8 atk = min[1]; atk <= max[1]; atk++)
         {
-            for (u8 def = buggedRoamer ? 0 : min[2]; def <= (buggedRoamer ? 31 : max[2]); def++)
+            for (u8 def = min[2]; def <= max[2]; def++)
             {
-                for (u8 spa = buggedRoamer ? 0 : min[3]; spa <= (buggedRoamer ? 31 : max[3]); spa++)
+                for (u8 spa = min[3]; spa <= max[3]; spa++)
                 {
-                    for (u8 spd = buggedRoamer ? 0 : min[4]; spd <= (buggedRoamer ? 31 : max[4]); spd++)
+                    for (u8 spd = min[4]; spd <= max[4]; spd++)
                     {
-                        for (u8 spe = buggedRoamer ? 0 : min[5]; spe <= (buggedRoamer ? 31 : max[5]); spe++)
+                        for (u8 spe = min[5]; spe <= max[5]; spe++)
                         {
                             if (!searching)
                             {
                                 return;
                             }
 
-                            auto states = search(hp, atk, def, spa, spd, spe, staticTemplate, buggedRoamer);
+                            auto states = search(hp, atk, def, spa, spd, spe, staticTemplate);
 
                             std::lock_guard<std::mutex> guard(mutex);
                             results.insert(results.end(), states.begin(), states.end());
@@ -66,24 +66,19 @@ void StaticSearcher3::startSearch(const std::array<u8, 6> &min, const std::array
     }
 }
 
-void buggedRoamerIVsMatcher(std::array<u8, 6> &ivs, const bool buggedRoamer)
-{
-    if (buggedRoamer)
-    {
-        ivs[1] &= 7;
-        for (int i = 2; i < 6; i++)
-        {
-            ivs[i] = 0;
-        }
-    }
-}
-
 std::vector<SearcherState> StaticSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe,
-                                                   const StaticTemplate *staticTemplate, const bool buggedRoamer) const
+                                                   const StaticTemplate3 *staticTemplate) const
 {
     std::vector<SearcherState> states;
-    std::array<u8, 6> ivs = { hp, atk, def, spa, spd, spe };
-    buggedRoamerIVsMatcher(ivs, buggedRoamer);
+    std::array<u8, 6> ivs;
+    if (staticTemplate->getBuggedRoamer()) {
+        atk &= 7;
+        ivs = { hp, atk, 0, 0, 0, 0 };
+    }
+    else
+    {
+        ivs = { hp, atk, def, spa, spd, spe };
+    }
     const PersonalInfo *info = staticTemplate->getInfo();
 
     u32 seeds[6];

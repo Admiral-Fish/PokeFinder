@@ -26,7 +26,7 @@
 class EncounterArea;
 class EncounterArea3;
 class ShadowTemplate;
-class StaticTemplate;
+class StaticTemplate3;
 enum class Encounter : u8;
 enum class Game : u32;
 
@@ -85,7 +85,7 @@ namespace Encounters3
      *
      * @return Pointer to static encounters area
      */
-    const StaticTemplate *getStaticEncounters(int type, int *size = nullptr);
+    const StaticTemplate3 *getStaticEncounters(int type, int *size = nullptr);
 
     /**
      * @brief Gets the static encounter from the \p type and \p index
@@ -105,7 +105,7 @@ namespace Encounters3
      *
      * @return Pointer to static encounter
      */
-    const StaticTemplate *getStaticEncounter(int type, int index);
+    const StaticTemplate3 *getStaticEncounter(int type, int index);
 };
 
 #endif // ENCOUNTERS3_HPP

@@ -218,7 +218,7 @@ namespace Encounters3
         return &templates[index];
     }
 
-    const StaticTemplate *getStaticEncounters(int type, int *size)
+    const StaticTemplate3 *getStaticEncounters(int type, int *size)
     {
         if (type == 0)
         {
@@ -302,9 +302,9 @@ namespace Encounters3
         }
     }
 
-    const StaticTemplate *getStaticEncounter(int type, int index)
+    const StaticTemplate3 *getStaticEncounter(int type, int index)
     {
-        const StaticTemplate *templates = getStaticEncounters(type);
+        const StaticTemplate3 *templates = getStaticEncounters(type);
         return &templates[index];
     }
 }

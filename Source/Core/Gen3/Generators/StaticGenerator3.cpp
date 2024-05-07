@@ -25,13 +25,13 @@
 #include <Core/RNG/LCRNG.hpp>
 #include <Core/Util/Utilities.hpp>
 
-StaticGenerator3::StaticGenerator3(u32 initialAdvances, u32 maxAdvances, u32 delay, Method method, const StaticTemplate &staticTemplate,
+StaticGenerator3::StaticGenerator3(u32 initialAdvances, u32 maxAdvances, u32 delay, Method method, const StaticTemplate3 &staticTemplate,
                                    const Profile3 &profile, const StateFilter &filter) :
     StaticGenerator(initialAdvances, maxAdvances, delay, method, Lead::None, staticTemplate, profile, filter)
 {
 }
 
-std::vector<GeneratorState> StaticGenerator3::generate(u32 seed, const StaticTemplate &staticTemplate) const
+std::vector<GeneratorState> StaticGenerator3::generate(u32 seed) const
 {
     std::vector<GeneratorState> states;
     const PersonalInfo *info = staticTemplate.getInfo();
@@ -44,15 +44,12 @@ std::vector<GeneratorState> StaticGenerator3::generate(u32 seed, const StaticTem
         u32 pid = go.nextUShort();
         pid |= go.nextUShort() << 16;
 
-        // Raikou/Entei/Suicune/Latias/Latios
-        bool buggedRoamer = ((staticTemplate.getSpecie() == 380 || staticTemplate.getSpecie() == 381) && (profile.getVersion() & Game::RS) != Game::None) ||
-            (staticTemplate.getSpecie() >= 243 && staticTemplate.getSpecie() <= 245);
-        u16 iv1 = buggedRoamer ? go.nextUShort() & 0xff : go.nextUShort();
+        u16 iv1 = staticTemplate.getBuggedRoamer() ? go.nextUShort() & 0xff : go.nextUShort();
         if (method == Method::Method4)
         {
             go.next();
         }
-        u16 iv2 = buggedRoamer ? 0 : go.nextUShort();
+        u16 iv2 = staticTemplate.getBuggedRoamer() ? 0 : go.nextUShort();
 
         std::array<u8, 6> ivs;
         ivs[0] = iv1 & 31;
