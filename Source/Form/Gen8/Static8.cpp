@@ -23,8 +23,8 @@
 #include <Core/Gen8/Encounters8.hpp>
 #include <Core/Gen8/Generators/StaticGenerator8.hpp>
 #include <Core/Gen8/Profile8.hpp>
+#include <Core/Gen8/StaticTemplate8.hpp>
 #include <Core/Parents/ProfileLoader.hpp>
-#include <Core/Parents/StaticTemplate.hpp>
 #include <Core/Util/Translator.hpp>
 #include <Form/Controls/Controls.hpp>
 #include <Form/Gen8/Profile/ProfileManager8.hpp>
@@ -145,7 +145,7 @@ void Static8::generate()
     u32 maxAdvances = ui->textBoxMaxAdvances->getUInt();
     u32 delay = ui->textBoxDelay->getUInt();
     auto lead = ui->comboMenuLead->getEnum<Lead>();
-    const StaticTemplate *staticTemplate
+    const StaticTemplate8 *staticTemplate
         = Encounters8::getStaticEncounter(ui->comboBoxCategory->currentIndex(), ui->comboBoxPokemon->getCurrentInt());
 
     auto filter = ui->filter->getFilter<StateFilter>();

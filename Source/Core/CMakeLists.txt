@@ -185,6 +185,7 @@ add_library(PokeFinderCore STATIC
     Gen8/States/State8.hpp
     Gen8/States/WildState8.hpp
     Gen8/States/UndergroundState.hpp
+    Gen8/StaticTemplate8.hpp
     Gen8/UndergroundArea.cpp
     Gen8/UndergroundArea.hpp
     Gen8/WB8.hpp

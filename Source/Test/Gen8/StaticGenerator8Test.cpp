@@ -82,7 +82,7 @@ void StaticGenerator8Test::generate()
 
     Profile8 profile("-", Game::BDSP, 12345, 54321, false, false, false);
 
-    const StaticTemplate *staticTemplate = Encounters8::getStaticEncounter(category, pokemon);
+    const StaticTemplate8 *staticTemplate = Encounters8::getStaticEncounter(category, pokemon);
     StateFilter filter(255, 255, 255, false, min, max, natures, powers);
     StaticGenerator8 generator(0, 9, 0, lead, *staticTemplate, profile, filter);
 
@@ -136,7 +136,7 @@ void StaticGenerator8Test::generateRoamer()
 
     Profile8 profile("-", Game::BD, 12345, 54321, false, false, false);
 
-    const StaticTemplate *staticTemplate = Encounters8::getStaticEncounter(category, pokemon);
+    const StaticTemplate8 *staticTemplate = Encounters8::getStaticEncounter(category, pokemon);
     StateFilter filter(255, 255, 255, false, min, max, natures, powers);
     StaticGenerator8 generator(0, 9, 0, Lead::None, *staticTemplate, profile, filter);
 
