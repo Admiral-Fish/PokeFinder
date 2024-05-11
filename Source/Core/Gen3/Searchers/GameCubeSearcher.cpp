@@ -340,7 +340,7 @@ std::vector<SearcherState> GameCubeSearcher::searchColoShadow(u8 hp, u8 atk, u8 
         if (valid)
         {
             // If this spread passes and is the 'normal' spread we can skip the XORed spread
-            if ((i & 2) == 0)
+            if ((i & 1) == 0)
             {
                 i++;
             }
@@ -423,7 +423,7 @@ std::vector<SearcherState> GameCubeSearcher::searchGalesShadow(u8 hp, u8 atk, u8
         if (valid)
         {
             // If this spread passes and is the 'normal' spread we can skip the XORed spread
-            if ((i & 2) == 0)
+            if ((i & 1) == 0)
             {
                 i++;
             }
