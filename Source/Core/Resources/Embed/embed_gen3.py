@@ -28,7 +28,7 @@ def embed_encounters3():
 
                     string += f"ShadowTemplate({encounter['version']}, {encounter['specie']}, {encounter.get('shiny', 'Shiny::Random')}, {encounter['level']}, {locks}, {len(encounter['locks'])}, {encounter['type']})"
                 else:
-                    string += f"StaticTemplate3({encounter['version']}, {encounter['specie']}, {encounter.get('form', 0)}, {encounter.get('shiny', 'Shiny::Random')}, 255, 255, 0, {encounter['level']}, {str(encounter['buggedRoamer']).lower()})"
+                    string += f"StaticTemplate3({encounter['version']}, {encounter['specie']}, {encounter.get('form', 0)}, {encounter.get('shiny', 'Shiny::Random')}, 255, 255, 0, {encounter['level']})"
 
                 if i != len(encounters) - 1:
                     string += ", "

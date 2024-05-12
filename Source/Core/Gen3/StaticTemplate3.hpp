@@ -38,8 +38,10 @@ public:
      * @param level Level of the template
      * @param buggedRoamer FRLG/RS roamer
      */
-    constexpr StaticTemplate3(Game version, u16 specie, u8 form, Shiny shiny, u8 ability, u8 gender, u8 ivCount, u8 level, bool buggedRoamer) :
-        StaticTemplate(version, specie, form, shiny, ability, gender, ivCount, level), buggedRoamer(buggedRoamer)
+    constexpr StaticTemplate3(Game version, u16 specie, u8 form, Shiny shiny, u8 ability, u8 gender, u8 ivCount, u8 level) :
+        StaticTemplate(version, specie, form, shiny, ability, gender, ivCount, level), buggedRoamer(((specie == 380 || specie == 381)
+                                                                                                     && (version & Game::RS) != Game::None)
+                                                                                                    || (specie >= 243 && specie <= 245))
     {
     }
 

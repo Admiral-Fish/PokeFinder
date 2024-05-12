@@ -72,8 +72,7 @@ std::vector<SearcherState> StaticSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa
     std::vector<SearcherState> states;
     std::array<u8, 6> ivs;
     if (staticTemplate->getBuggedRoamer()) {
-        atk &= 7;
-        ivs = { hp, atk, 0, 0, 0, 0 };
+        ivs = { hp, static_cast<u8>(atk & 7), 0, 0, 0, 0 };
     }
     else
     {
