@@ -32,7 +32,7 @@ static u32 gen(Xorshift &rng)
     return rng.next(0x80000000, 0x7fffffff);
 }
 
-StaticGenerator8::StaticGenerator8(u32 initialAdvances, u32 maxAdvances, u32 delay, Lead lead, const StaticTemplate &staticTemplate,
+StaticGenerator8::StaticGenerator8(u32 initialAdvances, u32 maxAdvances, u32 delay, Lead lead, const StaticTemplate8 &staticTemplate,
                                    const Profile8 &profile, const StateFilter &filter) :
     StaticGenerator(initialAdvances, maxAdvances, delay, Method::None, lead, staticTemplate, profile, filter)
 {
@@ -40,7 +40,7 @@ StaticGenerator8::StaticGenerator8(u32 initialAdvances, u32 maxAdvances, u32 del
 
 std::vector<State8> StaticGenerator8::generate(u64 seed0, u64 seed1) const
 {
-    if (staticTemplate.getSpecie() == 488 || staticTemplate.getSpecie() == 481)
+    if (staticTemplate.getRoamer())
     {
         return generateRoamer(seed0, seed1);
     }

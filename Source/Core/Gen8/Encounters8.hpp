@@ -28,7 +28,7 @@ class Den;
 class DenEvent;
 class EncounterArea8;
 class Profile8;
-class StaticTemplate;
+class StaticTemplate8;
 class UndergroundArea;
 enum class Encounter : u8;
 
@@ -116,7 +116,7 @@ namespace Encounters8
      *
      * @return Pointer to static encounters area
      */
-    const StaticTemplate *getStaticEncounters(int index, int *size = nullptr);
+    const StaticTemplate8 *getStaticEncounters(int index, int *size = nullptr);
 
     /**
      * @brief Gets static encounters from the \p type and \p index
@@ -135,7 +135,7 @@ namespace Encounters8
      *
      * @return Pointer to static encounter
      */
-    const StaticTemplate *getStaticEncounter(int type, int index);
+    const StaticTemplate8 *getStaticEncounter(int type, int index);
 
     /**
      * @brief Returns the changing pokemon of the Trophy Garden

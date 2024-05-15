@@ -167,7 +167,7 @@ namespace ShadowLock
         // If it doesn't match spread fails
         u32 pidOriginal = getPIDBackward(backward);
         s8 index = shadowTemplate->getCount() - 1;
-        if (!shadowTemplate->getLock(index).compare(pidOriginal))
+        if (!shadowTemplate->getLock(index).compare(pidOriginal) || Utilities::isShiny<true>(pidOriginal, tsv))
         {
             return false;
         }
@@ -182,8 +182,13 @@ namespace ShadowLock
                 do
                 {
                     pid = getPIDBackward(backward);
-                } while (!lock.compare(pid));
+                } while (!lock.compare(pid) || Utilities::isShiny<true>(pid, tsv));
             }
+        }
+
+        if (shadowTemplate->getLock(0).getIgnore())
+        {
+            backward.advance(2);
         }
 
         XDRNG forward(backward);
@@ -227,7 +232,7 @@ namespace ShadowLock
         // If it doesn't match spread fails
         u32 pidOriginal = getPIDBackward(backward);
         s8 index = shadowTemplate->getCount() - 2;
-        if (!shadowTemplate->getLock(index).compare(pidOriginal))
+        if (!shadowTemplate->getLock(index).compare(pidOriginal) || Utilities::isShiny<true>(pidOriginal, tsv))
         {
             return false;
         }
@@ -242,8 +247,13 @@ namespace ShadowLock
                 do
                 {
                     pid = getPIDBackward(backward);
-                } while (!lock.compare(pid));
+                } while (!lock.compare(pid) || Utilities::isShiny<true>(pid, tsv));
             }
+        }
+
+        if (shadowTemplate->getLock(0).getIgnore())
+        {
+            backward.advance(2);
         }
 
         XDRNG forward(backward);
@@ -298,7 +308,7 @@ namespace ShadowLock
         // If it doesn't match spread fails
         u32 pidOriginal = getPIDBackward(backward);
         s8 index = shadowTemplate->getCount() - 2;
-        if (!shadowTemplate->getLock(index).compare(pidOriginal))
+        if (!shadowTemplate->getLock(index).compare(pidOriginal) || Utilities::getShiny<true>(pidOriginal, tsv))
         {
             return false;
         }
@@ -313,8 +323,13 @@ namespace ShadowLock
                 do
                 {
                     pid = getPIDBackward(backward);
-                } while (!lock.compare(pid));
+                } while (!lock.compare(pid) || Utilities::isShiny<true>(pid, tsv));
             }
+        }
+
+        if (shadowTemplate->getLock(0).getIgnore())
+        {
+            backward.advance(2);
         }
 
         XDRNG forward(backward);
