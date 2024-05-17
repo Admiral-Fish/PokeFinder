@@ -49,7 +49,7 @@
 75,Siegesstraße 1.OG (Hinterer Teil)
 76,Siegesstraße (Klippenbereich)
 77,Siegesstraße 2.OG
-80,Siegesstraße 2.OG (Castle Entrance)
+80,Siegesstraße 2.OG (Ns Schloss Eingang)
 81,Alter Fluchtweg (Richtung Stratos City)
 82,Alter Fluchtweg (Zentralbereich)
 83,Alter Fluchtweg (Richtung Marea City)
