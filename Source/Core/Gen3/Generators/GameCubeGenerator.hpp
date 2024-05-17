@@ -25,7 +25,7 @@
 #include <Core/Parents/Generators/Generator.hpp>
 
 class GeneratorState;
-class StaticTemplate;
+class StaticTemplate3;
 class ShadowTemplate;
 
 /**
@@ -66,7 +66,7 @@ public:
      *
      * @return Vector of computed states
      */
-    std::vector<GeneratorState> generate(u32 seed, const StaticTemplate *staticTemplate) const;
+    std::vector<GeneratorState> generate(u32 seed, const StaticTemplate3 *staticTemplate) const;
 
 private:
     bool unset;
@@ -79,7 +79,7 @@ private:
      *
      * @return Vector of computed states
      */
-    std::vector<GeneratorState> generateChannel(u32 seed, const StaticTemplate *staticTemplate) const;
+    std::vector<GeneratorState> generateChannel(u32 seed, const StaticTemplate3 *staticTemplate) const;
 
     /**
      * @brief Generates states for Colo shadows
@@ -109,7 +109,7 @@ private:
      *
      * @return Vector of computed states
      */
-    std::vector<GeneratorState> generateNonLock(u32 seed, const StaticTemplate *staticTemplate) const;
+    std::vector<GeneratorState> generateNonLock(u32 seed, const StaticTemplate3 *staticTemplate) const;
 };
 
 #endif // GAMECUBEGENERATOR_HPP

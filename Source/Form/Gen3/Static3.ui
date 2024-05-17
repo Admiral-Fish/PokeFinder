@@ -223,6 +223,11 @@
               <string>Events</string>
              </property>
             </item>
+            <item>
+             <property name="text">
+              <string>Roamers</string>
+             </property>
+            </item>
            </widget>
           </item>
           <item row="1" column="0">
@@ -386,6 +391,11 @@
             <item>
              <property name="text">
               <string>Events</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Roamers</string>
              </property>
             </item>
            </widget>

@@ -22,7 +22,7 @@
 #include <Core/Enum/Method.hpp>
 #include <Core/Parents/PersonalInfo.hpp>
 #include <Core/Parents/States/State.hpp>
-#include <Core/Parents/StaticTemplate.hpp>
+#include <Core/Gen3/StaticTemplate3.hpp>
 #include <Core/RNG/LCRNG.hpp>
 #include <Core/RNG/LCRNGReverse.hpp>
 #include <Core/Util/Utilities.hpp>
@@ -32,7 +32,7 @@ StaticSearcher3::StaticSearcher3(Method method, const Profile3 &profile, const S
 {
 }
 
-void StaticSearcher3::startSearch(const std::array<u8, 6> &min, const std::array<u8, 6> &max, const StaticTemplate *staticTemplate)
+void StaticSearcher3::startSearch(const std::array<u8, 6> &min, const std::array<u8, 6> &max, const StaticTemplate3 *staticTemplate)
 {
     searching = true;
 
@@ -67,10 +67,17 @@ void StaticSearcher3::startSearch(const std::array<u8, 6> &min, const std::array
 }
 
 std::vector<SearcherState> StaticSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe,
-                                                   const StaticTemplate *staticTemplate) const
+                                                   const StaticTemplate3 *staticTemplate) const
 {
     std::vector<SearcherState> states;
-    std::array<u8, 6> ivs = { hp, atk, def, spa, spd, spe };
+    std::array<u8, 6> ivs;
+    if (staticTemplate->getBuggedRoamer()) {
+        ivs = { hp, static_cast<u8>(atk & 7), 0, 0, 0, 0 };
+    }
+    else
+    {
+        ivs = { hp, atk, def, spa, spd, spe };
+    }
     const PersonalInfo *info = staticTemplate->getInfo();
 
     u32 seeds[6];

@@ -23,14 +23,14 @@
 #include <Core/Gen3/Profile3.hpp>
 #include <Core/Parents/Filters/StateFilter.hpp>
 #include <Core/Parents/Generators/StaticGenerator.hpp>
-#include <Core/Parents/StaticTemplate.hpp>
+#include <Core/Gen3/StaticTemplate3.hpp>
 
 class GeneratorState;
 
 /**
  * @brief Static encounter generator for Gen3
  */
-class StaticGenerator3 : public StaticGenerator<StaticTemplate, Profile3, StateFilter>
+class StaticGenerator3 : public StaticGenerator<StaticTemplate3, Profile3, StateFilter>
 {
 public:
     /**
@@ -44,7 +44,7 @@ public:
      * @param profile Profile Information
      * @param filter State filter
      */
-    StaticGenerator3(u32 initialAdvances, u32 maxAdvances, u32 delay, Method method, const StaticTemplate &staticTemplate,
+    StaticGenerator3(u32 initialAdvances, u32 maxAdvances, u32 delay, Method method, const StaticTemplate3 &staticTemplate,
                      const Profile3 &profile, const StateFilter &filter);
 
     /**

@@ -27,6 +27,7 @@
 #include <Core/Gen3/Profile3.hpp>
 #include <Core/Gen3/Searchers/GameCubeSearcher.hpp>
 #include <Core/Gen3/ShadowTemplate.hpp>
+#include <Core/Gen3/StaticTemplate3.hpp>
 #include <Core/Parents/ProfileLoader.hpp>
 #include <Core/Util/Translator.hpp>
 #include <Form/Controls/Controls.hpp>
@@ -136,7 +137,7 @@ void GameCube::generate()
     }
     else
     {
-        const StaticTemplate *staticTemplate = Encounters3::getStaticEncounter(ui->comboBoxGeneratorCategory->currentIndex() + 7,
+        const StaticTemplate3 *staticTemplate = Encounters3::getStaticEncounter(ui->comboBoxGeneratorCategory->currentIndex() + 8,
                                                                                ui->comboBoxGeneratorPokemon->getCurrentInt());
         states = generator.generate(seed, staticTemplate);
     }
@@ -164,7 +165,7 @@ void GameCube::generatorCategoryIndexChanged(int index)
         }
         else
         {
-            const StaticTemplate *templates = Encounters3::getStaticEncounters(index + 7, &size);
+            const StaticTemplate3 *templates = Encounters3::getStaticEncounters(index + 8, &size);
             for (int i = 0; i < size; i++)
             {
                 if ((currentProfile->getVersion() & templates[i].getVersion()) != Game::None)
@@ -191,7 +192,7 @@ void GameCube::generatorPokemonIndexChanged(int index)
         }
         else
         {
-            const StaticTemplate *staticTemplate = Encounters3::getStaticEncounter(ui->comboBoxGeneratorCategory->currentIndex() + 7,
+            const StaticTemplate3 *staticTemplate = Encounters3::getStaticEncounter(ui->comboBoxGeneratorCategory->currentIndex() + 8,
                                                                                    ui->comboBoxGeneratorPokemon->getCurrentInt());
             ui->spinBoxGeneratorLevel->setValue(staticTemplate->getLevel());
 
@@ -261,7 +262,7 @@ void GameCube::search()
     }
     else
     {
-        const StaticTemplate *staticTemplate = Encounters3::getStaticEncounter(ui->comboBoxSearcherCategory->currentIndex() + 7,
+        const StaticTemplate3 *staticTemplate = Encounters3::getStaticEncounter(ui->comboBoxSearcherCategory->currentIndex() + 8,
                                                                                ui->comboBoxSearcherPokemon->getCurrentInt());
         thread = QThread::create([=] { searcher->startSearch(min, max, staticTemplate); });
     }
@@ -308,7 +309,7 @@ void GameCube::searcherCategoryIndexChanged(int index)
         }
         else
         {
-            const StaticTemplate *templates = Encounters3::getStaticEncounters(index + 7, &size);
+            const StaticTemplate3 *templates = Encounters3::getStaticEncounters(index + 8, &size);
             for (int i = 0; i < size; i++)
             {
                 if ((currentProfile->getVersion() & templates[i].getVersion()) != Game::None)
@@ -335,7 +336,7 @@ void GameCube::searcherPokemonIndexChanged(int index)
         }
         else
         {
-            const StaticTemplate *staticTemplate = Encounters3::getStaticEncounter(ui->comboBoxSearcherCategory->currentIndex() + 7,
+            const StaticTemplate3 *staticTemplate = Encounters3::getStaticEncounter(ui->comboBoxSearcherCategory->currentIndex() + 8,
                                                                                    ui->comboBoxSearcherPokemon->getCurrentInt());
             ui->spinBoxSearcherLevel->setValue(staticTemplate->getLevel());
 

@@ -22,7 +22,7 @@
 #include <Core/Gen3/Generators/StaticGenerator3.hpp>
 #include <Core/Gen3/Searchers/StaticSearcher3.hpp>
 #include <Core/Parents/States/State.hpp>
-#include <Core/Parents/StaticTemplate.hpp>
+#include <Core/Gen3/StaticTemplate3.hpp>
 #include <QTest>
 #include <Test/Data.hpp>
 #include <Test/Enum.hpp>
@@ -74,7 +74,7 @@ void StaticSearcher3Test::search()
 
     Profile3 profile("-", version, 12345, 54321, false);
 
-    const StaticTemplate *staticTemplate = Encounters3::getStaticEncounter(category, pokemon);
+    const StaticTemplate3 *staticTemplate = Encounters3::getStaticEncounter(category, pokemon);
     StateFilter filter(255, 255, 255, false, min, max, natures, powers);
     StaticSearcher3 searcher(method, profile, filter);
 

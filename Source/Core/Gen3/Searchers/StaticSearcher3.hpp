@@ -24,7 +24,7 @@
 #include <Core/Parents/Filters/StateFilter.hpp>
 #include <Core/Parents/Searchers/StaticSearcher.hpp>
 
-class StaticTemplate;
+class StaticTemplate3;
 
 /**
  * @brief Static encounter searcher for Gen3
@@ -48,7 +48,7 @@ public:
      * @param max Maximum IVs
      * @param staticTemplate Pokemon template
      */
-    void startSearch(const std::array<u8, 6> &min, const std::array<u8, 6> &max, const StaticTemplate *staticTemplate);
+    void startSearch(const std::array<u8, 6> &min, const std::array<u8, 6> &max, const StaticTemplate3 *staticTemplate);
 
 private:
     bool ivAdvance;
@@ -66,7 +66,7 @@ private:
      *
      * @return Vector of computed states
      */
-    std::vector<SearcherState> search(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, const StaticTemplate *staticTemplate) const;
+    std::vector<SearcherState> search(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, const StaticTemplate3 *staticTemplate) const;
 };
 
 #endif // STATICSEARCHER3_HPP

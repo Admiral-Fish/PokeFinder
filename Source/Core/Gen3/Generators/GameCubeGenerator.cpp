@@ -22,6 +22,7 @@
 #include <Core/Enum/Method.hpp>
 #include <Core/Enum/ShadowType.hpp>
 #include <Core/Gen3/ShadowTemplate.hpp>
+#include <Core/Gen3/StaticTemplate3.hpp>
 #include <Core/Parents/PersonalInfo.hpp>
 #include <Core/Parents/States/State.hpp>
 #include <Core/RNG/LCRNG.hpp>
@@ -48,7 +49,7 @@ std::vector<GeneratorState> GameCubeGenerator::generate(u32 seed, const ShadowTe
     return generateGalesShadow(seed, shadowTemplate);
 }
 
-std::vector<GeneratorState> GameCubeGenerator::generate(u32 seed, const StaticTemplate *staticTemplate) const
+std::vector<GeneratorState> GameCubeGenerator::generate(u32 seed, const StaticTemplate3 *staticTemplate) const
 {
     if (method == Method::Channel)
     {
@@ -57,7 +58,7 @@ std::vector<GeneratorState> GameCubeGenerator::generate(u32 seed, const StaticTe
     return generateNonLock(seed, staticTemplate);
 }
 
-std::vector<GeneratorState> GameCubeGenerator::generateChannel(u32 seed, const StaticTemplate *staticTemplate) const
+std::vector<GeneratorState> GameCubeGenerator::generateChannel(u32 seed, const StaticTemplate3 *staticTemplate) const
 {
     std::vector<GeneratorState> states;
     const PersonalInfo *info = staticTemplate->getInfo();
@@ -296,7 +297,7 @@ std::vector<GeneratorState> GameCubeGenerator::generateGalesShadow(u32 seed, con
     return states;
 }
 
-std::vector<GeneratorState> GameCubeGenerator::generateNonLock(u32 seed, const StaticTemplate *staticTemplate) const
+std::vector<GeneratorState> GameCubeGenerator::generateNonLock(u32 seed, const StaticTemplate3 *staticTemplate) const
 {
     std::vector<GeneratorState> states;
     const PersonalInfo *info = staticTemplate->getInfo();
