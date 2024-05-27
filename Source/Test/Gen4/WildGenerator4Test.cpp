@@ -52,6 +52,7 @@ void WildGenerator4Test::generateMethodJ_data()
     QTest::addColumn<Game>("version");
     QTest::addColumn<Encounter>("encounter");
     QTest::addColumn<Lead>("lead");
+    QTest::addColumn<bool>("feebasTile");
     QTest::addColumn<int>("location");
     QTest::addColumn<std::string>("results");
 
@@ -60,7 +61,7 @@ void WildGenerator4Test::generateMethodJ_data()
     {
         QTest::newRow(d["name"].get<std::string>().data())
             << d["seed"].get<u32>() << d["version"].get<Game>() << d["encounter"].get<Encounter>() << d["lead"].get<Lead>()
-            << d["location"].get<int>() << d["results"].get<json>().dump();
+            << d.value("feebasTile", false) << d["location"].get<int>() << d["results"].get<json>().dump();
     }
 }
 
@@ -70,6 +71,7 @@ void WildGenerator4Test::generateMethodJ()
     QFETCH(Game, version);
     QFETCH(Encounter, encounter);
     QFETCH(Lead, lead);
+    QFETCH(bool, feebasTile);
     QFETCH(int, location);
     QFETCH(std::string, results);
 
@@ -93,12 +95,14 @@ void WildGenerator4Test::generateMethodJ()
     Profile4 profile("", version, 12345, 54321, false);
     EncounterSettings4 settings = {};
 
+    settings.dppt.feebasTile = feebasTile;
+
     std::vector<EncounterArea4> encounterAreas = Encounters4::getEncounters(encounter, settings, &profile);
     auto encounterArea = std::find_if(encounterAreas.begin(), encounterAreas.end(),
                                       [location](const EncounterArea4 &encounterArea) { return encounterArea.getLocation() == location; });
 
     WildStateFilter filter(255, 255, 255, false, min, max, natures, powers, encounterSlots);
-    WildGenerator4 generator(0, 9, 0, Method::MethodJ, lead, false, false, 50, *encounterArea, profile, filter);
+    WildGenerator4 generator(0, 9, 0, Method::MethodJ, lead, settings.dppt.feebasTile, false, false, 50, *encounterArea, profile, filter);
 
     auto states = generator.generate(seed, 0);
     QCOMPARE(states.size(), j.size());
@@ -168,7 +172,7 @@ void WildGenerator4Test::generateMethodK()
                                       [location](const EncounterArea4 &encounterArea) { return encounterArea.getLocation() == location; });
 
     WildStateFilter filter(255, 255, 255, false, min, max, natures, powers, encounterSlots);
-    WildGenerator4 generator(0, 9, 0, Method::MethodK, lead, false, false, 50, *encounterArea, profile, filter);
+    WildGenerator4 generator(0, 9, 0, Method::MethodK, lead, false, false, false, 50, *encounterArea, profile, filter);
 
     auto states = generator.generate(seed, 0);
     QCOMPARE(states.size(), j.size());
@@ -238,7 +242,7 @@ void WildGenerator4Test::generatePokeRadar()
                                       [location](const EncounterArea4 &encounterArea) { return encounterArea.getLocation() == location; });
 
     WildStateFilter filter(255, 255, 255, false, min, max, natures, powers, encounterSlots);
-    WildGenerator4 generator(0, 9, 0, Method::PokeRadar, lead, shiny, false, 50, *encounterArea, profile, filter);
+    WildGenerator4 generator(0, 9, 0, Method::PokeRadar, lead, false, shiny, false, 50, *encounterArea, profile, filter);
 
     auto states = generator.generate(seed, index);
     QCOMPARE(states.size(), j.size());

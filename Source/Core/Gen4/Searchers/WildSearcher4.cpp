@@ -52,8 +52,8 @@ static u16 getItem(u8 rand, Lead lead, const PersonalInfo *info)
     }
 }
 
-WildSearcher4::WildSearcher4(u32 minAdvance, u32 maxAdvance, u32 minDelay, u32 maxDelay, Method method, Lead lead, bool shiny,
-                             bool unownRadio, u8 happiness, const EncounterArea4 &area, const Profile4 &profile,
+WildSearcher4::WildSearcher4(u32 minAdvance, u32 maxAdvance, u32 minDelay, u32 maxDelay, Method method, Lead lead, bool feebasTile,
+                             bool shiny, bool unownRadio, u8 happiness, const EncounterArea4 &area, const Profile4 &profile,
                              const WildStateFilter &filter) :
     WildSearcher(method, lead, area, profile, filter),
     modifiedSlots(area.getSlots(lead)),
@@ -64,6 +64,10 @@ WildSearcher4::WildSearcher4(u32 minAdvance, u32 maxAdvance, u32 minDelay, u32 m
     maxDelay(maxDelay),
     minDelay(minDelay),
     thresh(area.getRate()),
+    feebas(area.feebasLocation(profile.getVersion())
+           && (area.getEncounter() == Encounter::OldRod || area.getEncounter() == Encounter::GoodRod
+               || area.getEncounter() == Encounter::SuperRod)),
+    feebasTile(feebasTile),
     safari(area.safariZone(profile.getVersion())),
     shiny(shiny),
     unownRadio(unownRadio)
@@ -206,13 +210,34 @@ std::vector<WildSearcherState4> WildSearcher4::searchMethodJ(u8 hp, u8 atk, u8 d
             if (rng.nextUShort<false>(3) != 0)
             {
                 u16 levelRand = grass ? 0 : rng.nextUShort();
-                u8 encounterSlot = EncounterSlot::jSlot(rng.nextUShort<false>(100), area.getEncounter());
-                if (!filter.compareEncounterSlot(encounterSlot))
+
+                u8 encounterSlot;
+                if (feebas)
                 {
-                    continue;
+                    if (feebasTile)
+                    {
+                        u8 rand = rng.nextUShort<false>(100);
+                        if (rng.nextUShort<false>(2))
+                        {
+                            encounterSlot = 5;
+                        }
+                        else
+                        {
+                            encounterSlot = EncounterSlot::jSlot(rand, area.getEncounter());
+                        }
+                    }
+                    else
+                    {
+                        encounterSlot = EncounterSlot::jSlot(rng.nextUShort<false>(100), area.getEncounter());
+                        rng.advance(1);
+                    }
+                }
+                else
+                {
+                    encounterSlot = EncounterSlot::jSlot(rng.nextUShort<false>(100), area.getEncounter());
                 }
 
-                if (!nibble || rng.nextUShort(100) < thresh)
+                if (filter.compareEncounterSlot(encounterSlot) && (!nibble || rng.nextUShort<false>(100) < thresh))
                 {
                     const Slot &slot = area.getPokemon(encounterSlot);
                     const PersonalInfo *info = slot.getInfo();
@@ -279,7 +304,7 @@ std::vector<WildSearcherState4> WildSearcher4::searchMethodJ(u8 hp, u8 atk, u8 d
             {
                 u8 encounterSlot[2];
                 bool force = false;
-                u16 levelRand[2] = { 0, 0 };
+                u16 levelRand[2];
                 PokeRNGR test[2] = { rng, rng };
                 bool valid[2] = { false, false };
 
@@ -292,13 +317,40 @@ std::vector<WildSearcherState4> WildSearcher4::searchMethodJ(u8 hp, u8 atk, u8 d
                         if (grass)
                         {
                             encounterSlot[0] = EncounterSlot::jSlot(nextRNG2 / 0x290, area.getEncounter());
+                            valid[0] = filter.compareEncounterSlot(encounterSlot[0]);
                         }
                         else
                         {
                             levelRand[0] = nextRNG2;
-                            encounterSlot[0] = EncounterSlot::jSlot(test[0].nextUShort<false>(100), area.getEncounter());
+
+                            if (feebas)
+                            {
+                                if (feebasTile)
+                                {
+                                    u8 rand = test[0].nextUShort<false>(100);
+                                    if (test[0].nextUShort<false>(2))
+                                    {
+                                        encounterSlot[0] = 5;
+                                    }
+                                    else
+                                    {
+                                        encounterSlot[0] = EncounterSlot::jSlot(rand, area.getEncounter());
+                                    }
+                                    valid[0] = filter.compareEncounterSlot(encounterSlot[0]);
+                                }
+                                else
+                                {
+                                    encounterSlot[0] = EncounterSlot::jSlot(test[0].nextUShort<false>(100), area.getEncounter());
+                                    test[0].advance(1);
+                                    valid[0] = filter.compareEncounterSlot(encounterSlot[0]);
+                                }
+                            }
+                            else
+                            {
+                                encounterSlot[0] = EncounterSlot::jSlot(test[0].nextUShort<false>(100), area.getEncounter());
+                                valid[0] = filter.compareEncounterSlot(encounterSlot[0]);
+                            }
                         }
-                        valid[0] = filter.compareEncounterSlot(encounterSlot[0]);
                     }
                     break;
                 case Lead::Synchronize:
@@ -307,13 +359,40 @@ std::vector<WildSearcherState4> WildSearcher4::searchMethodJ(u8 hp, u8 atk, u8 d
                         if (grass)
                         {
                             encounterSlot[0] = EncounterSlot::jSlot(nextRNG2 / 0x290, area.getEncounter());
+                            valid[0] = filter.compareEncounterSlot(encounterSlot[0]);
                         }
                         else
                         {
                             levelRand[0] = nextRNG2;
-                            encounterSlot[0] = EncounterSlot::jSlot(test[0].nextUShort<false>(100), area.getEncounter());
+
+                            if (feebas)
+                            {
+                                if (feebasTile)
+                                {
+                                    u8 rand = test[0].nextUShort<false>(100);
+                                    if (test[0].nextUShort<false>(2))
+                                    {
+                                        encounterSlot[0] = 5;
+                                    }
+                                    else
+                                    {
+                                        encounterSlot[0] = EncounterSlot::jSlot(rand, area.getEncounter());
+                                    }
+                                    valid[0] = filter.compareEncounterSlot(encounterSlot[0]);
+                                }
+                                else
+                                {
+                                    encounterSlot[0] = EncounterSlot::jSlot(test[0].nextUShort<false>(100), area.getEncounter());
+                                    test[0].advance(1);
+                                    valid[0] = filter.compareEncounterSlot(encounterSlot[0]);
+                                }
+                            }
+                            else
+                            {
+                                encounterSlot[0] = EncounterSlot::jSlot(test[0].nextUShort<false>(100), area.getEncounter());
+                                valid[0] = filter.compareEncounterSlot(encounterSlot[0]);
+                            }
                         }
-                        valid[0] = filter.compareEncounterSlot(encounterSlot[0]);
                     }
 
                     if ((nextRNG2 / 0x8000) == 1 && (nextRNG / 0xa3e) == nature)
@@ -321,13 +400,40 @@ std::vector<WildSearcherState4> WildSearcher4::searchMethodJ(u8 hp, u8 atk, u8 d
                         if (grass)
                         {
                             encounterSlot[1] = EncounterSlot::jSlot(test[1].nextUShort<false>(100), area.getEncounter());
+                            valid[1] = filter.compareEncounterSlot(encounterSlot[1]);
                         }
                         else
                         {
                             levelRand[1] = test[1].nextUShort();
-                            encounterSlot[1] = EncounterSlot::jSlot(test[1].nextUShort<false>(100), area.getEncounter());
+
+                            if (feebas)
+                            {
+                                if (feebasTile)
+                                {
+                                    u8 rand = test[1].nextUShort<false>(100);
+                                    if (test[1].nextUShort<false>(2))
+                                    {
+                                        encounterSlot[1] = 5;
+                                    }
+                                    else
+                                    {
+                                        encounterSlot[1] = EncounterSlot::jSlot(rand, area.getEncounter());
+                                    }
+                                    valid[1] = filter.compareEncounterSlot(encounterSlot[1]);
+                                }
+                                else
+                                {
+                                    encounterSlot[1] = EncounterSlot::jSlot(test[1].nextUShort<false>(100), area.getEncounter());
+                                    test[1].advance(1);
+                                    valid[1] = filter.compareEncounterSlot(encounterSlot[1]);
+                                }
+                            }
+                            else
+                            {
+                                encounterSlot[1] = EncounterSlot::jSlot(test[1].nextUShort<false>(100), area.getEncounter());
+                                valid[1] = filter.compareEncounterSlot(encounterSlot[1]);
+                            }
                         }
-                        valid[1] = filter.compareEncounterSlot(encounterSlot[1]);
                     }
                     break;
                 case Lead::MagnetPull:
@@ -345,15 +451,42 @@ std::vector<WildSearcherState4> WildSearcher4::searchMethodJ(u8 hp, u8 atk, u8 d
                             encounterRand = test[0].nextUShort();
                         }
 
+                        u8 slot;
                         if (test[0].nextUShort<false>(2) == 0 && !modifiedSlots.empty())
                         {
-                            encounterSlot[0] = modifiedSlots[encounterRand % modifiedSlots.size()];
+                            slot = modifiedSlots[encounterRand % modifiedSlots.size()];
                         }
                         else
                         {
-                            encounterSlot[0] = EncounterSlot::jSlot(encounterRand / 0x290, area.getEncounter());
+                            slot = EncounterSlot::jSlot(encounterRand / 0x290, area.getEncounter());
                         }
-                        valid[0] = filter.compareEncounterSlot(encounterSlot[0]);
+
+                        if (feebas)
+                        {
+                            if (feebasTile)
+                            {
+                                if (test[0].nextUShort<false>(2))
+                                {
+                                    encounterSlot[0] = 5;
+                                }
+                                else
+                                {
+                                    encounterSlot[0] = slot;
+                                }
+                                valid[0] = filter.compareEncounterSlot(encounterSlot[0]);
+                            }
+                            else
+                            {
+                                encounterSlot[0] = slot;
+                                test[0].advance(1);
+                                valid[0] = filter.compareEncounterSlot(encounterSlot[0]);
+                            }
+                        }
+                        else
+                        {
+                            encounterSlot[0] = slot;
+                            valid[0] = filter.compareEncounterSlot(encounterSlot[0]);
+                        }
                     }
                     break;
                 case Lead::Pressure:
@@ -363,13 +496,40 @@ std::vector<WildSearcherState4> WildSearcher4::searchMethodJ(u8 hp, u8 atk, u8 d
                         if (grass)
                         {
                             encounterSlot[0] = EncounterSlot::jSlot(test[0].nextUShort<false>(100), area.getEncounter());
+                            valid[0] = filter.compareEncounterSlot(encounterSlot[0]);
                         }
                         else
                         {
                             levelRand[0] = test[0].nextUShort();
-                            encounterSlot[0] = EncounterSlot::jSlot(test[0].nextUShort<false>(100), area.getEncounter());
+
+                            if (feebas)
+                            {
+                                if (feebasTile)
+                                {
+                                    u8 rand = test[0].nextUShort<false>(100);
+                                    if (test[0].nextUShort<false>(2))
+                                    {
+                                        encounterSlot[0] = 5;
+                                    }
+                                    else
+                                    {
+                                        encounterSlot[0] = EncounterSlot::jSlot(rand, area.getEncounter());
+                                    }
+                                    valid[0] = filter.compareEncounterSlot(encounterSlot[0]);
+                                }
+                                else
+                                {
+                                    encounterSlot[0] = EncounterSlot::jSlot(test[0].nextUShort<false>(100), area.getEncounter());
+                                    test[0].advance(1);
+                                    valid[0] = filter.compareEncounterSlot(encounterSlot[0]);
+                                }
+                            }
+                            else
+                            {
+                                encounterSlot[0] = EncounterSlot::jSlot(test[0].nextUShort<false>(100), area.getEncounter());
+                                valid[0] = filter.compareEncounterSlot(encounterSlot[0]);
+                            }
                         }
-                        valid[0] = filter.compareEncounterSlot(encounterSlot[0]);
                     }
                     break;
                 default:
@@ -547,7 +707,7 @@ std::vector<WildSearcherState4> WildSearcher4::searchMethodK(u8 hp, u8 atk, u8 d
             {
                 u8 encounterSlot[2];
                 bool force = false;
-                u16 levelRand[2] = { 0, 0 };
+                u16 levelRand[2];
                 PokeRNGR test[2] = { rng, rng };
                 bool valid[2] = { false, false };
 

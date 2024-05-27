@@ -30,17 +30,23 @@ class StaticTemplate3;
 enum class Encounter : u8;
 enum class Game : u32;
 
+struct EncounterSettings3
+{
+    bool feebasTile;
+};
+
 namespace Encounters3
 {
     /**
      * @brief Gets wild encounters for the \p encouner and \p version
      *
      * @param encounter Encounter type
+     * @param settings Settings that impact wild encounter slots
      * @param version Game version
      *
      * @return Vector of wild encounters
      */
-    std::vector<EncounterArea3> getEncounters(Encounter encounter, Game version);
+    std::vector<EncounterArea3> getEncounters(Encounter encounter, const EncounterSettings3 &settings, Game version);
 
     /**
      * @brief Gets wild encounters for Poke Spots

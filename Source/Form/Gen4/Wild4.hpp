@@ -101,6 +101,13 @@ private slots:
     void generatorEncounterUpdate();
 
     /**
+     * @brief Updates filters for Feebas selection
+     *
+     * @param state Checked state
+     */
+    void generatorFeebasTileStateChanged(Qt::CheckState state);
+
+    /**
      * @brief Updates the pokemon listed
      *
      * @param index Location index
@@ -150,6 +157,13 @@ private slots:
      * @brief Updates encounter tables and listed pokemon
      */
     void searcherEncounterUpdate();
+
+    /**
+     * @brief Updates filters for Feebas selection
+     *
+     * @param state Checked state
+     */
+    void searcherFeebasTileStateChanged(Qt::CheckState state);
 
     /**
      * @brief Updates the pokemon listed

@@ -34,6 +34,7 @@ struct DPPtSettings
 {
     Game dual;
     std::array<u16, 2> replacement;
+    bool feebasTile;
     bool radar;
 };
 

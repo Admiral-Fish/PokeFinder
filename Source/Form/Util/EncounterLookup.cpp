@@ -105,9 +105,12 @@ std::set<std::pair<u16, QString>> EncounterLookup::getEncounters3(Game version, 
     // Encounter variables to iterate through
     auto types = { Encounter::Grass, Encounter::RockSmash, Encounter::OldRod, Encounter::GoodRod, Encounter::SuperRod, Encounter::Surfing };
 
+    EncounterSettings3 settings;
+    settings.feebasTile = true;
+
     for (const auto &type : types)
     {
-        auto areas = Encounters3::getEncounters(type, profile.getVersion());
+        auto areas = Encounters3::getEncounters(type, settings, profile.getVersion());
         for (const auto &area : areas)
         {
             auto pokemon = area.getPokemon();
@@ -156,6 +159,7 @@ std::set<std::pair<u16, QString>> EncounterLookup::getEncounters4(Game version, 
 
                 if ((version & Game::DPPt) != Game::None)
                 {
+                    settings.dppt.feebasTile = true;
                     for (auto dual : duals)
                     {
                         settings.dppt.dual = dual;

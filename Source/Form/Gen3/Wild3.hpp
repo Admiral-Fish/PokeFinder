@@ -72,6 +72,16 @@ private:
     WildGeneratorModel3 *generatorModel;
     WildSearcherModel3 *searcherModel;
 
+    /**
+     * @brief Updates generator encounter tables
+     */
+    void updateEncounterGenerator();
+
+    /**
+     * @brief Update searcher encounter tables
+     */
+    void updateEncounterSearcher();
+
 private slots:
     /**
      * @brief Generates wild encounters from a starting seed
@@ -84,6 +94,13 @@ private slots:
      * @param index Encounter index
      */
     void generatorEncounterIndexChanged(int index);
+
+    /**
+     * @brief Updates filters for Feebas selection
+     *
+     * @param state Checked state
+     */
+    void generatorFeebasTileStateChanged(Qt::CheckState state);
 
     /**
      * @brief Updates the pokemon listed
@@ -122,6 +139,13 @@ private slots:
      * @param index Encounter index
      */
     void searcherEncounterIndexChanged(int index);
+
+    /**
+     * @brief Updates filters for Feebas selection
+     *
+     * @param state Checked state
+     */
+    void searcherFeebasTileStateChanged(Qt::CheckState state);
 
     /**
      * @brief Updates the pokemon listed

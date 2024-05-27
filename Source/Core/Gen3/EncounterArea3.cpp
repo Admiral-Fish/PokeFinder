@@ -20,6 +20,19 @@
 #include "EncounterArea3.hpp"
 #include <Core/Enum/Game.hpp>
 
+bool EncounterArea3::feebasLocation(Game version) const
+{
+    if ((version & Game::Emerald) != Game::None)
+    {
+        return location == 33;
+    }
+    else if ((version & Game::RS) != Game::None)
+    {
+        return location == 73;
+    }
+    return false;
+}
+
 bool EncounterArea3::safariZone(Game version) const
 {
     if ((version & Game::RS) != Game::None)

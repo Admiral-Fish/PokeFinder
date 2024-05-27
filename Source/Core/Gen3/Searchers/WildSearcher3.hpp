@@ -38,11 +38,13 @@ public:
      *
      * @param method Encounter method
      * @param lead Encounter lead
+     * @param feebasTile Whether Feebas tiles are active
      * @param area Wild pokemon info
      * @param profile Profile Information
      * @param filter State filter
      */
-    WildSearcher3(Method method, Lead lead, const EncounterArea3 &area, const Profile3 &profile, const WildStateFilter &filter);
+    WildSearcher3(Method method, Lead lead, bool feebasTile, const EncounterArea3 &area, const Profile3 &profile,
+                  const WildStateFilter &filter);
 
     /**
      * @brief Starts the search
@@ -55,6 +57,7 @@ public:
 private:
     std::vector<u8> modifiedSlots;
     u16 rate;
+    bool feebasTile;
     bool ivAdvance;
 
     /**
@@ -66,11 +69,13 @@ private:
      * @param spa SpA IV
      * @param spd SpD IV
      * @param spe Spe IV
+     * @param feebas Whether the encounter location contains Feebas
      * @param safari Whether the encounter location is the Safari Zone in RSE
+     * @param tanoby Whether the encounter location is Tanoby Ruins in FRLG
      *
      * @return Vector of computed states
      */
-    std::vector<WildSearcherState> search(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, bool safari, bool tanoby) const;
+    std::vector<WildSearcherState> search(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, bool feebas, bool safari, bool tanoby) const;
 };
 
 #endif // WILDSEARCHER3_HPP

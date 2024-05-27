@@ -103,6 +103,16 @@ public:
     }
 
     /**
+     * @brief Checks if the location can have Feebas
+     *
+     * @param version Game version
+     *
+     * @return true Location can have Feebas
+     * @return false Location can't have Feebas
+     */
+    bool feebasLocation(Game version) const;
+
+    /**
      * @brief Checks if the location is in the Safari Zone
      *
      * @param version Game version

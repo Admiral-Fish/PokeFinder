@@ -50,9 +50,11 @@ static u16 getItem(u8 rand, Lead lead, const PersonalInfo *info)
     }
 }
 
-WildGenerator4::WildGenerator4(u32 initialAdvances, u32 maxAdvances, u32 delay, Method method, Lead lead, bool shiny, bool unownRadio,
-                               u8 happiness, const EncounterArea4 &area, const Profile4 &profile, const WildStateFilter &filter) :
+WildGenerator4::WildGenerator4(u32 initialAdvances, u32 maxAdvances, u32 delay, Method method, Lead lead, bool feebasTile, bool shiny,
+                               bool unownRadio, u8 happiness, const EncounterArea4 &area, const Profile4 &profile,
+                               const WildStateFilter &filter) :
     WildGenerator(initialAdvances, maxAdvances, delay, method, lead, area, profile, filter),
+    feebasTile(feebasTile),
     shiny(shiny),
     unownRadio(unownRadio),
     happiness(happiness)
@@ -87,6 +89,7 @@ std::vector<WildGeneratorState4> WildGenerator4::generateMethodJ(u32 seed) const
 
     u8 thresh = area.getRate();
     std::vector<u8> modifiedSlots = area.getSlots(lead);
+    bool feebas = area.feebasLocation(profile.getVersion());
 
     PokeRNG rng(seed, initialAdvances);
     auto jump = rng.getJump(delay);
@@ -106,13 +109,22 @@ std::vector<WildGeneratorState4> WildGenerator4::generateMethodJ(u32 seed) const
         }
 
         u8 encounterSlot;
-        if ((lead == Lead::MagnetPull || lead == Lead::Static) && go.nextUShort<false>(2, &battleAdvances) == 0 && !modifiedSlots.empty())
+        if (feebas && go.nextUShort<false>(2, &battleAdvances) && feebasTile)
         {
-            encounterSlot = modifiedSlots[go.nextUShort(modifiedSlots.size(), &battleAdvances)];
+            encounterSlot = 5;
+            go.advance((lead == Lead::MagnetPull || lead == Lead::Static) ? 2 : 1, &battleAdvances);
         }
         else
         {
-            encounterSlot = EncounterSlot::jSlot(go.nextUShort<false>(100, &battleAdvances), area.getEncounter());
+            if ((lead == Lead::MagnetPull || lead == Lead::Static) && go.nextUShort<false>(2, &battleAdvances) == 0
+                && !modifiedSlots.empty())
+            {
+                encounterSlot = modifiedSlots[go.nextUShort(modifiedSlots.size(), &battleAdvances)];
+            }
+            else
+            {
+                encounterSlot = EncounterSlot::jSlot(go.nextUShort<false>(100, &battleAdvances), area.getEncounter());
+            }
         }
 
         if (!filter.compareEncounterSlot(encounterSlot))

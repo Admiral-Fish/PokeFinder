@@ -42,15 +42,16 @@ public:
      * @param maxDelay Maximum delay
      * @param method Encounter method
      * @param lead Encounter lead
-     * @param area Wild pokemon info
+     * @param feebasTile Whether Feebas tiles are active
      * @param shiny Whether Poke Radar is forced shiny
      * @param unownRadio Whether the radio station gives undiscovered Unowns more frequently
      * @param happiness Encounter rate modifier for fishing in HGSS
+     * @param area Wild pokemon info
      * @param profile Profile Information
      * @param filter State filter
      */
-    WildSearcher4(u32 minAdvance, u32 maxAdvance, u32 minDelay, u32 maxDelay, Method method, Lead lead, bool shiny, bool unownRadio,
-                  u8 happiness, const EncounterArea4 &area, const Profile4 &profile, const WildStateFilter &filter);
+    WildSearcher4(u32 minAdvance, u32 maxAdvance, u32 minDelay, u32 maxDelay, Method method, Lead lead, bool feebasTile, bool shiny,
+                  bool unownRadio, u8 happiness, const EncounterArea4 &area, const Profile4 &profile, const WildStateFilter &filter);
 
     /**
      * @brief Starts the search
@@ -70,6 +71,8 @@ private:
     u32 maxDelay;
     u32 minDelay;
     u16 thresh;
+    bool feebas;
+    bool feebasTile;
     bool safari;
     bool shiny;
     bool unownRadio;

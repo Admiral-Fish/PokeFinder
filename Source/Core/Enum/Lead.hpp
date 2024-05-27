@@ -30,7 +30,7 @@ enum class Lead : u8
     None = 255,
 
     Synchronize = 0,
-    SynchronizeEnd = 25,
+    SynchronizeEnd = 24,
 
     CuteCharmF,
     CuteCharmM,

@@ -402,6 +402,13 @@ static std::vector<EncounterArea4> getDPPt(Game version, Encounter encounter, co
                     const auto &slot = entry->old[i];
                     slots[i] = Slot(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
                 }
+
+                // Insert Feebas for Mt Coronet B1F
+                if (settings.dppt.feebasTile && entry->location == 22)
+                {
+                    slots[5] = Slot(349, 10, 20, &info[349]);
+                }
+
                 encounters.emplace_back(entry->location, entry->oldRate, encounter, slots);
             }
             break;
@@ -413,6 +420,13 @@ static std::vector<EncounterArea4> getDPPt(Game version, Encounter encounter, co
                     const auto &slot = entry->good[i];
                     slots[i] = Slot(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
                 }
+
+                // Insert Feebas for Mt Coronet B1F
+                if (settings.dppt.feebasTile && entry->location == 22)
+                {
+                    slots[5] = Slot(349, 10, 20, &info[349]);
+                }
+
                 encounters.emplace_back(entry->location, entry->goodRate, encounter, slots);
             }
             break;
@@ -424,6 +438,13 @@ static std::vector<EncounterArea4> getDPPt(Game version, Encounter encounter, co
                     const auto &slot = entry->super[i];
                     slots[i] = Slot(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
                 }
+
+                // Insert Feebas for Mt Coronet B1F
+                if (settings.dppt.feebasTile && entry->location == 22)
+                {
+                    slots[5] = Slot(349, 10, 20, &info[349]);
+                }
+
                 encounters.emplace_back(entry->location, entry->superRate, encounter, slots);
             }
             break;

@@ -39,11 +39,12 @@ public:
      * @param delay Number of advances to offset
      * @param method Encounter method
      * @param lead Encounter lead
+     * @param feebasTile Whether Feebas tiles are active
      * @param area Wild pokemon info
      * @param profile Profile Information
      * @param filter State filter
      */
-    WildGenerator3(u32 initialAdvances, u32 maxAdvances, u32 delay, Method method, Lead lead, const EncounterArea3 &area,
+    WildGenerator3(u32 initialAdvances, u32 maxAdvances, u32 delay, Method method, Lead lead, bool feebasTile, const EncounterArea3 &area,
                    const Profile3 &profile, const WildStateFilter &filter);
 
     /**
@@ -54,6 +55,9 @@ public:
      * @return Vector of computed states
      */
     std::vector<WildGeneratorState> generate(u32 seed) const;
+
+private:
+    bool feebasTile;
 };
 
 #endif // WILDGENERATOR3_HPP

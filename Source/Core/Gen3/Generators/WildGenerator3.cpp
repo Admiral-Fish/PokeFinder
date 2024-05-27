@@ -34,9 +34,9 @@ static u8 unownLetter(u32 pid)
     return (((pid & 0x3000000) >> 18) | ((pid & 0x30000) >> 12) | ((pid & 0x300) >> 6) | (pid & 0x3)) % 0x1c;
 }
 
-WildGenerator3::WildGenerator3(u32 initialAdvances, u32 maxAdvances, u32 delay, Method method, Lead lead, const EncounterArea3 &area,
-                               const Profile3 &profile, const WildStateFilter &filter) :
-    WildGenerator(initialAdvances, maxAdvances, delay, method, lead, area, profile, filter)
+WildGenerator3::WildGenerator3(u32 initialAdvances, u32 maxAdvances, u32 delay, Method method, Lead lead, bool feebasTile,
+                               const EncounterArea3 &area, const Profile3 &profile, const WildStateFilter &filter) :
+    WildGenerator(initialAdvances, maxAdvances, delay, method, lead, area, profile, filter), feebasTile(feebasTile)
 {
 }
 
@@ -47,6 +47,7 @@ std::vector<WildGeneratorState> WildGenerator3::generate(u32 seed) const
     std::vector<u8> modifiedSlots = area.getSlots(lead);
     u16 rate = area.getRate() * 16;
     bool rock = (profile.getVersion() & Game::RSE) != Game::None && area.getEncounter() == Encounter::RockSmash;
+    bool feebas = area.feebasLocation(profile.getVersion());
     bool safari = area.safariZone(profile.getVersion());
     bool tanoby = area.tanobyChamber(profile.getVersion());
 
@@ -71,13 +72,31 @@ std::vector<WildGeneratorState> WildGenerator3::generate(u32 seed) const
         }
 
         u8 encounterSlot;
-        if ((lead == Lead::MagnetPull || lead == Lead::Static) && go.nextUShort(2) == 0 && !modifiedSlots.empty())
+        if (feebas && go.nextUShort(100) < 50 && feebasTile)
         {
-            encounterSlot = modifiedSlots[go.nextUShort(modifiedSlots.size())];
+            if (area.getEncounter() == Encounter::OldRod)
+            {
+                encounterSlot = 2;
+            }
+            else if (area.getEncounter() == Encounter::GoodRod)
+            {
+                encounterSlot = 4;
+            }
+            else
+            {
+                encounterSlot = 6;
+            }
         }
         else
         {
-            encounterSlot = EncounterSlot::hSlot(go.nextUShort(100), area.getEncounter());
+            if ((lead == Lead::MagnetPull || lead == Lead::Static) && go.nextUShort(2) == 0 && !modifiedSlots.empty())
+            {
+                encounterSlot = modifiedSlots[go.nextUShort(modifiedSlots.size())];
+            }
+            else
+            {
+                encounterSlot = EncounterSlot::hSlot(go.nextUShort(100), area.getEncounter());
+            }
         }
 
         if (!filter.compareEncounterSlot(encounterSlot))

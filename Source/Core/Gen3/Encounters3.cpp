@@ -69,7 +69,7 @@ static_assert(sizeof(WildEncounterPokeSpot) == 14);
 
 namespace Encounters3
 {
-    std::vector<EncounterArea3> getEncounters(Encounter encounter, Game version)
+    std::vector<EncounterArea3> getEncounters(Encounter encounter, const EncounterSettings3 &settings, Game version)
     {
         u32 length;
         u8 *data;
@@ -146,6 +146,15 @@ namespace Encounters3
                         const auto &slot = entry->old[i];
                         slots[i] = Slot(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
                     }
+
+                    // Insert Feebas for Route 119
+                    if (settings.feebasTile
+                        && (((version & Game::Emerald) != Game::None && entry->location == 33)
+                            || ((version & Game::RS) != Game::None && entry->location == 73)))
+                    {
+                        slots[2] = Slot(349, 20, 25, &info[349]);
+                    }
+
                     encounters.emplace_back(entry->location, entry->fishRate, encounter, slots);
                 }
                 break;
@@ -157,6 +166,15 @@ namespace Encounters3
                         const auto &slot = entry->good[i];
                         slots[i] = Slot(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
                     }
+
+                    // Insert Feebas for Route 119
+                    if (settings.feebasTile
+                        && (((version & Game::Emerald) != Game::None && entry->location == 33)
+                            || ((version & Game::RS) != Game::None && entry->location == 73)))
+                    {
+                        slots[3] = Slot(349, 20, 25, &info[349]);
+                    }
+
                     encounters.emplace_back(entry->location, entry->fishRate, encounter, slots);
                 }
                 break;
@@ -168,6 +186,15 @@ namespace Encounters3
                         const auto &slot = entry->super[i];
                         slots[i] = Slot(slot.specie, slot.minLevel, slot.maxLevel, &info[slot.specie]);
                     }
+
+                    // Insert Feebas for Route 119
+                    if (settings.feebasTile
+                        && (((version & Game::Emerald) != Game::None && entry->location == 33)
+                            || ((version & Game::RS) != Game::None && entry->location == 73)))
+                    {
+                        slots[5] = Slot(349, 20, 25, &info[349]);
+                    }
+
                     encounters.emplace_back(entry->location, entry->fishRate, encounter, slots);
                 }
                 break;
