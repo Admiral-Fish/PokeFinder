@@ -100,7 +100,7 @@ private slots:
      *
      * @param state Checked state
      */
-    void generatorFeebasTileStateChanged(Qt::CheckState state);
+    void generatorFeebasTileStateChanged(int state);
 
     /**
      * @brief Updates the pokemon listed
@@ -145,7 +145,7 @@ private slots:
      *
      * @param state Checked state
      */
-    void searcherFeebasTileStateChanged(Qt::CheckState state);
+    void searcherFeebasTileStateChanged(int state);
 
     /**
      * @brief Updates the pokemon listed

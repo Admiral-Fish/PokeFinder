@@ -99,8 +99,8 @@ Wild3::Wild3(QWidget *parent) : QWidget(parent), ui(new Ui::Wild3)
     connect(ui->comboBoxSearcherLocation, &QComboBox::currentIndexChanged, this, &Wild3::searcherLocationIndexChanged);
     connect(ui->comboBoxGeneratorPokemon, &QComboBox::currentIndexChanged, this, &Wild3::generatorPokemonIndexChanged);
     connect(ui->comboBoxSearcherPokemon, &QComboBox::currentIndexChanged, this, &Wild3::searcherPokemonIndexChanged);
-    connect(ui->checkBoxGeneratorFeebasTile, &QCheckBox::checkStateChanged, this, &Wild3::generatorFeebasTileStateChanged);
-    connect(ui->checkBoxSearcherFeebasTile, &QCheckBox::checkStateChanged, this, &Wild3::searcherFeebasTileStateChanged);
+    connect(ui->checkBoxGeneratorFeebasTile, &QCheckBox::stateChanged, this, &Wild3::generatorFeebasTileStateChanged);
+    connect(ui->checkBoxSearcherFeebasTile, &QCheckBox::stateChanged, this, &Wild3::searcherFeebasTileStateChanged);
     connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &Wild3::profileManager);
     connect(ui->filterGenerator, &Filter::showStatsChanged, generatorModel, &WildGeneratorModel3::setShowStats);
     connect(ui->filterSearcher, &Filter::showStatsChanged, searcherModel, &WildSearcherModel3::setShowStats);
@@ -232,7 +232,7 @@ void Wild3::generatorEncounterIndexChanged(int index)
     }
 }
 
-void Wild3::generatorFeebasTileStateChanged(Qt::CheckState state)
+void Wild3::generatorFeebasTileStateChanged(int state)
 {
     auto encounter = ui->comboBoxGeneratorEncounter->getEnum<Encounter>();
     switch (encounter)
@@ -436,7 +436,7 @@ void Wild3::searcherEncounterIndexChanged(int index)
     }
 }
 
-void Wild3::searcherFeebasTileStateChanged(Qt::CheckState state)
+void Wild3::searcherFeebasTileStateChanged(int state)
 {
     auto encounter = ui->comboBoxSearcherEncounter->getEnum<Encounter>();
     switch (encounter)
