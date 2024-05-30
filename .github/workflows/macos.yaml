@@ -1,0 +1,50 @@
+name: CI - macOS
+
+on: [pull_request, push]
+
+jobs:
+  ci:
+    name: Build 
+    runs-on: macos-12
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+
+      - name: Install Qt
+        uses: jurplel/install-qt-action@v3
+        with:
+          version: "6.7.1"
+          archives: qtbase qtsvg qttools
+          cache: true
+
+      - name: Configure CMake
+        run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=RELEASE -DCMAKE_OSX_ARCHITECTURES="x86_64;arm64" -DTEST=ON
+
+      - name: Build PokeFinder
+        run: cmake --build ${{github.workspace}}/build --config RELEASE
+
+      - name: Test PokeFinder
+        run: ctest --test-dir ${{github.workspace}}/build -V
+
+      - name: Package PokeFinder
+        run: |
+          mkdir upload
+          mv build/Source/PokeFinder.app .
+          macdeployqt PokeFinder.app -verbose=3
+          tar czf PokeFinder-macOS.tar.gz PokeFinder.app
+          mv PokeFinder.app upload
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: PokeFinder-macOS
+          path: upload
+
+      - name: Publish Release
+        uses: softprops/action-gh-release@v2
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          files: PokeFinder-macOS.tar.gz
