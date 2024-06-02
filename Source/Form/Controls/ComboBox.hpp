@@ -28,6 +28,7 @@
  */
 class ComboBox : public QComboBox
 {
+    Q_OBJECT
 public:
     /**
      * @brief Construct a new ComboBox object

@@ -29,6 +29,7 @@ class DateTime;
  */
 class DateTimeEdit : public QDateTimeEdit
 {
+    Q_OBJECT
 public:
     /**
      * @brief Construct a new DateTimeEdit object
