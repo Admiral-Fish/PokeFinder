@@ -28,7 +28,6 @@
  */
 class GraphicsPixmapItem : public QGraphicsPixmapItem
 {
-    Q_OBJECT
 public:
     /**
      * @brief Construct a new GraphicsPixmapItem object
