@@ -10,7 +10,7 @@ This will be a RNG Tool for all main Pokémon games generations 3-7. It currentl
 
 [Latest Official Release](https://github.com/Admiral-Fish/PokeFinder/releases/latest)
 
-[Latest Nightly Build](https://ci.appveyor.com/project/Admiral-Fish/pokefinder)
+[Latest Nightly Build](https://github.com/Admiral-Fish/PokeFinder/actions)
 
 # Features
 Gen 3
@@ -21,6 +21,7 @@ Gen 3
 - Gales/Colo/Channel
 
 Gen 4
+- Events
 - Static
 - Wild
 - Egg

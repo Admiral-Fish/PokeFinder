@@ -80,11 +80,11 @@ std::vector<WildGeneratorState> WildGenerator3::generate(u32 seed) const
             }
             else if (area.getEncounter() == Encounter::GoodRod)
             {
-                encounterSlot = 4;
+                encounterSlot = 3;
             }
             else
             {
-                encounterSlot = 6;
+                encounterSlot = 5;
             }
         }
         else

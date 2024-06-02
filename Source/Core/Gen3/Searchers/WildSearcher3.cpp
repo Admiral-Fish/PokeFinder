@@ -179,8 +179,8 @@ std::vector<WildSearcherState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 s
                             if (test[0].nextUShort(100) < 50)
                             {
                                 encounterSlot[0] = area.getEncounter() == Encounter::OldRod ? 2
-                                    : area.getEncounter() == Encounter::GoodRod             ? 4
-                                                                                            : 6;
+                                    : area.getEncounter() == Encounter::GoodRod             ? 3
+                                                                                            : 5;
                                 valid[0] = filter.compareEncounterSlot(encounterSlot[0]);
                             }
 
