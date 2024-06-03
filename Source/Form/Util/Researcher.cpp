@@ -160,7 +160,7 @@ Researcher::Researcher(QWidget *parent) : QWidget(parent), ui(new Ui::Researcher
     QStringList operands = { "*", "/", "%", "+", "-", "<<", ">>", "<", "<=", ">", ">=", "&", "^", "|" };
     for (int i = 1; i <= 10; i++)
     {
-        auto *box = ui->groupBoxCustoms->findChild<ComboBox *>(QString("comboBoxOperator%1").arg(i));
+        auto *box = ui->groupBoxCustoms->findChild<QComboBox *>(QString("comboBoxOperator%1").arg(i));
         box->addItems(operands);
 
         auto *text = ui->groupBoxCustoms->findChild<TextBox *>(QString("textBoxRValue%1").arg(i));
