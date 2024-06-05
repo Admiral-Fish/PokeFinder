@@ -33,13 +33,7 @@ static u32 getBattleAdvances(const EncounterArea4 &area, Game version)
 {
     u32 advances = 0;
 
-    // First advance is for the random ball position when thrown out
-    if (!area.greatMarsh(version) && !area.safariZone(version))
-    {
-        advances += 1;
-    }
-
-    // Fishing uses an advance to determine how long you have to press A
+    // Fishing uses an advance to determine the visual frames range in which you have to press A
     if (area.getEncounter() == Encounter::OldRod || area.getEncounter() == Encounter::GoodRod || area.getEncounter() == Encounter::SuperRod)
     {
         advances += 1;
@@ -49,6 +43,12 @@ static u32 getBattleAdvances(const EncounterArea4 &area, Game version)
     if ((version & Game::DP) != Game::None)
     {
         advances += 4;
+    }
+
+    // Advance used to determine the random ball position when thrown out
+    if (!area.greatMarsh(version) && !area.safariZone(version))
+    {
+        advances += 1;
     }
 
     return advances;
