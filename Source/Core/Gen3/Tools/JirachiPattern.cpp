@@ -19,6 +19,7 @@
 
 #include "JirachiPattern.hpp"
 #include <Core/RNG/LCRNG.hpp>
+#include <algorithm>
 
 /**
  * @brief Does the advance from playing the cutscene
