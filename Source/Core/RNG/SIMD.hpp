@@ -42,7 +42,7 @@ union alignas(16) vuint128 {
 };
 
 /**
- * @brief Computers the bitwise AND of each 32bit number pair in the vector
+ * @brief Computes the bitwise AND of each 32bit number pair in the vector
  *
  * @param x First operand
  * @param y Second operand
@@ -128,7 +128,7 @@ inline vuint32x4 v32x4_load(const u32 *address)
 }
 
 /**
- * @brief Computers the bitwise OR of each 32bit number pair in the vector
+ * @brief Computes the bitwise OR of each 32bit number pair in the vector
  *
  * @param x First operand
  * @param y Second operand
@@ -205,7 +205,7 @@ inline vuint32x4 v32x4_set(u32 x0, u32 x1, u32 x2, u32 x3)
 }
 
 /**
- * @brief Computers the bitwise left shift of each 32bit number pair in the vector
+ * @brief Computes the bitwise left shift of each 32bit number pair in the vector
  *
  * @tparam shift Amount to shift by
  * @param value Input vector
@@ -229,7 +229,7 @@ inline vuint32x4 v32x4_shl(vuint32x4 value)
 }
 
 /**
- * @brief Computers the bitwise right shift of each 32bit number pair in the vector
+ * @brief Computes the bitwise right shift of each 32bit number pair in the vector
  *
  * @tparam shift Amount to shift by
  * @param value Input vector
@@ -274,7 +274,7 @@ inline void v32x4_store(u32 *address, vuint32x4 value)
 }
 
 /**
- * @brief Computers the bitwise XOR of each 32bit number pair in the vector
+ * @brief Computes the bitwise XOR of each 32bit number pair in the vector
  *
  * @param x First operand
  * @param y Second operand
