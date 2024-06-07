@@ -114,7 +114,7 @@ void Static8::categoryIndexChanged(int index)
     if (index >= 0)
     {
         int size;
-        const StaticTemplate *templates = Encounters8::getStaticEncounters(index, &size);
+        const StaticTemplate8 *templates = Encounters8::getStaticEncounters(index, &size);
 
         ui->comboBoxPokemon->clear();
         for (int i = 0; i < size; i++)
@@ -159,7 +159,7 @@ void Static8::pokemonIndexChanged(int index)
 {
     if (index >= 0)
     {
-        const StaticTemplate *staticTemplate
+        const StaticTemplate8 *staticTemplate
             = Encounters8::getStaticEncounter(ui->comboBoxCategory->currentIndex(), ui->comboBoxPokemon->getCurrentInt());
         ui->spinBoxLevel->setValue(staticTemplate->getLevel());
         ui->comboBoxAbility->setCurrentIndex(ui->comboBoxAbility->findData(staticTemplate->getAbility()));
