@@ -29,7 +29,7 @@ def embed_encounters8():
             string = f"constexpr std::array<StaticTemplate8, {len(encounters)}> {type.upper()} = {{ "
 
             for i, encounter in enumerate(encounters):
-                string += f"StaticTemplate8({encounter['version']}, {encounter['specie']}, {encounter.get('form', 0)}, {encounter.get('shiny', 'Shiny::Random')}, {encounter.get('ability', 255)}, {encounter.get('gender', 255)}, {encounter.get('ivCount', 0)}, {encounter['level']}, {int(encounter.get("roamer", False))})"
+                string += f"StaticTemplate8({encounter['version']}, {encounter['specie']}, {encounter.get('form', 0)}, {encounter.get('shiny', 'Shiny::Random')}, {encounter.get('ability', 255)}, {encounter.get('gender', 255)}, {encounter.get('ivCount', 0)}, {encounter['level']}, {int(encounter.get('roamer', False))})"
                 
                 if i != len(encounters) - 1:
                     string += ", "
