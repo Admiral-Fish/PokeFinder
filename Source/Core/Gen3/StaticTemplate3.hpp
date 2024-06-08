@@ -36,18 +36,18 @@ public:
      * @param form Form of the template
      * @param shiny Shiny state of the template
      * @param level Level of the template
+     * @param buggedRoamer Whether the roamer has bugged IV generation
      */
-    constexpr StaticTemplate3(Game version, u16 specie, u8 form, Shiny shiny, u8 level) :
-        StaticTemplate(version, specie, form, shiny, 255, 255, 0, level), buggedRoamer(((specie == 380 || specie == 381)
-                                                                                                     && (version & Game::RS) != Game::None)
-                                                                                                    || (specie >= 243 && specie <= 245))
+    constexpr StaticTemplate3(Game version, u16 specie, u8 form, Shiny shiny, u8 level, bool buggedRoamer) :
+        StaticTemplate(version, specie, form, shiny, 255, 255, 0, level), buggedRoamer(buggedRoamer)
     {
     }
 
     /**
-     * @brief Determines if the roamer is bugged
+     * @brief Determines if the roamer has bugged IV generation
      *
-     * @return FRLG/RS roamer
+     * @return true Roamer has bugged IV generation
+     * @return false Roamer does not have bugged IV generation
      */
     bool getBuggedRoamer() const
     {
