@@ -55,9 +55,11 @@ std::vector<bool> EncounterArea::getSlots(u16 specie) const
     return flags;
 }
 
-std::vector<u8> EncounterArea::getSlots(Lead lead) const
+ModifiedSlots EncounterArea::getSlots(Lead lead) const
 {
-    std::vector<u8> encounters;
+    ModifiedSlots modifiedSlots;
+    modifiedSlots.count = 0;
+
     u8 type;
     switch (lead)
     {
@@ -77,18 +79,26 @@ std::vector<u8> EncounterArea::getSlots(Lead lead) const
         type = 10;
         break;
     default:
-        return encounters;
+        return modifiedSlots;
     }
 
+    u8 count = 0;
     for (size_t i = 0; i < pokemon.size() && pokemon[i].getInfo() != nullptr; i++)
     {
         const PersonalInfo *info = pokemon[i].getInfo();
         if (info->getType(0) == type || info->getType(1) == type)
         {
-            encounters.emplace_back(static_cast<u8>(i));
+            modifiedSlots.index[modifiedSlots.count++] = static_cast<u8>(i);
         }
+        count++;
     }
-    return encounters;
+
+    if (modifiedSlots.count == count)
+    {
+        modifiedSlots.count = 0;
+    }
+
+    return modifiedSlots;
 }
 
 std::vector<std::string> EncounterArea::getSpecieNames() const

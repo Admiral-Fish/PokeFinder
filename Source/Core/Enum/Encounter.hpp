@@ -61,4 +61,17 @@ constexpr u8 toInt(Encounter encounter)
     return static_cast<u8>(encounter);
 }
 
+/**
+ * @brief Computes subtraction of two \ref Encounter
+ *
+ * @param left First encounter
+ * @param right Second encounter
+ *
+ * @return Computed substraction encounter
+ */
+constexpr Encounter operator-(Encounter left, Encounter right)
+{
+    return static_cast<Encounter>(toInt(left) - toInt(right));
+}
+
 #endif // ENCOUNTER_HPP

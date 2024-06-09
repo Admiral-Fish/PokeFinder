@@ -68,9 +68,8 @@ std::vector<WildState8> WildGenerator8::generate(u64 seed0, u64 seed1) const
 {
     RNGList<u32, Xorshift, 128> rngList(seed0, seed1, initialAdvances + delay);
 
-    bool encounterForce
-        = lead == Lead::MagnetPull || lead == Lead::Static || lead == Lead::Harvest || lead == Lead::FlashFire || lead == Lead::StormDrain;
-    std::vector<u8> modifiedSlots = area.getSlots(lead);
+    bool encounterForce = lead >= Lead::MagnetPull && lead <= Lead::StormDrain;
+    auto modifiedSlots = area.getSlots(lead);
 
     std::vector<WildState8> states;
     for (u32 cnt = 0; cnt <= maxAdvances; cnt++, rngList.advanceState())
@@ -78,7 +77,7 @@ std::vector<WildState8> WildGenerator8::generate(u64 seed0, u64 seed1) const
         u8 encounterSlot;
         if (encounterForce && (rngList.next() % 2) == 0 && !modifiedSlots.empty())
         {
-            encounterSlot = modifiedSlots[rngList.next() % modifiedSlots.size()];
+            encounterSlot = modifiedSlots[rngList.next()];
         }
         else
         {

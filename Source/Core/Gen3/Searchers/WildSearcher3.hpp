@@ -55,10 +55,10 @@ public:
     void startSearch(const std::array<u8, 6> &min, const std::array<u8, 6> &max);
 
 private:
-    std::vector<u8> modifiedSlots;
     u16 rate;
     bool feebasTile;
     bool ivAdvance;
+    ModifiedSlots modifiedSlots;
 
     /**
      * @brief Searches for matching states from provided IVs

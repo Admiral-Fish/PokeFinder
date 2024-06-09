@@ -31,6 +31,8 @@
 #include <Core/Util/EncounterSlot.hpp>
 #include <Core/Util/Utilities.hpp>
 
+constexpr u8 feebasSlots[] = { 2, 3, 5 };
+
 static bool cuteCharmGender(const PersonalInfo *info, u32 pid, Lead lead)
 {
     switch (info->getGender())
@@ -59,10 +61,10 @@ static u8 unownLetter(u32 pid)
 WildSearcher3::WildSearcher3(Method method, Lead lead, bool feebasTile, const EncounterArea3 &area, const Profile3 &profile,
                              const WildStateFilter &filter) :
     WildSearcher(method, lead, area, profile, filter),
-    modifiedSlots(area.getSlots(lead)),
     ivAdvance(method == Method::Method2),
     feebasTile(feebasTile),
-    rate(0)
+    rate(0),
+    modifiedSlots(area.getSlots(lead))
 {
     if ((profile.getVersion() & Game::RSE) != Game::None && area.getEncounter() == Encounter::RockSmash)
     {
@@ -178,9 +180,7 @@ std::vector<WildSearcherState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 s
                         {
                             if (test[0].nextUShort(100) < 50)
                             {
-                                encounterSlot[0] = area.getEncounter() == Encounter::OldRod ? 2
-                                    : area.getEncounter() == Encounter::GoodRod             ? 3
-                                                                                            : 5;
+                                encounterSlot[0] = feebasSlots[toInt(area.getEncounter() - Encounter::OldRod)];
                                 valid[0] = filter.compareEncounterSlot(encounterSlot[0]);
                             }
 
@@ -222,9 +222,7 @@ std::vector<WildSearcherState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 s
                         {
                             if (test[0].nextUShort(100) < 50)
                             {
-                                encounterSlot[0] = area.getEncounter() == Encounter::OldRod ? 2
-                                    : area.getEncounter() == Encounter::GoodRod             ? 4
-                                                                                            : 6;
+                                encounterSlot[0] = feebasSlots[toInt(area.getEncounter() - Encounter::OldRod)];
                                 valid[0] = filter.compareEncounterSlot(encounterSlot[0]);
                             }
 
@@ -260,9 +258,7 @@ std::vector<WildSearcherState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 s
                         {
                             if (test[0].nextUShort(100) < 50)
                             {
-                                encounterSlot[0] = area.getEncounter() == Encounter::OldRod ? 2
-                                    : area.getEncounter() == Encounter::GoodRod             ? 4
-                                                                                            : 6;
+                                encounterSlot[0] = feebasSlots[toInt(area.getEncounter() - Encounter::OldRod)];
                                 valid[0] = filter.compareEncounterSlot(encounterSlot[0]);
                             }
 
@@ -301,9 +297,7 @@ std::vector<WildSearcherState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 s
                         {
                             if (test[2].nextUShort(100) < 50)
                             {
-                                encounterSlot[2] = area.getEncounter() == Encounter::OldRod ? 2
-                                    : area.getEncounter() == Encounter::GoodRod             ? 4
-                                                                                            : 6;
+                                encounterSlot[2] = feebasSlots[toInt(area.getEncounter() - Encounter::OldRod)];
                                 valid[2] = filter.compareEncounterSlot(encounterSlot[2]);
                             }
 
@@ -338,7 +332,7 @@ std::vector<WildSearcherState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 s
                     u16 encounterRand = test[0].nextUShort();
                     if (test[0].nextUShort(2) == 0 && !modifiedSlots.empty())
                     {
-                        encounterSlot[0] = modifiedSlots[encounterRand % modifiedSlots.size()];
+                        encounterSlot[0] = modifiedSlots[encounterRand];
                     }
                     else
                     {
@@ -359,9 +353,7 @@ std::vector<WildSearcherState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 s
                         {
                             if (test[0].nextUShort(100) < 50)
                             {
-                                encounterSlot[0] = area.getEncounter() == Encounter::OldRod ? 2
-                                    : area.getEncounter() == Encounter::GoodRod             ? 4
-                                                                                            : 6;
+                                encounterSlot[0] = feebasSlots[toInt(area.getEncounter() - Encounter::OldRod)];
                                 valid[0] = filter.compareEncounterSlot(encounterSlot[0]);
                             }
 

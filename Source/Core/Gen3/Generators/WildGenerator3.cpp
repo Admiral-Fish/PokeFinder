@@ -44,7 +44,7 @@ std::vector<WildGeneratorState> WildGenerator3::generate(u32 seed) const
 {
     std::vector<WildGeneratorState> states;
 
-    std::vector<u8> modifiedSlots = area.getSlots(lead);
+    auto modifiedSlots = area.getSlots(lead);
     u16 rate = area.getRate() * 16;
     bool rock = (profile.getVersion() & Game::RSE) != Game::None && area.getEncounter() == Encounter::RockSmash;
     bool feebas = area.feebasLocation(profile.getVersion());
@@ -91,7 +91,7 @@ std::vector<WildGeneratorState> WildGenerator3::generate(u32 seed) const
         {
             if ((lead == Lead::MagnetPull || lead == Lead::Static) && go.nextUShort(2) == 0 && !modifiedSlots.empty())
             {
-                encounterSlot = modifiedSlots[go.nextUShort(modifiedSlots.size())];
+                encounterSlot = modifiedSlots[go.nextUShort()];
             }
             else
             {

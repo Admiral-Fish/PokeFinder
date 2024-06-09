@@ -114,7 +114,7 @@ std::vector<WildGeneratorState4> WildGenerator4::generateMethodJ(u32 seed) const
     std::vector<WildGeneratorState4> states;
 
     u8 thresh = area.getRate();
-    std::vector<u8> modifiedSlots = area.getSlots(lead);
+    auto modifiedSlots = area.getSlots(lead);
     bool feebas = area.feebasLocation(profile.getVersion());
 
     PokeRNG rng(seed, initialAdvances);
@@ -147,7 +147,7 @@ std::vector<WildGeneratorState4> WildGenerator4::generateMethodJ(u32 seed) const
             if ((lead == Lead::MagnetPull || lead == Lead::Static) && go.nextUShort<false>(2, &battleAdvances) == 0
                 && !modifiedSlots.empty())
             {
-                encounterSlot = modifiedSlots[go.nextUShort(modifiedSlots.size(), &battleAdvances)];
+                encounterSlot = modifiedSlots[go.nextUShort(&battleAdvances)];
             }
             else
             {
@@ -273,7 +273,7 @@ std::vector<WildGeneratorState4> WildGenerator4::generateMethodK(u32 seed) const
     {
         rate *= 2;
     }
-    std::vector<u8> modifiedSlots = area.getSlots(lead);
+    auto modifiedSlots = area.getSlots(lead);
     bool safari = area.safariZone(profile.getVersion());
 
     auto unlockedUnown = profile.getUnlockedUnownForms();
@@ -301,7 +301,7 @@ std::vector<WildGeneratorState4> WildGenerator4::generateMethodK(u32 seed) const
         u8 encounterSlot;
         if ((lead == Lead::MagnetPull || lead == Lead::Static) && go.nextUShort(2, &battleAdvances) == 0 && !modifiedSlots.empty())
         {
-            encounterSlot = modifiedSlots[go.nextUShort(modifiedSlots.size(), &battleAdvances)];
+            encounterSlot = modifiedSlots[go.nextUShort(&battleAdvances)];
         }
         else
         {

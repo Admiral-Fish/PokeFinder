@@ -63,7 +63,6 @@ public:
     void startSearch(const std::array<u8, 6> &min, const std::array<u8, 6> &max, u8 index);
 
 private:
-    std::vector<u8> modifiedSlots;
     std::vector<u8> unlockedUnown;
     std::vector<u8> undiscoveredUnown;
     u32 maxAdvance;
@@ -76,6 +75,7 @@ private:
     bool safari;
     bool shiny;
     bool unownRadio;
+    ModifiedSlots modifiedSlots;
 
     /**
      * @brief Searches for matching states from provided IVs

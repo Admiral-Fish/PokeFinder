@@ -56,7 +56,6 @@ WildSearcher4::WildSearcher4(u32 minAdvance, u32 maxAdvance, u32 minDelay, u32 m
                              bool shiny, bool unownRadio, u8 happiness, const EncounterArea4 &area, const Profile4 &profile,
                              const WildStateFilter &filter) :
     WildSearcher(method, lead, area, profile, filter),
-    modifiedSlots(area.getSlots(lead)),
     unlockedUnown(profile.getUnlockedUnownForms()),
     undiscoveredUnown(profile.getUndiscoveredUnownForms(unlockedUnown)),
     maxAdvance(maxAdvance),
@@ -70,7 +69,8 @@ WildSearcher4::WildSearcher4(u32 minAdvance, u32 maxAdvance, u32 minDelay, u32 m
     feebasTile(feebasTile),
     safari(area.safariZone(profile.getVersion())),
     shiny(shiny),
-    unownRadio(unownRadio)
+    unownRadio(unownRadio),
+    modifiedSlots(area.getSlots(lead))
 {
     if ((profile.getVersion() & Game::HGSS) != Game::None)
     {
@@ -454,7 +454,7 @@ std::vector<WildSearcherState4> WildSearcher4::searchMethodJ(u8 hp, u8 atk, u8 d
                         u8 slot;
                         if (test[0].nextUShort<false>(2) == 0 && !modifiedSlots.empty())
                         {
-                            slot = modifiedSlots[encounterRand % modifiedSlots.size()];
+                            slot = modifiedSlots[encounterRand];
                         }
                         else
                         {
@@ -789,7 +789,7 @@ std::vector<WildSearcherState4> WildSearcher4::searchMethodK(u8 hp, u8 atk, u8 d
 
                         if (test[0].nextUShort(2) == 0 && !modifiedSlots.empty())
                         {
-                            encounterSlot[0] = modifiedSlots[encounterRand % modifiedSlots.size()];
+                            encounterSlot[0] = modifiedSlots[encounterRand];
                         }
                         else if (safari)
                         {

@@ -35,6 +35,7 @@ enum class Lead : u8
     CuteCharmF,
     CuteCharmM,
 
+    // Encounter slot leads need to be grouped to allow easier inclusion checking
     MagnetPull,
     Static,
     Harvest,
