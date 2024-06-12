@@ -53,8 +53,8 @@ GameCube::GameCube(QWidget *parent) : QWidget(parent), ui(new Ui::GameCube)
     ui->textBoxGeneratorMaxAdvances->setValues(InputType::Advance32Bit);
     ui->textBoxGeneratorDelay->setValues(InputType::Advance32Bit);
 
-    ui->filterGenerator->disableControls(Controls::EncounterSlots);
-    ui->filterSearcher->disableControls(Controls::EncounterSlots | Controls::DisableFilter);
+    ui->filterGenerator->disableControls(Controls::EncounterSlots | Controls::IgnoreInheritance);
+    ui->filterSearcher->disableControls(Controls::EncounterSlots | Controls::DisableFilter | Controls::IgnoreInheritance);
 
     ui->comboBoxGeneratorPokemon->enableAutoComplete();
     ui->comboBoxSearcherPokemon->enableAutoComplete();
@@ -125,7 +125,7 @@ void GameCube::generate()
     u32 maxAdvances = ui->textBoxGeneratorMaxAdvances->getUInt();
     u32 delay = ui->textBoxGeneratorDelay->getUInt();
 
-    auto filter = ui->filterGenerator->getFilter<StateFilter>();
+    auto filter = ui->filterGenerator->getFilter<StateFilter, FILTER_STATE_FILTER>();
     GameCubeGenerator generator(initialAdvances, maxAdvances, delay, method, ui->checkBoxGeneratorFirstShadowUnset->isChecked(),
                                 *currentProfile, filter);
 
@@ -236,7 +236,7 @@ void GameCube::search()
     std::array<u8, 6> min = ui->filterSearcher->getMinIVs();
     std::array<u8, 6> max = ui->filterSearcher->getMaxIVs();
 
-    auto filter = ui->filterSearcher->getFilter<StateFilter>();
+    auto filter = ui->filterSearcher->getFilter<StateFilter, FILTER_STATE_FILTER>();
     auto *searcher = new GameCubeSearcher(method, ui->checkBoxSearcherFirstShadowUnset->isChecked(), *currentProfile, filter);
 
     int maxProgress = 1;

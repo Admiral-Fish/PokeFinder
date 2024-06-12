@@ -63,7 +63,8 @@ Wild3::Wild3(QWidget *parent) : QWidget(parent), ui(new Ui::Wild3)
     ui->comboBoxSearcherEncounter->setup({ toInt(Encounter::Grass), toInt(Encounter::RockSmash), toInt(Encounter::Surfing),
                                            toInt(Encounter::OldRod), toInt(Encounter::GoodRod), toInt(Encounter::SuperRod) });
 
-    ui->filterSearcher->disableControls(Controls::DisableFilter);
+    ui->filterSearcher->disableControls(Controls::DisableFilter | Controls::IgnoreInheritance);
+    ui->filterGenerator->disableControls(Controls::IgnoreInheritance);
 
     ui->comboMenuGeneratorLead->addAction(tr("None"), toInt(Lead::None));
     ui->comboMenuGeneratorLead->addMenu(tr("Cute Charm"), { tr("♂ Lead"), tr("♀ Lead") },
@@ -180,7 +181,7 @@ void Wild3::generate()
     auto lead = ui->comboMenuGeneratorLead->getEnum<Lead>();
     bool feebasTile = ui->checkBoxGeneratorFeebasTile->isChecked();
 
-    auto filter = ui->filterGenerator->getFilter<WildStateFilter, true>();
+    auto filter = ui->filterGenerator->getFilter<WildStateFilter, FILTER_WILD_FILTER>();
     WildGenerator3 generator(initialAdvances, maxAdvances, delay, method, lead, feebasTile,
                              encounterGenerator[ui->comboBoxGeneratorLocation->getCurrentInt()], *currentProfile, filter);
 
@@ -356,7 +357,7 @@ void Wild3::search()
     auto lead = ui->comboMenuSearcherLead->getEnum<Lead>();
     bool feebas = ui->checkBoxSearcherFeebasTile->isChecked();
 
-    auto filter = ui->filterSearcher->getFilter<WildStateFilter, true>();
+    auto filter = ui->filterSearcher->getFilter<WildStateFilter, FILTER_WILD_FILTER>();
     auto *searcher = new WildSearcher3(method, lead, feebas, encounterSearcher[ui->comboBoxSearcherLocation->getCurrentInt()],
                                        *currentProfile, filter);
 

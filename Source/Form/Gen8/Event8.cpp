@@ -48,7 +48,7 @@ Event8::Event8(QWidget *parent) : QWidget(parent), ui(new Ui::Event8)
     ui->textBoxEC->setValues(InputType::Seed32Bit);
     ui->textBoxPID->setValues(InputType::Seed32Bit);
 
-    ui->filter->disableControls(Controls::EncounterSlots);
+    ui->filter->disableControls(Controls::EncounterSlots | Controls::IgnoreInheritance);
 
     ui->filter->enableHiddenAbility();
 
@@ -191,7 +191,7 @@ void Event8::generate()
     u32 delay = ui->textBoxDelay->getUInt();
     WB8 wb8 = getParameters();
 
-    auto filter = ui->filter->getFilter<StateFilter>();
+    auto filter = ui->filter->getFilter<StateFilter, FILTER_STATE_FILTER>();
     EventGenerator8 generator(initialAdvances, maxAdvances, delay, wb8, *currentProfile, filter);
 
     auto states = generator.generate(seed0, seed1);

@@ -133,7 +133,7 @@ void PokeSpot::generate()
     u32 delayFood = ui->textBoxFoodDelay->getUInt();
     u32 delayEncounter = ui->textBoxEncounterDelay->getUInt();
 
-    auto filter = ui->filter->getFilter<WildStateFilter, true>();
+    auto filter = ui->filter->getFilter<WildStateFilter, FILTER_WILD_FILTER>();
     PokeSpotGenerator generator(initialAdvancesFood, maxAdvancesFood, delayFood, initialAdvancesEncounter, maxAdvancesEncounter,
                                 delayEncounter, *currentProfile, filter);
 

@@ -64,9 +64,9 @@ Event4::Event4(QWidget *parent) : QWidget(parent), ui(new Ui::Event4)
     }
 
     ui->filterGenerator->disableControls(Controls::EncounterSlots | Controls::Ability | Controls::Gender | Controls::Natures
-                                         | Controls::Shiny);
+                                         | Controls::Shiny | Controls::IgnoreInheritance);
     ui->filterSearcher->disableControls(Controls::EncounterSlots | Controls::Ability | Controls::Gender | Controls::Natures
-                                        | Controls::Shiny | Controls::DisableFilter);
+                                        | Controls::Shiny | Controls::DisableFilter | Controls::IgnoreInheritance);
 
     ui->filterGenerator->enableHiddenAbility();
     ui->filterSearcher->enableHiddenAbility();
@@ -159,7 +159,7 @@ void Event4::generate()
     u32 maxAdvances = ui->textBoxGeneratorMaxAdvances->getUInt();
     u32 delay = ui->textBoxGeneratorDelay->getUInt();
 
-    auto filter = ui->filterGenerator->getFilter<StateFilter>();
+    auto filter = ui->filterGenerator->getFilter<StateFilter, FILTER_STATE_FILTER>();
     EventGenerator4 generator(initialAdvances, maxAdvances, delay, ui->comboBoxGeneratorSpecies->currentIndex() + 1,
                               ui->comboBoxGeneratorNature->currentIndex(), ui->spinBoxGeneratorLevel->value(), *currentProfile, filter);
 
@@ -197,7 +197,7 @@ void Event4::search()
     u32 minAdvance = ui->textBoxSearcherMinAdvance->getUInt();
     u32 maxAdvance = ui->textBoxSearcherMaxAdvance->getUInt();
 
-    auto filter = ui->filterSearcher->getFilter<StateFilter>();
+    auto filter = ui->filterSearcher->getFilter<StateFilter, FILTER_STATE_FILTER>();
     auto *searcher = new EventSearcher4(minAdvance, maxAdvance, minDelay, maxDelay, *currentProfile, filter);
 
     int maxProgress = 1;

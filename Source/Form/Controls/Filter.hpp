@@ -32,6 +32,16 @@ namespace Ui
 }
 
 /**
+ * @brief Enum that lists the different Filter types
+ */
+enum filter_types
+{
+    FILTER_STATE_FILTER = 0,
+    FILTER_WILD_FILTER = 1,
+    FILTER_DAYCARE_FILTER = 2
+};
+
+/**
  * @brief Provides settings to filter results on
  */
 class Filter : public QWidget
@@ -84,6 +94,14 @@ public:
     bool getDisableFilters() const;
 
     /**
+     * @brief Checks if IV filters should ignore inherited stats
+     *
+     * @return true IV filters automatically pass inherited stats
+     * @return false IV filters check inherited stats
+     */
+    bool getIgnoreInheritance() const;
+
+    /**
      * @brief Gets encounter slots to filter by
      *
      * @return Array of encounter slots
@@ -94,22 +112,27 @@ public:
      * @brief Constructs filter from the UI settings
      *
      * @tparam FilterType Filter class type
-     * @tparam wild Whether filter is for wild encounters
+     * @tparam type dictating type of constructor signature is needed
      *
      * @return Filter object
      */
-    template <class FilterType, bool wild = false>
+    template <class FilterType, u16 type>
     FilterType getFilter() const
     {
-        if constexpr (wild)
-        {
+
+        if constexpr(type == 1){
+            assert(type == 1);
             return FilterType(getGender(), getAbility(), getShiny(), getDisableFilters(), getMinIVs(), getMaxIVs(), getNatures(),
                               getHiddenPowers(), getEncounterSlots());
         }
-        else
-        {
+        else if constexpr(type == 2){
+            assert(type == 2);
             return FilterType(getGender(), getAbility(), getShiny(), getDisableFilters(), getMinIVs(), getMaxIVs(), getNatures(),
-                              getHiddenPowers());
+                              getHiddenPowers(), getIgnoreInheritance());
+        }
+        else{
+        return FilterType(getGender(), getAbility(), getShiny(), getDisableFilters(), getMinIVs(), getMaxIVs(), getNatures(),
+                          getHiddenPowers());
         }
     }
 

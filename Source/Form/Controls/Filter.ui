@@ -288,10 +288,17 @@
      <item row="2" column="3">
       <widget class="CheckList" name="checkListNature"/>
      </item>
-     <item row="3" column="0" colspan="4">
+     <item row="3" column="0" colspan="2">
       <widget class="QCheckBox" name="checkBoxDisableFilters">
        <property name="text">
         <string>Disable Filters</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="2" colspan="2">
+      <widget class="QCheckBox" name="checkBoxIgnoreInheritance">
+       <property name="text">
+        <string>Ignore Inheritance</string>
        </property>
       </widget>
      </item>

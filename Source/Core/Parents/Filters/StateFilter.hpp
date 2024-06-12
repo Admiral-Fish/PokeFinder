@@ -23,11 +23,15 @@
 #include <Core/Global.hpp>
 #include <array>
 
+
 class SearcherState;
 class State;
 class WildGeneratorState;
 class WildSearcherState;
 class WildState;
+class EggState;
+
+
 
 /**
  * @brief Provides ways to determine if the given \ref State meets the given criteria
@@ -211,5 +215,46 @@ public:
 protected:
     std::array<bool, 12> encounterSlots;
 };
+
+class DaycareFilter : public StateFilter
+{
+public:
+
+    /**
+     * @brief Construct a new DaycareFilter object
+     *
+     * @param gender Gender value to filter by
+     * @param ability Ability value to filter by
+     * @param shiny Shiny value to filter by
+     * @param skip If filters should be skipped
+     * @param min Minimum IV thresholds
+     * @param max Maximum IV thresholds
+     * @param natures Natures to filter by
+     * @param powers Hidden powers to filter by
+     * @param ignoreInheritance If IV filters should ignore inherited stats
+     */
+    DaycareFilter(u8 gender, u8 ability, u8 shiny, bool skip, const std::array<u8, 6> &min, const std::array<u8, 6> &max,
+                    const std::array<bool, 25> &natures, const std::array<bool, 16> &powers, bool ignoreInheritance);
+
+    /**
+     * @brief Determines if the \p ivs meet the filter criteria
+     *
+     * @param ivs IVs to compare
+     * @param inheritance Which stats come from which parent
+     *
+     * @return true IVs pass the filter
+     * @return false IVs do not pass the filter
+     */
+    bool compareIV(const std::array<u8, 6> &ivs, const std::array<u8, 6> &inheritance) const;
+
+    bool compareState(const EggState &state) const;
+
+
+
+protected:
+    bool ignoreInheritance;
+};
+
+
 
 #endif // STATEFILTER_HPP
