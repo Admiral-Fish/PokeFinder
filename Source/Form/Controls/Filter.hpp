@@ -121,12 +121,10 @@ public:
     {
 
         if constexpr(type == 1){
-            assert(type == 1);
             return FilterType(getGender(), getAbility(), getShiny(), getDisableFilters(), getMinIVs(), getMaxIVs(), getNatures(),
                               getHiddenPowers(), getEncounterSlots());
         }
         else if constexpr(type == 2){
-            assert(type == 2);
             return FilterType(getGender(), getAbility(), getShiny(), getDisableFilters(), getMinIVs(), getMaxIVs(), getNatures(),
                               getHiddenPowers(), getIgnoreInheritance());
         }

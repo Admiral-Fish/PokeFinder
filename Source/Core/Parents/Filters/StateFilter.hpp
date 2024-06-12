@@ -247,6 +247,16 @@ public:
      */
     bool compareIV(const std::array<u8, 6> &ivs, const std::array<u8, 6> &inheritance) const;
 
+    /**
+     * @brief Determines if the \p state meets the filter criteria
+     *
+     * Filters normal State information accounting for possiblity ot ignore inheritance.
+     *
+     * @param state State to compare
+     *
+     * @return true State passes the filter
+     * @return false State does not pass the filter
+     */
     bool compareState(const EggState &state) const;
 
 
