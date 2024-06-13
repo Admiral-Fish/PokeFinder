@@ -72,10 +72,11 @@ private:
      * @param feebas Whether the encounter location contains Feebas
      * @param safari Whether the encounter location is the Safari Zone in RSE
      * @param tanoby Whether the encounter location is Tanoby Ruins in FRLG
+     * @param ignoreLead Whether the lead was identified to be irrelevant to the RNG pattern
      *
      * @return Vector of computed states
      */
-    std::vector<WildSearcherState> search(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, bool feebas, bool safari, bool tanoby) const;
+    std::vector<WildSearcherState> search(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, bool feebas, bool safari, bool tanoby, bool ignoreLead) const;
 };
 
 #endif // WILDSEARCHER3_HPP
