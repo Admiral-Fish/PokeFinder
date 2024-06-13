@@ -68,7 +68,7 @@ WildSearcher3::WildSearcher3(Method method, Lead lead, bool feebasTile, const En
 {
     if ((profile.getVersion() & Game::RSE) != Game::None && area.getEncounter() == Encounter::RockSmash)
     {
-        rate = area.getRate() * 16 ;
+        rate = area.getRate() * 16;
     }
 }
 
