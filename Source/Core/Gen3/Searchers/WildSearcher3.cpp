@@ -81,8 +81,6 @@ void WildSearcher3::startSearch(const std::array<u8, 6> &min, const std::array<u
             || area.getEncounter() == Encounter::SuperRod);
     bool safari = area.safariZone(profile.getVersion());
     bool tanoby = area.tanobyChamber(profile.getVersion());
-    bool ignoreLead = (lead == Lead::MagnetPull && !(area.getEncounter() == Encounter::Grass))
-        || (lead == Lead::Static && !(area.getEncounter() == Encounter::Grass || area.getEncounter() == Encounter::Surfing));
 
     for (u8 hp = min[0]; hp <= max[0]; hp++)
     {
@@ -101,7 +99,7 @@ void WildSearcher3::startSearch(const std::array<u8, 6> &min, const std::array<u
                                 return;
                             }
 
-                            auto states = search(hp, atk, def, spa, spd, spe, feebas, safari, tanoby, ignoreLead);
+                            auto states = search(hp, atk, def, spa, spd, spe, feebas, safari, tanoby);
 
                             std::lock_guard<std::mutex> guard(mutex);
                             results.insert(results.end(), states.begin(), states.end());
@@ -115,16 +113,13 @@ void WildSearcher3::startSearch(const std::array<u8, 6> &min, const std::array<u
 }
 
 std::vector<WildSearcherState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, bool feebas, bool safari,
-                                                     bool tanoby, bool ignoreLead) const
+                                                     bool tanoby) const
 {
     std::vector<WildSearcherState> states;
     std::array<u8, 6> ivs = { hp, atk, def, spa, spd, spe };
 
     u32 seeds[6];
     int size = LCRNGReverse::recoverPokeRNGIV(hp, atk, def, spa, spd, spe, seeds, method);
-    Lead effectiveLead = ignoreLead ? Lead::None: lead;
-
-
     for (int i = 0; i < size; i++)
     {
         PokeRNGR rng(seeds[i]);
@@ -166,7 +161,7 @@ std::vector<WildSearcherState> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 s
             PokeRNGR test[4] = { rng, rng, rng, rng };
             bool valid[4] = { false, false, false, false };
 
-            switch (effectiveLead)
+            switch (lead)
             {
             case Lead::None:
                 if (tanoby)

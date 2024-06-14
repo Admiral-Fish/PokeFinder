@@ -46,10 +46,7 @@ std::vector<WildGeneratorState> WildGenerator3::generate(u32 seed) const
 
     auto modifiedSlots = area.getSlots(lead);
     u16 rate = area.getRate() * 16;
-    Encounter encounter = area.getEncounter();
-    bool rock = (profile.getVersion() & Game::RSE) != Game::None && encounter == Encounter::RockSmash;
-    bool checkMagnetPull = lead == Lead::MagnetPull && encounter == Encounter::Grass;
-    bool checkStatic = lead == Lead::Static && (encounter == Encounter::Grass || encounter == Encounter::Surfing);
+    bool rock = (profile.getVersion() & Game::RSE) != Game::None && area.getEncounter() == Encounter::RockSmash;
     bool feebas = area.feebasLocation(profile.getVersion());
     bool safari = area.safariZone(profile.getVersion());
     bool tanoby = area.tanobyChamber(profile.getVersion());
@@ -92,13 +89,13 @@ std::vector<WildGeneratorState> WildGenerator3::generate(u32 seed) const
         }
         else
         {
-            if ((checkMagnetPull || checkStatic) && go.nextUShort(2) == 0 && !modifiedSlots.empty())
+            if ((lead == Lead::MagnetPull || lead == Lead::Static) && go.nextUShort(2) == 0 && !modifiedSlots.empty())
             {
                 encounterSlot = modifiedSlots[go.nextUShort()];
             }
             else
             {
-                encounterSlot = EncounterSlot::hSlot(go.nextUShort(100), encounter);
+                encounterSlot = EncounterSlot::hSlot(go.nextUShort(100), area.getEncounter());
             }
         }
 
