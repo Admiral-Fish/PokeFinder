@@ -81,7 +81,7 @@ void ComboMenu::hideAction(const QVariant &data, bool hide)
         if (action->data() == data)
         {
             action->setVisible(!hide);
-            if (action->isChecked())
+            if (action->isChecked() && hide)
             {
                 clearSelection();
             }
@@ -95,7 +95,7 @@ void ComboMenu::hideAction(const QVariant &data, bool hide)
         if (menu)
         {
             auto menuActions = menu->actions();
-            bool visible = std::all_of(menuActions.begin(), menuActions.end(), [](const QAction *action) { return action->isVisible(); });
+            bool visible = std::any_of(menuActions.begin(), menuActions.end(), [](const QAction *action) { return action->isVisible(); });
             menu->menuAction()->setVisible(visible);
         }
     }
