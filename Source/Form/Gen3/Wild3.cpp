@@ -197,37 +197,27 @@ void Wild3::generatorEncounterIndexChanged(int index)
         {
         case Encounter::Grass:
             ui->filterGenerator->setEncounterSlots(12);
-            ui->comboMenuGeneratorLead->hideAction(toInt(Lead::Static), false);
-            ui->comboMenuGeneratorLead->hideAction(toInt(Lead::MagnetPull), false);
             break;
         case Encounter::RockSmash:
-            ui->filterGenerator->setEncounterSlots(5);
-            ui->comboMenuGeneratorLead->hideAction(toInt(Lead::Static), true);
-            ui->comboMenuGeneratorLead->hideAction(toInt(Lead::MagnetPull), true);
-            break;
         case Encounter::Surfing:
+        case Encounter::SuperRod:
             ui->filterGenerator->setEncounterSlots(5);
-            ui->comboMenuGeneratorLead->hideAction(toInt(Lead::Static), false);
-            ui->comboMenuGeneratorLead->hideAction(toInt(Lead::MagnetPull), true);
             break;
         case Encounter::OldRod:
             ui->filterGenerator->setEncounterSlots(2);
-            ui->comboMenuGeneratorLead->hideAction(toInt(Lead::Static), true);
-            ui->comboMenuGeneratorLead->hideAction(toInt(Lead::MagnetPull), true);
             break;
         case Encounter::GoodRod:
             ui->filterGenerator->setEncounterSlots(3);
-            ui->comboMenuGeneratorLead->hideAction(toInt(Lead::Static), true);
-            ui->comboMenuGeneratorLead->hideAction(toInt(Lead::MagnetPull), true);
-            break;
-        case Encounter::SuperRod:
-            ui->filterGenerator->setEncounterSlots(5);
-            ui->comboMenuGeneratorLead->hideAction(toInt(Lead::Static), true);
-            ui->comboMenuGeneratorLead->hideAction(toInt(Lead::MagnetPull), true);
             break;
         default:
             break;
         }
+
+        bool magnetPullOption = encounter == Encounter::Grass;
+        bool staticOption= encounter == Encounter::Grass || encounter == Encounter::Surfing;
+        ui->comboMenuGeneratorLead->hideAction(toInt(Lead::MagnetPull), !magnetPullOption);
+        ui->comboMenuGeneratorLead->hideAction(toInt(Lead::Static), !staticOption);
+
         updateEncounterGenerator();
 
         std::vector<u16> locs;
@@ -414,37 +404,27 @@ void Wild3::searcherEncounterIndexChanged(int index)
         {
         case Encounter::Grass:
             ui->filterSearcher->setEncounterSlots(12);
-            ui->comboMenuSearcherLead->hideAction(toInt(Lead::Static), false);
-            ui->comboMenuSearcherLead->hideAction(toInt(Lead::MagnetPull), false);
             break;
         case Encounter::RockSmash:
-            ui->filterSearcher->setEncounterSlots(5);
-            ui->comboMenuSearcherLead->hideAction(toInt(Lead::Static), true);
-            ui->comboMenuSearcherLead->hideAction(toInt(Lead::MagnetPull), true);
-            break;
         case Encounter::Surfing:
+        case Encounter::SuperRod:
             ui->filterSearcher->setEncounterSlots(5);
-            ui->comboMenuSearcherLead->hideAction(toInt(Lead::Static), false);
-            ui->comboMenuSearcherLead->hideAction(toInt(Lead::MagnetPull), true);
             break;
         case Encounter::OldRod:
             ui->filterSearcher->setEncounterSlots(2);
-            ui->comboMenuSearcherLead->hideAction(toInt(Lead::Static), true);
-            ui->comboMenuSearcherLead->hideAction(toInt(Lead::MagnetPull), true);
             break;
         case Encounter::GoodRod:
             ui->filterSearcher->setEncounterSlots(3);
-            ui->comboMenuSearcherLead->hideAction(toInt(Lead::Static), true);
-            ui->comboMenuSearcherLead->hideAction(toInt(Lead::MagnetPull), true);
-            break;
-        case Encounter::SuperRod:
-            ui->filterSearcher->setEncounterSlots(5);
-            ui->comboMenuSearcherLead->hideAction(toInt(Lead::Static), true);
-            ui->comboMenuSearcherLead->hideAction(toInt(Lead::MagnetPull), true);
             break;
         default:
             break;
         }
+
+        bool magnetPullOption = encounter == Encounter::Grass;
+        bool staticOption= encounter == Encounter::Grass || encounter == Encounter::Surfing;
+        ui->comboMenuSearcherLead->hideAction(toInt(Lead::MagnetPull), !magnetPullOption);
+        ui->comboMenuSearcherLead->hideAction(toInt(Lead::Static), !staticOption);
+
         updateEncounterSearcher();
 
         std::vector<u16> locs;
