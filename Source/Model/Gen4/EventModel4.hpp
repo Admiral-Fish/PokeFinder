@@ -24,6 +24,8 @@
 #include <Core/Parents/States/State.hpp>
 #include <Model/TableModel.hpp>
 
+enum class Game : u32;
+
 /**
  * @brief Provides a table model implementation to show event encounter information for Gen 4
  */
@@ -68,6 +70,13 @@ public:
      */
     QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
 
+    /**
+     * @brief Sets current \p version of the model
+     *
+     * @param version Game version
+     */
+    void setGame(Game version);
+
 public slots:
     /**
      * @brief Sets flag that controls whether the model display stats or IVs
@@ -77,8 +86,19 @@ public slots:
     void setShowStats(bool flag);
 
 private:
-    QStringList header = { tr("Advances"), tr("HP"), tr("Atk"), tr("Def"), tr("SpA"), tr("SpD"), tr("Spe"), tr("Hidden"), tr("Power") };
+    QStringList header = { tr("Advances"), tr("Call"), tr("Chatot"), tr("HP"),     tr("Atk"),  tr("Def"),
+                           tr("SpA"),      tr("SpD"),  tr("Spe"),    tr("Hidden"), tr("Power") };
+    Game version;
     bool showStats;
+
+    /**
+     * @brief Gets modified column index based on model method
+     *
+     * @param column Original column
+     *
+     * @return Modified column
+     */
+    int getColumn(int column) const;
 };
 
 /**

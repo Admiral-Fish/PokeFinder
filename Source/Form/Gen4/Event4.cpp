@@ -153,6 +153,7 @@ void Event4::updateProfiles()
 void Event4::generate()
 {
     generatorModel->clearModel();
+    generatorModel->setGame(currentProfile->getVersion());
 
     u32 seed = ui->textBoxGeneratorSeed->getUInt();
     u32 initialAdvances = ui->textBoxGeneratorInitialAdvances->getUInt();
