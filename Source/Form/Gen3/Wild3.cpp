@@ -213,6 +213,11 @@ void Wild3::generatorEncounterIndexChanged(int index)
             break;
         }
 
+        bool magnetPullOption = encounter == Encounter::Grass;
+        bool staticOption= encounter == Encounter::Grass || encounter == Encounter::Surfing;
+        ui->comboMenuGeneratorLead->hideAction(toInt(Lead::MagnetPull), !magnetPullOption);
+        ui->comboMenuGeneratorLead->hideAction(toInt(Lead::Static), !staticOption);
+
         updateEncounterGenerator();
 
         std::vector<u16> locs;
@@ -402,6 +407,7 @@ void Wild3::searcherEncounterIndexChanged(int index)
             break;
         case Encounter::RockSmash:
         case Encounter::Surfing:
+        case Encounter::SuperRod:
             ui->filterSearcher->setEncounterSlots(5);
             break;
         case Encounter::OldRod:
@@ -410,12 +416,14 @@ void Wild3::searcherEncounterIndexChanged(int index)
         case Encounter::GoodRod:
             ui->filterSearcher->setEncounterSlots(3);
             break;
-        case Encounter::SuperRod:
-            ui->filterSearcher->setEncounterSlots(5);
-            break;
         default:
             break;
         }
+
+        bool magnetPullOption = encounter == Encounter::Grass;
+        bool staticOption= encounter == Encounter::Grass || encounter == Encounter::Surfing;
+        ui->comboMenuSearcherLead->hideAction(toInt(Lead::MagnetPull), !magnetPullOption);
+        ui->comboMenuSearcherLead->hideAction(toInt(Lead::Static), !staticOption);
 
         updateEncounterSearcher();
 
