@@ -56,7 +56,7 @@ Underground::Underground(QWidget *parent) : QWidget(parent), ui(new Ui::Undergro
                                { toInt(Lead::Hustle), toInt(Lead::Pressure), toInt(Lead::VitalSpirit) });
     ui->comboMenuLead->addMenu(tr("Synchronize"), Translator::getNatures());
 
-    ui->filter->disableControls(Controls::EncounterSlots);
+    ui->filter->disableControls(Controls::EncounterSlots | Controls::IgnoreInheritance);
 
     ui->comboBoxLocation->enableAutoComplete();
 

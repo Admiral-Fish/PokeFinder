@@ -19,6 +19,8 @@
 
 #include "StateFilter.hpp"
 #include <Core/Parents/States/WildState.hpp>
+#include <Core/Parents/States/EggState.hpp>
+
 
 StateFilter::StateFilter(u8 gender, u8 ability, u8 shiny, bool skip, const std::array<u8, 6> &min, const std::array<u8, 6> &max,
                          const std::array<bool, 25> &natures, const std::array<bool, 16> &powers) :
@@ -218,4 +220,86 @@ bool WildStateFilter::compareState(const WildSearcherState &state) const
 bool WildStateFilter::compareState(const WildState &state) const
 {
     return StateFilter::compareState(static_cast<const State &>(state)) && encounterSlots[state.getEncounterSlot()];
+}
+
+DaycareFilter::DaycareFilter(u8 gender, u8 ability, u8 shiny, bool skip, const std::array<u8, 6> &min, const std::array<u8, 6> &max,
+                                 const std::array<bool, 25> &natures, const std::array<bool, 16> &powers, bool ignoreInheritance) :
+    StateFilter(gender, ability, shiny, skip, min, max, natures, powers), ignoreInheritance(ignoreInheritance)
+{
+}
+
+bool DaycareFilter::compareState(const EggState &state) const
+{
+    if (skip)
+    {
+        return true;
+    }
+
+    if (ability != 255 && ability != state.getAbility())
+    {
+        return false;
+    }
+
+    if (gender != 255 && gender != state.getGender())
+    {
+        return false;
+    }
+
+    if (!powers[state.getHiddenPower()])
+    {
+        return false;
+    }
+
+    if (!natures[state.getNature()])
+    {
+        return false;
+    }
+
+    if (shiny != 255 && !(shiny & state.getShiny()))
+    {
+        return false;
+    }
+
+
+    for (int i = 0; i < 6; i++)
+    {
+
+        if (ignoreInheritance && state.getInheritance(i) != 0){
+            continue;
+        }
+
+        u8 iv = state.getIV(i);
+        if (iv < min[i] || iv > max[i])
+        {
+            return false;
+        }
+    }
+
+    return true;
+
+}
+
+
+bool DaycareFilter::compareIV(const std::array<u8, 6> &ivs, const std::array<u8, 6> &inheritance) const
+{
+    if (skip)
+    {
+        return true;
+    }
+
+    for (int i = 0; i < 6; i++)
+    {
+
+        if (ignoreInheritance && inheritance[i] != 0){
+            continue;
+        }
+
+        u8 iv = ivs[i];
+        if (iv < min[i] || iv > max[i])
+        {
+            return false;
+        }
+    }
+
+    return true;
 }

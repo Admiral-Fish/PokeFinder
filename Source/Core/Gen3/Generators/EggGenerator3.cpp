@@ -117,7 +117,7 @@ static void setInheritance(const Daycare &daycare, std::array<u8, 6> &ivs, std::
 
 EggGenerator3::EggGenerator3(u32 initialAdvances, u32 maxAdvances, u32 delay, u32 initialAdvancesPickup, u32 maxAdvancesPickup,
                              u32 delayPickup, u8 calibration, u8 minRedraw, u8 maxRedraw, Method method, u8 compatability,
-                             const Daycare &daycare, const Profile3 &profile, const StateFilter &filter) :
+                             const Daycare &daycare, const Profile3 &profile, const DaycareFilter &filter) :
     EggGenerator(initialAdvances, maxAdvances, delay, method, compatability, daycare, profile, filter),
     delayPickup(delayPickup),
     initialAdvancesPickup(initialAdvancesPickup),
@@ -354,7 +354,7 @@ std::vector<EggState3> EggGenerator3::generateEmeraldPickup(const std::vector<Eg
 
             state.update(initialAdvancesPickup + cnt, ivs, inheritance, info);
             if (filter.compareHiddenPower(state.getHiddenPower()) && filter.compareNature(state.getNature())
-                && filter.compareShiny(state.getShiny()) && filter.compareIV(state.getIVs()))
+                && filter.compareShiny(state.getShiny()) && filter.compareIV(state.getIVs(), inheritance))
             {
                 states.emplace_back(state);
             }
@@ -465,7 +465,7 @@ std::vector<EggState3> EggGenerator3::generateRSFRLGPickup(u32 seed, const std::
 
             state.update(initialAdvancesPickup + cnt, pid, Utilities::getShiny<true>(pid, tsv), ivs, inheritance, info);
             if (filter.compareHiddenPower(state.getHiddenPower()) && filter.compareNature(state.getNature())
-                && filter.compareShiny(state.getShiny()) && filter.compareIV(state.getIVs()))
+                && filter.compareShiny(state.getShiny()) && filter.compareIV(state.getIVs(), inheritance))
             {
                 states.emplace_back(state);
             }

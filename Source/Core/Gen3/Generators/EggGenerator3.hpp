@@ -29,7 +29,7 @@ class EggState3;
 /**
  * @brief Egg encounter generator for Gen3
  */
-class EggGenerator3 : public EggGenerator<Profile3, StateFilter>
+class EggGenerator3 : public EggGenerator<Profile3, DaycareFilter>
 {
 public:
     /**
@@ -52,7 +52,7 @@ public:
      */
     EggGenerator3(u32 initialAdvances, u32 maxAdvances, u32 delay, u32 initialAdvancesPickup, u32 maxAdvancesPickup, u32 delayPickup,
                   u8 calibration, u8 minRedraw, u8 maxRedraw, Method method, u8 compatability, const Daycare &daycare,
-                  const Profile3 &profile, const StateFilter &filter);
+                  const Profile3 &profile, const DaycareFilter &filter);
 
     /**
      * @brief Generates states

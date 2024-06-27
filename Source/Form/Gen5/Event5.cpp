@@ -66,8 +66,8 @@ Event5::Event5(QWidget *parent) : QWidget(parent), ui(new Ui::Event5)
         ui->comboBoxSearcherNature->addItem(QString::fromStdString(nature));
     }
 
-    ui->filterGenerator->disableControls(Controls::EncounterSlots);
-    ui->filterSearcher->disableControls(Controls::EncounterSlots | Controls::DisableFilter);
+    ui->filterGenerator->disableControls(Controls::EncounterSlots | Controls::IgnoreInheritance);
+    ui->filterSearcher->disableControls(Controls::EncounterSlots | Controls::DisableFilter | Controls::IgnoreInheritance);
 
     ui->filterGenerator->enableHiddenAbility();
     ui->filterSearcher->enableHiddenAbility();
@@ -179,7 +179,7 @@ void Event5::generate()
     u32 delay = ui->textBoxGeneratorDelay->getUInt();
     PGF pgf = getGeneratorParameters();
 
-    auto filter = ui->filterGenerator->getFilter<StateFilter>();
+    auto filter = ui->filterGenerator->getFilter<StateFilter, FILTER_STATE_FILTER>();
     EventGenerator5 generator(initialAdvances, maxAdvances, delay, pgf, *currentProfile, filter);
 
     auto states = generator.generate(seed);
@@ -300,7 +300,7 @@ void Event5::search()
     u32 maxAdvances = ui->textBoxSearcherMaxAdvances->getUInt();
     PGF pgf = getSearcherParameters();
 
-    auto filter = ui->filterSearcher->getFilter<StateFilter>();
+    auto filter = ui->filterSearcher->getFilter<StateFilter, FILTER_STATE_FILTER>();
     EventGenerator5 generator(initialAdvances, maxAdvances, 0, pgf, *currentProfile, filter);
     auto *searcher = new Searcher5<EventGenerator5, State5>(generator, *currentProfile);
 

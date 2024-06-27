@@ -28,7 +28,7 @@
 #include <Core/Util/Utilities.hpp>
 
 EggGenerator5::EggGenerator5(u32 initialAdvances, u32 maxAdvances, u32 delay, const Daycare &daycare, const Profile5 &profile,
-                             const StateFilter &filter) :
+                             const DaycareFilter &filter) :
     EggGenerator(initialAdvances, maxAdvances, delay, Method::None, 0, daycare, profile, filter),
     ditto(daycare.getDitto()),
     everstone(daycare.getEverstoneCount()),
@@ -174,7 +174,8 @@ std::vector<EggState5> EggGenerator5::generateBW(u64 seed) const
 
         EggState5 state(rng.nextUInt(0x1fff), advances + initialAdvances + cnt, pid, ivs, ability, Utilities::getGender(pid, info), nature,
                         Utilities::getShiny<true>(pid, tsv), inheritance, info);
-        if (filter.compareState(static_cast<const State &>(state)))
+
+        if (filter.compareState(static_cast<const EggState &>(state)))
         {
             states.emplace_back(state);
         }
@@ -194,7 +195,7 @@ std::vector<EggState5> EggGenerator5::generateBW2(u64 seed) const
 
     const PersonalInfo *info = nullptr;
     EggState5 state = generateBW2Egg(eggSeed, &info);
-    if (filter.compareAbility(state.getAbility()) && filter.compareNature(state.getNature()) && filter.compareIV(state.getIVs())
+    if (filter.compareAbility(state.getAbility()) && filter.compareNature(state.getNature()) && filter.compareIV(state.getIVs(), state.getInheritance())
         && filter.compareHiddenPower(state.getHiddenPower()))
     {
         u32 advances = Utilities5::initialAdvances(seed, profile);

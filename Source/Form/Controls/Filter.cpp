@@ -177,6 +177,12 @@ void Filter::disableControls(Controls control)
     {
         ui->checkBoxDisableFilters->setVisible(false);
     }
+
+    if ((control & Controls::IgnoreInheritance) != Controls::None)
+    {
+        ui->checkBoxIgnoreInheritance->setVisible(false);
+    }
+
 }
 
 void Filter::enableHiddenAbility()
@@ -192,6 +198,11 @@ u8 Filter::getAbility() const
 bool Filter::getDisableFilters() const
 {
     return ui->checkBoxDisableFilters->isChecked();
+}
+
+bool Filter::getIgnoreInheritance() const
+{
+    return ui->checkBoxIgnoreInheritance->isChecked();
 }
 
 std::array<bool, 12> Filter::getEncounterSlots() const

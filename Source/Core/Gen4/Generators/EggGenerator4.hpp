@@ -29,7 +29,7 @@ class EggGeneratorState4;
 /**
  * @brief Egg encounter generator for Gen4
  */
-class EggGenerator4 : public EggGenerator<Profile4, StateFilter>
+class EggGenerator4 : public EggGenerator<Profile4, DaycareFilter>
 {
 public:
     /**
@@ -46,7 +46,7 @@ public:
      * @param filter State filter
      */
     EggGenerator4(u32 initialAdvances, u32 maxAdvances, u32 delay, u32 initialAdvancesPickup, u32 maxAdvancesPickup, u32 delayPickup,
-                  const Daycare &daycare, const Profile4 &profile, const StateFilter &filter);
+                  const Daycare &daycare, const Profile4 &profile, const DaycareFilter &filter);
 
     /**
      * @brief Generates states

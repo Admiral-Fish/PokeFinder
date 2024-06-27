@@ -30,7 +30,7 @@ class PersonalInfo;
 /**
  * @brief Egg generator for Gen 5
  */
-class EggGenerator5 : public EggGenerator<Profile5, StateFilter>
+class EggGenerator5 : public EggGenerator<Profile5, DaycareFilter>
 {
 public:
     /**
@@ -44,7 +44,7 @@ public:
      * @param filter State filter
      */
     EggGenerator5(u32 initialAdvances, u32 maxAdvances, u32 delay, const Daycare &daycare, const Profile5 &profile,
-                  const StateFilter &filter);
+                  const DaycareFilter &filter);
 
     /**
      * @brief Generates states

@@ -53,7 +53,7 @@ Static8::Static8(QWidget *parent) : QWidget(parent), ui(new Ui::Static8)
     ui->comboBoxShiny->setup({ toInt(Shiny::Never), toInt(Shiny::Random) });
     ui->comboBoxAbility->setup({ 0, 1, 2, 255 });
 
-    ui->filter->disableControls(Controls::EncounterSlots | Controls::HiddenPowers);
+    ui->filter->disableControls(Controls::EncounterSlots | Controls::HiddenPowers | Controls::IgnoreInheritance);
 
     connect(ui->comboBoxProfiles, &QComboBox::currentIndexChanged, this, &Static8::profileIndexChanged);
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Static8::generate);
@@ -148,7 +148,7 @@ void Static8::generate()
     const StaticTemplate8 *staticTemplate
         = Encounters8::getStaticEncounter(ui->comboBoxCategory->currentIndex(), ui->comboBoxPokemon->getCurrentInt());
 
-    auto filter = ui->filter->getFilter<StateFilter>();
+    auto filter = ui->filter->getFilter<StateFilter, FILTER_STATE_FILTER>();
     StaticGenerator8 generator(initialAdvances, maxAdvances, delay, lead, *staticTemplate, *currentProfile, filter);
 
     auto states = generator.generate(seed0, seed1);
