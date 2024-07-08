@@ -1,7 +1,7 @@
 #ifndef VERSION_H
 #define VERSION_H
 
-#define POKEFINDER_VERSION "4.2.0"
+#define POKEFINDER_VERSION "4.2.1"
 #define GIT_BRANCH "@GIT_BRANCH@"
 #define GIT_COMMIT "@GIT_COMMIT@"
 

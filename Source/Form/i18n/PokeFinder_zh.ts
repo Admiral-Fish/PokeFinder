@@ -2641,47 +2641,57 @@
 <context>
     <name>EventGeneratorModel4</name>
     <message>
-        <location filename="../../Model/Gen4/EventModel4.hpp" line="80"/>
+        <location filename="../../Model/Gen4/EventModel4.hpp" line="89"/>
         <source>Advances</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/EventModel4.hpp" line="80"/>
+        <location filename="../../Model/Gen4/EventModel4.hpp" line="89"/>
         <source>HP</source>
         <translation>HP</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/EventModel4.hpp" line="80"/>
+        <location filename="../../Model/Gen4/EventModel4.hpp" line="89"/>
         <source>Atk</source>
         <translation>攻击</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/EventModel4.hpp" line="80"/>
+        <location filename="../../Model/Gen4/EventModel4.hpp" line="89"/>
         <source>Def</source>
         <translation>防御</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/EventModel4.hpp" line="80"/>
+        <location filename="../../Model/Gen4/EventModel4.hpp" line="89"/>
+        <source>Call</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen4/EventModel4.hpp" line="89"/>
+        <source>Chatot</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen4/EventModel4.hpp" line="90"/>
         <source>SpA</source>
         <translation>特攻</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/EventModel4.hpp" line="80"/>
+        <location filename="../../Model/Gen4/EventModel4.hpp" line="90"/>
         <source>SpD</source>
         <translation>特防</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/EventModel4.hpp" line="80"/>
+        <location filename="../../Model/Gen4/EventModel4.hpp" line="90"/>
         <source>Spe</source>
         <translation>速度</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/EventModel4.hpp" line="80"/>
+        <location filename="../../Model/Gen4/EventModel4.hpp" line="90"/>
         <source>Hidden</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/EventModel4.hpp" line="80"/>
+        <location filename="../../Model/Gen4/EventModel4.hpp" line="90"/>
         <source>Power</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2787,52 +2797,52 @@
 <context>
     <name>EventSearcherModel4</name>
     <message>
-        <location filename="../../Model/Gen4/EventModel4.hpp" line="146"/>
+        <location filename="../../Model/Gen4/EventModel4.hpp" line="166"/>
         <source>Seed</source>
         <translation>Seed</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/EventModel4.hpp" line="146"/>
+        <location filename="../../Model/Gen4/EventModel4.hpp" line="166"/>
         <source>Advances</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/EventModel4.hpp" line="146"/>
+        <location filename="../../Model/Gen4/EventModel4.hpp" line="166"/>
         <source>HP</source>
         <translation>HP</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/EventModel4.hpp" line="146"/>
+        <location filename="../../Model/Gen4/EventModel4.hpp" line="166"/>
         <source>Atk</source>
         <translation>攻击</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/EventModel4.hpp" line="146"/>
+        <location filename="../../Model/Gen4/EventModel4.hpp" line="166"/>
         <source>Def</source>
         <translation>防御</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/EventModel4.hpp" line="146"/>
+        <location filename="../../Model/Gen4/EventModel4.hpp" line="166"/>
         <source>SpA</source>
         <translation>特攻</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/EventModel4.hpp" line="146"/>
+        <location filename="../../Model/Gen4/EventModel4.hpp" line="166"/>
         <source>SpD</source>
         <translation>特防</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/EventModel4.hpp" line="146"/>
+        <location filename="../../Model/Gen4/EventModel4.hpp" line="166"/>
         <source>Spe</source>
         <translation>速度</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/EventModel4.hpp" line="146"/>
+        <location filename="../../Model/Gen4/EventModel4.hpp" line="166"/>
         <source>Hidden</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/EventModel4.hpp" line="146"/>
+        <location filename="../../Model/Gen4/EventModel4.hpp" line="166"/>
         <source>Power</source>
         <translation type="unfinished"></translation>
     </message>

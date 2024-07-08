@@ -2641,47 +2641,57 @@
 <context>
     <name>EventGeneratorModel4</name>
     <message>
-        <location filename="../../Model/Gen4/EventModel4.hpp" line="80"/>
+        <location filename="../../Model/Gen4/EventModel4.hpp" line="89"/>
         <source>Advances</source>
         <translation>Avanzamenti</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/EventModel4.hpp" line="80"/>
+        <location filename="../../Model/Gen4/EventModel4.hpp" line="89"/>
         <source>HP</source>
         <translation>PS</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/EventModel4.hpp" line="80"/>
+        <location filename="../../Model/Gen4/EventModel4.hpp" line="89"/>
         <source>Atk</source>
         <translation>Att</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/EventModel4.hpp" line="80"/>
+        <location filename="../../Model/Gen4/EventModel4.hpp" line="89"/>
         <source>Def</source>
         <translation>Dif</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/EventModel4.hpp" line="80"/>
+        <location filename="../../Model/Gen4/EventModel4.hpp" line="89"/>
+        <source>Call</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen4/EventModel4.hpp" line="89"/>
+        <source>Chatot</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen4/EventModel4.hpp" line="90"/>
         <source>SpA</source>
         <translation>AttSp</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/EventModel4.hpp" line="80"/>
+        <location filename="../../Model/Gen4/EventModel4.hpp" line="90"/>
         <source>SpD</source>
         <translation>DifSp</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/EventModel4.hpp" line="80"/>
+        <location filename="../../Model/Gen4/EventModel4.hpp" line="90"/>
         <source>Spe</source>
         <translation>Vel</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/EventModel4.hpp" line="80"/>
+        <location filename="../../Model/Gen4/EventModel4.hpp" line="90"/>
         <source>Hidden</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/EventModel4.hpp" line="80"/>
+        <location filename="../../Model/Gen4/EventModel4.hpp" line="90"/>
         <source>Power</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2787,52 +2797,52 @@
 <context>
     <name>EventSearcherModel4</name>
     <message>
-        <location filename="../../Model/Gen4/EventModel4.hpp" line="146"/>
+        <location filename="../../Model/Gen4/EventModel4.hpp" line="166"/>
         <source>Seed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/EventModel4.hpp" line="146"/>
+        <location filename="../../Model/Gen4/EventModel4.hpp" line="166"/>
         <source>Advances</source>
         <translation>Avanzamenti</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/EventModel4.hpp" line="146"/>
+        <location filename="../../Model/Gen4/EventModel4.hpp" line="166"/>
         <source>HP</source>
         <translation>PS</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/EventModel4.hpp" line="146"/>
+        <location filename="../../Model/Gen4/EventModel4.hpp" line="166"/>
         <source>Atk</source>
         <translation>Att</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/EventModel4.hpp" line="146"/>
+        <location filename="../../Model/Gen4/EventModel4.hpp" line="166"/>
         <source>Def</source>
         <translation>Dif</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/EventModel4.hpp" line="146"/>
+        <location filename="../../Model/Gen4/EventModel4.hpp" line="166"/>
         <source>SpA</source>
         <translation>AttSp</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/EventModel4.hpp" line="146"/>
+        <location filename="../../Model/Gen4/EventModel4.hpp" line="166"/>
         <source>SpD</source>
         <translation>DifSp</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/EventModel4.hpp" line="146"/>
+        <location filename="../../Model/Gen4/EventModel4.hpp" line="166"/>
         <source>Spe</source>
         <translation>Vel</translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/EventModel4.hpp" line="146"/>
+        <location filename="../../Model/Gen4/EventModel4.hpp" line="166"/>
         <source>Hidden</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen4/EventModel4.hpp" line="146"/>
+        <location filename="../../Model/Gen4/EventModel4.hpp" line="166"/>
         <source>Power</source>
         <translation type="unfinished"></translation>
     </message>
