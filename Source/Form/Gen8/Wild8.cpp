@@ -64,6 +64,8 @@ Wild8::Wild8(QWidget *parent) : QWidget(parent), ui(new Ui::Wild8)
 
     ui->comboBoxLocation->enableAutoComplete();
 
+    ui->filter->disableControls(Controls::IgnoreInheritance);
+
     connect(ui->comboBoxProfiles, &QComboBox::currentIndexChanged, this, &Wild8::profileIndexChanged);
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Wild8::generate);
     connect(ui->comboBoxEncounter, &QComboBox::currentIndexChanged, this, &Wild8::encounterIndexChanged);
@@ -210,7 +212,7 @@ void Wild8::generate()
     u32 delay = ui->textBoxDelay->getUInt();
     auto lead = ui->comboMenuLead->getEnum<Lead>();
 
-    auto filter = ui->filter->getFilter<WildStateFilter, true>();
+    auto filter = ui->filter->getFilter<WildStateFilter, FILTER_WILD_FILTER>();
     WildGenerator8 generator(initialAdvances, maxAdvances, delay, lead, encounters[ui->comboBoxLocation->getCurrentInt()], *currentProfile,
                              filter);
 

@@ -22,6 +22,7 @@
 
 #include <Core/Parents/States/State.hpp>
 
+
 /**
  * @brief Parent state class that provides additional wild information
  */
