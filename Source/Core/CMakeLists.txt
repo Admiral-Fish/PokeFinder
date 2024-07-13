@@ -182,6 +182,7 @@ add_library(PokeFinderCore STATIC
     Gen8/Profile8.cpp
     Gen8/Profile8.hpp
     Gen8/Raid.hpp
+    Gen8/States/EggState8.hpp
     Gen8/States/IDState8.hpp
     Gen8/States/State8.hpp
     Gen8/States/WildState8.hpp

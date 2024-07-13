@@ -24,7 +24,7 @@
 #include <Core/Parents/Filters/StateFilter.hpp>
 #include <Core/Parents/Generators/EggGenerator.hpp>
 
-class EggGeneratorState;
+class EggState8;
 
 /**
  * @brief Egg generator for Gen8
@@ -54,7 +54,7 @@ public:
      *
      * @return Vector of computed states
      */
-    std::vector<EggGeneratorState> generate(u64 seed0, u64 seed1) const;
+    std::vector<EggState8> generate(u64 seed0, u64 seed1) const;
 
 private:
     bool shinyCharm;

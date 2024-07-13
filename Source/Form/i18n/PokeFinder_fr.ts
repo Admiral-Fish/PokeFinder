@@ -847,17 +847,17 @@
 <context>
     <name>EggModel8</name>
     <message>
-        <location filename="../../Model/Gen8/EggModel8.cpp" line="49"/>
+        <location filename="../../Model/Gen8/EggModel8.cpp" line="51"/>
         <source>Square</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen8/EggModel8.cpp" line="49"/>
+        <location filename="../../Model/Gen8/EggModel8.cpp" line="51"/>
         <source>Star</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Model/Gen8/EggModel8.cpp" line="49"/>
+        <location filename="../../Model/Gen8/EggModel8.cpp" line="51"/>
         <source>No</source>
         <translation type="unfinished"></translation>
     </message>
@@ -895,6 +895,11 @@
         <location filename="../../Model/Gen8/EggModel8.hpp" line="86"/>
         <source>HP</source>
         <translation>PV</translation>
+    </message>
+    <message>
+        <location filename="../../Model/Gen8/EggModel8.hpp" line="86"/>
+        <source>Egg Seed</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../Model/Gen8/EggModel8.hpp" line="87"/>

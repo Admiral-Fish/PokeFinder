@@ -20,14 +20,14 @@
 #include "EggGenerator8Test.hpp"
 #include <Core/Enum/Game.hpp>
 #include <Core/Gen8/Generators/EggGenerator8.hpp>
-#include <Core/Parents/States/EggState.hpp>
+#include <Core/Gen8/States/EggState8.hpp>
 #include <QTest>
 #include <Test/Data.hpp>
 
 using IVs = std::array<std::array<u8, 6>, 2>;
 using Attribute = std::array<u8, 2>;
 
-static bool operator==(const EggGeneratorState &left, const json &right)
+static bool operator==(const EggState8 &left, const json &right)
 {
     // Intentionally ignoring hidden power
     return left.getEC() == right["ec"].get<u32>() && left.getPID() == right["pid"].get<u32>()
@@ -36,7 +36,7 @@ static bool operator==(const EggGeneratorState &left, const json &right)
         && left.getCharacteristic() == right["characteristic"].get<u8>() && left.getGender() == right["gender"].get<u8>()
         && left.getLevel() == right["level"].get<u8>() && left.getNature() == right["nature"].get<u8>()
         && left.getShiny() == right["shiny"].get<u8>() && left.getInheritance() == right["inheritance"].get<std::array<u8, 6>>()
-        && left.getAdvances() == right["advances"].get<u32>();
+        && left.getAdvances() == right["advances"].get<u32>() && left.getSeed() == right["seed"].get<u32>();
 }
 
 void EggGenerator8Test::generate_data()
